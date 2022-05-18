@@ -26,6 +26,7 @@ jobs:
         target: dnSpy/
     # Decompile Assembly-CSharp with duSpy
     - name: Decompile
+      shell: powershell
       run: |
         unzip dnSpy/dnSpy-netframework.zip
         ./dnSpy.Console.exe -o .\ .\Assembly-CSharp.dll
