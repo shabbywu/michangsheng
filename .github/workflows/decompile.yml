@@ -28,5 +28,5 @@ jobs:
     - name: Decompile
       run: |
         unzip dnSpy/dnSpy-netframework.zip
-        ./dnSpy.Console.exe -o ./ ./Assembly-CSharp.dll
+        ./dnSpy.Console.exe -o .\ .\Assembly-CSharp.dll
         ls
