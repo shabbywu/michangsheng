@@ -29,6 +29,6 @@ jobs:
       shell: powershell
       run: |
         unzip dnspy.zip
-        rm -r src
+        try {rm -r src} catch {}
         .\dnspy\dnSpy.Console.exe -o .\src .\Assembly-CSharp.dll
         
