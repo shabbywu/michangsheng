@@ -1,0 +1,40 @@
+﻿using System;
+
+// Token: 0x0200022D RID: 557
+public enum AccountType
+{
+	// Token: 0x04000DEF RID: 3567
+	ANONYMOUS,
+	// Token: 0x04000DF0 RID: 3568
+	REGISTERED,
+	// Token: 0x04000DF1 RID: 3569
+	SINA_WEIBO,
+	// Token: 0x04000DF2 RID: 3570
+	QQ,
+	// Token: 0x04000DF3 RID: 3571
+	QQ_WEIBO,
+	// Token: 0x04000DF4 RID: 3572
+	ND91,
+	// Token: 0x04000DF5 RID: 3573
+	WEIXIN,
+	// Token: 0x04000DF6 RID: 3574
+	TYPE1 = 11,
+	// Token: 0x04000DF7 RID: 3575
+	TYPE2,
+	// Token: 0x04000DF8 RID: 3576
+	TYPE3,
+	// Token: 0x04000DF9 RID: 3577
+	TYPE4,
+	// Token: 0x04000DFA RID: 3578
+	TYPE5,
+	// Token: 0x04000DFB RID: 3579
+	TYPE6,
+	// Token: 0x04000DFC RID: 3580
+	TYPE7,
+	// Token: 0x04000DFD RID: 3581
+	TYPE8,
+	// Token: 0x04000DFE RID: 3582
+	TYPE9,
+	// Token: 0x04000DFF RID: 3583
+	TYPE10
+}
