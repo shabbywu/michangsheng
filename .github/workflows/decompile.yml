@@ -31,4 +31,8 @@ jobs:
         unzip dnspy.zip
         try {rm -r src} catch {}
         .\dnspy\dnSpy.Console.exe -o .\src .\Assembly-CSharp.dll
+    - name: Add & Commit
+      uses: EndBug/add-and-commit@v9.0.0
+      with:
+        message: 更新觅长生源码
         
