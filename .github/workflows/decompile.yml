@@ -1,0 +1,32 @@
+name: Decompile
+on:
+  push:
+    branches: [ main ]
+    paths:
+    - Assembly-CSharp.dll
+  workflow_dispatch:
+jobs:
+  decompile:
+    runs-on: windows-latest 
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v3
+      with:
+        fetch-depth: 0
+    # Install the .NET Core workload
+    - name: Install .NET Core
+      uses: actions/setup-dotnet@v2
+      with:
+        dotnet-version: 5.0.x
+    # Download dnSpy project
+    - uses: suisei-cn/actions-download-file@v1
+      name: Download dnSpy
+      with:
+        url: "https://github.com/dnSpy/dnSpy/releases/download/v6.1.8/dnSpy-netframework.zip"
+        target: dnSpy/
+    # Decompile Assembly-CSharp with duSpy
+    - name: Decompile
+      run: |
+        unzip dnSpy/dnSpy-netframework.zip
+        dnSpy/dnSpy.Console.exe -o src Assembly-CSharp.dll
+        tree src
