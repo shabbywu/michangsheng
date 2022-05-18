@@ -30,5 +30,5 @@ jobs:
       run: |
         unzip dnspy.zip
         rm -r src
-        .\dnSpy\dnSpy.Console.exe -o .\src .\Assembly-CSharp.dll
+        .\dnspy\dnSpy.Console.exe -o .\src .\Assembly-CSharp.dll
         
