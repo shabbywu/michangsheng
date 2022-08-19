@@ -35,4 +35,5 @@ jobs:
       uses: EndBug/add-and-commit@v9.0.0
       with:
         message: 更新觅长生源码
+        pull: --ff-only
         
