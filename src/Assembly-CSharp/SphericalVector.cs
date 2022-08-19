@@ -1,11 +1,11 @@
 ﻿using System;
 using UnityEngine;
 
-// Token: 0x02000151 RID: 337
+// Token: 0x020000DA RID: 218
 [Serializable]
 public struct SphericalVector
 {
-	// Token: 0x06000C33 RID: 3123 RVA: 0x0000E382 File Offset: 0x0000C582
+	// Token: 0x06000B44 RID: 2884 RVA: 0x00044C5D File Offset: 0x00042E5D
 	public SphericalVector(float azimuth, float zenith, float length)
 	{
 		this.Length = length;
@@ -13,8 +13,8 @@ public struct SphericalVector
 		this.Azimuth = azimuth;
 	}
 
-	// Token: 0x170001EE RID: 494
-	// (get) Token: 0x06000C34 RID: 3124 RVA: 0x0000E399 File Offset: 0x0000C599
+	// Token: 0x170001D3 RID: 467
+	// (get) Token: 0x06000B45 RID: 2885 RVA: 0x00044C74 File Offset: 0x00042E74
 	public Vector3 Position
 	{
 		get
@@ -23,8 +23,8 @@ public struct SphericalVector
 		}
 	}
 
-	// Token: 0x170001EF RID: 495
-	// (get) Token: 0x06000C35 RID: 3125 RVA: 0x00096974 File Offset: 0x00094B74
+	// Token: 0x170001D4 RID: 468
+	// (get) Token: 0x06000B46 RID: 2886 RVA: 0x00044C88 File Offset: 0x00042E88
 	public Vector3 Direction
 	{
 		get
@@ -40,18 +40,18 @@ public struct SphericalVector
 		}
 	}
 
-	// Token: 0x06000C36 RID: 3126 RVA: 0x0000E3AC File Offset: 0x0000C5AC
+	// Token: 0x06000B47 RID: 2887 RVA: 0x00044CE8 File Offset: 0x00042EE8
 	public override string ToString()
 	{
 		return string.Format("Azimuth {0:0.0000} : Zenith {1:0.0000} : Length {2:0.0000}]", this.Azimuth, this.Zenith, this.Length);
 	}
 
-	// Token: 0x0400094E RID: 2382
+	// Token: 0x04000773 RID: 1907
 	public float Length;
 
-	// Token: 0x0400094F RID: 2383
+	// Token: 0x04000774 RID: 1908
 	public float Zenith;
 
-	// Token: 0x04000950 RID: 2384
+	// Token: 0x04000775 RID: 1909
 	public float Azimuth;
 }

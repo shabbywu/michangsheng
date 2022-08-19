@@ -2,10 +2,10 @@
 
 namespace ICSharpCode.SharpZipLib.Zip.Compression.Streams
 {
-	// Token: 0x02000804 RID: 2052
+	// Token: 0x0200055E RID: 1374
 	public class StreamManipulator
 	{
-		// Token: 0x06003530 RID: 13616 RVA: 0x00198498 File Offset: 0x00196698
+		// Token: 0x06002CC2 RID: 11458 RVA: 0x0014C534 File Offset: 0x0014A734
 		public int PeekBits(int bitCount)
 		{
 			if (this.bitsInBuffer_ < bitCount)
@@ -28,7 +28,7 @@ namespace ICSharpCode.SharpZipLib.Zip.Compression.Streams
 			return (int)((ulong)this.buffer_ & (ulong)((long)((1 << bitCount) - 1)));
 		}
 
-		// Token: 0x06003531 RID: 13617 RVA: 0x00198538 File Offset: 0x00196738
+		// Token: 0x06002CC3 RID: 11459 RVA: 0x0014C5D4 File Offset: 0x0014A7D4
 		public bool TryGetBits(int bitCount, ref int output, int outputOffset = 0)
 		{
 			int num = this.PeekBits(bitCount);
@@ -41,7 +41,7 @@ namespace ICSharpCode.SharpZipLib.Zip.Compression.Streams
 			return true;
 		}
 
-		// Token: 0x06003532 RID: 13618 RVA: 0x00198560 File Offset: 0x00196760
+		// Token: 0x06002CC4 RID: 11460 RVA: 0x0014C5FC File Offset: 0x0014A7FC
 		public bool TryGetBits(int bitCount, ref byte[] array, int index)
 		{
 			int num = this.PeekBits(bitCount);
@@ -54,14 +54,14 @@ namespace ICSharpCode.SharpZipLib.Zip.Compression.Streams
 			return true;
 		}
 
-		// Token: 0x06003533 RID: 13619 RVA: 0x00026CEE File Offset: 0x00024EEE
+		// Token: 0x06002CC5 RID: 11461 RVA: 0x0014C625 File Offset: 0x0014A825
 		public void DropBits(int bitCount)
 		{
 			this.buffer_ >>= bitCount;
 			this.bitsInBuffer_ -= bitCount;
 		}
 
-		// Token: 0x06003534 RID: 13620 RVA: 0x00026D0F File Offset: 0x00024F0F
+		// Token: 0x06002CC6 RID: 11462 RVA: 0x0014C646 File Offset: 0x0014A846
 		public int GetBits(int bitCount)
 		{
 			int num = this.PeekBits(bitCount);
@@ -72,8 +72,8 @@ namespace ICSharpCode.SharpZipLib.Zip.Compression.Streams
 			return num;
 		}
 
-		// Token: 0x17000516 RID: 1302
-		// (get) Token: 0x06003535 RID: 13621 RVA: 0x00026D23 File Offset: 0x00024F23
+		// Token: 0x1700035F RID: 863
+		// (get) Token: 0x06002CC7 RID: 11463 RVA: 0x0014C65A File Offset: 0x0014A85A
 		public int AvailableBits
 		{
 			get
@@ -82,8 +82,8 @@ namespace ICSharpCode.SharpZipLib.Zip.Compression.Streams
 			}
 		}
 
-		// Token: 0x17000517 RID: 1303
-		// (get) Token: 0x06003536 RID: 13622 RVA: 0x00026D2B File Offset: 0x00024F2B
+		// Token: 0x17000360 RID: 864
+		// (get) Token: 0x06002CC8 RID: 11464 RVA: 0x0014C662 File Offset: 0x0014A862
 		public int AvailableBytes
 		{
 			get
@@ -92,15 +92,15 @@ namespace ICSharpCode.SharpZipLib.Zip.Compression.Streams
 			}
 		}
 
-		// Token: 0x06003537 RID: 13623 RVA: 0x00026D43 File Offset: 0x00024F43
+		// Token: 0x06002CC9 RID: 11465 RVA: 0x0014C67A File Offset: 0x0014A87A
 		public void SkipToByteBoundary()
 		{
 			this.buffer_ >>= (this.bitsInBuffer_ & 7);
 			this.bitsInBuffer_ &= -8;
 		}
 
-		// Token: 0x17000518 RID: 1304
-		// (get) Token: 0x06003538 RID: 13624 RVA: 0x00026D6C File Offset: 0x00024F6C
+		// Token: 0x17000361 RID: 865
+		// (get) Token: 0x06002CCA RID: 11466 RVA: 0x0014C6A3 File Offset: 0x0014A8A3
 		public bool IsNeedingInput
 		{
 			get
@@ -109,7 +109,7 @@ namespace ICSharpCode.SharpZipLib.Zip.Compression.Streams
 			}
 		}
 
-		// Token: 0x06003539 RID: 13625 RVA: 0x0019858C File Offset: 0x0019678C
+		// Token: 0x06002CCB RID: 11467 RVA: 0x0014C6B4 File Offset: 0x0014A8B4
 		public int CopyBytes(byte[] output, int offset, int length)
 		{
 			if (length < 0)
@@ -151,14 +151,14 @@ namespace ICSharpCode.SharpZipLib.Zip.Compression.Streams
 			return num + length;
 		}
 
-		// Token: 0x0600353A RID: 13626 RVA: 0x00198680 File Offset: 0x00196880
+		// Token: 0x06002CCC RID: 11468 RVA: 0x0014C7A8 File Offset: 0x0014A9A8
 		public void Reset()
 		{
 			this.buffer_ = 0U;
 			this.windowStart_ = (this.windowEnd_ = (this.bitsInBuffer_ = 0));
 		}
 
-		// Token: 0x0600353B RID: 13627 RVA: 0x001986B0 File Offset: 0x001968B0
+		// Token: 0x06002CCD RID: 11469 RVA: 0x0014C7D8 File Offset: 0x0014A9D8
 		public void SetInput(byte[] buffer, int offset, int count)
 		{
 			if (buffer == null)
@@ -192,19 +192,19 @@ namespace ICSharpCode.SharpZipLib.Zip.Compression.Streams
 			this.windowEnd_ = num;
 		}
 
-		// Token: 0x04003043 RID: 12355
+		// Token: 0x0400280A RID: 10250
 		private byte[] window_;
 
-		// Token: 0x04003044 RID: 12356
+		// Token: 0x0400280B RID: 10251
 		private int windowStart_;
 
-		// Token: 0x04003045 RID: 12357
+		// Token: 0x0400280C RID: 10252
 		private int windowEnd_;
 
-		// Token: 0x04003046 RID: 12358
+		// Token: 0x0400280D RID: 10253
 		private uint buffer_;
 
-		// Token: 0x04003047 RID: 12359
+		// Token: 0x0400280E RID: 10254
 		private int bitsInBuffer_;
 	}
 }

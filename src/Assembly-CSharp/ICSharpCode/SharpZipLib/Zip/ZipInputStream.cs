@@ -7,24 +7,24 @@ using ICSharpCode.SharpZipLib.Zip.Compression.Streams;
 
 namespace ICSharpCode.SharpZipLib.Zip
 {
-	// Token: 0x020007ED RID: 2029
+	// Token: 0x0200054B RID: 1355
 	public class ZipInputStream : InflaterInputStream
 	{
-		// Token: 0x0600341F RID: 13343 RVA: 0x0002602E File Offset: 0x0002422E
+		// Token: 0x06002BC8 RID: 11208 RVA: 0x001469AC File Offset: 0x00144BAC
 		public ZipInputStream(Stream baseInputStream) : base(baseInputStream, new Inflater(true))
 		{
 			this.internalReader = new ZipInputStream.ReadDataHandler(this.ReadingNotAvailable);
 		}
 
-		// Token: 0x06003420 RID: 13344 RVA: 0x0002605A File Offset: 0x0002425A
+		// Token: 0x06002BC9 RID: 11209 RVA: 0x001469D8 File Offset: 0x00144BD8
 		public ZipInputStream(Stream baseInputStream, int bufferSize) : base(baseInputStream, new Inflater(true), bufferSize)
 		{
 			this.internalReader = new ZipInputStream.ReadDataHandler(this.ReadingNotAvailable);
 		}
 
-		// Token: 0x170004E1 RID: 1249
-		// (get) Token: 0x06003421 RID: 13345 RVA: 0x00026087 File Offset: 0x00024287
-		// (set) Token: 0x06003422 RID: 13346 RVA: 0x0002608F File Offset: 0x0002428F
+		// Token: 0x1700032C RID: 812
+		// (get) Token: 0x06002BCA RID: 11210 RVA: 0x00146A05 File Offset: 0x00144C05
+		// (set) Token: 0x06002BCB RID: 11211 RVA: 0x00146A0D File Offset: 0x00144C0D
 		public string Password
 		{
 			get
@@ -37,8 +37,8 @@ namespace ICSharpCode.SharpZipLib.Zip
 			}
 		}
 
-		// Token: 0x170004E2 RID: 1250
-		// (get) Token: 0x06003423 RID: 13347 RVA: 0x00026098 File Offset: 0x00024298
+		// Token: 0x1700032D RID: 813
+		// (get) Token: 0x06002BCC RID: 11212 RVA: 0x00146A16 File Offset: 0x00144C16
 		public bool CanDecompressEntry
 		{
 			get
@@ -47,14 +47,14 @@ namespace ICSharpCode.SharpZipLib.Zip
 			}
 		}
 
-		// Token: 0x06003424 RID: 13348 RVA: 0x001929B8 File Offset: 0x00190BB8
+		// Token: 0x06002BCD RID: 11213 RVA: 0x00146A3C File Offset: 0x00144C3C
 		private static bool IsEntryCompressionMethodSupported(ZipEntry entry)
 		{
 			CompressionMethod compressionMethodForHeader = entry.CompressionMethodForHeader;
 			return compressionMethodForHeader == CompressionMethod.Deflated || compressionMethodForHeader == CompressionMethod.Stored;
 		}
 
-		// Token: 0x06003425 RID: 13349 RVA: 0x001929D8 File Offset: 0x00190BD8
+		// Token: 0x06002BCE RID: 11214 RVA: 0x00146A5C File Offset: 0x00144C5C
 		public ZipEntry GetNextEntry()
 		{
 			if (this.crc == null)
@@ -150,7 +150,7 @@ namespace ICSharpCode.SharpZipLib.Zip
 			return this.entry;
 		}
 
-		// Token: 0x06003426 RID: 13350 RVA: 0x00192D0C File Offset: 0x00190F0C
+		// Token: 0x06002BCF RID: 11215 RVA: 0x00146D90 File Offset: 0x00144F90
 		private void ReadDataDescriptor()
 		{
 			if (this.inputBuffer.ReadLeInt() != 134695760)
@@ -172,7 +172,7 @@ namespace ICSharpCode.SharpZipLib.Zip
 			this.entry.Size = this.size;
 		}
 
-		// Token: 0x06003427 RID: 13351 RVA: 0x00192DC8 File Offset: 0x00190FC8
+		// Token: 0x06002BD0 RID: 11216 RVA: 0x00146E4C File Offset: 0x0014504C
 		private void CompleteCloseEntry(bool testCrc)
 		{
 			base.StopDecrypting();
@@ -193,7 +193,7 @@ namespace ICSharpCode.SharpZipLib.Zip
 			this.entry = null;
 		}
 
-		// Token: 0x06003428 RID: 13352 RVA: 0x00192E54 File Offset: 0x00191054
+		// Token: 0x06002BD1 RID: 11217 RVA: 0x00146ED8 File Offset: 0x001450D8
 		public void CloseEntry()
 		{
 			if (this.crc == null)
@@ -238,8 +238,8 @@ namespace ICSharpCode.SharpZipLib.Zip
 			this.CompleteCloseEntry(false);
 		}
 
-		// Token: 0x170004E3 RID: 1251
-		// (get) Token: 0x06003429 RID: 13353 RVA: 0x000260BC File Offset: 0x000242BC
+		// Token: 0x1700032E RID: 814
+		// (get) Token: 0x06002BD2 RID: 11218 RVA: 0x00147003 File Offset: 0x00145203
 		public override int Available
 		{
 			get
@@ -252,8 +252,8 @@ namespace ICSharpCode.SharpZipLib.Zip
 			}
 		}
 
-		// Token: 0x170004E4 RID: 1252
-		// (get) Token: 0x0600342A RID: 13354 RVA: 0x000260C9 File Offset: 0x000242C9
+		// Token: 0x1700032F RID: 815
+		// (get) Token: 0x06002BD3 RID: 11219 RVA: 0x00147010 File Offset: 0x00145210
 		public override long Length
 		{
 			get
@@ -270,7 +270,7 @@ namespace ICSharpCode.SharpZipLib.Zip
 			}
 		}
 
-		// Token: 0x0600342B RID: 13355 RVA: 0x00192F80 File Offset: 0x00191180
+		// Token: 0x06002BD4 RID: 11220 RVA: 0x0014704C File Offset: 0x0014524C
 		public override int ReadByte()
 		{
 			byte[] array = new byte[1];
@@ -281,19 +281,19 @@ namespace ICSharpCode.SharpZipLib.Zip
 			return (int)(array[0] & byte.MaxValue);
 		}
 
-		// Token: 0x0600342C RID: 13356 RVA: 0x00026103 File Offset: 0x00024303
+		// Token: 0x06002BD5 RID: 11221 RVA: 0x00147077 File Offset: 0x00145277
 		private int ReadingNotAvailable(byte[] destination, int offset, int count)
 		{
 			throw new InvalidOperationException("Unable to read from this stream");
 		}
 
-		// Token: 0x0600342D RID: 13357 RVA: 0x0002610F File Offset: 0x0002430F
+		// Token: 0x06002BD6 RID: 11222 RVA: 0x00147083 File Offset: 0x00145283
 		private int ReadingNotSupported(byte[] destination, int offset, int count)
 		{
 			throw new ZipException("The compression method for this entry is not supported");
 		}
 
-		// Token: 0x0600342E RID: 13358 RVA: 0x00192FAC File Offset: 0x001911AC
+		// Token: 0x06002BD7 RID: 11223 RVA: 0x00147090 File Offset: 0x00145290
 		private int InitialRead(byte[] destination, int offset, int count)
 		{
 			if (!this.CanDecompressEntry)
@@ -341,7 +341,7 @@ namespace ICSharpCode.SharpZipLib.Zip
 			return 0;
 		}
 
-		// Token: 0x0600342F RID: 13359 RVA: 0x00193128 File Offset: 0x00191328
+		// Token: 0x06002BD8 RID: 11224 RVA: 0x0014720C File Offset: 0x0014540C
 		public override int Read(byte[] buffer, int offset, int count)
 		{
 			if (buffer == null)
@@ -363,7 +363,7 @@ namespace ICSharpCode.SharpZipLib.Zip
 			return this.internalReader(buffer, offset, count);
 		}
 
-		// Token: 0x06003430 RID: 13360 RVA: 0x0019318C File Offset: 0x0019138C
+		// Token: 0x06002BD9 RID: 11225 RVA: 0x00147270 File Offset: 0x00145470
 		private int BodyRead(byte[] buffer, int offset, int count)
 		{
 			if (this.crc == null)
@@ -446,7 +446,7 @@ namespace ICSharpCode.SharpZipLib.Zip
 			return count;
 		}
 
-		// Token: 0x06003431 RID: 13361 RVA: 0x0002611B File Offset: 0x0002431B
+		// Token: 0x06002BDA RID: 11226 RVA: 0x00147460 File Offset: 0x00145660
 		protected override void Dispose(bool disposing)
 		{
 			this.internalReader = new ZipInputStream.ReadDataHandler(this.ReadingNotAvailable);
@@ -455,29 +455,29 @@ namespace ICSharpCode.SharpZipLib.Zip
 			base.Dispose(disposing);
 		}
 
-		// Token: 0x04002F5B RID: 12123
+		// Token: 0x04002739 RID: 10041
 		private ZipInputStream.ReadDataHandler internalReader;
 
-		// Token: 0x04002F5C RID: 12124
+		// Token: 0x0400273A RID: 10042
 		private Crc32 crc = new Crc32();
 
-		// Token: 0x04002F5D RID: 12125
+		// Token: 0x0400273B RID: 10043
 		private ZipEntry entry;
 
-		// Token: 0x04002F5E RID: 12126
+		// Token: 0x0400273C RID: 10044
 		private long size;
 
-		// Token: 0x04002F5F RID: 12127
+		// Token: 0x0400273D RID: 10045
 		private CompressionMethod method;
 
-		// Token: 0x04002F60 RID: 12128
+		// Token: 0x0400273E RID: 10046
 		private int flags;
 
-		// Token: 0x04002F61 RID: 12129
+		// Token: 0x0400273F RID: 10047
 		private string password;
 
-		// Token: 0x020007EE RID: 2030
-		// (Invoke) Token: 0x06003433 RID: 13363
+		// Token: 0x0200148C RID: 5260
+		// (Invoke) Token: 0x06008134 RID: 33076
 		private delegate int ReadDataHandler(byte[] b, int offset, int length);
 	}
 }

@@ -2,17 +2,17 @@
 using System.Collections;
 using UnityEngine;
 
-// Token: 0x02000221 RID: 545
+// Token: 0x0200014C RID: 332
 [RequireComponent(typeof(ParticleSystem))]
 public class CFX_AutoDestructShuriken : MonoBehaviour
 {
-	// Token: 0x060010EF RID: 4335 RVA: 0x00010884 File Offset: 0x0000EA84
+	// Token: 0x06000ECF RID: 3791 RVA: 0x0005A4BB File Offset: 0x000586BB
 	private void OnEnable()
 	{
 		base.StartCoroutine("CheckIfAlive");
 	}
 
-	// Token: 0x060010F0 RID: 4336 RVA: 0x00010892 File Offset: 0x0000EA92
+	// Token: 0x06000ED0 RID: 3792 RVA: 0x0005A4C9 File Offset: 0x000586C9
 	private IEnumerator CheckIfAlive()
 	{
 		do
@@ -31,6 +31,6 @@ public class CFX_AutoDestructShuriken : MonoBehaviour
 		yield break;
 	}
 
-	// Token: 0x04000D9F RID: 3487
+	// Token: 0x04000B04 RID: 2820
 	public bool OnlyDeactivate;
 }

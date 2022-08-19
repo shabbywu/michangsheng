@@ -6,16 +6,16 @@ using KBEngine;
 using UnityEngine;
 using YSGame.Fight;
 
-// Token: 0x020003F2 RID: 1010
+// Token: 0x020002B6 RID: 694
 public class NewNpcFightManager : IDisposable
 {
-	// Token: 0x06001B72 RID: 7026 RVA: 0x0001715E File Offset: 0x0001535E
+	// Token: 0x0600187E RID: 6270 RVA: 0x000AF764 File Offset: 0x000AD964
 	public NewNpcFightManager()
 	{
 		this.npcDate = jsonData.instance.AvatarJsonData;
 	}
 
-	// Token: 0x06001B73 RID: 7027 RVA: 0x000F5F88 File Offset: 0x000F4188
+	// Token: 0x0600187F RID: 6271 RVA: 0x000AF7A0 File Offset: 0x000AD9A0
 	public void addNpcEquipSeid(int npcID, Avatar avatar)
 	{
 		JSONObject jsonobject = this.npcDate[npcID.ToString()]["equipList"];
@@ -114,7 +114,7 @@ public class NewNpcFightManager : IDisposable
 		}
 	}
 
-	// Token: 0x06001B74 RID: 7028 RVA: 0x000F6338 File Offset: 0x000F4538
+	// Token: 0x06001880 RID: 6272 RVA: 0x000AFB50 File Offset: 0x000ADD50
 	private void addFangJuSeid(JSONObject Seid, Avatar avatar)
 	{
 		if (Seid.HasField("NomalID"))
@@ -156,7 +156,7 @@ public class NewNpcFightManager : IDisposable
 		}
 	}
 
-	// Token: 0x06001B75 RID: 7029 RVA: 0x000F6508 File Offset: 0x000F4708
+	// Token: 0x06001881 RID: 6273 RVA: 0x000AFD20 File Offset: 0x000ADF20
 	public JSONObject dropReward(float equipLv, float packLv, int NPCID)
 	{
 		JSONObject result = new JSONObject(JSONObject.Type.ARRAY);
@@ -188,7 +188,7 @@ public class NewNpcFightManager : IDisposable
 		return result;
 	}
 
-	// Token: 0x06001B76 RID: 7030 RVA: 0x000F664C File Offset: 0x000F484C
+	// Token: 0x06001882 RID: 6274 RVA: 0x000AFE64 File Offset: 0x000AE064
 	private void dropEquip(ref JSONObject addItemList, int NPCID)
 	{
 		if (NPCID >= 20000)
@@ -231,13 +231,13 @@ public class NewNpcFightManager : IDisposable
 		}
 	}
 
-	// Token: 0x06001B77 RID: 7031 RVA: 0x00017197 File Offset: 0x00015397
+	// Token: 0x06001883 RID: 6275 RVA: 0x000B002A File Offset: 0x000AE22A
 	private int getRandom(int min, int max)
 	{
 		return this.random.Next(min, max + 1);
 	}
 
-	// Token: 0x06001B78 RID: 7032 RVA: 0x000CF810 File Offset: 0x000CDA10
+	// Token: 0x06001884 RID: 6276 RVA: 0x000B003C File Offset: 0x000AE23C
 	private void buidTempItem(ref JSONObject addItemList, int ItemID, int ItemNum, JSONObject seid = null)
 	{
 		JSONObject jsonobject = new JSONObject();
@@ -255,20 +255,20 @@ public class NewNpcFightManager : IDisposable
 		addItemList.Add(jsonobject);
 	}
 
-	// Token: 0x06001B79 RID: 7033 RVA: 0x000042DD File Offset: 0x000024DD
+	// Token: 0x06001885 RID: 6277 RVA: 0x00004095 File Offset: 0x00002295
 	public void Dispose()
 	{
 	}
 
-	// Token: 0x0400171C RID: 5916
+	// Token: 0x04001376 RID: 4982
 	private Random random = new Random();
 
-	// Token: 0x0400171D RID: 5917
+	// Token: 0x04001377 RID: 4983
 	private JSONObject npcDate;
 
-	// Token: 0x0400171E RID: 5918
+	// Token: 0x04001378 RID: 4984
 	public Dictionary<int, JSONObject> LianQiBuffEquipDictionary = new Dictionary<int, JSONObject>();
 
-	// Token: 0x0400171F RID: 5919
+	// Token: 0x04001379 RID: 4985
 	public Dictionary<int, JSONObject> LianQiEquipDictionary = new Dictionary<int, JSONObject>();
 }

@@ -9,11 +9,11 @@ using YSGame;
 
 namespace Tab
 {
-	// Token: 0x02000A4F RID: 2639
+	// Token: 0x02000703 RID: 1795
 	[Serializable]
 	public class TabSystemPanel : ITabPanelBase
 	{
-		// Token: 0x06004417 RID: 17431 RVA: 0x00030C37 File Offset: 0x0002EE37
+		// Token: 0x06003996 RID: 14742 RVA: 0x0018A378 File Offset: 0x00188578
 		public TabSystemPanel(GameObject gameObject)
 		{
 			this.PanelList = new List<ISysPanelBase>();
@@ -21,7 +21,7 @@ namespace Tab
 			this._isInit = false;
 		}
 
-		// Token: 0x06004418 RID: 17432 RVA: 0x001D1B34 File Offset: 0x001CFD34
+		// Token: 0x06003997 RID: 14743 RVA: 0x0018A39C File Offset: 0x0018859C
 		private void Init()
 		{
 			this.SavePanel = new TabSavePanel(base.Get("Select/Panel/保存", true));
@@ -34,7 +34,7 @@ namespace Tab
 			this.SelectMag.SetDeafultSelect(0);
 		}
 
-		// Token: 0x06004419 RID: 17433 RVA: 0x00030C58 File Offset: 0x0002EE58
+		// Token: 0x06003998 RID: 14744 RVA: 0x0018A45A File Offset: 0x0018865A
 		public override void Show()
 		{
 			if (!this._isInit)
@@ -45,7 +45,7 @@ namespace Tab
 			this._go.SetActive(true);
 		}
 
-		// Token: 0x0600441A RID: 17434 RVA: 0x00030C7B File Offset: 0x0002EE7B
+		// Token: 0x06003999 RID: 14745 RVA: 0x0018A47D File Offset: 0x0018867D
 		public void ReturnTittle()
 		{
 			TySelect.inst.Show("是否要返回主界面？", delegate
@@ -78,28 +78,28 @@ namespace Tab
 			}, null, true);
 		}
 
-		// Token: 0x0600441B RID: 17435 RVA: 0x00030CAD File Offset: 0x0002EEAD
+		// Token: 0x0600399A RID: 14746 RVA: 0x0018A4AF File Offset: 0x001886AF
 		public void QuitGame()
 		{
 			TySelect.inst.Show("是否要退出游戏？", new UnityAction(Application.Quit), null, true);
 		}
 
-		// Token: 0x04003C29 RID: 15401
+		// Token: 0x040031AF RID: 12719
 		private bool _isInit;
 
-		// Token: 0x04003C2A RID: 15402
+		// Token: 0x040031B0 RID: 12720
 		public TabSavePanel SavePanel;
 
-		// Token: 0x04003C2B RID: 15403
+		// Token: 0x040031B1 RID: 12721
 		public TabLoadPanel LoadPanel;
 
-		// Token: 0x04003C2C RID: 15404
+		// Token: 0x040031B2 RID: 12722
 		public TabSetPanel SetPanel;
 
-		// Token: 0x04003C2D RID: 15405
+		// Token: 0x040031B3 RID: 12723
 		public SysSelectMag SelectMag;
 
-		// Token: 0x04003C2E RID: 15406
+		// Token: 0x040031B4 RID: 12724
 		public List<ISysPanelBase> PanelList;
 	}
 }

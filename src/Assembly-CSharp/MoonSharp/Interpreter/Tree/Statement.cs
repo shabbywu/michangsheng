@@ -5,15 +5,15 @@ using MoonSharp.Interpreter.Tree.Statements;
 
 namespace MoonSharp.Interpreter.Tree
 {
-	// Token: 0x020010A5 RID: 4261
+	// Token: 0x02000CCF RID: 3279
 	internal abstract class Statement : NodeBase
 	{
-		// Token: 0x06006715 RID: 26389 RVA: 0x00046D55 File Offset: 0x00044F55
+		// Token: 0x06005C0C RID: 23564 RVA: 0x0025B2E1 File Offset: 0x002594E1
 		public Statement(ScriptLoadingContext lcontext) : base(lcontext)
 		{
 		}
 
-		// Token: 0x06006716 RID: 26390 RVA: 0x00286B30 File Offset: 0x00284D30
+		// Token: 0x06005C0D RID: 23565 RVA: 0x0025D320 File Offset: 0x0025B520
 		protected static Statement CreateStatement(ScriptLoadingContext lcontext, out bool forceLast)
 		{
 			Token token = lcontext.Lexer.Current;
@@ -91,7 +91,7 @@ namespace MoonSharp.Interpreter.Tree
 			return new AssignmentStatement(lcontext, expression, first);
 		}
 
-		// Token: 0x06006717 RID: 26391 RVA: 0x00286C84 File Offset: 0x00284E84
+		// Token: 0x06005C0E RID: 23566 RVA: 0x0025D474 File Offset: 0x0025B674
 		private static Statement DispatchForLoopStatement(ScriptLoadingContext lcontext)
 		{
 			Token forToken = NodeBase.CheckTokenType(lcontext, TokenType.For);

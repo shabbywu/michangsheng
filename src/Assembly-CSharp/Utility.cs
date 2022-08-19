@@ -1,15 +1,15 @@
 ﻿using System;
 
-// Token: 0x02000605 RID: 1541
+// Token: 0x0200044B RID: 1099
 internal class Utility
 {
-	// Token: 0x0600267F RID: 9855 RVA: 0x0001EB53 File Offset: 0x0001CD53
+	// Token: 0x060022BF RID: 8895 RVA: 0x000EDD00 File Offset: 0x000EBF00
 	public static int getPostInt(string name)
 	{
 		return int.Parse(name.Substring(name.IndexOf('_') + 1));
 	}
 
-	// Token: 0x06002680 RID: 9856 RVA: 0x0001EB6A File Offset: 0x0001CD6A
+	// Token: 0x060022C0 RID: 8896 RVA: 0x000EDD17 File Offset: 0x000EBF17
 	public static string getPreString(string name)
 	{
 		return name.Substring(0, name.IndexOf('_'));

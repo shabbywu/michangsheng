@@ -4,11 +4,11 @@ using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
 
-// Token: 0x0200023F RID: 575
+// Token: 0x02000164 RID: 356
 [AddComponentMenu("UI/Effects/TextSpacing")]
 public class TextSpacing : BaseMeshEffect
 {
-	// Token: 0x060011C4 RID: 4548 RVA: 0x000AC754 File Offset: 0x000AA954
+	// Token: 0x06000F6A RID: 3946 RVA: 0x0005CB20 File Offset: 0x0005AD20
 	public override void ModifyMesh(VertexHelper vh)
 	{
 		if (this.spacing_x == 0f && this.spacing_y == 0f)
@@ -59,14 +59,14 @@ public class TextSpacing : BaseMeshEffect
 		vh.AddUIVertexTriangleStream(this.mVertexList);
 	}
 
-	// Token: 0x04000E52 RID: 3666
+	// Token: 0x04000B85 RID: 2949
 	[SerializeField]
 	private float spacing_x;
 
-	// Token: 0x04000E53 RID: 3667
+	// Token: 0x04000B86 RID: 2950
 	[SerializeField]
 	private float spacing_y;
 
-	// Token: 0x04000E54 RID: 3668
+	// Token: 0x04000B87 RID: 2951
 	private List<UIVertex> mVertexList;
 }

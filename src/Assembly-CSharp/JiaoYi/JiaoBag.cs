@@ -5,17 +5,17 @@ using SuperScrollView;
 
 namespace JiaoYi
 {
-	// Token: 0x02000A8F RID: 2703
+	// Token: 0x0200072F RID: 1839
 	public class JiaoBag : BaseBag2
 	{
-		// Token: 0x06004554 RID: 17748 RVA: 0x001DA8A4 File Offset: 0x001D8AA4
+		// Token: 0x06003A9A RID: 15002 RVA: 0x00192D74 File Offset: 0x00190F74
 		public override void Init(int npcId, bool isPlayer = false)
 		{
 			this._player = Tools.instance.getPlayer();
 			this.ItemType = Bag.ItemType.丹药;
 			this.NpcId = npcId;
 			this.IsPlayer = isPlayer;
-			base.CreateTempList();
+			this.CreateTempList();
 			this.MLoopListView.InitListView(base.GetCount(this.MItemTotalCount), new Func<LoopListView2, int, LoopListViewItem2>(base.OnGetItemByIndex), null);
 			this.ItemType = Bag.ItemType.全部;
 			this.ItemQuality = ItemQuality.全部;
@@ -30,7 +30,7 @@ namespace JiaoYi
 			this.UpdateLeftFilter(this.LeftList[0]);
 		}
 
-		// Token: 0x06004555 RID: 17749 RVA: 0x001DA980 File Offset: 0x001D8B80
+		// Token: 0x06003A9B RID: 15003 RVA: 0x00192E50 File Offset: 0x00191050
 		private void UpdateLeftFilter(BaseFilterLeft filterLeft)
 		{
 			foreach (BaseFilterLeft baseFilterLeft in this.LeftList)
@@ -39,7 +39,7 @@ namespace JiaoYi
 				{
 					baseFilterLeft.IsSelect = true;
 					this.ItemType = baseFilterLeft.ItemType;
-					base.UpdateItem(false);
+					this.UpdateItem(false);
 					this.UpdateTopFilter();
 				}
 				else
@@ -50,7 +50,7 @@ namespace JiaoYi
 			}
 		}
 
-		// Token: 0x06004556 RID: 17750 RVA: 0x001DAA04 File Offset: 0x001D8C04
+		// Token: 0x06003A9C RID: 15004 RVA: 0x00192ED4 File Offset: 0x001910D4
 		public JiaoYiSlot GetNullSellList(string uuid)
 		{
 			foreach (JiaoYiSlot jiaoYiSlot in this.SellList)
@@ -67,7 +67,7 @@ namespace JiaoYi
 			return null;
 		}
 
-		// Token: 0x06004557 RID: 17751 RVA: 0x001DAA84 File Offset: 0x001D8C84
+		// Token: 0x06003A9D RID: 15005 RVA: 0x00192F54 File Offset: 0x00191154
 		public void JiaoYiCallBack()
 		{
 			foreach (JiaoYiSlot jiaoYiSlot in this.SellList)
@@ -75,11 +75,11 @@ namespace JiaoYi
 				jiaoYiSlot.SetNull();
 			}
 			base.UpdateMoney();
-			base.CreateTempList();
-			base.UpdateItem(false);
+			this.CreateTempList();
+			this.UpdateItem(false);
 		}
 
-		// Token: 0x04003D80 RID: 15744
+		// Token: 0x040032CF RID: 13007
 		public List<JiaoYiSlot> SellList;
 	}
 }

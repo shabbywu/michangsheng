@@ -2,16 +2,16 @@
 
 namespace KBEngine
 {
-	// Token: 0x02000F05 RID: 3845
+	// Token: 0x02000B87 RID: 2951
 	public class EntityBaseEntityCall_ShopBase : EntityCall
 	{
-		// Token: 0x06005C57 RID: 23639 RVA: 0x00040ABF File Offset: 0x0003ECBF
+		// Token: 0x0600521B RID: 21019 RVA: 0x0022371D File Offset: 0x0022191D
 		public EntityBaseEntityCall_ShopBase(int eid, string ename) : base(eid, ename)
 		{
 			this.type = EntityCall.ENTITYCALL_TYPE.ENTITYCALL_TYPE_BASE;
 		}
 
-		// Token: 0x06005C58 RID: 23640 RVA: 0x00041309 File Offset: 0x0003F509
+		// Token: 0x0600521C RID: 21020 RVA: 0x00224015 File Offset: 0x00222215
 		public void buyItem(byte[] arg1, ulong arg2)
 		{
 			if (base.newCall("buyItem", 0) == null)
@@ -23,7 +23,7 @@ namespace KBEngine
 			base.sendCall(null);
 		}
 
-		// Token: 0x06005C59 RID: 23641 RVA: 0x00041339 File Offset: 0x0003F539
+		// Token: 0x0600521D RID: 21021 RVA: 0x00224045 File Offset: 0x00222245
 		public void deliverGoods(byte[] arg1, ulong arg2)
 		{
 			if (base.newCall("deliverGoods", 0) == null)
@@ -35,7 +35,7 @@ namespace KBEngine
 			base.sendCall(null);
 		}
 
-		// Token: 0x06005C5A RID: 23642 RVA: 0x00041369 File Offset: 0x0003F569
+		// Token: 0x0600521E RID: 21022 RVA: 0x00224075 File Offset: 0x00222275
 		public void getShopList(byte[] arg1)
 		{
 			if (base.newCall("getShopList", 0) == null)

@@ -1,17 +1,19 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Text;
 using GUIPackage;
 using JSONClass;
 using KBEngine;
 using Newtonsoft.Json.Linq;
+using Tab;
 using UnityEngine;
 using YSGame.TuJian;
 
-// Token: 0x020002CF RID: 719
+// Token: 0x020001C8 RID: 456
 public static class PlayerEx
 {
-	// Token: 0x1700026F RID: 623
-	// (get) Token: 0x060015AE RID: 5550 RVA: 0x00013851 File Offset: 0x00011A51
+	// Token: 0x17000227 RID: 551
+	// (get) Token: 0x060012F9 RID: 4857 RVA: 0x0007720D File Offset: 0x0007540D
 	public static Avatar Player
 	{
 		get
@@ -24,19 +26,19 @@ public static class PlayerEx
 		}
 	}
 
-	// Token: 0x060015AF RID: 5551 RVA: 0x0001386C File Offset: 0x00011A6C
+	// Token: 0x060012FA RID: 4858 RVA: 0x00077228 File Offset: 0x00075428
 	public static bool IsTheather(int npcid)
 	{
 		return PlayerEx.Player.TeatherId.HasItem(npcid);
 	}
 
-	// Token: 0x060015B0 RID: 5552 RVA: 0x0001387E File Offset: 0x00011A7E
+	// Token: 0x060012FB RID: 4859 RVA: 0x0007723A File Offset: 0x0007543A
 	public static bool IsDaoLv(int npcid)
 	{
 		return PlayerEx.Player.DaoLvId.HasItem(npcid);
 	}
 
-	// Token: 0x060015B1 RID: 5553 RVA: 0x000C4590 File Offset: 0x000C2790
+	// Token: 0x060012FC RID: 4860 RVA: 0x0007724C File Offset: 0x0007544C
 	public static string GetDaoLvNickName(int npcid)
 	{
 		string result = PlayerEx.Player.lastName;
@@ -47,25 +49,25 @@ public static class PlayerEx
 		return result;
 	}
 
-	// Token: 0x060015B2 RID: 5554 RVA: 0x00013890 File Offset: 0x00011A90
+	// Token: 0x060012FD RID: 4861 RVA: 0x00077299 File Offset: 0x00075499
 	public static bool IsBrother(int npcid)
 	{
 		return PlayerEx.Player.Brother.HasItem(npcid);
 	}
 
-	// Token: 0x060015B3 RID: 5555 RVA: 0x000138A2 File Offset: 0x00011AA2
+	// Token: 0x060012FE RID: 4862 RVA: 0x000772AB File Offset: 0x000754AB
 	public static bool IsTuDi(int npcid)
 	{
 		return PlayerEx.Player.TuDiId.HasItem(npcid);
 	}
 
-	// Token: 0x060015B4 RID: 5556 RVA: 0x000138B4 File Offset: 0x00011AB4
+	// Token: 0x060012FF RID: 4863 RVA: 0x000772BD File Offset: 0x000754BD
 	public static bool IsDaTing(int npcid)
 	{
 		return PlayerEx.Player.DaTingId.HasItem(npcid);
 	}
 
-	// Token: 0x060015B5 RID: 5557 RVA: 0x000138C6 File Offset: 0x00011AC6
+	// Token: 0x06001300 RID: 4864 RVA: 0x000772CF File Offset: 0x000754CF
 	public static void AddDaTingNPC(int npcid)
 	{
 		if (!PlayerEx.IsDaTing(npcid))
@@ -74,7 +76,7 @@ public static class PlayerEx
 		}
 	}
 
-	// Token: 0x060015B6 RID: 5558 RVA: 0x000C45E0 File Offset: 0x000C27E0
+	// Token: 0x06001301 RID: 4865 RVA: 0x000772EC File Offset: 0x000754EC
 	public static void AddRelationship(int npcid, bool teather, bool daolv, bool brother, bool tudi)
 	{
 		if (teather && !PlayerEx.IsTheather(npcid))
@@ -95,7 +97,7 @@ public static class PlayerEx
 		}
 	}
 
-	// Token: 0x060015B7 RID: 5559 RVA: 0x000C465C File Offset: 0x000C285C
+	// Token: 0x06001302 RID: 4866 RVA: 0x00077368 File Offset: 0x00075568
 	public static void SubRelationship(int npcid, bool teather, bool daolv, bool brother, bool tudi)
 	{
 		if (teather && PlayerEx.IsTheather(npcid))
@@ -140,7 +142,7 @@ public static class PlayerEx
 		}
 	}
 
-	// Token: 0x060015B8 RID: 5560 RVA: 0x000C484C File Offset: 0x000C2A4C
+	// Token: 0x06001303 RID: 4867 RVA: 0x00077558 File Offset: 0x00075758
 	private static void InitShengWang()
 	{
 		if (!PlayerEx.isShengWangInited)
@@ -153,7 +155,7 @@ public static class PlayerEx
 		}
 	}
 
-	// Token: 0x060015B9 RID: 5561 RVA: 0x000C48E4 File Offset: 0x000C2AE4
+	// Token: 0x06001304 RID: 4868 RVA: 0x000775F0 File Offset: 0x000757F0
 	public static int CalcShengWangLevel(int shengwang)
 	{
 		int result = 1;
@@ -166,7 +168,7 @@ public static class PlayerEx
 		return result;
 	}
 
-	// Token: 0x060015BA RID: 5562 RVA: 0x000C4910 File Offset: 0x000C2B10
+	// Token: 0x06001305 RID: 4869 RVA: 0x0007761C File Offset: 0x0007581C
 	private static float CalcShengWangProcess(int shengwang)
 	{
 		float result = 0f;
@@ -202,19 +204,19 @@ public static class PlayerEx
 		return result;
 	}
 
-	// Token: 0x060015BB RID: 5563 RVA: 0x000138E0 File Offset: 0x00011AE0
+	// Token: 0x06001306 RID: 4870 RVA: 0x0007772B File Offset: 0x0007592B
 	public static int GetNingZhouShengWang()
 	{
 		return PlayerEx.GetShengWang(0);
 	}
 
-	// Token: 0x060015BC RID: 5564 RVA: 0x000138E8 File Offset: 0x00011AE8
+	// Token: 0x06001307 RID: 4871 RVA: 0x00077733 File Offset: 0x00075933
 	public static int GetSeaShengWang()
 	{
 		return PlayerEx.GetShengWang(19);
 	}
 
-	// Token: 0x060015BD RID: 5565 RVA: 0x000C4A20 File Offset: 0x000C2C20
+	// Token: 0x06001308 RID: 4872 RVA: 0x0007773C File Offset: 0x0007593C
 	public static int GetShengWang(int id)
 	{
 		PlayerEx.InitShengWang();
@@ -229,7 +231,7 @@ public static class PlayerEx
 		return PlayerEx.Player.MenPaiHaoGanDu[id.ToString()].I;
 	}
 
-	// Token: 0x060015BE RID: 5566 RVA: 0x000C4A70 File Offset: 0x000C2C70
+	// Token: 0x06001309 RID: 4873 RVA: 0x0007778C File Offset: 0x0007598C
 	public static int GetMenPaiShengWang()
 	{
 		PlayerEx.InitShengWang();
@@ -244,19 +246,19 @@ public static class PlayerEx
 		return PlayerEx.Player.MenPaiHaoGanDu[PlayerEx.Player.menPai.ToString()].I;
 	}
 
-	// Token: 0x060015BF RID: 5567 RVA: 0x000138F1 File Offset: 0x00011AF1
+	// Token: 0x0600130A RID: 4874 RVA: 0x000777F1 File Offset: 0x000759F1
 	public static void AddNingZhouShengWang(int add)
 	{
 		PlayerEx.AddShengWang(0, add, false);
 	}
 
-	// Token: 0x060015C0 RID: 5568 RVA: 0x000138FB File Offset: 0x00011AFB
+	// Token: 0x0600130B RID: 4875 RVA: 0x000777FB File Offset: 0x000759FB
 	public static void AddSeaShengWang(int add)
 	{
 		PlayerEx.AddShengWang(19, add, false);
 	}
 
-	// Token: 0x060015C1 RID: 5569 RVA: 0x000C4AD8 File Offset: 0x000C2CD8
+	// Token: 0x0600130C RID: 4876 RVA: 0x00077808 File Offset: 0x00075A08
 	public static void AddShengWang(int id, int add, bool show = false)
 	{
 		int val = (PlayerEx.Player.MenPaiHaoGanDu.HasField(id.ToString()) ? PlayerEx.Player.MenPaiHaoGanDu[id.ToString()].I : 0) + add;
@@ -275,56 +277,56 @@ public static class PlayerEx
 		}
 	}
 
-	// Token: 0x060015C2 RID: 5570 RVA: 0x000C4B7C File Offset: 0x000C2D7C
+	// Token: 0x0600130D RID: 4877 RVA: 0x000778AC File Offset: 0x00075AAC
 	public static void AddMenPaiShengWang(int add)
 	{
 		int val = (PlayerEx.Player.MenPaiHaoGanDu.HasField(PlayerEx.Player.menPai.ToString()) ? PlayerEx.Player.MenPaiHaoGanDu[PlayerEx.Player.menPai.ToString()].I : 0) + add;
 		PlayerEx.Player.MenPaiHaoGanDu.SetField(PlayerEx.Player.menPai.ToString(), val);
 	}
 
-	// Token: 0x060015C3 RID: 5571 RVA: 0x00013906 File Offset: 0x00011B06
+	// Token: 0x0600130E RID: 4878 RVA: 0x00077921 File Offset: 0x00075B21
 	public static int GetNingZhouShengWangLevel()
 	{
 		return PlayerEx.CalcShengWangLevel(PlayerEx.GetNingZhouShengWang());
 	}
 
-	// Token: 0x060015C4 RID: 5572 RVA: 0x00013912 File Offset: 0x00011B12
+	// Token: 0x0600130F RID: 4879 RVA: 0x0007792D File Offset: 0x00075B2D
 	public static int GetSeaShengWangLevel()
 	{
 		return PlayerEx.CalcShengWangLevel(PlayerEx.GetSeaShengWang());
 	}
 
-	// Token: 0x060015C5 RID: 5573 RVA: 0x0001391E File Offset: 0x00011B1E
+	// Token: 0x06001310 RID: 4880 RVA: 0x00077939 File Offset: 0x00075B39
 	public static int GetShengWangLevel(int id)
 	{
 		return PlayerEx.CalcShengWangLevel(PlayerEx.GetShengWang(id));
 	}
 
-	// Token: 0x060015C6 RID: 5574 RVA: 0x0001392B File Offset: 0x00011B2B
+	// Token: 0x06001311 RID: 4881 RVA: 0x00077946 File Offset: 0x00075B46
 	public static float GetNingZhouShengWangProcess()
 	{
 		return PlayerEx.CalcShengWangProcess(PlayerEx.GetNingZhouShengWang());
 	}
 
-	// Token: 0x060015C7 RID: 5575 RVA: 0x00013937 File Offset: 0x00011B37
+	// Token: 0x06001312 RID: 4882 RVA: 0x00077952 File Offset: 0x00075B52
 	public static float GetSeaShengWangProcess()
 	{
 		return PlayerEx.CalcShengWangProcess(PlayerEx.GetSeaShengWang());
 	}
 
-	// Token: 0x060015C8 RID: 5576 RVA: 0x00013943 File Offset: 0x00011B43
+	// Token: 0x06001313 RID: 4883 RVA: 0x0007795E File Offset: 0x00075B5E
 	public static bool IsNingZhouMaxShengWangLevel()
 	{
 		return PlayerEx.GetNingZhouShengWangLevel() == 7;
 	}
 
-	// Token: 0x060015C9 RID: 5577 RVA: 0x0001394D File Offset: 0x00011B4D
+	// Token: 0x06001314 RID: 4884 RVA: 0x00077968 File Offset: 0x00075B68
 	public static bool IsSeaMaxShengWangLevel()
 	{
 		return PlayerEx.GetSeaShengWangLevel() == 7;
 	}
 
-	// Token: 0x060015CA RID: 5578 RVA: 0x000C4BF4 File Offset: 0x000C2DF4
+	// Token: 0x06001315 RID: 4885 RVA: 0x00077974 File Offset: 0x00075B74
 	public static int CalcXuanShang(int shengwang, int pingfen, out int shangjin, out string desc)
 	{
 		int num = 0;
@@ -368,7 +370,7 @@ public static class PlayerEx
 		return num;
 	}
 
-	// Token: 0x060015CB RID: 5579 RVA: 0x000C4E24 File Offset: 0x000C3024
+	// Token: 0x06001316 RID: 4886 RVA: 0x00077BA4 File Offset: 0x00075DA4
 	public static int GetXuanShangLevel(int id)
 	{
 		int shengWang = PlayerEx.GetShengWang(id);
@@ -378,7 +380,7 @@ public static class PlayerEx
 		return PlayerEx.CalcXuanShang(shengWang, shangJinPingFen, out num, out text);
 	}
 
-	// Token: 0x060015CC RID: 5580 RVA: 0x000C4E48 File Offset: 0x000C3048
+	// Token: 0x06001317 RID: 4887 RVA: 0x00077BC8 File Offset: 0x00075DC8
 	public static int GetShangJin(int id)
 	{
 		int shengWang = PlayerEx.GetShengWang(id);
@@ -389,14 +391,14 @@ public static class PlayerEx
 		return result;
 	}
 
-	// Token: 0x060015CD RID: 5581 RVA: 0x000C4E70 File Offset: 0x000C3070
+	// Token: 0x06001318 RID: 4888 RVA: 0x00077BF0 File Offset: 0x00075DF0
 	public static void AddShangJinPingFen(int id, int add)
 	{
 		int val = (PlayerEx.Player.ShangJinPingFen.HasField(id.ToString()) ? PlayerEx.Player.ShangJinPingFen[id.ToString()].I : 0) + add;
 		PlayerEx.Player.ShangJinPingFen.SetField(id.ToString(), val);
 	}
 
-	// Token: 0x060015CE RID: 5582 RVA: 0x00013957 File Offset: 0x00011B57
+	// Token: 0x06001319 RID: 4889 RVA: 0x00077C4D File Offset: 0x00075E4D
 	public static int GetShangJinPingFen(int id)
 	{
 		if (!PlayerEx.Player.ShangJinPingFen.HasField(id.ToString()))
@@ -406,13 +408,13 @@ public static class PlayerEx
 		return PlayerEx.Player.ShangJinPingFen[id.ToString()].I;
 	}
 
-	// Token: 0x060015CF RID: 5583 RVA: 0x0001398E File Offset: 0x00011B8E
+	// Token: 0x0600131A RID: 4890 RVA: 0x00077C84 File Offset: 0x00075E84
 	public static void SetShiLiChengHaoLevel(int id, int level)
 	{
 		PlayerEx.Player.ShiLiChengHaoLevel.SetField(id.ToString(), level);
 	}
 
-	// Token: 0x060015D0 RID: 5584 RVA: 0x000139A7 File Offset: 0x00011BA7
+	// Token: 0x0600131B RID: 4891 RVA: 0x00077C9D File Offset: 0x00075E9D
 	public static int GetShiLiChengHaoLevel(int id)
 	{
 		if (!PlayerEx.Player.ShiLiChengHaoLevel.HasField(id.ToString()))
@@ -422,7 +424,7 @@ public static class PlayerEx
 		return PlayerEx.Player.ShiLiChengHaoLevel[id.ToString()].I;
 	}
 
-	// Token: 0x060015D1 RID: 5585 RVA: 0x000C4ED0 File Offset: 0x000C30D0
+	// Token: 0x0600131C RID: 4892 RVA: 0x00077CD4 File Offset: 0x00075ED4
 	public static string GetMenPaiChengHao()
 	{
 		int chenghaoLevel = 0;
@@ -443,7 +445,7 @@ public static class PlayerEx
 		return result;
 	}
 
-	// Token: 0x060015D2 RID: 5586 RVA: 0x000C4F48 File Offset: 0x000C3148
+	// Token: 0x0600131D RID: 4893 RVA: 0x00077D4C File Offset: 0x00075F4C
 	public static void StudyShuangXiuSkill(int skillID)
 	{
 		if (!PlayerEx.Player.ShuangXiuData.HasField("HasSkillList"))
@@ -456,7 +458,7 @@ public static class PlayerEx
 		}
 	}
 
-	// Token: 0x060015D3 RID: 5587 RVA: 0x000C4FA8 File Offset: 0x000C31A8
+	// Token: 0x0600131E RID: 4894 RVA: 0x00077DAC File Offset: 0x00075FAC
 	public static bool HasShuangXiuSkill(int skillID)
 	{
 		if (!PlayerEx.Player.ShuangXiuData.HasField("HasSkillList"))
@@ -466,7 +468,7 @@ public static class PlayerEx
 		return PlayerEx.Player.ShuangXiuData["HasSkillList"].ToList().Contains(skillID);
 	}
 
-	// Token: 0x060015D4 RID: 5588 RVA: 0x000C5004 File Offset: 0x000C3204
+	// Token: 0x0600131F RID: 4895 RVA: 0x00077E08 File Offset: 0x00076008
 	public static void DoShuangXiu(int skillID, UINPCData npc)
 	{
 		if (skillID == 1)
@@ -533,7 +535,7 @@ public static class PlayerEx
 		PlayerEx.Player.ShuangXiuData.SetField("JingYuan", jsonobject);
 	}
 
-	// Token: 0x060015D5 RID: 5589 RVA: 0x000139DE File Offset: 0x00011BDE
+	// Token: 0x06001320 RID: 4896 RVA: 0x00077FDE File Offset: 0x000761DE
 	public static int GetSeaTanSuoDu(int seaID)
 	{
 		if (PlayerEx.Player.SeaTanSuoDu.HasField(seaID.ToString()))
@@ -543,7 +545,7 @@ public static class PlayerEx
 		return 0;
 	}
 
-	// Token: 0x060015D6 RID: 5590 RVA: 0x000C51DC File Offset: 0x000C33DC
+	// Token: 0x06001321 RID: 4897 RVA: 0x00078018 File Offset: 0x00076218
 	public static void AddSeaTanSuoDu(int seaID, int value)
 	{
 		if (PlayerEx.Player.SeaTanSuoDu.HasField(seaID.ToString()))
@@ -574,7 +576,7 @@ public static class PlayerEx
 		}
 	}
 
-	// Token: 0x060015D7 RID: 5591 RVA: 0x000C5308 File Offset: 0x000C3508
+	// Token: 0x06001322 RID: 4898 RVA: 0x00078144 File Offset: 0x00076344
 	public static void PostLoadGame()
 	{
 		try
@@ -618,12 +620,12 @@ public static class PlayerEx
 		}
 	}
 
-	// Token: 0x060015D8 RID: 5592 RVA: 0x000C5570 File Offset: 0x000C3770
+	// Token: 0x06001323 RID: 4899 RVA: 0x000783AC File Offset: 0x000765AC
 	public static bool IsLingWuBook(int itemid)
 	{
-		if (itemid > 100000)
+		if (itemid > jsonData.QingJiaoItemIDSegment)
 		{
-			itemid -= 100000;
+			itemid -= jsonData.QingJiaoItemIDSegment;
 		}
 		_ItemJsonData itemJsonData = _ItemJsonData.DataDict[itemid];
 		foreach (int num in itemJsonData.seid)
@@ -670,7 +672,7 @@ public static class PlayerEx
 		return false;
 	}
 
-	// Token: 0x060015D9 RID: 5593 RVA: 0x000C5710 File Offset: 0x000C3910
+	// Token: 0x06001324 RID: 4900 RVA: 0x0007854C File Offset: 0x0007674C
 	public static void CheckChuHai()
 	{
 		if (SceneEx.NowSceneName.StartsWith("Sea") && PlayerEx.Player != null && !PlayerEx.Player.OnceShow.HasItem(1))
@@ -680,7 +682,7 @@ public static class PlayerEx
 		}
 	}
 
-	// Token: 0x060015DA RID: 5594 RVA: 0x00013A15 File Offset: 0x00011C15
+	// Token: 0x06001325 RID: 4901 RVA: 0x0007859D File Offset: 0x0007679D
 	public static void CheckLianDan()
 	{
 		if (PlayerEx.Player != null && !PlayerEx.Player.OnceShow.HasItem(2))
@@ -690,7 +692,7 @@ public static class PlayerEx
 		}
 	}
 
-	// Token: 0x060015DB RID: 5595 RVA: 0x00013A4F File Offset: 0x00011C4F
+	// Token: 0x06001326 RID: 4902 RVA: 0x000785D7 File Offset: 0x000767D7
 	public static void CheckLianQi()
 	{
 		if (PlayerEx.Player != null && !PlayerEx.Player.OnceShow.HasItem(3))
@@ -700,7 +702,7 @@ public static class PlayerEx
 		}
 	}
 
-	// Token: 0x060015DC RID: 5596 RVA: 0x00013A89 File Offset: 0x00011C89
+	// Token: 0x06001327 RID: 4903 RVA: 0x00078611 File Offset: 0x00076811
 	public static void SetDaoLvChengHu(int npcid, string chenghu)
 	{
 		if (PlayerEx.Player != null)
@@ -709,55 +711,56 @@ public static class PlayerEx
 		}
 	}
 
-	// Token: 0x060015DD RID: 5597 RVA: 0x00013AA9 File Offset: 0x00011CA9
+	// Token: 0x06001328 RID: 4904 RVA: 0x00078631 File Offset: 0x00076831
 	public static void AddHuaShenStartXianXing(int xianxing)
 	{
 		PlayerEx.Player.HuaShenStartXianXing = new JSONObject(PlayerEx.Player.HuaShenStartXianXing.I + xianxing);
 	}
 
-	// Token: 0x060015DE RID: 5598 RVA: 0x000C5764 File Offset: 0x000C3964
+	// Token: 0x06001329 RID: 4905 RVA: 0x00078654 File Offset: 0x00076854
 	public static bool HasSkill(int skillID)
 	{
 		return PlayerEx.Player.hasSkillList.Find((SkillItem aa) => aa.itemId == skillID) != null;
 	}
 
-	// Token: 0x060015DF RID: 5599 RVA: 0x000C57A0 File Offset: 0x000C39A0
+	// Token: 0x0600132A RID: 4906 RVA: 0x00078690 File Offset: 0x00076890
 	public static bool HasStaticSkill(int skillID)
 	{
 		return PlayerEx.Player.hasStaticSkillList.Find((SkillItem aa) => aa.itemId == skillID) != null;
 	}
 
-	// Token: 0x060015E0 RID: 5600 RVA: 0x000C57DC File Offset: 0x000C39DC
+	// Token: 0x0600132B RID: 4907 RVA: 0x000786CC File Offset: 0x000768CC
 	public static void RecordShengPing(string shengPingID, Dictionary<string, string> args = null)
 	{
-		if (!ShengPing.DataDict.ContainsKey(shengPingID))
+		if (ShengPing.DataDict.ContainsKey(shengPingID))
 		{
-			Debug.LogError("记录生平出错，找不到ID为 " + shengPingID + " 的配表数据");
-			return;
-		}
-		ShengPingData shengPingData = new ShengPingData();
-		shengPingData.time = PlayerEx.Player.worldTimeMag.getNowTime();
-		shengPingData.args = args;
-		ShengPing shengPing = ShengPing.DataDict[shengPingID];
-		JSONObject obj = shengPingData.ToJson();
-		if (shengPing.IsChongfu == 1)
-		{
+			ShengPingData shengPingData = new ShengPingData();
+			shengPingData.time = PlayerEx.Player.worldTimeMag.getNowTime();
+			shengPingData.args = args;
+			ShengPing shengPing = ShengPing.DataDict[shengPingID];
+			JSONObject obj = shengPingData.ToJson();
+			if (shengPing.IsChongfu == 1)
+			{
+				if (!PlayerEx.Player.ShengPingRecord.HasField(shengPingID))
+				{
+					PlayerEx.Player.ShengPingRecord.SetField(shengPingID, new JSONObject(JSONObject.Type.ARRAY));
+				}
+				PlayerEx.Player.ShengPingRecord[shengPingID].Add(obj);
+				return;
+			}
 			if (!PlayerEx.Player.ShengPingRecord.HasField(shengPingID))
 			{
-				PlayerEx.Player.ShengPingRecord.SetField(shengPingID, new JSONObject(JSONObject.Type.ARRAY));
+				PlayerEx.Player.ShengPingRecord.SetField(shengPingID, obj);
+				return;
 			}
-			PlayerEx.Player.ShengPingRecord[shengPingID].Add(obj);
-			return;
 		}
-		if (PlayerEx.Player.ShengPingRecord.HasField(shengPingID))
+		else
 		{
-			Debug.LogError("记录生平出错，ID为 " + shengPingID + " 的生平不允许重复记录");
-			return;
+			Debug.LogError("记录生平出错，找不到ID为 " + shengPingID + " 的配表数据");
 		}
-		PlayerEx.Player.ShengPingRecord.SetField(shengPingID, obj);
 	}
 
-	// Token: 0x060015E1 RID: 5601 RVA: 0x000C58C4 File Offset: 0x000C3AC4
+	// Token: 0x0600132C RID: 4908 RVA: 0x000787A0 File Offset: 0x000769A0
 	public static List<ShengPingData> GetShengPingList()
 	{
 		List<ShengPingData> list = new List<ShengPingData>();
@@ -798,9 +801,84 @@ public static class PlayerEx
 		return list;
 	}
 
-	// Token: 0x040011B6 RID: 4534
+	// Token: 0x0600132D RID: 4909 RVA: 0x000788E0 File Offset: 0x00076AE0
+	public static bool HasTianFu(int tianFuID)
+	{
+		using (List<int>.Enumerator enumerator = PlayerEx.Player.SelectTianFuID.ToList().GetEnumerator())
+		{
+			while (enumerator.MoveNext())
+			{
+				if (enumerator.Current == tianFuID)
+				{
+					return true;
+				}
+			}
+		}
+		return false;
+	}
+
+	// Token: 0x0600132E RID: 4910 RVA: 0x00078940 File Offset: 0x00076B40
+	public static 游戏难度 GetGameDifficulty()
+	{
+		foreach (int num in PlayerEx.Player.SelectTianFuID.ToList())
+		{
+			if (num <= 5)
+			{
+				return (游戏难度)num;
+			}
+		}
+		return 游戏难度.未知;
+	}
+
+	// Token: 0x0600132F RID: 4911 RVA: 0x000789A0 File Offset: 0x00076BA0
+	public static void AddErrorItemID(int id)
+	{
+		if (!PlayerEx.ErrorItemIDList.Contains(id))
+		{
+			PlayerEx.ErrorItemIDList.Add(id);
+		}
+	}
+
+	// Token: 0x06001330 RID: 4912 RVA: 0x000789BC File Offset: 0x00076BBC
+	public static void DeleteErrorItem()
+	{
+		if (PlayerEx.Player == null)
+		{
+			return;
+		}
+		if (PlayerEx.ErrorItemIDList.Count == 0)
+		{
+			return;
+		}
+		StringBuilder stringBuilder = new StringBuilder();
+		stringBuilder.AppendLine("即将从背包删除以下异常的物品：");
+		foreach (int num in PlayerEx.ErrorItemIDList)
+		{
+			stringBuilder.AppendLine(num.ToString());
+		}
+		UBigCheckBox.Show(stringBuilder.ToString(), delegate
+		{
+			for (int i = PlayerEx.Player.itemList.values.Count - 1; i >= 0; i--)
+			{
+				if (PlayerEx.ErrorItemIDList.Contains(PlayerEx.Player.itemList.values[i].itemId))
+				{
+					PlayerEx.Player.itemList.values.RemoveAt(i);
+				}
+			}
+			PlayerEx.ErrorItemIDList.Clear();
+			if (SingletonMono<TabUIMag>.Instance != null)
+			{
+				SingletonMono<TabUIMag>.Instance.TryEscClose();
+			}
+		});
+	}
+
+	// Token: 0x04000E75 RID: 3701
 	private static Dictionary<int, int> _ShengWangLevelDict = new Dictionary<int, int>();
 
-	// Token: 0x040011B7 RID: 4535
+	// Token: 0x04000E76 RID: 3702
 	private static bool isShengWangInited;
+
+	// Token: 0x04000E77 RID: 3703
+	public static List<int> ErrorItemIDList = new List<int>();
 }

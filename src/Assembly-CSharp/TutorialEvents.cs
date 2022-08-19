@@ -1,10 +1,10 @@
 ﻿using System;
 using UnityEngine;
 
-// Token: 0x02000790 RID: 1936
+// Token: 0x020004FF RID: 1279
 public class TutorialEvents : MonoBehaviour
 {
-	// Token: 0x06003168 RID: 12648 RVA: 0x0018A138 File Offset: 0x00188338
+	// Token: 0x06002963 RID: 10595 RVA: 0x0013CC58 File Offset: 0x0013AE58
 	private void Start()
 	{
 		if (base.gameObject.name.Contains("1"))
@@ -25,7 +25,7 @@ public class TutorialEvents : MonoBehaviour
 		base.transform.GetChild(0).gameObject.SetActive(false);
 	}
 
-	// Token: 0x06003169 RID: 12649 RVA: 0x0018A2A4 File Offset: 0x001884A4
+	// Token: 0x06002964 RID: 10596 RVA: 0x0013CDC4 File Offset: 0x0013AFC4
 	private void OnTriggerEnter2D(Collider2D col)
 	{
 		if (col.tag == "Monkey")
@@ -52,12 +52,12 @@ public class TutorialEvents : MonoBehaviour
 		}
 	}
 
-	// Token: 0x04002D8A RID: 11658
+	// Token: 0x040025A2 RID: 9634
 	public static bool postavljenCollider;
 
-	// Token: 0x04002D8B RID: 11659
+	// Token: 0x040025A3 RID: 9635
 	private bool helpBool;
 
-	// Token: 0x04002D8C RID: 11660
+	// Token: 0x040025A4 RID: 9636
 	private DateTime timeToShowNextElement;
 }

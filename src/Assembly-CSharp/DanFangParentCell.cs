@@ -5,10 +5,10 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
 
-// Token: 0x02000442 RID: 1090
+// Token: 0x020002E8 RID: 744
 public class DanFangParentCell : MonoBehaviour
 {
-	// Token: 0x06001D00 RID: 7424 RVA: 0x000FFC8C File Offset: 0x000FDE8C
+	// Token: 0x060019DE RID: 6622 RVA: 0x000B93C4 File Offset: 0x000B75C4
 	public void init()
 	{
 		this.startSizeDelta = base.transform.GetComponent<RectTransform>().sizeDelta;
@@ -32,7 +32,7 @@ public class DanFangParentCell : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001D01 RID: 7425 RVA: 0x000FFDC8 File Offset: 0x000FDFC8
+	// Token: 0x060019DF RID: 6623 RVA: 0x000B9500 File Offset: 0x000B7700
 	public void addChild(JSONObject obj)
 	{
 		DanFangChildCell component = Tools.InstantiateGameObject(this.DanFangChildCell, this.DanFangChildCell.transform.parent).GetComponent<DanFangChildCell>();
@@ -51,7 +51,7 @@ public class DanFangParentCell : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001D02 RID: 7426 RVA: 0x000FFE90 File Offset: 0x000FE090
+	// Token: 0x060019E0 RID: 6624 RVA: 0x000B95C8 File Offset: 0x000B77C8
 	public void updateSelfHeight()
 	{
 		LayoutRebuilder.ForceRebuildLayoutImmediate(this.content);
@@ -59,7 +59,7 @@ public class DanFangParentCell : MonoBehaviour
 		LayoutRebuilder.ForceRebuildLayoutImmediate(base.transform.GetComponent<RectTransform>());
 	}
 
-	// Token: 0x06001D03 RID: 7427 RVA: 0x000FFEF4 File Offset: 0x000FE0F4
+	// Token: 0x060019E1 RID: 6625 RVA: 0x000B962C File Offset: 0x000B782C
 	public void clickDanFang()
 	{
 		this.isShow = !this.isShow;
@@ -82,7 +82,7 @@ public class DanFangParentCell : MonoBehaviour
 		LianDanSystemManager.inst.DanFangPageManager.clickCallBack();
 	}
 
-	// Token: 0x06001D04 RID: 7428 RVA: 0x00100028 File Offset: 0x000FE228
+	// Token: 0x060019E2 RID: 6626 RVA: 0x000B9760 File Offset: 0x000B7960
 	private bool checkCanLianZhi(List<JSONObject> childs)
 	{
 		if (childs.Count == 0)
@@ -117,7 +117,7 @@ public class DanFangParentCell : MonoBehaviour
 		return true;
 	}
 
-	// Token: 0x06001D05 RID: 7429 RVA: 0x00100128 File Offset: 0x000FE328
+	// Token: 0x060019E3 RID: 6627 RVA: 0x000B9860 File Offset: 0x000B7A60
 	public void updateState()
 	{
 		if (LianDanSystemManager.inst.DanFangPageManager.checkCanLianZhi(this.childs))
@@ -134,51 +134,51 @@ public class DanFangParentCell : MonoBehaviour
 		}
 	}
 
-	// Token: 0x04001900 RID: 6400
+	// Token: 0x040014FC RID: 5372
 	public bool isShow;
 
-	// Token: 0x04001901 RID: 6401
+	// Token: 0x040014FD RID: 5373
 	[HideInInspector]
 	public int DanFangID = -1;
 
-	// Token: 0x04001902 RID: 6402
+	// Token: 0x040014FE RID: 5374
 	[HideInInspector]
 	public List<JSONObject> childs = new List<JSONObject>();
 
-	// Token: 0x04001903 RID: 6403
+	// Token: 0x040014FF RID: 5375
 	[SerializeField]
 	private Text danFangNameText;
 
-	// Token: 0x04001904 RID: 6404
+	// Token: 0x04001500 RID: 5376
 	[SerializeField]
 	private GameObject DanFangChildCell;
 
-	// Token: 0x04001905 RID: 6405
+	// Token: 0x04001501 RID: 5377
 	public List<DanFangChildCell> childDanFangChildCellList;
 
-	// Token: 0x04001906 RID: 6406
+	// Token: 0x04001502 RID: 5378
 	[SerializeField]
 	private Image bgImage;
 
-	// Token: 0x04001907 RID: 6407
+	// Token: 0x04001503 RID: 5379
 	[SerializeField]
 	private RectTransform content;
 
-	// Token: 0x04001908 RID: 6408
+	// Token: 0x04001504 RID: 5380
 	private Vector2 startSizeDelta;
 
-	// Token: 0x04001909 RID: 6409
+	// Token: 0x04001505 RID: 5381
 	[SerializeField]
 	private GameObject CanLianZhiImage;
 
-	// Token: 0x0400190A RID: 6410
+	// Token: 0x04001506 RID: 5382
 	[SerializeField]
 	private Image CanLianZhiBgImage;
 
-	// Token: 0x0400190B RID: 6411
+	// Token: 0x04001507 RID: 5383
 	[SerializeField]
 	private Button btnDanFang;
 
-	// Token: 0x0400190C RID: 6412
+	// Token: 0x04001508 RID: 5384
 	public int finallyIndex = -1;
 }

@@ -3,12 +3,12 @@ using UnityEngine;
 
 namespace BehaviorDesigner.Runtime.Tasks.Basic.UnityLight
 {
-	// Token: 0x020015DA RID: 5594
+	// Token: 0x0200111B RID: 4379
 	[TaskCategory("Basic/Light")]
 	[TaskDescription("Sets the range of the light.")]
 	public class SetRange : Action
 	{
-		// Token: 0x0600831C RID: 33564 RVA: 0x002CE72C File Offset: 0x002CC92C
+		// Token: 0x06007522 RID: 29986 RVA: 0x002B3F1C File Offset: 0x002B211C
 		public override void OnStart()
 		{
 			GameObject defaultGameObject = base.GetDefaultGameObject(this.targetGameObject.Value);
@@ -19,7 +19,7 @@ namespace BehaviorDesigner.Runtime.Tasks.Basic.UnityLight
 			}
 		}
 
-		// Token: 0x0600831D RID: 33565 RVA: 0x0005A12D File Offset: 0x0005832D
+		// Token: 0x06007523 RID: 29987 RVA: 0x002B3F5C File Offset: 0x002B215C
 		public override TaskStatus OnUpdate()
 		{
 			if (this.light == null)
@@ -31,25 +31,25 @@ namespace BehaviorDesigner.Runtime.Tasks.Basic.UnityLight
 			return 2;
 		}
 
-		// Token: 0x0600831E RID: 33566 RVA: 0x0005A160 File Offset: 0x00058360
+		// Token: 0x06007524 RID: 29988 RVA: 0x002B3F8F File Offset: 0x002B218F
 		public override void OnReset()
 		{
 			this.targetGameObject = null;
 			this.range = 0f;
 		}
 
-		// Token: 0x04006FEF RID: 28655
+		// Token: 0x040060CC RID: 24780
 		[Tooltip("The GameObject that the task operates on. If null the task GameObject is used.")]
 		public SharedGameObject targetGameObject;
 
-		// Token: 0x04006FF0 RID: 28656
+		// Token: 0x040060CD RID: 24781
 		[Tooltip("The range to set")]
 		public SharedFloat range;
 
-		// Token: 0x04006FF1 RID: 28657
+		// Token: 0x040060CE RID: 24782
 		private Light light;
 
-		// Token: 0x04006FF2 RID: 28658
+		// Token: 0x040060CF RID: 24783
 		private GameObject prevGameObject;
 	}
 }

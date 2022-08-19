@@ -3,10 +3,10 @@ using System.Collections.Generic;
 
 namespace JSONClass
 {
-	// Token: 0x02000C59 RID: 3161
+	// Token: 0x020008CB RID: 2251
 	public class PlayerGoodsSJsonData : IJSONClass
 	{
-		// Token: 0x06004CCD RID: 19661 RVA: 0x002074D4 File Offset: 0x002056D4
+		// Token: 0x0600413F RID: 16703 RVA: 0x001BECC8 File Offset: 0x001BCEC8
 		public static void InitDataDict()
 		{
 			foreach (JSONObject jsonobject in jsonData.instance.PlayerGoodsSJsonData.list)
@@ -43,36 +43,36 @@ namespace JSONClass
 			}
 		}
 
-		// Token: 0x06004CCE RID: 19662 RVA: 0x000042DD File Offset: 0x000024DD
+		// Token: 0x06004140 RID: 16704 RVA: 0x00004095 File Offset: 0x00002295
 		private static void OnInitFinish()
 		{
 		}
 
-		// Token: 0x04004BB4 RID: 19380
+		// Token: 0x04004060 RID: 16480
 		public static Dictionary<int, PlayerGoodsSJsonData> DataDict = new Dictionary<int, PlayerGoodsSJsonData>();
 
-		// Token: 0x04004BB5 RID: 19381
+		// Token: 0x04004061 RID: 16481
 		public static List<PlayerGoodsSJsonData> DataList = new List<PlayerGoodsSJsonData>();
 
-		// Token: 0x04004BB6 RID: 19382
+		// Token: 0x04004062 RID: 16482
 		public static Action OnInitFinishAction = new Action(PlayerGoodsSJsonData.OnInitFinish);
 
-		// Token: 0x04004BB7 RID: 19383
+		// Token: 0x04004063 RID: 16483
 		public int id;
 
-		// Token: 0x04004BB8 RID: 19384
+		// Token: 0x04004064 RID: 16484
 		public int itemStack;
 
-		// Token: 0x04004BB9 RID: 19385
+		// Token: 0x04004065 RID: 16485
 		public int onlyOne;
 
-		// Token: 0x04004BBA RID: 19386
+		// Token: 0x04004066 RID: 16486
 		public string script;
 
-		// Token: 0x04004BBB RID: 19387
+		// Token: 0x04004067 RID: 16487
 		public string name;
 
-		// Token: 0x04004BBC RID: 19388
+		// Token: 0x04004068 RID: 16488
 		public string type;
 	}
 }

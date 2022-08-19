@@ -3,10 +3,10 @@ using UnityEngine;
 
 namespace UltimateSurvival
 {
-	// Token: 0x020008B7 RID: 2231
+	// Token: 0x020005E7 RID: 1511
 	public class FPBowAnimator : FPAnimator
 	{
-		// Token: 0x0600396D RID: 14701 RVA: 0x001A563C File Offset: 0x001A383C
+		// Token: 0x0600309B RID: 12443 RVA: 0x0015BD98 File Offset: 0x00159F98
 		protected override void Awake()
 		{
 			base.Awake();
@@ -22,7 +22,7 @@ namespace UltimateSurvival
 			Debug.LogError("The animator is of type Bow, but no Bow script found on this game object!", this);
 		}
 
-		// Token: 0x0600396E RID: 14702 RVA: 0x001A56E8 File Offset: 0x001A38E8
+		// Token: 0x0600309C RID: 12444 RVA: 0x0015BE44 File Offset: 0x0015A044
 		protected override void OnValidate()
 		{
 			base.OnValidate();
@@ -32,7 +32,7 @@ namespace UltimateSurvival
 			}
 		}
 
-		// Token: 0x0600396F RID: 14703 RVA: 0x00029ACF File Offset: 0x00027CCF
+		// Token: 0x0600309D RID: 12445 RVA: 0x0015BE94 File Offset: 0x0015A094
 		private void OnStart_Aim()
 		{
 			if (base.FPObject.IsEnabled)
@@ -41,7 +41,7 @@ namespace UltimateSurvival
 			}
 		}
 
-		// Token: 0x06003970 RID: 14704 RVA: 0x00029AEF File Offset: 0x00027CEF
+		// Token: 0x0600309E RID: 12446 RVA: 0x0015BEB4 File Offset: 0x0015A0B4
 		private void OnStop_Aim()
 		{
 			if (base.FPObject.IsEnabled)
@@ -50,7 +50,7 @@ namespace UltimateSurvival
 			}
 		}
 
-		// Token: 0x06003971 RID: 14705 RVA: 0x00029B0F File Offset: 0x00027D0F
+		// Token: 0x0600309F RID: 12447 RVA: 0x0015BED4 File Offset: 0x0015A0D4
 		private void On_Release()
 		{
 			base.Animator.SetBool("Aim", false);
@@ -58,16 +58,16 @@ namespace UltimateSurvival
 			this.m_ReleaseShake.Shake();
 		}
 
-		// Token: 0x04003386 RID: 13190
+		// Token: 0x04002ABF RID: 10943
 		[Header("Bow")]
 		[SerializeField]
 		private float m_ReleaseSpeed = 1f;
 
-		// Token: 0x04003387 RID: 13191
+		// Token: 0x04002AC0 RID: 10944
 		[SerializeField]
 		private WeaponShake m_ReleaseShake;
 
-		// Token: 0x04003388 RID: 13192
+		// Token: 0x04002AC1 RID: 10945
 		private FPBow m_Bow;
 	}
 }

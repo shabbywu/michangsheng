@@ -4,12 +4,12 @@ using UnityEngine;
 
 namespace UltimateSurvival
 {
-	// Token: 0x020008E5 RID: 2277
+	// Token: 0x02000607 RID: 1543
 	[RequireComponent(typeof(Collider))]
 	[RequireComponent(typeof(Rigidbody))]
 	public class ShaftedProjectile : MonoBehaviour
 	{
-		// Token: 0x06003A72 RID: 14962 RVA: 0x001A8294 File Offset: 0x001A6494
+		// Token: 0x06003169 RID: 12649 RVA: 0x0015EE9C File Offset: 0x0015D09C
 		public void Launch(EntityEventHandler entityThatLaunched)
 		{
 			if (this.m_Launched)
@@ -25,7 +25,7 @@ namespace UltimateSurvival
 			this.m_Launched = true;
 		}
 
-		// Token: 0x06003A73 RID: 14963 RVA: 0x0002A79D File Offset: 0x0002899D
+		// Token: 0x0600316A RID: 12650 RVA: 0x0015EEFB File Offset: 0x0015D0FB
 		private void Awake()
 		{
 			this.m_Collider = base.GetComponent<Collider>();
@@ -33,7 +33,7 @@ namespace UltimateSurvival
 			this.m_Collider.enabled = false;
 		}
 
-		// Token: 0x06003A74 RID: 14964 RVA: 0x001A82F4 File Offset: 0x001A64F4
+		// Token: 0x0600316B RID: 12651 RVA: 0x0015EF24 File Offset: 0x0015D124
 		private void FixedUpdate()
 		{
 			if (this.m_Done)
@@ -92,7 +92,7 @@ namespace UltimateSurvival
 			}
 		}
 
-		// Token: 0x06003A75 RID: 14965 RVA: 0x0002A7C3 File Offset: 0x000289C3
+		// Token: 0x0600316C RID: 12652 RVA: 0x0015F1B4 File Offset: 0x0015D3B4
 		private IEnumerator C_DoTwang()
 		{
 			float stopTime = Time.time + this.m_TwangDuration;
@@ -108,34 +108,34 @@ namespace UltimateSurvival
 			yield break;
 		}
 
-		// Token: 0x04003485 RID: 13445
+		// Token: 0x04002B87 RID: 11143
 		[Header("Setup")]
 		[SerializeField]
 		private Transform m_Model;
 
-		// Token: 0x04003486 RID: 13446
+		// Token: 0x04002B88 RID: 11144
 		[SerializeField]
 		private Transform m_Pivot;
 
-		// Token: 0x04003487 RID: 13447
+		// Token: 0x04002B89 RID: 11145
 		[SerializeField]
 		private LayerMask m_Mask;
 
-		// Token: 0x04003488 RID: 13448
+		// Token: 0x04002B8A RID: 11146
 		[SerializeField]
 		private float m_MaxDistance = 2f;
 
-		// Token: 0x04003489 RID: 13449
+		// Token: 0x04002B8B RID: 11147
 		[Header("Launch")]
 		[SerializeField]
 		private float m_LaunchSpeed = 50f;
 
-		// Token: 0x0400348A RID: 13450
+		// Token: 0x04002B8C RID: 11148
 		[Header("Damage")]
 		[SerializeField]
 		private float m_MaxDamage = 100f;
 
-		// Token: 0x0400348B RID: 13451
+		// Token: 0x04002B8D RID: 11149
 		[SerializeField]
 		[Tooltip("How the damage changes, when the speed gets lower.")]
 		private AnimationCurve m_DamageCurve = new AnimationCurve(new Keyframe[]
@@ -145,59 +145,59 @@ namespace UltimateSurvival
 			new Keyframe(1f, 0f)
 		});
 
-		// Token: 0x0400348C RID: 13452
+		// Token: 0x04002B8E RID: 11150
 		[Header("Penetration")]
 		[SerializeField]
 		[Tooltip("The speed under which the projectile will not penetrate objects.")]
 		private float m_PenetrationThreeshold = 20f;
 
-		// Token: 0x0400348D RID: 13453
+		// Token: 0x04002B8F RID: 11151
 		[SerializeField]
 		private float m_PenetrationOffset = 0.2f;
 
-		// Token: 0x0400348E RID: 13454
+		// Token: 0x04002B90 RID: 11152
 		[SerializeField]
 		private Vector2 m_RandomRotation;
 
-		// Token: 0x0400348F RID: 13455
+		// Token: 0x04002B91 RID: 11153
 		[Header("Twang")]
 		[SerializeField]
 		private float m_TwangDuration = 1f;
 
-		// Token: 0x04003490 RID: 13456
+		// Token: 0x04002B92 RID: 11154
 		[SerializeField]
 		private float m_TwangRange = 18f;
 
-		// Token: 0x04003491 RID: 13457
+		// Token: 0x04002B93 RID: 11155
 		[Header("Audio")]
 		[SerializeField]
 		private AudioSource m_AudioSource;
 
-		// Token: 0x04003492 RID: 13458
+		// Token: 0x04002B94 RID: 11156
 		[SerializeField]
 		private SoundPlayer m_HitAudio;
 
-		// Token: 0x04003493 RID: 13459
+		// Token: 0x04002B95 RID: 11157
 		[SerializeField]
 		private SoundPlayer m_TwangAudio;
 
-		// Token: 0x04003494 RID: 13460
+		// Token: 0x04002B96 RID: 11158
 		[SerializeField]
 		private SoundType m_PenetrationType;
 
-		// Token: 0x04003495 RID: 13461
+		// Token: 0x04002B97 RID: 11159
 		private EntityEventHandler m_EntityThatLaunched;
 
-		// Token: 0x04003496 RID: 13462
+		// Token: 0x04002B98 RID: 11160
 		private Collider m_Collider;
 
-		// Token: 0x04003497 RID: 13463
+		// Token: 0x04002B99 RID: 11161
 		private Rigidbody m_Rigidbody;
 
-		// Token: 0x04003498 RID: 13464
+		// Token: 0x04002B9A RID: 11162
 		private bool m_Done;
 
-		// Token: 0x04003499 RID: 13465
+		// Token: 0x04002B9B RID: 11163
 		private bool m_Launched;
 	}
 }

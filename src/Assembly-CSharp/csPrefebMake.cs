@@ -1,17 +1,17 @@
 ﻿using System;
 using UnityEngine;
 
-// Token: 0x0200060F RID: 1551
+// Token: 0x02000456 RID: 1110
 public class csPrefebMake : MonoBehaviour
 {
-	// Token: 0x060026A0 RID: 9888 RVA: 0x0001ECA6 File Offset: 0x0001CEA6
+	// Token: 0x060022E9 RID: 8937 RVA: 0x000EE7D5 File Offset: 0x000EC9D5
 	private void Start()
 	{
 		this._MakePrefeb = Object.Instantiate<Transform>(this.MakePrefeb, base.transform.position, Quaternion.identity);
 		this._MakePrefeb.transform.parent = base.transform;
 	}
 
-	// Token: 0x060026A1 RID: 9889 RVA: 0x0012EFAC File Offset: 0x0012D1AC
+	// Token: 0x060022EA RID: 8938 RVA: 0x000EE810 File Offset: 0x000ECA10
 	private void Update()
 	{
 		if (this.DeadTime <= 0f)
@@ -30,12 +30,12 @@ public class csPrefebMake : MonoBehaviour
 		}
 	}
 
-	// Token: 0x040020EB RID: 8427
+	// Token: 0x04001C1B RID: 7195
 	public Transform MakePrefeb;
 
-	// Token: 0x040020EC RID: 8428
+	// Token: 0x04001C1C RID: 7196
 	private Transform _MakePrefeb;
 
-	// Token: 0x040020ED RID: 8429
+	// Token: 0x04001C1D RID: 7197
 	public float DeadTime;
 }

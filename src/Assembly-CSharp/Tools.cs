@@ -15,10 +15,6 @@ using GUIPackage;
 using JSONClass;
 using KBEngine;
 using Newtonsoft.Json.Linq;
-using PaiMai;
-using QiYu;
-using script.NewLianDan;
-using script.Submit;
 using Tab;
 using UltimateSurvival;
 using UnityEngine;
@@ -27,12 +23,12 @@ using UnityEngine.SceneManagement;
 using YSGame;
 using YSGame.TuJian;
 
-// Token: 0x020002DE RID: 734
+// Token: 0x020001D2 RID: 466
 public class Tools : MonoBehaviour
 {
-	// Token: 0x17000271 RID: 625
-	// (get) Token: 0x0600161C RID: 5660 RVA: 0x00013C1C File Offset: 0x00011E1C
-	// (set) Token: 0x0600161B RID: 5659 RVA: 0x00013C13 File Offset: 0x00011E13
+	// Token: 0x17000229 RID: 553
+	// (get) Token: 0x0600135E RID: 4958 RVA: 0x00079BCD File Offset: 0x00077DCD
+	// (set) Token: 0x0600135D RID: 4957 RVA: 0x00079BC4 File Offset: 0x00077DC4
 	public bool isNeedSetTalk
 	{
 		get
@@ -45,7 +41,7 @@ public class Tools : MonoBehaviour
 		}
 	}
 
-	// Token: 0x0600161D RID: 5661 RVA: 0x00013C24 File Offset: 0x00011E24
+	// Token: 0x0600135F RID: 4959 RVA: 0x00079BD5 File Offset: 0x00077DD5
 	private void Awake()
 	{
 		Tools.instance = this;
@@ -53,25 +49,25 @@ public class Tools : MonoBehaviour
 		this.monstarMag = new MonstarMag();
 	}
 
-	// Token: 0x0600161E RID: 5662 RVA: 0x000042DD File Offset: 0x000024DD
+	// Token: 0x06001360 RID: 4960 RVA: 0x00004095 File Offset: 0x00002295
 	private void Start()
 	{
 	}
 
-	// Token: 0x0600161F RID: 5663 RVA: 0x00013C42 File Offset: 0x00011E42
+	// Token: 0x06001361 RID: 4961 RVA: 0x00079BF3 File Offset: 0x00077DF3
 	public void SetCaiYaoData(CaiYao.ItemData data)
 	{
 		this.CaiYaoData = new CaiYao.ItemData(data.ItemId, data.ItemNum, data.AddNum, data.AddTime, data.HasEnemy, data.FirstEnemyId, data.ScondEnemyId);
 	}
 
-	// Token: 0x06001620 RID: 5664 RVA: 0x000C68E4 File Offset: 0x000C4AE4
+	// Token: 0x06001362 RID: 4962 RVA: 0x00079C2C File Offset: 0x00077E2C
 	public void startNomalFight(int monstarID)
 	{
 		Tools.instance.getPlayer();
 		((StartFight)Object.Instantiate<GameObject>(Resources.Load("talkPrefab/OptionPrefab/OptionFight") as GameObject).GetComponentInChildren<Flowchart>().FindBlock("Splash").CommandList[0]).MonstarID = monstarID;
 	}
 
-	// Token: 0x06001621 RID: 5665 RVA: 0x000C6938 File Offset: 0x000C4B38
+	// Token: 0x06001363 RID: 4963 RVA: 0x00079C80 File Offset: 0x00077E80
 	public void startFight(int monstarID)
 	{
 		try
@@ -91,11 +87,11 @@ public class Tools : MonoBehaviour
 			}
 			Debug.LogError(ex);
 			Debug.LogError("错误NPCId：" + monstarID);
-			UIPopTip.Inst.Pop("获取NPC错误，请将存档发送给策划", PopTipIconType.叹号);
+			UIPopTip.Inst.Pop("获取NPC错误，请排查是否有mod冲突等问题", PopTipIconType.叹号);
 		}
 	}
 
-	// Token: 0x06001622 RID: 5666 RVA: 0x000C69D0 File Offset: 0x000C4BD0
+	// Token: 0x06001364 RID: 4964 RVA: 0x00079D18 File Offset: 0x00077F18
 	public static void ClearObj(Transform obj)
 	{
 		foreach (object obj2 in obj.parent)
@@ -108,7 +104,7 @@ public class Tools : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001623 RID: 5667 RVA: 0x000C6A3C File Offset: 0x000C4C3C
+	// Token: 0x06001365 RID: 4965 RVA: 0x00079D84 File Offset: 0x00077F84
 	public static void ClearChild(Transform obj)
 	{
 		foreach (object obj2 in obj)
@@ -121,7 +117,7 @@ public class Tools : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001624 RID: 5668 RVA: 0x000C6AA4 File Offset: 0x000C4CA4
+	// Token: 0x06001366 RID: 4966 RVA: 0x00079DEC File Offset: 0x00077FEC
 	public static string setColorByID(string name, int id)
 	{
 		int num;
@@ -158,7 +154,7 @@ public class Tools : MonoBehaviour
 		return name;
 	}
 
-	// Token: 0x06001625 RID: 5669 RVA: 0x000C6B9C File Offset: 0x000C4D9C
+	// Token: 0x06001367 RID: 4967 RVA: 0x00079EE4 File Offset: 0x000780E4
 	public static JSONObject getSatticSkillItem(int skillId)
 	{
 		foreach (KeyValuePair<string, JSONObject> keyValuePair in jsonData.instance.ItemJsonData)
@@ -175,7 +171,7 @@ public class Tools : MonoBehaviour
 		return null;
 	}
 
-	// Token: 0x06001626 RID: 5670 RVA: 0x000C6C3C File Offset: 0x000C4E3C
+	// Token: 0x06001368 RID: 4968 RVA: 0x00079F84 File Offset: 0x00078184
 	public static int GetStaticSkillBookItemIDByStaticSkillID(int staticSkillID)
 	{
 		foreach (_ItemJsonData itemJsonData in _ItemJsonData.DataList)
@@ -192,14 +188,14 @@ public class Tools : MonoBehaviour
 		return -1;
 	}
 
-	// Token: 0x06001627 RID: 5671 RVA: 0x00013C79 File Offset: 0x00011E79
+	// Token: 0x06001369 RID: 4969 RVA: 0x0007A000 File Offset: 0x00078200
 	public void StartRemoveSeaMonstarFight(string MonstarUUID)
 	{
 		this.SeaRemoveMonstarUUID = MonstarUUID;
 		this.SeaRemoveMonstarFlag = true;
 	}
 
-	// Token: 0x06001628 RID: 5672 RVA: 0x00013C89 File Offset: 0x00011E89
+	// Token: 0x0600136A RID: 4970 RVA: 0x0007A010 File Offset: 0x00078210
 	public void AutoSetSeaMonstartDie()
 	{
 		if (this.SeaRemoveMonstarFlag)
@@ -209,7 +205,7 @@ public class Tools : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001629 RID: 5673 RVA: 0x000C6CB8 File Offset: 0x000C4EB8
+	// Token: 0x0600136B RID: 4971 RVA: 0x0007A03C File Offset: 0x0007823C
 	public void AutoSeatSeaRunAway(bool isFp = false)
 	{
 		if (!PlayerEx.Player.lastScence.StartsWith("Sea"))
@@ -249,7 +245,7 @@ public class Tools : MonoBehaviour
 		}
 	}
 
-	// Token: 0x0600162A RID: 5674 RVA: 0x000C6E10 File Offset: 0x000C5010
+	// Token: 0x0600136C RID: 4972 RVA: 0x0007A194 File Offset: 0x00078394
 	public static int CalcLingWuTime(int bookItemID)
 	{
 		if (!_ItemJsonData.DataDict.ContainsKey(bookItemID))
@@ -261,7 +257,7 @@ public class Tools : MonoBehaviour
 		return Tools.CalcLingWuOrTuPoTime(itemJsonData.StuTime, itemJsonData.wuDao);
 	}
 
-	// Token: 0x0600162B RID: 5675 RVA: 0x000C6E64 File Offset: 0x000C5064
+	// Token: 0x0600136D RID: 4973 RVA: 0x0007A1E8 File Offset: 0x000783E8
 	public static int CalcTuPoTime(int staticSkillID)
 	{
 		StaticSkillJsonData staticSkillJsonData = StaticSkillJsonData.DataDict[staticSkillID + 1];
@@ -275,7 +271,7 @@ public class Tools : MonoBehaviour
 		return Tools.CalcLingWuOrTuPoTime(staticSkillJsonData.Skill_castTime, itemJsonData.wuDao);
 	}
 
-	// Token: 0x0600162C RID: 5676 RVA: 0x000C6ED0 File Offset: 0x000C50D0
+	// Token: 0x0600136E RID: 4974 RVA: 0x0007A254 File Offset: 0x00078454
 	public static int CalcLingWuOrTuPoTime(int baseTime, List<int> wuDao)
 	{
 		float num = 0f;
@@ -307,25 +303,25 @@ public class Tools : MonoBehaviour
 		return (int)((float)baseTime * num3 * num);
 	}
 
-	// Token: 0x0600162D RID: 5677 RVA: 0x00013CB4 File Offset: 0x00011EB4
+	// Token: 0x0600136F RID: 4975 RVA: 0x0007A346 File Offset: 0x00078546
 	public static int DayToYear(int day)
 	{
 		return day / 365;
 	}
 
-	// Token: 0x0600162E RID: 5678 RVA: 0x00013CBD File Offset: 0x00011EBD
+	// Token: 0x06001370 RID: 4976 RVA: 0x0007A34F File Offset: 0x0007854F
 	public static int DayToMonth(int day)
 	{
 		return (day - 365 * Tools.DayToYear(day)) / 30;
 	}
 
-	// Token: 0x0600162F RID: 5679 RVA: 0x00013CD0 File Offset: 0x00011ED0
+	// Token: 0x06001371 RID: 4977 RVA: 0x0007A362 File Offset: 0x00078562
 	public static int DayToDay(int day)
 	{
 		return day - 365 * Tools.DayToYear(day) - 30 * Tools.DayToMonth(day);
 	}
 
-	// Token: 0x06001630 RID: 5680 RVA: 0x00013CEA File Offset: 0x00011EEA
+	// Token: 0x06001372 RID: 4978 RVA: 0x0007A37C File Offset: 0x0007857C
 	public static string getStr(string str)
 	{
 		if (StrTextJsonData.DataDict.ContainsKey(str))
@@ -336,25 +332,25 @@ public class Tools : MonoBehaviour
 		return "None";
 	}
 
-	// Token: 0x06001631 RID: 5681 RVA: 0x00013D24 File Offset: 0x00011F24
+	// Token: 0x06001373 RID: 4979 RVA: 0x0007A3B6 File Offset: 0x000785B6
 	public Avatar getPlayer()
 	{
 		return (Avatar)KBEngineApp.app.player();
 	}
 
-	// Token: 0x06001632 RID: 5682 RVA: 0x000C6FC4 File Offset: 0x000C51C4
+	// Token: 0x06001374 RID: 4980 RVA: 0x0007A3C8 File Offset: 0x000785C8
 	public bool CheckHasTianFu(int id)
 	{
 		return this.getPlayer().SelectTianFuID.list.Find((JSONObject aa) => (int)aa.n == id) != null;
 	}
 
-	// Token: 0x06001633 RID: 5683 RVA: 0x00013D35 File Offset: 0x00011F35
+	// Token: 0x06001375 RID: 4981 RVA: 0x0007A406 File Offset: 0x00078606
 	public bool CheckHasTianFuSeid(int seid)
 	{
 		return this.getPlayer().TianFuID.HasField(seid.ToString());
 	}
 
-	// Token: 0x06001634 RID: 5684 RVA: 0x000C7004 File Offset: 0x000C5204
+	// Token: 0x06001376 RID: 4982 RVA: 0x0007A424 File Offset: 0x00078624
 	public void ResetEquipSeid()
 	{
 		Avatar player = Tools.instance.getPlayer();
@@ -383,7 +379,7 @@ public class Tools : MonoBehaviour
 		player.equipItemList.values = player.StreamData.FangAnData.CurEquipDictToOldList();
 	}
 
-	// Token: 0x06001635 RID: 5685 RVA: 0x000C7168 File Offset: 0x000C5368
+	// Token: 0x06001377 RID: 4983 RVA: 0x0007A588 File Offset: 0x00078788
 	public void NewAddItem(int id, int count, JSONObject seid, string uuid = "无", bool ShowText = false)
 	{
 		Avatar player = this.getPlayer();
@@ -408,7 +404,7 @@ public class Tools : MonoBehaviour
 		player.addItem(id, count, seid, ShowText);
 	}
 
-	// Token: 0x06001636 RID: 5686 RVA: 0x000C71E8 File Offset: 0x000C53E8
+	// Token: 0x06001378 RID: 4984 RVA: 0x0007A608 File Offset: 0x00078808
 	public void RemoveItem(int id, int count = 1)
 	{
 		Avatar player = this.getPlayer();
@@ -422,7 +418,22 @@ public class Tools : MonoBehaviour
 		this.ResetEquipSeid();
 	}
 
-	// Token: 0x06001637 RID: 5687 RVA: 0x000C7220 File Offset: 0x000C5420
+	// Token: 0x06001379 RID: 4985 RVA: 0x0007A640 File Offset: 0x00078840
+	public void RemoveTieJian(int id)
+	{
+		Avatar player = this.getPlayer();
+		Dictionary<int, BaseItem> curEquipDict = player.StreamData.FangAnData.GetCurEquipDict();
+		foreach (int key in curEquipDict.Keys)
+		{
+			if (curEquipDict[key].Id == id)
+			{
+				curEquipDict.Remove(key);
+			}
+		}
+		player.removeItem(id);
+	}
+
+	// Token: 0x0600137A RID: 4986 RVA: 0x0007A6C4 File Offset: 0x000788C4
 	public void RemoveItem(string uuid, int count = 1)
 	{
 		Avatar player = this.getPlayer();
@@ -434,7 +445,7 @@ public class Tools : MonoBehaviour
 		this.ResetEquipSeid();
 	}
 
-	// Token: 0x06001638 RID: 5688 RVA: 0x000C7254 File Offset: 0x000C5454
+	// Token: 0x0600137B RID: 4987 RVA: 0x0007A6F8 File Offset: 0x000788F8
 	private void RemoveEquip(string uuid)
 	{
 		Dictionary<int, Dictionary<int, BaseItem>> equipDictionary = this.getPlayer().StreamData.FangAnData.EquipDictionary;
@@ -475,7 +486,7 @@ public class Tools : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001639 RID: 5689 RVA: 0x000C7400 File Offset: 0x000C5600
+	// Token: 0x0600137C RID: 4988 RVA: 0x0007A8A4 File Offset: 0x00078AA4
 	private bool RemoveEquip(int id)
 	{
 		Dictionary<int, BaseItem> curEquipDict = this.getPlayer().StreamData.FangAnData.GetCurEquipDict();
@@ -490,25 +501,25 @@ public class Tools : MonoBehaviour
 		return false;
 	}
 
-	// Token: 0x0600163A RID: 5690 RVA: 0x00013D53 File Offset: 0x00011F53
+	// Token: 0x0600137D RID: 4989 RVA: 0x0007A924 File Offset: 0x00078B24
 	public string Code64ToString(string aa)
 	{
 		return aa.ToCN();
 	}
 
-	// Token: 0x0600163B RID: 5691 RVA: 0x00013D5B File Offset: 0x00011F5B
+	// Token: 0x0600137E RID: 4990 RVA: 0x0007A92C File Offset: 0x00078B2C
 	public static string Code64(string aa)
 	{
 		return aa.ToCN();
 	}
 
-	// Token: 0x0600163C RID: 5692 RVA: 0x00013D63 File Offset: 0x00011F63
+	// Token: 0x0600137F RID: 4991 RVA: 0x0007A934 File Offset: 0x00078B34
 	public static string getDescByID(string desstr, int skillID)
 	{
 		return Tools.getDesc(desstr, _skillJsonData.DataDict[skillID].HP);
 	}
 
-	// Token: 0x0600163D RID: 5693 RVA: 0x000C7480 File Offset: 0x000C5680
+	// Token: 0x06001380 RID: 4992 RVA: 0x0007A94C File Offset: 0x00078B4C
 	private static void setAttackTxt(ref string desstr, int __attack)
 	{
 		string text = desstr.Substring(0, desstr.IndexOf("（"));
@@ -531,7 +542,7 @@ public class Tools : MonoBehaviour
 		}
 	}
 
-	// Token: 0x0600163E RID: 5694 RVA: 0x00013D7B File Offset: 0x00011F7B
+	// Token: 0x06001381 RID: 4993 RVA: 0x0007AA42 File Offset: 0x00078C42
 	public static string getDesc(string desstr, int __attack)
 	{
 		if (desstr.IndexOf("attack") > 0)
@@ -541,13 +552,13 @@ public class Tools : MonoBehaviour
 		return desstr;
 	}
 
-	// Token: 0x0600163F RID: 5695 RVA: 0x000C7578 File Offset: 0x000C5778
+	// Token: 0x06001382 RID: 4994 RVA: 0x0007AA5C File Offset: 0x00078C5C
 	public string getSkillDesc(int skillID)
 	{
 		return Tools.getDesc(this.Code64ToString(jsonData.instance.skillJsonData[string.Concat(skillID)]["descr"].str), (int)jsonData.instance.skillJsonData[string.Concat(skillID)]["HP"].n);
 	}
 
-	// Token: 0x06001640 RID: 5696 RVA: 0x000C75E4 File Offset: 0x000C57E4
+	// Token: 0x06001383 RID: 4995 RVA: 0x0007AAC8 File Offset: 0x00078CC8
 	public string getSkillName(int skillID, bool includecolor = false)
 	{
 		JSONObject jsonobject = jsonData.instance.skillJsonData[string.Concat(skillID)];
@@ -557,7 +568,7 @@ public class Tools : MonoBehaviour
 		return str + text.Replace("1", "").Replace("2", "").Replace("3", "").Replace("4", "").Replace("5", "") + str2;
 	}
 
-	// Token: 0x06001641 RID: 5697 RVA: 0x000C7684 File Offset: 0x000C5884
+	// Token: 0x06001384 RID: 4996 RVA: 0x0007AB68 File Offset: 0x00078D68
 	public string getStaticSkillName(int skillID, bool includecolor = false)
 	{
 		JSONObject jsonobject = jsonData.instance.StaticSkillJsonData[string.Concat(skillID)];
@@ -567,13 +578,13 @@ public class Tools : MonoBehaviour
 		return str + text.Replace("1", "").Replace("2", "").Replace("3", "").Replace("4", "").Replace("5", "") + str2;
 	}
 
-	// Token: 0x06001642 RID: 5698 RVA: 0x00013D94 File Offset: 0x00011F94
+	// Token: 0x06001385 RID: 4997 RVA: 0x0007AC08 File Offset: 0x00078E08
 	public Sprite getLevelSprite(int level, Rect rect)
 	{
 		return Sprite.Create((Texture2D)Resources.Load("NewUI/Fight/LevelIcon/icon_" + level), rect, new Vector2(0.5f, 0.5f));
 	}
 
-	// Token: 0x06001643 RID: 5699 RVA: 0x000C7724 File Offset: 0x000C5924
+	// Token: 0x06001386 RID: 4998 RVA: 0x0007AC3C File Offset: 0x00078E3C
 	public string getSkillText(int skillID)
 	{
 		JSONObject jsonobject = jsonData.instance.skillJsonData[string.Concat(skillID)];
@@ -582,7 +593,7 @@ public class Tools : MonoBehaviour
 		return "[FF0000]说明:[-] " + skillDesc;
 	}
 
-	// Token: 0x06001644 RID: 5700 RVA: 0x000C7770 File Offset: 0x000C5970
+	// Token: 0x06001387 RID: 4999 RVA: 0x0007AC88 File Offset: 0x00078E88
 	public void setAvaterCanAttack(Entity targAvater)
 	{
 		try
@@ -605,7 +616,7 @@ public class Tools : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001645 RID: 5701 RVA: 0x000C77F8 File Offset: 0x000C59F8
+	// Token: 0x06001388 RID: 5000 RVA: 0x0007AD10 File Offset: 0x00078F10
 	public JSONObject readMGconfig()
 	{
 		JSONObject result;
@@ -631,7 +642,7 @@ public class Tools : MonoBehaviour
 		return result;
 	}
 
-	// Token: 0x06001646 RID: 5702 RVA: 0x000C78B4 File Offset: 0x000C5AB4
+	// Token: 0x06001389 RID: 5001 RVA: 0x0007ADCC File Offset: 0x00078FCC
 	public void saveMGConfig(string encodedString)
 	{
 		MonoBehaviour.print("Unity99:");
@@ -641,7 +652,7 @@ public class Tools : MonoBehaviour
 		streamWriter.Close();
 	}
 
-	// Token: 0x06001647 RID: 5703 RVA: 0x000C790C File Offset: 0x000C5B0C
+	// Token: 0x0600138A RID: 5002 RVA: 0x0007AE24 File Offset: 0x00079024
 	public string Encryption(string express)
 	{
 		string result;
@@ -656,7 +667,7 @@ public class Tools : MonoBehaviour
 		return result;
 	}
 
-	// Token: 0x06001648 RID: 5704 RVA: 0x000C7968 File Offset: 0x000C5B68
+	// Token: 0x0600138B RID: 5003 RVA: 0x0007AE80 File Offset: 0x00079080
 	public string Decrypt(string ciphertext)
 	{
 		string @string;
@@ -672,7 +683,7 @@ public class Tools : MonoBehaviour
 		return @string;
 	}
 
-	// Token: 0x06001649 RID: 5705 RVA: 0x000C79C4 File Offset: 0x000C5BC4
+	// Token: 0x0600138C RID: 5004 RVA: 0x0007AEDC File Offset: 0x000790DC
 	public void loadMapScenes(string name, bool LastSceneIsValue = true)
 	{
 		if (name != "LianDan" && LastSceneIsValue)
@@ -715,7 +726,7 @@ public class Tools : MonoBehaviour
 		this.CanOpenTab = true;
 	}
 
-	// Token: 0x0600164A RID: 5706 RVA: 0x00013DC5 File Offset: 0x00011FC5
+	// Token: 0x0600138D RID: 5005 RVA: 0x0007B013 File Offset: 0x00079213
 	public void loadOtherScenes(string name)
 	{
 		this.loadSceneType = 0;
@@ -729,13 +740,13 @@ public class Tools : MonoBehaviour
 		this.CanOpenTab = false;
 	}
 
-	// Token: 0x0600164B RID: 5707 RVA: 0x00013E05 File Offset: 0x00012005
+	// Token: 0x0600138E RID: 5006 RVA: 0x0007B053 File Offset: 0x00079253
 	public static void startPaiMai()
 	{
 		Tools.instance.loadOtherScenes("PaiMai");
 	}
 
-	// Token: 0x0600164C RID: 5708 RVA: 0x000C7AFC File Offset: 0x000C5CFC
+	// Token: 0x0600138F RID: 5007 RVA: 0x0007B064 File Offset: 0x00079264
 	public bool isEquip(int id)
 	{
 		bool result = false;
@@ -746,12 +757,12 @@ public class Tools : MonoBehaviour
 		return result;
 	}
 
-	// Token: 0x0600164D RID: 5709 RVA: 0x000042DD File Offset: 0x000024DD
+	// Token: 0x06001390 RID: 5008 RVA: 0x00004095 File Offset: 0x00002295
 	public void findSkillBy()
 	{
 	}
 
-	// Token: 0x0600164E RID: 5710 RVA: 0x00013E16 File Offset: 0x00012016
+	// Token: 0x06001391 RID: 5009 RVA: 0x0007B0A2 File Offset: 0x000792A2
 	public int getSkillIDByKey(int key)
 	{
 		if (key <= 0)
@@ -761,7 +772,7 @@ public class Tools : MonoBehaviour
 		return _skillJsonData.DataDict[key].Skill_ID;
 	}
 
-	// Token: 0x0600164F RID: 5711 RVA: 0x00013E2E File Offset: 0x0001202E
+	// Token: 0x06001392 RID: 5010 RVA: 0x0007B0BA File Offset: 0x000792BA
 	public int getStaticSkillIDByKey(int key)
 	{
 		if (key < 0)
@@ -771,7 +782,7 @@ public class Tools : MonoBehaviour
 		return StaticSkillJsonData.DataDict[key].Skill_ID;
 	}
 
-	// Token: 0x06001650 RID: 5712 RVA: 0x000C7B3C File Offset: 0x000C5D3C
+	// Token: 0x06001393 RID: 5011 RVA: 0x0007B0D4 File Offset: 0x000792D4
 	public int getSkillKeyByID(int ID, Avatar _avatar)
 	{
 		List<_skillJsonData> list = _skillJsonData.DataList.FindAll((_skillJsonData s) => s.Skill_ID == ID);
@@ -794,7 +805,7 @@ public class Tools : MonoBehaviour
 		return -1;
 	}
 
-	// Token: 0x06001651 RID: 5713 RVA: 0x000C7BEC File Offset: 0x000C5DEC
+	// Token: 0x06001394 RID: 5012 RVA: 0x0007B184 File Offset: 0x00079384
 	public int getStaticSkillKeyByID(int ID)
 	{
 		Avatar avatar = (Avatar)KBEngineApp.app.player();
@@ -814,7 +825,7 @@ public class Tools : MonoBehaviour
 		return -1;
 	}
 
-	// Token: 0x06001652 RID: 5714 RVA: 0x000C7CB4 File Offset: 0x000C5EB4
+	// Token: 0x06001395 RID: 5013 RVA: 0x0007B24C File Offset: 0x0007944C
 	public int getStaticSkillKeyByID(int ID, int level)
 	{
 		foreach (StaticSkillJsonData staticSkillJsonData in StaticSkillJsonData.DataList)
@@ -827,7 +838,7 @@ public class Tools : MonoBehaviour
 		return -1;
 	}
 
-	// Token: 0x06001653 RID: 5715 RVA: 0x000C7D20 File Offset: 0x000C5F20
+	// Token: 0x06001396 RID: 5014 RVA: 0x0007B2B8 File Offset: 0x000794B8
 	public static void Save(string objectName, object o, string gamePath = "-1")
 	{
 		FieldInfo[] fields = o.GetType().GetFields();
@@ -1162,7 +1173,7 @@ public class Tools : MonoBehaviour
 		YSGame.YSSaveGame.save(objectName, jsonobject, gamePath);
 	}
 
-	// Token: 0x06001654 RID: 5716 RVA: 0x000C8A1C File Offset: 0x000C6C1C
+	// Token: 0x06001397 RID: 5015 RVA: 0x0007BFB4 File Offset: 0x0007A1B4
 	public static void GetValue<T>(string objectName, Avatar avatar) where T : Avatar, new()
 	{
 		JSONObject jsonObject = YSGame.YSSaveGame.GetJsonObject(objectName, null);
@@ -1628,19 +1639,19 @@ public class Tools : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001655 RID: 5717 RVA: 0x00013E46 File Offset: 0x00012046
+	// Token: 0x06001398 RID: 5016 RVA: 0x0007CF1C File Offset: 0x0007B11C
 	public string getSaveID(int id, int index)
 	{
 		return id + "_" + index;
 	}
 
-	// Token: 0x06001656 RID: 5718 RVA: 0x00013E5E File Offset: 0x0001205E
+	// Token: 0x06001399 RID: 5017 RVA: 0x0007CF34 File Offset: 0x0007B134
 	public void Save(int id, int index, Avatar _avatar = null)
 	{
 		this.saveGame(id, index, _avatar);
 	}
 
-	// Token: 0x06001657 RID: 5719 RVA: 0x00013E69 File Offset: 0x00012069
+	// Token: 0x0600139A RID: 5018 RVA: 0x0007CF3F File Offset: 0x0007B13F
 	public void playerSaveGame(int id, int index, Avatar _avatar = null)
 	{
 		if (jsonData.instance.saveState == 1)
@@ -1651,75 +1662,7 @@ public class Tools : MonoBehaviour
 		this.saveGame(id, index, _avatar);
 	}
 
-	// Token: 0x06001658 RID: 5720 RVA: 0x000C9984 File Offset: 0x000C7B84
-	public void AuToLoad()
-	{
-		if (SayDialog.GetSayDialog().gameObject != null)
-		{
-			Object.Destroy(SayDialog.GetSayDialog().gameObject);
-		}
-		if (FpUIMag.inst != null)
-		{
-			Object.Destroy(FpUIMag.inst.gameObject);
-		}
-		if (LianDanUIMag.Instance != null)
-		{
-			Object.Destroy(LianDanUIMag.Instance.gameObject);
-		}
-		if (TpUIMag.inst != null)
-		{
-			Object.Destroy(TpUIMag.inst.gameObject);
-		}
-		if (SubmitUIMag.Inst != null)
-		{
-			SubmitUIMag.Inst.Close();
-		}
-		if (QiYuUIMag.Inst != null)
-		{
-			Object.Destroy(QiYuUIMag.Inst.gameObject);
-		}
-		if (CaiYaoUIMag.Inst != null)
-		{
-			Object.Destroy(CaiYaoUIMag.Inst.gameObject);
-		}
-		if (PanelMamager.inst.UISceneGameObject != null)
-		{
-			PanelMamager.inst.UISceneGameObject.SetActive(false);
-		}
-		if (SingletonMono<TabUIMag>.Instance != null)
-		{
-			SingletonMono<TabUIMag>.Instance.TryEscClose();
-		}
-		if (LianQiTotalManager.inst != null)
-		{
-			Object.Destroy(LianQiTotalManager.inst.gameObject);
-		}
-		if (SingletonMono<PaiMaiUiMag>.Instance != null)
-		{
-			Object.Destroy(SingletonMono<PaiMaiUiMag>.Instance.gameObject);
-			Time.timeScale = 1f;
-		}
-		ESCCloseManager.Inst.CloseAll();
-		int @int = PlayerPrefs.GetInt("NowPlayerFileAvatar");
-		YSGame.YSSaveGame.Reset();
-		KBEngineApp.app.entities[10] = null;
-		KBEngineApp.app.entities.Remove(10);
-		GameObject gameObject = new GameObject();
-		gameObject.AddComponent<StartGame>();
-		gameObject.GetComponent<StartGame>().startGame(@int, 1, -1);
-	}
-
-	// Token: 0x06001659 RID: 5721 RVA: 0x00013E92 File Offset: 0x00012092
-	public void AuToSave()
-	{
-		if (SingletonMono<TabUIMag>.Instance != null)
-		{
-			SingletonMono<TabUIMag>.Instance.TryEscClose();
-		}
-		this.playerSaveGame(PlayerPrefs.GetInt("NowPlayerFileAvatar"), 1, null);
-	}
-
-	// Token: 0x0600165A RID: 5722 RVA: 0x000C9B28 File Offset: 0x000C7D28
+	// Token: 0x0600139B RID: 5019 RVA: 0x0007CF68 File Offset: 0x0007B168
 	public void saveGame(int id, int index, Avatar _avatar = null)
 	{
 		if (!NpcJieSuanManager.inst.isCanJieSuan)
@@ -1727,14 +1670,14 @@ public class Tools : MonoBehaviour
 			UIPopTip.Inst.Pop("正在结算中不能存档", PopTipIconType.叹号);
 			return;
 		}
-		if (FpUIMag.inst != null || TpUIMag.inst != null || UINPCJiaoHu.Inst.NowIsJiaoHu2)
+		if (FpUIMag.inst != null || TpUIMag.inst != null || UINPCJiaoHu.Inst.NowIsJiaoHu2 || SetFaceUI.Inst != null)
 		{
 			UIPopTip.Inst.Pop("当前状态不能存档", PopTipIconType.叹号);
 			return;
 		}
 		if (!jsonData.instance.SaveLock)
 		{
-			if (index == 0)
+			if (index == 0 && SystemConfig.Inst.GetSaveTimes() != 0)
 			{
 				if (SystemConfig.Inst.GetSaveTimes() == -1)
 				{
@@ -1751,6 +1694,7 @@ public class Tools : MonoBehaviour
 					this.NextSaveTime = now.AddMinutes((double)this.GetAddTime());
 				}
 			}
+			Tools.startSaveTime = Time.realtimeSinceStartup;
 			Avatar avatar = (Avatar)KBEngineApp.app.player();
 			if (_avatar != null)
 			{
@@ -1779,6 +1723,7 @@ public class Tools : MonoBehaviour
 			Dictionary<int, List<int>> npcBigMapDictionary = new Dictionary<int, List<int>>(NpcJieSuanManager.inst.npcMap.bigMapNPCDictionary);
 			Dictionary<string, List<int>> npcThreeSenceDictionary = new Dictionary<string, List<int>>(NpcJieSuanManager.inst.npcMap.threeSenceNPCDictionary);
 			Dictionary<string, Dictionary<int, List<int>>> npcFuBenDictionary = new Dictionary<string, Dictionary<int, List<int>>>(NpcJieSuanManager.inst.npcMap.fuBenNPCDictionary);
+			this.getPlayer().StreamData.NpcJieSuanData.SaveData();
 			avatar.Save(id, index);
 			jsonData.instance.saveState = 1;
 			UIPopTip.Inst.Pop("开始存档,请等待存档完成", PopTipIconType.叹号);
@@ -1786,17 +1731,16 @@ public class Tools : MonoBehaviour
 			Loom.RunAsync(delegate
 			{
 				jsonData.instance.SaveLock = true;
-				YSGame.YSSaveGame.save("AvatarBackpackJsonData" + Tools.instance.getSaveID(id, index), AvatarBackpackJsonDataClone, gamePath);
 				YSGame.YSSaveGame.save("GameVersion" + Tools.instance.getSaveID(id, index), GameVersion.inst.GetGameVersion(), gamePath);
 				YSGame.YSSaveGame.save("AvatarBackpackJsonData" + Tools.instance.getSaveID(id, index), AvatarBackpackJsonDataClone, gamePath);
 				YSGame.YSSaveGame.save("AvatarRandomJsonData" + Tools.instance.getSaveID(id, index), AvatarRandomJsonDataClone, gamePath);
-				YSGame.YSSaveGame.save("NpcBackpack" + Tools.instance.getSaveID(id, index), FactoryManager.inst.loadPlayerDateFactory.savePackDate(AvatarBackpackJsonDataClone), gamePath);
-				YSGame.YSSaveGame.save("NpcJsonData" + Tools.instance.getSaveID(id, index), FactoryManager.inst.loadPlayerDateFactory.savaNpcDate(AvatarJsonDateClone), gamePath);
+				YSGame.YSSaveGame.save("NpcBackpack" + Tools.instance.getSaveID(id, index), FactoryManager.inst.loadPlayerDateFactory.SavePackData(AvatarBackpackJsonDataClone), gamePath);
+				YSGame.YSSaveGame.save("NpcJsonData" + Tools.instance.getSaveID(id, index), FactoryManager.inst.loadPlayerDateFactory.SaveNpcData(AvatarJsonDateClone), gamePath);
 				YSGame.YSSaveGame.save("DeathNpcJsonData" + Tools.instance.getSaveID(id, index), deathNPCJsonDate, gamePath);
 				YSGame.YSSaveGame.save("OnlyChengHao" + Tools.instance.getSaveID(id, index), npcOnlyChenghHao, gamePath);
 				YSGame.YSSaveGame.save("SaveAvatar" + this.getSaveID(id, index), 1, gamePath);
 				YSGame.YSSaveGame.save("AvatarSavetime" + Tools.instance.getSaveID(id, index), DateTime.Now.ToString(), gamePath);
-				YSGame.YSSaveGame.save("JieSuanData" + Tools.instance.getSaveID(id, index), FactoryManager.inst.loadPlayerDateFactory.saveJieSuanData(npcBigMapDictionary, npcThreeSenceDictionary, npcFuBenDictionary, JieSuanData), gamePath);
+				YSGame.YSSaveGame.save("JieSuanData" + Tools.instance.getSaveID(id, index), FactoryManager.inst.loadPlayerDateFactory.SaveJieSuanData(npcBigMapDictionary, npcThreeSenceDictionary, npcFuBenDictionary, JieSuanData), gamePath);
 				YSGame.YSSaveGame.save("TuJianSave", TuJianManager.Inst.TuJianSave, gamePath);
 				YSGame.YSSaveGame.save("IsComplete" + Tools.instance.getSaveID(id, index), "true", gamePath);
 				jsonData.instance.SaveLock = false;
@@ -1820,6 +1764,7 @@ public class Tools : MonoBehaviour
 						}
 						jsonData.instance.saveState = -1;
 						UIPopTip.Inst.Pop("存档完成", PopTipIconType.叹号);
+						Debug.Log(string.Format("老存档系统共计耗时{0}秒", Time.realtimeSinceStartup - Tools.startSaveTime));
 					});
 				}
 				Loom.QueueOnMainThread(taction, null);
@@ -1827,7 +1772,7 @@ public class Tools : MonoBehaviour
 		}
 	}
 
-	// Token: 0x0600165B RID: 5723 RVA: 0x000C9E84 File Offset: 0x000C8084
+	// Token: 0x0600139C RID: 5020 RVA: 0x0007D2FC File Offset: 0x0007B4FC
 	public static List<T> Clone<T>(object List)
 	{
 		List<T> result;
@@ -1841,7 +1786,7 @@ public class Tools : MonoBehaviour
 		return result;
 	}
 
-	// Token: 0x0600165C RID: 5724 RVA: 0x000C9ED8 File Offset: 0x000C80D8
+	// Token: 0x0600139D RID: 5021 RVA: 0x0007D350 File Offset: 0x0007B550
 	public bool canClick(bool show = false, bool useCache = true)
 	{
 		if (!show && useCache && CanClickManager.Inst.IsFinshed)
@@ -1854,13 +1799,13 @@ public class Tools : MonoBehaviour
 		return CanClickManager.Inst.Result;
 	}
 
-	// Token: 0x0600165D RID: 5725 RVA: 0x00013EBE File Offset: 0x000120BE
+	// Token: 0x0600139E RID: 5022 RVA: 0x0007D3A5 File Offset: 0x0007B5A5
 	public void playFader(string content, UnityAction action = null)
 	{
 		UI_Manager.inst.PlayeJieSuanAnimation(content, action);
 	}
 
-	// Token: 0x0600165E RID: 5726 RVA: 0x000C9F30 File Offset: 0x000C8130
+	// Token: 0x0600139F RID: 5023 RVA: 0x0007D3B4 File Offset: 0x0007B5B4
 	private void playFaderOut()
 	{
 		CameraManager cameraManager = FungusManager.Instance.CameraManager;
@@ -1872,7 +1817,7 @@ public class Tools : MonoBehaviour
 		});
 	}
 
-	// Token: 0x0600165F RID: 5727 RVA: 0x000C9F94 File Offset: 0x000C8194
+	// Token: 0x060013A0 RID: 5024 RVA: 0x0007D418 File Offset: 0x0007B618
 	public static string getScreenName()
 	{
 		if (RandomFuBen.IsInRandomFuBen)
@@ -1882,7 +1827,7 @@ public class Tools : MonoBehaviour
 		return SceneManager.GetActiveScene().name;
 	}
 
-	// Token: 0x06001660 RID: 5728 RVA: 0x000C9FE4 File Offset: 0x000C81E4
+	// Token: 0x060013A1 RID: 5025 RVA: 0x0007D468 File Offset: 0x0007B668
 	public static Vector3 ToScenece1080(Vector3 pos)
 	{
 		float num = 1920f / (float)Screen.width;
@@ -1890,7 +1835,7 @@ public class Tools : MonoBehaviour
 		return new Vector3(pos.x * num - 960f, pos.y * num2 - 540f, pos.z);
 	}
 
-	// Token: 0x06001661 RID: 5729 RVA: 0x00013ECC File Offset: 0x000120CC
+	// Token: 0x060013A2 RID: 5026 RVA: 0x0007D4B6 File Offset: 0x0007B6B6
 	public static void Say(string text, int hero)
 	{
 		GameObject gameObject = new GameObject();
@@ -1903,7 +1848,7 @@ public class Tools : MonoBehaviour
 		component.OnEnter();
 	}
 
-	// Token: 0x06001662 RID: 5730 RVA: 0x000CA034 File Offset: 0x000C8234
+	// Token: 0x060013A3 RID: 5027 RVA: 0x0007D4EC File Offset: 0x0007B6EC
 	public static string getMonstarTitle(int monstarID)
 	{
 		Avatar player = Tools.instance.getPlayer();
@@ -1911,12 +1856,7 @@ public class Tools : MonoBehaviour
 		if (monstarID == 1 && player.menPai != 0)
 		{
 			string str = Tools.getStr("menpai" + player.menPai);
-			int num = player.chengHao;
-			if (num >= 6)
-			{
-				num--;
-			}
-			string str2 = jsonData.instance.ChengHaoJsonData[num.ToString()]["Name"].Str;
+			string str2 = jsonData.instance.ChengHaoJsonData[player.chengHao.ToString()]["Name"].Str;
 			result = str + str2;
 		}
 		else if (jsonData.instance.AvatarJsonData.HasField(monstarID.ToString()))
@@ -1931,35 +1871,31 @@ public class Tools : MonoBehaviour
 		return result;
 	}
 
-	// Token: 0x06001663 RID: 5731 RVA: 0x000CA114 File Offset: 0x000C8314
+	// Token: 0x060013A4 RID: 5028 RVA: 0x0007D5C0 File Offset: 0x0007B7C0
 	public static string GetPlayerTitle()
 	{
 		Avatar player = Tools.instance.getPlayer();
 		string str = Tools.getStr("menpai" + player.menPai);
-		int num = player.chengHao;
-		if (player.menPai > 0 && player.chengHao >= 6)
-		{
-			num = player.chengHao - 1;
-		}
-		string str2 = Tools.instance.Code64ToString(jsonData.instance.ChengHaoJsonData[num.ToString()]["Name"].str);
+		int chengHao = player.chengHao;
+		string str2 = Tools.instance.Code64ToString(jsonData.instance.ChengHaoJsonData[chengHao.ToString()]["Name"].str);
 		return str + str2;
 	}
 
-	// Token: 0x06001664 RID: 5732 RVA: 0x000CA1A0 File Offset: 0x000C83A0
+	// Token: 0x060013A5 RID: 5029 RVA: 0x0007D630 File Offset: 0x0007B830
 	public static string GetPlayerName()
 	{
 		Avatar player = Tools.instance.getPlayer();
 		return player.firstName + player.lastName;
 	}
 
-	// Token: 0x06001665 RID: 5733 RVA: 0x000CA1CC File Offset: 0x000C83CC
+	// Token: 0x060013A6 RID: 5030 RVA: 0x0007D65C File Offset: 0x0007B85C
 	public static int getRandomInt(int start, int end)
 	{
 		int num = jsonData.GetRandom() % (end - start + 1);
 		return start + num;
 	}
 
-	// Token: 0x06001666 RID: 5734 RVA: 0x000CA1E8 File Offset: 0x000C83E8
+	// Token: 0x060013A7 RID: 5031 RVA: 0x0007D678 File Offset: 0x0007B878
 	public static bool HasItems(JToken json, int item)
 	{
 		using (IEnumerator<JToken> enumerator = ((JArray)json).GetEnumerator())
@@ -1975,7 +1911,7 @@ public class Tools : MonoBehaviour
 		return false;
 	}
 
-	// Token: 0x06001667 RID: 5735 RVA: 0x000CA23C File Offset: 0x000C843C
+	// Token: 0x060013A8 RID: 5032 RVA: 0x0007D6CC File Offset: 0x0007B8CC
 	public static int getRandomList(List<int> list)
 	{
 		int num = 0;
@@ -1998,13 +1934,13 @@ public class Tools : MonoBehaviour
 		return 0;
 	}
 
-	// Token: 0x06001668 RID: 5736 RVA: 0x00013F00 File Offset: 0x00012100
+	// Token: 0x060013A9 RID: 5033 RVA: 0x0007D778 File Offset: 0x0007B978
 	public int GetRandomInt(int min, int max)
 	{
 		return this.random.Next(min, max + 1);
 	}
 
-	// Token: 0x06001669 RID: 5737 RVA: 0x000CA2E8 File Offset: 0x000C84E8
+	// Token: 0x060013AA RID: 5034 RVA: 0x0007D78C File Offset: 0x0007B98C
 	public static List<int> getNumRandomList(List<int> list, int num)
 	{
 		List<int> list2 = new List<int>();
@@ -2028,7 +1964,7 @@ public class Tools : MonoBehaviour
 		return list2;
 	}
 
-	// Token: 0x0600166A RID: 5738 RVA: 0x00013F11 File Offset: 0x00012111
+	// Token: 0x060013AB RID: 5035 RVA: 0x0007D7E4 File Offset: 0x0007B9E4
 	public static JToken RandomGetArrayToken(JToken list)
 	{
 		if (((JArray)list).Count > 0)
@@ -2038,13 +1974,13 @@ public class Tools : MonoBehaviour
 		return null;
 	}
 
-	// Token: 0x0600166B RID: 5739 RVA: 0x00013F3F File Offset: 0x0001213F
+	// Token: 0x060013AC RID: 5036 RVA: 0x0007D812 File Offset: 0x0007BA12
 	public static T RandomGetToken<T>(List<T> list)
 	{
 		return list[jsonData.GetRandom() % list.Count];
 	}
 
-	// Token: 0x0600166C RID: 5740 RVA: 0x000CA340 File Offset: 0x000C8540
+	// Token: 0x060013AD RID: 5037 RVA: 0x0007D828 File Offset: 0x0007BA28
 	public static JToken FindJTokens(JToken list, Tools.FindTokenMethod unityAction)
 	{
 		foreach (KeyValuePair<string, JToken> keyValuePair in ((JObject)list))
@@ -2057,7 +1993,7 @@ public class Tools : MonoBehaviour
 		return null;
 	}
 
-	// Token: 0x0600166D RID: 5741 RVA: 0x000CA3A4 File Offset: 0x000C85A4
+	// Token: 0x060013AE RID: 5038 RVA: 0x0007D88C File Offset: 0x0007BA8C
 	public static List<JToken> FindAllJTokens(JToken list, Tools.FindTokenMethod unityAction)
 	{
 		List<JToken> list2 = new List<JToken>();
@@ -2071,7 +2007,7 @@ public class Tools : MonoBehaviour
 		return list2;
 	}
 
-	// Token: 0x0600166E RID: 5742 RVA: 0x000CA410 File Offset: 0x000C8610
+	// Token: 0x060013AF RID: 5039 RVA: 0x0007D8F8 File Offset: 0x0007BAF8
 	public static bool ContensInt(JArray jArray, int item)
 	{
 		using (IEnumerator<JToken> enumerator = jArray.GetEnumerator())
@@ -2087,7 +2023,7 @@ public class Tools : MonoBehaviour
 		return false;
 	}
 
-	// Token: 0x0600166F RID: 5743 RVA: 0x000CA460 File Offset: 0x000C8660
+	// Token: 0x060013B0 RID: 5040 RVA: 0x0007D948 File Offset: 0x0007BB48
 	public static int GetRandomByJToken(JToken list)
 	{
 		int num = 0;
@@ -2113,7 +2049,7 @@ public class Tools : MonoBehaviour
 		return -1;
 	}
 
-	// Token: 0x06001670 RID: 5744 RVA: 0x000CA510 File Offset: 0x000C8710
+	// Token: 0x060013B1 RID: 5041 RVA: 0x0007D9F8 File Offset: 0x0007BBF8
 	public JSONObject getRandomListByPercent(List<JSONObject> list, string percent)
 	{
 		int num = 0;
@@ -2137,7 +2073,7 @@ public class Tools : MonoBehaviour
 		return null;
 	}
 
-	// Token: 0x06001671 RID: 5745 RVA: 0x000CA5DC File Offset: 0x000C87DC
+	// Token: 0x060013B2 RID: 5042 RVA: 0x0007DAC4 File Offset: 0x0007BCC4
 	public JToken getRandomListByPercent(List<JToken> list, string percent)
 	{
 		int num = 0;
@@ -2161,7 +2097,7 @@ public class Tools : MonoBehaviour
 		return null;
 	}
 
-	// Token: 0x06001672 RID: 5746 RVA: 0x000CA6A8 File Offset: 0x000C88A8
+	// Token: 0x060013B3 RID: 5043 RVA: 0x0007DB90 File Offset: 0x0007BD90
 	public static JSONObject getRandomList(List<JSONObject> list)
 	{
 		int count = list.Count;
@@ -2174,7 +2110,7 @@ public class Tools : MonoBehaviour
 		return list[index];
 	}
 
-	// Token: 0x06001673 RID: 5747 RVA: 0x000CA6DC File Offset: 0x000C88DC
+	// Token: 0x060013B4 RID: 5044 RVA: 0x0007DBC4 File Offset: 0x0007BDC4
 	public static List<int> JsonListToList(JSONObject json)
 	{
 		List<int> list = new List<int>();
@@ -2185,7 +2121,7 @@ public class Tools : MonoBehaviour
 		return list;
 	}
 
-	// Token: 0x06001674 RID: 5748 RVA: 0x000CA73C File Offset: 0x000C893C
+	// Token: 0x060013B5 RID: 5045 RVA: 0x0007DC24 File Offset: 0x0007BE24
 	public static List<JSONObject> GetStaticNumJsonobj(JSONObject json, string name, int Num)
 	{
 		List<JSONObject> list = new List<JSONObject>();
@@ -2199,13 +2135,13 @@ public class Tools : MonoBehaviour
 		return list;
 	}
 
-	// Token: 0x06001675 RID: 5749 RVA: 0x00013F53 File Offset: 0x00012153
+	// Token: 0x060013B6 RID: 5046 RVA: 0x0007DC90 File Offset: 0x0007BE90
 	public bool IsInTime(string _NowTime, string _startTime, string _endTime)
 	{
 		return this.IsInTime(DateTime.Parse(_NowTime), DateTime.Parse(_startTime), DateTime.Parse(_endTime), 0);
 	}
 
-	// Token: 0x06001676 RID: 5750 RVA: 0x000CA7A8 File Offset: 0x000C89A8
+	// Token: 0x060013B7 RID: 5047 RVA: 0x0007DCAC File Offset: 0x0007BEAC
 	public bool IsInTime(DateTime _NowTime, DateTime _startTime, DateTime _endTime, int circulation = 0)
 	{
 		DateTime t = _startTime;
@@ -2217,7 +2153,7 @@ public class Tools : MonoBehaviour
 		return t <= dateTime && dateTime <= _endTime;
 	}
 
-	// Token: 0x06001677 RID: 5751 RVA: 0x000CA830 File Offset: 0x000C8A30
+	// Token: 0x060013B8 RID: 5048 RVA: 0x0007DD34 File Offset: 0x0007BF34
 	public static void dictionaryAddNum(Dictionary<int, int> zhuyaoList, int key, int num)
 	{
 		if (zhuyaoList.ContainsKey(key))
@@ -2228,7 +2164,7 @@ public class Tools : MonoBehaviour
 		zhuyaoList[key] = num;
 	}
 
-	// Token: 0x06001678 RID: 5752 RVA: 0x00013F6E File Offset: 0x0001216E
+	// Token: 0x060013B9 RID: 5049 RVA: 0x0007DD67 File Offset: 0x0007BF67
 	public static int getJsonobject(JSONObject aa, string name)
 	{
 		if (!aa.HasField(name))
@@ -2238,14 +2174,14 @@ public class Tools : MonoBehaviour
 		return (int)aa[name].n;
 	}
 
-	// Token: 0x06001679 RID: 5753 RVA: 0x000CA864 File Offset: 0x000C8A64
+	// Token: 0x060013BA RID: 5050 RVA: 0x0007DD84 File Offset: 0x0007BF84
 	public static string getUUID()
 	{
 		Guid guid = default(Guid);
 		return Guid.NewGuid().ToString("N");
 	}
 
-	// Token: 0x0600167A RID: 5754 RVA: 0x000CA88C File Offset: 0x000C8A8C
+	// Token: 0x060013BB RID: 5051 RVA: 0x0007DDAC File Offset: 0x0007BFAC
 	public static JSONObject CreateItemSeid(int itemID)
 	{
 		JSONObject jsonobject = new JSONObject(JSONObject.Type.OBJECT);
@@ -2269,13 +2205,13 @@ public class Tools : MonoBehaviour
 		return jsonobject;
 	}
 
-	// Token: 0x0600167B RID: 5755 RVA: 0x00013F88 File Offset: 0x00012188
+	// Token: 0x060013BC RID: 5052 RVA: 0x0007DE48 File Offset: 0x0007C048
 	public void nextQueen(float time)
 	{
 		base.Invoke("continueQueen", time);
 	}
 
-	// Token: 0x0600167C RID: 5756 RVA: 0x000CA928 File Offset: 0x000C8B28
+	// Token: 0x060013BD RID: 5053 RVA: 0x0007DE58 File Offset: 0x0007C058
 	public static void AddQueue(UnityAction cell)
 	{
 		Queue<UnityAction> queue = new Queue<UnityAction>();
@@ -2283,19 +2219,19 @@ public class Tools : MonoBehaviour
 		YSFuncList.Ints.AddFunc(queue);
 	}
 
-	// Token: 0x0600167D RID: 5757 RVA: 0x00013F96 File Offset: 0x00012196
+	// Token: 0x060013BE RID: 5054 RVA: 0x0007DE7F File Offset: 0x0007C07F
 	public void ToolsStartCoroutine(IEnumerator Temp)
 	{
 		base.StartCoroutine(Temp);
 	}
 
-	// Token: 0x0600167E RID: 5758 RVA: 0x000112BB File Offset: 0x0000F4BB
+	// Token: 0x060013BF RID: 5055 RVA: 0x000656B8 File Offset: 0x000638B8
 	private void continueQueen()
 	{
 		YSFuncList.Ints.Continue();
 	}
 
-	// Token: 0x0600167F RID: 5759 RVA: 0x000CA950 File Offset: 0x000C8B50
+	// Token: 0x060013C0 RID: 5056 RVA: 0x0007DE8C File Offset: 0x0007C08C
 	public void showFightUIPlan(string text, int itemID, int ItemNum)
 	{
 		Tools.canClickFlag = false;
@@ -2317,13 +2253,13 @@ public class Tools : MonoBehaviour
 		tempFightUIRoot.AvatarAddItem(addItemList);
 	}
 
-	// Token: 0x06001680 RID: 5760 RVA: 0x000CAA38 File Offset: 0x000C8C38
+	// Token: 0x060013C1 RID: 5057 RVA: 0x0007DF74 File Offset: 0x0007C174
 	public static string getCaiJiText(string desc, int id, int num, int addNum, int addTime)
 	{
 		return jsonData.instance.AllMapCaiJiMiaoShuBiao["1"][desc].Str.Replace("{ItemName}", jsonData.instance.ItemJsonData[id.ToString()]["name"].Str).Replace("{ItemNum}", num.ToString()).Replace("{AddNum}", addNum.ToString()).Replace("{AddTime}", addTime.ToString());
 	}
 
-	// Token: 0x06001681 RID: 5761 RVA: 0x000CAAC8 File Offset: 0x000C8CC8
+	// Token: 0x060013C2 RID: 5058 RVA: 0x0007E004 File Offset: 0x0007C204
 	public JSONObject getWuJiangBangDing(int AvatarID)
 	{
 		foreach (JSONObject jsonobject in jsonData.instance.WuJiangBangDing.list.FindAll((JSONObject _json) => _json["avatar"].HasItem(AvatarID)))
@@ -2336,7 +2272,7 @@ public class Tools : MonoBehaviour
 		return null;
 	}
 
-	// Token: 0x06001682 RID: 5762 RVA: 0x000CAB6C File Offset: 0x000C8D6C
+	// Token: 0x060013C3 RID: 5059 RVA: 0x0007E0A8 File Offset: 0x0007C2A8
 	public bool IsInTime(string StatrTime, string EndTime)
 	{
 		Avatar player = this.getPlayer();
@@ -2346,25 +2282,25 @@ public class Tools : MonoBehaviour
 		return t <= nowTime && nowTime <= t2;
 	}
 
-	// Token: 0x06001683 RID: 5763 RVA: 0x00013FA0 File Offset: 0x000121A0
+	// Token: 0x060013C4 RID: 5060 RVA: 0x0007E0E9 File Offset: 0x0007C2E9
 	public static bool IsInNum(int num, int startNum, int EndNum)
 	{
 		return num >= startNum && num <= EndNum;
 	}
 
-	// Token: 0x06001684 RID: 5764 RVA: 0x000CABB0 File Offset: 0x000C8DB0
+	// Token: 0x060013C5 RID: 5061 RVA: 0x0007E0F8 File Offset: 0x0007C2F8
 	public static DateTime GetEndTime(string startTime, int Day = 0, int Month = 0, int year = 0)
 	{
 		return DateTime.Parse(startTime).AddDays((double)Day).AddMonths(Month).AddYears(year);
 	}
 
-	// Token: 0x06001685 RID: 5765 RVA: 0x00013FAF File Offset: 0x000121AF
+	// Token: 0x060013C6 RID: 5062 RVA: 0x0007E127 File Offset: 0x0007C327
 	public static DateTime getShengYuShiJian(string nowTime, string endTime)
 	{
 		return Tools.getShengYuShiJian(DateTime.Parse(nowTime), DateTime.Parse(endTime));
 	}
 
-	// Token: 0x06001686 RID: 5766 RVA: 0x000CABE0 File Offset: 0x000C8DE0
+	// Token: 0x060013C7 RID: 5063 RVA: 0x0007E13C File Offset: 0x0007C33C
 	public static DateTime getShengYuShiJian(DateTime nowTime, DateTime endTime)
 	{
 		if (endTime > nowTime)
@@ -2376,7 +2312,7 @@ public class Tools : MonoBehaviour
 		return DateTime.MinValue;
 	}
 
-	// Token: 0x06001687 RID: 5767 RVA: 0x000CAC38 File Offset: 0x000C8E38
+	// Token: 0x060013C8 RID: 5064 RVA: 0x0007E194 File Offset: 0x0007C394
 	public static string TimeToShengYuTime(DateTime check, string Title = "剩余时间")
 	{
 		return (Title + "{X}").Replace("{X}", string.Concat(new object[]
@@ -2390,7 +2326,7 @@ public class Tools : MonoBehaviour
 		}));
 	}
 
-	// Token: 0x06001688 RID: 5768 RVA: 0x00013FC2 File Offset: 0x000121C2
+	// Token: 0x060013C9 RID: 5065 RVA: 0x0007E20C File Offset: 0x0007C40C
 	public static GameObject InstantiateGameObject(GameObject temp, Transform parent)
 	{
 		GameObject gameObject = Object.Instantiate<GameObject>(temp);
@@ -2400,7 +2336,7 @@ public class Tools : MonoBehaviour
 		return gameObject;
 	}
 
-	// Token: 0x06001689 RID: 5769 RVA: 0x00013FED File Offset: 0x000121ED
+	// Token: 0x060013CA RID: 5066 RVA: 0x0007E237 File Offset: 0x0007C437
 	public static string getLiDanLeiXinStr(int leixing)
 	{
 		if (leixing <= 0)
@@ -2410,13 +2346,13 @@ public class Tools : MonoBehaviour
 		return LianDanItemLeiXin.DataDict[leixing].name;
 	}
 
-	// Token: 0x0600168A RID: 5770 RVA: 0x00014009 File Offset: 0x00012209
+	// Token: 0x060013CB RID: 5067 RVA: 0x0007E253 File Offset: 0x0007C453
 	public static GameObject showSkillChoice()
 	{
 		return Object.Instantiate<GameObject>(Resources.Load("uiPrefab/Fight/SkillChoic") as GameObject);
 	}
 
-	// Token: 0x0600168B RID: 5771 RVA: 0x0001401F File Offset: 0x0001221F
+	// Token: 0x060013CC RID: 5068 RVA: 0x0007E269 File Offset: 0x0007C469
 	public static bool symbol(string type, int statr, int end)
 	{
 		if (type == ">")
@@ -2440,7 +2376,7 @@ public class Tools : MonoBehaviour
 		return false;
 	}
 
-	// Token: 0x0600168C RID: 5772 RVA: 0x0001405B File Offset: 0x0001225B
+	// Token: 0x060013CD RID: 5069 RVA: 0x0007E2A5 File Offset: 0x0007C4A5
 	public static Dictionary<int, int> GetXiangSheng()
 	{
 		Dictionary<int, int> dictionary = new Dictionary<int, int>();
@@ -2452,7 +2388,7 @@ public class Tools : MonoBehaviour
 		return dictionary;
 	}
 
-	// Token: 0x0600168D RID: 5773 RVA: 0x0001408A File Offset: 0x0001228A
+	// Token: 0x060013CE RID: 5070 RVA: 0x0007E2D4 File Offset: 0x0007C4D4
 	public static Dictionary<int, int> GetXiangKe()
 	{
 		Dictionary<int, int> dictionary = new Dictionary<int, int>();
@@ -2464,9 +2400,13 @@ public class Tools : MonoBehaviour
 		return dictionary;
 	}
 
-	// Token: 0x0600168E RID: 5774 RVA: 0x000CACB0 File Offset: 0x000C8EB0
+	// Token: 0x060013CF RID: 5071 RVA: 0x0007E304 File Offset: 0x0007C504
 	public bool CheckBadWord(string input)
 	{
+		if (Application.platform != 11 && Application.platform != 8)
+		{
+			return true;
+		}
 		foreach (KeyValuePair<string, JToken> keyValuePair in jsonData.instance.BadWord)
 		{
 			string value = (string)keyValuePair.Value["name"];
@@ -2478,100 +2418,106 @@ public class Tools : MonoBehaviour
 		return true;
 	}
 
-	// Token: 0x0600168F RID: 5775 RVA: 0x000140B9 File Offset: 0x000122B9
+	// Token: 0x060013D0 RID: 5072 RVA: 0x0007E388 File Offset: 0x0007C588
 	public int GetAddTime()
 	{
 		return SystemConfig.Inst.GetSaveTimes();
 	}
 
-	// Token: 0x040011E7 RID: 4583
+	// Token: 0x04000EA7 RID: 3751
 	public static Tools instance;
 
-	// Token: 0x040011E8 RID: 4584
+	// Token: 0x04000EA8 RID: 3752
 	public int MonstarID = 1;
 
-	// Token: 0x040011E9 RID: 4585
+	// Token: 0x04000EA9 RID: 3753
 	public int LunDaoNpcId = -1;
 
-	// Token: 0x040011EA RID: 4586
+	// Token: 0x04000EAA RID: 3754
 	public List<int> LunTiList = new List<int>();
 
-	// Token: 0x040011EB RID: 4587
+	// Token: 0x04000EAB RID: 3755
 	public bool IsSuiJiLunTi;
 
-	// Token: 0x040011EC RID: 4588
+	// Token: 0x04000EAC RID: 3756
 	public int LunTiNum;
 
-	// Token: 0x040011ED RID: 4589
+	// Token: 0x04000EAD RID: 3757
 	public int TargetLunTiNum;
 
-	// Token: 0x040011EE RID: 4590
+	// Token: 0x04000EAE RID: 3758
 	public MonstarMag monstarMag;
 
-	// Token: 0x040011EF RID: 4591
+	// Token: 0x04000EAF RID: 3759
 	public string FinalScene = "AllMaps";
 
-	// Token: 0x040011F0 RID: 4592
+	// Token: 0x04000EB0 RID: 3760
 	public int CanShowFightUI;
 
-	// Token: 0x040011F1 RID: 4593
+	// Token: 0x04000EB1 RID: 3761
 	public static bool canClickFlag = true;
 
-	// Token: 0x040011F2 RID: 4594
+	// Token: 0x04000EB2 RID: 3762
 	public int fubenLastIndex = -1;
 
-	// Token: 0x040011F3 RID: 4595
+	// Token: 0x04000EB3 RID: 3763
 	public CaiYao.ItemData CaiYaoData;
 
-	// Token: 0x040011F4 RID: 4596
+	// Token: 0x04000EB4 RID: 3764
 	public bool SeaRemoveMonstarFlag;
 
-	// Token: 0x040011F5 RID: 4597
+	// Token: 0x04000EB5 RID: 3765
 	public string SeaRemoveMonstarUUID = "";
 
-	// Token: 0x040011F6 RID: 4598
+	// Token: 0x04000EB6 RID: 3766
 	public bool ShowPingJin = true;
 
-	// Token: 0x040011F7 RID: 4599
+	// Token: 0x04000EB7 RID: 3767
 	public bool isInitSceneBtn;
 
-	// Token: 0x040011F8 RID: 4600
+	// Token: 0x04000EB8 RID: 3768
 	public int loadSceneType = -1;
 
-	// Token: 0x040011F9 RID: 4601
+	// Token: 0x04000EB9 RID: 3769
 	public string ohtherSceneName = "";
 
-	// Token: 0x040011FA RID: 4602
+	// Token: 0x04000EBA RID: 3770
 	public int CanFpRun = 1;
 
-	// Token: 0x040011FB RID: 4603
+	// Token: 0x04000EBB RID: 3771
+	public bool IsNeedLaterCheck;
+
+	// Token: 0x04000EBC RID: 3772
 	public Random random;
 
-	// Token: 0x040011FC RID: 4604
+	// Token: 0x04000EBD RID: 3773
 	public bool IsCanLoadSetTalk = true;
 
-	// Token: 0x040011FD RID: 4605
+	// Token: 0x04000EBE RID: 3774
 	private bool _isNeedSetTalk;
 
-	// Token: 0x040011FE RID: 4606
+	// Token: 0x04000EBF RID: 3775
 	public bool IsInDF;
 
-	// Token: 0x040011FF RID: 4607
+	// Token: 0x04000EC0 RID: 3776
 	public bool isNewAvatar;
 
-	// Token: 0x04001200 RID: 4608
+	// Token: 0x04000EC1 RID: 3777
 	public bool CanOpenTab = true;
 
-	// Token: 0x04001201 RID: 4609
+	// Token: 0x04000EC2 RID: 3778
 	public bool IsLoadData;
 
-	// Token: 0x04001202 RID: 4610
+	// Token: 0x04000EC3 RID: 3779
 	public static string jumpToName = "";
 
-	// Token: 0x04001203 RID: 4611
+	// Token: 0x04000EC4 RID: 3780
+	public static float startSaveTime;
+
+	// Token: 0x04000EC5 RID: 3781
 	public DateTime NextSaveTime;
 
-	// Token: 0x020002DF RID: 735
-	// (Invoke) Token: 0x06001693 RID: 5779
+	// Token: 0x020012CF RID: 4815
+	// (Invoke) Token: 0x06007A8B RID: 31371
 	public delegate bool FindTokenMethod(JToken aa);
 }

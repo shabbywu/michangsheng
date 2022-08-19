@@ -3,13 +3,13 @@ using UnityEngine;
 
 namespace BehaviorDesigner.Runtime.Tasks.Basic.UnityPhysics
 {
-	// Token: 0x02001585 RID: 5509
+	// Token: 0x020010CB RID: 4299
 	[TaskCategory("Basic/Physics")]
 	[TaskDescription("Casts a ray against all colliders in the scene. Returns success if a collider was hit.")]
 	[HelpURL("http://www.opsive.com/assets/BehaviorDesigner/documentation.php?id=117")]
 	public class Raycast : Action
 	{
-		// Token: 0x060081F7 RID: 33271 RVA: 0x002CCB88 File Offset: 0x002CAD88
+		// Token: 0x060073FD RID: 29693 RVA: 0x002B12EC File Offset: 0x002AF4EC
 		public override TaskStatus OnUpdate()
 		{
 			Vector3 vector = this.direction.Value;
@@ -38,7 +38,7 @@ namespace BehaviorDesigner.Runtime.Tasks.Basic.UnityPhysics
 			return 1;
 		}
 
-		// Token: 0x060081F8 RID: 33272 RVA: 0x002CCC8C File Offset: 0x002CAE8C
+		// Token: 0x060073FE RID: 29694 RVA: 0x002B13F0 File Offset: 0x002AF5F0
 		public override void OnReset()
 		{
 			this.originGameObject = null;
@@ -49,46 +49,46 @@ namespace BehaviorDesigner.Runtime.Tasks.Basic.UnityPhysics
 			this.space = 1;
 		}
 
-		// Token: 0x04006EB0 RID: 28336
+		// Token: 0x04005FB0 RID: 24496
 		[Tooltip("Starts the ray at the GameObject's position. If null the originPosition will be used")]
 		public SharedGameObject originGameObject;
 
-		// Token: 0x04006EB1 RID: 28337
+		// Token: 0x04005FB1 RID: 24497
 		[Tooltip("Starts the ray at the position. Only used if originGameObject is null")]
 		public SharedVector3 originPosition;
 
-		// Token: 0x04006EB2 RID: 28338
+		// Token: 0x04005FB2 RID: 24498
 		[Tooltip("The direction of the ray")]
 		public SharedVector3 direction;
 
-		// Token: 0x04006EB3 RID: 28339
+		// Token: 0x04005FB3 RID: 24499
 		[Tooltip("The length of the ray. Set to -1 for infinity")]
 		public SharedFloat distance = -1f;
 
-		// Token: 0x04006EB4 RID: 28340
+		// Token: 0x04005FB4 RID: 24500
 		[Tooltip("Selectively ignore colliders")]
 		public LayerMask layerMask = -1;
 
-		// Token: 0x04006EB5 RID: 28341
+		// Token: 0x04005FB5 RID: 24501
 		[Tooltip("Cast the ray in world or local space. The direction is in world space if no GameObject is specified")]
 		public Space space = 1;
 
-		// Token: 0x04006EB6 RID: 28342
+		// Token: 0x04005FB6 RID: 24502
 		[SharedRequired]
 		[Tooltip("Stores the hit object of the raycast")]
 		public SharedGameObject storeHitObject;
 
-		// Token: 0x04006EB7 RID: 28343
+		// Token: 0x04005FB7 RID: 24503
 		[SharedRequired]
 		[Tooltip("Stores the hit point of the raycast")]
 		public SharedVector3 storeHitPoint;
 
-		// Token: 0x04006EB8 RID: 28344
+		// Token: 0x04005FB8 RID: 24504
 		[SharedRequired]
 		[Tooltip("Stores the hit normal of the raycast")]
 		public SharedVector3 storeHitNormal;
 
-		// Token: 0x04006EB9 RID: 28345
+		// Token: 0x04005FB9 RID: 24505
 		[SharedRequired]
 		[Tooltip("Stores the hit distance of the raycast")]
 		public SharedFloat storeHitDistance;

@@ -5,11 +5,11 @@ using UnityEngine;
 
 namespace UltimateSurvival
 {
-	// Token: 0x020008E2 RID: 2274
+	// Token: 0x02000604 RID: 1540
 	public class MineableObject : MonoBehaviour
 	{
-		// Token: 0x17000637 RID: 1591
-		// (get) Token: 0x06003A69 RID: 14953 RVA: 0x0002A75C File Offset: 0x0002895C
+		// Token: 0x17000448 RID: 1096
+		// (get) Token: 0x06003160 RID: 12640 RVA: 0x0015ECA4 File Offset: 0x0015CEA4
 		public float Health
 		{
 			get
@@ -18,7 +18,7 @@ namespace UltimateSurvival
 			}
 		}
 
-		// Token: 0x06003A6A RID: 14954 RVA: 0x001A80DC File Offset: 0x001A62DC
+		// Token: 0x06003161 RID: 12641 RVA: 0x0015ECAC File Offset: 0x0015CEAC
 		public void OnToolHit(FPTool.ToolPurpose[] toolPurposes, float damage, float efficiency)
 		{
 			bool flag = false;
@@ -40,7 +40,7 @@ namespace UltimateSurvival
 			}
 		}
 
-		// Token: 0x06003A6B RID: 14955 RVA: 0x001A8124 File Offset: 0x001A6324
+		// Token: 0x06003162 RID: 12642 RVA: 0x0015ECF4 File Offset: 0x0015CEF4
 		private void GiveLootToPlayer(float amountFactor)
 		{
 			int num = ProbabilityUtils.RandomChoiceFollowingDistribution(this.GetLootProbabilities());
@@ -54,7 +54,7 @@ namespace UltimateSurvival
 			}
 		}
 
-		// Token: 0x06003A6C RID: 14956 RVA: 0x0002A764 File Offset: 0x00028964
+		// Token: 0x06003163 RID: 12643 RVA: 0x0015ED65 File Offset: 0x0015CF65
 		private void ReceiveDamage(float damage)
 		{
 			this.m_CurrentHealth += -damage * (1f - this.m_Resistance);
@@ -64,7 +64,7 @@ namespace UltimateSurvival
 			}
 		}
 
-		// Token: 0x06003A6D RID: 14957 RVA: 0x001A8198 File Offset: 0x001A6398
+		// Token: 0x06003164 RID: 12644 RVA: 0x0015ED98 File Offset: 0x0015CF98
 		private void DestroyObject()
 		{
 			if (this.m_DestroyedObject)
@@ -78,7 +78,7 @@ namespace UltimateSurvival
 			}
 		}
 
-		// Token: 0x06003A6E RID: 14958 RVA: 0x001A8204 File Offset: 0x001A6404
+		// Token: 0x06003165 RID: 12645 RVA: 0x0015EE04 File Offset: 0x0015D004
 		private List<float> GetLootProbabilities()
 		{
 			List<float> list = new List<float>();
@@ -89,45 +89,45 @@ namespace UltimateSurvival
 			return list;
 		}
 
-		// Token: 0x0400347B RID: 13435
+		// Token: 0x04002B7D RID: 11133
 		public Message Destroyed = new Message();
 
-		// Token: 0x0400347C RID: 13436
+		// Token: 0x04002B7E RID: 11134
 		[SerializeField]
 		private FPTool.ToolPurpose m_RequiredToolPurpose;
 
-		// Token: 0x0400347D RID: 13437
+		// Token: 0x04002B7F RID: 11135
 		[Range(0.01f, 1f)]
 		[SerializeField]
 		private float m_Resistance = 0.5f;
 
-		// Token: 0x0400347E RID: 13438
+		// Token: 0x04002B80 RID: 11136
 		[Header("On Destroy")]
 		[SerializeField]
 		private GameObject m_DestroyedObject;
 
-		// Token: 0x0400347F RID: 13439
+		// Token: 0x04002B81 RID: 11137
 		[SerializeField]
 		private Vector3 m_DestroyedObjectOffset;
 
-		// Token: 0x04003480 RID: 13440
+		// Token: 0x04002B82 RID: 11138
 		[Header("Loot")]
 		[SerializeField]
 		private LootItem[] m_Loot;
 
-		// Token: 0x04003481 RID: 13441
+		// Token: 0x04002B83 RID: 11139
 		[SerializeField]
 		private bool m_ShowGatherMessage = true;
 
-		// Token: 0x04003482 RID: 13442
+		// Token: 0x04002B84 RID: 11140
 		[SerializeField]
 		private Color m_MessageColor = Color.grey;
 
-		// Token: 0x04003483 RID: 13443
+		// Token: 0x04002B85 RID: 11141
 		[SerializeField]
 		private Color m_LootNameColor = Color.yellow;
 
-		// Token: 0x04003484 RID: 13444
+		// Token: 0x04002B86 RID: 11142
 		private float m_CurrentHealth = 100f;
 	}
 }

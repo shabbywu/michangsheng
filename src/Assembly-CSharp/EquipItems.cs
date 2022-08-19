@@ -1,11 +1,11 @@
 ﻿using System;
 using UnityEngine;
 
-// Token: 0x02000044 RID: 68
+// Token: 0x02000031 RID: 49
 [AddComponentMenu("NGUI/Examples/Equip Items")]
 public class EquipItems : MonoBehaviour
 {
-	// Token: 0x0600044A RID: 1098 RVA: 0x0006DE50 File Offset: 0x0006C050
+	// Token: 0x06000402 RID: 1026 RVA: 0x00016628 File Offset: 0x00014828
 	private void Start()
 	{
 		if (this.itemIDs != null && this.itemIDs.Length != 0)
@@ -40,6 +40,6 @@ public class EquipItems : MonoBehaviour
 		Object.Destroy(this);
 	}
 
-	// Token: 0x04000276 RID: 630
+	// Token: 0x04000230 RID: 560
 	public int[] itemIDs;
 }

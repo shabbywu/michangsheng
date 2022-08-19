@@ -4,12 +4,12 @@ using UnityEngine.AI;
 
 namespace UltimateSurvival.AI
 {
-	// Token: 0x02000978 RID: 2424
+	// Token: 0x0200066D RID: 1645
 	[Serializable]
 	public class EntityMovement
 	{
-		// Token: 0x170006DE RID: 1758
-		// (get) Token: 0x06003E03 RID: 15875 RVA: 0x0002CAC0 File Offset: 0x0002ACC0
+		// Token: 0x170004BE RID: 1214
+		// (get) Token: 0x06003457 RID: 13399 RVA: 0x0016DC29 File Offset: 0x0016BE29
 		public Vector3 CurrentDestination
 		{
 			get
@@ -18,8 +18,8 @@ namespace UltimateSurvival.AI
 			}
 		}
 
-		// Token: 0x170006DF RID: 1759
-		// (get) Token: 0x06003E04 RID: 15876 RVA: 0x0002CAC8 File Offset: 0x0002ACC8
+		// Token: 0x170004BF RID: 1215
+		// (get) Token: 0x06003458 RID: 13400 RVA: 0x0016DC31 File Offset: 0x0016BE31
 		public ET.AIMovementState MovementState
 		{
 			get
@@ -28,8 +28,8 @@ namespace UltimateSurvival.AI
 			}
 		}
 
-		// Token: 0x170006E0 RID: 1760
-		// (get) Token: 0x06003E05 RID: 15877 RVA: 0x0002CAD0 File Offset: 0x0002ACD0
+		// Token: 0x170004C0 RID: 1216
+		// (get) Token: 0x06003459 RID: 13401 RVA: 0x0016DC39 File Offset: 0x0016BE39
 		public NavMeshAgent Agent
 		{
 			get
@@ -38,14 +38,14 @@ namespace UltimateSurvival.AI
 			}
 		}
 
-		// Token: 0x06003E06 RID: 15878 RVA: 0x0002CAD8 File Offset: 0x0002ACD8
+		// Token: 0x0600345A RID: 13402 RVA: 0x0016DC41 File Offset: 0x0016BE41
 		public void Initialize(AIBrain brain)
 		{
 			this.m_Brain = brain;
 			this.m_Agent = this.m_Brain.GetComponent<NavMeshAgent>();
 		}
 
-		// Token: 0x06003E07 RID: 15879 RVA: 0x001B65C0 File Offset: 0x001B47C0
+		// Token: 0x0600345B RID: 13403 RVA: 0x0016DC5C File Offset: 0x0016BE5C
 		public void Update(Transform transform)
 		{
 			Vector3 vector = this.m_Agent.nextPosition - transform.position;
@@ -55,7 +55,7 @@ namespace UltimateSurvival.AI
 			}
 		}
 
-		// Token: 0x06003E08 RID: 15880 RVA: 0x001B661C File Offset: 0x001B481C
+		// Token: 0x0600345C RID: 13404 RVA: 0x0016DCB8 File Offset: 0x0016BEB8
 		public NavMeshPath MoveTo(Vector3 position, bool fastMove = false)
 		{
 			NavMeshPath result = new NavMeshPath();
@@ -75,7 +75,7 @@ namespace UltimateSurvival.AI
 			return result;
 		}
 
-		// Token: 0x06003E09 RID: 15881 RVA: 0x0002CAF2 File Offset: 0x0002ACF2
+		// Token: 0x0600345D RID: 13405 RVA: 0x0016DD45 File Offset: 0x0016BF45
 		private void ChangeMovementState(float speed, string animName, bool animValue, ET.AIMovementState newState)
 		{
 			this.m_Agent.speed = speed;
@@ -83,7 +83,7 @@ namespace UltimateSurvival.AI
 			this.m_MovementState = newState;
 		}
 
-		// Token: 0x06003E0A RID: 15882 RVA: 0x001B66AC File Offset: 0x001B48AC
+		// Token: 0x0600345E RID: 13406 RVA: 0x0016DD74 File Offset: 0x0016BF74
 		public bool ReachedDestination(bool isStop = true)
 		{
 			if (this.m_Agent.remainingDistance <= this.m_Agent.stoppingDistance)
@@ -99,26 +99,26 @@ namespace UltimateSurvival.AI
 			return false;
 		}
 
-		// Token: 0x04003823 RID: 14371
+		// Token: 0x04002E88 RID: 11912
 		[SerializeField]
 		[Tooltip("Normal speed the agent will use.")]
 		private float m_WalkSpeed;
 
-		// Token: 0x04003824 RID: 14372
+		// Token: 0x04002E89 RID: 11913
 		[Tooltip("Speed the agent will only use whenever an action requires it to hurry.")]
 		[SerializeField]
 		private float m_RunSpeed;
 
-		// Token: 0x04003825 RID: 14373
+		// Token: 0x04002E8A RID: 11914
 		private Vector3 m_CurrentDestination;
 
-		// Token: 0x04003826 RID: 14374
+		// Token: 0x04002E8B RID: 11915
 		private ET.AIMovementState m_MovementState;
 
-		// Token: 0x04003827 RID: 14375
+		// Token: 0x04002E8C RID: 11916
 		private AIBrain m_Brain;
 
-		// Token: 0x04003828 RID: 14376
+		// Token: 0x04002E8D RID: 11917
 		private NavMeshAgent m_Agent;
 	}
 }

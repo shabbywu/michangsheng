@@ -3,10 +3,10 @@ using System.Collections.Generic;
 
 namespace JSONClass
 {
-	// Token: 0x02000BD9 RID: 3033
+	// Token: 0x02000849 RID: 2121
 	public class heroJsonData : IJSONClass
 	{
-		// Token: 0x06004ACC RID: 19148 RVA: 0x001FA298 File Offset: 0x001F8498
+		// Token: 0x06003F36 RID: 16182 RVA: 0x001AFE04 File Offset: 0x001AE004
 		public static void InitDataDict()
 		{
 			foreach (JSONObject jsonobject in jsonData.instance.heroJsonData.list)
@@ -74,129 +74,129 @@ namespace JSONClass
 			}
 		}
 
-		// Token: 0x06004ACD RID: 19149 RVA: 0x000042DD File Offset: 0x000024DD
+		// Token: 0x06003F37 RID: 16183 RVA: 0x00004095 File Offset: 0x00002295
 		private static void OnInitFinish()
 		{
 		}
 
-		// Token: 0x040046AB RID: 18091
+		// Token: 0x04003B48 RID: 15176
 		public static Dictionary<int, heroJsonData> DataDict = new Dictionary<int, heroJsonData>();
 
-		// Token: 0x040046AC RID: 18092
+		// Token: 0x04003B49 RID: 15177
 		public static List<heroJsonData> DataList = new List<heroJsonData>();
 
-		// Token: 0x040046AD RID: 18093
+		// Token: 0x04003B4A RID: 15178
 		public static Action OnInitFinishAction = new Action(heroJsonData.OnInitFinish);
 
-		// Token: 0x040046AE RID: 18094
+		// Token: 0x04003B4B RID: 15179
 		public int id;
 
-		// Token: 0x040046AF RID: 18095
+		// Token: 0x04003B4C RID: 15180
 		public int heroid;
 
-		// Token: 0x040046B0 RID: 18096
+		// Token: 0x04003B4D RID: 15181
 		public int dexterity;
 
-		// Token: 0x040046B1 RID: 18097
+		// Token: 0x04003B4E RID: 15182
 		public int mp_max;
 
-		// Token: 0x040046B2 RID: 18098
+		// Token: 0x04003B4F RID: 15183
 		public int money;
 
-		// Token: 0x040046B3 RID: 18099
+		// Token: 0x04003B50 RID: 15184
 		public int energy;
 
-		// Token: 0x040046B4 RID: 18100
+		// Token: 0x04003B51 RID: 15185
 		public int sex;
 
-		// Token: 0x040046B5 RID: 18101
+		// Token: 0x04003B52 RID: 15186
 		public int spaceUType;
 
-		// Token: 0x040046B6 RID: 18102
+		// Token: 0x04003B53 RID: 15187
 		public int defense;
 
-		// Token: 0x040046B7 RID: 18103
+		// Token: 0x04003B54 RID: 15188
 		public int anger;
 
-		// Token: 0x040046B8 RID: 18104
+		// Token: 0x04003B55 RID: 15189
 		public int speed;
 
-		// Token: 0x040046B9 RID: 18105
+		// Token: 0x04003B56 RID: 15190
 		public int intellect;
 
-		// Token: 0x040046BA RID: 18106
+		// Token: 0x04003B57 RID: 15191
 		public int modelID;
 
-		// Token: 0x040046BB RID: 18107
+		// Token: 0x04003B58 RID: 15192
 		public int strength;
 
-		// Token: 0x040046BC RID: 18108
+		// Token: 0x04003B59 RID: 15193
 		public int constitution;
 
-		// Token: 0x040046BD RID: 18109
+		// Token: 0x04003B5A RID: 15194
 		public int magic_damage;
 
-		// Token: 0x040046BE RID: 18110
+		// Token: 0x04003B5B RID: 15195
 		public int stamina;
 
-		// Token: 0x040046BF RID: 18111
+		// Token: 0x04003B5C RID: 15196
 		public int potential;
 
-		// Token: 0x040046C0 RID: 18112
+		// Token: 0x04003B5D RID: 15197
 		public int role;
 
-		// Token: 0x040046C1 RID: 18113
+		// Token: 0x04003B5E RID: 15198
 		public int mp;
 
-		// Token: 0x040046C2 RID: 18114
+		// Token: 0x04003B5F RID: 15199
 		public int dodge;
 
-		// Token: 0x040046C3 RID: 18115
+		// Token: 0x04003B60 RID: 15200
 		public int modelScale;
 
-		// Token: 0x040046C4 RID: 18116
+		// Token: 0x04003B61 RID: 15201
 		public int hp;
 
-		// Token: 0x040046C5 RID: 18117
+		// Token: 0x04003B62 RID: 15202
 		public int anger_max;
 
-		// Token: 0x040046C6 RID: 18118
+		// Token: 0x04003B63 RID: 15203
 		public int moveSpeed;
 
-		// Token: 0x040046C7 RID: 18119
+		// Token: 0x04003B64 RID: 15204
 		public int spawnYaw;
 
-		// Token: 0x040046C8 RID: 18120
+		// Token: 0x04003B65 RID: 15205
 		public int damage;
 
-		// Token: 0x040046C9 RID: 18121
+		// Token: 0x04003B66 RID: 15206
 		public int hp_max;
 
-		// Token: 0x040046CA RID: 18122
+		// Token: 0x04003B67 RID: 15207
 		public int level;
 
-		// Token: 0x040046CB RID: 18123
+		// Token: 0x04003B68 RID: 15208
 		public int energy_max;
 
-		// Token: 0x040046CC RID: 18124
+		// Token: 0x04003B69 RID: 15209
 		public int hitval;
 
-		// Token: 0x040046CD RID: 18125
+		// Token: 0x04003B6A RID: 15210
 		public int race;
 
-		// Token: 0x040046CE RID: 18126
+		// Token: 0x04003B6B RID: 15211
 		public int magic_defense;
 
-		// Token: 0x040046CF RID: 18127
+		// Token: 0x04003B6C RID: 15212
 		public int exp;
 
-		// Token: 0x040046D0 RID: 18128
+		// Token: 0x04003B6D RID: 15213
 		public string heroType;
 
-		// Token: 0x040046D1 RID: 18129
+		// Token: 0x04003B6E RID: 15214
 		public List<int> skills = new List<int>();
 
-		// Token: 0x040046D2 RID: 18130
+		// Token: 0x04003B6F RID: 15215
 		public List<int> spawnPos = new List<int>();
 	}
 }

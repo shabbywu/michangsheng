@@ -4,12 +4,12 @@ using UnityEngine;
 
 namespace Fungus
 {
-	// Token: 0x020013FA RID: 5114
+	// Token: 0x02000F44 RID: 3908
 	[CommandInfo("YSNew/Get", "GetJinDanLv", "获取金丹等级保存到Value中", 0)]
 	[AddComponentMenu("")]
 	public class GetJinDanLv : Command
 	{
-		// Token: 0x06007C3C RID: 31804 RVA: 0x002C49D8 File Offset: 0x002C2BD8
+		// Token: 0x06006E51 RID: 28241 RVA: 0x002A4A40 File Offset: 0x002A2C40
 		public override void OnEnter()
 		{
 			Avatar player = Tools.instance.getPlayer();
@@ -26,18 +26,18 @@ namespace Fungus
 			this.Continue();
 		}
 
-		// Token: 0x06007C3D RID: 31805 RVA: 0x000113CF File Offset: 0x0000F5CF
+		// Token: 0x06006E52 RID: 28242 RVA: 0x0005E228 File Offset: 0x0005C428
 		public override Color GetButtonColor()
 		{
 			return new Color32(184, 210, 235, byte.MaxValue);
 		}
 
-		// Token: 0x06007C3E RID: 31806 RVA: 0x000042DD File Offset: 0x000024DD
+		// Token: 0x06006E53 RID: 28243 RVA: 0x00004095 File Offset: 0x00002295
 		public override void OnReset()
 		{
 		}
 
-		// Token: 0x04006A68 RID: 27240
+		// Token: 0x04005B96 RID: 23446
 		[Tooltip("保存到Value")]
 		[VariableProperty(new Type[]
 		{

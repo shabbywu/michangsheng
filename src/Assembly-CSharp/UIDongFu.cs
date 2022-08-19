@@ -1,23 +1,23 @@
 ﻿using System;
 using UnityEngine;
 
-// Token: 0x02000320 RID: 800
+// Token: 0x0200020A RID: 522
 public class UIDongFu : MonoBehaviour
 {
-	// Token: 0x06001798 RID: 6040 RVA: 0x00014D54 File Offset: 0x00012F54
+	// Token: 0x060014EC RID: 5356 RVA: 0x00085E1C File Offset: 0x0008401C
 	private void Awake()
 	{
 		UIDongFu.Inst = this;
 	}
 
-	// Token: 0x06001799 RID: 6041 RVA: 0x00014D5C File Offset: 0x00012F5C
+	// Token: 0x060014ED RID: 5357 RVA: 0x00085E24 File Offset: 0x00084024
 	public void InitData()
 	{
 		this.DongFu = new DongFuData(DongFuManager.NowDongFuID);
 		this.DongFu.Load();
 	}
 
-	// Token: 0x0600179A RID: 6042 RVA: 0x00014D79 File Offset: 0x00012F79
+	// Token: 0x060014EE RID: 5358 RVA: 0x00085E41 File Offset: 0x00084041
 	public void ShowLingTianPanel()
 	{
 		this.InitData();
@@ -27,7 +27,7 @@ public class UIDongFu : MonoBehaviour
 		ESCCloseManager.Inst.RegisterClose(this.LingTian);
 	}
 
-	// Token: 0x0600179B RID: 6043 RVA: 0x00014DB9 File Offset: 0x00012FB9
+	// Token: 0x060014EF RID: 5359 RVA: 0x00085E81 File Offset: 0x00084081
 	public void HideLingTianPanel()
 	{
 		this.LingTian.gameObject.SetActive(false);
@@ -35,7 +35,7 @@ public class UIDongFu : MonoBehaviour
 		ESCCloseManager.Inst.UnRegisterClose(this.LingTian);
 	}
 
-	// Token: 0x0600179C RID: 6044 RVA: 0x00014DE8 File Offset: 0x00012FE8
+	// Token: 0x060014F0 RID: 5360 RVA: 0x00085EB0 File Offset: 0x000840B0
 	public void ShowJuLingZhenPanel()
 	{
 		this.InitData();
@@ -45,7 +45,7 @@ public class UIDongFu : MonoBehaviour
 		ESCCloseManager.Inst.RegisterClose(this.JuLingZhen);
 	}
 
-	// Token: 0x0600179D RID: 6045 RVA: 0x00014E28 File Offset: 0x00013028
+	// Token: 0x060014F1 RID: 5361 RVA: 0x00085EF0 File Offset: 0x000840F0
 	public void HideJuLingZhenPanel()
 	{
 		this.JuLingZhen.gameObject.SetActive(false);
@@ -53,19 +53,19 @@ public class UIDongFu : MonoBehaviour
 		ESCCloseManager.Inst.UnRegisterClose(this.JuLingZhen);
 	}
 
-	// Token: 0x040012EA RID: 4842
+	// Token: 0x04000FA2 RID: 4002
 	public static UIDongFu Inst;
 
-	// Token: 0x040012EB RID: 4843
+	// Token: 0x04000FA3 RID: 4003
 	public GameObject ScaleObj;
 
-	// Token: 0x040012EC RID: 4844
+	// Token: 0x04000FA4 RID: 4004
 	public UILingTianPanel LingTian;
 
-	// Token: 0x040012ED RID: 4845
+	// Token: 0x04000FA5 RID: 4005
 	public UIJuLingZhenPanel JuLingZhen;
 
-	// Token: 0x040012EE RID: 4846
+	// Token: 0x04000FA6 RID: 4006
 	[HideInInspector]
 	public DongFuData DongFu;
 }

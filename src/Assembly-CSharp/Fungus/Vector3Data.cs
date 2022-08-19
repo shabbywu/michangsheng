@@ -3,26 +3,26 @@ using UnityEngine;
 
 namespace Fungus
 {
-	// Token: 0x02001394 RID: 5012
+	// Token: 0x02000EF3 RID: 3827
 	[Serializable]
 	public struct Vector3Data
 	{
-		// Token: 0x06007943 RID: 31043 RVA: 0x00052C32 File Offset: 0x00050E32
+		// Token: 0x06006BA4 RID: 27556 RVA: 0x00296EE0 File Offset: 0x002950E0
 		public Vector3Data(Vector3 v)
 		{
 			this.vector3Val = v;
 			this.vector3Ref = null;
 		}
 
-		// Token: 0x06007944 RID: 31044 RVA: 0x00052C42 File Offset: 0x00050E42
+		// Token: 0x06006BA5 RID: 27557 RVA: 0x00296EF0 File Offset: 0x002950F0
 		public static implicit operator Vector3(Vector3Data vector3Data)
 		{
 			return vector3Data.Value;
 		}
 
-		// Token: 0x17000B65 RID: 2917
-		// (get) Token: 0x06007945 RID: 31045 RVA: 0x00052C4B File Offset: 0x00050E4B
-		// (set) Token: 0x06007946 RID: 31046 RVA: 0x00052C6D File Offset: 0x00050E6D
+		// Token: 0x170008C8 RID: 2248
+		// (get) Token: 0x06006BA6 RID: 27558 RVA: 0x00296EF9 File Offset: 0x002950F9
+		// (set) Token: 0x06006BA7 RID: 27559 RVA: 0x00296F1B File Offset: 0x0029511B
 		public Vector3 Value
 		{
 			get
@@ -44,7 +44,7 @@ namespace Fungus
 			}
 		}
 
-		// Token: 0x06007947 RID: 31047 RVA: 0x00052C91 File Offset: 0x00050E91
+		// Token: 0x06006BA8 RID: 27560 RVA: 0x00296F3F File Offset: 0x0029513F
 		public string GetDescription()
 		{
 			if (this.vector3Ref == null)
@@ -54,7 +54,7 @@ namespace Fungus
 			return this.vector3Ref.Key;
 		}
 
-		// Token: 0x0400690D RID: 26893
+		// Token: 0x04005AA4 RID: 23204
 		[SerializeField]
 		[VariableProperty("<Value>", new Type[]
 		{
@@ -62,7 +62,7 @@ namespace Fungus
 		})]
 		public Vector3Variable vector3Ref;
 
-		// Token: 0x0400690E RID: 26894
+		// Token: 0x04005AA5 RID: 23205
 		[SerializeField]
 		public Vector3 vector3Val;
 	}

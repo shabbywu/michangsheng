@@ -1,7 +1,7 @@
 ﻿using System;
 using UnityEngine;
 
-// Token: 0x020007AD RID: 1965
+// Token: 0x02000519 RID: 1305
 public class ShowOnlyAttribute : PropertyAttribute
 {
 }

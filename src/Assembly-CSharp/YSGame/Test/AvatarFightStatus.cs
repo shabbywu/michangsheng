@@ -7,17 +7,17 @@ using UnityEngine;
 
 namespace YSGame.Test
 {
-	// Token: 0x02000E0E RID: 3598
+	// Token: 0x02000ACF RID: 2767
 	[Serializable]
 	public class AvatarFightStatus
 	{
-		// Token: 0x060056EC RID: 22252 RVA: 0x0003E214 File Offset: 0x0003C414
+		// Token: 0x06004D9B RID: 19867 RVA: 0x00212F80 File Offset: 0x00211180
 		public AvatarFightStatus(Avatar avatar)
 		{
 			this.Avatar = avatar;
 		}
 
-		// Token: 0x060056ED RID: 22253 RVA: 0x00243060 File Offset: 0x00241260
+		// Token: 0x06004D9C RID: 19868 RVA: 0x00212F90 File Offset: 0x00211190
 		public void RefreshData()
 		{
 			this.Name = this.Avatar.name;
@@ -27,7 +27,7 @@ namespace YSGame.Test
 			this.Buff = this.GetBuffDesc();
 		}
 
-		// Token: 0x060056EE RID: 22254 RVA: 0x002430D4 File Offset: 0x002412D4
+		// Token: 0x06004D9D RID: 19869 RVA: 0x00213004 File Offset: 0x00211204
 		public string GetLingGenDesc()
 		{
 			string text = "基础灵根";
@@ -72,7 +72,7 @@ namespace YSGame.Test
 			return text;
 		}
 
-		// Token: 0x060056EF RID: 22255 RVA: 0x002432C0 File Offset: 0x002414C0
+		// Token: 0x06004D9E RID: 19870 RVA: 0x002131F0 File Offset: 0x002113F0
 		public string GetLingQiDesc()
 		{
 			string text = "";
@@ -84,14 +84,14 @@ namespace YSGame.Test
 			return text;
 		}
 
-		// Token: 0x060056F0 RID: 22256 RVA: 0x0024331C File Offset: 0x0024151C
+		// Token: 0x06004D9F RID: 19871 RVA: 0x0021324C File Offset: 0x0021144C
 		public string GetBuffDesc()
 		{
 			StringBuilder stringBuilder = new StringBuilder();
 			foreach (List<int> list in this.Avatar.bufflist)
 			{
 				_BuffJsonData buffJsonData = _BuffJsonData.DataDict[list[2]];
-				stringBuilder.AppendLine(string.Format("{0} ID:{1} {2}层 NUM:{3}", new object[]
+				stringBuilder.AppendLine(string.Format("{0} ID:{1} ROUND:{2} NUM:{3}", new object[]
 				{
 					buffJsonData.name,
 					list[2],
@@ -102,23 +102,23 @@ namespace YSGame.Test
 			return stringBuilder.ToString();
 		}
 
-		// Token: 0x04005699 RID: 22169
+		// Token: 0x04004CBE RID: 19646
 		[NonSerialized]
 		public Avatar Avatar;
 
-		// Token: 0x0400569A RID: 22170
+		// Token: 0x04004CBF RID: 19647
 		public string Name;
 
-		// Token: 0x0400569B RID: 22171
+		// Token: 0x04004CC0 RID: 19648
 		public string HP;
 
-		// Token: 0x0400569C RID: 22172
+		// Token: 0x04004CC1 RID: 19649
 		public string LingGen;
 
-		// Token: 0x0400569D RID: 22173
+		// Token: 0x04004CC2 RID: 19650
 		public string LingQi;
 
-		// Token: 0x0400569E RID: 22174
+		// Token: 0x04004CC3 RID: 19651
 		[Multiline]
 		public string Buff;
 	}

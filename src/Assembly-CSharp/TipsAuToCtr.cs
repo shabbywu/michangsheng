@@ -1,10 +1,10 @@
 ﻿using System;
 using UnityEngine;
 
-// Token: 0x02000558 RID: 1368
+// Token: 0x020003C5 RID: 965
 public class TipsAuToCtr : MonoBehaviour
 {
-	// Token: 0x060022E8 RID: 8936 RVA: 0x0001C787 File Offset: 0x0001A987
+	// Token: 0x06001F75 RID: 8053 RVA: 0x000DD4D5 File Offset: 0x000DB6D5
 	public void Init(Camera camera, float x, float y, float LineY)
 	{
 		this.StartX = x;
@@ -14,7 +14,7 @@ public class TipsAuToCtr : MonoBehaviour
 		this._camera = camera;
 	}
 
-	// Token: 0x060022E9 RID: 8937 RVA: 0x001200EC File Offset: 0x0011E2EC
+	// Token: 0x06001F76 RID: 8054 RVA: 0x000DD508 File Offset: 0x000DB708
 	public Vector3 GetNextPostionToLeft(Rect rect, float jianGe)
 	{
 		Vector3 result = this._camera.ScreenToWorldPoint(new Vector2(this.NextScenePostion.x - rect.width - jianGe, this.NextScenePostion.y));
@@ -22,7 +22,7 @@ public class TipsAuToCtr : MonoBehaviour
 		return result;
 	}
 
-	// Token: 0x060022EA RID: 8938 RVA: 0x00120150 File Offset: 0x0011E350
+	// Token: 0x06001F77 RID: 8055 RVA: 0x000DD56C File Offset: 0x000DB76C
 	public Vector3 GetNextPostionToRight(Rect rect, float jianGe)
 	{
 		Vector3 result = this._camera.ScreenToWorldPoint(new Vector2(this.NextScenePostion.x + rect.width + jianGe, this.NextScenePostion.y));
@@ -30,7 +30,7 @@ public class TipsAuToCtr : MonoBehaviour
 		return result;
 	}
 
-	// Token: 0x060022EB RID: 8939 RVA: 0x001201B4 File Offset: 0x0011E3B4
+	// Token: 0x06001F78 RID: 8056 RVA: 0x000DD5D0 File Offset: 0x000DB7D0
 	public Vector3 GetNextPostionToBottom(Rect rect, float jianGe)
 	{
 		Vector3 result = this._camera.ScreenToWorldPoint(new Vector2(this.BottomScenePostion.x, this.BottomScenePostion.y));
@@ -38,18 +38,18 @@ public class TipsAuToCtr : MonoBehaviour
 		return result;
 	}
 
-	// Token: 0x04001DF0 RID: 7664
+	// Token: 0x04001975 RID: 6517
 	public float StartX;
 
-	// Token: 0x04001DF1 RID: 7665
+	// Token: 0x04001976 RID: 6518
 	public Vector3 NextScenePostion;
 
-	// Token: 0x04001DF2 RID: 7666
+	// Token: 0x04001977 RID: 6519
 	public Vector3 BottomScenePostion;
 
-	// Token: 0x04001DF3 RID: 7667
+	// Token: 0x04001978 RID: 6520
 	private bool _isFirst;
 
-	// Token: 0x04001DF4 RID: 7668
+	// Token: 0x04001979 RID: 6521
 	private Camera _camera;
 }

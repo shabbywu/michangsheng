@@ -2,63 +2,63 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-// Token: 0x0200004C RID: 76
+// Token: 0x02000039 RID: 57
 [Serializable]
 public class InvBaseItem
 {
-	// Token: 0x04000296 RID: 662
+	// Token: 0x04000250 RID: 592
 	public int id16;
 
-	// Token: 0x04000297 RID: 663
+	// Token: 0x04000251 RID: 593
 	public string name;
 
-	// Token: 0x04000298 RID: 664
+	// Token: 0x04000252 RID: 594
 	public string description;
 
-	// Token: 0x04000299 RID: 665
+	// Token: 0x04000253 RID: 595
 	public InvBaseItem.Slot slot;
 
-	// Token: 0x0400029A RID: 666
+	// Token: 0x04000254 RID: 596
 	public int minItemLevel = 1;
 
-	// Token: 0x0400029B RID: 667
+	// Token: 0x04000255 RID: 597
 	public int maxItemLevel = 50;
 
-	// Token: 0x0400029C RID: 668
+	// Token: 0x04000256 RID: 598
 	public List<InvStat> stats = new List<InvStat>();
 
-	// Token: 0x0400029D RID: 669
+	// Token: 0x04000257 RID: 599
 	public GameObject attachment;
 
-	// Token: 0x0400029E RID: 670
+	// Token: 0x04000258 RID: 600
 	public Color color = Color.white;
 
-	// Token: 0x0400029F RID: 671
+	// Token: 0x04000259 RID: 601
 	public UIAtlas iconAtlas;
 
-	// Token: 0x040002A0 RID: 672
+	// Token: 0x0400025A RID: 602
 	public string iconName = "";
 
-	// Token: 0x0200004D RID: 77
+	// Token: 0x020011D7 RID: 4567
 	public enum Slot
 	{
-		// Token: 0x040002A2 RID: 674
+		// Token: 0x04006396 RID: 25494
 		None,
-		// Token: 0x040002A3 RID: 675
+		// Token: 0x04006397 RID: 25495
 		Weapon,
-		// Token: 0x040002A4 RID: 676
+		// Token: 0x04006398 RID: 25496
 		Shield,
-		// Token: 0x040002A5 RID: 677
+		// Token: 0x04006399 RID: 25497
 		Body,
-		// Token: 0x040002A6 RID: 678
+		// Token: 0x0400639A RID: 25498
 		Shoulders,
-		// Token: 0x040002A7 RID: 679
+		// Token: 0x0400639B RID: 25499
 		Bracers,
-		// Token: 0x040002A8 RID: 680
+		// Token: 0x0400639C RID: 25500
 		Boots,
-		// Token: 0x040002A9 RID: 681
+		// Token: 0x0400639D RID: 25501
 		Trinket,
-		// Token: 0x040002AA RID: 682
+		// Token: 0x0400639E RID: 25502
 		_LastDoNotUse
 	}
 }

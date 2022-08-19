@@ -3,10 +3,10 @@ using System.Collections.Generic;
 
 namespace JSONClass
 {
-	// Token: 0x02000D10 RID: 3344
+	// Token: 0x02000990 RID: 2448
 	public class XinJinJsonData : IJSONClass
 	{
-		// Token: 0x06004FAA RID: 20394 RVA: 0x002165C4 File Offset: 0x002147C4
+		// Token: 0x06004454 RID: 17492 RVA: 0x001D1784 File Offset: 0x001CF984
 		public static void InitDataDict()
 		{
 			foreach (JSONObject jsonobject in jsonData.instance.XinJinJsonData.list)
@@ -40,27 +40,27 @@ namespace JSONClass
 			}
 		}
 
-		// Token: 0x06004FAB RID: 20395 RVA: 0x000042DD File Offset: 0x000024DD
+		// Token: 0x06004455 RID: 17493 RVA: 0x00004095 File Offset: 0x00002295
 		private static void OnInitFinish()
 		{
 		}
 
-		// Token: 0x040050F0 RID: 20720
+		// Token: 0x040045FC RID: 17916
 		public static Dictionary<int, XinJinJsonData> DataDict = new Dictionary<int, XinJinJsonData>();
 
-		// Token: 0x040050F1 RID: 20721
+		// Token: 0x040045FD RID: 17917
 		public static List<XinJinJsonData> DataList = new List<XinJinJsonData>();
 
-		// Token: 0x040050F2 RID: 20722
+		// Token: 0x040045FE RID: 17918
 		public static Action OnInitFinishAction = new Action(XinJinJsonData.OnInitFinish);
 
-		// Token: 0x040050F3 RID: 20723
+		// Token: 0x040045FF RID: 17919
 		public int id;
 
-		// Token: 0x040050F4 RID: 20724
+		// Token: 0x04004600 RID: 17920
 		public int Max;
 
-		// Token: 0x040050F5 RID: 20725
+		// Token: 0x04004601 RID: 17921
 		public string Text;
 	}
 }

@@ -1,9 +1,9 @@
 ﻿using System;
 
-// Token: 0x020006E9 RID: 1769
+// Token: 0x020004C3 RID: 1219
 public class MissionTemplate
 {
-	// Token: 0x06002C79 RID: 11385 RVA: 0x0015BC30 File Offset: 0x00159E30
+	// Token: 0x060026D3 RID: 9939 RVA: 0x001154B8 File Offset: 0x001136B8
 	public MissionTemplate()
 	{
 		this.baboons = 0;
@@ -38,7 +38,7 @@ public class MissionTemplate
 		this.description_kor = string.Empty;
 	}
 
-	// Token: 0x06002C7A RID: 11386 RVA: 0x0015BE08 File Offset: 0x0015A008
+	// Token: 0x060026D4 RID: 9940 RVA: 0x00115690 File Offset: 0x00113890
 	public string IspisiDescriptionNaIspravnomJeziku()
 	{
 		if (LanguageManager.chosenLanguage.Equals("_en"))
@@ -104,93 +104,93 @@ public class MissionTemplate
 		return string.Empty;
 	}
 
-	// Token: 0x040026D1 RID: 9937
+	// Token: 0x04002099 RID: 8345
 	public int baboons;
 
-	// Token: 0x040026D2 RID: 9938
+	// Token: 0x0400209A RID: 8346
 	public int fly_baboons;
 
-	// Token: 0x040026D3 RID: 9939
+	// Token: 0x0400209B RID: 8347
 	public int boomerang_baboons;
 
-	// Token: 0x040026D4 RID: 9940
+	// Token: 0x0400209C RID: 8348
 	public int gorilla;
 
-	// Token: 0x040026D5 RID: 9941
+	// Token: 0x0400209D RID: 8349
 	public int fly_gorilla;
 
-	// Token: 0x040026D6 RID: 9942
+	// Token: 0x0400209E RID: 8350
 	public int koplje_gorilla;
 
-	// Token: 0x040026D7 RID: 9943
+	// Token: 0x0400209F RID: 8351
 	public int diamonds;
 
-	// Token: 0x040026D8 RID: 9944
+	// Token: 0x040020A0 RID: 8352
 	public int coins;
 
-	// Token: 0x040026D9 RID: 9945
+	// Token: 0x040020A1 RID: 8353
 	public int distance;
 
-	// Token: 0x040026DA RID: 9946
+	// Token: 0x040020A2 RID: 8354
 	public int barrels;
 
-	// Token: 0x040026DB RID: 9947
+	// Token: 0x040020A3 RID: 8355
 	public int red_diamonds;
 
-	// Token: 0x040026DC RID: 9948
+	// Token: 0x040020A4 RID: 8356
 	public int blue_diamonds;
 
-	// Token: 0x040026DD RID: 9949
+	// Token: 0x040020A5 RID: 8357
 	public int green_diamonds;
 
-	// Token: 0x040026DE RID: 9950
+	// Token: 0x040020A6 RID: 8358
 	public int points;
 
-	// Token: 0x040026DF RID: 9951
+	// Token: 0x040020A7 RID: 8359
 	public string level = string.Empty;
 
-	// Token: 0x040026E0 RID: 9952
+	// Token: 0x040020A8 RID: 8360
 	public string description_en = string.Empty;
 
-	// Token: 0x040026E1 RID: 9953
+	// Token: 0x040020A9 RID: 8361
 	public string description_us = string.Empty;
 
-	// Token: 0x040026E2 RID: 9954
+	// Token: 0x040020AA RID: 8362
 	public string description_es = string.Empty;
 
-	// Token: 0x040026E3 RID: 9955
+	// Token: 0x040020AB RID: 8363
 	public string description_ru = string.Empty;
 
-	// Token: 0x040026E4 RID: 9956
+	// Token: 0x040020AC RID: 8364
 	public string description_pt = string.Empty;
 
-	// Token: 0x040026E5 RID: 9957
+	// Token: 0x040020AD RID: 8365
 	public string description_pt_br = string.Empty;
 
-	// Token: 0x040026E6 RID: 9958
+	// Token: 0x040020AE RID: 8366
 	public string description_fr = string.Empty;
 
-	// Token: 0x040026E7 RID: 9959
+	// Token: 0x040020AF RID: 8367
 	public string description_tha = string.Empty;
 
-	// Token: 0x040026E8 RID: 9960
+	// Token: 0x040020B0 RID: 8368
 	public string description_zh = string.Empty;
 
-	// Token: 0x040026E9 RID: 9961
+	// Token: 0x040020B1 RID: 8369
 	public string description_tzh = string.Empty;
 
-	// Token: 0x040026EA RID: 9962
+	// Token: 0x040020B2 RID: 8370
 	public string description_ger = string.Empty;
 
-	// Token: 0x040026EB RID: 9963
+	// Token: 0x040020B3 RID: 8371
 	public string description_it = string.Empty;
 
-	// Token: 0x040026EC RID: 9964
+	// Token: 0x040020B4 RID: 8372
 	public string description_srb = string.Empty;
 
-	// Token: 0x040026ED RID: 9965
+	// Token: 0x040020B5 RID: 8373
 	public string description_tur = string.Empty;
 
-	// Token: 0x040026EE RID: 9966
+	// Token: 0x040020B6 RID: 8374
 	public string description_kor = string.Empty;
 }

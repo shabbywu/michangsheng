@@ -1,16 +1,16 @@
 ﻿using System;
 using UnityEngine;
 
-// Token: 0x0200072E RID: 1838
+// Token: 0x020004CA RID: 1226
 public class MushroomAnimationEvents : MonoBehaviour
 {
-	// Token: 0x06002EA7 RID: 11943 RVA: 0x00022A6F File Offset: 0x00020C6F
+	// Token: 0x0600279F RID: 10143 RVA: 0x00128AE9 File Offset: 0x00126CE9
 	private void Start()
 	{
 		this.playerController = GameObject.FindGameObjectWithTag("Monkey").GetComponent<MonkeyController2D>();
 	}
 
-	// Token: 0x06002EA8 RID: 11944 RVA: 0x00174384 File Offset: 0x00172584
+	// Token: 0x060027A0 RID: 10144 RVA: 0x00128B00 File Offset: 0x00126D00
 	private void ReturnFromMushroom()
 	{
 		this.playerController.GetComponent<Rigidbody2D>().isKinematic = false;
@@ -19,6 +19,6 @@ public class MushroomAnimationEvents : MonoBehaviour
 		this.playerController.Glide = true;
 	}
 
-	// Token: 0x040029C9 RID: 10697
+	// Token: 0x04002282 RID: 8834
 	private MonkeyController2D playerController;
 }

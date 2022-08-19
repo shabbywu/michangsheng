@@ -3,12 +3,12 @@ using UnityEngine;
 
 namespace BehaviorDesigner.Runtime.Tasks.Basic.UnityAnimation
 {
-	// Token: 0x02001668 RID: 5736
+	// Token: 0x020011A6 RID: 4518
 	[TaskCategory("Basic/Animation")]
 	[TaskDescription("Blends the animation. Returns Success.")]
 	public class Blend : Action
 	{
-		// Token: 0x0600853C RID: 34108 RVA: 0x002D0A00 File Offset: 0x002CEC00
+		// Token: 0x06007730 RID: 30512 RVA: 0x002B85D4 File Offset: 0x002B67D4
 		public override void OnStart()
 		{
 			GameObject defaultGameObject = base.GetDefaultGameObject(this.targetGameObject.Value);
@@ -19,7 +19,7 @@ namespace BehaviorDesigner.Runtime.Tasks.Basic.UnityAnimation
 			}
 		}
 
-		// Token: 0x0600853D RID: 34109 RVA: 0x0005C622 File Offset: 0x0005A822
+		// Token: 0x06007731 RID: 30513 RVA: 0x002B8614 File Offset: 0x002B6814
 		public override TaskStatus OnUpdate()
 		{
 			if (this.animation == null)
@@ -31,7 +31,7 @@ namespace BehaviorDesigner.Runtime.Tasks.Basic.UnityAnimation
 			return 2;
 		}
 
-		// Token: 0x0600853E RID: 34110 RVA: 0x0005C661 File Offset: 0x0005A861
+		// Token: 0x06007732 RID: 30514 RVA: 0x002B8653 File Offset: 0x002B6853
 		public override void OnReset()
 		{
 			this.targetGameObject = null;
@@ -40,26 +40,26 @@ namespace BehaviorDesigner.Runtime.Tasks.Basic.UnityAnimation
 			this.fadeLength = 0.3f;
 		}
 
-		// Token: 0x040071F5 RID: 29173
+		// Token: 0x040062C6 RID: 25286
 		[Tooltip("The GameObject that the task operates on. If null the task GameObject is used.")]
 		public SharedGameObject targetGameObject;
 
-		// Token: 0x040071F6 RID: 29174
+		// Token: 0x040062C7 RID: 25287
 		[Tooltip("The name of the animation")]
 		public SharedString animationName;
 
-		// Token: 0x040071F7 RID: 29175
+		// Token: 0x040062C8 RID: 25288
 		[Tooltip("The weight the animation should blend to")]
 		public float targetWeight = 1f;
 
-		// Token: 0x040071F8 RID: 29176
+		// Token: 0x040062C9 RID: 25289
 		[Tooltip("The amount of time it takes to blend")]
 		public float fadeLength = 0.3f;
 
-		// Token: 0x040071F9 RID: 29177
+		// Token: 0x040062CA RID: 25290
 		private Animation animation;
 
-		// Token: 0x040071FA RID: 29178
+		// Token: 0x040062CB RID: 25291
 		private GameObject prevGameObject;
 	}
 }

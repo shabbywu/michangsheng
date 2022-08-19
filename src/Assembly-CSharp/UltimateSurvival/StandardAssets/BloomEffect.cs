@@ -3,13 +3,13 @@ using UnityEngine;
 
 namespace UltimateSurvival.StandardAssets
 {
-	// Token: 0x02000913 RID: 2323
+	// Token: 0x0200062B RID: 1579
 	[ExecuteInEditMode]
 	[RequireComponent(typeof(Camera))]
 	[AddComponentMenu("Ultimate Survival/Add/Image Effects/Bloom")]
 	public class BloomEffect : ImageEffectBase
 	{
-		// Token: 0x06003B49 RID: 15177 RVA: 0x001AC108 File Offset: 0x001AA308
+		// Token: 0x0600320F RID: 12815 RVA: 0x001627CC File Offset: 0x001609CC
 		public override bool CheckResources()
 		{
 			base.CheckSupport(false);
@@ -24,7 +24,7 @@ namespace UltimateSurvival.StandardAssets
 			return this.isSupported;
 		}
 
-		// Token: 0x06003B4A RID: 15178 RVA: 0x001AC194 File Offset: 0x001AA394
+		// Token: 0x06003210 RID: 12816 RVA: 0x00162858 File Offset: 0x00160A58
 		public void OnRenderImage(RenderTexture source, RenderTexture destination)
 		{
 			if (!this.CheckResources())
@@ -198,7 +198,7 @@ namespace UltimateSurvival.StandardAssets
 			RenderTexture.ReleaseTemporary(renderTexture);
 		}
 
-		// Token: 0x06003B4B RID: 15179 RVA: 0x0002AEAD File Offset: 0x000290AD
+		// Token: 0x06003211 RID: 12817 RVA: 0x00162FBA File Offset: 0x001611BA
 		private void AddTo(float intensity_, RenderTexture from, RenderTexture to)
 		{
 			this.screenBlend.SetFloat("_Intensity", intensity_);
@@ -206,7 +206,7 @@ namespace UltimateSurvival.StandardAssets
 			Graphics.Blit(from, to, this.screenBlend, 9);
 		}
 
-		// Token: 0x06003B4C RID: 15180 RVA: 0x001AC8F8 File Offset: 0x001AAAF8
+		// Token: 0x06003212 RID: 12818 RVA: 0x00162FE4 File Offset: 0x001611E4
 		private void BlendFlares(RenderTexture from, RenderTexture to)
 		{
 			this.lensFlareMaterial.SetVector("colorA", new Vector4(this.flareColorA.r, this.flareColorA.g, this.flareColorA.b, this.flareColorA.a) * this.lensflareIntensity);
@@ -217,21 +217,21 @@ namespace UltimateSurvival.StandardAssets
 			Graphics.Blit(from, to, this.lensFlareMaterial);
 		}
 
-		// Token: 0x06003B4D RID: 15181 RVA: 0x0002AED5 File Offset: 0x000290D5
+		// Token: 0x06003213 RID: 12819 RVA: 0x00163134 File Offset: 0x00161334
 		private void BrightFilter(float thresh, RenderTexture from, RenderTexture to)
 		{
 			this.brightPassFilterMaterial.SetVector("_Threshhold", new Vector4(thresh, thresh, thresh, thresh));
 			Graphics.Blit(from, to, this.brightPassFilterMaterial, 0);
 		}
 
-		// Token: 0x06003B4E RID: 15182 RVA: 0x0002AEFE File Offset: 0x000290FE
+		// Token: 0x06003214 RID: 12820 RVA: 0x0016315D File Offset: 0x0016135D
 		private void BrightFilter(Color threshColor, RenderTexture from, RenderTexture to)
 		{
 			this.brightPassFilterMaterial.SetVector("_Threshhold", threshColor);
 			Graphics.Blit(from, to, this.brightPassFilterMaterial, 1);
 		}
 
-		// Token: 0x06003B4F RID: 15183 RVA: 0x001ACA48 File Offset: 0x001AAC48
+		// Token: 0x06003215 RID: 12821 RVA: 0x00163184 File Offset: 0x00161384
 		private void Vignette(float amount, RenderTexture from, RenderTexture to)
 		{
 			if (this.lensFlareVignetteMask)
@@ -249,142 +249,142 @@ namespace UltimateSurvival.StandardAssets
 			}
 		}
 
-		// Token: 0x040035A3 RID: 13731
+		// Token: 0x04002C75 RID: 11381
 		public BloomEffect.TweakMode tweakMode;
 
-		// Token: 0x040035A4 RID: 13732
+		// Token: 0x04002C76 RID: 11382
 		public BloomEffect.BloomScreenBlendMode screenBlendMode = BloomEffect.BloomScreenBlendMode.Add;
 
-		// Token: 0x040035A5 RID: 13733
+		// Token: 0x04002C77 RID: 11383
 		public BloomEffect.HDRBloomMode hdr;
 
-		// Token: 0x040035A6 RID: 13734
+		// Token: 0x04002C78 RID: 11384
 		private bool doHdr;
 
-		// Token: 0x040035A7 RID: 13735
+		// Token: 0x04002C79 RID: 11385
 		public float sepBlurSpread = 2.5f;
 
-		// Token: 0x040035A8 RID: 13736
+		// Token: 0x04002C7A RID: 11386
 		public BloomEffect.BloomQuality quality = BloomEffect.BloomQuality.High;
 
-		// Token: 0x040035A9 RID: 13737
+		// Token: 0x04002C7B RID: 11387
 		public float bloomIntensity = 0.5f;
 
-		// Token: 0x040035AA RID: 13738
+		// Token: 0x04002C7C RID: 11388
 		public float bloomThreshold = 0.5f;
 
-		// Token: 0x040035AB RID: 13739
+		// Token: 0x04002C7D RID: 11389
 		public Color bloomThresholdColor = Color.white;
 
-		// Token: 0x040035AC RID: 13740
+		// Token: 0x04002C7E RID: 11390
 		public int bloomBlurIterations = 2;
 
-		// Token: 0x040035AD RID: 13741
+		// Token: 0x04002C7F RID: 11391
 		public int hollywoodFlareBlurIterations = 2;
 
-		// Token: 0x040035AE RID: 13742
+		// Token: 0x04002C80 RID: 11392
 		public float flareRotation;
 
-		// Token: 0x040035AF RID: 13743
+		// Token: 0x04002C81 RID: 11393
 		public BloomEffect.LensFlareStyle lensflareMode = BloomEffect.LensFlareStyle.Anamorphic;
 
-		// Token: 0x040035B0 RID: 13744
+		// Token: 0x04002C82 RID: 11394
 		public float hollyStretchWidth = 2.5f;
 
-		// Token: 0x040035B1 RID: 13745
+		// Token: 0x04002C83 RID: 11395
 		public float lensflareIntensity;
 
-		// Token: 0x040035B2 RID: 13746
+		// Token: 0x04002C84 RID: 11396
 		public float lensflareThreshold = 0.3f;
 
-		// Token: 0x040035B3 RID: 13747
+		// Token: 0x04002C85 RID: 11397
 		public float lensFlareSaturation = 0.75f;
 
-		// Token: 0x040035B4 RID: 13748
+		// Token: 0x04002C86 RID: 11398
 		public Color flareColorA = new Color(0.4f, 0.4f, 0.8f, 0.75f);
 
-		// Token: 0x040035B5 RID: 13749
+		// Token: 0x04002C87 RID: 11399
 		public Color flareColorB = new Color(0.4f, 0.8f, 0.8f, 0.75f);
 
-		// Token: 0x040035B6 RID: 13750
+		// Token: 0x04002C88 RID: 11400
 		public Color flareColorC = new Color(0.8f, 0.4f, 0.8f, 0.75f);
 
-		// Token: 0x040035B7 RID: 13751
+		// Token: 0x04002C89 RID: 11401
 		public Color flareColorD = new Color(0.8f, 0.4f, 0f, 0.75f);
 
-		// Token: 0x040035B8 RID: 13752
+		// Token: 0x04002C8A RID: 11402
 		public Texture2D lensFlareVignetteMask;
 
-		// Token: 0x040035B9 RID: 13753
+		// Token: 0x04002C8B RID: 11403
 		public Shader lensFlareShader;
 
-		// Token: 0x040035BA RID: 13754
+		// Token: 0x04002C8C RID: 11404
 		private Material lensFlareMaterial;
 
-		// Token: 0x040035BB RID: 13755
+		// Token: 0x04002C8D RID: 11405
 		public Shader screenBlendShader;
 
-		// Token: 0x040035BC RID: 13756
+		// Token: 0x04002C8E RID: 11406
 		private Material screenBlend;
 
-		// Token: 0x040035BD RID: 13757
+		// Token: 0x04002C8F RID: 11407
 		public Shader blurAndFlaresShader;
 
-		// Token: 0x040035BE RID: 13758
+		// Token: 0x04002C90 RID: 11408
 		private Material blurAndFlaresMaterial;
 
-		// Token: 0x040035BF RID: 13759
+		// Token: 0x04002C91 RID: 11409
 		public Shader brightPassFilterShader;
 
-		// Token: 0x040035C0 RID: 13760
+		// Token: 0x04002C92 RID: 11410
 		private Material brightPassFilterMaterial;
 
-		// Token: 0x02000914 RID: 2324
+		// Token: 0x020014D2 RID: 5330
 		public enum LensFlareStyle
 		{
-			// Token: 0x040035C2 RID: 13762
+			// Token: 0x04006D71 RID: 28017
 			Ghosting,
-			// Token: 0x040035C3 RID: 13763
+			// Token: 0x04006D72 RID: 28018
 			Anamorphic,
-			// Token: 0x040035C4 RID: 13764
+			// Token: 0x04006D73 RID: 28019
 			Combined
 		}
 
-		// Token: 0x02000915 RID: 2325
+		// Token: 0x020014D3 RID: 5331
 		public enum TweakMode
 		{
-			// Token: 0x040035C6 RID: 13766
+			// Token: 0x04006D75 RID: 28021
 			Basic,
-			// Token: 0x040035C7 RID: 13767
+			// Token: 0x04006D76 RID: 28022
 			Complex
 		}
 
-		// Token: 0x02000916 RID: 2326
+		// Token: 0x020014D4 RID: 5332
 		public enum HDRBloomMode
 		{
-			// Token: 0x040035C9 RID: 13769
+			// Token: 0x04006D78 RID: 28024
 			Auto,
-			// Token: 0x040035CA RID: 13770
+			// Token: 0x04006D79 RID: 28025
 			On,
-			// Token: 0x040035CB RID: 13771
+			// Token: 0x04006D7A RID: 28026
 			Off
 		}
 
-		// Token: 0x02000917 RID: 2327
+		// Token: 0x020014D5 RID: 5333
 		public enum BloomScreenBlendMode
 		{
-			// Token: 0x040035CD RID: 13773
+			// Token: 0x04006D7C RID: 28028
 			Screen,
-			// Token: 0x040035CE RID: 13774
+			// Token: 0x04006D7D RID: 28029
 			Add
 		}
 
-		// Token: 0x02000918 RID: 2328
+		// Token: 0x020014D6 RID: 5334
 		public enum BloomQuality
 		{
-			// Token: 0x040035D0 RID: 13776
+			// Token: 0x04006D7F RID: 28031
 			Cheap,
-			// Token: 0x040035D1 RID: 13777
+			// Token: 0x04006D80 RID: 28032
 			High
 		}
 	}

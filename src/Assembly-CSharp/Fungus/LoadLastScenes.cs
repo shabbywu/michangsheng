@@ -4,12 +4,12 @@ using UnityEngine;
 
 namespace Fungus
 {
-	// Token: 0x02001441 RID: 5185
+	// Token: 0x02000F8D RID: 3981
 	[CommandInfo("YSTools", "LoadLastScenes", "加载上一个场景", 0)]
 	[AddComponentMenu("")]
 	public class LoadLastScenes : Command
 	{
-		// Token: 0x06007D54 RID: 32084 RVA: 0x002C6568 File Offset: 0x002C4768
+		// Token: 0x06006F6A RID: 28522 RVA: 0x002A6E64 File Offset: 0x002A5064
 		public void methodName()
 		{
 			try
@@ -22,7 +22,7 @@ namespace Fungus
 			}
 		}
 
-		// Token: 0x06007D55 RID: 32085 RVA: 0x002C6628 File Offset: 0x002C4828
+		// Token: 0x06006F6B RID: 28523 RVA: 0x002A6E9C File Offset: 0x002A509C
 		public override void OnEnter()
 		{
 			new Thread(new ThreadStart(this.methodName)).Start();
@@ -33,13 +33,13 @@ namespace Fungus
 			Tools.instance.loadMapScenes(Tools.instance.getPlayer().lastScence, true);
 		}
 
-		// Token: 0x06007D56 RID: 32086 RVA: 0x0004C5E0 File Offset: 0x0004A7E0
+		// Token: 0x06006F6C RID: 28524 RVA: 0x0027D3DB File Offset: 0x0027B5DB
 		public override Color GetButtonColor()
 		{
 			return new Color32(235, 191, 217, byte.MaxValue);
 		}
 
-		// Token: 0x04006ADB RID: 27355
+		// Token: 0x04005C0C RID: 23564
 		[Tooltip("说明")]
 		[SerializeField]
 		protected string desc = "加载上一个场景";

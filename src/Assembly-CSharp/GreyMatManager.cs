@@ -1,11 +1,11 @@
 ﻿using System;
 using UnityEngine;
 
-// Token: 0x020004CF RID: 1231
+// Token: 0x02000352 RID: 850
 public static class GreyMatManager
 {
-	// Token: 0x170002A1 RID: 673
-	// (get) Token: 0x06002047 RID: 8263 RVA: 0x0001A792 File Offset: 0x00018992
+	// Token: 0x17000255 RID: 597
+	// (get) Token: 0x06001CDD RID: 7389 RVA: 0x000CE1D7 File Offset: 0x000CC3D7
 	public static Material Grey1
 	{
 		get
@@ -18,8 +18,8 @@ public static class GreyMatManager
 		}
 	}
 
-	// Token: 0x170002A2 RID: 674
-	// (get) Token: 0x06002048 RID: 8264 RVA: 0x0001A7B5 File Offset: 0x000189B5
+	// Token: 0x17000256 RID: 598
+	// (get) Token: 0x06001CDE RID: 7390 RVA: 0x000CE1FA File Offset: 0x000CC3FA
 	public static Material Grey2
 	{
 		get
@@ -32,8 +32,8 @@ public static class GreyMatManager
 		}
 	}
 
-	// Token: 0x170002A3 RID: 675
-	// (get) Token: 0x06002049 RID: 8265 RVA: 0x0001A7D8 File Offset: 0x000189D8
+	// Token: 0x17000257 RID: 599
+	// (get) Token: 0x06001CDF RID: 7391 RVA: 0x000CE21D File Offset: 0x000CC41D
 	public static Material Black
 	{
 		get
@@ -46,12 +46,12 @@ public static class GreyMatManager
 		}
 	}
 
-	// Token: 0x04001BC3 RID: 7107
+	// Token: 0x0400176B RID: 5995
 	private static Material grey1;
 
-	// Token: 0x04001BC4 RID: 7108
+	// Token: 0x0400176C RID: 5996
 	private static Material grey2;
 
-	// Token: 0x04001BC5 RID: 7109
+	// Token: 0x0400176D RID: 5997
 	private static Material black;
 }

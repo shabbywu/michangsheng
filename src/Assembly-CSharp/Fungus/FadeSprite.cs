@@ -4,13 +4,13 @@ using UnityEngine.Serialization;
 
 namespace Fungus
 {
-	// Token: 0x02001208 RID: 4616
+	// Token: 0x02000DCE RID: 3534
 	[CommandInfo("Sprite", "Fade Sprite", "Fades a sprite to a target color over a period of time.", 0)]
 	[AddComponentMenu("")]
 	[ExecuteInEditMode]
 	public class FadeSprite : Command
 	{
-		// Token: 0x060070F6 RID: 28918 RVA: 0x002A3B3C File Offset: 0x002A1D3C
+		// Token: 0x06006477 RID: 25719 RVA: 0x0027EC6C File Offset: 0x0027CE6C
 		public override void OnEnter()
 		{
 			if (this.spriteRenderer == null)
@@ -31,7 +31,7 @@ namespace Fungus
 			}
 		}
 
-		// Token: 0x060070F7 RID: 28919 RVA: 0x002A3BA0 File Offset: 0x002A1DA0
+		// Token: 0x06006478 RID: 25720 RVA: 0x0027ECD0 File Offset: 0x0027CED0
 		public override string GetSummary()
 		{
 			if (this.spriteRenderer == null)
@@ -41,19 +41,19 @@ namespace Fungus
 			return this.spriteRenderer.name + " to " + this._targetColor.Value.ToString();
 		}
 
-		// Token: 0x060070F8 RID: 28920 RVA: 0x0004CB1E File Offset: 0x0004AD1E
+		// Token: 0x06006479 RID: 25721 RVA: 0x0027ED1F File Offset: 0x0027CF1F
 		public override Color GetButtonColor()
 		{
 			return new Color32(221, 184, 169, byte.MaxValue);
 		}
 
-		// Token: 0x060070F9 RID: 28921 RVA: 0x0004CB3E File Offset: 0x0004AD3E
+		// Token: 0x0600647A RID: 25722 RVA: 0x0027ED3F File Offset: 0x0027CF3F
 		public override bool HasReference(Variable variable)
 		{
 			return this._duration.floatRef == variable || this._targetColor.colorRef == variable || base.HasReference(variable);
 		}
 
-		// Token: 0x060070FA RID: 28922 RVA: 0x002A3BF0 File Offset: 0x002A1DF0
+		// Token: 0x0600647B RID: 25723 RVA: 0x0027ED70 File Offset: 0x0027CF70
 		protected virtual void OnEnable()
 		{
 			if (this.durationOLD != 0f)
@@ -68,32 +68,32 @@ namespace Fungus
 			}
 		}
 
-		// Token: 0x04006352 RID: 25426
+		// Token: 0x04005653 RID: 22099
 		[Tooltip("Sprite object to be faded")]
 		[SerializeField]
 		protected SpriteRenderer spriteRenderer;
 
-		// Token: 0x04006353 RID: 25427
+		// Token: 0x04005654 RID: 22100
 		[Tooltip("Length of time to perform the fade")]
 		[SerializeField]
 		protected FloatData _duration = new FloatData(1f);
 
-		// Token: 0x04006354 RID: 25428
+		// Token: 0x04005655 RID: 22101
 		[Tooltip("Target color to fade to. To only fade transparency level, set the color to white and set the alpha to required transparency.")]
 		[SerializeField]
 		protected ColorData _targetColor = new ColorData(Color.white);
 
-		// Token: 0x04006355 RID: 25429
+		// Token: 0x04005656 RID: 22102
 		[Tooltip("Wait until the fade has finished before executing the next command")]
 		[SerializeField]
 		protected bool waitUntilFinished = true;
 
-		// Token: 0x04006356 RID: 25430
+		// Token: 0x04005657 RID: 22103
 		[HideInInspector]
 		[FormerlySerializedAs("duration")]
 		public float durationOLD;
 
-		// Token: 0x04006357 RID: 25431
+		// Token: 0x04005658 RID: 22104
 		[HideInInspector]
 		[FormerlySerializedAs("targetColor")]
 		public Color targetColorOLD;

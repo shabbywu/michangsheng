@@ -3,12 +3,12 @@ using UnityEngine;
 
 namespace UltimateSurvival
 {
-	// Token: 0x020008C3 RID: 2243
+	// Token: 0x020005EF RID: 1519
 	[Serializable]
 	public class TransformOffset
 	{
-		// Token: 0x1700060F RID: 1551
-		// (get) Token: 0x060039B4 RID: 14772 RVA: 0x00029E26 File Offset: 0x00028026
+		// Token: 0x1700042F RID: 1071
+		// (get) Token: 0x060030D6 RID: 12502 RVA: 0x0015D1EB File Offset: 0x0015B3EB
 		public Vector3 CurrentPosition
 		{
 			get
@@ -17,8 +17,8 @@ namespace UltimateSurvival
 			}
 		}
 
-		// Token: 0x17000610 RID: 1552
-		// (get) Token: 0x060039B5 RID: 14773 RVA: 0x00029E2E File Offset: 0x0002802E
+		// Token: 0x17000430 RID: 1072
+		// (get) Token: 0x060030D7 RID: 12503 RVA: 0x0015D1F3 File Offset: 0x0015B3F3
 		public Vector3 CurrentRotation
 		{
 			get
@@ -27,33 +27,33 @@ namespace UltimateSurvival
 			}
 		}
 
-		// Token: 0x060039B6 RID: 14774 RVA: 0x00029E36 File Offset: 0x00028036
+		// Token: 0x060030D8 RID: 12504 RVA: 0x0015D1FB File Offset: 0x0015B3FB
 		public TransformOffset GetClone()
 		{
 			return (TransformOffset)base.MemberwiseClone();
 		}
 
-		// Token: 0x060039B7 RID: 14775 RVA: 0x001A6878 File Offset: 0x001A4A78
+		// Token: 0x060030D9 RID: 12505 RVA: 0x0015D208 File Offset: 0x0015B408
 		public void Reset()
 		{
 			this.m_CurrentPosition = (this.m_CurrentRotation = Vector3.zero);
 		}
 
-		// Token: 0x060039B8 RID: 14776 RVA: 0x00029E43 File Offset: 0x00028043
+		// Token: 0x060030DA RID: 12506 RVA: 0x0015D229 File Offset: 0x0015B429
 		public void ContinueFrom(Vector3 position, Vector3 rotation)
 		{
 			this.m_CurrentPosition = position;
 			this.m_CurrentRotation = rotation;
 		}
 
-		// Token: 0x060039B9 RID: 14777 RVA: 0x00029E53 File Offset: 0x00028053
+		// Token: 0x060030DB RID: 12507 RVA: 0x0015D239 File Offset: 0x0015B439
 		public void ContinueFrom(TransformOffset state)
 		{
 			this.m_CurrentPosition = state.CurrentPosition;
 			this.m_CurrentRotation = state.CurrentRotation;
 		}
 
-		// Token: 0x060039BA RID: 14778 RVA: 0x001A689C File Offset: 0x001A4A9C
+		// Token: 0x060030DC RID: 12508 RVA: 0x0015D254 File Offset: 0x0015B454
 		public void Update(float deltaTime, out Vector3 position, out Quaternion rotation)
 		{
 			this.m_CurrentPosition = Vector3.Lerp(this.m_CurrentPosition, this.m_Position, deltaTime * this.m_LerpSpeed);
@@ -62,22 +62,22 @@ namespace UltimateSurvival
 			rotation = Quaternion.Euler(this.m_CurrentRotation);
 		}
 
-		// Token: 0x040033DE RID: 13278
+		// Token: 0x04002B08 RID: 11016
 		[SerializeField]
 		private float m_LerpSpeed = 5f;
 
-		// Token: 0x040033DF RID: 13279
+		// Token: 0x04002B09 RID: 11017
 		[SerializeField]
 		private Vector3 m_Position;
 
-		// Token: 0x040033E0 RID: 13280
+		// Token: 0x04002B0A RID: 11018
 		[SerializeField]
 		private Vector3 m_Rotation;
 
-		// Token: 0x040033E1 RID: 13281
+		// Token: 0x04002B0B RID: 11019
 		private Vector3 m_CurrentPosition;
 
-		// Token: 0x040033E2 RID: 13282
+		// Token: 0x04002B0C RID: 11020
 		private Vector3 m_CurrentRotation;
 	}
 }

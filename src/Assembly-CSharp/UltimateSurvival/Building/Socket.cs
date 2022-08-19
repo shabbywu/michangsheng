@@ -4,11 +4,11 @@ using UnityEngine;
 
 namespace UltimateSurvival.Building
 {
-	// Token: 0x0200096C RID: 2412
+	// Token: 0x02000666 RID: 1638
 	public class Socket : MonoBehaviour
 	{
-		// Token: 0x170006C3 RID: 1731
-		// (get) Token: 0x06003DA8 RID: 15784 RVA: 0x0002C6BB File Offset: 0x0002A8BB
+		// Token: 0x170004A9 RID: 1193
+		// (get) Token: 0x0600340F RID: 13327 RVA: 0x0016C923 File Offset: 0x0016AB23
 		public List<BuildingSpace> OccupiedSpaces
 		{
 			get
@@ -17,8 +17,8 @@ namespace UltimateSurvival.Building
 			}
 		}
 
-		// Token: 0x170006C4 RID: 1732
-		// (get) Token: 0x06003DA9 RID: 15785 RVA: 0x0002C6C3 File Offset: 0x0002A8C3
+		// Token: 0x170004AA RID: 1194
+		// (get) Token: 0x06003410 RID: 13328 RVA: 0x0016C92B File Offset: 0x0016AB2B
 		public BuildingPiece Piece
 		{
 			get
@@ -27,9 +27,9 @@ namespace UltimateSurvival.Building
 			}
 		}
 
-		// Token: 0x170006C5 RID: 1733
-		// (get) Token: 0x06003DAA RID: 15786 RVA: 0x0002C6CB File Offset: 0x0002A8CB
-		// (set) Token: 0x06003DAB RID: 15787 RVA: 0x0002C6D3 File Offset: 0x0002A8D3
+		// Token: 0x170004AB RID: 1195
+		// (get) Token: 0x06003411 RID: 13329 RVA: 0x0016C933 File Offset: 0x0016AB33
+		// (set) Token: 0x06003412 RID: 13330 RVA: 0x0016C93B File Offset: 0x0016AB3B
 		public List<Socket.PieceOffset> PieceOffsets
 		{
 			get
@@ -42,9 +42,9 @@ namespace UltimateSurvival.Building
 			}
 		}
 
-		// Token: 0x170006C6 RID: 1734
-		// (get) Token: 0x06003DAC RID: 15788 RVA: 0x0002C6DC File Offset: 0x0002A8DC
-		// (set) Token: 0x06003DAD RID: 15789 RVA: 0x0002C6E4 File Offset: 0x0002A8E4
+		// Token: 0x170004AC RID: 1196
+		// (get) Token: 0x06003413 RID: 13331 RVA: 0x0016C944 File Offset: 0x0016AB44
+		// (set) Token: 0x06003414 RID: 13332 RVA: 0x0016C94C File Offset: 0x0016AB4C
 		public float Radius
 		{
 			get
@@ -57,7 +57,7 @@ namespace UltimateSurvival.Building
 			}
 		}
 
-		// Token: 0x06003DAE RID: 15790 RVA: 0x0002C6ED File Offset: 0x0002A8ED
+		// Token: 0x06003415 RID: 13333 RVA: 0x0016C955 File Offset: 0x0016AB55
 		private void Awake()
 		{
 			SphereCollider sphereCollider = base.gameObject.AddComponent<SphereCollider>();
@@ -66,7 +66,7 @@ namespace UltimateSurvival.Building
 			this.m_Piece = base.GetComponentInParent<BuildingPiece>();
 		}
 
-		// Token: 0x06003DAF RID: 15791 RVA: 0x001B5600 File Offset: 0x001B3800
+		// Token: 0x06003416 RID: 13334 RVA: 0x0016C980 File Offset: 0x0016AB80
 		public void OnPieceDeath(BuildingPiece piece)
 		{
 			for (int i = 0; i < this.m_Occupiers.Count; i++)
@@ -79,7 +79,7 @@ namespace UltimateSurvival.Building
 			}
 		}
 
-		// Token: 0x06003DB0 RID: 15792 RVA: 0x001B5654 File Offset: 0x001B3854
+		// Token: 0x06003417 RID: 13335 RVA: 0x0016C9D4 File Offset: 0x0016ABD4
 		public bool GetPieceOffsetByName(string name, out Socket.PieceOffset offset)
 		{
 			offset = new Socket.PieceOffset();
@@ -94,7 +94,7 @@ namespace UltimateSurvival.Building
 			return false;
 		}
 
-		// Token: 0x06003DB1 RID: 15793 RVA: 0x001B56C8 File Offset: 0x001B38C8
+		// Token: 0x06003418 RID: 13336 RVA: 0x0016CA48 File Offset: 0x0016AC48
 		public bool HasSpace(LayerMask mask, BuildingPiece placedPiece)
 		{
 			foreach (Collider collider in Physics.OverlapSphere(base.transform.position, this.Radius, mask, 1))
@@ -114,7 +114,7 @@ namespace UltimateSurvival.Building
 			return true;
 		}
 
-		// Token: 0x06003DB2 RID: 15794 RVA: 0x001B5758 File Offset: 0x001B3958
+		// Token: 0x06003419 RID: 13337 RVA: 0x0016CAD8 File Offset: 0x0016ACD8
 		public void OccupySpaces(BuildingSpace[] spacesToOccupy, BuildingPiece piece)
 		{
 			for (int i = 0; i < spacesToOccupy.Length; i++)
@@ -127,7 +127,7 @@ namespace UltimateSurvival.Building
 			}
 		}
 
-		// Token: 0x06003DB3 RID: 15795 RVA: 0x001B57A8 File Offset: 0x001B39A8
+		// Token: 0x0600341A RID: 13338 RVA: 0x0016CB28 File Offset: 0x0016AD28
 		public void OccupyNeighbours(LayerMask freePlacementMask, LayerMask buildingMask, BuildingPiece placedPiece)
 		{
 			Collider[] array = Physics.OverlapBox(placedPiece.Bounds.center, placedPiece.Bounds.extents, placedPiece.transform.rotation, freePlacementMask, 2);
@@ -141,7 +141,7 @@ namespace UltimateSurvival.Building
 			}
 		}
 
-		// Token: 0x06003DB4 RID: 15796 RVA: 0x001B5828 File Offset: 0x001B3A28
+		// Token: 0x0600341B RID: 13339 RVA: 0x0016CBA8 File Offset: 0x0016ADA8
 		public bool SupportsPiece(BuildingPiece piece)
 		{
 			for (int i = 0; i < this.m_PieceOffsets.Count; i++)
@@ -154,7 +154,7 @@ namespace UltimateSurvival.Building
 			return false;
 		}
 
-		// Token: 0x06003DB5 RID: 15797 RVA: 0x001B58AC File Offset: 0x001B3AAC
+		// Token: 0x0600341C RID: 13340 RVA: 0x0016CC2C File Offset: 0x0016AE2C
 		private void OnDrawGizmos()
 		{
 			Matrix4x4 matrix = Gizmos.matrix;
@@ -164,37 +164,37 @@ namespace UltimateSurvival.Building
 			Gizmos.matrix = matrix;
 		}
 
-		// Token: 0x06003DB6 RID: 15798 RVA: 0x0002C718 File Offset: 0x0002A918
+		// Token: 0x0600341D RID: 13341 RVA: 0x0016CC9F File Offset: 0x0016AE9F
 		private void OnDrawGizmosSelected()
 		{
 			Gizmos.color = new Color(0.5f, 0.5f, 0.5f, 0.35f);
 			Gizmos.DrawSphere(base.transform.position, this.m_Radius);
 		}
 
-		// Token: 0x040037DE RID: 14302
+		// Token: 0x04002E50 RID: 11856
 		[SerializeField]
 		private List<Socket.PieceOffset> m_PieceOffsets;
 
-		// Token: 0x040037DF RID: 14303
+		// Token: 0x04002E51 RID: 11857
 		[SerializeField]
 		private float m_Radius = 1f;
 
-		// Token: 0x040037E0 RID: 14304
+		// Token: 0x04002E52 RID: 11858
 		private BuildingPiece m_Piece;
 
-		// Token: 0x040037E1 RID: 14305
+		// Token: 0x04002E53 RID: 11859
 		private List<BuildingSpace> m_OccupiedSpaces = new List<BuildingSpace>();
 
-		// Token: 0x040037E2 RID: 14306
+		// Token: 0x04002E54 RID: 11860
 		private List<Socket.SpaceOccupier> m_Occupiers = new List<Socket.SpaceOccupier>();
 
-		// Token: 0x0200096D RID: 2413
+		// Token: 0x020014F0 RID: 5360
 		[Serializable]
 		public class PieceOffset
 		{
-			// Token: 0x170006C7 RID: 1735
-			// (get) Token: 0x06003DB8 RID: 15800 RVA: 0x0002C777 File Offset: 0x0002A977
-			// (set) Token: 0x06003DB9 RID: 15801 RVA: 0x0002C77F File Offset: 0x0002A97F
+			// Token: 0x17000B21 RID: 2849
+			// (get) Token: 0x06008275 RID: 33397 RVA: 0x002DB322 File Offset: 0x002D9522
+			// (set) Token: 0x06008276 RID: 33398 RVA: 0x002DB32A File Offset: 0x002D952A
 			public BuildingPiece Piece
 			{
 				get
@@ -207,9 +207,9 @@ namespace UltimateSurvival.Building
 				}
 			}
 
-			// Token: 0x170006C8 RID: 1736
-			// (get) Token: 0x06003DBA RID: 15802 RVA: 0x0002C788 File Offset: 0x0002A988
-			// (set) Token: 0x06003DBB RID: 15803 RVA: 0x0002C790 File Offset: 0x0002A990
+			// Token: 0x17000B22 RID: 2850
+			// (get) Token: 0x06008277 RID: 33399 RVA: 0x002DB333 File Offset: 0x002D9533
+			// (set) Token: 0x06008278 RID: 33400 RVA: 0x002DB33B File Offset: 0x002D953B
 			public Vector3 PositionOffset
 			{
 				get
@@ -222,8 +222,8 @@ namespace UltimateSurvival.Building
 				}
 			}
 
-			// Token: 0x170006C9 RID: 1737
-			// (get) Token: 0x06003DBC RID: 15804 RVA: 0x0002C799 File Offset: 0x0002A999
+			// Token: 0x17000B23 RID: 2851
+			// (get) Token: 0x06008279 RID: 33401 RVA: 0x002DB344 File Offset: 0x002D9544
 			public Quaternion RotationOffset
 			{
 				get
@@ -232,9 +232,9 @@ namespace UltimateSurvival.Building
 				}
 			}
 
-			// Token: 0x170006CA RID: 1738
-			// (get) Token: 0x06003DBD RID: 15805 RVA: 0x0002C7A6 File Offset: 0x0002A9A6
-			// (set) Token: 0x06003DBE RID: 15806 RVA: 0x0002C7AE File Offset: 0x0002A9AE
+			// Token: 0x17000B24 RID: 2852
+			// (get) Token: 0x0600827A RID: 33402 RVA: 0x002DB351 File Offset: 0x002D9551
+			// (set) Token: 0x0600827B RID: 33403 RVA: 0x002DB359 File Offset: 0x002D9559
 			public Vector3 RotationOffsetEuler
 			{
 				get
@@ -247,39 +247,39 @@ namespace UltimateSurvival.Building
 				}
 			}
 
-			// Token: 0x06003DBF RID: 15807 RVA: 0x0002C7B7 File Offset: 0x0002A9B7
+			// Token: 0x0600827C RID: 33404 RVA: 0x002DB362 File Offset: 0x002D9562
 			public Socket.PieceOffset GetMemberwiseClone()
 			{
 				return (Socket.PieceOffset)base.MemberwiseClone();
 			}
 
-			// Token: 0x040037E3 RID: 14307
+			// Token: 0x04006DD0 RID: 28112
 			[SerializeField]
 			private BuildingPiece m_Piece;
 
-			// Token: 0x040037E4 RID: 14308
+			// Token: 0x04006DD1 RID: 28113
 			[SerializeField]
 			private Vector3 m_PositionOffset = Vector3.one;
 
-			// Token: 0x040037E5 RID: 14309
+			// Token: 0x04006DD2 RID: 28114
 			[SerializeField]
 			private Vector3 m_RotationOffset;
 		}
 
-		// Token: 0x0200096E RID: 2414
+		// Token: 0x020014F1 RID: 5361
 		public class SpaceOccupier
 		{
-			// Token: 0x170006CB RID: 1739
-			// (get) Token: 0x06003DC1 RID: 15809 RVA: 0x0002C7D7 File Offset: 0x0002A9D7
-			// (set) Token: 0x06003DC2 RID: 15810 RVA: 0x0002C7DF File Offset: 0x0002A9DF
+			// Token: 0x17000B25 RID: 2853
+			// (get) Token: 0x0600827E RID: 33406 RVA: 0x002DB382 File Offset: 0x002D9582
+			// (set) Token: 0x0600827F RID: 33407 RVA: 0x002DB38A File Offset: 0x002D958A
 			public BuildingSpace OccupiedSpace { get; private set; }
 
-			// Token: 0x170006CC RID: 1740
-			// (get) Token: 0x06003DC3 RID: 15811 RVA: 0x0002C7E8 File Offset: 0x0002A9E8
-			// (set) Token: 0x06003DC4 RID: 15812 RVA: 0x0002C7F0 File Offset: 0x0002A9F0
+			// Token: 0x17000B26 RID: 2854
+			// (get) Token: 0x06008280 RID: 33408 RVA: 0x002DB393 File Offset: 0x002D9593
+			// (set) Token: 0x06008281 RID: 33409 RVA: 0x002DB39B File Offset: 0x002D959B
 			public BuildingPiece Occupier { get; private set; }
 
-			// Token: 0x06003DC5 RID: 15813 RVA: 0x0002C7F9 File Offset: 0x0002A9F9
+			// Token: 0x06008282 RID: 33410 RVA: 0x002DB3A4 File Offset: 0x002D95A4
 			public SpaceOccupier(BuildingSpace occupiedSpace, BuildingPiece occupier)
 			{
 				this.OccupiedSpace = occupiedSpace;

@@ -6,12 +6,12 @@ using UnityEngine.UI;
 
 namespace SuperScrollView
 {
-	// Token: 0x02000A02 RID: 2562
+	// Token: 0x020006D4 RID: 1748
 	public class LoopStaggeredGridView : MonoBehaviour, IBeginDragHandler, IEventSystemHandler, IEndDragHandler, IDragHandler
 	{
-		// Token: 0x1700077F RID: 1919
-		// (get) Token: 0x060041F4 RID: 16884 RVA: 0x0002F2A5 File Offset: 0x0002D4A5
-		// (set) Token: 0x060041F5 RID: 16885 RVA: 0x0002F2AD File Offset: 0x0002D4AD
+		// Token: 0x17000554 RID: 1364
+		// (get) Token: 0x060037D2 RID: 14290 RVA: 0x0017ED28 File Offset: 0x0017CF28
+		// (set) Token: 0x060037D3 RID: 14291 RVA: 0x0017ED30 File Offset: 0x0017CF30
 		public ListItemArrangeType ArrangeType
 		{
 			get
@@ -24,8 +24,8 @@ namespace SuperScrollView
 			}
 		}
 
-		// Token: 0x17000780 RID: 1920
-		// (get) Token: 0x060041F6 RID: 16886 RVA: 0x0002F2B6 File Offset: 0x0002D4B6
+		// Token: 0x17000555 RID: 1365
+		// (get) Token: 0x060037D4 RID: 14292 RVA: 0x0017ED39 File Offset: 0x0017CF39
 		public List<StaggeredGridItemPrefabConfData> ItemPrefabDataList
 		{
 			get
@@ -34,8 +34,8 @@ namespace SuperScrollView
 			}
 		}
 
-		// Token: 0x17000781 RID: 1921
-		// (get) Token: 0x060041F7 RID: 16887 RVA: 0x0002F2BE File Offset: 0x0002D4BE
+		// Token: 0x17000556 RID: 1366
+		// (get) Token: 0x060037D5 RID: 14293 RVA: 0x0017ED41 File Offset: 0x0017CF41
 		public int ListUpdateCheckFrameCount
 		{
 			get
@@ -44,8 +44,8 @@ namespace SuperScrollView
 			}
 		}
 
-		// Token: 0x17000782 RID: 1922
-		// (get) Token: 0x060041F8 RID: 16888 RVA: 0x0002F2C6 File Offset: 0x0002D4C6
+		// Token: 0x17000557 RID: 1367
+		// (get) Token: 0x060037D6 RID: 14294 RVA: 0x0017ED49 File Offset: 0x0017CF49
 		public bool IsVertList
 		{
 			get
@@ -54,8 +54,8 @@ namespace SuperScrollView
 			}
 		}
 
-		// Token: 0x17000783 RID: 1923
-		// (get) Token: 0x060041F9 RID: 16889 RVA: 0x0002F2CE File Offset: 0x0002D4CE
+		// Token: 0x17000558 RID: 1368
+		// (get) Token: 0x060037D7 RID: 14295 RVA: 0x0017ED51 File Offset: 0x0017CF51
 		public int ItemTotalCount
 		{
 			get
@@ -64,8 +64,8 @@ namespace SuperScrollView
 			}
 		}
 
-		// Token: 0x17000784 RID: 1924
-		// (get) Token: 0x060041FA RID: 16890 RVA: 0x0002F2D6 File Offset: 0x0002D4D6
+		// Token: 0x17000559 RID: 1369
+		// (get) Token: 0x060037D8 RID: 14296 RVA: 0x0017ED59 File Offset: 0x0017CF59
 		public RectTransform ContainerTrans
 		{
 			get
@@ -74,8 +74,8 @@ namespace SuperScrollView
 			}
 		}
 
-		// Token: 0x17000785 RID: 1925
-		// (get) Token: 0x060041FB RID: 16891 RVA: 0x0002F2DE File Offset: 0x0002D4DE
+		// Token: 0x1700055A RID: 1370
+		// (get) Token: 0x060037D9 RID: 14297 RVA: 0x0017ED61 File Offset: 0x0017CF61
 		public ScrollRect ScrollRect
 		{
 			get
@@ -84,8 +84,8 @@ namespace SuperScrollView
 			}
 		}
 
-		// Token: 0x17000786 RID: 1926
-		// (get) Token: 0x060041FC RID: 16892 RVA: 0x0002F2E6 File Offset: 0x0002D4E6
+		// Token: 0x1700055B RID: 1371
+		// (get) Token: 0x060037DA RID: 14298 RVA: 0x0017ED69 File Offset: 0x0017CF69
 		public bool IsDraging
 		{
 			get
@@ -94,8 +94,8 @@ namespace SuperScrollView
 			}
 		}
 
-		// Token: 0x17000787 RID: 1927
-		// (get) Token: 0x060041FD RID: 16893 RVA: 0x0002F2EE File Offset: 0x0002D4EE
+		// Token: 0x1700055C RID: 1372
+		// (get) Token: 0x060037DB RID: 14299 RVA: 0x0017ED71 File Offset: 0x0017CF71
 		public GridViewLayoutParam LayoutParam
 		{
 			get
@@ -104,8 +104,8 @@ namespace SuperScrollView
 			}
 		}
 
-		// Token: 0x17000788 RID: 1928
-		// (get) Token: 0x060041FE RID: 16894 RVA: 0x0002F2F6 File Offset: 0x0002D4F6
+		// Token: 0x1700055D RID: 1373
+		// (get) Token: 0x060037DC RID: 14300 RVA: 0x0017ED79 File Offset: 0x0017CF79
 		public bool IsInited
 		{
 			get
@@ -114,7 +114,7 @@ namespace SuperScrollView
 			}
 		}
 
-		// Token: 0x060041FF RID: 16895 RVA: 0x001C6BEC File Offset: 0x001C4DEC
+		// Token: 0x060037DD RID: 14301 RVA: 0x0017ED84 File Offset: 0x0017CF84
 		public StaggeredGridItemGroup GetItemGroupByIndex(int index)
 		{
 			int count = this.mItemGroupList.Count;
@@ -125,7 +125,7 @@ namespace SuperScrollView
 			return this.mItemGroupList[index];
 		}
 
-		// Token: 0x06004200 RID: 16896 RVA: 0x001C6C1C File Offset: 0x001C4E1C
+		// Token: 0x060037DE RID: 14302 RVA: 0x0017EDB4 File Offset: 0x0017CFB4
 		public StaggeredGridItemPrefabConfData GetItemPrefabConfData(string prefabName)
 		{
 			foreach (StaggeredGridItemPrefabConfData staggeredGridItemPrefabConfData in this.mItemPrefabDataList)
@@ -142,7 +142,7 @@ namespace SuperScrollView
 			return null;
 		}
 
-		// Token: 0x06004201 RID: 16897 RVA: 0x001C6C9C File Offset: 0x001C4E9C
+		// Token: 0x060037DF RID: 14303 RVA: 0x0017EE34 File Offset: 0x0017D034
 		public void InitListView(int itemTotalCount, GridViewLayoutParam layoutParam, Func<LoopStaggeredGridView, int, LoopStaggeredGridViewItem> onGetItemByItemIndex, StaggeredGridViewInitParam initParam = null)
 		{
 			this.mLayoutParam = layoutParam;
@@ -220,7 +220,7 @@ namespace SuperScrollView
 			this.UpdateContentSize();
 		}
 
-		// Token: 0x06004202 RID: 16898 RVA: 0x001C6F2C File Offset: 0x001C512C
+		// Token: 0x060037E0 RID: 14304 RVA: 0x0017F0C4 File Offset: 0x0017D2C4
 		public void ResetGridViewLayoutParam(int itemTotalCount, GridViewLayoutParam layoutParam)
 		{
 			if (!this.mListViewInited)
@@ -257,7 +257,7 @@ namespace SuperScrollView
 			this.UpdateContentSize();
 		}
 
-		// Token: 0x06004203 RID: 16899 RVA: 0x001C7020 File Offset: 0x001C5220
+		// Token: 0x060037E1 RID: 14305 RVA: 0x0017F1B8 File Offset: 0x0017D3B8
 		private void UpdateLayoutParamAutoValue()
 		{
 			if (this.mLayoutParam.mCustomColumnOrRowOffsetArray == null)
@@ -289,7 +289,7 @@ namespace SuperScrollView
 			}
 		}
 
-		// Token: 0x06004204 RID: 16900 RVA: 0x001C7124 File Offset: 0x001C5324
+		// Token: 0x060037E2 RID: 14306 RVA: 0x0017F2BC File Offset: 0x0017D4BC
 		public LoopStaggeredGridViewItem NewListViewItem(string itemPrefabName)
 		{
 			StaggeredGridItemPool staggeredGridItemPool = null;
@@ -307,7 +307,7 @@ namespace SuperScrollView
 			return item;
 		}
 
-		// Token: 0x06004205 RID: 16901 RVA: 0x001C7184 File Offset: 0x001C5384
+		// Token: 0x060037E3 RID: 14307 RVA: 0x0017F31C File Offset: 0x0017D51C
 		public void SetListItemCount(int itemCount, bool resetPos = true)
 		{
 			if (itemCount == this.mItemTotalCount)
@@ -343,7 +343,7 @@ namespace SuperScrollView
 			}
 		}
 
-		// Token: 0x06004206 RID: 16902 RVA: 0x001C724C File Offset: 0x001C544C
+		// Token: 0x060037E4 RID: 14308 RVA: 0x0017F3E4 File Offset: 0x0017D5E4
 		public void MovePanelToItemIndex(int itemIndex, float offset)
 		{
 			this.mScrollRect.StopMovement();
@@ -431,7 +431,7 @@ namespace SuperScrollView
 			}
 		}
 
-		// Token: 0x06004207 RID: 16903 RVA: 0x001C7430 File Offset: 0x001C5630
+		// Token: 0x060037E5 RID: 14309 RVA: 0x0017F5C8 File Offset: 0x0017D7C8
 		public LoopStaggeredGridViewItem GetShownItemByItemIndex(int itemIndex)
 		{
 			ItemIndexData itemIndexData = this.GetItemIndexData(itemIndex);
@@ -442,7 +442,7 @@ namespace SuperScrollView
 			return this.GetItemGroupByIndex(itemIndexData.mGroupIndex).GetShownItemByIndexInGroup(itemIndexData.mIndexInGroup);
 		}
 
-		// Token: 0x06004208 RID: 16904 RVA: 0x001C7464 File Offset: 0x001C5664
+		// Token: 0x060037E6 RID: 14310 RVA: 0x0017F5FC File Offset: 0x0017D7FC
 		public void RefreshAllShownItem()
 		{
 			int count = this.mItemGroupList.Count;
@@ -452,7 +452,7 @@ namespace SuperScrollView
 			}
 		}
 
-		// Token: 0x06004209 RID: 16905 RVA: 0x001C749C File Offset: 0x001C569C
+		// Token: 0x060037E7 RID: 14311 RVA: 0x0017F634 File Offset: 0x0017D834
 		public void OnItemSizeChanged(int itemIndex)
 		{
 			ItemIndexData itemIndexData = this.GetItemIndexData(itemIndex);
@@ -463,7 +463,7 @@ namespace SuperScrollView
 			this.GetItemGroupByIndex(itemIndexData.mGroupIndex).OnItemSizeChanged(itemIndexData.mIndexInGroup);
 		}
 
-		// Token: 0x0600420A RID: 16906 RVA: 0x001C74CC File Offset: 0x001C56CC
+		// Token: 0x060037E8 RID: 14312 RVA: 0x0017F664 File Offset: 0x0017D864
 		public void RefreshItemByItemIndex(int itemIndex)
 		{
 			ItemIndexData itemIndexData = this.GetItemIndexData(itemIndex);
@@ -474,7 +474,7 @@ namespace SuperScrollView
 			this.GetItemGroupByIndex(itemIndexData.mGroupIndex).RefreshItemByIndexInGroup(itemIndexData.mIndexInGroup);
 		}
 
-		// Token: 0x0600420B RID: 16907 RVA: 0x0002F2FE File Offset: 0x0002D4FE
+		// Token: 0x060037E9 RID: 14313 RVA: 0x0017F694 File Offset: 0x0017D894
 		public void ResetListView(bool resetPos = true)
 		{
 			this.mViewPortRectTransform.GetLocalCorners(this.mViewPortRectLocalCorners);
@@ -484,8 +484,8 @@ namespace SuperScrollView
 			}
 		}
 
-		// Token: 0x17000789 RID: 1929
-		// (get) Token: 0x0600420C RID: 16908 RVA: 0x001C74FC File Offset: 0x001C56FC
+		// Token: 0x1700055E RID: 1374
+		// (get) Token: 0x060037EA RID: 14314 RVA: 0x0017F6BC File Offset: 0x0017D8BC
 		public float ViewPortSize
 		{
 			get
@@ -498,8 +498,8 @@ namespace SuperScrollView
 			}
 		}
 
-		// Token: 0x1700078A RID: 1930
-		// (get) Token: 0x0600420D RID: 16909 RVA: 0x001C7538 File Offset: 0x001C5738
+		// Token: 0x1700055F RID: 1375
+		// (get) Token: 0x060037EB RID: 14315 RVA: 0x0017F6F8 File Offset: 0x0017D8F8
 		public float ViewPortWidth
 		{
 			get
@@ -508,8 +508,8 @@ namespace SuperScrollView
 			}
 		}
 
-		// Token: 0x1700078B RID: 1931
-		// (get) Token: 0x0600420E RID: 16910 RVA: 0x001C7558 File Offset: 0x001C5758
+		// Token: 0x17000560 RID: 1376
+		// (get) Token: 0x060037EC RID: 14316 RVA: 0x0017F718 File Offset: 0x0017D918
 		public float ViewPortHeight
 		{
 			get
@@ -518,7 +518,7 @@ namespace SuperScrollView
 			}
 		}
 
-		// Token: 0x0600420F RID: 16911 RVA: 0x001C7578 File Offset: 0x001C5778
+		// Token: 0x060037ED RID: 14317 RVA: 0x0017F738 File Offset: 0x0017D938
 		public void RecycleAllItem()
 		{
 			int count = this.mItemGroupList.Count;
@@ -528,7 +528,7 @@ namespace SuperScrollView
 			}
 		}
 
-		// Token: 0x06004210 RID: 16912 RVA: 0x001C75B0 File Offset: 0x001C57B0
+		// Token: 0x060037EE RID: 14318 RVA: 0x0017F770 File Offset: 0x0017D970
 		public void RecycleItemTmp(LoopStaggeredGridViewItem item)
 		{
 			if (item == null)
@@ -547,7 +547,7 @@ namespace SuperScrollView
 			staggeredGridItemPool.RecycleItem(item);
 		}
 
-		// Token: 0x06004211 RID: 16913 RVA: 0x001C75F4 File Offset: 0x001C57F4
+		// Token: 0x060037EF RID: 14319 RVA: 0x0017F7B4 File Offset: 0x0017D9B4
 		public void ClearAllTmpRecycledItem()
 		{
 			int count = this.mItemPoolList.Count;
@@ -557,7 +557,7 @@ namespace SuperScrollView
 			}
 		}
 
-		// Token: 0x06004212 RID: 16914 RVA: 0x001C762C File Offset: 0x001C582C
+		// Token: 0x060037F0 RID: 14320 RVA: 0x0017F7EC File Offset: 0x0017D9EC
 		private void AdjustContainerPivot(RectTransform rtf)
 		{
 			Vector2 pivot = rtf.pivot;
@@ -580,7 +580,7 @@ namespace SuperScrollView
 			rtf.pivot = pivot;
 		}
 
-		// Token: 0x06004213 RID: 16915 RVA: 0x001C762C File Offset: 0x001C582C
+		// Token: 0x060037F1 RID: 14321 RVA: 0x0017F860 File Offset: 0x0017DA60
 		private void AdjustPivot(RectTransform rtf)
 		{
 			Vector2 pivot = rtf.pivot;
@@ -603,7 +603,7 @@ namespace SuperScrollView
 			rtf.pivot = pivot;
 		}
 
-		// Token: 0x06004214 RID: 16916 RVA: 0x001C76A0 File Offset: 0x001C58A0
+		// Token: 0x060037F2 RID: 14322 RVA: 0x0017F8D4 File Offset: 0x0017DAD4
 		private void AdjustContainerAnchor(RectTransform rtf)
 		{
 			Vector2 anchorMin = rtf.anchorMin;
@@ -632,7 +632,7 @@ namespace SuperScrollView
 			rtf.anchorMax = anchorMax;
 		}
 
-		// Token: 0x06004215 RID: 16917 RVA: 0x001C76A0 File Offset: 0x001C58A0
+		// Token: 0x060037F3 RID: 14323 RVA: 0x0017F988 File Offset: 0x0017DB88
 		private void AdjustAnchor(RectTransform rtf)
 		{
 			Vector2 anchorMin = rtf.anchorMin;
@@ -661,7 +661,7 @@ namespace SuperScrollView
 			rtf.anchorMax = anchorMax;
 		}
 
-		// Token: 0x06004216 RID: 16918 RVA: 0x001C7754 File Offset: 0x001C5954
+		// Token: 0x060037F4 RID: 14324 RVA: 0x0017FA3C File Offset: 0x0017DC3C
 		private void InitItemPool()
 		{
 			foreach (StaggeredGridItemPrefabConfData staggeredGridItemPrefabConfData in this.mItemPrefabDataList)
@@ -702,7 +702,7 @@ namespace SuperScrollView
 			}
 		}
 
-		// Token: 0x06004217 RID: 16919 RVA: 0x0002F324 File Offset: 0x0002D524
+		// Token: 0x060037F5 RID: 14325 RVA: 0x0017FB80 File Offset: 0x0017DD80
 		public virtual void OnBeginDrag(PointerEventData eventData)
 		{
 			if (eventData.button != null)
@@ -717,7 +717,7 @@ namespace SuperScrollView
 			}
 		}
 
-		// Token: 0x06004218 RID: 16920 RVA: 0x0002F350 File Offset: 0x0002D550
+		// Token: 0x060037F6 RID: 14326 RVA: 0x0017FBAC File Offset: 0x0017DDAC
 		public virtual void OnEndDrag(PointerEventData eventData)
 		{
 			if (eventData.button != null)
@@ -732,7 +732,7 @@ namespace SuperScrollView
 			}
 		}
 
-		// Token: 0x06004219 RID: 16921 RVA: 0x0002F37C File Offset: 0x0002D57C
+		// Token: 0x060037F7 RID: 14327 RVA: 0x0017FBD8 File Offset: 0x0017DDD8
 		public virtual void OnDrag(PointerEventData eventData)
 		{
 			if (eventData.button != null)
@@ -746,7 +746,7 @@ namespace SuperScrollView
 			}
 		}
 
-		// Token: 0x0600421A RID: 16922 RVA: 0x001C7898 File Offset: 0x001C5A98
+		// Token: 0x060037F8 RID: 14328 RVA: 0x0017FC00 File Offset: 0x0017DE00
 		private void CacheDragPointerEventData(PointerEventData eventData)
 		{
 			if (this.mPointerEventData == null)
@@ -759,8 +759,8 @@ namespace SuperScrollView
 			this.mPointerEventData.pointerCurrentRaycast = eventData.pointerCurrentRaycast;
 		}
 
-		// Token: 0x1700078C RID: 1932
-		// (get) Token: 0x0600421B RID: 16923 RVA: 0x0002F3A1 File Offset: 0x0002D5A1
+		// Token: 0x17000561 RID: 1377
+		// (get) Token: 0x060037F9 RID: 14329 RVA: 0x0017FC69 File Offset: 0x0017DE69
 		public int CurMaxCreatedItemIndexCount
 		{
 			get
@@ -769,7 +769,7 @@ namespace SuperScrollView
 			}
 		}
 
-		// Token: 0x0600421C RID: 16924 RVA: 0x001C7904 File Offset: 0x001C5B04
+		// Token: 0x060037FA RID: 14330 RVA: 0x0017FC78 File Offset: 0x0017DE78
 		private void SetAnchoredPositionX(RectTransform rtf, float x)
 		{
 			Vector3 anchoredPosition3D = rtf.anchoredPosition3D;
@@ -777,7 +777,7 @@ namespace SuperScrollView
 			rtf.anchoredPosition3D = anchoredPosition3D;
 		}
 
-		// Token: 0x0600421D RID: 16925 RVA: 0x001C7928 File Offset: 0x001C5B28
+		// Token: 0x060037FB RID: 14331 RVA: 0x0017FC9C File Offset: 0x0017DE9C
 		private void SetAnchoredPositionY(RectTransform rtf, float y)
 		{
 			Vector3 anchoredPosition3D = rtf.anchoredPosition3D;
@@ -785,7 +785,7 @@ namespace SuperScrollView
 			rtf.anchoredPosition3D = anchoredPosition3D;
 		}
 
-		// Token: 0x0600421E RID: 16926 RVA: 0x001C794C File Offset: 0x001C5B4C
+		// Token: 0x060037FC RID: 14332 RVA: 0x0017FCC0 File Offset: 0x0017DEC0
 		public ItemIndexData GetItemIndexData(int itemIndex)
 		{
 			int count = this.mItemIndexDataList.Count;
@@ -796,7 +796,7 @@ namespace SuperScrollView
 			return this.mItemIndexDataList[itemIndex];
 		}
 
-		// Token: 0x0600421F RID: 16927 RVA: 0x001C797C File Offset: 0x001C5B7C
+		// Token: 0x060037FD RID: 14333 RVA: 0x0017FCF0 File Offset: 0x0017DEF0
 		public void UpdateAllGroupShownItemsPos()
 		{
 			int count = this.mItemGroupList.Count;
@@ -806,7 +806,7 @@ namespace SuperScrollView
 			}
 		}
 
-		// Token: 0x06004220 RID: 16928 RVA: 0x001C79B4 File Offset: 0x001C5BB4
+		// Token: 0x060037FE RID: 14334 RVA: 0x0017FD28 File Offset: 0x0017DF28
 		private void CheckAllGroupIfNeedUpdateItemPos()
 		{
 			int count = this.mItemGroupList.Count;
@@ -816,7 +816,7 @@ namespace SuperScrollView
 			}
 		}
 
-		// Token: 0x06004221 RID: 16929 RVA: 0x001C79EC File Offset: 0x001C5BEC
+		// Token: 0x060037FF RID: 14335 RVA: 0x0017FD60 File Offset: 0x0017DF60
 		public float GetItemAbsPosByItemIndex(int itemIndex)
 		{
 			if (itemIndex < 0 || itemIndex >= this.mItemIndexDataList.Count)
@@ -827,7 +827,7 @@ namespace SuperScrollView
 			return this.mItemGroupList[itemIndexData.mGroupIndex].GetItemPos(itemIndexData.mIndexInGroup);
 		}
 
-		// Token: 0x06004222 RID: 16930 RVA: 0x001C7A3C File Offset: 0x001C5C3C
+		// Token: 0x06003800 RID: 14336 RVA: 0x0017FDB0 File Offset: 0x0017DFB0
 		public LoopStaggeredGridViewItem GetNewItemByGroupAndIndex(int groupIndex, int indexInGroup)
 		{
 			if (indexInGroup < 0)
@@ -884,7 +884,7 @@ namespace SuperScrollView
 			}
 		}
 
-		// Token: 0x06004223 RID: 16931 RVA: 0x001C7B60 File Offset: 0x001C5D60
+		// Token: 0x06003801 RID: 14337 RVA: 0x0017FED4 File Offset: 0x0017E0D4
 		private int GetCurShouldAddNewItemGroupIndex()
 		{
 			float num = float.MaxValue;
@@ -902,14 +902,14 @@ namespace SuperScrollView
 			return result;
 		}
 
-		// Token: 0x06004224 RID: 16932 RVA: 0x0002F3AE File Offset: 0x0002D5AE
+		// Token: 0x06003802 RID: 14338 RVA: 0x0017FF1F File Offset: 0x0017E11F
 		public void UpdateListViewWithDefault()
 		{
 			this.UpdateListView(this.mDistanceForRecycle0, this.mDistanceForRecycle1, this.mDistanceForNew0, this.mDistanceForNew1);
 			this.UpdateContentSize();
 		}
 
-		// Token: 0x06004225 RID: 16933 RVA: 0x0002F3D4 File Offset: 0x0002D5D4
+		// Token: 0x06003803 RID: 14339 RVA: 0x0017FF45 File Offset: 0x0017E145
 		private void Update()
 		{
 			if (!this.mListViewInited)
@@ -921,7 +921,7 @@ namespace SuperScrollView
 			this.mLastFrameContainerPos = this.mContainerTrans.anchoredPosition3D;
 		}
 
-		// Token: 0x06004226 RID: 16934 RVA: 0x001C7BAC File Offset: 0x001C5DAC
+		// Token: 0x06003804 RID: 14340 RVA: 0x0017FF70 File Offset: 0x0017E170
 		public void UpdateListView(float distanceForRecycle0, float distanceForRecycle1, float distanceForNew0, float distanceForNew1)
 		{
 			this.mListUpdateCheckFrameCount++;
@@ -946,7 +946,7 @@ namespace SuperScrollView
 			}
 		}
 
-		// Token: 0x06004227 RID: 16935 RVA: 0x001C7C4C File Offset: 0x001C5E4C
+		// Token: 0x06003805 RID: 14341 RVA: 0x00180010 File Offset: 0x0017E210
 		public float GetContentSize()
 		{
 			if (this.mIsVertList)
@@ -956,7 +956,7 @@ namespace SuperScrollView
 			return this.mContainerTrans.rect.width;
 		}
 
-		// Token: 0x06004228 RID: 16936 RVA: 0x001C7C88 File Offset: 0x001C5E88
+		// Token: 0x06003806 RID: 14342 RVA: 0x0018004C File Offset: 0x0017E24C
 		public void UpdateContentSize()
 		{
 			int count = this.mItemGroupList.Count;
@@ -983,96 +983,96 @@ namespace SuperScrollView
 			}
 		}
 
-		// Token: 0x04003A93 RID: 14995
+		// Token: 0x0400307B RID: 12411
 		private Dictionary<string, StaggeredGridItemPool> mItemPoolDict = new Dictionary<string, StaggeredGridItemPool>();
 
-		// Token: 0x04003A94 RID: 14996
+		// Token: 0x0400307C RID: 12412
 		private List<StaggeredGridItemPool> mItemPoolList = new List<StaggeredGridItemPool>();
 
-		// Token: 0x04003A95 RID: 14997
+		// Token: 0x0400307D RID: 12413
 		[SerializeField]
 		private List<StaggeredGridItemPrefabConfData> mItemPrefabDataList = new List<StaggeredGridItemPrefabConfData>();
 
-		// Token: 0x04003A96 RID: 14998
+		// Token: 0x0400307E RID: 12414
 		[SerializeField]
 		private ListItemArrangeType mArrangeType;
 
-		// Token: 0x04003A97 RID: 14999
+		// Token: 0x0400307F RID: 12415
 		private RectTransform mContainerTrans;
 
-		// Token: 0x04003A98 RID: 15000
+		// Token: 0x04003080 RID: 12416
 		private ScrollRect mScrollRect;
 
-		// Token: 0x04003A99 RID: 15001
+		// Token: 0x04003081 RID: 12417
 		private int mGroupCount;
 
-		// Token: 0x04003A9A RID: 15002
+		// Token: 0x04003082 RID: 12418
 		private List<StaggeredGridItemGroup> mItemGroupList = new List<StaggeredGridItemGroup>();
 
-		// Token: 0x04003A9B RID: 15003
+		// Token: 0x04003083 RID: 12419
 		private List<ItemIndexData> mItemIndexDataList = new List<ItemIndexData>();
 
-		// Token: 0x04003A9C RID: 15004
+		// Token: 0x04003084 RID: 12420
 		private RectTransform mScrollRectTransform;
 
-		// Token: 0x04003A9D RID: 15005
+		// Token: 0x04003085 RID: 12421
 		private RectTransform mViewPortRectTransform;
 
-		// Token: 0x04003A9E RID: 15006
+		// Token: 0x04003086 RID: 12422
 		private float mItemDefaultWithPaddingSize = 20f;
 
-		// Token: 0x04003A9F RID: 15007
+		// Token: 0x04003087 RID: 12423
 		private int mItemTotalCount;
 
-		// Token: 0x04003AA0 RID: 15008
+		// Token: 0x04003088 RID: 12424
 		private bool mIsVertList;
 
-		// Token: 0x04003AA1 RID: 15009
+		// Token: 0x04003089 RID: 12425
 		private Func<LoopStaggeredGridView, int, LoopStaggeredGridViewItem> mOnGetItemByItemIndex;
 
-		// Token: 0x04003AA2 RID: 15010
+		// Token: 0x0400308A RID: 12426
 		private Vector3[] mItemWorldCorners = new Vector3[4];
 
-		// Token: 0x04003AA3 RID: 15011
+		// Token: 0x0400308B RID: 12427
 		private Vector3[] mViewPortRectLocalCorners = new Vector3[4];
 
-		// Token: 0x04003AA4 RID: 15012
+		// Token: 0x0400308C RID: 12428
 		private float mDistanceForRecycle0 = 300f;
 
-		// Token: 0x04003AA5 RID: 15013
+		// Token: 0x0400308D RID: 12429
 		private float mDistanceForNew0 = 200f;
 
-		// Token: 0x04003AA6 RID: 15014
+		// Token: 0x0400308E RID: 12430
 		private float mDistanceForRecycle1 = 300f;
 
-		// Token: 0x04003AA7 RID: 15015
+		// Token: 0x0400308F RID: 12431
 		private float mDistanceForNew1 = 200f;
 
-		// Token: 0x04003AA8 RID: 15016
+		// Token: 0x04003090 RID: 12432
 		private bool mIsDraging;
 
-		// Token: 0x04003AA9 RID: 15017
+		// Token: 0x04003091 RID: 12433
 		private PointerEventData mPointerEventData;
 
-		// Token: 0x04003AAA RID: 15018
+		// Token: 0x04003092 RID: 12434
 		public Action mOnBeginDragAction;
 
-		// Token: 0x04003AAB RID: 15019
+		// Token: 0x04003093 RID: 12435
 		public Action mOnDragingAction;
 
-		// Token: 0x04003AAC RID: 15020
+		// Token: 0x04003094 RID: 12436
 		public Action mOnEndDragAction;
 
-		// Token: 0x04003AAD RID: 15021
+		// Token: 0x04003095 RID: 12437
 		private Vector3 mLastFrameContainerPos = Vector3.zero;
 
-		// Token: 0x04003AAE RID: 15022
+		// Token: 0x04003096 RID: 12438
 		private bool mListViewInited;
 
-		// Token: 0x04003AAF RID: 15023
+		// Token: 0x04003097 RID: 12439
 		private int mListUpdateCheckFrameCount;
 
-		// Token: 0x04003AB0 RID: 15024
+		// Token: 0x04003098 RID: 12440
 		private GridViewLayoutParam mLayoutParam;
 	}
 }

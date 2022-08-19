@@ -3,10 +3,10 @@ using System.Collections.Generic;
 
 namespace KBEngine
 {
-	// Token: 0x02000FEC RID: 4076
+	// Token: 0x02000C61 RID: 3169
 	public class ServerErrorDescrs
 	{
-		// Token: 0x0600606E RID: 24686 RVA: 0x00268DC8 File Offset: 0x00266FC8
+		// Token: 0x0600561F RID: 22047 RVA: 0x0023C238 File Offset: 0x0023A438
 		public ServerErrorDescrs()
 		{
 			ServerErr serverErr;
@@ -201,13 +201,13 @@ namespace KBEngine
 			ServerErrorDescrs.serverErrs.Add(serverErr38.id, serverErr38);
 		}
 
-		// Token: 0x0600606F RID: 24687 RVA: 0x00042F94 File Offset: 0x00041194
+		// Token: 0x06005620 RID: 22048 RVA: 0x0023C9F2 File Offset: 0x0023ABF2
 		public void Clear()
 		{
 			ServerErrorDescrs.serverErrs.Clear();
 		}
 
-		// Token: 0x06006070 RID: 24688 RVA: 0x00269584 File Offset: 0x00267784
+		// Token: 0x06005621 RID: 22049 RVA: 0x0023CA00 File Offset: 0x0023AC00
 		public string serverErrStr(ushort id)
 		{
 			ServerErr serverErr;
@@ -218,7 +218,7 @@ namespace KBEngine
 			return serverErr.name + "[" + serverErr.descr + "]";
 		}
 
-		// Token: 0x06006071 RID: 24689 RVA: 0x002695C4 File Offset: 0x002677C4
+		// Token: 0x06005622 RID: 22050 RVA: 0x0023CA40 File Offset: 0x0023AC40
 		public ServerErr serverErr(ushort id)
 		{
 			ServerErr result;
@@ -226,7 +226,7 @@ namespace KBEngine
 			return result;
 		}
 
-		// Token: 0x04005BC1 RID: 23489
+		// Token: 0x04005107 RID: 20743
 		public static Dictionary<ushort, ServerErr> serverErrs = new Dictionary<ushort, ServerErr>();
 	}
 }

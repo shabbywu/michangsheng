@@ -10,17 +10,17 @@ using WXB;
 
 namespace YSGame.TuJian
 {
-	// Token: 0x02000DE1 RID: 3553
+	// Token: 0x02000AA4 RID: 2724
 	public class DanYaoInfoPanel : InfoPanelBase
 	{
-		// Token: 0x060055AC RID: 21932 RVA: 0x0003D4B3 File Offset: 0x0003B6B3
+		// Token: 0x06004C5F RID: 19551 RVA: 0x00209447 File Offset: 0x00207647
 		private void Start()
 		{
 			this.Init();
 			this.SetDanFangNumber(1);
 		}
 
-		// Token: 0x060055AD RID: 21933 RVA: 0x0023A634 File Offset: 0x00238834
+		// Token: 0x06004C60 RID: 19552 RVA: 0x00209458 File Offset: 0x00207658
 		public void Init()
 		{
 			this._QualityImage = base.transform.Find("ItemBG/QualityBg").GetComponent<Image>();
@@ -36,7 +36,7 @@ namespace YSGame.TuJian
 			this._RightButton.onClick.AddListener(new UnityAction(this.NextDanFang));
 		}
 
-		// Token: 0x060055AE RID: 21934 RVA: 0x0023A76C File Offset: 0x0023896C
+		// Token: 0x06004C61 RID: 19553 RVA: 0x00209590 File Offset: 0x00207790
 		public override void RefreshDataList()
 		{
 			base.RefreshDataList();
@@ -105,7 +105,7 @@ namespace YSGame.TuJian
 			}
 		}
 
-		// Token: 0x060055AF RID: 21935 RVA: 0x0023AA68 File Offset: 0x00238C68
+		// Token: 0x06004C62 RID: 19554 RVA: 0x0020988C File Offset: 0x00207A8C
 		public override void RefreshPanelData()
 		{
 			base.RefreshPanelData();
@@ -251,7 +251,7 @@ namespace YSGame.TuJian
 			this.SetItemIcon(nowSelectID);
 		}
 
-		// Token: 0x060055B0 RID: 21936 RVA: 0x0023B040 File Offset: 0x00239240
+		// Token: 0x06004C63 RID: 19555 RVA: 0x00209E64 File Offset: 0x00208064
 		private string YaoCaoStr(int strIndex, int id, int count)
 		{
 			if (count > 0)
@@ -278,7 +278,7 @@ namespace YSGame.TuJian
 			return "";
 		}
 
-		// Token: 0x060055B1 RID: 21937 RVA: 0x0023B134 File Offset: 0x00239334
+		// Token: 0x06004C64 RID: 19556 RVA: 0x00209F58 File Offset: 0x00208158
 		private void RefreshDanFangList(int id)
 		{
 			List<JSONObject> list = global::Tools.instance.getPlayer().DanFang.list;
@@ -305,14 +305,14 @@ namespace YSGame.TuJian
 			}
 		}
 
-		// Token: 0x060055B2 RID: 21938 RVA: 0x0003D4C2 File Offset: 0x0003B6C2
+		// Token: 0x06004C65 RID: 19557 RVA: 0x0020A12C File Offset: 0x0020832C
 		public void SetDanFangNumber(int number)
 		{
 			this._NumberText.text = string.Format("丹方{0}：", number);
 			this.danFangNumber = number;
 		}
 
-		// Token: 0x060055B3 RID: 21939 RVA: 0x0023B308 File Offset: 0x00239508
+		// Token: 0x06004C66 RID: 19558 RVA: 0x0020A150 File Offset: 0x00208350
 		public void NextDanFang()
 		{
 			if (global::Tools.instance.getPlayer() == null)
@@ -331,7 +331,7 @@ namespace YSGame.TuJian
 			}
 		}
 
-		// Token: 0x060055B4 RID: 21940 RVA: 0x0023B36C File Offset: 0x0023956C
+		// Token: 0x06004C67 RID: 19559 RVA: 0x0020A1B4 File Offset: 0x002083B4
 		public void LastDanFang()
 		{
 			if (global::Tools.instance.getPlayer() == null)
@@ -350,7 +350,7 @@ namespace YSGame.TuJian
 			}
 		}
 
-		// Token: 0x060055B5 RID: 21941 RVA: 0x0003D4E6 File Offset: 0x0003B6E6
+		// Token: 0x06004C68 RID: 19560 RVA: 0x0020A216 File Offset: 0x00208416
 		public void SetItemIcon(int id)
 		{
 			this._ItemIconImage.sprite = TuJianDB.GetItemIconSprite(id);
@@ -358,40 +358,40 @@ namespace YSGame.TuJian
 			this._QualityUpImage.sprite = TuJianDB.GetItemQualityUpSprite(id);
 		}
 
-		// Token: 0x04005563 RID: 21859
+		// Token: 0x04004B85 RID: 19333
 		private Image _QualityImage;
 
-		// Token: 0x04005564 RID: 21860
+		// Token: 0x04004B86 RID: 19334
 		private Image _QualityUpImage;
 
-		// Token: 0x04005565 RID: 21861
+		// Token: 0x04004B87 RID: 19335
 		private Image _ItemIconImage;
 
-		// Token: 0x04005566 RID: 21862
+		// Token: 0x04004B88 RID: 19336
 		private SymbolText _HyText1;
 
-		// Token: 0x04005567 RID: 21863
+		// Token: 0x04004B89 RID: 19337
 		private SymbolText _HyText2;
 
-		// Token: 0x04005568 RID: 21864
+		// Token: 0x04004B8A RID: 19338
 		private SymbolText _HyText3;
 
-		// Token: 0x04005569 RID: 21865
+		// Token: 0x04004B8B RID: 19339
 		private Text _NumberText;
 
-		// Token: 0x0400556A RID: 21866
+		// Token: 0x04004B8C RID: 19340
 		private Button _LeftButton;
 
-		// Token: 0x0400556B RID: 21867
+		// Token: 0x04004B8D RID: 19341
 		private Button _RightButton;
 
-		// Token: 0x0400556C RID: 21868
+		// Token: 0x04004B8E RID: 19342
 		public Color HyTextColor = new Color(0.21568628f, 0.5764706f, 0.4117647f);
 
-		// Token: 0x0400556D RID: 21869
+		// Token: 0x04004B8F RID: 19343
 		public Color HyTextHoverColor = new Color(0.19607843f, 0.50980395f, 0.36862746f);
 
-		// Token: 0x0400556E RID: 21870
+		// Token: 0x04004B90 RID: 19344
 		private static readonly string[] typeStr = new string[]
 		{
 			"药引",
@@ -399,10 +399,10 @@ namespace YSGame.TuJian
 			"辅药"
 		};
 
-		// Token: 0x0400556F RID: 21871
+		// Token: 0x04004B91 RID: 19345
 		private List<DanFangData> playerDanFangList = new List<DanFangData>();
 
-		// Token: 0x04005570 RID: 21872
+		// Token: 0x04004B92 RID: 19346
 		private int danFangNumber;
 	}
 }

@@ -2,28 +2,28 @@
 
 namespace UltimateSurvival
 {
-	// Token: 0x02000891 RID: 2193
+	// Token: 0x020005CF RID: 1487
 	public class Attempt<T>
 	{
-		// Token: 0x0600387B RID: 14459 RVA: 0x000291AC File Offset: 0x000273AC
+		// Token: 0x06002FEB RID: 12267 RVA: 0x001595F5 File Offset: 0x001577F5
 		public void SetTryer(Attempt<T>.GenericTryerDelegate tryer)
 		{
 			this.m_Tryer = tryer;
 		}
 
-		// Token: 0x0600387C RID: 14460 RVA: 0x000291B5 File Offset: 0x000273B5
+		// Token: 0x06002FEC RID: 12268 RVA: 0x001595FE File Offset: 0x001577FE
 		public void AddListener(Action<T> listener)
 		{
 			this.m_Listeners = (Action<T>)Delegate.Combine(this.m_Listeners, listener);
 		}
 
-		// Token: 0x0600387D RID: 14461 RVA: 0x000291CE File Offset: 0x000273CE
+		// Token: 0x06002FED RID: 12269 RVA: 0x00159617 File Offset: 0x00157817
 		public void RemoveListener(Action<T> listener)
 		{
 			this.m_Listeners = (Action<T>)Delegate.Remove(this.m_Listeners, listener);
 		}
 
-		// Token: 0x0600387E RID: 14462 RVA: 0x000291E7 File Offset: 0x000273E7
+		// Token: 0x06002FEE RID: 12270 RVA: 0x00159630 File Offset: 0x00157830
 		public bool Try(T arg)
 		{
 			if (this.m_Tryer != null && this.m_Tryer(arg))
@@ -37,14 +37,14 @@ namespace UltimateSurvival
 			return false;
 		}
 
-		// Token: 0x040032F3 RID: 13043
+		// Token: 0x04002A5D RID: 10845
 		private Attempt<T>.GenericTryerDelegate m_Tryer;
 
-		// Token: 0x040032F4 RID: 13044
+		// Token: 0x04002A5E RID: 10846
 		private Action<T> m_Listeners;
 
-		// Token: 0x02000892 RID: 2194
-		// (Invoke) Token: 0x06003881 RID: 14465
+		// Token: 0x020014AC RID: 5292
+		// (Invoke) Token: 0x0600816D RID: 33133
 		public delegate bool GenericTryerDelegate(T arg);
 	}
 }

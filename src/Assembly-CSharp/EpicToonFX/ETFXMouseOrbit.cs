@@ -3,10 +3,10 @@ using UnityEngine;
 
 namespace EpicToonFX
 {
-	// Token: 0x02000E96 RID: 3734
+	// Token: 0x02000B23 RID: 2851
 	public class ETFXMouseOrbit : MonoBehaviour
 	{
-		// Token: 0x060059AC RID: 22956 RVA: 0x00249938 File Offset: 0x00247B38
+		// Token: 0x06004F8D RID: 20365 RVA: 0x00219B08 File Offset: 0x00217D08
 		private void Start()
 		{
 			Vector3 eulerAngles = base.transform.eulerAngles;
@@ -18,7 +18,7 @@ namespace EpicToonFX
 			}
 		}
 
-		// Token: 0x060059AD RID: 22957 RVA: 0x00249984 File Offset: 0x00247B84
+		// Token: 0x06004F8E RID: 20366 RVA: 0x00219B54 File Offset: 0x00217D54
 		private void LateUpdate()
 		{
 			if (this.target)
@@ -48,7 +48,7 @@ namespace EpicToonFX
 			}
 		}
 
-		// Token: 0x060059AE RID: 22958 RVA: 0x0000411E File Offset: 0x0000231E
+		// Token: 0x06004F8F RID: 20367 RVA: 0x00003117 File Offset: 0x00001317
 		public static float ClampAngle(float angle, float min, float max)
 		{
 			if (angle < -360f)
@@ -62,43 +62,43 @@ namespace EpicToonFX
 			return Mathf.Clamp(angle, min, max);
 		}
 
-		// Token: 0x040058F5 RID: 22773
+		// Token: 0x04004E81 RID: 20097
 		public Transform target;
 
-		// Token: 0x040058F6 RID: 22774
+		// Token: 0x04004E82 RID: 20098
 		public float distance = 5f;
 
-		// Token: 0x040058F7 RID: 22775
+		// Token: 0x04004E83 RID: 20099
 		public float xSpeed = 120f;
 
-		// Token: 0x040058F8 RID: 22776
+		// Token: 0x04004E84 RID: 20100
 		public float ySpeed = 120f;
 
-		// Token: 0x040058F9 RID: 22777
+		// Token: 0x04004E85 RID: 20101
 		public float yMinLimit = -20f;
 
-		// Token: 0x040058FA RID: 22778
+		// Token: 0x04004E86 RID: 20102
 		public float yMaxLimit = 80f;
 
-		// Token: 0x040058FB RID: 22779
+		// Token: 0x04004E87 RID: 20103
 		public float distanceMin = 0.5f;
 
-		// Token: 0x040058FC RID: 22780
+		// Token: 0x04004E88 RID: 20104
 		public float distanceMax = 15f;
 
-		// Token: 0x040058FD RID: 22781
+		// Token: 0x04004E89 RID: 20105
 		public float smoothTime = 2f;
 
-		// Token: 0x040058FE RID: 22782
+		// Token: 0x04004E8A RID: 20106
 		private float rotationYAxis;
 
-		// Token: 0x040058FF RID: 22783
+		// Token: 0x04004E8B RID: 20107
 		private float rotationXAxis;
 
-		// Token: 0x04005900 RID: 22784
+		// Token: 0x04004E8C RID: 20108
 		private float velocityX;
 
-		// Token: 0x04005901 RID: 22785
+		// Token: 0x04004E8D RID: 20109
 		private float velocityY;
 	}
 }

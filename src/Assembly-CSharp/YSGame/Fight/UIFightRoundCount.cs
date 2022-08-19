@@ -7,17 +7,17 @@ using UnityEngine.UI;
 
 namespace YSGame.Fight
 {
-	// Token: 0x02000E06 RID: 3590
+	// Token: 0x02000AC8 RID: 2760
 	public class UIFightRoundCount : MonoBehaviour
 	{
-		// Token: 0x060056B3 RID: 22195 RVA: 0x0003DF71 File Offset: 0x0003C171
+		// Token: 0x06004D64 RID: 19812 RVA: 0x0021149F File Offset: 0x0020F69F
 		private void Awake()
 		{
 			this.rootRT = base.GetComponent<RectTransform>();
 			this.moveRT = this.RoundCountBG.GetComponent<RectTransform>();
 		}
 
-		// Token: 0x060056B4 RID: 22196 RVA: 0x00241844 File Offset: 0x0023FA44
+		// Token: 0x06004D65 RID: 19813 RVA: 0x002114C0 File Offset: 0x0020F6C0
 		public void ShowRuond(int i)
 		{
 			if (RoundManager.TuPoTypeList.Contains(Tools.instance.monstarMag.FightType))
@@ -50,25 +50,25 @@ namespace YSGame.Fight
 			}
 		}
 
-		// Token: 0x0400565D RID: 22109
+		// Token: 0x04004C83 RID: 19587
 		public Image RoundCountBG;
 
-		// Token: 0x0400565E RID: 22110
+		// Token: 0x04004C84 RID: 19588
 		public Text RoundCountText;
 
-		// Token: 0x0400565F RID: 22111
+		// Token: 0x04004C85 RID: 19589
 		private bool nowMoving;
 
-		// Token: 0x04005660 RID: 22112
+		// Token: 0x04004C86 RID: 19590
 		private RectTransform moveRT;
 
-		// Token: 0x04005661 RID: 22113
+		// Token: 0x04004C87 RID: 19591
 		private RectTransform rootRT;
 
-		// Token: 0x04005662 RID: 22114
+		// Token: 0x04004C88 RID: 19592
 		private float tweenTime = 0.5f;
 
-		// Token: 0x04005663 RID: 22115
+		// Token: 0x04004C89 RID: 19593
 		private float moveOffset = 1f;
 	}
 }

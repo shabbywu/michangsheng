@@ -3,10 +3,10 @@ using UnityEngine;
 
 namespace GUIPackage
 {
-	// Token: 0x02000D96 RID: 3478
+	// Token: 0x02000A6A RID: 2666
 	public class Skill_Up : MonoBehaviour
 	{
-		// Token: 0x060053F8 RID: 21496 RVA: 0x0003C00C File Offset: 0x0003A20C
+		// Token: 0x06004AEE RID: 19182 RVA: 0x001FE42D File Offset: 0x001FC62D
 		private void OnPress()
 		{
 			if (Input.GetMouseButtonDown(0))

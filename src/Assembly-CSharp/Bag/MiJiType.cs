@@ -2,18 +2,18 @@
 
 namespace Bag
 {
-	// Token: 0x02000D36 RID: 3382
+	// Token: 0x020009AE RID: 2478
 	public enum MiJiType
 	{
-		// Token: 0x040051B9 RID: 20921
+		// Token: 0x040046B7 RID: 18103
 		技能 = 1,
-		// Token: 0x040051BA RID: 20922
+		// Token: 0x040046B8 RID: 18104
 		功法,
-		// Token: 0x040051BB RID: 20923
+		// Token: 0x040046B9 RID: 18105
 		丹方,
-		// Token: 0x040051BC RID: 20924
+		// Token: 0x040046BA RID: 18106
 		书籍1,
-		// Token: 0x040051BD RID: 20925
+		// Token: 0x040046BB RID: 18107
 		书籍2
 	}
 }

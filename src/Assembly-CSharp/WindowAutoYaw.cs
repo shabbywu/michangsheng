@@ -1,17 +1,17 @@
 ﻿using System;
 using UnityEngine;
 
-// Token: 0x0200006A RID: 106
+// Token: 0x02000051 RID: 81
 [AddComponentMenu("NGUI/Examples/Window Auto-Yaw")]
 public class WindowAutoYaw : MonoBehaviour
 {
-	// Token: 0x060004C9 RID: 1225 RVA: 0x00008320 File Offset: 0x00006520
+	// Token: 0x0600047B RID: 1147 RVA: 0x00018DCB File Offset: 0x00016FCB
 	private void OnDisable()
 	{
 		this.mTrans.localRotation = Quaternion.identity;
 	}
 
-	// Token: 0x060004CA RID: 1226 RVA: 0x00008332 File Offset: 0x00006532
+	// Token: 0x0600047C RID: 1148 RVA: 0x00018DDD File Offset: 0x00016FDD
 	private void OnEnable()
 	{
 		if (this.uiCamera == null)
@@ -21,7 +21,7 @@ public class WindowAutoYaw : MonoBehaviour
 		this.mTrans = base.transform;
 	}
 
-	// Token: 0x060004CB RID: 1227 RVA: 0x00070020 File Offset: 0x0006E220
+	// Token: 0x0600047D RID: 1149 RVA: 0x00018E10 File Offset: 0x00017010
 	private void Update()
 	{
 		if (this.uiCamera != null)
@@ -31,15 +31,15 @@ public class WindowAutoYaw : MonoBehaviour
 		}
 	}
 
-	// Token: 0x0400031F RID: 799
+	// Token: 0x040002AC RID: 684
 	public int updateOrder;
 
-	// Token: 0x04000320 RID: 800
+	// Token: 0x040002AD RID: 685
 	public Camera uiCamera;
 
-	// Token: 0x04000321 RID: 801
+	// Token: 0x040002AE RID: 686
 	public float yawAmount = 20f;
 
-	// Token: 0x04000322 RID: 802
+	// Token: 0x040002AF RID: 687
 	private Transform mTrans;
 }

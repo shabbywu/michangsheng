@@ -4,12 +4,12 @@ using UnityEngine.SceneManagement;
 
 namespace Fungus
 {
-	// Token: 0x0200144A RID: 5194
+	// Token: 0x02000F97 RID: 3991
 	[CommandInfo("YSTools", "OpenLunDao", "加载论道场景", 0)]
 	[AddComponentMenu("")]
 	public class OpenLunDao : Command
 	{
-		// Token: 0x06007D73 RID: 32115 RVA: 0x002C6764 File Offset: 0x002C4964
+		// Token: 0x06006F8C RID: 28556 RVA: 0x002A7104 File Offset: 0x002A5304
 		public override void OnEnter()
 		{
 			Tools.instance.FinalScene = SceneManager.GetActiveScene().name;
@@ -23,18 +23,18 @@ namespace Fungus
 			this.Continue();
 		}
 
-		// Token: 0x06007D74 RID: 32116 RVA: 0x000113CF File Offset: 0x0000F5CF
+		// Token: 0x06006F8D RID: 28557 RVA: 0x0005E228 File Offset: 0x0005C428
 		public override Color GetButtonColor()
 		{
 			return new Color32(184, 210, 235, byte.MaxValue);
 		}
 
-		// Token: 0x06007D75 RID: 32117 RVA: 0x000042DD File Offset: 0x000024DD
+		// Token: 0x06006F8E RID: 28558 RVA: 0x00004095 File Offset: 0x00002295
 		public override void OnReset()
 		{
 		}
 
-		// Token: 0x04006AE4 RID: 27364
+		// Token: 0x04005C15 RID: 23573
 		[Tooltip("npcId")]
 		[VariableProperty(new Type[]
 		{
@@ -43,7 +43,7 @@ namespace Fungus
 		[SerializeField]
 		protected IntegerVariable npcId;
 
-		// Token: 0x04006AE5 RID: 27365
+		// Token: 0x04005C16 RID: 23574
 		[Tooltip("是否随机论题")]
 		[VariableProperty(new Type[]
 		{
@@ -52,7 +52,7 @@ namespace Fungus
 		[SerializeField]
 		protected BooleanVariable isSuiJiLunTi;
 
-		// Token: 0x04006AE6 RID: 27366
+		// Token: 0x04005C17 RID: 23575
 		[Tooltip("随机论题数目")]
 		[VariableProperty(new Type[]
 		{

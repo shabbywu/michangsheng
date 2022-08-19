@@ -5,10 +5,10 @@ using MoonSharp.Interpreter.Compatibility;
 
 namespace MoonSharp.Interpreter.CoreLib.IO
 {
-	// Token: 0x020011AB RID: 4523
+	// Token: 0x02000D89 RID: 3465
 	internal abstract class FileUserDataBase : RefIdObject
 	{
-		// Token: 0x06006EAD RID: 28333 RVA: 0x0029F49C File Offset: 0x0029D69C
+		// Token: 0x0600627F RID: 25215 RVA: 0x002794D0 File Offset: 0x002776D0
 		public DynValue lines(ScriptExecutionContext executionContext, CallbackArguments args)
 		{
 			List<DynValue> list = new List<DynValue>();
@@ -23,7 +23,7 @@ namespace MoonSharp.Interpreter.CoreLib.IO
 			select s);
 		}
 
-		// Token: 0x06006EAE RID: 28334 RVA: 0x0029F4FC File Offset: 0x0029D6FC
+		// Token: 0x06006280 RID: 25216 RVA: 0x00279530 File Offset: 0x00277730
 		public DynValue read(ScriptExecutionContext executionContext, CallbackArguments args)
 		{
 			if (args.Count != 0)
@@ -102,7 +102,7 @@ namespace MoonSharp.Interpreter.CoreLib.IO
 			return DynValue.NewString(text);
 		}
 
-		// Token: 0x06006EAF RID: 28335 RVA: 0x0029F6C4 File Offset: 0x0029D8C4
+		// Token: 0x06006281 RID: 25217 RVA: 0x002796F8 File Offset: 0x002778F8
 		public DynValue write(ScriptExecutionContext executionContext, CallbackArguments args)
 		{
 			DynValue result;
@@ -130,7 +130,7 @@ namespace MoonSharp.Interpreter.CoreLib.IO
 			return result;
 		}
 
-		// Token: 0x06006EB0 RID: 28336 RVA: 0x0029F74C File Offset: 0x0029D94C
+		// Token: 0x06006282 RID: 25218 RVA: 0x00279780 File Offset: 0x00277980
 		public DynValue close(ScriptExecutionContext executionContext, CallbackArguments args)
 		{
 			DynValue result;
@@ -165,7 +165,7 @@ namespace MoonSharp.Interpreter.CoreLib.IO
 			return result;
 		}
 
-		// Token: 0x06006EB1 RID: 28337 RVA: 0x0029F7D0 File Offset: 0x0029D9D0
+		// Token: 0x06006283 RID: 25219 RVA: 0x00279804 File Offset: 0x00277A04
 		private double? ReadNumber()
 		{
 			string text = "";
@@ -194,7 +194,7 @@ namespace MoonSharp.Interpreter.CoreLib.IO
 			return null;
 		}
 
-		// Token: 0x06006EB2 RID: 28338 RVA: 0x0029F840 File Offset: 0x0029DA40
+		// Token: 0x06006284 RID: 25220 RVA: 0x00279874 File Offset: 0x00277A74
 		private bool IsNumericChar(char c, string numAsFar)
 		{
 			if (char.IsDigit(c))
@@ -212,40 +212,40 @@ namespace MoonSharp.Interpreter.CoreLib.IO
 			return (c == 'E' || c == 'e') && !Framework.Do.StringContainsChar(numAsFar, 'E') && !Framework.Do.StringContainsChar(numAsFar, 'e');
 		}
 
-		// Token: 0x06006EB3 RID: 28339
+		// Token: 0x06006285 RID: 25221
 		protected abstract bool Eof();
 
-		// Token: 0x06006EB4 RID: 28340
+		// Token: 0x06006286 RID: 25222
 		protected abstract string ReadLine();
 
-		// Token: 0x06006EB5 RID: 28341
+		// Token: 0x06006287 RID: 25223
 		protected abstract string ReadBuffer(int p);
 
-		// Token: 0x06006EB6 RID: 28342
+		// Token: 0x06006288 RID: 25224
 		protected abstract string ReadToEnd();
 
-		// Token: 0x06006EB7 RID: 28343
+		// Token: 0x06006289 RID: 25225
 		protected abstract char Peek();
 
-		// Token: 0x06006EB8 RID: 28344
+		// Token: 0x0600628A RID: 25226
 		protected abstract void Write(string value);
 
-		// Token: 0x06006EB9 RID: 28345
+		// Token: 0x0600628B RID: 25227
 		protected internal abstract bool isopen();
 
-		// Token: 0x06006EBA RID: 28346
+		// Token: 0x0600628C RID: 25228
 		protected abstract string Close();
 
-		// Token: 0x06006EBB RID: 28347
+		// Token: 0x0600628D RID: 25229
 		public abstract bool flush();
 
-		// Token: 0x06006EBC RID: 28348
+		// Token: 0x0600628E RID: 25230
 		public abstract long seek(string whence, long offset);
 
-		// Token: 0x06006EBD RID: 28349
+		// Token: 0x0600628F RID: 25231
 		public abstract bool setvbuf(string mode);
 
-		// Token: 0x06006EBE RID: 28350 RVA: 0x0004B521 File Offset: 0x00049721
+		// Token: 0x06006290 RID: 25232 RVA: 0x002798DD File Offset: 0x00277ADD
 		public override string ToString()
 		{
 			if (this.isopen())

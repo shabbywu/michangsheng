@@ -2,13 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-// Token: 0x02000118 RID: 280
+// Token: 0x020000AD RID: 173
 [ExecuteInEditMode]
 [AddComponentMenu("NGUI/UI/Root")]
 public class UIRoot : MonoBehaviour
 {
-	// Token: 0x170001BF RID: 447
-	// (get) Token: 0x06000B08 RID: 2824 RVA: 0x000904A4 File Offset: 0x0008E6A4
+	// Token: 0x170001A8 RID: 424
+	// (get) Token: 0x06000A2C RID: 2604 RVA: 0x0003DA78 File Offset: 0x0003BC78
 	public int activeHeight
 	{
 		get
@@ -38,8 +38,8 @@ public class UIRoot : MonoBehaviour
 		}
 	}
 
-	// Token: 0x170001C0 RID: 448
-	// (get) Token: 0x06000B09 RID: 2825 RVA: 0x0000D1A4 File Offset: 0x0000B3A4
+	// Token: 0x170001A9 RID: 425
+	// (get) Token: 0x06000A2D RID: 2605 RVA: 0x0003DB40 File Offset: 0x0003BD40
 	public float pixelSizeAdjustment
 	{
 		get
@@ -48,7 +48,7 @@ public class UIRoot : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000B0A RID: 2826 RVA: 0x0009056C File Offset: 0x0008E76C
+	// Token: 0x06000A2E RID: 2606 RVA: 0x0003DB58 File Offset: 0x0003BD58
 	public static float GetPixelSizeAdjustment(GameObject go)
 	{
 		UIRoot uiroot = NGUITools.FindInParents<UIRoot>(go);
@@ -59,7 +59,7 @@ public class UIRoot : MonoBehaviour
 		return uiroot.pixelSizeAdjustment;
 	}
 
-	// Token: 0x06000B0B RID: 2827 RVA: 0x00090598 File Offset: 0x0008E798
+	// Token: 0x06000A2F RID: 2607 RVA: 0x0003DB84 File Offset: 0x0003BD84
 	public float GetPixelSizeAdjustment(int height)
 	{
 		height = Mathf.Max(2, height);
@@ -78,25 +78,25 @@ public class UIRoot : MonoBehaviour
 		return 1f;
 	}
 
-	// Token: 0x06000B0C RID: 2828 RVA: 0x0000D1BB File Offset: 0x0000B3BB
+	// Token: 0x06000A30 RID: 2608 RVA: 0x0003DBDB File Offset: 0x0003BDDB
 	protected virtual void Awake()
 	{
 		this.mTrans = base.transform;
 	}
 
-	// Token: 0x06000B0D RID: 2829 RVA: 0x0000D1C9 File Offset: 0x0000B3C9
+	// Token: 0x06000A31 RID: 2609 RVA: 0x0003DBE9 File Offset: 0x0003BDE9
 	protected virtual void OnEnable()
 	{
 		UIRoot.list.Add(this);
 	}
 
-	// Token: 0x06000B0E RID: 2830 RVA: 0x0000D1D6 File Offset: 0x0000B3D6
+	// Token: 0x06000A32 RID: 2610 RVA: 0x0003DBF6 File Offset: 0x0003BDF6
 	protected virtual void OnDisable()
 	{
 		UIRoot.list.Remove(this);
 	}
 
-	// Token: 0x06000B0F RID: 2831 RVA: 0x000905F0 File Offset: 0x0008E7F0
+	// Token: 0x06000A33 RID: 2611 RVA: 0x0003DC04 File Offset: 0x0003BE04
 	protected virtual void Start()
 	{
 		UIOrthoCamera componentInChildren = base.GetComponentInChildren<UIOrthoCamera>();
@@ -117,7 +117,7 @@ public class UIRoot : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000B10 RID: 2832 RVA: 0x00090648 File Offset: 0x0008E848
+	// Token: 0x06000A34 RID: 2612 RVA: 0x0003DC5C File Offset: 0x0003BE5C
 	private void Update()
 	{
 		if (this.mTrans != null)
@@ -135,7 +135,7 @@ public class UIRoot : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000B11 RID: 2833 RVA: 0x000906D8 File Offset: 0x0008E8D8
+	// Token: 0x06000A35 RID: 2613 RVA: 0x0003DCEC File Offset: 0x0003BEEC
 	public static void Broadcast(string funcName)
 	{
 		int i = 0;
@@ -151,7 +151,7 @@ public class UIRoot : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000B12 RID: 2834 RVA: 0x0009071C File Offset: 0x0008E91C
+	// Token: 0x06000A36 RID: 2614 RVA: 0x0003DD30 File Offset: 0x0003BF30
 	public static void Broadcast(string funcName, object param)
 	{
 		if (param == null)
@@ -172,38 +172,38 @@ public class UIRoot : MonoBehaviour
 		}
 	}
 
-	// Token: 0x040007CA RID: 1994
+	// Token: 0x04000637 RID: 1591
 	public static List<UIRoot> list = new List<UIRoot>();
 
-	// Token: 0x040007CB RID: 1995
+	// Token: 0x04000638 RID: 1592
 	public UIRoot.Scaling scalingStyle;
 
-	// Token: 0x040007CC RID: 1996
+	// Token: 0x04000639 RID: 1593
 	public int manualHeight = 720;
 
-	// Token: 0x040007CD RID: 1997
+	// Token: 0x0400063A RID: 1594
 	public int minimumHeight = 320;
 
-	// Token: 0x040007CE RID: 1998
+	// Token: 0x0400063B RID: 1595
 	public int maximumHeight = 1536;
 
-	// Token: 0x040007CF RID: 1999
+	// Token: 0x0400063C RID: 1596
 	public bool adjustByDPI;
 
-	// Token: 0x040007D0 RID: 2000
+	// Token: 0x0400063D RID: 1597
 	public bool shrinkPortraitUI;
 
-	// Token: 0x040007D1 RID: 2001
+	// Token: 0x0400063E RID: 1598
 	private Transform mTrans;
 
-	// Token: 0x02000119 RID: 281
+	// Token: 0x0200122F RID: 4655
 	public enum Scaling
 	{
-		// Token: 0x040007D3 RID: 2003
+		// Token: 0x040064E3 RID: 25827
 		PixelPerfect,
-		// Token: 0x040007D4 RID: 2004
+		// Token: 0x040064E4 RID: 25828
 		FixedSize,
-		// Token: 0x040007D5 RID: 2005
+		// Token: 0x040064E5 RID: 25829
 		FixedSizeOnMobiles
 	}
 }

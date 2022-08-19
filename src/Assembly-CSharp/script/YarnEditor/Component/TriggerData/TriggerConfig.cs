@@ -4,11 +4,11 @@ using UnityEngine;
 
 namespace script.YarnEditor.Component.TriggerData
 {
-	// Token: 0x02000AB0 RID: 2736
+	// Token: 0x020009C9 RID: 2505
 	[Serializable]
 	public class TriggerConfig
 	{
-		// Token: 0x06004618 RID: 17944 RVA: 0x001DE9DC File Offset: 0x001DCBDC
+		// Token: 0x060045BC RID: 17852 RVA: 0x001D8BC8 File Offset: 0x001D6DC8
 		public bool CanTrigger(string value)
 		{
 			if (this.IsNull)
@@ -61,31 +61,31 @@ namespace script.YarnEditor.Component.TriggerData
 			return (!(this.ValueId != "") && this.ValueId.Length <= 0) || !(StoryManager.Inst.GetGoalValue(this.ValueId) != value);
 		}
 
-		// Token: 0x04003E43 RID: 15939
+		// Token: 0x04004732 RID: 18226
 		public bool IsNull = true;
 
-		// Token: 0x04003E44 RID: 15940
+		// Token: 0x04004733 RID: 18227
 		public int Type;
 
-		// Token: 0x04003E45 RID: 15941
+		// Token: 0x04004734 RID: 18228
 		public bool IsValue;
 
-		// Token: 0x04003E46 RID: 15942
+		// Token: 0x04004735 RID: 18229
 		public string NpcId = "";
 
-		// Token: 0x04003E47 RID: 15943
+		// Token: 0x04004736 RID: 18230
 		public string SceneName = "";
 
-		// Token: 0x04003E48 RID: 15944
+		// Token: 0x04004737 RID: 18231
 		public string Path;
 
-		// Token: 0x04003E49 RID: 15945
+		// Token: 0x04004738 RID: 18232
 		public string ModPath;
 
-		// Token: 0x04003E4A RID: 15946
+		// Token: 0x04004739 RID: 18233
 		public string ValueId;
 
-		// Token: 0x04003E4B RID: 15947
+		// Token: 0x0400473A RID: 18234
 		public string Value;
 	}
 }

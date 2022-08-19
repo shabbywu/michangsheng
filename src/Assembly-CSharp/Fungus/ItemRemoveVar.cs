@@ -3,12 +3,12 @@ using UnityEngine;
 
 namespace Fungus
 {
-	// Token: 0x0200143C RID: 5180
+	// Token: 0x02000F88 RID: 3976
 	[CommandInfo("YSTools", "ItemRemoveVar", "移除物品", 0)]
 	[AddComponentMenu("")]
 	public class ItemRemoveVar : Command
 	{
-		// Token: 0x06007D3A RID: 32058 RVA: 0x0001CA4F File Offset: 0x0001AC4F
+		// Token: 0x06006F50 RID: 28496 RVA: 0x000E111A File Offset: 0x000DF31A
 		public void setHasVariable(string name, int num, Flowchart flowchart)
 		{
 			if (flowchart.HasVariable(name))
@@ -17,20 +17,27 @@ namespace Fungus
 			}
 		}
 
-		// Token: 0x06007D3B RID: 32059 RVA: 0x00054AF7 File Offset: 0x00052CF7
+		// Token: 0x06006F51 RID: 28497 RVA: 0x002A6BE0 File Offset: 0x002A4DE0
 		public override void OnEnter()
 		{
-			Tools.instance.RemoveItem(this.ItemID.Value, this.ItemRemoveNum.Value);
+			if (this.ItemID.Value == 1 || this.ItemID.Value == 117 || this.ItemID.Value == 218 || this.ItemID.Value == 304)
+			{
+				Tools.instance.RemoveTieJian(this.ItemID.Value);
+			}
+			else
+			{
+				Tools.instance.RemoveItem(this.ItemID.Value, this.ItemRemoveNum.Value);
+			}
 			this.Continue();
 		}
 
-		// Token: 0x06007D3C RID: 32060 RVA: 0x000113CF File Offset: 0x0000F5CF
+		// Token: 0x06006F52 RID: 28498 RVA: 0x0005E228 File Offset: 0x0005C428
 		public override Color GetButtonColor()
 		{
 			return new Color32(184, 210, 235, byte.MaxValue);
 		}
 
-		// Token: 0x04006AD3 RID: 27347
+		// Token: 0x04005C04 RID: 23556
 		[Tooltip("需要移除的物品ID")]
 		[VariableProperty(new Type[]
 		{
@@ -39,7 +46,7 @@ namespace Fungus
 		[SerializeField]
 		protected IntegerVariable ItemID;
 
-		// Token: 0x04006AD4 RID: 27348
+		// Token: 0x04005C05 RID: 23557
 		[Tooltip("需要移除的物品数量")]
 		[VariableProperty(new Type[]
 		{

@@ -2,20 +2,20 @@
 
 namespace MoonSharp.Interpreter.Interop
 {
-	// Token: 0x020010FB RID: 4347
+	// Token: 0x02000D17 RID: 3351
 	public struct ReflectionSpecialName
 	{
-		// Token: 0x17000972 RID: 2418
-		// (get) Token: 0x060068DD RID: 26845 RVA: 0x00047E19 File Offset: 0x00046019
-		// (set) Token: 0x060068DE RID: 26846 RVA: 0x00047E21 File Offset: 0x00046021
+		// Token: 0x17000715 RID: 1813
+		// (get) Token: 0x06005DAE RID: 23982 RVA: 0x00263547 File Offset: 0x00261747
+		// (set) Token: 0x06005DAF RID: 23983 RVA: 0x0026354F File Offset: 0x0026174F
 		public ReflectionSpecialNameType Type { get; private set; }
 
-		// Token: 0x17000973 RID: 2419
-		// (get) Token: 0x060068DF RID: 26847 RVA: 0x00047E2A File Offset: 0x0004602A
-		// (set) Token: 0x060068E0 RID: 26848 RVA: 0x00047E32 File Offset: 0x00046032
+		// Token: 0x17000716 RID: 1814
+		// (get) Token: 0x06005DB0 RID: 23984 RVA: 0x00263558 File Offset: 0x00261758
+		// (set) Token: 0x06005DB1 RID: 23985 RVA: 0x00263560 File Offset: 0x00261760
 		public string Argument { get; private set; }
 
-		// Token: 0x060068E1 RID: 26849 RVA: 0x00047E3B File Offset: 0x0004603B
+		// Token: 0x06005DB2 RID: 23986 RVA: 0x00263569 File Offset: 0x00261769
 		public ReflectionSpecialName(ReflectionSpecialNameType type, string argument = null)
 		{
 			this = default(ReflectionSpecialName);
@@ -23,7 +23,7 @@ namespace MoonSharp.Interpreter.Interop
 			this.Argument = argument;
 		}
 
-		// Token: 0x060068E2 RID: 26850 RVA: 0x0028C144 File Offset: 0x0028A344
+		// Token: 0x06005DB3 RID: 23987 RVA: 0x00263580 File Offset: 0x00261780
 		public ReflectionSpecialName(string name)
 		{
 			this = default(ReflectionSpecialName);

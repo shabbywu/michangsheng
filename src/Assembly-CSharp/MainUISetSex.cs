@@ -1,7 +1,7 @@
 ﻿using System;
 using UnityEngine;
 
-// Token: 0x020004AA RID: 1194
+// Token: 0x02000339 RID: 825
 public class MainUISetSex : MonoBehaviour
 {
 }

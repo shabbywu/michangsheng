@@ -10,10 +10,10 @@ using WXB;
 
 namespace YSGame.Fight
 {
-	// Token: 0x02000E0A RID: 3594
+	// Token: 0x02000ACB RID: 2763
 	public class UIFightSkillTip : MonoBehaviour
 	{
-		// Token: 0x060056D5 RID: 22229 RVA: 0x00241FC8 File Offset: 0x002401C8
+		// Token: 0x06004D83 RID: 19843 RVA: 0x00211E48 File Offset: 0x00210048
 		public void SetSkill(GUIPackage.Skill skill)
 		{
 			_skillJsonData skillJsonData = _skillJsonData.DataDict[skill.skill_ID];
@@ -102,7 +102,7 @@ namespace YSGame.Fight
 			this.CiZhuiText.gameObject.SetActive(false);
 		}
 
-		// Token: 0x060056D6 RID: 22230 RVA: 0x0024240C File Offset: 0x0024060C
+		// Token: 0x06004D84 RID: 19844 RVA: 0x0021228C File Offset: 0x0021048C
 		public void SetWeapon(GUIPackage.Skill skill, ITEM_INFO weapon)
 		{
 			_skillJsonData skillJsonData = _skillJsonData.DataDict[skill.skill_ID];
@@ -185,7 +185,7 @@ namespace YSGame.Fight
 			this.CiZhuiText.gameObject.SetActive(false);
 		}
 
-		// Token: 0x060056D7 RID: 22231 RVA: 0x00242790 File Offset: 0x00240990
+		// Token: 0x06004D85 RID: 19845 RVA: 0x00212610 File Offset: 0x00210810
 		private static void SetAttackTxt(ref string desstr, int __attack)
 		{
 			string text = desstr.Substring(0, desstr.IndexOf("（"));
@@ -208,34 +208,34 @@ namespace YSGame.Fight
 			}
 		}
 
-		// Token: 0x0400567A RID: 22138
+		// Token: 0x04004C9E RID: 19614
 		public Text SkillNameText;
 
-		// Token: 0x0400567B RID: 22139
+		// Token: 0x04004C9F RID: 19615
 		public Text SkillDescriptionText;
 
-		// Token: 0x0400567C RID: 22140
+		// Token: 0x04004CA0 RID: 19616
 		public Text SkillShuXingText;
 
-		// Token: 0x0400567D RID: 22141
+		// Token: 0x04004CA1 RID: 19617
 		public List<Sprite> CostSprites;
 
-		// Token: 0x0400567E RID: 22142
+		// Token: 0x04004CA2 RID: 19618
 		public List<Image> CostIcons;
 
-		// Token: 0x0400567F RID: 22143
+		// Token: 0x04004CA3 RID: 19619
 		public List<Text> CostTexts;
 
-		// Token: 0x04005680 RID: 22144
+		// Token: 0x04004CA4 RID: 19620
 		public GameObject CostRoot;
 
-		// Token: 0x04005681 RID: 22145
+		// Token: 0x04004CA5 RID: 19621
 		public GameObject CiZhuiHengGang;
 
-		// Token: 0x04005682 RID: 22146
+		// Token: 0x04004CA6 RID: 19622
 		public SymbolText CiZhuiText;
 
-		// Token: 0x04005683 RID: 22147
+		// Token: 0x04004CA7 RID: 19623
 		public Text WeaponCDText;
 	}
 }

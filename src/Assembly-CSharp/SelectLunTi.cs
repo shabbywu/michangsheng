@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
-// Token: 0x0200047F RID: 1151
+// Token: 0x0200031C RID: 796
 public class SelectLunTi : MonoBehaviour
 {
-	// Token: 0x06001EC9 RID: 7881 RVA: 0x00109678 File Offset: 0x00107878
+	// Token: 0x06001B96 RID: 7062 RVA: 0x000C4450 File Offset: 0x000C2650
 	private void Awake()
 	{
 		foreach (JSONObject jsonobject in jsonData.instance.WuDaoAllTypeJson.list)
@@ -19,7 +19,7 @@ public class SelectLunTi : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001ECA RID: 7882 RVA: 0x00109710 File Offset: 0x00107910
+	// Token: 0x06001B97 RID: 7063 RVA: 0x000C44E8 File Offset: 0x000C26E8
 	public void Init()
 	{
 		base.gameObject.SetActive(true);
@@ -32,7 +32,7 @@ public class SelectLunTi : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001ECB RID: 7883 RVA: 0x001097E4 File Offset: 0x001079E4
+	// Token: 0x06001B98 RID: 7064 RVA: 0x000C45BC File Offset: 0x000C27BC
 	public void AddLunTiToList(int id)
 	{
 		if (this.selectLunTiList.Contains(id))
@@ -45,7 +45,7 @@ public class SelectLunTi : MonoBehaviour
 		this.startLunDaoCell.CanClick = true;
 	}
 
-	// Token: 0x06001ECC RID: 7884 RVA: 0x00109850 File Offset: 0x00107A50
+	// Token: 0x06001B99 RID: 7065 RVA: 0x000C4628 File Offset: 0x000C2828
 	public void RemoveLunTiByList(int id)
 	{
 		if (!this.selectLunTiList.Contains(id))
@@ -61,25 +61,25 @@ public class SelectLunTi : MonoBehaviour
 		}
 	}
 
-	// Token: 0x04001A33 RID: 6707
+	// Token: 0x04001618 RID: 5656
 	[SerializeField]
 	private GameObject lunTiCell;
 
-	// Token: 0x04001A34 RID: 6708
+	// Token: 0x04001619 RID: 5657
 	[SerializeField]
 	private List<Sprite> selectSprites;
 
-	// Token: 0x04001A35 RID: 6709
+	// Token: 0x0400161A RID: 5658
 	public List<int> selectLunTiList;
 
-	// Token: 0x04001A36 RID: 6710
+	// Token: 0x0400161B RID: 5659
 	[SerializeField]
 	private List<Sprite> startBtnSprites;
 
-	// Token: 0x04001A37 RID: 6711
+	// Token: 0x0400161C RID: 5660
 	[SerializeField]
 	private StartLunDaoCell startLunDaoCell;
 
-	// Token: 0x04001A38 RID: 6712
+	// Token: 0x0400161D RID: 5661
 	public Dictionary<int, string> lunTiDictionary = new Dictionary<int, string>();
 }

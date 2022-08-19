@@ -5,10 +5,10 @@ using UnityEngine.UI;
 
 namespace GUIPackage
 {
-	// Token: 0x02000D8A RID: 3466
+	// Token: 0x02000A61 RID: 2657
 	public class KeyCell : MonoBehaviour
 	{
-		// Token: 0x06005398 RID: 21400 RVA: 0x0003BC49 File Offset: 0x00039E49
+		// Token: 0x06004A96 RID: 19094 RVA: 0x001FB334 File Offset: 0x001F9534
 		public void longPress()
 		{
 			if (this.IsPress)
@@ -25,7 +25,7 @@ namespace GUIPackage
 			}
 		}
 
-		// Token: 0x06005399 RID: 21401 RVA: 0x0022D6E8 File Offset: 0x0022B8E8
+		// Token: 0x06004A97 RID: 19095 RVA: 0x001FB370 File Offset: 0x001F9570
 		private void Start()
 		{
 			this.itemDatebase = jsonData.instance.gameObject.GetComponent<ItemDatebase>();
@@ -38,7 +38,7 @@ namespace GUIPackage
 			this.cdFill = this.Icon.transform.GetChild(0).GetComponent<UISprite>();
 		}
 
-		// Token: 0x0600539A RID: 21402 RVA: 0x0022D764 File Offset: 0x0022B964
+		// Token: 0x06004A98 RID: 19096 RVA: 0x001FB3EC File Offset: 0x001F95EC
 		private void Update()
 		{
 			try
@@ -60,7 +60,7 @@ namespace GUIPackage
 			}
 		}
 
-		// Token: 0x0600539B RID: 21403 RVA: 0x0022D7D4 File Offset: 0x0022B9D4
+		// Token: 0x06004A99 RID: 19097 RVA: 0x001FB45C File Offset: 0x001F965C
 		protected void Icon_CoolDown()
 		{
 			if (this.keySkill.skill_ID != -1)
@@ -117,7 +117,7 @@ namespace GUIPackage
 			}
 		}
 
-		// Token: 0x0600539C RID: 21404 RVA: 0x0022DAAC File Offset: 0x0022BCAC
+		// Token: 0x06004A9A RID: 19098 RVA: 0x001FB734 File Offset: 0x001F9934
 		public void showLianJiHightLight()
 		{
 			if (this.keySkill.skill_ID == -1)
@@ -148,7 +148,7 @@ namespace GUIPackage
 			this.Icon.transform.GetChild(2).gameObject.SetActive(active);
 		}
 
-		// Token: 0x0600539D RID: 21405 RVA: 0x0022DBCC File Offset: 0x0022BDCC
+		// Token: 0x06004A9B RID: 19099 RVA: 0x001FB854 File Offset: 0x001F9A54
 		protected void UesKey()
 		{
 			if (!this.hasKeyCell)
@@ -169,7 +169,7 @@ namespace GUIPackage
 			}
 		}
 
-		// Token: 0x0600539E RID: 21406 RVA: 0x0022DC58 File Offset: 0x0022BE58
+		// Token: 0x06004A9C RID: 19100 RVA: 0x001FB8E0 File Offset: 0x001F9AE0
 		protected void Show_Date()
 		{
 			if (this.keyItem.itemIcon != null)
@@ -203,7 +203,7 @@ namespace GUIPackage
 			this.Num.GetComponent<UILabel>().text = null;
 		}
 
-		// Token: 0x0600539F RID: 21407 RVA: 0x0022DE14 File Offset: 0x0022C014
+		// Token: 0x06004A9D RID: 19101 RVA: 0x001FBA9C File Offset: 0x001F9C9C
 		protected void OnHover(bool isOver)
 		{
 			if (this.keySkill.skill_ID != -1)
@@ -229,7 +229,7 @@ namespace GUIPackage
 			}
 		}
 
-		// Token: 0x060053A0 RID: 21408 RVA: 0x0022DED0 File Offset: 0x0022C0D0
+		// Token: 0x06004A9E RID: 19102 RVA: 0x001FBB58 File Offset: 0x001F9D58
 		protected void OnPress()
 		{
 			if (Input.GetMouseButtonDown(0) && Tools.instance.getPlayer().state == 3 && this.keySkill.skill_ID != -1)
@@ -241,55 +241,55 @@ namespace GUIPackage
 			}
 		}
 
-		// Token: 0x04005349 RID: 21321
+		// Token: 0x040049B8 RID: 18872
 		public GameObject Icon;
 
-		// Token: 0x0400534A RID: 21322
+		// Token: 0x040049B9 RID: 18873
 		public GameObject Num;
 
-		// Token: 0x0400534B RID: 21323
+		// Token: 0x040049BA RID: 18874
 		public item keyItem;
 
-		// Token: 0x0400534C RID: 21324
+		// Token: 0x040049BB RID: 18875
 		public Skill keySkill;
 
-		// Token: 0x0400534D RID: 21325
+		// Token: 0x040049BC RID: 18876
 		public int KeyItemID;
 
-		// Token: 0x0400534E RID: 21326
+		// Token: 0x040049BD RID: 18877
 		public int KeyCallType;
 
-		// Token: 0x0400534F RID: 21327
+		// Token: 0x040049BE RID: 18878
 		public Text SkillName;
 
-		// Token: 0x04005350 RID: 21328
+		// Token: 0x040049BF RID: 18879
 		public Image IconImage;
 
-		// Token: 0x04005351 RID: 21329
+		// Token: 0x040049C0 RID: 18880
 		private ItemDatebase itemDatebase;
 
-		// Token: 0x04005352 RID: 21330
+		// Token: 0x040049C1 RID: 18881
 		private Avatar avatar;
 
-		// Token: 0x04005353 RID: 21331
+		// Token: 0x040049C2 RID: 18882
 		public ITEM_INFO wepen;
 
-		// Token: 0x04005354 RID: 21332
+		// Token: 0x040049C3 RID: 18883
 		public bool isFight;
 
-		// Token: 0x04005355 RID: 21333
+		// Token: 0x040049C4 RID: 18884
 		public bool hasKeyCell = true;
 
-		// Token: 0x04005356 RID: 21334
+		// Token: 0x040049C5 RID: 18885
 		public float StartPressTime;
 
-		// Token: 0x04005357 RID: 21335
+		// Token: 0x040049C6 RID: 18886
 		public bool IsPress;
 
-		// Token: 0x04005358 RID: 21336
+		// Token: 0x040049C7 RID: 18887
 		private UISprite cdFill;
 
-		// Token: 0x04005359 RID: 21337
+		// Token: 0x040049C8 RID: 18888
 		private bool isException;
 	}
 }

@@ -6,10 +6,10 @@ using UnityEngine;
 
 namespace GUIPackage
 {
-	// Token: 0x02000D93 RID: 3475
+	// Token: 0x02000A67 RID: 2663
 	public class Singleton : MonoBehaviour, IESCClose
 	{
-		// Token: 0x060053CF RID: 21455 RVA: 0x0022E968 File Offset: 0x0022CB68
+		// Token: 0x06004AC5 RID: 19141 RVA: 0x001FC7E4 File Offset: 0x001FA9E4
 		private void Awake()
 		{
 			Singleton.ints = this;
@@ -53,7 +53,7 @@ namespace GUIPackage
 			}
 		}
 
-		// Token: 0x060053D0 RID: 21456 RVA: 0x0022EB0C File Offset: 0x0022CD0C
+		// Token: 0x06004AC6 RID: 19142 RVA: 0x001FC988 File Offset: 0x001FAB88
 		public void ShowSeaMapUI()
 		{
 			if (this.seaMapUI == null)
@@ -65,7 +65,7 @@ namespace GUIPackage
 			Tools.canClickFlag = false;
 		}
 
-		// Token: 0x060053D1 RID: 21457 RVA: 0x0022EB60 File Offset: 0x0022CD60
+		// Token: 0x06004AC7 RID: 19143 RVA: 0x001FC9DC File Offset: 0x001FABDC
 		public void getObjComponent<T>(ref T obj, string name)
 		{
 			GameObject gameObject = GameObject.Find(name);
@@ -75,7 +75,7 @@ namespace GUIPackage
 			}
 		}
 
-		// Token: 0x060053D2 RID: 21458 RVA: 0x0022EB88 File Offset: 0x0022CD88
+		// Token: 0x06004AC8 RID: 19144 RVA: 0x001FCA04 File Offset: 0x001FAC04
 		public void showRootUI()
 		{
 			LingGanMag.inst.UpdateData();
@@ -86,13 +86,13 @@ namespace GUIPackage
 			ESCCloseManager.Inst.RegisterClose(this);
 		}
 
-		// Token: 0x060053D3 RID: 21459 RVA: 0x0003BEE9 File Offset: 0x0003A0E9
+		// Token: 0x06004AC9 RID: 19145 RVA: 0x001FCA7A File Offset: 0x001FAC7A
 		private void OnDestroy()
 		{
 			UINPCJiaoHu.AllShouldHide = false;
 		}
 
-		// Token: 0x060053D4 RID: 21460 RVA: 0x0003BEF1 File Offset: 0x0003A0F1
+		// Token: 0x06004ACA RID: 19146 RVA: 0x001FCA82 File Offset: 0x001FAC82
 		public void ClickTab()
 		{
 			if (SingletonMono<TabUIMag>.Instance != null)
@@ -103,7 +103,7 @@ namespace GUIPackage
 			TabUIMag.OpenTab(0, null);
 		}
 
-		// Token: 0x060053D5 RID: 21461 RVA: 0x0003BF13 File Offset: 0x0003A113
+		// Token: 0x06004ACB RID: 19147 RVA: 0x001FCAA4 File Offset: 0x001FACA4
 		public bool TryEscClose()
 		{
 			if (SingletonMono<TabUIMag>.Instance != null)
@@ -113,7 +113,7 @@ namespace GUIPackage
 			return true;
 		}
 
-		// Token: 0x060053D6 RID: 21462 RVA: 0x0022EC00 File Offset: 0x0022CE00
+		// Token: 0x06004ACC RID: 19148 RVA: 0x001FCAC0 File Offset: 0x001FACC0
 		public void Update()
 		{
 			if (Input.GetKeyUp(9))
@@ -161,67 +161,67 @@ namespace GUIPackage
 			}
 		}
 
-		// Token: 0x0400537F RID: 21375
+		// Token: 0x040049E2 RID: 18914
 		public static Inventory2 inventory;
 
-		// Token: 0x04005380 RID: 21376
+		// Token: 0x040049E3 RID: 18915
 		public static Equip_Manager equip;
 
-		// Token: 0x04005381 RID: 21377
+		// Token: 0x040049E4 RID: 18916
 		public static Store store;
 
-		// Token: 0x04005382 RID: 21378
+		// Token: 0x040049E5 RID: 18917
 		public static Key key;
 
-		// Token: 0x04005383 RID: 21379
+		// Token: 0x040049E6 RID: 18918
 		public static Key key2;
 
-		// Token: 0x04005384 RID: 21380
+		// Token: 0x040049E7 RID: 18919
 		public static Skill_UI skillUI;
 
-		// Token: 0x04005385 RID: 21381
+		// Token: 0x040049E8 RID: 18920
 		public static Skill_UIST skillUI2;
 
-		// Token: 0x04005386 RID: 21382
+		// Token: 0x040049E9 RID: 18921
 		public static Money money;
 
-		// Token: 0x04005387 RID: 21383
+		// Token: 0x040049EA RID: 18922
 		public static UI_Manager UI;
 
-		// Token: 0x04005388 RID: 21384
+		// Token: 0x040049EB RID: 18923
 		public static XiuLian biguan;
 
-		// Token: 0x04005389 RID: 21385
+		// Token: 0x040049EC RID: 18924
 		public static Fader fader;
 
-		// Token: 0x0400538A RID: 21386
+		// Token: 0x040049ED RID: 18925
 		public PaiMaiHang paiMaiHang;
 
-		// Token: 0x0400538B RID: 21387
+		// Token: 0x040049EE RID: 18926
 		public ExchangePlan exchengePlan;
 
-		// Token: 0x0400538C RID: 21388
+		// Token: 0x040049EF RID: 18927
 		public TuJianMag TuJIanPlan;
 
-		// Token: 0x0400538D RID: 21389
+		// Token: 0x040049F0 RID: 18928
 		public static ShopExchenge_UI shopExchenge_UI;
 
-		// Token: 0x0400538E RID: 21390
+		// Token: 0x040049F1 RID: 18929
 		public GameObject Draggable;
 
-		// Token: 0x0400538F RID: 21391
+		// Token: 0x040049F2 RID: 18930
 		public SeaMapUI seaMapUI;
 
-		// Token: 0x04005390 RID: 21392
+		// Token: 0x040049F3 RID: 18931
 		public static Singleton ints;
 
-		// Token: 0x04005391 RID: 21393
+		// Token: 0x040049F4 RID: 18932
 		public static TooltipsBackgroundi ToolTipsBackGround;
 
-		// Token: 0x04005392 RID: 21394
+		// Token: 0x040049F5 RID: 18933
 		private bool OpenDeBug;
 
-		// Token: 0x04005393 RID: 21395
+		// Token: 0x040049F6 RID: 18934
 		private GameObject DebugCanvas;
 	}
 }

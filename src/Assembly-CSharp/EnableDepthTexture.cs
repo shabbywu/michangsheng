@@ -1,28 +1,28 @@
 ﻿using System;
 using UnityEngine;
 
-// Token: 0x02000041 RID: 65
+// Token: 0x0200002E RID: 46
 [ExecuteInEditMode]
 [RequireComponent(typeof(Camera))]
 public class EnableDepthTexture : MonoBehaviour
 {
-	// Token: 0x06000436 RID: 1078 RVA: 0x00007BAD File Offset: 0x00005DAD
+	// Token: 0x060003EE RID: 1006 RVA: 0x00015D38 File Offset: 0x00013F38
 	private void OnEnable()
 	{
 		base.GetComponent<Camera>().depthTextureMode = 1;
 	}
 
-	// Token: 0x06000437 RID: 1079 RVA: 0x00007BBB File Offset: 0x00005DBB
+	// Token: 0x060003EF RID: 1007 RVA: 0x00015D46 File Offset: 0x00013F46
 	private void OnDisable()
 	{
 		base.GetComponent<Camera>().depthTextureMode = 0;
 	}
 
-	// Token: 0x06000438 RID: 1080 RVA: 0x000042DD File Offset: 0x000024DD
+	// Token: 0x060003F0 RID: 1008 RVA: 0x00004095 File Offset: 0x00002295
 	private void Update()
 	{
 	}
 
-	// Token: 0x0400026D RID: 621
+	// Token: 0x04000227 RID: 551
 	public bool EnableInEditor = true;
 }

@@ -3,12 +3,12 @@ using UnityEngine;
 
 namespace BehaviorDesigner.Runtime.Tasks.Basic.UnityAnimator
 {
-	// Token: 0x0200165F RID: 5727
+	// Token: 0x0200119D RID: 4509
 	[TaskCategory("Basic/Animator")]
 	[TaskDescription("Sets the layer's current weight. Returns Success.")]
 	public class SetLayerWeight : Action
 	{
-		// Token: 0x06008516 RID: 34070 RVA: 0x002D070C File Offset: 0x002CE90C
+		// Token: 0x0600770A RID: 30474 RVA: 0x002B8050 File Offset: 0x002B6250
 		public override void OnStart()
 		{
 			GameObject defaultGameObject = base.GetDefaultGameObject(this.targetGameObject.Value);
@@ -19,7 +19,7 @@ namespace BehaviorDesigner.Runtime.Tasks.Basic.UnityAnimator
 			}
 		}
 
-		// Token: 0x06008517 RID: 34071 RVA: 0x0005C3A3 File Offset: 0x0005A5A3
+		// Token: 0x0600770B RID: 30475 RVA: 0x002B8090 File Offset: 0x002B6290
 		public override TaskStatus OnUpdate()
 		{
 			if (this.animator == null)
@@ -31,7 +31,7 @@ namespace BehaviorDesigner.Runtime.Tasks.Basic.UnityAnimator
 			return 2;
 		}
 
-		// Token: 0x06008518 RID: 34072 RVA: 0x0005C3E1 File Offset: 0x0005A5E1
+		// Token: 0x0600770C RID: 30476 RVA: 0x002B80CE File Offset: 0x002B62CE
 		public override void OnReset()
 		{
 			this.targetGameObject = null;
@@ -39,22 +39,22 @@ namespace BehaviorDesigner.Runtime.Tasks.Basic.UnityAnimator
 			this.weight = 0f;
 		}
 
-		// Token: 0x040071CD RID: 29133
+		// Token: 0x0400629E RID: 25246
 		[Tooltip("The GameObject that the task operates on. If null the task GameObject is used.")]
 		public SharedGameObject targetGameObject;
 
-		// Token: 0x040071CE RID: 29134
+		// Token: 0x0400629F RID: 25247
 		[Tooltip("The layer's index")]
 		public SharedInt index;
 
-		// Token: 0x040071CF RID: 29135
+		// Token: 0x040062A0 RID: 25248
 		[Tooltip("The weight of the layer")]
 		public SharedFloat weight;
 
-		// Token: 0x040071D0 RID: 29136
+		// Token: 0x040062A1 RID: 25249
 		private Animator animator;
 
-		// Token: 0x040071D1 RID: 29137
+		// Token: 0x040062A2 RID: 25250
 		private GameObject prevGameObject;
 	}
 }

@@ -1,10 +1,10 @@
 ﻿using System;
 using UnityEngine;
 
-// Token: 0x020006A7 RID: 1703
+// Token: 0x020004B3 RID: 1203
 public class ItemIndent : MonoBehaviour
 {
-	// Token: 0x06002A94 RID: 10900 RVA: 0x00147FDC File Offset: 0x001461DC
+	// Token: 0x06002616 RID: 9750 RVA: 0x00107C5C File Offset: 0x00105E5C
 	private void Start()
 	{
 		this.parentScript = base.transform.parent.parent.GetComponent<VerticalScroll>();
@@ -14,7 +14,7 @@ public class ItemIndent : MonoBehaviour
 		Debug.Log("CenterOfScreen:" + this.centerOfScreen);
 	}
 
-	// Token: 0x06002A95 RID: 10901 RVA: 0x00148064 File Offset: 0x00146264
+	// Token: 0x06002617 RID: 9751 RVA: 0x00107CE4 File Offset: 0x00105EE4
 	private void Update()
 	{
 		if (this.parentScript.canScroll)
@@ -28,18 +28,18 @@ public class ItemIndent : MonoBehaviour
 		}
 	}
 
-	// Token: 0x04002440 RID: 9280
+	// Token: 0x04001ECD RID: 7885
 	private VerticalScroll parentScript;
 
-	// Token: 0x04002441 RID: 9281
+	// Token: 0x04001ECE RID: 7886
 	private Transform myTransform;
 
-	// Token: 0x04002442 RID: 9282
+	// Token: 0x04001ECF RID: 7887
 	private float centerOfScreen;
 
-	// Token: 0x04002443 RID: 9283
+	// Token: 0x04001ED0 RID: 7888
 	private float startPosX;
 
-	// Token: 0x04002444 RID: 9284
+	// Token: 0x04001ED1 RID: 7889
 	private bool regulate;
 }

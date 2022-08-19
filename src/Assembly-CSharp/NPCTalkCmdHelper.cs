@@ -1,10 +1,10 @@
 ﻿using System;
 using KBEngine;
 
-// Token: 0x02000373 RID: 883
+// Token: 0x0200025A RID: 602
 public static class NPCTalkCmdHelper
 {
-	// Token: 0x06001916 RID: 6422 RVA: 0x000DF278 File Offset: 0x000DD478
+	// Token: 0x06001662 RID: 5730 RVA: 0x00096F50 File Offset: 0x00095150
 	public static string ReplaceTalkWord(this string str, UINPCData npc)
 	{
 		Avatar player = Tools.instance.getPlayer();
@@ -109,7 +109,7 @@ public static class NPCTalkCmdHelper
 		return str;
 	}
 
-	// Token: 0x06001917 RID: 6423 RVA: 0x000DF5D8 File Offset: 0x000DD7D8
+	// Token: 0x06001663 RID: 5731 RVA: 0x000972B0 File Offset: 0x000954B0
 	public static string ReplaceTalkWord(this string str)
 	{
 		Avatar player = Tools.instance.getPlayer();

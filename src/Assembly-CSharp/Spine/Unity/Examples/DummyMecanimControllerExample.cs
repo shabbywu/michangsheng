@@ -4,16 +4,16 @@ using UnityEngine;
 
 namespace Spine.Unity.Examples
 {
-	// Token: 0x02000E38 RID: 3640
+	// Token: 0x02000AEA RID: 2794
 	public class DummyMecanimControllerExample : MonoBehaviour
 	{
-		// Token: 0x0600578D RID: 22413 RVA: 0x0003E9E8 File Offset: 0x0003CBE8
+		// Token: 0x06004E11 RID: 19985 RVA: 0x0021537A File Offset: 0x0021357A
 		private void Awake()
 		{
 			this.isGrounded = true;
 		}
 
-		// Token: 0x0600578E RID: 22414 RVA: 0x00245394 File Offset: 0x00243594
+		// Token: 0x06004E12 RID: 19986 RVA: 0x00215384 File Offset: 0x00213584
 		private void Update()
 		{
 			float num = Input.GetAxisRaw("Horizontal");
@@ -35,7 +35,7 @@ namespace Spine.Unity.Examples
 			this.logicAnimator.SetBool(this.groundedProperty, this.isGrounded);
 		}
 
-		// Token: 0x0600578F RID: 22415 RVA: 0x0003E9F1 File Offset: 0x0003CBF1
+		// Token: 0x06004E13 RID: 19987 RVA: 0x00215447 File Offset: 0x00213647
 		private IEnumerator FakeJump()
 		{
 			this.isGrounded = false;
@@ -59,37 +59,37 @@ namespace Spine.Unity.Examples
 			yield break;
 		}
 
-		// Token: 0x04005783 RID: 22403
+		// Token: 0x04004D77 RID: 19831
 		public Animator logicAnimator;
 
-		// Token: 0x04005784 RID: 22404
+		// Token: 0x04004D78 RID: 19832
 		public SkeletonAnimationHandleExample animationHandle;
 
-		// Token: 0x04005785 RID: 22405
+		// Token: 0x04004D79 RID: 19833
 		[Header("Controls")]
 		public KeyCode walkButton = 304;
 
-		// Token: 0x04005786 RID: 22406
+		// Token: 0x04004D7A RID: 19834
 		public KeyCode jumpButton = 32;
 
-		// Token: 0x04005787 RID: 22407
+		// Token: 0x04004D7B RID: 19835
 		[Header("Animator Properties")]
 		public string horizontalSpeedProperty = "Speed";
 
-		// Token: 0x04005788 RID: 22408
+		// Token: 0x04004D7C RID: 19836
 		public string verticalSpeedProperty = "VerticalSpeed";
 
-		// Token: 0x04005789 RID: 22409
+		// Token: 0x04004D7D RID: 19837
 		public string groundedProperty = "Grounded";
 
-		// Token: 0x0400578A RID: 22410
+		// Token: 0x04004D7E RID: 19838
 		[Header("Fake Physics")]
 		public float jumpDuration = 1.5f;
 
-		// Token: 0x0400578B RID: 22411
+		// Token: 0x04004D7F RID: 19839
 		public Vector2 speed;
 
-		// Token: 0x0400578C RID: 22412
+		// Token: 0x04004D80 RID: 19840
 		public bool isGrounded;
 	}
 }

@@ -4,12 +4,12 @@ using UnityEngine.UI;
 
 namespace UltimateSurvival.GUISystem
 {
-	// Token: 0x02000932 RID: 2354
+	// Token: 0x0200063C RID: 1596
 	[Serializable]
 	public class DurabilityBar
 	{
-		// Token: 0x17000674 RID: 1652
-		// (get) Token: 0x06003C18 RID: 15384 RVA: 0x0002B66E File Offset: 0x0002986E
+		// Token: 0x17000470 RID: 1136
+		// (get) Token: 0x060032D0 RID: 13008 RVA: 0x00166C1D File Offset: 0x00164E1D
 		public bool Active
 		{
 			get
@@ -18,7 +18,7 @@ namespace UltimateSurvival.GUISystem
 			}
 		}
 
-		// Token: 0x06003C19 RID: 15385 RVA: 0x0002B676 File Offset: 0x00029876
+		// Token: 0x060032D1 RID: 13009 RVA: 0x00166C25 File Offset: 0x00164E25
 		public void SetActive(bool active)
 		{
 			this.m_Background.SetActive(active);
@@ -26,31 +26,31 @@ namespace UltimateSurvival.GUISystem
 			this.m_Active = active;
 		}
 
-		// Token: 0x06003C1A RID: 15386 RVA: 0x0002B697 File Offset: 0x00029897
+		// Token: 0x060032D2 RID: 13010 RVA: 0x00166C46 File Offset: 0x00164E46
 		public void SetFillAmount(float fillAmount)
 		{
 			this.m_Bar.color = this.m_ColorGradient.Evaluate(fillAmount);
 			this.m_Bar.fillAmount = fillAmount;
 		}
 
-		// Token: 0x04003678 RID: 13944
+		// Token: 0x04002D1B RID: 11547
 		[SerializeField]
 		private GameObject m_Background;
 
-		// Token: 0x04003679 RID: 13945
+		// Token: 0x04002D1C RID: 11548
 		[SerializeField]
 		private Image m_Bar;
 
-		// Token: 0x0400367A RID: 13946
+		// Token: 0x04002D1D RID: 11549
 		[SerializeField]
 		private Gradient m_ColorGradient;
 
-		// Token: 0x0400367B RID: 13947
+		// Token: 0x04002D1E RID: 11550
 		[SerializeField]
 		[Range(0f, 1f)]
 		private float m_Durability;
 
-		// Token: 0x0400367C RID: 13948
+		// Token: 0x04002D1F RID: 11551
 		private bool m_Active = true;
 	}
 }

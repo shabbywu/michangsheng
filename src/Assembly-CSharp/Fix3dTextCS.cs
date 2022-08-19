@@ -2,26 +2,26 @@
 using ArabicSupport;
 using UnityEngine;
 
-// Token: 0x02000125 RID: 293
+// Token: 0x020000B6 RID: 182
 public class Fix3dTextCS : MonoBehaviour
 {
-	// Token: 0x06000B71 RID: 2929 RVA: 0x0000D7EE File Offset: 0x0000B9EE
+	// Token: 0x06000A94 RID: 2708 RVA: 0x00040535 File Offset: 0x0003E735
 	private void Start()
 	{
 		base.gameObject.GetComponent<TextMesh>().text = ArabicFixer.Fix(this.text, this.tashkeel, this.hinduNumbers);
 	}
 
-	// Token: 0x06000B72 RID: 2930 RVA: 0x000042DD File Offset: 0x000024DD
+	// Token: 0x06000A95 RID: 2709 RVA: 0x00004095 File Offset: 0x00002295
 	private void Update()
 	{
 	}
 
-	// Token: 0x0400082F RID: 2095
+	// Token: 0x0400068B RID: 1675
 	public string text;
 
-	// Token: 0x04000830 RID: 2096
+	// Token: 0x0400068C RID: 1676
 	public bool tashkeel = true;
 
-	// Token: 0x04000831 RID: 2097
+	// Token: 0x0400068D RID: 1677
 	public bool hinduNumbers = true;
 }

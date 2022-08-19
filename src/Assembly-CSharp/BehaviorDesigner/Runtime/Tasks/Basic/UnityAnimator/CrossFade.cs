@@ -3,12 +3,12 @@ using UnityEngine;
 
 namespace BehaviorDesigner.Runtime.Tasks.Basic.UnityAnimator
 {
-	// Token: 0x02001647 RID: 5703
+	// Token: 0x02001188 RID: 4488
 	[TaskCategory("Basic/Animator")]
 	[TaskDescription("Creates a dynamic transition between the current state and the destination state. Returns Success.")]
 	public class CrossFade : Action
 	{
-		// Token: 0x060084AE RID: 33966 RVA: 0x002CFDE8 File Offset: 0x002CDFE8
+		// Token: 0x060076B4 RID: 30388 RVA: 0x002B71F8 File Offset: 0x002B53F8
 		public override void OnStart()
 		{
 			GameObject defaultGameObject = base.GetDefaultGameObject(this.targetGameObject.Value);
@@ -19,7 +19,7 @@ namespace BehaviorDesigner.Runtime.Tasks.Basic.UnityAnimator
 			}
 		}
 
-		// Token: 0x060084AF RID: 33967 RVA: 0x002CFE28 File Offset: 0x002CE028
+		// Token: 0x060076B5 RID: 30389 RVA: 0x002B7238 File Offset: 0x002B5438
 		public override TaskStatus OnUpdate()
 		{
 			if (this.animator == null)
@@ -31,7 +31,7 @@ namespace BehaviorDesigner.Runtime.Tasks.Basic.UnityAnimator
 			return 2;
 		}
 
-		// Token: 0x060084B0 RID: 33968 RVA: 0x0005BD22 File Offset: 0x00059F22
+		// Token: 0x060076B6 RID: 30390 RVA: 0x002B728D File Offset: 0x002B548D
 		public override void OnReset()
 		{
 			this.targetGameObject = null;
@@ -41,30 +41,30 @@ namespace BehaviorDesigner.Runtime.Tasks.Basic.UnityAnimator
 			this.normalizedTime = float.NegativeInfinity;
 		}
 
-		// Token: 0x04007156 RID: 29014
+		// Token: 0x04006233 RID: 25139
 		[Tooltip("The GameObject that the task operates on. If null the task GameObject is used.")]
 		public SharedGameObject targetGameObject;
 
-		// Token: 0x04007157 RID: 29015
+		// Token: 0x04006234 RID: 25140
 		[Tooltip("The name of the state")]
 		public SharedString stateName;
 
-		// Token: 0x04007158 RID: 29016
+		// Token: 0x04006235 RID: 25141
 		[Tooltip("The duration of the transition. Value is in source state normalized time")]
 		public SharedFloat transitionDuration;
 
-		// Token: 0x04007159 RID: 29017
+		// Token: 0x04006236 RID: 25142
 		[Tooltip("The layer where the state is")]
 		public int layer = -1;
 
-		// Token: 0x0400715A RID: 29018
+		// Token: 0x04006237 RID: 25143
 		[Tooltip("The normalized time at which the state will play")]
 		public float normalizedTime = float.NegativeInfinity;
 
-		// Token: 0x0400715B RID: 29019
+		// Token: 0x04006238 RID: 25144
 		private Animator animator;
 
-		// Token: 0x0400715C RID: 29020
+		// Token: 0x04006239 RID: 25145
 		private GameObject prevGameObject;
 	}
 }

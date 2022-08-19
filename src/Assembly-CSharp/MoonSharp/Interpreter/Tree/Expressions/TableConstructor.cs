@@ -5,10 +5,10 @@ using MoonSharp.Interpreter.Execution.VM;
 
 namespace MoonSharp.Interpreter.Tree.Expressions
 {
-	// Token: 0x020010C7 RID: 4295
+	// Token: 0x02000CEA RID: 3306
 	internal class TableConstructor : Expression
 	{
-		// Token: 0x060067AA RID: 26538 RVA: 0x00289C24 File Offset: 0x00287E24
+		// Token: 0x06005C94 RID: 23700 RVA: 0x0026085C File Offset: 0x0025EA5C
 		public TableConstructor(ScriptLoadingContext lcontext, bool shared) : base(lcontext)
 		{
 			this.m_Shared = shared;
@@ -45,7 +45,7 @@ namespace MoonSharp.Interpreter.Tree.Expressions
 			NodeBase.CheckTokenType(lcontext, TokenType.Brk_Close_Curly);
 		}
 
-		// Token: 0x060067AB RID: 26539 RVA: 0x00289D00 File Offset: 0x00287F00
+		// Token: 0x06005C95 RID: 23701 RVA: 0x00260938 File Offset: 0x0025EB38
 		private void MapField(ScriptLoadingContext lcontext)
 		{
 			lcontext.Lexer.Next();
@@ -56,7 +56,7 @@ namespace MoonSharp.Interpreter.Tree.Expressions
 			this.m_CtorArgs.Add(new KeyValuePair<Expression, Expression>(key, value));
 		}
 
-		// Token: 0x060067AC RID: 26540 RVA: 0x00289D4C File Offset: 0x00287F4C
+		// Token: 0x06005C96 RID: 23702 RVA: 0x00260984 File Offset: 0x0025EB84
 		private void StructField(ScriptLoadingContext lcontext)
 		{
 			Expression key = new LiteralExpression(lcontext, DynValue.NewString(lcontext.Lexer.Current.Text));
@@ -66,14 +66,14 @@ namespace MoonSharp.Interpreter.Tree.Expressions
 			this.m_CtorArgs.Add(new KeyValuePair<Expression, Expression>(key, value));
 		}
 
-		// Token: 0x060067AD RID: 26541 RVA: 0x00289DA4 File Offset: 0x00287FA4
+		// Token: 0x06005C97 RID: 23703 RVA: 0x002609DC File Offset: 0x0025EBDC
 		private void ArrayField(ScriptLoadingContext lcontext)
 		{
 			Expression item = Expression.Expr(lcontext);
 			this.m_PositionalValues.Add(item);
 		}
 
-		// Token: 0x060067AE RID: 26542 RVA: 0x00289DC4 File Offset: 0x00287FC4
+		// Token: 0x06005C98 RID: 23704 RVA: 0x002609FC File Offset: 0x0025EBFC
 		public override void Compile(ByteCode bc)
 		{
 			bc.Emit_NewTable(this.m_Shared);
@@ -90,7 +90,7 @@ namespace MoonSharp.Interpreter.Tree.Expressions
 			}
 		}
 
-		// Token: 0x060067AF RID: 26543 RVA: 0x00289E80 File Offset: 0x00288080
+		// Token: 0x06005C99 RID: 23705 RVA: 0x00260AB8 File Offset: 0x0025ECB8
 		public override DynValue Eval(ScriptExecutionContext context)
 		{
 			if (!this.m_Shared)
@@ -111,13 +111,13 @@ namespace MoonSharp.Interpreter.Tree.Expressions
 			return dynValue;
 		}
 
-		// Token: 0x04005FBA RID: 24506
+		// Token: 0x040053B6 RID: 21430
 		private bool m_Shared;
 
-		// Token: 0x04005FBB RID: 24507
+		// Token: 0x040053B7 RID: 21431
 		private List<Expression> m_PositionalValues = new List<Expression>();
 
-		// Token: 0x04005FBC RID: 24508
+		// Token: 0x040053B8 RID: 21432
 		private List<KeyValuePair<Expression, Expression>> m_CtorArgs = new List<KeyValuePair<Expression, Expression>>();
 	}
 }

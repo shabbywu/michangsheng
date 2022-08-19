@@ -4,10 +4,10 @@ using UnityEngine;
 
 namespace EIU
 {
-	// Token: 0x02000EA0 RID: 3744
+	// Token: 0x02000B2C RID: 2860
 	public class EIU_DebugWindow : MonoBehaviour
 	{
-		// Token: 0x060059DB RID: 23003 RVA: 0x0003FC0D File Offset: 0x0003DE0D
+		// Token: 0x06004FBC RID: 20412 RVA: 0x0021AA8D File Offset: 0x00218C8D
 		private void Start()
 		{
 			if (this.debug && EasyInputUtility.instance)
@@ -20,7 +20,7 @@ namespace EIU
 			}
 		}
 
-		// Token: 0x060059DC RID: 23004 RVA: 0x0024A71C File Offset: 0x0024891C
+		// Token: 0x06004FBD RID: 20413 RVA: 0x0021AAC4 File Offset: 0x00218CC4
 		private void populateDebugWindow()
 		{
 			this.Axes = EasyInputUtility.instance.Axes;
@@ -42,17 +42,17 @@ namespace EIU
 			}
 		}
 
-		// Token: 0x0400592B RID: 22827
+		// Token: 0x04004EB4 RID: 20148
 		public bool debug = true;
 
-		// Token: 0x0400592C RID: 22828
+		// Token: 0x04004EB5 RID: 20149
 		public List<EIU_AxisBase> Axes = new List<EIU_AxisBase>();
 
-		// Token: 0x0400592D RID: 22829
+		// Token: 0x04004EB6 RID: 20150
 		[Header("UI References")]
 		public Transform DebugWindow;
 
-		// Token: 0x0400592E RID: 22830
+		// Token: 0x04004EB7 RID: 20151
 		public GameObject DebugItemPrefab;
 	}
 }

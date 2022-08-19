@@ -2,12 +2,12 @@
 
 namespace BehaviorDesigner.Runtime.Tasks
 {
-	// Token: 0x020014A6 RID: 5286
+	// Token: 0x02000FEE RID: 4078
 	[TaskDescription("The random probability task will return success when the random probability is above the succeed probability. It will otherwise return failure.")]
 	[HelpURL("http://www.opsive.com/assets/BehaviorDesigner/documentation.php?id=33")]
 	public class RandomProbability : Conditional
 	{
-		// Token: 0x06007EE4 RID: 32484 RVA: 0x00055EFC File Offset: 0x000540FC
+		// Token: 0x060070EA RID: 28906 RVA: 0x002AACF1 File Offset: 0x002A8EF1
 		public override void OnAwake()
 		{
 			if (this.useSeed.Value)
@@ -18,7 +18,7 @@ namespace BehaviorDesigner.Runtime.Tasks
 			this.random = new Random();
 		}
 
-		// Token: 0x06007EE5 RID: 32485 RVA: 0x00055F2D File Offset: 0x0005412D
+		// Token: 0x060070EB RID: 28907 RVA: 0x002AAD22 File Offset: 0x002A8F22
 		public override TaskStatus OnUpdate()
 		{
 			if ((float)this.random.NextDouble() < this.successProbability.Value)
@@ -28,7 +28,7 @@ namespace BehaviorDesigner.Runtime.Tasks
 			return 1;
 		}
 
-		// Token: 0x06007EE6 RID: 32486 RVA: 0x00055F4B File Offset: 0x0005414B
+		// Token: 0x060070EC RID: 28908 RVA: 0x002AAD40 File Offset: 0x002A8F40
 		public override void OnReset()
 		{
 			this.successProbability = 0.5f;
@@ -36,19 +36,19 @@ namespace BehaviorDesigner.Runtime.Tasks
 			this.useSeed = false;
 		}
 
-		// Token: 0x04006BE1 RID: 27617
+		// Token: 0x04005CE9 RID: 23785
 		[Tooltip("The chance that the task will return success")]
 		public SharedFloat successProbability = 0.5f;
 
-		// Token: 0x04006BE2 RID: 27618
+		// Token: 0x04005CEA RID: 23786
 		[Tooltip("Seed the random number generator to make things easier to debug")]
 		public SharedInt seed;
 
-		// Token: 0x04006BE3 RID: 27619
+		// Token: 0x04005CEB RID: 23787
 		[Tooltip("Do we want to use the seed?")]
 		public SharedBool useSeed;
 
-		// Token: 0x04006BE4 RID: 27620
+		// Token: 0x04005CEC RID: 23788
 		private Random random;
 	}
 }

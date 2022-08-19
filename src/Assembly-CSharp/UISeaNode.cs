@@ -1,7 +1,7 @@
 ﻿using System;
 using UnityEngine;
 
-// Token: 0x0200056F RID: 1391
+// Token: 0x020003D4 RID: 980
 public class UISeaNode : MonoBehaviour
 {
 }

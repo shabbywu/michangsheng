@@ -1,13 +1,13 @@
 ﻿using System;
 using UnityEngine;
 
-// Token: 0x02000042 RID: 66
+// Token: 0x0200002F RID: 47
 [ExecuteInEditMode]
 public class Lightbeam : MonoBehaviour
 {
-	// Token: 0x17000077 RID: 119
-	// (get) Token: 0x0600043A RID: 1082 RVA: 0x00007BD8 File Offset: 0x00005DD8
-	// (set) Token: 0x0600043B RID: 1083 RVA: 0x00007BE5 File Offset: 0x00005DE5
+	// Token: 0x1700006B RID: 107
+	// (get) Token: 0x060003F2 RID: 1010 RVA: 0x00015D63 File Offset: 0x00013F63
+	// (set) Token: 0x060003F3 RID: 1011 RVA: 0x00015D70 File Offset: 0x00013F70
 	public float RadiusTop
 	{
 		get
@@ -20,9 +20,9 @@ public class Lightbeam : MonoBehaviour
 		}
 	}
 
-	// Token: 0x17000078 RID: 120
-	// (get) Token: 0x0600043C RID: 1084 RVA: 0x00007BF3 File Offset: 0x00005DF3
-	// (set) Token: 0x0600043D RID: 1085 RVA: 0x00007C00 File Offset: 0x00005E00
+	// Token: 0x1700006C RID: 108
+	// (get) Token: 0x060003F4 RID: 1012 RVA: 0x00015D7E File Offset: 0x00013F7E
+	// (set) Token: 0x060003F5 RID: 1013 RVA: 0x00015D8B File Offset: 0x00013F8B
 	public float RadiusBottom
 	{
 		get
@@ -35,9 +35,9 @@ public class Lightbeam : MonoBehaviour
 		}
 	}
 
-	// Token: 0x17000079 RID: 121
-	// (get) Token: 0x0600043E RID: 1086 RVA: 0x00007C0E File Offset: 0x00005E0E
-	// (set) Token: 0x0600043F RID: 1087 RVA: 0x00007C1B File Offset: 0x00005E1B
+	// Token: 0x1700006D RID: 109
+	// (get) Token: 0x060003F6 RID: 1014 RVA: 0x00015D99 File Offset: 0x00013F99
+	// (set) Token: 0x060003F7 RID: 1015 RVA: 0x00015DA6 File Offset: 0x00013FA6
 	public float Length
 	{
 		get
@@ -50,9 +50,9 @@ public class Lightbeam : MonoBehaviour
 		}
 	}
 
-	// Token: 0x1700007A RID: 122
-	// (get) Token: 0x06000440 RID: 1088 RVA: 0x00007C29 File Offset: 0x00005E29
-	// (set) Token: 0x06000441 RID: 1089 RVA: 0x00007C36 File Offset: 0x00005E36
+	// Token: 0x1700006E RID: 110
+	// (get) Token: 0x060003F8 RID: 1016 RVA: 0x00015DB4 File Offset: 0x00013FB4
+	// (set) Token: 0x060003F9 RID: 1017 RVA: 0x00015DC1 File Offset: 0x00013FC1
 	public int Subdivisions
 	{
 		get
@@ -65,9 +65,9 @@ public class Lightbeam : MonoBehaviour
 		}
 	}
 
-	// Token: 0x1700007B RID: 123
-	// (get) Token: 0x06000442 RID: 1090 RVA: 0x00007C44 File Offset: 0x00005E44
-	// (set) Token: 0x06000443 RID: 1091 RVA: 0x00007C51 File Offset: 0x00005E51
+	// Token: 0x1700006F RID: 111
+	// (get) Token: 0x060003FA RID: 1018 RVA: 0x00015DCF File Offset: 0x00013FCF
+	// (set) Token: 0x060003FB RID: 1019 RVA: 0x00015DDC File Offset: 0x00013FDC
 	public int SubdivisionsHeight
 	{
 		get
@@ -80,7 +80,7 @@ public class Lightbeam : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000444 RID: 1092 RVA: 0x0006D64C File Offset: 0x0006B84C
+	// Token: 0x060003FC RID: 1020 RVA: 0x00015DEC File Offset: 0x00013FEC
 	public void GenerateBeam()
 	{
 		MeshFilter component = base.GetComponent<MeshFilter>();
@@ -103,7 +103,7 @@ public class Lightbeam : MonoBehaviour
 		component.sharedMesh.normals = mesh.normals;
 	}
 
-	// Token: 0x06000445 RID: 1093 RVA: 0x0006D738 File Offset: 0x0006B938
+	// Token: 0x060003FD RID: 1021 RVA: 0x00015ED8 File Offset: 0x000140D8
 	private Mesh GenerateMesh(bool reverseNormals)
 	{
 		int num = this.Settings.Subdivisions * (this.Settings.SubdivisionsHeight + 1);
@@ -199,7 +199,7 @@ public class Lightbeam : MonoBehaviour
 		return mesh;
 	}
 
-	// Token: 0x06000446 RID: 1094 RVA: 0x0006DAD8 File Offset: 0x0006BCD8
+	// Token: 0x060003FE RID: 1022 RVA: 0x00016278 File Offset: 0x00014478
 	private static Vector3 CalculateVertex(float lengthFrac, float xAngle, float yAngle, int j, float radius)
 	{
 		float num = radius * xAngle;
@@ -207,7 +207,7 @@ public class Lightbeam : MonoBehaviour
 		return new Vector3(num, (float)j * (lengthFrac * -1f), num2);
 	}
 
-	// Token: 0x06000447 RID: 1095 RVA: 0x0006DB00 File Offset: 0x0006BD00
+	// Token: 0x060003FF RID: 1023 RVA: 0x000162A0 File Offset: 0x000144A0
 	private static void CalculateMeshTangents(Mesh mesh)
 	{
 		int[] triangles = mesh.triangles;
@@ -280,12 +280,12 @@ public class Lightbeam : MonoBehaviour
 		mesh.tangents = array3;
 	}
 
-	// Token: 0x0400026E RID: 622
+	// Token: 0x04000228 RID: 552
 	public bool IsModifyingMesh;
 
-	// Token: 0x0400026F RID: 623
+	// Token: 0x04000229 RID: 553
 	public Material DefaultMaterial;
 
-	// Token: 0x04000270 RID: 624
+	// Token: 0x0400022A RID: 554
 	public LightbeamSettings Settings;
 }

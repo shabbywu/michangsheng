@@ -4,10 +4,10 @@ using UnityEngine;
 
 namespace Spine.Unity.Examples
 {
-	// Token: 0x02000E60 RID: 3680
+	// Token: 0x02000B02 RID: 2818
 	public class SpineboyFreeze : MonoBehaviour
 	{
-		// Token: 0x06005830 RID: 22576 RVA: 0x0003F0DD File Offset: 0x0003D2DD
+		// Token: 0x06004E78 RID: 20088 RVA: 0x00217181 File Offset: 0x00215381
 		private IEnumerator Start()
 		{
 			this.block = new MaterialPropertyBlock();
@@ -35,37 +35,37 @@ namespace Spine.Unity.Examples
 			yield break;
 		}
 
-		// Token: 0x04005856 RID: 22614
+		// Token: 0x04004E15 RID: 19989
 		public SkeletonAnimation skeletonAnimation;
 
-		// Token: 0x04005857 RID: 22615
+		// Token: 0x04004E16 RID: 19990
 		public AnimationReferenceAsset freeze;
 
-		// Token: 0x04005858 RID: 22616
+		// Token: 0x04004E17 RID: 19991
 		public AnimationReferenceAsset idle;
 
-		// Token: 0x04005859 RID: 22617
+		// Token: 0x04004E18 RID: 19992
 		public Color freezeColor;
 
-		// Token: 0x0400585A RID: 22618
+		// Token: 0x04004E19 RID: 19993
 		public Color freezeBlackColor;
 
-		// Token: 0x0400585B RID: 22619
+		// Token: 0x04004E1A RID: 19994
 		public ParticleSystem particles;
 
-		// Token: 0x0400585C RID: 22620
+		// Token: 0x04004E1B RID: 19995
 		public float freezePoint = 0.5f;
 
-		// Token: 0x0400585D RID: 22621
+		// Token: 0x04004E1C RID: 19996
 		public string colorProperty = "_Color";
 
-		// Token: 0x0400585E RID: 22622
+		// Token: 0x04004E1D RID: 19997
 		public string blackTintProperty = "_Black";
 
-		// Token: 0x0400585F RID: 22623
+		// Token: 0x04004E1E RID: 19998
 		private MaterialPropertyBlock block;
 
-		// Token: 0x04005860 RID: 22624
+		// Token: 0x04004E1F RID: 19999
 		private MeshRenderer meshRenderer;
 	}
 }

@@ -5,10 +5,10 @@ using UnityEngine;
 
 namespace Spine.Unity.Examples
 {
-	// Token: 0x02000E50 RID: 3664
+	// Token: 0x02000AF7 RID: 2807
 	public class SpriteAttacher : MonoBehaviour
 	{
-		// Token: 0x060057ED RID: 22509 RVA: 0x002462C4 File Offset: 0x002444C4
+		// Token: 0x06004E4C RID: 20044 RVA: 0x00216288 File Offset: 0x00214488
 		private static AtlasPage GetPageFor(Texture texture, Shader shader)
 		{
 			if (SpriteAttacher.atlasPageCache == null)
@@ -25,7 +25,7 @@ namespace Spine.Unity.Examples
 			return atlasPage;
 		}
 
-		// Token: 0x060057EE RID: 22510 RVA: 0x0003EDEE File Offset: 0x0003CFEE
+		// Token: 0x06004E4D RID: 20045 RVA: 0x002162D0 File Offset: 0x002144D0
 		private void Start()
 		{
 			this.Initialize(false);
@@ -35,7 +35,7 @@ namespace Spine.Unity.Examples
 			}
 		}
 
-		// Token: 0x060057EF RID: 22511 RVA: 0x0003EE05 File Offset: 0x0003D005
+		// Token: 0x06004E4E RID: 20046 RVA: 0x002162E7 File Offset: 0x002144E7
 		private void AnimationOverrideSpriteAttach(ISkeletonAnimation animated)
 		{
 			if (this.overrideAnimation && base.isActiveAndEnabled)
@@ -44,7 +44,7 @@ namespace Spine.Unity.Examples
 			}
 		}
 
-		// Token: 0x060057F0 RID: 22512 RVA: 0x0024630C File Offset: 0x0024450C
+		// Token: 0x06004E4F RID: 20047 RVA: 0x00216300 File Offset: 0x00214500
 		public void Initialize(bool overwrite = true)
 		{
 			if (overwrite || this.attachment == null)
@@ -78,7 +78,7 @@ namespace Spine.Unity.Examples
 			}
 		}
 
-		// Token: 0x060057F1 RID: 22513 RVA: 0x00246434 File Offset: 0x00244634
+		// Token: 0x06004E50 RID: 20048 RVA: 0x00216428 File Offset: 0x00214628
 		private void OnDestroy()
 		{
 			ISkeletonAnimation component = base.GetComponent<ISkeletonAnimation>();
@@ -88,7 +88,7 @@ namespace Spine.Unity.Examples
 			}
 		}
 
-		// Token: 0x060057F2 RID: 22514 RVA: 0x0003EE1D File Offset: 0x0003D01D
+		// Token: 0x06004E51 RID: 20049 RVA: 0x00216451 File Offset: 0x00214651
 		public void Attach()
 		{
 			if (this.spineSlot != null)
@@ -97,35 +97,35 @@ namespace Spine.Unity.Examples
 			}
 		}
 
-		// Token: 0x040057F0 RID: 22512
+		// Token: 0x04004DC4 RID: 19908
 		public const string DefaultPMAShader = "Spine/Skeleton";
 
-		// Token: 0x040057F1 RID: 22513
+		// Token: 0x04004DC5 RID: 19909
 		public const string DefaultStraightAlphaShader = "Sprites/Default";
 
-		// Token: 0x040057F2 RID: 22514
+		// Token: 0x04004DC6 RID: 19910
 		public bool attachOnStart = true;
 
-		// Token: 0x040057F3 RID: 22515
+		// Token: 0x04004DC7 RID: 19911
 		public bool overrideAnimation = true;
 
-		// Token: 0x040057F4 RID: 22516
+		// Token: 0x04004DC8 RID: 19912
 		public Sprite sprite;
 
-		// Token: 0x040057F5 RID: 22517
+		// Token: 0x04004DC9 RID: 19913
 		[SpineSlot("", "", false, true, false)]
 		public string slot;
 
-		// Token: 0x040057F6 RID: 22518
+		// Token: 0x04004DCA RID: 19914
 		private RegionAttachment attachment;
 
-		// Token: 0x040057F7 RID: 22519
+		// Token: 0x04004DCB RID: 19915
 		private Slot spineSlot;
 
-		// Token: 0x040057F8 RID: 22520
+		// Token: 0x04004DCC RID: 19916
 		private bool applyPMA;
 
-		// Token: 0x040057F9 RID: 22521
+		// Token: 0x04004DCD RID: 19917
 		private static Dictionary<Texture, AtlasPage> atlasPageCache;
 	}
 }

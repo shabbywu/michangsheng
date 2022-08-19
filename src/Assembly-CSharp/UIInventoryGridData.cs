@@ -2,10 +2,10 @@
 using GUIPackage;
 using UnityEngine;
 
-// Token: 0x02000415 RID: 1045
+// Token: 0x020002CA RID: 714
 public class UIInventoryGridData
 {
-	// Token: 0x06001C27 RID: 7207 RVA: 0x00017897 File Offset: 0x00015A97
+	// Token: 0x0600191F RID: 6431 RVA: 0x000B4BD5 File Offset: 0x000B2DD5
 	public void IconShowInit(UIIconShow iconShow)
 	{
 		if (this.IconShowInitAction != null)
@@ -16,21 +16,21 @@ public class UIInventoryGridData
 		}
 	}
 
-	// Token: 0x04001824 RID: 6180
+	// Token: 0x0400145A RID: 5210
 	public Vector2 Pos;
 
-	// Token: 0x04001825 RID: 6181
+	// Token: 0x0400145B RID: 5211
 	public int Index;
 
-	// Token: 0x04001826 RID: 6182
+	// Token: 0x0400145C RID: 5212
 	public item Item;
 
-	// Token: 0x04001827 RID: 6183
+	// Token: 0x0400145D RID: 5213
 	public int ItemCount;
 
-	// Token: 0x04001828 RID: 6184
+	// Token: 0x0400145E RID: 5214
 	public Action<UIIconShow> IconShowInitAction;
 
-	// Token: 0x04001829 RID: 6185
+	// Token: 0x0400145F RID: 5215
 	public UIIconShow BindShow;
 }

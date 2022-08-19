@@ -1,14 +1,14 @@
 ﻿using System;
 using UnityEngine;
 
-// Token: 0x02000112 RID: 274
+// Token: 0x020000AA RID: 170
 [ExecuteInEditMode]
 [RequireComponent(typeof(UIWidget))]
 [AddComponentMenu("NGUI/UI/Localize")]
 public class UILocalize : MonoBehaviour
 {
-	// Token: 0x170001A7 RID: 423
-	// (set) Token: 0x06000AAE RID: 2734 RVA: 0x0008DF5C File Offset: 0x0008C15C
+	// Token: 0x17000190 RID: 400
+	// (set) Token: 0x060009DA RID: 2522 RVA: 0x0003B2EC File Offset: 0x000394EC
 	public string value
 	{
 		set
@@ -38,7 +38,7 @@ public class UILocalize : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000AAF RID: 2735 RVA: 0x0000CF62 File Offset: 0x0000B162
+	// Token: 0x060009DB RID: 2523 RVA: 0x0003B366 File Offset: 0x00039566
 	private void OnEnable()
 	{
 		if (this.mStarted)
@@ -47,14 +47,14 @@ public class UILocalize : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000AB0 RID: 2736 RVA: 0x0000CF72 File Offset: 0x0000B172
+	// Token: 0x060009DC RID: 2524 RVA: 0x0003B376 File Offset: 0x00039576
 	private void Start()
 	{
 		this.mStarted = true;
 		this.OnLocalize();
 	}
 
-	// Token: 0x06000AB1 RID: 2737 RVA: 0x0008DFD8 File Offset: 0x0008C1D8
+	// Token: 0x060009DD RID: 2525 RVA: 0x0003B388 File Offset: 0x00039588
 	private void OnLocalize()
 	{
 		if (string.IsNullOrEmpty(this.key))
@@ -71,9 +71,9 @@ public class UILocalize : MonoBehaviour
 		}
 	}
 
-	// Token: 0x0400079A RID: 1946
+	// Token: 0x0400060B RID: 1547
 	public string key;
 
-	// Token: 0x0400079B RID: 1947
+	// Token: 0x0400060C RID: 1548
 	private bool mStarted;
 }

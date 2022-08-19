@@ -2,12 +2,12 @@
 using Fungus;
 using UnityEngine;
 
-// Token: 0x02000375 RID: 885
+// Token: 0x0200025C RID: 604
 [EventHandlerInfo("NPCJiaoHu", "固定NPC被点击", "固定NPC被点击")]
 [AddComponentMenu("")]
 public class OnGuDingNPCClick : Fungus.EventHandler
 {
-	// Token: 0x06001918 RID: 6424 RVA: 0x0001580E File Offset: 0x00013A0E
+	// Token: 0x06001664 RID: 5732 RVA: 0x000973BB File Offset: 0x000955BB
 	public virtual void Update()
 	{
 		if (UINPCJiaoHu.Inst != null && UINPCJiaoHu.Inst.IsGuDingNPCClicked)

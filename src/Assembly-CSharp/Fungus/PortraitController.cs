@@ -6,16 +6,16 @@ using UnityEngine.UI;
 
 namespace Fungus
 {
-	// Token: 0x020012EA RID: 4842
+	// Token: 0x02000E7F RID: 3711
 	public class PortraitController : MonoBehaviour
 	{
-		// Token: 0x060075D9 RID: 30169 RVA: 0x000504E6 File Offset: 0x0004E6E6
+		// Token: 0x060068F2 RID: 26866 RVA: 0x0028EBB2 File Offset: 0x0028CDB2
 		protected virtual void Awake()
 		{
 			this.stage = base.GetComponentInParent<Stage>();
 		}
 
-		// Token: 0x060075DA RID: 30170 RVA: 0x002B1100 File Offset: 0x002AF300
+		// Token: 0x060068F3 RID: 26867 RVA: 0x0028EBC0 File Offset: 0x0028CDC0
 		protected virtual void FinishCommand(PortraitOptions options)
 		{
 			if (options.onComplete == null)
@@ -31,7 +31,7 @@ namespace Fungus
 			base.StartCoroutine(this.WaitUntilFinished(options.fadeDuration, options.onComplete));
 		}
 
-		// Token: 0x060075DB RID: 30171 RVA: 0x002B1158 File Offset: 0x002AF358
+		// Token: 0x060068F4 RID: 26868 RVA: 0x0028EC18 File Offset: 0x0028CE18
 		protected virtual PortraitOptions CleanPortraitOptions(PortraitOptions options)
 		{
 			if (options.useDefaultSettings)
@@ -91,7 +91,7 @@ namespace Fungus
 			return options;
 		}
 
-		// Token: 0x060075DC RID: 30172 RVA: 0x002B1388 File Offset: 0x002AF588
+		// Token: 0x060068F5 RID: 26869 RVA: 0x0028EE48 File Offset: 0x0028D048
 		protected virtual void CreatePortraitObject(Character character, float fadeDuration)
 		{
 			GameObject gameObject = new GameObject(character.name, new Type[]
@@ -110,7 +110,7 @@ namespace Fungus
 			character.State.portraitImage = component;
 		}
 
-		// Token: 0x060075DD RID: 30173 RVA: 0x000504F4 File Offset: 0x0004E6F4
+		// Token: 0x060068F6 RID: 26870 RVA: 0x0028EF2B File Offset: 0x0028D12B
 		protected virtual IEnumerator WaitUntilFinished(float duration, Action onComplete = null)
 		{
 			this.waitTimer = duration;
@@ -127,7 +127,7 @@ namespace Fungus
 			yield break;
 		}
 
-		// Token: 0x060075DE RID: 30174 RVA: 0x002B146C File Offset: 0x002AF66C
+		// Token: 0x060068F7 RID: 26871 RVA: 0x0028EF48 File Offset: 0x0028D148
 		protected virtual void SetupPortrait(PortraitOptions options)
 		{
 			PortraitController.SetRectTransform(options.character.State.portraitImage.rectTransform, options.fromPosition);
@@ -147,7 +147,7 @@ namespace Fungus
 			options.character.State.portraitImage.rectTransform.localScale = new Vector3(1f, 1f, 1f);
 		}
 
-		// Token: 0x060075DF RID: 30175 RVA: 0x002B1584 File Offset: 0x002AF784
+		// Token: 0x060068F8 RID: 26872 RVA: 0x0028F060 File Offset: 0x0028D260
 		protected virtual void DoMoveTween(Character character, RectTransform fromPosition, RectTransform toPosition, float moveDuration, bool waitUntilFinished)
 		{
 			this.DoMoveTween(new PortraitOptions(true)
@@ -160,7 +160,7 @@ namespace Fungus
 			});
 		}
 
-		// Token: 0x060075E0 RID: 30176 RVA: 0x002B15C4 File Offset: 0x002AF7C4
+		// Token: 0x060068F9 RID: 26873 RVA: 0x0028F0A0 File Offset: 0x0028D2A0
 		protected virtual void DoMoveTween(PortraitOptions options)
 		{
 			this.CleanPortraitOptions(options);
@@ -172,7 +172,7 @@ namespace Fungus
 			}
 		}
 
-		// Token: 0x060075E1 RID: 30177 RVA: 0x002B163C File Offset: 0x002AF83C
+		// Token: 0x060068FA RID: 26874 RVA: 0x0028F118 File Offset: 0x0028D318
 		public static void SetRectTransform(RectTransform oldRectTransform, RectTransform newRectTransform)
 		{
 			oldRectTransform.eulerAngles = newRectTransform.eulerAngles;
@@ -186,7 +186,7 @@ namespace Fungus
 			oldRectTransform.localScale = newRectTransform.localScale;
 		}
 
-		// Token: 0x060075E2 RID: 30178 RVA: 0x002B16B8 File Offset: 0x002AF8B8
+		// Token: 0x060068FB RID: 26875 RVA: 0x0028F194 File Offset: 0x0028D394
 		public virtual void RunPortraitCommand(PortraitOptions options, Action onComplete)
 		{
 			this.waitTimer = 0f;
@@ -227,7 +227,7 @@ namespace Fungus
 			}
 		}
 
-		// Token: 0x060075E3 RID: 30179 RVA: 0x002B1798 File Offset: 0x002AF998
+		// Token: 0x060068FC RID: 26876 RVA: 0x0028F274 File Offset: 0x0028D474
 		public virtual void MoveToFront(Character character)
 		{
 			this.MoveToFront(this.CleanPortraitOptions(new PortraitOptions(true)
@@ -236,7 +236,7 @@ namespace Fungus
 			}));
 		}
 
-		// Token: 0x060075E4 RID: 30180 RVA: 0x002B17C0 File Offset: 0x002AF9C0
+		// Token: 0x060068FD RID: 26877 RVA: 0x0028F29C File Offset: 0x0028D49C
 		public virtual void MoveToFront(PortraitOptions options)
 		{
 			options.character.State.portraitImage.transform.SetSiblingIndex(options.character.State.portraitImage.transform.parent.childCount);
@@ -244,7 +244,7 @@ namespace Fungus
 			this.FinishCommand(options);
 		}
 
-		// Token: 0x060075E5 RID: 30181 RVA: 0x002B1820 File Offset: 0x002AFA20
+		// Token: 0x060068FE RID: 26878 RVA: 0x0028F2FC File Offset: 0x0028D4FC
 		public virtual void Show(Character character, string position)
 		{
 			PortraitOptions portraitOptions = new PortraitOptions(true);
@@ -253,7 +253,7 @@ namespace Fungus
 			this.Show(portraitOptions);
 		}
 
-		// Token: 0x060075E6 RID: 30182 RVA: 0x002B1860 File Offset: 0x002AFA60
+		// Token: 0x060068FF RID: 26879 RVA: 0x0028F33C File Offset: 0x0028D53C
 		public virtual void Show(Character character, string portrait, string fromPosition, string toPosition)
 		{
 			this.Show(new PortraitOptions(true)
@@ -266,13 +266,13 @@ namespace Fungus
 			});
 		}
 
-		// Token: 0x060075E7 RID: 30183 RVA: 0x00050511 File Offset: 0x0004E711
+		// Token: 0x06006900 RID: 26880 RVA: 0x0028F397 File Offset: 0x0028D597
 		public virtual void Show(Table optionsTable)
 		{
 			this.Show(PortraitUtil.ConvertTableToPortraitOptions(optionsTable, this.stage));
 		}
 
-		// Token: 0x060075E8 RID: 30184 RVA: 0x002B18BC File Offset: 0x002AFABC
+		// Token: 0x06006901 RID: 26881 RVA: 0x0028F3AC File Offset: 0x0028D5AC
 		public virtual void Show(PortraitOptions options)
 		{
 			options = this.CleanPortraitOptions(options);
@@ -328,7 +328,7 @@ namespace Fungus
 			options.character.State.position = options.toPosition;
 		}
 
-		// Token: 0x060075E9 RID: 30185 RVA: 0x002B1CA4 File Offset: 0x002AFEA4
+		// Token: 0x06006902 RID: 26882 RVA: 0x0028F794 File Offset: 0x0028D994
 		public virtual void ShowPortrait(Character character, string portrait)
 		{
 			PortraitOptions portraitOptions = new PortraitOptions(true);
@@ -345,7 +345,7 @@ namespace Fungus
 			this.Show(portraitOptions);
 		}
 
-		// Token: 0x060075EA RID: 30186 RVA: 0x002B1D24 File Offset: 0x002AFF24
+		// Token: 0x06006903 RID: 26883 RVA: 0x0028F814 File Offset: 0x0028DA14
 		public virtual void Hide(Character character)
 		{
 			this.Hide(new PortraitOptions(true)
@@ -354,7 +354,7 @@ namespace Fungus
 			});
 		}
 
-		// Token: 0x060075EB RID: 30187 RVA: 0x002B1D48 File Offset: 0x002AFF48
+		// Token: 0x06006904 RID: 26884 RVA: 0x0028F838 File Offset: 0x0028DA38
 		public virtual void Hide(Character character, string toPosition)
 		{
 			this.Hide(new PortraitOptions(true)
@@ -365,13 +365,13 @@ namespace Fungus
 			});
 		}
 
-		// Token: 0x060075EC RID: 30188 RVA: 0x00050525 File Offset: 0x0004E725
+		// Token: 0x06006905 RID: 26885 RVA: 0x0028F873 File Offset: 0x0028DA73
 		public virtual void Hide(Table optionsTable)
 		{
 			this.Hide(PortraitUtil.ConvertTableToPortraitOptions(optionsTable, this.stage));
 		}
 
-		// Token: 0x060075ED RID: 30189 RVA: 0x002B1D84 File Offset: 0x002AFF84
+		// Token: 0x06006906 RID: 26886 RVA: 0x0028F888 File Offset: 0x0028DA88
 		public virtual void Hide(PortraitOptions options)
 		{
 			this.CleanPortraitOptions(options);
@@ -392,7 +392,7 @@ namespace Fungus
 			this.FinishCommand(options);
 		}
 
-		// Token: 0x060075EE RID: 30190 RVA: 0x002B1E90 File Offset: 0x002B0090
+		// Token: 0x06006907 RID: 26887 RVA: 0x0028F994 File Offset: 0x0028DB94
 		public virtual void SetDimmed(Character character, bool dimmedState)
 		{
 			if (character.State.dimmed == dimmedState)
@@ -405,10 +405,10 @@ namespace Fungus
 			LeanTween.color(character.State.portraitImage.rectTransform, to, time).setEase(this.stage.FadeEaseType).setRecursive(false);
 		}
 
-		// Token: 0x040066E4 RID: 26340
+		// Token: 0x0400591C RID: 22812
 		protected float waitTimer;
 
-		// Token: 0x040066E5 RID: 26341
+		// Token: 0x0400591D RID: 22813
 		protected Stage stage;
 	}
 }

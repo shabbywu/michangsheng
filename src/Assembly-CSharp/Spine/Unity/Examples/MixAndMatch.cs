@@ -5,10 +5,10 @@ using UnityEngine;
 
 namespace Spine.Unity.Examples
 {
-	// Token: 0x02000E46 RID: 3654
+	// Token: 0x02000AF1 RID: 2801
 	public class MixAndMatch : MonoBehaviour
 	{
-		// Token: 0x060057BE RID: 22462 RVA: 0x00245A5C File Offset: 0x00243C5C
+		// Token: 0x06004E35 RID: 20021 RVA: 0x00215AEC File Offset: 0x00213CEC
 		private void OnValidate()
 		{
 			if (this.sourceMaterial == null)
@@ -21,7 +21,7 @@ namespace Spine.Unity.Examples
 			}
 		}
 
-		// Token: 0x060057BF RID: 22463 RVA: 0x0003EBEF File Offset: 0x0003CDEF
+		// Token: 0x06004E36 RID: 20022 RVA: 0x00215B2F File Offset: 0x00213D2F
 		private IEnumerator Start()
 		{
 			yield return new WaitForSeconds(1f);
@@ -29,7 +29,7 @@ namespace Spine.Unity.Examples
 			yield break;
 		}
 
-		// Token: 0x060057C0 RID: 22464 RVA: 0x00245AA0 File Offset: 0x00243CA0
+		// Token: 0x06004E37 RID: 20023 RVA: 0x00215B40 File Offset: 0x00213D40
 		private void Apply()
 		{
 			SkeletonAnimation component = base.GetComponent<SkeletonAnimation>();
@@ -66,52 +66,52 @@ namespace Spine.Unity.Examples
 			Resources.UnloadUnusedAssets();
 		}
 
-		// Token: 0x040057B9 RID: 22457
+		// Token: 0x04004D9A RID: 19866
 		[SpineSkin("", "", true, false, false)]
 		public string templateAttachmentsSkin = "base";
 
-		// Token: 0x040057BA RID: 22458
+		// Token: 0x04004D9B RID: 19867
 		public Material sourceMaterial;
 
-		// Token: 0x040057BB RID: 22459
+		// Token: 0x04004D9C RID: 19868
 		[Header("Visor")]
 		public Sprite visorSprite;
 
-		// Token: 0x040057BC RID: 22460
+		// Token: 0x04004D9D RID: 19869
 		[SpineSlot("", "", false, true, false)]
 		public string visorSlot;
 
-		// Token: 0x040057BD RID: 22461
+		// Token: 0x04004D9E RID: 19870
 		[SpineAttachment(true, false, false, "visorSlot", "", "baseSkinName", true, false)]
 		public string visorKey = "goggles";
 
-		// Token: 0x040057BE RID: 22462
+		// Token: 0x04004D9F RID: 19871
 		[Header("Gun")]
 		public Sprite gunSprite;
 
-		// Token: 0x040057BF RID: 22463
+		// Token: 0x04004DA0 RID: 19872
 		[SpineSlot("", "", false, true, false)]
 		public string gunSlot;
 
-		// Token: 0x040057C0 RID: 22464
+		// Token: 0x04004DA1 RID: 19873
 		[SpineAttachment(true, false, false, "gunSlot", "", "baseSkinName", true, false)]
 		public string gunKey = "gun";
 
-		// Token: 0x040057C1 RID: 22465
+		// Token: 0x04004DA2 RID: 19874
 		[Header("Runtime Repack")]
 		public bool repack = true;
 
-		// Token: 0x040057C2 RID: 22466
+		// Token: 0x04004DA3 RID: 19875
 		public BoundingBoxFollower bbFollower;
 
-		// Token: 0x040057C3 RID: 22467
+		// Token: 0x04004DA4 RID: 19876
 		[Header("Do not assign")]
 		public Texture2D runtimeAtlas;
 
-		// Token: 0x040057C4 RID: 22468
+		// Token: 0x04004DA5 RID: 19877
 		public Material runtimeMaterial;
 
-		// Token: 0x040057C5 RID: 22469
+		// Token: 0x04004DA6 RID: 19878
 		private Skin customSkin;
 	}
 }

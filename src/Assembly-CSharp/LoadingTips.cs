@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-// Token: 0x02000040 RID: 64
+// Token: 0x0200002D RID: 45
 public class LoadingTips : MonoBehaviour
 {
-	// Token: 0x06000432 RID: 1074 RVA: 0x0006D4CC File Offset: 0x0006B6CC
+	// Token: 0x060003EA RID: 1002 RVA: 0x00015B50 File Offset: 0x00013D50
 	private void Awake()
 	{
 		bool flag = false;
@@ -52,7 +52,7 @@ public class LoadingTips : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000433 RID: 1075 RVA: 0x00007B46 File Offset: 0x00005D46
+	// Token: 0x060003EB RID: 1003 RVA: 0x00015C24 File Offset: 0x00013E24
 	private void Update()
 	{
 		this.cd -= Time.deltaTime;
@@ -63,7 +63,7 @@ public class LoadingTips : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000434 RID: 1076 RVA: 0x0006D5A0 File Offset: 0x0006B7A0
+	// Token: 0x060003EC RID: 1004 RVA: 0x00015C58 File Offset: 0x00013E58
 	public void RandomTip()
 	{
 		if (this._tips.Count == 0)
@@ -88,22 +88,22 @@ public class LoadingTips : MonoBehaviour
 		this.TipText.text = this._tips[index];
 	}
 
-	// Token: 0x04000267 RID: 615
+	// Token: 0x04000221 RID: 545
 	public float UpdateTime = 4f;
 
-	// Token: 0x04000268 RID: 616
+	// Token: 0x04000222 RID: 546
 	public Text TipText;
 
-	// Token: 0x04000269 RID: 617
+	// Token: 0x04000223 RID: 547
 	[Multiline]
 	public string Tips = "";
 
-	// Token: 0x0400026A RID: 618
+	// Token: 0x04000224 RID: 548
 	private List<string> _tips = new List<string>();
 
-	// Token: 0x0400026B RID: 619
+	// Token: 0x04000225 RID: 549
 	private List<int> playIndexs = new List<int>();
 
-	// Token: 0x0400026C RID: 620
+	// Token: 0x04000226 RID: 550
 	private float cd;
 }

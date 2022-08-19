@@ -3,10 +3,10 @@ using UnityEngine;
 
 namespace Fungus
 {
-	// Token: 0x020012DB RID: 4827
+	// Token: 0x02000E75 RID: 3701
 	public class MusicManager : MonoBehaviour
 	{
-		// Token: 0x06007595 RID: 30101 RVA: 0x002B08A8 File Offset: 0x002AEAA8
+		// Token: 0x060068BC RID: 26812 RVA: 0x0028E164 File Offset: 0x0028C364
 		private void Reset()
 		{
 			int num = base.GetComponents<AudioSource>().Length;
@@ -16,7 +16,7 @@ namespace Fungus
 			}
 		}
 
-		// Token: 0x06007596 RID: 30102 RVA: 0x002B08D8 File Offset: 0x002AEAD8
+		// Token: 0x060068BD RID: 26813 RVA: 0x0028E194 File Offset: 0x0028C394
 		protected virtual void Awake()
 		{
 			this.Reset();
@@ -26,14 +26,14 @@ namespace Fungus
 			this.audioSourceSoundEffect = components[2];
 		}
 
-		// Token: 0x06007597 RID: 30103 RVA: 0x000501C7 File Offset: 0x0004E3C7
+		// Token: 0x060068BE RID: 26814 RVA: 0x0028E1C9 File Offset: 0x0028C3C9
 		protected virtual void Start()
 		{
 			this.audioSourceMusic.playOnAwake = false;
 			this.audioSourceMusic.loop = true;
 		}
 
-		// Token: 0x06007598 RID: 30104 RVA: 0x002B0910 File Offset: 0x002AEB10
+		// Token: 0x060068BF RID: 26815 RVA: 0x0028E1E4 File Offset: 0x0028C3E4
 		public void PlayMusic(AudioClip musicClip, bool loop, float fadeDuration, float atTime)
 		{
 			MusicManager.<>c__DisplayClass6_0 CS$<>8__locals1 = new MusicManager.<>c__DisplayClass6_0();
@@ -67,13 +67,13 @@ namespace Fungus
 			});
 		}
 
-		// Token: 0x06007599 RID: 30105 RVA: 0x000501E1 File Offset: 0x0004E3E1
+		// Token: 0x060068C0 RID: 26816 RVA: 0x0028E2E4 File Offset: 0x0028C4E4
 		public virtual void PlaySound(AudioClip soundClip, float volume)
 		{
 			this.audioSourceSoundEffect.PlayOneShot(soundClip, volume);
 		}
 
-		// Token: 0x0600759A RID: 30106 RVA: 0x000501F0 File Offset: 0x0004E3F0
+		// Token: 0x060068C1 RID: 26817 RVA: 0x0028E2F3 File Offset: 0x0028C4F3
 		public virtual void PlayAmbianceSound(AudioClip soundClip, bool loop, float volume)
 		{
 			this.audioSourceAmbiance.loop = loop;
@@ -82,7 +82,7 @@ namespace Fungus
 			this.audioSourceAmbiance.Play();
 		}
 
-		// Token: 0x0600759B RID: 30107 RVA: 0x002B0A10 File Offset: 0x002AEC10
+		// Token: 0x060068C2 RID: 26818 RVA: 0x0028E324 File Offset: 0x0028C524
 		public virtual void SetAudioPitch(float pitch, float duration, Action onComplete)
 		{
 			if (Mathf.Approximately(duration, 0f))
@@ -108,7 +108,7 @@ namespace Fungus
 			});
 		}
 
-		// Token: 0x0600759C RID: 30108 RVA: 0x002B0AA8 File Offset: 0x002AECA8
+		// Token: 0x060068C3 RID: 26819 RVA: 0x0028E3BC File Offset: 0x0028C5BC
 		public virtual void SetAudioVolume(float volume, float duration, Action onComplete)
 		{
 			if (Mathf.Approximately(duration, 0f))
@@ -134,27 +134,27 @@ namespace Fungus
 			});
 		}
 
-		// Token: 0x0600759D RID: 30109 RVA: 0x00050221 File Offset: 0x0004E421
+		// Token: 0x060068C4 RID: 26820 RVA: 0x0028E451 File Offset: 0x0028C651
 		public virtual void StopMusic()
 		{
 			this.audioSourceMusic.Stop();
 			this.audioSourceMusic.clip = null;
 		}
 
-		// Token: 0x0600759E RID: 30110 RVA: 0x0005023A File Offset: 0x0004E43A
+		// Token: 0x060068C5 RID: 26821 RVA: 0x0028E46A File Offset: 0x0028C66A
 		public virtual void StopAmbiance()
 		{
 			this.audioSourceAmbiance.Stop();
 			this.audioSourceAmbiance.clip = null;
 		}
 
-		// Token: 0x040066B2 RID: 26290
+		// Token: 0x040058F4 RID: 22772
 		protected AudioSource audioSourceMusic;
 
-		// Token: 0x040066B3 RID: 26291
+		// Token: 0x040058F5 RID: 22773
 		protected AudioSource audioSourceAmbiance;
 
-		// Token: 0x040066B4 RID: 26292
+		// Token: 0x040058F6 RID: 22774
 		protected AudioSource audioSourceSoundEffect;
 	}
 }

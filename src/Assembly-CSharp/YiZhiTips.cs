@@ -2,20 +2,20 @@
 using GUIPackage;
 using UnityEngine;
 
-// Token: 0x020007B3 RID: 1971
+// Token: 0x0200051F RID: 1311
 public class YiZhiTips : MonoBehaviour
 {
-	// Token: 0x06003210 RID: 12816 RVA: 0x000042DD File Offset: 0x000024DD
+	// Token: 0x060029FD RID: 10749 RVA: 0x00004095 File Offset: 0x00002295
 	private void Start()
 	{
 	}
 
-	// Token: 0x06003211 RID: 12817 RVA: 0x000042DD File Offset: 0x000024DD
+	// Token: 0x060029FE RID: 10750 RVA: 0x00004095 File Offset: 0x00002295
 	private void Update()
 	{
 	}
 
-	// Token: 0x06003212 RID: 12818 RVA: 0x0018D3FC File Offset: 0x0018B5FC
+	// Token: 0x060029FF RID: 10751 RVA: 0x00140234 File Offset: 0x0013E434
 	private void OnHover(bool isOver)
 	{
 		if (isOver)

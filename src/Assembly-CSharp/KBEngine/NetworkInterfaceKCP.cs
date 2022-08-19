@@ -7,48 +7,48 @@ using Deps;
 
 namespace KBEngine
 {
-	// Token: 0x02000FD9 RID: 4057
+	// Token: 0x02000C51 RID: 3153
 	public class NetworkInterfaceKCP : NetworkInterfaceBase
 	{
-		// Token: 0x06005FDB RID: 24539 RVA: 0x00042B48 File Offset: 0x00040D48
+		// Token: 0x06005594 RID: 21908 RVA: 0x0023923A File Offset: 0x0023743A
 		protected override Socket createSocket()
 		{
 			return new Socket(AddressFamily.InterNetwork, SocketType.Dgram, ProtocolType.Udp);
 		}
 
-		// Token: 0x06005FDC RID: 24540 RVA: 0x00042B53 File Offset: 0x00040D53
+		// Token: 0x06005595 RID: 21909 RVA: 0x00239245 File Offset: 0x00237445
 		protected override PacketReceiverBase createPacketReceiver()
 		{
 			return new PacketReceiverKCP(this);
 		}
 
-		// Token: 0x06005FDD RID: 24541 RVA: 0x00042B5B File Offset: 0x00040D5B
+		// Token: 0x06005596 RID: 21910 RVA: 0x0023924D File Offset: 0x0023744D
 		protected override PacketSenderBase createPacketSender()
 		{
 			return new PacketSenderKCP(this);
 		}
 
-		// Token: 0x06005FDE RID: 24542 RVA: 0x00042B63 File Offset: 0x00040D63
+		// Token: 0x06005597 RID: 21911 RVA: 0x00239255 File Offset: 0x00237455
 		public override void reset()
 		{
 			this.finiKCP();
 			base.reset();
 		}
 
-		// Token: 0x06005FDF RID: 24543 RVA: 0x00042B72 File Offset: 0x00040D72
+		// Token: 0x06005598 RID: 21912 RVA: 0x00239264 File Offset: 0x00237464
 		public override void close()
 		{
 			this.finiKCP();
 			base.close();
 		}
 
-		// Token: 0x06005FE0 RID: 24544 RVA: 0x00042B81 File Offset: 0x00040D81
+		// Token: 0x06005599 RID: 21913 RVA: 0x00239273 File Offset: 0x00237473
 		public override bool valid()
 		{
 			return this.kcp_ != null && this._socket != null && this.connected;
 		}
 
-		// Token: 0x06005FE1 RID: 24545 RVA: 0x00042B9B File Offset: 0x00040D9B
+		// Token: 0x0600559A RID: 21914 RVA: 0x0023928D File Offset: 0x0023748D
 		protected void outputKCP(byte[] data, int size, object userData)
 		{
 			if (!this.valid())
@@ -62,7 +62,7 @@ namespace KBEngine
 			((PacketSenderKCP)this._packetSender).sendto(data, size);
 		}
 
-		// Token: 0x06005FE2 RID: 24546 RVA: 0x0026629C File Offset: 0x0026449C
+		// Token: 0x0600559B RID: 21915 RVA: 0x002392CC File Offset: 0x002374CC
 		private bool initKCP()
 		{
 			this.kcp_ = new KCP(this.connID, this);
@@ -75,7 +75,7 @@ namespace KBEngine
 			return true;
 		}
 
-		// Token: 0x06005FE3 RID: 24547 RVA: 0x00042BD7 File Offset: 0x00040DD7
+		// Token: 0x0600559C RID: 21916 RVA: 0x00239363 File Offset: 0x00237563
 		private bool finiKCP()
 		{
 			if (this.kcp_ != null)
@@ -90,13 +90,13 @@ namespace KBEngine
 			return true;
 		}
 
-		// Token: 0x06005FE4 RID: 24548 RVA: 0x00042C15 File Offset: 0x00040E15
+		// Token: 0x0600559D RID: 21917 RVA: 0x002393A1 File Offset: 0x002375A1
 		public KCP kcp()
 		{
 			return this.kcp_;
 		}
 
-		// Token: 0x06005FE5 RID: 24549 RVA: 0x00266334 File Offset: 0x00264534
+		// Token: 0x0600559E RID: 21918 RVA: 0x002393AC File Offset: 0x002375AC
 		public override bool send(MemoryStream stream)
 		{
 			if (!this.valid())
@@ -111,7 +111,7 @@ namespace KBEngine
 			return this.kcp_.Send(stream.data(), stream.rpos, (int)stream.length()) >= 0;
 		}
 
-		// Token: 0x06005FE6 RID: 24550 RVA: 0x00266394 File Offset: 0x00264594
+		// Token: 0x0600559F RID: 21919 RVA: 0x0023940C File Offset: 0x0023760C
 		public override void process()
 		{
 			if (!this.valid())
@@ -130,7 +130,7 @@ namespace KBEngine
 			}
 		}
 
-		// Token: 0x06005FE7 RID: 24551 RVA: 0x00042C1D File Offset: 0x00040E1D
+		// Token: 0x060055A0 RID: 21920 RVA: 0x00239462 File Offset: 0x00237662
 		protected override void onAsyncConnectCB(NetworkInterfaceBase.ConnectState state)
 		{
 			if (state.error.Length > 0 || !this.initKCP())
@@ -141,7 +141,7 @@ namespace KBEngine
 			this.remoteEndPint = new IPEndPoint(IPAddress.Parse(state.connectIP), state.connectPort);
 		}
 
-		// Token: 0x06005FE8 RID: 24552 RVA: 0x002663EC File Offset: 0x002645EC
+		// Token: 0x060055A1 RID: 21921 RVA: 0x002394A0 File Offset: 0x002376A0
 		protected override void onAsyncConnect(NetworkInterfaceBase.ConnectState state)
 		{
 			try
@@ -211,16 +211,16 @@ namespace KBEngine
 			}
 		}
 
-		// Token: 0x04005B66 RID: 23398
+		// Token: 0x040050B6 RID: 20662
 		private KCP kcp_;
 
-		// Token: 0x04005B67 RID: 23399
+		// Token: 0x040050B7 RID: 20663
 		public uint connID;
 
-		// Token: 0x04005B68 RID: 23400
+		// Token: 0x040050B8 RID: 20664
 		public uint nextTickKcpUpdate;
 
-		// Token: 0x04005B69 RID: 23401
+		// Token: 0x040050B9 RID: 20665
 		public EndPoint remoteEndPint;
 	}
 }

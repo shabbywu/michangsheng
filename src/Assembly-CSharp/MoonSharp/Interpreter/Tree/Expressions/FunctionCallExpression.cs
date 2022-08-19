@@ -6,15 +6,15 @@ using MoonSharp.Interpreter.Execution.VM;
 
 namespace MoonSharp.Interpreter.Tree.Expressions
 {
-	// Token: 0x020010C1 RID: 4289
+	// Token: 0x02000CE5 RID: 3301
 	internal class FunctionCallExpression : Expression
 	{
-		// Token: 0x17000949 RID: 2377
-		// (get) Token: 0x06006786 RID: 26502 RVA: 0x00047341 File Offset: 0x00045541
-		// (set) Token: 0x06006787 RID: 26503 RVA: 0x00047349 File Offset: 0x00045549
+		// Token: 0x170006EE RID: 1774
+		// (get) Token: 0x06005C73 RID: 23667 RVA: 0x0025FC50 File Offset: 0x0025DE50
+		// (set) Token: 0x06005C74 RID: 23668 RVA: 0x0025FC58 File Offset: 0x0025DE58
 		internal SourceRef SourceRef { get; private set; }
 
-		// Token: 0x06006788 RID: 26504 RVA: 0x0028913C File Offset: 0x0028733C
+		// Token: 0x06005C75 RID: 23669 RVA: 0x0025FC64 File Offset: 0x0025DE64
 		public FunctionCallExpression(ScriptLoadingContext lcontext, Expression function, Token thisCallName) : base(lcontext)
 		{
 			Token token = thisCallName ?? lcontext.Lexer.Current;
@@ -71,7 +71,7 @@ namespace MoonSharp.Interpreter.Tree.Expressions
 			};
 		}
 
-		// Token: 0x06006789 RID: 26505 RVA: 0x002892FC File Offset: 0x002874FC
+		// Token: 0x06005C76 RID: 23670 RVA: 0x0025FE24 File Offset: 0x0025E024
 		public override void Compile(ByteCode bc)
 		{
 			this.m_Function.Compile(bc);
@@ -95,22 +95,22 @@ namespace MoonSharp.Interpreter.Tree.Expressions
 			bc.Emit_Call(num, this.m_DebugErr);
 		}
 
-		// Token: 0x0600678A RID: 26506 RVA: 0x00047352 File Offset: 0x00045552
+		// Token: 0x06005C77 RID: 23671 RVA: 0x0025FECF File Offset: 0x0025E0CF
 		public override DynValue Eval(ScriptExecutionContext context)
 		{
 			throw new DynamicExpressionException("Dynamic Expressions cannot call functions.");
 		}
 
-		// Token: 0x04005FA3 RID: 24483
+		// Token: 0x040053A1 RID: 21409
 		private List<Expression> m_Arguments;
 
-		// Token: 0x04005FA4 RID: 24484
+		// Token: 0x040053A2 RID: 21410
 		private Expression m_Function;
 
-		// Token: 0x04005FA5 RID: 24485
+		// Token: 0x040053A3 RID: 21411
 		private string m_Name;
 
-		// Token: 0x04005FA6 RID: 24486
+		// Token: 0x040053A4 RID: 21412
 		private string m_DebugErr;
 	}
 }

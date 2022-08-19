@@ -3,10 +3,10 @@ using MoonSharp.Interpreter;
 
 namespace Fungus
 {
-	// Token: 0x02001366 RID: 4966
+	// Token: 0x02000EC8 RID: 3784
 	public static class PortraitUtil
 	{
-		// Token: 0x0600787B RID: 30843 RVA: 0x002B684C File Offset: 0x002B4A4C
+		// Token: 0x06006AE0 RID: 27360 RVA: 0x002944B0 File Offset: 0x002926B0
 		public static PortraitOptions ConvertTableToPortraitOptions(Table table, Stage stage)
 		{
 			PortraitOptions portraitOptions = new PortraitOptions(true);

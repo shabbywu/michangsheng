@@ -4,22 +4,22 @@ using UnityEngine;
 
 namespace GUIPackage
 {
-	// Token: 0x02000D98 RID: 3480
+	// Token: 0x02000A6C RID: 2668
 	public class SkillDatebase : MonoBehaviour
 	{
-		// Token: 0x06005403 RID: 21507 RVA: 0x0003C0C6 File Offset: 0x0003A2C6
+		// Token: 0x06004AF9 RID: 19193 RVA: 0x001FE789 File Offset: 0x001FC989
 		public void Awake()
 		{
 			SkillDatebase.instence = this;
 		}
 
-		// Token: 0x06005404 RID: 21508 RVA: 0x0003C0CE File Offset: 0x0003A2CE
+		// Token: 0x06004AFA RID: 19194 RVA: 0x001FE791 File Offset: 0x001FC991
 		private void OnDestroy()
 		{
 			SkillDatebase.instence = null;
 		}
 
-		// Token: 0x06005405 RID: 21509 RVA: 0x0003C0D6 File Offset: 0x0003A2D6
+		// Token: 0x06004AFB RID: 19195 RVA: 0x001FE799 File Offset: 0x001FC999
 		public void Preload(int taskID)
 		{
 			Loom.RunAsync(delegate
@@ -28,7 +28,7 @@ namespace GUIPackage
 			});
 		}
 
-		// Token: 0x06005406 RID: 21510 RVA: 0x0023072C File Offset: 0x0022E92C
+		// Token: 0x06004AFC RID: 19196 RVA: 0x001FE7C0 File Offset: 0x001FC9C0
 		public void LoadAsync(int taskID)
 		{
 			try
@@ -53,19 +53,20 @@ namespace GUIPackage
 			{
 				PreloadManager.IsException = true;
 				PreloadManager.ExceptionData += string.Format("{0}\n", arg);
+				PreloadManager.Inst.TaskDone(taskID);
 			}
 		}
 
-		// Token: 0x040053BF RID: 21439
+		// Token: 0x04004A22 RID: 18978
 		public static SkillDatebase instence;
 
-		// Token: 0x040053C0 RID: 21440
+		// Token: 0x04004A23 RID: 18979
 		public List<Skill> skills = new List<Skill>();
 
-		// Token: 0x040053C1 RID: 21441
+		// Token: 0x04004A24 RID: 18980
 		public Dictionary<int, Skill> dicSkills = new Dictionary<int, Skill>();
 
-		// Token: 0x040053C2 RID: 21442
+		// Token: 0x04004A25 RID: 18981
 		public Dictionary<int, Dictionary<int, Skill>> Dict = new Dictionary<int, Dictionary<int, Skill>>();
 	}
 }

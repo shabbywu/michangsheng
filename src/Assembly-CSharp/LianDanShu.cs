@@ -4,15 +4,15 @@ using GUIPackage;
 using KBEngine;
 using UnityEngine;
 
-// Token: 0x0200061E RID: 1566
+// Token: 0x02000463 RID: 1123
 public class LianDanShu : MonoBehaviour
 {
-	// Token: 0x060026F4 RID: 9972 RVA: 0x000042DD File Offset: 0x000024DD
+	// Token: 0x06002340 RID: 9024 RVA: 0x00004095 File Offset: 0x00002295
 	private void Start()
 	{
 	}
 
-	// Token: 0x060026F5 RID: 9973 RVA: 0x00131E80 File Offset: 0x00130080
+	// Token: 0x06002341 RID: 9025 RVA: 0x000F1B1C File Offset: 0x000EFD1C
 	public void Inputcheng()
 	{
 		int num;
@@ -27,19 +27,19 @@ public class LianDanShu : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060026F6 RID: 9974 RVA: 0x00011B82 File Offset: 0x0000FD82
+	// Token: 0x06002342 RID: 9026 RVA: 0x0005FDE2 File Offset: 0x0005DFE2
 	public void show()
 	{
 		base.gameObject.SetActive(true);
 	}
 
-	// Token: 0x060026F7 RID: 9975 RVA: 0x00017C2D File Offset: 0x00015E2D
+	// Token: 0x06002343 RID: 9027 RVA: 0x000B5E62 File Offset: 0x000B4062
 	public void close()
 	{
 		base.gameObject.SetActive(false);
 	}
 
-	// Token: 0x060026F8 RID: 9976 RVA: 0x0001EF57 File Offset: 0x0001D157
+	// Token: 0x06002344 RID: 9028 RVA: 0x000F1B74 File Offset: 0x000EFD74
 	public void ok()
 	{
 		if (this.Num <= 0 || this.Num > this.max)
@@ -50,7 +50,7 @@ public class LianDanShu : MonoBehaviour
 		this.close();
 	}
 
-	// Token: 0x060026F9 RID: 9977 RVA: 0x00131ED8 File Offset: 0x001300D8
+	// Token: 0x06002345 RID: 9029 RVA: 0x000F1BA0 File Offset: 0x000EFDA0
 	private void Update()
 	{
 		int num = 100000;
@@ -104,7 +104,7 @@ public class LianDanShu : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060026FA RID: 9978 RVA: 0x0001EF82 File Offset: 0x0001D182
+	// Token: 0x06002346 RID: 9030 RVA: 0x000F1D70 File Offset: 0x000EFF70
 	public void add(int num)
 	{
 		this.Num += num;
@@ -114,7 +114,7 @@ public class LianDanShu : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060026FB RID: 9979 RVA: 0x0001EFAC File Offset: 0x0001D1AC
+	// Token: 0x06002347 RID: 9031 RVA: 0x000F1D9A File Offset: 0x000EFF9A
 	public void reduce(int num)
 	{
 		this.Num -= num;
@@ -124,51 +124,51 @@ public class LianDanShu : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060026FC RID: 9980 RVA: 0x0001EFCC File Offset: 0x0001D1CC
+	// Token: 0x06002348 RID: 9032 RVA: 0x000F1DBA File Offset: 0x000EFFBA
 	public void add1()
 	{
 		this.add(1);
 	}
 
-	// Token: 0x060026FD RID: 9981 RVA: 0x0001EFD5 File Offset: 0x0001D1D5
+	// Token: 0x06002349 RID: 9033 RVA: 0x000F1DC3 File Offset: 0x000EFFC3
 	public void add5()
 	{
 		this.add(5);
 	}
 
-	// Token: 0x060026FE RID: 9982 RVA: 0x0001EFDE File Offset: 0x0001D1DE
+	// Token: 0x0600234A RID: 9034 RVA: 0x000F1DCC File Offset: 0x000EFFCC
 	public void addMax()
 	{
 		this.Num = this.max;
 	}
 
-	// Token: 0x060026FF RID: 9983 RVA: 0x0001EFEC File Offset: 0x0001D1EC
+	// Token: 0x0600234B RID: 9035 RVA: 0x000F1DDA File Offset: 0x000EFFDA
 	public void reduce1()
 	{
 		this.reduce(1);
 	}
 
-	// Token: 0x06002700 RID: 9984 RVA: 0x0001EFF5 File Offset: 0x0001D1F5
+	// Token: 0x0600234C RID: 9036 RVA: 0x000F1DE3 File Offset: 0x000EFFE3
 	public void reduce5()
 	{
 		this.reduce(5);
 	}
 
-	// Token: 0x06002701 RID: 9985 RVA: 0x0001EFFE File Offset: 0x0001D1FE
+	// Token: 0x0600234D RID: 9037 RVA: 0x000F1DEC File Offset: 0x000EFFEC
 	public void reduceMin()
 	{
 		this.Num = 1;
 	}
 
-	// Token: 0x04002135 RID: 8501
+	// Token: 0x04001C61 RID: 7265
 	public int Num = 1;
 
-	// Token: 0x04002136 RID: 8502
+	// Token: 0x04001C62 RID: 7266
 	public int max;
 
-	// Token: 0x04002137 RID: 8503
+	// Token: 0x04001C63 RID: 7267
 	public UIInput uIInput;
 
-	// Token: 0x04002138 RID: 8504
+	// Token: 0x04001C64 RID: 7268
 	public UILabel uiLabel;
 }

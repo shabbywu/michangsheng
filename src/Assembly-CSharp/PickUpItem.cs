@@ -2,10 +2,10 @@
 using KBEngine;
 using UnityEngine;
 
-// Token: 0x0200021B RID: 539
+// Token: 0x02000146 RID: 326
 public class PickUpItem : MonoBehaviour
 {
-	// Token: 0x060010D2 RID: 4306 RVA: 0x000A9D5C File Offset: 0x000A7F5C
+	// Token: 0x06000EB2 RID: 3762 RVA: 0x000599C4 File Offset: 0x00057BC4
 	private void Start()
 	{
 		this._player = (GameObject)KBEngineApp.app.player().renderObj;
@@ -16,7 +16,7 @@ public class PickUpItem : MonoBehaviour
 		base.InvokeRepeating("cheakPlayer", 0.5f, 0.5f);
 	}
 
-	// Token: 0x060010D3 RID: 4307 RVA: 0x000A9DC4 File Offset: 0x000A7FC4
+	// Token: 0x06000EB3 RID: 3763 RVA: 0x00059A2C File Offset: 0x00057C2C
 	public void cheakPlayer()
 	{
 		if (Vector3.Distance(base.gameObject.transform.position, this._player.transform.position) <= 3f)
@@ -35,20 +35,20 @@ public class PickUpItem : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060010D4 RID: 4308 RVA: 0x00010771 File Offset: 0x0000E971
+	// Token: 0x06000EB4 RID: 3764 RVA: 0x00059ABB File Offset: 0x00057CBB
 	public void OnEnable()
 	{
 		UI_Game.ItemPick += this.OnItemPick;
 	}
 
-	// Token: 0x060010D5 RID: 4309 RVA: 0x00010784 File Offset: 0x0000E984
+	// Token: 0x06000EB5 RID: 3765 RVA: 0x00059ACE File Offset: 0x00057CCE
 	public void OnDisable()
 	{
 		UI_Game.ItemPick -= this.OnItemPick;
 		UI_MainUI.inst.skill1Text.text = "攻击";
 	}
 
-	// Token: 0x060010D6 RID: 4310 RVA: 0x000A9E54 File Offset: 0x000A8054
+	// Token: 0x06000EB6 RID: 3766 RVA: 0x00059AF8 File Offset: 0x00057CF8
 	private void OnItemPick()
 	{
 		if (this._player == null)
@@ -69,15 +69,15 @@ public class PickUpItem : MonoBehaviour
 		}
 	}
 
-	// Token: 0x04000D7F RID: 3455
+	// Token: 0x04000AE4 RID: 2788
 	public Item item;
 
-	// Token: 0x04000D80 RID: 3456
+	// Token: 0x04000AE5 RID: 2789
 	private Inventory _inventory;
 
-	// Token: 0x04000D81 RID: 3457
+	// Token: 0x04000AE6 RID: 2790
 	private GameObject _player;
 
-	// Token: 0x04000D82 RID: 3458
+	// Token: 0x04000AE7 RID: 2791
 	private int nowAttakBtnStatus;
 }

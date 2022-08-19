@@ -3,12 +3,12 @@ using UnityEngine;
 
 namespace BehaviorDesigner.Runtime.Tasks.Basic.UnityAudioSource
 {
-	// Token: 0x02001625 RID: 5669
+	// Token: 0x02001166 RID: 4454
 	[TaskCategory("Basic/AudioSource")]
 	[TaskDescription("Stores the ignore listener volume value of the AudioSource. Returns Success.")]
 	public class GetIgnoreListenerVolume : Action
 	{
-		// Token: 0x06008426 RID: 33830 RVA: 0x002CF518 File Offset: 0x002CD718
+		// Token: 0x0600762C RID: 30252 RVA: 0x002B5F58 File Offset: 0x002B4158
 		public override void OnStart()
 		{
 			GameObject defaultGameObject = base.GetDefaultGameObject(this.targetGameObject.Value);
@@ -19,7 +19,7 @@ namespace BehaviorDesigner.Runtime.Tasks.Basic.UnityAudioSource
 			}
 		}
 
-		// Token: 0x06008427 RID: 33831 RVA: 0x0005B370 File Offset: 0x00059570
+		// Token: 0x0600762D RID: 30253 RVA: 0x002B5F98 File Offset: 0x002B4198
 		public override TaskStatus OnUpdate()
 		{
 			if (this.audioSource == null)
@@ -31,26 +31,26 @@ namespace BehaviorDesigner.Runtime.Tasks.Basic.UnityAudioSource
 			return 2;
 		}
 
-		// Token: 0x06008428 RID: 33832 RVA: 0x0005B3A3 File Offset: 0x000595A3
+		// Token: 0x0600762E RID: 30254 RVA: 0x002B5FCB File Offset: 0x002B41CB
 		public override void OnReset()
 		{
 			this.targetGameObject = null;
 			this.storeValue = false;
 		}
 
-		// Token: 0x040070D1 RID: 28881
+		// Token: 0x040061AE RID: 25006
 		[Tooltip("The GameObject that the task operates on. If null the task GameObject is used.")]
 		public SharedGameObject targetGameObject;
 
-		// Token: 0x040070D2 RID: 28882
+		// Token: 0x040061AF RID: 25007
 		[Tooltip("The ignore listener volume value of the AudioSource")]
 		[RequiredField]
 		public SharedBool storeValue;
 
-		// Token: 0x040070D3 RID: 28883
+		// Token: 0x040061B0 RID: 25008
 		private AudioSource audioSource;
 
-		// Token: 0x040070D4 RID: 28884
+		// Token: 0x040061B1 RID: 25009
 		private GameObject prevGameObject;
 	}
 }

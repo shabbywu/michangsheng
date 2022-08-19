@@ -3,10 +3,10 @@ using System.Collections.Generic;
 
 namespace JSONClass
 {
-	// Token: 0x02000C29 RID: 3113
+	// Token: 0x0200089B RID: 2203
 	public class NPCChuShiHuaDate : IJSONClass
 	{
-		// Token: 0x06004C0D RID: 19469 RVA: 0x002019AC File Offset: 0x001FFBAC
+		// Token: 0x0600407F RID: 16511 RVA: 0x001B8728 File Offset: 0x001B6928
 		public static void InitDataDict()
 		{
 			foreach (JSONObject jsonobject in jsonData.instance.NPCChuShiHuaDate.list)
@@ -41,30 +41,30 @@ namespace JSONClass
 			}
 		}
 
-		// Token: 0x06004C0E RID: 19470 RVA: 0x000042DD File Offset: 0x000024DD
+		// Token: 0x06004080 RID: 16512 RVA: 0x00004095 File Offset: 0x00002295
 		private static void OnInitFinish()
 		{
 		}
 
-		// Token: 0x04004966 RID: 18790
+		// Token: 0x04003E0D RID: 15885
 		public static Dictionary<int, NPCChuShiHuaDate> DataDict = new Dictionary<int, NPCChuShiHuaDate>();
 
-		// Token: 0x04004967 RID: 18791
+		// Token: 0x04003E0E RID: 15886
 		public static List<NPCChuShiHuaDate> DataList = new List<NPCChuShiHuaDate>();
 
-		// Token: 0x04004968 RID: 18792
+		// Token: 0x04003E0F RID: 15887
 		public static Action OnInitFinishAction = new Action(NPCChuShiHuaDate.OnInitFinish);
 
-		// Token: 0x04004969 RID: 18793
+		// Token: 0x04003E10 RID: 15888
 		public int id;
 
-		// Token: 0x0400496A RID: 18794
+		// Token: 0x04003E11 RID: 15889
 		public int LiuPai;
 
-		// Token: 0x0400496B RID: 18795
+		// Token: 0x04003E12 RID: 15890
 		public List<int> Level = new List<int>();
 
-		// Token: 0x0400496C RID: 18796
+		// Token: 0x04003E13 RID: 15891
 		public List<int> Num = new List<int>();
 	}
 }

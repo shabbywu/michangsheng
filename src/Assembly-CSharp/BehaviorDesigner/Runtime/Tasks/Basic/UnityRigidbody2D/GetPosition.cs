@@ -3,12 +3,12 @@ using UnityEngine;
 
 namespace BehaviorDesigner.Runtime.Tasks.Basic.UnityRigidbody2D
 {
-	// Token: 0x02001536 RID: 5430
+	// Token: 0x0200107C RID: 4220
 	[TaskCategory("Basic/Rigidbody2D")]
 	[TaskDescription("Stores the position of the Rigidbody2D. Returns Success.")]
 	public class GetPosition : Action
 	{
-		// Token: 0x060080D6 RID: 32982 RVA: 0x002CB864 File Offset: 0x002C9A64
+		// Token: 0x060072DC RID: 29404 RVA: 0x002AEB70 File Offset: 0x002ACD70
 		public override void OnStart()
 		{
 			GameObject defaultGameObject = base.GetDefaultGameObject(this.targetGameObject.Value);
@@ -19,7 +19,7 @@ namespace BehaviorDesigner.Runtime.Tasks.Basic.UnityRigidbody2D
 			}
 		}
 
-		// Token: 0x060080D7 RID: 32983 RVA: 0x00057C92 File Offset: 0x00055E92
+		// Token: 0x060072DD RID: 29405 RVA: 0x002AEBB0 File Offset: 0x002ACDB0
 		public override TaskStatus OnUpdate()
 		{
 			if (this.rigidbody2D == null)
@@ -31,26 +31,26 @@ namespace BehaviorDesigner.Runtime.Tasks.Basic.UnityRigidbody2D
 			return 2;
 		}
 
-		// Token: 0x060080D8 RID: 32984 RVA: 0x00057CC5 File Offset: 0x00055EC5
+		// Token: 0x060072DE RID: 29406 RVA: 0x002AEBE3 File Offset: 0x002ACDE3
 		public override void OnReset()
 		{
 			this.targetGameObject = null;
 			this.storeValue = Vector2.zero;
 		}
 
-		// Token: 0x04006D8C RID: 28044
+		// Token: 0x04005E8C RID: 24204
 		[Tooltip("The GameObject that the task operates on. If null the task GameObject is used.")]
 		public SharedGameObject targetGameObject;
 
-		// Token: 0x04006D8D RID: 28045
+		// Token: 0x04005E8D RID: 24205
 		[Tooltip("The velocity of the Rigidbody2D")]
 		[RequiredField]
 		public SharedVector2 storeValue;
 
-		// Token: 0x04006D8E RID: 28046
+		// Token: 0x04005E8E RID: 24206
 		private Rigidbody2D rigidbody2D;
 
-		// Token: 0x04006D8F RID: 28047
+		// Token: 0x04005E8F RID: 24207
 		private GameObject prevGameObject;
 	}
 }

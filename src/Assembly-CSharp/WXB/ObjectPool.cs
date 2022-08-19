@@ -5,16 +5,16 @@ using UnityEngine.Events;
 
 namespace WXB
 {
-	// Token: 0x020009A9 RID: 2473
+	// Token: 0x02000695 RID: 1685
 	internal class ObjectPool<T> where T : new()
 	{
-		// Token: 0x17000705 RID: 1797
-		// (get) Token: 0x06003F03 RID: 16131 RVA: 0x0002D54E File Offset: 0x0002B74E
-		// (set) Token: 0x06003F04 RID: 16132 RVA: 0x0002D556 File Offset: 0x0002B756
+		// Token: 0x170004E5 RID: 1253
+		// (get) Token: 0x06003545 RID: 13637 RVA: 0x001706B6 File Offset: 0x0016E8B6
+		// (set) Token: 0x06003546 RID: 13638 RVA: 0x001706BE File Offset: 0x0016E8BE
 		public int countAll { get; private set; }
 
-		// Token: 0x17000706 RID: 1798
-		// (get) Token: 0x06003F05 RID: 16133 RVA: 0x0002D55F File Offset: 0x0002B75F
+		// Token: 0x170004E6 RID: 1254
+		// (get) Token: 0x06003547 RID: 13639 RVA: 0x001706C7 File Offset: 0x0016E8C7
 		public int countActive
 		{
 			get
@@ -23,8 +23,8 @@ namespace WXB
 			}
 		}
 
-		// Token: 0x17000707 RID: 1799
-		// (get) Token: 0x06003F06 RID: 16134 RVA: 0x0002D56E File Offset: 0x0002B76E
+		// Token: 0x170004E7 RID: 1255
+		// (get) Token: 0x06003548 RID: 13640 RVA: 0x001706D6 File Offset: 0x0016E8D6
 		public int countInactive
 		{
 			get
@@ -33,14 +33,14 @@ namespace WXB
 			}
 		}
 
-		// Token: 0x06003F07 RID: 16135 RVA: 0x0002D57B File Offset: 0x0002B77B
+		// Token: 0x06003549 RID: 13641 RVA: 0x001706E3 File Offset: 0x0016E8E3
 		public ObjectPool(UnityAction<T> actionOnGet, UnityAction<T> actionOnRelease)
 		{
 			this.m_ActionOnGet = actionOnGet;
 			this.m_ActionOnRelease = actionOnRelease;
 		}
 
-		// Token: 0x06003F08 RID: 16136 RVA: 0x001B8898 File Offset: 0x001B6A98
+		// Token: 0x0600354A RID: 13642 RVA: 0x00170704 File Offset: 0x0016E904
 		public T Get()
 		{
 			T t;
@@ -61,7 +61,7 @@ namespace WXB
 			return t;
 		}
 
-		// Token: 0x06003F09 RID: 16137 RVA: 0x001B88EC File Offset: 0x001B6AEC
+		// Token: 0x0600354B RID: 13643 RVA: 0x00170758 File Offset: 0x0016E958
 		public void Release(T element)
 		{
 			if (this.m_Stack.Count > 0 && this.m_Stack.Peek() == element)
@@ -75,13 +75,13 @@ namespace WXB
 			this.m_Stack.Push(element);
 		}
 
-		// Token: 0x040038AD RID: 14509
+		// Token: 0x04002EF4 RID: 12020
 		private readonly Stack<T> m_Stack = new Stack<T>();
 
-		// Token: 0x040038AE RID: 14510
+		// Token: 0x04002EF5 RID: 12021
 		private readonly UnityAction<T> m_ActionOnGet;
 
-		// Token: 0x040038AF RID: 14511
+		// Token: 0x04002EF6 RID: 12022
 		private readonly UnityAction<T> m_ActionOnRelease;
 	}
 }

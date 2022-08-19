@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using UnityEngine;
 
-// Token: 0x020002AD RID: 685
+// Token: 0x020001AF RID: 431
 public static class BindData
 {
-	// Token: 0x060014D6 RID: 5334 RVA: 0x000131EE File Offset: 0x000113EE
+	// Token: 0x0600122B RID: 4651 RVA: 0x0006E6B2 File Offset: 0x0006C8B2
 	public static void Bind(string key, object obj)
 	{
 		if (BindData._dict.ContainsKey(key))
@@ -17,7 +17,7 @@ public static class BindData
 		BindData._dict.Add(key, obj);
 	}
 
-	// Token: 0x060014D7 RID: 5335 RVA: 0x00013216 File Offset: 0x00011416
+	// Token: 0x0600122C RID: 4652 RVA: 0x0006E6DA File Offset: 0x0006C8DA
 	public static object Get(string key)
 	{
 		if (!BindData._dict.ContainsKey(key))
@@ -30,7 +30,7 @@ public static class BindData
 		return result;
 	}
 
-	// Token: 0x060014D8 RID: 5336 RVA: 0x000BC420 File Offset: 0x000BA620
+	// Token: 0x0600122D RID: 4653 RVA: 0x0006E714 File Offset: 0x0006C914
 	public static T Get<T>(string key)
 	{
 		Type typeFromHandle = typeof(T);
@@ -45,12 +45,12 @@ public static class BindData
 		return (T)((object)converter.ConvertTo(value, typeFromHandle));
 	}
 
-	// Token: 0x060014D9 RID: 5337 RVA: 0x0001324E File Offset: 0x0001144E
+	// Token: 0x0600122E RID: 4654 RVA: 0x0006E77F File Offset: 0x0006C97F
 	public static bool ContainsKey(string key)
 	{
 		return BindData._dict.ContainsKey(key);
 	}
 
-	// Token: 0x04001007 RID: 4103
+	// Token: 0x04000CDC RID: 3292
 	private static Dictionary<string, object> _dict = new Dictionary<string, object>();
 }

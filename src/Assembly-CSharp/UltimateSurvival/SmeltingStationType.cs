@@ -2,12 +2,12 @@
 
 namespace UltimateSurvival
 {
-	// Token: 0x020008E8 RID: 2280
+	// Token: 0x02000609 RID: 1545
 	public enum SmeltingStationType
 	{
-		// Token: 0x040034A5 RID: 13477
+		// Token: 0x04002BA0 RID: 11168
 		Furnace,
-		// Token: 0x040034A6 RID: 13478
+		// Token: 0x04002BA1 RID: 11169
 		Campfire
 	}
 }

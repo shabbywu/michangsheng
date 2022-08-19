@@ -4,10 +4,10 @@ using UnityEngine;
 
 namespace SuperScrollView
 {
-	// Token: 0x020009F0 RID: 2544
+	// Token: 0x020006C5 RID: 1733
 	public class GridItemPool
 	{
-		// Token: 0x060040E7 RID: 16615 RVA: 0x001BF13C File Offset: 0x001BD33C
+		// Token: 0x060036CA RID: 14026 RVA: 0x00176950 File Offset: 0x00174B50
 		public void Init(GameObject prefabObj, int createCount, RectTransform parent)
 		{
 			this.mPrefabObj = prefabObj;
@@ -22,7 +22,7 @@ namespace SuperScrollView
 			}
 		}
 
-		// Token: 0x060040E8 RID: 16616 RVA: 0x001BF19C File Offset: 0x001BD39C
+		// Token: 0x060036CB RID: 14027 RVA: 0x001769B0 File Offset: 0x00174BB0
 		public LoopGridViewItem GetItem()
 		{
 			GridItemPool.mCurItemIdCount++;
@@ -52,7 +52,7 @@ namespace SuperScrollView
 			return loopGridViewItem;
 		}
 
-		// Token: 0x060040E9 RID: 16617 RVA: 0x001BF24C File Offset: 0x001BD44C
+		// Token: 0x060036CC RID: 14028 RVA: 0x00176A60 File Offset: 0x00174C60
 		public void DestroyAllItem()
 		{
 			this.ClearTmpRecycledItem();
@@ -64,7 +64,7 @@ namespace SuperScrollView
 			this.mPooledItemList.Clear();
 		}
 
-		// Token: 0x060040EA RID: 16618 RVA: 0x001BF298 File Offset: 0x001BD498
+		// Token: 0x060036CD RID: 14029 RVA: 0x00176AAC File Offset: 0x00174CAC
 		public LoopGridViewItem CreateItem()
 		{
 			GameObject gameObject = Object.Instantiate<GameObject>(this.mPrefabObj, Vector3.zero, Quaternion.identity, this.mItemParent);
@@ -78,14 +78,14 @@ namespace SuperScrollView
 			return component2;
 		}
 
-		// Token: 0x060040EB RID: 16619 RVA: 0x0002EA4C File Offset: 0x0002CC4C
+		// Token: 0x060036CE RID: 14030 RVA: 0x00176B12 File Offset: 0x00174D12
 		private void RecycleItemReal(LoopGridViewItem item)
 		{
 			item.gameObject.SetActive(false);
 			this.mPooledItemList.Add(item);
 		}
 
-		// Token: 0x060040EC RID: 16620 RVA: 0x0002EA66 File Offset: 0x0002CC66
+		// Token: 0x060036CF RID: 14031 RVA: 0x00176B2C File Offset: 0x00174D2C
 		public void RecycleItem(LoopGridViewItem item)
 		{
 			item.PrevItem = null;
@@ -93,7 +93,7 @@ namespace SuperScrollView
 			this.mTmpPooledItemList.Add(item);
 		}
 
-		// Token: 0x060040ED RID: 16621 RVA: 0x001BF300 File Offset: 0x001BD500
+		// Token: 0x060036D0 RID: 14032 RVA: 0x00176B48 File Offset: 0x00174D48
 		public void ClearTmpRecycledItem()
 		{
 			int count = this.mTmpPooledItemList.Count;
@@ -108,25 +108,25 @@ namespace SuperScrollView
 			this.mTmpPooledItemList.Clear();
 		}
 
-		// Token: 0x040039C9 RID: 14793
+		// Token: 0x04002FC4 RID: 12228
 		private GameObject mPrefabObj;
 
-		// Token: 0x040039CA RID: 14794
+		// Token: 0x04002FC5 RID: 12229
 		private string mPrefabName;
 
-		// Token: 0x040039CB RID: 14795
+		// Token: 0x04002FC6 RID: 12230
 		private int mInitCreateCount = 1;
 
-		// Token: 0x040039CC RID: 14796
+		// Token: 0x04002FC7 RID: 12231
 		private List<LoopGridViewItem> mTmpPooledItemList = new List<LoopGridViewItem>();
 
-		// Token: 0x040039CD RID: 14797
+		// Token: 0x04002FC8 RID: 12232
 		private List<LoopGridViewItem> mPooledItemList = new List<LoopGridViewItem>();
 
-		// Token: 0x040039CE RID: 14798
+		// Token: 0x04002FC9 RID: 12233
 		private static int mCurItemIdCount;
 
-		// Token: 0x040039CF RID: 14799
+		// Token: 0x04002FCA RID: 12234
 		private RectTransform mItemParent;
 	}
 }

@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using Bag;
 using KBEngine;
 
-// Token: 0x02000535 RID: 1333
+// Token: 0x020003AA RID: 938
 [Serializable]
 public class FangAnData
 {
-	// Token: 0x06002205 RID: 8709 RVA: 0x00119FD0 File Offset: 0x001181D0
+	// Token: 0x06001E82 RID: 7810 RVA: 0x000D68C4 File Offset: 0x000D4AC4
 	public void SaveHandle()
 	{
 		foreach (int key in this.EquipDictionary.Keys)
@@ -19,7 +19,7 @@ public class FangAnData
 		}
 	}
 
-	// Token: 0x06002206 RID: 8710 RVA: 0x0011A080 File Offset: 0x00118280
+	// Token: 0x06001E83 RID: 7811 RVA: 0x000D6974 File Offset: 0x000D4B74
 	public void LoadHandle()
 	{
 		foreach (int key in this.EquipDictionary.Keys)
@@ -31,7 +31,7 @@ public class FangAnData
 		}
 	}
 
-	// Token: 0x06002207 RID: 8711 RVA: 0x0001BE84 File Offset: 0x0001A084
+	// Token: 0x06001E84 RID: 7812 RVA: 0x000D6A24 File Offset: 0x000D4C24
 	public Dictionary<int, BaseItem> GetCurEquipDict()
 	{
 		if (!this.EquipDictionary.ContainsKey(this.CurEquipIndex))
@@ -41,7 +41,7 @@ public class FangAnData
 		return this.EquipDictionary[this.CurEquipIndex];
 	}
 
-	// Token: 0x06002208 RID: 8712 RVA: 0x0011A130 File Offset: 0x00118330
+	// Token: 0x06001E85 RID: 7813 RVA: 0x000D6A60 File Offset: 0x000D4C60
 	public List<ITEM_INFO> CurEquipDictToOldList()
 	{
 		List<ITEM_INFO> list = new List<ITEM_INFO>();
@@ -59,7 +59,7 @@ public class FangAnData
 		return list;
 	}
 
-	// Token: 0x06002209 RID: 8713 RVA: 0x0011A1DC File Offset: 0x001183DC
+	// Token: 0x06001E86 RID: 7814 RVA: 0x000D6B0C File Offset: 0x000D4D0C
 	public void SwitchFangAn(int index)
 	{
 		Dictionary<int, BaseItem> curEquipDict = this.GetCurEquipDict();
@@ -75,9 +75,9 @@ public class FangAnData
 		}
 	}
 
-	// Token: 0x04001D78 RID: 7544
+	// Token: 0x04001904 RID: 6404
 	public Dictionary<int, Dictionary<int, BaseItem>> EquipDictionary = new Dictionary<int, Dictionary<int, BaseItem>>();
 
-	// Token: 0x04001D79 RID: 7545
+	// Token: 0x04001905 RID: 6405
 	public int CurEquipIndex = 1;
 }

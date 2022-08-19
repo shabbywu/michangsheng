@@ -2,24 +2,24 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-// Token: 0x02000021 RID: 33
+// Token: 0x0200001D RID: 29
 [Serializable]
 public class LTSpline
 {
-	// Token: 0x0600013E RID: 318 RVA: 0x00005029 File Offset: 0x00003229
+	// Token: 0x06000138 RID: 312 RVA: 0x00007A39 File Offset: 0x00005C39
 	public LTSpline(Vector3[] pts)
 	{
 		this.init(pts, true);
 	}
 
-	// Token: 0x0600013F RID: 319 RVA: 0x00005040 File Offset: 0x00003240
+	// Token: 0x06000139 RID: 313 RVA: 0x00007A50 File Offset: 0x00005C50
 	public LTSpline(Vector3[] pts, bool constantSpeed)
 	{
 		this.constantSpeed = constantSpeed;
 		this.init(pts, constantSpeed);
 	}
 
-	// Token: 0x06000140 RID: 320 RVA: 0x00061410 File Offset: 0x0005F610
+	// Token: 0x0600013A RID: 314 RVA: 0x00007A70 File Offset: 0x00005C70
 	private void init(Vector3[] pts, bool constantSpeed)
 	{
 		if (pts.Length < 4)
@@ -73,7 +73,7 @@ public class LTSpline
 		}
 	}
 
-	// Token: 0x06000141 RID: 321 RVA: 0x00061584 File Offset: 0x0005F784
+	// Token: 0x0600013B RID: 315 RVA: 0x00007BE4 File Offset: 0x00005DE4
 	public Vector3 map(float u)
 	{
 		if (u >= 1f)
@@ -93,7 +93,7 @@ public class LTSpline
 		return vector + (vector2 - vector) * num4;
 	}
 
-	// Token: 0x06000142 RID: 322 RVA: 0x00061608 File Offset: 0x0005F808
+	// Token: 0x0600013C RID: 316 RVA: 0x00007C68 File Offset: 0x00005E68
 	public Vector3 interp(float t)
 	{
 		this.currPt = Mathf.Min(Mathf.FloorToInt(t * (float)this.numSections), this.numSections - 1);
@@ -105,7 +105,7 @@ public class LTSpline
 		return 0.5f * ((-vector + 3f * vector2 - 3f * vector3 + vector4) * (num * num * num) + (2f * vector - 5f * vector2 + 4f * vector3 - vector4) * (num * num) + (-vector + vector3) * num + 2f * vector2);
 	}
 
-	// Token: 0x06000143 RID: 323 RVA: 0x00061740 File Offset: 0x0005F940
+	// Token: 0x0600013D RID: 317 RVA: 0x00007DA0 File Offset: 0x00005FA0
 	public float ratioAtPoint(Vector3 pt)
 	{
 		float num = float.MaxValue;
@@ -122,7 +122,7 @@ public class LTSpline
 		return (float)num2 / (float)(this.ptsAdjLength - 1);
 	}
 
-	// Token: 0x06000144 RID: 324 RVA: 0x00061790 File Offset: 0x0005F990
+	// Token: 0x0600013E RID: 318 RVA: 0x00007DF0 File Offset: 0x00005FF0
 	public Vector3 point(float ratio)
 	{
 		float num = (ratio > 1f) ? 1f : ratio;
@@ -133,7 +133,7 @@ public class LTSpline
 		return this.map(num);
 	}
 
-	// Token: 0x06000145 RID: 325 RVA: 0x000617C8 File Offset: 0x0005F9C8
+	// Token: 0x0600013F RID: 319 RVA: 0x00007E28 File Offset: 0x00006028
 	public void place2d(Transform transform, float ratio)
 	{
 		transform.position = this.point(ratio);
@@ -146,7 +146,7 @@ public class LTSpline
 		}
 	}
 
-	// Token: 0x06000146 RID: 326 RVA: 0x00061834 File Offset: 0x0005FA34
+	// Token: 0x06000140 RID: 320 RVA: 0x00007E94 File Offset: 0x00006094
 	public void placeLocal2d(Transform transform, float ratio)
 	{
 		if (transform.parent == null)
@@ -164,13 +164,13 @@ public class LTSpline
 		}
 	}
 
-	// Token: 0x06000147 RID: 327 RVA: 0x0000505E File Offset: 0x0000325E
+	// Token: 0x06000141 RID: 321 RVA: 0x00007F17 File Offset: 0x00006117
 	public void place(Transform transform, float ratio)
 	{
 		this.place(transform, ratio, Vector3.up);
 	}
 
-	// Token: 0x06000148 RID: 328 RVA: 0x0000506D File Offset: 0x0000326D
+	// Token: 0x06000142 RID: 322 RVA: 0x00007F26 File Offset: 0x00006126
 	public void place(Transform transform, float ratio, Vector3 worldUp)
 	{
 		transform.position = this.point(ratio);
@@ -181,13 +181,13 @@ public class LTSpline
 		}
 	}
 
-	// Token: 0x06000149 RID: 329 RVA: 0x0000509B File Offset: 0x0000329B
+	// Token: 0x06000143 RID: 323 RVA: 0x00007F54 File Offset: 0x00006154
 	public void placeLocal(Transform transform, float ratio)
 	{
 		this.placeLocal(transform, ratio, Vector3.up);
 	}
 
-	// Token: 0x0600014A RID: 330 RVA: 0x000050AA File Offset: 0x000032AA
+	// Token: 0x06000144 RID: 324 RVA: 0x00007F63 File Offset: 0x00006163
 	public void placeLocal(Transform transform, float ratio, Vector3 worldUp)
 	{
 		transform.localPosition = this.point(ratio);
@@ -198,7 +198,7 @@ public class LTSpline
 		}
 	}
 
-	// Token: 0x0600014B RID: 331 RVA: 0x000618B8 File Offset: 0x0005FAB8
+	// Token: 0x06000145 RID: 325 RVA: 0x00007F9C File Offset: 0x0000619C
 	public void gizmoDraw(float t = -1f)
 	{
 		if (this.ptsAdj == null || this.ptsAdj.Length == 0)
@@ -214,7 +214,7 @@ public class LTSpline
 		}
 	}
 
-	// Token: 0x0600014C RID: 332 RVA: 0x0006190C File Offset: 0x0005FB0C
+	// Token: 0x06000146 RID: 326 RVA: 0x00007FF0 File Offset: 0x000061F0
 	public void drawGizmo(Color color)
 	{
 		if (this.ptsAdjLength >= 4)
@@ -232,7 +232,7 @@ public class LTSpline
 		}
 	}
 
-	// Token: 0x0600014D RID: 333 RVA: 0x00061968 File Offset: 0x0005FB68
+	// Token: 0x06000147 RID: 327 RVA: 0x0000804C File Offset: 0x0000624C
 	public static void drawGizmo(Transform[] arr, Color color)
 	{
 		if (arr.Length >= 4)
@@ -256,13 +256,13 @@ public class LTSpline
 		}
 	}
 
-	// Token: 0x0600014E RID: 334 RVA: 0x000050E3 File Offset: 0x000032E3
+	// Token: 0x06000148 RID: 328 RVA: 0x000080E3 File Offset: 0x000062E3
 	public static void drawLine(Transform[] arr, float width, Color color)
 	{
 		int num = arr.Length;
 	}
 
-	// Token: 0x0600014F RID: 335 RVA: 0x00061A00 File Offset: 0x0005FC00
+	// Token: 0x06000149 RID: 329 RVA: 0x000080EC File Offset: 0x000062EC
 	public void drawLinesGLLines(Material outlineMaterial, Color color, float width)
 	{
 		GL.PushMatrix();
@@ -301,7 +301,7 @@ public class LTSpline
 		GL.PopMatrix();
 	}
 
-	// Token: 0x06000150 RID: 336 RVA: 0x00061AE8 File Offset: 0x0005FCE8
+	// Token: 0x0600014A RID: 330 RVA: 0x000081D4 File Offset: 0x000063D4
 	public Vector3[] generateVectors()
 	{
 		if (this.pts.Length >= 4)
@@ -321,37 +321,37 @@ public class LTSpline
 		return null;
 	}
 
-	// Token: 0x04000103 RID: 259
+	// Token: 0x040000F4 RID: 244
 	public static int DISTANCE_COUNT = 3;
 
-	// Token: 0x04000104 RID: 260
+	// Token: 0x040000F5 RID: 245
 	public static int SUBLINE_COUNT = 20;
 
-	// Token: 0x04000105 RID: 261
+	// Token: 0x040000F6 RID: 246
 	public float distance;
 
-	// Token: 0x04000106 RID: 262
+	// Token: 0x040000F7 RID: 247
 	public bool constantSpeed = true;
 
-	// Token: 0x04000107 RID: 263
+	// Token: 0x040000F8 RID: 248
 	public Vector3[] pts;
 
-	// Token: 0x04000108 RID: 264
+	// Token: 0x040000F9 RID: 249
 	[NonSerialized]
 	public Vector3[] ptsAdj;
 
-	// Token: 0x04000109 RID: 265
+	// Token: 0x040000FA RID: 250
 	public int ptsAdjLength;
 
-	// Token: 0x0400010A RID: 266
+	// Token: 0x040000FB RID: 251
 	public bool orientToPath;
 
-	// Token: 0x0400010B RID: 267
+	// Token: 0x040000FC RID: 252
 	public bool orientToPath2d;
 
-	// Token: 0x0400010C RID: 268
+	// Token: 0x040000FD RID: 253
 	private int numSections;
 
-	// Token: 0x0400010D RID: 269
+	// Token: 0x040000FE RID: 254
 	private int currPt;
 }

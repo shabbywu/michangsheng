@@ -2,10 +2,10 @@
 using System.Collections;
 using UnityEngine;
 
-// Token: 0x0200065C RID: 1628
+// Token: 0x0200048D RID: 1165
 public class AllMapsManageFull : MonoBehaviour
 {
-	// Token: 0x060028A2 RID: 10402 RVA: 0x0013D61C File Offset: 0x0013B81C
+	// Token: 0x060024C8 RID: 9416 RVA: 0x000FE270 File Offset: 0x000FC470
 	private void Awake()
 	{
 		if (PlayerPrefs.HasKey("PrvoPokretanjeIgre"))
@@ -28,7 +28,7 @@ public class AllMapsManageFull : MonoBehaviour
 		Camera.main.transform.position = new Vector3(Mathf.Clamp(GameObject.Find(StagesParser.worldToFocus.ToString()).transform.position.x, this.levaGranica, this.desnaGranica), Camera.main.transform.position.y, Camera.main.transform.position.z);
 	}
 
-	// Token: 0x060028A3 RID: 10403 RVA: 0x0013D750 File Offset: 0x0013B950
+	// Token: 0x060024C9 RID: 9417 RVA: 0x000FE3A4 File Offset: 0x000FC5A4
 	private void RefreshScene()
 	{
 		this.InitWorlds();
@@ -74,7 +74,7 @@ public class AllMapsManageFull : MonoBehaviour
 		StagesParser.Instance.UcitajLoadingPoruke();
 	}
 
-	// Token: 0x060028A4 RID: 10404 RVA: 0x0001FBE2 File Offset: 0x0001DDE2
+	// Token: 0x060024CA RID: 9418 RVA: 0x000FE633 File Offset: 0x000FC833
 	private IEnumerator checkConnectionForLoginButton()
 	{
 		base.StartCoroutine(CheckInternetConnection.Instance.checkInternetConnection());
@@ -103,7 +103,7 @@ public class AllMapsManageFull : MonoBehaviour
 		yield break;
 	}
 
-	// Token: 0x060028A5 RID: 10405 RVA: 0x0013D9E0 File Offset: 0x0013BBE0
+	// Token: 0x060024CB RID: 9419 RVA: 0x000FE644 File Offset: 0x000FC844
 	private void Start()
 	{
 		AllMapsManageFull.makniPopup = 0;
@@ -162,7 +162,7 @@ public class AllMapsManageFull : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060028A6 RID: 10406 RVA: 0x0013DE4C File Offset: 0x0013C04C
+	// Token: 0x060024CC RID: 9420 RVA: 0x000FEAB0 File Offset: 0x000FCCB0
 	private void UgasiOstrvce(int index)
 	{
 		Transform transform = GameObject.Find("AllWorlds_holder").transform.Find("HolderClouds" + index.ToString() + "/CloudsMove/AllMapsKatanac").transform;
@@ -177,7 +177,7 @@ public class AllMapsManageFull : MonoBehaviour
 		transform.Find("Fields/LastIslandIconHOLDER").gameObject.SetActive(false);
 	}
 
-	// Token: 0x060028A7 RID: 10407 RVA: 0x0013DF50 File Offset: 0x0013C150
+	// Token: 0x060024CD RID: 9421 RVA: 0x000FEBB4 File Offset: 0x000FCDB4
 	private void UpaliOstrvce(int index)
 	{
 		Transform transform = GameObject.Find("AllWorlds_holder").transform.Find("HolderClouds" + index.ToString() + "/CloudsMove/AllMapsKatanac").transform;
@@ -195,7 +195,7 @@ public class AllMapsManageFull : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060028A8 RID: 10408 RVA: 0x0013E070 File Offset: 0x0013C270
+	// Token: 0x060024CE RID: 9422 RVA: 0x000FECD4 File Offset: 0x000FCED4
 	private void IspisiBrojLevela(int index)
 	{
 		GameObject gameObject = GameObject.Find("AllWorlds_holder").transform.Find(index.ToString() + "/LevelsHolder").gameObject;
@@ -204,7 +204,7 @@ public class AllMapsManageFull : MonoBehaviour
 		gameObject.transform.Find("LevelValue").GetComponent<TextMeshEffects>().RefreshTextOutline(false, true, true);
 	}
 
-	// Token: 0x060028A9 RID: 10409 RVA: 0x0013E0E8 File Offset: 0x0013C2E8
+	// Token: 0x060024CF RID: 9423 RVA: 0x000FED4C File Offset: 0x000FCF4C
 	private void InitWorlds()
 	{
 		for (int i = 0; i < StagesParser.totalSets; i++)
@@ -267,7 +267,7 @@ public class AllMapsManageFull : MonoBehaviour
 		this._GUI.Find("TotalStars/Stars Number").GetComponent<TextMeshEffects>().RefreshTextOutline(false, true, true);
 	}
 
-	// Token: 0x060028AA RID: 10410 RVA: 0x0013E450 File Offset: 0x0013C650
+	// Token: 0x060024D0 RID: 9424 RVA: 0x000FF0B4 File Offset: 0x000FD2B4
 	private void Update()
 	{
 		if (Input.GetKeyUp(27))
@@ -508,7 +508,7 @@ public class AllMapsManageFull : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060028AB RID: 10411 RVA: 0x0001FBF1 File Offset: 0x0001DDF1
+	// Token: 0x060024D1 RID: 9425 RVA: 0x000FFA59 File Offset: 0x000FDC59
 	private IEnumerator AnimacijaOblakaOstrvo(int index)
 	{
 		yield return new WaitForSeconds(1f);
@@ -516,7 +516,7 @@ public class AllMapsManageFull : MonoBehaviour
 		yield break;
 	}
 
-	// Token: 0x060028AC RID: 10412 RVA: 0x0013EDF8 File Offset: 0x0013CFF8
+	// Token: 0x060024D2 RID: 9426 RVA: 0x000FFA68 File Offset: 0x000FDC68
 	private string RaycastFunction(Vector3 vector)
 	{
 		RaycastHit raycastHit;
@@ -531,7 +531,7 @@ public class AllMapsManageFull : MonoBehaviour
 		return "";
 	}
 
-	// Token: 0x060028AD RID: 10413 RVA: 0x0001FC00 File Offset: 0x0001DE00
+	// Token: 0x060024D3 RID: 9427 RVA: 0x000FFABD File Offset: 0x000FDCBD
 	private IEnumerator UcitajOstrvo(string ime)
 	{
 		if (PlaySounds.soundOn)
@@ -544,7 +544,7 @@ public class AllMapsManageFull : MonoBehaviour
 		yield break;
 	}
 
-	// Token: 0x060028AE RID: 10414 RVA: 0x0013EE50 File Offset: 0x0013D050
+	// Token: 0x060024D4 RID: 9428 RVA: 0x000FFAD4 File Offset: 0x000FDCD4
 	private void changeLanguage()
 	{
 		if (!FB.IsLoggedIn)
@@ -556,13 +556,13 @@ public class AllMapsManageFull : MonoBehaviour
 		GameObject.Find("Coming Soon").GetComponent<TextMeshEffects>().RefreshTextOutline(true, true, true);
 	}
 
-	// Token: 0x0400223E RID: 8766
+	// Token: 0x04001D5B RID: 7515
 	private float TrenutniX;
 
-	// Token: 0x0400223F RID: 8767
+	// Token: 0x04001D5C RID: 7516
 	private float TrenutniY;
 
-	// Token: 0x04002240 RID: 8768
+	// Token: 0x04001D5D RID: 7517
 	private int[] Klik = new int[]
 	{
 		0,
@@ -577,81 +577,81 @@ public class AllMapsManageFull : MonoBehaviour
 		9
 	};
 
-	// Token: 0x04002241 RID: 8769
+	// Token: 0x04001D5E RID: 7518
 	private int KliknutoNa;
 
-	// Token: 0x04002242 RID: 8770
+	// Token: 0x04001D5F RID: 7519
 	private float startX;
 
-	// Token: 0x04002243 RID: 8771
+	// Token: 0x04001D60 RID: 7520
 	private float endX;
 
-	// Token: 0x04002244 RID: 8772
+	// Token: 0x04001D61 RID: 7521
 	private float startY;
 
-	// Token: 0x04002245 RID: 8773
+	// Token: 0x04001D62 RID: 7522
 	private float endY;
 
-	// Token: 0x04002246 RID: 8774
+	// Token: 0x04001D63 RID: 7523
 	private float vremeKlika;
 
-	// Token: 0x04002247 RID: 8775
+	// Token: 0x04001D64 RID: 7524
 	private string clickedItem;
 
-	// Token: 0x04002248 RID: 8776
+	// Token: 0x04001D65 RID: 7525
 	private string releasedItem;
 
-	// Token: 0x04002249 RID: 8777
+	// Token: 0x04001D66 RID: 7526
 	private bool moved;
 
-	// Token: 0x0400224A RID: 8778
+	// Token: 0x04001D67 RID: 7527
 	private bool released;
 
-	// Token: 0x0400224B RID: 8779
+	// Token: 0x04001D68 RID: 7528
 	private bool bounce;
 
-	// Token: 0x0400224C RID: 8780
+	// Token: 0x04001D69 RID: 7529
 	private float pomerajX;
 
-	// Token: 0x0400224D RID: 8781
+	// Token: 0x04001D6A RID: 7530
 	private float pomerajY;
 
-	// Token: 0x0400224E RID: 8782
+	// Token: 0x04001D6B RID: 7531
 	private GameObject bonusIsland;
 
-	// Token: 0x0400224F RID: 8783
+	// Token: 0x04001D6C RID: 7532
 	private float levaGranica = 87.9f;
 
-	// Token: 0x04002250 RID: 8784
+	// Token: 0x04001D6D RID: 7533
 	private float desnaGranica = 95.44f;
 
-	// Token: 0x04002251 RID: 8785
+	// Token: 0x04001D6E RID: 7534
 	private Transform lifeManager;
 
-	// Token: 0x04002252 RID: 8786
+	// Token: 0x04001D6F RID: 7535
 	public Transform levo;
 
-	// Token: 0x04002253 RID: 8787
+	// Token: 0x04001D70 RID: 7536
 	public Transform desno;
 
-	// Token: 0x04002254 RID: 8788
+	// Token: 0x04001D71 RID: 7537
 	private Transform _GUI;
 
-	// Token: 0x04002255 RID: 8789
+	// Token: 0x04001D72 RID: 7538
 	private Camera guiCamera;
 
-	// Token: 0x04002256 RID: 8790
+	// Token: 0x04001D73 RID: 7539
 	private float razlikaX;
 
-	// Token: 0x04002257 RID: 8791
+	// Token: 0x04001D74 RID: 7540
 	private float razlikaY;
 
-	// Token: 0x04002258 RID: 8792
+	// Token: 0x04001D75 RID: 7541
 	private GameObject temp;
 
-	// Token: 0x04002259 RID: 8793
+	// Token: 0x04001D76 RID: 7542
 	private Vector3 originalScale;
 
-	// Token: 0x0400225A RID: 8794
+	// Token: 0x04001D77 RID: 7543
 	public static int makniPopup;
 }

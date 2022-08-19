@@ -3,22 +3,22 @@ using System.Collections.Generic;
 
 namespace SoftMasking
 {
-	// Token: 0x02000A06 RID: 2566
+	// Token: 0x020006D8 RID: 1752
 	internal struct ClearListAtExit<T> : IDisposable
 	{
-		// Token: 0x06004280 RID: 17024 RVA: 0x0002F6C8 File Offset: 0x0002D8C8
+		// Token: 0x0600385E RID: 14430 RVA: 0x0018335E File Offset: 0x0018155E
 		public ClearListAtExit(List<T> list)
 		{
 			this._list = list;
 		}
 
-		// Token: 0x06004281 RID: 17025 RVA: 0x0002F6D1 File Offset: 0x0002D8D1
+		// Token: 0x0600385F RID: 14431 RVA: 0x00183367 File Offset: 0x00181567
 		public void Dispose()
 		{
 			this._list.Clear();
 		}
 
-		// Token: 0x04003AE4 RID: 15076
+		// Token: 0x040030CC RID: 12492
 		private List<T> _list;
 	}
 }

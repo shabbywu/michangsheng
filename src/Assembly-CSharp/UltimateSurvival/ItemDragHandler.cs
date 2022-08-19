@@ -7,16 +7,16 @@ using UnityEngine.EventSystems;
 
 namespace UltimateSurvival
 {
-	// Token: 0x020008AE RID: 2222
+	// Token: 0x020005E0 RID: 1504
 	public class ItemDragHandler : MonoSingleton<ItemDragHandler>
 	{
 		// Token: 0x1400003B RID: 59
-		// (add) Token: 0x06003933 RID: 14643 RVA: 0x001A48E0 File Offset: 0x001A2AE0
-		// (remove) Token: 0x06003934 RID: 14644 RVA: 0x001A4918 File Offset: 0x001A2B18
+		// (add) Token: 0x06003067 RID: 12391 RVA: 0x0015ADF4 File Offset: 0x00158FF4
+		// (remove) Token: 0x06003068 RID: 12392 RVA: 0x0015AE2C File Offset: 0x0015902C
 		public event DropAction PlayerDroppedItem;
 
-		// Token: 0x170005FD RID: 1533
-		// (get) Token: 0x06003935 RID: 14645 RVA: 0x00029825 File Offset: 0x00027A25
+		// Token: 0x17000423 RID: 1059
+		// (get) Token: 0x06003069 RID: 12393 RVA: 0x0015AE61 File Offset: 0x00159061
 		public bool IsDragging
 		{
 			get
@@ -25,7 +25,7 @@ namespace UltimateSurvival
 			}
 		}
 
-		// Token: 0x06003936 RID: 14646 RVA: 0x001A4950 File Offset: 0x001A2B50
+		// Token: 0x0600306A RID: 12394 RVA: 0x0015AE6C File Offset: 0x0015906C
 		private void Start()
 		{
 			this.m_AllCollections = MonoSingleton<GUIController>.Instance.Containers;
@@ -39,7 +39,7 @@ namespace UltimateSurvival
 			}
 		}
 
-		// Token: 0x06003937 RID: 14647 RVA: 0x001A49DC File Offset: 0x001A2BDC
+		// Token: 0x0600306B RID: 12395 RVA: 0x0015AEF8 File Offset: 0x001590F8
 		private void On_Slot_BeginDrag(PointerEventData data, Slot slot, ItemContainer collection)
 		{
 			if (!slot.HasItem || MonoSingleton<InventoryController>.Instance.IsClosed)
@@ -73,7 +73,7 @@ namespace UltimateSurvival
 			}
 		}
 
-		// Token: 0x06003938 RID: 14648 RVA: 0x001A4B00 File Offset: 0x001A2D00
+		// Token: 0x0600306C RID: 12396 RVA: 0x0015B01C File Offset: 0x0015921C
 		private void On_Slot_Drag(PointerEventData data, Slot initialSlot, ItemContainer collection)
 		{
 			if (!this.m_Dragging)
@@ -88,7 +88,7 @@ namespace UltimateSurvival
 			}
 		}
 
-		// Token: 0x06003939 RID: 14649 RVA: 0x001A4B64 File Offset: 0x001A2D64
+		// Token: 0x0600306D RID: 12397 RVA: 0x0015B080 File Offset: 0x00159280
 		private void On_Slot_EndDrag(PointerEventData data, Slot initialSlot, ItemContainer collection)
 		{
 			if (!this.m_Dragging)
@@ -165,7 +165,7 @@ namespace UltimateSurvival
 			this.m_Dragging = false;
 		}
 
-		// Token: 0x0600393A RID: 14650 RVA: 0x001A4DD8 File Offset: 0x001A2FD8
+		// Token: 0x0600306E RID: 12398 RVA: 0x0015B2F4 File Offset: 0x001594F4
 		private void OnItemsAreStackable(Slot slotUnderPointer, Slot initialSlot)
 		{
 			int num;
@@ -182,7 +182,7 @@ namespace UltimateSurvival
 			}
 		}
 
-		// Token: 0x0600393B RID: 14651 RVA: 0x001A4E74 File Offset: 0x001A3074
+		// Token: 0x0600306F RID: 12399 RVA: 0x0015B390 File Offset: 0x00159590
 		private void On_ItemNotStackable(Slot slotUnderPointer, Slot initialSlot)
 		{
 			if (!initialSlot.AllowsItem(slotUnderPointer.CurrentItem))
@@ -206,7 +206,7 @@ namespace UltimateSurvival
 			}
 		}
 
-		// Token: 0x0600393C RID: 14652 RVA: 0x0002982D File Offset: 0x00027A2D
+		// Token: 0x06003070 RID: 12400 RVA: 0x0015B431 File Offset: 0x00159631
 		private void PutItemBack(Slot initialSlot)
 		{
 			if (initialSlot.HasItem)
@@ -217,37 +217,37 @@ namespace UltimateSurvival
 			initialSlot.ItemHolder.SetItem(this.m_DraggedItem);
 		}
 
-		// Token: 0x0400335B RID: 13147
+		// Token: 0x04002A9D RID: 10909
 		[SerializeField]
 		private float m_DraggedItemScale = 0.85f;
 
-		// Token: 0x0400335C RID: 13148
+		// Token: 0x04002A9E RID: 10910
 		[SerializeField]
 		private float m_DraggedItemAlpha = 0.75f;
 
-		// Token: 0x0400335D RID: 13149
+		// Token: 0x04002A9F RID: 10911
 		[SerializeField]
 		private KeyCode m_SplitKey = 304;
 
-		// Token: 0x0400335E RID: 13150
+		// Token: 0x04002AA0 RID: 10912
 		private ItemContainer[] m_AllCollections;
 
-		// Token: 0x0400335F RID: 13151
+		// Token: 0x04002AA1 RID: 10913
 		private bool m_Dragging;
 
-		// Token: 0x04003360 RID: 13152
+		// Token: 0x04002AA2 RID: 10914
 		private SavableItem m_DraggedItem;
 
-		// Token: 0x04003361 RID: 13153
+		// Token: 0x04002AA3 RID: 10915
 		private RectTransform m_DraggedItemRT;
 
-		// Token: 0x04003362 RID: 13154
+		// Token: 0x04002AA4 RID: 10916
 		private Canvas m_Canvas;
 
-		// Token: 0x04003363 RID: 13155
+		// Token: 0x04002AA5 RID: 10917
 		private RectTransform m_ParentCanvasRT;
 
-		// Token: 0x04003364 RID: 13156
+		// Token: 0x04002AA6 RID: 10918
 		private Vector2 m_DragOffset;
 	}
 }

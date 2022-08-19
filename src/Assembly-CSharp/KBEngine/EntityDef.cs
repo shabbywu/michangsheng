@@ -4,10 +4,10 @@ using UnityEngine;
 
 namespace KBEngine
 {
-	// Token: 0x02000F10 RID: 3856
+	// Token: 0x02000B92 RID: 2962
 	public class EntityDef
 	{
-		// Token: 0x06005C6E RID: 23662 RVA: 0x0004138D File Offset: 0x0003F58D
+		// Token: 0x06005232 RID: 21042 RVA: 0x002240DD File Offset: 0x002222DD
 		public static bool init()
 		{
 			EntityDef.initDataTypes();
@@ -16,14 +16,14 @@ namespace KBEngine
 			return true;
 		}
 
-		// Token: 0x06005C6F RID: 23663 RVA: 0x0004139F File Offset: 0x0003F59F
+		// Token: 0x06005233 RID: 21043 RVA: 0x002240EF File Offset: 0x002222EF
 		public static bool reset()
 		{
 			EntityDef.clear();
 			return EntityDef.init();
 		}
 
-		// Token: 0x06005C70 RID: 23664 RVA: 0x000413AB File Offset: 0x0003F5AB
+		// Token: 0x06005234 RID: 21044 RVA: 0x002240FB File Offset: 0x002222FB
 		public static void clear()
 		{
 			EntityDef.datatype2id.Clear();
@@ -34,7 +34,7 @@ namespace KBEngine
 			EntityDef.idmoduledefs.Clear();
 		}
 
-		// Token: 0x06005C71 RID: 23665 RVA: 0x00252878 File Offset: 0x00250A78
+		// Token: 0x06005235 RID: 21045 RVA: 0x0022413C File Offset: 0x0022233C
 		public static void initDataTypes()
 		{
 			EntityDef.datatypes["UINT8"] = new DATATYPE_UINT8();
@@ -57,7 +57,7 @@ namespace KBEngine
 			EntityDef.datatypes["BLOB"] = new DATATYPE_BLOB();
 		}
 
-		// Token: 0x06005C72 RID: 23666 RVA: 0x002529F0 File Offset: 0x00250BF0
+		// Token: 0x06005236 RID: 21046 RVA: 0x002242B4 File Offset: 0x002224B4
 		public static void initScriptModules()
 		{
 			ScriptModule scriptModule = new ScriptModule("Account");
@@ -2854,7 +2854,7 @@ namespace KBEngine
 			scriptModule8.idmethods[(ushort)method107.aliasID] = method107;
 		}
 
-		// Token: 0x06005C73 RID: 23667 RVA: 0x0025C834 File Offset: 0x0025AA34
+		// Token: 0x06005237 RID: 21047 RVA: 0x0022E0F8 File Offset: 0x0022C2F8
 		public static void initDefTypes()
 		{
 			ushort num = 2;
@@ -3173,22 +3173,22 @@ namespace KBEngine
 			}
 		}
 
-		// Token: 0x04005A3F RID: 23103
+		// Token: 0x04004FB1 RID: 20401
 		public static Dictionary<string, ushort> datatype2id = new Dictionary<string, ushort>();
 
-		// Token: 0x04005A40 RID: 23104
+		// Token: 0x04004FB2 RID: 20402
 		public static Dictionary<string, DATATYPE_BASE> datatypes = new Dictionary<string, DATATYPE_BASE>();
 
-		// Token: 0x04005A41 RID: 23105
+		// Token: 0x04004FB3 RID: 20403
 		public static Dictionary<ushort, DATATYPE_BASE> id2datatypes = new Dictionary<ushort, DATATYPE_BASE>();
 
-		// Token: 0x04005A42 RID: 23106
+		// Token: 0x04004FB4 RID: 20404
 		public static Dictionary<string, int> entityclass = new Dictionary<string, int>();
 
-		// Token: 0x04005A43 RID: 23107
+		// Token: 0x04004FB5 RID: 20405
 		public static Dictionary<string, ScriptModule> moduledefs = new Dictionary<string, ScriptModule>();
 
-		// Token: 0x04005A44 RID: 23108
+		// Token: 0x04004FB6 RID: 20406
 		public static Dictionary<ushort, ScriptModule> idmoduledefs = new Dictionary<ushort, ScriptModule>();
 	}
 }

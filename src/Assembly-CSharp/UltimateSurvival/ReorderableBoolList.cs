@@ -2,7 +2,7 @@
 
 namespace UltimateSurvival
 {
-	// Token: 0x02000859 RID: 2137
+	// Token: 0x0200059D RID: 1437
 	[Serializable]
 	public class ReorderableBoolList : ReorderableGenericList<bool>
 	{

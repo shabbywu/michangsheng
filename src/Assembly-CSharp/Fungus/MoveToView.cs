@@ -3,13 +3,13 @@ using UnityEngine;
 
 namespace Fungus
 {
-	// Token: 0x02001256 RID: 4694
+	// Token: 0x02000E09 RID: 3593
 	[CommandInfo("Camera", "Move To View", "Moves the camera to a location specified by a View object.", 0)]
 	[AddComponentMenu("")]
 	public class MoveToView : Command
 	{
-		// Token: 0x17000A6D RID: 2669
-		// (get) Token: 0x06007203 RID: 29187 RVA: 0x0004D8D5 File Offset: 0x0004BAD5
+		// Token: 0x17000806 RID: 2054
+		// (get) Token: 0x06006575 RID: 25973 RVA: 0x0028342C File Offset: 0x0028162C
 		public virtual View TargetView
 		{
 			get
@@ -18,7 +18,7 @@ namespace Fungus
 			}
 		}
 
-		// Token: 0x06007204 RID: 29188 RVA: 0x0004D8DD File Offset: 0x0004BADD
+		// Token: 0x06006576 RID: 25974 RVA: 0x00283434 File Offset: 0x00281634
 		protected virtual void AcquireCamera()
 		{
 			if (this.targetCamera != null)
@@ -32,13 +32,13 @@ namespace Fungus
 			}
 		}
 
-		// Token: 0x06007205 RID: 29189 RVA: 0x0004D912 File Offset: 0x0004BB12
+		// Token: 0x06006577 RID: 25975 RVA: 0x00283469 File Offset: 0x00281669
 		public virtual void Start()
 		{
 			this.AcquireCamera();
 		}
 
-		// Token: 0x06007206 RID: 29190 RVA: 0x002A7670 File Offset: 0x002A5870
+		// Token: 0x06006578 RID: 25976 RVA: 0x00283474 File Offset: 0x00281674
 		public override void OnEnter()
 		{
 			this.AcquireCamera();
@@ -64,13 +64,13 @@ namespace Fungus
 			}
 		}
 
-		// Token: 0x06007207 RID: 29191 RVA: 0x0004CBF3 File Offset: 0x0004ADF3
+		// Token: 0x06006579 RID: 25977 RVA: 0x0027EF09 File Offset: 0x0027D109
 		public override void OnStopExecuting()
 		{
 			FungusManager.Instance.CameraManager.Stop();
 		}
 
-		// Token: 0x06007208 RID: 29192 RVA: 0x0004D91A File Offset: 0x0004BB1A
+		// Token: 0x0600657A RID: 25978 RVA: 0x00283510 File Offset: 0x00281710
 		public override string GetSummary()
 		{
 			if (this.targetView == null)
@@ -80,28 +80,28 @@ namespace Fungus
 			return this.targetView.name;
 		}
 
-		// Token: 0x06007209 RID: 29193 RVA: 0x0004CAB8 File Offset: 0x0004ACB8
+		// Token: 0x0600657B RID: 25979 RVA: 0x0027EC04 File Offset: 0x0027CE04
 		public override Color GetButtonColor()
 		{
 			return new Color32(216, 228, 170, byte.MaxValue);
 		}
 
-		// Token: 0x04006461 RID: 25697
+		// Token: 0x0400572C RID: 22316
 		[Tooltip("Time for move effect to complete")]
 		[SerializeField]
 		protected float duration = 1f;
 
-		// Token: 0x04006462 RID: 25698
+		// Token: 0x0400572D RID: 22317
 		[Tooltip("View to transition to when move is complete")]
 		[SerializeField]
 		protected View targetView;
 
-		// Token: 0x04006463 RID: 25699
+		// Token: 0x0400572E RID: 22318
 		[Tooltip("Wait until the fade has finished before executing next command")]
 		[SerializeField]
 		protected bool waitUntilFinished = true;
 
-		// Token: 0x04006464 RID: 25700
+		// Token: 0x0400572F RID: 22319
 		[Tooltip("Camera to use for the pan. Will use main camera if set to none.")]
 		[SerializeField]
 		protected Camera targetCamera;

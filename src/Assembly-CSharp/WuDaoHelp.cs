@@ -2,10 +2,10 @@
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-// Token: 0x0200079E RID: 1950
+// Token: 0x0200050D RID: 1293
 public class WuDaoHelp : MonoBehaviour, IPointerEnterHandler, IEventSystemHandler, IPointerExitHandler
 {
-	// Token: 0x06003195 RID: 12693 RVA: 0x000244E5 File Offset: 0x000226E5
+	// Token: 0x06002990 RID: 10640 RVA: 0x0013DAD0 File Offset: 0x0013BCD0
 	private void Start()
 	{
 		if (this.HelpToolTips == null)
@@ -14,7 +14,7 @@ public class WuDaoHelp : MonoBehaviour, IPointerEnterHandler, IEventSystemHandle
 		}
 	}
 
-	// Token: 0x06003196 RID: 12694 RVA: 0x0018AD14 File Offset: 0x00188F14
+	// Token: 0x06002991 RID: 10641 RVA: 0x0013DAF8 File Offset: 0x0013BCF8
 	protected virtual void OnMouseEnter()
 	{
 		if (this.type == 1)
@@ -26,18 +26,18 @@ public class WuDaoHelp : MonoBehaviour, IPointerEnterHandler, IEventSystemHandle
 		this.HelpToolTips.showTooltip = true;
 	}
 
-	// Token: 0x06003197 RID: 12695 RVA: 0x0002450A File Offset: 0x0002270A
+	// Token: 0x06002992 RID: 10642 RVA: 0x0013DB66 File Offset: 0x0013BD66
 	protected virtual void OnMouseExit()
 	{
 		this.HelpToolTips.showTooltip = false;
 	}
 
-	// Token: 0x06003198 RID: 12696 RVA: 0x000042DD File Offset: 0x000024DD
+	// Token: 0x06002993 RID: 10643 RVA: 0x00004095 File Offset: 0x00002295
 	private void Update()
 	{
 	}
 
-	// Token: 0x06003199 RID: 12697 RVA: 0x00024518 File Offset: 0x00022718
+	// Token: 0x06002994 RID: 10644 RVA: 0x0013DB74 File Offset: 0x0013BD74
 	private void OnHover(bool isOver)
 	{
 		if (isOver)
@@ -48,24 +48,24 @@ public class WuDaoHelp : MonoBehaviour, IPointerEnterHandler, IEventSystemHandle
 		this.OnMouseExit();
 	}
 
-	// Token: 0x0600319A RID: 12698 RVA: 0x0002452A File Offset: 0x0002272A
+	// Token: 0x06002995 RID: 10645 RVA: 0x0013DB86 File Offset: 0x0013BD86
 	public void OnPointerEnter(PointerEventData eventData)
 	{
 		this.OnMouseEnter();
 	}
 
-	// Token: 0x0600319B RID: 12699 RVA: 0x00024532 File Offset: 0x00022732
+	// Token: 0x06002996 RID: 10646 RVA: 0x0013DB8E File Offset: 0x0013BD8E
 	public void OnPointerExit(PointerEventData eventData)
 	{
 		this.OnMouseExit();
 	}
 
-	// Token: 0x04002DD8 RID: 11736
+	// Token: 0x040025F0 RID: 9712
 	public TooltipScale HelpToolTips;
 
-	// Token: 0x04002DD9 RID: 11737
+	// Token: 0x040025F1 RID: 9713
 	public string text = "";
 
-	// Token: 0x04002DDA RID: 11738
+	// Token: 0x040025F2 RID: 9714
 	public int type;
 }

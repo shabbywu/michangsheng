@@ -1,15 +1,15 @@
 ﻿using System;
 using UnityEngine;
 
-// Token: 0x0200057D RID: 1405
+// Token: 0x020003E2 RID: 994
 public class LianQiWuQiSelect : MonoBehaviour
 {
-	// Token: 0x060023AF RID: 9135 RVA: 0x000042DD File Offset: 0x000024DD
+	// Token: 0x0600202F RID: 8239 RVA: 0x00004095 File Offset: 0x00002295
 	private void Start()
 	{
 	}
 
-	// Token: 0x060023B0 RID: 9136 RVA: 0x000042DD File Offset: 0x000024DD
+	// Token: 0x06002030 RID: 8240 RVA: 0x00004095 File Offset: 0x00002295
 	public void SelectEquipType(int type)
 	{
 	}

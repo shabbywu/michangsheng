@@ -4,10 +4,10 @@ using UnityEngine.UI;
 
 namespace EpicToonFX
 {
-	// Token: 0x02000E92 RID: 3730
+	// Token: 0x02000B20 RID: 2848
 	public class ETFXButtonScript : MonoBehaviour
 	{
-		// Token: 0x06005997 RID: 22935 RVA: 0x00249610 File Offset: 0x00247810
+		// Token: 0x06004F7E RID: 20350 RVA: 0x00219790 File Offset: 0x00217990
 		private void Start()
 		{
 			this.effectScript = GameObject.Find("ETFXFireProjectile").GetComponent<ETFXFireProjectile>();
@@ -16,20 +16,20 @@ namespace EpicToonFX
 			this.MyButtonText.text = this.projectileParticleName;
 		}
 
-		// Token: 0x06005998 RID: 22936 RVA: 0x0003F920 File Offset: 0x0003DB20
+		// Token: 0x06004F7F RID: 20351 RVA: 0x002197E9 File Offset: 0x002179E9
 		private void Update()
 		{
 			this.MyButtonText.text = this.projectileParticleName;
 		}
 
-		// Token: 0x06005999 RID: 22937 RVA: 0x0003F933 File Offset: 0x0003DB33
+		// Token: 0x06004F80 RID: 20352 RVA: 0x002197FC File Offset: 0x002179FC
 		public void getProjectileNames()
 		{
 			this.projectileScript = this.effectScript.projectiles[this.effectScript.currentProjectile].GetComponent<ETFXProjectileScript>();
 			this.projectileParticleName = this.projectileScript.projectileParticle.name;
 		}
 
-		// Token: 0x0600599A RID: 22938 RVA: 0x0024966C File Offset: 0x0024786C
+		// Token: 0x06004F81 RID: 20353 RVA: 0x00219838 File Offset: 0x00217A38
 		public bool overButton()
 		{
 			Rect rect;
@@ -39,34 +39,34 @@ namespace EpicToonFX
 			return rect.Contains(new Vector2(Input.mousePosition.x, (float)Screen.height - Input.mousePosition.y)) || rect2.Contains(new Vector2(Input.mousePosition.x, (float)Screen.height - Input.mousePosition.y));
 		}
 
-		// Token: 0x040058DD RID: 22749
+		// Token: 0x04004E6D RID: 20077
 		public GameObject Button;
 
-		// Token: 0x040058DE RID: 22750
+		// Token: 0x04004E6E RID: 20078
 		private Text MyButtonText;
 
-		// Token: 0x040058DF RID: 22751
+		// Token: 0x04004E6F RID: 20079
 		private string projectileParticleName;
 
-		// Token: 0x040058E0 RID: 22752
+		// Token: 0x04004E70 RID: 20080
 		private ETFXFireProjectile effectScript;
 
-		// Token: 0x040058E1 RID: 22753
+		// Token: 0x04004E71 RID: 20081
 		private ETFXProjectileScript projectileScript;
 
-		// Token: 0x040058E2 RID: 22754
+		// Token: 0x04004E72 RID: 20082
 		public float buttonsX;
 
-		// Token: 0x040058E3 RID: 22755
+		// Token: 0x04004E73 RID: 20083
 		public float buttonsY;
 
-		// Token: 0x040058E4 RID: 22756
+		// Token: 0x04004E74 RID: 20084
 		public float buttonsSizeX;
 
-		// Token: 0x040058E5 RID: 22757
+		// Token: 0x04004E75 RID: 20085
 		public float buttonsSizeY;
 
-		// Token: 0x040058E6 RID: 22758
+		// Token: 0x04004E76 RID: 20086
 		public float buttonsDistance;
 	}
 }

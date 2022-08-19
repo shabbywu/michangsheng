@@ -2,12 +2,12 @@
 
 namespace BehaviorDesigner.Runtime.Tasks.Basic.SharedVariables
 {
-	// Token: 0x02001515 RID: 5397
+	// Token: 0x0200105B RID: 4187
 	[TaskCategory("Basic/SharedVariable")]
 	[TaskDescription("Returns success if the variable value is equal to the compareTo value.")]
 	public class CompareSharedTransformList : Conditional
 	{
-		// Token: 0x06008068 RID: 32872 RVA: 0x002CB398 File Offset: 0x002C9598
+		// Token: 0x0600726E RID: 29294 RVA: 0x002ADF80 File Offset: 0x002AC180
 		public override TaskStatus OnUpdate()
 		{
 			if (this.variable.Value == null && this.compareTo.Value != null)
@@ -32,18 +32,18 @@ namespace BehaviorDesigner.Runtime.Tasks.Basic.SharedVariables
 			return 2;
 		}
 
-		// Token: 0x06008069 RID: 32873 RVA: 0x0005756F File Offset: 0x0005576F
+		// Token: 0x0600726F RID: 29295 RVA: 0x002AE030 File Offset: 0x002AC230
 		public override void OnReset()
 		{
 			this.variable = null;
 			this.compareTo = null;
 		}
 
-		// Token: 0x04006D36 RID: 27958
+		// Token: 0x04005E36 RID: 24118
 		[Tooltip("The first variable to compare")]
 		public SharedTransformList variable;
 
-		// Token: 0x04006D37 RID: 27959
+		// Token: 0x04005E37 RID: 24119
 		[Tooltip("The variable to compare to")]
 		public SharedTransformList compareTo;
 	}

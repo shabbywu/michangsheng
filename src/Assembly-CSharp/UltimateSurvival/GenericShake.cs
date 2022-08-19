@@ -3,17 +3,17 @@ using UnityEngine;
 
 namespace UltimateSurvival
 {
-	// Token: 0x0200086C RID: 2156
+	// Token: 0x020005B0 RID: 1456
 	[Serializable]
 	public class GenericShake
 	{
-		// Token: 0x060037DC RID: 14300 RVA: 0x00028942 File Offset: 0x00026B42
+		// Token: 0x06002F5E RID: 12126 RVA: 0x00156F8F File Offset: 0x0015518F
 		public void Shake(float scale)
 		{
 			MonoSingleton<FPCameraController>.Instance.Shake(this.GetShakeInstance(scale));
 		}
 
-		// Token: 0x060037DD RID: 14301 RVA: 0x001A140C File Offset: 0x0019F60C
+		// Token: 0x06002F5F RID: 12127 RVA: 0x00156FA4 File Offset: 0x001551A4
 		private ShakeInstance GetShakeInstance(float scale)
 		{
 			ShakeInstance shakeInstance = new ShakeInstance(this.m_Magnitude, this.m_Roughness, this.m_FadeInTime, this.m_FadeOutTime);
@@ -23,32 +23,32 @@ namespace UltimateSurvival
 			return shakeInstance;
 		}
 
-		// Token: 0x04003215 RID: 12821
+		// Token: 0x04002994 RID: 10644
 		[Header("Shake")]
 		[SerializeField]
 		private float m_Magnitude = 15f;
 
-		// Token: 0x04003216 RID: 12822
+		// Token: 0x04002995 RID: 10645
 		[SerializeField]
 		private float m_MinMagnitudeScale = 0.5f;
 
-		// Token: 0x04003217 RID: 12823
+		// Token: 0x04002996 RID: 10646
 		[SerializeField]
 		private float m_Roughness = 3f;
 
-		// Token: 0x04003218 RID: 12824
+		// Token: 0x04002997 RID: 10647
 		[SerializeField]
 		private Vector3 m_PositionInfluence = new Vector3(0.01f, 0.01f, 0.01f);
 
-		// Token: 0x04003219 RID: 12825
+		// Token: 0x04002998 RID: 10648
 		[SerializeField]
 		private Vector3 m_RotationInfluence = new Vector3(0.8f, 0.5f, 0.5f);
 
-		// Token: 0x0400321A RID: 12826
+		// Token: 0x04002999 RID: 10649
 		[SerializeField]
 		private float m_FadeInTime = 0.2f;
 
-		// Token: 0x0400321B RID: 12827
+		// Token: 0x0400299A RID: 10650
 		[SerializeField]
 		private float m_FadeOutTime = 0.3f;
 	}

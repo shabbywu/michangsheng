@@ -3,10 +3,10 @@ using System.Collections.Generic;
 
 namespace JSONClass
 {
-	// Token: 0x02000C19 RID: 3097
+	// Token: 0x0200088B RID: 2187
 	public class MapRandomJsonData : IJSONClass
 	{
-		// Token: 0x06004BCD RID: 19405 RVA: 0x001FFE78 File Offset: 0x001FE078
+		// Token: 0x0600403F RID: 16447 RVA: 0x001B6894 File Offset: 0x001B4A94
 		public static void InitDataDict()
 		{
 			foreach (JSONObject jsonobject in jsonData.instance.MapRandomJsonData.list)
@@ -52,63 +52,63 @@ namespace JSONClass
 			}
 		}
 
-		// Token: 0x06004BCE RID: 19406 RVA: 0x000042DD File Offset: 0x000024DD
+		// Token: 0x06004040 RID: 16448 RVA: 0x00004095 File Offset: 0x00002295
 		private static void OnInitFinish()
 		{
 		}
 
-		// Token: 0x040048BE RID: 18622
+		// Token: 0x04003D65 RID: 15717
 		public static Dictionary<int, MapRandomJsonData> DataDict = new Dictionary<int, MapRandomJsonData>();
 
-		// Token: 0x040048BF RID: 18623
+		// Token: 0x04003D66 RID: 15718
 		public static List<MapRandomJsonData> DataList = new List<MapRandomJsonData>();
 
-		// Token: 0x040048C0 RID: 18624
+		// Token: 0x04003D67 RID: 15719
 		public static Action OnInitFinishAction = new Action(MapRandomJsonData.OnInitFinish);
 
-		// Token: 0x040048C1 RID: 18625
+		// Token: 0x04003D68 RID: 15720
 		public int id;
 
-		// Token: 0x040048C2 RID: 18626
+		// Token: 0x04003D69 RID: 15721
 		public int EventType;
 
-		// Token: 0x040048C3 RID: 18627
+		// Token: 0x04003D6A RID: 15722
 		public int EventList;
 
-		// Token: 0x040048C4 RID: 18628
+		// Token: 0x04003D6B RID: 15723
 		public int EventData;
 
-		// Token: 0x040048C5 RID: 18629
+		// Token: 0x04003D6C RID: 15724
 		public int MosterID;
 
-		// Token: 0x040048C6 RID: 18630
+		// Token: 0x04003D6D RID: 15725
 		public int EventCastTime;
 
-		// Token: 0x040048C7 RID: 18631
+		// Token: 0x04003D6E RID: 15726
 		public int percent;
 
-		// Token: 0x040048C8 RID: 18632
+		// Token: 0x04003D6F RID: 15727
 		public int once;
 
-		// Token: 0x040048C9 RID: 18633
+		// Token: 0x04003D70 RID: 15728
 		public string EventName;
 
-		// Token: 0x040048CA RID: 18634
+		// Token: 0x04003D71 RID: 15729
 		public string Icon;
 
-		// Token: 0x040048CB RID: 18635
+		// Token: 0x04003D72 RID: 15730
 		public string StartTime;
 
-		// Token: 0x040048CC RID: 18636
+		// Token: 0x04003D73 RID: 15731
 		public string EndTime;
 
-		// Token: 0x040048CD RID: 18637
+		// Token: 0x04003D74 RID: 15732
 		public string fuhao;
 
-		// Token: 0x040048CE RID: 18638
+		// Token: 0x04003D75 RID: 15733
 		public List<int> EventLv = new List<int>();
 
-		// Token: 0x040048CF RID: 18639
+		// Token: 0x04003D76 RID: 15734
 		public List<int> EventValue = new List<int>();
 	}
 }

@@ -3,11 +3,11 @@ using System.Collections.Generic;
 
 namespace MoonSharp.Interpreter.CoreLib
 {
-	// Token: 0x0200118E RID: 4494
+	// Token: 0x02000D75 RID: 3445
 	[MoonSharpModule(Namespace = "coroutine")]
 	public class CoroutineModule
 	{
-		// Token: 0x06006DA6 RID: 28070 RVA: 0x0029AA20 File Offset: 0x00298C20
+		// Token: 0x060061A0 RID: 24992 RVA: 0x00274220 File Offset: 0x00272420
 		[MoonSharpModuleMethod]
 		public static DynValue create(ScriptExecutionContext executionContext, CallbackArguments args)
 		{
@@ -18,7 +18,7 @@ namespace MoonSharp.Interpreter.CoreLib
 			return executionContext.GetScript().CreateCoroutine(args[0]);
 		}
 
-		// Token: 0x06006DA7 RID: 28071 RVA: 0x0029AA70 File Offset: 0x00298C70
+		// Token: 0x060061A1 RID: 24993 RVA: 0x00274270 File Offset: 0x00272470
 		[MoonSharpModuleMethod]
 		public static DynValue wrap(ScriptExecutionContext executionContext, CallbackArguments args)
 		{
@@ -32,13 +32,13 @@ namespace MoonSharp.Interpreter.CoreLib
 			return dynValue;
 		}
 
-		// Token: 0x06006DA8 RID: 28072 RVA: 0x0004AB74 File Offset: 0x00048D74
+		// Token: 0x060061A2 RID: 24994 RVA: 0x002742D1 File Offset: 0x002724D1
 		public static DynValue __wrap_wrapper(ScriptExecutionContext executionContext, CallbackArguments args)
 		{
 			return ((DynValue)executionContext.AdditionalData).Coroutine.Resume(args.GetArray(0));
 		}
 
-		// Token: 0x06006DA9 RID: 28073 RVA: 0x0029AAD4 File Offset: 0x00298CD4
+		// Token: 0x060061A3 RID: 24995 RVA: 0x002742F0 File Offset: 0x002724F0
 		[MoonSharpModuleMethod]
 		public static DynValue resume(ScriptExecutionContext executionContext, CallbackArguments args)
 		{
@@ -81,14 +81,14 @@ namespace MoonSharp.Interpreter.CoreLib
 			return result;
 		}
 
-		// Token: 0x06006DAA RID: 28074 RVA: 0x0004AB92 File Offset: 0x00048D92
+		// Token: 0x060061A4 RID: 24996 RVA: 0x002743D8 File Offset: 0x002725D8
 		[MoonSharpModuleMethod]
 		public static DynValue yield(ScriptExecutionContext executionContext, CallbackArguments args)
 		{
 			return DynValue.NewYieldReq(args.GetArray(0));
 		}
 
-		// Token: 0x06006DAB RID: 28075 RVA: 0x0029ABBC File Offset: 0x00298DBC
+		// Token: 0x060061A5 RID: 24997 RVA: 0x002743E8 File Offset: 0x002725E8
 		[MoonSharpModuleMethod]
 		public static DynValue running(ScriptExecutionContext executionContext, CallbackArguments args)
 		{
@@ -100,7 +100,7 @@ namespace MoonSharp.Interpreter.CoreLib
 			});
 		}
 
-		// Token: 0x06006DAC RID: 28076 RVA: 0x0029ABF8 File Offset: 0x00298DF8
+		// Token: 0x060061A6 RID: 24998 RVA: 0x00274424 File Offset: 0x00272624
 		[MoonSharpModuleMethod]
 		public static DynValue status(ScriptExecutionContext executionContext, CallbackArguments args)
 		{

@@ -2,28 +2,28 @@
 
 namespace KBEngine
 {
-	// Token: 0x02000F2B RID: 3883
+	// Token: 0x02000BA8 RID: 2984
 	public struct PY_TUPLE
 	{
-		// Token: 0x06005D94 RID: 23956 RVA: 0x00041C64 File Offset: 0x0003FE64
+		// Token: 0x06005356 RID: 21334 RVA: 0x00233B03 File Offset: 0x00231D03
 		private PY_TUPLE(byte[] value)
 		{
 			this.value = value;
 		}
 
-		// Token: 0x06005D95 RID: 23957 RVA: 0x00041C6D File Offset: 0x0003FE6D
+		// Token: 0x06005357 RID: 21335 RVA: 0x00233B0C File Offset: 0x00231D0C
 		public static implicit operator byte[](PY_TUPLE value)
 		{
 			return value.value;
 		}
 
-		// Token: 0x06005D96 RID: 23958 RVA: 0x00041C75 File Offset: 0x0003FE75
+		// Token: 0x06005358 RID: 21336 RVA: 0x00233B14 File Offset: 0x00231D14
 		public static implicit operator PY_TUPLE(byte[] value)
 		{
 			return new PY_TUPLE(value);
 		}
 
-		// Token: 0x1700086F RID: 2159
+		// Token: 0x1700061C RID: 1564
 		public byte this[int ID]
 		{
 			get
@@ -36,7 +36,7 @@ namespace KBEngine
 			}
 		}
 
-		// Token: 0x04005AD5 RID: 23253
+		// Token: 0x04005034 RID: 20532
 		private byte[] value;
 	}
 }

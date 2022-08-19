@@ -3,29 +3,29 @@ using Tab;
 using UnityEngine;
 using UnityEngine.Events;
 
-// Token: 0x020004A4 RID: 1188
+// Token: 0x02000334 RID: 820
 public class MainConfig : TabSetPanel, IESCClose
 {
-	// Token: 0x06001F8B RID: 8075 RVA: 0x0001A094 File Offset: 0x00018294
+	// Token: 0x06001C3B RID: 7227 RVA: 0x000CA4AA File Offset: 0x000C86AA
 	public MainConfig(GameObject go) : base(go)
 	{
 	}
 
-	// Token: 0x06001F8C RID: 8076 RVA: 0x0001A09D File Offset: 0x0001829D
+	// Token: 0x06001C3C RID: 7228 RVA: 0x000CA4B3 File Offset: 0x000C86B3
 	protected override void Init()
 	{
 		base.Init();
 		base.Get<FpBtn>("关闭").mouseUpEvent.AddListener(new UnityAction(this.Hide));
 	}
 
-	// Token: 0x06001F8D RID: 8077 RVA: 0x0001A0C7 File Offset: 0x000182C7
+	// Token: 0x06001C3D RID: 7229 RVA: 0x000CA4DD File Offset: 0x000C86DD
 	public override void Show()
 	{
 		ESCCloseManager.Inst.RegisterClose(this);
 		base.Show();
 	}
 
-	// Token: 0x06001F8E RID: 8078 RVA: 0x0001A0DA File Offset: 0x000182DA
+	// Token: 0x06001C3E RID: 7230 RVA: 0x000CA4F0 File Offset: 0x000C86F0
 	public bool TryEscClose()
 	{
 		this.Hide();

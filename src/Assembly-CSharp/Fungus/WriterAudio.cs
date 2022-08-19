@@ -4,11 +4,11 @@ using UnityEngine;
 
 namespace Fungus
 {
-	// Token: 0x0200130C RID: 4876
+	// Token: 0x02000E93 RID: 3731
 	public class WriterAudio : MonoBehaviour, IWriterListener
 	{
-		// Token: 0x17000B27 RID: 2855
-		// (get) Token: 0x060076EF RID: 30447 RVA: 0x00050E53 File Offset: 0x0004F053
+		// Token: 0x1700089A RID: 2202
+		// (get) Token: 0x060069C4 RID: 27076 RVA: 0x00291D94 File Offset: 0x0028FF94
 		public bool IsPlayingVoiceOver
 		{
 			get
@@ -17,7 +17,7 @@ namespace Fungus
 			}
 		}
 
-		// Token: 0x060076F0 RID: 30448 RVA: 0x00050E5B File Offset: 0x0004F05B
+		// Token: 0x060069C5 RID: 27077 RVA: 0x00291D9C File Offset: 0x0028FF9C
 		public float GetSecondsRemaining()
 		{
 			if (this.IsPlayingVoiceOver)
@@ -27,13 +27,13 @@ namespace Fungus
 			return 0f;
 		}
 
-		// Token: 0x060076F1 RID: 30449 RVA: 0x00050E87 File Offset: 0x0004F087
+		// Token: 0x060069C6 RID: 27078 RVA: 0x00291DC8 File Offset: 0x0028FFC8
 		protected virtual void SetAudioMode(AudioMode mode)
 		{
 			this.audioMode = mode;
 		}
 
-		// Token: 0x060076F2 RID: 30450 RVA: 0x002B4AD0 File Offset: 0x002B2CD0
+		// Token: 0x060069C7 RID: 27079 RVA: 0x00291DD4 File Offset: 0x0028FFD4
 		protected virtual void Awake()
 		{
 			if (this.targetAudioSource == null)
@@ -47,7 +47,7 @@ namespace Fungus
 			this.targetAudioSource.volume = 0f;
 		}
 
-		// Token: 0x060076F3 RID: 30451 RVA: 0x002B4B28 File Offset: 0x002B2D28
+		// Token: 0x060069C8 RID: 27080 RVA: 0x00291E2C File Offset: 0x0029002C
 		protected virtual void Play(AudioClip audioClip)
 		{
 			if (this.targetAudioSource == null || (this.audioMode == AudioMode.SoundEffect && this.soundEffect == null && audioClip == null) || (this.audioMode == AudioMode.Beeps && this.beepSounds.Count == 0))
@@ -79,7 +79,7 @@ namespace Fungus
 			}
 		}
 
-		// Token: 0x060076F4 RID: 30452 RVA: 0x00050E90 File Offset: 0x0004F090
+		// Token: 0x060069C9 RID: 27081 RVA: 0x00291F3E File Offset: 0x0029013E
 		protected virtual void Pause()
 		{
 			if (this.targetAudioSource == null)
@@ -89,7 +89,7 @@ namespace Fungus
 			this.targetVolume = 0f;
 		}
 
-		// Token: 0x060076F5 RID: 30453 RVA: 0x00050EAC File Offset: 0x0004F0AC
+		// Token: 0x060069CA RID: 27082 RVA: 0x00291F5A File Offset: 0x0029015A
 		protected virtual void Stop()
 		{
 			if (this.targetAudioSource == null)
@@ -102,7 +102,7 @@ namespace Fungus
 			this.playingVoiceover = false;
 		}
 
-		// Token: 0x060076F6 RID: 30454 RVA: 0x00050EE2 File Offset: 0x0004F0E2
+		// Token: 0x060069CB RID: 27083 RVA: 0x00291F90 File Offset: 0x00290190
 		protected virtual void Resume()
 		{
 			if (this.targetAudioSource == null)
@@ -112,13 +112,13 @@ namespace Fungus
 			this.targetVolume = this.volume;
 		}
 
-		// Token: 0x060076F7 RID: 30455 RVA: 0x00050EFF File Offset: 0x0004F0FF
+		// Token: 0x060069CC RID: 27084 RVA: 0x00291FAD File Offset: 0x002901AD
 		protected virtual void Update()
 		{
 			this.targetAudioSource.volume = Mathf.MoveTowards(this.targetAudioSource.volume, this.targetVolume, Time.deltaTime * 5f);
 		}
 
-		// Token: 0x060076F8 RID: 30456 RVA: 0x00050F2D File Offset: 0x0004F12D
+		// Token: 0x060069CD RID: 27085 RVA: 0x00291FDB File Offset: 0x002901DB
 		public virtual void OnInput()
 		{
 			if (this.inputSound != null)
@@ -127,7 +127,7 @@ namespace Fungus
 			}
 		}
 
-		// Token: 0x060076F9 RID: 30457 RVA: 0x00050F4D File Offset: 0x0004F14D
+		// Token: 0x060069CE RID: 27086 RVA: 0x00291FFB File Offset: 0x002901FB
 		public virtual void OnStart(AudioClip audioClip)
 		{
 			if (this.playingVoiceover)
@@ -137,7 +137,7 @@ namespace Fungus
 			this.Play(audioClip);
 		}
 
-		// Token: 0x060076FA RID: 30458 RVA: 0x00050F5F File Offset: 0x0004F15F
+		// Token: 0x060069CF RID: 27087 RVA: 0x0029200D File Offset: 0x0029020D
 		public virtual void OnPause()
 		{
 			if (this.playingVoiceover)
@@ -147,7 +147,7 @@ namespace Fungus
 			this.Pause();
 		}
 
-		// Token: 0x060076FB RID: 30459 RVA: 0x00050F70 File Offset: 0x0004F170
+		// Token: 0x060069D0 RID: 27088 RVA: 0x0029201E File Offset: 0x0029021E
 		public virtual void OnResume()
 		{
 			if (this.playingVoiceover)
@@ -157,7 +157,7 @@ namespace Fungus
 			this.Resume();
 		}
 
-		// Token: 0x060076FC RID: 30460 RVA: 0x00050F81 File Offset: 0x0004F181
+		// Token: 0x060069D1 RID: 27089 RVA: 0x0029202F File Offset: 0x0029022F
 		public virtual void OnEnd(bool stopAudio)
 		{
 			if (stopAudio)
@@ -166,7 +166,7 @@ namespace Fungus
 			}
 		}
 
-		// Token: 0x060076FD RID: 30461 RVA: 0x002B4C3C File Offset: 0x002B2E3C
+		// Token: 0x060069D2 RID: 27090 RVA: 0x0029203C File Offset: 0x0029023C
 		public virtual void OnGlyph()
 		{
 			if (this.playingVoiceover)
@@ -187,7 +187,7 @@ namespace Fungus
 			}
 		}
 
-		// Token: 0x060076FE RID: 30462 RVA: 0x002B4D08 File Offset: 0x002B2F08
+		// Token: 0x060069D3 RID: 27091 RVA: 0x00292108 File Offset: 0x00290308
 		public virtual void OnVoiceover(AudioClip voiceOverClip)
 		{
 			if (this.targetAudioSource == null)
@@ -202,52 +202,52 @@ namespace Fungus
 			this.targetAudioSource.Play();
 		}
 
-		// Token: 0x040067C4 RID: 26564
+		// Token: 0x040059B5 RID: 22965
 		[Tooltip("Volume level of writing sound effects")]
 		[Range(0f, 1f)]
 		[SerializeField]
 		protected float volume = 1f;
 
-		// Token: 0x040067C5 RID: 26565
+		// Token: 0x040059B6 RID: 22966
 		[Tooltip("Loop the audio when in Sound Effect mode. Has no effect in Beeps mode.")]
 		[SerializeField]
 		protected bool loop = true;
 
-		// Token: 0x040067C6 RID: 26566
+		// Token: 0x040059B7 RID: 22967
 		[Tooltip("AudioSource to use for playing sound effects. If none is selected then one will be created.")]
 		[SerializeField]
 		protected AudioSource targetAudioSource;
 
-		// Token: 0x040067C7 RID: 26567
+		// Token: 0x040059B8 RID: 22968
 		[Tooltip("Type of sound effect to play when writing text")]
 		[SerializeField]
 		protected AudioMode audioMode;
 
-		// Token: 0x040067C8 RID: 26568
+		// Token: 0x040059B9 RID: 22969
 		[Tooltip("List of beeps to randomly select when playing beep sound effects. Will play maximum of one beep per character, with only one beep playing at a time.")]
 		[SerializeField]
 		protected List<AudioClip> beepSounds = new List<AudioClip>();
 
-		// Token: 0x040067C9 RID: 26569
+		// Token: 0x040059BA RID: 22970
 		[Tooltip("Long playing sound effect to play when writing text")]
 		[SerializeField]
 		protected AudioClip soundEffect;
 
-		// Token: 0x040067CA RID: 26570
+		// Token: 0x040059BB RID: 22971
 		[Tooltip("Sound effect to play on user input (e.g. a click)")]
 		[SerializeField]
 		protected AudioClip inputSound;
 
-		// Token: 0x040067CB RID: 26571
+		// Token: 0x040059BC RID: 22972
 		protected float targetVolume;
 
-		// Token: 0x040067CC RID: 26572
+		// Token: 0x040059BD RID: 22973
 		protected bool playBeeps;
 
-		// Token: 0x040067CD RID: 26573
+		// Token: 0x040059BE RID: 22974
 		protected bool playingVoiceover;
 
-		// Token: 0x040067CE RID: 26574
+		// Token: 0x040059BF RID: 22975
 		protected float nextBeepTime;
 	}
 }

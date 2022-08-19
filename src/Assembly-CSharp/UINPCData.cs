@@ -8,10 +8,10 @@ using UnityEngine.Events;
 using UnityEngine.SceneManagement;
 using YSGame.TianJiDaBi;
 
-// Token: 0x02000382 RID: 898
+// Token: 0x0200026A RID: 618
 public class UINPCData : IComparable
 {
-	// Token: 0x06001932 RID: 6450 RVA: 0x000DFA38 File Offset: 0x000DDC38
+	// Token: 0x06001680 RID: 5760 RVA: 0x00097924 File Offset: 0x00095B24
 	private static void Init()
 	{
 		if (!UINPCData._Inited)
@@ -83,21 +83,21 @@ public class UINPCData : IComparable
 		}
 	}
 
-	// Token: 0x06001933 RID: 6451 RVA: 0x000DFFCC File Offset: 0x000DE1CC
+	// Token: 0x06001681 RID: 5761 RVA: 0x00097EB8 File Offset: 0x000960B8
 	public UINPCData(int id, bool isThreeSceneNPC = false)
 	{
 		this.ID = id;
 		this.IsThreeSceneNPC = isThreeSceneNPC;
 	}
 
-	// Token: 0x06001934 RID: 6452 RVA: 0x000159F6 File Offset: 0x00013BF6
+	// Token: 0x06001682 RID: 5762 RVA: 0x00097F3C File Offset: 0x0009613C
 	public void SetID(int id)
 	{
 		this.ID = id;
 		this.RefreshData();
 	}
 
-	// Token: 0x06001935 RID: 6453 RVA: 0x000E003C File Offset: 0x000DE23C
+	// Token: 0x06001683 RID: 5763 RVA: 0x00097F4C File Offset: 0x0009614C
 	public void RefreshData()
 	{
 		UINPCData.Init();
@@ -212,6 +212,36 @@ public class UINPCData : IComparable
 				{
 					this.Skills.Add(UINPCData._SkillDict[jsonobject3.I][this.BigLevel]);
 				}
+				if (this.json.HasField("ExQingJiaoStaticSkills"))
+				{
+					using (List<int>.Enumerator enumerator2 = this.json["ExQingJiaoStaticSkills"].ToList().GetEnumerator())
+					{
+						while (enumerator2.MoveNext())
+						{
+							int staticSkillID = enumerator2.Current;
+							UINPCQingJiaoSkillData.SData sdata = UINPCQingJiaoSkillData.StaticSkillList.Find((UINPCQingJiaoSkillData.SData s) => s.ID == staticSkillID);
+							if (sdata != null)
+							{
+								this.ExQingJiaoStaticSkills.Add(sdata);
+							}
+						}
+					}
+				}
+				if (this.json.HasField("ExQingJiaoSkills"))
+				{
+					using (List<int>.Enumerator enumerator2 = this.json["ExQingJiaoSkills"].ToList().GetEnumerator())
+					{
+						while (enumerator2.MoveNext())
+						{
+							int skillID = enumerator2.Current;
+							UINPCQingJiaoSkillData.SData sdata2 = UINPCQingJiaoSkillData.StaticSkillList.Find((UINPCQingJiaoSkillData.SData s) => s.SkillID == skillID && s.Quality == this.BigLevel);
+							if (sdata2 != null)
+							{
+								this.ExQingJiaoSkills.Add(sdata2);
+							}
+						}
+					}
+				}
 				this.WuDaoSkills.Clear();
 				if (!this.json["wuDaoSkillList"].IsNull)
 				{
@@ -282,7 +312,7 @@ public class UINPCData : IComparable
 		}
 	}
 
-	// Token: 0x06001936 RID: 6454 RVA: 0x000E0B98 File Offset: 0x000DED98
+	// Token: 0x06001684 RID: 5764 RVA: 0x00098BF0 File Offset: 0x00096DF0
 	private void CalcDunSu()
 	{
 		int dunSu = this.DunSu;
@@ -293,7 +323,7 @@ public class UINPCData : IComparable
 		this.DunSu = dunSu2;
 	}
 
-	// Token: 0x06001937 RID: 6455 RVA: 0x000E0BD4 File Offset: 0x000DEDD4
+	// Token: 0x06001685 RID: 5765 RVA: 0x00098C2C File Offset: 0x00096E2C
 	private void CalcShenShi()
 	{
 		int shenShi = this.ShenShi;
@@ -304,7 +334,7 @@ public class UINPCData : IComparable
 		this.ShenShi = shenShi2;
 	}
 
-	// Token: 0x06001938 RID: 6456 RVA: 0x000E0C10 File Offset: 0x000DEE10
+	// Token: 0x06001686 RID: 5766 RVA: 0x00098C68 File Offset: 0x00096E68
 	private void CalcHP()
 	{
 		int hp = this.HP;
@@ -315,7 +345,7 @@ public class UINPCData : IComparable
 		this.HP = hp2;
 	}
 
-	// Token: 0x06001939 RID: 6457 RVA: 0x000E0C4C File Offset: 0x000DEE4C
+	// Token: 0x06001687 RID: 5767 RVA: 0x00098CA4 File Offset: 0x00096EA4
 	private int CalcStaticSkillSeidSum(int seid)
 	{
 		int num = 0;
@@ -345,7 +375,7 @@ public class UINPCData : IComparable
 		return num;
 	}
 
-	// Token: 0x0600193A RID: 6458 RVA: 0x000E0D34 File Offset: 0x000DEF34
+	// Token: 0x06001688 RID: 5768 RVA: 0x00098D8C File Offset: 0x00096F8C
 	private int CalcWuDaoSkillSeidSum(int seid)
 	{
 		int num = 0;
@@ -375,7 +405,7 @@ public class UINPCData : IComparable
 		return num;
 	}
 
-	// Token: 0x0600193B RID: 6459 RVA: 0x000E0E1C File Offset: 0x000DF01C
+	// Token: 0x06001689 RID: 5769 RVA: 0x00098E74 File Offset: 0x00097074
 	private int CalcEquipSeidSum(int seid)
 	{
 		int num = 0;
@@ -430,7 +460,7 @@ public class UINPCData : IComparable
 		return num;
 	}
 
-	// Token: 0x0600193C RID: 6460 RVA: 0x000E0F8C File Offset: 0x000DF18C
+	// Token: 0x0600168A RID: 5770 RVA: 0x00098FE4 File Offset: 0x000971E4
 	public void RefreshOldNpcData()
 	{
 		UINPCData.Init();
@@ -507,7 +537,7 @@ public class UINPCData : IComparable
 		}
 	}
 
-	// Token: 0x0600193D RID: 6461 RVA: 0x000E1420 File Offset: 0x000DF620
+	// Token: 0x0600168B RID: 5771 RVA: 0x00099478 File Offset: 0x00097678
 	public void ParseEvent()
 	{
 		JSONObject jsonobject = this.json["NoteBook"];
@@ -631,7 +661,7 @@ public class UINPCData : IComparable
 		}
 	}
 
-	// Token: 0x0600193E RID: 6462 RVA: 0x000E1B4C File Offset: 0x000DFD4C
+	// Token: 0x0600168C RID: 5772 RVA: 0x00099BA4 File Offset: 0x00097DA4
 	public static void CheckWuDaoError()
 	{
 		UINPCData.Init();
@@ -692,7 +722,7 @@ public class UINPCData : IComparable
 		Debug.LogError(stringBuilder.ToString());
 	}
 
-	// Token: 0x0600193F RID: 6463 RVA: 0x000E1E10 File Offset: 0x000E0010
+	// Token: 0x0600168D RID: 5773 RVA: 0x00099E68 File Offset: 0x00098068
 	public int CompareTo(object obj)
 	{
 		if (this.Level > ((UINPCData)obj).Level)
@@ -714,226 +744,232 @@ public class UINPCData : IComparable
 		return -1;
 	}
 
-	// Token: 0x04001402 RID: 5122
+	// Token: 0x040010B0 RID: 4272
 	private static bool isDebugMode = false;
 
-	// Token: 0x04001403 RID: 5123
+	// Token: 0x040010B1 RID: 4273
 	public static Dictionary<int, UnityAction> ThreeSceneNPCTalkCache = new Dictionary<int, UnityAction>();
 
-	// Token: 0x04001404 RID: 5124
+	// Token: 0x040010B2 RID: 4274
 	public static Dictionary<int, UnityAction> ThreeSceneZhongYaoNPCTalkCache = new Dictionary<int, UnityAction>();
 
-	// Token: 0x04001405 RID: 5125
+	// Token: 0x040010B3 RID: 4275
 	public bool IsException;
 
-	// Token: 0x04001406 RID: 5126
+	// Token: 0x040010B4 RID: 4276
 	public int ID;
 
-	// Token: 0x04001407 RID: 5127
+	// Token: 0x040010B5 RID: 4277
 	public string UUID = "";
 
-	// Token: 0x04001408 RID: 5128
+	// Token: 0x040010B6 RID: 4278
 	public int Tag;
 
-	// Token: 0x04001409 RID: 5129
+	// Token: 0x040010B7 RID: 4279
 	public bool IsGuDingNPC;
 
-	// Token: 0x0400140A RID: 5130
+	// Token: 0x040010B8 RID: 4280
 	public bool IsZhongYaoNPC;
 
-	// Token: 0x0400140B RID: 5131
+	// Token: 0x040010B9 RID: 4281
 	public int ZhongYaoNPCID;
 
-	// Token: 0x0400140C RID: 5132
+	// Token: 0x040010BA RID: 4282
 	public bool IsThreeSceneNPC;
 
-	// Token: 0x0400140D RID: 5133
+	// Token: 0x040010BB RID: 4283
 	public bool IsBind;
 
-	// Token: 0x0400140E RID: 5134
+	// Token: 0x040010BC RID: 4284
 	public string Name;
 
-	// Token: 0x0400140F RID: 5135
+	// Token: 0x040010BD RID: 4285
 	public int Sex;
 
-	// Token: 0x04001410 RID: 5136
+	// Token: 0x040010BE RID: 4286
 	public string Title;
 
-	// Token: 0x04001411 RID: 5137
+	// Token: 0x040010BF RID: 4287
 	public int Age;
 
-	// Token: 0x04001412 RID: 5138
+	// Token: 0x040010C0 RID: 4288
 	public int HP;
 
-	// Token: 0x04001413 RID: 5139
+	// Token: 0x040010C1 RID: 4289
 	public int QingFen;
 
-	// Token: 0x04001414 RID: 5140
+	// Token: 0x040010C2 RID: 4290
 	public int Exp;
 
-	// Token: 0x04001415 RID: 5141
+	// Token: 0x040010C3 RID: 4291
 	public int Level;
 
-	// Token: 0x04001416 RID: 5142
+	// Token: 0x040010C4 RID: 4292
 	public int BigLevel;
 
-	// Token: 0x04001417 RID: 5143
+	// Token: 0x040010C5 RID: 4293
 	public string LevelStr;
 
-	// Token: 0x04001418 RID: 5144
+	// Token: 0x040010C6 RID: 4294
 	public int ZhuangTai;
 
-	// Token: 0x04001419 RID: 5145
+	// Token: 0x040010C7 RID: 4295
 	public string ZhuangTaiStr;
 
-	// Token: 0x0400141A RID: 5146
+	// Token: 0x040010C8 RID: 4296
 	public int ShouYuan;
 
-	// Token: 0x0400141B RID: 5147
+	// Token: 0x040010C9 RID: 4297
 	public int ZiZhi;
 
-	// Token: 0x0400141C RID: 5148
+	// Token: 0x040010CA RID: 4298
 	public int WuXing;
 
-	// Token: 0x0400141D RID: 5149
+	// Token: 0x040010CB RID: 4299
 	public int DunSu;
 
-	// Token: 0x0400141E RID: 5150
+	// Token: 0x040010CC RID: 4300
 	public int ShenShi;
 
-	// Token: 0x0400141F RID: 5151
+	// Token: 0x040010CD RID: 4301
 	public int Favor;
 
-	// Token: 0x04001420 RID: 5152
+	// Token: 0x040010CE RID: 4302
 	public int FavorLevel;
 
-	// Token: 0x04001421 RID: 5153
+	// Token: 0x040010CF RID: 4303
 	public float FavorPer;
 
-	// Token: 0x04001422 RID: 5154
+	// Token: 0x040010D0 RID: 4304
 	public bool IsNingZhouNPC;
 
-	// Token: 0x04001423 RID: 5155
+	// Token: 0x040010D1 RID: 4305
 	public bool IsKnowPlayer;
 
-	// Token: 0x04001424 RID: 5156
+	// Token: 0x040010D2 RID: 4306
 	public int XingGe;
 
-	// Token: 0x04001425 RID: 5157
+	// Token: 0x040010D3 RID: 4307
 	public int LiuPai;
 
-	// Token: 0x04001426 RID: 5158
+	// Token: 0x040010D4 RID: 4308
 	public int MenPai;
 
-	// Token: 0x04001427 RID: 5159
+	// Token: 0x040010D5 RID: 4309
 	public int ActionID;
 
-	// Token: 0x04001428 RID: 5160
+	// Token: 0x040010D6 RID: 4310
 	public bool IsTanChaUnlock;
 
-	// Token: 0x04001429 RID: 5161
+	// Token: 0x040010D7 RID: 4311
 	public bool IsNeedHelp;
 
-	// Token: 0x0400142A RID: 5162
+	// Token: 0x040010D8 RID: 4312
 	public bool IsTask;
 
-	// Token: 0x0400142B RID: 5163
+	// Token: 0x040010D9 RID: 4313
 	public bool IsSeaNPC;
 
-	// Token: 0x0400142C RID: 5164
+	// Token: 0x040010DA RID: 4314
 	public bool IsTag;
 
-	// Token: 0x0400142D RID: 5165
+	// Token: 0x040010DB RID: 4315
 	public int SeaEventID;
 
-	// Token: 0x0400142E RID: 5166
+	// Token: 0x040010DC RID: 4316
 	public int NPCType;
 
-	// Token: 0x0400142F RID: 5167
+	// Token: 0x040010DD RID: 4317
 	public bool ZhengXie;
 
-	// Token: 0x04001430 RID: 5168
+	// Token: 0x040010DE RID: 4318
 	public int Face;
 
-	// Token: 0x04001431 RID: 5169
+	// Token: 0x040010DF RID: 4319
 	public List<UINPCEventData> Events = new List<UINPCEventData>();
 
-	// Token: 0x04001432 RID: 5170
+	// Token: 0x040010E0 RID: 4320
 	public JSONObject json;
 
-	// Token: 0x04001433 RID: 5171
+	// Token: 0x040010E1 RID: 4321
 	public JSONObject Weapon1;
 
-	// Token: 0x04001434 RID: 5172
+	// Token: 0x040010E2 RID: 4322
 	public JSONObject Weapon2;
 
-	// Token: 0x04001435 RID: 5173
+	// Token: 0x040010E3 RID: 4323
 	public JSONObject Clothing;
 
-	// Token: 0x04001436 RID: 5174
+	// Token: 0x040010E4 RID: 4324
 	public JSONObject Ring;
 
-	// Token: 0x04001437 RID: 5175
+	// Token: 0x040010E5 RID: 4325
 	public bool IsDoubleWeapon;
 
-	// Token: 0x04001438 RID: 5176
+	// Token: 0x040010E6 RID: 4326
 	public List<int> StaticSkills = new List<int>();
 
-	// Token: 0x04001439 RID: 5177
+	// Token: 0x040010E7 RID: 4327
 	public int YuanYingStaticSkill;
 
-	// Token: 0x0400143A RID: 5178
+	// Token: 0x040010E8 RID: 4328
 	public List<int> Skills = new List<int>();
 
-	// Token: 0x0400143B RID: 5179
+	// Token: 0x040010E9 RID: 4329
 	public List<UINPCWuDaoData> WuDao = new List<UINPCWuDaoData>();
 
-	// Token: 0x0400143C RID: 5180
+	// Token: 0x040010EA RID: 4330
 	public List<int> WuDaoSkills = new List<int>();
 
-	// Token: 0x0400143D RID: 5181
+	// Token: 0x040010EB RID: 4331
 	public bool IsFight;
 
-	// Token: 0x0400143E RID: 5182
+	// Token: 0x040010EC RID: 4332
 	public JSONObject BackpackJson;
 
-	// Token: 0x0400143F RID: 5183
+	// Token: 0x040010ED RID: 4333
 	public List<item> Inventory = new List<item>();
 
-	// Token: 0x04001440 RID: 5184
+	// Token: 0x040010EE RID: 4334
+	public List<UINPCQingJiaoSkillData.SData> ExQingJiaoSkills = new List<UINPCQingJiaoSkillData.SData>();
+
+	// Token: 0x040010EF RID: 4335
+	public List<UINPCQingJiaoSkillData.SData> ExQingJiaoStaticSkills = new List<UINPCQingJiaoSkillData.SData>();
+
+	// Token: 0x040010F0 RID: 4336
 	private static Dictionary<int, string> _LevelDict = new Dictionary<int, string>();
 
-	// Token: 0x04001441 RID: 5185
+	// Token: 0x040010F1 RID: 4337
 	private static Dictionary<int, string> _ZhuangTaiDict = new Dictionary<int, string>();
 
-	// Token: 0x04001442 RID: 5186
+	// Token: 0x040010F2 RID: 4338
 	private static Dictionary<int, Dictionary<int, int>> _SkillDict = new Dictionary<int, Dictionary<int, int>>();
 
-	// Token: 0x04001443 RID: 5187
+	// Token: 0x040010F3 RID: 4339
 	public static Dictionary<int, UIWuDaoSkillData> _WuDaoSkillDict = new Dictionary<int, UIWuDaoSkillData>();
 
-	// Token: 0x04001444 RID: 5188
+	// Token: 0x040010F4 RID: 4340
 	private static Dictionary<int, List<int>> _WuDaoSkillTypeDict = new Dictionary<int, List<int>>();
 
-	// Token: 0x04001445 RID: 5189
+	// Token: 0x040010F5 RID: 4341
 	private static Dictionary<int, string> _EventDescDict = new Dictionary<int, string>();
 
-	// Token: 0x04001446 RID: 5190
+	// Token: 0x040010F6 RID: 4342
 	private static Dictionary<int, string> _EventGuDingDescDict = new Dictionary<int, string>();
 
-	// Token: 0x04001447 RID: 5191
+	// Token: 0x040010F7 RID: 4343
 	private static Dictionary<int, int> _EventTypeDict = new Dictionary<int, int>();
 
-	// Token: 0x04001448 RID: 5192
+	// Token: 0x040010F8 RID: 4344
 	private static Dictionary<int, string> _EventQiYuDescDict = new Dictionary<int, string>();
 
-	// Token: 0x04001449 RID: 5193
+	// Token: 0x040010F9 RID: 4345
 	private static Dictionary<int, bool> _ActionTaskDict = new Dictionary<int, bool>();
 
-	// Token: 0x0400144A RID: 5194
+	// Token: 0x040010FA RID: 4346
 	private static bool _Inited;
 
-	// Token: 0x0400144B RID: 5195
+	// Token: 0x040010FB RID: 4347
 	private static string[] fabaoleixing = new string[]
 	{
 		"武器",
@@ -941,7 +977,7 @@ public class UINPCData : IComparable
 		"饰品"
 	};
 
-	// Token: 0x0400144C RID: 5196
+	// Token: 0x040010FC RID: 4348
 	private static string[] fabaopinjie = new string[]
 	{
 		"符器",
@@ -951,7 +987,7 @@ public class UINPCData : IComparable
 		"通天灵宝"
 	};
 
-	// Token: 0x0400144D RID: 5197
+	// Token: 0x040010FD RID: 4349
 	private static string[] dajingjie = new string[]
 	{
 		"炼气",
@@ -961,7 +997,7 @@ public class UINPCData : IComparable
 		"化神"
 	};
 
-	// Token: 0x0400144E RID: 5198
+	// Token: 0x040010FE RID: 4350
 	private static string[] xiaojingjie = new string[]
 	{
 		"初期",
@@ -969,7 +1005,7 @@ public class UINPCData : IComparable
 		"后期"
 	};
 
-	// Token: 0x0400144F RID: 5199
+	// Token: 0x040010FF RID: 4351
 	private static Dictionary<int, string> _TypeWuDaoName = new Dictionary<int, string>
 	{
 		{

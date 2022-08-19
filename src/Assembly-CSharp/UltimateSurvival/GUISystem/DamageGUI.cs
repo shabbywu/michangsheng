@@ -3,16 +3,16 @@ using UnityEngine;
 
 namespace UltimateSurvival.GUISystem
 {
-	// Token: 0x02000952 RID: 2386
+	// Token: 0x02000652 RID: 1618
 	public class DamageGUI : GUIBehaviour
 	{
-		// Token: 0x06003CF6 RID: 15606 RVA: 0x0002BEE5 File Offset: 0x0002A0E5
+		// Token: 0x0600337A RID: 13178 RVA: 0x001698E3 File Offset: 0x00167AE3
 		private void Start()
 		{
 			base.Player.ChangeHealth.AddListener(new Action<HealthEventData>(this.OnSuccess_ChangeHealth));
 		}
 
-		// Token: 0x06003CF7 RID: 15607 RVA: 0x001B29E4 File Offset: 0x001B0BE4
+		// Token: 0x0600337B RID: 13179 RVA: 0x00169904 File Offset: 0x00167B04
 		private void Update()
 		{
 			if (!this.m_IndicatorFader.Fading)
@@ -27,7 +27,7 @@ namespace UltimateSurvival.GUISystem
 			this.m_IndicatorRT.localPosition = this.m_IndicatorRT.up * (float)this.m_IndicatorDistance;
 		}
 
-		// Token: 0x06003CF8 RID: 15608 RVA: 0x001B2AA8 File Offset: 0x001B0CA8
+		// Token: 0x0600337C RID: 13180 RVA: 0x001699C8 File Offset: 0x00167BC8
 		private void OnSuccess_ChangeHealth(HealthEventData healthEventData)
 		{
 			if (healthEventData.Delta < 0f)
@@ -41,27 +41,27 @@ namespace UltimateSurvival.GUISystem
 			}
 		}
 
-		// Token: 0x04003737 RID: 14135
+		// Token: 0x04002DBC RID: 11708
 		[Header("Blood Screen")]
 		[SerializeField]
 		private ImageFader m_BloodScreenFader;
 
-		// Token: 0x04003738 RID: 14136
+		// Token: 0x04002DBD RID: 11709
 		[Header("Damage Indicator")]
 		[SerializeField]
 		private RectTransform m_IndicatorRT;
 
-		// Token: 0x04003739 RID: 14137
+		// Token: 0x04002DBE RID: 11710
 		[SerializeField]
 		private ImageFader m_IndicatorFader;
 
-		// Token: 0x0400373A RID: 14138
+		// Token: 0x04002DBF RID: 11711
 		[SerializeField]
 		[Clamp(0f, 512f)]
 		[Tooltip("Damage indicator distance (in pixels) from the screen center.")]
 		private int m_IndicatorDistance = 128;
 
-		// Token: 0x0400373B RID: 14139
+		// Token: 0x04002DC0 RID: 11712
 		private Vector3 m_LastHitPoint;
 	}
 }

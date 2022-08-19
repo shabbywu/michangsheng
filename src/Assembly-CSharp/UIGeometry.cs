@@ -1,11 +1,11 @@
 ﻿using System;
 using UnityEngine;
 
-// Token: 0x020000D8 RID: 216
+// Token: 0x0200008F RID: 143
 public class UIGeometry
 {
-	// Token: 0x17000101 RID: 257
-	// (get) Token: 0x0600084E RID: 2126 RVA: 0x0000AD01 File Offset: 0x00008F01
+	// Token: 0x170000ED RID: 237
+	// (get) Token: 0x060007AF RID: 1967 RVA: 0x0002F0AD File Offset: 0x0002D2AD
 	public bool hasVertices
 	{
 		get
@@ -14,8 +14,8 @@ public class UIGeometry
 		}
 	}
 
-	// Token: 0x17000102 RID: 258
-	// (get) Token: 0x0600084F RID: 2127 RVA: 0x0000AD11 File Offset: 0x00008F11
+	// Token: 0x170000EE RID: 238
+	// (get) Token: 0x060007B0 RID: 1968 RVA: 0x0002F0BD File Offset: 0x0002D2BD
 	public bool hasTransformed
 	{
 		get
@@ -24,7 +24,7 @@ public class UIGeometry
 		}
 	}
 
-	// Token: 0x06000850 RID: 2128 RVA: 0x0000AD43 File Offset: 0x00008F43
+	// Token: 0x060007B1 RID: 1969 RVA: 0x0002F0EF File Offset: 0x0002D2EF
 	public void Clear()
 	{
 		this.verts.Clear();
@@ -33,7 +33,7 @@ public class UIGeometry
 		this.mRtpVerts.Clear();
 	}
 
-	// Token: 0x06000851 RID: 2129 RVA: 0x00083B84 File Offset: 0x00081D84
+	// Token: 0x060007B2 RID: 1970 RVA: 0x0002F120 File Offset: 0x0002D320
 	public void ApplyTransform(Matrix4x4 widgetToPanel)
 	{
 		if (this.verts.size > 0)
@@ -54,7 +54,7 @@ public class UIGeometry
 		this.mRtpVerts.Clear();
 	}
 
-	// Token: 0x06000852 RID: 2130 RVA: 0x00083C40 File Offset: 0x00081E40
+	// Token: 0x060007B3 RID: 1971 RVA: 0x0002F1DC File Offset: 0x0002D3DC
 	public void WriteToBuffers(BetterList<Vector3> v, BetterList<Vector2> u, BetterList<Color32> c, BetterList<Vector3> n, BetterList<Vector4> t)
 	{
 		if (this.mRtpVerts != null && this.mRtpVerts.size > 0)
@@ -80,21 +80,21 @@ public class UIGeometry
 		}
 	}
 
-	// Token: 0x040005D8 RID: 1496
+	// Token: 0x040004CB RID: 1227
 	public BetterList<Vector3> verts = new BetterList<Vector3>();
 
-	// Token: 0x040005D9 RID: 1497
+	// Token: 0x040004CC RID: 1228
 	public BetterList<Vector2> uvs = new BetterList<Vector2>();
 
-	// Token: 0x040005DA RID: 1498
+	// Token: 0x040004CD RID: 1229
 	public BetterList<Color32> cols = new BetterList<Color32>();
 
-	// Token: 0x040005DB RID: 1499
+	// Token: 0x040004CE RID: 1230
 	private BetterList<Vector3> mRtpVerts = new BetterList<Vector3>();
 
-	// Token: 0x040005DC RID: 1500
+	// Token: 0x040004CF RID: 1231
 	private Vector3 mRtpNormal;
 
-	// Token: 0x040005DD RID: 1501
+	// Token: 0x040004D0 RID: 1232
 	private Vector4 mRtpTan;
 }

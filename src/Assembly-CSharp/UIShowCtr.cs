@@ -2,10 +2,10 @@
 using DG.Tweening;
 using UnityEngine;
 
-// Token: 0x0200051F RID: 1311
+// Token: 0x02000396 RID: 918
 public class UIShowCtr : MonoBehaviour
 {
-	// Token: 0x060021B2 RID: 8626 RVA: 0x0001BB36 File Offset: 0x00019D36
+	// Token: 0x06001E31 RID: 7729 RVA: 0x000D52D0 File Offset: 0x000D34D0
 	private void Awake()
 	{
 		this.refreshAction = delegate(MessageData d)
@@ -15,19 +15,19 @@ public class UIShowCtr : MonoBehaviour
 		MessageMag.Instance.Register(MessageName.MSG_Sea_TanSuoDu_Refresh, this.refreshAction);
 	}
 
-	// Token: 0x060021B3 RID: 8627 RVA: 0x0001BB5F File Offset: 0x00019D5F
+	// Token: 0x06001E32 RID: 7730 RVA: 0x000D52F9 File Offset: 0x000D34F9
 	private void OnEnable()
 	{
 		this.Refresh(false);
 	}
 
-	// Token: 0x060021B4 RID: 8628 RVA: 0x0001BB68 File Offset: 0x00019D68
+	// Token: 0x06001E33 RID: 7731 RVA: 0x000D5302 File Offset: 0x000D3502
 	private void OnDestroy()
 	{
 		MessageMag.Instance.Remove(MessageName.MSG_Sea_TanSuoDu_Refresh, this.refreshAction);
 	}
 
-	// Token: 0x060021B5 RID: 8629 RVA: 0x00118D48 File Offset: 0x00116F48
+	// Token: 0x06001E34 RID: 7732 RVA: 0x000D531C File Offset: 0x000D351C
 	public void Refresh(bool moveCamera = false)
 	{
 		if (GlobalValue.Get(this.Id, "UIShowCtr.Refresh") == 0)
@@ -47,9 +47,9 @@ public class UIShowCtr : MonoBehaviour
 		}
 	}
 
-	// Token: 0x04001D38 RID: 7480
+	// Token: 0x040018CF RID: 6351
 	public int Id;
 
-	// Token: 0x04001D39 RID: 7481
+	// Token: 0x040018D0 RID: 6352
 	private Action<MessageData> refreshAction;
 }

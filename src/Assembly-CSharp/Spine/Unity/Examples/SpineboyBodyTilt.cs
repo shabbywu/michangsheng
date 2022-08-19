@@ -3,10 +3,10 @@ using UnityEngine;
 
 namespace Spine.Unity.Examples
 {
-	// Token: 0x02000E5B RID: 3675
+	// Token: 0x02000AFF RID: 2815
 	public class SpineboyBodyTilt : MonoBehaviour
 	{
-		// Token: 0x0600581D RID: 22557 RVA: 0x00246A98 File Offset: 0x00244C98
+		// Token: 0x06004E6D RID: 20077 RVA: 0x00216A80 File Offset: 0x00214C80
 		private void Start()
 		{
 			SkeletonAnimation component = base.GetComponent<SkeletonAnimation>();
@@ -17,7 +17,7 @@ namespace Spine.Unity.Examples
 			component.UpdateLocal += new UpdateBonesDelegate(this.UpdateLocal);
 		}
 
-		// Token: 0x0600581E RID: 22558 RVA: 0x00246AF8 File Offset: 0x00244CF8
+		// Token: 0x06004E6E RID: 20078 RVA: 0x00216AE0 File Offset: 0x00214CE0
 		private void UpdateLocal(ISkeletonAnimation animated)
 		{
 			this.hipRotationTarget = this.planter.Balance * this.hipTiltScale;
@@ -26,41 +26,41 @@ namespace Spine.Unity.Examples
 			this.headBone.Rotation = this.baseHeadRotation + -this.hipRotationSmoothed * this.headTiltScale;
 		}
 
-		// Token: 0x04005819 RID: 22553
+		// Token: 0x04004DE3 RID: 19939
 		[Header("Settings")]
 		public SpineboyFootplanter planter;
 
-		// Token: 0x0400581A RID: 22554
+		// Token: 0x04004DE4 RID: 19940
 		[SpineBone("", "", true, false)]
 		public string hip = "hip";
 
-		// Token: 0x0400581B RID: 22555
+		// Token: 0x04004DE5 RID: 19941
 		[SpineBone("", "", true, false)]
 		public string head = "head";
 
-		// Token: 0x0400581C RID: 22556
+		// Token: 0x04004DE6 RID: 19942
 		public float hipTiltScale = 7f;
 
-		// Token: 0x0400581D RID: 22557
+		// Token: 0x04004DE7 RID: 19943
 		public float headTiltScale = 0.7f;
 
-		// Token: 0x0400581E RID: 22558
+		// Token: 0x04004DE8 RID: 19944
 		public float hipRotationMoveScale = 60f;
 
-		// Token: 0x0400581F RID: 22559
+		// Token: 0x04004DE9 RID: 19945
 		[Header("Debug")]
 		public float hipRotationTarget;
 
-		// Token: 0x04005820 RID: 22560
+		// Token: 0x04004DEA RID: 19946
 		public float hipRotationSmoothed;
 
-		// Token: 0x04005821 RID: 22561
+		// Token: 0x04004DEB RID: 19947
 		public float baseHeadRotation;
 
-		// Token: 0x04005822 RID: 22562
+		// Token: 0x04004DEC RID: 19948
 		private Bone hipBone;
 
-		// Token: 0x04005823 RID: 22563
+		// Token: 0x04004DED RID: 19949
 		private Bone headBone;
 	}
 }

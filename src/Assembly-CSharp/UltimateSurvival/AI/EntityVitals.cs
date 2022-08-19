@@ -3,13 +3,13 @@ using UnityEngine;
 
 namespace UltimateSurvival.AI
 {
-	// Token: 0x02000979 RID: 2425
+	// Token: 0x0200066E RID: 1646
 	[Serializable]
 	public class EntityVitals
 	{
-		// Token: 0x170006E1 RID: 1761
-		// (get) Token: 0x06003E0C RID: 15884 RVA: 0x0002CB1F File Offset: 0x0002AD1F
-		// (set) Token: 0x06003E0D RID: 15885 RVA: 0x0002CB27 File Offset: 0x0002AD27
+		// Token: 0x170004C1 RID: 1217
+		// (get) Token: 0x06003460 RID: 13408 RVA: 0x0016DDD3 File Offset: 0x0016BFD3
+		// (set) Token: 0x06003461 RID: 13409 RVA: 0x0016DDDB File Offset: 0x0016BFDB
 		public bool IsHungry
 		{
 			get
@@ -22,9 +22,9 @@ namespace UltimateSurvival.AI
 			}
 		}
 
-		// Token: 0x170006E2 RID: 1762
-		// (get) Token: 0x06003E0E RID: 15886 RVA: 0x0002CB30 File Offset: 0x0002AD30
-		// (set) Token: 0x06003E0F RID: 15887 RVA: 0x0002CB38 File Offset: 0x0002AD38
+		// Token: 0x170004C2 RID: 1218
+		// (get) Token: 0x06003462 RID: 13410 RVA: 0x0016DDE4 File Offset: 0x0016BFE4
+		// (set) Token: 0x06003463 RID: 13411 RVA: 0x0016DDEC File Offset: 0x0016BFEC
 		public float LastTimeFed
 		{
 			get
@@ -37,7 +37,7 @@ namespace UltimateSurvival.AI
 			}
 		}
 
-		// Token: 0x06003E10 RID: 15888 RVA: 0x0002CB41 File Offset: 0x0002AD41
+		// Token: 0x06003464 RID: 13412 RVA: 0x0016DDF5 File Offset: 0x0016BFF5
 		public void Update(AIBrain brain)
 		{
 			if (!this.m_IsHungry && Time.time - this.m_LastTimeFed > this.m_HungerRegenerationTime)
@@ -47,14 +47,14 @@ namespace UltimateSurvival.AI
 			StateData.OverrideValue("Is Hungry", this.m_IsHungry, brain.WorldState);
 		}
 
-		// Token: 0x04003829 RID: 14377
+		// Token: 0x04002E8E RID: 11918
 		[SerializeField]
 		private float m_HungerRegenerationTime;
 
-		// Token: 0x0400382A RID: 14378
+		// Token: 0x04002E8F RID: 11919
 		private float m_LastTimeFed;
 
-		// Token: 0x0400382B RID: 14379
+		// Token: 0x04002E90 RID: 11920
 		private bool m_IsHungry;
 	}
 }

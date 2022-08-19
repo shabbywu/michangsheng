@@ -8,10 +8,10 @@ using UnityEngine.SceneManagement;
 
 namespace GUIPackage
 {
-	// Token: 0x02000DA1 RID: 3489
+	// Token: 0x02000A72 RID: 2674
 	public class UI_Manager : MonoBehaviour
 	{
-		// Token: 0x06005438 RID: 21560 RVA: 0x002310DC File Offset: 0x0022F2DC
+		// Token: 0x06004B24 RID: 19236 RVA: 0x001FF430 File Offset: 0x001FD630
 		private void Update()
 		{
 			if (Tools.instance.isNeedSetTalk)
@@ -65,7 +65,7 @@ namespace GUIPackage
 			}
 		}
 
-		// Token: 0x06005439 RID: 21561 RVA: 0x0003C45D File Offset: 0x0003A65D
+		// Token: 0x06004B25 RID: 19237 RVA: 0x001FF601 File Offset: 0x001FD801
 		private void Awake()
 		{
 			UI_Manager.inst = this;
@@ -75,7 +75,7 @@ namespace GUIPackage
 			}
 		}
 
-		// Token: 0x0600543A RID: 21562 RVA: 0x002312B0 File Offset: 0x0022F4B0
+		// Token: 0x06004B26 RID: 19238 RVA: 0x001FF624 File Offset: 0x001FD824
 		private void Start()
 		{
 			this.UI.Add(this.equipment);
@@ -85,13 +85,13 @@ namespace GUIPackage
 			base.Invoke("openPanel", 0.3f);
 		}
 
-		// Token: 0x0600543B RID: 21563 RVA: 0x0003C47F File Offset: 0x0003A67F
+		// Token: 0x06004B27 RID: 19239 RVA: 0x001FF67A File Offset: 0x001FD87A
 		private void showBtn()
 		{
 			Object.Instantiate<GameObject>(ResManager.inst.LoadPrefab("threeScreenUI"), UI_Manager.inst.gameObject.transform);
 		}
 
-		// Token: 0x0600543C RID: 21564 RVA: 0x00231308 File Offset: 0x0022F508
+		// Token: 0x06004B28 RID: 19240 RVA: 0x001FF6A0 File Offset: 0x001FD8A0
 		public void openPanel()
 		{
 			Avatar player = Tools.instance.getPlayer();
@@ -115,7 +115,7 @@ namespace GUIPackage
 			}
 		}
 
-		// Token: 0x0600543D RID: 21565 RVA: 0x002313E4 File Offset: 0x0022F5E4
+		// Token: 0x06004B29 RID: 19241 RVA: 0x001FF77C File Offset: 0x001FD97C
 		private void UIOrder()
 		{
 			for (int i = 0; i < this.UI.Count; i++)
@@ -124,7 +124,7 @@ namespace GUIPackage
 			}
 		}
 
-		// Token: 0x0600543E RID: 21566 RVA: 0x0003C4A5 File Offset: 0x0003A6A5
+		// Token: 0x06004B2A RID: 19242 RVA: 0x001FF7B4 File Offset: 0x001FD9B4
 		private void UI_Click(GameObject ui, bool isPress)
 		{
 			if (Input.GetMouseButtonDown(0))
@@ -133,7 +133,7 @@ namespace GUIPackage
 			}
 		}
 
-		// Token: 0x0600543F RID: 21567 RVA: 0x0023141C File Offset: 0x0022F61C
+		// Token: 0x06004B2B RID: 19243 RVA: 0x001FF7D4 File Offset: 0x001FD9D4
 		public void UI_Top(Transform ui)
 		{
 			for (int i = 0; i < this.UI.Count; i++)
@@ -148,13 +148,13 @@ namespace GUIPackage
 			}
 		}
 
-		// Token: 0x06005440 RID: 21568 RVA: 0x0003C4C5 File Offset: 0x0003A6C5
+		// Token: 0x06004B2C RID: 19244 RVA: 0x001FF835 File Offset: 0x001FDA35
 		private void UI_Event(Transform ui)
 		{
 			UIEventListener.Get(ui.Find("Win/BG").gameObject).onPress = new UIEventListener.BoolDelegate(this.UI_Click);
 		}
 
-		// Token: 0x06005441 RID: 21569 RVA: 0x00231480 File Offset: 0x0022F680
+		// Token: 0x06004B2D RID: 19245 RVA: 0x001FF860 File Offset: 0x001FDA60
 		private void SetDepth(Transform ui, int depth)
 		{
 			if (ui.name == "store" || ui.name == "skill_UI")
@@ -164,13 +164,13 @@ namespace GUIPackage
 			ui.Find("Win").GetComponent<UIPanel>().depth = depth;
 		}
 
-		// Token: 0x06005442 RID: 21570 RVA: 0x0003C4ED File Offset: 0x0003A6ED
+		// Token: 0x06004B2E RID: 19246 RVA: 0x001FF8BD File Offset: 0x001FDABD
 		private int GetDepth(Transform ui)
 		{
 			return ui.GetComponentInChildren<UIPanel>().depth;
 		}
 
-		// Token: 0x06005443 RID: 21571 RVA: 0x0003C4FA File Offset: 0x0003A6FA
+		// Token: 0x06004B2F RID: 19247 RVA: 0x001FF8CA File Offset: 0x001FDACA
 		public void PlayeJieSuanAnimation(string content, UnityAction action)
 		{
 			GameObject gameObject = Object.Instantiate<GameObject>(ResManager.inst.LoadPrefab("BigGuanDongHua"), this.JieSuanDongHuaParent);
@@ -178,7 +178,7 @@ namespace GUIPackage
 			gameObject.GetComponent<JueSuanAnimation>().Play(content, action);
 		}
 
-		// Token: 0x06005444 RID: 21572 RVA: 0x0003C529 File Offset: 0x0003A729
+		// Token: 0x06004B30 RID: 19248 RVA: 0x001FF8F9 File Offset: 0x001FDAF9
 		public void showBlack()
 		{
 			if (this.BlackGameObject != null)
@@ -187,7 +187,7 @@ namespace GUIPackage
 			}
 		}
 
-		// Token: 0x06005445 RID: 21573 RVA: 0x0003C549 File Offset: 0x0003A749
+		// Token: 0x06004B31 RID: 19249 RVA: 0x001FF919 File Offset: 0x001FDB19
 		public void hideBlack()
 		{
 			this.BlackGameObject.SetActive(false);
@@ -195,67 +195,67 @@ namespace GUIPackage
 			Tools.canClickFlag = true;
 		}
 
-		// Token: 0x040053ED RID: 21485
+		// Token: 0x04004A48 RID: 19016
 		public Transform equipment;
 
-		// Token: 0x040053EE RID: 21486
+		// Token: 0x04004A49 RID: 19017
 		public Transform inventory;
 
-		// Token: 0x040053EF RID: 21487
+		// Token: 0x04004A4A RID: 19018
 		public Transform short_cut;
 
-		// Token: 0x040053F0 RID: 21488
+		// Token: 0x04004A4B RID: 19019
 		public Transform skill;
 
-		// Token: 0x040053F1 RID: 21489
+		// Token: 0x04004A4C RID: 19020
 		public Transform store;
 
-		// Token: 0x040053F2 RID: 21490
+		// Token: 0x04004A4D RID: 19021
 		public Transform temp;
 
-		// Token: 0x040053F3 RID: 21491
+		// Token: 0x04004A4E RID: 19022
 		public Transform tooltip;
 
-		// Token: 0x040053F4 RID: 21492
+		// Token: 0x04004A4F RID: 19023
 		public List<Transform> UI = new List<Transform>();
 
-		// Token: 0x040053F5 RID: 21493
+		// Token: 0x04004A50 RID: 19024
 		public static UI_Manager inst;
 
-		// Token: 0x040053F6 RID: 21494
+		// Token: 0x04004A51 RID: 19025
 		public Camera RootCamera;
 
-		// Token: 0x040053F7 RID: 21495
+		// Token: 0x04004A52 RID: 19026
 		public headMag headMag;
 
-		// Token: 0x040053F8 RID: 21496
+		// Token: 0x04004A53 RID: 19027
 		public Shop_UI shop_UI;
 
-		// Token: 0x040053F9 RID: 21497
+		// Token: 0x04004A54 RID: 19028
 		public Inventory2 inventory2;
 
-		// Token: 0x040053FA RID: 21498
+		// Token: 0x04004A55 RID: 19029
 		public GameObject BlackGameObject;
 
-		// Token: 0x040053FB RID: 21499
+		// Token: 0x04004A56 RID: 19030
 		public GameObject CraftingList;
 
-		// Token: 0x040053FC RID: 21500
+		// Token: 0x04004A57 RID: 19031
 		public GameObject BlackImage;
 
-		// Token: 0x040053FD RID: 21501
+		// Token: 0x04004A58 RID: 19032
 		public GameObject TotalTalk;
 
-		// Token: 0x040053FE RID: 21502
+		// Token: 0x04004A59 RID: 19033
 		public CheckTool checkTool;
 
-		// Token: 0x040053FF RID: 21503
+		// Token: 0x04004A5A RID: 19034
 		public GameObject xialian;
 
-		// Token: 0x04005400 RID: 21504
+		// Token: 0x04004A5B RID: 19035
 		public GameObject exchangeUI;
 
-		// Token: 0x04005401 RID: 21505
+		// Token: 0x04004A5C RID: 19036
 		public Transform JieSuanDongHuaParent;
 	}
 }

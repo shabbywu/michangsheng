@@ -2,16 +2,16 @@
 
 namespace PaiMai
 {
-	// Token: 0x02000A73 RID: 2675
+	// Token: 0x0200071E RID: 1822
 	public enum CommandType
 	{
-		// Token: 0x04003D00 RID: 15616
+		// Token: 0x04003268 RID: 12904
 		放弃竞品,
-		// Token: 0x04003D01 RID: 15617
+		// Token: 0x04003269 RID: 12905
 		本轮不出价,
-		// Token: 0x04003D02 RID: 15618
+		// Token: 0x0400326A RID: 12906
 		加价,
-		// Token: 0x04003D03 RID: 15619
+		// Token: 0x0400326B RID: 12907
 		策略
 	}
 }

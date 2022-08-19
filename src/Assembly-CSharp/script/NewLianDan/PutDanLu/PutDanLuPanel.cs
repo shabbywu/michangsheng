@@ -5,10 +5,10 @@ using UnityEngine.Events;
 
 namespace script.NewLianDan.PutDanLu
 {
-	// Token: 0x02000AC4 RID: 2756
+	// Token: 0x020009FA RID: 2554
 	public class PutDanLuPanel : BasePanel
 	{
-		// Token: 0x06004661 RID: 18017 RVA: 0x0003241D File Offset: 0x0003061D
+		// Token: 0x060046BB RID: 18107 RVA: 0x001DE69D File Offset: 0x001DC89D
 		public PutDanLuPanel(GameObject go)
 		{
 			this._go = go;

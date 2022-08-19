@@ -1,11 +1,11 @@
 ﻿using System;
 using UnityEngine;
 
-// Token: 0x0200008E RID: 142
+// Token: 0x0200006B RID: 107
 [AddComponentMenu("NGUI/Interaction/Key Navigation")]
 public class UIKeyNavigation : MonoBehaviour
 {
-	// Token: 0x06000593 RID: 1427 RVA: 0x0000908A File Offset: 0x0000728A
+	// Token: 0x0600053D RID: 1341 RVA: 0x0001CA15 File Offset: 0x0001AC15
 	protected virtual void OnEnable()
 	{
 		UIKeyNavigation.list.Add(this);
@@ -16,13 +16,13 @@ public class UIKeyNavigation : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000594 RID: 1428 RVA: 0x000090C9 File Offset: 0x000072C9
+	// Token: 0x0600053E RID: 1342 RVA: 0x0001CA54 File Offset: 0x0001AC54
 	protected virtual void OnDisable()
 	{
 		UIKeyNavigation.list.Remove(this);
 	}
 
-	// Token: 0x06000595 RID: 1429 RVA: 0x000090D7 File Offset: 0x000072D7
+	// Token: 0x0600053F RID: 1343 RVA: 0x0001CA62 File Offset: 0x0001AC62
 	protected GameObject GetLeft()
 	{
 		if (NGUITools.GetActive(this.onLeft))
@@ -36,7 +36,7 @@ public class UIKeyNavigation : MonoBehaviour
 		return this.Get(Vector3.left, true);
 	}
 
-	// Token: 0x06000596 RID: 1430 RVA: 0x0000910D File Offset: 0x0000730D
+	// Token: 0x06000540 RID: 1344 RVA: 0x0001CA98 File Offset: 0x0001AC98
 	private GameObject GetRight()
 	{
 		if (NGUITools.GetActive(this.onRight))
@@ -50,7 +50,7 @@ public class UIKeyNavigation : MonoBehaviour
 		return this.Get(Vector3.right, true);
 	}
 
-	// Token: 0x06000597 RID: 1431 RVA: 0x00009143 File Offset: 0x00007343
+	// Token: 0x06000541 RID: 1345 RVA: 0x0001CACE File Offset: 0x0001ACCE
 	protected GameObject GetUp()
 	{
 		if (NGUITools.GetActive(this.onUp))
@@ -64,7 +64,7 @@ public class UIKeyNavigation : MonoBehaviour
 		return this.Get(Vector3.up, false);
 	}
 
-	// Token: 0x06000598 RID: 1432 RVA: 0x00009179 File Offset: 0x00007379
+	// Token: 0x06000542 RID: 1346 RVA: 0x0001CB04 File Offset: 0x0001AD04
 	protected GameObject GetDown()
 	{
 		if (NGUITools.GetActive(this.onDown))
@@ -78,7 +78,7 @@ public class UIKeyNavigation : MonoBehaviour
 		return this.Get(Vector3.down, false);
 	}
 
-	// Token: 0x06000599 RID: 1433 RVA: 0x00072F04 File Offset: 0x00071104
+	// Token: 0x06000543 RID: 1347 RVA: 0x0001CB3C File Offset: 0x0001AD3C
 	protected GameObject Get(Vector3 myDir, bool horizontal)
 	{
 		Transform transform = base.transform;
@@ -119,7 +119,7 @@ public class UIKeyNavigation : MonoBehaviour
 		return result;
 	}
 
-	// Token: 0x0600059A RID: 1434 RVA: 0x00072FFC File Offset: 0x000711FC
+	// Token: 0x06000544 RID: 1348 RVA: 0x0001CC34 File Offset: 0x0001AE34
 	protected static Vector3 GetCenter(GameObject go)
 	{
 		UIWidget component = go.GetComponent<UIWidget>();
@@ -131,7 +131,7 @@ public class UIKeyNavigation : MonoBehaviour
 		return go.transform.position;
 	}
 
-	// Token: 0x0600059B RID: 1435 RVA: 0x0007304C File Offset: 0x0007124C
+	// Token: 0x06000545 RID: 1349 RVA: 0x0001CC84 File Offset: 0x0001AE84
 	protected virtual void OnKey(KeyCode key)
 	{
 		if (!NGUITools.GetActive(this))
@@ -195,7 +195,7 @@ public class UIKeyNavigation : MonoBehaviour
 		}
 	}
 
-	// Token: 0x0600059C RID: 1436 RVA: 0x000091AF File Offset: 0x000073AF
+	// Token: 0x06000546 RID: 1350 RVA: 0x0001CD89 File Offset: 0x0001AF89
 	protected virtual void OnClick()
 	{
 		if (NGUITools.GetActive(this) && NGUITools.GetActive(this.onClick))
@@ -204,40 +204,40 @@ public class UIKeyNavigation : MonoBehaviour
 		}
 	}
 
-	// Token: 0x040003FD RID: 1021
+	// Token: 0x04000364 RID: 868
 	public static BetterList<UIKeyNavigation> list = new BetterList<UIKeyNavigation>();
 
-	// Token: 0x040003FE RID: 1022
+	// Token: 0x04000365 RID: 869
 	public UIKeyNavigation.Constraint constraint;
 
-	// Token: 0x040003FF RID: 1023
+	// Token: 0x04000366 RID: 870
 	public GameObject onUp;
 
-	// Token: 0x04000400 RID: 1024
+	// Token: 0x04000367 RID: 871
 	public GameObject onDown;
 
-	// Token: 0x04000401 RID: 1025
+	// Token: 0x04000368 RID: 872
 	public GameObject onLeft;
 
-	// Token: 0x04000402 RID: 1026
+	// Token: 0x04000369 RID: 873
 	public GameObject onRight;
 
-	// Token: 0x04000403 RID: 1027
+	// Token: 0x0400036A RID: 874
 	public GameObject onClick;
 
-	// Token: 0x04000404 RID: 1028
+	// Token: 0x0400036B RID: 875
 	public bool startsSelected;
 
-	// Token: 0x0200008F RID: 143
+	// Token: 0x020011E7 RID: 4583
 	public enum Constraint
 	{
-		// Token: 0x04000406 RID: 1030
+		// Token: 0x040063E9 RID: 25577
 		None,
-		// Token: 0x04000407 RID: 1031
+		// Token: 0x040063EA RID: 25578
 		Vertical,
-		// Token: 0x04000408 RID: 1032
+		// Token: 0x040063EB RID: 25579
 		Horizontal,
-		// Token: 0x04000409 RID: 1033
+		// Token: 0x040063EC RID: 25580
 		Explicit
 	}
 }

@@ -2,12 +2,12 @@
 
 namespace ICSharpCode.SharpZipLib.Zip
 {
-	// Token: 0x020007EA RID: 2026
+	// Token: 0x02000548 RID: 1352
 	public class DescriptorData
 	{
-		// Token: 0x170004D5 RID: 1237
-		// (get) Token: 0x060033F3 RID: 13299 RVA: 0x00025E24 File Offset: 0x00024024
-		// (set) Token: 0x060033F4 RID: 13300 RVA: 0x00025E2C File Offset: 0x0002402C
+		// Token: 0x17000320 RID: 800
+		// (get) Token: 0x06002B9C RID: 11164 RVA: 0x0014626A File Offset: 0x0014446A
+		// (set) Token: 0x06002B9D RID: 11165 RVA: 0x00146272 File Offset: 0x00144472
 		public long CompressedSize
 		{
 			get
@@ -20,9 +20,9 @@ namespace ICSharpCode.SharpZipLib.Zip
 			}
 		}
 
-		// Token: 0x170004D6 RID: 1238
-		// (get) Token: 0x060033F5 RID: 13301 RVA: 0x00025E35 File Offset: 0x00024035
-		// (set) Token: 0x060033F6 RID: 13302 RVA: 0x00025E3D File Offset: 0x0002403D
+		// Token: 0x17000321 RID: 801
+		// (get) Token: 0x06002B9E RID: 11166 RVA: 0x0014627B File Offset: 0x0014447B
+		// (set) Token: 0x06002B9F RID: 11167 RVA: 0x00146283 File Offset: 0x00144483
 		public long Size
 		{
 			get
@@ -35,9 +35,9 @@ namespace ICSharpCode.SharpZipLib.Zip
 			}
 		}
 
-		// Token: 0x170004D7 RID: 1239
-		// (get) Token: 0x060033F7 RID: 13303 RVA: 0x00025E46 File Offset: 0x00024046
-		// (set) Token: 0x060033F8 RID: 13304 RVA: 0x00025E4E File Offset: 0x0002404E
+		// Token: 0x17000322 RID: 802
+		// (get) Token: 0x06002BA0 RID: 11168 RVA: 0x0014628C File Offset: 0x0014448C
+		// (set) Token: 0x06002BA1 RID: 11169 RVA: 0x00146294 File Offset: 0x00144494
 		public long Crc
 		{
 			get
@@ -50,13 +50,13 @@ namespace ICSharpCode.SharpZipLib.Zip
 			}
 		}
 
-		// Token: 0x04002F54 RID: 12116
+		// Token: 0x04002732 RID: 10034
 		private long size;
 
-		// Token: 0x04002F55 RID: 12117
+		// Token: 0x04002733 RID: 10035
 		private long compressedSize;
 
-		// Token: 0x04002F56 RID: 12118
+		// Token: 0x04002734 RID: 10036
 		private long crc;
 	}
 }

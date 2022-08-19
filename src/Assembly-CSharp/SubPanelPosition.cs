@@ -1,16 +1,16 @@
 ﻿using System;
 using UnityEngine;
 
-// Token: 0x020005DB RID: 1499
+// Token: 0x02000427 RID: 1063
 public class SubPanelPosition : MonoBehaviour
 {
-	// Token: 0x060025B3 RID: 9651 RVA: 0x0001E2F2 File Offset: 0x0001C4F2
+	// Token: 0x060021F9 RID: 8697 RVA: 0x000E9FBD File Offset: 0x000E81BD
 	private void Start()
 	{
 		base.Invoke("SetPanel", 0.5f);
 	}
 
-	// Token: 0x060025B4 RID: 9652 RVA: 0x0012B3A8 File Offset: 0x001295A8
+	// Token: 0x060021FA RID: 8698 RVA: 0x000E9FD0 File Offset: 0x000E81D0
 	private void SetPanel()
 	{
 		this.parent = base.transform.parent;
@@ -36,36 +36,36 @@ public class SubPanelPosition : MonoBehaviour
 		this.PanelScript.clipRange = new Vector4(this.PanelScript.clipRange.x, this.PanelScript.clipRange.y, this.PanelScript.clipRange.z * this.rateX, this.PanelScript.clipRange.w * this.rateY);
 	}
 
-	// Token: 0x04002025 RID: 8229
+	// Token: 0x04001B5F RID: 7007
 	public SubPanelPosition.ScreenDirection screenDirection;
 
-	// Token: 0x04002026 RID: 8230
+	// Token: 0x04001B60 RID: 7008
 	public float size;
 
-	// Token: 0x04002027 RID: 8231
+	// Token: 0x04001B61 RID: 7009
 	private Transform parent;
 
-	// Token: 0x04002028 RID: 8232
+	// Token: 0x04001B62 RID: 7010
 	private Transform child;
 
-	// Token: 0x04002029 RID: 8233
+	// Token: 0x04001B63 RID: 7011
 	private float ScaleSize;
 
-	// Token: 0x0400202A RID: 8234
+	// Token: 0x04001B64 RID: 7012
 	private float rateX;
 
-	// Token: 0x0400202B RID: 8235
+	// Token: 0x04001B65 RID: 7013
 	private float rateY;
 
-	// Token: 0x0400202C RID: 8236
+	// Token: 0x04001B66 RID: 7014
 	private UIPanel PanelScript;
 
-	// Token: 0x020005DC RID: 1500
+	// Token: 0x02001398 RID: 5016
 	public enum ScreenDirection
 	{
-		// Token: 0x0400202E RID: 8238
+		// Token: 0x040068D8 RID: 26840
 		horizontal,
-		// Token: 0x0400202F RID: 8239
+		// Token: 0x040068D9 RID: 26841
 		vertical
 	}
 }

@@ -2,11 +2,11 @@
 
 namespace Fungus
 {
-	// Token: 0x02001373 RID: 4979
+	// Token: 0x02000ED2 RID: 3794
 	[Serializable]
 	public struct VariableReference
 	{
-		// Token: 0x060078B0 RID: 30896 RVA: 0x002B7BDC File Offset: 0x002B5DDC
+		// Token: 0x06006B11 RID: 27409 RVA: 0x002958A0 File Offset: 0x00293AA0
 		public T Get<T>()
 		{
 			T result = default(T);
@@ -18,7 +18,7 @@ namespace Fungus
 			return result;
 		}
 
-		// Token: 0x060078B1 RID: 30897 RVA: 0x002B7C10 File Offset: 0x002B5E10
+		// Token: 0x06006B12 RID: 27410 RVA: 0x002958D4 File Offset: 0x00293AD4
 		public void Set<T>(T val)
 		{
 			VariableBase<T> variableBase = this.variable as VariableBase<T>;
@@ -28,7 +28,7 @@ namespace Fungus
 			}
 		}
 
-		// Token: 0x040068CC RID: 26828
+		// Token: 0x04005A63 RID: 23139
 		public Variable variable;
 	}
 }

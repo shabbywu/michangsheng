@@ -3,12 +3,12 @@ using UnityEngine;
 
 namespace BehaviorDesigner.Runtime.Tasks.Basic.UnityBoxCollider
 {
-	// Token: 0x0200161F RID: 5663
+	// Token: 0x02001160 RID: 4448
 	[TaskCategory("Basic/BoxCollider")]
 	[TaskDescription("Sets the center of the BoxCollider. Returns Success.")]
 	public class SetCenter : Action
 	{
-		// Token: 0x06008411 RID: 33809 RVA: 0x002CF360 File Offset: 0x002CD560
+		// Token: 0x06007617 RID: 30231 RVA: 0x002B5C64 File Offset: 0x002B3E64
 		public override void OnStart()
 		{
 			GameObject defaultGameObject = base.GetDefaultGameObject(this.targetGameObject.Value);
@@ -19,7 +19,7 @@ namespace BehaviorDesigner.Runtime.Tasks.Basic.UnityBoxCollider
 			}
 		}
 
-		// Token: 0x06008412 RID: 33810 RVA: 0x0005B236 File Offset: 0x00059436
+		// Token: 0x06007618 RID: 30232 RVA: 0x002B5CA4 File Offset: 0x002B3EA4
 		public override TaskStatus OnUpdate()
 		{
 			if (this.boxCollider == null)
@@ -31,25 +31,25 @@ namespace BehaviorDesigner.Runtime.Tasks.Basic.UnityBoxCollider
 			return 2;
 		}
 
-		// Token: 0x06008413 RID: 33811 RVA: 0x0005B269 File Offset: 0x00059469
+		// Token: 0x06007619 RID: 30233 RVA: 0x002B5CD7 File Offset: 0x002B3ED7
 		public override void OnReset()
 		{
 			this.targetGameObject = null;
 			this.center = Vector3.zero;
 		}
 
-		// Token: 0x040070C0 RID: 28864
+		// Token: 0x0400619D RID: 24989
 		[Tooltip("The GameObject that the task operates on. If null the task GameObject is used.")]
 		public SharedGameObject targetGameObject;
 
-		// Token: 0x040070C1 RID: 28865
+		// Token: 0x0400619E RID: 24990
 		[Tooltip("The center of the BoxCollider")]
 		public SharedVector3 center;
 
-		// Token: 0x040070C2 RID: 28866
+		// Token: 0x0400619F RID: 24991
 		private BoxCollider boxCollider;
 
-		// Token: 0x040070C3 RID: 28867
+		// Token: 0x040061A0 RID: 24992
 		private GameObject prevGameObject;
 	}
 }

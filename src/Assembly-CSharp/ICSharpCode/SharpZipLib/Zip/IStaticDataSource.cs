@@ -3,10 +3,10 @@ using System.IO;
 
 namespace ICSharpCode.SharpZipLib.Zip
 {
-	// Token: 0x020007E2 RID: 2018
+	// Token: 0x02000540 RID: 1344
 	public interface IStaticDataSource
 	{
-		// Token: 0x060033D1 RID: 13265
+		// Token: 0x06002B7A RID: 11130
 		Stream GetSource();
 	}
 }

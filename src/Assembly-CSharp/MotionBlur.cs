@@ -1,13 +1,13 @@
 ﻿using System;
 using UnityEngine;
 
-// Token: 0x02000136 RID: 310
+// Token: 0x020000C6 RID: 198
 [ExecuteInEditMode]
 [AddComponentMenu("Image Effects/Motion Blur (Color Accumulation)")]
 [RequireComponent(typeof(Camera))]
 public class MotionBlur : ImageEffectBase
 {
-	// Token: 0x06000BB7 RID: 2999 RVA: 0x0000DD36 File Offset: 0x0000BF36
+	// Token: 0x06000AD4 RID: 2772 RVA: 0x000414DE File Offset: 0x0003F6DE
 	protected override void Start()
 	{
 		if (!SystemInfo.supportsRenderTextures)
@@ -18,14 +18,14 @@ public class MotionBlur : ImageEffectBase
 		base.Start();
 	}
 
-	// Token: 0x06000BB8 RID: 3000 RVA: 0x0000DD4D File Offset: 0x0000BF4D
+	// Token: 0x06000AD5 RID: 2773 RVA: 0x000414F5 File Offset: 0x0003F6F5
 	protected override void OnDisable()
 	{
 		base.OnDisable();
 		Object.DestroyImmediate(this.accumTexture);
 	}
 
-	// Token: 0x06000BB9 RID: 3001 RVA: 0x0009351C File Offset: 0x0009171C
+	// Token: 0x06000AD6 RID: 2774 RVA: 0x00041508 File Offset: 0x0003F708
 	private void OnRenderImage(RenderTexture source, RenderTexture destination)
 	{
 		if (this.accumTexture == null || this.accumTexture.width != source.width || this.accumTexture.height != source.height)
@@ -49,12 +49,12 @@ public class MotionBlur : ImageEffectBase
 		Graphics.Blit(this.accumTexture, destination);
 	}
 
-	// Token: 0x0400087A RID: 2170
+	// Token: 0x040006D3 RID: 1747
 	public float blurAmount = 0.8f;
 
-	// Token: 0x0400087B RID: 2171
+	// Token: 0x040006D4 RID: 1748
 	public bool extraBlur;
 
-	// Token: 0x0400087C RID: 2172
+	// Token: 0x040006D5 RID: 1749
 	private RenderTexture accumTexture;
 }

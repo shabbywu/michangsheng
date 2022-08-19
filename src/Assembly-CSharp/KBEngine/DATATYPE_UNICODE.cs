@@ -3,28 +3,28 @@ using System.Text;
 
 namespace KBEngine
 {
-	// Token: 0x02000EDE RID: 3806
+	// Token: 0x02000B61 RID: 2913
 	public class DATATYPE_UNICODE : DATATYPE_BASE
 	{
-		// Token: 0x06005B91 RID: 23441 RVA: 0x00040851 File Offset: 0x0003EA51
+		// Token: 0x06005155 RID: 20821 RVA: 0x00221BC3 File Offset: 0x0021FDC3
 		public override object createFromStream(MemoryStream stream)
 		{
 			return Encoding.UTF8.GetString(stream.readBlob());
 		}
 
-		// Token: 0x06005B92 RID: 23442 RVA: 0x00040863 File Offset: 0x0003EA63
+		// Token: 0x06005156 RID: 20822 RVA: 0x00221BD5 File Offset: 0x0021FDD5
 		public override void addToStream(Bundle stream, object v)
 		{
 			stream.writeBlob(Encoding.UTF8.GetBytes((string)v));
 		}
 
-		// Token: 0x06005B93 RID: 23443 RVA: 0x00010DC9 File Offset: 0x0000EFC9
+		// Token: 0x06005157 RID: 20823 RVA: 0x001086F1 File Offset: 0x001068F1
 		public override object parseDefaultValStr(string v)
 		{
 			return v;
 		}
 
-		// Token: 0x06005B94 RID: 23444 RVA: 0x000406A3 File Offset: 0x0003E8A3
+		// Token: 0x06005158 RID: 20824 RVA: 0x002219C2 File Offset: 0x0021FBC2
 		public override bool isSameType(object v)
 		{
 			return v != null && v.GetType() == typeof(string);

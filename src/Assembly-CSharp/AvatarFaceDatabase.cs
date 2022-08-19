@@ -1,19 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using UnityEngine;
 
-// Token: 0x02000582 RID: 1410
-[ExecuteInEditMode]
+// Token: 0x020003E7 RID: 999
 public class AvatarFaceDatabase : MonoBehaviour
 {
-	// Token: 0x060023B6 RID: 9142 RVA: 0x0001CD2A File Offset: 0x0001AF2A
-	private void Awake()
-	{
-		AvatarFaceDatabase.inst = this;
-	}
-
-	// Token: 0x170002BC RID: 700
-	// (get) Token: 0x060023B7 RID: 9143 RVA: 0x0001CD32 File Offset: 0x0001AF32
+	// Token: 0x17000274 RID: 628
+	// (get) Token: 0x06002036 RID: 8246 RVA: 0x000E2569 File Offset: 0x000E0769
 	public List<faceInfoList> AllList
 	{
 		get
@@ -26,7 +20,7 @@ public class AvatarFaceDatabase : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060023B8 RID: 9144 RVA: 0x00124D88 File Offset: 0x00122F88
+	// Token: 0x06002037 RID: 8247 RVA: 0x000E2584 File Offset: 0x000E0784
 	public faceInfoList getFaceInfo(string aa)
 	{
 		foreach (faceInfoList faceInfoList in this.AllList)
@@ -39,7 +33,7 @@ public class AvatarFaceDatabase : MonoBehaviour
 		return null;
 	}
 
-	// Token: 0x060023B9 RID: 9145 RVA: 0x00124DEC File Offset: 0x00122FEC
+	// Token: 0x06002038 RID: 8248 RVA: 0x000E25E8 File Offset: 0x000E07E8
 	public faceInfoDataBaseList getBaseInfo(string str)
 	{
 		foreach (faceInfoList faceInfoList in this.AllList)
@@ -55,29 +49,29 @@ public class AvatarFaceDatabase : MonoBehaviour
 		return null;
 	}
 
-	// Token: 0x060023BA RID: 9146 RVA: 0x000042DD File Offset: 0x000024DD
-	private void Start()
+	// Token: 0x06002039 RID: 8249 RVA: 0x000E2684 File Offset: 0x000E0884
+	private void Awake()
 	{
+		if (AvatarFaceDatabase.inst != null)
+		{
+			Object.Destroy(AvatarFaceDatabase.inst.gameObject);
+		}
+		AvatarFaceDatabase.inst = this;
+		Object.DontDestroyOnLoad(AvatarFaceDatabase.inst.gameObject);
 	}
 
-	// Token: 0x060023BB RID: 9147 RVA: 0x000042DD File Offset: 0x000024DD
-	private void Update()
+	// Token: 0x0600203A RID: 8250 RVA: 0x000E26B8 File Offset: 0x000E08B8
+	public void Init()
 	{
-	}
-
-	// Token: 0x060023BC RID: 9148 RVA: 0x00124E88 File Offset: 0x00123088
-	public void init()
-	{
-		this.autoSetImage = false;
-		TextAsset textAsset = (TextAsset)Resources.Load("Effect/json/d_str.py.xinXiangSuiji");
-		this.SuiJiTouXiangGeShuJsonData = new JSONObject(textAsset.text, -2, false, false);
+		string str = File.ReadAllText(File.ReadAllText("C://FacePath//Path.txt") + "//Effect/json/d_str.py.xinXiangSuiji.json");
+		this.SuiJiTouXiangGeShuJsonData = new JSONObject(str, -2, false, false);
 		this.AllList.Clear();
 		using (List<JSONObject>.Enumerator enumerator = this.SuiJiTouXiangGeShuJsonData.list.GetEnumerator())
 		{
 			while (enumerator.MoveNext())
 			{
 				JSONObject aa = enumerator.Current;
-				string str = aa["StrID"].str;
+				string str2 = aa["StrID"].str;
 				if (!(aa["Type"].str == "") && aa["SuiJiSex" + this.ListType].list.Count > 0 && this.AllList.Find((faceInfoList __a) => __a.Name == Tools.Code64(aa["Type"].str)) == null)
 				{
 					faceInfoList faceInfoList = new faceInfoList();
@@ -101,9 +95,40 @@ public class AvatarFaceDatabase : MonoBehaviour
 				this.addInfo(cc);
 			}
 		}
+		this.ListType = 2;
+		using (List<JSONObject>.Enumerator enumerator = this.SuiJiTouXiangGeShuJsonData.list.GetEnumerator())
+		{
+			while (enumerator.MoveNext())
+			{
+				JSONObject aa = enumerator.Current;
+				string str3 = aa["StrID"].str;
+				if (!(aa["Type"].str == "") && aa["SuiJiSex" + this.ListType].list.Count > 0 && this.AllList.Find((faceInfoList __a) => __a.Name == Tools.Code64(aa["Type"].str)) == null)
+				{
+					faceInfoList faceInfoList3 = new faceInfoList();
+					faceInfoList3.Name = Tools.Code64(aa["Type"].str);
+					faceInfoList3.faceList = new List<faceInfoDataBaseList>();
+					foreach (JSONObject jsonobject2 in this.SuiJiTouXiangGeShuJsonData.list.FindAll((JSONObject _i) => _i["Type"].str == aa["Type"].str && _i["SuiJiSex" + this.ListType].list.Count > 0))
+					{
+						faceInfoDataBaseList faceInfoDataBaseList2 = new faceInfoDataBaseList();
+						faceInfoDataBaseList2.Name = Tools.Code64(jsonobject2["ChildType"].str);
+						faceInfoDataBaseList2.JsonInfoName = jsonobject2["StrID"].str;
+						faceInfoList3.faceList.Add(faceInfoDataBaseList2);
+					}
+					this.AllList.Add(faceInfoList3);
+				}
+			}
+		}
+		foreach (faceInfoList faceInfoList4 in this.AllList)
+		{
+			foreach (faceInfoDataBaseList cc2 in faceInfoList4.faceList)
+			{
+				this.addInfo(cc2);
+			}
+		}
+		this.ListType = 1;
 	}
 
-	// Token: 0x060023BD RID: 9149 RVA: 0x00125138 File Offset: 0x00123338
+	// Token: 0x0600203B RID: 8251 RVA: 0x000E2BE8 File Offset: 0x000E0DE8
 	public void addInfo(faceInfoDataBaseList cc)
 	{
 		string jsonInfoName = cc.JsonInfoName;
@@ -185,7 +210,7 @@ public class AvatarFaceDatabase : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060023BE RID: 9150 RVA: 0x001254E0 File Offset: 0x001236E0
+	// Token: 0x0600203C RID: 8252 RVA: 0x000E2F90 File Offset: 0x000E1190
 	public List<int> getSuijiList(string name, string sex)
 	{
 		List<JSONObject> list = this.SuiJiTouXiangGeShuJsonData[name][sex].list;
@@ -200,21 +225,18 @@ public class AvatarFaceDatabase : MonoBehaviour
 		return list2;
 	}
 
-	// Token: 0x04001EBB RID: 7867
+	// Token: 0x04001A29 RID: 6697
 	public List<faceInfoList> AllList1;
 
-	// Token: 0x04001EBC RID: 7868
+	// Token: 0x04001A2A RID: 6698
 	public List<faceInfoList> AllList2;
 
-	// Token: 0x04001EBD RID: 7869
+	// Token: 0x04001A2B RID: 6699
 	public static AvatarFaceDatabase inst;
 
-	// Token: 0x04001EBE RID: 7870
+	// Token: 0x04001A2C RID: 6700
 	public int ListType = 1;
 
-	// Token: 0x04001EBF RID: 7871
-	public bool autoSetImage = true;
-
-	// Token: 0x04001EC0 RID: 7872
+	// Token: 0x04001A2D RID: 6701
 	public JSONObject SuiJiTouXiangGeShuJsonData;
 }

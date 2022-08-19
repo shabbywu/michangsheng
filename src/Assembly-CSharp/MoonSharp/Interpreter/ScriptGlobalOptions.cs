@@ -4,29 +4,29 @@ using MoonSharp.Interpreter.Platforms;
 
 namespace MoonSharp.Interpreter
 {
-	// Token: 0x0200109A RID: 4250
+	// Token: 0x02000CC4 RID: 3268
 	public class ScriptGlobalOptions
 	{
-		// Token: 0x060066AD RID: 26285 RVA: 0x00046C5A File Offset: 0x00044E5A
+		// Token: 0x06005BA4 RID: 23460 RVA: 0x0025B164 File Offset: 0x00259364
 		internal ScriptGlobalOptions()
 		{
 			this.Platform = PlatformAutoDetector.GetDefaultPlatform();
 			this.CustomConverters = new CustomConvertersCollection();
 		}
 
-		// Token: 0x1700092D RID: 2349
-		// (get) Token: 0x060066AE RID: 26286 RVA: 0x00046C78 File Offset: 0x00044E78
-		// (set) Token: 0x060066AF RID: 26287 RVA: 0x00046C80 File Offset: 0x00044E80
+		// Token: 0x170006D2 RID: 1746
+		// (get) Token: 0x06005BA5 RID: 23461 RVA: 0x0025B182 File Offset: 0x00259382
+		// (set) Token: 0x06005BA6 RID: 23462 RVA: 0x0025B18A File Offset: 0x0025938A
 		public CustomConvertersCollection CustomConverters { get; set; }
 
-		// Token: 0x1700092E RID: 2350
-		// (get) Token: 0x060066B0 RID: 26288 RVA: 0x00046C89 File Offset: 0x00044E89
-		// (set) Token: 0x060066B1 RID: 26289 RVA: 0x00046C91 File Offset: 0x00044E91
+		// Token: 0x170006D3 RID: 1747
+		// (get) Token: 0x06005BA7 RID: 23463 RVA: 0x0025B193 File Offset: 0x00259393
+		// (set) Token: 0x06005BA8 RID: 23464 RVA: 0x0025B19B File Offset: 0x0025939B
 		public IPlatformAccessor Platform { get; set; }
 
-		// Token: 0x1700092F RID: 2351
-		// (get) Token: 0x060066B2 RID: 26290 RVA: 0x00046C9A File Offset: 0x00044E9A
-		// (set) Token: 0x060066B3 RID: 26291 RVA: 0x00046CA2 File Offset: 0x00044EA2
+		// Token: 0x170006D4 RID: 1748
+		// (get) Token: 0x06005BA9 RID: 23465 RVA: 0x0025B1A4 File Offset: 0x002593A4
+		// (set) Token: 0x06005BAA RID: 23466 RVA: 0x0025B1AC File Offset: 0x002593AC
 		public bool RethrowExceptionNested { get; set; }
 	}
 }

@@ -4,10 +4,10 @@ using UnityEngine;
 
 namespace UltimateSurvival
 {
-	// Token: 0x0200086E RID: 2158
+	// Token: 0x020005B2 RID: 1458
 	public class RootHeightHandler : PlayerBehaviour
 	{
-		// Token: 0x060037E7 RID: 14311 RVA: 0x001A1944 File Offset: 0x0019FB44
+		// Token: 0x06002F69 RID: 12137 RVA: 0x00157540 File Offset: 0x00155740
 		private void Start()
 		{
 			base.Player.Crouch.AddStartListener(new Action(this.OnStart_Crouch));
@@ -15,21 +15,21 @@ namespace UltimateSurvival
 			this.m_InitialHeight = base.transform.localPosition.y;
 		}
 
-		// Token: 0x060037E8 RID: 14312 RVA: 0x000289BA File Offset: 0x00026BBA
+		// Token: 0x06002F6A RID: 12138 RVA: 0x0015759B File Offset: 0x0015579B
 		private void OnStart_Crouch()
 		{
 			base.StopAllCoroutines();
 			base.StartCoroutine(this.SetOffsetOnY(this.m_CrouchOffset));
 		}
 
-		// Token: 0x060037E9 RID: 14313 RVA: 0x000289D5 File Offset: 0x00026BD5
+		// Token: 0x06002F6B RID: 12139 RVA: 0x001575B6 File Offset: 0x001557B6
 		private void OnStop_Crouch()
 		{
 			base.StopAllCoroutines();
 			base.StartCoroutine(this.SetOffsetOnY(0f));
 		}
 
-		// Token: 0x060037EA RID: 14314 RVA: 0x000289EF File Offset: 0x00026BEF
+		// Token: 0x06002F6C RID: 12140 RVA: 0x001575D0 File Offset: 0x001557D0
 		private IEnumerator SetOffsetOnY(float targetY)
 		{
 			WaitForFixedUpdate waitForFixedUpdate = new WaitForFixedUpdate();
@@ -42,19 +42,19 @@ namespace UltimateSurvival
 			yield break;
 		}
 
-		// Token: 0x0400322E RID: 12846
+		// Token: 0x040029AD RID: 10669
 		[SerializeField]
 		[Clamp(-2f, 0f)]
 		private float m_CrouchOffset = -1f;
 
-		// Token: 0x0400322F RID: 12847
+		// Token: 0x040029AE RID: 10670
 		[SerializeField]
 		private float m_CrouchSpeed = 5f;
 
-		// Token: 0x04003230 RID: 12848
+		// Token: 0x040029AF RID: 10671
 		private float m_CurrentOffsetOnY;
 
-		// Token: 0x04003231 RID: 12849
+		// Token: 0x040029B0 RID: 10672
 		private float m_InitialHeight;
 	}
 }

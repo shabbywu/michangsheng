@@ -2,10 +2,10 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-// Token: 0x02000477 RID: 1143
+// Token: 0x02000315 RID: 789
 public class StartLunTiCell : MonoBehaviour
 {
-	// Token: 0x06001E9F RID: 7839 RVA: 0x000195EE File Offset: 0x000177EE
+	// Token: 0x06001B6E RID: 7022 RVA: 0x000C3920 File Offset: 0x000C1B20
 	public void Init(Sprite sprite, int id)
 	{
 		base.gameObject.SetActive(true);
@@ -13,19 +13,19 @@ public class StartLunTiCell : MonoBehaviour
 		this.lunTiId = id;
 	}
 
-	// Token: 0x04001A07 RID: 6663
+	// Token: 0x040015ED RID: 5613
 	[SerializeField]
 	private Image lunTiName;
 
-	// Token: 0x04001A08 RID: 6664
+	// Token: 0x040015EE RID: 5614
 	public int lunTiId;
 
-	// Token: 0x04001A09 RID: 6665
+	// Token: 0x040015EF RID: 5615
 	public Transform wuDaoParent;
 
-	// Token: 0x04001A0A RID: 6666
+	// Token: 0x040015F0 RID: 5616
 	public Image finshIBg;
 
-	// Token: 0x04001A0B RID: 6667
+	// Token: 0x040015F1 RID: 5617
 	public Image finshImage;
 }

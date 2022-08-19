@@ -6,10 +6,10 @@ using UnityEngine;
 
 namespace YSGame.TuJian
 {
-	// Token: 0x02000DE9 RID: 3561
+	// Token: 0x02000AAC RID: 2732
 	public class ShenTongInfoPanel : InfoPanelBase2
 	{
-		// Token: 0x060055E4 RID: 21988 RVA: 0x0023D0C8 File Offset: 0x0023B2C8
+		// Token: 0x06004C97 RID: 19607 RVA: 0x0020C16C File Offset: 0x0020A36C
 		public override void RefreshDataList()
 		{
 			base.RefreshDataList();
@@ -82,7 +82,7 @@ namespace YSGame.TuJian
 			}
 		}
 
-		// Token: 0x060055E5 RID: 21989 RVA: 0x0023D3C8 File Offset: 0x0023B5C8
+		// Token: 0x06004C98 RID: 19608 RVA: 0x0020C46C File Offset: 0x0020A66C
 		public override void RefreshPanelData()
 		{
 			base.RefreshPanelData();

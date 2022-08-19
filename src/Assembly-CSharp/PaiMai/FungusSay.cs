@@ -4,10 +4,10 @@ using UnityEngine;
 
 namespace PaiMai
 {
-	// Token: 0x02000A63 RID: 2659
+	// Token: 0x02000713 RID: 1811
 	public class FungusSay : MonoBehaviour
 	{
-		// Token: 0x06004487 RID: 17543 RVA: 0x001D4C5C File Offset: 0x001D2E5C
+		// Token: 0x060039FB RID: 14843 RVA: 0x0018D560 File Offset: 0x0018B760
 		public void Say(PaiMaiSayData sayData)
 		{
 			base.gameObject.SetActive(true);
@@ -20,13 +20,13 @@ namespace PaiMai
 			this._flowchart.ExecuteBlock("SayWord");
 		}
 
-		// Token: 0x06004488 RID: 17544 RVA: 0x00017C2D File Offset: 0x00015E2D
+		// Token: 0x060039FC RID: 14844 RVA: 0x000B5E62 File Offset: 0x000B4062
 		private void Hide()
 		{
 			base.gameObject.SetActive(false);
 		}
 
-		// Token: 0x04003C8B RID: 15499
+		// Token: 0x04003204 RID: 12804
 		[SerializeField]
 		private Flowchart _flowchart;
 	}

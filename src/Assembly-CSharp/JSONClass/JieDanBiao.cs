@@ -3,10 +3,10 @@ using System.Collections.Generic;
 
 namespace JSONClass
 {
-	// Token: 0x02000BFC RID: 3068
+	// Token: 0x0200086E RID: 2158
 	public class JieDanBiao : IJSONClass
 	{
-		// Token: 0x06004B59 RID: 19289 RVA: 0x001FD0D4 File Offset: 0x001FB2D4
+		// Token: 0x06003FCB RID: 16331 RVA: 0x001B35D8 File Offset: 0x001B17D8
 		public static void InitDataDict()
 		{
 			foreach (JSONObject jsonobject in jsonData.instance.JieDanBiao.list)
@@ -47,48 +47,48 @@ namespace JSONClass
 			}
 		}
 
-		// Token: 0x06004B5A RID: 19290 RVA: 0x000042DD File Offset: 0x000024DD
+		// Token: 0x06003FCC RID: 16332 RVA: 0x00004095 File Offset: 0x00002295
 		private static void OnInitFinish()
 		{
 		}
 
-		// Token: 0x040047B2 RID: 18354
+		// Token: 0x04003C59 RID: 15449
 		public static Dictionary<int, JieDanBiao> DataDict = new Dictionary<int, JieDanBiao>();
 
-		// Token: 0x040047B3 RID: 18355
+		// Token: 0x04003C5A RID: 15450
 		public static List<JieDanBiao> DataList = new List<JieDanBiao>();
 
-		// Token: 0x040047B4 RID: 18356
+		// Token: 0x04003C5B RID: 15451
 		public static Action OnInitFinishAction = new Action(JieDanBiao.OnInitFinish);
 
-		// Token: 0x040047B5 RID: 18357
+		// Token: 0x04003C5C RID: 15452
 		public int id;
 
-		// Token: 0x040047B6 RID: 18358
+		// Token: 0x04003C5D RID: 15453
 		public int JinDanQuality;
 
-		// Token: 0x040047B7 RID: 18359
+		// Token: 0x04003C5E RID: 15454
 		public int HP;
 
-		// Token: 0x040047B8 RID: 18360
+		// Token: 0x04003C5F RID: 15455
 		public int EXP;
 
-		// Token: 0x040047B9 RID: 18361
+		// Token: 0x04003C60 RID: 15456
 		public string name;
 
-		// Token: 0x040047BA RID: 18362
+		// Token: 0x04003C61 RID: 15457
 		public string desc;
 
-		// Token: 0x040047BB RID: 18363
+		// Token: 0x04003C62 RID: 15458
 		public List<int> JinDanType = new List<int>();
 
-		// Token: 0x040047BC RID: 18364
+		// Token: 0x04003C63 RID: 15459
 		public List<int> LinGengType = new List<int>();
 
-		// Token: 0x040047BD RID: 18365
+		// Token: 0x04003C64 RID: 15460
 		public List<int> LinGengZongShu = new List<int>();
 
-		// Token: 0x040047BE RID: 18366
+		// Token: 0x04003C65 RID: 15461
 		public List<int> seid = new List<int>();
 	}
 }

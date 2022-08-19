@@ -5,10 +5,10 @@ using MoonSharp.Interpreter.Execution.VM;
 
 namespace MoonSharp.Interpreter.Tree.Statements
 {
-	// Token: 0x020010B5 RID: 4277
+	// Token: 0x02000CDC RID: 3292
 	internal class RepeatStatement : Statement
 	{
-		// Token: 0x0600675B RID: 26459 RVA: 0x00288098 File Offset: 0x00286298
+		// Token: 0x06005C4A RID: 23626 RVA: 0x0025EA44 File Offset: 0x0025CC44
 		public RepeatStatement(ScriptLoadingContext lcontext) : base(lcontext)
 		{
 			this.m_Repeat = NodeBase.CheckTokenType(lcontext, TokenType.Repeat).GetSourceRef(true);
@@ -22,7 +22,7 @@ namespace MoonSharp.Interpreter.Tree.Statements
 			lcontext.Source.Refs.Add(this.m_Until);
 		}
 
-		// Token: 0x0600675C RID: 26460 RVA: 0x00288144 File Offset: 0x00286344
+		// Token: 0x06005C4B RID: 23627 RVA: 0x0025EAF0 File Offset: 0x0025CCF0
 		public override void Compile(ByteCode bc)
 		{
 			Loop loop = new Loop
@@ -48,19 +48,19 @@ namespace MoonSharp.Interpreter.Tree.Statements
 			bc.PopSourceRef();
 		}
 
-		// Token: 0x04005F6E RID: 24430
+		// Token: 0x04005384 RID: 21380
 		private Expression m_Condition;
 
-		// Token: 0x04005F6F RID: 24431
+		// Token: 0x04005385 RID: 21381
 		private Statement m_Block;
 
-		// Token: 0x04005F70 RID: 24432
+		// Token: 0x04005386 RID: 21382
 		private RuntimeScopeBlock m_StackFrame;
 
-		// Token: 0x04005F71 RID: 24433
+		// Token: 0x04005387 RID: 21383
 		private SourceRef m_Repeat;
 
-		// Token: 0x04005F72 RID: 24434
+		// Token: 0x04005388 RID: 21384
 		private SourceRef m_Until;
 	}
 }

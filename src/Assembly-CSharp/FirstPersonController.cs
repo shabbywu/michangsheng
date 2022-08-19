@@ -2,11 +2,11 @@
 using KBEngine;
 using UnityEngine;
 
-// Token: 0x020001FD RID: 509
+// Token: 0x0200012C RID: 300
 [RequireComponent(typeof(CharacterController))]
 public class FirstPersonController : MonoBehaviour
 {
-	// Token: 0x06001029 RID: 4137 RVA: 0x000A3C90 File Offset: 0x000A1E90
+	// Token: 0x06000E1B RID: 3611 RVA: 0x00053540 File Offset: 0x00051740
 	private void Start()
 	{
 		this.firstPersonCamera = Camera.main.GetComponent<Camera>();
@@ -29,7 +29,7 @@ public class FirstPersonController : MonoBehaviour
 		}
 	}
 
-	// Token: 0x0600102A RID: 4138 RVA: 0x000A3D40 File Offset: 0x000A1F40
+	// Token: 0x06000E1C RID: 3612 RVA: 0x000535F0 File Offset: 0x000517F0
 	private void Update()
 	{
 		if (!this.lockMovement())
@@ -53,57 +53,57 @@ public class FirstPersonController : MonoBehaviour
 		}
 	}
 
-	// Token: 0x0600102B RID: 4139 RVA: 0x000A3E80 File Offset: 0x000A2080
+	// Token: 0x06000E1D RID: 3613 RVA: 0x00053730 File Offset: 0x00051930
 	private bool lockMovement()
 	{
 		return (this.inventory != null && this.inventory.activeSelf) || (this.characterSystem != null && this.characterSystem.activeSelf) || (this.craftSystem != null && this.craftSystem.activeSelf);
 	}
 
-	// Token: 0x04000C9E RID: 3230
+	// Token: 0x04000A06 RID: 2566
 	public float movementspeed = 5f;
 
-	// Token: 0x04000C9F RID: 3231
+	// Token: 0x04000A07 RID: 2567
 	public float mouseSensitivity = 2f;
 
-	// Token: 0x04000CA0 RID: 3232
+	// Token: 0x04000A08 RID: 2568
 	public float verticalAngleLimit = 60f;
 
-	// Token: 0x04000CA1 RID: 3233
+	// Token: 0x04000A09 RID: 2569
 	public float jumpSpeed = 5f;
 
-	// Token: 0x04000CA2 RID: 3234
+	// Token: 0x04000A0A RID: 2570
 	private float verticalRotation;
 
-	// Token: 0x04000CA3 RID: 3235
+	// Token: 0x04000A0B RID: 2571
 	private GameObject _inventory;
 
-	// Token: 0x04000CA4 RID: 3236
+	// Token: 0x04000A0C RID: 2572
 	private GameObject _tooltip;
 
-	// Token: 0x04000CA5 RID: 3237
+	// Token: 0x04000A0D RID: 2573
 	private GameObject _character;
 
-	// Token: 0x04000CA6 RID: 3238
+	// Token: 0x04000A0E RID: 2574
 	private GameObject _dropBox;
 
-	// Token: 0x04000CA7 RID: 3239
+	// Token: 0x04000A0F RID: 2575
 	public bool showInventory;
 
-	// Token: 0x04000CA8 RID: 3240
+	// Token: 0x04000A10 RID: 2576
 	private float verticalVelocity;
 
-	// Token: 0x04000CA9 RID: 3241
+	// Token: 0x04000A11 RID: 2577
 	private GameObject inventory;
 
-	// Token: 0x04000CAA RID: 3242
+	// Token: 0x04000A12 RID: 2578
 	private GameObject craftSystem;
 
-	// Token: 0x04000CAB RID: 3243
+	// Token: 0x04000A13 RID: 2579
 	private GameObject characterSystem;
 
-	// Token: 0x04000CAC RID: 3244
+	// Token: 0x04000A14 RID: 2580
 	private Camera firstPersonCamera;
 
-	// Token: 0x04000CAD RID: 3245
+	// Token: 0x04000A15 RID: 2581
 	private CharacterController characterController;
 }

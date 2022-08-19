@@ -4,15 +4,15 @@ using System.Linq;
 
 namespace MoonSharp.VsCodeDebugger.SDK
 {
-	// Token: 0x020011CF RID: 4559
+	// Token: 0x02000DA3 RID: 3491
 	public class StackTraceResponseBody : ResponseBody
 	{
-		// Token: 0x17000A41 RID: 2625
-		// (get) Token: 0x06006F89 RID: 28553 RVA: 0x0004BCC9 File Offset: 0x00049EC9
-		// (set) Token: 0x06006F8A RID: 28554 RVA: 0x0004BCD1 File Offset: 0x00049ED1
+		// Token: 0x170007E0 RID: 2016
+		// (get) Token: 0x06006343 RID: 25411 RVA: 0x0027A803 File Offset: 0x00278A03
+		// (set) Token: 0x06006344 RID: 25412 RVA: 0x0027A80B File Offset: 0x00278A0B
 		public StackFrame[] stackFrames { get; private set; }
 
-		// Token: 0x06006F8B RID: 28555 RVA: 0x0004BCDA File Offset: 0x00049EDA
+		// Token: 0x06006345 RID: 25413 RVA: 0x0027A814 File Offset: 0x00278A14
 		public StackTraceResponseBody(List<StackFrame> frames = null)
 		{
 			if (frames == null)

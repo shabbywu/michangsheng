@@ -2,26 +2,26 @@
 
 namespace PaiMai
 {
-	// Token: 0x02000A72 RID: 2674
+	// Token: 0x0200071D RID: 1821
 	public enum Command
 	{
-		// Token: 0x04003CF6 RID: 15606
+		// Token: 0x0400325E RID: 12894
 		放弃竞品,
-		// Token: 0x04003CF7 RID: 15607
+		// Token: 0x0400325F RID: 12895
 		最低加价,
-		// Token: 0x04003CF8 RID: 15608
+		// Token: 0x04003260 RID: 12896
 		略微加价,
-		// Token: 0x04003CF9 RID: 15609
+		// Token: 0x04003261 RID: 12897
 		大力加价,
-		// Token: 0x04003CFA RID: 15610
+		// Token: 0x04003262 RID: 12898
 		暴力出价,
-		// Token: 0x04003CFB RID: 15611
+		// Token: 0x04003263 RID: 12899
 		本轮不出,
-		// Token: 0x04003CFC RID: 15612
+		// Token: 0x04003264 RID: 12900
 		出言挑衅,
-		// Token: 0x04003CFD RID: 15613
+		// Token: 0x04003265 RID: 12901
 		神识威慑,
-		// Token: 0x04003CFE RID: 15614
+		// Token: 0x04003266 RID: 12902
 		言语恐吓
 	}
 }

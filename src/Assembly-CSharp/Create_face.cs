@@ -2,10 +2,10 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-// Token: 0x02000584 RID: 1412
+// Token: 0x020003E8 RID: 1000
 public class Create_face : MonoBehaviour
 {
-	// Token: 0x060023C3 RID: 9155 RVA: 0x001255B8 File Offset: 0x001237B8
+	// Token: 0x0600203E RID: 8254 RVA: 0x000E3010 File Offset: 0x000E1210
 	private void Start()
 	{
 		jsonData.instance.AvatarRandomJsonData = new JSONObject(JSONObject.Type.OBJECT);
@@ -14,7 +14,7 @@ public class Create_face : MonoBehaviour
 		this.resetList();
 	}
 
-	// Token: 0x060023C4 RID: 9156 RVA: 0x0010DA30 File Offset: 0x0010BC30
+	// Token: 0x0600203F RID: 8255 RVA: 0x000E3060 File Offset: 0x000E1260
 	public JSONObject GetColorJson(string color_s)
 	{
 		JSONObject result = null;
@@ -87,7 +87,7 @@ public class Create_face : MonoBehaviour
 		return result;
 	}
 
-	// Token: 0x060023C5 RID: 9157 RVA: 0x00125608 File Offset: 0x00123808
+	// Token: 0x06002040 RID: 8256 RVA: 0x000E31E0 File Offset: 0x000E13E0
 	public void ResteColorSetUIColor(string c)
 	{
 		if (c == "")
@@ -104,7 +104,7 @@ public class Create_face : MonoBehaviour
 		this.NowSelectColor.color = new Color(n / 255f, n2 / 255f, n3 / 255f);
 	}
 
-	// Token: 0x060023C6 RID: 9158 RVA: 0x0001CD87 File Offset: 0x0001AF87
+	// Token: 0x06002041 RID: 8257 RVA: 0x000E32AD File Offset: 0x000E14AD
 	public void ShowColorSet()
 	{
 		this.colorset.SetActive(true);
@@ -112,14 +112,14 @@ public class Create_face : MonoBehaviour
 		this.colorsetScroll.SetActive(false);
 	}
 
-	// Token: 0x060023C7 RID: 9159 RVA: 0x0001CDB7 File Offset: 0x0001AFB7
+	// Token: 0x06002042 RID: 8258 RVA: 0x000E32DD File Offset: 0x000E14DD
 	public void hideColorSet()
 	{
 		this.colorset.SetActive(false);
 		this.colorsetScroll.SetActive(false);
 	}
 
-	// Token: 0x060023C8 RID: 9160 RVA: 0x001256D8 File Offset: 0x001238D8
+	// Token: 0x06002043 RID: 8259 RVA: 0x000E32F8 File Offset: 0x000E14F8
 	public void resetList()
 	{
 		foreach (object obj in this.AllListGrid.transform)
@@ -148,54 +148,54 @@ public class Create_face : MonoBehaviour
 		base.Invoke("resetAllListGrid", 0.1f);
 	}
 
-	// Token: 0x060023C9 RID: 9161 RVA: 0x0001CDD1 File Offset: 0x0001AFD1
+	// Token: 0x06002044 RID: 8260 RVA: 0x000E346C File Offset: 0x000E166C
 	public void resetAllListGrid()
 	{
 		this.AllListGrid.repositionNow = true;
 	}
 
-	// Token: 0x060023CA RID: 9162 RVA: 0x0001CDDF File Offset: 0x0001AFDF
+	// Token: 0x06002045 RID: 8261 RVA: 0x000E347A File Offset: 0x000E167A
 	private void Update()
 	{
 		this.ResteColorSetUIColor(this.nowColorstr);
 	}
 
-	// Token: 0x04001EC3 RID: 7875
+	// Token: 0x04001A2E RID: 6702
 	public GameObject faceChoicePrefab;
 
-	// Token: 0x04001EC4 RID: 7876
+	// Token: 0x04001A2F RID: 6703
 	public GameObject faceItmePrefab;
 
-	// Token: 0x04001EC5 RID: 7877
+	// Token: 0x04001A30 RID: 6704
 	public GameObject colorPrefab;
 
-	// Token: 0x04001EC6 RID: 7878
+	// Token: 0x04001A31 RID: 6705
 	public GameObject AllItmePrefab;
 
-	// Token: 0x04001EC7 RID: 7879
+	// Token: 0x04001A32 RID: 6706
 	public AvatarFaceDatabase faceDatabase;
 
-	// Token: 0x04001EC8 RID: 7880
+	// Token: 0x04001A33 RID: 6707
 	public UIGrid AllListGrid;
 
-	// Token: 0x04001EC9 RID: 7881
+	// Token: 0x04001A34 RID: 6708
 	public UIGrid ItemGrid;
 
-	// Token: 0x04001ECA RID: 7882
+	// Token: 0x04001A35 RID: 6709
 	public GameObject goodsGrid;
 
-	// Token: 0x04001ECB RID: 7883
+	// Token: 0x04001A36 RID: 6710
 	public GameObject colorset;
 
-	// Token: 0x04001ECC RID: 7884
+	// Token: 0x04001A37 RID: 6711
 	public GameObject colorsetScroll;
 
-	// Token: 0x04001ECD RID: 7885
+	// Token: 0x04001A38 RID: 6712
 	public GameObject colorsetGrid;
 
-	// Token: 0x04001ECE RID: 7886
+	// Token: 0x04001A39 RID: 6713
 	public Image NowSelectColor;
 
-	// Token: 0x04001ECF RID: 7887
+	// Token: 0x04001A3A RID: 6714
 	public string nowColorstr = "";
 }

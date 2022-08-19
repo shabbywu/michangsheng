@@ -4,10 +4,10 @@ using UnityEngine;
 
 namespace UltimateSurvival
 {
-	// Token: 0x020008BD RID: 2237
+	// Token: 0x020005EB RID: 1515
 	public class FPManager : PlayerBehaviour
 	{
-		// Token: 0x0600398C RID: 14732 RVA: 0x001A5EB4 File Offset: 0x001A40B4
+		// Token: 0x060030B4 RID: 12468 RVA: 0x0015C720 File Offset: 0x0015A920
 		private void Awake()
 		{
 			base.Player.ChangeEquippedItem.SetTryer(new Attempt<SavableItem, bool>.GenericTryerDelegate(this.Try_ChangeEquippedItem));
@@ -25,7 +25,7 @@ namespace UltimateSurvival
 			}
 		}
 
-		// Token: 0x0600398D RID: 14733 RVA: 0x001A5FC0 File Offset: 0x001A41C0
+		// Token: 0x060030B5 RID: 12469 RVA: 0x0015C82C File Offset: 0x0015AA2C
 		private void Update()
 		{
 			if (this.m_WaitingToDisable && Time.time > this.m_NextTimeCanDisable)
@@ -40,7 +40,7 @@ namespace UltimateSurvival
 			}
 		}
 
-		// Token: 0x0600398E RID: 14734 RVA: 0x001A6020 File Offset: 0x001A4220
+		// Token: 0x060030B6 RID: 12470 RVA: 0x0015C88C File Offset: 0x0015AA8C
 		private bool Try_ChangeEquippedItem(SavableItem item, bool instantly)
 		{
 			if (base.Player.EquippedItem.Get() == item)
@@ -67,7 +67,7 @@ namespace UltimateSurvival
 			return true;
 		}
 
-		// Token: 0x0600398F RID: 14735 RVA: 0x001A60CC File Offset: 0x001A42CC
+		// Token: 0x060030B7 RID: 12471 RVA: 0x0015C938 File Offset: 0x0015AB38
 		private void TryEquipItem()
 		{
 			SavableItem savableItem = base.Player.EquippedItem.Get();
@@ -89,7 +89,7 @@ namespace UltimateSurvival
 			}
 		}
 
-		// Token: 0x06003990 RID: 14736 RVA: 0x00029C6F File Offset: 0x00027E6F
+		// Token: 0x060030B8 RID: 12472 RVA: 0x0015C9C9 File Offset: 0x0015ABC9
 		private void TryDisableObject(GameObject obj, bool isCurrent = false)
 		{
 			if (obj == null)
@@ -105,7 +105,7 @@ namespace UltimateSurvival
 			}
 		}
 
-		// Token: 0x06003991 RID: 14737 RVA: 0x00029CA4 File Offset: 0x00027EA4
+		// Token: 0x060030B9 RID: 12473 RVA: 0x0015C9FE File Offset: 0x0015ABFE
 		private void OnStop_Sleep()
 		{
 			if (this.m_EquippedObject)
@@ -114,7 +114,7 @@ namespace UltimateSurvival
 			}
 		}
 
-		// Token: 0x06003992 RID: 14738 RVA: 0x001A6160 File Offset: 0x001A4360
+		// Token: 0x060030BA RID: 12474 RVA: 0x0015CA28 File Offset: 0x0015AC28
 		private void OnChanged_IsCloseToAnObject()
 		{
 			if (this.m_EquippedWeapon != null && base.Player.IsCloseToAnObject.Get() && !this.m_EquippedWeapon.UseWhileNearObjects && base.Player.Aim.Active)
@@ -123,7 +123,7 @@ namespace UltimateSurvival
 			}
 		}
 
-		// Token: 0x06003993 RID: 14739 RVA: 0x001A61BC File Offset: 0x001A43BC
+		// Token: 0x060030BB RID: 12475 RVA: 0x0015CA84 File Offset: 0x0015AC84
 		private bool TryStart_Aim()
 		{
 			bool flag = base.Player.NearLadders.Count == 0 && (!base.Player.IsCloseToAnObject.Get() || (this.m_EquippedWeapon && this.m_EquippedWeapon.UseWhileNearObjects)) && this.m_EquippedObject && Time.time > this.m_NextTimeCanEquip + this.m_DrawTime && MonoSingleton<InventoryController>.Instance.IsClosed && !base.Player.Run.Active;
@@ -142,7 +142,7 @@ namespace UltimateSurvival
 			return flag;
 		}
 
-		// Token: 0x06003994 RID: 14740 RVA: 0x001A62A4 File Offset: 0x001A44A4
+		// Token: 0x060030BC RID: 12476 RVA: 0x0015CB6C File Offset: 0x0015AD6C
 		private void OnStop_Aim()
 		{
 			if (this.m_FOVSetter != null)
@@ -153,7 +153,7 @@ namespace UltimateSurvival
 			base.Player.MovementSpeedFactor.Set(1f);
 		}
 
-		// Token: 0x06003995 RID: 14741 RVA: 0x00029CCE File Offset: 0x00027ECE
+		// Token: 0x060030BD RID: 12477 RVA: 0x0015CBBA File Offset: 0x0015ADBA
 		private IEnumerator C_SetFOV(float targetFOV)
 		{
 			while (Mathf.Abs(this.m_WorldCamera.fieldOfView - targetFOV) > Mathf.Epsilon)
@@ -164,7 +164,7 @@ namespace UltimateSurvival
 			yield break;
 		}
 
-		// Token: 0x06003996 RID: 14742 RVA: 0x001A62F4 File Offset: 0x001A44F4
+		// Token: 0x060030BE RID: 12478 RVA: 0x0015CBD0 File Offset: 0x0015ADD0
 		private bool OnTry_Attack(bool continuously)
 		{
 			if (this.m_EquippedWeapon == null)
@@ -188,68 +188,68 @@ namespace UltimateSurvival
 			return false;
 		}
 
-		// Token: 0x040033B4 RID: 13236
+		// Token: 0x04002AE5 RID: 10981
 		[SerializeField]
 		private Camera m_WorldCamera;
 
-		// Token: 0x040033B5 RID: 13237
+		// Token: 0x04002AE6 RID: 10982
 		[SerializeField]
 		private Camera m_FPCamera;
 
-		// Token: 0x040033B6 RID: 13238
+		// Token: 0x04002AE7 RID: 10983
 		[Header("Aiming")]
 		[SerializeField]
 		[Range(0f, 100f)]
 		private float m_NormalFOV = 75f;
 
-		// Token: 0x040033B7 RID: 13239
+		// Token: 0x04002AE8 RID: 10984
 		[SerializeField]
 		[Range(0f, 100f)]
 		private float m_AimFOV = 45f;
 
-		// Token: 0x040033B8 RID: 13240
+		// Token: 0x04002AE9 RID: 10985
 		[SerializeField]
 		[Clamp(0f, 9999f)]
 		private float m_FOVSetSpeed = 30f;
 
-		// Token: 0x040033B9 RID: 13241
+		// Token: 0x04002AEA RID: 10986
 		[SerializeField]
 		[Range(0.1f, 1f)]
 		private float m_AimSpeedMultiplier = 0.6f;
 
-		// Token: 0x040033BA RID: 13242
+		// Token: 0x04002AEB RID: 10987
 		[Header("Equipping")]
 		[SerializeField]
 		[Range(0f, 3f)]
 		private float m_DrawTime = 0.7f;
 
-		// Token: 0x040033BB RID: 13243
+		// Token: 0x04002AEC RID: 10988
 		[SerializeField]
 		[Range(0f, 3f)]
 		private float m_HolsterTime = 0.5f;
 
-		// Token: 0x040033BC RID: 13244
+		// Token: 0x04002AED RID: 10989
 		private FPObject[] m_Objects;
 
-		// Token: 0x040033BD RID: 13245
+		// Token: 0x04002AEE RID: 10990
 		private FPObject m_EquippedObject;
 
-		// Token: 0x040033BE RID: 13246
+		// Token: 0x04002AEF RID: 10991
 		private FPWeaponBase m_EquippedWeapon;
 
-		// Token: 0x040033BF RID: 13247
+		// Token: 0x04002AF0 RID: 10992
 		private float m_NextTimeCanEquip;
 
-		// Token: 0x040033C0 RID: 13248
+		// Token: 0x04002AF1 RID: 10993
 		private bool m_WaitingToEquip;
 
-		// Token: 0x040033C1 RID: 13249
+		// Token: 0x04002AF2 RID: 10994
 		private bool m_WaitingToDisable;
 
-		// Token: 0x040033C2 RID: 13250
+		// Token: 0x04002AF3 RID: 10995
 		private float m_NextTimeCanDisable;
 
-		// Token: 0x040033C3 RID: 13251
+		// Token: 0x04002AF4 RID: 10996
 		private Coroutine m_FOVSetter;
 	}
 }

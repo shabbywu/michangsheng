@@ -9,10 +9,10 @@ using MoonSharp.Interpreter.Interop.StandardDescriptors;
 
 namespace MoonSharp.Interpreter.Interop
 {
-	// Token: 0x02001105 RID: 4357
+	// Token: 0x02000D1E RID: 3358
 	public class EventMemberDescriptor : IMemberDescriptor
 	{
-		// Token: 0x0600692F RID: 26927 RVA: 0x0028CF8C File Offset: 0x0028B18C
+		// Token: 0x06005DF8 RID: 24056 RVA: 0x00264718 File Offset: 0x00262918
 		public static EventMemberDescriptor TryCreateIfVisible(EventInfo ei, InteropAccessMode accessMode)
 		{
 			if (!EventMemberDescriptor.CheckEventIsCompatible(ei, false))
@@ -28,7 +28,7 @@ namespace MoonSharp.Interpreter.Interop
 			return null;
 		}
 
-		// Token: 0x06006930 RID: 26928 RVA: 0x0028D008 File Offset: 0x0028B208
+		// Token: 0x06005DF9 RID: 24057 RVA: 0x00264794 File Offset: 0x00262994
 		public static bool CheckEventIsCompatible(EventInfo ei, bool throwException)
 		{
 			if (Framework.Do.IsValueType(ei.DeclaringType))
@@ -115,7 +115,7 @@ namespace MoonSharp.Interpreter.Interop
 			}
 		}
 
-		// Token: 0x06006931 RID: 26929 RVA: 0x0028D150 File Offset: 0x0028B350
+		// Token: 0x06005DFA RID: 24058 RVA: 0x002648DC File Offset: 0x00262ADC
 		public EventMemberDescriptor(EventInfo ei, InteropAccessMode accessMode = InteropAccessMode.Default)
 		{
 			EventMemberDescriptor.CheckEventIsCompatible(ei, true);
@@ -125,17 +125,17 @@ namespace MoonSharp.Interpreter.Interop
 			this.IsStatic = this.m_Add.IsStatic;
 		}
 
-		// Token: 0x17000986 RID: 2438
-		// (get) Token: 0x06006932 RID: 26930 RVA: 0x000481E7 File Offset: 0x000463E7
-		// (set) Token: 0x06006933 RID: 26931 RVA: 0x000481EF File Offset: 0x000463EF
+		// Token: 0x17000729 RID: 1833
+		// (get) Token: 0x06005DFB RID: 24059 RVA: 0x0026495C File Offset: 0x00262B5C
+		// (set) Token: 0x06005DFC RID: 24060 RVA: 0x00264964 File Offset: 0x00262B64
 		public EventInfo EventInfo { get; private set; }
 
-		// Token: 0x17000987 RID: 2439
-		// (get) Token: 0x06006934 RID: 26932 RVA: 0x000481F8 File Offset: 0x000463F8
-		// (set) Token: 0x06006935 RID: 26933 RVA: 0x00048200 File Offset: 0x00046400
+		// Token: 0x1700072A RID: 1834
+		// (get) Token: 0x06005DFD RID: 24061 RVA: 0x0026496D File Offset: 0x00262B6D
+		// (set) Token: 0x06005DFE RID: 24062 RVA: 0x00264975 File Offset: 0x00262B75
 		public bool IsStatic { get; private set; }
 
-		// Token: 0x06006936 RID: 26934 RVA: 0x00048209 File Offset: 0x00046409
+		// Token: 0x06005DFF RID: 24063 RVA: 0x0026497E File Offset: 0x00262B7E
 		public DynValue GetValue(Script script, object obj)
 		{
 			this.CheckAccess(MemberDescriptorAccess.CanRead, obj);
@@ -146,7 +146,7 @@ namespace MoonSharp.Interpreter.Interop
 			return UserData.Create(new EventFacade(this, obj));
 		}
 
-		// Token: 0x06006937 RID: 26935 RVA: 0x0028D1D0 File Offset: 0x0028B3D0
+		// Token: 0x06005E00 RID: 24064 RVA: 0x002649A0 File Offset: 0x00262BA0
 		internal DynValue AddCallback(object o, ScriptExecutionContext context, CallbackArguments args)
 		{
 			object @lock = this.m_Lock;
@@ -163,7 +163,7 @@ namespace MoonSharp.Interpreter.Interop
 			return @void;
 		}
 
-		// Token: 0x06006938 RID: 26936 RVA: 0x0028D258 File Offset: 0x0028B458
+		// Token: 0x06005E01 RID: 24065 RVA: 0x00264A28 File Offset: 0x00262C28
 		internal DynValue RemoveCallback(object o, ScriptExecutionContext context, CallbackArguments args)
 		{
 			object @lock = this.m_Lock;
@@ -180,7 +180,7 @@ namespace MoonSharp.Interpreter.Interop
 			return @void;
 		}
 
-		// Token: 0x06006939 RID: 26937 RVA: 0x0028D2E0 File Offset: 0x0028B4E0
+		// Token: 0x06005E02 RID: 24066 RVA: 0x00264AB0 File Offset: 0x00262CB0
 		private void RegisterCallback(object o)
 		{
 			this.m_Delegates.GetOrCreate(o, delegate
@@ -195,7 +195,7 @@ namespace MoonSharp.Interpreter.Interop
 			});
 		}
 
-		// Token: 0x0600693A RID: 26938 RVA: 0x0028D320 File Offset: 0x0028B520
+		// Token: 0x06005E03 RID: 24067 RVA: 0x00264AF0 File Offset: 0x00262CF0
 		private void UnregisterCallback(object o)
 		{
 			Delegate orDefault = this.m_Delegates.GetOrDefault(o);
@@ -210,7 +210,7 @@ namespace MoonSharp.Interpreter.Interop
 			});
 		}
 
-		// Token: 0x0600693B RID: 26939 RVA: 0x0028D36C File Offset: 0x0028B56C
+		// Token: 0x06005E04 RID: 24068 RVA: 0x00264B3C File Offset: 0x00262D3C
 		private Delegate CreateDelegate(object sender)
 		{
 			switch (Framework.Do.GetMethod(this.EventInfo.EventHandlerType, "Invoke").GetParameters().Length)
@@ -305,7 +305,7 @@ namespace MoonSharp.Interpreter.Interop
 			}
 		}
 
-		// Token: 0x0600693C RID: 26940 RVA: 0x0028D4E8 File Offset: 0x0028B6E8
+		// Token: 0x06005E05 RID: 24069 RVA: 0x00264CB8 File Offset: 0x00262EB8
 		private void DispatchEvent(object sender, object o01 = null, object o02 = null, object o03 = null, object o04 = null, object o05 = null, object o06 = null, object o07 = null, object o08 = null, object o09 = null, object o10 = null, object o11 = null, object o12 = null, object o13 = null, object o14 = null, object o15 = null, object o16 = null)
 		{
 			Closure[] array = null;
@@ -339,8 +339,8 @@ namespace MoonSharp.Interpreter.Interop
 			}
 		}
 
-		// Token: 0x17000988 RID: 2440
-		// (get) Token: 0x0600693D RID: 26941 RVA: 0x0004822A File Offset: 0x0004642A
+		// Token: 0x1700072B RID: 1835
+		// (get) Token: 0x06005E06 RID: 24070 RVA: 0x00264D80 File Offset: 0x00262F80
 		public string Name
 		{
 			get
@@ -349,8 +349,8 @@ namespace MoonSharp.Interpreter.Interop
 			}
 		}
 
-		// Token: 0x17000989 RID: 2441
-		// (get) Token: 0x0600693E RID: 26942 RVA: 0x0000A093 File Offset: 0x00008293
+		// Token: 0x1700072C RID: 1836
+		// (get) Token: 0x06005E07 RID: 24071 RVA: 0x00024C5F File Offset: 0x00022E5F
 		public MemberDescriptorAccess MemberAccess
 		{
 			get
@@ -359,96 +359,96 @@ namespace MoonSharp.Interpreter.Interop
 			}
 		}
 
-		// Token: 0x0600693F RID: 26943 RVA: 0x00048074 File Offset: 0x00046274
+		// Token: 0x06005E08 RID: 24072 RVA: 0x002645B4 File Offset: 0x002627B4
 		public void SetValue(Script script, object obj, DynValue v)
 		{
 			this.CheckAccess(MemberDescriptorAccess.CanWrite, obj);
 		}
 
-		// Token: 0x04006037 RID: 24631
+		// Token: 0x04005419 RID: 21529
 		public const int MAX_ARGS_IN_DELEGATE = 16;
 
-		// Token: 0x04006038 RID: 24632
+		// Token: 0x0400541A RID: 21530
 		private object m_Lock = new object();
 
-		// Token: 0x04006039 RID: 24633
+		// Token: 0x0400541B RID: 21531
 		private MultiDictionary<object, Closure> m_Callbacks = new MultiDictionary<object, Closure>(new ReferenceEqualityComparer());
 
-		// Token: 0x0400603A RID: 24634
+		// Token: 0x0400541C RID: 21532
 		private Dictionary<object, Delegate> m_Delegates = new Dictionary<object, Delegate>(new ReferenceEqualityComparer());
 
-		// Token: 0x0400603D RID: 24637
+		// Token: 0x0400541F RID: 21535
 		private MethodInfo m_Add;
 
-		// Token: 0x0400603E RID: 24638
+		// Token: 0x04005420 RID: 21536
 		private MethodInfo m_Remove;
 
-		// Token: 0x02001106 RID: 4358
-		// (Invoke) Token: 0x06006941 RID: 26945
+		// Token: 0x0200165C RID: 5724
+		// (Invoke) Token: 0x060086A3 RID: 34467
 		private delegate void EventWrapper00();
 
-		// Token: 0x02001107 RID: 4359
-		// (Invoke) Token: 0x06006945 RID: 26949
+		// Token: 0x0200165D RID: 5725
+		// (Invoke) Token: 0x060086A7 RID: 34471
 		private delegate void EventWrapper01(object o1);
 
-		// Token: 0x02001108 RID: 4360
-		// (Invoke) Token: 0x06006949 RID: 26953
+		// Token: 0x0200165E RID: 5726
+		// (Invoke) Token: 0x060086AB RID: 34475
 		private delegate void EventWrapper02(object o1, object o2);
 
-		// Token: 0x02001109 RID: 4361
-		// (Invoke) Token: 0x0600694D RID: 26957
+		// Token: 0x0200165F RID: 5727
+		// (Invoke) Token: 0x060086AF RID: 34479
 		private delegate void EventWrapper03(object o1, object o2, object o3);
 
-		// Token: 0x0200110A RID: 4362
-		// (Invoke) Token: 0x06006951 RID: 26961
+		// Token: 0x02001660 RID: 5728
+		// (Invoke) Token: 0x060086B3 RID: 34483
 		private delegate void EventWrapper04(object o1, object o2, object o3, object o4);
 
-		// Token: 0x0200110B RID: 4363
-		// (Invoke) Token: 0x06006955 RID: 26965
+		// Token: 0x02001661 RID: 5729
+		// (Invoke) Token: 0x060086B7 RID: 34487
 		private delegate void EventWrapper05(object o1, object o2, object o3, object o4, object o5);
 
-		// Token: 0x0200110C RID: 4364
-		// (Invoke) Token: 0x06006959 RID: 26969
+		// Token: 0x02001662 RID: 5730
+		// (Invoke) Token: 0x060086BB RID: 34491
 		private delegate void EventWrapper06(object o1, object o2, object o3, object o4, object o5, object o6);
 
-		// Token: 0x0200110D RID: 4365
-		// (Invoke) Token: 0x0600695D RID: 26973
+		// Token: 0x02001663 RID: 5731
+		// (Invoke) Token: 0x060086BF RID: 34495
 		private delegate void EventWrapper07(object o1, object o2, object o3, object o4, object o5, object o6, object o7);
 
-		// Token: 0x0200110E RID: 4366
-		// (Invoke) Token: 0x06006961 RID: 26977
+		// Token: 0x02001664 RID: 5732
+		// (Invoke) Token: 0x060086C3 RID: 34499
 		private delegate void EventWrapper08(object o1, object o2, object o3, object o4, object o5, object o6, object o7, object o8);
 
-		// Token: 0x0200110F RID: 4367
-		// (Invoke) Token: 0x06006965 RID: 26981
+		// Token: 0x02001665 RID: 5733
+		// (Invoke) Token: 0x060086C7 RID: 34503
 		private delegate void EventWrapper09(object o1, object o2, object o3, object o4, object o5, object o6, object o7, object o8, object o9);
 
-		// Token: 0x02001110 RID: 4368
-		// (Invoke) Token: 0x06006969 RID: 26985
+		// Token: 0x02001666 RID: 5734
+		// (Invoke) Token: 0x060086CB RID: 34507
 		private delegate void EventWrapper10(object o1, object o2, object o3, object o4, object o5, object o6, object o7, object o8, object o9, object o10);
 
-		// Token: 0x02001111 RID: 4369
-		// (Invoke) Token: 0x0600696D RID: 26989
+		// Token: 0x02001667 RID: 5735
+		// (Invoke) Token: 0x060086CF RID: 34511
 		private delegate void EventWrapper11(object o1, object o2, object o3, object o4, object o5, object o6, object o7, object o8, object o9, object o10, object o11);
 
-		// Token: 0x02001112 RID: 4370
-		// (Invoke) Token: 0x06006971 RID: 26993
+		// Token: 0x02001668 RID: 5736
+		// (Invoke) Token: 0x060086D3 RID: 34515
 		private delegate void EventWrapper12(object o1, object o2, object o3, object o4, object o5, object o6, object o7, object o8, object o9, object o10, object o11, object o12);
 
-		// Token: 0x02001113 RID: 4371
-		// (Invoke) Token: 0x06006975 RID: 26997
+		// Token: 0x02001669 RID: 5737
+		// (Invoke) Token: 0x060086D7 RID: 34519
 		private delegate void EventWrapper13(object o1, object o2, object o3, object o4, object o5, object o6, object o7, object o8, object o9, object o10, object o11, object o12, object o13);
 
-		// Token: 0x02001114 RID: 4372
-		// (Invoke) Token: 0x06006979 RID: 27001
+		// Token: 0x0200166A RID: 5738
+		// (Invoke) Token: 0x060086DB RID: 34523
 		private delegate void EventWrapper14(object o1, object o2, object o3, object o4, object o5, object o6, object o7, object o8, object o9, object o10, object o11, object o12, object o13, object o14);
 
-		// Token: 0x02001115 RID: 4373
-		// (Invoke) Token: 0x0600697D RID: 27005
+		// Token: 0x0200166B RID: 5739
+		// (Invoke) Token: 0x060086DF RID: 34527
 		private delegate void EventWrapper15(object o1, object o2, object o3, object o4, object o5, object o6, object o7, object o8, object o9, object o10, object o11, object o12, object o13, object o14, object o15);
 
-		// Token: 0x02001116 RID: 4374
-		// (Invoke) Token: 0x06006981 RID: 27009
+		// Token: 0x0200166C RID: 5740
+		// (Invoke) Token: 0x060086E3 RID: 34531
 		private delegate void EventWrapper16(object o1, object o2, object o3, object o4, object o5, object o6, object o7, object o8, object o9, object o10, object o11, object o12, object o13, object o14, object o15, object o16);
 	}
 }

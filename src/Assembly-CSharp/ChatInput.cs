@@ -1,12 +1,12 @@
 ﻿using System;
 using UnityEngine;
 
-// Token: 0x02000055 RID: 85
+// Token: 0x0200003E RID: 62
 [RequireComponent(typeof(UIInput))]
 [AddComponentMenu("NGUI/Examples/Chat Input")]
 public class ChatInput : MonoBehaviour
 {
-	// Token: 0x0600048C RID: 1164 RVA: 0x0006EF08 File Offset: 0x0006D108
+	// Token: 0x06000444 RID: 1092 RVA: 0x00017A60 File Offset: 0x00015C60
 	private void Start()
 	{
 		this.mInput = base.GetComponent<UIInput>();
@@ -26,7 +26,7 @@ public class ChatInput : MonoBehaviour
 		}
 	}
 
-	// Token: 0x0600048D RID: 1165 RVA: 0x0006EF98 File Offset: 0x0006D198
+	// Token: 0x06000445 RID: 1093 RVA: 0x00017AF0 File Offset: 0x00015CF0
 	public void OnSubmit()
 	{
 		if (this.textList != null)
@@ -41,12 +41,12 @@ public class ChatInput : MonoBehaviour
 		}
 	}
 
-	// Token: 0x040002D5 RID: 725
+	// Token: 0x04000269 RID: 617
 	public UITextList textList;
 
-	// Token: 0x040002D6 RID: 726
+	// Token: 0x0400026A RID: 618
 	public bool fillWithDummyData;
 
-	// Token: 0x040002D7 RID: 727
+	// Token: 0x0400026B RID: 619
 	private UIInput mInput;
 }

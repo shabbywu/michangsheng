@@ -1,11 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using JSONClass;
+using UnityEngine;
 
-// Token: 0x020003AB RID: 939
+// Token: 0x02000284 RID: 644
 public class NPCUseItem
 {
-	// Token: 0x06001A12 RID: 6674 RVA: 0x000E650C File Offset: 0x000E470C
+	// Token: 0x06001742 RID: 5954 RVA: 0x0009ED24 File Offset: 0x0009CF24
 	public NPCUseItem()
 	{
 		this.ItemSeidDictionary.Add(4, "exp");
@@ -19,7 +20,7 @@ public class NPCUseItem
 		this.ItemSeidDictionary.Add(26, "wuDaoDian");
 	}
 
-	// Token: 0x06001A13 RID: 6675 RVA: 0x000E65E0 File Offset: 0x000E47E0
+	// Token: 0x06001743 RID: 5955 RVA: 0x0009EDF8 File Offset: 0x0009CFF8
 	public void autoUseItem(int npcId)
 	{
 		JSONObject jsonobject = jsonData.instance.AvatarBackpackJsonData[npcId.ToString()]["Backpack"];
@@ -41,7 +42,7 @@ public class NPCUseItem
 		this.addList = null;
 	}
 
-	// Token: 0x06001A14 RID: 6676 RVA: 0x000E66A8 File Offset: 0x000E48A8
+	// Token: 0x06001744 RID: 5956 RVA: 0x0009EEC0 File Offset: 0x0009D0C0
 	public void UseItem(int npcID, JSONObject item, bool isAuToUse = false)
 	{
 		if (!isAuToUse)
@@ -58,18 +59,14 @@ public class NPCUseItem
 		JSONObject jsonobject = jsonData.instance.AvatarJsonData[npcID.ToString()];
 		_ItemJsonData itemJsonData = _ItemJsonData.DataDict[i];
 		int type = itemJsonData.type;
-		int num = itemJsonData.CanUse;
+		int canUse = itemJsonData.CanUse;
 		if (type == 0 || type == 1 || type == 2)
 		{
 			this.UseEquip(npcID, item, jsonobject["equipList"], type);
 		}
 		else if (type == 5 && itemJsonData.NPCCanUse == 1)
 		{
-			if (jsonobject["wuDaoSkillList"].ToList().Contains(2131))
-			{
-				num *= 2;
-			}
-			this.UseDanYao(npcID, item, num, itemJsonData.seid[0]);
+			this.UseDanYao(npcID, item, itemJsonData.seid[0]);
 		}
 		if (!isAuToUse)
 		{
@@ -87,7 +84,7 @@ public class NPCUseItem
 		}
 	}
 
-	// Token: 0x06001A15 RID: 6677 RVA: 0x000E6830 File Offset: 0x000E4A30
+	// Token: 0x06001745 RID: 5957 RVA: 0x0009F024 File Offset: 0x0009D224
 	public bool isCanChangEquip(JSONObject npcPianHao, JSONObject oldSeid, JSONObject NewSeid)
 	{
 		if (oldSeid["quality"].I == NewSeid["quality"].I)
@@ -120,23 +117,62 @@ public class NPCUseItem
 		return false;
 	}
 
-	// Token: 0x06001A16 RID: 6678 RVA: 0x000E693C File Offset: 0x000E4B3C
-	private void UseDanYao(int npcID, JSONObject item, int canUse, int seid)
+	// Token: 0x06001746 RID: 5958 RVA: 0x0009F130 File Offset: 0x0009D330
+	public int GetDanYaoCanUseNum(int npcId, int itemId)
+	{
+		JSONObject jsonobject = jsonData.instance.AvatarJsonData[npcId.ToString()];
+		int num = _ItemJsonData.DataDict[itemId].CanUse;
+		if (jsonobject["wuDaoSkillList"].ToList().Contains(2131))
+		{
+			num *= 2;
+		}
+		if (jsonobject.HasField("useItem") && jsonobject["useItem"].HasField(itemId.ToString()))
+		{
+			int i = jsonobject["useItem"][itemId.ToString()].I;
+			num -= i;
+		}
+		int num2 = _ItemJsonData.DataDict[itemId].seid[0];
+		if (num2 == 4)
+		{
+			if (jsonobject.TryGetField("Level").I >= 15)
+			{
+				num = 0;
+			}
+			else
+			{
+				int i2 = jsonData.instance.ItemsSeidJsonData[num2][itemId.ToString()]["value1"].I;
+				int i3 = jsonobject.TryGetField("exp").I;
+				int num3 = jsonobject.TryGetField("NextExp").I - i3;
+				if (num3 <= 0)
+				{
+					num = 0;
+				}
+				else
+				{
+					num = Mathf.Min(num, num3 / i2 + 1);
+				}
+			}
+		}
+		return num;
+	}
+
+	// Token: 0x06001747 RID: 5959 RVA: 0x0009F268 File Offset: 0x0009D468
+	private void UseDanYao(int npcID, JSONObject item, int seid)
 	{
 		int i = item["ItemID"].I;
 		int i2 = item["Num"].I;
 		int num = i2;
+		int danYaoCanUseNum = this.GetDanYaoCanUseNum(npcID, i);
+		if (danYaoCanUseNum <= 0)
+		{
+			return;
+		}
 		JSONObject jsonobject = jsonData.instance.AvatarJsonData[npcID.ToString()];
 		if (!ModVar.closeNpcNaiYao)
 		{
 			if (jsonobject["useItem"].HasField(i.ToString()))
 			{
-				int i3 = jsonobject["useItem"][i.ToString()].I;
-				if (i3 >= canUse)
-				{
-					return;
-				}
-				num = canUse - i3;
+				num = danYaoCanUseNum;
 				if (num > i2)
 				{
 					num = i2;
@@ -145,7 +181,7 @@ public class NPCUseItem
 			}
 			else
 			{
-				num = canUse;
+				num = danYaoCanUseNum;
 				if (num > i2)
 				{
 					num = i2;
@@ -213,10 +249,10 @@ public class NPCUseItem
 		NpcJieSuanManager.inst.npcNoteBook.NoteUseDanYao(npcID, seid, i, num);
 	}
 
-	// Token: 0x06001A17 RID: 6679 RVA: 0x000E6BFC File Offset: 0x000E4DFC
+	// Token: 0x06001748 RID: 5960 RVA: 0x0009F508 File Offset: 0x0009D708
 	private void UseEquip(int npcID, JSONObject item, JSONObject equipList, int itemType)
 	{
-		JSONObject npcData = NpcJieSuanManager.inst.getNpcData(npcID);
+		JSONObject npcData = NpcJieSuanManager.inst.GetNpcData(npcID);
 		string text = "";
 		string text2 = "";
 		int i = item["ItemID"].I;
@@ -286,12 +322,12 @@ public class NPCUseItem
 		}
 	}
 
-	// Token: 0x04001571 RID: 5489
+	// Token: 0x040011FE RID: 4606
 	private Dictionary<int, string> ItemSeidDictionary = new Dictionary<int, string>();
 
-	// Token: 0x04001572 RID: 5490
+	// Token: 0x040011FF RID: 4607
 	private List<JSONObject> deleteList = new List<JSONObject>();
 
-	// Token: 0x04001573 RID: 5491
+	// Token: 0x04001200 RID: 4608
 	private List<JSONObject> addList = new List<JSONObject>();
 }

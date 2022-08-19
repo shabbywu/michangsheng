@@ -3,11 +3,11 @@ using UnityEngine;
 
 namespace UltimateSurvival
 {
-	// Token: 0x0200087E RID: 2174
+	// Token: 0x020005C0 RID: 1472
 	public class PlayerVitals : EntityVitals
 	{
-		// Token: 0x170005B9 RID: 1465
-		// (get) Token: 0x0600382E RID: 14382 RVA: 0x00028D48 File Offset: 0x00026F48
+		// Token: 0x170003FE RID: 1022
+		// (get) Token: 0x06002FAA RID: 12202 RVA: 0x001584A4 File Offset: 0x001566A4
 		public PlayerEventHandler Player
 		{
 			get
@@ -24,21 +24,21 @@ namespace UltimateSurvival
 			}
 		}
 
-		// Token: 0x0600382F RID: 14383 RVA: 0x001A25E8 File Offset: 0x001A07E8
+		// Token: 0x06002FAB RID: 12203 RVA: 0x001584E0 File Offset: 0x001566E0
 		protected override void Update()
 		{
 			this.m_ThirstDepletion.Update(this.Player.Thirst, this.Player.ChangeHealth);
 			this.m_HungerDepletion.Update(this.Player.Hunger, this.Player.ChangeHealth);
 		}
 
-		// Token: 0x06003830 RID: 14384 RVA: 0x00028D82 File Offset: 0x00026F82
+		// Token: 0x06002FAC RID: 12204 RVA: 0x0015852F File Offset: 0x0015672F
 		protected override bool Try_ChangeHealth(HealthEventData healthEventData)
 		{
 			healthEventData.Delta *= 1f - (float)this.Player.Defense.Get() / 100f;
 			return base.Try_ChangeHealth(healthEventData);
 		}
 
-		// Token: 0x06003831 RID: 14385 RVA: 0x001A2638 File Offset: 0x001A0838
+		// Token: 0x06002FAD RID: 12205 RVA: 0x00158564 File Offset: 0x00156764
 		private void Start()
 		{
 			this.Player.Run.AddStartTryer(delegate
@@ -59,7 +59,7 @@ namespace UltimateSurvival
 			}
 		}
 
-		// Token: 0x06003832 RID: 14386 RVA: 0x001A26A4 File Offset: 0x001A08A4
+		// Token: 0x06002FAE RID: 12206 RVA: 0x001585D0 File Offset: 0x001567D0
 		private void ModifyStamina(float delta)
 		{
 			float num = this.Player.Stamina.Get() + delta;
@@ -67,48 +67,48 @@ namespace UltimateSurvival
 			this.Player.Stamina.Set(num);
 		}
 
-		// Token: 0x0400327F RID: 12927
+		// Token: 0x040029F5 RID: 10741
 		[Header("Stamina")]
 		[SerializeField]
 		[Clamp(0f, 300f)]
 		private float m_StaminaDepletionRate = 30f;
 
-		// Token: 0x04003280 RID: 12928
+		// Token: 0x040029F6 RID: 10742
 		[SerializeField]
 		private StatRegenData m_StaminaRegeneration;
 
-		// Token: 0x04003281 RID: 12929
+		// Token: 0x040029F7 RID: 10743
 		[SerializeField]
 		private SoundPlayer m_BreathingHeavyAudio;
 
-		// Token: 0x04003282 RID: 12930
+		// Token: 0x040029F8 RID: 10744
 		[SerializeField]
 		private float m_BreathingHeavyDuration = 11f;
 
-		// Token: 0x04003283 RID: 12931
+		// Token: 0x040029F9 RID: 10745
 		[SerializeField]
 		[Clamp(0f, 100f)]
 		private float m_JumpStaminaTake = 15f;
 
-		// Token: 0x04003284 RID: 12932
+		// Token: 0x040029FA RID: 10746
 		[Header("Thirst")]
 		[SerializeField]
 		private StatDepleter m_ThirstDepletion;
 
-		// Token: 0x04003285 RID: 12933
+		// Token: 0x040029FB RID: 10747
 		[Header("Hunger")]
 		[SerializeField]
 		private StatDepleter m_HungerDepletion;
 
-		// Token: 0x04003286 RID: 12934
+		// Token: 0x040029FC RID: 10748
 		[Header("Sleeping")]
 		[SerializeField]
 		private bool m_SleepRestoresHealth = true;
 
-		// Token: 0x04003287 RID: 12935
+		// Token: 0x040029FD RID: 10749
 		private PlayerEventHandler m_Player;
 
-		// Token: 0x04003288 RID: 12936
+		// Token: 0x040029FE RID: 10750
 		private float m_LastHeavyBreathTime;
 	}
 }

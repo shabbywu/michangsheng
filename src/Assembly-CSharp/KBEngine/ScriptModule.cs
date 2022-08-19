@@ -4,10 +4,10 @@ using System.Reflection;
 
 namespace KBEngine
 {
-	// Token: 0x02000FEA RID: 4074
+	// Token: 0x02000C5F RID: 3167
 	public class ScriptModule
 	{
-		// Token: 0x0600606D RID: 24685 RVA: 0x00268CC8 File Offset: 0x00266EC8
+		// Token: 0x0600561E RID: 22046 RVA: 0x0023C138 File Offset: 0x0023A338
 		public ScriptModule(string modulename)
 		{
 			this.name = modulename;
@@ -31,40 +31,40 @@ namespace KBEngine
 			}
 		}
 
-		// Token: 0x04005BB2 RID: 23474
+		// Token: 0x040050F8 RID: 20728
 		public string name;
 
-		// Token: 0x04005BB3 RID: 23475
+		// Token: 0x040050F9 RID: 20729
 		public bool usePropertyDescrAlias;
 
-		// Token: 0x04005BB4 RID: 23476
+		// Token: 0x040050FA RID: 20730
 		public bool useMethodDescrAlias;
 
-		// Token: 0x04005BB5 RID: 23477
+		// Token: 0x040050FB RID: 20731
 		public Dictionary<string, Property> propertys = new Dictionary<string, Property>();
 
-		// Token: 0x04005BB6 RID: 23478
+		// Token: 0x040050FC RID: 20732
 		public Dictionary<ushort, Property> idpropertys = new Dictionary<ushort, Property>();
 
-		// Token: 0x04005BB7 RID: 23479
+		// Token: 0x040050FD RID: 20733
 		public Dictionary<string, Method> methods = new Dictionary<string, Method>();
 
-		// Token: 0x04005BB8 RID: 23480
+		// Token: 0x040050FE RID: 20734
 		public Dictionary<string, Method> base_methods = new Dictionary<string, Method>();
 
-		// Token: 0x04005BB9 RID: 23481
+		// Token: 0x040050FF RID: 20735
 		public Dictionary<string, Method> cell_methods = new Dictionary<string, Method>();
 
-		// Token: 0x04005BBA RID: 23482
+		// Token: 0x04005100 RID: 20736
 		public Dictionary<ushort, Method> idmethods = new Dictionary<ushort, Method>();
 
-		// Token: 0x04005BBB RID: 23483
+		// Token: 0x04005101 RID: 20737
 		public Dictionary<ushort, Method> idbase_methods = new Dictionary<ushort, Method>();
 
-		// Token: 0x04005BBC RID: 23484
+		// Token: 0x04005102 RID: 20738
 		public Dictionary<ushort, Method> idcell_methods = new Dictionary<ushort, Method>();
 
-		// Token: 0x04005BBD RID: 23485
+		// Token: 0x04005103 RID: 20739
 		public Type entityScript;
 	}
 }

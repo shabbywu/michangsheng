@@ -4,10 +4,10 @@ using MoonSharp.Interpreter.Tree;
 
 namespace MoonSharp.Interpreter.Serialization.Json
 {
-	// Token: 0x020010CC RID: 4300
+	// Token: 0x02000CEF RID: 3311
 	public static class JsonTableConverter
 	{
-		// Token: 0x060067BD RID: 26557 RVA: 0x000474C8 File Offset: 0x000456C8
+		// Token: 0x06005CA7 RID: 23719 RVA: 0x002612B7 File Offset: 0x0025F4B7
 		public static string TableToJson(this Table table)
 		{
 			StringBuilder stringBuilder = new StringBuilder();
@@ -15,7 +15,7 @@ namespace MoonSharp.Interpreter.Serialization.Json
 			return stringBuilder.ToString();
 		}
 
-		// Token: 0x060067BE RID: 26558 RVA: 0x0028A624 File Offset: 0x00288824
+		// Token: 0x06005CA8 RID: 23720 RVA: 0x002612CC File Offset: 0x0025F4CC
 		private static void TableToJson(StringBuilder sb, Table table)
 		{
 			bool flag = true;
@@ -56,13 +56,13 @@ namespace MoonSharp.Interpreter.Serialization.Json
 			sb.Append("]");
 		}
 
-		// Token: 0x060067BF RID: 26559 RVA: 0x000474DB File Offset: 0x000456DB
+		// Token: 0x06005CA9 RID: 23721 RVA: 0x002613D8 File Offset: 0x0025F5D8
 		public static string ObjectToJson(object obj)
 		{
 			return ObjectValueConverter.SerializeObjectToDynValue(null, obj, JsonNull.Create()).Table.TableToJson();
 		}
 
-		// Token: 0x060067C0 RID: 26560 RVA: 0x0028A730 File Offset: 0x00288930
+		// Token: 0x06005CAA RID: 23722 RVA: 0x002613F0 File Offset: 0x0025F5F0
 		private static void ValueToJson(StringBuilder sb, DynValue value)
 		{
 			switch (value.Type)
@@ -83,7 +83,7 @@ namespace MoonSharp.Interpreter.Serialization.Json
 			sb.Append("null");
 		}
 
-		// Token: 0x060067C1 RID: 26561 RVA: 0x0028A7DC File Offset: 0x002889DC
+		// Token: 0x06005CAB RID: 23723 RVA: 0x0026149C File Offset: 0x0025F69C
 		private static string EscapeString(string s)
 		{
 			s = s.Replace("\\", "\\\\");
@@ -97,13 +97,13 @@ namespace MoonSharp.Interpreter.Serialization.Json
 			return "\"" + s + "\"";
 		}
 
-		// Token: 0x060067C2 RID: 26562 RVA: 0x000474F3 File Offset: 0x000456F3
+		// Token: 0x06005CAC RID: 23724 RVA: 0x00261549 File Offset: 0x0025F749
 		private static bool IsValueJsonCompatible(DynValue value)
 		{
 			return value.Type == DataType.Boolean || value.IsNil() || value.Type == DataType.Number || value.Type == DataType.String || value.Type == DataType.Table || JsonNull.IsJsonNull(value);
 		}
 
-		// Token: 0x060067C3 RID: 26563 RVA: 0x0028A88C File Offset: 0x00288A8C
+		// Token: 0x06005CAD RID: 23725 RVA: 0x00261580 File Offset: 0x0025F780
 		public static Table JsonToTable(string json, Script script = null)
 		{
 			Lexer lexer = new Lexer(0, json, false);
@@ -121,7 +121,7 @@ namespace MoonSharp.Interpreter.Serialization.Json
 			});
 		}
 
-		// Token: 0x060067C4 RID: 26564 RVA: 0x00047529 File Offset: 0x00045729
+		// Token: 0x06005CAE RID: 23726 RVA: 0x002615E8 File Offset: 0x0025F7E8
 		private static void AssertToken(Lexer L, TokenType type)
 		{
 			if (L.Current.Type != type)
@@ -133,7 +133,7 @@ namespace MoonSharp.Interpreter.Serialization.Json
 			}
 		}
 
-		// Token: 0x060067C5 RID: 26565 RVA: 0x0028A8F4 File Offset: 0x00288AF4
+		// Token: 0x06005CAF RID: 23727 RVA: 0x00261620 File Offset: 0x0025F820
 		private static Table ParseJsonArray(Lexer L, Script script)
 		{
 			Table table = new Table(script);
@@ -151,7 +151,7 @@ namespace MoonSharp.Interpreter.Serialization.Json
 			return table;
 		}
 
-		// Token: 0x060067C6 RID: 26566 RVA: 0x0028A94C File Offset: 0x00288B4C
+		// Token: 0x06005CB0 RID: 23728 RVA: 0x00261678 File Offset: 0x0025F878
 		private static Table ParseJsonObject(Lexer L, Script script)
 		{
 			Table table = new Table(script);
@@ -174,7 +174,7 @@ namespace MoonSharp.Interpreter.Serialization.Json
 			return table;
 		}
 
-		// Token: 0x060067C7 RID: 26567 RVA: 0x0028A9CC File Offset: 0x00288BCC
+		// Token: 0x06005CB1 RID: 23729 RVA: 0x002616F8 File Offset: 0x0025F8F8
 		private static DynValue ParseJsonValue(Lexer L, Script script)
 		{
 			if (L.Current.Type == TokenType.Brk_Open_Curly)

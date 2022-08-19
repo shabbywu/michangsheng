@@ -1,10 +1,10 @@
 ﻿using System;
 using UnityEngine;
 
-// Token: 0x02000524 RID: 1316
+// Token: 0x0200039B RID: 923
 public class UIBlackMask : MonoBehaviour
 {
-	// Token: 0x060021C2 RID: 8642 RVA: 0x0001BBC5 File Offset: 0x00019DC5
+	// Token: 0x06001E41 RID: 7745 RVA: 0x000D563F File Offset: 0x000D383F
 	private void Awake()
 	{
 		Object.DontDestroyOnLoad(base.gameObject);
@@ -12,6 +12,6 @@ public class UIBlackMask : MonoBehaviour
 		base.gameObject.SetActive(false);
 	}
 
-	// Token: 0x04001D3D RID: 7485
+	// Token: 0x040018D4 RID: 6356
 	public Animator animator;
 }

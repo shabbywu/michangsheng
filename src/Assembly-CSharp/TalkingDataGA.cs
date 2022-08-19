@@ -2,10 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-// Token: 0x0200022B RID: 555
+// Token: 0x02000154 RID: 340
 public class TalkingDataGA
 {
-	// Token: 0x06001130 RID: 4400 RVA: 0x00010C3C File Offset: 0x0000EE3C
+	// Token: 0x06000F04 RID: 3844 RVA: 0x0005B78B File Offset: 0x0005998B
 	public static string GetDeviceId()
 	{
 		if (TalkingDataGA.deviceId == null && Application.platform != null)
@@ -15,7 +15,7 @@ public class TalkingDataGA
 		return TalkingDataGA.deviceId;
 	}
 
-	// Token: 0x06001131 RID: 4401 RVA: 0x00010C59 File Offset: 0x0000EE59
+	// Token: 0x06000F05 RID: 3845 RVA: 0x0005B7A8 File Offset: 0x000599A8
 	public static void OnStart(string appID, string channelId)
 	{
 		if (Application.platform != null)
@@ -24,7 +24,7 @@ public class TalkingDataGA
 		}
 	}
 
-	// Token: 0x06001132 RID: 4402 RVA: 0x00010C59 File Offset: 0x0000EE59
+	// Token: 0x06000F06 RID: 3846 RVA: 0x0005B7A8 File Offset: 0x000599A8
 	public static void OnEnd()
 	{
 		if (Application.platform != null)
@@ -33,7 +33,7 @@ public class TalkingDataGA
 		}
 	}
 
-	// Token: 0x06001133 RID: 4403 RVA: 0x00010C59 File Offset: 0x0000EE59
+	// Token: 0x06000F07 RID: 3847 RVA: 0x0005B7A8 File Offset: 0x000599A8
 	public static void OnKill()
 	{
 		if (Application.platform != null)
@@ -42,7 +42,7 @@ public class TalkingDataGA
 		}
 	}
 
-	// Token: 0x06001134 RID: 4404 RVA: 0x00010C59 File Offset: 0x0000EE59
+	// Token: 0x06000F08 RID: 3848 RVA: 0x0005B7A8 File Offset: 0x000599A8
 	public static void OnEvent(string actionId, Dictionary<string, object> parameters)
 	{
 		if (Application.platform != null)
@@ -51,7 +51,7 @@ public class TalkingDataGA
 		}
 	}
 
-	// Token: 0x06001135 RID: 4405 RVA: 0x00010C59 File Offset: 0x0000EE59
+	// Token: 0x06000F09 RID: 3849 RVA: 0x0005B7A8 File Offset: 0x000599A8
 	public static void SetVerboseLogDisabled()
 	{
 		if (Application.platform != null)
@@ -60,6 +60,6 @@ public class TalkingDataGA
 		}
 	}
 
-	// Token: 0x04000DE9 RID: 3561
+	// Token: 0x04000B44 RID: 2884
 	private static string deviceId;
 }

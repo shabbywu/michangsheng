@@ -1,12 +1,12 @@
 ﻿using System;
 
-// Token: 0x0200022C RID: 556
+// Token: 0x02000155 RID: 341
 public enum Gender
 {
-	// Token: 0x04000DEB RID: 3563
+	// Token: 0x04000B46 RID: 2886
 	UNKNOW,
-	// Token: 0x04000DEC RID: 3564
+	// Token: 0x04000B47 RID: 2887
 	MALE,
-	// Token: 0x04000DED RID: 3565
+	// Token: 0x04000B48 RID: 2888
 	FEMALE
 }

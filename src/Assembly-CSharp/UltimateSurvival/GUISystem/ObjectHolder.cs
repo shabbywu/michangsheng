@@ -4,11 +4,11 @@ using UnityEngine;
 
 namespace UltimateSurvival.GUISystem
 {
-	// Token: 0x0200093D RID: 2365
+	// Token: 0x02000643 RID: 1603
 	public class ObjectHolder
 	{
-		// Token: 0x1700068E RID: 1678
-		// (get) Token: 0x06003C81 RID: 15489 RVA: 0x0002BA9E File Offset: 0x00029C9E
+		// Token: 0x17000486 RID: 1158
+		// (get) Token: 0x06003325 RID: 13093 RVA: 0x00167F0D File Offset: 0x0016610D
 		public string Name
 		{
 			get
@@ -17,8 +17,8 @@ namespace UltimateSurvival.GUISystem
 			}
 		}
 
-		// Token: 0x1700068F RID: 1679
-		// (get) Token: 0x06003C82 RID: 15490 RVA: 0x0002BAA6 File Offset: 0x00029CA6
+		// Token: 0x17000487 RID: 1159
+		// (get) Token: 0x06003326 RID: 13094 RVA: 0x00167F15 File Offset: 0x00166115
 		public List<GameObject> ObjectList
 		{
 			get
@@ -27,20 +27,20 @@ namespace UltimateSurvival.GUISystem
 			}
 		}
 
-		// Token: 0x06003C83 RID: 15491 RVA: 0x000079B2 File Offset: 0x00005BB2
+		// Token: 0x06003327 RID: 13095 RVA: 0x00014667 File Offset: 0x00012867
 		public static implicit operator bool(ObjectHolder holder)
 		{
 			return holder != null;
 		}
 
-		// Token: 0x06003C84 RID: 15492 RVA: 0x0002BAAE File Offset: 0x00029CAE
+		// Token: 0x06003328 RID: 13096 RVA: 0x00167F1D File Offset: 0x0016611D
 		public ObjectHolder(string name, List<GameObject> objectList)
 		{
 			this.m_Name = name;
 			this.m_ObjectList = objectList;
 		}
 
-		// Token: 0x06003C85 RID: 15493 RVA: 0x001B0F1C File Offset: 0x001AF11C
+		// Token: 0x06003329 RID: 13097 RVA: 0x00167F34 File Offset: 0x00166134
 		public void ActivateObjects(bool active)
 		{
 			for (int i = 0; i < this.m_ObjectList.Count; i++)
@@ -49,10 +49,10 @@ namespace UltimateSurvival.GUISystem
 			}
 		}
 
-		// Token: 0x040036C3 RID: 14019
+		// Token: 0x04002D5A RID: 11610
 		private string m_Name;
 
-		// Token: 0x040036C4 RID: 14020
+		// Token: 0x04002D5B RID: 11611
 		private List<GameObject> m_ObjectList;
 	}
 }

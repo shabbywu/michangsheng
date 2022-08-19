@@ -3,28 +3,28 @@ using UnityEngine;
 
 namespace Fungus
 {
-	// Token: 0x0200133E RID: 4926
+	// Token: 0x02000EB5 RID: 3765
 	public interface IWriterListener
 	{
-		// Token: 0x0600779A RID: 30618
+		// Token: 0x06006A5D RID: 27229
 		void OnInput();
 
-		// Token: 0x0600779B RID: 30619
+		// Token: 0x06006A5E RID: 27230
 		void OnStart(AudioClip audioClip);
 
-		// Token: 0x0600779C RID: 30620
+		// Token: 0x06006A5F RID: 27231
 		void OnPause();
 
-		// Token: 0x0600779D RID: 30621
+		// Token: 0x06006A60 RID: 27232
 		void OnResume();
 
-		// Token: 0x0600779E RID: 30622
+		// Token: 0x06006A61 RID: 27233
 		void OnEnd(bool stopAudio);
 
-		// Token: 0x0600779F RID: 30623
+		// Token: 0x06006A62 RID: 27234
 		void OnGlyph();
 
-		// Token: 0x060077A0 RID: 30624
+		// Token: 0x06006A63 RID: 27235
 		void OnVoiceover(AudioClip voiceOverClip);
 	}
 }

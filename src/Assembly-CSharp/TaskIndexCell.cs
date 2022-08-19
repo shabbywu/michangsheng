@@ -2,10 +2,10 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-// Token: 0x02000511 RID: 1297
+// Token: 0x0200038C RID: 908
 public class TaskIndexCell : MonoBehaviour
 {
-	// Token: 0x0600216F RID: 8559 RVA: 0x001174E0 File Offset: 0x001156E0
+	// Token: 0x06001DF4 RID: 7668 RVA: 0x000D3884 File Offset: 0x000D1A84
 	public void setContent(string str, bool isFinsh = false)
 	{
 		if (isFinsh)
@@ -16,15 +16,15 @@ public class TaskIndexCell : MonoBehaviour
 		this.content.text = str.STVarReplace().ToCN();
 	}
 
-	// Token: 0x04001CF5 RID: 7413
+	// Token: 0x04001895 RID: 6293
 	[SerializeField]
 	private Text content;
 
-	// Token: 0x04001CF6 RID: 7414
+	// Token: 0x04001896 RID: 6294
 	[SerializeField]
 	private Image image;
 
-	// Token: 0x04001CF7 RID: 7415
+	// Token: 0x04001897 RID: 6295
 	[SerializeField]
 	private Sprite sprite;
 }

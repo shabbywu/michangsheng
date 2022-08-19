@@ -2,20 +2,20 @@
 using GUIPackage;
 using UnityEngine;
 
-// Token: 0x020005B3 RID: 1459
+// Token: 0x02000403 RID: 1027
 public class UI_chaifen : MonoBehaviour
 {
-	// Token: 0x060024D3 RID: 9427 RVA: 0x000042DD File Offset: 0x000024DD
+	// Token: 0x06002121 RID: 8481 RVA: 0x00004095 File Offset: 0x00002295
 	private void Start()
 	{
 	}
 
-	// Token: 0x060024D4 RID: 9428 RVA: 0x000042DD File Offset: 0x000024DD
+	// Token: 0x06002122 RID: 8482 RVA: 0x00004095 File Offset: 0x00002295
 	private void Update()
 	{
 	}
 
-	// Token: 0x060024D5 RID: 9429 RVA: 0x00129A18 File Offset: 0x00127C18
+	// Token: 0x06002123 RID: 8483 RVA: 0x000E7D1C File Offset: 0x000E5F1C
 	public void reduceLabelNum()
 	{
 		try
@@ -29,7 +29,7 @@ public class UI_chaifen : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060024D6 RID: 9430 RVA: 0x00129A6C File Offset: 0x00127C6C
+	// Token: 0x06002124 RID: 8484 RVA: 0x000E7D70 File Offset: 0x000E5F70
 	public void addLabelNum()
 	{
 		try
@@ -43,7 +43,7 @@ public class UI_chaifen : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060024D7 RID: 9431 RVA: 0x00129AC0 File Offset: 0x00127CC0
+	// Token: 0x06002125 RID: 8485 RVA: 0x000E7DC4 File Offset: 0x000E5FC4
 	public void InputOnChenge()
 	{
 		try
@@ -64,10 +64,10 @@ public class UI_chaifen : MonoBehaviour
 		}
 	}
 
-	// Token: 0x04001F8F RID: 8079
+	// Token: 0x04001AD3 RID: 6867
 	[SerializeField]
 	public UIInput inputNum;
 
-	// Token: 0x04001F90 RID: 8080
+	// Token: 0x04001AD4 RID: 6868
 	public item Item;
 }

@@ -3,14 +3,14 @@ using UnityEngine;
 
 namespace BehaviorDesigner.Runtime.Tasks
 {
-	// Token: 0x0200148C RID: 5260
+	// Token: 0x02000FD4 RID: 4052
 	[TaskDescription("Sets the field to the value specified. Returns success if the field was set.")]
 	[HelpURL("http://www.opsive.com/assets/BehaviorDesigner/documentation.php?id=149")]
 	[TaskCategory("Reflection")]
 	[TaskIcon("{SkinColor}ReflectionIcon.png")]
 	public class SetFieldValue : Action
 	{
-		// Token: 0x06007E37 RID: 32311 RVA: 0x002C8628 File Offset: 0x002C6828
+		// Token: 0x0600703D RID: 28733 RVA: 0x002A9200 File Offset: 0x002A7400
 		public override TaskStatus OnUpdate()
 		{
 			if (this.fieldValue == null)
@@ -34,7 +34,7 @@ namespace BehaviorDesigner.Runtime.Tasks
 			return 2;
 		}
 
-		// Token: 0x06007E38 RID: 32312 RVA: 0x0005557D File Offset: 0x0005377D
+		// Token: 0x0600703E RID: 28734 RVA: 0x002A92AC File Offset: 0x002A74AC
 		public override void OnReset()
 		{
 			this.targetGameObject = null;
@@ -43,19 +43,19 @@ namespace BehaviorDesigner.Runtime.Tasks
 			this.fieldValue = null;
 		}
 
-		// Token: 0x04006B80 RID: 27520
+		// Token: 0x04005C88 RID: 23688
 		[Tooltip("The GameObject to set the field on")]
 		public SharedGameObject targetGameObject;
 
-		// Token: 0x04006B81 RID: 27521
+		// Token: 0x04005C89 RID: 23689
 		[Tooltip("The component to set the field on")]
 		public SharedString componentName;
 
-		// Token: 0x04006B82 RID: 27522
+		// Token: 0x04005C8A RID: 23690
 		[Tooltip("The name of the field")]
 		public SharedString fieldName;
 
-		// Token: 0x04006B83 RID: 27523
+		// Token: 0x04005C8B RID: 23691
 		[Tooltip("The value to set")]
 		public SharedVariable fieldValue;
 	}

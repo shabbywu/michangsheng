@@ -8,10 +8,10 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
 
-// Token: 0x020003E5 RID: 997
+// Token: 0x020002AD RID: 685
 public class UIDuJieZhunBei : MonoBehaviour, IESCClose
 {
-	// Token: 0x06001B22 RID: 6946 RVA: 0x00016F10 File Offset: 0x00015110
+	// Token: 0x06001830 RID: 6192 RVA: 0x000A8CE4 File Offset: 0x000A6EE4
 	private void Start()
 	{
 		UIDuJieZhunBei.Inst = this;
@@ -20,7 +20,7 @@ public class UIDuJieZhunBei : MonoBehaviour, IESCClose
 		this.RefreshUI();
 	}
 
-	// Token: 0x06001B23 RID: 6947 RVA: 0x00016F2F File Offset: 0x0001512F
+	// Token: 0x06001831 RID: 6193 RVA: 0x000A8D03 File Offset: 0x000A6F03
 	public void RefreshUI()
 	{
 		if (this.IsOpenByDuJie)
@@ -33,7 +33,7 @@ public class UIDuJieZhunBei : MonoBehaviour, IESCClose
 		this.SwitchToGanWuPanel();
 	}
 
-	// Token: 0x06001B24 RID: 6948 RVA: 0x000EFC20 File Offset: 0x000EDE20
+	// Token: 0x06001832 RID: 6194 RVA: 0x000A8D44 File Offset: 0x000A6F44
 	public void RefreshInv(bool onlyLingWu)
 	{
 		this.SkillPrefab.SetActive(false);
@@ -63,7 +63,7 @@ public class UIDuJieZhunBei : MonoBehaviour, IESCClose
 		}
 	}
 
-	// Token: 0x06001B25 RID: 6949 RVA: 0x00016F6D File Offset: 0x0001516D
+	// Token: 0x06001833 RID: 6195 RVA: 0x000A8E5C File Offset: 0x000A705C
 	private void OnLeftSlotClick(UITianJieSkillSlot slot)
 	{
 		if (this.State == UIDuJieZhunBeiState.感悟)
@@ -73,7 +73,7 @@ public class UIDuJieZhunBei : MonoBehaviour, IESCClose
 		}
 	}
 
-	// Token: 0x06001B26 RID: 6950 RVA: 0x00016F84 File Offset: 0x00015184
+	// Token: 0x06001834 RID: 6196 RVA: 0x000A8E73 File Offset: 0x000A7073
 	private void OnRightSlotRightClick(UITianJieSkillSlot slot)
 	{
 		if (this.State == UIDuJieZhunBeiState.调整 && !slot.IsNull())
@@ -82,7 +82,7 @@ public class UIDuJieZhunBei : MonoBehaviour, IESCClose
 		}
 	}
 
-	// Token: 0x06001B27 RID: 6951 RVA: 0x000EFD38 File Offset: 0x000EDF38
+	// Token: 0x06001835 RID: 6197 RVA: 0x000A8E8C File Offset: 0x000A708C
 	public void ClearSlotHighlight()
 	{
 		foreach (UITianJieSkillSlot uitianJieSkillSlot in this.InvSlots)
@@ -91,7 +91,7 @@ public class UIDuJieZhunBei : MonoBehaviour, IESCClose
 		}
 	}
 
-	// Token: 0x06001B28 RID: 6952 RVA: 0x000EFD8C File Offset: 0x000EDF8C
+	// Token: 0x06001836 RID: 6198 RVA: 0x000A8EE0 File Offset: 0x000A70E0
 	public void ShowSlotGanWuData(UITianJieSkillSlot slot)
 	{
 		this.nowSelectedSlot = slot;
@@ -151,7 +151,7 @@ public class UIDuJieZhunBei : MonoBehaviour, IESCClose
 		}
 	}
 
-	// Token: 0x06001B29 RID: 6953 RVA: 0x000EFFD8 File Offset: 0x000EE1D8
+	// Token: 0x06001837 RID: 6199 RVA: 0x000A912C File Offset: 0x000A732C
 	public void SwitchToGanWuPanel()
 	{
 		this.State = UIDuJieZhunBeiState.感悟;
@@ -169,7 +169,7 @@ public class UIDuJieZhunBei : MonoBehaviour, IESCClose
 		this.ShowSlotGanWuData(this.InvSlots[0]);
 	}
 
-	// Token: 0x06001B2A RID: 6954 RVA: 0x000F009C File Offset: 0x000EE29C
+	// Token: 0x06001838 RID: 6200 RVA: 0x000A91F0 File Offset: 0x000A73F0
 	public void SwitchToTiaoZhengPanel()
 	{
 		this.State = UIDuJieZhunBeiState.调整;
@@ -217,7 +217,7 @@ public class UIDuJieZhunBei : MonoBehaviour, IESCClose
 		}
 	}
 
-	// Token: 0x06001B2B RID: 6955 RVA: 0x000F0230 File Offset: 0x000EE430
+	// Token: 0x06001839 RID: 6201 RVA: 0x000A9384 File Offset: 0x000A7584
 	public void ClearTiaoZhengSlotByID(string miShuID)
 	{
 		foreach (UITianJieSkillSlot uitianJieSkillSlot in this.TiaoZhengSlots)
@@ -229,7 +229,7 @@ public class UIDuJieZhunBei : MonoBehaviour, IESCClose
 		}
 	}
 
-	// Token: 0x06001B2C RID: 6956 RVA: 0x000F02A4 File Offset: 0x000EE4A4
+	// Token: 0x0600183A RID: 6202 RVA: 0x000A93F8 File Offset: 0x000A75F8
 	public void SaveTiaoZheng()
 	{
 		Avatar player = PlayerEx.Player;
@@ -248,7 +248,7 @@ public class UIDuJieZhunBei : MonoBehaviour, IESCClose
 		}
 	}
 
-	// Token: 0x06001B2D RID: 6957 RVA: 0x00016F9D File Offset: 0x0001519D
+	// Token: 0x0600183B RID: 6203 RVA: 0x000A9465 File Offset: 0x000A7665
 	public static void OpenPanel(bool isDuJie)
 	{
 		GameObject gameObject = Object.Instantiate<GameObject>(Resources.Load<GameObject>("NewUI/DuJie/UIDuJieZhunBei"), NewUICanvas.Inst.Canvas.transform);
@@ -256,7 +256,7 @@ public class UIDuJieZhunBei : MonoBehaviour, IESCClose
 		gameObject.GetComponent<UIDuJieZhunBei>().IsOpenByDuJie = isDuJie;
 	}
 
-	// Token: 0x06001B2E RID: 6958 RVA: 0x000F0314 File Offset: 0x000EE514
+	// Token: 0x0600183C RID: 6204 RVA: 0x000A949C File Offset: 0x000A769C
 	private void BindBtnsEvent()
 	{
 		this.GanWuBtnNoActive.mouseUpEvent.AddListener(new UnityAction(this.SwitchToGanWuPanel));
@@ -268,7 +268,7 @@ public class UIDuJieZhunBei : MonoBehaviour, IESCClose
 		this.DuJieBtn.mouseUpEvent.AddListener(new UnityAction(this.OnDuJieBtnClick));
 	}
 
-	// Token: 0x06001B2F RID: 6959 RVA: 0x000F03E8 File Offset: 0x000EE5E8
+	// Token: 0x0600183D RID: 6205 RVA: 0x000A9570 File Offset: 0x000A7770
 	public void HideRightBtns()
 	{
 		this.GanYingBtn2.transform.parent.gameObject.SetActive(false);
@@ -276,7 +276,7 @@ public class UIDuJieZhunBei : MonoBehaviour, IESCClose
 		this.DuJieBtn.transform.parent.gameObject.SetActive(false);
 	}
 
-	// Token: 0x06001B30 RID: 6960 RVA: 0x000F0448 File Offset: 0x000EE648
+	// Token: 0x0600183E RID: 6206 RVA: 0x000A95D0 File Offset: 0x000A77D0
 	public void OnGanYingBtnClick()
 	{
 		this.Close();
@@ -290,7 +290,7 @@ public class UIDuJieZhunBei : MonoBehaviour, IESCClose
 		StartFight.Do(10010, 1, StartFight.MonstarType.Normal, StartFight.FightEnumType.天劫秘术领悟, 0, 0, 0, 39, "战斗3", false, "", new List<StarttFightAddBuff>(), list);
 	}
 
-	// Token: 0x06001B31 RID: 6961 RVA: 0x000F04BC File Offset: 0x000EE6BC
+	// Token: 0x0600183F RID: 6207 RVA: 0x000A9644 File Offset: 0x000A7844
 	public void OnLingWuBtnClick()
 	{
 		Avatar player = PlayerEx.Player;
@@ -307,7 +307,7 @@ public class UIDuJieZhunBei : MonoBehaviour, IESCClose
 		base.Invoke("OkEvent", 0.5f);
 	}
 
-	// Token: 0x06001B32 RID: 6962 RVA: 0x000F0550 File Offset: 0x000EE750
+	// Token: 0x06001840 RID: 6208 RVA: 0x000A96D8 File Offset: 0x000A78D8
 	public void OkEvent()
 	{
 		Avatar player = PlayerEx.Player;
@@ -337,13 +337,13 @@ public class UIDuJieZhunBei : MonoBehaviour, IESCClose
 		}
 	}
 
-	// Token: 0x06001B33 RID: 6963 RVA: 0x00016FD3 File Offset: 0x000151D3
+	// Token: 0x06001841 RID: 6209 RVA: 0x000A97A0 File Offset: 0x000A79A0
 	public void OnDuJieBtnClick()
 	{
 		UIPopTip.Inst.Pop("点击了渡劫按钮", PopTipIconType.叹号);
 	}
 
-	// Token: 0x06001B34 RID: 6964 RVA: 0x00016FE5 File Offset: 0x000151E5
+	// Token: 0x06001842 RID: 6210 RVA: 0x000A97B2 File Offset: 0x000A79B2
 	bool IESCClose.TryEscClose()
 	{
 		if (this.IsOpenByDuJie)
@@ -354,7 +354,7 @@ public class UIDuJieZhunBei : MonoBehaviour, IESCClose
 		return true;
 	}
 
-	// Token: 0x06001B35 RID: 6965 RVA: 0x00016FF8 File Offset: 0x000151F8
+	// Token: 0x06001843 RID: 6211 RVA: 0x000A97C5 File Offset: 0x000A79C5
 	public void Close()
 	{
 		ESCCloseManager.Inst.UnRegisterClose(this);
@@ -362,87 +362,87 @@ public class UIDuJieZhunBei : MonoBehaviour, IESCClose
 		Object.Destroy(base.gameObject);
 	}
 
-	// Token: 0x040016DB RID: 5851
+	// Token: 0x0400133E RID: 4926
 	public static UIDuJieZhunBei Inst;
 
-	// Token: 0x040016DC RID: 5852
+	// Token: 0x0400133F RID: 4927
 	public GameObject LeftBtnObj;
 
-	// Token: 0x040016DD RID: 5853
+	// Token: 0x04001340 RID: 4928
 	public FpBtn GanWuBtnNoActive;
 
-	// Token: 0x040016DE RID: 5854
+	// Token: 0x04001341 RID: 4929
 	public GameObject GanWuBtnActive;
 
-	// Token: 0x040016DF RID: 5855
+	// Token: 0x04001342 RID: 4930
 	public FpBtn TiaoZhengBtnNoActive;
 
-	// Token: 0x040016E0 RID: 5856
+	// Token: 0x04001343 RID: 4931
 	public GameObject TiaoZhengBtnActive;
 
-	// Token: 0x040016E1 RID: 5857
+	// Token: 0x04001344 RID: 4932
 	public RectTransform SkillContentRT;
 
-	// Token: 0x040016E2 RID: 5858
+	// Token: 0x04001345 RID: 4933
 	public GameObject SkillPrefab;
 
-	// Token: 0x040016E3 RID: 5859
+	// Token: 0x04001346 RID: 4934
 	public GameObject GanWuObj;
 
-	// Token: 0x040016E4 RID: 5860
+	// Token: 0x04001347 RID: 4935
 	public Text GanWuShuoMingText;
 
-	// Token: 0x040016E5 RID: 5861
+	// Token: 0x04001348 RID: 4936
 	public Text GanWuTimeText;
 
-	// Token: 0x040016E6 RID: 5862
+	// Token: 0x04001349 RID: 4937
 	public Text GanWuTiaoJianText;
 
-	// Token: 0x040016E7 RID: 5863
+	// Token: 0x0400134A RID: 4938
 	public GameObject GanWuRoundLimitObj;
 
-	// Token: 0x040016E8 RID: 5864
+	// Token: 0x0400134B RID: 4939
 	public Text GanWuRoundLimitText;
 
-	// Token: 0x040016E9 RID: 5865
+	// Token: 0x0400134C RID: 4940
 	public GameObject TiaoZhengObj;
 
-	// Token: 0x040016EA RID: 5866
+	// Token: 0x0400134D RID: 4941
 	public List<UITianJieSkillSlot> TiaoZhengSlots;
 
-	// Token: 0x040016EB RID: 5867
+	// Token: 0x0400134E RID: 4942
 	public FpBtn GanYingBtn2;
 
-	// Token: 0x040016EC RID: 5868
+	// Token: 0x0400134F RID: 4943
 	public FpBtn LingWuBtn2;
 
-	// Token: 0x040016ED RID: 5869
+	// Token: 0x04001350 RID: 4944
 	public FpBtn LingWuBtn;
 
-	// Token: 0x040016EE RID: 5870
+	// Token: 0x04001351 RID: 4945
 	public Sprite LingWuGraySprite;
 
-	// Token: 0x040016EF RID: 5871
+	// Token: 0x04001352 RID: 4946
 	public FpBtn DuJieBtn;
 
-	// Token: 0x040016F0 RID: 5872
+	// Token: 0x04001353 RID: 4947
 	public Button CloseBtn;
 
-	// Token: 0x040016F1 RID: 5873
+	// Token: 0x04001354 RID: 4948
 	[HideInInspector]
 	public List<UITianJieSkillSlot> InvSlots;
 
-	// Token: 0x040016F2 RID: 5874
+	// Token: 0x04001355 RID: 4949
 	[HideInInspector]
 	public UIDuJieZhunBeiState State;
 
-	// Token: 0x040016F3 RID: 5875
+	// Token: 0x04001356 RID: 4950
 	private UITianJieSkillSlot nowSelectedSlot;
 
-	// Token: 0x040016F4 RID: 5876
+	// Token: 0x04001357 RID: 4951
 	[HideInInspector]
 	public bool IsOpenByDuJie;
 
-	// Token: 0x040016F5 RID: 5877
+	// Token: 0x04001358 RID: 4952
 	private int lingWuTime;
 }

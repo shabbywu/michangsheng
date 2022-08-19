@@ -1,10 +1,10 @@
 ﻿using System;
 using UnityEngine;
 
-// Token: 0x02000757 RID: 1879
+// Token: 0x020004E1 RID: 1249
 public class ObjFreeCoins : MonoBehaviour
 {
-	// Token: 0x06002FD2 RID: 12242 RVA: 0x00023810 File Offset: 0x00021A10
+	// Token: 0x06002869 RID: 10345 RVA: 0x00131F7B File Offset: 0x0013017B
 	private void Awake()
 	{
 		ObjFreeCoins.FreeCoins = false;
@@ -16,7 +16,7 @@ public class ObjFreeCoins : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06002FD3 RID: 12243 RVA: 0x0017E594 File Offset: 0x0017C794
+	// Token: 0x0600286A RID: 10346 RVA: 0x00131FBC File Offset: 0x001301BC
 	private void Start()
 	{
 		this.xDist = this.maxXPos - this.minXPos;
@@ -37,7 +37,7 @@ public class ObjFreeCoins : MonoBehaviour
 		this.rememberYPos = this.obj[0].position.y;
 	}
 
-	// Token: 0x06002FD4 RID: 12244 RVA: 0x0017E6BC File Offset: 0x0017C8BC
+	// Token: 0x0600286B RID: 10347 RVA: 0x001320E4 File Offset: 0x001302E4
 	private void Update()
 	{
 		if (ObjFreeCoins.FreeCoins)
@@ -49,33 +49,33 @@ public class ObjFreeCoins : MonoBehaviour
 		}
 	}
 
-	// Token: 0x04002B25 RID: 11045
+	// Token: 0x04002397 RID: 9111
 	public static bool FreeCoins;
 
-	// Token: 0x04002B26 RID: 11046
+	// Token: 0x04002398 RID: 9112
 	public SwipeControlFreeCoins swipeCtrl;
 
-	// Token: 0x04002B27 RID: 11047
+	// Token: 0x04002399 RID: 9113
 	public Transform[] obj = new Transform[0];
 
-	// Token: 0x04002B28 RID: 11048
+	// Token: 0x0400239A RID: 9114
 	public float minXPos;
 
-	// Token: 0x04002B29 RID: 11049
+	// Token: 0x0400239B RID: 9115
 	public float maxXPos = 115f;
 
-	// Token: 0x04002B2A RID: 11050
+	// Token: 0x0400239C RID: 9116
 	private float xDist;
 
-	// Token: 0x04002B2B RID: 11051
+	// Token: 0x0400239D RID: 9117
 	private float xDistFactor;
 
-	// Token: 0x04002B2C RID: 11052
+	// Token: 0x0400239E RID: 9118
 	private float swipeSmoothFactor = 1f;
 
-	// Token: 0x04002B2D RID: 11053
+	// Token: 0x0400239F RID: 9119
 	public float xPosReal = -11f;
 
-	// Token: 0x04002B2E RID: 11054
+	// Token: 0x040023A0 RID: 9120
 	private float rememberYPos;
 }

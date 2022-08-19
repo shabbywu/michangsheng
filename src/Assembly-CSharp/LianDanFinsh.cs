@@ -2,22 +2,22 @@
 using GUIPackage;
 using UnityEngine;
 
-// Token: 0x0200061B RID: 1563
+// Token: 0x02000461 RID: 1121
 public class LianDanFinsh : MonoBehaviour
 {
-	// Token: 0x060026D1 RID: 9937 RVA: 0x00017C2D File Offset: 0x00015E2D
+	// Token: 0x0600231E RID: 8990 RVA: 0x000B5E62 File Offset: 0x000B4062
 	public void close()
 	{
 		base.gameObject.SetActive(false);
 	}
 
-	// Token: 0x060026D2 RID: 9938 RVA: 0x00011B82 File Offset: 0x0000FD82
+	// Token: 0x0600231F RID: 8991 RVA: 0x0005FDE2 File Offset: 0x0005DFE2
 	public void Open()
 	{
 		base.gameObject.SetActive(true);
 	}
 
-	// Token: 0x060026D3 RID: 9939 RVA: 0x00130638 File Offset: 0x0012E838
+	// Token: 0x06002320 RID: 8992 RVA: 0x000F012C File Offset: 0x000EE32C
 	public void succes(int index, int num)
 	{
 		this.Open();
@@ -26,7 +26,7 @@ public class LianDanFinsh : MonoBehaviour
 		this.FailPlan.SetActive(false);
 	}
 
-	// Token: 0x060026D4 RID: 9940 RVA: 0x001306AC File Offset: 0x0012E8AC
+	// Token: 0x06002321 RID: 8993 RVA: 0x000F01A0 File Offset: 0x000EE3A0
 	public void fail(int index, int num)
 	{
 		this.Open();
@@ -35,43 +35,43 @@ public class LianDanFinsh : MonoBehaviour
 		this.FailPlan.SetActive(true);
 	}
 
-	// Token: 0x060026D5 RID: 9941 RVA: 0x00017C2D File Offset: 0x00015E2D
+	// Token: 0x06002322 RID: 8994 RVA: 0x000B5E62 File Offset: 0x000B4062
 	public void zhalue()
 	{
 		base.gameObject.SetActive(false);
 	}
 
-	// Token: 0x060026D6 RID: 9942 RVA: 0x00011B82 File Offset: 0x0000FD82
+	// Token: 0x06002323 RID: 8995 RVA: 0x0005FDE2 File Offset: 0x0005DFE2
 	public void SHowZhalu()
 	{
 		base.gameObject.SetActive(true);
 	}
 
-	// Token: 0x060026D7 RID: 9943 RVA: 0x0001EE63 File Offset: 0x0001D063
+	// Token: 0x06002324 RID: 8996 RVA: 0x000F0211 File Offset: 0x000EE411
 	private void Awake()
 	{
 		this.close();
 	}
 
-	// Token: 0x060026D8 RID: 9944 RVA: 0x000042DD File Offset: 0x000024DD
+	// Token: 0x06002325 RID: 8997 RVA: 0x00004095 File Offset: 0x00002295
 	private void Start()
 	{
 	}
 
-	// Token: 0x060026D9 RID: 9945 RVA: 0x000042DD File Offset: 0x000024DD
+	// Token: 0x06002326 RID: 8998 RVA: 0x00004095 File Offset: 0x00002295
 	private void Update()
 	{
 	}
 
-	// Token: 0x04002119 RID: 8473
+	// Token: 0x04001C49 RID: 7241
 	public Inventory2 inventory2show;
 
-	// Token: 0x0400211A RID: 8474
+	// Token: 0x04001C4A RID: 7242
 	public GameObject SuccessPlan;
 
-	// Token: 0x0400211B RID: 8475
+	// Token: 0x04001C4B RID: 7243
 	public GameObject FailPlan;
 
-	// Token: 0x0400211C RID: 8476
+	// Token: 0x04001C4C RID: 7244
 	public UILabel text;
 }

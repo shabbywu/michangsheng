@@ -3,12 +3,12 @@ using UnityEngine;
 
 namespace UltimateSurvival
 {
-	// Token: 0x020008EB RID: 2283
+	// Token: 0x0200060B RID: 1547
 	[Serializable]
 	public class TreeCreator
 	{
-		// Token: 0x17000642 RID: 1602
-		// (get) Token: 0x06003A95 RID: 14997 RVA: 0x0002A937 File Offset: 0x00028B37
+		// Token: 0x1700044F RID: 1103
+		// (get) Token: 0x06003180 RID: 12672 RVA: 0x0015F6E8 File Offset: 0x0015D8E8
 		public int PrototypeIndex
 		{
 			get
@@ -17,7 +17,7 @@ namespace UltimateSurvival
 			}
 		}
 
-		// Token: 0x06003A96 RID: 14998 RVA: 0x001A8CBC File Offset: 0x001A6EBC
+		// Token: 0x06003181 RID: 12673 RVA: 0x0015F6F0 File Offset: 0x0015D8F0
 		public MineableObject CreateTree(Terrain terrain, TreeInstance treeInstance, int treeIndex)
 		{
 			if (!this.m_Prefab)
@@ -45,27 +45,27 @@ namespace UltimateSurvival
 			return mineableObject;
 		}
 
-		// Token: 0x06003A97 RID: 14999 RVA: 0x001A8DE0 File Offset: 0x001A6FE0
+		// Token: 0x06003182 RID: 12674 RVA: 0x0015F814 File Offset: 0x0015DA14
 		private void On_TreeDestroyed(Terrain terrain, TreeInstance treeInstance, int treeIndex)
 		{
 			treeInstance.widthScale = (treeInstance.heightScale = 0f);
 			terrain.terrainData.SetTreeInstance(treeIndex, treeInstance);
 		}
 
-		// Token: 0x040034BD RID: 13501
+		// Token: 0x04002BB5 RID: 11189
 		[SerializeField]
 		[Clamp(0f, 100f)]
 		private int m_PrototypeIndex;
 
-		// Token: 0x040034BE RID: 13502
+		// Token: 0x04002BB6 RID: 11190
 		[SerializeField]
 		private MineableObject m_Prefab;
 
-		// Token: 0x040034BF RID: 13503
+		// Token: 0x04002BB7 RID: 11191
 		[SerializeField]
 		private Vector3 m_PositionOffset;
 
-		// Token: 0x040034C0 RID: 13504
+		// Token: 0x04002BB8 RID: 11192
 		[SerializeField]
 		private Vector3 m_RotationOffset;
 	}

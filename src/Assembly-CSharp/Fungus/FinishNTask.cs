@@ -4,12 +4,12 @@ using UnityEngine;
 
 namespace Fungus
 {
-	// Token: 0x02001425 RID: 5157
+	// Token: 0x02000F6D RID: 3949
 	[CommandInfo("YSTask", "FinishNTask", "完成一个杂闻任务", 0)]
 	[AddComponentMenu("")]
 	public class FinishNTask : Command
 	{
-		// Token: 0x06007CDF RID: 31967 RVA: 0x002C5AA8 File Offset: 0x002C3CA8
+		// Token: 0x06006EED RID: 28397 RVA: 0x002A5D64 File Offset: 0x002A3F64
 		public override void OnEnter()
 		{
 			Avatar player = Tools.instance.getPlayer();
@@ -21,13 +21,13 @@ namespace Fungus
 			this.Continue();
 		}
 
-		// Token: 0x06007CE0 RID: 31968 RVA: 0x000113CF File Offset: 0x0000F5CF
+		// Token: 0x06006EEE RID: 28398 RVA: 0x0005E228 File Offset: 0x0005C428
 		public override Color GetButtonColor()
 		{
 			return new Color32(184, 210, 235, byte.MaxValue);
 		}
 
-		// Token: 0x04006AAE RID: 27310
+		// Token: 0x04005BD8 RID: 23512
 		[Tooltip("需要完成的任务ID")]
 		[VariableProperty(new Type[]
 		{

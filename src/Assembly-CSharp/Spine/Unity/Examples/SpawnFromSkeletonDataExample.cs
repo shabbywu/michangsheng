@@ -4,10 +4,10 @@ using UnityEngine;
 
 namespace Spine.Unity.Examples
 {
-	// Token: 0x02000E55 RID: 3669
+	// Token: 0x02000AFC RID: 2812
 	public class SpawnFromSkeletonDataExample : MonoBehaviour
 	{
-		// Token: 0x06005805 RID: 22533 RVA: 0x0003EF66 File Offset: 0x0003D166
+		// Token: 0x06004E64 RID: 20068 RVA: 0x002168C7 File Offset: 0x00214AC7
 		private IEnumerator Start()
 		{
 			if (this.skeletonDataAsset == null)
@@ -29,7 +29,7 @@ namespace Spine.Unity.Examples
 			yield break;
 		}
 
-		// Token: 0x06005806 RID: 22534 RVA: 0x0024678C File Offset: 0x0024498C
+		// Token: 0x06004E65 RID: 20069 RVA: 0x002168D8 File Offset: 0x00214AD8
 		private void DoExtraStuff(SkeletonAnimation sa, Animation spineAnimation)
 		{
 			sa.transform.localPosition = Random.insideUnitCircle * 6f;
@@ -41,14 +41,14 @@ namespace Spine.Unity.Examples
 			}
 		}
 
-		// Token: 0x04005807 RID: 22535
+		// Token: 0x04004DDB RID: 19931
 		public SkeletonDataAsset skeletonDataAsset;
 
-		// Token: 0x04005808 RID: 22536
+		// Token: 0x04004DDC RID: 19932
 		[Range(0f, 100f)]
 		public int count = 20;
 
-		// Token: 0x04005809 RID: 22537
+		// Token: 0x04004DDD RID: 19933
 		[SpineAnimation("", "skeletonDataAsset", true, false)]
 		public string startingAnimation;
 	}

@@ -3,12 +3,12 @@ using UnityEngine;
 
 namespace BehaviorDesigner.Runtime.Tasks.Basic.UnityAnimator
 {
-	// Token: 0x02001654 RID: 5716
+	// Token: 0x02001195 RID: 4501
 	[TaskCategory("Basic/Animator")]
 	[TaskDescription("Returns success if the specified name matches the name of the active state.")]
 	public class IsName : Conditional
 	{
-		// Token: 0x060084E1 RID: 34017 RVA: 0x002D0140 File Offset: 0x002CE340
+		// Token: 0x060076E7 RID: 30439 RVA: 0x002B798C File Offset: 0x002B5B8C
 		public override void OnStart()
 		{
 			GameObject defaultGameObject = base.GetDefaultGameObject(this.targetGameObject.Value);
@@ -19,7 +19,7 @@ namespace BehaviorDesigner.Runtime.Tasks.Basic.UnityAnimator
 			}
 		}
 
-		// Token: 0x060084E2 RID: 34018 RVA: 0x002D0180 File Offset: 0x002CE380
+		// Token: 0x060076E8 RID: 30440 RVA: 0x002B79CC File Offset: 0x002B5BCC
 		public override TaskStatus OnUpdate()
 		{
 			if (this.animator == null)
@@ -34,7 +34,7 @@ namespace BehaviorDesigner.Runtime.Tasks.Basic.UnityAnimator
 			return 2;
 		}
 
-		// Token: 0x060084E3 RID: 34019 RVA: 0x0005C155 File Offset: 0x0005A355
+		// Token: 0x060076E9 RID: 30441 RVA: 0x002B7A21 File Offset: 0x002B5C21
 		public override void OnReset()
 		{
 			this.targetGameObject = null;
@@ -42,22 +42,22 @@ namespace BehaviorDesigner.Runtime.Tasks.Basic.UnityAnimator
 			this.name = "";
 		}
 
-		// Token: 0x0400718F RID: 29071
+		// Token: 0x0400626C RID: 25196
 		[Tooltip("The GameObject that the task operates on. If null the task GameObject is used.")]
 		public SharedGameObject targetGameObject;
 
-		// Token: 0x04007190 RID: 29072
+		// Token: 0x0400626D RID: 25197
 		[Tooltip("The layer's index")]
 		public SharedInt index;
 
-		// Token: 0x04007191 RID: 29073
+		// Token: 0x0400626E RID: 25198
 		[Tooltip("The state name to compare")]
 		public SharedString name;
 
-		// Token: 0x04007192 RID: 29074
+		// Token: 0x0400626F RID: 25199
 		private Animator animator;
 
-		// Token: 0x04007193 RID: 29075
+		// Token: 0x04006270 RID: 25200
 		private GameObject prevGameObject;
 	}
 }

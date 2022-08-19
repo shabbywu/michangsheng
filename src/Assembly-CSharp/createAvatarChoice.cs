@@ -4,22 +4,22 @@ using KBEngine;
 using UnityEngine;
 using YSGame.TuJian;
 
-// Token: 0x02000585 RID: 1413
+// Token: 0x020003E9 RID: 1001
 public class createAvatarChoice : MonoBehaviour
 {
-	// Token: 0x060023CC RID: 9164 RVA: 0x0001CE00 File Offset: 0x0001B000
+	// Token: 0x06002047 RID: 8263 RVA: 0x000E349B File Offset: 0x000E169B
 	private void Start()
 	{
 		this.tianfuUI = base.transform.parent.parent.parent.GetComponent<createTianfu>();
 	}
 
-	// Token: 0x060023CD RID: 9165 RVA: 0x0012584C File Offset: 0x00123A4C
+	// Token: 0x06002048 RID: 8264 RVA: 0x000E34C0 File Offset: 0x000E16C0
 	private void Update()
 	{
 		this.CastTianFu.text = string.Concat((int)jsonData.instance.CreateAvatarJsonData[this.id.ToString()]["feiYong"].n);
 	}
 
-	// Token: 0x060023CE RID: 9166 RVA: 0x00125898 File Offset: 0x00123A98
+	// Token: 0x06002049 RID: 8265 RVA: 0x000E350C File Offset: 0x000E170C
 	protected void OnHover(bool isOver)
 	{
 		if (isOver)
@@ -40,13 +40,13 @@ public class createAvatarChoice : MonoBehaviour
 		this.Tooltips.showTooltip = false;
 	}
 
-	// Token: 0x060023CF RID: 9167 RVA: 0x0001CE22 File Offset: 0x0001B022
+	// Token: 0x0600204A RID: 8266 RVA: 0x000E35C7 File Offset: 0x000E17C7
 	private void OnPress()
 	{
 		this.Tooltips.showTooltip = false;
 	}
 
-	// Token: 0x060023D0 RID: 9168 RVA: 0x0001CE30 File Offset: 0x0001B030
+	// Token: 0x0600204B RID: 8267 RVA: 0x000E35D5 File Offset: 0x000E17D5
 	public void setValue()
 	{
 		UIToggle toggle = base.GetComponent<UIToggle>();
@@ -89,7 +89,7 @@ public class createAvatarChoice : MonoBehaviour
 		}();
 	}
 
-	// Token: 0x060023D1 RID: 9169 RVA: 0x0001CE5A File Offset: 0x0001B05A
+	// Token: 0x0600204C RID: 8268 RVA: 0x000E35FF File Offset: 0x000E17FF
 	public int getValue(int _seid)
 	{
 		if (this.seid.Contains(_seid))
@@ -99,31 +99,31 @@ public class createAvatarChoice : MonoBehaviour
 		return 0;
 	}
 
-	// Token: 0x060023D2 RID: 9170 RVA: 0x0001CE98 File Offset: 0x0001B098
+	// Token: 0x0600204D RID: 8269 RVA: 0x000E363D File Offset: 0x000E183D
 	public int getSeidValue1()
 	{
 		return this.getValue(1);
 	}
 
-	// Token: 0x060023D3 RID: 9171 RVA: 0x0001CEA1 File Offset: 0x0001B0A1
+	// Token: 0x0600204E RID: 8270 RVA: 0x000E3646 File Offset: 0x000E1846
 	public int getSeidValue2()
 	{
 		return this.getValue(2);
 	}
 
-	// Token: 0x060023D4 RID: 9172 RVA: 0x0001CEAA File Offset: 0x0001B0AA
+	// Token: 0x0600204F RID: 8271 RVA: 0x000E364F File Offset: 0x000E184F
 	public int getSeidValue3()
 	{
 		return this.getValue(3);
 	}
 
-	// Token: 0x060023D5 RID: 9173 RVA: 0x0001CEB3 File Offset: 0x0001B0B3
+	// Token: 0x06002050 RID: 8272 RVA: 0x000E3658 File Offset: 0x000E1858
 	public int getSeidValue4()
 	{
 		return this.getValue(4);
 	}
 
-	// Token: 0x060023D6 RID: 9174 RVA: 0x0001CEBC File Offset: 0x0001B0BC
+	// Token: 0x06002051 RID: 8273 RVA: 0x000E3661 File Offset: 0x000E1861
 	public List<JSONObject> getSeidValue9()
 	{
 		if (this.seid.Contains(9))
@@ -133,7 +133,7 @@ public class createAvatarChoice : MonoBehaviour
 		return null;
 	}
 
-	// Token: 0x060023D7 RID: 9175 RVA: 0x0001CEFB File Offset: 0x0001B0FB
+	// Token: 0x06002052 RID: 8274 RVA: 0x000E36A0 File Offset: 0x000E18A0
 	public List<JSONObject> getSeidValue10()
 	{
 		if (this.seid.Contains(10))
@@ -143,7 +143,7 @@ public class createAvatarChoice : MonoBehaviour
 		return null;
 	}
 
-	// Token: 0x060023D8 RID: 9176 RVA: 0x00125954 File Offset: 0x00123B54
+	// Token: 0x06002053 RID: 8275 RVA: 0x000E36E0 File Offset: 0x000E18E0
 	public List<int> getSeidValue11()
 	{
 		if (this.seid.Contains(11))
@@ -158,7 +158,7 @@ public class createAvatarChoice : MonoBehaviour
 		return null;
 	}
 
-	// Token: 0x060023D9 RID: 9177 RVA: 0x001259E4 File Offset: 0x00123BE4
+	// Token: 0x06002054 RID: 8276 RVA: 0x000E3770 File Offset: 0x000E1970
 	public void PlayerSetSeid(int Seid)
 	{
 		Avatar player = Tools.instance.getPlayer();
@@ -170,19 +170,19 @@ public class createAvatarChoice : MonoBehaviour
 		player.TianFuID.SetField(string.Concat(Seid), (int)player.TianFuID[string.Concat(Seid)].n + value);
 	}
 
-	// Token: 0x060023DA RID: 9178 RVA: 0x0001CF3A File Offset: 0x0001B13A
+	// Token: 0x06002055 RID: 8277 RVA: 0x000E37F3 File Offset: 0x000E19F3
 	public void realizedSeid12()
 	{
 		this.PlayerSetSeid(12);
 	}
 
-	// Token: 0x060023DB RID: 9179 RVA: 0x0001CF44 File Offset: 0x0001B144
+	// Token: 0x06002056 RID: 8278 RVA: 0x000E37FD File Offset: 0x000E19FD
 	public void realizedSeid13()
 	{
 		this.PlayerSetSeid(13);
 	}
 
-	// Token: 0x060023DC RID: 9180 RVA: 0x00125A68 File Offset: 0x00123C68
+	// Token: 0x06002057 RID: 8279 RVA: 0x000E3808 File Offset: 0x000E1A08
 	public void realizedSeid15()
 	{
 		Avatar player = Tools.instance.getPlayer();
@@ -209,7 +209,7 @@ public class createAvatarChoice : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060023DD RID: 9181 RVA: 0x00125BF4 File Offset: 0x00123DF4
+	// Token: 0x06002058 RID: 8280 RVA: 0x000E3994 File Offset: 0x000E1B94
 	public void realizedSeid16()
 	{
 		Avatar player = Tools.instance.getPlayer();
@@ -223,25 +223,25 @@ public class createAvatarChoice : MonoBehaviour
 		player.TianFuID[string.Concat(16)].Add(value);
 	}
 
-	// Token: 0x060023DE RID: 9182 RVA: 0x00019F76 File Offset: 0x00018176
+	// Token: 0x06002059 RID: 8281 RVA: 0x000C96AE File Offset: 0x000C78AE
 	public void realizedSeid17()
 	{
 		Tools.instance.getPlayer().TianFuID.SetField(string.Concat(17), 0);
 	}
 
-	// Token: 0x060023DF RID: 9183 RVA: 0x00019F99 File Offset: 0x00018199
+	// Token: 0x0600205A RID: 8282 RVA: 0x000C96D1 File Offset: 0x000C78D1
 	public void realizedSeid18()
 	{
 		Tools.instance.getPlayer().TianFuID.SetField(string.Concat(18), 0);
 	}
 
-	// Token: 0x060023E0 RID: 9184 RVA: 0x0001CF4E File Offset: 0x0001B14E
+	// Token: 0x0600205B RID: 8283 RVA: 0x000E3A26 File Offset: 0x000E1C26
 	public void realizedSeid22()
 	{
 		Tools.instance.getPlayer().TianFuID.SetField(string.Concat(22), this.id.ToString());
 	}
 
-	// Token: 0x060023E1 RID: 9185 RVA: 0x00125C88 File Offset: 0x00123E88
+	// Token: 0x0600205C RID: 8284 RVA: 0x000E3A54 File Offset: 0x000E1C54
 	public void realizedSeid23()
 	{
 		Avatar player = Tools.instance.getPlayer();
@@ -254,71 +254,71 @@ public class createAvatarChoice : MonoBehaviour
 		}
 	}
 
-	// Token: 0x04001ED0 RID: 7888
+	// Token: 0x04001A3B RID: 6715
 	public int id;
 
-	// Token: 0x04001ED1 RID: 7889
+	// Token: 0x04001A3C RID: 6716
 	public UILabel Title;
 
-	// Token: 0x04001ED2 RID: 7890
+	// Token: 0x04001A3D RID: 6717
 	public UILabel descUI;
 
-	// Token: 0x04001ED3 RID: 7891
+	// Token: 0x04001A3E RID: 6718
 	public string desc;
 
-	// Token: 0x04001ED4 RID: 7892
+	// Token: 0x04001A3F RID: 6719
 	public string descInfo;
 
-	// Token: 0x04001ED5 RID: 7893
+	// Token: 0x04001A40 RID: 6720
 	public string LockMessager;
 
-	// Token: 0x04001ED6 RID: 7894
+	// Token: 0x04001A41 RID: 6721
 	public List<int> seid = new List<int>();
 
-	// Token: 0x04001ED7 RID: 7895
+	// Token: 0x04001A42 RID: 6722
 	public int cast;
 
-	// Token: 0x04001ED8 RID: 7896
+	// Token: 0x04001A43 RID: 6723
 	public UILabel CastTianFu;
 
-	// Token: 0x04001ED9 RID: 7897
+	// Token: 0x04001A44 RID: 6724
 	public TooltipScale Tooltips;
 
-	// Token: 0x04001EDA RID: 7898
+	// Token: 0x04001A45 RID: 6725
 	private createTianfu tianfuUI;
 
-	// Token: 0x04001EDB RID: 7899
+	// Token: 0x04001A46 RID: 6726
 	public UI2DSprite Background;
 
-	// Token: 0x04001EDC RID: 7900
+	// Token: 0x04001A47 RID: 6727
 	public bool isLock;
 
-	// Token: 0x02000586 RID: 1414
+	// Token: 0x02001380 RID: 4992
 	public enum ChoiceID
 	{
-		// Token: 0x04001EDE RID: 7902
+		// Token: 0x040068A7 RID: 26791
 		Seid12 = 12,
-		// Token: 0x04001EDF RID: 7903
+		// Token: 0x040068A8 RID: 26792
 		Seid13,
-		// Token: 0x04001EE0 RID: 7904
+		// Token: 0x040068A9 RID: 26793
 		Seid14,
-		// Token: 0x04001EE1 RID: 7905
+		// Token: 0x040068AA RID: 26794
 		Seid15,
-		// Token: 0x04001EE2 RID: 7906
+		// Token: 0x040068AB RID: 26795
 		Seid16,
-		// Token: 0x04001EE3 RID: 7907
+		// Token: 0x040068AC RID: 26796
 		Seid17,
-		// Token: 0x04001EE4 RID: 7908
+		// Token: 0x040068AD RID: 26797
 		Seid18,
-		// Token: 0x04001EE5 RID: 7909
+		// Token: 0x040068AE RID: 26798
 		Seid19,
-		// Token: 0x04001EE6 RID: 7910
+		// Token: 0x040068AF RID: 26799
 		Seid20,
-		// Token: 0x04001EE7 RID: 7911
+		// Token: 0x040068B0 RID: 26800
 		Seid21,
-		// Token: 0x04001EE8 RID: 7912
+		// Token: 0x040068B1 RID: 26801
 		Seid22,
-		// Token: 0x04001EE9 RID: 7913
+		// Token: 0x040068B2 RID: 26802
 		Seid23
 	}
 }

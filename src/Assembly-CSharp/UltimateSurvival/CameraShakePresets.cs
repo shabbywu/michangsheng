@@ -3,11 +3,11 @@ using UnityEngine;
 
 namespace UltimateSurvival
 {
-	// Token: 0x02000869 RID: 2153
+	// Token: 0x020005AD RID: 1453
 	public static class CameraShakePresets
 	{
-		// Token: 0x1700059C RID: 1436
-		// (get) Token: 0x060037C8 RID: 14280 RVA: 0x000287AE File Offset: 0x000269AE
+		// Token: 0x170003E3 RID: 995
+		// (get) Token: 0x06002F4A RID: 12106 RVA: 0x0015691B File Offset: 0x00154B1B
 		public static ShakeInstance Bump
 		{
 			get
@@ -20,8 +20,8 @@ namespace UltimateSurvival
 			}
 		}
 
-		// Token: 0x1700059D RID: 1437
-		// (get) Token: 0x060037C9 RID: 14281 RVA: 0x001A0F2C File Offset: 0x0019F12C
+		// Token: 0x170003E4 RID: 996
+		// (get) Token: 0x06002F4B RID: 12107 RVA: 0x00156958 File Offset: 0x00154B58
 		public static ShakeInstance Explosion
 		{
 			get
@@ -34,8 +34,8 @@ namespace UltimateSurvival
 			}
 		}
 
-		// Token: 0x1700059E RID: 1438
-		// (get) Token: 0x060037CA RID: 14282 RVA: 0x001A0F84 File Offset: 0x0019F184
+		// Token: 0x170003E5 RID: 997
+		// (get) Token: 0x06002F4C RID: 12108 RVA: 0x001569B0 File Offset: 0x00154BB0
 		public static ShakeInstance Earthquake
 		{
 			get
@@ -48,8 +48,8 @@ namespace UltimateSurvival
 			}
 		}
 
-		// Token: 0x1700059F RID: 1439
-		// (get) Token: 0x060037CB RID: 14283 RVA: 0x001A0FDC File Offset: 0x0019F1DC
+		// Token: 0x170003E6 RID: 998
+		// (get) Token: 0x06002F4D RID: 12109 RVA: 0x00156A08 File Offset: 0x00154C08
 		public static ShakeInstance BadTrip
 		{
 			get
@@ -62,8 +62,8 @@ namespace UltimateSurvival
 			}
 		}
 
-		// Token: 0x170005A0 RID: 1440
-		// (get) Token: 0x060037CC RID: 14284 RVA: 0x000287E9 File Offset: 0x000269E9
+		// Token: 0x170003E7 RID: 999
+		// (get) Token: 0x06002F4E RID: 12110 RVA: 0x00156A62 File Offset: 0x00154C62
 		public static ShakeInstance HandheldCamera
 		{
 			get
@@ -76,8 +76,8 @@ namespace UltimateSurvival
 			}
 		}
 
-		// Token: 0x170005A1 RID: 1441
-		// (get) Token: 0x060037CD RID: 14285 RVA: 0x001A1038 File Offset: 0x0019F238
+		// Token: 0x170003E8 RID: 1000
+		// (get) Token: 0x06002F4F RID: 12111 RVA: 0x00156AA4 File Offset: 0x00154CA4
 		public static ShakeInstance Vibration
 		{
 			get
@@ -90,8 +90,8 @@ namespace UltimateSurvival
 			}
 		}
 
-		// Token: 0x170005A2 RID: 1442
-		// (get) Token: 0x060037CE RID: 14286 RVA: 0x00028829 File Offset: 0x00026A29
+		// Token: 0x170003E9 RID: 1001
+		// (get) Token: 0x06002F50 RID: 12112 RVA: 0x00156AFE File Offset: 0x00154CFE
 		public static ShakeInstance RoughDriving
 		{
 			get

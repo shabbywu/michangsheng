@@ -2,22 +2,22 @@
 
 namespace YSGame.Fight
 {
-	// Token: 0x02000DF3 RID: 3571
+	// Token: 0x02000AB6 RID: 2742
 	public enum LingQiType
 	{
-		// Token: 0x040055C9 RID: 21961
+		// Token: 0x04004BEB RID: 19435
 		金,
-		// Token: 0x040055CA RID: 21962
+		// Token: 0x04004BEC RID: 19436
 		木,
-		// Token: 0x040055CB RID: 21963
+		// Token: 0x04004BED RID: 19437
 		水,
-		// Token: 0x040055CC RID: 21964
+		// Token: 0x04004BEE RID: 19438
 		火,
-		// Token: 0x040055CD RID: 21965
+		// Token: 0x04004BEF RID: 19439
 		土,
-		// Token: 0x040055CE RID: 21966
+		// Token: 0x04004BF0 RID: 19440
 		魔,
-		// Token: 0x040055CF RID: 21967
+		// Token: 0x04004BF1 RID: 19441
 		Count
 	}
 }

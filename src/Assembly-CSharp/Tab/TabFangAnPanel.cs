@@ -6,10 +6,10 @@ using UnityEngine.UI;
 
 namespace Tab
 {
-	// Token: 0x02000A3F RID: 2623
+	// Token: 0x020006F7 RID: 1783
 	public class TabFangAnPanel : UIBase
 	{
-		// Token: 0x060043C5 RID: 17349 RVA: 0x001CF608 File Offset: 0x001CD808
+		// Token: 0x0600394C RID: 14668 RVA: 0x00187CBC File Offset: 0x00185EBC
 		public TabFangAnPanel(GameObject gameObject)
 		{
 			this._go = gameObject;
@@ -20,7 +20,7 @@ namespace Tab
 			this.Init();
 		}
 
-		// Token: 0x060043C6 RID: 17350 RVA: 0x001CF68C File Offset: 0x001CD88C
+		// Token: 0x0600394D RID: 14669 RVA: 0x00187D40 File Offset: 0x00185F40
 		private void Init()
 		{
 			for (int i = 0; i < this.XuanZePanel.transform.childCount; i++)
@@ -29,7 +29,7 @@ namespace Tab
 			}
 		}
 
-		// Token: 0x060043C7 RID: 17351 RVA: 0x0003079F File Offset: 0x0002E99F
+		// Token: 0x0600394E RID: 14670 RVA: 0x00187D91 File Offset: 0x00185F91
 		public void Show()
 		{
 			this._go.SetActive(true);
@@ -37,7 +37,7 @@ namespace Tab
 			this.UpdateCurFanAn();
 		}
 
-		// Token: 0x060043C8 RID: 17352 RVA: 0x001CF6E0 File Offset: 0x001CD8E0
+		// Token: 0x0600394F RID: 14671 RVA: 0x00187DB4 File Offset: 0x00185FB4
 		public void UpdateCurFanAn()
 		{
 			switch (SingletonMono<TabUIMag>.Instance.TabBag.GetCurBagType())
@@ -56,13 +56,13 @@ namespace Tab
 			this.CurFangAnPanel.SetActive(true);
 		}
 
-		// Token: 0x060043C9 RID: 17353 RVA: 0x000307BF File Offset: 0x0002E9BF
+		// Token: 0x06003950 RID: 14672 RVA: 0x00187E8F File Offset: 0x0018608F
 		private void ClickEvent()
 		{
 			this.XuanZePanel.SetActive(true);
 		}
 
-		// Token: 0x060043CA RID: 17354 RVA: 0x000307CD File Offset: 0x0002E9CD
+		// Token: 0x06003951 RID: 14673 RVA: 0x00187E9D File Offset: 0x0018609D
 		public void Close()
 		{
 			this._go.SetActive(false);
@@ -70,16 +70,16 @@ namespace Tab
 			this.CurFangAnPanel.SetActive(false);
 		}
 
-		// Token: 0x04003BD0 RID: 15312
+		// Token: 0x0400315D RID: 12637
 		public Text Name;
 
-		// Token: 0x04003BD1 RID: 15313
+		// Token: 0x0400315E RID: 12638
 		private GameObject XuanZePanel;
 
-		// Token: 0x04003BD2 RID: 15314
+		// Token: 0x0400315F RID: 12639
 		private GameObject CurFangAnPanel;
 
-		// Token: 0x04003BD3 RID: 15315
+		// Token: 0x04003160 RID: 12640
 		private List<TabFangAn> _fangAns = new List<TabFangAn>();
 	}
 }

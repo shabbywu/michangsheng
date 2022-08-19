@@ -2,31 +2,31 @@
 using Spine.Unity;
 using UnityEngine;
 
-// Token: 0x02000256 RID: 598
+// Token: 0x02000179 RID: 377
 public class mainscenceBtn : MonoBehaviour
 {
-	// Token: 0x0600121C RID: 4636 RVA: 0x000042DD File Offset: 0x000024DD
+	// Token: 0x06000FBC RID: 4028 RVA: 0x00004095 File Offset: 0x00002295
 	private void Start()
 	{
 	}
 
-	// Token: 0x0600121D RID: 4637 RVA: 0x0001143F File Offset: 0x0000F63F
+	// Token: 0x06000FBD RID: 4029 RVA: 0x0005E50B File Offset: 0x0005C70B
 	private void OnHover(bool isOver)
 	{
 		this.skeletonAnimation.AnimationState.SetAnimation(0, "0", false);
 	}
 
-	// Token: 0x0600121E RID: 4638 RVA: 0x00011459 File Offset: 0x0000F659
+	// Token: 0x06000FBE RID: 4030 RVA: 0x0005E525 File Offset: 0x0005C725
 	private void OnPress()
 	{
 		this.skeletonAnimation.AnimationState.SetAnimation(0, "trigger", false);
 	}
 
-	// Token: 0x0600121F RID: 4639 RVA: 0x000042DD File Offset: 0x000024DD
+	// Token: 0x06000FBF RID: 4031 RVA: 0x00004095 File Offset: 0x00002295
 	private void Update()
 	{
 	}
 
-	// Token: 0x04000E95 RID: 3733
+	// Token: 0x04000BC4 RID: 3012
 	public SkeletonAnimation skeletonAnimation;
 }

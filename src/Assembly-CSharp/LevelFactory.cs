@@ -3,17 +3,17 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-// Token: 0x020006AD RID: 1709
+// Token: 0x020004B7 RID: 1207
 public class LevelFactory : MonoBehaviour
 {
-	// Token: 0x06002AB9 RID: 10937 RVA: 0x000211CA File Offset: 0x0001F3CA
+	// Token: 0x0600262F RID: 9775 RVA: 0x00109243 File Offset: 0x00107443
 	private void Awake()
 	{
 		LevelFactory.instance = this;
 		LevelFactory.level = StagesParser.currentLevel;
 	}
 
-	// Token: 0x06002ABA RID: 10938 RVA: 0x00149B68 File Offset: 0x00147D68
+	// Token: 0x06002630 RID: 9776 RVA: 0x00109258 File Offset: 0x00107458
 	private void Start()
 	{
 		if (!PlayerPrefs.HasKey("Tour"))
@@ -88,7 +88,7 @@ public class LevelFactory : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06002ABB RID: 10939 RVA: 0x00149EA8 File Offset: 0x001480A8
+	// Token: 0x06002631 RID: 9777 RVA: 0x00109598 File Offset: 0x00107798
 	public bool mozeDaSeNakaci(int tipTerena)
 	{
 		for (int i = 0; i < this.TereniKojiMoguDaDodju.Length; i++)
@@ -101,13 +101,13 @@ public class LevelFactory : MonoBehaviour
 		return false;
 	}
 
-	// Token: 0x06002ABC RID: 10940 RVA: 0x000211DC File Offset: 0x0001F3DC
+	// Token: 0x06002632 RID: 9778 RVA: 0x001095C6 File Offset: 0x001077C6
 	public void Reposition()
 	{
 		base.StartCoroutine(this.RepositionAndFillStuffCoroutine());
 	}
 
-	// Token: 0x06002ABD RID: 10941 RVA: 0x000211EB File Offset: 0x0001F3EB
+	// Token: 0x06002633 RID: 9779 RVA: 0x001095D5 File Offset: 0x001077D5
 	public IEnumerator RepositionAndFillStuffCoroutine()
 	{
 		yield return new WaitForSeconds(0.25f);
@@ -167,7 +167,7 @@ public class LevelFactory : MonoBehaviour
 		yield break;
 	}
 
-	// Token: 0x06002ABE RID: 10942 RVA: 0x000211FA File Offset: 0x0001F3FA
+	// Token: 0x06002634 RID: 9780 RVA: 0x001095E4 File Offset: 0x001077E4
 	public IEnumerator RepositionCoroutine()
 	{
 		yield return new WaitForSeconds(0.25f);
@@ -218,7 +218,7 @@ public class LevelFactory : MonoBehaviour
 		yield break;
 	}
 
-	// Token: 0x06002ABF RID: 10943 RVA: 0x00021209 File Offset: 0x0001F409
+	// Token: 0x06002635 RID: 9781 RVA: 0x001095F3 File Offset: 0x001077F3
 	private IEnumerator DodavanjeNovcica(LevelPrefabProperties prefabPropertiess)
 	{
 		if (prefabPropertiess.coins_Slots_Count > 0)
@@ -273,7 +273,7 @@ public class LevelFactory : MonoBehaviour
 		yield break;
 	}
 
-	// Token: 0x06002AC0 RID: 10944 RVA: 0x0002121F File Offset: 0x0001F41F
+	// Token: 0x06002636 RID: 9782 RVA: 0x00109609 File Offset: 0x00107809
 	private IEnumerator DodavanjeEnvironment(LevelPrefabProperties prefabPropertiess)
 	{
 		if (prefabPropertiess.environment_Slots_Count > 0)
@@ -332,7 +332,7 @@ public class LevelFactory : MonoBehaviour
 		yield break;
 	}
 
-	// Token: 0x06002AC1 RID: 10945 RVA: 0x00021235 File Offset: 0x0001F435
+	// Token: 0x06002637 RID: 9783 RVA: 0x0010961F File Offset: 0x0010781F
 	private IEnumerator DodavanjeNeprijatelja(LevelPrefabProperties prefabPropertiess)
 	{
 		this.postaviInicijalnuTezinu(prefabPropertiess);
@@ -932,7 +932,7 @@ public class LevelFactory : MonoBehaviour
 		yield break;
 	}
 
-	// Token: 0x06002AC2 RID: 10946 RVA: 0x0002124B File Offset: 0x0001F44B
+	// Token: 0x06002638 RID: 9784 RVA: 0x00109635 File Offset: 0x00107835
 	private IEnumerator DodavanjeSpecial(LevelPrefabProperties prefabPropertiess)
 	{
 		if (prefabPropertiess.special_Slots_Count > 0)
@@ -1098,14 +1098,14 @@ public class LevelFactory : MonoBehaviour
 		yield break;
 	}
 
-	// Token: 0x06002AC3 RID: 10947 RVA: 0x00021261 File Offset: 0x0001F461
+	// Token: 0x06002639 RID: 9785 RVA: 0x0010964B File Offset: 0x0010784B
 	public void PostaviFinish()
 	{
 		LevelFactory.trebaFinish = true;
 		MonkeyController2D.canRespawnThings = false;
 	}
 
-	// Token: 0x06002AC4 RID: 10948 RVA: 0x00149ED8 File Offset: 0x001480D8
+	// Token: 0x0600263A RID: 9786 RVA: 0x0010965C File Offset: 0x0010785C
 	private void Tezina()
 	{
 		int num = LevelFactory.level / 20 + 1;
@@ -1294,7 +1294,7 @@ public class LevelFactory : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06002AC5 RID: 10949 RVA: 0x0014A25C File Offset: 0x0014845C
+	// Token: 0x0600263B RID: 9787 RVA: 0x001099E0 File Offset: 0x00107BE0
 	private void postaviInicijalnuTezinu(LevelPrefabProperties prefabPropertiess)
 	{
 		switch (this.overallDifficulty)
@@ -1371,7 +1371,7 @@ public class LevelFactory : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06002AC6 RID: 10950 RVA: 0x0014A434 File Offset: 0x00148634
+	// Token: 0x0600263C RID: 9788 RVA: 0x00109BB8 File Offset: 0x00107DB8
 	public void KorigujVerovatnocuZbogMisije(int value, int tip)
 	{
 		if (MissionManager.activeFly_BaboonsMission && (tip == 0 || tip == 1))
@@ -1475,7 +1475,7 @@ public class LevelFactory : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06002AC7 RID: 10951 RVA: 0x0014A574 File Offset: 0x00148774
+	// Token: 0x0600263D RID: 9789 RVA: 0x00109CF8 File Offset: 0x00107EF8
 	public void izbrojPosebne()
 	{
 		if (MissionManager.activeFly_BaboonsMission)
@@ -1508,245 +1508,245 @@ public class LevelFactory : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06002AC8 RID: 10952 RVA: 0x0002126F File Offset: 0x0001F46F
+	// Token: 0x0600263E RID: 9790 RVA: 0x00109D98 File Offset: 0x00107F98
 	private bool proveriDaLiNeprijateljUcestvujeUMisiji(int type)
 	{
 		return (type == 3 && this.leteciBabuni == 2) || (type == 4 && this.boomerangBabuni == 2) || (type == 5 && this.leteceGorile == 2) || (type == 6 && this.kopljeGorile == 2);
 	}
 
-	// Token: 0x06002AC9 RID: 10953 RVA: 0x000212AE File Offset: 0x0001F4AE
+	// Token: 0x0600263F RID: 9791 RVA: 0x00109DD7 File Offset: 0x00107FD7
 	private bool proveriDaLiDijamantUcestvujeUMisiji(int type)
 	{
 		return (type == 5 && this.crveniDijamant == 2) || (type == 6 && this.plaviDijamant == 2) || (type == 7 && this.zeleniDijamant == 2);
 	}
 
-	// Token: 0x040024B6 RID: 9398
+	// Token: 0x04001F35 RID: 7989
 	public Transform currentLevelComponents;
 
-	// Token: 0x040024B7 RID: 9399
+	// Token: 0x04001F36 RID: 7990
 	public Transform terrainPool;
 
-	// Token: 0x040024B8 RID: 9400
+	// Token: 0x04001F37 RID: 7991
 	public int terenaUPocetku;
 
-	// Token: 0x040024B9 RID: 9401
+	// Token: 0x04001F38 RID: 7992
 	public List<GameObject> teren;
 
-	// Token: 0x040024BA RID: 9402
+	// Token: 0x04001F39 RID: 7993
 	private static Transform GranicaDesno;
 
-	// Token: 0x040024BB RID: 9403
+	// Token: 0x04001F3A RID: 7994
 	private Transform unistitelj;
 
-	// Token: 0x040024BC RID: 9404
+	// Token: 0x04001F3B RID: 7995
 	public static LevelFactory instance;
 
-	// Token: 0x040024BD RID: 9405
+	// Token: 0x04001F3C RID: 7996
 	public static int level = 1;
 
-	// Token: 0x040024BE RID: 9406
+	// Token: 0x04001F3D RID: 7997
 	public int levelRuchno;
 
-	// Token: 0x040024BF RID: 9407
+	// Token: 0x04001F3E RID: 7998
 	public int overallDifficulty;
 
-	// Token: 0x040024C0 RID: 9408
+	// Token: 0x04001F3F RID: 7999
 	private Transform enemyPool;
 
-	// Token: 0x040024C1 RID: 9409
+	// Token: 0x04001F40 RID: 8000
 	private Transform environmentPool;
 
-	// Token: 0x040024C2 RID: 9410
+	// Token: 0x04001F41 RID: 8001
 	private Transform coinsPool;
 
-	// Token: 0x040024C3 RID: 9411
+	// Token: 0x04001F42 RID: 8002
 	private Transform specialPool;
 
-	// Token: 0x040024C4 RID: 9412
+	// Token: 0x04001F43 RID: 8003
 	private int[] TereniKojiMoguDaDodju;
 
-	// Token: 0x040024C5 RID: 9413
+	// Token: 0x04001F44 RID: 8004
 	private List<int> suzenaListaTerena;
 
-	// Token: 0x040024C6 RID: 9414
+	// Token: 0x04001F45 RID: 8005
 	private List<int> suzenaListaObjekata;
 
-	// Token: 0x040024C7 RID: 9415
+	// Token: 0x04001F46 RID: 8006
 	private LevelPrefabProperties prefabProperties;
 
-	// Token: 0x040024C8 RID: 9416
+	// Token: 0x04001F47 RID: 8007
 	private EntityProperties entityProperties;
 
-	// Token: 0x040024C9 RID: 9417
+	// Token: 0x04001F48 RID: 8008
 	private SlotProperties slotProperties;
 
-	// Token: 0x040024CA RID: 9418
+	// Token: 0x04001F49 RID: 8009
 	private Transform finishHolder;
 
-	// Token: 0x040024CB RID: 9419
+	// Token: 0x04001F4A RID: 8010
 	public static bool trebaFinish = false;
 
-	// Token: 0x040024CC RID: 9420
+	// Token: 0x04001F4B RID: 8011
 	private int dg;
 
-	// Token: 0x040024CD RID: 9421
+	// Token: 0x04001F4C RID: 8012
 	private int gg;
 
-	// Token: 0x040024CE RID: 9422
+	// Token: 0x04001F4D RID: 8013
 	private int tour;
 
-	// Token: 0x040024CF RID: 9423
+	// Token: 0x04001F4E RID: 8014
 	private TextMesh missionDescription;
 
-	// Token: 0x040024D0 RID: 9424
+	// Token: 0x04001F4F RID: 8015
 	public int leteciBabuni;
 
-	// Token: 0x040024D1 RID: 9425
+	// Token: 0x04001F50 RID: 8016
 	public int leteceGorile;
 
-	// Token: 0x040024D2 RID: 9426
+	// Token: 0x04001F51 RID: 8017
 	public int boomerangBabuni;
 
-	// Token: 0x040024D3 RID: 9427
+	// Token: 0x04001F52 RID: 8018
 	public int kopljeGorile;
 
-	// Token: 0x040024D4 RID: 9428
+	// Token: 0x04001F53 RID: 8019
 	public int plaviDijamant;
 
-	// Token: 0x040024D5 RID: 9429
+	// Token: 0x04001F54 RID: 8020
 	public int crveniDijamant;
 
-	// Token: 0x040024D6 RID: 9430
+	// Token: 0x04001F55 RID: 8021
 	public int zeleniDijamant;
 
-	// Token: 0x040024D7 RID: 9431
+	// Token: 0x04001F56 RID: 8022
 	[HideInInspector]
 	public float leteciBabuni_Kvota;
 
-	// Token: 0x040024D8 RID: 9432
+	// Token: 0x04001F57 RID: 8023
 	[HideInInspector]
 	public float leteceGorile_Kvota;
 
-	// Token: 0x040024D9 RID: 9433
+	// Token: 0x04001F58 RID: 8024
 	[HideInInspector]
 	public float boomerangBabuni_Kvota;
 
-	// Token: 0x040024DA RID: 9434
+	// Token: 0x04001F59 RID: 8025
 	[HideInInspector]
 	public float kopljeGorile_Kvota;
 
-	// Token: 0x040024DB RID: 9435
+	// Token: 0x04001F5A RID: 8026
 	[HideInInspector]
 	public float plaviDijamant_Kvota;
 
-	// Token: 0x040024DC RID: 9436
+	// Token: 0x04001F5B RID: 8027
 	[HideInInspector]
 	public float crveniDijamant_Kvota;
 
-	// Token: 0x040024DD RID: 9437
+	// Token: 0x04001F5C RID: 8028
 	[HideInInspector]
 	public float zeleniDijamant_Kvota;
 
-	// Token: 0x040024DE RID: 9438
+	// Token: 0x04001F5D RID: 8029
 	[HideInInspector]
 	public float leteciBabuni_Kvota_locked;
 
-	// Token: 0x040024DF RID: 9439
+	// Token: 0x04001F5E RID: 8030
 	[HideInInspector]
 	public float leteceGorile_Kvota_locked;
 
-	// Token: 0x040024E0 RID: 9440
+	// Token: 0x04001F5F RID: 8031
 	[HideInInspector]
 	public float boomerangBabuni_Kvota_locked;
 
-	// Token: 0x040024E1 RID: 9441
+	// Token: 0x04001F60 RID: 8032
 	[HideInInspector]
 	public float kopljeGorile_Kvota_locked;
 
-	// Token: 0x040024E2 RID: 9442
+	// Token: 0x04001F61 RID: 8033
 	[HideInInspector]
 	public float plaviDijamant_Kvota_locked;
 
-	// Token: 0x040024E3 RID: 9443
+	// Token: 0x04001F62 RID: 8034
 	[HideInInspector]
 	public float crveniDijamant_Kvota_locked;
 
-	// Token: 0x040024E4 RID: 9444
+	// Token: 0x04001F63 RID: 8035
 	[HideInInspector]
 	public float zeleniDijamant_Kvota_locked;
 
-	// Token: 0x040024E5 RID: 9445
+	// Token: 0x04001F64 RID: 8036
 	private int leteciBabuni_postoji_u_poolu;
 
-	// Token: 0x040024E6 RID: 9446
+	// Token: 0x04001F65 RID: 8037
 	private int leteceGorile_postoji_u_poolu;
 
-	// Token: 0x040024E7 RID: 9447
+	// Token: 0x04001F66 RID: 8038
 	private int boomerangBabuni_postoji_u_poolu;
 
-	// Token: 0x040024E8 RID: 9448
+	// Token: 0x04001F67 RID: 8039
 	private int kopljeGorile_postoji_u_poolu;
 
-	// Token: 0x040024E9 RID: 9449
+	// Token: 0x04001F68 RID: 8040
 	private int plaviDijamant_postoji_u_poolu;
 
-	// Token: 0x040024EA RID: 9450
+	// Token: 0x04001F69 RID: 8041
 	private int crveniDijamant_postoji_u_poolu;
 
-	// Token: 0x040024EB RID: 9451
+	// Token: 0x04001F6A RID: 8042
 	private int zeleniDijamant_postoji_u_poolu;
 
-	// Token: 0x040024EC RID: 9452
+	// Token: 0x04001F6B RID: 8043
 	private int postavljen_u_prefabu_leteciBabuni;
 
-	// Token: 0x040024ED RID: 9453
+	// Token: 0x04001F6C RID: 8044
 	private int postavljen_u_prefabu_leteceGorile;
 
-	// Token: 0x040024EE RID: 9454
+	// Token: 0x04001F6D RID: 8045
 	private int postavljen_u_prefabu_boomerangBabuni;
 
-	// Token: 0x040024EF RID: 9455
+	// Token: 0x04001F6E RID: 8046
 	private int postavljen_u_prefabu_kopljeGorile;
 
-	// Token: 0x040024F0 RID: 9456
+	// Token: 0x04001F6F RID: 8047
 	private bool prviPrefab = true;
 
-	// Token: 0x040024F1 RID: 9457
+	// Token: 0x04001F70 RID: 8048
 	private int brojPosebnihNeprijatelja;
 
-	// Token: 0x040024F2 RID: 9458
+	// Token: 0x04001F71 RID: 8049
 	private int brojPosebnihDijamanata;
 
-	// Token: 0x040024F3 RID: 9459
+	// Token: 0x04001F72 RID: 8050
 	public GameObject[] enemiesForInstantiate;
 
-	// Token: 0x040024F4 RID: 9460
+	// Token: 0x04001F73 RID: 8051
 	public GameObject[] specialsForInstantiate;
 
-	// Token: 0x040024F5 RID: 9461
+	// Token: 0x04001F74 RID: 8052
 	[HideInInspector]
 	public bool magnetCollected;
 
-	// Token: 0x040024F6 RID: 9462
+	// Token: 0x04001F75 RID: 8053
 	[HideInInspector]
 	public bool doubleCoinsCollected;
 
-	// Token: 0x040024F7 RID: 9463
+	// Token: 0x04001F76 RID: 8054
 	[HideInInspector]
 	public bool shieldCollected;
 
-	// Token: 0x040024F8 RID: 9464
+	// Token: 0x04001F77 RID: 8055
 	private List<Transform> prefaboviUIgri;
 
-	// Token: 0x040024F9 RID: 9465
+	// Token: 0x04001F78 RID: 8056
 	private int aktivniPrefabUIgri;
 
-	// Token: 0x040024FA RID: 9466
+	// Token: 0x04001F79 RID: 8057
 	private float vremeTriggeraPoslednjegPrefaba;
 
-	// Token: 0x040024FB RID: 9467
+	// Token: 0x04001F7A RID: 8058
 	private float vremeTriggeraNovogPrefaba;
 
-	// Token: 0x040024FC RID: 9468
+	// Token: 0x04001F7B RID: 8059
 	private int brojacPrefaba;
 }

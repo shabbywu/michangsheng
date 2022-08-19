@@ -3,10 +3,10 @@ using KBEngine;
 using UltimateSurvival;
 using UnityEngine;
 
-// Token: 0x020002FE RID: 766
+// Token: 0x020001EA RID: 490
 public class ItemProcess : MonoBehaviour
 {
-	// Token: 0x06001706 RID: 5894 RVA: 0x000CC134 File Offset: 0x000CA334
+	// Token: 0x0600145C RID: 5212 RVA: 0x00083174 File Offset: 0x00081374
 	private void Start()
 	{
 		GameObject gameObject = GameObject.FindGameObjectWithTag("Canvas");
@@ -22,7 +22,7 @@ public class ItemProcess : MonoBehaviour
 		Event.registerOut("equipItemRequest_re", this, "equipItemRequest_re");
 	}
 
-	// Token: 0x06001707 RID: 5895 RVA: 0x000CC204 File Offset: 0x000CA404
+	// Token: 0x0600145D RID: 5213 RVA: 0x00083244 File Offset: 0x00081444
 	public void dropItem_re(int itemIndex, ulong itemUUId)
 	{
 		if (this.itemInventory == null)
@@ -39,13 +39,13 @@ public class ItemProcess : MonoBehaviour
 		UltimateSurvival.MonoSingleton<InventoryController>.Instance.RemoveItems(1, itemUUId);
 	}
 
-	// Token: 0x06001708 RID: 5896 RVA: 0x0001429C File Offset: 0x0001249C
+	// Token: 0x0600145E RID: 5214 RVA: 0x000826BE File Offset: 0x000808BE
 	private void OnDestroy()
 	{
 		Event.deregisterOut(this);
 	}
 
-	// Token: 0x06001709 RID: 5897 RVA: 0x000CC284 File Offset: 0x000CA484
+	// Token: 0x0600145F RID: 5215 RVA: 0x000832C4 File Offset: 0x000814C4
 	public void pickUp_re(ITEM_INFO itemInfo)
 	{
 		if (this.itemInventory == null)
@@ -60,7 +60,7 @@ public class ItemProcess : MonoBehaviour
 		}
 	}
 
-	// Token: 0x0600170A RID: 5898 RVA: 0x000145CD File Offset: 0x000127CD
+	// Token: 0x06001460 RID: 5216 RVA: 0x00083342 File Offset: 0x00081542
 	public void equipItemRequest_re(ITEM_INFO itemInfo, ITEM_INFO equipItemInfo)
 	{
 		int itemIndex = itemInfo.itemIndex;
@@ -69,15 +69,15 @@ public class ItemProcess : MonoBehaviour
 		ulong uuid2 = equipItemInfo.UUID;
 	}
 
-	// Token: 0x04001262 RID: 4706
+	// Token: 0x04000F1F RID: 3871
 	public Tooltip tooltip;
 
-	// Token: 0x04001263 RID: 4707
+	// Token: 0x04000F20 RID: 3872
 	public EquipmentSystem eS;
 
-	// Token: 0x04001264 RID: 4708
+	// Token: 0x04000F21 RID: 3873
 	private Inventory equipInventory;
 
-	// Token: 0x04001265 RID: 4709
+	// Token: 0x04000F22 RID: 3874
 	private Inventory itemInventory;
 }

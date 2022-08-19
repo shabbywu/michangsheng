@@ -3,10 +3,10 @@ using System.Collections.Generic;
 
 namespace JSONClass
 {
-	// Token: 0x02000C3C RID: 3132
+	// Token: 0x020008AE RID: 2222
 	public class NpcTalkGuanYuTuPoData : IJSONClass
 	{
-		// Token: 0x06004C59 RID: 19545 RVA: 0x00203DC0 File Offset: 0x00201FC0
+		// Token: 0x060040CB RID: 16587 RVA: 0x001BAF88 File Offset: 0x001B9188
 		public static void InitDataDict()
 		{
 			foreach (JSONObject jsonobject in jsonData.instance.NpcTalkGuanYuTuPoData.list)
@@ -42,33 +42,33 @@ namespace JSONClass
 			}
 		}
 
-		// Token: 0x06004C5A RID: 19546 RVA: 0x000042DD File Offset: 0x000024DD
+		// Token: 0x060040CC RID: 16588 RVA: 0x00004095 File Offset: 0x00002295
 		private static void OnInitFinish()
 		{
 		}
 
-		// Token: 0x04004A4D RID: 19021
+		// Token: 0x04003EF5 RID: 16117
 		public static Dictionary<int, NpcTalkGuanYuTuPoData> DataDict = new Dictionary<int, NpcTalkGuanYuTuPoData>();
 
-		// Token: 0x04004A4E RID: 19022
+		// Token: 0x04003EF6 RID: 16118
 		public static List<NpcTalkGuanYuTuPoData> DataList = new List<NpcTalkGuanYuTuPoData>();
 
-		// Token: 0x04004A4F RID: 19023
+		// Token: 0x04003EF7 RID: 16119
 		public static Action OnInitFinishAction = new Action(NpcTalkGuanYuTuPoData.OnInitFinish);
 
-		// Token: 0x04004A50 RID: 19024
+		// Token: 0x04003EF8 RID: 16120
 		public int id;
 
-		// Token: 0x04004A51 RID: 19025
+		// Token: 0x04003EF9 RID: 16121
 		public int WanJiaJingJie;
 
-		// Token: 0x04004A52 RID: 19026
+		// Token: 0x04003EFA RID: 16122
 		public int JingJie;
 
-		// Token: 0x04004A53 RID: 19027
+		// Token: 0x04003EFB RID: 16123
 		public int XingGe;
 
-		// Token: 0x04004A54 RID: 19028
+		// Token: 0x04003EFC RID: 16124
 		public string TuPoTalk;
 	}
 }

@@ -4,10 +4,10 @@ using UnityEngine;
 
 namespace UltimateSurvival
 {
-	// Token: 0x020008F5 RID: 2293
+	// Token: 0x02000612 RID: 1554
 	public class PlayerDeathHandler : PlayerBehaviour
 	{
-		// Token: 0x06003ACA RID: 15050 RVA: 0x001AA134 File Offset: 0x001A8334
+		// Token: 0x060031AD RID: 12717 RVA: 0x00160C14 File Offset: 0x0015EE14
 		private void Awake()
 		{
 			if (this.m_EnableRagdoll && !this.m_Ragdoll)
@@ -19,7 +19,7 @@ namespace UltimateSurvival
 			this.m_CamStartRot = this.m_Camera.transform.localRotation;
 		}
 
-		// Token: 0x06003ACB RID: 15051 RVA: 0x001AA1AC File Offset: 0x001A83AC
+		// Token: 0x060031AE RID: 12718 RVA: 0x00160C8C File Offset: 0x0015EE8C
 		private void OnChanged_Health()
 		{
 			if (base.Player.Health.Is(0f))
@@ -34,12 +34,12 @@ namespace UltimateSurvival
 			}
 		}
 
-		// Token: 0x06003ACC RID: 15052 RVA: 0x000042DD File Offset: 0x000024DD
+		// Token: 0x060031AF RID: 12719 RVA: 0x00004095 File Offset: 0x00002295
 		private void On_Death()
 		{
 		}
 
-		// Token: 0x06003ACD RID: 15053 RVA: 0x0002AB02 File Offset: 0x00028D02
+		// Token: 0x060031B0 RID: 12720 RVA: 0x00160D40 File Offset: 0x0015EF40
 		private IEnumerator C_Respawn()
 		{
 			yield return new WaitForSeconds(this.m_RespawnDuration);
@@ -88,59 +88,59 @@ namespace UltimateSurvival
 			yield break;
 		}
 
-		// Token: 0x0400350F RID: 13583
+		// Token: 0x04002BFB RID: 11259
 		[SerializeField]
 		private GameObject m_Camera;
 
-		// Token: 0x04003510 RID: 13584
+		// Token: 0x04002BFC RID: 11260
 		[Header("Audio")]
 		[SerializeField]
 		private AudioSource m_AudioSource;
 
-		// Token: 0x04003511 RID: 13585
+		// Token: 0x04002BFD RID: 11261
 		[SerializeField]
 		private SoundPlayer m_DeathAudio;
 
-		// Token: 0x04003512 RID: 13586
+		// Token: 0x04002BFE RID: 11262
 		[Header("Stuff To Disable On Death")]
 		[SerializeField]
 		private GameObject[] m_ObjectsToDisable;
 
-		// Token: 0x04003513 RID: 13587
+		// Token: 0x04002BFF RID: 11263
 		[SerializeField]
 		private Behaviour[] m_BehavioursToDisable;
 
-		// Token: 0x04003514 RID: 13588
+		// Token: 0x04002C00 RID: 11264
 		[SerializeField]
 		private Collider[] m_CollidersToDisable;
 
-		// Token: 0x04003515 RID: 13589
+		// Token: 0x04002C01 RID: 11265
 		[Header("Ragdoll")]
 		[SerializeField]
 		private bool m_EnableRagdoll;
 
-		// Token: 0x04003516 RID: 13590
+		// Token: 0x04002C02 RID: 11266
 		[SerializeField]
 		[Tooltip("A Ragdoll component, usually attached to the armature of the character.")]
 		private Ragdoll m_Ragdoll;
 
-		// Token: 0x04003517 RID: 13591
+		// Token: 0x04002C03 RID: 11267
 		[Header("Respawn")]
 		[SerializeField]
 		private bool m_AutoRespawn = true;
 
-		// Token: 0x04003518 RID: 13592
+		// Token: 0x04002C04 RID: 11268
 		[SerializeField]
 		private float m_RespawnDuration = 10f;
 
-		// Token: 0x04003519 RID: 13593
+		// Token: 0x04002C05 RID: 11269
 		[SerializeField]
 		private float m_RespawnBlockTime = 3f;
 
-		// Token: 0x0400351A RID: 13594
+		// Token: 0x04002C06 RID: 11270
 		private Vector3 m_CamStartPos;
 
-		// Token: 0x0400351B RID: 13595
+		// Token: 0x04002C07 RID: 11271
 		private Quaternion m_CamStartRot;
 	}
 }

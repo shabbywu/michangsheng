@@ -2,11 +2,11 @@
 
 namespace Facebook
 {
-	// Token: 0x02000E8D RID: 3725
+	// Token: 0x02000B1D RID: 2845
 	public class EditorFacebookLoader : FB.CompiledFacebookLoader
 	{
-		// Token: 0x17000853 RID: 2131
-		// (get) Token: 0x0600596D RID: 22893 RVA: 0x0003F817 File Offset: 0x0003DA17
+		// Token: 0x17000602 RID: 1538
+		// (get) Token: 0x06004F55 RID: 20309 RVA: 0x0021920C File Offset: 0x0021740C
 		protected override IFacebook fb
 		{
 			get

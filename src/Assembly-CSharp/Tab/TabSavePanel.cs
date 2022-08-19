@@ -4,10 +4,10 @@ using UnityEngine;
 
 namespace Tab
 {
-	// Token: 0x02000A4C RID: 2636
+	// Token: 0x02000701 RID: 1793
 	public class TabSavePanel : ISysPanelBase
 	{
-		// Token: 0x06004402 RID: 17410 RVA: 0x00030A84 File Offset: 0x0002EC84
+		// Token: 0x06003984 RID: 14724 RVA: 0x00189C00 File Offset: 0x00187E00
 		public TabSavePanel(GameObject go)
 		{
 			this._go = go;
@@ -15,7 +15,7 @@ namespace Tab
 			this.SaveList = new List<TabDataBase>();
 		}
 
-		// Token: 0x06004403 RID: 17411 RVA: 0x00030AA5 File Offset: 0x0002ECA5
+		// Token: 0x06003985 RID: 14725 RVA: 0x00189C21 File Offset: 0x00187E21
 		public override void Show()
 		{
 			if (!this._isInit)
@@ -27,7 +27,7 @@ namespace Tab
 			this._go.SetActive(true);
 		}
 
-		// Token: 0x06004404 RID: 17412 RVA: 0x001D1568 File Offset: 0x001CF768
+		// Token: 0x06003986 RID: 14726 RVA: 0x00189C4C File Offset: 0x00187E4C
 		private void Init()
 		{
 			Transform transform = base.Get("SaveList/ViewPort/Content", true).transform;
@@ -37,7 +37,7 @@ namespace Tab
 			}
 		}
 
-		// Token: 0x06004405 RID: 17413 RVA: 0x001D15B8 File Offset: 0x001CF7B8
+		// Token: 0x06003987 RID: 14727 RVA: 0x00189C9C File Offset: 0x00187E9C
 		private void UpdateUI()
 		{
 			foreach (TabDataBase tabDataBase in this.SaveList)
@@ -46,10 +46,10 @@ namespace Tab
 			}
 		}
 
-		// Token: 0x04003C18 RID: 15384
+		// Token: 0x040031A0 RID: 12704
 		private bool _isInit;
 
-		// Token: 0x04003C19 RID: 15385
+		// Token: 0x040031A1 RID: 12705
 		public List<TabDataBase> SaveList;
 	}
 }

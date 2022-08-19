@@ -3,16 +3,16 @@ using UnityEngine;
 
 namespace UltimateSurvival
 {
-	// Token: 0x020008FB RID: 2299
+	// Token: 0x02000616 RID: 1558
 	public class CharacterEquipment : MonoBehaviour
 	{
-		// Token: 0x06003AE6 RID: 15078 RVA: 0x0002AC2C File Offset: 0x00028E2C
+		// Token: 0x060031BD RID: 12733 RVA: 0x00160F98 File Offset: 0x0015F198
 		private void Start()
 		{
 			MonoSingleton<InventoryController>.Instance.EquipmentChanged.AddListener(new Action<ItemHolder>(this.On_EquipmentChanged));
 		}
 
-		// Token: 0x06003AE7 RID: 15079 RVA: 0x001AA908 File Offset: 0x001A8B08
+		// Token: 0x060031BE RID: 12734 RVA: 0x00160FB8 File Offset: 0x0015F1B8
 		private void On_EquipmentChanged(ItemHolder holder)
 		{
 			foreach (CharacterEquipment.EquipmentPiece equipmentPiece in this.m_EquipmentPieces)
@@ -35,7 +35,7 @@ namespace UltimateSurvival
 			this.HandleUnderwear(holder);
 		}
 
-		// Token: 0x06003AE8 RID: 15080 RVA: 0x001AA9D4 File Offset: 0x001A8BD4
+		// Token: 0x060031BF RID: 12735 RVA: 0x00161084 File Offset: 0x0015F284
 		private void HandleUnderwear(ItemHolder holder)
 		{
 			if (!this.m_Underwear || this.m_Underwear.activeSelf)
@@ -56,25 +56,25 @@ namespace UltimateSurvival
 			}
 		}
 
-		// Token: 0x04003531 RID: 13617
+		// Token: 0x04002C13 RID: 11283
 		[SerializeField]
 		private CharacterEquipment.EquipmentPiece[] m_EquipmentPieces;
 
-		// Token: 0x04003532 RID: 13618
+		// Token: 0x04002C14 RID: 11284
 		[SerializeField]
 		private GameObject m_Underwear;
 
-		// Token: 0x020008FC RID: 2300
+		// Token: 0x020014CF RID: 5327
 		[Serializable]
 		public class EquipmentPiece
 		{
-			// Token: 0x1700064A RID: 1610
-			// (get) Token: 0x06003AEA RID: 15082 RVA: 0x0002AC49 File Offset: 0x00028E49
-			// (set) Token: 0x06003AEB RID: 15083 RVA: 0x0002AC51 File Offset: 0x00028E51
+			// Token: 0x17000B00 RID: 2816
+			// (get) Token: 0x06008205 RID: 33285 RVA: 0x002DA52A File Offset: 0x002D872A
+			// (set) Token: 0x06008206 RID: 33286 RVA: 0x002DA532 File Offset: 0x002D8732
 			public ItemHolder CorrespondingHolder { get; set; }
 
-			// Token: 0x1700064B RID: 1611
-			// (get) Token: 0x06003AEC RID: 15084 RVA: 0x0002AC5A File Offset: 0x00028E5A
+			// Token: 0x17000B01 RID: 2817
+			// (get) Token: 0x06008207 RID: 33287 RVA: 0x002DA53B File Offset: 0x002D873B
 			public string ItemName
 			{
 				get
@@ -83,8 +83,8 @@ namespace UltimateSurvival
 				}
 			}
 
-			// Token: 0x1700064C RID: 1612
-			// (get) Token: 0x06003AED RID: 15085 RVA: 0x0002AC62 File Offset: 0x00028E62
+			// Token: 0x17000B02 RID: 2818
+			// (get) Token: 0x06008208 RID: 33288 RVA: 0x002DA543 File Offset: 0x002D8743
 			public GameObject Object
 			{
 				get
@@ -93,11 +93,11 @@ namespace UltimateSurvival
 				}
 			}
 
-			// Token: 0x04003534 RID: 13620
+			// Token: 0x04006D61 RID: 28001
 			[SerializeField]
 			private string m_ItemName;
 
-			// Token: 0x04003535 RID: 13621
+			// Token: 0x04006D62 RID: 28002
 			[SerializeField]
 			private GameObject m_Object;
 		}

@@ -2,10 +2,10 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-// Token: 0x02000507 RID: 1287
+// Token: 0x02000384 RID: 900
 public class UITeQuanItem : MonoBehaviour
 {
-	// Token: 0x06002139 RID: 8505 RVA: 0x0001B5FB File Offset: 0x000197FB
+	// Token: 0x06001DC0 RID: 7616 RVA: 0x000D1F10 File Offset: 0x000D0110
 	public void SetText(string text)
 	{
 		this.LockImage.gameObject.SetActive(false);
@@ -13,7 +13,7 @@ public class UITeQuanItem : MonoBehaviour
 		this.TeQuanText.color = UITeQuanItem.c1;
 	}
 
-	// Token: 0x0600213A RID: 8506 RVA: 0x0001B62A File Offset: 0x0001982A
+	// Token: 0x06001DC1 RID: 7617 RVA: 0x000D1F3F File Offset: 0x000D013F
 	public void SetLockText(string text)
 	{
 		this.LockImage.gameObject.SetActive(true);
@@ -21,15 +21,15 @@ public class UITeQuanItem : MonoBehaviour
 		this.TeQuanText.color = UITeQuanItem.c2;
 	}
 
-	// Token: 0x04001CB9 RID: 7353
+	// Token: 0x0400185E RID: 6238
 	public Image LockImage;
 
-	// Token: 0x04001CBA RID: 7354
+	// Token: 0x0400185F RID: 6239
 	public Text TeQuanText;
 
-	// Token: 0x04001CBB RID: 7355
+	// Token: 0x04001860 RID: 6240
 	private static Color c1 = new Color(0.92941177f, 0.75686276f, 0.5176471f);
 
-	// Token: 0x04001CBC RID: 7356
+	// Token: 0x04001861 RID: 6241
 	private static Color c2 = new Color(0.4627451f, 0.34117648f, 0.2627451f);
 }

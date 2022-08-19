@@ -3,12 +3,12 @@ using UnityEngine;
 
 namespace Fungus
 {
-	// Token: 0x02001439 RID: 5177
+	// Token: 0x02000F83 RID: 3971
 	[CommandInfo("YSTools", "HideNPC", "隐藏NPC界面", 0)]
 	[AddComponentMenu("")]
 	public class HideNPC : Command
 	{
-		// Token: 0x06007D2D RID: 32045 RVA: 0x002C64E0 File Offset: 0x002C46E0
+		// Token: 0x06006F3F RID: 28479 RVA: 0x002A6A2C File Offset: 0x002A4C2C
 		public override void OnEnter()
 		{
 			GameObject gameObject = GameObject.Find("Canvas/Scroll View/Viewport/Content");
@@ -19,18 +19,18 @@ namespace Fungus
 			this.Continue();
 		}
 
-		// Token: 0x06007D2E RID: 32046 RVA: 0x000113CF File Offset: 0x0000F5CF
+		// Token: 0x06006F40 RID: 28480 RVA: 0x0005E228 File Offset: 0x0005C428
 		public override Color GetButtonColor()
 		{
 			return new Color32(184, 210, 235, byte.MaxValue);
 		}
 
-		// Token: 0x06007D2F RID: 32047 RVA: 0x000042DD File Offset: 0x000024DD
+		// Token: 0x06006F41 RID: 28481 RVA: 0x00004095 File Offset: 0x00002295
 		public override void OnReset()
 		{
 		}
 
-		// Token: 0x04006ACE RID: 27342
+		// Token: 0x04005BFB RID: 23547
 		[Tooltip("说明")]
 		[SerializeField]
 		protected string init = "隐藏NPC界面";

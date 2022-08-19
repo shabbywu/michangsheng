@@ -3,12 +3,12 @@ using UnityEngine;
 
 namespace UltimateSurvival
 {
-	// Token: 0x02000899 RID: 2201
+	// Token: 0x020005D4 RID: 1492
 	[Serializable]
 	public class ItemCategory
 	{
-		// Token: 0x170005C3 RID: 1475
-		// (get) Token: 0x060038A3 RID: 14499 RVA: 0x000293DF File Offset: 0x000275DF
+		// Token: 0x17000406 RID: 1030
+		// (get) Token: 0x06003007 RID: 12295 RVA: 0x00159906 File Offset: 0x00157B06
 		public string Name
 		{
 			get
@@ -17,8 +17,8 @@ namespace UltimateSurvival
 			}
 		}
 
-		// Token: 0x170005C4 RID: 1476
-		// (get) Token: 0x060038A4 RID: 14500 RVA: 0x000293E7 File Offset: 0x000275E7
+		// Token: 0x17000407 RID: 1031
+		// (get) Token: 0x06003008 RID: 12296 RVA: 0x0015990E File Offset: 0x00157B0E
 		public ItemData[] Items
 		{
 			get
@@ -27,11 +27,11 @@ namespace UltimateSurvival
 			}
 		}
 
-		// Token: 0x040032FD RID: 13053
+		// Token: 0x04002A67 RID: 10855
 		[SerializeField]
 		private string m_Name;
 
-		// Token: 0x040032FE RID: 13054
+		// Token: 0x04002A68 RID: 10856
 		[SerializeField]
 		private ItemData[] m_Items;
 	}

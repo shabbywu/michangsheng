@@ -7,20 +7,20 @@ using MoonSharp.Interpreter.Tree.Statements;
 
 namespace MoonSharp.Interpreter.Tree.Expressions
 {
-	// Token: 0x020010C2 RID: 4290
+	// Token: 0x02000CE6 RID: 3302
 	internal class FunctionDefinitionExpression : Expression, IClosureBuilder
 	{
-		// Token: 0x0600678B RID: 26507 RVA: 0x0004735E File Offset: 0x0004555E
+		// Token: 0x06005C78 RID: 23672 RVA: 0x0025FEDB File Offset: 0x0025E0DB
 		public FunctionDefinitionExpression(ScriptLoadingContext lcontext, bool usesGlobalEnv) : this(lcontext, false, usesGlobalEnv, false)
 		{
 		}
 
-		// Token: 0x0600678C RID: 26508 RVA: 0x0004736A File Offset: 0x0004556A
+		// Token: 0x06005C79 RID: 23673 RVA: 0x0025FEE7 File Offset: 0x0025E0E7
 		public FunctionDefinitionExpression(ScriptLoadingContext lcontext, bool pushSelfParam, bool isLambda) : this(lcontext, pushSelfParam, false, isLambda)
 		{
 		}
 
-		// Token: 0x0600678D RID: 26509 RVA: 0x002893A8 File Offset: 0x002875A8
+		// Token: 0x06005C7A RID: 23674 RVA: 0x0025FEF4 File Offset: 0x0025E0F4
 		private FunctionDefinitionExpression(ScriptLoadingContext lcontext, bool pushSelfParam, bool usesGlobalEnv, bool isLambda) : base(lcontext)
 		{
 			this.m_UsesGlobalEnv = usesGlobalEnv;
@@ -54,7 +54,7 @@ namespace MoonSharp.Interpreter.Tree.Expressions
 			lcontext.Source.Refs.Add(this.m_End);
 		}
 
-		// Token: 0x0600678E RID: 26510 RVA: 0x002894BC File Offset: 0x002876BC
+		// Token: 0x06005C7B RID: 23675 RVA: 0x00260008 File Offset: 0x0025E208
 		private Statement CreateLambdaBody(ScriptLoadingContext lcontext)
 		{
 			Token token = lcontext.Lexer.Current;
@@ -64,7 +64,7 @@ namespace MoonSharp.Interpreter.Tree.Expressions
 			return new ReturnStatement(lcontext, e, sourceRefUpTo);
 		}
 
-		// Token: 0x0600678F RID: 26511 RVA: 0x002894F8 File Offset: 0x002876F8
+		// Token: 0x06005C7C RID: 23676 RVA: 0x00260044 File Offset: 0x0025E244
 		private Statement CreateBody(ScriptLoadingContext lcontext)
 		{
 			Statement result = new CompositeStatement(lcontext);
@@ -83,7 +83,7 @@ namespace MoonSharp.Interpreter.Tree.Expressions
 			return result;
 		}
 
-		// Token: 0x06006790 RID: 26512 RVA: 0x0028958C File Offset: 0x0028778C
+		// Token: 0x06005C7D RID: 23677 RVA: 0x002600D8 File Offset: 0x0025E2D8
 		private List<string> BuildParamList(ScriptLoadingContext lcontext, bool pushSelfParam, Token openBracketToken, bool isLambda)
 		{
 			TokenType tokenType = isLambda ? TokenType.Lambda : TokenType.Brk_Close_Round;
@@ -124,7 +124,7 @@ namespace MoonSharp.Interpreter.Tree.Expressions
 			return list;
 		}
 
-		// Token: 0x06006791 RID: 26513 RVA: 0x00289688 File Offset: 0x00287888
+		// Token: 0x06005C7E RID: 23678 RVA: 0x002601D4 File Offset: 0x0025E3D4
 		private SymbolRef[] DefineArguments(List<string> paramnames, ScriptLoadingContext lcontext)
 		{
 			HashSet<string> hashSet = new HashSet<string>();
@@ -140,7 +140,7 @@ namespace MoonSharp.Interpreter.Tree.Expressions
 			return array;
 		}
 
-		// Token: 0x06006792 RID: 26514 RVA: 0x00289700 File Offset: 0x00287900
+		// Token: 0x06005C7F RID: 23679 RVA: 0x0026024C File Offset: 0x0025E44C
 		public SymbolRef CreateUpvalue(BuildTimeScope scope, SymbolRef symbol)
 		{
 			for (int i = 0; i < this.m_Closure.Count; i++)
@@ -158,13 +158,13 @@ namespace MoonSharp.Interpreter.Tree.Expressions
 			return SymbolRef.Upvalue(symbol.i_Name, this.m_Closure.Count - 1);
 		}
 
-		// Token: 0x06006793 RID: 26515 RVA: 0x00047376 File Offset: 0x00045576
+		// Token: 0x06005C80 RID: 23680 RVA: 0x002602DC File Offset: 0x0025E4DC
 		public override DynValue Eval(ScriptExecutionContext context)
 		{
 			throw new DynamicExpressionException("Dynamic Expressions cannot define new functions.");
 		}
 
-		// Token: 0x06006794 RID: 26516 RVA: 0x00289790 File Offset: 0x00287990
+		// Token: 0x06005C81 RID: 23681 RVA: 0x002602E8 File Offset: 0x0025E4E8
 		public int CompileBody(ByteCode bc, string friendlyName)
 		{
 			string funcName = friendlyName ?? ("<" + this.m_Begin.FormatLocation(bc.Script, true) + ">");
@@ -196,7 +196,7 @@ namespace MoonSharp.Interpreter.Tree.Expressions
 			return jumpPointForLastInstruction2;
 		}
 
-		// Token: 0x06006795 RID: 26517 RVA: 0x002898B4 File Offset: 0x00287AB4
+		// Token: 0x06005C82 RID: 23682 RVA: 0x0026040C File Offset: 0x0025E60C
 		public int Compile(ByteCode bc, Func<int> afterDecl, string friendlyName)
 		{
 			using (bc.EnterSource(this.m_Begin))
@@ -209,40 +209,40 @@ namespace MoonSharp.Interpreter.Tree.Expressions
 			return this.CompileBody(bc, friendlyName);
 		}
 
-		// Token: 0x06006796 RID: 26518 RVA: 0x00047382 File Offset: 0x00045582
+		// Token: 0x06005C83 RID: 23683 RVA: 0x00260488 File Offset: 0x0025E688
 		public override void Compile(ByteCode bc)
 		{
 			this.Compile(bc, () => 0, null);
 		}
 
-		// Token: 0x04005FA8 RID: 24488
+		// Token: 0x040053A6 RID: 21414
 		private SymbolRef[] m_ParamNames;
 
-		// Token: 0x04005FA9 RID: 24489
+		// Token: 0x040053A7 RID: 21415
 		private Statement m_Statement;
 
-		// Token: 0x04005FAA RID: 24490
+		// Token: 0x040053A8 RID: 21416
 		private RuntimeScopeFrame m_StackFrame;
 
-		// Token: 0x04005FAB RID: 24491
+		// Token: 0x040053A9 RID: 21417
 		private List<SymbolRef> m_Closure = new List<SymbolRef>();
 
-		// Token: 0x04005FAC RID: 24492
+		// Token: 0x040053AA RID: 21418
 		private bool m_HasVarArgs;
 
-		// Token: 0x04005FAD RID: 24493
+		// Token: 0x040053AB RID: 21419
 		private Instruction m_ClosureInstruction;
 
-		// Token: 0x04005FAE RID: 24494
+		// Token: 0x040053AC RID: 21420
 		private bool m_UsesGlobalEnv;
 
-		// Token: 0x04005FAF RID: 24495
+		// Token: 0x040053AD RID: 21421
 		private SymbolRef m_Env;
 
-		// Token: 0x04005FB0 RID: 24496
+		// Token: 0x040053AE RID: 21422
 		private SourceRef m_Begin;
 
-		// Token: 0x04005FB1 RID: 24497
+		// Token: 0x040053AF RID: 21423
 		private SourceRef m_End;
 	}
 }

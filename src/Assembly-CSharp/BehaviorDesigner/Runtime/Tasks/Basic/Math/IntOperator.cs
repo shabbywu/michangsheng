@@ -3,12 +3,12 @@ using UnityEngine;
 
 namespace BehaviorDesigner.Runtime.Tasks.Basic.Math
 {
-	// Token: 0x020015C2 RID: 5570
+	// Token: 0x02001104 RID: 4356
 	[TaskCategory("Basic/Math")]
 	[TaskDescription("Performs a math operation on two integers: Add, Subtract, Multiply, Divide, Min, or Max.")]
 	public class IntOperator : Action
 	{
-		// Token: 0x060082CB RID: 33483 RVA: 0x002CE1A0 File Offset: 0x002CC3A0
+		// Token: 0x060074D1 RID: 29905 RVA: 0x002B3404 File Offset: 0x002B1604
 		public override TaskStatus OnUpdate()
 		{
 			switch (this.operation)
@@ -38,7 +38,7 @@ namespace BehaviorDesigner.Runtime.Tasks.Basic.Math
 			return 2;
 		}
 
-		// Token: 0x060082CC RID: 33484 RVA: 0x00059BA1 File Offset: 0x00057DA1
+		// Token: 0x060074D2 RID: 29906 RVA: 0x002B354B File Offset: 0x002B174B
 		public override void OnReset()
 		{
 			this.operation = IntOperator.Operation.Add;
@@ -47,39 +47,39 @@ namespace BehaviorDesigner.Runtime.Tasks.Basic.Math
 			this.storeResult.Value = 0;
 		}
 
-		// Token: 0x04006F9A RID: 28570
+		// Token: 0x0400607F RID: 24703
 		[Tooltip("The operation to perform")]
 		public IntOperator.Operation operation;
 
-		// Token: 0x04006F9B RID: 28571
+		// Token: 0x04006080 RID: 24704
 		[Tooltip("The first integer")]
 		public SharedInt integer1;
 
-		// Token: 0x04006F9C RID: 28572
+		// Token: 0x04006081 RID: 24705
 		[Tooltip("The second integer")]
 		public SharedInt integer2;
 
-		// Token: 0x04006F9D RID: 28573
+		// Token: 0x04006082 RID: 24706
 		[RequiredField]
 		[Tooltip("The variable to store the result")]
 		public SharedInt storeResult;
 
-		// Token: 0x020015C3 RID: 5571
+		// Token: 0x02001737 RID: 5943
 		public enum Operation
 		{
-			// Token: 0x04006F9F RID: 28575
+			// Token: 0x04007573 RID: 30067
 			Add,
-			// Token: 0x04006FA0 RID: 28576
+			// Token: 0x04007574 RID: 30068
 			Subtract,
-			// Token: 0x04006FA1 RID: 28577
+			// Token: 0x04007575 RID: 30069
 			Multiply,
-			// Token: 0x04006FA2 RID: 28578
+			// Token: 0x04007576 RID: 30070
 			Divide,
-			// Token: 0x04006FA3 RID: 28579
+			// Token: 0x04007577 RID: 30071
 			Min,
-			// Token: 0x04006FA4 RID: 28580
+			// Token: 0x04007578 RID: 30072
 			Max,
-			// Token: 0x04006FA5 RID: 28581
+			// Token: 0x04007579 RID: 30073
 			Modulo
 		}
 	}

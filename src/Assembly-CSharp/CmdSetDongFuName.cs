@@ -2,19 +2,19 @@
 using Fungus;
 using UnityEngine;
 
-// Token: 0x02000315 RID: 789
+// Token: 0x02000200 RID: 512
 [CommandInfo("YSDongFu", "让玩家设置洞府名字", "让玩家设置洞府名字", 0)]
 [AddComponentMenu("")]
 public class CmdSetDongFuName : Command
 {
-	// Token: 0x0600175D RID: 5981 RVA: 0x000149F6 File Offset: 0x00012BF6
+	// Token: 0x060014B3 RID: 5299 RVA: 0x00084C8F File Offset: 0x00082E8F
 	public override void OnEnter()
 	{
 		this.OpenInputBox();
 		this.Continue();
 	}
 
-	// Token: 0x0600175E RID: 5982 RVA: 0x00014A04 File Offset: 0x00012C04
+	// Token: 0x060014B4 RID: 5300 RVA: 0x00084C9D File Offset: 0x00082E9D
 	public void OpenInputBox()
 	{
 		UInputBox.Show("为洞府命名", delegate(string s)
@@ -34,7 +34,7 @@ public class CmdSetDongFuName : Command
 		});
 	}
 
-	// Token: 0x040012B9 RID: 4793
+	// Token: 0x04000F73 RID: 3955
 	[Tooltip("洞府ID")]
 	[SerializeField]
 	protected int dongFuID;

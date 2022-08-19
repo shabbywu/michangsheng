@@ -4,11 +4,11 @@ using UnityEngine;
 
 namespace UltimateSurvival.Building
 {
-	// Token: 0x02000969 RID: 2409
+	// Token: 0x02000664 RID: 1636
 	public class Door : InteractableObject
 	{
-		// Token: 0x170006C0 RID: 1728
-		// (get) Token: 0x06003D94 RID: 15764 RVA: 0x0002C5CB File Offset: 0x0002A7CB
+		// Token: 0x170004A8 RID: 1192
+		// (get) Token: 0x06003401 RID: 13313 RVA: 0x0016C1E6 File Offset: 0x0016A3E6
 		public bool Open
 		{
 			get
@@ -17,7 +17,7 @@ namespace UltimateSurvival.Building
 			}
 		}
 
-		// Token: 0x06003D95 RID: 15765 RVA: 0x001B4EB4 File Offset: 0x001B30B4
+		// Token: 0x06003402 RID: 13314 RVA: 0x0016C1F0 File Offset: 0x0016A3F0
 		public override void OnInteract(PlayerEventHandler player)
 		{
 			if (Time.time > this.m_NextTimeCanInteract)
@@ -34,7 +34,7 @@ namespace UltimateSurvival.Building
 			}
 		}
 
-		// Token: 0x06003D96 RID: 15766 RVA: 0x0002C5D3 File Offset: 0x0002A7D3
+		// Token: 0x06003403 RID: 13315 RVA: 0x0016C279 File Offset: 0x0016A479
 		private IEnumerator C_DoAnimation(bool open)
 		{
 			this.m_Collider.enabled = false;
@@ -49,46 +49,46 @@ namespace UltimateSurvival.Building
 			yield break;
 		}
 
-		// Token: 0x040037C7 RID: 14279
+		// Token: 0x04002E3E RID: 11838
 		[SerializeField]
 		private Transform m_Model;
 
-		// Token: 0x040037C8 RID: 14280
+		// Token: 0x04002E3F RID: 11839
 		[SerializeField]
 		private Collider m_Collider;
 
-		// Token: 0x040037C9 RID: 14281
+		// Token: 0x04002E40 RID: 11840
 		[Header("Functionality")]
 		[SerializeField]
 		private Vector3 m_ClosedRotation;
 
-		// Token: 0x040037CA RID: 14282
+		// Token: 0x04002E41 RID: 11841
 		[SerializeField]
 		private Vector3 m_OpenRotation;
 
-		// Token: 0x040037CB RID: 14283
+		// Token: 0x04002E42 RID: 11842
 		[SerializeField]
 		[Range(0.1f, 30f)]
 		private float m_AnimationSpeed = 1f;
 
-		// Token: 0x040037CC RID: 14284
+		// Token: 0x04002E43 RID: 11843
 		[SerializeField]
 		[Range(0.3f, 3f)]
 		private float m_InteractionThreeshold = 1f;
 
-		// Token: 0x040037CD RID: 14285
+		// Token: 0x04002E44 RID: 11844
 		[Header("Audio")]
 		[SerializeField]
 		private SoundPlayer m_DoorOpen;
 
-		// Token: 0x040037CE RID: 14286
+		// Token: 0x04002E45 RID: 11845
 		[SerializeField]
 		private SoundPlayer m_DoorClose;
 
-		// Token: 0x040037CF RID: 14287
+		// Token: 0x04002E46 RID: 11846
 		private bool m_Open;
 
-		// Token: 0x040037D0 RID: 14288
+		// Token: 0x04002E47 RID: 11847
 		private float m_NextTimeCanInteract;
 	}
 }

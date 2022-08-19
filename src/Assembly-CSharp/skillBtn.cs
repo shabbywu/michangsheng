@@ -5,16 +5,16 @@ using KBEngine;
 using UnityEngine;
 using UnityEngine.UI;
 
-// Token: 0x0200064F RID: 1615
+// Token: 0x02000484 RID: 1156
 public class skillBtn : MonoBehaviour
 {
-	// Token: 0x06002826 RID: 10278 RVA: 0x0001F899 File Offset: 0x0001DA99
+	// Token: 0x0600244A RID: 9290 RVA: 0x000FAEA0 File Offset: 0x000F90A0
 	private void Start()
 	{
 		this.panle.SetActive(false);
 	}
 
-	// Token: 0x06002827 RID: 10279 RVA: 0x0013AAB0 File Offset: 0x00138CB0
+	// Token: 0x0600244B RID: 9291 RVA: 0x000FAEB0 File Offset: 0x000F90B0
 	public void openskill()
 	{
 		this.panle.SetActive(true);
@@ -46,7 +46,7 @@ public class skillBtn : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06002828 RID: 10280 RVA: 0x0001F8A7 File Offset: 0x0001DAA7
+	// Token: 0x0600244C RID: 9292 RVA: 0x000FB065 File Offset: 0x000F9265
 	public void button()
 	{
 		if (this.state == 0)
@@ -59,15 +59,15 @@ public class skillBtn : MonoBehaviour
 		this.closeskill();
 	}
 
-	// Token: 0x06002829 RID: 10281 RVA: 0x0001F899 File Offset: 0x0001DA99
+	// Token: 0x0600244D RID: 9293 RVA: 0x000FAEA0 File Offset: 0x000F90A0
 	public void closeskill()
 	{
 		this.panle.SetActive(false);
 	}
 
-	// Token: 0x040021F5 RID: 8693
+	// Token: 0x04001D04 RID: 7428
 	public GameObject panle;
 
-	// Token: 0x040021F6 RID: 8694
+	// Token: 0x04001D05 RID: 7429
 	public int state;
 }

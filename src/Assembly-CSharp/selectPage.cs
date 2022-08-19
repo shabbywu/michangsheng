@@ -2,16 +2,16 @@
 using GUIPackage;
 using YSGame;
 
-// Token: 0x0200029D RID: 669
+// Token: 0x020001A1 RID: 417
 public class selectPage : prepareSelect
 {
-	// Token: 0x06001470 RID: 5232 RVA: 0x00012E8D File Offset: 0x0001108D
+	// Token: 0x060011C9 RID: 4553 RVA: 0x0006BAA1 File Offset: 0x00069CA1
 	private void Start()
 	{
 		base.Invoke("resetObj", 0.3f);
 	}
 
-	// Token: 0x06001471 RID: 5233 RVA: 0x00012E9F File Offset: 0x0001109F
+	// Token: 0x060011CA RID: 4554 RVA: 0x0006BAB3 File Offset: 0x00069CB3
 	public override void nextPage()
 	{
 		if (this.obj.isNewJiaoYi && !JiaoYiManager.inst.canClick)
@@ -23,7 +23,7 @@ public class selectPage : prepareSelect
 		this.resetObj();
 	}
 
-	// Token: 0x06001472 RID: 5234 RVA: 0x00012ED8 File Offset: 0x000110D8
+	// Token: 0x060011CB RID: 4555 RVA: 0x0006BAEC File Offset: 0x00069CEC
 	public override void lastPage()
 	{
 		if (this.obj.isNewJiaoYi && !JiaoYiManager.inst.canClick)
@@ -33,13 +33,13 @@ public class selectPage : prepareSelect
 		base.lastPage();
 	}
 
-	// Token: 0x06001473 RID: 5235 RVA: 0x00012EFA File Offset: 0x000110FA
+	// Token: 0x060011CC RID: 4556 RVA: 0x0006BB0E File Offset: 0x00069D0E
 	public void setMaxPage(int max)
 	{
 		this.maxPage = max;
 	}
 
-	// Token: 0x06001474 RID: 5236 RVA: 0x000B9C00 File Offset: 0x000B7E00
+	// Token: 0x060011CD RID: 4557 RVA: 0x0006BB18 File Offset: 0x00069D18
 	public override void addNowPage()
 	{
 		this.obj.nowIndex++;
@@ -51,7 +51,7 @@ public class selectPage : prepareSelect
 		}
 	}
 
-	// Token: 0x06001475 RID: 5237 RVA: 0x00012F03 File Offset: 0x00011103
+	// Token: 0x060011CE RID: 4558 RVA: 0x0006BB6A File Offset: 0x00069D6A
 	public virtual void RestePageIndex()
 	{
 		this.nowIndex = 0;
@@ -59,7 +59,7 @@ public class selectPage : prepareSelect
 		base.setPageTetx();
 	}
 
-	// Token: 0x06001476 RID: 5238 RVA: 0x000B9C54 File Offset: 0x000B7E54
+	// Token: 0x060011CF RID: 4559 RVA: 0x0006BB88 File Offset: 0x00069D88
 	public override void reduceIndex()
 	{
 		this.obj.nowIndex--;
@@ -71,7 +71,7 @@ public class selectPage : prepareSelect
 		}
 	}
 
-	// Token: 0x06001477 RID: 5239 RVA: 0x000B9CAC File Offset: 0x000B7EAC
+	// Token: 0x060011D0 RID: 4560 RVA: 0x0006BBE0 File Offset: 0x00069DE0
 	public override void resetObj()
 	{
 		base.setPageTetx();
@@ -84,11 +84,11 @@ public class selectPage : prepareSelect
 		this.obj.MonstarLoadInventory(exchengePlan.MonstarID);
 	}
 
-	// Token: 0x06001478 RID: 5240 RVA: 0x000042DD File Offset: 0x000024DD
+	// Token: 0x060011D1 RID: 4561 RVA: 0x00004095 File Offset: 0x00002295
 	private void Update()
 	{
 	}
 
-	// Token: 0x04000FDD RID: 4061
+	// Token: 0x04000CB9 RID: 3257
 	public Inventory2 obj;
 }

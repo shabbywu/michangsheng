@@ -1,24 +1,24 @@
 ﻿using System;
 
-// Token: 0x02000216 RID: 534
+// Token: 0x02000141 RID: 321
 [Serializable]
 public class ItemAttribute
 {
-	// Token: 0x060010C9 RID: 4297 RVA: 0x00010735 File Offset: 0x0000E935
+	// Token: 0x06000EA9 RID: 3753 RVA: 0x000598E2 File Offset: 0x00057AE2
 	public ItemAttribute(string attributeName, int attributeValue)
 	{
 		this.attributeName = attributeName;
 		this.attributeValue = attributeValue;
 	}
 
-	// Token: 0x060010CA RID: 4298 RVA: 0x0000403D File Offset: 0x0000223D
+	// Token: 0x06000EAA RID: 3754 RVA: 0x000027FC File Offset: 0x000009FC
 	public ItemAttribute()
 	{
 	}
 
-	// Token: 0x04000D56 RID: 3414
+	// Token: 0x04000ABB RID: 2747
 	public string attributeName;
 
-	// Token: 0x04000D57 RID: 3415
+	// Token: 0x04000ABC RID: 2748
 	public int attributeValue;
 }

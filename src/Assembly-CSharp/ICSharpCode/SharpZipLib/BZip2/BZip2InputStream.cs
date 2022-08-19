@@ -4,10 +4,10 @@ using ICSharpCode.SharpZipLib.Checksum;
 
 namespace ICSharpCode.SharpZipLib.BZip2
 {
-	// Token: 0x0200083C RID: 2108
+	// Token: 0x02000593 RID: 1427
 	public class BZip2InputStream : Stream
 	{
-		// Token: 0x06003726 RID: 14118 RVA: 0x0019D0F4 File Offset: 0x0019B2F4
+		// Token: 0x06002EB0 RID: 11952 RVA: 0x0015266C File Offset: 0x0015086C
 		public BZip2InputStream(Stream stream)
 		{
 			if (stream == null)
@@ -28,13 +28,13 @@ namespace ICSharpCode.SharpZipLib.BZip2
 			this.SetupBlock();
 		}
 
-		// Token: 0x17000581 RID: 1409
-		// (get) Token: 0x06003727 RID: 14119 RVA: 0x000281EE File Offset: 0x000263EE
-		// (set) Token: 0x06003728 RID: 14120 RVA: 0x000281F6 File Offset: 0x000263F6
+		// Token: 0x170003CA RID: 970
+		// (get) Token: 0x06002EB1 RID: 11953 RVA: 0x001527A6 File Offset: 0x001509A6
+		// (set) Token: 0x06002EB2 RID: 11954 RVA: 0x001527AE File Offset: 0x001509AE
 		public bool IsStreamOwner { get; set; } = true;
 
-		// Token: 0x17000582 RID: 1410
-		// (get) Token: 0x06003729 RID: 14121 RVA: 0x000281FF File Offset: 0x000263FF
+		// Token: 0x170003CB RID: 971
+		// (get) Token: 0x06002EB3 RID: 11955 RVA: 0x001527B7 File Offset: 0x001509B7
 		public override bool CanRead
 		{
 			get
@@ -43,8 +43,8 @@ namespace ICSharpCode.SharpZipLib.BZip2
 			}
 		}
 
-		// Token: 0x17000583 RID: 1411
-		// (get) Token: 0x0600372A RID: 14122 RVA: 0x00004050 File Offset: 0x00002250
+		// Token: 0x170003CC RID: 972
+		// (get) Token: 0x06002EB4 RID: 11956 RVA: 0x0000280F File Offset: 0x00000A0F
 		public override bool CanSeek
 		{
 			get
@@ -53,8 +53,8 @@ namespace ICSharpCode.SharpZipLib.BZip2
 			}
 		}
 
-		// Token: 0x17000584 RID: 1412
-		// (get) Token: 0x0600372B RID: 14123 RVA: 0x00004050 File Offset: 0x00002250
+		// Token: 0x170003CD RID: 973
+		// (get) Token: 0x06002EB5 RID: 11957 RVA: 0x0000280F File Offset: 0x00000A0F
 		public override bool CanWrite
 		{
 			get
@@ -63,8 +63,8 @@ namespace ICSharpCode.SharpZipLib.BZip2
 			}
 		}
 
-		// Token: 0x17000585 RID: 1413
-		// (get) Token: 0x0600372C RID: 14124 RVA: 0x0002820C File Offset: 0x0002640C
+		// Token: 0x170003CE RID: 974
+		// (get) Token: 0x06002EB6 RID: 11958 RVA: 0x001527C4 File Offset: 0x001509C4
 		public override long Length
 		{
 			get
@@ -73,9 +73,9 @@ namespace ICSharpCode.SharpZipLib.BZip2
 			}
 		}
 
-		// Token: 0x17000586 RID: 1414
-		// (get) Token: 0x0600372D RID: 14125 RVA: 0x00028219 File Offset: 0x00026419
-		// (set) Token: 0x0600372E RID: 14126 RVA: 0x00028226 File Offset: 0x00026426
+		// Token: 0x170003CF RID: 975
+		// (get) Token: 0x06002EB7 RID: 11959 RVA: 0x001527D1 File Offset: 0x001509D1
+		// (set) Token: 0x06002EB8 RID: 11960 RVA: 0x001527DE File Offset: 0x001509DE
 		public override long Position
 		{
 			get
@@ -88,37 +88,37 @@ namespace ICSharpCode.SharpZipLib.BZip2
 			}
 		}
 
-		// Token: 0x0600372F RID: 14127 RVA: 0x00028232 File Offset: 0x00026432
+		// Token: 0x06002EB9 RID: 11961 RVA: 0x001527EA File Offset: 0x001509EA
 		public override void Flush()
 		{
 			this.baseStream.Flush();
 		}
 
-		// Token: 0x06003730 RID: 14128 RVA: 0x0002823F File Offset: 0x0002643F
+		// Token: 0x06002EBA RID: 11962 RVA: 0x001527F7 File Offset: 0x001509F7
 		public override long Seek(long offset, SeekOrigin origin)
 		{
 			throw new NotSupportedException("BZip2InputStream Seek not supported");
 		}
 
-		// Token: 0x06003731 RID: 14129 RVA: 0x0002824B File Offset: 0x0002644B
+		// Token: 0x06002EBB RID: 11963 RVA: 0x00152803 File Offset: 0x00150A03
 		public override void SetLength(long value)
 		{
 			throw new NotSupportedException("BZip2InputStream SetLength not supported");
 		}
 
-		// Token: 0x06003732 RID: 14130 RVA: 0x00028257 File Offset: 0x00026457
+		// Token: 0x06002EBC RID: 11964 RVA: 0x0015280F File Offset: 0x00150A0F
 		public override void Write(byte[] buffer, int offset, int count)
 		{
 			throw new NotSupportedException("BZip2InputStream Write not supported");
 		}
 
-		// Token: 0x06003733 RID: 14131 RVA: 0x00028263 File Offset: 0x00026463
+		// Token: 0x06002EBD RID: 11965 RVA: 0x0015281B File Offset: 0x00150A1B
 		public override void WriteByte(byte value)
 		{
 			throw new NotSupportedException("BZip2InputStream WriteByte not supported");
 		}
 
-		// Token: 0x06003734 RID: 14132 RVA: 0x0019D230 File Offset: 0x0019B430
+		// Token: 0x06002EBE RID: 11966 RVA: 0x00152828 File Offset: 0x00150A28
 		public override int Read(byte[] buffer, int offset, int count)
 		{
 			if (buffer == null)
@@ -137,7 +137,7 @@ namespace ICSharpCode.SharpZipLib.BZip2
 			return count;
 		}
 
-		// Token: 0x06003735 RID: 14133 RVA: 0x0002826F File Offset: 0x0002646F
+		// Token: 0x06002EBF RID: 11967 RVA: 0x00152864 File Offset: 0x00150A64
 		protected override void Dispose(bool disposing)
 		{
 			if (disposing && this.IsStreamOwner)
@@ -146,7 +146,7 @@ namespace ICSharpCode.SharpZipLib.BZip2
 			}
 		}
 
-		// Token: 0x06003736 RID: 14134 RVA: 0x0019D26C File Offset: 0x0019B46C
+		// Token: 0x06002EC0 RID: 11968 RVA: 0x0015287C File Offset: 0x00150A7C
 		public override int ReadByte()
 		{
 			if (this.streamEnd)
@@ -172,7 +172,7 @@ namespace ICSharpCode.SharpZipLib.BZip2
 			return result;
 		}
 
-		// Token: 0x06003737 RID: 14135 RVA: 0x0019D2D8 File Offset: 0x0019B4D8
+		// Token: 0x06002EC1 RID: 11969 RVA: 0x001528E8 File Offset: 0x00150AE8
 		private void MakeMaps()
 		{
 			this.nInUse = 0;
@@ -187,7 +187,7 @@ namespace ICSharpCode.SharpZipLib.BZip2
 			}
 		}
 
-		// Token: 0x06003738 RID: 14136 RVA: 0x0019D334 File Offset: 0x0019B534
+		// Token: 0x06002EC2 RID: 11970 RVA: 0x00152944 File Offset: 0x00150B44
 		private void Initialize()
 		{
 			int num = (int)this.BsGetUChar();
@@ -203,7 +203,7 @@ namespace ICSharpCode.SharpZipLib.BZip2
 			this.computedCombinedCRC = 0U;
 		}
 
-		// Token: 0x06003739 RID: 14137 RVA: 0x0019D390 File Offset: 0x0019B590
+		// Token: 0x06002EC3 RID: 11971 RVA: 0x001529A0 File Offset: 0x00150BA0
 		private void InitBlock()
 		{
 			char c = this.BsGetUChar();
@@ -230,7 +230,7 @@ namespace ICSharpCode.SharpZipLib.BZip2
 			this.currentState = 1;
 		}
 
-		// Token: 0x0600373A RID: 14138 RVA: 0x0019D454 File Offset: 0x0019B654
+		// Token: 0x06002EC4 RID: 11972 RVA: 0x00152A64 File Offset: 0x00150C64
 		private void EndBlock()
 		{
 			this.computedBlockCRC = (int)this.mCrc.Value;
@@ -242,7 +242,7 @@ namespace ICSharpCode.SharpZipLib.BZip2
 			this.computedCombinedCRC ^= (uint)this.computedBlockCRC;
 		}
 
-		// Token: 0x0600373B RID: 14139 RVA: 0x00028287 File Offset: 0x00026487
+		// Token: 0x06002EC5 RID: 11973 RVA: 0x00152AC3 File Offset: 0x00150CC3
 		private void Complete()
 		{
 			this.storedCombinedCRC = this.BsGetInt32();
@@ -253,7 +253,7 @@ namespace ICSharpCode.SharpZipLib.BZip2
 			this.streamEnd = true;
 		}
 
-		// Token: 0x0600373C RID: 14140 RVA: 0x0019D4B4 File Offset: 0x0019B6B4
+		// Token: 0x06002EC6 RID: 11974 RVA: 0x00152AEC File Offset: 0x00150CEC
 		private void FillBuffer()
 		{
 			int num = 0;
@@ -273,7 +273,7 @@ namespace ICSharpCode.SharpZipLib.BZip2
 			this.bsLive += 8;
 		}
 
-		// Token: 0x0600373D RID: 14141 RVA: 0x000282AF File Offset: 0x000264AF
+		// Token: 0x06002EC7 RID: 11975 RVA: 0x00152B50 File Offset: 0x00150D50
 		private int BsR(int n)
 		{
 			while (this.bsLive < n)
@@ -285,25 +285,25 @@ namespace ICSharpCode.SharpZipLib.BZip2
 			return result;
 		}
 
-		// Token: 0x0600373E RID: 14142 RVA: 0x000282EB File Offset: 0x000264EB
+		// Token: 0x06002EC8 RID: 11976 RVA: 0x00152B8C File Offset: 0x00150D8C
 		private char BsGetUChar()
 		{
 			return (char)this.BsR(8);
 		}
 
-		// Token: 0x0600373F RID: 14143 RVA: 0x000282F5 File Offset: 0x000264F5
+		// Token: 0x06002EC9 RID: 11977 RVA: 0x00152B96 File Offset: 0x00150D96
 		private int BsGetIntVS(int numBits)
 		{
 			return this.BsR(numBits);
 		}
 
-		// Token: 0x06003740 RID: 14144 RVA: 0x000282FE File Offset: 0x000264FE
+		// Token: 0x06002ECA RID: 11978 RVA: 0x00152B9F File Offset: 0x00150D9F
 		private int BsGetInt32()
 		{
 			return ((this.BsR(8) << 8 | this.BsR(8)) << 8 | this.BsR(8)) << 8 | this.BsR(8);
 		}
 
-		// Token: 0x06003741 RID: 14145 RVA: 0x0019D518 File Offset: 0x0019B718
+		// Token: 0x06002ECB RID: 11979 RVA: 0x00152BC8 File Offset: 0x00150DC8
 		private void RecvDecodingTables()
 		{
 			char[][] array = new char[6][];
@@ -396,7 +396,7 @@ namespace ICSharpCode.SharpZipLib.BZip2
 			}
 		}
 
-		// Token: 0x06003742 RID: 14146 RVA: 0x0019D764 File Offset: 0x0019B964
+		// Token: 0x06002ECC RID: 11980 RVA: 0x00152E14 File Offset: 0x00151014
 		private void GetAndMoveToFrontDecode()
 		{
 			byte[] array = new byte[256];
@@ -534,7 +534,7 @@ namespace ICSharpCode.SharpZipLib.BZip2
 			}
 		}
 
-		// Token: 0x06003743 RID: 14147 RVA: 0x0019DB3C File Offset: 0x0019BD3C
+		// Token: 0x06002ECD RID: 11981 RVA: 0x001531EC File Offset: 0x001513EC
 		private void SetupBlock()
 		{
 			int[] array = new int[257];
@@ -564,7 +564,7 @@ namespace ICSharpCode.SharpZipLib.BZip2
 			this.SetupNoRandPartA();
 		}
 
-		// Token: 0x06003744 RID: 14148 RVA: 0x0019DC10 File Offset: 0x0019BE10
+		// Token: 0x06002ECE RID: 11982 RVA: 0x001532C0 File Offset: 0x001514C0
 		private void SetupRandPartA()
 		{
 			if (this.i2 <= this.last)
@@ -594,7 +594,7 @@ namespace ICSharpCode.SharpZipLib.BZip2
 			this.SetupBlock();
 		}
 
-		// Token: 0x06003745 RID: 14149 RVA: 0x0019DD0C File Offset: 0x0019BF0C
+		// Token: 0x06002ECF RID: 11983 RVA: 0x001533BC File Offset: 0x001515BC
 		private void SetupNoRandPartA()
 		{
 			if (this.i2 <= this.last)
@@ -613,7 +613,7 @@ namespace ICSharpCode.SharpZipLib.BZip2
 			this.SetupBlock();
 		}
 
-		// Token: 0x06003746 RID: 14150 RVA: 0x0019DDA0 File Offset: 0x0019BFA0
+		// Token: 0x06002ED0 RID: 11984 RVA: 0x00153450 File Offset: 0x00151650
 		private void SetupRandPartB()
 		{
 			if (this.ch2 != this.chPrev)
@@ -648,7 +648,7 @@ namespace ICSharpCode.SharpZipLib.BZip2
 			this.SetupRandPartA();
 		}
 
-		// Token: 0x06003747 RID: 14151 RVA: 0x0019DE98 File Offset: 0x0019C098
+		// Token: 0x06002ED1 RID: 11985 RVA: 0x00153548 File Offset: 0x00151748
 		private void SetupRandPartC()
 		{
 			if (this.j2 < (int)this.z)
@@ -664,7 +664,7 @@ namespace ICSharpCode.SharpZipLib.BZip2
 			this.SetupRandPartA();
 		}
 
-		// Token: 0x06003748 RID: 14152 RVA: 0x0019DF04 File Offset: 0x0019C104
+		// Token: 0x06002ED2 RID: 11986 RVA: 0x001535B4 File Offset: 0x001517B4
 		private void SetupNoRandPartB()
 		{
 			if (this.ch2 != this.chPrev)
@@ -688,7 +688,7 @@ namespace ICSharpCode.SharpZipLib.BZip2
 			this.SetupNoRandPartA();
 		}
 
-		// Token: 0x06003749 RID: 14153 RVA: 0x0019DF94 File Offset: 0x0019C194
+		// Token: 0x06002ED3 RID: 11987 RVA: 0x00153644 File Offset: 0x00151844
 		private void SetupNoRandPartC()
 		{
 			if (this.j2 < (int)this.z)
@@ -704,7 +704,7 @@ namespace ICSharpCode.SharpZipLib.BZip2
 			this.SetupNoRandPartA();
 		}
 
-		// Token: 0x0600374A RID: 14154 RVA: 0x0019E000 File Offset: 0x0019C200
+		// Token: 0x06002ED4 RID: 11988 RVA: 0x001536B0 File Offset: 0x001518B0
 		private void SetDecompressStructureSizes(int newSize100k)
 		{
 			if (0 > newSize100k || newSize100k > 9 || 0 > this.blockSize100k || this.blockSize100k > 9)
@@ -721,31 +721,31 @@ namespace ICSharpCode.SharpZipLib.BZip2
 			this.tt = new int[num];
 		}
 
-		// Token: 0x0600374B RID: 14155 RVA: 0x00028325 File Offset: 0x00026525
+		// Token: 0x06002ED5 RID: 11989 RVA: 0x0015370F File Offset: 0x0015190F
 		private static void CompressedStreamEOF()
 		{
 			throw new EndOfStreamException("BZip2 input stream end of compressed stream");
 		}
 
-		// Token: 0x0600374C RID: 14156 RVA: 0x00028331 File Offset: 0x00026531
+		// Token: 0x06002ED6 RID: 11990 RVA: 0x0015371B File Offset: 0x0015191B
 		private static void BlockOverrun()
 		{
 			throw new BZip2Exception("BZip2 input stream block overrun");
 		}
 
-		// Token: 0x0600374D RID: 14157 RVA: 0x0002833D File Offset: 0x0002653D
+		// Token: 0x06002ED7 RID: 11991 RVA: 0x00153727 File Offset: 0x00151927
 		private static void BadBlockHeader()
 		{
 			throw new BZip2Exception("BZip2 input stream bad block header");
 		}
 
-		// Token: 0x0600374E RID: 14158 RVA: 0x00028349 File Offset: 0x00026549
+		// Token: 0x06002ED8 RID: 11992 RVA: 0x00153733 File Offset: 0x00151933
 		private static void CrcError()
 		{
 			throw new BZip2Exception("BZip2 input stream crc error");
 		}
 
-		// Token: 0x0600374F RID: 14159 RVA: 0x0019E060 File Offset: 0x0019C260
+		// Token: 0x06002ED9 RID: 11993 RVA: 0x00153740 File Offset: 0x00151940
 		private static void HbCreateDecodeTables(int[] limit, int[] baseArray, int[] perm, char[] length, int minLen, int maxLen, int alphaSize)
 		{
 			int num = 0;
@@ -789,136 +789,136 @@ namespace ICSharpCode.SharpZipLib.BZip2
 			}
 		}
 
-		// Token: 0x0400313E RID: 12606
+		// Token: 0x040028FF RID: 10495
 		private const int START_BLOCK_STATE = 1;
 
-		// Token: 0x0400313F RID: 12607
+		// Token: 0x04002900 RID: 10496
 		private const int RAND_PART_A_STATE = 2;
 
-		// Token: 0x04003140 RID: 12608
+		// Token: 0x04002901 RID: 10497
 		private const int RAND_PART_B_STATE = 3;
 
-		// Token: 0x04003141 RID: 12609
+		// Token: 0x04002902 RID: 10498
 		private const int RAND_PART_C_STATE = 4;
 
-		// Token: 0x04003142 RID: 12610
+		// Token: 0x04002903 RID: 10499
 		private const int NO_RAND_PART_A_STATE = 5;
 
-		// Token: 0x04003143 RID: 12611
+		// Token: 0x04002904 RID: 10500
 		private const int NO_RAND_PART_B_STATE = 6;
 
-		// Token: 0x04003144 RID: 12612
+		// Token: 0x04002905 RID: 10501
 		private const int NO_RAND_PART_C_STATE = 7;
 
-		// Token: 0x04003145 RID: 12613
+		// Token: 0x04002906 RID: 10502
 		private int last;
 
-		// Token: 0x04003146 RID: 12614
+		// Token: 0x04002907 RID: 10503
 		private int origPtr;
 
-		// Token: 0x04003147 RID: 12615
+		// Token: 0x04002908 RID: 10504
 		private int blockSize100k;
 
-		// Token: 0x04003148 RID: 12616
+		// Token: 0x04002909 RID: 10505
 		private bool blockRandomised;
 
-		// Token: 0x04003149 RID: 12617
+		// Token: 0x0400290A RID: 10506
 		private int bsBuff;
 
-		// Token: 0x0400314A RID: 12618
+		// Token: 0x0400290B RID: 10507
 		private int bsLive;
 
-		// Token: 0x0400314B RID: 12619
+		// Token: 0x0400290C RID: 10508
 		private IChecksum mCrc = new BZip2Crc();
 
-		// Token: 0x0400314C RID: 12620
+		// Token: 0x0400290D RID: 10509
 		private bool[] inUse = new bool[256];
 
-		// Token: 0x0400314D RID: 12621
+		// Token: 0x0400290E RID: 10510
 		private int nInUse;
 
-		// Token: 0x0400314E RID: 12622
+		// Token: 0x0400290F RID: 10511
 		private byte[] seqToUnseq = new byte[256];
 
-		// Token: 0x0400314F RID: 12623
+		// Token: 0x04002910 RID: 10512
 		private byte[] unseqToSeq = new byte[256];
 
-		// Token: 0x04003150 RID: 12624
+		// Token: 0x04002911 RID: 10513
 		private byte[] selector = new byte[18002];
 
-		// Token: 0x04003151 RID: 12625
+		// Token: 0x04002912 RID: 10514
 		private byte[] selectorMtf = new byte[18002];
 
-		// Token: 0x04003152 RID: 12626
+		// Token: 0x04002913 RID: 10515
 		private int[] tt;
 
-		// Token: 0x04003153 RID: 12627
+		// Token: 0x04002914 RID: 10516
 		private byte[] ll8;
 
-		// Token: 0x04003154 RID: 12628
+		// Token: 0x04002915 RID: 10517
 		private int[] unzftab = new int[256];
 
-		// Token: 0x04003155 RID: 12629
+		// Token: 0x04002916 RID: 10518
 		private int[][] limit = new int[6][];
 
-		// Token: 0x04003156 RID: 12630
+		// Token: 0x04002917 RID: 10519
 		private int[][] baseArray = new int[6][];
 
-		// Token: 0x04003157 RID: 12631
+		// Token: 0x04002918 RID: 10520
 		private int[][] perm = new int[6][];
 
-		// Token: 0x04003158 RID: 12632
+		// Token: 0x04002919 RID: 10521
 		private int[] minLens = new int[6];
 
-		// Token: 0x04003159 RID: 12633
+		// Token: 0x0400291A RID: 10522
 		private readonly Stream baseStream;
 
-		// Token: 0x0400315A RID: 12634
+		// Token: 0x0400291B RID: 10523
 		private bool streamEnd;
 
-		// Token: 0x0400315B RID: 12635
+		// Token: 0x0400291C RID: 10524
 		private int currentChar = -1;
 
-		// Token: 0x0400315C RID: 12636
+		// Token: 0x0400291D RID: 10525
 		private int currentState = 1;
 
-		// Token: 0x0400315D RID: 12637
+		// Token: 0x0400291E RID: 10526
 		private int storedBlockCRC;
 
-		// Token: 0x0400315E RID: 12638
+		// Token: 0x0400291F RID: 10527
 		private int storedCombinedCRC;
 
-		// Token: 0x0400315F RID: 12639
+		// Token: 0x04002920 RID: 10528
 		private int computedBlockCRC;
 
-		// Token: 0x04003160 RID: 12640
+		// Token: 0x04002921 RID: 10529
 		private uint computedCombinedCRC;
 
-		// Token: 0x04003161 RID: 12641
+		// Token: 0x04002922 RID: 10530
 		private int count;
 
-		// Token: 0x04003162 RID: 12642
+		// Token: 0x04002923 RID: 10531
 		private int chPrev;
 
-		// Token: 0x04003163 RID: 12643
+		// Token: 0x04002924 RID: 10532
 		private int ch2;
 
-		// Token: 0x04003164 RID: 12644
+		// Token: 0x04002925 RID: 10533
 		private int tPos;
 
-		// Token: 0x04003165 RID: 12645
+		// Token: 0x04002926 RID: 10534
 		private int rNToGo;
 
-		// Token: 0x04003166 RID: 12646
+		// Token: 0x04002927 RID: 10535
 		private int rTPos;
 
-		// Token: 0x04003167 RID: 12647
+		// Token: 0x04002928 RID: 10536
 		private int i2;
 
-		// Token: 0x04003168 RID: 12648
+		// Token: 0x04002929 RID: 10537
 		private int j2;
 
-		// Token: 0x04003169 RID: 12649
+		// Token: 0x0400292A RID: 10538
 		private byte z;
 	}
 }

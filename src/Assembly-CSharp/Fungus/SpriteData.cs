@@ -3,26 +3,26 @@ using UnityEngine;
 
 namespace Fungus
 {
-	// Token: 0x02001389 RID: 5001
+	// Token: 0x02000EE8 RID: 3816
 	[Serializable]
 	public struct SpriteData
 	{
-		// Token: 0x06007911 RID: 30993 RVA: 0x0005279E File Offset: 0x0005099E
+		// Token: 0x06006B72 RID: 27506 RVA: 0x002967AA File Offset: 0x002949AA
 		public SpriteData(Sprite v)
 		{
 			this.spriteVal = v;
 			this.spriteRef = null;
 		}
 
-		// Token: 0x06007912 RID: 30994 RVA: 0x000527AE File Offset: 0x000509AE
+		// Token: 0x06006B73 RID: 27507 RVA: 0x002967BA File Offset: 0x002949BA
 		public static implicit operator Sprite(SpriteData spriteData)
 		{
 			return spriteData.Value;
 		}
 
-		// Token: 0x17000B5F RID: 2911
-		// (get) Token: 0x06007913 RID: 30995 RVA: 0x000527B7 File Offset: 0x000509B7
-		// (set) Token: 0x06007914 RID: 30996 RVA: 0x000527D9 File Offset: 0x000509D9
+		// Token: 0x170008C2 RID: 2242
+		// (get) Token: 0x06006B74 RID: 27508 RVA: 0x002967C3 File Offset: 0x002949C3
+		// (set) Token: 0x06006B75 RID: 27509 RVA: 0x002967E5 File Offset: 0x002949E5
 		public Sprite Value
 		{
 			get
@@ -44,7 +44,7 @@ namespace Fungus
 			}
 		}
 
-		// Token: 0x06007915 RID: 30997 RVA: 0x000527FD File Offset: 0x000509FD
+		// Token: 0x06006B76 RID: 27510 RVA: 0x00296809 File Offset: 0x00294A09
 		public string GetDescription()
 		{
 			if (this.spriteRef == null)
@@ -54,7 +54,7 @@ namespace Fungus
 			return this.spriteRef.Key;
 		}
 
-		// Token: 0x040068F7 RID: 26871
+		// Token: 0x04005A8E RID: 23182
 		[SerializeField]
 		[VariableProperty("<Value>", new Type[]
 		{
@@ -62,7 +62,7 @@ namespace Fungus
 		})]
 		public SpriteVariable spriteRef;
 
-		// Token: 0x040068F8 RID: 26872
+		// Token: 0x04005A8F RID: 23183
 		[SerializeField]
 		public Sprite spriteVal;
 	}

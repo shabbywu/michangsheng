@@ -2,10 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-// Token: 0x0200048F RID: 1167
+// Token: 0x02000329 RID: 809
 public class MainUIPlayerInfo : MonoBehaviour
 {
-	// Token: 0x06001F1D RID: 7965 RVA: 0x0010BB54 File Offset: 0x00109D54
+	// Token: 0x06001BDB RID: 7131 RVA: 0x000C6A00 File Offset: 0x000C4C00
 	private void Awake()
 	{
 		MainUIPlayerInfo.inst = this;
@@ -57,7 +57,7 @@ public class MainUIPlayerInfo : MonoBehaviour
 		this.xinjing.desc = this.xinjing.desc.Replace("[24a5d6]", "<color=#24a5d6>").Replace("[-]", "</color>");
 	}
 
-	// Token: 0x06001F1E RID: 7966 RVA: 0x0010C1F8 File Offset: 0x0010A3F8
+	// Token: 0x06001BDC RID: 7132 RVA: 0x000C70A4 File Offset: 0x000C52A4
 	public void UpdataBase()
 	{
 		this.GetZiZhi();
@@ -71,7 +71,7 @@ public class MainUIPlayerInfo : MonoBehaviour
 		this.GetXinJing();
 	}
 
-	// Token: 0x06001F1F RID: 7967 RVA: 0x0010C244 File Offset: 0x0010A444
+	// Token: 0x06001BDD RID: 7133 RVA: 0x000C70F0 File Offset: 0x000C52F0
 	public int GetZiZhi()
 	{
 		Dictionary<int, List<int>> hasSelectSeidList = MainUIMag.inst.createAvatarPanel.setTianFu.hasSelectSeidList;
@@ -87,7 +87,7 @@ public class MainUIPlayerInfo : MonoBehaviour
 		return this.zizhi.curNum;
 	}
 
-	// Token: 0x06001F20 RID: 7968 RVA: 0x0010C328 File Offset: 0x0010A528
+	// Token: 0x06001BDE RID: 7134 RVA: 0x000C71D4 File Offset: 0x000C53D4
 	public int GetWuXin()
 	{
 		Dictionary<int, List<int>> hasSelectSeidList = MainUIMag.inst.createAvatarPanel.setTianFu.hasSelectSeidList;
@@ -103,7 +103,7 @@ public class MainUIPlayerInfo : MonoBehaviour
 		return this.wuxin.curNum;
 	}
 
-	// Token: 0x06001F21 RID: 7969 RVA: 0x0010C40C File Offset: 0x0010A60C
+	// Token: 0x06001BDF RID: 7135 RVA: 0x000C72B8 File Offset: 0x000C54B8
 	public int GetShenShi()
 	{
 		Dictionary<int, List<int>> hasSelectSeidList = MainUIMag.inst.createAvatarPanel.setTianFu.hasSelectSeidList;
@@ -119,7 +119,7 @@ public class MainUIPlayerInfo : MonoBehaviour
 		return this.shenshi.curNum;
 	}
 
-	// Token: 0x06001F22 RID: 7970 RVA: 0x0010C4F0 File Offset: 0x0010A6F0
+	// Token: 0x06001BE0 RID: 7136 RVA: 0x000C739C File Offset: 0x000C559C
 	public int GetDunSu()
 	{
 		Dictionary<int, List<int>> hasSelectSeidList = MainUIMag.inst.createAvatarPanel.setTianFu.hasSelectSeidList;
@@ -135,7 +135,7 @@ public class MainUIPlayerInfo : MonoBehaviour
 		return this.dunsu.curNum;
 	}
 
-	// Token: 0x06001F23 RID: 7971 RVA: 0x0010C5D4 File Offset: 0x0010A7D4
+	// Token: 0x06001BE1 RID: 7137 RVA: 0x000C7480 File Offset: 0x000C5680
 	public int GetLinShi()
 	{
 		Dictionary<int, List<int>> hasSelectSeidList = MainUIMag.inst.createAvatarPanel.setTianFu.hasSelectSeidList;
@@ -151,7 +151,7 @@ public class MainUIPlayerInfo : MonoBehaviour
 		return this.lingshi.curNum;
 	}
 
-	// Token: 0x06001F24 RID: 7972 RVA: 0x0010C6B8 File Offset: 0x0010A8B8
+	// Token: 0x06001BE2 RID: 7138 RVA: 0x000C7564 File Offset: 0x000C5764
 	public int GetHp()
 	{
 		Dictionary<int, List<int>> hasSelectSeidList = MainUIMag.inst.createAvatarPanel.setTianFu.hasSelectSeidList;
@@ -167,7 +167,7 @@ public class MainUIPlayerInfo : MonoBehaviour
 		return this.qixue.curNum;
 	}
 
-	// Token: 0x06001F25 RID: 7973 RVA: 0x0010C79C File Offset: 0x0010A99C
+	// Token: 0x06001BE3 RID: 7139 RVA: 0x000C7648 File Offset: 0x000C5848
 	public int GetShouYuan()
 	{
 		Dictionary<int, List<int>> hasSelectSeidList = MainUIMag.inst.createAvatarPanel.setTianFu.hasSelectSeidList;
@@ -183,7 +183,7 @@ public class MainUIPlayerInfo : MonoBehaviour
 		return this.shouyuan.curNum;
 	}
 
-	// Token: 0x06001F26 RID: 7974 RVA: 0x0010C880 File Offset: 0x0010AA80
+	// Token: 0x06001BE4 RID: 7140 RVA: 0x000C772C File Offset: 0x000C592C
 	public int GetLinGenNum()
 	{
 		Dictionary<int, List<int>> hasSelectSeidList = MainUIMag.inst.createAvatarPanel.setTianFu.hasSelectSeidList;
@@ -199,7 +199,7 @@ public class MainUIPlayerInfo : MonoBehaviour
 		return this.lingen.curNum;
 	}
 
-	// Token: 0x06001F27 RID: 7975 RVA: 0x0010C974 File Offset: 0x0010AB74
+	// Token: 0x06001BE5 RID: 7141 RVA: 0x000C7820 File Offset: 0x000C5A20
 	public int GetXinJing()
 	{
 		Dictionary<int, List<int>> hasSelectSeidList = MainUIMag.inst.createAvatarPanel.setTianFu.hasSelectSeidList;
@@ -215,7 +215,7 @@ public class MainUIPlayerInfo : MonoBehaviour
 		return this.xinjing.curNum;
 	}
 
-	// Token: 0x06001F28 RID: 7976 RVA: 0x0010CA9C File Offset: 0x0010AC9C
+	// Token: 0x06001BE6 RID: 7142 RVA: 0x000C7948 File Offset: 0x000C5B48
 	public List<int> GetLingGen()
 	{
 		List<int> list = new List<int>();
@@ -226,70 +226,70 @@ public class MainUIPlayerInfo : MonoBehaviour
 		return list;
 	}
 
-	// Token: 0x06001F29 RID: 7977 RVA: 0x0010CAF8 File Offset: 0x0010ACF8
+	// Token: 0x06001BE7 RID: 7143 RVA: 0x000C79A4 File Offset: 0x000C5BA4
 	private int GetXinJinLevel(int curNum)
 	{
 		foreach (JSONObject jsonobject in jsonData.instance.XinJinJsonData.list)
 		{
 			if (jsonobject["Max"].I > curNum)
 			{
-				return (int)jsonobject["id"].n;
+				return jsonobject["id"].I;
 			}
 		}
 		return jsonData.instance.XinJinJsonData.Count;
 	}
 
-	// Token: 0x04001A95 RID: 6805
+	// Token: 0x04001670 RID: 5744
 	public static MainUIPlayerInfo inst;
 
-	// Token: 0x04001A96 RID: 6806
+	// Token: 0x04001671 RID: 5745
 	public MainUIInfoCell zizhi;
 
-	// Token: 0x04001A97 RID: 6807
+	// Token: 0x04001672 RID: 5746
 	public MainUIInfoCell wuxin;
 
-	// Token: 0x04001A98 RID: 6808
+	// Token: 0x04001673 RID: 5747
 	public MainUIInfoCell shenshi;
 
-	// Token: 0x04001A99 RID: 6809
+	// Token: 0x04001674 RID: 5748
 	public MainUIInfoCell dunsu;
 
-	// Token: 0x04001A9A RID: 6810
+	// Token: 0x04001675 RID: 5749
 	public MainUIInfoCell lingshi;
 
-	// Token: 0x04001A9B RID: 6811
+	// Token: 0x04001676 RID: 5750
 	public MainUIInfoCell qixue;
 
-	// Token: 0x04001A9C RID: 6812
+	// Token: 0x04001677 RID: 5751
 	public MainUIInfoCell shouyuan;
 
-	// Token: 0x04001A9D RID: 6813
+	// Token: 0x04001678 RID: 5752
 	public MainUIInfoCell lingen;
 
-	// Token: 0x04001A9E RID: 6814
+	// Token: 0x04001679 RID: 5753
 	public MainUIInfoCell xinjing;
 
-	// Token: 0x04001A9F RID: 6815
+	// Token: 0x0400167A RID: 5754
 	public PlayerSetRandomFace playerFace;
 
-	// Token: 0x04001AA0 RID: 6816
+	// Token: 0x0400167B RID: 5755
 	public int linggenNum;
 
-	// Token: 0x04001AA1 RID: 6817
+	// Token: 0x0400167C RID: 5756
 	public List<int> lingGenList;
 
-	// Token: 0x04001AA2 RID: 6818
+	// Token: 0x0400167D RID: 5757
 	public int canSelectLinGenNum = 5;
 
-	// Token: 0x04001AA3 RID: 6819
+	// Token: 0x0400167E RID: 5758
 	public int sex = 1;
 
-	// Token: 0x04001AA4 RID: 6820
+	// Token: 0x0400167F RID: 5759
 	public string playerName = "";
 
-	// Token: 0x04001AA5 RID: 6821
+	// Token: 0x04001680 RID: 5760
 	public string firstName = "";
 
-	// Token: 0x04001AA6 RID: 6822
+	// Token: 0x04001681 RID: 5761
 	public string lastName = "";
 }

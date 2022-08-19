@@ -6,11 +6,11 @@ using UnityEngine.UI;
 
 namespace Tab
 {
-	// Token: 0x02000A32 RID: 2610
+	// Token: 0x020006F1 RID: 1777
 	[Serializable]
 	public class TabWuDaoLevelBase : UIBase
 	{
-		// Token: 0x06004389 RID: 17289 RVA: 0x001CD760 File Offset: 0x001CB960
+		// Token: 0x0600391E RID: 14622 RVA: 0x00185D94 File Offset: 0x00183F94
 		public TabWuDaoLevelBase(GameObject go, int id, int level)
 		{
 			try
@@ -32,7 +32,7 @@ namespace Tab
 			}
 		}
 
-		// Token: 0x0600438A RID: 17290 RVA: 0x001CD864 File Offset: 0x001CBA64
+		// Token: 0x0600391F RID: 14623 RVA: 0x00185E98 File Offset: 0x00184098
 		public void UpdateUI(int id)
 		{
 			this._id = id;
@@ -80,7 +80,7 @@ namespace Tab
 			}
 		}
 
-		// Token: 0x0600438B RID: 17291 RVA: 0x001CDA08 File Offset: 0x001CBC08
+		// Token: 0x06003920 RID: 14624 RVA: 0x0018603C File Offset: 0x0018423C
 		private List<int> GetWuDaoSkillCount()
 		{
 			List<int> list = new List<int>();
@@ -94,25 +94,25 @@ namespace Tab
 			return list;
 		}
 
-		// Token: 0x0600438C RID: 17292 RVA: 0x0003049F File Offset: 0x0002E69F
+		// Token: 0x06003921 RID: 14625 RVA: 0x001860BC File Offset: 0x001842BC
 		private bool IsCanActive()
 		{
 			return Tools.instance.getPlayer().wuDaoMag.getWuDaoLevelByType(this._id) >= this._level;
 		}
 
-		// Token: 0x04003B8A RID: 15242
+		// Token: 0x04003125 RID: 12581
 		private int _id;
 
-		// Token: 0x04003B8B RID: 15243
+		// Token: 0x04003126 RID: 12582
 		private int _level;
 
-		// Token: 0x04003B8C RID: 15244
+		// Token: 0x04003127 RID: 12583
 		private GameObject _active;
 
-		// Token: 0x04003B8D RID: 15245
+		// Token: 0x04003128 RID: 12584
 		private GameObject _noActive;
 
-		// Token: 0x04003B8E RID: 15246
+		// Token: 0x04003129 RID: 12585
 		private Image _cloud;
 	}
 }

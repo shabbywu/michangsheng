@@ -3,10 +3,10 @@ using System.Runtime.CompilerServices;
 
 namespace ICSharpCode.SharpZipLib.Checksum
 {
-	// Token: 0x02000837 RID: 2103
+	// Token: 0x0200058E RID: 1422
 	internal static class CrcUtilities
 	{
-		// Token: 0x06003715 RID: 14101 RVA: 0x0019CDE8 File Offset: 0x0019AFE8
+		// Token: 0x06002E9F RID: 11935 RVA: 0x00152344 File Offset: 0x00150544
 		internal static uint[] GenerateSlicingLookupTable(uint polynomial, bool isReversed)
 		{
 			uint[] array = new uint[4096];
@@ -33,7 +33,7 @@ namespace ICSharpCode.SharpZipLib.Checksum
 			return array;
 		}
 
-		// Token: 0x06003716 RID: 14102 RVA: 0x0019CE7C File Offset: 0x0019B07C
+		// Token: 0x06002EA0 RID: 11936 RVA: 0x001523D8 File Offset: 0x001505D8
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static uint UpdateDataForNormalPoly(byte[] input, int offset, uint[] crcTable, uint checkValue)
 		{
@@ -44,7 +44,7 @@ namespace ICSharpCode.SharpZipLib.Checksum
 			return CrcUtilities.UpdateDataCommon(input, offset, crcTable, x, x2, x3, x4);
 		}
 
-		// Token: 0x06003717 RID: 14103 RVA: 0x0019CEC4 File Offset: 0x0019B0C4
+		// Token: 0x06002EA1 RID: 11937 RVA: 0x00152420 File Offset: 0x00150620
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static uint UpdateDataForReversedPoly(byte[] input, int offset, uint[] crcTable, uint checkValue)
 		{
@@ -55,7 +55,7 @@ namespace ICSharpCode.SharpZipLib.Checksum
 			return CrcUtilities.UpdateDataCommon(input, offset, crcTable, x, x2, x3, x4);
 		}
 
-		// Token: 0x06003718 RID: 14104 RVA: 0x0019CF14 File Offset: 0x0019B114
+		// Token: 0x06002EA2 RID: 11938 RVA: 0x00152470 File Offset: 0x00150670
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		private static uint UpdateDataCommon(byte[] input, int offset, uint[] crcTable, byte x1, byte x2, byte x3, byte x4)
 		{
@@ -68,7 +68,7 @@ namespace ICSharpCode.SharpZipLib.Checksum
 			return num4 ^ crcTable[(int)input[offset + 10] + 1280] ^ crcTable[(int)input[offset + 11] + 1024] ^ crcTable[(int)input[offset + 12] + 768] ^ num ^ crcTable[(int)input[offset + 14] + 256] ^ crcTable[(int)input[offset + 15]] ^ num2;
 		}
 
-		// Token: 0x04003132 RID: 12594
+		// Token: 0x040028F3 RID: 10483
 		internal const int SlicingDegree = 16;
 	}
 }

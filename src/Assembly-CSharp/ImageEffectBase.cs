@@ -1,12 +1,12 @@
 ﻿using System;
 using UnityEngine;
 
-// Token: 0x02000134 RID: 308
+// Token: 0x020000C4 RID: 196
 [RequireComponent(typeof(Camera))]
 [AddComponentMenu("")]
 public class ImageEffectBase : MonoBehaviour
 {
-	// Token: 0x06000BAF RID: 2991 RVA: 0x0000DCA3 File Offset: 0x0000BEA3
+	// Token: 0x06000ACC RID: 2764 RVA: 0x0004139E File Offset: 0x0003F59E
 	protected virtual void Start()
 	{
 		if (!SystemInfo.supportsImageEffects)
@@ -20,8 +20,8 @@ public class ImageEffectBase : MonoBehaviour
 		}
 	}
 
-	// Token: 0x170001E9 RID: 489
-	// (get) Token: 0x06000BB0 RID: 2992 RVA: 0x0000DCD5 File Offset: 0x0000BED5
+	// Token: 0x170001D0 RID: 464
+	// (get) Token: 0x06000ACD RID: 2765 RVA: 0x000413D0 File Offset: 0x0003F5D0
 	protected Material material
 	{
 		get
@@ -35,7 +35,7 @@ public class ImageEffectBase : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000BB1 RID: 2993 RVA: 0x0000DD09 File Offset: 0x0000BF09
+	// Token: 0x06000ACE RID: 2766 RVA: 0x00041404 File Offset: 0x0003F604
 	protected virtual void OnDisable()
 	{
 		if (this.m_Material)
@@ -44,9 +44,9 @@ public class ImageEffectBase : MonoBehaviour
 		}
 	}
 
-	// Token: 0x04000878 RID: 2168
+	// Token: 0x040006D1 RID: 1745
 	public Shader shader;
 
-	// Token: 0x04000879 RID: 2169
+	// Token: 0x040006D2 RID: 1746
 	private Material m_Material;
 }

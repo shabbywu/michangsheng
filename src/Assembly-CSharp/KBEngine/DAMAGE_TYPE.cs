@@ -2,29 +2,29 @@
 
 namespace KBEngine
 {
-	// Token: 0x02000F44 RID: 3908
+	// Token: 0x02000BC1 RID: 3009
 	public struct DAMAGE_TYPE
 	{
-		// Token: 0x06005E25 RID: 24101 RVA: 0x000420D3 File Offset: 0x000402D3
+		// Token: 0x060053E7 RID: 21479 RVA: 0x00233F72 File Offset: 0x00232172
 		private DAMAGE_TYPE(int value)
 		{
 			this.value = value;
 		}
 
-		// Token: 0x06005E26 RID: 24102 RVA: 0x000420DC File Offset: 0x000402DC
+		// Token: 0x060053E8 RID: 21480 RVA: 0x00233F7B File Offset: 0x0023217B
 		public static implicit operator int(DAMAGE_TYPE value)
 		{
 			return value.value;
 		}
 
-		// Token: 0x06005E27 RID: 24103 RVA: 0x000420E4 File Offset: 0x000402E4
+		// Token: 0x060053E9 RID: 21481 RVA: 0x00233F83 File Offset: 0x00232183
 		public static implicit operator DAMAGE_TYPE(int value)
 		{
 			return new DAMAGE_TYPE(value);
 		}
 
-		// Token: 0x170008A1 RID: 2209
-		// (get) Token: 0x06005E28 RID: 24104 RVA: 0x00041B41 File Offset: 0x0003FD41
+		// Token: 0x1700064E RID: 1614
+		// (get) Token: 0x060053EA RID: 21482 RVA: 0x002339E0 File Offset: 0x00231BE0
 		public static int MaxValue
 		{
 			get
@@ -33,8 +33,8 @@ namespace KBEngine
 			}
 		}
 
-		// Token: 0x170008A2 RID: 2210
-		// (get) Token: 0x06005E29 RID: 24105 RVA: 0x00041B48 File Offset: 0x0003FD48
+		// Token: 0x1700064F RID: 1615
+		// (get) Token: 0x060053EB RID: 21483 RVA: 0x002339E7 File Offset: 0x00231BE7
 		public static int MinValue
 		{
 			get
@@ -43,7 +43,7 @@ namespace KBEngine
 			}
 		}
 
-		// Token: 0x04005AEE RID: 23278
+		// Token: 0x0400504D RID: 20557
 		private int value;
 	}
 }

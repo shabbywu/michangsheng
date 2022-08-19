@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-// Token: 0x0200045A RID: 1114
+// Token: 0x020002FD RID: 765
 public class XuanWuSelectLingWenCell : MonoBehaviour
 {
-	// Token: 0x06001DD1 RID: 7633 RVA: 0x00018D0E File Offset: 0x00016F0E
+	// Token: 0x06001AAB RID: 6827 RVA: 0x000BDD75 File Offset: 0x000BBF75
 	public void showSelect()
 	{
 		base.gameObject.SetActive(true);
@@ -18,7 +18,7 @@ public class XuanWuSelectLingWenCell : MonoBehaviour
 		this.updateBuffIDSelect();
 	}
 
-	// Token: 0x06001DD2 RID: 7634 RVA: 0x00103C28 File Offset: 0x00101E28
+	// Token: 0x06001AAC RID: 6828 RVA: 0x000BDDA0 File Offset: 0x000BBFA0
 	private void updateBuffIDSelect()
 	{
 		this.lingWenType = LianQiTotalManager.inst.putMaterialPageManager.lingWenManager.getSelectLinWenType();
@@ -54,7 +54,7 @@ public class XuanWuSelectLingWenCell : MonoBehaviour
 		lingWenCell.hideFenGeXian();
 	}
 
-	// Token: 0x06001DD3 RID: 7635 RVA: 0x00103E14 File Offset: 0x00102014
+	// Token: 0x06001AAD RID: 6829 RVA: 0x000BDF8C File Offset: 0x000BC18C
 	private void init()
 	{
 		this.lingWenType = LianQiTotalManager.inst.putMaterialPageManager.lingWenManager.getSelectLinWenType();
@@ -79,7 +79,7 @@ public class XuanWuSelectLingWenCell : MonoBehaviour
 		this.isInit = true;
 	}
 
-	// Token: 0x06001DD4 RID: 7636 RVA: 0x00103F3C File Offset: 0x0010213C
+	// Token: 0x06001AAE RID: 6830 RVA: 0x000BE0B4 File Offset: 0x000BC2B4
 	private void setCurSelectContent(string str1, string str2, string str3, string str4)
 	{
 		this.xuanWuBUFFDesc.text = Tools.Code64(str1);
@@ -87,7 +87,7 @@ public class XuanWuSelectLingWenCell : MonoBehaviour
 		this.addLingLi.text = Tools.Code64("灵力<color=#f5e929>" + str3 + str4 + "</color>");
 	}
 
-	// Token: 0x06001DD5 RID: 7637 RVA: 0x00103F9C File Offset: 0x0010219C
+	// Token: 0x06001AAF RID: 6831 RVA: 0x000BE114 File Offset: 0x000BC314
 	private void xuanWuBuffIDClickCallBack(int id, string str1)
 	{
 		int sum = this.xuanWuDictionary[id][0];
@@ -101,7 +101,7 @@ public class XuanWuSelectLingWenCell : MonoBehaviour
 		this.updateBuffSum(id);
 	}
 
-	// Token: 0x06001DD6 RID: 7638 RVA: 0x00104048 File Offset: 0x00102248
+	// Token: 0x06001AB0 RID: 6832 RVA: 0x000BE1C0 File Offset: 0x000BC3C0
 	private void updateBuffSum(int buffID)
 	{
 		Tools.ClearObj(this.chengShuCell.transform);
@@ -123,7 +123,7 @@ public class XuanWuSelectLingWenCell : MonoBehaviour
 		lingWenCell.hideFenGeXian();
 	}
 
-	// Token: 0x06001DD7 RID: 7639 RVA: 0x001040FC File Offset: 0x001022FC
+	// Token: 0x06001AB1 RID: 6833 RVA: 0x000BE274 File Offset: 0x000BC474
 	private void xuanWuSumClickCallBack(int buffID, int sum, string str2)
 	{
 		int lingWenIDByBUFFIDAndSum = LianQiTotalManager.inst.getLingWenIDByBUFFIDAndSum(buffID, sum);
@@ -134,39 +134,39 @@ public class XuanWuSelectLingWenCell : MonoBehaviour
 		LianQiTotalManager.inst.putMaterialPageManager.lingWenManager.setSelectLinWenID(lingWenIDByBUFFIDAndSum);
 	}
 
-	// Token: 0x06001DD8 RID: 7640 RVA: 0x00018D37 File Offset: 0x00016F37
+	// Token: 0x06001AB2 RID: 6834 RVA: 0x000BE2FA File Offset: 0x000BC4FA
 	private void setContent(string str2, string yunSuanFu, string lingLi)
 	{
 		this.BuFFChengShuDesc.text = Tools.Code64(str2);
 		this.addLingLi.text = Tools.Code64("灵力<color=#f5e929>" + yunSuanFu + lingLi + "</color>");
 	}
 
-	// Token: 0x0400197A RID: 6522
+	// Token: 0x0400156D RID: 5485
 	[SerializeField]
 	private Text xuanWuBUFFDesc;
 
-	// Token: 0x0400197B RID: 6523
+	// Token: 0x0400156E RID: 5486
 	[SerializeField]
 	private Text BuFFChengShuDesc;
 
-	// Token: 0x0400197C RID: 6524
+	// Token: 0x0400156F RID: 5487
 	[SerializeField]
 	private Text addLingLi;
 
-	// Token: 0x0400197D RID: 6525
+	// Token: 0x04001570 RID: 5488
 	[SerializeField]
 	private GameObject buffCell;
 
-	// Token: 0x0400197E RID: 6526
+	// Token: 0x04001571 RID: 5489
 	[SerializeField]
 	private GameObject chengShuCell;
 
-	// Token: 0x0400197F RID: 6527
+	// Token: 0x04001572 RID: 5490
 	public Dictionary<int, List<int>> xuanWuDictionary;
 
-	// Token: 0x04001980 RID: 6528
+	// Token: 0x04001573 RID: 5491
 	private bool isInit;
 
-	// Token: 0x04001981 RID: 6529
+	// Token: 0x04001574 RID: 5492
 	private int lingWenType;
 }

@@ -3,12 +3,12 @@ using UnityEngine;
 
 namespace BehaviorDesigner.Runtime.Tasks.Basic.SharedVariables
 {
-	// Token: 0x02001511 RID: 5393
+	// Token: 0x02001057 RID: 4183
 	[TaskCategory("Basic/SharedVariable")]
 	[TaskDescription("Returns success if the variable value is equal to the compareTo value.")]
 	public class CompareSharedQuaternion : Conditional
 	{
-		// Token: 0x0600805C RID: 32860 RVA: 0x002CB280 File Offset: 0x002C9480
+		// Token: 0x06007262 RID: 29282 RVA: 0x002ADDF0 File Offset: 0x002ABFF0
 		public override TaskStatus OnUpdate()
 		{
 			if (!this.variable.Value.Equals(this.compareTo.Value))
@@ -18,18 +18,18 @@ namespace BehaviorDesigner.Runtime.Tasks.Basic.SharedVariables
 			return 2;
 		}
 
-		// Token: 0x0600805D RID: 32861 RVA: 0x000574F9 File Offset: 0x000556F9
+		// Token: 0x06007263 RID: 29283 RVA: 0x002ADE20 File Offset: 0x002AC020
 		public override void OnReset()
 		{
 			this.variable = Quaternion.identity;
 			this.compareTo = Quaternion.identity;
 		}
 
-		// Token: 0x04006D2E RID: 27950
+		// Token: 0x04005E2E RID: 24110
 		[Tooltip("The first variable to compare")]
 		public SharedQuaternion variable;
 
-		// Token: 0x04006D2F RID: 27951
+		// Token: 0x04005E2F RID: 24111
 		[Tooltip("The variable to compare to")]
 		public SharedQuaternion compareTo;
 	}

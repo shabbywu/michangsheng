@@ -4,12 +4,12 @@ using UnityEngine.UI;
 
 namespace UltimateSurvival.GUISystem
 {
-	// Token: 0x0200094D RID: 2381
+	// Token: 0x0200064E RID: 1614
 	[Serializable]
 	public class CrosshairData
 	{
-		// Token: 0x17000699 RID: 1689
-		// (get) Token: 0x06003CDA RID: 15578 RVA: 0x0002BDDA File Offset: 0x00029FDA
+		// Token: 0x1700048B RID: 1163
+		// (get) Token: 0x06003364 RID: 13156 RVA: 0x0016914E File Offset: 0x0016734E
 		public string ItemName
 		{
 			get
@@ -18,8 +18,8 @@ namespace UltimateSurvival.GUISystem
 			}
 		}
 
-		// Token: 0x1700069A RID: 1690
-		// (get) Token: 0x06003CDB RID: 15579 RVA: 0x0002BDE2 File Offset: 0x00029FE2
+		// Token: 0x1700048C RID: 1164
+		// (get) Token: 0x06003365 RID: 13157 RVA: 0x00169156 File Offset: 0x00167356
 		public bool HideWhenAiming
 		{
 			get
@@ -28,13 +28,13 @@ namespace UltimateSurvival.GUISystem
 			}
 		}
 
-		// Token: 0x06003CDC RID: 15580 RVA: 0x000079B2 File Offset: 0x00005BB2
+		// Token: 0x06003366 RID: 13158 RVA: 0x00014667 File Offset: 0x00012867
 		public static implicit operator bool(CrosshairData cd)
 		{
 			return cd != null;
 		}
 
-		// Token: 0x06003CDD RID: 15581 RVA: 0x001B2104 File Offset: 0x001B0304
+		// Token: 0x06003367 RID: 13159 RVA: 0x00169160 File Offset: 0x00167360
 		public void Update(PlayerEventHandler player)
 		{
 			RaycastData raycastData = player.RaycastData.Get();
@@ -72,7 +72,7 @@ namespace UltimateSurvival.GUISystem
 			}
 		}
 
-		// Token: 0x06003CDE RID: 15582 RVA: 0x001B2248 File Offset: 0x001B0448
+		// Token: 0x06003368 RID: 13160 RVA: 0x001692A4 File Offset: 0x001674A4
 		public void SetActive(bool active)
 		{
 			if (this.m_Type == CrosshairType.Dynamic && this.m_Crosshair)
@@ -88,63 +88,63 @@ namespace UltimateSurvival.GUISystem
 			}
 		}
 
-		// Token: 0x04003716 RID: 14102
+		// Token: 0x04002D9F RID: 11679
 		[SerializeField]
 		private string m_ItemName;
 
-		// Token: 0x04003717 RID: 14103
+		// Token: 0x04002DA0 RID: 11680
 		[SerializeField]
 		private bool m_HideWhenAiming = true;
 
-		// Token: 0x04003718 RID: 14104
+		// Token: 0x04002DA1 RID: 11681
 		[SerializeField]
 		private Color m_NormalColor = Color.white;
 
-		// Token: 0x04003719 RID: 14105
+		// Token: 0x04002DA2 RID: 11682
 		[SerializeField]
 		private Color m_OnEntityColor = Color.red;
 
-		// Token: 0x0400371A RID: 14106
+		// Token: 0x04002DA3 RID: 11683
 		[SerializeField]
 		private CrosshairType m_Type;
 
-		// Token: 0x0400371B RID: 14107
+		// Token: 0x04002DA4 RID: 11684
 		[SerializeField]
 		private Image m_Image;
 
-		// Token: 0x0400371C RID: 14108
+		// Token: 0x04002DA5 RID: 11685
 		[SerializeField]
 		private Sprite m_Sprite;
 
-		// Token: 0x0400371D RID: 14109
+		// Token: 0x04002DA6 RID: 11686
 		[SerializeField]
 		private Vector2 m_Size = new Vector2(64f, 64f);
 
-		// Token: 0x0400371E RID: 14110
+		// Token: 0x04002DA7 RID: 11687
 		[SerializeField]
 		private DynamicCrosshair m_Crosshair;
 
-		// Token: 0x0400371F RID: 14111
+		// Token: 0x04002DA8 RID: 11688
 		[SerializeField]
 		[Clamp(0f, 256f)]
 		private float m_IdleDistance = 32f;
 
-		// Token: 0x04003720 RID: 14112
+		// Token: 0x04002DA9 RID: 11689
 		[SerializeField]
 		[Clamp(0f, 256f)]
 		private float m_CrouchDistance = 24f;
 
-		// Token: 0x04003721 RID: 14113
+		// Token: 0x04002DAA RID: 11690
 		[SerializeField]
 		[Clamp(0f, 256f)]
 		private float m_WalkDistance = 36f;
 
-		// Token: 0x04003722 RID: 14114
+		// Token: 0x04002DAB RID: 11691
 		[SerializeField]
 		[Clamp(0f, 256f)]
 		private float m_RunDistance = 48f;
 
-		// Token: 0x04003723 RID: 14115
+		// Token: 0x04002DAC RID: 11692
 		[SerializeField]
 		[Clamp(0f, 256f)]
 		private float m_JumpDistance = 54f;

@@ -3,11 +3,11 @@ using UnityEngine;
 
 namespace Fungus
 {
-	// Token: 0x0200124E RID: 4686
+	// Token: 0x02000E02 RID: 3586
 	[Serializable]
 	public class MenuSetVar
 	{
-		// Token: 0x060071DD RID: 29149 RVA: 0x002A6F14 File Offset: 0x002A5114
+		// Token: 0x0600654F RID: 25935 RVA: 0x00282ACC File Offset: 0x00280CCC
 		public void setValue()
 		{
 			Type type = this.variable.GetType();
@@ -33,7 +33,7 @@ namespace Fungus
 			}
 		}
 
-		// Token: 0x04006441 RID: 25665
+		// Token: 0x0400570F RID: 22287
 		[Tooltip("The variable whos value will be set")]
 		[VariableProperty(new Type[]
 		{
@@ -44,7 +44,7 @@ namespace Fungus
 		[SerializeField]
 		protected Variable variable;
 
-		// Token: 0x04006442 RID: 25666
+		// Token: 0x04005710 RID: 22288
 		[Tooltip("设置的值")]
 		[VariableProperty(new Type[]
 		{

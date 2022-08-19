@@ -3,26 +3,26 @@ using UnityEngine;
 
 namespace Fungus
 {
-	// Token: 0x0200137D RID: 4989
+	// Token: 0x02000EDC RID: 3804
 	[Serializable]
 	public struct FloatData
 	{
-		// Token: 0x060078DB RID: 30939 RVA: 0x000522AA File Offset: 0x000504AA
+		// Token: 0x06006B3C RID: 27452 RVA: 0x00295FC3 File Offset: 0x002941C3
 		public FloatData(float v)
 		{
 			this.floatVal = v;
 			this.floatRef = null;
 		}
 
-		// Token: 0x060078DC RID: 30940 RVA: 0x000522BA File Offset: 0x000504BA
+		// Token: 0x06006B3D RID: 27453 RVA: 0x00295FD3 File Offset: 0x002941D3
 		public static implicit operator float(FloatData floatData)
 		{
 			return floatData.Value;
 		}
 
-		// Token: 0x17000B59 RID: 2905
-		// (get) Token: 0x060078DD RID: 30941 RVA: 0x000522C3 File Offset: 0x000504C3
-		// (set) Token: 0x060078DE RID: 30942 RVA: 0x000522E5 File Offset: 0x000504E5
+		// Token: 0x170008BC RID: 2236
+		// (get) Token: 0x06006B3E RID: 27454 RVA: 0x00295FDC File Offset: 0x002941DC
+		// (set) Token: 0x06006B3F RID: 27455 RVA: 0x00295FFE File Offset: 0x002941FE
 		public float Value
 		{
 			get
@@ -44,7 +44,7 @@ namespace Fungus
 			}
 		}
 
-		// Token: 0x060078DF RID: 30943 RVA: 0x00052309 File Offset: 0x00050509
+		// Token: 0x06006B40 RID: 27456 RVA: 0x00296022 File Offset: 0x00294222
 		public string GetDescription()
 		{
 			if (this.floatRef == null)
@@ -54,7 +54,7 @@ namespace Fungus
 			return this.floatRef.Key;
 		}
 
-		// Token: 0x040068DF RID: 26847
+		// Token: 0x04005A76 RID: 23158
 		[SerializeField]
 		[VariableProperty("<Value>", new Type[]
 		{
@@ -62,7 +62,7 @@ namespace Fungus
 		})]
 		public FloatVariable floatRef;
 
-		// Token: 0x040068E0 RID: 26848
+		// Token: 0x04005A77 RID: 23159
 		[SerializeField]
 		public float floatVal;
 	}

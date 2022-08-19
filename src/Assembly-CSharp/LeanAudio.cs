@@ -1,10 +1,10 @@
 ﻿using System;
 using UnityEngine;
 
-// Token: 0x02000015 RID: 21
+// Token: 0x02000013 RID: 19
 public class LeanAudio
 {
-	// Token: 0x06000056 RID: 86 RVA: 0x0000426F File Offset: 0x0000246F
+	// Token: 0x06000056 RID: 86 RVA: 0x00003BFE File Offset: 0x00001DFE
 	public static LeanAudioOptions options()
 	{
 		if (LeanAudio.generatedWaveDistances == null)
@@ -15,7 +15,7 @@ public class LeanAudio
 		return new LeanAudioOptions();
 	}
 
-	// Token: 0x06000057 RID: 87 RVA: 0x0000429B File Offset: 0x0000249B
+	// Token: 0x06000057 RID: 87 RVA: 0x00003C2A File Offset: 0x00001E2A
 	public static LeanAudioStream createAudioStream(AnimationCurve volume, AnimationCurve frequency, LeanAudioOptions options = null)
 	{
 		if (options == null)
@@ -27,7 +27,7 @@ public class LeanAudio
 		return options.stream;
 	}
 
-	// Token: 0x06000058 RID: 88 RVA: 0x000042C3 File Offset: 0x000024C3
+	// Token: 0x06000058 RID: 88 RVA: 0x00003C52 File Offset: 0x00001E52
 	public static AudioClip createAudio(AnimationCurve volume, AnimationCurve frequency, LeanAudioOptions options = null)
 	{
 		if (options == null)
@@ -37,7 +37,7 @@ public class LeanAudio
 		return LeanAudio.createAudioFromWave(LeanAudio.createAudioWave(volume, frequency, options), options);
 	}
 
-	// Token: 0x06000059 RID: 89 RVA: 0x0005E394 File Offset: 0x0005C594
+	// Token: 0x06000059 RID: 89 RVA: 0x00003C6C File Offset: 0x00001E6C
 	private static int createAudioWave(AnimationCurve volume, AnimationCurve frequency, LeanAudioOptions options)
 	{
 		float time = volume[volume.length - 1].time;
@@ -82,7 +82,7 @@ public class LeanAudio
 		return num;
 	}
 
-	// Token: 0x0600005A RID: 90 RVA: 0x0005E514 File Offset: 0x0005C714
+	// Token: 0x0600005A RID: 90 RVA: 0x00003DEC File Offset: 0x00001FEC
 	private static AudioClip createAudioFromWave(int waveLength, LeanAudioOptions options)
 	{
 		float num = LeanAudio.longList[waveLength - 2];
@@ -161,12 +161,12 @@ public class LeanAudio
 		return audioClip;
 	}
 
-	// Token: 0x0600005B RID: 91 RVA: 0x000042DD File Offset: 0x000024DD
+	// Token: 0x0600005B RID: 91 RVA: 0x00004095 File Offset: 0x00002295
 	private static void OnAudioSetPosition(int newPosition)
 	{
 	}
 
-	// Token: 0x0600005C RID: 92 RVA: 0x0005E7C0 File Offset: 0x0005C9C0
+	// Token: 0x0600005C RID: 92 RVA: 0x00004098 File Offset: 0x00002298
 	public static AudioClip generateAudioFromCurve(AnimationCurve curve, int frequencyRate = 44100)
 	{
 		float time = curve[curve.length - 1].time;
@@ -182,7 +182,7 @@ public class LeanAudio
 		return audioClip;
 	}
 
-	// Token: 0x0600005D RID: 93 RVA: 0x000042DF File Offset: 0x000024DF
+	// Token: 0x0600005D RID: 93 RVA: 0x00004108 File Offset: 0x00002308
 	public static AudioSource play(AudioClip audio, float volume)
 	{
 		AudioSource audioSource = LeanAudio.playClipAt(audio, Vector3.zero);
@@ -190,19 +190,19 @@ public class LeanAudio
 		return audioSource;
 	}
 
-	// Token: 0x0600005E RID: 94 RVA: 0x000042F3 File Offset: 0x000024F3
+	// Token: 0x0600005E RID: 94 RVA: 0x0000411C File Offset: 0x0000231C
 	public static AudioSource play(AudioClip audio)
 	{
 		return LeanAudio.playClipAt(audio, Vector3.zero);
 	}
 
-	// Token: 0x0600005F RID: 95 RVA: 0x00004300 File Offset: 0x00002500
+	// Token: 0x0600005F RID: 95 RVA: 0x00004129 File Offset: 0x00002329
 	public static AudioSource play(AudioClip audio, Vector3 pos)
 	{
 		return LeanAudio.playClipAt(audio, pos);
 	}
 
-	// Token: 0x06000060 RID: 96 RVA: 0x00004309 File Offset: 0x00002509
+	// Token: 0x06000060 RID: 96 RVA: 0x00004132 File Offset: 0x00002332
 	public static AudioSource play(AudioClip audio, Vector3 pos, float volume)
 	{
 		AudioSource audioSource = LeanAudio.playClipAt(audio, pos);
@@ -211,7 +211,7 @@ public class LeanAudio
 		return audioSource;
 	}
 
-	// Token: 0x06000061 RID: 97 RVA: 0x0005E830 File Offset: 0x0005CA30
+	// Token: 0x06000061 RID: 97 RVA: 0x00004150 File Offset: 0x00002350
 	public static AudioSource playClipAt(AudioClip clip, Vector3 pos)
 	{
 		GameObject gameObject = new GameObject();
@@ -223,7 +223,7 @@ public class LeanAudio
 		return audioSource;
 	}
 
-	// Token: 0x06000062 RID: 98 RVA: 0x0005E870 File Offset: 0x0005CA70
+	// Token: 0x06000062 RID: 98 RVA: 0x00004190 File Offset: 0x00002390
 	public static void printOutAudioClip(AudioClip audioClip, ref AnimationCurve curve, float scaleX = 1f)
 	{
 		float[] array = new float[audioClip.samples * audioClip.channels];
@@ -238,18 +238,18 @@ public class LeanAudio
 		curve = new AnimationCurve(array2);
 	}
 
-	// Token: 0x0400005D RID: 93
+	// Token: 0x04000057 RID: 87
 	public static float MIN_FREQEUNCY_PERIOD = 0.000115f;
 
-	// Token: 0x0400005E RID: 94
+	// Token: 0x04000058 RID: 88
 	public static int PROCESSING_ITERATIONS_MAX = 50000;
 
-	// Token: 0x0400005F RID: 95
+	// Token: 0x04000059 RID: 89
 	public static float[] generatedWaveDistances;
 
-	// Token: 0x04000060 RID: 96
+	// Token: 0x0400005A RID: 90
 	public static int generatedWaveDistancesCount = 0;
 
-	// Token: 0x04000061 RID: 97
+	// Token: 0x0400005B RID: 91
 	private static float[] longList;
 }

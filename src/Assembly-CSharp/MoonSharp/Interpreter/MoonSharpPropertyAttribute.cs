@@ -2,21 +2,21 @@
 
 namespace MoonSharp.Interpreter
 {
-	// Token: 0x02001084 RID: 4228
+	// Token: 0x02000CB5 RID: 3253
 	[AttributeUsage(AttributeTargets.Property, Inherited = true, AllowMultiple = true)]
 	public sealed class MoonSharpPropertyAttribute : Attribute
 	{
-		// Token: 0x1700091C RID: 2332
-		// (get) Token: 0x0600663F RID: 26175 RVA: 0x000468F6 File Offset: 0x00044AF6
-		// (set) Token: 0x06006640 RID: 26176 RVA: 0x000468FE File Offset: 0x00044AFE
+		// Token: 0x170006C1 RID: 1729
+		// (get) Token: 0x06005B4D RID: 23373 RVA: 0x00259D25 File Offset: 0x00257F25
+		// (set) Token: 0x06005B4E RID: 23374 RVA: 0x00259D2D File Offset: 0x00257F2D
 		public string Name { get; private set; }
 
-		// Token: 0x06006641 RID: 26177 RVA: 0x00010224 File Offset: 0x0000E424
+		// Token: 0x06005B4F RID: 23375 RVA: 0x00052C2A File Offset: 0x00050E2A
 		public MoonSharpPropertyAttribute()
 		{
 		}
 
-		// Token: 0x06006642 RID: 26178 RVA: 0x00046907 File Offset: 0x00044B07
+		// Token: 0x06005B50 RID: 23376 RVA: 0x00259D36 File Offset: 0x00257F36
 		public MoonSharpPropertyAttribute(string name)
 		{
 			this.Name = name;

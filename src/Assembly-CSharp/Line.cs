@@ -1,10 +1,10 @@
 ﻿using System;
 
-// Token: 0x0200023E RID: 574
+// Token: 0x02000163 RID: 355
 public class Line
 {
-	// Token: 0x17000242 RID: 578
-	// (get) Token: 0x060011C0 RID: 4544 RVA: 0x000111F5 File Offset: 0x0000F3F5
+	// Token: 0x17000207 RID: 519
+	// (get) Token: 0x06000F66 RID: 3942 RVA: 0x0005CAE1 File Offset: 0x0005ACE1
 	public int StartVertexIndex
 	{
 		get
@@ -13,8 +13,8 @@ public class Line
 		}
 	}
 
-	// Token: 0x17000243 RID: 579
-	// (get) Token: 0x060011C1 RID: 4545 RVA: 0x000111FD File Offset: 0x0000F3FD
+	// Token: 0x17000208 RID: 520
+	// (get) Token: 0x06000F67 RID: 3943 RVA: 0x0005CAE9 File Offset: 0x0005ACE9
 	public int EndVertexIndex
 	{
 		get
@@ -23,8 +23,8 @@ public class Line
 		}
 	}
 
-	// Token: 0x17000244 RID: 580
-	// (get) Token: 0x060011C2 RID: 4546 RVA: 0x00011205 File Offset: 0x0000F405
+	// Token: 0x17000209 RID: 521
+	// (get) Token: 0x06000F68 RID: 3944 RVA: 0x0005CAF1 File Offset: 0x0005ACF1
 	public int VertexCount
 	{
 		get
@@ -33,7 +33,7 @@ public class Line
 		}
 	}
 
-	// Token: 0x060011C3 RID: 4547 RVA: 0x0001120D File Offset: 0x0000F40D
+	// Token: 0x06000F69 RID: 3945 RVA: 0x0005CAF9 File Offset: 0x0005ACF9
 	public Line(int startVertexIndex, int length)
 	{
 		this._startVertexIndex = startVertexIndex;
@@ -41,12 +41,12 @@ public class Line
 		this._vertexCount = length * 6;
 	}
 
-	// Token: 0x04000E4F RID: 3663
+	// Token: 0x04000B82 RID: 2946
 	private int _startVertexIndex;
 
-	// Token: 0x04000E50 RID: 3664
+	// Token: 0x04000B83 RID: 2947
 	private int _endVertexIndex;
 
-	// Token: 0x04000E51 RID: 3665
+	// Token: 0x04000B84 RID: 2948
 	private int _vertexCount;
 }

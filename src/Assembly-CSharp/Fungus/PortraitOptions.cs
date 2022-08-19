@@ -3,10 +3,10 @@ using UnityEngine;
 
 namespace Fungus
 {
-	// Token: 0x02001364 RID: 4964
+	// Token: 0x02000EC6 RID: 3782
 	public class PortraitOptions
 	{
-		// Token: 0x06007879 RID: 30841 RVA: 0x002B67B0 File Offset: 0x002B49B0
+		// Token: 0x06006ADE RID: 27358 RVA: 0x00294414 File Offset: 0x00292614
 		public PortraitOptions(bool useDefaultSettings = true)
 		{
 			this.character = null;
@@ -27,52 +27,52 @@ namespace Fungus
 			this.useDefaultSettings = useDefaultSettings;
 		}
 
-		// Token: 0x04006878 RID: 26744
+		// Token: 0x04005A19 RID: 23065
 		public Character character;
 
-		// Token: 0x04006879 RID: 26745
+		// Token: 0x04005A1A RID: 23066
 		public Character replacedCharacter;
 
-		// Token: 0x0400687A RID: 26746
+		// Token: 0x04005A1B RID: 23067
 		public Sprite portrait;
 
-		// Token: 0x0400687B RID: 26747
+		// Token: 0x04005A1C RID: 23068
 		public DisplayType display;
 
-		// Token: 0x0400687C RID: 26748
+		// Token: 0x04005A1D RID: 23069
 		public PositionOffset offset;
 
-		// Token: 0x0400687D RID: 26749
+		// Token: 0x04005A1E RID: 23070
 		public RectTransform fromPosition;
 
-		// Token: 0x0400687E RID: 26750
+		// Token: 0x04005A1F RID: 23071
 		public RectTransform toPosition;
 
-		// Token: 0x0400687F RID: 26751
+		// Token: 0x04005A20 RID: 23072
 		public FacingDirection facing;
 
-		// Token: 0x04006880 RID: 26752
+		// Token: 0x04005A21 RID: 23073
 		public bool useDefaultSettings;
 
-		// Token: 0x04006881 RID: 26753
+		// Token: 0x04005A22 RID: 23074
 		public float fadeDuration;
 
-		// Token: 0x04006882 RID: 26754
+		// Token: 0x04005A23 RID: 23075
 		public float moveDuration;
 
-		// Token: 0x04006883 RID: 26755
+		// Token: 0x04005A24 RID: 23076
 		public Vector2 shiftOffset;
 
-		// Token: 0x04006884 RID: 26756
+		// Token: 0x04005A25 RID: 23077
 		public bool move;
 
-		// Token: 0x04006885 RID: 26757
+		// Token: 0x04005A26 RID: 23078
 		public bool shiftIntoPlace;
 
-		// Token: 0x04006886 RID: 26758
+		// Token: 0x04005A27 RID: 23079
 		public bool waitUntilFinished;
 
-		// Token: 0x04006887 RID: 26759
+		// Token: 0x04005A28 RID: 23080
 		public Action onComplete;
 	}
 }

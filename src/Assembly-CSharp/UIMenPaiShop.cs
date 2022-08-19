@@ -7,23 +7,23 @@ using UnityEngine.Events;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-// Token: 0x020004BF RID: 1215
+// Token: 0x02000348 RID: 840
 public class UIMenPaiShop : MonoBehaviour, IESCClose
 {
-	// Token: 0x0600200F RID: 8207 RVA: 0x0001A543 File Offset: 0x00018743
+	// Token: 0x06001CB7 RID: 7351 RVA: 0x000CD746 File Offset: 0x000CB946
 	private void Awake()
 	{
 		UIMenPaiShop.Inst = this;
 	}
 
-	// Token: 0x06002010 RID: 8208 RVA: 0x0001A54B File Offset: 0x0001874B
+	// Token: 0x06001CB8 RID: 7352 RVA: 0x000CD74E File Offset: 0x000CB94E
 	public void Show()
 	{
 		this.ScaleObj.SetActive(true);
 		ESCCloseManager.Inst.RegisterClose(this);
 	}
 
-	// Token: 0x06002011 RID: 8209 RVA: 0x00112404 File Offset: 0x00110604
+	// Token: 0x06001CB9 RID: 7353 RVA: 0x000CD768 File Offset: 0x000CB968
 	public void RefreshUI()
 	{
 		UIMenPaiShop.<>c__DisplayClass10_0 CS$<>8__locals1 = new UIMenPaiShop.<>c__DisplayClass10_0();
@@ -136,41 +136,41 @@ public class UIMenPaiShop : MonoBehaviour, IESCClose
 		this.MoneyText.text = PlayerEx.Player.getItemNum(num).ToString();
 	}
 
-	// Token: 0x06002012 RID: 8210 RVA: 0x0001A564 File Offset: 0x00018764
+	// Token: 0x06001CBA RID: 7354 RVA: 0x000CDAA4 File Offset: 0x000CBCA4
 	public void Close()
 	{
 		this.ScaleObj.SetActive(false);
 		ESCCloseManager.Inst.UnRegisterClose(this);
 	}
 
-	// Token: 0x06002013 RID: 8211 RVA: 0x0001A57D File Offset: 0x0001877D
+	// Token: 0x06001CBB RID: 7355 RVA: 0x000CDABD File Offset: 0x000CBCBD
 	public bool TryEscClose()
 	{
 		this.Close();
 		return true;
 	}
 
-	// Token: 0x04001B83 RID: 7043
+	// Token: 0x0400173B RID: 5947
 	public static UIMenPaiShop Inst;
 
-	// Token: 0x04001B84 RID: 7044
+	// Token: 0x0400173C RID: 5948
 	public GameObject UIMenPaiShopItemPrefab;
 
-	// Token: 0x04001B85 RID: 7045
+	// Token: 0x0400173D RID: 5949
 	public GameObject ScaleObj;
 
-	// Token: 0x04001B86 RID: 7046
+	// Token: 0x0400173E RID: 5950
 	public Text ShopTitle;
 
-	// Token: 0x04001B87 RID: 7047
+	// Token: 0x0400173F RID: 5951
 	public List<Text> ShopName;
 
-	// Token: 0x04001B88 RID: 7048
+	// Token: 0x04001740 RID: 5952
 	public List<RectTransform> ShopRT;
 
-	// Token: 0x04001B89 RID: 7049
+	// Token: 0x04001741 RID: 5953
 	public Image MoneyIcon;
 
-	// Token: 0x04001B8A RID: 7050
+	// Token: 0x04001742 RID: 5954
 	public Text MoneyText;
 }

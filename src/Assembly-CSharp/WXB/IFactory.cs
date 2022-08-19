@@ -2,10 +2,10 @@
 
 namespace WXB
 {
-	// Token: 0x020009B0 RID: 2480
+	// Token: 0x0200069C RID: 1692
 	internal interface IFactory
 	{
-		// Token: 0x06003F31 RID: 16177
+		// Token: 0x06003573 RID: 13683
 		object create();
 	}
 }

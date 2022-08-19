@@ -2,16 +2,16 @@
 
 namespace Fungus
 {
-	// Token: 0x02001221 RID: 4641
+	// Token: 0x02000DE0 RID: 3552
 	public enum iTweenAxis
 	{
-		// Token: 0x040063B7 RID: 25527
+		// Token: 0x040056B0 RID: 22192
 		None,
-		// Token: 0x040063B8 RID: 25528
+		// Token: 0x040056B1 RID: 22193
 		X,
-		// Token: 0x040063B9 RID: 25529
+		// Token: 0x040056B2 RID: 22194
 		Y,
-		// Token: 0x040063BA RID: 25530
+		// Token: 0x040056B3 RID: 22195
 		Z
 	}
 }

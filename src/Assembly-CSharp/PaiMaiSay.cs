@@ -6,10 +6,10 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
 
-// Token: 0x020004ED RID: 1261
+// Token: 0x02000371 RID: 881
 public class PaiMaiSay : MonoBehaviour
 {
-	// Token: 0x060020DC RID: 8412 RVA: 0x001145A0 File Offset: 0x001127A0
+	// Token: 0x06001D7B RID: 7547 RVA: 0x000D04B0 File Offset: 0x000CE6B0
 	public void SayWord(string msg, UnityAction complete = null, float time = 1f)
 	{
 		if (this._do != null)
@@ -32,13 +32,13 @@ public class PaiMaiSay : MonoBehaviour
 		});
 	}
 
-	// Token: 0x04001C5A RID: 7258
+	// Token: 0x0400180F RID: 6159
 	[SerializeField]
 	private Text SayContent;
 
-	// Token: 0x04001C5B RID: 7259
+	// Token: 0x04001810 RID: 6160
 	private TweenerCore<float, float, FloatOptions> _do;
 
-	// Token: 0x04001C5C RID: 7260
+	// Token: 0x04001811 RID: 6161
 	private float _duringTime;
 }

@@ -2,18 +2,18 @@
 
 namespace Fungus
 {
-	// Token: 0x0200125F RID: 4703
+	// Token: 0x02000E12 RID: 3602
 	[CommandInfo("Priority Signals", "Get Priority Count", "Copy the value of the Priority Count to a local IntegerVariable, intended primarily to assist with debugging use of Priority.", 0)]
 	public class FungusPriorityCount : Command
 	{
-		// Token: 0x0600724B RID: 29259 RVA: 0x0004DC89 File Offset: 0x0004BE89
+		// Token: 0x060065BD RID: 26045 RVA: 0x00283F75 File Offset: 0x00282175
 		public override void OnEnter()
 		{
 			this.outVar.Value = FungusPrioritySignals.CurrentPriorityDepth;
 			this.Continue();
 		}
 
-		// Token: 0x0600724C RID: 29260 RVA: 0x0004DCA1 File Offset: 0x0004BEA1
+		// Token: 0x060065BE RID: 26046 RVA: 0x00283F8D File Offset: 0x0028218D
 		public override string GetSummary()
 		{
 			if (this.outVar == null)
@@ -23,13 +23,13 @@ namespace Fungus
 			return this.outVar.Key;
 		}
 
-		// Token: 0x0600724D RID: 29261 RVA: 0x0004DCC2 File Offset: 0x0004BEC2
+		// Token: 0x060065BF RID: 26047 RVA: 0x00283FAE File Offset: 0x002821AE
 		public override bool HasReference(Variable variable)
 		{
 			return this.outVar == variable;
 		}
 
-		// Token: 0x0400648B RID: 25739
+		// Token: 0x04005756 RID: 22358
 		[VariableProperty(new Type[]
 		{
 			typeof(IntegerVariable)

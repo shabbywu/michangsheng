@@ -3,12 +3,12 @@ using UnityEngine;
 
 namespace BehaviorDesigner.Runtime.Tasks.Basic.UnityCapsuleCollider
 {
-	// Token: 0x02001617 RID: 5655
+	// Token: 0x02001158 RID: 4440
 	[TaskCategory("Basic/CapsuleCollider")]
 	[TaskDescription("Sets the center of the CapsuleCollider. Returns Success.")]
 	public class SetCenter : Action
 	{
-		// Token: 0x060083F1 RID: 33777 RVA: 0x002CF160 File Offset: 0x002CD360
+		// Token: 0x060075F7 RID: 30199 RVA: 0x002B5808 File Offset: 0x002B3A08
 		public override void OnStart()
 		{
 			GameObject defaultGameObject = base.GetDefaultGameObject(this.targetGameObject.Value);
@@ -19,7 +19,7 @@ namespace BehaviorDesigner.Runtime.Tasks.Basic.UnityCapsuleCollider
 			}
 		}
 
-		// Token: 0x060083F2 RID: 33778 RVA: 0x0005AFDA File Offset: 0x000591DA
+		// Token: 0x060075F8 RID: 30200 RVA: 0x002B5848 File Offset: 0x002B3A48
 		public override TaskStatus OnUpdate()
 		{
 			if (this.capsuleCollider == null)
@@ -31,25 +31,25 @@ namespace BehaviorDesigner.Runtime.Tasks.Basic.UnityCapsuleCollider
 			return 2;
 		}
 
-		// Token: 0x060083F3 RID: 33779 RVA: 0x0005B00D File Offset: 0x0005920D
+		// Token: 0x060075F9 RID: 30201 RVA: 0x002B587B File Offset: 0x002B3A7B
 		public override void OnReset()
 		{
 			this.targetGameObject = null;
 			this.center = Vector3.zero;
 		}
 
-		// Token: 0x040070A0 RID: 28832
+		// Token: 0x0400617D RID: 24957
 		[Tooltip("The GameObject that the task operates on. If null the task GameObject is used.")]
 		public SharedGameObject targetGameObject;
 
-		// Token: 0x040070A1 RID: 28833
+		// Token: 0x0400617E RID: 24958
 		[Tooltip("The center of the CapsuleCollider")]
 		public SharedVector3 center;
 
-		// Token: 0x040070A2 RID: 28834
+		// Token: 0x0400617F RID: 24959
 		private CapsuleCollider capsuleCollider;
 
-		// Token: 0x040070A3 RID: 28835
+		// Token: 0x04006180 RID: 24960
 		private GameObject prevGameObject;
 	}
 }

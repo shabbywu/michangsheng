@@ -1,10 +1,10 @@
 ﻿using System;
 using UnityEngine;
 
-// Token: 0x02000673 RID: 1651
+// Token: 0x02000498 RID: 1176
 public class CameraFollow2D_new : MonoBehaviour
 {
-	// Token: 0x0600293C RID: 10556 RVA: 0x00141A7C File Offset: 0x0013FC7C
+	// Token: 0x0600251A RID: 9498 RVA: 0x00101DB8 File Offset: 0x000FFFB8
 	private void Awake()
 	{
 		this.cameraBottomLimit_y = this.cameraBottomLimit.position.y;
@@ -15,7 +15,7 @@ public class CameraFollow2D_new : MonoBehaviour
 		this.borderY = Camera.main.ScreenToWorldPoint(new Vector3((float)Screen.width, (float)Screen.height, 0f)).y * 0.8f;
 	}
 
-	// Token: 0x0600293D RID: 10557 RVA: 0x00141B64 File Offset: 0x0013FD64
+	// Token: 0x0600251B RID: 9499 RVA: 0x00101EA0 File Offset: 0x001000A0
 	private void Start()
 	{
 		if (Camera.main.aspect < 1.5f)
@@ -29,7 +29,7 @@ public class CameraFollow2D_new : MonoBehaviour
 		this.cameraTarget.transform.position = new Vector3(this.cameraTarget.transform.position.x, Camera.main.transform.position.y, this.cameraTarget.transform.position.z);
 	}
 
-	// Token: 0x0600293E RID: 10558 RVA: 0x00141CE0 File Offset: 0x0013FEE0
+	// Token: 0x0600251C RID: 9500 RVA: 0x0010201C File Offset: 0x0010021C
 	private void Update()
 	{
 		if (!this.stopFollow)
@@ -73,70 +73,70 @@ public class CameraFollow2D_new : MonoBehaviour
 		}
 	}
 
-	// Token: 0x04002303 RID: 8963
+	// Token: 0x04001DED RID: 7661
 	public GameObject cameraTarget;
 
-	// Token: 0x04002304 RID: 8964
+	// Token: 0x04001DEE RID: 7662
 	public GameObject player;
 
-	// Token: 0x04002305 RID: 8965
+	// Token: 0x04001DEF RID: 7663
 	public float smoothTime = 0.01f;
 
-	// Token: 0x04002306 RID: 8966
+	// Token: 0x04001DF0 RID: 7664
 	public bool cameraFollowX = true;
 
-	// Token: 0x04002307 RID: 8967
+	// Token: 0x04001DF1 RID: 7665
 	public bool cameraFollowY;
 
-	// Token: 0x04002308 RID: 8968
+	// Token: 0x04001DF2 RID: 7666
 	public bool cameraFollowHeight;
 
-	// Token: 0x04002309 RID: 8969
+	// Token: 0x04001DF3 RID: 7667
 	public float cameraHeight = 2.5f;
 
-	// Token: 0x0400230A RID: 8970
+	// Token: 0x04001DF4 RID: 7668
 	public Vector3 velocity;
 
-	// Token: 0x0400230B RID: 8971
+	// Token: 0x04001DF5 RID: 7669
 	private Transform thisTransform;
 
-	// Token: 0x0400230C RID: 8972
+	// Token: 0x04001DF6 RID: 7670
 	public float borderY;
 
-	// Token: 0x0400230D RID: 8973
+	// Token: 0x04001DF7 RID: 7671
 	public bool moveUp;
 
-	// Token: 0x0400230E RID: 8974
+	// Token: 0x04001DF8 RID: 7672
 	public bool moveDown;
 
-	// Token: 0x0400230F RID: 8975
+	// Token: 0x04001DF9 RID: 7673
 	public bool grounded;
 
-	// Token: 0x04002310 RID: 8976
+	// Token: 0x04001DFA RID: 7674
 	public float limitY;
 
-	// Token: 0x04002311 RID: 8977
+	// Token: 0x04001DFB RID: 7675
 	public Transform cameraBottomLimit;
 
-	// Token: 0x04002312 RID: 8978
+	// Token: 0x04001DFC RID: 7676
 	private float cameraBottomLimit_y = 2.1f;
 
-	// Token: 0x04002313 RID: 8979
+	// Token: 0x04001DFD RID: 7677
 	[HideInInspector]
 	public Transform rotatingPlayer;
 
-	// Token: 0x04002314 RID: 8980
+	// Token: 0x04001DFE RID: 7678
 	[HideInInspector]
 	public bool stopFollow;
 
-	// Token: 0x04002315 RID: 8981
+	// Token: 0x04001DFF RID: 7679
 	private MonkeyController2D playerController;
 
-	// Token: 0x04002316 RID: 8982
+	// Token: 0x04001E00 RID: 7680
 	[HideInInspector]
 	public bool transition;
 
-	// Token: 0x04002317 RID: 8983
+	// Token: 0x04001E01 RID: 7681
 	[HideInInspector]
 	public float upperLimit = 0.7f;
 }

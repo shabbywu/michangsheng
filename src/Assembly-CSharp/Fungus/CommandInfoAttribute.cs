@@ -2,11 +2,11 @@
 
 namespace Fungus
 {
-	// Token: 0x020012C4 RID: 4804
+	// Token: 0x02000E67 RID: 3687
 	[AttributeUsage(AttributeTargets.Class, AllowMultiple = true)]
 	public class CommandInfoAttribute : Attribute
 	{
-		// Token: 0x06007466 RID: 29798 RVA: 0x0004F787 File Offset: 0x0004D987
+		// Token: 0x060067B4 RID: 26548 RVA: 0x0028B1D5 File Offset: 0x002893D5
 		public CommandInfoAttribute(string category, string commandName, string helpText, int priority = 0)
 		{
 			this.Category = category;
@@ -15,24 +15,24 @@ namespace Fungus
 			this.Priority = priority;
 		}
 
-		// Token: 0x17000AA8 RID: 2728
-		// (get) Token: 0x06007467 RID: 29799 RVA: 0x0004F7AC File Offset: 0x0004D9AC
-		// (set) Token: 0x06007468 RID: 29800 RVA: 0x0004F7B4 File Offset: 0x0004D9B4
+		// Token: 0x17000837 RID: 2103
+		// (get) Token: 0x060067B5 RID: 26549 RVA: 0x0028B1FA File Offset: 0x002893FA
+		// (set) Token: 0x060067B6 RID: 26550 RVA: 0x0028B202 File Offset: 0x00289402
 		public string Category { get; set; }
 
-		// Token: 0x17000AA9 RID: 2729
-		// (get) Token: 0x06007469 RID: 29801 RVA: 0x0004F7BD File Offset: 0x0004D9BD
-		// (set) Token: 0x0600746A RID: 29802 RVA: 0x0004F7C5 File Offset: 0x0004D9C5
+		// Token: 0x17000838 RID: 2104
+		// (get) Token: 0x060067B7 RID: 26551 RVA: 0x0028B20B File Offset: 0x0028940B
+		// (set) Token: 0x060067B8 RID: 26552 RVA: 0x0028B213 File Offset: 0x00289413
 		public string CommandName { get; set; }
 
-		// Token: 0x17000AAA RID: 2730
-		// (get) Token: 0x0600746B RID: 29803 RVA: 0x0004F7CE File Offset: 0x0004D9CE
-		// (set) Token: 0x0600746C RID: 29804 RVA: 0x0004F7D6 File Offset: 0x0004D9D6
+		// Token: 0x17000839 RID: 2105
+		// (get) Token: 0x060067B9 RID: 26553 RVA: 0x0028B21C File Offset: 0x0028941C
+		// (set) Token: 0x060067BA RID: 26554 RVA: 0x0028B224 File Offset: 0x00289424
 		public string HelpText { get; set; }
 
-		// Token: 0x17000AAB RID: 2731
-		// (get) Token: 0x0600746D RID: 29805 RVA: 0x0004F7DF File Offset: 0x0004D9DF
-		// (set) Token: 0x0600746E RID: 29806 RVA: 0x0004F7E7 File Offset: 0x0004D9E7
+		// Token: 0x1700083A RID: 2106
+		// (get) Token: 0x060067BB RID: 26555 RVA: 0x0028B22D File Offset: 0x0028942D
+		// (set) Token: 0x060067BC RID: 26556 RVA: 0x0028B235 File Offset: 0x00289435
 		public int Priority { get; set; }
 	}
 }

@@ -3,12 +3,12 @@ using UnityEngine;
 
 namespace Fungus
 {
-	// Token: 0x020013F5 RID: 5109
+	// Token: 0x02000F3F RID: 3903
 	[CommandInfo("YSNew/Get", "GetHaoGanDu", "获取好感度保存到TempValue中", 0)]
 	[AddComponentMenu("")]
 	public class GetHaoGanDu : Command
 	{
-		// Token: 0x06007C28 RID: 31784 RVA: 0x0001CA4F File Offset: 0x0001AC4F
+		// Token: 0x06006E3D RID: 28221 RVA: 0x000E111A File Offset: 0x000DF31A
 		public void setHasVariable(string name, int num, Flowchart flowchart)
 		{
 			if (flowchart.HasVariable(name))
@@ -17,7 +17,7 @@ namespace Fungus
 			}
 		}
 
-		// Token: 0x06007C29 RID: 31785 RVA: 0x002C48E8 File Offset: 0x002C2AE8
+		// Token: 0x06006E3E RID: 28222 RVA: 0x002A48D8 File Offset: 0x002A2AD8
 		public override void OnEnter()
 		{
 			int favor = NPCEx.GetFavor(this.AvatarID);
@@ -26,13 +26,13 @@ namespace Fungus
 			this.Continue();
 		}
 
-		// Token: 0x06007C2A RID: 31786 RVA: 0x000113CF File Offset: 0x0000F5CF
+		// Token: 0x06006E3F RID: 28223 RVA: 0x0005E228 File Offset: 0x0005C428
 		public override Color GetButtonColor()
 		{
 			return new Color32(184, 210, 235, byte.MaxValue);
 		}
 
-		// Token: 0x04006A60 RID: 27232
+		// Token: 0x04005B8E RID: 23438
 		[Tooltip("需要获取好感度的武将ID")]
 		[SerializeField]
 		protected int AvatarID = 1;

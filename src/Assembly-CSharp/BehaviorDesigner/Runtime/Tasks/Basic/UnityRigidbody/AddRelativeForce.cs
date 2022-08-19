@@ -3,12 +3,12 @@ using UnityEngine;
 
 namespace BehaviorDesigner.Runtime.Tasks.Basic.UnityRigidbody
 {
-	// Token: 0x02001549 RID: 5449
+	// Token: 0x0200108F RID: 4239
 	[TaskCategory("Basic/Rigidbody")]
 	[TaskDescription("Applies a force to the rigidbody relative to its coordinate system. Returns Success.")]
 	public class AddRelativeForce : Action
 	{
-		// Token: 0x06008122 RID: 33058 RVA: 0x002CBE2C File Offset: 0x002CA02C
+		// Token: 0x06007328 RID: 29480 RVA: 0x002AF630 File Offset: 0x002AD830
 		public override void OnStart()
 		{
 			GameObject defaultGameObject = base.GetDefaultGameObject(this.targetGameObject.Value);
@@ -19,7 +19,7 @@ namespace BehaviorDesigner.Runtime.Tasks.Basic.UnityRigidbody
 			}
 		}
 
-		// Token: 0x06008123 RID: 33059 RVA: 0x0005817B File Offset: 0x0005637B
+		// Token: 0x06007329 RID: 29481 RVA: 0x002AF670 File Offset: 0x002AD870
 		public override TaskStatus OnUpdate()
 		{
 			if (this.rigidbody == null)
@@ -31,7 +31,7 @@ namespace BehaviorDesigner.Runtime.Tasks.Basic.UnityRigidbody
 			return 2;
 		}
 
-		// Token: 0x06008124 RID: 33060 RVA: 0x000581B4 File Offset: 0x000563B4
+		// Token: 0x0600732A RID: 29482 RVA: 0x002AF6A9 File Offset: 0x002AD8A9
 		public override void OnReset()
 		{
 			this.targetGameObject = null;
@@ -39,22 +39,22 @@ namespace BehaviorDesigner.Runtime.Tasks.Basic.UnityRigidbody
 			this.forceMode = 0;
 		}
 
-		// Token: 0x04006DDB RID: 28123
+		// Token: 0x04005EDB RID: 24283
 		[Tooltip("The GameObject that the task operates on. If null the task GameObject is used.")]
 		public SharedGameObject targetGameObject;
 
-		// Token: 0x04006DDC RID: 28124
+		// Token: 0x04005EDC RID: 24284
 		[Tooltip("The amount of force to apply")]
 		public SharedVector3 force;
 
-		// Token: 0x04006DDD RID: 28125
+		// Token: 0x04005EDD RID: 24285
 		[Tooltip("The type of force")]
 		public ForceMode forceMode;
 
-		// Token: 0x04006DDE RID: 28126
+		// Token: 0x04005EDE RID: 24286
 		private Rigidbody rigidbody;
 
-		// Token: 0x04006DDF RID: 28127
+		// Token: 0x04005EDF RID: 24287
 		private GameObject prevGameObject;
 	}
 }

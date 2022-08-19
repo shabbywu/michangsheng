@@ -4,10 +4,10 @@ using UnityEngine.AI;
 
 namespace UltimateSurvival.AI.Actions
 {
-	// Token: 0x02000985 RID: 2437
+	// Token: 0x02000678 RID: 1656
 	public class Chase : Action
 	{
-		// Token: 0x06003E4A RID: 15946 RVA: 0x001B6ADC File Offset: 0x001B4CDC
+		// Token: 0x0600349A RID: 13466 RVA: 0x0016E448 File Offset: 0x0016C648
 		public override void OnStart(AIBrain brain)
 		{
 			this.m_Priority = 1;
@@ -18,7 +18,7 @@ namespace UltimateSurvival.AI.Actions
 			this.ResetValues();
 		}
 
-		// Token: 0x06003E4B RID: 15947 RVA: 0x001B6B30 File Offset: 0x001B4D30
+		// Token: 0x0600349B RID: 13467 RVA: 0x0016E49C File Offset: 0x0016C69C
 		public override bool CanActivate(AIBrain brain)
 		{
 			if (!brain.Settings.Detection.HasTarget())
@@ -30,7 +30,7 @@ namespace UltimateSurvival.AI.Actions
 			return true;
 		}
 
-		// Token: 0x06003E4C RID: 15948 RVA: 0x001B6B84 File Offset: 0x001B4D84
+		// Token: 0x0600349C RID: 13468 RVA: 0x0016E4F0 File Offset: 0x0016C6F0
 		public override void Activate(AIBrain brain)
 		{
 			brain.Settings.Movement.MoveTo(this.m_Target.position, true);
@@ -40,7 +40,7 @@ namespace UltimateSurvival.AI.Actions
 			}
 		}
 
-		// Token: 0x06003E4D RID: 15949 RVA: 0x001B6BEC File Offset: 0x001B4DEC
+		// Token: 0x0600349D RID: 13469 RVA: 0x0016E558 File Offset: 0x0016C758
 		public override void OnUpdate(AIBrain brain)
 		{
 			brain.Settings.Movement.MoveTo(this.m_Target.position, true);
@@ -61,7 +61,7 @@ namespace UltimateSurvival.AI.Actions
 			}
 		}
 
-		// Token: 0x06003E4E RID: 15950 RVA: 0x001B6CE0 File Offset: 0x001B4EE0
+		// Token: 0x0600349E RID: 13470 RVA: 0x0016E64C File Offset: 0x0016C84C
 		public override bool StillValid(AIBrain brain)
 		{
 			bool flag = brain.Settings.Detection.HasTarget();
@@ -73,19 +73,19 @@ namespace UltimateSurvival.AI.Actions
 			return flag;
 		}
 
-		// Token: 0x06003E4F RID: 15951 RVA: 0x001B6D2C File Offset: 0x001B4F2C
+		// Token: 0x0600349F RID: 13471 RVA: 0x0016E698 File Offset: 0x0016C898
 		public override bool IsDone(AIBrain brain)
 		{
 			return brain.Settings.Movement.ReachedDestination(true) && (brain.transform.position - this.m_Target.position).sqrMagnitude < brain.Settings.Movement.Agent.stoppingDistance * brain.Settings.Movement.Agent.stoppingDistance;
 		}
 
-		// Token: 0x06003E50 RID: 15952 RVA: 0x0002CDC6 File Offset: 0x0002AFC6
+		// Token: 0x060034A0 RID: 13472 RVA: 0x0016E70A File Offset: 0x0016C90A
 		public override void ResetValues()
 		{
 			this.m_Target = null;
 		}
 
-		// Token: 0x06003E51 RID: 15953 RVA: 0x001B6A80 File Offset: 0x001B4C80
+		// Token: 0x060034A1 RID: 13473 RVA: 0x0016E714 File Offset: 0x0016C914
 		private void RotateTowards(Transform transform, Transform target, float rotationSpeed)
 		{
 			Vector3 normalized = (target.position - transform.position).normalized;
@@ -93,22 +93,22 @@ namespace UltimateSurvival.AI.Actions
 			transform.rotation = Quaternion.Slerp(transform.rotation, quaternion, Time.deltaTime * rotationSpeed);
 		}
 
-		// Token: 0x04003846 RID: 14406
+		// Token: 0x04002EA0 RID: 11936
 		[SerializeField]
 		private SoundPlayer m_InitialScreamAudio;
 
-		// Token: 0x04003847 RID: 14407
+		// Token: 0x04002EA1 RID: 11937
 		[SerializeField]
 		private SoundPlayer m_ScreamingAudio;
 
-		// Token: 0x04003848 RID: 14408
+		// Token: 0x04002EA2 RID: 11938
 		[SerializeField]
 		private Vector2 m_ScreamInterval = new Vector2(0.7f, 1.2f);
 
-		// Token: 0x04003849 RID: 14409
+		// Token: 0x04002EA3 RID: 11939
 		private Transform m_Target;
 
-		// Token: 0x0400384A RID: 14410
+		// Token: 0x04002EA4 RID: 11940
 		private float m_NextScreamTime;
 	}
 }

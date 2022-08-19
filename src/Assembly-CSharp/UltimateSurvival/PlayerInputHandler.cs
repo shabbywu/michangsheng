@@ -4,10 +4,10 @@ using UnityEngine;
 
 namespace UltimateSurvival
 {
-	// Token: 0x0200083F RID: 2111
+	// Token: 0x02000595 RID: 1429
 	public class PlayerInputHandler : PlayerBehaviour
 	{
-		// Token: 0x0600377E RID: 14206 RVA: 0x00028481 File Offset: 0x00026681
+		// Token: 0x06002F08 RID: 12040 RVA: 0x00155BAC File Offset: 0x00153DAC
 		private void Awake()
 		{
 			if (GameController.InputManager)
@@ -21,7 +21,7 @@ namespace UltimateSurvival
 			base.Player.PlaceObject.AddListener(new Action(this.OnSucceded_PlaceObject));
 		}
 
-		// Token: 0x0600377F RID: 14207 RVA: 0x001A03A4 File Offset: 0x0019E5A4
+		// Token: 0x06002F09 RID: 12041 RVA: 0x00155BEC File Offset: 0x00153DEC
 		private void OnGUI()
 		{
 			if (!this.m_ShowControls)
@@ -56,7 +56,7 @@ namespace UltimateSurvival
 			}
 		}
 
-		// Token: 0x06003780 RID: 14208 RVA: 0x001A052C File Offset: 0x0019E72C
+		// Token: 0x06002F0A RID: 12042 RVA: 0x00155D74 File Offset: 0x00153F74
 		private void Update()
 		{
 			if (!MonoSingleton<InventoryController>.Instance.IsClosed && this.m_Input.GetButtonDown("Close Inventory"))
@@ -149,17 +149,17 @@ namespace UltimateSurvival
 			base.Player.ScrollValue.Set(axis);
 		}
 
-		// Token: 0x06003781 RID: 14209 RVA: 0x000284BF File Offset: 0x000266BF
+		// Token: 0x06002F0B RID: 12043 RVA: 0x00156129 File Offset: 0x00154329
 		private void OnSucceded_PlaceObject()
 		{
 			base.Player.CanShowObjectPreview.Set(false);
 		}
 
-		// Token: 0x04003198 RID: 12696
+		// Token: 0x04002956 RID: 10582
 		[SerializeField]
 		private bool m_ShowControls;
 
-		// Token: 0x04003199 RID: 12697
+		// Token: 0x04002957 RID: 10583
 		private MGInputManager m_Input;
 	}
 }

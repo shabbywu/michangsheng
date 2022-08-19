@@ -2,88 +2,88 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-// Token: 0x020001E0 RID: 480
+// Token: 0x0200011E RID: 286
 public class ETFXSceneManager : MonoBehaviour
 {
-	// Token: 0x06000F75 RID: 3957 RVA: 0x0000FB80 File Offset: 0x0000DD80
+	// Token: 0x06000D9C RID: 3484 RVA: 0x000515FB File Offset: 0x0004F7FB
 	public void LoadScene1()
 	{
 		SceneManager.LoadScene("etfx_explosions");
 	}
 
-	// Token: 0x06000F76 RID: 3958 RVA: 0x0000FB8C File Offset: 0x0000DD8C
+	// Token: 0x06000D9D RID: 3485 RVA: 0x00051607 File Offset: 0x0004F807
 	public void LoadScene2()
 	{
 		SceneManager.LoadScene("etfx_explosions2");
 	}
 
-	// Token: 0x06000F77 RID: 3959 RVA: 0x0000FB98 File Offset: 0x0000DD98
+	// Token: 0x06000D9E RID: 3486 RVA: 0x00051613 File Offset: 0x0004F813
 	public void LoadScene3()
 	{
 		SceneManager.LoadScene("etfx_portals");
 	}
 
-	// Token: 0x06000F78 RID: 3960 RVA: 0x0000FBA4 File Offset: 0x0000DDA4
+	// Token: 0x06000D9F RID: 3487 RVA: 0x0005161F File Offset: 0x0004F81F
 	public void LoadScene4()
 	{
 		SceneManager.LoadScene("etfx_magic");
 	}
 
-	// Token: 0x06000F79 RID: 3961 RVA: 0x0000FBB0 File Offset: 0x0000DDB0
+	// Token: 0x06000DA0 RID: 3488 RVA: 0x0005162B File Offset: 0x0004F82B
 	public void LoadScene5()
 	{
 		SceneManager.LoadScene("etfx_emojis");
 	}
 
-	// Token: 0x06000F7A RID: 3962 RVA: 0x0000FBBC File Offset: 0x0000DDBC
+	// Token: 0x06000DA1 RID: 3489 RVA: 0x00051637 File Offset: 0x0004F837
 	public void LoadScene6()
 	{
 		SceneManager.LoadScene("etfx_sparkles");
 	}
 
-	// Token: 0x06000F7B RID: 3963 RVA: 0x0000FBC8 File Offset: 0x0000DDC8
+	// Token: 0x06000DA2 RID: 3490 RVA: 0x00051643 File Offset: 0x0004F843
 	public void LoadScene7()
 	{
 		SceneManager.LoadScene("etfx_fireworks");
 	}
 
-	// Token: 0x06000F7C RID: 3964 RVA: 0x0000FBD4 File Offset: 0x0000DDD4
+	// Token: 0x06000DA3 RID: 3491 RVA: 0x0005164F File Offset: 0x0004F84F
 	public void LoadScene8()
 	{
 		SceneManager.LoadScene("etfx_powerups");
 	}
 
-	// Token: 0x06000F7D RID: 3965 RVA: 0x0000FBE0 File Offset: 0x0000DDE0
+	// Token: 0x06000DA4 RID: 3492 RVA: 0x0005165B File Offset: 0x0004F85B
 	public void LoadScene9()
 	{
 		SceneManager.LoadScene("etfx_swordcombat");
 	}
 
-	// Token: 0x06000F7E RID: 3966 RVA: 0x0000FBEC File Offset: 0x0000DDEC
+	// Token: 0x06000DA5 RID: 3493 RVA: 0x00051667 File Offset: 0x0004F867
 	public void LoadScene10()
 	{
 		SceneManager.LoadScene("etfx_maindemo");
 	}
 
-	// Token: 0x06000F7F RID: 3967 RVA: 0x0000FBF8 File Offset: 0x0000DDF8
+	// Token: 0x06000DA6 RID: 3494 RVA: 0x00051673 File Offset: 0x0004F873
 	public void LoadScene11()
 	{
 		SceneManager.LoadScene("etfx_combat");
 	}
 
-	// Token: 0x06000F80 RID: 3968 RVA: 0x0000FC04 File Offset: 0x0000DE04
+	// Token: 0x06000DA7 RID: 3495 RVA: 0x0005167F File Offset: 0x0004F87F
 	public void LoadScene12()
 	{
 		SceneManager.LoadScene("etfx_2ddemo");
 	}
 
-	// Token: 0x06000F81 RID: 3969 RVA: 0x0000FC10 File Offset: 0x0000DE10
+	// Token: 0x06000DA8 RID: 3496 RVA: 0x0005168B File Offset: 0x0004F88B
 	public void LoadScene13()
 	{
 		SceneManager.LoadScene("etfx_missiles");
 	}
 
-	// Token: 0x06000F82 RID: 3970 RVA: 0x000A20C8 File Offset: 0x000A02C8
+	// Token: 0x06000DA9 RID: 3497 RVA: 0x00051698 File Offset: 0x0004F898
 	private void Update()
 	{
 		if (Input.GetKeyDown(108))
@@ -122,12 +122,12 @@ public class ETFXSceneManager : MonoBehaviour
 		}
 	}
 
-	// Token: 0x04000C24 RID: 3108
+	// Token: 0x040009A0 RID: 2464
 	public bool GUIHide;
 
-	// Token: 0x04000C25 RID: 3109
+	// Token: 0x040009A1 RID: 2465
 	public bool GUIHide2;
 
-	// Token: 0x04000C26 RID: 3110
+	// Token: 0x040009A2 RID: 2466
 	public bool GUIHide3;
 }

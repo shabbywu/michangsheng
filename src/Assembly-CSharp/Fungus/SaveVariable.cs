@@ -3,12 +3,12 @@ using UnityEngine;
 
 namespace Fungus
 {
-	// Token: 0x02001277 RID: 4727
+	// Token: 0x02000E26 RID: 3622
 	[CommandInfo("Variable", "Save Variable", "Save an Boolean, Integer, Float or String variable to persistent storage using a string key. The value can be loaded again later using the Load Variable command. You can also use the Set Save Profile command to manage separate save profiles for multiple players.", 0)]
 	[AddComponentMenu("")]
 	public class SaveVariable : Command
 	{
-		// Token: 0x060072A1 RID: 29345 RVA: 0x002A8A14 File Offset: 0x002A6C14
+		// Token: 0x06006613 RID: 26131 RVA: 0x00285050 File Offset: 0x00283250
 		public override void OnEnter()
 		{
 			if (this.key == "" || this.variable == null)
@@ -54,7 +54,7 @@ namespace Fungus
 			this.Continue();
 		}
 
-		// Token: 0x060072A2 RID: 29346 RVA: 0x002A8B64 File Offset: 0x002A6D64
+		// Token: 0x06006614 RID: 26132 RVA: 0x002851A0 File Offset: 0x002833A0
 		public override string GetSummary()
 		{
 			if (this.key.Length == 0)
@@ -68,24 +68,24 @@ namespace Fungus
 			return this.variable.Key + " into '" + this.key + "'";
 		}
 
-		// Token: 0x060072A3 RID: 29347 RVA: 0x0004C5E0 File Offset: 0x0004A7E0
+		// Token: 0x06006615 RID: 26133 RVA: 0x0027D3DB File Offset: 0x0027B5DB
 		public override Color GetButtonColor()
 		{
 			return new Color32(235, 191, 217, byte.MaxValue);
 		}
 
-		// Token: 0x060072A4 RID: 29348 RVA: 0x0004E151 File Offset: 0x0004C351
+		// Token: 0x06006616 RID: 26134 RVA: 0x002851F4 File Offset: 0x002833F4
 		public override bool HasReference(Variable in_variable)
 		{
 			return this.variable == in_variable || base.HasReference(in_variable);
 		}
 
-		// Token: 0x040064D1 RID: 25809
+		// Token: 0x0400578D RID: 22413
 		[Tooltip("Name of the saved value. Supports variable substition e.g. \"player_{$PlayerNumber}")]
 		[SerializeField]
 		protected string key = "";
 
-		// Token: 0x040064D2 RID: 25810
+		// Token: 0x0400578E RID: 22414
 		[Tooltip("Variable to read the value from. Only Boolean, Integer, Float and String are supported.")]
 		[VariableProperty(new Type[]
 		{

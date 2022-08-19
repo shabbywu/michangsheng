@@ -2,17 +2,17 @@
 using DG.Tweening;
 using UnityEngine;
 
-// Token: 0x020005FF RID: 1535
+// Token: 0x02000448 RID: 1096
 public class FightScreenShake : MonoBehaviour
 {
-	// Token: 0x06002668 RID: 9832 RVA: 0x0001E9BC File Offset: 0x0001CBBC
+	// Token: 0x060022AB RID: 8875 RVA: 0x000ED853 File Offset: 0x000EBA53
 	private void Start()
 	{
 		this.normalPosition = base.transform.position;
 		this.normalRotation = base.transform.rotation;
 	}
 
-	// Token: 0x06002669 RID: 9833 RVA: 0x0012E544 File Offset: 0x0012C744
+	// Token: 0x060022AC RID: 8876 RVA: 0x000ED878 File Offset: 0x000EBA78
 	public void Shake()
 	{
 		ShortcutExtensions.DOShakePosition(base.transform, 0.3f, this.ShakePosition, 10, 90f, false, true).onComplete = delegate()
@@ -25,15 +25,15 @@ public class FightScreenShake : MonoBehaviour
 		};
 	}
 
-	// Token: 0x040020C7 RID: 8391
+	// Token: 0x04001BFB RID: 7163
 	public Vector3 ShakePosition = new Vector3(0.6f, 0.3f, 0f);
 
-	// Token: 0x040020C8 RID: 8392
+	// Token: 0x04001BFC RID: 7164
 	public Vector3 ShakeRotation = new Vector3(1f, 0.7f, 0f);
 
-	// Token: 0x040020C9 RID: 8393
+	// Token: 0x04001BFD RID: 7165
 	private Vector3 normalPosition;
 
-	// Token: 0x040020CA RID: 8394
+	// Token: 0x04001BFE RID: 7166
 	private Quaternion normalRotation;
 }

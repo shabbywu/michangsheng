@@ -3,11 +3,11 @@ using UnityEngine;
 
 namespace UltimateSurvival.GUISystem
 {
-	// Token: 0x0200092F RID: 2351
+	// Token: 0x0200063A RID: 1594
 	public class GUIBehaviour : MonoBehaviour
 	{
-		// Token: 0x1700066F RID: 1647
-		// (get) Token: 0x06003BE1 RID: 15329 RVA: 0x0002B4CF File Offset: 0x000296CF
+		// Token: 0x1700046B RID: 1131
+		// (get) Token: 0x0600329B RID: 12955 RVA: 0x00165EB9 File Offset: 0x001640B9
 		public GUIController Controller
 		{
 			get
@@ -20,8 +20,8 @@ namespace UltimateSurvival.GUISystem
 			}
 		}
 
-		// Token: 0x17000670 RID: 1648
-		// (get) Token: 0x06003BE2 RID: 15330 RVA: 0x0002B4F1 File Offset: 0x000296F1
+		// Token: 0x1700046C RID: 1132
+		// (get) Token: 0x0600329C RID: 12956 RVA: 0x00165EDB File Offset: 0x001640DB
 		public PlayerEventHandler Player
 		{
 			get
@@ -34,7 +34,7 @@ namespace UltimateSurvival.GUISystem
 			}
 		}
 
-		// Token: 0x04003664 RID: 13924
+		// Token: 0x04002D08 RID: 11528
 		private GUIController m_Controller;
 	}
 }

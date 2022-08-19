@@ -2,13 +2,13 @@
 
 namespace SuperScrollView
 {
-	// Token: 0x02000A00 RID: 2560
+	// Token: 0x020006D2 RID: 1746
 	public class ItemIndexData
 	{
-		// Token: 0x04003A8C RID: 14988
+		// Token: 0x04003074 RID: 12404
 		public int mGroupIndex;
 
-		// Token: 0x04003A8D RID: 14989
+		// Token: 0x04003075 RID: 12405
 		public int mIndexInGroup;
 	}
 }

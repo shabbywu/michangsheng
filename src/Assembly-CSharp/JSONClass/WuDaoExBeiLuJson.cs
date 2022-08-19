@@ -3,10 +3,10 @@ using System.Collections.Generic;
 
 namespace JSONClass
 {
-	// Token: 0x02000CFF RID: 3327
+	// Token: 0x0200097F RID: 2431
 	public class WuDaoExBeiLuJson : IJSONClass
 	{
-		// Token: 0x06004F66 RID: 20326 RVA: 0x00214F44 File Offset: 0x00213144
+		// Token: 0x06004410 RID: 17424 RVA: 0x001CFDB8 File Offset: 0x001CDFB8
 		public static void InitDataDict()
 		{
 			foreach (JSONObject jsonobject in jsonData.instance.WuDaoExBeiLuJson.list)
@@ -48,51 +48,51 @@ namespace JSONClass
 			}
 		}
 
-		// Token: 0x06004F67 RID: 20327 RVA: 0x000042DD File Offset: 0x000024DD
+		// Token: 0x06004411 RID: 17425 RVA: 0x00004095 File Offset: 0x00002295
 		private static void OnInitFinish()
 		{
 		}
 
-		// Token: 0x04005075 RID: 20597
+		// Token: 0x04004581 RID: 17793
 		public static Dictionary<int, WuDaoExBeiLuJson> DataDict = new Dictionary<int, WuDaoExBeiLuJson>();
 
-		// Token: 0x04005076 RID: 20598
+		// Token: 0x04004582 RID: 17794
 		public static List<WuDaoExBeiLuJson> DataList = new List<WuDaoExBeiLuJson>();
 
-		// Token: 0x04005077 RID: 20599
+		// Token: 0x04004583 RID: 17795
 		public static Action OnInitFinishAction = new Action(WuDaoExBeiLuJson.OnInitFinish);
 
-		// Token: 0x04005078 RID: 20600
+		// Token: 0x04004584 RID: 17796
 		public int id;
 
-		// Token: 0x04005079 RID: 20601
+		// Token: 0x04004585 RID: 17797
 		public int gongfa;
 
-		// Token: 0x0400507A RID: 20602
+		// Token: 0x04004586 RID: 17798
 		public int linwu;
 
-		// Token: 0x0400507B RID: 20603
+		// Token: 0x04004587 RID: 17799
 		public int tupo;
 
-		// Token: 0x0400507C RID: 20604
+		// Token: 0x04004588 RID: 17800
 		public int kanshu;
 
-		// Token: 0x0400507D RID: 20605
+		// Token: 0x04004589 RID: 17801
 		public int lingguang1;
 
-		// Token: 0x0400507E RID: 20606
+		// Token: 0x0400458A RID: 17802
 		public int lingguang2;
 
-		// Token: 0x0400507F RID: 20607
+		// Token: 0x0400458B RID: 17803
 		public int lingguang3;
 
-		// Token: 0x04005080 RID: 20608
+		// Token: 0x0400458C RID: 17804
 		public int lingguang4;
 
-		// Token: 0x04005081 RID: 20609
+		// Token: 0x0400458D RID: 17805
 		public int lingguang5;
 
-		// Token: 0x04005082 RID: 20610
+		// Token: 0x0400458E RID: 17806
 		public int lingguang6;
 	}
 }

@@ -12,16 +12,16 @@ using UnityEngine.EventSystems;
 using UnityEngine.UI;
 using YSGame.TuJian;
 
-// Token: 0x0200027B RID: 635
+// Token: 0x0200018F RID: 399
 public class MapInstComport : BaseMapCompont
 {
-	// Token: 0x0600138C RID: 5004 RVA: 0x000124B9 File Offset: 0x000106B9
+	// Token: 0x0600110F RID: 4367 RVA: 0x000667BC File Offset: 0x000649BC
 	protected override void Awake()
 	{
 		base.Awake();
 	}
 
-	// Token: 0x0600138D RID: 5005 RVA: 0x000B4F54 File Offset: 0x000B3154
+	// Token: 0x06001110 RID: 4368 RVA: 0x000667C4 File Offset: 0x000649C4
 	protected override void Start()
 	{
 		int key = int.Parse(Tools.getScreenName().Replace("F", ""));
@@ -33,7 +33,7 @@ public class MapInstComport : BaseMapCompont
 		base.Start();
 	}
 
-	// Token: 0x0600138E RID: 5006 RVA: 0x000124C1 File Offset: 0x000106C1
+	// Token: 0x06001111 RID: 4369 RVA: 0x00066863 File Offset: 0x00064A63
 	public override void Update()
 	{
 		if (WASDMove.Inst != null && WASDMove.Inst.IsMoved)
@@ -43,7 +43,7 @@ public class MapInstComport : BaseMapCompont
 		}
 	}
 
-	// Token: 0x0600138F RID: 5007 RVA: 0x000124E8 File Offset: 0x000106E8
+	// Token: 0x06001112 RID: 4370 RVA: 0x0006688A File Offset: 0x00064A8A
 	private void LateUpdate()
 	{
 		if (!this.initCaiJi)
@@ -53,7 +53,7 @@ public class MapInstComport : BaseMapCompont
 		}
 	}
 
-	// Token: 0x06001390 RID: 5008 RVA: 0x000B4FF4 File Offset: 0x000B31F4
+	// Token: 0x06001113 RID: 4371 RVA: 0x000668A4 File Offset: 0x00064AA4
 	public override void addOption(int talkID)
 	{
 		int key = int.Parse(Tools.getScreenName().Replace("F", ""));
@@ -64,12 +64,12 @@ public class MapInstComport : BaseMapCompont
 		}.addOption(talkID);
 	}
 
-	// Token: 0x06001391 RID: 5009 RVA: 0x000042DD File Offset: 0x000024DD
+	// Token: 0x06001114 RID: 4372 RVA: 0x00004095 File Offset: 0x00002295
 	public override void BaseSetFlag()
 	{
 	}
 
-	// Token: 0x06001392 RID: 5010 RVA: 0x000B5060 File Offset: 0x000B3260
+	// Token: 0x06001115 RID: 4373 RVA: 0x00066910 File Offset: 0x00064B10
 	public override void AvatarMoveToThis()
 	{
 		if (AllMapManage.instance != null)
@@ -97,13 +97,13 @@ public class MapInstComport : BaseMapCompont
 		}
 	}
 
-	// Token: 0x06001393 RID: 5011 RVA: 0x000124FF File Offset: 0x000106FF
+	// Token: 0x06001116 RID: 4374 RVA: 0x00066A1D File Offset: 0x00064C1D
 	private void SetSpeed0()
 	{
 		MapPlayerController.Inst.SetSpeed(0);
 	}
 
-	// Token: 0x06001394 RID: 5012 RVA: 0x0001250C File Offset: 0x0001070C
+	// Token: 0x06001117 RID: 4375 RVA: 0x00066A2A File Offset: 0x00064C2A
 	protected void chengeState()
 	{
 		if (this.State.Is(MapInstComport.NodeType.Disable))
@@ -120,7 +120,7 @@ public class MapInstComport : BaseMapCompont
 		}
 	}
 
-	// Token: 0x06001395 RID: 5013 RVA: 0x000B5170 File Offset: 0x000B3370
+	// Token: 0x06001118 RID: 4376 RVA: 0x00066A68 File Offset: 0x00064C68
 	public void setImageState(int state)
 	{
 		switch (state)
@@ -160,7 +160,7 @@ public class MapInstComport : BaseMapCompont
 		}
 	}
 
-	// Token: 0x06001396 RID: 5014 RVA: 0x000B5394 File Offset: 0x000B3594
+	// Token: 0x06001119 RID: 4377 RVA: 0x00066C8C File Offset: 0x00064E8C
 	public override void fuBenSetClick()
 	{
 		Flowchart component = base.transform.Find("flowchat").GetComponent<Flowchart>();
@@ -204,7 +204,7 @@ public class MapInstComport : BaseMapCompont
 		}
 	}
 
-	// Token: 0x06001397 RID: 5015 RVA: 0x000B54DC File Offset: 0x000B36DC
+	// Token: 0x0600111A RID: 4378 RVA: 0x00066DD4 File Offset: 0x00064FD4
 	public void CheckFubenCaiJi()
 	{
 		if (PlayerEx.Player.fubenContorl[Tools.getScreenName()].NowIndex == this.NodeIndex)
@@ -249,27 +249,27 @@ public class MapInstComport : BaseMapCompont
 		}
 	}
 
-	// Token: 0x06001398 RID: 5016 RVA: 0x0001254A File Offset: 0x0001074A
+	// Token: 0x0600111B RID: 4379 RVA: 0x00066F34 File Offset: 0x00065134
 	private void showDisable()
 	{
 		this.NodeSprite.sprite = this.sprites[0];
 		this.setImageState(0);
 	}
 
-	// Token: 0x06001399 RID: 5017 RVA: 0x0001256A File Offset: 0x0001076A
+	// Token: 0x0600111C RID: 4380 RVA: 0x00066F54 File Offset: 0x00065154
 	private void showFan()
 	{
 		this.NodeSprite.sprite = this.sprites[1];
 		this.setImageState(1);
 	}
 
-	// Token: 0x0600139A RID: 5018 RVA: 0x0001258A File Offset: 0x0001078A
+	// Token: 0x0600111D RID: 4381 RVA: 0x00066F74 File Offset: 0x00065174
 	protected virtual int GetGrideNum()
 	{
 		return base.transform.parent.GetComponent<FubenGrid>().num;
 	}
 
-	// Token: 0x0600139B RID: 5019 RVA: 0x000B563C File Offset: 0x000B383C
+	// Token: 0x0600111E RID: 4382 RVA: 0x00066F8C File Offset: 0x0006518C
 	private void showZheng()
 	{
 		int grideNum = this.GetGrideNum();
@@ -281,7 +281,7 @@ public class MapInstComport : BaseMapCompont
 		this.setImageState(2);
 	}
 
-	// Token: 0x0600139C RID: 5020 RVA: 0x000125A1 File Offset: 0x000107A1
+	// Token: 0x0600111F RID: 4383 RVA: 0x0006704A File Offset: 0x0006524A
 	private void checkShowLine(int index, GameObject obj)
 	{
 		if (this.nextIndex.Contains(index))
@@ -290,7 +290,7 @@ public class MapInstComport : BaseMapCompont
 		}
 	}
 
-	// Token: 0x0600139D RID: 5021 RVA: 0x000125B8 File Offset: 0x000107B8
+	// Token: 0x06001120 RID: 4384 RVA: 0x00067061 File Offset: 0x00065261
 	protected bool TryChange_State(MapInstComport.NodeType state)
 	{
 		int num = 1;
@@ -302,31 +302,31 @@ public class MapInstComport : BaseMapCompont
 		return num != 0;
 	}
 
-	// Token: 0x0600139E RID: 5022 RVA: 0x000125D5 File Offset: 0x000107D5
+	// Token: 0x06001121 RID: 4385 RVA: 0x0006707E File Offset: 0x0006527E
 	private MapInstComport.NodeType Filter(MapInstComport.NodeType lastValue, MapInstComport.NodeType newValue)
 	{
 		return newValue;
 	}
 
-	// Token: 0x0600139F RID: 5023 RVA: 0x000B56FC File Offset: 0x000B38FC
+	// Token: 0x06001122 RID: 4386 RVA: 0x00067084 File Offset: 0x00065284
 	public override void setAvatarNowMapIndex()
 	{
 		Tools.instance.fubenLastIndex = this.ComAvatar.fubenContorl[Tools.getScreenName()].NowIndex;
 		this.ComAvatar.fubenContorl[Tools.getScreenName()].NowIndex = this.NodeIndex;
 	}
 
-	// Token: 0x060013A0 RID: 5024 RVA: 0x000125D8 File Offset: 0x000107D8
+	// Token: 0x06001123 RID: 4387 RVA: 0x000670D5 File Offset: 0x000652D5
 	public override int getAvatarNowMapIndex()
 	{
 		return PlayerEx.Player.fubenContorl[Tools.getScreenName()].NowIndex;
 	}
 
-	// Token: 0x060013A1 RID: 5025 RVA: 0x000042DD File Offset: 0x000024DD
+	// Token: 0x06001124 RID: 4388 RVA: 0x00004095 File Offset: 0x00002295
 	public override void SetStatic()
 	{
 	}
 
-	// Token: 0x060013A2 RID: 5026 RVA: 0x000B5750 File Offset: 0x000B3950
+	// Token: 0x06001125 RID: 4389 RVA: 0x000670F0 File Offset: 0x000652F0
 	private void TrySetState()
 	{
 		if (this.ComAvatar.FuBen[Tools.getScreenName()].HasField("RoadNode") && this.ComAvatar.FuBen[Tools.getScreenName()]["RoadNode"].HasField(this.NodeIndex.ToString()))
@@ -355,7 +355,7 @@ public class MapInstComport : BaseMapCompont
 		}
 	}
 
-	// Token: 0x060013A3 RID: 5027 RVA: 0x000B591C File Offset: 0x000B3B1C
+	// Token: 0x06001126 RID: 4390 RVA: 0x000672BC File Offset: 0x000654BC
 	public override void EventRandom()
 	{
 		if (!base.CanClick())
@@ -379,13 +379,13 @@ public class MapInstComport : BaseMapCompont
 		}
 		Avatar avatar = (Avatar)KBEngineApp.app.player();
 		int EventID = base.getEventID();
-		int num = (int)this.MapRandomJsonData[string.Concat(EventID)]["EventData"].n;
-		int monstarID = (int)this.MapRandomJsonData[string.Concat(EventID)]["MosterID"].n;
-		int num2 = (int)this.MapRandomJsonData[string.Concat(EventID)]["once"].n;
-		switch ((int)this.MapRandomJsonData[string.Concat(EventID)]["EventList"].n)
+		int i = this.MapRandomJsonData[string.Concat(EventID)]["EventData"].I;
+		int i2 = this.MapRandomJsonData[string.Concat(EventID)]["MosterID"].I;
+		int i3 = this.MapRandomJsonData[string.Concat(EventID)]["once"].I;
+		switch (this.MapRandomJsonData[string.Concat(EventID)]["EventList"].I)
 		{
 		case 0:
-			Object.Instantiate<GameObject>(Resources.Load<GameObject>("talkPrefab/TalkPrefab/talk" + num));
+			Object.Instantiate<GameObject>(Resources.Load<GameObject>("talkPrefab/TalkPrefab/talk" + i));
 			return;
 		case 1:
 			if (avatar.SuiJiShiJian.HasField(Tools.getScreenName()) && avatar.SuiJiShiJian[Tools.getScreenName()].list.Find((JSONObject aa) => (int)aa.n == EventID) != null)
@@ -393,7 +393,7 @@ public class MapInstComport : BaseMapCompont
 				Object.Instantiate<GameObject>(Resources.Load<GameObject>("talkPrefab/TalkPrefab/talk" + 5001));
 				return;
 			}
-			if (num2 != 0)
+			if (i3 != 0)
 			{
 				if (!avatar.SuiJiShiJian.HasField(Tools.getScreenName()))
 				{
@@ -401,79 +401,79 @@ public class MapInstComport : BaseMapCompont
 				}
 				avatar.SuiJiShiJian[Tools.getScreenName()].Add(EventID);
 			}
-			this.addOption(num);
+			this.addOption(i);
 			return;
 		case 2:
-			Tools.instance.MonstarID = monstarID;
-			Object.Instantiate<GameObject>(Resources.Load<GameObject>("talkPrefab/FightPrefab/Fight" + num));
+			Tools.instance.MonstarID = i2;
+			Object.Instantiate<GameObject>(Resources.Load<GameObject>("talkPrefab/FightPrefab/Fight" + i));
 			return;
 		default:
 			return;
 		}
 	}
 
-	// Token: 0x04000F2F RID: 3887
+	// Token: 0x04000C37 RID: 3127
 	[Tooltip("是否显示图标的名字和图片")]
 	public bool ShowStatic = true;
 
-	// Token: 0x04000F30 RID: 3888
+	// Token: 0x04000C38 RID: 3128
 	[Tooltip("固定副本的名称，只有当IsStatic选项选择才有效果")]
 	public string NameStr = "";
 
-	// Token: 0x04000F31 RID: 3889
+	// Token: 0x04000C39 RID: 3129
 	[Tooltip("固定场景的图片")]
 	public Sprite BuildSpriteImage;
 
-	// Token: 0x04000F32 RID: 3890
+	// Token: 0x04000C3A RID: 3130
 	[Header("以下配置为固定设置，不需要配置")]
 	public SpriteRenderer NodeSprite;
 
-	// Token: 0x04000F33 RID: 3891
+	// Token: 0x04000C3B RID: 3131
 	public SpriteRenderer wenHao;
 
-	// Token: 0x04000F34 RID: 3892
+	// Token: 0x04000C3C RID: 3132
 	public SpriteRenderer BuildSprite;
 
-	// Token: 0x04000F35 RID: 3893
+	// Token: 0x04000C3D RID: 3133
 	public Text nametext;
 
-	// Token: 0x04000F36 RID: 3894
+	// Token: 0x04000C3E RID: 3134
 	public List<Sprite> sprites;
 
-	// Token: 0x04000F37 RID: 3895
+	// Token: 0x04000C3F RID: 3135
 	public Animation lineTop;
 
-	// Token: 0x04000F38 RID: 3896
+	// Token: 0x04000C40 RID: 3136
 	public Animation lineDown;
 
-	// Token: 0x04000F39 RID: 3897
+	// Token: 0x04000C41 RID: 3137
 	public Animation lineLeft;
 
-	// Token: 0x04000F3A RID: 3898
+	// Token: 0x04000C42 RID: 3138
 	public Animation lineRight;
 
-	// Token: 0x04000F3B RID: 3899
+	// Token: 0x04000C43 RID: 3139
 	private float m_LastTimeToggledInventory;
 
-	// Token: 0x04000F3C RID: 3900
+	// Token: 0x04000C44 RID: 3140
 	public Value<MapInstComport.NodeType> State = new Value<MapInstComport.NodeType>(MapInstComport.NodeType.Null);
 
-	// Token: 0x04000F3D RID: 3901
+	// Token: 0x04000C45 RID: 3141
 	public Attempt<MapInstComport.NodeType> SetState = new Attempt<MapInstComport.NodeType>();
 
-	// Token: 0x04000F3E RID: 3902
+	// Token: 0x04000C46 RID: 3142
 	private bool initCaiJi;
 
-	// Token: 0x0200027C RID: 636
+	// Token: 0x020012AC RID: 4780
 	public enum NodeType
 	{
-		// Token: 0x04000F40 RID: 3904
+		// Token: 0x04006652 RID: 26194
 		Null,
-		// Token: 0x04000F41 RID: 3905
+		// Token: 0x04006653 RID: 26195
 		Disable,
-		// Token: 0x04000F42 RID: 3906
+		// Token: 0x04006654 RID: 26196
 		Fan,
-		// Token: 0x04000F43 RID: 3907
+		// Token: 0x04006655 RID: 26197
 		Zheng
 	}
 }

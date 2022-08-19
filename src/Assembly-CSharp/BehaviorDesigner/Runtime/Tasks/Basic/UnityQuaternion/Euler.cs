@@ -3,30 +3,30 @@ using UnityEngine;
 
 namespace BehaviorDesigner.Runtime.Tasks.Basic.UnityQuaternion
 {
-	// Token: 0x0200156F RID: 5487
+	// Token: 0x020010B5 RID: 4277
 	[TaskCategory("Basic/Quaternion")]
 	[TaskDescription("Stores the quaternion of a euler vector.")]
 	public class Euler : Action
 	{
-		// Token: 0x060081B7 RID: 33207 RVA: 0x00058BD8 File Offset: 0x00056DD8
+		// Token: 0x060073BD RID: 29629 RVA: 0x002B09D6 File Offset: 0x002AEBD6
 		public override TaskStatus OnUpdate()
 		{
 			this.storeResult.Value = Quaternion.Euler(this.eulerVector.Value);
 			return 2;
 		}
 
-		// Token: 0x060081B8 RID: 33208 RVA: 0x00058BF6 File Offset: 0x00056DF6
+		// Token: 0x060073BE RID: 29630 RVA: 0x002B09F4 File Offset: 0x002AEBF4
 		public override void OnReset()
 		{
 			this.eulerVector = Vector3.zero;
 			this.storeResult = Quaternion.identity;
 		}
 
-		// Token: 0x04006E6D RID: 28269
+		// Token: 0x04005F6D RID: 24429
 		[Tooltip("The euler vector")]
 		public SharedVector3 eulerVector;
 
-		// Token: 0x04006E6E RID: 28270
+		// Token: 0x04005F6E RID: 24430
 		[Tooltip("The stored quaternion")]
 		[RequiredField]
 		public SharedQuaternion storeResult;

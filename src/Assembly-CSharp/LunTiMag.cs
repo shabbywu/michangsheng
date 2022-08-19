@@ -1,16 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
 
-// Token: 0x02000475 RID: 1141
+// Token: 0x02000313 RID: 787
 public class LunTiMag
 {
-	// Token: 0x06001E92 RID: 7826 RVA: 0x0001958C File Offset: 0x0001778C
+	// Token: 0x06001B61 RID: 7009 RVA: 0x000C318F File Offset: 0x000C138F
 	public LunTiMag()
 	{
 		this.curLunDianList = new List<LunDaoQiu>();
 	}
 
-	// Token: 0x06001E93 RID: 7827 RVA: 0x001086BC File Offset: 0x001068BC
+	// Token: 0x06001B62 RID: 7010 RVA: 0x000C31A4 File Offset: 0x000C13A4
 	public void CreateLunTi(List<int> lunTiList, int npcId)
 	{
 		this.targetLunTiDictionary = new Dictionary<int, List<int>>();
@@ -45,7 +45,7 @@ public class LunTiMag
 		}
 	}
 
-	// Token: 0x06001E94 RID: 7828 RVA: 0x001087DC File Offset: 0x001069DC
+	// Token: 0x06001B63 RID: 7011 RVA: 0x000C32C4 File Offset: 0x000C14C4
 	public bool CheckCanHeCheng(ref int minIndex, ref int bigIndex)
 	{
 		if (this.curLunDianList.Count < 1)
@@ -72,7 +72,7 @@ public class LunTiMag
 		return false;
 	}
 
-	// Token: 0x06001E95 RID: 7829 RVA: 0x00108894 File Offset: 0x00106A94
+	// Token: 0x06001B64 RID: 7012 RVA: 0x000C337C File Offset: 0x000C157C
 	private bool CheckIsTargetLunTi(ref int wuDaoId)
 	{
 		foreach (int num in this.targetLunTiDictionary.Keys)
@@ -99,14 +99,14 @@ public class LunTiMag
 		return false;
 	}
 
-	// Token: 0x06001E96 RID: 7830 RVA: 0x001089B4 File Offset: 0x00106BB4
+	// Token: 0x06001B65 RID: 7013 RVA: 0x000C349C File Offset: 0x000C169C
 	public bool CheckIsTargetLunTi()
 	{
 		int num = -1;
 		return this.CheckIsTargetLunTi(ref num);
 	}
 
-	// Token: 0x06001E97 RID: 7831 RVA: 0x001089CC File Offset: 0x00106BCC
+	// Token: 0x06001B66 RID: 7014 RVA: 0x000C34B4 File Offset: 0x000C16B4
 	public void CompleteLunTi()
 	{
 		int num = 0;
@@ -130,7 +130,7 @@ public class LunTiMag
 		}
 	}
 
-	// Token: 0x06001E98 RID: 7832 RVA: 0x00108AF8 File Offset: 0x00106CF8
+	// Token: 0x06001B67 RID: 7015 RVA: 0x000C35E0 File Offset: 0x000C17E0
 	public void LunDianHeCheng()
 	{
 		int index = -1;
@@ -146,7 +146,7 @@ public class LunTiMag
 		}
 	}
 
-	// Token: 0x06001E99 RID: 7833 RVA: 0x00108BB8 File Offset: 0x00106DB8
+	// Token: 0x06001B68 RID: 7016 RVA: 0x000C36A0 File Offset: 0x000C18A0
 	public int GetNullSlot()
 	{
 		int result = -1;
@@ -160,7 +160,7 @@ public class LunTiMag
 		return result;
 	}
 
-	// Token: 0x06001E9A RID: 7834 RVA: 0x00108BF4 File Offset: 0x00106DF4
+	// Token: 0x06001B69 RID: 7017 RVA: 0x000C36DC File Offset: 0x000C18DC
 	public List<LunDaoCard> GetShengYuLunDian()
 	{
 		List<LunDaoCard> list = new List<LunDaoCard>();
@@ -189,9 +189,9 @@ public class LunTiMag
 		return list;
 	}
 
-	// Token: 0x04001A00 RID: 6656
+	// Token: 0x040015E6 RID: 5606
 	public Dictionary<int, List<int>> targetLunTiDictionary;
 
-	// Token: 0x04001A01 RID: 6657
+	// Token: 0x040015E7 RID: 5607
 	public List<LunDaoQiu> curLunDianList;
 }

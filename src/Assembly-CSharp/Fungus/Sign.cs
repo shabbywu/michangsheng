@@ -3,12 +3,12 @@ using UnityEngine;
 
 namespace Fungus
 {
-	// Token: 0x02001248 RID: 4680
+	// Token: 0x02000DFE RID: 3582
 	[CommandInfo("Math", "Sign", "Command to execute and store the result of a Sign", 0)]
 	[AddComponentMenu("")]
 	public class Sign : BaseUnaryMathCommand
 	{
-		// Token: 0x060071D1 RID: 29137 RVA: 0x0004D632 File Offset: 0x0004B832
+		// Token: 0x06006543 RID: 25923 RVA: 0x002827BE File Offset: 0x002809BE
 		public override void OnEnter()
 		{
 			this.outValue.Value = Mathf.Sign(this.inValue.Value);

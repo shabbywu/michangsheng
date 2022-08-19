@@ -3,15 +3,15 @@ using JSONClass;
 using UnityEngine;
 using UnityEngine.UI;
 
-// Token: 0x0200039D RID: 925
+// Token: 0x02000278 RID: 632
 public class UINPCShuangXiuAnim : MonoBehaviour
 {
-	// Token: 0x060019D6 RID: 6614 RVA: 0x000042DD File Offset: 0x000024DD
+	// Token: 0x0600170A RID: 5898 RVA: 0x00004095 File Offset: 0x00002295
 	private void Start()
 	{
 	}
 
-	// Token: 0x060019D7 RID: 6615 RVA: 0x0001638A File Offset: 0x0001458A
+	// Token: 0x0600170B RID: 5899 RVA: 0x0009D766 File Offset: 0x0009B966
 	private void Update()
 	{
 		if (this.needPlay)
@@ -22,7 +22,7 @@ public class UINPCShuangXiuAnim : MonoBehaviour
 		this.VideoProcessSlider.value = this.VideoImage.PlayProcess;
 	}
 
-	// Token: 0x060019D8 RID: 6616 RVA: 0x000E50EC File Offset: 0x000E32EC
+	// Token: 0x0600170C RID: 5900 RVA: 0x0009D798 File Offset: 0x0009B998
 	public void RefreshUI()
 	{
 		this.npc = UINPCJiaoHu.Inst.NowJiaoHuNPC;
@@ -64,22 +64,22 @@ public class UINPCShuangXiuAnim : MonoBehaviour
 		this.needPlay = true;
 	}
 
-	// Token: 0x04001525 RID: 5413
+	// Token: 0x040011B5 RID: 4533
 	private UINPCData npc;
 
-	// Token: 0x04001526 RID: 5414
+	// Token: 0x040011B6 RID: 4534
 	public Sprite FallbackAnim;
 
-	// Token: 0x04001527 RID: 5415
+	// Token: 0x040011B7 RID: 4535
 	public VideoImage VideoImage;
 
-	// Token: 0x04001528 RID: 5416
+	// Token: 0x040011B8 RID: 4536
 	public Slider VideoProcessSlider;
 
-	// Token: 0x04001529 RID: 5417
+	// Token: 0x040011B9 RID: 4537
 	private bool needPlay;
 
-	// Token: 0x0400152A RID: 5418
+	// Token: 0x040011BA RID: 4538
 	public static string[] ningliantypes = new string[]
 	{
 		"修为",

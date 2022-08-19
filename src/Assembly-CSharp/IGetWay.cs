@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 
-// Token: 0x020002F9 RID: 761
+// Token: 0x020001E6 RID: 486
 public interface IGetWay
 {
-	// Token: 0x060016F3 RID: 5875
+	// Token: 0x0600144F RID: 5199
 	List<int> GetBestList(int startIndex, int tagetIndex);
 }

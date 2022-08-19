@@ -3,10 +3,10 @@ using System.Collections.Generic;
 
 namespace JSONClass
 {
-	// Token: 0x02000CF1 RID: 3313
+	// Token: 0x0200096D RID: 2413
 	public class SuiJiTouXiangGeShuJsonData : IJSONClass
 	{
-		// Token: 0x06004F2C RID: 20268 RVA: 0x002133C0 File Offset: 0x002115C0
+		// Token: 0x060043C6 RID: 17350 RVA: 0x001CD944 File Offset: 0x001CBB44
 		public static void InitDataDict()
 		{
 			foreach (JSONObject jsonobject in jsonData.instance.SuiJiTouXiangGeShuJsonData.list)
@@ -49,54 +49,54 @@ namespace JSONClass
 			}
 		}
 
-		// Token: 0x06004F2D RID: 20269 RVA: 0x000042DD File Offset: 0x000024DD
+		// Token: 0x060043C7 RID: 17351 RVA: 0x00004095 File Offset: 0x00002295
 		private static void OnInitFinish()
 		{
 		}
 
-		// Token: 0x04004FCE RID: 20430
+		// Token: 0x040044BE RID: 17598
 		public static Dictionary<string, SuiJiTouXiangGeShuJsonData> DataDict = new Dictionary<string, SuiJiTouXiangGeShuJsonData>();
 
-		// Token: 0x04004FCF RID: 20431
+		// Token: 0x040044BF RID: 17599
 		public static List<SuiJiTouXiangGeShuJsonData> DataList = new List<SuiJiTouXiangGeShuJsonData>();
 
-		// Token: 0x04004FD0 RID: 20432
+		// Token: 0x040044C0 RID: 17600
 		public static Action OnInitFinishAction = new Action(SuiJiTouXiangGeShuJsonData.OnInitFinish);
 
-		// Token: 0x04004FD1 RID: 20433
+		// Token: 0x040044C1 RID: 17601
 		public int All;
 
-		// Token: 0x04004FD2 RID: 20434
+		// Token: 0x040044C2 RID: 17602
 		public string StrID;
 
-		// Token: 0x04004FD3 RID: 20435
+		// Token: 0x040044C3 RID: 17603
 		public string colorset;
 
-		// Token: 0x04004FD4 RID: 20436
+		// Token: 0x040044C4 RID: 17604
 		public string Type;
 
-		// Token: 0x04004FD5 RID: 20437
+		// Token: 0x040044C5 RID: 17605
 		public string ChildType;
 
-		// Token: 0x04004FD6 RID: 20438
+		// Token: 0x040044C6 RID: 17606
 		public string ImageName;
 
-		// Token: 0x04004FD7 RID: 20439
+		// Token: 0x040044C7 RID: 17607
 		public List<int> AvatarSex1 = new List<int>();
 
-		// Token: 0x04004FD8 RID: 20440
+		// Token: 0x040044C8 RID: 17608
 		public List<int> SuiJiSex1 = new List<int>();
 
-		// Token: 0x04004FD9 RID: 20441
+		// Token: 0x040044C9 RID: 17609
 		public List<int> Sex1 = new List<int>();
 
-		// Token: 0x04004FDA RID: 20442
+		// Token: 0x040044CA RID: 17610
 		public List<int> AvatarSex2 = new List<int>();
 
-		// Token: 0x04004FDB RID: 20443
+		// Token: 0x040044CB RID: 17611
 		public List<int> SuiJiSex2 = new List<int>();
 
-		// Token: 0x04004FDC RID: 20444
+		// Token: 0x040044CC RID: 17612
 		public List<int> Sex2 = new List<int>();
 	}
 }

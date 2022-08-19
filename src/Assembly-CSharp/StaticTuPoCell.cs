@@ -1,10 +1,10 @@
 ﻿using System;
 using GUIPackage;
 
-// Token: 0x020005F2 RID: 1522
+// Token: 0x0200043B RID: 1083
 public class StaticTuPoCell : SkillStaticCell
 {
-	// Token: 0x06002634 RID: 9780 RVA: 0x0012E038 File Offset: 0x0012C238
+	// Token: 0x06002275 RID: 8821 RVA: 0x000ED0D4 File Offset: 0x000EB2D4
 	protected override void OnPress()
 	{
 		if (this.skillID == -1)
@@ -16,7 +16,7 @@ public class StaticTuPoCell : SkillStaticCell
 		componentInChildren.transform.GetComponent<TuPoGongFa>().NowIndex = this.skillID;
 	}
 
-	// Token: 0x06002635 RID: 9781 RVA: 0x0001E7AF File Offset: 0x0001C9AF
+	// Token: 0x06002276 RID: 8822 RVA: 0x000ED13B File Offset: 0x000EB33B
 	public override void SetShow_Tooltip()
 	{
 		this.skill_UIST.Show_Tooltip(this.skill_UIST.skill[this.skillID], 1);

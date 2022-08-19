@@ -2,10 +2,10 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-// Token: 0x0200055F RID: 1375
+// Token: 0x020003C9 RID: 969
 public class GongGaoMag : MonoBehaviour
 {
-	// Token: 0x0600231C RID: 8988 RVA: 0x0001C8D8 File Offset: 0x0001AAD8
+	// Token: 0x06001FA2 RID: 8098 RVA: 0x000DF339 File Offset: 0x000DD539
 	private void Start()
 	{
 		if (this.show && jsonData.showGongGao)
@@ -17,7 +17,7 @@ public class GongGaoMag : MonoBehaviour
 		this.closeGongGao();
 	}
 
-	// Token: 0x0600231D RID: 8989 RVA: 0x00121EE4 File Offset: 0x001200E4
+	// Token: 0x06001FA3 RID: 8099 RVA: 0x000DF360 File Offset: 0x000DD560
 	public void showGongGao()
 	{
 		this.GongGaoUI.SetActive(true);
@@ -27,7 +27,7 @@ public class GongGaoMag : MonoBehaviour
 		transform.transform.Find("Time").GetComponent<UILabel>().text = this.time;
 	}
 
-	// Token: 0x0600231E RID: 8990 RVA: 0x00121F74 File Offset: 0x00120174
+	// Token: 0x06001FA4 RID: 8100 RVA: 0x000DF3F0 File Offset: 0x000DD5F0
 	public void closeGongGao()
 	{
 		this.GongGaoUI.SetActive(false);
@@ -46,44 +46,44 @@ public class GongGaoMag : MonoBehaviour
 		}
 	}
 
-	// Token: 0x0600231F RID: 8991 RVA: 0x0001C8FC File Offset: 0x0001AAFC
+	// Token: 0x06001FA5 RID: 8101 RVA: 0x000DF44C File Offset: 0x000DD64C
 	public void DebugLog()
 	{
 		selectBox.instence.setChoice("检测到您电脑中的注册表Time zones.reg被篡改，可能无法正常进行游戏，具体解决方法可以查看觅长生贴吧置顶帖或加入官方Q群。", new EventDelegate(new EventDelegate.Callback(this.quitgame)), new EventDelegate(new EventDelegate.Callback(this.quitgame)));
 	}
 
-	// Token: 0x06002320 RID: 8992 RVA: 0x0000EF72 File Offset: 0x0000D172
+	// Token: 0x06001FA6 RID: 8102 RVA: 0x00049258 File Offset: 0x00047458
 	public void quitgame()
 	{
 		Application.Quit();
 	}
 
-	// Token: 0x06002321 RID: 8993 RVA: 0x0001C92F File Offset: 0x0001AB2F
+	// Token: 0x06001FA7 RID: 8103 RVA: 0x000DF47F File Offset: 0x000DD67F
 	private void Update()
 	{
 		this.banben.text = "当前版本：" + Application.version;
 	}
 
-	// Token: 0x04001E38 RID: 7736
+	// Token: 0x040019B4 RID: 6580
 	[Tooltip("是否显示公告")]
 	public bool show;
 
-	// Token: 0x04001E39 RID: 7737
+	// Token: 0x040019B5 RID: 6581
 	[Tooltip("公告标题")]
 	public string title;
 
-	// Token: 0x04001E3A RID: 7738
+	// Token: 0x040019B6 RID: 6582
 	[Tooltip("公告文字")]
 	[TextArea(5, 10)]
 	public string desc;
 
-	// Token: 0x04001E3B RID: 7739
+	// Token: 0x040019B7 RID: 6583
 	[Tooltip("公告时间")]
 	public string time;
 
-	// Token: 0x04001E3C RID: 7740
+	// Token: 0x040019B8 RID: 6584
 	public Text banben;
 
-	// Token: 0x04001E3D RID: 7741
+	// Token: 0x040019B9 RID: 6585
 	public GameObject GongGaoUI;
 }

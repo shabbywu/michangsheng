@@ -4,25 +4,25 @@ using MoonSharp.Interpreter.Execution;
 
 namespace MoonSharp.Interpreter
 {
-	// Token: 0x0200105E RID: 4190
+	// Token: 0x02000C98 RID: 3224
 	public class Closure : RefIdObject, IScriptPrivateResource
 	{
-		// Token: 0x170008D1 RID: 2257
-		// (get) Token: 0x060064B2 RID: 25778 RVA: 0x00045360 File Offset: 0x00043560
-		// (set) Token: 0x060064B3 RID: 25779 RVA: 0x00045368 File Offset: 0x00043568
+		// Token: 0x1700067E RID: 1662
+		// (get) Token: 0x060059F0 RID: 23024 RVA: 0x0025700C File Offset: 0x0025520C
+		// (set) Token: 0x060059F1 RID: 23025 RVA: 0x00257014 File Offset: 0x00255214
 		public int EntryPointByteCodeLocation { get; private set; }
 
-		// Token: 0x170008D2 RID: 2258
-		// (get) Token: 0x060064B4 RID: 25780 RVA: 0x00045371 File Offset: 0x00043571
-		// (set) Token: 0x060064B5 RID: 25781 RVA: 0x00045379 File Offset: 0x00043579
+		// Token: 0x1700067F RID: 1663
+		// (get) Token: 0x060059F2 RID: 23026 RVA: 0x0025701D File Offset: 0x0025521D
+		// (set) Token: 0x060059F3 RID: 23027 RVA: 0x00257025 File Offset: 0x00255225
 		public Script OwnerScript { get; private set; }
 
-		// Token: 0x170008D3 RID: 2259
-		// (get) Token: 0x060064B6 RID: 25782 RVA: 0x00045382 File Offset: 0x00043582
-		// (set) Token: 0x060064B7 RID: 25783 RVA: 0x0004538A File Offset: 0x0004358A
+		// Token: 0x17000680 RID: 1664
+		// (get) Token: 0x060059F4 RID: 23028 RVA: 0x0025702E File Offset: 0x0025522E
+		// (set) Token: 0x060059F5 RID: 23029 RVA: 0x00257036 File Offset: 0x00255236
 		internal ClosureContext ClosureContext { get; private set; }
 
-		// Token: 0x060064B8 RID: 25784 RVA: 0x00045393 File Offset: 0x00043593
+		// Token: 0x060059F6 RID: 23030 RVA: 0x0025703F File Offset: 0x0025523F
 		internal Closure(Script script, int idx, SymbolRef[] symbols, IEnumerable<DynValue> resolvedLocals)
 		{
 			this.OwnerScript = script;
@@ -35,55 +35,55 @@ namespace MoonSharp.Interpreter
 			this.ClosureContext = Closure.emptyClosure;
 		}
 
-		// Token: 0x060064B9 RID: 25785 RVA: 0x000453C7 File Offset: 0x000435C7
+		// Token: 0x060059F7 RID: 23031 RVA: 0x00257073 File Offset: 0x00255273
 		public DynValue Call()
 		{
 			return this.OwnerScript.Call(this);
 		}
 
-		// Token: 0x060064BA RID: 25786 RVA: 0x000453D5 File Offset: 0x000435D5
+		// Token: 0x060059F8 RID: 23032 RVA: 0x00257081 File Offset: 0x00255281
 		public DynValue Call(params object[] args)
 		{
 			return this.OwnerScript.Call(this, args);
 		}
 
-		// Token: 0x060064BB RID: 25787 RVA: 0x00281E50 File Offset: 0x00280050
+		// Token: 0x060059F9 RID: 23033 RVA: 0x00257090 File Offset: 0x00255290
 		public DynValue Call(params DynValue[] args)
 		{
 			return this.OwnerScript.Call(this, args);
 		}
 
-		// Token: 0x060064BC RID: 25788 RVA: 0x000453E4 File Offset: 0x000435E4
+		// Token: 0x060059FA RID: 23034 RVA: 0x002570AC File Offset: 0x002552AC
 		public ScriptFunctionDelegate GetDelegate()
 		{
 			return (object[] args) => this.Call(args).ToObject();
 		}
 
-		// Token: 0x060064BD RID: 25789 RVA: 0x000453F2 File Offset: 0x000435F2
+		// Token: 0x060059FB RID: 23035 RVA: 0x002570BA File Offset: 0x002552BA
 		public ScriptFunctionDelegate<T> GetDelegate<T>()
 		{
 			return (object[] args) => this.Call(args).ToObject<T>();
 		}
 
-		// Token: 0x060064BE RID: 25790 RVA: 0x00045400 File Offset: 0x00043600
+		// Token: 0x060059FC RID: 23036 RVA: 0x002570C8 File Offset: 0x002552C8
 		public int GetUpvaluesCount()
 		{
 			return this.ClosureContext.Count;
 		}
 
-		// Token: 0x060064BF RID: 25791 RVA: 0x0004540D File Offset: 0x0004360D
+		// Token: 0x060059FD RID: 23037 RVA: 0x002570D5 File Offset: 0x002552D5
 		public string GetUpvalueName(int idx)
 		{
 			return this.ClosureContext.Symbols[idx];
 		}
 
-		// Token: 0x060064C0 RID: 25792 RVA: 0x0004541C File Offset: 0x0004361C
+		// Token: 0x060059FE RID: 23038 RVA: 0x002570E4 File Offset: 0x002552E4
 		public DynValue GetUpvalue(int idx)
 		{
 			return this.ClosureContext[idx];
 		}
 
-		// Token: 0x060064C1 RID: 25793 RVA: 0x00281E6C File Offset: 0x0028006C
+		// Token: 0x060059FF RID: 23039 RVA: 0x002570F4 File Offset: 0x002552F4
 		public Closure.UpvaluesType GetUpvaluesType()
 		{
 			int upvaluesCount = this.GetUpvaluesCount();
@@ -98,17 +98,17 @@ namespace MoonSharp.Interpreter
 			return Closure.UpvaluesType.Closure;
 		}
 
-		// Token: 0x04005E05 RID: 24069
+		// Token: 0x04005256 RID: 21078
 		private static ClosureContext emptyClosure = new ClosureContext();
 
-		// Token: 0x0200105F RID: 4191
+		// Token: 0x0200163B RID: 5691
 		public enum UpvaluesType
 		{
-			// Token: 0x04005E08 RID: 24072
+			// Token: 0x0400720D RID: 29197
 			None,
-			// Token: 0x04005E09 RID: 24073
+			// Token: 0x0400720E RID: 29198
 			Environment,
-			// Token: 0x04005E0A RID: 24074
+			// Token: 0x0400720F RID: 29199
 			Closure
 		}
 	}

@@ -2,10 +2,10 @@
 using System.Collections;
 using UnityEngine;
 
-// Token: 0x02000227 RID: 551
+// Token: 0x02000151 RID: 337
 public class HurtFlashEffect : MonoBehaviour
 {
-	// Token: 0x0600111D RID: 4381 RVA: 0x000AB2CC File Offset: 0x000A94CC
+	// Token: 0x06000EF7 RID: 3831 RVA: 0x0005B260 File Offset: 0x00059460
 	public void Flash()
 	{
 		if (this.mpb == null)
@@ -20,7 +20,7 @@ public class HurtFlashEffect : MonoBehaviour
 		base.StartCoroutine(this.FlashRoutine());
 	}
 
-	// Token: 0x0600111E RID: 4382 RVA: 0x00010B29 File Offset: 0x0000ED29
+	// Token: 0x06000EF8 RID: 3832 RVA: 0x0005B2B8 File Offset: 0x000594B8
 	private IEnumerator FlashRoutine()
 	{
 		if (this.flashCount < 0)
@@ -46,28 +46,28 @@ public class HurtFlashEffect : MonoBehaviour
 		yield break;
 	}
 
-	// Token: 0x04000DD0 RID: 3536
+	// Token: 0x04000B32 RID: 2866
 	private const int DefaultFlashCount = 3;
 
-	// Token: 0x04000DD1 RID: 3537
+	// Token: 0x04000B33 RID: 2867
 	public int flashCount = 3;
 
-	// Token: 0x04000DD2 RID: 3538
+	// Token: 0x04000B34 RID: 2868
 	public Color flashColor = Color.white;
 
-	// Token: 0x04000DD3 RID: 3539
+	// Token: 0x04000B35 RID: 2869
 	[Range(0.008333334f, 0.06666667f)]
 	public float interval = 0.016666668f;
 
-	// Token: 0x04000DD4 RID: 3540
+	// Token: 0x04000B36 RID: 2870
 	public string fillPhaseProperty = "_FillPhase";
 
-	// Token: 0x04000DD5 RID: 3541
+	// Token: 0x04000B37 RID: 2871
 	public string fillColorProperty = "_FillColor";
 
-	// Token: 0x04000DD6 RID: 3542
+	// Token: 0x04000B38 RID: 2872
 	private MaterialPropertyBlock mpb;
 
-	// Token: 0x04000DD7 RID: 3543
+	// Token: 0x04000B39 RID: 2873
 	private MeshRenderer meshRenderer;
 }

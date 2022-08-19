@@ -1,14 +1,14 @@
 ﻿using System;
 
-// Token: 0x02000141 RID: 321
+// Token: 0x020000D0 RID: 208
 public enum WaterMovementType
 {
-	// Token: 0x040008B7 RID: 2231
+	// Token: 0x0400070C RID: 1804
 	directional,
-	// Token: 0x040008B8 RID: 2232
+	// Token: 0x0400070D RID: 1805
 	island,
-	// Token: 0x040008B9 RID: 2233
+	// Token: 0x0400070E RID: 1806
 	flowmap,
-	// Token: 0x040008BA RID: 2234
+	// Token: 0x0400070F RID: 1807
 	still
 }

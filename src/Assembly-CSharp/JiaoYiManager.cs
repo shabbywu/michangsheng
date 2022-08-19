@@ -4,12 +4,12 @@ using GUIPackage;
 using KBEngine;
 using UnityEngine;
 
-// Token: 0x0200042E RID: 1070
+// Token: 0x020002DC RID: 732
 public class JiaoYiManager : MonoBehaviour, IESCClose
 {
-	// Token: 0x17000293 RID: 659
-	// (get) Token: 0x06001C81 RID: 7297 RVA: 0x00017D2D File Offset: 0x00015F2D
-	// (set) Token: 0x06001C80 RID: 7296 RVA: 0x000FBEBC File Offset: 0x000FA0BC
+	// Token: 0x17000249 RID: 585
+	// (get) Token: 0x0600196B RID: 6507 RVA: 0x000B5F91 File Offset: 0x000B4191
+	// (set) Token: 0x0600196A RID: 6506 RVA: 0x000B5F24 File Offset: 0x000B4124
 	public bool canClick
 	{
 		get
@@ -34,14 +34,14 @@ public class JiaoYiManager : MonoBehaviour, IESCClose
 		}
 	}
 
-	// Token: 0x06001C82 RID: 7298 RVA: 0x00017D35 File Offset: 0x00015F35
+	// Token: 0x0600196C RID: 6508 RVA: 0x000B5F99 File Offset: 0x000B4199
 	private void Awake()
 	{
 		JiaoYiManager.inst = this;
 		this.canClick = true;
 	}
 
-	// Token: 0x06001C83 RID: 7299 RVA: 0x000FBF2C File Offset: 0x000FA12C
+	// Token: 0x0600196D RID: 6509 RVA: 0x000B5FA8 File Offset: 0x000B41A8
 	private void Start()
 	{
 		this.ok.onClick.Clear();
@@ -51,7 +51,7 @@ public class JiaoYiManager : MonoBehaviour, IESCClose
 		ESCCloseManager.Inst.RegisterClose(this);
 	}
 
-	// Token: 0x06001C84 RID: 7300 RVA: 0x00017D44 File Offset: 0x00015F44
+	// Token: 0x0600196E RID: 6510 RVA: 0x000B6018 File Offset: 0x000B4218
 	public void close()
 	{
 		if (this.canClick)
@@ -61,7 +61,7 @@ public class JiaoYiManager : MonoBehaviour, IESCClose
 		}
 	}
 
-	// Token: 0x06001C85 RID: 7301 RVA: 0x00017D68 File Offset: 0x00015F68
+	// Token: 0x0600196F RID: 6511 RVA: 0x000B603C File Offset: 0x000B423C
 	public void JiaoYiBtn()
 	{
 		if (this.canClick && this.MonstarSay().Equals("ok"))
@@ -71,7 +71,7 @@ public class JiaoYiManager : MonoBehaviour, IESCClose
 		}
 	}
 
-	// Token: 0x06001C86 RID: 7302 RVA: 0x000FBF9C File Offset: 0x000FA19C
+	// Token: 0x06001970 RID: 6512 RVA: 0x000B6070 File Offset: 0x000B4270
 	private string MonstarSay()
 	{
 		ExchangePlan exchengePlan = Singleton.ints.exchengePlan;
@@ -91,7 +91,7 @@ public class JiaoYiManager : MonoBehaviour, IESCClose
 		return text;
 	}
 
-	// Token: 0x06001C87 RID: 7303 RVA: 0x000FC044 File Offset: 0x000FA244
+	// Token: 0x06001971 RID: 6513 RVA: 0x000B6118 File Offset: 0x000B4318
 	public void updateMoney()
 	{
 		ExchangePlan exchengePlan = Singleton.ints.exchengePlan;
@@ -106,7 +106,7 @@ public class JiaoYiManager : MonoBehaviour, IESCClose
 		exchengePlan.MonstarMoneyPay.Set_money(this.playerGetMoney, true);
 	}
 
-	// Token: 0x06001C88 RID: 7304 RVA: 0x000FC104 File Offset: 0x000FA304
+	// Token: 0x06001972 RID: 6514 RVA: 0x000B61D8 File Offset: 0x000B43D8
 	public int GetPlayerSellItemMoney(int monsterId)
 	{
 		int num = 0;
@@ -121,7 +121,7 @@ public class JiaoYiManager : MonoBehaviour, IESCClose
 		return num;
 	}
 
-	// Token: 0x06001C89 RID: 7305 RVA: 0x000FC178 File Offset: 0x000FA378
+	// Token: 0x06001973 RID: 6515 RVA: 0x000B624C File Offset: 0x000B444C
 	public int GetNpcSellItemMoney(int monsterId)
 	{
 		int num = 0;
@@ -136,13 +136,13 @@ public class JiaoYiManager : MonoBehaviour, IESCClose
 		return num;
 	}
 
-	// Token: 0x06001C8A RID: 7306 RVA: 0x00017D99 File Offset: 0x00015F99
+	// Token: 0x06001974 RID: 6516 RVA: 0x000B62C0 File Offset: 0x000B44C0
 	private void OnDestroy()
 	{
 		JiaoYiManager.inst = null;
 	}
 
-	// Token: 0x06001C8B RID: 7307 RVA: 0x000FC1EC File Offset: 0x000FA3EC
+	// Token: 0x06001975 RID: 6517 RVA: 0x000B62C8 File Offset: 0x000B44C8
 	public bool TryEscClose()
 	{
 		if (this.canClick)
@@ -159,36 +159,36 @@ public class JiaoYiManager : MonoBehaviour, IESCClose
 		return false;
 	}
 
-	// Token: 0x0400187C RID: 6268
+	// Token: 0x0400149C RID: 5276
 	public static JiaoYiManager inst;
 
-	// Token: 0x0400187D RID: 6269
+	// Token: 0x0400149D RID: 5277
 	[SerializeField]
 	private UIButton closeBtn;
 
-	// Token: 0x0400187E RID: 6270
+	// Token: 0x0400149E RID: 5278
 	[SerializeField]
 	private List<UIToggle> UIToggles;
 
-	// Token: 0x0400187F RID: 6271
+	// Token: 0x0400149F RID: 5279
 	[SerializeField]
 	private UIButton ok;
 
-	// Token: 0x04001880 RID: 6272
+	// Token: 0x040014A0 RID: 5280
 	private int playerGetMoney;
 
-	// Token: 0x04001881 RID: 6273
+	// Token: 0x040014A1 RID: 5281
 	private int playerMoney;
 
-	// Token: 0x04001882 RID: 6274
+	// Token: 0x040014A2 RID: 5282
 	private int monstarMoney;
 
-	// Token: 0x04001883 RID: 6275
+	// Token: 0x040014A3 RID: 5283
 	public List<ItemCellEX> playerItemList;
 
-	// Token: 0x04001884 RID: 6276
+	// Token: 0x040014A4 RID: 5284
 	public List<ItemCellEX> npcItemList;
 
-	// Token: 0x04001885 RID: 6277
+	// Token: 0x040014A5 RID: 5285
 	private bool _canClick;
 }

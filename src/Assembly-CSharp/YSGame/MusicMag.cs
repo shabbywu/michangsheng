@@ -5,38 +5,38 @@ using UnityEngine;
 
 namespace YSGame
 {
-	// Token: 0x02000DAF RID: 3503
+	// Token: 0x02000A7F RID: 2687
 	public class MusicMag : MonoBehaviour
 	{
-		// Token: 0x0600547B RID: 21627 RVA: 0x0003C787 File Offset: 0x0003A987
+		// Token: 0x06004B67 RID: 19303 RVA: 0x00200360 File Offset: 0x001FE560
 		private void Start()
 		{
 			MusicMag.instance = this;
 			this.initAudio();
 		}
 
-		// Token: 0x0600547C RID: 21628 RVA: 0x0003C795 File Offset: 0x0003A995
+		// Token: 0x06004B68 RID: 19304 RVA: 0x0020036E File Offset: 0x001FE56E
 		public void PlayEffectMusic(int index, float pitch = 1f)
 		{
 			this.audioSourceEffect.clip = this.EffectMusic[index - 1].audioClip;
 			this.PlayEffectMusic(pitch);
 		}
 
-		// Token: 0x0600547D RID: 21629 RVA: 0x0003C7BC File Offset: 0x0003A9BC
+		// Token: 0x06004B69 RID: 19305 RVA: 0x00200395 File Offset: 0x001FE595
 		public void PlayEffectMusic(AudioClip audioClip, float pitch = 1f)
 		{
 			this.audioSourceEffect.clip = audioClip;
 			this.PlayEffectMusic(pitch);
 		}
 
-		// Token: 0x0600547E RID: 21630 RVA: 0x0003C7D1 File Offset: 0x0003A9D1
+		// Token: 0x06004B6A RID: 19306 RVA: 0x002003AA File Offset: 0x001FE5AA
 		public void PlayEffectMusic(float pitch = 1f)
 		{
 			this.audioSourceEffect.pitch = pitch;
 			this.audioSourceEffect.Play();
 		}
 
-		// Token: 0x0600547F RID: 21631 RVA: 0x00231D0C File Offset: 0x0022FF0C
+		// Token: 0x06004B6B RID: 19307 RVA: 0x002003C4 File Offset: 0x001FE5C4
 		public void playMusic(int index)
 		{
 			if (this.nowBackgroundIndex == index && this.audioSource.volume > 0f)
@@ -53,14 +53,14 @@ namespace YSGame
 			base.StartCoroutine(this.RealizePlayeMusic(index));
 		}
 
-		// Token: 0x06005480 RID: 21632 RVA: 0x00231D80 File Offset: 0x0022FF80
+		// Token: 0x06004B6C RID: 19308 RVA: 0x00200438 File Offset: 0x001FE638
 		public void playMusic(string name)
 		{
 			int musicIndex = this.getMusicIndex(name);
 			this.playMusic(musicIndex);
 		}
 
-		// Token: 0x06005481 RID: 21633 RVA: 0x00231D9C File Offset: 0x0022FF9C
+		// Token: 0x06004B6D RID: 19309 RVA: 0x00200454 File Offset: 0x001FE654
 		public void PlayMusicImmediately(string name)
 		{
 			int musicIndex = this.getMusicIndex(name);
@@ -77,7 +77,7 @@ namespace YSGame
 			}
 		}
 
-		// Token: 0x06005482 RID: 21634 RVA: 0x0003C7EA File Offset: 0x0003A9EA
+		// Token: 0x06004B6E RID: 19310 RVA: 0x002004D4 File Offset: 0x001FE6D4
 		private IEnumerator RealizePlayeMusic(int index)
 		{
 			float num = this.audioSource.isPlaying ? 1.5f : 0.5f;
@@ -98,7 +98,7 @@ namespace YSGame
 			yield break;
 		}
 
-		// Token: 0x06005483 RID: 21635 RVA: 0x0003C800 File Offset: 0x0003AA00
+		// Token: 0x06004B6F RID: 19311 RVA: 0x002004EA File Offset: 0x001FE6EA
 		private IEnumerator JianBianStopMusic()
 		{
 			float volumeAdd = -this.getBackgroundVoice();
@@ -136,7 +136,7 @@ namespace YSGame
 			yield break;
 		}
 
-		// Token: 0x06005484 RID: 21636 RVA: 0x00231E1C File Offset: 0x0023001C
+		// Token: 0x06004B70 RID: 19312 RVA: 0x002004FC File Offset: 0x001FE6FC
 		public int getMusicIndex(string name)
 		{
 			int num = 0;
@@ -154,26 +154,26 @@ namespace YSGame
 			return num;
 		}
 
-		// Token: 0x06005485 RID: 21637 RVA: 0x0003C80F File Offset: 0x0003AA0F
+		// Token: 0x06004B71 RID: 19313 RVA: 0x00200560 File Offset: 0x001FE760
 		public void stopMusic()
 		{
 			base.StartCoroutine(this.JianBianStopMusic());
 		}
 
-		// Token: 0x06005486 RID: 21638 RVA: 0x0003C81E File Offset: 0x0003AA1E
+		// Token: 0x06004B72 RID: 19314 RVA: 0x0020056F File Offset: 0x001FE76F
 		public float getBackgroundVoice()
 		{
 			return SystemConfig.Inst.GetBackGroundVolume();
 		}
 
-		// Token: 0x06005487 RID: 21639 RVA: 0x0003C82A File Offset: 0x0003AA2A
+		// Token: 0x06004B73 RID: 19315 RVA: 0x0020057B File Offset: 0x001FE77B
 		public void initAudio()
 		{
 			this.setBackGroundVolume(this.getBackgroundVoice());
 			this.setEffectVolum(SystemConfig.Inst.GetEffectVolume());
 		}
 
-		// Token: 0x06005488 RID: 21640 RVA: 0x00231E80 File Offset: 0x00230080
+		// Token: 0x06004B74 RID: 19316 RVA: 0x0020059C File Offset: 0x001FE79C
 		public void setFunguseMusice()
 		{
 			float num = (float)((PlayerPrefs.GetInt("SavePlayerSet0", 0) == 0) ? 1 : 0);
@@ -189,37 +189,37 @@ namespace YSGame
 			}
 		}
 
-		// Token: 0x06005489 RID: 21641 RVA: 0x0003C848 File Offset: 0x0003AA48
+		// Token: 0x06004B75 RID: 19317 RVA: 0x00200609 File Offset: 0x001FE809
 		public void setBackGroundVolume(float volume)
 		{
 			this.audioSource.volume = volume;
 		}
 
-		// Token: 0x0600548A RID: 21642 RVA: 0x0003C856 File Offset: 0x0003AA56
+		// Token: 0x06004B76 RID: 19318 RVA: 0x00200617 File Offset: 0x001FE817
 		public void setEffectVolum(float volume)
 		{
 			this.audioSourceEffect.volume = volume;
 		}
 
-		// Token: 0x04005436 RID: 21558
+		// Token: 0x04004A80 RID: 19072
 		public List<MusicInfo> BackGroudMusic = new List<MusicInfo>();
 
-		// Token: 0x04005437 RID: 21559
+		// Token: 0x04004A81 RID: 19073
 		public List<MusicInfo> EffectMusic = new List<MusicInfo>();
 
-		// Token: 0x04005438 RID: 21560
+		// Token: 0x04004A82 RID: 19074
 		public AudioSource audioSource;
 
-		// Token: 0x04005439 RID: 21561
+		// Token: 0x04004A83 RID: 19075
 		public AudioSource audioSourceEffect;
 
-		// Token: 0x0400543A RID: 21562
+		// Token: 0x04004A84 RID: 19076
 		public static MusicMag instance;
 
-		// Token: 0x0400543B RID: 21563
+		// Token: 0x04004A85 RID: 19077
 		private bool flagPlay;
 
-		// Token: 0x0400543C RID: 21564
+		// Token: 0x04004A86 RID: 19078
 		private int nowBackgroundIndex = -999;
 	}
 }

@@ -9,40 +9,40 @@ using MoonSharp.Interpreter.Debugging;
 
 namespace MoonSharp.VsCodeDebugger.DebuggerLogic
 {
-	// Token: 0x020011DF RID: 4575
+	// Token: 0x02000DB2 RID: 3506
 	internal class AsyncDebugger : IDebugger
 	{
-		// Token: 0x17000A52 RID: 2642
-		// (get) Token: 0x06006FE6 RID: 28646 RVA: 0x0004C0BB File Offset: 0x0004A2BB
-		// (set) Token: 0x06006FE7 RID: 28647 RVA: 0x0004C0C3 File Offset: 0x0004A2C3
+		// Token: 0x170007F1 RID: 2033
+		// (get) Token: 0x0600639E RID: 25502 RVA: 0x0027B584 File Offset: 0x00279784
+		// (set) Token: 0x0600639F RID: 25503 RVA: 0x0027B58C File Offset: 0x0027978C
 		public DebugService DebugService { get; private set; }
 
-		// Token: 0x17000A53 RID: 2643
-		// (get) Token: 0x06006FE8 RID: 28648 RVA: 0x0004C0CC File Offset: 0x0004A2CC
-		// (set) Token: 0x06006FE9 RID: 28649 RVA: 0x0004C0D4 File Offset: 0x0004A2D4
+		// Token: 0x170007F2 RID: 2034
+		// (get) Token: 0x060063A0 RID: 25504 RVA: 0x0027B595 File Offset: 0x00279795
+		// (set) Token: 0x060063A1 RID: 25505 RVA: 0x0027B59D File Offset: 0x0027979D
 		public Regex ErrorRegex { get; set; }
 
-		// Token: 0x17000A54 RID: 2644
-		// (get) Token: 0x06006FEA RID: 28650 RVA: 0x0004C0DD File Offset: 0x0004A2DD
-		// (set) Token: 0x06006FEB RID: 28651 RVA: 0x0004C0E5 File Offset: 0x0004A2E5
+		// Token: 0x170007F3 RID: 2035
+		// (get) Token: 0x060063A2 RID: 25506 RVA: 0x0027B5A6 File Offset: 0x002797A6
+		// (set) Token: 0x060063A3 RID: 25507 RVA: 0x0027B5AE File Offset: 0x002797AE
 		public Script Script { get; private set; }
 
-		// Token: 0x17000A55 RID: 2645
-		// (get) Token: 0x06006FEC RID: 28652 RVA: 0x0004C0EE File Offset: 0x0004A2EE
-		// (set) Token: 0x06006FED RID: 28653 RVA: 0x0004C0F6 File Offset: 0x0004A2F6
+		// Token: 0x170007F4 RID: 2036
+		// (get) Token: 0x060063A4 RID: 25508 RVA: 0x0027B5B7 File Offset: 0x002797B7
+		// (set) Token: 0x060063A5 RID: 25509 RVA: 0x0027B5BF File Offset: 0x002797BF
 		public bool PauseRequested { get; set; }
 
-		// Token: 0x17000A56 RID: 2646
-		// (get) Token: 0x06006FEE RID: 28654 RVA: 0x0004C0FF File Offset: 0x0004A2FF
-		// (set) Token: 0x06006FEF RID: 28655 RVA: 0x0004C107 File Offset: 0x0004A307
+		// Token: 0x170007F5 RID: 2037
+		// (get) Token: 0x060063A6 RID: 25510 RVA: 0x0027B5C8 File Offset: 0x002797C8
+		// (set) Token: 0x060063A7 RID: 25511 RVA: 0x0027B5D0 File Offset: 0x002797D0
 		public string Name { get; set; }
 
-		// Token: 0x17000A57 RID: 2647
-		// (get) Token: 0x06006FF0 RID: 28656 RVA: 0x0004C110 File Offset: 0x0004A310
-		// (set) Token: 0x06006FF1 RID: 28657 RVA: 0x0004C118 File Offset: 0x0004A318
+		// Token: 0x170007F6 RID: 2038
+		// (get) Token: 0x060063A8 RID: 25512 RVA: 0x0027B5D9 File Offset: 0x002797D9
+		// (set) Token: 0x060063A9 RID: 25513 RVA: 0x0027B5E1 File Offset: 0x002797E1
 		public int Id { get; private set; }
 
-		// Token: 0x06006FF2 RID: 28658 RVA: 0x002A0BA8 File Offset: 0x0029EDA8
+		// Token: 0x060063AA RID: 25514 RVA: 0x0027B5EC File Offset: 0x002797EC
 		public AsyncDebugger(Script script, Func<SourceCode, string> sourceFinder, string name)
 		{
 			object obj = AsyncDebugger.s_AsyncDebuggerIdLock;
@@ -61,9 +61,9 @@ namespace MoonSharp.VsCodeDebugger.DebuggerLogic
 			}
 		}
 
-		// Token: 0x17000A58 RID: 2648
-		// (get) Token: 0x06006FF3 RID: 28659 RVA: 0x0004C121 File Offset: 0x0004A321
-		// (set) Token: 0x06006FF4 RID: 28660 RVA: 0x002A0C70 File Offset: 0x0029EE70
+		// Token: 0x170007F7 RID: 2039
+		// (get) Token: 0x060063AB RID: 25515 RVA: 0x0027B6B4 File Offset: 0x002798B4
+		// (set) Token: 0x060063AC RID: 25516 RVA: 0x0027B6BC File Offset: 0x002798BC
 		public IAsyncDebuggerClient Client
 		{
 			get
@@ -94,7 +94,7 @@ namespace MoonSharp.VsCodeDebugger.DebuggerLogic
 			}
 		}
 
-		// Token: 0x06006FF5 RID: 28661 RVA: 0x002A0CFC File Offset: 0x0029EEFC
+		// Token: 0x060063AD RID: 25517 RVA: 0x0027B748 File Offset: 0x00279948
 		DebuggerAction IDebugger.GetAction(int ip, SourceRef sourceref)
 		{
 			this.PauseRequested = false;
@@ -133,7 +133,7 @@ namespace MoonSharp.VsCodeDebugger.DebuggerLogic
 			return result;
 		}
 
-		// Token: 0x06006FF6 RID: 28662 RVA: 0x002A0DB4 File Offset: 0x0029EFB4
+		// Token: 0x060063AE RID: 25518 RVA: 0x0027B800 File Offset: 0x00279A00
 		public void QueueAction(DebuggerAction action)
 		{
 			for (;;)
@@ -151,13 +151,13 @@ namespace MoonSharp.VsCodeDebugger.DebuggerLogic
 			}
 		}
 
-		// Token: 0x06006FF7 RID: 28663 RVA: 0x0004C129 File Offset: 0x0004A329
+		// Token: 0x060063AF RID: 25519 RVA: 0x0027B858 File Offset: 0x00279A58
 		private void Sleep(int v)
 		{
 			Thread.Sleep(10);
 		}
 
-		// Token: 0x06006FF8 RID: 28664 RVA: 0x002A0E0C File Offset: 0x0029F00C
+		// Token: 0x060063B0 RID: 25520 RVA: 0x0027B864 File Offset: 0x00279A64
 		private DynamicExpression CreateDynExpr(string code)
 		{
 			DynamicExpression result;
@@ -172,29 +172,29 @@ namespace MoonSharp.VsCodeDebugger.DebuggerLogic
 			return result;
 		}
 
-		// Token: 0x06006FF9 RID: 28665 RVA: 0x0004C132 File Offset: 0x0004A332
+		// Token: 0x060063B1 RID: 25521 RVA: 0x0027B8AC File Offset: 0x00279AAC
 		List<DynamicExpression> IDebugger.GetWatchItems()
 		{
 			return new List<DynamicExpression>();
 		}
 
-		// Token: 0x06006FFA RID: 28666 RVA: 0x0004C139 File Offset: 0x0004A339
+		// Token: 0x060063B2 RID: 25522 RVA: 0x0027B8B3 File Offset: 0x00279AB3
 		bool IDebugger.IsPauseRequested()
 		{
 			return this.PauseRequested;
 		}
 
-		// Token: 0x06006FFB RID: 28667 RVA: 0x000042DD File Offset: 0x000024DD
+		// Token: 0x060063B3 RID: 25523 RVA: 0x00004095 File Offset: 0x00002295
 		void IDebugger.RefreshBreakpoints(IEnumerable<SourceRef> refs)
 		{
 		}
 
-		// Token: 0x06006FFC RID: 28668 RVA: 0x000042DD File Offset: 0x000024DD
+		// Token: 0x060063B4 RID: 25524 RVA: 0x00004095 File Offset: 0x00002295
 		void IDebugger.SetByteCode(string[] byteCode)
 		{
 		}
 
-		// Token: 0x06006FFD RID: 28669 RVA: 0x002A0E54 File Offset: 0x0029F054
+		// Token: 0x060063B5 RID: 25525 RVA: 0x0027B8BC File Offset: 0x00279ABC
 		void IDebugger.SetSourceCode(SourceCode sourceCode)
 		{
 			this.m_SourcesMap[sourceCode.SourceID] = sourceCode;
@@ -238,13 +238,13 @@ namespace MoonSharp.VsCodeDebugger.DebuggerLogic
 			}
 		}
 
-		// Token: 0x06006FFE RID: 28670 RVA: 0x0004C141 File Offset: 0x0004A341
+		// Token: 0x060063B6 RID: 25526 RVA: 0x0027B9D0 File Offset: 0x00279BD0
 		private string GetFooterForTempFile()
 		{
 			return "\n\n----------------------------------------------------------------------------------------------------------\n-- This file has been generated by the debugger as a placeholder for a script snippet stored in memory. --\n-- If you restart the host process, the contents of this file are not valid anymore.                    --\n----------------------------------------------------------------------------------------------------------\n";
 		}
 
-		// Token: 0x06006FFF RID: 28671 RVA: 0x0004C148 File Offset: 0x0004A348
+		// Token: 0x060063B7 RID: 25527 RVA: 0x0027B9D7 File Offset: 0x00279BD7
 		public string GetSourceFile(int sourceId)
 		{
 			if (this.m_SourcesOverride.ContainsKey(sourceId))
@@ -258,13 +258,13 @@ namespace MoonSharp.VsCodeDebugger.DebuggerLogic
 			return null;
 		}
 
-		// Token: 0x06007000 RID: 28672 RVA: 0x0004C186 File Offset: 0x0004A386
+		// Token: 0x060063B8 RID: 25528 RVA: 0x0027BA15 File Offset: 0x00279C15
 		public bool IsSourceOverride(int sourceId)
 		{
 			return this.m_SourcesOverride.ContainsKey(sourceId);
 		}
 
-		// Token: 0x06007001 RID: 28673 RVA: 0x002A0F68 File Offset: 0x0029F168
+		// Token: 0x060063B9 RID: 25529 RVA: 0x0027BA24 File Offset: 0x00279C24
 		void IDebugger.SignalExecutionEnded()
 		{
 			object @lock = this.m_Lock;
@@ -277,7 +277,7 @@ namespace MoonSharp.VsCodeDebugger.DebuggerLogic
 			}
 		}
 
-		// Token: 0x06007002 RID: 28674 RVA: 0x002A0FB8 File Offset: 0x0029F1B8
+		// Token: 0x060063BA RID: 25530 RVA: 0x0027BA74 File Offset: 0x00279C74
 		bool IDebugger.SignalRuntimeException(ScriptRuntimeException ex)
 		{
 			object @lock = this.m_Lock;
@@ -293,7 +293,7 @@ namespace MoonSharp.VsCodeDebugger.DebuggerLogic
 			return this.PauseRequested;
 		}
 
-		// Token: 0x06007003 RID: 28675 RVA: 0x002A102C File Offset: 0x0029F22C
+		// Token: 0x060063BB RID: 25531 RVA: 0x0027BAE8 File Offset: 0x00279CE8
 		void IDebugger.Update(WatchType watchType, IEnumerable<WatchItem> items)
 		{
 			List<WatchItem> list = this.m_WatchItems[(int)watchType];
@@ -309,13 +309,13 @@ namespace MoonSharp.VsCodeDebugger.DebuggerLogic
 			}
 		}
 
-		// Token: 0x06007004 RID: 28676 RVA: 0x0004C194 File Offset: 0x0004A394
+		// Token: 0x060063BC RID: 25532 RVA: 0x0027BB4C File Offset: 0x00279D4C
 		public List<WatchItem> GetWatches(WatchType watchType)
 		{
 			return this.m_WatchItems[(int)watchType];
 		}
 
-		// Token: 0x06007005 RID: 28677 RVA: 0x0004C19E File Offset: 0x0004A39E
+		// Token: 0x060063BD RID: 25533 RVA: 0x0027BB56 File Offset: 0x00279D56
 		public SourceCode GetSource(int id)
 		{
 			if (this.m_SourcesMap.ContainsKey(id))
@@ -325,7 +325,7 @@ namespace MoonSharp.VsCodeDebugger.DebuggerLogic
 			return null;
 		}
 
-		// Token: 0x06007006 RID: 28678 RVA: 0x002A1090 File Offset: 0x0029F290
+		// Token: 0x060063BE RID: 25534 RVA: 0x0027BB74 File Offset: 0x00279D74
 		public SourceCode FindSourceByName(string path)
 		{
 			path = path.Replace('\\', '/').ToUpperInvariant();
@@ -339,49 +339,49 @@ namespace MoonSharp.VsCodeDebugger.DebuggerLogic
 			return this.m_SourcesMap.Values.FirstOrDefault((SourceCode s) => s.Name.Replace('\\', '/').ToUpperInvariant() == path);
 		}
 
-		// Token: 0x06007007 RID: 28679 RVA: 0x0004C1BC File Offset: 0x0004A3BC
+		// Token: 0x060063BF RID: 25535 RVA: 0x0027BC3C File Offset: 0x00279E3C
 		void IDebugger.SetDebugService(DebugService debugService)
 		{
 			this.DebugService = debugService;
 		}
 
-		// Token: 0x06007008 RID: 28680 RVA: 0x0004C1C5 File Offset: 0x0004A3C5
+		// Token: 0x060063C0 RID: 25536 RVA: 0x0027BC45 File Offset: 0x00279E45
 		public DynValue Evaluate(string expression)
 		{
 			return this.CreateDynExpr(expression).Evaluate(null);
 		}
 
-		// Token: 0x06007009 RID: 28681 RVA: 0x0002D0EC File Offset: 0x0002B2EC
+		// Token: 0x060063C1 RID: 25537 RVA: 0x0016F21F File Offset: 0x0016D41F
 		DebuggerCaps IDebugger.GetDebuggerCaps()
 		{
 			return DebuggerCaps.CanDebugSourceCode | DebuggerCaps.HasLineBasedBreakpoints;
 		}
 
-		// Token: 0x040062DA RID: 25306
+		// Token: 0x040055F0 RID: 22000
 		private static object s_AsyncDebuggerIdLock = new object();
 
-		// Token: 0x040062DB RID: 25307
+		// Token: 0x040055F1 RID: 22001
 		private static int s_AsyncDebuggerIdCounter = 0;
 
-		// Token: 0x040062DC RID: 25308
+		// Token: 0x040055F2 RID: 22002
 		private object m_Lock = new object();
 
-		// Token: 0x040062DD RID: 25309
+		// Token: 0x040055F3 RID: 22003
 		private IAsyncDebuggerClient m_Client__;
 
-		// Token: 0x040062DE RID: 25310
+		// Token: 0x040055F4 RID: 22004
 		private DebuggerAction m_PendingAction;
 
-		// Token: 0x040062DF RID: 25311
+		// Token: 0x040055F5 RID: 22005
 		private List<WatchItem>[] m_WatchItems;
 
-		// Token: 0x040062E0 RID: 25312
+		// Token: 0x040055F6 RID: 22006
 		private Dictionary<int, SourceCode> m_SourcesMap = new Dictionary<int, SourceCode>();
 
-		// Token: 0x040062E1 RID: 25313
+		// Token: 0x040055F7 RID: 22007
 		private Dictionary<int, string> m_SourcesOverride = new Dictionary<int, string>();
 
-		// Token: 0x040062E2 RID: 25314
+		// Token: 0x040055F8 RID: 22008
 		private Func<SourceCode, string> m_SourceFinder;
 	}
 }

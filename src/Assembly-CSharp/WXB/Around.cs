@@ -4,22 +4,22 @@ using UnityEngine;
 
 namespace WXB
 {
-	// Token: 0x0200098E RID: 2446
+	// Token: 0x02000681 RID: 1665
 	public class Around
 	{
-		// Token: 0x06003E80 RID: 16000 RVA: 0x0002D070 File Offset: 0x0002B270
+		// Token: 0x060034D0 RID: 13520 RVA: 0x0016F11D File Offset: 0x0016D31D
 		public void Add(Rect rect)
 		{
 			this.m_Rects.Add(rect);
 		}
 
-		// Token: 0x06003E81 RID: 16001 RVA: 0x0002D07E File Offset: 0x0002B27E
+		// Token: 0x060034D1 RID: 13521 RVA: 0x0016F12B File Offset: 0x0016D32B
 		public void Clear()
 		{
 			this.m_Rects.Clear();
 		}
 
-		// Token: 0x06003E82 RID: 16002 RVA: 0x0002D08B File Offset: 0x0002B28B
+		// Token: 0x060034D2 RID: 13522 RVA: 0x0016F138 File Offset: 0x0016D338
 		public bool isContain(Rect rect, out float ox)
 		{
 			if (this.m_Rects.Count == 0)
@@ -30,7 +30,7 @@ namespace WXB
 			return this.isContain(rect.x, rect.y, rect.width, rect.height, out ox);
 		}
 
-		// Token: 0x06003E83 RID: 16003 RVA: 0x001B74AC File Offset: 0x001B56AC
+		// Token: 0x060034D3 RID: 13523 RVA: 0x0016F174 File Offset: 0x0016D374
 		public bool isContain(float x, float y, float w, float h, out float ox)
 		{
 			if (this.m_Rects.Count == 0)
@@ -52,7 +52,7 @@ namespace WXB
 			return true;
 		}
 
-		// Token: 0x04003867 RID: 14439
+		// Token: 0x04002EC1 RID: 11969
 		private List<Rect> m_Rects = new List<Rect>();
 	}
 }

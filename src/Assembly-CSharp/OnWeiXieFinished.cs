@@ -2,12 +2,12 @@
 using Fungus;
 using UnityEngine;
 
-// Token: 0x02000380 RID: 896
+// Token: 0x02000268 RID: 616
 [EventHandlerInfo("NPCJiaoHu", "当完成一次威胁", "威胁结果:\n0(概率成功)\n1(成功1)\n2(成功2)\n3(成功3)\n4(成功4)\n5(初次威胁失败)\n6(概率失败1)\n7(概率失败2)\n11(失败1)\n12(失败2)\n13(失败3)\n14(失败4)\n15(失败5)\n16(失败6)\n其他数据:\n好友1ID TmpInt1\n好友2ID TmpInt2\n好友3ID TmpInt3\n好友数量 FriendCount\n是否是首次威胁 TmpBoolValue")]
 [AddComponentMenu("")]
 public class OnWeiXieFinished : Fungus.EventHandler
 {
-	// Token: 0x0600192E RID: 6446 RVA: 0x000DF810 File Offset: 0x000DDA10
+	// Token: 0x0600167C RID: 5756 RVA: 0x000976FC File Offset: 0x000958FC
 	public virtual void Update()
 	{
 		if (UINPCJiaoHu.Inst != null && UINPCJiaoHu.Inst.IsWeiXieFinished)

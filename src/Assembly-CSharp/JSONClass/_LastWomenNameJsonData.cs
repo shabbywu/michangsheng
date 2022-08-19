@@ -3,10 +3,10 @@ using System.Collections.Generic;
 
 namespace JSONClass
 {
-	// Token: 0x02000ADE RID: 2782
+	// Token: 0x02000746 RID: 1862
 	public class _LastWomenNameJsonData : IJSONClass
 	{
-		// Token: 0x060046E2 RID: 18146 RVA: 0x001E538C File Offset: 0x001E358C
+		// Token: 0x06003B2C RID: 15148 RVA: 0x00197088 File Offset: 0x00195288
 		public static void InitDataDict()
 		{
 			foreach (JSONObject jsonobject in jsonData.instance._LastWomenNameJsonData.list)
@@ -39,24 +39,24 @@ namespace JSONClass
 			}
 		}
 
-		// Token: 0x060046E3 RID: 18147 RVA: 0x000042DD File Offset: 0x000024DD
+		// Token: 0x06003B2D RID: 15149 RVA: 0x00004095 File Offset: 0x00002295
 		private static void OnInitFinish()
 		{
 		}
 
-		// Token: 0x04003F2D RID: 16173
+		// Token: 0x04003394 RID: 13204
 		public static Dictionary<int, _LastWomenNameJsonData> DataDict = new Dictionary<int, _LastWomenNameJsonData>();
 
-		// Token: 0x04003F2E RID: 16174
+		// Token: 0x04003395 RID: 13205
 		public static List<_LastWomenNameJsonData> DataList = new List<_LastWomenNameJsonData>();
 
-		// Token: 0x04003F2F RID: 16175
+		// Token: 0x04003396 RID: 13206
 		public static Action OnInitFinishAction = new Action(_LastWomenNameJsonData.OnInitFinish);
 
-		// Token: 0x04003F30 RID: 16176
+		// Token: 0x04003397 RID: 13207
 		public int id;
 
-		// Token: 0x04003F31 RID: 16177
+		// Token: 0x04003398 RID: 13208
 		public string Name;
 	}
 }

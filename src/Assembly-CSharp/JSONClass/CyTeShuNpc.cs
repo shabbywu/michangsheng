@@ -3,10 +3,10 @@ using System.Collections.Generic;
 
 namespace JSONClass
 {
-	// Token: 0x02000BBD RID: 3005
+	// Token: 0x02000827 RID: 2087
 	public class CyTeShuNpc : IJSONClass
 	{
-		// Token: 0x06004A5C RID: 19036 RVA: 0x001F7BC8 File Offset: 0x001F5DC8
+		// Token: 0x06003EAE RID: 16046 RVA: 0x001AC95C File Offset: 0x001AAB5C
 		public static void InitDataDict()
 		{
 			foreach (JSONObject jsonobject in jsonData.instance.CyTeShuNpc.list)
@@ -40,27 +40,27 @@ namespace JSONClass
 			}
 		}
 
-		// Token: 0x06004A5D RID: 19037 RVA: 0x000042DD File Offset: 0x000024DD
+		// Token: 0x06003EAF RID: 16047 RVA: 0x00004095 File Offset: 0x00002295
 		private static void OnInitFinish()
 		{
 		}
 
-		// Token: 0x040045D8 RID: 17880
+		// Token: 0x04003A50 RID: 14928
 		public static Dictionary<int, CyTeShuNpc> DataDict = new Dictionary<int, CyTeShuNpc>();
 
-		// Token: 0x040045D9 RID: 17881
+		// Token: 0x04003A51 RID: 14929
 		public static List<CyTeShuNpc> DataList = new List<CyTeShuNpc>();
 
-		// Token: 0x040045DA RID: 17882
+		// Token: 0x04003A52 RID: 14930
 		public static Action OnInitFinishAction = new Action(CyTeShuNpc.OnInitFinish);
 
-		// Token: 0x040045DB RID: 17883
+		// Token: 0x04003A53 RID: 14931
 		public int id;
 
-		// Token: 0x040045DC RID: 17884
+		// Token: 0x04003A54 RID: 14932
 		public int Type;
 
-		// Token: 0x040045DD RID: 17885
+		// Token: 0x04003A55 RID: 14933
 		public int PaiMaiID;
 	}
 }

@@ -4,13 +4,13 @@ using UnityEngine.Serialization;
 
 namespace Fungus
 {
-	// Token: 0x0200125D RID: 4701
+	// Token: 0x02000E10 RID: 3600
 	[CommandInfo("Audio", "Play Usfxr Sound", "Plays a usfxr synth sound. Use the usfxr editor [Tools > Fungus > Utilities > Generate usfxr Sound Effects] to create the SettingsString. Set a ParentTransform if using positional sound. See https://github.com/zeh/usfxr for more information about usfxr.", 0)]
 	[AddComponentMenu("")]
 	[ExecuteInEditMode]
 	public class PlayUsfxrSound : Command
 	{
-		// Token: 0x06007229 RID: 29225 RVA: 0x0004DAE0 File Offset: 0x0004BCE0
+		// Token: 0x0600659B RID: 26011 RVA: 0x002839AD File Offset: 0x00281BAD
 		protected virtual void UpdateCache()
 		{
 			if (this._SettingsString.Value != null)
@@ -20,19 +20,19 @@ namespace Fungus
 			}
 		}
 
-		// Token: 0x0600722A RID: 29226 RVA: 0x0004DB18 File Offset: 0x0004BD18
+		// Token: 0x0600659C RID: 26012 RVA: 0x002839E5 File Offset: 0x00281BE5
 		protected virtual void Awake()
 		{
 			this.UpdateCache();
 		}
 
-		// Token: 0x0600722B RID: 29227 RVA: 0x00011424 File Offset: 0x0000F624
+		// Token: 0x0600659D RID: 26013 RVA: 0x0005E3AF File Offset: 0x0005C5AF
 		protected void DoWait()
 		{
 			this.Continue();
 		}
 
-		// Token: 0x0600722C RID: 29228 RVA: 0x002A79E8 File Offset: 0x002A5BE8
+		// Token: 0x0600659E RID: 26014 RVA: 0x002839F0 File Offset: 0x00281BF0
 		public override void OnEnter()
 		{
 			this._synth.SetParentTransform(this.ParentTransform);
@@ -45,7 +45,7 @@ namespace Fungus
 			base.Invoke("DoWait", this.waitDuration);
 		}
 
-		// Token: 0x0600722D RID: 29229 RVA: 0x002A7A3C File Offset: 0x002A5C3C
+		// Token: 0x0600659F RID: 26015 RVA: 0x00283A44 File Offset: 0x00281C44
 		public override string GetSummary()
 		{
 			if (string.IsNullOrEmpty(this._SettingsString.Value))
@@ -59,19 +59,19 @@ namespace Fungus
 			return "Camera.main: " + this._SettingsString.Value;
 		}
 
-		// Token: 0x0600722E RID: 29230 RVA: 0x0004DB20 File Offset: 0x0004BD20
+		// Token: 0x060065A0 RID: 26016 RVA: 0x00283AAD File Offset: 0x00281CAD
 		public override Color GetButtonColor()
 		{
 			return new Color32(128, 200, 200, byte.MaxValue);
 		}
 
-		// Token: 0x0600722F RID: 29231 RVA: 0x0004DB40 File Offset: 0x0004BD40
+		// Token: 0x060065A1 RID: 26017 RVA: 0x00283ACD File Offset: 0x00281CCD
 		public override bool HasReference(Variable variable)
 		{
 			return variable == this._SettingsString.stringRef;
 		}
 
-		// Token: 0x06007230 RID: 29232 RVA: 0x0004DB53 File Offset: 0x0004BD53
+		// Token: 0x060065A2 RID: 26018 RVA: 0x00283AE0 File Offset: 0x00281CE0
 		protected virtual void OnEnable()
 		{
 			if (this.SettingsStringOLD != "")
@@ -81,25 +81,25 @@ namespace Fungus
 			}
 		}
 
-		// Token: 0x04006477 RID: 25719
+		// Token: 0x04005742 RID: 22338
 		[Tooltip("Transform to use for positional audio")]
 		[SerializeField]
 		protected Transform ParentTransform;
 
-		// Token: 0x04006478 RID: 25720
+		// Token: 0x04005743 RID: 22339
 		[Tooltip("Settings string which describes the audio")]
 		[SerializeField]
 		protected StringDataMulti _SettingsString = new StringDataMulti("");
 
-		// Token: 0x04006479 RID: 25721
+		// Token: 0x04005744 RID: 22340
 		[Tooltip("Time to wait before executing the next command")]
 		[SerializeField]
 		protected float waitDuration;
 
-		// Token: 0x0400647A RID: 25722
+		// Token: 0x04005745 RID: 22341
 		protected SfxrSynth _synth = new SfxrSynth();
 
-		// Token: 0x0400647B RID: 25723
+		// Token: 0x04005746 RID: 22342
 		[HideInInspector]
 		[FormerlySerializedAs("SettingsString")]
 		public string SettingsStringOLD = "";

@@ -4,12 +4,12 @@ using UnityEngine;
 
 namespace Fungus
 {
-	// Token: 0x020013D3 RID: 5075
+	// Token: 0x02000F1F RID: 3871
 	[CommandInfo("YS", "CheckStaticSkill", "检测是否拥有该功法", 0)]
 	[AddComponentMenu("")]
 	public class CheckStaticSkill : Command
 	{
-		// Token: 0x06007BAB RID: 31659 RVA: 0x002C4054 File Offset: 0x002C2254
+		// Token: 0x06006DC0 RID: 28096 RVA: 0x002A3D20 File Offset: 0x002A1F20
 		public override void OnEnter()
 		{
 			if (Tools.instance.getPlayer().hasStaticSkillList.Find((SkillItem aa) => aa.itemId == this.SkillID) == null)
@@ -23,23 +23,23 @@ namespace Fungus
 			this.Continue();
 		}
 
-		// Token: 0x06007BAC RID: 31660 RVA: 0x000113CF File Offset: 0x0000F5CF
+		// Token: 0x06006DC1 RID: 28097 RVA: 0x0005E228 File Offset: 0x0005C428
 		public override Color GetButtonColor()
 		{
 			return new Color32(184, 210, 235, byte.MaxValue);
 		}
 
-		// Token: 0x06007BAD RID: 31661 RVA: 0x000042DD File Offset: 0x000024DD
+		// Token: 0x06006DC2 RID: 28098 RVA: 0x00004095 File Offset: 0x00002295
 		public override void OnReset()
 		{
 		}
 
-		// Token: 0x04006A1A RID: 27162
+		// Token: 0x04005B50 RID: 23376
 		[Tooltip("需要进行检测的功法ID")]
 		[SerializeField]
 		protected int SkillID;
 
-		// Token: 0x04006A1B RID: 27163
+		// Token: 0x04005B51 RID: 23377
 		[Tooltip("获取到的值存放位置")]
 		[VariableProperty(new Type[]
 		{

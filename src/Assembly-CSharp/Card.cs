@@ -1,10 +1,10 @@
 ﻿using System;
 using KBEngine;
 
-// Token: 0x02000674 RID: 1652
+// Token: 0x02000499 RID: 1177
 public class Card
 {
-	// Token: 0x06002940 RID: 10560 RVA: 0x00020128 File Offset: 0x0001E328
+	// Token: 0x0600251E RID: 9502 RVA: 0x001023CA File Offset: 0x001005CA
 	public Card(string name, Weight weight, Suits color, CharacterType belongTo)
 	{
 		this.makedSprite = false;
@@ -14,7 +14,7 @@ public class Card
 		this.belongTo = belongTo;
 	}
 
-	// Token: 0x06002941 RID: 10561 RVA: 0x00020154 File Offset: 0x0001E354
+	// Token: 0x0600251F RID: 9503 RVA: 0x001023F6 File Offset: 0x001005F6
 	public Card(string name, Weight weight, Suits color, CharacterType belongTo, card _card)
 	{
 		this.makedSprite = false;
@@ -25,8 +25,8 @@ public class Card
 		this.card = _card;
 	}
 
-	// Token: 0x170002F3 RID: 755
-	// (get) Token: 0x06002942 RID: 10562 RVA: 0x00020188 File Offset: 0x0001E388
+	// Token: 0x17000294 RID: 660
+	// (get) Token: 0x06002520 RID: 9504 RVA: 0x0010242A File Offset: 0x0010062A
 	public string GetCardName
 	{
 		get
@@ -35,8 +35,8 @@ public class Card
 		}
 	}
 
-	// Token: 0x170002F4 RID: 756
-	// (get) Token: 0x06002943 RID: 10563 RVA: 0x00020190 File Offset: 0x0001E390
+	// Token: 0x17000295 RID: 661
+	// (get) Token: 0x06002521 RID: 9505 RVA: 0x00102432 File Offset: 0x00100632
 	public Weight GetCardWeight
 	{
 		get
@@ -45,8 +45,8 @@ public class Card
 		}
 	}
 
-	// Token: 0x170002F5 RID: 757
-	// (get) Token: 0x06002944 RID: 10564 RVA: 0x00020198 File Offset: 0x0001E398
+	// Token: 0x17000296 RID: 662
+	// (get) Token: 0x06002522 RID: 9506 RVA: 0x0010243A File Offset: 0x0010063A
 	public Suits GetCardSuit
 	{
 		get
@@ -55,9 +55,9 @@ public class Card
 		}
 	}
 
-	// Token: 0x170002F6 RID: 758
-	// (get) Token: 0x06002946 RID: 10566 RVA: 0x000201A9 File Offset: 0x0001E3A9
-	// (set) Token: 0x06002945 RID: 10565 RVA: 0x000201A0 File Offset: 0x0001E3A0
+	// Token: 0x17000297 RID: 663
+	// (get) Token: 0x06002524 RID: 9508 RVA: 0x0010244B File Offset: 0x0010064B
+	// (set) Token: 0x06002523 RID: 9507 RVA: 0x00102442 File Offset: 0x00100642
 	public bool isSprite
 	{
 		get
@@ -70,9 +70,9 @@ public class Card
 		}
 	}
 
-	// Token: 0x170002F7 RID: 759
-	// (get) Token: 0x06002948 RID: 10568 RVA: 0x000201BA File Offset: 0x0001E3BA
-	// (set) Token: 0x06002947 RID: 10567 RVA: 0x000201B1 File Offset: 0x0001E3B1
+	// Token: 0x17000298 RID: 664
+	// (get) Token: 0x06002526 RID: 9510 RVA: 0x0010245C File Offset: 0x0010065C
+	// (set) Token: 0x06002525 RID: 9509 RVA: 0x00102453 File Offset: 0x00100653
 	public CharacterType Attribution
 	{
 		get
@@ -85,21 +85,21 @@ public class Card
 		}
 	}
 
-	// Token: 0x04002318 RID: 8984
+	// Token: 0x04001E02 RID: 7682
 	private readonly string cardName;
 
-	// Token: 0x04002319 RID: 8985
+	// Token: 0x04001E03 RID: 7683
 	private readonly Weight weight;
 
-	// Token: 0x0400231A RID: 8986
+	// Token: 0x04001E04 RID: 7684
 	private readonly Suits color;
 
-	// Token: 0x0400231B RID: 8987
+	// Token: 0x04001E05 RID: 7685
 	private CharacterType belongTo;
 
-	// Token: 0x0400231C RID: 8988
+	// Token: 0x04001E06 RID: 7686
 	private bool makedSprite;
 
-	// Token: 0x0400231D RID: 8989
+	// Token: 0x04001E07 RID: 7687
 	public card card;
 }

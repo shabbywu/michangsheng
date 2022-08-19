@@ -1,16 +1,16 @@
 ﻿using System;
 using UnityEngine;
 
-// Token: 0x0200016B RID: 363
+// Token: 0x020000F3 RID: 243
 public class MoverMissile : MonoBehaviour
 {
-	// Token: 0x06000C7B RID: 3195 RVA: 0x0000E640 File Offset: 0x0000C840
+	// Token: 0x06000B8C RID: 2956 RVA: 0x0004679E File Offset: 0x0004499E
 	private void Start()
 	{
 		Object.Destroy(base.gameObject, this.LifeTime);
 	}
 
-	// Token: 0x06000C7C RID: 3196 RVA: 0x000981F4 File Offset: 0x000963F4
+	// Token: 0x06000B8D RID: 2957 RVA: 0x000467B4 File Offset: 0x000449B4
 	private void Update()
 	{
 		if (this.Seeker)
@@ -69,45 +69,45 @@ public class MoverMissile : MonoBehaviour
 		base.GetComponent<Rigidbody>().velocity += new Vector3(Random.Range(-this.Noise.x, this.Noise.x), Random.Range(-this.Noise.y, this.Noise.y), Random.Range(-this.Noise.z, this.Noise.z));
 	}
 
-	// Token: 0x040009A1 RID: 2465
+	// Token: 0x040007C3 RID: 1987
 	public GameObject target;
 
-	// Token: 0x040009A2 RID: 2466
+	// Token: 0x040007C4 RID: 1988
 	public string TargetTag;
 
-	// Token: 0x040009A3 RID: 2467
+	// Token: 0x040007C5 RID: 1989
 	public float damping = 3f;
 
-	// Token: 0x040009A4 RID: 2468
+	// Token: 0x040007C6 RID: 1990
 	public float Speed = 500f;
 
-	// Token: 0x040009A5 RID: 2469
+	// Token: 0x040007C7 RID: 1991
 	public float SpeedMax = 1000f;
 
-	// Token: 0x040009A6 RID: 2470
+	// Token: 0x040007C8 RID: 1992
 	public float SpeedMult = 1f;
 
-	// Token: 0x040009A7 RID: 2471
+	// Token: 0x040007C9 RID: 1993
 	public Vector3 Noise = new Vector3(20f, 20f, 20f);
 
-	// Token: 0x040009A8 RID: 2472
+	// Token: 0x040007CA RID: 1994
 	public int distanceLock = 70;
 
-	// Token: 0x040009A9 RID: 2473
+	// Token: 0x040007CB RID: 1995
 	public int DurationLock = 40;
 
-	// Token: 0x040009AA RID: 2474
+	// Token: 0x040007CC RID: 1996
 	public float targetlockdirection = 0.5f;
 
-	// Token: 0x040009AB RID: 2475
+	// Token: 0x040007CD RID: 1997
 	public bool Seeker;
 
-	// Token: 0x040009AC RID: 2476
+	// Token: 0x040007CE RID: 1998
 	public float LifeTime = 5f;
 
-	// Token: 0x040009AD RID: 2477
+	// Token: 0x040007CF RID: 1999
 	private int timetorock;
 
-	// Token: 0x040009AE RID: 2478
+	// Token: 0x040007D0 RID: 2000
 	private bool locked;
 }

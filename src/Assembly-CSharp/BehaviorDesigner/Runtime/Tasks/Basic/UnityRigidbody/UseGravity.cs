@@ -3,12 +3,12 @@ using UnityEngine;
 
 namespace BehaviorDesigner.Runtime.Tasks.Basic.UnityRigidbody
 {
-	// Token: 0x02001568 RID: 5480
+	// Token: 0x020010AE RID: 4270
 	[TaskCategory("Basic/Rigidbody")]
 	[TaskDescription("Returns Success if the Rigidbody is using gravity, otherwise Failure.")]
 	public class UseGravity : Conditional
 	{
-		// Token: 0x0600819E RID: 33182 RVA: 0x002CC5EC File Offset: 0x002CA7EC
+		// Token: 0x060073A4 RID: 29604 RVA: 0x002B06D4 File Offset: 0x002AE8D4
 		public override void OnStart()
 		{
 			GameObject defaultGameObject = base.GetDefaultGameObject(this.targetGameObject.Value);
@@ -19,7 +19,7 @@ namespace BehaviorDesigner.Runtime.Tasks.Basic.UnityRigidbody
 			}
 		}
 
-		// Token: 0x0600819F RID: 33183 RVA: 0x00058A4D File Offset: 0x00056C4D
+		// Token: 0x060073A5 RID: 29605 RVA: 0x002B0714 File Offset: 0x002AE914
 		public override TaskStatus OnUpdate()
 		{
 			if (this.rigidbody == null)
@@ -34,20 +34,20 @@ namespace BehaviorDesigner.Runtime.Tasks.Basic.UnityRigidbody
 			return 2;
 		}
 
-		// Token: 0x060081A0 RID: 33184 RVA: 0x00058A79 File Offset: 0x00056C79
+		// Token: 0x060073A6 RID: 29606 RVA: 0x002B0740 File Offset: 0x002AE940
 		public override void OnReset()
 		{
 			this.targetGameObject = null;
 		}
 
-		// Token: 0x04006E57 RID: 28247
+		// Token: 0x04005F57 RID: 24407
 		[Tooltip("The GameObject that the task operates on. If null the task GameObject is used.")]
 		public SharedGameObject targetGameObject;
 
-		// Token: 0x04006E58 RID: 28248
+		// Token: 0x04005F58 RID: 24408
 		private Rigidbody rigidbody;
 
-		// Token: 0x04006E59 RID: 28249
+		// Token: 0x04005F59 RID: 24409
 		private GameObject prevGameObject;
 	}
 }

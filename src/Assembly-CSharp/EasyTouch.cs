@@ -2,185 +2,185 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-// Token: 0x020001AB RID: 427
+// Token: 0x02000111 RID: 273
 public class EasyTouch : MonoBehaviour
 {
 	// Token: 0x1400000B RID: 11
-	// (add) Token: 0x06000E28 RID: 3624 RVA: 0x0009E2A4 File Offset: 0x0009C4A4
-	// (remove) Token: 0x06000E29 RID: 3625 RVA: 0x0009E2D8 File Offset: 0x0009C4D8
+	// (add) Token: 0x06000CDF RID: 3295 RVA: 0x0004D2A8 File Offset: 0x0004B4A8
+	// (remove) Token: 0x06000CE0 RID: 3296 RVA: 0x0004D2DC File Offset: 0x0004B4DC
 	public static event EasyTouch.TouchCancelHandler On_Cancel;
 
 	// Token: 0x1400000C RID: 12
-	// (add) Token: 0x06000E2A RID: 3626 RVA: 0x0009E30C File Offset: 0x0009C50C
-	// (remove) Token: 0x06000E2B RID: 3627 RVA: 0x0009E340 File Offset: 0x0009C540
+	// (add) Token: 0x06000CE1 RID: 3297 RVA: 0x0004D310 File Offset: 0x0004B510
+	// (remove) Token: 0x06000CE2 RID: 3298 RVA: 0x0004D344 File Offset: 0x0004B544
 	public static event EasyTouch.Cancel2FingersHandler On_Cancel2Fingers;
 
 	// Token: 0x1400000D RID: 13
-	// (add) Token: 0x06000E2C RID: 3628 RVA: 0x0009E374 File Offset: 0x0009C574
-	// (remove) Token: 0x06000E2D RID: 3629 RVA: 0x0009E3A8 File Offset: 0x0009C5A8
+	// (add) Token: 0x06000CE3 RID: 3299 RVA: 0x0004D378 File Offset: 0x0004B578
+	// (remove) Token: 0x06000CE4 RID: 3300 RVA: 0x0004D3AC File Offset: 0x0004B5AC
 	public static event EasyTouch.TouchStartHandler On_TouchStart;
 
 	// Token: 0x1400000E RID: 14
-	// (add) Token: 0x06000E2E RID: 3630 RVA: 0x0009E3DC File Offset: 0x0009C5DC
-	// (remove) Token: 0x06000E2F RID: 3631 RVA: 0x0009E410 File Offset: 0x0009C610
+	// (add) Token: 0x06000CE5 RID: 3301 RVA: 0x0004D3E0 File Offset: 0x0004B5E0
+	// (remove) Token: 0x06000CE6 RID: 3302 RVA: 0x0004D414 File Offset: 0x0004B614
 	public static event EasyTouch.TouchDownHandler On_TouchDown;
 
 	// Token: 0x1400000F RID: 15
-	// (add) Token: 0x06000E30 RID: 3632 RVA: 0x0009E444 File Offset: 0x0009C644
-	// (remove) Token: 0x06000E31 RID: 3633 RVA: 0x0009E478 File Offset: 0x0009C678
+	// (add) Token: 0x06000CE7 RID: 3303 RVA: 0x0004D448 File Offset: 0x0004B648
+	// (remove) Token: 0x06000CE8 RID: 3304 RVA: 0x0004D47C File Offset: 0x0004B67C
 	public static event EasyTouch.TouchUpHandler On_TouchUp;
 
 	// Token: 0x14000010 RID: 16
-	// (add) Token: 0x06000E32 RID: 3634 RVA: 0x0009E4AC File Offset: 0x0009C6AC
-	// (remove) Token: 0x06000E33 RID: 3635 RVA: 0x0009E4E0 File Offset: 0x0009C6E0
+	// (add) Token: 0x06000CE9 RID: 3305 RVA: 0x0004D4B0 File Offset: 0x0004B6B0
+	// (remove) Token: 0x06000CEA RID: 3306 RVA: 0x0004D4E4 File Offset: 0x0004B6E4
 	public static event EasyTouch.SimpleTapHandler On_SimpleTap;
 
 	// Token: 0x14000011 RID: 17
-	// (add) Token: 0x06000E34 RID: 3636 RVA: 0x0009E514 File Offset: 0x0009C714
-	// (remove) Token: 0x06000E35 RID: 3637 RVA: 0x0009E548 File Offset: 0x0009C748
+	// (add) Token: 0x06000CEB RID: 3307 RVA: 0x0004D518 File Offset: 0x0004B718
+	// (remove) Token: 0x06000CEC RID: 3308 RVA: 0x0004D54C File Offset: 0x0004B74C
 	public static event EasyTouch.DoubleTapHandler On_DoubleTap;
 
 	// Token: 0x14000012 RID: 18
-	// (add) Token: 0x06000E36 RID: 3638 RVA: 0x0009E57C File Offset: 0x0009C77C
-	// (remove) Token: 0x06000E37 RID: 3639 RVA: 0x0009E5B0 File Offset: 0x0009C7B0
+	// (add) Token: 0x06000CED RID: 3309 RVA: 0x0004D580 File Offset: 0x0004B780
+	// (remove) Token: 0x06000CEE RID: 3310 RVA: 0x0004D5B4 File Offset: 0x0004B7B4
 	public static event EasyTouch.LongTapStartHandler On_LongTapStart;
 
 	// Token: 0x14000013 RID: 19
-	// (add) Token: 0x06000E38 RID: 3640 RVA: 0x0009E5E4 File Offset: 0x0009C7E4
-	// (remove) Token: 0x06000E39 RID: 3641 RVA: 0x0009E618 File Offset: 0x0009C818
+	// (add) Token: 0x06000CEF RID: 3311 RVA: 0x0004D5E8 File Offset: 0x0004B7E8
+	// (remove) Token: 0x06000CF0 RID: 3312 RVA: 0x0004D61C File Offset: 0x0004B81C
 	public static event EasyTouch.LongTapHandler On_LongTap;
 
 	// Token: 0x14000014 RID: 20
-	// (add) Token: 0x06000E3A RID: 3642 RVA: 0x0009E64C File Offset: 0x0009C84C
-	// (remove) Token: 0x06000E3B RID: 3643 RVA: 0x0009E680 File Offset: 0x0009C880
+	// (add) Token: 0x06000CF1 RID: 3313 RVA: 0x0004D650 File Offset: 0x0004B850
+	// (remove) Token: 0x06000CF2 RID: 3314 RVA: 0x0004D684 File Offset: 0x0004B884
 	public static event EasyTouch.LongTapEndHandler On_LongTapEnd;
 
 	// Token: 0x14000015 RID: 21
-	// (add) Token: 0x06000E3C RID: 3644 RVA: 0x0009E6B4 File Offset: 0x0009C8B4
-	// (remove) Token: 0x06000E3D RID: 3645 RVA: 0x0009E6E8 File Offset: 0x0009C8E8
+	// (add) Token: 0x06000CF3 RID: 3315 RVA: 0x0004D6B8 File Offset: 0x0004B8B8
+	// (remove) Token: 0x06000CF4 RID: 3316 RVA: 0x0004D6EC File Offset: 0x0004B8EC
 	public static event EasyTouch.DragStartHandler On_DragStart;
 
 	// Token: 0x14000016 RID: 22
-	// (add) Token: 0x06000E3E RID: 3646 RVA: 0x0009E71C File Offset: 0x0009C91C
-	// (remove) Token: 0x06000E3F RID: 3647 RVA: 0x0009E750 File Offset: 0x0009C950
+	// (add) Token: 0x06000CF5 RID: 3317 RVA: 0x0004D720 File Offset: 0x0004B920
+	// (remove) Token: 0x06000CF6 RID: 3318 RVA: 0x0004D754 File Offset: 0x0004B954
 	public static event EasyTouch.DragHandler On_Drag;
 
 	// Token: 0x14000017 RID: 23
-	// (add) Token: 0x06000E40 RID: 3648 RVA: 0x0009E784 File Offset: 0x0009C984
-	// (remove) Token: 0x06000E41 RID: 3649 RVA: 0x0009E7B8 File Offset: 0x0009C9B8
+	// (add) Token: 0x06000CF7 RID: 3319 RVA: 0x0004D788 File Offset: 0x0004B988
+	// (remove) Token: 0x06000CF8 RID: 3320 RVA: 0x0004D7BC File Offset: 0x0004B9BC
 	public static event EasyTouch.DragEndHandler On_DragEnd;
 
 	// Token: 0x14000018 RID: 24
-	// (add) Token: 0x06000E42 RID: 3650 RVA: 0x0009E7EC File Offset: 0x0009C9EC
-	// (remove) Token: 0x06000E43 RID: 3651 RVA: 0x0009E820 File Offset: 0x0009CA20
+	// (add) Token: 0x06000CF9 RID: 3321 RVA: 0x0004D7F0 File Offset: 0x0004B9F0
+	// (remove) Token: 0x06000CFA RID: 3322 RVA: 0x0004D824 File Offset: 0x0004BA24
 	public static event EasyTouch.SwipeStartHandler On_SwipeStart;
 
 	// Token: 0x14000019 RID: 25
-	// (add) Token: 0x06000E44 RID: 3652 RVA: 0x0009E854 File Offset: 0x0009CA54
-	// (remove) Token: 0x06000E45 RID: 3653 RVA: 0x0009E888 File Offset: 0x0009CA88
+	// (add) Token: 0x06000CFB RID: 3323 RVA: 0x0004D858 File Offset: 0x0004BA58
+	// (remove) Token: 0x06000CFC RID: 3324 RVA: 0x0004D88C File Offset: 0x0004BA8C
 	public static event EasyTouch.SwipeHandler On_Swipe;
 
 	// Token: 0x1400001A RID: 26
-	// (add) Token: 0x06000E46 RID: 3654 RVA: 0x0009E8BC File Offset: 0x0009CABC
-	// (remove) Token: 0x06000E47 RID: 3655 RVA: 0x0009E8F0 File Offset: 0x0009CAF0
+	// (add) Token: 0x06000CFD RID: 3325 RVA: 0x0004D8C0 File Offset: 0x0004BAC0
+	// (remove) Token: 0x06000CFE RID: 3326 RVA: 0x0004D8F4 File Offset: 0x0004BAF4
 	public static event EasyTouch.SwipeEndHandler On_SwipeEnd;
 
 	// Token: 0x1400001B RID: 27
-	// (add) Token: 0x06000E48 RID: 3656 RVA: 0x0009E924 File Offset: 0x0009CB24
-	// (remove) Token: 0x06000E49 RID: 3657 RVA: 0x0009E958 File Offset: 0x0009CB58
+	// (add) Token: 0x06000CFF RID: 3327 RVA: 0x0004D928 File Offset: 0x0004BB28
+	// (remove) Token: 0x06000D00 RID: 3328 RVA: 0x0004D95C File Offset: 0x0004BB5C
 	public static event EasyTouch.TouchStart2FingersHandler On_TouchStart2Fingers;
 
 	// Token: 0x1400001C RID: 28
-	// (add) Token: 0x06000E4A RID: 3658 RVA: 0x0009E98C File Offset: 0x0009CB8C
-	// (remove) Token: 0x06000E4B RID: 3659 RVA: 0x0009E9C0 File Offset: 0x0009CBC0
+	// (add) Token: 0x06000D01 RID: 3329 RVA: 0x0004D990 File Offset: 0x0004BB90
+	// (remove) Token: 0x06000D02 RID: 3330 RVA: 0x0004D9C4 File Offset: 0x0004BBC4
 	public static event EasyTouch.TouchDown2FingersHandler On_TouchDown2Fingers;
 
 	// Token: 0x1400001D RID: 29
-	// (add) Token: 0x06000E4C RID: 3660 RVA: 0x0009E9F4 File Offset: 0x0009CBF4
-	// (remove) Token: 0x06000E4D RID: 3661 RVA: 0x0009EA28 File Offset: 0x0009CC28
+	// (add) Token: 0x06000D03 RID: 3331 RVA: 0x0004D9F8 File Offset: 0x0004BBF8
+	// (remove) Token: 0x06000D04 RID: 3332 RVA: 0x0004DA2C File Offset: 0x0004BC2C
 	public static event EasyTouch.TouchUp2FingersHandler On_TouchUp2Fingers;
 
 	// Token: 0x1400001E RID: 30
-	// (add) Token: 0x06000E4E RID: 3662 RVA: 0x0009EA5C File Offset: 0x0009CC5C
-	// (remove) Token: 0x06000E4F RID: 3663 RVA: 0x0009EA90 File Offset: 0x0009CC90
+	// (add) Token: 0x06000D05 RID: 3333 RVA: 0x0004DA60 File Offset: 0x0004BC60
+	// (remove) Token: 0x06000D06 RID: 3334 RVA: 0x0004DA94 File Offset: 0x0004BC94
 	public static event EasyTouch.SimpleTap2FingersHandler On_SimpleTap2Fingers;
 
 	// Token: 0x1400001F RID: 31
-	// (add) Token: 0x06000E50 RID: 3664 RVA: 0x0009EAC4 File Offset: 0x0009CCC4
-	// (remove) Token: 0x06000E51 RID: 3665 RVA: 0x0009EAF8 File Offset: 0x0009CCF8
+	// (add) Token: 0x06000D07 RID: 3335 RVA: 0x0004DAC8 File Offset: 0x0004BCC8
+	// (remove) Token: 0x06000D08 RID: 3336 RVA: 0x0004DAFC File Offset: 0x0004BCFC
 	public static event EasyTouch.DoubleTap2FingersHandler On_DoubleTap2Fingers;
 
 	// Token: 0x14000020 RID: 32
-	// (add) Token: 0x06000E52 RID: 3666 RVA: 0x0009EB2C File Offset: 0x0009CD2C
-	// (remove) Token: 0x06000E53 RID: 3667 RVA: 0x0009EB60 File Offset: 0x0009CD60
+	// (add) Token: 0x06000D09 RID: 3337 RVA: 0x0004DB30 File Offset: 0x0004BD30
+	// (remove) Token: 0x06000D0A RID: 3338 RVA: 0x0004DB64 File Offset: 0x0004BD64
 	public static event EasyTouch.LongTapStart2FingersHandler On_LongTapStart2Fingers;
 
 	// Token: 0x14000021 RID: 33
-	// (add) Token: 0x06000E54 RID: 3668 RVA: 0x0009EB94 File Offset: 0x0009CD94
-	// (remove) Token: 0x06000E55 RID: 3669 RVA: 0x0009EBC8 File Offset: 0x0009CDC8
+	// (add) Token: 0x06000D0B RID: 3339 RVA: 0x0004DB98 File Offset: 0x0004BD98
+	// (remove) Token: 0x06000D0C RID: 3340 RVA: 0x0004DBCC File Offset: 0x0004BDCC
 	public static event EasyTouch.LongTap2FingersHandler On_LongTap2Fingers;
 
 	// Token: 0x14000022 RID: 34
-	// (add) Token: 0x06000E56 RID: 3670 RVA: 0x0009EBFC File Offset: 0x0009CDFC
-	// (remove) Token: 0x06000E57 RID: 3671 RVA: 0x0009EC30 File Offset: 0x0009CE30
+	// (add) Token: 0x06000D0D RID: 3341 RVA: 0x0004DC00 File Offset: 0x0004BE00
+	// (remove) Token: 0x06000D0E RID: 3342 RVA: 0x0004DC34 File Offset: 0x0004BE34
 	public static event EasyTouch.LongTapEnd2FingersHandler On_LongTapEnd2Fingers;
 
 	// Token: 0x14000023 RID: 35
-	// (add) Token: 0x06000E58 RID: 3672 RVA: 0x0009EC64 File Offset: 0x0009CE64
-	// (remove) Token: 0x06000E59 RID: 3673 RVA: 0x0009EC98 File Offset: 0x0009CE98
+	// (add) Token: 0x06000D0F RID: 3343 RVA: 0x0004DC68 File Offset: 0x0004BE68
+	// (remove) Token: 0x06000D10 RID: 3344 RVA: 0x0004DC9C File Offset: 0x0004BE9C
 	public static event EasyTouch.TwistHandler On_Twist;
 
 	// Token: 0x14000024 RID: 36
-	// (add) Token: 0x06000E5A RID: 3674 RVA: 0x0009ECCC File Offset: 0x0009CECC
-	// (remove) Token: 0x06000E5B RID: 3675 RVA: 0x0009ED00 File Offset: 0x0009CF00
+	// (add) Token: 0x06000D11 RID: 3345 RVA: 0x0004DCD0 File Offset: 0x0004BED0
+	// (remove) Token: 0x06000D12 RID: 3346 RVA: 0x0004DD04 File Offset: 0x0004BF04
 	public static event EasyTouch.TwistEndHandler On_TwistEnd;
 
 	// Token: 0x14000025 RID: 37
-	// (add) Token: 0x06000E5C RID: 3676 RVA: 0x0009ED34 File Offset: 0x0009CF34
-	// (remove) Token: 0x06000E5D RID: 3677 RVA: 0x0009ED68 File Offset: 0x0009CF68
+	// (add) Token: 0x06000D13 RID: 3347 RVA: 0x0004DD38 File Offset: 0x0004BF38
+	// (remove) Token: 0x06000D14 RID: 3348 RVA: 0x0004DD6C File Offset: 0x0004BF6C
 	public static event EasyTouch.PinchInHandler On_PinchIn;
 
 	// Token: 0x14000026 RID: 38
-	// (add) Token: 0x06000E5E RID: 3678 RVA: 0x0009ED9C File Offset: 0x0009CF9C
-	// (remove) Token: 0x06000E5F RID: 3679 RVA: 0x0009EDD0 File Offset: 0x0009CFD0
+	// (add) Token: 0x06000D15 RID: 3349 RVA: 0x0004DDA0 File Offset: 0x0004BFA0
+	// (remove) Token: 0x06000D16 RID: 3350 RVA: 0x0004DDD4 File Offset: 0x0004BFD4
 	public static event EasyTouch.PinchOutHandler On_PinchOut;
 
 	// Token: 0x14000027 RID: 39
-	// (add) Token: 0x06000E60 RID: 3680 RVA: 0x0009EE04 File Offset: 0x0009D004
-	// (remove) Token: 0x06000E61 RID: 3681 RVA: 0x0009EE38 File Offset: 0x0009D038
+	// (add) Token: 0x06000D17 RID: 3351 RVA: 0x0004DE08 File Offset: 0x0004C008
+	// (remove) Token: 0x06000D18 RID: 3352 RVA: 0x0004DE3C File Offset: 0x0004C03C
 	public static event EasyTouch.PinchEndHandler On_PinchEnd;
 
 	// Token: 0x14000028 RID: 40
-	// (add) Token: 0x06000E62 RID: 3682 RVA: 0x0009EE6C File Offset: 0x0009D06C
-	// (remove) Token: 0x06000E63 RID: 3683 RVA: 0x0009EEA0 File Offset: 0x0009D0A0
+	// (add) Token: 0x06000D19 RID: 3353 RVA: 0x0004DE70 File Offset: 0x0004C070
+	// (remove) Token: 0x06000D1A RID: 3354 RVA: 0x0004DEA4 File Offset: 0x0004C0A4
 	public static event EasyTouch.DragStart2FingersHandler On_DragStart2Fingers;
 
 	// Token: 0x14000029 RID: 41
-	// (add) Token: 0x06000E64 RID: 3684 RVA: 0x0009EED4 File Offset: 0x0009D0D4
-	// (remove) Token: 0x06000E65 RID: 3685 RVA: 0x0009EF08 File Offset: 0x0009D108
+	// (add) Token: 0x06000D1B RID: 3355 RVA: 0x0004DED8 File Offset: 0x0004C0D8
+	// (remove) Token: 0x06000D1C RID: 3356 RVA: 0x0004DF0C File Offset: 0x0004C10C
 	public static event EasyTouch.Drag2FingersHandler On_Drag2Fingers;
 
 	// Token: 0x1400002A RID: 42
-	// (add) Token: 0x06000E66 RID: 3686 RVA: 0x0009EF3C File Offset: 0x0009D13C
-	// (remove) Token: 0x06000E67 RID: 3687 RVA: 0x0009EF70 File Offset: 0x0009D170
+	// (add) Token: 0x06000D1D RID: 3357 RVA: 0x0004DF40 File Offset: 0x0004C140
+	// (remove) Token: 0x06000D1E RID: 3358 RVA: 0x0004DF74 File Offset: 0x0004C174
 	public static event EasyTouch.DragEnd2FingersHandler On_DragEnd2Fingers;
 
 	// Token: 0x1400002B RID: 43
-	// (add) Token: 0x06000E68 RID: 3688 RVA: 0x0009EFA4 File Offset: 0x0009D1A4
-	// (remove) Token: 0x06000E69 RID: 3689 RVA: 0x0009EFD8 File Offset: 0x0009D1D8
+	// (add) Token: 0x06000D1F RID: 3359 RVA: 0x0004DFA8 File Offset: 0x0004C1A8
+	// (remove) Token: 0x06000D20 RID: 3360 RVA: 0x0004DFDC File Offset: 0x0004C1DC
 	public static event EasyTouch.SwipeStart2FingersHandler On_SwipeStart2Fingers;
 
 	// Token: 0x1400002C RID: 44
-	// (add) Token: 0x06000E6A RID: 3690 RVA: 0x0009F00C File Offset: 0x0009D20C
-	// (remove) Token: 0x06000E6B RID: 3691 RVA: 0x0009F040 File Offset: 0x0009D240
+	// (add) Token: 0x06000D21 RID: 3361 RVA: 0x0004E010 File Offset: 0x0004C210
+	// (remove) Token: 0x06000D22 RID: 3362 RVA: 0x0004E044 File Offset: 0x0004C244
 	public static event EasyTouch.Swipe2FingersHandler On_Swipe2Fingers;
 
 	// Token: 0x1400002D RID: 45
-	// (add) Token: 0x06000E6C RID: 3692 RVA: 0x0009F074 File Offset: 0x0009D274
-	// (remove) Token: 0x06000E6D RID: 3693 RVA: 0x0009F0A8 File Offset: 0x0009D2A8
+	// (add) Token: 0x06000D23 RID: 3363 RVA: 0x0004E078 File Offset: 0x0004C278
+	// (remove) Token: 0x06000D24 RID: 3364 RVA: 0x0004E0AC File Offset: 0x0004C2AC
 	public static event EasyTouch.SwipeEnd2FingersHandler On_SwipeEnd2Fingers;
 
-	// Token: 0x06000E6E RID: 3694 RVA: 0x0009F0DC File Offset: 0x0009D2DC
+	// Token: 0x06000D25 RID: 3365 RVA: 0x0004E0E0 File Offset: 0x0004C2E0
 	public EasyTouch()
 	{
 		this.enable = true;
@@ -196,7 +196,7 @@ public class EasyTouch : MonoBehaviour
 		this.minTwistAngle = 1f;
 	}
 
-	// Token: 0x06000E6F RID: 3695 RVA: 0x0000F654 File Offset: 0x0000D854
+	// Token: 0x06000D26 RID: 3366 RVA: 0x0004E214 File Offset: 0x0004C414
 	private void OnEnable()
 	{
 		if (Application.isPlaying && Application.isEditor)
@@ -205,13 +205,13 @@ public class EasyTouch : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000E70 RID: 3696 RVA: 0x0000F66A File Offset: 0x0000D86A
+	// Token: 0x06000D27 RID: 3367 RVA: 0x0004E22A File Offset: 0x0004C42A
 	private void Start()
 	{
 		this.InitEasyTouch();
 	}
 
-	// Token: 0x06000E71 RID: 3697 RVA: 0x0009F210 File Offset: 0x0009D410
+	// Token: 0x06000D28 RID: 3368 RVA: 0x0004E234 File Offset: 0x0004C434
 	private void InitEasyTouch()
 	{
 		this.input = new EasyTouchInput();
@@ -233,7 +233,7 @@ public class EasyTouch : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000E72 RID: 3698 RVA: 0x0009F298 File Offset: 0x0009D498
+	// Token: 0x06000D29 RID: 3369 RVA: 0x0004E2BC File Offset: 0x0004C4BC
 	private void OnGUI()
 	{
 		Vector2 secondFingerPosition = this.input.GetSecondFingerPosition();
@@ -243,12 +243,12 @@ public class EasyTouch : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000E73 RID: 3699 RVA: 0x000042DD File Offset: 0x000024DD
+	// Token: 0x06000D2A RID: 3370 RVA: 0x00004095 File Offset: 0x00002295
 	private void OnDrawGizmos()
 	{
 	}
 
-	// Token: 0x06000E74 RID: 3700 RVA: 0x0009F304 File Offset: 0x0009D504
+	// Token: 0x06000D2B RID: 3371 RVA: 0x0004E328 File Offset: 0x0004C528
 	private void Update()
 	{
 		if (this.enable && EasyTouch.instance == this)
@@ -285,7 +285,7 @@ public class EasyTouch : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000E75 RID: 3701 RVA: 0x0009F3E8 File Offset: 0x0009D5E8
+	// Token: 0x06000D2C RID: 3372 RVA: 0x0004E40C File Offset: 0x0004C60C
 	private void UpdateTouches(bool realTouch, int touchCount)
 	{
 		Finger[] array = new Finger[10];
@@ -331,7 +331,7 @@ public class EasyTouch : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000E76 RID: 3702 RVA: 0x0009F56C File Offset: 0x0009D76C
+	// Token: 0x06000D2D RID: 3373 RVA: 0x0004E590 File Offset: 0x0004C790
 	private void ResetTouches()
 	{
 		for (int i = 0; i < 10; i++)
@@ -340,7 +340,7 @@ public class EasyTouch : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000E77 RID: 3703 RVA: 0x0009F590 File Offset: 0x0009D790
+	// Token: 0x06000D2E RID: 3374 RVA: 0x0004E5B4 File Offset: 0x0004C7B4
 	private void OneFinger(int fingerIndex)
 	{
 		if (this.fingers[fingerIndex].gesture == EasyTouch.GestureType.None)
@@ -459,7 +459,7 @@ public class EasyTouch : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000E78 RID: 3704 RVA: 0x0009FC28 File Offset: 0x0009DE28
+	// Token: 0x06000D2F RID: 3375 RVA: 0x0004EC4C File Offset: 0x0004CE4C
 	private void CreateGesture(int touchIndex, EasyTouch.EventName message, Finger finger, float actionTime, EasyTouch.SwipeType swipe, float swipeLength, Vector2 swipeVector)
 	{
 		if (message == EasyTouch.EventName.On_TouchStart)
@@ -499,7 +499,7 @@ public class EasyTouch : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000E79 RID: 3705 RVA: 0x0009FD34 File Offset: 0x0009DF34
+	// Token: 0x06000D30 RID: 3376 RVA: 0x0004ED58 File Offset: 0x0004CF58
 	private void SendGesture(EasyTouch.EventName message, Gesture gesture)
 	{
 		if (this.useBroadcastMessage)
@@ -517,7 +517,7 @@ public class EasyTouch : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000E7A RID: 3706 RVA: 0x0009FDC4 File Offset: 0x0009DFC4
+	// Token: 0x06000D31 RID: 3377 RVA: 0x0004EDE8 File Offset: 0x0004CFE8
 	private void TwoFinger()
 	{
 		float num = 0f;
@@ -666,7 +666,7 @@ public class EasyTouch : MonoBehaviour
 		this.twoFingerDragStart = false;
 	}
 
-	// Token: 0x06000E7B RID: 3707 RVA: 0x000A0610 File Offset: 0x0009E810
+	// Token: 0x06000D32 RID: 3378 RVA: 0x0004F634 File Offset: 0x0004D834
 	private int GetTwoFinger(int index)
 	{
 		int num = index + 1;
@@ -682,7 +682,7 @@ public class EasyTouch : MonoBehaviour
 		return num - 1;
 	}
 
-	// Token: 0x06000E7C RID: 3708 RVA: 0x000A0648 File Offset: 0x0009E848
+	// Token: 0x06000D33 RID: 3379 RVA: 0x0004F66C File Offset: 0x0004D86C
 	private void CreateStateEnd2Fingers(EasyTouch.GestureType gesture, Vector2 startPosition, Vector2 position, Vector2 deltaPosition, float time, bool realEnd, float fingerDistance)
 	{
 		switch (gesture)
@@ -721,7 +721,7 @@ public class EasyTouch : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000E7D RID: 3709 RVA: 0x000A0818 File Offset: 0x0009EA18
+	// Token: 0x06000D34 RID: 3380 RVA: 0x0004F83C File Offset: 0x0004DA3C
 	private void CreateGesture2Finger(EasyTouch.EventName message, Vector2 startPosition, Vector2 position, Vector2 deltaPosition, float actionTime, EasyTouch.SwipeType swipe, float swipeLength, Vector2 swipeVector, float twist, float pinch, float twoDistance)
 	{
 		if (message == EasyTouch.EventName.On_TouchStart2Fingers)
@@ -773,7 +773,7 @@ public class EasyTouch : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000E7E RID: 3710 RVA: 0x000A0958 File Offset: 0x0009EB58
+	// Token: 0x06000D35 RID: 3381 RVA: 0x0004F97C File Offset: 0x0004DB7C
 	private void SendGesture2Finger(EasyTouch.EventName message, Gesture gesture)
 	{
 		if (this.receiverObject != null && this.receiverObject != gesture.pickObject)
@@ -788,7 +788,7 @@ public class EasyTouch : MonoBehaviour
 		base.SendMessage(message.ToString(), gesture, 1);
 	}
 
-	// Token: 0x06000E7F RID: 3711 RVA: 0x000A09E0 File Offset: 0x0009EBE0
+	// Token: 0x06000D36 RID: 3382 RVA: 0x0004FA04 File Offset: 0x0004DC04
 	private void RaiseEvent(EasyTouch.EventName evnt, Gesture gesture)
 	{
 		switch (evnt)
@@ -1042,7 +1042,7 @@ public class EasyTouch : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000E80 RID: 3712 RVA: 0x000A0D70 File Offset: 0x0009EF70
+	// Token: 0x06000D37 RID: 3383 RVA: 0x0004FD94 File Offset: 0x0004DF94
 	private GameObject GetPickeGameObject(Vector2 screenPos)
 	{
 		if (this.easyTouchCamera != null)
@@ -1062,7 +1062,7 @@ public class EasyTouch : MonoBehaviour
 		return null;
 	}
 
-	// Token: 0x06000E81 RID: 3713 RVA: 0x000A0DD0 File Offset: 0x0009EFD0
+	// Token: 0x06000D38 RID: 3384 RVA: 0x0004FDF4 File Offset: 0x0004DFF4
 	private EasyTouch.SwipeType GetSwipe(Vector2 start, Vector2 end)
 	{
 		Vector2 normalized = (end - start).normalized;
@@ -1091,19 +1091,19 @@ public class EasyTouch : MonoBehaviour
 		return EasyTouch.SwipeType.Other;
 	}
 
-	// Token: 0x06000E82 RID: 3714 RVA: 0x000A0E64 File Offset: 0x0009F064
+	// Token: 0x06000D39 RID: 3385 RVA: 0x0004FE88 File Offset: 0x0004E088
 	private bool FingerInTolerance(Finger finger)
 	{
 		return (finger.position - finger.startPosition).sqrMagnitude <= this.StationnaryTolerance * this.StationnaryTolerance;
 	}
 
-	// Token: 0x06000E83 RID: 3715 RVA: 0x0000F672 File Offset: 0x0000D872
+	// Token: 0x06000D3A RID: 3386 RVA: 0x0004FEC0 File Offset: 0x0004E0C0
 	private float DeltaAngle(Vector2 start, Vector2 end)
 	{
 		return Mathf.Atan2(start.x * end.y - start.y * end.x, Vector2.Dot(start, end));
 	}
 
-	// Token: 0x06000E84 RID: 3716 RVA: 0x000A0E9C File Offset: 0x0009F09C
+	// Token: 0x06000D3B RID: 3387 RVA: 0x0004FEEC File Offset: 0x0004E0EC
 	private float TwistAngle()
 	{
 		Vector2 end = this.fingers[this.twoFinger0].position - this.fingers[this.twoFinger1].position;
@@ -1111,7 +1111,7 @@ public class EasyTouch : MonoBehaviour
 		return 57.29578f * this.DeltaAngle(start, end);
 	}
 
-	// Token: 0x06000E85 RID: 3717 RVA: 0x000A0F0C File Offset: 0x0009F10C
+	// Token: 0x06000D3C RID: 3388 RVA: 0x0004FF5C File Offset: 0x0004E15C
 	private bool IsTouchHoverNGui(int touchIndex)
 	{
 		bool flag = false;
@@ -1129,7 +1129,7 @@ public class EasyTouch : MonoBehaviour
 		return flag;
 	}
 
-	// Token: 0x06000E86 RID: 3718 RVA: 0x000A0F7C File Offset: 0x0009F17C
+	// Token: 0x06000D3D RID: 3389 RVA: 0x0004FFCC File Offset: 0x0004E1CC
 	private bool IsTouchHoverVirtualControll(int touchIndex)
 	{
 		bool flag = false;
@@ -1147,7 +1147,7 @@ public class EasyTouch : MonoBehaviour
 		return flag;
 	}
 
-	// Token: 0x06000E87 RID: 3719 RVA: 0x000A1008 File Offset: 0x0009F208
+	// Token: 0x06000D3E RID: 3390 RVA: 0x00050058 File Offset: 0x0004E258
 	private Finger GetFinger(int finderId)
 	{
 		int num = 0;
@@ -1163,7 +1163,7 @@ public class EasyTouch : MonoBehaviour
 		return finger;
 	}
 
-	// Token: 0x06000E88 RID: 3720 RVA: 0x0000F69B File Offset: 0x0000D89B
+	// Token: 0x06000D3F RID: 3391 RVA: 0x0005009B File Offset: 0x0004E29B
 	public static void SetEnabled(bool enable)
 	{
 		EasyTouch.instance.enable = enable;
@@ -1173,157 +1173,157 @@ public class EasyTouch : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000E89 RID: 3721 RVA: 0x0000F6B5 File Offset: 0x0000D8B5
+	// Token: 0x06000D40 RID: 3392 RVA: 0x000500B5 File Offset: 0x0004E2B5
 	public static bool GetEnabled()
 	{
 		return EasyTouch.instance.enable;
 	}
 
-	// Token: 0x06000E8A RID: 3722 RVA: 0x0000F6C1 File Offset: 0x0000D8C1
+	// Token: 0x06000D41 RID: 3393 RVA: 0x000500C1 File Offset: 0x0004E2C1
 	public static int GetTouchCount()
 	{
 		return EasyTouch.instance.input.TouchCount();
 	}
 
-	// Token: 0x06000E8B RID: 3723 RVA: 0x0000F6D2 File Offset: 0x0000D8D2
+	// Token: 0x06000D42 RID: 3394 RVA: 0x000500D2 File Offset: 0x0004E2D2
 	public static void SetCamera(Camera cam)
 	{
 		EasyTouch.instance.easyTouchCamera = cam;
 	}
 
-	// Token: 0x06000E8C RID: 3724 RVA: 0x0000F6DF File Offset: 0x0000D8DF
+	// Token: 0x06000D43 RID: 3395 RVA: 0x000500DF File Offset: 0x0004E2DF
 	public static Camera GetCamera()
 	{
 		return EasyTouch.instance.easyTouchCamera;
 	}
 
-	// Token: 0x06000E8D RID: 3725 RVA: 0x0000F6EB File Offset: 0x0000D8EB
+	// Token: 0x06000D44 RID: 3396 RVA: 0x000500EB File Offset: 0x0004E2EB
 	public static void SetEnable2FingersGesture(bool enable)
 	{
 		EasyTouch.instance.enable2FingersGesture = enable;
 	}
 
-	// Token: 0x06000E8E RID: 3726 RVA: 0x0000F6F8 File Offset: 0x0000D8F8
+	// Token: 0x06000D45 RID: 3397 RVA: 0x000500F8 File Offset: 0x0004E2F8
 	public static bool GetEnable2FingersGesture()
 	{
 		return EasyTouch.instance.enable2FingersGesture;
 	}
 
-	// Token: 0x06000E8F RID: 3727 RVA: 0x0000F704 File Offset: 0x0000D904
+	// Token: 0x06000D46 RID: 3398 RVA: 0x00050104 File Offset: 0x0004E304
 	public static void SetEnableTwist(bool enable)
 	{
 		EasyTouch.instance.enableTwist = enable;
 	}
 
-	// Token: 0x06000E90 RID: 3728 RVA: 0x0000F711 File Offset: 0x0000D911
+	// Token: 0x06000D47 RID: 3399 RVA: 0x00050111 File Offset: 0x0004E311
 	public static bool GetEnableTwist()
 	{
 		return EasyTouch.instance.enableTwist;
 	}
 
-	// Token: 0x06000E91 RID: 3729 RVA: 0x0000F71D File Offset: 0x0000D91D
+	// Token: 0x06000D48 RID: 3400 RVA: 0x0005011D File Offset: 0x0004E31D
 	public static void SetEnablePinch(bool enable)
 	{
 		EasyTouch.instance.enablePinch = enable;
 	}
 
-	// Token: 0x06000E92 RID: 3730 RVA: 0x0000F72A File Offset: 0x0000D92A
+	// Token: 0x06000D49 RID: 3401 RVA: 0x0005012A File Offset: 0x0004E32A
 	public static bool GetEnablePinch()
 	{
 		return EasyTouch.instance.enablePinch;
 	}
 
-	// Token: 0x06000E93 RID: 3731 RVA: 0x0000F736 File Offset: 0x0000D936
+	// Token: 0x06000D4A RID: 3402 RVA: 0x00050136 File Offset: 0x0004E336
 	public static void SetEnableAutoSelect(bool enable)
 	{
 		EasyTouch.instance.autoSelect = enable;
 	}
 
-	// Token: 0x06000E94 RID: 3732 RVA: 0x0000F743 File Offset: 0x0000D943
+	// Token: 0x06000D4B RID: 3403 RVA: 0x00050143 File Offset: 0x0004E343
 	public static bool GetEnableAutoSelect()
 	{
 		return EasyTouch.instance.autoSelect;
 	}
 
-	// Token: 0x06000E95 RID: 3733 RVA: 0x0000F74F File Offset: 0x0000D94F
+	// Token: 0x06000D4C RID: 3404 RVA: 0x0005014F File Offset: 0x0004E34F
 	public static void SetOtherReceiverObject(GameObject receiver)
 	{
 		EasyTouch.instance.receiverObject = receiver;
 	}
 
-	// Token: 0x06000E96 RID: 3734 RVA: 0x0000F75C File Offset: 0x0000D95C
+	// Token: 0x06000D4D RID: 3405 RVA: 0x0005015C File Offset: 0x0004E35C
 	public static GameObject GetOtherReceiverObject()
 	{
 		return EasyTouch.instance.receiverObject;
 	}
 
-	// Token: 0x06000E97 RID: 3735 RVA: 0x0000F768 File Offset: 0x0000D968
+	// Token: 0x06000D4E RID: 3406 RVA: 0x00050168 File Offset: 0x0004E368
 	public static void SetStationnaryTolerance(float tolerance)
 	{
 		EasyTouch.instance.StationnaryTolerance = tolerance;
 	}
 
-	// Token: 0x06000E98 RID: 3736 RVA: 0x0000F775 File Offset: 0x0000D975
+	// Token: 0x06000D4F RID: 3407 RVA: 0x00050175 File Offset: 0x0004E375
 	public static float GetStationnaryTolerance()
 	{
 		return EasyTouch.instance.StationnaryTolerance;
 	}
 
-	// Token: 0x06000E99 RID: 3737 RVA: 0x0000F781 File Offset: 0x0000D981
+	// Token: 0x06000D50 RID: 3408 RVA: 0x00050181 File Offset: 0x0004E381
 	public static void SetlongTapTime(float time)
 	{
 		EasyTouch.instance.longTapTime = time;
 	}
 
-	// Token: 0x06000E9A RID: 3738 RVA: 0x0000F78E File Offset: 0x0000D98E
+	// Token: 0x06000D51 RID: 3409 RVA: 0x0005018E File Offset: 0x0004E38E
 	public static float GetlongTapTime()
 	{
 		return EasyTouch.instance.longTapTime;
 	}
 
-	// Token: 0x06000E9B RID: 3739 RVA: 0x0000F79A File Offset: 0x0000D99A
+	// Token: 0x06000D52 RID: 3410 RVA: 0x0005019A File Offset: 0x0004E39A
 	public static void SetSwipeTolerance(float tolerance)
 	{
 		EasyTouch.instance.swipeTolerance = tolerance;
 	}
 
-	// Token: 0x06000E9C RID: 3740 RVA: 0x0000F7A7 File Offset: 0x0000D9A7
+	// Token: 0x06000D53 RID: 3411 RVA: 0x000501A7 File Offset: 0x0004E3A7
 	public static float GetSwipeTolerance()
 	{
 		return EasyTouch.instance.swipeTolerance;
 	}
 
-	// Token: 0x06000E9D RID: 3741 RVA: 0x0000F7B3 File Offset: 0x0000D9B3
+	// Token: 0x06000D54 RID: 3412 RVA: 0x000501B3 File Offset: 0x0004E3B3
 	public static void SetMinPinchLength(float length)
 	{
 		EasyTouch.instance.minPinchLength = length;
 	}
 
-	// Token: 0x06000E9E RID: 3742 RVA: 0x0000F7C0 File Offset: 0x0000D9C0
+	// Token: 0x06000D55 RID: 3413 RVA: 0x000501C0 File Offset: 0x0004E3C0
 	public static float GetMinPinchLength()
 	{
 		return EasyTouch.instance.minPinchLength;
 	}
 
-	// Token: 0x06000E9F RID: 3743 RVA: 0x0000F7CC File Offset: 0x0000D9CC
+	// Token: 0x06000D56 RID: 3414 RVA: 0x000501CC File Offset: 0x0004E3CC
 	public static void SetMinTwistAngle(float angle)
 	{
 		EasyTouch.instance.minTwistAngle = angle;
 	}
 
-	// Token: 0x06000EA0 RID: 3744 RVA: 0x0000F7D9 File Offset: 0x0000D9D9
+	// Token: 0x06000D57 RID: 3415 RVA: 0x000501D9 File Offset: 0x0004E3D9
 	public static float GetMinTwistAngle()
 	{
 		return EasyTouch.instance.minTwistAngle;
 	}
 
-	// Token: 0x06000EA1 RID: 3745 RVA: 0x0000F7E5 File Offset: 0x0000D9E5
+	// Token: 0x06000D58 RID: 3416 RVA: 0x000501E5 File Offset: 0x0004E3E5
 	public static GameObject GetCurrentPickedObject(int fingerIndex)
 	{
 		return EasyTouch.instance.GetPickeGameObject(EasyTouch.instance.GetFinger(fingerIndex).position);
 	}
 
-	// Token: 0x06000EA2 RID: 3746 RVA: 0x000A104C File Offset: 0x0009F24C
+	// Token: 0x06000D59 RID: 3417 RVA: 0x00050204 File Offset: 0x0004E404
 	public static bool IsRectUnderTouch(Rect rect, bool guiRect = false)
 	{
 		bool result = false;
@@ -1342,7 +1342,7 @@ public class EasyTouch : MonoBehaviour
 		return result;
 	}
 
-	// Token: 0x06000EA3 RID: 3747 RVA: 0x0000F801 File Offset: 0x0000DA01
+	// Token: 0x06000D5A RID: 3418 RVA: 0x0005027F File Offset: 0x0004E47F
 	public static Vector2 GetFingerPosition(int fingerIndex)
 	{
 		if (EasyTouch.instance.fingers[fingerIndex] != null)
@@ -1352,428 +1352,428 @@ public class EasyTouch : MonoBehaviour
 		return Vector2.zero;
 	}
 
-	// Token: 0x06000EA4 RID: 3748 RVA: 0x0000F827 File Offset: 0x0000DA27
+	// Token: 0x06000D5B RID: 3419 RVA: 0x000502A5 File Offset: 0x0004E4A5
 	public static bool GetIsReservedArea()
 	{
 		return EasyTouch.instance.enableReservedArea;
 	}
 
-	// Token: 0x06000EA5 RID: 3749 RVA: 0x0000F833 File Offset: 0x0000DA33
+	// Token: 0x06000D5C RID: 3420 RVA: 0x000502B1 File Offset: 0x0004E4B1
 	public static void SetIsReservedArea(bool enable)
 	{
 		EasyTouch.instance.enableReservedArea = enable;
 	}
 
-	// Token: 0x06000EA6 RID: 3750 RVA: 0x0000F840 File Offset: 0x0000DA40
+	// Token: 0x06000D5D RID: 3421 RVA: 0x000502BE File Offset: 0x0004E4BE
 	public static void AddReservedArea(Rect rec)
 	{
 		EasyTouch.instance.reservedAreas.Add(rec);
 	}
 
-	// Token: 0x06000EA7 RID: 3751 RVA: 0x0000F852 File Offset: 0x0000DA52
+	// Token: 0x06000D5E RID: 3422 RVA: 0x000502D0 File Offset: 0x0004E4D0
 	public static void RemoveReservedArea(Rect rec)
 	{
 		EasyTouch.instance.reservedAreas.Remove(rec);
 	}
 
-	// Token: 0x06000EA8 RID: 3752 RVA: 0x0000F865 File Offset: 0x0000DA65
+	// Token: 0x06000D5F RID: 3423 RVA: 0x000502E3 File Offset: 0x0004E4E3
 	public static void ResetTouch(int fingerIndex)
 	{
 		EasyTouch.instance.GetFinger(fingerIndex).gesture = EasyTouch.GestureType.None;
 	}
 
-	// Token: 0x04000B69 RID: 2921
+	// Token: 0x04000922 RID: 2338
 	public bool enable = true;
 
-	// Token: 0x04000B6A RID: 2922
+	// Token: 0x04000923 RID: 2339
 	public bool enableRemote;
 
-	// Token: 0x04000B6B RID: 2923
+	// Token: 0x04000924 RID: 2340
 	public bool useBroadcastMessage = true;
 
-	// Token: 0x04000B6C RID: 2924
+	// Token: 0x04000925 RID: 2341
 	public GameObject receiverObject;
 
-	// Token: 0x04000B6D RID: 2925
+	// Token: 0x04000926 RID: 2342
 	public bool isExtension;
 
-	// Token: 0x04000B6E RID: 2926
+	// Token: 0x04000927 RID: 2343
 	public bool enable2FingersGesture = true;
 
-	// Token: 0x04000B6F RID: 2927
+	// Token: 0x04000928 RID: 2344
 	public bool enableTwist = true;
 
-	// Token: 0x04000B70 RID: 2928
+	// Token: 0x04000929 RID: 2345
 	public bool enablePinch = true;
 
-	// Token: 0x04000B71 RID: 2929
+	// Token: 0x0400092A RID: 2346
 	public Camera easyTouchCamera;
 
-	// Token: 0x04000B72 RID: 2930
+	// Token: 0x0400092B RID: 2347
 	public bool autoSelect;
 
-	// Token: 0x04000B73 RID: 2931
+	// Token: 0x0400092C RID: 2348
 	public LayerMask pickableLayers;
 
-	// Token: 0x04000B74 RID: 2932
+	// Token: 0x0400092D RID: 2349
 	public float StationnaryTolerance = 25f;
 
-	// Token: 0x04000B75 RID: 2933
+	// Token: 0x0400092E RID: 2350
 	public float longTapTime = 1f;
 
-	// Token: 0x04000B76 RID: 2934
+	// Token: 0x0400092F RID: 2351
 	public float swipeTolerance = 0.85f;
 
-	// Token: 0x04000B77 RID: 2935
+	// Token: 0x04000930 RID: 2352
 	public float minPinchLength;
 
-	// Token: 0x04000B78 RID: 2936
+	// Token: 0x04000931 RID: 2353
 	public float minTwistAngle = 1f;
 
-	// Token: 0x04000B79 RID: 2937
+	// Token: 0x04000932 RID: 2354
 	public bool enabledNGuiMode;
 
-	// Token: 0x04000B7A RID: 2938
+	// Token: 0x04000933 RID: 2355
 	public LayerMask nGUILayers;
 
-	// Token: 0x04000B7B RID: 2939
+	// Token: 0x04000934 RID: 2356
 	public List<Camera> nGUICameras = new List<Camera>();
 
-	// Token: 0x04000B7C RID: 2940
+	// Token: 0x04000935 RID: 2357
 	private bool isStartHoverNGUI;
 
-	// Token: 0x04000B7D RID: 2941
+	// Token: 0x04000936 RID: 2358
 	public List<Rect> reservedAreas = new List<Rect>();
 
-	// Token: 0x04000B7E RID: 2942
+	// Token: 0x04000937 RID: 2359
 	public bool enableReservedArea = true;
 
-	// Token: 0x04000B7F RID: 2943
+	// Token: 0x04000938 RID: 2360
 	public KeyCode twistKey = 308;
 
-	// Token: 0x04000B80 RID: 2944
+	// Token: 0x04000939 RID: 2361
 	public KeyCode swipeKey = 306;
 
-	// Token: 0x04000B81 RID: 2945
+	// Token: 0x0400093A RID: 2362
 	public bool showGeneral = true;
 
-	// Token: 0x04000B82 RID: 2946
+	// Token: 0x0400093B RID: 2363
 	public bool showSelect = true;
 
-	// Token: 0x04000B83 RID: 2947
+	// Token: 0x0400093C RID: 2364
 	public bool showGesture = true;
 
-	// Token: 0x04000B84 RID: 2948
+	// Token: 0x0400093D RID: 2365
 	public bool showTwoFinger = true;
 
-	// Token: 0x04000B85 RID: 2949
+	// Token: 0x0400093E RID: 2366
 	public bool showSecondFinger = true;
 
-	// Token: 0x04000B86 RID: 2950
+	// Token: 0x0400093F RID: 2367
 	public static EasyTouch instance;
 
-	// Token: 0x04000B87 RID: 2951
+	// Token: 0x04000940 RID: 2368
 	private EasyTouchInput input;
 
-	// Token: 0x04000B88 RID: 2952
+	// Token: 0x04000941 RID: 2369
 	private EasyTouch.GestureType complexCurrentGesture = EasyTouch.GestureType.None;
 
-	// Token: 0x04000B89 RID: 2953
+	// Token: 0x04000942 RID: 2370
 	private EasyTouch.GestureType oldGesture = EasyTouch.GestureType.None;
 
-	// Token: 0x04000B8A RID: 2954
+	// Token: 0x04000943 RID: 2371
 	private float startTimeAction;
 
-	// Token: 0x04000B8B RID: 2955
+	// Token: 0x04000944 RID: 2372
 	private Finger[] fingers = new Finger[10];
 
-	// Token: 0x04000B8C RID: 2956
+	// Token: 0x04000945 RID: 2373
 	private GameObject pickObject2Finger;
 
-	// Token: 0x04000B8D RID: 2957
+	// Token: 0x04000946 RID: 2374
 	private GameObject oldPickObject2Finger;
 
-	// Token: 0x04000B8E RID: 2958
+	// Token: 0x04000947 RID: 2375
 	public Texture secondFingerTexture;
 
-	// Token: 0x04000B8F RID: 2959
+	// Token: 0x04000948 RID: 2376
 	private Vector2 startPosition2Finger;
 
-	// Token: 0x04000B90 RID: 2960
+	// Token: 0x04000949 RID: 2377
 	private int twoFinger0;
 
-	// Token: 0x04000B91 RID: 2961
+	// Token: 0x0400094A RID: 2378
 	private int twoFinger1;
 
-	// Token: 0x04000B92 RID: 2962
+	// Token: 0x0400094B RID: 2379
 	private Vector2 oldStartPosition2Finger;
 
-	// Token: 0x04000B93 RID: 2963
+	// Token: 0x0400094C RID: 2380
 	private float oldFingerDistance;
 
-	// Token: 0x04000B94 RID: 2964
+	// Token: 0x0400094D RID: 2381
 	private bool twoFingerDragStart;
 
-	// Token: 0x04000B95 RID: 2965
+	// Token: 0x0400094E RID: 2382
 	private bool twoFingerSwipeStart;
 
-	// Token: 0x04000B96 RID: 2966
+	// Token: 0x0400094F RID: 2383
 	private int oldTouchCount;
 
-	// Token: 0x020001AC RID: 428
-	// (Invoke) Token: 0x06000EAA RID: 3754
+	// Token: 0x0200125E RID: 4702
+	// (Invoke) Token: 0x06007900 RID: 30976
 	public delegate void TouchCancelHandler(Gesture gesture);
 
-	// Token: 0x020001AD RID: 429
-	// (Invoke) Token: 0x06000EAE RID: 3758
+	// Token: 0x0200125F RID: 4703
+	// (Invoke) Token: 0x06007904 RID: 30980
 	public delegate void Cancel2FingersHandler(Gesture gesture);
 
-	// Token: 0x020001AE RID: 430
-	// (Invoke) Token: 0x06000EB2 RID: 3762
+	// Token: 0x02001260 RID: 4704
+	// (Invoke) Token: 0x06007908 RID: 30984
 	public delegate void TouchStartHandler(Gesture gesture);
 
-	// Token: 0x020001AF RID: 431
-	// (Invoke) Token: 0x06000EB6 RID: 3766
+	// Token: 0x02001261 RID: 4705
+	// (Invoke) Token: 0x0600790C RID: 30988
 	public delegate void TouchDownHandler(Gesture gesture);
 
-	// Token: 0x020001B0 RID: 432
-	// (Invoke) Token: 0x06000EBA RID: 3770
+	// Token: 0x02001262 RID: 4706
+	// (Invoke) Token: 0x06007910 RID: 30992
 	public delegate void TouchUpHandler(Gesture gesture);
 
-	// Token: 0x020001B1 RID: 433
-	// (Invoke) Token: 0x06000EBE RID: 3774
+	// Token: 0x02001263 RID: 4707
+	// (Invoke) Token: 0x06007914 RID: 30996
 	public delegate void SimpleTapHandler(Gesture gesture);
 
-	// Token: 0x020001B2 RID: 434
-	// (Invoke) Token: 0x06000EC2 RID: 3778
+	// Token: 0x02001264 RID: 4708
+	// (Invoke) Token: 0x06007918 RID: 31000
 	public delegate void DoubleTapHandler(Gesture gesture);
 
-	// Token: 0x020001B3 RID: 435
-	// (Invoke) Token: 0x06000EC6 RID: 3782
+	// Token: 0x02001265 RID: 4709
+	// (Invoke) Token: 0x0600791C RID: 31004
 	public delegate void LongTapStartHandler(Gesture gesture);
 
-	// Token: 0x020001B4 RID: 436
-	// (Invoke) Token: 0x06000ECA RID: 3786
+	// Token: 0x02001266 RID: 4710
+	// (Invoke) Token: 0x06007920 RID: 31008
 	public delegate void LongTapHandler(Gesture gesture);
 
-	// Token: 0x020001B5 RID: 437
-	// (Invoke) Token: 0x06000ECE RID: 3790
+	// Token: 0x02001267 RID: 4711
+	// (Invoke) Token: 0x06007924 RID: 31012
 	public delegate void LongTapEndHandler(Gesture gesture);
 
-	// Token: 0x020001B6 RID: 438
-	// (Invoke) Token: 0x06000ED2 RID: 3794
+	// Token: 0x02001268 RID: 4712
+	// (Invoke) Token: 0x06007928 RID: 31016
 	public delegate void DragStartHandler(Gesture gesture);
 
-	// Token: 0x020001B7 RID: 439
-	// (Invoke) Token: 0x06000ED6 RID: 3798
+	// Token: 0x02001269 RID: 4713
+	// (Invoke) Token: 0x0600792C RID: 31020
 	public delegate void DragHandler(Gesture gesture);
 
-	// Token: 0x020001B8 RID: 440
-	// (Invoke) Token: 0x06000EDA RID: 3802
+	// Token: 0x0200126A RID: 4714
+	// (Invoke) Token: 0x06007930 RID: 31024
 	public delegate void DragEndHandler(Gesture gesture);
 
-	// Token: 0x020001B9 RID: 441
-	// (Invoke) Token: 0x06000EDE RID: 3806
+	// Token: 0x0200126B RID: 4715
+	// (Invoke) Token: 0x06007934 RID: 31028
 	public delegate void SwipeStartHandler(Gesture gesture);
 
-	// Token: 0x020001BA RID: 442
-	// (Invoke) Token: 0x06000EE2 RID: 3810
+	// Token: 0x0200126C RID: 4716
+	// (Invoke) Token: 0x06007938 RID: 31032
 	public delegate void SwipeHandler(Gesture gesture);
 
-	// Token: 0x020001BB RID: 443
-	// (Invoke) Token: 0x06000EE6 RID: 3814
+	// Token: 0x0200126D RID: 4717
+	// (Invoke) Token: 0x0600793C RID: 31036
 	public delegate void SwipeEndHandler(Gesture gesture);
 
-	// Token: 0x020001BC RID: 444
-	// (Invoke) Token: 0x06000EEA RID: 3818
+	// Token: 0x0200126E RID: 4718
+	// (Invoke) Token: 0x06007940 RID: 31040
 	public delegate void TouchStart2FingersHandler(Gesture gesture);
 
-	// Token: 0x020001BD RID: 445
-	// (Invoke) Token: 0x06000EEE RID: 3822
+	// Token: 0x0200126F RID: 4719
+	// (Invoke) Token: 0x06007944 RID: 31044
 	public delegate void TouchDown2FingersHandler(Gesture gesture);
 
-	// Token: 0x020001BE RID: 446
-	// (Invoke) Token: 0x06000EF2 RID: 3826
+	// Token: 0x02001270 RID: 4720
+	// (Invoke) Token: 0x06007948 RID: 31048
 	public delegate void TouchUp2FingersHandler(Gesture gesture);
 
-	// Token: 0x020001BF RID: 447
-	// (Invoke) Token: 0x06000EF6 RID: 3830
+	// Token: 0x02001271 RID: 4721
+	// (Invoke) Token: 0x0600794C RID: 31052
 	public delegate void SimpleTap2FingersHandler(Gesture gesture);
 
-	// Token: 0x020001C0 RID: 448
-	// (Invoke) Token: 0x06000EFA RID: 3834
+	// Token: 0x02001272 RID: 4722
+	// (Invoke) Token: 0x06007950 RID: 31056
 	public delegate void DoubleTap2FingersHandler(Gesture gesture);
 
-	// Token: 0x020001C1 RID: 449
-	// (Invoke) Token: 0x06000EFE RID: 3838
+	// Token: 0x02001273 RID: 4723
+	// (Invoke) Token: 0x06007954 RID: 31060
 	public delegate void LongTapStart2FingersHandler(Gesture gesture);
 
-	// Token: 0x020001C2 RID: 450
-	// (Invoke) Token: 0x06000F02 RID: 3842
+	// Token: 0x02001274 RID: 4724
+	// (Invoke) Token: 0x06007958 RID: 31064
 	public delegate void LongTap2FingersHandler(Gesture gesture);
 
-	// Token: 0x020001C3 RID: 451
-	// (Invoke) Token: 0x06000F06 RID: 3846
+	// Token: 0x02001275 RID: 4725
+	// (Invoke) Token: 0x0600795C RID: 31068
 	public delegate void LongTapEnd2FingersHandler(Gesture gesture);
 
-	// Token: 0x020001C4 RID: 452
-	// (Invoke) Token: 0x06000F0A RID: 3850
+	// Token: 0x02001276 RID: 4726
+	// (Invoke) Token: 0x06007960 RID: 31072
 	public delegate void TwistHandler(Gesture gesture);
 
-	// Token: 0x020001C5 RID: 453
-	// (Invoke) Token: 0x06000F0E RID: 3854
+	// Token: 0x02001277 RID: 4727
+	// (Invoke) Token: 0x06007964 RID: 31076
 	public delegate void TwistEndHandler(Gesture gesture);
 
-	// Token: 0x020001C6 RID: 454
-	// (Invoke) Token: 0x06000F12 RID: 3858
+	// Token: 0x02001278 RID: 4728
+	// (Invoke) Token: 0x06007968 RID: 31080
 	public delegate void PinchInHandler(Gesture gesture);
 
-	// Token: 0x020001C7 RID: 455
-	// (Invoke) Token: 0x06000F16 RID: 3862
+	// Token: 0x02001279 RID: 4729
+	// (Invoke) Token: 0x0600796C RID: 31084
 	public delegate void PinchOutHandler(Gesture gesture);
 
-	// Token: 0x020001C8 RID: 456
-	// (Invoke) Token: 0x06000F1A RID: 3866
+	// Token: 0x0200127A RID: 4730
+	// (Invoke) Token: 0x06007970 RID: 31088
 	public delegate void PinchEndHandler(Gesture gesture);
 
-	// Token: 0x020001C9 RID: 457
-	// (Invoke) Token: 0x06000F1E RID: 3870
+	// Token: 0x0200127B RID: 4731
+	// (Invoke) Token: 0x06007974 RID: 31092
 	public delegate void DragStart2FingersHandler(Gesture gesture);
 
-	// Token: 0x020001CA RID: 458
-	// (Invoke) Token: 0x06000F22 RID: 3874
+	// Token: 0x0200127C RID: 4732
+	// (Invoke) Token: 0x06007978 RID: 31096
 	public delegate void Drag2FingersHandler(Gesture gesture);
 
-	// Token: 0x020001CB RID: 459
-	// (Invoke) Token: 0x06000F26 RID: 3878
+	// Token: 0x0200127D RID: 4733
+	// (Invoke) Token: 0x0600797C RID: 31100
 	public delegate void DragEnd2FingersHandler(Gesture gesture);
 
-	// Token: 0x020001CC RID: 460
-	// (Invoke) Token: 0x06000F2A RID: 3882
+	// Token: 0x0200127E RID: 4734
+	// (Invoke) Token: 0x06007980 RID: 31104
 	public delegate void SwipeStart2FingersHandler(Gesture gesture);
 
-	// Token: 0x020001CD RID: 461
-	// (Invoke) Token: 0x06000F2E RID: 3886
+	// Token: 0x0200127F RID: 4735
+	// (Invoke) Token: 0x06007984 RID: 31108
 	public delegate void Swipe2FingersHandler(Gesture gesture);
 
-	// Token: 0x020001CE RID: 462
-	// (Invoke) Token: 0x06000F32 RID: 3890
+	// Token: 0x02001280 RID: 4736
+	// (Invoke) Token: 0x06007988 RID: 31112
 	public delegate void SwipeEnd2FingersHandler(Gesture gesture);
 
-	// Token: 0x020001CF RID: 463
+	// Token: 0x02001281 RID: 4737
 	public enum GestureType
 	{
-		// Token: 0x04000B98 RID: 2968
+		// Token: 0x04006597 RID: 26007
 		Tap,
-		// Token: 0x04000B99 RID: 2969
+		// Token: 0x04006598 RID: 26008
 		Drag,
-		// Token: 0x04000B9A RID: 2970
+		// Token: 0x04006599 RID: 26009
 		Swipe,
-		// Token: 0x04000B9B RID: 2971
+		// Token: 0x0400659A RID: 26010
 		None,
-		// Token: 0x04000B9C RID: 2972
+		// Token: 0x0400659B RID: 26011
 		LongTap,
-		// Token: 0x04000B9D RID: 2973
+		// Token: 0x0400659C RID: 26012
 		Pinch,
-		// Token: 0x04000B9E RID: 2974
+		// Token: 0x0400659D RID: 26013
 		Twist,
-		// Token: 0x04000B9F RID: 2975
+		// Token: 0x0400659E RID: 26014
 		Cancel,
-		// Token: 0x04000BA0 RID: 2976
+		// Token: 0x0400659F RID: 26015
 		Acquisition
 	}
 
-	// Token: 0x020001D0 RID: 464
+	// Token: 0x02001282 RID: 4738
 	public enum SwipeType
 	{
-		// Token: 0x04000BA2 RID: 2978
+		// Token: 0x040065A1 RID: 26017
 		None,
-		// Token: 0x04000BA3 RID: 2979
+		// Token: 0x040065A2 RID: 26018
 		Left,
-		// Token: 0x04000BA4 RID: 2980
+		// Token: 0x040065A3 RID: 26019
 		Right,
-		// Token: 0x04000BA5 RID: 2981
+		// Token: 0x040065A4 RID: 26020
 		Up,
-		// Token: 0x04000BA6 RID: 2982
+		// Token: 0x040065A5 RID: 26021
 		Down,
-		// Token: 0x04000BA7 RID: 2983
+		// Token: 0x040065A6 RID: 26022
 		Other
 	}
 
-	// Token: 0x020001D1 RID: 465
+	// Token: 0x02001283 RID: 4739
 	private enum EventName
 	{
-		// Token: 0x04000BA9 RID: 2985
+		// Token: 0x040065A8 RID: 26024
 		None,
-		// Token: 0x04000BAA RID: 2986
+		// Token: 0x040065A9 RID: 26025
 		On_Cancel,
-		// Token: 0x04000BAB RID: 2987
+		// Token: 0x040065AA RID: 26026
 		On_Cancel2Fingers,
-		// Token: 0x04000BAC RID: 2988
+		// Token: 0x040065AB RID: 26027
 		On_TouchStart,
-		// Token: 0x04000BAD RID: 2989
+		// Token: 0x040065AC RID: 26028
 		On_TouchDown,
-		// Token: 0x04000BAE RID: 2990
+		// Token: 0x040065AD RID: 26029
 		On_TouchUp,
-		// Token: 0x04000BAF RID: 2991
+		// Token: 0x040065AE RID: 26030
 		On_SimpleTap,
-		// Token: 0x04000BB0 RID: 2992
+		// Token: 0x040065AF RID: 26031
 		On_DoubleTap,
-		// Token: 0x04000BB1 RID: 2993
+		// Token: 0x040065B0 RID: 26032
 		On_LongTapStart,
-		// Token: 0x04000BB2 RID: 2994
+		// Token: 0x040065B1 RID: 26033
 		On_LongTap,
-		// Token: 0x04000BB3 RID: 2995
+		// Token: 0x040065B2 RID: 26034
 		On_LongTapEnd,
-		// Token: 0x04000BB4 RID: 2996
+		// Token: 0x040065B3 RID: 26035
 		On_DragStart,
-		// Token: 0x04000BB5 RID: 2997
+		// Token: 0x040065B4 RID: 26036
 		On_Drag,
-		// Token: 0x04000BB6 RID: 2998
+		// Token: 0x040065B5 RID: 26037
 		On_DragEnd,
-		// Token: 0x04000BB7 RID: 2999
+		// Token: 0x040065B6 RID: 26038
 		On_SwipeStart,
-		// Token: 0x04000BB8 RID: 3000
+		// Token: 0x040065B7 RID: 26039
 		On_Swipe,
-		// Token: 0x04000BB9 RID: 3001
+		// Token: 0x040065B8 RID: 26040
 		On_SwipeEnd,
-		// Token: 0x04000BBA RID: 3002
+		// Token: 0x040065B9 RID: 26041
 		On_TouchStart2Fingers,
-		// Token: 0x04000BBB RID: 3003
+		// Token: 0x040065BA RID: 26042
 		On_TouchDown2Fingers,
-		// Token: 0x04000BBC RID: 3004
+		// Token: 0x040065BB RID: 26043
 		On_TouchUp2Fingers,
-		// Token: 0x04000BBD RID: 3005
+		// Token: 0x040065BC RID: 26044
 		On_SimpleTap2Fingers,
-		// Token: 0x04000BBE RID: 3006
+		// Token: 0x040065BD RID: 26045
 		On_DoubleTap2Fingers,
-		// Token: 0x04000BBF RID: 3007
+		// Token: 0x040065BE RID: 26046
 		On_LongTapStart2Fingers,
-		// Token: 0x04000BC0 RID: 3008
+		// Token: 0x040065BF RID: 26047
 		On_LongTap2Fingers,
-		// Token: 0x04000BC1 RID: 3009
+		// Token: 0x040065C0 RID: 26048
 		On_LongTapEnd2Fingers,
-		// Token: 0x04000BC2 RID: 3010
+		// Token: 0x040065C1 RID: 26049
 		On_Twist,
-		// Token: 0x04000BC3 RID: 3011
+		// Token: 0x040065C2 RID: 26050
 		On_TwistEnd,
-		// Token: 0x04000BC4 RID: 3012
+		// Token: 0x040065C3 RID: 26051
 		On_PinchIn,
-		// Token: 0x04000BC5 RID: 3013
+		// Token: 0x040065C4 RID: 26052
 		On_PinchOut,
-		// Token: 0x04000BC6 RID: 3014
+		// Token: 0x040065C5 RID: 26053
 		On_PinchEnd,
-		// Token: 0x04000BC7 RID: 3015
+		// Token: 0x040065C6 RID: 26054
 		On_DragStart2Fingers,
-		// Token: 0x04000BC8 RID: 3016
+		// Token: 0x040065C7 RID: 26055
 		On_Drag2Fingers,
-		// Token: 0x04000BC9 RID: 3017
+		// Token: 0x040065C8 RID: 26056
 		On_DragEnd2Fingers,
-		// Token: 0x04000BCA RID: 3018
+		// Token: 0x040065C9 RID: 26057
 		On_SwipeStart2Fingers,
-		// Token: 0x04000BCB RID: 3019
+		// Token: 0x040065CA RID: 26058
 		On_Swipe2Fingers,
-		// Token: 0x04000BCC RID: 3020
+		// Token: 0x040065CB RID: 26059
 		On_SwipeEnd2Fingers
 	}
 }

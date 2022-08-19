@@ -2,16 +2,16 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-// Token: 0x0200017E RID: 382
+// Token: 0x02000100 RID: 256
 public class SaveSlotIdentifier : MonoBehaviour
 {
-	// Token: 0x06000CDA RID: 3290 RVA: 0x0000EA01 File Offset: 0x0000CC01
+	// Token: 0x06000BCF RID: 3023 RVA: 0x00047A4A File Offset: 0x00045C4A
 	private void Start()
 	{
 		this.loadSlotData();
 	}
 
-	// Token: 0x06000CDB RID: 3291 RVA: 0x0000EA09 File Offset: 0x0000CC09
+	// Token: 0x06000BD0 RID: 3024 RVA: 0x00047A52 File Offset: 0x00045C52
 	public void sendSlotData()
 	{
 		this.saveGameUI.saveName_text = this.saveName_text;
@@ -19,7 +19,7 @@ public class SaveSlotIdentifier : MonoBehaviour
 		this.saveGameUI.slotId = this.slotId;
 	}
 
-	// Token: 0x06000CDC RID: 3292 RVA: 0x00099314 File Offset: 0x00097514
+	// Token: 0x06000BD1 RID: 3025 RVA: 0x00047A88 File Offset: 0x00045C88
 	private void loadSlotData()
 	{
 		if (PlayerPrefs.GetInt("slot_" + this.slotId) == this.slotId)
@@ -47,28 +47,28 @@ public class SaveSlotIdentifier : MonoBehaviour
 		}
 	}
 
-	// Token: 0x04000A04 RID: 2564
+	// Token: 0x04000815 RID: 2069
 	[Header("Slot specific Variables")]
 	[Tooltip("if true, this Slot will become the quick save slot!")]
 	public bool quickSaveSlot;
 
-	// Token: 0x04000A05 RID: 2565
+	// Token: 0x04000816 RID: 2070
 	[Tooltip("Unique Slot ID used to identify while loading")]
 	public int slotId;
 
-	// Token: 0x04000A06 RID: 2566
+	// Token: 0x04000817 RID: 2071
 	[Tooltip("This Slot's name field")]
 	public Text saveName_text;
 
-	// Token: 0x04000A07 RID: 2567
+	// Token: 0x04000818 RID: 2072
 	[Tooltip("This Slot's percentage field")]
 	public Text savePercentage_text;
 
-	// Token: 0x04000A08 RID: 2568
+	// Token: 0x04000819 RID: 2073
 	[Tooltip("Parent UI Class to send slot specific data")]
 	public SaveGameUI saveGameUI;
 
-	// Token: 0x04000A09 RID: 2569
+	// Token: 0x0400081A RID: 2074
 	[Tooltip("Unique save trigger id ")]
 	public int saveTriggerId;
 }

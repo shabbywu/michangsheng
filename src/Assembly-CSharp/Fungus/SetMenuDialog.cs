@@ -3,12 +3,12 @@ using UnityEngine;
 
 namespace Fungus
 {
-	// Token: 0x0200128C RID: 4748
+	// Token: 0x02000E3B RID: 3643
 	[CommandInfo("Narrative", "Set Menu Dialog", "Sets a custom menu dialog to use when displaying multiple choice menus", 0)]
 	[AddComponentMenu("")]
 	public class SetMenuDialog : Command
 	{
-		// Token: 0x0600731D RID: 29469 RVA: 0x0004E7AD File Offset: 0x0004C9AD
+		// Token: 0x0600668F RID: 26255 RVA: 0x00286AD2 File Offset: 0x00284CD2
 		public override void OnEnter()
 		{
 			if (this.menuDialog != null)
@@ -18,7 +18,7 @@ namespace Fungus
 			this.Continue();
 		}
 
-		// Token: 0x0600731E RID: 29470 RVA: 0x0004E7CE File Offset: 0x0004C9CE
+		// Token: 0x06006690 RID: 26256 RVA: 0x00286AF3 File Offset: 0x00284CF3
 		public override string GetSummary()
 		{
 			if (this.menuDialog == null)
@@ -28,13 +28,13 @@ namespace Fungus
 			return this.menuDialog.name;
 		}
 
-		// Token: 0x0600731F RID: 29471 RVA: 0x000113CF File Offset: 0x0000F5CF
+		// Token: 0x06006691 RID: 26257 RVA: 0x0005E228 File Offset: 0x0005C428
 		public override Color GetButtonColor()
 		{
 			return new Color32(184, 210, 235, byte.MaxValue);
 		}
 
-		// Token: 0x0400651F RID: 25887
+		// Token: 0x040057DB RID: 22491
 		[Tooltip("The Menu Dialog to use for displaying menu buttons")]
 		[SerializeField]
 		protected MenuDialog menuDialog;

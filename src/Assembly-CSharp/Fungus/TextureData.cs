@@ -3,26 +3,26 @@ using UnityEngine;
 
 namespace Fungus
 {
-	// Token: 0x0200138E RID: 5006
+	// Token: 0x02000EED RID: 3821
 	[Serializable]
 	public struct TextureData
 	{
-		// Token: 0x06007928 RID: 31016 RVA: 0x000529F0 File Offset: 0x00050BF0
+		// Token: 0x06006B89 RID: 27529 RVA: 0x00296AAE File Offset: 0x00294CAE
 		public TextureData(Texture v)
 		{
 			this.textureVal = v;
 			this.textureRef = null;
 		}
 
-		// Token: 0x06007929 RID: 31017 RVA: 0x00052A00 File Offset: 0x00050C00
+		// Token: 0x06006B8A RID: 27530 RVA: 0x00296ABE File Offset: 0x00294CBE
 		public static implicit operator Texture(TextureData textureData)
 		{
 			return textureData.Value;
 		}
 
-		// Token: 0x17000B62 RID: 2914
-		// (get) Token: 0x0600792A RID: 31018 RVA: 0x00052A09 File Offset: 0x00050C09
-		// (set) Token: 0x0600792B RID: 31019 RVA: 0x00052A2B File Offset: 0x00050C2B
+		// Token: 0x170008C5 RID: 2245
+		// (get) Token: 0x06006B8B RID: 27531 RVA: 0x00296AC7 File Offset: 0x00294CC7
+		// (set) Token: 0x06006B8C RID: 27532 RVA: 0x00296AE9 File Offset: 0x00294CE9
 		public Texture Value
 		{
 			get
@@ -44,7 +44,7 @@ namespace Fungus
 			}
 		}
 
-		// Token: 0x0600792C RID: 31020 RVA: 0x00052A4F File Offset: 0x00050C4F
+		// Token: 0x06006B8D RID: 27533 RVA: 0x00296B0D File Offset: 0x00294D0D
 		public string GetDescription()
 		{
 			if (this.textureRef == null)
@@ -54,7 +54,7 @@ namespace Fungus
 			return this.textureRef.Key;
 		}
 
-		// Token: 0x04006901 RID: 26881
+		// Token: 0x04005A98 RID: 23192
 		[SerializeField]
 		[VariableProperty("<Value>", new Type[]
 		{
@@ -62,7 +62,7 @@ namespace Fungus
 		})]
 		public TextureVariable textureRef;
 
-		// Token: 0x04006902 RID: 26882
+		// Token: 0x04005A99 RID: 23193
 		[SerializeField]
 		public Texture textureVal;
 	}

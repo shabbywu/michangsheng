@@ -2,20 +2,20 @@
 
 namespace ICSharpCode.SharpZipLib.Zip
 {
-	// Token: 0x020007D4 RID: 2004
+	// Token: 0x0200053B RID: 1339
 	public enum TestOperation
 	{
-		// Token: 0x04002F0B RID: 12043
+		// Token: 0x04002704 RID: 9988
 		Initialising,
-		// Token: 0x04002F0C RID: 12044
+		// Token: 0x04002705 RID: 9989
 		EntryHeader,
-		// Token: 0x04002F0D RID: 12045
+		// Token: 0x04002706 RID: 9990
 		EntryData,
-		// Token: 0x04002F0E RID: 12046
+		// Token: 0x04002707 RID: 9991
 		EntryComplete,
-		// Token: 0x04002F0F RID: 12047
+		// Token: 0x04002708 RID: 9992
 		MiscellaneousTests,
-		// Token: 0x04002F10 RID: 12048
+		// Token: 0x04002709 RID: 9993
 		Complete
 	}
 }

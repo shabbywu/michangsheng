@@ -3,21 +3,21 @@ using UnityEngine;
 
 namespace Fungus
 {
-	// Token: 0x0200130D RID: 4877
+	// Token: 0x02000E94 RID: 3732
 	public class EnumFlagAttribute : PropertyAttribute
 	{
-		// Token: 0x06007700 RID: 30464 RVA: 0x000247E0 File Offset: 0x000229E0
+		// Token: 0x060069D5 RID: 27093 RVA: 0x0013FF05 File Offset: 0x0013E105
 		public EnumFlagAttribute()
 		{
 		}
 
-		// Token: 0x06007701 RID: 30465 RVA: 0x00050FB1 File Offset: 0x0004F1B1
+		// Token: 0x060069D6 RID: 27094 RVA: 0x00292190 File Offset: 0x00290390
 		public EnumFlagAttribute(string name)
 		{
 			this.enumName = name;
 		}
 
-		// Token: 0x040067CF RID: 26575
+		// Token: 0x040059C0 RID: 22976
 		public string enumName;
 	}
 }

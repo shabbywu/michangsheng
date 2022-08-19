@@ -11,25 +11,25 @@ using MoonSharp.Interpreter.Interop.BasicDescriptors;
 
 namespace MoonSharp.Interpreter.Interop
 {
-	// Token: 0x0200111A RID: 4378
+	// Token: 0x02000D20 RID: 3360
 	public class MethodMemberDescriptor : FunctionMemberDescriptorBase, IOptimizableDescriptor, IWireableDescriptor
 	{
-		// Token: 0x17000991 RID: 2449
-		// (get) Token: 0x060069AC RID: 27052 RVA: 0x000482C2 File Offset: 0x000464C2
-		// (set) Token: 0x060069AD RID: 27053 RVA: 0x000482CA File Offset: 0x000464CA
+		// Token: 0x17000734 RID: 1844
+		// (get) Token: 0x06005E1D RID: 24093 RVA: 0x00265291 File Offset: 0x00263491
+		// (set) Token: 0x06005E1E RID: 24094 RVA: 0x00265299 File Offset: 0x00263499
 		public MethodBase MethodInfo { get; private set; }
 
-		// Token: 0x17000992 RID: 2450
-		// (get) Token: 0x060069AE RID: 27054 RVA: 0x000482D3 File Offset: 0x000464D3
-		// (set) Token: 0x060069AF RID: 27055 RVA: 0x000482DB File Offset: 0x000464DB
+		// Token: 0x17000735 RID: 1845
+		// (get) Token: 0x06005E1F RID: 24095 RVA: 0x002652A2 File Offset: 0x002634A2
+		// (set) Token: 0x06005E20 RID: 24096 RVA: 0x002652AA File Offset: 0x002634AA
 		public InteropAccessMode AccessMode { get; private set; }
 
-		// Token: 0x17000993 RID: 2451
-		// (get) Token: 0x060069B0 RID: 27056 RVA: 0x000482E4 File Offset: 0x000464E4
-		// (set) Token: 0x060069B1 RID: 27057 RVA: 0x000482EC File Offset: 0x000464EC
+		// Token: 0x17000736 RID: 1846
+		// (get) Token: 0x06005E21 RID: 24097 RVA: 0x002652B3 File Offset: 0x002634B3
+		// (set) Token: 0x06005E22 RID: 24098 RVA: 0x002652BB File Offset: 0x002634BB
 		public bool IsConstructor { get; private set; }
 
-		// Token: 0x060069B2 RID: 27058 RVA: 0x0028DE10 File Offset: 0x0028C010
+		// Token: 0x06005E23 RID: 24099 RVA: 0x002652C4 File Offset: 0x002634C4
 		public MethodMemberDescriptor(MethodBase methodBase, InteropAccessMode accessMode = InteropAccessMode.Default)
 		{
 			MethodMemberDescriptor.CheckMethodIsCompatible(methodBase, true);
@@ -86,7 +86,7 @@ namespace MoonSharp.Interpreter.Interop
 			}
 		}
 
-		// Token: 0x060069B3 RID: 27059 RVA: 0x0028DFC8 File Offset: 0x0028C1C8
+		// Token: 0x06005E24 RID: 24100 RVA: 0x0026547C File Offset: 0x0026367C
 		public static MethodMemberDescriptor TryCreateIfVisible(MethodBase methodBase, InteropAccessMode accessMode, bool forceVisibility = false)
 		{
 			if (!MethodMemberDescriptor.CheckMethodIsCompatible(methodBase, false))
@@ -100,7 +100,7 @@ namespace MoonSharp.Interpreter.Interop
 			return null;
 		}
 
-		// Token: 0x060069B4 RID: 27060 RVA: 0x0028E010 File Offset: 0x0028C210
+		// Token: 0x06005E25 RID: 24101 RVA: 0x002654C4 File Offset: 0x002636C4
 		public static bool CheckMethodIsCompatible(MethodBase methodBase, bool throwException)
 		{
 			if (methodBase.ContainsGenericParameters)
@@ -145,7 +145,7 @@ namespace MoonSharp.Interpreter.Interop
 			}
 		}
 
-		// Token: 0x060069B5 RID: 27061 RVA: 0x0028E0C4 File Offset: 0x0028C2C4
+		// Token: 0x06005E26 RID: 24102 RVA: 0x00265578 File Offset: 0x00263778
 		public override DynValue Execute(Script script, object obj, ScriptExecutionContext context, CallbackArguments args)
 		{
 			this.CheckAccess(MemberDescriptorAccess.CanExecute, obj);
@@ -181,7 +181,7 @@ namespace MoonSharp.Interpreter.Interop
 			return FunctionMemberDescriptorBase.BuildReturnValue(script, outParams, array, retv);
 		}
 
-		// Token: 0x060069B6 RID: 27062 RVA: 0x0028E190 File Offset: 0x0028C390
+		// Token: 0x06005E27 RID: 24103 RVA: 0x00265644 File Offset: 0x00263844
 		void IOptimizableDescriptor.Optimize()
 		{
 			ParameterDescriptor[] parameters = base.Parameters;
@@ -239,7 +239,7 @@ namespace MoonSharp.Interpreter.Interop
 			}
 		}
 
-		// Token: 0x060069B7 RID: 27063 RVA: 0x0028E320 File Offset: 0x0028C520
+		// Token: 0x06005E28 RID: 24104 RVA: 0x002657D4 File Offset: 0x002639D4
 		public void PrepareForWiring(Table t)
 		{
 			t.Set("class", DynValue.NewString(base.GetType().FullName));
@@ -273,16 +273,16 @@ namespace MoonSharp.Interpreter.Interop
 			}
 		}
 
-		// Token: 0x0400604E RID: 24654
+		// Token: 0x0400542C RID: 21548
 		private Func<object, object[], object> m_OptimizedFunc;
 
-		// Token: 0x0400604F RID: 24655
+		// Token: 0x0400542D RID: 21549
 		private Action<object, object[]> m_OptimizedAction;
 
-		// Token: 0x04006050 RID: 24656
+		// Token: 0x0400542E RID: 21550
 		private bool m_IsAction;
 
-		// Token: 0x04006051 RID: 24657
+		// Token: 0x0400542F RID: 21551
 		private bool m_IsArrayCtor;
 	}
 }

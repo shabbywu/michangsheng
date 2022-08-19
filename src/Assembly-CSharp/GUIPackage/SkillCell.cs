@@ -3,10 +3,10 @@ using UnityEngine;
 
 namespace GUIPackage
 {
-	// Token: 0x02000D97 RID: 3479
+	// Token: 0x02000A6B RID: 2667
 	public class SkillCell : MonoBehaviour
 	{
-		// Token: 0x060053FA RID: 21498 RVA: 0x0003C035 File Offset: 0x0003A235
+		// Token: 0x06004AF0 RID: 19184 RVA: 0x001FE456 File Offset: 0x001FC656
 		private void Update()
 		{
 			if (this.refreshCD < 0f)
@@ -18,7 +18,7 @@ namespace GUIPackage
 			this.refreshCD -= Time.deltaTime;
 		}
 
-		// Token: 0x060053FB RID: 21499 RVA: 0x0023048C File Offset: 0x0022E68C
+		// Token: 0x06004AF1 RID: 19185 RVA: 0x001FE48C File Offset: 0x001FC68C
 		public void UpdateRefresh()
 		{
 			if (this.skillID == -1)
@@ -50,7 +50,7 @@ namespace GUIPackage
 			this.KeyName.SetActive(false);
 		}
 
-		// Token: 0x060053FC RID: 21500 RVA: 0x0003C068 File Offset: 0x0003A268
+		// Token: 0x06004AF2 RID: 19186 RVA: 0x001FE655 File Offset: 0x001FC855
 		private void OnPress()
 		{
 			if (this.skillID == -1)
@@ -60,7 +60,7 @@ namespace GUIPackage
 			this.PCOnPress();
 		}
 
-		// Token: 0x060053FD RID: 21501 RVA: 0x0003C07A File Offset: 0x0003A27A
+		// Token: 0x06004AF3 RID: 19187 RVA: 0x001FE667 File Offset: 0x001FC867
 		public void MobilePress()
 		{
 			this.PCOnHover(true);
@@ -73,7 +73,7 @@ namespace GUIPackage
 			toolTipsBackGround.use.gameObject.SetActive(false);
 		}
 
-		// Token: 0x060053FE RID: 21502 RVA: 0x00230658 File Offset: 0x0022E858
+		// Token: 0x06004AF4 RID: 19188 RVA: 0x001FE6A4 File Offset: 0x001FC8A4
 		public void PCOnPress()
 		{
 			Singleton.skillUI.showTooltip = false;
@@ -84,13 +84,13 @@ namespace GUIPackage
 			}
 		}
 
-		// Token: 0x060053FF RID: 21503 RVA: 0x0003C0B4 File Offset: 0x0003A2B4
+		// Token: 0x06004AF5 RID: 19189 RVA: 0x001FE727 File Offset: 0x001FC927
 		private void OnHover(bool isOver)
 		{
 			this.PCOnHover(isOver);
 		}
 
-		// Token: 0x06005400 RID: 21504 RVA: 0x002306DC File Offset: 0x0022E8DC
+		// Token: 0x06004AF6 RID: 19190 RVA: 0x001FE730 File Offset: 0x001FC930
 		public void PCOnHover(bool isOver)
 		{
 			if (this.skillID == -1)
@@ -106,31 +106,31 @@ namespace GUIPackage
 			Singleton.skillUI.showTooltip = false;
 		}
 
-		// Token: 0x040053B6 RID: 21430
+		// Token: 0x04004A19 RID: 18969
 		public GameObject Icon;
 
-		// Token: 0x040053B7 RID: 21431
+		// Token: 0x04004A1A RID: 18970
 		public GameObject Level;
 
-		// Token: 0x040053B8 RID: 21432
+		// Token: 0x04004A1B RID: 18971
 		public GameObject Name;
 
-		// Token: 0x040053B9 RID: 21433
+		// Token: 0x04004A1C RID: 18972
 		public GameObject PingZhi;
 
-		// Token: 0x040053BA RID: 21434
+		// Token: 0x04004A1D RID: 18973
 		public int skillID;
 
-		// Token: 0x040053BB RID: 21435
+		// Token: 0x04004A1E RID: 18974
 		public GameObject KeyName;
 
-		// Token: 0x040053BC RID: 21436
+		// Token: 0x04004A1F RID: 18975
 		public UILabel NameLabel;
 
-		// Token: 0x040053BD RID: 21437
+		// Token: 0x04004A20 RID: 18976
 		public bool showName;
 
-		// Token: 0x040053BE RID: 21438
+		// Token: 0x04004A21 RID: 18977
 		private float refreshCD;
 	}
 }

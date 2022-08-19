@@ -3,26 +3,26 @@ using System.Runtime.Serialization;
 
 namespace ICSharpCode.SharpZipLib.Zip
 {
-	// Token: 0x020007CA RID: 1994
+	// Token: 0x02000532 RID: 1330
 	[Serializable]
 	public class ZipException : SharpZipBaseException
 	{
-		// Token: 0x060032D1 RID: 13009 RVA: 0x0002505B File Offset: 0x0002325B
+		// Token: 0x06002ABA RID: 10938 RVA: 0x001421C7 File Offset: 0x001403C7
 		public ZipException()
 		{
 		}
 
-		// Token: 0x060032D2 RID: 13010 RVA: 0x0002488E File Offset: 0x00022A8E
+		// Token: 0x06002ABB RID: 10939 RVA: 0x001402D3 File Offset: 0x0013E4D3
 		public ZipException(string message) : base(message)
 		{
 		}
 
-		// Token: 0x060032D3 RID: 13011 RVA: 0x00024897 File Offset: 0x00022A97
+		// Token: 0x06002ABC RID: 10940 RVA: 0x001402DC File Offset: 0x0013E4DC
 		public ZipException(string message, Exception innerException) : base(message, innerException)
 		{
 		}
 
-		// Token: 0x060032D4 RID: 13012 RVA: 0x000248A1 File Offset: 0x00022AA1
+		// Token: 0x06002ABD RID: 10941 RVA: 0x001402E6 File Offset: 0x0013E4E6
 		protected ZipException(SerializationInfo info, StreamingContext context) : base(info, context)
 		{
 		}

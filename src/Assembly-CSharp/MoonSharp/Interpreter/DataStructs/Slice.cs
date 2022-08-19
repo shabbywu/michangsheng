@@ -4,10 +4,10 @@ using System.Collections.Generic;
 
 namespace MoonSharp.Interpreter.DataStructs
 {
-	// Token: 0x02001188 RID: 4488
+	// Token: 0x02000D72 RID: 3442
 	internal class Slice<T> : IEnumerable<!0>, IEnumerable, IList<!0>, ICollection<!0>
 	{
-		// Token: 0x06006D63 RID: 28003 RVA: 0x0004A89F File Offset: 0x00048A9F
+		// Token: 0x0600616F RID: 24943 RVA: 0x002736B9 File Offset: 0x002718B9
 		public Slice(IList<T> list, int from, int length, bool reversed)
 		{
 			this.m_SourceList = list;
@@ -16,7 +16,7 @@ namespace MoonSharp.Interpreter.DataStructs
 			this.m_Reversed = reversed;
 		}
 
-		// Token: 0x17000A18 RID: 2584
+		// Token: 0x170007BB RID: 1979
 		public T this[int index]
 		{
 			get
@@ -29,8 +29,8 @@ namespace MoonSharp.Interpreter.DataStructs
 			}
 		}
 
-		// Token: 0x17000A19 RID: 2585
-		// (get) Token: 0x06006D66 RID: 28006 RVA: 0x0004A8ED File Offset: 0x00048AED
+		// Token: 0x170007BC RID: 1980
+		// (get) Token: 0x06006172 RID: 24946 RVA: 0x00273707 File Offset: 0x00271907
 		public int From
 		{
 			get
@@ -39,8 +39,8 @@ namespace MoonSharp.Interpreter.DataStructs
 			}
 		}
 
-		// Token: 0x17000A1A RID: 2586
-		// (get) Token: 0x06006D67 RID: 28007 RVA: 0x0004A8F5 File Offset: 0x00048AF5
+		// Token: 0x170007BD RID: 1981
+		// (get) Token: 0x06006173 RID: 24947 RVA: 0x0027370F File Offset: 0x0027190F
 		public int Count
 		{
 			get
@@ -49,8 +49,8 @@ namespace MoonSharp.Interpreter.DataStructs
 			}
 		}
 
-		// Token: 0x17000A1B RID: 2587
-		// (get) Token: 0x06006D68 RID: 28008 RVA: 0x0004A8FD File Offset: 0x00048AFD
+		// Token: 0x170007BE RID: 1982
+		// (get) Token: 0x06006174 RID: 24948 RVA: 0x00273717 File Offset: 0x00271917
 		public bool Reversed
 		{
 			get
@@ -59,7 +59,7 @@ namespace MoonSharp.Interpreter.DataStructs
 			}
 		}
 
-		// Token: 0x06006D69 RID: 28009 RVA: 0x0004A905 File Offset: 0x00048B05
+		// Token: 0x06006175 RID: 24949 RVA: 0x0027371F File Offset: 0x0027191F
 		private int CalcRealIndex(int index)
 		{
 			if (index < 0 || index >= this.m_Length)
@@ -73,7 +73,7 @@ namespace MoonSharp.Interpreter.DataStructs
 			return this.m_From + index;
 		}
 
-		// Token: 0x06006D6A RID: 28010 RVA: 0x0004A941 File Offset: 0x00048B41
+		// Token: 0x06006176 RID: 24950 RVA: 0x0027375B File Offset: 0x0027195B
 		public IEnumerator<T> GetEnumerator()
 		{
 			int num;
@@ -85,7 +85,7 @@ namespace MoonSharp.Interpreter.DataStructs
 			yield break;
 		}
 
-		// Token: 0x06006D6B RID: 28011 RVA: 0x0004A950 File Offset: 0x00048B50
+		// Token: 0x06006177 RID: 24951 RVA: 0x0027376A File Offset: 0x0027196A
 		IEnumerator IEnumerable.GetEnumerator()
 		{
 			int num;
@@ -97,7 +97,7 @@ namespace MoonSharp.Interpreter.DataStructs
 			yield break;
 		}
 
-		// Token: 0x06006D6C RID: 28012 RVA: 0x0029A044 File Offset: 0x00298244
+		// Token: 0x06006178 RID: 24952 RVA: 0x0027377C File Offset: 0x0027197C
 		public T[] ToArray()
 		{
 			T[] array = new T[this.m_Length];
@@ -108,7 +108,7 @@ namespace MoonSharp.Interpreter.DataStructs
 			return array;
 		}
 
-		// Token: 0x06006D6D RID: 28013 RVA: 0x0029A088 File Offset: 0x00298288
+		// Token: 0x06006179 RID: 24953 RVA: 0x002737C0 File Offset: 0x002719C0
 		public List<T> ToList()
 		{
 			List<T> list = new List<T>(this.m_Length);
@@ -119,7 +119,7 @@ namespace MoonSharp.Interpreter.DataStructs
 			return list;
 		}
 
-		// Token: 0x06006D6E RID: 28014 RVA: 0x0029A0CC File Offset: 0x002982CC
+		// Token: 0x0600617A RID: 24954 RVA: 0x00273804 File Offset: 0x00271A04
 		public int IndexOf(T item)
 		{
 			for (int i = 0; i < this.Count; i++)
@@ -133,37 +133,37 @@ namespace MoonSharp.Interpreter.DataStructs
 			return -1;
 		}
 
-		// Token: 0x06006D6F RID: 28015 RVA: 0x0004A95F File Offset: 0x00048B5F
+		// Token: 0x0600617B RID: 24955 RVA: 0x00273842 File Offset: 0x00271A42
 		public void Insert(int index, T item)
 		{
 			throw new InvalidOperationException("Slices are readonly");
 		}
 
-		// Token: 0x06006D70 RID: 28016 RVA: 0x0004A95F File Offset: 0x00048B5F
+		// Token: 0x0600617C RID: 24956 RVA: 0x00273842 File Offset: 0x00271A42
 		public void RemoveAt(int index)
 		{
 			throw new InvalidOperationException("Slices are readonly");
 		}
 
-		// Token: 0x06006D71 RID: 28017 RVA: 0x0004A95F File Offset: 0x00048B5F
+		// Token: 0x0600617D RID: 24957 RVA: 0x00273842 File Offset: 0x00271A42
 		public void Add(T item)
 		{
 			throw new InvalidOperationException("Slices are readonly");
 		}
 
-		// Token: 0x06006D72 RID: 28018 RVA: 0x0004A95F File Offset: 0x00048B5F
+		// Token: 0x0600617E RID: 24958 RVA: 0x00273842 File Offset: 0x00271A42
 		public void Clear()
 		{
 			throw new InvalidOperationException("Slices are readonly");
 		}
 
-		// Token: 0x06006D73 RID: 28019 RVA: 0x0004A96B File Offset: 0x00048B6B
+		// Token: 0x0600617F RID: 24959 RVA: 0x0027384E File Offset: 0x00271A4E
 		public bool Contains(T item)
 		{
 			return this.IndexOf(item) >= 0;
 		}
 
-		// Token: 0x06006D74 RID: 28020 RVA: 0x0029A10C File Offset: 0x0029830C
+		// Token: 0x06006180 RID: 24960 RVA: 0x00273860 File Offset: 0x00271A60
 		public void CopyTo(T[] array, int arrayIndex)
 		{
 			for (int i = 0; i < this.Count; i++)
@@ -172,8 +172,8 @@ namespace MoonSharp.Interpreter.DataStructs
 			}
 		}
 
-		// Token: 0x17000A1C RID: 2588
-		// (get) Token: 0x06006D75 RID: 28021 RVA: 0x0000A093 File Offset: 0x00008293
+		// Token: 0x170007BF RID: 1983
+		// (get) Token: 0x06006181 RID: 24961 RVA: 0x00024C5F File Offset: 0x00022E5F
 		public bool IsReadOnly
 		{
 			get
@@ -182,22 +182,22 @@ namespace MoonSharp.Interpreter.DataStructs
 			}
 		}
 
-		// Token: 0x06006D76 RID: 28022 RVA: 0x0004A95F File Offset: 0x00048B5F
+		// Token: 0x06006182 RID: 24962 RVA: 0x00273842 File Offset: 0x00271A42
 		public bool Remove(T item)
 		{
 			throw new InvalidOperationException("Slices are readonly");
 		}
 
-		// Token: 0x04006224 RID: 25124
+		// Token: 0x04005589 RID: 21897
 		private IList<T> m_SourceList;
 
-		// Token: 0x04006225 RID: 25125
+		// Token: 0x0400558A RID: 21898
 		private int m_From;
 
-		// Token: 0x04006226 RID: 25126
+		// Token: 0x0400558B RID: 21899
 		private int m_Length;
 
-		// Token: 0x04006227 RID: 25127
+		// Token: 0x0400558C RID: 21900
 		private bool m_Reversed;
 	}
 }

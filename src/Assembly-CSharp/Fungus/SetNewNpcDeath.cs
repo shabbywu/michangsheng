@@ -3,12 +3,12 @@ using UnityEngine;
 
 namespace Fungus
 {
-	// Token: 0x02001416 RID: 5142
+	// Token: 0x02000F5F RID: 3935
 	[CommandInfo("YSNew/Set", "SetNewNpcDeath", "设置npc死亡", 0)]
 	[AddComponentMenu("")]
 	public class SetNewNpcDeath : Command
 	{
-		// Token: 0x06007CAC RID: 31916 RVA: 0x002C550C File Offset: 0x002C370C
+		// Token: 0x06006EBC RID: 28348 RVA: 0x002A5684 File Offset: 0x002A3884
 		public override void OnEnter()
 		{
 			int key = this.npcId.Value;
@@ -27,18 +27,18 @@ namespace Fungus
 			this.Continue();
 		}
 
-		// Token: 0x06007CAD RID: 31917 RVA: 0x000113CF File Offset: 0x0000F5CF
+		// Token: 0x06006EBD RID: 28349 RVA: 0x0005E228 File Offset: 0x0005C428
 		public override Color GetButtonColor()
 		{
 			return new Color32(184, 210, 235, byte.MaxValue);
 		}
 
-		// Token: 0x06007CAE RID: 31918 RVA: 0x000042DD File Offset: 0x000024DD
+		// Token: 0x06006EBE RID: 28350 RVA: 0x00004095 File Offset: 0x00002295
 		public override void OnReset()
 		{
 		}
 
-		// Token: 0x04006A9A RID: 27290
+		// Token: 0x04005BC5 RID: 23493
 		[Tooltip("指定npcId")]
 		[VariableProperty(new Type[]
 		{

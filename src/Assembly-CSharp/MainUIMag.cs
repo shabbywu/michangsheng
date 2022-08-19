@@ -2,6 +2,7 @@
 using System.IO;
 using GUIPackage;
 using KBEngine;
+using script.Steam;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.SceneManagement;
@@ -9,12 +10,16 @@ using UnityEngine.UI;
 using YSGame;
 using YSGame.TuJian;
 
-// Token: 0x020004A6 RID: 1190
+// Token: 0x02000336 RID: 822
 public class MainUIMag : MonoBehaviour
 {
-	// Token: 0x06001F93 RID: 8083 RVA: 0x0010F524 File Offset: 0x0010D724
+	// Token: 0x06001C45 RID: 7237 RVA: 0x000CA68C File Offset: 0x000C888C
 	private void Awake()
 	{
+		if (SetFaceUI.Inst != null)
+		{
+			Object.Destroy(SetFaceUI.Inst.gameObject);
+		}
 		if (PanelMamager.inst.UISceneGameObject != null)
 		{
 			Object.Destroy(PanelMamager.inst.UISceneGameObject);
@@ -27,14 +32,34 @@ public class MainUIMag : MonoBehaviour
 		this.SetPanel = new MainConfig(this.mainPanel.transform.Find("ConfigPanel").gameObject);
 		this.gameVersionText.text = "当前版本：" + clientApp.VersionStr;
 		Debug.Log(string.Format("MainUIMag.Awake:{0}", DateTime.Now));
-		this.InitMaxLevel();
 		MusicMag.instance.playMusic(0);
-		this.selectAvatarPanel.Init();
-		this.dfPanel.Init();
-		this.CheckModFile();
+		this.RefreshSave();
 	}
 
-	// Token: 0x06001F94 RID: 8084 RVA: 0x0010F600 File Offset: 0x0010D800
+	// Token: 0x06001C46 RID: 7238 RVA: 0x000CA766 File Offset: 0x000C8966
+	public void RefreshSave()
+	{
+		this.InitMaxLevel();
+		this.selectAvatarPanel.RefreshSaveSlot();
+		this.dfPanel.RefreshSaveSlot();
+	}
+
+	// Token: 0x06001C47 RID: 7239 RVA: 0x000CA784 File Offset: 0x000C8984
+	public void OpenWorkShop()
+	{
+		if (PlayerPrefs.GetInt("HasReadWorkShop", 0) == 0)
+		{
+			USelectBox.Show("在创意工坊中启用某些模组可能会影响游戏稳定性，包括但不限于闪退、卡顿、坏档等问题。\n是否继续打开？", delegate
+			{
+				PlayerPrefs.SetInt("HasReadWorkShop", 1);
+				WorkShopMag.Open();
+			}, null);
+			return;
+		}
+		WorkShopMag.Open();
+	}
+
+	// Token: 0x06001C48 RID: 7240 RVA: 0x000CA7C4 File Offset: 0x000C89C4
 	public void CheckModFile()
 	{
 		try
@@ -56,7 +81,7 @@ public class MainUIMag : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001F95 RID: 8085 RVA: 0x0010F694 File Offset: 0x0010D894
+	// Token: 0x06001C49 RID: 7241 RVA: 0x000CA858 File Offset: 0x000C8A58
 	private void ModBtnEvent()
 	{
 		try
@@ -69,7 +94,7 @@ public class MainUIMag : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001F96 RID: 8086 RVA: 0x0010F6D4 File Offset: 0x0010D8D4
+	// Token: 0x06001C4A RID: 7242 RVA: 0x000CA898 File Offset: 0x000C8A98
 	private void ModBtnEvent_Select()
 	{
 		try
@@ -92,13 +117,13 @@ public class MainUIMag : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001F97 RID: 8087 RVA: 0x0000EF72 File Offset: 0x0000D172
+	// Token: 0x06001C4B RID: 7243 RVA: 0x00049258 File Offset: 0x00047458
 	private void ModBtnEvent_Check()
 	{
 		Application.Quit();
 	}
 
-	// Token: 0x06001F98 RID: 8088 RVA: 0x0010F7BC File Offset: 0x0010D9BC
+	// Token: 0x06001C4C RID: 7244 RVA: 0x000CA980 File Offset: 0x000C8B80
 	private void Start()
 	{
 		if (!MainUIMag.isSendGameStartEvent)
@@ -113,44 +138,44 @@ public class MainUIMag : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001F99 RID: 8089 RVA: 0x0001A102 File Offset: 0x00018302
+	// Token: 0x06001C4D RID: 7245 RVA: 0x000CA9D0 File Offset: 0x000C8BD0
 	public void StartGame()
 	{
 		this.mainPanel.SetActive(false);
 		this.selectAvatarPanel.Init();
 	}
 
-	// Token: 0x06001F9A RID: 8090 RVA: 0x0001A11B File Offset: 0x0001831B
+	// Token: 0x06001C4E RID: 7246 RVA: 0x000CA9E9 File Offset: 0x000C8BE9
 	public void DoFaClick()
 	{
 		this.dfPanel.Init();
 	}
 
-	// Token: 0x06001F9B RID: 8091 RVA: 0x0001A128 File Offset: 0x00018328
+	// Token: 0x06001C4F RID: 7247 RVA: 0x000CA9F6 File Offset: 0x000C8BF6
 	public void OpenTuJian()
 	{
 		TuJianManager.Inst.OpenTuJian();
 	}
 
-	// Token: 0x06001F9C RID: 8092 RVA: 0x0001A134 File Offset: 0x00018334
+	// Token: 0x06001C50 RID: 7248 RVA: 0x000CAA02 File Offset: 0x000C8C02
 	public void GameSet()
 	{
 		this.SetPanel.Show();
 	}
 
-	// Token: 0x06001F9D RID: 8093 RVA: 0x0000EF72 File Offset: 0x0000D172
+	// Token: 0x06001C51 RID: 7249 RVA: 0x00049258 File Offset: 0x00047458
 	public void QuitGame()
 	{
 		Application.Quit();
 	}
 
-	// Token: 0x06001F9E RID: 8094 RVA: 0x0001A141 File Offset: 0x00018341
+	// Token: 0x06001C52 RID: 7250 RVA: 0x000CAA0F File Offset: 0x000C8C0F
 	private void OnDestroy()
 	{
 		MainUIMag.inst = null;
 	}
 
-	// Token: 0x06001F9F RID: 8095 RVA: 0x0010F80C File Offset: 0x0010DA0C
+	// Token: 0x06001C53 RID: 7251 RVA: 0x000CAA18 File Offset: 0x000C8C18
 	public void startGame(int id, int index, int DFIndex = -1)
 	{
 		Tools.instance.IsCanLoadSetTalk = false;
@@ -187,13 +212,13 @@ public class MainUIMag : MonoBehaviour
 		else
 		{
 			Tools.instance.IsLoadData = true;
-			FactoryManager.inst.loadPlayerDateFactory.LoadPlayerDate(id, index);
+			FactoryManager.inst.loadPlayerDateFactory.LoadPlayerData(id, index);
 			Tools.instance.ResetEquipSeid();
 		}
 		SceneManager.LoadScene("LoadingScreen");
 	}
 
-	// Token: 0x06001FA0 RID: 8096 RVA: 0x0010F990 File Offset: 0x0010DB90
+	// Token: 0x06001C54 RID: 7252 RVA: 0x000CAB9C File Offset: 0x000C8D9C
 	private void addAvatar(int id, int index)
 	{
 		this.creatAvatar(10, 51, 40, new Vector3(-5f, -1.7f, -1f), new Vector3(0f, 0f, 80f), 1);
@@ -209,7 +234,7 @@ public class MainUIMag : MonoBehaviour
 		avatar.seaNodeMag.INITSEA();
 	}
 
-	// Token: 0x06001FA1 RID: 8097 RVA: 0x0010FA44 File Offset: 0x0010DC44
+	// Token: 0x06001C55 RID: 7253 RVA: 0x000CAC50 File Offset: 0x000C8E50
 	private void initSkill()
 	{
 		Avatar avatar = (Avatar)KBEngineApp.app.player();
@@ -217,7 +242,7 @@ public class MainUIMag : MonoBehaviour
 		avatar.equipStaticSkillList = avatar.configEquipStaticSkill[avatar.nowConfigEquipStaticSkill];
 	}
 
-	// Token: 0x06001FA2 RID: 8098 RVA: 0x0010FA88 File Offset: 0x0010DC88
+	// Token: 0x06001C56 RID: 7254 RVA: 0x000CAC94 File Offset: 0x000C8E94
 	private void setAvatar(int avaterID, int roleType, int HP_Max, Vector3 position, Vector3 direction, Avatar avatar, int AvatarID = 1)
 	{
 		avatar.position = position;
@@ -265,7 +290,7 @@ public class MainUIMag : MonoBehaviour
 		});
 	}
 
-	// Token: 0x06001FA3 RID: 8099 RVA: 0x0010FE08 File Offset: 0x0010E008
+	// Token: 0x06001C57 RID: 7255 RVA: 0x000CB014 File Offset: 0x000C9214
 	public void creatAvatar(int avaterID, int roleType, int HP_Max, Vector3 position, Vector3 direction, int AvatarID = 1)
 	{
 		KBEngineApp.app.Client_onCreatedProxies((ulong)((long)avaterID), avaterID, "Avatar");
@@ -273,39 +298,50 @@ public class MainUIMag : MonoBehaviour
 		this.setAvatar(avaterID, roleType, HP_Max, position, direction, avatar, AvatarID);
 	}
 
-	// Token: 0x06001FA4 RID: 8100 RVA: 0x0010FE50 File Offset: 0x0010E050
+	// Token: 0x06001C58 RID: 7256 RVA: 0x000CB05C File Offset: 0x000C925C
 	private void InitMaxLevel()
 	{
 		this.maxLevel = 0;
 		if (YSSaveGame.HasFile(Paths.GetSavePath(), "MaxLevelJson"))
 		{
 			this.maxLevel = YSSaveGame.GetInt("MaxLevelJson", 0);
-			return;
 		}
-		for (int i = 0; i < this.maxNum; i++)
+		if (YSNewSaveSystem.HasFile(Paths.GetNewSavePath() + "/MaxLevelJson.txt"))
 		{
-			for (int j = 0; j < this.smallDataNum; j++)
+			this.maxLevel = YSNewSaveSystem.LoadInt("MaxLevelJson.txt", false);
+		}
+		if (this.maxLevel == 0)
+		{
+			for (int i = 0; i < this.maxNum; i++)
 			{
-				try
+				for (int j = 0; j < this.smallDataNum; j++)
 				{
-					if (YSSaveGame.HasFile(Paths.GetSavePath(), "AvatarInfo" + Tools.instance.getSaveID(i, j)))
+					try
 					{
-						JSONObject jsonObject = YSSaveGame.GetJsonObject("AvatarInfo" + Tools.instance.getSaveID(i, j), null);
-						if (jsonObject["avatarLevel"].I > MainUIMag.inst.maxLevel)
+						JSONObject jsonobject = null;
+						if (YSNewSaveSystem.HasFile(Paths.GetNewSavePath() + "/" + YSNewSaveSystem.GetAvatarSavePathPre(i, j) + "/AvatarInfo.json"))
 						{
-							this.maxLevel = jsonObject["avatarLevel"].I;
+							jsonobject = YSNewSaveSystem.LoadJSONObject(YSNewSaveSystem.GetAvatarSavePathPre(i, j) + "/AvatarInfo.json", true);
+						}
+						else if (YSSaveGame.HasFile(Paths.GetSavePath(), "AvatarInfo" + Tools.instance.getSaveID(i, j)))
+						{
+							jsonobject = YSSaveGame.GetJsonObject("AvatarInfo" + Tools.instance.getSaveID(i, j), null);
+						}
+						if (jsonobject != null && jsonobject["avatarLevel"].I > MainUIMag.inst.maxLevel)
+						{
+							this.maxLevel = jsonobject["avatarLevel"].I;
 						}
 					}
-				}
-				catch (Exception)
-				{
+					catch (Exception)
+					{
+					}
 				}
 			}
+			YSNewSaveSystem.Save("MaxLevelJson.txt", this.maxLevel, false);
 		}
-		YSSaveGame.save("MaxLevelJson", this.maxLevel, "-1");
 	}
 
-	// Token: 0x06001FA5 RID: 8101 RVA: 0x0001A149 File Offset: 0x00018349
+	// Token: 0x06001C59 RID: 7257 RVA: 0x000CB1CC File Offset: 0x000C93CC
 	private void Update()
 	{
 		if (Input.GetKeyDown(292))
@@ -314,43 +350,43 @@ public class MainUIMag : MonoBehaviour
 		}
 	}
 
-	// Token: 0x04001B01 RID: 6913
+	// Token: 0x040016C6 RID: 5830
 	public static MainUIMag inst;
 
-	// Token: 0x04001B02 RID: 6914
+	// Token: 0x040016C7 RID: 5831
 	[SerializeField]
 	private Text gameVersionText;
 
-	// Token: 0x04001B03 RID: 6915
+	// Token: 0x040016C8 RID: 5832
 	public FpBtn ModBtn;
 
-	// Token: 0x04001B04 RID: 6916
+	// Token: 0x040016C9 RID: 5833
 	public GameObject mainPanel;
 
-	// Token: 0x04001B05 RID: 6917
+	// Token: 0x040016CA RID: 5834
 	public MainUISelectAvatar selectAvatarPanel;
 
-	// Token: 0x04001B06 RID: 6918
+	// Token: 0x040016CB RID: 5835
 	public MainUICreateAvatar createAvatarPanel;
 
-	// Token: 0x04001B07 RID: 6919
+	// Token: 0x040016CC RID: 5836
 	public MainUIDF dfPanel;
 
-	// Token: 0x04001B08 RID: 6920
+	// Token: 0x040016CD RID: 5837
 	public MainConfig SetPanel;
 
-	// Token: 0x04001B09 RID: 6921
+	// Token: 0x040016CE RID: 5838
 	public MainUITooltip tooltip;
 
-	// Token: 0x04001B0A RID: 6922
+	// Token: 0x040016CF RID: 5839
 	public int maxNum;
 
-	// Token: 0x04001B0B RID: 6923
+	// Token: 0x040016D0 RID: 5840
 	public int smallDataNum;
 
-	// Token: 0x04001B0C RID: 6924
+	// Token: 0x040016D1 RID: 5841
 	public int maxLevel;
 
-	// Token: 0x04001B0D RID: 6925
+	// Token: 0x040016D2 RID: 5842
 	private static bool isSendGameStartEvent;
 }

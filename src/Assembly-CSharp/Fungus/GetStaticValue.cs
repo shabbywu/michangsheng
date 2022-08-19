@@ -4,12 +4,12 @@ using UnityEngine;
 
 namespace Fungus
 {
-	// Token: 0x02001409 RID: 5129
+	// Token: 0x02000F53 RID: 3923
 	[CommandInfo("YSNew/Get", "GetStaticValue", "获取全局变量保存到TempValue中", 0)]
 	[AddComponentMenu("")]
 	public class GetStaticValue : Command
 	{
-		// Token: 0x06007C7D RID: 31869 RVA: 0x002C5078 File Offset: 0x002C3278
+		// Token: 0x06006E92 RID: 28306 RVA: 0x002A51A4 File Offset: 0x002A33A4
 		public override void OnEnter()
 		{
 			Avatar player = Tools.instance.getPlayer();
@@ -35,13 +35,13 @@ namespace Fungus
 			this.Continue();
 		}
 
-		// Token: 0x06007C7E RID: 31870 RVA: 0x000113CF File Offset: 0x0000F5CF
+		// Token: 0x06006E93 RID: 28307 RVA: 0x0005E228 File Offset: 0x0005C428
 		public override Color GetButtonColor()
 		{
 			return new Color32(184, 210, 235, byte.MaxValue);
 		}
 
-		// Token: 0x04006A84 RID: 27268
+		// Token: 0x04005BB3 RID: 23475
 		[Tooltip("全局变量的ID")]
 		[SerializeField]
 		public int StaticValueID;

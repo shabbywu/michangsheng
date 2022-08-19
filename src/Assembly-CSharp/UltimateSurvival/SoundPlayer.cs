@@ -3,11 +3,11 @@ using UnityEngine;
 
 namespace UltimateSurvival
 {
-	// Token: 0x02000910 RID: 2320
+	// Token: 0x02000628 RID: 1576
 	[Serializable]
 	public class SoundPlayer
 	{
-		// Token: 0x06003B40 RID: 15168 RVA: 0x001ABBC0 File Offset: 0x001A9DC0
+		// Token: 0x06003206 RID: 12806 RVA: 0x00162254 File Offset: 0x00160454
 		public void Play(ItemSelectionMethod selectionMethod, AudioSource audioSource, float volumeFactor = 1f)
 		{
 			if (!audioSource || this.m_Sounds.Length == 0)
@@ -21,7 +21,7 @@ namespace UltimateSurvival
 			this.m_LastSoundPlayed = num;
 		}
 
-		// Token: 0x06003B41 RID: 15169 RVA: 0x001ABC3C File Offset: 0x001A9E3C
+		// Token: 0x06003207 RID: 12807 RVA: 0x001622D0 File Offset: 0x001604D0
 		public void PlayAtPosition(ItemSelectionMethod selectionMethod, Vector3 position, float volumeFactor = 1f)
 		{
 			if (this.m_Sounds.Length == 0)
@@ -33,7 +33,7 @@ namespace UltimateSurvival
 			this.m_LastSoundPlayed = num;
 		}
 
-		// Token: 0x06003B42 RID: 15170 RVA: 0x001ABC90 File Offset: 0x001A9E90
+		// Token: 0x06003208 RID: 12808 RVA: 0x00162324 File Offset: 0x00160524
 		public void Play2D(ItemSelectionMethod selectionMethod = ItemSelectionMethod.RandomlyButExcludeLast)
 		{
 			if (this.m_Sounds.Length == 0)
@@ -44,7 +44,7 @@ namespace UltimateSurvival
 			GameController.Audio.Play2D(this.m_Sounds[num], Random.Range(this.m_VolumeRange.x, this.m_VolumeRange.y));
 		}
 
-		// Token: 0x06003B43 RID: 15171 RVA: 0x001ABCDC File Offset: 0x001A9EDC
+		// Token: 0x06003209 RID: 12809 RVA: 0x00162370 File Offset: 0x00160570
 		private int CalculateNextClipToPlay(ItemSelectionMethod selectionMethod)
 		{
 			int result = 0;
@@ -66,19 +66,19 @@ namespace UltimateSurvival
 			return result;
 		}
 
-		// Token: 0x04003581 RID: 13697
+		// Token: 0x04002C53 RID: 11347
 		[SerializeField]
 		private AudioClip[] m_Sounds;
 
-		// Token: 0x04003582 RID: 13698
+		// Token: 0x04002C54 RID: 11348
 		[SerializeField]
 		private Vector2 m_VolumeRange = new Vector2(0.5f, 0.75f);
 
-		// Token: 0x04003583 RID: 13699
+		// Token: 0x04002C55 RID: 11349
 		[SerializeField]
 		private Vector2 m_PitchRange = new Vector2(0.9f, 1.1f);
 
-		// Token: 0x04003584 RID: 13700
+		// Token: 0x04002C56 RID: 11350
 		private int m_LastSoundPlayed;
 	}
 }

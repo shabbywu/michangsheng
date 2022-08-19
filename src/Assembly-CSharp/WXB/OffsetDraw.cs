@@ -3,12 +3,12 @@ using UnityEngine;
 
 namespace WXB
 {
-	// Token: 0x020009AA RID: 2474
+	// Token: 0x02000696 RID: 1686
 	[ExecuteInEditMode]
 	public class OffsetDraw : EffectDrawObjec
 	{
-		// Token: 0x17000708 RID: 1800
-		// (get) Token: 0x06003F0A RID: 16138 RVA: 0x0000B311 File Offset: 0x00009511
+		// Token: 0x170004E8 RID: 1256
+		// (get) Token: 0x0600354C RID: 13644 RVA: 0x00031A1A File Offset: 0x0002FC1A
 		public override DrawType type
 		{
 			get
@@ -17,19 +17,19 @@ namespace WXB
 			}
 		}
 
-		// Token: 0x06003F0B RID: 16139 RVA: 0x0002D59C File Offset: 0x0002B79C
+		// Token: 0x0600354D RID: 13645 RVA: 0x001707B5 File Offset: 0x0016E9B5
 		protected override void Init()
 		{
 			this.m_Effects[0] = new OffsetEffect();
 		}
 
-		// Token: 0x06003F0C RID: 16140 RVA: 0x0002D5AB File Offset: 0x0002B7AB
+		// Token: 0x0600354E RID: 13646 RVA: 0x001707C4 File Offset: 0x0016E9C4
 		public void Set(Rect rect)
 		{
 			this.Set(rect.xMin, rect.yMin, rect.xMax, rect.yMax);
 		}
 
-		// Token: 0x06003F0D RID: 16141 RVA: 0x0002D5CF File Offset: 0x0002B7CF
+		// Token: 0x0600354F RID: 13647 RVA: 0x001707E8 File Offset: 0x0016E9E8
 		public void Set(float xMin, float yMin, float xMax, float yMax)
 		{
 			OffsetEffect offsetEffect = this.m_Effects[0] as OffsetEffect;

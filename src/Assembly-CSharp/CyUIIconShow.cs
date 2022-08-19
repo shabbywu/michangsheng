@@ -1,10 +1,10 @@
 ﻿using System;
 using UnityEngine;
 
-// Token: 0x020003D8 RID: 984
+// Token: 0x0200029F RID: 671
 public class CyUIIconShow : UIIconShow
 {
-	// Token: 0x06001AF1 RID: 6897 RVA: 0x00016D2E File Offset: 0x00014F2E
+	// Token: 0x060017FF RID: 6143 RVA: 0x000A77AF File Offset: 0x000A59AF
 	public void Init()
 	{
 		this.hasTiJiaoImage.SetActive(false);
@@ -12,23 +12,23 @@ public class CyUIIconShow : UIIconShow
 		base.transform.parent.gameObject.SetActive(true);
 	}
 
-	// Token: 0x06001AF2 RID: 6898 RVA: 0x00016D5E File Offset: 0x00014F5E
+	// Token: 0x06001800 RID: 6144 RVA: 0x000A77DF File Offset: 0x000A59DF
 	public void ShowHasTiJiao()
 	{
 		this.hasTiJiaoImage.SetActive(true);
 	}
 
-	// Token: 0x06001AF3 RID: 6899 RVA: 0x00016D6C File Offset: 0x00014F6C
+	// Token: 0x06001801 RID: 6145 RVA: 0x000A77ED File Offset: 0x000A59ED
 	public void ShowHasGet()
 	{
 		this.hasGetImage.SetActive(true);
 	}
 
-	// Token: 0x04001682 RID: 5762
+	// Token: 0x040012E6 RID: 4838
 	[SerializeField]
 	private GameObject hasTiJiaoImage;
 
-	// Token: 0x04001683 RID: 5763
+	// Token: 0x040012E7 RID: 4839
 	[SerializeField]
 	private GameObject hasGetImage;
 }

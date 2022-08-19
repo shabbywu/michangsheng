@@ -3,16 +3,16 @@ using UnityEngine;
 
 namespace Fungus.Examples
 {
-	// Token: 0x02001467 RID: 5223
+	// Token: 0x02000FAF RID: 4015
 	public class LookingAtDoor : MonoBehaviour
 	{
-		// Token: 0x06007DE3 RID: 32227 RVA: 0x0005519E File Offset: 0x0005339E
+		// Token: 0x06006FE9 RID: 28649 RVA: 0x002A87F9 File Offset: 0x002A69F9
 		public void ActivateNow()
 		{
 			base.enabled = true;
 		}
 
-		// Token: 0x06007DE4 RID: 32228 RVA: 0x002C7FFC File Offset: 0x002C61FC
+		// Token: 0x06006FEA RID: 28650 RVA: 0x002A8804 File Offset: 0x002A6A04
 		private void Update()
 		{
 			float num = this.gazeCounter;
@@ -39,22 +39,22 @@ namespace Fungus.Examples
 			}
 		}
 
-		// Token: 0x04006B51 RID: 27473
+		// Token: 0x04005C59 RID: 23641
 		public Collider doorCol;
 
-		// Token: 0x04006B52 RID: 27474
+		// Token: 0x04005C5A RID: 23642
 		public float gazeTime = 0.2f;
 
-		// Token: 0x04006B53 RID: 27475
+		// Token: 0x04005C5B RID: 23643
 		private float gazeCounter;
 
-		// Token: 0x04006B54 RID: 27476
+		// Token: 0x04005C5C RID: 23644
 		public BlockReference runBlockWhenGazed;
 
-		// Token: 0x04006B55 RID: 27477
+		// Token: 0x04005C5D RID: 23645
 		public Transform eye;
 
-		// Token: 0x04006B56 RID: 27478
+		// Token: 0x04005C5E RID: 23646
 		public VariableReference fungusBoolHasGazed;
 	}
 }

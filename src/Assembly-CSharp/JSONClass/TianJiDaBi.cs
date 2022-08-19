@@ -3,10 +3,10 @@ using System.Collections.Generic;
 
 namespace JSONClass
 {
-	// Token: 0x02000CF7 RID: 3319
+	// Token: 0x02000973 RID: 2419
 	public class TianJiDaBi : IJSONClass
 	{
-		// Token: 0x06004F44 RID: 20292 RVA: 0x00214080 File Offset: 0x00212280
+		// Token: 0x060043DE RID: 17374 RVA: 0x001CE758 File Offset: 0x001CC958
 		public static void InitDataDict()
 		{
 			foreach (JSONObject jsonobject in jsonData.instance.TianJiDaBi.list)
@@ -40,27 +40,27 @@ namespace JSONClass
 			}
 		}
 
-		// Token: 0x06004F45 RID: 20293 RVA: 0x000042DD File Offset: 0x000024DD
+		// Token: 0x060043DF RID: 17375 RVA: 0x00004095 File Offset: 0x00002295
 		private static void OnInitFinish()
 		{
 		}
 
-		// Token: 0x04005027 RID: 20519
+		// Token: 0x04004517 RID: 17687
 		public static Dictionary<int, TianJiDaBi> DataDict = new Dictionary<int, TianJiDaBi>();
 
-		// Token: 0x04005028 RID: 20520
+		// Token: 0x04004518 RID: 17688
 		public static List<TianJiDaBi> DataList = new List<TianJiDaBi>();
 
-		// Token: 0x04005029 RID: 20521
+		// Token: 0x04004519 RID: 17689
 		public static Action OnInitFinishAction = new Action(TianJiDaBi.OnInitFinish);
 
-		// Token: 0x0400502A RID: 20522
+		// Token: 0x0400451A RID: 17690
 		public int id;
 
-		// Token: 0x0400502B RID: 20523
+		// Token: 0x0400451B RID: 17691
 		public int YouXian;
 
-		// Token: 0x0400502C RID: 20524
+		// Token: 0x0400451C RID: 17692
 		public int LiuPai;
 	}
 }

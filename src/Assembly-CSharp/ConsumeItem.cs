@@ -3,10 +3,10 @@ using KBEngine;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-// Token: 0x0200020F RID: 527
+// Token: 0x0200013B RID: 315
 public class ConsumeItem : MonoBehaviour, IPointerDownHandler, IEventSystemHandler
 {
-	// Token: 0x060010B0 RID: 4272 RVA: 0x000A7854 File Offset: 0x000A5A54
+	// Token: 0x06000E94 RID: 3732 RVA: 0x0005743C File Offset: 0x0005563C
 	private void Start()
 	{
 		this.item = base.GetComponent<ItemOnObject>().item;
@@ -24,7 +24,7 @@ public class ConsumeItem : MonoBehaviour, IPointerDownHandler, IEventSystemHandl
 		}
 	}
 
-	// Token: 0x060010B1 RID: 4273 RVA: 0x000A78F4 File Offset: 0x000A5AF4
+	// Token: 0x06000E95 RID: 3733 RVA: 0x000574DC File Offset: 0x000556DC
 	public void OnPointerDown(PointerEventData data)
 	{
 		if (base.gameObject.transform.parent.parent.parent.GetComponent<EquipmentSystem>() == null)
@@ -171,7 +171,7 @@ public class ConsumeItem : MonoBehaviour, IPointerDownHandler, IEventSystemHandl
 		}
 	}
 
-	// Token: 0x060010B2 RID: 4274 RVA: 0x000A7F40 File Offset: 0x000A6140
+	// Token: 0x06000E96 RID: 3734 RVA: 0x00057B28 File Offset: 0x00055D28
 	public void consumeIt()
 	{
 		Inventory component = base.transform.parent.parent.parent.GetComponent<Inventory>();
@@ -301,7 +301,7 @@ public class ConsumeItem : MonoBehaviour, IPointerDownHandler, IEventSystemHandl
 		}
 	}
 
-	// Token: 0x060010B3 RID: 4275 RVA: 0x000A8414 File Offset: 0x000A6614
+	// Token: 0x06000E97 RID: 3735 RVA: 0x00057FFC File Offset: 0x000561FC
 	public void createDuplication(GameObject Item)
 	{
 		Item item = Item.GetComponent<ItemOnObject>().item;
@@ -310,21 +310,21 @@ public class ConsumeItem : MonoBehaviour, IPointerDownHandler, IEventSystemHandl
 		gameObject.GetComponent<ConsumeItem>().duplication = Item;
 	}
 
-	// Token: 0x04000D37 RID: 3383
+	// Token: 0x04000A9C RID: 2716
 	public Item item;
 
-	// Token: 0x04000D38 RID: 3384
+	// Token: 0x04000A9D RID: 2717
 	private static Tooltip tooltip;
 
-	// Token: 0x04000D39 RID: 3385
+	// Token: 0x04000A9E RID: 2718
 	public ItemType[] itemTypeOfSlot;
 
-	// Token: 0x04000D3A RID: 3386
+	// Token: 0x04000A9F RID: 2719
 	public static EquipmentSystem eS;
 
-	// Token: 0x04000D3B RID: 3387
+	// Token: 0x04000AA0 RID: 2720
 	public GameObject duplication;
 
-	// Token: 0x04000D3C RID: 3388
+	// Token: 0x04000AA1 RID: 2721
 	public static GameObject mainInventory;
 }

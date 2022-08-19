@@ -6,6 +6,7 @@ using System.Reflection;
 using Fungus;
 using JSONClass;
 using KBEngine;
+using script.world_script;
 using UnityEngine;
 using UnityEngine.Events;
 using YSGame;
@@ -13,13 +14,13 @@ using YSGame.Fight;
 
 namespace GUIPackage
 {
-	// Token: 0x02000D5C RID: 3420
+	// Token: 0x02000A50 RID: 2640
 	[Serializable]
 	public class Skill
 	{
-		// Token: 0x170007E3 RID: 2019
-		// (get) Token: 0x06005197 RID: 20887 RVA: 0x0003ABA2 File Offset: 0x00038DA2
-		// (set) Token: 0x06005198 RID: 20888 RVA: 0x0003ABB0 File Offset: 0x00038DB0
+		// Token: 0x170005C8 RID: 1480
+		// (get) Token: 0x060048CF RID: 18639 RVA: 0x001EC898 File Offset: 0x001EAA98
+		// (set) Token: 0x060048D0 RID: 18640 RVA: 0x001EC8A6 File Offset: 0x001EAAA6
 		public Texture2D skill_Icon
 		{
 			get
@@ -33,9 +34,9 @@ namespace GUIPackage
 			}
 		}
 
-		// Token: 0x170007E4 RID: 2020
-		// (get) Token: 0x06005199 RID: 20889 RVA: 0x0003ABB9 File Offset: 0x00038DB9
-		// (set) Token: 0x0600519A RID: 20890 RVA: 0x0003ABC7 File Offset: 0x00038DC7
+		// Token: 0x170005C9 RID: 1481
+		// (get) Token: 0x060048D1 RID: 18641 RVA: 0x001EC8AF File Offset: 0x001EAAAF
+		// (set) Token: 0x060048D2 RID: 18642 RVA: 0x001EC8BD File Offset: 0x001EAABD
 		public Texture2D SkillPingZhi
 		{
 			get
@@ -49,9 +50,9 @@ namespace GUIPackage
 			}
 		}
 
-		// Token: 0x170007E5 RID: 2021
-		// (get) Token: 0x0600519B RID: 20891 RVA: 0x0003ABD0 File Offset: 0x00038DD0
-		// (set) Token: 0x0600519C RID: 20892 RVA: 0x0003ABDE File Offset: 0x00038DDE
+		// Token: 0x170005CA RID: 1482
+		// (get) Token: 0x060048D3 RID: 18643 RVA: 0x001EC8C6 File Offset: 0x001EAAC6
+		// (set) Token: 0x060048D4 RID: 18644 RVA: 0x001EC8D4 File Offset: 0x001EAAD4
 		public Sprite skillIconSprite
 		{
 			get
@@ -65,9 +66,9 @@ namespace GUIPackage
 			}
 		}
 
-		// Token: 0x170007E6 RID: 2022
-		// (get) Token: 0x0600519D RID: 20893 RVA: 0x0003ABE7 File Offset: 0x00038DE7
-		// (set) Token: 0x0600519E RID: 20894 RVA: 0x0003ABF5 File Offset: 0x00038DF5
+		// Token: 0x170005CB RID: 1483
+		// (get) Token: 0x060048D5 RID: 18645 RVA: 0x001EC8DD File Offset: 0x001EAADD
+		// (set) Token: 0x060048D6 RID: 18646 RVA: 0x001EC8EB File Offset: 0x001EAAEB
 		public Sprite SkillPingZhiSprite
 		{
 			get
@@ -81,9 +82,9 @@ namespace GUIPackage
 			}
 		}
 
-		// Token: 0x170007E7 RID: 2023
-		// (get) Token: 0x0600519F RID: 20895 RVA: 0x0003ABFE File Offset: 0x00038DFE
-		// (set) Token: 0x060051A0 RID: 20896 RVA: 0x0003AC0C File Offset: 0x00038E0C
+		// Token: 0x170005CC RID: 1484
+		// (get) Token: 0x060048D7 RID: 18647 RVA: 0x001EC8F4 File Offset: 0x001EAAF4
+		// (set) Token: 0x060048D8 RID: 18648 RVA: 0x001EC902 File Offset: 0x001EAB02
 		public Sprite newSkillPingZhiSprite
 		{
 			get
@@ -97,7 +98,7 @@ namespace GUIPackage
 			}
 		}
 
-		// Token: 0x060051A1 RID: 20897 RVA: 0x00220134 File Offset: 0x0021E334
+		// Token: 0x060048D9 RID: 18649 RVA: 0x001EC90C File Offset: 0x001EAB0C
 		private static void InitMethod(string methodName)
 		{
 			if (!Skill.methodDict.ContainsKey(methodName))
@@ -107,7 +108,7 @@ namespace GUIPackage
 			}
 		}
 
-		// Token: 0x060051A2 RID: 20898 RVA: 0x0022016C File Offset: 0x0021E36C
+		// Token: 0x060048DA RID: 18650 RVA: 0x001EC944 File Offset: 0x001EAB44
 		public static bool IsSkillType(int skillID, int SkillType)
 		{
 			bool result = false;
@@ -121,7 +122,7 @@ namespace GUIPackage
 			return result;
 		}
 
-		// Token: 0x060051A3 RID: 20899 RVA: 0x002201EC File Offset: 0x0021E3EC
+		// Token: 0x060048DB RID: 18651 RVA: 0x001EC9C4 File Offset: 0x001EABC4
 		public Dictionary<int, int> getSkillCast(Avatar _attaker)
 		{
 			Dictionary<int, int> dictionary = new Dictionary<int, int>(this.skillCast);
@@ -201,13 +202,13 @@ namespace GUIPackage
 			return dictionary;
 		}
 
-		// Token: 0x060051A4 RID: 20900 RVA: 0x002204F4 File Offset: 0x0021E6F4
+		// Token: 0x060048DC RID: 18652 RVA: 0x001ECCCC File Offset: 0x001EAECC
 		public Skill(int id, int level, int max)
 		{
 			this.skillInit(id, level, max);
 		}
 
-		// Token: 0x060051A5 RID: 20901 RVA: 0x00220570 File Offset: 0x0021E770
+		// Token: 0x060048DD RID: 18653 RVA: 0x001ECD48 File Offset: 0x001EAF48
 		private void InitImage()
 		{
 			if (!this.initedImage)
@@ -261,7 +262,7 @@ namespace GUIPackage
 			}
 		}
 
-		// Token: 0x060051A6 RID: 20902 RVA: 0x00220754 File Offset: 0x0021E954
+		// Token: 0x060048DE RID: 18654 RVA: 0x001ECF2C File Offset: 0x001EB12C
 		public void skillInit(int id, int level, int max)
 		{
 			if (!_skillJsonData.DataDict.ContainsKey(id))
@@ -308,13 +309,13 @@ namespace GUIPackage
 			throw new Exception(string.Format("技能表中id为[{0}] 名字为[{1}]的技能出现了数组越界异常，skill_CastType与skill_Cast的数组长度必须保持一致，请检查配表", id, this.skill_Name));
 		}
 
-		// Token: 0x060051A7 RID: 20903 RVA: 0x0022090C File Offset: 0x0021EB0C
+		// Token: 0x060048DF RID: 18655 RVA: 0x001ED0E4 File Offset: 0x001EB2E4
 		public Skill()
 		{
 			this.skill_ID = -1;
 		}
 
-		// Token: 0x060051A8 RID: 20904 RVA: 0x00220988 File Offset: 0x0021EB88
+		// Token: 0x060048E0 RID: 18656 RVA: 0x001ED160 File Offset: 0x001EB360
 		public void initStaticSkill(int id, int level, int max)
 		{
 			if (!StaticSkillJsonData.DataDict.ContainsKey(id))
@@ -344,13 +345,13 @@ namespace GUIPackage
 			this.ColorIndex = this.SkillQuality * 2 - 1;
 		}
 
-		// Token: 0x060051A9 RID: 20905 RVA: 0x0003AC15 File Offset: 0x00038E15
+		// Token: 0x060048E1 RID: 18657 RVA: 0x001ED257 File Offset: 0x001EB457
 		public Skill Clone()
 		{
 			return base.MemberwiseClone() as Skill;
 		}
 
-		// Token: 0x060051AA RID: 20906 RVA: 0x00220A80 File Offset: 0x0021EC80
+		// Token: 0x060048E2 RID: 18658 RVA: 0x001ED264 File Offset: 0x001EB464
 		public SkillCanUseType CanUse(Entity _attaker, Entity _receiver, bool showError = true, string uuid = "")
 		{
 			Avatar avatar = (Avatar)_attaker;
@@ -660,7 +661,7 @@ namespace GUIPackage
 			return SkillCanUseType.可以使用;
 		}
 
-		// Token: 0x060051AB RID: 20907 RVA: 0x0022150C File Offset: 0x0021F70C
+		// Token: 0x060048E3 RID: 18659 RVA: 0x001EDCF0 File Offset: 0x001EBEF0
 		public List<int> getremoveCastNum(Entity _attaker)
 		{
 			Avatar avatar = (Avatar)_attaker;
@@ -675,7 +676,7 @@ namespace GUIPackage
 			return list;
 		}
 
-		// Token: 0x060051AC RID: 20908 RVA: 0x002215B0 File Offset: 0x0021F7B0
+		// Token: 0x060048E4 RID: 18660 RVA: 0x001EDD94 File Offset: 0x001EBF94
 		public void useCrystal(Entity _attaker)
 		{
 			Avatar avatar = (Avatar)_attaker;
@@ -726,7 +727,7 @@ namespace GUIPackage
 			}
 		}
 
-		// Token: 0x060051AD RID: 20909 RVA: 0x002217E8 File Offset: 0x0021F9E8
+		// Token: 0x060048E5 RID: 18661 RVA: 0x001EDFCC File Offset: 0x001EC1CC
 		public int getNomelCastNum(Avatar attaker)
 		{
 			int num = 0;
@@ -737,7 +738,7 @@ namespace GUIPackage
 			return num;
 		}
 
-		// Token: 0x060051AE RID: 20910 RVA: 0x00221844 File Offset: 0x0021FA44
+		// Token: 0x060048E6 RID: 18662 RVA: 0x001EE028 File Offset: 0x001EC228
 		public int GetSameCastNum(Avatar attaker)
 		{
 			int num = 0;
@@ -748,7 +749,7 @@ namespace GUIPackage
 			return num;
 		}
 
-		// Token: 0x060051AF RID: 20911 RVA: 0x002218A0 File Offset: 0x0021FAA0
+		// Token: 0x060048E7 RID: 18663 RVA: 0x001EE084 File Offset: 0x001EC284
 		public void ShowScroll(Entity _attaker, Entity _receiver, int damage)
 		{
 			GameObject gameObject = (GameObject)_attaker.renderObj;
@@ -794,7 +795,7 @@ namespace GUIPackage
 			UIFightPanel.Inst.FightJiLu.AddText(text6);
 		}
 
-		// Token: 0x060051B0 RID: 20912 RVA: 0x002219D4 File Offset: 0x0021FBD4
+		// Token: 0x060048E8 RID: 18664 RVA: 0x001EE1B8 File Offset: 0x001EC3B8
 		public Dictionary<int, int> GetSkillSameCast()
 		{
 			Dictionary<int, int> dictionary = new Dictionary<int, int>();
@@ -811,25 +812,13 @@ namespace GUIPackage
 			return dictionary;
 		}
 
-		// Token: 0x060051B1 RID: 20913 RVA: 0x00221A9C File Offset: 0x0021FC9C
+		// Token: 0x060048E9 RID: 18665 RVA: 0x001EE280 File Offset: 0x001EC480
 		public bool setSeidNum(List<int> TempSeid, List<int> infoFlag, int _index)
 		{
-			if (infoFlag[4] > 0)
-			{
-				if (!TempSeid.Contains(139))
-				{
-					return true;
-				}
-				int num = TempSeid.IndexOf(139);
-				if (_index > num)
-				{
-					return true;
-				}
-			}
-			return false;
+			return infoFlag[4] > 0 && !TempSeid.Contains(139);
 		}
 
-		// Token: 0x060051B2 RID: 20914 RVA: 0x00221AD8 File Offset: 0x0021FCD8
+		// Token: 0x060048EA RID: 18666 RVA: 0x001EE2A0 File Offset: 0x001EC4A0
 		public void triggerStartSeid(List<int> SeidList, List<int> infoFlag, Entity _attaker, Entity _receiver, int type)
 		{
 			List<int> TempSeid = new List<int>();
@@ -881,13 +870,24 @@ namespace GUIPackage
 							break;
 						}
 					}
+					else if (_attaker.isPlayer())
+					{
+						if (RoundManager.instance.PlayerSkillCheck != null)
+						{
+							RoundManager.instance.PlayerSkillCheck.HasPassSeid.Add(num3);
+						}
+					}
+					else if (RoundManager.instance.NpcSkillCheck != null)
+					{
+						RoundManager.instance.NpcSkillCheck.HasPassSeid.Add(num3);
+					}
 				}
 				catch (Exception ex)
 				{
 					string text = "";
 					for (int k = 0; k < infoFlag.Count; k++)
 					{
-						text += string.Format(" {0}", infoFlag[0]);
+						text += string.Format(" {0}", infoFlag[k]);
 					}
 					Debug.LogError(string.Concat(new object[]
 					{
@@ -905,7 +905,7 @@ namespace GUIPackage
 			}
 		}
 
-		// Token: 0x060051B3 RID: 20915 RVA: 0x00221D00 File Offset: 0x0021FF00
+		// Token: 0x060048EB RID: 18667 RVA: 0x001EE514 File Offset: 0x001EC714
 		public void triggerBuffEndSeid(List<int> SeidList, List<int> infoFlag, Entity _attaker, Entity _receiver, int type)
 		{
 			List<int> TempSeid = new List<int>();
@@ -951,7 +951,7 @@ namespace GUIPackage
 			}
 		}
 
-		// Token: 0x060051B4 RID: 20916 RVA: 0x00221E30 File Offset: 0x00220030
+		// Token: 0x060048EC RID: 18668 RVA: 0x001EE644 File Offset: 0x001EC844
 		public void triggerSkillFinalSeid(List<int> SeidList, List<int> infoFlag, Entity _attaker, Entity _receiver, int type)
 		{
 			List<int> TempSeid = new List<int>();
@@ -997,7 +997,7 @@ namespace GUIPackage
 			}
 		}
 
-		// Token: 0x060051B5 RID: 20917 RVA: 0x0003AC22 File Offset: 0x00038E22
+		// Token: 0x060048ED RID: 18669 RVA: 0x001EE770 File Offset: 0x001EC970
 		public static void SetSkillFlag(List<int> infoFlag, int damage, int skill_ID)
 		{
 			infoFlag.Add(damage);
@@ -1007,7 +1007,7 @@ namespace GUIPackage
 			infoFlag.Add(0);
 		}
 
-		// Token: 0x060051B6 RID: 20918 RVA: 0x00221F5C File Offset: 0x0022015C
+		// Token: 0x060048EE RID: 18670 RVA: 0x001EE798 File Offset: 0x001EC998
 		public List<int> VirtualPutingSkill(Entity _attaker, Entity _receiver, int type = 0)
 		{
 			Avatar avatar = (Avatar)_attaker;
@@ -1113,6 +1113,7 @@ namespace GUIPackage
 				avatar.spell.onBuffTickByType(37, list);
 			}
 			this.triggerBuffEndSeid(this.NowSkillSeid, list, _attaker, _receiver, type);
+			avatar.spell.onBuffTickByType(47, list);
 			num = list[0];
 			num = avatar.recvDamage(_attaker, avatar2, this.skill_ID, num, type);
 			if (this.NowSkillSeid.Contains(11) && this.LateDamages != null)
@@ -1143,12 +1144,13 @@ namespace GUIPackage
 			return list;
 		}
 
-		// Token: 0x060051B7 RID: 20919 RVA: 0x00222570 File Offset: 0x00220770
+		// Token: 0x060048EF RID: 18671 RVA: 0x001EEDBC File Offset: 0x001ECFBC
 		public List<int> PutingSkill(Entity _attaker, Entity _receiver, int type = 0)
 		{
 			Avatar avatar = (Avatar)_attaker;
 			Avatar avatar2 = (Avatar)_receiver;
 			this.NowSkillSeid.Clear();
+			RoundManager.instance.CurSkill = this;
 			int num = this.Damage;
 			int damage = this.Damage;
 			List<int> list = new List<int>();
@@ -1250,6 +1252,7 @@ namespace GUIPackage
 				avatar.spell.onBuffTickByType(37, list);
 			}
 			this.triggerBuffEndSeid(this.NowSkillSeid, list, _attaker, _receiver, type);
+			avatar.spell.onBuffTickByType(47, list);
 			num = list[0];
 			num = avatar.recvDamage(_attaker, avatar2, this.skill_ID, num, type);
 			if (this.NowSkillSeid.Contains(11) && this.LateDamages != null)
@@ -1288,7 +1291,7 @@ namespace GUIPackage
 			return list;
 		}
 
-		// Token: 0x060051B8 RID: 20920 RVA: 0x0003AC47 File Offset: 0x00038E47
+		// Token: 0x060048F0 RID: 18672 RVA: 0x001EF490 File Offset: 0x001ED690
 		public Avatar getTargetAvatar(int seid, Avatar attker)
 		{
 			if (this.getSeidJson(seid)["target"].I == 1)
@@ -1298,7 +1301,7 @@ namespace GUIPackage
 			return attker.OtherAvatar;
 		}
 
-		// Token: 0x060051B9 RID: 20921 RVA: 0x00222C2C File Offset: 0x00220E2C
+		// Token: 0x060048F1 RID: 18673 RVA: 0x001EF4B4 File Offset: 0x001ED6B4
 		public void SkillStartWait(int seid, List<int> damage, Avatar attaker, Avatar receiver, int type)
 		{
 			attaker.fightTemp.WaitAttacker = attaker;
@@ -1322,7 +1325,7 @@ namespace GUIPackage
 			damage[2] = 1;
 		}
 
-		// Token: 0x060051BA RID: 20922 RVA: 0x00222D18 File Offset: 0x00220F18
+		// Token: 0x060048F2 RID: 18674 RVA: 0x001EF5A0 File Offset: 0x001ED7A0
 		public void VirtualPuting(Entity _attaker, Entity _receiver, int type = 0, string uuid = "")
 		{
 			Avatar avatar = (Avatar)_attaker;
@@ -1394,14 +1397,31 @@ namespace GUIPackage
 			RoundManager.instance.eventChengeCrystal();
 		}
 
-		// Token: 0x060051BB RID: 20923 RVA: 0x002230E0 File Offset: 0x002212E0
+		// Token: 0x060048F3 RID: 18675 RVA: 0x001EF968 File Offset: 0x001EDB68
 		public void Puting(Entity _attaker, Entity _receiver, int type = 0, string uuid = "")
 		{
 			Avatar attaker = (Avatar)_attaker;
 			Avatar receiver = (Avatar)_receiver;
+			this.attack = attaker;
+			this.target = receiver;
+			this.type = type;
 			if (this.CanUse(_attaker, _receiver, true, uuid) != SkillCanUseType.可以使用)
 			{
 				return;
+			}
+			if (attaker.isPlayer())
+			{
+				RoundManager.instance.PlayerSkillCheck = new SkillCheck
+				{
+					SkillId = this.skill_ID
+				};
+			}
+			else
+			{
+				RoundManager.instance.NpcSkillCheck = new SkillCheck
+				{
+					SkillId = this.skill_ID
+				};
 			}
 			Queue<UnityAction> queue = new Queue<UnityAction>();
 			UnityAction item = delegate()
@@ -1415,7 +1435,7 @@ namespace GUIPackage
 				Flowchart fightTalk = RoundManager.instance.FightTalk;
 				fightTalk.SetBooleanVariable("attaker", attaker.isPlayer());
 				fightTalk.SetBooleanVariable("receiver", receiver.isPlayer());
-				fightTalk.SetIntegerVariable("SkillID", (int)jsonData.instance.skillJsonData[this.skill_ID.ToString()]["Skill_ID"].n);
+				fightTalk.SetIntegerVariable("SkillID", jsonData.instance.skillJsonData[this.skill_ID.ToString()]["Skill_ID"].I);
 			}), null);
 			Debug.Log(attaker.name + "施放了" + this.skill_Name);
 			UnityAction item2 = delegate()
@@ -1444,7 +1464,7 @@ namespace GUIPackage
 			RoundManager.instance.NowUseLingQiType = UseLingQiType.None;
 		}
 
-		// Token: 0x060051BC RID: 20924 RVA: 0x00223274 File Offset: 0x00221474
+		// Token: 0x060048F4 RID: 18676 RVA: 0x001EFB60 File Offset: 0x001EDD60
 		public int realizeSeid(int seid, List<int> damage, Entity _attaker, Entity _receiver, int type)
 		{
 			Avatar avatar = (Avatar)_attaker;
@@ -1465,7 +1485,7 @@ namespace GUIPackage
 			return damage[0];
 		}
 
-		// Token: 0x060051BD RID: 20925 RVA: 0x002232F8 File Offset: 0x002214F8
+		// Token: 0x060048F5 RID: 18677 RVA: 0x001EFBE4 File Offset: 0x001EDDE4
 		public int realizeBuffEndSeid(int seid, List<int> damage, Entity _attaker, Entity _receiver, int type)
 		{
 			Avatar avatar = (Avatar)_attaker;
@@ -1486,7 +1506,7 @@ namespace GUIPackage
 			return damage[0];
 		}
 
-		// Token: 0x060051BE RID: 20926 RVA: 0x0022337C File Offset: 0x0022157C
+		// Token: 0x060048F6 RID: 18678 RVA: 0x001EFC68 File Offset: 0x001EDE68
 		public int realizeFinalSeid(int seid, List<int> damage, Entity _attaker, Entity _receiver, int type)
 		{
 			Avatar avatar = (Avatar)_attaker;
@@ -1507,7 +1527,7 @@ namespace GUIPackage
 			return damage[0];
 		}
 
-		// Token: 0x060051BF RID: 20927 RVA: 0x00223400 File Offset: 0x00221600
+		// Token: 0x060048F7 RID: 18679 RVA: 0x001EFCEC File Offset: 0x001EDEEC
 		public bool CanRealizeSeid(Avatar attaker, Avatar receiver)
 		{
 			foreach (int num in _skillJsonData.DataDict[this.skill_ID].seid)
@@ -1583,9 +1603,36 @@ namespace GUIPackage
 				}
 				else if (num != 78)
 				{
-					if (num == 160)
+					if (num != 124)
 					{
-						if (attaker.OtherAvatar.buffmag.HasBuff(this.getSeidJson(num)["value1"].I))
+						if (num == 160)
+						{
+							if (attaker.OtherAvatar.buffmag.HasBuff(this.getSeidJson(num)["value1"].I))
+							{
+								return false;
+							}
+						}
+					}
+					else
+					{
+						if (attaker.UsedSkills.Count <= 0)
+						{
+							return false;
+						}
+						bool flag2 = true;
+						int i2 = this.getSeidJson(num)["value1"].I;
+						using (List<int>.Enumerator enumerator2 = _skillJsonData.DataDict[attaker.UsedSkills[attaker.UsedSkills.Count - 1]].AttackType.GetEnumerator())
+						{
+							while (enumerator2.MoveNext())
+							{
+								if (enumerator2.Current == i2)
+								{
+									flag2 = false;
+									break;
+								}
+							}
+						}
+						if (flag2)
 						{
 							return false;
 						}
@@ -1599,13 +1646,13 @@ namespace GUIPackage
 			return true;
 		}
 
-		// Token: 0x060051C0 RID: 20928 RVA: 0x0003AC6A File Offset: 0x00038E6A
+		// Token: 0x060048F8 RID: 18680 RVA: 0x001F0040 File Offset: 0x001EE240
 		public int getCrystalNum(Avatar attaker)
 		{
 			return attaker.crystal.getCardNum();
 		}
 
-		// Token: 0x060051C1 RID: 20929 RVA: 0x00223694 File Offset: 0x00221894
+		// Token: 0x060048F9 RID: 18681 RVA: 0x001F0050 File Offset: 0x001EE250
 		public void setSeidSkillFlag(Avatar attaker, int seid, int num)
 		{
 			if (!attaker.SkillSeidFlag.ContainsKey(seid))
@@ -1616,7 +1663,7 @@ namespace GUIPackage
 			attaker.SkillSeidFlag[seid][this.skill_ID] = num;
 		}
 
-		// Token: 0x060051C2 RID: 20930 RVA: 0x002236F0 File Offset: 0x002218F0
+		// Token: 0x060048FA RID: 18682 RVA: 0x001F00AC File Offset: 0x001EE2AC
 		public int GetSeidSkillFlag(Avatar attaker, int seid)
 		{
 			if (!attaker.SkillSeidFlag.ContainsKey(seid))
@@ -1627,7 +1674,7 @@ namespace GUIPackage
 			return attaker.SkillSeidFlag[seid][this.skill_ID];
 		}
 
-		// Token: 0x060051C3 RID: 20931 RVA: 0x0022374C File Offset: 0x0022194C
+		// Token: 0x060048FB RID: 18683 RVA: 0x001F0108 File Offset: 0x001EE308
 		public void AddSeidSkillFlag(Avatar attaker, int seid, int Addnum)
 		{
 			if (!attaker.SkillSeidFlag.ContainsKey(seid))
@@ -1640,27 +1687,20 @@ namespace GUIPackage
 			dictionary[key] += Addnum;
 		}
 
-		// Token: 0x060051C4 RID: 20932 RVA: 0x002237B4 File Offset: 0x002219B4
+		// Token: 0x060048FC RID: 18684 RVA: 0x001F0170 File Offset: 0x001EE370
 		public void reduceBuff(Avatar Targ, int X, int Y)
 		{
 			List<int> list = Targ.buffmag.getBuffByID(X)[0];
 			list[1] = list[1] - Y;
 		}
 
-		// Token: 0x060051C5 RID: 20933 RVA: 0x002237E4 File Offset: 0x002219E4
-		public int RemoveBuff(Avatar Targ, int BuffID)
+		// Token: 0x060048FD RID: 18685 RVA: 0x001F01A0 File Offset: 0x001EE3A0
+		public int RemoveBuff(Avatar target, int BuffID)
 		{
-			List<List<int>> buffByID = Targ.buffmag.getBuffByID(BuffID);
-			int num = 0;
-			foreach (List<int> list in buffByID)
-			{
-				num += list[1];
-				Targ.spell.removeBuff(list);
-			}
-			return num;
+			return target.buffmag.RemoveBuff(BuffID);
 		}
 
-		// Token: 0x060051C6 RID: 20934 RVA: 0x00223850 File Offset: 0x00221A50
+		// Token: 0x060048FE RID: 18686 RVA: 0x001F01B0 File Offset: 0x001EE3B0
 		public void createSkill(Avatar attaker, int CreateSkillID)
 		{
 			Skill skill = new Skill(CreateSkillID, (int)attaker.level, 5);
@@ -1675,7 +1715,7 @@ namespace GUIPackage
 			}
 		}
 
-		// Token: 0x060051C7 RID: 20935 RVA: 0x002238FC File Offset: 0x00221AFC
+		// Token: 0x060048FF RID: 18687 RVA: 0x001F025C File Offset: 0x001EE45C
 		public JSONObject getSeidJson(int seid)
 		{
 			if (this.ItemAddSeid != null)
@@ -1711,14 +1751,14 @@ namespace GUIPackage
 			return result;
 		}
 
-		// Token: 0x060051C8 RID: 20936 RVA: 0x00223A20 File Offset: 0x00221C20
+		// Token: 0x06004900 RID: 18688 RVA: 0x001F0380 File Offset: 0x001EE580
 		public void realizeBuffEndSeid1(int seid, List<int> damage, Avatar attaker, Avatar receiver, int type)
 		{
 			int num = (int)((float)damage[0] * this.getSeidJson(seid)["value1"].n);
 			attaker.recvDamage(attaker, attaker, this.skill_ID, -num, type);
 		}
 
-		// Token: 0x060051C9 RID: 20937 RVA: 0x00223A64 File Offset: 0x00221C64
+		// Token: 0x06004901 RID: 18689 RVA: 0x001F03C4 File Offset: 0x001EE5C4
 		public void realizeSeid2(int seid, List<int> damage, Avatar attaker, Avatar receiver, int type)
 		{
 			int i = this.getSeidJson(seid)["value1"].I;
@@ -1726,7 +1766,7 @@ namespace GUIPackage
 			RoundManager.instance.chengeCrystal();
 		}
 
-		// Token: 0x060051CA RID: 20938 RVA: 0x00223AA0 File Offset: 0x00221CA0
+		// Token: 0x06004902 RID: 18690 RVA: 0x001F0400 File Offset: 0x001EE600
 		public void realizeSeid3(int seid, List<int> damage, Avatar attaker, Avatar receiver, int type)
 		{
 			int num = 0;
@@ -1756,7 +1796,7 @@ namespace GUIPackage
 			}
 		}
 
-		// Token: 0x060051CB RID: 20939 RVA: 0x00223BD0 File Offset: 0x00221DD0
+		// Token: 0x06004903 RID: 18691 RVA: 0x001F0530 File Offset: 0x001EE730
 		public void realizeSeid4(int seid, List<int> damage, Avatar attaker, Avatar receiver, int type)
 		{
 			JSONObject seidJson = this.getSeidJson(seid);
@@ -1778,7 +1818,7 @@ namespace GUIPackage
 			}
 		}
 
-		// Token: 0x060051CC RID: 20940 RVA: 0x00223C64 File Offset: 0x00221E64
+		// Token: 0x06004904 RID: 18692 RVA: 0x001F05C4 File Offset: 0x001EE7C4
 		public void realizeSeid5(int seid, List<int> damage, Avatar attaker, Avatar receiver, int type)
 		{
 			if (!attaker.SkillSeidFlag.ContainsKey(seid))
@@ -1790,13 +1830,13 @@ namespace GUIPackage
 			this.CurCD = 50000f;
 		}
 
-		// Token: 0x060051CD RID: 20941 RVA: 0x0003AC77 File Offset: 0x00038E77
+		// Token: 0x06004905 RID: 18693 RVA: 0x001F0626 File Offset: 0x001EE826
 		public void realizeSeid6(int seid, List<int> damage, Avatar attaker, Avatar receiver, int type)
 		{
 			this.CurCD = 50000f;
 		}
 
-		// Token: 0x060051CE RID: 20942 RVA: 0x00223CC8 File Offset: 0x00221EC8
+		// Token: 0x06004906 RID: 18694 RVA: 0x001F0634 File Offset: 0x001EE834
 		public void realizeSeid7(int seid, List<int> damage, Avatar attaker, Avatar receiver, int type)
 		{
 			JSONObject seidJson = this.getSeidJson(seid);
@@ -1810,12 +1850,12 @@ namespace GUIPackage
 			}
 		}
 
-		// Token: 0x060051CF RID: 20943 RVA: 0x000042DD File Offset: 0x000024DD
+		// Token: 0x06004907 RID: 18695 RVA: 0x00004095 File Offset: 0x00002295
 		public void realizeSeid8(int seid, List<int> damage, Avatar attaker, Avatar receiver, int type)
 		{
 		}
 
-		// Token: 0x060051D0 RID: 20944 RVA: 0x00223D3C File Offset: 0x00221F3C
+		// Token: 0x06004908 RID: 18696 RVA: 0x001F06A8 File Offset: 0x001EE8A8
 		public void realizeSeid9(int seid, List<int> damage, Avatar attaker, Avatar receiver, int type)
 		{
 			int num = 0;
@@ -1834,7 +1874,7 @@ namespace GUIPackage
 			}
 		}
 
-		// Token: 0x060051D1 RID: 20945 RVA: 0x0003AC84 File Offset: 0x00038E84
+		// Token: 0x06004909 RID: 18697 RVA: 0x001F0744 File Offset: 0x001EE944
 		public void realizeSeid10(int seid, List<int> damage, Avatar attaker, Avatar receiver, int type)
 		{
 			if (attaker.shengShi <= attaker.OtherAvatar.shengShi)
@@ -1843,7 +1883,7 @@ namespace GUIPackage
 			}
 		}
 
-		// Token: 0x060051D2 RID: 20946 RVA: 0x00223DD8 File Offset: 0x00221FD8
+		// Token: 0x0600490A RID: 18698 RVA: 0x001F0764 File Offset: 0x001EE964
 		public void realizeSeid11(int seid, List<int> damage, Avatar attaker, Avatar receiver, int type)
 		{
 			JSONObject seidJson = this.getSeidJson(seid);
@@ -1856,21 +1896,42 @@ namespace GUIPackage
 				{
 					this.LateDamages = new List<LateDamage>();
 				}
-				this.LateDamages.Add(new LateDamage
+				if (this.skill_ID == 12508)
 				{
-					SkillId = i2,
-					Damage = i3
-				});
+					int buffSum = attaker.buffmag.GetBuffSum(i3);
+					this.LateDamages.Add(new LateDamage
+					{
+						SkillId = i2,
+						Damage = buffSum
+					});
+				}
+				else if (this.SkillID == 1170)
+				{
+					int damage2 = GlobalValue.Get(i3, "unknow");
+					this.LateDamages.Add(new LateDamage
+					{
+						SkillId = i2,
+						Damage = damage2
+					});
+				}
+				else
+				{
+					this.LateDamages.Add(new LateDamage
+					{
+						SkillId = i2,
+						Damage = i3
+					});
+				}
 			}
 		}
 
-		// Token: 0x060051D3 RID: 20947 RVA: 0x0003ACA1 File Offset: 0x00038EA1
+		// Token: 0x0600490B RID: 18699 RVA: 0x001F0864 File Offset: 0x001EEA64
 		public void realizeSeid12(int seid, List<int> damage, Avatar attaker, Avatar receiver, int type)
 		{
 			RoundManager.instance.removeCard(receiver, this.getSeidJson(seid)["value1"].I);
 		}
 
-		// Token: 0x060051D4 RID: 20948 RVA: 0x00223E5C File Offset: 0x0022205C
+		// Token: 0x0600490C RID: 18700 RVA: 0x001F0888 File Offset: 0x001EEA88
 		public void realizeSeid13(int seid, List<int> damage, Avatar attaker, Avatar receiver, int type)
 		{
 			JSONObject seidJson = this.getSeidJson(seid);
@@ -1889,19 +1950,19 @@ namespace GUIPackage
 			dictionary[key] += i2;
 		}
 
-		// Token: 0x060051D5 RID: 20949 RVA: 0x000042DD File Offset: 0x000024DD
+		// Token: 0x0600490D RID: 18701 RVA: 0x00004095 File Offset: 0x00002295
 		public void realizeSeid14(int seid, List<int> damage, Avatar attaker, Avatar receiver, int type)
 		{
 		}
 
-		// Token: 0x060051D6 RID: 20950 RVA: 0x00223EFC File Offset: 0x002220FC
+		// Token: 0x0600490E RID: 18702 RVA: 0x001F0928 File Offset: 0x001EEB28
 		public void realizeSeid15(int seid, List<int> damage, Avatar attaker, Avatar receiver, int type)
 		{
 			JSONObject seidJson = this.getSeidJson(seid);
 			RoundManager.instance.removeCard(receiver, seidJson["value1"].I, seidJson["value2"].I);
 		}
 
-		// Token: 0x060051D7 RID: 20951 RVA: 0x00223F40 File Offset: 0x00222140
+		// Token: 0x0600490F RID: 18703 RVA: 0x001F096C File Offset: 0x001EEB6C
 		public void realizeSeid16(int seid, List<int> damage, Avatar attaker, Avatar receiver, int type)
 		{
 			int listSum = RoundManager.instance.getListSum(receiver.crystal);
@@ -1909,7 +1970,7 @@ namespace GUIPackage
 			RoundManager.instance.RandomDrawCard(attaker, count);
 		}
 
-		// Token: 0x060051D8 RID: 20952 RVA: 0x00223F78 File Offset: 0x00222178
+		// Token: 0x06004910 RID: 18704 RVA: 0x001F09A4 File Offset: 0x001EEBA4
 		public void realizeSeid17(int seid, List<int> damage, Avatar attaker, Avatar receiver, int type)
 		{
 			JSONObject seidJson = this.getSeidJson(seid);
@@ -1925,7 +1986,7 @@ namespace GUIPackage
 			}
 		}
 
-		// Token: 0x060051D9 RID: 20953 RVA: 0x00223FE0 File Offset: 0x002221E0
+		// Token: 0x06004911 RID: 18705 RVA: 0x001F0A0C File Offset: 0x001EEC0C
 		public void realizeSeid18(int seid, List<int> damage, Avatar attaker, Avatar receiver, int type)
 		{
 			int num = 0;
@@ -1939,14 +2000,14 @@ namespace GUIPackage
 			}
 		}
 
-		// Token: 0x060051DA RID: 20954 RVA: 0x00224050 File Offset: 0x00222250
+		// Token: 0x06004912 RID: 18706 RVA: 0x001F0A7C File Offset: 0x001EEC7C
 		public void realizeSeid19(int seid, List<int> damage, Avatar attaker, Avatar receiver, int type)
 		{
 			int listSum = RoundManager.instance.getListSum(receiver.crystal);
 			RoundManager.instance.removeCard(receiver, listSum);
 		}
 
-		// Token: 0x060051DB RID: 20955 RVA: 0x0022407C File Offset: 0x0022227C
+		// Token: 0x06004913 RID: 18707 RVA: 0x001F0AA8 File Offset: 0x001EECA8
 		public void realizeSeid20(int seid, List<int> damage, Avatar attaker, Avatar receiver, int type)
 		{
 			int listSum = RoundManager.instance.getListSum(receiver.crystal);
@@ -1962,25 +2023,25 @@ namespace GUIPackage
 			Debug.Log(string.Format("添加耗时{0}ms", stopwatch.ElapsedMilliseconds));
 		}
 
-		// Token: 0x060051DC RID: 20956 RVA: 0x0022410C File Offset: 0x0022230C
+		// Token: 0x06004914 RID: 18708 RVA: 0x001F0B38 File Offset: 0x001EED38
 		public void realizeSeid21(int seid, List<int> damage, Avatar attaker, Avatar receiver, int type)
 		{
 			int i = this.getSeidJson(seid)["value1"].I;
 			RoundManager.instance.removeCard(receiver, receiver.crystal[i], i);
 		}
 
-		// Token: 0x060051DD RID: 20957 RVA: 0x000042DD File Offset: 0x000024DD
+		// Token: 0x06004915 RID: 18709 RVA: 0x00004095 File Offset: 0x00002295
 		public void realizeSeid22(int seid, List<int> damage, Avatar attaker, Avatar receiver, int type)
 		{
 		}
 
-		// Token: 0x060051DE RID: 20958 RVA: 0x0022414C File Offset: 0x0022234C
+		// Token: 0x06004916 RID: 18710 RVA: 0x001F0B78 File Offset: 0x001EED78
 		public void realizeSeid23(int seid, List<int> damage, Avatar attaker, Avatar receiver, int type)
 		{
 			damage[0] = damage[0] + (int)(this.getSeidJson(seid)["value1"].n * (float)attaker.useSkillNum);
 		}
 
-		// Token: 0x060051DF RID: 20959 RVA: 0x0022418C File Offset: 0x0022238C
+		// Token: 0x06004917 RID: 18711 RVA: 0x001F0BB8 File Offset: 0x001EEDB8
 		public void realizeSeid24(int seid, List<int> damage, Avatar attaker, Avatar receiver, int type)
 		{
 			if (!attaker.SkillSeidFlag.ContainsKey(seid))
@@ -1991,13 +2052,13 @@ namespace GUIPackage
 			attaker.SkillSeidFlag[seid][0] = 1;
 		}
 
-		// Token: 0x060051E0 RID: 20960 RVA: 0x0003ACC5 File Offset: 0x00038EC5
+		// Token: 0x06004918 RID: 18712 RVA: 0x001F0C0A File Offset: 0x001EEE0A
 		public void realizeSeid25(int seid, List<int> damage, Avatar attaker, Avatar receiver, int type)
 		{
 			attaker.spell.addDBuff(5, attaker.HP_Max - attaker.HP);
 		}
 
-		// Token: 0x060051E1 RID: 20961 RVA: 0x002241E0 File Offset: 0x002223E0
+		// Token: 0x06004919 RID: 18713 RVA: 0x001F0C28 File Offset: 0x001EEE28
 		public void realizeSeid26(int seid, List<int> damage, Avatar attaker, Avatar receiver, int type)
 		{
 			damage[0] = receiver.HP / 2;
@@ -2008,14 +2069,14 @@ namespace GUIPackage
 			}
 		}
 
-		// Token: 0x060051E2 RID: 20962 RVA: 0x00224228 File Offset: 0x00222428
+		// Token: 0x0600491A RID: 18714 RVA: 0x001F0C70 File Offset: 0x001EEE70
 		public void realizeSeid27(int seid, List<int> damage, Avatar attaker, Avatar receiver, int type)
 		{
 			int listSum = RoundManager.instance.getListSum(attaker.crystal);
 			damage[0] = damage[0] + listSum * this.getSeidJson(seid)["value1"].I;
 		}
 
-		// Token: 0x060051E3 RID: 20963 RVA: 0x00224270 File Offset: 0x00222470
+		// Token: 0x0600491B RID: 18715 RVA: 0x001F0CB8 File Offset: 0x001EEEB8
 		public void realizeFinalSeid28(int seid, List<int> damage, Avatar attaker, Avatar receiver, int type)
 		{
 			int num = receiver.HP - damage[0] - receiver.HP_Max;
@@ -2025,7 +2086,7 @@ namespace GUIPackage
 			}
 		}
 
-		// Token: 0x060051E4 RID: 20964 RVA: 0x002242A8 File Offset: 0x002224A8
+		// Token: 0x0600491C RID: 18716 RVA: 0x001F0CF0 File Offset: 0x001EEEF0
 		public void realizeSeid29(int seid, List<int> damage, Avatar attaker, Avatar receiver, int type)
 		{
 			int i = this.getSeidJson(seid)["value1"].I;
@@ -2051,7 +2112,7 @@ namespace GUIPackage
 			this.CurCD = 50000f;
 		}
 
-		// Token: 0x060051E5 RID: 20965 RVA: 0x0022438C File Offset: 0x0022258C
+		// Token: 0x0600491D RID: 18717 RVA: 0x001F0DD4 File Offset: 0x001EEFD4
 		public void realizeSeid30(int seid, List<int> damage, Avatar attaker, Avatar receiver, int type)
 		{
 			JSONObject seidJson = this.getSeidJson(seid);
@@ -2074,7 +2135,7 @@ namespace GUIPackage
 			}
 		}
 
-		// Token: 0x060051E6 RID: 20966 RVA: 0x00224420 File Offset: 0x00222620
+		// Token: 0x0600491E RID: 18718 RVA: 0x001F0E68 File Offset: 0x001EF068
 		public void realizeSeid31(int seid, List<int> damage, Avatar attaker, Avatar receiver, int type)
 		{
 			JSONObject seidJson = this.getSeidJson(seid);
@@ -2096,7 +2157,7 @@ namespace GUIPackage
 			}
 		}
 
-		// Token: 0x060051E7 RID: 20967 RVA: 0x002244B8 File Offset: 0x002226B8
+		// Token: 0x0600491F RID: 18719 RVA: 0x001F0F00 File Offset: 0x001EF100
 		public void realizeSeid32(int seid, List<int> damage, Avatar attaker, Avatar receiver, int type)
 		{
 			JSONObject seidJson = this.getSeidJson(seid);
@@ -2114,7 +2175,7 @@ namespace GUIPackage
 			}
 		}
 
-		// Token: 0x060051E8 RID: 20968 RVA: 0x0022453C File Offset: 0x0022273C
+		// Token: 0x06004920 RID: 18720 RVA: 0x001F0F84 File Offset: 0x001EF184
 		public void realizeSeid33(int seid, List<int> damage, Avatar attaker, Avatar receiver, int type)
 		{
 			JSONObject seidJson = this.getSeidJson(seid);
@@ -2132,24 +2193,24 @@ namespace GUIPackage
 			}
 		}
 
-		// Token: 0x060051E9 RID: 20969 RVA: 0x0003ACE0 File Offset: 0x00038EE0
+		// Token: 0x06004921 RID: 18721 RVA: 0x001F1006 File Offset: 0x001EF206
 		public void realizeBuffEndSeid34(int seid, List<int> damage, Avatar attaker, Avatar receiver, int type)
 		{
 			damage[0] = damage[0] * this.getSeidJson(seid)["value1"].I;
 		}
 
-		// Token: 0x060051EA RID: 20970 RVA: 0x000042DD File Offset: 0x000024DD
+		// Token: 0x06004922 RID: 18722 RVA: 0x00004095 File Offset: 0x00002295
 		public void realizeSeidFinal34(int seid, List<int> damage, Avatar attaker, Avatar receiver, int type)
 		{
 		}
 
-		// Token: 0x060051EB RID: 20971 RVA: 0x002245C0 File Offset: 0x002227C0
+		// Token: 0x06004923 RID: 18723 RVA: 0x001F1030 File Offset: 0x001EF230
 		public void realizeSeid35(int seid, List<int> damage, Avatar attaker, Avatar receiver, int type)
 		{
 			damage[0] = damage[0] + attaker.NowRoundUsedCard.Count * this.getSeidJson(seid)["value1"].I;
 		}
 
-		// Token: 0x060051EC RID: 20972 RVA: 0x00224600 File Offset: 0x00222800
+		// Token: 0x06004924 RID: 18724 RVA: 0x001F1070 File Offset: 0x001EF270
 		public void realizeSeid36(int seid, List<int> damage, Avatar attaker, Avatar receiver, int type)
 		{
 			JSONObject seidJson = this.getSeidJson(seid);
@@ -2159,14 +2220,14 @@ namespace GUIPackage
 			damage[0] = damage[0] + count * j;
 		}
 
-		// Token: 0x060051ED RID: 20973 RVA: 0x00224678 File Offset: 0x00222878
+		// Token: 0x06004925 RID: 18725 RVA: 0x001F10E8 File Offset: 0x001EF2E8
 		public void realizeSeid37(int seid, List<int> damage, Avatar attaker, Avatar receiver, int type)
 		{
 			int cardNum = attaker.crystal.getCardNum();
 			attaker.recvDamage(attaker, attaker, this.skill_ID, -cardNum * this.getSeidJson(seid)["value1"].I, type);
 		}
 
-		// Token: 0x060051EE RID: 20974 RVA: 0x002246BC File Offset: 0x002228BC
+		// Token: 0x06004926 RID: 18726 RVA: 0x001F112C File Offset: 0x001EF32C
 		public void realizeSeid38(int seid, List<int> damage, Avatar attaker, Avatar receiver, int type)
 		{
 			JSONObject seidJson = this.getSeidJson(seid);
@@ -2174,7 +2235,7 @@ namespace GUIPackage
 			damage[0] = damage[0] + num * seidJson["value2"].I;
 		}
 
-		// Token: 0x060051EF RID: 20975 RVA: 0x00224710 File Offset: 0x00222910
+		// Token: 0x06004927 RID: 18727 RVA: 0x001F1180 File Offset: 0x001EF380
 		public void realizeSeid39(int seid, List<int> damage, Avatar attaker, Avatar receiver, int type)
 		{
 			int listSum = RoundManager.instance.getListSum(attaker.crystal);
@@ -2182,7 +2243,7 @@ namespace GUIPackage
 			damage[0] = damage[0] + listSum * this.getSeidJson(seid)["value1"].I;
 		}
 
-		// Token: 0x060051F0 RID: 20976 RVA: 0x00224764 File Offset: 0x00222964
+		// Token: 0x06004928 RID: 18728 RVA: 0x001F11D4 File Offset: 0x001EF3D4
 		public void realizeSeid40(int seid, List<int> damage, Avatar attaker, Avatar receiver, int type)
 		{
 			JSONObject seidJson = this.getSeidJson(seid);
@@ -2193,7 +2254,7 @@ namespace GUIPackage
 			damage[0] = damage[0] + num * i2;
 		}
 
-		// Token: 0x060051F1 RID: 20977 RVA: 0x002247C8 File Offset: 0x002229C8
+		// Token: 0x06004929 RID: 18729 RVA: 0x001F1238 File Offset: 0x001EF438
 		public void realizeSeid41(int seid, List<int> damage, Avatar attaker, Avatar receiver, int type)
 		{
 			if (!attaker.SkillSeidFlag.ContainsKey(seid))
@@ -2221,7 +2282,7 @@ namespace GUIPackage
 			}
 		}
 
-		// Token: 0x060051F2 RID: 20978 RVA: 0x002248E0 File Offset: 0x00222AE0
+		// Token: 0x0600492A RID: 18730 RVA: 0x001F1350 File Offset: 0x001EF550
 		public void realizeSeid42(int seid, List<int> damage, Avatar attaker, Avatar receiver, int type)
 		{
 			JSONObject seidJson = this.getSeidJson(seid);
@@ -2234,7 +2295,7 @@ namespace GUIPackage
 			}
 		}
 
-		// Token: 0x060051F3 RID: 20979 RVA: 0x00224954 File Offset: 0x00222B54
+		// Token: 0x0600492B RID: 18731 RVA: 0x001F13C4 File Offset: 0x001EF5C4
 		public void realizeSeid43(int seid, List<int> damage, Avatar attaker, Avatar receiver, int type)
 		{
 			JSONObject seidJson = this.getSeidJson(seid);
@@ -2249,7 +2310,7 @@ namespace GUIPackage
 			}
 		}
 
-		// Token: 0x060051F4 RID: 20980 RVA: 0x002249F8 File Offset: 0x00222BF8
+		// Token: 0x0600492C RID: 18732 RVA: 0x001F1468 File Offset: 0x001EF668
 		public void realizeSeid44(int seid, List<int> damage, Avatar attaker, Avatar receiver, int type)
 		{
 			JSONObject seidJson = this.getSeidJson(seid);
@@ -2262,7 +2323,7 @@ namespace GUIPackage
 			}
 		}
 
-		// Token: 0x060051F5 RID: 20981 RVA: 0x00224A6C File Offset: 0x00222C6C
+		// Token: 0x0600492D RID: 18733 RVA: 0x001F14DC File Offset: 0x001EF6DC
 		public void realizeSeid45(int seid, List<int> damage, Avatar attaker, Avatar receiver, int type)
 		{
 			JSONObject seidJson = this.getSeidJson(seid);
@@ -2270,7 +2331,7 @@ namespace GUIPackage
 			damage[0] = damage[0] + seidJson["value3"].I;
 		}
 
-		// Token: 0x060051F6 RID: 20982 RVA: 0x00224ACC File Offset: 0x00222CCC
+		// Token: 0x0600492E RID: 18734 RVA: 0x001F153C File Offset: 0x001EF73C
 		public void realizeSeid46(int seid, List<int> damage, Avatar attaker, Avatar receiver, int type)
 		{
 			JSONObject seidJson = this.getSeidJson(seid);
@@ -2278,7 +2339,7 @@ namespace GUIPackage
 			attaker.recvDamage(attaker, attaker, this.skill_ID, -seidJson["value3"].I, type);
 		}
 
-		// Token: 0x060051F7 RID: 20983 RVA: 0x00224B2C File Offset: 0x00222D2C
+		// Token: 0x0600492F RID: 18735 RVA: 0x001F159C File Offset: 0x001EF79C
 		public void realizeSeid47(int seid, List<int> damage, Avatar attaker, Avatar receiver, int type)
 		{
 			JSONObject seidJson = this.getSeidJson(seid);
@@ -2286,7 +2347,7 @@ namespace GUIPackage
 			this.createSkill(attaker, Tools.instance.getSkillKeyByID(seidJson["value3"].I, attaker));
 		}
 
-		// Token: 0x060051F8 RID: 20984 RVA: 0x00224B8C File Offset: 0x00222D8C
+		// Token: 0x06004930 RID: 18736 RVA: 0x001F15FC File Offset: 0x001EF7FC
 		public void realizeSeid48(int seid, List<int> damage, Avatar attaker, Avatar receiver, int type)
 		{
 			JSONObject seidJson = this.getSeidJson(seid);
@@ -2298,7 +2359,7 @@ namespace GUIPackage
 			}
 		}
 
-		// Token: 0x060051F9 RID: 20985 RVA: 0x00224C00 File Offset: 0x00222E00
+		// Token: 0x06004931 RID: 18737 RVA: 0x001F1670 File Offset: 0x001EF870
 		public void realizeSeid49(int seid, List<int> damage, Avatar attaker, Avatar receiver, int type)
 		{
 			int num = 0;
@@ -2315,7 +2376,7 @@ namespace GUIPackage
 			}
 		}
 
-		// Token: 0x060051FA RID: 20986 RVA: 0x00224CC4 File Offset: 0x00222EC4
+		// Token: 0x06004932 RID: 18738 RVA: 0x001F1734 File Offset: 0x001EF934
 		public void realizeSeid50(int seid, List<int> damage, Avatar attaker, Avatar receiver, int type)
 		{
 			JSONObject seidJson = this.getSeidJson(seid);
@@ -2327,7 +2388,7 @@ namespace GUIPackage
 			}
 		}
 
-		// Token: 0x060051FB RID: 20987 RVA: 0x00224D28 File Offset: 0x00222F28
+		// Token: 0x06004933 RID: 18739 RVA: 0x001F1798 File Offset: 0x001EF998
 		public void realizeSeid51(int seid, List<int> damage, Avatar attaker, Avatar receiver, int type)
 		{
 			int num = 0;
@@ -2346,7 +2407,7 @@ namespace GUIPackage
 			}
 		}
 
-		// Token: 0x060051FC RID: 20988 RVA: 0x0003AD07 File Offset: 0x00038F07
+		// Token: 0x06004934 RID: 18740 RVA: 0x001F1874 File Offset: 0x001EFA74
 		public void realizeSeid52(int seid, List<int> damage, Avatar attaker, Avatar receiver, int type)
 		{
 			if (!receiver.buffmag.HasBuff(this.getSeidJson(seid)["value1"].I))
@@ -2355,7 +2416,7 @@ namespace GUIPackage
 			}
 		}
 
-		// Token: 0x060051FD RID: 20989 RVA: 0x0003AD35 File Offset: 0x00038F35
+		// Token: 0x06004935 RID: 18741 RVA: 0x001F18A2 File Offset: 0x001EFAA2
 		public void realizeSeid53(int seid, List<int> damage, Avatar attaker, Avatar receiver, int type)
 		{
 			if (this.getCrystalNum(receiver) != 0)
@@ -2364,7 +2425,7 @@ namespace GUIPackage
 			}
 		}
 
-		// Token: 0x060051FE RID: 20990 RVA: 0x00224E04 File Offset: 0x00223004
+		// Token: 0x06004936 RID: 18742 RVA: 0x001F18B8 File Offset: 0x001EFAB8
 		public void realizeSeid54(int seid, List<int> damage, Avatar attaker, Avatar receiver, int type)
 		{
 			int crystalNum = this.getCrystalNum(attaker);
@@ -2375,7 +2436,7 @@ namespace GUIPackage
 			}
 		}
 
-		// Token: 0x060051FF RID: 20991 RVA: 0x0003AD49 File Offset: 0x00038F49
+		// Token: 0x06004937 RID: 18743 RVA: 0x001F18EE File Offset: 0x001EFAEE
 		public void realizeSeid55(int seid, List<int> damage, Avatar attaker, Avatar receiver, int type)
 		{
 			if (RoundManager.instance.drawCard(attaker).cardType != this.getSeidJson(seid)["value1"].I)
@@ -2384,7 +2445,7 @@ namespace GUIPackage
 			}
 		}
 
-		// Token: 0x06005200 RID: 20992 RVA: 0x00224E3C File Offset: 0x0022303C
+		// Token: 0x06004938 RID: 18744 RVA: 0x001F1920 File Offset: 0x001EFB20
 		public void realizeSeid56(int seid, List<int> damage, Avatar attaker, Avatar receiver, int type)
 		{
 			JSONObject seidJson = this.getSeidJson(seid);
@@ -2403,7 +2464,7 @@ namespace GUIPackage
 			}
 		}
 
-		// Token: 0x06005201 RID: 20993 RVA: 0x00224EAC File Offset: 0x002230AC
+		// Token: 0x06004939 RID: 18745 RVA: 0x001F1990 File Offset: 0x001EFB90
 		public void realizeSeid57(int seid, List<int> damage, Avatar attaker, Avatar receiver, int type)
 		{
 			JSONObject seidJson = this.getSeidJson(seid);
@@ -2413,7 +2474,7 @@ namespace GUIPackage
 			}
 		}
 
-		// Token: 0x06005202 RID: 20994 RVA: 0x00224F10 File Offset: 0x00223110
+		// Token: 0x0600493A RID: 18746 RVA: 0x001F19F4 File Offset: 0x001EFBF4
 		public void realizeSeid58(int seid, List<int> damage, Avatar attaker, Avatar receiver, int type)
 		{
 			if (attaker.UsedSkills.Count > 0)
@@ -2444,25 +2505,25 @@ namespace GUIPackage
 			}
 		}
 
-		// Token: 0x06005203 RID: 20995 RVA: 0x0003AD7B File Offset: 0x00038F7B
+		// Token: 0x0600493B RID: 18747 RVA: 0x001F1AA4 File Offset: 0x001EFCA4
 		public void realizeSeid59(int seid, List<int> damage, Avatar attaker, Avatar receiver, int type)
 		{
 			attaker.recvDamage(attaker, attaker, this.skill_ID, -attaker.HP_Max * (int)this.getSeidJson(seid)["value1"].n / 100, type);
 		}
 
-		// Token: 0x06005204 RID: 20996 RVA: 0x0003ADB0 File Offset: 0x00038FB0
+		// Token: 0x0600493C RID: 18748 RVA: 0x001F1AD9 File Offset: 0x001EFCD9
 		public void realizeSeid60(int seid, List<int> damage, Avatar attaker, Avatar receiver, int type)
 		{
 			attaker.recvDamage(attaker, attaker, this.skill_ID, -(attaker.HP_Max - attaker.HP) * (int)this.getSeidJson(seid)["value1"].n / 100, type);
 		}
 
-		// Token: 0x06005205 RID: 20997 RVA: 0x00224FC0 File Offset: 0x002231C0
+		// Token: 0x0600493D RID: 18749 RVA: 0x001F1B18 File Offset: 0x001EFD18
 		public void realizeSeid61(int seid, List<int> damage, Avatar attaker, Avatar receiver, int type)
 		{
 			damage[0] = damage[0] + attaker.HP_Max * (int)this.getSeidJson(seid)["value1"].n / 100;
 		}
 
-		// Token: 0x06005206 RID: 20998 RVA: 0x00225000 File Offset: 0x00223200
+		// Token: 0x0600493E RID: 18750 RVA: 0x001F1B58 File Offset: 0x001EFD58
 		public void realizeSeid62(int seid, List<int> damage, Avatar attaker, Avatar receiver, int type)
 		{
 			int i = this.getSeidJson(seid)["value1"].I;
@@ -2481,7 +2542,7 @@ namespace GUIPackage
 			}
 		}
 
-		// Token: 0x06005207 RID: 20999 RVA: 0x002250D4 File Offset: 0x002232D4
+		// Token: 0x0600493F RID: 18751 RVA: 0x001F1C2C File Offset: 0x001EFE2C
 		public void realizeSeid63(int seid, List<int> damage, Avatar attaker, Avatar receiver, int type)
 		{
 			JSONObject seidJson = this.getSeidJson(seid);
@@ -2497,24 +2558,24 @@ namespace GUIPackage
 			}
 		}
 
-		// Token: 0x06005208 RID: 21000 RVA: 0x0003ADEC File Offset: 0x00038FEC
+		// Token: 0x06004940 RID: 18752 RVA: 0x001F1CD0 File Offset: 0x001EFED0
 		public void realizeSeid64(int seid, List<int> damage, Avatar attaker, Avatar receiver, int type)
 		{
 			attaker.recvDamage(attaker, receiver, this.skill_ID, receiver.HP_Max * (int)this.getSeidJson(seid)["value1"].n / 100, type);
 		}
 
-		// Token: 0x06005209 RID: 21001 RVA: 0x000042DD File Offset: 0x000024DD
+		// Token: 0x06004941 RID: 18753 RVA: 0x00004095 File Offset: 0x00002295
 		public void realizeSeid65(int seid, List<int> damage, Avatar attaker, Avatar receiver, int type)
 		{
 		}
 
-		// Token: 0x0600520A RID: 21002 RVA: 0x00225178 File Offset: 0x00223378
+		// Token: 0x06004942 RID: 18754 RVA: 0x001F1D08 File Offset: 0x001EFF08
 		public void realizeSeid66(int seid, List<int> damage, Avatar attaker, Avatar receiver, int type)
 		{
 			damage[0] = damage[0] + (int)this.getSeidJson(seid)["value1"].n;
 		}
 
-		// Token: 0x0600520B RID: 21003 RVA: 0x002251B0 File Offset: 0x002233B0
+		// Token: 0x06004943 RID: 18755 RVA: 0x001F1D40 File Offset: 0x001EFF40
 		public void realizeSeid67(int seid, List<int> damage, Avatar attaker, Avatar receiver, int type)
 		{
 			JSONObject seidJson = this.getSeidJson(seid);
@@ -2533,23 +2594,23 @@ namespace GUIPackage
 			}
 		}
 
-		// Token: 0x0600520C RID: 21004 RVA: 0x000042DD File Offset: 0x000024DD
+		// Token: 0x06004944 RID: 18756 RVA: 0x00004095 File Offset: 0x00002295
 		public void realizeSeid68(int seid, List<int> damage, Avatar attaker, Avatar receiver, int type)
 		{
 		}
 
-		// Token: 0x0600520D RID: 21005 RVA: 0x000042DD File Offset: 0x000024DD
+		// Token: 0x06004945 RID: 18757 RVA: 0x00004095 File Offset: 0x00002295
 		public void realizeSeid69(int seid, List<int> damage, Avatar attaker, Avatar receiver, int type)
 		{
 		}
 
-		// Token: 0x0600520E RID: 21006 RVA: 0x0003AE22 File Offset: 0x00039022
+		// Token: 0x06004946 RID: 18758 RVA: 0x001F1DF1 File Offset: 0x001EFFF1
 		public void realizeSeid70(int seid, List<int> damage, Avatar attaker, Avatar receiver, int type)
 		{
 			RoundManager.instance.startRound(attaker);
 		}
 
-		// Token: 0x0600520F RID: 21007 RVA: 0x00225264 File Offset: 0x00223464
+		// Token: 0x06004947 RID: 18759 RVA: 0x001F1E00 File Offset: 0x001F0000
 		public void realizeSeid71(int seid, List<int> damage, Avatar attaker, Avatar receiver, int type)
 		{
 			JSONObject seidJson = this.getSeidJson(seid);
@@ -2557,7 +2618,7 @@ namespace GUIPackage
 			attaker.spell.addDBuff(seidJson["value2"].I, seidJson["value3"].I);
 		}
 
-		// Token: 0x06005210 RID: 21008 RVA: 0x002252C4 File Offset: 0x002234C4
+		// Token: 0x06004948 RID: 18760 RVA: 0x001F1E60 File Offset: 0x001F0060
 		public void realizeSeid72(int seid, List<int> damage, Avatar attaker, Avatar receiver, int type)
 		{
 			int listSum = RoundManager.instance.getListSum(receiver.crystal);
@@ -2565,13 +2626,13 @@ namespace GUIPackage
 			RoundManager.instance.RandomDrawCard(attaker, listSum);
 		}
 
-		// Token: 0x06005211 RID: 21009 RVA: 0x002252FC File Offset: 0x002234FC
+		// Token: 0x06004949 RID: 18761 RVA: 0x001F1E98 File Offset: 0x001F0098
 		public void realizeSeid73(int seid, List<int> damage, Avatar attaker, Avatar receiver, int type)
 		{
 			damage[0] = damage[0] + attaker.fightTemp.lastRoundDamage[1] / 2;
 		}
 
-		// Token: 0x06005212 RID: 21010 RVA: 0x0022532C File Offset: 0x0022352C
+		// Token: 0x0600494A RID: 18762 RVA: 0x001F1EC8 File Offset: 0x001F00C8
 		public void realizeSeid74(int seid, List<int> damage, Avatar attaker, Avatar receiver, int type)
 		{
 			foreach (List<int> buffid in attaker.buffmag.getAllBuffByType(this.getSeidJson(seid)["value1"].I))
@@ -2580,7 +2641,7 @@ namespace GUIPackage
 			}
 		}
 
-		// Token: 0x06005213 RID: 21011 RVA: 0x002253A0 File Offset: 0x002235A0
+		// Token: 0x0600494B RID: 18763 RVA: 0x001F1F3C File Offset: 0x001F013C
 		public void realizeSeid75(int seid, List<int> damage, Avatar attaker, Avatar receiver, int type)
 		{
 			JSONObject seidJson = this.getSeidJson(seid);
@@ -2618,7 +2679,7 @@ namespace GUIPackage
 			}
 		}
 
-		// Token: 0x06005214 RID: 21012 RVA: 0x0003AE2F File Offset: 0x0003902F
+		// Token: 0x0600494C RID: 18764 RVA: 0x001F2030 File Offset: 0x001F0230
 		public void realizeSeid77(int seid, List<int> damage, Avatar attaker, Avatar receiver, int type)
 		{
 			if ((int)((float)attaker.HP / (float)attaker.HP_Max * 100f) > this.getSeidJson(seid)["value1"].I)
@@ -2627,7 +2688,7 @@ namespace GUIPackage
 			}
 		}
 
-		// Token: 0x06005215 RID: 21013 RVA: 0x0003AE67 File Offset: 0x00039067
+		// Token: 0x0600494D RID: 18765 RVA: 0x001F2068 File Offset: 0x001F0268
 		public void realizeSeid78(int seid, List<int> damage, Avatar attaker, Avatar receiver, int type)
 		{
 			if (attaker.crystal.getCardNum() != 0)
@@ -2636,7 +2697,7 @@ namespace GUIPackage
 			}
 		}
 
-		// Token: 0x06005216 RID: 21014 RVA: 0x00225494 File Offset: 0x00223694
+		// Token: 0x0600494E RID: 18766 RVA: 0x001F2080 File Offset: 0x001F0280
 		public void realizeSeid79(int seid, List<int> damage, Avatar attaker, Avatar receiver, int type)
 		{
 			JSONObject seidJson = this.getSeidJson(seid);
@@ -2648,7 +2709,7 @@ namespace GUIPackage
 			}
 		}
 
-		// Token: 0x06005217 RID: 21015 RVA: 0x002254F8 File Offset: 0x002236F8
+		// Token: 0x0600494F RID: 18767 RVA: 0x001F20E4 File Offset: 0x001F02E4
 		public void realizeSeid80(int seid, List<int> damage, Avatar attaker, Avatar receiver, int type)
 		{
 			JSONObject seidJson = this.getSeidJson(seid);
@@ -2660,7 +2721,7 @@ namespace GUIPackage
 			}
 		}
 
-		// Token: 0x06005218 RID: 21016 RVA: 0x00225558 File Offset: 0x00223758
+		// Token: 0x06004950 RID: 18768 RVA: 0x001F2144 File Offset: 0x001F0344
 		public void realizeSeid81(int seid, List<int> damage, Avatar attaker, Avatar receiver, int type)
 		{
 			attaker.cardMag.getCardNum();
@@ -2668,7 +2729,7 @@ namespace GUIPackage
 			RoundManager.instance.removeCard(attaker, i);
 		}
 
-		// Token: 0x06005219 RID: 21017 RVA: 0x00225594 File Offset: 0x00223794
+		// Token: 0x06004951 RID: 18769 RVA: 0x001F2180 File Offset: 0x001F0380
 		public void realizeSeid82(int seid, List<int> damage, Avatar attaker, Avatar receiver, int type)
 		{
 			JSONObject seidJson = this.getSeidJson(seid);
@@ -2679,7 +2740,7 @@ namespace GUIPackage
 			}
 		}
 
-		// Token: 0x0600521A RID: 21018 RVA: 0x002255EC File Offset: 0x002237EC
+		// Token: 0x06004952 RID: 18770 RVA: 0x001F21D8 File Offset: 0x001F03D8
 		public void realizeSeid83(int seid, List<int> damage, Avatar attaker, Avatar receiver, int type)
 		{
 			int num = 0;
@@ -2703,7 +2764,7 @@ namespace GUIPackage
 			}
 		}
 
-		// Token: 0x0600521B RID: 21019 RVA: 0x002256B4 File Offset: 0x002238B4
+		// Token: 0x06004953 RID: 18771 RVA: 0x001F22A0 File Offset: 0x001F04A0
 		public void realizeSeid84(int seid, List<int> damage, Avatar attaker, Avatar receiver, int type)
 		{
 			JSONObject seidJson = this.getSeidJson(seid);
@@ -2711,7 +2772,7 @@ namespace GUIPackage
 			damage[0] = damage[0] + (int)((float)num / seidJson["value1"].n) * seidJson["value2"].I;
 		}
 
-		// Token: 0x0600521C RID: 21020 RVA: 0x00225728 File Offset: 0x00223928
+		// Token: 0x06004954 RID: 18772 RVA: 0x001F2314 File Offset: 0x001F0514
 		public void realizeSeid85(int seid, List<int> damage, Avatar attaker, Avatar receiver, int type)
 		{
 			int dunSu = attaker.dunSu;
@@ -2719,13 +2780,13 @@ namespace GUIPackage
 			damage[0] = damage[0] + (int)((float)dunSu / seidJson["value1"].n) * seidJson["value2"].I;
 		}
 
-		// Token: 0x0600521D RID: 21021 RVA: 0x0003AE7E File Offset: 0x0003907E
+		// Token: 0x06004955 RID: 18773 RVA: 0x001F2366 File Offset: 0x001F0566
 		public void realizeSeid86(int seid, List<int> damage, Avatar attaker, Avatar receiver, int type)
 		{
 			attaker.recvDamage(attaker, receiver, this.skill_ID, receiver.HP * (int)this.getSeidJson(seid)["value1"].n / 100, type);
 		}
 
-		// Token: 0x0600521E RID: 21022 RVA: 0x0022577C File Offset: 0x0022397C
+		// Token: 0x06004956 RID: 18774 RVA: 0x001F239C File Offset: 0x001F059C
 		public void realizeSeid87(int seid, List<int> damage, Avatar attaker, Avatar receiver, int type)
 		{
 			int i = this.getSeidJson(seid)["value1"].I;
@@ -2751,7 +2812,7 @@ namespace GUIPackage
 			}
 		}
 
-		// Token: 0x0600521F RID: 21023 RVA: 0x0022587C File Offset: 0x00223A7C
+		// Token: 0x06004957 RID: 18775 RVA: 0x001F249C File Offset: 0x001F069C
 		public void realizeSeid88(int seid, List<int> damage, Avatar attaker, Avatar receiver, int type)
 		{
 			JSONObject seidJson = this.getSeidJson(seid);
@@ -2763,7 +2824,7 @@ namespace GUIPackage
 			}
 		}
 
-		// Token: 0x06005220 RID: 21024 RVA: 0x0003AEB4 File Offset: 0x000390B4
+		// Token: 0x06004958 RID: 18776 RVA: 0x001F24EA File Offset: 0x001F06EA
 		public void realizeSeid89(int seid, List<int> damage, Avatar attaker, Avatar receiver, int type)
 		{
 			if (receiver.cardMag[(int)this.getSeidJson(seid)["value1"].n] <= 0)
@@ -2772,7 +2833,7 @@ namespace GUIPackage
 			}
 		}
 
-		// Token: 0x06005221 RID: 21025 RVA: 0x002258CC File Offset: 0x00223ACC
+		// Token: 0x06004959 RID: 18777 RVA: 0x001F251C File Offset: 0x001F071C
 		public void realizeSeid90(int seid, List<int> damage, Avatar attaker, Avatar receiver, int type)
 		{
 			JSONObject seidJson = this.getSeidJson(seid);
@@ -2780,7 +2841,7 @@ namespace GUIPackage
 			damage[0] = damage[0] + num * seidJson["value2"].I;
 		}
 
-		// Token: 0x06005222 RID: 21026 RVA: 0x00225928 File Offset: 0x00223B28
+		// Token: 0x0600495A RID: 18778 RVA: 0x001F2578 File Offset: 0x001F0778
 		public void realizeSeid91(int seid, List<int> damage, Avatar attaker, Avatar receiver, int type)
 		{
 			JSONObject seidJson = this.getSeidJson(seid);
@@ -2789,14 +2850,14 @@ namespace GUIPackage
 			damage[0] = damage[0] + count * seidJson["value2"].I;
 		}
 
-		// Token: 0x06005223 RID: 21027 RVA: 0x0022599C File Offset: 0x00223B9C
+		// Token: 0x0600495B RID: 18779 RVA: 0x001F25EC File Offset: 0x001F07EC
 		public void realizeSeid92(int seid, List<int> damage, Avatar attaker, Avatar receiver, int type)
 		{
 			JSONObject seidJson = this.getSeidJson(seid);
 			RoundManager.instance.removeCard(attaker, seidJson["value1"].I, seidJson["value2"].I);
 		}
 
-		// Token: 0x06005224 RID: 21028 RVA: 0x002259DC File Offset: 0x00223BDC
+		// Token: 0x0600495C RID: 18780 RVA: 0x001F262C File Offset: 0x001F082C
 		public void realizeSeid94(int seid, List<int> damage, Avatar attaker, Avatar receiver, int type)
 		{
 			JSONObject seidJson = this.getSeidJson(seid);
@@ -2807,7 +2868,7 @@ namespace GUIPackage
 			}
 		}
 
-		// Token: 0x06005225 RID: 21029 RVA: 0x0003AEE4 File Offset: 0x000390E4
+		// Token: 0x0600495D RID: 18781 RVA: 0x001F2678 File Offset: 0x001F0878
 		public void realizeSeid95(int seid, List<int> damage, Avatar attaker, Avatar receiver, int type)
 		{
 			if (!receiver.buffmag.HasXTypeBuff(this.getSeidJson(seid)["value1"].I))
@@ -2816,7 +2877,7 @@ namespace GUIPackage
 			}
 		}
 
-		// Token: 0x06005226 RID: 21030 RVA: 0x00225A28 File Offset: 0x00223C28
+		// Token: 0x0600495E RID: 18782 RVA: 0x001F26A8 File Offset: 0x001F08A8
 		public void realizeSeid96(int seid, List<int> damage, Avatar attaker, Avatar receiver, int type)
 		{
 			int i = this.getSeidJson(seid)["value1"].I;
@@ -2830,7 +2891,7 @@ namespace GUIPackage
 			}
 		}
 
-		// Token: 0x06005227 RID: 21031 RVA: 0x00225AB8 File Offset: 0x00223CB8
+		// Token: 0x0600495F RID: 18783 RVA: 0x001F2738 File Offset: 0x001F0938
 		public void realizeSeid100(int seid, List<int> damage, Avatar attaker, Avatar receiver, int type)
 		{
 			JSONObject seidJson = this.getSeidJson(seid);
@@ -2842,13 +2903,13 @@ namespace GUIPackage
 			}
 		}
 
-		// Token: 0x06005228 RID: 21032 RVA: 0x0003AF12 File Offset: 0x00039112
+		// Token: 0x06004960 RID: 18784 RVA: 0x001F279D File Offset: 0x001F099D
 		public void realizeSeid101(int seid, List<int> damage, Avatar attaker, Avatar receiver, int type)
 		{
 			attaker.setHP((int)this.getSeidJson(seid)["value1"].n);
 		}
 
-		// Token: 0x06005229 RID: 21033 RVA: 0x00225B20 File Offset: 0x00223D20
+		// Token: 0x06004961 RID: 18785 RVA: 0x001F27BC File Offset: 0x001F09BC
 		public void realizeSeid102(int seid, List<int> damage, Avatar attaker, Avatar receiver, int type)
 		{
 			int num = 0;
@@ -2875,7 +2936,7 @@ namespace GUIPackage
 			}
 		}
 
-		// Token: 0x0600522A RID: 21034 RVA: 0x00225BFC File Offset: 0x00223DFC
+		// Token: 0x06004962 RID: 18786 RVA: 0x001F2898 File Offset: 0x001F0A98
 		public void realizeFinalSeid103(int seid, List<int> damage, Avatar attaker, Avatar receiver, int type)
 		{
 			this.AddSeidSkillFlag(attaker, seid, damage[0]);
@@ -2895,13 +2956,13 @@ namespace GUIPackage
 			}
 		}
 
-		// Token: 0x0600522B RID: 21035 RVA: 0x0003AF31 File Offset: 0x00039131
+		// Token: 0x06004963 RID: 18787 RVA: 0x001F2938 File Offset: 0x001F0B38
 		public void realizeFinalSeid104(int seid, List<int> damage, Avatar attaker, Avatar receiver, int type)
 		{
 			Tools.instance.ToolsStartCoroutine(this.ISeid104(seid));
 		}
 
-		// Token: 0x0600522C RID: 21036 RVA: 0x0003AF44 File Offset: 0x00039144
+		// Token: 0x06004964 RID: 18788 RVA: 0x001F294B File Offset: 0x001F0B4B
 		public IEnumerator ISeid104(int seid)
 		{
 			yield return new WaitForSeconds(0.01f);
@@ -2909,7 +2970,7 @@ namespace GUIPackage
 			yield break;
 		}
 
-		// Token: 0x0600522D RID: 21037 RVA: 0x00225C9C File Offset: 0x00223E9C
+		// Token: 0x06004965 RID: 18789 RVA: 0x001F2964 File Offset: 0x001F0B64
 		public void realizeSeid105(int seid, List<int> damage, Avatar attaker, Avatar receiver, int type)
 		{
 			int skillID = Tools.instance.getSkillKeyByID(this.getSeidJson(seid)["value1"].I, attaker);
@@ -2933,7 +2994,7 @@ namespace GUIPackage
 			});
 		}
 
-		// Token: 0x0600522E RID: 21038 RVA: 0x00225D14 File Offset: 0x00223F14
+		// Token: 0x06004966 RID: 18790 RVA: 0x001F29DC File Offset: 0x001F0BDC
 		public void realizeSeid107(int seid, List<int> damage, Avatar attaker, Avatar receiver, int type)
 		{
 			Avatar targetAvatar = this.getTargetAvatar(seid, attaker);
@@ -2944,7 +3005,7 @@ namespace GUIPackage
 			}
 		}
 
-		// Token: 0x0600522F RID: 21039 RVA: 0x00225D64 File Offset: 0x00223F64
+		// Token: 0x06004967 RID: 18791 RVA: 0x001F2A2C File Offset: 0x001F0C2C
 		public void realizeSeid108(int seid, List<int> damage, Avatar attaker, Avatar receiver, int type)
 		{
 			JSONObject seidJson = this.getSeidJson(seid);
@@ -2952,7 +3013,7 @@ namespace GUIPackage
 			attaker.spell.addBuff(seidJson["value2"].I, seidJson["value3"].I * num);
 		}
 
-		// Token: 0x06005230 RID: 21040 RVA: 0x00225DC4 File Offset: 0x00223FC4
+		// Token: 0x06004968 RID: 18792 RVA: 0x001F2A8C File Offset: 0x001F0C8C
 		public void realizeSeid110(int seid, List<int> damage, Avatar attaker, Avatar receiver, int type)
 		{
 			int i = this.getSeidJson(seid)["value1"].I;
@@ -2961,7 +3022,7 @@ namespace GUIPackage
 			damage[0] = damage[0] + num;
 		}
 
-		// Token: 0x06005231 RID: 21041 RVA: 0x00225E14 File Offset: 0x00224014
+		// Token: 0x06004969 RID: 18793 RVA: 0x001F2ADC File Offset: 0x001F0CDC
 		public void realizeSeid111(int seid, List<int> damage, Avatar attaker, Avatar receiver, int type)
 		{
 			int i = this.getSeidJson(seid)["value1"].I;
@@ -2976,7 +3037,7 @@ namespace GUIPackage
 			}
 		}
 
-		// Token: 0x06005232 RID: 21042 RVA: 0x00225494 File Offset: 0x00223694
+		// Token: 0x0600496A RID: 18794 RVA: 0x001F2B50 File Offset: 0x001F0D50
 		public void realizeSeid112(int seid, List<int> damage, Avatar attaker, Avatar receiver, int type)
 		{
 			JSONObject seidJson = this.getSeidJson(seid);
@@ -2988,7 +3049,7 @@ namespace GUIPackage
 			}
 		}
 
-		// Token: 0x06005233 RID: 21043 RVA: 0x00225E88 File Offset: 0x00224088
+		// Token: 0x0600496B RID: 18795 RVA: 0x001F2BB4 File Offset: 0x001F0DB4
 		public void realizeSeid113(int seid, List<int> damage, Avatar attaker, Avatar receiver, int type)
 		{
 			JSONObject seidJson = this.getSeidJson(seid);
@@ -3000,7 +3061,7 @@ namespace GUIPackage
 			}
 		}
 
-		// Token: 0x06005234 RID: 21044 RVA: 0x00225EE8 File Offset: 0x002240E8
+		// Token: 0x0600496C RID: 18796 RVA: 0x001F2C14 File Offset: 0x001F0E14
 		public void realizeSeid114(int seid, List<int> damage, Avatar attaker, Avatar receiver, int type)
 		{
 			JSONObject seidJson = this.getSeidJson(seid);
@@ -3013,7 +3074,7 @@ namespace GUIPackage
 			}
 		}
 
-		// Token: 0x06005235 RID: 21045 RVA: 0x00225F54 File Offset: 0x00224154
+		// Token: 0x0600496D RID: 18797 RVA: 0x001F2C80 File Offset: 0x001F0E80
 		public void realizeSeid115(int seid, List<int> damage, Avatar attaker, Avatar receiver, int type)
 		{
 			if (attaker.isPlayer())
@@ -3038,7 +3099,7 @@ namespace GUIPackage
 			}
 		}
 
-		// Token: 0x06005236 RID: 21046 RVA: 0x00225FD4 File Offset: 0x002241D4
+		// Token: 0x0600496E RID: 18798 RVA: 0x001F2D00 File Offset: 0x001F0F00
 		public void realizeSeid116(int seid, List<int> damage, Avatar attaker, Avatar receiver, int type)
 		{
 			JSONObject seidJson = this.getSeidJson(seid);
@@ -3053,7 +3114,7 @@ namespace GUIPackage
 			}
 		}
 
-		// Token: 0x06005237 RID: 21047 RVA: 0x00226084 File Offset: 0x00224284
+		// Token: 0x0600496F RID: 18799 RVA: 0x001F2DB0 File Offset: 0x001F0FB0
 		public void realizeSeid118(int seid, List<int> damage, Avatar attaker, Avatar receiver, int type)
 		{
 			int cardNum = attaker.cardMag.getCardNum();
@@ -3067,14 +3128,14 @@ namespace GUIPackage
 			}
 		}
 
-		// Token: 0x06005238 RID: 21048 RVA: 0x00226100 File Offset: 0x00224300
+		// Token: 0x06004970 RID: 18800 RVA: 0x001F2E2C File Offset: 0x001F102C
 		public void realizeSeid119(int seid, List<int> damage, Avatar attaker, Avatar receiver, int type)
 		{
 			int value = GlobalValue.Get(this.getSeidJson(seid)["value1"].I, "特性119");
 			damage[0] = value;
 		}
 
-		// Token: 0x06005239 RID: 21049 RVA: 0x00226138 File Offset: 0x00224338
+		// Token: 0x06004971 RID: 18801 RVA: 0x001F2E64 File Offset: 0x001F1064
 		public void realizeSeid120(int seid, List<int> damage, Avatar attaker, Avatar receiver, int type)
 		{
 			JSONObject seidJson = this.getSeidJson(seid);
@@ -3083,28 +3144,105 @@ namespace GUIPackage
 			attaker.spell.addBuff(i, num);
 		}
 
-		// Token: 0x0600523A RID: 21050 RVA: 0x00226188 File Offset: 0x00224388
+		// Token: 0x06004972 RID: 18802 RVA: 0x00004095 File Offset: 0x00002295
 		public void realizeSeid121(int seid, List<int> damage, Avatar attaker, Avatar receiver, int type)
 		{
-			JSONObject seidJson = this.getSeidJson(seid);
-			int i = seidJson["value1"].I;
-			int i2 = seidJson["value2"].I;
-			GlobalValue.Get(seidJson["value3"].I, "特性121");
 		}
 
-		// Token: 0x0600523B RID: 21051 RVA: 0x002261D8 File Offset: 0x002243D8
+		// Token: 0x06004973 RID: 18803 RVA: 0x001F2EB4 File Offset: 0x001F10B4
 		public void realizeSeid122(int seid, List<int> damage, Avatar attaker, Avatar receiver, int type)
 		{
 			int num = GlobalValue.Get(this.getSeidJson(seid)["value1"].I, "特性122");
 			attaker.setHP(attaker.HP + num);
 		}
 
-		// Token: 0x0600523C RID: 21052 RVA: 0x000042DD File Offset: 0x000024DD
+		// Token: 0x06004974 RID: 18804 RVA: 0x001F2EF0 File Offset: 0x001F10F0
+		public void realizeSeid123(int seid, List<int> damage, Avatar attaker, Avatar receiver, int type)
+		{
+			JSONObject seidJson = this.getSeidJson(seid);
+			List<JSONObject> list = seidJson["value1"].list;
+			List<JSONObject> list2 = seidJson["value2"].list;
+			foreach (KeyValuePair<int, int> keyValuePair in this.nowSkillUseCard)
+			{
+				if (keyValuePair.Value > 0)
+				{
+					attaker.spell.addBuff(list[keyValuePair.Key].I, list2[keyValuePair.Key].I);
+				}
+			}
+		}
+
+		// Token: 0x06004975 RID: 18805 RVA: 0x001F2FA0 File Offset: 0x001F11A0
+		public void realizeSeid124(int seid, List<int> damage, Avatar attaker, Avatar receiver, int type)
+		{
+			if (attaker.UsedSkills.Count > 0)
+			{
+				bool flag = true;
+				List<int> attackType = _skillJsonData.DataDict[attaker.UsedSkills[attaker.UsedSkills.Count - 1]].AttackType;
+				int i = this.getSeidJson(seid)["value1"].I;
+				using (List<int>.Enumerator enumerator = attackType.GetEnumerator())
+				{
+					while (enumerator.MoveNext())
+					{
+						if (enumerator.Current == i)
+						{
+							flag = false;
+							break;
+						}
+					}
+				}
+				if (flag)
+				{
+					damage[2] = 1;
+					return;
+				}
+			}
+			else
+			{
+				damage[2] = 1;
+			}
+		}
+
+		// Token: 0x06004976 RID: 18806 RVA: 0x00004095 File Offset: 0x00002295
 		public void realizeSeid140(int seid, List<int> damage, Avatar attaker, Avatar receiver, int type)
 		{
 		}
 
-		// Token: 0x0600523D RID: 21053 RVA: 0x00226214 File Offset: 0x00224414
+		// Token: 0x06004977 RID: 18807 RVA: 0x001F3050 File Offset: 0x001F1250
+		public void realizeSeid141(int seid, List<int> damage, Avatar attaker, Avatar receiver, int type)
+		{
+			attaker.jieyin.AddJinMai((int)this.getSeidJson(seid)["value1"].n);
+		}
+
+		// Token: 0x06004978 RID: 18808 RVA: 0x001F3074 File Offset: 0x001F1274
+		public void realizeSeid142(int seid, List<int> damage, Avatar attaker, Avatar receiver, int type)
+		{
+			attaker.jieyin.AddYiZhi((int)this.getSeidJson(seid)["value1"].n);
+		}
+
+		// Token: 0x06004979 RID: 18809 RVA: 0x001F3098 File Offset: 0x001F1298
+		public void realizeSeid143(int seid, List<int> damage, Avatar attaker, Avatar receiver, int type)
+		{
+			attaker.jieyin.AddHuaYing((int)this.getSeidJson(seid)["value1"].n);
+		}
+
+		// Token: 0x0600497A RID: 18810 RVA: 0x001F30BC File Offset: 0x001F12BC
+		public void realizeSeid144(int seid, List<int> damage, Avatar attaker, Avatar receiver, int type)
+		{
+			int i = this.getSeidJson(seid)["value1"].I;
+			attaker.jieyin.AddJinDanHP(i);
+			if (i < 0)
+			{
+				attaker.spell.onBuffTickByType(39, new List<int>());
+			}
+		}
+
+		// Token: 0x0600497B RID: 18811 RVA: 0x001F3102 File Offset: 0x001F1302
+		public void realizeSeid146(int seid, List<int> damage, Avatar attaker, Avatar receiver, int type)
+		{
+			attaker.ZhuJiJinDu += this.getSeidJson(seid)["value1"].I;
+		}
+
+		// Token: 0x0600497C RID: 18812 RVA: 0x001F3128 File Offset: 0x001F1328
 		public void realizeSeid148(int seid, List<int> damage, Avatar attaker, Avatar receiver, int type)
 		{
 			JSONObject seidJson = this.getSeidJson(seid);
@@ -3116,7 +3254,7 @@ namespace GUIPackage
 			}
 		}
 
-		// Token: 0x0600523E RID: 21054 RVA: 0x00226214 File Offset: 0x00224414
+		// Token: 0x0600497D RID: 18813 RVA: 0x001F31A0 File Offset: 0x001F13A0
 		public void realizeSeid149(int seid, List<int> damage, Avatar attaker, Avatar receiver, int type)
 		{
 			JSONObject seidJson = this.getSeidJson(seid);
@@ -3128,42 +3266,7 @@ namespace GUIPackage
 			}
 		}
 
-		// Token: 0x0600523F RID: 21055 RVA: 0x0003AF5A File Offset: 0x0003915A
-		public void realizeSeid141(int seid, List<int> damage, Avatar attaker, Avatar receiver, int type)
-		{
-			attaker.jieyin.AddJinMai((int)this.getSeidJson(seid)["value1"].n);
-		}
-
-		// Token: 0x06005240 RID: 21056 RVA: 0x0003AF7E File Offset: 0x0003917E
-		public void realizeSeid142(int seid, List<int> damage, Avatar attaker, Avatar receiver, int type)
-		{
-			attaker.jieyin.AddYiZhi((int)this.getSeidJson(seid)["value1"].n);
-		}
-
-		// Token: 0x06005241 RID: 21057 RVA: 0x0003AFA2 File Offset: 0x000391A2
-		public void realizeSeid143(int seid, List<int> damage, Avatar attaker, Avatar receiver, int type)
-		{
-			attaker.jieyin.AddHuaYing((int)this.getSeidJson(seid)["value1"].n);
-		}
-
-		// Token: 0x06005242 RID: 21058 RVA: 0x0022628C File Offset: 0x0022448C
-		public void realizeSeid144(int seid, List<int> damage, Avatar attaker, Avatar receiver, int type)
-		{
-			int i = this.getSeidJson(seid)["value1"].I;
-			attaker.jieyin.AddJinDanHP(i);
-			if (i < 0)
-			{
-				attaker.spell.onBuffTickByType(39, new List<int>());
-			}
-		}
-
-		// Token: 0x06005243 RID: 21059 RVA: 0x0003AFC6 File Offset: 0x000391C6
-		public void realizeSeid146(int seid, List<int> damage, Avatar attaker, Avatar receiver, int type)
-		{
-			attaker.ZhuJiJinDu += this.getSeidJson(seid)["value1"].I;
-		}
-
-		// Token: 0x06005244 RID: 21060 RVA: 0x002262D4 File Offset: 0x002244D4
+		// Token: 0x0600497E RID: 18814 RVA: 0x001F3218 File Offset: 0x001F1418
 		public void realizeSeid150(int seid, List<int> damage, Avatar attaker, Avatar receiver, int type)
 		{
 			JSONObject seidJson = this.getSeidJson(seid);
@@ -3187,13 +3290,13 @@ namespace GUIPackage
 			this.triggerStartSeid(this.NowSkillSeid, damage, attaker, receiver, type);
 		}
 
-		// Token: 0x06005245 RID: 21061 RVA: 0x0003AFEB File Offset: 0x000391EB
+		// Token: 0x0600497F RID: 18815 RVA: 0x001F32E7 File Offset: 0x001F14E7
 		public void realizeSeid151(int seid, List<int> damage, Avatar attaker, Avatar receiver, int type)
 		{
 			this.realizeSeid150(seid, damage, attaker, receiver, type);
 		}
 
-		// Token: 0x06005246 RID: 21062 RVA: 0x002263A4 File Offset: 0x002245A4
+		// Token: 0x06004980 RID: 18816 RVA: 0x001F32F8 File Offset: 0x001F14F8
 		public void realizeSeid152(int seid, List<int> damage, Avatar attaker, Avatar receiver, int type)
 		{
 			JSONObject seidJson = this.getSeidJson(seid);
@@ -3206,7 +3309,7 @@ namespace GUIPackage
 			damage[2] = 1;
 		}
 
-		// Token: 0x06005247 RID: 21063 RVA: 0x00226404 File Offset: 0x00224604
+		// Token: 0x06004981 RID: 18817 RVA: 0x001F3358 File Offset: 0x001F1558
 		public void realizeSeid153(int seid, List<int> damage, Avatar attaker, Avatar receiver, int type)
 		{
 			Avatar targetAvatar = this.getTargetAvatar(seid, attaker);
@@ -3221,12 +3324,12 @@ namespace GUIPackage
 			damage[2] = 1;
 		}
 
-		// Token: 0x06005248 RID: 21064 RVA: 0x000042DD File Offset: 0x000024DD
+		// Token: 0x06004982 RID: 18818 RVA: 0x00004095 File Offset: 0x00002295
 		public void realizeSeid154(int seid, List<int> damage, Avatar attaker, Avatar receiver, int type)
 		{
 		}
 
-		// Token: 0x06005249 RID: 21065 RVA: 0x0022647C File Offset: 0x0022467C
+		// Token: 0x06004983 RID: 18819 RVA: 0x001F33D0 File Offset: 0x001F15D0
 		public void realizeSeid155(int seid, List<int> damage, Avatar attaker, Avatar receiver, int type)
 		{
 			if (this.skillSameCast.Count > 0)
@@ -3251,7 +3354,7 @@ namespace GUIPackage
 			}
 		}
 
-		// Token: 0x0600524A RID: 21066 RVA: 0x00226530 File Offset: 0x00224730
+		// Token: 0x06004984 RID: 18820 RVA: 0x001F3484 File Offset: 0x001F1684
 		public void realizeSeid156(int seid, List<int> damage, Avatar attaker, Avatar receiver, int type)
 		{
 			if (this.skillSameCast.Count > 0)
@@ -3276,7 +3379,7 @@ namespace GUIPackage
 			}
 		}
 
-		// Token: 0x0600524B RID: 21067 RVA: 0x0003AFFA File Offset: 0x000391FA
+		// Token: 0x06004985 RID: 18821 RVA: 0x001F3538 File Offset: 0x001F1738
 		public void realizeSeid157(int seid, List<int> damage, Avatar attaker, Avatar receiver, int type)
 		{
 			if (this.skillSameCast.Count > 0 && this.nowSkillUseCard.Count != 1)
@@ -3285,7 +3388,7 @@ namespace GUIPackage
 			}
 		}
 
-		// Token: 0x0600524C RID: 21068 RVA: 0x002265E4 File Offset: 0x002247E4
+		// Token: 0x06004986 RID: 18822 RVA: 0x001F3560 File Offset: 0x001F1760
 		public void realizeSeid158(int seid, List<int> damage, Avatar attaker, Avatar receiver, int type)
 		{
 			this.NowSkillSeid.Clear();
@@ -3322,7 +3425,7 @@ namespace GUIPackage
 			this.triggerStartSeid(this.NowSkillSeid, damage, attaker, receiver, type);
 		}
 
-		// Token: 0x0600524D RID: 21069 RVA: 0x0022670C File Offset: 0x0022490C
+		// Token: 0x06004987 RID: 18823 RVA: 0x001F3688 File Offset: 0x001F1888
 		public void realizeSeid159(int seid, List<int> damage, Avatar attaker, Avatar receiver, int type)
 		{
 			int buffTypeNum = this.getTargetAvatar(seid, attaker).buffmag.getBuffTypeNum(this.getSeidJson(seid)["value1"].I);
@@ -3334,7 +3437,7 @@ namespace GUIPackage
 			damage[2] = 1;
 		}
 
-		// Token: 0x0600524E RID: 21070 RVA: 0x0003B020 File Offset: 0x00039220
+		// Token: 0x06004988 RID: 18824 RVA: 0x001F36D3 File Offset: 0x001F18D3
 		public void realizeSeid160(int seid, List<int> damage, Avatar attaker, Avatar receiver, int type)
 		{
 			if (attaker.OtherAvatar.buffmag.HasBuff(this.getSeidJson(seid)["value1"].I))
@@ -3343,7 +3446,7 @@ namespace GUIPackage
 			}
 		}
 
-		// Token: 0x0600524F RID: 21071 RVA: 0x0003B052 File Offset: 0x00039252
+		// Token: 0x06004989 RID: 18825 RVA: 0x001F3705 File Offset: 0x001F1905
 		public void realizeSeid161(int seid, List<int> damage, Avatar attaker, Avatar receiver, int type)
 		{
 			if (attaker.dunSu <= attaker.OtherAvatar.dunSu)
@@ -3352,7 +3455,7 @@ namespace GUIPackage
 			}
 		}
 
-		// Token: 0x06005250 RID: 21072 RVA: 0x00226758 File Offset: 0x00224958
+		// Token: 0x0600498A RID: 18826 RVA: 0x001F3724 File Offset: 0x001F1924
 		public void realizeSeid162(int seid, List<int> damage, Avatar attaker, Avatar receiver, int type)
 		{
 			Avatar targetAvatar = this.getTargetAvatar(seid, attaker);
@@ -3361,7 +3464,7 @@ namespace GUIPackage
 			receiver.spell.addBuff(seidJson["value2"].I, num);
 		}
 
-		// Token: 0x06005251 RID: 21073 RVA: 0x002267AC File Offset: 0x002249AC
+		// Token: 0x0600498B RID: 18827 RVA: 0x001F3778 File Offset: 0x001F1978
 		public void realizeSeid164(int seid, List<int> damage, Avatar attaker, Avatar receiver, int type)
 		{
 			int i = this.getSeidJson(seid)["target"].I;
@@ -3374,7 +3477,182 @@ namespace GUIPackage
 			}
 		}
 
-		// Token: 0x06005252 RID: 21074 RVA: 0x00226828 File Offset: 0x00224A28
+		// Token: 0x0600498C RID: 18828 RVA: 0x001F37F2 File Offset: 0x001F19F2
+		public void realizeSeid165(int seid, List<int> damage, Avatar attaker, Avatar receiver, int type)
+		{
+			if (PlayerEx.GetGameDifficulty() == 游戏难度.极简)
+			{
+				attaker.ZhuJiJinDu += this.getSeidJson(seid)["value1"].I;
+			}
+		}
+
+		// Token: 0x0600498D RID: 18829 RVA: 0x001F3820 File Offset: 0x001F1A20
+		public void realizeSeid166(int seid, List<int> damage, Avatar attaker, Avatar receiver, int type)
+		{
+			List<ITEM_INFO> list = new List<ITEM_INFO>();
+			List<ITEM_INFO> list2 = new List<ITEM_INFO>();
+			int count = attaker.itemList.values.Count;
+			for (int i = 0; i < count; i++)
+			{
+				ITEM_INFO item_INFO = attaker.itemList.values[i];
+				if (_ItemJsonData.DataDict.ContainsKey(item_INFO.itemId))
+				{
+					_ItemJsonData itemJsonData = _ItemJsonData.DataDict[item_INFO.itemId];
+					if (itemJsonData.type >= 0 && itemJsonData.type <= 2)
+					{
+						list.Add(item_INFO);
+					}
+				}
+			}
+			count = attaker.equipItemList.values.Count;
+			for (int j = 0; j < count; j++)
+			{
+				ITEM_INFO item_INFO2 = attaker.equipItemList.values[j];
+				if (_ItemJsonData.DataDict.ContainsKey(item_INFO2.itemId))
+				{
+					_ItemJsonData itemJsonData2 = _ItemJsonData.DataDict[item_INFO2.itemId];
+					if (itemJsonData2.type >= 0 && itemJsonData2.type <= 2)
+					{
+						list.Add(item_INFO2);
+						list2.Add(item_INFO2);
+					}
+				}
+			}
+			if (list.Count <= 0)
+			{
+				Debug.Log("Seid166:没有法宝用于销毁");
+				return;
+			}
+			ITEM_INFO randomOne = list.GetRandomOne<ITEM_INFO>();
+			if (randomOne.itemId >= 18001 && randomOne.itemId <= 18010)
+			{
+				if (randomOne.Seid != null)
+				{
+					int key = 1;
+					int num = 1;
+					if (randomOne.Seid.HasField("quality"))
+					{
+						key = randomOne.Seid["quality"].I;
+					}
+					if (randomOne.Seid.HasField("QPingZhi"))
+					{
+						num = randomOne.Seid["QPingZhi"].I;
+					}
+					int num2 = Skill.seid166Dict[key][num - 1];
+					attaker.spell.addBuff(5, num2);
+				}
+			}
+			else if (_ItemJsonData.DataDict.ContainsKey(randomOne.itemId))
+			{
+				_ItemJsonData itemJsonData3 = _ItemJsonData.DataDict[randomOne.itemId];
+				int num3 = Skill.seid166Dict[itemJsonData3.quality][itemJsonData3.typePinJie - 1];
+				attaker.spell.addBuff(5, num3);
+			}
+			if (list2.Contains(randomOne))
+			{
+				attaker.removeEquipItem(randomOne.uuid);
+				return;
+			}
+			attaker.removeItem(randomOne.uuid);
+		}
+
+		// Token: 0x0600498E RID: 18830 RVA: 0x001F3A78 File Offset: 0x001F1C78
+		public void realizeSeid170(int seid, List<int> damage, Avatar attaker, Avatar receiver, int type)
+		{
+			int i = this.getSeidJson(seid)["value1"].I;
+			int cardNum = receiver.cardMag.getCardNum();
+			damage[0] = damage[0] + (int)((float)(i * cardNum) / 100f);
+		}
+
+		// Token: 0x0600498F RID: 18831 RVA: 0x001F3AC8 File Offset: 0x001F1CC8
+		public void realizeSeid171(int seid, List<int> damage, Avatar attaker, Avatar receiver, int type)
+		{
+			int xinjin = PlayerEx.Player.xinjin;
+			damage[0] = damage[0] + (10000 - 5 * xinjin);
+		}
+
+		// Token: 0x06004990 RID: 18832 RVA: 0x001F3AFC File Offset: 0x001F1CFC
+		public void realizeSeid172(int seid, List<int> damage, Avatar attaker, Avatar receiver, int type)
+		{
+			if (!receiver.SkillSeidFlag.ContainsKey(13))
+			{
+				receiver.SkillSeidFlag.Add(13, new Dictionary<int, int>());
+			}
+			for (int i = 0; i < 5; i++)
+			{
+				receiver.SkillSeidFlag[13][i] = 20 - receiver.LingGeng[i];
+			}
+		}
+
+		// Token: 0x06004991 RID: 18833 RVA: 0x00004095 File Offset: 0x00002295
+		public void realizeSeid173(int seid, List<int> damage, Avatar attaker, Avatar receiver, int type)
+		{
+		}
+
+		// Token: 0x06004992 RID: 18834 RVA: 0x001F3B5C File Offset: 0x001F1D5C
+		public void realizeSeid174(int seid, List<int> damage, Avatar attaker, Avatar receiver, int type)
+		{
+			if (receiver.HP < receiver.HP_Max)
+			{
+				int i = this.getSeidJson(seid)["value1"].I;
+				damage[0] = (int)((float)damage[0] * (1f + (float)i / 100f));
+			}
+		}
+
+		// Token: 0x06004993 RID: 18835 RVA: 0x001F3BB0 File Offset: 0x001F1DB0
+		public void realizeSeid175(int seid, List<int> damage, Avatar attaker, Avatar receiver, int type)
+		{
+			if (TianJieManager.Inst.LeiJieIndex < 9)
+			{
+				int damage2 = TianJieLeiJieShangHai.DataDict[TianJieManager.Inst.LeiJieIndex + 1].Damage;
+				attaker.spell.addBuff(3150, damage2);
+				if (TianJieManager.Inst.NowLeiJie == "乾天劫")
+				{
+					attaker.spell.addBuff(3155, 1);
+				}
+				TianJieManager.Inst.EffectManager.PlayXuLi();
+				TianJieManager.Inst.YiXuLi = true;
+			}
+		}
+
+		// Token: 0x06004994 RID: 18836 RVA: 0x001F3C3C File Offset: 0x001F1E3C
+		public void realizeSeid176(int seid, List<int> damage, Avatar attaker, Avatar receiver, int type)
+		{
+			if (TianJieManager.Inst.LeiJieIndex < 9)
+			{
+				string nowLeiJie = TianJieManager.Inst.NowLeiJie;
+				int leiJieSkillID = TianJieLeiJieType.DataDict[nowLeiJie].SkillId;
+				Debug.Log(string.Format("释放雷劫 {0} 技能ID:{1}", nowLeiJie, leiJieSkillID));
+				UIFightPanel.Inst.PlayerStatus.NoRefresh = true;
+				TianJieEffectManager.Inst.PlayAttack(delegate
+				{
+					this.createSkill(attaker, Tools.instance.getSkillKeyByID(leiJieSkillID, attaker));
+				});
+				TianJieManager.Inst.YiXuLi = false;
+			}
+		}
+
+		// Token: 0x06004995 RID: 18837 RVA: 0x001F3CE8 File Offset: 0x001F1EE8
+		public void realizeSeid177(int seid, List<int> damage, Avatar attaker, Avatar receiver, int type)
+		{
+			if (TianJieManager.Inst.LeiJieIndex < 8)
+			{
+				int num = TianJieManager.Inst.LeiJieIndex + 1;
+				string text = TianJieManager.Inst.LeiJieList[num];
+				for (int i = 0; i < 10; i++)
+				{
+					string text2 = TianJieManager.Inst.RollLeiJie(num);
+					if (text2 != text)
+					{
+						TianJieManager.Inst.LeiJieList[num] = text2;
+						Debug.Log(string.Format("Skill特性177:将{0}号雷劫 {1}替换为{2}", num, text, text2));
+						return;
+					}
+				}
+			}
+		}
+
+		// Token: 0x06004996 RID: 18838 RVA: 0x001F3D6C File Offset: 0x001F1F6C
 		public bool PanDuan(string fuhao, int value1, int value2)
 		{
 			if (fuhao == "=")
@@ -3388,107 +3666,176 @@ namespace GUIPackage
 			return value1 > value2;
 		}
 
-		// Token: 0x04005267 RID: 21095
+		// Token: 0x04004915 RID: 18709
 		public string skill_Name;
 
-		// Token: 0x04005268 RID: 21096
+		// Token: 0x04004916 RID: 18710
 		public int skill_ID = -1;
 
-		// Token: 0x04005269 RID: 21097
+		// Token: 0x04004917 RID: 18711
 		public int SkillID;
 
-		// Token: 0x0400526A RID: 21098
+		// Token: 0x04004918 RID: 18712
 		public int Skill_Lv;
 
-		// Token: 0x0400526B RID: 21099
+		// Token: 0x04004919 RID: 18713
 		public string skill_Desc;
 
-		// Token: 0x0400526C RID: 21100
+		// Token: 0x0400491A RID: 18714
+		public Avatar attack;
+
+		// Token: 0x0400491B RID: 18715
+		public Avatar target;
+
+		// Token: 0x0400491C RID: 18716
+		public int type;
+
+		// Token: 0x0400491D RID: 18717
 		private Texture2D _skill_Icon;
 
-		// Token: 0x0400526D RID: 21101
+		// Token: 0x0400491E RID: 18718
 		private Texture2D _SkillPingZhi;
 
-		// Token: 0x0400526E RID: 21102
+		// Token: 0x0400491F RID: 18719
 		private Sprite _skillIconSprite;
 
-		// Token: 0x0400526F RID: 21103
+		// Token: 0x04004920 RID: 18720
 		private Sprite _SkillPingZhiSprite;
 
-		// Token: 0x04005270 RID: 21104
+		// Token: 0x04004921 RID: 18721
 		private Sprite _newSkillPingZhiSprite;
 
-		// Token: 0x04005271 RID: 21105
+		// Token: 0x04004922 RID: 18722
 		public int ColorIndex;
 
-		// Token: 0x04005272 RID: 21106
+		// Token: 0x04004923 RID: 18723
 		public int skill_level;
 
-		// Token: 0x04005273 RID: 21107
+		// Token: 0x04004924 RID: 18724
 		public int Max_level;
 
-		// Token: 0x04005274 RID: 21108
+		// Token: 0x04004925 RID: 18725
 		public float CoolDown;
 
-		// Token: 0x04005275 RID: 21109
+		// Token: 0x04004926 RID: 18726
 		public float CurCD;
 
-		// Token: 0x04005276 RID: 21110
+		// Token: 0x04004927 RID: 18727
 		public int Damage;
 
-		// Token: 0x04005277 RID: 21111
+		// Token: 0x04004928 RID: 18728
 		public int SkillQuality;
 
-		// Token: 0x04005278 RID: 21112
+		// Token: 0x04004929 RID: 18729
 		public string weaponuuid = "";
 
-		// Token: 0x04005279 RID: 21113
+		// Token: 0x0400492A RID: 18730
 		public Dictionary<int, int> skillCast = new Dictionary<int, int>();
 
-		// Token: 0x0400527A RID: 21114
+		// Token: 0x0400492B RID: 18731
 		public Dictionary<int, int> skillSameCast = new Dictionary<int, int>();
 
-		// Token: 0x0400527B RID: 21115
+		// Token: 0x0400492C RID: 18732
 		public List<LateDamage> LateDamages = new List<LateDamage>();
 
-		// Token: 0x0400527C RID: 21116
+		// Token: 0x0400492D RID: 18733
 		public List<int> NowSkillSeid = new List<int>();
 
-		// Token: 0x0400527D RID: 21117
+		// Token: 0x0400492E RID: 18734
 		public Dictionary<int, JSONObject> SkillSeidList = new Dictionary<int, JSONObject>();
 
-		// Token: 0x0400527E RID: 21118
+		// Token: 0x0400492F RID: 18735
 		public JSONObject ItemAddSeid;
 
-		// Token: 0x0400527F RID: 21119
+		// Token: 0x04004930 RID: 18736
 		public Dictionary<int, int> nowSkillUseCard = new Dictionary<int, int>();
 
-		// Token: 0x04005280 RID: 21120
+		// Token: 0x04004931 RID: 18737
 		public Dictionary<int, bool> nowSkillIsChuFa = new Dictionary<int, bool>();
 
-		// Token: 0x04005281 RID: 21121
+		// Token: 0x04004932 RID: 18738
 		private static Dictionary<string, MethodInfo> methodDict = new Dictionary<string, MethodInfo>();
 
-		// Token: 0x04005282 RID: 21122
+		// Token: 0x04004933 RID: 18739
 		public bool IsStaticSkill;
 
-		// Token: 0x04005283 RID: 21123
+		// Token: 0x04004934 RID: 18740
 		private bool initedImage;
 
-		// Token: 0x02000D5D RID: 3421
+		// Token: 0x04004935 RID: 18741
+		private static Dictionary<int, List<int>> seid166Dict = new Dictionary<int, List<int>>
+		{
+			{
+				1,
+				new List<int>
+				{
+					1780,
+					1800,
+					1820
+				}
+			},
+			{
+				2,
+				new List<int>
+				{
+					1950,
+					2000,
+					2050
+				}
+			},
+			{
+				3,
+				new List<int>
+				{
+					2300,
+					2400,
+					2500
+				}
+			},
+			{
+				4,
+				new List<int>
+				{
+					2800,
+					3000,
+					3200
+				}
+			},
+			{
+				5,
+				new List<int>
+				{
+					3500,
+					4000,
+					4500
+				}
+			}
+		};
+
+		// Token: 0x04004936 RID: 18742
+		private static List<int> seid166BanList = new List<int>
+		{
+			1,
+			117,
+			218,
+			304,
+			314
+		};
+
+		// Token: 0x02001580 RID: 5504
 		public enum ALLSkill
 		{
-			// Token: 0x04005285 RID: 21125
+			// Token: 0x04006F98 RID: 28568
 			SKILL34 = 34,
-			// Token: 0x04005286 RID: 21126
+			// Token: 0x04006F99 RID: 28569
 			SKILL65 = 65,
-			// Token: 0x04005287 RID: 21127
+			// Token: 0x04006F9A RID: 28570
 			SKILL66,
-			// Token: 0x04005288 RID: 21128
+			// Token: 0x04006F9B RID: 28571
 			SKILL68 = 68,
-			// Token: 0x04005289 RID: 21129
+			// Token: 0x04006F9C RID: 28572
 			SKILL69,
-			// Token: 0x0400528A RID: 21130
+			// Token: 0x04006F9D RID: 28573
 			SKILL97 = 97
 		}
 	}

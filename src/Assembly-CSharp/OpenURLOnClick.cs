@@ -1,10 +1,10 @@
 ﻿using System;
 using UnityEngine;
 
-// Token: 0x0200005F RID: 95
+// Token: 0x02000047 RID: 71
 public class OpenURLOnClick : MonoBehaviour
 {
-	// Token: 0x060004AA RID: 1194 RVA: 0x0006F408 File Offset: 0x0006D608
+	// Token: 0x0600045C RID: 1116 RVA: 0x00017FF4 File Offset: 0x000161F4
 	private void OnClick()
 	{
 		UILabel component = base.GetComponent<UILabel>();

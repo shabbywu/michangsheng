@@ -1,23 +1,23 @@
 ﻿using System;
 using YSGame;
 
-// Token: 0x02000467 RID: 1127
+// Token: 0x0200030A RID: 778
 public class SelectCaiLiaoPage : selectPage
 {
-	// Token: 0x06001E45 RID: 7749 RVA: 0x00012E8D File Offset: 0x0001108D
+	// Token: 0x06001B1F RID: 6943 RVA: 0x000BAAD9 File Offset: 0x000B8CD9
 	private void Start()
 	{
 		base.Invoke("resetObj", 0.3f);
 	}
 
-	// Token: 0x06001E46 RID: 7750 RVA: 0x0001920F File Offset: 0x0001740F
+	// Token: 0x06001B20 RID: 6944 RVA: 0x000C194F File Offset: 0x000BFB4F
 	public override void resetObj()
 	{
 		base.setPageTetx();
 		this.caiLiaoInventory.LoadCaiLiaoInventory();
 	}
 
-	// Token: 0x06001E47 RID: 7751 RVA: 0x00107114 File Offset: 0x00105314
+	// Token: 0x06001B21 RID: 6945 RVA: 0x000C1964 File Offset: 0x000BFB64
 	public override void addNowPage()
 	{
 		this.caiLiaoInventory.nowIndex++;
@@ -29,7 +29,7 @@ public class SelectCaiLiaoPage : selectPage
 		}
 	}
 
-	// Token: 0x06001E48 RID: 7752 RVA: 0x00019222 File Offset: 0x00017422
+	// Token: 0x06001B22 RID: 6946 RVA: 0x000C19B6 File Offset: 0x000BFBB6
 	public override void RestePageIndex()
 	{
 		this.nowIndex = 0;
@@ -37,7 +37,7 @@ public class SelectCaiLiaoPage : selectPage
 		base.setPageTetx();
 	}
 
-	// Token: 0x06001E49 RID: 7753 RVA: 0x00107168 File Offset: 0x00105368
+	// Token: 0x06001B23 RID: 6947 RVA: 0x000C19D4 File Offset: 0x000BFBD4
 	public override void reduceIndex()
 	{
 		this.caiLiaoInventory.nowIndex--;
@@ -49,7 +49,7 @@ public class SelectCaiLiaoPage : selectPage
 		}
 	}
 
-	// Token: 0x06001E4A RID: 7754 RVA: 0x00012BD3 File Offset: 0x00010DD3
+	// Token: 0x06001B24 RID: 6948 RVA: 0x0006A969 File Offset: 0x00068B69
 	public override void nextPage()
 	{
 		MusicMag.instance.PlayEffectMusic(13, 1f);
@@ -57,7 +57,7 @@ public class SelectCaiLiaoPage : selectPage
 		this.resetObj();
 	}
 
-	// Token: 0x06001E4B RID: 7755 RVA: 0x00012C26 File Offset: 0x00010E26
+	// Token: 0x06001B25 RID: 6949 RVA: 0x0006AA16 File Offset: 0x00068C16
 	public override void lastPage()
 	{
 		MusicMag.instance.PlayEffectMusic(13, 1f);
@@ -65,6 +65,6 @@ public class SelectCaiLiaoPage : selectPage
 		this.resetObj();
 	}
 
-	// Token: 0x040019B5 RID: 6581
+	// Token: 0x040015A8 RID: 5544
 	public CaiLiaoInventory caiLiaoInventory;
 }

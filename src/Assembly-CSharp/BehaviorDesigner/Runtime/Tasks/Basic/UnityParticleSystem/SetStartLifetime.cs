@@ -3,12 +3,12 @@ using UnityEngine;
 
 namespace BehaviorDesigner.Runtime.Tasks.Basic.UnityParticleSystem
 {
-	// Token: 0x0200159D RID: 5533
+	// Token: 0x020010E3 RID: 4323
 	[TaskCategory("Basic/ParticleSystem")]
 	[TaskDescription("Sets the start lifetime of the Particle System.")]
 	public class SetStartLifetime : Action
 	{
-		// Token: 0x06008255 RID: 33365 RVA: 0x002CD6FC File Offset: 0x002CB8FC
+		// Token: 0x0600745B RID: 29787 RVA: 0x002B225C File Offset: 0x002B045C
 		public override void OnStart()
 		{
 			GameObject defaultGameObject = base.GetDefaultGameObject(this.targetGameObject.Value);
@@ -19,7 +19,7 @@ namespace BehaviorDesigner.Runtime.Tasks.Basic.UnityParticleSystem
 			}
 		}
 
-		// Token: 0x06008256 RID: 33366 RVA: 0x002CD73C File Offset: 0x002CB93C
+		// Token: 0x0600745C RID: 29788 RVA: 0x002B229C File Offset: 0x002B049C
 		public override TaskStatus OnUpdate()
 		{
 			if (this.particleSystem == null)
@@ -31,25 +31,25 @@ namespace BehaviorDesigner.Runtime.Tasks.Basic.UnityParticleSystem
 			return 2;
 		}
 
-		// Token: 0x06008257 RID: 33367 RVA: 0x000594A9 File Offset: 0x000576A9
+		// Token: 0x0600745D RID: 29789 RVA: 0x002B22E7 File Offset: 0x002B04E7
 		public override void OnReset()
 		{
 			this.targetGameObject = null;
 			this.startLifetime = 0f;
 		}
 
-		// Token: 0x04006F16 RID: 28438
+		// Token: 0x04006016 RID: 24598
 		[Tooltip("The GameObject that the task operates on. If null the task GameObject is used.")]
 		public SharedGameObject targetGameObject;
 
-		// Token: 0x04006F17 RID: 28439
+		// Token: 0x04006017 RID: 24599
 		[Tooltip("The start lifetime of the ParticleSystem")]
 		public SharedFloat startLifetime;
 
-		// Token: 0x04006F18 RID: 28440
+		// Token: 0x04006018 RID: 24600
 		private ParticleSystem particleSystem;
 
-		// Token: 0x04006F19 RID: 28441
+		// Token: 0x04006019 RID: 24601
 		private GameObject prevGameObject;
 	}
 }

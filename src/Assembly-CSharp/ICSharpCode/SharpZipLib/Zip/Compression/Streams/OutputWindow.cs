@@ -2,10 +2,10 @@
 
 namespace ICSharpCode.SharpZipLib.Zip.Compression.Streams
 {
-	// Token: 0x02000803 RID: 2051
+	// Token: 0x0200055D RID: 1373
 	public class OutputWindow
 	{
-		// Token: 0x06003526 RID: 13606 RVA: 0x00198174 File Offset: 0x00196374
+		// Token: 0x06002CB8 RID: 11448 RVA: 0x0014C1E0 File Offset: 0x0014A3E0
 		public void Write(int value)
 		{
 			int num = this.windowFilled;
@@ -21,7 +21,7 @@ namespace ICSharpCode.SharpZipLib.Zip.Compression.Streams
 			this.windowEnd &= 32767;
 		}
 
-		// Token: 0x06003527 RID: 13607 RVA: 0x001981D0 File Offset: 0x001963D0
+		// Token: 0x06002CB9 RID: 11449 RVA: 0x0014C23C File Offset: 0x0014A43C
 		private void SlowRepeat(int repStart, int length, int distance)
 		{
 			while (length-- > 0)
@@ -35,7 +35,7 @@ namespace ICSharpCode.SharpZipLib.Zip.Compression.Streams
 			}
 		}
 
-		// Token: 0x06003528 RID: 13608 RVA: 0x00198228 File Offset: 0x00196428
+		// Token: 0x06002CBA RID: 11450 RVA: 0x0014C294 File Offset: 0x0014A494
 		public void Repeat(int length, int distance)
 		{
 			if ((this.windowFilled += length) > 32768)
@@ -64,7 +64,7 @@ namespace ICSharpCode.SharpZipLib.Zip.Compression.Streams
 			}
 		}
 
-		// Token: 0x06003529 RID: 13609 RVA: 0x001982E0 File Offset: 0x001964E0
+		// Token: 0x06002CBB RID: 11451 RVA: 0x0014C34C File Offset: 0x0014A54C
 		public int CopyStored(StreamManipulator input, int length)
 		{
 			length = Math.Min(Math.Min(length, 32768 - this.windowFilled), input.AvailableBytes);
@@ -87,7 +87,7 @@ namespace ICSharpCode.SharpZipLib.Zip.Compression.Streams
 			return num2;
 		}
 
-		// Token: 0x0600352A RID: 13610 RVA: 0x00198384 File Offset: 0x00196584
+		// Token: 0x06002CBC RID: 11452 RVA: 0x0014C3F0 File Offset: 0x0014A5F0
 		public void CopyDict(byte[] dictionary, int offset, int length)
 		{
 			if (dictionary == null)
@@ -107,19 +107,19 @@ namespace ICSharpCode.SharpZipLib.Zip.Compression.Streams
 			this.windowEnd = (length & 32767);
 		}
 
-		// Token: 0x0600352B RID: 13611 RVA: 0x00026CC0 File Offset: 0x00024EC0
+		// Token: 0x06002CBD RID: 11453 RVA: 0x0014C450 File Offset: 0x0014A650
 		public int GetFreeSpace()
 		{
 			return 32768 - this.windowFilled;
 		}
 
-		// Token: 0x0600352C RID: 13612 RVA: 0x00026CCE File Offset: 0x00024ECE
+		// Token: 0x06002CBE RID: 11454 RVA: 0x0014C45E File Offset: 0x0014A65E
 		public int GetAvailable()
 		{
 			return this.windowFilled;
 		}
 
-		// Token: 0x0600352D RID: 13613 RVA: 0x001983E4 File Offset: 0x001965E4
+		// Token: 0x06002CBF RID: 11455 RVA: 0x0014C468 File Offset: 0x0014A668
 		public int CopyOutput(byte[] output, int offset, int len)
 		{
 			int num = this.windowEnd;
@@ -148,25 +148,25 @@ namespace ICSharpCode.SharpZipLib.Zip.Compression.Streams
 			return num2;
 		}
 
-		// Token: 0x0600352E RID: 13614 RVA: 0x00198478 File Offset: 0x00196678
+		// Token: 0x06002CC0 RID: 11456 RVA: 0x0014C4FC File Offset: 0x0014A6FC
 		public void Reset()
 		{
 			this.windowFilled = (this.windowEnd = 0);
 		}
 
-		// Token: 0x0400303E RID: 12350
+		// Token: 0x04002805 RID: 10245
 		private const int WindowSize = 32768;
 
-		// Token: 0x0400303F RID: 12351
+		// Token: 0x04002806 RID: 10246
 		private const int WindowMask = 32767;
 
-		// Token: 0x04003040 RID: 12352
+		// Token: 0x04002807 RID: 10247
 		private byte[] window = new byte[32768];
 
-		// Token: 0x04003041 RID: 12353
+		// Token: 0x04002808 RID: 10248
 		private int windowEnd;
 
-		// Token: 0x04003042 RID: 12354
+		// Token: 0x04002809 RID: 10249
 		private int windowFilled;
 	}
 }

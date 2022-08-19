@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using KBEngine;
 using UnityEngine;
 
-// Token: 0x0200052D RID: 1325
+// Token: 0x020003A4 RID: 932
 public class WuDaoZongLanManager : MonoBehaviour, IESCClose
 {
-	// Token: 0x060021E2 RID: 8674 RVA: 0x0001BCE1 File Offset: 0x00019EE1
+	// Token: 0x06001E61 RID: 7777 RVA: 0x000D5E88 File Offset: 0x000D4088
 	public void open()
 	{
 		base.gameObject.SetActive(true);
@@ -14,7 +14,7 @@ public class WuDaoZongLanManager : MonoBehaviour, IESCClose
 		ESCCloseManager.Inst.RegisterClose(this);
 	}
 
-	// Token: 0x060021E3 RID: 8675 RVA: 0x001196C0 File Offset: 0x001178C0
+	// Token: 0x06001E62 RID: 7778 RVA: 0x000D5EA8 File Offset: 0x000D40A8
 	private void init()
 	{
 		this.clear();
@@ -22,7 +22,7 @@ public class WuDaoZongLanManager : MonoBehaviour, IESCClose
 		this.initHasWuDaoList(player);
 	}
 
-	// Token: 0x060021E4 RID: 8676 RVA: 0x001196E8 File Offset: 0x001178E8
+	// Token: 0x06001E63 RID: 7779 RVA: 0x000D5ED0 File Offset: 0x000D40D0
 	private void initHasWuDaoList(Avatar player)
 	{
 		float num = 0f;
@@ -44,7 +44,7 @@ public class WuDaoZongLanManager : MonoBehaviour, IESCClose
 		this.wuDaoType.transform.parent.GetComponent<RectTransform>().sizeDelta = new Vector2(1312.4f, num);
 	}
 
-	// Token: 0x060021E5 RID: 8677 RVA: 0x0001BD00 File Offset: 0x00019F00
+	// Token: 0x06001E64 RID: 7780 RVA: 0x000D5FD1 File Offset: 0x000D41D1
 	public void close()
 	{
 		this.x = 0f;
@@ -53,7 +53,7 @@ public class WuDaoZongLanManager : MonoBehaviour, IESCClose
 		ESCCloseManager.Inst.UnRegisterClose(this);
 	}
 
-	// Token: 0x060021E6 RID: 8678 RVA: 0x001197EC File Offset: 0x001179EC
+	// Token: 0x06001E65 RID: 7781 RVA: 0x000D6000 File Offset: 0x000D4200
 	private void clear()
 	{
 		foreach (object obj in this.wuDaoType.transform.parent)
@@ -66,27 +66,27 @@ public class WuDaoZongLanManager : MonoBehaviour, IESCClose
 		}
 	}
 
-	// Token: 0x060021E7 RID: 8679 RVA: 0x0001BD2F File Offset: 0x00019F2F
+	// Token: 0x06001E66 RID: 7782 RVA: 0x000D6074 File Offset: 0x000D4274
 	public bool TryEscClose()
 	{
 		this.close();
 		return true;
 	}
 
-	// Token: 0x04001D51 RID: 7505
+	// Token: 0x040018E8 RID: 6376
 	[SerializeField]
 	private GameObject wuDaoType;
 
-	// Token: 0x04001D52 RID: 7506
+	// Token: 0x040018E9 RID: 6377
 	[SerializeField]
 	private List<Sprite> Icons = new List<Sprite>();
 
-	// Token: 0x04001D53 RID: 7507
+	// Token: 0x040018EA RID: 6378
 	private float x;
 
-	// Token: 0x04001D54 RID: 7508
+	// Token: 0x040018EB RID: 6379
 	private float y = -77.655f;
 
-	// Token: 0x04001D55 RID: 7509
+	// Token: 0x040018EC RID: 6380
 	private float DeafultHeight = 24.47f;
 }

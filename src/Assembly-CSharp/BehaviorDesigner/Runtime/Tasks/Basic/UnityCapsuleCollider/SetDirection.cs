@@ -3,12 +3,12 @@ using UnityEngine;
 
 namespace BehaviorDesigner.Runtime.Tasks.Basic.UnityCapsuleCollider
 {
-	// Token: 0x02001618 RID: 5656
+	// Token: 0x02001159 RID: 4441
 	[TaskCategory("Basic/CapsuleCollider")]
 	[TaskDescription("Sets the direction of the CapsuleCollider. Returns Success.")]
 	public class SetDirection : Action
 	{
-		// Token: 0x060083F5 RID: 33781 RVA: 0x002CF1A0 File Offset: 0x002CD3A0
+		// Token: 0x060075FB RID: 30203 RVA: 0x002B5894 File Offset: 0x002B3A94
 		public override void OnStart()
 		{
 			GameObject defaultGameObject = base.GetDefaultGameObject(this.targetGameObject.Value);
@@ -19,7 +19,7 @@ namespace BehaviorDesigner.Runtime.Tasks.Basic.UnityCapsuleCollider
 			}
 		}
 
-		// Token: 0x060083F6 RID: 33782 RVA: 0x0005B026 File Offset: 0x00059226
+		// Token: 0x060075FC RID: 30204 RVA: 0x002B58D4 File Offset: 0x002B3AD4
 		public override TaskStatus OnUpdate()
 		{
 			if (this.capsuleCollider == null)
@@ -31,25 +31,25 @@ namespace BehaviorDesigner.Runtime.Tasks.Basic.UnityCapsuleCollider
 			return 2;
 		}
 
-		// Token: 0x060083F7 RID: 33783 RVA: 0x0005B059 File Offset: 0x00059259
+		// Token: 0x060075FD RID: 30205 RVA: 0x002B5907 File Offset: 0x002B3B07
 		public override void OnReset()
 		{
 			this.targetGameObject = null;
 			this.direction = 0;
 		}
 
-		// Token: 0x040070A4 RID: 28836
+		// Token: 0x04006181 RID: 24961
 		[Tooltip("The GameObject that the task operates on. If null the task GameObject is used.")]
 		public SharedGameObject targetGameObject;
 
-		// Token: 0x040070A5 RID: 28837
+		// Token: 0x04006182 RID: 24962
 		[Tooltip("The direction of the CapsuleCollider")]
 		public SharedInt direction;
 
-		// Token: 0x040070A6 RID: 28838
+		// Token: 0x04006183 RID: 24963
 		private CapsuleCollider capsuleCollider;
 
-		// Token: 0x040070A7 RID: 28839
+		// Token: 0x04006184 RID: 24964
 		private GameObject prevGameObject;
 	}
 }

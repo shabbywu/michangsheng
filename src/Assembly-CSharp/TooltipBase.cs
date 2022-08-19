@@ -1,16 +1,16 @@
 ﻿using System;
 using UnityEngine;
 
-// Token: 0x020005DF RID: 1503
+// Token: 0x02000429 RID: 1065
 public class TooltipBase : MonoBehaviour
 {
-	// Token: 0x060025C2 RID: 9666 RVA: 0x0001E37C File Offset: 0x0001C57C
+	// Token: 0x06002206 RID: 8710 RVA: 0x000EA55C File Offset: 0x000E875C
 	protected virtual void Start()
 	{
 		this.childTexture = base.transform.GetChild(0).GetComponent<UITexture>();
 	}
 
-	// Token: 0x060025C3 RID: 9667 RVA: 0x0001E395 File Offset: 0x0001C595
+	// Token: 0x06002207 RID: 8711 RVA: 0x000EA575 File Offset: 0x000E8775
 	protected virtual void Update()
 	{
 		if (this.shoudSetPos)
@@ -24,7 +24,7 @@ public class TooltipBase : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060025C4 RID: 9668 RVA: 0x0012B8DC File Offset: 0x00129ADC
+	// Token: 0x06002208 RID: 8712 RVA: 0x000EA5B0 File Offset: 0x000E87B0
 	public virtual void MobileSetPosition()
 	{
 		if (this.showType == 2)
@@ -44,14 +44,14 @@ public class TooltipBase : MonoBehaviour
 		base.transform.position = UICamera.currentCamera.ScreenToWorldPoint(new Vector3(num3, num4, 0f));
 	}
 
-	// Token: 0x060025C5 RID: 9669 RVA: 0x0001E3CD File Offset: 0x0001C5CD
+	// Token: 0x06002209 RID: 8713 RVA: 0x000EA667 File Offset: 0x000E8867
 	public Vector3 getMousePosition()
 	{
 		Vector3 mousePosition = Input.mousePosition;
 		return Input.mousePosition;
 	}
 
-	// Token: 0x060025C6 RID: 9670 RVA: 0x0012B994 File Offset: 0x00129B94
+	// Token: 0x0600220A RID: 8714 RVA: 0x000EA674 File Offset: 0x000E8874
 	public virtual void PCSetPosition()
 	{
 		Vector3 vector;
@@ -69,18 +69,18 @@ public class TooltipBase : MonoBehaviour
 		base.transform.position = UICamera.currentCamera.ScreenToWorldPoint(vector);
 	}
 
-	// Token: 0x04002037 RID: 8247
+	// Token: 0x04001B6D RID: 7021
 	public bool showTooltip;
 
-	// Token: 0x04002038 RID: 8248
+	// Token: 0x04001B6E RID: 7022
 	public UITexture childTexture;
 
-	// Token: 0x04002039 RID: 8249
+	// Token: 0x04001B6F RID: 7023
 	public int showType = 1;
 
-	// Token: 0x0400203A RID: 8250
+	// Token: 0x04001B70 RID: 7024
 	protected Vector3 NowClickPositon = Vector3.zero;
 
-	// Token: 0x0400203B RID: 8251
+	// Token: 0x04001B71 RID: 7025
 	public bool shoudSetPos = true;
 }

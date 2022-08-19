@@ -2,16 +2,16 @@
 
 namespace MoonSharp.Interpreter.REPL
 {
-	// Token: 0x020010CE RID: 4302
+	// Token: 0x02000CF1 RID: 3313
 	public class ReplHistoryInterpreter : ReplInterpreter
 	{
-		// Token: 0x060067C8 RID: 26568 RVA: 0x0004755E File Offset: 0x0004575E
+		// Token: 0x06005CB2 RID: 23730 RVA: 0x002617FB File Offset: 0x0025F9FB
 		public ReplHistoryInterpreter(Script script, int historySize) : base(script)
 		{
 			this.m_History = new string[historySize];
 		}
 
-		// Token: 0x060067C9 RID: 26569 RVA: 0x00047581 File Offset: 0x00045781
+		// Token: 0x06005CB3 RID: 23731 RVA: 0x0026181E File Offset: 0x0025FA1E
 		public override DynValue Evaluate(string input)
 		{
 			this.m_Navi = -1;
@@ -20,7 +20,7 @@ namespace MoonSharp.Interpreter.REPL
 			return base.Evaluate(input);
 		}
 
-		// Token: 0x060067CA RID: 26570 RVA: 0x0028AAD0 File Offset: 0x00288CD0
+		// Token: 0x06005CB4 RID: 23732 RVA: 0x00261854 File Offset: 0x0025FA54
 		public string HistoryPrev()
 		{
 			if (this.m_Navi == -1)
@@ -38,7 +38,7 @@ namespace MoonSharp.Interpreter.REPL
 			return null;
 		}
 
-		// Token: 0x060067CB RID: 26571 RVA: 0x000475B6 File Offset: 0x000457B6
+		// Token: 0x06005CB5 RID: 23733 RVA: 0x002618B0 File Offset: 0x0025FAB0
 		public string HistoryNext()
 		{
 			if (this.m_Navi == -1)
@@ -53,13 +53,13 @@ namespace MoonSharp.Interpreter.REPL
 			return null;
 		}
 
-		// Token: 0x04005FC0 RID: 24512
+		// Token: 0x040053BC RID: 21436
 		private string[] m_History;
 
-		// Token: 0x04005FC1 RID: 24513
+		// Token: 0x040053BD RID: 21437
 		private int m_Last = -1;
 
-		// Token: 0x04005FC2 RID: 24514
+		// Token: 0x040053BE RID: 21438
 		private int m_Navi = -1;
 	}
 }

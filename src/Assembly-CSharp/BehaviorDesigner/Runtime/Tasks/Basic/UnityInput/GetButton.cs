@@ -3,30 +3,30 @@ using UnityEngine;
 
 namespace BehaviorDesigner.Runtime.Tasks.Basic.UnityInput
 {
-	// Token: 0x020015E5 RID: 5605
+	// Token: 0x02001126 RID: 4390
 	[TaskCategory("Basic/Input")]
 	[TaskDescription("Stores the state of the specified button.")]
 	public class GetButton : Action
 	{
-		// Token: 0x06008343 RID: 33603 RVA: 0x0005A3C7 File Offset: 0x000585C7
+		// Token: 0x06007549 RID: 30025 RVA: 0x002B43FC File Offset: 0x002B25FC
 		public override TaskStatus OnUpdate()
 		{
 			this.storeResult.Value = Input.GetButton(this.buttonName.Value);
 			return 2;
 		}
 
-		// Token: 0x06008344 RID: 33604 RVA: 0x0005A3E5 File Offset: 0x000585E5
+		// Token: 0x0600754A RID: 30026 RVA: 0x002B441A File Offset: 0x002B261A
 		public override void OnReset()
 		{
 			this.buttonName = "Fire1";
 			this.storeResult = false;
 		}
 
-		// Token: 0x04007012 RID: 28690
+		// Token: 0x040060EF RID: 24815
 		[Tooltip("The name of the button")]
 		public SharedString buttonName;
 
-		// Token: 0x04007013 RID: 28691
+		// Token: 0x040060F0 RID: 24816
 		[RequiredField]
 		[Tooltip("The stored result")]
 		public SharedBool storeResult;

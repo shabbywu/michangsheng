@@ -1,10 +1,10 @@
 ﻿using System;
 using UnityEngine;
 
-// Token: 0x02000616 RID: 1558
+// Token: 0x0200045C RID: 1116
 public class FightSkillToggle : MonoBehaviour
 {
-	// Token: 0x060026BE RID: 9918 RVA: 0x000042DD File Offset: 0x000024DD
+	// Token: 0x0600230B RID: 8971 RVA: 0x00004095 File Offset: 0x00002295
 	private void Start()
 	{
 	}

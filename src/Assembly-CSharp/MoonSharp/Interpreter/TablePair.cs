@@ -2,12 +2,12 @@
 
 namespace MoonSharp.Interpreter
 {
-	// Token: 0x02001074 RID: 4212
+	// Token: 0x02000CA6 RID: 3238
 	public struct TablePair
 	{
-		// Token: 0x17000901 RID: 2305
-		// (get) Token: 0x060065A0 RID: 26016 RVA: 0x00045F96 File Offset: 0x00044196
-		// (set) Token: 0x060065A1 RID: 26017 RVA: 0x00045F9E File Offset: 0x0004419E
+		// Token: 0x170006A6 RID: 1702
+		// (get) Token: 0x06005AB1 RID: 23217 RVA: 0x00258E8A File Offset: 0x0025708A
+		// (set) Token: 0x06005AB2 RID: 23218 RVA: 0x00258E92 File Offset: 0x00257092
 		public DynValue Key
 		{
 			get
@@ -20,9 +20,9 @@ namespace MoonSharp.Interpreter
 			}
 		}
 
-		// Token: 0x17000902 RID: 2306
-		// (get) Token: 0x060065A2 RID: 26018 RVA: 0x00045FAC File Offset: 0x000441AC
-		// (set) Token: 0x060065A3 RID: 26019 RVA: 0x00045FB4 File Offset: 0x000441B4
+		// Token: 0x170006A7 RID: 1703
+		// (get) Token: 0x06005AB3 RID: 23219 RVA: 0x00258EA0 File Offset: 0x002570A0
+		// (set) Token: 0x06005AB4 RID: 23220 RVA: 0x00258EA8 File Offset: 0x002570A8
 		public DynValue Value
 		{
 			get
@@ -38,15 +38,15 @@ namespace MoonSharp.Interpreter
 			}
 		}
 
-		// Token: 0x060065A4 RID: 26020 RVA: 0x00045FCA File Offset: 0x000441CA
+		// Token: 0x06005AB5 RID: 23221 RVA: 0x00258EBE File Offset: 0x002570BE
 		public TablePair(DynValue key, DynValue val)
 		{
 			this.key = key;
 			this.value = val;
 		}
 
-		// Token: 0x17000903 RID: 2307
-		// (get) Token: 0x060065A5 RID: 26021 RVA: 0x00045FDA File Offset: 0x000441DA
+		// Token: 0x170006A8 RID: 1704
+		// (get) Token: 0x06005AB6 RID: 23222 RVA: 0x00258ECE File Offset: 0x002570CE
 		public static TablePair Nil
 		{
 			get
@@ -55,13 +55,13 @@ namespace MoonSharp.Interpreter
 			}
 		}
 
-		// Token: 0x04005E66 RID: 24166
+		// Token: 0x04005293 RID: 21139
 		private static TablePair s_NilNode = new TablePair(DynValue.Nil, DynValue.Nil);
 
-		// Token: 0x04005E67 RID: 24167
+		// Token: 0x04005294 RID: 21140
 		private DynValue key;
 
-		// Token: 0x04005E68 RID: 24168
+		// Token: 0x04005295 RID: 21141
 		private DynValue value;
 	}
 }

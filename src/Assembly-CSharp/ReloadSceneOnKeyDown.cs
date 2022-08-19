@@ -2,10 +2,10 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-// Token: 0x02000229 RID: 553
+// Token: 0x02000152 RID: 338
 public class ReloadSceneOnKeyDown : MonoBehaviour
 {
-	// Token: 0x06001126 RID: 4390 RVA: 0x000AB484 File Offset: 0x000A9684
+	// Token: 0x06000EFA RID: 3834 RVA: 0x0005B304 File Offset: 0x00059504
 	private void Update()
 	{
 		if (Input.GetKeyDown(this.reloadKey))
@@ -14,6 +14,6 @@ public class ReloadSceneOnKeyDown : MonoBehaviour
 		}
 	}
 
-	// Token: 0x04000DDF RID: 3551
+	// Token: 0x04000B3A RID: 2874
 	public KeyCode reloadKey = 114;
 }

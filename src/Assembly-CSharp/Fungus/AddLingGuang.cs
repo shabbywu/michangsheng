@@ -3,12 +3,12 @@ using UnityEngine;
 
 namespace Fungus
 {
-	// Token: 0x020013E5 RID: 5093
+	// Token: 0x02000F2F RID: 3887
 	[CommandInfo("YSNew/Add", "AddLingGuang", "增加灵光", 0)]
 	[AddComponentMenu("")]
 	public class AddLingGuang : Command
 	{
-		// Token: 0x06007BED RID: 31725 RVA: 0x00054504 File Offset: 0x00052704
+		// Token: 0x06006E02 RID: 28162 RVA: 0x002A422A File Offset: 0x002A242A
 		public override void OnEnter()
 		{
 			Tools.instance.getPlayer().wuDaoMag.AddLingGuangByJsonID(this.LingGuangID.Value);
@@ -16,13 +16,13 @@ namespace Fungus
 			this.Continue();
 		}
 
-		// Token: 0x06007BEE RID: 31726 RVA: 0x000113CF File Offset: 0x0000F5CF
+		// Token: 0x06006E03 RID: 28163 RVA: 0x0005E228 File Offset: 0x0005C428
 		public override Color GetButtonColor()
 		{
 			return new Color32(184, 210, 235, byte.MaxValue);
 		}
 
-		// Token: 0x04006A45 RID: 27205
+		// Token: 0x04005B73 RID: 23411
 		[Tooltip("增加的灵光ID")]
 		[VariableProperty(new Type[]
 		{

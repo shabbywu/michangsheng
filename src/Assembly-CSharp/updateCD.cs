@@ -2,10 +2,10 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-// Token: 0x02000658 RID: 1624
+// Token: 0x0200048A RID: 1162
 public class updateCD : MonoBehaviour
 {
-	// Token: 0x0600286B RID: 10347 RVA: 0x0013BDF0 File Offset: 0x00139FF0
+	// Token: 0x0600249A RID: 9370 RVA: 0x000FC8F8 File Offset: 0x000FAAF8
 	private void Start()
 	{
 		this.currentTime = this.coolingTimer;
@@ -13,7 +13,7 @@ public class updateCD : MonoBehaviour
 		this.cooltext = base.transform.Find("cooltime").GetComponent<Text>();
 	}
 
-	// Token: 0x0600286C RID: 10348 RVA: 0x0013BE40 File Offset: 0x0013A040
+	// Token: 0x0600249B RID: 9371 RVA: 0x000FC948 File Offset: 0x000FAB48
 	private void Update()
 	{
 		if (this.currentTime < this.coolingTimer)
@@ -29,7 +29,7 @@ public class updateCD : MonoBehaviour
 		}
 	}
 
-	// Token: 0x0600286D RID: 10349 RVA: 0x0001FA29 File Offset: 0x0001DC29
+	// Token: 0x0600249C RID: 9372 RVA: 0x000FC9E0 File Offset: 0x000FABE0
 	public void OnBtnClickSkill()
 	{
 		if (this.currentTime >= this.coolingTimer)
@@ -39,15 +39,15 @@ public class updateCD : MonoBehaviour
 		}
 	}
 
-	// Token: 0x04002226 RID: 8742
+	// Token: 0x04001D49 RID: 7497
 	public float coolingTimer = 2f;
 
-	// Token: 0x04002227 RID: 8743
+	// Token: 0x04001D4A RID: 7498
 	private float currentTime;
 
-	// Token: 0x04002228 RID: 8744
+	// Token: 0x04001D4B RID: 7499
 	public Image coolingImage;
 
-	// Token: 0x04002229 RID: 8745
+	// Token: 0x04001D4C RID: 7500
 	public Text cooltext;
 }

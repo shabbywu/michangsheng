@@ -1,11 +1,11 @@
 ﻿using System;
 using UnityEngine;
 
-// Token: 0x020005AA RID: 1450
+// Token: 0x020003FA RID: 1018
 public class selectBox : MonoBehaviour, IESCClose
 {
-	// Token: 0x170002CC RID: 716
-	// (get) Token: 0x06002486 RID: 9350 RVA: 0x0001D5D3 File Offset: 0x0001B7D3
+	// Token: 0x17000282 RID: 642
+	// (get) Token: 0x060020D4 RID: 8404 RVA: 0x000E6ABC File Offset: 0x000E4CBC
 	public static selectBox instence
 	{
 		get
@@ -14,13 +14,13 @@ public class selectBox : MonoBehaviour, IESCClose
 		}
 	}
 
-	// Token: 0x06002487 RID: 9351 RVA: 0x0001D5DA File Offset: 0x0001B7DA
+	// Token: 0x060020D5 RID: 8405 RVA: 0x000E6AC3 File Offset: 0x000E4CC3
 	private void Awake()
 	{
 		selectBox._instence = this;
 	}
 
-	// Token: 0x06002488 RID: 9352 RVA: 0x00128B7C File Offset: 0x00126D7C
+	// Token: 0x060020D6 RID: 8406 RVA: 0x000E6ACC File Offset: 0x000E4CCC
 	public void setChoice(string text, EventDelegate OK, EventDelegate Cancel)
 	{
 		this.open();
@@ -33,7 +33,7 @@ public class selectBox : MonoBehaviour, IESCClose
 		this.ok.onClick.Add(new EventDelegate(new EventDelegate.Callback(this.close)));
 	}
 
-	// Token: 0x06002489 RID: 9353 RVA: 0x00128C20 File Offset: 0x00126E20
+	// Token: 0x060020D7 RID: 8407 RVA: 0x000E6B70 File Offset: 0x000E4D70
 	public void LianDanChoice(string text, EventDelegate OK, EventDelegate Cancel, Vector3 scale)
 	{
 		this.open();
@@ -47,7 +47,7 @@ public class selectBox : MonoBehaviour, IESCClose
 		base.transform.localScale = scale;
 	}
 
-	// Token: 0x0600248A RID: 9354 RVA: 0x00128CD0 File Offset: 0x00126ED0
+	// Token: 0x060020D8 RID: 8408 RVA: 0x000E6C20 File Offset: 0x000E4E20
 	public void LianQiChoice(string text, EventDelegate OK, EventDelegate Cancel, Vector3 scale)
 	{
 		this.open();
@@ -61,7 +61,7 @@ public class selectBox : MonoBehaviour, IESCClose
 		base.transform.localScale = scale;
 	}
 
-	// Token: 0x0600248B RID: 9355 RVA: 0x00128D80 File Offset: 0x00126F80
+	// Token: 0x060020D9 RID: 8409 RVA: 0x000E6CD0 File Offset: 0x000E4ED0
 	public void LianQiResult(string text, EventDelegate OK, EventDelegate Cancel, Vector3 scale)
 	{
 		this.open();
@@ -76,7 +76,7 @@ public class selectBox : MonoBehaviour, IESCClose
 		base.transform.localScale = scale;
 	}
 
-	// Token: 0x0600248C RID: 9356 RVA: 0x0001D5E2 File Offset: 0x0001B7E2
+	// Token: 0x060020DA RID: 8410 RVA: 0x000E6D81 File Offset: 0x000E4F81
 	public void setBtnBackSprite(string canceName, string OkName)
 	{
 		this.cancel.GetComponent<UISprite>().spriteName = canceName;
@@ -85,7 +85,7 @@ public class selectBox : MonoBehaviour, IESCClose
 		this.ok.normalSprite = OkName;
 	}
 
-	// Token: 0x0600248D RID: 9357 RVA: 0x0001D61E File Offset: 0x0001B81E
+	// Token: 0x060020DB RID: 8411 RVA: 0x000E6DBD File Offset: 0x000E4FBD
 	public void close()
 	{
 		Tools.canClickFlag = true;
@@ -93,7 +93,7 @@ public class selectBox : MonoBehaviour, IESCClose
 		ESCCloseManager.Inst.UnRegisterClose(this);
 	}
 
-	// Token: 0x0600248E RID: 9358 RVA: 0x00128E34 File Offset: 0x00127034
+	// Token: 0x060020DC RID: 8412 RVA: 0x000E6DDC File Offset: 0x000E4FDC
 	public void open()
 	{
 		Tools.canClickFlag = false;
@@ -109,12 +109,12 @@ public class selectBox : MonoBehaviour, IESCClose
 		ESCCloseManager.Inst.RegisterClose(this);
 	}
 
-	// Token: 0x0600248F RID: 9359 RVA: 0x000042DD File Offset: 0x000024DD
+	// Token: 0x060020DD RID: 8413 RVA: 0x00004095 File Offset: 0x00002295
 	private void Start()
 	{
 	}
 
-	// Token: 0x06002490 RID: 9360 RVA: 0x00128ECC File Offset: 0x001270CC
+	// Token: 0x060020DE RID: 8414 RVA: 0x000E6E74 File Offset: 0x000E5074
 	public bool TryEscClose()
 	{
 		if (this.cancel.gameObject.activeInHierarchy)
@@ -131,18 +131,18 @@ public class selectBox : MonoBehaviour, IESCClose
 		return true;
 	}
 
-	// Token: 0x04001F68 RID: 8040
+	// Token: 0x04001AAC RID: 6828
 	public UIButton cancel;
 
-	// Token: 0x04001F69 RID: 8041
+	// Token: 0x04001AAD RID: 6829
 	public UIButton ok;
 
-	// Token: 0x04001F6A RID: 8042
+	// Token: 0x04001AAE RID: 6830
 	public UILabel label;
 
-	// Token: 0x04001F6B RID: 8043
+	// Token: 0x04001AAF RID: 6831
 	public UIButton lianQiOK;
 
-	// Token: 0x04001F6C RID: 8044
+	// Token: 0x04001AB0 RID: 6832
 	public static selectBox _instence;
 }

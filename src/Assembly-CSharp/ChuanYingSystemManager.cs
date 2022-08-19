@@ -6,10 +6,10 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
 
-// Token: 0x020003BE RID: 958
+// Token: 0x02000290 RID: 656
 public class ChuanYingSystemManager : MonoBehaviour
 {
-	// Token: 0x06001A7D RID: 6781 RVA: 0x000EA368 File Offset: 0x000E8568
+	// Token: 0x060017A2 RID: 6050 RVA: 0x000A3168 File Offset: 0x000A1368
 	private void Awake()
 	{
 		ChuanYingSystemManager.inst = this;
@@ -23,7 +23,7 @@ public class ChuanYingSystemManager : MonoBehaviour
 		this.init();
 	}
 
-	// Token: 0x06001A7E RID: 6782 RVA: 0x000EA414 File Offset: 0x000E8614
+	// Token: 0x060017A3 RID: 6051 RVA: 0x000A3214 File Offset: 0x000A1414
 	public void init()
 	{
 		Tools.ClearObj(this.ChuanYingMessageCell.transform);
@@ -49,14 +49,14 @@ public class ChuanYingSystemManager : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001A7F RID: 6783 RVA: 0x000168E5 File Offset: 0x00014AE5
+	// Token: 0x060017A4 RID: 6052 RVA: 0x000A32E7 File Offset: 0x000A14E7
 	public void Close()
 	{
 		ChuanYingSystemManager.inst = null;
 		PanelMamager.inst.closePanel(PanelMamager.PanelType.传音符, 0);
 	}
 
-	// Token: 0x06001A80 RID: 6784 RVA: 0x000EA4E8 File Offset: 0x000E86E8
+	// Token: 0x060017A5 RID: 6053 RVA: 0x000A32FC File Offset: 0x000A14FC
 	public void deleteMessage(JSONObject json, GameObject obj)
 	{
 		selectBox.instence.LianDanChoice("确定要删除此传音符吗", new EventDelegate(delegate()
@@ -72,7 +72,7 @@ public class ChuanYingSystemManager : MonoBehaviour
 		}), null, new Vector3(0.8f, 0.8f, 0.8f));
 	}
 
-	// Token: 0x06001A81 RID: 6785 RVA: 0x000EA548 File Offset: 0x000E8748
+	// Token: 0x060017A6 RID: 6054 RVA: 0x000A335C File Offset: 0x000A155C
 	public void clickSelect(bool isShow, ChuanYingMessage chuanYingMessage)
 	{
 		if (isShow)
@@ -89,7 +89,7 @@ public class ChuanYingSystemManager : MonoBehaviour
 		this.curSelectChuanYingMessage = null;
 	}
 
-	// Token: 0x06001A82 RID: 6786 RVA: 0x000168F9 File Offset: 0x00014AF9
+	// Token: 0x060017A7 RID: 6055 RVA: 0x000A33B1 File Offset: 0x000A15B1
 	private void OnDestroy()
 	{
 		Tools.canClickFlag = true;
@@ -97,7 +97,7 @@ public class ChuanYingSystemManager : MonoBehaviour
 		PanelMamager.inst.closePanel(PanelMamager.PanelType.传音符, 1);
 	}
 
-	// Token: 0x06001A83 RID: 6787 RVA: 0x00016913 File Offset: 0x00014B13
+	// Token: 0x060017A8 RID: 6056 RVA: 0x000A33CB File Offset: 0x000A15CB
 	public void checkHasRead()
 	{
 		if (Tools.instance.getPlayer().NewChuanYingList.Count < 1)
@@ -106,32 +106,32 @@ public class ChuanYingSystemManager : MonoBehaviour
 		}
 	}
 
-	// Token: 0x040015EC RID: 5612
+	// Token: 0x04001269 RID: 4713
 	[SerializeField]
 	private Canvas ChuanYingCanvas;
 
-	// Token: 0x040015ED RID: 5613
+	// Token: 0x0400126A RID: 4714
 	public static ChuanYingSystemManager inst;
 
-	// Token: 0x040015EE RID: 5614
+	// Token: 0x0400126B RID: 4715
 	[HideInInspector]
 	public Inventory2 inventory;
 
-	// Token: 0x040015EF RID: 5615
+	// Token: 0x0400126C RID: 4716
 	[SerializeField]
 	private Button CloseBtn;
 
-	// Token: 0x040015F0 RID: 5616
+	// Token: 0x0400126D RID: 4717
 	public List<Sprite> sprites = new List<Sprite>();
 
-	// Token: 0x040015F1 RID: 5617
+	// Token: 0x0400126E RID: 4718
 	[HideInInspector]
 	public ChuanYingMessage curSelectChuanYingMessage;
 
-	// Token: 0x040015F2 RID: 5618
+	// Token: 0x0400126F RID: 4719
 	[SerializeField]
 	private GameObject ChuanYingMessageCell;
 
-	// Token: 0x040015F3 RID: 5619
+	// Token: 0x04001270 RID: 4720
 	public RectTransform rectTransform;
 }

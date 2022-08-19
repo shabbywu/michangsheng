@@ -2,11 +2,11 @@
 
 namespace MoonSharp.Interpreter.CoreLib
 {
-	// Token: 0x0200119E RID: 4510
+	// Token: 0x02000D81 RID: 3457
 	[MoonSharpModule]
 	public class TableIteratorsModule
 	{
-		// Token: 0x06006E61 RID: 28257 RVA: 0x0029D444 File Offset: 0x0029B644
+		// Token: 0x0600623A RID: 25146 RVA: 0x002773B0 File Offset: 0x002755B0
 		[MoonSharpModuleMethod]
 		public static DynValue ipairs(ScriptExecutionContext executionContext, CallbackArguments args)
 		{
@@ -24,7 +24,7 @@ namespace MoonSharp.Interpreter.CoreLib
 			return result;
 		}
 
-		// Token: 0x06006E62 RID: 28258 RVA: 0x0029D4A8 File Offset: 0x0029B6A8
+		// Token: 0x0600623B RID: 25147 RVA: 0x00277414 File Offset: 0x00275614
 		[MoonSharpModuleMethod]
 		public static DynValue pairs(ScriptExecutionContext executionContext, CallbackArguments args)
 		{
@@ -41,7 +41,7 @@ namespace MoonSharp.Interpreter.CoreLib
 			return result;
 		}
 
-		// Token: 0x06006E63 RID: 28259 RVA: 0x0029D4F8 File Offset: 0x0029B6F8
+		// Token: 0x0600623C RID: 25148 RVA: 0x00277464 File Offset: 0x00275664
 		[MoonSharpModuleMethod]
 		public static DynValue next(ScriptExecutionContext executionContext, CallbackArguments args)
 		{
@@ -59,7 +59,7 @@ namespace MoonSharp.Interpreter.CoreLib
 			throw new ScriptRuntimeException("invalid key to 'next'");
 		}
 
-		// Token: 0x06006E64 RID: 28260 RVA: 0x0029D56C File Offset: 0x0029B76C
+		// Token: 0x0600623D RID: 25149 RVA: 0x002774D8 File Offset: 0x002756D8
 		public static DynValue __next_i(ScriptExecutionContext executionContext, CallbackArguments args)
 		{
 			DynValue dynValue = args.AsType(0, "!!next_i!!", DataType.Table, false);

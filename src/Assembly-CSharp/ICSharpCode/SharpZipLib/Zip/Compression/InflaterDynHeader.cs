@@ -4,16 +4,16 @@ using ICSharpCode.SharpZipLib.Zip.Compression.Streams;
 
 namespace ICSharpCode.SharpZipLib.Zip.Compression
 {
-	// Token: 0x020007FC RID: 2044
+	// Token: 0x02000557 RID: 1367
 	internal class InflaterDynHeader
 	{
-		// Token: 0x060034C0 RID: 13504 RVA: 0x0002685A File Offset: 0x00024A5A
+		// Token: 0x06002C5A RID: 11354 RVA: 0x0014AF75 File Offset: 0x00149175
 		public bool AttemptRead()
 		{
 			return !this.state.MoveNext() || this.state.Current;
 		}
 
-		// Token: 0x060034C1 RID: 13505 RVA: 0x00026876 File Offset: 0x00024A76
+		// Token: 0x06002C5B RID: 11355 RVA: 0x0014AF91 File Offset: 0x00149191
 		public InflaterDynHeader(StreamManipulator input)
 		{
 			this.input = input;
@@ -21,7 +21,7 @@ namespace ICSharpCode.SharpZipLib.Zip.Compression
 			this.state = this.stateMachine.GetEnumerator();
 		}
 
-		// Token: 0x060034C2 RID: 13506 RVA: 0x000268B2 File Offset: 0x00024AB2
+		// Token: 0x06002C5C RID: 11356 RVA: 0x0014AFCD File Offset: 0x001491CD
 		private IEnumerable<bool> CreateStateMachine()
 		{
 			while (!this.input.TryGetBits(5, ref this.litLenCodeCount, 257))
@@ -135,8 +135,8 @@ namespace ICSharpCode.SharpZipLib.Zip.Compression
 			yield break;
 		}
 
-		// Token: 0x170004FB RID: 1275
-		// (get) Token: 0x060034C3 RID: 13507 RVA: 0x000268C2 File Offset: 0x00024AC2
+		// Token: 0x17000346 RID: 838
+		// (get) Token: 0x06002C5D RID: 11357 RVA: 0x0014AFDD File Offset: 0x001491DD
 		public InflaterHuffmanTree LiteralLengthTree
 		{
 			get
@@ -150,8 +150,8 @@ namespace ICSharpCode.SharpZipLib.Zip.Compression
 			}
 		}
 
-		// Token: 0x170004FC RID: 1276
-		// (get) Token: 0x060034C4 RID: 13508 RVA: 0x000268D9 File Offset: 0x00024AD9
+		// Token: 0x17000347 RID: 839
+		// (get) Token: 0x06002C5E RID: 11358 RVA: 0x0014AFF4 File Offset: 0x001491F4
 		public InflaterHuffmanTree DistanceTree
 		{
 			get
@@ -165,19 +165,19 @@ namespace ICSharpCode.SharpZipLib.Zip.Compression
 			}
 		}
 
-		// Token: 0x04003007 RID: 12295
+		// Token: 0x040027D7 RID: 10199
 		private const int LITLEN_MAX = 286;
 
-		// Token: 0x04003008 RID: 12296
+		// Token: 0x040027D8 RID: 10200
 		private const int DIST_MAX = 30;
 
-		// Token: 0x04003009 RID: 12297
+		// Token: 0x040027D9 RID: 10201
 		private const int CODELEN_MAX = 316;
 
-		// Token: 0x0400300A RID: 12298
+		// Token: 0x040027DA RID: 10202
 		private const int META_MAX = 19;
 
-		// Token: 0x0400300B RID: 12299
+		// Token: 0x040027DB RID: 10203
 		private static readonly int[] MetaCodeLengthIndex = new int[]
 		{
 			16,
@@ -201,31 +201,31 @@ namespace ICSharpCode.SharpZipLib.Zip.Compression
 			15
 		};
 
-		// Token: 0x0400300C RID: 12300
+		// Token: 0x040027DC RID: 10204
 		private readonly StreamManipulator input;
 
-		// Token: 0x0400300D RID: 12301
+		// Token: 0x040027DD RID: 10205
 		private readonly IEnumerator<bool> state;
 
-		// Token: 0x0400300E RID: 12302
+		// Token: 0x040027DE RID: 10206
 		private readonly IEnumerable<bool> stateMachine;
 
-		// Token: 0x0400300F RID: 12303
+		// Token: 0x040027DF RID: 10207
 		private byte[] codeLengths = new byte[316];
 
-		// Token: 0x04003010 RID: 12304
+		// Token: 0x040027E0 RID: 10208
 		private InflaterHuffmanTree litLenTree;
 
-		// Token: 0x04003011 RID: 12305
+		// Token: 0x040027E1 RID: 10209
 		private InflaterHuffmanTree distTree;
 
-		// Token: 0x04003012 RID: 12306
+		// Token: 0x040027E2 RID: 10210
 		private int litLenCodeCount;
 
-		// Token: 0x04003013 RID: 12307
+		// Token: 0x040027E3 RID: 10211
 		private int distanceCodeCount;
 
-		// Token: 0x04003014 RID: 12308
+		// Token: 0x040027E4 RID: 10212
 		private int metaCodeCount;
 	}
 }

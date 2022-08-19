@@ -3,12 +3,12 @@ using UnityEngine;
 
 namespace BehaviorDesigner.Runtime.Tasks.Basic.UnityAudioSource
 {
-	// Token: 0x02001636 RID: 5686
+	// Token: 0x02001177 RID: 4471
 	[TaskCategory("Basic/AudioSource")]
 	[TaskDescription("Sets the clip value of the AudioSource. Returns Success.")]
 	public class SetAudioClip : Action
 	{
-		// Token: 0x0600846A RID: 33898 RVA: 0x002CF9A8 File Offset: 0x002CDBA8
+		// Token: 0x06007670 RID: 30320 RVA: 0x002B68C4 File Offset: 0x002B4AC4
 		public override void OnStart()
 		{
 			GameObject defaultGameObject = base.GetDefaultGameObject(this.targetGameObject.Value);
@@ -19,7 +19,7 @@ namespace BehaviorDesigner.Runtime.Tasks.Basic.UnityAudioSource
 			}
 		}
 
-		// Token: 0x0600846B RID: 33899 RVA: 0x0005B83D File Offset: 0x00059A3D
+		// Token: 0x06007671 RID: 30321 RVA: 0x002B6904 File Offset: 0x002B4B04
 		public override TaskStatus OnUpdate()
 		{
 			if (this.audioSource == null)
@@ -31,25 +31,25 @@ namespace BehaviorDesigner.Runtime.Tasks.Basic.UnityAudioSource
 			return 2;
 		}
 
-		// Token: 0x0600846C RID: 33900 RVA: 0x0005B86B File Offset: 0x00059A6B
+		// Token: 0x06007672 RID: 30322 RVA: 0x002B6932 File Offset: 0x002B4B32
 		public override void OnReset()
 		{
 			this.targetGameObject = null;
 			this.audioClip = null;
 		}
 
-		// Token: 0x04007113 RID: 28947
+		// Token: 0x040061F0 RID: 25072
 		[Tooltip("The GameObject that the task operates on. If null the task GameObject is used.")]
 		public SharedGameObject targetGameObject;
 
-		// Token: 0x04007114 RID: 28948
+		// Token: 0x040061F1 RID: 25073
 		[Tooltip("The AudioSource clip")]
 		public AudioClip audioClip;
 
-		// Token: 0x04007115 RID: 28949
+		// Token: 0x040061F2 RID: 25074
 		private AudioSource audioSource;
 
-		// Token: 0x04007116 RID: 28950
+		// Token: 0x040061F3 RID: 25075
 		private GameObject prevGameObject;
 	}
 }

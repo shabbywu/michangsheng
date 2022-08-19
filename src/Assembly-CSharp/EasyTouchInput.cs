@@ -1,16 +1,16 @@
 ﻿using System;
 using UnityEngine;
 
-// Token: 0x020001D2 RID: 466
+// Token: 0x02000112 RID: 274
 public class EasyTouchInput
 {
-	// Token: 0x06000F35 RID: 3893 RVA: 0x0000F878 File Offset: 0x0000DA78
+	// Token: 0x06000D60 RID: 3424 RVA: 0x000502F6 File Offset: 0x0004E4F6
 	public int TouchCount()
 	{
 		return this.getTouchCount(false);
 	}
 
-	// Token: 0x06000F36 RID: 3894 RVA: 0x000A10C8 File Offset: 0x0009F2C8
+	// Token: 0x06000D61 RID: 3425 RVA: 0x00050300 File Offset: 0x0004E500
 	private int getTouchCount(bool realTouch)
 	{
 		int result = 0;
@@ -33,7 +33,7 @@ public class EasyTouchInput
 		return result;
 	}
 
-	// Token: 0x06000F37 RID: 3895 RVA: 0x000A117C File Offset: 0x0009F37C
+	// Token: 0x06000D62 RID: 3426 RVA: 0x000503B4 File Offset: 0x0004E5B4
 	public Finger GetMouseTouch(int fingerIndex, Finger myFinger)
 	{
 		Finger finger;
@@ -120,7 +120,7 @@ public class EasyTouchInput
 		}
 	}
 
-	// Token: 0x06000F38 RID: 3896 RVA: 0x000A1460 File Offset: 0x0009F660
+	// Token: 0x06000D63 RID: 3427 RVA: 0x00050698 File Offset: 0x0004E898
 	public Vector2 GetSecondFingerPosition()
 	{
 		Vector2 result;
@@ -150,7 +150,7 @@ public class EasyTouchInput
 		return result;
 	}
 
-	// Token: 0x06000F39 RID: 3897 RVA: 0x0000F881 File Offset: 0x0000DA81
+	// Token: 0x06000D64 RID: 3428 RVA: 0x0005077E File Offset: 0x0004E97E
 	private Vector2 GetPointerPosition(int index)
 	{
 		if (index == 0)
@@ -160,7 +160,7 @@ public class EasyTouchInput
 		return this.GetSecondFingerPosition();
 	}
 
-	// Token: 0x06000F3A RID: 3898 RVA: 0x000A1548 File Offset: 0x0009F748
+	// Token: 0x06000D65 RID: 3429 RVA: 0x00050794 File Offset: 0x0004E994
 	private Vector2 GetPinchTwist2Finger()
 	{
 		Vector2 result;
@@ -178,7 +178,7 @@ public class EasyTouchInput
 		return result;
 	}
 
-	// Token: 0x06000F3B RID: 3899 RVA: 0x000A161C File Offset: 0x0009F81C
+	// Token: 0x06000D66 RID: 3430 RVA: 0x00050868 File Offset: 0x0004EA68
 	private Vector2 GetComplex2finger()
 	{
 		Vector2 vector;
@@ -189,30 +189,30 @@ public class EasyTouchInput
 		return vector;
 	}
 
-	// Token: 0x04000BCD RID: 3021
+	// Token: 0x04000950 RID: 2384
 	private Vector2[] oldMousePosition = new Vector2[2];
 
-	// Token: 0x04000BCE RID: 3022
+	// Token: 0x04000951 RID: 2385
 	private int[] tapCount = new int[2];
 
-	// Token: 0x04000BCF RID: 3023
+	// Token: 0x04000952 RID: 2386
 	private float[] startActionTime = new float[2];
 
-	// Token: 0x04000BD0 RID: 3024
+	// Token: 0x04000953 RID: 2387
 	private float[] deltaTime = new float[2];
 
-	// Token: 0x04000BD1 RID: 3025
+	// Token: 0x04000954 RID: 2388
 	private float[] tapeTime = new float[2];
 
-	// Token: 0x04000BD2 RID: 3026
+	// Token: 0x04000955 RID: 2389
 	private bool bComplex;
 
-	// Token: 0x04000BD3 RID: 3027
+	// Token: 0x04000956 RID: 2390
 	private Vector2 deltaFingerPosition;
 
-	// Token: 0x04000BD4 RID: 3028
+	// Token: 0x04000957 RID: 2391
 	private Vector2 oldFinger2Position;
 
-	// Token: 0x04000BD5 RID: 3029
+	// Token: 0x04000958 RID: 2392
 	private Vector2 complexCenter;
 }

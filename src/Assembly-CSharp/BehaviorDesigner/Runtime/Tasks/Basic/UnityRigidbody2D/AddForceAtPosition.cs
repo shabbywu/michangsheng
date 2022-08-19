@@ -3,12 +3,12 @@ using UnityEngine;
 
 namespace BehaviorDesigner.Runtime.Tasks.Basic.UnityRigidbody2D
 {
-	// Token: 0x0200152E RID: 5422
+	// Token: 0x02001074 RID: 4212
 	[TaskCategory("Basic/Rigidbody2D")]
 	[TaskDescription("Applies a force at the specified position to the Rigidbody2D. Returns Success.")]
 	public class AddForceAtPosition : Action
 	{
-		// Token: 0x060080B6 RID: 32950 RVA: 0x002CB664 File Offset: 0x002C9864
+		// Token: 0x060072BC RID: 29372 RVA: 0x002AE6F8 File Offset: 0x002AC8F8
 		public override void OnStart()
 		{
 			GameObject defaultGameObject = base.GetDefaultGameObject(this.targetGameObject.Value);
@@ -19,7 +19,7 @@ namespace BehaviorDesigner.Runtime.Tasks.Basic.UnityRigidbody2D
 			}
 		}
 
-		// Token: 0x060080B7 RID: 32951 RVA: 0x00057A1B File Offset: 0x00055C1B
+		// Token: 0x060072BD RID: 29373 RVA: 0x002AE738 File Offset: 0x002AC938
 		public override TaskStatus OnUpdate()
 		{
 			if (this.rigidbody2D == null)
@@ -31,7 +31,7 @@ namespace BehaviorDesigner.Runtime.Tasks.Basic.UnityRigidbody2D
 			return 2;
 		}
 
-		// Token: 0x060080B8 RID: 32952 RVA: 0x00057A59 File Offset: 0x00055C59
+		// Token: 0x060072BE RID: 29374 RVA: 0x002AE776 File Offset: 0x002AC976
 		public override void OnReset()
 		{
 			this.targetGameObject = null;
@@ -39,22 +39,22 @@ namespace BehaviorDesigner.Runtime.Tasks.Basic.UnityRigidbody2D
 			this.position = Vector2.zero;
 		}
 
-		// Token: 0x04006D6B RID: 28011
+		// Token: 0x04005E6B RID: 24171
 		[Tooltip("The GameObject that the task operates on. If null the task GameObject is used.")]
 		public SharedGameObject targetGameObject;
 
-		// Token: 0x04006D6C RID: 28012
+		// Token: 0x04005E6C RID: 24172
 		[Tooltip("The amount of force to apply")]
 		public SharedVector2 force;
 
-		// Token: 0x04006D6D RID: 28013
+		// Token: 0x04005E6D RID: 24173
 		[Tooltip("The position of the force")]
 		public SharedVector2 position;
 
-		// Token: 0x04006D6E RID: 28014
+		// Token: 0x04005E6E RID: 24174
 		private Rigidbody2D rigidbody2D;
 
-		// Token: 0x04006D6F RID: 28015
+		// Token: 0x04005E6F RID: 24175
 		private GameObject prevGameObject;
 	}
 }

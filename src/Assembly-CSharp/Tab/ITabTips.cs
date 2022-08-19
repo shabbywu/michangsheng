@@ -4,10 +4,10 @@ using UnityEngine.UI;
 
 namespace Tab
 {
-	// Token: 0x02000A2D RID: 2605
+	// Token: 0x020006EC RID: 1772
 	public abstract class ITabTips : UIBase
 	{
-		// Token: 0x06004374 RID: 17268 RVA: 0x001CD160 File Offset: 0x001CB360
+		// Token: 0x06003909 RID: 14601 RVA: 0x00185664 File Offset: 0x00183864
 		public void Show(string msg, Vector3 position)
 		{
 			this._text.text = this.Replace(msg);
@@ -16,7 +16,7 @@ namespace Tab
 			this._go.transform.position = new Vector2(position.x, position.y);
 		}
 
-		// Token: 0x06004375 RID: 17269 RVA: 0x0003036F File Offset: 0x0002E56F
+		// Token: 0x0600390A RID: 14602 RVA: 0x001856BB File Offset: 0x001838BB
 		public void Show(string msg)
 		{
 			this._text.text = this.Replace(msg);
@@ -24,13 +24,13 @@ namespace Tab
 			this.UpdateSize();
 		}
 
-		// Token: 0x06004376 RID: 17270 RVA: 0x00030361 File Offset: 0x0002E561
+		// Token: 0x0600390B RID: 14603 RVA: 0x00185653 File Offset: 0x00183853
 		public void Hide()
 		{
 			this._go.SetActive(false);
 		}
 
-		// Token: 0x06004377 RID: 17271 RVA: 0x001CD1B8 File Offset: 0x001CB3B8
+		// Token: 0x0600390C RID: 14604 RVA: 0x001856E4 File Offset: 0x001838E4
 		protected void UpdateSize()
 		{
 			if (this._childSizeFitter != null)
@@ -47,19 +47,19 @@ namespace Tab
 			}
 		}
 
-		// Token: 0x06004378 RID: 17272
+		// Token: 0x0600390D RID: 14605
 		protected abstract string Replace(string msg);
 
-		// Token: 0x04003B79 RID: 15225
+		// Token: 0x04003114 RID: 12564
 		protected RectTransform _rect;
 
-		// Token: 0x04003B7A RID: 15226
+		// Token: 0x04003115 RID: 12565
 		protected ContentSizeFitter _childSizeFitter;
 
-		// Token: 0x04003B7B RID: 15227
+		// Token: 0x04003116 RID: 12566
 		protected ContentSizeFitter _sizeFitter;
 
-		// Token: 0x04003B7C RID: 15228
+		// Token: 0x04003117 RID: 12567
 		protected Text _text;
 	}
 }

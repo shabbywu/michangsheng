@@ -5,10 +5,10 @@ using UnityEngine;
 
 namespace WXB
 {
-	// Token: 0x020009E0 RID: 2528
+	// Token: 0x020006B9 RID: 1721
 	public class TextParser
 	{
-		// Token: 0x06004060 RID: 16480 RVA: 0x0002E41D File Offset: 0x0002C61D
+		// Token: 0x06003658 RID: 13912 RVA: 0x00174050 File Offset: 0x00172250
 		public T CreateNode<T>() where T : NodeBase, new()
 		{
 			T t = Activator.CreateInstance<T>();
@@ -16,7 +16,7 @@ namespace WXB
 			return t;
 		}
 
-		// Token: 0x06004061 RID: 16481 RVA: 0x0002E440 File Offset: 0x0002C640
+		// Token: 0x06003659 RID: 13913 RVA: 0x00174073 File Offset: 0x00172273
 		private static bool Get(char c, out Anchor a)
 		{
 			switch (c)
@@ -36,7 +36,7 @@ namespace WXB
 			}
 		}
 
-		// Token: 0x06004062 RID: 16482 RVA: 0x0002E46C File Offset: 0x0002C66C
+		// Token: 0x0600365A RID: 13914 RVA: 0x0017409F File Offset: 0x0017229F
 		private static bool Get(char c, out LineAlignment a)
 		{
 			switch (c)
@@ -56,7 +56,7 @@ namespace WXB
 			}
 		}
 
-		// Token: 0x06004063 RID: 16483 RVA: 0x0002E498 File Offset: 0x0002C698
+		// Token: 0x0600365B RID: 13915 RVA: 0x001740CB File Offset: 0x001722CB
 		public TextParser()
 		{
 			this.clear();
@@ -64,7 +64,7 @@ namespace WXB
 			this.RegTag();
 		}
 
-		// Token: 0x06004064 RID: 16484 RVA: 0x001BC8B8 File Offset: 0x001BAAB8
+		// Token: 0x0600365C RID: 13916 RVA: 0x001740F0 File Offset: 0x001722F0
 		private static bool ParserInt(ref int d_curPos, string text, ref int value, int num = 3)
 		{
 			bool result;
@@ -95,7 +95,7 @@ namespace WXB
 			return result;
 		}
 
-		// Token: 0x06004065 RID: 16485 RVA: 0x001BC960 File Offset: 0x001BAB60
+		// Token: 0x0600365D RID: 13917 RVA: 0x00174198 File Offset: 0x00172398
 		private static bool ParserFloat(ref int d_curPos, string text, ref float value, int num = 3)
 		{
 			bool result;
@@ -132,7 +132,7 @@ namespace WXB
 			return result;
 		}
 
-		// Token: 0x06004066 RID: 16486 RVA: 0x001BCA34 File Offset: 0x001BAC34
+		// Token: 0x0600365E RID: 13918 RVA: 0x0017426C File Offset: 0x0017246C
 		public void parser(Owner owner, string text, TextParser.Config config, List<NodeBase> vList)
 		{
 			this.clear();
@@ -234,7 +234,7 @@ namespace WXB
 			this.clear();
 		}
 
-		// Token: 0x06004067 RID: 16487 RVA: 0x001BCC90 File Offset: 0x001BAE90
+		// Token: 0x0600365F RID: 13919 RVA: 0x001744C8 File Offset: 0x001726C8
 		protected void save(bool isNewLine)
 		{
 			if (this.d_text.Length != 0)
@@ -269,7 +269,7 @@ namespace WXB
 			}
 		}
 
-		// Token: 0x06004068 RID: 16488 RVA: 0x001BCD88 File Offset: 0x001BAF88
+		// Token: 0x06003660 RID: 13920 RVA: 0x001745C0 File Offset: 0x001727C0
 		protected void saveX(float value)
 		{
 			XSpaceNode xspaceNode = this.CreateNode<XSpaceNode>();
@@ -277,7 +277,7 @@ namespace WXB
 			this.d_nodeList.Add(xspaceNode);
 		}
 
-		// Token: 0x06004069 RID: 16489 RVA: 0x001BCDB0 File Offset: 0x001BAFB0
+		// Token: 0x06003661 RID: 13921 RVA: 0x001745E8 File Offset: 0x001727E8
 		protected void saveY(float value)
 		{
 			if (this.d_nodeList.Count != 0 && !this.d_nodeList.back<NodeBase>().isNewLine())
@@ -290,7 +290,7 @@ namespace WXB
 			this.d_nodeList.Add(yspaceNode);
 		}
 
-		// Token: 0x0600406A RID: 16490 RVA: 0x001BCE10 File Offset: 0x001BB010
+		// Token: 0x06003662 RID: 13922 RVA: 0x00174648 File Offset: 0x00172848
 		protected void saveZ(float value)
 		{
 			YSpaceNode yspaceNode = this.CreateNode<YSpaceNode>();
@@ -299,7 +299,7 @@ namespace WXB
 			this.d_nodeList.Add(yspaceNode);
 		}
 
-		// Token: 0x0600406B RID: 16491 RVA: 0x001BCE40 File Offset: 0x001BB040
+		// Token: 0x06003663 RID: 13923 RVA: 0x00174678 File Offset: 0x00172878
 		protected void saveHy()
 		{
 			if (this.d_text.Length == 0)
@@ -326,7 +326,7 @@ namespace WXB
 			this.d_nodeList.Add(hyperlinkNode);
 		}
 
-		// Token: 0x0600406C RID: 16492 RVA: 0x001BCF1C File Offset: 0x001BB11C
+		// Token: 0x06003664 RID: 13924 RVA: 0x00174754 File Offset: 0x00172954
 		protected void clear()
 		{
 			this.startConfig.Clear();
@@ -338,7 +338,7 @@ namespace WXB
 			this.mOwner = null;
 		}
 
-		// Token: 0x0600406D RID: 16493 RVA: 0x001BCF74 File Offset: 0x001BB174
+		// Token: 0x06003665 RID: 13925 RVA: 0x001747AC File Offset: 0x001729AC
 		private static Color GetColour(uint code)
 		{
 			if (code <= 75U)
@@ -374,7 +374,7 @@ namespace WXB
 			return Color.white;
 		}
 
-		// Token: 0x0600406E RID: 16494 RVA: 0x001BCFD4 File Offset: 0x001BB1D4
+		// Token: 0x06003666 RID: 13926 RVA: 0x0017480C File Offset: 0x00172A0C
 		private void Reg()
 		{
 			this.OnFuns = new TextParser.OnFun[128];
@@ -417,7 +417,7 @@ namespace WXB
 			this.OnFuns[57] = new TextParser.OnFun(this.ParserCartoon);
 		}
 
-		// Token: 0x0600406F RID: 16495 RVA: 0x001BD2FC File Offset: 0x001BB4FC
+		// Token: 0x06003667 RID: 13927 RVA: 0x00174B34 File Offset: 0x00172D34
 		private void ParserCartoon(string text)
 		{
 			Cartoon cartoon = null;
@@ -449,7 +449,7 @@ namespace WXB
 			this.d_nodeList.Add(cartoonNode);
 		}
 
-		// Token: 0x06004070 RID: 16496 RVA: 0x001BD39C File Offset: 0x001BB59C
+		// Token: 0x06003668 RID: 13928 RVA: 0x00174BD4 File Offset: 0x00172DD4
 		private void ParserDynSpeed(string text)
 		{
 			int num = -1;
@@ -465,7 +465,7 @@ namespace WXB
 			this.currentConfig.dyncSpeed = num;
 		}
 
-		// Token: 0x06004071 RID: 16497 RVA: 0x0002E4BD File Offset: 0x0002C6BD
+		// Token: 0x06003669 RID: 13929 RVA: 0x00174C1B File Offset: 0x00172E1B
 		private void ParserDynUnderline(string text)
 		{
 			this.save(false);
@@ -473,7 +473,7 @@ namespace WXB
 			this.d_curPos++;
 		}
 
-		// Token: 0x06004072 RID: 16498 RVA: 0x0002E4ED File Offset: 0x0002C6ED
+		// Token: 0x0600366A RID: 13930 RVA: 0x00174C4B File Offset: 0x00172E4B
 		private void ParserDynStrickout(string text)
 		{
 			this.save(false);
@@ -481,7 +481,7 @@ namespace WXB
 			this.d_curPos++;
 		}
 
-		// Token: 0x06004073 RID: 16499 RVA: 0x001BD3E4 File Offset: 0x001BB5E4
+		// Token: 0x0600366B RID: 13931 RVA: 0x00174C7C File Offset: 0x00172E7C
 		private void ParserRestoreColor(string text)
 		{
 			if (this.currentConfig.fontColor != this.startConfig.fontColor)
@@ -494,7 +494,7 @@ namespace WXB
 			this.d_curPos++;
 		}
 
-		// Token: 0x06004074 RID: 16500 RVA: 0x001BD444 File Offset: 0x001BB644
+		// Token: 0x0600366C RID: 13932 RVA: 0x00174CDC File Offset: 0x00172EDC
 		private void ParserRestore(string text)
 		{
 			if (!this.currentConfig.isSame(this.startConfig))
@@ -507,7 +507,7 @@ namespace WXB
 			this.d_curPos++;
 		}
 
-		// Token: 0x06004075 RID: 16501 RVA: 0x001BD49C File Offset: 0x001BB69C
+		// Token: 0x0600366D RID: 13933 RVA: 0x00174D34 File Offset: 0x00172F34
 		private void ParserSureColor(string text)
 		{
 			Color colour = TextParser.GetColour((uint)text[this.d_curPos]);
@@ -519,7 +519,7 @@ namespace WXB
 			this.d_curPos++;
 		}
 
-		// Token: 0x06004076 RID: 16502 RVA: 0x0002E51D File Offset: 0x0002C71D
+		// Token: 0x0600366E RID: 13934 RVA: 0x00174D87 File Offset: 0x00172F87
 		private void ParserBlink(string text)
 		{
 			this.save(false);
@@ -527,7 +527,7 @@ namespace WXB
 			this.d_curPos++;
 		}
 
-		// Token: 0x06004077 RID: 16503 RVA: 0x001BD4F0 File Offset: 0x001BB6F0
+		// Token: 0x0600366F RID: 13935 RVA: 0x00174DB8 File Offset: 0x00172FB8
 		private void ParserLineAlignment(string text)
 		{
 			LineAlignment lineAlignment;
@@ -543,7 +543,7 @@ namespace WXB
 			this.d_curPos++;
 		}
 
-		// Token: 0x06004078 RID: 16504 RVA: 0x001BD564 File Offset: 0x001BB764
+		// Token: 0x06003670 RID: 13936 RVA: 0x00174E2C File Offset: 0x0017302C
 		private void ParserFormatting(string text)
 		{
 			Anchor anchor;
@@ -559,7 +559,7 @@ namespace WXB
 			this.d_curPos++;
 		}
 
-		// Token: 0x06004079 RID: 16505 RVA: 0x0002E54D File Offset: 0x0002C74D
+		// Token: 0x06003671 RID: 13937 RVA: 0x00174E9D File Offset: 0x0017309D
 		private static bool GetFontStyle(char c, out FontStyle fs)
 		{
 			switch (c)
@@ -582,7 +582,7 @@ namespace WXB
 			}
 		}
 
-		// Token: 0x0600407A RID: 16506 RVA: 0x001BD5D8 File Offset: 0x001BB7D8
+		// Token: 0x06003672 RID: 13938 RVA: 0x00174ED4 File Offset: 0x001730D4
 		private void ParserFontStyle(string text)
 		{
 			if (text.Length > this.d_curPos + 1)
@@ -607,7 +607,7 @@ namespace WXB
 			}
 		}
 
-		// Token: 0x0600407B RID: 16507 RVA: 0x0002E582 File Offset: 0x0002C782
+		// Token: 0x06003673 RID: 13939 RVA: 0x00174F55 File Offset: 0x00173155
 		private void ParserStrickout(string text)
 		{
 			this.save(false);
@@ -615,7 +615,7 @@ namespace WXB
 			this.d_curPos++;
 		}
 
-		// Token: 0x0600407C RID: 16508 RVA: 0x001BD65C File Offset: 0x001BB85C
+		// Token: 0x06003674 RID: 13940 RVA: 0x00174F88 File Offset: 0x00173188
 		private void ParserFontColorS(string text)
 		{
 			this.d_curPos--;
@@ -627,7 +627,7 @@ namespace WXB
 			}
 		}
 
-		// Token: 0x0600407D RID: 16509 RVA: 0x001BD6B8 File Offset: 0x001BB8B8
+		// Token: 0x06003675 RID: 13941 RVA: 0x00174FE4 File Offset: 0x001731E4
 		private void ParserFontColor(string text)
 		{
 			Color color = Tools.ParserColorName(text, ref this.d_curPos, this.currentConfig.fontColor);
@@ -638,7 +638,7 @@ namespace WXB
 			}
 		}
 
-		// Token: 0x0600407E RID: 16510 RVA: 0x0002E5B2 File Offset: 0x0002C7B2
+		// Token: 0x06003676 RID: 13942 RVA: 0x0017502F File Offset: 0x0017322F
 		private void ParserUnderLine(string text)
 		{
 			this.save(false);
@@ -646,21 +646,21 @@ namespace WXB
 			this.d_curPos++;
 		}
 
-		// Token: 0x0600407F RID: 16511 RVA: 0x0002E5E2 File Offset: 0x0002C7E2
+		// Token: 0x06003677 RID: 13943 RVA: 0x0017505F File Offset: 0x0017325F
 		private void ParserNewLine(string text)
 		{
 			this.save(true);
 			this.d_curPos++;
 		}
 
-		// Token: 0x06004080 RID: 16512 RVA: 0x0002E5F9 File Offset: 0x0002C7F9
+		// Token: 0x06003678 RID: 13944 RVA: 0x00175076 File Offset: 0x00173276
 		private void ParserOutputChar(string text)
 		{
 			this.d_text.Append('#');
 			this.d_curPos++;
 		}
 
-		// Token: 0x06004081 RID: 16513 RVA: 0x001BD704 File Offset: 0x001BB904
+		// Token: 0x06003679 RID: 13945 RVA: 0x00175094 File Offset: 0x00173294
 		private void ParserHyperlink(string text)
 		{
 			int num = text.IndexOf("#h", this.d_curPos + 1);
@@ -676,7 +676,7 @@ namespace WXB
 			this.d_curPos = num + 2;
 		}
 
-		// Token: 0x06004082 RID: 16514 RVA: 0x001BD788 File Offset: 0x001BB988
+		// Token: 0x0600367A RID: 13946 RVA: 0x00175118 File Offset: 0x00173318
 		private void ParserFontSize(string text)
 		{
 			float num = 1f;
@@ -688,7 +688,7 @@ namespace WXB
 			this.currentConfig.fontSize = (int)num;
 		}
 
-		// Token: 0x06004083 RID: 16515 RVA: 0x001BD7C4 File Offset: 0x001BB9C4
+		// Token: 0x0600367B RID: 13947 RVA: 0x00175154 File Offset: 0x00173354
 		private void ParserXYZ(string text)
 		{
 			int index = this.d_curPos;
@@ -726,7 +726,7 @@ namespace WXB
 			}
 		}
 
-		// Token: 0x06004084 RID: 16516 RVA: 0x001BD860 File Offset: 0x001BBA60
+		// Token: 0x0600367C RID: 13948 RVA: 0x001751F0 File Offset: 0x001733F0
 		private void ParserFont(string text)
 		{
 			this.d_curPos++;
@@ -746,7 +746,7 @@ namespace WXB
 			}
 		}
 
-		// Token: 0x06004085 RID: 16517 RVA: 0x001BD8C8 File Offset: 0x001BBAC8
+		// Token: 0x0600367D RID: 13949 RVA: 0x00175258 File Offset: 0x00173458
 		private void ParseHyText(string text, HyperlinkNode data)
 		{
 			if (TextParser.hyConfig == null)
@@ -764,7 +764,7 @@ namespace WXB
 			}
 		}
 
-		// Token: 0x06004086 RID: 16518 RVA: 0x001BD958 File Offset: 0x001BBB58
+		// Token: 0x0600367E RID: 13950 RVA: 0x001752E8 File Offset: 0x001734E8
 		private void Reg(string type, Action<string, TagAttributes> fun)
 		{
 			this.TagFuns.Add(type, delegate(string key, string param)
@@ -783,7 +783,7 @@ namespace WXB
 			});
 		}
 
-		// Token: 0x06004087 RID: 16519 RVA: 0x0002E617 File Offset: 0x0002C817
+		// Token: 0x0600367F RID: 13951 RVA: 0x00175326 File Offset: 0x00173526
 		private static Color ParserColorName(string name, int startpos, Color c)
 		{
 			if (string.IsNullOrEmpty(name))
@@ -797,7 +797,7 @@ namespace WXB
 			return ColorConst.Get(name, c);
 		}
 
-		// Token: 0x06004088 RID: 16520 RVA: 0x001BD998 File Offset: 0x001BBB98
+		// Token: 0x06003680 RID: 13952 RVA: 0x00175350 File Offset: 0x00173550
 		private static void SetDefaultConfig(NodeBase nb, TagAttributes att)
 		{
 			nb.d_bBlink = att.getValueAsBool("b", nb.d_bBlink);
@@ -818,7 +818,7 @@ namespace WXB
 			}
 		}
 
-		// Token: 0x06004089 RID: 16521 RVA: 0x001BDA48 File Offset: 0x001BBC48
+		// Token: 0x06003681 RID: 13953 RVA: 0x00175400 File Offset: 0x00173600
 		private static void SetSizeConfig(RectNode nb, TagAttributes att, Vector2 size)
 		{
 			nb.width = att.getValueAsFloat("w", size.x);
@@ -836,7 +836,7 @@ namespace WXB
 			nb.width = nb.height * size.x / size.y;
 		}
 
-		// Token: 0x0600408A RID: 16522 RVA: 0x001BDAD0 File Offset: 0x001BBCD0
+		// Token: 0x06003682 RID: 13954 RVA: 0x00175488 File Offset: 0x00173688
 		private void RegTag()
 		{
 			this.TagFuns = new Dictionary<string, Action<string, string>>();
@@ -1005,7 +1005,7 @@ namespace WXB
 			});
 		}
 
-		// Token: 0x0600408B RID: 16523 RVA: 0x001BDCB8 File Offset: 0x001BBEB8
+		// Token: 0x06003683 RID: 13955 RVA: 0x00175670 File Offset: 0x00173870
 		private static void ParamEffectType(ref TextParser.Config config, TagAttributes att)
 		{
 			config.effectColor = TextParser.ParserColorName(att.getValueAsString("c"), 0, Color.black);
@@ -1013,7 +1013,7 @@ namespace WXB
 			config.effectDistance.y = att.getValueAsFloat("y", 1f);
 		}
 
-		// Token: 0x0600408C RID: 16524 RVA: 0x001BDD18 File Offset: 0x001BBF18
+		// Token: 0x06003684 RID: 13956 RVA: 0x001756D0 File Offset: 0x001738D0
 		private void TagParam(string tag, string param)
 		{
 			Action<string, string> action;
@@ -1029,43 +1029,43 @@ namespace WXB
 			});
 		}
 
-		// Token: 0x04003972 RID: 14706
+		// Token: 0x04002F80 RID: 12160
 		private Owner mOwner;
 
-		// Token: 0x04003973 RID: 14707
+		// Token: 0x04002F81 RID: 12161
 		protected int d_curPos;
 
-		// Token: 0x04003974 RID: 14708
+		// Token: 0x04002F82 RID: 12162
 		protected TextParser.Config startConfig;
 
-		// Token: 0x04003975 RID: 14709
+		// Token: 0x04002F83 RID: 12163
 		protected TextParser.Config currentConfig;
 
-		// Token: 0x04003976 RID: 14710
+		// Token: 0x04002F84 RID: 12164
 		protected List<NodeBase> d_nodeList;
 
-		// Token: 0x04003977 RID: 14711
+		// Token: 0x04002F85 RID: 12165
 		protected StringBuilder d_text = new StringBuilder();
 
-		// Token: 0x04003978 RID: 14712
+		// Token: 0x04002F86 RID: 12166
 		protected bool d_bBegin;
 
-		// Token: 0x04003979 RID: 14713
+		// Token: 0x04002F87 RID: 12167
 		private TextParser.OnFun[] OnFuns;
 
-		// Token: 0x0400397A RID: 14714
+		// Token: 0x04002F88 RID: 12168
 		private static TextParser.HyConfig hyConfig = null;
 
-		// Token: 0x0400397B RID: 14715
+		// Token: 0x04002F89 RID: 12169
 		private Dictionary<string, Action<string, string>> TagFuns;
 
-		// Token: 0x0400397C RID: 14716
+		// Token: 0x04002F8A RID: 12170
 		private static TagAttributes s_TagAttributes = new TagAttributes();
 
-		// Token: 0x020009E1 RID: 2529
+		// Token: 0x0200150D RID: 5389
 		public struct Config
 		{
-			// Token: 0x060040A0 RID: 16544 RVA: 0x001BE1AC File Offset: 0x001BC3AC
+			// Token: 0x060082DD RID: 33501 RVA: 0x002DCD30 File Offset: 0x002DAF30
 			public void Clear()
 			{
 				this.anchor = Anchor.Null;
@@ -1087,7 +1087,7 @@ namespace WXB
 				this.lineAlignment = LineAlignment.Default;
 			}
 
-			// Token: 0x060040A1 RID: 16545 RVA: 0x001BE258 File Offset: 0x001BC458
+			// Token: 0x060082DE RID: 33502 RVA: 0x002DCDDC File Offset: 0x002DAFDC
 			public void Set(TextParser.Config c)
 			{
 				this.anchor = c.anchor;
@@ -1109,72 +1109,72 @@ namespace WXB
 				this.lineAlignment = c.lineAlignment;
 			}
 
-			// Token: 0x060040A2 RID: 16546 RVA: 0x001BE334 File Offset: 0x001BC534
+			// Token: 0x060082DF RID: 33503 RVA: 0x002DCEB8 File Offset: 0x002DB0B8
 			public bool isSame(TextParser.Config c)
 			{
 				return this.anchor == c.anchor && this.font == c.font && this.fontStyle == c.fontStyle && this.isUnderline == c.isUnderline && this.fontColor == c.fontColor && this.isStrickout == c.isStrickout && this.isBlink == c.isBlink && this.fontSize == c.fontSize && this.lineAlignment == c.lineAlignment && this.isDyncUnderline == c.isDyncUnderline && this.isDyncStrickout == c.isDyncStrickout && this.dyncSpeed == c.dyncSpeed && ((this.effectType == EffectType.Null && c.effectType == EffectType.Null) || (this.effectType == c.effectType && this.effectColor == c.effectColor && this.effectDistance == c.effectDistance)) && ((!this.isOffset && !c.isOffset) || (this.isOffset == c.isOffset && this.offsetRect == c.offsetRect));
 			}
 
-			// Token: 0x0400397D RID: 14717
+			// Token: 0x04006E2E RID: 28206
 			public Anchor anchor;
 
-			// Token: 0x0400397E RID: 14718
+			// Token: 0x04006E2F RID: 28207
 			public Font font;
 
-			// Token: 0x0400397F RID: 14719
+			// Token: 0x04006E30 RID: 28208
 			public FontStyle fontStyle;
 
-			// Token: 0x04003980 RID: 14720
+			// Token: 0x04006E31 RID: 28209
 			public int fontSize;
 
-			// Token: 0x04003981 RID: 14721
+			// Token: 0x04006E32 RID: 28210
 			public Color fontColor;
 
-			// Token: 0x04003982 RID: 14722
+			// Token: 0x04006E33 RID: 28211
 			public bool isUnderline;
 
-			// Token: 0x04003983 RID: 14723
+			// Token: 0x04006E34 RID: 28212
 			public bool isStrickout;
 
-			// Token: 0x04003984 RID: 14724
+			// Token: 0x04006E35 RID: 28213
 			public bool isBlink;
 
-			// Token: 0x04003985 RID: 14725
+			// Token: 0x04006E36 RID: 28214
 			public bool isDyncUnderline;
 
-			// Token: 0x04003986 RID: 14726
+			// Token: 0x04006E37 RID: 28215
 			public bool isDyncStrickout;
 
-			// Token: 0x04003987 RID: 14727
+			// Token: 0x04006E38 RID: 28216
 			public int dyncSpeed;
 
-			// Token: 0x04003988 RID: 14728
+			// Token: 0x04006E39 RID: 28217
 			public bool isOffset;
 
-			// Token: 0x04003989 RID: 14729
+			// Token: 0x04006E3A RID: 28218
 			public Rect offsetRect;
 
-			// Token: 0x0400398A RID: 14730
+			// Token: 0x04006E3B RID: 28219
 			public EffectType effectType;
 
-			// Token: 0x0400398B RID: 14731
+			// Token: 0x04006E3C RID: 28220
 			public Color effectColor;
 
-			// Token: 0x0400398C RID: 14732
+			// Token: 0x04006E3D RID: 28221
 			public Vector2 effectDistance;
 
-			// Token: 0x0400398D RID: 14733
+			// Token: 0x04006E3E RID: 28222
 			public LineAlignment lineAlignment;
 		}
 
-		// Token: 0x020009E2 RID: 2530
-		// (Invoke) Token: 0x060040A4 RID: 16548
+		// Token: 0x0200150E RID: 5390
+		// (Invoke) Token: 0x060082E1 RID: 33505
 		private delegate void OnFun(string c);
 
-		// Token: 0x020009E3 RID: 2531
+		// Token: 0x0200150F RID: 5391
 		private class HyConfig
 		{
-			// Token: 0x060040A7 RID: 16551 RVA: 0x001BE490 File Offset: 0x001BC690
+			// Token: 0x060082E4 RID: 33508 RVA: 0x002DD014 File Offset: 0x002DB214
 			public HyConfig(TextParser p)
 			{
 				this.parser = p;
@@ -1203,33 +1203,33 @@ namespace WXB
 				};
 			}
 
-			// Token: 0x060040A8 RID: 16552 RVA: 0x0002E73A File Offset: 0x0002C93A
+			// Token: 0x060082E5 RID: 33509 RVA: 0x002DD16F File Offset: 0x002DB36F
 			private void ParserOutputChar(string text)
 			{
 				this.sb.Append("#");
 				this.startPos++;
 			}
 
-			// Token: 0x060040A9 RID: 16553 RVA: 0x0002E75B File Offset: 0x0002C95B
+			// Token: 0x060082E6 RID: 33510 RVA: 0x002DD190 File Offset: 0x002DB390
 			private void ParserSureColor(string text)
 			{
 				this.node.d_color = TextParser.GetColour((uint)text[this.startPos]);
 				this.startPos++;
 			}
 
-			// Token: 0x060040AA RID: 16554 RVA: 0x0002E787 File Offset: 0x0002C987
+			// Token: 0x060082E7 RID: 33511 RVA: 0x002DD1BC File Offset: 0x002DB3BC
 			private void ParserFontColor(string text)
 			{
 				this.node.d_color = Tools.ParserColorName(text, ref this.startPos, this.node.d_color);
 			}
 
-			// Token: 0x060040AB RID: 16555 RVA: 0x0002E7AB File Offset: 0x0002C9AB
+			// Token: 0x060082E8 RID: 33512 RVA: 0x002DD1E0 File Offset: 0x002DB3E0
 			private void ParserRestore(string text)
 			{
 				this.node.SetConfig(this.parser.startConfig);
 			}
 
-			// Token: 0x060040AC RID: 16556 RVA: 0x001BE5EC File Offset: 0x001BC7EC
+			// Token: 0x060082E9 RID: 33513 RVA: 0x002DD1F8 File Offset: 0x002DB3F8
 			private void ParserFontSize(string text)
 			{
 				float num = 1f;
@@ -1240,7 +1240,7 @@ namespace WXB
 				this.node.d_fontSize = (int)num;
 			}
 
-			// Token: 0x060040AD RID: 16557 RVA: 0x001BE620 File Offset: 0x001BC820
+			// Token: 0x060082EA RID: 33514 RVA: 0x002DD22C File Offset: 0x002DB42C
 			private void ParserFont(string text)
 			{
 				this.startPos++;
@@ -1253,7 +1253,7 @@ namespace WXB
 				this.startPos--;
 			}
 
-			// Token: 0x060040AE RID: 16558 RVA: 0x0002E7C3 File Offset: 0x0002C9C3
+			// Token: 0x060082EB RID: 33515 RVA: 0x002DD278 File Offset: 0x002DB478
 			public void Clear()
 			{
 				this.text = null;
@@ -1262,7 +1262,7 @@ namespace WXB
 				this.startPos = 0;
 			}
 
-			// Token: 0x060040AF RID: 16559 RVA: 0x001BE66C File Offset: 0x001BC86C
+			// Token: 0x060082EC RID: 33516 RVA: 0x002DD298 File Offset: 0x002DB498
 			public void BeginParser(StringBuilder s)
 			{
 				this.sb = s;
@@ -1301,29 +1301,29 @@ namespace WXB
 				this.node.d_text = this.sb.ToString();
 			}
 
-			// Token: 0x0400398E RID: 14734
+			// Token: 0x04006E3F RID: 28223
 			public string text = "";
 
-			// Token: 0x0400398F RID: 14735
+			// Token: 0x04006E40 RID: 28224
 			public HyperlinkNode node;
 
-			// Token: 0x04003990 RID: 14736
+			// Token: 0x04006E41 RID: 28225
 			public int startPos;
 
-			// Token: 0x04003991 RID: 14737
+			// Token: 0x04006E42 RID: 28226
 			public int lenght;
 
-			// Token: 0x04003992 RID: 14738
+			// Token: 0x04006E43 RID: 28227
 			private StringBuilder sb;
 
-			// Token: 0x04003993 RID: 14739
+			// Token: 0x04006E44 RID: 28228
 			public TextParser parser;
 
-			// Token: 0x04003994 RID: 14740
+			// Token: 0x04006E45 RID: 28229
 			private TextParser.HyConfig.OnFunHy[] OnFunHys;
 
-			// Token: 0x020009E4 RID: 2532
-			// (Invoke) Token: 0x060040B3 RID: 16563
+			// Token: 0x0200175A RID: 5978
+			// (Invoke) Token: 0x06008992 RID: 35218
 			private delegate void OnFunHy(string text);
 		}
 	}

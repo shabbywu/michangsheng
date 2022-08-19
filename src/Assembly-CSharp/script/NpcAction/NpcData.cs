@@ -1,12 +1,13 @@
 ﻿using System;
 using UnityEngine;
+using UnityEngine.Events;
 
 namespace script.NpcAction
 {
-	// Token: 0x02000ABF RID: 2751
+	// Token: 0x020009F2 RID: 2546
 	public class NpcData
 	{
-		// Token: 0x0600464C RID: 17996 RVA: 0x001DF9B4 File Offset: 0x001DDBB4
+		// Token: 0x0600469E RID: 18078 RVA: 0x001DDD6C File Offset: 0x001DBF6C
 		public NpcData(int npcId)
 		{
 			this.IsInit = false;
@@ -25,7 +26,7 @@ namespace script.NpcAction
 			}
 		}
 
-		// Token: 0x0600464D RID: 17997 RVA: 0x001DFA78 File Offset: 0x001DDC78
+		// Token: 0x0600469F RID: 18079 RVA: 0x001DDE30 File Offset: 0x001DC030
 		public void BackWriter()
 		{
 			jsonData.instance.AvatarJsonData.SetField(this.NpcId.ToString(), this.NpcBaseJson.Copy());
@@ -33,19 +34,22 @@ namespace script.NpcAction
 			jsonData.instance.AvatarBackpackJsonData[this.NpcId.ToString()].SetField("Backpack", this.NpcBagJson.Copy());
 		}
 
-		// Token: 0x04003E6E RID: 15982
+		// Token: 0x040047FB RID: 18427
 		public int NpcId;
 
-		// Token: 0x04003E6F RID: 15983
+		// Token: 0x040047FC RID: 18428
 		public JSONObject NpcBaseJson;
 
-		// Token: 0x04003E70 RID: 15984
+		// Token: 0x040047FD RID: 18429
 		public JSONObject NpcFaceJso;
 
-		// Token: 0x04003E71 RID: 15985
+		// Token: 0x040047FE RID: 18430
 		public JSONObject NpcBagJson;
 
-		// Token: 0x04003E72 RID: 15986
+		// Token: 0x040047FF RID: 18431
+		public UnityAction SetPlace;
+
+		// Token: 0x04004800 RID: 18432
 		public bool IsInit;
 	}
 }

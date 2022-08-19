@@ -1,11 +1,11 @@
 ﻿using System;
 
-// Token: 0x020002B4 RID: 692
+// Token: 0x020001B6 RID: 438
 public class MResolution
 {
-	// Token: 0x04001021 RID: 4129
+	// Token: 0x04000CF9 RID: 3321
 	public int X;
 
-	// Token: 0x04001022 RID: 4130
+	// Token: 0x04000CFA RID: 3322
 	public int Y;
 }

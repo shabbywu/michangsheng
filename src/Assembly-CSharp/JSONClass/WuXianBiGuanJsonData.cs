@@ -3,10 +3,10 @@ using System.Collections.Generic;
 
 namespace JSONClass
 {
-	// Token: 0x02000D0E RID: 3342
+	// Token: 0x0200098E RID: 2446
 	public class WuXianBiGuanJsonData : IJSONClass
 	{
-		// Token: 0x06004FA2 RID: 20386 RVA: 0x0021637C File Offset: 0x0021457C
+		// Token: 0x0600444C RID: 17484 RVA: 0x001D14EC File Offset: 0x001CF6EC
 		public static void InitDataDict()
 		{
 			foreach (JSONObject jsonobject in jsonData.instance.WuXianBiGuanJsonData.list)
@@ -39,24 +39,24 @@ namespace JSONClass
 			}
 		}
 
-		// Token: 0x06004FA3 RID: 20387 RVA: 0x000042DD File Offset: 0x000024DD
+		// Token: 0x0600444D RID: 17485 RVA: 0x00004095 File Offset: 0x00002295
 		private static void OnInitFinish()
 		{
 		}
 
-		// Token: 0x040050E6 RID: 20710
+		// Token: 0x040045F2 RID: 17906
 		public static Dictionary<int, WuXianBiGuanJsonData> DataDict = new Dictionary<int, WuXianBiGuanJsonData>();
 
-		// Token: 0x040050E7 RID: 20711
+		// Token: 0x040045F3 RID: 17907
 		public static List<WuXianBiGuanJsonData> DataList = new List<WuXianBiGuanJsonData>();
 
-		// Token: 0x040050E8 RID: 20712
+		// Token: 0x040045F4 RID: 17908
 		public static Action OnInitFinishAction = new Action(WuXianBiGuanJsonData.OnInitFinish);
 
-		// Token: 0x040050E9 RID: 20713
+		// Token: 0x040045F5 RID: 17909
 		public int id;
 
-		// Token: 0x040050EA RID: 20714
+		// Token: 0x040045F6 RID: 17910
 		public string SceneName;
 	}
 }

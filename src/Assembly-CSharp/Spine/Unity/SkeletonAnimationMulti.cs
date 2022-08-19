@@ -4,10 +4,10 @@ using UnityEngine;
 
 namespace Spine.Unity
 {
-	// Token: 0x02000E10 RID: 3600
+	// Token: 0x02000AD1 RID: 2769
 	public class SkeletonAnimationMulti : MonoBehaviour
 	{
-		// Token: 0x060056F6 RID: 22262 RVA: 0x00243470 File Offset: 0x00241670
+		// Token: 0x06004DA5 RID: 19877 RVA: 0x00213430 File Offset: 0x00211630
 		private void Clear()
 		{
 			foreach (SkeletonAnimation skeletonAnimation in this.skeletonAnimations)
@@ -19,7 +19,7 @@ namespace Spine.Unity
 			this.animationSkeletonTable.Clear();
 		}
 
-		// Token: 0x060056F7 RID: 22263 RVA: 0x002434E8 File Offset: 0x002416E8
+		// Token: 0x06004DA6 RID: 19878 RVA: 0x002134A8 File Offset: 0x002116A8
 		private void SetActiveSkeleton(SkeletonAnimation skeletonAnimation)
 		{
 			foreach (SkeletonAnimation skeletonAnimation2 in this.skeletonAnimations)
@@ -29,14 +29,14 @@ namespace Spine.Unity
 			this.currentSkeletonAnimation = skeletonAnimation;
 		}
 
-		// Token: 0x060056F8 RID: 22264 RVA: 0x0003E2B4 File Offset: 0x0003C4B4
+		// Token: 0x06004DA7 RID: 19879 RVA: 0x00213510 File Offset: 0x00211710
 		private void Awake()
 		{
 			this.Initialize(false);
 		}
 
-		// Token: 0x1700080E RID: 2062
-		// (get) Token: 0x060056F9 RID: 22265 RVA: 0x0003E2BD File Offset: 0x0003C4BD
+		// Token: 0x170005E5 RID: 1509
+		// (get) Token: 0x06004DA8 RID: 19880 RVA: 0x00213519 File Offset: 0x00211719
 		public Dictionary<Animation, SkeletonAnimation> AnimationSkeletonTable
 		{
 			get
@@ -45,8 +45,8 @@ namespace Spine.Unity
 			}
 		}
 
-		// Token: 0x1700080F RID: 2063
-		// (get) Token: 0x060056FA RID: 22266 RVA: 0x0003E2C5 File Offset: 0x0003C4C5
+		// Token: 0x170005E6 RID: 1510
+		// (get) Token: 0x06004DA9 RID: 19881 RVA: 0x00213521 File Offset: 0x00211721
 		public Dictionary<string, Animation> AnimationNameTable
 		{
 			get
@@ -55,8 +55,8 @@ namespace Spine.Unity
 			}
 		}
 
-		// Token: 0x17000810 RID: 2064
-		// (get) Token: 0x060056FB RID: 22267 RVA: 0x0003E2CD File Offset: 0x0003C4CD
+		// Token: 0x170005E7 RID: 1511
+		// (get) Token: 0x06004DAA RID: 19882 RVA: 0x00213529 File Offset: 0x00211729
 		public SkeletonAnimation CurrentSkeletonAnimation
 		{
 			get
@@ -65,7 +65,7 @@ namespace Spine.Unity
 			}
 		}
 
-		// Token: 0x060056FC RID: 22268 RVA: 0x00243550 File Offset: 0x00241750
+		// Token: 0x06004DAB RID: 19883 RVA: 0x00213534 File Offset: 0x00211734
 		public void Initialize(bool overwrite)
 		{
 			if (this.skeletonAnimations.Count != 0 && !overwrite)
@@ -102,7 +102,7 @@ namespace Spine.Unity
 			this.SetAnimation(this.initialAnimation, this.initialLoop);
 		}
 
-		// Token: 0x060056FD RID: 22269 RVA: 0x00243710 File Offset: 0x00241910
+		// Token: 0x06004DAC RID: 19884 RVA: 0x002136F4 File Offset: 0x002118F4
 		public Animation FindAnimation(string animationName)
 		{
 			Animation result;
@@ -110,13 +110,13 @@ namespace Spine.Unity
 			return result;
 		}
 
-		// Token: 0x060056FE RID: 22270 RVA: 0x0003E2D5 File Offset: 0x0003C4D5
+		// Token: 0x06004DAD RID: 19885 RVA: 0x00213711 File Offset: 0x00211911
 		public TrackEntry SetAnimation(string animationName, bool loop)
 		{
 			return this.SetAnimation(this.FindAnimation(animationName), loop);
 		}
 
-		// Token: 0x060056FF RID: 22271 RVA: 0x00243730 File Offset: 0x00241930
+		// Token: 0x06004DAE RID: 19886 RVA: 0x00213724 File Offset: 0x00211924
 		public TrackEntry SetAnimation(Animation animation, bool loop)
 		{
 			if (animation == null)
@@ -134,57 +134,57 @@ namespace Spine.Unity
 			return null;
 		}
 
-		// Token: 0x06005700 RID: 22272 RVA: 0x0003E2E5 File Offset: 0x0003C4E5
+		// Token: 0x06004DAF RID: 19887 RVA: 0x00213770 File Offset: 0x00211970
 		public void SetEmptyAnimation(float mixDuration)
 		{
 			this.currentSkeletonAnimation.state.SetEmptyAnimation(0, mixDuration);
 		}
 
-		// Token: 0x06005701 RID: 22273 RVA: 0x0003E2FA File Offset: 0x0003C4FA
+		// Token: 0x06004DB0 RID: 19888 RVA: 0x00213785 File Offset: 0x00211985
 		public void ClearAnimation()
 		{
 			this.currentSkeletonAnimation.state.ClearTrack(0);
 		}
 
-		// Token: 0x06005702 RID: 22274 RVA: 0x0003E30D File Offset: 0x0003C50D
+		// Token: 0x06004DB1 RID: 19889 RVA: 0x00213798 File Offset: 0x00211998
 		public TrackEntry GetCurrent()
 		{
 			return this.currentSkeletonAnimation.state.GetCurrent(0);
 		}
 
-		// Token: 0x040056A6 RID: 22182
+		// Token: 0x04004CCB RID: 19659
 		private const int MainTrackIndex = 0;
 
-		// Token: 0x040056A7 RID: 22183
+		// Token: 0x04004CCC RID: 19660
 		public bool initialFlipX;
 
-		// Token: 0x040056A8 RID: 22184
+		// Token: 0x04004CCD RID: 19661
 		public bool initialFlipY;
 
-		// Token: 0x040056A9 RID: 22185
+		// Token: 0x04004CCE RID: 19662
 		public string initialAnimation;
 
-		// Token: 0x040056AA RID: 22186
+		// Token: 0x04004CCF RID: 19663
 		public bool initialLoop;
 
-		// Token: 0x040056AB RID: 22187
+		// Token: 0x04004CD0 RID: 19664
 		[Space]
 		public List<SkeletonDataAsset> skeletonDataAssets = new List<SkeletonDataAsset>();
 
-		// Token: 0x040056AC RID: 22188
+		// Token: 0x04004CD1 RID: 19665
 		[Header("Settings")]
 		public MeshGenerator.Settings meshGeneratorSettings = MeshGenerator.Settings.Default;
 
-		// Token: 0x040056AD RID: 22189
+		// Token: 0x04004CD2 RID: 19666
 		private readonly List<SkeletonAnimation> skeletonAnimations = new List<SkeletonAnimation>();
 
-		// Token: 0x040056AE RID: 22190
+		// Token: 0x04004CD3 RID: 19667
 		private readonly Dictionary<string, Animation> animationNameTable = new Dictionary<string, Animation>();
 
-		// Token: 0x040056AF RID: 22191
+		// Token: 0x04004CD4 RID: 19668
 		private readonly Dictionary<Animation, SkeletonAnimation> animationSkeletonTable = new Dictionary<Animation, SkeletonAnimation>();
 
-		// Token: 0x040056B0 RID: 22192
+		// Token: 0x04004CD5 RID: 19669
 		private SkeletonAnimation currentSkeletonAnimation;
 	}
 }

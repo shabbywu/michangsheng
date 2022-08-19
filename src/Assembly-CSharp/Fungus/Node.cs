@@ -3,13 +3,13 @@ using UnityEngine;
 
 namespace Fungus
 {
-	// Token: 0x020012E5 RID: 4837
+	// Token: 0x02000E7A RID: 3706
 	[AddComponentMenu("")]
 	public class Node : MonoBehaviour
 	{
-		// Token: 0x17000AEA RID: 2794
-		// (get) Token: 0x060075CF RID: 30159 RVA: 0x00050427 File Offset: 0x0004E627
-		// (set) Token: 0x060075D0 RID: 30160 RVA: 0x0005042F File Offset: 0x0004E62F
+		// Token: 0x17000871 RID: 2161
+		// (get) Token: 0x060068E8 RID: 26856 RVA: 0x0028E9D8 File Offset: 0x0028CBD8
+		// (set) Token: 0x060068E9 RID: 26857 RVA: 0x0028E9E0 File Offset: 0x0028CBE0
 		public virtual Rect _NodeRect
 		{
 			get
@@ -22,9 +22,9 @@ namespace Fungus
 			}
 		}
 
-		// Token: 0x17000AEB RID: 2795
-		// (get) Token: 0x060075D1 RID: 30161 RVA: 0x00050438 File Offset: 0x0004E638
-		// (set) Token: 0x060075D2 RID: 30162 RVA: 0x00050440 File Offset: 0x0004E640
+		// Token: 0x17000872 RID: 2162
+		// (get) Token: 0x060068EA RID: 26858 RVA: 0x0028E9E9 File Offset: 0x0028CBE9
+		// (set) Token: 0x060068EB RID: 26859 RVA: 0x0028E9F1 File Offset: 0x0028CBF1
 		public virtual Color Tint
 		{
 			get
@@ -37,9 +37,9 @@ namespace Fungus
 			}
 		}
 
-		// Token: 0x17000AEC RID: 2796
-		// (get) Token: 0x060075D3 RID: 30163 RVA: 0x00050449 File Offset: 0x0004E649
-		// (set) Token: 0x060075D4 RID: 30164 RVA: 0x00050451 File Offset: 0x0004E651
+		// Token: 0x17000873 RID: 2163
+		// (get) Token: 0x060068EC RID: 26860 RVA: 0x0028E9FA File Offset: 0x0028CBFA
+		// (set) Token: 0x060068ED RID: 26861 RVA: 0x0028EA02 File Offset: 0x0028CC02
 		public virtual bool UseCustomTint
 		{
 			get
@@ -52,15 +52,15 @@ namespace Fungus
 			}
 		}
 
-		// Token: 0x040066CD RID: 26317
+		// Token: 0x04005905 RID: 22789
 		[SerializeField]
 		protected Rect nodeRect = new Rect(0f, 0f, 120f, 30f);
 
-		// Token: 0x040066CE RID: 26318
+		// Token: 0x04005906 RID: 22790
 		[SerializeField]
 		protected Color tint = Color.white;
 
-		// Token: 0x040066CF RID: 26319
+		// Token: 0x04005907 RID: 22791
 		[SerializeField]
 		protected bool useCustomTint;
 	}

@@ -4,16 +4,16 @@ using UnityEngine;
 
 namespace GUIPackage
 {
-	// Token: 0x02000D89 RID: 3465
+	// Token: 0x02000A60 RID: 2656
 	public class Key : MonoBehaviour
 	{
-		// Token: 0x0600538B RID: 21387 RVA: 0x0003BC24 File Offset: 0x00039E24
+		// Token: 0x06004A89 RID: 19081 RVA: 0x001FAA0B File Offset: 0x001F8C0B
 		private void Start()
 		{
 			this.draggingKey = false;
 		}
 
-		// Token: 0x0600538C RID: 21388 RVA: 0x0003BC2D File Offset: 0x00039E2D
+		// Token: 0x06004A8A RID: 19082 RVA: 0x001FAA14 File Offset: 0x001F8C14
 		private void Update()
 		{
 			if (this.draggingKey && Input.GetMouseButtonDown(1))
@@ -22,7 +22,7 @@ namespace GUIPackage
 			}
 		}
 
-		// Token: 0x0600538D RID: 21389 RVA: 0x0022CDE4 File Offset: 0x0022AFE4
+		// Token: 0x06004A8B RID: 19083 RVA: 0x001FAA30 File Offset: 0x001F8C30
 		public void Clear_ItemKey(item itemKey)
 		{
 			foreach (object obj in base.transform)
@@ -36,7 +36,7 @@ namespace GUIPackage
 			}
 		}
 
-		// Token: 0x0600538E RID: 21390 RVA: 0x0022CE58 File Offset: 0x0022B058
+		// Token: 0x06004A8C RID: 19084 RVA: 0x001FAAA4 File Offset: 0x001F8CA4
 		public void Clear_SkillKye(Skill skillKey)
 		{
 			foreach (object obj in base.transform)
@@ -51,7 +51,7 @@ namespace GUIPackage
 			}
 		}
 
-		// Token: 0x0600538F RID: 21391 RVA: 0x0022CEF0 File Offset: 0x0022B0F0
+		// Token: 0x06004A8D RID: 19085 RVA: 0x001FAB3C File Offset: 0x001F8D3C
 		public void Clear_MapSkillKye(Skill skillKey)
 		{
 			foreach (object obj in base.transform)
@@ -66,14 +66,14 @@ namespace GUIPackage
 			}
 		}
 
-		// Token: 0x06005390 RID: 21392 RVA: 0x0022CF88 File Offset: 0x0022B188
+		// Token: 0x06004A8E RID: 19086 RVA: 0x001FABD4 File Offset: 0x001F8DD4
 		public void Clear_MapSkillPassKye(Skill skillKey)
 		{
 			foreach (object obj in base.transform)
 			{
 				Transform transform = (Transform)obj;
 				int skill_ID = transform.GetComponent<KeyCellMapPassSkill>().keySkill.skill_ID;
-				if (skill_ID != -1 && (int)jsonData.instance.StaticSkillJsonData[skill_ID.ToString()]["Skill_ID"].n == (int)jsonData.instance.StaticSkillJsonData[skillKey.skill_ID.ToString()]["Skill_ID"].n)
+				if (skill_ID != -1 && jsonData.instance.StaticSkillJsonData[skill_ID.ToString()]["Skill_ID"].I == jsonData.instance.StaticSkillJsonData[skillKey.skill_ID.ToString()]["Skill_ID"].I)
 				{
 					((Avatar)KBEngineApp.app.player()).UnEquipStaticSkill(Tools.instance.getSkillIDByKey(skillKey.skill_ID));
 					transform.GetComponent<KeyCellMapPassSkill>().keySkill = new Skill();
@@ -82,7 +82,7 @@ namespace GUIPackage
 			}
 		}
 
-		// Token: 0x06005391 RID: 21393 RVA: 0x0022D080 File Offset: 0x0022B280
+		// Token: 0x06004A8F RID: 19087 RVA: 0x001FACCC File Offset: 0x001F8ECC
 		public void SaveKey()
 		{
 			int num = 0;
@@ -95,7 +95,7 @@ namespace GUIPackage
 			}
 		}
 
-		// Token: 0x06005392 RID: 21394 RVA: 0x0022D128 File Offset: 0x0022B328
+		// Token: 0x06004A90 RID: 19088 RVA: 0x001FAD74 File Offset: 0x001F8F74
 		public void SaveMapKey()
 		{
 			int num = 0;
@@ -108,7 +108,7 @@ namespace GUIPackage
 			}
 		}
 
-		// Token: 0x06005393 RID: 21395 RVA: 0x0022D1D0 File Offset: 0x0022B3D0
+		// Token: 0x06004A91 RID: 19089 RVA: 0x001FAE1C File Offset: 0x001F901C
 		public void SaveMapPassKey()
 		{
 			int num = 0;
@@ -121,7 +121,7 @@ namespace GUIPackage
 			}
 		}
 
-		// Token: 0x06005394 RID: 21396 RVA: 0x0022D278 File Offset: 0x0022B478
+		// Token: 0x06004A92 RID: 19090 RVA: 0x001FAEC4 File Offset: 0x001F90C4
 		public void LoadMapKey()
 		{
 			Avatar avatar = (Avatar)KBEngineApp.app.player();
@@ -147,7 +147,7 @@ namespace GUIPackage
 			}
 		}
 
-		// Token: 0x06005395 RID: 21397 RVA: 0x0022D390 File Offset: 0x0022B590
+		// Token: 0x06004A93 RID: 19091 RVA: 0x001FAFDC File Offset: 0x001F91DC
 		public void LoadMapPassKey()
 		{
 			Avatar avatar = (Avatar)KBEngineApp.app.player();
@@ -190,7 +190,7 @@ namespace GUIPackage
 			}
 		}
 
-		// Token: 0x06005396 RID: 21398 RVA: 0x0022D570 File Offset: 0x0022B770
+		// Token: 0x06004A94 RID: 19092 RVA: 0x001FB1BC File Offset: 0x001F93BC
 		public void LoadKey()
 		{
 			int num = 0;
@@ -219,13 +219,13 @@ namespace GUIPackage
 			}
 		}
 
-		// Token: 0x04005346 RID: 21318
+		// Token: 0x040049B5 RID: 18869
 		public bool draggingKey;
 
-		// Token: 0x04005347 RID: 21319
+		// Token: 0x040049B6 RID: 18870
 		public GameObject key0;
 
-		// Token: 0x04005348 RID: 21320
+		// Token: 0x040049B7 RID: 18871
 		public GameObject key6;
 	}
 }

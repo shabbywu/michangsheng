@@ -3,10 +3,10 @@ using System.Collections.Generic;
 
 namespace JSONClass
 {
-	// Token: 0x02000C4D RID: 3149
+	// Token: 0x020008BF RID: 2239
 	public class PaiMaiCanYuAvatar : IJSONClass
 	{
-		// Token: 0x06004C9D RID: 19613 RVA: 0x0020624C File Offset: 0x0020444C
+		// Token: 0x0600410F RID: 16655 RVA: 0x001BD7E8 File Offset: 0x001BB9E8
 		public static void InitDataDict()
 		{
 			foreach (JSONObject jsonobject in jsonData.instance.PaiMaiCanYuAvatar.list)
@@ -47,48 +47,48 @@ namespace JSONClass
 			}
 		}
 
-		// Token: 0x06004C9E RID: 19614 RVA: 0x000042DD File Offset: 0x000024DD
+		// Token: 0x06004110 RID: 16656 RVA: 0x00004095 File Offset: 0x00002295
 		private static void OnInitFinish()
 		{
 		}
 
-		// Token: 0x04004B4E RID: 19278
+		// Token: 0x04003FFA RID: 16378
 		public static Dictionary<int, PaiMaiCanYuAvatar> DataDict = new Dictionary<int, PaiMaiCanYuAvatar>();
 
-		// Token: 0x04004B4F RID: 19279
+		// Token: 0x04003FFB RID: 16379
 		public static List<PaiMaiCanYuAvatar> DataList = new List<PaiMaiCanYuAvatar>();
 
-		// Token: 0x04004B50 RID: 19280
+		// Token: 0x04003FFC RID: 16380
 		public static Action OnInitFinishAction = new Action(PaiMaiCanYuAvatar.OnInitFinish);
 
-		// Token: 0x04004B51 RID: 19281
+		// Token: 0x04003FFD RID: 16381
 		public int id;
 
-		// Token: 0x04004B52 RID: 19282
+		// Token: 0x04003FFE RID: 16382
 		public int PaiMaiID;
 
-		// Token: 0x04004B53 RID: 19283
+		// Token: 0x04003FFF RID: 16383
 		public int AvatrNum;
 
-		// Token: 0x04004B54 RID: 19284
+		// Token: 0x04004000 RID: 16384
 		public int CompereID;
 
-		// Token: 0x04004B55 RID: 19285
+		// Token: 0x04004001 RID: 16385
 		public int Jie;
 
-		// Token: 0x04004B56 RID: 19286
+		// Token: 0x04004002 RID: 16386
 		public string StarTime;
 
-		// Token: 0x04004B57 RID: 19287
+		// Token: 0x04004003 RID: 16387
 		public string EndTime;
 
-		// Token: 0x04004B58 RID: 19288
+		// Token: 0x04004004 RID: 16388
 		public List<int> FuYou = new List<int>();
 
-		// Token: 0x04004B59 RID: 19289
+		// Token: 0x04004005 RID: 16389
 		public List<int> AvatrID = new List<int>();
 
-		// Token: 0x04004B5A RID: 19290
+		// Token: 0x04004006 RID: 16390
 		public List<int> JinJie = new List<int>();
 	}
 }

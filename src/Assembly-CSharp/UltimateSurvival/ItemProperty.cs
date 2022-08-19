@@ -3,41 +3,41 @@ using UnityEngine;
 
 namespace UltimateSurvival
 {
-	// Token: 0x0200089E RID: 2206
+	// Token: 0x020005D9 RID: 1497
 	public class ItemProperty
 	{
-		// Token: 0x0200089F RID: 2207
+		// Token: 0x020014AF RID: 5295
 		public enum Type
 		{
-			// Token: 0x0400331A RID: 13082
+			// Token: 0x04006CD9 RID: 27865
 			None,
-			// Token: 0x0400331B RID: 13083
+			// Token: 0x04006CDA RID: 27866
 			Bool,
-			// Token: 0x0400331C RID: 13084
+			// Token: 0x04006CDB RID: 27867
 			Int,
-			// Token: 0x0400331D RID: 13085
+			// Token: 0x04006CDC RID: 27868
 			IntRange,
-			// Token: 0x0400331E RID: 13086
+			// Token: 0x04006CDD RID: 27869
 			RandomInt,
-			// Token: 0x0400331F RID: 13087
+			// Token: 0x04006CDE RID: 27870
 			Float,
-			// Token: 0x04003320 RID: 13088
+			// Token: 0x04006CDF RID: 27871
 			FloatRange,
-			// Token: 0x04003321 RID: 13089
+			// Token: 0x04006CE0 RID: 27872
 			RandomFloat,
-			// Token: 0x04003322 RID: 13090
+			// Token: 0x04006CE1 RID: 27873
 			String,
-			// Token: 0x04003323 RID: 13091
+			// Token: 0x04006CE2 RID: 27874
 			Sound
 		}
 
-		// Token: 0x020008A0 RID: 2208
+		// Token: 0x020014B0 RID: 5296
 		[Serializable]
 		public struct Int
 		{
-			// Token: 0x170005DA RID: 1498
-			// (get) Token: 0x060038DE RID: 14558 RVA: 0x00029523 File Offset: 0x00027723
-			// (set) Token: 0x060038DF RID: 14559 RVA: 0x0002952B File Offset: 0x0002772B
+			// Token: 0x17000AC4 RID: 2756
+			// (get) Token: 0x06008178 RID: 33144 RVA: 0x002D8EBC File Offset: 0x002D70BC
+			// (set) Token: 0x06008179 RID: 33145 RVA: 0x002D8EC4 File Offset: 0x002D70C4
 			public int Current
 			{
 				get
@@ -50,8 +50,8 @@ namespace UltimateSurvival
 				}
 			}
 
-			// Token: 0x170005DB RID: 1499
-			// (get) Token: 0x060038E0 RID: 14560 RVA: 0x00029534 File Offset: 0x00027734
+			// Token: 0x17000AC5 RID: 2757
+			// (get) Token: 0x0600817A RID: 33146 RVA: 0x002D8ECD File Offset: 0x002D70CD
 			public int Default
 			{
 				get
@@ -60,8 +60,8 @@ namespace UltimateSurvival
 				}
 			}
 
-			// Token: 0x170005DC RID: 1500
-			// (get) Token: 0x060038E1 RID: 14561 RVA: 0x0002953C File Offset: 0x0002773C
+			// Token: 0x17000AC6 RID: 2758
+			// (get) Token: 0x0600817B RID: 33147 RVA: 0x002D8ED5 File Offset: 0x002D70D5
 			public float Ratio
 			{
 				get
@@ -70,28 +70,28 @@ namespace UltimateSurvival
 				}
 			}
 
-			// Token: 0x060038E2 RID: 14562 RVA: 0x0002954D File Offset: 0x0002774D
+			// Token: 0x0600817C RID: 33148 RVA: 0x002D8EE6 File Offset: 0x002D70E6
 			public override string ToString()
 			{
 				return this.m_Current.ToString();
 			}
 
-			// Token: 0x04003324 RID: 13092
+			// Token: 0x04006CE3 RID: 27875
 			[SerializeField]
 			private int m_Current;
 
-			// Token: 0x04003325 RID: 13093
+			// Token: 0x04006CE4 RID: 27876
 			[SerializeField]
 			private int m_Default;
 		}
 
-		// Token: 0x020008A1 RID: 2209
+		// Token: 0x020014B1 RID: 5297
 		[Serializable]
 		public struct IntRange
 		{
-			// Token: 0x170005DD RID: 1501
-			// (get) Token: 0x060038E3 RID: 14563 RVA: 0x0002955A File Offset: 0x0002775A
-			// (set) Token: 0x060038E4 RID: 14564 RVA: 0x00029562 File Offset: 0x00027762
+			// Token: 0x17000AC7 RID: 2759
+			// (get) Token: 0x0600817D RID: 33149 RVA: 0x002D8EF3 File Offset: 0x002D70F3
+			// (set) Token: 0x0600817E RID: 33150 RVA: 0x002D8EFB File Offset: 0x002D70FB
 			public int Current
 			{
 				get
@@ -104,8 +104,8 @@ namespace UltimateSurvival
 				}
 			}
 
-			// Token: 0x170005DE RID: 1502
-			// (get) Token: 0x060038E5 RID: 14565 RVA: 0x0002957C File Offset: 0x0002777C
+			// Token: 0x17000AC8 RID: 2760
+			// (get) Token: 0x0600817F RID: 33151 RVA: 0x002D8F15 File Offset: 0x002D7115
 			public float Ratio
 			{
 				get
@@ -114,9 +114,9 @@ namespace UltimateSurvival
 				}
 			}
 
-			// Token: 0x170005DF RID: 1503
-			// (get) Token: 0x060038E6 RID: 14566 RVA: 0x0002958D File Offset: 0x0002778D
-			// (set) Token: 0x060038E7 RID: 14567 RVA: 0x00029595 File Offset: 0x00027795
+			// Token: 0x17000AC9 RID: 2761
+			// (get) Token: 0x06008180 RID: 33152 RVA: 0x002D8F26 File Offset: 0x002D7126
+			// (set) Token: 0x06008181 RID: 33153 RVA: 0x002D8F2E File Offset: 0x002D712E
 			public int Min
 			{
 				get
@@ -129,9 +129,9 @@ namespace UltimateSurvival
 				}
 			}
 
-			// Token: 0x170005E0 RID: 1504
-			// (get) Token: 0x060038E8 RID: 14568 RVA: 0x0002959E File Offset: 0x0002779E
-			// (set) Token: 0x060038E9 RID: 14569 RVA: 0x000295A6 File Offset: 0x000277A6
+			// Token: 0x17000ACA RID: 2762
+			// (get) Token: 0x06008182 RID: 33154 RVA: 0x002D8F37 File Offset: 0x002D7137
+			// (set) Token: 0x06008183 RID: 33155 RVA: 0x002D8F3F File Offset: 0x002D713F
 			public int Max
 			{
 				get
@@ -144,31 +144,31 @@ namespace UltimateSurvival
 				}
 			}
 
-			// Token: 0x060038EA RID: 14570 RVA: 0x000295AF File Offset: 0x000277AF
+			// Token: 0x06008184 RID: 33156 RVA: 0x002D8F48 File Offset: 0x002D7148
 			public override string ToString()
 			{
 				return string.Format("{0} / {1}", this.Current, this.Max);
 			}
 
-			// Token: 0x04003326 RID: 13094
+			// Token: 0x04006CE5 RID: 27877
 			[SerializeField]
 			private int m_Current;
 
-			// Token: 0x04003327 RID: 13095
+			// Token: 0x04006CE6 RID: 27878
 			[SerializeField]
 			private int m_Min;
 
-			// Token: 0x04003328 RID: 13096
+			// Token: 0x04006CE7 RID: 27879
 			[SerializeField]
 			private int m_Max;
 		}
 
-		// Token: 0x020008A2 RID: 2210
+		// Token: 0x020014B2 RID: 5298
 		[Serializable]
 		public struct RandomInt
 		{
-			// Token: 0x170005E1 RID: 1505
-			// (get) Token: 0x060038EB RID: 14571 RVA: 0x000295D1 File Offset: 0x000277D1
+			// Token: 0x17000ACB RID: 2763
+			// (get) Token: 0x06008185 RID: 33157 RVA: 0x002D8F6A File Offset: 0x002D716A
 			public int RandomValue
 			{
 				get
@@ -177,28 +177,28 @@ namespace UltimateSurvival
 				}
 			}
 
-			// Token: 0x060038EC RID: 14572 RVA: 0x000295E4 File Offset: 0x000277E4
+			// Token: 0x06008186 RID: 33158 RVA: 0x002D8F7D File Offset: 0x002D717D
 			public override string ToString()
 			{
 				return string.Format("{0} - {1}", this.m_Min, this.m_Max);
 			}
 
-			// Token: 0x04003329 RID: 13097
+			// Token: 0x04006CE8 RID: 27880
 			[SerializeField]
 			private int m_Min;
 
-			// Token: 0x0400332A RID: 13098
+			// Token: 0x04006CE9 RID: 27881
 			[SerializeField]
 			private int m_Max;
 		}
 
-		// Token: 0x020008A3 RID: 2211
+		// Token: 0x020014B3 RID: 5299
 		[Serializable]
 		public struct Float
 		{
-			// Token: 0x170005E2 RID: 1506
-			// (get) Token: 0x060038ED RID: 14573 RVA: 0x00029606 File Offset: 0x00027806
-			// (set) Token: 0x060038EE RID: 14574 RVA: 0x0002960E File Offset: 0x0002780E
+			// Token: 0x17000ACC RID: 2764
+			// (get) Token: 0x06008187 RID: 33159 RVA: 0x002D8F9F File Offset: 0x002D719F
+			// (set) Token: 0x06008188 RID: 33160 RVA: 0x002D8FA7 File Offset: 0x002D71A7
 			public float Current
 			{
 				get
@@ -211,8 +211,8 @@ namespace UltimateSurvival
 				}
 			}
 
-			// Token: 0x170005E3 RID: 1507
-			// (get) Token: 0x060038EF RID: 14575 RVA: 0x00029617 File Offset: 0x00027817
+			// Token: 0x17000ACD RID: 2765
+			// (get) Token: 0x06008189 RID: 33161 RVA: 0x002D8FB0 File Offset: 0x002D71B0
 			public float Default
 			{
 				get
@@ -221,8 +221,8 @@ namespace UltimateSurvival
 				}
 			}
 
-			// Token: 0x170005E4 RID: 1508
-			// (get) Token: 0x060038F0 RID: 14576 RVA: 0x0002961F File Offset: 0x0002781F
+			// Token: 0x17000ACE RID: 2766
+			// (get) Token: 0x0600818A RID: 33162 RVA: 0x002D8FB8 File Offset: 0x002D71B8
 			public float Ratio
 			{
 				get
@@ -231,28 +231,28 @@ namespace UltimateSurvival
 				}
 			}
 
-			// Token: 0x060038F1 RID: 14577 RVA: 0x0002962E File Offset: 0x0002782E
+			// Token: 0x0600818B RID: 33163 RVA: 0x002D8FC7 File Offset: 0x002D71C7
 			public override string ToString()
 			{
 				return this.m_Current.ToString();
 			}
 
-			// Token: 0x0400332B RID: 13099
+			// Token: 0x04006CEA RID: 27882
 			[SerializeField]
 			private float m_Current;
 
-			// Token: 0x0400332C RID: 13100
+			// Token: 0x04006CEB RID: 27883
 			[SerializeField]
 			private float m_Default;
 		}
 
-		// Token: 0x020008A4 RID: 2212
+		// Token: 0x020014B4 RID: 5300
 		[Serializable]
 		public struct FloatRange
 		{
-			// Token: 0x170005E5 RID: 1509
-			// (get) Token: 0x060038F2 RID: 14578 RVA: 0x0002963B File Offset: 0x0002783B
-			// (set) Token: 0x060038F3 RID: 14579 RVA: 0x00029643 File Offset: 0x00027843
+			// Token: 0x17000ACF RID: 2767
+			// (get) Token: 0x0600818C RID: 33164 RVA: 0x002D8FD4 File Offset: 0x002D71D4
+			// (set) Token: 0x0600818D RID: 33165 RVA: 0x002D8FDC File Offset: 0x002D71DC
 			public float Current
 			{
 				get
@@ -265,8 +265,8 @@ namespace UltimateSurvival
 				}
 			}
 
-			// Token: 0x170005E6 RID: 1510
-			// (get) Token: 0x060038F4 RID: 14580 RVA: 0x0002965D File Offset: 0x0002785D
+			// Token: 0x17000AD0 RID: 2768
+			// (get) Token: 0x0600818E RID: 33166 RVA: 0x002D8FF6 File Offset: 0x002D71F6
 			public float Ratio
 			{
 				get
@@ -275,9 +275,9 @@ namespace UltimateSurvival
 				}
 			}
 
-			// Token: 0x170005E7 RID: 1511
-			// (get) Token: 0x060038F5 RID: 14581 RVA: 0x0002966C File Offset: 0x0002786C
-			// (set) Token: 0x060038F6 RID: 14582 RVA: 0x00029674 File Offset: 0x00027874
+			// Token: 0x17000AD1 RID: 2769
+			// (get) Token: 0x0600818F RID: 33167 RVA: 0x002D9005 File Offset: 0x002D7205
+			// (set) Token: 0x06008190 RID: 33168 RVA: 0x002D900D File Offset: 0x002D720D
 			public float Min
 			{
 				get
@@ -290,9 +290,9 @@ namespace UltimateSurvival
 				}
 			}
 
-			// Token: 0x170005E8 RID: 1512
-			// (get) Token: 0x060038F7 RID: 14583 RVA: 0x0002967D File Offset: 0x0002787D
-			// (set) Token: 0x060038F8 RID: 14584 RVA: 0x00029685 File Offset: 0x00027885
+			// Token: 0x17000AD2 RID: 2770
+			// (get) Token: 0x06008191 RID: 33169 RVA: 0x002D9016 File Offset: 0x002D7216
+			// (set) Token: 0x06008192 RID: 33170 RVA: 0x002D901E File Offset: 0x002D721E
 			public float Max
 			{
 				get
@@ -305,31 +305,31 @@ namespace UltimateSurvival
 				}
 			}
 
-			// Token: 0x060038F9 RID: 14585 RVA: 0x0002968E File Offset: 0x0002788E
+			// Token: 0x06008193 RID: 33171 RVA: 0x002D9027 File Offset: 0x002D7227
 			public override string ToString()
 			{
 				return string.Format("{0} / {1}", this.Current, this.Max);
 			}
 
-			// Token: 0x0400332D RID: 13101
+			// Token: 0x04006CEC RID: 27884
 			[SerializeField]
 			private float m_Current;
 
-			// Token: 0x0400332E RID: 13102
+			// Token: 0x04006CED RID: 27885
 			[SerializeField]
 			private float m_Min;
 
-			// Token: 0x0400332F RID: 13103
+			// Token: 0x04006CEE RID: 27886
 			[SerializeField]
 			private float m_Max;
 		}
 
-		// Token: 0x020008A5 RID: 2213
+		// Token: 0x020014B5 RID: 5301
 		[Serializable]
 		public struct RandomFloat
 		{
-			// Token: 0x170005E9 RID: 1513
-			// (get) Token: 0x060038FA RID: 14586 RVA: 0x000296B0 File Offset: 0x000278B0
+			// Token: 0x17000AD3 RID: 2771
+			// (get) Token: 0x06008194 RID: 33172 RVA: 0x002D9049 File Offset: 0x002D7249
 			public float RandomValue
 			{
 				get
@@ -338,27 +338,27 @@ namespace UltimateSurvival
 				}
 			}
 
-			// Token: 0x060038FB RID: 14587 RVA: 0x000296C3 File Offset: 0x000278C3
+			// Token: 0x06008195 RID: 33173 RVA: 0x002D905C File Offset: 0x002D725C
 			public override string ToString()
 			{
 				return string.Format("{0} - {1}", this.m_Min, this.m_Max);
 			}
 
-			// Token: 0x04003330 RID: 13104
+			// Token: 0x04006CEF RID: 27887
 			[SerializeField]
 			private float m_Min;
 
-			// Token: 0x04003331 RID: 13105
+			// Token: 0x04006CF0 RID: 27888
 			[SerializeField]
 			private float m_Max;
 		}
 
-		// Token: 0x020008A6 RID: 2214
+		// Token: 0x020014B6 RID: 5302
 		[Serializable]
 		public struct Definition
 		{
-			// Token: 0x170005EA RID: 1514
-			// (get) Token: 0x060038FC RID: 14588 RVA: 0x000296E5 File Offset: 0x000278E5
+			// Token: 0x17000AD4 RID: 2772
+			// (get) Token: 0x06008196 RID: 33174 RVA: 0x002D907E File Offset: 0x002D727E
 			public string Name
 			{
 				get
@@ -367,8 +367,8 @@ namespace UltimateSurvival
 				}
 			}
 
-			// Token: 0x170005EB RID: 1515
-			// (get) Token: 0x060038FD RID: 14589 RVA: 0x000296ED File Offset: 0x000278ED
+			// Token: 0x17000AD5 RID: 2773
+			// (get) Token: 0x06008197 RID: 33175 RVA: 0x002D9086 File Offset: 0x002D7286
 			public ItemProperty.Type Type
 			{
 				get
@@ -377,21 +377,21 @@ namespace UltimateSurvival
 				}
 			}
 
-			// Token: 0x04003332 RID: 13106
+			// Token: 0x04006CF1 RID: 27889
 			[SerializeField]
 			private string m_Name;
 
-			// Token: 0x04003333 RID: 13107
+			// Token: 0x04006CF2 RID: 27890
 			[SerializeField]
 			private ItemProperty.Type m_Type;
 		}
 
-		// Token: 0x020008A7 RID: 2215
+		// Token: 0x020014B7 RID: 5303
 		[Serializable]
 		public class Value
 		{
-			// Token: 0x170005EC RID: 1516
-			// (get) Token: 0x060038FE RID: 14590 RVA: 0x000296F5 File Offset: 0x000278F5
+			// Token: 0x17000AD6 RID: 2774
+			// (get) Token: 0x06008198 RID: 33176 RVA: 0x002D908E File Offset: 0x002D728E
 			public string Name
 			{
 				get
@@ -400,13 +400,13 @@ namespace UltimateSurvival
 				}
 			}
 
-			// Token: 0x170005ED RID: 1517
-			// (get) Token: 0x060038FF RID: 14591 RVA: 0x000296FD File Offset: 0x000278FD
-			// (set) Token: 0x06003900 RID: 14592 RVA: 0x00029705 File Offset: 0x00027905
+			// Token: 0x17000AD7 RID: 2775
+			// (get) Token: 0x06008199 RID: 33177 RVA: 0x002D9096 File Offset: 0x002D7296
+			// (set) Token: 0x0600819A RID: 33178 RVA: 0x002D909E File Offset: 0x002D729E
 			public ItemProperty.Type Type { get; private set; }
 
-			// Token: 0x170005EE RID: 1518
-			// (get) Token: 0x06003901 RID: 14593 RVA: 0x0002970E File Offset: 0x0002790E
+			// Token: 0x17000AD8 RID: 2776
+			// (get) Token: 0x0600819B RID: 33179 RVA: 0x002D90A7 File Offset: 0x002D72A7
 			public bool Bool
 			{
 				get
@@ -415,8 +415,8 @@ namespace UltimateSurvival
 				}
 			}
 
-			// Token: 0x170005EF RID: 1519
-			// (get) Token: 0x06003902 RID: 14594 RVA: 0x00029716 File Offset: 0x00027916
+			// Token: 0x17000AD9 RID: 2777
+			// (get) Token: 0x0600819C RID: 33180 RVA: 0x002D90AF File Offset: 0x002D72AF
 			public ItemProperty.Int Int
 			{
 				get
@@ -425,8 +425,8 @@ namespace UltimateSurvival
 				}
 			}
 
-			// Token: 0x170005F0 RID: 1520
-			// (get) Token: 0x06003903 RID: 14595 RVA: 0x0002971E File Offset: 0x0002791E
+			// Token: 0x17000ADA RID: 2778
+			// (get) Token: 0x0600819D RID: 33181 RVA: 0x002D90B7 File Offset: 0x002D72B7
 			public ItemProperty.IntRange IntRange
 			{
 				get
@@ -435,8 +435,8 @@ namespace UltimateSurvival
 				}
 			}
 
-			// Token: 0x170005F1 RID: 1521
-			// (get) Token: 0x06003904 RID: 14596 RVA: 0x00029726 File Offset: 0x00027926
+			// Token: 0x17000ADB RID: 2779
+			// (get) Token: 0x0600819E RID: 33182 RVA: 0x002D90BF File Offset: 0x002D72BF
 			public ItemProperty.RandomInt RandomInt
 			{
 				get
@@ -445,8 +445,8 @@ namespace UltimateSurvival
 				}
 			}
 
-			// Token: 0x170005F2 RID: 1522
-			// (get) Token: 0x06003905 RID: 14597 RVA: 0x0002972E File Offset: 0x0002792E
+			// Token: 0x17000ADC RID: 2780
+			// (get) Token: 0x0600819F RID: 33183 RVA: 0x002D90C7 File Offset: 0x002D72C7
 			public ItemProperty.Float Float
 			{
 				get
@@ -455,8 +455,8 @@ namespace UltimateSurvival
 				}
 			}
 
-			// Token: 0x170005F3 RID: 1523
-			// (get) Token: 0x06003906 RID: 14598 RVA: 0x00029736 File Offset: 0x00027936
+			// Token: 0x17000ADD RID: 2781
+			// (get) Token: 0x060081A0 RID: 33184 RVA: 0x002D90CF File Offset: 0x002D72CF
 			public ItemProperty.FloatRange FloatRange
 			{
 				get
@@ -465,8 +465,8 @@ namespace UltimateSurvival
 				}
 			}
 
-			// Token: 0x170005F4 RID: 1524
-			// (get) Token: 0x06003907 RID: 14599 RVA: 0x0002973E File Offset: 0x0002793E
+			// Token: 0x17000ADE RID: 2782
+			// (get) Token: 0x060081A1 RID: 33185 RVA: 0x002D90D7 File Offset: 0x002D72D7
 			public ItemProperty.RandomFloat RandomFloat
 			{
 				get
@@ -475,8 +475,8 @@ namespace UltimateSurvival
 				}
 			}
 
-			// Token: 0x170005F5 RID: 1525
-			// (get) Token: 0x06003908 RID: 14600 RVA: 0x00029746 File Offset: 0x00027946
+			// Token: 0x17000ADF RID: 2783
+			// (get) Token: 0x060081A2 RID: 33186 RVA: 0x002D90DF File Offset: 0x002D72DF
 			public string String
 			{
 				get
@@ -485,8 +485,8 @@ namespace UltimateSurvival
 				}
 			}
 
-			// Token: 0x170005F6 RID: 1526
-			// (get) Token: 0x06003909 RID: 14601 RVA: 0x0002974E File Offset: 0x0002794E
+			// Token: 0x17000AE0 RID: 2784
+			// (get) Token: 0x060081A3 RID: 33187 RVA: 0x002D90E7 File Offset: 0x002D72E7
 			public AudioClip Sound
 			{
 				get
@@ -495,13 +495,13 @@ namespace UltimateSurvival
 				}
 			}
 
-			// Token: 0x0600390A RID: 14602 RVA: 0x00029756 File Offset: 0x00027956
+			// Token: 0x060081A4 RID: 33188 RVA: 0x002D90EF File Offset: 0x002D72EF
 			public ItemProperty.Value GetClone()
 			{
 				return (ItemProperty.Value)base.MemberwiseClone();
 			}
 
-			// Token: 0x0600390B RID: 14603 RVA: 0x001A3DD8 File Offset: 0x001A1FD8
+			// Token: 0x060081A5 RID: 33189 RVA: 0x002D90FC File Offset: 0x002D72FC
 			public void SetValue(ItemProperty.Type type, object value)
 			{
 				if (type == ItemProperty.Type.Bool)
@@ -543,7 +543,7 @@ namespace UltimateSurvival
 				this.Changed.Send(this);
 			}
 
-			// Token: 0x0600390C RID: 14604 RVA: 0x001A3E88 File Offset: 0x001A2088
+			// Token: 0x060081A6 RID: 33190 RVA: 0x002D91AC File Offset: 0x002D73AC
 			public override string ToString()
 			{
 				if (this.m_Type == ItemProperty.Type.Bool)
@@ -581,50 +581,50 @@ namespace UltimateSurvival
 				return this.m_Name;
 			}
 
-			// Token: 0x04003334 RID: 13108
+			// Token: 0x04006CF3 RID: 27891
 			public Message<ItemProperty.Value> Changed = new Message<ItemProperty.Value>();
 
-			// Token: 0x04003336 RID: 13110
+			// Token: 0x04006CF5 RID: 27893
 			[SerializeField]
 			private string m_Name;
 
-			// Token: 0x04003337 RID: 13111
+			// Token: 0x04006CF6 RID: 27894
 			[SerializeField]
 			private ItemProperty.Type m_Type;
 
-			// Token: 0x04003338 RID: 13112
+			// Token: 0x04006CF7 RID: 27895
 			[SerializeField]
 			private bool m_Bool;
 
-			// Token: 0x04003339 RID: 13113
+			// Token: 0x04006CF8 RID: 27896
 			[SerializeField]
 			private ItemProperty.Int m_Int;
 
-			// Token: 0x0400333A RID: 13114
+			// Token: 0x04006CF9 RID: 27897
 			[SerializeField]
 			private ItemProperty.IntRange m_IntRange;
 
-			// Token: 0x0400333B RID: 13115
+			// Token: 0x04006CFA RID: 27898
 			[SerializeField]
 			private ItemProperty.RandomInt m_RandomInt;
 
-			// Token: 0x0400333C RID: 13116
+			// Token: 0x04006CFB RID: 27899
 			[SerializeField]
 			private ItemProperty.Float m_Float;
 
-			// Token: 0x0400333D RID: 13117
+			// Token: 0x04006CFC RID: 27900
 			[SerializeField]
 			private ItemProperty.FloatRange m_FloatRange;
 
-			// Token: 0x0400333E RID: 13118
+			// Token: 0x04006CFD RID: 27901
 			[SerializeField]
 			private ItemProperty.RandomFloat m_RandomFloat;
 
-			// Token: 0x0400333F RID: 13119
+			// Token: 0x04006CFE RID: 27902
 			[SerializeField]
 			private string m_String;
 
-			// Token: 0x04003340 RID: 13120
+			// Token: 0x04006CFF RID: 27903
 			[SerializeField]
 			private AudioClip m_Sound;
 		}

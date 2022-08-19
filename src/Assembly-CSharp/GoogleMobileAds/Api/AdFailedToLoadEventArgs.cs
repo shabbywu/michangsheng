@@ -2,12 +2,12 @@
 
 namespace GoogleMobileAds.Api
 {
-	// Token: 0x02000E7B RID: 3707
+	// Token: 0x02000B0F RID: 2831
 	public class AdFailedToLoadEventArgs : EventArgs
 	{
-		// Token: 0x17000838 RID: 2104
-		// (get) Token: 0x060058CC RID: 22732 RVA: 0x0003F38A File Offset: 0x0003D58A
-		// (set) Token: 0x060058CD RID: 22733 RVA: 0x0003F392 File Offset: 0x0003D592
+		// Token: 0x170005EF RID: 1519
+		// (get) Token: 0x06004ED8 RID: 20184 RVA: 0x002179DF File Offset: 0x00215BDF
+		// (set) Token: 0x06004ED9 RID: 20185 RVA: 0x002179E7 File Offset: 0x00215BE7
 		public string Message { get; set; }
 	}
 }

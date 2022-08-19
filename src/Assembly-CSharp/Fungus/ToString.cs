@@ -3,12 +3,12 @@ using UnityEngine;
 
 namespace Fungus
 {
-	// Token: 0x020012A6 RID: 4774
+	// Token: 0x02000E55 RID: 3669
 	[CommandInfo("Variable", "To String", "Stores the result of a ToString on given variable in a string.", 0)]
 	[AddComponentMenu("")]
 	public class ToString : Command
 	{
-		// Token: 0x0600739E RID: 29598 RVA: 0x0004EE42 File Offset: 0x0004D042
+		// Token: 0x06006710 RID: 26384 RVA: 0x0028884C File Offset: 0x00286A4C
 		public override void OnEnter()
 		{
 			if (this.variable != null && this.outValue != null)
@@ -18,7 +18,7 @@ namespace Fungus
 			this.Continue();
 		}
 
-		// Token: 0x0600739F RID: 29599 RVA: 0x002AB510 File Offset: 0x002A9710
+		// Token: 0x06006711 RID: 26385 RVA: 0x00288888 File Offset: 0x00286A88
 		public override string GetSummary()
 		{
 			if (this.variable == null)
@@ -32,19 +32,19 @@ namespace Fungus
 			return this.outValue.Key + " = " + this.variable.Key + ".ToString";
 		}
 
-		// Token: 0x060073A0 RID: 29600 RVA: 0x0004EE7C File Offset: 0x0004D07C
+		// Token: 0x06006712 RID: 26386 RVA: 0x002888E2 File Offset: 0x00286AE2
 		public override bool HasReference(Variable variable)
 		{
 			return variable == this.variable || this.outValue == variable;
 		}
 
-		// Token: 0x060073A1 RID: 29601 RVA: 0x0004C5A3 File Offset: 0x0004A7A3
+		// Token: 0x06006713 RID: 26387 RVA: 0x0027D1B6 File Offset: 0x0027B3B6
 		public override Color GetButtonColor()
 		{
 			return new Color32(253, 253, 150, byte.MaxValue);
 		}
 
-		// Token: 0x0400656D RID: 25965
+		// Token: 0x04005829 RID: 22569
 		[Tooltip("Target variable to get String of.")]
 		[VariableProperty(new Type[]
 		{
@@ -53,7 +53,7 @@ namespace Fungus
 		[SerializeField]
 		protected Variable variable;
 
-		// Token: 0x0400656E RID: 25966
+		// Token: 0x0400582A RID: 22570
 		[Tooltip("Variable to store the result of ToString")]
 		[VariableProperty(new Type[]
 		{

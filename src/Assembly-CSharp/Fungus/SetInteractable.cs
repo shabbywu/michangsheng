@@ -5,11 +5,11 @@ using UnityEngine.UI;
 
 namespace Fungus
 {
-	// Token: 0x02001289 RID: 4745
+	// Token: 0x02000E38 RID: 3640
 	[CommandInfo("UI", "Set Interactable", "Set the interactable state of selectable objects.", 0)]
 	public class SetInteractable : Command
 	{
-		// Token: 0x0600730A RID: 29450 RVA: 0x002A9C08 File Offset: 0x002A7E08
+		// Token: 0x0600667C RID: 26236 RVA: 0x00286760 File Offset: 0x00284960
 		public override void OnEnter()
 		{
 			if (this.targetObjects.Count == 0)
@@ -28,7 +28,7 @@ namespace Fungus
 			this.Continue();
 		}
 
-		// Token: 0x0600730B RID: 29451 RVA: 0x002A9C78 File Offset: 0x002A7E78
+		// Token: 0x0600667D RID: 26237 RVA: 0x002867D0 File Offset: 0x002849D0
 		public override string GetSummary()
 		{
 			if (this.targetObjects.Count == 0)
@@ -62,36 +62,36 @@ namespace Fungus
 			return this.targetObjects[0].name + " = " + this.interactableState.Value.ToString();
 		}
 
-		// Token: 0x0600730C RID: 29452 RVA: 0x0004E668 File Offset: 0x0004C868
+		// Token: 0x0600667E RID: 26238 RVA: 0x002868C5 File Offset: 0x00284AC5
 		public override Color GetButtonColor()
 		{
 			return new Color32(180, 250, 250, byte.MaxValue);
 		}
 
-		// Token: 0x0600730D RID: 29453 RVA: 0x0004E688 File Offset: 0x0004C888
+		// Token: 0x0600667F RID: 26239 RVA: 0x002868E5 File Offset: 0x00284AE5
 		public override void OnCommandAdded(Block parentBlock)
 		{
 			this.targetObjects.Add(null);
 		}
 
-		// Token: 0x0600730E RID: 29454 RVA: 0x0004E696 File Offset: 0x0004C896
+		// Token: 0x06006680 RID: 26240 RVA: 0x002868F3 File Offset: 0x00284AF3
 		public override bool IsReorderableArray(string propertyName)
 		{
 			return propertyName == "targetObjects";
 		}
 
-		// Token: 0x0600730F RID: 29455 RVA: 0x0004E6A8 File Offset: 0x0004C8A8
+		// Token: 0x06006681 RID: 26241 RVA: 0x00286905 File Offset: 0x00284B05
 		public override bool HasReference(Variable variable)
 		{
 			return this.interactableState.booleanRef == variable || base.HasReference(variable);
 		}
 
-		// Token: 0x04006518 RID: 25880
+		// Token: 0x040057D4 RID: 22484
 		[Tooltip("List of objects to be affected by the command")]
 		[SerializeField]
 		protected List<GameObject> targetObjects = new List<GameObject>();
 
-		// Token: 0x04006519 RID: 25881
+		// Token: 0x040057D5 RID: 22485
 		[Tooltip("Controls if the selectable UI object be interactable or not")]
 		[SerializeField]
 		protected BooleanData interactableState = new BooleanData(true);

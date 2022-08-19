@@ -3,16 +3,16 @@ using UnityEngine;
 
 namespace UltimateSurvival.Debugging
 {
-	// Token: 0x02000960 RID: 2400
+	// Token: 0x0200065D RID: 1629
 	public class PlayerInfo : MonoBehaviour
 	{
-		// Token: 0x06003D4D RID: 15693 RVA: 0x0002C36E File Offset: 0x0002A56E
+		// Token: 0x060033BF RID: 13247 RVA: 0x0016AC63 File Offset: 0x00168E63
 		private void Start()
 		{
 			this.m_Player = GameController.LocalPlayer.GetComponent<PlayerEventHandler>();
 		}
 
-		// Token: 0x06003D4E RID: 15694 RVA: 0x001B3B5C File Offset: 0x001B1D5C
+		// Token: 0x060033C0 RID: 13248 RVA: 0x0016AC78 File Offset: 0x00168E78
 		private void OnGUI()
 		{
 			this.m_Toggle = GUILayout.Toggle(this.m_Toggle, "Player Info", Array.Empty<GUILayoutOption>());
@@ -30,10 +30,10 @@ namespace UltimateSurvival.Debugging
 			Time.fixedDeltaTime = 0.02f * Time.timeScale;
 		}
 
-		// Token: 0x0400377F RID: 14207
+		// Token: 0x04002DFA RID: 11770
 		private PlayerEventHandler m_Player;
 
-		// Token: 0x04003780 RID: 14208
+		// Token: 0x04002DFB RID: 11771
 		private bool m_Toggle;
 	}
 }

@@ -1,10 +1,10 @@
 ﻿using System;
 using UnityEngine;
 
-// Token: 0x02000789 RID: 1929
+// Token: 0x020004FB RID: 1275
 public class TextOutline : MonoBehaviour
 {
-	// Token: 0x0600313C RID: 12604 RVA: 0x00188C38 File Offset: 0x00186E38
+	// Token: 0x06002949 RID: 10569 RVA: 0x0013B958 File Offset: 0x00139B58
 	private void Start()
 	{
 		this.textMesh = base.GetComponent<TextMesh>();
@@ -30,7 +30,7 @@ public class TextOutline : MonoBehaviour
 		}
 	}
 
-	// Token: 0x0600313D RID: 12605 RVA: 0x00188D08 File Offset: 0x00186F08
+	// Token: 0x0600294A RID: 10570 RVA: 0x0013BA28 File Offset: 0x00139C28
 	private void LateUpdate()
 	{
 		Vector3 vector = Camera.main.WorldToScreenPoint(base.transform.position);
@@ -60,7 +60,7 @@ public class TextOutline : MonoBehaviour
 		}
 	}
 
-	// Token: 0x0600313E RID: 12606 RVA: 0x00188EEC File Offset: 0x001870EC
+	// Token: 0x0600294B RID: 10571 RVA: 0x0013BC0C File Offset: 0x00139E0C
 	private Vector3 GetOffset(int i)
 	{
 		switch (i % 8)
@@ -86,21 +86,21 @@ public class TextOutline : MonoBehaviour
 		}
 	}
 
-	// Token: 0x04002D57 RID: 11607
+	// Token: 0x04002577 RID: 9591
 	public float pixelSize = 1f;
 
-	// Token: 0x04002D58 RID: 11608
+	// Token: 0x04002578 RID: 9592
 	public Color outlineColor = Color.black;
 
-	// Token: 0x04002D59 RID: 11609
+	// Token: 0x04002579 RID: 9593
 	public bool resolutionDependant;
 
-	// Token: 0x04002D5A RID: 11610
+	// Token: 0x0400257A RID: 9594
 	public int doubleResolution = 1024;
 
-	// Token: 0x04002D5B RID: 11611
+	// Token: 0x0400257B RID: 9595
 	private TextMesh textMesh;
 
-	// Token: 0x04002D5C RID: 11612
+	// Token: 0x0400257C RID: 9596
 	private MeshRenderer meshRenderer;
 }

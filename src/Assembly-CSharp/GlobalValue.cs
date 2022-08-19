@@ -2,10 +2,10 @@
 using KBEngine;
 using UnityEngine;
 
-// Token: 0x020002BC RID: 700
+// Token: 0x020001BD RID: 445
 public static class GlobalValue
 {
-	// Token: 0x06001525 RID: 5413 RVA: 0x000BE390 File Offset: 0x000BC590
+	// Token: 0x06001276 RID: 4726 RVA: 0x00070A00 File Offset: 0x0006EC00
 	public static int Get(int id, string source = "unknow")
 	{
 		Avatar player = PlayerEx.Player;
@@ -26,7 +26,7 @@ public static class GlobalValue
 		return num;
 	}
 
-	// Token: 0x06001526 RID: 5414 RVA: 0x000BE40C File Offset: 0x000BC60C
+	// Token: 0x06001277 RID: 4727 RVA: 0x00070A7C File Offset: 0x0006EC7C
 	public static void Set(int id, int value, string source = "unknow")
 	{
 		Avatar player = PlayerEx.Player;
@@ -52,7 +52,7 @@ public static class GlobalValue
 		player.StaticValue.Value[id] = value;
 	}
 
-	// Token: 0x06001527 RID: 5415 RVA: 0x000BE4AC File Offset: 0x000BC6AC
+	// Token: 0x06001278 RID: 4728 RVA: 0x00070B1C File Offset: 0x0006ED1C
 	public static int GetTalk(int id, string source = "unknow")
 	{
 		Avatar player = PlayerEx.Player;
@@ -73,7 +73,7 @@ public static class GlobalValue
 		return num;
 	}
 
-	// Token: 0x06001528 RID: 5416 RVA: 0x000BE530 File Offset: 0x000BC730
+	// Token: 0x06001279 RID: 4729 RVA: 0x00070BA0 File Offset: 0x0006EDA0
 	public static void SetTalk(int id, int value, string source = "unknow")
 	{
 		Avatar player = PlayerEx.Player;
@@ -99,6 +99,6 @@ public static class GlobalValue
 		player.StaticValue.talk[id] = value;
 	}
 
-	// Token: 0x04001033 RID: 4147
+	// Token: 0x04000D0B RID: 3339
 	public static bool LogSource;
 }

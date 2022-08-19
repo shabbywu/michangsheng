@@ -1,16 +1,16 @@
 ﻿using System;
 using UnityEngine;
 
-// Token: 0x02000014 RID: 20
+// Token: 0x02000012 RID: 18
 public class LeanAudioStream
 {
-	// Token: 0x06000053 RID: 83 RVA: 0x00004257 File Offset: 0x00002457
+	// Token: 0x06000053 RID: 83 RVA: 0x00003BAD File Offset: 0x00001DAD
 	public LeanAudioStream(float[] audioArr)
 	{
 		this.audioArr = audioArr;
 	}
 
-	// Token: 0x06000054 RID: 84 RVA: 0x0005E358 File Offset: 0x0005C558
+	// Token: 0x06000054 RID: 84 RVA: 0x00003BBC File Offset: 0x00001DBC
 	public void OnAudioRead(float[] data)
 	{
 		for (int i = 0; i < data.Length; i++)
@@ -20,18 +20,18 @@ public class LeanAudioStream
 		}
 	}
 
-	// Token: 0x06000055 RID: 85 RVA: 0x00004266 File Offset: 0x00002466
+	// Token: 0x06000055 RID: 85 RVA: 0x00003BF5 File Offset: 0x00001DF5
 	public void OnAudioSetPosition(int newPosition)
 	{
 		this.position = newPosition;
 	}
 
-	// Token: 0x0400005A RID: 90
+	// Token: 0x04000054 RID: 84
 	public int position;
 
-	// Token: 0x0400005B RID: 91
+	// Token: 0x04000055 RID: 85
 	public AudioClip audioClip;
 
-	// Token: 0x0400005C RID: 92
+	// Token: 0x04000056 RID: 86
 	public float[] audioArr;
 }

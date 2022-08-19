@@ -4,15 +4,15 @@ using KBEngine;
 using UnityEngine;
 using UnityEngine.UI;
 
-// Token: 0x0200079F RID: 1951
+// Token: 0x0200050E RID: 1294
 public class wudaoTypeCell : MonoBehaviour
 {
-	// Token: 0x0600319D RID: 12701 RVA: 0x000042DD File Offset: 0x000024DD
+	// Token: 0x06002998 RID: 10648 RVA: 0x00004095 File Offset: 0x00002295
 	private void Start()
 	{
 	}
 
-	// Token: 0x0600319E RID: 12702 RVA: 0x0018AD84 File Offset: 0x00188F84
+	// Token: 0x06002999 RID: 10649 RVA: 0x0013DBAC File Offset: 0x0013BDAC
 	public void click()
 	{
 		Avatar player = Tools.instance.getPlayer();
@@ -55,7 +55,7 @@ public class wudaoTypeCell : MonoBehaviour
 		this.showCurGanWu(player);
 	}
 
-	// Token: 0x0600319F RID: 12703 RVA: 0x0018AFE0 File Offset: 0x001891E0
+	// Token: 0x0600299A RID: 10650 RVA: 0x0013DE08 File Offset: 0x0013C008
 	private void setBgTuPian(int count, int index)
 	{
 		int wuDaoLevelByType = Tools.instance.getPlayer().wuDaoMag.getWuDaoLevelByType(this.Type);
@@ -96,7 +96,7 @@ public class wudaoTypeCell : MonoBehaviour
 		component4.color = new Color(1f, 0.8784314f, 0.4745098f);
 	}
 
-	// Token: 0x060031A0 RID: 12704 RVA: 0x0018B268 File Offset: 0x00189468
+	// Token: 0x0600299B RID: 10651 RVA: 0x0013E090 File Offset: 0x0013C290
 	private void setWudaoCell(List<GameObject> list, int index)
 	{
 		float num = 0f;
@@ -143,27 +143,27 @@ public class wudaoTypeCell : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060031A1 RID: 12705 RVA: 0x0018B3F8 File Offset: 0x001895F8
+	// Token: 0x0600299C RID: 10652 RVA: 0x0013E220 File Offset: 0x0013C420
 	private void showCurGanWu(Avatar player)
 	{
 		this.CurWuDaoJingYan.text = player.wuDaoMag.getWuDaoEx(this.Type).I.ToString();
 	}
 
-	// Token: 0x04002DDB RID: 11739
+	// Token: 0x040025F3 RID: 9715
 	public int Type;
 
-	// Token: 0x04002DDC RID: 11740
+	// Token: 0x040025F4 RID: 9716
 	public Text CurWuDaoJingYan;
 
-	// Token: 0x04002DDD RID: 11741
+	// Token: 0x040025F5 RID: 9717
 	public Text TitleName;
 
-	// Token: 0x04002DDE RID: 11742
+	// Token: 0x040025F6 RID: 9718
 	public Image typeIcon;
 
-	// Token: 0x04002DDF RID: 11743
+	// Token: 0x040025F7 RID: 9719
 	public GameObject ImageBG;
 
-	// Token: 0x04002DE0 RID: 11744
+	// Token: 0x040025F8 RID: 9720
 	public GameObject WuDaoCell;
 }

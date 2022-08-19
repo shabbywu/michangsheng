@@ -1,16 +1,16 @@
 ﻿using System;
 using UnityEngine;
 
-// Token: 0x0200012A RID: 298
+// Token: 0x020000BA RID: 186
 public class ZoomInOut : MonoBehaviour
 {
-	// Token: 0x06000B84 RID: 2948 RVA: 0x0000D8C6 File Offset: 0x0000BAC6
+	// Token: 0x06000AA1 RID: 2721 RVA: 0x000407B8 File Offset: 0x0003E9B8
 	private void Start()
 	{
 		this.distance = base.GetComponent<Camera>().fieldOfView;
 	}
 
-	// Token: 0x06000B85 RID: 2949 RVA: 0x00092C68 File Offset: 0x00090E68
+	// Token: 0x06000AA2 RID: 2722 RVA: 0x000407CC File Offset: 0x0003E9CC
 	private void Update()
 	{
 		this.distance -= Input.GetAxis("Mouse ScrollWheel") * this.sensitivityDistance;
@@ -18,18 +18,18 @@ public class ZoomInOut : MonoBehaviour
 		base.GetComponent<Camera>().fieldOfView = Mathf.Lerp(base.GetComponent<Camera>().fieldOfView, this.distance, Time.deltaTime * this.damping);
 	}
 
-	// Token: 0x0400084C RID: 2124
+	// Token: 0x040006A5 RID: 1701
 	public float distance = 50f;
 
-	// Token: 0x0400084D RID: 2125
+	// Token: 0x040006A6 RID: 1702
 	public float sensitivityDistance = 50f;
 
-	// Token: 0x0400084E RID: 2126
+	// Token: 0x040006A7 RID: 1703
 	public float damping = 50f;
 
-	// Token: 0x0400084F RID: 2127
+	// Token: 0x040006A8 RID: 1704
 	public float minFOV = 5f;
 
-	// Token: 0x04000850 RID: 2128
+	// Token: 0x040006A9 RID: 1705
 	public float maxFOV = 100f;
 }

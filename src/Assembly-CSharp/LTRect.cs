@@ -1,11 +1,11 @@
 ﻿using System;
 using UnityEngine;
 
-// Token: 0x02000022 RID: 34
+// Token: 0x0200001E RID: 30
 [Serializable]
 public class LTRect
 {
-	// Token: 0x06000152 RID: 338 RVA: 0x00061B68 File Offset: 0x0005FD68
+	// Token: 0x0600014C RID: 332 RVA: 0x00008264 File Offset: 0x00006464
 	public LTRect()
 	{
 		this.reset();
@@ -13,14 +13,14 @@ public class LTRect
 		this._rect = new Rect(0f, 0f, 1f, 1f);
 	}
 
-	// Token: 0x06000153 RID: 339 RVA: 0x00061BEC File Offset: 0x0005FDEC
+	// Token: 0x0600014D RID: 333 RVA: 0x000082E8 File Offset: 0x000064E8
 	public LTRect(Rect rect)
 	{
 		this._rect = rect;
 		this.reset();
 	}
 
-	// Token: 0x06000154 RID: 340 RVA: 0x00061C48 File Offset: 0x0005FE48
+	// Token: 0x0600014E RID: 334 RVA: 0x00008344 File Offset: 0x00006544
 	public LTRect(float x, float y, float width, float height)
 	{
 		this._rect = new Rect(x, y, width, height);
@@ -29,7 +29,7 @@ public class LTRect
 		this.rotateEnabled = (this.alphaEnabled = false);
 	}
 
-	// Token: 0x06000155 RID: 341 RVA: 0x00061CD0 File Offset: 0x0005FED0
+	// Token: 0x0600014F RID: 335 RVA: 0x000083CC File Offset: 0x000065CC
 	public LTRect(float x, float y, float width, float height, float alpha)
 	{
 		this._rect = new Rect(x, y, width, height);
@@ -38,7 +38,7 @@ public class LTRect
 		this.rotateEnabled = (this.alphaEnabled = false);
 	}
 
-	// Token: 0x06000156 RID: 342 RVA: 0x00061D54 File Offset: 0x0005FF54
+	// Token: 0x06000150 RID: 336 RVA: 0x00008450 File Offset: 0x00006650
 	public LTRect(float x, float y, float width, float height, float alpha, float rotation)
 	{
 		this._rect = new Rect(x, y, width, height);
@@ -52,8 +52,8 @@ public class LTRect
 		}
 	}
 
-	// Token: 0x17000018 RID: 24
-	// (get) Token: 0x06000157 RID: 343 RVA: 0x000050FA File Offset: 0x000032FA
+	// Token: 0x17000016 RID: 22
+	// (get) Token: 0x06000151 RID: 337 RVA: 0x000084E5 File Offset: 0x000066E5
 	public bool hasInitiliazed
 	{
 		get
@@ -62,8 +62,8 @@ public class LTRect
 		}
 	}
 
-	// Token: 0x17000019 RID: 25
-	// (get) Token: 0x06000158 RID: 344 RVA: 0x00005108 File Offset: 0x00003308
+	// Token: 0x17000017 RID: 23
+	// (get) Token: 0x06000152 RID: 338 RVA: 0x000084F3 File Offset: 0x000066F3
 	public int id
 	{
 		get
@@ -72,14 +72,14 @@ public class LTRect
 		}
 	}
 
-	// Token: 0x06000159 RID: 345 RVA: 0x0000511A File Offset: 0x0000331A
+	// Token: 0x06000153 RID: 339 RVA: 0x00008505 File Offset: 0x00006705
 	public void setId(int id, int counter)
 	{
 		this._id = id;
 		this.counter = counter;
 	}
 
-	// Token: 0x0600015A RID: 346 RVA: 0x00061DEC File Offset: 0x0005FFEC
+	// Token: 0x06000154 RID: 340 RVA: 0x00008518 File Offset: 0x00006718
 	public void reset()
 	{
 		this.alpha = 1f;
@@ -90,7 +90,7 @@ public class LTRect
 		this.useColor = false;
 	}
 
-	// Token: 0x0600015B RID: 347 RVA: 0x00061E38 File Offset: 0x00060038
+	// Token: 0x06000155 RID: 341 RVA: 0x00008564 File Offset: 0x00006764
 	public void resetForRotation()
 	{
 		Vector3 vector;
@@ -101,9 +101,9 @@ public class LTRect
 		}
 	}
 
-	// Token: 0x1700001A RID: 26
-	// (get) Token: 0x0600015C RID: 348 RVA: 0x0000512A File Offset: 0x0000332A
-	// (set) Token: 0x0600015D RID: 349 RVA: 0x00005137 File Offset: 0x00003337
+	// Token: 0x17000018 RID: 24
+	// (get) Token: 0x06000156 RID: 342 RVA: 0x0000862A File Offset: 0x0000682A
+	// (set) Token: 0x06000157 RID: 343 RVA: 0x00008637 File Offset: 0x00006837
 	public float x
 	{
 		get
@@ -116,9 +116,9 @@ public class LTRect
 		}
 	}
 
-	// Token: 0x1700001B RID: 27
-	// (get) Token: 0x0600015E RID: 350 RVA: 0x00005145 File Offset: 0x00003345
-	// (set) Token: 0x0600015F RID: 351 RVA: 0x00005152 File Offset: 0x00003352
+	// Token: 0x17000019 RID: 25
+	// (get) Token: 0x06000158 RID: 344 RVA: 0x00008645 File Offset: 0x00006845
+	// (set) Token: 0x06000159 RID: 345 RVA: 0x00008652 File Offset: 0x00006852
 	public float y
 	{
 		get
@@ -131,9 +131,9 @@ public class LTRect
 		}
 	}
 
-	// Token: 0x1700001C RID: 28
-	// (get) Token: 0x06000160 RID: 352 RVA: 0x00005160 File Offset: 0x00003360
-	// (set) Token: 0x06000161 RID: 353 RVA: 0x0000516D File Offset: 0x0000336D
+	// Token: 0x1700001A RID: 26
+	// (get) Token: 0x0600015A RID: 346 RVA: 0x00008660 File Offset: 0x00006860
+	// (set) Token: 0x0600015B RID: 347 RVA: 0x0000866D File Offset: 0x0000686D
 	public float width
 	{
 		get
@@ -146,9 +146,9 @@ public class LTRect
 		}
 	}
 
-	// Token: 0x1700001D RID: 29
-	// (get) Token: 0x06000162 RID: 354 RVA: 0x0000517B File Offset: 0x0000337B
-	// (set) Token: 0x06000163 RID: 355 RVA: 0x00005188 File Offset: 0x00003388
+	// Token: 0x1700001B RID: 27
+	// (get) Token: 0x0600015C RID: 348 RVA: 0x0000867B File Offset: 0x0000687B
+	// (set) Token: 0x0600015D RID: 349 RVA: 0x00008688 File Offset: 0x00006888
 	public float height
 	{
 		get
@@ -161,9 +161,9 @@ public class LTRect
 		}
 	}
 
-	// Token: 0x1700001E RID: 30
-	// (get) Token: 0x06000164 RID: 356 RVA: 0x00061F00 File Offset: 0x00060100
-	// (set) Token: 0x06000165 RID: 357 RVA: 0x00005196 File Offset: 0x00003396
+	// Token: 0x1700001C RID: 28
+	// (get) Token: 0x0600015E RID: 350 RVA: 0x00008698 File Offset: 0x00006898
+	// (set) Token: 0x0600015F RID: 351 RVA: 0x000087A9 File Offset: 0x000069A9
 	public Rect rect
 	{
 		get
@@ -210,21 +210,21 @@ public class LTRect
 		}
 	}
 
-	// Token: 0x06000166 RID: 358 RVA: 0x0000519F File Offset: 0x0000339F
+	// Token: 0x06000160 RID: 352 RVA: 0x000087B2 File Offset: 0x000069B2
 	public LTRect setStyle(GUIStyle style)
 	{
 		this.style = style;
 		return this;
 	}
 
-	// Token: 0x06000167 RID: 359 RVA: 0x000051A9 File Offset: 0x000033A9
+	// Token: 0x06000161 RID: 353 RVA: 0x000087BC File Offset: 0x000069BC
 	public LTRect setFontScaleToFit(bool fontScaleToFit)
 	{
 		this.fontScaleToFit = fontScaleToFit;
 		return this;
 	}
 
-	// Token: 0x06000168 RID: 360 RVA: 0x000051B3 File Offset: 0x000033B3
+	// Token: 0x06000162 RID: 354 RVA: 0x000087C6 File Offset: 0x000069C6
 	public LTRect setColor(Color color)
 	{
 		this.color = color;
@@ -232,21 +232,21 @@ public class LTRect
 		return this;
 	}
 
-	// Token: 0x06000169 RID: 361 RVA: 0x000051C4 File Offset: 0x000033C4
+	// Token: 0x06000163 RID: 355 RVA: 0x000087D7 File Offset: 0x000069D7
 	public LTRect setAlpha(float alpha)
 	{
 		this.alpha = alpha;
 		return this;
 	}
 
-	// Token: 0x0600016A RID: 362 RVA: 0x000051CE File Offset: 0x000033CE
+	// Token: 0x06000164 RID: 356 RVA: 0x000087E1 File Offset: 0x000069E1
 	public LTRect setLabel(string str)
 	{
 		this.labelStr = str;
 		return this;
 	}
 
-	// Token: 0x0600016B RID: 363 RVA: 0x000051D8 File Offset: 0x000033D8
+	// Token: 0x06000165 RID: 357 RVA: 0x000087EB File Offset: 0x000069EB
 	public LTRect setUseSimpleScale(bool useSimpleScale, Rect relativeRect)
 	{
 		this.useSimpleScale = useSimpleScale;
@@ -254,7 +254,7 @@ public class LTRect
 		return this;
 	}
 
-	// Token: 0x0600016C RID: 364 RVA: 0x000051E9 File Offset: 0x000033E9
+	// Token: 0x06000166 RID: 358 RVA: 0x000087FC File Offset: 0x000069FC
 	public LTRect setUseSimpleScale(bool useSimpleScale)
 	{
 		this.useSimpleScale = useSimpleScale;
@@ -262,14 +262,14 @@ public class LTRect
 		return this;
 	}
 
-	// Token: 0x0600016D RID: 365 RVA: 0x00005214 File Offset: 0x00003414
+	// Token: 0x06000167 RID: 359 RVA: 0x00008827 File Offset: 0x00006A27
 	public LTRect setSizeByHeight(bool sizeByHeight)
 	{
 		this.sizeByHeight = sizeByHeight;
 		return this;
 	}
 
-	// Token: 0x0600016E RID: 366 RVA: 0x00062014 File Offset: 0x00060214
+	// Token: 0x06000168 RID: 360 RVA: 0x00008834 File Offset: 0x00006A34
 	public override string ToString()
 	{
 		return string.Concat(new object[]
@@ -285,68 +285,68 @@ public class LTRect
 		});
 	}
 
-	// Token: 0x0400010E RID: 270
+	// Token: 0x040000FF RID: 255
 	public Rect _rect;
 
-	// Token: 0x0400010F RID: 271
+	// Token: 0x04000100 RID: 256
 	public float alpha = 1f;
 
-	// Token: 0x04000110 RID: 272
+	// Token: 0x04000101 RID: 257
 	public float rotation;
 
-	// Token: 0x04000111 RID: 273
+	// Token: 0x04000102 RID: 258
 	public Vector2 pivot;
 
-	// Token: 0x04000112 RID: 274
+	// Token: 0x04000103 RID: 259
 	public Vector2 margin;
 
-	// Token: 0x04000113 RID: 275
+	// Token: 0x04000104 RID: 260
 	public Rect relativeRect = new Rect(0f, 0f, float.PositiveInfinity, float.PositiveInfinity);
 
-	// Token: 0x04000114 RID: 276
+	// Token: 0x04000105 RID: 261
 	public bool rotateEnabled;
 
-	// Token: 0x04000115 RID: 277
+	// Token: 0x04000106 RID: 262
 	[HideInInspector]
 	public bool rotateFinished;
 
-	// Token: 0x04000116 RID: 278
+	// Token: 0x04000107 RID: 263
 	public bool alphaEnabled;
 
-	// Token: 0x04000117 RID: 279
+	// Token: 0x04000108 RID: 264
 	public string labelStr;
 
-	// Token: 0x04000118 RID: 280
+	// Token: 0x04000109 RID: 265
 	public LTGUI.Element_Type type;
 
-	// Token: 0x04000119 RID: 281
+	// Token: 0x0400010A RID: 266
 	public GUIStyle style;
 
-	// Token: 0x0400011A RID: 282
+	// Token: 0x0400010B RID: 267
 	public bool useColor;
 
-	// Token: 0x0400011B RID: 283
+	// Token: 0x0400010C RID: 268
 	public Color color = Color.white;
 
-	// Token: 0x0400011C RID: 284
+	// Token: 0x0400010D RID: 269
 	public bool fontScaleToFit;
 
-	// Token: 0x0400011D RID: 285
+	// Token: 0x0400010E RID: 270
 	public bool useSimpleScale;
 
-	// Token: 0x0400011E RID: 286
+	// Token: 0x0400010F RID: 271
 	public bool sizeByHeight;
 
-	// Token: 0x0400011F RID: 287
+	// Token: 0x04000110 RID: 272
 	public Texture texture;
 
-	// Token: 0x04000120 RID: 288
+	// Token: 0x04000111 RID: 273
 	private int _id = -1;
 
-	// Token: 0x04000121 RID: 289
+	// Token: 0x04000112 RID: 274
 	[HideInInspector]
 	public int counter;
 
-	// Token: 0x04000122 RID: 290
+	// Token: 0x04000113 RID: 275
 	public static bool colorTouched;
 }

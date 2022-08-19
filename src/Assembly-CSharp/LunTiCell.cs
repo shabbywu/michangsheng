@@ -3,10 +3,10 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
 
-// Token: 0x0200047E RID: 1150
+// Token: 0x0200031B RID: 795
 public class LunTiCell : MonoBehaviour
 {
-	// Token: 0x06001EC6 RID: 7878 RVA: 0x0001987C File Offset: 0x00017A7C
+	// Token: 0x06001B93 RID: 7059 RVA: 0x000C4397 File Offset: 0x000C2597
 	public void InitLunTiCell(Sprite selectSprite, Sprite unselectSprite, int lunTiId, string lunTiName, UnityAction<int> selectAction, UnityAction<int> unSelectAction)
 	{
 		this.selectImage.sprite = selectSprite;
@@ -17,7 +17,7 @@ public class LunTiCell : MonoBehaviour
 		this.unSelectAction = unSelectAction;
 	}
 
-	// Token: 0x06001EC7 RID: 7879 RVA: 0x00109600 File Offset: 0x00107800
+	// Token: 0x06001B94 RID: 7060 RVA: 0x000C43D8 File Offset: 0x000C25D8
 	public void MouseUp()
 	{
 		this.state = !this.state;
@@ -31,27 +31,27 @@ public class LunTiCell : MonoBehaviour
 		this.unSelectAction.Invoke(this.lunTiId);
 	}
 
-	// Token: 0x04001A2C RID: 6700
+	// Token: 0x04001611 RID: 5649
 	private bool state;
 
-	// Token: 0x04001A2D RID: 6701
+	// Token: 0x04001612 RID: 5650
 	[SerializeField]
 	private Image selectImage;
 
-	// Token: 0x04001A2E RID: 6702
+	// Token: 0x04001613 RID: 5651
 	[SerializeField]
 	private Image unSelectImage;
 
-	// Token: 0x04001A2F RID: 6703
+	// Token: 0x04001614 RID: 5652
 	[SerializeField]
 	private Text lunTiName;
 
-	// Token: 0x04001A30 RID: 6704
+	// Token: 0x04001615 RID: 5653
 	public int lunTiId;
 
-	// Token: 0x04001A31 RID: 6705
+	// Token: 0x04001616 RID: 5654
 	private UnityAction<int> selectAction;
 
-	// Token: 0x04001A32 RID: 6706
+	// Token: 0x04001617 RID: 5655
 	private UnityAction<int> unSelectAction;
 }

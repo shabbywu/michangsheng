@@ -3,15 +3,15 @@ using ICSharpCode.SharpZipLib.Checksum;
 
 namespace ICSharpCode.SharpZipLib.Zip.Compression
 {
-	// Token: 0x020007F7 RID: 2039
+	// Token: 0x02000553 RID: 1363
 	public class DeflaterEngine
 	{
-		// Token: 0x0600347C RID: 13436 RVA: 0x000265B6 File Offset: 0x000247B6
+		// Token: 0x06002C21 RID: 11297 RVA: 0x00148D88 File Offset: 0x00146F88
 		public DeflaterEngine(DeflaterPending pending) : this(pending, false)
 		{
 		}
 
-		// Token: 0x0600347D RID: 13437 RVA: 0x00194800 File Offset: 0x00192A00
+		// Token: 0x06002C22 RID: 11298 RVA: 0x00148D94 File Offset: 0x00146F94
 		public DeflaterEngine(DeflaterPending pending, bool noAdlerCalculation)
 		{
 			this.pending = pending;
@@ -26,7 +26,7 @@ namespace ICSharpCode.SharpZipLib.Zip.Compression
 			this.blockStart = (this.strstart = 1);
 		}
 
-		// Token: 0x0600347E RID: 13438 RVA: 0x00194874 File Offset: 0x00192A74
+		// Token: 0x06002C23 RID: 11299 RVA: 0x00148E08 File Offset: 0x00147008
 		public bool Deflate(bool flush, bool finish)
 		{
 			for (;;)
@@ -56,7 +56,7 @@ namespace ICSharpCode.SharpZipLib.Zip.Compression
 			throw new InvalidOperationException("unknown compressionFunction");
 		}
 
-		// Token: 0x0600347F RID: 13439 RVA: 0x001948F4 File Offset: 0x00192AF4
+		// Token: 0x06002C24 RID: 11300 RVA: 0x00148E88 File Offset: 0x00147088
 		public void SetInput(byte[] buffer, int offset, int count)
 		{
 			if (buffer == null)
@@ -85,13 +85,13 @@ namespace ICSharpCode.SharpZipLib.Zip.Compression
 			this.inputEnd = num;
 		}
 
-		// Token: 0x06003480 RID: 13440 RVA: 0x000265C0 File Offset: 0x000247C0
+		// Token: 0x06002C25 RID: 11301 RVA: 0x00148F08 File Offset: 0x00147108
 		public bool NeedsInput()
 		{
 			return this.inputEnd == this.inputOff;
 		}
 
-		// Token: 0x06003481 RID: 13441 RVA: 0x00194974 File Offset: 0x00192B74
+		// Token: 0x06002C26 RID: 11302 RVA: 0x00148F18 File Offset: 0x00147118
 		public void SetDictionary(byte[] buffer, int offset, int length)
 		{
 			Adler32 adler = this.adler;
@@ -120,7 +120,7 @@ namespace ICSharpCode.SharpZipLib.Zip.Compression
 			this.blockStart = this.strstart;
 		}
 
-		// Token: 0x06003482 RID: 13442 RVA: 0x00194A14 File Offset: 0x00192C14
+		// Token: 0x06002C27 RID: 11303 RVA: 0x00148FB8 File Offset: 0x001471B8
 		public void Reset()
 		{
 			this.huffman.Reset();
@@ -144,7 +144,7 @@ namespace ICSharpCode.SharpZipLib.Zip.Compression
 			}
 		}
 
-		// Token: 0x06003483 RID: 13443 RVA: 0x000265D0 File Offset: 0x000247D0
+		// Token: 0x06002C28 RID: 11304 RVA: 0x00149040 File Offset: 0x00147240
 		public void ResetAdler()
 		{
 			Adler32 adler = this.adler;
@@ -155,8 +155,8 @@ namespace ICSharpCode.SharpZipLib.Zip.Compression
 			adler.Reset();
 		}
 
-		// Token: 0x170004F1 RID: 1265
-		// (get) Token: 0x06003484 RID: 13444 RVA: 0x000265E2 File Offset: 0x000247E2
+		// Token: 0x1700033C RID: 828
+		// (get) Token: 0x06002C29 RID: 11305 RVA: 0x00149052 File Offset: 0x00147252
 		public int Adler
 		{
 			get
@@ -169,8 +169,8 @@ namespace ICSharpCode.SharpZipLib.Zip.Compression
 			}
 		}
 
-		// Token: 0x170004F2 RID: 1266
-		// (get) Token: 0x06003485 RID: 13445 RVA: 0x000265FA File Offset: 0x000247FA
+		// Token: 0x1700033D RID: 829
+		// (get) Token: 0x06002C2A RID: 11306 RVA: 0x0014906A File Offset: 0x0014726A
 		public long TotalIn
 		{
 			get
@@ -179,9 +179,9 @@ namespace ICSharpCode.SharpZipLib.Zip.Compression
 			}
 		}
 
-		// Token: 0x170004F3 RID: 1267
-		// (get) Token: 0x06003486 RID: 13446 RVA: 0x00026602 File Offset: 0x00024802
-		// (set) Token: 0x06003487 RID: 13447 RVA: 0x0002660A File Offset: 0x0002480A
+		// Token: 0x1700033E RID: 830
+		// (get) Token: 0x06002C2B RID: 11307 RVA: 0x00149072 File Offset: 0x00147272
+		// (set) Token: 0x06002C2C RID: 11308 RVA: 0x0014907A File Offset: 0x0014727A
 		public DeflateStrategy Strategy
 		{
 			get
@@ -194,7 +194,7 @@ namespace ICSharpCode.SharpZipLib.Zip.Compression
 			}
 		}
 
-		// Token: 0x06003488 RID: 13448 RVA: 0x00194A9C File Offset: 0x00192C9C
+		// Token: 0x06002C2D RID: 11309 RVA: 0x00149084 File Offset: 0x00147284
 		public void SetLevel(int level)
 		{
 			if (level < 0 || level > 9)
@@ -242,7 +242,7 @@ namespace ICSharpCode.SharpZipLib.Zip.Compression
 			}
 		}
 
-		// Token: 0x06003489 RID: 13449 RVA: 0x00194C34 File Offset: 0x00192E34
+		// Token: 0x06002C2E RID: 11310 RVA: 0x0014921C File Offset: 0x0014741C
 		public void FillWindow()
 		{
 			if (this.strstart >= 65274)
@@ -272,13 +272,13 @@ namespace ICSharpCode.SharpZipLib.Zip.Compression
 			}
 		}
 
-		// Token: 0x0600348A RID: 13450 RVA: 0x00026613 File Offset: 0x00024813
+		// Token: 0x06002C2F RID: 11311 RVA: 0x00149311 File Offset: 0x00147511
 		private void UpdateHash()
 		{
 			this.ins_h = ((int)this.window[this.strstart] << 5 ^ (int)this.window[this.strstart + 1]);
 		}
 
-		// Token: 0x0600348B RID: 13451 RVA: 0x00194D2C File Offset: 0x00192F2C
+		// Token: 0x06002C30 RID: 11312 RVA: 0x00149338 File Offset: 0x00147538
 		private int InsertString()
 		{
 			int num = (this.ins_h << 5 ^ (int)this.window[this.strstart + 2]) & 32767;
@@ -288,7 +288,7 @@ namespace ICSharpCode.SharpZipLib.Zip.Compression
 			return (int)num2 & 65535;
 		}
 
-		// Token: 0x0600348C RID: 13452 RVA: 0x00194D94 File Offset: 0x00192F94
+		// Token: 0x06002C31 RID: 11313 RVA: 0x001493A0 File Offset: 0x001475A0
 		private void SlideWindow()
 		{
 			Array.Copy(this.window, 32768, this.window, 0, 32768);
@@ -307,7 +307,7 @@ namespace ICSharpCode.SharpZipLib.Zip.Compression
 			}
 		}
 
-		// Token: 0x0600348D RID: 13453 RVA: 0x00194E68 File Offset: 0x00193068
+		// Token: 0x06002C32 RID: 11314 RVA: 0x00149474 File Offset: 0x00147674
 		private bool FindLongestMatch(int curMatch)
 		{
 			int num = this.strstart;
@@ -404,7 +404,7 @@ namespace ICSharpCode.SharpZipLib.Zip.Compression
 			return this.matchLen >= 3;
 		}
 
-		// Token: 0x0600348E RID: 13454 RVA: 0x0019530C File Offset: 0x0019350C
+		// Token: 0x06002C33 RID: 11315 RVA: 0x00149918 File Offset: 0x00147B18
 		private bool DeflateStored(bool flush, bool finish)
 		{
 			if (!flush && this.lookahead == 0)
@@ -429,7 +429,7 @@ namespace ICSharpCode.SharpZipLib.Zip.Compression
 			return true;
 		}
 
-		// Token: 0x0600348F RID: 13455 RVA: 0x001953BC File Offset: 0x001935BC
+		// Token: 0x06002C34 RID: 11316 RVA: 0x001499C8 File Offset: 0x00147BC8
 		private bool DeflateFast(bool flush, bool finish)
 		{
 			if (this.lookahead < 262 && !flush)
@@ -499,7 +499,7 @@ namespace ICSharpCode.SharpZipLib.Zip.Compression
 			return true;
 		}
 
-		// Token: 0x06003490 RID: 13456 RVA: 0x001955D0 File Offset: 0x001937D0
+		// Token: 0x06002C35 RID: 11317 RVA: 0x00149BDC File Offset: 0x00147DDC
 		private bool DeflateSlow(bool flush, bool finish)
 		{
 			if (this.lookahead < 262 && !flush)
@@ -578,76 +578,76 @@ namespace ICSharpCode.SharpZipLib.Zip.Compression
 			return true;
 		}
 
-		// Token: 0x04002FB0 RID: 12208
+		// Token: 0x04002788 RID: 10120
 		private const int TooFar = 4096;
 
-		// Token: 0x04002FB1 RID: 12209
+		// Token: 0x04002789 RID: 10121
 		private int ins_h;
 
-		// Token: 0x04002FB2 RID: 12210
+		// Token: 0x0400278A RID: 10122
 		private short[] head;
 
-		// Token: 0x04002FB3 RID: 12211
+		// Token: 0x0400278B RID: 10123
 		private short[] prev;
 
-		// Token: 0x04002FB4 RID: 12212
+		// Token: 0x0400278C RID: 10124
 		private int matchStart;
 
-		// Token: 0x04002FB5 RID: 12213
+		// Token: 0x0400278D RID: 10125
 		private int matchLen;
 
-		// Token: 0x04002FB6 RID: 12214
+		// Token: 0x0400278E RID: 10126
 		private bool prevAvailable;
 
-		// Token: 0x04002FB7 RID: 12215
+		// Token: 0x0400278F RID: 10127
 		private int blockStart;
 
-		// Token: 0x04002FB8 RID: 12216
+		// Token: 0x04002790 RID: 10128
 		private int strstart;
 
-		// Token: 0x04002FB9 RID: 12217
+		// Token: 0x04002791 RID: 10129
 		private int lookahead;
 
-		// Token: 0x04002FBA RID: 12218
+		// Token: 0x04002792 RID: 10130
 		private byte[] window;
 
-		// Token: 0x04002FBB RID: 12219
+		// Token: 0x04002793 RID: 10131
 		private DeflateStrategy strategy;
 
-		// Token: 0x04002FBC RID: 12220
+		// Token: 0x04002794 RID: 10132
 		private int max_chain;
 
-		// Token: 0x04002FBD RID: 12221
+		// Token: 0x04002795 RID: 10133
 		private int max_lazy;
 
-		// Token: 0x04002FBE RID: 12222
+		// Token: 0x04002796 RID: 10134
 		private int niceLength;
 
-		// Token: 0x04002FBF RID: 12223
+		// Token: 0x04002797 RID: 10135
 		private int goodLength;
 
-		// Token: 0x04002FC0 RID: 12224
+		// Token: 0x04002798 RID: 10136
 		private int compressionFunction;
 
-		// Token: 0x04002FC1 RID: 12225
+		// Token: 0x04002799 RID: 10137
 		private byte[] inputBuf;
 
-		// Token: 0x04002FC2 RID: 12226
+		// Token: 0x0400279A RID: 10138
 		private long totalIn;
 
-		// Token: 0x04002FC3 RID: 12227
+		// Token: 0x0400279B RID: 10139
 		private int inputOff;
 
-		// Token: 0x04002FC4 RID: 12228
+		// Token: 0x0400279C RID: 10140
 		private int inputEnd;
 
-		// Token: 0x04002FC5 RID: 12229
+		// Token: 0x0400279D RID: 10141
 		private DeflaterPending pending;
 
-		// Token: 0x04002FC6 RID: 12230
+		// Token: 0x0400279E RID: 10142
 		private DeflaterHuffman huffman;
 
-		// Token: 0x04002FC7 RID: 12231
+		// Token: 0x0400279F RID: 10143
 		private Adler32 adler;
 	}
 }

@@ -4,16 +4,16 @@ using UnityEngine;
 
 namespace UltimateSurvival
 {
-	// Token: 0x020008F7 RID: 2295
+	// Token: 0x02000613 RID: 1555
 	public class PlayerPauseHandler : MonoBehaviour
 	{
-		// Token: 0x06003AD5 RID: 15061 RVA: 0x0002AB4D File Offset: 0x00028D4D
+		// Token: 0x060031B2 RID: 12722 RVA: 0x00160D74 File Offset: 0x0015EF74
 		private void Start()
 		{
 			MonoSingleton<InventoryController>.Instance.State.AddChangeListener(new Action(this.OnInventoryToggled));
 		}
 
-		// Token: 0x06003AD6 RID: 15062 RVA: 0x001AA4BC File Offset: 0x001A86BC
+		// Token: 0x060031B3 RID: 12723 RVA: 0x00160D94 File Offset: 0x0015EF94
 		private void OnInventoryToggled()
 		{
 			bool isClosed = MonoSingleton<InventoryController>.Instance.IsClosed;
@@ -27,11 +27,11 @@ namespace UltimateSurvival
 			}
 		}
 
-		// Token: 0x0400351F RID: 13599
+		// Token: 0x04002C08 RID: 11272
 		[SerializeField]
 		private DOF m_DOF;
 
-		// Token: 0x04003520 RID: 13600
+		// Token: 0x04002C09 RID: 11273
 		[SerializeField]
 		private ColorCorrection m_ColorCorrectionCurves;
 	}

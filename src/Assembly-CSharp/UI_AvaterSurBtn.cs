@@ -4,16 +4,16 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
 
-// Token: 0x020005B0 RID: 1456
+// Token: 0x02000400 RID: 1024
 public class UI_AvaterSurBtn : MonoBehaviour
 {
-	// Token: 0x060024BC RID: 9404 RVA: 0x0001D87C File Offset: 0x0001BA7C
+	// Token: 0x0600210A RID: 8458 RVA: 0x000E78F3 File Offset: 0x000E5AF3
 	private void Start()
 	{
 		base.GetComponent<Button>().onClick.AddListener(new UnityAction(this.ChoiceAvaterSurface));
 	}
 
-	// Token: 0x060024BD RID: 9405 RVA: 0x0001D89A File Offset: 0x0001BA9A
+	// Token: 0x0600210B RID: 8459 RVA: 0x000E7911 File Offset: 0x000E5B11
 	public void ChoiceAvaterSurface()
 	{
 		Event.fireOut("ChoiceAvaterSurface", new object[]
@@ -22,9 +22,9 @@ public class UI_AvaterSurBtn : MonoBehaviour
 		});
 	}
 
-	// Token: 0x04001F86 RID: 8070
+	// Token: 0x04001ACA RID: 6858
 	public int AvaterType = 1;
 
-	// Token: 0x04001F87 RID: 8071
+	// Token: 0x04001ACB RID: 6859
 	public int AvaterSurface = 1;
 }

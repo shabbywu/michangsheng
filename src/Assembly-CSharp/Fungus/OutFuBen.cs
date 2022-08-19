@@ -4,12 +4,12 @@ using UnityEngine.Serialization;
 
 namespace Fungus
 {
-	// Token: 0x0200144E RID: 5198
+	// Token: 0x02000F9E RID: 3998
 	[CommandInfo("YSTools", "OutFuBen", "�뿪����", 0)]
 	[AddComponentMenu("")]
 	public class OutFuBen : Command
 	{
-		// Token: 0x06007D82 RID: 32130 RVA: 0x00054DC0 File Offset: 0x00052FC0
+		// Token: 0x06006FA2 RID: 28578 RVA: 0x002A72E2 File Offset: 0x002A54E2
 		public override void OnEnter()
 		{
 			Tools.instance.loadMapScenes(this._sceneName.Value, true);
@@ -17,7 +17,7 @@ namespace Fungus
 			this.Continue();
 		}
 
-		// Token: 0x06007D83 RID: 32131 RVA: 0x00054DF3 File Offset: 0x00052FF3
+		// Token: 0x06006FA3 RID: 28579 RVA: 0x002A7315 File Offset: 0x002A5515
 		public override string GetSummary()
 		{
 			if (this._sceneName.Value.Length == 0)
@@ -27,19 +27,19 @@ namespace Fungus
 			return this._sceneName.Value;
 		}
 
-		// Token: 0x06007D84 RID: 32132 RVA: 0x0004C5E0 File Offset: 0x0004A7E0
+		// Token: 0x06006FA4 RID: 28580 RVA: 0x0027D3DB File Offset: 0x0027B5DB
 		public override Color GetButtonColor()
 		{
 			return new Color32(235, 191, 217, byte.MaxValue);
 		}
 
-		// Token: 0x06007D85 RID: 32133 RVA: 0x00054E18 File Offset: 0x00053018
+		// Token: 0x06006FA5 RID: 28581 RVA: 0x002A733A File Offset: 0x002A553A
 		public override bool HasReference(Variable variable)
 		{
 			return this._sceneName.stringRef == variable || base.HasReference(variable);
 		}
 
-		// Token: 0x06007D86 RID: 32134 RVA: 0x00054E36 File Offset: 0x00053036
+		// Token: 0x06006FA6 RID: 28582 RVA: 0x002A7358 File Offset: 0x002A5558
 		protected virtual void OnEnable()
 		{
 			if (this.sceneNameOLD != "")
@@ -49,12 +49,12 @@ namespace Fungus
 			}
 		}
 
-		// Token: 0x04006AED RID: 27373
+		// Token: 0x04005C1E RID: 23582
 		[Tooltip("�����ĳ�������")]
 		[SerializeField]
 		protected StringData _sceneName = new StringData("");
 
-		// Token: 0x04006AEE RID: 27374
+		// Token: 0x04005C1F RID: 23583
 		[HideInInspector]
 		[FormerlySerializedAs("sceneName")]
 		public string sceneNameOLD = "";

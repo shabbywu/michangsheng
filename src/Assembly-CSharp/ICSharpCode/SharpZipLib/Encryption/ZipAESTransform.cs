@@ -3,10 +3,10 @@ using System.Security.Cryptography;
 
 namespace ICSharpCode.SharpZipLib.Encryption
 {
-	// Token: 0x02000820 RID: 2080
+	// Token: 0x02000577 RID: 1399
 	internal class ZipAESTransform : ICryptoTransform, IDisposable
 	{
-		// Token: 0x06003691 RID: 13969 RVA: 0x0019BF58 File Offset: 0x0019A158
+		// Token: 0x06002E1B RID: 11803 RVA: 0x00150F28 File Offset: 0x0014F128
 		public ZipAESTransform(string key, byte[] saltBytes, int blockSize, bool writeMode)
 		{
 			if (blockSize != 16 && blockSize != 32)
@@ -38,7 +38,7 @@ namespace ICSharpCode.SharpZipLib.Encryption
 			this._writeMode = writeMode;
 		}
 
-		// Token: 0x06003692 RID: 13970 RVA: 0x0019C06C File Offset: 0x0019A26C
+		// Token: 0x06002E1C RID: 11804 RVA: 0x0015103C File Offset: 0x0014F23C
 		public int TransformBlock(byte[] inputBuffer, int inputOffset, int inputCount, byte[] outputBuffer, int outputOffset)
 		{
 			if (!this._writeMode)
@@ -79,8 +79,8 @@ namespace ICSharpCode.SharpZipLib.Encryption
 			return inputCount;
 		}
 
-		// Token: 0x17000567 RID: 1383
-		// (get) Token: 0x06003693 RID: 13971 RVA: 0x00027C46 File Offset: 0x00025E46
+		// Token: 0x170003B0 RID: 944
+		// (get) Token: 0x06002E1D RID: 11805 RVA: 0x001510FA File Offset: 0x0014F2FA
 		public byte[] PwdVerifier
 		{
 			get
@@ -89,7 +89,7 @@ namespace ICSharpCode.SharpZipLib.Encryption
 			}
 		}
 
-		// Token: 0x06003694 RID: 13972 RVA: 0x00027C4E File Offset: 0x00025E4E
+		// Token: 0x06002E1E RID: 11806 RVA: 0x00151102 File Offset: 0x0014F302
 		public byte[] GetAuthCode()
 		{
 			if (this._authCode == null)
@@ -99,7 +99,7 @@ namespace ICSharpCode.SharpZipLib.Encryption
 			return this._authCode;
 		}
 
-		// Token: 0x06003695 RID: 13973 RVA: 0x00027C6F File Offset: 0x00025E6F
+		// Token: 0x06002E1F RID: 11807 RVA: 0x00151123 File Offset: 0x0014F323
 		public byte[] TransformFinalBlock(byte[] inputBuffer, int inputOffset, int inputCount)
 		{
 			if (inputCount > 0)
@@ -109,8 +109,8 @@ namespace ICSharpCode.SharpZipLib.Encryption
 			return new byte[0];
 		}
 
-		// Token: 0x17000568 RID: 1384
-		// (get) Token: 0x06003696 RID: 13974 RVA: 0x00027C86 File Offset: 0x00025E86
+		// Token: 0x170003B1 RID: 945
+		// (get) Token: 0x06002E20 RID: 11808 RVA: 0x0015113A File Offset: 0x0014F33A
 		public int InputBlockSize
 		{
 			get
@@ -119,8 +119,8 @@ namespace ICSharpCode.SharpZipLib.Encryption
 			}
 		}
 
-		// Token: 0x17000569 RID: 1385
-		// (get) Token: 0x06003697 RID: 13975 RVA: 0x00027C86 File Offset: 0x00025E86
+		// Token: 0x170003B2 RID: 946
+		// (get) Token: 0x06002E21 RID: 11809 RVA: 0x0015113A File Offset: 0x0014F33A
 		public int OutputBlockSize
 		{
 			get
@@ -129,8 +129,8 @@ namespace ICSharpCode.SharpZipLib.Encryption
 			}
 		}
 
-		// Token: 0x1700056A RID: 1386
-		// (get) Token: 0x06003698 RID: 13976 RVA: 0x0000A093 File Offset: 0x00008293
+		// Token: 0x170003B3 RID: 947
+		// (get) Token: 0x06002E22 RID: 11810 RVA: 0x00024C5F File Offset: 0x00022E5F
 		public bool CanTransformMultipleBlocks
 		{
 			get
@@ -139,8 +139,8 @@ namespace ICSharpCode.SharpZipLib.Encryption
 			}
 		}
 
-		// Token: 0x1700056B RID: 1387
-		// (get) Token: 0x06003699 RID: 13977 RVA: 0x0000A093 File Offset: 0x00008293
+		// Token: 0x170003B4 RID: 948
+		// (get) Token: 0x06002E23 RID: 11811 RVA: 0x00024C5F File Offset: 0x00022E5F
 		public bool CanReuseTransform
 		{
 			get
@@ -149,46 +149,46 @@ namespace ICSharpCode.SharpZipLib.Encryption
 			}
 		}
 
-		// Token: 0x0600369A RID: 13978 RVA: 0x00027C8E File Offset: 0x00025E8E
+		// Token: 0x06002E24 RID: 11812 RVA: 0x00151142 File Offset: 0x0014F342
 		public void Dispose()
 		{
 			this._encryptor.Dispose();
 		}
 
-		// Token: 0x04003101 RID: 12545
+		// Token: 0x040028C2 RID: 10434
 		private const int PWD_VER_LENGTH = 2;
 
-		// Token: 0x04003102 RID: 12546
+		// Token: 0x040028C3 RID: 10435
 		private const int KEY_ROUNDS = 1000;
 
-		// Token: 0x04003103 RID: 12547
+		// Token: 0x040028C4 RID: 10436
 		private const int ENCRYPT_BLOCK = 16;
 
-		// Token: 0x04003104 RID: 12548
+		// Token: 0x040028C5 RID: 10437
 		private int _blockSize;
 
-		// Token: 0x04003105 RID: 12549
+		// Token: 0x040028C6 RID: 10438
 		private readonly ICryptoTransform _encryptor;
 
-		// Token: 0x04003106 RID: 12550
+		// Token: 0x040028C7 RID: 10439
 		private readonly byte[] _counterNonce;
 
-		// Token: 0x04003107 RID: 12551
+		// Token: 0x040028C8 RID: 10440
 		private byte[] _encryptBuffer;
 
-		// Token: 0x04003108 RID: 12552
+		// Token: 0x040028C9 RID: 10441
 		private int _encrPos;
 
-		// Token: 0x04003109 RID: 12553
+		// Token: 0x040028CA RID: 10442
 		private byte[] _pwdVerifier;
 
-		// Token: 0x0400310A RID: 12554
+		// Token: 0x040028CB RID: 10443
 		private IncrementalHash _hmacsha1;
 
-		// Token: 0x0400310B RID: 12555
+		// Token: 0x040028CC RID: 10444
 		private byte[] _authCode;
 
-		// Token: 0x0400310C RID: 12556
+		// Token: 0x040028CD RID: 10445
 		private bool _writeMode;
 	}
 }

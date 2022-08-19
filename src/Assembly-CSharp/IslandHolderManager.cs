@@ -3,21 +3,21 @@ using System.Collections;
 using KBEngine;
 using UnityEngine;
 
-// Token: 0x02000735 RID: 1845
+// Token: 0x020004CF RID: 1231
 public class IslandHolderManager : MonoBehaviour
 {
-	// Token: 0x06002EC8 RID: 11976 RVA: 0x00022B6E File Offset: 0x00020D6E
+	// Token: 0x060027BA RID: 10170 RVA: 0x00128ECE File Offset: 0x001270CE
 	private void Awake()
 	{
 		this.Kamera = GameObject.Find("Main Camera");
 	}
 
-	// Token: 0x06002EC9 RID: 11977 RVA: 0x000042DD File Offset: 0x000024DD
+	// Token: 0x060027BB RID: 10171 RVA: 0x00004095 File Offset: 0x00002295
 	private void Start()
 	{
 	}
 
-	// Token: 0x06002ECA RID: 11978 RVA: 0x00174840 File Offset: 0x00172A40
+	// Token: 0x060027BC RID: 10172 RVA: 0x00128EE0 File Offset: 0x001270E0
 	public void creatAvatar(int avaterID, int roleType, int HP_Max, Vector3 position, Vector3 direction)
 	{
 		KBEngineApp.app.Client_onCreatedProxies((ulong)((long)avaterID), avaterID, "Avatar");
@@ -29,7 +29,7 @@ public class IslandHolderManager : MonoBehaviour
 		avatar.HP = HP_Max;
 	}
 
-	// Token: 0x06002ECB RID: 11979 RVA: 0x00174898 File Offset: 0x00172A98
+	// Token: 0x060027BD RID: 10173 RVA: 0x00128F38 File Offset: 0x00127138
 	private void Update()
 	{
 		if (Input.GetKeyUp(27))
@@ -129,7 +129,7 @@ public class IslandHolderManager : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06002ECC RID: 11980 RVA: 0x00174B6C File Offset: 0x00172D6C
+	// Token: 0x060027BE RID: 10174 RVA: 0x0012920C File Offset: 0x0012740C
 	private void PomeriKameru()
 	{
 		this.TrenutniX = this.Kamera.transform.position.x;
@@ -176,7 +176,7 @@ public class IslandHolderManager : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06002ECD RID: 11981 RVA: 0x00149A14 File Offset: 0x00147C14
+	// Token: 0x060027BF RID: 10175 RVA: 0x001293E4 File Offset: 0x001275E4
 	private string RaycastFunction(Vector3 vector)
 	{
 		RaycastHit raycastHit;
@@ -187,7 +187,7 @@ public class IslandHolderManager : MonoBehaviour
 		return "";
 	}
 
-	// Token: 0x06002ECE RID: 11982 RVA: 0x00174D44 File Offset: 0x00172F44
+	// Token: 0x060027C0 RID: 10176 RVA: 0x00129418 File Offset: 0x00127618
 	private RaycastHit RaycastObj(Vector3 vector)
 	{
 		RaycastHit result;
@@ -195,7 +195,7 @@ public class IslandHolderManager : MonoBehaviour
 		return result;
 	}
 
-	// Token: 0x06002ECF RID: 11983 RVA: 0x00022B80 File Offset: 0x00020D80
+	// Token: 0x060027C1 RID: 10177 RVA: 0x00129439 File Offset: 0x00127639
 	private IEnumerator UcitajOstrvo(string ime)
 	{
 		GameObject.Find("OblaciPomeranje").GetComponent<Animation>().Play("OblaciPostavljanje");
@@ -204,10 +204,10 @@ public class IslandHolderManager : MonoBehaviour
 		yield break;
 	}
 
-	// Token: 0x040029DB RID: 10715
+	// Token: 0x0400228D RID: 8845
 	private GameObject Kamera;
 
-	// Token: 0x040029DC RID: 10716
+	// Token: 0x0400228E RID: 8846
 	private int[] Klik = new int[]
 	{
 		0,
@@ -236,30 +236,30 @@ public class IslandHolderManager : MonoBehaviour
 		23
 	};
 
-	// Token: 0x040029DD RID: 10717
+	// Token: 0x0400228F RID: 8847
 	private int KliknutoNa;
 
-	// Token: 0x040029DE RID: 10718
+	// Token: 0x04002290 RID: 8848
 	private float TrenutniX;
 
-	// Token: 0x040029DF RID: 10719
+	// Token: 0x04002291 RID: 8849
 	private float TrenutniY;
 
-	// Token: 0x040029E0 RID: 10720
+	// Token: 0x04002292 RID: 8850
 	private float forceX;
 
-	// Token: 0x040029E1 RID: 10721
+	// Token: 0x04002293 RID: 8851
 	private float forceY;
 
-	// Token: 0x040029E2 RID: 10722
+	// Token: 0x04002294 RID: 8852
 	private float startX;
 
-	// Token: 0x040029E3 RID: 10723
+	// Token: 0x04002295 RID: 8853
 	private float endX;
 
-	// Token: 0x040029E4 RID: 10724
+	// Token: 0x04002296 RID: 8854
 	private float startY;
 
-	// Token: 0x040029E5 RID: 10725
+	// Token: 0x04002297 RID: 8855
 	private float endY;
 }

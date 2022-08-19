@@ -3,10 +3,10 @@ using System.Collections.Generic;
 
 namespace JSONClass
 {
-	// Token: 0x02000C28 RID: 3112
+	// Token: 0x0200089A RID: 2202
 	public class NPCChengHaoData : IJSONClass
 	{
-		// Token: 0x06004C09 RID: 19465 RVA: 0x002017A8 File Offset: 0x001FF9A8
+		// Token: 0x0600407B RID: 16507 RVA: 0x001B84D4 File Offset: 0x001B66D4
 		public static void InitDataDict()
 		{
 			foreach (JSONObject jsonobject in jsonData.instance.NPCChengHaoData.list)
@@ -48,51 +48,51 @@ namespace JSONClass
 			}
 		}
 
-		// Token: 0x06004C0A RID: 19466 RVA: 0x000042DD File Offset: 0x000024DD
+		// Token: 0x0600407C RID: 16508 RVA: 0x00004095 File Offset: 0x00002295
 		private static void OnInitFinish()
 		{
 		}
 
-		// Token: 0x04004958 RID: 18776
+		// Token: 0x04003DFF RID: 15871
 		public static Dictionary<int, NPCChengHaoData> DataDict = new Dictionary<int, NPCChengHaoData>();
 
-		// Token: 0x04004959 RID: 18777
+		// Token: 0x04003E00 RID: 15872
 		public static List<NPCChengHaoData> DataList = new List<NPCChengHaoData>();
 
-		// Token: 0x0400495A RID: 18778
+		// Token: 0x04003E01 RID: 15873
 		public static Action OnInitFinishAction = new Action(NPCChengHaoData.OnInitFinish);
 
-		// Token: 0x0400495B RID: 18779
+		// Token: 0x04003E02 RID: 15874
 		public int id;
 
-		// Token: 0x0400495C RID: 18780
+		// Token: 0x04003E03 RID: 15875
 		public int NPCType;
 
-		// Token: 0x0400495D RID: 18781
+		// Token: 0x04003E04 RID: 15876
 		public int GongXian;
 
-		// Token: 0x0400495E RID: 18782
+		// Token: 0x04003E05 RID: 15877
 		public int IsOnly;
 
-		// Token: 0x0400495F RID: 18783
+		// Token: 0x04003E06 RID: 15878
 		public int ChengHaoLv;
 
-		// Token: 0x04004960 RID: 18784
+		// Token: 0x04003E07 RID: 15879
 		public int MaxLevel;
 
-		// Token: 0x04004961 RID: 18785
+		// Token: 0x04003E08 RID: 15880
 		public int ChengHaoType;
 
-		// Token: 0x04004962 RID: 18786
+		// Token: 0x04003E09 RID: 15881
 		public string ChengHao;
 
-		// Token: 0x04004963 RID: 18787
+		// Token: 0x04003E0A RID: 15882
 		public List<int> Level = new List<int>();
 
-		// Token: 0x04004964 RID: 18788
+		// Token: 0x04003E0B RID: 15883
 		public List<int> Change = new List<int>();
 
-		// Token: 0x04004965 RID: 18789
+		// Token: 0x04003E0C RID: 15884
 		public List<int> ChangeTo = new List<int>();
 	}
 }

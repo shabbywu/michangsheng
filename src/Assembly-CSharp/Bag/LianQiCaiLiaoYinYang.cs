@@ -2,14 +2,14 @@
 
 namespace Bag
 {
-	// Token: 0x02000D2D RID: 3373
+	// Token: 0x020009A7 RID: 2471
 	public enum LianQiCaiLiaoYinYang
 	{
-		// Token: 0x04005183 RID: 20867
+		// Token: 0x04004683 RID: 18051
 		全部,
-		// Token: 0x04005184 RID: 20868
+		// Token: 0x04004684 RID: 18052
 		阴 = 2,
-		// Token: 0x04005185 RID: 20869
+		// Token: 0x04004685 RID: 18053
 		阳 = 1
 	}
 }

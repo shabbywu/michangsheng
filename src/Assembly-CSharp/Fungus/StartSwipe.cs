@@ -3,12 +3,12 @@ using UnityEngine;
 
 namespace Fungus
 {
-	// Token: 0x0200129D RID: 4765
+	// Token: 0x02000E4C RID: 3660
 	[CommandInfo("Camera", "Start Swipe", "Activates swipe panning mode where the player can pan the camera within the area between viewA & viewB.", 0)]
 	[AddComponentMenu("")]
 	public class StartSwipe : Command
 	{
-		// Token: 0x0600737D RID: 29565 RVA: 0x0004ECB5 File Offset: 0x0004CEB5
+		// Token: 0x060066EF RID: 26351 RVA: 0x0028851F File Offset: 0x0028671F
 		public virtual void Start()
 		{
 			if (this.targetCamera == null)
@@ -21,7 +21,7 @@ namespace Fungus
 			}
 		}
 
-		// Token: 0x0600737E RID: 29566 RVA: 0x002AB370 File Offset: 0x002A9570
+		// Token: 0x060066F0 RID: 26352 RVA: 0x00288554 File Offset: 0x00286754
 		public override void OnEnter()
 		{
 			if (this.targetCamera == null || this.viewA == null || this.viewB == null)
@@ -35,7 +35,7 @@ namespace Fungus
 			});
 		}
 
-		// Token: 0x0600737F RID: 29567 RVA: 0x002AB3E8 File Offset: 0x002A95E8
+		// Token: 0x060066F1 RID: 26353 RVA: 0x002885CC File Offset: 0x002867CC
 		public override string GetSummary()
 		{
 			if (this.viewA == null)
@@ -49,33 +49,33 @@ namespace Fungus
 			return this.viewA.name + " to " + this.viewB.name;
 		}
 
-		// Token: 0x06007380 RID: 29568 RVA: 0x0004CAB8 File Offset: 0x0004ACB8
+		// Token: 0x060066F2 RID: 26354 RVA: 0x0027EC04 File Offset: 0x0027CE04
 		public override Color GetButtonColor()
 		{
 			return new Color32(216, 228, 170, byte.MaxValue);
 		}
 
-		// Token: 0x04006562 RID: 25954
+		// Token: 0x0400581E RID: 22558
 		[Tooltip("Defines one extreme of the scrollable area that the player can pan around")]
 		[SerializeField]
 		protected View viewA;
 
-		// Token: 0x04006563 RID: 25955
+		// Token: 0x0400581F RID: 22559
 		[Tooltip("Defines one extreme of the scrollable area that the player can pan around")]
 		[SerializeField]
 		protected View viewB;
 
-		// Token: 0x04006564 RID: 25956
+		// Token: 0x04005820 RID: 22560
 		[Tooltip("Time to move the camera to a valid starting position between the two views")]
 		[SerializeField]
 		protected float duration = 0.5f;
 
-		// Token: 0x04006565 RID: 25957
+		// Token: 0x04005821 RID: 22561
 		[Tooltip("Multiplier factor for speed of swipe pan")]
 		[SerializeField]
 		protected float speedMultiplier = 1f;
 
-		// Token: 0x04006566 RID: 25958
+		// Token: 0x04005822 RID: 22562
 		[Tooltip("Camera to use for the pan. Will use main camera if set to none.")]
 		[SerializeField]
 		protected Camera targetCamera;

@@ -6,10 +6,10 @@ using UnityEngine;
 
 namespace YSGame.TuJian
 {
-	// Token: 0x02000DF1 RID: 3569
+	// Token: 0x02000AB4 RID: 2740
 	public class YaoShouCaiLiaoInfoPanel : InfoPanelBase1
 	{
-		// Token: 0x06005620 RID: 22048 RVA: 0x0023E12C File Offset: 0x0023C32C
+		// Token: 0x06004CD3 RID: 19667 RVA: 0x0020D540 File Offset: 0x0020B740
 		public override void RefreshDataList()
 		{
 			base.RefreshDataList();
@@ -83,7 +83,7 @@ namespace YSGame.TuJian
 			}
 		}
 
-		// Token: 0x06005621 RID: 22049 RVA: 0x0023E434 File Offset: 0x0023C634
+		// Token: 0x06004CD4 RID: 19668 RVA: 0x0020D848 File Offset: 0x0020BA48
 		public override void RefreshPanelData()
 		{
 			base.RefreshPanelData();
@@ -179,7 +179,7 @@ namespace YSGame.TuJian
 			base.SetItemIcon(nowSelectID);
 		}
 
-		// Token: 0x040055BF RID: 21951
+		// Token: 0x04004BE1 RID: 19425
 		private static Dictionary<int, int> ShuXingDropdownDict = new Dictionary<int, int>
 		{
 			{

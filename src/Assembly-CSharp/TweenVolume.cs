@@ -1,13 +1,13 @@
 ﻿using System;
 using UnityEngine;
 
-// Token: 0x020000F0 RID: 240
+// Token: 0x0200009F RID: 159
 [RequireComponent(typeof(AudioSource))]
 [AddComponentMenu("NGUI/Tween/Tween Volume")]
 public class TweenVolume : UITweener
 {
-	// Token: 0x17000141 RID: 321
-	// (get) Token: 0x06000949 RID: 2377 RVA: 0x00086C00 File Offset: 0x00084E00
+	// Token: 0x1700012D RID: 301
+	// (get) Token: 0x06000891 RID: 2193 RVA: 0x00032B30 File Offset: 0x00030D30
 	public AudioSource audioSource
 	{
 		get
@@ -29,9 +29,9 @@ public class TweenVolume : UITweener
 		}
 	}
 
-	// Token: 0x17000142 RID: 322
-	// (get) Token: 0x0600094A RID: 2378 RVA: 0x0000B942 File Offset: 0x00009B42
-	// (set) Token: 0x0600094B RID: 2379 RVA: 0x0000B94A File Offset: 0x00009B4A
+	// Token: 0x1700012E RID: 302
+	// (get) Token: 0x06000892 RID: 2194 RVA: 0x00032B97 File Offset: 0x00030D97
+	// (set) Token: 0x06000893 RID: 2195 RVA: 0x00032B9F File Offset: 0x00030D9F
 	[Obsolete("Use 'value' instead")]
 	public float volume
 	{
@@ -45,9 +45,9 @@ public class TweenVolume : UITweener
 		}
 	}
 
-	// Token: 0x17000143 RID: 323
-	// (get) Token: 0x0600094C RID: 2380 RVA: 0x0000B953 File Offset: 0x00009B53
-	// (set) Token: 0x0600094D RID: 2381 RVA: 0x0000B974 File Offset: 0x00009B74
+	// Token: 0x1700012F RID: 303
+	// (get) Token: 0x06000894 RID: 2196 RVA: 0x00032BA8 File Offset: 0x00030DA8
+	// (set) Token: 0x06000895 RID: 2197 RVA: 0x00032BC9 File Offset: 0x00030DC9
 	public float value
 	{
 		get
@@ -67,14 +67,14 @@ public class TweenVolume : UITweener
 		}
 	}
 
-	// Token: 0x0600094E RID: 2382 RVA: 0x0000B990 File Offset: 0x00009B90
+	// Token: 0x06000896 RID: 2198 RVA: 0x00032BE5 File Offset: 0x00030DE5
 	protected override void OnUpdate(float factor, bool isFinished)
 	{
 		this.value = this.from * (1f - factor) + this.to * factor;
 		this.mSource.enabled = (this.mSource.volume > 0.01f);
 	}
 
-	// Token: 0x0600094F RID: 2383 RVA: 0x0000B9CC File Offset: 0x00009BCC
+	// Token: 0x06000897 RID: 2199 RVA: 0x00032C21 File Offset: 0x00030E21
 	public static TweenVolume Begin(GameObject go, float duration, float targetVolume)
 	{
 		TweenVolume tweenVolume = UITweener.Begin<TweenVolume>(go, duration);
@@ -83,26 +83,26 @@ public class TweenVolume : UITweener
 		return tweenVolume;
 	}
 
-	// Token: 0x06000950 RID: 2384 RVA: 0x0000B9E8 File Offset: 0x00009BE8
+	// Token: 0x06000898 RID: 2200 RVA: 0x00032C3D File Offset: 0x00030E3D
 	public override void SetStartToCurrentValue()
 	{
 		this.from = this.value;
 	}
 
-	// Token: 0x06000951 RID: 2385 RVA: 0x0000B9F6 File Offset: 0x00009BF6
+	// Token: 0x06000899 RID: 2201 RVA: 0x00032C4B File Offset: 0x00030E4B
 	public override void SetEndToCurrentValue()
 	{
 		this.to = this.value;
 	}
 
-	// Token: 0x04000663 RID: 1635
+	// Token: 0x04000540 RID: 1344
 	[Range(0f, 1f)]
 	public float from = 1f;
 
-	// Token: 0x04000664 RID: 1636
+	// Token: 0x04000541 RID: 1345
 	[Range(0f, 1f)]
 	public float to = 1f;
 
-	// Token: 0x04000665 RID: 1637
+	// Token: 0x04000542 RID: 1346
 	private AudioSource mSource;
 }

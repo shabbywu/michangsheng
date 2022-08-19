@@ -1,11 +1,11 @@
 ﻿using System;
 using UnityEngine;
 
-// Token: 0x0200002C RID: 44
+// Token: 0x02000024 RID: 36
 [AddComponentMenu("")]
 public class SfxrAudioPlayer : MonoBehaviour
 {
-	// Token: 0x060002FE RID: 766 RVA: 0x00006CC2 File Offset: 0x00004EC2
+	// Token: 0x060002EC RID: 748 RVA: 0x0000F17A File Offset: 0x0000D37A
 	private void Start()
 	{
 		AudioSource audioSource = base.gameObject.AddComponent<AudioSource>();
@@ -16,7 +16,7 @@ public class SfxrAudioPlayer : MonoBehaviour
 		audioSource.Play();
 	}
 
-	// Token: 0x060002FF RID: 767 RVA: 0x00006CFC File Offset: 0x00004EFC
+	// Token: 0x060002ED RID: 749 RVA: 0x0000F1B4 File Offset: 0x0000D3B4
 	private void Update()
 	{
 		if (this.sfxrSynth == null)
@@ -30,7 +30,7 @@ public class SfxrAudioPlayer : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000300 RID: 768 RVA: 0x00006D22 File Offset: 0x00004F22
+	// Token: 0x060002EE RID: 750 RVA: 0x0000F1DA File Offset: 0x0000D3DA
 	private void OnAudioFilterRead(float[] __data, int __channels)
 	{
 		if (!this.isDestroyed && !this.needsToDestroy && this.sfxrSynth != null && !this.sfxrSynth.GenerateAudioFilterData(__data, __channels))
@@ -40,19 +40,19 @@ public class SfxrAudioPlayer : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000301 RID: 769 RVA: 0x00006D59 File Offset: 0x00004F59
+	// Token: 0x060002EF RID: 751 RVA: 0x0000F211 File Offset: 0x0000D411
 	public void SetSfxrSynth(SfxrSynth __sfxrSynth)
 	{
 		this.sfxrSynth = __sfxrSynth;
 	}
 
-	// Token: 0x06000302 RID: 770 RVA: 0x00006D62 File Offset: 0x00004F62
+	// Token: 0x060002F0 RID: 752 RVA: 0x0000F21A File Offset: 0x0000D41A
 	public void SetRunningInEditMode(bool __runningInEditMode)
 	{
 		this.runningInEditMode = __runningInEditMode;
 	}
 
-	// Token: 0x06000303 RID: 771 RVA: 0x00006D6B File Offset: 0x00004F6B
+	// Token: 0x060002F1 RID: 753 RVA: 0x0000F223 File Offset: 0x0000D423
 	public void Destroy()
 	{
 		if (!this.isDestroyed)
@@ -68,15 +68,15 @@ public class SfxrAudioPlayer : MonoBehaviour
 		}
 	}
 
-	// Token: 0x04000187 RID: 391
+	// Token: 0x04000172 RID: 370
 	private bool isDestroyed;
 
-	// Token: 0x04000188 RID: 392
+	// Token: 0x04000173 RID: 371
 	private bool needsToDestroy;
 
-	// Token: 0x04000189 RID: 393
+	// Token: 0x04000174 RID: 372
 	private bool runningInEditMode;
 
-	// Token: 0x0400018A RID: 394
+	// Token: 0x04000175 RID: 373
 	private SfxrSynth sfxrSynth;
 }

@@ -4,10 +4,10 @@ using UnityEngine;
 
 namespace WXB
 {
-	// Token: 0x020009B6 RID: 2486
+	// Token: 0x020006A1 RID: 1697
 	internal static class FontMaterial
 	{
-		// Token: 0x06003F43 RID: 16195 RVA: 0x001B8E18 File Offset: 0x001B7018
+		// Token: 0x06003582 RID: 13698 RVA: 0x00170E48 File Offset: 0x0016F048
 		public static Material Get(Font f)
 		{
 			Material material = null;
@@ -25,7 +25,7 @@ namespace WXB
 			return material;
 		}
 
-		// Token: 0x040038C6 RID: 14534
+		// Token: 0x04002F0B RID: 12043
 		private static Dictionary<Font, Material> FontToMaterials = new Dictionary<Font, Material>();
 	}
 }

@@ -3,15 +3,15 @@ using KBEngine;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-// Token: 0x02000213 RID: 531
+// Token: 0x0200013F RID: 319
 public class DragItem : MonoBehaviour, IDragHandler, IEventSystemHandler, IPointerDownHandler, IEndDragHandler
 {
 	// Token: 0x14000034 RID: 52
-	// (add) Token: 0x060010B8 RID: 4280 RVA: 0x000A8464 File Offset: 0x000A6664
-	// (remove) Token: 0x060010B9 RID: 4281 RVA: 0x000A8498 File Offset: 0x000A6698
+	// (add) Token: 0x06000E9C RID: 3740 RVA: 0x0005804C File Offset: 0x0005624C
+	// (remove) Token: 0x06000E9D RID: 3741 RVA: 0x00058080 File Offset: 0x00056280
 	public static event DragItem.ItemDelegate updateInventoryList;
 
-	// Token: 0x060010BA RID: 4282 RVA: 0x000A84CC File Offset: 0x000A66CC
+	// Token: 0x06000E9E RID: 3742 RVA: 0x000580B4 File Offset: 0x000562B4
 	private void Start()
 	{
 		this.rectTransform = base.GetComponent<RectTransform>();
@@ -21,7 +21,7 @@ public class DragItem : MonoBehaviour, IDragHandler, IEventSystemHandler, IPoint
 		this.draggedItemBox = GameObject.FindGameObjectWithTag("DraggingItem").transform;
 	}
 
-	// Token: 0x060010BB RID: 4283 RVA: 0x000A853C File Offset: 0x000A673C
+	// Token: 0x06000E9F RID: 3743 RVA: 0x00058124 File Offset: 0x00056324
 	public void OnDrag(PointerEventData data)
 	{
 		if (this.rectTransform == null)
@@ -46,7 +46,7 @@ public class DragItem : MonoBehaviour, IDragHandler, IEventSystemHandler, IPoint
 		this.inventory.OnUpdateItemList();
 	}
 
-	// Token: 0x060010BC RID: 4284 RVA: 0x000A861C File Offset: 0x000A681C
+	// Token: 0x06000EA0 RID: 3744 RVA: 0x00058204 File Offset: 0x00056404
 	public void OnPointerDown(PointerEventData data)
 	{
 		if (data.button == null)
@@ -60,7 +60,7 @@ public class DragItem : MonoBehaviour, IDragHandler, IEventSystemHandler, IPoint
 		}
 	}
 
-	// Token: 0x060010BD RID: 4285 RVA: 0x000A8678 File Offset: 0x000A6878
+	// Token: 0x06000EA1 RID: 3745 RVA: 0x00058260 File Offset: 0x00056460
 	public void createDuplication(GameObject Item)
 	{
 		Item item = Item.GetComponent<ItemOnObject>().item;
@@ -70,7 +70,7 @@ public class DragItem : MonoBehaviour, IDragHandler, IEventSystemHandler, IPoint
 		gameObject.GetComponent<ConsumeItem>().duplication = Item;
 	}
 
-	// Token: 0x060010BE RID: 4286 RVA: 0x000A86EC File Offset: 0x000A68EC
+	// Token: 0x06000EA2 RID: 3746 RVA: 0x000582D4 File Offset: 0x000564D4
 	public void OnEndDrag(PointerEventData data)
 	{
 		if (data.button == null)
@@ -556,28 +556,28 @@ public class DragItem : MonoBehaviour, IDragHandler, IEventSystemHandler, IPoint
 		this.inventory.OnUpdateItemList();
 	}
 
-	// Token: 0x04000D40 RID: 3392
+	// Token: 0x04000AA5 RID: 2725
 	private Vector2 pointerOffset;
 
-	// Token: 0x04000D41 RID: 3393
+	// Token: 0x04000AA6 RID: 2726
 	private RectTransform rectTransform;
 
-	// Token: 0x04000D42 RID: 3394
+	// Token: 0x04000AA7 RID: 2727
 	private RectTransform rectTransformSlot;
 
-	// Token: 0x04000D43 RID: 3395
+	// Token: 0x04000AA8 RID: 2728
 	private CanvasGroup canvasGroup;
 
-	// Token: 0x04000D44 RID: 3396
+	// Token: 0x04000AA9 RID: 2729
 	private GameObject oldSlot;
 
-	// Token: 0x04000D45 RID: 3397
+	// Token: 0x04000AAA RID: 2730
 	private Inventory inventory;
 
-	// Token: 0x04000D46 RID: 3398
+	// Token: 0x04000AAB RID: 2731
 	private Transform draggedItemBox;
 
-	// Token: 0x02000214 RID: 532
-	// (Invoke) Token: 0x060010C1 RID: 4289
+	// Token: 0x02001291 RID: 4753
+	// (Invoke) Token: 0x060079BF RID: 31167
 	public delegate void ItemDelegate();
 }

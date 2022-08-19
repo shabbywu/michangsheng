@@ -2,16 +2,16 @@
 
 namespace MoonSharp.Interpreter
 {
-	// Token: 0x02001086 RID: 4230
+	// Token: 0x02000CB7 RID: 3255
 	[AttributeUsage(AttributeTargets.Method, Inherited = true, AllowMultiple = true)]
 	public sealed class MoonSharpUserDataMetamethodAttribute : Attribute
 	{
-		// Token: 0x1700091E RID: 2334
-		// (get) Token: 0x06006646 RID: 26182 RVA: 0x00046936 File Offset: 0x00044B36
-		// (set) Token: 0x06006647 RID: 26183 RVA: 0x0004693E File Offset: 0x00044B3E
+		// Token: 0x170006C3 RID: 1731
+		// (get) Token: 0x06005B54 RID: 23380 RVA: 0x00259D65 File Offset: 0x00257F65
+		// (set) Token: 0x06005B55 RID: 23381 RVA: 0x00259D6D File Offset: 0x00257F6D
 		public string Name { get; private set; }
 
-		// Token: 0x06006648 RID: 26184 RVA: 0x00046947 File Offset: 0x00044B47
+		// Token: 0x06005B56 RID: 23382 RVA: 0x00259D76 File Offset: 0x00257F76
 		public MoonSharpUserDataMetamethodAttribute(string name)
 		{
 			this.Name = name;

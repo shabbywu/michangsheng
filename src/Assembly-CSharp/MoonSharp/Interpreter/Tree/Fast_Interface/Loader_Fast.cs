@@ -8,10 +8,10 @@ using MoonSharp.Interpreter.Tree.Statements;
 
 namespace MoonSharp.Interpreter.Tree.Fast_Interface
 {
-	// Token: 0x020010B9 RID: 4281
+	// Token: 0x02000CE0 RID: 3296
 	internal static class Loader_Fast
 	{
-		// Token: 0x06006764 RID: 26468 RVA: 0x00288604 File Offset: 0x00286804
+		// Token: 0x06005C53 RID: 23635 RVA: 0x0025EFD8 File Offset: 0x0025D1D8
 		internal static DynamicExprExpression LoadDynamicExpr(Script script, SourceCode source)
 		{
 			ScriptLoadingContext scriptLoadingContext = Loader_Fast.CreateLoadingContext(script, source);
@@ -36,7 +36,7 @@ namespace MoonSharp.Interpreter.Tree.Fast_Interface
 			return result;
 		}
 
-		// Token: 0x06006765 RID: 26469 RVA: 0x00047203 File Offset: 0x00045403
+		// Token: 0x06005C54 RID: 23636 RVA: 0x0025F050 File Offset: 0x0025D250
 		private static ScriptLoadingContext CreateLoadingContext(Script script, SourceCode source)
 		{
 			return new ScriptLoadingContext(script)
@@ -47,7 +47,7 @@ namespace MoonSharp.Interpreter.Tree.Fast_Interface
 			};
 		}
 
-		// Token: 0x06006766 RID: 26470 RVA: 0x0028867C File Offset: 0x0028687C
+		// Token: 0x06005C55 RID: 23637 RVA: 0x0025F084 File Offset: 0x0025D284
 		internal static int LoadChunk(Script script, SourceCode source, ByteCode bytecode)
 		{
 			ScriptLoadingContext lcontext = Loader_Fast.CreateLoadingContext(script, source);
@@ -81,7 +81,7 @@ namespace MoonSharp.Interpreter.Tree.Fast_Interface
 			return result;
 		}
 
-		// Token: 0x06006767 RID: 26471 RVA: 0x00288768 File Offset: 0x00286968
+		// Token: 0x06005C56 RID: 23638 RVA: 0x0025F170 File Offset: 0x0025D370
 		internal static int LoadFunction(Script script, SourceCode source, ByteCode bytecode, bool usesGlobalEnv)
 		{
 			ScriptLoadingContext lcontext = Loader_Fast.CreateLoadingContext(script, source);

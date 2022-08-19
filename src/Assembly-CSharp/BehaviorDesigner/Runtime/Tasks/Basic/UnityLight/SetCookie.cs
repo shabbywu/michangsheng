@@ -3,12 +3,12 @@ using UnityEngine;
 
 namespace BehaviorDesigner.Runtime.Tasks.Basic.UnityLight
 {
-	// Token: 0x020015D6 RID: 5590
+	// Token: 0x02001117 RID: 4375
 	[TaskCategory("Basic/Light")]
 	[TaskDescription("Sets the cookie of the light.")]
 	public class SetCookie : Action
 	{
-		// Token: 0x0600830C RID: 33548 RVA: 0x002CE62C File Offset: 0x002CC82C
+		// Token: 0x06007512 RID: 29970 RVA: 0x002B3CFC File Offset: 0x002B1EFC
 		public override void OnStart()
 		{
 			GameObject defaultGameObject = base.GetDefaultGameObject(this.targetGameObject.Value);
@@ -19,7 +19,7 @@ namespace BehaviorDesigner.Runtime.Tasks.Basic.UnityLight
 			}
 		}
 
-		// Token: 0x0600830D RID: 33549 RVA: 0x0005A00F File Offset: 0x0005820F
+		// Token: 0x06007513 RID: 29971 RVA: 0x002B3D3C File Offset: 0x002B1F3C
 		public override TaskStatus OnUpdate()
 		{
 			if (this.light == null)
@@ -31,25 +31,25 @@ namespace BehaviorDesigner.Runtime.Tasks.Basic.UnityLight
 			return 2;
 		}
 
-		// Token: 0x0600830E RID: 33550 RVA: 0x0005A03D File Offset: 0x0005823D
+		// Token: 0x06007514 RID: 29972 RVA: 0x002B3D6A File Offset: 0x002B1F6A
 		public override void OnReset()
 		{
 			this.targetGameObject = null;
 			this.cookie = null;
 		}
 
-		// Token: 0x04006FDF RID: 28639
+		// Token: 0x040060BC RID: 24764
 		[Tooltip("The GameObject that the task operates on. If null the task GameObject is used.")]
 		public SharedGameObject targetGameObject;
 
-		// Token: 0x04006FE0 RID: 28640
+		// Token: 0x040060BD RID: 24765
 		[Tooltip("The cookie to set")]
 		public Texture2D cookie;
 
-		// Token: 0x04006FE1 RID: 28641
+		// Token: 0x040060BE RID: 24766
 		private Light light;
 
-		// Token: 0x04006FE2 RID: 28642
+		// Token: 0x040060BF RID: 24767
 		private GameObject prevGameObject;
 	}
 }

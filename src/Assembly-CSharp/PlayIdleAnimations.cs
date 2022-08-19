@@ -2,11 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-// Token: 0x02000061 RID: 97
+// Token: 0x02000049 RID: 73
 [AddComponentMenu("NGUI/Examples/Play Idle Animations")]
 public class PlayIdleAnimations : MonoBehaviour
 {
-	// Token: 0x060004AF RID: 1199 RVA: 0x0006F53C File Offset: 0x0006D73C
+	// Token: 0x06000461 RID: 1121 RVA: 0x0001817C File Offset: 0x0001637C
 	private void Start()
 	{
 		this.mAnim = base.GetComponentInChildren<Animation>();
@@ -37,7 +37,7 @@ public class PlayIdleAnimations : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060004B0 RID: 1200 RVA: 0x0006F654 File Offset: 0x0006D854
+	// Token: 0x06000462 RID: 1122 RVA: 0x00018294 File Offset: 0x00016494
 	private void Update()
 	{
 		if (this.mNextBreak < Time.time)
@@ -65,18 +65,18 @@ public class PlayIdleAnimations : MonoBehaviour
 		}
 	}
 
-	// Token: 0x040002FC RID: 764
+	// Token: 0x0400028C RID: 652
 	private Animation mAnim;
 
-	// Token: 0x040002FD RID: 765
+	// Token: 0x0400028D RID: 653
 	private AnimationClip mIdle;
 
-	// Token: 0x040002FE RID: 766
+	// Token: 0x0400028E RID: 654
 	private List<AnimationClip> mBreaks = new List<AnimationClip>();
 
-	// Token: 0x040002FF RID: 767
+	// Token: 0x0400028F RID: 655
 	private float mNextBreak;
 
-	// Token: 0x04000300 RID: 768
+	// Token: 0x04000290 RID: 656
 	private int mLastIndex;
 }

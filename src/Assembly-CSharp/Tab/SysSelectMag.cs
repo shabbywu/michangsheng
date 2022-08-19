@@ -4,10 +4,10 @@ using UnityEngine;
 
 namespace Tab
 {
-	// Token: 0x02000A48 RID: 2632
+	// Token: 0x020006FD RID: 1789
 	public class SysSelectMag : UIBase
 	{
-		// Token: 0x060043EF RID: 17391 RVA: 0x00030970 File Offset: 0x0002EB70
+		// Token: 0x06003972 RID: 14706 RVA: 0x00189561 File Offset: 0x00187761
 		public SysSelectMag(GameObject go)
 		{
 			this._list = new List<SysSelectCell>();
@@ -15,13 +15,13 @@ namespace Tab
 			this.Init();
 		}
 
-		// Token: 0x060043F0 RID: 17392 RVA: 0x00030990 File Offset: 0x0002EB90
+		// Token: 0x06003973 RID: 14707 RVA: 0x00189581 File Offset: 0x00187781
 		public void SetDeafultSelect(int index = 0)
 		{
 			this._list[index].Click();
 		}
 
-		// Token: 0x060043F1 RID: 17393 RVA: 0x001D0D04 File Offset: 0x001CEF04
+		// Token: 0x06003974 RID: 14708 RVA: 0x00189594 File Offset: 0x00187794
 		private void Init()
 		{
 			for (int i = 0; i < this._go.transform.childCount; i++)
@@ -42,7 +42,7 @@ namespace Tab
 			}
 		}
 
-		// Token: 0x060043F2 RID: 17394 RVA: 0x001D0DC4 File Offset: 0x001CEFC4
+		// Token: 0x06003975 RID: 14709 RVA: 0x00189654 File Offset: 0x00187854
 		public void UpdateAll(SysSelectCell curSelectCell)
 		{
 			foreach (SysSelectCell sysSelectCell in this._list)
@@ -58,7 +58,7 @@ namespace Tab
 			}
 		}
 
-		// Token: 0x04003C08 RID: 15368
+		// Token: 0x04003190 RID: 12688
 		private List<SysSelectCell> _list;
 	}
 }

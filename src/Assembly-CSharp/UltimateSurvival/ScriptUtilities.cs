@@ -4,10 +4,10 @@ using UnityEngine;
 
 namespace UltimateSurvival
 {
-	// Token: 0x0200090F RID: 2319
+	// Token: 0x02000627 RID: 1575
 	public static class ScriptUtilities
 	{
-		// Token: 0x06003B3D RID: 15165 RVA: 0x001ABAB8 File Offset: 0x001A9CB8
+		// Token: 0x06003203 RID: 12803 RVA: 0x0016214C File Offset: 0x0016034C
 		public static List<Transform> GetTransformsByTag(string tag)
 		{
 			GameObject[] array = GameObject.FindGameObjectsWithTag(tag);
@@ -19,7 +19,7 @@ namespace UltimateSurvival
 			return list;
 		}
 
-		// Token: 0x06003B3E RID: 15166 RVA: 0x001ABAF0 File Offset: 0x001A9CF0
+		// Token: 0x06003204 RID: 12804 RVA: 0x00162184 File Offset: 0x00160384
 		public static bool GetTransformsPositionsByTag(string tag, out List<Vector3> posS)
 		{
 			bool result = false;
@@ -36,7 +36,7 @@ namespace UltimateSurvival
 			return result;
 		}
 
-		// Token: 0x06003B3F RID: 15167 RVA: 0x001ABB3C File Offset: 0x001A9D3C
+		// Token: 0x06003205 RID: 12805 RVA: 0x001621D0 File Offset: 0x001603D0
 		public static List<Vector3> GetRandomPositionsAroundTransform(Transform transform, int amount = 5, int radius = 5, float distanceBtwPoints = 5f)
 		{
 			List<Vector3> list = new List<Vector3>();

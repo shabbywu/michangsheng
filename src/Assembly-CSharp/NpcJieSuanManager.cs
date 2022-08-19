@@ -8,10 +8,10 @@ using script.MenPaiTask;
 using UnityEngine;
 using YSGame.TianJiDaBi;
 
-// Token: 0x0200032D RID: 813
+// Token: 0x02000215 RID: 533
 public class NpcJieSuanManager : MonoBehaviour
 {
-	// Token: 0x060017FE RID: 6142 RVA: 0x000D1A58 File Offset: 0x000CFC58
+	// Token: 0x0600154D RID: 5453 RVA: 0x00089544 File Offset: 0x00087744
 	private void Awake()
 	{
 		if (NpcJieSuanManager.inst != null)
@@ -25,7 +25,7 @@ public class NpcJieSuanManager : MonoBehaviour
 		this.InitCyData();
 	}
 
-	// Token: 0x060017FF RID: 6143 RVA: 0x000D1AC0 File Offset: 0x000CFCC0
+	// Token: 0x0600154E RID: 5454 RVA: 0x000895AC File Offset: 0x000877AC
 	public void InitCyData()
 	{
 		this.cyPdAuToList = new List<CyPdData>();
@@ -107,7 +107,7 @@ public class NpcJieSuanManager : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001800 RID: 6144 RVA: 0x000D1ECC File Offset: 0x000D00CC
+	// Token: 0x0600154F RID: 5455 RVA: 0x000899B8 File Offset: 0x00087BB8
 	private void Start()
 	{
 		this.npcFight = new NpCFight();
@@ -133,13 +133,13 @@ public class NpcJieSuanManager : MonoBehaviour
 		this.EquipNameList.Add("equipWeapon2PianHao");
 	}
 
-	// Token: 0x06001801 RID: 6145 RVA: 0x00015128 File Offset: 0x00013328
+	// Token: 0x06001550 RID: 5456 RVA: 0x00089ABB File Offset: 0x00087CBB
 	public DateTime GetNowTime()
 	{
 		return DateTime.Parse(this.JieSuanTime);
 	}
 
-	// Token: 0x06001802 RID: 6146 RVA: 0x000D1FD0 File Offset: 0x000D01D0
+	// Token: 0x06001551 RID: 5457 RVA: 0x00089AC8 File Offset: 0x00087CC8
 	public void initNpcAction()
 	{
 		this.ActionDictionary.Add(1, new Action<int>(this.DoNothing));
@@ -195,9 +195,17 @@ public class NpcJieSuanManager : MonoBehaviour
 		this.ActionDictionary.Add(126, new Action<int>(this.npcShouJi.NpcToLingHe6));
 	}
 
-	// Token: 0x06001803 RID: 6147 RVA: 0x000D25CC File Offset: 0x000D07CC
+	// Token: 0x06001552 RID: 5458 RVA: 0x0008A0C4 File Offset: 0x000882C4
 	public void NpcJieSuan(int times, bool isCanChanger = true)
 	{
+		int num = 0;
+		foreach (int num2 in PlayerEx.Player.emailDateMag.cyNpcList)
+		{
+			if (!NPCEx.IsDeath(num))
+			{
+				num++;
+			}
+		}
 		if (this.IsNoJieSuan)
 		{
 			this.IsNoJieSuan = false;
@@ -220,26 +228,26 @@ public class NpcJieSuanManager : MonoBehaviour
 					{
 						if (times > 120)
 						{
-							int num = 12;
+							int num3 = 12;
 							if (actionTimes == 1)
 							{
-								num *= 2;
+								num3 *= 2;
 							}
-							int i = times - num;
-							int num2 = i / num;
-							num--;
-							while (i >= num2)
+							int i = times - num3;
+							int num4 = i / num3;
+							num3--;
+							while (i >= num4)
 							{
-								this.npcSpeedJieSuan.DoSpeedJieSuan(num2);
-								this.JieSuanTimes += num2;
-								this.JieSuanTime = DateTime.Parse(this.JieSuanTime).AddMonths(num2).ToString();
-								i -= num2;
-								if (num > 0)
+								this.npcSpeedJieSuan.DoSpeedJieSuan(num4);
+								this.JieSuanTimes += num4;
+								this.JieSuanTime = DateTime.Parse(this.JieSuanTime).AddMonths(num4).ToString();
+								i -= num4;
+								if (num3 > 0)
 								{
 									this.RandomNpcAction();
 									this.JieSuanTimes++;
 									this.JieSuanTime = DateTime.Parse(this.JieSuanTime).AddMonths(1).ToString();
-									num--;
+									num3--;
 								}
 							}
 							if (i > 0)
@@ -248,7 +256,7 @@ public class NpcJieSuanManager : MonoBehaviour
 								this.JieSuanTimes += i;
 								this.JieSuanTime = DateTime.Parse(this.JieSuanTime).AddMonths(i).ToString();
 							}
-							for (int j = 0; j < num; j++)
+							for (int j = 0; j < num3; j++)
 							{
 								this.RandomNpcAction();
 								this.JieSuanTimes++;
@@ -261,35 +269,35 @@ public class NpcJieSuanManager : MonoBehaviour
 						}
 						if (times > 12 && times <= 120)
 						{
-							int num3 = 6;
+							int num5 = 6;
 							if (actionTimes == 1)
 							{
-								num3 *= 2;
+								num5 *= 2;
 							}
-							int num4 = times - num3;
-							int num5 = num4 / num3;
-							num3--;
-							while (num5 > 0 && num4 >= num5)
+							int num6 = times - num5;
+							int num7 = num6 / num5;
+							num5--;
+							while (num7 > 0 && num6 >= num7)
 							{
-								this.npcSpeedJieSuan.DoSpeedJieSuan(num5);
-								this.JieSuanTimes += num5;
-								this.JieSuanTime = DateTime.Parse(this.JieSuanTime).AddMonths(num5).ToString();
-								num4 -= num5;
-								if (num3 > 0)
+								this.npcSpeedJieSuan.DoSpeedJieSuan(num7);
+								this.JieSuanTimes += num7;
+								this.JieSuanTime = DateTime.Parse(this.JieSuanTime).AddMonths(num7).ToString();
+								num6 -= num7;
+								if (num5 > 0)
 								{
 									this.RandomNpcAction();
 									this.JieSuanTimes++;
 									this.JieSuanTime = DateTime.Parse(this.JieSuanTime).AddMonths(1).ToString();
-									num3--;
+									num5--;
 								}
 							}
-							if (num4 > 0)
+							if (num6 > 0)
 							{
-								this.npcSpeedJieSuan.DoSpeedJieSuan(num4);
-								this.JieSuanTimes += num4;
-								this.JieSuanTime = DateTime.Parse(this.JieSuanTime).AddMonths(num4).ToString();
+								this.npcSpeedJieSuan.DoSpeedJieSuan(num6);
+								this.JieSuanTimes += num6;
+								this.JieSuanTime = DateTime.Parse(this.JieSuanTime).AddMonths(num6).ToString();
 							}
-							for (int k = 0; k < num3; k++)
+							for (int k = 0; k < num5; k++)
 							{
 								this.RandomNpcAction();
 								this.JieSuanTimes++;
@@ -302,36 +310,36 @@ public class NpcJieSuanManager : MonoBehaviour
 						}
 						if (times > 6 && times <= 12)
 						{
-							int num6 = times / 2;
+							int num8 = times / 2;
 							if (actionTimes == 1)
 							{
-								num6 *= 2;
-								num6--;
+								num8 *= 2;
+								num8--;
 							}
-							int num7 = times - num6;
-							int num8 = num7 / num6;
-							num6--;
-							while (num8 > 0 && num7 >= num8)
+							int num9 = times - num8;
+							int num10 = num9 / num8;
+							num8--;
+							while (num10 > 0 && num9 >= num10)
 							{
-								this.npcSpeedJieSuan.DoSpeedJieSuan(num8);
-								this.JieSuanTimes += num8;
-								this.JieSuanTime = DateTime.Parse(this.JieSuanTime).AddMonths(num8).ToString();
-								num7 -= num8;
-								if (num6 > 0)
+								this.npcSpeedJieSuan.DoSpeedJieSuan(num10);
+								this.JieSuanTimes += num10;
+								this.JieSuanTime = DateTime.Parse(this.JieSuanTime).AddMonths(num10).ToString();
+								num9 -= num10;
+								if (num8 > 0)
 								{
 									this.RandomNpcAction();
 									this.JieSuanTimes++;
 									this.JieSuanTime = DateTime.Parse(this.JieSuanTime).AddMonths(1).ToString();
-									num6--;
+									num8--;
 								}
 							}
-							if (num7 > 0)
+							if (num9 > 0)
 							{
-								this.npcSpeedJieSuan.DoSpeedJieSuan(num7);
-								this.JieSuanTimes += num7;
-								this.JieSuanTime = DateTime.Parse(this.JieSuanTime).AddMonths(num7).ToString();
+								this.npcSpeedJieSuan.DoSpeedJieSuan(num9);
+								this.JieSuanTimes += num9;
+								this.JieSuanTime = DateTime.Parse(this.JieSuanTime).AddMonths(num9).ToString();
 							}
-							for (int l = 0; l < num6; l++)
+							for (int l = 0; l < num8; l++)
 							{
 								this.RandomNpcAction();
 								this.JieSuanTimes++;
@@ -411,7 +419,7 @@ public class NpcJieSuanManager : MonoBehaviour
 		});
 	}
 
-	// Token: 0x06001804 RID: 6148 RVA: 0x000D2650 File Offset: 0x000D0850
+	// Token: 0x06001553 RID: 5459 RVA: 0x0008A1A0 File Offset: 0x000883A0
 	public void FixNpcData()
 	{
 		JSONObject avatarJsonData = jsonData.instance.AvatarJsonData;
@@ -427,8 +435,8 @@ public class NpcJieSuanManager : MonoBehaviour
 					}
 					else
 					{
-						JSONObject jsonobject = jsonData.instance.randomAvatarFace(avatarJsonData[text], jsonData.instance.AvatarRandomJsonData.HasField(string.Concat((int)avatarJsonData[text]["id"].n)) ? jsonData.instance.AvatarRandomJsonData[((int)avatarJsonData[text]["id"].n).ToString()] : null);
-						jsonData.instance.AvatarRandomJsonData.SetField(string.Concat((int)avatarJsonData[text]["id"].n), jsonobject.Clone());
+						JSONObject jsonobject = jsonData.instance.randomAvatarFace(avatarJsonData[text], null);
+						jsonData.instance.AvatarRandomJsonData.SetField(string.Concat(avatarJsonData[text]["id"].I), jsonobject.Copy());
 					}
 				}
 				if (!jsonData.instance.AvatarBackpackJsonData.HasField(text))
@@ -439,22 +447,32 @@ public class NpcJieSuanManager : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001805 RID: 6149 RVA: 0x000D284C File Offset: 0x000D0A4C
-	public void RandomNpcAction()
+	// Token: 0x06001554 RID: 5460 RVA: 0x0008A334 File Offset: 0x00088534
+	public void PaiMaiAction()
 	{
 		if (this.PaiMaiNpcDictionary.Count > 0)
 		{
 			this.npcTeShu.NextNpcPaiMai();
 			this.PaiMaiNpcDictionary = new Dictionary<int, List<int>>();
 		}
+	}
+
+	// Token: 0x06001555 RID: 5461 RVA: 0x0008A35A File Offset: 0x0008855A
+	public void LunDaoAction()
+	{
 		if (this.lunDaoNpcList.Count >= 2)
 		{
 			this.npcXiuLian.NextNpcLunDao();
+			return;
 		}
-		else
-		{
-			this.lunDaoNpcList = new List<int>();
-		}
+		this.lunDaoNpcList = new List<int>();
+	}
+
+	// Token: 0x06001556 RID: 5462 RVA: 0x0008A384 File Offset: 0x00088584
+	public void RandomNpcAction()
+	{
+		this.PaiMaiAction();
+		this.LunDaoAction();
 		this.npcTeShu.NextJieSha();
 		Avatar player = Tools.instance.getPlayer();
 		this.npcMap.RestartMap();
@@ -465,6 +483,7 @@ public class NpcJieSuanManager : MonoBehaviour
 				this.NpcActionQuanZhongDictionary.Add(int.Parse(text), jsonData.instance.NPCActionDate[text]["QuanZhong"].I);
 			}
 		}
+		List<int> list = new List<int>();
 		new Dictionary<int, int>();
 		JSONObject avatarJsonData = jsonData.instance.AvatarJsonData;
 		List<string> keys = jsonData.instance.AvatarJsonData.keys;
@@ -496,7 +515,7 @@ public class NpcJieSuanManager : MonoBehaviour
 						this.npcTeShu.NpcDaoLuToDongFu(num);
 						avatarJsonData[num.ToString()].SetField("ActionId", 114);
 					}
-					else
+					else if (!Tools.instance.getPlayer().ElderTaskMag.GetExecutingTaskNpcIdList().Contains(num))
 					{
 						if (avatarJsonData[num.ToString()]["isImportant"].b && avatarJsonData[num.ToString()].HasField("BindingNpcID"))
 						{
@@ -512,6 +531,10 @@ public class NpcJieSuanManager : MonoBehaviour
 							avatarJsonData[num.ToString()].SetField("ActionId", randomActionID);
 							this.ActionDictionary[randomActionID](num);
 							avatarJsonData[num.ToString()].SetField("IsNeedHelp", this.IsNeedHelp());
+						}
+						if (randomActionID == 35 && !list.Contains(num))
+						{
+							list.Add(num);
 						}
 						this.SendMessage(num);
 						this.SendCy(num);
@@ -532,7 +555,7 @@ public class NpcJieSuanManager : MonoBehaviour
 			}
 			if (this.lateEmailDict.Keys.Count > 0)
 			{
-				List<int> list = new List<int>();
+				List<int> list2 = new List<int>();
 				foreach (int num2 in this.lateEmailDict.Keys)
 				{
 					EmailData emailData2 = this.lateEmailDict[num2];
@@ -549,8 +572,8 @@ public class NpcJieSuanManager : MonoBehaviour
 							player.StreamData.TaskMag.AddTask(randomTask.TaskId, randomTask.TaskType, randomTask.CyId, emailData2.npcId, randomTask.TaskValue, dateTime);
 							if (randomTask.TaskType == 1 && randomTask.LockActionId > 0)
 							{
-								this.getNpcData(emailData2.npcId).SetField("ActionId", randomTask.LockActionId);
-								this.getNpcData(emailData2.npcId).SetField("LockAction", randomTask.LockActionId);
+								this.GetNpcData(emailData2.npcId).SetField("ActionId", randomTask.LockActionId);
+								this.GetNpcData(emailData2.npcId).SetField("LockAction", randomTask.LockActionId);
 							}
 						}
 						if (randomTask.TaskValue != 0)
@@ -565,10 +588,10 @@ public class NpcJieSuanManager : MonoBehaviour
 							}
 						}
 					}
-					list.Add(num2);
+					list2.Add(num2);
 					player.emailDateMag.AddNewEmail(emailData2.npcId.ToString(), emailData2);
 				}
-				foreach (int key in list)
+				foreach (int key in list2)
 				{
 					this.lateEmailDict.Remove(key);
 				}
@@ -576,9 +599,15 @@ public class NpcJieSuanManager : MonoBehaviour
 		}
 		Tools.instance.getPlayer().StreamData.TaskMag.CheckHasOut();
 		this.CheckMenPaiTask();
+		Tools.instance.getPlayer().ElderTaskMag.UpdateTaskProcess.CheckHasExecutingTask();
+		foreach (int npcId in list)
+		{
+			Tools.instance.getPlayer().ElderTaskMag.AddCanAccpetNpcIdList(npcId);
+		}
+		Tools.instance.getPlayer().ElderTaskMag.AllotTask.GetCanAccpetNpcList();
 	}
 
-	// Token: 0x06001806 RID: 6150 RVA: 0x000D2F18 File Offset: 0x000D1118
+	// Token: 0x06001557 RID: 5463 RVA: 0x0008AAF0 File Offset: 0x00088CF0
 	public void CheckMenPaiTask()
 	{
 		Avatar player = Tools.instance.getPlayer();
@@ -588,9 +617,9 @@ public class NpcJieSuanManager : MonoBehaviour
 		}
 		int zhangMenId = this.GetZhangMenId((int)player.menPai);
 		Dictionary<int, MenPaiFengLuBiao> dataDict = MenPaiFengLuBiao.DataDict;
-		if (player.chengHao >= 7 && player.chengHao <= 10 && PlayerEx.GetMenPaiShengWang() < dataDict[player.chengHao].MenKan)
+		if (player.chengHao >= 6 && player.chengHao <= 9 && PlayerEx.GetMenPaiShengWang() < dataDict[player.chengHao].MenKan)
 		{
-			player.chengHao = 6;
+			player.chengHao = 5;
 			PlayerEx.SetShiLiChengHaoLevel((int)player.menPai, 6);
 			player.AddFriend(zhangMenId);
 			player.emailDateMag.AuToSendToPlayer(zhangMenId, 996, 996, NpcJieSuanManager.inst.JieSuanTime, null);
@@ -604,7 +633,7 @@ public class NpcJieSuanManager : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001807 RID: 6151 RVA: 0x000D2FD8 File Offset: 0x000D11D8
+	// Token: 0x06001558 RID: 5464 RVA: 0x0008ABB0 File Offset: 0x00088DB0
 	private int GetZhangMenId(int shili)
 	{
 		int num = Tools.instance.getPlayer().GetZhangMenChengHaoId(shili);
@@ -624,7 +653,7 @@ public class NpcJieSuanManager : MonoBehaviour
 		return -1;
 	}
 
-	// Token: 0x06001808 RID: 6152 RVA: 0x000D30A0 File Offset: 0x000D12A0
+	// Token: 0x06001559 RID: 5465 RVA: 0x0008AC78 File Offset: 0x00088E78
 	public Dictionary<int, int> getFinallyNpcActionQuanZhongDictionary(JSONObject npcDate, Dictionary<int, int> dictionary)
 	{
 		int i = npcDate["NPCTag"].I;
@@ -633,7 +662,13 @@ public class NpcJieSuanManager : MonoBehaviour
 		{
 			if (dictionary.ContainsKey(npctagDate.Change[j]))
 			{
-				int key = npctagDate.Change[j];
+				int key;
+				if (npctagDate.Change[j] == 35 && Tools.instance.getPlayer().ElderTaskMag.GetWaitAcceptTaskList().Count > 0)
+				{
+					key = npctagDate.Change[j];
+					dictionary[key] += npctagDate.ChangeTo[j];
+				}
+				key = npctagDate.Change[j];
 				dictionary[key] += npctagDate.ChangeTo[j];
 				if (dictionary[npctagDate.Change[j]] < 0)
 				{
@@ -680,9 +715,9 @@ public class NpcJieSuanManager : MonoBehaviour
 					{
 						int key = num;
 						dictionary[key] += jsonData.instance.NPCActionPanDingDate[i2.ToString()]["ChangeTo"].I;
-						goto IL_C78;
+						goto IL_CDD;
 					}
-					goto IL_C78;
+					goto IL_CDD;
 				case 2:
 				{
 					int month = this.GetNowTime().Month;
@@ -690,9 +725,9 @@ public class NpcJieSuanManager : MonoBehaviour
 					{
 						int key = num;
 						dictionary[key] += jsonData.instance.NPCActionPanDingDate[i2.ToString()]["ChangeTo"].I;
-						goto IL_C78;
+						goto IL_CDD;
 					}
-					goto IL_C78;
+					goto IL_CDD;
 				}
 				case 3:
 				case 4:
@@ -700,9 +735,9 @@ public class NpcJieSuanManager : MonoBehaviour
 					{
 						int key = num;
 						dictionary[key] += jsonData.instance.NPCActionPanDingDate[i2.ToString()]["ChangeTo"].I;
-						goto IL_C78;
+						goto IL_CDD;
 					}
-					goto IL_C78;
+					goto IL_CDD;
 				case 5:
 				case 6:
 				case 7:
@@ -711,63 +746,63 @@ public class NpcJieSuanManager : MonoBehaviour
 					{
 						int key = num;
 						dictionary[key] += jsonData.instance.NPCActionPanDingDate[i2.ToString()]["ChangeTo"].I;
-						goto IL_C78;
+						goto IL_CDD;
 					}
-					goto IL_C78;
+					goto IL_CDD;
 				case 9:
 					if (this.IsCanChangeEquip(npcDate) != 0)
 					{
 						int key = num;
 						dictionary[key] += jsonData.instance.NPCActionPanDingDate[i2.ToString()]["ChangeTo"].I;
-						goto IL_C78;
+						goto IL_CDD;
 					}
-					goto IL_C78;
+					goto IL_CDD;
 				case 10:
 					if (!this.IsCanLianDan(npcDate["id"].I))
 					{
 						dictionary[num] = 0;
-						goto IL_C78;
+						goto IL_CDD;
 					}
-					goto IL_C78;
+					goto IL_CDD;
 				case 11:
 					if (!this.IsCanLianQi(npcDate["id"].I))
 					{
 						dictionary[num] = 0;
-						goto IL_C78;
+						goto IL_CDD;
 					}
-					goto IL_C78;
+					goto IL_CDD;
 				case 12:
 					if (this.npcStatus.IsInTargetStatus(npcDate["id"].I, 2) && jsonData.instance.AvatarBackpackJsonData[npcDate["id"].I.ToString()]["money"].I >= jsonData.instance.NPCTuPuoDate[npcDate["Level"].I.ToString()]["LingShiPanDuan"].I && !npcDate["isImportant"].b)
 					{
 						int key = num;
 						dictionary[key] += jsonData.instance.NPCActionPanDingDate[i2.ToString()]["ChangeTo"].I;
-						goto IL_C78;
+						goto IL_CDD;
 					}
-					goto IL_C78;
+					goto IL_CDD;
 				case 13:
 					if (this.npcStatus.IsInTargetStatus(npcDate["id"].I, 2))
 					{
 						dictionary[1] = 0;
-						goto IL_C78;
+						goto IL_CDD;
 					}
-					goto IL_C78;
+					goto IL_CDD;
 				case 14:
 					if (this.GetNpcShengYuTime(npcDate["id"].I) < 10)
 					{
 						int key = num;
 						dictionary[key] += jsonData.instance.NPCActionPanDingDate[i2.ToString()]["ChangeTo"].I;
-						goto IL_C78;
+						goto IL_CDD;
 					}
-					goto IL_C78;
+					goto IL_CDD;
 				case 15:
 					if (npcDate["Level"].I == 1)
 					{
 						dictionary[num] = 0;
-						goto IL_C78;
+						goto IL_CDD;
 					}
-					goto IL_C78;
+					goto IL_CDD;
 				case 16:
-					goto IL_C78;
+					goto IL_CDD;
 				case 17:
 				case 18:
 				case 19:
@@ -776,13 +811,13 @@ public class NpcJieSuanManager : MonoBehaviour
 				case 22:
 					if (NPCActionPanDingDate.DataDict[i2].JingJie[0] > npcDate["Level"].I || NPCActionPanDingDate.DataDict[i2].JingJie[1] < npcDate["Level"].I || npcDate["paimaifenzu"][this.getRandomInt(0, npcDate["paimaifenzu"].Count - 1)].I != NPCActionPanDingDate.DataDict[i2].PaiMaiType)
 					{
-						goto IL_C78;
+						goto IL_CDD;
 					}
 					if (!this.npcMap.fuBenNPCDictionary.ContainsKey("F" + 26))
 					{
 						int key = num;
 						dictionary[key] += NPCActionPanDingDate.DataDict[i2].ChangeTo;
-						goto IL_C78;
+						goto IL_CDD;
 					}
 					using (List<int>.Enumerator enumerator3 = NPCActionPanDingDate.DataDict[i2].LingHeDianWei.GetEnumerator())
 					{
@@ -796,13 +831,13 @@ public class NpcJieSuanManager : MonoBehaviour
 								break;
 							}
 						}
-						goto IL_C78;
+						goto IL_CDD;
 					}
 					break;
 				case 23:
 					break;
 				default:
-					goto IL_C78;
+					goto IL_CDD;
 				}
 				if (npcDate["Level"].I >= jsonData.instance.NPCActionPanDingDate[i2.ToString()]["JingJie"][0].I && npcDate["Level"].I <= jsonData.instance.NPCActionPanDingDate[i2.ToString()]["JingJie"][1].I)
 				{
@@ -810,12 +845,12 @@ public class NpcJieSuanManager : MonoBehaviour
 					dictionary[key] += NPCActionPanDingDate.DataDict[i2].ChangeTo;
 				}
 			}
-			IL_C78:;
+			IL_CDD:;
 		}
 		return dictionary;
 	}
 
-	// Token: 0x06001809 RID: 6153 RVA: 0x000D3D64 File Offset: 0x000D1F64
+	// Token: 0x0600155A RID: 5466 RVA: 0x0008B9A0 File Offset: 0x00089BA0
 	public bool PaiMaiIsOpen(int paimaiHangID)
 	{
 		string str = jsonData.instance.PaiMaiBiao[paimaiHangID.ToString()]["StarTime"].str;
@@ -824,7 +859,7 @@ public class NpcJieSuanManager : MonoBehaviour
 		return Tools.instance.IsInTime(DateTime.Parse(this.JieSuanTime), DateTime.Parse(str), DateTime.Parse(str2), i);
 	}
 
-	// Token: 0x0600180A RID: 6154 RVA: 0x000D3E08 File Offset: 0x000D2008
+	// Token: 0x0600155B RID: 5467 RVA: 0x0008BA44 File Offset: 0x00089C44
 	public int IsCanChangeEquip(JSONObject npcDate)
 	{
 		int i = jsonData.instance.AvatarBackpackJsonData[npcDate["id"].I.ToString()]["money"].I;
@@ -888,7 +923,7 @@ public class NpcJieSuanManager : MonoBehaviour
 		return 0;
 	}
 
-	// Token: 0x0600180B RID: 6155 RVA: 0x000D4024 File Offset: 0x000D2224
+	// Token: 0x0600155C RID: 5468 RVA: 0x0008BC60 File Offset: 0x00089E60
 	public int GetChangeEquipWeapon(JSONObject npcDate)
 	{
 		int i = npcDate["Level"].I;
@@ -925,11 +960,11 @@ public class NpcJieSuanManager : MonoBehaviour
 		return 0;
 	}
 
-	// Token: 0x0600180C RID: 6156 RVA: 0x000D413C File Offset: 0x000D233C
+	// Token: 0x0600155D RID: 5469 RVA: 0x0008BD78 File Offset: 0x00089F78
 	public int GetNpcBeiBaoAllItemSum(int npcID)
 	{
 		int num = 0;
-		int index = NpcJieSuanManager.inst.getNpcBigLevel(npcID) - 1;
+		int index = NpcJieSuanManager.inst.GetNpcBigLevel(npcID) - 1;
 		NPCTuPuoDate npctuPuoDate = NPCTuPuoDate.DataList[index];
 		List<int> list = new List<int>();
 		foreach (int item in npctuPuoDate.ShouJiItem)
@@ -950,7 +985,7 @@ public class NpcJieSuanManager : MonoBehaviour
 		return num;
 	}
 
-	// Token: 0x0600180D RID: 6157 RVA: 0x000D429C File Offset: 0x000D249C
+	// Token: 0x0600155E RID: 5470 RVA: 0x0008BED8 File Offset: 0x0008A0D8
 	public Dictionary<int, int> GetNpcBaiBaoItemSum(int npcId, List<int> itemList)
 	{
 		List<JSONObject> list = jsonData.instance.AvatarBackpackJsonData[string.Concat(npcId)]["Backpack"].list;
@@ -975,19 +1010,19 @@ public class NpcJieSuanManager : MonoBehaviour
 		return dictionary;
 	}
 
-	// Token: 0x0600180E RID: 6158 RVA: 0x00015135 File Offset: 0x00013335
+	// Token: 0x0600155F RID: 5471 RVA: 0x0008BFE8 File Offset: 0x0008A1E8
 	public int GetEquipLevel(int quality, int shangXia)
 	{
 		return quality * 3 - (3 - shangXia);
 	}
 
-	// Token: 0x0600180F RID: 6159 RVA: 0x0001513E File Offset: 0x0001333E
+	// Token: 0x06001560 RID: 5472 RVA: 0x0008BFF1 File Offset: 0x0008A1F1
 	public int getRandomInt(int min, int max)
 	{
 		return this.random.Next(min, max + 1);
 	}
 
-	// Token: 0x06001810 RID: 6160 RVA: 0x000D43AC File Offset: 0x000D25AC
+	// Token: 0x06001561 RID: 5473 RVA: 0x0008C004 File Offset: 0x0008A204
 	public int getRandomActionID(Dictionary<int, int> dictionary)
 	{
 		int num = 0;
@@ -1010,7 +1045,7 @@ public class NpcJieSuanManager : MonoBehaviour
 		return result;
 	}
 
-	// Token: 0x06001811 RID: 6161 RVA: 0x000D4468 File Offset: 0x000D2668
+	// Token: 0x06001562 RID: 5474 RVA: 0x0008C0C0 File Offset: 0x0008A2C0
 	public JSONObject AddItemToNpcBackpack(int npcId, int itemID, int num, JSONObject seid = null, bool isPaiMai = false)
 	{
 		JSONObject jsonobject = jsonData.instance.setAvatarBackpack(Tools.getUUID(), itemID, num, 1, 100, 1, (seid == null) ? Tools.CreateItemSeid(itemID) : seid, 0);
@@ -1022,7 +1057,7 @@ public class NpcJieSuanManager : MonoBehaviour
 		return jsonobject;
 	}
 
-	// Token: 0x06001812 RID: 6162 RVA: 0x000D44E8 File Offset: 0x000D26E8
+	// Token: 0x06001563 RID: 5475 RVA: 0x0008C140 File Offset: 0x0008A340
 	public void RemoveNpcItem(int npcId, int itemId)
 	{
 		JSONObject jsonobject = jsonData.instance.AvatarBackpackJsonData[npcId.ToString()]["Backpack"];
@@ -1044,7 +1079,7 @@ public class NpcJieSuanManager : MonoBehaviour
 		jsonobject2.SetField("Num", num);
 	}
 
-	// Token: 0x06001813 RID: 6163 RVA: 0x000D45A8 File Offset: 0x000D27A8
+	// Token: 0x06001564 RID: 5476 RVA: 0x0008C200 File Offset: 0x0008A400
 	private void RemoveItemByUid(int npcId, string uid)
 	{
 		JSONObject jsonobject = jsonData.instance.AvatarBackpackJsonData[npcId.ToString()]["Backpack"];
@@ -1066,7 +1101,7 @@ public class NpcJieSuanManager : MonoBehaviour
 		jsonobject2.SetField("Num", num);
 	}
 
-	// Token: 0x06001814 RID: 6164 RVA: 0x000D466C File Offset: 0x000D286C
+	// Token: 0x06001565 RID: 5477 RVA: 0x0008C2C4 File Offset: 0x0008A4C4
 	private void RemoveItemById(int npcId, int itemId, int count)
 	{
 		JSONObject jsonobject = jsonData.instance.AvatarBackpackJsonData[npcId.ToString()]["Backpack"];
@@ -1095,7 +1130,7 @@ public class NpcJieSuanManager : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001815 RID: 6165 RVA: 0x0001514F File Offset: 0x0001334F
+	// Token: 0x06001566 RID: 5478 RVA: 0x0008C3DC File Offset: 0x0008A5DC
 	public void RemoveItem(int npcId, int itemId, int count, string uid)
 	{
 		if (count == 1)
@@ -1106,7 +1141,7 @@ public class NpcJieSuanManager : MonoBehaviour
 		this.RemoveItemById(npcId, itemId, count);
 	}
 
-	// Token: 0x06001816 RID: 6166 RVA: 0x000D4784 File Offset: 0x000D2984
+	// Token: 0x06001567 RID: 5479 RVA: 0x0008C3F8 File Offset: 0x0008A5F8
 	public void SortNpcPack(int npcId)
 	{
 		if (!this.isCanJieSuan)
@@ -1165,7 +1200,7 @@ public class NpcJieSuanManager : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001817 RID: 6167 RVA: 0x000D4A18 File Offset: 0x000D2C18
+	// Token: 0x06001568 RID: 5480 RVA: 0x0008C68C File Offset: 0x0008A88C
 	public void AddNpcEquip(int npcId, int equipType, bool isLianQi = false)
 	{
 		JSONObject jsonobject = jsonData.instance.AvatarJsonData[npcId.ToString()];
@@ -1188,7 +1223,7 @@ public class NpcJieSuanManager : MonoBehaviour
 		this.npcSetField.AddNpcMoney(npcId, -num);
 	}
 
-	// Token: 0x06001818 RID: 6168 RVA: 0x000D4B8C File Offset: 0x000D2D8C
+	// Token: 0x06001569 RID: 5481 RVA: 0x0008C800 File Offset: 0x0008AA00
 	public void UpdateNpcWuDao(int npcId)
 	{
 		JSONObject jsonobject = jsonData.instance.AvatarJsonData[npcId.ToString()];
@@ -1234,7 +1269,7 @@ public class NpcJieSuanManager : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001819 RID: 6169 RVA: 0x000D4DF4 File Offset: 0x000D2FF4
+	// Token: 0x0600156A RID: 5482 RVA: 0x0008CA68 File Offset: 0x0008AC68
 	public bool IsCanLianDan(int npcId)
 	{
 		bool result;
@@ -1259,7 +1294,7 @@ public class NpcJieSuanManager : MonoBehaviour
 		return result;
 	}
 
-	// Token: 0x0600181A RID: 6170 RVA: 0x000D4EBC File Offset: 0x000D30BC
+	// Token: 0x0600156B RID: 5483 RVA: 0x0008CB30 File Offset: 0x0008AD30
 	public bool IsCanLianQi(int npcId)
 	{
 		bool result;
@@ -1288,8 +1323,8 @@ public class NpcJieSuanManager : MonoBehaviour
 		return result;
 	}
 
-	// Token: 0x0600181B RID: 6171 RVA: 0x000D4F88 File Offset: 0x000D3188
-	public int getNpcBigLevel(int npcId)
+	// Token: 0x0600156C RID: 5484 RVA: 0x0008CBFC File Offset: 0x0008ADFC
+	public int GetNpcBigLevel(int npcId)
 	{
 		int i = jsonData.instance.AvatarJsonData[npcId.ToString()]["Level"].I;
 		int num = i / 3;
@@ -1300,28 +1335,32 @@ public class NpcJieSuanManager : MonoBehaviour
 		return num + 1;
 	}
 
-	// Token: 0x0600181C RID: 6172 RVA: 0x00015168 File Offset: 0x00013368
+	// Token: 0x0600156D RID: 5485 RVA: 0x0008CC3F File Offset: 0x0008AE3F
 	public void DoNothing(int npcId)
 	{
 		this.npcTeShu.NpcAddDoSomething(npcId);
 	}
 
-	// Token: 0x0600181D RID: 6173 RVA: 0x00015176 File Offset: 0x00013376
-	public JSONObject getNpcData(int npcId)
+	// Token: 0x0600156E RID: 5486 RVA: 0x0008CC4D File Offset: 0x0008AE4D
+	public JSONObject GetNpcData(int npcId)
 	{
-		return jsonData.instance.AvatarJsonData[npcId.ToString()];
+		if (jsonData.instance.AvatarJsonData.HasField(npcId.ToString()))
+		{
+			return jsonData.instance.AvatarJsonData[npcId.ToString()];
+		}
+		return null;
 	}
 
-	// Token: 0x0600181E RID: 6174 RVA: 0x0001518E File Offset: 0x0001338E
+	// Token: 0x0600156F RID: 5487 RVA: 0x0008CC7F File Offset: 0x0008AE7F
 	public bool IsInScope(int cur, int min, int max)
 	{
 		return cur >= min && cur <= max;
 	}
 
-	// Token: 0x0600181F RID: 6175 RVA: 0x000D4FCC File Offset: 0x000D31CC
+	// Token: 0x06001570 RID: 5488 RVA: 0x0008CC8C File Offset: 0x0008AE8C
 	public bool ImprotantNpcActionPanDing(int npcId)
 	{
-		JSONObject npcData = this.getNpcData(npcId);
+		JSONObject npcData = this.GetNpcData(npcId);
 		JSONObject npcImprotantPanDingData = jsonData.instance.NpcImprotantPanDingData;
 		if (npcData["isImportant"].b && npcData.HasField("BindingNpcID"))
 		{
@@ -1370,22 +1409,22 @@ public class NpcJieSuanManager : MonoBehaviour
 		return false;
 	}
 
-	// Token: 0x06001820 RID: 6176 RVA: 0x000D5254 File Offset: 0x000D3454
+	// Token: 0x06001571 RID: 5489 RVA: 0x0008CF14 File Offset: 0x0008B114
 	public int GetNpcShengYuTime(int npcId)
 	{
-		JSONObject npcData = this.getNpcData(npcId);
+		JSONObject npcData = this.GetNpcData(npcId);
 		int num = npcData["age"].I / 12;
 		return npcData["shouYuan"].I - num;
 	}
 
-	// Token: 0x06001821 RID: 6177 RVA: 0x000D5290 File Offset: 0x000D3490
+	// Token: 0x06001572 RID: 5490 RVA: 0x0008CF50 File Offset: 0x0008B150
 	public void GuDingAddExp(int npcId, float times = 1f)
 	{
-		JSONObject npcData = this.getNpcData(npcId);
+		JSONObject npcData = this.GetNpcData(npcId);
 		npcData.SetField("isTanChaUnlock", false);
 		if (npcData["isImportant"].b)
 		{
-			int npcBigLevel = this.getNpcBigLevel(npcId);
+			int npcBigLevel = this.GetNpcBigLevel(npcId);
 			if (npcBigLevel == 1 && npcData.HasField("LianQiAddSpeed"))
 			{
 				this.npcSetField.AddNpcExp(npcId, (int)((float)npcData["LianQiAddSpeed"].I * times));
@@ -1412,7 +1451,7 @@ public class NpcJieSuanManager : MonoBehaviour
 		this.npcSetField.AddNpcExp(npcId, (int)((float)num * times));
 	}
 
-	// Token: 0x06001822 RID: 6178 RVA: 0x000D5400 File Offset: 0x000D3600
+	// Token: 0x06001573 RID: 5491 RVA: 0x0008D0C0 File Offset: 0x0008B2C0
 	public List<int> GetPaiMaiListByPaiMaiId(int paiMaiId)
 	{
 		List<int> list = new List<int>();
@@ -1428,7 +1467,7 @@ public class NpcJieSuanManager : MonoBehaviour
 		return list;
 	}
 
-	// Token: 0x06001823 RID: 6179 RVA: 0x000D5470 File Offset: 0x000D3670
+	// Token: 0x06001574 RID: 5492 RVA: 0x0008D130 File Offset: 0x0008B330
 	public void CheckImportantEvent(string nowTime)
 	{
 		DateTime t = DateTime.Parse(nowTime);
@@ -1438,7 +1477,7 @@ public class NpcJieSuanManager : MonoBehaviour
 			if (this.ImportantNpcBangDingDictionary.ContainsKey(jsonobject["ImportantNPC"].I))
 			{
 				int npcId = this.ImportantNpcBangDingDictionary[jsonobject["ImportantNPC"].I];
-				JSONObject npcData = this.getNpcData(npcId);
+				JSONObject npcData = this.GetNpcData(npcId);
 				DateTime t2 = DateTime.Parse(jsonobject["Time"].str);
 				if (t >= t2)
 				{
@@ -1496,25 +1535,25 @@ public class NpcJieSuanManager : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001824 RID: 6180 RVA: 0x0001519B File Offset: 0x0001339B
+	// Token: 0x06001575 RID: 5493 RVA: 0x0008D40C File Offset: 0x0008B60C
 	public bool IsNeedHelp()
 	{
 		return this.getRandomInt(0, 100) <= 30;
 	}
 
-	// Token: 0x06001825 RID: 6181 RVA: 0x000D574C File Offset: 0x000D394C
+	// Token: 0x06001576 RID: 5494 RVA: 0x0008D420 File Offset: 0x0008B620
 	public bool IsDeath(int npcId)
 	{
 		return this.npcDeath.npcDeathJson.HasField(npcId.ToString()) || (this.npcDeath.npcDeathJson.HasField("deathImportantList") && this.npcDeath.npcDeathJson["deathImportantList"].ToList().Contains(npcId));
 	}
 
-	// Token: 0x06001826 RID: 6182 RVA: 0x000151AD File Offset: 0x000133AD
+	// Token: 0x06001577 RID: 5495 RVA: 0x0008D482 File Offset: 0x0008B682
 	public bool IsFly(int npcId)
 	{
-		return this.getNpcData(npcId).HasField("IsFly");
+		return jsonData.instance.AvatarJsonData.HasField(npcId.ToString()) && this.GetNpcData(npcId).HasField("IsFly");
 	}
 
-	// Token: 0x06001827 RID: 6183 RVA: 0x000D57B0 File Offset: 0x000D39B0
+	// Token: 0x06001578 RID: 5496 RVA: 0x0008D4B0 File Offset: 0x0008B6B0
 	public void SendMessage(int npcId)
 	{
 		Avatar player = Tools.instance.getPlayer();
@@ -1522,7 +1561,7 @@ public class NpcJieSuanManager : MonoBehaviour
 		{
 			return;
 		}
-		JSONObject npcData = this.getNpcData(npcId);
+		JSONObject npcData = this.GetNpcData(npcId);
 		int i = jsonData.instance.AvatarRandomJsonData[npcId.ToString()]["HaoGanDu"].I;
 		if (player.emailDateMag.cyNpcList.Contains(npcId))
 		{
@@ -1537,9 +1576,17 @@ public class NpcJieSuanManager : MonoBehaviour
 							continue;
 						}
 					}
-					else if (this.getRandomInt(0, 100) > cyPdData.baseRate)
+					else
 					{
-						continue;
+						int num = player.AliveFriendCount - 3;
+						if (num <= 0)
+						{
+							num = 1;
+						}
+						if (this.getRandomInt(0, 100) > cyPdData.baseRate / num)
+						{
+							continue;
+						}
 					}
 					if (cyPdData.qingFen != 1 || npcData.TryGetField("QingFen").I >= cyPdData.itemPrice)
 					{
@@ -1547,7 +1594,11 @@ public class NpcJieSuanManager : MonoBehaviour
 						int duiBaiId = this.GetDuiBaiId(npcData["XingGe"].I, cyPdData.talkId);
 						if (cyPdData.actionId != 0)
 						{
-							List<int> item = cyPdData.GetItem();
+							List<int> item = cyPdData.GetItem(npcId);
+							if (item.Count < 1)
+							{
+								continue;
+							}
 							player.emailDateMag.SendToPlayer(npcId, duiBaiId, randomInt, cyPdData.actionId, item[0], item[1], cyPdData.outTime, cyPdData.addHaoGan, this.JieSuanTime);
 							if (cyPdData.qingFen == 1)
 							{
@@ -1579,7 +1630,7 @@ public class NpcJieSuanManager : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001828 RID: 6184 RVA: 0x000D5BA0 File Offset: 0x000D3DA0
+	// Token: 0x06001579 RID: 5497 RVA: 0x0008D8C4 File Offset: 0x0008BAC4
 	public void SendFungusCyFu(int cytype)
 	{
 		if (!this.isCanJieSuan)
@@ -1599,7 +1650,7 @@ public class NpcJieSuanManager : MonoBehaviour
 				{
 					if (num >= 20000 && !this.IsDeath(num))
 					{
-						JSONObject npcData = this.getNpcData(num);
+						JSONObject npcData = this.GetNpcData(num);
 						int i = jsonData.instance.AvatarRandomJsonData[num.ToString()]["HaoGanDu"].I;
 						if ((!cyPdData.isOnly || !npcData.HasField("CyList") || !npcData["CyList"].ToList().Contains(cyPdData.cyType)) && cyPdData.npcActionList.Contains(npcData["ActionId"].I) && (cyPdData.npcType == 0 || cyPdData.npcType == npcData["Type"].I) && npcData["Level"].I >= cyPdData.minLevel && npcData["Level"].I <= cyPdData.maxLevel && (cyPdData.staticFuHao <= 0 || cyPdData.StaticValuePd()) && (cyPdData.needHaoGanDu <= 0 || cyPdData.HaoGanPd(i)) && cyPdData.IsinTime() && (cyPdData.npcState == 0 || cyPdData.npcState == npcData["Status"]["StatusId"].I) && this.getRandomInt(0, 100) <= cyPdData.GetRate(i))
 						{
@@ -1607,7 +1658,11 @@ public class NpcJieSuanManager : MonoBehaviour
 							int duiBaiId = this.GetDuiBaiId(npcData["XingGe"].I, cyPdData.talkId);
 							if (cyPdData.actionId != 0)
 							{
-								List<int> item = cyPdData.GetItem();
+								List<int> item = cyPdData.GetItem(num);
+								if (item.Count < 1)
+								{
+									continue;
+								}
 								player.emailDateMag.SendToPlayerLate(num, duiBaiId, randomInt, cyPdData.actionId, item[0], item[1], cyPdData.outTime, cyPdData.addHaoGan, this.JieSuanTime);
 							}
 							else
@@ -1634,7 +1689,7 @@ public class NpcJieSuanManager : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001829 RID: 6185 RVA: 0x000D5EE8 File Offset: 0x000D40E8
+	// Token: 0x0600157A RID: 5498 RVA: 0x0008DC1C File Offset: 0x0008BE1C
 	public void SendFungusCyByNpcId(int cytype, int npcId)
 	{
 		if (!this.isCanJieSuan)
@@ -1646,7 +1701,7 @@ public class NpcJieSuanManager : MonoBehaviour
 		{
 			if (cyPdData.cyType == cytype)
 			{
-				JSONObject npcData = this.getNpcData(npcId);
+				JSONObject npcData = this.GetNpcData(npcId);
 				int i = jsonData.instance.AvatarRandomJsonData[npcId.ToString()]["HaoGanDu"].I;
 				if ((!cyPdData.isOnly || !npcData.HasField("CyList") || !npcData["CyList"].ToList().Contains(cyPdData.cyType)) && cyPdData.npcActionList.Contains(npcData["ActionId"].I) && (cyPdData.npcType == 0 || cyPdData.npcType == npcData["Type"].I) && npcData["Level"].I >= cyPdData.minLevel && npcData["Level"].I <= cyPdData.maxLevel && (cyPdData.staticFuHao <= 0 || cyPdData.StaticValuePd()) && (cyPdData.needHaoGanDu <= 0 || cyPdData.HaoGanPd(i)) && cyPdData.IsinTime() && (cyPdData.npcState == 0 || cyPdData.npcState == npcData["Status"]["StatusId"].I) && this.getRandomInt(0, 100) <= cyPdData.GetRate(i))
 				{
@@ -1654,7 +1709,11 @@ public class NpcJieSuanManager : MonoBehaviour
 					int duiBaiId = this.GetDuiBaiId(npcData["XingGe"].I, cyPdData.talkId);
 					if (cyPdData.actionId != 0)
 					{
-						List<int> item = cyPdData.GetItem();
+						List<int> item = cyPdData.GetItem(npcId);
+						if (item.Count < 1)
+						{
+							continue;
+						}
 						player.emailDateMag.SendToPlayerLate(npcId, duiBaiId, randomInt, cyPdData.actionId, item[0], item[1], cyPdData.outTime, cyPdData.addHaoGan, this.JieSuanTime);
 					}
 					else
@@ -1679,7 +1738,7 @@ public class NpcJieSuanManager : MonoBehaviour
 		}
 	}
 
-	// Token: 0x0600182A RID: 6186 RVA: 0x000D61A8 File Offset: 0x000D43A8
+	// Token: 0x0600157B RID: 5499 RVA: 0x0008DEEC File Offset: 0x0008C0EC
 	public void SendCy(int npcId)
 	{
 		Avatar player = Tools.instance.getPlayer();
@@ -1687,7 +1746,7 @@ public class NpcJieSuanManager : MonoBehaviour
 		{
 			return;
 		}
-		JSONObject npcData = this.getNpcData(npcId);
+		JSONObject npcData = this.GetNpcData(npcId);
 		DateTime nowTime = this.GetNowTime();
 		if (!player.emailDateMag.cyNpcList.Contains(npcId))
 		{
@@ -1852,7 +1911,7 @@ public class NpcJieSuanManager : MonoBehaviour
 		}
 	}
 
-	// Token: 0x0600182B RID: 6187 RVA: 0x000D68E8 File Offset: 0x000D4AE8
+	// Token: 0x0600157C RID: 5500 RVA: 0x0008E62C File Offset: 0x0008C82C
 	public void SendFungusCy(int cyId)
 	{
 		Avatar player = Tools.instance.getPlayer();
@@ -1867,7 +1926,7 @@ public class NpcJieSuanManager : MonoBehaviour
 		{
 			if (num >= 20000)
 			{
-				jsonobject = this.getNpcData(num);
+				jsonobject = this.GetNpcData(num);
 				DateTime t;
 				DateTime t2;
 				if (jsonobject != null && cyRandomTaskData.Type == 3 && (cyRandomTaskData.IsOnly != 1 || !player.emailDateMag.HasReceiveList.Contains(cyRandomTaskData.id)) && (cyRandomTaskData.IsZhongYaoNPC != 0 || !jsonobject.HasField("isImportant") || !jsonobject["isImportant"].b) && (cyRandomTaskData.NPCLiuPai.Count <= 0 || cyRandomTaskData.NPCLiuPai.Contains(jsonobject.TryGetField("LiuPai").I)) && !this.lateEmailDict.ContainsKey(cyRandomTaskData.id) && !player.StreamData.TaskMag.HasTaskNpcList.Contains(num) && (!DateTime.TryParse(cyRandomTaskData.StarTime, out t) || !DateTime.TryParse(cyRandomTaskData.EndTime, out t2) || (!(nowTime < t) && !(nowTime > t2))) && (cyRandomTaskData.Level.Count <= 0 || ((int)player.level >= cyRandomTaskData.Level[0] && (int)player.level <= cyRandomTaskData.Level[1])) && (cyRandomTaskData.NPCLevel.Count <= 0 || (jsonobject["Level"].I >= cyRandomTaskData.NPCLevel[0] && jsonobject["Level"].I <= cyRandomTaskData.NPCLevel[1])) && (cyRandomTaskData.NPCXingGe.Count <= 0 || cyRandomTaskData.NPCXingGe.Contains(jsonobject["XingGe"].I)) && (cyRandomTaskData.NPCType.Count <= 0 || cyRandomTaskData.NPCType.Contains(jsonobject["Type"].I)) && (cyRandomTaskData.NPCTag.Count <= 0 || cyRandomTaskData.NPCTag.Contains(jsonobject["NPCTag"].I)) && (cyRandomTaskData.NPCXingWei.Count <= 0 || cyRandomTaskData.NPCXingWei.Contains(jsonobject["ActionId"].I)) && (cyRandomTaskData.NPCXingWei.Count <= 0 || cyRandomTaskData.NPCXingWei.Contains(jsonobject["ActionId"].I)))
@@ -1978,7 +2037,7 @@ public class NpcJieSuanManager : MonoBehaviour
 		}
 	}
 
-	// Token: 0x0600182C RID: 6188 RVA: 0x000D6EEC File Offset: 0x000D50EC
+	// Token: 0x0600157D RID: 5501 RVA: 0x0008EC30 File Offset: 0x0008CE30
 	public List<int> GetJieShaNpcList(int index)
 	{
 		List<int> list = new List<int>();
@@ -1986,7 +2045,7 @@ public class NpcJieSuanManager : MonoBehaviour
 		{
 			foreach (int num in this.npcMap.bigMapNPCDictionary[index])
 			{
-				if (this.getNpcBigLevel(num) == Tools.instance.getPlayer().getLevelType() && jsonData.instance.AvatarRandomJsonData[num.ToString()]["HaoGanDu"].I < 50 && this.getNpcData(num)["ActionId"].I == 34)
+				if (this.GetNpcBigLevel(num) == Tools.instance.getPlayer().getLevelType() && jsonData.instance.AvatarRandomJsonData[num.ToString()]["HaoGanDu"].I < 50 && this.GetNpcData(num)["ActionId"].I == 34)
 				{
 					list.Add(num);
 				}
@@ -1995,7 +2054,7 @@ public class NpcJieSuanManager : MonoBehaviour
 		return list;
 	}
 
-	// Token: 0x0600182D RID: 6189 RVA: 0x000D6FE0 File Offset: 0x000D51E0
+	// Token: 0x0600157E RID: 5502 RVA: 0x0008ED24 File Offset: 0x0008CF24
 	public List<int> GetXunLuoNpcList(string fubenName, int index)
 	{
 		List<int> list = new List<int>();
@@ -2004,7 +2063,7 @@ public class NpcJieSuanManager : MonoBehaviour
 		{
 			foreach (int num in this.npcMap.fuBenNPCDictionary[fubenName][index])
 			{
-				JSONObject npcData = this.getNpcData(num);
+				JSONObject npcData = this.GetNpcData(num);
 				if (npcData["MenPai"].I != (int)player.menPai && player.shengShi <= npcData["shengShi"].I)
 				{
 					list.Add(num);
@@ -2014,7 +2073,7 @@ public class NpcJieSuanManager : MonoBehaviour
 		return list;
 	}
 
-	// Token: 0x0600182E RID: 6190 RVA: 0x000D70C4 File Offset: 0x000D52C4
+	// Token: 0x0600157F RID: 5503 RVA: 0x0008EE08 File Offset: 0x0008D008
 	public int GetDuiBaiId(int XingGe, int type)
 	{
 		int result = 0;
@@ -2028,124 +2087,124 @@ public class NpcJieSuanManager : MonoBehaviour
 		return result;
 	}
 
-	// Token: 0x04001339 RID: 4921
+	// Token: 0x04000FE9 RID: 4073
 	public static NpcJieSuanManager inst;
 
-	// Token: 0x0400133A RID: 4922
+	// Token: 0x04000FEA RID: 4074
 	public NpCFight npcFight;
 
-	// Token: 0x0400133B RID: 4923
+	// Token: 0x04000FEB RID: 4075
 	private Random random;
 
-	// Token: 0x0400133C RID: 4924
+	// Token: 0x04000FEC RID: 4076
 	public NPCXiuLian npcXiuLian;
 
-	// Token: 0x0400133D RID: 4925
+	// Token: 0x04000FED RID: 4077
 	public NPCTuPo npcTuPo;
 
-	// Token: 0x0400133E RID: 4926
+	// Token: 0x04000FEE RID: 4078
 	public NpcSetField npcSetField;
 
-	// Token: 0x0400133F RID: 4927
+	// Token: 0x04000FEF RID: 4079
 	public NPCShouJi npcShouJi;
 
-	// Token: 0x04001340 RID: 4928
+	// Token: 0x04000FF0 RID: 4080
 	public NPCFuYe npcFuYe;
 
-	// Token: 0x04001341 RID: 4929
+	// Token: 0x04000FF1 RID: 4081
 	public NPCUseItem npcUseItem;
 
-	// Token: 0x04001342 RID: 4930
+	// Token: 0x04000FF2 RID: 4082
 	public NPCLiLian npcLiLian;
 
-	// Token: 0x04001343 RID: 4931
+	// Token: 0x04000FF3 RID: 4083
 	public NPCStatus npcStatus;
 
-	// Token: 0x04001344 RID: 4932
+	// Token: 0x04000FF4 RID: 4084
 	public NpcTianJiGe npcTianJiGe;
 
-	// Token: 0x04001345 RID: 4933
+	// Token: 0x04000FF5 RID: 4085
 	public NPCTeShu npcTeShu;
 
-	// Token: 0x04001346 RID: 4934
+	// Token: 0x04000FF6 RID: 4086
 	public NPCNoteBook npcNoteBook;
 
-	// Token: 0x04001347 RID: 4935
+	// Token: 0x04000FF7 RID: 4087
 	public NPCMap npcMap;
 
-	// Token: 0x04001348 RID: 4936
+	// Token: 0x04000FF8 RID: 4088
 	public NPCSpeedJieSuan npcSpeedJieSuan;
 
-	// Token: 0x04001349 RID: 4937
+	// Token: 0x04000FF9 RID: 4089
 	public NPCDeath npcDeath;
 
-	// Token: 0x0400134A RID: 4938
+	// Token: 0x04000FFA RID: 4090
 	public NPCChengHao npcChengHao;
 
-	// Token: 0x0400134B RID: 4939
+	// Token: 0x04000FFB RID: 4091
 	public Dictionary<int, List<List<int>>> cyDictionary = new Dictionary<int, List<List<int>>>();
 
-	// Token: 0x0400134C RID: 4940
+	// Token: 0x04000FFC RID: 4092
 	public List<CyPdData> cyPdAuToList;
 
-	// Token: 0x0400134D RID: 4941
+	// Token: 0x04000FFD RID: 4093
 	public List<CyPdData> cyPdFungusList;
 
-	// Token: 0x0400134E RID: 4942
+	// Token: 0x04000FFE RID: 4094
 	public Dictionary<int, Action<int>> ActionDictionary = new Dictionary<int, Action<int>>();
 
-	// Token: 0x0400134F RID: 4943
+	// Token: 0x04000FFF RID: 4095
 	public Dictionary<int, Action<int>> NextActionDictionary = new Dictionary<int, Action<int>>();
 
-	// Token: 0x04001350 RID: 4944
+	// Token: 0x04001000 RID: 4096
 	public List<int> CurJieSuanNpcTaskList = new List<int>();
 
-	// Token: 0x04001351 RID: 4945
+	// Token: 0x04001001 RID: 4097
 	public Dictionary<int, int> ImportantNpcBangDingDictionary = new Dictionary<int, int>();
 
-	// Token: 0x04001352 RID: 4946
+	// Token: 0x04001002 RID: 4098
 	private Dictionary<int, int> NpcActionQuanZhongDictionary = new Dictionary<int, int>();
 
-	// Token: 0x04001353 RID: 4947
+	// Token: 0x04001003 RID: 4099
 	public Dictionary<int, List<int>> PaiMaiNpcDictionary = new Dictionary<int, List<int>>();
 
-	// Token: 0x04001354 RID: 4948
+	// Token: 0x04001004 RID: 4100
 	public List<int> allBigMapNpcList = new List<int>();
 
-	// Token: 0x04001355 RID: 4949
+	// Token: 0x04001005 RID: 4101
 	public List<int> JieShaNpcList = new List<int>();
 
-	// Token: 0x04001356 RID: 4950
+	// Token: 0x04001006 RID: 4102
 	public List<EmailData> lateEmailList = new List<EmailData>();
 
-	// Token: 0x04001357 RID: 4951
+	// Token: 0x04001007 RID: 4103
 	public Dictionary<int, EmailData> lateEmailDict = new Dictionary<int, EmailData>();
 
-	// Token: 0x04001358 RID: 4952
+	// Token: 0x04001008 RID: 4104
 	public List<int> lunDaoNpcList = new List<int>();
 
-	// Token: 0x04001359 RID: 4953
+	// Token: 0x04001009 RID: 4105
 	public List<List<int>> afterDeathList = new List<List<int>>();
 
-	// Token: 0x0400135A RID: 4954
+	// Token: 0x0400100A RID: 4106
 	[HideInInspector]
 	public List<string> EquipNameList = new List<string>();
 
-	// Token: 0x0400135B RID: 4955
+	// Token: 0x0400100B RID: 4107
 	public bool isUpDateNpcList;
 
-	// Token: 0x0400135C RID: 4956
+	// Token: 0x0400100C RID: 4108
 	public bool isCanJieSuan = true;
 
-	// Token: 0x0400135D RID: 4957
+	// Token: 0x0400100D RID: 4109
 	public bool JieSuanAnimation;
 
-	// Token: 0x0400135E RID: 4958
+	// Token: 0x0400100E RID: 4110
 	public int JieSuanTimes;
 
-	// Token: 0x0400135F RID: 4959
+	// Token: 0x0400100F RID: 4111
 	public string JieSuanTime = "0001-1-1";
 
-	// Token: 0x04001360 RID: 4960
+	// Token: 0x04001010 RID: 4112
 	public bool IsNoJieSuan;
 }

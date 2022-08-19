@@ -4,37 +4,37 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
 
-// Token: 0x020005C5 RID: 1477
+// Token: 0x02000413 RID: 1043
 public class UI_ShopBtn : ScrollBtn
 {
-	// Token: 0x06002558 RID: 9560 RVA: 0x0001DF38 File Offset: 0x0001C138
+	// Token: 0x060021A0 RID: 8608 RVA: 0x000E9607 File Offset: 0x000E7807
 	private void Start()
 	{
 		base.GetComponent<Button>().onClick.AddListener(new UnityAction(this.OnDeselect));
 	}
 
-	// Token: 0x06002559 RID: 9561 RVA: 0x000042DD File Offset: 0x000024DD
+	// Token: 0x060021A1 RID: 8609 RVA: 0x00004095 File Offset: 0x00002295
 	private void Update()
 	{
 	}
 
-	// Token: 0x0600255A RID: 9562 RVA: 0x0001DF56 File Offset: 0x0001C156
+	// Token: 0x060021A2 RID: 8610 RVA: 0x000E9625 File Offset: 0x000E7825
 	protected override GameObject getItemUI()
 	{
 		return UI_HOMESCENE.instense.ItemInspector;
 	}
 
-	// Token: 0x0600255B RID: 9563 RVA: 0x000042DD File Offset: 0x000024DD
+	// Token: 0x060021A3 RID: 8611 RVA: 0x00004095 File Offset: 0x00002295
 	protected override void setNameText(Transform window, ItemData itemData)
 	{
 	}
 
-	// Token: 0x0600255C RID: 9564 RVA: 0x000042DD File Offset: 0x000024DD
+	// Token: 0x060021A4 RID: 8612 RVA: 0x00004095 File Offset: 0x00002295
 	protected override void settipDescText(Transform window, ItemData itemData)
 	{
 	}
 
-	// Token: 0x0600255D RID: 9565 RVA: 0x00129D64 File Offset: 0x00127F64
+	// Token: 0x060021A5 RID: 8613 RVA: 0x000E9634 File Offset: 0x000E7834
 	public void OnDeselect()
 	{
 		ItemData itemData = this.getItemData();
@@ -45,6 +45,6 @@ public class UI_ShopBtn : ScrollBtn
 		this.settooltipAttrText(window, itemData);
 	}
 
-	// Token: 0x04001FDE RID: 8158
+	// Token: 0x04001B1F RID: 6943
 	public GameObject ItemInspector;
 }

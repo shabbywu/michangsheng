@@ -3,12 +3,12 @@ using UnityEngine;
 
 namespace Fungus
 {
-	// Token: 0x020012A5 RID: 4773
+	// Token: 0x02000E54 RID: 3668
 	[CommandInfo("iTween", "Stop Tweens", "Stop all active iTweens in the current scene.", 0)]
 	[AddComponentMenu("")]
 	public class StopTweens : Command
 	{
-		// Token: 0x0600739C RID: 29596 RVA: 0x0004EE35 File Offset: 0x0004D035
+		// Token: 0x0600670E RID: 26382 RVA: 0x0028883F File Offset: 0x00286A3F
 		public override void OnEnter()
 		{
 			iTween.Stop();

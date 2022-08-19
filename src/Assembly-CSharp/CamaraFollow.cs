@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using JiaoYi;
 using UnityEngine;
 
-// Token: 0x02000263 RID: 611
+// Token: 0x02000184 RID: 388
 public class CamaraFollow : MonoBehaviour
 {
-	// Token: 0x060012DF RID: 4831 RVA: 0x00011DFB File Offset: 0x0000FFFB
+	// Token: 0x0600108E RID: 4238 RVA: 0x000615C0 File Offset: 0x0005F7C0
 	public void Start()
 	{
 		CamaraFollow.Inst = this;
@@ -16,7 +16,7 @@ public class CamaraFollow : MonoBehaviour
 		this.RegisterBanMove();
 	}
 
-	// Token: 0x060012E0 RID: 4832 RVA: 0x000B0140 File Offset: 0x000AE340
+	// Token: 0x0600108F RID: 4239 RVA: 0x00061600 File Offset: 0x0005F800
 	public void RegisterBanMove()
 	{
 		this.BanMoveFunc["UINPCLeftList"] = (() => UINPCLeftList.Inst != null && UINPCLeftList.Inst.IsMouseInUI);
@@ -24,13 +24,13 @@ public class CamaraFollow : MonoBehaviour
 		this.BanMoveFunc["JiaoYiUIMag"] = (() => JiaoYiUIMag.Inst != null);
 	}
 
-	// Token: 0x060012E1 RID: 4833 RVA: 0x000B01DC File Offset: 0x000AE3DC
+	// Token: 0x06001090 RID: 4240 RVA: 0x0006169C File Offset: 0x0005F89C
 	public void SetCameraToPlayer()
 	{
 		base.transform.position = new Vector3(this.player.transform.position.x, this.player.transform.position.y, base.transform.position.z);
 	}
 
-	// Token: 0x060012E2 RID: 4834 RVA: 0x000B0234 File Offset: 0x000AE434
+	// Token: 0x06001091 RID: 4241 RVA: 0x000616F4 File Offset: 0x0005F8F4
 	private void Update()
 	{
 		CamaraFollow.CanMove = true;
@@ -97,7 +97,7 @@ public class CamaraFollow : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060012E3 RID: 4835 RVA: 0x000B0604 File Offset: 0x000AE804
+	// Token: 0x06001092 RID: 4242 RVA: 0x00061AC4 File Offset: 0x0005FCC4
 	public Vector2 LimitPos(Vector2 targetPos)
 	{
 		float num = this.levo.position.x + this.maincamera.orthographicSize * this.maincamera.aspect;
@@ -109,36 +109,36 @@ public class CamaraFollow : MonoBehaviour
 		return new Vector2(num5, num6);
 	}
 
-	// Token: 0x04000EC3 RID: 3779
+	// Token: 0x04000BEF RID: 3055
 	public static CamaraFollow Inst;
 
-	// Token: 0x04000EC4 RID: 3780
+	// Token: 0x04000BF0 RID: 3056
 	private GameObject player;
 
-	// Token: 0x04000EC5 RID: 3781
+	// Token: 0x04000BF1 RID: 3057
 	public Transform levo;
 
-	// Token: 0x04000EC6 RID: 3782
+	// Token: 0x04000BF2 RID: 3058
 	public Transform desno;
 
-	// Token: 0x04000EC7 RID: 3783
+	// Token: 0x04000BF3 RID: 3059
 	private Camera maincamera;
 
-	// Token: 0x04000EC8 RID: 3784
+	// Token: 0x04000BF4 RID: 3060
 	private Vector3 firstMousePositon;
 
-	// Token: 0x04000EC9 RID: 3785
+	// Token: 0x04000BF5 RID: 3061
 	private Vector3 firstCameraPositon;
 
-	// Token: 0x04000ECA RID: 3786
+	// Token: 0x04000BF6 RID: 3062
 	public bool follwPlayer;
 
-	// Token: 0x04000ECB RID: 3787
+	// Token: 0x04000BF7 RID: 3063
 	public static bool CanMove = true;
 
-	// Token: 0x04000ECC RID: 3788
+	// Token: 0x04000BF8 RID: 3064
 	private Dictionary<string, Func<bool>> BanMoveFunc = new Dictionary<string, Func<bool>>();
 
-	// Token: 0x04000ECD RID: 3789
+	// Token: 0x04000BF9 RID: 3065
 	private static float orthographicSize = 8f;
 }

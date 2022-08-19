@@ -2,17 +2,17 @@
 using Bag;
 using UnityEngine.EventSystems;
 
-// Token: 0x020003E8 RID: 1000
+// Token: 0x020002B0 RID: 688
 public class UITianJieSkillSlot : SlotBase
 {
-	// Token: 0x06001B3B RID: 6971 RVA: 0x00017040 File Offset: 0x00015240
+	// Token: 0x06001849 RID: 6217 RVA: 0x000A98C2 File Offset: 0x000A7AC2
 	public void SetSelected(bool value)
 	{
 		this.IsSelected = value;
 		this._selectPanel.SetActive(value);
 	}
 
-	// Token: 0x06001B3C RID: 6972 RVA: 0x000F06CC File Offset: 0x000EE8CC
+	// Token: 0x0600184A RID: 6218 RVA: 0x000A98D8 File Offset: 0x000A7AD8
 	public override void OnPointerEnter(PointerEventData eventData)
 	{
 		if (DragMag.Inst.IsDraging)
@@ -35,7 +35,7 @@ public class UITianJieSkillSlot : SlotBase
 		this._selectPanel.SetActive(true);
 	}
 
-	// Token: 0x06001B3D RID: 6973 RVA: 0x00017055 File Offset: 0x00015255
+	// Token: 0x0600184B RID: 6219 RVA: 0x000A996E File Offset: 0x000A7B6E
 	public override void OnPointerExit(PointerEventData eventData)
 	{
 		base.OnPointerExit(eventData);
@@ -45,7 +45,7 @@ public class UITianJieSkillSlot : SlotBase
 		}
 	}
 
-	// Token: 0x06001B3E RID: 6974 RVA: 0x000F0764 File Offset: 0x000EE964
+	// Token: 0x0600184C RID: 6220 RVA: 0x000A998C File Offset: 0x000A7B8C
 	public override void OnPointerUp(PointerEventData eventData)
 	{
 		if (!this.IsSelected)
@@ -62,7 +62,7 @@ public class UITianJieSkillSlot : SlotBase
 		}
 	}
 
-	// Token: 0x06001B3F RID: 6975 RVA: 0x000F07C0 File Offset: 0x000EE9C0
+	// Token: 0x0600184D RID: 6221 RVA: 0x000A99E8 File Offset: 0x000A7BE8
 	public override void OnEndDrag(PointerEventData eventData)
 	{
 		if (!this.CanDrag())
@@ -77,21 +77,21 @@ public class UITianJieSkillSlot : SlotBase
 		}
 	}
 
-	// Token: 0x06001B40 RID: 6976 RVA: 0x00017072 File Offset: 0x00015272
+	// Token: 0x0600184E RID: 6222 RVA: 0x000A9A38 File Offset: 0x000A7C38
 	public override bool CanDrag()
 	{
 		return !base.IsNull() && base.CanDrag();
 	}
 
-	// Token: 0x040016FE RID: 5886
+	// Token: 0x04001361 RID: 4961
 	public Action<UITianJieSkillSlot> OnLiftClick;
 
-	// Token: 0x040016FF RID: 5887
+	// Token: 0x04001362 RID: 4962
 	public new Action<UITianJieSkillSlot> OnRightClick;
 
-	// Token: 0x04001700 RID: 5888
+	// Token: 0x04001363 RID: 4963
 	public bool IsSelected;
 
-	// Token: 0x04001701 RID: 5889
+	// Token: 0x04001364 RID: 4964
 	public bool IsEquipSlot;
 }

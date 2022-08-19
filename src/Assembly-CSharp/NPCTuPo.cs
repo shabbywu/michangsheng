@@ -1,11 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using script.EventMsg;
 using UnityEngine;
 
-// Token: 0x02000344 RID: 836
+// Token: 0x02000228 RID: 552
 public class NPCTuPo
 {
-	// Token: 0x06001899 RID: 6297 RVA: 0x000DBAA0 File Offset: 0x000D9CA0
+	// Token: 0x060015E1 RID: 5601 RVA: 0x0009326C File Offset: 0x0009146C
 	public NPCTuPo()
 	{
 		foreach (JSONObject jsonobject in jsonData.instance.NPCTuPuoDate.list)
@@ -22,7 +23,7 @@ public class NPCTuPo
 		}
 	}
 
-	// Token: 0x0600189A RID: 6298 RVA: 0x000DBBFC File Offset: 0x000D9DFC
+	// Token: 0x060015E2 RID: 5602 RVA: 0x000933C8 File Offset: 0x000915C8
 	public JSONObject NpcSmallToPo(JSONObject npcDate, int nextLevel)
 	{
 		JSONObject jsonobject = jsonData.instance.LevelUpDataJsonData[(nextLevel - 1).ToString()];
@@ -74,7 +75,7 @@ public class NPCTuPo
 		return npcDate;
 	}
 
-	// Token: 0x0600189B RID: 6299 RVA: 0x000DBFA0 File Offset: 0x000DA1A0
+	// Token: 0x060015E3 RID: 5603 RVA: 0x0009376C File Offset: 0x0009196C
 	public bool IsCanSmallTuPo(int npcID = -1, JSONObject actionDate = null)
 	{
 		JSONObject jsonobject = new JSONObject();
@@ -91,10 +92,10 @@ public class NPCTuPo
 		return i >= jsonobject["NextExp"].I && jsonobject["NextExp"].I != 0 && num != 4 && num != 7 && num != 10 && num != 13 && num != 16;
 	}
 
-	// Token: 0x0600189C RID: 6300 RVA: 0x000DC034 File Offset: 0x000DA234
+	// Token: 0x060015E4 RID: 5604 RVA: 0x00093800 File Offset: 0x00091A00
 	public bool IsCanBigTuPo(int npcId)
 	{
-		int i = NpcJieSuanManager.inst.getNpcData(npcId)["Level"].I;
+		int i = NpcJieSuanManager.inst.GetNpcData(npcId)["Level"].I;
 		if (NpcJieSuanManager.inst.npcStatus.IsInTargetStatus(npcId, 2))
 		{
 			JSONObject jsonobject = jsonData.instance.NPCTuPuoDate[i.ToString()];
@@ -111,16 +112,16 @@ public class NPCTuPo
 		return false;
 	}
 
-	// Token: 0x0600189D RID: 6301 RVA: 0x000DC0C8 File Offset: 0x000DA2C8
+	// Token: 0x060015E5 RID: 5605 RVA: 0x00093894 File Offset: 0x00091A94
 	public int GetNpcBigTuPoLv(int npcId, bool isUse = false, bool isKuaiSu = false)
 	{
 		if (!NpcJieSuanManager.inst.npcStatus.IsInTargetStatus(npcId, 2))
 		{
 			return 0;
 		}
-		JSONObject npcData = NpcJieSuanManager.inst.getNpcData(npcId);
+		JSONObject npcData = NpcJieSuanManager.inst.GetNpcData(npcId);
 		int i = npcData["Level"].I;
-		int npcBigLevel = NpcJieSuanManager.inst.getNpcBigLevel(npcId);
+		int npcBigLevel = NpcJieSuanManager.inst.GetNpcBigLevel(npcId);
 		if (npcData["isImportant"].b)
 		{
 			if (npcBigLevel == 1 && npcData.HasField("ZhuJiTime"))
@@ -242,14 +243,14 @@ public class NPCTuPo
 		return num;
 	}
 
-	// Token: 0x0600189E RID: 6302 RVA: 0x000DC428 File Offset: 0x000DA628
+	// Token: 0x060015E6 RID: 5606 RVA: 0x00093BF4 File Offset: 0x00091DF4
 	public int GetNpcBigTuPoFenShu(int npcId, bool isUse = false, bool isKuaiSu = false)
 	{
 		if (!NpcJieSuanManager.inst.npcStatus.IsInTargetStatus(npcId, 2))
 		{
 			return 0;
 		}
-		JSONObject npcData = NpcJieSuanManager.inst.getNpcData(npcId);
+		JSONObject npcData = NpcJieSuanManager.inst.GetNpcData(npcId);
 		int i = npcData["Level"].I;
 		JSONObject jsonobject = jsonData.instance.NPCTuPuoDate[i.ToString()];
 		int num;
@@ -327,10 +328,10 @@ public class NPCTuPo
 		return num;
 	}
 
-	// Token: 0x0600189F RID: 6303 RVA: 0x000DC698 File Offset: 0x000DA898
+	// Token: 0x060015E7 RID: 5607 RVA: 0x00093E64 File Offset: 0x00092064
 	public void NpcBigTuPo(int npcId)
 	{
-		int i = NpcJieSuanManager.inst.getNpcData(npcId)["Level"].I;
+		int i = NpcJieSuanManager.inst.GetNpcData(npcId)["Level"].I;
 		if (i == 3)
 		{
 			this.NpcTuPoZhuJi(npcId, false);
@@ -352,10 +353,10 @@ public class NPCTuPo
 		}
 	}
 
-	// Token: 0x060018A0 RID: 6304 RVA: 0x000DC6F8 File Offset: 0x000DA8F8
+	// Token: 0x060015E8 RID: 5608 RVA: 0x00093EC4 File Offset: 0x000920C4
 	public void NpcTuPoZhuJi(int npcId, bool isKuaiSu = false)
 	{
-		JSONObject npcData = NpcJieSuanManager.inst.getNpcData(npcId);
+		JSONObject npcData = NpcJieSuanManager.inst.GetNpcData(npcId);
 		int i = npcData["Level"].I;
 		int num = this.GetNpcBigTuPoLv(npcId, false, isKuaiSu);
 		if (npcData.HasField("ZhuJiTime"))
@@ -368,12 +369,20 @@ public class NPCTuPo
 			num = 100;
 		}
 		num += jsonData.instance.NPCTuPuoDate["3"]["FailAddLv"].I * NpcJieSuanManager.inst.npcNoteBook.GetEventCount(npcId, 26);
+		if (npcData.HasField("AddToPoLv"))
+		{
+			num += npcData["AddToPoLv"].I;
+		}
 		if (num < NpcJieSuanManager.inst.getRandomInt(1, 100))
 		{
 			NpcJieSuanManager.inst.npcSetField.AddNpcExp(npcId, -jsonData.instance.NPCTuPuoDate["3"]["sunshi"].I);
 			NpcJieSuanManager.inst.npcNoteBook.NoteBigTuPoFail(npcId, 26);
 			NpcJieSuanManager.inst.npcStatus.SetNpcStatus(npcId, 1);
 			return;
+		}
+		if (npcData.HasField("AddToPoLv"))
+		{
+			npcData.RemoveField("AddToPoLv");
 		}
 		int npcBigTuPoFenShu = this.GetNpcBigTuPoFenShu(npcId, true, isKuaiSu);
 		NpcJieSuanManager.inst.npcSetField.AddNpcHp(npcId, npcBigTuPoFenShu);
@@ -382,10 +391,10 @@ public class NPCTuPo
 		NpcJieSuanManager.inst.npcNoteBook.NoteZhuJiSuccess(npcId);
 	}
 
-	// Token: 0x060018A1 RID: 6305 RVA: 0x000DC848 File Offset: 0x000DAA48
+	// Token: 0x060015E9 RID: 5609 RVA: 0x0009404C File Offset: 0x0009224C
 	public void NpcTuPoJinDan(int npcId, bool isKuaiSu = false)
 	{
-		JSONObject npcData = NpcJieSuanManager.inst.getNpcData(npcId);
+		JSONObject npcData = NpcJieSuanManager.inst.GetNpcData(npcId);
 		int i = npcData["Level"].I;
 		int num = 0;
 		int num2 = this.GetNpcBigTuPoLv(npcId, false, isKuaiSu);
@@ -397,6 +406,10 @@ public class NPCTuPo
 				return;
 			}
 			num2 = 100;
+		}
+		if (npcData.HasField("AddToPoLv"))
+		{
+			num2 += npcData["AddToPoLv"].I;
 		}
 		if (npcData["wuDaoSkillList"].ToList().Contains(2112))
 		{
@@ -410,6 +423,10 @@ public class NPCTuPo
 			NpcJieSuanManager.inst.npcNoteBook.NoteBigTuPoFail(npcId, 27);
 			NpcJieSuanManager.inst.npcStatus.SetNpcStatus(npcId, 1);
 			return;
+		}
+		if (npcData.HasField("AddToPoLv"))
+		{
+			npcData.RemoveField("AddToPoLv");
 		}
 		num += this.GetNpcBigTuPoFenShu(npcId, true, isKuaiSu);
 		int num3 = num / 10 + 1;
@@ -429,12 +446,13 @@ public class NPCTuPo
 		npcData.SetField("exp", 0);
 		this.UpDateNpcData(npcId);
 		NpcJieSuanManager.inst.npcNoteBook.NoteJinDanSuccess(npcId, num3);
+		EventMag.Inst.SaveEvent(npcId, 1);
 	}
 
-	// Token: 0x060018A2 RID: 6306 RVA: 0x000DCA70 File Offset: 0x000DAC70
+	// Token: 0x060015EA RID: 5610 RVA: 0x000942B8 File Offset: 0x000924B8
 	public void NpcTuPoYuanYing(int npcId, bool isKuaiSu = false)
 	{
-		JSONObject npcData = NpcJieSuanManager.inst.getNpcData(npcId);
+		JSONObject npcData = NpcJieSuanManager.inst.GetNpcData(npcId);
 		int i = npcData["Level"].I;
 		int num = this.GetNpcBigTuPoLv(npcId, true, isKuaiSu);
 		if (npcData.HasField("YuanYingTime"))
@@ -447,12 +465,20 @@ public class NPCTuPo
 			num = 100;
 		}
 		num += jsonData.instance.NPCTuPuoDate["9"]["FailAddLv"].I * NpcJieSuanManager.inst.npcNoteBook.GetEventCount(npcId, 28);
+		if (npcData.HasField("AddToPoLv"))
+		{
+			num += npcData["AddToPoLv"].I;
+		}
 		if (num < NpcJieSuanManager.inst.getRandomInt(1, 100))
 		{
 			NpcJieSuanManager.inst.npcSetField.AddNpcExp(npcId, -jsonData.instance.NPCTuPuoDate["9"]["sunshi"].I);
 			NpcJieSuanManager.inst.npcNoteBook.NoteBigTuPoFail(npcId, 28);
 			NpcJieSuanManager.inst.npcStatus.SetNpcStatus(npcId, 1);
 			return;
+		}
+		if (npcData.HasField("AddToPoLv"))
+		{
+			npcData.RemoveField("AddToPoLv");
 		}
 		if (npcData.HasField("JinDanData"))
 		{
@@ -464,12 +490,13 @@ public class NPCTuPo
 		NpcJieSuanManager.inst.npcNoteBook.NoteYuanYingSuccess(npcId);
 		npcData.SetField("exp", 0);
 		this.UpDateNpcData(npcId);
+		EventMag.Inst.SaveEvent(npcId, 2);
 	}
 
-	// Token: 0x060018A3 RID: 6307 RVA: 0x000DCC2C File Offset: 0x000DAE2C
+	// Token: 0x060015EB RID: 5611 RVA: 0x000944B8 File Offset: 0x000926B8
 	public void NpcTuPoHuaShen(int npcId, bool isKuaiSu = false)
 	{
-		JSONObject npcData = NpcJieSuanManager.inst.getNpcData(npcId);
+		JSONObject npcData = NpcJieSuanManager.inst.GetNpcData(npcId);
 		int i = npcData["Level"].I;
 		int num = this.GetNpcBigTuPoLv(npcId, true, isKuaiSu);
 		if (npcData.HasField("HuaShengTime"))
@@ -481,6 +508,10 @@ public class NPCTuPo
 			}
 			num = 100;
 		}
+		if (npcData.HasField("AddToPoLv"))
+		{
+			num += npcData["AddToPoLv"].I;
+		}
 		num += jsonData.instance.NPCTuPuoDate["12"]["FailAddLv"].I * NpcJieSuanManager.inst.npcNoteBook.GetEventCount(npcId, 29);
 		if (num < NpcJieSuanManager.inst.getRandomInt(1, 100))
 		{
@@ -488,6 +519,10 @@ public class NPCTuPo
 			NpcJieSuanManager.inst.npcNoteBook.NoteBigTuPoFail(npcId, 29);
 			NpcJieSuanManager.inst.npcStatus.SetNpcStatus(npcId, 1);
 			return;
+		}
+		if (npcData.HasField("AddToPoLv"))
+		{
+			npcData.RemoveField("AddToPoLv");
 		}
 		int npcBigTuPoFenShu = this.GetNpcBigTuPoFenShu(npcId, true, isKuaiSu);
 		NpcJieSuanManager.inst.npcSetField.AddNpcHp(npcId, npcBigTuPoFenShu * 1200);
@@ -498,12 +533,13 @@ public class NPCTuPo
 		NpcJieSuanManager.inst.npcNoteBook.NoteHuaShenSuccess(npcId);
 		npcData.SetField("exp", 0);
 		this.UpDateNpcData(npcId);
+		EventMag.Inst.SaveEvent(npcId, 3);
 	}
 
-	// Token: 0x060018A4 RID: 6308 RVA: 0x000DCDD0 File Offset: 0x000DAFD0
+	// Token: 0x060015EC RID: 5612 RVA: 0x000946A0 File Offset: 0x000928A0
 	private void UpDateNpcData(int npcId)
 	{
-		JSONObject npcData = NpcJieSuanManager.inst.getNpcData(npcId);
+		JSONObject npcData = NpcJieSuanManager.inst.GetNpcData(npcId);
 		JSONObject jsonobject = jsonData.instance.LevelUpDataJsonData[npcData["Level"].I.ToString()];
 		NpcJieSuanManager.inst.npcSetField.AddNpcHp(npcId, jsonobject["AddHp"].I);
 		NpcJieSuanManager.inst.npcSetField.AddNpcShenShi(npcId, jsonobject["AddShenShi"].I);
@@ -529,7 +565,8 @@ public class NPCTuPo
 			npcData.SetField("staticSkills", jsonobject2["staticSkills"]);
 			npcData.SetField("xiuLianSpeed", FactoryManager.inst.npcFactory.getXiuLianSpeed(npcData["staticSkills"], (float)npcData["ziZhi"].I));
 			npcData.SetField("yuanying", jsonobject2["yuanying"]);
-			npcData.SetField("XinQuType", jsonobject2["XinQuType"]);
+			npcData.SetField("XinQuType", jsonobject2["XinQuType"].Copy());
+			jsonData.instance.MonstarCreatInterstingType(npcId);
 			npcData.SetField("HuaShenLingYu", jsonobject2["HuaShenLingYu"]);
 		}
 		NpcJieSuanManager.inst.UpdateNpcWuDao(npcId);
@@ -542,7 +579,7 @@ public class NPCTuPo
 		this.AuToWuDaoSkill(npcId);
 	}
 
-	// Token: 0x060018A5 RID: 6309 RVA: 0x000DD0E0 File Offset: 0x000DB2E0
+	// Token: 0x060015ED RID: 5613 RVA: 0x000949C0 File Offset: 0x00092BC0
 	public void AuToWuDaoSkill(int npcId)
 	{
 		JSONObject jsonobject = jsonData.instance.AvatarJsonData[npcId.ToString()];
@@ -576,10 +613,10 @@ public class NPCTuPo
 		}
 	}
 
-	// Token: 0x060018A6 RID: 6310 RVA: 0x000DD2D0 File Offset: 0x000DB4D0
+	// Token: 0x060015EE RID: 5614 RVA: 0x00094BB0 File Offset: 0x00092DB0
 	public int GetJinDanId(int npcId, int jinDanQuality)
 	{
-		JSONObject jsonobject = NpcJieSuanManager.inst.getNpcData(npcId)["JinDanType"];
+		JSONObject jsonobject = NpcJieSuanManager.inst.GetNpcData(npcId)["JinDanType"];
 		foreach (JSONObject jsonobject2 in jsonData.instance.JieDanBiao.list)
 		{
 			if (jsonobject.Count == 2)
@@ -597,10 +634,10 @@ public class NPCTuPo
 		return 0;
 	}
 
-	// Token: 0x060018A7 RID: 6311 RVA: 0x000DD444 File Offset: 0x000DB644
+	// Token: 0x060015EF RID: 5615 RVA: 0x00094D24 File Offset: 0x00092F24
 	public void NpcFlyToSky(int npcId)
 	{
-		JSONObject npcData = NpcJieSuanManager.inst.getNpcData(npcId);
+		JSONObject npcData = NpcJieSuanManager.inst.GetNpcData(npcId);
 		int npcBigTuPoLv = this.GetNpcBigTuPoLv(npcId, false, false);
 		if (NpcJieSuanManager.inst.getRandomInt(0, 100) > npcBigTuPoLv)
 		{
@@ -608,14 +645,15 @@ public class NPCTuPo
 			return;
 		}
 		npcData.SetField("IsFly", true);
+		EventMag.Inst.SaveEvent(npcId, 4);
 	}
 
-	// Token: 0x0400139E RID: 5022
+	// Token: 0x04001046 RID: 4166
 	private Dictionary<int, int> itemTuPoLvDictionary = new Dictionary<int, int>();
 
-	// Token: 0x0400139F RID: 5023
+	// Token: 0x04001047 RID: 4167
 	private Dictionary<int, int> itemTuPoFenShuDictionary = new Dictionary<int, int>();
 
-	// Token: 0x040013A0 RID: 5024
+	// Token: 0x04001048 RID: 4168
 	private Dictionary<int, int> itemTuPoUseNumDictionary = new Dictionary<int, int>();
 }

@@ -3,10 +3,10 @@ using Spine;
 using Spine.Unity;
 using UnityEngine;
 
-// Token: 0x0200065B RID: 1627
+// Token: 0x0200048C RID: 1164
 public class YSSpineAnimBehaviour : StateMachineBehaviour
 {
-	// Token: 0x0600289F RID: 10399 RVA: 0x000B6004 File Offset: 0x000B4204
+	// Token: 0x060024C5 RID: 9413 RVA: 0x000FE1B8 File Offset: 0x000FC3B8
 	private static SkeletonAnimation GetSkeAnim(Animator animator)
 	{
 		SkeletonAnimation skeletonAnimation = animator.GetComponent<SkeletonAnimation>();
@@ -17,7 +17,7 @@ public class YSSpineAnimBehaviour : StateMachineBehaviour
 		return skeletonAnimation;
 	}
 
-	// Token: 0x060028A0 RID: 10400 RVA: 0x0013D594 File Offset: 0x0013B794
+	// Token: 0x060024C6 RID: 9414 RVA: 0x000FE1E0 File Offset: 0x000FC3E0
 	public override void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
 	{
 		SkeletonAnimation skeAnim = YSSpineAnimBehaviour.GetSkeAnim(animator);

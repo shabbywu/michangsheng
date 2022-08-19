@@ -3,10 +3,10 @@ using UnityEngine;
 
 namespace GUIPackage
 {
-	// Token: 0x02000D92 RID: 3474
+	// Token: 0x02000A66 RID: 2662
 	public class ScrollBar : MonoBehaviour
 	{
-		// Token: 0x060053CD RID: 21453 RVA: 0x0003BEAF File Offset: 0x0003A0AF
+		// Token: 0x06004AC3 RID: 19139 RVA: 0x001FC7AA File Offset: 0x001FA9AA
 		private void OnScroll(float delta)
 		{
 			MonoBehaviour.print("sb");
@@ -14,7 +14,7 @@ namespace GUIPackage
 			base.transform.parent.parent.GetComponentInChildren<UIScrollBar>().value -= delta;
 		}
 
-		// Token: 0x0400537E RID: 21374
+		// Token: 0x040049E1 RID: 18913
 		public UIScrollView scrollView;
 	}
 }

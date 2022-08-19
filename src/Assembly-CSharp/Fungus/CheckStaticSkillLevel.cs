@@ -4,12 +4,12 @@ using UnityEngine;
 
 namespace Fungus
 {
-	// Token: 0x0200140D RID: 5133
+	// Token: 0x02000F57 RID: 3927
 	[CommandInfo("YS", "检测该功法等级是否达到目标等级", "检测该功法等级是否达到目标等级", 0)]
 	[AddComponentMenu("")]
 	public class CheckStaticSkillLevel : Command
 	{
-		// Token: 0x06007C90 RID: 31888 RVA: 0x002C5208 File Offset: 0x002C3408
+		// Token: 0x06006EA0 RID: 28320 RVA: 0x002A5308 File Offset: 0x002A3508
 		public override void OnEnter()
 		{
 			this.TempValue.Value = false;
@@ -24,13 +24,13 @@ namespace Fungus
 			this.Continue();
 		}
 
-		// Token: 0x06007C91 RID: 31889 RVA: 0x000113CF File Offset: 0x0000F5CF
+		// Token: 0x06006EA1 RID: 28321 RVA: 0x0005E228 File Offset: 0x0005C428
 		public override Color GetButtonColor()
 		{
 			return new Color32(184, 210, 235, byte.MaxValue);
 		}
 
-		// Token: 0x04006A8A RID: 27274
+		// Token: 0x04005BB8 RID: 23480
 		[Tooltip("需要进行检测的技能ID")]
 		[VariableProperty(new Type[]
 		{
@@ -39,7 +39,7 @@ namespace Fungus
 		[SerializeField]
 		protected IntegerVariable SkillID;
 
-		// Token: 0x04006A8B RID: 27275
+		// Token: 0x04005BB9 RID: 23481
 		[Tooltip("目标等级")]
 		[VariableProperty(new Type[]
 		{
@@ -48,7 +48,7 @@ namespace Fungus
 		[SerializeField]
 		protected IntegerVariable Level;
 
-		// Token: 0x04006A8C RID: 27276
+		// Token: 0x04005BBA RID: 23482
 		[Tooltip("获取到的值存放位置")]
 		[VariableProperty(new Type[]
 		{

@@ -5,16 +5,16 @@ using UnityEngine;
 using UnityEngine.UI;
 using WXB;
 
-// Token: 0x020003A5 RID: 933
+// Token: 0x0200027E RID: 638
 public class UINPCWuDaoSVItem : MonoBehaviour
 {
-	// Token: 0x060019FE RID: 6654 RVA: 0x00016512 File Offset: 0x00014712
+	// Token: 0x0600172E RID: 5934 RVA: 0x0009E3F8 File Offset: 0x0009C5F8
 	private void Awake()
 	{
 		this.RT = (base.transform as RectTransform);
 	}
 
-	// Token: 0x060019FF RID: 6655 RVA: 0x000E5C58 File Offset: 0x000E3E58
+	// Token: 0x0600172F RID: 5935 RVA: 0x0009E40C File Offset: 0x0009C60C
 	public void SetWuDao(UINPCWuDaoData data)
 	{
 		this.LevelText.text = UINPCWuDaoSVItem.LevelName[data.Level];
@@ -40,7 +40,7 @@ public class UINPCWuDaoSVItem : MonoBehaviour
 		this.SkillText.text = stringBuilder.ToString();
 	}
 
-	// Token: 0x06001A00 RID: 6656 RVA: 0x000E5D80 File Offset: 0x000E3F80
+	// Token: 0x06001730 RID: 5936 RVA: 0x0009E534 File Offset: 0x0009C734
 	private void Update()
 	{
 		if (this.RT.sizeDelta.y != 80f + this.SkillText.preferredHeight)
@@ -49,28 +49,28 @@ public class UINPCWuDaoSVItem : MonoBehaviour
 		}
 	}
 
-	// Token: 0x0400154F RID: 5455
+	// Token: 0x040011DC RID: 4572
 	public Image TypeImage;
 
-	// Token: 0x04001550 RID: 5456
+	// Token: 0x040011DD RID: 4573
 	public Image HengTiaoImage;
 
-	// Token: 0x04001551 RID: 5457
+	// Token: 0x040011DE RID: 4574
 	public Text LevelText;
 
-	// Token: 0x04001552 RID: 5458
+	// Token: 0x040011DF RID: 4575
 	public SymbolText SkillText;
 
-	// Token: 0x04001553 RID: 5459
+	// Token: 0x040011E0 RID: 4576
 	private RectTransform RT;
 
-	// Token: 0x04001554 RID: 5460
+	// Token: 0x040011E1 RID: 4577
 	private bool hasSkill;
 
-	// Token: 0x04001555 RID: 5461
+	// Token: 0x040011E2 RID: 4578
 	public List<Sprite> WuDaoTypeSprites = new List<Sprite>();
 
-	// Token: 0x04001556 RID: 5462
+	// Token: 0x040011E3 RID: 4579
 	private static List<string> LevelName = new List<string>
 	{
 		"一窍不通",

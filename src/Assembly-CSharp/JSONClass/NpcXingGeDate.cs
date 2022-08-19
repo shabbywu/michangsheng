@@ -3,10 +3,10 @@ using System.Collections.Generic;
 
 namespace JSONClass
 {
-	// Token: 0x02000C44 RID: 3140
+	// Token: 0x020008B6 RID: 2230
 	public class NpcXingGeDate : IJSONClass
 	{
-		// Token: 0x06004C79 RID: 19577 RVA: 0x00205300 File Offset: 0x00203500
+		// Token: 0x060040EB RID: 16619 RVA: 0x001BC680 File Offset: 0x001BA880
 		public static void InitDataDict()
 		{
 			foreach (JSONObject jsonobject in jsonData.instance.NpcXingGeDate.list)
@@ -39,24 +39,24 @@ namespace JSONClass
 			}
 		}
 
-		// Token: 0x06004C7A RID: 19578 RVA: 0x000042DD File Offset: 0x000024DD
+		// Token: 0x060040EC RID: 16620 RVA: 0x00004095 File Offset: 0x00002295
 		private static void OnInitFinish()
 		{
 		}
 
-		// Token: 0x04004AEC RID: 19180
+		// Token: 0x04003F98 RID: 16280
 		public static Dictionary<int, NpcXingGeDate> DataDict = new Dictionary<int, NpcXingGeDate>();
 
-		// Token: 0x04004AED RID: 19181
+		// Token: 0x04003F99 RID: 16281
 		public static List<NpcXingGeDate> DataList = new List<NpcXingGeDate>();
 
-		// Token: 0x04004AEE RID: 19182
+		// Token: 0x04003F9A RID: 16282
 		public static Action OnInitFinishAction = new Action(NpcXingGeDate.OnInitFinish);
 
-		// Token: 0x04004AEF RID: 19183
+		// Token: 0x04003F9B RID: 16283
 		public int id;
 
-		// Token: 0x04004AF0 RID: 19184
+		// Token: 0x04003F9C RID: 16284
 		public int zhengxie;
 	}
 }

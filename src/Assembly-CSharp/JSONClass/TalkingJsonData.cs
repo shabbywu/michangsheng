@@ -3,10 +3,10 @@ using System.Collections.Generic;
 
 namespace JSONClass
 {
-	// Token: 0x02000CF2 RID: 3314
+	// Token: 0x0200096E RID: 2414
 	public class TalkingJsonData : IJSONClass
 	{
-		// Token: 0x06004F30 RID: 20272 RVA: 0x00213630 File Offset: 0x00211830
+		// Token: 0x060043CA RID: 17354 RVA: 0x001CDBD8 File Offset: 0x001CBDD8
 		public static void InitDataDict()
 		{
 			foreach (JSONObject jsonobject in jsonData.instance.TalkingJsonData.list)
@@ -58,81 +58,81 @@ namespace JSONClass
 			}
 		}
 
-		// Token: 0x06004F31 RID: 20273 RVA: 0x000042DD File Offset: 0x000024DD
+		// Token: 0x060043CB RID: 17355 RVA: 0x00004095 File Offset: 0x00002295
 		private static void OnInitFinish()
 		{
 		}
 
-		// Token: 0x04004FDD RID: 20445
+		// Token: 0x040044CD RID: 17613
 		public static Dictionary<int, TalkingJsonData> DataDict = new Dictionary<int, TalkingJsonData>();
 
-		// Token: 0x04004FDE RID: 20446
+		// Token: 0x040044CE RID: 17614
 		public static List<TalkingJsonData> DataList = new List<TalkingJsonData>();
 
-		// Token: 0x04004FDF RID: 20447
+		// Token: 0x040044CF RID: 17615
 		public static Action OnInitFinishAction = new Action(TalkingJsonData.OnInitFinish);
 
-		// Token: 0x04004FE0 RID: 20448
+		// Token: 0x040044D0 RID: 17616
 		public int id;
 
-		// Token: 0x04004FE1 RID: 20449
+		// Token: 0x040044D1 RID: 17617
 		public int headID;
 
-		// Token: 0x04004FE2 RID: 20450
+		// Token: 0x040044D2 RID: 17618
 		public int menu1;
 
-		// Token: 0x04004FE3 RID: 20451
+		// Token: 0x040044D3 RID: 17619
 		public int menu2;
 
-		// Token: 0x04004FE4 RID: 20452
+		// Token: 0x040044D4 RID: 17620
 		public int menu3;
 
-		// Token: 0x04004FE5 RID: 20453
+		// Token: 0x040044D5 RID: 17621
 		public int menu4;
 
-		// Token: 0x04004FE6 RID: 20454
+		// Token: 0x040044D6 RID: 17622
 		public int menu5;
 
-		// Token: 0x04004FE7 RID: 20455
+		// Token: 0x040044D7 RID: 17623
 		public string sayname;
 
-		// Token: 0x04004FE8 RID: 20456
+		// Token: 0x040044D8 RID: 17624
 		public string title;
 
-		// Token: 0x04004FE9 RID: 20457
+		// Token: 0x040044D9 RID: 17625
 		public string body;
 
-		// Token: 0x04004FEA RID: 20458
+		// Token: 0x040044DA RID: 17626
 		public string funcFailMsg;
 
-		// Token: 0x04004FEB RID: 20459
+		// Token: 0x040044DB RID: 17627
 		public string func1;
 
-		// Token: 0x04004FEC RID: 20460
+		// Token: 0x040044DC RID: 17628
 		public string func2;
 
-		// Token: 0x04004FED RID: 20461
+		// Token: 0x040044DD RID: 17629
 		public string func3;
 
-		// Token: 0x04004FEE RID: 20462
+		// Token: 0x040044DE RID: 17630
 		public string func4;
 
-		// Token: 0x04004FEF RID: 20463
+		// Token: 0x040044DF RID: 17631
 		public string funcargs4;
 
-		// Token: 0x04004FF0 RID: 20464
+		// Token: 0x040044E0 RID: 17632
 		public string func5;
 
-		// Token: 0x04004FF1 RID: 20465
+		// Token: 0x040044E1 RID: 17633
 		public string funcargs5;
 
-		// Token: 0x04004FF2 RID: 20466
+		// Token: 0x040044E2 RID: 17634
 		public List<int> funcargs1 = new List<int>();
 
-		// Token: 0x04004FF3 RID: 20467
+		// Token: 0x040044E3 RID: 17635
 		public List<int> funcargs2 = new List<int>();
 
-		// Token: 0x04004FF4 RID: 20468
+		// Token: 0x040044E4 RID: 17636
 		public List<int> funcargs3 = new List<int>();
 	}
 }

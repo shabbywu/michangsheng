@@ -5,11 +5,11 @@ using KBEngine;
 
 namespace script.MenPaiTask
 {
-	// Token: 0x02000AD4 RID: 2772
+	// Token: 0x02000A05 RID: 2565
 	[Serializable]
 	public class MenPaiTaskMag
 	{
-		// Token: 0x060046B6 RID: 18102 RVA: 0x001E4278 File Offset: 0x001E2478
+		// Token: 0x06004707 RID: 18183 RVA: 0x001E1E6C File Offset: 0x001E006C
 		private void InitTaskDict()
 		{
 			this.TaskDict = new Dictionary<int, int>();
@@ -20,12 +20,12 @@ namespace script.MenPaiTask
 			this.TaskDict.Add(6, 4);
 		}
 
-		// Token: 0x060046B7 RID: 18103 RVA: 0x000042DD File Offset: 0x000024DD
+		// Token: 0x06004708 RID: 18184 RVA: 0x00004095 File Offset: 0x00002295
 		public void Init()
 		{
 		}
 
-		// Token: 0x060046B8 RID: 18104 RVA: 0x001E42D4 File Offset: 0x001E24D4
+		// Token: 0x06004709 RID: 18185 RVA: 0x001E1EC8 File Offset: 0x001E00C8
 		public void SendTask(int npcId)
 		{
 			int taskId = this.GetTaskId();
@@ -35,7 +35,7 @@ namespace script.MenPaiTask
 				player.nomelTaskMag.StartNTask(taskId, 1);
 				this.NowTaskId = taskId;
 				int chengHao = Tools.instance.getPlayer().chengHao;
-				int cd = MenPaiFengLuBiao.DataDict[chengHao - 1].CD;
+				int cd = MenPaiFengLuBiao.DataDict[chengHao].CD;
 				player.emailDateMag.AuToSendToPlayer(npcId, 995, 995, NpcJieSuanManager.inst.JieSuanTime, null);
 				while (this.NextTime <= NpcJieSuanManager.inst.GetNowTime() && cd > 0)
 				{
@@ -44,7 +44,7 @@ namespace script.MenPaiTask
 			}
 		}
 
-		// Token: 0x060046B9 RID: 18105 RVA: 0x001E438C File Offset: 0x001E258C
+		// Token: 0x0600470A RID: 18186 RVA: 0x001E1F80 File Offset: 0x001E0180
 		private int GetTaskId()
 		{
 			if (this.TaskDict == null || this.TaskDict.Count < 1)
@@ -52,29 +52,29 @@ namespace script.MenPaiTask
 				this.InitTaskDict();
 			}
 			Avatar player = Tools.instance.getPlayer();
-			return MenPaiFengLuBiao.DataDict[player.chengHao - 1].RenWu[this.TaskDict[(int)player.menPai]];
+			return MenPaiFengLuBiao.DataDict[player.chengHao].RenWu[this.TaskDict[(int)player.menPai]];
 		}
 
-		// Token: 0x060046BA RID: 18106 RVA: 0x001E43F0 File Offset: 0x001E25F0
+		// Token: 0x0600470B RID: 18187 RVA: 0x001E1FE0 File Offset: 0x001E01E0
 		public bool CheckNeedSend()
 		{
 			Avatar player = Tools.instance.getPlayer();
-			return player.menPai >= 1 && player.chengHao >= 7 && player.chengHao < 11 && !(NpcJieSuanManager.inst.GetNowTime() < this.NextTime);
+			return player.menPai >= 1 && player.chengHao >= 6 && player.chengHao <= 9 && !(NpcJieSuanManager.inst.GetNowTime() < this.NextTime);
 		}
 
-		// Token: 0x04003ECE RID: 16078
+		// Token: 0x0400484F RID: 18511
 		public int NowTaskId;
 
-		// Token: 0x04003ECF RID: 16079
+		// Token: 0x04004850 RID: 18512
 		public DateTime StartTime;
 
-		// Token: 0x04003ED0 RID: 16080
+		// Token: 0x04004851 RID: 18513
 		public DateTime NextTime;
 
-		// Token: 0x04003ED1 RID: 16081
+		// Token: 0x04004852 RID: 18514
 		public bool IsInit;
 
-		// Token: 0x04003ED2 RID: 16082
+		// Token: 0x04004853 RID: 18515
 		public Dictionary<int, int> TaskDict;
 	}
 }

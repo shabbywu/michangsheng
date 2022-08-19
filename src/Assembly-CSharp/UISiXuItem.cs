@@ -2,10 +2,10 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-// Token: 0x020003BA RID: 954
+// Token: 0x0200028C RID: 652
 public class UISiXuItem : MonoBehaviour
 {
-	// Token: 0x06001A73 RID: 6771 RVA: 0x000E9A30 File Offset: 0x000E7C30
+	// Token: 0x06001796 RID: 6038 RVA: 0x000A2604 File Offset: 0x000A0804
 	public void SetData(SiXuData sixudata)
 	{
 		this.data = sixudata;
@@ -15,7 +15,7 @@ public class UISiXuItem : MonoBehaviour
 		this.SiXuImage.sprite = UIBiGuanGanWuPanel.Inst.WuDaoTypeSpriteList[this.data.wuDaoFilter - 1];
 	}
 
-	// Token: 0x06001A74 RID: 6772 RVA: 0x00016889 File Offset: 0x00014A89
+	// Token: 0x06001797 RID: 6039 RVA: 0x000A2681 File Offset: 0x000A0881
 	public void OnToggleChanged(bool value)
 	{
 		if (value)
@@ -29,18 +29,18 @@ public class UISiXuItem : MonoBehaviour
 		UIBiGuanGanWuPanel.Inst.SetGanWu(UIBiGuanGanWuPanel.Inst.NowSiXu);
 	}
 
-	// Token: 0x040015D8 RID: 5592
+	// Token: 0x04001255 RID: 4693
 	public Image SiXuImage;
 
-	// Token: 0x040015D9 RID: 5593
+	// Token: 0x04001256 RID: 4694
 	public Text PinJieText;
 
-	// Token: 0x040015DA RID: 5594
+	// Token: 0x04001257 RID: 4695
 	public Text TypeText;
 
-	// Token: 0x040015DB RID: 5595
+	// Token: 0x04001258 RID: 4696
 	public Text TimeText;
 
-	// Token: 0x040015DC RID: 5596
+	// Token: 0x04001259 RID: 4697
 	private SiXuData data;
 }

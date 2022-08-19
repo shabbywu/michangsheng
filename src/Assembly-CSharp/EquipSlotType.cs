@@ -1,16 +1,16 @@
 ﻿using System;
 
-// Token: 0x02000536 RID: 1334
+// Token: 0x020003AB RID: 939
 public enum EquipSlotType
 {
-	// Token: 0x04001D7B RID: 7547
+	// Token: 0x04001907 RID: 6407
 	灵舟 = 1,
-	// Token: 0x04001D7C RID: 7548
+	// Token: 0x04001908 RID: 6408
 	武器1,
-	// Token: 0x04001D7D RID: 7549
+	// Token: 0x04001909 RID: 6409
 	武器2,
-	// Token: 0x04001D7E RID: 7550
+	// Token: 0x0400190A RID: 6410
 	衣服,
-	// Token: 0x04001D7F RID: 7551
+	// Token: 0x0400190B RID: 6411
 	饰品
 }

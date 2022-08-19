@@ -3,10 +3,10 @@ using UnityEngine;
 
 namespace GUIPackage
 {
-	// Token: 0x02000DA0 RID: 3488
+	// Token: 0x02000A71 RID: 2673
 	public class StoreCell : MonoBehaviour
 	{
-		// Token: 0x06005435 RID: 21557 RVA: 0x0023102C File Offset: 0x0022F22C
+		// Token: 0x06004B21 RID: 19233 RVA: 0x001FF340 File Offset: 0x001FD540
 		private void Update()
 		{
 			if (Singleton.store.store[this.storeID].itemID != -1)
@@ -17,7 +17,7 @@ namespace GUIPackage
 			}
 		}
 
-		// Token: 0x06005436 RID: 21558 RVA: 0x0003C420 File Offset: 0x0003A620
+		// Token: 0x06004B22 RID: 19234 RVA: 0x001FF3F0 File Offset: 0x001FD5F0
 		private void OnHover(bool isOver)
 		{
 			if (isOver)
@@ -29,16 +29,16 @@ namespace GUIPackage
 			Singleton.inventory.showTooltip = false;
 		}
 
-		// Token: 0x040053E9 RID: 21481
+		// Token: 0x04004A44 RID: 19012
 		public GameObject Icon;
 
-		// Token: 0x040053EA RID: 21482
+		// Token: 0x04004A45 RID: 19013
 		public GameObject Price;
 
-		// Token: 0x040053EB RID: 21483
+		// Token: 0x04004A46 RID: 19014
 		public GameObject Name;
 
-		// Token: 0x040053EC RID: 21484
+		// Token: 0x04004A47 RID: 19015
 		public int storeID;
 	}
 }

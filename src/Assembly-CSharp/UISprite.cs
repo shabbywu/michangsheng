@@ -1,13 +1,13 @@
 ﻿using System;
 using UnityEngine;
 
-// Token: 0x0200011A RID: 282
+// Token: 0x020000AE RID: 174
 [ExecuteInEditMode]
 [AddComponentMenu("NGUI/UI/NGUI Sprite")]
 public class UISprite : UIBasicSprite
 {
-	// Token: 0x170001C1 RID: 449
-	// (get) Token: 0x06000B15 RID: 2837 RVA: 0x0000D219 File Offset: 0x0000B419
+	// Token: 0x170001AA RID: 426
+	// (get) Token: 0x06000A39 RID: 2617 RVA: 0x0003DDB5 File Offset: 0x0003BFB5
 	public override Material material
 	{
 		get
@@ -20,9 +20,9 @@ public class UISprite : UIBasicSprite
 		}
 	}
 
-	// Token: 0x170001C2 RID: 450
-	// (get) Token: 0x06000B16 RID: 2838 RVA: 0x0000D236 File Offset: 0x0000B436
-	// (set) Token: 0x06000B17 RID: 2839 RVA: 0x0009076C File Offset: 0x0008E96C
+	// Token: 0x170001AB RID: 427
+	// (get) Token: 0x06000A3A RID: 2618 RVA: 0x0003DDD2 File Offset: 0x0003BFD2
+	// (set) Token: 0x06000A3B RID: 2619 RVA: 0x0003DDDC File Offset: 0x0003BFDC
 	public UIAtlas atlas
 	{
 		get
@@ -53,9 +53,9 @@ public class UISprite : UIBasicSprite
 		}
 	}
 
-	// Token: 0x170001C3 RID: 451
-	// (get) Token: 0x06000B18 RID: 2840 RVA: 0x0000D23E File Offset: 0x0000B43E
-	// (set) Token: 0x06000B19 RID: 2841 RVA: 0x00090828 File Offset: 0x0008EA28
+	// Token: 0x170001AC RID: 428
+	// (get) Token: 0x06000A3C RID: 2620 RVA: 0x0003DE97 File Offset: 0x0003C097
+	// (set) Token: 0x06000A3D RID: 2621 RVA: 0x0003DEA0 File Offset: 0x0003C0A0
 	public string spriteName
 	{
 		get
@@ -86,8 +86,8 @@ public class UISprite : UIBasicSprite
 		}
 	}
 
-	// Token: 0x170001C4 RID: 452
-	// (get) Token: 0x06000B1A RID: 2842 RVA: 0x0000D246 File Offset: 0x0000B446
+	// Token: 0x170001AD RID: 429
+	// (get) Token: 0x06000A3E RID: 2622 RVA: 0x0003DF0E File Offset: 0x0003C10E
 	public bool isValid
 	{
 		get
@@ -96,9 +96,9 @@ public class UISprite : UIBasicSprite
 		}
 	}
 
-	// Token: 0x170001C5 RID: 453
-	// (get) Token: 0x06000B1B RID: 2843 RVA: 0x0000D251 File Offset: 0x0000B451
-	// (set) Token: 0x06000B1C RID: 2844 RVA: 0x0000D25C File Offset: 0x0000B45C
+	// Token: 0x170001AE RID: 430
+	// (get) Token: 0x06000A3F RID: 2623 RVA: 0x0003DF19 File Offset: 0x0003C119
+	// (set) Token: 0x06000A40 RID: 2624 RVA: 0x0003DF24 File Offset: 0x0003C124
 	[Obsolete("Use 'centerType' instead")]
 	public bool fillCenter
 	{
@@ -116,8 +116,8 @@ public class UISprite : UIBasicSprite
 		}
 	}
 
-	// Token: 0x170001C6 RID: 454
-	// (get) Token: 0x06000B1D RID: 2845 RVA: 0x00090898 File Offset: 0x0008EA98
+	// Token: 0x170001AF RID: 431
+	// (get) Token: 0x06000A41 RID: 2625 RVA: 0x0003DF48 File Offset: 0x0003C148
 	public override Vector4 border
 	{
 		get
@@ -131,8 +131,8 @@ public class UISprite : UIBasicSprite
 		}
 	}
 
-	// Token: 0x170001C7 RID: 455
-	// (get) Token: 0x06000B1E RID: 2846 RVA: 0x0000D27D File Offset: 0x0000B47D
+	// Token: 0x170001B0 RID: 432
+	// (get) Token: 0x06000A42 RID: 2626 RVA: 0x0003DF87 File Offset: 0x0003C187
 	public override float pixelSize
 	{
 		get
@@ -145,8 +145,8 @@ public class UISprite : UIBasicSprite
 		}
 	}
 
-	// Token: 0x170001C8 RID: 456
-	// (get) Token: 0x06000B1F RID: 2847 RVA: 0x000908D8 File Offset: 0x0008EAD8
+	// Token: 0x170001B1 RID: 433
+	// (get) Token: 0x06000A43 RID: 2627 RVA: 0x0003DFA8 File Offset: 0x0003C1A8
 	public override int minWidth
 	{
 		get
@@ -166,8 +166,8 @@ public class UISprite : UIBasicSprite
 		}
 	}
 
-	// Token: 0x170001C9 RID: 457
-	// (get) Token: 0x06000B20 RID: 2848 RVA: 0x00090954 File Offset: 0x0008EB54
+	// Token: 0x170001B2 RID: 434
+	// (get) Token: 0x06000A44 RID: 2628 RVA: 0x0003E024 File Offset: 0x0003C224
 	public override int minHeight
 	{
 		get
@@ -187,8 +187,8 @@ public class UISprite : UIBasicSprite
 		}
 	}
 
-	// Token: 0x170001CA RID: 458
-	// (get) Token: 0x06000B21 RID: 2849 RVA: 0x000909D0 File Offset: 0x0008EBD0
+	// Token: 0x170001B3 RID: 435
+	// (get) Token: 0x06000A45 RID: 2629 RVA: 0x0003E0A0 File Offset: 0x0003C2A0
 	public override Vector4 drawingDimensions
 	{
 		get
@@ -253,8 +253,8 @@ public class UISprite : UIBasicSprite
 		}
 	}
 
-	// Token: 0x170001CB RID: 459
-	// (get) Token: 0x06000B22 RID: 2850 RVA: 0x0000D29E File Offset: 0x0000B49E
+	// Token: 0x170001B4 RID: 436
+	// (get) Token: 0x06000A46 RID: 2630 RVA: 0x0003E2DD File Offset: 0x0003C4DD
 	public override bool premultipliedAlpha
 	{
 		get
@@ -263,7 +263,7 @@ public class UISprite : UIBasicSprite
 		}
 	}
 
-	// Token: 0x06000B23 RID: 2851 RVA: 0x00090C10 File Offset: 0x0008EE10
+	// Token: 0x06000A47 RID: 2631 RVA: 0x0003E2FC File Offset: 0x0003C4FC
 	public UISpriteData GetAtlasSprite()
 	{
 		if (!this.mSpriteSet)
@@ -300,7 +300,7 @@ public class UISprite : UIBasicSprite
 		return this.mSprite;
 	}
 
-	// Token: 0x06000B24 RID: 2852 RVA: 0x00090CE8 File Offset: 0x0008EEE8
+	// Token: 0x06000A48 RID: 2632 RVA: 0x0003E3D4 File Offset: 0x0003C5D4
 	protected void SetAtlasSprite(UISpriteData sp)
 	{
 		this.mChanged = true;
@@ -315,7 +315,7 @@ public class UISprite : UIBasicSprite
 		this.mSprite = sp;
 	}
 
-	// Token: 0x06000B25 RID: 2853 RVA: 0x00090D48 File Offset: 0x0008EF48
+	// Token: 0x06000A49 RID: 2633 RVA: 0x0003E434 File Offset: 0x0003C634
 	public override void MakePixelPerfect()
 	{
 		if (!this.isValid)
@@ -354,7 +354,7 @@ public class UISprite : UIBasicSprite
 		}
 	}
 
-	// Token: 0x06000B26 RID: 2854 RVA: 0x0000D2BB File Offset: 0x0000B4BB
+	// Token: 0x06000A4A RID: 2634 RVA: 0x0003E4FE File Offset: 0x0003C6FE
 	protected override void OnInit()
 	{
 		if (!this.mFillCenter)
@@ -365,7 +365,7 @@ public class UISprite : UIBasicSprite
 		base.OnInit();
 	}
 
-	// Token: 0x06000B27 RID: 2855 RVA: 0x0000D2D9 File Offset: 0x0000B4D9
+	// Token: 0x06000A4B RID: 2635 RVA: 0x0003E51C File Offset: 0x0003C71C
 	protected override void OnUpdate()
 	{
 		base.OnUpdate();
@@ -377,7 +377,7 @@ public class UISprite : UIBasicSprite
 		}
 	}
 
-	// Token: 0x06000B28 RID: 2856 RVA: 0x00090E14 File Offset: 0x0008F014
+	// Token: 0x06000A4C RID: 2636 RVA: 0x0003E54C File Offset: 0x0003C74C
 	public override void OnFill(BetterList<Vector3> verts, BetterList<Vector2> uvs, BetterList<Color32> cols)
 	{
 		Texture mainTexture = this.mainTexture;
@@ -407,26 +407,26 @@ public class UISprite : UIBasicSprite
 		}
 	}
 
-	// Token: 0x040007D6 RID: 2006
+	// Token: 0x0400063F RID: 1599
 	[HideInInspector]
 	[SerializeField]
 	private UIAtlas mAtlas;
 
-	// Token: 0x040007D7 RID: 2007
+	// Token: 0x04000640 RID: 1600
 	[HideInInspector]
 	[SerializeField]
 	private string mSpriteName;
 
-	// Token: 0x040007D8 RID: 2008
+	// Token: 0x04000641 RID: 1601
 	[HideInInspector]
 	[SerializeField]
 	private bool mFillCenter = true;
 
-	// Token: 0x040007D9 RID: 2009
+	// Token: 0x04000642 RID: 1602
 	[NonSerialized]
 	protected UISpriteData mSprite;
 
-	// Token: 0x040007DA RID: 2010
+	// Token: 0x04000643 RID: 1603
 	[NonSerialized]
 	private bool mSpriteSet;
 }

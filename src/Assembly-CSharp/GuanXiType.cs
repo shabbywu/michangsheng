@@ -1,14 +1,14 @@
 ﻿using System;
 
-// Token: 0x020002D6 RID: 726
+// Token: 0x020001C9 RID: 457
 public enum GuanXiType
 {
-	// Token: 0x040011C1 RID: 4545
+	// Token: 0x04000E79 RID: 3705
 	None,
-	// Token: 0x040011C2 RID: 4546
+	// Token: 0x04000E7A RID: 3706
 	师傅,
-	// Token: 0x040011C3 RID: 4547
+	// Token: 0x04000E7B RID: 3707
 	道侣,
-	// Token: 0x040011C4 RID: 4548
+	// Token: 0x04000E7C RID: 3708
 	兄弟
 }

@@ -1,18 +1,25 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Runtime.Serialization;
 using Fungus;
 using PaiMai;
+using script.EventMsg;
+using script.ExchangeMeeting.Logic;
+using script.ExchangeMeeting.Logic.Interface;
+using script.ItemSource;
+using script.ItemSource.Interface;
 using script.MenPaiTask;
+using script.NewNpcJiaoHu;
 using script.YarnEditor.Manager;
 using Task;
 using YSGame.TianJiDaBi;
 
-// Token: 0x02000542 RID: 1346
+// Token: 0x020003B6 RID: 950
 [Serializable]
 public class StreamData
 {
-	// Token: 0x170002B1 RID: 689
-	// (get) Token: 0x06002258 RID: 8792 RVA: 0x0001C220 File Offset: 0x0001A420
+	// Token: 0x1700025F RID: 607
+	// (get) Token: 0x06001ED4 RID: 7892 RVA: 0x000D8497 File Offset: 0x000D6697
 	public PaiMaiDataMag PaiMaiDataMag
 	{
 		get
@@ -25,8 +32,8 @@ public class StreamData
 		}
 	}
 
-	// Token: 0x170002B2 RID: 690
-	// (get) Token: 0x06002259 RID: 8793 RVA: 0x0001C23B File Offset: 0x0001A43B
+	// Token: 0x17000260 RID: 608
+	// (get) Token: 0x06001ED5 RID: 7893 RVA: 0x000D84B2 File Offset: 0x000D66B2
 	public FungusSaveMgr FungusSaveMgr
 	{
 		get
@@ -39,8 +46,8 @@ public class StreamData
 		}
 	}
 
-	// Token: 0x170002B3 RID: 691
-	// (get) Token: 0x0600225A RID: 8794 RVA: 0x0001C256 File Offset: 0x0001A456
+	// Token: 0x17000261 RID: 609
+	// (get) Token: 0x06001ED6 RID: 7894 RVA: 0x000D84CD File Offset: 0x000D66CD
 	public FangAnData FangAnData
 	{
 		get
@@ -53,8 +60,8 @@ public class StreamData
 		}
 	}
 
-	// Token: 0x170002B4 RID: 692
-	// (get) Token: 0x0600225B RID: 8795 RVA: 0x0001C271 File Offset: 0x0001A471
+	// Token: 0x17000262 RID: 610
+	// (get) Token: 0x06001ED7 RID: 7895 RVA: 0x000D84E8 File Offset: 0x000D66E8
 	public TaskMag TaskMag
 	{
 		get
@@ -68,9 +75,9 @@ public class StreamData
 		}
 	}
 
-	// Token: 0x170002B5 RID: 693
-	// (get) Token: 0x0600225C RID: 8796 RVA: 0x0001C297 File Offset: 0x0001A497
-	// (set) Token: 0x0600225D RID: 8797 RVA: 0x0001C2B2 File Offset: 0x0001A4B2
+	// Token: 0x17000263 RID: 611
+	// (get) Token: 0x06001ED8 RID: 7896 RVA: 0x000D850E File Offset: 0x000D670E
+	// (set) Token: 0x06001ED9 RID: 7897 RVA: 0x000D8529 File Offset: 0x000D6729
 	public Dictionary<int, int> DanYaoBuFFDict
 	{
 		get
@@ -87,8 +94,8 @@ public class StreamData
 		}
 	}
 
-	// Token: 0x170002B6 RID: 694
-	// (get) Token: 0x0600225E RID: 8798 RVA: 0x0001C2BB File Offset: 0x0001A4BB
+	// Token: 0x17000264 RID: 612
+	// (get) Token: 0x06001EDA RID: 7898 RVA: 0x000D8532 File Offset: 0x000D6732
 	public TianJiDaBiSaveData TianJiDaBiSaveData
 	{
 		get
@@ -101,8 +108,8 @@ public class StreamData
 		}
 	}
 
-	// Token: 0x170002B7 RID: 695
-	// (get) Token: 0x0600225F RID: 8799 RVA: 0x0001C2D6 File Offset: 0x0001A4D6
+	// Token: 0x17000265 RID: 613
+	// (get) Token: 0x06001EDB RID: 7899 RVA: 0x000D854D File Offset: 0x000D674D
 	public SaveValueManager SaveValueManager
 	{
 		get
@@ -116,8 +123,8 @@ public class StreamData
 		}
 	}
 
-	// Token: 0x170002B8 RID: 696
-	// (get) Token: 0x06002260 RID: 8800 RVA: 0x0001C2FC File Offset: 0x0001A4FC
+	// Token: 0x17000266 RID: 614
+	// (get) Token: 0x06001EDC RID: 7900 RVA: 0x000D8573 File Offset: 0x000D6773
 	public MenPaiTaskMag MenPaiTaskMag
 	{
 		get
@@ -131,27 +138,129 @@ public class StreamData
 		}
 	}
 
-	// Token: 0x04001DAF RID: 7599
+	// Token: 0x17000267 RID: 615
+	// (get) Token: 0x06001EDD RID: 7901 RVA: 0x000D8599 File Offset: 0x000D6799
+	public EventMag EventMag
+	{
+		get
+		{
+			if (this._eventMag == null)
+			{
+				this._eventMag = new EventMag();
+			}
+			this._eventMag.Init();
+			return this._eventMag;
+		}
+	}
+
+	// Token: 0x17000268 RID: 616
+	// (get) Token: 0x06001EDE RID: 7902 RVA: 0x000D85BF File Offset: 0x000D67BF
+	public NpcJieSuanData NpcJieSuanData
+	{
+		get
+		{
+			if (this._npcJieSuanData == null)
+			{
+				this._npcJieSuanData = new NpcJieSuanData();
+			}
+			return this._npcJieSuanData;
+		}
+	}
+
+	// Token: 0x17000269 RID: 617
+	// (get) Token: 0x06001EDF RID: 7903 RVA: 0x000D85DA File Offset: 0x000D67DA
+	public ElderTaskMag ZhangLaoTaskMag
+	{
+		get
+		{
+			if (this._zhangLaoTaskMag == null)
+			{
+				this._zhangLaoTaskMag = new ElderTaskMag();
+			}
+			this._zhangLaoTaskMag.Init();
+			return this._zhangLaoTaskMag;
+		}
+	}
+
+	// Token: 0x1700026A RID: 618
+	// (get) Token: 0x06001EE0 RID: 7904 RVA: 0x000D8600 File Offset: 0x000D6800
+	public IExchangeSource ExchangeSource
+	{
+		get
+		{
+			if (this._exchangeSource == null)
+			{
+				this._exchangeSource = new ExchangeSource();
+				this._exchangeSource.Init();
+			}
+			return this._exchangeSource;
+		}
+	}
+
+	// Token: 0x1700026B RID: 619
+	// (get) Token: 0x06001EE1 RID: 7905 RVA: 0x000D8626 File Offset: 0x000D6826
+	public ABItemSource ABItemSource
+	{
+		get
+		{
+			if (this._abItemSource == null)
+			{
+				this._abItemSource = new ItemSource();
+				this._abItemSource.Init();
+			}
+			return this._abItemSource;
+		}
+	}
+
+	// Token: 0x06001EE2 RID: 7906 RVA: 0x000D864C File Offset: 0x000D684C
+	[OnDeserialized]
+	private void Init(StreamingContext context)
+	{
+		if (this.HasDefeatNpcList == null)
+		{
+			this.HasDefeatNpcList = new List<int>();
+		}
+	}
+
+	// Token: 0x0400193C RID: 6460
 	private PaiMaiDataMag _PaiMaiDataMag;
 
-	// Token: 0x04001DB0 RID: 7600
+	// Token: 0x0400193D RID: 6461
 	private FungusSaveMgr _fungusSaveMgr;
 
-	// Token: 0x04001DB1 RID: 7601
+	// Token: 0x0400193E RID: 6462
 	private FangAnData _fangAnData;
 
-	// Token: 0x04001DB2 RID: 7602
+	// Token: 0x0400193F RID: 6463
 	private TaskMag _taskMag;
 
-	// Token: 0x04001DB3 RID: 7603
+	// Token: 0x04001940 RID: 6464
 	private Dictionary<int, int> _danYaoBuFFDict;
 
-	// Token: 0x04001DB4 RID: 7604
+	// Token: 0x04001941 RID: 6465
 	private TianJiDaBiSaveData _tianJiDaBiSaveData;
 
-	// Token: 0x04001DB5 RID: 7605
+	// Token: 0x04001942 RID: 6466
 	private SaveValueManager _saveValueManager;
 
-	// Token: 0x04001DB6 RID: 7606
+	// Token: 0x04001943 RID: 6467
 	private MenPaiTaskMag _menPaiTaskMag;
+
+	// Token: 0x04001944 RID: 6468
+	private EventMag _eventMag;
+
+	// Token: 0x04001945 RID: 6469
+	private NpcJieSuanData _npcJieSuanData;
+
+	// Token: 0x04001946 RID: 6470
+	private ElderTaskMag _zhangLaoTaskMag;
+
+	// Token: 0x04001947 RID: 6471
+	private IExchangeSource _exchangeSource;
+
+	// Token: 0x04001948 RID: 6472
+	private ABItemSource _abItemSource;
+
+	// Token: 0x04001949 RID: 6473
+	public List<int> HasDefeatNpcList = new List<int>();
 }

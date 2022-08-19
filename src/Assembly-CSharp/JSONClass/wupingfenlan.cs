@@ -3,10 +3,10 @@ using System.Collections.Generic;
 
 namespace JSONClass
 {
-	// Token: 0x02000D0D RID: 3341
+	// Token: 0x0200098D RID: 2445
 	public class wupingfenlan : IJSONClass
 	{
-		// Token: 0x06004F9E RID: 20382 RVA: 0x00216258 File Offset: 0x00214458
+		// Token: 0x06004448 RID: 17480 RVA: 0x001D138C File Offset: 0x001CF58C
 		public static void InitDataDict()
 		{
 			foreach (JSONObject jsonobject in jsonData.instance.wupingfenlan.list)
@@ -39,24 +39,24 @@ namespace JSONClass
 			}
 		}
 
-		// Token: 0x06004F9F RID: 20383 RVA: 0x000042DD File Offset: 0x000024DD
+		// Token: 0x06004449 RID: 17481 RVA: 0x00004095 File Offset: 0x00002295
 		private static void OnInitFinish()
 		{
 		}
 
-		// Token: 0x040050E1 RID: 20705
+		// Token: 0x040045ED RID: 17901
 		public static Dictionary<int, wupingfenlan> DataDict = new Dictionary<int, wupingfenlan>();
 
-		// Token: 0x040050E2 RID: 20706
+		// Token: 0x040045EE RID: 17902
 		public static List<wupingfenlan> DataList = new List<wupingfenlan>();
 
-		// Token: 0x040050E3 RID: 20707
+		// Token: 0x040045EF RID: 17903
 		public static Action OnInitFinishAction = new Action(wupingfenlan.OnInitFinish);
 
-		// Token: 0x040050E4 RID: 20708
+		// Token: 0x040045F0 RID: 17904
 		public int id;
 
-		// Token: 0x040050E5 RID: 20709
+		// Token: 0x040045F1 RID: 17905
 		public List<int> ItemFlag = new List<int>();
 	}
 }

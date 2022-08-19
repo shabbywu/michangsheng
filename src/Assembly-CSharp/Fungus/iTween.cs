@@ -5,18 +5,18 @@ using UnityEngine;
 
 namespace Fungus
 {
-	// Token: 0x020013B3 RID: 5043
+	// Token: 0x02000F0A RID: 3850
 	[AddComponentMenu("")]
 	public class iTween : MonoBehaviour
 	{
-		// Token: 0x06007A25 RID: 31269 RVA: 0x0005350E File Offset: 0x0005170E
+		// Token: 0x06006C59 RID: 27737 RVA: 0x00298927 File Offset: 0x00296B27
 		public static void Init(GameObject target)
 		{
 			iTween.MoveBy(target, Vector3.zero, 0f);
 			iTween.cameraFade = null;
 		}
 
-		// Token: 0x06007A26 RID: 31270 RVA: 0x002B9A48 File Offset: 0x002B7C48
+		// Token: 0x06006C5A RID: 27738 RVA: 0x00298940 File Offset: 0x00296B40
 		public static void CameraFadeFrom(float amount, float time)
 		{
 			if (iTween.cameraFade)
@@ -33,7 +33,7 @@ namespace Fungus
 			Debug.LogError("iTween Error: You must first add a camera fade object with CameraFadeAdd() before atttempting to use camera fading.");
 		}
 
-		// Token: 0x06007A27 RID: 31271 RVA: 0x00053526 File Offset: 0x00051726
+		// Token: 0x06006C5B RID: 27739 RVA: 0x00298996 File Offset: 0x00296B96
 		public static void CameraFadeFrom(Hashtable args)
 		{
 			if (iTween.cameraFade)
@@ -44,7 +44,7 @@ namespace Fungus
 			Debug.LogError("iTween Error: You must first add a camera fade object with CameraFadeAdd() before atttempting to use camera fading.");
 		}
 
-		// Token: 0x06007A28 RID: 31272 RVA: 0x002B9AA0 File Offset: 0x002B7CA0
+		// Token: 0x06006C5C RID: 27740 RVA: 0x002989BC File Offset: 0x00296BBC
 		public static void CameraFadeTo(float amount, float time)
 		{
 			if (iTween.cameraFade)
@@ -61,7 +61,7 @@ namespace Fungus
 			Debug.LogError("iTween Error: You must first add a camera fade object with CameraFadeAdd() before atttempting to use camera fading.");
 		}
 
-		// Token: 0x06007A29 RID: 31273 RVA: 0x0005354A File Offset: 0x0005174A
+		// Token: 0x06006C5D RID: 27741 RVA: 0x00298A12 File Offset: 0x00296C12
 		public static void CameraFadeTo(Hashtable args)
 		{
 			if (iTween.cameraFade)
@@ -72,7 +72,7 @@ namespace Fungus
 			Debug.LogError("iTween Error: You must first add a camera fade object with CameraFadeAdd() before atttempting to use camera fading.");
 		}
 
-		// Token: 0x06007A2A RID: 31274 RVA: 0x002B9AF8 File Offset: 0x002B7CF8
+		// Token: 0x06006C5E RID: 27742 RVA: 0x00298A38 File Offset: 0x00296C38
 		public static void ValueTo(GameObject target, Hashtable args)
 		{
 			args = iTween.CleanArgs(args);
@@ -114,7 +114,7 @@ namespace Fungus
 			iTween.Launch(target, args);
 		}
 
-		// Token: 0x06007A2B RID: 31275 RVA: 0x0005356E File Offset: 0x0005176E
+		// Token: 0x06006C5F RID: 27743 RVA: 0x00298BC5 File Offset: 0x00296DC5
 		public static void FadeFrom(GameObject target, float alpha, float time)
 		{
 			iTween.FadeFrom(target, iTween.Hash(new object[]
@@ -126,13 +126,13 @@ namespace Fungus
 			}));
 		}
 
-		// Token: 0x06007A2C RID: 31276 RVA: 0x000535A3 File Offset: 0x000517A3
+		// Token: 0x06006C60 RID: 27744 RVA: 0x00298BFA File Offset: 0x00296DFA
 		public static void FadeFrom(GameObject target, Hashtable args)
 		{
 			iTween.ColorFrom(target, args);
 		}
 
-		// Token: 0x06007A2D RID: 31277 RVA: 0x000535AC File Offset: 0x000517AC
+		// Token: 0x06006C61 RID: 27745 RVA: 0x00298C03 File Offset: 0x00296E03
 		public static void FadeTo(GameObject target, float alpha, float time)
 		{
 			iTween.FadeTo(target, iTween.Hash(new object[]
@@ -144,13 +144,13 @@ namespace Fungus
 			}));
 		}
 
-		// Token: 0x06007A2E RID: 31278 RVA: 0x000535E1 File Offset: 0x000517E1
+		// Token: 0x06006C62 RID: 27746 RVA: 0x00298C38 File Offset: 0x00296E38
 		public static void FadeTo(GameObject target, Hashtable args)
 		{
 			iTween.ColorTo(target, args);
 		}
 
-		// Token: 0x06007A2F RID: 31279 RVA: 0x000535EA File Offset: 0x000517EA
+		// Token: 0x06006C63 RID: 27747 RVA: 0x00298C41 File Offset: 0x00296E41
 		public static void ColorFrom(GameObject target, Color color, float time)
 		{
 			iTween.ColorFrom(target, iTween.Hash(new object[]
@@ -162,7 +162,7 @@ namespace Fungus
 			}));
 		}
 
-		// Token: 0x06007A30 RID: 31280 RVA: 0x002B9C88 File Offset: 0x002B7E88
+		// Token: 0x06006C64 RID: 27748 RVA: 0x00298C78 File Offset: 0x00296E78
 		public static void ColorFrom(GameObject target, Hashtable args)
 		{
 			Color color = default(Color);
@@ -237,7 +237,7 @@ namespace Fungus
 			iTween.Launch(target, args);
 		}
 
-		// Token: 0x06007A31 RID: 31281 RVA: 0x0005361F File Offset: 0x0005181F
+		// Token: 0x06006C65 RID: 27749 RVA: 0x00298F0C File Offset: 0x0029710C
 		public static void ColorTo(GameObject target, Color color, float time)
 		{
 			iTween.ColorTo(target, iTween.Hash(new object[]
@@ -249,7 +249,7 @@ namespace Fungus
 			}));
 		}
 
-		// Token: 0x06007A32 RID: 31282 RVA: 0x002B9F1C File Offset: 0x002B811C
+		// Token: 0x06006C66 RID: 27750 RVA: 0x00298F44 File Offset: 0x00297144
 		public static void ColorTo(GameObject target, Hashtable args)
 		{
 			args = iTween.CleanArgs(args);
@@ -272,7 +272,7 @@ namespace Fungus
 			iTween.Launch(target, args);
 		}
 
-		// Token: 0x06007A33 RID: 31283 RVA: 0x002BA004 File Offset: 0x002B8204
+		// Token: 0x06006C67 RID: 27751 RVA: 0x0029902C File Offset: 0x0029722C
 		public static void AudioFrom(GameObject target, float volume, float pitch, float time)
 		{
 			iTween.AudioFrom(target, iTween.Hash(new object[]
@@ -286,7 +286,7 @@ namespace Fungus
 			}));
 		}
 
-		// Token: 0x06007A34 RID: 31284 RVA: 0x002BA058 File Offset: 0x002B8258
+		// Token: 0x06006C68 RID: 27752 RVA: 0x00299080 File Offset: 0x00297280
 		public static void AudioFrom(GameObject target, Hashtable args)
 		{
 			args = iTween.CleanArgs(args);
@@ -329,7 +329,7 @@ namespace Fungus
 			iTween.Launch(target, args);
 		}
 
-		// Token: 0x06007A35 RID: 31285 RVA: 0x002BA1B0 File Offset: 0x002B83B0
+		// Token: 0x06006C69 RID: 27753 RVA: 0x002991D8 File Offset: 0x002973D8
 		public static void AudioTo(GameObject target, float volume, float pitch, float time)
 		{
 			iTween.AudioTo(target, iTween.Hash(new object[]
@@ -343,7 +343,7 @@ namespace Fungus
 			}));
 		}
 
-		// Token: 0x06007A36 RID: 31286 RVA: 0x002BA204 File Offset: 0x002B8404
+		// Token: 0x06006C6A RID: 27754 RVA: 0x0029922C File Offset: 0x0029742C
 		public static void AudioTo(GameObject target, Hashtable args)
 		{
 			args = iTween.CleanArgs(args);
@@ -356,7 +356,7 @@ namespace Fungus
 			iTween.Launch(target, args);
 		}
 
-		// Token: 0x06007A37 RID: 31287 RVA: 0x00053654 File Offset: 0x00051854
+		// Token: 0x06006C6B RID: 27755 RVA: 0x00299287 File Offset: 0x00297487
 		public static void Stab(GameObject target, AudioClip audioclip, float delay)
 		{
 			iTween.Stab(target, iTween.Hash(new object[]
@@ -368,7 +368,7 @@ namespace Fungus
 			}));
 		}
 
-		// Token: 0x06007A38 RID: 31288 RVA: 0x00053684 File Offset: 0x00051884
+		// Token: 0x06006C6C RID: 27756 RVA: 0x002992B7 File Offset: 0x002974B7
 		public static void Stab(GameObject target, Hashtable args)
 		{
 			args = iTween.CleanArgs(args);
@@ -376,7 +376,7 @@ namespace Fungus
 			iTween.Launch(target, args);
 		}
 
-		// Token: 0x06007A39 RID: 31289 RVA: 0x000536A5 File Offset: 0x000518A5
+		// Token: 0x06006C6D RID: 27757 RVA: 0x002992D8 File Offset: 0x002974D8
 		public static void LookFrom(GameObject target, Vector3 looktarget, float time)
 		{
 			iTween.LookFrom(target, iTween.Hash(new object[]
@@ -388,7 +388,7 @@ namespace Fungus
 			}));
 		}
 
-		// Token: 0x06007A3A RID: 31290 RVA: 0x002BA260 File Offset: 0x002B8460
+		// Token: 0x06006C6E RID: 27758 RVA: 0x00299310 File Offset: 0x00297510
 		public static void LookFrom(GameObject target, Hashtable args)
 		{
 			args = iTween.CleanArgs(args);
@@ -434,7 +434,7 @@ namespace Fungus
 			iTween.Launch(target, args);
 		}
 
-		// Token: 0x06007A3B RID: 31291 RVA: 0x000536DA File Offset: 0x000518DA
+		// Token: 0x06006C6F RID: 27759 RVA: 0x002994E7 File Offset: 0x002976E7
 		public static void LookTo(GameObject target, Vector3 looktarget, float time)
 		{
 			iTween.LookTo(target, iTween.Hash(new object[]
@@ -446,7 +446,7 @@ namespace Fungus
 			}));
 		}
 
-		// Token: 0x06007A3C RID: 31292 RVA: 0x002BA438 File Offset: 0x002B8638
+		// Token: 0x06006C70 RID: 27760 RVA: 0x0029951C File Offset: 0x0029771C
 		public static void LookTo(GameObject target, Hashtable args)
 		{
 			args = iTween.CleanArgs(args);
@@ -461,7 +461,7 @@ namespace Fungus
 			iTween.Launch(target, args);
 		}
 
-		// Token: 0x06007A3D RID: 31293 RVA: 0x0005370F File Offset: 0x0005190F
+		// Token: 0x06006C71 RID: 27761 RVA: 0x00299606 File Offset: 0x00297806
 		public static void MoveTo(GameObject target, Vector3 position, float time)
 		{
 			iTween.MoveTo(target, iTween.Hash(new object[]
@@ -473,7 +473,7 @@ namespace Fungus
 			}));
 		}
 
-		// Token: 0x06007A3E RID: 31294 RVA: 0x002BA524 File Offset: 0x002B8724
+		// Token: 0x06006C72 RID: 27762 RVA: 0x0029963C File Offset: 0x0029783C
 		public static void MoveTo(GameObject target, Hashtable args)
 		{
 			args = iTween.CleanArgs(args);
@@ -489,7 +489,7 @@ namespace Fungus
 			iTween.Launch(target, args);
 		}
 
-		// Token: 0x06007A3F RID: 31295 RVA: 0x00053744 File Offset: 0x00051944
+		// Token: 0x06006C73 RID: 27763 RVA: 0x0029975F File Offset: 0x0029795F
 		public static void MoveFrom(GameObject target, Vector3 position, float time)
 		{
 			iTween.MoveFrom(target, iTween.Hash(new object[]
@@ -501,7 +501,7 @@ namespace Fungus
 			}));
 		}
 
-		// Token: 0x06007A40 RID: 31296 RVA: 0x002BA648 File Offset: 0x002B8848
+		// Token: 0x06006C74 RID: 27764 RVA: 0x00299794 File Offset: 0x00297994
 		public static void MoveFrom(GameObject target, Hashtable args)
 		{
 			args = iTween.CleanArgs(args);
@@ -614,7 +614,7 @@ namespace Fungus
 			iTween.Launch(target, args);
 		}
 
-		// Token: 0x06007A41 RID: 31297 RVA: 0x00053779 File Offset: 0x00051979
+		// Token: 0x06006C75 RID: 27765 RVA: 0x00299AA4 File Offset: 0x00297CA4
 		public static void MoveAdd(GameObject target, Vector3 amount, float time)
 		{
 			iTween.MoveAdd(target, iTween.Hash(new object[]
@@ -626,7 +626,7 @@ namespace Fungus
 			}));
 		}
 
-		// Token: 0x06007A42 RID: 31298 RVA: 0x000537AE File Offset: 0x000519AE
+		// Token: 0x06006C76 RID: 27766 RVA: 0x00299AD9 File Offset: 0x00297CD9
 		public static void MoveAdd(GameObject target, Hashtable args)
 		{
 			args = iTween.CleanArgs(args);
@@ -635,7 +635,7 @@ namespace Fungus
 			iTween.Launch(target, args);
 		}
 
-		// Token: 0x06007A43 RID: 31299 RVA: 0x000537DF File Offset: 0x000519DF
+		// Token: 0x06006C77 RID: 27767 RVA: 0x00299B0A File Offset: 0x00297D0A
 		public static void MoveBy(GameObject target, Vector3 amount, float time)
 		{
 			iTween.MoveBy(target, iTween.Hash(new object[]
@@ -647,7 +647,7 @@ namespace Fungus
 			}));
 		}
 
-		// Token: 0x06007A44 RID: 31300 RVA: 0x00053814 File Offset: 0x00051A14
+		// Token: 0x06006C78 RID: 27768 RVA: 0x00299B3F File Offset: 0x00297D3F
 		public static void MoveBy(GameObject target, Hashtable args)
 		{
 			args = iTween.CleanArgs(args);
@@ -656,7 +656,7 @@ namespace Fungus
 			iTween.Launch(target, args);
 		}
 
-		// Token: 0x06007A45 RID: 31301 RVA: 0x00053845 File Offset: 0x00051A45
+		// Token: 0x06006C79 RID: 27769 RVA: 0x00299B70 File Offset: 0x00297D70
 		public static void ScaleTo(GameObject target, Vector3 scale, float time)
 		{
 			iTween.ScaleTo(target, iTween.Hash(new object[]
@@ -668,7 +668,7 @@ namespace Fungus
 			}));
 		}
 
-		// Token: 0x06007A46 RID: 31302 RVA: 0x002BA958 File Offset: 0x002B8B58
+		// Token: 0x06006C7A RID: 27770 RVA: 0x00299BA8 File Offset: 0x00297DA8
 		public static void ScaleTo(GameObject target, Hashtable args)
 		{
 			args = iTween.CleanArgs(args);
@@ -684,7 +684,7 @@ namespace Fungus
 			iTween.Launch(target, args);
 		}
 
-		// Token: 0x06007A47 RID: 31303 RVA: 0x0005387A File Offset: 0x00051A7A
+		// Token: 0x06006C7B RID: 27771 RVA: 0x00299CCB File Offset: 0x00297ECB
 		public static void ScaleFrom(GameObject target, Vector3 scale, float time)
 		{
 			iTween.ScaleFrom(target, iTween.Hash(new object[]
@@ -696,7 +696,7 @@ namespace Fungus
 			}));
 		}
 
-		// Token: 0x06007A48 RID: 31304 RVA: 0x002BAA7C File Offset: 0x002B8C7C
+		// Token: 0x06006C7C RID: 27772 RVA: 0x00299D00 File Offset: 0x00297F00
 		public static void ScaleFrom(GameObject target, Hashtable args)
 		{
 			args = iTween.CleanArgs(args);
@@ -735,7 +735,7 @@ namespace Fungus
 			iTween.Launch(target, args);
 		}
 
-		// Token: 0x06007A49 RID: 31305 RVA: 0x000538AF File Offset: 0x00051AAF
+		// Token: 0x06006C7D RID: 27773 RVA: 0x00299E50 File Offset: 0x00298050
 		public static void ScaleAdd(GameObject target, Vector3 amount, float time)
 		{
 			iTween.ScaleAdd(target, iTween.Hash(new object[]
@@ -747,7 +747,7 @@ namespace Fungus
 			}));
 		}
 
-		// Token: 0x06007A4A RID: 31306 RVA: 0x000538E4 File Offset: 0x00051AE4
+		// Token: 0x06006C7E RID: 27774 RVA: 0x00299E85 File Offset: 0x00298085
 		public static void ScaleAdd(GameObject target, Hashtable args)
 		{
 			args = iTween.CleanArgs(args);
@@ -756,7 +756,7 @@ namespace Fungus
 			iTween.Launch(target, args);
 		}
 
-		// Token: 0x06007A4B RID: 31307 RVA: 0x00053915 File Offset: 0x00051B15
+		// Token: 0x06006C7F RID: 27775 RVA: 0x00299EB6 File Offset: 0x002980B6
 		public static void ScaleBy(GameObject target, Vector3 amount, float time)
 		{
 			iTween.ScaleBy(target, iTween.Hash(new object[]
@@ -768,7 +768,7 @@ namespace Fungus
 			}));
 		}
 
-		// Token: 0x06007A4C RID: 31308 RVA: 0x0005394A File Offset: 0x00051B4A
+		// Token: 0x06006C80 RID: 27776 RVA: 0x00299EEB File Offset: 0x002980EB
 		public static void ScaleBy(GameObject target, Hashtable args)
 		{
 			args = iTween.CleanArgs(args);
@@ -777,7 +777,7 @@ namespace Fungus
 			iTween.Launch(target, args);
 		}
 
-		// Token: 0x06007A4D RID: 31309 RVA: 0x0005397B File Offset: 0x00051B7B
+		// Token: 0x06006C81 RID: 27777 RVA: 0x00299F1C File Offset: 0x0029811C
 		public static void RotateTo(GameObject target, Vector3 rotation, float time)
 		{
 			iTween.RotateTo(target, iTween.Hash(new object[]
@@ -789,7 +789,7 @@ namespace Fungus
 			}));
 		}
 
-		// Token: 0x06007A4E RID: 31310 RVA: 0x002BABCC File Offset: 0x002B8DCC
+		// Token: 0x06006C82 RID: 27778 RVA: 0x00299F54 File Offset: 0x00298154
 		public static void RotateTo(GameObject target, Hashtable args)
 		{
 			args = iTween.CleanArgs(args);
@@ -805,7 +805,7 @@ namespace Fungus
 			iTween.Launch(target, args);
 		}
 
-		// Token: 0x06007A4F RID: 31311 RVA: 0x000539B0 File Offset: 0x00051BB0
+		// Token: 0x06006C83 RID: 27779 RVA: 0x0029A077 File Offset: 0x00298277
 		public static void RotateFrom(GameObject target, Vector3 rotation, float time)
 		{
 			iTween.RotateFrom(target, iTween.Hash(new object[]
@@ -817,7 +817,7 @@ namespace Fungus
 			}));
 		}
 
-		// Token: 0x06007A50 RID: 31312 RVA: 0x002BACF0 File Offset: 0x002B8EF0
+		// Token: 0x06006C84 RID: 27780 RVA: 0x0029A0AC File Offset: 0x002982AC
 		public static void RotateFrom(GameObject target, Hashtable args)
 		{
 			args = iTween.CleanArgs(args);
@@ -880,7 +880,7 @@ namespace Fungus
 			iTween.Launch(target, args);
 		}
 
-		// Token: 0x06007A51 RID: 31313 RVA: 0x000539E5 File Offset: 0x00051BE5
+		// Token: 0x06006C85 RID: 27781 RVA: 0x0029A246 File Offset: 0x00298446
 		public static void RotateAdd(GameObject target, Vector3 amount, float time)
 		{
 			iTween.RotateAdd(target, iTween.Hash(new object[]
@@ -892,7 +892,7 @@ namespace Fungus
 			}));
 		}
 
-		// Token: 0x06007A52 RID: 31314 RVA: 0x00053A1A File Offset: 0x00051C1A
+		// Token: 0x06006C86 RID: 27782 RVA: 0x0029A27B File Offset: 0x0029847B
 		public static void RotateAdd(GameObject target, Hashtable args)
 		{
 			args = iTween.CleanArgs(args);
@@ -901,7 +901,7 @@ namespace Fungus
 			iTween.Launch(target, args);
 		}
 
-		// Token: 0x06007A53 RID: 31315 RVA: 0x00053A4B File Offset: 0x00051C4B
+		// Token: 0x06006C87 RID: 27783 RVA: 0x0029A2AC File Offset: 0x002984AC
 		public static void RotateBy(GameObject target, Vector3 amount, float time)
 		{
 			iTween.RotateBy(target, iTween.Hash(new object[]
@@ -913,7 +913,7 @@ namespace Fungus
 			}));
 		}
 
-		// Token: 0x06007A54 RID: 31316 RVA: 0x00053A80 File Offset: 0x00051C80
+		// Token: 0x06006C88 RID: 27784 RVA: 0x0029A2E1 File Offset: 0x002984E1
 		public static void RotateBy(GameObject target, Hashtable args)
 		{
 			args = iTween.CleanArgs(args);
@@ -922,7 +922,7 @@ namespace Fungus
 			iTween.Launch(target, args);
 		}
 
-		// Token: 0x06007A55 RID: 31317 RVA: 0x00053AB1 File Offset: 0x00051CB1
+		// Token: 0x06006C89 RID: 27785 RVA: 0x0029A312 File Offset: 0x00298512
 		public static void ShakePosition(GameObject target, Vector3 amount, float time)
 		{
 			iTween.ShakePosition(target, iTween.Hash(new object[]
@@ -934,7 +934,7 @@ namespace Fungus
 			}));
 		}
 
-		// Token: 0x06007A56 RID: 31318 RVA: 0x00053AE6 File Offset: 0x00051CE6
+		// Token: 0x06006C8A RID: 27786 RVA: 0x0029A347 File Offset: 0x00298547
 		public static void ShakePosition(GameObject target, Hashtable args)
 		{
 			args = iTween.CleanArgs(args);
@@ -943,7 +943,7 @@ namespace Fungus
 			iTween.Launch(target, args);
 		}
 
-		// Token: 0x06007A57 RID: 31319 RVA: 0x00053B17 File Offset: 0x00051D17
+		// Token: 0x06006C8B RID: 27787 RVA: 0x0029A378 File Offset: 0x00298578
 		public static void ShakeScale(GameObject target, Vector3 amount, float time)
 		{
 			iTween.ShakeScale(target, iTween.Hash(new object[]
@@ -955,7 +955,7 @@ namespace Fungus
 			}));
 		}
 
-		// Token: 0x06007A58 RID: 31320 RVA: 0x00053B4C File Offset: 0x00051D4C
+		// Token: 0x06006C8C RID: 27788 RVA: 0x0029A3AD File Offset: 0x002985AD
 		public static void ShakeScale(GameObject target, Hashtable args)
 		{
 			args = iTween.CleanArgs(args);
@@ -964,7 +964,7 @@ namespace Fungus
 			iTween.Launch(target, args);
 		}
 
-		// Token: 0x06007A59 RID: 31321 RVA: 0x00053B7D File Offset: 0x00051D7D
+		// Token: 0x06006C8D RID: 27789 RVA: 0x0029A3DE File Offset: 0x002985DE
 		public static void ShakeRotation(GameObject target, Vector3 amount, float time)
 		{
 			iTween.ShakeRotation(target, iTween.Hash(new object[]
@@ -976,7 +976,7 @@ namespace Fungus
 			}));
 		}
 
-		// Token: 0x06007A5A RID: 31322 RVA: 0x00053BB2 File Offset: 0x00051DB2
+		// Token: 0x06006C8E RID: 27790 RVA: 0x0029A413 File Offset: 0x00298613
 		public static void ShakeRotation(GameObject target, Hashtable args)
 		{
 			args = iTween.CleanArgs(args);
@@ -985,7 +985,7 @@ namespace Fungus
 			iTween.Launch(target, args);
 		}
 
-		// Token: 0x06007A5B RID: 31323 RVA: 0x00053BE3 File Offset: 0x00051DE3
+		// Token: 0x06006C8F RID: 27791 RVA: 0x0029A444 File Offset: 0x00298644
 		public static void PunchPosition(GameObject target, Vector3 amount, float time)
 		{
 			iTween.PunchPosition(target, iTween.Hash(new object[]
@@ -997,7 +997,7 @@ namespace Fungus
 			}));
 		}
 
-		// Token: 0x06007A5C RID: 31324 RVA: 0x002BAE8C File Offset: 0x002B908C
+		// Token: 0x06006C90 RID: 27792 RVA: 0x0029A47C File Offset: 0x0029867C
 		public static void PunchPosition(GameObject target, Hashtable args)
 		{
 			args = iTween.CleanArgs(args);
@@ -1007,7 +1007,7 @@ namespace Fungus
 			iTween.Launch(target, args);
 		}
 
-		// Token: 0x06007A5D RID: 31325 RVA: 0x00053C18 File Offset: 0x00051E18
+		// Token: 0x06006C91 RID: 27793 RVA: 0x0029A4CA File Offset: 0x002986CA
 		public static void PunchRotation(GameObject target, Vector3 amount, float time)
 		{
 			iTween.PunchRotation(target, iTween.Hash(new object[]
@@ -1019,7 +1019,7 @@ namespace Fungus
 			}));
 		}
 
-		// Token: 0x06007A5E RID: 31326 RVA: 0x002BAEDC File Offset: 0x002B90DC
+		// Token: 0x06006C92 RID: 27794 RVA: 0x0029A500 File Offset: 0x00298700
 		public static void PunchRotation(GameObject target, Hashtable args)
 		{
 			args = iTween.CleanArgs(args);
@@ -1029,7 +1029,7 @@ namespace Fungus
 			iTween.Launch(target, args);
 		}
 
-		// Token: 0x06007A5F RID: 31327 RVA: 0x00053C4D File Offset: 0x00051E4D
+		// Token: 0x06006C93 RID: 27795 RVA: 0x0029A54E File Offset: 0x0029874E
 		public static void PunchScale(GameObject target, Vector3 amount, float time)
 		{
 			iTween.PunchScale(target, iTween.Hash(new object[]
@@ -1041,7 +1041,7 @@ namespace Fungus
 			}));
 		}
 
-		// Token: 0x06007A60 RID: 31328 RVA: 0x002BAF2C File Offset: 0x002B912C
+		// Token: 0x06006C94 RID: 27796 RVA: 0x0029A584 File Offset: 0x00298784
 		public static void PunchScale(GameObject target, Hashtable args)
 		{
 			args = iTween.CleanArgs(args);
@@ -1051,7 +1051,7 @@ namespace Fungus
 			iTween.Launch(target, args);
 		}
 
-		// Token: 0x06007A61 RID: 31329 RVA: 0x002BAF7C File Offset: 0x002B917C
+		// Token: 0x06006C95 RID: 27797 RVA: 0x0029A5D4 File Offset: 0x002987D4
 		private void GenerateTargets()
 		{
 			string text = this.type;
@@ -1317,7 +1317,7 @@ namespace Fungus
 			}
 		}
 
-		// Token: 0x06007A62 RID: 31330 RVA: 0x002BB4A4 File Offset: 0x002B96A4
+		// Token: 0x06006C96 RID: 27798 RVA: 0x0029AAFC File Offset: 0x00298CFC
 		private void GenerateRectTargets()
 		{
 			this.rects = new Rect[3];
@@ -1325,7 +1325,7 @@ namespace Fungus
 			this.rects[1] = (Rect)this.tweenArguments["to"];
 		}
 
-		// Token: 0x06007A63 RID: 31331 RVA: 0x002BB500 File Offset: 0x002B9700
+		// Token: 0x06006C97 RID: 27799 RVA: 0x0029AB58 File Offset: 0x00298D58
 		private void GenerateColorTargets()
 		{
 			this.colors = new Color[1, 3];
@@ -1333,7 +1333,7 @@ namespace Fungus
 			this.colors[0, 1] = (Color)this.tweenArguments["to"];
 		}
 
-		// Token: 0x06007A64 RID: 31332 RVA: 0x002BB560 File Offset: 0x002B9760
+		// Token: 0x06006C98 RID: 27800 RVA: 0x0029ABB8 File Offset: 0x00298DB8
 		private void GenerateVector3Targets()
 		{
 			this.vector3s = new Vector3[3];
@@ -1346,7 +1346,7 @@ namespace Fungus
 			}
 		}
 
-		// Token: 0x06007A65 RID: 31333 RVA: 0x002BB610 File Offset: 0x002B9810
+		// Token: 0x06006C99 RID: 27801 RVA: 0x0029AC68 File Offset: 0x00298E68
 		private void GenerateVector2Targets()
 		{
 			this.vector2s = new Vector2[3];
@@ -1362,7 +1362,7 @@ namespace Fungus
 			}
 		}
 
-		// Token: 0x06007A66 RID: 31334 RVA: 0x002BB704 File Offset: 0x002B9904
+		// Token: 0x06006C9A RID: 27802 RVA: 0x0029AD5C File Offset: 0x00298F5C
 		private void GenerateFloatTargets()
 		{
 			this.floats = new float[3];
@@ -1375,7 +1375,7 @@ namespace Fungus
 			}
 		}
 
-		// Token: 0x06007A67 RID: 31335 RVA: 0x002BB7A0 File Offset: 0x002B99A0
+		// Token: 0x06006C9B RID: 27803 RVA: 0x0029ADF8 File Offset: 0x00298FF8
 		private void GenerateColorToTargets()
 		{
 			if (base.GetComponent<Renderer>())
@@ -1451,7 +1451,7 @@ namespace Fungus
 			}
 		}
 
-		// Token: 0x06007A68 RID: 31336 RVA: 0x002BBAEC File Offset: 0x002B9CEC
+		// Token: 0x06006C9C RID: 27804 RVA: 0x0029B144 File Offset: 0x00299344
 		private void GenerateAudioToTargets()
 		{
 			this.vector2s = new Vector2[3];
@@ -1479,7 +1479,7 @@ namespace Fungus
 			}
 		}
 
-		// Token: 0x06007A69 RID: 31337 RVA: 0x002BBC08 File Offset: 0x002B9E08
+		// Token: 0x06006C9D RID: 27805 RVA: 0x0029B260 File Offset: 0x00299460
 		private void GenerateStabTargets()
 		{
 			if (this.tweenArguments.Contains("audiosource"))
@@ -1508,7 +1508,7 @@ namespace Fungus
 			this.time = this.audioSource.clip.length / this.audioSource.pitch;
 		}
 
-		// Token: 0x06007A6A RID: 31338 RVA: 0x002BBD2C File Offset: 0x002B9F2C
+		// Token: 0x06006C9E RID: 27806 RVA: 0x0029B384 File Offset: 0x00299584
 		private void GenerateLookToTargets()
 		{
 			this.vector3s = new Vector3[3];
@@ -1564,7 +1564,7 @@ namespace Fungus
 			}
 		}
 
-		// Token: 0x06007A6B RID: 31339 RVA: 0x002BC0B4 File Offset: 0x002BA2B4
+		// Token: 0x06006C9F RID: 27807 RVA: 0x0029B70C File Offset: 0x0029990C
 		private void GenerateMoveToPathTargets()
 		{
 			Vector3[] array2;
@@ -1643,7 +1643,7 @@ namespace Fungus
 			}
 		}
 
-		// Token: 0x06007A6C RID: 31340 RVA: 0x002BC394 File Offset: 0x002BA594
+		// Token: 0x06006CA0 RID: 27808 RVA: 0x0029B9EC File Offset: 0x00299BEC
 		private void GenerateMoveToTargets()
 		{
 			this.vector3s = new Vector3[3];
@@ -1693,7 +1693,7 @@ namespace Fungus
 			}
 		}
 
-		// Token: 0x06007A6D RID: 31341 RVA: 0x002BC600 File Offset: 0x002BA800
+		// Token: 0x06006CA1 RID: 27809 RVA: 0x0029BC58 File Offset: 0x00299E58
 		private void GenerateMoveByTargets()
 		{
 			this.vector3s = new Vector3[6];
@@ -1732,7 +1732,7 @@ namespace Fungus
 			}
 		}
 
-		// Token: 0x06007A6E RID: 31342 RVA: 0x002BC874 File Offset: 0x002BAA74
+		// Token: 0x06006CA2 RID: 27810 RVA: 0x0029BECC File Offset: 0x0029A0CC
 		private void GenerateScaleToTargets()
 		{
 			this.vector3s = new Vector3[3];
@@ -1771,7 +1771,7 @@ namespace Fungus
 			}
 		}
 
-		// Token: 0x06007A6F RID: 31343 RVA: 0x002BCA64 File Offset: 0x002BAC64
+		// Token: 0x06006CA3 RID: 27811 RVA: 0x0029C0BC File Offset: 0x0029A2BC
 		private void GenerateScaleByTargets()
 		{
 			this.vector3s = new Vector3[3];
@@ -1808,7 +1808,7 @@ namespace Fungus
 			}
 		}
 
-		// Token: 0x06007A70 RID: 31344 RVA: 0x002BCBF4 File Offset: 0x002BADF4
+		// Token: 0x06006CA4 RID: 27812 RVA: 0x0029C24C File Offset: 0x0029A44C
 		private void GenerateScaleAddTargets()
 		{
 			this.vector3s = new Vector3[3];
@@ -1845,7 +1845,7 @@ namespace Fungus
 			}
 		}
 
-		// Token: 0x06007A71 RID: 31345 RVA: 0x002BCD84 File Offset: 0x002BAF84
+		// Token: 0x06006CA5 RID: 27813 RVA: 0x0029C3DC File Offset: 0x0029A5DC
 		private void GenerateRotateToTargets()
 		{
 			this.vector3s = new Vector3[3];
@@ -1892,7 +1892,7 @@ namespace Fungus
 			}
 		}
 
-		// Token: 0x06007A72 RID: 31346 RVA: 0x002BD03C File Offset: 0x002BB23C
+		// Token: 0x06006CA6 RID: 27814 RVA: 0x0029C694 File Offset: 0x0029A894
 		private void GenerateRotateAddTargets()
 		{
 			this.vector3s = new Vector3[5];
@@ -1929,7 +1929,7 @@ namespace Fungus
 			}
 		}
 
-		// Token: 0x06007A73 RID: 31347 RVA: 0x002BD1D8 File Offset: 0x002BB3D8
+		// Token: 0x06006CA7 RID: 27815 RVA: 0x0029C830 File Offset: 0x0029AA30
 		private void GenerateRotateByTargets()
 		{
 			this.vector3s = new Vector3[4];
@@ -1966,7 +1966,7 @@ namespace Fungus
 			}
 		}
 
-		// Token: 0x06007A74 RID: 31348 RVA: 0x002BD3A0 File Offset: 0x002BB5A0
+		// Token: 0x06006CA8 RID: 27816 RVA: 0x0029C9F8 File Offset: 0x0029ABF8
 		private void GenerateShakePositionTargets()
 		{
 			this.vector3s = new Vector3[4];
@@ -1991,7 +1991,7 @@ namespace Fungus
 			}
 		}
 
-		// Token: 0x06007A75 RID: 31349 RVA: 0x002BD4C4 File Offset: 0x002BB6C4
+		// Token: 0x06006CA9 RID: 27817 RVA: 0x0029CB1C File Offset: 0x0029AD1C
 		private void GenerateShakeScaleTargets()
 		{
 			this.vector3s = new Vector3[3];
@@ -2015,7 +2015,7 @@ namespace Fungus
 			}
 		}
 
-		// Token: 0x06007A76 RID: 31350 RVA: 0x002BD5D0 File Offset: 0x002BB7D0
+		// Token: 0x06006CAA RID: 27818 RVA: 0x0029CC28 File Offset: 0x0029AE28
 		private void GenerateShakeRotationTargets()
 		{
 			this.vector3s = new Vector3[3];
@@ -2039,7 +2039,7 @@ namespace Fungus
 			}
 		}
 
-		// Token: 0x06007A77 RID: 31351 RVA: 0x002BD6DC File Offset: 0x002BB8DC
+		// Token: 0x06006CAB RID: 27819 RVA: 0x0029CD34 File Offset: 0x0029AF34
 		private void GeneratePunchPositionTargets()
 		{
 			this.vector3s = new Vector3[5];
@@ -2065,7 +2065,7 @@ namespace Fungus
 			}
 		}
 
-		// Token: 0x06007A78 RID: 31352 RVA: 0x002BD820 File Offset: 0x002BBA20
+		// Token: 0x06006CAC RID: 27820 RVA: 0x0029CE78 File Offset: 0x0029B078
 		private void GeneratePunchRotationTargets()
 		{
 			this.vector3s = new Vector3[4];
@@ -2090,7 +2090,7 @@ namespace Fungus
 			}
 		}
 
-		// Token: 0x06007A79 RID: 31353 RVA: 0x002BD94C File Offset: 0x002BBB4C
+		// Token: 0x06006CAD RID: 27821 RVA: 0x0029CFA4 File Offset: 0x0029B1A4
 		private void GeneratePunchScaleTargets()
 		{
 			this.vector3s = new Vector3[3];
@@ -2115,7 +2115,7 @@ namespace Fungus
 			}
 		}
 
-		// Token: 0x06007A7A RID: 31354 RVA: 0x002BDA6C File Offset: 0x002BBC6C
+		// Token: 0x06006CAE RID: 27822 RVA: 0x0029D0C4 File Offset: 0x0029B2C4
 		private void ApplyRectTargets()
 		{
 			this.rects[2].x = this.ease(this.rects[0].x, this.rects[1].x, this.percentage);
@@ -2129,7 +2129,7 @@ namespace Fungus
 			}
 		}
 
-		// Token: 0x06007A7B RID: 31355 RVA: 0x002BDBD8 File Offset: 0x002BBDD8
+		// Token: 0x06006CAF RID: 27823 RVA: 0x0029D230 File Offset: 0x0029B430
 		private void ApplyColorTargets()
 		{
 			this.colors[0, 2].r = this.ease(this.colors[0, 0].r, this.colors[0, 1].r, this.percentage);
@@ -2143,7 +2143,7 @@ namespace Fungus
 			}
 		}
 
-		// Token: 0x06007A7C RID: 31356 RVA: 0x002BDD54 File Offset: 0x002BBF54
+		// Token: 0x06006CB0 RID: 27824 RVA: 0x0029D3AC File Offset: 0x0029B5AC
 		private void ApplyVector3Targets()
 		{
 			this.vector3s[2].x = this.ease(this.vector3s[0].x, this.vector3s[1].x, this.percentage);
@@ -2156,7 +2156,7 @@ namespace Fungus
 			}
 		}
 
-		// Token: 0x06007A7D RID: 31357 RVA: 0x002BDE7C File Offset: 0x002BC07C
+		// Token: 0x06006CB1 RID: 27825 RVA: 0x0029D4D4 File Offset: 0x0029B6D4
 		private void ApplyVector2Targets()
 		{
 			this.vector2s[2].x = this.ease(this.vector2s[0].x, this.vector2s[1].x, this.percentage);
@@ -2168,7 +2168,7 @@ namespace Fungus
 			}
 		}
 
-		// Token: 0x06007A7E RID: 31358 RVA: 0x002BDF60 File Offset: 0x002BC160
+		// Token: 0x06006CB2 RID: 27826 RVA: 0x0029D5B8 File Offset: 0x0029B7B8
 		private void ApplyFloatTargets()
 		{
 			this.floats[2] = this.ease(this.floats[0], this.floats[1], this.percentage);
@@ -2179,7 +2179,7 @@ namespace Fungus
 			}
 		}
 
-		// Token: 0x06007A7F RID: 31359 RVA: 0x002BDFE0 File Offset: 0x002BC1E0
+		// Token: 0x06006CB3 RID: 27827 RVA: 0x0029D638 File Offset: 0x0029B838
 		private void ApplyColorToTargets()
 		{
 			for (int i = 0; i < this.colors.GetLength(0); i++)
@@ -2217,7 +2217,7 @@ namespace Fungus
 			}
 		}
 
-		// Token: 0x06007A80 RID: 31360 RVA: 0x002BE228 File Offset: 0x002BC428
+		// Token: 0x06006CB4 RID: 27828 RVA: 0x0029D880 File Offset: 0x0029BA80
 		private void ApplyAudioToTargets()
 		{
 			this.vector2s[2].x = this.ease(this.vector2s[0].x, this.vector2s[1].x, this.percentage);
@@ -2231,12 +2231,12 @@ namespace Fungus
 			}
 		}
 
-		// Token: 0x06007A81 RID: 31361 RVA: 0x000042DD File Offset: 0x000024DD
+		// Token: 0x06006CB5 RID: 27829 RVA: 0x00004095 File Offset: 0x00002295
 		private void ApplyStabTargets()
 		{
 		}
 
-		// Token: 0x06007A82 RID: 31362 RVA: 0x002BE33C File Offset: 0x002BC53C
+		// Token: 0x06006CB6 RID: 27830 RVA: 0x0029D994 File Offset: 0x0029BB94
 		private void ApplyMoveToPathTargets()
 		{
 			this.preUpdate = this.thisTransform.position;
@@ -2271,7 +2271,7 @@ namespace Fungus
 			}
 		}
 
-		// Token: 0x06007A83 RID: 31363 RVA: 0x002BE4C0 File Offset: 0x002BC6C0
+		// Token: 0x06006CB7 RID: 27831 RVA: 0x0029DB18 File Offset: 0x0029BD18
 		private void ApplyMoveToTargets()
 		{
 			this.preUpdate = this.thisTransform.position;
@@ -2305,7 +2305,7 @@ namespace Fungus
 			}
 		}
 
-		// Token: 0x06007A84 RID: 31364 RVA: 0x002BE664 File Offset: 0x002BC864
+		// Token: 0x06006CB8 RID: 27832 RVA: 0x0029DCBC File Offset: 0x0029BEBC
 		private void ApplyMoveByTargets()
 		{
 			this.preUpdate = this.thisTransform.position;
@@ -2332,7 +2332,7 @@ namespace Fungus
 			}
 		}
 
-		// Token: 0x06007A85 RID: 31365 RVA: 0x002BE82C File Offset: 0x002BCA2C
+		// Token: 0x06006CB9 RID: 27833 RVA: 0x0029DE84 File Offset: 0x0029C084
 		private void ApplyScaleToTargets()
 		{
 			this.vector3s[2].x = this.ease(this.vector3s[0].x, this.vector3s[1].x, this.percentage);
@@ -2345,7 +2345,7 @@ namespace Fungus
 			}
 		}
 
-		// Token: 0x06007A86 RID: 31366 RVA: 0x002BE940 File Offset: 0x002BCB40
+		// Token: 0x06006CBA RID: 27834 RVA: 0x0029DF98 File Offset: 0x0029C198
 		private void ApplyLookToTargets()
 		{
 			this.vector3s[2].x = this.ease(this.vector3s[0].x, this.vector3s[1].x, this.percentage);
@@ -2359,7 +2359,7 @@ namespace Fungus
 			this.thisTransform.rotation = Quaternion.Euler(this.vector3s[2]);
 		}
 
-		// Token: 0x06007A87 RID: 31367 RVA: 0x002BEA5C File Offset: 0x002BCC5C
+		// Token: 0x06006CBB RID: 27835 RVA: 0x0029E0B4 File Offset: 0x0029C2B4
 		private void ApplyRotateToTargets()
 		{
 			this.preUpdate = this.thisTransform.eulerAngles;
@@ -2393,7 +2393,7 @@ namespace Fungus
 			}
 		}
 
-		// Token: 0x06007A88 RID: 31368 RVA: 0x002BEC18 File Offset: 0x002BCE18
+		// Token: 0x06006CBC RID: 27836 RVA: 0x0029E270 File Offset: 0x0029C470
 		private void ApplyRotateAddTargets()
 		{
 			this.preUpdate = this.thisTransform.eulerAngles;
@@ -2410,7 +2410,7 @@ namespace Fungus
 			}
 		}
 
-		// Token: 0x06007A89 RID: 31369 RVA: 0x002BED88 File Offset: 0x002BCF88
+		// Token: 0x06006CBD RID: 27837 RVA: 0x0029E3E0 File Offset: 0x0029C5E0
 		private void ApplyShakePositionTargets()
 		{
 			if (this.isLocal)
@@ -2463,7 +2463,7 @@ namespace Fungus
 			}
 		}
 
-		// Token: 0x06007A8A RID: 31370 RVA: 0x002BEFCC File Offset: 0x002BD1CC
+		// Token: 0x06006CBE RID: 27838 RVA: 0x0029E624 File Offset: 0x0029C824
 		private void ApplyShakeScaleTargets()
 		{
 			if (this.percentage == 0f)
@@ -2478,7 +2478,7 @@ namespace Fungus
 			this.thisTransform.localScale += this.vector3s[2];
 		}
 
-		// Token: 0x06007A8B RID: 31371 RVA: 0x002BF0FC File Offset: 0x002BD2FC
+		// Token: 0x06006CBF RID: 27839 RVA: 0x0029E754 File Offset: 0x0029C954
 		private void ApplyShakeRotationTargets()
 		{
 			this.preUpdate = this.thisTransform.eulerAngles;
@@ -2500,7 +2500,7 @@ namespace Fungus
 			}
 		}
 
-		// Token: 0x06007A8C RID: 31372 RVA: 0x002BF27C File Offset: 0x002BD47C
+		// Token: 0x06006CC0 RID: 27840 RVA: 0x0029E8D4 File Offset: 0x0029CAD4
 		private void ApplyPunchPositionTargets()
 		{
 			this.preUpdate = this.thisTransform.position;
@@ -2548,7 +2548,7 @@ namespace Fungus
 			}
 		}
 
-		// Token: 0x06007A8D RID: 31373 RVA: 0x002BF534 File Offset: 0x002BD734
+		// Token: 0x06006CC1 RID: 27841 RVA: 0x0029EB8C File Offset: 0x0029CD8C
 		private void ApplyPunchRotationTargets()
 		{
 			this.preUpdate = this.thisTransform.eulerAngles;
@@ -2586,7 +2586,7 @@ namespace Fungus
 			}
 		}
 
-		// Token: 0x06007A8E RID: 31374 RVA: 0x002BF794 File Offset: 0x002BD994
+		// Token: 0x06006CC2 RID: 27842 RVA: 0x0029EDEC File Offset: 0x0029CFEC
 		private void ApplyPunchScaleTargets()
 		{
 			if (this.vector3s[1].x > 0f)
@@ -2616,7 +2616,7 @@ namespace Fungus
 			this.thisTransform.localScale = this.vector3s[0] + this.vector3s[2];
 		}
 
-		// Token: 0x06007A8F RID: 31375 RVA: 0x00053C82 File Offset: 0x00051E82
+		// Token: 0x06006CC3 RID: 27843 RVA: 0x0029EFDD File Offset: 0x0029D1DD
 		private IEnumerator TweenDelay()
 		{
 			this.delayStarted = Time.time;
@@ -2629,7 +2629,7 @@ namespace Fungus
 			yield break;
 		}
 
-		// Token: 0x06007A90 RID: 31376 RVA: 0x002BF988 File Offset: 0x002BDB88
+		// Token: 0x06006CC4 RID: 27844 RVA: 0x0029EFEC File Offset: 0x0029D1EC
 		private void TweenStart()
 		{
 			this.CallBack("onstart");
@@ -2649,7 +2649,7 @@ namespace Fungus
 			this.isRunning = true;
 		}
 
-		// Token: 0x06007A91 RID: 31377 RVA: 0x00053C91 File Offset: 0x00051E91
+		// Token: 0x06006CC5 RID: 27845 RVA: 0x0029F0CB File Offset: 0x0029D2CB
 		private IEnumerator TweenRestart()
 		{
 			if (this.delay > 0f)
@@ -2662,7 +2662,7 @@ namespace Fungus
 			yield break;
 		}
 
-		// Token: 0x06007A92 RID: 31378 RVA: 0x00053CA0 File Offset: 0x00051EA0
+		// Token: 0x06006CC6 RID: 27846 RVA: 0x0029F0DA File Offset: 0x0029D2DA
 		private void TweenUpdate()
 		{
 			this.apply();
@@ -2670,7 +2670,7 @@ namespace Fungus
 			this.UpdatePercentage();
 		}
 
-		// Token: 0x06007A93 RID: 31379 RVA: 0x002BFA68 File Offset: 0x002BDC68
+		// Token: 0x06006CC7 RID: 27847 RVA: 0x0029F0F8 File Offset: 0x0029D2F8
 		private void TweenComplete()
 		{
 			this.isRunning = false;
@@ -2698,7 +2698,7 @@ namespace Fungus
 			this.CallBack("oncomplete");
 		}
 
-		// Token: 0x06007A94 RID: 31380 RVA: 0x002BFAEC File Offset: 0x002BDCEC
+		// Token: 0x06006CC8 RID: 27848 RVA: 0x0029F17C File Offset: 0x0029D37C
 		private void TweenLoop()
 		{
 			this.DisableKinematic();
@@ -2720,13 +2720,13 @@ namespace Fungus
 			base.StartCoroutine("TweenRestart");
 		}
 
-		// Token: 0x06007A95 RID: 31381 RVA: 0x002BFB64 File Offset: 0x002BDD64
+		// Token: 0x06006CC9 RID: 27849 RVA: 0x0029F1F4 File Offset: 0x0029D3F4
 		public static Rect RectUpdate(Rect currentValue, Rect targetValue, float speed)
 		{
 			return new Rect(iTween.FloatUpdate(currentValue.x, targetValue.x, speed), iTween.FloatUpdate(currentValue.y, targetValue.y, speed), iTween.FloatUpdate(currentValue.width, targetValue.width, speed), iTween.FloatUpdate(currentValue.height, targetValue.height, speed));
 		}
 
-		// Token: 0x06007A96 RID: 31382 RVA: 0x002BFBC8 File Offset: 0x002BDDC8
+		// Token: 0x06006CCA RID: 27850 RVA: 0x0029F258 File Offset: 0x0029D458
 		public static Vector3 Vector3Update(Vector3 currentValue, Vector3 targetValue, float speed)
 		{
 			Vector3 vector = targetValue - currentValue;
@@ -2734,7 +2734,7 @@ namespace Fungus
 			return currentValue;
 		}
 
-		// Token: 0x06007A97 RID: 31383 RVA: 0x002BFBF8 File Offset: 0x002BDDF8
+		// Token: 0x06006CCB RID: 27851 RVA: 0x0029F288 File Offset: 0x0029D488
 		public static Vector2 Vector2Update(Vector2 currentValue, Vector2 targetValue, float speed)
 		{
 			Vector2 vector = targetValue - currentValue;
@@ -2742,7 +2742,7 @@ namespace Fungus
 			return currentValue;
 		}
 
-		// Token: 0x06007A98 RID: 31384 RVA: 0x002BFC28 File Offset: 0x002BDE28
+		// Token: 0x06006CCC RID: 27852 RVA: 0x0029F2B8 File Offset: 0x0029D4B8
 		public static float FloatUpdate(float currentValue, float targetValue, float speed)
 		{
 			float num = targetValue - currentValue;
@@ -2750,14 +2750,14 @@ namespace Fungus
 			return currentValue;
 		}
 
-		// Token: 0x06007A99 RID: 31385 RVA: 0x00053CBE File Offset: 0x00051EBE
+		// Token: 0x06006CCD RID: 27853 RVA: 0x0029F2D7 File Offset: 0x0029D4D7
 		public static void FadeUpdate(GameObject target, Hashtable args)
 		{
 			args["a"] = args["alpha"];
 			iTween.ColorUpdate(target, args);
 		}
 
-		// Token: 0x06007A9A RID: 31386 RVA: 0x00053CDD File Offset: 0x00051EDD
+		// Token: 0x06006CCE RID: 27854 RVA: 0x0029F2F6 File Offset: 0x0029D4F6
 		public static void FadeUpdate(GameObject target, float alpha, float time)
 		{
 			iTween.FadeUpdate(target, iTween.Hash(new object[]
@@ -2769,7 +2769,7 @@ namespace Fungus
 			}));
 		}
 
-		// Token: 0x06007A9B RID: 31387 RVA: 0x002BFC48 File Offset: 0x002BDE48
+		// Token: 0x06006CCF RID: 27855 RVA: 0x0029F32C File Offset: 0x0029D52C
 		public static void ColorUpdate(GameObject target, Hashtable args)
 		{
 			iTween.CleanArgs(args);
@@ -2837,7 +2837,7 @@ namespace Fungus
 			}
 		}
 
-		// Token: 0x06007A9C RID: 31388 RVA: 0x00053D12 File Offset: 0x00051F12
+		// Token: 0x06006CD0 RID: 27856 RVA: 0x0029F62C File Offset: 0x0029D82C
 		public static void ColorUpdate(GameObject target, Color color, float time)
 		{
 			iTween.ColorUpdate(target, iTween.Hash(new object[]
@@ -2849,7 +2849,7 @@ namespace Fungus
 			}));
 		}
 
-		// Token: 0x06007A9D RID: 31389 RVA: 0x002BFF48 File Offset: 0x002BE148
+		// Token: 0x06006CD1 RID: 27857 RVA: 0x0029F664 File Offset: 0x0029D864
 		public static void AudioUpdate(GameObject target, Hashtable args)
 		{
 			iTween.CleanArgs(args);
@@ -2893,7 +2893,7 @@ namespace Fungus
 			audioSource.pitch = array[3].y;
 		}
 
-		// Token: 0x06007A9E RID: 31390 RVA: 0x002C00D8 File Offset: 0x002BE2D8
+		// Token: 0x06006CD2 RID: 27858 RVA: 0x0029F7F4 File Offset: 0x0029D9F4
 		public static void AudioUpdate(GameObject target, float volume, float pitch, float time)
 		{
 			iTween.AudioUpdate(target, iTween.Hash(new object[]
@@ -2907,7 +2907,7 @@ namespace Fungus
 			}));
 		}
 
-		// Token: 0x06007A9F RID: 31391 RVA: 0x002C012C File Offset: 0x002BE32C
+		// Token: 0x06006CD3 RID: 27859 RVA: 0x0029F848 File Offset: 0x0029DA48
 		public static void RotateUpdate(GameObject target, Hashtable args)
 		{
 			iTween.CleanArgs(args);
@@ -2971,7 +2971,7 @@ namespace Fungus
 			}
 		}
 
-		// Token: 0x06007AA0 RID: 31392 RVA: 0x00053D47 File Offset: 0x00051F47
+		// Token: 0x06006CD4 RID: 27860 RVA: 0x0029FA78 File Offset: 0x0029DC78
 		public static void RotateUpdate(GameObject target, Vector3 rotation, float time)
 		{
 			iTween.RotateUpdate(target, iTween.Hash(new object[]
@@ -2983,7 +2983,7 @@ namespace Fungus
 			}));
 		}
 
-		// Token: 0x06007AA1 RID: 31393 RVA: 0x002C035C File Offset: 0x002BE55C
+		// Token: 0x06006CD5 RID: 27861 RVA: 0x0029FAB0 File Offset: 0x0029DCB0
 		public static void ScaleUpdate(GameObject target, Hashtable args)
 		{
 			iTween.CleanArgs(args);
@@ -3032,7 +3032,7 @@ namespace Fungus
 			target.transform.localScale = array[3];
 		}
 
-		// Token: 0x06007AA2 RID: 31394 RVA: 0x00053D7C File Offset: 0x00051F7C
+		// Token: 0x06006CD6 RID: 27862 RVA: 0x0029FCD5 File Offset: 0x0029DED5
 		public static void ScaleUpdate(GameObject target, Vector3 scale, float time)
 		{
 			iTween.ScaleUpdate(target, iTween.Hash(new object[]
@@ -3044,7 +3044,7 @@ namespace Fungus
 			}));
 		}
 
-		// Token: 0x06007AA3 RID: 31395 RVA: 0x002C0584 File Offset: 0x002BE784
+		// Token: 0x06006CD7 RID: 27863 RVA: 0x0029FD0C File Offset: 0x0029DF0C
 		public static void MoveUpdate(GameObject target, Hashtable args)
 		{
 			iTween.CleanArgs(args);
@@ -3131,7 +3131,7 @@ namespace Fungus
 			}
 		}
 
-		// Token: 0x06007AA4 RID: 31396 RVA: 0x00053DB1 File Offset: 0x00051FB1
+		// Token: 0x06006CD8 RID: 27864 RVA: 0x002A001F File Offset: 0x0029E21F
 		public static void MoveUpdate(GameObject target, Vector3 position, float time)
 		{
 			iTween.MoveUpdate(target, iTween.Hash(new object[]
@@ -3143,7 +3143,7 @@ namespace Fungus
 			}));
 		}
 
-		// Token: 0x06007AA5 RID: 31397 RVA: 0x002C0898 File Offset: 0x002BEA98
+		// Token: 0x06006CD9 RID: 27865 RVA: 0x002A0054 File Offset: 0x0029E254
 		public static void LookUpdate(GameObject target, Hashtable args)
 		{
 			iTween.CleanArgs(args);
@@ -3212,7 +3212,7 @@ namespace Fungus
 			Debug.LogError("iTween Error: LookUpdate needs a 'looktarget' property!");
 		}
 
-		// Token: 0x06007AA6 RID: 31398 RVA: 0x00053DE6 File Offset: 0x00051FE6
+		// Token: 0x06006CDA RID: 27866 RVA: 0x002A03A1 File Offset: 0x0029E5A1
 		public static void LookUpdate(GameObject target, Vector3 looktarget, float time)
 		{
 			iTween.LookUpdate(target, iTween.Hash(new object[]
@@ -3224,7 +3224,7 @@ namespace Fungus
 			}));
 		}
 
-		// Token: 0x06007AA7 RID: 31399 RVA: 0x002C0BE8 File Offset: 0x002BEDE8
+		// Token: 0x06006CDB RID: 27867 RVA: 0x002A03D8 File Offset: 0x0029E5D8
 		public static float PathLength(Transform[] path)
 		{
 			Vector3[] array = new Vector3[path.Length];
@@ -3246,7 +3246,7 @@ namespace Fungus
 			return num;
 		}
 
-		// Token: 0x06007AA8 RID: 31400 RVA: 0x002C0C78 File Offset: 0x002BEE78
+		// Token: 0x06006CDC RID: 27868 RVA: 0x002A0468 File Offset: 0x0029E668
 		public static float PathLength(Vector3[] path)
 		{
 			float num = 0f;
@@ -3263,7 +3263,7 @@ namespace Fungus
 			return num;
 		}
 
-		// Token: 0x06007AA9 RID: 31401 RVA: 0x002C0CD8 File Offset: 0x002BEED8
+		// Token: 0x06006CDD RID: 27869 RVA: 0x002A04C8 File Offset: 0x0029E6C8
 		public static Texture2D CameraTexture(Color color)
 		{
 			Texture2D texture2D = new Texture2D(Screen.width, Screen.height, 5, false);
@@ -3277,19 +3277,19 @@ namespace Fungus
 			return texture2D;
 		}
 
-		// Token: 0x06007AAA RID: 31402 RVA: 0x00053E1B File Offset: 0x0005201B
+		// Token: 0x06006CDE RID: 27870 RVA: 0x002A051C File Offset: 0x0029E71C
 		public static void PutOnPath(GameObject target, Vector3[] path, float percent)
 		{
 			target.transform.position = iTween.Interp(iTween.PathControlPointGenerator(path), percent);
 		}
 
-		// Token: 0x06007AAB RID: 31403 RVA: 0x00053E34 File Offset: 0x00052034
+		// Token: 0x06006CDF RID: 27871 RVA: 0x002A0535 File Offset: 0x0029E735
 		public static void PutOnPath(Transform target, Vector3[] path, float percent)
 		{
 			target.position = iTween.Interp(iTween.PathControlPointGenerator(path), percent);
 		}
 
-		// Token: 0x06007AAC RID: 31404 RVA: 0x002C0D2C File Offset: 0x002BEF2C
+		// Token: 0x06006CE0 RID: 27872 RVA: 0x002A054C File Offset: 0x0029E74C
 		public static void PutOnPath(GameObject target, Transform[] path, float percent)
 		{
 			Vector3[] array = new Vector3[path.Length];
@@ -3300,7 +3300,7 @@ namespace Fungus
 			target.transform.position = iTween.Interp(iTween.PathControlPointGenerator(array), percent);
 		}
 
-		// Token: 0x06007AAD RID: 31405 RVA: 0x002C0D78 File Offset: 0x002BEF78
+		// Token: 0x06006CE1 RID: 27873 RVA: 0x002A0598 File Offset: 0x0029E798
 		public static void PutOnPath(Transform target, Transform[] path, float percent)
 		{
 			Vector3[] array = new Vector3[path.Length];
@@ -3311,7 +3311,7 @@ namespace Fungus
 			target.position = iTween.Interp(iTween.PathControlPointGenerator(array), percent);
 		}
 
-		// Token: 0x06007AAE RID: 31406 RVA: 0x002C0DC0 File Offset: 0x002BEFC0
+		// Token: 0x06006CE2 RID: 27874 RVA: 0x002A05E0 File Offset: 0x0029E7E0
 		public static Vector3 PointOnPath(Transform[] path, float percent)
 		{
 			Vector3[] array = new Vector3[path.Length];
@@ -3322,7 +3322,7 @@ namespace Fungus
 			return iTween.Interp(iTween.PathControlPointGenerator(array), percent);
 		}
 
-		// Token: 0x06007AAF RID: 31407 RVA: 0x00053E48 File Offset: 0x00052048
+		// Token: 0x06006CE3 RID: 27875 RVA: 0x002A061F File Offset: 0x0029E81F
 		public static void DrawLine(Vector3[] line)
 		{
 			if (line.Length != 0)
@@ -3331,7 +3331,7 @@ namespace Fungus
 			}
 		}
 
-		// Token: 0x06007AB0 RID: 31408 RVA: 0x00053E5E File Offset: 0x0005205E
+		// Token: 0x06006CE4 RID: 27876 RVA: 0x002A0635 File Offset: 0x0029E835
 		public static void DrawLine(Vector3[] line, Color color)
 		{
 			if (line.Length != 0)
@@ -3340,7 +3340,7 @@ namespace Fungus
 			}
 		}
 
-		// Token: 0x06007AB1 RID: 31409 RVA: 0x002C0E00 File Offset: 0x002BF000
+		// Token: 0x06006CE5 RID: 27877 RVA: 0x002A0648 File Offset: 0x0029E848
 		public static void DrawLine(Transform[] line)
 		{
 			if (line.Length != 0)
@@ -3354,7 +3354,7 @@ namespace Fungus
 			}
 		}
 
-		// Token: 0x06007AB2 RID: 31410 RVA: 0x002C0E48 File Offset: 0x002BF048
+		// Token: 0x06006CE6 RID: 27878 RVA: 0x002A0690 File Offset: 0x0029E890
 		public static void DrawLine(Transform[] line, Color color)
 		{
 			if (line.Length != 0)
@@ -3368,7 +3368,7 @@ namespace Fungus
 			}
 		}
 
-		// Token: 0x06007AB3 RID: 31411 RVA: 0x00053E48 File Offset: 0x00052048
+		// Token: 0x06006CE7 RID: 27879 RVA: 0x002A061F File Offset: 0x0029E81F
 		public static void DrawLineGizmos(Vector3[] line)
 		{
 			if (line.Length != 0)
@@ -3377,7 +3377,7 @@ namespace Fungus
 			}
 		}
 
-		// Token: 0x06007AB4 RID: 31412 RVA: 0x00053E5E File Offset: 0x0005205E
+		// Token: 0x06006CE8 RID: 27880 RVA: 0x002A0635 File Offset: 0x0029E835
 		public static void DrawLineGizmos(Vector3[] line, Color color)
 		{
 			if (line.Length != 0)
@@ -3386,7 +3386,7 @@ namespace Fungus
 			}
 		}
 
-		// Token: 0x06007AB5 RID: 31413 RVA: 0x002C0E00 File Offset: 0x002BF000
+		// Token: 0x06006CE9 RID: 27881 RVA: 0x002A06D4 File Offset: 0x0029E8D4
 		public static void DrawLineGizmos(Transform[] line)
 		{
 			if (line.Length != 0)
@@ -3400,7 +3400,7 @@ namespace Fungus
 			}
 		}
 
-		// Token: 0x06007AB6 RID: 31414 RVA: 0x002C0E48 File Offset: 0x002BF048
+		// Token: 0x06006CEA RID: 27882 RVA: 0x002A071C File Offset: 0x0029E91C
 		public static void DrawLineGizmos(Transform[] line, Color color)
 		{
 			if (line.Length != 0)
@@ -3414,7 +3414,7 @@ namespace Fungus
 			}
 		}
 
-		// Token: 0x06007AB7 RID: 31415 RVA: 0x00053E70 File Offset: 0x00052070
+		// Token: 0x06006CEB RID: 27883 RVA: 0x002A075F File Offset: 0x0029E95F
 		public static void DrawLineHandles(Vector3[] line)
 		{
 			if (line.Length != 0)
@@ -3423,7 +3423,7 @@ namespace Fungus
 			}
 		}
 
-		// Token: 0x06007AB8 RID: 31416 RVA: 0x00053E86 File Offset: 0x00052086
+		// Token: 0x06006CEC RID: 27884 RVA: 0x002A0775 File Offset: 0x0029E975
 		public static void DrawLineHandles(Vector3[] line, Color color)
 		{
 			if (line.Length != 0)
@@ -3432,7 +3432,7 @@ namespace Fungus
 			}
 		}
 
-		// Token: 0x06007AB9 RID: 31417 RVA: 0x002C0E8C File Offset: 0x002BF08C
+		// Token: 0x06006CED RID: 27885 RVA: 0x002A0788 File Offset: 0x0029E988
 		public static void DrawLineHandles(Transform[] line)
 		{
 			if (line.Length != 0)
@@ -3446,7 +3446,7 @@ namespace Fungus
 			}
 		}
 
-		// Token: 0x06007ABA RID: 31418 RVA: 0x002C0ED4 File Offset: 0x002BF0D4
+		// Token: 0x06006CEE RID: 27886 RVA: 0x002A07D0 File Offset: 0x0029E9D0
 		public static void DrawLineHandles(Transform[] line, Color color)
 		{
 			if (line.Length != 0)
@@ -3460,13 +3460,13 @@ namespace Fungus
 			}
 		}
 
-		// Token: 0x06007ABB RID: 31419 RVA: 0x00053E98 File Offset: 0x00052098
+		// Token: 0x06006CEF RID: 27887 RVA: 0x002A0813 File Offset: 0x0029EA13
 		public static Vector3 PointOnPath(Vector3[] path, float percent)
 		{
 			return iTween.Interp(iTween.PathControlPointGenerator(path), percent);
 		}
 
-		// Token: 0x06007ABC RID: 31420 RVA: 0x00053EA6 File Offset: 0x000520A6
+		// Token: 0x06006CF0 RID: 27888 RVA: 0x002A0821 File Offset: 0x0029EA21
 		public static void DrawPath(Vector3[] path)
 		{
 			if (path.Length != 0)
@@ -3475,7 +3475,7 @@ namespace Fungus
 			}
 		}
 
-		// Token: 0x06007ABD RID: 31421 RVA: 0x00053EBC File Offset: 0x000520BC
+		// Token: 0x06006CF1 RID: 27889 RVA: 0x002A0837 File Offset: 0x0029EA37
 		public static void DrawPath(Vector3[] path, Color color)
 		{
 			if (path.Length != 0)
@@ -3484,7 +3484,7 @@ namespace Fungus
 			}
 		}
 
-		// Token: 0x06007ABE RID: 31422 RVA: 0x002C0F18 File Offset: 0x002BF118
+		// Token: 0x06006CF2 RID: 27890 RVA: 0x002A084C File Offset: 0x0029EA4C
 		public static void DrawPath(Transform[] path)
 		{
 			if (path.Length != 0)
@@ -3498,7 +3498,7 @@ namespace Fungus
 			}
 		}
 
-		// Token: 0x06007ABF RID: 31423 RVA: 0x002C0F60 File Offset: 0x002BF160
+		// Token: 0x06006CF3 RID: 27891 RVA: 0x002A0894 File Offset: 0x0029EA94
 		public static void DrawPath(Transform[] path, Color color)
 		{
 			if (path.Length != 0)
@@ -3512,7 +3512,7 @@ namespace Fungus
 			}
 		}
 
-		// Token: 0x06007AC0 RID: 31424 RVA: 0x00053EA6 File Offset: 0x000520A6
+		// Token: 0x06006CF4 RID: 27892 RVA: 0x002A0821 File Offset: 0x0029EA21
 		public static void DrawPathGizmos(Vector3[] path)
 		{
 			if (path.Length != 0)
@@ -3521,7 +3521,7 @@ namespace Fungus
 			}
 		}
 
-		// Token: 0x06007AC1 RID: 31425 RVA: 0x00053EBC File Offset: 0x000520BC
+		// Token: 0x06006CF5 RID: 27893 RVA: 0x002A0837 File Offset: 0x0029EA37
 		public static void DrawPathGizmos(Vector3[] path, Color color)
 		{
 			if (path.Length != 0)
@@ -3530,7 +3530,7 @@ namespace Fungus
 			}
 		}
 
-		// Token: 0x06007AC2 RID: 31426 RVA: 0x002C0F18 File Offset: 0x002BF118
+		// Token: 0x06006CF6 RID: 27894 RVA: 0x002A08D8 File Offset: 0x0029EAD8
 		public static void DrawPathGizmos(Transform[] path)
 		{
 			if (path.Length != 0)
@@ -3544,7 +3544,7 @@ namespace Fungus
 			}
 		}
 
-		// Token: 0x06007AC3 RID: 31427 RVA: 0x002C0F60 File Offset: 0x002BF160
+		// Token: 0x06006CF7 RID: 27895 RVA: 0x002A0920 File Offset: 0x0029EB20
 		public static void DrawPathGizmos(Transform[] path, Color color)
 		{
 			if (path.Length != 0)
@@ -3558,7 +3558,7 @@ namespace Fungus
 			}
 		}
 
-		// Token: 0x06007AC4 RID: 31428 RVA: 0x00053ECE File Offset: 0x000520CE
+		// Token: 0x06006CF8 RID: 27896 RVA: 0x002A0963 File Offset: 0x0029EB63
 		public static void DrawPathHandles(Vector3[] path)
 		{
 			if (path.Length != 0)
@@ -3567,7 +3567,7 @@ namespace Fungus
 			}
 		}
 
-		// Token: 0x06007AC5 RID: 31429 RVA: 0x00053EE4 File Offset: 0x000520E4
+		// Token: 0x06006CF9 RID: 27897 RVA: 0x002A0979 File Offset: 0x0029EB79
 		public static void DrawPathHandles(Vector3[] path, Color color)
 		{
 			if (path.Length != 0)
@@ -3576,7 +3576,7 @@ namespace Fungus
 			}
 		}
 
-		// Token: 0x06007AC6 RID: 31430 RVA: 0x002C0FA4 File Offset: 0x002BF1A4
+		// Token: 0x06006CFA RID: 27898 RVA: 0x002A098C File Offset: 0x0029EB8C
 		public static void DrawPathHandles(Transform[] path)
 		{
 			if (path.Length != 0)
@@ -3590,7 +3590,7 @@ namespace Fungus
 			}
 		}
 
-		// Token: 0x06007AC7 RID: 31431 RVA: 0x002C0FEC File Offset: 0x002BF1EC
+		// Token: 0x06006CFB RID: 27899 RVA: 0x002A09D4 File Offset: 0x0029EBD4
 		public static void DrawPathHandles(Transform[] path, Color color)
 		{
 			if (path.Length != 0)
@@ -3604,7 +3604,7 @@ namespace Fungus
 			}
 		}
 
-		// Token: 0x06007AC8 RID: 31432 RVA: 0x002C1030 File Offset: 0x002BF230
+		// Token: 0x06006CFC RID: 27900 RVA: 0x002A0A18 File Offset: 0x0029EC18
 		public static void CameraFadeDepth(int depth)
 		{
 			if (iTween.cameraFade)
@@ -3613,7 +3613,7 @@ namespace Fungus
 			}
 		}
 
-		// Token: 0x06007AC9 RID: 31433 RVA: 0x00053EF6 File Offset: 0x000520F6
+		// Token: 0x06006CFD RID: 27901 RVA: 0x002A0A6F File Offset: 0x0029EC6F
 		public static void CameraFadeDestroy()
 		{
 			if (iTween.cameraFade)
@@ -3622,7 +3622,7 @@ namespace Fungus
 			}
 		}
 
-		// Token: 0x06007ACA RID: 31434 RVA: 0x002C1088 File Offset: 0x002BF288
+		// Token: 0x06006CFE RID: 27902 RVA: 0x002A0A88 File Offset: 0x0029EC88
 		public static void Resume(GameObject target)
 		{
 			Component[] array = target.GetComponents<iTween>();
@@ -3633,7 +3633,7 @@ namespace Fungus
 			}
 		}
 
-		// Token: 0x06007ACB RID: 31435 RVA: 0x002C10BC File Offset: 0x002BF2BC
+		// Token: 0x06006CFF RID: 27903 RVA: 0x002A0ABC File Offset: 0x0029ECBC
 		public static void Resume(GameObject target, bool includechildren)
 		{
 			iTween.Resume(target);
@@ -3646,7 +3646,7 @@ namespace Fungus
 			}
 		}
 
-		// Token: 0x06007ACC RID: 31436 RVA: 0x002C1124 File Offset: 0x002BF324
+		// Token: 0x06006D00 RID: 27904 RVA: 0x002A0B24 File Offset: 0x0029ED24
 		public static void Resume(GameObject target, string type)
 		{
 			Component[] array = target.GetComponents<iTween>();
@@ -3659,7 +3659,7 @@ namespace Fungus
 			}
 		}
 
-		// Token: 0x06007ACD RID: 31437 RVA: 0x002C1188 File Offset: 0x002BF388
+		// Token: 0x06006D01 RID: 27905 RVA: 0x002A0B88 File Offset: 0x0029ED88
 		public static void Resume(GameObject target, string type, bool includechildren)
 		{
 			Component[] array = target.GetComponents<iTween>();
@@ -3679,7 +3679,7 @@ namespace Fungus
 			}
 		}
 
-		// Token: 0x06007ACE RID: 31438 RVA: 0x002C1244 File Offset: 0x002BF444
+		// Token: 0x06006D02 RID: 27906 RVA: 0x002A0C44 File Offset: 0x0029EE44
 		public static void Resume()
 		{
 			for (int i = 0; i < iTween.tweens.Count; i++)
@@ -3688,7 +3688,7 @@ namespace Fungus
 			}
 		}
 
-		// Token: 0x06007ACF RID: 31439 RVA: 0x002C1288 File Offset: 0x002BF488
+		// Token: 0x06006D03 RID: 27907 RVA: 0x002A0C88 File Offset: 0x0029EE88
 		public static void Resume(string type)
 		{
 			ArrayList arrayList = new ArrayList();
@@ -3703,7 +3703,7 @@ namespace Fungus
 			}
 		}
 
-		// Token: 0x06007AD0 RID: 31440 RVA: 0x002C12FC File Offset: 0x002BF4FC
+		// Token: 0x06006D04 RID: 27908 RVA: 0x002A0CFC File Offset: 0x0029EEFC
 		public static void Pause(GameObject target)
 		{
 			Component[] array = target.GetComponents<iTween>();
@@ -3719,7 +3719,7 @@ namespace Fungus
 			}
 		}
 
-		// Token: 0x06007AD1 RID: 31441 RVA: 0x002C1368 File Offset: 0x002BF568
+		// Token: 0x06006D05 RID: 27909 RVA: 0x002A0D68 File Offset: 0x0029EF68
 		public static void Pause(GameObject target, bool includechildren)
 		{
 			iTween.Pause(target);
@@ -3732,7 +3732,7 @@ namespace Fungus
 			}
 		}
 
-		// Token: 0x06007AD2 RID: 31442 RVA: 0x002C13D0 File Offset: 0x002BF5D0
+		// Token: 0x06006D06 RID: 27910 RVA: 0x002A0DD0 File Offset: 0x0029EFD0
 		public static void Pause(GameObject target, string type)
 		{
 			Component[] array = target.GetComponents<iTween>();
@@ -3751,7 +3751,7 @@ namespace Fungus
 			}
 		}
 
-		// Token: 0x06007AD3 RID: 31443 RVA: 0x002C1470 File Offset: 0x002BF670
+		// Token: 0x06006D07 RID: 27911 RVA: 0x002A0E70 File Offset: 0x0029F070
 		public static void Pause(GameObject target, string type, bool includechildren)
 		{
 			Component[] array = target.GetComponents<iTween>();
@@ -3777,7 +3777,7 @@ namespace Fungus
 			}
 		}
 
-		// Token: 0x06007AD4 RID: 31444 RVA: 0x002C1564 File Offset: 0x002BF764
+		// Token: 0x06006D08 RID: 27912 RVA: 0x002A0F64 File Offset: 0x0029F164
 		public static void Pause()
 		{
 			for (int i = 0; i < iTween.tweens.Count; i++)
@@ -3786,7 +3786,7 @@ namespace Fungus
 			}
 		}
 
-		// Token: 0x06007AD5 RID: 31445 RVA: 0x002C15A8 File Offset: 0x002BF7A8
+		// Token: 0x06006D09 RID: 27913 RVA: 0x002A0FA8 File Offset: 0x0029F1A8
 		public static void Pause(string type)
 		{
 			ArrayList arrayList = new ArrayList();
@@ -3801,13 +3801,13 @@ namespace Fungus
 			}
 		}
 
-		// Token: 0x06007AD6 RID: 31446 RVA: 0x00053F0E File Offset: 0x0005210E
+		// Token: 0x06006D0A RID: 27914 RVA: 0x002A101B File Offset: 0x0029F21B
 		public static int Count()
 		{
 			return iTween.tweens.Count;
 		}
 
-		// Token: 0x06007AD7 RID: 31447 RVA: 0x002C161C File Offset: 0x002BF81C
+		// Token: 0x06006D0B RID: 27915 RVA: 0x002A1028 File Offset: 0x0029F228
 		public static int Count(string type)
 		{
 			int num = 0;
@@ -3822,14 +3822,14 @@ namespace Fungus
 			return num;
 		}
 
-		// Token: 0x06007AD8 RID: 31448 RVA: 0x002C1694 File Offset: 0x002BF894
+		// Token: 0x06006D0C RID: 27916 RVA: 0x002A10A0 File Offset: 0x0029F2A0
 		public static int Count(GameObject target)
 		{
 			Component[] components = target.GetComponents<iTween>();
 			return components.Length;
 		}
 
-		// Token: 0x06007AD9 RID: 31449 RVA: 0x002C16AC File Offset: 0x002BF8AC
+		// Token: 0x06006D0D RID: 27917 RVA: 0x002A10B8 File Offset: 0x0029F2B8
 		public static int Count(GameObject target, string type)
 		{
 			int num = 0;
@@ -3844,7 +3844,7 @@ namespace Fungus
 			return num;
 		}
 
-		// Token: 0x06007ADA RID: 31450 RVA: 0x002C1710 File Offset: 0x002BF910
+		// Token: 0x06006D0E RID: 27918 RVA: 0x002A111C File Offset: 0x0029F31C
 		public static void Stop()
 		{
 			for (int i = 0; i < iTween.tweens.Count; i++)
@@ -3854,7 +3854,7 @@ namespace Fungus
 			iTween.tweens.Clear();
 		}
 
-		// Token: 0x06007ADB RID: 31451 RVA: 0x002C175C File Offset: 0x002BF95C
+		// Token: 0x06006D0F RID: 27919 RVA: 0x002A1168 File Offset: 0x0029F368
 		public static void Stop(string type)
 		{
 			ArrayList arrayList = new ArrayList();
@@ -3869,7 +3869,7 @@ namespace Fungus
 			}
 		}
 
-		// Token: 0x06007ADC RID: 31452 RVA: 0x002C17D0 File Offset: 0x002BF9D0
+		// Token: 0x06006D10 RID: 27920 RVA: 0x002A11DC File Offset: 0x0029F3DC
 		public static void StopByName(string name)
 		{
 			ArrayList arrayList = new ArrayList();
@@ -3884,7 +3884,7 @@ namespace Fungus
 			}
 		}
 
-		// Token: 0x06007ADD RID: 31453 RVA: 0x002C1844 File Offset: 0x002BFA44
+		// Token: 0x06006D11 RID: 27921 RVA: 0x002A1250 File Offset: 0x0029F450
 		public static void Stop(GameObject target)
 		{
 			Component[] array = target.GetComponents<iTween>();
@@ -3895,7 +3895,7 @@ namespace Fungus
 			}
 		}
 
-		// Token: 0x06007ADE RID: 31454 RVA: 0x002C1878 File Offset: 0x002BFA78
+		// Token: 0x06006D12 RID: 27922 RVA: 0x002A1284 File Offset: 0x0029F484
 		public static void Stop(GameObject target, bool includechildren)
 		{
 			iTween.Stop(target);
@@ -3908,7 +3908,7 @@ namespace Fungus
 			}
 		}
 
-		// Token: 0x06007ADF RID: 31455 RVA: 0x002C18E0 File Offset: 0x002BFAE0
+		// Token: 0x06006D13 RID: 27923 RVA: 0x002A12EC File Offset: 0x0029F4EC
 		public static void Stop(GameObject target, string type)
 		{
 			Component[] array = target.GetComponents<iTween>();
@@ -3921,7 +3921,7 @@ namespace Fungus
 			}
 		}
 
-		// Token: 0x06007AE0 RID: 31456 RVA: 0x002C1944 File Offset: 0x002BFB44
+		// Token: 0x06006D14 RID: 27924 RVA: 0x002A1350 File Offset: 0x0029F550
 		public static void StopByName(GameObject target, string name)
 		{
 			Component[] array = target.GetComponents<iTween>();
@@ -3934,7 +3934,7 @@ namespace Fungus
 			}
 		}
 
-		// Token: 0x06007AE1 RID: 31457 RVA: 0x002C1988 File Offset: 0x002BFB88
+		// Token: 0x06006D15 RID: 27925 RVA: 0x002A1394 File Offset: 0x0029F594
 		public static void Stop(GameObject target, string type, bool includechildren)
 		{
 			Component[] array = target.GetComponents<iTween>();
@@ -3954,7 +3954,7 @@ namespace Fungus
 			}
 		}
 
-		// Token: 0x06007AE2 RID: 31458 RVA: 0x002C1A40 File Offset: 0x002BFC40
+		// Token: 0x06006D16 RID: 27926 RVA: 0x002A144C File Offset: 0x0029F64C
 		public static void StopByName(GameObject target, string name, bool includechildren)
 		{
 			Component[] array = target.GetComponents<iTween>();
@@ -3974,7 +3974,7 @@ namespace Fungus
 			}
 		}
 
-		// Token: 0x06007AE3 RID: 31459 RVA: 0x002C1AD8 File Offset: 0x002BFCD8
+		// Token: 0x06006D17 RID: 27927 RVA: 0x002A14E4 File Offset: 0x0029F6E4
 		public static Hashtable Hash(params object[] args)
 		{
 			Hashtable hashtable = new Hashtable(args.Length / 2);
@@ -3990,13 +3990,13 @@ namespace Fungus
 			return hashtable;
 		}
 
-		// Token: 0x06007AE4 RID: 31460 RVA: 0x00053F1A File Offset: 0x0005211A
+		// Token: 0x06006D18 RID: 27928 RVA: 0x002A152E File Offset: 0x0029F72E
 		private iTween(Hashtable h)
 		{
 			this.tweenArguments = h;
 		}
 
-		// Token: 0x06007AE5 RID: 31461 RVA: 0x00053F29 File Offset: 0x00052129
+		// Token: 0x06006D19 RID: 27929 RVA: 0x002A153D File Offset: 0x0029F73D
 		private void Awake()
 		{
 			this.thisTransform = base.transform;
@@ -4004,7 +4004,7 @@ namespace Fungus
 			this.lastRealTime = Time.realtimeSinceStartup;
 		}
 
-		// Token: 0x06007AE6 RID: 31462 RVA: 0x00053F48 File Offset: 0x00052148
+		// Token: 0x06006D1A RID: 27930 RVA: 0x002A155C File Offset: 0x0029F75C
 		private IEnumerator Start()
 		{
 			if (this.delay > 0f)
@@ -4015,7 +4015,7 @@ namespace Fungus
 			yield break;
 		}
 
-		// Token: 0x06007AE7 RID: 31463 RVA: 0x002C1B24 File Offset: 0x002BFD24
+		// Token: 0x06006D1B RID: 27931 RVA: 0x002A156C File Offset: 0x0029F76C
 		private void Update()
 		{
 			if (this.isRunning && !this.physics)
@@ -4042,7 +4042,7 @@ namespace Fungus
 			}
 		}
 
-		// Token: 0x06007AE8 RID: 31464 RVA: 0x002C1B80 File Offset: 0x002BFD80
+		// Token: 0x06006D1C RID: 27932 RVA: 0x002A15C8 File Offset: 0x0029F7C8
 		private void FixedUpdate()
 		{
 			if (this.isRunning && this.physics)
@@ -4069,7 +4069,7 @@ namespace Fungus
 			}
 		}
 
-		// Token: 0x06007AE9 RID: 31465 RVA: 0x002C1BDC File Offset: 0x002BFDDC
+		// Token: 0x06006D1D RID: 27933 RVA: 0x002A1624 File Offset: 0x0029F824
 		private void LateUpdate()
 		{
 			if (this.tweenArguments.Contains("looktarget") && this.isRunning && (this.type == "move" || this.type == "shake" || this.type == "punch"))
@@ -4078,7 +4078,7 @@ namespace Fungus
 			}
 		}
 
-		// Token: 0x06007AEA RID: 31466 RVA: 0x00053F57 File Offset: 0x00052157
+		// Token: 0x06006D1E RID: 27934 RVA: 0x002A1692 File Offset: 0x0029F892
 		private void OnEnable()
 		{
 			if (this.isRunning)
@@ -4096,13 +4096,13 @@ namespace Fungus
 			}
 		}
 
-		// Token: 0x06007AEB RID: 31467 RVA: 0x00053F90 File Offset: 0x00052190
+		// Token: 0x06006D1F RID: 27935 RVA: 0x002A16CB File Offset: 0x0029F8CB
 		private void OnDisable()
 		{
 			this.DisableKinematic();
 		}
 
-		// Token: 0x06007AEC RID: 31468 RVA: 0x002C1C4C File Offset: 0x002BFE4C
+		// Token: 0x06006D20 RID: 27936 RVA: 0x002A16D4 File Offset: 0x0029F8D4
 		private static void DrawLineHelper(Vector3[] line, Color color, string method)
 		{
 			Gizmos.color = color;
@@ -4119,7 +4119,7 @@ namespace Fungus
 			}
 		}
 
-		// Token: 0x06007AED RID: 31469 RVA: 0x002C1CAC File Offset: 0x002BFEAC
+		// Token: 0x06006D21 RID: 27937 RVA: 0x002A1734 File Offset: 0x0029F934
 		private static void DrawPathHelper(Vector3[] path, Color color, string method)
 		{
 			Vector3[] pts = iTween.PathControlPointGenerator(path);
@@ -4142,7 +4142,7 @@ namespace Fungus
 			}
 		}
 
-		// Token: 0x06007AEE RID: 31470 RVA: 0x002C1D28 File Offset: 0x002BFF28
+		// Token: 0x06006D22 RID: 27938 RVA: 0x002A17B0 File Offset: 0x0029F9B0
 		private static Vector3[] PathControlPointGenerator(Vector3[] path)
 		{
 			int num = 2;
@@ -4162,7 +4162,7 @@ namespace Fungus
 			return array;
 		}
 
-		// Token: 0x06007AEF RID: 31471 RVA: 0x002C1E10 File Offset: 0x002C0010
+		// Token: 0x06006D23 RID: 27939 RVA: 0x002A1898 File Offset: 0x0029FA98
 		private static Vector3 Interp(Vector3[] pts, float t)
 		{
 			int num = pts.Length - 3;
@@ -4175,7 +4175,7 @@ namespace Fungus
 			return 0.5f * ((-vector + 3f * vector2 - 3f * vector3 + vector4) * (num3 * num3 * num3) + (2f * vector - 5f * vector2 + 4f * vector3 - vector4) * (num3 * num3) + (-vector + vector3) * num3 + 2f * vector2);
 		}
 
-		// Token: 0x06007AF0 RID: 31472 RVA: 0x002C1F14 File Offset: 0x002C0114
+		// Token: 0x06006D24 RID: 27940 RVA: 0x002A199C File Offset: 0x0029FB9C
 		private static void Launch(GameObject target, Hashtable args)
 		{
 			if (!args.Contains("id"))
@@ -4190,7 +4190,7 @@ namespace Fungus
 			target.AddComponent<iTween>();
 		}
 
-		// Token: 0x06007AF1 RID: 31473 RVA: 0x002C1F6C File Offset: 0x002C016C
+		// Token: 0x06006D25 RID: 27941 RVA: 0x002A19F4 File Offset: 0x0029FBF4
 		private static Hashtable CleanArgs(Hashtable args)
 		{
 			Hashtable hashtable = new Hashtable(args.Count);
@@ -4223,13 +4223,13 @@ namespace Fungus
 			return args;
 		}
 
-		// Token: 0x06007AF2 RID: 31474 RVA: 0x002C2110 File Offset: 0x002C0310
+		// Token: 0x06006D26 RID: 27942 RVA: 0x002A1B98 File Offset: 0x0029FD98
 		private static string GenerateID()
 		{
 			return Guid.NewGuid().ToString();
 		}
 
-		// Token: 0x06007AF3 RID: 31475 RVA: 0x002C2130 File Offset: 0x002C0330
+		// Token: 0x06006D27 RID: 27943 RVA: 0x002A1BB8 File Offset: 0x0029FDB8
 		private void RetrieveArgs()
 		{
 			foreach (Hashtable hashtable in iTween.tweens)
@@ -4367,7 +4367,7 @@ namespace Fungus
 			this.GetEasingFunction();
 		}
 
-		// Token: 0x06007AF4 RID: 31476 RVA: 0x002C25EC File Offset: 0x002C07EC
+		// Token: 0x06006D28 RID: 27944 RVA: 0x002A2074 File Offset: 0x002A0274
 		private void GetEasingFunction()
 		{
 			switch (this.easeType)
@@ -4473,7 +4473,7 @@ namespace Fungus
 			}
 		}
 
-		// Token: 0x06007AF5 RID: 31477 RVA: 0x002C28E8 File Offset: 0x002C0AE8
+		// Token: 0x06006D29 RID: 27945 RVA: 0x002A2370 File Offset: 0x002A0570
 		private void UpdatePercentage()
 		{
 			if (this.useRealTime)
@@ -4495,7 +4495,7 @@ namespace Fungus
 			this.lastRealTime = Time.realtimeSinceStartup;
 		}
 
-		// Token: 0x06007AF6 RID: 31478 RVA: 0x002C296C File Offset: 0x002C0B6C
+		// Token: 0x06006D2A RID: 27946 RVA: 0x002A23F4 File Offset: 0x002A05F4
 		private void CallBack(string callbackType)
 		{
 			if (this.tweenArguments.Contains(callbackType) && !this.tweenArguments.Contains("ischild"))
@@ -4519,7 +4519,7 @@ namespace Fungus
 			}
 		}
 
-		// Token: 0x06007AF7 RID: 31479 RVA: 0x002C2A40 File Offset: 0x002C0C40
+		// Token: 0x06006D2B RID: 27947 RVA: 0x002A24C8 File Offset: 0x002A06C8
 		private void Dispose()
 		{
 			for (int i = 0; i < iTween.tweens.Count; i++)
@@ -4533,7 +4533,7 @@ namespace Fungus
 			Object.Destroy(this);
 		}
 
-		// Token: 0x06007AF8 RID: 31480 RVA: 0x002C2A9C File Offset: 0x002C0C9C
+		// Token: 0x06006D2C RID: 27948 RVA: 0x002A2524 File Offset: 0x002A0724
 		private void ConflictCheck()
 		{
 			Component[] array = base.GetComponents<iTween>();
@@ -4573,29 +4573,29 @@ namespace Fungus
 			}
 		}
 
-		// Token: 0x06007AF9 RID: 31481 RVA: 0x000042DD File Offset: 0x000024DD
+		// Token: 0x06006D2D RID: 27949 RVA: 0x00004095 File Offset: 0x00002295
 		private void EnableKinematic()
 		{
 		}
 
-		// Token: 0x06007AFA RID: 31482 RVA: 0x000042DD File Offset: 0x000024DD
+		// Token: 0x06006D2E RID: 27950 RVA: 0x00004095 File Offset: 0x00002295
 		private void DisableKinematic()
 		{
 		}
 
-		// Token: 0x06007AFB RID: 31483 RVA: 0x00053F98 File Offset: 0x00052198
+		// Token: 0x06006D2F RID: 27951 RVA: 0x002A2674 File Offset: 0x002A0874
 		private void ResumeDelay()
 		{
 			base.StartCoroutine("TweenDelay");
 		}
 
-		// Token: 0x06007AFC RID: 31484 RVA: 0x00053FA6 File Offset: 0x000521A6
+		// Token: 0x06006D30 RID: 27952 RVA: 0x002A2682 File Offset: 0x002A0882
 		private float linear(float start, float end, float value)
 		{
 			return Mathf.Lerp(start, end, value);
 		}
 
-		// Token: 0x06007AFD RID: 31485 RVA: 0x002C2BEC File Offset: 0x002C0DEC
+		// Token: 0x06006D31 RID: 27953 RVA: 0x002A268C File Offset: 0x002A088C
 		private float clerp(float start, float end, float value)
 		{
 			float num = 0f;
@@ -4619,7 +4619,7 @@ namespace Fungus
 			return result;
 		}
 
-		// Token: 0x06007AFE RID: 31486 RVA: 0x002C2C58 File Offset: 0x002C0E58
+		// Token: 0x06006D32 RID: 27954 RVA: 0x002A26F8 File Offset: 0x002A08F8
 		private float spring(float start, float end, float value)
 		{
 			value = Mathf.Clamp01(value);
@@ -4627,21 +4627,21 @@ namespace Fungus
 			return start + (end - start) * value;
 		}
 
-		// Token: 0x06007AFF RID: 31487 RVA: 0x00053FB0 File Offset: 0x000521B0
+		// Token: 0x06006D33 RID: 27955 RVA: 0x002A275C File Offset: 0x002A095C
 		private float easeInQuad(float start, float end, float value)
 		{
 			end -= start;
 			return end * value * value + start;
 		}
 
-		// Token: 0x06007B00 RID: 31488 RVA: 0x00053FBE File Offset: 0x000521BE
+		// Token: 0x06006D34 RID: 27956 RVA: 0x002A276A File Offset: 0x002A096A
 		private float easeOutQuad(float start, float end, float value)
 		{
 			end -= start;
 			return -end * value * (value - 2f) + start;
 		}
 
-		// Token: 0x06007B01 RID: 31489 RVA: 0x002C2CBC File Offset: 0x002C0EBC
+		// Token: 0x06006D35 RID: 27957 RVA: 0x002A2780 File Offset: 0x002A0980
 		private float easeInOutQuad(float start, float end, float value)
 		{
 			value /= 0.5f;
@@ -4654,14 +4654,14 @@ namespace Fungus
 			return -end * 0.5f * (value * (value - 2f) - 1f) + start;
 		}
 
-		// Token: 0x06007B02 RID: 31490 RVA: 0x00053FD3 File Offset: 0x000521D3
+		// Token: 0x06006D36 RID: 27958 RVA: 0x002A27D4 File Offset: 0x002A09D4
 		private float easeInCubic(float start, float end, float value)
 		{
 			end -= start;
 			return end * value * value * value + start;
 		}
 
-		// Token: 0x06007B03 RID: 31491 RVA: 0x00053FE3 File Offset: 0x000521E3
+		// Token: 0x06006D37 RID: 27959 RVA: 0x002A27E4 File Offset: 0x002A09E4
 		private float easeOutCubic(float start, float end, float value)
 		{
 			value -= 1f;
@@ -4669,7 +4669,7 @@ namespace Fungus
 			return end * (value * value * value + 1f) + start;
 		}
 
-		// Token: 0x06007B04 RID: 31492 RVA: 0x002C2D10 File Offset: 0x002C0F10
+		// Token: 0x06006D38 RID: 27960 RVA: 0x002A2804 File Offset: 0x002A0A04
 		private float easeInOutCubic(float start, float end, float value)
 		{
 			value /= 0.5f;
@@ -4682,14 +4682,14 @@ namespace Fungus
 			return end * 0.5f * (value * value * value + 2f) + start;
 		}
 
-		// Token: 0x06007B05 RID: 31493 RVA: 0x00054002 File Offset: 0x00052202
+		// Token: 0x06006D39 RID: 27961 RVA: 0x002A2855 File Offset: 0x002A0A55
 		private float easeInQuart(float start, float end, float value)
 		{
 			end -= start;
 			return end * value * value * value * value + start;
 		}
 
-		// Token: 0x06007B06 RID: 31494 RVA: 0x00054014 File Offset: 0x00052214
+		// Token: 0x06006D3A RID: 27962 RVA: 0x002A2867 File Offset: 0x002A0A67
 		private float easeOutQuart(float start, float end, float value)
 		{
 			value -= 1f;
@@ -4697,7 +4697,7 @@ namespace Fungus
 			return -end * (value * value * value * value - 1f) + start;
 		}
 
-		// Token: 0x06007B07 RID: 31495 RVA: 0x002C2D64 File Offset: 0x002C0F64
+		// Token: 0x06006D3B RID: 27963 RVA: 0x002A288C File Offset: 0x002A0A8C
 		private float easeInOutQuart(float start, float end, float value)
 		{
 			value /= 0.5f;
@@ -4710,14 +4710,14 @@ namespace Fungus
 			return -end * 0.5f * (value * value * value * value - 2f) + start;
 		}
 
-		// Token: 0x06007B08 RID: 31496 RVA: 0x00054036 File Offset: 0x00052236
+		// Token: 0x06006D3C RID: 27964 RVA: 0x002A28E2 File Offset: 0x002A0AE2
 		private float easeInQuint(float start, float end, float value)
 		{
 			end -= start;
 			return end * value * value * value * value * value + start;
 		}
 
-		// Token: 0x06007B09 RID: 31497 RVA: 0x0005404A File Offset: 0x0005224A
+		// Token: 0x06006D3D RID: 27965 RVA: 0x002A28F6 File Offset: 0x002A0AF6
 		private float easeOutQuint(float start, float end, float value)
 		{
 			value -= 1f;
@@ -4725,7 +4725,7 @@ namespace Fungus
 			return end * (value * value * value * value * value + 1f) + start;
 		}
 
-		// Token: 0x06007B0A RID: 31498 RVA: 0x002C2DBC File Offset: 0x002C0FBC
+		// Token: 0x06006D3E RID: 27966 RVA: 0x002A291C File Offset: 0x002A0B1C
 		private float easeInOutQuint(float start, float end, float value)
 		{
 			value /= 0.5f;
@@ -4738,42 +4738,42 @@ namespace Fungus
 			return end * 0.5f * (value * value * value * value * value + 2f) + start;
 		}
 
-		// Token: 0x06007B0B RID: 31499 RVA: 0x0005406D File Offset: 0x0005226D
+		// Token: 0x06006D3F RID: 27967 RVA: 0x002A2975 File Offset: 0x002A0B75
 		private float easeInSine(float start, float end, float value)
 		{
 			end -= start;
 			return -end * Mathf.Cos(value * 1.5707964f) + end + start;
 		}
 
-		// Token: 0x06007B0C RID: 31500 RVA: 0x00054087 File Offset: 0x00052287
+		// Token: 0x06006D40 RID: 27968 RVA: 0x002A298F File Offset: 0x002A0B8F
 		private float easeOutSine(float start, float end, float value)
 		{
 			end -= start;
 			return end * Mathf.Sin(value * 1.5707964f) + start;
 		}
 
-		// Token: 0x06007B0D RID: 31501 RVA: 0x0005409E File Offset: 0x0005229E
+		// Token: 0x06006D41 RID: 27969 RVA: 0x002A29A6 File Offset: 0x002A0BA6
 		private float easeInOutSine(float start, float end, float value)
 		{
 			end -= start;
 			return -end * 0.5f * (Mathf.Cos(3.1415927f * value) - 1f) + start;
 		}
 
-		// Token: 0x06007B0E RID: 31502 RVA: 0x000540C2 File Offset: 0x000522C2
+		// Token: 0x06006D42 RID: 27970 RVA: 0x002A29CA File Offset: 0x002A0BCA
 		private float easeInExpo(float start, float end, float value)
 		{
 			end -= start;
 			return end * Mathf.Pow(2f, 10f * (value - 1f)) + start;
 		}
 
-		// Token: 0x06007B0F RID: 31503 RVA: 0x000540E4 File Offset: 0x000522E4
+		// Token: 0x06006D43 RID: 27971 RVA: 0x002A29EC File Offset: 0x002A0BEC
 		private float easeOutExpo(float start, float end, float value)
 		{
 			end -= start;
 			return end * (-Mathf.Pow(2f, -10f * value) + 1f) + start;
 		}
 
-		// Token: 0x06007B10 RID: 31504 RVA: 0x002C2E18 File Offset: 0x002C1018
+		// Token: 0x06006D44 RID: 27972 RVA: 0x002A2A10 File Offset: 0x002A0C10
 		private float easeInOutExpo(float start, float end, float value)
 		{
 			value /= 0.5f;
@@ -4786,14 +4786,14 @@ namespace Fungus
 			return end * 0.5f * (-Mathf.Pow(2f, -10f * value) + 2f) + start;
 		}
 
-		// Token: 0x06007B11 RID: 31505 RVA: 0x00054107 File Offset: 0x00052307
+		// Token: 0x06006D45 RID: 27973 RVA: 0x002A2A80 File Offset: 0x002A0C80
 		private float easeInCirc(float start, float end, float value)
 		{
 			end -= start;
 			return -end * (Mathf.Sqrt(1f - value * value) - 1f) + start;
 		}
 
-		// Token: 0x06007B12 RID: 31506 RVA: 0x00054127 File Offset: 0x00052327
+		// Token: 0x06006D46 RID: 27974 RVA: 0x002A2AA0 File Offset: 0x002A0CA0
 		private float easeOutCirc(float start, float end, float value)
 		{
 			value -= 1f;
@@ -4801,7 +4801,7 @@ namespace Fungus
 			return end * Mathf.Sqrt(1f - value * value) + start;
 		}
 
-		// Token: 0x06007B13 RID: 31507 RVA: 0x002C2E88 File Offset: 0x002C1088
+		// Token: 0x06006D47 RID: 27975 RVA: 0x002A2AC4 File Offset: 0x002A0CC4
 		private float easeInOutCirc(float start, float end, float value)
 		{
 			value /= 0.5f;
@@ -4814,7 +4814,7 @@ namespace Fungus
 			return end * 0.5f * (Mathf.Sqrt(1f - value * value) + 1f) + start;
 		}
 
-		// Token: 0x06007B14 RID: 31508 RVA: 0x002C2EF4 File Offset: 0x002C10F4
+		// Token: 0x06006D48 RID: 27976 RVA: 0x002A2B30 File Offset: 0x002A0D30
 		private float easeInBounce(float start, float end, float value)
 		{
 			end -= start;
@@ -4822,7 +4822,7 @@ namespace Fungus
 			return end - this.easeOutBounce(0f, end, num - value) + start;
 		}
 
-		// Token: 0x06007B15 RID: 31509 RVA: 0x002C2F20 File Offset: 0x002C1120
+		// Token: 0x06006D49 RID: 27977 RVA: 0x002A2B5C File Offset: 0x002A0D5C
 		private float easeOutBounce(float start, float end, float value)
 		{
 			value /= 1f;
@@ -4845,7 +4845,7 @@ namespace Fungus
 			return end * (7.5625f * value * value + 0.984375f) + start;
 		}
 
-		// Token: 0x06007B16 RID: 31510 RVA: 0x002C2FBC File Offset: 0x002C11BC
+		// Token: 0x06006D4A RID: 27978 RVA: 0x002A2BF8 File Offset: 0x002A0DF8
 		private float easeInOutBounce(float start, float end, float value)
 		{
 			end -= start;
@@ -4857,7 +4857,7 @@ namespace Fungus
 			return this.easeOutBounce(0f, end, value * 2f - num) * 0.5f + end * 0.5f + start;
 		}
 
-		// Token: 0x06007B17 RID: 31511 RVA: 0x002C3020 File Offset: 0x002C1220
+		// Token: 0x06006D4B RID: 27979 RVA: 0x002A2C5C File Offset: 0x002A0E5C
 		private float easeInBack(float start, float end, float value)
 		{
 			end -= start;
@@ -4866,7 +4866,7 @@ namespace Fungus
 			return end * value * value * ((num + 1f) * value - num) + start;
 		}
 
-		// Token: 0x06007B18 RID: 31512 RVA: 0x002C3054 File Offset: 0x002C1254
+		// Token: 0x06006D4C RID: 27980 RVA: 0x002A2C90 File Offset: 0x002A0E90
 		private float easeOutBack(float start, float end, float value)
 		{
 			float num = 1.70158f;
@@ -4875,7 +4875,7 @@ namespace Fungus
 			return end * (value * value * ((num + 1f) * value + num) + 1f) + start;
 		}
 
-		// Token: 0x06007B19 RID: 31513 RVA: 0x002C3090 File Offset: 0x002C1290
+		// Token: 0x06006D4D RID: 27981 RVA: 0x002A2CCC File Offset: 0x002A0ECC
 		private float easeInOutBack(float start, float end, float value)
 		{
 			float num = 1.70158f;
@@ -4891,7 +4891,7 @@ namespace Fungus
 			return end * 0.5f * (value * value * ((num + 1f) * value + num) + 2f) + start;
 		}
 
-		// Token: 0x06007B1A RID: 31514 RVA: 0x002C310C File Offset: 0x002C130C
+		// Token: 0x06006D4E RID: 27982 RVA: 0x002A2D48 File Offset: 0x002A0F48
 		private float punch(float amplitude, float value)
 		{
 			if (value == 0f)
@@ -4907,7 +4907,7 @@ namespace Fungus
 			return amplitude * Mathf.Pow(2f, -10f * value) * Mathf.Sin((value * 1f - num2) * 6.2831855f / num);
 		}
 
-		// Token: 0x06007B1B RID: 31515 RVA: 0x002C3180 File Offset: 0x002C1380
+		// Token: 0x06006D4F RID: 27983 RVA: 0x002A2DBC File Offset: 0x002A0FBC
 		private float easeInElastic(float start, float end, float value)
 		{
 			end -= start;
@@ -4935,7 +4935,7 @@ namespace Fungus
 			return -(num3 * Mathf.Pow(2f, 10f * (value -= 1f)) * Mathf.Sin((value * num - num4) * 6.2831855f / num2)) + start;
 		}
 
-		// Token: 0x06007B1C RID: 31516 RVA: 0x002C3228 File Offset: 0x002C1428
+		// Token: 0x06006D50 RID: 27984 RVA: 0x002A2E64 File Offset: 0x002A1064
 		private float easeOutElastic(float start, float end, float value)
 		{
 			end -= start;
@@ -4963,7 +4963,7 @@ namespace Fungus
 			return num3 * Mathf.Pow(2f, -10f * value) * Mathf.Sin((value * num - num4) * 6.2831855f / num2) + end + start;
 		}
 
-		// Token: 0x06007B1D RID: 31517 RVA: 0x002C32C8 File Offset: 0x002C14C8
+		// Token: 0x06006D51 RID: 27985 RVA: 0x002A2F04 File Offset: 0x002A1104
 		private float easeInOutElastic(float start, float end, float value)
 		{
 			end -= start;
@@ -4995,286 +4995,286 @@ namespace Fungus
 			return num3 * Mathf.Pow(2f, -10f * (value -= 1f)) * Mathf.Sin((value * num - num4) * 6.2831855f / num2) * 0.5f + end + start;
 		}
 
-		// Token: 0x0400697C RID: 27004
+		// Token: 0x04005AFA RID: 23290
 		public static List<Hashtable> tweens = new List<Hashtable>();
 
-		// Token: 0x0400697D RID: 27005
+		// Token: 0x04005AFB RID: 23291
 		private static GameObject cameraFade;
 
-		// Token: 0x0400697E RID: 27006
+		// Token: 0x04005AFC RID: 23292
 		public string id;
 
-		// Token: 0x0400697F RID: 27007
+		// Token: 0x04005AFD RID: 23293
 		public string type;
 
-		// Token: 0x04006980 RID: 27008
+		// Token: 0x04005AFE RID: 23294
 		public string method;
 
-		// Token: 0x04006981 RID: 27009
+		// Token: 0x04005AFF RID: 23295
 		public iTween.EaseType easeType;
 
-		// Token: 0x04006982 RID: 27010
+		// Token: 0x04005B00 RID: 23296
 		public float time;
 
-		// Token: 0x04006983 RID: 27011
+		// Token: 0x04005B01 RID: 23297
 		public float delay;
 
-		// Token: 0x04006984 RID: 27012
+		// Token: 0x04005B02 RID: 23298
 		public iTween.LoopType loopType;
 
-		// Token: 0x04006985 RID: 27013
+		// Token: 0x04005B03 RID: 23299
 		public bool isRunning;
 
-		// Token: 0x04006986 RID: 27014
+		// Token: 0x04005B04 RID: 23300
 		public bool isPaused;
 
-		// Token: 0x04006987 RID: 27015
+		// Token: 0x04005B05 RID: 23301
 		public string _name;
 
-		// Token: 0x04006988 RID: 27016
+		// Token: 0x04005B06 RID: 23302
 		private float runningTime;
 
-		// Token: 0x04006989 RID: 27017
+		// Token: 0x04005B07 RID: 23303
 		private float percentage;
 
-		// Token: 0x0400698A RID: 27018
+		// Token: 0x04005B08 RID: 23304
 		private float delayStarted;
 
-		// Token: 0x0400698B RID: 27019
+		// Token: 0x04005B09 RID: 23305
 		private bool kinematic;
 
-		// Token: 0x0400698C RID: 27020
+		// Token: 0x04005B0A RID: 23306
 		private bool isLocal;
 
-		// Token: 0x0400698D RID: 27021
+		// Token: 0x04005B0B RID: 23307
 		private bool loop;
 
-		// Token: 0x0400698E RID: 27022
+		// Token: 0x04005B0C RID: 23308
 		private bool reverse;
 
-		// Token: 0x0400698F RID: 27023
+		// Token: 0x04005B0D RID: 23309
 		private bool wasPaused;
 
-		// Token: 0x04006990 RID: 27024
+		// Token: 0x04005B0E RID: 23310
 		private bool physics;
 
-		// Token: 0x04006991 RID: 27025
+		// Token: 0x04005B0F RID: 23311
 		private Hashtable tweenArguments;
 
-		// Token: 0x04006992 RID: 27026
+		// Token: 0x04005B10 RID: 23312
 		private Space space;
 
-		// Token: 0x04006993 RID: 27027
+		// Token: 0x04005B11 RID: 23313
 		private iTween.EasingFunction ease;
 
-		// Token: 0x04006994 RID: 27028
+		// Token: 0x04005B12 RID: 23314
 		private iTween.ApplyTween apply;
 
-		// Token: 0x04006995 RID: 27029
+		// Token: 0x04005B13 RID: 23315
 		private AudioSource audioSource;
 
-		// Token: 0x04006996 RID: 27030
+		// Token: 0x04005B14 RID: 23316
 		private Vector3[] vector3s;
 
-		// Token: 0x04006997 RID: 27031
+		// Token: 0x04005B15 RID: 23317
 		private Vector2[] vector2s;
 
-		// Token: 0x04006998 RID: 27032
+		// Token: 0x04005B16 RID: 23318
 		private Color[,] colors;
 
-		// Token: 0x04006999 RID: 27033
+		// Token: 0x04005B17 RID: 23319
 		private float[] floats;
 
-		// Token: 0x0400699A RID: 27034
+		// Token: 0x04005B18 RID: 23320
 		private Rect[] rects;
 
-		// Token: 0x0400699B RID: 27035
+		// Token: 0x04005B19 RID: 23321
 		private iTween.CRSpline path;
 
-		// Token: 0x0400699C RID: 27036
+		// Token: 0x04005B1A RID: 23322
 		private Vector3 preUpdate;
 
-		// Token: 0x0400699D RID: 27037
+		// Token: 0x04005B1B RID: 23323
 		private Vector3 postUpdate;
 
-		// Token: 0x0400699E RID: 27038
+		// Token: 0x04005B1C RID: 23324
 		private iTween.NamedValueColor namedcolorvalue;
 
-		// Token: 0x0400699F RID: 27039
+		// Token: 0x04005B1D RID: 23325
 		private float lastRealTime;
 
-		// Token: 0x040069A0 RID: 27040
+		// Token: 0x04005B1E RID: 23326
 		private bool useRealTime;
 
-		// Token: 0x040069A1 RID: 27041
+		// Token: 0x04005B1F RID: 23327
 		private Transform thisTransform;
 
-		// Token: 0x020013B4 RID: 5044
-		// (Invoke) Token: 0x06007B20 RID: 31520
+		// Token: 0x0200171A RID: 5914
+		// (Invoke) Token: 0x0600892D RID: 35117
 		private delegate float EasingFunction(float start, float end, float Value);
 
-		// Token: 0x020013B5 RID: 5045
-		// (Invoke) Token: 0x06007B24 RID: 31524
+		// Token: 0x0200171B RID: 5915
+		// (Invoke) Token: 0x06008931 RID: 35121
 		private delegate void ApplyTween();
 
-		// Token: 0x020013B6 RID: 5046
+		// Token: 0x0200171C RID: 5916
 		public enum EaseType
 		{
-			// Token: 0x040069A3 RID: 27043
+			// Token: 0x040074D5 RID: 29909
 			easeInQuad,
-			// Token: 0x040069A4 RID: 27044
+			// Token: 0x040074D6 RID: 29910
 			easeOutQuad,
-			// Token: 0x040069A5 RID: 27045
+			// Token: 0x040074D7 RID: 29911
 			easeInOutQuad,
-			// Token: 0x040069A6 RID: 27046
+			// Token: 0x040074D8 RID: 29912
 			easeInCubic,
-			// Token: 0x040069A7 RID: 27047
+			// Token: 0x040074D9 RID: 29913
 			easeOutCubic,
-			// Token: 0x040069A8 RID: 27048
+			// Token: 0x040074DA RID: 29914
 			easeInOutCubic,
-			// Token: 0x040069A9 RID: 27049
+			// Token: 0x040074DB RID: 29915
 			easeInQuart,
-			// Token: 0x040069AA RID: 27050
+			// Token: 0x040074DC RID: 29916
 			easeOutQuart,
-			// Token: 0x040069AB RID: 27051
+			// Token: 0x040074DD RID: 29917
 			easeInOutQuart,
-			// Token: 0x040069AC RID: 27052
+			// Token: 0x040074DE RID: 29918
 			easeInQuint,
-			// Token: 0x040069AD RID: 27053
+			// Token: 0x040074DF RID: 29919
 			easeOutQuint,
-			// Token: 0x040069AE RID: 27054
+			// Token: 0x040074E0 RID: 29920
 			easeInOutQuint,
-			// Token: 0x040069AF RID: 27055
+			// Token: 0x040074E1 RID: 29921
 			easeInSine,
-			// Token: 0x040069B0 RID: 27056
+			// Token: 0x040074E2 RID: 29922
 			easeOutSine,
-			// Token: 0x040069B1 RID: 27057
+			// Token: 0x040074E3 RID: 29923
 			easeInOutSine,
-			// Token: 0x040069B2 RID: 27058
+			// Token: 0x040074E4 RID: 29924
 			easeInExpo,
-			// Token: 0x040069B3 RID: 27059
+			// Token: 0x040074E5 RID: 29925
 			easeOutExpo,
-			// Token: 0x040069B4 RID: 27060
+			// Token: 0x040074E6 RID: 29926
 			easeInOutExpo,
-			// Token: 0x040069B5 RID: 27061
+			// Token: 0x040074E7 RID: 29927
 			easeInCirc,
-			// Token: 0x040069B6 RID: 27062
+			// Token: 0x040074E8 RID: 29928
 			easeOutCirc,
-			// Token: 0x040069B7 RID: 27063
+			// Token: 0x040074E9 RID: 29929
 			easeInOutCirc,
-			// Token: 0x040069B8 RID: 27064
+			// Token: 0x040074EA RID: 29930
 			linear,
-			// Token: 0x040069B9 RID: 27065
+			// Token: 0x040074EB RID: 29931
 			spring,
-			// Token: 0x040069BA RID: 27066
+			// Token: 0x040074EC RID: 29932
 			easeInBounce,
-			// Token: 0x040069BB RID: 27067
+			// Token: 0x040074ED RID: 29933
 			easeOutBounce,
-			// Token: 0x040069BC RID: 27068
+			// Token: 0x040074EE RID: 29934
 			easeInOutBounce,
-			// Token: 0x040069BD RID: 27069
+			// Token: 0x040074EF RID: 29935
 			easeInBack,
-			// Token: 0x040069BE RID: 27070
+			// Token: 0x040074F0 RID: 29936
 			easeOutBack,
-			// Token: 0x040069BF RID: 27071
+			// Token: 0x040074F1 RID: 29937
 			easeInOutBack,
-			// Token: 0x040069C0 RID: 27072
+			// Token: 0x040074F2 RID: 29938
 			easeInElastic,
-			// Token: 0x040069C1 RID: 27073
+			// Token: 0x040074F3 RID: 29939
 			easeOutElastic,
-			// Token: 0x040069C2 RID: 27074
+			// Token: 0x040074F4 RID: 29940
 			easeInOutElastic,
-			// Token: 0x040069C3 RID: 27075
+			// Token: 0x040074F5 RID: 29941
 			punch
 		}
 
-		// Token: 0x020013B7 RID: 5047
+		// Token: 0x0200171D RID: 5917
 		public enum LoopType
 		{
-			// Token: 0x040069C5 RID: 27077
+			// Token: 0x040074F7 RID: 29943
 			none,
-			// Token: 0x040069C6 RID: 27078
+			// Token: 0x040074F8 RID: 29944
 			loop,
-			// Token: 0x040069C7 RID: 27079
+			// Token: 0x040074F9 RID: 29945
 			pingPong
 		}
 
-		// Token: 0x020013B8 RID: 5048
+		// Token: 0x0200171E RID: 5918
 		public enum NamedValueColor
 		{
-			// Token: 0x040069C9 RID: 27081
+			// Token: 0x040074FB RID: 29947
 			_Color,
-			// Token: 0x040069CA RID: 27082
+			// Token: 0x040074FC RID: 29948
 			_SpecColor,
-			// Token: 0x040069CB RID: 27083
+			// Token: 0x040074FD RID: 29949
 			_Emission,
-			// Token: 0x040069CC RID: 27084
+			// Token: 0x040074FE RID: 29950
 			_ReflectColor
 		}
 
-		// Token: 0x020013B9 RID: 5049
+		// Token: 0x0200171F RID: 5919
 		public static class Defaults
 		{
-			// Token: 0x040069CD RID: 27085
+			// Token: 0x040074FF RID: 29951
 			public static float time = 1f;
 
-			// Token: 0x040069CE RID: 27086
+			// Token: 0x04007500 RID: 29952
 			public static float delay = 0f;
 
-			// Token: 0x040069CF RID: 27087
+			// Token: 0x04007501 RID: 29953
 			public static iTween.NamedValueColor namedColorValue = iTween.NamedValueColor._Color;
 
-			// Token: 0x040069D0 RID: 27088
+			// Token: 0x04007502 RID: 29954
 			public static iTween.LoopType loopType = iTween.LoopType.none;
 
-			// Token: 0x040069D1 RID: 27089
+			// Token: 0x04007503 RID: 29955
 			public static iTween.EaseType easeType = iTween.EaseType.easeOutExpo;
 
-			// Token: 0x040069D2 RID: 27090
+			// Token: 0x04007504 RID: 29956
 			public static float lookSpeed = 3f;
 
-			// Token: 0x040069D3 RID: 27091
+			// Token: 0x04007505 RID: 29957
 			public static bool isLocal = false;
 
-			// Token: 0x040069D4 RID: 27092
+			// Token: 0x04007506 RID: 29958
 			public static Space space = 1;
 
-			// Token: 0x040069D5 RID: 27093
+			// Token: 0x04007507 RID: 29959
 			public static bool orientToPath = false;
 
-			// Token: 0x040069D6 RID: 27094
+			// Token: 0x04007508 RID: 29960
 			public static Color color = Color.white;
 
-			// Token: 0x040069D7 RID: 27095
+			// Token: 0x04007509 RID: 29961
 			public static float updateTimePercentage = 0.05f;
 
-			// Token: 0x040069D8 RID: 27096
+			// Token: 0x0400750A RID: 29962
 			public static float updateTime = 1f * iTween.Defaults.updateTimePercentage;
 
-			// Token: 0x040069D9 RID: 27097
+			// Token: 0x0400750B RID: 29963
 			public static int cameraFadeDepth = 999999;
 
-			// Token: 0x040069DA RID: 27098
+			// Token: 0x0400750C RID: 29964
 			public static float lookAhead = 0.05f;
 
-			// Token: 0x040069DB RID: 27099
+			// Token: 0x0400750D RID: 29965
 			public static bool useRealTime = false;
 
-			// Token: 0x040069DC RID: 27100
+			// Token: 0x0400750E RID: 29966
 			public static Vector3 up = Vector3.up;
 		}
 
-		// Token: 0x020013BA RID: 5050
+		// Token: 0x02001720 RID: 5920
 		private class CRSpline
 		{
-			// Token: 0x06007B28 RID: 31528 RVA: 0x00054155 File Offset: 0x00052355
+			// Token: 0x06008935 RID: 35125 RVA: 0x002EA39C File Offset: 0x002E859C
 			public CRSpline(params Vector3[] pts)
 			{
 				this.pts = new Vector3[pts.Length];
 				Array.Copy(pts, this.pts, pts.Length);
 			}
 
-			// Token: 0x06007B29 RID: 31529 RVA: 0x002C3454 File Offset: 0x002C1654
+			// Token: 0x06008936 RID: 35126 RVA: 0x002EA3C4 File Offset: 0x002E85C4
 			public Vector3 Interp(float t)
 			{
 				int num = this.pts.Length - 3;
@@ -5287,7 +5287,7 @@ namespace Fungus
 				return 0.5f * ((-vector + 3f * vector2 - 3f * vector3 + vector4) * (num3 * num3 * num3) + (2f * vector - 5f * vector2 + 4f * vector3 - vector4) * (num3 * num3) + (-vector + vector3) * num3 + 2f * vector2);
 			}
 
-			// Token: 0x040069DD RID: 27101
+			// Token: 0x0400750F RID: 29967
 			public Vector3[] pts;
 		}
 	}

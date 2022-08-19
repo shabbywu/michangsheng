@@ -2,16 +2,16 @@
 
 namespace MoonSharp.Interpreter
 {
-	// Token: 0x0200107C RID: 4220
+	// Token: 0x02000CAD RID: 3245
 	[Serializable]
 	public class InternalErrorException : InterpreterException
 	{
-		// Token: 0x060065DF RID: 26079 RVA: 0x000462B0 File Offset: 0x000444B0
+		// Token: 0x06005AED RID: 23277 RVA: 0x00259259 File Offset: 0x00257459
 		internal InternalErrorException(string message) : base(message)
 		{
 		}
 
-		// Token: 0x060065E0 RID: 26080 RVA: 0x000462B9 File Offset: 0x000444B9
+		// Token: 0x06005AEE RID: 23278 RVA: 0x00259262 File Offset: 0x00257462
 		internal InternalErrorException(string format, params object[] args) : base(format, args)
 		{
 		}

@@ -3,16 +3,16 @@ using UnityEngine;
 
 namespace Bag
 {
-	// Token: 0x02000D3C RID: 3388
+	// Token: 0x020009B4 RID: 2484
 	public interface ISkill
 	{
-		// Token: 0x06005079 RID: 20601
+		// Token: 0x06004516 RID: 17686
 		Sprite GetIconSprite();
 
-		// Token: 0x0600507A RID: 20602
+		// Token: 0x06004517 RID: 17687
 		Sprite GetQualitySprite();
 
-		// Token: 0x0600507B RID: 20603
+		// Token: 0x06004518 RID: 17688
 		Sprite GetQualityUpSprite();
 	}
 }

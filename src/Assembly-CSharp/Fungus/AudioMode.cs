@@ -2,12 +2,12 @@
 
 namespace Fungus
 {
-	// Token: 0x0200130B RID: 4875
+	// Token: 0x02000E92 RID: 3730
 	public enum AudioMode
 	{
-		// Token: 0x040067C2 RID: 26562
+		// Token: 0x040059B3 RID: 22963
 		Beeps,
-		// Token: 0x040067C3 RID: 26563
+		// Token: 0x040059B4 RID: 22964
 		SoundEffect
 	}
 }

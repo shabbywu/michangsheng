@@ -2,14 +2,14 @@
 
 namespace Fungus
 {
-	// Token: 0x02001403 RID: 5123
+	// Token: 0x02000F4D RID: 3917
 	public enum SexType
 	{
-		// Token: 0x04006A77 RID: 27255
+		// Token: 0x04005BA6 RID: 23462
 		随机,
-		// Token: 0x04006A78 RID: 27256
+		// Token: 0x04005BA7 RID: 23463
 		男,
-		// Token: 0x04006A79 RID: 27257
+		// Token: 0x04005BA8 RID: 23464
 		女
 	}
 }

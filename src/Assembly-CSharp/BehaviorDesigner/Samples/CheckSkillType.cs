@@ -5,24 +5,24 @@ using KBEngine;
 
 namespace BehaviorDesigner.Samples
 {
-	// Token: 0x0200146B RID: 5227
+	// Token: 0x02000FB3 RID: 4019
 	[TaskCategory("YS")]
 	[TaskDescription("检测当前技能是否可用")]
 	public class CheckSkillType : Conditional
 	{
-		// Token: 0x06007DED RID: 32237 RVA: 0x000042DD File Offset: 0x000024DD
+		// Token: 0x06006FF3 RID: 28659 RVA: 0x00004095 File Offset: 0x00002295
 		public override void OnAwake()
 		{
 		}
 
-		// Token: 0x06007DEE RID: 32238 RVA: 0x00055226 File Offset: 0x00053426
+		// Token: 0x06006FF4 RID: 28660 RVA: 0x002A8A5F File Offset: 0x002A6C5F
 		public override void OnStart()
 		{
 			this.avatar = (Avatar)this.gameObject.GetComponent<AvaterAddScript>().entity;
 			this.currentSkillIndex = (base.Owner.GetVariable("NowSkill") as SharedInt);
 		}
 
-		// Token: 0x06007DEF RID: 32239 RVA: 0x002C81DC File Offset: 0x002C63DC
+		// Token: 0x06006FF5 RID: 28661 RVA: 0x002A8A98 File Offset: 0x002A6C98
 		public override TaskStatus OnUpdate()
 		{
 			int skill_ID = this.avatar.skill[(int)this.currentSkillIndex.GetValue()].skill_ID;
@@ -34,14 +34,14 @@ namespace BehaviorDesigner.Samples
 			return 1;
 		}
 
-		// Token: 0x04006B60 RID: 27488
+		// Token: 0x04005C68 RID: 23656
 		[Tooltip("当前技能id")]
 		public AI.skillWeight weight = AI.skillWeight.Circle;
 
-		// Token: 0x04006B61 RID: 27489
+		// Token: 0x04005C69 RID: 23657
 		protected Avatar avatar;
 
-		// Token: 0x04006B62 RID: 27490
+		// Token: 0x04005C6A RID: 23658
 		private SharedInt currentSkillIndex;
 	}
 }

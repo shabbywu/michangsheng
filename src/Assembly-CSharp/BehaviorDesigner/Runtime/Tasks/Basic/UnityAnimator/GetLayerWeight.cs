@@ -3,12 +3,12 @@ using UnityEngine;
 
 namespace BehaviorDesigner.Runtime.Tasks.Basic.UnityAnimator
 {
-	// Token: 0x0200164F RID: 5711
+	// Token: 0x02001190 RID: 4496
 	[TaskCategory("Basic/Animator")]
 	[TaskDescription("Stores the layer's weight. Returns Success.")]
 	public class GetLayerWeight : Action
 	{
-		// Token: 0x060084CE RID: 33998 RVA: 0x002D0040 File Offset: 0x002CE240
+		// Token: 0x060076D4 RID: 30420 RVA: 0x002B7704 File Offset: 0x002B5904
 		public override void OnStart()
 		{
 			GameObject defaultGameObject = base.GetDefaultGameObject(this.targetGameObject.Value);
@@ -19,7 +19,7 @@ namespace BehaviorDesigner.Runtime.Tasks.Basic.UnityAnimator
 			}
 		}
 
-		// Token: 0x060084CF RID: 33999 RVA: 0x0005BFD1 File Offset: 0x0005A1D1
+		// Token: 0x060076D5 RID: 30421 RVA: 0x002B7744 File Offset: 0x002B5944
 		public override TaskStatus OnUpdate()
 		{
 			if (this.animator == null)
@@ -31,7 +31,7 @@ namespace BehaviorDesigner.Runtime.Tasks.Basic.UnityAnimator
 			return 2;
 		}
 
-		// Token: 0x060084D0 RID: 34000 RVA: 0x0005C00F File Offset: 0x0005A20F
+		// Token: 0x060076D6 RID: 30422 RVA: 0x002B7782 File Offset: 0x002B5982
 		public override void OnReset()
 		{
 			this.targetGameObject = null;
@@ -39,23 +39,23 @@ namespace BehaviorDesigner.Runtime.Tasks.Basic.UnityAnimator
 			this.storeValue = 0f;
 		}
 
-		// Token: 0x0400717C RID: 29052
+		// Token: 0x04006259 RID: 25177
 		[Tooltip("The GameObject that the task operates on. If null the task GameObject is used.")]
 		public SharedGameObject targetGameObject;
 
-		// Token: 0x0400717D RID: 29053
+		// Token: 0x0400625A RID: 25178
 		[Tooltip("The index of the layer")]
 		public SharedInt index;
 
-		// Token: 0x0400717E RID: 29054
+		// Token: 0x0400625B RID: 25179
 		[Tooltip("The value of the float parameter")]
 		[RequiredField]
 		public SharedFloat storeValue;
 
-		// Token: 0x0400717F RID: 29055
+		// Token: 0x0400625C RID: 25180
 		private Animator animator;
 
-		// Token: 0x04007180 RID: 29056
+		// Token: 0x0400625D RID: 25181
 		private GameObject prevGameObject;
 	}
 }

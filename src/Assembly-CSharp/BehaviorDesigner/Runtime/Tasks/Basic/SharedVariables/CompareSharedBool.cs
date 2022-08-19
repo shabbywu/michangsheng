@@ -2,12 +2,12 @@
 
 namespace BehaviorDesigner.Runtime.Tasks.Basic.SharedVariables
 {
-	// Token: 0x02001509 RID: 5385
+	// Token: 0x0200104F RID: 4175
 	[TaskCategory("Basic/SharedVariable")]
 	[TaskDescription("Returns success if the variable value is equal to the compareTo value.")]
 	public class CompareSharedBool : Conditional
 	{
-		// Token: 0x06008044 RID: 32836 RVA: 0x002CAF60 File Offset: 0x002C9160
+		// Token: 0x0600724A RID: 29258 RVA: 0x002ADA10 File Offset: 0x002ABC10
 		public override TaskStatus OnUpdate()
 		{
 			if (!this.variable.Value.Equals(this.compareTo.Value))
@@ -17,18 +17,18 @@ namespace BehaviorDesigner.Runtime.Tasks.Basic.SharedVariables
 			return 2;
 		}
 
-		// Token: 0x06008045 RID: 32837 RVA: 0x00057441 File Offset: 0x00055641
+		// Token: 0x0600724B RID: 29259 RVA: 0x002ADA40 File Offset: 0x002ABC40
 		public override void OnReset()
 		{
 			this.variable = false;
 			this.compareTo = false;
 		}
 
-		// Token: 0x04006D1E RID: 27934
+		// Token: 0x04005E1E RID: 24094
 		[Tooltip("The first variable to compare")]
 		public SharedBool variable;
 
-		// Token: 0x04006D1F RID: 27935
+		// Token: 0x04005E1F RID: 24095
 		[Tooltip("The variable to compare to")]
 		public SharedBool compareTo;
 	}

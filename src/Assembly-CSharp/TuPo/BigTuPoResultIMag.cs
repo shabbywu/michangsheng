@@ -8,22 +8,22 @@ using UnityEngine.UI;
 
 namespace TuPo
 {
-	// Token: 0x02000A83 RID: 2691
+	// Token: 0x0200072B RID: 1835
 	public class BigTuPoResultIMag : MonoBehaviour
 	{
-		// Token: 0x06004520 RID: 17696 RVA: 0x00031766 File Offset: 0x0002F966
+		// Token: 0x06003A76 RID: 14966 RVA: 0x0019186C File Offset: 0x0018FA6C
 		private void Awake()
 		{
 			BigTuPoResultIMag.Inst = this;
 		}
 
-		// Token: 0x06004521 RID: 17697 RVA: 0x0003176E File Offset: 0x0002F96E
+		// Token: 0x06003A77 RID: 14967 RVA: 0x00191874 File Offset: 0x0018FA74
 		private void OnDestroy()
 		{
 			BigTuPoResultIMag.Inst = null;
 		}
 
-		// Token: 0x06004522 RID: 17698 RVA: 0x001D90A4 File Offset: 0x001D72A4
+		// Token: 0x06003A78 RID: 14968 RVA: 0x0019187C File Offset: 0x0018FA7C
 		public void ShowSuccess(int type)
 		{
 			Avatar avatar = Tools.instance.getPlayer();
@@ -102,7 +102,7 @@ namespace TuPo
 			this.InitSuccess();
 		}
 
-		// Token: 0x06004523 RID: 17699 RVA: 0x001D94F0 File Offset: 0x001D76F0
+		// Token: 0x06003A79 RID: 14969 RVA: 0x00191CC8 File Offset: 0x0018FEC8
 		public void ShowFail(int type, int jieYingFail = 0)
 		{
 			Avatar player = Tools.instance.getPlayer();
@@ -159,7 +159,7 @@ namespace TuPo
 			this.InitFail();
 		}
 
-		// Token: 0x06004524 RID: 17700 RVA: 0x001D96BC File Offset: 0x001D78BC
+		// Token: 0x06003A7A RID: 14970 RVA: 0x00191E94 File Offset: 0x00190094
 		private void InitSuccess()
 		{
 			this.SuccessPanel.gameObject.SetActive(true);
@@ -168,7 +168,7 @@ namespace TuPo
 			ShortcutExtensions.DOScale(this.SuccessPanel, Vector3.one, 0.5f);
 		}
 
-		// Token: 0x06004525 RID: 17701 RVA: 0x001D9718 File Offset: 0x001D7918
+		// Token: 0x06003A7B RID: 14971 RVA: 0x00191EF0 File Offset: 0x001900F0
 		private void InitFail()
 		{
 			this.FailPanel.gameObject.SetActive(true);
@@ -177,7 +177,7 @@ namespace TuPo
 			ShortcutExtensions.DOScale(this.FailPanel, Vector3.one, 0.5f);
 		}
 
-		// Token: 0x06004526 RID: 17702 RVA: 0x001D9774 File Offset: 0x001D7974
+		// Token: 0x06003A7C RID: 14972 RVA: 0x00191F4C File Offset: 0x0019014C
 		private void Init()
 		{
 			base.transform.SetParent(NewUICanvas.Inst.gameObject.transform);
@@ -188,7 +188,7 @@ namespace TuPo
 			Tools.canClickFlag = false;
 		}
 
-		// Token: 0x06004527 RID: 17703 RVA: 0x001D97D4 File Offset: 0x001D79D4
+		// Token: 0x06003A7D RID: 14973 RVA: 0x00191FAC File Offset: 0x001901AC
 		private string GetJinDanColor(int lv)
 		{
 			int index = 0;
@@ -207,7 +207,7 @@ namespace TuPo
 			return this.JinDanColorList[index];
 		}
 
-		// Token: 0x06004528 RID: 17704 RVA: 0x00031776 File Offset: 0x0002F976
+		// Token: 0x06003A7E RID: 14974 RVA: 0x00191FDE File Offset: 0x001901DE
 		public void Close()
 		{
 			PanelMamager.CanOpenOrClose = true;
@@ -216,110 +216,110 @@ namespace TuPo
 			Object.Destroy(base.gameObject);
 		}
 
-		// Token: 0x04003D40 RID: 15680
+		// Token: 0x0400329F RID: 12959
 		public static BigTuPoResultIMag Inst;
 
-		// Token: 0x04003D41 RID: 15681
+		// Token: 0x040032A0 RID: 12960
 		[SerializeField]
 		private Transform SuccessPanel;
 
-		// Token: 0x04003D42 RID: 15682
+		// Token: 0x040032A1 RID: 12961
 		[SerializeField]
 		private FpBtn OkBtn;
 
-		// Token: 0x04003D43 RID: 15683
+		// Token: 0x040032A2 RID: 12962
 		[SerializeField]
 		private Text Desc;
 
-		// Token: 0x04003D44 RID: 15684
+		// Token: 0x040032A3 RID: 12963
 		[SerializeField]
 		private GameObject ZhuJiPanel;
 
-		// Token: 0x04003D45 RID: 15685
+		// Token: 0x040032A4 RID: 12964
 		[SerializeField]
 		private Text ZhuJiDesc;
 
-		// Token: 0x04003D46 RID: 15686
+		// Token: 0x040032A5 RID: 12965
 		[SerializeField]
 		private GameObject JinDanPanel;
 
-		// Token: 0x04003D47 RID: 15687
+		// Token: 0x040032A6 RID: 12966
 		[SerializeField]
 		private Text JinDanDesc;
 
-		// Token: 0x04003D48 RID: 15688
+		// Token: 0x040032A7 RID: 12967
 		[SerializeField]
 		private List<string> JinDanColorList;
 
-		// Token: 0x04003D49 RID: 15689
+		// Token: 0x040032A8 RID: 12968
 		[SerializeField]
 		private GameObject YuanYingPanel;
 
-		// Token: 0x04003D4A RID: 15690
+		// Token: 0x040032A9 RID: 12969
 		[SerializeField]
 		private Text YuanYingDesc1;
 
-		// Token: 0x04003D4B RID: 15691
+		// Token: 0x040032AA RID: 12970
 		[SerializeField]
 		private Text YuanYingDesc2;
 
-		// Token: 0x04003D4C RID: 15692
+		// Token: 0x040032AB RID: 12971
 		[SerializeField]
 		private Transform FailPanel;
 
-		// Token: 0x04003D4D RID: 15693
+		// Token: 0x040032AC RID: 12972
 		[SerializeField]
 		private Text FailDesc;
 
-		// Token: 0x04003D4E RID: 15694
+		// Token: 0x040032AD RID: 12973
 		[SerializeField]
 		private GameObject ZhuJiFailPanel;
 
-		// Token: 0x04003D4F RID: 15695
+		// Token: 0x040032AE RID: 12974
 		[SerializeField]
 		private GameObject JinDanFailPanel;
 
-		// Token: 0x04003D50 RID: 15696
+		// Token: 0x040032AF RID: 12975
 		[SerializeField]
 		private GameObject JieYingFailPanel;
 
-		// Token: 0x04003D51 RID: 15697
+		// Token: 0x040032B0 RID: 12976
 		[SerializeField]
 		private Image JieYingFailImage;
 
-		// Token: 0x04003D52 RID: 15698
+		// Token: 0x040032B1 RID: 12977
 		[SerializeField]
 		private List<Sprite> JieYingFailSpriteList;
 
-		// Token: 0x04003D53 RID: 15699
+		// Token: 0x040032B2 RID: 12978
 		[SerializeField]
 		private Text JieYingFailTips1;
 
-		// Token: 0x04003D54 RID: 15700
+		// Token: 0x040032B3 RID: 12979
 		[SerializeField]
 		private Text JieYingFailTips2;
 
-		// Token: 0x04003D55 RID: 15701
+		// Token: 0x040032B4 RID: 12980
 		[SerializeField]
 		private Text JieYingFailDesc1;
 
-		// Token: 0x04003D56 RID: 15702
+		// Token: 0x040032B5 RID: 12981
 		[SerializeField]
 		private Text JieYingFailDesc2;
 
-		// Token: 0x04003D57 RID: 15703
+		// Token: 0x040032B6 RID: 12982
 		[SerializeField]
 		private GameObject HuaShenPanel;
 
-		// Token: 0x04003D58 RID: 15704
+		// Token: 0x040032B7 RID: 12983
 		[SerializeField]
 		private GameObject HuaShenFailPanel;
 
-		// Token: 0x04003D59 RID: 15705
+		// Token: 0x040032B8 RID: 12984
 		[SerializeField]
 		private Text HuaShenDesc1;
 
-		// Token: 0x04003D5A RID: 15706
+		// Token: 0x040032B9 RID: 12985
 		[SerializeField]
 		private Text HuaShenDesc2;
 	}

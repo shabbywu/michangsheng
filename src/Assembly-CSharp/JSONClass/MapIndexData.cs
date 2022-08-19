@@ -3,10 +3,10 @@ using System.Collections.Generic;
 
 namespace JSONClass
 {
-	// Token: 0x02000C18 RID: 3096
+	// Token: 0x0200088A RID: 2186
 	public class MapIndexData : IJSONClass
 	{
-		// Token: 0x06004BC9 RID: 19401 RVA: 0x001FFD28 File Offset: 0x001FDF28
+		// Token: 0x0600403B RID: 16443 RVA: 0x001B671C File Offset: 0x001B491C
 		public static void InitDataDict()
 		{
 			foreach (JSONObject jsonobject in jsonData.instance.MapIndexData.list)
@@ -41,30 +41,30 @@ namespace JSONClass
 			}
 		}
 
-		// Token: 0x06004BCA RID: 19402 RVA: 0x000042DD File Offset: 0x000024DD
+		// Token: 0x0600403C RID: 16444 RVA: 0x00004095 File Offset: 0x00002295
 		private static void OnInitFinish()
 		{
 		}
 
-		// Token: 0x040048B7 RID: 18615
+		// Token: 0x04003D5E RID: 15710
 		public static Dictionary<int, MapIndexData> DataDict = new Dictionary<int, MapIndexData>();
 
-		// Token: 0x040048B8 RID: 18616
+		// Token: 0x04003D5F RID: 15711
 		public static List<MapIndexData> DataList = new List<MapIndexData>();
 
-		// Token: 0x040048B9 RID: 18617
+		// Token: 0x04003D60 RID: 15712
 		public static Action OnInitFinishAction = new Action(MapIndexData.OnInitFinish);
 
-		// Token: 0x040048BA RID: 18618
+		// Token: 0x04003D61 RID: 15713
 		public int id;
 
-		// Token: 0x040048BB RID: 18619
+		// Token: 0x04003D62 RID: 15714
 		public int mapIndex;
 
-		// Token: 0x040048BC RID: 18620
+		// Token: 0x04003D63 RID: 15715
 		public string StrValue;
 
-		// Token: 0x040048BD RID: 18621
+		// Token: 0x04003D64 RID: 15716
 		public string name;
 	}
 }

@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 
-// Token: 0x020003D9 RID: 985
+// Token: 0x020002A0 RID: 672
 [Serializable]
 public class EmailData
 {
-	// Token: 0x06001AF5 RID: 6901 RVA: 0x000EEA40 File Offset: 0x000ECC40
+	// Token: 0x06001803 RID: 6147 RVA: 0x000A7804 File Offset: 0x000A5A04
 	public EmailData(int npcId, bool isOut, bool isComplete, List<int> content, int actionId, List<int> item, int outTime, int addHaoGanDu, string sendTime)
 	{
 		this.npcId = npcId;
@@ -19,7 +19,7 @@ public class EmailData
 		this.sendTime = sendTime;
 	}
 
-	// Token: 0x06001AF6 RID: 6902 RVA: 0x000EEAE8 File Offset: 0x000ECCE8
+	// Token: 0x06001804 RID: 6148 RVA: 0x000A78AC File Offset: 0x000A5AAC
 	public EmailData(int npcId, bool isOld, int oldId, string sendTime)
 	{
 		this.sendTime = sendTime;
@@ -28,7 +28,7 @@ public class EmailData
 		this.oldId = oldId;
 	}
 
-	// Token: 0x06001AF7 RID: 6903 RVA: 0x000EEB68 File Offset: 0x000ECD68
+	// Token: 0x06001805 RID: 6149 RVA: 0x000A792C File Offset: 0x000A5B2C
 	public EmailData(int npcId, int questionId, bool isPlayer, string sendTime)
 	{
 		this.sendTime = sendTime;
@@ -37,7 +37,7 @@ public class EmailData
 		this.isPlayer = isPlayer;
 	}
 
-	// Token: 0x06001AF8 RID: 6904 RVA: 0x000EEBE8 File Offset: 0x000ECDE8
+	// Token: 0x06001806 RID: 6150 RVA: 0x000A79AC File Offset: 0x000A5BAC
 	public EmailData(int npcId, int answerId, bool isAnswer, bool isPangBai, string sendTime)
 	{
 		this.sendTime = sendTime;
@@ -47,7 +47,7 @@ public class EmailData
 		this.answerId = answerId;
 	}
 
-	// Token: 0x06001AF9 RID: 6905 RVA: 0x000EEC70 File Offset: 0x000ECE70
+	// Token: 0x06001807 RID: 6151 RVA: 0x000A7A34 File Offset: 0x000A5C34
 	public bool CheckIsOut()
 	{
 		DateTime nowTime = Tools.instance.getPlayer().worldTimeMag.getNowTime();
@@ -55,82 +55,82 @@ public class EmailData
 		return nowTime > t;
 	}
 
-	// Token: 0x06001AFA RID: 6906 RVA: 0x000EECB8 File Offset: 0x000ECEB8
+	// Token: 0x06001808 RID: 6152 RVA: 0x000A7A7C File Offset: 0x000A5C7C
 	public string TimeToString()
 	{
 		DateTime dateTime = DateTime.Parse(this.sendTime);
 		return string.Format("{0}年{1}月{2}日", dateTime.Year, dateTime.Month, dateTime.Day);
 	}
 
-	// Token: 0x04001684 RID: 5764
+	// Token: 0x040012E8 RID: 4840
 	public int npcId;
 
-	// Token: 0x04001685 RID: 5765
+	// Token: 0x040012E9 RID: 4841
 	public int questionId;
 
-	// Token: 0x04001686 RID: 5766
+	// Token: 0x040012EA RID: 4842
 	public bool isPlayer;
 
-	// Token: 0x04001687 RID: 5767
+	// Token: 0x040012EB RID: 4843
 	public bool isOld;
 
-	// Token: 0x04001688 RID: 5768
+	// Token: 0x040012EC RID: 4844
 	public bool isPangBai;
 
-	// Token: 0x04001689 RID: 5769
+	// Token: 0x040012ED RID: 4845
 	public bool isAnswer;
 
-	// Token: 0x0400168A RID: 5770
+	// Token: 0x040012EE RID: 4846
 	public string npcName = "";
 
-	// Token: 0x0400168B RID: 5771
+	// Token: 0x040012EF RID: 4847
 	public string sceneName = "null";
 
-	// Token: 0x0400168C RID: 5772
+	// Token: 0x040012F0 RID: 4848
 	public int answerId;
 
-	// Token: 0x0400168D RID: 5773
+	// Token: 0x040012F1 RID: 4849
 	public int oldId;
 
-	// Token: 0x0400168E RID: 5774
+	// Token: 0x040012F2 RID: 4850
 	public bool isOut;
 
-	// Token: 0x0400168F RID: 5775
+	// Token: 0x040012F3 RID: 4851
 	public bool isComplete;
 
-	// Token: 0x04001690 RID: 5776
+	// Token: 0x040012F4 RID: 4852
 	public string sendTime;
 
-	// Token: 0x04001691 RID: 5777
+	// Token: 0x040012F5 RID: 4853
 	public int DongFuId;
 
-	// Token: 0x04001692 RID: 5778
+	// Token: 0x040012F6 RID: 4854
 	public string daoYaoStr = "";
 
-	// Token: 0x04001693 RID: 5779
+	// Token: 0x040012F7 RID: 4855
 	public string xiaoYaoStr = "";
 
-	// Token: 0x04001694 RID: 5780
+	// Token: 0x040012F8 RID: 4856
 	public List<int> content = new List<int>();
 
-	// Token: 0x04001695 RID: 5781
+	// Token: 0x040012F9 RID: 4857
 	public List<int> contentKey = new List<int>();
 
-	// Token: 0x04001696 RID: 5782
+	// Token: 0x040012FA RID: 4858
 	public int actionId;
 
-	// Token: 0x04001697 RID: 5783
+	// Token: 0x040012FB RID: 4859
 	public List<int> item = new List<int>();
 
-	// Token: 0x04001698 RID: 5784
+	// Token: 0x040012FC RID: 4860
 	public int outTime;
 
-	// Token: 0x04001699 RID: 5785
+	// Token: 0x040012FD RID: 4861
 	public int addHaoGanDu;
 
-	// Token: 0x0400169A RID: 5786
+	// Token: 0x040012FE RID: 4862
 	public CyPaiMaiInfo PaiMaiInfo;
 
-	// Token: 0x0400169B RID: 5787
+	// Token: 0x040012FF RID: 4863
 	public RandomTask RandomTask;
 }

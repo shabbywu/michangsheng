@@ -3,10 +3,10 @@ using System.Collections.Generic;
 
 namespace JSONClass
 {
-	// Token: 0x02000C1E RID: 3102
+	// Token: 0x02000890 RID: 2192
 	public class MouthRandomColorJsonData : IJSONClass
 	{
-		// Token: 0x06004BE1 RID: 19425 RVA: 0x002007F0 File Offset: 0x001FE9F0
+		// Token: 0x06004053 RID: 16467 RVA: 0x001B731C File Offset: 0x001B551C
 		public static void InitDataDict()
 		{
 			foreach (JSONObject jsonobject in jsonData.instance.MouthRandomColorJsonData.list)
@@ -42,33 +42,33 @@ namespace JSONClass
 			}
 		}
 
-		// Token: 0x06004BE2 RID: 19426 RVA: 0x000042DD File Offset: 0x000024DD
+		// Token: 0x06004054 RID: 16468 RVA: 0x00004095 File Offset: 0x00002295
 		private static void OnInitFinish()
 		{
 		}
 
-		// Token: 0x040048FD RID: 18685
+		// Token: 0x04003DA4 RID: 15780
 		public static Dictionary<int, MouthRandomColorJsonData> DataDict = new Dictionary<int, MouthRandomColorJsonData>();
 
-		// Token: 0x040048FE RID: 18686
+		// Token: 0x04003DA5 RID: 15781
 		public static List<MouthRandomColorJsonData> DataList = new List<MouthRandomColorJsonData>();
 
-		// Token: 0x040048FF RID: 18687
+		// Token: 0x04003DA6 RID: 15782
 		public static Action OnInitFinishAction = new Action(MouthRandomColorJsonData.OnInitFinish);
 
-		// Token: 0x04004900 RID: 18688
+		// Token: 0x04003DA7 RID: 15783
 		public int id;
 
-		// Token: 0x04004901 RID: 18689
+		// Token: 0x04003DA8 RID: 15784
 		public int R;
 
-		// Token: 0x04004902 RID: 18690
+		// Token: 0x04003DA9 RID: 15785
 		public int G;
 
-		// Token: 0x04004903 RID: 18691
+		// Token: 0x04003DAA RID: 15786
 		public int B;
 
-		// Token: 0x04004904 RID: 18692
+		// Token: 0x04003DAB RID: 15787
 		public string beizhu;
 	}
 }

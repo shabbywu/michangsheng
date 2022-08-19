@@ -2,30 +2,30 @@
 
 namespace Bag
 {
-	// Token: 0x02000D2F RID: 3375
+	// Token: 0x020009A9 RID: 2473
 	public enum SkIllType
 	{
-		// Token: 0x04005191 RID: 20881
+		// Token: 0x04004691 RID: 18065
 		全部 = -1,
-		// Token: 0x04005192 RID: 20882
+		// Token: 0x04004692 RID: 18066
 		金,
-		// Token: 0x04005193 RID: 20883
+		// Token: 0x04004693 RID: 18067
 		木,
-		// Token: 0x04005194 RID: 20884
+		// Token: 0x04004694 RID: 18068
 		水,
-		// Token: 0x04005195 RID: 20885
+		// Token: 0x04004695 RID: 18069
 		火,
-		// Token: 0x04005196 RID: 20886
+		// Token: 0x04004696 RID: 18070
 		土,
-		// Token: 0x04005197 RID: 20887
+		// Token: 0x04004697 RID: 18071
 		气,
-		// Token: 0x04005198 RID: 20888
+		// Token: 0x04004698 RID: 18072
 		神,
-		// Token: 0x04005199 RID: 20889
+		// Token: 0x04004699 RID: 18073
 		剑,
-		// Token: 0x0400519A RID: 20890
+		// Token: 0x0400469A RID: 18074
 		阵,
-		// Token: 0x0400519B RID: 20891
+		// Token: 0x0400469B RID: 18075
 		其他
 	}
 }

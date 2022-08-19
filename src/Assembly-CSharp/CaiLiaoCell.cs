@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using GUIPackage;
 using UnityEngine;
 
-// Token: 0x02000454 RID: 1108
+// Token: 0x020002F7 RID: 759
 public class CaiLiaoCell : ItemCellEX
 {
-	// Token: 0x06001DA4 RID: 7588 RVA: 0x00102CFC File Offset: 0x00100EFC
+	// Token: 0x06001A7E RID: 6782 RVA: 0x000BCB90 File Offset: 0x000BAD90
 	public void setShuXing()
 	{
 		int i = jsonData.instance.ItemJsonData[this.Item.itemID.ToString()]["WuWeiType"].I;
@@ -20,7 +20,7 @@ public class CaiLiaoCell : ItemCellEX
 		this.setLingLi();
 	}
 
-	// Token: 0x06001DA5 RID: 7589 RVA: 0x00102DB8 File Offset: 0x00100FB8
+	// Token: 0x06001A7F RID: 6783 RVA: 0x000BCC4C File Offset: 0x000BAE4C
 	public void updateItem()
 	{
 		this.Item = this.inventory.inventory[int.Parse(base.name)];
@@ -34,7 +34,7 @@ public class CaiLiaoCell : ItemCellEX
 		this.attackType = -1;
 	}
 
-	// Token: 0x06001DA6 RID: 7590 RVA: 0x00018ACF File Offset: 0x00016CCF
+	// Token: 0x06001A80 RID: 6784 RVA: 0x000BCCB2 File Offset: 0x000BAEB2
 	private void setWuWei(int qinHe, int caoKong, int linxing, int jianGuo, int renXing)
 	{
 		this.qinHe = qinHe;
@@ -44,14 +44,14 @@ public class CaiLiaoCell : ItemCellEX
 		this.renXing = renXing;
 	}
 
-	// Token: 0x06001DA7 RID: 7591 RVA: 0x00102E20 File Offset: 0x00101020
+	// Token: 0x06001A81 RID: 6785 RVA: 0x000BCCDC File Offset: 0x000BAEDC
 	private void setLingLi()
 	{
 		int i = jsonData.instance.ItemJsonData[this.Item.itemID.ToString()]["quality"].I;
 		this.lingLi = jsonData.instance.CaiLiaoNengLiangBiao[i.ToString()]["value1"].I;
 	}
 
-	// Token: 0x06001DA8 RID: 7592 RVA: 0x00102E88 File Offset: 0x00101088
+	// Token: 0x06001A82 RID: 6786 RVA: 0x000BCD44 File Offset: 0x000BAF44
 	private void setShuXingType()
 	{
 		this.shuXingTypeID = 0;
@@ -77,12 +77,12 @@ public class CaiLiaoCell : ItemCellEX
 		}
 	}
 
-	// Token: 0x06001DA9 RID: 7593 RVA: 0x000042DD File Offset: 0x000024DD
+	// Token: 0x06001A83 RID: 6787 RVA: 0x00004095 File Offset: 0x00002295
 	public override void PCOnPress()
 	{
 	}
 
-	// Token: 0x06001DAA RID: 7594 RVA: 0x00018AF6 File Offset: 0x00016CF6
+	// Token: 0x06001A84 RID: 6788 RVA: 0x000BCE50 File Offset: 0x000BB050
 	public override void PCOnHover(bool isOver)
 	{
 		if (LianQiTotalManager.inst.lianQiResultManager.lianQiResultPanelIsOpen)
@@ -92,7 +92,7 @@ public class CaiLiaoCell : ItemCellEX
 		base.PCOnHover(isOver);
 	}
 
-	// Token: 0x06001DAB RID: 7595 RVA: 0x00018B11 File Offset: 0x00016D11
+	// Token: 0x06001A85 RID: 6789 RVA: 0x000BCE6B File Offset: 0x000BB06B
 	private bool isCanClick(ref int type)
 	{
 		if (LianQiTotalManager.inst.lianQiResultManager.lianQiResultPanelIsOpen)
@@ -110,7 +110,7 @@ public class CaiLiaoCell : ItemCellEX
 		return Input.GetMouseButtonDown(1) || Input.GetMouseButtonDown(0);
 	}
 
-	// Token: 0x06001DAC RID: 7596 RVA: 0x0010081C File Offset: 0x000FEA1C
+	// Token: 0x06001A86 RID: 6790 RVA: 0x000BCEA8 File Offset: 0x000BB0A8
 	private new void Update()
 	{
 		base.Update();
@@ -124,27 +124,27 @@ public class CaiLiaoCell : ItemCellEX
 		this.KeyObject.SetActive(false);
 	}
 
-	// Token: 0x04001958 RID: 6488
+	// Token: 0x0400154B RID: 5451
 	public int qinHe;
 
-	// Token: 0x04001959 RID: 6489
+	// Token: 0x0400154C RID: 5452
 	public int caoKong;
 
-	// Token: 0x0400195A RID: 6490
+	// Token: 0x0400154D RID: 5453
 	public int linxing;
 
-	// Token: 0x0400195B RID: 6491
+	// Token: 0x0400154E RID: 5454
 	public int jianGuo;
 
-	// Token: 0x0400195C RID: 6492
+	// Token: 0x0400154F RID: 5455
 	public int renXing;
 
-	// Token: 0x0400195D RID: 6493
+	// Token: 0x04001550 RID: 5456
 	public int lingLi;
 
-	// Token: 0x0400195E RID: 6494
+	// Token: 0x04001551 RID: 5457
 	public int shuXingTypeID;
 
-	// Token: 0x0400195F RID: 6495
+	// Token: 0x04001552 RID: 5458
 	public int attackType = -1;
 }

@@ -3,12 +3,12 @@ using UnityEngine;
 
 namespace UltimateSurvival
 {
-	// Token: 0x020008B4 RID: 2228
+	// Token: 0x020005E5 RID: 1509
 	[RequireComponent(typeof(FPObject))]
 	public class FPAnimator : PlayerBehaviour
 	{
-		// Token: 0x17000604 RID: 1540
-		// (get) Token: 0x0600395F RID: 14687 RVA: 0x000299C9 File Offset: 0x00027BC9
+		// Token: 0x17000428 RID: 1064
+		// (get) Token: 0x0600308D RID: 12429 RVA: 0x0015B9B5 File Offset: 0x00159BB5
 		public Animator Animator
 		{
 			get
@@ -17,8 +17,8 @@ namespace UltimateSurvival
 			}
 		}
 
-		// Token: 0x17000605 RID: 1541
-		// (get) Token: 0x06003960 RID: 14688 RVA: 0x000299D1 File Offset: 0x00027BD1
+		// Token: 0x17000429 RID: 1065
+		// (get) Token: 0x0600308E RID: 12430 RVA: 0x0015B9BD File Offset: 0x00159BBD
 		public FPObject FPObject
 		{
 			get
@@ -27,7 +27,7 @@ namespace UltimateSurvival
 			}
 		}
 
-		// Token: 0x06003961 RID: 14689 RVA: 0x001A5364 File Offset: 0x001A3564
+		// Token: 0x0600308F RID: 12431 RVA: 0x0015B9C8 File Offset: 0x00159BC8
 		protected virtual void Awake()
 		{
 			this.m_Object = base.GetComponent<FPObject>();
@@ -39,7 +39,7 @@ namespace UltimateSurvival
 			this.m_Animator.SetFloat("Holster Speed", this.m_HolsterSpeed);
 		}
 
-		// Token: 0x06003962 RID: 14690 RVA: 0x001A541C File Offset: 0x001A361C
+		// Token: 0x06003090 RID: 12432 RVA: 0x0015BA80 File Offset: 0x00159C80
 		protected virtual void OnValidate()
 		{
 			if (this.FPObject && this.FPObject.IsEnabled && this.Animator)
@@ -49,7 +49,7 @@ namespace UltimateSurvival
 			}
 		}
 
-		// Token: 0x06003963 RID: 14691 RVA: 0x000299D9 File Offset: 0x00027BD9
+		// Token: 0x06003091 RID: 12433 RVA: 0x0015BAE0 File Offset: 0x00159CE0
 		private void On_Draw()
 		{
 			this.OnValidate();
@@ -59,7 +59,7 @@ namespace UltimateSurvival
 			}
 		}
 
-		// Token: 0x06003964 RID: 14692 RVA: 0x000299FE File Offset: 0x00027BFE
+		// Token: 0x06003092 RID: 12434 RVA: 0x0015BB05 File Offset: 0x00159D05
 		private void On_Holster()
 		{
 			if (this.m_Animator)
@@ -68,7 +68,7 @@ namespace UltimateSurvival
 			}
 		}
 
-		// Token: 0x06003965 RID: 14693 RVA: 0x00029A1D File Offset: 0x00027C1D
+		// Token: 0x06003093 RID: 12435 RVA: 0x0015BB24 File Offset: 0x00159D24
 		private void OnStop_Sleep()
 		{
 			if (this.FPObject.IsEnabled)
@@ -77,7 +77,7 @@ namespace UltimateSurvival
 			}
 		}
 
-		// Token: 0x06003966 RID: 14694 RVA: 0x00029A1D File Offset: 0x00027C1D
+		// Token: 0x06003094 RID: 12436 RVA: 0x0015BB24 File Offset: 0x00159D24
 		private void On_Respawn()
 		{
 			if (this.FPObject.IsEnabled)
@@ -86,37 +86,37 @@ namespace UltimateSurvival
 			}
 		}
 
-		// Token: 0x04003372 RID: 13170
+		// Token: 0x04002AB1 RID: 10929
 		[SerializeField]
 		private Animator m_Animator;
 
-		// Token: 0x04003373 RID: 13171
+		// Token: 0x04002AB2 RID: 10930
 		[Header("General")]
 		[SerializeField]
 		private float m_DrawSpeed = 1f;
 
-		// Token: 0x04003374 RID: 13172
+		// Token: 0x04002AB3 RID: 10931
 		[SerializeField]
 		private float m_HolsterSpeed = 1f;
 
-		// Token: 0x04003375 RID: 13173
+		// Token: 0x04002AB4 RID: 10932
 		private FPObject m_Object;
 
-		// Token: 0x04003376 RID: 13174
+		// Token: 0x04002AB5 RID: 10933
 		private bool m_Initialized;
 
-		// Token: 0x020008B5 RID: 2229
+		// Token: 0x020014B9 RID: 5305
 		public enum ObjectType
 		{
-			// Token: 0x04003378 RID: 13176
+			// Token: 0x04006D04 RID: 27908
 			Normal,
-			// Token: 0x04003379 RID: 13177
+			// Token: 0x04006D05 RID: 27909
 			Melee,
-			// Token: 0x0400337A RID: 13178
+			// Token: 0x04006D06 RID: 27910
 			Throwable,
-			// Token: 0x0400337B RID: 13179
+			// Token: 0x04006D07 RID: 27911
 			Hitscan,
-			// Token: 0x0400337C RID: 13180
+			// Token: 0x04006D08 RID: 27912
 			Bow
 		}
 	}

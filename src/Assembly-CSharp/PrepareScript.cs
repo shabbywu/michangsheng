@@ -1,10 +1,10 @@
 ﻿using System;
 using UnityEngine;
 
-// Token: 0x02000747 RID: 1863
+// Token: 0x020004D4 RID: 1236
 public class PrepareScript : MonoBehaviour
 {
-	// Token: 0x06002F78 RID: 12152 RVA: 0x000232EB File Offset: 0x000214EB
+	// Token: 0x06002821 RID: 10273 RVA: 0x001301FF File Offset: 0x0012E3FF
 	private void Awake()
 	{
 		if (SystemInfo.systemMemorySize <= 1024 && SystemInfo.processorCount == 1)
@@ -14,7 +14,7 @@ public class PrepareScript : MonoBehaviour
 		Application.targetFrameRate = 60;
 	}
 
-	// Token: 0x06002F79 RID: 12153 RVA: 0x0002330E File Offset: 0x0002150E
+	// Token: 0x06002822 RID: 10274 RVA: 0x00130222 File Offset: 0x0012E422
 	private void Update()
 	{
 		if (StagesParser.stagesLoaded)

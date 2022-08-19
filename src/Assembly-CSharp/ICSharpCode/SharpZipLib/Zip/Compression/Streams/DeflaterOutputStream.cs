@@ -5,20 +5,20 @@ using ICSharpCode.SharpZipLib.Encryption;
 
 namespace ICSharpCode.SharpZipLib.Zip.Compression.Streams
 {
-	// Token: 0x02000800 RID: 2048
+	// Token: 0x0200055A RID: 1370
 	public class DeflaterOutputStream : Stream
 	{
-		// Token: 0x060034E0 RID: 13536 RVA: 0x000269A7 File Offset: 0x00024BA7
+		// Token: 0x06002C72 RID: 11378 RVA: 0x0014B773 File Offset: 0x00149973
 		public DeflaterOutputStream(Stream baseOutputStream) : this(baseOutputStream, new Deflater(), 512)
 		{
 		}
 
-		// Token: 0x060034E1 RID: 13537 RVA: 0x000269BA File Offset: 0x00024BBA
+		// Token: 0x06002C73 RID: 11379 RVA: 0x0014B786 File Offset: 0x00149986
 		public DeflaterOutputStream(Stream baseOutputStream, Deflater deflater) : this(baseOutputStream, deflater, 512)
 		{
 		}
 
-		// Token: 0x060034E2 RID: 13538 RVA: 0x00197A28 File Offset: 0x00195C28
+		// Token: 0x06002C74 RID: 11380 RVA: 0x0014B798 File Offset: 0x00149998
 		public DeflaterOutputStream(Stream baseOutputStream, Deflater deflater, int bufferSize)
 		{
 			if (baseOutputStream == null)
@@ -42,7 +42,7 @@ namespace ICSharpCode.SharpZipLib.Zip.Compression.Streams
 			this.deflater_ = deflater;
 		}
 
-		// Token: 0x060034E3 RID: 13539 RVA: 0x00197AA4 File Offset: 0x00195CA4
+		// Token: 0x06002C75 RID: 11381 RVA: 0x0014B814 File Offset: 0x00149A14
 		public virtual void Finish()
 		{
 			this.deflater_.Finish();
@@ -75,13 +75,13 @@ namespace ICSharpCode.SharpZipLib.Zip.Compression.Streams
 			}
 		}
 
-		// Token: 0x17000501 RID: 1281
-		// (get) Token: 0x060034E4 RID: 13540 RVA: 0x000269C9 File Offset: 0x00024BC9
-		// (set) Token: 0x060034E5 RID: 13541 RVA: 0x000269D1 File Offset: 0x00024BD1
+		// Token: 0x1700034A RID: 842
+		// (get) Token: 0x06002C76 RID: 11382 RVA: 0x0014B8E3 File Offset: 0x00149AE3
+		// (set) Token: 0x06002C77 RID: 11383 RVA: 0x0014B8EB File Offset: 0x00149AEB
 		public bool IsStreamOwner { get; set; } = true;
 
-		// Token: 0x17000502 RID: 1282
-		// (get) Token: 0x060034E6 RID: 13542 RVA: 0x000269DA File Offset: 0x00024BDA
+		// Token: 0x1700034B RID: 843
+		// (get) Token: 0x06002C78 RID: 11384 RVA: 0x0014B8F4 File Offset: 0x00149AF4
 		public bool CanPatchEntries
 		{
 			get
@@ -90,9 +90,9 @@ namespace ICSharpCode.SharpZipLib.Zip.Compression.Streams
 			}
 		}
 
-		// Token: 0x17000503 RID: 1283
-		// (get) Token: 0x060034E7 RID: 13543 RVA: 0x000269E7 File Offset: 0x00024BE7
-		// (set) Token: 0x060034E8 RID: 13544 RVA: 0x000269EF File Offset: 0x00024BEF
+		// Token: 0x1700034C RID: 844
+		// (get) Token: 0x06002C79 RID: 11385 RVA: 0x0014B901 File Offset: 0x00149B01
+		// (set) Token: 0x06002C7A RID: 11386 RVA: 0x0014B909 File Offset: 0x00149B09
 		public string Password
 		{
 			get
@@ -110,13 +110,13 @@ namespace ICSharpCode.SharpZipLib.Zip.Compression.Streams
 			}
 		}
 
-		// Token: 0x060034E9 RID: 13545 RVA: 0x00026A0B File Offset: 0x00024C0B
+		// Token: 0x06002C7B RID: 11387 RVA: 0x0014B925 File Offset: 0x00149B25
 		protected void EncryptBlock(byte[] buffer, int offset, int length)
 		{
 			this.cryptoTransform_.TransformBlock(buffer, 0, length, buffer, 0);
 		}
 
-		// Token: 0x060034EA RID: 13546 RVA: 0x00197B74 File Offset: 0x00195D74
+		// Token: 0x06002C7C RID: 11388 RVA: 0x0014B938 File Offset: 0x00149B38
 		protected void InitializePassword(string password)
 		{
 			PkzipClassicManaged pkzipClassicManaged = new PkzipClassicManaged();
@@ -124,7 +124,7 @@ namespace ICSharpCode.SharpZipLib.Zip.Compression.Streams
 			this.cryptoTransform_ = pkzipClassicManaged.CreateEncryptor(rgbKey, null);
 		}
 
-		// Token: 0x060034EB RID: 13547 RVA: 0x00197BA4 File Offset: 0x00195DA4
+		// Token: 0x06002C7D RID: 11389 RVA: 0x0014B968 File Offset: 0x00149B68
 		protected void InitializeAESPassword(ZipEntry entry, string rawPassword, out byte[] salt, out byte[] pwdVerifier)
 		{
 			salt = new byte[entry.AESSaltLen];
@@ -138,13 +138,13 @@ namespace ICSharpCode.SharpZipLib.Zip.Compression.Streams
 			pwdVerifier = ((ZipAESTransform)this.cryptoTransform_).PwdVerifier;
 		}
 
-		// Token: 0x060034EC RID: 13548 RVA: 0x00026A1E File Offset: 0x00024C1E
+		// Token: 0x06002C7E RID: 11390 RVA: 0x0014B9CB File Offset: 0x00149BCB
 		protected void Deflate()
 		{
 			this.Deflate(false);
 		}
 
-		// Token: 0x060034ED RID: 13549 RVA: 0x00197C08 File Offset: 0x00195E08
+		// Token: 0x06002C7F RID: 11391 RVA: 0x0014B9D4 File Offset: 0x00149BD4
 		private void Deflate(bool flushing)
 		{
 			while (flushing || !this.deflater_.IsNeedingInput)
@@ -166,8 +166,8 @@ namespace ICSharpCode.SharpZipLib.Zip.Compression.Streams
 			}
 		}
 
-		// Token: 0x17000504 RID: 1284
-		// (get) Token: 0x060034EE RID: 13550 RVA: 0x00004050 File Offset: 0x00002250
+		// Token: 0x1700034D RID: 845
+		// (get) Token: 0x06002C80 RID: 11392 RVA: 0x0000280F File Offset: 0x00000A0F
 		public override bool CanRead
 		{
 			get
@@ -176,8 +176,8 @@ namespace ICSharpCode.SharpZipLib.Zip.Compression.Streams
 			}
 		}
 
-		// Token: 0x17000505 RID: 1285
-		// (get) Token: 0x060034EF RID: 13551 RVA: 0x00004050 File Offset: 0x00002250
+		// Token: 0x1700034E RID: 846
+		// (get) Token: 0x06002C81 RID: 11393 RVA: 0x0000280F File Offset: 0x00000A0F
 		public override bool CanSeek
 		{
 			get
@@ -186,8 +186,8 @@ namespace ICSharpCode.SharpZipLib.Zip.Compression.Streams
 			}
 		}
 
-		// Token: 0x17000506 RID: 1286
-		// (get) Token: 0x060034F0 RID: 13552 RVA: 0x00026A27 File Offset: 0x00024C27
+		// Token: 0x1700034F RID: 847
+		// (get) Token: 0x06002C82 RID: 11394 RVA: 0x0014BA53 File Offset: 0x00149C53
 		public override bool CanWrite
 		{
 			get
@@ -196,8 +196,8 @@ namespace ICSharpCode.SharpZipLib.Zip.Compression.Streams
 			}
 		}
 
-		// Token: 0x17000507 RID: 1287
-		// (get) Token: 0x060034F1 RID: 13553 RVA: 0x00026A34 File Offset: 0x00024C34
+		// Token: 0x17000350 RID: 848
+		// (get) Token: 0x06002C83 RID: 11395 RVA: 0x0014BA60 File Offset: 0x00149C60
 		public override long Length
 		{
 			get
@@ -206,9 +206,9 @@ namespace ICSharpCode.SharpZipLib.Zip.Compression.Streams
 			}
 		}
 
-		// Token: 0x17000508 RID: 1288
-		// (get) Token: 0x060034F2 RID: 13554 RVA: 0x00026A41 File Offset: 0x00024C41
-		// (set) Token: 0x060034F3 RID: 13555 RVA: 0x00026A4E File Offset: 0x00024C4E
+		// Token: 0x17000351 RID: 849
+		// (get) Token: 0x06002C84 RID: 11396 RVA: 0x0014BA6D File Offset: 0x00149C6D
+		// (set) Token: 0x06002C85 RID: 11397 RVA: 0x0014BA7A File Offset: 0x00149C7A
 		public override long Position
 		{
 			get
@@ -221,31 +221,31 @@ namespace ICSharpCode.SharpZipLib.Zip.Compression.Streams
 			}
 		}
 
-		// Token: 0x060034F4 RID: 13556 RVA: 0x00026A5A File Offset: 0x00024C5A
+		// Token: 0x06002C86 RID: 11398 RVA: 0x0014BA86 File Offset: 0x00149C86
 		public override long Seek(long offset, SeekOrigin origin)
 		{
 			throw new NotSupportedException("DeflaterOutputStream Seek not supported");
 		}
 
-		// Token: 0x060034F5 RID: 13557 RVA: 0x00026A66 File Offset: 0x00024C66
+		// Token: 0x06002C87 RID: 11399 RVA: 0x0014BA92 File Offset: 0x00149C92
 		public override void SetLength(long value)
 		{
 			throw new NotSupportedException("DeflaterOutputStream SetLength not supported");
 		}
 
-		// Token: 0x060034F6 RID: 13558 RVA: 0x00026A72 File Offset: 0x00024C72
+		// Token: 0x06002C88 RID: 11400 RVA: 0x0014BA9E File Offset: 0x00149C9E
 		public override int ReadByte()
 		{
 			throw new NotSupportedException("DeflaterOutputStream ReadByte not supported");
 		}
 
-		// Token: 0x060034F7 RID: 13559 RVA: 0x00026A7E File Offset: 0x00024C7E
+		// Token: 0x06002C89 RID: 11401 RVA: 0x0014BAAA File Offset: 0x00149CAA
 		public override int Read(byte[] buffer, int offset, int count)
 		{
 			throw new NotSupportedException("DeflaterOutputStream Read not supported");
 		}
 
-		// Token: 0x060034F8 RID: 13560 RVA: 0x00026A8A File Offset: 0x00024C8A
+		// Token: 0x06002C8A RID: 11402 RVA: 0x0014BAB6 File Offset: 0x00149CB6
 		public override void Flush()
 		{
 			this.deflater_.Flush();
@@ -253,7 +253,7 @@ namespace ICSharpCode.SharpZipLib.Zip.Compression.Streams
 			this.baseOutputStream_.Flush();
 		}
 
-		// Token: 0x060034F9 RID: 13561 RVA: 0x00197C88 File Offset: 0x00195E88
+		// Token: 0x06002C8B RID: 11403 RVA: 0x0014BAD8 File Offset: 0x00149CD8
 		protected override void Dispose(bool disposing)
 		{
 			if (!this.isClosed_)
@@ -279,7 +279,7 @@ namespace ICSharpCode.SharpZipLib.Zip.Compression.Streams
 			}
 		}
 
-		// Token: 0x060034FA RID: 13562 RVA: 0x00026AA9 File Offset: 0x00024CA9
+		// Token: 0x06002C8C RID: 11404 RVA: 0x0014BB40 File Offset: 0x00149D40
 		protected void GetAuthCodeIfAES()
 		{
 			if (this.cryptoTransform_ is ZipAESTransform)
@@ -288,7 +288,7 @@ namespace ICSharpCode.SharpZipLib.Zip.Compression.Streams
 			}
 		}
 
-		// Token: 0x060034FB RID: 13563 RVA: 0x00197CF0 File Offset: 0x00195EF0
+		// Token: 0x06002C8D RID: 11405 RVA: 0x0014BB68 File Offset: 0x00149D68
 		public override void WriteByte(byte value)
 		{
 			this.Write(new byte[]
@@ -297,35 +297,35 @@ namespace ICSharpCode.SharpZipLib.Zip.Compression.Streams
 			}, 0, 1);
 		}
 
-		// Token: 0x060034FC RID: 13564 RVA: 0x00026ACE File Offset: 0x00024CCE
+		// Token: 0x06002C8E RID: 11406 RVA: 0x0014BB89 File Offset: 0x00149D89
 		public override void Write(byte[] buffer, int offset, int count)
 		{
 			this.deflater_.SetInput(buffer, offset, count);
 			this.Deflate();
 		}
 
-		// Token: 0x04003028 RID: 12328
+		// Token: 0x040027EF RID: 10223
 		private string password;
 
-		// Token: 0x04003029 RID: 12329
+		// Token: 0x040027F0 RID: 10224
 		private ICryptoTransform cryptoTransform_;
 
-		// Token: 0x0400302A RID: 12330
+		// Token: 0x040027F1 RID: 10225
 		protected byte[] AESAuthCode;
 
-		// Token: 0x0400302B RID: 12331
+		// Token: 0x040027F2 RID: 10226
 		private byte[] buffer_;
 
-		// Token: 0x0400302C RID: 12332
+		// Token: 0x040027F3 RID: 10227
 		protected Deflater deflater_;
 
-		// Token: 0x0400302D RID: 12333
+		// Token: 0x040027F4 RID: 10228
 		protected Stream baseOutputStream_;
 
-		// Token: 0x0400302E RID: 12334
+		// Token: 0x040027F5 RID: 10229
 		private bool isClosed_;
 
-		// Token: 0x0400302F RID: 12335
+		// Token: 0x040027F6 RID: 10230
 		private static RandomNumberGenerator _aesRnd = RandomNumberGenerator.Create();
 	}
 }

@@ -4,12 +4,12 @@ using UnityEngine.UI;
 
 namespace Fight
 {
-	// Token: 0x02000A7E RID: 2686
+	// Token: 0x02000727 RID: 1831
 	public class FightBuffCell : MonoBehaviour
 	{
-		// Token: 0x170007D6 RID: 2006
-		// (get) Token: 0x06004509 RID: 17673 RVA: 0x00031661 File Offset: 0x0002F861
-		// (set) Token: 0x06004508 RID: 17672 RVA: 0x00031642 File Offset: 0x0002F842
+		// Token: 0x170005A4 RID: 1444
+		// (get) Token: 0x06003A67 RID: 14951 RVA: 0x00191322 File Offset: 0x0018F522
+		// (set) Token: 0x06003A66 RID: 14950 RVA: 0x00191303 File Offset: 0x0018F503
 		public int BuffCount
 		{
 			get
@@ -23,7 +23,7 @@ namespace Fight
 			}
 		}
 
-		// Token: 0x0600450A RID: 17674 RVA: 0x00031669 File Offset: 0x0002F869
+		// Token: 0x06003A68 RID: 14952 RVA: 0x0019132A File Offset: 0x0018F52A
 		public void Init(int id, int count, string desc, Sprite sprite = null)
 		{
 			this.Id = id;
@@ -35,22 +35,22 @@ namespace Fight
 			}
 		}
 
-		// Token: 0x04003D26 RID: 15654
+		// Token: 0x0400328B RID: 12939
 		[SerializeField]
 		private Text NumText;
 
-		// Token: 0x04003D27 RID: 15655
+		// Token: 0x0400328C RID: 12940
 		[SerializeField]
 		private Image Icon;
 
-		// Token: 0x04003D28 RID: 15656
+		// Token: 0x0400328D RID: 12941
 		[SerializeField]
 		private int buffCount;
 
-		// Token: 0x04003D29 RID: 15657
+		// Token: 0x0400328E RID: 12942
 		public int Id;
 
-		// Token: 0x04003D2A RID: 15658
+		// Token: 0x0400328F RID: 12943
 		public string Desc;
 	}
 }

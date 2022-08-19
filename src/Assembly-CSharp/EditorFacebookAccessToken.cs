@@ -4,10 +4,10 @@ using System.Collections.Generic;
 using Facebook;
 using UnityEngine;
 
-// Token: 0x020001E3 RID: 483
+// Token: 0x02000120 RID: 288
 public class EditorFacebookAccessToken : MonoBehaviour
 {
-	// Token: 0x06000FA3 RID: 4003 RVA: 0x0000FD9F File Offset: 0x0000DF9F
+	// Token: 0x06000DC4 RID: 3524 RVA: 0x000523F5 File Offset: 0x000505F5
 	private IEnumerator Start()
 	{
 		if (EditorFacebookAccessToken.fbSkin != null)
@@ -27,7 +27,7 @@ public class EditorFacebookAccessToken : MonoBehaviour
 		yield break;
 	}
 
-	// Token: 0x06000FA4 RID: 4004 RVA: 0x000A2D84 File Offset: 0x000A0F84
+	// Token: 0x06000DC5 RID: 3525 RVA: 0x00052400 File Offset: 0x00050600
 	private void OnGUI()
 	{
 		float num = (float)(Screen.height / 2) - this.windowHeight / 2f;
@@ -44,7 +44,7 @@ public class EditorFacebookAccessToken : MonoBehaviour
 		GUI.ModalWindow(this.GetHashCode(), new Rect(num2, num, 592f, this.windowHeight), new GUI.WindowFunction(this.OnGUIDialog), "Unity Editor Facebook Login");
 	}
 
-	// Token: 0x06000FA5 RID: 4005 RVA: 0x000A2E24 File Offset: 0x000A1024
+	// Token: 0x06000DC6 RID: 3526 RVA: 0x000524A0 File Offset: 0x000506A0
 	private void OnGUIDialog(int windowId)
 	{
 		GUI.enabled = !this.isLoggingIn;
@@ -93,21 +93,21 @@ public class EditorFacebookAccessToken : MonoBehaviour
 		}
 	}
 
-	// Token: 0x04000C51 RID: 3153
+	// Token: 0x040009CA RID: 2506
 	private const float windowWidth = 592f;
 
-	// Token: 0x04000C52 RID: 3154
+	// Token: 0x040009CB RID: 2507
 	private float windowHeight = 200f;
 
-	// Token: 0x04000C53 RID: 3155
+	// Token: 0x040009CC RID: 2508
 	private string accessToken = "";
 
-	// Token: 0x04000C54 RID: 3156
+	// Token: 0x040009CD RID: 2509
 	private bool isLoggingIn;
 
-	// Token: 0x04000C55 RID: 3157
+	// Token: 0x040009CE RID: 2510
 	private static GUISkin fbSkin;
 
-	// Token: 0x04000C56 RID: 3158
+	// Token: 0x040009CF RID: 2511
 	private GUIStyle greyButton;
 }

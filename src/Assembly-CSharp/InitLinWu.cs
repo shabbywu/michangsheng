@@ -3,16 +3,16 @@ using System.Collections.Generic;
 using GUIPackage;
 using UnityEngine;
 
-// Token: 0x020005EE RID: 1518
+// Token: 0x02000437 RID: 1079
 public class InitLinWu : MonoBehaviour
 {
-	// Token: 0x06002617 RID: 9751 RVA: 0x0001E697 File Offset: 0x0001C897
+	// Token: 0x06002258 RID: 8792 RVA: 0x000EC981 File Offset: 0x000EAB81
 	private void Start()
 	{
 		this.updateItem();
 	}
 
-	// Token: 0x06002618 RID: 9752 RVA: 0x0012D9FC File Offset: 0x0012BBFC
+	// Token: 0x06002259 RID: 8793 RVA: 0x000EC98C File Offset: 0x000EAB8C
 	public void updateItem()
 	{
 		for (int i = 0; i < (int)this.inventory.count; i++)
@@ -27,7 +27,7 @@ public class InitLinWu : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06002619 RID: 9753 RVA: 0x0001E69F File Offset: 0x0001C89F
+	// Token: 0x0600225A RID: 8794 RVA: 0x000ECA0B File Offset: 0x000EAC0B
 	public void setItem1()
 	{
 		this.inventory.setItemLeiXin(new List<int>
@@ -38,7 +38,7 @@ public class InitLinWu : MonoBehaviour
 		});
 	}
 
-	// Token: 0x0600261A RID: 9754 RVA: 0x0001E6C7 File Offset: 0x0001C8C7
+	// Token: 0x0600225B RID: 8795 RVA: 0x000ECA33 File Offset: 0x000EAC33
 	public void setItem2()
 	{
 		this.inventory.setItemLeiXin(new List<int>
@@ -47,7 +47,7 @@ public class InitLinWu : MonoBehaviour
 		});
 	}
 
-	// Token: 0x0600261B RID: 9755 RVA: 0x0001E6E0 File Offset: 0x0001C8E0
+	// Token: 0x0600225C RID: 8796 RVA: 0x000ECA4C File Offset: 0x000EAC4C
 	public void setItem3()
 	{
 		this.inventory.setItemLeiXin(new List<int>
@@ -56,7 +56,7 @@ public class InitLinWu : MonoBehaviour
 		});
 	}
 
-	// Token: 0x0600261C RID: 9756 RVA: 0x0012DA7C File Offset: 0x0012BC7C
+	// Token: 0x0600225D RID: 8797 RVA: 0x000ECA68 File Offset: 0x000EAC68
 	public int getInputID(string name)
 	{
 		int num = 0;
@@ -71,7 +71,7 @@ public class InitLinWu : MonoBehaviour
 		return num;
 	}
 
-	// Token: 0x0600261D RID: 9757 RVA: 0x0012DAE0 File Offset: 0x0012BCE0
+	// Token: 0x0600225E RID: 8798 RVA: 0x000ECACC File Offset: 0x000EACCC
 	public void chengeList()
 	{
 		Dictionary<int, List<int>> dictionary = new Dictionary<int, List<int>>();
@@ -91,17 +91,17 @@ public class InitLinWu : MonoBehaviour
 		this.inventory.setItemLeiXin(dictionary[this.getInputID(this.mList.value)]);
 	}
 
-	// Token: 0x0600261E RID: 9758 RVA: 0x000042DD File Offset: 0x000024DD
+	// Token: 0x0600225F RID: 8799 RVA: 0x00004095 File Offset: 0x00002295
 	private void Update()
 	{
 	}
 
-	// Token: 0x04002099 RID: 8345
+	// Token: 0x04001BCD RID: 7117
 	public Inventory2 inventory;
 
-	// Token: 0x0400209A RID: 8346
+	// Token: 0x04001BCE RID: 7118
 	public KeyCell keyCell;
 
-	// Token: 0x0400209B RID: 8347
+	// Token: 0x04001BCF RID: 7119
 	public UIPopupList mList;
 }

@@ -4,17 +4,17 @@ using UnityEngine;
 
 namespace Spine.Unity.Examples
 {
-	// Token: 0x02000E25 RID: 3621
+	// Token: 0x02000ADC RID: 2780
 	public class Raptor : MonoBehaviour
 	{
-		// Token: 0x06005740 RID: 22336 RVA: 0x0003E5BA File Offset: 0x0003C7BA
+		// Token: 0x06004DDC RID: 19932 RVA: 0x00214893 File Offset: 0x00212A93
 		private void Start()
 		{
 			this.skeletonAnimation = base.GetComponent<SkeletonAnimation>();
 			base.StartCoroutine(this.GunGrabRoutine());
 		}
 
-		// Token: 0x06005741 RID: 22337 RVA: 0x0003E5D5 File Offset: 0x0003C7D5
+		// Token: 0x06004DDD RID: 19933 RVA: 0x002148AE File Offset: 0x00212AAE
 		private IEnumerator GunGrabRoutine()
 		{
 			this.skeletonAnimation.AnimationState.SetAnimation(0, this.walk, true);
@@ -28,16 +28,16 @@ namespace Spine.Unity.Examples
 			yield break;
 		}
 
-		// Token: 0x04005720 RID: 22304
+		// Token: 0x04004D26 RID: 19750
 		public AnimationReferenceAsset walk;
 
-		// Token: 0x04005721 RID: 22305
+		// Token: 0x04004D27 RID: 19751
 		public AnimationReferenceAsset gungrab;
 
-		// Token: 0x04005722 RID: 22306
+		// Token: 0x04004D28 RID: 19752
 		public AnimationReferenceAsset gunkeep;
 
-		// Token: 0x04005723 RID: 22307
+		// Token: 0x04004D29 RID: 19753
 		private SkeletonAnimation skeletonAnimation;
 	}
 }

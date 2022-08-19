@@ -2,10 +2,10 @@
 
 namespace KBEngine
 {
-	// Token: 0x02001009 RID: 4105
+	// Token: 0x02000C6B RID: 3179
 	public class AvatarStaticValue
 	{
-		// Token: 0x06006226 RID: 25126 RVA: 0x0027322C File Offset: 0x0027142C
+		// Token: 0x060057AE RID: 22446 RVA: 0x00246F24 File Offset: 0x00245124
 		public AvatarStaticValue()
 		{
 			for (int i = 0; i < 2500; i++)
@@ -16,16 +16,16 @@ namespace KBEngine
 			this.talk[1] = 1;
 		}
 
-		// Token: 0x04005CAD RID: 23725
+		// Token: 0x040051D1 RID: 20945
 		public int[] Value = new int[2500];
 
-		// Token: 0x04005CAE RID: 23726
+		// Token: 0x040051D2 RID: 20946
 		public int[] talk = new int[2];
 
-		// Token: 0x0200100A RID: 4106
+		// Token: 0x02001614 RID: 5652
 		public enum StaticValue
 		{
-			// Token: 0x04005CB0 RID: 23728
+			// Token: 0x04007139 RID: 28985
 			MaxNum = 2500
 		}
 	}

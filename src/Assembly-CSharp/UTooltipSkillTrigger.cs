@@ -3,22 +3,22 @@ using GUIPackage;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-// Token: 0x020004EA RID: 1258
+// Token: 0x0200036C RID: 876
 public class UTooltipSkillTrigger : MonoBehaviour, IPointerEnterHandler, IEventSystemHandler, IPointerExitHandler
 {
-	// Token: 0x060020CD RID: 8397 RVA: 0x0001B04B File Offset: 0x0001924B
+	// Token: 0x06001D5E RID: 7518 RVA: 0x000CFF40 File Offset: 0x000CE140
 	private void Awake()
 	{
 		MessageMag.Instance.Register(MessageName.MSG_APP_OnFocusChanged, new Action<MessageData>(this.OnFocusChanged));
 	}
 
-	// Token: 0x060020CE RID: 8398 RVA: 0x0001B068 File Offset: 0x00019268
+	// Token: 0x06001D5F RID: 7519 RVA: 0x000CFF5D File Offset: 0x000CE15D
 	private void OnDestroy()
 	{
 		MessageMag.Instance.Remove(MessageName.MSG_APP_OnFocusChanged, new Action<MessageData>(this.OnFocusChanged));
 	}
 
-	// Token: 0x060020CF RID: 8399 RVA: 0x0001B085 File Offset: 0x00019285
+	// Token: 0x06001D60 RID: 7520 RVA: 0x000CFF7A File Offset: 0x000CE17A
 	public void OnFocusChanged(MessageData data)
 	{
 		if (this.isShow)
@@ -28,7 +28,7 @@ public class UTooltipSkillTrigger : MonoBehaviour, IPointerEnterHandler, IEventS
 		}
 	}
 
-	// Token: 0x060020D0 RID: 8400 RVA: 0x0011454C File Offset: 0x0011274C
+	// Token: 0x06001D61 RID: 7521 RVA: 0x000CFF90 File Offset: 0x000CE190
 	public void OnPointerEnter(PointerEventData eventData)
 	{
 		if (this.SkillID > 0)
@@ -38,19 +38,19 @@ public class UTooltipSkillTrigger : MonoBehaviour, IPointerEnterHandler, IEventS
 		}
 	}
 
-	// Token: 0x060020D1 RID: 8401 RVA: 0x0001B09B File Offset: 0x0001929B
+	// Token: 0x06001D62 RID: 7522 RVA: 0x000CFFE1 File Offset: 0x000CE1E1
 	public void OnPointerExit(PointerEventData eventData)
 	{
 		this.isShow = false;
 		UToolTip.Close();
 	}
 
-	// Token: 0x04001C51 RID: 7249
+	// Token: 0x040017FB RID: 6139
 	public int SkillID = 1;
 
-	// Token: 0x04001C52 RID: 7250
+	// Token: 0x040017FC RID: 6140
 	public int Level = 1;
 
-	// Token: 0x04001C53 RID: 7251
+	// Token: 0x040017FD RID: 6141
 	private bool isShow;
 }

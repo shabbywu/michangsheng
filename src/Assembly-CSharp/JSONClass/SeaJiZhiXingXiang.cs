@@ -3,10 +3,10 @@ using System.Collections.Generic;
 
 namespace JSONClass
 {
-	// Token: 0x02000C64 RID: 3172
+	// Token: 0x020008D7 RID: 2263
 	public class SeaJiZhiXingXiang : IJSONClass
 	{
-		// Token: 0x06004CF9 RID: 19705 RVA: 0x00208478 File Offset: 0x00206678
+		// Token: 0x0600416F RID: 16751 RVA: 0x001C009C File Offset: 0x001BE29C
 		public static void InitDataDict()
 		{
 			foreach (JSONObject jsonobject in jsonData.instance.SeaJiZhiXingXiang.list)
@@ -44,39 +44,39 @@ namespace JSONClass
 			}
 		}
 
-		// Token: 0x06004CFA RID: 19706 RVA: 0x000042DD File Offset: 0x000024DD
+		// Token: 0x06004170 RID: 16752 RVA: 0x00004095 File Offset: 0x00002295
 		private static void OnInitFinish()
 		{
 		}
 
-		// Token: 0x04004C08 RID: 19464
+		// Token: 0x040040BE RID: 16574
 		public static Dictionary<int, SeaJiZhiXingXiang> DataDict = new Dictionary<int, SeaJiZhiXingXiang>();
 
-		// Token: 0x04004C09 RID: 19465
+		// Token: 0x040040BF RID: 16575
 		public static List<SeaJiZhiXingXiang> DataList = new List<SeaJiZhiXingXiang>();
 
-		// Token: 0x04004C0A RID: 19466
+		// Token: 0x040040C0 RID: 16576
 		public static Action OnInitFinishAction = new Action(SeaJiZhiXingXiang.OnInitFinish);
 
-		// Token: 0x04004C0B RID: 19467
+		// Token: 0x040040C1 RID: 16577
 		public int id;
 
-		// Token: 0x04004C0C RID: 19468
+		// Token: 0x040040C2 RID: 16578
 		public int OffsetX;
 
-		// Token: 0x04004C0D RID: 19469
+		// Token: 0x040040C3 RID: 16579
 		public int OffsetY;
 
-		// Token: 0x04004C0E RID: 19470
+		// Token: 0x040040C4 RID: 16580
 		public int ScaleX;
 
-		// Token: 0x04004C0F RID: 19471
+		// Token: 0x040040C5 RID: 16581
 		public int ScaleY;
 
-		// Token: 0x04004C10 RID: 19472
+		// Token: 0x040040C6 RID: 16582
 		public string Skin;
 
-		// Token: 0x04004C11 RID: 19473
+		// Token: 0x040040C7 RID: 16583
 		public string Anim;
 	}
 }

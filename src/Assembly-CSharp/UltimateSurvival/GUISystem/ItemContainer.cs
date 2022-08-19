@@ -5,41 +5,41 @@ using UnityEngine.EventSystems;
 
 namespace UltimateSurvival.GUISystem
 {
-	// Token: 0x02000930 RID: 2352
+	// Token: 0x0200063B RID: 1595
 	public sealed class ItemContainer : GUIBehaviour
 	{
 		// Token: 0x1400003D RID: 61
-		// (add) Token: 0x06003BE4 RID: 15332 RVA: 0x001AF328 File Offset: 0x001AD528
-		// (remove) Token: 0x06003BE5 RID: 15333 RVA: 0x001AF360 File Offset: 0x001AD560
+		// (add) Token: 0x0600329E RID: 12958 RVA: 0x00165EF8 File Offset: 0x001640F8
+		// (remove) Token: 0x0600329F RID: 12959 RVA: 0x00165F30 File Offset: 0x00164130
 		public event Action<PointerEventData, Slot> Slot_PointerDown;
 
 		// Token: 0x1400003E RID: 62
-		// (add) Token: 0x06003BE6 RID: 15334 RVA: 0x001AF398 File Offset: 0x001AD598
-		// (remove) Token: 0x06003BE7 RID: 15335 RVA: 0x001AF3D0 File Offset: 0x001AD5D0
+		// (add) Token: 0x060032A0 RID: 12960 RVA: 0x00165F68 File Offset: 0x00164168
+		// (remove) Token: 0x060032A1 RID: 12961 RVA: 0x00165FA0 File Offset: 0x001641A0
 		public event Action<PointerEventData, Slot> Slot_PointerUp;
 
 		// Token: 0x1400003F RID: 63
-		// (add) Token: 0x06003BE8 RID: 15336 RVA: 0x001AF408 File Offset: 0x001AD608
-		// (remove) Token: 0x06003BE9 RID: 15337 RVA: 0x001AF440 File Offset: 0x001AD640
+		// (add) Token: 0x060032A2 RID: 12962 RVA: 0x00165FD8 File Offset: 0x001641D8
+		// (remove) Token: 0x060032A3 RID: 12963 RVA: 0x00166010 File Offset: 0x00164210
 		public event Action<BaseEventData, Slot> Slot_Select;
 
 		// Token: 0x14000040 RID: 64
-		// (add) Token: 0x06003BEA RID: 15338 RVA: 0x001AF478 File Offset: 0x001AD678
-		// (remove) Token: 0x06003BEB RID: 15339 RVA: 0x001AF4B0 File Offset: 0x001AD6B0
+		// (add) Token: 0x060032A4 RID: 12964 RVA: 0x00166048 File Offset: 0x00164248
+		// (remove) Token: 0x060032A5 RID: 12965 RVA: 0x00166080 File Offset: 0x00164280
 		public event DragAction Slot_BeginDrag;
 
 		// Token: 0x14000041 RID: 65
-		// (add) Token: 0x06003BEC RID: 15340 RVA: 0x001AF4E8 File Offset: 0x001AD6E8
-		// (remove) Token: 0x06003BED RID: 15341 RVA: 0x001AF520 File Offset: 0x001AD720
+		// (add) Token: 0x060032A6 RID: 12966 RVA: 0x001660B8 File Offset: 0x001642B8
+		// (remove) Token: 0x060032A7 RID: 12967 RVA: 0x001660F0 File Offset: 0x001642F0
 		public event DragAction Slot_Drag;
 
 		// Token: 0x14000042 RID: 66
-		// (add) Token: 0x06003BEE RID: 15342 RVA: 0x001AF558 File Offset: 0x001AD758
-		// (remove) Token: 0x06003BEF RID: 15343 RVA: 0x001AF590 File Offset: 0x001AD790
+		// (add) Token: 0x060032A8 RID: 12968 RVA: 0x00166128 File Offset: 0x00164328
+		// (remove) Token: 0x060032A9 RID: 12969 RVA: 0x00166160 File Offset: 0x00164360
 		public event DragAction Slot_EndDrag;
 
-		// Token: 0x17000671 RID: 1649
-		// (get) Token: 0x06003BF0 RID: 15344 RVA: 0x0002B50D File Offset: 0x0002970D
+		// Token: 0x1700046D RID: 1133
+		// (get) Token: 0x060032AA RID: 12970 RVA: 0x00166195 File Offset: 0x00164395
 		public bool IsOpen
 		{
 			get
@@ -48,8 +48,8 @@ namespace UltimateSurvival.GUISystem
 			}
 		}
 
-		// Token: 0x17000672 RID: 1650
-		// (get) Token: 0x06003BF1 RID: 15345 RVA: 0x0002B533 File Offset: 0x00029733
+		// Token: 0x1700046E RID: 1134
+		// (get) Token: 0x060032AB RID: 12971 RVA: 0x001661BB File Offset: 0x001643BB
 		public string Name
 		{
 			get
@@ -58,12 +58,12 @@ namespace UltimateSurvival.GUISystem
 			}
 		}
 
-		// Token: 0x17000673 RID: 1651
-		// (get) Token: 0x06003BF2 RID: 15346 RVA: 0x0002B53B File Offset: 0x0002973B
-		// (set) Token: 0x06003BF3 RID: 15347 RVA: 0x0002B543 File Offset: 0x00029743
+		// Token: 0x1700046F RID: 1135
+		// (get) Token: 0x060032AC RID: 12972 RVA: 0x001661C3 File Offset: 0x001643C3
+		// (set) Token: 0x060032AD RID: 12973 RVA: 0x001661CB File Offset: 0x001643CB
 		public List<Slot> Slots { get; private set; }
 
-		// Token: 0x06003BF4 RID: 15348 RVA: 0x001AF5C8 File Offset: 0x001AD7C8
+		// Token: 0x060032AE RID: 12974 RVA: 0x001661D4 File Offset: 0x001643D4
 		public int getHasItemSlotCount()
 		{
 			int num = 0;
@@ -80,7 +80,7 @@ namespace UltimateSurvival.GUISystem
 			return num;
 		}
 
-		// Token: 0x06003BF5 RID: 15349 RVA: 0x0002B54C File Offset: 0x0002974C
+		// Token: 0x060032AF RID: 12975 RVA: 0x00166230 File Offset: 0x00164430
 		public void Setup(ItemHolder itemholder)
 		{
 			this.Setup(new List<ItemHolder>
@@ -89,7 +89,7 @@ namespace UltimateSurvival.GUISystem
 			});
 		}
 
-		// Token: 0x06003BF6 RID: 15350 RVA: 0x001AF624 File Offset: 0x001AD824
+		// Token: 0x060032B0 RID: 12976 RVA: 0x00166244 File Offset: 0x00164444
 		public void Setup(List<ItemHolder> itemHolders)
 		{
 			if (!Application.isPlaying)
@@ -119,7 +119,7 @@ namespace UltimateSurvival.GUISystem
 			this.m_SetUp = true;
 		}
 
-		// Token: 0x06003BF7 RID: 15351 RVA: 0x001AF6EC File Offset: 0x001AD8EC
+		// Token: 0x060032B1 RID: 12977 RVA: 0x0016630C File Offset: 0x0016450C
 		public bool HasItem(SavableItem item)
 		{
 			for (int i = 0; i < this.m_ItemHolders.Count; i++)
@@ -132,7 +132,7 @@ namespace UltimateSurvival.GUISystem
 			return false;
 		}
 
-		// Token: 0x06003BF8 RID: 15352 RVA: 0x0002B560 File Offset: 0x00029760
+		// Token: 0x060032B2 RID: 12978 RVA: 0x0016634B File Offset: 0x0016454B
 		public bool TryAddItem(ItemData itemData, int amount, out int added, ulong uuid = 0UL, int index = 0)
 		{
 			added = 0;
@@ -140,7 +140,7 @@ namespace UltimateSurvival.GUISystem
 			return added > 0;
 		}
 
-		// Token: 0x06003BF9 RID: 15353 RVA: 0x001AF72C File Offset: 0x001AD92C
+		// Token: 0x060032B3 RID: 12979 RVA: 0x00166368 File Offset: 0x00164568
 		public bool TryAddItem(ItemData itemData, int amount)
 		{
 			int num = 0;
@@ -148,7 +148,7 @@ namespace UltimateSurvival.GUISystem
 			return num > 0;
 		}
 
-		// Token: 0x06003BFA RID: 15354 RVA: 0x001AF754 File Offset: 0x001AD954
+		// Token: 0x060032B4 RID: 12980 RVA: 0x00166390 File Offset: 0x00164590
 		public bool TryAddItem(string name, int amount, out int added)
 		{
 			added = 0;
@@ -160,7 +160,7 @@ namespace UltimateSurvival.GUISystem
 			return added > 0;
 		}
 
-		// Token: 0x06003BFB RID: 15355 RVA: 0x001AF790 File Offset: 0x001AD990
+		// Token: 0x060032B5 RID: 12981 RVA: 0x001663CC File Offset: 0x001645CC
 		public bool TryAddItem(string name, int amount)
 		{
 			int num = 0;
@@ -172,7 +172,7 @@ namespace UltimateSurvival.GUISystem
 			return num > 0;
 		}
 
-		// Token: 0x06003BFC RID: 15356 RVA: 0x001AF7CC File Offset: 0x001AD9CC
+		// Token: 0x060032B6 RID: 12982 RVA: 0x00166408 File Offset: 0x00164608
 		public bool TryAddItem(SavableItem item)
 		{
 			if (item == null)
@@ -184,7 +184,7 @@ namespace UltimateSurvival.GUISystem
 			return num > 0;
 		}
 
-		// Token: 0x06003BFD RID: 15357 RVA: 0x001AF808 File Offset: 0x001ADA08
+		// Token: 0x060032B7 RID: 12983 RVA: 0x00166444 File Offset: 0x00164644
 		public bool TryRemoveItem(SavableItem item)
 		{
 			Slot slot2 = this.Slots.Find((Slot slot) => slot.CurrentItem == item);
@@ -196,25 +196,25 @@ namespace UltimateSurvival.GUISystem
 			return false;
 		}
 
-		// Token: 0x06003BFE RID: 15358 RVA: 0x0002B57D File Offset: 0x0002977D
+		// Token: 0x060032B8 RID: 12984 RVA: 0x0016648D File Offset: 0x0016468D
 		public void RemoveItems(string itemName, int amount, out int removed)
 		{
 			CollectionUtils.RemoveItems(itemName, amount, this.Slots, out removed);
 		}
 
-		// Token: 0x06003BFF RID: 15359 RVA: 0x000042DD File Offset: 0x000024DD
+		// Token: 0x060032B9 RID: 12985 RVA: 0x00004095 File Offset: 0x00002295
 		public void RemoveItems(ulong uuid)
 		{
 		}
 
-		// Token: 0x06003C00 RID: 15360 RVA: 0x001AF854 File Offset: 0x001ADA54
+		// Token: 0x060032BA RID: 12986 RVA: 0x001664A0 File Offset: 0x001646A0
 		public void RemoveItems(string itemName, int amount)
 		{
 			int num;
 			CollectionUtils.RemoveItems(itemName, amount, this.Slots, out num);
 		}
 
-		// Token: 0x06003C01 RID: 15361 RVA: 0x001AF870 File Offset: 0x001ADA70
+		// Token: 0x060032BB RID: 12987 RVA: 0x001664BC File Offset: 0x001646BC
 		public void AddAllFrom(ItemContainer container)
 		{
 			for (int i = 0; i < container.Slots.Count; i++)
@@ -226,7 +226,7 @@ namespace UltimateSurvival.GUISystem
 			}
 		}
 
-		// Token: 0x06003C02 RID: 15362 RVA: 0x001AF8D8 File Offset: 0x001ADAD8
+		// Token: 0x060032BC RID: 12988 RVA: 0x00166524 File Offset: 0x00164724
 		public int GetItemCount(int itemID)
 		{
 			int num = 0;
@@ -240,7 +240,7 @@ namespace UltimateSurvival.GUISystem
 			return num;
 		}
 
-		// Token: 0x06003C03 RID: 15363 RVA: 0x001AF944 File Offset: 0x001ADB44
+		// Token: 0x060032BD RID: 12989 RVA: 0x00166590 File Offset: 0x00164790
 		public int GetItemCount(string itemName)
 		{
 			int num = 0;
@@ -254,7 +254,7 @@ namespace UltimateSurvival.GUISystem
 			return num;
 		}
 
-		// Token: 0x06003C04 RID: 15364 RVA: 0x0002B58D File Offset: 0x0002978D
+		// Token: 0x060032BE RID: 12990 RVA: 0x00166605 File Offset: 0x00164805
 		public void ApplyAll()
 		{
 			if (Application.isPlaying)
@@ -265,7 +265,7 @@ namespace UltimateSurvival.GUISystem
 			this.ApplyRequiredStuff();
 		}
 
-		// Token: 0x06003C05 RID: 15365 RVA: 0x001AF9BC File Offset: 0x001ADBBC
+		// Token: 0x060032BF RID: 12991 RVA: 0x0016661C File Offset: 0x0016481C
 		public void ApplyTemplate()
 		{
 			if (Application.isPlaying)
@@ -285,7 +285,7 @@ namespace UltimateSurvival.GUISystem
 			slotTemplate.gameObject.SetActive(activeSelf);
 		}
 
-		// Token: 0x06003C06 RID: 15366 RVA: 0x001AFA24 File Offset: 0x001ADC24
+		// Token: 0x060032C0 RID: 12992 RVA: 0x00166684 File Offset: 0x00164884
 		public void ApplyRequiredStuff()
 		{
 			if (Application.isPlaying)
@@ -299,14 +299,14 @@ namespace UltimateSurvival.GUISystem
 			}
 		}
 
-		// Token: 0x06003C07 RID: 15367 RVA: 0x0002B5A3 File Offset: 0x000297A3
+		// Token: 0x060032C1 RID: 12993 RVA: 0x001666C8 File Offset: 0x001648C8
 		private void Awake()
 		{
 			this.Slots = new List<Slot>();
 			base.GetComponentsInChildren<Slot>(this.Slots);
 		}
 
-		// Token: 0x06003C08 RID: 15368 RVA: 0x001AFA68 File Offset: 0x001ADC68
+		// Token: 0x060032C2 RID: 12994 RVA: 0x001666E4 File Offset: 0x001648E4
 		private void On_Slot_PointerDown(PointerEventData data, Slot slot)
 		{
 			if (this.Slot_PointerDown != null)
@@ -339,7 +339,7 @@ namespace UltimateSurvival.GUISystem
 			}
 		}
 
-		// Token: 0x06003C09 RID: 15369 RVA: 0x0002B5BC File Offset: 0x000297BC
+		// Token: 0x060032C3 RID: 12995 RVA: 0x001667B9 File Offset: 0x001649B9
 		private void On_Slot_PointerUp(PointerEventData data, Slot slot)
 		{
 			if (this.Slot_PointerUp != null)
@@ -348,7 +348,7 @@ namespace UltimateSurvival.GUISystem
 			}
 		}
 
-		// Token: 0x06003C0A RID: 15370 RVA: 0x0002B5D3 File Offset: 0x000297D3
+		// Token: 0x060032C4 RID: 12996 RVA: 0x001667D0 File Offset: 0x001649D0
 		private void On_Slot_Select(BaseEventData data, Slot slot)
 		{
 			if (this.Slot_Select != null)
@@ -357,7 +357,7 @@ namespace UltimateSurvival.GUISystem
 			}
 		}
 
-		// Token: 0x06003C0B RID: 15371 RVA: 0x0002B5EA File Offset: 0x000297EA
+		// Token: 0x060032C5 RID: 12997 RVA: 0x001667E7 File Offset: 0x001649E7
 		private void On_Slot_BeginDrag(PointerEventData data, Slot slot)
 		{
 			if (this.Slot_BeginDrag != null)
@@ -366,7 +366,7 @@ namespace UltimateSurvival.GUISystem
 			}
 		}
 
-		// Token: 0x06003C0C RID: 15372 RVA: 0x0002B602 File Offset: 0x00029802
+		// Token: 0x060032C6 RID: 12998 RVA: 0x001667FF File Offset: 0x001649FF
 		private void On_Slot_Drag(PointerEventData data, Slot slot)
 		{
 			if (this.Slot_Drag != null)
@@ -375,7 +375,7 @@ namespace UltimateSurvival.GUISystem
 			}
 		}
 
-		// Token: 0x06003C0D RID: 15373 RVA: 0x0002B61A File Offset: 0x0002981A
+		// Token: 0x060032C7 RID: 12999 RVA: 0x00166817 File Offset: 0x00164A17
 		private void On_Slot_EndDrag(PointerEventData data, Slot slot)
 		{
 			if (this.Slot_EndDrag != null)
@@ -384,13 +384,13 @@ namespace UltimateSurvival.GUISystem
 			}
 		}
 
-		// Token: 0x06003C0E RID: 15374 RVA: 0x0002B632 File Offset: 0x00029832
+		// Token: 0x060032C8 RID: 13000 RVA: 0x0016682F File Offset: 0x00164A2F
 		private void On_Slot_Refreshed(Slot slot)
 		{
 			this.Slot_Refreshed.Send(slot);
 		}
 
-		// Token: 0x06003C0F RID: 15375 RVA: 0x001AFB40 File Offset: 0x001ADD40
+		// Token: 0x060032C9 RID: 13001 RVA: 0x00166840 File Offset: 0x00164A40
 		private void ActivateSlots(Transform parent, Slot template, int count, bool active)
 		{
 			for (int i = 0; i < count; i++)
@@ -403,7 +403,7 @@ namespace UltimateSurvival.GUISystem
 			}
 		}
 
-		// Token: 0x06003C10 RID: 15376 RVA: 0x001AFB8C File Offset: 0x001ADD8C
+		// Token: 0x060032CA RID: 13002 RVA: 0x0016688C File Offset: 0x00164A8C
 		private void PrepareGUIForSlots(Transform parent, Slot template)
 		{
 			this.OnSlotsDiscarded();
@@ -431,7 +431,7 @@ namespace UltimateSurvival.GUISystem
 			this.OnSlotsCreated();
 		}
 
-		// Token: 0x06003C11 RID: 15377 RVA: 0x001AFCB4 File Offset: 0x001ADEB4
+		// Token: 0x060032CB RID: 13003 RVA: 0x001669B4 File Offset: 0x00164BB4
 		private void OnSlotsDiscarded()
 		{
 			foreach (Slot slot in this.Slots)
@@ -446,7 +446,7 @@ namespace UltimateSurvival.GUISystem
 			}
 		}
 
-		// Token: 0x06003C12 RID: 15378 RVA: 0x001AFD88 File Offset: 0x001ADF88
+		// Token: 0x060032CC RID: 13004 RVA: 0x00166A88 File Offset: 0x00164C88
 		private void OnSlotsCreated()
 		{
 			foreach (Slot slot in this.Slots)
@@ -461,7 +461,7 @@ namespace UltimateSurvival.GUISystem
 			}
 		}
 
-		// Token: 0x06003C13 RID: 15379 RVA: 0x001AFE5C File Offset: 0x001AE05C
+		// Token: 0x060032CD RID: 13005 RVA: 0x00166B5C File Offset: 0x00164D5C
 		private void RemoveSlots(Transform parent, Slot template)
 		{
 			int childCount = parent.childCount;
@@ -474,7 +474,7 @@ namespace UltimateSurvival.GUISystem
 			}
 		}
 
-		// Token: 0x06003C14 RID: 15380 RVA: 0x001AFEB0 File Offset: 0x001AE0B0
+		// Token: 0x060032CE RID: 13006 RVA: 0x00166BB0 File Offset: 0x00164DB0
 		private void CreateSlots(Transform parent, Slot template)
 		{
 			for (int i = 0; i < this.m_PreviewSize; i++)
@@ -486,52 +486,52 @@ namespace UltimateSurvival.GUISystem
 			}
 		}
 
-		// Token: 0x04003665 RID: 13925
+		// Token: 0x04002D09 RID: 11529
 		public Message<Slot> Slot_Refreshed = new Message<Slot>();
 
-		// Token: 0x0400366D RID: 13933
+		// Token: 0x04002D11 RID: 11537
 		[SerializeField]
 		private string _Name = "";
 
-		// Token: 0x0400366E RID: 13934
+		// Token: 0x04002D12 RID: 11538
 		[SerializeField]
 		[Tooltip("It is optional. If you assign a window, the open state will be taken from the window, otherwise the container will always be considered open.")]
 		private Window m_Window;
 
-		// Token: 0x0400366F RID: 13935
+		// Token: 0x04002D13 RID: 11539
 		[Header("Slots")]
 		[SerializeField]
 		[Tooltip("All the created slots will be based on this template.")]
 		private Slot m_SlotTemplate;
 
-		// Token: 0x04003670 RID: 13936
+		// Token: 0x04002D14 RID: 11540
 		[SerializeField]
 		[Tooltip("The parent of the slots, usually it has attached a GridLayoutGroup, HorizontalLayoutGroup, etc, so they are automatically arranged.")]
 		private Transform m_SlotsParent;
 
-		// Token: 0x04003671 RID: 13937
+		// Token: 0x04002D15 RID: 11541
 		[SerializeField]
 		[Range(0f, 100f)]
 		private int m_PreviewSize;
 
-		// Token: 0x04003672 RID: 13938
+		// Token: 0x04002D16 RID: 11542
 		[Header("Required Stuff")]
 		[SerializeField]
 		[Reorderable]
 		private ReorderableStringList m_RequiredCategories;
 
-		// Token: 0x04003673 RID: 13939
+		// Token: 0x04002D17 RID: 11543
 		[SerializeField]
 		[Reorderable]
 		private ReorderableStringList m_RequiredProperties;
 
-		// Token: 0x04003674 RID: 13940
+		// Token: 0x04002D18 RID: 11544
 		private List<ItemHolder> m_ItemHolders;
 
-		// Token: 0x04003675 RID: 13941
+		// Token: 0x04002D19 RID: 11545
 		private List<Slot> m_Slots;
 
-		// Token: 0x04003676 RID: 13942
+		// Token: 0x04002D1A RID: 11546
 		private bool m_SetUp;
 	}
 }

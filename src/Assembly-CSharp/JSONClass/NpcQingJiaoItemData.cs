@@ -3,10 +3,10 @@ using System.Collections.Generic;
 
 namespace JSONClass
 {
-	// Token: 0x02000C36 RID: 3126
+	// Token: 0x020008A8 RID: 2216
 	public class NpcQingJiaoItemData : IJSONClass
 	{
-		// Token: 0x06004C41 RID: 19521 RVA: 0x002032B8 File Offset: 0x002014B8
+		// Token: 0x060040B3 RID: 16563 RVA: 0x001BA2F0 File Offset: 0x001B84F0
 		public static void InitDataDict()
 		{
 			foreach (JSONObject jsonobject in jsonData.instance.NpcQingJiaoItemData.list)
@@ -34,6 +34,7 @@ namespace JSONClass
 					npcQingJiaoItemData.yaoZhi1 = jsonobject["yaoZhi1"].I;
 					npcQingJiaoItemData.yaoZhi2 = jsonobject["yaoZhi2"].I;
 					npcQingJiaoItemData.yaoZhi3 = jsonobject["yaoZhi3"].I;
+					npcQingJiaoItemData.ShuaXin = jsonobject["ShuaXin"].I;
 					npcQingJiaoItemData.name = jsonobject["name"].Str;
 					npcQingJiaoItemData.FaBaoType = jsonobject["FaBaoType"].Str;
 					npcQingJiaoItemData.desc = jsonobject["desc"].Str;
@@ -65,102 +66,105 @@ namespace JSONClass
 			}
 		}
 
-		// Token: 0x06004C42 RID: 19522 RVA: 0x000042DD File Offset: 0x000024DD
+		// Token: 0x060040B4 RID: 16564 RVA: 0x00004095 File Offset: 0x00002295
 		private static void OnInitFinish()
 		{
 		}
 
-		// Token: 0x04004A03 RID: 18947
+		// Token: 0x04003EAA RID: 16042
 		public static Dictionary<int, NpcQingJiaoItemData> DataDict = new Dictionary<int, NpcQingJiaoItemData>();
 
-		// Token: 0x04004A04 RID: 18948
+		// Token: 0x04003EAB RID: 16043
 		public static List<NpcQingJiaoItemData> DataList = new List<NpcQingJiaoItemData>();
 
-		// Token: 0x04004A05 RID: 18949
+		// Token: 0x04003EAC RID: 16044
 		public static Action OnInitFinishAction = new Action(NpcQingJiaoItemData.OnInitFinish);
 
-		// Token: 0x04004A06 RID: 18950
+		// Token: 0x04003EAD RID: 16045
 		public int id;
 
-		// Token: 0x04004A07 RID: 18951
+		// Token: 0x04003EAE RID: 16046
 		public int ItemIcon;
 
-		// Token: 0x04004A08 RID: 18952
+		// Token: 0x04003EAF RID: 16047
 		public int maxNum;
 
-		// Token: 0x04004A09 RID: 18953
+		// Token: 0x04003EB0 RID: 16048
 		public int TuJianType;
 
-		// Token: 0x04004A0A RID: 18954
+		// Token: 0x04003EB1 RID: 16049
 		public int ShopType;
 
-		// Token: 0x04004A0B RID: 18955
+		// Token: 0x04003EB2 RID: 16050
 		public int WuWeiType;
 
-		// Token: 0x04004A0C RID: 18956
+		// Token: 0x04003EB3 RID: 16051
 		public int ShuXingType;
 
-		// Token: 0x04004A0D RID: 18957
+		// Token: 0x04003EB4 RID: 16052
 		public int type;
 
-		// Token: 0x04004A0E RID: 18958
+		// Token: 0x04003EB5 RID: 16053
 		public int quality;
 
-		// Token: 0x04004A0F RID: 18959
+		// Token: 0x04003EB6 RID: 16054
 		public int typePinJie;
 
-		// Token: 0x04004A10 RID: 18960
+		// Token: 0x04003EB7 RID: 16055
 		public int StuTime;
 
-		// Token: 0x04004A11 RID: 18961
+		// Token: 0x04003EB8 RID: 16056
 		public int vagueType;
 
-		// Token: 0x04004A12 RID: 18962
+		// Token: 0x04003EB9 RID: 16057
 		public int price;
 
-		// Token: 0x04004A13 RID: 18963
+		// Token: 0x04003EBA RID: 16058
 		public int CanSale;
 
-		// Token: 0x04004A14 RID: 18964
+		// Token: 0x04003EBB RID: 16059
 		public int DanDu;
 
-		// Token: 0x04004A15 RID: 18965
+		// Token: 0x04003EBC RID: 16060
 		public int CanUse;
 
-		// Token: 0x04004A16 RID: 18966
+		// Token: 0x04003EBD RID: 16061
 		public int NPCCanUse;
 
-		// Token: 0x04004A17 RID: 18967
+		// Token: 0x04003EBE RID: 16062
 		public int yaoZhi1;
 
-		// Token: 0x04004A18 RID: 18968
+		// Token: 0x04003EBF RID: 16063
 		public int yaoZhi2;
 
-		// Token: 0x04004A19 RID: 18969
+		// Token: 0x04003EC0 RID: 16064
 		public int yaoZhi3;
 
-		// Token: 0x04004A1A RID: 18970
+		// Token: 0x04003EC1 RID: 16065
+		public int ShuaXin;
+
+		// Token: 0x04003EC2 RID: 16066
 		public string name;
 
-		// Token: 0x04004A1B RID: 18971
+		// Token: 0x04003EC3 RID: 16067
 		public string FaBaoType;
 
-		// Token: 0x04004A1C RID: 18972
+		// Token: 0x04003EC4 RID: 16068
 		public string desc;
 
-		// Token: 0x04004A1D RID: 18973
+		// Token: 0x04003EC5 RID: 16069
 		public string desc2;
 
-		// Token: 0x04004A1E RID: 18974
+		// Token: 0x04003EC6 RID: 16070
 		public List<int> Affix = new List<int>();
 
-		// Token: 0x04004A1F RID: 18975
+		// Token: 0x04003EC7 RID: 16071
 		public List<int> ItemFlag = new List<int>();
 
-		// Token: 0x04004A20 RID: 18976
+		// Token: 0x04003EC8 RID: 16072
 		public List<int> seid = new List<int>();
 
-		// Token: 0x04004A21 RID: 18977
+		// Token: 0x04003EC9 RID: 16073
 		public List<int> wuDao = new List<int>();
 	}
 }

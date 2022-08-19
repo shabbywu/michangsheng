@@ -4,35 +4,35 @@ using Newtonsoft.Json.Linq;
 using UnityEngine;
 using UnityEngine.UI;
 
-// Token: 0x02000469 RID: 1129
+// Token: 0x0200030C RID: 780
 public class SelectTypePageManager : MonoBehaviour
 {
-	// Token: 0x06001E54 RID: 7764 RVA: 0x0001928C File Offset: 0x0001748C
+	// Token: 0x06001B2E RID: 6958 RVA: 0x000C1A7B File Offset: 0x000BFC7B
 	public void setSelectZhongLei(int type)
 	{
 		this.selectZhongLei = type;
 	}
 
-	// Token: 0x06001E55 RID: 7765 RVA: 0x00019295 File Offset: 0x00017495
+	// Token: 0x06001B2F RID: 6959 RVA: 0x000C1A84 File Offset: 0x000BFC84
 	public int getSelectZhongLei()
 	{
 		return this.selectZhongLei;
 	}
 
-	// Token: 0x06001E56 RID: 7766 RVA: 0x0001929D File Offset: 0x0001749D
+	// Token: 0x06001B30 RID: 6960 RVA: 0x000C1A8C File Offset: 0x000BFC8C
 	public void init()
 	{
 		this.selectZhongLei = -1;
 		this.selectEquipType(1);
 	}
 
-	// Token: 0x06001E57 RID: 7767 RVA: 0x00011B82 File Offset: 0x0000FD82
+	// Token: 0x06001B31 RID: 6961 RVA: 0x0005FDE2 File Offset: 0x0005DFE2
 	public void OpenSelectEquipPanel()
 	{
 		base.gameObject.SetActive(true);
 	}
 
-	// Token: 0x06001E58 RID: 7768 RVA: 0x001071C0 File Offset: 0x001053C0
+	// Token: 0x06001B32 RID: 6962 RVA: 0x000C1A9C File Offset: 0x000BFC9C
 	public void selectEquipType(int type = 1)
 	{
 		if (this.equipToggles[0].isOn)
@@ -66,7 +66,7 @@ public class SelectTypePageManager : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001E59 RID: 7769 RVA: 0x00107344 File Offset: 0x00105544
+	// Token: 0x06001B33 RID: 6963 RVA: 0x000C1C20 File Offset: 0x000BFE20
 	private void InitEquipType(int type)
 	{
 		Tools.ClearObj(this.lianQiEquipCell.transform);
@@ -83,7 +83,7 @@ public class SelectTypePageManager : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001E5A RID: 7770 RVA: 0x0010745C File Offset: 0x0010565C
+	// Token: 0x06001B34 RID: 6964 RVA: 0x000C1D38 File Offset: 0x000BFF38
 	public bool checkCanSelect(int id)
 	{
 		int wuDaoLevelByType = Tools.instance.getPlayer().wuDaoMag.getWuDaoLevelByType(22);
@@ -130,28 +130,28 @@ public class SelectTypePageManager : MonoBehaviour
 		return false;
 	}
 
-	// Token: 0x06001E5B RID: 7771 RVA: 0x00017C2D File Offset: 0x00015E2D
+	// Token: 0x06001B35 RID: 6965 RVA: 0x000B5E62 File Offset: 0x000B4062
 	public void closeSelectEquipPanel()
 	{
 		base.gameObject.SetActive(false);
 	}
 
-	// Token: 0x040019B8 RID: 6584
+	// Token: 0x040015AB RID: 5547
 	[SerializeField]
 	private List<Toggle> equipToggles = new List<Toggle>();
 
-	// Token: 0x040019B9 RID: 6585
+	// Token: 0x040015AC RID: 5548
 	[SerializeField]
 	private List<Sprite> equipTogglesNameIcon = new List<Sprite>();
 
-	// Token: 0x040019BA RID: 6586
+	// Token: 0x040015AD RID: 5549
 	[SerializeField]
 	private List<Sprite> equipTypeIcon = new List<Sprite>();
 
-	// Token: 0x040019BB RID: 6587
+	// Token: 0x040015AE RID: 5550
 	[SerializeField]
 	private GameObject lianQiEquipCell;
 
-	// Token: 0x040019BC RID: 6588
+	// Token: 0x040015AF RID: 5551
 	private int selectZhongLei;
 }

@@ -3,11 +3,11 @@ using UnityEngine;
 
 namespace Fungus
 {
-	// Token: 0x020011F4 RID: 4596
+	// Token: 0x02000DBE RID: 3518
 	[AddComponentMenu("")]
 	public abstract class Condition : Command
 	{
-		// Token: 0x06007080 RID: 28800 RVA: 0x002A26D8 File Offset: 0x002A08D8
+		// Token: 0x06006413 RID: 25619 RVA: 0x0027D598 File Offset: 0x0027B798
 		public static string GetOperatorDescription(CompareOperator compareOperator)
 		{
 			string text = "";
@@ -35,7 +35,7 @@ namespace Fungus
 			return text;
 		}
 
-		// Token: 0x06007081 RID: 28801 RVA: 0x002A2760 File Offset: 0x002A0960
+		// Token: 0x06006414 RID: 25620 RVA: 0x0027D620 File Offset: 0x0027B820
 		public override void OnEnter()
 		{
 			if (this.ParentBlock == null)
@@ -76,13 +76,13 @@ namespace Fungus
 			this.StopParentBlock();
 		}
 
-		// Token: 0x06007082 RID: 28802 RVA: 0x0000A093 File Offset: 0x00008293
+		// Token: 0x06006415 RID: 25621 RVA: 0x00024C5F File Offset: 0x00022E5F
 		public override bool OpenBlock()
 		{
 			return true;
 		}
 
-		// Token: 0x06007083 RID: 28803 RVA: 0x0004C70B File Offset: 0x0004A90B
+		// Token: 0x06006416 RID: 25622 RVA: 0x0027D723 File Offset: 0x0027B923
 		protected virtual void EvaluateAndContinue()
 		{
 			if (this.EvaluateCondition())
@@ -93,13 +93,13 @@ namespace Fungus
 			this.OnFalse();
 		}
 
-		// Token: 0x06007084 RID: 28804 RVA: 0x00011424 File Offset: 0x0000F624
+		// Token: 0x06006417 RID: 25623 RVA: 0x0005E3AF File Offset: 0x0005C5AF
 		protected virtual void OnTrue()
 		{
 			this.Continue();
 		}
 
-		// Token: 0x06007085 RID: 28805 RVA: 0x002A2864 File Offset: 0x002A0A64
+		// Token: 0x06006418 RID: 25624 RVA: 0x0027D73C File Offset: 0x0027B93C
 		protected virtual void OnFalse()
 		{
 			if (this.CommandIndex >= this.ParentBlock.CommandList.Count)
@@ -132,14 +132,14 @@ namespace Fungus
 			this.StopParentBlock();
 		}
 
-		// Token: 0x06007086 RID: 28806
+		// Token: 0x06006419 RID: 25625
 		protected abstract bool EvaluateCondition();
 
-		// Token: 0x06007087 RID: 28807
+		// Token: 0x0600641A RID: 25626
 		protected abstract bool HasNeededProperties();
 
-		// Token: 0x17000A59 RID: 2649
-		// (get) Token: 0x06007088 RID: 28808 RVA: 0x00004050 File Offset: 0x00002250
+		// Token: 0x170007F8 RID: 2040
+		// (get) Token: 0x0600641B RID: 25627 RVA: 0x0000280F File Offset: 0x00000A0F
 		protected virtual bool IsElseIf
 		{
 			get

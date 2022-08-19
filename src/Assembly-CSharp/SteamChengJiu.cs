@@ -5,11 +5,11 @@ using Newtonsoft.Json.Linq;
 using Steamworks;
 using UnityEngine;
 
-// Token: 0x02000650 RID: 1616
+// Token: 0x02000485 RID: 1157
 public class SteamChengJiu
 {
-	// Token: 0x170002D8 RID: 728
-	// (get) Token: 0x0600282B RID: 10283 RVA: 0x0001F8CC File Offset: 0x0001DACC
+	// Token: 0x1700028F RID: 655
+	// (get) Token: 0x0600244F RID: 9295 RVA: 0x000FB08A File Offset: 0x000F928A
 	public static SteamChengJiu ints
 	{
 		get
@@ -23,7 +23,7 @@ public class SteamChengJiu
 		}
 	}
 
-	// Token: 0x0600282C RID: 10284 RVA: 0x0001F8EA File Offset: 0x0001DAEA
+	// Token: 0x06002450 RID: 9296 RVA: 0x000FB0A8 File Offset: 0x000F92A8
 	public void YSSetAchievement(string name)
 	{
 		if (this.YSHasAchivement(name))
@@ -33,7 +33,7 @@ public class SteamChengJiu
 		Tools.instance.getPlayer().AvatarHasAchivement.Add(name);
 	}
 
-	// Token: 0x0600282D RID: 10285 RVA: 0x0001F90B File Offset: 0x0001DB0B
+	// Token: 0x06002451 RID: 9297 RVA: 0x000FB0C9 File Offset: 0x000F92C9
 	public void SetAchievement(string name)
 	{
 		if (this.HasAchievement(name))
@@ -41,9 +41,10 @@ public class SteamChengJiu
 			return;
 		}
 		SteamUserStats.SetAchievement(name);
+		SteamUserStats.StoreStats();
 	}
 
-	// Token: 0x0600282E RID: 10286 RVA: 0x0013AC68 File Offset: 0x00138E68
+	// Token: 0x06002452 RID: 9298 RVA: 0x000FB0E4 File Offset: 0x000F92E4
 	public void SetStat(string name, int num)
 	{
 		if (PlayerPrefs.GetInt("NowPlayerFileAvatar") >= 100)
@@ -58,7 +59,7 @@ public class SteamChengJiu
 		player.AvatarChengJiuData.SetField(name, num);
 	}
 
-	// Token: 0x0600282F RID: 10287 RVA: 0x0013ACB8 File Offset: 0x00138EB8
+	// Token: 0x06002453 RID: 9299 RVA: 0x000FB134 File Offset: 0x000F9334
 	public int GetStat(string name)
 	{
 		int result = 0;
@@ -70,7 +71,7 @@ public class SteamChengJiu
 		return result;
 	}
 
-	// Token: 0x06002830 RID: 10288 RVA: 0x0013ACF4 File Offset: 0x00138EF4
+	// Token: 0x06002454 RID: 9300 RVA: 0x000FB170 File Offset: 0x000F9370
 	public JToken IsGetChengJiu(Avatar avatar, int type, int value1, int value2)
 	{
 		switch (type)
@@ -120,7 +121,7 @@ public class SteamChengJiu
 		return null;
 	}
 
-	// Token: 0x06002831 RID: 10289 RVA: 0x0013B044 File Offset: 0x00139244
+	// Token: 0x06002455 RID: 9301 RVA: 0x000FB4C0 File Offset: 0x000F96C0
 	public void FightSkillAllDamageSetStat(Avatar avatar, int skillType, int damage)
 	{
 		string name = "DamageAll" + skillType;
@@ -132,7 +133,7 @@ public class SteamChengJiu
 		}
 	}
 
-	// Token: 0x06002832 RID: 10290 RVA: 0x0013B094 File Offset: 0x00139294
+	// Token: 0x06002456 RID: 9302 RVA: 0x000FB510 File Offset: 0x000F9710
 	public void FightSkillOnceDamageSetStat(Avatar avatar, int skillType, int damage)
 	{
 		JToken jtoken = this.IsGetChengJiu(avatar, 3, skillType, damage);
@@ -147,7 +148,7 @@ public class SteamChengJiu
 		}
 	}
 
-	// Token: 0x06002833 RID: 10291 RVA: 0x0013B0E0 File Offset: 0x001392E0
+	// Token: 0x06002457 RID: 9303 RVA: 0x000FB55C File Offset: 0x000F975C
 	public void FightBuffOnceSetStat(Avatar avatar, int buffID, int Round)
 	{
 		JToken jtoken = this.IsGetChengJiu(avatar, 1, buffID, Round);
@@ -162,7 +163,7 @@ public class SteamChengJiu
 		}
 	}
 
-	// Token: 0x06002834 RID: 10292 RVA: 0x0001F91E File Offset: 0x0001DB1E
+	// Token: 0x06002458 RID: 9304 RVA: 0x000FB5A6 File Offset: 0x000F97A6
 	public string getAchievmentName(string baseName, int value1, int value2)
 	{
 		return string.Concat(new object[]
@@ -174,7 +175,7 @@ public class SteamChengJiu
 		});
 	}
 
-	// Token: 0x06002835 RID: 10293 RVA: 0x0013B12C File Offset: 0x0013932C
+	// Token: 0x06002459 RID: 9305 RVA: 0x000FB5D4 File Offset: 0x000F97D4
 	public void YSSetFightAchievment(string NameBase, JToken CanSetStat)
 	{
 		string text = (string)CanSetStat["SteamName"];
@@ -191,7 +192,7 @@ public class SteamChengJiu
 		}
 	}
 
-	// Token: 0x06002836 RID: 10294 RVA: 0x0013B1E8 File Offset: 0x001393E8
+	// Token: 0x0600245A RID: 9306 RVA: 0x000FB690 File Offset: 0x000F9890
 	public bool HasAchievement(string name)
 	{
 		bool result = true;
@@ -199,34 +200,34 @@ public class SteamChengJiu
 		return result;
 	}
 
-	// Token: 0x06002837 RID: 10295 RVA: 0x0013B204 File Offset: 0x00139404
+	// Token: 0x0600245B RID: 9307 RVA: 0x000FB6AC File Offset: 0x000F98AC
 	public bool YSHasAchivement(string name)
 	{
 		return Tools.instance.getPlayer().AvatarHasAchivement.list.Find((JSONObject aa) => aa.str == name) != null;
 	}
 
-	// Token: 0x06002838 RID: 10296 RVA: 0x0001F949 File Offset: 0x0001DB49
+	// Token: 0x0600245C RID: 9308 RVA: 0x000FB6F0 File Offset: 0x000F98F0
 	public void StoreStats()
 	{
 		SteamUserStats.StoreStats();
 	}
 
-	// Token: 0x06002839 RID: 10297 RVA: 0x000042DD File Offset: 0x000024DD
+	// Token: 0x0600245D RID: 9309 RVA: 0x00004095 File Offset: 0x00002295
 	public void ResetStatt()
 	{
 	}
 
-	// Token: 0x040021F7 RID: 8695
+	// Token: 0x04001D06 RID: 7430
 	private static SteamChengJiu _int;
 
-	// Token: 0x02000651 RID: 1617
+	// Token: 0x020013B1 RID: 5041
 	public enum chengjiuType
 	{
-		// Token: 0x040021F9 RID: 8697
+		// Token: 0x04006910 RID: 26896
 		BuffRound = 1,
-		// Token: 0x040021FA RID: 8698
+		// Token: 0x04006911 RID: 26897
 		SkillAll,
-		// Token: 0x040021FB RID: 8699
+		// Token: 0x04006912 RID: 26898
 		SkillOnce
 	}
 }

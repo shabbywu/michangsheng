@@ -2,10 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-// Token: 0x02000145 RID: 325
+// Token: 0x020000D4 RID: 212
 public class CharacterInventory : MonoBehaviour
 {
-	// Token: 0x06000BEA RID: 3050 RVA: 0x00094BE4 File Offset: 0x00092DE4
+	// Token: 0x06000B07 RID: 2823 RVA: 0x00042E64 File Offset: 0x00041064
 	private void Start()
 	{
 		this.character = base.gameObject.GetComponent<CharacterStatus>();
@@ -15,7 +15,7 @@ public class CharacterInventory : MonoBehaviour
 		this.ItemsEquiped = new ItemSlot[this.ItemEmbedSlot.Length];
 	}
 
-	// Token: 0x06000BEB RID: 3051 RVA: 0x00094C54 File Offset: 0x00092E54
+	// Token: 0x06000B08 RID: 2824 RVA: 0x00042ED4 File Offset: 0x000410D4
 	private void removeAllChild(GameObject parent)
 	{
 		foreach (object obj in parent.transform)
@@ -28,7 +28,7 @@ public class CharacterInventory : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000BEC RID: 3052 RVA: 0x00094CBC File Offset: 0x00092EBC
+	// Token: 0x06000B09 RID: 2825 RVA: 0x00042F3C File Offset: 0x0004113C
 	public void AddItem(int index, int num)
 	{
 		foreach (ItemSlot itemSlot in this.ItemSlots)
@@ -46,7 +46,7 @@ public class CharacterInventory : MonoBehaviour
 		this.EquipItem(itemSlot2);
 	}
 
-	// Token: 0x06000BED RID: 3053 RVA: 0x0000DFFA File Offset: 0x0000C1FA
+	// Token: 0x06000B0A RID: 2826 RVA: 0x00042FCC File Offset: 0x000411CC
 	public void RemoveItem(ItemSlot item, int num)
 	{
 		if (item != null)
@@ -62,7 +62,7 @@ public class CharacterInventory : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000BEE RID: 3054 RVA: 0x00094D4C File Offset: 0x00092F4C
+	// Token: 0x06000B0B RID: 2827 RVA: 0x00043000 File Offset: 0x00041200
 	public void EquipItem(ItemSlot indexEquip)
 	{
 		if (this.itemManager != null && indexEquip.Index >= this.itemManager.Items.Length)
@@ -85,7 +85,7 @@ public class CharacterInventory : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000BEF RID: 3055 RVA: 0x00094E30 File Offset: 0x00093030
+	// Token: 0x06000B0C RID: 2828 RVA: 0x000430E4 File Offset: 0x000412E4
 	public void UnEquipItem(ItemSlot indexEquip)
 	{
 		if (indexEquip.Index < this.itemManager.Items.Length)
@@ -98,7 +98,7 @@ public class CharacterInventory : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000BF0 RID: 3056 RVA: 0x00094EA8 File Offset: 0x000930A8
+	// Token: 0x06000B0D RID: 2829 RVA: 0x0004315C File Offset: 0x0004135C
 	public void UseItem(ItemSlot indexItem)
 	{
 		if (indexItem.Num > 0 && this.itemManager.Items[indexItem.Index].ItemPrefab)
@@ -110,14 +110,14 @@ public class CharacterInventory : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000BF1 RID: 3057 RVA: 0x00094F48 File Offset: 0x00093148
+	// Token: 0x06000B0E RID: 2830 RVA: 0x000431FC File Offset: 0x000413FC
 	public bool CheckEquiped(ItemSlot indexEquip)
 	{
 		int itemEmbedSlotIndex = this.itemManager.Items[indexEquip.Index].ItemPrefab.GetComponent<ItemInventory>().GetComponent<ItemInventory>().ItemEmbedSlotIndex;
 		return this.ItemsEquiped[itemEmbedSlotIndex] != null && this.ItemsEquiped[itemEmbedSlotIndex].Index == indexEquip.Index;
 	}
 
-	// Token: 0x06000BF2 RID: 3058 RVA: 0x00094FA4 File Offset: 0x000931A4
+	// Token: 0x06000B0F RID: 2831 RVA: 0x00043258 File Offset: 0x00041458
 	private void Update()
 	{
 		if (this.ItemEmbedSlot.Length == 0)
@@ -154,24 +154,24 @@ public class CharacterInventory : MonoBehaviour
 		}
 	}
 
-	// Token: 0x040008DD RID: 2269
+	// Token: 0x04000732 RID: 1842
 	public GameObject[] ItemEmbedSlot;
 
-	// Token: 0x040008DE RID: 2270
+	// Token: 0x04000733 RID: 1843
 	public ItemSlot[] ItemsEquiped;
 
-	// Token: 0x040008DF RID: 2271
+	// Token: 0x04000734 RID: 1844
 	public List<ItemSlot> ItemSlots = new List<ItemSlot>();
 
-	// Token: 0x040008E0 RID: 2272
+	// Token: 0x04000735 RID: 1845
 	public ItemManager itemManager;
 
-	// Token: 0x040008E1 RID: 2273
+	// Token: 0x04000736 RID: 1846
 	private CharacterStatus character;
 
-	// Token: 0x040008E2 RID: 2274
+	// Token: 0x04000737 RID: 1847
 	private CharacterAttack characterAttack;
 
-	// Token: 0x040008E3 RID: 2275
+	// Token: 0x04000738 RID: 1848
 	private CharacterSystem characterSystem;
 }

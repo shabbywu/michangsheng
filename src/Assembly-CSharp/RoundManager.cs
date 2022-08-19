@@ -5,16 +5,17 @@ using Fungus;
 using GUIPackage;
 using JSONClass;
 using KBEngine;
+using script.world_script;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
 using YSGame;
 using YSGame.Fight;
 
-// Token: 0x02000643 RID: 1603
+// Token: 0x02000482 RID: 1154
 public class RoundManager : MonoBehaviour
 {
-	// Token: 0x060027CE RID: 10190 RVA: 0x001367FC File Offset: 0x001349FC
+	// Token: 0x0600240B RID: 9227 RVA: 0x000F6A58 File Offset: 0x000F4C58
 	private void Awake()
 	{
 		RoundManager.instance = this;
@@ -23,23 +24,21 @@ public class RoundManager : MonoBehaviour
 		Event.registerOut("endRound", this, "endRound");
 		Event.registerOut("startRound", this, "startRound");
 		YSFuncList.Ints.Clear();
-		if (!RoundManager.TuPoTypeList.Contains(Tools.instance.monstarMag.FightType))
+		if (!RoundManager.TuPoTypeList.Contains(Tools.instance.monstarMag.FightType) && this.BackGroundImage != null)
 		{
 			if (Tools.instance.monstarMag.FightImageID != 0)
 			{
-				Sprite sprite = Resources.Load<Sprite>("Fightimage/" + Tools.instance.monstarMag.FightImageID);
-				this.BackGroud.sprite = sprite;
+				this.BackGroundImage.BGName = Tools.instance.monstarMag.FightImageID.ToString();
 			}
 			else
 			{
-				Sprite sprite2 = Resources.Load<Sprite>("Fightimage/" + 1);
-				this.BackGroud.sprite = sprite2;
+				this.BackGroundImage.BGName = "1";
 			}
 		}
 		MessageMag.Instance.Register("Fight_CardChange", new Action<MessageData>(this.UpdateCard));
 	}
 
-	// Token: 0x060027CF RID: 10191 RVA: 0x001368FC File Offset: 0x00134AFC
+	// Token: 0x0600240C RID: 9228 RVA: 0x000F6B40 File Offset: 0x000F4D40
 	public void MoveLingQiToCacheFromPlayer(Dictionary<int, int> skillCost, LingQiCacheType cacheType)
 	{
 		if (cacheType == LingQiCacheType.DontMove)
@@ -69,7 +68,7 @@ public class RoundManager : MonoBehaviour
 		UIFightPanel.Inst.CacheLingQiController.NowMoveSame = false;
 	}
 
-	// Token: 0x060027D0 RID: 10192 RVA: 0x00136A70 File Offset: 0x00134C70
+	// Token: 0x0600240D RID: 9229 RVA: 0x000F6CB4 File Offset: 0x000F4EB4
 	public void PlayRunAway()
 	{
 		try
@@ -131,14 +130,14 @@ public class RoundManager : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060027D1 RID: 10193 RVA: 0x0001F6B2 File Offset: 0x0001D8B2
+	// Token: 0x0600240E RID: 9230 RVA: 0x000F6E2C File Offset: 0x000F502C
 	public void setSkillChoicOk()
 	{
 		this.ChoiceSkill = null;
 		this.NowSkillUsedLingQiSum = -1;
 	}
 
-	// Token: 0x060027D2 RID: 10194 RVA: 0x00136BE8 File Offset: 0x00134DE8
+	// Token: 0x0600240F RID: 9231 RVA: 0x000F6E3C File Offset: 0x000F503C
 	public void SetChoiceSkill(ref GUIPackage.Skill skill)
 	{
 		Avatar avatar = (Avatar)KBEngineApp.app.player();
@@ -295,7 +294,7 @@ public class RoundManager : MonoBehaviour
 		avatar.onCrystalChanged(cardMag);
 	}
 
-	// Token: 0x060027D3 RID: 10195 RVA: 0x001370E8 File Offset: 0x001352E8
+	// Token: 0x06002410 RID: 9232 RVA: 0x000F733C File Offset: 0x000F553C
 	private static void InitLingQiKeNengXing()
 	{
 		if (RoundManager.lingQiKeNengXingZuHe == null)
@@ -334,7 +333,7 @@ public class RoundManager : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060027D4 RID: 10196 RVA: 0x00137184 File Offset: 0x00135384
+	// Token: 0x06002411 RID: 9233 RVA: 0x000F73D8 File Offset: 0x000F55D8
 	public void CalcTongLingQiKeNeng(Avatar avatar, GUIPackage.Skill skill)
 	{
 		if (skill.skillSameCast.Count == 0)
@@ -393,7 +392,7 @@ public class RoundManager : MonoBehaviour
 		Debug.Log(string.Format("对于技能{0}，玩家有{1}种同系灵气可能性", skill.skill_Name, this.choiceSkillCanUseLingQiIndexList.Count));
 	}
 
-	// Token: 0x060027D5 RID: 10197 RVA: 0x000ADDE8 File Offset: 0x000ABFE8
+	// Token: 0x06002412 RID: 9234 RVA: 0x000F7558 File Offset: 0x000F5758
 	public int GetLingQiSum(Dictionary<int, int> a)
 	{
 		int num = 0;
@@ -404,7 +403,7 @@ public class RoundManager : MonoBehaviour
 		return num;
 	}
 
-	// Token: 0x060027D6 RID: 10198 RVA: 0x00137304 File Offset: 0x00135504
+	// Token: 0x06002413 RID: 9235 RVA: 0x000F75AC File Offset: 0x000F57AC
 	public int GetLingQiSum(Dictionary<LingQiType, int> a)
 	{
 		int num = 0;
@@ -415,7 +414,7 @@ public class RoundManager : MonoBehaviour
 		return num;
 	}
 
-	// Token: 0x060027D7 RID: 10199 RVA: 0x00137358 File Offset: 0x00135558
+	// Token: 0x06002414 RID: 9236 RVA: 0x000F7600 File Offset: 0x000F5800
 	public bool UseSkill(string uuid = "", bool showTip = true)
 	{
 		Buff._NeiShangLoopCount = 0;
@@ -526,13 +525,13 @@ public class RoundManager : MonoBehaviour
 		return true;
 	}
 
-	// Token: 0x060027D8 RID: 10200 RVA: 0x0001F6C2 File Offset: 0x0001D8C2
+	// Token: 0x06002415 RID: 9237 RVA: 0x000F7A44 File Offset: 0x000F5C44
 	private void Start()
 	{
 		this.gameStart();
 	}
 
-	// Token: 0x060027D9 RID: 10201 RVA: 0x0013779C File Offset: 0x0013599C
+	// Token: 0x06002416 RID: 9238 RVA: 0x000F7A4C File Offset: 0x000F5C4C
 	private void OnDestroy()
 	{
 		RoundManager.instance = null;
@@ -564,7 +563,7 @@ public class RoundManager : MonoBehaviour
 		MessageMag.Instance.Remove("Fight_CardChange", new Action<MessageData>(this.UpdateCard));
 	}
 
-	// Token: 0x060027DA RID: 10202 RVA: 0x0013789C File Offset: 0x00135A9C
+	// Token: 0x06002417 RID: 9239 RVA: 0x000F7B4C File Offset: 0x000F5D4C
 	public void endRound(Entity _avater)
 	{
 		Avatar avatar = (Avatar)_avater;
@@ -622,13 +621,13 @@ public class RoundManager : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060027DB RID: 10203 RVA: 0x0001F6CA File Offset: 0x0001D8CA
+	// Token: 0x06002418 RID: 9240 RVA: 0x000F7D36 File Offset: 0x000F5F36
 	public int getListSum(CardMag list)
 	{
 		return list.getCardNum();
 	}
 
-	// Token: 0x060027DC RID: 10204 RVA: 0x00137A88 File Offset: 0x00135C88
+	// Token: 0x06002419 RID: 9241 RVA: 0x000F7D40 File Offset: 0x000F5F40
 	public void autoRemoveCard(Avatar avater)
 	{
 		avater.spell.onBuffTickByType(44);
@@ -662,7 +661,7 @@ public class RoundManager : MonoBehaviour
 		avater.spell.onBuffTickByType(26, list);
 	}
 
-	// Token: 0x060027DD RID: 10205 RVA: 0x00137B80 File Offset: 0x00135D80
+	// Token: 0x0600241A RID: 9242 RVA: 0x000F7E38 File Offset: 0x000F6038
 	private int getRealRemoveNum(int sum, int removeNum)
 	{
 		int result;
@@ -677,7 +676,7 @@ public class RoundManager : MonoBehaviour
 		return result;
 	}
 
-	// Token: 0x060027DE RID: 10206 RVA: 0x00137B9C File Offset: 0x00135D9C
+	// Token: 0x0600241B RID: 9243 RVA: 0x000F7E54 File Offset: 0x000F6054
 	public int[] GetRandomRemoveLingQi(Avatar avater, int randomCount)
 	{
 		int cardNum = avater.cardMag.getCardNum();
@@ -713,7 +712,7 @@ public class RoundManager : MonoBehaviour
 		return array;
 	}
 
-	// Token: 0x060027DF RID: 10207 RVA: 0x00137C78 File Offset: 0x00135E78
+	// Token: 0x0600241C RID: 9244 RVA: 0x000F7F30 File Offset: 0x000F6130
 	public void removeCard(Avatar avater, int removeNum)
 	{
 		int realRemoveNum = this.getRealRemoveNum(this.getListSum(avater.cardMag), removeNum);
@@ -728,7 +727,7 @@ public class RoundManager : MonoBehaviour
 		avater.onCrystalChanged(avater.cardMag);
 	}
 
-	// Token: 0x060027E0 RID: 10208 RVA: 0x00137CCC File Offset: 0x00135ECC
+	// Token: 0x0600241D RID: 9245 RVA: 0x000F7F84 File Offset: 0x000F6184
 	public void removeCard(Avatar avater, int removeNum, int removeType)
 	{
 		int realRemoveNum = this.getRealRemoveNum(this.getListSum(avater.cardMag), removeNum);
@@ -736,13 +735,13 @@ public class RoundManager : MonoBehaviour
 		avater.onCrystalChanged(avater.cardMag);
 	}
 
-	// Token: 0x060027E1 RID: 10209 RVA: 0x0001F6D2 File Offset: 0x0001D8D2
+	// Token: 0x0600241E RID: 9246 RVA: 0x000F7FBA File Offset: 0x000F61BA
 	public void ExchengCard(Avatar avater, card _card, int type)
 	{
 		avater.onCrystalChanged(avater.cardMag);
 	}
 
-	// Token: 0x060027E2 RID: 10210 RVA: 0x00137D04 File Offset: 0x00135F04
+	// Token: 0x0600241F RID: 9247 RVA: 0x000F7FC8 File Offset: 0x000F61C8
 	public void RoundTimeAutoRemoveCard(Avatar avater, int removeType, int count = 1)
 	{
 		avater.AbandonCryStal(removeType, count);
@@ -762,7 +761,7 @@ public class RoundManager : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060027E3 RID: 10211 RVA: 0x00137D7C File Offset: 0x00135F7C
+	// Token: 0x06002420 RID: 9248 RVA: 0x000F8040 File Offset: 0x000F6240
 	public static void EventFightTalk(string name, EventDelegate del, EventDelegate end = null)
 	{
 		if (Tools.instance.monstarMag.FightTalkID != 0)
@@ -783,7 +782,7 @@ public class RoundManager : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060027E4 RID: 10212 RVA: 0x00137DCC File Offset: 0x00135FCC
+	// Token: 0x06002421 RID: 9249 RVA: 0x000F8090 File Offset: 0x000F6290
 	public void PlayerEndRound(bool canCancel = true)
 	{
 		Avatar avatar = (Avatar)KBEngineApp.app.player();
@@ -842,7 +841,7 @@ public class RoundManager : MonoBehaviour
 		UIPopTip.Inst.Pop("点击选择你要消散的灵气", PopTipIconType.叹号);
 	}
 
-	// Token: 0x060027E5 RID: 10213 RVA: 0x00137F9C File Offset: 0x0013619C
+	// Token: 0x06002422 RID: 9250 RVA: 0x000F8260 File Offset: 0x000F6460
 	private void OnPlayerEndRoundQiZhiLingQiOKClick()
 	{
 		Avatar player = PlayerEx.Player;
@@ -885,7 +884,7 @@ public class RoundManager : MonoBehaviour
 		UIPopTip.Inst.Pop("没有足够的灵气", PopTipIconType.叹号);
 	}
 
-	// Token: 0x060027E6 RID: 10214 RVA: 0x00138144 File Offset: 0x00136344
+	// Token: 0x06002423 RID: 9251 RVA: 0x000F8408 File Offset: 0x000F6608
 	private void OnPlayerEndRoundQiZhiLingQiCacelClick()
 	{
 		UIFightPanel.Inst.CacheLingQiController.MoveAllLingQiToPlayer();
@@ -895,7 +894,7 @@ public class RoundManager : MonoBehaviour
 		UIFightPanel.Inst.FightCenterTip.HideTip();
 	}
 
-	// Token: 0x060027E7 RID: 10215 RVA: 0x0013819C File Offset: 0x0013639C
+	// Token: 0x06002424 RID: 9252 RVA: 0x000F8460 File Offset: 0x000F6660
 	public card drawCardCreatSpritAndAddCrystal(Avatar avatar, int type)
 	{
 		card result = avatar.addCrystal(type, 1);
@@ -909,7 +908,7 @@ public class RoundManager : MonoBehaviour
 		return result;
 	}
 
-	// Token: 0x060027E8 RID: 10216 RVA: 0x001381F8 File Offset: 0x001363F8
+	// Token: 0x06002425 RID: 9253 RVA: 0x000F84BC File Offset: 0x000F66BC
 	public void DrawCardCreatSpritAndAddCrystal(Avatar avatar, int type, int count = 1)
 	{
 		avatar.addCrystal(type, count);
@@ -922,7 +921,7 @@ public class RoundManager : MonoBehaviour
 		this.NpcCurRoundDrawCardNum += count;
 	}
 
-	// Token: 0x060027E9 RID: 10217 RVA: 0x00138258 File Offset: 0x00136458
+	// Token: 0x06002426 RID: 9254 RVA: 0x000F851C File Offset: 0x000F671C
 	public void RandomDrawCard(Avatar avatar, int count = 1)
 	{
 		int[] randomLingQiTypes = this.GetRandomLingQiTypes(avatar, count);
@@ -935,7 +934,7 @@ public class RoundManager : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060027EA RID: 10218 RVA: 0x0013828C File Offset: 0x0013648C
+	// Token: 0x06002427 RID: 9255 RVA: 0x000F8550 File Offset: 0x000F6750
 	private card drawCardRealize(Avatar avatar, int lingQiType)
 	{
 		List<int> list = new List<int>();
@@ -945,7 +944,7 @@ public class RoundManager : MonoBehaviour
 		return this.drawCardCreatSpritAndAddCrystal(avatar, lingQiType);
 	}
 
-	// Token: 0x060027EB RID: 10219 RVA: 0x001382C4 File Offset: 0x001364C4
+	// Token: 0x06002428 RID: 9256 RVA: 0x000F8588 File Offset: 0x000F6788
 	private void DrawCardRealize(Avatar avatar, int lingQiType)
 	{
 		List<int> list = new List<int>();
@@ -955,27 +954,27 @@ public class RoundManager : MonoBehaviour
 		this.DrawCardCreatSpritAndAddCrystal(avatar, lingQiType, 1);
 	}
 
-	// Token: 0x060027EC RID: 10220 RVA: 0x001382FC File Offset: 0x001364FC
+	// Token: 0x06002429 RID: 9257 RVA: 0x000F85C0 File Offset: 0x000F67C0
 	public card drawCard(Avatar avatar)
 	{
 		int randomLingQiType = this.GetRandomLingQiType(avatar);
 		return this.drawCardRealize(avatar, randomLingQiType);
 	}
 
-	// Token: 0x060027ED RID: 10221 RVA: 0x0013831C File Offset: 0x0013651C
+	// Token: 0x0600242A RID: 9258 RVA: 0x000F85E0 File Offset: 0x000F67E0
 	public void DrawCard(Avatar avatar)
 	{
 		int randomLingQiType = this.GetRandomLingQiType(avatar);
 		this.DrawCardRealize(avatar, randomLingQiType);
 	}
 
-	// Token: 0x060027EE RID: 10222 RVA: 0x0001F6E0 File Offset: 0x0001D8E0
+	// Token: 0x0600242B RID: 9259 RVA: 0x000F85FD File Offset: 0x000F67FD
 	public void DrawCard(Avatar avatar, int lingQiType)
 	{
 		this.DrawCardRealize(avatar, lingQiType);
 	}
 
-	// Token: 0x060027EF RID: 10223 RVA: 0x0013833C File Offset: 0x0013653C
+	// Token: 0x0600242C RID: 9260 RVA: 0x000F8608 File Offset: 0x000F6808
 	public int getRemoveNum(Avatar avatar)
 	{
 		Dictionary<int, int> dictionary = new Dictionary<int, int>();
@@ -995,7 +994,7 @@ public class RoundManager : MonoBehaviour
 		return -1;
 	}
 
-	// Token: 0x060027F0 RID: 10224 RVA: 0x00138418 File Offset: 0x00136618
+	// Token: 0x0600242D RID: 9261 RVA: 0x000F86E4 File Offset: 0x000F68E4
 	public int GetRandomLingQiType(Avatar avatar)
 	{
 		if (Tools.instance.monstarMag.FightCardID != 0 && avatar.isPlayer())
@@ -1054,7 +1053,7 @@ public class RoundManager : MonoBehaviour
 		return result;
 	}
 
-	// Token: 0x060027F1 RID: 10225 RVA: 0x0013862C File Offset: 0x0013682C
+	// Token: 0x0600242E RID: 9262 RVA: 0x000F88F8 File Offset: 0x000F6AF8
 	public int[] GetRandomLingQiTypes(Avatar avatar, int count = 1)
 	{
 		int[] array = new int[6];
@@ -1123,7 +1122,7 @@ public class RoundManager : MonoBehaviour
 		return array;
 	}
 
-	// Token: 0x060027F2 RID: 10226 RVA: 0x00138878 File Offset: 0x00136A78
+	// Token: 0x0600242F RID: 9263 RVA: 0x000F8B44 File Offset: 0x000F6D44
 	public void startRound(Entity _avater)
 	{
 		try
@@ -1248,7 +1247,7 @@ public class RoundManager : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060027F3 RID: 10227 RVA: 0x00138CB8 File Offset: 0x00136EB8
+	// Token: 0x06002430 RID: 9264 RVA: 0x000F8F84 File Offset: 0x000F7184
 	public void chengeCrystal()
 	{
 		Avatar avatar = (Avatar)KBEngineApp.app.player();
@@ -1256,19 +1255,19 @@ public class RoundManager : MonoBehaviour
 		avatar.OtherAvatar.onCrystalChanged(avatar.OtherAvatar.cardMag);
 	}
 
-	// Token: 0x060027F4 RID: 10228 RVA: 0x0001F6EA File Offset: 0x0001D8EA
+	// Token: 0x06002431 RID: 9265 RVA: 0x000F8FC3 File Offset: 0x000F71C3
 	public void eventChengeCrystal()
 	{
 		base.Invoke("chengeCrystal", 0.05f);
 	}
 
-	// Token: 0x060027F5 RID: 10229 RVA: 0x0001F6FC File Offset: 0x0001D8FC
+	// Token: 0x06002432 RID: 9266 RVA: 0x000F8FD5 File Offset: 0x000F71D5
 	public Avatar GetMonstar()
 	{
 		return (Avatar)KBEngineApp.app.entities[11];
 	}
 
-	// Token: 0x060027F6 RID: 10230 RVA: 0x00138CF8 File Offset: 0x00136EF8
+	// Token: 0x06002433 RID: 9267 RVA: 0x000F8FF0 File Offset: 0x000F71F0
 	public void initMonstar(int __monstarID)
 	{
 		Avatar avatar = (Avatar)KBEngineApp.app.entities[11];
@@ -1342,7 +1341,7 @@ public class RoundManager : MonoBehaviour
 		avatar.Sex = (int)jsonobject["SexType"].n;
 	}
 
-	// Token: 0x060027F7 RID: 10231 RVA: 0x00139134 File Offset: 0x00137334
+	// Token: 0x06002434 RID: 9268 RVA: 0x000F942C File Offset: 0x000F762C
 	public void InitGanYingMonstar(int monstarID)
 	{
 		this.initMonstar(monstarID);
@@ -1356,7 +1355,7 @@ public class RoundManager : MonoBehaviour
 		avatar.Sex = player.Sex;
 	}
 
-	// Token: 0x060027F8 RID: 10232 RVA: 0x001391E0 File Offset: 0x001373E0
+	// Token: 0x06002435 RID: 9269 RVA: 0x000F94D8 File Offset: 0x000F76D8
 	public void initXinMoMonstar()
 	{
 		Tools.instance.MonstarID = 10000;
@@ -1407,7 +1406,7 @@ public class RoundManager : MonoBehaviour
 		avatar.fightTemp.useAI = true;
 	}
 
-	// Token: 0x060027F9 RID: 10233 RVA: 0x00139530 File Offset: 0x00137730
+	// Token: 0x06002436 RID: 9270 RVA: 0x000F9828 File Offset: 0x000F7A28
 	public void gameStart()
 	{
 		UIFightPanel.Inst.Clear();
@@ -1606,10 +1605,20 @@ public class RoundManager : MonoBehaviour
 		{
 			this.PlayerFightEventProcessor.OnStartFight();
 		}
+		if (Tools.instance.monstarMag.FightType == StartFight.FightEnumType.FeiSheng)
+		{
+			this.gameStartAvatar = avatar;
+			TianJieManager.Inst.InitTianJieData();
+			AvatarShowHpDamage component = (player.renderObj as GameObject).GetComponent<AvatarShowHpDamage>();
+			component.ShowPointTransform = TianJieEffectManager.Inst.PlayerTransform;
+			component.UseCustomOffset = true;
+			component.CustomOffset = new Vector3(0f, -1.5f, 0f);
+			avatar.spell.removeAllBuff();
+		}
 		base.StartCoroutine(this.DelayStart(this.gameStartAvatar));
 	}
 
-	// Token: 0x060027FA RID: 10234 RVA: 0x0001F714 File Offset: 0x0001D914
+	// Token: 0x06002437 RID: 9271 RVA: 0x000FA1E8 File Offset: 0x000F83E8
 	private IEnumerator DelayStart(Avatar gameStartAvatar)
 	{
 		yield return new WaitForSeconds(0.1f);
@@ -1617,7 +1626,7 @@ public class RoundManager : MonoBehaviour
 		yield break;
 	}
 
-	// Token: 0x060027FB RID: 10235 RVA: 0x00139E7C File Offset: 0x0013807C
+	// Token: 0x06002438 RID: 9272 RVA: 0x000FA200 File Offset: 0x000F8400
 	private void TuPoPreDo(int saveBuffType)
 	{
 		Avatar player = Tools.instance.getPlayer();
@@ -1644,7 +1653,7 @@ public class RoundManager : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060027FC RID: 10236 RVA: 0x00139FAC File Offset: 0x001381AC
+	// Token: 0x06002439 RID: 9273 RVA: 0x000FA330 File Offset: 0x000F8530
 	private void setZhuJi()
 	{
 		this.TuPoPreDo(14);
@@ -1664,9 +1673,13 @@ public class RoundManager : MonoBehaviour
 				}
 			}
 		}
+		if (PlayerEx.GetGameDifficulty() == 游戏难度.极简)
+		{
+			player.spell.addDBuff(11021);
+		}
 	}
 
-	// Token: 0x060027FD RID: 10237 RVA: 0x0013A020 File Offset: 0x00138220
+	// Token: 0x0600243A RID: 9274 RVA: 0x000FA3BC File Offset: 0x000F85BC
 	private void setJieDan()
 	{
 		this.TuPoPreDo(10);
@@ -1680,9 +1693,13 @@ public class RoundManager : MonoBehaviour
 			}
 		}
 		player.spell.addDBuff(4011);
+		if (PlayerEx.GetGameDifficulty() == 游戏难度.极简)
+		{
+			player.spell.addDBuff(11022);
+		}
 	}
 
-	// Token: 0x060027FE RID: 10238 RVA: 0x0013A0CC File Offset: 0x001382CC
+	// Token: 0x0600243B RID: 9275 RVA: 0x000FA480 File Offset: 0x000F8680
 	private void SetJieYing()
 	{
 		this.TuPoPreDo(9);
@@ -1710,9 +1727,13 @@ public class RoundManager : MonoBehaviour
 		player.spell.addDBuff(3098);
 		player.spell.addDBuff(3099);
 		player.spell.addDBuff(3100);
+		if (PlayerEx.GetGameDifficulty() == 游戏难度.极简)
+		{
+			player.spell.addDBuff(11023);
+		}
 	}
 
-	// Token: 0x060027FF RID: 10239 RVA: 0x0013A1EC File Offset: 0x001383EC
+	// Token: 0x0600243C RID: 9276 RVA: 0x000FA5B8 File Offset: 0x000F87B8
 	private void SetHuaShen()
 	{
 		this.TuPoPreDo(15);
@@ -1754,9 +1775,13 @@ public class RoundManager : MonoBehaviour
 			player.spell.addDBuff(9286);
 			player.spell.addDBuff(3133, 2);
 		}
+		if (PlayerEx.GetGameDifficulty() == 游戏难度.极简)
+		{
+			player.spell.addDBuff(11024);
+		}
 	}
 
-	// Token: 0x06002800 RID: 10240 RVA: 0x0013A33C File Offset: 0x0013853C
+	// Token: 0x0600243D RID: 9277 RVA: 0x000FA724 File Offset: 0x000F8924
 	private void SetFeiSheng()
 	{
 		this.TuPoPreDo(16);
@@ -1771,9 +1796,61 @@ public class RoundManager : MonoBehaviour
 				player.FightAddSkill(skillKeyByID, 0, 12);
 			}
 		}
+		if (PlayerEx.GetGameDifficulty() == 游戏难度.极简)
+		{
+			player.spell.addDBuff(11025);
+		}
+		ulong i = (ulong)jsonData.instance.LevelUpDataJsonData[player.level.ToString()]["MaxExp"].i;
+		if (player.level == 15)
+		{
+			if (player.exp < i)
+			{
+				player.spell.addDBuff(3151);
+			}
+			if (player.exp == i)
+			{
+				player.spell.addDBuff(3152);
+			}
+		}
+		int buffid = player.HuaShenWuDao.I + 11025;
+		player.spell.addDBuff(buffid);
+		if (GlobalValue.Get(1690, "unknow") == 1)
+		{
+			player.spell.addDBuff(3153);
+			List<int> list = player.spell.addDBuff(3153);
+			if (list != null)
+			{
+				list[1] = 3;
+			}
+			List<int> list2 = player.spell.addDBuff(3153);
+			if (list2 != null)
+			{
+				list2[1] = 6;
+			}
+			List<int> list3 = player.spell.addDBuff(3153);
+			if (list3 != null)
+			{
+				list3[1] = 9;
+			}
+			List<int> list4 = player.spell.addDBuff(3153);
+			if (list4 != null)
+			{
+				list4[1] = 12;
+			}
+			List<int> list5 = player.spell.addDBuff(3153);
+			if (list5 != null)
+			{
+				list5[1] = 15;
+			}
+			List<int> list6 = player.spell.addDBuff(3153);
+			if (list6 != null)
+			{
+				list6[1] = 18;
+			}
+		}
 	}
 
-	// Token: 0x06002801 RID: 10241 RVA: 0x0013A3D4 File Offset: 0x001385D4
+	// Token: 0x0600243E RID: 9278 RVA: 0x000FA944 File Offset: 0x000F8B44
 	public void initAvatarInfo(Avatar avatar)
 	{
 		avatar.onCrystalChanged(avatar.cardMag);
@@ -1820,10 +1897,17 @@ public class RoundManager : MonoBehaviour
 				this.newNpcFightManager.addNpcEquipSeid(Tools.instance.MonstarID, avatar);
 			}
 		}
+		else
+		{
+			foreach (UIFightWeaponItem uifightWeaponItem in UIFightPanel.Inst.FightWeapon)
+			{
+				UIFightPanel.Inst.FightWeapon[0].SetLock(true);
+			}
+		}
 		avatar.WorldsetRandomFace();
 	}
 
-	// Token: 0x06002802 RID: 10242 RVA: 0x0013A5C4 File Offset: 0x001387C4
+	// Token: 0x0600243F RID: 9279 RVA: 0x000FAB94 File Offset: 0x000F8D94
 	public void initUI_Target(UI_Target target, Avatar avatar)
 	{
 		GameEntity component = ((GameObject)avatar.renderObj).GetComponent<GameEntity>();
@@ -1832,7 +1916,7 @@ public class RoundManager : MonoBehaviour
 		component.entity_name = avatar.name;
 	}
 
-	// Token: 0x06002803 RID: 10243 RVA: 0x0013A5FC File Offset: 0x001387FC
+	// Token: 0x06002440 RID: 9280 RVA: 0x000FABCC File Offset: 0x000F8DCC
 	public void creatAvatar(int avaterID, int roleType, int HP_Max, Vector3 position, Vector3 direction)
 	{
 		KBEngineApp.app.Client_onCreatedProxies((ulong)((long)avaterID), avaterID, "Avatar");
@@ -1842,13 +1926,13 @@ public class RoundManager : MonoBehaviour
 		this.initCrystal(avatar);
 	}
 
-	// Token: 0x06002804 RID: 10244 RVA: 0x0001F72A File Offset: 0x0001D92A
+	// Token: 0x06002441 RID: 9281 RVA: 0x000FAC18 File Offset: 0x000F8E18
 	public void initCrystal(Avatar avatar)
 	{
 		avatar.cardMag.Clear();
 	}
 
-	// Token: 0x06002805 RID: 10245 RVA: 0x0013A648 File Offset: 0x00138848
+	// Token: 0x06002442 RID: 9282 RVA: 0x000FAC28 File Offset: 0x000F8E28
 	private void UpdateWeaponCellSum()
 	{
 		Tools.instance.getPlayer();
@@ -1863,19 +1947,19 @@ public class RoundManager : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06002806 RID: 10246 RVA: 0x0001F737 File Offset: 0x0001D937
+	// Token: 0x06002443 RID: 9283 RVA: 0x000FAC96 File Offset: 0x000F8E96
 	public bool checkCanHasWeaponKey()
 	{
 		return !(this.weapon2 == null) && !(this.weapon == null);
 	}
 
-	// Token: 0x06002807 RID: 10247 RVA: 0x0001F758 File Offset: 0x0001D958
+	// Token: 0x06002444 RID: 9284 RVA: 0x000FACB7 File Offset: 0x000F8EB7
 	private void Update()
 	{
 		RoundManager.KeyHideCD -= Time.deltaTime;
 	}
 
-	// Token: 0x06002808 RID: 10248 RVA: 0x0013A6B8 File Offset: 0x001388B8
+	// Token: 0x06002445 RID: 9285 RVA: 0x000FACCC File Offset: 0x000F8ECC
 	public void UpdateCard(MessageData data)
 	{
 		Avatar player = Tools.instance.getPlayer();
@@ -1895,88 +1979,103 @@ public class RoundManager : MonoBehaviour
 		UIFightPanel.Inst.RefreshCD();
 	}
 
-	// Token: 0x040021B9 RID: 8633
+	// Token: 0x04001CD7 RID: 7383
 	public GameObject weapon;
 
-	// Token: 0x040021BA RID: 8634
+	// Token: 0x04001CD8 RID: 7384
 	public GameObject weapon2;
 
-	// Token: 0x040021BB RID: 8635
+	// Token: 0x04001CD9 RID: 7385
 	public NewNpcFightManager newNpcFightManager;
 
-	// Token: 0x040021BC RID: 8636
+	// Token: 0x04001CDA RID: 7386
 	public Dictionary<string, int> WeaponSkillList = new Dictionary<string, int>();
 
-	// Token: 0x040021BD RID: 8637
+	// Token: 0x04001CDB RID: 7387
 	public int curRemoveBuffId;
 
-	// Token: 0x040021BE RID: 8638
+	// Token: 0x04001CDC RID: 7388
+	public GUIPackage.Skill CurSkill;
+
+	// Token: 0x04001CDD RID: 7389
 	public Text PlayerCardText;
 
-	// Token: 0x040021BF RID: 8639
+	// Token: 0x04001CDE RID: 7390
 	public Text NpcCardText;
 
-	// Token: 0x040021C0 RID: 8640
+	// Token: 0x04001CDF RID: 7391
+	public SkillCheck PlayerSkillCheck;
+
+	// Token: 0x04001CE0 RID: 7392
+	public SkillCheck NpcSkillCheck;
+
+	// Token: 0x04001CE1 RID: 7393
+	public List<string> SkillList = new List<string>();
+
+	// Token: 0x04001CE2 RID: 7394
 	public int PlayerCurRoundDrawCardNum;
 
-	// Token: 0x040021C1 RID: 8641
+	// Token: 0x04001CE3 RID: 7395
 	public int NpcCurRoundDrawCardNum;
 
-	// Token: 0x040021C2 RID: 8642
+	// Token: 0x04001CE4 RID: 7396
 	public List<int> PlayerUseSkillList;
 
-	// Token: 0x040021C3 RID: 8643
+	// Token: 0x04001CE5 RID: 7397
 	public List<int> NpcUseSkillList;
 
-	// Token: 0x040021C4 RID: 8644
+	// Token: 0x04001CE6 RID: 7398
 	public bool IsVirtual;
 
-	// Token: 0x040021C5 RID: 8645
+	// Token: 0x04001CE7 RID: 7399
 	public int VirtualSkillDamage;
 
-	// Token: 0x040021C6 RID: 8646
+	// Token: 0x04001CE8 RID: 7400
 	private Avatar gameStartAvatar;
 
-	// Token: 0x040021C7 RID: 8647
+	// Token: 0x04001CE9 RID: 7401
 	public IFightEventProcessor PlayerFightEventProcessor;
 
-	// Token: 0x040021C8 RID: 8648
+	// Token: 0x04001CEA RID: 7402
 	public int StaticRoundNum;
 
-	// Token: 0x040021C9 RID: 8649
+	// Token: 0x04001CEB RID: 7403
 	public GameObject playerHoldCard;
 
-	// Token: 0x040021CA RID: 8650
+	// Token: 0x04001CEC RID: 7404
 	public static RoundManager instance;
 
-	// Token: 0x040021CB RID: 8651
+	// Token: 0x04001CED RID: 7405
 	public GUIPackage.Skill ChoiceSkill;
 
-	// Token: 0x040021CC RID: 8652
+	// Token: 0x04001CEE RID: 7406
 	public TooltipSkill ToolitpSkill;
 
-	// Token: 0x040021CD RID: 8653
+	// Token: 0x04001CEF RID: 7407
 	public TooltipSkill ItemToolitpSkill;
 
-	// Token: 0x040021CE RID: 8654
+	// Token: 0x04001CF0 RID: 7408
 	public Flowchart FightTalk;
 
-	// Token: 0x040021CF RID: 8655
+	// Token: 0x04001CF1 RID: 7409
 	public FightStaticDrawCard FightDrawCard;
 
-	// Token: 0x040021D0 RID: 8656
+	// Token: 0x04001CF2 RID: 7410
 	public GameObject FightInfoScrew;
 
-	// Token: 0x040021D1 RID: 8657
+	// Token: 0x04001CF3 RID: 7411
 	public GameObject FightInfoTemp;
 
-	// Token: 0x040021D2 RID: 8658
+	// Token: 0x04001CF4 RID: 7412
 	public SpriteRenderer BackGroud;
 
-	// Token: 0x040021D3 RID: 8659
+	// Token: 0x04001CF5 RID: 7413
+	public BackGroundImage BackGroundImage;
+
+	// Token: 0x04001CF6 RID: 7414
 	public int gameOverSwitch;
 
-	// Token: 0x040021D4 RID: 8660
+	// Token: 0x04001CF7 RID: 7415
 	public static List<StartFight.FightEnumType> TuPoTypeList = new List<StartFight.FightEnumType>
 	{
 		StartFight.FightEnumType.ZhuJi,
@@ -1986,7 +2085,7 @@ public class RoundManager : MonoBehaviour
 		StartFight.FightEnumType.FeiSheng
 	};
 
-	// Token: 0x040021D5 RID: 8661
+	// Token: 0x04001CF8 RID: 7416
 	private readonly List<StartFight.FightEnumType> TouXiangTypes = new List<StartFight.FightEnumType>
 	{
 		StartFight.FightEnumType.LeiTai,
@@ -1995,34 +2094,34 @@ public class RoundManager : MonoBehaviour
 		StartFight.FightEnumType.无装备无丹药擂台
 	};
 
-	// Token: 0x040021D6 RID: 8662
+	// Token: 0x04001CF9 RID: 7417
 	private int clickSkillChangeLingQiIndex;
 
-	// Token: 0x040021D7 RID: 8663
+	// Token: 0x04001CFA RID: 7418
 	private static Dictionary<int, List<int[]>> lingQiKeNengXingZuHe;
 
-	// Token: 0x040021D8 RID: 8664
+	// Token: 0x04001CFB RID: 7419
 	private static Dictionary<int, List<int[]>> lingQiKeNengXingPaiLie;
 
-	// Token: 0x040021D9 RID: 8665
+	// Token: 0x04001CFC RID: 7420
 	private List<int> choiceSkillCanUseLingQiIndexList;
 
-	// Token: 0x040021DA RID: 8666
+	// Token: 0x04001CFD RID: 7421
 	public int NowSkillUsedLingQiSum = -1;
 
-	// Token: 0x040021DB RID: 8667
+	// Token: 0x04001CFE RID: 7422
 	public static float KeyHideCD;
 
-	// Token: 0x040021DC RID: 8668
+	// Token: 0x04001CFF RID: 7423
 	[HideInInspector]
 	public UseLingQiType NowUseLingQiType;
 
-	// Token: 0x02000644 RID: 1604
+	// Token: 0x020013A7 RID: 5031
 	public enum entityID
 	{
-		// Token: 0x040021DE RID: 8670
+		// Token: 0x040068FC RID: 26876
 		EntityPlayer = 10,
-		// Token: 0x040021DF RID: 8671
+		// Token: 0x040068FD RID: 26877
 		EntityMonster
 	}
 }

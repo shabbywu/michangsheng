@@ -1,17 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
 
-// Token: 0x02000340 RID: 832
+// Token: 0x02000224 RID: 548
 public class NPCSpeedJieSuan
 {
-	// Token: 0x06001876 RID: 6262 RVA: 0x000153BF File Offset: 0x000135BF
+	// Token: 0x060015BE RID: 5566 RVA: 0x0009157C File Offset: 0x0008F77C
 	public NPCSpeedJieSuan()
 	{
 		this.lianDanTagList.Add(22);
 		this.lianQiTagList.Add(23);
 	}
 
-	// Token: 0x06001877 RID: 6263 RVA: 0x000DA008 File Offset: 0x000D8208
+	// Token: 0x060015BF RID: 5567 RVA: 0x000915B4 File Offset: 0x0008F7B4
 	public void DoSpeedJieSuan(int times = 1)
 	{
 		List<int> list = new List<int>();
@@ -50,19 +50,20 @@ public class NPCSpeedJieSuan
 			}
 			NpcJieSuanManager.inst.npcSetField.AddNpcAge(npcId, times);
 		}
+		Tools.instance.getPlayer().ElderTaskMag.UpdateTaskProcess.CheckHasExecutingTask(times);
 	}
 
-	// Token: 0x06001878 RID: 6264 RVA: 0x000153F7 File Offset: 0x000135F7
+	// Token: 0x060015C0 RID: 5568 RVA: 0x00091838 File Offset: 0x0008FA38
 	private bool IsSpeedCanBigTuPo(int npcId)
 	{
-		int i = NpcJieSuanManager.inst.getNpcData(npcId)["Level"].I;
+		int i = NpcJieSuanManager.inst.GetNpcData(npcId)["Level"].I;
 		return NpcJieSuanManager.inst.npcStatus.IsInTargetStatus(npcId, 2);
 	}
 
-	// Token: 0x06001879 RID: 6265 RVA: 0x000DA274 File Offset: 0x000D8474
+	// Token: 0x060015C1 RID: 5569 RVA: 0x0009186C File Offset: 0x0008FA6C
 	private void NpcSpeedBigTuPo(int npcId)
 	{
-		int i = NpcJieSuanManager.inst.getNpcData(npcId)["Level"].I;
+		int i = NpcJieSuanManager.inst.GetNpcData(npcId)["Level"].I;
 		if (i == 3)
 		{
 			NpcJieSuanManager.inst.npcTuPo.NpcTuPoZhuJi(npcId, true);
@@ -84,9 +85,9 @@ public class NPCSpeedJieSuan
 		}
 	}
 
-	// Token: 0x04001398 RID: 5016
+	// Token: 0x04001040 RID: 4160
 	private List<int> lianDanTagList = new List<int>();
 
-	// Token: 0x04001399 RID: 5017
+	// Token: 0x04001041 RID: 4161
 	private List<int> lianQiTagList = new List<int>();
 }

@@ -2,12 +2,12 @@
 
 namespace MoonSharp.Interpreter.Diagnostics
 {
-	// Token: 0x02001170 RID: 4464
+	// Token: 0x02000D5C RID: 3420
 	public enum PerformanceCounterType
 	{
-		// Token: 0x040061CF RID: 25039
+		// Token: 0x04005545 RID: 21829
 		MemoryBytes,
-		// Token: 0x040061D0 RID: 25040
+		// Token: 0x04005546 RID: 21830
 		TimeMilliseconds
 	}
 }

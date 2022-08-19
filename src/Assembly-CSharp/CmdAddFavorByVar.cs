@@ -2,12 +2,12 @@
 using Fungus;
 using UnityEngine;
 
-// Token: 0x02000346 RID: 838
+// Token: 0x0200022A RID: 554
 [CommandInfo("YSNPCJiaoHu", "根据变量名增加好感度", "根据变量增加好感度", 0)]
 [AddComponentMenu("")]
 public class CmdAddFavorByVar : Command
 {
-	// Token: 0x060018AA RID: 6314 RVA: 0x000DD498 File Offset: 0x000DB698
+	// Token: 0x060015F2 RID: 5618 RVA: 0x00094DBC File Offset: 0x00092FBC
 	public override void OnEnter()
 	{
 		Flowchart flowchart = this.GetFlowchart();
@@ -18,12 +18,12 @@ public class CmdAddFavorByVar : Command
 		this.Continue();
 	}
 
-	// Token: 0x040013A4 RID: 5028
+	// Token: 0x0400104C RID: 4172
 	[SerializeField]
 	[Tooltip("目标NPCID的变量名")]
 	protected string addTargetNPCIDVar;
 
-	// Token: 0x040013A5 RID: 5029
+	// Token: 0x0400104D RID: 4173
 	[SerializeField]
 	[Tooltip("好感度增加量的变量名")]
 	protected string addCountVar;

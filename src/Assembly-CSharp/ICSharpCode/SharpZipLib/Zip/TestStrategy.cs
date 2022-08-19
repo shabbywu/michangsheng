@@ -2,12 +2,12 @@
 
 namespace ICSharpCode.SharpZipLib.Zip
 {
-	// Token: 0x020007D3 RID: 2003
+	// Token: 0x0200053A RID: 1338
 	public enum TestStrategy
 	{
-		// Token: 0x04002F08 RID: 12040
+		// Token: 0x04002701 RID: 9985
 		FindFirstError,
-		// Token: 0x04002F09 RID: 12041
+		// Token: 0x04002702 RID: 9986
 		FindAllErrors
 	}
 }

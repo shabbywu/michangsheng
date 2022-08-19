@@ -3,17 +3,17 @@ using System.Text;
 
 namespace Fungus
 {
-	// Token: 0x020013A7 RID: 5031
+	// Token: 0x02000F02 RID: 3842
 	public interface IStringSubstituter
 	{
-		// Token: 0x17000B8A RID: 2954
-		// (get) Token: 0x060079E1 RID: 31201
+		// Token: 0x170008E7 RID: 2279
+		// (get) Token: 0x06006C2D RID: 27693
 		StringBuilder _StringBuilder { get; }
 
-		// Token: 0x060079E2 RID: 31202
+		// Token: 0x06006C2E RID: 27694
 		string SubstituteStrings(string input);
 
-		// Token: 0x060079E3 RID: 31203
+		// Token: 0x06006C2F RID: 27695
 		bool SubstituteStrings(StringBuilder input);
 	}
 }

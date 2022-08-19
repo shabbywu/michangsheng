@@ -5,19 +5,19 @@ using UnityEngine.UI;
 
 namespace WXB
 {
-	// Token: 0x020009DA RID: 2522
+	// Token: 0x020006B5 RID: 1717
 	[RequireComponent(typeof(RectTransform))]
 	[AddComponentMenu("UI/SymbolText")]
 	public class SymbolText : Text, Owner
 	{
-		// Token: 0x0600401E RID: 16414 RVA: 0x0002E086 File Offset: 0x0002C286
+		// Token: 0x0600361A RID: 13850 RVA: 0x00172F0E File Offset: 0x0017110E
 		static SymbolText()
 		{
 			Font.textureRebuilt += SymbolText.RebuildForFont;
 		}
 
-		// Token: 0x1700072A RID: 1834
-		// (get) Token: 0x0600401F RID: 16415 RVA: 0x0002E0B7 File Offset: 0x0002C2B7
+		// Token: 0x170004FF RID: 1279
+		// (get) Token: 0x0600361B RID: 13851 RVA: 0x00172F3F File Offset: 0x0017113F
 		public static Mesh WorkerMesh
 		{
 			get
@@ -26,7 +26,7 @@ namespace WXB
 			}
 		}
 
-		// Token: 0x06004020 RID: 16416 RVA: 0x001BBAE4 File Offset: 0x001B9CE4
+		// Token: 0x0600361C RID: 13852 RVA: 0x00172F48 File Offset: 0x00171148
 		private static void RebuildForFont(Font f)
 		{
 			for (int i = 0; i < SymbolText.ActiveList.Count; i++)
@@ -38,8 +38,8 @@ namespace WXB
 			}
 		}
 
-		// Token: 0x1700072B RID: 1835
-		// (get) Token: 0x06004021 RID: 16417 RVA: 0x0002E0BE File Offset: 0x0002C2BE
+		// Token: 0x17000500 RID: 1280
+		// (get) Token: 0x0600361D RID: 13853 RVA: 0x00172FA5 File Offset: 0x001711A5
 		protected TextParser Parser
 		{
 			get
@@ -48,7 +48,7 @@ namespace WXB
 			}
 		}
 
-		// Token: 0x06004022 RID: 16418 RVA: 0x001BBB44 File Offset: 0x001B9D44
+		// Token: 0x0600361E RID: 13854 RVA: 0x00172FAC File Offset: 0x001711AC
 		public bool isUsedFont(Font f)
 		{
 			foreach (NodeBase nodeBase in this.mNodeList)
@@ -61,7 +61,7 @@ namespace WXB
 			return false;
 		}
 
-		// Token: 0x06004023 RID: 16419 RVA: 0x0002E0C5 File Offset: 0x0002C2C5
+		// Token: 0x0600361F RID: 13855 RVA: 0x0017301C File Offset: 0x0017121C
 		public void SetRenderDirty()
 		{
 			this.FreeDraws();
@@ -69,8 +69,8 @@ namespace WXB
 			this.SetMaterialDirty();
 		}
 
-		// Token: 0x1700072C RID: 1836
-		// (set) Token: 0x06004024 RID: 16420 RVA: 0x001BBBB4 File Offset: 0x001B9DB4
+		// Token: 0x17000501 RID: 1281
+		// (set) Token: 0x06003620 RID: 13856 RVA: 0x00173030 File Offset: 0x00171230
 		public override string text
 		{
 			set
@@ -96,8 +96,8 @@ namespace WXB
 			}
 		}
 
-		// Token: 0x1700072D RID: 1837
-		// (get) Token: 0x06004025 RID: 16421 RVA: 0x0002E0D9 File Offset: 0x0002C2D9
+		// Token: 0x17000502 RID: 1282
+		// (get) Token: 0x06003621 RID: 13857 RVA: 0x00173092 File Offset: 0x00171292
 		public Anchor anchor
 		{
 			get
@@ -106,7 +106,7 @@ namespace WXB
 			}
 		}
 
-		// Token: 0x06004026 RID: 16422 RVA: 0x0002E0E1 File Offset: 0x0002C2E1
+		// Token: 0x06003622 RID: 13858 RVA: 0x0017309A File Offset: 0x0017129A
 		private static void FreeNode(NodeBase node)
 		{
 			if (node == null)
@@ -118,7 +118,7 @@ namespace WXB
 			node = null;
 		}
 
-		// Token: 0x06004027 RID: 16423 RVA: 0x001BBC18 File Offset: 0x001B9E18
+		// Token: 0x06003623 RID: 13859 RVA: 0x001730B8 File Offset: 0x001712B8
 		public void Clear()
 		{
 			foreach (NodeBase node in this.mNodeList)
@@ -129,9 +129,9 @@ namespace WXB
 			this.FreeDraws();
 		}
 
-		// Token: 0x1700072E RID: 1838
-		// (get) Token: 0x06004028 RID: 16424 RVA: 0x0002E0FF File Offset: 0x0002C2FF
-		// (set) Token: 0x06004029 RID: 16425 RVA: 0x0002E107 File Offset: 0x0002C307
+		// Token: 0x17000503 RID: 1283
+		// (get) Token: 0x06003624 RID: 13860 RVA: 0x0017311C File Offset: 0x0017131C
+		// (set) Token: 0x06003625 RID: 13861 RVA: 0x00173124 File Offset: 0x00171324
 		public int minLineHeight
 		{
 			get
@@ -148,9 +148,9 @@ namespace WXB
 			}
 		}
 
-		// Token: 0x1700072F RID: 1839
-		// (get) Token: 0x0600402A RID: 16426 RVA: 0x0002E11F File Offset: 0x0002C31F
-		// (set) Token: 0x0600402B RID: 16427 RVA: 0x0002E127 File Offset: 0x0002C327
+		// Token: 0x17000504 RID: 1284
+		// (get) Token: 0x06003626 RID: 13862 RVA: 0x0017313C File Offset: 0x0017133C
+		// (set) Token: 0x06003627 RID: 13863 RVA: 0x00173144 File Offset: 0x00171344
 		public LineAlignment lineAlignment
 		{
 			get
@@ -167,7 +167,7 @@ namespace WXB
 			}
 		}
 
-		// Token: 0x0600402C RID: 16428 RVA: 0x001BBC7C File Offset: 0x001B9E7C
+		// Token: 0x06003628 RID: 13864 RVA: 0x0017315C File Offset: 0x0017135C
 		protected TextParser.Config CreateConfig()
 		{
 			TextParser.Config result = default(TextParser.Config);
@@ -210,8 +210,8 @@ namespace WXB
 			return result;
 		}
 
-		// Token: 0x17000730 RID: 1840
-		// (get) Token: 0x0600402D RID: 16429 RVA: 0x0002E13F File Offset: 0x0002C33F
+		// Token: 0x17000505 RID: 1285
+		// (get) Token: 0x06003629 RID: 13865 RVA: 0x00173268 File Offset: 0x00171468
 		public RenderCache renderCache
 		{
 			get
@@ -224,7 +224,7 @@ namespace WXB
 			}
 		}
 
-		// Token: 0x0600402E RID: 16430 RVA: 0x0002E15B File Offset: 0x0002C35B
+		// Token: 0x0600362A RID: 13866 RVA: 0x00173284 File Offset: 0x00171484
 		protected override void Awake()
 		{
 			this.mRenderCache = new RenderCache(this);
@@ -234,7 +234,7 @@ namespace WXB
 			this.DestroyDrawChild();
 		}
 
-		// Token: 0x0600402F RID: 16431 RVA: 0x001BBD88 File Offset: 0x001B9F88
+		// Token: 0x0600362B RID: 13867 RVA: 0x001732AC File Offset: 0x001714AC
 		public void DestroyDrawChild()
 		{
 			int childCount = base.rectTransform.childCount;
@@ -254,9 +254,9 @@ namespace WXB
 			ListPool<Component>.Release(list);
 		}
 
-		// Token: 0x17000731 RID: 1841
-		// (get) Token: 0x06004030 RID: 16432 RVA: 0x0002E183 File Offset: 0x0002C383
-		// (set) Token: 0x06004031 RID: 16433 RVA: 0x0002E18B File Offset: 0x0002C38B
+		// Token: 0x17000506 RID: 1286
+		// (get) Token: 0x0600362C RID: 13868 RVA: 0x00173325 File Offset: 0x00171525
+		// (set) Token: 0x0600362D RID: 13869 RVA: 0x0017332D File Offset: 0x0017152D
 		public bool isCheckFontY
 		{
 			get
@@ -274,7 +274,7 @@ namespace WXB
 			}
 		}
 
-		// Token: 0x06004032 RID: 16434 RVA: 0x001BBE04 File Offset: 0x001BA004
+		// Token: 0x0600362E RID: 13870 RVA: 0x00173348 File Offset: 0x00171548
 		protected override void UpdateGeometry()
 		{
 			VertexHelper vertexHelper = Tools.vertexHelper;
@@ -325,7 +325,7 @@ namespace WXB
 			this.last_size = base.rectTransform.rect.size;
 		}
 
-		// Token: 0x06004033 RID: 16435 RVA: 0x001BC018 File Offset: 0x001BA218
+		// Token: 0x0600362F RID: 13871 RVA: 0x0017355C File Offset: 0x0017175C
 		public float getNodeHeight()
 		{
 			float num = 0f;
@@ -336,7 +336,7 @@ namespace WXB
 			return num;
 		}
 
-		// Token: 0x06004034 RID: 16436 RVA: 0x001BC058 File Offset: 0x001BA258
+		// Token: 0x06003630 RID: 13872 RVA: 0x0017359C File Offset: 0x0017179C
 		public float getNodeWidth()
 		{
 			float num = 0f;
@@ -363,14 +363,14 @@ namespace WXB
 			return num2;
 		}
 
-		// Token: 0x06004035 RID: 16437 RVA: 0x0002E1A4 File Offset: 0x0002C3A4
+		// Token: 0x06003631 RID: 13873 RVA: 0x001735FA File Offset: 0x001717FA
 		protected override void OnEnable()
 		{
 			base.OnEnable();
 			SymbolText.ActiveList.Add(this);
 		}
 
-		// Token: 0x06004036 RID: 16438 RVA: 0x0002E1B7 File Offset: 0x0002C3B7
+		// Token: 0x06003632 RID: 13874 RVA: 0x0017360D File Offset: 0x0017180D
 		protected override void OnDisable()
 		{
 			base.OnDisable();
@@ -378,7 +378,7 @@ namespace WXB
 			SymbolText.ActiveList.Remove(this);
 		}
 
-		// Token: 0x06004037 RID: 16439 RVA: 0x0002E1D1 File Offset: 0x0002C3D1
+		// Token: 0x06003633 RID: 13875 RVA: 0x00173627 File Offset: 0x00171827
 		protected override void OnDestroy()
 		{
 			if (this.mRenderCache != null)
@@ -390,7 +390,7 @@ namespace WXB
 			this.Clear();
 		}
 
-		// Token: 0x06004038 RID: 16440 RVA: 0x001BC0B8 File Offset: 0x001BA2B8
+		// Token: 0x06003634 RID: 13876 RVA: 0x00173650 File Offset: 0x00171850
 		protected void LateUpdate()
 		{
 			float deltaTime = Time.deltaTime;
@@ -400,8 +400,8 @@ namespace WXB
 			}
 		}
 
-		// Token: 0x17000732 RID: 1842
-		// (get) Token: 0x06004039 RID: 16441 RVA: 0x0002E1F8 File Offset: 0x0002C3F8
+		// Token: 0x17000507 RID: 1287
+		// (get) Token: 0x06003635 RID: 13877 RVA: 0x0017368B File Offset: 0x0017188B
 		public override float preferredWidth
 		{
 			get
@@ -411,8 +411,8 @@ namespace WXB
 			}
 		}
 
-		// Token: 0x17000733 RID: 1843
-		// (get) Token: 0x0600403A RID: 16442 RVA: 0x0002E206 File Offset: 0x0002C406
+		// Token: 0x17000508 RID: 1288
+		// (get) Token: 0x06003636 RID: 13878 RVA: 0x00173699 File Offset: 0x00171899
 		public override float preferredHeight
 		{
 			get
@@ -422,14 +422,14 @@ namespace WXB
 			}
 		}
 
-		// Token: 0x0600403B RID: 16443 RVA: 0x0002E214 File Offset: 0x0002C414
+		// Token: 0x06003637 RID: 13879 RVA: 0x001736A7 File Offset: 0x001718A7
 		public override void SetAllDirty()
 		{
 			base.SetAllDirty();
 			this.SetTextDirty();
 		}
 
-		// Token: 0x0600403C RID: 16444 RVA: 0x001BC0F4 File Offset: 0x001BA2F4
+		// Token: 0x06003638 RID: 13880 RVA: 0x001736B8 File Offset: 0x001718B8
 		private void UpdateByDirty()
 		{
 			if (this.m_textDirty)
@@ -455,7 +455,7 @@ namespace WXB
 			}
 		}
 
-		// Token: 0x0600403D RID: 16445 RVA: 0x0002E222 File Offset: 0x0002C422
+		// Token: 0x06003639 RID: 13881 RVA: 0x0017372B File Offset: 0x0017192B
 		public override void Rebuild(CanvasUpdate update)
 		{
 			if (base.canvasRenderer.cull)
@@ -473,7 +473,7 @@ namespace WXB
 			}
 		}
 
-		// Token: 0x0600403E RID: 16446 RVA: 0x0002E251 File Offset: 0x0002C451
+		// Token: 0x0600363A RID: 13882 RVA: 0x0017375A File Offset: 0x0017195A
 		protected virtual void SetTextDirty()
 		{
 			this.m_textDirty = true;
@@ -486,7 +486,7 @@ namespace WXB
 			}
 		}
 
-		// Token: 0x0600403F RID: 16447 RVA: 0x001BC168 File Offset: 0x001BA368
+		// Token: 0x0600363B RID: 13883 RVA: 0x00173784 File Offset: 0x00171984
 		protected override void UpdateMaterial()
 		{
 			if (!this.IsActive())
@@ -516,8 +516,8 @@ namespace WXB
 			ListPool<Component>.Release(list);
 		}
 
-		// Token: 0x17000734 RID: 1844
-		// (get) Token: 0x06004040 RID: 16448 RVA: 0x0002E27B File Offset: 0x0002C47B
+		// Token: 0x17000509 RID: 1289
+		// (get) Token: 0x0600363C RID: 13884 RVA: 0x00173839 File Offset: 0x00171A39
 		public Around around
 		{
 			get
@@ -526,8 +526,8 @@ namespace WXB
 			}
 		}
 
-		// Token: 0x17000735 RID: 1845
-		// (get) Token: 0x06004041 RID: 16449 RVA: 0x0002E283 File Offset: 0x0002C483
+		// Token: 0x1700050A RID: 1290
+		// (get) Token: 0x0600363D RID: 13885 RVA: 0x00173841 File Offset: 0x00171A41
 		public ElementSegment elementSegment
 		{
 			get
@@ -540,7 +540,7 @@ namespace WXB
 			}
 		}
 
-		// Token: 0x06004042 RID: 16450 RVA: 0x001BC220 File Offset: 0x001BA420
+		// Token: 0x0600363E RID: 13886 RVA: 0x00173860 File Offset: 0x00171A60
 		public void UpdateByTextDirty()
 		{
 			this.Clear();
@@ -553,14 +553,14 @@ namespace WXB
 			SymbolText.s_nodebases.Clear();
 		}
 
-		// Token: 0x06004043 RID: 16451 RVA: 0x0002E29F File Offset: 0x0002C49F
+		// Token: 0x0600363F RID: 13887 RVA: 0x001738BA File Offset: 0x00171ABA
 		public override void SetVerticesDirty()
 		{
 			base.SetVerticesDirty();
 			this.SetMaterialDirty();
 		}
 
-		// Token: 0x06004044 RID: 16452 RVA: 0x001BC27C File Offset: 0x001BA47C
+		// Token: 0x06003640 RID: 13888 RVA: 0x001738C8 File Offset: 0x00171AC8
 		protected override void OnRectTransformDimensionsChange()
 		{
 			if (base.gameObject.activeInHierarchy)
@@ -585,7 +585,7 @@ namespace WXB
 			}
 		}
 
-		// Token: 0x06004045 RID: 16453 RVA: 0x0002E2AD File Offset: 0x0002C4AD
+		// Token: 0x06003641 RID: 13889 RVA: 0x0017393D File Offset: 0x00171B3D
 		public override void SetLayoutDirty()
 		{
 			base.SetLayoutDirty();
@@ -595,7 +595,7 @@ namespace WXB
 			this.m_layoutDirty = true;
 		}
 
-		// Token: 0x06004046 RID: 16454 RVA: 0x001BC2F4 File Offset: 0x001BA4F4
+		// Token: 0x06003642 RID: 13890 RVA: 0x00173960 File Offset: 0x00171B60
 		public void UpdateTextHeight()
 		{
 			if (base.pixelsPerUnit <= 0f)
@@ -631,7 +631,7 @@ namespace WXB
 			}
 		}
 
-		// Token: 0x06004047 RID: 16455 RVA: 0x001BC470 File Offset: 0x001BA670
+		// Token: 0x06003643 RID: 13891 RVA: 0x00173ADC File Offset: 0x00171CDC
 		private void UpdateRenderElement()
 		{
 			if (base.pixelsPerUnit <= 0f)
@@ -653,7 +653,7 @@ namespace WXB
 			}
 		}
 
-		// Token: 0x06004048 RID: 16456 RVA: 0x0002E2CF File Offset: 0x0002C4CF
+		// Token: 0x06003644 RID: 13892 RVA: 0x00173B75 File Offset: 0x00171D75
 		public void FontTextureChangedOther()
 		{
 			if (!this)
@@ -676,7 +676,7 @@ namespace WXB
 			this.SetAllDirty();
 		}
 
-		// Token: 0x06004049 RID: 16457 RVA: 0x0002E307 File Offset: 0x0002C507
+		// Token: 0x06003645 RID: 13893 RVA: 0x00173BAD File Offset: 0x00171DAD
 		protected void FreeDraws()
 		{
 			this.m_UsedDraws.ForEach(delegate(Draw d)
@@ -689,7 +689,7 @@ namespace WXB
 			this.m_UsedDraws.Clear();
 		}
 
-		// Token: 0x0600404A RID: 16458 RVA: 0x001BC50C File Offset: 0x001BA70C
+		// Token: 0x06003646 RID: 13894 RVA: 0x00173BE4 File Offset: 0x00171DE4
 		public Draw GetDraw(DrawType type, long key, Action<Draw, object> oncreate, object p = null)
 		{
 			for (int i = 0; i < this.m_UsedDraws.Count; i++)
@@ -707,57 +707,57 @@ namespace WXB
 			return draw2;
 		}
 
-		// Token: 0x04003949 RID: 14665
+		// Token: 0x04002F59 RID: 12121
 		public static List<SymbolText> ActiveList = new List<SymbolText>();
 
-		// Token: 0x0400394A RID: 14666
+		// Token: 0x04002F5A RID: 12122
 		private static TextParser sTextParser = new TextParser();
 
-		// Token: 0x0400394B RID: 14667
+		// Token: 0x04002F5B RID: 12123
 		[NonSerialized]
 		protected LinkedList<NodeBase> mNodeList = new LinkedList<NodeBase>();
 
-		// Token: 0x0400394C RID: 14668
+		// Token: 0x04002F5C RID: 12124
 		[SerializeField]
 		private string m_ElementSegment = "Default";
 
-		// Token: 0x0400394D RID: 14669
+		// Token: 0x04002F5D RID: 12125
 		protected bool m_textDirty;
 
-		// Token: 0x0400394E RID: 14670
+		// Token: 0x04002F5E RID: 12126
 		protected bool m_renderNodeDirty;
 
-		// Token: 0x0400394F RID: 14671
+		// Token: 0x04002F5F RID: 12127
 		protected bool m_layoutDirty;
 
-		// Token: 0x04003950 RID: 14672
+		// Token: 0x04002F60 RID: 12128
 		[SerializeField]
 		private int m_MinLineHeight = 10;
 
-		// Token: 0x04003951 RID: 14673
+		// Token: 0x04002F61 RID: 12129
 		[SerializeField]
 		private LineAlignment m_LineAlignment = LineAlignment.Bottom;
 
-		// Token: 0x04003952 RID: 14674
+		// Token: 0x04002F62 RID: 12130
 		private RenderCache mRenderCache;
 
-		// Token: 0x04003953 RID: 14675
+		// Token: 0x04002F63 RID: 12131
 		private List<Line> mLines = new List<Line>();
 
-		// Token: 0x04003954 RID: 14676
+		// Token: 0x04002F64 RID: 12132
 		[SerializeField]
 		private bool m_isCheckFontY;
 
-		// Token: 0x04003955 RID: 14677
+		// Token: 0x04002F65 RID: 12133
 		private Around d_Around = new Around();
 
-		// Token: 0x04003956 RID: 14678
+		// Token: 0x04002F66 RID: 12134
 		protected static List<NodeBase> s_nodebases = new List<NodeBase>();
 
-		// Token: 0x04003957 RID: 14679
+		// Token: 0x04002F67 RID: 12135
 		private Vector2 last_size = new Vector2(-1000f, -1000f);
 
-		// Token: 0x04003958 RID: 14680
+		// Token: 0x04002F68 RID: 12136
 		private List<Draw> m_UsedDraws = new List<Draw>();
 	}
 }

@@ -3,10 +3,10 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
 
-// Token: 0x020004E5 RID: 1253
+// Token: 0x02000368 RID: 872
 public class USelectBox : MonoBehaviour, IESCClose
 {
-	// Token: 0x060020A3 RID: 8355 RVA: 0x0001AD5D File Offset: 0x00018F5D
+	// Token: 0x06001D39 RID: 7481 RVA: 0x000CF186 File Offset: 0x000CD386
 	private void Awake()
 	{
 		if (USelectBox.inst != null)
@@ -17,7 +17,7 @@ public class USelectBox : MonoBehaviour, IESCClose
 		Object.DontDestroyOnLoad(base.gameObject);
 	}
 
-	// Token: 0x060020A4 RID: 8356 RVA: 0x00113A5C File Offset: 0x00111C5C
+	// Token: 0x06001D3A RID: 7482 RVA: 0x000CF1B4 File Offset: 0x000CD3B4
 	private void Update()
 	{
 		if (USelectBox.needShow)
@@ -42,7 +42,7 @@ public class USelectBox : MonoBehaviour, IESCClose
 		}
 	}
 
-	// Token: 0x060020A5 RID: 8357 RVA: 0x0001AD88 File Offset: 0x00018F88
+	// Token: 0x06001D3B RID: 7483 RVA: 0x000CF299 File Offset: 0x000CD499
 	private void Close()
 	{
 		USelectBox.IsShow = false;
@@ -50,7 +50,7 @@ public class USelectBox : MonoBehaviour, IESCClose
 		ESCCloseManager.Inst.UnRegisterClose(this);
 	}
 
-	// Token: 0x060020A6 RID: 8358 RVA: 0x0001ADB2 File Offset: 0x00018FB2
+	// Token: 0x06001D3C RID: 7484 RVA: 0x000CF2C3 File Offset: 0x000CD4C3
 	public static void Show(string text, UnityAction onOK = null, UnityAction onClose = null)
 	{
 		if (USelectBox.inst == null)
@@ -63,40 +63,40 @@ public class USelectBox : MonoBehaviour, IESCClose
 		USelectBox.needShow = true;
 	}
 
-	// Token: 0x060020A7 RID: 8359 RVA: 0x0001ADE9 File Offset: 0x00018FE9
+	// Token: 0x06001D3D RID: 7485 RVA: 0x000CF2FA File Offset: 0x000CD4FA
 	public bool TryEscClose()
 	{
 		this.CloseBtn.onClick.Invoke();
 		return true;
 	}
 
-	// Token: 0x04001C21 RID: 7201
+	// Token: 0x040017CF RID: 6095
 	private static USelectBox inst;
 
-	// Token: 0x04001C22 RID: 7202
+	// Token: 0x040017D0 RID: 6096
 	private static string prefabPath = "USelectBox";
 
-	// Token: 0x04001C23 RID: 7203
+	// Token: 0x040017D1 RID: 6097
 	private static bool needShow;
 
-	// Token: 0x04001C24 RID: 7204
+	// Token: 0x040017D2 RID: 6098
 	private static string showText = "";
 
-	// Token: 0x04001C25 RID: 7205
+	// Token: 0x040017D3 RID: 6099
 	private static UnityAction OKAction;
 
-	// Token: 0x04001C26 RID: 7206
+	// Token: 0x040017D4 RID: 6100
 	private static UnityAction CloseAction;
 
-	// Token: 0x04001C27 RID: 7207
+	// Token: 0x040017D5 RID: 6101
 	public Text ShowText;
 
-	// Token: 0x04001C28 RID: 7208
+	// Token: 0x040017D6 RID: 6102
 	public Button CloseBtn;
 
-	// Token: 0x04001C29 RID: 7209
+	// Token: 0x040017D7 RID: 6103
 	public Button OKBtn;
 
-	// Token: 0x04001C2A RID: 7210
+	// Token: 0x040017D8 RID: 6104
 	public static bool IsShow;
 }

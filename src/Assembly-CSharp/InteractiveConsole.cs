@@ -4,35 +4,35 @@ using System.Collections.Generic;
 using Facebook;
 using UnityEngine;
 
-// Token: 0x020001E1 RID: 481
+// Token: 0x0200011F RID: 287
 public sealed class InteractiveConsole : MonoBehaviour
 {
-	// Token: 0x06000F84 RID: 3972 RVA: 0x0000FC1C File Offset: 0x0000DE1C
+	// Token: 0x06000DAB RID: 3499 RVA: 0x00051788 File Offset: 0x0004F988
 	private void CallFBInit()
 	{
 		FB.Init(new InitDelegate(this.OnInitComplete), new HideUnityDelegate(this.OnHideUnity), null);
 	}
 
-	// Token: 0x06000F85 RID: 3973 RVA: 0x000A21B8 File Offset: 0x000A03B8
+	// Token: 0x06000DAC RID: 3500 RVA: 0x000517A8 File Offset: 0x0004F9A8
 	private void OnInitComplete()
 	{
 		Debug.Log("FB.Init completed: Is user logged in? " + FB.IsLoggedIn.ToString());
 		this.isInit = true;
 	}
 
-	// Token: 0x06000F86 RID: 3974 RVA: 0x0000FC3C File Offset: 0x0000DE3C
+	// Token: 0x06000DAD RID: 3501 RVA: 0x000517D8 File Offset: 0x0004F9D8
 	private void OnHideUnity(bool isGameShown)
 	{
 		Debug.Log("Is game showing? " + isGameShown.ToString());
 	}
 
-	// Token: 0x06000F87 RID: 3975 RVA: 0x0000FC54 File Offset: 0x0000DE54
+	// Token: 0x06000DAE RID: 3502 RVA: 0x000517F0 File Offset: 0x0004F9F0
 	private void CallFBLogin()
 	{
 		FB.Login("email,publish_actions", new FacebookDelegate(this.LoginCallback));
 	}
 
-	// Token: 0x06000F88 RID: 3976 RVA: 0x0000FC6C File Offset: 0x0000DE6C
+	// Token: 0x06000DAF RID: 3503 RVA: 0x00051808 File Offset: 0x0004FA08
 	private void LoginCallback(FBResult result)
 	{
 		if (result.Error != null)
@@ -48,25 +48,25 @@ public sealed class InteractiveConsole : MonoBehaviour
 		this.lastResponse = "Login was successful!";
 	}
 
-	// Token: 0x06000F89 RID: 3977 RVA: 0x0000FCAB File Offset: 0x0000DEAB
+	// Token: 0x06000DB0 RID: 3504 RVA: 0x00051847 File Offset: 0x0004FA47
 	private void CallFBLogout()
 	{
 		FB.Logout();
 	}
 
-	// Token: 0x06000F8A RID: 3978 RVA: 0x0000FCB2 File Offset: 0x0000DEB2
+	// Token: 0x06000DB1 RID: 3505 RVA: 0x0005184E File Offset: 0x0004FA4E
 	private void CallFBPublishInstall()
 	{
 		FB.PublishInstall(new FacebookDelegate(this.PublishComplete));
 	}
 
-	// Token: 0x06000F8B RID: 3979 RVA: 0x0000FCC5 File Offset: 0x0000DEC5
+	// Token: 0x06000DB2 RID: 3506 RVA: 0x00051861 File Offset: 0x0004FA61
 	private void PublishComplete(FBResult result)
 	{
 		Debug.Log("publish response: " + result.Text);
 	}
 
-	// Token: 0x06000F8C RID: 3980 RVA: 0x000A21E8 File Offset: 0x000A03E8
+	// Token: 0x06000DB3 RID: 3507 RVA: 0x00051878 File Offset: 0x0004FA78
 	private void CallAppRequestAsFriendSelector()
 	{
 		int? maxRecipients = null;
@@ -88,7 +88,7 @@ public sealed class InteractiveConsole : MonoBehaviour
 		FB.AppRequest(this.FriendSelectorMessage, null, this.FriendSelectorFilters, excludeIds, maxRecipients, this.FriendSelectorData, this.FriendSelectorTitle, new FacebookDelegate(this.Callback));
 	}
 
-	// Token: 0x06000F8D RID: 3981 RVA: 0x000A229C File Offset: 0x000A049C
+	// Token: 0x06000DB4 RID: 3508 RVA: 0x0005192C File Offset: 0x0004FB2C
 	private void CallAppRequestAsDirectRequest()
 	{
 		if (this.DirectRequestTo == "")
@@ -101,7 +101,7 @@ public sealed class InteractiveConsole : MonoBehaviour
 		}), "", null, null, "", this.DirectRequestTitle, new FacebookDelegate(this.Callback));
 	}
 
-	// Token: 0x06000F8E RID: 3982 RVA: 0x000A2314 File Offset: 0x000A0514
+	// Token: 0x06000DB5 RID: 3509 RVA: 0x000519A4 File Offset: 0x0004FBA4
 	private void CallFBFeed()
 	{
 		Dictionary<string, string[]> properties = null;
@@ -112,25 +112,25 @@ public sealed class InteractiveConsole : MonoBehaviour
 		FB.Feed(this.FeedToId, this.FeedLink, this.FeedLinkName, this.FeedLinkCaption, this.FeedLinkDescription, this.FeedPicture, this.FeedMediaSource, this.FeedActionName, this.FeedActionLink, this.FeedReference, properties, new FacebookDelegate(this.Callback));
 	}
 
-	// Token: 0x06000F8F RID: 3983 RVA: 0x000A2380 File Offset: 0x000A0580
+	// Token: 0x06000DB6 RID: 3510 RVA: 0x00051A10 File Offset: 0x0004FC10
 	private void CallFBPay()
 	{
 		FB.Canvas.Pay(this.PayProduct, "purchaseitem", 1, null, null, null, null, null, null);
 	}
 
-	// Token: 0x06000F90 RID: 3984 RVA: 0x0000FCDC File Offset: 0x0000DEDC
+	// Token: 0x06000DB7 RID: 3511 RVA: 0x00051A44 File Offset: 0x0004FC44
 	private void CallFBAPI()
 	{
 		FB.API(this.ApiQuery, HttpMethod.GET, new FacebookDelegate(this.Callback), null);
 	}
 
-	// Token: 0x06000F91 RID: 3985 RVA: 0x0000FCFB File Offset: 0x0000DEFB
+	// Token: 0x06000DB8 RID: 3512 RVA: 0x00051A63 File Offset: 0x0004FC63
 	private void CallFBGetDeepLink()
 	{
 		FB.GetDeepLink(new FacebookDelegate(this.Callback));
 	}
 
-	// Token: 0x06000F92 RID: 3986 RVA: 0x000A23B4 File Offset: 0x000A05B4
+	// Token: 0x06000DB9 RID: 3513 RVA: 0x00051A78 File Offset: 0x0004FC78
 	public void CallAppEventLogEvent()
 	{
 		Dictionary<string, object> dictionary = new Dictionary<string, object>();
@@ -139,7 +139,7 @@ public sealed class InteractiveConsole : MonoBehaviour
 		this.PlayerLevel += 1f;
 	}
 
-	// Token: 0x06000F93 RID: 3987 RVA: 0x000A2400 File Offset: 0x000A0600
+	// Token: 0x06000DBA RID: 3514 RVA: 0x00051AC4 File Offset: 0x0004FCC4
 	public void CallCanvasSetResolution()
 	{
 		int width;
@@ -196,8 +196,8 @@ public sealed class InteractiveConsole : MonoBehaviour
 		});
 	}
 
-	// Token: 0x17000218 RID: 536
-	// (get) Token: 0x06000F94 RID: 3988 RVA: 0x0000FD0E File Offset: 0x0000DF0E
+	// Token: 0x170001EF RID: 495
+	// (get) Token: 0x06000DBB RID: 3515 RVA: 0x00051BC8 File Offset: 0x0004FDC8
 	private int TextWindowHeight
 	{
 		get
@@ -206,7 +206,7 @@ public sealed class InteractiveConsole : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000F95 RID: 3989 RVA: 0x000A2504 File Offset: 0x000A0704
+	// Token: 0x06000DBC RID: 3516 RVA: 0x00051BD0 File Offset: 0x0004FDD0
 	private void Awake()
 	{
 		this.textStyle.alignment = 0;
@@ -225,7 +225,7 @@ public sealed class InteractiveConsole : MonoBehaviour
 		});
 	}
 
-	// Token: 0x06000F96 RID: 3990 RVA: 0x000A25A0 File Offset: 0x000A07A0
+	// Token: 0x06000DBD RID: 3517 RVA: 0x00051C6C File Offset: 0x0004FE6C
 	private void OnGUI()
 	{
 		if (this.IsHorizontalLayout())
@@ -374,7 +374,7 @@ public sealed class InteractiveConsole : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000F97 RID: 3991 RVA: 0x000A2AB0 File Offset: 0x000A0CB0
+	// Token: 0x06000DBE RID: 3518 RVA: 0x0005217C File Offset: 0x0005037C
 	private void Callback(FBResult result)
 	{
 		this.lastResponseTexture = null;
@@ -392,7 +392,7 @@ public sealed class InteractiveConsole : MonoBehaviour
 		this.lastResponse = "Success Response:\n";
 	}
 
-	// Token: 0x06000F98 RID: 3992 RVA: 0x0000FD15 File Offset: 0x0000DF15
+	// Token: 0x06000DBF RID: 3519 RVA: 0x000521F4 File Offset: 0x000503F4
 	private IEnumerator TakeScreenshot()
 	{
 		yield return new WaitForEndOfFrame();
@@ -409,7 +409,7 @@ public sealed class InteractiveConsole : MonoBehaviour
 		yield break;
 	}
 
-	// Token: 0x06000F99 RID: 3993 RVA: 0x0000FD24 File Offset: 0x0000DF24
+	// Token: 0x06000DC0 RID: 3520 RVA: 0x00052203 File Offset: 0x00050403
 	private bool Button(string label)
 	{
 		return GUILayout.Button(label, new GUILayoutOption[]
@@ -419,7 +419,7 @@ public sealed class InteractiveConsole : MonoBehaviour
 		});
 	}
 
-	// Token: 0x06000F9A RID: 3994 RVA: 0x0000FD50 File Offset: 0x0000DF50
+	// Token: 0x06000DC1 RID: 3521 RVA: 0x0005222F File Offset: 0x0005042F
 	private void LabelAndTextField(string label, ref string text)
 	{
 		GUILayout.BeginHorizontal(Array.Empty<GUILayoutOption>());
@@ -431,126 +431,126 @@ public sealed class InteractiveConsole : MonoBehaviour
 		GUILayout.EndHorizontal();
 	}
 
-	// Token: 0x06000F9B RID: 3995 RVA: 0x0000A093 File Offset: 0x00008293
+	// Token: 0x06000DC2 RID: 3522 RVA: 0x00024C5F File Offset: 0x00022E5F
 	private bool IsHorizontalLayout()
 	{
 		return true;
 	}
 
-	// Token: 0x04000C27 RID: 3111
+	// Token: 0x040009A3 RID: 2467
 	private bool isInit;
 
-	// Token: 0x04000C28 RID: 3112
+	// Token: 0x040009A4 RID: 2468
 	public string FriendSelectorTitle = "";
 
-	// Token: 0x04000C29 RID: 3113
+	// Token: 0x040009A5 RID: 2469
 	public string FriendSelectorMessage = "Derp";
 
-	// Token: 0x04000C2A RID: 3114
+	// Token: 0x040009A6 RID: 2470
 	public string FriendSelectorFilters = "[\"all\",\"app_users\",\"app_non_users\"]";
 
-	// Token: 0x04000C2B RID: 3115
+	// Token: 0x040009A7 RID: 2471
 	public string FriendSelectorData = "{}";
 
-	// Token: 0x04000C2C RID: 3116
+	// Token: 0x040009A8 RID: 2472
 	public string FriendSelectorExcludeIds = "";
 
-	// Token: 0x04000C2D RID: 3117
+	// Token: 0x040009A9 RID: 2473
 	public string FriendSelectorMax = "";
 
-	// Token: 0x04000C2E RID: 3118
+	// Token: 0x040009AA RID: 2474
 	public string DirectRequestTitle = "";
 
-	// Token: 0x04000C2F RID: 3119
+	// Token: 0x040009AB RID: 2475
 	public string DirectRequestMessage = "Herp";
 
-	// Token: 0x04000C30 RID: 3120
+	// Token: 0x040009AC RID: 2476
 	private string DirectRequestTo = "";
 
-	// Token: 0x04000C31 RID: 3121
+	// Token: 0x040009AD RID: 2477
 	public string FeedToId = "";
 
-	// Token: 0x04000C32 RID: 3122
+	// Token: 0x040009AE RID: 2478
 	public string FeedLink = "";
 
-	// Token: 0x04000C33 RID: 3123
+	// Token: 0x040009AF RID: 2479
 	public string FeedLinkName = "";
 
-	// Token: 0x04000C34 RID: 3124
+	// Token: 0x040009B0 RID: 2480
 	public string FeedLinkCaption = "";
 
-	// Token: 0x04000C35 RID: 3125
+	// Token: 0x040009B1 RID: 2481
 	public string FeedLinkDescription = "";
 
-	// Token: 0x04000C36 RID: 3126
+	// Token: 0x040009B2 RID: 2482
 	public string FeedPicture = "";
 
-	// Token: 0x04000C37 RID: 3127
+	// Token: 0x040009B3 RID: 2483
 	public string FeedMediaSource = "";
 
-	// Token: 0x04000C38 RID: 3128
+	// Token: 0x040009B4 RID: 2484
 	public string FeedActionName = "";
 
-	// Token: 0x04000C39 RID: 3129
+	// Token: 0x040009B5 RID: 2485
 	public string FeedActionLink = "";
 
-	// Token: 0x04000C3A RID: 3130
+	// Token: 0x040009B6 RID: 2486
 	public string FeedReference = "";
 
-	// Token: 0x04000C3B RID: 3131
+	// Token: 0x040009B7 RID: 2487
 	public bool IncludeFeedProperties;
 
-	// Token: 0x04000C3C RID: 3132
+	// Token: 0x040009B8 RID: 2488
 	private Dictionary<string, string[]> FeedProperties = new Dictionary<string, string[]>();
 
-	// Token: 0x04000C3D RID: 3133
+	// Token: 0x040009B9 RID: 2489
 	public string PayProduct = "";
 
-	// Token: 0x04000C3E RID: 3134
+	// Token: 0x040009BA RID: 2490
 	public string ApiQuery = "";
 
-	// Token: 0x04000C3F RID: 3135
+	// Token: 0x040009BB RID: 2491
 	public float PlayerLevel = 1f;
 
-	// Token: 0x04000C40 RID: 3136
+	// Token: 0x040009BC RID: 2492
 	public string Width = "800";
 
-	// Token: 0x04000C41 RID: 3137
+	// Token: 0x040009BD RID: 2493
 	public string Height = "600";
 
-	// Token: 0x04000C42 RID: 3138
+	// Token: 0x040009BE RID: 2494
 	public bool CenterHorizontal = true;
 
-	// Token: 0x04000C43 RID: 3139
+	// Token: 0x040009BF RID: 2495
 	public bool CenterVertical;
 
-	// Token: 0x04000C44 RID: 3140
+	// Token: 0x040009C0 RID: 2496
 	public string Top = "10";
 
-	// Token: 0x04000C45 RID: 3141
+	// Token: 0x040009C1 RID: 2497
 	public string Left = "10";
 
-	// Token: 0x04000C46 RID: 3142
+	// Token: 0x040009C2 RID: 2498
 	private string status = "Ready";
 
-	// Token: 0x04000C47 RID: 3143
+	// Token: 0x040009C3 RID: 2499
 	private string lastResponse = "";
 
-	// Token: 0x04000C48 RID: 3144
+	// Token: 0x040009C4 RID: 2500
 	public GUIStyle textStyle = new GUIStyle();
 
-	// Token: 0x04000C49 RID: 3145
+	// Token: 0x040009C5 RID: 2501
 	private Texture2D lastResponseTexture;
 
-	// Token: 0x04000C4A RID: 3146
+	// Token: 0x040009C6 RID: 2502
 	private Vector2 scrollPosition = Vector2.zero;
 
-	// Token: 0x04000C4B RID: 3147
+	// Token: 0x040009C7 RID: 2503
 	private int buttonHeight = 24;
 
-	// Token: 0x04000C4C RID: 3148
+	// Token: 0x040009C8 RID: 2504
 	private int mainWindowWidth = 500;
 
-	// Token: 0x04000C4D RID: 3149
+	// Token: 0x040009C9 RID: 2505
 	private int mainWindowFullWidth = 530;
 }

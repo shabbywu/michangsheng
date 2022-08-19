@@ -2,14 +2,14 @@
 
 namespace Fungus
 {
-	// Token: 0x020011FF RID: 4607
+	// Token: 0x02000DC5 RID: 3525
 	public enum DebugLogType
 	{
-		// Token: 0x0400633A RID: 25402
+		// Token: 0x0400563B RID: 22075
 		Info,
-		// Token: 0x0400633B RID: 25403
+		// Token: 0x0400563C RID: 22076
 		Warning,
-		// Token: 0x0400633C RID: 25404
+		// Token: 0x0400563D RID: 22077
 		Error
 	}
 }

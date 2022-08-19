@@ -2,15 +2,15 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-// Token: 0x02000177 RID: 375
+// Token: 0x020000FB RID: 251
 public class PauseMenuOptions : MonoBehaviour
 {
-	// Token: 0x06000CA4 RID: 3236 RVA: 0x000042DD File Offset: 0x000024DD
+	// Token: 0x06000BA5 RID: 2981 RVA: 0x00004095 File Offset: 0x00002295
 	private void Start()
 	{
 	}
 
-	// Token: 0x06000CA5 RID: 3237 RVA: 0x0000E72F File Offset: 0x0000C92F
+	// Token: 0x06000BA6 RID: 2982 RVA: 0x0004708D File Offset: 0x0004528D
 	public void Init()
 	{
 		this.SelectedItemText.text = "Resume";
@@ -18,7 +18,7 @@ public class PauseMenuOptions : MonoBehaviour
 		this.OptionsContainer.SetActive(false);
 	}
 
-	// Token: 0x06000CA6 RID: 3238 RVA: 0x00098B50 File Offset: 0x00096D50
+	// Token: 0x06000BA7 RID: 2983 RVA: 0x000470BC File Offset: 0x000452BC
 	public void OnHoverTextChange(string name)
 	{
 		this.SelectedItemText.text = name;
@@ -48,13 +48,13 @@ public class PauseMenuOptions : MonoBehaviour
 		this.OptionsContainer.SetActive(false);
 	}
 
-	// Token: 0x040009D6 RID: 2518
+	// Token: 0x040007ED RID: 2029
 	[Header("UI References")]
 	public Text SelectedItemText;
 
-	// Token: 0x040009D7 RID: 2519
+	// Token: 0x040007EE RID: 2030
 	public Text SelectedItemInfoText;
 
-	// Token: 0x040009D8 RID: 2520
+	// Token: 0x040007EF RID: 2031
 	public GameObject OptionsContainer;
 }

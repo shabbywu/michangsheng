@@ -2,12 +2,12 @@
 using Fungus;
 using UnityEngine;
 
-// Token: 0x020002F6 RID: 758
+// Token: 0x020001E3 RID: 483
 [CommandInfo("YSPlayer", "开始天劫倒计时", "开始天劫倒计时", 0)]
 [AddComponentMenu("")]
 public class CmdStartTianJieCD : Command
 {
-	// Token: 0x060016DD RID: 5853 RVA: 0x000143DC File Offset: 0x000125DC
+	// Token: 0x06001439 RID: 5177 RVA: 0x000829D4 File Offset: 0x00080BD4
 	public override void OnEnter()
 	{
 		TianJieManager.StartTianJieCD();

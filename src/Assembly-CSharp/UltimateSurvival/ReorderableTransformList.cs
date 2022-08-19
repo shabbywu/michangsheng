@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace UltimateSurvival
 {
-	// Token: 0x02000860 RID: 2144
+	// Token: 0x020005A4 RID: 1444
 	[Serializable]
 	public class ReorderableTransformList : ReorderableGenericList<Transform>
 	{

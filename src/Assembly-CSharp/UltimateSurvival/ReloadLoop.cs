@@ -3,17 +3,17 @@ using UnityEngine;
 
 namespace UltimateSurvival
 {
-	// Token: 0x020008CF RID: 2255
+	// Token: 0x020005F8 RID: 1528
 	public class ReloadLoop : StateMachineBehaviour
 	{
-		// Token: 0x060039FD RID: 14845 RVA: 0x0002A29D File Offset: 0x0002849D
+		// Token: 0x06003113 RID: 12563 RVA: 0x0015DE48 File Offset: 0x0015C048
 		public override void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
 		{
 			base.OnStateEnter(animator, stateInfo, layerIndex);
 			this.m_NextReloadTime = Time.time + stateInfo.length;
 		}
 
-		// Token: 0x060039FE RID: 14846 RVA: 0x001A739C File Offset: 0x001A559C
+		// Token: 0x06003114 RID: 12564 RVA: 0x0015DE68 File Offset: 0x0015C068
 		public override void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
 		{
 			base.OnStateUpdate(animator, stateInfo, layerIndex);
@@ -28,7 +28,7 @@ namespace UltimateSurvival
 			}
 		}
 
-		// Token: 0x04003429 RID: 13353
+		// Token: 0x04002B46 RID: 11078
 		private float m_NextReloadTime;
 	}
 }

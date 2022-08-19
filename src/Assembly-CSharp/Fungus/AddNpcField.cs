@@ -3,12 +3,12 @@ using UnityEngine;
 
 namespace Fungus
 {
-	// Token: 0x020013E7 RID: 5095
+	// Token: 0x02000F31 RID: 3889
 	[CommandInfo("YSNew/Add", "AddNpcField", "增加npc属性", 0)]
 	[AddComponentMenu("")]
 	public class AddNpcField : Command
 	{
-		// Token: 0x06007BF3 RID: 31731 RVA: 0x002C44F0 File Offset: 0x002C26F0
+		// Token: 0x06006E08 RID: 28168 RVA: 0x002A43A0 File Offset: 0x002A25A0
 		public override void OnEnter()
 		{
 			int i = jsonData.instance.AvatarJsonData[this.npcId.Value.ToString()][this.fieldName].I;
@@ -16,18 +16,18 @@ namespace Fungus
 			this.Continue();
 		}
 
-		// Token: 0x06007BF4 RID: 31732 RVA: 0x000113CF File Offset: 0x0000F5CF
+		// Token: 0x06006E09 RID: 28169 RVA: 0x0005E228 File Offset: 0x0005C428
 		public override Color GetButtonColor()
 		{
 			return new Color32(184, 210, 235, byte.MaxValue);
 		}
 
-		// Token: 0x06007BF5 RID: 31733 RVA: 0x000042DD File Offset: 0x000024DD
+		// Token: 0x06006E0A RID: 28170 RVA: 0x00004095 File Offset: 0x00002295
 		public override void OnReset()
 		{
 		}
 
-		// Token: 0x04006A48 RID: 27208
+		// Token: 0x04005B76 RID: 23414
 		[Tooltip("npcId")]
 		[VariableProperty(new Type[]
 		{
@@ -36,12 +36,12 @@ namespace Fungus
 		[SerializeField]
 		protected IntegerVariable npcId;
 
-		// Token: 0x04006A49 RID: 27209
+		// Token: 0x04005B77 RID: 23415
 		[Tooltip("增加的属性")]
 		[SerializeField]
 		public string fieldName;
 
-		// Token: 0x04006A4A RID: 27210
+		// Token: 0x04005B78 RID: 23416
 		[Tooltip("增加的数量")]
 		[SerializeField]
 		public int addNum;

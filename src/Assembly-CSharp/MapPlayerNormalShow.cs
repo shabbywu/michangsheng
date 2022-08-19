@@ -3,17 +3,17 @@ using JSONClass;
 using Spine.Unity;
 using UnityEngine;
 
-// Token: 0x02000286 RID: 646
+// Token: 0x02000195 RID: 405
 public class MapPlayerNormalShow : MonoBehaviour
 {
-	// Token: 0x060013C7 RID: 5063 RVA: 0x000127B9 File Offset: 0x000109B9
+	// Token: 0x0600113E RID: 4414 RVA: 0x00067B57 File Offset: 0x00065D57
 	public void Init(MapPlayerController controller)
 	{
 		this.controller = controller;
 		this.lastx = base.transform.position.x;
 	}
 
-	// Token: 0x060013C8 RID: 5064 RVA: 0x000B6140 File Offset: 0x000B4340
+	// Token: 0x0600113F RID: 4415 RVA: 0x00067B78 File Offset: 0x00065D78
 	private void Update()
 	{
 		if (this.controller.ShowType == MapPlayerShowType.普通人物 || this.controller.ShowType == MapPlayerShowType.遁术)
@@ -27,7 +27,7 @@ public class MapPlayerNormalShow : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060013C9 RID: 5065 RVA: 0x000B61C8 File Offset: 0x000B43C8
+	// Token: 0x06001140 RID: 4416 RVA: 0x00067C00 File Offset: 0x00065E00
 	public void Refresh()
 	{
 		if (this.meshRenderer == null)
@@ -54,7 +54,7 @@ public class MapPlayerNormalShow : MonoBehaviour
 		this.LoadSpine(this.NowDunShuSpineSeid.Spine);
 	}
 
-	// Token: 0x060013CA RID: 5066 RVA: 0x000B6264 File Offset: 0x000B4464
+	// Token: 0x06001141 RID: 4417 RVA: 0x00067C9C File Offset: 0x00065E9C
 	public void LoadSpine(string spine)
 	{
 		if (this.nowSpineName != spine)
@@ -75,31 +75,31 @@ public class MapPlayerNormalShow : MonoBehaviour
 		}
 	}
 
-	// Token: 0x04000F67 RID: 3943
+	// Token: 0x04000C63 RID: 3171
 	public GameObject PlayerObj;
 
-	// Token: 0x04000F68 RID: 3944
+	// Token: 0x04000C64 RID: 3172
 	public SkeletonAnimation PlayerSpine;
 
-	// Token: 0x04000F69 RID: 3945
+	// Token: 0x04000C65 RID: 3173
 	public Animator Anim;
 
-	// Token: 0x04000F6A RID: 3946
+	// Token: 0x04000C66 RID: 3174
 	[HideInInspector]
 	public StaticSkillSeidJsonData9 NowDunShuSpineSeid;
 
-	// Token: 0x04000F6B RID: 3947
+	// Token: 0x04000C67 RID: 3175
 	private MapPlayerController controller;
 
-	// Token: 0x04000F6C RID: 3948
+	// Token: 0x04000C68 RID: 3176
 	private string nowSpineName = "";
 
-	// Token: 0x04000F6D RID: 3949
+	// Token: 0x04000C69 RID: 3177
 	private float lastx;
 
-	// Token: 0x04000F6E RID: 3950
+	// Token: 0x04000C6A RID: 3178
 	private static Vector3 fanXiang = new Vector3(-1f, 1f, 1f);
 
-	// Token: 0x04000F6F RID: 3951
+	// Token: 0x04000C6B RID: 3179
 	private MeshRenderer meshRenderer;
 }

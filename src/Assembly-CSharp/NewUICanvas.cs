@@ -2,10 +2,10 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-// Token: 0x02000532 RID: 1330
+// Token: 0x020003A8 RID: 936
 public class NewUICanvas : MonoBehaviour
 {
-	// Token: 0x060021FB RID: 8699 RVA: 0x00119C9C File Offset: 0x00117E9C
+	// Token: 0x06001E78 RID: 7800 RVA: 0x000D6540 File Offset: 0x000D4740
 	private void Awake()
 	{
 		NewUICanvas.Inst = this;
@@ -15,7 +15,7 @@ public class NewUICanvas : MonoBehaviour
 		this.scaler = base.GetComponent<CanvasScaler>();
 	}
 
-	// Token: 0x060021FC RID: 8700 RVA: 0x00119CF4 File Offset: 0x00117EF4
+	// Token: 0x06001E79 RID: 7801 RVA: 0x000D6598 File Offset: 0x000D4798
 	private void Update()
 	{
 		float num = (float)Screen.height / (float)Screen.width;
@@ -28,16 +28,16 @@ public class NewUICanvas : MonoBehaviour
 		this.Canvas.worldCamera = this.Camera;
 	}
 
-	// Token: 0x04001D65 RID: 7525
+	// Token: 0x040018F8 RID: 6392
 	public static NewUICanvas Inst;
 
-	// Token: 0x04001D66 RID: 7526
+	// Token: 0x040018F9 RID: 6393
 	[HideInInspector]
 	public Canvas Canvas;
 
-	// Token: 0x04001D67 RID: 7527
+	// Token: 0x040018FA RID: 6394
 	private CanvasScaler scaler;
 
-	// Token: 0x04001D68 RID: 7528
+	// Token: 0x040018FB RID: 6395
 	public Camera Camera;
 }

@@ -3,10 +3,10 @@ using MoonSharp.Interpreter.Tree.Expressions;
 
 namespace MoonSharp.Interpreter
 {
-	// Token: 0x02001080 RID: 4224
+	// Token: 0x02000CB1 RID: 3249
 	public class DynamicExpression : IScriptPrivateResource
 	{
-		// Token: 0x0600661D RID: 26141 RVA: 0x000466E1 File Offset: 0x000448E1
+		// Token: 0x06005B2B RID: 23339 RVA: 0x0025998B File Offset: 0x00257B8B
 		internal DynamicExpression(Script S, string strExpr, DynamicExprExpression expr)
 		{
 			this.ExpressionCode = strExpr;
@@ -14,7 +14,7 @@ namespace MoonSharp.Interpreter
 			this.m_Exp = expr;
 		}
 
-		// Token: 0x0600661E RID: 26142 RVA: 0x000466FE File Offset: 0x000448FE
+		// Token: 0x06005B2C RID: 23340 RVA: 0x002599A8 File Offset: 0x00257BA8
 		internal DynamicExpression(Script S, string strExpr, DynValue constant)
 		{
 			this.ExpressionCode = strExpr;
@@ -22,7 +22,7 @@ namespace MoonSharp.Interpreter
 			this.m_Constant = constant;
 		}
 
-		// Token: 0x0600661F RID: 26143 RVA: 0x0004671B File Offset: 0x0004491B
+		// Token: 0x06005B2D RID: 23341 RVA: 0x002599C5 File Offset: 0x00257BC5
 		public DynValue Evaluate(ScriptExecutionContext context = null)
 		{
 			context = (context ?? this.OwnerScript.CreateDynamicExecutionContext(null));
@@ -34,7 +34,7 @@ namespace MoonSharp.Interpreter
 			return this.m_Exp.Eval(context);
 		}
 
-		// Token: 0x06006620 RID: 26144 RVA: 0x00046757 File Offset: 0x00044957
+		// Token: 0x06005B2E RID: 23342 RVA: 0x00259A01 File Offset: 0x00257C01
 		public SymbolRef FindSymbol(ScriptExecutionContext context)
 		{
 			this.CheckScriptOwnership(context.GetScript());
@@ -45,37 +45,37 @@ namespace MoonSharp.Interpreter
 			return null;
 		}
 
-		// Token: 0x17000915 RID: 2325
-		// (get) Token: 0x06006621 RID: 26145 RVA: 0x0004677B File Offset: 0x0004497B
-		// (set) Token: 0x06006622 RID: 26146 RVA: 0x00046783 File Offset: 0x00044983
+		// Token: 0x170006BA RID: 1722
+		// (get) Token: 0x06005B2F RID: 23343 RVA: 0x00259A25 File Offset: 0x00257C25
+		// (set) Token: 0x06005B30 RID: 23344 RVA: 0x00259A2D File Offset: 0x00257C2D
 		public Script OwnerScript { get; private set; }
 
-		// Token: 0x06006623 RID: 26147 RVA: 0x0004678C File Offset: 0x0004498C
+		// Token: 0x06005B31 RID: 23345 RVA: 0x00259A36 File Offset: 0x00257C36
 		public bool IsConstant()
 		{
 			return this.m_Constant != null;
 		}
 
-		// Token: 0x06006624 RID: 26148 RVA: 0x00046797 File Offset: 0x00044997
+		// Token: 0x06005B32 RID: 23346 RVA: 0x00259A41 File Offset: 0x00257C41
 		public override int GetHashCode()
 		{
 			return this.ExpressionCode.GetHashCode();
 		}
 
-		// Token: 0x06006625 RID: 26149 RVA: 0x002839A4 File Offset: 0x00281BA4
+		// Token: 0x06005B33 RID: 23347 RVA: 0x00259A50 File Offset: 0x00257C50
 		public override bool Equals(object obj)
 		{
 			DynamicExpression dynamicExpression = obj as DynamicExpression;
 			return dynamicExpression != null && dynamicExpression.ExpressionCode == this.ExpressionCode;
 		}
 
-		// Token: 0x04005E82 RID: 24194
+		// Token: 0x040052AD RID: 21165
 		private DynamicExprExpression m_Exp;
 
-		// Token: 0x04005E83 RID: 24195
+		// Token: 0x040052AE RID: 21166
 		private DynValue m_Constant;
 
-		// Token: 0x04005E84 RID: 24196
+		// Token: 0x040052AF RID: 21167
 		public readonly string ExpressionCode;
 	}
 }

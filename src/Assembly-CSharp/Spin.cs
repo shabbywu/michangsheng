@@ -1,18 +1,18 @@
 ﻿using System;
 using UnityEngine;
 
-// Token: 0x02000064 RID: 100
+// Token: 0x0200004C RID: 76
 [AddComponentMenu("NGUI/Examples/Spin")]
 public class Spin : MonoBehaviour
 {
-	// Token: 0x060004B6 RID: 1206 RVA: 0x000081D9 File Offset: 0x000063D9
+	// Token: 0x06000468 RID: 1128 RVA: 0x00018542 File Offset: 0x00016742
 	private void Start()
 	{
 		this.mTrans = base.transform;
 		this.mRb = base.GetComponent<Rigidbody>();
 	}
 
-	// Token: 0x060004B7 RID: 1207 RVA: 0x000081F3 File Offset: 0x000063F3
+	// Token: 0x06000469 RID: 1129 RVA: 0x0001855C File Offset: 0x0001675C
 	private void Update()
 	{
 		if (this.mRb == null)
@@ -21,7 +21,7 @@ public class Spin : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060004B8 RID: 1208 RVA: 0x0000821D File Offset: 0x0000641D
+	// Token: 0x0600046A RID: 1130 RVA: 0x00018586 File Offset: 0x00016786
 	private void FixedUpdate()
 	{
 		if (this.mRb != null)
@@ -30,7 +30,7 @@ public class Spin : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060004B9 RID: 1209 RVA: 0x0006F8DC File Offset: 0x0006DADC
+	// Token: 0x0600046B RID: 1131 RVA: 0x000185A4 File Offset: 0x000167A4
 	public void ApplyDelta(float delta)
 	{
 		delta *= 360f;
@@ -43,15 +43,15 @@ public class Spin : MonoBehaviour
 		this.mRb.MoveRotation(this.mRb.rotation * quaternion);
 	}
 
-	// Token: 0x04000303 RID: 771
+	// Token: 0x04000293 RID: 659
 	public Vector3 rotationsPerSecond = new Vector3(0f, 0.1f, 0f);
 
-	// Token: 0x04000304 RID: 772
+	// Token: 0x04000294 RID: 660
 	public bool ignoreTimeScale;
 
-	// Token: 0x04000305 RID: 773
+	// Token: 0x04000295 RID: 661
 	private Rigidbody mRb;
 
-	// Token: 0x04000306 RID: 774
+	// Token: 0x04000296 RID: 662
 	private Transform mTrans;
 }

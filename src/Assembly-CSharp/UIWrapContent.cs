@@ -1,11 +1,11 @@
 ﻿using System;
 using UnityEngine;
 
-// Token: 0x020000AE RID: 174
+// Token: 0x0200007B RID: 123
 [AddComponentMenu("NGUI/Interaction/Wrap Content")]
 public class UIWrapContent : MonoBehaviour
 {
-	// Token: 0x06000676 RID: 1654 RVA: 0x00077C80 File Offset: 0x00075E80
+	// Token: 0x0600060A RID: 1546 RVA: 0x000221DC File Offset: 0x000203DC
 	protected virtual void Start()
 	{
 		this.SortBasedOnScrollMovement();
@@ -22,13 +22,13 @@ public class UIWrapContent : MonoBehaviour
 		this.mFirstTime = false;
 	}
 
-	// Token: 0x06000677 RID: 1655 RVA: 0x00009B9B File Offset: 0x00007D9B
+	// Token: 0x0600060B RID: 1547 RVA: 0x0002224D File Offset: 0x0002044D
 	protected virtual void OnMove(UIPanel panel)
 	{
 		this.WrapContent();
 	}
 
-	// Token: 0x06000678 RID: 1656 RVA: 0x00077CF4 File Offset: 0x00075EF4
+	// Token: 0x0600060C RID: 1548 RVA: 0x00022258 File Offset: 0x00020458
 	[ContextMenu("Sort Based on Scroll Movement")]
 	public void SortBasedOnScrollMovement()
 	{
@@ -52,7 +52,7 @@ public class UIWrapContent : MonoBehaviour
 		this.ResetChildPositions();
 	}
 
-	// Token: 0x06000679 RID: 1657 RVA: 0x00077D80 File Offset: 0x00075F80
+	// Token: 0x0600060D RID: 1549 RVA: 0x000222E4 File Offset: 0x000204E4
 	[ContextMenu("Sort Alphabetically")]
 	public void SortAlphabetically()
 	{
@@ -69,7 +69,7 @@ public class UIWrapContent : MonoBehaviour
 		this.ResetChildPositions();
 	}
 
-	// Token: 0x0600067A RID: 1658 RVA: 0x00077DEC File Offset: 0x00075FEC
+	// Token: 0x0600060E RID: 1550 RVA: 0x00022350 File Offset: 0x00020550
 	protected bool CacheScrollView()
 	{
 		this.mTrans = base.transform;
@@ -94,7 +94,7 @@ public class UIWrapContent : MonoBehaviour
 		return true;
 	}
 
-	// Token: 0x0600067B RID: 1659 RVA: 0x00077E68 File Offset: 0x00076068
+	// Token: 0x0600060F RID: 1551 RVA: 0x000223CC File Offset: 0x000205CC
 	private void ResetChildPositions()
 	{
 		for (int i = 0; i < this.mChildren.size; i++)
@@ -103,7 +103,7 @@ public class UIWrapContent : MonoBehaviour
 		}
 	}
 
-	// Token: 0x0600067C RID: 1660 RVA: 0x00077ED8 File Offset: 0x000760D8
+	// Token: 0x06000610 RID: 1552 RVA: 0x0002243C File Offset: 0x0002063C
 	public void WrapContent()
 	{
 		float num = (float)(this.itemSize * this.mChildren.size) * 0.5f;
@@ -183,7 +183,7 @@ public class UIWrapContent : MonoBehaviour
 		}
 	}
 
-	// Token: 0x0600067D RID: 1661 RVA: 0x0007824C File Offset: 0x0007644C
+	// Token: 0x06000611 RID: 1553 RVA: 0x000227B0 File Offset: 0x000209B0
 	protected virtual void UpdateItem(Transform item, int index)
 	{
 		if (this.onInitializeItem != null)
@@ -193,34 +193,34 @@ public class UIWrapContent : MonoBehaviour
 		}
 	}
 
-	// Token: 0x040004E3 RID: 1251
+	// Token: 0x04000413 RID: 1043
 	public int itemSize = 100;
 
-	// Token: 0x040004E4 RID: 1252
+	// Token: 0x04000414 RID: 1044
 	public bool cullContent = true;
 
-	// Token: 0x040004E5 RID: 1253
+	// Token: 0x04000415 RID: 1045
 	public UIWrapContent.OnInitializeItem onInitializeItem;
 
-	// Token: 0x040004E6 RID: 1254
+	// Token: 0x04000416 RID: 1046
 	private Transform mTrans;
 
-	// Token: 0x040004E7 RID: 1255
+	// Token: 0x04000417 RID: 1047
 	private UIPanel mPanel;
 
-	// Token: 0x040004E8 RID: 1256
+	// Token: 0x04000418 RID: 1048
 	private UIScrollView mScroll;
 
-	// Token: 0x040004E9 RID: 1257
+	// Token: 0x04000419 RID: 1049
 	private bool mHorizontal;
 
-	// Token: 0x040004EA RID: 1258
+	// Token: 0x0400041A RID: 1050
 	private bool mFirstTime = true;
 
-	// Token: 0x040004EB RID: 1259
+	// Token: 0x0400041B RID: 1051
 	private BetterList<Transform> mChildren = new BetterList<Transform>();
 
-	// Token: 0x020000AF RID: 175
-	// (Invoke) Token: 0x06000680 RID: 1664
+	// Token: 0x020011F7 RID: 4599
+	// (Invoke) Token: 0x06007823 RID: 30755
 	public delegate void OnInitializeItem(GameObject go, int wrapIndex, int realIndex);
 }

@@ -3,10 +3,10 @@ using System.IO;
 
 namespace ICSharpCode.SharpZipLib.Core
 {
-	// Token: 0x02000832 RID: 2098
+	// Token: 0x02000589 RID: 1417
 	public static class PathUtils
 	{
-		// Token: 0x060036F2 RID: 14066 RVA: 0x0019C8AC File Offset: 0x0019AAAC
+		// Token: 0x06002E7C RID: 11900 RVA: 0x00151C1C File Offset: 0x0014FE1C
 		public static string DropPathRoot(string path)
 		{
 			string text = path;
@@ -46,7 +46,7 @@ namespace ICSharpCode.SharpZipLib.Core
 			return text;
 		}
 
-		// Token: 0x060036F3 RID: 14067 RVA: 0x0019C994 File Offset: 0x0019AB94
+		// Token: 0x06002E7D RID: 11901 RVA: 0x00151D04 File Offset: 0x0014FF04
 		public static string GetTempFileName(string original)
 		{
 			string tempPath = Path.GetTempPath();

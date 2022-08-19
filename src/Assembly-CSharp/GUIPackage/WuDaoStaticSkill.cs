@@ -4,28 +4,28 @@ using KBEngine;
 
 namespace GUIPackage
 {
-	// Token: 0x02000D6B RID: 3435
+	// Token: 0x02000A53 RID: 2643
 	public class WuDaoStaticSkill : StaticSkill
 	{
-		// Token: 0x06005293 RID: 21139 RVA: 0x0003AB5C File Offset: 0x00038D5C
+		// Token: 0x060049BB RID: 18875 RVA: 0x001EC7E6 File Offset: 0x001EA9E6
 		public WuDaoStaticSkill(int id, int level, int max)
 		{
 			this.skill_ID = id;
 		}
 
-		// Token: 0x06005294 RID: 21140 RVA: 0x0003B2B5 File Offset: 0x000394B5
+		// Token: 0x060049BC RID: 18876 RVA: 0x001F4610 File Offset: 0x001F2810
 		public override Dictionary<int, Dictionary<int, int>> getSeidFlag(Avatar attaker)
 		{
 			return attaker.wuDaoMag.WuDaoSkillSeidFlag;
 		}
 
-		// Token: 0x06005295 RID: 21141 RVA: 0x0003B2C2 File Offset: 0x000394C2
+		// Token: 0x060049BD RID: 18877 RVA: 0x001F461D File Offset: 0x001F281D
 		public override JSONObject getSeidJson(int seid)
 		{
 			return jsonData.instance.WuDaoSeidJsonData[seid][string.Concat(this.skill_ID)];
 		}
 
-		// Token: 0x06005296 RID: 21142 RVA: 0x0022706C File Offset: 0x0022526C
+		// Token: 0x060049BE RID: 18878 RVA: 0x001F4640 File Offset: 0x001F2840
 		public static void resetWuDaoSeid(Avatar attaker)
 		{
 			attaker.wuDaoMag.WuDaoSkillSeidFlag.Clear();
@@ -35,13 +35,13 @@ namespace GUIPackage
 			}
 		}
 
-		// Token: 0x06005297 RID: 21143 RVA: 0x0003B2E5 File Offset: 0x000394E5
+		// Token: 0x060049BF RID: 18879 RVA: 0x001F46B4 File Offset: 0x001F28B4
 		public override JSONObject getJsonData()
 		{
 			return jsonData.instance.WuDaoJson;
 		}
 
-		// Token: 0x06005298 RID: 21144 RVA: 0x0003B2F1 File Offset: 0x000394F1
+		// Token: 0x060049C0 RID: 18880 RVA: 0x001F46C0 File Offset: 0x001F28C0
 		public void StudtRealizeSeid3(int seid, List<int> damage, Avatar attaker, Avatar receiver, int type)
 		{
 			attaker.setHP(attaker.HP + (int)this.getSeidJson(seid)["value1"].n);

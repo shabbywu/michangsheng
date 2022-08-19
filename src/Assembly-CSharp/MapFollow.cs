@@ -1,15 +1,15 @@
 ﻿using System;
 using UnityEngine;
 
-// Token: 0x02000300 RID: 768
+// Token: 0x020001EC RID: 492
 public class MapFollow : MonoBehaviour
 {
-	// Token: 0x0600170E RID: 5902 RVA: 0x000042DD File Offset: 0x000024DD
+	// Token: 0x06001464 RID: 5220 RVA: 0x00004095 File Offset: 0x00002295
 	private void Start()
 	{
 	}
 
-	// Token: 0x0600170F RID: 5903 RVA: 0x000CC304 File Offset: 0x000CA504
+	// Token: 0x06001465 RID: 5221 RVA: 0x0008336C File Offset: 0x0008156C
 	private void Update()
 	{
 		if (this.target != null)
@@ -18,6 +18,6 @@ public class MapFollow : MonoBehaviour
 		}
 	}
 
-	// Token: 0x04001267 RID: 4711
+	// Token: 0x04000F24 RID: 3876
 	public Transform target;
 }

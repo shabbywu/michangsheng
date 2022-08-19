@@ -5,17 +5,17 @@ using Fungus;
 using GUIPackage;
 using JSONClass;
 using Newtonsoft.Json.Linq;
+using script.world_script;
 using UnityEngine;
-using UnityEngine.Events;
 using YSGame;
 using YSGame.Fight;
 
 namespace KBEngine
 {
-	// Token: 0x0200103A RID: 4154
+	// Token: 0x02000C82 RID: 3202
 	public class Buff
 	{
-		// Token: 0x0600636D RID: 25453 RVA: 0x0027B7FC File Offset: 0x002799FC
+		// Token: 0x060058C4 RID: 22724 RVA: 0x0024FD80 File Offset: 0x0024DF80
 		private static void InitMethod(string methodName)
 		{
 			if (!Buff.methodDict.ContainsKey(methodName))
@@ -25,7 +25,7 @@ namespace KBEngine
 			}
 		}
 
-		// Token: 0x0600636E RID: 25454 RVA: 0x0027B834 File Offset: 0x00279A34
+		// Token: 0x060058C5 RID: 22725 RVA: 0x0024FDB8 File Offset: 0x0024DFB8
 		public Buff(int buffid)
 		{
 			this.buffID = buffid;
@@ -36,7 +36,7 @@ namespace KBEngine
 			}
 		}
 
-		// Token: 0x0600636F RID: 25455 RVA: 0x0027B90C File Offset: 0x00279B0C
+		// Token: 0x060058C6 RID: 22726 RVA: 0x0024FE90 File Offset: 0x0024E090
 		public void onLoopTrigger(Entity _avatar, List<int> buffInfo, List<int> flag, BuffLoopData buffLoopData)
 		{
 			try
@@ -99,7 +99,7 @@ namespace KBEngine
 			}
 		}
 
-		// Token: 0x06006370 RID: 25456 RVA: 0x0027BA84 File Offset: 0x00279C84
+		// Token: 0x060058C7 RID: 22727 RVA: 0x00250008 File Offset: 0x0024E208
 		public void onAttach(Entity _avatar, List<int> buffInfo)
 		{
 			foreach (int num in this.seid)
@@ -108,7 +108,7 @@ namespace KBEngine
 			}
 		}
 
-		// Token: 0x06006371 RID: 25457 RVA: 0x0027BADC File Offset: 0x00279CDC
+		// Token: 0x060058C8 RID: 22728 RVA: 0x00250060 File Offset: 0x0024E260
 		public void onDetach(Entity _avatar, List<int> buffInfo)
 		{
 			foreach (int num in this.seid)
@@ -117,7 +117,7 @@ namespace KBEngine
 			}
 		}
 
-		// Token: 0x06006372 RID: 25458 RVA: 0x0027BB34 File Offset: 0x00279D34
+		// Token: 0x060058C9 RID: 22729 RVA: 0x002500B8 File Offset: 0x0024E2B8
 		public void loopRealizeSeid(int seid, Entity _avatar, List<int> buffInfo, List<int> flag)
 		{
 			Avatar avatar = (Avatar)_avatar;
@@ -135,7 +135,7 @@ namespace KBEngine
 			}
 		}
 
-		// Token: 0x06006373 RID: 25459 RVA: 0x0027BBA0 File Offset: 0x00279DA0
+		// Token: 0x060058CA RID: 22730 RVA: 0x00250124 File Offset: 0x0024E324
 		public void onAttachRealizeSeid(int seid, Entity _avatar, List<int> buffInfo)
 		{
 			Avatar avatar = (Avatar)_avatar;
@@ -152,7 +152,7 @@ namespace KBEngine
 			}
 		}
 
-		// Token: 0x06006374 RID: 25460 RVA: 0x0027BC08 File Offset: 0x00279E08
+		// Token: 0x060058CB RID: 22731 RVA: 0x0025018C File Offset: 0x0024E38C
 		public void onDetachRealizeSeid(int seid, Entity _avatar, List<int> buffInfo)
 		{
 			Avatar avatar = (Avatar)_avatar;
@@ -169,7 +169,7 @@ namespace KBEngine
 			}
 		}
 
-		// Token: 0x06006375 RID: 25461 RVA: 0x0004492F File Offset: 0x00042B2F
+		// Token: 0x060058CC RID: 22732 RVA: 0x002501F3 File Offset: 0x0024E3F3
 		public Avatar getTargetAvatar(int seid, Avatar attker)
 		{
 			if (this.getSeidJson(seid)["target"].I == 1)
@@ -179,7 +179,7 @@ namespace KBEngine
 			return attker.OtherAvatar;
 		}
 
-		// Token: 0x06006376 RID: 25462 RVA: 0x0027BC70 File Offset: 0x00279E70
+		// Token: 0x060058CD RID: 22733 RVA: 0x00250218 File Offset: 0x0024E418
 		public JSONObject getSeidJson(int seid)
 		{
 			if (!this.buffSeidList.ContainsKey(seid))
@@ -208,13 +208,13 @@ namespace KBEngine
 			return this.buffSeidList[seid];
 		}
 
-		// Token: 0x06006377 RID: 25463 RVA: 0x00044952 File Offset: 0x00042B52
+		// Token: 0x060058CE RID: 22734 RVA: 0x002502FA File Offset: 0x0024E4FA
 		public static JSONObject getSeidJson(int seid, int _buffID)
 		{
 			return jsonData.instance.BuffSeidJsonData[seid][_buffID.ToString()];
 		}
 
-		// Token: 0x06006378 RID: 25464 RVA: 0x0027BD54 File Offset: 0x00279F54
+		// Token: 0x060058CF RID: 22735 RVA: 0x00250314 File Offset: 0x0024E514
 		public bool CanRealized(Avatar _avatar, List<int> flag, List<int> buffInfo = null)
 		{
 			foreach (int nowSeid in this.seid)
@@ -227,7 +227,7 @@ namespace KBEngine
 			return true;
 		}
 
-		// Token: 0x06006379 RID: 25465 RVA: 0x0027BDB4 File Offset: 0x00279FB4
+		// Token: 0x060058D0 RID: 22736 RVA: 0x00250374 File Offset: 0x0024E574
 		public bool CanRealizeSeid(Avatar _avatar, List<int> flag, int nowSeid, BuffLoopData buffLoopData = null, List<int> buffInfo = null)
 		{
 			if (nowSeid == 62 && (float)_avatar.HP / (float)_avatar.HP_Max * 100f > (float)this.getSeidJson(nowSeid)["value1"].I)
@@ -572,11 +572,29 @@ namespace KBEngine
 			}
 			if (nowSeid == 162)
 			{
-				if (!_skillJsonData.DataDict[flag[1]].seid.Contains(this.getSeidJson(nowSeid)["value1"].I))
+				List<int> list4 = _skillJsonData.DataDict[flag[1]].seid;
+				bool flag5 = false;
+				foreach (int item in this.getSeidJson(nowSeid)["value1"].ToList())
 				{
-					return false;
+					if (list4.Contains(item))
+					{
+						SkillCheck skillCheck;
+						if (_avatar.isPlayer())
+						{
+							skillCheck = RoundManager.instance.PlayerSkillCheck;
+						}
+						else
+						{
+							skillCheck = RoundManager.instance.NpcSkillCheck;
+						}
+						if (skillCheck != null && skillCheck.SkillId == flag[1] && skillCheck.HasPassSeid.Contains(item))
+						{
+							flag5 = true;
+							break;
+						}
+					}
 				}
-				if (flag[2] == 1)
+				if (!flag5)
 				{
 					return false;
 				}
@@ -777,7 +795,7 @@ namespace KBEngine
 			return true;
 		}
 
-		// Token: 0x0600637A RID: 25466 RVA: 0x0027CF98 File Offset: 0x0027B198
+		// Token: 0x060058D1 RID: 22737 RVA: 0x002515E0 File Offset: 0x0024F7E0
 		public bool IsXiangShengXiangKeTongXi(int type, int skillID, Avatar avatar, List<int> buffInfo)
 		{
 			Skill skill = avatar.skill.Find((Skill aa) => aa.skill_ID == skillID);
@@ -851,7 +869,7 @@ namespace KBEngine
 			return false;
 		}
 
-		// Token: 0x0600637B RID: 25467 RVA: 0x0027D1CC File Offset: 0x0027B3CC
+		// Token: 0x060058D2 RID: 22738 RVA: 0x00251814 File Offset: 0x0024FA14
 		public void BuffSeidFlagAddNum(int seid, int addNum, Avatar avatar)
 		{
 			if (!avatar.BuffSeidFlag.ContainsKey(seid))
@@ -867,7 +885,7 @@ namespace KBEngine
 			dictionary[key] += addNum;
 		}
 
-		// Token: 0x0600637C RID: 25468 RVA: 0x0027D250 File Offset: 0x0027B450
+		// Token: 0x060058D3 RID: 22739 RVA: 0x00251898 File Offset: 0x0024FA98
 		public void ReloadSelf(int seid, Avatar avatar, List<int> buffInfo, int Type)
 		{
 			List<int> list = new List<int>();
@@ -887,7 +905,7 @@ namespace KBEngine
 			}
 		}
 
-		// Token: 0x0600637D RID: 25469 RVA: 0x0027D2CC File Offset: 0x0027B4CC
+		// Token: 0x060058D4 RID: 22740 RVA: 0x00251914 File Offset: 0x0024FB14
 		public void SeidAddBuff(int seid, Avatar avatar, List<int> buffInfo)
 		{
 			Dictionary<int, int> dictionary = avatar.BuffSeidFlag[seid];
@@ -896,7 +914,7 @@ namespace KBEngine
 			avatar.spell.addDBuff((int)this.getSeidJson(seid)["value2"].n, (int)this.getSeidJson(seid)["value3"].n * buffInfo[1]);
 		}
 
-		// Token: 0x0600637E RID: 25470 RVA: 0x0027D354 File Offset: 0x0027B554
+		// Token: 0x060058D5 RID: 22741 RVA: 0x0025199C File Offset: 0x0024FB9C
 		public void SeidAddCard(Avatar avatar, List<int> flag)
 		{
 			if (flag.Count >= 3 && flag[2] == -123)
@@ -908,7 +926,7 @@ namespace KBEngine
 			RoundManager.instance.DrawCard(avatar);
 		}
 
-		// Token: 0x0600637F RID: 25471 RVA: 0x0027D394 File Offset: 0x0027B594
+		// Token: 0x060058D6 RID: 22742 RVA: 0x002519DC File Offset: 0x0024FBDC
 		public void SeidAddCard(Avatar avatar, List<int> flag, int cardType)
 		{
 			if (flag.Count >= 3 && flag[2] == 1)
@@ -920,13 +938,13 @@ namespace KBEngine
 			RoundManager.instance.DrawCard(avatar, cardType);
 		}
 
-		// Token: 0x06006380 RID: 25472 RVA: 0x0004496C File Offset: 0x00042B6C
+		// Token: 0x060058D7 RID: 22743 RVA: 0x00251A1B File Offset: 0x0024FC1B
 		public bool RandomX(int percent)
 		{
 			return jsonData.instance.getRandom() % 100 > percent;
 		}
 
-		// Token: 0x06006381 RID: 25473 RVA: 0x0027D3D4 File Offset: 0x0027B5D4
+		// Token: 0x060058D8 RID: 22744 RVA: 0x00251A30 File Offset: 0x0024FC30
 		public void ListRealizeSeid1(int seid, Avatar avatar, List<int> buffInfo, List<int> flag)
 		{
 			if (avatar.buffmag.HasBuffSeid(58))
@@ -937,7 +955,7 @@ namespace KBEngine
 			avatar.recvDamage(avatar, avatar, 10006, (int)this.getSeidJson(seid)["value1"].n * buffInfo[1], 0);
 		}
 
-		// Token: 0x06006382 RID: 25474 RVA: 0x0027D44C File Offset: 0x0027B64C
+		// Token: 0x060058D9 RID: 22745 RVA: 0x00251AA8 File Offset: 0x0024FCA8
 		public void ListRealizeSeid2(int seid, Avatar avatar, List<int> buffInfo, List<int> flag)
 		{
 			int num = this.getSeidJson(seid)["value1"].I * buffInfo[1];
@@ -947,7 +965,7 @@ namespace KBEngine
 			}
 		}
 
-		// Token: 0x06006383 RID: 25475 RVA: 0x0027D490 File Offset: 0x0027B690
+		// Token: 0x060058DA RID: 22746 RVA: 0x00251AEC File Offset: 0x0024FCEC
 		public void ListRealizeSeid3(int seid, Avatar avatar, List<int> buffInfo, List<int> flag)
 		{
 			int num = flag[0] + (int)this.getSeidJson(seid)["value1"].n * buffInfo[1];
@@ -963,38 +981,31 @@ namespace KBEngine
 			flag[0] = value;
 		}
 
-		// Token: 0x06006384 RID: 25476 RVA: 0x0027D4FC File Offset: 0x0027B6FC
+		// Token: 0x060058DB RID: 22747 RVA: 0x00251B58 File Offset: 0x0024FD58
 		public void ListRealizeSeid4(int seid, Avatar avatar, List<int> buffInfo, List<int> flag)
 		{
-			int realReduceDamage = 0;
+			int num = 0;
 			if (flag[0] > buffInfo[1])
 			{
-				realReduceDamage = buffInfo[1];
+				num = buffInfo[1];
 			}
 			else if (flag[0] <= buffInfo[1])
 			{
-				realReduceDamage = flag[0];
+				num = flag[0];
 			}
 			if (!(RoundManager.instance != null) || !RoundManager.instance.IsVirtual)
 			{
-				Queue<UnityAction> queue = new Queue<UnityAction>();
-				UnityAction item = delegate()
-				{
-					((GameObject)avatar.renderObj).GetComponentInChildren<AvatarShowHpDamage>().show(realReduceDamage, 1);
-					YSFuncList.Ints.Continue();
-				};
-				queue.Enqueue(item);
-				YSFuncList.Ints.AddFunc(queue);
+				((GameObject)avatar.renderObj).GetComponentInChildren<AvatarShowHpDamage>().SpecialShow(num, 1);
 			}
-			flag[0] = flag[0] - realReduceDamage;
-			buffInfo[1] = buffInfo[1] - realReduceDamage;
+			flag[0] = flag[0] - num;
+			buffInfo[1] = buffInfo[1] - num;
 			if (buffInfo[2] == 5 && buffInfo[1] <= 0)
 			{
 				avatar.spell.onBuffTickByType(43, flag);
 			}
 		}
 
-		// Token: 0x06006385 RID: 25477 RVA: 0x0027D5F0 File Offset: 0x0027B7F0
+		// Token: 0x060058DC RID: 22748 RVA: 0x00251C14 File Offset: 0x0024FE14
 		public void ListRealizeSeid5(int seid, Avatar avatar, List<int> buffInfo, List<int> flag)
 		{
 			for (int i = 0; i < this.getSeidJson(seid)["value1"].list.Count; i++)
@@ -1005,22 +1016,22 @@ namespace KBEngine
 			}
 		}
 
-		// Token: 0x06006386 RID: 25478 RVA: 0x000042DD File Offset: 0x000024DD
+		// Token: 0x060058DD RID: 22749 RVA: 0x00004095 File Offset: 0x00002295
 		public void ListRealizeSeid6(int seid, Avatar avatar, List<int> buffInfo, List<int> flag)
 		{
 		}
 
-		// Token: 0x06006387 RID: 25479 RVA: 0x000042DD File Offset: 0x000024DD
+		// Token: 0x060058DE RID: 22750 RVA: 0x00004095 File Offset: 0x00002295
 		public void ListRealizeSeid7(int seid, Avatar avatar, List<int> buffInfo, List<int> flag)
 		{
 		}
 
-		// Token: 0x06006388 RID: 25480 RVA: 0x000042DD File Offset: 0x000024DD
+		// Token: 0x060058DF RID: 22751 RVA: 0x00004095 File Offset: 0x00002295
 		public void ListRealizeSeid8(int seid, Avatar avatar, List<int> buffInfo, List<int> flag)
 		{
 		}
 
-		// Token: 0x06006389 RID: 25481 RVA: 0x0027D674 File Offset: 0x0027B874
+		// Token: 0x060058E0 RID: 22752 RVA: 0x00251C98 File Offset: 0x0024FE98
 		public void ListRealizeSeid9(int seid, Avatar avatar, List<int> buffInfo, List<int> flag)
 		{
 			int num = this.getSeidJson(seid)["value2"].I * buffInfo[1];
@@ -1034,7 +1045,7 @@ namespace KBEngine
 			}
 		}
 
-		// Token: 0x0600638A RID: 25482 RVA: 0x0027D720 File Offset: 0x0027B920
+		// Token: 0x060058E1 RID: 22753 RVA: 0x00251D44 File Offset: 0x0024FF44
 		public void ListRealizeSeid10(int seid, Avatar avatar, List<int> buffInfo, List<int> flag)
 		{
 			int num = flag[0];
@@ -1053,26 +1064,26 @@ namespace KBEngine
 			}
 		}
 
-		// Token: 0x0600638B RID: 25483 RVA: 0x00044981 File Offset: 0x00042B81
+		// Token: 0x060058E2 RID: 22754 RVA: 0x00251DC5 File Offset: 0x0024FFC5
 		public void ListRealizeSeid11(int seid, Avatar avatar, List<int> buffInfo, List<int> flag)
 		{
 			avatar.recvDamage(avatar, avatar.OtherAvatar, 10006, (int)this.getSeidJson(seid)["value1"].n * buffInfo[1], 0);
 		}
 
-		// Token: 0x0600638C RID: 25484 RVA: 0x000449B6 File Offset: 0x00042BB6
+		// Token: 0x060058E3 RID: 22755 RVA: 0x00251DFA File Offset: 0x0024FFFA
 		public void ListRealizeSeid12(int seid, Avatar avatar, List<int> buffInfo, List<int> flag)
 		{
 			flag[0] = flag[0] * 2;
 		}
 
-		// Token: 0x0600638D RID: 25485 RVA: 0x000449CA File Offset: 0x00042BCA
+		// Token: 0x060058E4 RID: 22756 RVA: 0x00251E0E File Offset: 0x0025000E
 		public void ListRealizeSeid13(int seid, Avatar avatar, List<int> buffInfo, List<int> flag)
 		{
 			flag[1] = 1;
 			avatar.state = 5;
 		}
 
-		// Token: 0x0600638E RID: 25486 RVA: 0x000449DC File Offset: 0x00042BDC
+		// Token: 0x060058E5 RID: 22757 RVA: 0x00251E20 File Offset: 0x00250020
 		public void ListRealizeSeid14(int seid, Avatar avatar, List<int> buffInfo, List<int> flag)
 		{
 			if (flag[0] < 0)
@@ -1081,7 +1092,7 @@ namespace KBEngine
 			}
 		}
 
-		// Token: 0x0600638F RID: 25487 RVA: 0x0027D7A4 File Offset: 0x0027B9A4
+		// Token: 0x060058E6 RID: 22758 RVA: 0x00251E4C File Offset: 0x0025004C
 		public void ListRealizeSeid15(int seid, Avatar avatar, List<int> buffInfo, List<int> flag)
 		{
 			int i = this.getSeidJson(seid)["value1"].I;
@@ -1101,13 +1112,13 @@ namespace KBEngine
 			}
 		}
 
-		// Token: 0x06006390 RID: 25488 RVA: 0x00044A06 File Offset: 0x00042C06
+		// Token: 0x060058E7 RID: 22759 RVA: 0x00251F0C File Offset: 0x0025010C
 		public void ListRealizeSeid16(int seid, Avatar avatar, List<int> buffInfo, List<int> flag)
 		{
 			avatar.recvDamage(avatar, avatar, 10006, avatar.HP - avatar.HP_Max, 0);
 		}
 
-		// Token: 0x06006391 RID: 25489 RVA: 0x0027D864 File Offset: 0x0027BA64
+		// Token: 0x060058E8 RID: 22760 RVA: 0x00251F2C File Offset: 0x0025012C
 		public void ListRealizeSeid17(int seid, Avatar avatar, List<int> buffInfo, List<int> flag)
 		{
 			int i = this.getSeidJson(seid)["value1"].I;
@@ -1118,7 +1129,7 @@ namespace KBEngine
 			}
 		}
 
-		// Token: 0x06006392 RID: 25490 RVA: 0x0027D8C8 File Offset: 0x0027BAC8
+		// Token: 0x060058E9 RID: 22761 RVA: 0x00251F90 File Offset: 0x00250190
 		public void ListRealizeSeid18(int seid, Avatar avatar, List<int> buffInfo, List<int> flag)
 		{
 			if (avatar.OtherAvatar.buffmag.HasBuffSeid(107))
@@ -1144,23 +1155,23 @@ namespace KBEngine
 			}
 		}
 
-		// Token: 0x06006393 RID: 25491 RVA: 0x000042DD File Offset: 0x000024DD
+		// Token: 0x060058EA RID: 22762 RVA: 0x00004095 File Offset: 0x00002295
 		public void ListRealizeSeid19(int seid, Avatar avatar, List<int> buffInfo, List<int> flag)
 		{
 		}
 
-		// Token: 0x06006394 RID: 25492 RVA: 0x000042DD File Offset: 0x000024DD
+		// Token: 0x060058EB RID: 22763 RVA: 0x00004095 File Offset: 0x00002295
 		public void ListRealizeSeid20(int seid, Avatar avatar, List<int> buffInfo, List<int> flag)
 		{
 		}
 
-		// Token: 0x06006395 RID: 25493 RVA: 0x0027D968 File Offset: 0x0027BB68
+		// Token: 0x060058EC RID: 22764 RVA: 0x00252030 File Offset: 0x00250230
 		public void ListRealizeSeid21(int seid, Avatar avatar, List<int> buffInfo, List<int> flag)
 		{
 			flag[0] = flag[0] - (int)this.getSeidJson(seid)["value1"].n * buffInfo[1];
 		}
 
-		// Token: 0x06006396 RID: 25494 RVA: 0x00044A24 File Offset: 0x00042C24
+		// Token: 0x060058ED RID: 22765 RVA: 0x0025206E File Offset: 0x0025026E
 		public void ListRealizeSeid22(int seid, Avatar avatar, List<int> buffInfo, List<int> flag)
 		{
 			if (!avatar.buffmag.HasBuffSeid(23))
@@ -1169,7 +1180,7 @@ namespace KBEngine
 			}
 		}
 
-		// Token: 0x06006397 RID: 25495 RVA: 0x0027D9A8 File Offset: 0x0027BBA8
+		// Token: 0x060058EE RID: 22766 RVA: 0x002520A8 File Offset: 0x002502A8
 		public void onDetachRealizeSeid22(int seid, Avatar avatar, List<int> buffInfo)
 		{
 			if (!avatar.buffmag.HasBuffSeid(23))
@@ -1178,7 +1189,7 @@ namespace KBEngine
 			}
 		}
 
-		// Token: 0x06006398 RID: 25496 RVA: 0x0027D9F8 File Offset: 0x0027BBF8
+		// Token: 0x060058EF RID: 22767 RVA: 0x002520F8 File Offset: 0x002502F8
 		public void ListRealizeSeid23(int seid, Avatar avatar, List<int> buffInfo, List<int> flag)
 		{
 			if (!avatar.BuffSeidFlag.ContainsKey(seid))
@@ -1192,13 +1203,13 @@ namespace KBEngine
 			avatar.BuffSeidFlag[seid][this.buffID] = 0;
 		}
 
-		// Token: 0x06006399 RID: 25497 RVA: 0x00044A5E File Offset: 0x00042C5E
+		// Token: 0x060058F0 RID: 22768 RVA: 0x0025216D File Offset: 0x0025036D
 		public void onDetachRealizeSeid23(int seid, Avatar avatar, List<int> buffInfo)
 		{
 			avatar.BuffSeidFlag.Remove(seid);
 		}
 
-		// Token: 0x0600639A RID: 25498 RVA: 0x0027DA70 File Offset: 0x0027BC70
+		// Token: 0x060058F1 RID: 22769 RVA: 0x0025217C File Offset: 0x0025037C
 		public void ListRealizeSeid24(int seid, Avatar avatar, List<int> buffInfo, List<int> flag)
 		{
 			int skillID = Tools.instance.getSkillKeyByID((int)this.getSeidJson(seid)["value1"].n, avatar);
@@ -1228,13 +1239,13 @@ namespace KBEngine
 			});
 		}
 
-		// Token: 0x0600639B RID: 25499 RVA: 0x0027DAF0 File Offset: 0x0027BCF0
+		// Token: 0x060058F2 RID: 22770 RVA: 0x002521FC File Offset: 0x002503FC
 		public void ListRealizeSeid25(int seid, Avatar avatar, List<int> buffInfo, List<int> flag)
 		{
 			avatar.recvDamage(avatar, avatar.OtherAvatar, 10001 + (int)this.getSeidJson(seid)["value2"].n, (int)this.getSeidJson(seid)["value1"].n * buffInfo[1], 0);
 		}
 
-		// Token: 0x0600639C RID: 25500 RVA: 0x0027DB48 File Offset: 0x0027BD48
+		// Token: 0x060058F3 RID: 22771 RVA: 0x00252254 File Offset: 0x00250454
 		public void ListRealizeSeid26(int seid, Avatar avatar, List<int> buffInfo, List<int> flag)
 		{
 			int i = this.getSeidJson(seid)["value1"].I;
@@ -1246,7 +1257,7 @@ namespace KBEngine
 			}
 		}
 
-		// Token: 0x0600639D RID: 25501 RVA: 0x0027DBA4 File Offset: 0x0027BDA4
+		// Token: 0x060058F4 RID: 22772 RVA: 0x002522B0 File Offset: 0x002504B0
 		public void ListRealizeSeid27(int seid, Avatar avatar, List<int> buffInfo, List<int> flag)
 		{
 			int i = this.getSeidJson(seid)["value1"].I;
@@ -1266,7 +1277,7 @@ namespace KBEngine
 			}
 		}
 
-		// Token: 0x0600639E RID: 25502 RVA: 0x0027DC5C File Offset: 0x0027BE5C
+		// Token: 0x060058F5 RID: 22773 RVA: 0x00252368 File Offset: 0x00250568
 		public void ListRealizeSeid28(int seid, Avatar avatar, List<int> buffInfo, List<int> flag)
 		{
 			int i = this.getSeidJson(seid)["value1"].I;
@@ -1281,7 +1292,7 @@ namespace KBEngine
 			}
 		}
 
-		// Token: 0x0600639F RID: 25503 RVA: 0x0027DD1C File Offset: 0x0027BF1C
+		// Token: 0x060058F6 RID: 22774 RVA: 0x00252428 File Offset: 0x00250628
 		public void ListRealizeSeid29(int seid, Avatar avatar, List<int> buffInfo, List<int> flag)
 		{
 			int num = flag[0];
@@ -1291,7 +1302,7 @@ namespace KBEngine
 			}
 		}
 
-		// Token: 0x060063A0 RID: 25504 RVA: 0x0027DD68 File Offset: 0x0027BF68
+		// Token: 0x060058F7 RID: 22775 RVA: 0x00252474 File Offset: 0x00250674
 		public void ListRealizeSeid31(int seid, Avatar avatar, List<int> buffInfo, List<int> flag)
 		{
 			int num = flag[0];
@@ -1309,7 +1320,7 @@ namespace KBEngine
 			}
 		}
 
-		// Token: 0x060063A1 RID: 25505 RVA: 0x0027DE30 File Offset: 0x0027C030
+		// Token: 0x060058F8 RID: 22776 RVA: 0x0025253C File Offset: 0x0025073C
 		public void ListRealizeSeid32(int seid, Avatar avatar, List<int> buffInfo, List<int> flag)
 		{
 			if (flag.Count < 1)
@@ -1328,7 +1339,7 @@ namespace KBEngine
 			}
 		}
 
-		// Token: 0x060063A2 RID: 25506 RVA: 0x0027DF0C File Offset: 0x0027C10C
+		// Token: 0x060058F9 RID: 22777 RVA: 0x00252618 File Offset: 0x00250818
 		public void ListRealizeSeid33(int seid, Avatar avatar, List<int> buffInfo, List<int> flag)
 		{
 			int addNum = flag[0];
@@ -1343,7 +1354,7 @@ namespace KBEngine
 			}
 		}
 
-		// Token: 0x060063A3 RID: 25507 RVA: 0x0027DFA0 File Offset: 0x0027C1A0
+		// Token: 0x060058FA RID: 22778 RVA: 0x002526AC File Offset: 0x002508AC
 		public void ListRealizeSeid34(int seid, Avatar avatar, List<int> buffInfo, List<int> flag)
 		{
 			int addNum = flag[0];
@@ -1362,7 +1373,7 @@ namespace KBEngine
 			}
 		}
 
-		// Token: 0x060063A4 RID: 25508 RVA: 0x0027DFA0 File Offset: 0x0027C1A0
+		// Token: 0x060058FB RID: 22779 RVA: 0x00252764 File Offset: 0x00250964
 		public void ListRealizeSeid35(int seid, Avatar avatar, List<int> buffInfo, List<int> flag)
 		{
 			int addNum = flag[0];
@@ -1381,7 +1392,7 @@ namespace KBEngine
 			}
 		}
 
-		// Token: 0x060063A5 RID: 25509 RVA: 0x0027E058 File Offset: 0x0027C258
+		// Token: 0x060058FC RID: 22780 RVA: 0x0025281C File Offset: 0x00250A1C
 		public void ListRealizeSeid36(int seid, Avatar avatar, List<int> buffInfo, List<int> flag)
 		{
 			int num = RoundManager.instance.getListSum(avatar.crystal) / (int)this.getSeidJson(seid)["value1"].n;
@@ -1391,7 +1402,7 @@ namespace KBEngine
 			}
 		}
 
-		// Token: 0x060063A6 RID: 25510 RVA: 0x0027E0D4 File Offset: 0x0027C2D4
+		// Token: 0x060058FD RID: 22781 RVA: 0x00252898 File Offset: 0x00250A98
 		public void ListRealizeSeid37(int seid, Avatar avatar, List<int> buffInfo, List<int> flag)
 		{
 			int i = this.getSeidJson(seid)["value1"].I;
@@ -1406,7 +1417,7 @@ namespace KBEngine
 			}
 		}
 
-		// Token: 0x060063A7 RID: 25511 RVA: 0x0027DF0C File Offset: 0x0027C10C
+		// Token: 0x060058FE RID: 22782 RVA: 0x00252934 File Offset: 0x00250B34
 		public void ListRealizeSeid38(int seid, Avatar avatar, List<int> buffInfo, List<int> flag)
 		{
 			int addNum = flag[0];
@@ -1421,7 +1432,7 @@ namespace KBEngine
 			}
 		}
 
-		// Token: 0x060063A8 RID: 25512 RVA: 0x0027E170 File Offset: 0x0027C370
+		// Token: 0x060058FF RID: 22783 RVA: 0x002529C8 File Offset: 0x00250BC8
 		public void ListRealizeSeid39(int seid, Avatar avatar, List<int> buffInfo, List<int> flag)
 		{
 			int addNum = flag[0];
@@ -1439,7 +1450,7 @@ namespace KBEngine
 			}
 		}
 
-		// Token: 0x060063A9 RID: 25513 RVA: 0x0027E264 File Offset: 0x0027C464
+		// Token: 0x06005900 RID: 22784 RVA: 0x00252ABC File Offset: 0x00250CBC
 		public void ListRealizeSeid40(int seid, Avatar avatar, List<int> buffInfo, List<int> flag)
 		{
 			this.BuffSeidFlagAddNum(seid, 1, avatar);
@@ -1453,7 +1464,7 @@ namespace KBEngine
 			}
 		}
 
-		// Token: 0x060063AA RID: 25514 RVA: 0x0027E2F0 File Offset: 0x0027C4F0
+		// Token: 0x06005901 RID: 22785 RVA: 0x00252B48 File Offset: 0x00250D48
 		public void ListRealizeSeid41(int seid, Avatar avatar, List<int> buffInfo, List<int> flag)
 		{
 			int skillIDByKey = Tools.instance.getSkillIDByKey(flag[1]);
@@ -1474,7 +1485,7 @@ namespace KBEngine
 			}
 		}
 
-		// Token: 0x060063AB RID: 25515 RVA: 0x0027E3EC File Offset: 0x0027C5EC
+		// Token: 0x06005902 RID: 22786 RVA: 0x00252C44 File Offset: 0x00250E44
 		public void ListRealizeSeid42(int seid, Avatar avatar, List<int> buffInfo, List<int> flag)
 		{
 			int num = (int)this.getSeidJson(seid)["value4"].n;
@@ -1500,7 +1511,7 @@ namespace KBEngine
 			}
 		}
 
-		// Token: 0x060063AC RID: 25516 RVA: 0x0027E264 File Offset: 0x0027C464
+		// Token: 0x06005903 RID: 22787 RVA: 0x00252D60 File Offset: 0x00250F60
 		public void ListRealizeSeid43(int seid, Avatar avatar, List<int> buffInfo, List<int> flag)
 		{
 			this.BuffSeidFlagAddNum(seid, 1, avatar);
@@ -1514,7 +1525,7 @@ namespace KBEngine
 			}
 		}
 
-		// Token: 0x060063AD RID: 25517 RVA: 0x0027E508 File Offset: 0x0027C708
+		// Token: 0x06005904 RID: 22788 RVA: 0x00252DEC File Offset: 0x00250FEC
 		public void ListRealizeSeid44(int seid, Avatar avatar, List<int> buffInfo, List<int> flag)
 		{
 			int num = flag[1];
@@ -1540,7 +1551,7 @@ namespace KBEngine
 			}
 		}
 
-		// Token: 0x060063AE RID: 25518 RVA: 0x0027E624 File Offset: 0x0027C824
+		// Token: 0x06005905 RID: 22789 RVA: 0x00252F08 File Offset: 0x00251108
 		public void ListRealizeSeid46(int seid, Avatar avatar, List<int> buffInfo, List<int> flag)
 		{
 			if (avatar.OtherAvatar.buffmag.HasBuffSeid(107))
@@ -1559,7 +1570,7 @@ namespace KBEngine
 			});
 		}
 
-		// Token: 0x060063AF RID: 25519 RVA: 0x0027E6A0 File Offset: 0x0027C8A0
+		// Token: 0x06005906 RID: 22790 RVA: 0x00252F84 File Offset: 0x00251184
 		public void ListRealizeSeid47(int seid, Avatar avatar, List<int> buffInfo, List<int> flag)
 		{
 			if (RoundManager.instance.getListSum(avatar.crystal) <= 0)
@@ -1571,7 +1582,7 @@ namespace KBEngine
 			}
 		}
 
-		// Token: 0x060063B0 RID: 25520 RVA: 0x0027E6F4 File Offset: 0x0027C8F4
+		// Token: 0x06005907 RID: 22791 RVA: 0x00252FD8 File Offset: 0x002511D8
 		public void ListRealizeSeid48(int seid, Avatar avatar, List<int> buffInfo, List<int> flag)
 		{
 			int i = this.getSeidJson(seid)["value1"].I;
@@ -1585,7 +1596,7 @@ namespace KBEngine
 			}
 		}
 
-		// Token: 0x060063B1 RID: 25521 RVA: 0x0027E774 File Offset: 0x0027C974
+		// Token: 0x06005908 RID: 22792 RVA: 0x00253058 File Offset: 0x00251258
 		public void ListRealizeSeid50(int seid, Avatar avatar, List<int> buffInfo, List<int> flag)
 		{
 			int key = flag[1];
@@ -1608,7 +1619,7 @@ namespace KBEngine
 			}
 		}
 
-		// Token: 0x060063B2 RID: 25522 RVA: 0x0027E834 File Offset: 0x0027CA34
+		// Token: 0x06005909 RID: 22793 RVA: 0x00253118 File Offset: 0x00251318
 		public void ListRealizeSeid51(int seid, Avatar avatar, List<int> buffInfo, List<int> flag)
 		{
 			for (int i = 0; i < (int)this.getSeidJson(seid)["value1"].n; i++)
@@ -1617,7 +1628,7 @@ namespace KBEngine
 			}
 		}
 
-		// Token: 0x060063B3 RID: 25523 RVA: 0x0027E264 File Offset: 0x0027C464
+		// Token: 0x0600590A RID: 22794 RVA: 0x00253174 File Offset: 0x00251374
 		public void ListRealizeSeid52(int seid, Avatar avatar, List<int> buffInfo, List<int> flag)
 		{
 			this.BuffSeidFlagAddNum(seid, 1, avatar);
@@ -1631,7 +1642,7 @@ namespace KBEngine
 			}
 		}
 
-		// Token: 0x060063B4 RID: 25524 RVA: 0x0027E890 File Offset: 0x0027CA90
+		// Token: 0x0600590B RID: 22795 RVA: 0x00253200 File Offset: 0x00251400
 		public void ListRealizeSeid53(int seid, Avatar avatar, List<int> buffInfo, List<int> flag)
 		{
 			List<List<int>> buffByID = avatar.OtherAvatar.buffmag.getBuffByID(this.getSeidJson(seid)["value2"].I);
@@ -1646,7 +1657,7 @@ namespace KBEngine
 			}
 		}
 
-		// Token: 0x060063B5 RID: 25525 RVA: 0x0027E954 File Offset: 0x0027CB54
+		// Token: 0x0600590C RID: 22796 RVA: 0x002532C4 File Offset: 0x002514C4
 		public void ListRealizeSeid54(int seid, Avatar avatar, List<int> buffInfo, List<int> flag)
 		{
 			List<List<int>> buffByID = avatar.buffmag.getBuffByID(this.getSeidJson(seid)["value2"].I);
@@ -1661,31 +1672,31 @@ namespace KBEngine
 			}
 		}
 
-		// Token: 0x060063B6 RID: 25526 RVA: 0x00044A6D File Offset: 0x00042C6D
+		// Token: 0x0600590D RID: 22797 RVA: 0x00253381 File Offset: 0x00251581
 		public void ListRealizeSeid55(int seid, Avatar avatar, List<int> buffInfo, List<int> flag)
 		{
 			avatar.fightTemp.tempShenShi[this.buffID] = (int)this.getSeidJson(seid)["value1"].n * buffInfo[1];
 		}
 
-		// Token: 0x060063B7 RID: 25527 RVA: 0x00044AA4 File Offset: 0x00042CA4
+		// Token: 0x0600590E RID: 22798 RVA: 0x002533B8 File Offset: 0x002515B8
 		public void onDetachRealizeSeid55(int seid, Avatar avatar, List<int> buffInfo)
 		{
 			avatar.fightTemp.tempShenShi[this.buffID] = 0;
 		}
 
-		// Token: 0x060063B8 RID: 25528 RVA: 0x00044ABD File Offset: 0x00042CBD
+		// Token: 0x0600590F RID: 22799 RVA: 0x002533D1 File Offset: 0x002515D1
 		public void ListRealizeSeid56(int seid, Avatar avatar, List<int> buffInfo, List<int> flag)
 		{
 			avatar.fightTemp.TempHP_Max[this.buffID] = (int)this.getSeidJson(seid)["value1"].n * buffInfo[1];
 		}
 
-		// Token: 0x060063B9 RID: 25529 RVA: 0x00044AF4 File Offset: 0x00042CF4
+		// Token: 0x06005910 RID: 22800 RVA: 0x00253408 File Offset: 0x00251608
 		public void onDetachRealizeSeid56(int seid, Avatar avatar, List<int> buffInfo)
 		{
 			avatar.fightTemp.TempHP_Max[this.buffID] = 0;
 		}
 
-		// Token: 0x060063BA RID: 25530 RVA: 0x0027EA14 File Offset: 0x0027CC14
+		// Token: 0x06005911 RID: 22801 RVA: 0x00253424 File Offset: 0x00251624
 		public void ListRealizeSeid57(int seid, Avatar avatar, List<int> buffInfo, List<int> flag)
 		{
 			int num = flag[1];
@@ -1695,17 +1706,17 @@ namespace KBEngine
 			}
 		}
 
-		// Token: 0x060063BB RID: 25531 RVA: 0x000042DD File Offset: 0x000024DD
+		// Token: 0x06005912 RID: 22802 RVA: 0x00004095 File Offset: 0x00002295
 		public void ListRealizeSeid58(int seid, Avatar avatar, List<int> buffInfo, List<int> flag)
 		{
 		}
 
-		// Token: 0x060063BC RID: 25532 RVA: 0x000042DD File Offset: 0x000024DD
+		// Token: 0x06005913 RID: 22803 RVA: 0x00004095 File Offset: 0x00002295
 		public void ListRealizeSeid59(int seid, Avatar avatar, List<int> buffInfo, List<int> flag)
 		{
 		}
 
-		// Token: 0x060063BD RID: 25533 RVA: 0x0027EAC0 File Offset: 0x0027CCC0
+		// Token: 0x06005914 RID: 22804 RVA: 0x002534D0 File Offset: 0x002516D0
 		public void ListRealizeSeid60(int seid, Avatar avatar, List<int> buffInfo, List<int> flag)
 		{
 			flag[0] = 0;
@@ -1729,30 +1740,30 @@ namespace KBEngine
 			RoundManager.instance.endRound(avatar);
 		}
 
-		// Token: 0x060063BE RID: 25534 RVA: 0x00044B0D File Offset: 0x00042D0D
+		// Token: 0x06005915 RID: 22805 RVA: 0x00253602 File Offset: 0x00251802
 		public void ListRealizeSeid61(int seid, Avatar avatar, List<int> buffInfo, List<int> flag)
 		{
 			avatar.fightTemp.tempDunSu[this.buffID] = (int)this.getSeidJson(seid)["value1"].n * buffInfo[1];
 		}
 
-		// Token: 0x060063BF RID: 25535 RVA: 0x00044B44 File Offset: 0x00042D44
+		// Token: 0x06005916 RID: 22806 RVA: 0x00253639 File Offset: 0x00251839
 		public void onDetachRealizeSeid61(int seid, Avatar avatar, List<int> buffInfo)
 		{
 			avatar.fightTemp.tempDunSu[this.buffID] = 0;
 		}
 
-		// Token: 0x060063C0 RID: 25536 RVA: 0x000042DD File Offset: 0x000024DD
+		// Token: 0x06005917 RID: 22807 RVA: 0x00004095 File Offset: 0x00002295
 		public void ListRealizeSeid62(int seid, Avatar avatar, List<int> buffInfo, List<int> flag)
 		{
 		}
 
-		// Token: 0x060063C1 RID: 25537 RVA: 0x00044B5D File Offset: 0x00042D5D
+		// Token: 0x06005918 RID: 22808 RVA: 0x00253652 File Offset: 0x00251852
 		public void ListRealizeSeid63(int seid, Avatar avatar, List<int> buffInfo, List<int> flag)
 		{
 			RoundManager.instance.removeCard(avatar, this.getSeidJson(seid)["value1"].I * buffInfo[1]);
 		}
 
-		// Token: 0x060063C2 RID: 25538 RVA: 0x0027EBF4 File Offset: 0x0027CDF4
+		// Token: 0x06005919 RID: 22809 RVA: 0x00253680 File Offset: 0x00251880
 		public void ListRealizeSeid64(int seid, Avatar avatar, List<int> buffInfo, List<int> flag)
 		{
 			int i = this.getSeidJson(seid)["value1"].I;
@@ -1772,12 +1783,12 @@ namespace KBEngine
 			dictionary[key] += i2 * num;
 		}
 
-		// Token: 0x060063C3 RID: 25539 RVA: 0x000042DD File Offset: 0x000024DD
+		// Token: 0x0600591A RID: 22810 RVA: 0x00004095 File Offset: 0x00002295
 		public void ListRealizeSeid65(int seid, Avatar avatar, List<int> buffInfo, List<int> flag)
 		{
 		}
 
-		// Token: 0x060063C4 RID: 25540 RVA: 0x0027ECBC File Offset: 0x0027CEBC
+		// Token: 0x0600591B RID: 22811 RVA: 0x00253748 File Offset: 0x00251948
 		public void ListRealizeSeid66(int seid, Avatar avatar, List<int> buffInfo, List<int> flag)
 		{
 			List<List<int>> buffByID = avatar.OtherAvatar.buffmag.getBuffByID((int)this.getSeidJson(seid)["value1"].n);
@@ -1787,7 +1798,7 @@ namespace KBEngine
 			}
 		}
 
-		// Token: 0x060063C5 RID: 25541 RVA: 0x0027ED3C File Offset: 0x0027CF3C
+		// Token: 0x0600591C RID: 22812 RVA: 0x002537C8 File Offset: 0x002519C8
 		public void ListRealizeSeid67(int seid, Avatar avatar, List<int> buffInfo, List<int> flag)
 		{
 			int i = this.getSeidJson(seid)["value1"].I;
@@ -1806,7 +1817,7 @@ namespace KBEngine
 			}
 		}
 
-		// Token: 0x060063C6 RID: 25542 RVA: 0x00044B88 File Offset: 0x00042D88
+		// Token: 0x0600591D RID: 22813 RVA: 0x00253886 File Offset: 0x00251A86
 		public void ListRealizeSeid68(int seid, Avatar avatar, List<int> buffInfo, List<int> flag)
 		{
 			if (!avatar.buffmag.HasBuffSeid(23))
@@ -1815,7 +1826,7 @@ namespace KBEngine
 			}
 		}
 
-		// Token: 0x060063C7 RID: 25543 RVA: 0x0027EDFC File Offset: 0x0027CFFC
+		// Token: 0x0600591E RID: 22814 RVA: 0x002538C0 File Offset: 0x00251AC0
 		public void onDetachRealizeSeid68(int seid, Avatar avatar, List<int> buffInfo)
 		{
 			if (!avatar.buffmag.HasBuffSeid(23))
@@ -1824,7 +1835,7 @@ namespace KBEngine
 			}
 		}
 
-		// Token: 0x060063C8 RID: 25544 RVA: 0x0027EE4C File Offset: 0x0027D04C
+		// Token: 0x0600591F RID: 22815 RVA: 0x00253910 File Offset: 0x00251B10
 		public void ListRealizeSeid69(int seid, Avatar avatar, List<int> buffInfo, List<int> flag)
 		{
 			int num = flag[1];
@@ -1846,7 +1857,7 @@ namespace KBEngine
 			}
 		}
 
-		// Token: 0x060063C9 RID: 25545 RVA: 0x0027EF88 File Offset: 0x0027D188
+		// Token: 0x06005920 RID: 22816 RVA: 0x00253A4C File Offset: 0x00251C4C
 		public void ListRealizeSeid70(int seid, Avatar avatar, List<int> buffInfo, List<int> flag)
 		{
 			using (List<JSONObject>.Enumerator enumerator = this.getSeidJson(seid)["value1"].list.GetEnumerator())
@@ -1861,13 +1872,13 @@ namespace KBEngine
 			}
 		}
 
-		// Token: 0x060063CA RID: 25546 RVA: 0x00044BC2 File Offset: 0x00042DC2
+		// Token: 0x06005921 RID: 22817 RVA: 0x00253AF0 File Offset: 0x00251CF0
 		public void ListRealizeSeid71(int seid, Avatar avatar, List<int> buffInfo, List<int> flag)
 		{
 			avatar.setHP(avatar.HP - (int)this.getSeidJson(seid)["value1"].n * buffInfo[1]);
 		}
 
-		// Token: 0x060063CB RID: 25547 RVA: 0x0027F02C File Offset: 0x0027D22C
+		// Token: 0x06005922 RID: 22818 RVA: 0x00253B20 File Offset: 0x00251D20
 		public void ListRealizeSeid72(int seid, Avatar avatar, List<int> buffInfo, List<int> flag)
 		{
 			int num = flag[1];
@@ -1878,18 +1889,18 @@ namespace KBEngine
 			}
 		}
 
-		// Token: 0x060063CC RID: 25548 RVA: 0x000042DD File Offset: 0x000024DD
+		// Token: 0x06005923 RID: 22819 RVA: 0x00004095 File Offset: 0x00002295
 		public void ListRealizeSeid73(int seid, Avatar avatar, List<int> buffInfo, List<int> flag)
 		{
 		}
 
-		// Token: 0x060063CD RID: 25549 RVA: 0x00044BF0 File Offset: 0x00042DF0
+		// Token: 0x06005924 RID: 22820 RVA: 0x00253BE1 File Offset: 0x00251DE1
 		public void ListRealizeSeid78(int seid, Avatar avatar, List<int> buffInfo, List<int> flag)
 		{
 			flag[3] = 1;
 		}
 
-		// Token: 0x060063CE RID: 25550 RVA: 0x0027F0F0 File Offset: 0x0027D2F0
+		// Token: 0x06005925 RID: 22821 RVA: 0x00253BEC File Offset: 0x00251DEC
 		public void ListRealizeSeid79(int seid, Avatar avatar, List<int> buffInfo, List<int> flag)
 		{
 			int cardNum = avatar.OtherAvatar.crystal.getCardNum();
@@ -1915,7 +1926,7 @@ namespace KBEngine
 			RoundManager.instance.removeCard(avatar.OtherAvatar, num2);
 		}
 
-		// Token: 0x060063CF RID: 25551 RVA: 0x0027F1DC File Offset: 0x0027D3DC
+		// Token: 0x06005926 RID: 22822 RVA: 0x00253CD8 File Offset: 0x00251ED8
 		public void ListRealizeSeid80(int seid, Avatar avatar, List<int> buffInfo, List<int> flag)
 		{
 			int num = flag[1];
@@ -1928,12 +1939,12 @@ namespace KBEngine
 			}
 		}
 
-		// Token: 0x060063D0 RID: 25552 RVA: 0x000042DD File Offset: 0x000024DD
+		// Token: 0x06005927 RID: 22823 RVA: 0x00004095 File Offset: 0x00002295
 		public void ListRealizeSeid81(int seid, Avatar avatar, List<int> buffInfo, List<int> flag)
 		{
 		}
 
-		// Token: 0x060063D1 RID: 25553 RVA: 0x0027F2E0 File Offset: 0x0027D4E0
+		// Token: 0x06005928 RID: 22824 RVA: 0x00253DDC File Offset: 0x00251FDC
 		public void ListRealizeSeid82(int seid, Avatar avatar, List<int> buffInfo, List<int> flag)
 		{
 			for (int i = 0; i < (int)this.getSeidJson(seid)["value1"].n * buffInfo[1]; i++)
@@ -1945,12 +1956,12 @@ namespace KBEngine
 			}
 		}
 
-		// Token: 0x060063D2 RID: 25554 RVA: 0x000042DD File Offset: 0x000024DD
+		// Token: 0x06005929 RID: 22825 RVA: 0x00004095 File Offset: 0x00002295
 		public void ListRealizeSeid83(int seid, Avatar avatar, List<int> buffInfo, List<int> flag)
 		{
 		}
 
-		// Token: 0x060063D3 RID: 25555 RVA: 0x00044BFB File Offset: 0x00042DFB
+		// Token: 0x0600592A RID: 22826 RVA: 0x00253E8C File Offset: 0x0025208C
 		public void ListRealizeSeid84(int seid, Avatar avatar, List<int> buffInfo, List<int> flag)
 		{
 			if (flag[0] < (int)this.getSeidJson(seid)["value1"].n)
@@ -1959,7 +1970,7 @@ namespace KBEngine
 			}
 		}
 
-		// Token: 0x060063D4 RID: 25556 RVA: 0x0027F390 File Offset: 0x0027D590
+		// Token: 0x0600592B RID: 22827 RVA: 0x00253EB8 File Offset: 0x002520B8
 		public void ListRealizeSeid87(int seid, Avatar avatar, List<int> buffInfo, List<int> flag)
 		{
 			int num = (int)this.getSeidJson(seid)["value2"].n * buffInfo[1];
@@ -1969,7 +1980,7 @@ namespace KBEngine
 			}
 		}
 
-		// Token: 0x060063D5 RID: 25557 RVA: 0x0027F3EC File Offset: 0x0027D5EC
+		// Token: 0x0600592C RID: 22828 RVA: 0x00253F14 File Offset: 0x00252114
 		public void ListRealizeSeid88(int seid, Avatar avatar, List<int> buffInfo, List<int> flag)
 		{
 			for (int i = 0; i < (int)(this.getSeidJson(seid)["value2"].n * (float)buffInfo[1]); i++)
@@ -1978,7 +1989,7 @@ namespace KBEngine
 			}
 		}
 
-		// Token: 0x060063D6 RID: 25558 RVA: 0x0027F44C File Offset: 0x0027D64C
+		// Token: 0x0600592D RID: 22829 RVA: 0x00253F74 File Offset: 0x00252174
 		public void ListRealizeSeid89(int seid, Avatar avatar, List<int> buffInfo, List<int> flag)
 		{
 			if (avatar.buffmag.HasBuff((int)this.getSeidJson(seid)["value2"].n))
@@ -1990,12 +2001,12 @@ namespace KBEngine
 			}
 		}
 
-		// Token: 0x060063D7 RID: 25559 RVA: 0x000042DD File Offset: 0x000024DD
+		// Token: 0x0600592E RID: 22830 RVA: 0x00004095 File Offset: 0x00002295
 		public void ListRealizeSeid90(int seid, Avatar avatar, List<int> buffInfo, List<int> flag)
 		{
 		}
 
-		// Token: 0x060063D8 RID: 25560 RVA: 0x0027F508 File Offset: 0x0027D708
+		// Token: 0x0600592F RID: 22831 RVA: 0x00254030 File Offset: 0x00252230
 		public void ListRealizeSeid92(int seid, Avatar avatar, List<int> buffInfo, List<int> flag)
 		{
 			List<List<int>> buffByID = avatar.buffmag.getBuffByID((int)this.getSeidJson(seid)["value1"].n);
@@ -2006,14 +2017,14 @@ namespace KBEngine
 			Event.fireOut("UpdataBuff", Array.Empty<object>());
 		}
 
-		// Token: 0x060063D9 RID: 25561 RVA: 0x0027F574 File Offset: 0x0027D774
+		// Token: 0x06005930 RID: 22832 RVA: 0x0025409C File Offset: 0x0025229C
 		public void ListRealizeSeid93(int seid, Avatar avatar, List<int> buffInfo, List<int> flag)
 		{
 			int damage = -(int)((float)avatar.HP_Max * this.getSeidJson(seid)["value1"].n / 100f * (float)buffInfo[1]);
 			avatar.recvDamage(avatar, avatar, 10006, damage, 0);
 		}
 
-		// Token: 0x060063DA RID: 25562 RVA: 0x0027F5C4 File Offset: 0x0027D7C4
+		// Token: 0x06005931 RID: 22833 RVA: 0x002540EC File Offset: 0x002522EC
 		public void ListRealizeSeid94(int seid, Avatar avatar, List<int> buffInfo, List<int> flag)
 		{
 			float num = (float)(avatar.HP_Max - avatar.HP);
@@ -2026,20 +2037,20 @@ namespace KBEngine
 			}
 		}
 
-		// Token: 0x060063DB RID: 25563 RVA: 0x0027F658 File Offset: 0x0027D858
+		// Token: 0x06005932 RID: 22834 RVA: 0x00254180 File Offset: 0x00252380
 		public void ListRealizeSeid98(int seid, Avatar avatar, List<int> buffInfo, List<int> flag)
 		{
 			int damage = (int)this.getSeidJson(seid)["value1"].n * buffInfo[1];
 			avatar.recvDamage(avatar, avatar, 10001 + (int)this.getSeidJson(seid)["value2"].n, damage, 0);
 		}
 
-		// Token: 0x060063DC RID: 25564 RVA: 0x00044BF0 File Offset: 0x00042DF0
+		// Token: 0x06005933 RID: 22835 RVA: 0x00253BE1 File Offset: 0x00251DE1
 		public void ListRealizeSeid100(int seid, Avatar avatar, List<int> buffInfo, List<int> flag)
 		{
 			flag[3] = 1;
 		}
 
-		// Token: 0x060063DD RID: 25565 RVA: 0x0027F6B0 File Offset: 0x0027D8B0
+		// Token: 0x06005934 RID: 22836 RVA: 0x002541D8 File Offset: 0x002523D8
 		public void ListRealizeSeid104(int seid, Avatar avatar, List<int> buffInfo, List<int> flag)
 		{
 			int i = this.getSeidJson(seid)["value1"].I;
@@ -2065,7 +2076,7 @@ namespace KBEngine
 			}
 		}
 
-		// Token: 0x060063DE RID: 25566 RVA: 0x0027F7B0 File Offset: 0x0027D9B0
+		// Token: 0x06005935 RID: 22837 RVA: 0x002542D8 File Offset: 0x002524D8
 		public void ListRealizeSeid105(int seid, Avatar avatar, List<int> buffInfo, List<int> flag)
 		{
 			if (avatar.buffmag.HasBuffSeid(58))
@@ -2077,14 +2088,14 @@ namespace KBEngine
 			avatar.recvDamage(avatar, avatar, 10006, (int)this.getSeidJson(seid)["value1"].n * num * buffInfo[1], 0);
 		}
 
-		// Token: 0x060063DF RID: 25567 RVA: 0x0027F84C File Offset: 0x0027DA4C
+		// Token: 0x06005936 RID: 22838 RVA: 0x00254374 File Offset: 0x00252574
 		public void onAttachRealizeSeid108(int seid, Avatar avatar, List<int> buffInfo)
 		{
 			int endIndex = (JieDanManager.instence == null) ? 10 : 6;
 			avatar.FightClearSkill(0, endIndex);
 		}
 
-		// Token: 0x060063E0 RID: 25568 RVA: 0x0027F874 File Offset: 0x0027DA74
+		// Token: 0x06005937 RID: 22839 RVA: 0x0025439C File Offset: 0x0025259C
 		public void onAttachRealizeSeid109(int seid, Avatar avatar, List<int> buffInfo)
 		{
 			int endIndex = (JieDanManager.instence == null) ? 10 : 6;
@@ -2094,7 +2105,7 @@ namespace KBEngine
 			}
 		}
 
-		// Token: 0x060063E1 RID: 25569 RVA: 0x0027F8F4 File Offset: 0x0027DAF4
+		// Token: 0x06005938 RID: 22840 RVA: 0x0025441C File Offset: 0x0025261C
 		public void ListRealizeSeid111(int seid, Avatar avatar, List<int> buffInfo, List<int> flag)
 		{
 			foreach (JSONObject jsonobject in this.getSeidJson(seid)["value1"].list)
@@ -2106,7 +2117,7 @@ namespace KBEngine
 			}
 		}
 
-		// Token: 0x060063E2 RID: 25570 RVA: 0x0027F9A4 File Offset: 0x0027DBA4
+		// Token: 0x06005939 RID: 22841 RVA: 0x002544CC File Offset: 0x002526CC
 		public void onDetachRealizeSeid112(int seid, Avatar avatar, List<int> buffInfo)
 		{
 			if (avatar.buffmag.HasBuffSeid(58))
@@ -2117,25 +2128,25 @@ namespace KBEngine
 			avatar.recvDamage(avatar, avatar, 10006, (int)this.getSeidJson(seid)["value1"].n, 0);
 		}
 
-		// Token: 0x060063E3 RID: 25571 RVA: 0x00044C27 File Offset: 0x00042E27
+		// Token: 0x0600593A RID: 22842 RVA: 0x0025453B File Offset: 0x0025273B
 		public void onDetachRealizeSeid114(int seid, Avatar avatar, List<int> buffInfo)
 		{
 			avatar.setHP(-1);
 		}
 
-		// Token: 0x060063E4 RID: 25572 RVA: 0x00044C30 File Offset: 0x00042E30
+		// Token: 0x0600593B RID: 22843 RVA: 0x00254544 File Offset: 0x00252744
 		public void ListRealizeSeid115(int seid, Avatar avatar, List<int> buffInfo, List<int> flag)
 		{
 			flag[0] = flag[0] + flag[0] * (int)this.getSeidJson(seid)["value1"].n * buffInfo[1] / 100;
 		}
 
-		// Token: 0x060063E5 RID: 25573 RVA: 0x0027FA14 File Offset: 0x0027DC14
+		// Token: 0x0600593C RID: 22844 RVA: 0x00254584 File Offset: 0x00252784
 		public void ListRealizeSeid117(int seid, Avatar avatar, List<int> buffInfo, List<int> flag)
 		{
 			avatar.spell.addDBuff(this.getSeidJson(seid)["value1"].I, this.getSeidJson(seid)["value2"].I * RoundManager.instance.NowSkillUsedLingQiSum * buffInfo[1]);
 		}
 
-		// Token: 0x060063E6 RID: 25574 RVA: 0x0027FA6C File Offset: 0x0027DC6C
+		// Token: 0x0600593D RID: 22845 RVA: 0x002545DC File Offset: 0x002527DC
 		public void ListRealizeSeid123(int seid, Avatar avatar, List<int> buffInfo, List<int> flag)
 		{
 			UIFightPanel.Inst.FightSelectLingQi.gameObject.SetActive(true);
@@ -2145,17 +2156,17 @@ namespace KBEngine
 			});
 		}
 
-		// Token: 0x060063E7 RID: 25575 RVA: 0x000042DD File Offset: 0x000024DD
+		// Token: 0x0600593E RID: 22846 RVA: 0x00004095 File Offset: 0x00002295
 		public void ListRealizeSeid124(int seid, Avatar avatar, List<int> buffInfo, List<int> flag)
 		{
 		}
 
-		// Token: 0x060063E8 RID: 25576 RVA: 0x000042DD File Offset: 0x000024DD
+		// Token: 0x0600593F RID: 22847 RVA: 0x00004095 File Offset: 0x00002295
 		public void ListRealizeSeid125(int seid, Avatar avatar, List<int> buffInfo, List<int> flag)
 		{
 		}
 
-		// Token: 0x060063E9 RID: 25577 RVA: 0x0027FAB8 File Offset: 0x0027DCB8
+		// Token: 0x06005940 RID: 22848 RVA: 0x00254628 File Offset: 0x00252828
 		public void ListRealizeSeid127(int seid, Avatar avatar, List<int> buffInfo, List<int> flag)
 		{
 			for (int i = 0; i < this.getSeidJson(seid)["value1"].list.Count; i++)
@@ -2164,7 +2175,7 @@ namespace KBEngine
 			}
 		}
 
-		// Token: 0x060063EA RID: 25578 RVA: 0x0027FB30 File Offset: 0x0027DD30
+		// Token: 0x06005941 RID: 22849 RVA: 0x002546A0 File Offset: 0x002528A0
 		public void ListRealizeSeid128(int seid, Avatar avatar, List<int> buffInfo, List<int> flag)
 		{
 			List<JSONObject> list = this.getSeidJson(seid)["value2"].list;
@@ -2190,7 +2201,7 @@ namespace KBEngine
 			}
 		}
 
-		// Token: 0x060063EB RID: 25579 RVA: 0x0027FC50 File Offset: 0x0027DE50
+		// Token: 0x06005942 RID: 22850 RVA: 0x002547C0 File Offset: 0x002529C0
 		public void ListRealizeSeid130(int seid, Avatar avatar, List<int> buffInfo, List<int> flag)
 		{
 			List<JSONObject> list = this.getSeidJson(seid)["value2"].list;
@@ -2226,19 +2237,19 @@ namespace KBEngine
 			}
 		}
 
-		// Token: 0x060063EC RID: 25580 RVA: 0x00044C6E File Offset: 0x00042E6E
+		// Token: 0x06005943 RID: 22851 RVA: 0x00254908 File Offset: 0x00252B08
 		public void ListRealizeSeid131(int seid, Avatar avatar, List<int> buffInfo, List<int> flag)
 		{
 			this.ListRealizeSeid130(seid, avatar, buffInfo, flag);
 		}
 
-		// Token: 0x060063ED RID: 25581 RVA: 0x00044C6E File Offset: 0x00042E6E
+		// Token: 0x06005944 RID: 22852 RVA: 0x00254908 File Offset: 0x00252B08
 		public void ListRealizeSeid132(int seid, Avatar avatar, List<int> buffInfo, List<int> flag)
 		{
 			this.ListRealizeSeid130(seid, avatar, buffInfo, flag);
 		}
 
-		// Token: 0x060063EE RID: 25582 RVA: 0x0027FD98 File Offset: 0x0027DF98
+		// Token: 0x06005945 RID: 22853 RVA: 0x00254918 File Offset: 0x00252B18
 		public void ListRealizeSeid133(int seid, Avatar avatar, List<int> buffInfo, List<int> flag)
 		{
 			bool flag2 = false;
@@ -2257,7 +2268,7 @@ namespace KBEngine
 			}
 		}
 
-		// Token: 0x060063EF RID: 25583 RVA: 0x0027FE8C File Offset: 0x0027E08C
+		// Token: 0x06005946 RID: 22854 RVA: 0x00254A0C File Offset: 0x00252C0C
 		public void ListRealizeSeid134(int seid, Avatar avatar, List<int> buffInfo, List<int> flag)
 		{
 			List<List<int>> allBuffByType = this.getTargetAvatar(seid, avatar).buffmag.getAllBuffByType((int)this.getSeidJson(seid)["value2"].n);
@@ -2273,7 +2284,7 @@ namespace KBEngine
 			}
 		}
 
-		// Token: 0x060063F0 RID: 25584 RVA: 0x0027FF28 File Offset: 0x0027E128
+		// Token: 0x06005947 RID: 22855 RVA: 0x00254AA8 File Offset: 0x00252CA8
 		public void ListRealizeSeid135(int seid, Avatar avatar, List<int> buffInfo, List<int> flag)
 		{
 			int i = this.getSeidJson(seid)["value2"].I;
@@ -2286,10 +2297,10 @@ namespace KBEngine
 				}
 			}
 			JSONObject jsonobject = list[jsonData.GetRandom() % list.Count];
-			avatar.spell.addDBuff(jsonobject["buffid"].I, (int)this.getSeidJson(seid)["value1"].n * buffInfo[1]);
+			avatar.spell.addDBuff(jsonobject["buffid"].I, this.getSeidJson(seid)["value1"].I * buffInfo[1]);
 		}
 
-		// Token: 0x060063F1 RID: 25585 RVA: 0x0028000C File Offset: 0x0027E20C
+		// Token: 0x06005948 RID: 22856 RVA: 0x00254B88 File Offset: 0x00252D88
 		public void ListRealizeSeid137(int seid, Avatar avatar, List<int> buffInfo, List<int> flag)
 		{
 			if (flag[0] < 0)
@@ -2298,7 +2309,7 @@ namespace KBEngine
 			}
 		}
 
-		// Token: 0x060063F2 RID: 25586 RVA: 0x00280060 File Offset: 0x0027E260
+		// Token: 0x06005949 RID: 22857 RVA: 0x00254BDC File Offset: 0x00252DDC
 		public void ListRealizeSeid138(int seid, Avatar avatar, List<int> buffInfo, List<int> flag)
 		{
 			Avatar targetAvatar = this.getTargetAvatar(seid, avatar);
@@ -2317,13 +2328,44 @@ namespace KBEngine
 			}
 		}
 
-		// Token: 0x060063F3 RID: 25587 RVA: 0x00044C7B File Offset: 0x00042E7B
+		// Token: 0x0600594A RID: 22858 RVA: 0x00254C98 File Offset: 0x00252E98
 		public void ListRealizeSeid139(int seid, Avatar avatar, List<int> buffInfo, List<int> flag)
 		{
 			flag[4] = this.getSeidJson(seid)["value2"].I;
+			List<int> list = _skillJsonData.DataDict[flag[1]].seid;
+			if (list.Contains(139) && flag[4] >= 2 && RoundManager.instance != null && RoundManager.instance.CurSkill != null)
+			{
+				Skill curSkill = RoundManager.instance.CurSkill;
+				List<int> list2 = new List<int>();
+				bool flag2 = false;
+				foreach (int num in list)
+				{
+					if (flag2)
+					{
+						list2.Add(num);
+					}
+					if (num == 139)
+					{
+						flag2 = true;
+					}
+				}
+				if (list2.Count < 1)
+				{
+					return;
+				}
+				for (int i = 0; i < flag[4] - 1; i++)
+				{
+					foreach (int num2 in list2)
+					{
+						curSkill.realizeSeid(num2, flag, curSkill.attack, curSkill.target, curSkill.type);
+						curSkill.realizeBuffEndSeid(num2, flag, curSkill.attack, curSkill.target, curSkill.type);
+						curSkill.realizeFinalSeid(num2, flag, curSkill.attack, curSkill.target, curSkill.type);
+					}
+				}
+			}
 		}
 
-		// Token: 0x060063F4 RID: 25588 RVA: 0x0028011C File Offset: 0x0027E31C
+		// Token: 0x0600594B RID: 22859 RVA: 0x00254E38 File Offset: 0x00253038
 		public void ListRealizeSeid141(int seid, Avatar avatar, List<int> buffInfo, List<int> flag)
 		{
 			if (flag[0] > 0)
@@ -2333,7 +2375,7 @@ namespace KBEngine
 			}
 		}
 
-		// Token: 0x060063F5 RID: 25589 RVA: 0x00280188 File Offset: 0x0027E388
+		// Token: 0x0600594C RID: 22860 RVA: 0x00254EA4 File Offset: 0x002530A4
 		public void ListRealizeSeid142(int seid, Avatar avatar, List<int> buffInfo, List<int> flag)
 		{
 			List<List<int>> buffByID = this.getTargetAvatar(seid, avatar).buffmag.getBuffByID((int)this.getSeidJson(seid)["value1"].n);
@@ -2346,14 +2388,14 @@ namespace KBEngine
 			}
 		}
 
-		// Token: 0x060063F6 RID: 25590 RVA: 0x00280230 File Offset: 0x0027E430
+		// Token: 0x0600594D RID: 22861 RVA: 0x00254F4C File Offset: 0x0025314C
 		public void ListRealizeSeid146(int seid, Avatar avatar, List<int> buffInfo, List<int> flag)
 		{
 			int num = flag[0];
 			avatar.recvDamage(avatar, avatar, 10006, -num, 0);
 		}
 
-		// Token: 0x060063F7 RID: 25591 RVA: 0x00280258 File Offset: 0x0027E458
+		// Token: 0x0600594E RID: 22862 RVA: 0x00254F74 File Offset: 0x00253174
 		public void ListRealizeSeid147(int seid, Avatar avatar, List<int> buffInfo, List<int> flag)
 		{
 			List<List<int>> buffByID = avatar.buffmag.getBuffByID((int)this.getSeidJson(seid)["value1"].n);
@@ -2363,7 +2405,7 @@ namespace KBEngine
 			}
 		}
 
-		// Token: 0x060063F8 RID: 25592 RVA: 0x002802B0 File Offset: 0x0027E4B0
+		// Token: 0x0600594F RID: 22863 RVA: 0x00254FCC File Offset: 0x002531CC
 		public void ListRealizeSeid148(int seid, Avatar avatar, List<int> buffInfo, List<int> flag)
 		{
 			bool flag2 = false;
@@ -2380,7 +2422,7 @@ namespace KBEngine
 			}
 		}
 
-		// Token: 0x060063F9 RID: 25593 RVA: 0x00280358 File Offset: 0x0027E558
+		// Token: 0x06005950 RID: 22864 RVA: 0x00255074 File Offset: 0x00253274
 		public void ListRealizeSeid149(int seid, Avatar avatar, List<int> buffInfo, List<int> flag)
 		{
 			int num = flag[0];
@@ -2390,7 +2432,7 @@ namespace KBEngine
 			}
 		}
 
-		// Token: 0x060063FA RID: 25594 RVA: 0x002803C0 File Offset: 0x0027E5C0
+		// Token: 0x06005951 RID: 22865 RVA: 0x002550DC File Offset: 0x002532DC
 		public void ListRealizeSeid171(int seid, Avatar avatar, List<int> buffInfo, List<int> flag)
 		{
 			Buff._NeiShangLoopCount++;
@@ -2423,14 +2465,14 @@ namespace KBEngine
 			}
 		}
 
-		// Token: 0x060063FB RID: 25595 RVA: 0x002804C8 File Offset: 0x0027E6C8
+		// Token: 0x06005952 RID: 22866 RVA: 0x002551E4 File Offset: 0x002533E4
 		public void ListRealizeSeid179(int seid, Avatar avatar, List<int> buffInfo, List<int> flag)
 		{
 			int listSum = RoundManager.instance.getListSum(avatar.crystal);
 			avatar.recvDamage(avatar, avatar, 10006, -(listSum * (int)this.getSeidJson(seid)["value1"].n), 0);
 		}
 
-		// Token: 0x060063FC RID: 25596 RVA: 0x00280510 File Offset: 0x0027E710
+		// Token: 0x06005953 RID: 22867 RVA: 0x0025522C File Offset: 0x0025342C
 		public void ListRealizeSeid185(int seid, Avatar avatar, List<int> buffInfo, List<int> flag)
 		{
 			for (int i = 0; i < this.getSeidJson(seid)["value1"].list.Count; i++)
@@ -2439,13 +2481,13 @@ namespace KBEngine
 			}
 		}
 
-		// Token: 0x060063FD RID: 25597 RVA: 0x00044C9B File Offset: 0x00042E9B
+		// Token: 0x06005954 RID: 22868 RVA: 0x002552A9 File Offset: 0x002534A9
 		public void ListRealizeSeid186(int seid, Avatar avatar, List<int> buffInfo, List<int> flag)
 		{
 			avatar.spell.addBuff(this.getSeidJson(seid)["value1"].I, flag[0]);
 		}
 
-		// Token: 0x060063FE RID: 25598 RVA: 0x00280590 File Offset: 0x0027E790
+		// Token: 0x06005955 RID: 22869 RVA: 0x002552D8 File Offset: 0x002534D8
 		public void ListRealizeSeid187(int seid, Avatar avatar, List<int> buffInfo, List<int> flag)
 		{
 			int num = flag[0];
@@ -2454,7 +2496,7 @@ namespace KBEngine
 			avatar.OtherAvatar.setHP(avatar.OtherAvatar.HP - num2);
 		}
 
-		// Token: 0x060063FF RID: 25599 RVA: 0x002805E8 File Offset: 0x0027E7E8
+		// Token: 0x06005956 RID: 22870 RVA: 0x00255330 File Offset: 0x00253530
 		public void ListRealizeSeid190(int seid, Avatar avatar, List<int> buffInfo, List<int> flag)
 		{
 			JSONObject seidJson = this.getSeidJson(seid);
@@ -2470,7 +2512,7 @@ namespace KBEngine
 			}
 		}
 
-		// Token: 0x06006400 RID: 25600 RVA: 0x00280658 File Offset: 0x0027E858
+		// Token: 0x06005957 RID: 22871 RVA: 0x002553A0 File Offset: 0x002535A0
 		public void ListRealizeSeid191(int seid, Avatar avatar, List<int> buffInfo, List<int> flag)
 		{
 			int num;
@@ -2485,7 +2527,7 @@ namespace KBEngine
 			avatar.recvDamage(avatar, avatar, 10006, num * buffInfo[1], 0);
 		}
 
-		// Token: 0x06006401 RID: 25601 RVA: 0x002806A8 File Offset: 0x0027E8A8
+		// Token: 0x06005958 RID: 22872 RVA: 0x002553F0 File Offset: 0x002535F0
 		public void ListRealizeSeid192(int seid, Avatar avatar, List<int> buffInfo, List<int> flag)
 		{
 			int key = flag[1];
@@ -2499,12 +2541,12 @@ namespace KBEngine
 			}
 		}
 
-		// Token: 0x06006402 RID: 25602 RVA: 0x000042DD File Offset: 0x000024DD
+		// Token: 0x06005959 RID: 22873 RVA: 0x00004095 File Offset: 0x00002295
 		public void ListRealizeSeid193(int seid, Avatar avatar, List<int> buffInfo, List<int> flag)
 		{
 		}
 
-		// Token: 0x06006403 RID: 25603 RVA: 0x0028073C File Offset: 0x0027E93C
+		// Token: 0x0600595A RID: 22874 RVA: 0x00255484 File Offset: 0x00253684
 		public void ListRealizeSeid194(int seid, Avatar avatar, List<int> buffInfo, List<int> flag)
 		{
 			if (avatar.buffmag.GetBuffSum(this.getSeidJson(seid)["value1"].I) > 0)
@@ -2515,7 +2557,7 @@ namespace KBEngine
 			}
 		}
 
-		// Token: 0x06006404 RID: 25604 RVA: 0x002807A8 File Offset: 0x0027E9A8
+		// Token: 0x0600595B RID: 22875 RVA: 0x002554F0 File Offset: 0x002536F0
 		public void ListRealizeSeid195(int seid, Avatar avatar, List<int> buffInfo, List<int> flag)
 		{
 			if (flag.Count < 2)
@@ -2536,7 +2578,7 @@ namespace KBEngine
 			}
 		}
 
-		// Token: 0x06006405 RID: 25605 RVA: 0x002808A8 File Offset: 0x0027EAA8
+		// Token: 0x0600595C RID: 22876 RVA: 0x002555F0 File Offset: 0x002537F0
 		public void ListRealizeSeid198(int seid, Avatar avatar, List<int> buffInfo, List<int> flag)
 		{
 			int nowSkillUsedLingQiSum = RoundManager.instance.NowSkillUsedLingQiSum;
@@ -2546,7 +2588,7 @@ namespace KBEngine
 			}
 		}
 
-		// Token: 0x06006406 RID: 25606 RVA: 0x002808E8 File Offset: 0x0027EAE8
+		// Token: 0x0600595D RID: 22877 RVA: 0x00255630 File Offset: 0x00253830
 		public void ListRealizeSeid199(int seid, Avatar avatar, List<int> buffInfo, List<int> flag)
 		{
 			if (_skillJsonData.DataDict[flag[1]].AttackType.Contains(this.getSeidJson(seid)["value1"].I))
@@ -2559,31 +2601,31 @@ namespace KBEngine
 			}
 		}
 
-		// Token: 0x06006407 RID: 25607 RVA: 0x00044CC7 File Offset: 0x00042EC7
+		// Token: 0x0600595E RID: 22878 RVA: 0x002556D3 File Offset: 0x002538D3
 		public void ListRealizeSeid200(int seid, Avatar avatar, List<int> buffInfo, List<int> flag)
 		{
 			avatar.jieyin.AddJinMai((int)this.getSeidJson(seid)["value1"].n * buffInfo[1]);
 		}
 
-		// Token: 0x06006408 RID: 25608 RVA: 0x00044CF3 File Offset: 0x00042EF3
+		// Token: 0x0600595F RID: 22879 RVA: 0x002556FF File Offset: 0x002538FF
 		public void ListRealizeSeid201(int seid, Avatar avatar, List<int> buffInfo, List<int> flag)
 		{
 			avatar.jieyin.AddYiZhi((int)this.getSeidJson(seid)["value1"].n * buffInfo[1]);
 		}
 
-		// Token: 0x06006409 RID: 25609 RVA: 0x00044D1F File Offset: 0x00042F1F
+		// Token: 0x06005960 RID: 22880 RVA: 0x0025572B File Offset: 0x0025392B
 		public void ListRealizeSeid202(int seid, Avatar avatar, List<int> buffInfo, List<int> flag)
 		{
 			avatar.jieyin.AddHuaYing((int)this.getSeidJson(seid)["value1"].n * buffInfo[1]);
 		}
 
-		// Token: 0x0600640A RID: 25610 RVA: 0x00044D4B File Offset: 0x00042F4B
+		// Token: 0x06005961 RID: 22881 RVA: 0x00255757 File Offset: 0x00253957
 		public void ListRealizeSeid203(int seid, Avatar avatar, List<int> buffInfo, List<int> flag)
 		{
 			avatar.jieyin.AddJinDanHP((int)this.getSeidJson(seid)["value1"].n * buffInfo[1]);
 		}
 
-		// Token: 0x0600640B RID: 25611 RVA: 0x0028098C File Offset: 0x0027EB8C
+		// Token: 0x06005962 RID: 22882 RVA: 0x00255784 File Offset: 0x00253984
 		public void ListRealizeSeid208(int seid, Avatar avatar, List<int> buffInfo, List<int> flag)
 		{
 			float num = this.getSeidJson(seid)["value1"].n / 100f;
@@ -2591,7 +2633,7 @@ namespace KBEngine
 			avatar.jieyin.AddJinDanHP(num2);
 		}
 
-		// Token: 0x0600640C RID: 25612 RVA: 0x002809E0 File Offset: 0x0027EBE0
+		// Token: 0x06005963 RID: 22883 RVA: 0x002557D8 File Offset: 0x002539D8
 		public void ListRealizeSeid215(int seid, Avatar avatar, List<int> buffInfo, List<int> flag)
 		{
 			int i = this.getSeidJson(seid)["value1"].I;
@@ -2613,7 +2655,7 @@ namespace KBEngine
 			}
 		}
 
-		// Token: 0x0600640D RID: 25613 RVA: 0x00280ACC File Offset: 0x0027ECCC
+		// Token: 0x06005964 RID: 22884 RVA: 0x002558C4 File Offset: 0x00253AC4
 		public void ListRealizeSeid217(int seid, Avatar avatar, List<int> buffInfo, List<int> flag)
 		{
 			int num = avatar.shengShi - avatar.OtherAvatar.shengShi;
@@ -2623,13 +2665,13 @@ namespace KBEngine
 			}
 		}
 
-		// Token: 0x0600640E RID: 25614 RVA: 0x00044D77 File Offset: 0x00042F77
+		// Token: 0x06005965 RID: 22885 RVA: 0x002558FB File Offset: 0x00253AFB
 		public void ListRealizeSeid300(int seid, Avatar avatar, List<int> buffInfo, List<int> flag)
 		{
 			flag[0] = 0;
 		}
 
-		// Token: 0x0600640F RID: 25615 RVA: 0x00280B04 File Offset: 0x0027ED04
+		// Token: 0x06005966 RID: 22886 RVA: 0x00255908 File Offset: 0x00253B08
 		public void ListRealizeSeid312(int seid, Avatar avatar, List<int> buffInfo, List<int> flag)
 		{
 			int i = this.getSeidJson(seid)["value1"].I;
@@ -2644,7 +2686,7 @@ namespace KBEngine
 			}
 		}
 
-		// Token: 0x06006410 RID: 25616 RVA: 0x00280BB4 File Offset: 0x0027EDB4
+		// Token: 0x06005967 RID: 22887 RVA: 0x002559B8 File Offset: 0x00253BB8
 		public void ListRealizeSeid314(int seid, Avatar avatar, List<int> buffInfo, List<int> flag)
 		{
 			int key = flag[1];
@@ -2660,7 +2702,7 @@ namespace KBEngine
 			}
 		}
 
-		// Token: 0x06006411 RID: 25617 RVA: 0x00280C4C File Offset: 0x0027EE4C
+		// Token: 0x06005968 RID: 22888 RVA: 0x00255A50 File Offset: 0x00253C50
 		public void ListRealizeSeid315(int seid, Avatar avatar, List<int> buffInfo, List<int> flag)
 		{
 			int i = this.getSeidJson(seid)["value1"].I;
@@ -2668,297 +2710,303 @@ namespace KBEngine
 			avatar.OtherAvatar.spell.addBuff(i, num);
 		}
 
-		// Token: 0x04005D20 RID: 23840
+		// Token: 0x0400520A RID: 21002
 		public Dictionary<int, JSONObject> buffSeidList = new Dictionary<int, JSONObject>();
 
-		// Token: 0x04005D21 RID: 23841
+		// Token: 0x0400520B RID: 21003
 		public JObject NowBuffInfo = new JObject();
 
-		// Token: 0x04005D22 RID: 23842
+		// Token: 0x0400520C RID: 21004
 		public int buffID;
 
-		// Token: 0x04005D23 RID: 23843
+		// Token: 0x0400520D RID: 21005
 		public int _loopTime;
 
-		// Token: 0x04005D24 RID: 23844
+		// Token: 0x0400520E RID: 21006
 		public int _totalTime;
 
-		// Token: 0x04005D25 RID: 23845
+		// Token: 0x0400520F RID: 21007
 		public List<int> seid = new List<int>();
 
-		// Token: 0x04005D26 RID: 23846
+		// Token: 0x04005210 RID: 21008
 		private static Dictionary<string, MethodInfo> methodDict = new Dictionary<string, MethodInfo>();
 
-		// Token: 0x04005D27 RID: 23847
+		// Token: 0x04005211 RID: 21009
 		public static int _NeiShangLoopCount;
 
-		// Token: 0x0200103B RID: 4155
+		// Token: 0x0200162E RID: 5678
 		public enum AllBUFF
 		{
-			// Token: 0x04005D29 RID: 23849
+			// Token: 0x04007173 RID: 29043
 			BUFF1 = 1,
-			// Token: 0x04005D2A RID: 23850
+			// Token: 0x04007174 RID: 29044
 			BUFF2,
-			// Token: 0x04005D2B RID: 23851
+			// Token: 0x04007175 RID: 29045
 			BUFF3,
-			// Token: 0x04005D2C RID: 23852
+			// Token: 0x04007176 RID: 29046
 			BUFF4,
-			// Token: 0x04005D2D RID: 23853
+			// Token: 0x04007177 RID: 29047
 			BUFF5,
-			// Token: 0x04005D2E RID: 23854
+			// Token: 0x04007178 RID: 29048
 			BUFF6,
-			// Token: 0x04005D2F RID: 23855
+			// Token: 0x04007179 RID: 29049
 			BUFF7,
-			// Token: 0x04005D30 RID: 23856
+			// Token: 0x0400717A RID: 29050
 			BUFF8,
-			// Token: 0x04005D31 RID: 23857
+			// Token: 0x0400717B RID: 29051
 			BUFF9,
-			// Token: 0x04005D32 RID: 23858
+			// Token: 0x0400717C RID: 29052
 			BUFF10,
-			// Token: 0x04005D33 RID: 23859
+			// Token: 0x0400717D RID: 29053
 			BUFF11,
-			// Token: 0x04005D34 RID: 23860
+			// Token: 0x0400717E RID: 29054
 			BUFF12,
-			// Token: 0x04005D35 RID: 23861
+			// Token: 0x0400717F RID: 29055
 			BUFF13,
-			// Token: 0x04005D36 RID: 23862
+			// Token: 0x04007180 RID: 29056
 			BUFF14,
-			// Token: 0x04005D37 RID: 23863
+			// Token: 0x04007181 RID: 29057
 			BUFF15,
-			// Token: 0x04005D38 RID: 23864
+			// Token: 0x04007182 RID: 29058
 			BUFF16,
-			// Token: 0x04005D39 RID: 23865
+			// Token: 0x04007183 RID: 29059
 			BUFF17,
-			// Token: 0x04005D3A RID: 23866
+			// Token: 0x04007184 RID: 29060
 			BUFF18,
-			// Token: 0x04005D3B RID: 23867
+			// Token: 0x04007185 RID: 29061
 			BUFF19,
-			// Token: 0x04005D3C RID: 23868
+			// Token: 0x04007186 RID: 29062
 			BUFF20,
-			// Token: 0x04005D3D RID: 23869
+			// Token: 0x04007187 RID: 29063
 			BUFF21,
-			// Token: 0x04005D3E RID: 23870
+			// Token: 0x04007188 RID: 29064
 			BUFF22,
-			// Token: 0x04005D3F RID: 23871
+			// Token: 0x04007189 RID: 29065
 			BUFF23,
-			// Token: 0x04005D40 RID: 23872
+			// Token: 0x0400718A RID: 29066
 			BUFF24,
-			// Token: 0x04005D41 RID: 23873
+			// Token: 0x0400718B RID: 29067
 			BUFF25,
-			// Token: 0x04005D42 RID: 23874
+			// Token: 0x0400718C RID: 29068
 			BUFF26,
-			// Token: 0x04005D43 RID: 23875
+			// Token: 0x0400718D RID: 29069
 			BUFF27,
-			// Token: 0x04005D44 RID: 23876
+			// Token: 0x0400718E RID: 29070
 			BUFF28,
-			// Token: 0x04005D45 RID: 23877
+			// Token: 0x0400718F RID: 29071
 			BUFF29,
-			// Token: 0x04005D46 RID: 23878
+			// Token: 0x04007190 RID: 29072
 			BUFF30,
-			// Token: 0x04005D47 RID: 23879
+			// Token: 0x04007191 RID: 29073
 			BUFF31,
-			// Token: 0x04005D48 RID: 23880
+			// Token: 0x04007192 RID: 29074
 			BUFF32,
-			// Token: 0x04005D49 RID: 23881
+			// Token: 0x04007193 RID: 29075
 			BUFF33,
-			// Token: 0x04005D4A RID: 23882
+			// Token: 0x04007194 RID: 29076
 			BUFF34,
-			// Token: 0x04005D4B RID: 23883
+			// Token: 0x04007195 RID: 29077
 			BUFF35,
-			// Token: 0x04005D4C RID: 23884
+			// Token: 0x04007196 RID: 29078
 			BUFF36,
-			// Token: 0x04005D4D RID: 23885
+			// Token: 0x04007197 RID: 29079
 			BUFF37,
-			// Token: 0x04005D4E RID: 23886
+			// Token: 0x04007198 RID: 29080
 			BUFF38,
-			// Token: 0x04005D4F RID: 23887
+			// Token: 0x04007199 RID: 29081
 			BUFF39,
-			// Token: 0x04005D50 RID: 23888
+			// Token: 0x0400719A RID: 29082
 			BUFF40,
-			// Token: 0x04005D51 RID: 23889
+			// Token: 0x0400719B RID: 29083
 			BUFF41,
-			// Token: 0x04005D52 RID: 23890
+			// Token: 0x0400719C RID: 29084
 			BUFF42,
-			// Token: 0x04005D53 RID: 23891
+			// Token: 0x0400719D RID: 29085
 			BUFF43,
-			// Token: 0x04005D54 RID: 23892
+			// Token: 0x0400719E RID: 29086
 			BUFF44,
-			// Token: 0x04005D55 RID: 23893
+			// Token: 0x0400719F RID: 29087
 			BUFF45,
-			// Token: 0x04005D56 RID: 23894
+			// Token: 0x040071A0 RID: 29088
 			BUFF46,
-			// Token: 0x04005D57 RID: 23895
+			// Token: 0x040071A1 RID: 29089
 			BUFF47,
-			// Token: 0x04005D58 RID: 23896
+			// Token: 0x040071A2 RID: 29090
 			BUFF48,
-			// Token: 0x04005D59 RID: 23897
+			// Token: 0x040071A3 RID: 29091
 			BUFF49,
-			// Token: 0x04005D5A RID: 23898
+			// Token: 0x040071A4 RID: 29092
 			BUFF58 = 58,
-			// Token: 0x04005D5B RID: 23899
+			// Token: 0x040071A5 RID: 29093
 			BUFF59,
-			// Token: 0x04005D5C RID: 23900
+			// Token: 0x040071A6 RID: 29094
 			BUFF62 = 62,
-			// Token: 0x04005D5D RID: 23901
+			// Token: 0x040071A7 RID: 29095
 			BUFF65 = 65,
-			// Token: 0x04005D5E RID: 23902
+			// Token: 0x040071A8 RID: 29096
 			BUFF68 = 68,
-			// Token: 0x04005D5F RID: 23903
+			// Token: 0x040071A9 RID: 29097
 			BUFF73 = 73,
-			// Token: 0x04005D60 RID: 23904
+			// Token: 0x040071AA RID: 29098
 			BUFF74,
-			// Token: 0x04005D61 RID: 23905
+			// Token: 0x040071AB RID: 29099
 			BUFF75,
-			// Token: 0x04005D62 RID: 23906
+			// Token: 0x040071AC RID: 29100
 			BUFF76,
-			// Token: 0x04005D63 RID: 23907
+			// Token: 0x040071AD RID: 29101
 			BUFF77,
-			// Token: 0x04005D64 RID: 23908
+			// Token: 0x040071AE RID: 29102
 			BUFF81 = 81,
-			// Token: 0x04005D65 RID: 23909
+			// Token: 0x040071AF RID: 29103
 			BUFF83 = 83,
-			// Token: 0x04005D66 RID: 23910
+			// Token: 0x040071B0 RID: 29104
 			BUFF85 = 85,
-			// Token: 0x04005D67 RID: 23911
+			// Token: 0x040071B1 RID: 29105
 			BUFF86,
-			// Token: 0x04005D68 RID: 23912
+			// Token: 0x040071B2 RID: 29106
 			BUFF90 = 90,
-			// Token: 0x04005D69 RID: 23913
+			// Token: 0x040071B3 RID: 29107
 			BUFF91,
-			// Token: 0x04005D6A RID: 23914
+			// Token: 0x040071B4 RID: 29108
 			BUFF95 = 95,
-			// Token: 0x04005D6B RID: 23915
+			// Token: 0x040071B5 RID: 29109
 			BUFF96,
-			// Token: 0x04005D6C RID: 23916
+			// Token: 0x040071B6 RID: 29110
 			BUFF97,
-			// Token: 0x04005D6D RID: 23917
+			// Token: 0x040071B7 RID: 29111
 			BUFF99 = 99,
-			// Token: 0x04005D6E RID: 23918
+			// Token: 0x040071B8 RID: 29112
 			BUFF101 = 101,
-			// Token: 0x04005D6F RID: 23919
+			// Token: 0x040071B9 RID: 29113
 			BUFF102,
-			// Token: 0x04005D70 RID: 23920
+			// Token: 0x040071BA RID: 29114
 			BUFF103,
-			// Token: 0x04005D71 RID: 23921
+			// Token: 0x040071BB RID: 29115
 			BUFF106 = 106,
-			// Token: 0x04005D72 RID: 23922
+			// Token: 0x040071BC RID: 29116
 			BUFF107,
-			// Token: 0x04005D73 RID: 23923
+			// Token: 0x040071BD RID: 29117
 			BUFF110 = 110,
-			// Token: 0x04005D74 RID: 23924
+			// Token: 0x040071BE RID: 29118
 			BUFF113 = 113,
-			// Token: 0x04005D75 RID: 23925
+			// Token: 0x040071BF RID: 29119
 			BUFF116 = 116,
-			// Token: 0x04005D76 RID: 23926
+			// Token: 0x040071C0 RID: 29120
 			BUFF118 = 118,
-			// Token: 0x04005D77 RID: 23927
+			// Token: 0x040071C1 RID: 29121
 			BUFF119,
-			// Token: 0x04005D78 RID: 23928
+			// Token: 0x040071C2 RID: 29122
 			BUFF120,
-			// Token: 0x04005D79 RID: 23929
+			// Token: 0x040071C3 RID: 29123
 			BUFF121,
-			// Token: 0x04005D7A RID: 23930
+			// Token: 0x040071C4 RID: 29124
 			BUFF122,
-			// Token: 0x04005D7B RID: 23931
+			// Token: 0x040071C5 RID: 29125
 			BUFF126 = 126,
-			// Token: 0x04005D7C RID: 23932
+			// Token: 0x040071C6 RID: 29126
 			BUFF128 = 128,
-			// Token: 0x04005D7D RID: 23933
+			// Token: 0x040071C7 RID: 29127
 			BUFF129,
-			// Token: 0x04005D7E RID: 23934
+			// Token: 0x040071C8 RID: 29128
 			BUFF136 = 136,
-			// Token: 0x04005D7F RID: 23935
+			// Token: 0x040071C9 RID: 29129
 			BUFF139 = 139,
-			// Token: 0x04005D80 RID: 23936
+			// Token: 0x040071CA RID: 29130
 			BUFF140,
-			// Token: 0x04005D81 RID: 23937
+			// Token: 0x040071CB RID: 29131
 			BUFF143 = 143,
-			// Token: 0x04005D82 RID: 23938
+			// Token: 0x040071CC RID: 29132
 			BUFF144,
-			// Token: 0x04005D83 RID: 23939
+			// Token: 0x040071CD RID: 29133
 			BUFF150 = 150,
-			// Token: 0x04005D84 RID: 23940
+			// Token: 0x040071CE RID: 29134
 			BUFF151,
-			// Token: 0x04005D85 RID: 23941
+			// Token: 0x040071CF RID: 29135
 			BUFF152,
-			// Token: 0x04005D86 RID: 23942
+			// Token: 0x040071D0 RID: 29136
 			BUFF155 = 155,
-			// Token: 0x04005D87 RID: 23943
+			// Token: 0x040071D1 RID: 29137
 			BUFF156,
-			// Token: 0x04005D88 RID: 23944
+			// Token: 0x040071D2 RID: 29138
 			BUFF157,
-			// Token: 0x04005D89 RID: 23945
+			// Token: 0x040071D3 RID: 29139
 			BUFF158,
-			// Token: 0x04005D8A RID: 23946
+			// Token: 0x040071D4 RID: 29140
 			BUFF159,
-			// Token: 0x04005D8B RID: 23947
+			// Token: 0x040071D5 RID: 29141
 			BUFF160,
-			// Token: 0x04005D8C RID: 23948
+			// Token: 0x040071D6 RID: 29142
 			BUFF161,
-			// Token: 0x04005D8D RID: 23949
+			// Token: 0x040071D7 RID: 29143
 			BUFF162,
-			// Token: 0x04005D8E RID: 23950
+			// Token: 0x040071D8 RID: 29144
 			BUFF163,
-			// Token: 0x04005D8F RID: 23951
+			// Token: 0x040071D9 RID: 29145
 			BUFF164,
-			// Token: 0x04005D90 RID: 23952
+			// Token: 0x040071DA RID: 29146
 			BUFF165,
-			// Token: 0x04005D91 RID: 23953
+			// Token: 0x040071DB RID: 29147
 			BUFF166,
-			// Token: 0x04005D92 RID: 23954
+			// Token: 0x040071DC RID: 29148
 			BUFF167,
-			// Token: 0x04005D93 RID: 23955
+			// Token: 0x040071DD RID: 29149
 			BUFF168,
-			// Token: 0x04005D94 RID: 23956
+			// Token: 0x040071DE RID: 29150
 			BUFF169,
-			// Token: 0x04005D95 RID: 23957
+			// Token: 0x040071DF RID: 29151
 			BUFF170,
-			// Token: 0x04005D96 RID: 23958
+			// Token: 0x040071E0 RID: 29152
 			BUFF171,
-			// Token: 0x04005D97 RID: 23959
+			// Token: 0x040071E1 RID: 29153
 			BUFF172,
-			// Token: 0x04005D98 RID: 23960
+			// Token: 0x040071E2 RID: 29154
 			BUFF173,
-			// Token: 0x04005D99 RID: 23961
+			// Token: 0x040071E3 RID: 29155
 			BUFF174,
-			// Token: 0x04005D9A RID: 23962
+			// Token: 0x040071E4 RID: 29156
 			BUFF175,
-			// Token: 0x04005D9B RID: 23963
+			// Token: 0x040071E5 RID: 29157
 			BUFF176,
-			// Token: 0x04005D9C RID: 23964
+			// Token: 0x040071E6 RID: 29158
 			BUFF177,
-			// Token: 0x04005D9D RID: 23965
+			// Token: 0x040071E7 RID: 29159
 			BUFF178,
-			// Token: 0x04005D9E RID: 23966
+			// Token: 0x040071E8 RID: 29160
 			BUFF180 = 180,
-			// Token: 0x04005D9F RID: 23967
+			// Token: 0x040071E9 RID: 29161
 			BUFF181,
-			// Token: 0x04005DA0 RID: 23968
+			// Token: 0x040071EA RID: 29162
 			BUFF182,
-			// Token: 0x04005DA1 RID: 23969
+			// Token: 0x040071EB RID: 29163
 			BUFF189 = 189,
-			// Token: 0x04005DA2 RID: 23970
+			// Token: 0x040071EC RID: 29164
 			BUFF204 = 204,
-			// Token: 0x04005DA3 RID: 23971
+			// Token: 0x040071ED RID: 29165
 			BUFF205,
-			// Token: 0x04005DA4 RID: 23972
+			// Token: 0x040071EE RID: 29166
 			BUFF206,
-			// Token: 0x04005DA5 RID: 23973
+			// Token: 0x040071EF RID: 29167
 			BUFF207,
-			// Token: 0x04005DA6 RID: 23974
+			// Token: 0x040071F0 RID: 29168
 			BUFF209 = 209,
-			// Token: 0x04005DA7 RID: 23975
+			// Token: 0x040071F1 RID: 29169
 			BUFF210,
-			// Token: 0x04005DA8 RID: 23976
+			// Token: 0x040071F2 RID: 29170
 			BUFF211,
-			// Token: 0x04005DA9 RID: 23977
+			// Token: 0x040071F3 RID: 29171
 			BUFF213 = 213,
-			// Token: 0x04005DAA RID: 23978
+			// Token: 0x040071F4 RID: 29172
 			BUFF214,
-			// Token: 0x04005DAB RID: 23979
+			// Token: 0x040071F5 RID: 29173
 			BUFF215,
-			// Token: 0x04005DAC RID: 23980
-			BUFF216
+			// Token: 0x040071F6 RID: 29174
+			BUFF216,
+			// Token: 0x040071F7 RID: 29175
+			BUFF217,
+			// Token: 0x040071F8 RID: 29176
+			BUFF218,
+			// Token: 0x040071F9 RID: 29177
+			BUFF219
 		}
 	}
 }

@@ -3,12 +3,12 @@ using UnityEngine;
 
 namespace BehaviorDesigner.Runtime.Tasks.Basic.UnityAnimator
 {
-	// Token: 0x02001660 RID: 5728
+	// Token: 0x0200119E RID: 4510
 	[TaskCategory("Basic/Animator")]
 	[TaskDescription("Sets the look at position. Returns Success.")]
 	public class SetLookAtPosition : Action
 	{
-		// Token: 0x0600851A RID: 34074 RVA: 0x002D074C File Offset: 0x002CE94C
+		// Token: 0x0600770E RID: 30478 RVA: 0x002B80F4 File Offset: 0x002B62F4
 		public override void OnStart()
 		{
 			GameObject defaultGameObject = base.GetDefaultGameObject(this.targetGameObject.Value);
@@ -20,7 +20,7 @@ namespace BehaviorDesigner.Runtime.Tasks.Basic.UnityAnimator
 			this.positionSet = false;
 		}
 
-		// Token: 0x0600851B RID: 34075 RVA: 0x0005C406 File Offset: 0x0005A606
+		// Token: 0x0600770F RID: 30479 RVA: 0x002B813B File Offset: 0x002B633B
 		public override TaskStatus OnUpdate()
 		{
 			if (this.animator == null)
@@ -35,7 +35,7 @@ namespace BehaviorDesigner.Runtime.Tasks.Basic.UnityAnimator
 			return 2;
 		}
 
-		// Token: 0x0600851C RID: 34076 RVA: 0x0005C42D File Offset: 0x0005A62D
+		// Token: 0x06007710 RID: 30480 RVA: 0x002B8162 File Offset: 0x002B6362
 		public override void OnAnimatorIK()
 		{
 			if (this.animator == null)
@@ -46,28 +46,28 @@ namespace BehaviorDesigner.Runtime.Tasks.Basic.UnityAnimator
 			this.positionSet = true;
 		}
 
-		// Token: 0x0600851D RID: 34077 RVA: 0x0005C45B File Offset: 0x0005A65B
+		// Token: 0x06007711 RID: 30481 RVA: 0x002B8190 File Offset: 0x002B6390
 		public override void OnReset()
 		{
 			this.targetGameObject = null;
 			this.position = Vector3.zero;
 		}
 
-		// Token: 0x040071D2 RID: 29138
+		// Token: 0x040062A3 RID: 25251
 		[Tooltip("The GameObject that the task operates on. If null the task GameObject is used.")]
 		public SharedGameObject targetGameObject;
 
-		// Token: 0x040071D3 RID: 29139
+		// Token: 0x040062A4 RID: 25252
 		[Tooltip("The position to lookAt")]
 		public SharedVector3 position;
 
-		// Token: 0x040071D4 RID: 29140
+		// Token: 0x040062A5 RID: 25253
 		private Animator animator;
 
-		// Token: 0x040071D5 RID: 29141
+		// Token: 0x040062A6 RID: 25254
 		private GameObject prevGameObject;
 
-		// Token: 0x040071D6 RID: 29142
+		// Token: 0x040062A7 RID: 25255
 		private bool positionSet;
 	}
 }

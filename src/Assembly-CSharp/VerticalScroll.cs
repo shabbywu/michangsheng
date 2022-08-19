@@ -1,10 +1,10 @@
 ﻿using System;
 using UnityEngine;
 
-// Token: 0x020007A6 RID: 1958
+// Token: 0x02000512 RID: 1298
 public class VerticalScroll : MonoBehaviour
 {
-	// Token: 0x060031D3 RID: 12755 RVA: 0x0018C2C4 File Offset: 0x0018A4C4
+	// Token: 0x060029C0 RID: 10688 RVA: 0x0013EF40 File Offset: 0x0013D140
 	private void Start()
 	{
 		this.items = base.transform.Find("Items");
@@ -12,7 +12,7 @@ public class VerticalScroll : MonoBehaviour
 		this.downLimitY = this.downLimit.position.y;
 	}
 
-	// Token: 0x060031D4 RID: 12756 RVA: 0x0018C314 File Offset: 0x0018A514
+	// Token: 0x060029C1 RID: 10689 RVA: 0x0013EF90 File Offset: 0x0013D190
 	private void Update()
 	{
 		if (this.canScroll)
@@ -61,7 +61,7 @@ public class VerticalScroll : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060031D5 RID: 12757 RVA: 0x0018C5B0 File Offset: 0x0018A7B0
+	// Token: 0x060029C2 RID: 10690 RVA: 0x0013F22C File Offset: 0x0013D42C
 	private string RaycastFunction(Vector3 obj)
 	{
 		RaycastHit raycastHit;
@@ -72,48 +72,48 @@ public class VerticalScroll : MonoBehaviour
 		return string.Empty;
 	}
 
-	// Token: 0x04002E07 RID: 11783
+	// Token: 0x04002617 RID: 9751
 	public Transform upLimit;
 
-	// Token: 0x04002E08 RID: 11784
+	// Token: 0x04002618 RID: 9752
 	public Transform downLimit;
 
-	// Token: 0x04002E09 RID: 11785
+	// Token: 0x04002619 RID: 9753
 	private Transform items;
 
-	// Token: 0x04002E0A RID: 11786
+	// Token: 0x0400261A RID: 9754
 	private float upLimitY;
 
-	// Token: 0x04002E0B RID: 11787
+	// Token: 0x0400261B RID: 9755
 	private float downLimitY;
 
-	// Token: 0x04002E0C RID: 11788
+	// Token: 0x0400261C RID: 9756
 	private bool pomeraj;
 
-	// Token: 0x04002E0D RID: 11789
+	// Token: 0x0400261D RID: 9757
 	private float startY;
 
-	// Token: 0x04002E0E RID: 11790
+	// Token: 0x0400261E RID: 9758
 	private float endY;
 
-	// Token: 0x04002E0F RID: 11791
+	// Token: 0x0400261F RID: 9759
 	public bool canScroll = true;
 
-	// Token: 0x04002E10 RID: 11792
+	// Token: 0x04002620 RID: 9760
 	private string clickedItem;
 
-	// Token: 0x04002E11 RID: 11793
+	// Token: 0x04002621 RID: 9761
 	private string releasedItem;
 
-	// Token: 0x04002E12 RID: 11794
+	// Token: 0x04002622 RID: 9762
 	private float offsetY;
 
-	// Token: 0x04002E13 RID: 11795
+	// Token: 0x04002623 RID: 9763
 	private bool bounce;
 
-	// Token: 0x04002E14 RID: 11796
+	// Token: 0x04002624 RID: 9764
 	private bool moved;
 
-	// Token: 0x04002E15 RID: 11797
+	// Token: 0x04002625 RID: 9765
 	private bool released;
 }

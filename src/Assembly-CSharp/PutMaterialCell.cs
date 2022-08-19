@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using JSONClass;
 using LianQi;
 
-// Token: 0x02000466 RID: 1126
+// Token: 0x02000309 RID: 777
 public class PutMaterialCell : LianQiSlot
 {
-	// Token: 0x06001E3D RID: 7741 RVA: 0x0001917C File Offset: 0x0001737C
+	// Token: 0x06001B17 RID: 6935 RVA: 0x000C16BE File Offset: 0x000BF8BE
 	public override void SetSlotData(object data)
 	{
 		this.UpdateItem();
@@ -14,14 +14,14 @@ public class PutMaterialCell : LianQiSlot
 		this.SetShuXing();
 	}
 
-	// Token: 0x06001E3E RID: 7742 RVA: 0x00019191 File Offset: 0x00017391
+	// Token: 0x06001B18 RID: 6936 RVA: 0x000C16D3 File Offset: 0x000BF8D3
 	public override void SetNull()
 	{
 		base.SetNull();
 		this.UpdateItem();
 	}
 
-	// Token: 0x06001E3F RID: 7743 RVA: 0x00106F18 File Offset: 0x00105118
+	// Token: 0x06001B19 RID: 6937 RVA: 0x000C16E4 File Offset: 0x000BF8E4
 	public void SetShuXing()
 	{
 		if (base.IsNull())
@@ -39,7 +39,7 @@ public class PutMaterialCell : LianQiSlot
 		this.SetLingLi();
 	}
 
-	// Token: 0x06001E40 RID: 7744 RVA: 0x0001919F File Offset: 0x0001739F
+	// Token: 0x06001B1A RID: 6938 RVA: 0x000C1792 File Offset: 0x000BF992
 	public void UpdateItem()
 	{
 		this.qinHe = 0;
@@ -52,7 +52,7 @@ public class PutMaterialCell : LianQiSlot
 		this.attackType = -1;
 	}
 
-	// Token: 0x06001E41 RID: 7745 RVA: 0x000191D9 File Offset: 0x000173D9
+	// Token: 0x06001B1B RID: 6939 RVA: 0x000C17CC File Offset: 0x000BF9CC
 	private void SetWuWei(int qinHe, int caoKong, int linxing, int jianGuo, int renXing)
 	{
 		this.qinHe = qinHe;
@@ -62,14 +62,14 @@ public class PutMaterialCell : LianQiSlot
 		this.renXing = renXing;
 	}
 
-	// Token: 0x06001E42 RID: 7746 RVA: 0x00106FC8 File Offset: 0x001051C8
+	// Token: 0x06001B1C RID: 6940 RVA: 0x000C17F4 File Offset: 0x000BF9F4
 	private void SetLingLi()
 	{
 		int quality = _ItemJsonData.DataDict[this.Item.Id].quality;
 		this.lingLi = jsonData.instance.CaiLiaoNengLiangBiao[quality.ToString()]["value1"].I;
 	}
 
-	// Token: 0x06001E43 RID: 7747 RVA: 0x0010701C File Offset: 0x0010521C
+	// Token: 0x06001B1D RID: 6941 RVA: 0x000C1848 File Offset: 0x000BFA48
 	private void SetShuXingType()
 	{
 		this.shuXingTypeID = 0;
@@ -95,27 +95,27 @@ public class PutMaterialCell : LianQiSlot
 		}
 	}
 
-	// Token: 0x040019AD RID: 6573
+	// Token: 0x040015A0 RID: 5536
 	public int qinHe;
 
-	// Token: 0x040019AE RID: 6574
+	// Token: 0x040015A1 RID: 5537
 	public int caoKong;
 
-	// Token: 0x040019AF RID: 6575
+	// Token: 0x040015A2 RID: 5538
 	public int linxing;
 
-	// Token: 0x040019B0 RID: 6576
+	// Token: 0x040015A3 RID: 5539
 	public int jianGuo;
 
-	// Token: 0x040019B1 RID: 6577
+	// Token: 0x040015A4 RID: 5540
 	public int renXing;
 
-	// Token: 0x040019B2 RID: 6578
+	// Token: 0x040015A5 RID: 5541
 	public int lingLi;
 
-	// Token: 0x040019B3 RID: 6579
+	// Token: 0x040015A6 RID: 5542
 	public int shuXingTypeID;
 
-	// Token: 0x040019B4 RID: 6580
+	// Token: 0x040015A7 RID: 5543
 	public int attackType = -1;
 }

@@ -7,10 +7,10 @@ using UnityEngine.UI;
 
 namespace JiaoYi
 {
-	// Token: 0x02000A86 RID: 2694
+	// Token: 0x0200072D RID: 1837
 	public class JiaoYiFilterTop : MonoBehaviour, IFilterTop
 	{
-		// Token: 0x06004530 RID: 17712 RVA: 0x0003180D File Offset: 0x0002FA0D
+		// Token: 0x06003A84 RID: 14980 RVA: 0x001921E8 File Offset: 0x001903E8
 		public void Clear()
 		{
 			Tools.ClearChild(this.Select.transform);
@@ -19,7 +19,7 @@ namespace JiaoYi
 			this.Unselect.gameObject.SetActive(true);
 		}
 
-		// Token: 0x06004531 RID: 17713 RVA: 0x001D99A4 File Offset: 0x001D7BA4
+		// Token: 0x06003A85 RID: 14981 RVA: 0x00192224 File Offset: 0x00190424
 		public void Init(object data, FilterType type, string title)
 		{
 			this.BaseBag2 = (BaseBag2)data;
@@ -44,7 +44,7 @@ namespace JiaoYi
 			base.gameObject.SetActive(true);
 		}
 
-		// Token: 0x06004532 RID: 17714 RVA: 0x00031848 File Offset: 0x0002FA48
+		// Token: 0x06003A86 RID: 14982 RVA: 0x001922D4 File Offset: 0x001904D4
 		public void ClickEvent()
 		{
 			this.BaseBag2.CloseAllTopFilter();
@@ -53,7 +53,7 @@ namespace JiaoYi
 			this.Unselect.gameObject.SetActive(false);
 		}
 
-		// Token: 0x06004533 RID: 17715 RVA: 0x001D9A54 File Offset: 0x001D7C54
+		// Token: 0x06003A87 RID: 14983 RVA: 0x00192304 File Offset: 0x00190504
 		public void CreateChild()
 		{
 			Tools.ClearChild(this.Select.transform);
@@ -102,8 +102,8 @@ namespace JiaoYi
 			}
 		}
 
-		// Token: 0x06004534 RID: 17716 RVA: 0x001D9B20 File Offset: 0x001D7D20
-		public void CreateQuality()
+		// Token: 0x06003A88 RID: 14984 RVA: 0x001923D0 File Offset: 0x001905D0
+		public virtual void CreateQuality()
 		{
 			Array values = Enum.GetValues(typeof(ItemQuality));
 			int num = values.Length - 1;
@@ -140,7 +140,7 @@ namespace JiaoYi
 			}
 		}
 
-		// Token: 0x06004535 RID: 17717 RVA: 0x001D9C60 File Offset: 0x001D7E60
+		// Token: 0x06003A89 RID: 14985 RVA: 0x00192510 File Offset: 0x00190710
 		public void CreateEquipType()
 		{
 			Array values = Enum.GetValues(typeof(EquipType));
@@ -178,7 +178,7 @@ namespace JiaoYi
 			}
 		}
 
-		// Token: 0x06004536 RID: 17718 RVA: 0x001D9DA0 File Offset: 0x001D7FA0
+		// Token: 0x06003A8A RID: 14986 RVA: 0x00192650 File Offset: 0x00190850
 		public void CreateSkillType()
 		{
 			Array values = Enum.GetValues(typeof(JiaoYiSkillType));
@@ -224,7 +224,7 @@ namespace JiaoYi
 			}
 		}
 
-		// Token: 0x06004537 RID: 17719 RVA: 0x001D9EE0 File Offset: 0x001D80E0
+		// Token: 0x06003A8B RID: 14987 RVA: 0x00192790 File Offset: 0x00190990
 		public void CreateCaiLiaoYinYang()
 		{
 			Array values = Enum.GetValues(typeof(LianQiCaiLiaoYinYang));
@@ -262,7 +262,7 @@ namespace JiaoYi
 			}
 		}
 
-		// Token: 0x06004538 RID: 17720 RVA: 0x001DA020 File Offset: 0x001D8220
+		// Token: 0x06003A8C RID: 14988 RVA: 0x001928D0 File Offset: 0x00190AD0
 		public void CreateActiveSkillType()
 		{
 			Array values = Enum.GetValues(typeof(SkIllType));
@@ -300,7 +300,7 @@ namespace JiaoYi
 			}
 		}
 
-		// Token: 0x06004539 RID: 17721 RVA: 0x001DA160 File Offset: 0x001D8360
+		// Token: 0x06003A8D RID: 14989 RVA: 0x00192A10 File Offset: 0x00190C10
 		public void CreatePasstiveSkillType()
 		{
 			Array values = Enum.GetValues(typeof(StaticSkIllType));
@@ -338,7 +338,7 @@ namespace JiaoYi
 			}
 		}
 
-		// Token: 0x0600453A RID: 17722 RVA: 0x001DA2A0 File Offset: 0x001D84A0
+		// Token: 0x06003A8E RID: 14990 RVA: 0x00192B50 File Offset: 0x00190D50
 		public void CreateCaiLiaoType()
 		{
 			Array values = Enum.GetValues(typeof(LianQiCaiLiaoType));
@@ -376,28 +376,28 @@ namespace JiaoYi
 			}
 		}
 
-		// Token: 0x04003D6A RID: 15722
+		// Token: 0x040032C7 RID: 12999
 		public FilterType FilterType;
 
-		// Token: 0x04003D6B RID: 15723
+		// Token: 0x040032C8 RID: 13000
 		public Text CurType;
 
-		// Token: 0x04003D6C RID: 15724
+		// Token: 0x040032C9 RID: 13001
 		public GameObject Select;
 
-		// Token: 0x04003D6D RID: 15725
+		// Token: 0x040032CA RID: 13002
 		public FpBtn Unselect;
 
-		// Token: 0x04003D6E RID: 15726
+		// Token: 0x040032CB RID: 13003
 		public BaseFilterTopChild ChildUp;
 
-		// Token: 0x04003D6F RID: 15727
+		// Token: 0x040032CC RID: 13004
 		public BaseFilterTopChild ChildCenter;
 
-		// Token: 0x04003D70 RID: 15728
+		// Token: 0x040032CD RID: 13005
 		public BaseFilterTopChild ChildDown;
 
-		// Token: 0x04003D71 RID: 15729
+		// Token: 0x040032CE RID: 13006
 		public BaseBag2 BaseBag2;
 	}
 }

@@ -7,10 +7,10 @@ using MoonSharp.Interpreter.Tree.Expressions;
 
 namespace MoonSharp.Interpreter.Tree.Statements
 {
-	// Token: 0x020010A6 RID: 4262
+	// Token: 0x02000CD0 RID: 3280
 	internal class AssignmentStatement : Statement
 	{
-		// Token: 0x06006718 RID: 26392 RVA: 0x00286CC8 File Offset: 0x00284EC8
+		// Token: 0x06005C0F RID: 23567 RVA: 0x0025D4B8 File Offset: 0x0025B6B8
 		public AssignmentStatement(ScriptLoadingContext lcontext, Token startToken) : base(lcontext)
 		{
 			List<string> list = new List<string>();
@@ -44,7 +44,7 @@ namespace MoonSharp.Interpreter.Tree.Statements
 			lcontext.Source.Refs.Add(this.m_Ref);
 		}
 
-		// Token: 0x06006719 RID: 26393 RVA: 0x00286DEC File Offset: 0x00284FEC
+		// Token: 0x06005C10 RID: 23568 RVA: 0x0025D5DC File Offset: 0x0025B7DC
 		public AssignmentStatement(ScriptLoadingContext lcontext, Expression firstExpression, Token first) : base(lcontext)
 		{
 			this.m_LValues.Add(this.CheckVar(lcontext, firstExpression));
@@ -61,7 +61,7 @@ namespace MoonSharp.Interpreter.Tree.Statements
 			lcontext.Source.Refs.Add(this.m_Ref);
 		}
 
-		// Token: 0x0600671A RID: 26394 RVA: 0x00286EA0 File Offset: 0x002850A0
+		// Token: 0x06005C11 RID: 23569 RVA: 0x0025D690 File Offset: 0x0025B890
 		private IVariable CheckVar(ScriptLoadingContext lcontext, Expression firstExpression)
 		{
 			IVariable variable = firstExpression as IVariable;
@@ -75,7 +75,7 @@ namespace MoonSharp.Interpreter.Tree.Statements
 			return variable;
 		}
 
-		// Token: 0x0600671B RID: 26395 RVA: 0x00286EE4 File Offset: 0x002850E4
+		// Token: 0x06005C12 RID: 23570 RVA: 0x0025D6D4 File Offset: 0x0025B8D4
 		public override void Compile(ByteCode bc)
 		{
 			using (bc.EnterSource(this.m_Ref))
@@ -92,13 +92,13 @@ namespace MoonSharp.Interpreter.Tree.Statements
 			}
 		}
 
-		// Token: 0x04005F34 RID: 24372
+		// Token: 0x04005351 RID: 21329
 		private List<IVariable> m_LValues = new List<IVariable>();
 
-		// Token: 0x04005F35 RID: 24373
+		// Token: 0x04005352 RID: 21330
 		private List<Expression> m_RValues;
 
-		// Token: 0x04005F36 RID: 24374
+		// Token: 0x04005353 RID: 21331
 		private SourceRef m_Ref;
 	}
 }

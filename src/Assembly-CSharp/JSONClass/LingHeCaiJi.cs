@@ -3,10 +3,10 @@ using System.Collections.Generic;
 
 namespace JSONClass
 {
-	// Token: 0x02000C10 RID: 3088
+	// Token: 0x02000882 RID: 2178
 	public class LingHeCaiJi : IJSONClass
 	{
-		// Token: 0x06004BA9 RID: 19369 RVA: 0x001FF138 File Offset: 0x001FD338
+		// Token: 0x0600401B RID: 16411 RVA: 0x001B59D8 File Offset: 0x001B3BD8
 		public static void InitDataDict()
 		{
 			foreach (JSONObject jsonobject in jsonData.instance.LingHeCaiJi.list)
@@ -41,30 +41,30 @@ namespace JSONClass
 			}
 		}
 
-		// Token: 0x06004BAA RID: 19370 RVA: 0x000042DD File Offset: 0x000024DD
+		// Token: 0x0600401C RID: 16412 RVA: 0x00004095 File Offset: 0x00002295
 		private static void OnInitFinish()
 		{
 		}
 
-		// Token: 0x04004873 RID: 18547
+		// Token: 0x04003D1A RID: 15642
 		public static Dictionary<int, LingHeCaiJi> DataDict = new Dictionary<int, LingHeCaiJi>();
 
-		// Token: 0x04004874 RID: 18548
+		// Token: 0x04003D1B RID: 15643
 		public static List<LingHeCaiJi> DataList = new List<LingHeCaiJi>();
 
-		// Token: 0x04004875 RID: 18549
+		// Token: 0x04003D1C RID: 15644
 		public static Action OnInitFinishAction = new Action(LingHeCaiJi.OnInitFinish);
 
-		// Token: 0x04004876 RID: 18550
+		// Token: 0x04003D1D RID: 15645
 		public int MapIndex;
 
-		// Token: 0x04004877 RID: 18551
+		// Token: 0x04003D1E RID: 15646
 		public int ShouYiLv;
 
-		// Token: 0x04004878 RID: 18552
+		// Token: 0x04003D1F RID: 15647
 		public int LingHe;
 
-		// Token: 0x04004879 RID: 18553
+		// Token: 0x04003D20 RID: 15648
 		public int ShengShiLimit;
 	}
 }

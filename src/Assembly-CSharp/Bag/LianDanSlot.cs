@@ -7,10 +7,10 @@ using UnityEngine.UI;
 
 namespace Bag
 {
-	// Token: 0x02000D49 RID: 3401
+	// Token: 0x020009C0 RID: 2496
 	public class LianDanSlot : BaseSlot
 	{
-		// Token: 0x060050D6 RID: 20694 RVA: 0x0003A2D8 File Offset: 0x000384D8
+		// Token: 0x06004571 RID: 17777 RVA: 0x001D73E0 File Offset: 0x001D55E0
 		private void Awake()
 		{
 			if (!this.IsInBag)
@@ -19,14 +19,14 @@ namespace Bag
 			}
 		}
 
-		// Token: 0x060050D7 RID: 20695 RVA: 0x0003A2FF File Offset: 0x000384FF
+		// Token: 0x06004572 RID: 17778 RVA: 0x001D7407 File Offset: 0x001D5607
 		public override void SetSlotData(object data)
 		{
 			base.SetSlotData(data);
 			this.UpdateYaoXin();
 		}
 
-		// Token: 0x060050D8 RID: 20696 RVA: 0x0021B380 File Offset: 0x00219580
+		// Token: 0x06004573 RID: 17779 RVA: 0x001D7418 File Offset: 0x001D5618
 		public void UpdateYaoXin()
 		{
 			if (this.Item == null)
@@ -52,7 +52,7 @@ namespace Bag
 			}
 		}
 
-		// Token: 0x060050D9 RID: 20697 RVA: 0x0021B420 File Offset: 0x00219620
+		// Token: 0x06004574 RID: 17780 RVA: 0x001D74B8 File Offset: 0x001D56B8
 		public override void InitUI()
 		{
 			base.InitUI();
@@ -67,7 +67,7 @@ namespace Bag
 			}
 		}
 
-		// Token: 0x060050DA RID: 20698 RVA: 0x0021B494 File Offset: 0x00219694
+		// Token: 0x06004575 RID: 17781 RVA: 0x001D752C File Offset: 0x001D572C
 		public void SetIsLock(bool value)
 		{
 			this.IsLock = value;
@@ -82,7 +82,7 @@ namespace Bag
 			this._unLock.SetActive(true);
 		}
 
-		// Token: 0x060050DB RID: 20699 RVA: 0x0021B4E8 File Offset: 0x002196E8
+		// Token: 0x06004576 RID: 17782 RVA: 0x001D7580 File Offset: 0x001D5780
 		public override void OnPointerUp(PointerEventData eventData)
 		{
 			if (this.IsLock)
@@ -123,7 +123,7 @@ namespace Bag
 			this._selectPanel.SetActive(false);
 		}
 
-		// Token: 0x060050DC RID: 20700 RVA: 0x0003A30E File Offset: 0x0003850E
+		// Token: 0x06004577 RID: 17783 RVA: 0x001D769D File Offset: 0x001D589D
 		public override void SetNull()
 		{
 			base.SetNull();
@@ -133,19 +133,19 @@ namespace Bag
 			}
 		}
 
-		// Token: 0x04005201 RID: 20993
+		// Token: 0x040046FD RID: 18173
 		public bool IsInBag;
 
-		// Token: 0x04005202 RID: 20994
+		// Token: 0x040046FE RID: 18174
 		public bool IsLock;
 
-		// Token: 0x04005203 RID: 20995
+		// Token: 0x040046FF RID: 18175
 		private Text _yaoXin;
 
-		// Token: 0x04005204 RID: 20996
+		// Token: 0x04004700 RID: 18176
 		private GameObject _lock;
 
-		// Token: 0x04005205 RID: 20997
+		// Token: 0x04004701 RID: 18177
 		private GameObject _unLock;
 	}
 }

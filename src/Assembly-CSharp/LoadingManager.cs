@@ -2,15 +2,15 @@
 using System.Collections;
 using UnityEngine;
 
-// Token: 0x020006BB RID: 1723
+// Token: 0x020004BB RID: 1211
 public class LoadingManager : MonoBehaviour
 {
-	// Token: 0x06002B15 RID: 11029 RVA: 0x000042DD File Offset: 0x000024DD
+	// Token: 0x0600264F RID: 9807 RVA: 0x00004095 File Offset: 0x00002295
 	private void Awake()
 	{
 	}
 
-	// Token: 0x06002B16 RID: 11030 RVA: 0x0014E668 File Offset: 0x0014C868
+	// Token: 0x06002650 RID: 9808 RVA: 0x0010A340 File Offset: 0x00108540
 	private void Start()
 	{
 		if (LoadingManager.previousLevel == "PrepareManagersScene")
@@ -27,14 +27,14 @@ public class LoadingManager : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06002B17 RID: 11031 RVA: 0x000214A3 File Offset: 0x0001F6A3
+	// Token: 0x06002651 RID: 9809 RVA: 0x0010A3AA File Offset: 0x001085AA
 	private IEnumerator saveData()
 	{
 		yield return null;
 		yield break;
 	}
 
-	// Token: 0x06002B18 RID: 11032 RVA: 0x0014E6D4 File Offset: 0x0014C8D4
+	// Token: 0x06002652 RID: 9810 RVA: 0x0010A3B4 File Offset: 0x001085B4
 	private void Update()
 	{
 		if (LoadingManager.previousLevel == "PlayScene" && StagesParser.saving)
@@ -80,9 +80,9 @@ public class LoadingManager : MonoBehaviour
 		}
 	}
 
-	// Token: 0x04002547 RID: 9543
+	// Token: 0x04001F94 RID: 8084
 	public static string previousLevel = "";
 
-	// Token: 0x04002548 RID: 9544
+	// Token: 0x04001F95 RID: 8085
 	public static string nextLevel = "";
 }

@@ -3,12 +3,12 @@ using UnityEngine;
 
 namespace BehaviorDesigner.Runtime.Tasks.Basic.UnityRigidbody
 {
-	// Token: 0x02001546 RID: 5446
+	// Token: 0x0200108C RID: 4236
 	[TaskCategory("Basic/Rigidbody")]
 	[TaskDescription("Applies a force to the rigidbody that simulates explosion effects. Returns Success.")]
 	public class AddExplosionForce : Action
 	{
-		// Token: 0x06008116 RID: 33046 RVA: 0x002CBC64 File Offset: 0x002C9E64
+		// Token: 0x0600731C RID: 29468 RVA: 0x002AF3D4 File Offset: 0x002AD5D4
 		public override void OnStart()
 		{
 			GameObject defaultGameObject = base.GetDefaultGameObject(this.targetGameObject.Value);
@@ -19,7 +19,7 @@ namespace BehaviorDesigner.Runtime.Tasks.Basic.UnityRigidbody
 			}
 		}
 
-		// Token: 0x06008117 RID: 33047 RVA: 0x002CBCA4 File Offset: 0x002C9EA4
+		// Token: 0x0600731D RID: 29469 RVA: 0x002AF414 File Offset: 0x002AD614
 		public override TaskStatus OnUpdate()
 		{
 			if (this.rigidbody == null)
@@ -31,7 +31,7 @@ namespace BehaviorDesigner.Runtime.Tasks.Basic.UnityRigidbody
 			return 2;
 		}
 
-		// Token: 0x06008118 RID: 33048 RVA: 0x002CBD04 File Offset: 0x002C9F04
+		// Token: 0x0600731E RID: 29470 RVA: 0x002AF474 File Offset: 0x002AD674
 		public override void OnReset()
 		{
 			this.targetGameObject = null;
@@ -42,34 +42,34 @@ namespace BehaviorDesigner.Runtime.Tasks.Basic.UnityRigidbody
 			this.forceMode = 0;
 		}
 
-		// Token: 0x04006DC8 RID: 28104
+		// Token: 0x04005EC8 RID: 24264
 		[Tooltip("The GameObject that the task operates on. If null the task GameObject is used.")]
 		public SharedGameObject targetGameObject;
 
-		// Token: 0x04006DC9 RID: 28105
+		// Token: 0x04005EC9 RID: 24265
 		[Tooltip("The force of the explosion")]
 		public SharedFloat explosionForce;
 
-		// Token: 0x04006DCA RID: 28106
+		// Token: 0x04005ECA RID: 24266
 		[Tooltip("The position of the explosion")]
 		public SharedVector3 explosionPosition;
 
-		// Token: 0x04006DCB RID: 28107
+		// Token: 0x04005ECB RID: 24267
 		[Tooltip("The radius of the explosion")]
 		public SharedFloat explosionRadius;
 
-		// Token: 0x04006DCC RID: 28108
+		// Token: 0x04005ECC RID: 24268
 		[Tooltip("Applies the force as if it was applied from beneath the object")]
 		public float upwardsModifier;
 
-		// Token: 0x04006DCD RID: 28109
+		// Token: 0x04005ECD RID: 24269
 		[Tooltip("The type of force")]
 		public ForceMode forceMode;
 
-		// Token: 0x04006DCE RID: 28110
+		// Token: 0x04005ECE RID: 24270
 		private Rigidbody rigidbody;
 
-		// Token: 0x04006DCF RID: 28111
+		// Token: 0x04005ECF RID: 24271
 		private GameObject prevGameObject;
 	}
 }

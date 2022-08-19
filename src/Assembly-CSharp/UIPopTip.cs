@@ -3,16 +3,16 @@ using System.Collections.Generic;
 using UnityEngine;
 using YSGame;
 
-// Token: 0x020004DF RID: 1247
+// Token: 0x02000362 RID: 866
 public class UIPopTip : MonoBehaviour
 {
-	// Token: 0x0600208E RID: 8334 RVA: 0x0001AC6E File Offset: 0x00018E6E
+	// Token: 0x06001D24 RID: 7460 RVA: 0x000CEC12 File Offset: 0x000CCE12
 	private void Awake()
 	{
 		UIPopTip.Inst = this;
 	}
 
-	// Token: 0x0600208F RID: 8335 RVA: 0x001135D4 File Offset: 0x001117D4
+	// Token: 0x06001D25 RID: 7461 RVA: 0x000CEC1C File Offset: 0x000CCE1C
 	private void Update()
 	{
 		if (this.minCD > 0f)
@@ -60,7 +60,7 @@ public class UIPopTip : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06002090 RID: 8336 RVA: 0x001137CC File Offset: 0x001119CC
+	// Token: 0x06001D26 RID: 7462 RVA: 0x000CEE14 File Offset: 0x000CD014
 	public void Pop(string msg, PopTipIconType iconType = PopTipIconType.叹号)
 	{
 		PopTipData popTipData = new PopTipData();
@@ -69,7 +69,7 @@ public class UIPopTip : MonoBehaviour
 		this.WaitForShow.Enqueue(popTipData);
 	}
 
-	// Token: 0x06002091 RID: 8337 RVA: 0x001137FC File Offset: 0x001119FC
+	// Token: 0x06001D27 RID: 7463 RVA: 0x000CEE44 File Offset: 0x000CD044
 	public void PopAddItem(string itemName, int itemCount)
 	{
 		if (!this.addItemMergeMsgDict.ContainsKey(itemName))
@@ -80,7 +80,7 @@ public class UIPopTip : MonoBehaviour
 		dictionary[itemName] += itemCount;
 	}
 
-	// Token: 0x06002092 RID: 8338 RVA: 0x00113840 File Offset: 0x00111A40
+	// Token: 0x06001D28 RID: 7464 RVA: 0x000CEE88 File Offset: 0x000CD088
 	private UIPopTipItem CreateTipObject(PopTipData data)
 	{
 		GameObject gameObject = Object.Instantiate<GameObject>(this.TipPrefab, this.TipItemRoot);
@@ -96,40 +96,40 @@ public class UIPopTip : MonoBehaviour
 		return component;
 	}
 
-	// Token: 0x04001BFF RID: 7167
+	// Token: 0x040017AD RID: 6061
 	public static UIPopTip Inst;
 
-	// Token: 0x04001C00 RID: 7168
+	// Token: 0x040017AE RID: 6062
 	[SerializeField]
 	private RectTransform TipItemRoot;
 
-	// Token: 0x04001C01 RID: 7169
+	// Token: 0x040017AF RID: 6063
 	[SerializeField]
 	private GameObject TipPrefab;
 
-	// Token: 0x04001C02 RID: 7170
+	// Token: 0x040017B0 RID: 6064
 	[SerializeField]
 	private List<Sprite> Icon;
 
-	// Token: 0x04001C03 RID: 7171
+	// Token: 0x040017B1 RID: 6065
 	[SerializeField]
 	private List<AudioClip> PopEffectSounds;
 
-	// Token: 0x04001C04 RID: 7172
+	// Token: 0x040017B2 RID: 6066
 	private List<UIPopTipItem> Tips = new List<UIPopTipItem>();
 
-	// Token: 0x04001C05 RID: 7173
+	// Token: 0x040017B3 RID: 6067
 	private Queue<PopTipData> WaitForShow = new Queue<PopTipData>();
 
-	// Token: 0x04001C06 RID: 7174
+	// Token: 0x040017B4 RID: 6068
 	private float minCD;
 
-	// Token: 0x04001C07 RID: 7175
+	// Token: 0x040017B5 RID: 6069
 	private float tweenDestoryCD;
 
-	// Token: 0x04001C08 RID: 7176
+	// Token: 0x040017B6 RID: 6070
 	private Dictionary<string, int> addItemMergeMsgDict = new Dictionary<string, int>();
 
-	// Token: 0x04001C09 RID: 7177
+	// Token: 0x040017B7 RID: 6071
 	private float addItemMergeCD;
 }

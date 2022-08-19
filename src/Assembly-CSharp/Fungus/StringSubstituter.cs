@@ -4,10 +4,10 @@ using System.Text;
 
 namespace Fungus
 {
-	// Token: 0x020013AC RID: 5036
+	// Token: 0x02000F07 RID: 3847
 	public class StringSubstituter : IStringSubstituter
 	{
-		// Token: 0x060079FA RID: 31226 RVA: 0x00053351 File Offset: 0x00051551
+		// Token: 0x06006C46 RID: 27718 RVA: 0x002986EA File Offset: 0x002968EA
 		public static void RegisterHandler(ISubstitutionHandler handler)
 		{
 			if (!StringSubstituter.substitutionHandlers.Contains(handler))
@@ -16,21 +16,21 @@ namespace Fungus
 			}
 		}
 
-		// Token: 0x060079FB RID: 31227 RVA: 0x0005336B File Offset: 0x0005156B
+		// Token: 0x06006C47 RID: 27719 RVA: 0x00298704 File Offset: 0x00296904
 		public static void UnregisterHandler(ISubstitutionHandler handler)
 		{
 			StringSubstituter.substitutionHandlers.Remove(handler);
 		}
 
-		// Token: 0x060079FC RID: 31228 RVA: 0x00053379 File Offset: 0x00051579
+		// Token: 0x06006C48 RID: 27720 RVA: 0x00298712 File Offset: 0x00296912
 		public StringSubstituter(int recursionDepth = 5)
 		{
 			this.stringBuilder = new StringBuilder(1024);
 			this.recursionDepth = recursionDepth;
 		}
 
-		// Token: 0x17000B8B RID: 2955
-		// (get) Token: 0x060079FD RID: 31229 RVA: 0x00053398 File Offset: 0x00051598
+		// Token: 0x170008E8 RID: 2280
+		// (get) Token: 0x06006C49 RID: 27721 RVA: 0x00298731 File Offset: 0x00296931
 		public virtual StringBuilder _StringBuilder
 		{
 			get
@@ -39,7 +39,7 @@ namespace Fungus
 			}
 		}
 
-		// Token: 0x060079FE RID: 31230 RVA: 0x000533A0 File Offset: 0x000515A0
+		// Token: 0x06006C4A RID: 27722 RVA: 0x00298739 File Offset: 0x00296939
 		public virtual string SubstituteStrings(string input)
 		{
 			this.stringBuilder.Length = 0;
@@ -51,7 +51,7 @@ namespace Fungus
 			return input;
 		}
 
-		// Token: 0x060079FF RID: 31231 RVA: 0x002B97F8 File Offset: 0x002B79F8
+		// Token: 0x06006C4B RID: 27723 RVA: 0x00298770 File Offset: 0x00296970
 		public virtual bool SubstituteStrings(StringBuilder input)
 		{
 			bool result = false;
@@ -77,13 +77,13 @@ namespace Fungus
 			return result;
 		}
 
-		// Token: 0x0400696D RID: 26989
+		// Token: 0x04005AF4 RID: 23284
 		protected static List<ISubstitutionHandler> substitutionHandlers = new List<ISubstitutionHandler>();
 
-		// Token: 0x0400696E RID: 26990
+		// Token: 0x04005AF5 RID: 23285
 		protected StringBuilder stringBuilder;
 
-		// Token: 0x0400696F RID: 26991
+		// Token: 0x04005AF6 RID: 23286
 		protected int recursionDepth;
 	}
 }

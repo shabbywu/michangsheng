@@ -2,76 +2,76 @@
 
 namespace ICSharpCode.SharpZipLib.Zip.Compression
 {
-	// Token: 0x020007F5 RID: 2037
+	// Token: 0x02000551 RID: 1361
 	public static class DeflaterConstants
 	{
-		// Token: 0x04002F91 RID: 12177
+		// Token: 0x04002769 RID: 10089
 		public const bool DEBUGGING = false;
 
-		// Token: 0x04002F92 RID: 12178
+		// Token: 0x0400276A RID: 10090
 		public const int STORED_BLOCK = 0;
 
-		// Token: 0x04002F93 RID: 12179
+		// Token: 0x0400276B RID: 10091
 		public const int STATIC_TREES = 1;
 
-		// Token: 0x04002F94 RID: 12180
+		// Token: 0x0400276C RID: 10092
 		public const int DYN_TREES = 2;
 
-		// Token: 0x04002F95 RID: 12181
+		// Token: 0x0400276D RID: 10093
 		public const int PRESET_DICT = 32;
 
-		// Token: 0x04002F96 RID: 12182
+		// Token: 0x0400276E RID: 10094
 		public const int DEFAULT_MEM_LEVEL = 8;
 
-		// Token: 0x04002F97 RID: 12183
+		// Token: 0x0400276F RID: 10095
 		public const int MAX_MATCH = 258;
 
-		// Token: 0x04002F98 RID: 12184
+		// Token: 0x04002770 RID: 10096
 		public const int MIN_MATCH = 3;
 
-		// Token: 0x04002F99 RID: 12185
+		// Token: 0x04002771 RID: 10097
 		public const int MAX_WBITS = 15;
 
-		// Token: 0x04002F9A RID: 12186
+		// Token: 0x04002772 RID: 10098
 		public const int WSIZE = 32768;
 
-		// Token: 0x04002F9B RID: 12187
+		// Token: 0x04002773 RID: 10099
 		public const int WMASK = 32767;
 
-		// Token: 0x04002F9C RID: 12188
+		// Token: 0x04002774 RID: 10100
 		public const int HASH_BITS = 15;
 
-		// Token: 0x04002F9D RID: 12189
+		// Token: 0x04002775 RID: 10101
 		public const int HASH_SIZE = 32768;
 
-		// Token: 0x04002F9E RID: 12190
+		// Token: 0x04002776 RID: 10102
 		public const int HASH_MASK = 32767;
 
-		// Token: 0x04002F9F RID: 12191
+		// Token: 0x04002777 RID: 10103
 		public const int HASH_SHIFT = 5;
 
-		// Token: 0x04002FA0 RID: 12192
+		// Token: 0x04002778 RID: 10104
 		public const int MIN_LOOKAHEAD = 262;
 
-		// Token: 0x04002FA1 RID: 12193
+		// Token: 0x04002779 RID: 10105
 		public const int MAX_DIST = 32506;
 
-		// Token: 0x04002FA2 RID: 12194
+		// Token: 0x0400277A RID: 10106
 		public const int PENDING_BUF_SIZE = 65536;
 
-		// Token: 0x04002FA3 RID: 12195
+		// Token: 0x0400277B RID: 10107
 		public static int MAX_BLOCK_SIZE = Math.Min(65535, 65531);
 
-		// Token: 0x04002FA4 RID: 12196
+		// Token: 0x0400277C RID: 10108
 		public const int DEFLATE_STORED = 0;
 
-		// Token: 0x04002FA5 RID: 12197
+		// Token: 0x0400277D RID: 10109
 		public const int DEFLATE_FAST = 1;
 
-		// Token: 0x04002FA6 RID: 12198
+		// Token: 0x0400277E RID: 10110
 		public const int DEFLATE_SLOW = 2;
 
-		// Token: 0x04002FA7 RID: 12199
+		// Token: 0x0400277F RID: 10111
 		public static int[] GOOD_LENGTH = new int[]
 		{
 			0,
@@ -86,7 +86,7 @@ namespace ICSharpCode.SharpZipLib.Zip.Compression
 			32
 		};
 
-		// Token: 0x04002FA8 RID: 12200
+		// Token: 0x04002780 RID: 10112
 		public static int[] MAX_LAZY = new int[]
 		{
 			0,
@@ -101,7 +101,7 @@ namespace ICSharpCode.SharpZipLib.Zip.Compression
 			258
 		};
 
-		// Token: 0x04002FA9 RID: 12201
+		// Token: 0x04002781 RID: 10113
 		public static int[] NICE_LENGTH = new int[]
 		{
 			0,
@@ -116,7 +116,7 @@ namespace ICSharpCode.SharpZipLib.Zip.Compression
 			258
 		};
 
-		// Token: 0x04002FAA RID: 12202
+		// Token: 0x04002782 RID: 10114
 		public static int[] MAX_CHAIN = new int[]
 		{
 			0,
@@ -131,7 +131,7 @@ namespace ICSharpCode.SharpZipLib.Zip.Compression
 			4096
 		};
 
-		// Token: 0x04002FAB RID: 12203
+		// Token: 0x04002783 RID: 10115
 		public static int[] COMPR_FUNC = new int[]
 		{
 			0,

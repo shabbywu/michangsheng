@@ -3,23 +3,23 @@ using System.Collections.Generic;
 
 namespace PaiMai
 {
-	// Token: 0x02000A5E RID: 2654
+	// Token: 0x0200070E RID: 1806
 	[Serializable]
 	public class PaiMaiData
 	{
-		// Token: 0x04003C78 RID: 15480
+		// Token: 0x040031F1 RID: 12785
 		public int Id;
 
-		// Token: 0x04003C79 RID: 15481
+		// Token: 0x040031F2 RID: 12786
 		public List<int> ShopList = new List<int>();
 
-		// Token: 0x04003C7A RID: 15482
+		// Token: 0x040031F3 RID: 12787
 		public bool IsJoined;
 
-		// Token: 0x04003C7B RID: 15483
+		// Token: 0x040031F4 RID: 12788
 		public DateTime NextUpdateTime;
 
-		// Token: 0x04003C7C RID: 15484
+		// Token: 0x040031F5 RID: 12789
 		public int No;
 	}
 }

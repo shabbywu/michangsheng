@@ -4,15 +4,15 @@ using UnityEngine;
 
 namespace Spine.Unity.Examples
 {
-	// Token: 0x02000E3B RID: 3643
+	// Token: 0x02000AEC RID: 2796
 	public class SkeletonAnimationHandleExample : MonoBehaviour
 	{
-		// Token: 0x17000821 RID: 2081
-		// (get) Token: 0x06005799 RID: 22425 RVA: 0x0003EA47 File Offset: 0x0003CC47
-		// (set) Token: 0x0600579A RID: 22426 RVA: 0x0003EA4F File Offset: 0x0003CC4F
+		// Token: 0x170005EA RID: 1514
+		// (get) Token: 0x06004E17 RID: 19991 RVA: 0x002154DA File Offset: 0x002136DA
+		// (set) Token: 0x06004E18 RID: 19992 RVA: 0x002154E2 File Offset: 0x002136E2
 		public Animation TargetAnimation { get; private set; }
 
-		// Token: 0x0600579B RID: 22427 RVA: 0x002455C4 File Offset: 0x002437C4
+		// Token: 0x06004E19 RID: 19993 RVA: 0x002154EC File Offset: 0x002136EC
 		private void Awake()
 		{
 			foreach (SkeletonAnimationHandleExample.StateNameToAnimationReference stateNameToAnimationReference in this.statesAndAnimations)
@@ -27,7 +27,7 @@ namespace Spine.Unity.Examples
 			}
 		}
 
-		// Token: 0x0600579C RID: 22428 RVA: 0x0003EA58 File Offset: 0x0003CC58
+		// Token: 0x06004E1A RID: 19994 RVA: 0x0021559C File Offset: 0x0021379C
 		public void SetFlip(float horizontal)
 		{
 			if (horizontal != 0f)
@@ -36,13 +36,13 @@ namespace Spine.Unity.Examples
 			}
 		}
 
-		// Token: 0x0600579D RID: 22429 RVA: 0x0003EA86 File Offset: 0x0003CC86
+		// Token: 0x06004E1B RID: 19995 RVA: 0x002155CA File Offset: 0x002137CA
 		public void PlayAnimationForState(string stateShortName, int layerIndex)
 		{
 			this.PlayAnimationForState(this.StringToHash(stateShortName), layerIndex);
 		}
 
-		// Token: 0x0600579E RID: 22430 RVA: 0x00245674 File Offset: 0x00243874
+		// Token: 0x06004E1C RID: 19996 RVA: 0x002155DC File Offset: 0x002137DC
 		public void PlayAnimationForState(int shortNameHash, int layerIndex)
 		{
 			Animation animationForState = this.GetAnimationForState(shortNameHash);
@@ -53,20 +53,20 @@ namespace Spine.Unity.Examples
 			this.PlayNewAnimation(animationForState, layerIndex);
 		}
 
-		// Token: 0x0600579F RID: 22431 RVA: 0x0003EA96 File Offset: 0x0003CC96
+		// Token: 0x06004E1D RID: 19997 RVA: 0x002155FD File Offset: 0x002137FD
 		public Animation GetAnimationForState(string stateShortName)
 		{
 			return this.GetAnimationForState(this.StringToHash(stateShortName));
 		}
 
-		// Token: 0x060057A0 RID: 22432 RVA: 0x00245698 File Offset: 0x00243898
+		// Token: 0x06004E1E RID: 19998 RVA: 0x0021560C File Offset: 0x0021380C
 		public Animation GetAnimationForState(int shortNameHash)
 		{
 			SkeletonAnimationHandleExample.StateNameToAnimationReference stateNameToAnimationReference = this.statesAndAnimations.Find((SkeletonAnimationHandleExample.StateNameToAnimationReference entry) => this.StringToHash(entry.stateName) == shortNameHash);
 			return (stateNameToAnimationReference == null) ? null : stateNameToAnimationReference.animation;
 		}
 
-		// Token: 0x060057A1 RID: 22433 RVA: 0x002456E4 File Offset: 0x002438E4
+		// Token: 0x06004E1F RID: 19999 RVA: 0x00215658 File Offset: 0x00213858
 		public void PlayNewAnimation(Animation target, int layerIndex)
 		{
 			Animation animation = null;
@@ -87,7 +87,7 @@ namespace Spine.Unity.Examples
 			this.TargetAnimation = target;
 		}
 
-		// Token: 0x060057A2 RID: 22434 RVA: 0x00245758 File Offset: 0x00243958
+		// Token: 0x06004E20 RID: 20000 RVA: 0x002156CC File Offset: 0x002138CC
 		public void PlayOneShot(Animation oneShot, int layerIndex)
 		{
 			AnimationState animationState = this.skeletonAnimation.AnimationState;
@@ -100,7 +100,7 @@ namespace Spine.Unity.Examples
 			animationState.AddAnimation(0, this.TargetAnimation, true, 0f);
 		}
 
-		// Token: 0x060057A3 RID: 22435 RVA: 0x002457B0 File Offset: 0x002439B0
+		// Token: 0x06004E21 RID: 20001 RVA: 0x00215724 File Offset: 0x00213924
 		private Animation TryGetTransition(Animation from, Animation to)
 		{
 			foreach (SkeletonAnimationHandleExample.AnimationTransition animationTransition in this.transitions)
@@ -113,7 +113,7 @@ namespace Spine.Unity.Examples
 			return null;
 		}
 
-		// Token: 0x060057A4 RID: 22436 RVA: 0x0024582C File Offset: 0x00243A2C
+		// Token: 0x06004E22 RID: 20002 RVA: 0x002157A0 File Offset: 0x002139A0
 		private Animation GetCurrentAnimation(int layerIndex)
 		{
 			TrackEntry current = this.skeletonAnimation.AnimationState.GetCurrent(layerIndex);
@@ -124,43 +124,43 @@ namespace Spine.Unity.Examples
 			return current.Animation;
 		}
 
-		// Token: 0x060057A5 RID: 22437 RVA: 0x0003EAA5 File Offset: 0x0003CCA5
+		// Token: 0x06004E23 RID: 20003 RVA: 0x002157CA File Offset: 0x002139CA
 		private int StringToHash(string s)
 		{
 			return Animator.StringToHash(s);
 		}
 
-		// Token: 0x04005793 RID: 22419
+		// Token: 0x04004D83 RID: 19843
 		public SkeletonAnimation skeletonAnimation;
 
-		// Token: 0x04005794 RID: 22420
+		// Token: 0x04004D84 RID: 19844
 		public List<SkeletonAnimationHandleExample.StateNameToAnimationReference> statesAndAnimations = new List<SkeletonAnimationHandleExample.StateNameToAnimationReference>();
 
-		// Token: 0x04005795 RID: 22421
+		// Token: 0x04004D85 RID: 19845
 		public List<SkeletonAnimationHandleExample.AnimationTransition> transitions = new List<SkeletonAnimationHandleExample.AnimationTransition>();
 
-		// Token: 0x02000E3C RID: 3644
+		// Token: 0x020015C5 RID: 5573
 		[Serializable]
 		public class StateNameToAnimationReference
 		{
-			// Token: 0x04005797 RID: 22423
+			// Token: 0x04007067 RID: 28775
 			public string stateName;
 
-			// Token: 0x04005798 RID: 22424
+			// Token: 0x04007068 RID: 28776
 			public AnimationReferenceAsset animation;
 		}
 
-		// Token: 0x02000E3D RID: 3645
+		// Token: 0x020015C6 RID: 5574
 		[Serializable]
 		public class AnimationTransition
 		{
-			// Token: 0x04005799 RID: 22425
+			// Token: 0x04007069 RID: 28777
 			public AnimationReferenceAsset from;
 
-			// Token: 0x0400579A RID: 22426
+			// Token: 0x0400706A RID: 28778
 			public AnimationReferenceAsset to;
 
-			// Token: 0x0400579B RID: 22427
+			// Token: 0x0400706B RID: 28779
 			public AnimationReferenceAsset transition;
 		}
 	}

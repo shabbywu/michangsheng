@@ -2,18 +2,18 @@
 
 namespace ICSharpCode.SharpZipLib.Zip
 {
-	// Token: 0x020007CC RID: 1996
+	// Token: 0x02000534 RID: 1332
 	public class RawTaggedData : ITaggedData
 	{
-		// Token: 0x060032D8 RID: 13016 RVA: 0x00025063 File Offset: 0x00023263
+		// Token: 0x06002AC1 RID: 10945 RVA: 0x001421CF File Offset: 0x001403CF
 		public RawTaggedData(short tag)
 		{
 			this._tag = tag;
 		}
 
-		// Token: 0x17000495 RID: 1173
-		// (get) Token: 0x060032D9 RID: 13017 RVA: 0x00025072 File Offset: 0x00023272
-		// (set) Token: 0x060032DA RID: 13018 RVA: 0x0002507A File Offset: 0x0002327A
+		// Token: 0x170002F6 RID: 758
+		// (get) Token: 0x06002AC2 RID: 10946 RVA: 0x001421DE File Offset: 0x001403DE
+		// (set) Token: 0x06002AC3 RID: 10947 RVA: 0x001421E6 File Offset: 0x001403E6
 		public short TagID
 		{
 			get
@@ -26,7 +26,7 @@ namespace ICSharpCode.SharpZipLib.Zip
 			}
 		}
 
-		// Token: 0x060032DB RID: 13019 RVA: 0x00025083 File Offset: 0x00023283
+		// Token: 0x06002AC4 RID: 10948 RVA: 0x001421EF File Offset: 0x001403EF
 		public void SetData(byte[] data, int offset, int count)
 		{
 			if (data == null)
@@ -37,15 +37,15 @@ namespace ICSharpCode.SharpZipLib.Zip
 			Array.Copy(data, offset, this._data, 0, count);
 		}
 
-		// Token: 0x060032DC RID: 13020 RVA: 0x000250AE File Offset: 0x000232AE
+		// Token: 0x06002AC5 RID: 10949 RVA: 0x0014221A File Offset: 0x0014041A
 		public byte[] GetData()
 		{
 			return this._data;
 		}
 
-		// Token: 0x17000496 RID: 1174
-		// (get) Token: 0x060032DD RID: 13021 RVA: 0x000250AE File Offset: 0x000232AE
-		// (set) Token: 0x060032DE RID: 13022 RVA: 0x000250B6 File Offset: 0x000232B6
+		// Token: 0x170002F7 RID: 759
+		// (get) Token: 0x06002AC6 RID: 10950 RVA: 0x0014221A File Offset: 0x0014041A
+		// (set) Token: 0x06002AC7 RID: 10951 RVA: 0x00142222 File Offset: 0x00140422
 		public byte[] Data
 		{
 			get
@@ -58,10 +58,10 @@ namespace ICSharpCode.SharpZipLib.Zip
 			}
 		}
 
-		// Token: 0x04002EF3 RID: 12019
+		// Token: 0x040026F0 RID: 9968
 		private short _tag;
 
-		// Token: 0x04002EF4 RID: 12020
+		// Token: 0x040026F1 RID: 9969
 		private byte[] _data;
 	}
 }

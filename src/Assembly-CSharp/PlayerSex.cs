@@ -2,16 +2,16 @@
 using Spine.Unity;
 using UnityEngine;
 
-// Token: 0x02000293 RID: 659
+// Token: 0x0200019B RID: 411
 public class PlayerSex : MonoBehaviour
 {
-	// Token: 0x06001430 RID: 5168 RVA: 0x00012BC6 File Offset: 0x00010DC6
+	// Token: 0x0600118F RID: 4495 RVA: 0x0006A87C File Offset: 0x00068A7C
 	private void Start()
 	{
 		PlayerSex.SetSex(base.gameObject);
 	}
 
-	// Token: 0x06001431 RID: 5169 RVA: 0x000B8C94 File Offset: 0x000B6E94
+	// Token: 0x06001190 RID: 4496 RVA: 0x0006A88C File Offset: 0x00068A8C
 	public static void SetSex(GameObject root)
 	{
 		SkeletonRenderer componentInChildren = root.GetComponentInChildren<SkeletonRenderer>();

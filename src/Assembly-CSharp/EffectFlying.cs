@@ -1,10 +1,10 @@
 ﻿using System;
 using UnityEngine;
 
-// Token: 0x02000610 RID: 1552
+// Token: 0x02000457 RID: 1111
 public class EffectFlying : MonoBehaviour
 {
-	// Token: 0x060026A3 RID: 9891 RVA: 0x0012F030 File Offset: 0x0012D230
+	// Token: 0x060022EC RID: 8940 RVA: 0x000EE894 File Offset: 0x000ECA94
 	public void Start()
 	{
 		this.m_RelaCoor = (this.ToPos - this.FromPos).normalized;
@@ -12,7 +12,7 @@ public class EffectFlying : MonoBehaviour
 		this.m_fDistance = Vector3.Distance(this.ToPos, this.FromPos);
 	}
 
-	// Token: 0x060026A4 RID: 9892 RVA: 0x0012F080 File Offset: 0x0012D280
+	// Token: 0x060022ED RID: 8941 RVA: 0x000EE8E4 File Offset: 0x000ECAE4
 	public void Update()
 	{
 		float num = Time.time - this.m_fStartRockon;
@@ -29,27 +29,27 @@ public class EffectFlying : MonoBehaviour
 		base.transform.position = vector2;
 	}
 
-	// Token: 0x040020EE RID: 8430
+	// Token: 0x04001C1E RID: 7198
 	public Vector3 FromPos = Vector3.zero;
 
-	// Token: 0x040020EF RID: 8431
+	// Token: 0x04001C1F RID: 7199
 	public Vector3 ToPos = Vector3.zero;
 
-	// Token: 0x040020F0 RID: 8432
+	// Token: 0x04001C20 RID: 7200
 	public float MaxDistance = 30f;
 
-	// Token: 0x040020F1 RID: 8433
+	// Token: 0x04001C21 RID: 7201
 	public float Speed = 30f;
 
-	// Token: 0x040020F2 RID: 8434
+	// Token: 0x04001C22 RID: 7202
 	public float HWRate;
 
-	// Token: 0x040020F3 RID: 8435
+	// Token: 0x04001C23 RID: 7203
 	private Vector3 m_RelaCoor = Vector3.up;
 
-	// Token: 0x040020F4 RID: 8436
+	// Token: 0x04001C24 RID: 7204
 	private float m_fStartRockon;
 
-	// Token: 0x040020F5 RID: 8437
+	// Token: 0x04001C25 RID: 7205
 	private float m_fDistance;
 }

@@ -2,29 +2,29 @@
 
 namespace KBEngine
 {
-	// Token: 0x02000F43 RID: 3907
+	// Token: 0x02000BC0 RID: 3008
 	public struct ITEM_COUNT
 	{
-		// Token: 0x06005E20 RID: 24096 RVA: 0x000420BA File Offset: 0x000402BA
+		// Token: 0x060053E2 RID: 21474 RVA: 0x00233F59 File Offset: 0x00232159
 		private ITEM_COUNT(uint value)
 		{
 			this.value = value;
 		}
 
-		// Token: 0x06005E21 RID: 24097 RVA: 0x000420C3 File Offset: 0x000402C3
+		// Token: 0x060053E3 RID: 21475 RVA: 0x00233F62 File Offset: 0x00232162
 		public static implicit operator uint(ITEM_COUNT value)
 		{
 			return value.value;
 		}
 
-		// Token: 0x06005E22 RID: 24098 RVA: 0x000420CB File Offset: 0x000402CB
+		// Token: 0x060053E4 RID: 21476 RVA: 0x00233F6A File Offset: 0x0023216A
 		public static implicit operator ITEM_COUNT(uint value)
 		{
 			return new ITEM_COUNT(value);
 		}
 
-		// Token: 0x1700089F RID: 2207
-		// (get) Token: 0x06005E23 RID: 24099 RVA: 0x00041ADD File Offset: 0x0003FCDD
+		// Token: 0x1700064C RID: 1612
+		// (get) Token: 0x060053E5 RID: 21477 RVA: 0x0023397C File Offset: 0x00231B7C
 		public static uint MaxValue
 		{
 			get
@@ -33,8 +33,8 @@ namespace KBEngine
 			}
 		}
 
-		// Token: 0x170008A0 RID: 2208
-		// (get) Token: 0x06005E24 RID: 24100 RVA: 0x00004050 File Offset: 0x00002250
+		// Token: 0x1700064D RID: 1613
+		// (get) Token: 0x060053E6 RID: 21478 RVA: 0x0000280F File Offset: 0x00000A0F
 		public static uint MinValue
 		{
 			get
@@ -43,7 +43,7 @@ namespace KBEngine
 			}
 		}
 
-		// Token: 0x04005AED RID: 23277
+		// Token: 0x0400504C RID: 20556
 		private uint value;
 	}
 }

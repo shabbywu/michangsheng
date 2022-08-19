@@ -4,10 +4,10 @@ using System.Text;
 using GUIPackage;
 using JSONClass;
 
-// Token: 0x020002B7 RID: 695
+// Token: 0x020001B9 RID: 441
 public static class CheckData
 {
-	// Token: 0x0600150F RID: 5391 RVA: 0x000134ED File Offset: 0x000116ED
+	// Token: 0x06001264 RID: 4708 RVA: 0x0006FB29 File Offset: 0x0006DD29
 	public static void CheckTask(int taskID)
 	{
 		if (CheckData.Check())
@@ -16,9 +16,10 @@ public static class CheckData
 			return;
 		}
 		PreloadManager.LogException(string.Format("在检查JSON数据时出现如下错误，已阻止游戏继续加载:\n{0}", CheckData.log));
+		PreloadManager.Inst.TaskDone(taskID);
 	}
 
-	// Token: 0x06001510 RID: 5392 RVA: 0x00013516 File Offset: 0x00011716
+	// Token: 0x06001265 RID: 4709 RVA: 0x0006FB5D File Offset: 0x0006DD5D
 	public static bool Check()
 	{
 		CheckData.log = new StringBuilder();
@@ -29,14 +30,14 @@ public static class CheckData
 		return CheckData.log.Length <= 0;
 	}
 
-	// Token: 0x06001511 RID: 5393 RVA: 0x000BD550 File Offset: 0x000BB750
+	// Token: 0x06001266 RID: 4710 RVA: 0x0006FB90 File Offset: 0x0006DD90
 	public static void CheckItem()
 	{
 		foreach (_ItemJsonData itemJsonData in _ItemJsonData.DataList)
 		{
 			try
 			{
-				if (itemJsonData.id < 100000)
+				if (itemJsonData.id < jsonData.QingJiaoItemIDSegment)
 				{
 					if (itemJsonData.seid != null)
 					{
@@ -149,7 +150,7 @@ public static class CheckData
 		}
 	}
 
-	// Token: 0x06001512 RID: 5394 RVA: 0x000BDA48 File Offset: 0x000BBC48
+	// Token: 0x06001267 RID: 4711 RVA: 0x00070088 File Offset: 0x0006E288
 	public static void CheckSkill()
 	{
 		foreach (_skillJsonData skillJsonData in _skillJsonData.DataList)
@@ -218,7 +219,7 @@ public static class CheckData
 		}
 	}
 
-	// Token: 0x06001513 RID: 5395 RVA: 0x000BDD24 File Offset: 0x000BBF24
+	// Token: 0x06001268 RID: 4712 RVA: 0x00070364 File Offset: 0x0006E564
 	public static void CheckStaticSkill()
 	{
 		foreach (StaticSkillJsonData staticSkillJsonData in StaticSkillJsonData.DataList)
@@ -276,7 +277,7 @@ public static class CheckData
 		}
 	}
 
-	// Token: 0x06001514 RID: 5396 RVA: 0x000BDF80 File Offset: 0x000BC180
+	// Token: 0x06001269 RID: 4713 RVA: 0x000705C0 File Offset: 0x0006E7C0
 	public static void CheckBuff()
 	{
 		foreach (_BuffJsonData buffJsonData in _BuffJsonData.DataList)
@@ -325,6 +326,6 @@ public static class CheckData
 		}
 	}
 
-	// Token: 0x0400102F RID: 4143
+	// Token: 0x04000D07 RID: 3335
 	public static StringBuilder log;
 }

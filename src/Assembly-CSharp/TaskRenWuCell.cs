@@ -2,10 +2,10 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-// Token: 0x02000512 RID: 1298
+// Token: 0x0200038D RID: 909
 public class TaskRenWuCell : MonoBehaviour
 {
-	// Token: 0x06002171 RID: 8561 RVA: 0x00117538 File Offset: 0x00115738
+	// Token: 0x06001DF6 RID: 7670 RVA: 0x000D38DC File Offset: 0x000D1ADC
 	public void ClickImage()
 	{
 		if (this.toggle.isOn)
@@ -36,7 +36,7 @@ public class TaskRenWuCell : MonoBehaviour
 				this.taskDescManager.setWeiTuoDesc(this.CurTask);
 				TaskUIManager.inst.setCurSelectIsChuanWen(false);
 			}
-			TaskUIManager.inst.setCurTaskID((int)this.CurTask["id"].n);
+			TaskUIManager.inst.setCurTaskID(this.CurTask["id"].I);
 			TaskUIManager.inst.setCurTask(this.CurTask);
 			this.taskDescManager.checkIsZhuiZhong();
 			return;
@@ -46,63 +46,63 @@ public class TaskRenWuCell : MonoBehaviour
 		this.ClikeImage.SetActive(false);
 	}
 
-	// Token: 0x06002172 RID: 8562 RVA: 0x0001B897 File Offset: 0x00019A97
+	// Token: 0x06001DF7 RID: 7671 RVA: 0x000D3A39 File Offset: 0x000D1C39
 	public void setTaskName(string name)
 	{
 		this.TaskName.text = name;
 	}
 
-	// Token: 0x06002173 RID: 8563 RVA: 0x0001B8A5 File Offset: 0x00019AA5
+	// Token: 0x06001DF8 RID: 7672 RVA: 0x000D3A47 File Offset: 0x000D1C47
 	public void setTaskInfo(JSONObject task)
 	{
 		this.CurTask = task;
 	}
 
-	// Token: 0x06002174 RID: 8564 RVA: 0x0001B8AE File Offset: 0x00019AAE
+	// Token: 0x06001DF9 RID: 7673 RVA: 0x000D3A50 File Offset: 0x000D1C50
 	public void setIsChuanWen(bool flag)
 	{
 		this.isChuanWen = flag;
 	}
 
-	// Token: 0x06002175 RID: 8565 RVA: 0x0001B8B7 File Offset: 0x00019AB7
+	// Token: 0x06001DFA RID: 7674 RVA: 0x000D3A59 File Offset: 0x000D1C59
 	public bool getIsChuanWen()
 	{
 		return this.isChuanWen;
 	}
 
-	// Token: 0x06002176 RID: 8566 RVA: 0x0001B8A5 File Offset: 0x00019AA5
+	// Token: 0x06001DFB RID: 7675 RVA: 0x000D3A47 File Offset: 0x000D1C47
 	public void setWeTuoInfo(JSONObject WeiTuo)
 	{
 		this.CurTask = WeiTuo;
 	}
 
-	// Token: 0x04001CF8 RID: 7416
+	// Token: 0x04001898 RID: 6296
 	[SerializeField]
 	private GameObject DefaultImage;
 
-	// Token: 0x04001CF9 RID: 7417
+	// Token: 0x04001899 RID: 6297
 	[SerializeField]
 	private GameObject ClikeImage;
 
-	// Token: 0x04001CFA RID: 7418
+	// Token: 0x0400189A RID: 6298
 	[SerializeField]
 	private Text TaskName;
 
-	// Token: 0x04001CFB RID: 7419
+	// Token: 0x0400189B RID: 6299
 	[SerializeField]
 	private Toggle toggle;
 
-	// Token: 0x04001CFC RID: 7420
+	// Token: 0x0400189C RID: 6300
 	private JSONObject CurTask;
 
-	// Token: 0x04001CFD RID: 7421
+	// Token: 0x0400189D RID: 6301
 	[SerializeField]
 	private TaskDescManager taskDescManager;
 
-	// Token: 0x04001CFE RID: 7422
+	// Token: 0x0400189E RID: 6302
 	private bool isChuanWen;
 
-	// Token: 0x04001CFF RID: 7423
+	// Token: 0x0400189F RID: 6303
 	[SerializeField]
 	private GameObject ZhuiZhongImage;
 }

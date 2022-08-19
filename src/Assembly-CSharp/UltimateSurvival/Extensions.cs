@@ -5,10 +5,10 @@ using UnityEngine;
 
 namespace UltimateSurvival
 {
-	// Token: 0x02000907 RID: 2311
+	// Token: 0x02000620 RID: 1568
 	public static class Extensions
 	{
-		// Token: 0x06003B1B RID: 15131 RVA: 0x001AB3F4 File Offset: 0x001A95F4
+		// Token: 0x060031E7 RID: 12775 RVA: 0x00161B18 File Offset: 0x0015FD18
 		public static Transform FindDeepChild(this Transform parent, string childName)
 		{
 			Transform transform = parent.Find(childName);
@@ -27,13 +27,13 @@ namespace UltimateSurvival
 			return null;
 		}
 
-		// Token: 0x06003B1C RID: 15132 RVA: 0x0002AD9D File Offset: 0x00028F9D
+		// Token: 0x060031E8 RID: 12776 RVA: 0x00161B61 File Offset: 0x0015FD61
 		public static bool IndexIsValid<T>(this List<T> list, int index)
 		{
 			return index >= 0 && index < list.Count;
 		}
 
-		// Token: 0x06003B1D RID: 15133 RVA: 0x001AB440 File Offset: 0x001A9640
+		// Token: 0x060031E9 RID: 12777 RVA: 0x00161B74 File Offset: 0x0015FD74
 		public static List<T> CopyOther<T>(this List<T> list, List<T> toCopy)
 		{
 			if (toCopy == null || toCopy.Count == 0)
@@ -48,19 +48,19 @@ namespace UltimateSurvival
 			return list;
 		}
 
-		// Token: 0x06003B1E RID: 15134 RVA: 0x0002ADAE File Offset: 0x00028FAE
+		// Token: 0x060031EA RID: 12778 RVA: 0x00161BB4 File Offset: 0x0015FDB4
 		public static bool IsInRangeLimitsExcluded(this float f, float l1, float l2)
 		{
 			return f > l1 && f < l2;
 		}
 
-		// Token: 0x06003B1F RID: 15135 RVA: 0x0002ADBA File Offset: 0x00028FBA
+		// Token: 0x060031EB RID: 12779 RVA: 0x00161BC0 File Offset: 0x0015FDC0
 		public static bool IsInRangeLimitsIncluded(this float f, float l1, float l2)
 		{
 			return f >= l1 && f <= l2;
 		}
 
-		// Token: 0x06003B20 RID: 15136 RVA: 0x001AB480 File Offset: 0x001A9680
+		// Token: 0x060031EC RID: 12780 RVA: 0x00161BD0 File Offset: 0x0015FDD0
 		public static string GetDisplayInfoForElement(this StateData data, string key)
 		{
 			string result = string.Empty;
@@ -82,7 +82,7 @@ namespace UltimateSurvival
 			return result;
 		}
 
-		// Token: 0x06003B21 RID: 15137 RVA: 0x001AB4DC File Offset: 0x001A96DC
+		// Token: 0x060031ED RID: 12781 RVA: 0x00161C2C File Offset: 0x0015FE2C
 		public static string GetDisplayInfoForAll(this StateData data, string sepparator = " - ")
 		{
 			string text = string.Empty;

@@ -1,12 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using KBEngine;
+using script.EventMsg;
 using UnityEngine;
 
-// Token: 0x0200030F RID: 783
+// Token: 0x020001FA RID: 506
 public class NPCDeath
 {
-	// Token: 0x0600174D RID: 5965 RVA: 0x000CD17C File Offset: 0x000CB37C
+	// Token: 0x060014A3 RID: 5283 RVA: 0x0008457C File Offset: 0x0008277C
 	public void SetNpcDeath(int deathType, int npcId, int killNpcId = 0, bool after = false)
 	{
 		if (after)
@@ -56,6 +57,10 @@ public class NPCDeath
 		{
 			NpcJieSuanManager.inst.npcChengHao.DeleteOnlyChengHao(i);
 		}
+		if (npcId >= 20000 && jsonData.instance.AvatarJsonData[npcId.ToString()]["Level"].I >= 7 && deathType == 1)
+		{
+			EventMag.Inst.SaveEvent(npcId, 11);
+		}
 		jsonData.instance.AvatarJsonData.RemoveField(npcId.ToString());
 		jsonData.instance.AvatarBackpackJsonData.RemoveField(npcId.ToString());
 		jsonData.instance.AvatarRandomJsonData.RemoveField(npcId.ToString());
@@ -66,10 +71,10 @@ public class NPCDeath
 		}
 	}
 
-	// Token: 0x0600174E RID: 5966 RVA: 0x000CD490 File Offset: 0x000CB690
+	// Token: 0x060014A4 RID: 5284 RVA: 0x000848D0 File Offset: 0x00082AD0
 	public bool NpcYiWaiPanDing(int actionId, int npcId)
 	{
-		JSONObject npcData = NpcJieSuanManager.inst.getNpcData(npcId);
+		JSONObject npcData = NpcJieSuanManager.inst.GetNpcData(npcId);
 		Avatar player = Tools.instance.getPlayer();
 		if (!jsonData.instance.NpcYiWaiDeathDate.HasField(actionId.ToString()))
 		{
@@ -108,10 +113,10 @@ public class NPCDeath
 		return false;
 	}
 
-	// Token: 0x040012B1 RID: 4785
+	// Token: 0x04000F6B RID: 3947
 	public JSONObject npcDeathJson = new JSONObject();
 
-	// Token: 0x040012B2 RID: 4786
+	// Token: 0x04000F6C RID: 3948
 	public List<int> deathTypeList = new List<int>
 	{
 		1,

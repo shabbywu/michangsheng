@@ -2,15 +2,15 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-// Token: 0x020004C4 RID: 1220
+// Token: 0x02000349 RID: 841
 public class UIMenPaiShopItem : MonoBehaviour
 {
-	// Token: 0x04001B96 RID: 7062
+	// Token: 0x04001743 RID: 5955
 	public UIIconShow IconShow;
 
-	// Token: 0x04001B97 RID: 7063
+	// Token: 0x04001744 RID: 5956
 	public Image PriceIcon;
 
-	// Token: 0x04001B98 RID: 7064
+	// Token: 0x04001745 RID: 5957
 	public Text PriceText;
 }

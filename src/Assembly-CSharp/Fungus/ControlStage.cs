@@ -4,12 +4,12 @@ using UnityEngine;
 
 namespace Fungus
 {
-	// Token: 0x020011FA RID: 4602
+	// Token: 0x02000DC2 RID: 3522
 	[CommandInfo("Narrative", "Control Stage", "Controls the stage on which character portraits are displayed.", 0)]
 	public class ControlStage : ControlWithDisplay<StageDisplayType>
 	{
-		// Token: 0x17000A5D RID: 2653
-		// (get) Token: 0x060070A9 RID: 28841 RVA: 0x0004C854 File Offset: 0x0004AA54
+		// Token: 0x170007FA RID: 2042
+		// (get) Token: 0x06006433 RID: 25651 RVA: 0x0027DE81 File Offset: 0x0027C081
 		public virtual Stage _Stage
 		{
 			get
@@ -18,8 +18,8 @@ namespace Fungus
 			}
 		}
 
-		// Token: 0x17000A5E RID: 2654
-		// (get) Token: 0x060070AA RID: 28842 RVA: 0x0004C85C File Offset: 0x0004AA5C
+		// Token: 0x170007FB RID: 2043
+		// (get) Token: 0x06006434 RID: 25652 RVA: 0x0027DE89 File Offset: 0x0027C089
 		public virtual bool UseDefaultSettings
 		{
 			get
@@ -28,7 +28,7 @@ namespace Fungus
 			}
 		}
 
-		// Token: 0x060070AB RID: 28843 RVA: 0x002A2F28 File Offset: 0x002A1128
+		// Token: 0x06006435 RID: 25653 RVA: 0x0027DE94 File Offset: 0x0027C094
 		protected virtual void Show(Stage stage, bool visible)
 		{
 			float time = (this.fadeDuration == 0f) ? float.Epsilon : this.fadeDuration;
@@ -48,7 +48,7 @@ namespace Fungus
 			});
 		}
 
-		// Token: 0x060070AC RID: 28844 RVA: 0x002A2FD0 File Offset: 0x002A11D0
+		// Token: 0x06006436 RID: 25654 RVA: 0x0027DF3C File Offset: 0x0027C13C
 		protected virtual void MoveToFront(Stage stage)
 		{
 			List<Stage> activeStages = Stage.ActiveStages;
@@ -66,7 +66,7 @@ namespace Fungus
 			}
 		}
 
-		// Token: 0x060070AD RID: 28845 RVA: 0x002A3020 File Offset: 0x002A1220
+		// Token: 0x06006437 RID: 25655 RVA: 0x0027DF8C File Offset: 0x0027C18C
 		protected virtual void UndimAllPortraits(Stage stage)
 		{
 			stage.DimPortraits = false;
@@ -78,13 +78,13 @@ namespace Fungus
 			}
 		}
 
-		// Token: 0x060070AE RID: 28846 RVA: 0x0004C864 File Offset: 0x0004AA64
+		// Token: 0x06006438 RID: 25656 RVA: 0x0027DFC8 File Offset: 0x0027C1C8
 		protected virtual void DimNonSpeakingPortraits(Stage stage)
 		{
 			stage.DimPortraits = true;
 		}
 
-		// Token: 0x060070AF RID: 28847 RVA: 0x0004C86D File Offset: 0x0004AA6D
+		// Token: 0x06006439 RID: 25657 RVA: 0x0027DFD1 File Offset: 0x0027C1D1
 		protected virtual void OnComplete()
 		{
 			if (this.waitUntilFinished)
@@ -93,7 +93,7 @@ namespace Fungus
 			}
 		}
 
-		// Token: 0x060070B0 RID: 28848 RVA: 0x002A305C File Offset: 0x002A125C
+		// Token: 0x0600643A RID: 25658 RVA: 0x0027DFE4 File Offset: 0x0027C1E4
 		public override void OnEnter()
 		{
 			if (this.IsDisplayNone<StageDisplayType>(this.display))
@@ -154,7 +154,7 @@ namespace Fungus
 			}
 		}
 
-		// Token: 0x060070B1 RID: 28849 RVA: 0x002A3198 File Offset: 0x002A1398
+		// Token: 0x0600643B RID: 25659 RVA: 0x0027E120 File Offset: 0x0027C320
 		public override string GetSummary()
 		{
 			if (this.display != StageDisplayType.None)
@@ -170,39 +170,39 @@ namespace Fungus
 			return "Error: No display selected";
 		}
 
-		// Token: 0x060070B2 RID: 28850 RVA: 0x0004C87D File Offset: 0x0004AA7D
+		// Token: 0x0600643C RID: 25660 RVA: 0x0027E190 File Offset: 0x0027C390
 		public override Color GetButtonColor()
 		{
 			return new Color32(230, 200, 250, byte.MaxValue);
 		}
 
-		// Token: 0x060070B3 RID: 28851 RVA: 0x0004C89D File Offset: 0x0004AA9D
+		// Token: 0x0600643D RID: 25661 RVA: 0x0027E1B0 File Offset: 0x0027C3B0
 		public override void OnCommandAdded(Block parentBlock)
 		{
 			this.display = StageDisplayType.Show;
 		}
 
-		// Token: 0x04006328 RID: 25384
+		// Token: 0x0400562E RID: 22062
 		[Tooltip("Stage to display characters on")]
 		[SerializeField]
 		protected Stage stage;
 
-		// Token: 0x04006329 RID: 25385
+		// Token: 0x0400562F RID: 22063
 		[Tooltip("Stage to swap with")]
 		[SerializeField]
 		protected Stage replacedStage;
 
-		// Token: 0x0400632A RID: 25386
+		// Token: 0x04005630 RID: 22064
 		[Tooltip("Use Default Settings")]
 		[SerializeField]
 		protected bool useDefaultSettings = true;
 
-		// Token: 0x0400632B RID: 25387
+		// Token: 0x04005631 RID: 22065
 		[Tooltip("Fade Duration")]
 		[SerializeField]
 		protected float fadeDuration;
 
-		// Token: 0x0400632C RID: 25388
+		// Token: 0x04005632 RID: 22066
 		[Tooltip("Wait until the tween has finished before executing the next command")]
 		[SerializeField]
 		protected bool waitUntilFinished;

@@ -3,12 +3,12 @@ using UnityEngine;
 
 namespace BehaviorDesigner.Runtime.Tasks.Basic.UnityAudioSource
 {
-	// Token: 0x0200163B RID: 5691
+	// Token: 0x0200117C RID: 4476
 	[TaskCategory("Basic/AudioSource")]
 	[TaskDescription("Sets the min distance value of the AudioSource. Returns Success.")]
 	public class SetMinDistance : Action
 	{
-		// Token: 0x0600847E RID: 33918 RVA: 0x002CFAE8 File Offset: 0x002CDCE8
+		// Token: 0x06007684 RID: 30340 RVA: 0x002B6B68 File Offset: 0x002B4D68
 		public override void OnStart()
 		{
 			GameObject defaultGameObject = base.GetDefaultGameObject(this.targetGameObject.Value);
@@ -19,7 +19,7 @@ namespace BehaviorDesigner.Runtime.Tasks.Basic.UnityAudioSource
 			}
 		}
 
-		// Token: 0x0600847F RID: 33919 RVA: 0x0005B99F File Offset: 0x00059B9F
+		// Token: 0x06007685 RID: 30341 RVA: 0x002B6BA8 File Offset: 0x002B4DA8
 		public override TaskStatus OnUpdate()
 		{
 			if (this.audioSource == null)
@@ -31,25 +31,25 @@ namespace BehaviorDesigner.Runtime.Tasks.Basic.UnityAudioSource
 			return 2;
 		}
 
-		// Token: 0x06008480 RID: 33920 RVA: 0x0005B9D2 File Offset: 0x00059BD2
+		// Token: 0x06007686 RID: 30342 RVA: 0x002B6BDB File Offset: 0x002B4DDB
 		public override void OnReset()
 		{
 			this.targetGameObject = null;
 			this.minDistance = 1f;
 		}
 
-		// Token: 0x04007127 RID: 28967
+		// Token: 0x04006204 RID: 25092
 		[Tooltip("The GameObject that the task operates on. If null the task GameObject is used.")]
 		public SharedGameObject targetGameObject;
 
-		// Token: 0x04007128 RID: 28968
+		// Token: 0x04006205 RID: 25093
 		[Tooltip("The min distance value of the AudioSource")]
 		public SharedFloat minDistance;
 
-		// Token: 0x04007129 RID: 28969
+		// Token: 0x04006206 RID: 25094
 		private AudioSource audioSource;
 
-		// Token: 0x0400712A RID: 28970
+		// Token: 0x04006207 RID: 25095
 		private GameObject prevGameObject;
 	}
 }

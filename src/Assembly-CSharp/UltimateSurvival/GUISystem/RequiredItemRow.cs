@@ -4,10 +4,10 @@ using UnityEngine.UI;
 
 namespace UltimateSurvival.GUISystem
 {
-	// Token: 0x0200094A RID: 2378
+	// Token: 0x0200064B RID: 1611
 	public class RequiredItemRow : MonoBehaviour
 	{
-		// Token: 0x06003CCE RID: 15566 RVA: 0x001B1D30 File Offset: 0x001AFF30
+		// Token: 0x06003358 RID: 13144 RVA: 0x00168CFC File Offset: 0x00166EFC
 		public void Set(int amount, string type, int total, int have)
 		{
 			bool flag = !string.IsNullOrEmpty(type);
@@ -21,27 +21,27 @@ namespace UltimateSurvival.GUISystem
 			}
 		}
 
-		// Token: 0x04003702 RID: 14082
+		// Token: 0x04002D8B RID: 11659
 		[SerializeField]
 		private Color m_HaveEnoughColor = Color.white;
 
-		// Token: 0x04003703 RID: 14083
+		// Token: 0x04002D8C RID: 11660
 		[SerializeField]
 		private Color m_DontHaveEnoughColor = Color.red;
 
-		// Token: 0x04003704 RID: 14084
+		// Token: 0x04002D8D RID: 11661
 		[SerializeField]
 		private Text m_Amount;
 
-		// Token: 0x04003705 RID: 14085
+		// Token: 0x04002D8E RID: 11662
 		[SerializeField]
 		private Text m_Type;
 
-		// Token: 0x04003706 RID: 14086
+		// Token: 0x04002D8F RID: 11663
 		[SerializeField]
 		private Text m_Total;
 
-		// Token: 0x04003707 RID: 14087
+		// Token: 0x04002D90 RID: 11664
 		[SerializeField]
 		private Text m_Have;
 	}

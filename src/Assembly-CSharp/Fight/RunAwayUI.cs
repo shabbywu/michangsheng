@@ -7,10 +7,10 @@ using UnityEngine.UI;
 
 namespace Fight
 {
-	// Token: 0x02000A7D RID: 2685
+	// Token: 0x02000726 RID: 1830
 	public class RunAwayUI : MonoBehaviour, IESCClose
 	{
-		// Token: 0x06004502 RID: 17666 RVA: 0x001D8488 File Offset: 0x001D6688
+		// Token: 0x06003A60 RID: 14944 RVA: 0x00190F94 File Offset: 0x0018F194
 		public void Show()
 		{
 			this.avatar = Tools.instance.getPlayer();
@@ -45,7 +45,7 @@ namespace Fight
 			ESCCloseManager.Inst.RegisterClose(this);
 		}
 
-		// Token: 0x06004503 RID: 17667 RVA: 0x001D8620 File Offset: 0x001D6820
+		// Token: 0x06003A61 RID: 14945 RVA: 0x0019112C File Offset: 0x0018F32C
 		private void setRunawayText(int type)
 		{
 			int staticDunSu = Tools.instance.getPlayer().getStaticDunSu();
@@ -57,7 +57,7 @@ namespace Fight
 			this.Desc.text = text;
 		}
 
-		// Token: 0x06004504 RID: 17668 RVA: 0x001D86B4 File Offset: 0x001D68B4
+		// Token: 0x06003A62 RID: 14946 RVA: 0x001911C0 File Offset: 0x0018F3C0
 		private void randomMapIndex(int Num)
 		{
 			int nowMapIndex = this.avatar.NowMapIndex;
@@ -99,7 +99,7 @@ namespace Fight
 			AllMapManage.instance.mapIndex[this.avatar.NowMapIndex].AvatarMoveToThis();
 		}
 
-		// Token: 0x06004505 RID: 17669 RVA: 0x0003161B File Offset: 0x0002F81B
+		// Token: 0x06003A63 RID: 14947 RVA: 0x001912DC File Offset: 0x0018F4DC
 		public void Close()
 		{
 			Tools.canClickFlag = true;
@@ -107,21 +107,21 @@ namespace Fight
 			ESCCloseManager.Inst.UnRegisterClose(this);
 		}
 
-		// Token: 0x06004506 RID: 17670 RVA: 0x00031639 File Offset: 0x0002F839
+		// Token: 0x06003A64 RID: 14948 RVA: 0x001912FA File Offset: 0x0018F4FA
 		public bool TryEscClose()
 		{
 			this.Close();
 			return true;
 		}
 
-		// Token: 0x04003D23 RID: 15651
+		// Token: 0x04003288 RID: 12936
 		[SerializeField]
 		private Text Desc;
 
-		// Token: 0x04003D24 RID: 15652
+		// Token: 0x04003289 RID: 12937
 		private Avatar avatar;
 
-		// Token: 0x04003D25 RID: 15653
+		// Token: 0x0400328A RID: 12938
 		[SerializeField]
 		private Transform Panel;
 	}

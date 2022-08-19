@@ -2,12 +2,12 @@
 using Fungus;
 using UnityEngine;
 
-// Token: 0x0200033E RID: 830
+// Token: 0x02000222 RID: 546
 [CommandInfo("YSDongFu", "开始双修", "开始双修", 0)]
 [AddComponentMenu("")]
 public class CmdStartShuangXiu : Command
 {
-	// Token: 0x0600186F RID: 6255 RVA: 0x00015370 File Offset: 0x00013570
+	// Token: 0x060015B7 RID: 5559 RVA: 0x0009144D File Offset: 0x0008F64D
 	public override void OnEnter()
 	{
 		UINPCJiaoHu.Inst.ShowNPCShuangXiuSelect();

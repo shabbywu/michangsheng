@@ -4,10 +4,10 @@ using UnityEngine.EventSystems;
 
 namespace PaiMai
 {
-	// Token: 0x02000A5C RID: 2652
+	// Token: 0x0200070C RID: 1804
 	public class PaiMaiSlot : SlotBase
 	{
-		// Token: 0x06004461 RID: 17505 RVA: 0x001D3B14 File Offset: 0x001D1D14
+		// Token: 0x060039D5 RID: 14805 RVA: 0x0018C2A4 File Offset: 0x0018A4A4
 		public override void OnPointerEnter(PointerEventData eventData)
 		{
 			if (DragMag.Inst.IsDraging)
@@ -30,7 +30,7 @@ namespace PaiMai
 			this._selectPanel.SetActive(true);
 		}
 
-		// Token: 0x06004462 RID: 17506 RVA: 0x001D3BA0 File Offset: 0x001D1DA0
+		// Token: 0x060039D6 RID: 14806 RVA: 0x0018C330 File Offset: 0x0018A530
 		public override void OnPointerUp(PointerEventData eventData)
 		{
 			if (eventData.dragging)
@@ -63,13 +63,13 @@ namespace PaiMai
 			this._selectPanel.SetActive(false);
 		}
 
-		// Token: 0x06004463 RID: 17507 RVA: 0x00030EE2 File Offset: 0x0002F0E2
+		// Token: 0x060039D7 RID: 14807 RVA: 0x0018C39D File Offset: 0x0018A59D
 		public override bool CanDrag()
 		{
 			return !base.IsNull() && this.Item.CanSale && base.CanDrag();
 		}
 
-		// Token: 0x06004464 RID: 17508 RVA: 0x00030F03 File Offset: 0x0002F103
+		// Token: 0x060039D8 RID: 14808 RVA: 0x0018C3BE File Offset: 0x0018A5BE
 		public override void SetNull()
 		{
 			base.SetNull();
@@ -79,10 +79,10 @@ namespace PaiMai
 			}
 		}
 
-		// Token: 0x04003C74 RID: 15476
+		// Token: 0x040031ED RID: 12781
 		public bool IsPlayer;
 
-		// Token: 0x04003C75 RID: 15477
+		// Token: 0x040031EE RID: 12782
 		public bool IsInBag;
 	}
 }

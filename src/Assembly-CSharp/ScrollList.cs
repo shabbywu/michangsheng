@@ -5,15 +5,15 @@ using UltimateSurvival;
 using UnityEngine;
 using UnityEngine.UI;
 
-// Token: 0x020005A9 RID: 1449
+// Token: 0x020003F9 RID: 1017
 public class ScrollList : MonoBehaviour
 {
-	// Token: 0x0600247E RID: 9342 RVA: 0x000042DD File Offset: 0x000024DD
+	// Token: 0x060020CC RID: 8396 RVA: 0x00004095 File Offset: 0x00002295
 	private void Start()
 	{
 	}
 
-	// Token: 0x0600247F RID: 9343 RVA: 0x00128990 File Offset: 0x00126B90
+	// Token: 0x060020CD RID: 8397 RVA: 0x000E68D0 File Offset: 0x000E4AD0
 	public GameObject createBtn<Templet>(ITEM_INFO info) where Templet : ScrollBtn
 	{
 		GameObject gameObject = Object.Instantiate<GameObject>(this.ItemTemple.gameObject);
@@ -24,7 +24,7 @@ public class ScrollList : MonoBehaviour
 		return gameObject;
 	}
 
-	// Token: 0x06002480 RID: 9344 RVA: 0x001289E0 File Offset: 0x00126BE0
+	// Token: 0x060020CE RID: 8398 RVA: 0x000E6920 File Offset: 0x000E4B20
 	public virtual void setItemImage(GameObject _Button, ITEM_INFO info)
 	{
 		ItemData itemData;
@@ -34,7 +34,7 @@ public class ScrollList : MonoBehaviour
 		component.gameObject.transform.localScale = new Vector3(0.8f, 0.8f, 0.8f);
 	}
 
-	// Token: 0x06002481 RID: 9345 RVA: 0x00128A48 File Offset: 0x00126C48
+	// Token: 0x060020CF RID: 8399 RVA: 0x000E6988 File Offset: 0x000E4B88
 	public virtual void setItemCount(GameObject _Button, ITEM_INFO info)
 	{
 		int num = Convert.ToInt32(info.itemCount);
@@ -47,7 +47,7 @@ public class ScrollList : MonoBehaviour
 		component.text = "";
 	}
 
-	// Token: 0x06002482 RID: 9346 RVA: 0x00128AA0 File Offset: 0x00126CA0
+	// Token: 0x060020D0 RID: 8400 RVA: 0x000E69E0 File Offset: 0x000E4BE0
 	public void setList<T>(ITEM_INFO_LIST infos) where T : ScrollBtn
 	{
 		this.clenrNowBtn();
@@ -63,12 +63,12 @@ public class ScrollList : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06002483 RID: 9347 RVA: 0x000042DD File Offset: 0x000024DD
+	// Token: 0x060020D1 RID: 8401 RVA: 0x00004095 File Offset: 0x00002295
 	public virtual void setItemButton(GameObject button, int itemIndex)
 	{
 	}
 
-	// Token: 0x06002484 RID: 9348 RVA: 0x00128B0C File Offset: 0x00126D0C
+	// Token: 0x060020D2 RID: 8402 RVA: 0x000E6A4C File Offset: 0x000E4C4C
 	public virtual void clenrNowBtn()
 	{
 		foreach (object obj in base.gameObject.transform)
@@ -81,12 +81,12 @@ public class ScrollList : MonoBehaviour
 		}
 	}
 
-	// Token: 0x04001F65 RID: 8037
+	// Token: 0x04001AA9 RID: 6825
 	public GameObject ItemTemple;
 
-	// Token: 0x04001F66 RID: 8038
+	// Token: 0x04001AAA RID: 6826
 	public ItemDatabase database;
 
-	// Token: 0x04001F67 RID: 8039
+	// Token: 0x04001AAB RID: 6827
 	public GameObject UIList;
 }

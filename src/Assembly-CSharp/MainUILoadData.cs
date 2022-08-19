@@ -1,10 +1,10 @@
 ﻿using System;
 using UnityEngine;
 
-// Token: 0x0200048B RID: 1163
+// Token: 0x02000326 RID: 806
 public class MainUILoadData : MonoBehaviour
 {
-	// Token: 0x06001F0E RID: 7950 RVA: 0x0010AFB4 File Offset: 0x001091B4
+	// Token: 0x06001BCE RID: 7118 RVA: 0x000C5DEC File Offset: 0x000C3FEC
 	public void Init(int index)
 	{
 		Tools.ClearObj(this.dataObj.transform);
@@ -16,11 +16,11 @@ public class MainUILoadData : MonoBehaviour
 		base.gameObject.SetActive(true);
 	}
 
-	// Token: 0x04001A88 RID: 6792
+	// Token: 0x04001664 RID: 5732
 	[SerializeField]
 	private GameObject dataObj;
 
-	// Token: 0x04001A89 RID: 6793
+	// Token: 0x04001665 RID: 5733
 	[SerializeField]
 	private RectTransform dataList;
 }

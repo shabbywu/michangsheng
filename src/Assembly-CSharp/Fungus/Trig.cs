@@ -3,12 +3,12 @@ using UnityEngine;
 
 namespace Fungus
 {
-	// Token: 0x0200124C RID: 4684
+	// Token: 0x02000E01 RID: 3585
 	[CommandInfo("Math", "Trig", "Command to execute and store the result of basic trigonometry", 0)]
 	[AddComponentMenu("")]
 	public class Trig : BaseUnaryMathCommand
 	{
-		// Token: 0x060071DA RID: 29146 RVA: 0x002A6DDC File Offset: 0x002A4FDC
+		// Token: 0x0600654C RID: 25932 RVA: 0x00282964 File Offset: 0x00280B64
 		public override void OnEnter()
 		{
 			switch (this.function)
@@ -41,35 +41,35 @@ namespace Fungus
 			this.Continue();
 		}
 
-		// Token: 0x060071DB RID: 29147 RVA: 0x0004D6A0 File Offset: 0x0004B8A0
+		// Token: 0x0600654D RID: 25933 RVA: 0x00282A9A File Offset: 0x00280C9A
 		public override string GetSummary()
 		{
 			return this.function.ToString() + " " + base.GetSummary();
 		}
 
-		// Token: 0x04006437 RID: 25655
+		// Token: 0x0400570E RID: 22286
 		[Tooltip("Trigonometric function to run.")]
 		[SerializeField]
 		protected Trig.Function function = Trig.Function.Sin;
 
-		// Token: 0x0200124D RID: 4685
+		// Token: 0x020016BF RID: 5823
 		public enum Function
 		{
-			// Token: 0x04006439 RID: 25657
+			// Token: 0x04007385 RID: 29573
 			Rad2Deg,
-			// Token: 0x0400643A RID: 25658
+			// Token: 0x04007386 RID: 29574
 			Deg2Rad,
-			// Token: 0x0400643B RID: 25659
+			// Token: 0x04007387 RID: 29575
 			ACos,
-			// Token: 0x0400643C RID: 25660
+			// Token: 0x04007388 RID: 29576
 			ASin,
-			// Token: 0x0400643D RID: 25661
+			// Token: 0x04007389 RID: 29577
 			ATan,
-			// Token: 0x0400643E RID: 25662
+			// Token: 0x0400738A RID: 29578
 			Cos,
-			// Token: 0x0400643F RID: 25663
+			// Token: 0x0400738B RID: 29579
 			Sin,
-			// Token: 0x04006440 RID: 25664
+			// Token: 0x0400738C RID: 29580
 			Tan
 		}
 	}

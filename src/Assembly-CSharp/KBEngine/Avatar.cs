@@ -4,10 +4,12 @@ using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.Text.RegularExpressions;
 using Bag;
+using Fungus;
 using GUIPackage;
 using JSONClass;
 using Newtonsoft.Json.Linq;
 using PingJing;
+using script.MenPaiTask;
 using TuPo;
 using UnityEngine;
 using UnityEngine.Events;
@@ -17,11 +19,21 @@ using YSGame.TuJian;
 
 namespace KBEngine
 {
-	// Token: 0x02000FF5 RID: 4085
+	// Token: 0x02000C6A RID: 3178
 	public class Avatar : AvatarBase
 	{
-		// Token: 0x170008AF RID: 2223
-		// (get) Token: 0x06006104 RID: 24836 RVA: 0x00043643 File Offset: 0x00041843
+		// Token: 0x1700065C RID: 1628
+		// (get) Token: 0x060056B5 RID: 22197 RVA: 0x0023F38D File Offset: 0x0023D58D
+		public ElderTaskMag ElderTaskMag
+		{
+			get
+			{
+				return this.StreamData.ZhangLaoTaskMag;
+			}
+		}
+
+		// Token: 0x1700065D RID: 1629
+		// (get) Token: 0x060056B6 RID: 22198 RVA: 0x0023F39A File Offset: 0x0023D59A
 		public new CardMag crystal
 		{
 			get
@@ -30,9 +42,9 @@ namespace KBEngine
 			}
 		}
 
-		// Token: 0x170008B0 RID: 2224
-		// (get) Token: 0x06006106 RID: 24838 RVA: 0x0026B87C File Offset: 0x00269A7C
-		// (set) Token: 0x06006105 RID: 24837 RVA: 0x0004364B File Offset: 0x0004184B
+		// Token: 0x1700065E RID: 1630
+		// (get) Token: 0x060056B8 RID: 22200 RVA: 0x0023F3AC File Offset: 0x0023D5AC
+		// (set) Token: 0x060056B7 RID: 22199 RVA: 0x0023F3A2 File Offset: 0x0023D5A2
 		public int shengShi
 		{
 			get
@@ -50,9 +62,9 @@ namespace KBEngine
 			}
 		}
 
-		// Token: 0x170008B1 RID: 2225
-		// (get) Token: 0x06006108 RID: 24840 RVA: 0x0026B8F4 File Offset: 0x00269AF4
-		// (set) Token: 0x06006107 RID: 24839 RVA: 0x00043654 File Offset: 0x00041854
+		// Token: 0x1700065F RID: 1631
+		// (get) Token: 0x060056BA RID: 22202 RVA: 0x0023F430 File Offset: 0x0023D630
+		// (set) Token: 0x060056B9 RID: 22201 RVA: 0x0023F424 File Offset: 0x0023D624
 		public int dunSu
 		{
 			get
@@ -70,9 +82,9 @@ namespace KBEngine
 			}
 		}
 
-		// Token: 0x170008B2 RID: 2226
-		// (get) Token: 0x0600610A RID: 24842 RVA: 0x0026B96C File Offset: 0x00269B6C
-		// (set) Token: 0x06006109 RID: 24841 RVA: 0x0004365D File Offset: 0x0004185D
+		// Token: 0x17000660 RID: 1632
+		// (get) Token: 0x060056BC RID: 22204 RVA: 0x0023F4B4 File Offset: 0x0023D6B4
+		// (set) Token: 0x060056BB RID: 22203 RVA: 0x0023F4A8 File Offset: 0x0023D6A8
 		public int HP_Max
 		{
 			get
@@ -90,8 +102,8 @@ namespace KBEngine
 			}
 		}
 
-		// Token: 0x170008B3 RID: 2227
-		// (get) Token: 0x0600610B RID: 24843 RVA: 0x0026B9E8 File Offset: 0x00269BE8
+		// Token: 0x17000661 RID: 1633
+		// (get) Token: 0x060056BD RID: 22205 RVA: 0x0023F530 File Offset: 0x0023D730
 		public List<int> GetLingGeng
 		{
 			get
@@ -111,9 +123,9 @@ namespace KBEngine
 			}
 		}
 
-		// Token: 0x170008B4 RID: 2228
-		// (get) Token: 0x0600610D RID: 24845 RVA: 0x0004366F File Offset: 0x0004186F
-		// (set) Token: 0x0600610C RID: 24844 RVA: 0x00043666 File Offset: 0x00041866
+		// Token: 0x17000662 RID: 1634
+		// (get) Token: 0x060056BF RID: 22207 RVA: 0x0023F5DD File Offset: 0x0023D7DD
+		// (set) Token: 0x060056BE RID: 22206 RVA: 0x0023F5D4 File Offset: 0x0023D7D4
 		public int xinjin
 		{
 			get
@@ -126,9 +138,9 @@ namespace KBEngine
 			}
 		}
 
-		// Token: 0x170008B5 RID: 2229
-		// (get) Token: 0x0600610F RID: 24847 RVA: 0x0004368F File Offset: 0x0004188F
-		// (set) Token: 0x0600610E RID: 24846 RVA: 0x00043677 File Offset: 0x00041877
+		// Token: 0x17000663 RID: 1635
+		// (get) Token: 0x060056C1 RID: 22209 RVA: 0x0023F5FD File Offset: 0x0023D7FD
+		// (set) Token: 0x060056C0 RID: 22208 RVA: 0x0023F5E5 File Offset: 0x0023D7E5
 		public new int ZiZhi
 		{
 			get
@@ -141,9 +153,9 @@ namespace KBEngine
 			}
 		}
 
-		// Token: 0x170008B6 RID: 2230
-		// (get) Token: 0x06006111 RID: 24849 RVA: 0x000436B7 File Offset: 0x000418B7
-		// (set) Token: 0x06006110 RID: 24848 RVA: 0x0004369F File Offset: 0x0004189F
+		// Token: 0x17000664 RID: 1636
+		// (get) Token: 0x060056C3 RID: 22211 RVA: 0x0023F625 File Offset: 0x0023D825
+		// (set) Token: 0x060056C2 RID: 22210 RVA: 0x0023F60D File Offset: 0x0023D80D
 		public new uint wuXin
 		{
 			get
@@ -156,9 +168,9 @@ namespace KBEngine
 			}
 		}
 
-		// Token: 0x170008B7 RID: 2231
-		// (get) Token: 0x06006113 RID: 24851 RVA: 0x000436E7 File Offset: 0x000418E7
-		// (set) Token: 0x06006112 RID: 24850 RVA: 0x000436C7 File Offset: 0x000418C7
+		// Token: 0x17000665 RID: 1637
+		// (get) Token: 0x060056C5 RID: 22213 RVA: 0x0023F655 File Offset: 0x0023D855
+		// (set) Token: 0x060056C4 RID: 22212 RVA: 0x0023F635 File Offset: 0x0023D835
 		public int ZhuJiJinDu
 		{
 			get
@@ -175,28 +187,28 @@ namespace KBEngine
 			}
 		}
 
-		// Token: 0x170008B8 RID: 2232
-		// (get) Token: 0x06006114 RID: 24852 RVA: 0x000436EF File Offset: 0x000418EF
+		// Token: 0x17000666 RID: 1638
+		// (get) Token: 0x060056C6 RID: 22214 RVA: 0x0023F65D File Offset: 0x0023D85D
 		public int NowDrawCardNum
 		{
 			get
 			{
-				return (int)jsonData.instance.DrawCardToLevelJsonData[string.Concat(this.getLevelType())]["rundDraw"].n;
+				return (int)jsonData.instance.DrawCardToLevelJsonData[string.Concat((int)this.level)]["rundDraw"].n;
 			}
 		}
 
-		// Token: 0x170008B9 RID: 2233
-		// (get) Token: 0x06006115 RID: 24853 RVA: 0x00043720 File Offset: 0x00041920
+		// Token: 0x17000667 RID: 1639
+		// (get) Token: 0x060056C7 RID: 22215 RVA: 0x0023F68E File Offset: 0x0023D88E
 		public int NowStartCardNum
 		{
 			get
 			{
-				return (int)jsonData.instance.DrawCardToLevelJsonData[string.Concat(this.getLevelType())]["StartCard"].n;
+				return (int)jsonData.instance.DrawCardToLevelJsonData[string.Concat((int)this.level)]["StartCard"].n;
 			}
 		}
 
-		// Token: 0x170008BA RID: 2234
-		// (get) Token: 0x06006116 RID: 24854 RVA: 0x0026BA8C File Offset: 0x00269C8C
+		// Token: 0x17000668 RID: 1640
+		// (get) Token: 0x060056C8 RID: 22216 RVA: 0x0023F6C0 File Offset: 0x0023D8C0
 		public uint NowCard
 		{
 			get
@@ -205,13 +217,13 @@ namespace KBEngine
 				{
 					return 0U;
 				}
-				return (uint)Mathf.Clamp((int)jsonData.instance.DrawCardToLevelJsonData[string.Concat(this.getLevelType())]["MaxDraw"].n + this.fightTemp.tempNowCard, 0, 99999);
+				return (uint)Mathf.Clamp((int)jsonData.instance.DrawCardToLevelJsonData[string.Concat((int)this.level)]["MaxDraw"].n + this.fightTemp.tempNowCard, 0, 99999);
 			}
 		}
 
-		// Token: 0x170008BB RID: 2235
-		// (get) Token: 0x06006118 RID: 24856 RVA: 0x0004375A File Offset: 0x0004195A
-		// (set) Token: 0x06006117 RID: 24855 RVA: 0x00043751 File Offset: 0x00041951
+		// Token: 0x17000669 RID: 1641
+		// (get) Token: 0x060056CA RID: 22218 RVA: 0x0023F72D File Offset: 0x0023D92D
+		// (set) Token: 0x060056C9 RID: 22217 RVA: 0x0023F724 File Offset: 0x0023D924
 		public int WuDaoDian
 		{
 			get
@@ -224,9 +236,9 @@ namespace KBEngine
 			}
 		}
 
-		// Token: 0x170008BC RID: 2236
-		// (get) Token: 0x0600611A RID: 24858 RVA: 0x00043770 File Offset: 0x00041970
-		// (set) Token: 0x06006119 RID: 24857 RVA: 0x00043762 File Offset: 0x00041962
+		// Token: 0x1700066A RID: 1642
+		// (get) Token: 0x060056CC RID: 22220 RVA: 0x0023F743 File Offset: 0x0023D943
+		// (set) Token: 0x060056CB RID: 22219 RVA: 0x0023F735 File Offset: 0x0023D935
 		public List<int> NowRoundUsedCard
 		{
 			get
@@ -239,9 +251,9 @@ namespace KBEngine
 			}
 		}
 
-		// Token: 0x170008BD RID: 2237
-		// (get) Token: 0x0600611C RID: 24860 RVA: 0x0004378B File Offset: 0x0004198B
-		// (set) Token: 0x0600611B RID: 24859 RVA: 0x0004377D File Offset: 0x0004197D
+		// Token: 0x1700066B RID: 1643
+		// (get) Token: 0x060056CE RID: 22222 RVA: 0x0023F75E File Offset: 0x0023D95E
+		// (set) Token: 0x060056CD RID: 22221 RVA: 0x0023F750 File Offset: 0x0023D950
 		public List<int> UsedSkills
 		{
 			get
@@ -254,8 +266,8 @@ namespace KBEngine
 			}
 		}
 
-		// Token: 0x170008BE RID: 2238
-		// (get) Token: 0x0600611D RID: 24861 RVA: 0x00043798 File Offset: 0x00041998
+		// Token: 0x1700066C RID: 1644
+		// (get) Token: 0x060056CF RID: 22223 RVA: 0x0023F76B File Offset: 0x0023D96B
 		public int useSkillNum
 		{
 			get
@@ -264,13 +276,13 @@ namespace KBEngine
 			}
 		}
 
-		// Token: 0x0600611E RID: 24862 RVA: 0x000437AA File Offset: 0x000419AA
+		// Token: 0x060056D0 RID: 22224 RVA: 0x0023F77D File Offset: 0x0023D97D
 		public int getStaticSkillAddSum(int seid)
 		{
 			return 0 + this.DictionyGetSum(this.StaticSkillSeidFlag, seid) + this.DictionyGetSum(this.wuDaoMag.WuDaoSkillSeidFlag, seid) + this.DictionyGetSum(this.JieDanSkillSeidFlag, seid);
 		}
 
-		// Token: 0x0600611F RID: 24863 RVA: 0x0026BAF0 File Offset: 0x00269CF0
+		// Token: 0x060056D1 RID: 22225 RVA: 0x0023F7B0 File Offset: 0x0023D9B0
 		public int getEquipAddSum(int seid)
 		{
 			int num = 0;
@@ -285,7 +297,7 @@ namespace KBEngine
 			return num;
 		}
 
-		// Token: 0x06006120 RID: 24864 RVA: 0x0026BB60 File Offset: 0x00269D60
+		// Token: 0x060056D2 RID: 22226 RVA: 0x0023F820 File Offset: 0x0023DA20
 		public int getJieDanSkillAddHP()
 		{
 			int num = 0;
@@ -301,7 +313,7 @@ namespace KBEngine
 			return num + num2;
 		}
 
-		// Token: 0x06006121 RID: 24865 RVA: 0x0026BC08 File Offset: 0x00269E08
+		// Token: 0x060056D3 RID: 22227 RVA: 0x0023F8C8 File Offset: 0x0023DAC8
 		public float getJieDanSkillAddExp()
 		{
 			int num = 100;
@@ -319,7 +331,7 @@ namespace KBEngine
 			return (float)num / 100f;
 		}
 
-		// Token: 0x06006122 RID: 24866 RVA: 0x0026BCC8 File Offset: 0x00269EC8
+		// Token: 0x060056D4 RID: 22228 RVA: 0x0023F988 File Offset: 0x0023DB88
 		public Dictionary<int, int> getJieDanAddLingGen()
 		{
 			Dictionary<int, int> dictionary = new Dictionary<int, int>();
@@ -336,25 +348,25 @@ namespace KBEngine
 			return dictionary;
 		}
 
-		// Token: 0x06006123 RID: 24867 RVA: 0x000437DC File Offset: 0x000419DC
+		// Token: 0x060056D5 RID: 22229 RVA: 0x0023FA70 File Offset: 0x0023DC70
 		public int GetBaseShenShi()
 		{
 			return this._shengShi + this.getStaticSkillAddSum(2) + this.getEquipAddSum(4);
 		}
 
-		// Token: 0x06006124 RID: 24868 RVA: 0x000437F4 File Offset: 0x000419F4
+		// Token: 0x060056D6 RID: 22230 RVA: 0x0023FA88 File Offset: 0x0023DC88
 		public int GetBaseDunSu()
 		{
 			return this._dunSu + this.getStaticSkillAddSum(8) + this.getEquipAddSum(8);
 		}
 
-		// Token: 0x06006125 RID: 24869 RVA: 0x0004380C File Offset: 0x00041A0C
+		// Token: 0x060056D7 RID: 22231 RVA: 0x0023FAA0 File Offset: 0x0023DCA0
 		public Avatar cloneAvatar()
 		{
 			return base.MemberwiseClone() as Avatar;
 		}
 
-		// Token: 0x06006126 RID: 24870 RVA: 0x0026BDB0 File Offset: 0x00269FB0
+		// Token: 0x060056D8 RID: 22232 RVA: 0x0023FAB0 File Offset: 0x0023DCB0
 		public int DictionyGetSum(Dictionary<int, Dictionary<int, int>> seidflag, int seid)
 		{
 			int num = 0;
@@ -369,7 +381,7 @@ namespace KBEngine
 			return num;
 		}
 
-		// Token: 0x06006127 RID: 24871 RVA: 0x0026BE18 File Offset: 0x0026A018
+		// Token: 0x060056D9 RID: 22233 RVA: 0x0023FB18 File Offset: 0x0023DD18
 		public int RandomSeedNext()
 		{
 			int num = new Random(PlayerEx.Player.RandomSeed.I).Next();
@@ -377,7 +389,7 @@ namespace KBEngine
 			return num;
 		}
 
-		// Token: 0x06006128 RID: 24872 RVA: 0x0026BE4C File Offset: 0x0026A04C
+		// Token: 0x060056DA RID: 22234 RVA: 0x0023FB4C File Offset: 0x0023DD4C
 		public void AddFriend(int npcId)
 		{
 			if (npcId == 0)
@@ -395,7 +407,7 @@ namespace KBEngine
 			this.emailDateMag.cyNpcList.Add(npcId);
 		}
 
-		// Token: 0x06006129 RID: 24873 RVA: 0x0026BEA4 File Offset: 0x0026A0A4
+		// Token: 0x060056DB RID: 22235 RVA: 0x0023FBA4 File Offset: 0x0023DDA4
 		public void AddLingGan(int addNum)
 		{
 			this.LingGan += addNum;
@@ -407,7 +419,7 @@ namespace KBEngine
 			this.LunDaoState = this.GetLunDaoState();
 		}
 
-		// Token: 0x0600612A RID: 24874 RVA: 0x00043819 File Offset: 0x00041A19
+		// Token: 0x060056DC RID: 22236 RVA: 0x0023FBE2 File Offset: 0x0023DDE2
 		public void ReduceLingGan(int num)
 		{
 			this.LingGan -= num;
@@ -418,13 +430,13 @@ namespace KBEngine
 			this.LunDaoState = this.GetLunDaoState();
 		}
 
-		// Token: 0x0600612B RID: 24875 RVA: 0x0026BEE4 File Offset: 0x0026A0E4
+		// Token: 0x060056DD RID: 22237 RVA: 0x0023FC10 File Offset: 0x0023DE10
 		public int GetLingGanMax()
 		{
 			return jsonData.instance.LingGanMaxData[this.GetXinJingLevel().ToString()]["lingGanShangXian"].I;
 		}
 
-		// Token: 0x0600612C RID: 24876 RVA: 0x0026BF20 File Offset: 0x0026A120
+		// Token: 0x060056DE RID: 22238 RVA: 0x0023FC4C File Offset: 0x0023DE4C
 		public int GetLunDaoState()
 		{
 			foreach (JSONObject jsonobject in jsonData.instance.LingGanLevelData.list)
@@ -437,7 +449,7 @@ namespace KBEngine
 			return 0;
 		}
 
-		// Token: 0x0600612D RID: 24877 RVA: 0x0026BFA4 File Offset: 0x0026A1A4
+		// Token: 0x060056DF RID: 22239 RVA: 0x0023FCD0 File Offset: 0x0023DED0
 		public bool ISStudyDanFan(int id)
 		{
 			if (!jsonData.instance.LianDanDanFangBiao.HasField(id.ToString()))
@@ -449,10 +461,10 @@ namespace KBEngine
 			List<int> danyao = new List<int>();
 			List<int> num = new List<int>();
 			this.getDanYaoTypeAndNum(id, danyao, num);
-			return this.getDanFang((int)jsonobject["ItemID"].n, danyao, num) != null;
+			return this.getDanFang(jsonobject["ItemID"].I, danyao, num) != null;
 		}
 
-		// Token: 0x0600612E RID: 24878 RVA: 0x0026C02C File Offset: 0x0026A22C
+		// Token: 0x060056E0 RID: 22240 RVA: 0x0023FD58 File Offset: 0x0023DF58
 		public int ItemSeid27Days()
 		{
 			if (this.ItemBuffList.ContainsKey("27") && (bool)this.ItemBuffList["27"]["start"])
@@ -472,7 +484,7 @@ namespace KBEngine
 			return 0;
 		}
 
-		// Token: 0x0600612F RID: 24879 RVA: 0x0026C130 File Offset: 0x0026A330
+		// Token: 0x060056E1 RID: 22241 RVA: 0x0023FE5C File Offset: 0x0023E05C
 		public void SetMenPaiHaoGandu(int MenPaiID, int Value)
 		{
 			int num = this.MenPaiHaoGanDu.HasField(string.Concat(MenPaiID)) ? ((int)this.MenPaiHaoGanDu[string.Concat(MenPaiID)].n) : 0;
@@ -488,13 +500,13 @@ namespace KBEngine
 			}
 		}
 
-		// Token: 0x06006130 RID: 24880 RVA: 0x00043845 File Offset: 0x00041A45
+		// Token: 0x060056E2 RID: 22242 RVA: 0x0023FF1A File Offset: 0x0023E11A
 		public void setAvatarHaoGandu(int AvatarID, int AddHaoGanduNum)
 		{
 			NPCEx.AddFavor(AvatarID, AddHaoGanduNum, true, true);
 		}
 
-		// Token: 0x06006131 RID: 24881 RVA: 0x0026C1F0 File Offset: 0x0026A3F0
+		// Token: 0x060056E3 RID: 22243 RVA: 0x0023FF28 File Offset: 0x0023E128
 		public void getDanYaoTypeAndNum(int id, List<int> danyao, List<int> num)
 		{
 			JSONObject jsonobject = jsonData.instance.LianDanDanFangBiao[id.ToString()];
@@ -505,21 +517,21 @@ namespace KBEngine
 			}
 		}
 
-		// Token: 0x06006132 RID: 24882 RVA: 0x0026C264 File Offset: 0x0026A464
+		// Token: 0x060056E4 RID: 22244 RVA: 0x0023FF9C File Offset: 0x0023E19C
 		public JSONObject getDanFang(int danyaoID, List<int> danyao, List<int> num)
 		{
 			return Tools.instance.getPlayer().DanFang.list.Find(delegate(JSONObject aa)
 			{
-				if (danyaoID == (int)aa["ID"].n)
+				if (danyaoID == aa["ID"].I)
 				{
 					bool flag = true;
 					for (int i = 0; i < aa["Type"].list.Count; i++)
 					{
-						if (danyao[i] != (int)aa["Type"][i].n)
+						if (danyao[i] != aa["Type"][i].I)
 						{
 							flag = false;
 						}
-						if (num[i] != (int)aa["Num"][i].n)
+						if (num[i] != aa["Num"][i].I)
 						{
 							flag = false;
 						}
@@ -533,7 +545,7 @@ namespace KBEngine
 			});
 		}
 
-		// Token: 0x06006133 RID: 24883 RVA: 0x0026C2B4 File Offset: 0x0026A4B4
+		// Token: 0x060056E5 RID: 22245 RVA: 0x0023FFEC File Offset: 0x0023E1EC
 		public int GetZhangMenChengHaoId(int menpai)
 		{
 			switch (menpai)
@@ -553,7 +565,7 @@ namespace KBEngine
 			return 9;
 		}
 
-		// Token: 0x06006134 RID: 24884 RVA: 0x0026C314 File Offset: 0x0026A514
+		// Token: 0x060056E6 RID: 22246 RVA: 0x0024004C File Offset: 0x0023E24C
 		public int GetZhangMenId(int shili)
 		{
 			int zhangMenChengHaoId = Tools.instance.getPlayer().GetZhangMenChengHaoId(shili);
@@ -569,7 +581,7 @@ namespace KBEngine
 			return -1;
 		}
 
-		// Token: 0x06006135 RID: 24885 RVA: 0x0026C3C8 File Offset: 0x0026A5C8
+		// Token: 0x060056E7 RID: 22247 RVA: 0x00240100 File Offset: 0x0023E300
 		public void AddDandu(int num)
 		{
 			this.Dandu += (this.TianFuID.HasField(string.Concat(18)) ? (num * 2) : num);
@@ -579,7 +591,7 @@ namespace KBEngine
 			}
 		}
 
-		// Token: 0x06006136 RID: 24886 RVA: 0x0026C418 File Offset: 0x0026A618
+		// Token: 0x060056E8 RID: 22248 RVA: 0x00240150 File Offset: 0x0023E350
 		public void AddYaoCaiShuXin(int itemID, int index)
 		{
 			if (!this.YaoCaiShuXin.HasField(itemID + "_" + index))
@@ -600,19 +612,19 @@ namespace KBEngine
 			}
 		}
 
-		// Token: 0x06006137 RID: 24887 RVA: 0x00043850 File Offset: 0x00041A50
+		// Token: 0x060056E9 RID: 22249 RVA: 0x002401D3 File Offset: 0x0023E3D3
 		public bool hasYaocaiShuXin(int itemID, int index)
 		{
 			return this.YaoCaiShuXin.HasField(itemID + "_" + index);
 		}
 
-		// Token: 0x06006138 RID: 24888 RVA: 0x0026C49C File Offset: 0x0026A69C
+		// Token: 0x060056EA RID: 22250 RVA: 0x002401F8 File Offset: 0x0023E3F8
 		public bool getItemHasTianFu15(int quality)
 		{
 			return this.TianFuID.HasField(string.Concat(15)) && this.TianFuID["15"].list.Find((JSONObject aa) => (int)aa.n == quality) != null;
 		}
 
-		// Token: 0x06006139 RID: 24889 RVA: 0x0026C4FC File Offset: 0x0026A6FC
+		// Token: 0x060056EB RID: 22251 RVA: 0x00240258 File Offset: 0x0023E458
 		public int getZhuXiuSkill()
 		{
 			foreach (SkillItem skillItem in this.equipStaticSkillList)
@@ -625,28 +637,28 @@ namespace KBEngine
 			return -1;
 		}
 
-		// Token: 0x0600613A RID: 24890 RVA: 0x0026C568 File Offset: 0x0026A768
+		// Token: 0x060056EC RID: 22252 RVA: 0x002402C4 File Offset: 0x0023E4C4
 		public bool GetHasYaoYinShuXin(int itemID, int quality)
 		{
 			bool itemHasTianFu = this.getItemHasTianFu15(quality);
 			return this.hasYaocaiShuXin(itemID, 1) || itemHasTianFu;
 		}
 
-		// Token: 0x0600613B RID: 24891 RVA: 0x0026C588 File Offset: 0x0026A788
+		// Token: 0x060056ED RID: 22253 RVA: 0x002402E4 File Offset: 0x0023E4E4
 		public bool GetHasZhuYaoShuXin(int itemID, int quality)
 		{
 			bool itemHasTianFu = this.getItemHasTianFu15(quality);
 			return this.hasYaocaiShuXin(itemID, 2) || itemHasTianFu;
 		}
 
-		// Token: 0x0600613C RID: 24892 RVA: 0x0026C5A8 File Offset: 0x0026A7A8
+		// Token: 0x060056EE RID: 22254 RVA: 0x00240304 File Offset: 0x0023E504
 		public bool GetHasFuYaoShuXin(int itemID, int quality)
 		{
 			bool itemHasTianFu = this.getItemHasTianFu15(quality);
 			return this.hasYaocaiShuXin(itemID, 3) || itemHasTianFu;
 		}
 
-		// Token: 0x0600613D RID: 24893 RVA: 0x00043873 File Offset: 0x00041A73
+		// Token: 0x060056EF RID: 22255 RVA: 0x00240323 File Offset: 0x0023E523
 		public void UnLockCaoYaoData(int caoYaoId)
 		{
 			this.AddYaoCaiShuXin(caoYaoId, 1);
@@ -654,7 +666,7 @@ namespace KBEngine
 			this.AddYaoCaiShuXin(caoYaoId, 3);
 		}
 
-		// Token: 0x0600613E RID: 24894 RVA: 0x0026C5C8 File Offset: 0x0026A7C8
+		// Token: 0x060056F0 RID: 22256 RVA: 0x00240340 File Offset: 0x0023E540
 		public void addDanFang(int danyaoID, List<int> yaolei, List<int> YaoLeiNum)
 		{
 			TuJianManager.Inst.UnlockItem(danyaoID);
@@ -668,12 +680,12 @@ namespace KBEngine
 			}
 			if (this.DanFang.list.Find(delegate(JSONObject aa)
 			{
-				if (danyaoID == (int)aa["ID"].n)
+				if (danyaoID == aa["ID"].I)
 				{
 					bool flag = true;
 					for (int j = 0; j < aa["Type"].list.Count; j++)
 					{
-						if (yaolei[j] != (int)aa["Type"][j].n)
+						if (yaolei[j] != aa["Type"][j].I)
 						{
 							flag = false;
 						}
@@ -709,7 +721,7 @@ namespace KBEngine
 			this.DanFang.Add(jsonobject);
 		}
 
-		// Token: 0x0600613F RID: 24895 RVA: 0x0004388D File Offset: 0x00041A8D
+		// Token: 0x060056F1 RID: 22257 RVA: 0x002404B8 File Offset: 0x0023E6B8
 		public void statiReduceDandu(int num)
 		{
 			this.Dandu -= num;
@@ -719,7 +731,17 @@ namespace KBEngine
 			}
 		}
 
-		// Token: 0x06006140 RID: 24896 RVA: 0x0026C740 File Offset: 0x0026A940
+		// Token: 0x1700066D RID: 1645
+		// (get) Token: 0x060056F2 RID: 22258 RVA: 0x002404D8 File Offset: 0x0023E6D8
+		public List<int> HasDefeatNpcList
+		{
+			get
+			{
+				return this.StreamData.HasDefeatNpcList;
+			}
+		}
+
+		// Token: 0x060056F3 RID: 22259 RVA: 0x002404E8 File Offset: 0x0023E6E8
 		public void AddMoney(int AddNum)
 		{
 			if (AddNum == 0)
@@ -743,7 +765,7 @@ namespace KBEngine
 			this.money = 0UL;
 		}
 
-		// Token: 0x06006141 RID: 24897 RVA: 0x0026C7C8 File Offset: 0x0026A9C8
+		// Token: 0x060056F4 RID: 22260 RVA: 0x00240570 File Offset: 0x0023E770
 		public void ReduceDandu(int num)
 		{
 			int danDuLevel = this.GetDanDuLevel();
@@ -768,7 +790,7 @@ namespace KBEngine
 			}
 		}
 
-		// Token: 0x06006142 RID: 24898 RVA: 0x000438AD File Offset: 0x00041AAD
+		// Token: 0x060056F5 RID: 22261 RVA: 0x002405D3 File Offset: 0x0023E7D3
 		public int GetDanDuLevel()
 		{
 			if (this.Dandu >= 120)
@@ -794,20 +816,20 @@ namespace KBEngine
 			return 0;
 		}
 
-		// Token: 0x06006143 RID: 24899 RVA: 0x0026C82C File Offset: 0x0026AA2C
+		// Token: 0x060056F6 RID: 22262 RVA: 0x00240614 File Offset: 0x0023E814
 		public int GetXinJingLevel()
 		{
 			foreach (JSONObject jsonobject in jsonData.instance.XinJinJsonData.list)
 			{
-				if ((int)jsonobject["Max"].n > this.xinjin)
+				if (jsonobject["Max"].I > this.xinjin)
 				{
-					return (int)jsonobject["id"].n;
+					return jsonobject["id"].I;
 				}
 			}
 			return jsonData.instance.XinJinJsonData.Count;
 		}
 
-		// Token: 0x06006144 RID: 24900 RVA: 0x0026C8C0 File Offset: 0x0026AAC0
+		// Token: 0x060056F7 RID: 22263 RVA: 0x002406A8 File Offset: 0x0023E8A8
 		public int getXinJinGuanlianType()
 		{
 			int xinJingLevel = this.GetXinJingLevel();
@@ -823,27 +845,27 @@ namespace KBEngine
 			return 3;
 		}
 
-		// Token: 0x06006145 RID: 24901 RVA: 0x000438EC File Offset: 0x00041AEC
+		// Token: 0x060056F8 RID: 22264 RVA: 0x002406D4 File Offset: 0x0023E8D4
 		public int getLevelType()
 		{
 			return (int)((this.level - 1) / 3 + 1);
 		}
 
-		// Token: 0x06006146 RID: 24902 RVA: 0x000438FA File Offset: 0x00041AFA
+		// Token: 0x060056F9 RID: 22265 RVA: 0x002406E2 File Offset: 0x0023E8E2
 		public void setSkillConfigIndex(int index)
 		{
 			this.nowConfigEquipSkill = index;
 			this.equipSkillList = this.configEquipSkill[index];
 		}
 
-		// Token: 0x06006147 RID: 24903 RVA: 0x00043911 File Offset: 0x00041B11
+		// Token: 0x060056FA RID: 22266 RVA: 0x002406F9 File Offset: 0x0023E8F9
 		public void setStatikConfigIndex(int index)
 		{
 			this.nowConfigEquipStaticSkill = index;
 			this.equipStaticSkillList = this.configEquipStaticSkill[index];
 		}
 
-		// Token: 0x06006148 RID: 24904 RVA: 0x0026C8EC File Offset: 0x0026AAEC
+		// Token: 0x060056FB RID: 22267 RVA: 0x00240710 File Offset: 0x0023E910
 		public void setItemConfigIndex(int index)
 		{
 			this.configEquipItem[this.nowConfigEquipItem].values.Clear();
@@ -865,7 +887,7 @@ namespace KBEngine
 			Singleton.inventory.LoadInventory();
 		}
 
-		// Token: 0x06006149 RID: 24905 RVA: 0x0026C9C4 File Offset: 0x0026ABC4
+		// Token: 0x060056FC RID: 22268 RVA: 0x002407E8 File Offset: 0x0023E9E8
 		public void addHasSkillList(int SkillId)
 		{
 			using (List<SkillItem>.Enumerator enumerator = this.hasSkillList.GetEnumerator())
@@ -887,7 +909,7 @@ namespace KBEngine
 			}
 		}
 
-		// Token: 0x0600614A RID: 24906 RVA: 0x0026CA48 File Offset: 0x0026AC48
+		// Token: 0x060056FD RID: 22269 RVA: 0x0024086C File Offset: 0x0023EA6C
 		public void addHasStaticSkillList(int SkillId, int _level = 1)
 		{
 			using (List<SkillItem>.Enumerator enumerator = this.hasStaticSkillList.GetEnumerator())
@@ -910,7 +932,7 @@ namespace KBEngine
 			}
 		}
 
-		// Token: 0x0600614B RID: 24907 RVA: 0x0026CAD0 File Offset: 0x0026ACD0
+		// Token: 0x060056FE RID: 22270 RVA: 0x002408F4 File Offset: 0x0023EAF4
 		public void addJieDanSkillList(int SkillId)
 		{
 			using (List<SkillItem>.Enumerator enumerator = this.hasJieDanSkillList.GetEnumerator())
@@ -928,7 +950,7 @@ namespace KBEngine
 			this.hasJieDanSkillList.Add(skillItem);
 		}
 
-		// Token: 0x0600614C RID: 24908 RVA: 0x00043928 File Offset: 0x00041B28
+		// Token: 0x060056FF RID: 22271 RVA: 0x00240964 File Offset: 0x0023EB64
 		public void MonstarEndRound()
 		{
 			RoundManager.instance.autoRemoveCard(this);
@@ -938,7 +960,7 @@ namespace KBEngine
 			});
 		}
 
-		// Token: 0x0600614D RID: 24909 RVA: 0x00043949 File Offset: 0x00041B49
+		// Token: 0x06005700 RID: 22272 RVA: 0x00240985 File Offset: 0x0023EB85
 		public void AvatarEndRound()
 		{
 			if (base.isPlayer())
@@ -949,13 +971,13 @@ namespace KBEngine
 			this.MonstarEndRound();
 		}
 
-		// Token: 0x0600614E RID: 24910 RVA: 0x00043965 File Offset: 0x00041B65
+		// Token: 0x06005701 RID: 22273 RVA: 0x002409A1 File Offset: 0x0023EBA1
 		public void joinMenPai(int menPaiID)
 		{
 			this.menPai = (ushort)menPaiID;
 		}
 
-		// Token: 0x0600614F RID: 24911 RVA: 0x0004396F File Offset: 0x00041B6F
+		// Token: 0x06005702 RID: 22274 RVA: 0x002409AB File Offset: 0x0023EBAB
 		public void AllMapAddHP(int num, DeathType Type = DeathType.身死道消)
 		{
 			this.HP += num;
@@ -969,43 +991,43 @@ namespace KBEngine
 			}
 		}
 
-		// Token: 0x06006150 RID: 24912 RVA: 0x000439AD File Offset: 0x00041BAD
+		// Token: 0x06005703 RID: 22275 RVA: 0x002409E9 File Offset: 0x0023EBE9
 		public void AllMapAddHPMax(int num)
 		{
 			this._HP_Max += num;
 		}
 
-		// Token: 0x06006151 RID: 24913 RVA: 0x000439BD File Offset: 0x00041BBD
+		// Token: 0x06005704 RID: 22276 RVA: 0x002409F9 File Offset: 0x0023EBF9
 		public void addShenShi(int num)
 		{
 			this.shengShi = (int)this.ADDIntToUint((uint)this._shengShi, num);
 		}
 
-		// Token: 0x06006152 RID: 24914 RVA: 0x000439D2 File Offset: 0x00041BD2
+		// Token: 0x06005705 RID: 22277 RVA: 0x00240A0E File Offset: 0x0023EC0E
 		public void addShoYuan(int num)
 		{
 			this.shouYuan = this.ADDIntToUint(this.shouYuan, num);
 		}
 
-		// Token: 0x06006153 RID: 24915 RVA: 0x000439E7 File Offset: 0x00041BE7
+		// Token: 0x06005706 RID: 22278 RVA: 0x00240A23 File Offset: 0x0023EC23
 		public void addShaQi(int num)
 		{
 			this.shaQi = this.ADDIntToUint(this.shaQi, num);
 		}
 
-		// Token: 0x06006154 RID: 24916 RVA: 0x000439FC File Offset: 0x00041BFC
+		// Token: 0x06005707 RID: 22279 RVA: 0x00240A38 File Offset: 0x0023EC38
 		public void addZiZhi(int num)
 		{
 			this.ZiZhi = (int)this.ADDIntToUint((uint)this.ZiZhi, num);
 		}
 
-		// Token: 0x06006155 RID: 24917 RVA: 0x00043A11 File Offset: 0x00041C11
+		// Token: 0x06005708 RID: 22280 RVA: 0x00240A4D File Offset: 0x0023EC4D
 		public void addWuXin(int num)
 		{
 			this.wuXin = this.ADDIntToUint(this.wuXin, num);
 		}
 
-		// Token: 0x06006156 RID: 24918 RVA: 0x0026CB40 File Offset: 0x0026AD40
+		// Token: 0x06005709 RID: 22281 RVA: 0x00240A64 File Offset: 0x0023EC64
 		public uint ADDIntToUint(uint real, int value)
 		{
 			int num = (int)(real + (uint)value);
@@ -1020,7 +1042,7 @@ namespace KBEngine
 			return real;
 		}
 
-		// Token: 0x06006157 RID: 24919 RVA: 0x0026CB60 File Offset: 0x0026AD60
+		// Token: 0x0600570A RID: 22282 RVA: 0x00240A84 File Offset: 0x0023EC84
 		public void AddTime(int addday, int addMonth = 0, int Addyear = 0)
 		{
 			DateTime nowTime = this.worldTimeMag.getNowTime();
@@ -1120,7 +1142,7 @@ namespace KBEngine
 			this.StreamData.PaiMaiDataMag.AuToUpDate();
 		}
 
-		// Token: 0x06006158 RID: 24920 RVA: 0x0026CED4 File Offset: 0x0026B0D4
+		// Token: 0x0600570B RID: 22283 RVA: 0x00240DF8 File Offset: 0x0023EFF8
 		public void RefreshSeaBossData()
 		{
 			foreach (SeaHaiYuJiZhiShuaXin seaHaiYuJiZhiShuaXin in SeaHaiYuJiZhiShuaXin.DataList)
@@ -1182,7 +1204,13 @@ namespace KBEngine
 			}
 		}
 
-		// Token: 0x06006159 RID: 24921 RVA: 0x0026D1E0 File Offset: 0x0026B3E0
+		// Token: 0x0600570C RID: 22284 RVA: 0x00241104 File Offset: 0x0023F304
+		public float GetShenShiArea()
+		{
+			return Mathf.Pow((float)this.shengShi, 0.2f) / 2f + 0.1f * (float)this.shengShi;
+		}
+
+		// Token: 0x0600570D RID: 22285 RVA: 0x0024112C File Offset: 0x0023F32C
 		public void updateChuanYingFu()
 		{
 			if (this.emailDateMag.IsStopAll)
@@ -1195,77 +1223,89 @@ namespace KBEngine
 			try
 			{
 				List<string> list = new List<string>();
-				int i = 0;
-				while (i < this.ToalChuanYingFuList.Count)
+				for (int i = 0; i < this.ToalChuanYingFuList.Count; i++)
 				{
-					if (!(this.ToalChuanYingFuList[i]["StarTime"].str != "") || this.ToalChuanYingFuList[i]["StarTime"].str == null)
+					int i2 = this.ToalChuanYingFuList[i]["AvatarID"].I;
+					if (this.ToalChuanYingFuList[i]["IsAlive"].I != 1 || NPCEx.NPCIDToNew(i2) >= 20000)
 					{
-						goto IL_12C;
-					}
-					string str = this.ToalChuanYingFuList[i]["StarTime"].str;
-					if (this.ToalChuanYingFuList[i]["EndTime"].str != "" && this.ToalChuanYingFuList[i]["EndTime"].str != null)
-					{
-						string str2 = this.ToalChuanYingFuList[i]["EndTime"].str;
-						if (Tools.instance.IsInTime(nowTime, str, str2))
+						if (this.ToalChuanYingFuList[i]["NPCLevel"].Count > 0)
 						{
-							goto IL_12C;
-						}
-					}
-					else if (!(DateTime.Parse(nowTime) < DateTime.Parse(str)))
-					{
-						goto IL_12C;
-					}
-					IL_3AB:
-					i++;
-					continue;
-					IL_12C:
-					if (this.ToalChuanYingFuList[i]["Level"].Count <= 0 || (level >= this.ToalChuanYingFuList[i]["Level"][0].I && level <= this.ToalChuanYingFuList[i]["Level"][1].I))
-					{
-						if (this.ToalChuanYingFuList[i]["HaoGanDu"].I > 0)
-						{
-							int num2 = NPCEx.NPCIDToNew(this.ToalChuanYingFuList[i]["AvatarID"].I);
-							if (jsonData.instance.AvatarRandomJsonData[num2.ToString()]["HaoGanDu"].I <= this.ToalChuanYingFuList[i]["HaoGanDu"].I)
+							int i3 = this.ToalChuanYingFuList[i]["NPCLevel"][0].I;
+							int i4 = this.ToalChuanYingFuList[i]["NPCLevel"][1].I;
+							int num2 = NPCEx.NPCIDToNew(i2);
+							if (num2 < 20000)
 							{
-								goto IL_3AB;
+								goto IL_4B1;
+							}
+							int i5 = jsonData.instance.AvatarJsonData[num2.ToString()]["Level"].I;
+							if (i5 < i3 || i5 > i4)
+							{
+								goto IL_4B1;
 							}
 						}
-						if (this.ToalChuanYingFuList[i]["EventValue"].Count > 0)
+						if (this.ToalChuanYingFuList[i]["StarTime"].str != "" && this.ToalChuanYingFuList[i]["StarTime"].str != null)
 						{
-							string str3 = this.ToalChuanYingFuList[i]["fuhao"].str;
-							int i2 = this.ToalChuanYingFuList[i]["EventValue"][0].I;
-							int i3 = this.ToalChuanYingFuList[i]["EventValue"][1].I;
-							int num3 = GlobalValue.Get(i2, "Avatar.updateChuanYingFu");
-							if (str3 == "=")
+							string str = this.ToalChuanYingFuList[i]["StarTime"].str;
+							if (this.ToalChuanYingFuList[i]["EndTime"].str != "" && this.ToalChuanYingFuList[i]["EndTime"].str != null)
 							{
-								if (num3 != i3)
+								string str2 = this.ToalChuanYingFuList[i]["EndTime"].str;
+								if (!Tools.instance.IsInTime(nowTime, str, str2))
 								{
-									goto IL_3AB;
+									goto IL_4B1;
 								}
 							}
-							else if (str3 == ">")
+							else if (DateTime.Parse(nowTime) < DateTime.Parse(str))
 							{
-								if (num3 <= i3)
+								goto IL_4B1;
+							}
+						}
+						if (this.ToalChuanYingFuList[i]["Level"].Count <= 0 || (level >= this.ToalChuanYingFuList[i]["Level"][0].I && level <= this.ToalChuanYingFuList[i]["Level"][1].I))
+						{
+							if (this.ToalChuanYingFuList[i]["HaoGanDu"].I > 0)
+							{
+								int num3 = NPCEx.NPCIDToNew(this.ToalChuanYingFuList[i]["AvatarID"].I);
+								if (jsonData.instance.AvatarRandomJsonData[num3.ToString()]["HaoGanDu"].I <= this.ToalChuanYingFuList[i]["HaoGanDu"].I)
 								{
-									goto IL_3AB;
+									goto IL_4B1;
 								}
 							}
-							else if (num3 >= i3)
+							if (this.ToalChuanYingFuList[i]["EventValue"].Count > 0)
 							{
-								goto IL_3AB;
+								string str3 = this.ToalChuanYingFuList[i]["fuhao"].str;
+								int i6 = this.ToalChuanYingFuList[i]["EventValue"][0].I;
+								int i7 = this.ToalChuanYingFuList[i]["EventValue"][1].I;
+								int num4 = GlobalValue.Get(i6, "Avatar.updateChuanYingFu");
+								if (str3 == "=")
+								{
+									if (num4 != i7)
+									{
+										goto IL_4B1;
+									}
+								}
+								else if (str3 == ">")
+								{
+									if (num4 <= i7)
+									{
+										goto IL_4B1;
+									}
+								}
+								else if (num4 >= i7)
+								{
+									goto IL_4B1;
+								}
 							}
+							if (this.ToalChuanYingFuList[i]["IsOnly"].I == 1)
+							{
+								list.Add(this.ToalChuanYingFuList[i]["id"].I.ToString());
+							}
+							else if (this.ToalChuanYingFuList[i]["IsOnly"].I == 2 && this.nomelTaskMag.IsNTaskStart(this.ToalChuanYingFuList[i]["WeiTuo"].I))
+							{
+								goto IL_4B1;
+							}
+							this.chuanYingManager.addChuanYingFu(this.ToalChuanYingFuList[i]["id"].I);
 						}
-						if (this.ToalChuanYingFuList[i]["IsOnly"].I == 1)
-						{
-							list.Add(this.ToalChuanYingFuList[i]["id"].I.ToString());
-						}
-						else if (this.ToalChuanYingFuList[i]["IsOnly"].I == 2 && this.nomelTaskMag.IsNTaskStart(this.ToalChuanYingFuList[i]["WeiTuo"].I))
-						{
-							goto IL_3AB;
-						}
-						this.chuanYingManager.addChuanYingFu(this.ToalChuanYingFuList[i]["id"].I);
-						goto IL_3AB;
 					}
-					goto IL_3AB;
+					IL_4B1:;
 				}
 				for (int j = 0; j < list.Count; j++)
 				{
@@ -1278,16 +1318,16 @@ namespace KBEngine
 					string str4 = this.NoGetChuanYingList[k]["sendTime"].str;
 					if (DateTime.Parse(str4) <= DateTime.Parse(nowTime))
 					{
-						int i4 = this.NoGetChuanYingList[k]["id"].I;
+						int i8 = this.NoGetChuanYingList[k]["id"].I;
 						list.Add(this.NoGetChuanYingList[k]["id"].I.ToString());
 						this.NewChuanYingList.SetField(this.NoGetChuanYingList[k]["id"].I.ToString(), this.NoGetChuanYingList[k]);
-						this.emailDateMag.OldToPlayer(this.NewChuanYingList[i4.ToString()]["AvatarID"].I, i4, str4);
+						this.emailDateMag.OldToPlayer(this.NewChuanYingList[i8.ToString()]["AvatarID"].I, i8, str4);
 						if (this.NoGetChuanYingList.HasField("IsAdd") && this.NoGetChuanYingList[k]["IsAdd"].I == 1)
 						{
-							int i5 = this.NoGetChuanYingList[k]["WeiTuo"].I;
-							if (!this.nomelTaskMag.IsNTaskStart(i5))
+							int i9 = this.NoGetChuanYingList[k]["WeiTuo"].I;
+							if (!this.nomelTaskMag.IsNTaskStart(i9))
 							{
-								this.nomelTaskMag.StartNTask(i5, 0);
+								this.nomelTaskMag.StartNTask(i9, 0);
 								UIPopTip.Inst.Pop("获得一条新的委托任务", PopTipIconType.任务进度);
 							}
 						}
@@ -1310,7 +1350,7 @@ namespace KBEngine
 			}
 		}
 
-		// Token: 0x0600615A RID: 24922 RVA: 0x0026D834 File Offset: 0x0026BA34
+		// Token: 0x0600570E RID: 22286 RVA: 0x00241888 File Offset: 0x0023FA88
 		public void setMonstarDeath()
 		{
 			int num = 0;
@@ -1357,19 +1397,19 @@ namespace KBEngine
 			}
 		}
 
-		// Token: 0x0600615B RID: 24923 RVA: 0x00043A26 File Offset: 0x00041C26
+		// Token: 0x0600570F RID: 22287 RVA: 0x002419DC File Offset: 0x0023FBDC
 		public GameObject createCanvasDeath()
 		{
 			return Object.Instantiate<GameObject>(Resources.Load("uiPrefab/CanvasDeath") as GameObject);
 		}
 
-		// Token: 0x0600615C RID: 24924 RVA: 0x00043A3C File Offset: 0x00041C3C
+		// Token: 0x06005710 RID: 22288 RVA: 0x002419F2 File Offset: 0x0023FBF2
 		public float AddZiZhiSpeed(float speed)
 		{
 			return speed * ((float)this.ZiZhi / 100f);
 		}
 
-		// Token: 0x0600615D RID: 24925 RVA: 0x0026D988 File Offset: 0x0026BB88
+		// Token: 0x06005711 RID: 22289 RVA: 0x00241A04 File Offset: 0x0023FC04
 		public float getTimeExpSpeed()
 		{
 			int staticID = this.getStaticID();
@@ -1387,7 +1427,7 @@ namespace KBEngine
 			return 0f;
 		}
 
-		// Token: 0x0600615E RID: 24926 RVA: 0x0026DA1C File Offset: 0x0026BC1C
+		// Token: 0x06005712 RID: 22290 RVA: 0x00241A98 File Offset: 0x0023FC98
 		public int getStaticID()
 		{
 			foreach (SkillItem skillItem in this.equipStaticSkillList)
@@ -1400,7 +1440,7 @@ namespace KBEngine
 			return 0;
 		}
 
-		// Token: 0x0600615F RID: 24927 RVA: 0x0026DA88 File Offset: 0x0026BC88
+		// Token: 0x06005713 RID: 22291 RVA: 0x00241B04 File Offset: 0x0023FD04
 		public int getStaticDunSu()
 		{
 			foreach (SkillItem skillItem in this.equipStaticSkillList)
@@ -1413,7 +1453,7 @@ namespace KBEngine
 			return 0;
 		}
 
-		// Token: 0x06006160 RID: 24928 RVA: 0x0026DAF4 File Offset: 0x0026BCF4
+		// Token: 0x06005714 RID: 22292 RVA: 0x00241B70 File Offset: 0x0023FD70
 		public void addEXP(int num)
 		{
 			if (num < 0 && (long)(-(long)num) > (long)this.exp)
@@ -1452,7 +1492,7 @@ namespace KBEngine
 			}
 		}
 
-		// Token: 0x06006161 RID: 24929 RVA: 0x00043A4D File Offset: 0x00041C4D
+		// Token: 0x06005715 RID: 22293 RVA: 0x00241D88 File Offset: 0x0023FF88
 		public void AddHp(int addNum)
 		{
 			this.HP += addNum;
@@ -1466,7 +1506,7 @@ namespace KBEngine
 			}
 		}
 
-		// Token: 0x06006162 RID: 24930 RVA: 0x00043A86 File Offset: 0x00041C86
+		// Token: 0x06005716 RID: 22294 RVA: 0x00241DC1 File Offset: 0x0023FFC1
 		public int GetLeveUpAddHPMax(int addHpNum)
 		{
 			if (!this.TianFuID.HasField(string.Concat(13)))
@@ -1476,7 +1516,7 @@ namespace KBEngine
 			return addHpNum + (int)((float)addHpNum * (this.TianFuID["13"].n / 100f));
 		}
 
-		// Token: 0x06006163 RID: 24931 RVA: 0x0026DD0C File Offset: 0x0026BF0C
+		// Token: 0x06005717 RID: 22295 RVA: 0x00241E00 File Offset: 0x00240000
 		public int GetTianFuAddCaoYaoCaiJi(int num)
 		{
 			int num2 = num;
@@ -1487,7 +1527,7 @@ namespace KBEngine
 			return num2 + (int)((float)num2 * ((float)this.getStaticSkillAddSum(10) / 100f));
 		}
 
-		// Token: 0x06006164 RID: 24932 RVA: 0x0026DD70 File Offset: 0x0026BF70
+		// Token: 0x06005718 RID: 22296 RVA: 0x00241E64 File Offset: 0x00240064
 		public void levelUp()
 		{
 			JSONObject jsonobject = jsonData.instance.LevelUpDataJsonData[string.Concat(this.level)];
@@ -1537,7 +1577,7 @@ namespace KBEngine
 			ResManager.inst.LoadPrefab("LevelUpPanel").Inst(null).GetComponent<TuPoUIMag>().ShowTuPo((int)this.level, hp_Max, this.HP, shengShi, this.shengShi, (int)shouYuan, (int)this.shouYuan, dunSu, this.dunSu, isBigTuPo, desc);
 		}
 
-		// Token: 0x06006165 RID: 24933 RVA: 0x0026E03C File Offset: 0x0026C23C
+		// Token: 0x06005719 RID: 22297 RVA: 0x00242130 File Offset: 0x00240330
 		public void AllMapSetNode()
 		{
 			foreach (JSONObject node in jsonData.instance.AllMapLuDainType.list)
@@ -1546,7 +1586,7 @@ namespace KBEngine
 			}
 		}
 
-		// Token: 0x06006166 RID: 24934 RVA: 0x0026E098 File Offset: 0x0026C298
+		// Token: 0x0600571A RID: 22298 RVA: 0x0024218C File Offset: 0x0024038C
 		public void ResetAllEndlessNode()
 		{
 			int num = 1;
@@ -1561,7 +1601,7 @@ namespace KBEngine
 			}
 		}
 
-		// Token: 0x06006167 RID: 24935 RVA: 0x0026E144 File Offset: 0x0026C344
+		// Token: 0x0600571B RID: 22299 RVA: 0x00242238 File Offset: 0x00240438
 		public int GetDaHaiIDBySeaID(int SeaID)
 		{
 			foreach (KeyValuePair<string, JToken> keyValuePair in jsonData.instance.EndlessSeaHaiYuData)
@@ -1574,7 +1614,7 @@ namespace KBEngine
 			return -1;
 		}
 
-		// Token: 0x06006168 RID: 24936 RVA: 0x0026E1C8 File Offset: 0x0026C3C8
+		// Token: 0x0600571C RID: 22300 RVA: 0x002422BC File Offset: 0x002404BC
 		public void ResetEndlessNode(JObject seaNode, int SeaID)
 		{
 			if (seaNode.ContainsKey("resetTime"))
@@ -1608,7 +1648,7 @@ namespace KBEngine
 			seaNode["CD"] = Tools.getRandomInt((int)jtoken[0], (int)jtoken[1]);
 		}
 
-		// Token: 0x06006169 RID: 24937 RVA: 0x0026E38C File Offset: 0x0026C58C
+		// Token: 0x0600571D RID: 22301 RVA: 0x00242480 File Offset: 0x00240680
 		public List<int> SetSeaNodeList(JToken _cc, int SeaID)
 		{
 			int randomInt = Tools.getRandomInt((int)_cc["max"][0], (int)_cc["max"][1]);
@@ -1680,7 +1720,7 @@ namespace KBEngine
 			return list2;
 		}
 
-		// Token: 0x0600616A RID: 24938 RVA: 0x0026E4BC File Offset: 0x0026C6BC
+		// Token: 0x0600571E RID: 22302 RVA: 0x002425B0 File Offset: 0x002407B0
 		public JObject CreateSeaMonstar(int seaId, int monstarID, int index)
 		{
 			JObject jobject = new JObject();
@@ -1691,20 +1731,20 @@ namespace KBEngine
 			return jobject;
 		}
 
-		// Token: 0x0600616B RID: 24939 RVA: 0x0026E520 File Offset: 0x0026C720
+		// Token: 0x0600571F RID: 22303 RVA: 0x00242614 File Offset: 0x00240814
 		public void resetNode(JSONObject node)
 		{
-			if (!this.AllMapRandomNode.HasField(string.Concat((int)node["id"].n)))
+			if (!this.AllMapRandomNode.HasField(string.Concat(node["id"].I)))
 			{
 				JSONObject jsonobject = new JSONObject(JSONObject.Type.OBJECT);
 				jsonobject.AddField("resetTime", "0001-01-01");
 				jsonobject.AddField("Type", -1);
 				jsonobject.AddField("EventId", 0);
 				jsonobject.AddField("Reset", true);
-				this.AllMapRandomNode.AddField(string.Concat((int)node["id"].n), jsonobject);
+				this.AllMapRandomNode.AddField(string.Concat(node["id"].I), jsonobject);
 			}
 			Avatar avatar = Tools.instance.getPlayer();
-			JSONObject jsonobject2 = this.AllMapRandomNode[string.Concat((int)node["id"].n)];
+			JSONObject jsonobject2 = this.AllMapRandomNode[string.Concat(node["id"].I)];
 			DateTime dateTime = DateTime.Parse(jsonobject2["resetTime"].str);
 			DateTime now = this.worldTimeMag.getNowTime();
 			if (jsonobject2["Reset"].b || !jsonData.instance.AllMapReset.HasField(string.Concat((int)jsonobject2["Type"].n)) || now > dateTime.AddMonths((int)jsonData.instance.AllMapReset[string.Concat((int)jsonobject2["Type"].n)]["resetTiem"].n))
@@ -1735,18 +1775,18 @@ namespace KBEngine
 								int key = (int)_tempMapNode["Type"].n;
 								dictionary2[key]++;
 							}
-							if ((int)_tempMapNode["Type"].n >= 0 && (int)jsonData.instance.AllMapReset[(int)_tempMapNode["Type"].n]["max"].n > 0 && dictionary[(int)_tempMapNode["Type"].n] >= (int)jsonData.instance.AllMapReset[(int)_tempMapNode["Type"].n]["max"].n)
+							if (_tempMapNode["Type"].I >= 0 && (int)jsonData.instance.AllMapReset[(int)_tempMapNode["Type"].n]["max"].n > 0 && dictionary[(int)_tempMapNode["Type"].n] >= (int)jsonData.instance.AllMapReset[(int)_tempMapNode["Type"].n]["max"].n)
 							{
-								JSONObject jsonobject3 = _tempJsond.Find((JSONObject _acs) => (int)_acs["id"].n == (int)_tempMapNode["Type"].n);
+								JSONObject jsonobject3 = _tempJsond.Find((JSONObject _acs) => _acs["id"].I == _tempMapNode["Type"].I);
 								if (jsonobject3 != null)
 								{
 									jsonobject3.SetField("percent", 0);
 								}
 							}
-							Transform transform = AllMapManage.instance.AllNodeGameobjGroup.transform.Find(string.Concat((int)node["id"].n));
+							Transform transform = AllMapManage.instance.AllNodeGameobjGroup.transform.Find(string.Concat(node["id"].I));
 							if (transform == null)
 							{
-								Debug.LogError(("路点出错" + (int)node["id"].n) ?? "");
+								Debug.LogError(("路点出错" + node["id"].I) ?? "");
 							}
 							using (List<int>.Enumerator enumerator2 = transform.GetComponent<MapComponent>().nextIndex.GetEnumerator())
 							{
@@ -1755,7 +1795,7 @@ namespace KBEngine
 									int _nnnn = enumerator2.Current;
 									if (this.AllMapRandomNode.HasField(string.Concat(_nnnn)) && (int)jsonData.instance.AllMapReset[string.Concat((int)this.AllMapRandomNode[string.Concat(_nnnn)]["Type"].n)]["CanSame"].n == 0)
 									{
-										JSONObject jsonobject4 = _tempJsond.Find((JSONObject _acs) => (int)_acs["id"].n == (int)this.AllMapRandomNode[string.Concat(_nnnn)]["Type"].n);
+										JSONObject jsonobject4 = _tempJsond.Find((JSONObject _acs) => _acs["id"].I == this.AllMapRandomNode[string.Concat(_nnnn)]["Type"].I);
 										if (jsonobject4 != null)
 										{
 											jsonobject4.SetField("percent", 0);
@@ -1766,7 +1806,7 @@ namespace KBEngine
 						}
 					}
 					JSONObject json = Tools.instance.getRandomListByPercent(_tempJsond, "percent");
-					jsonobject2.SetField("Type", (int)json["id"].n);
+					jsonobject2.SetField("Type", json["id"].I);
 					List<JSONObject> list2 = jsonData.instance.MapRandomJsonData.list.FindAll(delegate(JSONObject aa)
 					{
 						if (aa["EventValue"].list.Count > 0 && !Avatar.ManZuValue((int)aa["EventValue"][0].n, (int)aa["EventValue"][1].n, aa["fuhao"].str))
@@ -1782,23 +1822,23 @@ namespace KBEngine
 								return false;
 							}
 						}
-						if (avatar.SuiJiShiJian.HasField(Tools.getScreenName()) && avatar.SuiJiShiJian[Tools.getScreenName()].list.Find((JSONObject _aa) => (int)_aa.n == (int)aa["id"].n) != null)
+						if (avatar.SuiJiShiJian.HasField(Tools.getScreenName()) && avatar.SuiJiShiJian[Tools.getScreenName()].list.Find((JSONObject _aa) => _aa.I == aa["id"].I) != null)
 						{
 							return false;
 						}
 						foreach (JSONObject jsonobject5 in this.AllMapRandomNode.list)
 						{
-							int num2 = (int)jsonobject5["EventId"].n;
-							if (jsonData.instance.MapRandomJsonData.HasField(num2.ToString()))
+							int i = jsonobject5["EventId"].I;
+							if (jsonData.instance.MapRandomJsonData.HasField(i.ToString()))
 							{
-								JSONObject jsonobject6 = jsonData.instance.MapRandomJsonData[num2.ToString()];
-								if ((int)aa["id"].n == (int)jsonobject6["id"].n && (int)jsonobject6["once"].n == 1)
+								JSONObject jsonobject6 = jsonData.instance.MapRandomJsonData[i.ToString()];
+								if (aa["id"].I == jsonobject6["id"].I && jsonobject6["once"].I == 1)
 								{
 									return false;
 								}
 							}
 						}
-						if ((int)aa["EventType"].n == (int)json["id"].n)
+						if (aa["EventType"].I == json["id"].I)
 						{
 							return aa["EventLv"].list.Find((JSONObject _aa) => (int)_aa.n == (int)Tools.instance.getPlayer().level) != null;
 						}
@@ -1808,7 +1848,7 @@ namespace KBEngine
 					{
 						JSONObject randomListByPercent = Tools.instance.getRandomListByPercent(list2, "percent");
 						jsonobject2.SetField("Type", (int)randomListByPercent["EventType"].n);
-						jsonobject2.SetField("EventId", (int)randomListByPercent["id"].n);
+						jsonobject2.SetField("EventId", randomListByPercent["id"].I);
 						int num = (int)randomListByPercent["EventType"].n;
 						return;
 					}
@@ -1822,7 +1862,7 @@ namespace KBEngine
 			}
 		}
 
-		// Token: 0x0600616C RID: 24940 RVA: 0x0026EBE0 File Offset: 0x0026CDE0
+		// Token: 0x06005720 RID: 22304 RVA: 0x00242CCC File Offset: 0x00240ECC
 		public static bool ManZuValue(int staticValueID, int num, string type)
 		{
 			int num2 = GlobalValue.Get(staticValueID, string.Format("Avatar.ManZuValue({0}, {1}, {2})", staticValueID, num, type));
@@ -1837,7 +1877,7 @@ namespace KBEngine
 			return !(type == ">") || num2 > num;
 		}
 
-		// Token: 0x0600616D RID: 24941 RVA: 0x0026EC44 File Offset: 0x0026CE44
+		// Token: 0x06005721 RID: 22305 RVA: 0x00242D30 File Offset: 0x00240F30
 		public void WorldsetRandomFace()
 		{
 			PlayerSetRandomFace component = ((GameObject)this.renderObj).transform.GetChild(0).GetChild(0).GetComponent<PlayerSetRandomFace>();
@@ -1847,7 +1887,7 @@ namespace KBEngine
 			}
 		}
 
-		// Token: 0x0600616E RID: 24942 RVA: 0x00043AC4 File Offset: 0x00041CC4
+		// Token: 0x06005722 RID: 22306 RVA: 0x00242D87 File Offset: 0x00240F87
 		public void discardCard(Card card)
 		{
 			Event.fireOut("discardCard", new object[]
@@ -1857,7 +1897,7 @@ namespace KBEngine
 			});
 		}
 
-		// Token: 0x0600616F RID: 24943 RVA: 0x0026EC9C File Offset: 0x0026CE9C
+		// Token: 0x06005723 RID: 22307 RVA: 0x00242DA4 File Offset: 0x00240FA4
 		public void MonstarAddStaticSkill()
 		{
 			foreach (SkillItem skillItem in this.equipStaticSkillList)
@@ -1869,7 +1909,7 @@ namespace KBEngine
 			}
 		}
 
-		// Token: 0x06006170 RID: 24944 RVA: 0x0026ED18 File Offset: 0x0026CF18
+		// Token: 0x06005724 RID: 22308 RVA: 0x00242E20 File Offset: 0x00241020
 		public void addStaticSkill()
 		{
 			foreach (SkillItem skillItem in this.equipStaticSkillList)
@@ -1882,7 +1922,7 @@ namespace KBEngine
 			}
 		}
 
-		// Token: 0x06006171 RID: 24945 RVA: 0x0026ED9C File Offset: 0x0026CF9C
+		// Token: 0x06005725 RID: 22309 RVA: 0x00242EA4 File Offset: 0x002410A4
 		public void addYuanYingStaticSkill(SkillItem _skill, int skillid)
 		{
 			if (_skill.itemIndex == 6)
@@ -1913,7 +1953,7 @@ namespace KBEngine
 			}
 		}
 
-		// Token: 0x06006172 RID: 24946 RVA: 0x0026EF8C File Offset: 0x0026D18C
+		// Token: 0x06005726 RID: 22310 RVA: 0x00243094 File Offset: 0x00241294
 		public string getYuanYingStaticDesc(SkillItem _skill, int skillid)
 		{
 			if (_skill.itemIndex == 6)
@@ -1935,7 +1975,7 @@ namespace KBEngine
 			return "";
 		}
 
-		// Token: 0x06006173 RID: 24947 RVA: 0x0026F0AC File Offset: 0x0026D2AC
+		// Token: 0x06005727 RID: 22311 RVA: 0x002431B4 File Offset: 0x002413B4
 		public void addWuDaoSeid()
 		{
 			foreach (SkillItem skillItem in this.wuDaoMag.GetAllWuDaoSkills())
@@ -1944,7 +1984,7 @@ namespace KBEngine
 			}
 		}
 
-		// Token: 0x06006174 RID: 24948 RVA: 0x0026F110 File Offset: 0x0026D310
+		// Token: 0x06005728 RID: 22312 RVA: 0x00243218 File Offset: 0x00241418
 		public void addJieDanSeid()
 		{
 			foreach (SkillItem skillItem in this.hasJieDanSkillList)
@@ -1953,7 +1993,7 @@ namespace KBEngine
 			}
 		}
 
-		// Token: 0x06006175 RID: 24949 RVA: 0x0026F170 File Offset: 0x0026D370
+		// Token: 0x06005729 RID: 22313 RVA: 0x00243278 File Offset: 0x00241478
 		public void addEquipSeid()
 		{
 			int num = 0;
@@ -2087,7 +2127,7 @@ namespace KBEngine
 			}
 		}
 
-		// Token: 0x06006176 RID: 24950 RVA: 0x00043ADE File Offset: 0x00041CDE
+		// Token: 0x0600572A RID: 22314 RVA: 0x0024396C File Offset: 0x00241B6C
 		public void onCrystalChanged(CardMag oldValue)
 		{
 			Event.fireOut("crtstalChanged", new object[]
@@ -2098,7 +2138,7 @@ namespace KBEngine
 			MessageMag.Instance.Send("Fight_CardChange", null);
 		}
 
-		// Token: 0x06006177 RID: 24951 RVA: 0x0026F864 File Offset: 0x0026DA64
+		// Token: 0x0600572B RID: 22315 RVA: 0x00243998 File Offset: 0x00241B98
 		public void FightClearSkill(int startIndex, int endIndex)
 		{
 			if (base.isPlayer())
@@ -2115,7 +2155,7 @@ namespace KBEngine
 			}
 		}
 
-		// Token: 0x06006178 RID: 24952 RVA: 0x0026F8D0 File Offset: 0x0026DAD0
+		// Token: 0x0600572C RID: 22316 RVA: 0x00243A04 File Offset: 0x00241C04
 		public void FightAddSkill(int skillID, int startIndex, int endIndex)
 		{
 			Skill item = new Skill(skillID, 0, 10);
@@ -2135,7 +2175,7 @@ namespace KBEngine
 			}
 		}
 
-		// Token: 0x06006179 RID: 24953 RVA: 0x0026F960 File Offset: 0x0026DB60
+		// Token: 0x0600572D RID: 22317 RVA: 0x00243A94 File Offset: 0x00241C94
 		public void addSkill()
 		{
 			foreach (SkillItem skillItem in this.equipSkillList)
@@ -2154,7 +2194,7 @@ namespace KBEngine
 			}
 		}
 
-		// Token: 0x0600617A RID: 24954 RVA: 0x0026FA14 File Offset: 0x0026DC14
+		// Token: 0x0600572E RID: 22318 RVA: 0x00243B48 File Offset: 0x00241D48
 		public override void __init__()
 		{
 			this.ai = new AI(this);
@@ -2183,7 +2223,7 @@ namespace KBEngine
 			}
 		}
 
-		// Token: 0x0600617B RID: 24955 RVA: 0x0026FB34 File Offset: 0x0026DD34
+		// Token: 0x0600572F RID: 22319 RVA: 0x00243C68 File Offset: 0x00241E68
 		public void setHP(int hp)
 		{
 			if (RoundManager.instance != null && RoundManager.instance.IsVirtual)
@@ -2229,10 +2269,14 @@ namespace KBEngine
 			YSFuncList.Ints.Start();
 			if (hp <= 0 && this.OtherAvatar.state != 1)
 			{
-				this.die();
 				if (base.isPlayer())
 				{
+					this.die();
 					return;
+				}
+				if (RoundManager.instance != null)
+				{
+					World.GameOver();
 				}
 			}
 			else if (hp <= 0 && this.OtherAvatar.state == 1)
@@ -2246,7 +2290,7 @@ namespace KBEngine
 			});
 		}
 
-		// Token: 0x0600617C RID: 24956 RVA: 0x0026FCB8 File Offset: 0x0026DEB8
+		// Token: 0x06005730 RID: 22320 RVA: 0x00243E00 File Offset: 0x00242000
 		public void SetChengHaoId(int id)
 		{
 			this.chengHao = id;
@@ -2257,7 +2301,7 @@ namespace KBEngine
 			}
 		}
 
-		// Token: 0x0600617D RID: 24957 RVA: 0x0026FD14 File Offset: 0x0026DF14
+		// Token: 0x06005731 RID: 22321 RVA: 0x00243E5C File Offset: 0x0024205C
 		public void die()
 		{
 			MonstarMag monstarmag = Tools.instance.monstarMag;
@@ -2298,6 +2342,10 @@ namespace KBEngine
 				{
 				}
 				Tools.instance.AutoSetSeaMonstartDie();
+				if (Tools.instance.monstarMag.FightType == StartFight.FightEnumType.FeiSheng)
+				{
+					TianJieManager.Inst.DuJieSuccess(true);
+				}
 			}
 			else if (base.isPlayer())
 			{
@@ -2342,7 +2390,7 @@ namespace KBEngine
 			});
 		}
 
-		// Token: 0x0600617E RID: 24958 RVA: 0x00043B08 File Offset: 0x00041D08
+		// Token: 0x06005732 RID: 22322 RVA: 0x002440D8 File Offset: 0x002422D8
 		public override void onDestroy()
 		{
 			if (base.isPlayer())
@@ -2351,13 +2399,13 @@ namespace KBEngine
 			}
 		}
 
-		// Token: 0x0600617F RID: 24959 RVA: 0x00043B19 File Offset: 0x00041D19
+		// Token: 0x06005733 RID: 22323 RVA: 0x002440E9 File Offset: 0x002422E9
 		public void gameFinsh()
 		{
 			base.cellCall("gameFinsh", Array.Empty<object>());
 		}
 
-		// Token: 0x06006180 RID: 24960 RVA: 0x00043B2B File Offset: 0x00041D2B
+		// Token: 0x06005734 RID: 22324 RVA: 0x002440FB File Offset: 0x002422FB
 		public virtual void updatePlayer(float x, float y, float z, float yaw)
 		{
 			this.position.x = x;
@@ -2366,7 +2414,7 @@ namespace KBEngine
 			this.direction.z = yaw;
 		}
 
-		// Token: 0x06006181 RID: 24961 RVA: 0x0026FF6C File Offset: 0x0026E16C
+		// Token: 0x06005735 RID: 22325 RVA: 0x00244130 File Offset: 0x00242330
 		public override void onEnterWorld()
 		{
 			base.onEnterWorld();
@@ -2382,7 +2430,7 @@ namespace KBEngine
 			}
 		}
 
-		// Token: 0x06006182 RID: 24962 RVA: 0x0026FFC8 File Offset: 0x0026E1C8
+		// Token: 0x06005736 RID: 22326 RVA: 0x0024418C File Offset: 0x0024238C
 		public void sendChatMessage(string msg)
 		{
 			object name = this.name;
@@ -2392,7 +2440,7 @@ namespace KBEngine
 			});
 		}
 
-		// Token: 0x06006183 RID: 24963 RVA: 0x00043B5E File Offset: 0x00041D5E
+		// Token: 0x06005737 RID: 22327 RVA: 0x002441C5 File Offset: 0x002423C5
 		public override void ReceiveChatMessage(string msg)
 		{
 			Event.fireOut("ReceiveChatMessage", new object[]
@@ -2401,7 +2449,7 @@ namespace KBEngine
 			});
 		}
 
-		// Token: 0x06006184 RID: 24964 RVA: 0x00043B74 File Offset: 0x00041D74
+		// Token: 0x06005738 RID: 22328 RVA: 0x002441DB File Offset: 0x002423DB
 		public void relive(byte type)
 		{
 			base.cellCall("relive", new object[]
@@ -2410,7 +2458,7 @@ namespace KBEngine
 			});
 		}
 
-		// Token: 0x06006185 RID: 24965 RVA: 0x00270004 File Offset: 0x0026E204
+		// Token: 0x06005739 RID: 22329 RVA: 0x002441F8 File Offset: 0x002423F8
 		public int useTargetSkill(int skillID, int targetID)
 		{
 			Skill skill = SkillBox.inst.get(skillID);
@@ -2428,7 +2476,7 @@ namespace KBEngine
 			return num;
 		}
 
-		// Token: 0x06006186 RID: 24966 RVA: 0x00270040 File Offset: 0x0026E240
+		// Token: 0x0600573A RID: 22330 RVA: 0x00244234 File Offset: 0x00242434
 		public bool HasDunShuSkill()
 		{
 			foreach (SkillItem skillItem in this.equipStaticSkillList)
@@ -2441,7 +2489,7 @@ namespace KBEngine
 			return false;
 		}
 
-		// Token: 0x06006187 RID: 24967 RVA: 0x002700F4 File Offset: 0x0026E2F4
+		// Token: 0x0600573B RID: 22331 RVA: 0x002442E8 File Offset: 0x002424E8
 		public int useTargetSkill(int skillID)
 		{
 			Skill skill = SkillBox.inst.get(skillID);
@@ -2458,7 +2506,7 @@ namespace KBEngine
 			return num;
 		}
 
-		// Token: 0x06006188 RID: 24968 RVA: 0x00043B90 File Offset: 0x00041D90
+		// Token: 0x0600573C RID: 22332 RVA: 0x0024431B File Offset: 0x0024251B
 		public override void recvSkill(int attacker, int skillID)
 		{
 			Event.fireOut("recvSkill", new object[]
@@ -2468,7 +2516,7 @@ namespace KBEngine
 			});
 		}
 
-		// Token: 0x06006189 RID: 24969 RVA: 0x00270128 File Offset: 0x0026E328
+		// Token: 0x0600573D RID: 22333 RVA: 0x00244340 File Offset: 0x00242540
 		public override void onAddSkill(int skillID)
 		{
 			Dbg.DEBUG_MSG(string.Concat(new object[]
@@ -2492,14 +2540,14 @@ namespace KBEngine
 			Event.fireOut("setSkillButton", Array.Empty<object>());
 		}
 
-		// Token: 0x0600618A RID: 24970 RVA: 0x00043BB4 File Offset: 0x00041DB4
+		// Token: 0x0600573E RID: 22334 RVA: 0x002444BB File Offset: 0x002426BB
 		public override void clearSkills()
 		{
 			SkillBox.inst.clear();
 			base.cellCall("requestPull", Array.Empty<object>());
 		}
 
-		// Token: 0x0600618B RID: 24971 RVA: 0x00043BD0 File Offset: 0x00041DD0
+		// Token: 0x0600573F RID: 22335 RVA: 0x002444D7 File Offset: 0x002426D7
 		public void createBuild(ulong BuildId, Vector3 positon, Vector3 direction)
 		{
 			base.baseCall("createBuild", new object[]
@@ -2510,7 +2558,7 @@ namespace KBEngine
 			});
 		}
 
-		// Token: 0x0600618C RID: 24972 RVA: 0x002702A4 File Offset: 0x0026E4A4
+		// Token: 0x06005740 RID: 22336 RVA: 0x00244508 File Offset: 0x00242708
 		public override void onRemoveSkill(int skillID)
 		{
 			Dbg.DEBUG_MSG(string.Concat(new object[]
@@ -2527,7 +2575,7 @@ namespace KBEngine
 			SkillBox.inst.remove(skillID);
 		}
 
-		// Token: 0x0600618D RID: 24973 RVA: 0x0011EE44 File Offset: 0x0011D044
+		// Token: 0x06005741 RID: 22337 RVA: 0x00244568 File Offset: 0x00242768
 		public override void recvDamage(int attackerID, int skillID, int damageType, int damage)
 		{
 			Entity entity = KBEngineApp.app.findEntity(attackerID);
@@ -2541,7 +2589,7 @@ namespace KBEngine
 			});
 		}
 
-		// Token: 0x0600618E RID: 24974 RVA: 0x00270304 File Offset: 0x0026E504
+		// Token: 0x06005742 RID: 22338 RVA: 0x002445B8 File Offset: 0x002427B8
 		public int recvDamage(Entity _attaker, Entity _receiver, int skillId, int damage, int type = 0)
 		{
 			Avatar avatar = (Avatar)_attaker;
@@ -2643,13 +2691,13 @@ namespace KBEngine
 			return damage;
 		}
 
-		// Token: 0x0600618F RID: 24975 RVA: 0x000112BB File Offset: 0x0000F4BB
+		// Token: 0x06005743 RID: 22339 RVA: 0x000656B8 File Offset: 0x000638B8
 		public void continuFunc()
 		{
 			YSFuncList.Ints.Continue();
 		}
 
-		// Token: 0x06006190 RID: 24976 RVA: 0x002706B8 File Offset: 0x0026E8B8
+		// Token: 0x06005744 RID: 22340 RVA: 0x0024496C File Offset: 0x00242B6C
 		public card addCrystal(int CrystalType, int num = 1)
 		{
 			List<int> list = new List<int>();
@@ -2659,22 +2707,25 @@ namespace KBEngine
 			return this.crystal.addCard(CrystalType, num);
 		}
 
-		// Token: 0x06006191 RID: 24977 RVA: 0x00043BFE File Offset: 0x00041DFE
+		// Token: 0x06005745 RID: 22341 RVA: 0x002449A8 File Offset: 0x00242BA8
 		public void removeCrystal(int CrystalType, int num = 1)
 		{
 			this.crystal.removeCard(CrystalType, num);
 		}
 
-		// Token: 0x06006192 RID: 24978 RVA: 0x00043C0D File Offset: 0x00041E0D
+		// Token: 0x06005746 RID: 22342 RVA: 0x002449B7 File Offset: 0x00242BB7
 		public void removeCrystal(card CrystalType)
 		{
 			this.crystal.removeCard(CrystalType);
 		}
 
-		// Token: 0x06006193 RID: 24979 RVA: 0x002706F4 File Offset: 0x0026E8F4
+		// Token: 0x06005747 RID: 22343 RVA: 0x002449C8 File Offset: 0x00242BC8
 		public void UseCryStal(int CrystalType, int num = 1)
 		{
-			this.NowRoundUsedCard.Add(CrystalType);
+			for (int i = 0; i < num; i++)
+			{
+				this.NowRoundUsedCard.Add(CrystalType);
+			}
 			List<int> list = new List<int>();
 			list.Add(num);
 			list.Add(CrystalType);
@@ -2682,7 +2733,7 @@ namespace KBEngine
 			this.removeCrystal(CrystalType, num);
 		}
 
-		// Token: 0x06006194 RID: 24980 RVA: 0x00270738 File Offset: 0x0026E938
+		// Token: 0x06005748 RID: 22344 RVA: 0x00244A18 File Offset: 0x00242C18
 		public void AbandonCryStal(int CrystalType, int num = 1)
 		{
 			List<int> list = new List<int>();
@@ -2692,7 +2743,7 @@ namespace KBEngine
 			this.spell.onBuffTickByType(26, list);
 		}
 
-		// Token: 0x06006195 RID: 24981 RVA: 0x00270770 File Offset: 0x0026E970
+		// Token: 0x06005749 RID: 22345 RVA: 0x00244A50 File Offset: 0x00242C50
 		public void AbandonCryStal(card CrystalType, int num = 1)
 		{
 			List<int> list = new List<int>();
@@ -2702,7 +2753,7 @@ namespace KBEngine
 			this.spell.onBuffTickByType(26, list);
 		}
 
-		// Token: 0x06006196 RID: 24982 RVA: 0x002707AC File Offset: 0x0026E9AC
+		// Token: 0x0600574A RID: 22346 RVA: 0x00244A8C File Offset: 0x00242C8C
 		public bool checkHasStudyWuDaoSkillByID(int id)
 		{
 			using (List<SkillItem>.Enumerator enumerator = this.wuDaoMag.GetAllWuDaoSkills().GetEnumerator())
@@ -2718,7 +2769,7 @@ namespace KBEngine
 			return false;
 		}
 
-		// Token: 0x06006197 RID: 24983 RVA: 0x0027080C File Offset: 0x0026EA0C
+		// Token: 0x0600574B RID: 22347 RVA: 0x00244AEC File Offset: 0x00242CEC
 		public void equipItem(int itemID)
 		{
 			foreach (ITEM_INFO item_INFO in this.equipItemList.values)
@@ -2733,7 +2784,7 @@ namespace KBEngine
 			this.equipItemList.values.Add(item_INFO2);
 		}
 
-		// Token: 0x06006198 RID: 24984 RVA: 0x002708C0 File Offset: 0x0026EAC0
+		// Token: 0x0600574C RID: 22348 RVA: 0x00244BA0 File Offset: 0x00242DA0
 		public void UnEquipItem(int itemID)
 		{
 			ITEM_INFO item = new ITEM_INFO();
@@ -2747,7 +2798,7 @@ namespace KBEngine
 			this.equipItemList.values.Remove(item);
 		}
 
-		// Token: 0x06006199 RID: 24985 RVA: 0x00270934 File Offset: 0x0026EB34
+		// Token: 0x0600574D RID: 22349 RVA: 0x00244C14 File Offset: 0x00242E14
 		public void equipSkill(int SkillID, int index = 0)
 		{
 			this.equipSkillList.RemoveAll((SkillItem aa) => index == aa.itemIndex);
@@ -2768,7 +2819,7 @@ namespace KBEngine
 			PlayTutorial.CheckSkillTask();
 		}
 
-		// Token: 0x0600619A RID: 24986 RVA: 0x002709D8 File Offset: 0x0026EBD8
+		// Token: 0x0600574E RID: 22350 RVA: 0x00244CB8 File Offset: 0x00242EB8
 		public void equipStaticSkill(int SkillID, int index = 0)
 		{
 			this.equipStaticSkillList.RemoveAll((SkillItem aa) => index == aa.itemIndex);
@@ -2790,7 +2841,7 @@ namespace KBEngine
 			PlayTutorial.CheckGongFaTask();
 		}
 
-		// Token: 0x0600619B RID: 24987 RVA: 0x00270A84 File Offset: 0x0026EC84
+		// Token: 0x0600574F RID: 22351 RVA: 0x00244D64 File Offset: 0x00242F64
 		public void YSequipItem(string UUID, int index = 0, int key = 0)
 		{
 			ITEM_INFO item_INFO = this.FindItemByUUID(UUID);
@@ -2818,7 +2869,7 @@ namespace KBEngine
 			Equips.resetEquipSeid(this);
 		}
 
-		// Token: 0x0600619C RID: 24988 RVA: 0x00270BC8 File Offset: 0x0026EDC8
+		// Token: 0x06005750 RID: 22352 RVA: 0x00244EA8 File Offset: 0x002430A8
 		public _ItemJsonData GetEquipLingZhouData()
 		{
 			foreach (ITEM_INFO item_INFO in this.equipItemList.values)
@@ -2831,7 +2882,7 @@ namespace KBEngine
 			return null;
 		}
 
-		// Token: 0x0600619D RID: 24989 RVA: 0x00270C48 File Offset: 0x0026EE48
+		// Token: 0x06005751 RID: 22353 RVA: 0x00244F28 File Offset: 0x00243128
 		public JToken GetNowLingZhouShuXinJson()
 		{
 			_ItemJsonData equipLingZhouData = this.GetEquipLingZhouData();
@@ -2842,7 +2893,7 @@ namespace KBEngine
 			return null;
 		}
 
-		// Token: 0x0600619E RID: 24990 RVA: 0x00270C7C File Offset: 0x0026EE7C
+		// Token: 0x06005752 RID: 22354 RVA: 0x00244F5C File Offset: 0x0024315C
 		public void ReduceLingZhouNaiJiu(BaseItem baseItem, int num)
 		{
 			baseItem.Seid.SetField("NaiJiu", baseItem.Seid["NaiJiu"].I - num);
@@ -2852,14 +2903,14 @@ namespace KBEngine
 			}
 		}
 
-		// Token: 0x0600619F RID: 24991 RVA: 0x00043C1B File Offset: 0x00041E1B
+		// Token: 0x06005753 RID: 22355 RVA: 0x00244FB9 File Offset: 0x002431B9
 		public void removeEquipItem(string UUID)
 		{
 			this.YSUnequipItem(UUID, 0);
 			this.removeItem(UUID);
 		}
 
-		// Token: 0x060061A0 RID: 24992 RVA: 0x00270CDC File Offset: 0x0026EEDC
+		// Token: 0x06005754 RID: 22356 RVA: 0x00244FCC File Offset: 0x002431CC
 		public BaseItem GetLingZhou()
 		{
 			Dictionary<int, BaseItem> curEquipDict = Tools.instance.getPlayer().StreamData.FangAnData.GetCurEquipDict();
@@ -2882,7 +2933,7 @@ namespace KBEngine
 			return null;
 		}
 
-		// Token: 0x060061A1 RID: 24993 RVA: 0x00270DAC File Offset: 0x0026EFAC
+		// Token: 0x06005755 RID: 22357 RVA: 0x0024509C File Offset: 0x0024329C
 		public void YSequipItem(int itemID, int index = 0)
 		{
 			List<ITEM_INFO> list = new List<ITEM_INFO>();
@@ -2905,7 +2956,7 @@ namespace KBEngine
 			Equips.resetEquipSeid(this);
 		}
 
-		// Token: 0x060061A2 RID: 24994 RVA: 0x00270EB0 File Offset: 0x0026F0B0
+		// Token: 0x06005756 RID: 22358 RVA: 0x002451A0 File Offset: 0x002433A0
 		public void UnEquipSkill(int SkillID)
 		{
 			SkillItem item = new SkillItem();
@@ -2920,7 +2971,7 @@ namespace KBEngine
 			this.equipSkillList.Remove(item);
 		}
 
-		// Token: 0x060061A3 RID: 24995 RVA: 0x00270F1C File Offset: 0x0026F11C
+		// Token: 0x06005757 RID: 22359 RVA: 0x0024520C File Offset: 0x0024340C
 		public void UnEquipStaticSkill(int SkillID)
 		{
 			SkillItem item = new SkillItem();
@@ -2940,7 +2991,7 @@ namespace KBEngine
 			}
 		}
 
-		// Token: 0x060061A4 RID: 24996 RVA: 0x00270FA8 File Offset: 0x0026F1A8
+		// Token: 0x06005758 RID: 22360 RVA: 0x00245298 File Offset: 0x00243498
 		public void YSUnequipItem(string UUID, int index = 0)
 		{
 			ITEM_INFO item_INFO = this.FindItemByUUID(UUID);
@@ -2954,13 +3005,13 @@ namespace KBEngine
 			Equips.resetEquipSeid(this);
 		}
 
-		// Token: 0x060061A5 RID: 24997 RVA: 0x00271000 File Offset: 0x0026F200
+		// Token: 0x06005759 RID: 22361 RVA: 0x002452F0 File Offset: 0x002434F0
 		public void removeEquip(string UUID)
 		{
 			this.equipItemList.values.RemoveAll((ITEM_INFO aa) => aa.uuid == UUID);
 		}
 
-		// Token: 0x060061A6 RID: 24998 RVA: 0x00271038 File Offset: 0x0026F238
+		// Token: 0x0600575A RID: 22362 RVA: 0x00245328 File Offset: 0x00243528
 		public void removeEquip(int id, int sum)
 		{
 			for (int i = 0; i < sum; i++)
@@ -2969,7 +3020,7 @@ namespace KBEngine
 			}
 		}
 
-		// Token: 0x060061A7 RID: 24999 RVA: 0x00271058 File Offset: 0x0026F258
+		// Token: 0x0600575B RID: 22363 RVA: 0x00245348 File Offset: 0x00243548
 		private void removeEquipByItemID(int id)
 		{
 			ITEM_INFO item_INFO = new ITEM_INFO();
@@ -2986,7 +3037,7 @@ namespace KBEngine
 			this.removeItem(uuid);
 		}
 
-		// Token: 0x060061A8 RID: 25000 RVA: 0x002710D4 File Offset: 0x0026F2D4
+		// Token: 0x0600575C RID: 22364 RVA: 0x002453C4 File Offset: 0x002435C4
 		public void YSUnequipItem(int itemID)
 		{
 			ITEM_INFO item_INFO = new ITEM_INFO();
@@ -3002,7 +3053,7 @@ namespace KBEngine
 			this.equipItemList.values.Remove(item_INFO);
 		}
 
-		// Token: 0x060061A9 RID: 25001 RVA: 0x00271158 File Offset: 0x0026F358
+		// Token: 0x0600575D RID: 22365 RVA: 0x00245448 File Offset: 0x00243648
 		public int getItemNum(int itemID)
 		{
 			int num = 0;
@@ -3024,7 +3075,7 @@ namespace KBEngine
 			return num;
 		}
 
-		// Token: 0x060061AA RID: 25002 RVA: 0x00271258 File Offset: 0x0026F458
+		// Token: 0x0600575E RID: 22366 RVA: 0x00245548 File Offset: 0x00243748
 		public ITEM_INFO getItemInfo(int itemID)
 		{
 			foreach (ITEM_INFO item_INFO in this.itemList.values)
@@ -3037,7 +3088,7 @@ namespace KBEngine
 			return null;
 		}
 
-		// Token: 0x060061AB RID: 25003 RVA: 0x002712BC File Offset: 0x0026F4BC
+		// Token: 0x0600575F RID: 22367 RVA: 0x002455AC File Offset: 0x002437AC
 		public bool YuJianFeiXing()
 		{
 			foreach (SkillItem skillItem in this.equipStaticSkillList)
@@ -3051,7 +3102,7 @@ namespace KBEngine
 			return false;
 		}
 
-		// Token: 0x060061AC RID: 25004 RVA: 0x0027133C File Offset: 0x0026F53C
+		// Token: 0x06005760 RID: 22368 RVA: 0x0024562C File Offset: 0x0024382C
 		public void addItem(int itemID, int Count, JSONObject _seid, bool ShowText = false)
 		{
 			if (!_ItemJsonData.DataDict.ContainsKey(itemID))
@@ -3095,7 +3146,7 @@ namespace KBEngine
 			}
 		}
 
-		// Token: 0x060061AD RID: 25005 RVA: 0x00271434 File Offset: 0x0026F634
+		// Token: 0x06005761 RID: 22369 RVA: 0x00245724 File Offset: 0x00243924
 		public void AddEquip(int itemID, string uuid, JSONObject _seid)
 		{
 			if (!_ItemJsonData.DataDict.ContainsKey(itemID))
@@ -3135,7 +3186,7 @@ namespace KBEngine
 			}
 		}
 
-		// Token: 0x060061AE RID: 25006 RVA: 0x00271518 File Offset: 0x0026F718
+		// Token: 0x06005762 RID: 22370 RVA: 0x00245808 File Offset: 0x00243A08
 		private void AddEquip(int itemID, JSONObject _seid, string uid)
 		{
 			if (_seid == null)
@@ -3167,19 +3218,19 @@ namespace KBEngine
 			this.getItemInfo(itemID).itemCount += 1U;
 		}
 
-		// Token: 0x060061AF RID: 25007 RVA: 0x002715D8 File Offset: 0x0026F7D8
+		// Token: 0x06005763 RID: 22371 RVA: 0x002458C8 File Offset: 0x00243AC8
 		public ITEM_INFO FindItemByUUID(string itemUUId)
 		{
 			return this.itemList.values.Find((ITEM_INFO aa) => aa.uuid == itemUUId);
 		}
 
-		// Token: 0x060061B0 RID: 25008 RVA: 0x00271610 File Offset: 0x0026F810
+		// Token: 0x06005764 RID: 22372 RVA: 0x00245900 File Offset: 0x00243B00
 		public ITEM_INFO FindEquipItemByUUID(string itemUUId)
 		{
 			return this.equipItemList.values.Find((ITEM_INFO aa) => aa.uuid == itemUUId);
 		}
 
-		// Token: 0x060061B1 RID: 25009 RVA: 0x00271648 File Offset: 0x0026F848
+		// Token: 0x06005765 RID: 22373 RVA: 0x00245938 File Offset: 0x00243B38
 		public void addItem(int itemID, JSONObject _seid, int count = 1)
 		{
 			if (_seid == null)
@@ -3242,7 +3293,7 @@ namespace KBEngine
 			}
 		}
 
-		// Token: 0x060061B2 RID: 25010 RVA: 0x002717F4 File Offset: 0x0026F9F4
+		// Token: 0x06005766 RID: 22374 RVA: 0x00245AE4 File Offset: 0x00243CE4
 		public int getRemoveItemNum(int itemID)
 		{
 			int num = 0;
@@ -3263,7 +3314,7 @@ namespace KBEngine
 			return num;
 		}
 
-		// Token: 0x060061B3 RID: 25011 RVA: 0x00271880 File Offset: 0x0026FA80
+		// Token: 0x06005767 RID: 22375 RVA: 0x00245B70 File Offset: 0x00243D70
 		public void removeItem(int itemID, int Count)
 		{
 			for (int i = 0; i < Count; i++)
@@ -3272,7 +3323,7 @@ namespace KBEngine
 			}
 		}
 
-		// Token: 0x060061B4 RID: 25012 RVA: 0x002718A0 File Offset: 0x0026FAA0
+		// Token: 0x06005768 RID: 22376 RVA: 0x00245B90 File Offset: 0x00243D90
 		public void removeItem(string UUID, int Count)
 		{
 			for (int i = 0; i < Count; i++)
@@ -3281,7 +3332,7 @@ namespace KBEngine
 			}
 		}
 
-		// Token: 0x060061B5 RID: 25013 RVA: 0x002718C0 File Offset: 0x0026FAC0
+		// Token: 0x06005769 RID: 22377 RVA: 0x00245BB0 File Offset: 0x00243DB0
 		public void removeItem(string UUID)
 		{
 			ITEM_INFO item_INFO = this.FindItemByUUID(UUID);
@@ -3296,7 +3347,7 @@ namespace KBEngine
 			}
 		}
 
-		// Token: 0x060061B6 RID: 25014 RVA: 0x00271904 File Offset: 0x0026FB04
+		// Token: 0x0600576A RID: 22378 RVA: 0x00245BF4 File Offset: 0x00243DF4
 		public void removeItem(int itemID)
 		{
 			if (this.getRemoveItemNum(itemID) > 0)
@@ -3310,7 +3361,7 @@ namespace KBEngine
 			}
 		}
 
-		// Token: 0x060061B7 RID: 25015 RVA: 0x0027194C File Offset: 0x0026FB4C
+		// Token: 0x0600576B RID: 22379 RVA: 0x00245C3C File Offset: 0x00243E3C
 		public void Load(int id, int index)
 		{
 			if (File.Exists(Paths.GetSavePath() + "/StreamData" + Tools.instance.getSaveID(id, index) + ".sav"))
@@ -3327,7 +3378,7 @@ namespace KBEngine
 			this.StreamData.FangAnData.LoadHandle();
 		}
 
-		// Token: 0x060061B8 RID: 25016 RVA: 0x002719E4 File Offset: 0x0026FBE4
+		// Token: 0x0600576C RID: 22380 RVA: 0x00245CD4 File Offset: 0x00243ED4
 		public void Save(int id, int index)
 		{
 			StreamData streamData = this.StreamData;
@@ -3337,12 +3388,12 @@ namespace KBEngine
 			fileStream.Close();
 		}
 
-		// Token: 0x060061B9 RID: 25017 RVA: 0x000042DD File Offset: 0x000024DD
+		// Token: 0x0600576D RID: 22381 RVA: 0x00004095 File Offset: 0x00002295
 		public void createItem()
 		{
 		}
 
-		// Token: 0x060061BA RID: 25018 RVA: 0x00271A3C File Offset: 0x0026FC3C
+		// Token: 0x0600576E RID: 22382 RVA: 0x00245D2C File Offset: 0x00243F2C
 		public bool hasItem(int itemID)
 		{
 			bool result = false;
@@ -3359,104 +3410,116 @@ namespace KBEngine
 			return result;
 		}
 
-		// Token: 0x060061BB RID: 25019 RVA: 0x00043C2C File Offset: 0x00041E2C
+		// Token: 0x0600576F RID: 22383 RVA: 0x00245D8C File Offset: 0x00243F8C
 		public void SortItem()
 		{
 			this.itemList.values.Sort(delegate(ITEM_INFO a, ITEM_INFO b)
 			{
-				_ItemJsonData itemJsonData = _ItemJsonData.DataDict[a.itemId];
-				_ItemJsonData itemJsonData2 = _ItemJsonData.DataDict[b.itemId];
-				JSONObject seid = a.Seid;
-				JSONObject seid2 = b.Seid;
-				int num = itemJsonData.GetHashCode();
-				int num2 = itemJsonData2.GetHashCode();
-				int num3 = itemJsonData.quality;
-				int num4 = itemJsonData2.quality;
-				if (seid != null && seid.HasField("quality"))
+				int result;
+				try
 				{
-					num3 = seid["quality"].I;
-					num += seid.GetHashCode();
+					_ItemJsonData itemJsonData = _ItemJsonData.DataDict[a.itemId];
+					_ItemJsonData itemJsonData2 = _ItemJsonData.DataDict[b.itemId];
+					JSONObject seid = a.Seid;
+					JSONObject seid2 = b.Seid;
+					int num = itemJsonData.GetHashCode();
+					int num2 = itemJsonData2.GetHashCode();
+					int num3 = itemJsonData.quality;
+					int num4 = itemJsonData2.quality;
+					if (seid != null && seid.HasField("quality"))
+					{
+						num3 = seid["quality"].I;
+						num += seid.GetHashCode();
+					}
+					if (seid2 != null && seid2.HasField("quality"))
+					{
+						num4 = seid2["quality"].I;
+						num2 += seid2.GetHashCode();
+					}
+					if (itemJsonData.type == 3 || itemJsonData.type == 4)
+					{
+						num3 *= 2;
+					}
+					if (itemJsonData2.type == 3 || itemJsonData2.type == 4)
+					{
+						num4 *= 2;
+					}
+					if (itemJsonData.type == 0 || itemJsonData.type == 1 || itemJsonData.type == 2)
+					{
+						num3++;
+					}
+					if (itemJsonData2.type == 0 || itemJsonData2.type == 1 || itemJsonData2.type == 2)
+					{
+						num4++;
+					}
+					if (num3 != num4)
+					{
+						result = num4.CompareTo(num3);
+					}
+					else if (itemJsonData.type != itemJsonData2.type)
+					{
+						result = itemJsonData.type.CompareTo(itemJsonData2.type);
+					}
+					else if (itemJsonData.id != itemJsonData2.id)
+					{
+						result = itemJsonData.id.CompareTo(itemJsonData2.id);
+					}
+					else
+					{
+						result = num.CompareTo(num2);
+					}
 				}
-				if (seid2 != null && seid2.HasField("quality"))
+				catch
 				{
-					num4 = seid2["quality"].I;
-					num2 += seid2.GetHashCode();
+					result = 1;
 				}
-				if (itemJsonData.type == 3 || itemJsonData.type == 4)
-				{
-					num3 *= 2;
-				}
-				if (itemJsonData2.type == 3 || itemJsonData2.type == 4)
-				{
-					num4 *= 2;
-				}
-				if (itemJsonData.type == 0 || itemJsonData.type == 1 || itemJsonData.type == 2)
-				{
-					num3++;
-				}
-				if (itemJsonData2.type == 0 || itemJsonData2.type == 1 || itemJsonData2.type == 2)
-				{
-					num4++;
-				}
-				if (num3 != num4)
-				{
-					return num4.CompareTo(num3);
-				}
-				if (itemJsonData.type != itemJsonData2.type)
-				{
-					return itemJsonData.type.CompareTo(itemJsonData2.type);
-				}
-				if (itemJsonData.id != itemJsonData2.id)
-				{
-					return itemJsonData.id.CompareTo(itemJsonData2.id);
-				}
-				return num.CompareTo(num2);
+				return result;
 			});
 		}
 
-		// Token: 0x060061BC RID: 25020 RVA: 0x00271A9C File Offset: 0x0026FC9C
+		// Token: 0x06005770 RID: 22384 RVA: 0x00245DC0 File Offset: 0x00243FC0
 		public static void UnlockShenXianDouFa(int index)
 		{
 			int num = index + 100;
 			int num2 = 10001 + index;
-			if (YSSaveGame.GetInt("SaveAvatar" + num, 0) != 0)
+			if (YSGame.YSSaveGame.GetInt("SaveAvatar" + num, 0) != 0)
 			{
 				return;
 			}
 			UIPopTip.Inst.Pop("已开启新的神仙斗法", PopTipIconType.叹号);
-			YSSaveGame.save("SaveAvatar" + num, 1, "-1");
-			YSSaveGame.save("SaveDFAvatar" + num, 2, "-1");
+			YSGame.YSSaveGame.save("SaveAvatar" + num, 1, "-1");
+			YSGame.YSSaveGame.save("SaveDFAvatar" + num, 2, "-1");
 			JSONObject jsonobject = new JSONObject(JSONObject.Type.OBJECT);
 			jsonobject.SetField("1", jsonData.instance.AvatarRandomJsonData[num2.ToString()]);
-			YSSaveGame.save("AvatarRandomJsonData" + Tools.instance.getSaveID(num, 0), jsonobject, "-1");
+			YSGame.YSSaveGame.save("AvatarRandomJsonData" + Tools.instance.getSaveID(num, 0), jsonobject, "-1");
 		}
 
-		// Token: 0x060061BD RID: 25021 RVA: 0x00043965 File Offset: 0x00041B65
+		// Token: 0x06005771 RID: 22385 RVA: 0x002409A1 File Offset: 0x0023EBA1
 		public void SetMenPai(int id)
 		{
 			this.menPai = (ushort)id;
 		}
 
-		// Token: 0x060061BE RID: 25022 RVA: 0x00043C5D File Offset: 0x00041E5D
+		// Token: 0x06005772 RID: 22386 RVA: 0x00245E82 File Offset: 0x00244082
 		public void SetLingGen(int id, int value)
 		{
 			this.LingGeng[id] = value;
 		}
 
-		// Token: 0x060061BF RID: 25023 RVA: 0x000042DD File Offset: 0x000024DD
+		// Token: 0x06005773 RID: 22387 RVA: 0x00004095 File Offset: 0x00002295
 		[Obsolete]
 		public void startFight(int fightID)
 		{
 		}
 
-		// Token: 0x060061C0 RID: 25024 RVA: 0x00043C6C File Offset: 0x00041E6C
+		// Token: 0x06005774 RID: 22388 RVA: 0x00245E91 File Offset: 0x00244091
 		[Obsolete]
 		public void reqItemList()
 		{
 			base.baseCall("reqItemList", Array.Empty<object>());
 		}
 
-		// Token: 0x060061C1 RID: 25025 RVA: 0x00043C7E File Offset: 0x00041E7E
+		// Token: 0x06005775 RID: 22389 RVA: 0x00245EA3 File Offset: 0x002440A3
 		[Obsolete]
 		public void dropRequest(ulong itemUUID)
 		{
@@ -3466,7 +3529,7 @@ namespace KBEngine
 			});
 		}
 
-		// Token: 0x060061C2 RID: 25026 RVA: 0x00271B60 File Offset: 0x0026FD60
+		// Token: 0x06005776 RID: 22390 RVA: 0x00245EC0 File Offset: 0x002440C0
 		[Obsolete]
 		public void swapItemRequest(int srcIndex, int dstIndex)
 		{
@@ -3489,7 +3552,7 @@ namespace KBEngine
 			});
 		}
 
-		// Token: 0x060061C3 RID: 25027 RVA: 0x00043C9A File Offset: 0x00041E9A
+		// Token: 0x06005777 RID: 22391 RVA: 0x00245F3E File Offset: 0x0024413E
 		[Obsolete]
 		public void equipItemRequest(ulong itemUUID)
 		{
@@ -3499,7 +3562,7 @@ namespace KBEngine
 			});
 		}
 
-		// Token: 0x060061C4 RID: 25028 RVA: 0x00043CB6 File Offset: 0x00041EB6
+		// Token: 0x06005778 RID: 22392 RVA: 0x00245F5A File Offset: 0x0024415A
 		[Obsolete]
 		public void UnEquipItemRequest(ulong itemUUID)
 		{
@@ -3509,7 +3572,7 @@ namespace KBEngine
 			});
 		}
 
-		// Token: 0x060061C5 RID: 25029 RVA: 0x00271BE0 File Offset: 0x0026FDE0
+		// Token: 0x06005779 RID: 22393 RVA: 0x00245F78 File Offset: 0x00244178
 		[Obsolete]
 		public override object getDefinedProperty(string name)
 		{
@@ -3603,7 +3666,7 @@ namespace KBEngine
 			return null;
 		}
 
-		// Token: 0x060061C6 RID: 25030 RVA: 0x00043CD2 File Offset: 0x00041ED2
+		// Token: 0x0600577A RID: 22394 RVA: 0x00246189 File Offset: 0x00244389
 		[Obsolete]
 		public void CreateAvaterCall(int AvaterID)
 		{
@@ -3613,7 +3676,7 @@ namespace KBEngine
 			});
 		}
 
-		// Token: 0x060061C7 RID: 25031 RVA: 0x00271DF4 File Offset: 0x0026FFF4
+		// Token: 0x0600577B RID: 22395 RVA: 0x002461A8 File Offset: 0x002443A8
 		[Obsolete]
 		public void useItemRequest(ulong itemIndex)
 		{
@@ -3629,7 +3692,7 @@ namespace KBEngine
 			UIPopTip.Inst.Pop("物品使用冷却中", PopTipIconType.叹号);
 		}
 
-		// Token: 0x060061C8 RID: 25032 RVA: 0x00271E48 File Offset: 0x00270048
+		// Token: 0x0600577C RID: 22396 RVA: 0x002461FC File Offset: 0x002443FC
 		[Obsolete]
 		public override void onAttack_MaxChanged(int old)
 		{
@@ -3640,7 +3703,7 @@ namespace KBEngine
 			});
 		}
 
-		// Token: 0x060061C9 RID: 25033 RVA: 0x00271E78 File Offset: 0x00270078
+		// Token: 0x0600577D RID: 22397 RVA: 0x0024622C File Offset: 0x0024442C
 		[Obsolete]
 		public override void onAttack_MinChanged(int old)
 		{
@@ -3651,7 +3714,7 @@ namespace KBEngine
 			});
 		}
 
-		// Token: 0x060061CA RID: 25034 RVA: 0x00271EA8 File Offset: 0x002700A8
+		// Token: 0x0600577E RID: 22398 RVA: 0x0024625C File Offset: 0x0024445C
 		[Obsolete]
 		public override void onDefenceChanged(int old)
 		{
@@ -3662,7 +3725,7 @@ namespace KBEngine
 			});
 		}
 
-		// Token: 0x060061CB RID: 25035 RVA: 0x00271ED8 File Offset: 0x002700D8
+		// Token: 0x0600577F RID: 22399 RVA: 0x0024628C File Offset: 0x0024448C
 		[Obsolete]
 		public override void onRatingChanged(int old)
 		{
@@ -3673,7 +3736,7 @@ namespace KBEngine
 			});
 		}
 
-		// Token: 0x060061CC RID: 25036 RVA: 0x00271F08 File Offset: 0x00270108
+		// Token: 0x06005780 RID: 22400 RVA: 0x002462BC File Offset: 0x002444BC
 		[Obsolete]
 		public override void onDodgeChanged(int old)
 		{
@@ -3684,7 +3747,7 @@ namespace KBEngine
 			});
 		}
 
-		// Token: 0x060061CD RID: 25037 RVA: 0x00271F38 File Offset: 0x00270138
+		// Token: 0x06005781 RID: 22401 RVA: 0x002462EC File Offset: 0x002444EC
 		[Obsolete]
 		public override void onStrengthChanged(int old)
 		{
@@ -3695,7 +3758,7 @@ namespace KBEngine
 			});
 		}
 
-		// Token: 0x060061CE RID: 25038 RVA: 0x00271F68 File Offset: 0x00270168
+		// Token: 0x06005782 RID: 22402 RVA: 0x0024631C File Offset: 0x0024451C
 		[Obsolete]
 		public override void onDexterityChanged(int old)
 		{
@@ -3706,7 +3769,7 @@ namespace KBEngine
 			});
 		}
 
-		// Token: 0x060061CF RID: 25039 RVA: 0x00271F98 File Offset: 0x00270198
+		// Token: 0x06005783 RID: 22403 RVA: 0x0024634C File Offset: 0x0024454C
 		[Obsolete]
 		public override void onExpChanged(ulong old)
 		{
@@ -3717,7 +3780,7 @@ namespace KBEngine
 			});
 		}
 
-		// Token: 0x060061D0 RID: 25040 RVA: 0x00271FC8 File Offset: 0x002701C8
+		// Token: 0x06005784 RID: 22404 RVA: 0x0024637C File Offset: 0x0024457C
 		[Obsolete]
 		public override void onLevelChanged(ushort old)
 		{
@@ -3728,7 +3791,7 @@ namespace KBEngine
 			});
 		}
 
-		// Token: 0x060061D1 RID: 25041 RVA: 0x00043CEE File Offset: 0x00041EEE
+		// Token: 0x06005785 RID: 22405 RVA: 0x002463A9 File Offset: 0x002445A9
 		[Obsolete]
 		public override void onCrystalChanged(List<int> oldValue)
 		{
@@ -3739,7 +3802,7 @@ namespace KBEngine
 			});
 		}
 
-		// Token: 0x060061D2 RID: 25042 RVA: 0x00271FF8 File Offset: 0x002701F8
+		// Token: 0x06005786 RID: 22406 RVA: 0x002463C4 File Offset: 0x002445C4
 		[Obsolete]
 		public override void onStaminaChanged(int old)
 		{
@@ -3750,21 +3813,21 @@ namespace KBEngine
 			});
 		}
 
-		// Token: 0x060061D3 RID: 25043 RVA: 0x00043D08 File Offset: 0x00041F08
+		// Token: 0x06005787 RID: 22407 RVA: 0x002463F1 File Offset: 0x002445F1
 		[Obsolete]
 		public void dialog(int targetID, uint dialogID)
 		{
 			this.dialogMsg.dialog(targetID, dialogID);
 		}
 
-		// Token: 0x060061D4 RID: 25044 RVA: 0x00043D17 File Offset: 0x00041F17
+		// Token: 0x06005788 RID: 22408 RVA: 0x00246400 File Offset: 0x00244600
 		[Obsolete]
 		public void messagelog(int targetID, uint dialogID)
 		{
 			this.dialogMsg.messagelog(targetID, dialogID);
 		}
 
-		// Token: 0x060061D5 RID: 25045 RVA: 0x00272028 File Offset: 0x00270228
+		// Token: 0x06005789 RID: 22409 RVA: 0x00246410 File Offset: 0x00244610
 		[Obsolete]
 		public override void dropItem_re(int itemId, ulong itemUUId)
 		{
@@ -3778,7 +3841,7 @@ namespace KBEngine
 			});
 		}
 
-		// Token: 0x060061D6 RID: 25046 RVA: 0x00043D26 File Offset: 0x00041F26
+		// Token: 0x0600578A RID: 22410 RVA: 0x00246468 File Offset: 0x00244668
 		[Obsolete]
 		public override void pickUp_re(ITEM_INFO itemInfo)
 		{
@@ -3789,7 +3852,7 @@ namespace KBEngine
 			this.itemDict[itemInfo.UUID] = itemInfo;
 		}
 
-		// Token: 0x060061D7 RID: 25047 RVA: 0x00272080 File Offset: 0x00270280
+		// Token: 0x0600578B RID: 22411 RVA: 0x00246490 File Offset: 0x00244690
 		[Obsolete]
 		public override void equipItemRequest_re(ITEM_INFO itemInfo, ITEM_INFO equipItemInfo)
 		{
@@ -3821,7 +3884,7 @@ namespace KBEngine
 			}
 		}
 
-		// Token: 0x060061D8 RID: 25048 RVA: 0x00272130 File Offset: 0x00270330
+		// Token: 0x0600578C RID: 22412 RVA: 0x00246540 File Offset: 0x00244740
 		[Obsolete]
 		public override void onReqItemList(ITEM_INFO_LIST infos, ITEM_INFO_LIST equipInfos)
 		{
@@ -3848,14 +3911,14 @@ namespace KBEngine
 			});
 		}
 
-		// Token: 0x060061D9 RID: 25049 RVA: 0x00043D4E File Offset: 0x00041F4E
+		// Token: 0x0600578D RID: 22413 RVA: 0x00246619 File Offset: 0x00244819
 		[Obsolete]
 		public override void errorInfo(int errorCode)
 		{
 			Dbg.DEBUG_MSG("errorInfo(" + errorCode + ")");
 		}
 
-		// Token: 0x060061DA RID: 25050 RVA: 0x0027220C File Offset: 0x0027040C
+		// Token: 0x0600578E RID: 22414 RVA: 0x00246638 File Offset: 0x00244838
 		[Obsolete]
 		public virtual void onEquipWeaponChanged(object old)
 		{
@@ -3867,7 +3930,7 @@ namespace KBEngine
 			});
 		}
 
-		// Token: 0x060061DB RID: 25051 RVA: 0x00043D6A File Offset: 0x00041F6A
+		// Token: 0x0600578F RID: 22415 RVA: 0x00246673 File Offset: 0x00244873
 		[Obsolete]
 		public override void dialog_setContent(int talkerId, List<uint> dialogs, List<string> dialogsTitles, string title, string body, string sayname)
 		{
@@ -3882,7 +3945,7 @@ namespace KBEngine
 			});
 		}
 
-		// Token: 0x060061DC RID: 25052 RVA: 0x00043D9C File Offset: 0x00041F9C
+		// Token: 0x06005790 RID: 22416 RVA: 0x002466A5 File Offset: 0x002448A5
 		[Obsolete]
 		public void messagelog_setContent(int talkerId, string title, string body, string sayname)
 		{
@@ -3895,14 +3958,14 @@ namespace KBEngine
 			});
 		}
 
-		// Token: 0x060061DD RID: 25053 RVA: 0x00043DC4 File Offset: 0x00041FC4
+		// Token: 0x06005791 RID: 22417 RVA: 0x002466CD File Offset: 0x002448CD
 		[Obsolete]
 		public override void dialog_close()
 		{
 			Event.fireOut("dialog_close", Array.Empty<object>());
 		}
 
-		// Token: 0x060061DE RID: 25054 RVA: 0x00043DD5 File Offset: 0x00041FD5
+		// Token: 0x06005792 RID: 22418 RVA: 0x002466DE File Offset: 0x002448DE
 		[Obsolete]
 		public void StartCrafting(int itemID, int Count)
 		{
@@ -3913,21 +3976,21 @@ namespace KBEngine
 			});
 		}
 
-		// Token: 0x060061DF RID: 25055 RVA: 0x00043DFA File Offset: 0x00041FFA
+		// Token: 0x06005793 RID: 22419 RVA: 0x00246703 File Offset: 0x00244903
 		[Obsolete]
 		public void CancelCrafting()
 		{
 			base.baseCall("CancelCrafting", Array.Empty<object>());
 		}
 
-		// Token: 0x060061E0 RID: 25056 RVA: 0x00043E0C File Offset: 0x0004200C
+		// Token: 0x06005794 RID: 22420 RVA: 0x00246715 File Offset: 0x00244915
 		[Obsolete]
 		public void backToHome()
 		{
 			base.baseCall("backToHome", Array.Empty<object>());
 		}
 
-		// Token: 0x060061E1 RID: 25057 RVA: 0x00043E1E File Offset: 0x0004201E
+		// Token: 0x06005795 RID: 22421 RVA: 0x00246727 File Offset: 0x00244927
 		[Obsolete]
 		public override void PlayerAddGoods(ITEM_INFO_LIST Infos, ushort day, ushort exp)
 		{
@@ -3939,7 +4002,7 @@ namespace KBEngine
 			});
 		}
 
-		// Token: 0x060061E2 RID: 25058 RVA: 0x00043E46 File Offset: 0x00042046
+		// Token: 0x06005796 RID: 22422 RVA: 0x0024674F File Offset: 0x0024494F
 		[Obsolete]
 		public override void setPlayerTime(uint time)
 		{
@@ -3949,7 +4012,7 @@ namespace KBEngine
 			});
 		}
 
-		// Token: 0x060061E3 RID: 25059 RVA: 0x00043E61 File Offset: 0x00042061
+		// Token: 0x06005797 RID: 22423 RVA: 0x0024676A File Offset: 0x0024496A
 		[Obsolete]
 		public override void GameErrorMsg(string msg)
 		{
@@ -3959,28 +4022,28 @@ namespace KBEngine
 			});
 		}
 
-		// Token: 0x060061E4 RID: 25060 RVA: 0x00043E77 File Offset: 0x00042077
+		// Token: 0x06005798 RID: 22424 RVA: 0x00246780 File Offset: 0x00244980
 		[Obsolete]
 		public void DayZombie()
 		{
 			base.cellCall("DayZombie", Array.Empty<object>());
 		}
 
-		// Token: 0x060061E5 RID: 25061 RVA: 0x00043E89 File Offset: 0x00042089
+		// Token: 0x06005799 RID: 22425 RVA: 0x00246792 File Offset: 0x00244992
 		[Obsolete]
 		public override void PlayerLvUP()
 		{
 			Event.fireOut("PlayerLvUP", Array.Empty<object>());
 		}
 
-		// Token: 0x060061E6 RID: 25062 RVA: 0x0001C722 File Offset: 0x0001A922
+		// Token: 0x0600579A RID: 22426 RVA: 0x000DBFA9 File Offset: 0x000DA1A9
 		[Obsolete]
 		public override void createItem(ITEM_INFO arg1)
 		{
 			throw new NotImplementedException();
 		}
 
-		// Token: 0x060061E7 RID: 25063 RVA: 0x00043E9A File Offset: 0x0004209A
+		// Token: 0x0600579B RID: 22427 RVA: 0x002467A3 File Offset: 0x002449A3
 		[Obsolete]
 		public override void onBuffsChanged(List<ushort> oldValue)
 		{
@@ -3995,14 +4058,14 @@ namespace KBEngine
 			}
 		}
 
-		// Token: 0x060061E8 RID: 25064 RVA: 0x0001C722 File Offset: 0x0001A922
+		// Token: 0x0600579C RID: 22428 RVA: 0x000DBFA9 File Offset: 0x000DA1A9
 		[Obsolete]
 		public override void onStartGame()
 		{
 			throw new NotImplementedException();
 		}
 
-		// Token: 0x060061E9 RID: 25065 RVA: 0x00272248 File Offset: 0x00270448
+		// Token: 0x0600579D RID: 22429 RVA: 0x002467D0 File Offset: 0x002449D0
 		[Obsolete]
 		public override void onHPChanged(int oldValue)
 		{
@@ -4014,14 +4077,14 @@ namespace KBEngine
 			});
 		}
 
-		// Token: 0x060061EA RID: 25066 RVA: 0x00043EC5 File Offset: 0x000420C5
+		// Token: 0x0600579E RID: 22430 RVA: 0x00246801 File Offset: 0x00244A01
 		[Obsolete]
 		public override void onMPChanged(int oldValue)
 		{
 			this.getDefinedProperty("MP");
 		}
 
-		// Token: 0x060061EB RID: 25067 RVA: 0x0027227C File Offset: 0x0027047C
+		// Token: 0x0600579F RID: 22431 RVA: 0x00246810 File Offset: 0x00244A10
 		[Obsolete]
 		public override void on_HP_MaxChanged(int oldValue)
 		{
@@ -4033,14 +4096,14 @@ namespace KBEngine
 			});
 		}
 
-		// Token: 0x060061EC RID: 25068 RVA: 0x00043ED3 File Offset: 0x000420D3
+		// Token: 0x060057A0 RID: 22432 RVA: 0x00246841 File Offset: 0x00244A41
 		[Obsolete]
 		public override void onMP_MaxChanged(int oldValue)
 		{
 			this.getDefinedProperty("MP_Max");
 		}
 
-		// Token: 0x060061ED RID: 25069 RVA: 0x002722B0 File Offset: 0x002704B0
+		// Token: 0x060057A1 RID: 22433 RVA: 0x00246850 File Offset: 0x00244A50
 		[Obsolete]
 		public override void onNameChanged(string oldValue)
 		{
@@ -4052,7 +4115,7 @@ namespace KBEngine
 			});
 		}
 
-		// Token: 0x060061EE RID: 25070 RVA: 0x002722E4 File Offset: 0x002704E4
+		// Token: 0x060057A2 RID: 22434 RVA: 0x00246884 File Offset: 0x00244A84
 		[Obsolete]
 		public override void onStateChanged(sbyte oldValue)
 		{
@@ -4064,38 +4127,38 @@ namespace KBEngine
 			});
 		}
 
-		// Token: 0x060061EF RID: 25071 RVA: 0x000042DD File Offset: 0x000024DD
+		// Token: 0x060057A3 RID: 22435 RVA: 0x00004095 File Offset: 0x00002295
 		[Obsolete]
 		public override void onSubStateChanged(byte oldValue)
 		{
 		}
 
-		// Token: 0x060061F0 RID: 25072 RVA: 0x000042DD File Offset: 0x000024DD
+		// Token: 0x060057A4 RID: 22436 RVA: 0x00004095 File Offset: 0x00002295
 		[Obsolete]
 		public override void onUtypeChanged(uint oldValue)
 		{
 		}
 
-		// Token: 0x060061F1 RID: 25073 RVA: 0x000042DD File Offset: 0x000024DD
+		// Token: 0x060057A5 RID: 22437 RVA: 0x00004095 File Offset: 0x00002295
 		[Obsolete]
 		public override void onUidChanged(uint oldValue)
 		{
 		}
 
-		// Token: 0x060061F2 RID: 25074 RVA: 0x000042DD File Offset: 0x000024DD
+		// Token: 0x060057A6 RID: 22438 RVA: 0x00004095 File Offset: 0x00002295
 		[Obsolete]
 		public override void onSpaceUTypeChanged(uint oldValue)
 		{
 		}
 
-		// Token: 0x060061F3 RID: 25075 RVA: 0x00043EE1 File Offset: 0x000420E1
+		// Token: 0x060057A7 RID: 22439 RVA: 0x002468B5 File Offset: 0x00244AB5
 		[Obsolete]
 		public override void onMoveSpeedChanged(byte oldValue)
 		{
 			this.getDefinedProperty("moveSpeed");
 		}
 
-		// Token: 0x060061F4 RID: 25076 RVA: 0x00043EEF File Offset: 0x000420EF
+		// Token: 0x060057A8 RID: 22440 RVA: 0x002468C3 File Offset: 0x00244AC3
 		[Obsolete]
 		public override void onHungerChanged(short oldValue)
 		{
@@ -4105,7 +4168,7 @@ namespace KBEngine
 			});
 		}
 
-		// Token: 0x060061F5 RID: 25077 RVA: 0x00043F0A File Offset: 0x0004210A
+		// Token: 0x060057A9 RID: 22441 RVA: 0x002468DE File Offset: 0x00244ADE
 		[Obsolete]
 		public override void onThirstChanged(short oldValue)
 		{
@@ -4115,151 +4178,154 @@ namespace KBEngine
 			});
 		}
 
-		// Token: 0x04005BEB RID: 23531
+		// Token: 0x04005131 RID: 20785
 		public string lastScence = "AllMaps";
 
-		// Token: 0x04005BEC RID: 23532
+		// Token: 0x04005132 RID: 20786
 		public string lastFuBenScence = "";
 
-		// Token: 0x04005BED RID: 23533
+		// Token: 0x04005133 RID: 20787
 		public string NowFuBen = "";
 
-		// Token: 0x04005BEE RID: 23534
+		// Token: 0x04005134 RID: 20788
 		public int BanBenHao = 1;
 
-		// Token: 0x04005BEF RID: 23535
+		// Token: 0x04005135 RID: 20789
 		public int NowRandomFuBenID;
 
-		// Token: 0x04005BF0 RID: 23536
+		// Token: 0x04005136 RID: 20790
 		public int showSkillName;
 
-		// Token: 0x04005BF1 RID: 23537
+		// Token: 0x04005137 RID: 20791
 		public int showStaticSkillDengJi;
 
-		// Token: 0x04005BF2 RID: 23538
+		// Token: 0x04005138 RID: 20792
 		public int chengHao;
 
-		// Token: 0x04005BF3 RID: 23539
+		// Token: 0x04005139 RID: 20793
 		public CardMag cardMag;
 
-		// Token: 0x04005BF4 RID: 23540
+		// Token: 0x0400513A RID: 20794
 		public Combat combat;
 
-		// Token: 0x04005BF5 RID: 23541
+		// Token: 0x0400513B RID: 20795
 		public AI ai;
 
-		// Token: 0x04005BF6 RID: 23542
+		// Token: 0x0400513C RID: 20796
 		public Spell spell;
 
-		// Token: 0x04005BF7 RID: 23543
+		// Token: 0x0400513D RID: 20797
 		public JieYin jieyin;
 
-		// Token: 0x04005BF8 RID: 23544
+		// Token: 0x0400513E RID: 20798
 		public Dialog dialogMsg;
 
-		// Token: 0x04005BF9 RID: 23545
+		// Token: 0x0400513F RID: 20799
 		public BuffMag buffmag;
 
-		// Token: 0x04005BFA RID: 23546
+		// Token: 0x04005140 RID: 20800
 		public WuDaoMag wuDaoMag;
 
-		// Token: 0x04005BFB RID: 23547
+		// Token: 0x04005141 RID: 20801
 		public WorldTime worldTimeMag = new WorldTime();
 
-		// Token: 0x04005BFC RID: 23548
+		// Token: 0x04005142 RID: 20802
 		public EmailDataMag emailDateMag = new EmailDataMag();
 
-		// Token: 0x04005BFD RID: 23549
+		// Token: 0x04005143 RID: 20803
 		public StreamData StreamData = new StreamData();
 
-		// Token: 0x04005BFE RID: 23550
+		// Token: 0x04005144 RID: 20804
+		public int ExchangeMeetingID;
+
+		// Token: 0x04005145 RID: 20805
 		public TaskMag taskMag;
 
-		// Token: 0x04005BFF RID: 23551
+		// Token: 0x04005146 RID: 20806
 		public FightTempValue fightTemp;
 
-		// Token: 0x04005C00 RID: 23552
+		// Token: 0x04005147 RID: 20807
 		public ZulinContorl zulinContorl;
 
-		// Token: 0x04005C01 RID: 23553
+		// Token: 0x04005148 RID: 20808
 		public FubenContrl fubenContorl;
 
-		// Token: 0x04005C02 RID: 23554
+		// Token: 0x04005149 RID: 20809
 		public NomelTaskMag nomelTaskMag;
 
-		// Token: 0x04005C03 RID: 23555
+		// Token: 0x0400514A RID: 20810
 		public chenghaoMag chenghaomag;
 
-		// Token: 0x04005C04 RID: 23556
+		// Token: 0x0400514B RID: 20811
 		public RandomFuBenMag randomFuBenMag;
 
-		// Token: 0x04005C05 RID: 23557
+		// Token: 0x0400514C RID: 20812
 		public SeaNodeMag seaNodeMag;
 
-		// Token: 0x04005C06 RID: 23558
+		// Token: 0x0400514D RID: 20813
 		public ChuanYingManager chuanYingManager;
 
-		// Token: 0x04005C07 RID: 23559
+		// Token: 0x0400514E RID: 20814
 		public JianLingManager jianLingManager;
 
-		// Token: 0x04005C08 RID: 23560
+		// Token: 0x0400514F RID: 20815
 		public static SkillBox skillbox = new SkillBox();
 
-		// Token: 0x04005C09 RID: 23561
+		// Token: 0x04005150 RID: 20816
 		public Dictionary<ulong, ITEM_INFO> itemDict = new Dictionary<ulong, ITEM_INFO>();
 
-		// Token: 0x04005C0A RID: 23562
+		// Token: 0x04005151 RID: 20817
 		public Dictionary<ulong, ITEM_INFO> equipItemDict = new Dictionary<ulong, ITEM_INFO>();
 
-		// Token: 0x04005C0B RID: 23563
+		// Token: 0x04005152 RID: 20818
 		public List<Skill> skill = new List<Skill>();
 
-		// Token: 0x04005C0C RID: 23564
+		// Token: 0x04005153 RID: 20819
 		public List<StaticSkill> StaticSkill = new List<StaticSkill>();
 
-		// Token: 0x04005C0D RID: 23565
+		// Token: 0x04005154 RID: 20820
 		private ulong[] itemIndex2Uids = new ulong[50];
 
-		// Token: 0x04005C0E RID: 23566
+		// Token: 0x04005155 RID: 20821
 		private ulong[] equipIndex2Uids = new ulong[5];
 
-		// Token: 0x04005C0F RID: 23567
+		// Token: 0x04005156 RID: 20822
 		public List<List<int>> bufflist = new List<List<int>>();
 
-		// Token: 0x04005C10 RID: 23568
+		// Token: 0x04005157 RID: 20823
 		public Dictionary<int, Dictionary<int, int>> SkillSeidFlag = new Dictionary<int, Dictionary<int, int>>();
 
-		// Token: 0x04005C11 RID: 23569
+		// Token: 0x04005158 RID: 20824
 		public Dictionary<int, Dictionary<int, int>> BuffSeidFlag = new Dictionary<int, Dictionary<int, int>>();
 
-		// Token: 0x04005C12 RID: 23570
+		// Token: 0x04005159 RID: 20825
 		public Dictionary<int, Dictionary<int, int>> StaticSkillSeidFlag = new Dictionary<int, Dictionary<int, int>>();
 
-		// Token: 0x04005C13 RID: 23571
+		// Token: 0x0400515A RID: 20826
 		public Dictionary<int, Dictionary<int, int>> EquipSeidFlag = new Dictionary<int, Dictionary<int, int>>();
 
-		// Token: 0x04005C14 RID: 23572
+		// Token: 0x0400515B RID: 20827
 		public Dictionary<int, Dictionary<int, int>> JieDanSkillSeidFlag = new Dictionary<int, Dictionary<int, int>>();
 
-		// Token: 0x04005C15 RID: 23573
+		// Token: 0x0400515C RID: 20828
 		public Dictionary<int, int> DrawWeight = new Dictionary<int, int>();
 
-		// Token: 0x04005C16 RID: 23574
+		// Token: 0x0400515D RID: 20829
 		public int NowMapIndex = 101;
 
-		// Token: 0x04005C17 RID: 23575
+		// Token: 0x0400515E RID: 20830
 		public int SkillRemoveCardNum;
 
-		// Token: 0x04005C18 RID: 23576
+		// Token: 0x0400515F RID: 20831
 		public int nowConfigEquipSkill;
 
-		// Token: 0x04005C19 RID: 23577
+		// Token: 0x04005160 RID: 20832
 		public int nowConfigEquipStaticSkill;
 
-		// Token: 0x04005C1A RID: 23578
+		// Token: 0x04005161 RID: 20833
 		public int nowConfigEquipItem;
 
-		// Token: 0x04005C1B RID: 23579
+		// Token: 0x04005162 RID: 20834
 		public List<SkillItem>[] configEquipSkill = new List<SkillItem>[]
 		{
 			new List<SkillItem>(),
@@ -4269,7 +4335,7 @@ namespace KBEngine
 			new List<SkillItem>()
 		};
 
-		// Token: 0x04005C1C RID: 23580
+		// Token: 0x04005163 RID: 20835
 		public List<SkillItem>[] configEquipStaticSkill = new List<SkillItem>[]
 		{
 			new List<SkillItem>(),
@@ -4279,7 +4345,7 @@ namespace KBEngine
 			new List<SkillItem>()
 		};
 
-		// Token: 0x04005C1D RID: 23581
+		// Token: 0x04005164 RID: 20836
 		public ITEM_INFO_LIST[] configEquipItem = new ITEM_INFO_LIST[]
 		{
 			new ITEM_INFO_LIST(),
@@ -4289,316 +4355,328 @@ namespace KBEngine
 			new ITEM_INFO_LIST()
 		};
 
-		// Token: 0x04005C1E RID: 23582
+		// Token: 0x04005165 RID: 20837
 		public List<SkillItem> equipSkillList = new List<SkillItem>();
 
-		// Token: 0x04005C1F RID: 23583
+		// Token: 0x04005166 RID: 20838
 		public List<SkillItem> equipStaticSkillList = new List<SkillItem>();
 
-		// Token: 0x04005C20 RID: 23584
+		// Token: 0x04005167 RID: 20839
 		public List<SkillItem> hasJieDanSkillList = new List<SkillItem>();
 
-		// Token: 0x04005C21 RID: 23585
+		// Token: 0x04005168 RID: 20840
 		public List<SkillItem> hasSkillList = new List<SkillItem>();
 
-		// Token: 0x04005C22 RID: 23586
+		// Token: 0x04005169 RID: 20841
 		public List<SkillItem> hasStaticSkillList = new List<SkillItem>();
 
-		// Token: 0x04005C23 RID: 23587
+		// Token: 0x0400516A RID: 20842
 		public Avatar OtherAvatar;
 
-		// Token: 0x04005C24 RID: 23588
+		// Token: 0x0400516B RID: 20843
 		public int showTupo;
 
-		// Token: 0x04005C25 RID: 23589
+		// Token: 0x0400516C RID: 20844
 		public int _xinjin;
 
-		// Token: 0x04005C26 RID: 23590
+		// Token: 0x0400516D RID: 20845
 		public string firstName = "";
 
-		// Token: 0x04005C27 RID: 23591
+		// Token: 0x0400516E RID: 20846
 		public string lastName = "";
 
-		// Token: 0x04005C28 RID: 23592
+		// Token: 0x0400516F RID: 20847
 		public int Sex = 1;
 
-		// Token: 0x04005C29 RID: 23593
+		// Token: 0x04005170 RID: 20848
 		public int nowPaiMaiCompereAvatarID;
 
-		// Token: 0x04005C2A RID: 23594
+		// Token: 0x04005171 RID: 20849
 		public int nowPaiMaiID;
 
-		// Token: 0x04005C2B RID: 23595
+		// Token: 0x04005172 RID: 20850
 		public int _WuDaoDian;
 
-		// Token: 0x04005C2C RID: 23596
+		// Token: 0x04005173 RID: 20851
 		public int _JieYingJinMai;
 
-		// Token: 0x04005C2D RID: 23597
+		// Token: 0x04005174 RID: 20852
 		public int _JieYingYiZHi;
 
-		// Token: 0x04005C2E RID: 23598
+		// Token: 0x04005175 RID: 20853
 		public AvatarStaticValue StaticValue = new AvatarStaticValue();
 
-		// Token: 0x04005C2F RID: 23599
+		// Token: 0x04005176 RID: 20854
 		public JSONObject AvatarGotChuanGong = new JSONObject();
 
-		// Token: 0x04005C30 RID: 23600
+		// Token: 0x04005177 RID: 20855
 		public JSONObject AvatarQieCuo = new JSONObject();
 
-		// Token: 0x04005C31 RID: 23601
+		// Token: 0x04005178 RID: 20856
 		public JSONObject SuiJiShiJian = new JSONObject(JSONObject.Type.OBJECT);
 
-		// Token: 0x04005C32 RID: 23602
+		// Token: 0x04005179 RID: 20857
 		public JSONObject ZuLin = new JSONObject(JSONObject.Type.OBJECT);
 
-		// Token: 0x04005C33 RID: 23603
+		// Token: 0x0400517A RID: 20858
 		public JSONObject FuBen = new JSONObject(JSONObject.Type.OBJECT);
 
-		// Token: 0x04005C34 RID: 23604
+		// Token: 0x0400517B RID: 20859
 		public JSONObject CanJiaPaiMai = new JSONObject(JSONObject.Type.OBJECT);
 
-		// Token: 0x04005C35 RID: 23605
+		// Token: 0x0400517C RID: 20860
 		public JSONObject NaiYaoXin = new JSONObject(JSONObject.Type.OBJECT);
 
-		// Token: 0x04005C36 RID: 23606
+		// Token: 0x0400517D RID: 20861
 		public JSONObject DanFang = new JSONObject(JSONObject.Type.ARRAY);
 
-		// Token: 0x04005C37 RID: 23607
+		// Token: 0x0400517E RID: 20862
 		public JSONObject YaoCaiShuXin = new JSONObject(JSONObject.Type.OBJECT);
 
-		// Token: 0x04005C38 RID: 23608
+		// Token: 0x0400517F RID: 20863
 		public JSONObject YaoCaiChanDi = new JSONObject(JSONObject.Type.ARRAY);
 
-		// Token: 0x04005C39 RID: 23609
+		// Token: 0x04005180 RID: 20864
 		public JSONObject YaoCaiIsGet = new JSONObject(JSONObject.Type.ARRAY);
 
-		// Token: 0x04005C3A RID: 23610
+		// Token: 0x04005181 RID: 20865
 		public JSONObject AllMapRandomNode = new JSONObject(JSONObject.Type.OBJECT);
 
-		// Token: 0x04005C3B RID: 23611
+		// Token: 0x04005182 RID: 20866
 		public JSONObject MenPaiHaoGanDu = new JSONObject(JSONObject.Type.OBJECT);
 
-		// Token: 0x04005C3C RID: 23612
+		// Token: 0x04005183 RID: 20867
 		public JSONObject NomelTaskJson = new JSONObject(JSONObject.Type.OBJECT);
 
-		// Token: 0x04005C3D RID: 23613
+		// Token: 0x04005184 RID: 20868
 		public JSONObject NomelTaskFlag = new JSONObject(JSONObject.Type.OBJECT);
 
-		// Token: 0x04005C3E RID: 23614
+		// Token: 0x04005185 RID: 20869
 		public JSONObject LingGuang = new JSONObject(JSONObject.Type.ARRAY);
 
-		// Token: 0x04005C3F RID: 23615
+		// Token: 0x04005186 RID: 20870
 		public JSONObject TianFuID = new JSONObject(JSONObject.Type.OBJECT);
 
-		// Token: 0x04005C40 RID: 23616
+		// Token: 0x04005187 RID: 20871
 		public JSONObject SelectTianFuID = new JSONObject(JSONObject.Type.ARRAY);
 
-		// Token: 0x04005C41 RID: 23617
+		// Token: 0x04005188 RID: 20872
 		public JSONObject openPanelList = new JSONObject();
 
-		// Token: 0x04005C42 RID: 23618
+		// Token: 0x04005189 RID: 20873
 		public JSONObject NoGetChuanYingList = new JSONObject();
 
-		// Token: 0x04005C43 RID: 23619
+		// Token: 0x0400518A RID: 20874
 		public JSONObject NewChuanYingList = new JSONObject();
 
-		// Token: 0x04005C44 RID: 23620
+		// Token: 0x0400518B RID: 20875
 		public JSONObject HasReadChuanYingList = new JSONObject();
 
-		// Token: 0x04005C45 RID: 23621
+		// Token: 0x0400518C RID: 20876
 		public JSONObject TieJianHongDianList = new JSONObject();
 
-		// Token: 0x04005C46 RID: 23622
+		// Token: 0x0400518D RID: 20877
 		public JSONObject ToalChuanYingFuList = new JSONObject();
 
-		// Token: 0x04005C47 RID: 23623
+		// Token: 0x0400518E RID: 20878
 		public JSONObject HasSendChuanYingFuList = new JSONObject();
 
-		// Token: 0x04005C48 RID: 23624
+		// Token: 0x0400518F RID: 20879
 		public JSONObject PaiMaiMaxMoneyAvatarDate = new JSONObject();
 
-		// Token: 0x04005C49 RID: 23625
+		// Token: 0x04005190 RID: 20880
 		public JSONObject WuDaoKillAvatar = new JSONObject(JSONObject.Type.ARRAY);
 
-		// Token: 0x04005C4A RID: 23626
+		// Token: 0x04005191 RID: 20881
 		public JSONObject HasLianZhiDanYao = new JSONObject(JSONObject.Type.ARRAY);
 
-		// Token: 0x04005C4B RID: 23627
+		// Token: 0x04005192 RID: 20882
 		public JSONObject AvatarChengJiuData = new JSONObject(JSONObject.Type.OBJECT);
 
-		// Token: 0x04005C4C RID: 23628
+		// Token: 0x04005193 RID: 20883
 		public JSONObject AvatarHasAchivement = new JSONObject(JSONObject.Type.ARRAY);
 
-		// Token: 0x04005C4D RID: 23629
+		// Token: 0x04005194 RID: 20884
 		public JSONObject ShangJinPingFen = new JSONObject(JSONObject.Type.OBJECT);
 
-		// Token: 0x04005C4E RID: 23630
+		// Token: 0x04005195 RID: 20885
 		public JSONObject ShiLiChengHaoLevel = new JSONObject(JSONObject.Type.OBJECT);
 
-		// Token: 0x04005C4F RID: 23631
+		// Token: 0x04005196 RID: 20886
 		public int NPCCreateIndex = 20000;
 
-		// Token: 0x04005C50 RID: 23632
+		// Token: 0x04005197 RID: 20887
 		public JSONObject AvatarFengLu = new JSONObject(JSONObject.Type.ARRAY);
 
-		// Token: 0x04005C51 RID: 23633
+		// Token: 0x04005198 RID: 20888
 		public JSONObject ZengLi = new JSONObject(JSONObject.Type.OBJECT);
 
-		// Token: 0x04005C52 RID: 23634
+		// Token: 0x04005199 RID: 20889
 		public JSONObject TeatherId = new JSONObject(JSONObject.Type.ARRAY);
 
-		// Token: 0x04005C53 RID: 23635
+		// Token: 0x0400519A RID: 20890
 		public JSONObject DaoLvId = new JSONObject(JSONObject.Type.ARRAY);
 
-		// Token: 0x04005C54 RID: 23636
+		// Token: 0x0400519B RID: 20891
 		public JSONObject Brother = new JSONObject(JSONObject.Type.ARRAY);
 
-		// Token: 0x04005C55 RID: 23637
+		// Token: 0x0400519C RID: 20892
 		public JSONObject TuDiId = new JSONObject(JSONObject.Type.ARRAY);
 
-		// Token: 0x04005C56 RID: 23638
+		// Token: 0x0400519D RID: 20893
 		public JSONObject DaTingId = new JSONObject(JSONObject.Type.ARRAY);
 
-		// Token: 0x04005C57 RID: 23639
+		// Token: 0x0400519E RID: 20894
 		public int IsShowXuanWo;
 
-		// Token: 0x04005C58 RID: 23640
+		// Token: 0x0400519F RID: 20895
 		public JSONObject PlayTutorialData = new JSONObject(JSONObject.Type.OBJECT);
 
-		// Token: 0x04005C59 RID: 23641
+		// Token: 0x040051A0 RID: 20896
 		public JSONObject ShuangXiuData = new JSONObject(JSONObject.Type.OBJECT);
 
-		// Token: 0x04005C5A RID: 23642
+		// Token: 0x040051A1 RID: 20897
 		public JSONObject DaoLvChengHu = new JSONObject(JSONObject.Type.OBJECT);
 
-		// Token: 0x04005C5B RID: 23643
+		// Token: 0x040051A2 RID: 20898
 		public JSONObject DongFuData = new JSONObject(JSONObject.Type.OBJECT);
 
-		// Token: 0x04005C5C RID: 23644
+		// Token: 0x040051A3 RID: 20899
 		public JSONObject NowDongFuID = new JSONObject(JSONObject.Type.NUMBER);
 
-		// Token: 0x04005C5D RID: 23645
+		// Token: 0x040051A4 RID: 20900
 		public JSONObject GaoShi = new JSONObject(JSONObject.Type.OBJECT);
 
-		// Token: 0x04005C5E RID: 23646
+		// Token: 0x040051A5 RID: 20901
 		public JSONObject SeaTanSuoDu = new JSONObject(JSONObject.Type.OBJECT);
 
-		// Token: 0x04005C5F RID: 23647
+		// Token: 0x040051A6 RID: 20902
 		public JSONObject HuaShenStartXianXing = new JSONObject(0);
 
-		// Token: 0x04005C60 RID: 23648
+		// Token: 0x040051A7 RID: 20903
 		public JSONObject TianJie = new JSONObject(JSONObject.Type.OBJECT);
 
-		// Token: 0x04005C61 RID: 23649
+		// Token: 0x040051A8 RID: 20904
 		public JSONObject TianJieCanLingWuSkills = new JSONObject(JSONObject.Type.ARRAY);
 
-		// Token: 0x04005C62 RID: 23650
+		// Token: 0x040051A9 RID: 20905
 		public JSONObject TianJieYiLingWuSkills = new JSONObject(JSONObject.Type.ARRAY);
 
-		// Token: 0x04005C63 RID: 23651
+		// Token: 0x040051AA RID: 20906
 		public JSONObject TianJieEquipedSkills = new JSONObject(JSONObject.Type.ARRAY);
 
-		// Token: 0x04005C64 RID: 23652
+		// Token: 0x040051AB RID: 20907
 		public JSONObject TianJieSkillRecordValue = new JSONObject(JSONObject.Type.OBJECT);
 
-		// Token: 0x04005C65 RID: 23653
+		// Token: 0x040051AC RID: 20908
+		public JSONObject TianJieCanGuanNPCs = new JSONObject(JSONObject.Type.ARRAY);
+
+		// Token: 0x040051AD RID: 20909
 		public string TianJieBeforeShenYouSceneName = "";
 
-		// Token: 0x04005C66 RID: 23654
+		// Token: 0x040051AE RID: 20910
 		public JSONObject HuaShenWuDao = new JSONObject(0);
 
-		// Token: 0x04005C67 RID: 23655
+		// Token: 0x040051AF RID: 20911
 		public JSONObject HuaShenLingYuSkill = new JSONObject(0);
 
-		// Token: 0x04005C68 RID: 23656
+		// Token: 0x040051B0 RID: 20912
 		public JSONObject HideHaiYuTanSuo = new JSONObject(JSONObject.Type.ARRAY);
 
-		// Token: 0x04005C69 RID: 23657
+		// Token: 0x040051B1 RID: 20913
 		public JSONObject FightCostRecord = new JSONObject(JSONObject.Type.OBJECT);
 
-		// Token: 0x04005C6A RID: 23658
+		// Token: 0x040051B2 RID: 20914
 		public JSONObject JianLingUnlockedXianSuo = new JSONObject(JSONObject.Type.OBJECT);
 
-		// Token: 0x04005C6B RID: 23659
+		// Token: 0x040051B3 RID: 20915
 		public JSONObject JianLingUnlockedZhenXiang = new JSONObject(JSONObject.Type.OBJECT);
 
-		// Token: 0x04005C6C RID: 23660
+		// Token: 0x040051B4 RID: 20916
 		public int JianLingExJiYiHuiFuDu;
 
-		// Token: 0x04005C6D RID: 23661
+		// Token: 0x040051B5 RID: 20917
 		public JSONObject ShengPingRecord = new JSONObject(JSONObject.Type.OBJECT);
 
-		// Token: 0x04005C6E RID: 23662
+		// Token: 0x040051B6 RID: 20918
 		public JSONObject OnceShow = new JSONObject(JSONObject.Type.ARRAY);
 
-		// Token: 0x04005C6F RID: 23663
-		public JSONObject Face = new JSONObject(0);
+		// Token: 0x040051B7 RID: 20919
+		public int Face;
 
-		// Token: 0x04005C70 RID: 23664
+		// Token: 0x040051B8 RID: 20920
+		public string FaceWorkshop = "";
+
+		// Token: 0x040051B9 RID: 20921
 		public JSONObject RandomSeed = new JSONObject(0);
 
-		// Token: 0x04005C71 RID: 23665
+		// Token: 0x040051BA RID: 20922
 		public JSONObject LingHeCaiJi = new JSONObject(JSONObject.Type.OBJECT);
 
-		// Token: 0x04005C72 RID: 23666
+		// Token: 0x040051BB RID: 20923
 		public string NextCreateTime = "0010-1-1";
 
-		// Token: 0x04005C73 RID: 23667
+		// Token: 0x040051BC RID: 20924
 		public int LunDaoState = 3;
 
-		// Token: 0x04005C74 RID: 23668
+		// Token: 0x040051BD RID: 20925
 		public int LingGan = 20;
 
-		// Token: 0x04005C75 RID: 23669
+		// Token: 0x040051BE RID: 20926
 		public int WuDaoZhi;
 
-		// Token: 0x04005C76 RID: 23670
+		// Token: 0x040051BF RID: 20927
 		public int lastYear = 1;
 
-		// Token: 0x04005C77 RID: 23671
+		// Token: 0x040051C0 RID: 20928
 		public int fakeTimes;
 
-		// Token: 0x04005C78 RID: 23672
+		// Token: 0x040051C1 RID: 20929
 		public int deathType;
 
-		// Token: 0x04005C79 RID: 23673
+		// Token: 0x040051C2 RID: 20930
 		public int WuDaoZhiLevel;
 
-		// Token: 0x04005C7A RID: 23674
+		// Token: 0x040051C3 RID: 20931
 		public int BiGuanLingGuangTime;
 
-		// Token: 0x04005C7B RID: 23675
+		// Token: 0x040051C4 RID: 20932
 		public JSONObject WuDaoJson = new JSONObject(JSONObject.Type.OBJECT);
 
-		// Token: 0x04005C7C RID: 23676
+		// Token: 0x040051C5 RID: 20933
 		public JObject RandomFuBenList = new JObject();
 
-		// Token: 0x04005C7D RID: 23677
+		// Token: 0x040051C6 RID: 20934
 		public JObject EndlessSea = new JObject();
 
-		// Token: 0x04005C7E RID: 23678
+		// Token: 0x040051C7 RID: 20935
 		public JObject StaticNTaskTime = new JObject();
 
-		// Token: 0x04005C7F RID: 23679
+		// Token: 0x040051C8 RID: 20936
 		public JObject EndlessSeaRandomNode = new JObject();
 
-		// Token: 0x04005C80 RID: 23680
+		// Token: 0x040051C9 RID: 20937
 		public JObject EndlessSeaAvatarSeeIsland = new JObject();
 
-		// Token: 0x04005C81 RID: 23681
+		// Token: 0x040051CA RID: 20938
 		public JSONObject EndlessSeaBoss = new JSONObject(JSONObject.Type.OBJECT);
 
-		// Token: 0x04005C82 RID: 23682
+		// Token: 0x040051CB RID: 20939
 		public JObject ItemBuffList = new JObject();
 
-		// Token: 0x04005C83 RID: 23683
+		// Token: 0x040051CC RID: 20940
 		public JSONObject TaskZhuiZhong = new JSONObject();
 
-		// Token: 0x04005C84 RID: 23684
+		// Token: 0x040051CD RID: 20941
 		public int Dandu;
 
-		// Token: 0x04005C85 RID: 23685
+		// Token: 0x040051CE RID: 20942
 		private int _ZhuJiJinDu;
+
+		// Token: 0x040051CF RID: 20943
+		public int AliveFriendCount;
+
+		// Token: 0x040051D0 RID: 20944
+		public bool IsCanSetFace;
 	}
 }

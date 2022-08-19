@@ -3,12 +3,12 @@ using UnityEngine;
 
 namespace BehaviorDesigner.Runtime.Tasks.Basic.UnityParticleSystem
 {
-	// Token: 0x02001587 RID: 5511
+	// Token: 0x020010CD RID: 4301
 	[TaskCategory("Basic/ParticleSystem")]
 	[TaskDescription("Clear the Particle System.")]
 	public class Clear : Action
 	{
-		// Token: 0x060081FD RID: 33277 RVA: 0x002CCE5C File Offset: 0x002CB05C
+		// Token: 0x06007403 RID: 29699 RVA: 0x002B1618 File Offset: 0x002AF818
 		public override void OnStart()
 		{
 			GameObject defaultGameObject = base.GetDefaultGameObject(this.targetGameObject.Value);
@@ -19,7 +19,7 @@ namespace BehaviorDesigner.Runtime.Tasks.Basic.UnityParticleSystem
 			}
 		}
 
-		// Token: 0x060081FE RID: 33278 RVA: 0x00059112 File Offset: 0x00057312
+		// Token: 0x06007404 RID: 29700 RVA: 0x002B1658 File Offset: 0x002AF858
 		public override TaskStatus OnUpdate()
 		{
 			if (this.particleSystem == null)
@@ -31,20 +31,20 @@ namespace BehaviorDesigner.Runtime.Tasks.Basic.UnityParticleSystem
 			return 2;
 		}
 
-		// Token: 0x060081FF RID: 33279 RVA: 0x0005913A File Offset: 0x0005733A
+		// Token: 0x06007405 RID: 29701 RVA: 0x002B1680 File Offset: 0x002AF880
 		public override void OnReset()
 		{
 			this.targetGameObject = null;
 		}
 
-		// Token: 0x04006EC5 RID: 28357
+		// Token: 0x04005FC5 RID: 24517
 		[Tooltip("The GameObject that the task operates on. If null the task GameObject is used.")]
 		public SharedGameObject targetGameObject;
 
-		// Token: 0x04006EC6 RID: 28358
+		// Token: 0x04005FC6 RID: 24518
 		private ParticleSystem particleSystem;
 
-		// Token: 0x04006EC7 RID: 28359
+		// Token: 0x04005FC7 RID: 24519
 		private GameObject prevGameObject;
 	}
 }

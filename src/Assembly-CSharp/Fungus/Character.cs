@@ -6,11 +6,11 @@ using UnityEngine.Serialization;
 
 namespace Fungus
 {
-	// Token: 0x020012C2 RID: 4802
+	// Token: 0x02000E65 RID: 3685
 	[ExecuteInEditMode]
 	public class Character : MonoBehaviour, ILocalizable
 	{
-		// Token: 0x06007444 RID: 29764 RVA: 0x0004F5BC File Offset: 0x0004D7BC
+		// Token: 0x06006792 RID: 26514 RVA: 0x0028ADC8 File Offset: 0x00288FC8
 		protected virtual void OnEnable()
 		{
 			if (!Character.activeCharacters.Contains(this))
@@ -19,14 +19,14 @@ namespace Fungus
 			}
 		}
 
-		// Token: 0x06007445 RID: 29765 RVA: 0x0004F5D6 File Offset: 0x0004D7D6
+		// Token: 0x06006793 RID: 26515 RVA: 0x0028ADE2 File Offset: 0x00288FE2
 		protected virtual void OnDisable()
 		{
 			Character.activeCharacters.Remove(this);
 		}
 
-		// Token: 0x17000A9E RID: 2718
-		// (get) Token: 0x06007446 RID: 29766 RVA: 0x0004F5E4 File Offset: 0x0004D7E4
+		// Token: 0x1700082D RID: 2093
+		// (get) Token: 0x06006794 RID: 26516 RVA: 0x0028ADF0 File Offset: 0x00288FF0
 		public static List<Character> ActiveCharacters
 		{
 			get
@@ -35,8 +35,8 @@ namespace Fungus
 			}
 		}
 
-		// Token: 0x17000A9F RID: 2719
-		// (get) Token: 0x06007447 RID: 29767 RVA: 0x0004F5EB File Offset: 0x0004D7EB
+		// Token: 0x1700082E RID: 2094
+		// (get) Token: 0x06006795 RID: 26517 RVA: 0x0028ADF7 File Offset: 0x00288FF7
 		public virtual string NameText
 		{
 			get
@@ -45,8 +45,8 @@ namespace Fungus
 			}
 		}
 
-		// Token: 0x17000AA0 RID: 2720
-		// (get) Token: 0x06007448 RID: 29768 RVA: 0x0004F5F3 File Offset: 0x0004D7F3
+		// Token: 0x1700082F RID: 2095
+		// (get) Token: 0x06006796 RID: 26518 RVA: 0x0028ADFF File Offset: 0x00288FFF
 		public virtual Color NameColor
 		{
 			get
@@ -55,8 +55,8 @@ namespace Fungus
 			}
 		}
 
-		// Token: 0x17000AA1 RID: 2721
-		// (get) Token: 0x06007449 RID: 29769 RVA: 0x0004F5FB File Offset: 0x0004D7FB
+		// Token: 0x17000830 RID: 2096
+		// (get) Token: 0x06006797 RID: 26519 RVA: 0x0028AE07 File Offset: 0x00289007
 		public virtual AudioClip SoundEffect
 		{
 			get
@@ -65,8 +65,8 @@ namespace Fungus
 			}
 		}
 
-		// Token: 0x17000AA2 RID: 2722
-		// (get) Token: 0x0600744A RID: 29770 RVA: 0x0004F603 File Offset: 0x0004D803
+		// Token: 0x17000831 RID: 2097
+		// (get) Token: 0x06006798 RID: 26520 RVA: 0x0028AE0F File Offset: 0x0028900F
 		public virtual List<Sprite> Portraits
 		{
 			get
@@ -75,8 +75,8 @@ namespace Fungus
 			}
 		}
 
-		// Token: 0x17000AA3 RID: 2723
-		// (get) Token: 0x0600744B RID: 29771 RVA: 0x0004F60B File Offset: 0x0004D80B
+		// Token: 0x17000832 RID: 2098
+		// (get) Token: 0x06006799 RID: 26521 RVA: 0x0028AE17 File Offset: 0x00289017
 		public virtual FacingDirection PortraitsFace
 		{
 			get
@@ -85,13 +85,13 @@ namespace Fungus
 			}
 		}
 
-		// Token: 0x17000AA4 RID: 2724
-		// (get) Token: 0x0600744C RID: 29772 RVA: 0x0004F613 File Offset: 0x0004D813
-		// (set) Token: 0x0600744D RID: 29773 RVA: 0x0004F61B File Offset: 0x0004D81B
+		// Token: 0x17000833 RID: 2099
+		// (get) Token: 0x0600679A RID: 26522 RVA: 0x0028AE1F File Offset: 0x0028901F
+		// (set) Token: 0x0600679B RID: 26523 RVA: 0x0028AE27 File Offset: 0x00289027
 		public virtual Sprite ProfileSprite { get; set; }
 
-		// Token: 0x17000AA5 RID: 2725
-		// (get) Token: 0x0600744E RID: 29774 RVA: 0x0004F624 File Offset: 0x0004D824
+		// Token: 0x17000834 RID: 2100
+		// (get) Token: 0x0600679C RID: 26524 RVA: 0x0028AE30 File Offset: 0x00289030
 		public virtual PortraitState State
 		{
 			get
@@ -100,8 +100,8 @@ namespace Fungus
 			}
 		}
 
-		// Token: 0x17000AA6 RID: 2726
-		// (get) Token: 0x0600744F RID: 29775 RVA: 0x0004F62C File Offset: 0x0004D82C
+		// Token: 0x17000835 RID: 2101
+		// (get) Token: 0x0600679D RID: 26525 RVA: 0x0028AE38 File Offset: 0x00289038
 		public virtual SayDialog SetSayDialog
 		{
 			get
@@ -110,19 +110,19 @@ namespace Fungus
 			}
 		}
 
-		// Token: 0x06007450 RID: 29776 RVA: 0x0004F634 File Offset: 0x0004D834
+		// Token: 0x0600679E RID: 26526 RVA: 0x0028AE40 File Offset: 0x00289040
 		public string GetObjectName()
 		{
 			return base.gameObject.name;
 		}
 
-		// Token: 0x06007451 RID: 29777 RVA: 0x0004F641 File Offset: 0x0004D841
+		// Token: 0x0600679F RID: 26527 RVA: 0x0028AE4D File Offset: 0x0028904D
 		public virtual bool NameStartsWith(string matchString)
 		{
 			return base.name.StartsWith(matchString, true, CultureInfo.CurrentCulture) || this.nameText.StartsWith(matchString, true, CultureInfo.CurrentCulture);
 		}
 
-		// Token: 0x06007452 RID: 29778 RVA: 0x002ADD18 File Offset: 0x002ABF18
+		// Token: 0x060067A0 RID: 26528 RVA: 0x0028AE78 File Offset: 0x00289078
 		public virtual Sprite GetPortrait(string portraitString)
 		{
 			if (string.IsNullOrEmpty(portraitString))
@@ -139,70 +139,70 @@ namespace Fungus
 			return null;
 		}
 
-		// Token: 0x06007453 RID: 29779 RVA: 0x0004F5EB File Offset: 0x0004D7EB
+		// Token: 0x060067A1 RID: 26529 RVA: 0x0028ADF7 File Offset: 0x00288FF7
 		public virtual string GetStandardText()
 		{
 			return this.nameText;
 		}
 
-		// Token: 0x06007454 RID: 29780 RVA: 0x0004F66B File Offset: 0x0004D86B
+		// Token: 0x060067A2 RID: 26530 RVA: 0x0028AEE1 File Offset: 0x002890E1
 		public virtual void SetStandardText(string standardText)
 		{
 			this.nameText = standardText;
 		}
 
-		// Token: 0x06007455 RID: 29781 RVA: 0x0004F674 File Offset: 0x0004D874
+		// Token: 0x060067A3 RID: 26531 RVA: 0x0028AEEA File Offset: 0x002890EA
 		public virtual string GetDescription()
 		{
 			return this.description;
 		}
 
-		// Token: 0x06007456 RID: 29782 RVA: 0x0004F67C File Offset: 0x0004D87C
+		// Token: 0x060067A4 RID: 26532 RVA: 0x0028AEF2 File Offset: 0x002890F2
 		public virtual string GetStringId()
 		{
 			return "CHARACTER." + this.nameText;
 		}
 
-		// Token: 0x0400661D RID: 26141
+		// Token: 0x04005885 RID: 22661
 		[Tooltip("Character name as displayed in Say Dialog.")]
 		[SerializeField]
 		protected string nameText;
 
-		// Token: 0x0400661E RID: 26142
+		// Token: 0x04005886 RID: 22662
 		[Tooltip("Color to display the character name in Say Dialog.")]
 		[SerializeField]
 		protected Color nameColor = Color.white;
 
-		// Token: 0x0400661F RID: 26143
+		// Token: 0x04005887 RID: 22663
 		[Tooltip("Sound effect to play when this character is speaking.")]
 		[SerializeField]
 		protected AudioClip soundEffect;
 
-		// Token: 0x04006620 RID: 26144
+		// Token: 0x04005888 RID: 22664
 		[Tooltip("List of portrait images that can be displayed for this character.")]
 		[SerializeField]
 		protected List<Sprite> portraits;
 
-		// Token: 0x04006621 RID: 26145
+		// Token: 0x04005889 RID: 22665
 		[Tooltip("Direction that portrait sprites face.")]
 		[SerializeField]
 		protected FacingDirection portraitsFace;
 
-		// Token: 0x04006622 RID: 26146
+		// Token: 0x0400588A RID: 22666
 		[Tooltip("Sets the active Say dialog with a reference to a Say Dialog object in the scene. This Say Dialog will be used whenever the character speaks.")]
 		[SerializeField]
 		protected SayDialog setSayDialog;
 
-		// Token: 0x04006623 RID: 26147
+		// Token: 0x0400588B RID: 22667
 		[FormerlySerializedAs("notes")]
 		[TextArea(5, 10)]
 		[SerializeField]
 		protected string description;
 
-		// Token: 0x04006624 RID: 26148
+		// Token: 0x0400588C RID: 22668
 		protected PortraitState portaitState = new PortraitState();
 
-		// Token: 0x04006625 RID: 26149
+		// Token: 0x0400588D RID: 22669
 		protected static List<Character> activeCharacters = new List<Character>();
 	}
 }

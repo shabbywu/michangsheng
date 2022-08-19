@@ -1,12 +1,12 @@
 ﻿using System;
 using UnityEngine;
 
-// Token: 0x020000ED RID: 237
+// Token: 0x0200009C RID: 156
 [AddComponentMenu("NGUI/Tween/Tween Rotation")]
 public class TweenRotation : UITweener
 {
-	// Token: 0x1700013B RID: 315
-	// (get) Token: 0x0600092D RID: 2349 RVA: 0x0000B81F File Offset: 0x00009A1F
+	// Token: 0x17000127 RID: 295
+	// (get) Token: 0x06000875 RID: 2165 RVA: 0x00032638 File Offset: 0x00030838
 	public Transform cachedTransform
 	{
 		get
@@ -19,9 +19,9 @@ public class TweenRotation : UITweener
 		}
 	}
 
-	// Token: 0x1700013C RID: 316
-	// (get) Token: 0x0600092E RID: 2350 RVA: 0x0000B841 File Offset: 0x00009A41
-	// (set) Token: 0x0600092F RID: 2351 RVA: 0x0000B849 File Offset: 0x00009A49
+	// Token: 0x17000128 RID: 296
+	// (get) Token: 0x06000876 RID: 2166 RVA: 0x0003265A File Offset: 0x0003085A
+	// (set) Token: 0x06000877 RID: 2167 RVA: 0x00032662 File Offset: 0x00030862
 	[Obsolete("Use 'value' instead")]
 	public Quaternion rotation
 	{
@@ -35,9 +35,9 @@ public class TweenRotation : UITweener
 		}
 	}
 
-	// Token: 0x1700013D RID: 317
-	// (get) Token: 0x06000930 RID: 2352 RVA: 0x0000B852 File Offset: 0x00009A52
-	// (set) Token: 0x06000931 RID: 2353 RVA: 0x0000B85F File Offset: 0x00009A5F
+	// Token: 0x17000129 RID: 297
+	// (get) Token: 0x06000878 RID: 2168 RVA: 0x0003266B File Offset: 0x0003086B
+	// (set) Token: 0x06000879 RID: 2169 RVA: 0x00032678 File Offset: 0x00030878
 	public Quaternion value
 	{
 		get
@@ -50,13 +50,13 @@ public class TweenRotation : UITweener
 		}
 	}
 
-	// Token: 0x06000932 RID: 2354 RVA: 0x00086830 File Offset: 0x00084A30
+	// Token: 0x0600087A RID: 2170 RVA: 0x00032688 File Offset: 0x00030888
 	protected override void OnUpdate(float factor, bool isFinished)
 	{
 		this.value = Quaternion.Euler(new Vector3(Mathf.Lerp(this.from.x, this.to.x, factor), Mathf.Lerp(this.from.y, this.to.y, factor), Mathf.Lerp(this.from.z, this.to.z, factor)));
 	}
 
-	// Token: 0x06000933 RID: 2355 RVA: 0x000868A4 File Offset: 0x00084AA4
+	// Token: 0x0600087B RID: 2171 RVA: 0x000326FC File Offset: 0x000308FC
 	public static TweenRotation Begin(GameObject go, float duration, Quaternion rot)
 	{
 		TweenRotation tweenRotation = UITweener.Begin<TweenRotation>(go, duration);
@@ -70,40 +70,40 @@ public class TweenRotation : UITweener
 		return tweenRotation;
 	}
 
-	// Token: 0x06000934 RID: 2356 RVA: 0x000868F8 File Offset: 0x00084AF8
+	// Token: 0x0600087C RID: 2172 RVA: 0x00032750 File Offset: 0x00030950
 	[ContextMenu("Set 'From' to current value")]
 	public override void SetStartToCurrentValue()
 	{
 		this.from = this.value.eulerAngles;
 	}
 
-	// Token: 0x06000935 RID: 2357 RVA: 0x0008691C File Offset: 0x00084B1C
+	// Token: 0x0600087D RID: 2173 RVA: 0x00032774 File Offset: 0x00030974
 	[ContextMenu("Set 'To' to current value")]
 	public override void SetEndToCurrentValue()
 	{
 		this.to = this.value.eulerAngles;
 	}
 
-	// Token: 0x06000936 RID: 2358 RVA: 0x0000B86D File Offset: 0x00009A6D
+	// Token: 0x0600087E RID: 2174 RVA: 0x00032795 File Offset: 0x00030995
 	[ContextMenu("Assume value of 'From'")]
 	private void SetCurrentValueToStart()
 	{
 		this.value = Quaternion.Euler(this.from);
 	}
 
-	// Token: 0x06000937 RID: 2359 RVA: 0x0000B880 File Offset: 0x00009A80
+	// Token: 0x0600087F RID: 2175 RVA: 0x000327A8 File Offset: 0x000309A8
 	[ContextMenu("Assume value of 'To'")]
 	private void SetCurrentValueToEnd()
 	{
 		this.value = Quaternion.Euler(this.to);
 	}
 
-	// Token: 0x04000654 RID: 1620
+	// Token: 0x04000531 RID: 1329
 	public Vector3 from;
 
-	// Token: 0x04000655 RID: 1621
+	// Token: 0x04000532 RID: 1330
 	public Vector3 to;
 
-	// Token: 0x04000656 RID: 1622
+	// Token: 0x04000533 RID: 1331
 	private Transform mTrans;
 }

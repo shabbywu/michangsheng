@@ -2,22 +2,22 @@
 
 namespace UltimateSurvival
 {
-	// Token: 0x02000895 RID: 2197
+	// Token: 0x020005D1 RID: 1489
 	public class Message
 	{
-		// Token: 0x0600388D RID: 14477 RVA: 0x00029288 File Offset: 0x00027488
+		// Token: 0x06002FF5 RID: 12277 RVA: 0x001596D1 File Offset: 0x001578D1
 		public void AddListener(Action listener)
 		{
 			this.m_Listeners = (Action)Delegate.Combine(this.m_Listeners, listener);
 		}
 
-		// Token: 0x0600388E RID: 14478 RVA: 0x000292A1 File Offset: 0x000274A1
+		// Token: 0x06002FF6 RID: 12278 RVA: 0x001596EA File Offset: 0x001578EA
 		public void RemoveListener(Action listener)
 		{
 			this.m_Listeners = (Action)Delegate.Remove(this.m_Listeners, listener);
 		}
 
-		// Token: 0x0600388F RID: 14479 RVA: 0x000292BA File Offset: 0x000274BA
+		// Token: 0x06002FF7 RID: 12279 RVA: 0x00159703 File Offset: 0x00157903
 		public void Send()
 		{
 			if (this.m_Listeners != null)
@@ -26,7 +26,7 @@ namespace UltimateSurvival
 			}
 		}
 
-		// Token: 0x040032F7 RID: 13047
+		// Token: 0x04002A61 RID: 10849
 		private Action m_Listeners;
 	}
 }

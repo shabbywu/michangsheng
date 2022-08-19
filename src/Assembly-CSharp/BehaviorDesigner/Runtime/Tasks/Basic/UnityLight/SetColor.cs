@@ -3,12 +3,12 @@ using UnityEngine;
 
 namespace BehaviorDesigner.Runtime.Tasks.Basic.UnityLight
 {
-	// Token: 0x020015D5 RID: 5589
+	// Token: 0x02001116 RID: 4374
 	[TaskCategory("Basic/Light")]
 	[TaskDescription("Sets the color of the light.")]
 	public class SetColor : Action
 	{
-		// Token: 0x06008308 RID: 33544 RVA: 0x002CE5EC File Offset: 0x002CC7EC
+		// Token: 0x0600750E RID: 29966 RVA: 0x002B3C70 File Offset: 0x002B1E70
 		public override void OnStart()
 		{
 			GameObject defaultGameObject = base.GetDefaultGameObject(this.targetGameObject.Value);
@@ -19,7 +19,7 @@ namespace BehaviorDesigner.Runtime.Tasks.Basic.UnityLight
 			}
 		}
 
-		// Token: 0x06008309 RID: 33545 RVA: 0x00059FC3 File Offset: 0x000581C3
+		// Token: 0x0600750F RID: 29967 RVA: 0x002B3CB0 File Offset: 0x002B1EB0
 		public override TaskStatus OnUpdate()
 		{
 			if (this.light == null)
@@ -31,25 +31,25 @@ namespace BehaviorDesigner.Runtime.Tasks.Basic.UnityLight
 			return 2;
 		}
 
-		// Token: 0x0600830A RID: 33546 RVA: 0x00059FF6 File Offset: 0x000581F6
+		// Token: 0x06007510 RID: 29968 RVA: 0x002B3CE3 File Offset: 0x002B1EE3
 		public override void OnReset()
 		{
 			this.targetGameObject = null;
 			this.color = Color.white;
 		}
 
-		// Token: 0x04006FDB RID: 28635
+		// Token: 0x040060B8 RID: 24760
 		[Tooltip("The GameObject that the task operates on. If null the task GameObject is used.")]
 		public SharedGameObject targetGameObject;
 
-		// Token: 0x04006FDC RID: 28636
+		// Token: 0x040060B9 RID: 24761
 		[Tooltip("The color to set")]
 		public SharedColor color;
 
-		// Token: 0x04006FDD RID: 28637
+		// Token: 0x040060BA RID: 24762
 		private Light light;
 
-		// Token: 0x04006FDE RID: 28638
+		// Token: 0x040060BB RID: 24763
 		private GameObject prevGameObject;
 	}
 }

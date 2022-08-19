@@ -4,11 +4,11 @@ using System.Text;
 
 namespace MoonSharp.Interpreter.CoreLib
 {
-	// Token: 0x0200119F RID: 4511
+	// Token: 0x02000D82 RID: 3458
 	[MoonSharpModule(Namespace = "table")]
 	public class TableModule
 	{
-		// Token: 0x06006E66 RID: 28262 RVA: 0x0029D5D4 File Offset: 0x0029B7D4
+		// Token: 0x0600623F RID: 25151 RVA: 0x00277540 File Offset: 0x00275740
 		[MoonSharpModuleMethod]
 		public static DynValue unpack(ScriptExecutionContext executionContext, CallbackArguments args)
 		{
@@ -27,7 +27,7 @@ namespace MoonSharp.Interpreter.CoreLib
 			return DynValue.NewTuple(array);
 		}
 
-		// Token: 0x06006E67 RID: 28263 RVA: 0x0029D680 File Offset: 0x0029B880
+		// Token: 0x06006240 RID: 25152 RVA: 0x002775EC File Offset: 0x002757EC
 		[MoonSharpModuleMethod]
 		public static DynValue pack(ScriptExecutionContext executionContext, CallbackArguments args)
 		{
@@ -41,7 +41,7 @@ namespace MoonSharp.Interpreter.CoreLib
 			return result;
 		}
 
-		// Token: 0x06006E68 RID: 28264 RVA: 0x0029D6DC File Offset: 0x0029B8DC
+		// Token: 0x06006241 RID: 25153 RVA: 0x00277648 File Offset: 0x00275848
 		[MoonSharpModuleMethod]
 		public static DynValue sort(ScriptExecutionContext executionContext, CallbackArguments args)
 		{
@@ -75,7 +75,7 @@ namespace MoonSharp.Interpreter.CoreLib
 			return dynValue;
 		}
 
-		// Token: 0x06006E69 RID: 28265 RVA: 0x0029D7F0 File Offset: 0x0029B9F0
+		// Token: 0x06006242 RID: 25154 RVA: 0x0027775C File Offset: 0x0027595C
 		private static int SortComparer(ScriptExecutionContext executionContext, DynValue a, DynValue b, DynValue lt)
 		{
 			if (lt != null && !lt.IsNil())
@@ -114,7 +114,7 @@ namespace MoonSharp.Interpreter.CoreLib
 			throw ScriptRuntimeException.CompareInvalidType(a, b);
 		}
 
-		// Token: 0x06006E6A RID: 28266 RVA: 0x0029D8EC File Offset: 0x0029BAEC
+		// Token: 0x06006243 RID: 25155 RVA: 0x00277858 File Offset: 0x00275A58
 		private static int LuaComparerToClrComparer(DynValue dynValue1, DynValue dynValue2)
 		{
 			bool flag = dynValue1.CastToBool();
@@ -134,7 +134,7 @@ namespace MoonSharp.Interpreter.CoreLib
 			return 0;
 		}
 
-		// Token: 0x06006E6B RID: 28267 RVA: 0x0029D928 File Offset: 0x0029BB28
+		// Token: 0x06006244 RID: 25156 RVA: 0x00277894 File Offset: 0x00275A94
 		[MoonSharpModuleMethod]
 		public static DynValue insert(ScriptExecutionContext executionContext, CallbackArguments args)
 		{
@@ -169,7 +169,7 @@ namespace MoonSharp.Interpreter.CoreLib
 			return dynValue;
 		}
 
-		// Token: 0x06006E6C RID: 28268 RVA: 0x0029D9FC File Offset: 0x0029BBFC
+		// Token: 0x06006245 RID: 25157 RVA: 0x00277968 File Offset: 0x00275B68
 		[MoonSharpModuleMethod]
 		public static DynValue remove(ScriptExecutionContext executionContext, CallbackArguments args)
 		{
@@ -198,7 +198,7 @@ namespace MoonSharp.Interpreter.CoreLib
 			return result;
 		}
 
-		// Token: 0x06006E6D RID: 28269 RVA: 0x0029DAB8 File Offset: 0x0029BCB8
+		// Token: 0x06006246 RID: 25158 RVA: 0x00277A24 File Offset: 0x00275C24
 		[MoonSharpModuleMethod]
 		public static DynValue concat(ScriptExecutionContext executionContext, CallbackArguments args)
 		{
@@ -244,7 +244,7 @@ namespace MoonSharp.Interpreter.CoreLib
 			return DynValue.NewString(stringBuilder.ToString());
 		}
 
-		// Token: 0x06006E6E RID: 28270 RVA: 0x0029DBF4 File Offset: 0x0029BDF4
+		// Token: 0x06006247 RID: 25159 RVA: 0x00277B60 File Offset: 0x00275D60
 		private static int GetTableLength(ScriptExecutionContext executionContext, DynValue vlist)
 		{
 			DynValue metamethod = executionContext.GetMetamethod(vlist, "__len");

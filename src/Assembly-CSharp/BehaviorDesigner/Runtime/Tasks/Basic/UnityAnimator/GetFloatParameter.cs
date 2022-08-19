@@ -3,12 +3,12 @@ using UnityEngine;
 
 namespace BehaviorDesigner.Runtime.Tasks.Basic.UnityAnimator
 {
-	// Token: 0x0200164C RID: 5708
+	// Token: 0x0200118D RID: 4493
 	[TaskCategory("Basic/Animator")]
 	[TaskDescription("Stores the float parameter on an animator. Returns Success.")]
 	public class GetFloatParameter : Action
 	{
-		// Token: 0x060084C2 RID: 33986 RVA: 0x002CFF80 File Offset: 0x002CE180
+		// Token: 0x060076C8 RID: 30408 RVA: 0x002B752C File Offset: 0x002B572C
 		public override void OnStart()
 		{
 			GameObject defaultGameObject = base.GetDefaultGameObject(this.targetGameObject.Value);
@@ -19,7 +19,7 @@ namespace BehaviorDesigner.Runtime.Tasks.Basic.UnityAnimator
 			}
 		}
 
-		// Token: 0x060084C3 RID: 33987 RVA: 0x0005BEBB File Offset: 0x0005A0BB
+		// Token: 0x060076C9 RID: 30409 RVA: 0x002B756C File Offset: 0x002B576C
 		public override TaskStatus OnUpdate()
 		{
 			if (this.animator == null)
@@ -31,7 +31,7 @@ namespace BehaviorDesigner.Runtime.Tasks.Basic.UnityAnimator
 			return 2;
 		}
 
-		// Token: 0x060084C4 RID: 33988 RVA: 0x0005BEF9 File Offset: 0x0005A0F9
+		// Token: 0x060076CA RID: 30410 RVA: 0x002B75AA File Offset: 0x002B57AA
 		public override void OnReset()
 		{
 			this.targetGameObject = null;
@@ -39,23 +39,23 @@ namespace BehaviorDesigner.Runtime.Tasks.Basic.UnityAnimator
 			this.storeValue = 0f;
 		}
 
-		// Token: 0x0400716E RID: 29038
+		// Token: 0x0400624B RID: 25163
 		[Tooltip("The GameObject that the task operates on. If null the task GameObject is used.")]
 		public SharedGameObject targetGameObject;
 
-		// Token: 0x0400716F RID: 29039
+		// Token: 0x0400624C RID: 25164
 		[Tooltip("The name of the parameter")]
 		public SharedString paramaterName;
 
-		// Token: 0x04007170 RID: 29040
+		// Token: 0x0400624D RID: 25165
 		[Tooltip("The value of the float parameter")]
 		[RequiredField]
 		public SharedFloat storeValue;
 
-		// Token: 0x04007171 RID: 29041
+		// Token: 0x0400624E RID: 25166
 		private Animator animator;
 
-		// Token: 0x04007172 RID: 29042
+		// Token: 0x0400624F RID: 25167
 		private GameObject prevGameObject;
 	}
 }

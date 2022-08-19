@@ -1,17 +1,17 @@
 ﻿using System;
 
-// Token: 0x02000335 RID: 821
+// Token: 0x02000219 RID: 537
 public class TiKuData
 {
-	// Token: 0x04001371 RID: 4977
+	// Token: 0x04001019 RID: 4121
 	public int id;
 
-	// Token: 0x04001372 RID: 4978
+	// Token: 0x0400101A RID: 4122
 	public int Type;
 
-	// Token: 0x04001373 RID: 4979
+	// Token: 0x0400101B RID: 4123
 	public string TiWen;
 
-	// Token: 0x04001374 RID: 4980
+	// Token: 0x0400101C RID: 4124
 	public string[] optionDesc = new string[3];
 }

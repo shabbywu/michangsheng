@@ -1,21 +1,21 @@
 ﻿using System;
 using GUIPackage;
 
-// Token: 0x0200029E RID: 670
+// Token: 0x020001A2 RID: 418
 public class selectSkill : prepareSelect
 {
-	// Token: 0x0600147A RID: 5242 RVA: 0x000042DD File Offset: 0x000024DD
+	// Token: 0x060011D3 RID: 4563 RVA: 0x00004095 File Offset: 0x00002295
 	private void Start()
 	{
 	}
 
-	// Token: 0x0600147B RID: 5243 RVA: 0x00012EFA File Offset: 0x000110FA
+	// Token: 0x060011D4 RID: 4564 RVA: 0x0006BB0E File Offset: 0x00069D0E
 	public void setMaxPage(int max)
 	{
 		this.maxPage = max;
 	}
 
-	// Token: 0x0600147C RID: 5244 RVA: 0x000B9CF4 File Offset: 0x000B7EF4
+	// Token: 0x060011D5 RID: 4565 RVA: 0x0006BC30 File Offset: 0x00069E30
 	public override void addNowPage()
 	{
 		this.obj.nowIndex++;
@@ -27,7 +27,7 @@ public class selectSkill : prepareSelect
 		}
 	}
 
-	// Token: 0x0600147D RID: 5245 RVA: 0x000B9D48 File Offset: 0x000B7F48
+	// Token: 0x060011D6 RID: 4566 RVA: 0x0006BC84 File Offset: 0x00069E84
 	public override void reduceIndex()
 	{
 		this.obj.nowIndex--;
@@ -39,24 +39,24 @@ public class selectSkill : prepareSelect
 		}
 	}
 
-	// Token: 0x0600147E RID: 5246 RVA: 0x00012F26 File Offset: 0x00011126
+	// Token: 0x060011D7 RID: 4567 RVA: 0x0006BCDC File Offset: 0x00069EDC
 	public override void resetObj()
 	{
 		base.setPageTetx();
 	}
 
-	// Token: 0x0600147F RID: 5247 RVA: 0x00012F2E File Offset: 0x0001112E
+	// Token: 0x060011D8 RID: 4568 RVA: 0x0006BCE4 File Offset: 0x00069EE4
 	public override void SetFirstPage()
 	{
 		this.obj.nowIndex = 0;
 		base.SetFirstPage();
 	}
 
-	// Token: 0x06001480 RID: 5248 RVA: 0x000042DD File Offset: 0x000024DD
+	// Token: 0x060011D9 RID: 4569 RVA: 0x00004095 File Offset: 0x00002295
 	private void Update()
 	{
 	}
 
-	// Token: 0x04000FDE RID: 4062
+	// Token: 0x04000CBA RID: 3258
 	public Skill_UI obj;
 }

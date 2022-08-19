@@ -6,10 +6,10 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
 
-// Token: 0x02000437 RID: 1079
+// Token: 0x020002E3 RID: 739
 public class LianDanPageManager : MonoBehaviour
 {
-	// Token: 0x06001CC8 RID: 7368 RVA: 0x000FD270 File Offset: 0x000FB470
+	// Token: 0x060019AF RID: 6575 RVA: 0x000B766C File Offset: 0x000B586C
 	private void Awake()
 	{
 		this.RemoveAllBtn.onClick.AddListener(new UnityAction(this.RemoveAll));
@@ -18,7 +18,7 @@ public class LianDanPageManager : MonoBehaviour
 		LianDanSystemManager.inst.startLianDanBtn.onClick.AddListener(new UnityAction(this.clickLianDan));
 	}
 
-	// Token: 0x06001CC9 RID: 7369 RVA: 0x000FD2D0 File Offset: 0x000FB4D0
+	// Token: 0x060019B0 RID: 6576 RVA: 0x000B76CC File Offset: 0x000B58CC
 	public void clickLianDan()
 	{
 		int i = jsonData.instance.ItemJsonData[this.putLianDanCellList[5].Item.itemID.ToString()]["quality"].I;
@@ -39,7 +39,7 @@ public class LianDanPageManager : MonoBehaviour
 		this.selectLianDanSum();
 	}
 
-	// Token: 0x06001CCA RID: 7370 RVA: 0x000FD3A4 File Offset: 0x000FB5A4
+	// Token: 0x060019B1 RID: 6577 RVA: 0x000B77A0 File Offset: 0x000B59A0
 	public void selectLianDanSum()
 	{
 		int num = 10000000;
@@ -87,7 +87,7 @@ public class LianDanPageManager : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001CCB RID: 7371 RVA: 0x000FD544 File Offset: 0x000FB744
+	// Token: 0x060019B2 RID: 6578 RVA: 0x000B7940 File Offset: 0x000B5B40
 	public void RemoveAll()
 	{
 		for (int i = 25; i < 30; i++)
@@ -98,7 +98,7 @@ public class LianDanPageManager : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001CCC RID: 7372 RVA: 0x000FD5A8 File Offset: 0x000FB7A8
+	// Token: 0x060019B3 RID: 6579 RVA: 0x000B79A4 File Offset: 0x000B5BA4
 	public void updateDanLu()
 	{
 		item item = LianDanSystemManager.inst.inventory.inventory[30];
@@ -110,7 +110,7 @@ public class LianDanPageManager : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001CCD RID: 7373 RVA: 0x000FD644 File Offset: 0x000FB844
+	// Token: 0x060019B4 RID: 6580 RVA: 0x000B7A40 File Offset: 0x000B5C40
 	public string getLianDanName()
 	{
 		List<JSONObject> list = Tools.instance.getPlayer().DanFang.list;
@@ -139,25 +139,25 @@ public class LianDanPageManager : MonoBehaviour
 		return Tools.setColorByID("???", 1);
 	}
 
-	// Token: 0x040018BE RID: 6334
+	// Token: 0x040014D3 RID: 5331
 	public List<PutLianDanCell> putLianDanCellList;
 
-	// Token: 0x040018BF RID: 6335
+	// Token: 0x040014D4 RID: 5332
 	public bool CanClick = true;
 
-	// Token: 0x040018C0 RID: 6336
+	// Token: 0x040014D5 RID: 5333
 	[SerializeField]
 	private Button RemoveAllBtn;
 
-	// Token: 0x040018C1 RID: 6337
+	// Token: 0x040014D6 RID: 5334
 	[HideInInspector]
 	public int LianDanSum;
 
-	// Token: 0x040018C2 RID: 6338
+	// Token: 0x040014D7 RID: 5335
 	[SerializeField]
 	private Text curNaiJiu;
 
-	// Token: 0x040018C3 RID: 6339
+	// Token: 0x040014D8 RID: 5336
 	[SerializeField]
 	private Image DanLuImage;
 }

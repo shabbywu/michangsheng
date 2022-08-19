@@ -7,10 +7,10 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
 
-// Token: 0x020003AD RID: 941
+// Token: 0x02000286 RID: 646
 public class GanWuSelect : MonoBehaviour, IESCClose
 {
-	// Token: 0x06001A1E RID: 6686 RVA: 0x000E74CC File Offset: 0x000E56CC
+	// Token: 0x0600174F RID: 5967 RVA: 0x0009FED4 File Offset: 0x0009E0D4
 	private void Awake()
 	{
 		base.transform.SetParent(NewUICanvas.Inst.gameObject.transform);
@@ -24,11 +24,11 @@ public class GanWuSelect : MonoBehaviour, IESCClose
 		ESCCloseManager.Inst.RegisterClose(this);
 	}
 
-	// Token: 0x06001A1F RID: 6687 RVA: 0x000E757C File Offset: 0x000E577C
+	// Token: 0x06001750 RID: 5968 RVA: 0x0009FF84 File Offset: 0x0009E184
 	public void Init(string uuid, string name, int maxTime)
 	{
 		JSONObject jsonobject = this.player.LingGuang.list.Find((JSONObject aa) => aa["uuid"].str == uuid);
-		this.TotalExp = jsonobject["studyTime"].I * jsonData.instance.WuDaoExBeiLuJson["1"]["lingguang" + jsonobject["quality"].I].I;
+		this.TotalExp = (int)((float)jsonobject["studyTime"].I * jsonData.instance.WuDaoExBeiLuJson["1"]["lingguang" + jsonobject["quality"].I].n);
 		this.CurExp = this.TotalExp;
 		this.slider.value = 1f;
 		this._uid = uuid;
@@ -40,7 +40,7 @@ public class GanWuSelect : MonoBehaviour, IESCClose
 		base.gameObject.SetActive(true);
 	}
 
-	// Token: 0x06001A20 RID: 6688 RVA: 0x0001658B File Offset: 0x0001478B
+	// Token: 0x06001751 RID: 5969 RVA: 0x000A0081 File Offset: 0x0009E281
 	public void OnDragSlider(float data)
 	{
 		this.curDay = (int)(data * (float)this.maxDay);
@@ -51,7 +51,7 @@ public class GanWuSelect : MonoBehaviour, IESCClose
 		this.updateData();
 	}
 
-	// Token: 0x06001A21 RID: 6689 RVA: 0x000E7678 File Offset: 0x000E5878
+	// Token: 0x06001752 RID: 5970 RVA: 0x000A00AC File Offset: 0x0009E2AC
 	private void updateData()
 	{
 		if (this.maxDay > this.curDay)
@@ -85,7 +85,7 @@ public class GanWuSelect : MonoBehaviour, IESCClose
 		this.curExpText.AddText("经验");
 	}
 
-	// Token: 0x06001A22 RID: 6690 RVA: 0x000E77A0 File Offset: 0x000E59A0
+	// Token: 0x06001753 RID: 5971 RVA: 0x000A01D4 File Offset: 0x0009E3D4
 	public void AddDay()
 	{
 		this.curDay++;
@@ -97,7 +97,7 @@ public class GanWuSelect : MonoBehaviour, IESCClose
 		this.updateData();
 	}
 
-	// Token: 0x06001A23 RID: 6691 RVA: 0x000165B3 File Offset: 0x000147B3
+	// Token: 0x06001754 RID: 5972 RVA: 0x000A0229 File Offset: 0x0009E429
 	public void ReduceDay()
 	{
 		this.curDay--;
@@ -109,7 +109,7 @@ public class GanWuSelect : MonoBehaviour, IESCClose
 		this.updateData();
 	}
 
-	// Token: 0x06001A24 RID: 6692 RVA: 0x000165F3 File Offset: 0x000147F3
+	// Token: 0x06001755 RID: 5973 RVA: 0x000A0269 File Offset: 0x0009E469
 	public void Close()
 	{
 		GanWuSelect.inst = null;
@@ -117,7 +117,7 @@ public class GanWuSelect : MonoBehaviour, IESCClose
 		Object.Destroy(base.gameObject);
 	}
 
-	// Token: 0x06001A25 RID: 6693 RVA: 0x000E77F8 File Offset: 0x000E59F8
+	// Token: 0x06001756 RID: 5974 RVA: 0x000A0288 File Offset: 0x0009E488
 	public void QueDing()
 	{
 		if (!XiuLian.CheckCanUseDay(this.curDay))
@@ -134,7 +134,7 @@ public class GanWuSelect : MonoBehaviour, IESCClose
 		this.Close();
 	}
 
-	// Token: 0x06001A26 RID: 6694 RVA: 0x000E7898 File Offset: 0x000E5A98
+	// Token: 0x06001757 RID: 5975 RVA: 0x000A0328 File Offset: 0x0009E528
 	public void ShowTips()
 	{
 		if (this._dotween != null)
@@ -149,7 +149,7 @@ public class GanWuSelect : MonoBehaviour, IESCClose
 		this.tipsCanvasGroup.gameObject.SetActive(true);
 	}
 
-	// Token: 0x06001A27 RID: 6695 RVA: 0x000E7900 File Offset: 0x000E5B00
+	// Token: 0x06001758 RID: 5976 RVA: 0x000A0390 File Offset: 0x0009E590
 	public void HideTips()
 	{
 		if (this._dotween != null)
@@ -163,67 +163,67 @@ public class GanWuSelect : MonoBehaviour, IESCClose
 		this.IsShow = false;
 	}
 
-	// Token: 0x06001A28 RID: 6696 RVA: 0x00016611 File Offset: 0x00014811
+	// Token: 0x06001759 RID: 5977 RVA: 0x000A03E5 File Offset: 0x0009E5E5
 	public bool TryEscClose()
 	{
 		this.Close();
 		return true;
 	}
 
-	// Token: 0x04001574 RID: 5492
+	// Token: 0x04001201 RID: 4609
 	public static GanWuSelect inst;
 
-	// Token: 0x04001575 RID: 5493
+	// Token: 0x04001202 RID: 4610
 	[SerializeField]
 	private Text year;
 
-	// Token: 0x04001576 RID: 5494
+	// Token: 0x04001203 RID: 4611
 	[SerializeField]
 	private Text month;
 
-	// Token: 0x04001577 RID: 5495
+	// Token: 0x04001204 RID: 4612
 	[SerializeField]
 	private Text day;
 
-	// Token: 0x04001578 RID: 5496
+	// Token: 0x04001205 RID: 4613
 	[SerializeField]
 	private CanvasGroup tipsCanvasGroup;
 
-	// Token: 0x04001579 RID: 5497
+	// Token: 0x04001206 RID: 4614
 	[SerializeField]
 	private Text curExpText;
 
-	// Token: 0x0400157A RID: 5498
+	// Token: 0x04001207 RID: 4615
 	private TweenerCore<float, float, FloatOptions> _dotween;
 
-	// Token: 0x0400157B RID: 5499
+	// Token: 0x04001208 RID: 4616
 	[SerializeField]
 	private Slider slider;
 
-	// Token: 0x0400157C RID: 5500
+	// Token: 0x04001209 RID: 4617
 	private string _uid;
 
-	// Token: 0x0400157D RID: 5501
+	// Token: 0x0400120A RID: 4618
 	public bool IsShowTips;
 
-	// Token: 0x0400157E RID: 5502
+	// Token: 0x0400120B RID: 4619
 	public bool IsShow;
 
-	// Token: 0x0400157F RID: 5503
+	// Token: 0x0400120C RID: 4620
 	public int TotalExp;
 
-	// Token: 0x04001580 RID: 5504
+	// Token: 0x0400120D RID: 4621
 	public string Name;
 
-	// Token: 0x04001581 RID: 5505
+	// Token: 0x0400120E RID: 4622
 	public int CurExp;
 
-	// Token: 0x04001582 RID: 5506
+	// Token: 0x0400120F RID: 4623
 	private int curDay;
 
-	// Token: 0x04001583 RID: 5507
+	// Token: 0x04001210 RID: 4624
 	private int maxDay = 360;
 
-	// Token: 0x04001584 RID: 5508
+	// Token: 0x04001211 RID: 4625
 	public Avatar player;
 }

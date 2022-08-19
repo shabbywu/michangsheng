@@ -5,10 +5,10 @@ using MoonSharp.Interpreter.Execution.VM;
 
 namespace MoonSharp.Interpreter.Tree.Statements
 {
-	// Token: 0x020010B8 RID: 4280
+	// Token: 0x02000CDF RID: 3295
 	internal class WhileStatement : Statement
 	{
-		// Token: 0x06006762 RID: 26466 RVA: 0x0028844C File Offset: 0x0028664C
+		// Token: 0x06005C51 RID: 23633 RVA: 0x0025EE20 File Offset: 0x0025D020
 		public WhileStatement(ScriptLoadingContext lcontext) : base(lcontext)
 		{
 			Token token = NodeBase.CheckTokenType(lcontext, TokenType.While);
@@ -23,7 +23,7 @@ namespace MoonSharp.Interpreter.Tree.Statements
 			lcontext.Source.Refs.Add(this.m_End);
 		}
 
-		// Token: 0x06006763 RID: 26467 RVA: 0x002884FC File Offset: 0x002866FC
+		// Token: 0x06005C52 RID: 23634 RVA: 0x0025EED0 File Offset: 0x0025D0D0
 		public override void Compile(ByteCode bc)
 		{
 			Loop loop = new Loop
@@ -51,19 +51,19 @@ namespace MoonSharp.Interpreter.Tree.Statements
 			bc.PopSourceRef();
 		}
 
-		// Token: 0x04005F79 RID: 24441
+		// Token: 0x0400538F RID: 21391
 		private Expression m_Condition;
 
-		// Token: 0x04005F7A RID: 24442
+		// Token: 0x04005390 RID: 21392
 		private Statement m_Block;
 
-		// Token: 0x04005F7B RID: 24443
+		// Token: 0x04005391 RID: 21393
 		private RuntimeScopeBlock m_StackFrame;
 
-		// Token: 0x04005F7C RID: 24444
+		// Token: 0x04005392 RID: 21394
 		private SourceRef m_Start;
 
-		// Token: 0x04005F7D RID: 24445
+		// Token: 0x04005393 RID: 21395
 		private SourceRef m_End;
 	}
 }

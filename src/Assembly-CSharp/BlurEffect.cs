@@ -1,13 +1,13 @@
 ﻿using System;
 using UnityEngine;
 
-// Token: 0x0200012E RID: 302
+// Token: 0x020000BE RID: 190
 [ExecuteInEditMode]
 [AddComponentMenu("Image Effects/Blur")]
 public class BlurEffect : MonoBehaviour
 {
-	// Token: 0x170001E1 RID: 481
-	// (get) Token: 0x06000B8D RID: 2957 RVA: 0x0000D990 File Offset: 0x0000BB90
+	// Token: 0x170001C8 RID: 456
+	// (get) Token: 0x06000AAA RID: 2730 RVA: 0x0004096D File Offset: 0x0003EB6D
 	protected Material material
 	{
 		get
@@ -21,7 +21,7 @@ public class BlurEffect : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000B8E RID: 2958 RVA: 0x0000D9C0 File Offset: 0x0000BBC0
+	// Token: 0x06000AAB RID: 2731 RVA: 0x0004099D File Offset: 0x0003EB9D
 	protected void OnDisable()
 	{
 		if (BlurEffect.m_Material)
@@ -30,7 +30,7 @@ public class BlurEffect : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000B8F RID: 2959 RVA: 0x0000D9D8 File Offset: 0x0000BBD8
+	// Token: 0x06000AAC RID: 2732 RVA: 0x000409B5 File Offset: 0x0003EBB5
 	protected void Start()
 	{
 		if (!SystemInfo.supportsImageEffects)
@@ -45,7 +45,7 @@ public class BlurEffect : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000B90 RID: 2960 RVA: 0x00092D54 File Offset: 0x00090F54
+	// Token: 0x06000AAD RID: 2733 RVA: 0x000409F0 File Offset: 0x0003EBF0
 	public void FourTapCone(RenderTexture source, RenderTexture dest, int iteration)
 	{
 		float num = 0.5f + (float)iteration * this.blurSpread;
@@ -58,7 +58,7 @@ public class BlurEffect : MonoBehaviour
 		});
 	}
 
-	// Token: 0x06000B91 RID: 2961 RVA: 0x00092DC0 File Offset: 0x00090FC0
+	// Token: 0x06000AAE RID: 2734 RVA: 0x00040A5C File Offset: 0x0003EC5C
 	private void DownSample4x(RenderTexture source, RenderTexture dest)
 	{
 		float num = 1f;
@@ -71,7 +71,7 @@ public class BlurEffect : MonoBehaviour
 		});
 	}
 
-	// Token: 0x06000B92 RID: 2962 RVA: 0x00092E24 File Offset: 0x00091024
+	// Token: 0x06000AAF RID: 2735 RVA: 0x00040AC0 File Offset: 0x0003ECC0
 	private void OnRenderImage(RenderTexture source, RenderTexture destination)
 	{
 		RenderTexture temporary = RenderTexture.GetTemporary(source.width / 4, source.height / 4, 0);
@@ -102,15 +102,15 @@ public class BlurEffect : MonoBehaviour
 		RenderTexture.ReleaseTemporary(temporary2);
 	}
 
-	// Token: 0x04000859 RID: 2137
+	// Token: 0x040006B2 RID: 1714
 	public int iterations = 3;
 
-	// Token: 0x0400085A RID: 2138
+	// Token: 0x040006B3 RID: 1715
 	public float blurSpread = 0.6f;
 
-	// Token: 0x0400085B RID: 2139
+	// Token: 0x040006B4 RID: 1716
 	public Shader blurShader;
 
-	// Token: 0x0400085C RID: 2140
+	// Token: 0x040006B5 RID: 1717
 	private static Material m_Material;
 }

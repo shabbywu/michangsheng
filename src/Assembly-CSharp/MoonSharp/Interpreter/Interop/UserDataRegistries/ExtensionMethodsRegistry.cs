@@ -9,10 +9,10 @@ using MoonSharp.Interpreter.Interop.BasicDescriptors;
 
 namespace MoonSharp.Interpreter.Interop.UserDataRegistries
 {
-	// Token: 0x0200112C RID: 4396
+	// Token: 0x02000D29 RID: 3369
 	internal class ExtensionMethodsRegistry
 	{
-		// Token: 0x06006A59 RID: 27225 RVA: 0x002904BC File Offset: 0x0028E6BC
+		// Token: 0x06005E98 RID: 24216 RVA: 0x00267D9C File Offset: 0x00265F9C
 		public static void RegisterExtensionType(Type type, InteropAccessMode mode = InteropAccessMode.Default)
 		{
 			object obj = ExtensionMethodsRegistry.s_Lock;
@@ -45,13 +45,13 @@ namespace MoonSharp.Interpreter.Interop.UserDataRegistries
 			}
 		}
 
-		// Token: 0x06006A5A RID: 27226 RVA: 0x0001C722 File Offset: 0x0001A922
+		// Token: 0x06005E99 RID: 24217 RVA: 0x000DBFA9 File Offset: 0x000DA1A9
 		private static object FrameworkGetMethods()
 		{
 			throw new NotImplementedException();
 		}
 
-		// Token: 0x06006A5B RID: 27227 RVA: 0x002905D0 File Offset: 0x0028E7D0
+		// Token: 0x06005E9A RID: 24218 RVA: 0x00267EB0 File Offset: 0x002660B0
 		public static IEnumerable<IOverloadableMemberDescriptor> GetExtensionMethodsByName(string name)
 		{
 			object obj = ExtensionMethodsRegistry.s_Lock;
@@ -63,13 +63,13 @@ namespace MoonSharp.Interpreter.Interop.UserDataRegistries
 			return result;
 		}
 
-		// Token: 0x06006A5C RID: 27228 RVA: 0x0004886A File Offset: 0x00046A6A
+		// Token: 0x06005E9B RID: 24219 RVA: 0x00267EFC File Offset: 0x002660FC
 		public static int GetExtensionMethodsChangeVersion()
 		{
 			return ExtensionMethodsRegistry.s_ExtensionMethodChangeVersion;
 		}
 
-		// Token: 0x06006A5D RID: 27229 RVA: 0x0029061C File Offset: 0x0028E81C
+		// Token: 0x06005E9C RID: 24220 RVA: 0x00267F04 File Offset: 0x00266104
 		public static List<IOverloadableMemberDescriptor> GetExtensionMethodsByNameAndType(string name, Type extendedType)
 		{
 			List<ExtensionMethodsRegistry.UnresolvedGenericMethod> list = null;
@@ -102,7 +102,7 @@ namespace MoonSharp.Interpreter.Interop.UserDataRegistries
 			select d).ToList<IOverloadableMemberDescriptor>();
 		}
 
-		// Token: 0x06006A5E RID: 27230 RVA: 0x00290780 File Offset: 0x0028E980
+		// Token: 0x06005E9D RID: 24221 RVA: 0x00268068 File Offset: 0x00266268
 		private static MethodInfo InstantiateMethodInfo(MethodInfo mi, Type extensionType, Type genericType, Type extendedType)
 		{
 			Type[] genericArguments = mi.GetGenericArguments();
@@ -114,7 +114,7 @@ namespace MoonSharp.Interpreter.Interop.UserDataRegistries
 			return null;
 		}
 
-		// Token: 0x06006A5F RID: 27231 RVA: 0x002907B4 File Offset: 0x0028E9B4
+		// Token: 0x06005E9E RID: 24222 RVA: 0x0026809C File Offset: 0x0026629C
 		private static Type GetGenericMatch(Type extensionType, Type extendedType)
 		{
 			if (!extensionType.IsGenericParameter)
@@ -131,35 +131,35 @@ namespace MoonSharp.Interpreter.Interop.UserDataRegistries
 			return null;
 		}
 
-		// Token: 0x040060A9 RID: 24745
+		// Token: 0x04005456 RID: 21590
 		private static object s_Lock = new object();
 
-		// Token: 0x040060AA RID: 24746
+		// Token: 0x04005457 RID: 21591
 		private static MultiDictionary<string, IOverloadableMemberDescriptor> s_Registry = new MultiDictionary<string, IOverloadableMemberDescriptor>();
 
-		// Token: 0x040060AB RID: 24747
+		// Token: 0x04005458 RID: 21592
 		private static MultiDictionary<string, ExtensionMethodsRegistry.UnresolvedGenericMethod> s_UnresolvedGenericsRegistry = new MultiDictionary<string, ExtensionMethodsRegistry.UnresolvedGenericMethod>();
 
-		// Token: 0x040060AC RID: 24748
+		// Token: 0x04005459 RID: 21593
 		private static int s_ExtensionMethodChangeVersion = 0;
 
-		// Token: 0x0200112D RID: 4397
+		// Token: 0x02001678 RID: 5752
 		private class UnresolvedGenericMethod
 		{
-			// Token: 0x06006A62 RID: 27234 RVA: 0x00048897 File Offset: 0x00046A97
+			// Token: 0x0600872C RID: 34604 RVA: 0x002E6C8D File Offset: 0x002E4E8D
 			public UnresolvedGenericMethod(MethodInfo mi, InteropAccessMode mode)
 			{
 				this.AccessMode = mode;
 				this.Method = mi;
 			}
 
-			// Token: 0x040060AD RID: 24749
+			// Token: 0x040072B0 RID: 29360
 			public readonly MethodInfo Method;
 
-			// Token: 0x040060AE RID: 24750
+			// Token: 0x040072B1 RID: 29361
 			public readonly InteropAccessMode AccessMode;
 
-			// Token: 0x040060AF RID: 24751
+			// Token: 0x040072B2 RID: 29362
 			public readonly HashSet<Type> AlreadyAddedTypes = new HashSet<Type>();
 		}
 	}

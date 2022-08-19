@@ -5,25 +5,25 @@ using UnityEngine.Events;
 
 namespace Fungus
 {
-	// Token: 0x02001446 RID: 5190
+	// Token: 0x02000F93 RID: 3987
 	[CommandInfo("YSTools", "OpenJiaoYi", "打开交易界面", 0)]
 	[AddComponentMenu("")]
 	public class OpenJiaoYi : Command, INoCommand
 	{
-		// Token: 0x06007D66 RID: 32102 RVA: 0x002C66CC File Offset: 0x002C48CC
+		// Token: 0x06006F7F RID: 28543 RVA: 0x002A7024 File Offset: 0x002A5224
 		public override void OnEnter()
 		{
 			ResManager.inst.LoadPrefab("JiaoYiUI").Inst(NewUICanvas.Inst.transform);
 			JiaoYiUIMag.Inst.Init(this.AvatarID.Value, new UnityAction(this.Continue));
 		}
 
-		// Token: 0x06007D67 RID: 32103 RVA: 0x000113CF File Offset: 0x0000F5CF
+		// Token: 0x06006F80 RID: 28544 RVA: 0x0005E228 File Offset: 0x0005C428
 		public override Color GetButtonColor()
 		{
 			return new Color32(184, 210, 235, byte.MaxValue);
 		}
 
-		// Token: 0x04006AE0 RID: 27360
+		// Token: 0x04005C11 RID: 23569
 		[Tooltip("进行交易的武将ID")]
 		[VariableProperty(new Type[]
 		{

@@ -4,11 +4,11 @@ using UnityEngine;
 
 namespace Tab
 {
-	// Token: 0x02000A53 RID: 2643
+	// Token: 0x02000706 RID: 1798
 	[Serializable]
 	public class TabSelectMag : UIBase
 	{
-		// Token: 0x06004432 RID: 17458 RVA: 0x00030D39 File Offset: 0x0002EF39
+		// Token: 0x060039AE RID: 14766 RVA: 0x0018AE60 File Offset: 0x00189060
 		public TabSelectMag(GameObject go)
 		{
 			this._list = new List<TabSelectCell>();
@@ -16,13 +16,13 @@ namespace Tab
 			this.Init();
 		}
 
-		// Token: 0x06004433 RID: 17459 RVA: 0x00030D59 File Offset: 0x0002EF59
+		// Token: 0x060039AF RID: 14767 RVA: 0x0018AE80 File Offset: 0x00189080
 		public void SetDeafultSelect(int index = 0)
 		{
 			this._list[index].Click();
 		}
 
-		// Token: 0x06004434 RID: 17460 RVA: 0x001D25F8 File Offset: 0x001D07F8
+		// Token: 0x060039B0 RID: 14768 RVA: 0x0018AE94 File Offset: 0x00189094
 		private void Init()
 		{
 			for (int i = 0; i < this._go.transform.childCount; i++)
@@ -39,7 +39,7 @@ namespace Tab
 			}
 		}
 
-		// Token: 0x06004435 RID: 17461 RVA: 0x001D268C File Offset: 0x001D088C
+		// Token: 0x060039B1 RID: 14769 RVA: 0x0018AF28 File Offset: 0x00189128
 		public void UpdateAll(TabSelectCell curSelectCell)
 		{
 			foreach (TabSelectCell tabSelectCell in this._list)
@@ -55,7 +55,7 @@ namespace Tab
 			}
 		}
 
-		// Token: 0x04003C3E RID: 15422
+		// Token: 0x040031C2 RID: 12738
 		private List<TabSelectCell> _list;
 	}
 }

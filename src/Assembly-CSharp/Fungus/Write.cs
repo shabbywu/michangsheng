@@ -3,12 +3,12 @@ using UnityEngine;
 
 namespace Fungus
 {
-	// Token: 0x020012B7 RID: 4791
+	// Token: 0x02000E61 RID: 3681
 	[CommandInfo("UI", "Write", "Writes content to a UI Text or Text Mesh object.", 0)]
 	[AddComponentMenu("")]
 	public class Write : Command, ILocalizable
 	{
-		// Token: 0x060073E6 RID: 29670 RVA: 0x002ACA08 File Offset: 0x002AAC08
+		// Token: 0x06006752 RID: 26450 RVA: 0x00289FE8 File Offset: 0x002881E8
 		protected Writer GetWriter()
 		{
 			Writer writer = this.textObject.GetComponent<Writer>();
@@ -19,7 +19,7 @@ namespace Fungus
 			return writer;
 		}
 
-		// Token: 0x060073E7 RID: 29671 RVA: 0x002ACA38 File Offset: 0x002AAC38
+		// Token: 0x06006753 RID: 26451 RVA: 0x0028A018 File Offset: 0x00288218
 		public override void OnEnter()
 		{
 			if (this.textObject == null)
@@ -58,7 +58,7 @@ namespace Fungus
 			}));
 		}
 
-		// Token: 0x060073E8 RID: 29672 RVA: 0x0004F17D File Offset: 0x0004D37D
+		// Token: 0x06006754 RID: 26452 RVA: 0x0028A102 File Offset: 0x00288302
 		public override string GetSummary()
 		{
 			if (this.textObject != null)
@@ -68,37 +68,37 @@ namespace Fungus
 			return "Error: No text object selected";
 		}
 
-		// Token: 0x060073E9 RID: 29673 RVA: 0x0004C5E0 File Offset: 0x0004A7E0
+		// Token: 0x06006755 RID: 26453 RVA: 0x0027D3DB File Offset: 0x0027B5DB
 		public override Color GetButtonColor()
 		{
 			return new Color32(235, 191, 217, byte.MaxValue);
 		}
 
-		// Token: 0x060073EA RID: 29674 RVA: 0x0004F1B3 File Offset: 0x0004D3B3
+		// Token: 0x06006756 RID: 26454 RVA: 0x0028A138 File Offset: 0x00288338
 		public override void OnStopExecuting()
 		{
 			this.GetWriter().Stop();
 		}
 
-		// Token: 0x060073EB RID: 29675 RVA: 0x0004F1C0 File Offset: 0x0004D3C0
+		// Token: 0x06006757 RID: 26455 RVA: 0x0028A145 File Offset: 0x00288345
 		public virtual string GetStandardText()
 		{
 			return this.text;
 		}
 
-		// Token: 0x060073EC RID: 29676 RVA: 0x0004F1CD File Offset: 0x0004D3CD
+		// Token: 0x06006758 RID: 26456 RVA: 0x0028A152 File Offset: 0x00288352
 		public virtual void SetStandardText(string standardText)
 		{
 			this.text.Value = standardText;
 		}
 
-		// Token: 0x060073ED RID: 29677 RVA: 0x0004F1DB File Offset: 0x0004D3DB
+		// Token: 0x06006759 RID: 26457 RVA: 0x0028A160 File Offset: 0x00288360
 		public virtual string GetDescription()
 		{
 			return this.description;
 		}
 
-		// Token: 0x060073EE RID: 29678 RVA: 0x0004F1E3 File Offset: 0x0004D3E3
+		// Token: 0x0600675A RID: 26458 RVA: 0x0028A168 File Offset: 0x00288368
 		public virtual string GetStringId()
 		{
 			return string.Concat(new object[]
@@ -110,48 +110,48 @@ namespace Fungus
 			});
 		}
 
-		// Token: 0x060073EF RID: 29679 RVA: 0x002ACB24 File Offset: 0x002AAD24
+		// Token: 0x0600675B RID: 26459 RVA: 0x0028A19C File Offset: 0x0028839C
 		public override bool HasReference(Variable variable)
 		{
 			return this.text.stringRef == variable || this.setAlpha.floatRef == variable || this.setColor.colorRef == variable || base.HasReference(variable);
 		}
 
-		// Token: 0x040065BE RID: 26046
+		// Token: 0x0400585B RID: 22619
 		[Tooltip("Text object to set text on. Text, Input Field and Text Mesh objects are supported.")]
 		[SerializeField]
 		protected GameObject textObject;
 
-		// Token: 0x040065BF RID: 26047
+		// Token: 0x0400585C RID: 22620
 		[Tooltip("String value to assign to the text object")]
 		[SerializeField]
 		protected StringDataMulti text;
 
-		// Token: 0x040065C0 RID: 26048
+		// Token: 0x0400585D RID: 22621
 		[Tooltip("Notes about this story text for other authors, localization, etc.")]
 		[SerializeField]
 		protected string description;
 
-		// Token: 0x040065C1 RID: 26049
+		// Token: 0x0400585E RID: 22622
 		[Tooltip("Clear existing text before writing new text")]
 		[SerializeField]
 		protected bool clearText = true;
 
-		// Token: 0x040065C2 RID: 26050
+		// Token: 0x0400585F RID: 22623
 		[Tooltip("Wait until this command finishes before executing the next command")]
 		[SerializeField]
 		protected bool waitUntilFinished = true;
 
-		// Token: 0x040065C3 RID: 26051
+		// Token: 0x04005860 RID: 22624
 		[Tooltip("Color mode to apply to the text.")]
 		[SerializeField]
 		protected TextColor textColor;
 
-		// Token: 0x040065C4 RID: 26052
+		// Token: 0x04005861 RID: 22625
 		[Tooltip("Alpha to apply to the text.")]
 		[SerializeField]
 		protected FloatData setAlpha = new FloatData(1f);
 
-		// Token: 0x040065C5 RID: 26053
+		// Token: 0x04005862 RID: 22626
 		[Tooltip("Color to apply to the text.")]
 		[SerializeField]
 		protected ColorData setColor = new ColorData(Color.white);

@@ -1,6 +1,6 @@
 ﻿using System;
 
-// Token: 0x020002BD RID: 701
+// Token: 0x020001BE RID: 446
 public interface IJSONClass
 {
 }

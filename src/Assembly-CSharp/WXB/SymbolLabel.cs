@@ -4,24 +4,24 @@ using UnityEngine;
 
 namespace WXB
 {
-	// Token: 0x020009D8 RID: 2520
+	// Token: 0x020006B4 RID: 1716
 	[RequireComponent(typeof(RectTransform))]
 	[AddComponentMenu("UI/SymbolLabel")]
 	public class SymbolLabel : SymbolText
 	{
-		// Token: 0x06004014 RID: 16404 RVA: 0x0002E003 File Offset: 0x0002C203
+		// Token: 0x06003612 RID: 13842 RVA: 0x00172DA9 File Offset: 0x00170FA9
 		protected override void Awake()
 		{
 			base.Awake();
 			this.m_textDirty = false;
 		}
 
-		// Token: 0x06004015 RID: 16405 RVA: 0x000042DD File Offset: 0x000024DD
+		// Token: 0x06003613 RID: 13843 RVA: 0x00004095 File Offset: 0x00002295
 		protected override void SetTextDirty()
 		{
 		}
 
-		// Token: 0x06004016 RID: 16406 RVA: 0x0002E012 File Offset: 0x0002C212
+		// Token: 0x06003614 RID: 13844 RVA: 0x00172DB8 File Offset: 0x00170FB8
 		public override void SetLayoutDirty()
 		{
 			base.SetLayoutDirty();
@@ -31,8 +31,8 @@ namespace WXB
 			this.m_textDirty = false;
 		}
 
-		// Token: 0x17000728 RID: 1832
-		// (set) Token: 0x06004017 RID: 16407 RVA: 0x0002E034 File Offset: 0x0002C234
+		// Token: 0x170004FD RID: 1277
+		// (set) Token: 0x06003615 RID: 13845 RVA: 0x00172DDA File Offset: 0x00170FDA
 		public override string text
 		{
 			set
@@ -41,9 +41,9 @@ namespace WXB
 			}
 		}
 
-		// Token: 0x17000729 RID: 1833
-		// (get) Token: 0x06004018 RID: 16408 RVA: 0x0002E040 File Offset: 0x0002C240
-		// (set) Token: 0x06004019 RID: 16409 RVA: 0x0002E048 File Offset: 0x0002C248
+		// Token: 0x170004FE RID: 1278
+		// (get) Token: 0x06003616 RID: 13846 RVA: 0x00172DE6 File Offset: 0x00170FE6
+		// (set) Token: 0x06003617 RID: 13847 RVA: 0x00172DEE File Offset: 0x00170FEE
 		public int MaxElement
 		{
 			get
@@ -56,7 +56,7 @@ namespace WXB
 			}
 		}
 
-		// Token: 0x0600401A RID: 16410 RVA: 0x001BB9DC File Offset: 0x001B9BDC
+		// Token: 0x06003618 RID: 13848 RVA: 0x00172DF8 File Offset: 0x00170FF8
 		public void Append(string text)
 		{
 			LinkedListNode<NodeBase> linkedListNode = this.mNodeList.Last;
@@ -87,7 +87,7 @@ namespace WXB
 			this.SetLayoutDirty();
 		}
 
-		// Token: 0x04003946 RID: 14662
+		// Token: 0x04002F58 RID: 12120
 		[SerializeField]
 		private int m_MaxElement = 30;
 	}

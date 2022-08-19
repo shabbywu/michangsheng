@@ -3,7 +3,7 @@ using UltimateSurvival.Debugging;
 
 namespace UltimateSurvival
 {
-	// Token: 0x02000862 RID: 2146
+	// Token: 0x020005A6 RID: 1446
 	[Serializable]
 	public class ReorderableItemToAddList : ReorderableGenericList<StartupItems.ItemToAdd>
 	{

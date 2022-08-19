@@ -1,34 +1,34 @@
 ﻿using System;
 using UnityEngine;
 
-// Token: 0x02000749 RID: 1865
+// Token: 0x020004D6 RID: 1238
 public class RotateLogo : MonoBehaviour
 {
-	// Token: 0x06002F7C RID: 12156 RVA: 0x0002331D File Offset: 0x0002151D
+	// Token: 0x06002825 RID: 10277 RVA: 0x00130231 File Offset: 0x0012E431
 	private void Start()
 	{
 		base.Invoke("PlaySound", 0.15f);
 	}
 
-	// Token: 0x06002F7D RID: 12157 RVA: 0x0002332F File Offset: 0x0002152F
+	// Token: 0x06002826 RID: 10278 RVA: 0x00130243 File Offset: 0x0012E443
 	private void OnTriggerEnter(Collider col)
 	{
 		base.GetComponent<Collider>().enabled = false;
 		base.GetComponent<Animator>().Play("RotateLogo_v2");
 	}
 
-	// Token: 0x06002F7E RID: 12158 RVA: 0x0002334D File Offset: 0x0002154D
+	// Token: 0x06002827 RID: 10279 RVA: 0x00130261 File Offset: 0x0012E461
 	private void AnimationDone()
 	{
 		RotateLogo.animationDone = true;
 	}
 
-	// Token: 0x06002F7F RID: 12159 RVA: 0x00023355 File Offset: 0x00021555
+	// Token: 0x06002828 RID: 10280 RVA: 0x00130269 File Offset: 0x0012E469
 	private void PlaySound()
 	{
 		base.transform.GetChild(0).GetComponent<AudioSource>().Play();
 	}
 
-	// Token: 0x04002AAF RID: 10927
+	// Token: 0x0400232F RID: 9007
 	public static bool animationDone;
 }

@@ -3,10 +3,10 @@ using System.Collections.Generic;
 
 namespace KBEngine
 {
-	// Token: 0x02000F63 RID: 3939
+	// Token: 0x02000BDE RID: 3038
 	public class Message
 	{
-		// Token: 0x06005EB3 RID: 24243 RVA: 0x000425CC File Offset: 0x000407CC
+		// Token: 0x06005475 RID: 21621 RVA: 0x00235772 File Offset: 0x00233972
 		public Message(ushort msgid, string msgname, short length, sbyte argstype, List<byte> msgargtypes)
 		{
 			this.id = msgid;
@@ -16,24 +16,24 @@ namespace KBEngine
 			this.argtypes = msgargtypes;
 		}
 
-		// Token: 0x06005EB4 RID: 24244 RVA: 0x000042DD File Offset: 0x000024DD
+		// Token: 0x06005476 RID: 21622 RVA: 0x00004095 File Offset: 0x00002295
 		public virtual void handleMessage(MemoryStream msgstream)
 		{
 		}
 
-		// Token: 0x04005B30 RID: 23344
+		// Token: 0x04005087 RID: 20615
 		public ushort id;
 
-		// Token: 0x04005B31 RID: 23345
+		// Token: 0x04005088 RID: 20616
 		public string name;
 
-		// Token: 0x04005B32 RID: 23346
+		// Token: 0x04005089 RID: 20617
 		public short msglen = -1;
 
-		// Token: 0x04005B33 RID: 23347
+		// Token: 0x0400508A RID: 20618
 		public List<byte> argtypes;
 
-		// Token: 0x04005B34 RID: 23348
+		// Token: 0x0400508B RID: 20619
 		public sbyte argsType;
 	}
 }

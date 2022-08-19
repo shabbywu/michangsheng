@@ -5,21 +5,21 @@ using ICSharpCode.SharpZipLib.Core;
 
 namespace ICSharpCode.SharpZipLib.Zip
 {
-	// Token: 0x020007EF RID: 2031
+	// Token: 0x0200054C RID: 1356
 	public class ZipNameTransform : INameTransform
 	{
-		// Token: 0x06003436 RID: 13366 RVA: 0x0000403D File Offset: 0x0000223D
+		// Token: 0x06002BDB RID: 11227 RVA: 0x000027FC File Offset: 0x000009FC
 		public ZipNameTransform()
 		{
 		}
 
-		// Token: 0x06003437 RID: 13367 RVA: 0x00026144 File Offset: 0x00024344
+		// Token: 0x06002BDC RID: 11228 RVA: 0x00147489 File Offset: 0x00145689
 		public ZipNameTransform(string trimPrefix)
 		{
 			this.TrimPrefix = trimPrefix;
 		}
 
-		// Token: 0x06003438 RID: 13368 RVA: 0x0019337C File Offset: 0x0019157C
+		// Token: 0x06002BDD RID: 11229 RVA: 0x00147498 File Offset: 0x00145698
 		static ZipNameTransform()
 		{
 			char[] invalidPathChars = Path.GetInvalidPathChars();
@@ -37,7 +37,7 @@ namespace ICSharpCode.SharpZipLib.Zip
 			ZipNameTransform.InvalidEntryChars[num - 4] = '?';
 		}
 
-		// Token: 0x06003439 RID: 13369 RVA: 0x00026153 File Offset: 0x00024353
+		// Token: 0x06002BDE RID: 11230 RVA: 0x0014752F File Offset: 0x0014572F
 		public string TransformDirectory(string name)
 		{
 			name = this.TransformFile(name);
@@ -52,7 +52,7 @@ namespace ICSharpCode.SharpZipLib.Zip
 			throw new ZipException("Cannot have an empty directory name");
 		}
 
-		// Token: 0x0600343A RID: 13370 RVA: 0x00193414 File Offset: 0x00191614
+		// Token: 0x06002BDF RID: 11231 RVA: 0x0014756C File Offset: 0x0014576C
 		public string TransformFile(string name)
 		{
 			if (name != null)
@@ -81,9 +81,9 @@ namespace ICSharpCode.SharpZipLib.Zip
 			return name;
 		}
 
-		// Token: 0x170004E5 RID: 1253
-		// (get) Token: 0x0600343B RID: 13371 RVA: 0x00026190 File Offset: 0x00024390
-		// (set) Token: 0x0600343C RID: 13372 RVA: 0x00026198 File Offset: 0x00024398
+		// Token: 0x17000330 RID: 816
+		// (get) Token: 0x06002BE0 RID: 11232 RVA: 0x0014761B File Offset: 0x0014581B
+		// (set) Token: 0x06002BE1 RID: 11233 RVA: 0x00147623 File Offset: 0x00145823
 		public string TrimPrefix
 		{
 			get
@@ -100,7 +100,7 @@ namespace ICSharpCode.SharpZipLib.Zip
 			}
 		}
 
-		// Token: 0x0600343D RID: 13373 RVA: 0x001934C4 File Offset: 0x001916C4
+		// Token: 0x06002BE2 RID: 11234 RVA: 0x00147648 File Offset: 0x00145848
 		private static string MakeValidName(string name, char replacement)
 		{
 			int i = name.IndexOfAny(ZipNameTransform.InvalidEntryChars);
@@ -128,7 +128,7 @@ namespace ICSharpCode.SharpZipLib.Zip
 			return name;
 		}
 
-		// Token: 0x0600343E RID: 13374 RVA: 0x00193530 File Offset: 0x00191730
+		// Token: 0x06002BE3 RID: 11235 RVA: 0x001476B4 File Offset: 0x001458B4
 		public static bool IsValidName(string name, bool relaxed)
 		{
 			bool flag = name != null;
@@ -146,19 +146,19 @@ namespace ICSharpCode.SharpZipLib.Zip
 			return flag;
 		}
 
-		// Token: 0x0600343F RID: 13375 RVA: 0x000261BA File Offset: 0x000243BA
+		// Token: 0x06002BE4 RID: 11236 RVA: 0x001476FB File Offset: 0x001458FB
 		public static bool IsValidName(string name)
 		{
 			return name != null && name.IndexOfAny(ZipNameTransform.InvalidEntryChars) < 0 && name.IndexOf('/') != 0;
 		}
 
-		// Token: 0x04002F62 RID: 12130
+		// Token: 0x04002740 RID: 10048
 		private string trimPrefix_;
 
-		// Token: 0x04002F63 RID: 12131
+		// Token: 0x04002741 RID: 10049
 		private static readonly char[] InvalidEntryChars;
 
-		// Token: 0x04002F64 RID: 12132
+		// Token: 0x04002742 RID: 10050
 		private static readonly char[] InvalidEntryCharsRelaxed;
 	}
 }

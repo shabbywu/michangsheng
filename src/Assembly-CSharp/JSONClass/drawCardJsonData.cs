@@ -3,10 +3,10 @@ using System.Collections.Generic;
 
 namespace JSONClass
 {
-	// Token: 0x02000BC5 RID: 3013
+	// Token: 0x02000831 RID: 2097
 	public class drawCardJsonData : IJSONClass
 	{
-		// Token: 0x06004A7C RID: 19068 RVA: 0x001F86AC File Offset: 0x001F68AC
+		// Token: 0x06003ED6 RID: 16086 RVA: 0x001AD844 File Offset: 0x001ABA44
 		public static void InitDataDict()
 		{
 			foreach (JSONObject jsonobject in jsonData.instance.drawCardJsonData.list)
@@ -39,24 +39,24 @@ namespace JSONClass
 			}
 		}
 
-		// Token: 0x06004A7D RID: 19069 RVA: 0x000042DD File Offset: 0x000024DD
+		// Token: 0x06003ED7 RID: 16087 RVA: 0x00004095 File Offset: 0x00002295
 		private static void OnInitFinish()
 		{
 		}
 
-		// Token: 0x04004611 RID: 17937
+		// Token: 0x04003A94 RID: 14996
 		public static Dictionary<int, drawCardJsonData> DataDict = new Dictionary<int, drawCardJsonData>();
 
-		// Token: 0x04004612 RID: 17938
+		// Token: 0x04003A95 RID: 14997
 		public static List<drawCardJsonData> DataList = new List<drawCardJsonData>();
 
-		// Token: 0x04004613 RID: 17939
+		// Token: 0x04003A96 RID: 14998
 		public static Action OnInitFinishAction = new Action(drawCardJsonData.OnInitFinish);
 
-		// Token: 0x04004614 RID: 17940
+		// Token: 0x04003A97 RID: 14999
 		public int id;
 
-		// Token: 0x04004615 RID: 17941
+		// Token: 0x04003A98 RID: 15000
 		public int probability;
 	}
 }

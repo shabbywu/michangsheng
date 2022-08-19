@@ -4,10 +4,10 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
 
-// Token: 0x0200049B RID: 1179
+// Token: 0x0200032D RID: 813
 public class MainUISetLinGen : MonoBehaviour
 {
-	// Token: 0x06001F57 RID: 8023 RVA: 0x0010E124 File Offset: 0x0010C324
+	// Token: 0x06001C05 RID: 7173 RVA: 0x000C8BDC File Offset: 0x000C6DDC
 	public void Init()
 	{
 		if (!this.isInit)
@@ -50,7 +50,7 @@ public class MainUISetLinGen : MonoBehaviour
 		base.gameObject.SetActive(true);
 	}
 
-	// Token: 0x06001F58 RID: 8024 RVA: 0x0010E240 File Offset: 0x0010C440
+	// Token: 0x06001C06 RID: 7174 RVA: 0x000C8CF8 File Offset: 0x000C6EF8
 	public void ClickMethod(int i)
 	{
 		if (this.lingGensList[i].isOn)
@@ -83,13 +83,13 @@ public class MainUISetLinGen : MonoBehaviour
 		this.UpdataPrecent();
 	}
 
-	// Token: 0x06001F59 RID: 8025 RVA: 0x00019E23 File Offset: 0x00018023
+	// Token: 0x06001C07 RID: 7175 RVA: 0x000C8E2D File Offset: 0x000C702D
 	public bool CheckLingGen()
 	{
 		return base.gameObject.activeSelf && this.hasSelectLinst.Count != MainUIPlayerInfo.inst.linggenNum;
 	}
 
-	// Token: 0x06001F5A RID: 8026 RVA: 0x0010E378 File Offset: 0x0010C578
+	// Token: 0x06001C08 RID: 7176 RVA: 0x000C8E58 File Offset: 0x000C7058
 	private void UpdataPrecent()
 	{
 		int num = MainUIPlayerInfo.inst.lingGenList[0] + MainUIPlayerInfo.inst.lingGenList[1] + MainUIPlayerInfo.inst.lingGenList[2] + MainUIPlayerInfo.inst.lingGenList[3] + MainUIPlayerInfo.inst.lingGenList[4];
@@ -99,18 +99,18 @@ public class MainUISetLinGen : MonoBehaviour
 		}
 	}
 
-	// Token: 0x04001AD7 RID: 6871
+	// Token: 0x040016A1 RID: 5793
 	public List<MainUILinGenCell> lingGensList;
 
-	// Token: 0x04001AD8 RID: 6872
+	// Token: 0x040016A2 RID: 5794
 	public List<MainUILinGenCell> hasSelectLinst;
 
-	// Token: 0x04001AD9 RID: 6873
+	// Token: 0x040016A3 RID: 5795
 	public List<Text> lingGenPrecentList;
 
-	// Token: 0x04001ADA RID: 6874
+	// Token: 0x040016A4 RID: 5796
 	public Text tips;
 
-	// Token: 0x04001ADB RID: 6875
+	// Token: 0x040016A5 RID: 5797
 	private bool isInit;
 }

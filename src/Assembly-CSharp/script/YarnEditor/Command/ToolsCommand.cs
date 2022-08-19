@@ -2,7 +2,7 @@
 
 namespace script.YarnEditor.Command
 {
-	// Token: 0x02000AB8 RID: 2744
+	// Token: 0x020009CF RID: 2511
 	public class ToolsCommand
 	{
 	}

@@ -2,18 +2,18 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-// Token: 0x02000562 RID: 1378
+// Token: 0x020003CD RID: 973
 [ExecuteInEditMode]
 public class SeaGrid : FubenGrid
 {
-	// Token: 0x0600232E RID: 9006 RVA: 0x0001C953 File Offset: 0x0001AB53
+	// Token: 0x06001FB7 RID: 8119 RVA: 0x000DF94C File Offset: 0x000DDB4C
 	private void Awake()
 	{
 		WASDMove.DelMoreComponent(base.gameObject);
 		base.gameObject.AddComponent<WASDMove>();
 	}
 
-	// Token: 0x0600232F RID: 9007 RVA: 0x001223C4 File Offset: 0x001205C4
+	// Token: 0x06001FB8 RID: 8120 RVA: 0x000DF968 File Offset: 0x000DDB68
 	public List<int> HaiYuToindex()
 	{
 		List<int> list = new List<int>();
@@ -40,12 +40,12 @@ public class SeaGrid : FubenGrid
 		return list;
 	}
 
-	// Token: 0x06002330 RID: 9008 RVA: 0x000042DD File Offset: 0x000024DD
+	// Token: 0x06001FB9 RID: 8121 RVA: 0x00004095 File Offset: 0x00002295
 	private void Update()
 	{
 	}
 
-	// Token: 0x06002331 RID: 9009 RVA: 0x001224A4 File Offset: 0x001206A4
+	// Token: 0x06001FBA RID: 8122 RVA: 0x000DFA48 File Offset: 0x000DDC48
 	public override void addNodeIndex(int index, MapInstComport comp)
 	{
 		foreach (int num in this.DestroyNode)
@@ -68,24 +68,24 @@ public class SeaGrid : FubenGrid
 		}
 	}
 
-	// Token: 0x04001E4D RID: 7757
+	// Token: 0x040019CC RID: 6604
 	[Tooltip("当前场景拥有的海域")]
 	public List<int> HaiYuIDList;
 
-	// Token: 0x04001E4E RID: 7758
+	// Token: 0x040019CD RID: 6605
 	public GameObject SeaStaticNode;
 
-	// Token: 0x04001E4F RID: 7759
+	// Token: 0x040019CE RID: 6606
 	public GameObject ToOtherScene;
 
-	// Token: 0x04001E50 RID: 7760
+	// Token: 0x040019CF RID: 6607
 	public List<SeaGrid.ToOhtherSceneNode> ToOtherSceneList = new List<SeaGrid.ToOhtherSceneNode>();
 
-	// Token: 0x02000563 RID: 1379
+	// Token: 0x02001379 RID: 4985
 	[Serializable]
 	public class ToOhtherSceneNode
 	{
-		// Token: 0x06002333 RID: 9011 RVA: 0x00122568 File Offset: 0x00120768
+		// Token: 0x06007C1C RID: 31772 RVA: 0x002C34E4 File Offset: 0x002C16E4
 		public List<int> getToSceneList()
 		{
 			List<int> list = new List<int>();
@@ -121,28 +121,28 @@ public class SeaGrid : FubenGrid
 			return list;
 		}
 
-		// Token: 0x04001E51 RID: 7761
+		// Token: 0x04006896 RID: 26774
 		public int SeaID;
 
-		// Token: 0x04001E52 RID: 7762
+		// Token: 0x04006897 RID: 26775
 		public string ToSceneName;
 
-		// Token: 0x04001E53 RID: 7763
+		// Token: 0x04006898 RID: 26776
 		public string fungusName;
 
-		// Token: 0x04001E54 RID: 7764
+		// Token: 0x04006899 RID: 26777
 		public SeaGrid.ToOhtherSceneNode.FangXiang fangxiang;
 
-		// Token: 0x02000564 RID: 1380
+		// Token: 0x02001755 RID: 5973
 		public enum FangXiang
 		{
-			// Token: 0x04001E56 RID: 7766
+			// Token: 0x04007592 RID: 30098
 			UP,
-			// Token: 0x04001E57 RID: 7767
+			// Token: 0x04007593 RID: 30099
 			Down,
-			// Token: 0x04001E58 RID: 7768
+			// Token: 0x04007594 RID: 30100
 			Left,
-			// Token: 0x04001E59 RID: 7769
+			// Token: 0x04007595 RID: 30101
 			Right
 		}
 	}

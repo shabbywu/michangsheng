@@ -3,30 +3,30 @@ using System.Runtime.CompilerServices;
 
 namespace ICSharpCode.SharpZipLib.Checksum
 {
-	// Token: 0x02000836 RID: 2102
+	// Token: 0x0200058D RID: 1421
 	public sealed class Crc32 : IChecksum
 	{
-		// Token: 0x0600370B RID: 14091 RVA: 0x000280FE File Offset: 0x000262FE
+		// Token: 0x06002E95 RID: 11925 RVA: 0x00152222 File Offset: 0x00150422
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static uint ComputeCrc32(uint oldCrc, byte bval)
 		{
 			return Crc32.crcTable[(int)((oldCrc ^ (uint)bval) & 255U)] ^ oldCrc >> 8;
 		}
 
-		// Token: 0x0600370C RID: 14092 RVA: 0x00028113 File Offset: 0x00026313
+		// Token: 0x06002E96 RID: 11926 RVA: 0x00152237 File Offset: 0x00150437
 		public Crc32()
 		{
 			this.Reset();
 		}
 
-		// Token: 0x0600370D RID: 14093 RVA: 0x00028121 File Offset: 0x00026321
+		// Token: 0x06002E97 RID: 11927 RVA: 0x00152245 File Offset: 0x00150445
 		public void Reset()
 		{
 			this.checkValue = Crc32.crcInit;
 		}
 
-		// Token: 0x1700057F RID: 1407
-		// (get) Token: 0x0600370E RID: 14094 RVA: 0x0002812E File Offset: 0x0002632E
+		// Token: 0x170003C8 RID: 968
+		// (get) Token: 0x06002E98 RID: 11928 RVA: 0x00152252 File Offset: 0x00150452
 		public long Value
 		{
 			get
@@ -35,14 +35,14 @@ namespace ICSharpCode.SharpZipLib.Checksum
 			}
 		}
 
-		// Token: 0x0600370F RID: 14095 RVA: 0x0002813D File Offset: 0x0002633D
+		// Token: 0x06002E99 RID: 11929 RVA: 0x00152261 File Offset: 0x00150461
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public void Update(int bval)
 		{
 			this.checkValue = (Crc32.crcTable[(int)(checked((IntPtr)(unchecked((ulong)this.checkValue ^ (ulong)((long)bval)) & 255UL)))] ^ this.checkValue >> 8);
 		}
 
-		// Token: 0x06003710 RID: 14096 RVA: 0x00028166 File Offset: 0x00026366
+		// Token: 0x06002E9A RID: 11930 RVA: 0x0015228A File Offset: 0x0015048A
 		public void Update(byte[] buffer)
 		{
 			if (buffer == null)
@@ -52,13 +52,13 @@ namespace ICSharpCode.SharpZipLib.Checksum
 			this.Update(buffer, 0, buffer.Length);
 		}
 
-		// Token: 0x06003711 RID: 14097 RVA: 0x00028181 File Offset: 0x00026381
+		// Token: 0x06002E9B RID: 11931 RVA: 0x001522A5 File Offset: 0x001504A5
 		public void Update(ArraySegment<byte> segment)
 		{
 			this.Update(segment.Array, segment.Offset, segment.Count);
 		}
 
-		// Token: 0x06003712 RID: 14098 RVA: 0x0019CD9C File Offset: 0x0019AF9C
+		// Token: 0x06002E9C RID: 11932 RVA: 0x001522C4 File Offset: 0x001504C4
 		private void Update(byte[] data, int offset, int count)
 		{
 			int num = count % 16;
@@ -74,7 +74,7 @@ namespace ICSharpCode.SharpZipLib.Checksum
 			}
 		}
 
-		// Token: 0x06003713 RID: 14099 RVA: 0x0002819E File Offset: 0x0002639E
+		// Token: 0x06002E9D RID: 11933 RVA: 0x0015230E File Offset: 0x0015050E
 		[MethodImpl(MethodImplOptions.NoInlining)]
 		private void SlowUpdateLoop(byte[] data, int offset, int end)
 		{
@@ -84,16 +84,16 @@ namespace ICSharpCode.SharpZipLib.Checksum
 			}
 		}
 
-		// Token: 0x0400312E RID: 12590
+		// Token: 0x040028EF RID: 10479
 		private static readonly uint crcInit = uint.MaxValue;
 
-		// Token: 0x0400312F RID: 12591
+		// Token: 0x040028F0 RID: 10480
 		private static readonly uint crcXor = uint.MaxValue;
 
-		// Token: 0x04003130 RID: 12592
+		// Token: 0x040028F1 RID: 10481
 		private static readonly uint[] crcTable = CrcUtilities.GenerateSlicingLookupTable(3988292384U, true);
 
-		// Token: 0x04003131 RID: 12593
+		// Token: 0x040028F2 RID: 10482
 		private uint checkValue;
 	}
 }

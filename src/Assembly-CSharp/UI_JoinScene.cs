@@ -2,15 +2,15 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-// Token: 0x020005E9 RID: 1513
+// Token: 0x02000432 RID: 1074
 public class UI_JoinScene : MonoBehaviour
 {
-	// Token: 0x060025FD RID: 9725 RVA: 0x000042DD File Offset: 0x000024DD
+	// Token: 0x0600223E RID: 8766 RVA: 0x00004095 File Offset: 0x00002295
 	private void Start()
 	{
 	}
 
-	// Token: 0x060025FE RID: 9726 RVA: 0x0001E5BD File Offset: 0x0001C7BD
+	// Token: 0x0600223F RID: 8767 RVA: 0x000EBFA5 File Offset: 0x000EA1A5
 	public void MoveToScence()
 	{
 		if (this.SceneName != "")
@@ -19,6 +19,6 @@ public class UI_JoinScene : MonoBehaviour
 		}
 	}
 
-	// Token: 0x04002084 RID: 8324
+	// Token: 0x04001BB8 RID: 7096
 	public string SceneName = "";
 }

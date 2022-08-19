@@ -5,10 +5,10 @@ using KBEngine;
 using UnityEngine;
 using YSGame;
 
-// Token: 0x02000294 RID: 660
+// Token: 0x0200019C RID: 412
 public class prepareSelect : MonoBehaviour
 {
-	// Token: 0x06001433 RID: 5171 RVA: 0x000B8D10 File Offset: 0x000B6F10
+	// Token: 0x06001192 RID: 4498 RVA: 0x0006A908 File Offset: 0x00068B08
 	private void Start()
 	{
 		Avatar player = Tools.instance.getPlayer();
@@ -27,7 +27,7 @@ public class prepareSelect : MonoBehaviour
 		this.resetObj();
 	}
 
-	// Token: 0x06001434 RID: 5172 RVA: 0x00012BD3 File Offset: 0x00010DD3
+	// Token: 0x06001193 RID: 4499 RVA: 0x0006A969 File Offset: 0x00068B69
 	public virtual void nextPage()
 	{
 		MusicMag.instance.PlayEffectMusic(13, 1f);
@@ -35,7 +35,7 @@ public class prepareSelect : MonoBehaviour
 		this.resetObj();
 	}
 
-	// Token: 0x06001435 RID: 5173 RVA: 0x00012BF2 File Offset: 0x00010DF2
+	// Token: 0x06001194 RID: 4500 RVA: 0x0006A988 File Offset: 0x00068B88
 	public virtual void addNowPage()
 	{
 		this.nowIndex++;
@@ -45,7 +45,7 @@ public class prepareSelect : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001436 RID: 5174 RVA: 0x000B8D74 File Offset: 0x000B6F74
+	// Token: 0x06001195 RID: 4501 RVA: 0x0006A9B0 File Offset: 0x00068BB0
 	public void setPageTetx()
 	{
 		UILabel component = base.transform.Find("Label").GetComponent<UILabel>();
@@ -54,14 +54,14 @@ public class prepareSelect : MonoBehaviour
 		component.text = text;
 	}
 
-	// Token: 0x06001437 RID: 5175 RVA: 0x00012C17 File Offset: 0x00010E17
+	// Token: 0x06001196 RID: 4502 RVA: 0x0006AA07 File Offset: 0x00068C07
 	public virtual void SetFirstPage()
 	{
 		this.nowIndex = 0;
 		this.setPageTetx();
 	}
 
-	// Token: 0x06001438 RID: 5176 RVA: 0x00012C26 File Offset: 0x00010E26
+	// Token: 0x06001197 RID: 4503 RVA: 0x0006AA16 File Offset: 0x00068C16
 	public virtual void lastPage()
 	{
 		MusicMag.instance.PlayEffectMusic(13, 1f);
@@ -69,7 +69,7 @@ public class prepareSelect : MonoBehaviour
 		this.resetObj();
 	}
 
-	// Token: 0x06001439 RID: 5177 RVA: 0x00012C45 File Offset: 0x00010E45
+	// Token: 0x06001198 RID: 4504 RVA: 0x0006AA35 File Offset: 0x00068C35
 	public virtual void reduceIndex()
 	{
 		this.nowIndex--;
@@ -79,7 +79,7 @@ public class prepareSelect : MonoBehaviour
 		}
 	}
 
-	// Token: 0x0600143A RID: 5178 RVA: 0x000B8DCC File Offset: 0x000B6FCC
+	// Token: 0x06001199 RID: 4505 RVA: 0x0006AA5C File Offset: 0x00068C5C
 	public virtual void resetObj()
 	{
 		UILabel component = base.transform.Find("Label").GetComponent<UILabel>();
@@ -137,7 +137,7 @@ public class prepareSelect : MonoBehaviour
 		}
 	}
 
-	// Token: 0x0600143B RID: 5179 RVA: 0x000B8FE8 File Offset: 0x000B71E8
+	// Token: 0x0600119A RID: 4506 RVA: 0x0006AC78 File Offset: 0x00068E78
 	public void clearSkill(Transform key)
 	{
 		foreach (object obj in key)
@@ -154,28 +154,28 @@ public class prepareSelect : MonoBehaviour
 		}
 	}
 
-	// Token: 0x0600143C RID: 5180 RVA: 0x000042DD File Offset: 0x000024DD
+	// Token: 0x0600119B RID: 4507 RVA: 0x00004095 File Offset: 0x00002295
 	public void addSkill()
 	{
 	}
 
-	// Token: 0x0600143D RID: 5181 RVA: 0x000042DD File Offset: 0x000024DD
+	// Token: 0x0600119C RID: 4508 RVA: 0x00004095 File Offset: 0x00002295
 	private void Update()
 	{
 	}
 
-	// Token: 0x04000FAE RID: 4014
+	// Token: 0x04000C9B RID: 3227
 	protected int nowIndex;
 
-	// Token: 0x04000FAF RID: 4015
+	// Token: 0x04000C9C RID: 3228
 	public int maxPage = 5;
 
-	// Token: 0x04000FB0 RID: 4016
+	// Token: 0x04000C9D RID: 3229
 	public GameObject showObj;
 
-	// Token: 0x04000FB1 RID: 4017
+	// Token: 0x04000C9E RID: 3230
 	public selectSkillConfig.selectType selectType;
 
-	// Token: 0x04000FB2 RID: 4018
+	// Token: 0x04000C9F RID: 3231
 	public string StartText = "第";
 }

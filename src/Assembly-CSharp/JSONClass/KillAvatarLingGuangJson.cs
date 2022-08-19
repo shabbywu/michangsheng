@@ -3,10 +3,10 @@ using System.Collections.Generic;
 
 namespace JSONClass
 {
-	// Token: 0x02000BFE RID: 3070
+	// Token: 0x02000870 RID: 2160
 	public class KillAvatarLingGuangJson : IJSONClass
 	{
-		// Token: 0x06004B61 RID: 19297 RVA: 0x001FD414 File Offset: 0x001FB614
+		// Token: 0x06003FD3 RID: 16339 RVA: 0x001B39C0 File Offset: 0x001B1BC0
 		public static void InitDataDict()
 		{
 			foreach (JSONObject jsonobject in jsonData.instance.KillAvatarLingGuangJson.list)
@@ -40,27 +40,27 @@ namespace JSONClass
 			}
 		}
 
-		// Token: 0x06004B62 RID: 19298 RVA: 0x000042DD File Offset: 0x000024DD
+		// Token: 0x06003FD4 RID: 16340 RVA: 0x00004095 File Offset: 0x00002295
 		private static void OnInitFinish()
 		{
 		}
 
-		// Token: 0x040047C7 RID: 18375
+		// Token: 0x04003C6E RID: 15470
 		public static Dictionary<int, KillAvatarLingGuangJson> DataDict = new Dictionary<int, KillAvatarLingGuangJson>();
 
-		// Token: 0x040047C8 RID: 18376
+		// Token: 0x04003C6F RID: 15471
 		public static List<KillAvatarLingGuangJson> DataList = new List<KillAvatarLingGuangJson>();
 
-		// Token: 0x040047C9 RID: 18377
+		// Token: 0x04003C70 RID: 15472
 		public static Action OnInitFinishAction = new Action(KillAvatarLingGuangJson.OnInitFinish);
 
-		// Token: 0x040047CA RID: 18378
+		// Token: 0x04003C71 RID: 15473
 		public int id;
 
-		// Token: 0x040047CB RID: 18379
+		// Token: 0x04003C72 RID: 15474
 		public int lingguangid;
 
-		// Token: 0x040047CC RID: 18380
+		// Token: 0x04003C73 RID: 15475
 		public List<int> avatar = new List<int>();
 	}
 }

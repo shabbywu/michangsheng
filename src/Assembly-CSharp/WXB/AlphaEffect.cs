@@ -3,10 +3,10 @@ using UnityEngine;
 
 namespace WXB
 {
-	// Token: 0x0200098C RID: 2444
+	// Token: 0x0200067F RID: 1663
 	public class AlphaEffect : IEffect
 	{
-		// Token: 0x06003E7A RID: 15994 RVA: 0x001B73D0 File Offset: 0x001B55D0
+		// Token: 0x060034CA RID: 13514 RVA: 0x0016EFD0 File Offset: 0x0016D1D0
 		public void UpdateEffect(Draw draw, float deltaTime)
 		{
 			if (this.last_update_time == -1f)
@@ -45,7 +45,7 @@ namespace WXB
 			draw.canvasRenderer.SetAlpha(this.alpha);
 		}
 
-		// Token: 0x06003E7B RID: 15995 RVA: 0x0002CFFD File Offset: 0x0002B1FD
+		// Token: 0x060034CB RID: 13515 RVA: 0x0016F0AA File Offset: 0x0016D2AA
 		public void Release()
 		{
 			this.last_update_time = -1f;
@@ -54,16 +54,16 @@ namespace WXB
 			this.alpha = 1f;
 		}
 
-		// Token: 0x04003863 RID: 14435
+		// Token: 0x04002EBD RID: 11965
 		protected float last_update_time = -1f;
 
-		// Token: 0x04003864 RID: 14436
+		// Token: 0x04002EBE RID: 11966
 		protected bool isFoward;
 
-		// Token: 0x04003865 RID: 14437
+		// Token: 0x04002EBF RID: 11967
 		protected float space_timer = 0.05f;
 
-		// Token: 0x04003866 RID: 14438
+		// Token: 0x04002EC0 RID: 11968
 		protected float alpha = 1f;
 	}
 }

@@ -2,66 +2,66 @@
 
 namespace Fungus
 {
-	// Token: 0x0200136E RID: 4974
+	// Token: 0x02000ECF RID: 3791
 	public enum TokenType
 	{
-		// Token: 0x040068A4 RID: 26788
+		// Token: 0x04005A43 RID: 23107
 		Invalid,
-		// Token: 0x040068A5 RID: 26789
+		// Token: 0x04005A44 RID: 23108
 		Words,
-		// Token: 0x040068A6 RID: 26790
+		// Token: 0x04005A45 RID: 23109
 		BoldStart,
-		// Token: 0x040068A7 RID: 26791
+		// Token: 0x04005A46 RID: 23110
 		BoldEnd,
-		// Token: 0x040068A8 RID: 26792
+		// Token: 0x04005A47 RID: 23111
 		ItalicStart,
-		// Token: 0x040068A9 RID: 26793
+		// Token: 0x04005A48 RID: 23112
 		ItalicEnd,
-		// Token: 0x040068AA RID: 26794
+		// Token: 0x04005A49 RID: 23113
 		ColorStart,
-		// Token: 0x040068AB RID: 26795
+		// Token: 0x04005A4A RID: 23114
 		ColorEnd,
-		// Token: 0x040068AC RID: 26796
+		// Token: 0x04005A4B RID: 23115
 		SizeStart,
-		// Token: 0x040068AD RID: 26797
+		// Token: 0x04005A4C RID: 23116
 		SizeEnd,
-		// Token: 0x040068AE RID: 26798
+		// Token: 0x04005A4D RID: 23117
 		Wait,
-		// Token: 0x040068AF RID: 26799
+		// Token: 0x04005A4E RID: 23118
 		WaitForInputNoClear,
-		// Token: 0x040068B0 RID: 26800
+		// Token: 0x04005A4F RID: 23119
 		WaitForInputAndClear,
-		// Token: 0x040068B1 RID: 26801
+		// Token: 0x04005A50 RID: 23120
 		WaitOnPunctuationStart,
-		// Token: 0x040068B2 RID: 26802
+		// Token: 0x04005A51 RID: 23121
 		WaitOnPunctuationEnd,
-		// Token: 0x040068B3 RID: 26803
+		// Token: 0x04005A52 RID: 23122
 		Clear,
-		// Token: 0x040068B4 RID: 26804
+		// Token: 0x04005A53 RID: 23123
 		SpeedStart,
-		// Token: 0x040068B5 RID: 26805
+		// Token: 0x04005A54 RID: 23124
 		SpeedEnd,
-		// Token: 0x040068B6 RID: 26806
+		// Token: 0x04005A55 RID: 23125
 		Exit,
-		// Token: 0x040068B7 RID: 26807
+		// Token: 0x04005A56 RID: 23126
 		Message,
-		// Token: 0x040068B8 RID: 26808
+		// Token: 0x04005A57 RID: 23127
 		VerticalPunch,
-		// Token: 0x040068B9 RID: 26809
+		// Token: 0x04005A58 RID: 23128
 		HorizontalPunch,
-		// Token: 0x040068BA RID: 26810
+		// Token: 0x04005A59 RID: 23129
 		Punch,
-		// Token: 0x040068BB RID: 26811
+		// Token: 0x04005A5A RID: 23130
 		Flash,
-		// Token: 0x040068BC RID: 26812
+		// Token: 0x04005A5B RID: 23131
 		Audio,
-		// Token: 0x040068BD RID: 26813
+		// Token: 0x04005A5C RID: 23132
 		AudioLoop,
-		// Token: 0x040068BE RID: 26814
+		// Token: 0x04005A5D RID: 23133
 		AudioPause,
-		// Token: 0x040068BF RID: 26815
+		// Token: 0x04005A5E RID: 23134
 		AudioStop,
-		// Token: 0x040068C0 RID: 26816
+		// Token: 0x04005A5F RID: 23135
 		WaitForVoiceOver
 	}
 }

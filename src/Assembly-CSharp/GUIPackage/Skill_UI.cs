@@ -7,12 +7,12 @@ using YSGame;
 
 namespace GUIPackage
 {
-	// Token: 0x02000D94 RID: 3476
+	// Token: 0x02000A68 RID: 2664
 	public class Skill_UI : MonoBehaviour
 	{
-		// Token: 0x170007ED RID: 2029
-		// (get) Token: 0x060053D9 RID: 21465 RVA: 0x0022ED64 File Offset: 0x0022CF64
-		// (set) Token: 0x060053D8 RID: 21464 RVA: 0x0022ED0C File Offset: 0x0022CF0C
+		// Token: 0x170005D0 RID: 1488
+		// (get) Token: 0x06004ACF RID: 19151 RVA: 0x001FCC24 File Offset: 0x001FAE24
+		// (set) Token: 0x06004ACE RID: 19150 RVA: 0x001FCBCC File Offset: 0x001FADCC
 		public bool showTooltip
 		{
 			get
@@ -42,7 +42,7 @@ namespace GUIPackage
 			}
 		}
 
-		// Token: 0x060053DA RID: 21466 RVA: 0x0022EDC0 File Offset: 0x0022CFC0
+		// Token: 0x06004AD0 RID: 19152 RVA: 0x001FCC80 File Offset: 0x001FAE80
 		private void Awake()
 		{
 			this.datebase = jsonData.instance.gameObject.GetComponent<SkillDatebase>();
@@ -63,7 +63,7 @@ namespace GUIPackage
 			this.initSkill_UI();
 		}
 
-		// Token: 0x060053DB RID: 21467 RVA: 0x0022EE9C File Offset: 0x0022D09C
+		// Token: 0x06004AD1 RID: 19153 RVA: 0x001FCD5C File Offset: 0x001FAF5C
 		private void Update()
 		{
 			if (this.draggingSkill)
@@ -79,7 +79,7 @@ namespace GUIPackage
 			this.skillCD();
 		}
 
-		// Token: 0x060053DC RID: 21468 RVA: 0x0022EF0C File Offset: 0x0022D10C
+		// Token: 0x06004AD2 RID: 19154 RVA: 0x001FCDCC File Offset: 0x001FAFCC
 		private void skillCD()
 		{
 			for (int i = 0; i < this.skill.Count; i++)
@@ -95,7 +95,7 @@ namespace GUIPackage
 			}
 		}
 
-		// Token: 0x060053DD RID: 21469 RVA: 0x0022EF94 File Offset: 0x0022D194
+		// Token: 0x06004AD3 RID: 19155 RVA: 0x001FCE54 File Offset: 0x001FB054
 		private void Show()
 		{
 			this.Show_Skill = !this.Show_Skill;
@@ -111,12 +111,12 @@ namespace GUIPackage
 			Singleton.UI.UI_Top(this.skillWin.transform.parent);
 		}
 
-		// Token: 0x060053DE RID: 21470 RVA: 0x000042DD File Offset: 0x000024DD
+		// Token: 0x06004AD4 RID: 19156 RVA: 0x00004095 File Offset: 0x00002295
 		public void ShowSkillType()
 		{
 		}
 
-		// Token: 0x060053DF RID: 21471 RVA: 0x0022F018 File Offset: 0x0022D218
+		// Token: 0x06004AD5 RID: 19157 RVA: 0x001FCED8 File Offset: 0x001FB0D8
 		private void initSkill_UI()
 		{
 			Avatar avatar = (Avatar)KBEngineApp.app.player();
@@ -189,7 +189,7 @@ namespace GUIPackage
 			this.draggingSkill = false;
 		}
 
-		// Token: 0x060053E0 RID: 21472 RVA: 0x0003BF2E File Offset: 0x0003A12E
+		// Token: 0x06004AD6 RID: 19158 RVA: 0x001FD1DC File Offset: 0x001FB3DC
 		public void Clear_Draged()
 		{
 			this.dragedSkill = new Skill();
@@ -197,7 +197,7 @@ namespace GUIPackage
 			this.Temp.GetComponent<UITexture>().mainTexture = null;
 		}
 
-		// Token: 0x060053E1 RID: 21473 RVA: 0x0003BF53 File Offset: 0x0003A153
+		// Token: 0x06004AD7 RID: 19159 RVA: 0x001FD201 File Offset: 0x001FB401
 		public void SkillUP(int id)
 		{
 			if (this.skill[id].skill_level < this.skill[id].Max_level)
@@ -206,13 +206,13 @@ namespace GUIPackage
 			}
 		}
 
-		// Token: 0x060053E2 RID: 21474 RVA: 0x0003BF92 File Offset: 0x0003A192
+		// Token: 0x06004AD8 RID: 19160 RVA: 0x001FD240 File Offset: 0x001FB440
 		public void UseSkill(ref Skill S)
 		{
 			((Avatar)KBEngineApp.app.player()).spell.spellSkill(S.skill_ID, "");
 		}
 
-		// Token: 0x060053E3 RID: 21475 RVA: 0x0022F31C File Offset: 0x0022D51C
+		// Token: 0x06004AD9 RID: 19161 RVA: 0x001FD268 File Offset: 0x001FB468
 		public int GetSkillID(int id)
 		{
 			for (int i = 0; i < this.skill.Count; i++)
@@ -225,7 +225,7 @@ namespace GUIPackage
 			return -1;
 		}
 
-		// Token: 0x060053E4 RID: 21476 RVA: 0x0022F360 File Offset: 0x0022D560
+		// Token: 0x06004ADA RID: 19162 RVA: 0x001FD2AC File Offset: 0x001FB4AC
 		public void Show_Tooltip(Skill _skill)
 		{
 			int skill_ID = _skill.skill_ID;
@@ -301,7 +301,7 @@ namespace GUIPackage
 			}
 		}
 
-		// Token: 0x060053E5 RID: 21477 RVA: 0x0001E4F0 File Offset: 0x0001C6F0
+		// Token: 0x06004ADB RID: 19163 RVA: 0x000EBA04 File Offset: 0x000E9C04
 		public GameObject CreatGameObjectToParent(GameObject parent, GameObject Temp)
 		{
 			GameObject gameObject = Object.Instantiate<Transform>(Temp.transform).gameObject;
@@ -311,7 +311,7 @@ namespace GUIPackage
 			return gameObject;
 		}
 
-		// Token: 0x060053E6 RID: 21478 RVA: 0x0022F818 File Offset: 0x0022DA18
+		// Token: 0x06004ADC RID: 19164 RVA: 0x001FD764 File Offset: 0x001FB964
 		public void SaveSkill()
 		{
 			for (int i = 0; i < this.skill.Count; i++)
@@ -320,7 +320,7 @@ namespace GUIPackage
 			}
 		}
 
-		// Token: 0x060053E7 RID: 21479 RVA: 0x0022F864 File Offset: 0x0022DA64
+		// Token: 0x06004ADD RID: 19165 RVA: 0x001FD7B0 File Offset: 0x001FB9B0
 		public void LoadSkill()
 		{
 			for (int i = 0; i < this.skill.Count; i++)
@@ -329,52 +329,52 @@ namespace GUIPackage
 			}
 		}
 
-		// Token: 0x04005394 RID: 21396
+		// Token: 0x040049F7 RID: 18935
 		public List<Skill> skill = new List<Skill>();
 
-		// Token: 0x04005395 RID: 21397
+		// Token: 0x040049F8 RID: 18936
 		private SkillDatebase datebase;
 
-		// Token: 0x04005396 RID: 21398
+		// Token: 0x040049F9 RID: 18937
 		public GameObject skillWin;
 
-		// Token: 0x04005397 RID: 21399
+		// Token: 0x040049FA RID: 18938
 		public GameObject Tooltip;
 
-		// Token: 0x04005398 RID: 21400
+		// Token: 0x040049FB RID: 18939
 		public bool draggingSkill;
 
-		// Token: 0x04005399 RID: 21401
+		// Token: 0x040049FC RID: 18940
 		public Skill dragedSkill;
 
-		// Token: 0x0400539A RID: 21402
+		// Token: 0x040049FD RID: 18941
 		private bool Show_Skill;
 
-		// Token: 0x0400539B RID: 21403
+		// Token: 0x040049FE RID: 18942
 		public GameObject Temp;
 
-		// Token: 0x0400539C RID: 21404
+		// Token: 0x040049FF RID: 18943
 		public GameObject UIGrid;
 
-		// Token: 0x0400539D RID: 21405
+		// Token: 0x04004A00 RID: 18944
 		public selectSkill selectpage;
 
-		// Token: 0x0400539E RID: 21406
+		// Token: 0x04004A01 RID: 18945
 		public int SkillNum = 30;
 
-		// Token: 0x0400539F RID: 21407
+		// Token: 0x04004A02 RID: 18946
 		public bool showCellName;
 
-		// Token: 0x040053A0 RID: 21408
+		// Token: 0x04004A03 RID: 18947
 		public GameObject SkillTemp;
 
-		// Token: 0x040053A1 RID: 21409
+		// Token: 0x04004A04 RID: 18948
 		public int ShowType;
 
-		// Token: 0x040053A2 RID: 21410
+		// Token: 0x04004A05 RID: 18949
 		public int showLeixing;
 
-		// Token: 0x040053A3 RID: 21411
+		// Token: 0x04004A06 RID: 18950
 		public int nowIndex;
 	}
 }

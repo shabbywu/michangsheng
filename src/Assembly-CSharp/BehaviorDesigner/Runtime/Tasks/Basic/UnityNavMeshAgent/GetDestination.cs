@@ -4,12 +4,12 @@ using UnityEngine.AI;
 
 namespace BehaviorDesigner.Runtime.Tasks.Basic.UnityNavMeshAgent
 {
-	// Token: 0x020015A8 RID: 5544
+	// Token: 0x020010EE RID: 4334
 	[TaskCategory("Basic/NavMeshAgent")]
 	[TaskDescription("Gets the destination of the agent in world-space units. Returns Success.")]
 	public class GetDestination : Action
 	{
-		// Token: 0x0600827D RID: 33405 RVA: 0x002CDA6C File Offset: 0x002CBC6C
+		// Token: 0x06007483 RID: 29827 RVA: 0x002B27A8 File Offset: 0x002B09A8
 		public override void OnStart()
 		{
 			GameObject defaultGameObject = base.GetDefaultGameObject(this.targetGameObject.Value);
@@ -20,7 +20,7 @@ namespace BehaviorDesigner.Runtime.Tasks.Basic.UnityNavMeshAgent
 			}
 		}
 
-		// Token: 0x0600827E RID: 33406 RVA: 0x00059686 File Offset: 0x00057886
+		// Token: 0x06007484 RID: 29828 RVA: 0x002B27E8 File Offset: 0x002B09E8
 		public override TaskStatus OnUpdate()
 		{
 			if (this.navMeshAgent == null)
@@ -32,26 +32,26 @@ namespace BehaviorDesigner.Runtime.Tasks.Basic.UnityNavMeshAgent
 			return 2;
 		}
 
-		// Token: 0x0600827F RID: 33407 RVA: 0x000596B9 File Offset: 0x000578B9
+		// Token: 0x06007485 RID: 29829 RVA: 0x002B281B File Offset: 0x002B0A1B
 		public override void OnReset()
 		{
 			this.targetGameObject = null;
 			this.storeValue = Vector3.zero;
 		}
 
-		// Token: 0x04006F39 RID: 28473
+		// Token: 0x04006039 RID: 24633
 		[Tooltip("The GameObject that the task operates on. If null the task GameObject is used.")]
 		public SharedGameObject targetGameObject;
 
-		// Token: 0x04006F3A RID: 28474
+		// Token: 0x0400603A RID: 24634
 		[SharedRequired]
 		[Tooltip("The NavMeshAgent destination")]
 		public SharedVector3 storeValue;
 
-		// Token: 0x04006F3B RID: 28475
+		// Token: 0x0400603B RID: 24635
 		private NavMeshAgent navMeshAgent;
 
-		// Token: 0x04006F3C RID: 28476
+		// Token: 0x0400603C RID: 24636
 		private GameObject prevGameObject;
 	}
 }

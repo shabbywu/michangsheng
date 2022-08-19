@@ -2,35 +2,35 @@
 
 namespace Fungus
 {
-	// Token: 0x020013A6 RID: 5030
+	// Token: 0x02000F01 RID: 3841
 	public interface IExecuteHandlerConfigurator
 	{
-		// Token: 0x17000B83 RID: 2947
-		// (set) Token: 0x060079DA RID: 31194
+		// Token: 0x170008E0 RID: 2272
+		// (set) Token: 0x06006C26 RID: 27686
 		int UpdateExecuteStartOnFrame { set; }
 
-		// Token: 0x17000B84 RID: 2948
-		// (set) Token: 0x060079DB RID: 31195
+		// Token: 0x170008E1 RID: 2273
+		// (set) Token: 0x06006C27 RID: 27687
 		int UpdateExecuteRepeatFrequency { set; }
 
-		// Token: 0x17000B85 RID: 2949
-		// (set) Token: 0x060079DC RID: 31196
+		// Token: 0x170008E2 RID: 2274
+		// (set) Token: 0x06006C28 RID: 27688
 		bool UpdateExecuteRepeat { set; }
 
-		// Token: 0x17000B86 RID: 2950
-		// (set) Token: 0x060079DD RID: 31197
+		// Token: 0x170008E3 RID: 2275
+		// (set) Token: 0x06006C29 RID: 27689
 		float TimeExecuteStartAfter { set; }
 
-		// Token: 0x17000B87 RID: 2951
-		// (set) Token: 0x060079DE RID: 31198
+		// Token: 0x170008E4 RID: 2276
+		// (set) Token: 0x06006C2A RID: 27690
 		float TimeExecuteRepeatFrequency { set; }
 
-		// Token: 0x17000B88 RID: 2952
-		// (set) Token: 0x060079DF RID: 31199
+		// Token: 0x170008E5 RID: 2277
+		// (set) Token: 0x06006C2B RID: 27691
 		bool TimeExecuteRepeat { set; }
 
-		// Token: 0x17000B89 RID: 2953
-		// (get) Token: 0x060079E0 RID: 31200
+		// Token: 0x170008E6 RID: 2278
+		// (get) Token: 0x06006C2C RID: 27692
 		ExecuteHandler Component { get; }
 	}
 }

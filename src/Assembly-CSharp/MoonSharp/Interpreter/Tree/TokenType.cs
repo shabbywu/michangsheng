@@ -2,132 +2,132 @@
 
 namespace MoonSharp.Interpreter.Tree
 {
-	// Token: 0x020010A1 RID: 4257
+	// Token: 0x02000CCB RID: 3275
 	internal enum TokenType
 	{
-		// Token: 0x04005EF2 RID: 24306
+		// Token: 0x0400530F RID: 21263
 		Eof,
-		// Token: 0x04005EF3 RID: 24307
+		// Token: 0x04005310 RID: 21264
 		HashBang,
-		// Token: 0x04005EF4 RID: 24308
+		// Token: 0x04005311 RID: 21265
 		Name,
-		// Token: 0x04005EF5 RID: 24309
+		// Token: 0x04005312 RID: 21266
 		And,
-		// Token: 0x04005EF6 RID: 24310
+		// Token: 0x04005313 RID: 21267
 		Break,
-		// Token: 0x04005EF7 RID: 24311
+		// Token: 0x04005314 RID: 21268
 		Do,
-		// Token: 0x04005EF8 RID: 24312
+		// Token: 0x04005315 RID: 21269
 		Else,
-		// Token: 0x04005EF9 RID: 24313
+		// Token: 0x04005316 RID: 21270
 		ElseIf,
-		// Token: 0x04005EFA RID: 24314
+		// Token: 0x04005317 RID: 21271
 		End,
-		// Token: 0x04005EFB RID: 24315
+		// Token: 0x04005318 RID: 21272
 		False,
-		// Token: 0x04005EFC RID: 24316
+		// Token: 0x04005319 RID: 21273
 		For,
-		// Token: 0x04005EFD RID: 24317
+		// Token: 0x0400531A RID: 21274
 		Function,
-		// Token: 0x04005EFE RID: 24318
+		// Token: 0x0400531B RID: 21275
 		Lambda,
-		// Token: 0x04005EFF RID: 24319
+		// Token: 0x0400531C RID: 21276
 		Goto,
-		// Token: 0x04005F00 RID: 24320
+		// Token: 0x0400531D RID: 21277
 		If,
-		// Token: 0x04005F01 RID: 24321
+		// Token: 0x0400531E RID: 21278
 		In,
-		// Token: 0x04005F02 RID: 24322
+		// Token: 0x0400531F RID: 21279
 		Local,
-		// Token: 0x04005F03 RID: 24323
+		// Token: 0x04005320 RID: 21280
 		Nil,
-		// Token: 0x04005F04 RID: 24324
+		// Token: 0x04005321 RID: 21281
 		Not,
-		// Token: 0x04005F05 RID: 24325
+		// Token: 0x04005322 RID: 21282
 		Or,
-		// Token: 0x04005F06 RID: 24326
+		// Token: 0x04005323 RID: 21283
 		Repeat,
-		// Token: 0x04005F07 RID: 24327
+		// Token: 0x04005324 RID: 21284
 		Return,
-		// Token: 0x04005F08 RID: 24328
+		// Token: 0x04005325 RID: 21285
 		Then,
-		// Token: 0x04005F09 RID: 24329
+		// Token: 0x04005326 RID: 21286
 		True,
-		// Token: 0x04005F0A RID: 24330
+		// Token: 0x04005327 RID: 21287
 		Until,
-		// Token: 0x04005F0B RID: 24331
+		// Token: 0x04005328 RID: 21288
 		While,
-		// Token: 0x04005F0C RID: 24332
+		// Token: 0x04005329 RID: 21289
 		Op_Equal,
-		// Token: 0x04005F0D RID: 24333
+		// Token: 0x0400532A RID: 21290
 		Op_Assignment,
-		// Token: 0x04005F0E RID: 24334
+		// Token: 0x0400532B RID: 21291
 		Op_LessThan,
-		// Token: 0x04005F0F RID: 24335
+		// Token: 0x0400532C RID: 21292
 		Op_LessThanEqual,
-		// Token: 0x04005F10 RID: 24336
+		// Token: 0x0400532D RID: 21293
 		Op_GreaterThanEqual,
-		// Token: 0x04005F11 RID: 24337
+		// Token: 0x0400532E RID: 21294
 		Op_GreaterThan,
-		// Token: 0x04005F12 RID: 24338
+		// Token: 0x0400532F RID: 21295
 		Op_NotEqual,
-		// Token: 0x04005F13 RID: 24339
+		// Token: 0x04005330 RID: 21296
 		Op_Concat,
-		// Token: 0x04005F14 RID: 24340
+		// Token: 0x04005331 RID: 21297
 		VarArgs,
-		// Token: 0x04005F15 RID: 24341
+		// Token: 0x04005332 RID: 21298
 		Dot,
-		// Token: 0x04005F16 RID: 24342
+		// Token: 0x04005333 RID: 21299
 		Colon,
-		// Token: 0x04005F17 RID: 24343
+		// Token: 0x04005334 RID: 21300
 		DoubleColon,
-		// Token: 0x04005F18 RID: 24344
+		// Token: 0x04005335 RID: 21301
 		Comma,
-		// Token: 0x04005F19 RID: 24345
+		// Token: 0x04005336 RID: 21302
 		Brk_Close_Curly,
-		// Token: 0x04005F1A RID: 24346
+		// Token: 0x04005337 RID: 21303
 		Brk_Open_Curly,
-		// Token: 0x04005F1B RID: 24347
+		// Token: 0x04005338 RID: 21304
 		Brk_Close_Round,
-		// Token: 0x04005F1C RID: 24348
+		// Token: 0x04005339 RID: 21305
 		Brk_Open_Round,
-		// Token: 0x04005F1D RID: 24349
+		// Token: 0x0400533A RID: 21306
 		Brk_Close_Square,
-		// Token: 0x04005F1E RID: 24350
+		// Token: 0x0400533B RID: 21307
 		Brk_Open_Square,
-		// Token: 0x04005F1F RID: 24351
+		// Token: 0x0400533C RID: 21308
 		Op_Len,
-		// Token: 0x04005F20 RID: 24352
+		// Token: 0x0400533D RID: 21309
 		Op_Pwr,
-		// Token: 0x04005F21 RID: 24353
+		// Token: 0x0400533E RID: 21310
 		Op_Mod,
-		// Token: 0x04005F22 RID: 24354
+		// Token: 0x0400533F RID: 21311
 		Op_Div,
-		// Token: 0x04005F23 RID: 24355
+		// Token: 0x04005340 RID: 21312
 		Op_Mul,
-		// Token: 0x04005F24 RID: 24356
+		// Token: 0x04005341 RID: 21313
 		Op_MinusOrSub,
-		// Token: 0x04005F25 RID: 24357
+		// Token: 0x04005342 RID: 21314
 		Op_Add,
-		// Token: 0x04005F26 RID: 24358
+		// Token: 0x04005343 RID: 21315
 		Comment,
-		// Token: 0x04005F27 RID: 24359
+		// Token: 0x04005344 RID: 21316
 		String,
-		// Token: 0x04005F28 RID: 24360
+		// Token: 0x04005345 RID: 21317
 		String_Long,
-		// Token: 0x04005F29 RID: 24361
+		// Token: 0x04005346 RID: 21318
 		Number,
-		// Token: 0x04005F2A RID: 24362
+		// Token: 0x04005347 RID: 21319
 		Number_HexFloat,
-		// Token: 0x04005F2B RID: 24363
+		// Token: 0x04005348 RID: 21320
 		Number_Hex,
-		// Token: 0x04005F2C RID: 24364
+		// Token: 0x04005349 RID: 21321
 		SemiColon,
-		// Token: 0x04005F2D RID: 24365
+		// Token: 0x0400534A RID: 21322
 		Invalid,
-		// Token: 0x04005F2E RID: 24366
+		// Token: 0x0400534B RID: 21323
 		Brk_Open_Curly_Shared,
-		// Token: 0x04005F2F RID: 24367
+		// Token: 0x0400534C RID: 21324
 		Op_Dollar
 	}
 }

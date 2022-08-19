@@ -2,16 +2,16 @@
 
 namespace KBEngine
 {
-	// Token: 0x02000F58 RID: 3928
+	// Token: 0x02000BD5 RID: 3029
 	public class CHECKIN_INFO
 	{
-		// Token: 0x04005B12 RID: 23314
+		// Token: 0x04005071 RID: 20593
 		public ushort type;
 
-		// Token: 0x04005B13 RID: 23315
+		// Token: 0x04005072 RID: 20594
 		public ushort count;
 
-		// Token: 0x04005B14 RID: 23316
+		// Token: 0x04005073 RID: 20595
 		public uint time;
 	}
 }

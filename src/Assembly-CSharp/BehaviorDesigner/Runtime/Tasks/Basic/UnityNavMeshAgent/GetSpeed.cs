@@ -4,12 +4,12 @@ using UnityEngine.AI;
 
 namespace BehaviorDesigner.Runtime.Tasks.Basic.UnityNavMeshAgent
 {
-	// Token: 0x020015AA RID: 5546
+	// Token: 0x020010F0 RID: 4336
 	[TaskCategory("Basic/NavMeshAgent")]
 	[TaskDescription("Gets the maximum movement speed when following a path. Returns Success.")]
 	public class GetSpeed : Action
 	{
-		// Token: 0x06008285 RID: 33413 RVA: 0x002CDAEC File Offset: 0x002CBCEC
+		// Token: 0x0600748B RID: 29835 RVA: 0x002B28C0 File Offset: 0x002B0AC0
 		public override void OnStart()
 		{
 			GameObject defaultGameObject = base.GetDefaultGameObject(this.targetGameObject.Value);
@@ -20,7 +20,7 @@ namespace BehaviorDesigner.Runtime.Tasks.Basic.UnityNavMeshAgent
 			}
 		}
 
-		// Token: 0x06008286 RID: 33414 RVA: 0x0005971E File Offset: 0x0005791E
+		// Token: 0x0600748C RID: 29836 RVA: 0x002B2900 File Offset: 0x002B0B00
 		public override TaskStatus OnUpdate()
 		{
 			if (this.navMeshAgent == null)
@@ -32,26 +32,26 @@ namespace BehaviorDesigner.Runtime.Tasks.Basic.UnityNavMeshAgent
 			return 2;
 		}
 
-		// Token: 0x06008287 RID: 33415 RVA: 0x00059751 File Offset: 0x00057951
+		// Token: 0x0600748D RID: 29837 RVA: 0x002B2933 File Offset: 0x002B0B33
 		public override void OnReset()
 		{
 			this.targetGameObject = null;
 			this.storeValue = 0f;
 		}
 
-		// Token: 0x04006F41 RID: 28481
+		// Token: 0x04006041 RID: 24641
 		[Tooltip("The GameObject that the task operates on. If null the task GameObject is used.")]
 		public SharedGameObject targetGameObject;
 
-		// Token: 0x04006F42 RID: 28482
+		// Token: 0x04006042 RID: 24642
 		[SharedRequired]
 		[Tooltip("The NavMeshAgent speed")]
 		public SharedFloat storeValue;
 
-		// Token: 0x04006F43 RID: 28483
+		// Token: 0x04006043 RID: 24643
 		private NavMeshAgent navMeshAgent;
 
-		// Token: 0x04006F44 RID: 28484
+		// Token: 0x04006044 RID: 24644
 		private GameObject prevGameObject;
 	}
 }

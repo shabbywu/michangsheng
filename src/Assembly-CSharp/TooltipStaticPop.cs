@@ -1,15 +1,15 @@
 ﻿using System;
 using UnityEngine;
 
-// Token: 0x020005E6 RID: 1510
+// Token: 0x0200042F RID: 1071
 public class TooltipStaticPop : TooltipBase
 {
-	// Token: 0x060025F1 RID: 9713 RVA: 0x000042DD File Offset: 0x000024DD
+	// Token: 0x06002232 RID: 8754 RVA: 0x00004095 File Offset: 0x00002295
 	private new void Start()
 	{
 	}
 
-	// Token: 0x060025F2 RID: 9714 RVA: 0x0012D018 File Offset: 0x0012B218
+	// Token: 0x06002233 RID: 8755 RVA: 0x000EBE78 File Offset: 0x000EA078
 	private new void Update()
 	{
 		if (this.shoudSetPos)
@@ -23,9 +23,9 @@ public class TooltipStaticPop : TooltipBase
 		}
 	}
 
-	// Token: 0x04002081 RID: 8321
+	// Token: 0x04001BB5 RID: 7093
 	public Vector3 pos;
 
-	// Token: 0x04002082 RID: 8322
+	// Token: 0x04001BB6 RID: 7094
 	public Vector3 rotation;
 }

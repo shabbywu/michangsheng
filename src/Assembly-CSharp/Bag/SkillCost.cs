@@ -2,13 +2,13 @@
 
 namespace Bag
 {
-	// Token: 0x02000D3A RID: 3386
+	// Token: 0x020009B2 RID: 2482
 	public class SkillCost
 	{
-		// Token: 0x040051C0 RID: 20928
+		// Token: 0x040046BE RID: 18110
 		public int Id;
 
-		// Token: 0x040051C1 RID: 20929
+		// Token: 0x040046BF RID: 18111
 		public int Num;
 	}
 }

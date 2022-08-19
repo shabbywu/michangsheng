@@ -3,10 +3,10 @@ using System.Collections;
 using System.IO;
 using UnityEngine;
 
-// Token: 0x020006AB RID: 1707
+// Token: 0x020004B6 RID: 1206
 public class LastScene : MonoBehaviour
 {
-	// Token: 0x06002AAC RID: 10924 RVA: 0x001496C0 File Offset: 0x001478C0
+	// Token: 0x06002628 RID: 9768 RVA: 0x00108EA4 File Offset: 0x001070A4
 	private void Start()
 	{
 		base.StartCoroutine(Loading.Instance.UcitanaScena(Camera.main, 5, 0f));
@@ -29,13 +29,13 @@ public class LastScene : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06002AAD RID: 10925 RVA: 0x00021196 File Offset: 0x0001F396
+	// Token: 0x06002629 RID: 9769 RVA: 0x00108F86 File Offset: 0x00107186
 	private void UkljuciPartikle()
 	{
 		this.partikli.SetActive(true);
 	}
 
-	// Token: 0x06002AAE RID: 10926 RVA: 0x001497A4 File Offset: 0x001479A4
+	// Token: 0x0600262A RID: 9770 RVA: 0x00108F94 File Offset: 0x00107194
 	private void Update()
 	{
 		if (Input.GetKeyUp(27))
@@ -108,7 +108,7 @@ public class LastScene : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06002AAF RID: 10927 RVA: 0x001499E4 File Offset: 0x00147BE4
+	// Token: 0x0600262B RID: 9771 RVA: 0x001091D4 File Offset: 0x001073D4
 	private byte[] GetBytes(string str)
 	{
 		byte[] array = new byte[str.Length * 2];
@@ -116,7 +116,7 @@ public class LastScene : MonoBehaviour
 		return array;
 	}
 
-	// Token: 0x06002AB0 RID: 10928 RVA: 0x000211A4 File Offset: 0x0001F3A4
+	// Token: 0x0600262C RID: 9772 RVA: 0x00109201 File Offset: 0x00107401
 	private IEnumerator postToServer()
 	{
 		yield return new WaitForEndOfFrame();
@@ -137,7 +137,7 @@ public class LastScene : MonoBehaviour
 		yield break;
 	}
 
-	// Token: 0x06002AB1 RID: 10929 RVA: 0x00149A14 File Offset: 0x00147C14
+	// Token: 0x0600262D RID: 9773 RVA: 0x00109210 File Offset: 0x00107410
 	private string RaycastFunction(Vector3 vector)
 	{
 		RaycastHit raycastHit;
@@ -148,36 +148,36 @@ public class LastScene : MonoBehaviour
 		return "";
 	}
 
-	// Token: 0x040024A7 RID: 9383
+	// Token: 0x04001F2A RID: 7978
 	private GameObject majmunLogo;
 
-	// Token: 0x040024A8 RID: 9384
+	// Token: 0x04001F2B RID: 7979
 	private Vector3 originalScale;
 
-	// Token: 0x040024A9 RID: 9385
+	// Token: 0x04001F2C RID: 7980
 	private string clickedItem;
 
-	// Token: 0x040024AA RID: 9386
+	// Token: 0x04001F2D RID: 7981
 	private string releasedItem;
 
-	// Token: 0x040024AB RID: 9387
+	// Token: 0x04001F2E RID: 7982
 	private TouchScreenKeyboard keyboard;
 
-	// Token: 0x040024AC RID: 9388
+	// Token: 0x04001F2F RID: 7983
 	private string mail;
 
-	// Token: 0x040024AD RID: 9389
+	// Token: 0x04001F30 RID: 7984
 	private GameObject invalidMail;
 
-	// Token: 0x040024AE RID: 9390
+	// Token: 0x04001F31 RID: 7985
 	private TextMesh boardText;
 
-	// Token: 0x040024AF RID: 9391
+	// Token: 0x04001F32 RID: 7986
 	private TextMesh boardText_black;
 
-	// Token: 0x040024B0 RID: 9392
+	// Token: 0x04001F33 RID: 7987
 	private GameObject partikli;
 
-	// Token: 0x040024B1 RID: 9393
+	// Token: 0x04001F34 RID: 7988
 	private GameObject temp;
 }

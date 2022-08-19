@@ -3,12 +3,12 @@ using UnityEngine;
 
 namespace Fungus
 {
-	// Token: 0x0200131F RID: 4895
+	// Token: 0x02000EA0 RID: 3744
 	[EventHandlerInfo("Scene", "Message Received", "The block will execute when the specified message is received from a Send Message command.")]
 	[AddComponentMenu("")]
 	public class MessageReceived : EventHandler
 	{
-		// Token: 0x06007743 RID: 30531 RVA: 0x00051400 File Offset: 0x0004F600
+		// Token: 0x06006A0D RID: 27149 RVA: 0x00292928 File Offset: 0x00290B28
 		public void OnSendFungusMessage(string message)
 		{
 			if (this.message == message)
@@ -17,13 +17,13 @@ namespace Fungus
 			}
 		}
 
-		// Token: 0x06007744 RID: 30532 RVA: 0x00051417 File Offset: 0x0004F617
+		// Token: 0x06006A0E RID: 27150 RVA: 0x0029293F File Offset: 0x00290B3F
 		public override string GetSummary()
 		{
 			return this.message;
 		}
 
-		// Token: 0x040067F2 RID: 26610
+		// Token: 0x040059D8 RID: 23000
 		[Tooltip("Fungus message to listen for")]
 		[SerializeField]
 		protected string message = "";

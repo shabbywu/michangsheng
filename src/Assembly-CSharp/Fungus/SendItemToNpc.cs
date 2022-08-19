@@ -5,12 +5,12 @@ using UnityEngine;
 
 namespace Fungus
 {
-	// Token: 0x0200144F RID: 5199
+	// Token: 0x02000F9F RID: 3999
 	[CommandInfo("YSTools", "SendItemToNpc", "玩家给npc物品", 0)]
 	[AddComponentMenu("")]
 	public class SendItemToNpc : Command
 	{
-		// Token: 0x06007D88 RID: 32136 RVA: 0x002C68CC File Offset: 0x002C4ACC
+		// Token: 0x06006FA8 RID: 28584 RVA: 0x002A73AC File Offset: 0x002A55AC
 		public override void OnEnter()
 		{
 			if (NpcJieSuanManager.inst.IsDeath(this.npcId.Value))
@@ -41,18 +41,18 @@ namespace Fungus
 			this.Continue();
 		}
 
-		// Token: 0x06007D89 RID: 32137 RVA: 0x000113CF File Offset: 0x0000F5CF
+		// Token: 0x06006FA9 RID: 28585 RVA: 0x0005E228 File Offset: 0x0005C428
 		public override Color GetButtonColor()
 		{
 			return new Color32(184, 210, 235, byte.MaxValue);
 		}
 
-		// Token: 0x06007D8A RID: 32138 RVA: 0x000042DD File Offset: 0x000024DD
+		// Token: 0x06006FAA RID: 28586 RVA: 0x00004095 File Offset: 0x00002295
 		public override void OnReset()
 		{
 		}
 
-		// Token: 0x04006AEF RID: 27375
+		// Token: 0x04005C20 RID: 23584
 		[Tooltip("npcId")]
 		[VariableProperty(new Type[]
 		{
@@ -61,7 +61,7 @@ namespace Fungus
 		[SerializeField]
 		protected IntegerVariable npcId;
 
-		// Token: 0x04006AF0 RID: 27376
+		// Token: 0x04005C21 RID: 23585
 		[VariableProperty(new Type[]
 		{
 			typeof(IntegerVariable)

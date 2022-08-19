@@ -3,12 +3,12 @@ using UnityEngine;
 
 namespace Fungus
 {
-	// Token: 0x020013DE RID: 5086
+	// Token: 0x02000F28 RID: 3880
 	[CommandInfo("YSNew/Add", "AddEXP", "增加经验", 0)]
 	[AddComponentMenu("")]
 	public class AddEXP : Command
 	{
-		// Token: 0x06007BD4 RID: 31700 RVA: 0x00054453 File Offset: 0x00052653
+		// Token: 0x06006DE9 RID: 28137 RVA: 0x002A4032 File Offset: 0x002A2232
 		public override void OnEnter()
 		{
 			UIPopTip.Inst.Pop("你的修为提升了" + this.AddEXPNum, PopTipIconType.上箭头);
@@ -16,18 +16,18 @@ namespace Fungus
 			this.Continue();
 		}
 
-		// Token: 0x06007BD5 RID: 31701 RVA: 0x000113CF File Offset: 0x0000F5CF
+		// Token: 0x06006DEA RID: 28138 RVA: 0x0005E228 File Offset: 0x0005C428
 		public override Color GetButtonColor()
 		{
 			return new Color32(184, 210, 235, byte.MaxValue);
 		}
 
-		// Token: 0x06007BD6 RID: 31702 RVA: 0x000042DD File Offset: 0x000024DD
+		// Token: 0x06006DEB RID: 28139 RVA: 0x00004095 File Offset: 0x00002295
 		public override void OnReset()
 		{
 		}
 
-		// Token: 0x04006A36 RID: 27190
+		// Token: 0x04005B64 RID: 23396
 		[Tooltip("增加经验的数量")]
 		[SerializeField]
 		public int AddEXPNum;

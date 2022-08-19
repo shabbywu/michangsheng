@@ -1,28 +1,28 @@
 ﻿using System;
 using UnityEngine;
 
-// Token: 0x02000193 RID: 403
+// Token: 0x0200010F RID: 271
 [ExecuteInEditMode]
 public class EasyButton : MonoBehaviour
 {
 	// Token: 0x14000001 RID: 1
-	// (add) Token: 0x06000D96 RID: 3478 RVA: 0x0009BC8C File Offset: 0x00099E8C
-	// (remove) Token: 0x06000D97 RID: 3479 RVA: 0x0009BCC0 File Offset: 0x00099EC0
+	// (add) Token: 0x06000C75 RID: 3189 RVA: 0x0004A74C File Offset: 0x0004894C
+	// (remove) Token: 0x06000C76 RID: 3190 RVA: 0x0004A780 File Offset: 0x00048980
 	public static event EasyButton.ButtonDownHandler On_ButtonDown;
 
 	// Token: 0x14000002 RID: 2
-	// (add) Token: 0x06000D98 RID: 3480 RVA: 0x0009BCF4 File Offset: 0x00099EF4
-	// (remove) Token: 0x06000D99 RID: 3481 RVA: 0x0009BD28 File Offset: 0x00099F28
+	// (add) Token: 0x06000C77 RID: 3191 RVA: 0x0004A7B4 File Offset: 0x000489B4
+	// (remove) Token: 0x06000C78 RID: 3192 RVA: 0x0004A7E8 File Offset: 0x000489E8
 	public static event EasyButton.ButtonPressHandler On_ButtonPress;
 
 	// Token: 0x14000003 RID: 3
-	// (add) Token: 0x06000D9A RID: 3482 RVA: 0x0009BD5C File Offset: 0x00099F5C
-	// (remove) Token: 0x06000D9B RID: 3483 RVA: 0x0009BD90 File Offset: 0x00099F90
+	// (add) Token: 0x06000C79 RID: 3193 RVA: 0x0004A81C File Offset: 0x00048A1C
+	// (remove) Token: 0x06000C7A RID: 3194 RVA: 0x0004A850 File Offset: 0x00048A50
 	public static event EasyButton.ButtonUpHandler On_ButtonUp;
 
-	// Token: 0x170001FE RID: 510
-	// (get) Token: 0x06000D9C RID: 3484 RVA: 0x0000F1D9 File Offset: 0x0000D3D9
-	// (set) Token: 0x06000D9D RID: 3485 RVA: 0x0000F1E1 File Offset: 0x0000D3E1
+	// Token: 0x170001D5 RID: 469
+	// (get) Token: 0x06000C7B RID: 3195 RVA: 0x0004A883 File Offset: 0x00048A83
+	// (set) Token: 0x06000C7C RID: 3196 RVA: 0x0004A88B File Offset: 0x00048A8B
 	public EasyButton.ButtonAnchor Anchor
 	{
 		get
@@ -36,9 +36,9 @@ public class EasyButton : MonoBehaviour
 		}
 	}
 
-	// Token: 0x170001FF RID: 511
-	// (get) Token: 0x06000D9E RID: 3486 RVA: 0x0000F1F6 File Offset: 0x0000D3F6
-	// (set) Token: 0x06000D9F RID: 3487 RVA: 0x0000F1FE File Offset: 0x0000D3FE
+	// Token: 0x170001D6 RID: 470
+	// (get) Token: 0x06000C7D RID: 3197 RVA: 0x0004A8A0 File Offset: 0x00048AA0
+	// (set) Token: 0x06000C7E RID: 3198 RVA: 0x0004A8A8 File Offset: 0x00048AA8
 	public Vector2 Offset
 	{
 		get
@@ -52,9 +52,9 @@ public class EasyButton : MonoBehaviour
 		}
 	}
 
-	// Token: 0x17000200 RID: 512
-	// (get) Token: 0x06000DA0 RID: 3488 RVA: 0x0000F213 File Offset: 0x0000D413
-	// (set) Token: 0x06000DA1 RID: 3489 RVA: 0x0000F21B File Offset: 0x0000D41B
+	// Token: 0x170001D7 RID: 471
+	// (get) Token: 0x06000C7F RID: 3199 RVA: 0x0004A8BD File Offset: 0x00048ABD
+	// (set) Token: 0x06000C80 RID: 3200 RVA: 0x0004A8C5 File Offset: 0x00048AC5
 	public Vector2 Scale
 	{
 		get
@@ -68,9 +68,9 @@ public class EasyButton : MonoBehaviour
 		}
 	}
 
-	// Token: 0x17000201 RID: 513
-	// (get) Token: 0x06000DA2 RID: 3490 RVA: 0x0000F230 File Offset: 0x0000D430
-	// (set) Token: 0x06000DA3 RID: 3491 RVA: 0x0000F238 File Offset: 0x0000D438
+	// Token: 0x170001D8 RID: 472
+	// (get) Token: 0x06000C81 RID: 3201 RVA: 0x0004A8DA File Offset: 0x00048ADA
+	// (set) Token: 0x06000C82 RID: 3202 RVA: 0x0004A8E2 File Offset: 0x00048AE2
 	public Texture2D NormalTexture
 	{
 		get
@@ -88,9 +88,9 @@ public class EasyButton : MonoBehaviour
 		}
 	}
 
-	// Token: 0x17000202 RID: 514
-	// (get) Token: 0x06000DA4 RID: 3492 RVA: 0x0000F267 File Offset: 0x0000D467
-	// (set) Token: 0x06000DA5 RID: 3493 RVA: 0x0000F26F File Offset: 0x0000D46F
+	// Token: 0x170001D9 RID: 473
+	// (get) Token: 0x06000C83 RID: 3203 RVA: 0x0004A911 File Offset: 0x00048B11
+	// (set) Token: 0x06000C84 RID: 3204 RVA: 0x0004A919 File Offset: 0x00048B19
 	public Texture2D ActiveTexture
 	{
 		get
@@ -103,7 +103,7 @@ public class EasyButton : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000DA6 RID: 3494 RVA: 0x0000F278 File Offset: 0x0000D478
+	// Token: 0x06000C85 RID: 3205 RVA: 0x0004A922 File Offset: 0x00048B22
 	private void OnEnable()
 	{
 		EasyTouch.On_TouchStart += this.On_TouchStart;
@@ -111,7 +111,7 @@ public class EasyButton : MonoBehaviour
 		EasyTouch.On_TouchUp += this.On_TouchUp;
 	}
 
-	// Token: 0x06000DA7 RID: 3495 RVA: 0x0009BDC4 File Offset: 0x00099FC4
+	// Token: 0x06000C86 RID: 3206 RVA: 0x0004A958 File Offset: 0x00048B58
 	private void OnDisable()
 	{
 		EasyTouch.On_TouchStart -= this.On_TouchStart;
@@ -123,7 +123,7 @@ public class EasyButton : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000DA8 RID: 3496 RVA: 0x0009BDC4 File Offset: 0x00099FC4
+	// Token: 0x06000C87 RID: 3207 RVA: 0x0004A9AC File Offset: 0x00048BAC
 	private void OnDestroy()
 	{
 		EasyTouch.On_TouchStart -= this.On_TouchStart;
@@ -135,7 +135,7 @@ public class EasyButton : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000DA9 RID: 3497 RVA: 0x0000F2AD File Offset: 0x0000D4AD
+	// Token: 0x06000C88 RID: 3208 RVA: 0x0004A9FE File Offset: 0x00048BFE
 	private void Start()
 	{
 		this.currentTexture = this.normalTexture;
@@ -145,7 +145,7 @@ public class EasyButton : MonoBehaviour
 		this.ComputeButtonAnchor(this.anchor);
 	}
 
-	// Token: 0x06000DAA RID: 3498 RVA: 0x0009BE18 File Offset: 0x0009A018
+	// Token: 0x06000C89 RID: 3209 RVA: 0x0004AA30 File Offset: 0x00048C30
 	private void OnGUI()
 	{
 		if (this.enable)
@@ -199,7 +199,7 @@ public class EasyButton : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000DAB RID: 3499 RVA: 0x0000F2DF File Offset: 0x0000D4DF
+	// Token: 0x06000C8A RID: 3210 RVA: 0x0004AB8D File Offset: 0x00048D8D
 	private void Update()
 	{
 		if (this.buttonState == EasyButton.ButtonState.Up)
@@ -208,12 +208,12 @@ public class EasyButton : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000DAC RID: 3500 RVA: 0x000042DD File Offset: 0x000024DD
+	// Token: 0x06000C8B RID: 3211 RVA: 0x00004095 File Offset: 0x00002295
 	private void OnDrawGizmos()
 	{
 	}
 
-	// Token: 0x06000DAD RID: 3501 RVA: 0x0009BF78 File Offset: 0x0009A178
+	// Token: 0x06000C8C RID: 3212 RVA: 0x0004ABA0 File Offset: 0x00048DA0
 	private void ComputeButtonAnchor(EasyButton.ButtonAnchor anchor)
 	{
 		if (this.normalTexture != null)
@@ -255,7 +255,7 @@ public class EasyButton : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000DAE RID: 3502 RVA: 0x0009C198 File Offset: 0x0009A398
+	// Token: 0x06000C8D RID: 3213 RVA: 0x0004ADC0 File Offset: 0x00048FC0
 	private void RaiseEvent(EasyButton.MessageName msg)
 	{
 		if (this.interaction == EasyButton.InteractionType.Event)
@@ -329,7 +329,7 @@ public class EasyButton : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000DAF RID: 3503 RVA: 0x0009C32C File Offset: 0x0009A52C
+	// Token: 0x06000C8E RID: 3214 RVA: 0x0004AF54 File Offset: 0x00049154
 	private void On_TouchStart(Gesture gesture)
 	{
 		if (gesture.IsInRect(VirtualScreen.GetRealRect(this.buttonRect), true) && this.enable && this.isActivated)
@@ -343,7 +343,7 @@ public class EasyButton : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000DB0 RID: 3504 RVA: 0x0009C398 File Offset: 0x0009A598
+	// Token: 0x06000C8F RID: 3215 RVA: 0x0004AFC0 File Offset: 0x000491C0
 	private void On_TouchDown(Gesture gesture)
 	{
 		if (gesture.fingerIndex == this.buttonFingerIndex || (this.isSwipeIn && this.buttonState == EasyButton.ButtonState.None))
@@ -386,7 +386,7 @@ public class EasyButton : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000DB1 RID: 3505 RVA: 0x0009C4D8 File Offset: 0x0009A6D8
+	// Token: 0x06000C90 RID: 3216 RVA: 0x0004B100 File Offset: 0x00049300
 	private void On_TouchUp(Gesture gesture)
 	{
 		if (gesture.fingerIndex == this.buttonFingerIndex)
@@ -402,183 +402,183 @@ public class EasyButton : MonoBehaviour
 		}
 	}
 
-	// Token: 0x04000A89 RID: 2697
+	// Token: 0x0400088D RID: 2189
 	public bool enable = true;
 
-	// Token: 0x04000A8A RID: 2698
+	// Token: 0x0400088E RID: 2190
 	public bool isActivated = true;
 
-	// Token: 0x04000A8B RID: 2699
+	// Token: 0x0400088F RID: 2191
 	public bool showDebugArea = true;
 
-	// Token: 0x04000A8C RID: 2700
+	// Token: 0x04000890 RID: 2192
 	public bool isUseGuiLayout = true;
 
-	// Token: 0x04000A8D RID: 2701
+	// Token: 0x04000891 RID: 2193
 	public EasyButton.ButtonState buttonState = EasyButton.ButtonState.None;
 
-	// Token: 0x04000A8E RID: 2702
+	// Token: 0x04000892 RID: 2194
 	[SerializeField]
 	private EasyButton.ButtonAnchor anchor = EasyButton.ButtonAnchor.LowerRight;
 
-	// Token: 0x04000A8F RID: 2703
+	// Token: 0x04000893 RID: 2195
 	[SerializeField]
 	private Vector2 offset = Vector2.zero;
 
-	// Token: 0x04000A90 RID: 2704
+	// Token: 0x04000894 RID: 2196
 	[SerializeField]
 	private Vector2 scale = Vector2.one;
 
-	// Token: 0x04000A91 RID: 2705
+	// Token: 0x04000895 RID: 2197
 	public bool isSwipeIn;
 
-	// Token: 0x04000A92 RID: 2706
+	// Token: 0x04000896 RID: 2198
 	public bool isSwipeOut;
 
-	// Token: 0x04000A93 RID: 2707
+	// Token: 0x04000897 RID: 2199
 	public EasyButton.InteractionType interaction;
 
-	// Token: 0x04000A94 RID: 2708
+	// Token: 0x04000898 RID: 2200
 	public bool useBroadcast;
 
-	// Token: 0x04000A95 RID: 2709
+	// Token: 0x04000899 RID: 2201
 	public GameObject receiverGameObject;
 
-	// Token: 0x04000A96 RID: 2710
+	// Token: 0x0400089A RID: 2202
 	public EasyButton.Broadcast messageMode;
 
-	// Token: 0x04000A97 RID: 2711
+	// Token: 0x0400089B RID: 2203
 	public bool useSpecificalMethod;
 
-	// Token: 0x04000A98 RID: 2712
+	// Token: 0x0400089C RID: 2204
 	public string downMethodName;
 
-	// Token: 0x04000A99 RID: 2713
+	// Token: 0x0400089D RID: 2205
 	public string pressMethodName;
 
-	// Token: 0x04000A9A RID: 2714
+	// Token: 0x0400089E RID: 2206
 	public string upMethodName;
 
-	// Token: 0x04000A9B RID: 2715
+	// Token: 0x0400089F RID: 2207
 	public int guiDepth;
 
-	// Token: 0x04000A9C RID: 2716
+	// Token: 0x040008A0 RID: 2208
 	[SerializeField]
 	private Texture2D normalTexture;
 
-	// Token: 0x04000A9D RID: 2717
+	// Token: 0x040008A1 RID: 2209
 	public Color buttonNormalColor = Color.white;
 
-	// Token: 0x04000A9E RID: 2718
+	// Token: 0x040008A2 RID: 2210
 	[SerializeField]
 	private Texture2D activeTexture;
 
-	// Token: 0x04000A9F RID: 2719
+	// Token: 0x040008A3 RID: 2211
 	public Color buttonActiveColor = Color.white;
 
-	// Token: 0x04000AA0 RID: 2720
+	// Token: 0x040008A4 RID: 2212
 	public bool showInspectorProperties = true;
 
-	// Token: 0x04000AA1 RID: 2721
+	// Token: 0x040008A5 RID: 2213
 	public bool showInspectorPosition = true;
 
-	// Token: 0x04000AA2 RID: 2722
+	// Token: 0x040008A6 RID: 2214
 	public bool showInspectorEvent;
 
-	// Token: 0x04000AA3 RID: 2723
+	// Token: 0x040008A7 RID: 2215
 	public bool showInspectorTexture;
 
-	// Token: 0x04000AA4 RID: 2724
+	// Token: 0x040008A8 RID: 2216
 	private Rect buttonRect;
 
-	// Token: 0x04000AA5 RID: 2725
+	// Token: 0x040008A9 RID: 2217
 	private int buttonFingerIndex = -1;
 
-	// Token: 0x04000AA6 RID: 2726
+	// Token: 0x040008AA RID: 2218
 	private Texture2D currentTexture;
 
-	// Token: 0x04000AA7 RID: 2727
+	// Token: 0x040008AB RID: 2219
 	private Color currentColor;
 
-	// Token: 0x04000AA8 RID: 2728
+	// Token: 0x040008AC RID: 2220
 	private int frame;
 
-	// Token: 0x02000194 RID: 404
-	// (Invoke) Token: 0x06000DB4 RID: 3508
+	// Token: 0x02001248 RID: 4680
+	// (Invoke) Token: 0x060078D8 RID: 30936
 	public delegate void ButtonUpHandler(string buttonName);
 
-	// Token: 0x02000195 RID: 405
-	// (Invoke) Token: 0x06000DB8 RID: 3512
+	// Token: 0x02001249 RID: 4681
+	// (Invoke) Token: 0x060078DC RID: 30940
 	public delegate void ButtonPressHandler(string buttonName);
 
-	// Token: 0x02000196 RID: 406
-	// (Invoke) Token: 0x06000DBC RID: 3516
+	// Token: 0x0200124A RID: 4682
+	// (Invoke) Token: 0x060078E0 RID: 30944
 	public delegate void ButtonDownHandler(string buttonName);
 
-	// Token: 0x02000197 RID: 407
+	// Token: 0x0200124B RID: 4683
 	public enum ButtonAnchor
 	{
-		// Token: 0x04000AAA RID: 2730
+		// Token: 0x0400654C RID: 25932
 		UpperLeft,
-		// Token: 0x04000AAB RID: 2731
+		// Token: 0x0400654D RID: 25933
 		UpperCenter,
-		// Token: 0x04000AAC RID: 2732
+		// Token: 0x0400654E RID: 25934
 		UpperRight,
-		// Token: 0x04000AAD RID: 2733
+		// Token: 0x0400654F RID: 25935
 		MiddleLeft,
-		// Token: 0x04000AAE RID: 2734
+		// Token: 0x04006550 RID: 25936
 		MiddleCenter,
-		// Token: 0x04000AAF RID: 2735
+		// Token: 0x04006551 RID: 25937
 		MiddleRight,
-		// Token: 0x04000AB0 RID: 2736
+		// Token: 0x04006552 RID: 25938
 		LowerLeft,
-		// Token: 0x04000AB1 RID: 2737
+		// Token: 0x04006553 RID: 25939
 		LowerCenter,
-		// Token: 0x04000AB2 RID: 2738
+		// Token: 0x04006554 RID: 25940
 		LowerRight
 	}
 
-	// Token: 0x02000198 RID: 408
+	// Token: 0x0200124C RID: 4684
 	public enum Broadcast
 	{
-		// Token: 0x04000AB4 RID: 2740
+		// Token: 0x04006556 RID: 25942
 		SendMessage,
-		// Token: 0x04000AB5 RID: 2741
+		// Token: 0x04006557 RID: 25943
 		SendMessageUpwards,
-		// Token: 0x04000AB6 RID: 2742
+		// Token: 0x04006558 RID: 25944
 		BroadcastMessage
 	}
 
-	// Token: 0x02000199 RID: 409
+	// Token: 0x0200124D RID: 4685
 	public enum ButtonState
 	{
-		// Token: 0x04000AB8 RID: 2744
+		// Token: 0x0400655A RID: 25946
 		Down,
-		// Token: 0x04000AB9 RID: 2745
+		// Token: 0x0400655B RID: 25947
 		Press,
-		// Token: 0x04000ABA RID: 2746
+		// Token: 0x0400655C RID: 25948
 		Up,
-		// Token: 0x04000ABB RID: 2747
+		// Token: 0x0400655D RID: 25949
 		None
 	}
 
-	// Token: 0x0200019A RID: 410
+	// Token: 0x0200124E RID: 4686
 	public enum InteractionType
 	{
-		// Token: 0x04000ABD RID: 2749
+		// Token: 0x0400655F RID: 25951
 		Event,
-		// Token: 0x04000ABE RID: 2750
+		// Token: 0x04006560 RID: 25952
 		Include
 	}
 
-	// Token: 0x0200019B RID: 411
+	// Token: 0x0200124F RID: 4687
 	private enum MessageName
 	{
-		// Token: 0x04000AC0 RID: 2752
+		// Token: 0x04006562 RID: 25954
 		On_ButtonDown,
-		// Token: 0x04000AC1 RID: 2753
+		// Token: 0x04006563 RID: 25955
 		On_ButtonPress,
-		// Token: 0x04000AC2 RID: 2754
+		// Token: 0x04006564 RID: 25956
 		On_ButtonUp
 	}
 }

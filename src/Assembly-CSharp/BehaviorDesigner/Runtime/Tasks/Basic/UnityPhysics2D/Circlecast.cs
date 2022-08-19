@@ -3,13 +3,13 @@ using UnityEngine;
 
 namespace BehaviorDesigner.Runtime.Tasks.Basic.UnityPhysics2D
 {
-	// Token: 0x02001581 RID: 5505
+	// Token: 0x020010C7 RID: 4295
 	[TaskCategory("Basic/Physics2D")]
 	[TaskDescription("Casts a circle against all colliders in the scene. Returns success if a collider was hit.")]
 	[HelpURL("http://www.opsive.com/assets/BehaviorDesigner/documentation.php?id=118")]
 	public class Circlecast : Action
 	{
-		// Token: 0x060081EB RID: 33259 RVA: 0x002CC87C File Offset: 0x002CAA7C
+		// Token: 0x060073F1 RID: 29681 RVA: 0x002B0EA4 File Offset: 0x002AF0A4
 		public override TaskStatus OnUpdate()
 		{
 			Vector2 vector = this.direction.Value;
@@ -38,7 +38,7 @@ namespace BehaviorDesigner.Runtime.Tasks.Basic.UnityPhysics2D
 			return 1;
 		}
 
-		// Token: 0x060081EC RID: 33260 RVA: 0x002CC9A8 File Offset: 0x002CABA8
+		// Token: 0x060073F2 RID: 29682 RVA: 0x002B0FD0 File Offset: 0x002AF1D0
 		public override void OnReset()
 		{
 			this.originGameObject = null;
@@ -50,50 +50,50 @@ namespace BehaviorDesigner.Runtime.Tasks.Basic.UnityPhysics2D
 			this.space = 1;
 		}
 
-		// Token: 0x04006E95 RID: 28309
+		// Token: 0x04005F95 RID: 24469
 		[Tooltip("Starts the circlecast at the GameObject's position. If null the originPosition will be used.")]
 		public SharedGameObject originGameObject;
 
-		// Token: 0x04006E96 RID: 28310
+		// Token: 0x04005F96 RID: 24470
 		[Tooltip("Starts the circlecast at the position. Only used if originGameObject is null.")]
 		public SharedVector2 originPosition;
 
-		// Token: 0x04006E97 RID: 28311
+		// Token: 0x04005F97 RID: 24471
 		[Tooltip("The radius of the circlecast")]
 		public SharedFloat radius;
 
-		// Token: 0x04006E98 RID: 28312
+		// Token: 0x04005F98 RID: 24472
 		[Tooltip("The direction of the circlecast")]
 		public SharedVector2 direction;
 
-		// Token: 0x04006E99 RID: 28313
+		// Token: 0x04005F99 RID: 24473
 		[Tooltip("The length of the ray. Set to -1 for infinity.")]
 		public SharedFloat distance = -1f;
 
-		// Token: 0x04006E9A RID: 28314
+		// Token: 0x04005F9A RID: 24474
 		[Tooltip("Selectively ignore colliders.")]
 		public LayerMask layerMask = -1;
 
-		// Token: 0x04006E9B RID: 28315
+		// Token: 0x04005F9B RID: 24475
 		[Tooltip("Use world or local space. The direction is in world space if no GameObject is specified.")]
 		public Space space = 1;
 
-		// Token: 0x04006E9C RID: 28316
+		// Token: 0x04005F9C RID: 24476
 		[SharedRequired]
 		[Tooltip("Stores the hit object of the circlecast.")]
 		public SharedGameObject storeHitObject;
 
-		// Token: 0x04006E9D RID: 28317
+		// Token: 0x04005F9D RID: 24477
 		[SharedRequired]
 		[Tooltip("Stores the hit point of the circlecast.")]
 		public SharedVector2 storeHitPoint;
 
-		// Token: 0x04006E9E RID: 28318
+		// Token: 0x04005F9E RID: 24478
 		[SharedRequired]
 		[Tooltip("Stores the hit normal of the circlecast.")]
 		public SharedVector2 storeHitNormal;
 
-		// Token: 0x04006E9F RID: 28319
+		// Token: 0x04005F9F RID: 24479
 		[SharedRequired]
 		[Tooltip("Stores the hit distance of the circlecast.")]
 		public SharedFloat storeHitDistance;

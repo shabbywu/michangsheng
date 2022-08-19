@@ -4,15 +4,15 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-// Token: 0x02000325 RID: 805
+// Token: 0x0200020D RID: 525
 public class UILingTianCell : MonoBehaviour
 {
-	// Token: 0x060017B9 RID: 6073 RVA: 0x000042DD File Offset: 0x000024DD
+	// Token: 0x06001508 RID: 5384 RVA: 0x00004095 File Offset: 0x00002295
 	private void Awake()
 	{
 	}
 
-	// Token: 0x060017BA RID: 6074 RVA: 0x000CEFB4 File Offset: 0x000CD1B4
+	// Token: 0x06001509 RID: 5385 RVA: 0x00086814 File Offset: 0x00084A14
 	public void RefreshUI()
 	{
 		int id = UIDongFu.Inst.DongFu.LingTian[this.Slot].ID;
@@ -54,18 +54,18 @@ public class UILingTianCell : MonoBehaviour
 		this.IconShow.OnClick = null;
 	}
 
-	// Token: 0x04001319 RID: 4889
+	// Token: 0x04000FC9 RID: 4041
 	public int Slot;
 
-	// Token: 0x0400131A RID: 4890
+	// Token: 0x04000FCA RID: 4042
 	public UIIconShow IconShow;
 
-	// Token: 0x0400131B RID: 4891
+	// Token: 0x04000FCB RID: 4043
 	public GameObject Bar;
 
-	// Token: 0x0400131C RID: 4892
+	// Token: 0x04000FCC RID: 4044
 	public Slider ProcessSlider;
 
-	// Token: 0x0400131D RID: 4893
+	// Token: 0x04000FCD RID: 4045
 	public Text ShengYuTimeText;
 }

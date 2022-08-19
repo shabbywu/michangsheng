@@ -7,10 +7,10 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
 
-// Token: 0x02000430 RID: 1072
+// Token: 0x020002DE RID: 734
 public class UIMiniShop : MonoBehaviour, IESCClose
 {
-	// Token: 0x06001C8F RID: 7311 RVA: 0x000FC24C File Offset: 0x000FA44C
+	// Token: 0x06001979 RID: 6521 RVA: 0x000B6340 File Offset: 0x000B4540
 	public static void Show(int itemID, int price, int maxSellCount, Command cmd = null)
 	{
 		UIMiniShop component = Object.Instantiate<GameObject>(Resources.Load<GameObject>("Prefab/UIMiniShop"), NewUICanvas.Inst.Canvas.transform).GetComponent<UIMiniShop>();
@@ -21,7 +21,7 @@ public class UIMiniShop : MonoBehaviour, IESCClose
 		component.RefreshUI();
 	}
 
-	// Token: 0x06001C90 RID: 7312 RVA: 0x000FC2A0 File Offset: 0x000FA4A0
+	// Token: 0x0600197A RID: 6522 RVA: 0x000B6394 File Offset: 0x000B4594
 	public void RefreshUI()
 	{
 		UIMiniShop.Inst = this;
@@ -62,7 +62,7 @@ public class UIMiniShop : MonoBehaviour, IESCClose
 		this.NumSlider.onValueChanged.AddListener(new UnityAction<float>(this.OnSliderValueChanged));
 	}
 
-	// Token: 0x06001C91 RID: 7313 RVA: 0x000FC43C File Offset: 0x000FA63C
+	// Token: 0x0600197B RID: 6523 RVA: 0x000B6530 File Offset: 0x000B4730
 	public void RefreshCount()
 	{
 		this.ItemSlot.Item.Count = this.nowSelectCount;
@@ -70,7 +70,7 @@ public class UIMiniShop : MonoBehaviour, IESCClose
 		this.CostText.text = (this.nowSelectCount * this.price).ToString();
 	}
 
-	// Token: 0x06001C92 RID: 7314 RVA: 0x000FC48C File Offset: 0x000FA68C
+	// Token: 0x0600197C RID: 6524 RVA: 0x000B6580 File Offset: 0x000B4780
 	public void OnSliderValueChanged(float value)
 	{
 		int num = Mathf.RoundToInt(value);
@@ -78,19 +78,19 @@ public class UIMiniShop : MonoBehaviour, IESCClose
 		this.RefreshCount();
 	}
 
-	// Token: 0x06001C93 RID: 7315 RVA: 0x00017DBB File Offset: 0x00015FBB
+	// Token: 0x0600197D RID: 6525 RVA: 0x000B65A1 File Offset: 0x000B47A1
 	public void OnAddClick()
 	{
 		this.NumSlider.value += 1f;
 	}
 
-	// Token: 0x06001C94 RID: 7316 RVA: 0x00017DD4 File Offset: 0x00015FD4
+	// Token: 0x0600197E RID: 6526 RVA: 0x000B65BA File Offset: 0x000B47BA
 	public void OnSubClick()
 	{
 		this.NumSlider.value -= 1f;
 	}
 
-	// Token: 0x06001C95 RID: 7317 RVA: 0x000FC4B0 File Offset: 0x000FA6B0
+	// Token: 0x0600197F RID: 6527 RVA: 0x000B65D4 File Offset: 0x000B47D4
 	public void OnOkBtnClick()
 	{
 		if (this.nowSelectCount == 0)
@@ -111,7 +111,7 @@ public class UIMiniShop : MonoBehaviour, IESCClose
 		UIPopTip.Inst.Pop("灵石不足", PopTipIconType.叹号);
 	}
 
-	// Token: 0x06001C96 RID: 7318 RVA: 0x00017DED File Offset: 0x00015FED
+	// Token: 0x06001980 RID: 6528 RVA: 0x000B666F File Offset: 0x000B486F
 	private void Close()
 	{
 		if (this.cmd != null)
@@ -121,52 +121,52 @@ public class UIMiniShop : MonoBehaviour, IESCClose
 		Object.Destroy(base.gameObject);
 	}
 
-	// Token: 0x06001C97 RID: 7319 RVA: 0x00017E13 File Offset: 0x00016013
+	// Token: 0x06001981 RID: 6529 RVA: 0x000B6695 File Offset: 0x000B4895
 	bool IESCClose.TryEscClose()
 	{
 		this.Close();
 		return true;
 	}
 
-	// Token: 0x04001889 RID: 6281
+	// Token: 0x040014A9 RID: 5289
 	public static UIMiniShop Inst;
 
-	// Token: 0x0400188A RID: 6282
+	// Token: 0x040014AA RID: 5290
 	public BaseSlot ItemSlot;
 
-	// Token: 0x0400188B RID: 6283
+	// Token: 0x040014AB RID: 5291
 	public Text CostText;
 
-	// Token: 0x0400188C RID: 6284
+	// Token: 0x040014AC RID: 5292
 	public FpBtn LeftBtn;
 
-	// Token: 0x0400188D RID: 6285
+	// Token: 0x040014AD RID: 5293
 	public FpBtn RightBtn;
 
-	// Token: 0x0400188E RID: 6286
+	// Token: 0x040014AE RID: 5294
 	public FpBtn OkBtn;
 
-	// Token: 0x0400188F RID: 6287
+	// Token: 0x040014AF RID: 5295
 	public FpBtn CloseBtn;
 
-	// Token: 0x04001890 RID: 6288
+	// Token: 0x040014B0 RID: 5296
 	public Slider NumSlider;
 
-	// Token: 0x04001891 RID: 6289
+	// Token: 0x040014B1 RID: 5297
 	private int itemID;
 
-	// Token: 0x04001892 RID: 6290
+	// Token: 0x040014B2 RID: 5298
 	private int price;
 
-	// Token: 0x04001893 RID: 6291
+	// Token: 0x040014B3 RID: 5299
 	private int maxSellCount;
 
-	// Token: 0x04001894 RID: 6292
+	// Token: 0x040014B4 RID: 5300
 	private BaseItem item;
 
-	// Token: 0x04001895 RID: 6293
+	// Token: 0x040014B5 RID: 5301
 	private Command cmd;
 
-	// Token: 0x04001896 RID: 6294
+	// Token: 0x040014B6 RID: 5302
 	private int nowSelectCount;
 }

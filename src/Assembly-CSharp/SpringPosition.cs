@@ -1,11 +1,11 @@
 ﻿using System;
 using UnityEngine;
 
-// Token: 0x020000E5 RID: 229
+// Token: 0x02000095 RID: 149
 [AddComponentMenu("NGUI/Tween/Spring Position")]
 public class SpringPosition : MonoBehaviour
 {
-	// Token: 0x060008DF RID: 2271 RVA: 0x0000B3C8 File Offset: 0x000095C8
+	// Token: 0x0600082B RID: 2091 RVA: 0x00031B78 File Offset: 0x0002FD78
 	private void Start()
 	{
 		this.mTrans = base.transform;
@@ -15,7 +15,7 @@ public class SpringPosition : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060008E0 RID: 2272 RVA: 0x000861D0 File Offset: 0x000843D0
+	// Token: 0x0600082C RID: 2092 RVA: 0x00031BA0 File Offset: 0x0002FDA0
 	private void Update()
 	{
 		float deltaTime = this.ignoreTimeScale ? RealTime.deltaTime : Time.deltaTime;
@@ -53,7 +53,7 @@ public class SpringPosition : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060008E1 RID: 2273 RVA: 0x00086368 File Offset: 0x00084568
+	// Token: 0x0600082D RID: 2093 RVA: 0x00031D38 File Offset: 0x0002FF38
 	private void NotifyListeners()
 	{
 		SpringPosition.current = this;
@@ -68,7 +68,7 @@ public class SpringPosition : MonoBehaviour
 		SpringPosition.current = null;
 	}
 
-	// Token: 0x060008E2 RID: 2274 RVA: 0x000863C4 File Offset: 0x000845C4
+	// Token: 0x0600082E RID: 2094 RVA: 0x00031D94 File Offset: 0x0002FF94
 	public static SpringPosition Begin(GameObject go, Vector3 pos, float strength)
 	{
 		SpringPosition springPosition = go.GetComponent<SpringPosition>();
@@ -87,47 +87,47 @@ public class SpringPosition : MonoBehaviour
 		return springPosition;
 	}
 
-	// Token: 0x0400062F RID: 1583
+	// Token: 0x0400050C RID: 1292
 	public static SpringPosition current;
 
-	// Token: 0x04000630 RID: 1584
+	// Token: 0x0400050D RID: 1293
 	public Vector3 target = Vector3.zero;
 
-	// Token: 0x04000631 RID: 1585
+	// Token: 0x0400050E RID: 1294
 	public float strength = 10f;
 
-	// Token: 0x04000632 RID: 1586
+	// Token: 0x0400050F RID: 1295
 	public bool worldSpace;
 
-	// Token: 0x04000633 RID: 1587
+	// Token: 0x04000510 RID: 1296
 	public bool ignoreTimeScale;
 
-	// Token: 0x04000634 RID: 1588
+	// Token: 0x04000511 RID: 1297
 	public bool updateScrollView;
 
-	// Token: 0x04000635 RID: 1589
+	// Token: 0x04000512 RID: 1298
 	public SpringPosition.OnFinished onFinished;
 
-	// Token: 0x04000636 RID: 1590
+	// Token: 0x04000513 RID: 1299
 	[SerializeField]
 	[HideInInspector]
 	private GameObject eventReceiver;
 
-	// Token: 0x04000637 RID: 1591
+	// Token: 0x04000514 RID: 1300
 	[SerializeField]
 	[HideInInspector]
 	public string callWhenFinished;
 
-	// Token: 0x04000638 RID: 1592
+	// Token: 0x04000515 RID: 1301
 	private Transform mTrans;
 
-	// Token: 0x04000639 RID: 1593
+	// Token: 0x04000516 RID: 1302
 	private float mThreshold;
 
-	// Token: 0x0400063A RID: 1594
+	// Token: 0x04000517 RID: 1303
 	private UIScrollView mSv;
 
-	// Token: 0x020000E6 RID: 230
-	// (Invoke) Token: 0x060008E5 RID: 2277
+	// Token: 0x02001214 RID: 4628
+	// (Invoke) Token: 0x0600786B RID: 30827
 	public delegate void OnFinished();
 }

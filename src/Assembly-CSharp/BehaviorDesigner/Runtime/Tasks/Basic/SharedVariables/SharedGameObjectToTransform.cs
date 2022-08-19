@@ -3,12 +3,12 @@ using UnityEngine;
 
 namespace BehaviorDesigner.Runtime.Tasks.Basic.SharedVariables
 {
-	// Token: 0x0200152A RID: 5418
+	// Token: 0x02001070 RID: 4208
 	[TaskCategory("Basic/SharedVariable")]
 	[TaskDescription("Gets the Transform from the GameObject. Returns Success.")]
 	public class SharedGameObjectToTransform : Action
 	{
-		// Token: 0x060080A8 RID: 32936 RVA: 0x00057927 File Offset: 0x00055B27
+		// Token: 0x060072AE RID: 29358 RVA: 0x002AE561 File Offset: 0x002AC761
 		public override TaskStatus OnUpdate()
 		{
 			if (this.sharedGameObject.Value == null)
@@ -19,18 +19,18 @@ namespace BehaviorDesigner.Runtime.Tasks.Basic.SharedVariables
 			return 2;
 		}
 
-		// Token: 0x060080A9 RID: 32937 RVA: 0x0005795A File Offset: 0x00055B5A
+		// Token: 0x060072AF RID: 29359 RVA: 0x002AE594 File Offset: 0x002AC794
 		public override void OnReset()
 		{
 			this.sharedGameObject = null;
 			this.sharedTransform = null;
 		}
 
-		// Token: 0x04006D61 RID: 28001
+		// Token: 0x04005E61 RID: 24161
 		[Tooltip("The GameObject to get the Transform of")]
 		public SharedGameObject sharedGameObject;
 
-		// Token: 0x04006D62 RID: 28002
+		// Token: 0x04005E62 RID: 24162
 		[RequiredField]
 		[Tooltip("The Transform to set")]
 		public SharedTransform sharedTransform;

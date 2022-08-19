@@ -1,21 +1,21 @@
 ﻿using System;
 using GUIPackage;
 
-// Token: 0x020003A8 RID: 936
+// Token: 0x02000281 RID: 641
 public class ZengLiArg
 {
-	// Token: 0x04001560 RID: 5472
+	// Token: 0x040011ED RID: 4589
 	public int JieGuo;
 
-	// Token: 0x04001561 RID: 5473
+	// Token: 0x040011EE RID: 4590
 	public item Item;
 
-	// Token: 0x04001562 RID: 5474
+	// Token: 0x040011EF RID: 4591
 	public int AddFavor;
 
-	// Token: 0x04001563 RID: 5475
+	// Token: 0x040011F0 RID: 4592
 	public int AddQingFen;
 
-	// Token: 0x04001564 RID: 5476
+	// Token: 0x040011F1 RID: 4593
 	public int DuoYuQingFen;
 }

@@ -8,12 +8,12 @@ using UnityEngine;
 
 namespace GUIPackage
 {
-	// Token: 0x02000D7B RID: 3451
+	// Token: 0x02000A5B RID: 2651
 	public class Inventory2 : MonoBehaviour
 	{
-		// Token: 0x170007EB RID: 2027
-		// (get) Token: 0x060052FE RID: 21246 RVA: 0x002291A4 File Offset: 0x002273A4
-		// (set) Token: 0x060052FD RID: 21245 RVA: 0x00229140 File Offset: 0x00227340
+		// Token: 0x170005CE RID: 1486
+		// (get) Token: 0x06004A13 RID: 18963 RVA: 0x001F68C8 File Offset: 0x001F4AC8
+		// (set) Token: 0x06004A12 RID: 18962 RVA: 0x001F6864 File Offset: 0x001F4A64
 		public bool showTooltip
 		{
 			get
@@ -53,7 +53,7 @@ namespace GUIPackage
 			}
 		}
 
-		// Token: 0x060052FF RID: 21247 RVA: 0x00229224 File Offset: 0x00227424
+		// Token: 0x06004A14 RID: 18964 RVA: 0x001F6948 File Offset: 0x001F4B48
 		public void Awake()
 		{
 			this.nowIndex = 0;
@@ -76,7 +76,7 @@ namespace GUIPackage
 			this.InitInventory();
 		}
 
-		// Token: 0x06005300 RID: 21248 RVA: 0x002292A0 File Offset: 0x002274A0
+		// Token: 0x06004A15 RID: 18965 RVA: 0x001F69C4 File Offset: 0x001F4BC4
 		private void Start()
 		{
 			GameObject gameObject = GameObject.Find("NewUIAutoToolTips");
@@ -93,14 +93,14 @@ namespace GUIPackage
 			this.DanLuToolTip = gameObject;
 		}
 
-		// Token: 0x06005301 RID: 21249 RVA: 0x0003B645 File Offset: 0x00039845
+		// Token: 0x06004A16 RID: 18966 RVA: 0x001F6A1C File Offset: 0x001F4C1C
 		public void ZhengLi()
 		{
 			PlayerEx.Player.SortItem();
 			this.LoadInventory();
 		}
 
-		// Token: 0x06005302 RID: 21250 RVA: 0x002292F8 File Offset: 0x002274F8
+		// Token: 0x06004A17 RID: 18967 RVA: 0x001F6A30 File Offset: 0x001F4C30
 		public void setItemLeiXin(List<int> leixin)
 		{
 			if (JiaoYiManager.inst != null && !JiaoYiManager.inst.canClick)
@@ -115,7 +115,7 @@ namespace GUIPackage
 			this.LoadInventory();
 		}
 
-		// Token: 0x06005303 RID: 21251 RVA: 0x00229348 File Offset: 0x00227548
+		// Token: 0x06004A18 RID: 18968 RVA: 0x001F6A80 File Offset: 0x001F4C80
 		public void setMonstartLeiXin(List<int> leixin)
 		{
 			if (JiaoYiManager.inst != null && !JiaoYiManager.inst.canClick)
@@ -131,109 +131,109 @@ namespace GUIPackage
 			this.MonstarLoadInventory(exchengePlan.MonstarID);
 		}
 
-		// Token: 0x06005304 RID: 21252 RVA: 0x0003B657 File Offset: 0x00039857
+		// Token: 0x06004A19 RID: 18969 RVA: 0x001F6ADE File Offset: 0x001F4CDE
 		public void setMonstarItemLeiXin1()
 		{
 			this.setMonstartLeiXin(new List<int>());
 		}
 
-		// Token: 0x06005305 RID: 21253 RVA: 0x0003B664 File Offset: 0x00039864
+		// Token: 0x06004A1A RID: 18970 RVA: 0x001F6AEB File Offset: 0x001F4CEB
 		public void setMonstarItemLeiXin2()
 		{
 			this.setMonstartLeiXin(Tools.JsonListToList(jsonData.instance.wupingfenlan["2"]["ItemFlag"]));
 		}
 
-		// Token: 0x06005306 RID: 21254 RVA: 0x0003B68F File Offset: 0x0003988F
+		// Token: 0x06004A1B RID: 18971 RVA: 0x001F6B16 File Offset: 0x001F4D16
 		public void setMonstarItemLeiXin3()
 		{
 			this.setMonstartLeiXin(Tools.JsonListToList(jsonData.instance.wupingfenlan["3"]["ItemFlag"]));
 		}
 
-		// Token: 0x06005307 RID: 21255 RVA: 0x0003B6BA File Offset: 0x000398BA
+		// Token: 0x06004A1C RID: 18972 RVA: 0x001F6B41 File Offset: 0x001F4D41
 		public void setMonstarItemLeiXin4()
 		{
 			this.setMonstartLeiXin(Tools.JsonListToList(jsonData.instance.wupingfenlan["4"]["ItemFlag"]));
 		}
 
-		// Token: 0x06005308 RID: 21256 RVA: 0x0003B6E5 File Offset: 0x000398E5
+		// Token: 0x06004A1D RID: 18973 RVA: 0x001F6B6C File Offset: 0x001F4D6C
 		public void setMonstarItemLeiXin5()
 		{
 			this.setMonstartLeiXin(Tools.JsonListToList(jsonData.instance.wupingfenlan["5"]["ItemFlag"]));
 		}
 
-		// Token: 0x06005309 RID: 21257 RVA: 0x0003B710 File Offset: 0x00039910
+		// Token: 0x06004A1E RID: 18974 RVA: 0x001F6B97 File Offset: 0x001F4D97
 		public void setMonstarItemLeiXin6()
 		{
 			this.setMonstartLeiXin(Tools.JsonListToList(jsonData.instance.wupingfenlan["6"]["ItemFlag"]));
 		}
 
-		// Token: 0x0600530A RID: 21258 RVA: 0x0003B73B File Offset: 0x0003993B
+		// Token: 0x06004A1F RID: 18975 RVA: 0x001F6BC2 File Offset: 0x001F4DC2
 		public void setMonstarItemLeiXin7()
 		{
 			this.setMonstartLeiXin(Tools.JsonListToList(jsonData.instance.wupingfenlan["7"]["ItemFlag"]));
 		}
 
-		// Token: 0x0600530B RID: 21259 RVA: 0x0003B766 File Offset: 0x00039966
+		// Token: 0x06004A20 RID: 18976 RVA: 0x001F6BED File Offset: 0x001F4DED
 		public void setItemLeiXin1()
 		{
 			this.setItemLeiXin(new List<int>());
 		}
 
-		// Token: 0x0600530C RID: 21260 RVA: 0x0003B773 File Offset: 0x00039973
+		// Token: 0x06004A21 RID: 18977 RVA: 0x001F6BFA File Offset: 0x001F4DFA
 		public void setItemLeiXin2()
 		{
 			this.setItemLeiXin(Tools.JsonListToList(jsonData.instance.wupingfenlan["2"]["ItemFlag"]));
 		}
 
-		// Token: 0x0600530D RID: 21261 RVA: 0x0003B79E File Offset: 0x0003999E
+		// Token: 0x06004A22 RID: 18978 RVA: 0x001F6C25 File Offset: 0x001F4E25
 		public void setItemLeiXin3()
 		{
 			this.setItemLeiXin(Tools.JsonListToList(jsonData.instance.wupingfenlan["3"]["ItemFlag"]));
 		}
 
-		// Token: 0x0600530E RID: 21262 RVA: 0x0003B7C9 File Offset: 0x000399C9
+		// Token: 0x06004A23 RID: 18979 RVA: 0x001F6C50 File Offset: 0x001F4E50
 		public void setItemLeiXin4()
 		{
 			this.setItemLeiXin(Tools.JsonListToList(jsonData.instance.wupingfenlan["4"]["ItemFlag"]));
 		}
 
-		// Token: 0x0600530F RID: 21263 RVA: 0x0003B7F4 File Offset: 0x000399F4
+		// Token: 0x06004A24 RID: 18980 RVA: 0x001F6C7B File Offset: 0x001F4E7B
 		public void setItemLeiXin5()
 		{
 			this.setItemLeiXin(Tools.JsonListToList(jsonData.instance.wupingfenlan["5"]["ItemFlag"]));
 		}
 
-		// Token: 0x06005310 RID: 21264 RVA: 0x0003B81F File Offset: 0x00039A1F
+		// Token: 0x06004A25 RID: 18981 RVA: 0x001F6CA6 File Offset: 0x001F4EA6
 		public void setItemLeiXin6()
 		{
 			this.setItemLeiXin(Tools.JsonListToList(jsonData.instance.wupingfenlan["6"]["ItemFlag"]));
 		}
 
-		// Token: 0x06005311 RID: 21265 RVA: 0x0003B84A File Offset: 0x00039A4A
+		// Token: 0x06004A26 RID: 18982 RVA: 0x001F6CD1 File Offset: 0x001F4ED1
 		public void setItemLeiXin7()
 		{
 			this.setItemLeiXin(Tools.JsonListToList(jsonData.instance.wupingfenlan["7"]["ItemFlag"]));
 		}
 
-		// Token: 0x06005312 RID: 21266 RVA: 0x0003B773 File Offset: 0x00039973
+		// Token: 0x06004A27 RID: 18983 RVA: 0x001F6BFA File Offset: 0x001F4DFA
 		public void setExItemLeiXin2()
 		{
 			this.setItemLeiXin(Tools.JsonListToList(jsonData.instance.wupingfenlan["2"]["ItemFlag"]));
 		}
 
-		// Token: 0x06005313 RID: 21267 RVA: 0x0003B79E File Offset: 0x0003999E
+		// Token: 0x06004A28 RID: 18984 RVA: 0x001F6C25 File Offset: 0x001F4E25
 		public void setExItemLeiXin3()
 		{
 			this.setItemLeiXin(Tools.JsonListToList(jsonData.instance.wupingfenlan["3"]["ItemFlag"]));
 		}
 
-		// Token: 0x06005314 RID: 21268 RVA: 0x0003B7C9 File Offset: 0x000399C9
+		// Token: 0x06004A29 RID: 18985 RVA: 0x001F6C50 File Offset: 0x001F4E50
 		public void setExItemLeiXin4()
 		{
 			this.setItemLeiXin(Tools.JsonListToList(jsonData.instance.wupingfenlan["4"]["ItemFlag"]));
 		}
 
-		// Token: 0x06005315 RID: 21269 RVA: 0x0003B875 File Offset: 0x00039A75
+		// Token: 0x06004A2A RID: 18986 RVA: 0x001F6CFC File Offset: 0x001F4EFC
 		public void setExItemLeiXin5()
 		{
 			this.setItemLeiXin(new List<int>
@@ -242,7 +242,7 @@ namespace GUIPackage
 			});
 		}
 
-		// Token: 0x06005316 RID: 21270 RVA: 0x0003B889 File Offset: 0x00039A89
+		// Token: 0x06004A2B RID: 18987 RVA: 0x001F6D10 File Offset: 0x001F4F10
 		public void setExItemLeiXin6()
 		{
 			this.setItemLeiXin(new List<int>
@@ -251,13 +251,13 @@ namespace GUIPackage
 			});
 		}
 
-		// Token: 0x06005317 RID: 21271 RVA: 0x0003B81F File Offset: 0x00039A1F
+		// Token: 0x06004A2C RID: 18988 RVA: 0x001F6CA6 File Offset: 0x001F4EA6
 		public void setExItemLeiXin7()
 		{
 			this.setItemLeiXin(Tools.JsonListToList(jsonData.instance.wupingfenlan["6"]["ItemFlag"]));
 		}
 
-		// Token: 0x06005318 RID: 21272 RVA: 0x002293A8 File Offset: 0x002275A8
+		// Token: 0x06004A2D RID: 18989 RVA: 0x001F6D24 File Offset: 0x001F4F24
 		public void Update()
 		{
 			if (this.Temp == null && UI_Manager.inst != null)
@@ -280,7 +280,7 @@ namespace GUIPackage
 			}
 		}
 
-		// Token: 0x06005319 RID: 21273 RVA: 0x00229478 File Offset: 0x00227678
+		// Token: 0x06004A2E RID: 18990 RVA: 0x001F6DF4 File Offset: 0x001F4FF4
 		public void ChangeItem(ref item Item1, ref item Item2)
 		{
 			item item = new item();
@@ -289,7 +289,7 @@ namespace GUIPackage
 			Item2 = item;
 		}
 
-		// Token: 0x0600531A RID: 21274 RVA: 0x0003B89D File Offset: 0x00039A9D
+		// Token: 0x06004A2F RID: 18991 RVA: 0x001F6E11 File Offset: 0x001F5011
 		public void Clear_dragedItem()
 		{
 			this.dragedItem = new item();
@@ -297,7 +297,7 @@ namespace GUIPackage
 			this.Temp.GetComponent<UITexture>().mainTexture = null;
 		}
 
-		// Token: 0x0600531B RID: 21275 RVA: 0x0003B8C2 File Offset: 0x00039AC2
+		// Token: 0x06004A30 RID: 18992 RVA: 0x001F6E36 File Offset: 0x001F5036
 		public void BackItem()
 		{
 			if (this.draggingItem)
@@ -307,7 +307,7 @@ namespace GUIPackage
 			}
 		}
 
-		// Token: 0x0600531C RID: 21276 RVA: 0x00229498 File Offset: 0x00227698
+		// Token: 0x06004A31 RID: 18993 RVA: 0x001F6E60 File Offset: 0x001F5060
 		private void Show()
 		{
 			this.showInventory = !this.showInventory;
@@ -323,20 +323,20 @@ namespace GUIPackage
 			Singleton.UI.UI_Top(this.InventoryUI.transform);
 		}
 
-		// Token: 0x0600531D RID: 21277 RVA: 0x0003B8E9 File Offset: 0x00039AE9
+		// Token: 0x06004A32 RID: 18994 RVA: 0x001F6EE3 File Offset: 0x001F50E3
 		private void InitInventory()
 		{
 			this.InitSlot("Slot", "Win/item");
 			this.InventoryUI.SetActive(this.showInventory);
 		}
 
-		// Token: 0x0600531E RID: 21278 RVA: 0x0003B90C File Offset: 0x00039B0C
+		// Token: 0x06004A33 RID: 18995 RVA: 0x001F6F06 File Offset: 0x001F5106
 		public void InitSlot(string SlotName, string ParentPatch = "Win/item")
 		{
 			this.InitSlot(SlotName, (int)this.count, ParentPatch);
 		}
 
-		// Token: 0x0600531F RID: 21279 RVA: 0x0022951C File Offset: 0x0022771C
+		// Token: 0x06004A34 RID: 18996 RVA: 0x001F6F18 File Offset: 0x001F5118
 		public void InitSlot<T>(string SlotName, int _count, Inventory2.EventsetItemCell<T> eventcell, string ParentPatch = "Win/item") where T : ItemCell
 		{
 			for (int i = 0; i < _count; i++)
@@ -356,7 +356,7 @@ namespace GUIPackage
 			}
 		}
 
-		// Token: 0x06005320 RID: 21280 RVA: 0x00229624 File Offset: 0x00227824
+		// Token: 0x06004A35 RID: 18997 RVA: 0x001F7020 File Offset: 0x001F5220
 		public void InitSlot(string SlotName, int _count, string ParentPatch = "Win/item")
 		{
 			for (int i = 0; i < _count; i++)
@@ -386,7 +386,7 @@ namespace GUIPackage
 			}
 		}
 
-		// Token: 0x06005321 RID: 21281 RVA: 0x00229754 File Offset: 0x00227954
+		// Token: 0x06004A36 RID: 18998 RVA: 0x001F7150 File Offset: 0x001F5350
 		private void InitInventoryEX()
 		{
 			GameObject gameObject = this.exchengkey;
@@ -431,7 +431,7 @@ namespace GUIPackage
 			this.InventoryUI.SetActive(this.showInventory);
 		}
 
-		// Token: 0x06005322 RID: 21282 RVA: 0x002298EC File Offset: 0x00227AEC
+		// Token: 0x06004A37 RID: 18999 RVA: 0x001F72E8 File Offset: 0x001F54E8
 		public void AddItem(int id)
 		{
 			int i;
@@ -464,7 +464,7 @@ namespace GUIPackage
 			}
 		}
 
-		// Token: 0x06005323 RID: 21283 RVA: 0x00229A04 File Offset: 0x00227C04
+		// Token: 0x06004A38 RID: 19000 RVA: 0x001F7400 File Offset: 0x001F5600
 		public bool is_Full(item Item, int num)
 		{
 			bool result = true;
@@ -495,7 +495,7 @@ namespace GUIPackage
 			return result;
 		}
 
-		// Token: 0x06005324 RID: 21284 RVA: 0x00229AAC File Offset: 0x00227CAC
+		// Token: 0x06004A39 RID: 19001 RVA: 0x001F74A8 File Offset: 0x001F56A8
 		public bool isFull(int type, string UUID)
 		{
 			int startIndex = 0;
@@ -516,7 +516,7 @@ namespace GUIPackage
 			return this.isFull(startIndex, endIndex, UUID);
 		}
 
-		// Token: 0x06005325 RID: 21285 RVA: 0x00229AEC File Offset: 0x00227CEC
+		// Token: 0x06004A3A RID: 19002 RVA: 0x001F74E8 File Offset: 0x001F56E8
 		public bool isFull(int startIndex, int endIndex, string UUID)
 		{
 			bool result = false;
@@ -536,7 +536,7 @@ namespace GUIPackage
 			return result;
 		}
 
-		// Token: 0x06005326 RID: 21286 RVA: 0x00229B3C File Offset: 0x00227D3C
+		// Token: 0x06004A3B RID: 19003 RVA: 0x001F7538 File Offset: 0x001F5738
 		public void exAddItem1(int addType, string uuid, int num = 1, int addChaifenTyep = 0, int AddToIndex = -1)
 		{
 			int startIndex;
@@ -554,7 +554,7 @@ namespace GUIPackage
 			this.exAddItem(startIndex, fanYeCount, uuid, num, addChaifenTyep, AddToIndex);
 		}
 
-		// Token: 0x06005327 RID: 21287 RVA: 0x00229B74 File Offset: 0x00227D74
+		// Token: 0x06004A3C RID: 19004 RVA: 0x001F7570 File Offset: 0x001F5770
 		public void exAddItem(int startIndex, int endIndex, string uuid, int num = 1, int addChaifenTyep = 0, int AddToIndex = -1)
 		{
 			int numIndex = 0;
@@ -590,7 +590,7 @@ namespace GUIPackage
 			}
 		}
 
-		// Token: 0x06005328 RID: 21288 RVA: 0x00229C48 File Offset: 0x00227E48
+		// Token: 0x06004A3D RID: 19005 RVA: 0x001F7644 File Offset: 0x001F5844
 		public void setindexItem(int i, int ItemID, int num, string uuid)
 		{
 			this.inventory[i] = this.datebase.items[ItemID].Clone();
@@ -598,7 +598,7 @@ namespace GUIPackage
 			this.inventory[i].itemNum = num;
 		}
 
-		// Token: 0x06005329 RID: 21289 RVA: 0x00229C9C File Offset: 0x00227E9C
+		// Token: 0x06004A3E RID: 19006 RVA: 0x001F7698 File Offset: 0x001F5898
 		public void setInventoryIndexItem(int i, int numIndex, int num, string uuid)
 		{
 			this.inventory[i] = this.datebase.items[this.inventory[numIndex].itemID].Clone();
@@ -607,7 +607,7 @@ namespace GUIPackage
 			this.inventory[i].itemNum = num;
 		}
 
-		// Token: 0x0600532A RID: 21290 RVA: 0x00229D24 File Offset: 0x00227F24
+		// Token: 0x06004A3F RID: 19007 RVA: 0x001F7720 File Offset: 0x001F5920
 		public void reduceItem1(int addType, string uuid, int num = 1)
 		{
 			int num2 = 24;
@@ -630,7 +630,7 @@ namespace GUIPackage
 			this.reduceItem(startIndex, endIndex, uuid, num);
 		}
 
-		// Token: 0x0600532B RID: 21291 RVA: 0x00229D5C File Offset: 0x00227F5C
+		// Token: 0x06004A40 RID: 19008 RVA: 0x001F7758 File Offset: 0x001F5958
 		public void reduceItem(int startIndex, int endIndex, string uuid, int num = 1)
 		{
 			int i = startIndex;
@@ -659,7 +659,7 @@ namespace GUIPackage
 			}
 		}
 
-		// Token: 0x0600532C RID: 21292 RVA: 0x00229DF4 File Offset: 0x00227FF4
+		// Token: 0x06004A41 RID: 19009 RVA: 0x001F77F0 File Offset: 0x001F59F0
 		public void reduceItem(int index, int num)
 		{
 			this.inventory[index].itemNum -= num;
@@ -670,7 +670,7 @@ namespace GUIPackage
 			}
 		}
 
-		// Token: 0x0600532D RID: 21293 RVA: 0x00229E54 File Offset: 0x00228054
+		// Token: 0x06004A42 RID: 19010 RVA: 0x001F7850 File Offset: 0x001F5A50
 		public void RemoveItem(int id)
 		{
 			Tools.instance.getPlayer().removeItem(id);
@@ -684,7 +684,7 @@ namespace GUIPackage
 			}
 		}
 
-		// Token: 0x0600532E RID: 21294 RVA: 0x00229EB0 File Offset: 0x002280B0
+		// Token: 0x06004A43 RID: 19011 RVA: 0x001F78AC File Offset: 0x001F5AAC
 		private bool InventoryContains(int id)
 		{
 			bool flag = false;
@@ -699,7 +699,7 @@ namespace GUIPackage
 			return flag;
 		}
 
-		// Token: 0x0600532F RID: 21295 RVA: 0x00229EF0 File Offset: 0x002280F0
+		// Token: 0x06004A44 RID: 19012 RVA: 0x001F78EC File Offset: 0x001F5AEC
 		private bool InventoryContains(int startindex, int endIndex, string UUID)
 		{
 			bool flag = false;
@@ -714,7 +714,7 @@ namespace GUIPackage
 			return flag;
 		}
 
-		// Token: 0x06005330 RID: 21296 RVA: 0x00229F28 File Offset: 0x00228128
+		// Token: 0x06004A45 RID: 19013 RVA: 0x001F7924 File Offset: 0x001F5B24
 		public static string getSkillBookDesc(JSONObject info)
 		{
 			string text = info["desc"].Str;
@@ -726,9 +726,9 @@ namespace GUIPackage
 					while (enumerator.MoveNext())
 					{
 						KeyValuePair<string, JSONObject> keyValuePair = enumerator.Current;
-						if ((int)keyValuePair.Value["Skill_ID"].n == num && (int)keyValuePair.Value["Skill_Lv"].n == Tools.instance.getPlayer().getLevelType())
+						if (keyValuePair.Value["Skill_ID"].I == num && keyValuePair.Value["Skill_Lv"].I == Tools.instance.getPlayer().getLevelType())
 						{
-							text = Tools.getDescByID(Tools.instance.Code64ToString(keyValuePair.Value["descr"].str), (int)keyValuePair.Value["id"].n);
+							text = Tools.getDescByID(Tools.instance.Code64ToString(keyValuePair.Value["descr"].str), keyValuePair.Value["id"].I);
 							break;
 						}
 					}
@@ -740,7 +740,7 @@ namespace GUIPackage
 				int num2 = (int)float.Parse(text);
 				foreach (JSONObject jsonobject in jsonData.instance.StaticSkillJsonData.list)
 				{
-					if ((int)jsonobject["Skill_ID"].n == num2 && (int)jsonobject["Skill_Lv"].n == 1)
+					if (jsonobject["Skill_ID"].I == num2 && jsonobject["Skill_Lv"].I == 1)
 					{
 						text = Tools.instance.Code64ToString(jsonobject["descr"].str);
 						break;
@@ -750,7 +750,7 @@ namespace GUIPackage
 			return text;
 		}
 
-		// Token: 0x06005331 RID: 21297 RVA: 0x0022A0E4 File Offset: 0x002282E4
+		// Token: 0x06004A46 RID: 19014 RVA: 0x001F7ADC File Offset: 0x001F5CDC
 		public static string GetSkillBookDesc(_ItemJsonData info)
 		{
 			string text = info.desc;
@@ -787,7 +787,7 @@ namespace GUIPackage
 			return text;
 		}
 
-		// Token: 0x06005332 RID: 21298 RVA: 0x0001E4F0 File Offset: 0x0001C6F0
+		// Token: 0x06004A47 RID: 19015 RVA: 0x000EBA04 File Offset: 0x000E9C04
 		public GameObject CreatGameObjectToParent(GameObject parent, GameObject Temp)
 		{
 			GameObject gameObject = Object.Instantiate<Transform>(Temp.transform).gameObject;
@@ -797,7 +797,7 @@ namespace GUIPackage
 			return gameObject;
 		}
 
-		// Token: 0x06005333 RID: 21299 RVA: 0x0022A1F0 File Offset: 0x002283F0
+		// Token: 0x06004A48 RID: 19016 RVA: 0x001F7BE8 File Offset: 0x001F5DE8
 		public void autoSetTooltip()
 		{
 			this.Tooltip = Singleton.inventory.Tooltip;
@@ -810,7 +810,7 @@ namespace GUIPackage
 			this.DanLuToolTip = Singleton.inventory.DanLuToolTip;
 		}
 
-		// Token: 0x06005334 RID: 21300 RVA: 0x0022A280 File Offset: 0x00228480
+		// Token: 0x06004A49 RID: 19017 RVA: 0x001F7C78 File Offset: 0x001F5E78
 		public static int GetItemCD(item Item)
 		{
 			int value = EquipSeidJsonData2.DataDict[Item.itemID].value1;
@@ -822,7 +822,7 @@ namespace GUIPackage
 			return Inventory2.GetItemCD(Item.Seid, oldCD);
 		}
 
-		// Token: 0x06005335 RID: 21301 RVA: 0x0022A2D0 File Offset: 0x002284D0
+		// Token: 0x06004A4A RID: 19018 RVA: 0x001F7CC8 File Offset: 0x001F5EC8
 		public static int GetItemCD(JSONObject Seid, int oldCD)
 		{
 			if (Seid == null || !Seid.HasField("SkillSeids"))
@@ -832,13 +832,13 @@ namespace GUIPackage
 			return Seid["SkillSeids"].list.Find((JSONObject aa) => aa["id"].I == 29)["value1"].I;
 		}
 
-		// Token: 0x06005336 RID: 21302 RVA: 0x0003B91C File Offset: 0x00039B1C
+		// Token: 0x06004A4B RID: 19019 RVA: 0x001F7D2A File Offset: 0x001F5F2A
 		public static string GetItemName(item Item, string baseName = "")
 		{
 			return Inventory2.GetItemName(Item.Seid, baseName);
 		}
 
-		// Token: 0x06005337 RID: 21303 RVA: 0x0003B92A File Offset: 0x00039B2A
+		// Token: 0x06004A4C RID: 19020 RVA: 0x001F7D38 File Offset: 0x001F5F38
 		public static string GetItemName(JSONObject Seid, string baseName = "")
 		{
 			if (Seid == null || !Seid.HasField("Name"))
@@ -848,7 +848,7 @@ namespace GUIPackage
 			return Seid["Name"].str;
 		}
 
-		// Token: 0x06005338 RID: 21304 RVA: 0x0003B94E File Offset: 0x00039B4E
+		// Token: 0x06004A4D RID: 19021 RVA: 0x001F7D5C File Offset: 0x001F5F5C
 		public static int GetItemQuality(item Item, int oldquality)
 		{
 			if (Item.Seid == null || !Item.Seid.HasField("quality"))
@@ -858,7 +858,7 @@ namespace GUIPackage
 			return Item.Seid["quality"].I;
 		}
 
-		// Token: 0x06005339 RID: 21305 RVA: 0x0003B981 File Offset: 0x00039B81
+		// Token: 0x06004A4E RID: 19022 RVA: 0x001F7D8F File Offset: 0x001F5F8F
 		public static JSONObject GetItemAttackType(JSONObject Seid, JSONObject oldAttack)
 		{
 			if (Seid == null || !Seid.HasField("AttackType"))
@@ -868,7 +868,7 @@ namespace GUIPackage
 			return Seid["AttackType"];
 		}
 
-		// Token: 0x0600533A RID: 21306 RVA: 0x0003B9A0 File Offset: 0x00039BA0
+		// Token: 0x06004A4F RID: 19023 RVA: 0x001F7DAE File Offset: 0x001F5FAE
 		public static string GetItemFirstDesc(JSONObject Seid, string oldAttack)
 		{
 			if (Seid == null || !Seid.HasField("SeidDesc"))
@@ -878,7 +878,7 @@ namespace GUIPackage
 			return Seid["SeidDesc"].Str;
 		}
 
-		// Token: 0x0600533B RID: 21307 RVA: 0x0003B9C4 File Offset: 0x00039BC4
+		// Token: 0x06004A50 RID: 19024 RVA: 0x001F7DD2 File Offset: 0x001F5FD2
 		public static string GetItemDesc(JSONObject Seid, string oldAttack)
 		{
 			if (Seid == null || !Seid.HasField("Desc"))
@@ -888,7 +888,7 @@ namespace GUIPackage
 			return Seid["Desc"].Str;
 		}
 
-		// Token: 0x0600533C RID: 21308 RVA: 0x0022A334 File Offset: 0x00228534
+		// Token: 0x06004A51 RID: 19025 RVA: 0x001F7DF8 File Offset: 0x001F5FF8
 		public void Show_Tooltip(item Item, int money = 0, int moneyPercent = 0)
 		{
 			try
@@ -1084,12 +1084,12 @@ namespace GUIPackage
 			}
 		}
 
-		// Token: 0x0600533D RID: 21309 RVA: 0x000042DD File Offset: 0x000024DD
+		// Token: 0x06004A52 RID: 19026 RVA: 0x00004095 File Offset: 0x00002295
 		public void SaveInventory()
 		{
 		}
 
-		// Token: 0x0600533E RID: 21310 RVA: 0x0022ADB0 File Offset: 0x00228FB0
+		// Token: 0x06004A53 RID: 19027 RVA: 0x001F8874 File Offset: 0x001F6A74
 		public int addItemToNullInventory(int id, int num, string uuid, JSONObject Seid)
 		{
 			foreach (item item in this.inventory)
@@ -1121,13 +1121,13 @@ namespace GUIPackage
 			return -1;
 		}
 
-		// Token: 0x0600533F RID: 21311 RVA: 0x000183D5 File Offset: 0x000165D5
+		// Token: 0x06004A54 RID: 19028 RVA: 0x000B9D8C File Offset: 0x000B7F8C
 		public bool isInPage(int page, int nowIndex, int OnePageMaxNum)
 		{
 			return nowIndex >= page * OnePageMaxNum && nowIndex < (page + 1) * OnePageMaxNum;
 		}
 
-		// Token: 0x06005340 RID: 21312 RVA: 0x0022AECC File Offset: 0x002290CC
+		// Token: 0x06004A55 RID: 19029 RVA: 0x001F8990 File Offset: 0x001F6B90
 		public void resteInventoryItem()
 		{
 			int num = this.inventory.Count;
@@ -1146,7 +1146,7 @@ namespace GUIPackage
 			}
 		}
 
-		// Token: 0x06005341 RID: 21313 RVA: 0x0022AF34 File Offset: 0x00229134
+		// Token: 0x06004A56 RID: 19030 RVA: 0x001F89F8 File Offset: 0x001F6BF8
 		public void resteAllInventoryItem()
 		{
 			for (int i = 0; i < this.inventory.Count; i++)
@@ -1156,25 +1156,25 @@ namespace GUIPackage
 			}
 		}
 
-		// Token: 0x06005342 RID: 21314 RVA: 0x0022AF7C File Offset: 0x0022917C
+		// Token: 0x06004A57 RID: 19031 RVA: 0x001F8A40 File Offset: 0x001F6C40
 		public void loadInventory(JSONObject json)
 		{
 			foreach (JSONObject jsonobject in json.list)
 			{
-				this.addItemToNullInventory((int)jsonobject["ID"].n, (int)jsonobject["Num"].n, jsonobject["UUID"].str, null);
+				this.addItemToNullInventory(jsonobject["ID"].I, jsonobject["Num"].I, jsonobject["UUID"].str, null);
 			}
 		}
 
-		// Token: 0x06005343 RID: 21315 RVA: 0x0022B004 File Offset: 0x00229204
+		// Token: 0x06004A58 RID: 19032 RVA: 0x001F8AC4 File Offset: 0x001F6CC4
 		public void loadNewNPCDropInventory(JSONObject json)
 		{
 			foreach (JSONObject jsonobject in json.list)
 			{
-				this.addItemToNullInventory((int)jsonobject["ID"].n, (int)jsonobject["Num"].n, jsonobject["UUID"].str, jsonobject["seid"]);
+				this.addItemToNullInventory(jsonobject["ID"].I, jsonobject["Num"].I, jsonobject["UUID"].str, jsonobject["seid"]);
 			}
 		}
 
-		// Token: 0x06005344 RID: 21316 RVA: 0x0022B094 File Offset: 0x00229294
+		// Token: 0x06004A59 RID: 19033 RVA: 0x001F8B54 File Offset: 0x001F6D54
 		public void LoadInventory()
 		{
 			this.resteInventoryItem();
@@ -1199,9 +1199,9 @@ namespace GUIPackage
 								if ((int)info["type"].n == 3)
 								{
 									int getskillID;
-									if (item_INFO.itemId > 100000)
+									if (item_INFO.itemId > jsonData.QingJiaoItemIDSegment)
 									{
-										getskillID = jsonData.instance.ItemsSeidJsonData[1][(item_INFO.itemId - 100000).ToString()]["value1"].I;
+										getskillID = jsonData.instance.ItemsSeidJsonData[1][(item_INFO.itemId - jsonData.QingJiaoItemIDSegment).ToString()]["value1"].I;
 									}
 									else
 									{
@@ -1215,9 +1215,9 @@ namespace GUIPackage
 								else if ((int)info["type"].n == 4)
 								{
 									int getskillID;
-									if (item_INFO.itemId > 100000)
+									if (item_INFO.itemId > jsonData.QingJiaoItemIDSegment)
 									{
-										getskillID = jsonData.instance.ItemsSeidJsonData[2][(item_INFO.itemId - 100000).ToString()]["value1"].I;
+										getskillID = jsonData.instance.ItemsSeidJsonData[2][(item_INFO.itemId - jsonData.QingJiaoItemIDSegment).ToString()]["value1"].I;
 									}
 									else
 									{
@@ -1252,7 +1252,7 @@ namespace GUIPackage
 			}
 		}
 
-		// Token: 0x06005345 RID: 21317 RVA: 0x0022B44C File Offset: 0x0022964C
+		// Token: 0x06004A5A RID: 19034 RVA: 0x001F8F0C File Offset: 0x001F710C
 		public bool HasUUIDItem(int start, int end, string uuid)
 		{
 			for (int i = start; i < end; i++)
@@ -1265,7 +1265,7 @@ namespace GUIPackage
 			return false;
 		}
 
-		// Token: 0x06005346 RID: 21318 RVA: 0x0022B484 File Offset: 0x00229684
+		// Token: 0x06004A5B RID: 19035 RVA: 0x001F8F44 File Offset: 0x001F7144
 		public void PaiMaiMonstarLoad(int MonstarID)
 		{
 			this.MonstarID = MonstarID;
@@ -1276,7 +1276,7 @@ namespace GUIPackage
 			{
 				if (jsonobject2.HasField("paiMaiPlayer") && (int)jsonobject2["paiMaiPlayer"].n == 2)
 				{
-					this.addItemToNullInventory((int)jsonobject2["ItemID"].n, (int)jsonobject2["Num"].n, jsonobject2["UUID"].str, jsonobject2["Seid"]);
+					this.addItemToNullInventory(jsonobject2["ItemID"].I, jsonobject2["Num"].I, jsonobject2["UUID"].str, jsonobject2["Seid"]);
 				}
 			}
 			if (this.selectpage != null)
@@ -1285,7 +1285,7 @@ namespace GUIPackage
 			}
 		}
 
-		// Token: 0x06005347 RID: 21319 RVA: 0x0022B5D0 File Offset: 0x002297D0
+		// Token: 0x06004A5C RID: 19036 RVA: 0x001F908C File Offset: 0x001F728C
 		public void MonstarLoadInventory(int MonstarID)
 		{
 			this.MonstarID = MonstarID;
@@ -1298,11 +1298,11 @@ namespace GUIPackage
 				while (enumerator.MoveNext())
 				{
 					JSONObject item = enumerator.Current;
-					if (((int)jsonData.instance.ItemJsonData[string.Concat((int)item["ItemID"].n)]["quality"].n == this.inventoryItemType || this.inventoryItemType == 0) && (this.inventItemLeiXing.Count == 0 || this.inventItemLeiXing.FindAll((int a) => a == (int)jsonData.instance.ItemJsonData[string.Concat((int)item["ItemID"].n)]["type"].n).Count > 0))
+					if ((jsonData.instance.ItemJsonData[string.Concat(item["ItemID"].I)]["quality"].I == this.inventoryItemType || this.inventoryItemType == 0) && (this.inventItemLeiXing.Count == 0 || this.inventItemLeiXing.FindAll((int a) => a == jsonData.instance.ItemJsonData[string.Concat(item["ItemID"].I)]["type"].I).Count > 0))
 					{
 						if (this.isInPage(this.nowIndex, num, (int)this.FanYeCount))
 						{
-							this.addItemToNullInventory((int)item["ItemID"].n, (int)item["Num"].n, item["UUID"].str, item["Seid"]);
+							this.addItemToNullInventory(item["ItemID"].I, item["Num"].I, item["UUID"].str, item["Seid"]);
 						}
 						num++;
 					}
@@ -1314,18 +1314,18 @@ namespace GUIPackage
 			}
 		}
 
-		// Token: 0x06005348 RID: 21320 RVA: 0x0003B9E8 File Offset: 0x00039BE8
+		// Token: 0x06004A5D RID: 19037 RVA: 0x001F927C File Offset: 0x001F747C
 		public bool CanClick()
 		{
 			return !(GameObject.Find("CanvasChoice(Clone)") != null);
 		}
 
-		// Token: 0x06005349 RID: 21321 RVA: 0x000042DD File Offset: 0x000024DD
+		// Token: 0x06004A5E RID: 19038 RVA: 0x00004095 File Offset: 0x00002295
 		public void UseItem(int id)
 		{
 		}
 
-		// Token: 0x0600534A RID: 21322 RVA: 0x0022B7C4 File Offset: 0x002299C4
+		// Token: 0x06004A5F RID: 19039 RVA: 0x001F9294 File Offset: 0x001F7494
 		public int GetSoltNum()
 		{
 			int num = 0;
@@ -1339,116 +1339,116 @@ namespace GUIPackage
 			return num;
 		}
 
-		// Token: 0x040052FA RID: 21242
+		// Token: 0x04004975 RID: 18805
 		public jsonData.InventoryNUM count = jsonData.InventoryNUM.Max;
 
-		// Token: 0x040052FB RID: 21243
+		// Token: 0x04004976 RID: 18806
 		public jsonData.InventoryNUM FanYeCount = jsonData.InventoryNUM.Max;
 
-		// Token: 0x040052FC RID: 21244
+		// Token: 0x04004977 RID: 18807
 		public GameObject InventoryUI;
 
-		// Token: 0x040052FD RID: 21245
+		// Token: 0x04004978 RID: 18808
 		public GameObject Temp;
 
-		// Token: 0x040052FE RID: 21246
+		// Token: 0x04004979 RID: 18809
 		public List<item> inventory = new List<item>();
 
-		// Token: 0x040052FF RID: 21247
+		// Token: 0x0400497A RID: 18810
 		public ItemDatebase datebase;
 
-		// Token: 0x04005300 RID: 21248
+		// Token: 0x0400497B RID: 18811
 		private bool showInventory = true;
 
-		// Token: 0x04005301 RID: 21249
+		// Token: 0x0400497C RID: 18812
 		public bool draggingItem;
 
-		// Token: 0x04005302 RID: 21250
+		// Token: 0x0400497D RID: 18813
 		public item dragedItem;
 
-		// Token: 0x04005303 RID: 21251
+		// Token: 0x0400497E RID: 18814
 		public int dragedID;
 
-		// Token: 0x04005304 RID: 21252
+		// Token: 0x0400497F RID: 18815
 		public selectPage selectpage;
 
-		// Token: 0x04005305 RID: 21253
+		// Token: 0x04004980 RID: 18816
 		public GameObject BaseSlotOBJ;
 
-		// Token: 0x04005306 RID: 21254
+		// Token: 0x04004981 RID: 18817
 		public bool ResetToolTips = true;
 
-		// Token: 0x04005307 RID: 21255
+		// Token: 0x04004982 RID: 18818
 		public GameObject exchengkey;
 
-		// Token: 0x04005308 RID: 21256
+		// Token: 0x04004983 RID: 18819
 		private int showToolType;
 
-		// Token: 0x04005309 RID: 21257
+		// Token: 0x04004984 RID: 18820
 		public bool JustShow;
 
-		// Token: 0x0400530A RID: 21258
+		// Token: 0x04004985 RID: 18821
 		public string NomelBtn1Text = "";
 
-		// Token: 0x0400530B RID: 21259
+		// Token: 0x04004986 RID: 18822
 		public bool AutoSetBtnText;
 
-		// Token: 0x0400530C RID: 21260
+		// Token: 0x04004987 RID: 18823
 		public bool isNewJiaoYi;
 
-		// Token: 0x0400530D RID: 21261
+		// Token: 0x04004988 RID: 18824
 		public bool isPaiMai;
 
-		// Token: 0x0400530E RID: 21262
+		// Token: 0x04004989 RID: 18825
 		public GameObject Tooltip;
 
-		// Token: 0x0400530F RID: 21263
+		// Token: 0x0400498A RID: 18826
 		public GameObject EquipTooltip;
 
-		// Token: 0x04005310 RID: 21264
+		// Token: 0x0400498B RID: 18827
 		public GameObject BookTooltip;
 
-		// Token: 0x04005311 RID: 21265
+		// Token: 0x0400498C RID: 18828
 		public GameObject skillBookToolTip;
 
-		// Token: 0x04005312 RID: 21266
+		// Token: 0x0400498D RID: 18829
 		public GameObject DanyaoToolTip;
 
-		// Token: 0x04005313 RID: 21267
+		// Token: 0x0400498E RID: 18830
 		public GameObject YaoCaoToolTip;
 
-		// Token: 0x04005314 RID: 21268
+		// Token: 0x0400498F RID: 18831
 		public GameObject DanYaoToolTip;
 
-		// Token: 0x04005315 RID: 21269
+		// Token: 0x04004990 RID: 18832
 		public GameObject DanLuToolTip;
 
-		// Token: 0x04005316 RID: 21270
+		// Token: 0x04004991 RID: 18833
 		public int inventoryItemType;
 
-		// Token: 0x04005317 RID: 21271
+		// Token: 0x04004992 RID: 18834
 		public List<int> inventItemLeiXing = new List<int>();
 
-		// Token: 0x04005318 RID: 21272
+		// Token: 0x04004993 RID: 18835
 		public int nowIndex;
 
-		// Token: 0x04005319 RID: 21273
+		// Token: 0x04004994 RID: 18836
 		public bool shouldInit = true;
 
-		// Token: 0x0400531A RID: 21274
+		// Token: 0x04004995 RID: 18837
 		public bool ISExchengePlan;
 
-		// Token: 0x0400531B RID: 21275
+		// Token: 0x04004996 RID: 18838
 		public bool ISPlayer = true;
 
-		// Token: 0x0400531C RID: 21276
+		// Token: 0x04004997 RID: 18839
 		public int MonstarID;
 
-		// Token: 0x0400531D RID: 21277
+		// Token: 0x04004998 RID: 18840
 		public bool hideLearned;
 
-		// Token: 0x02000D7C RID: 3452
-		// (Invoke) Token: 0x0600534D RID: 21325
+		// Token: 0x02001596 RID: 5526
+		// (Invoke) Token: 0x0600844C RID: 33868
 		public delegate void EventsetItemCell<T>(T aa) where T : ItemCell;
 	}
 }

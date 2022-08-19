@@ -1,12 +1,12 @@
 ﻿using System;
 using UnityEngine;
 
-// Token: 0x0200012C RID: 300
+// Token: 0x020000BC RID: 188
 [ExecuteInEditMode]
 [AddComponentMenu("Image Effects/Desaturate")]
 public class DesaturateEffect : ImageEffectBase
 {
-	// Token: 0x06000B89 RID: 2953 RVA: 0x00092CE0 File Offset: 0x00090EE0
+	// Token: 0x06000AA6 RID: 2726 RVA: 0x000408B4 File Offset: 0x0003EAB4
 	private void OnRenderImage(RenderTexture source, RenderTexture destination)
 	{
 		base.material.SetTexture("_RampTex", this.textureRamp);
@@ -15,18 +15,18 @@ public class DesaturateEffect : ImageEffectBase
 		Graphics.Blit(source, destination, base.material);
 	}
 
-	// Token: 0x04000853 RID: 2131
+	// Token: 0x040006AC RID: 1708
 	public float desaturateAmount;
 
-	// Token: 0x04000854 RID: 2132
+	// Token: 0x040006AD RID: 1709
 	public Texture textureRamp;
 
-	// Token: 0x04000855 RID: 2133
+	// Token: 0x040006AE RID: 1710
 	public float rampOffsetR;
 
-	// Token: 0x04000856 RID: 2134
+	// Token: 0x040006AF RID: 1711
 	public float rampOffsetG;
 
-	// Token: 0x04000857 RID: 2135
+	// Token: 0x040006B0 RID: 1712
 	public float rampOffsetB;
 }

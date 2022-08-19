@@ -3,10 +3,10 @@ using UnityEngine;
 
 namespace WXB
 {
-	// Token: 0x020009AB RID: 2475
+	// Token: 0x02000697 RID: 1687
 	public class OffsetEffect : IEffect
 	{
-		// Token: 0x06003F0F RID: 16143 RVA: 0x001B894C File Offset: 0x001B6B4C
+		// Token: 0x06003551 RID: 13649 RVA: 0x00170814 File Offset: 0x0016EA14
 		public void UpdateEffect(Draw draw, float deltaTime)
 		{
 			if (this.tweener == null)
@@ -22,14 +22,14 @@ namespace WXB
 			this.current = null;
 		}
 
-		// Token: 0x06003F10 RID: 16144 RVA: 0x001B89C8 File Offset: 0x001B6BC8
+		// Token: 0x06003552 RID: 13650 RVA: 0x00170890 File Offset: 0x0016EA90
 		private void UpdateOffset(float val, bool isFin)
 		{
 			this.offset = Vector2.Lerp(new Vector2(this.xMin, this.yMin), new Vector2(this.xMax, this.yMax), val);
 			Tools.UpdateRect(this.current.rectTransform, this.offset);
 		}
 
-		// Token: 0x06003F11 RID: 16145 RVA: 0x001B8A1C File Offset: 0x001B6C1C
+		// Token: 0x06003553 RID: 13651 RVA: 0x001708E4 File Offset: 0x0016EAE4
 		public void Release()
 		{
 			if (this.tweener != null)
@@ -47,28 +47,28 @@ namespace WXB
 			this.offset = Vector2.zero;
 		}
 
-		// Token: 0x040038B1 RID: 14513
+		// Token: 0x04002EF8 RID: 12024
 		private Vector2 offset = Vector2.zero;
 
-		// Token: 0x040038B2 RID: 14514
+		// Token: 0x04002EF9 RID: 12025
 		public float xMin = -5f;
 
-		// Token: 0x040038B3 RID: 14515
+		// Token: 0x04002EFA RID: 12026
 		public float yMin = -5f;
 
-		// Token: 0x040038B4 RID: 14516
+		// Token: 0x04002EFB RID: 12027
 		public float xMax = 5f;
 
-		// Token: 0x040038B5 RID: 14517
+		// Token: 0x04002EFC RID: 12028
 		public float yMax = 5f;
 
-		// Token: 0x040038B6 RID: 14518
+		// Token: 0x04002EFD RID: 12029
 		public float speed = 2f;
 
-		// Token: 0x040038B7 RID: 14519
+		// Token: 0x04002EFE RID: 12030
 		private Tweener tweener;
 
-		// Token: 0x040038B8 RID: 14520
+		// Token: 0x04002EFF RID: 12031
 		private Draw current;
 	}
 }

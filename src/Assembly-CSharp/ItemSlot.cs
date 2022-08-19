@@ -1,18 +1,18 @@
 ﻿using System;
 
-// Token: 0x02000162 RID: 354
+// Token: 0x020000EB RID: 235
 public class ItemSlot
 {
-	// Token: 0x06000C65 RID: 3173 RVA: 0x0000E590 File Offset: 0x0000C790
+	// Token: 0x06000B76 RID: 2934 RVA: 0x00045B55 File Offset: 0x00043D55
 	public ItemSlot()
 	{
 		this.Index = 0;
 		this.Num = 0;
 	}
 
-	// Token: 0x04000988 RID: 2440
+	// Token: 0x040007AD RID: 1965
 	public int Index;
 
-	// Token: 0x04000989 RID: 2441
+	// Token: 0x040007AE RID: 1966
 	public int Num;
 }

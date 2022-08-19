@@ -3,10 +3,10 @@ using UnityEngine;
 
 namespace Spine.Unity.Examples
 {
-	// Token: 0x02000E33 RID: 3635
+	// Token: 0x02000AE5 RID: 2789
 	public class Goblins : MonoBehaviour
 	{
-		// Token: 0x0600577B RID: 22395 RVA: 0x0003E84C File Offset: 0x0003CA4C
+		// Token: 0x06004DFF RID: 19967 RVA: 0x00214F2D File Offset: 0x0021312D
 		public void Start()
 		{
 			this.skeletonAnimation = base.GetComponent<SkeletonAnimation>();
@@ -14,13 +14,13 @@ namespace Spine.Unity.Examples
 			this.skeletonAnimation.UpdateLocal += new UpdateBonesDelegate(this.UpdateLocal);
 		}
 
-		// Token: 0x0600577C RID: 22396 RVA: 0x0003E88C File Offset: 0x0003CA8C
+		// Token: 0x06004E00 RID: 19968 RVA: 0x00214F6D File Offset: 0x0021316D
 		public void UpdateLocal(ISkeletonAnimation skeletonRenderer)
 		{
 			this.headBone.Rotation += this.extraRotation;
 		}
 
-		// Token: 0x0600577D RID: 22397 RVA: 0x002450E4 File Offset: 0x002432E4
+		// Token: 0x06004E01 RID: 19969 RVA: 0x00214F88 File Offset: 0x00213188
 		public void OnMouseDown()
 		{
 			this.skeletonAnimation.Skeleton.SetSkin(this.girlSkin ? "goblin" : "goblingirl");
@@ -35,16 +35,16 @@ namespace Spine.Unity.Examples
 			this.skeletonAnimation.Skeleton.SetAttachment("left hand item", "dagger");
 		}
 
-		// Token: 0x04005766 RID: 22374
+		// Token: 0x04004D5A RID: 19802
 		private SkeletonAnimation skeletonAnimation;
 
-		// Token: 0x04005767 RID: 22375
+		// Token: 0x04004D5B RID: 19803
 		private Bone headBone;
 
-		// Token: 0x04005768 RID: 22376
+		// Token: 0x04004D5C RID: 19804
 		private bool girlSkin;
 
-		// Token: 0x04005769 RID: 22377
+		// Token: 0x04004D5D RID: 19805
 		[Range(-360f, 360f)]
 		public float extraRotation;
 	}

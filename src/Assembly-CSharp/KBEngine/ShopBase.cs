@@ -4,65 +4,65 @@ using UnityEngine;
 
 namespace KBEngine
 {
-	// Token: 0x02000FED RID: 4077
+	// Token: 0x02000C62 RID: 3170
 	public abstract class ShopBase : Entity
 	{
-		// Token: 0x06006073 RID: 24691 RVA: 0x00040112 File Offset: 0x0003E312
+		// Token: 0x06005624 RID: 22052 RVA: 0x00220682 File Offset: 0x0021E882
 		public ShopBase()
 		{
 		}
 
-		// Token: 0x06006074 RID: 24692 RVA: 0x000042DD File Offset: 0x000024DD
+		// Token: 0x06005625 RID: 22053 RVA: 0x00004095 File Offset: 0x00002295
 		public override void onComponentsEnterworld()
 		{
 		}
 
-		// Token: 0x06006075 RID: 24693 RVA: 0x000042DD File Offset: 0x000024DD
+		// Token: 0x06005626 RID: 22054 RVA: 0x00004095 File Offset: 0x00002295
 		public override void onComponentsLeaveworld()
 		{
 		}
 
-		// Token: 0x06006076 RID: 24694 RVA: 0x00042FAC File Offset: 0x000411AC
+		// Token: 0x06005627 RID: 22055 RVA: 0x0023CA68 File Offset: 0x0023AC68
 		public override void onGetBase()
 		{
 			this.baseEntityCall = new EntityBaseEntityCall_ShopBase(this.id, this.className);
 		}
 
-		// Token: 0x06006077 RID: 24695 RVA: 0x00042FC5 File Offset: 0x000411C5
+		// Token: 0x06005628 RID: 22056 RVA: 0x0023CA81 File Offset: 0x0023AC81
 		public override void onGetCell()
 		{
 			this.cellEntityCall = new EntityCellEntityCall_ShopBase(this.id, this.className);
 		}
 
-		// Token: 0x06006078 RID: 24696 RVA: 0x00042FDE File Offset: 0x000411DE
+		// Token: 0x06005629 RID: 22057 RVA: 0x0023CA9A File Offset: 0x0023AC9A
 		public override void onLoseCell()
 		{
 			this.cellEntityCall = null;
 		}
 
-		// Token: 0x06006079 RID: 24697 RVA: 0x00042FE7 File Offset: 0x000411E7
+		// Token: 0x0600562A RID: 22058 RVA: 0x0023CAA3 File Offset: 0x0023ACA3
 		public override EntityCall getBaseEntityCall()
 		{
 			return this.baseEntityCall;
 		}
 
-		// Token: 0x0600607A RID: 24698 RVA: 0x00042FEF File Offset: 0x000411EF
+		// Token: 0x0600562B RID: 22059 RVA: 0x0023CAAB File Offset: 0x0023ACAB
 		public override EntityCall getCellEntityCall()
 		{
 			return this.cellEntityCall;
 		}
 
-		// Token: 0x0600607B RID: 24699 RVA: 0x000042DD File Offset: 0x000024DD
+		// Token: 0x0600562C RID: 22060 RVA: 0x00004095 File Offset: 0x00002295
 		public override void attachComponents()
 		{
 		}
 
-		// Token: 0x0600607C RID: 24700 RVA: 0x000042DD File Offset: 0x000024DD
+		// Token: 0x0600562D RID: 22061 RVA: 0x00004095 File Offset: 0x00002295
 		public override void detachComponents()
 		{
 		}
 
-		// Token: 0x0600607D RID: 24701 RVA: 0x002695E0 File Offset: 0x002677E0
+		// Token: 0x0600562E RID: 22062 RVA: 0x0023CAB4 File Offset: 0x0023ACB4
 		public override void onRemoteMethodCall(MemoryStream stream)
 		{
 			ScriptModule scriptModule = EntityDef.moduledefs["Shop"];
@@ -93,7 +93,7 @@ namespace KBEngine
 			ushort properUtype = scriptModule.idpropertys[num].properUtype;
 		}
 
-		// Token: 0x0600607E RID: 24702 RVA: 0x00269660 File Offset: 0x00267860
+		// Token: 0x0600562F RID: 22063 RVA: 0x0023CB34 File Offset: 0x0023AD34
 		public override void onUpdatePropertys(MemoryStream stream)
 		{
 			ScriptModule scriptModule = EntityDef.moduledefs["Shop"];
@@ -161,7 +161,7 @@ namespace KBEngine
 			}
 		}
 
-		// Token: 0x0600607F RID: 24703 RVA: 0x00269790 File Offset: 0x00267990
+		// Token: 0x06005630 RID: 22064 RVA: 0x0023CC64 File Offset: 0x0023AE64
 		public override void callPropertysSetMethods()
 		{
 			Dictionary<ushort, Property> idpropertys = EntityDef.moduledefs["Shop"].idpropertys;
@@ -194,10 +194,10 @@ namespace KBEngine
 			}
 		}
 
-		// Token: 0x04005BC2 RID: 23490
+		// Token: 0x04005108 RID: 20744
 		public EntityBaseEntityCall_ShopBase baseEntityCall;
 
-		// Token: 0x04005BC3 RID: 23491
+		// Token: 0x04005109 RID: 20745
 		public EntityCellEntityCall_ShopBase cellEntityCall;
 	}
 }

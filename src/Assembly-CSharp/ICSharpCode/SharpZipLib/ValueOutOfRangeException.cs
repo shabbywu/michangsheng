@@ -3,21 +3,21 @@ using System.Runtime.Serialization;
 
 namespace ICSharpCode.SharpZipLib
 {
-	// Token: 0x020007B8 RID: 1976
+	// Token: 0x02000524 RID: 1316
 	[Serializable]
 	public class ValueOutOfRangeException : StreamDecodingException
 	{
-		// Token: 0x06003224 RID: 12836 RVA: 0x000248E2 File Offset: 0x00022AE2
+		// Token: 0x06002A11 RID: 10769 RVA: 0x00140327 File Offset: 0x0013E527
 		public ValueOutOfRangeException(string nameOfValue) : base(nameOfValue + " out of range")
 		{
 		}
 
-		// Token: 0x06003225 RID: 12837 RVA: 0x000248F5 File Offset: 0x00022AF5
+		// Token: 0x06002A12 RID: 10770 RVA: 0x0014033A File Offset: 0x0013E53A
 		public ValueOutOfRangeException(string nameOfValue, long value, long maxValue, long minValue = 0L) : this(nameOfValue, value.ToString(), maxValue.ToString(), minValue.ToString())
 		{
 		}
 
-		// Token: 0x06003226 RID: 12838 RVA: 0x00024913 File Offset: 0x00022B13
+		// Token: 0x06002A13 RID: 10771 RVA: 0x00140358 File Offset: 0x0013E558
 		public ValueOutOfRangeException(string nameOfValue, string value, string maxValue, string minValue = "0") : base(string.Concat(new string[]
 		{
 			nameOfValue,
@@ -31,17 +31,17 @@ namespace ICSharpCode.SharpZipLib
 		{
 		}
 
-		// Token: 0x06003227 RID: 12839 RVA: 0x0002494F File Offset: 0x00022B4F
+		// Token: 0x06002A14 RID: 10772 RVA: 0x00140394 File Offset: 0x0013E594
 		private ValueOutOfRangeException()
 		{
 		}
 
-		// Token: 0x06003228 RID: 12840 RVA: 0x000248C1 File Offset: 0x00022AC1
+		// Token: 0x06002A15 RID: 10773 RVA: 0x00140306 File Offset: 0x0013E506
 		private ValueOutOfRangeException(string message, Exception innerException) : base(message, innerException)
 		{
 		}
 
-		// Token: 0x06003229 RID: 12841 RVA: 0x000248CB File Offset: 0x00022ACB
+		// Token: 0x06002A16 RID: 10774 RVA: 0x00140310 File Offset: 0x0013E510
 		protected ValueOutOfRangeException(SerializationInfo info, StreamingContext context) : base(info, context)
 		{
 		}

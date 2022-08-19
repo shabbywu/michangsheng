@@ -3,16 +3,16 @@ using GUIPackage;
 using KBEngine;
 using UnityEngine;
 
-// Token: 0x0200029F RID: 671
+// Token: 0x020001A3 RID: 419
 public class selectSkillConfig : MonoBehaviour
 {
-	// Token: 0x06001482 RID: 5250 RVA: 0x00012F42 File Offset: 0x00011142
+	// Token: 0x060011DB RID: 4571 RVA: 0x0006BCF8 File Offset: 0x00069EF8
 	private void Awake()
 	{
 		this.mList = base.GetComponent<UIPopupList>();
 	}
 
-	// Token: 0x06001483 RID: 5251 RVA: 0x000B9DA0 File Offset: 0x000B7FA0
+	// Token: 0x060011DC RID: 4572 RVA: 0x0006BD08 File Offset: 0x00069F08
 	private void Start()
 	{
 		Avatar player = Tools.instance.getPlayer();
@@ -32,7 +32,7 @@ public class selectSkillConfig : MonoBehaviour
 		EventDelegate.Add(this.mList.onChange, new EventDelegate.Callback(this.OnChange));
 	}
 
-	// Token: 0x06001484 RID: 5252 RVA: 0x000B9E60 File Offset: 0x000B8060
+	// Token: 0x060011DD RID: 4573 RVA: 0x0006BDC8 File Offset: 0x00069FC8
 	public int getInputID(string name)
 	{
 		int num = 0;
@@ -47,7 +47,7 @@ public class selectSkillConfig : MonoBehaviour
 		return num;
 	}
 
-	// Token: 0x06001485 RID: 5253 RVA: 0x000B9EC4 File Offset: 0x000B80C4
+	// Token: 0x060011DE RID: 4574 RVA: 0x0006BE2C File Offset: 0x0006A02C
 	private void OnChange()
 	{
 		Avatar player = Tools.instance.getPlayer();
@@ -70,20 +70,20 @@ public class selectSkillConfig : MonoBehaviour
 		}
 	}
 
-	// Token: 0x04000FDF RID: 4063
+	// Token: 0x04000CBB RID: 3259
 	protected UIPopupList mList;
 
-	// Token: 0x04000FE0 RID: 4064
+	// Token: 0x04000CBC RID: 3260
 	public selectSkillConfig.selectType type;
 
-	// Token: 0x020002A0 RID: 672
+	// Token: 0x020012BC RID: 4796
 	public enum selectType
 	{
-		// Token: 0x04000FE2 RID: 4066
+		// Token: 0x04006681 RID: 26241
 		SelectSkill,
-		// Token: 0x04000FE3 RID: 4067
+		// Token: 0x04006682 RID: 26242
 		SelectStaticSkill,
-		// Token: 0x04000FE4 RID: 4068
+		// Token: 0x04006683 RID: 26243
 		SelectItem
 	}
 }

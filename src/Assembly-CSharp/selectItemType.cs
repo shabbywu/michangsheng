@@ -2,17 +2,17 @@
 using GUIPackage;
 using UnityEngine;
 
-// Token: 0x0200029C RID: 668
+// Token: 0x020001A0 RID: 416
 public class selectItemType : MonoBehaviour
 {
-	// Token: 0x0600146C RID: 5228 RVA: 0x00012E62 File Offset: 0x00011062
+	// Token: 0x060011C5 RID: 4549 RVA: 0x0006B976 File Offset: 0x00069B76
 	private void Start()
 	{
 		this.mList = base.GetComponent<UIPopupList>();
 		EventDelegate.Add(this.mList.onChange, new EventDelegate.Callback(this.OnChange));
 	}
 
-	// Token: 0x0600146D RID: 5229 RVA: 0x000B9B00 File Offset: 0x000B7D00
+	// Token: 0x060011C6 RID: 4550 RVA: 0x0006B9A4 File Offset: 0x00069BA4
 	public int getInputID(string name)
 	{
 		int num = 0;
@@ -27,7 +27,7 @@ public class selectItemType : MonoBehaviour
 		return num;
 	}
 
-	// Token: 0x0600146E RID: 5230 RVA: 0x000B9B64 File Offset: 0x000B7D64
+	// Token: 0x060011C7 RID: 4551 RVA: 0x0006BA08 File Offset: 0x00069C08
 	private void OnChange()
 	{
 		this.inventory.inventoryItemType = this.getInputID(this.mList.value);
@@ -46,12 +46,12 @@ public class selectItemType : MonoBehaviour
 		this.inventory.LoadInventory();
 	}
 
-	// Token: 0x04000FDA RID: 4058
+	// Token: 0x04000CB6 RID: 3254
 	private UIPopupList mList;
 
-	// Token: 0x04000FDB RID: 4059
+	// Token: 0x04000CB7 RID: 3255
 	public Inventory2 inventory;
 
-	// Token: 0x04000FDC RID: 4060
+	// Token: 0x04000CB8 RID: 3256
 	public CaiLiaoInventory caiLiaoInventory;
 }

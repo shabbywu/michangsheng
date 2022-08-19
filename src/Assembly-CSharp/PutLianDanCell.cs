@@ -4,12 +4,12 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-// Token: 0x02000447 RID: 1095
+// Token: 0x020002EC RID: 748
 public class PutLianDanCell : MonoBehaviour, IPointerEnterHandler, IEventSystemHandler, IPointerExitHandler, IPointerClickHandler
 {
-	// Token: 0x17000294 RID: 660
-	// (get) Token: 0x06001D26 RID: 7462 RVA: 0x00018495 File Offset: 0x00016695
-	// (set) Token: 0x06001D25 RID: 7461 RVA: 0x00100B9C File Offset: 0x000FED9C
+	// Token: 0x1700024A RID: 586
+	// (get) Token: 0x06001A02 RID: 6658 RVA: 0x000BA46C File Offset: 0x000B866C
+	// (set) Token: 0x06001A01 RID: 6657 RVA: 0x000BA3F8 File Offset: 0x000B85F8
 	public bool isLock
 	{
 		get
@@ -36,14 +36,14 @@ public class PutLianDanCell : MonoBehaviour, IPointerEnterHandler, IEventSystemH
 		}
 	}
 
-	// Token: 0x06001D27 RID: 7463 RVA: 0x0001849D File Offset: 0x0001669D
+	// Token: 0x06001A03 RID: 6659 RVA: 0x000BA474 File Offset: 0x000B8674
 	private void Awake()
 	{
 		this.inventory = LianDanSystemManager.inst.inventory;
 		this.updateItem();
 	}
 
-	// Token: 0x06001D28 RID: 7464 RVA: 0x00100C10 File Offset: 0x000FEE10
+	// Token: 0x06001A04 RID: 6660 RVA: 0x000BA48C File Offset: 0x000B868C
 	public void updateItem()
 	{
 		if (this.inventory == null)
@@ -74,7 +74,7 @@ public class PutLianDanCell : MonoBehaviour, IPointerEnterHandler, IEventSystemH
 		this.itemSum.gameObject.SetActive(false);
 	}
 
-	// Token: 0x06001D29 RID: 7465 RVA: 0x00100E3C File Offset: 0x000FF03C
+	// Token: 0x06001A05 RID: 6661 RVA: 0x000BA6B8 File Offset: 0x000B88B8
 	public void OnPointerEnter(PointerEventData eventData)
 	{
 		if (LianDanSystemManager.inst.selectLianDanCaiLiaoPage.gameObject.activeSelf)
@@ -90,13 +90,13 @@ public class PutLianDanCell : MonoBehaviour, IPointerEnterHandler, IEventSystemH
 		this.inventory.showTooltip = false;
 	}
 
-	// Token: 0x06001D2A RID: 7466 RVA: 0x00100EE0 File Offset: 0x000FF0E0
+	// Token: 0x06001A06 RID: 6662 RVA: 0x000BA75C File Offset: 0x000B895C
 	public virtual int getItemPrice()
 	{
 		return (int)((float)((int)jsonData.instance.ItemJsonData[string.Concat(this.inventory.inventory[int.Parse(base.name)].itemID)]["price"].n) * 0.5f);
 	}
 
-	// Token: 0x06001D2B RID: 7467 RVA: 0x000184B5 File Offset: 0x000166B5
+	// Token: 0x06001A07 RID: 6663 RVA: 0x000BA7BA File Offset: 0x000B89BA
 	public void OnPointerExit(PointerEventData eventData)
 	{
 		if (LianDanSystemManager.inst.selectLianDanCaiLiaoPage.gameObject.activeSelf)
@@ -106,7 +106,7 @@ public class PutLianDanCell : MonoBehaviour, IPointerEnterHandler, IEventSystemH
 		this.inventory.showTooltip = false;
 	}
 
-	// Token: 0x06001D2C RID: 7468 RVA: 0x000184DA File Offset: 0x000166DA
+	// Token: 0x06001A08 RID: 6664 RVA: 0x000BA7DF File Offset: 0x000B89DF
 	public void OnPointerClick(PointerEventData eventData)
 	{
 		if (eventData.button == 1 && this.CanClickRight())
@@ -120,7 +120,7 @@ public class PutLianDanCell : MonoBehaviour, IPointerEnterHandler, IEventSystemH
 		}
 	}
 
-	// Token: 0x06001D2D RID: 7469 RVA: 0x00100F40 File Offset: 0x000FF140
+	// Token: 0x06001A09 RID: 6665 RVA: 0x000BA810 File Offset: 0x000B8A10
 	public void selectItem()
 	{
 		LianDanSystemManager.inst.lianDanPageManager.CanClick = false;
@@ -128,7 +128,7 @@ public class PutLianDanCell : MonoBehaviour, IPointerEnterHandler, IEventSystemH
 		LianDanSystemManager.inst.selectLianDanCaiLiaoPage.openCaiLiaoPackge((int)this.itemType);
 	}
 
-	// Token: 0x06001D2E RID: 7470 RVA: 0x00100F8C File Offset: 0x000FF18C
+	// Token: 0x06001A0A RID: 6666 RVA: 0x000BA85C File Offset: 0x000B8A5C
 	public void removeItem()
 	{
 		int num = this.inventory.inventory[int.Parse(base.name)].itemNum - 1;
@@ -144,52 +144,52 @@ public class PutLianDanCell : MonoBehaviour, IPointerEnterHandler, IEventSystemH
 		this.updateItem();
 	}
 
-	// Token: 0x06001D2F RID: 7471 RVA: 0x0010102C File Offset: 0x000FF22C
+	// Token: 0x06001A0B RID: 6667 RVA: 0x000BA8FC File Offset: 0x000B8AFC
 	private bool CanClickRight()
 	{
 		return this.itemType != ItemTypes.丹炉 && !LianDanSystemManager.inst.selectLianDanCaiLiaoPage.gameObject.activeSelf && LianDanSystemManager.inst.lianDanPageManager.CanClick && !this.isLock && this.Item.itemID != -1;
 	}
 
-	// Token: 0x06001D30 RID: 7472 RVA: 0x0001850A File Offset: 0x0001670A
+	// Token: 0x06001A0C RID: 6668 RVA: 0x000BA95B File Offset: 0x000B8B5B
 	private bool CanClickLeft()
 	{
 		return !LianDanSystemManager.inst.selectLianDanCaiLiaoPage.gameObject.activeSelf && !this.isLock && LianDanSystemManager.inst.lianDanPageManager.CanClick;
 	}
 
-	// Token: 0x0400191A RID: 6426
+	// Token: 0x04001514 RID: 5396
 	[SerializeField]
 	private Image itemIcon;
 
-	// Token: 0x0400191B RID: 6427
+	// Token: 0x04001515 RID: 5397
 	[SerializeField]
 	private GameObject NameBG;
 
-	// Token: 0x0400191C RID: 6428
+	// Token: 0x04001516 RID: 5398
 	[SerializeField]
 	private Text itemName;
 
-	// Token: 0x0400191D RID: 6429
+	// Token: 0x04001517 RID: 5399
 	[SerializeField]
 	private Text itemSum;
 
-	// Token: 0x0400191E RID: 6430
+	// Token: 0x04001518 RID: 5400
 	[SerializeField]
 	private Image PingZhi;
 
-	// Token: 0x0400191F RID: 6431
+	// Token: 0x04001519 RID: 5401
 	[HideInInspector]
 	public LianDanInventory inventory;
 
-	// Token: 0x04001920 RID: 6432
+	// Token: 0x0400151A RID: 5402
 	[HideInInspector]
 	public item Item = new item();
 
-	// Token: 0x04001921 RID: 6433
+	// Token: 0x0400151B RID: 5403
 	public ItemTypes itemType;
 
-	// Token: 0x04001922 RID: 6434
+	// Token: 0x0400151C RID: 5404
 	private Button button;
 
-	// Token: 0x04001923 RID: 6435
+	// Token: 0x0400151D RID: 5405
 	private bool _isLock;
 }

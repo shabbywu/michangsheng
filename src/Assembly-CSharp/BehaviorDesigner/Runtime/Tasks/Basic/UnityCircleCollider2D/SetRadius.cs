@@ -3,12 +3,12 @@ using UnityEngine;
 
 namespace BehaviorDesigner.Runtime.Tasks.Basic.UnityCircleCollider2D
 {
-	// Token: 0x02001603 RID: 5635
+	// Token: 0x02001144 RID: 4420
 	[TaskCategory("Basic/CircleCollider2D")]
 	[TaskDescription("Sets the radius of the CircleCollider2D. Returns Success.")]
 	public class SetRadius : Action
 	{
-		// Token: 0x060083A0 RID: 33696 RVA: 0x002CEC4C File Offset: 0x002CCE4C
+		// Token: 0x060075A6 RID: 30118 RVA: 0x002B4D10 File Offset: 0x002B2F10
 		public override void OnStart()
 		{
 			GameObject defaultGameObject = base.GetDefaultGameObject(this.targetGameObject.Value);
@@ -19,7 +19,7 @@ namespace BehaviorDesigner.Runtime.Tasks.Basic.UnityCircleCollider2D
 			}
 		}
 
-		// Token: 0x060083A1 RID: 33697 RVA: 0x0005AA01 File Offset: 0x00058C01
+		// Token: 0x060075A7 RID: 30119 RVA: 0x002B4D50 File Offset: 0x002B2F50
 		public override TaskStatus OnUpdate()
 		{
 			if (this.circleCollider2D == null)
@@ -31,25 +31,25 @@ namespace BehaviorDesigner.Runtime.Tasks.Basic.UnityCircleCollider2D
 			return 2;
 		}
 
-		// Token: 0x060083A2 RID: 33698 RVA: 0x0005AA34 File Offset: 0x00058C34
+		// Token: 0x060075A8 RID: 30120 RVA: 0x002B4D83 File Offset: 0x002B2F83
 		public override void OnReset()
 		{
 			this.targetGameObject = null;
 			this.radius = 0f;
 		}
 
-		// Token: 0x04007051 RID: 28753
+		// Token: 0x0400612E RID: 24878
 		[Tooltip("The GameObject that the task operates on. If null the task GameObject is used.")]
 		public SharedGameObject targetGameObject;
 
-		// Token: 0x04007052 RID: 28754
+		// Token: 0x0400612F RID: 24879
 		[Tooltip("The radius of the CircleCollider2D")]
 		public SharedFloat radius;
 
-		// Token: 0x04007053 RID: 28755
+		// Token: 0x04006130 RID: 24880
 		private CircleCollider2D circleCollider2D;
 
-		// Token: 0x04007054 RID: 28756
+		// Token: 0x04006131 RID: 24881
 		private GameObject prevGameObject;
 	}
 }

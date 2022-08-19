@@ -3,10 +3,10 @@ using System.Collections.Generic;
 
 namespace JSONClass
 {
-	// Token: 0x02000AED RID: 2797
+	// Token: 0x02000755 RID: 1877
 	public class BiguanJsonData : IJSONClass
 	{
-		// Token: 0x0600471E RID: 18206 RVA: 0x001E72A4 File Offset: 0x001E54A4
+		// Token: 0x06003B68 RID: 15208 RVA: 0x001992A0 File Offset: 0x001974A0
 		public static void InitDataDict()
 		{
 			foreach (JSONObject jsonobject in jsonData.instance.BiguanJsonData.list)
@@ -40,27 +40,27 @@ namespace JSONClass
 			}
 		}
 
-		// Token: 0x0600471F RID: 18207 RVA: 0x000042DD File Offset: 0x000024DD
+		// Token: 0x06003B69 RID: 15209 RVA: 0x00004095 File Offset: 0x00002295
 		private static void OnInitFinish()
 		{
 		}
 
-		// Token: 0x0400400C RID: 16396
+		// Token: 0x04003473 RID: 13427
 		public static Dictionary<int, BiguanJsonData> DataDict = new Dictionary<int, BiguanJsonData>();
 
-		// Token: 0x0400400D RID: 16397
+		// Token: 0x04003474 RID: 13428
 		public static List<BiguanJsonData> DataList = new List<BiguanJsonData>();
 
-		// Token: 0x0400400E RID: 16398
+		// Token: 0x04003475 RID: 13429
 		public static Action OnInitFinishAction = new Action(BiguanJsonData.OnInitFinish);
 
-		// Token: 0x0400400F RID: 16399
+		// Token: 0x04003476 RID: 13430
 		public int id;
 
-		// Token: 0x04004010 RID: 16400
+		// Token: 0x04003477 RID: 13431
 		public int speed;
 
-		// Token: 0x04004011 RID: 16401
+		// Token: 0x04003478 RID: 13432
 		public string Text;
 	}
 }

@@ -1,16 +1,16 @@
 ﻿using System;
 using UnityEngine;
 
-// Token: 0x02000159 RID: 345
+// Token: 0x020000E2 RID: 226
 public class EnemySpawner : MonoBehaviour
 {
-	// Token: 0x06000C4E RID: 3150 RVA: 0x0000E516 File Offset: 0x0000C716
+	// Token: 0x06000B5F RID: 2911 RVA: 0x000453BA File Offset: 0x000435BA
 	private void Start()
 	{
 		this.timetemp = Time.time;
 	}
 
-	// Token: 0x06000C4F RID: 3151 RVA: 0x00096F3C File Offset: 0x0009513C
+	// Token: 0x06000B60 RID: 2912 RVA: 0x000453C8 File Offset: 0x000435C8
 	private void Update()
 	{
 		int num = 0;
@@ -25,18 +25,18 @@ public class EnemySpawner : MonoBehaviour
 		}
 	}
 
-	// Token: 0x04000968 RID: 2408
+	// Token: 0x0400078D RID: 1933
 	public GameObject[] Objectman;
 
-	// Token: 0x04000969 RID: 2409
+	// Token: 0x0400078E RID: 1934
 	public float timeSpawn = 3f;
 
-	// Token: 0x0400096A RID: 2410
+	// Token: 0x0400078F RID: 1935
 	public int enemyCount = 10;
 
-	// Token: 0x0400096B RID: 2411
+	// Token: 0x04000790 RID: 1936
 	public int radius;
 
-	// Token: 0x0400096C RID: 2412
+	// Token: 0x04000791 RID: 1937
 	private float timetemp;
 }

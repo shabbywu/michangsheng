@@ -7,15 +7,15 @@ using MoonSharp.Interpreter.Execution.VM;
 
 namespace MoonSharp.Interpreter
 {
-	// Token: 0x02001060 RID: 4192
+	// Token: 0x02000C99 RID: 3225
 	public class Coroutine : RefIdObject, IScriptPrivateResource
 	{
-		// Token: 0x170008D4 RID: 2260
-		// (get) Token: 0x060064C5 RID: 25797 RVA: 0x00045452 File Offset: 0x00043652
-		// (set) Token: 0x060064C6 RID: 25798 RVA: 0x0004545A File Offset: 0x0004365A
+		// Token: 0x17000681 RID: 1665
+		// (get) Token: 0x06005A03 RID: 23043 RVA: 0x0025714F File Offset: 0x0025534F
+		// (set) Token: 0x06005A04 RID: 23044 RVA: 0x00257157 File Offset: 0x00255357
 		public Coroutine.CoroutineType Type { get; private set; }
 
-		// Token: 0x060064C7 RID: 25799 RVA: 0x00045463 File Offset: 0x00043663
+		// Token: 0x06005A05 RID: 23045 RVA: 0x00257160 File Offset: 0x00255360
 		internal Coroutine(CallbackFunction function)
 		{
 			this.Type = Coroutine.CoroutineType.ClrCallback;
@@ -23,7 +23,7 @@ namespace MoonSharp.Interpreter
 			this.OwnerScript = null;
 		}
 
-		// Token: 0x060064C8 RID: 25800 RVA: 0x00045480 File Offset: 0x00043680
+		// Token: 0x06005A06 RID: 23046 RVA: 0x0025717D File Offset: 0x0025537D
 		internal Coroutine(Processor proc)
 		{
 			this.Type = Coroutine.CoroutineType.Coroutine;
@@ -32,7 +32,7 @@ namespace MoonSharp.Interpreter
 			this.OwnerScript = proc.GetScript();
 		}
 
-		// Token: 0x060064C9 RID: 25801 RVA: 0x000454AE File Offset: 0x000436AE
+		// Token: 0x06005A07 RID: 23047 RVA: 0x002571AB File Offset: 0x002553AB
 		internal void MarkClrCallbackAsDead()
 		{
 			if (this.Type != Coroutine.CoroutineType.ClrCallback)
@@ -42,7 +42,7 @@ namespace MoonSharp.Interpreter
 			this.Type = Coroutine.CoroutineType.ClrCallbackDead;
 		}
 
-		// Token: 0x060064CA RID: 25802 RVA: 0x000454CB File Offset: 0x000436CB
+		// Token: 0x06005A08 RID: 23048 RVA: 0x002571C8 File Offset: 0x002553C8
 		public IEnumerable<DynValue> AsTypedEnumerable()
 		{
 			if (this.Type != Coroutine.CoroutineType.Coroutine)
@@ -56,7 +56,7 @@ namespace MoonSharp.Interpreter
 			yield break;
 		}
 
-		// Token: 0x060064CB RID: 25803 RVA: 0x000454DB File Offset: 0x000436DB
+		// Token: 0x06005A09 RID: 23049 RVA: 0x002571D8 File Offset: 0x002553D8
 		public IEnumerable<object> AsEnumerable()
 		{
 			foreach (DynValue dynValue in this.AsTypedEnumerable())
@@ -68,7 +68,7 @@ namespace MoonSharp.Interpreter
 			yield break;
 		}
 
-		// Token: 0x060064CC RID: 25804 RVA: 0x000454EB File Offset: 0x000436EB
+		// Token: 0x06005A0A RID: 23050 RVA: 0x002571E8 File Offset: 0x002553E8
 		public IEnumerable<T> AsEnumerable<T>()
 		{
 			foreach (DynValue dynValue in this.AsTypedEnumerable())
@@ -80,7 +80,7 @@ namespace MoonSharp.Interpreter
 			yield break;
 		}
 
-		// Token: 0x060064CD RID: 25805 RVA: 0x000454FB File Offset: 0x000436FB
+		// Token: 0x06005A0B RID: 23051 RVA: 0x002571F8 File Offset: 0x002553F8
 		public IEnumerator AsUnityCoroutine()
 		{
 			foreach (DynValue dynValue in this.AsTypedEnumerable())
@@ -92,7 +92,7 @@ namespace MoonSharp.Interpreter
 			yield break;
 		}
 
-		// Token: 0x060064CE RID: 25806 RVA: 0x0004550A File Offset: 0x0004370A
+		// Token: 0x06005A0C RID: 23052 RVA: 0x00257207 File Offset: 0x00255407
 		public DynValue Resume(params DynValue[] args)
 		{
 			this.CheckScriptOwnership(args);
@@ -103,7 +103,7 @@ namespace MoonSharp.Interpreter
 			throw new InvalidOperationException("Only non-CLR coroutines can be resumed with this overload of the Resume method. Use the overload accepting a ScriptExecutionContext instead");
 		}
 
-		// Token: 0x060064CF RID: 25807 RVA: 0x00281EA0 File Offset: 0x002800A0
+		// Token: 0x06005A0D RID: 23053 RVA: 0x00257230 File Offset: 0x00255430
 		public DynValue Resume(ScriptExecutionContext context, params DynValue[] args)
 		{
 			this.CheckScriptOwnership(context);
@@ -121,19 +121,19 @@ namespace MoonSharp.Interpreter
 			throw ScriptRuntimeException.CannotResumeNotSuspended(CoroutineState.Dead);
 		}
 
-		// Token: 0x060064D0 RID: 25808 RVA: 0x00045532 File Offset: 0x00043732
+		// Token: 0x06005A0E RID: 23054 RVA: 0x00257284 File Offset: 0x00255484
 		public DynValue Resume()
 		{
 			return this.Resume(new DynValue[0]);
 		}
 
-		// Token: 0x060064D1 RID: 25809 RVA: 0x00045540 File Offset: 0x00043740
+		// Token: 0x06005A0F RID: 23055 RVA: 0x00257292 File Offset: 0x00255492
 		public DynValue Resume(ScriptExecutionContext context)
 		{
 			return this.Resume(context, new DynValue[0]);
 		}
 
-		// Token: 0x060064D2 RID: 25810 RVA: 0x00281EF4 File Offset: 0x002800F4
+		// Token: 0x06005A10 RID: 23056 RVA: 0x002572A4 File Offset: 0x002554A4
 		public DynValue Resume(params object[] args)
 		{
 			if (this.Type != Coroutine.CoroutineType.Coroutine)
@@ -148,7 +148,7 @@ namespace MoonSharp.Interpreter
 			return this.Resume(array);
 		}
 
-		// Token: 0x060064D3 RID: 25811 RVA: 0x00281F44 File Offset: 0x00280144
+		// Token: 0x06005A11 RID: 23057 RVA: 0x002572F4 File Offset: 0x002554F4
 		public DynValue Resume(ScriptExecutionContext context, params object[] args)
 		{
 			DynValue[] array = new DynValue[args.Length];
@@ -159,8 +159,8 @@ namespace MoonSharp.Interpreter
 			return this.Resume(context, array);
 		}
 
-		// Token: 0x170008D5 RID: 2261
-		// (get) Token: 0x060064D4 RID: 25812 RVA: 0x0004554F File Offset: 0x0004374F
+		// Token: 0x17000682 RID: 1666
+		// (get) Token: 0x06005A12 RID: 23058 RVA: 0x00257331 File Offset: 0x00255531
 		public CoroutineState State
 		{
 			get
@@ -177,7 +177,7 @@ namespace MoonSharp.Interpreter
 			}
 		}
 
-		// Token: 0x060064D5 RID: 25813 RVA: 0x00045572 File Offset: 0x00043772
+		// Token: 0x06005A13 RID: 23059 RVA: 0x00257354 File Offset: 0x00255554
 		public WatchItem[] GetStackTrace(int skip, SourceRef entrySourceRef = null)
 		{
 			if (this.State != CoroutineState.Running)
@@ -187,14 +187,14 @@ namespace MoonSharp.Interpreter
 			return this.m_Processor.Debugger_GetCallStack(entrySourceRef).Skip(skip).ToArray<WatchItem>();
 		}
 
-		// Token: 0x170008D6 RID: 2262
-		// (get) Token: 0x060064D6 RID: 25814 RVA: 0x000455A1 File Offset: 0x000437A1
-		// (set) Token: 0x060064D7 RID: 25815 RVA: 0x000455A9 File Offset: 0x000437A9
+		// Token: 0x17000683 RID: 1667
+		// (get) Token: 0x06005A14 RID: 23060 RVA: 0x00257383 File Offset: 0x00255583
+		// (set) Token: 0x06005A15 RID: 23061 RVA: 0x0025738B File Offset: 0x0025558B
 		public Script OwnerScript { get; private set; }
 
-		// Token: 0x170008D7 RID: 2263
-		// (get) Token: 0x060064D8 RID: 25816 RVA: 0x000455B2 File Offset: 0x000437B2
-		// (set) Token: 0x060064D9 RID: 25817 RVA: 0x000455BF File Offset: 0x000437BF
+		// Token: 0x17000684 RID: 1668
+		// (get) Token: 0x06005A16 RID: 23062 RVA: 0x00257394 File Offset: 0x00255594
+		// (set) Token: 0x06005A17 RID: 23063 RVA: 0x002573A1 File Offset: 0x002555A1
 		public long AutoYieldCounter
 		{
 			get
@@ -207,20 +207,20 @@ namespace MoonSharp.Interpreter
 			}
 		}
 
-		// Token: 0x04005E0C RID: 24076
+		// Token: 0x04005259 RID: 21081
 		private CallbackFunction m_ClrCallback;
 
-		// Token: 0x04005E0D RID: 24077
+		// Token: 0x0400525A RID: 21082
 		private Processor m_Processor;
 
-		// Token: 0x02001061 RID: 4193
+		// Token: 0x0200163C RID: 5692
 		public enum CoroutineType
 		{
-			// Token: 0x04005E10 RID: 24080
+			// Token: 0x04007211 RID: 29201
 			Coroutine,
-			// Token: 0x04005E11 RID: 24081
+			// Token: 0x04007212 RID: 29202
 			ClrCallback,
-			// Token: 0x04005E12 RID: 24082
+			// Token: 0x04007213 RID: 29203
 			ClrCallbackDead
 		}
 	}

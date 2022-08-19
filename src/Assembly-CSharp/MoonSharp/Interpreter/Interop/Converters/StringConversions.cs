@@ -3,10 +3,10 @@ using System.Text;
 
 namespace MoonSharp.Interpreter.Interop.Converters
 {
-	// Token: 0x02001145 RID: 4421
+	// Token: 0x02000D3D RID: 3389
 	internal static class StringConversions
 	{
-		// Token: 0x06006B44 RID: 27460 RVA: 0x000491B8 File Offset: 0x000473B8
+		// Token: 0x06005F72 RID: 24434 RVA: 0x0026B6D6 File Offset: 0x002698D6
 		internal static StringConversions.StringSubtype GetStringSubtype(Type desiredType)
 		{
 			if (desiredType == typeof(string))
@@ -24,7 +24,7 @@ namespace MoonSharp.Interpreter.Interop.Converters
 			return StringConversions.StringSubtype.None;
 		}
 
-		// Token: 0x06006B45 RID: 27461 RVA: 0x000491F7 File Offset: 0x000473F7
+		// Token: 0x06005F73 RID: 24435 RVA: 0x0026B715 File Offset: 0x00269915
 		internal static object ConvertString(StringConversions.StringSubtype stringSubType, string str, Type desiredType, DataType dataType)
 		{
 			switch (stringSubType)
@@ -43,16 +43,16 @@ namespace MoonSharp.Interpreter.Interop.Converters
 			throw ScriptRuntimeException.ConvertObjectFailed(dataType, desiredType);
 		}
 
-		// Token: 0x02001146 RID: 4422
+		// Token: 0x0200167D RID: 5757
 		internal enum StringSubtype
 		{
-			// Token: 0x040060F6 RID: 24822
+			// Token: 0x040072C0 RID: 29376
 			None,
-			// Token: 0x040060F7 RID: 24823
+			// Token: 0x040072C1 RID: 29377
 			String,
-			// Token: 0x040060F8 RID: 24824
+			// Token: 0x040072C2 RID: 29378
 			StringBuilder,
-			// Token: 0x040060F9 RID: 24825
+			// Token: 0x040072C3 RID: 29379
 			Char
 		}
 	}

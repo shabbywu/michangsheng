@@ -4,10 +4,10 @@ using UnityEngine;
 
 namespace Spine.Unity.Examples
 {
-	// Token: 0x02000E41 RID: 3649
+	// Token: 0x02000AEF RID: 2799
 	public class EquipsVisualsComponentExample : MonoBehaviour
 	{
-		// Token: 0x060057B1 RID: 22449 RVA: 0x00245858 File Offset: 0x00243A58
+		// Token: 0x06004E2B RID: 20011 RVA: 0x00215858 File Offset: 0x00213A58
 		private void Start()
 		{
 			this.equipsSkin = new Skin("Equips");
@@ -20,7 +20,7 @@ namespace Spine.Unity.Examples
 			this.RefreshSkeletonAttachments();
 		}
 
-		// Token: 0x060057B2 RID: 22450 RVA: 0x0003EB4B File Offset: 0x0003CD4B
+		// Token: 0x06004E2C RID: 20012 RVA: 0x002158BC File Offset: 0x00213ABC
 		public void Equip(int slotIndex, string attachmentName, Attachment attachment)
 		{
 			this.equipsSkin.AddAttachment(slotIndex, attachmentName, attachment);
@@ -28,7 +28,7 @@ namespace Spine.Unity.Examples
 			this.RefreshSkeletonAttachments();
 		}
 
-		// Token: 0x060057B3 RID: 22451 RVA: 0x002458BC File Offset: 0x00243ABC
+		// Token: 0x06004E2D RID: 20013 RVA: 0x002158E8 File Offset: 0x00213AE8
 		public void OptimizeSkin()
 		{
 			this.collectedSkin = (this.collectedSkin ?? new Skin("Collected skin"));
@@ -41,30 +41,30 @@ namespace Spine.Unity.Examples
 			this.RefreshSkeletonAttachments();
 		}
 
-		// Token: 0x060057B4 RID: 22452 RVA: 0x0003EB77 File Offset: 0x0003CD77
+		// Token: 0x06004E2E RID: 20014 RVA: 0x002159AA File Offset: 0x00213BAA
 		private void RefreshSkeletonAttachments()
 		{
 			this.skeletonAnimation.Skeleton.SetSlotsToSetupPose();
 			this.skeletonAnimation.AnimationState.Apply(this.skeletonAnimation.Skeleton);
 		}
 
-		// Token: 0x040057A5 RID: 22437
+		// Token: 0x04004D8E RID: 19854
 		public SkeletonAnimation skeletonAnimation;
 
-		// Token: 0x040057A6 RID: 22438
+		// Token: 0x04004D8F RID: 19855
 		[SpineSkin("", "", true, false, false)]
 		public string templateSkinName;
 
-		// Token: 0x040057A7 RID: 22439
+		// Token: 0x04004D90 RID: 19856
 		private Skin equipsSkin;
 
-		// Token: 0x040057A8 RID: 22440
+		// Token: 0x04004D91 RID: 19857
 		private Skin collectedSkin;
 
-		// Token: 0x040057A9 RID: 22441
+		// Token: 0x04004D92 RID: 19858
 		public Material runtimeMaterial;
 
-		// Token: 0x040057AA RID: 22442
+		// Token: 0x04004D93 RID: 19859
 		public Texture2D runtimeAtlas;
 	}
 }

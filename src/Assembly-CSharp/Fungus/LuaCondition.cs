@@ -4,10 +4,10 @@ using UnityEngine;
 
 namespace Fungus
 {
-	// Token: 0x02001231 RID: 4657
+	// Token: 0x02000DED RID: 3565
 	public class LuaCondition : Condition
 	{
-		// Token: 0x0600718D RID: 29069 RVA: 0x002A6168 File Offset: 0x002A4368
+		// Token: 0x06006501 RID: 25857 RVA: 0x00281A10 File Offset: 0x0027FC10
 		protected override bool EvaluateCondition()
 		{
 			bool condition = false;
@@ -23,25 +23,25 @@ namespace Fungus
 			return condition;
 		}
 
-		// Token: 0x0600718E RID: 29070 RVA: 0x0004D38C File Offset: 0x0004B58C
+		// Token: 0x06006502 RID: 25858 RVA: 0x00281A55 File Offset: 0x0027FC55
 		protected override bool HasNeededProperties()
 		{
 			return !string.IsNullOrEmpty(this.luaCompareString);
 		}
 
-		// Token: 0x0600718F RID: 29071 RVA: 0x0004D39C File Offset: 0x0004B59C
+		// Token: 0x06006503 RID: 25859 RVA: 0x00281A65 File Offset: 0x0027FC65
 		protected virtual void Start()
 		{
 			this.InitExecuteLua();
 		}
 
-		// Token: 0x06007190 RID: 29072 RVA: 0x0004D3A4 File Offset: 0x0004B5A4
+		// Token: 0x06006504 RID: 25860 RVA: 0x00281A6D File Offset: 0x0027FC6D
 		protected virtual string GetLuaString()
 		{
 			return "return not not (" + this.luaCompareString + ")";
 		}
 
-		// Token: 0x06007191 RID: 29073 RVA: 0x002A61B0 File Offset: 0x002A43B0
+		// Token: 0x06006505 RID: 25861 RVA: 0x00281A84 File Offset: 0x0027FC84
 		protected virtual void InitExecuteLua()
 		{
 			if (this.initialised)
@@ -83,7 +83,7 @@ namespace Fungus
 			}
 		}
 
-		// Token: 0x06007192 RID: 29074 RVA: 0x0004D3BB File Offset: 0x0004B5BB
+		// Token: 0x06006506 RID: 25862 RVA: 0x00281B9F File Offset: 0x0027FD9F
 		public override string GetSummary()
 		{
 			if (string.IsNullOrEmpty(this.luaCompareString))
@@ -93,35 +93,35 @@ namespace Fungus
 			return this.luaCompareString;
 		}
 
-		// Token: 0x06007193 RID: 29075 RVA: 0x0000A093 File Offset: 0x00008293
+		// Token: 0x06006507 RID: 25863 RVA: 0x00024C5F File Offset: 0x00022E5F
 		public override bool OpenBlock()
 		{
 			return true;
 		}
 
-		// Token: 0x06007194 RID: 29076 RVA: 0x0004C5A3 File Offset: 0x0004A7A3
+		// Token: 0x06006508 RID: 25864 RVA: 0x0027D1B6 File Offset: 0x0027B3B6
 		public override Color GetButtonColor()
 		{
 			return new Color32(253, 253, 150, byte.MaxValue);
 		}
 
-		// Token: 0x040063F6 RID: 25590
+		// Token: 0x040056E5 RID: 22245
 		[Tooltip("Lua Environment to use to execute this Lua script (null for global)")]
 		[SerializeField]
 		protected LuaEnvironment luaEnvironment;
 
-		// Token: 0x040063F7 RID: 25591
+		// Token: 0x040056E6 RID: 22246
 		[Tooltip("The lua comparison string to run; implicitly prepends 'return' onto this")]
 		[TextArea]
 		public string luaCompareString;
 
-		// Token: 0x040063F8 RID: 25592
+		// Token: 0x040056E7 RID: 22247
 		protected bool initialised;
 
-		// Token: 0x040063F9 RID: 25593
+		// Token: 0x040056E8 RID: 22248
 		protected string friendlyName = "";
 
-		// Token: 0x040063FA RID: 25594
+		// Token: 0x040056E9 RID: 22249
 		protected Closure luaFunction;
 	}
 }

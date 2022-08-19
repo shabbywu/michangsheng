@@ -2,12 +2,12 @@
 
 namespace KBEngine
 {
-	// Token: 0x02001031 RID: 4145
+	// Token: 0x02000C7E RID: 3198
 	public class TaskMag
 	{
-		// Token: 0x170008C3 RID: 2243
-		// (get) Token: 0x06006325 RID: 25381 RVA: 0x000446C3 File Offset: 0x000428C3
-		// (set) Token: 0x06006324 RID: 25380 RVA: 0x000446BA File Offset: 0x000428BA
+		// Token: 0x17000670 RID: 1648
+		// (get) Token: 0x06005886 RID: 22662 RVA: 0x0024E3B1 File Offset: 0x0024C5B1
+		// (set) Token: 0x06005885 RID: 22661 RVA: 0x0024E3A8 File Offset: 0x0024C5A8
 		public JSONObject _TaskData
 		{
 			get
@@ -20,13 +20,13 @@ namespace KBEngine
 			}
 		}
 
-		// Token: 0x06006326 RID: 25382 RVA: 0x000446CB File Offset: 0x000428CB
+		// Token: 0x06005887 RID: 22663 RVA: 0x0024E3B9 File Offset: 0x0024C5B9
 		public bool isHasTask(int taskId)
 		{
 			return this.taskData["Task"].HasField(taskId.ToString());
 		}
 
-		// Token: 0x06006327 RID: 25383 RVA: 0x0027A0EC File Offset: 0x002782EC
+		// Token: 0x06005888 RID: 22664 RVA: 0x0024E3DC File Offset: 0x0024C5DC
 		public void addTask(int taskId)
 		{
 			if (this.taskData["Task"].HasField(taskId.ToString()))
@@ -50,7 +50,7 @@ namespace KBEngine
 			this.setTaskIndex(taskId, 1);
 		}
 
-		// Token: 0x06006328 RID: 25384 RVA: 0x0027A254 File Offset: 0x00278454
+		// Token: 0x06005889 RID: 22665 RVA: 0x0024E544 File Offset: 0x0024C744
 		public void addTask(string curTime, int taskId)
 		{
 			if (this.taskData["Task"].HasField(taskId.ToString()))
@@ -74,7 +74,7 @@ namespace KBEngine
 			this.setTaskIndex(taskId, 1);
 		}
 
-		// Token: 0x06006329 RID: 25385 RVA: 0x000446EE File Offset: 0x000428EE
+		// Token: 0x0600588A RID: 22666 RVA: 0x0024E69A File Offset: 0x0024C89A
 		public void setNowTask(int taskID)
 		{
 			if (!this.taskData.HasField("ShowTask"))
@@ -84,13 +84,13 @@ namespace KBEngine
 			this.taskData.SetField("ShowTask", taskID);
 		}
 
-		// Token: 0x0600632A RID: 25386 RVA: 0x00044724 File Offset: 0x00042924
+		// Token: 0x0600588B RID: 22667 RVA: 0x0024E6D0 File Offset: 0x0024C8D0
 		public bool isNowTask(int taskID)
 		{
 			return this.taskData.HasField("ShowTask") && (int)this.taskData["ShowTask"].n == taskID;
 		}
 
-		// Token: 0x0600632B RID: 25387 RVA: 0x0027A3AC File Offset: 0x002785AC
+		// Token: 0x0600588C RID: 22668 RVA: 0x0024E700 File Offset: 0x0024C900
 		public int GetTaskNowIndex(int taskId)
 		{
 			int result = 0;
@@ -101,7 +101,7 @@ namespace KBEngine
 			return result;
 		}
 
-		// Token: 0x0600632C RID: 25388 RVA: 0x0027A408 File Offset: 0x00278608
+		// Token: 0x0600588D RID: 22669 RVA: 0x0024E75C File Offset: 0x0024C95C
 		public void setTaskIndex(int taskId, int index)
 		{
 			if (!this.taskData["Task"].HasField(taskId.ToString()))
@@ -123,14 +123,14 @@ namespace KBEngine
 			}
 		}
 
-		// Token: 0x0600632D RID: 25389 RVA: 0x00044754 File Offset: 0x00042954
+		// Token: 0x0600588E RID: 22670 RVA: 0x0024E880 File Offset: 0x0024CA80
 		public TaskMag(Avatar _avatar)
 		{
 			this.taskData.AddField("Task", new JSONObject(JSONObject.Type.OBJECT));
 			this.avatar = _avatar;
 		}
 
-		// Token: 0x0600632E RID: 25390 RVA: 0x0027A52C File Offset: 0x0027872C
+		// Token: 0x0600588F RID: 22671 RVA: 0x0024E8BC File Offset: 0x0024CABC
 		public int getFinallyIndex(int TaskID)
 		{
 			JSONObject taskInfoJsonData = jsonData.instance.TaskInfoJsonData;
@@ -144,7 +144,7 @@ namespace KBEngine
 			return 0;
 		}
 
-		// Token: 0x0600632F RID: 25391 RVA: 0x0004478F File Offset: 0x0004298F
+		// Token: 0x06005890 RID: 22672 RVA: 0x0024E964 File Offset: 0x0024CB64
 		public void SetChuanWenBlack(int taskId)
 		{
 			if (!this.isHasTask(taskId))
@@ -154,13 +154,13 @@ namespace KBEngine
 			this.taskData["Task"][taskId.ToString()].SetField("isBlack", true);
 		}
 
-		// Token: 0x04005D13 RID: 23827
+		// Token: 0x04005204 RID: 20996
 		private JSONObject taskData = new JSONObject();
 
-		// Token: 0x04005D14 RID: 23828
+		// Token: 0x04005205 RID: 20997
 		private string exampleJson = "{\"Task\":{\"1\":{\"id\":0,\"NowIndex\":0,\"AllIndex\":0}}}";
 
-		// Token: 0x04005D15 RID: 23829
+		// Token: 0x04005206 RID: 20998
 		private Avatar avatar;
 	}
 }

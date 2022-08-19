@@ -2,10 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-// Token: 0x0200022A RID: 554
+// Token: 0x02000153 RID: 339
 public class TalkingDataDemoScript : MonoBehaviour
 {
-	// Token: 0x06001128 RID: 4392 RVA: 0x000AB4B4 File Offset: 0x000A96B4
+	// Token: 0x06000EFC RID: 3836 RVA: 0x0005B344 File Offset: 0x00059544
 	private void OnGUI()
 	{
 		int num = 0;
@@ -75,7 +75,7 @@ public class TalkingDataDemoScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001129 RID: 4393 RVA: 0x00010B9A File Offset: 0x0000ED9A
+	// Token: 0x06000EFD RID: 3837 RVA: 0x0005B6E9 File Offset: 0x000598E9
 	private void Start()
 	{
 		Debug.Log("start...!!!!!!!!!!");
@@ -83,7 +83,7 @@ public class TalkingDataDemoScript : MonoBehaviour
 		this.account = TDGAAccount.SetAccount("User01");
 	}
 
-	// Token: 0x0600112A RID: 4394 RVA: 0x00010BC5 File Offset: 0x0000EDC5
+	// Token: 0x06000EFE RID: 3838 RVA: 0x0005B714 File Offset: 0x00059914
 	private void Update()
 	{
 		if (Input.GetKey(27))
@@ -92,55 +92,55 @@ public class TalkingDataDemoScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x0600112B RID: 4395 RVA: 0x00010BD5 File Offset: 0x0000EDD5
+	// Token: 0x06000EFF RID: 3839 RVA: 0x0005B724 File Offset: 0x00059924
 	private void OnDestroy()
 	{
 		TalkingDataGA.OnEnd();
 		Debug.Log("onDestroy");
 	}
 
-	// Token: 0x0600112C RID: 4396 RVA: 0x00010BE6 File Offset: 0x0000EDE6
+	// Token: 0x06000F00 RID: 3840 RVA: 0x0005B735 File Offset: 0x00059935
 	private void Awake()
 	{
 		Debug.Log("Awake");
 	}
 
-	// Token: 0x0600112D RID: 4397 RVA: 0x00010BF2 File Offset: 0x0000EDF2
+	// Token: 0x06000F01 RID: 3841 RVA: 0x0005B741 File Offset: 0x00059941
 	private void OnEnable()
 	{
 		Debug.Log("OnEnable");
 	}
 
-	// Token: 0x0600112E RID: 4398 RVA: 0x00010BFE File Offset: 0x0000EDFE
+	// Token: 0x06000F02 RID: 3842 RVA: 0x0005B74D File Offset: 0x0005994D
 	private void OnDisable()
 	{
 		Debug.Log("OnDisable");
 	}
 
-	// Token: 0x04000DE0 RID: 3552
+	// Token: 0x04000B3B RID: 2875
 	private int index = 1;
 
-	// Token: 0x04000DE1 RID: 3553
+	// Token: 0x04000B3C RID: 2876
 	private int level = 1;
 
-	// Token: 0x04000DE2 RID: 3554
+	// Token: 0x04000B3D RID: 2877
 	private string gameserver = "";
 
-	// Token: 0x04000DE3 RID: 3555
+	// Token: 0x04000B3E RID: 2878
 	private TDGAAccount account;
 
-	// Token: 0x04000DE4 RID: 3556
+	// Token: 0x04000B3F RID: 2879
 	private const int left = 90;
 
-	// Token: 0x04000DE5 RID: 3557
+	// Token: 0x04000B40 RID: 2880
 	private const int height = 50;
 
-	// Token: 0x04000DE6 RID: 3558
+	// Token: 0x04000B41 RID: 2881
 	private const int top = 120;
 
-	// Token: 0x04000DE7 RID: 3559
+	// Token: 0x04000B42 RID: 2882
 	private int width = Screen.width - 180;
 
-	// Token: 0x04000DE8 RID: 3560
+	// Token: 0x04000B43 RID: 2883
 	private const int step = 60;
 }

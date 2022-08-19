@@ -5,17 +5,17 @@ using MoonSharp.Interpreter.Execution.VM;
 
 namespace MoonSharp.Interpreter.Tree.Statements
 {
-	// Token: 0x020010A7 RID: 4263
+	// Token: 0x02000CD1 RID: 3281
 	internal class BreakStatement : Statement
 	{
-		// Token: 0x0600671C RID: 26396 RVA: 0x00046FD0 File Offset: 0x000451D0
+		// Token: 0x06005C13 RID: 23571 RVA: 0x0025D7B0 File Offset: 0x0025B9B0
 		public BreakStatement(ScriptLoadingContext lcontext) : base(lcontext)
 		{
 			this.m_Ref = NodeBase.CheckTokenType(lcontext, TokenType.Break).GetSourceRef(true);
 			lcontext.Source.Refs.Add(this.m_Ref);
 		}
 
-		// Token: 0x0600671D RID: 26397 RVA: 0x00286FC0 File Offset: 0x002851C0
+		// Token: 0x06005C14 RID: 23572 RVA: 0x0025D7E4 File Offset: 0x0025B9E4
 		public override void Compile(ByteCode bc)
 		{
 			using (bc.EnterSource(this.m_Ref))
@@ -39,7 +39,7 @@ namespace MoonSharp.Interpreter.Tree.Statements
 			}
 		}
 
-		// Token: 0x04005F37 RID: 24375
+		// Token: 0x04005354 RID: 21332
 		private SourceRef m_Ref;
 	}
 }

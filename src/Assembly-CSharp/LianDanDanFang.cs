@@ -2,22 +2,22 @@
 using System.Collections;
 using UnityEngine;
 
-// Token: 0x0200061A RID: 1562
+// Token: 0x02000460 RID: 1120
 public class LianDanDanFang : MonoBehaviour
 {
-	// Token: 0x060026CB RID: 9931 RVA: 0x00130094 File Offset: 0x0012E294
+	// Token: 0x06002318 RID: 8984 RVA: 0x000EFB68 File Offset: 0x000EDD68
 	public void InitDanFang()
 	{
 		foreach (JSONObject jsonobject in Tools.instance.getPlayer().DanFang.list)
 		{
-			if ((int)jsonobject["ID"].n > 0)
+			if (jsonobject["ID"].I > 0)
 			{
 				bool flag = true;
 				Transform transform = null;
 				foreach (object obj in base.transform)
 				{
 					Transform transform2 = (Transform)obj;
-					if ((int)jsonobject["ID"].n == transform2.GetComponent<DanFang_UI>().ItemID)
+					if (jsonobject["ID"].I == transform2.GetComponent<DanFang_UI>().ItemID)
 					{
 						flag = false;
 						transform = transform2;
@@ -26,8 +26,8 @@ public class LianDanDanFang : MonoBehaviour
 				if (flag)
 				{
 					GameObject gameObject = Object.Instantiate<GameObject>(this.DanFangItem);
-					gameObject.GetComponent<DanFang_UI>().ItemID = (int)jsonobject["ID"].n;
-					gameObject.GetComponent<DanFang_UI>().text.text = Tools.Code64(jsonData.instance.ItemJsonData[((int)jsonobject["ID"].n).ToString()]["name"].str);
+					gameObject.GetComponent<DanFang_UI>().ItemID = jsonobject["ID"].I;
+					gameObject.GetComponent<DanFang_UI>().text.text = Tools.Code64(jsonData.instance.ItemJsonData[jsonobject["ID"].I.ToString()]["name"].str);
 					gameObject.transform.parent = base.transform;
 					gameObject.SetActive(true);
 					gameObject.transform.localScale = Vector3.one;
@@ -81,7 +81,7 @@ public class LianDanDanFang : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060026CC RID: 9932 RVA: 0x001304B0 File Offset: 0x0012E6B0
+	// Token: 0x06002319 RID: 8985 RVA: 0x000EFF80 File Offset: 0x000EE180
 	public int getInputID(string name)
 	{
 		int num = 0;
@@ -96,19 +96,19 @@ public class LianDanDanFang : MonoBehaviour
 		return num;
 	}
 
-	// Token: 0x060026CD RID: 9933 RVA: 0x0001EE42 File Offset: 0x0001D042
+	// Token: 0x0600231A RID: 8986 RVA: 0x000EFFE4 File Offset: 0x000EE1E4
 	private void Start()
 	{
 		this.InitDanFang();
 	}
 
-	// Token: 0x060026CE RID: 9934 RVA: 0x0001EE4A File Offset: 0x0001D04A
+	// Token: 0x0600231B RID: 8987 RVA: 0x000EFFEC File Offset: 0x000EE1EC
 	public void setShowType()
 	{
 		this.showtype = this.getInputID(this.mList.value);
 	}
 
-	// Token: 0x060026CF RID: 9935 RVA: 0x00130514 File Offset: 0x0012E714
+	// Token: 0x0600231C RID: 8988 RVA: 0x000F0008 File Offset: 0x000EE208
 	private void Update()
 	{
 		if (this.showtype != 0)
@@ -147,15 +147,15 @@ public class LianDanDanFang : MonoBehaviour
 		}
 	}
 
-	// Token: 0x04002115 RID: 8469
+	// Token: 0x04001C45 RID: 7237
 	public GameObject DanFangItem;
 
-	// Token: 0x04002116 RID: 8470
+	// Token: 0x04001C46 RID: 7238
 	public GameObject DanFang;
 
-	// Token: 0x04002117 RID: 8471
+	// Token: 0x04001C47 RID: 7239
 	public UIPopupList mList;
 
-	// Token: 0x04002118 RID: 8472
+	// Token: 0x04001C48 RID: 7240
 	public int showtype;
 }

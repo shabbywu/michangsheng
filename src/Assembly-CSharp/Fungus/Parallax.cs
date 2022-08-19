@@ -3,10 +3,10 @@ using UnityEngine;
 
 namespace Fungus
 {
-	// Token: 0x020012E6 RID: 4838
+	// Token: 0x02000E7B RID: 3707
 	public class Parallax : MonoBehaviour
 	{
-		// Token: 0x060075D6 RID: 30166 RVA: 0x0005048C File Offset: 0x0004E68C
+		// Token: 0x060068EF RID: 26863 RVA: 0x0028EA3D File Offset: 0x0028CC3D
 		protected virtual void Start()
 		{
 			this.startPosition = base.transform.position;
@@ -16,7 +16,7 @@ namespace Fungus
 			}
 		}
 
-		// Token: 0x060075D7 RID: 30167 RVA: 0x002B0FE4 File Offset: 0x002AF1E4
+		// Token: 0x060068F0 RID: 26864 RVA: 0x0028EA70 File Offset: 0x0028CC70
 		protected virtual void Update()
 		{
 			if (this.backgroundSprite == null)
@@ -40,25 +40,25 @@ namespace Fungus
 			base.transform.position = this.startPosition + vector;
 		}
 
-		// Token: 0x040066D0 RID: 26320
+		// Token: 0x04005908 RID: 22792
 		[SerializeField]
 		protected SpriteRenderer backgroundSprite;
 
-		// Token: 0x040066D1 RID: 26321
+		// Token: 0x04005909 RID: 22793
 		[SerializeField]
 		protected Vector2 parallaxScale = new Vector2(0.25f, 0f);
 
-		// Token: 0x040066D2 RID: 26322
+		// Token: 0x0400590A RID: 22794
 		[SerializeField]
 		protected float accelerometerScale = 0.5f;
 
-		// Token: 0x040066D3 RID: 26323
+		// Token: 0x0400590B RID: 22795
 		protected Vector3 startPosition;
 
-		// Token: 0x040066D4 RID: 26324
+		// Token: 0x0400590C RID: 22796
 		protected Vector3 acceleration;
 
-		// Token: 0x040066D5 RID: 26325
+		// Token: 0x0400590D RID: 22797
 		protected Vector3 velocity;
 	}
 }

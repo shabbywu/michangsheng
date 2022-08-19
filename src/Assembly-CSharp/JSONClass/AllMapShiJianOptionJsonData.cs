@@ -3,10 +3,10 @@ using System.Collections.Generic;
 
 namespace JSONClass
 {
-	// Token: 0x02000AE7 RID: 2791
+	// Token: 0x0200074F RID: 1871
 	public class AllMapShiJianOptionJsonData : IJSONClass
 	{
-		// Token: 0x06004706 RID: 18182 RVA: 0x001E63F0 File Offset: 0x001E45F0
+		// Token: 0x06003B50 RID: 15184 RVA: 0x001982A8 File Offset: 0x001964A8
 		public static void InitDataDict()
 		{
 			foreach (JSONObject jsonobject in jsonData.instance.AllMapShiJianOptionJsonData.list)
@@ -47,48 +47,48 @@ namespace JSONClass
 			}
 		}
 
-		// Token: 0x06004707 RID: 18183 RVA: 0x000042DD File Offset: 0x000024DD
+		// Token: 0x06003B51 RID: 15185 RVA: 0x00004095 File Offset: 0x00002295
 		private static void OnInitFinish()
 		{
 		}
 
-		// Token: 0x04003F97 RID: 16279
+		// Token: 0x040033FE RID: 13310
 		public static Dictionary<int, AllMapShiJianOptionJsonData> DataDict = new Dictionary<int, AllMapShiJianOptionJsonData>();
 
-		// Token: 0x04003F98 RID: 16280
+		// Token: 0x040033FF RID: 13311
 		public static List<AllMapShiJianOptionJsonData> DataList = new List<AllMapShiJianOptionJsonData>();
 
-		// Token: 0x04003F99 RID: 16281
+		// Token: 0x04003400 RID: 13312
 		public static Action OnInitFinishAction = new Action(AllMapShiJianOptionJsonData.OnInitFinish);
 
-		// Token: 0x04003F9A RID: 16282
+		// Token: 0x04003401 RID: 13313
 		public int id;
 
-		// Token: 0x04003F9B RID: 16283
+		// Token: 0x04003402 RID: 13314
 		public int option1;
 
-		// Token: 0x04003F9C RID: 16284
+		// Token: 0x04003403 RID: 13315
 		public int option2;
 
-		// Token: 0x04003F9D RID: 16285
+		// Token: 0x04003404 RID: 13316
 		public int option3;
 
-		// Token: 0x04003F9E RID: 16286
+		// Token: 0x04003405 RID: 13317
 		public int optionID;
 
-		// Token: 0x04003F9F RID: 16287
+		// Token: 0x04003406 RID: 13318
 		public string EventName;
 
-		// Token: 0x04003FA0 RID: 16288
+		// Token: 0x04003407 RID: 13319
 		public string desc;
 
-		// Token: 0x04003FA1 RID: 16289
+		// Token: 0x04003408 RID: 13320
 		public string optionDesc1;
 
-		// Token: 0x04003FA2 RID: 16290
+		// Token: 0x04003409 RID: 13321
 		public string optionDesc2;
 
-		// Token: 0x04003FA3 RID: 16291
+		// Token: 0x0400340A RID: 13322
 		public string optionDesc3;
 	}
 }

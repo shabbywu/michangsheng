@@ -2,12 +2,12 @@
 
 namespace ICSharpCode.SharpZipLib.Zip
 {
-	// Token: 0x020007D7 RID: 2007
+	// Token: 0x0200053E RID: 1342
 	public enum FileUpdateMode
 	{
-		// Token: 0x04002F18 RID: 12056
+		// Token: 0x04002711 RID: 10001
 		Safe,
-		// Token: 0x04002F19 RID: 12057
+		// Token: 0x04002712 RID: 10002
 		Direct
 	}
 }

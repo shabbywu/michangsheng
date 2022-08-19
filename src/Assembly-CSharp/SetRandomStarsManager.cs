@@ -1,10 +1,10 @@
 ﻿using System;
 using UnityEngine;
 
-// Token: 0x02000752 RID: 1874
+// Token: 0x020004DC RID: 1244
 public class SetRandomStarsManager : MonoBehaviour
 {
-	// Token: 0x06002FBB RID: 12219 RVA: 0x000235C6 File Offset: 0x000217C6
+	// Token: 0x06002852 RID: 10322 RVA: 0x00130DB8 File Offset: 0x0012EFB8
 	private void Start()
 	{
 		StagesParser.NemaRequiredStars_VratiULevele = false;
@@ -13,7 +13,7 @@ public class SetRandomStarsManager : MonoBehaviour
 		this.gameManager = base.GetComponent<Manage>();
 	}
 
-	// Token: 0x06002FBC RID: 12220 RVA: 0x0017D618 File Offset: 0x0017B818
+	// Token: 0x06002853 RID: 10323 RVA: 0x00130DE4 File Offset: 0x0012EFE4
 	public void GoBack()
 	{
 		this.prevoiousSetIndex = StagesParser.currSetIndex;
@@ -201,21 +201,21 @@ public class SetRandomStarsManager : MonoBehaviour
 		StagesParser.saving = true;
 	}
 
-	// Token: 0x04002AE8 RID: 10984
+	// Token: 0x0400235A RID: 9050
 	private int currSet;
 
-	// Token: 0x04002AE9 RID: 10985
+	// Token: 0x0400235B RID: 9051
 	private int currStage;
 
-	// Token: 0x04002AEA RID: 10986
+	// Token: 0x0400235C RID: 9052
 	private int prevoiousSetIndex;
 
-	// Token: 0x04002AEB RID: 10987
+	// Token: 0x0400235D RID: 9053
 	private Manage gameManager;
 
-	// Token: 0x04002AEC RID: 10988
+	// Token: 0x0400235E RID: 9054
 	private bool uslovNivo;
 
-	// Token: 0x04002AED RID: 10989
+	// Token: 0x0400235F RID: 9055
 	private bool uslovZvezdice;
 }

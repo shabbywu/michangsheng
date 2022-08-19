@@ -3,12 +3,12 @@ using UnityEngine;
 
 namespace Fungus
 {
-	// Token: 0x02001285 RID: 4741
+	// Token: 0x02000E34 RID: 3636
 	[CommandInfo("Audio", "Set Audio Volume", "Sets the global volume level for audio played with Play Music and Play Sound commands.", 0)]
 	[AddComponentMenu("")]
 	public class SetAudioVolume : Command
 	{
-		// Token: 0x060072F4 RID: 29428 RVA: 0x0004E4D3 File Offset: 0x0004C6D3
+		// Token: 0x06006666 RID: 26214 RVA: 0x0028643E File Offset: 0x0028463E
 		public override void OnEnter()
 		{
 			FungusManager.Instance.MusicManager.SetAudioVolume(this.volume, this.fadeDuration, delegate
@@ -24,7 +24,7 @@ namespace Fungus
 			}
 		}
 
-		// Token: 0x060072F5 RID: 29429 RVA: 0x002A9A80 File Offset: 0x002A7C80
+		// Token: 0x06006667 RID: 26215 RVA: 0x00286478 File Offset: 0x00284678
 		public override string GetSummary()
 		{
 			return string.Concat(new object[]
@@ -37,25 +37,25 @@ namespace Fungus
 			});
 		}
 
-		// Token: 0x060072F6 RID: 29430 RVA: 0x0004C749 File Offset: 0x0004A949
+		// Token: 0x06006668 RID: 26216 RVA: 0x0027DDC5 File Offset: 0x0027BFC5
 		public override Color GetButtonColor()
 		{
 			return new Color32(242, 209, 176, byte.MaxValue);
 		}
 
-		// Token: 0x0400650E RID: 25870
+		// Token: 0x040057CA RID: 22474
 		[Range(0f, 1f)]
 		[Tooltip("Global volume level for audio played using Play Music and Play Sound")]
 		[SerializeField]
 		protected float volume = 1f;
 
-		// Token: 0x0400650F RID: 25871
+		// Token: 0x040057CB RID: 22475
 		[Range(0f, 30f)]
 		[Tooltip("Time to fade between current volume level and target volume level.")]
 		[SerializeField]
 		protected float fadeDuration = 1f;
 
-		// Token: 0x04006510 RID: 25872
+		// Token: 0x040057CC RID: 22476
 		[Tooltip("Wait until the volume fade has completed before continuing.")]
 		[SerializeField]
 		protected bool waitUntilFinished = true;

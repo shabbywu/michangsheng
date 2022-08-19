@@ -6,10 +6,10 @@ using MoonSharp.Interpreter.Interop.Converters;
 
 namespace MoonSharp.Interpreter.Serialization
 {
-	// Token: 0x020010C9 RID: 4297
+	// Token: 0x02000CEC RID: 3308
 	public static class ObjectValueConverter
 	{
-		// Token: 0x060067B3 RID: 26547 RVA: 0x0028A088 File Offset: 0x00288288
+		// Token: 0x06005C9D RID: 23709 RVA: 0x00260CDC File Offset: 0x0025EEDC
 		public static DynValue SerializeObjectToDynValue(Script script, object o, DynValue valueForNulls = null)
 		{
 			if (o == null)

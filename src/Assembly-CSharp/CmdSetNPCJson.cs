@@ -2,12 +2,12 @@
 using Fungus;
 using UnityEngine;
 
-// Token: 0x02000368 RID: 872
+// Token: 0x0200024E RID: 590
 [CommandInfo("YSNPCJiaoHu", "设置NPCJson数据", "设置NPCJson数据", 0)]
 [AddComponentMenu("")]
 public class CmdSetNPCJson : Command
 {
-	// Token: 0x060018FF RID: 6399 RVA: 0x000DEF64 File Offset: 0x000DD164
+	// Token: 0x06001649 RID: 5705 RVA: 0x00096B24 File Offset: 0x00094D24
 	public override void OnEnter()
 	{
 		UINPCData nowJiaoHuNPC = UINPCJiaoHu.Inst.NowJiaoHuNPC;
@@ -47,23 +47,23 @@ public class CmdSetNPCJson : Command
 		this.Continue();
 	}
 
-	// Token: 0x040013E4 RID: 5092
+	// Token: 0x04001092 RID: 4242
 	[SerializeField]
 	protected string valueName;
 
-	// Token: 0x040013E5 RID: 5093
+	// Token: 0x04001093 RID: 4243
 	[SerializeField]
 	protected SetValueType valueType;
 
-	// Token: 0x040013E6 RID: 5094
+	// Token: 0x04001094 RID: 4244
 	[SerializeField]
 	protected int intValue;
 
-	// Token: 0x040013E7 RID: 5095
+	// Token: 0x04001095 RID: 4245
 	[SerializeField]
 	protected string stringValue;
 
-	// Token: 0x040013E8 RID: 5096
+	// Token: 0x04001096 RID: 4246
 	[SerializeField]
 	protected bool boolValue;
 }

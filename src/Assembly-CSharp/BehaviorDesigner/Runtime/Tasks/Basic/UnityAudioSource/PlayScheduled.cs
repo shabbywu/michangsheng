@@ -3,12 +3,12 @@ using UnityEngine;
 
 namespace BehaviorDesigner.Runtime.Tasks.Basic.UnityAudioSource
 {
-	// Token: 0x02001635 RID: 5685
+	// Token: 0x02001176 RID: 4470
 	[TaskCategory("Basic/AudioSource")]
 	[TaskDescription("Plays the audio clip with a delay specified in seconds. Returns Success.")]
 	public class PlayScheduled : Action
 	{
-		// Token: 0x06008466 RID: 33894 RVA: 0x002CF968 File Offset: 0x002CDB68
+		// Token: 0x0600766C RID: 30316 RVA: 0x002B681C File Offset: 0x002B4A1C
 		public override void OnStart()
 		{
 			GameObject defaultGameObject = base.GetDefaultGameObject(this.targetGameObject.Value);
@@ -19,7 +19,7 @@ namespace BehaviorDesigner.Runtime.Tasks.Basic.UnityAudioSource
 			}
 		}
 
-		// Token: 0x06008467 RID: 33895 RVA: 0x0005B7D8 File Offset: 0x000599D8
+		// Token: 0x0600766D RID: 30317 RVA: 0x002B685C File Offset: 0x002B4A5C
 		public override TaskStatus OnUpdate()
 		{
 			if (this.audioSource == null)
@@ -31,25 +31,25 @@ namespace BehaviorDesigner.Runtime.Tasks.Basic.UnityAudioSource
 			return 2;
 		}
 
-		// Token: 0x06008468 RID: 33896 RVA: 0x0005B80C File Offset: 0x00059A0C
+		// Token: 0x0600766E RID: 30318 RVA: 0x002B6890 File Offset: 0x002B4A90
 		public override void OnReset()
 		{
 			this.targetGameObject = null;
 			this.time = 0f;
 		}
 
-		// Token: 0x0400710F RID: 28943
+		// Token: 0x040061EC RID: 25068
 		[Tooltip("The GameObject that the task operates on. If null the task GameObject is used.")]
 		public SharedGameObject targetGameObject;
 
-		// Token: 0x04007110 RID: 28944
+		// Token: 0x040061ED RID: 25069
 		[Tooltip("Time in seconds on the absolute time-line that AudioSettings.dspTime refers to for when the sound should start playing")]
 		public SharedFloat time = 0f;
 
-		// Token: 0x04007111 RID: 28945
+		// Token: 0x040061EE RID: 25070
 		private AudioSource audioSource;
 
-		// Token: 0x04007112 RID: 28946
+		// Token: 0x040061EF RID: 25071
 		private GameObject prevGameObject;
 	}
 }

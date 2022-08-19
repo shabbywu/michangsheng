@@ -5,12 +5,12 @@ using JSONClass;
 using UnityEngine;
 using UnityEngine.UI;
 
-// Token: 0x020003A2 RID: 930
+// Token: 0x0200027B RID: 635
 public class UINPCSVItem : MonoBehaviour, IComparable
 {
-	// Token: 0x17000285 RID: 645
-	// (get) Token: 0x060019EB RID: 6635 RVA: 0x0001647A File Offset: 0x0001467A
-	// (set) Token: 0x060019EC RID: 6636 RVA: 0x00016482 File Offset: 0x00014682
+	// Token: 0x1700023D RID: 573
+	// (get) Token: 0x0600171B RID: 5915 RVA: 0x0009DC8F File Offset: 0x0009BE8F
+	// (set) Token: 0x0600171C RID: 5916 RVA: 0x0009DC97 File Offset: 0x0009BE97
 	public UINPCData NPCData
 	{
 		get
@@ -24,12 +24,12 @@ public class UINPCSVItem : MonoBehaviour, IComparable
 		}
 	}
 
-	// Token: 0x060019ED RID: 6637 RVA: 0x000042DD File Offset: 0x000024DD
+	// Token: 0x0600171D RID: 5917 RVA: 0x00004095 File Offset: 0x00002295
 	private void Start()
 	{
 	}
 
-	// Token: 0x060019EE RID: 6638 RVA: 0x000E5588 File Offset: 0x000E3788
+	// Token: 0x0600171E RID: 5918 RVA: 0x0009DCA8 File Offset: 0x0009BEA8
 	private void Update()
 	{
 		if (this.NPCData != null && this.NPCData.ID == UINPCSVItem.RefreshNPCFavorID)
@@ -45,7 +45,7 @@ public class UINPCSVItem : MonoBehaviour, IComparable
 		}
 	}
 
-	// Token: 0x060019EF RID: 6639 RVA: 0x000E5604 File Offset: 0x000E3804
+	// Token: 0x0600171F RID: 5919 RVA: 0x0009DD24 File Offset: 0x0009BF24
 	public void CheckTask()
 	{
 		if (UINPCJiaoHu.Inst.TNPCIDList.Contains(this.npc.ID))
@@ -86,7 +86,7 @@ public class UINPCSVItem : MonoBehaviour, IComparable
 		UINPCSVItem.RefreshNPCTaskID = -1;
 	}
 
-	// Token: 0x060019F0 RID: 6640 RVA: 0x000E5738 File Offset: 0x000E3938
+	// Token: 0x06001720 RID: 5920 RVA: 0x0009DE58 File Offset: 0x0009C058
 	public void RefreshUI()
 	{
 		this.npc.RefreshData();
@@ -97,7 +97,7 @@ public class UINPCSVItem : MonoBehaviour, IComparable
 		this.CheckTask();
 	}
 
-	// Token: 0x060019F1 RID: 6641 RVA: 0x000E57B0 File Offset: 0x000E39B0
+	// Token: 0x06001721 RID: 5921 RVA: 0x0009DED0 File Offset: 0x0009C0D0
 	public void OnClick()
 	{
 		MenuDialog menuDialog = Object.FindObjectOfType<MenuDialog>();
@@ -135,7 +135,7 @@ public class UINPCSVItem : MonoBehaviour, IComparable
 		Debug.LogError("点击了3级场景NPC，但是没有对应的Action");
 	}
 
-	// Token: 0x060019F2 RID: 6642 RVA: 0x000E5894 File Offset: 0x000E3A94
+	// Token: 0x06001722 RID: 5922 RVA: 0x0009DFB4 File Offset: 0x0009C1B4
 	public int CompareTo(object obj)
 	{
 		if (UINPCSVItem.IsExpSort)
@@ -164,45 +164,45 @@ public class UINPCSVItem : MonoBehaviour, IComparable
 		}
 	}
 
-	// Token: 0x04001536 RID: 5430
+	// Token: 0x040011C3 RID: 4547
 	public static int RefreshNPCFavorID;
 
-	// Token: 0x04001537 RID: 5431
+	// Token: 0x040011C4 RID: 4548
 	public static int RefreshNPCTaskID;
 
-	// Token: 0x04001538 RID: 5432
+	// Token: 0x040011C5 RID: 4549
 	public static UINPCSVItem NowSelectedUINPCSVItem;
 
-	// Token: 0x04001539 RID: 5433
+	// Token: 0x040011C6 RID: 4550
 	private UINPCData npc;
 
-	// Token: 0x0400153A RID: 5434
+	// Token: 0x040011C7 RID: 4551
 	public Text NPCTitle;
 
-	// Token: 0x0400153B RID: 5435
+	// Token: 0x040011C8 RID: 4552
 	public Text NPCName;
 
-	// Token: 0x0400153C RID: 5436
+	// Token: 0x040011C9 RID: 4553
 	public UINPCHeadFavor NPCFavor;
 
-	// Token: 0x0400153D RID: 5437
+	// Token: 0x040011CA RID: 4554
 	public PlayerSetRandomFace NPCHead;
 
-	// Token: 0x0400153E RID: 5438
+	// Token: 0x040011CB RID: 4555
 	public Image NPCQuastIcon;
 
-	// Token: 0x0400153F RID: 5439
+	// Token: 0x040011CC RID: 4556
 	public GameObject Selected;
 
-	// Token: 0x04001540 RID: 5440
+	// Token: 0x040011CD RID: 4557
 	public Sprite SelectedBG;
 
-	// Token: 0x04001541 RID: 5441
+	// Token: 0x040011CE RID: 4558
 	public Sprite NormalBG;
 
-	// Token: 0x04001542 RID: 5442
+	// Token: 0x040011CF RID: 4559
 	public Image BG;
 
-	// Token: 0x04001543 RID: 5443
+	// Token: 0x040011D0 RID: 4560
 	public static bool IsExpSort;
 }

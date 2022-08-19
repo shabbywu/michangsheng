@@ -1,11 +1,11 @@
 ﻿using System;
 using UnityEngine;
 
-// Token: 0x020002AE RID: 686
+// Token: 0x020001B0 RID: 432
 public class SingletonMono<T> : MonoBehaviour where T : SingletonMono<T>
 {
-	// Token: 0x1700026A RID: 618
-	// (get) Token: 0x060014DB RID: 5339 RVA: 0x000BC48C File Offset: 0x000BA68C
+	// Token: 0x17000222 RID: 546
+	// (get) Token: 0x06001230 RID: 4656 RVA: 0x0006E7A0 File Offset: 0x0006C9A0
 	public static T Instance
 	{
 		get
@@ -18,6 +18,6 @@ public class SingletonMono<T> : MonoBehaviour where T : SingletonMono<T>
 		}
 	}
 
-	// Token: 0x04001008 RID: 4104
+	// Token: 0x04000CDD RID: 3293
 	protected static T _instance;
 }

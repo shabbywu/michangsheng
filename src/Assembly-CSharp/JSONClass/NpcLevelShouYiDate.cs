@@ -3,10 +3,10 @@ using System.Collections.Generic;
 
 namespace JSONClass
 {
-	// Token: 0x02000C34 RID: 3124
+	// Token: 0x020008A6 RID: 2214
 	public class NpcLevelShouYiDate : IJSONClass
 	{
-		// Token: 0x06004C39 RID: 19513 RVA: 0x00202F78 File Offset: 0x00201178
+		// Token: 0x060040AB RID: 16555 RVA: 0x001B9F40 File Offset: 0x001B8140
 		public static void InitDataDict()
 		{
 			foreach (JSONObject jsonobject in jsonData.instance.NpcLevelShouYiDate.list)
@@ -45,42 +45,42 @@ namespace JSONClass
 			}
 		}
 
-		// Token: 0x06004C3A RID: 19514 RVA: 0x000042DD File Offset: 0x000024DD
+		// Token: 0x060040AC RID: 16556 RVA: 0x00004095 File Offset: 0x00002295
 		private static void OnInitFinish()
 		{
 		}
 
-		// Token: 0x040049F0 RID: 18928
+		// Token: 0x04003E97 RID: 16023
 		public static Dictionary<int, NpcLevelShouYiDate> DataDict = new Dictionary<int, NpcLevelShouYiDate>();
 
-		// Token: 0x040049F1 RID: 18929
+		// Token: 0x04003E98 RID: 16024
 		public static List<NpcLevelShouYiDate> DataList = new List<NpcLevelShouYiDate>();
 
-		// Token: 0x040049F2 RID: 18930
+		// Token: 0x04003E99 RID: 16025
 		public static Action OnInitFinishAction = new Action(NpcLevelShouYiDate.OnInitFinish);
 
-		// Token: 0x040049F3 RID: 18931
+		// Token: 0x04003E9A RID: 16026
 		public int id;
 
-		// Token: 0x040049F4 RID: 18932
+		// Token: 0x04003E9B RID: 16027
 		public int money;
 
-		// Token: 0x040049F5 RID: 18933
+		// Token: 0x04003E9C RID: 16028
 		public int gongxian;
 
-		// Token: 0x040049F6 RID: 18934
+		// Token: 0x04003E9D RID: 16029
 		public int fabao;
 
-		// Token: 0x040049F7 RID: 18935
+		// Token: 0x04003E9E RID: 16030
 		public int wudaoexp;
 
-		// Token: 0x040049F8 RID: 18936
+		// Token: 0x04003E9F RID: 16031
 		public int ZengLi;
 
-		// Token: 0x040049F9 RID: 18937
+		// Token: 0x04003EA0 RID: 16032
 		public int jieshapanduan;
 
-		// Token: 0x040049FA RID: 18938
+		// Token: 0x04003EA1 RID: 16033
 		public int siwangjilv;
 	}
 }

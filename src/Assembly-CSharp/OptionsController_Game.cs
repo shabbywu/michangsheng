@@ -3,10 +3,10 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 
-// Token: 0x0200018C RID: 396
+// Token: 0x02000109 RID: 265
 public class OptionsController_Game : MonoBehaviour
 {
-	// Token: 0x06000D37 RID: 3383 RVA: 0x0000EFB5 File Offset: 0x0000D1B5
+	// Token: 0x06000C1C RID: 3100 RVA: 0x0004929B File Offset: 0x0004749B
 	private IEnumerator Start()
 	{
 		yield return new WaitForEndOfFrame();
@@ -14,7 +14,7 @@ public class OptionsController_Game : MonoBehaviour
 		yield break;
 	}
 
-	// Token: 0x06000D38 RID: 3384 RVA: 0x0009AC70 File Offset: 0x00098E70
+	// Token: 0x06000C1D RID: 3101 RVA: 0x000492AC File Offset: 0x000474AC
 	public void game_toggleHUD()
 	{
 		if (this.toggleHud == 0)
@@ -33,7 +33,7 @@ public class OptionsController_Game : MonoBehaviour
 		EasyAudioUtility.instance.Play("Hover");
 	}
 
-	// Token: 0x06000D39 RID: 3385 RVA: 0x0009ACF4 File Offset: 0x00098EF4
+	// Token: 0x06000C1E RID: 3102 RVA: 0x00049330 File Offset: 0x00047530
 	private void game_setHUD()
 	{
 		if (this.toggleHud == 0)
@@ -46,14 +46,14 @@ public class OptionsController_Game : MonoBehaviour
 		PlayerPrefs.SetString("HUD_name", this.HUD_name);
 	}
 
-	// Token: 0x06000D3A RID: 3386 RVA: 0x0000EFC4 File Offset: 0x0000D1C4
+	// Token: 0x06000C1F RID: 3103 RVA: 0x00049385 File Offset: 0x00047585
 	public void game_Contrast()
 	{
 		this.contrastValue = this.contrast_slider.value;
 		PlayerPrefs.SetFloat("contrastValue", this.contrastValue);
 	}
 
-	// Token: 0x06000D3B RID: 3387 RVA: 0x0000EFE7 File Offset: 0x0000D1E7
+	// Token: 0x06000C20 RID: 3104 RVA: 0x000493A8 File Offset: 0x000475A8
 	private void game_setContrast()
 	{
 		if (this.contrastValue == 0f)
@@ -63,14 +63,14 @@ public class OptionsController_Game : MonoBehaviour
 		this.contrast_slider.value = this.contrastValue;
 	}
 
-	// Token: 0x06000D3C RID: 3388 RVA: 0x0000F012 File Offset: 0x0000D212
+	// Token: 0x06000C21 RID: 3105 RVA: 0x000493D3 File Offset: 0x000475D3
 	public void game_Brightness()
 	{
 		this.brightnessValue = this.brightness_slider.value;
 		PlayerPrefs.SetFloat("brightnessValue", this.brightnessValue);
 	}
 
-	// Token: 0x06000D3D RID: 3389 RVA: 0x0000F035 File Offset: 0x0000D235
+	// Token: 0x06000C22 RID: 3106 RVA: 0x000493F6 File Offset: 0x000475F6
 	private void game_setBrightness()
 	{
 		if (this.brightnessValue == 0f)
@@ -80,7 +80,7 @@ public class OptionsController_Game : MonoBehaviour
 		this.brightness_slider.value = this.brightnessValue;
 	}
 
-	// Token: 0x06000D3E RID: 3390 RVA: 0x0000F060 File Offset: 0x0000D260
+	// Token: 0x06000C23 RID: 3107 RVA: 0x00049421 File Offset: 0x00047621
 	public void game_Music()
 	{
 		this.musicSource.volume = this.music_slider.value;
@@ -88,7 +88,7 @@ public class OptionsController_Game : MonoBehaviour
 		PlayerPrefs.SetFloat("musicValue", this.musicValue);
 	}
 
-	// Token: 0x06000D3F RID: 3391 RVA: 0x0009AD4C File Offset: 0x00098F4C
+	// Token: 0x06000C24 RID: 3108 RVA: 0x0004945C File Offset: 0x0004765C
 	private void game_setMusic()
 	{
 		EasyAudioUtility easyAudioUtility = Object.FindObjectOfType<EasyAudioUtility>();
@@ -108,7 +108,7 @@ public class OptionsController_Game : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000D40 RID: 3392 RVA: 0x0009ADC0 File Offset: 0x00098FC0
+	// Token: 0x06000C25 RID: 3109 RVA: 0x000494D0 File Offset: 0x000476D0
 	public void game_Sound()
 	{
 		EasyAudioUtility_Helper[] array = this.soundSource;
@@ -120,7 +120,7 @@ public class OptionsController_Game : MonoBehaviour
 		PlayerPrefs.SetFloat("soundValue", this.soundValue);
 	}
 
-	// Token: 0x06000D41 RID: 3393 RVA: 0x0009AE18 File Offset: 0x00099018
+	// Token: 0x06000C26 RID: 3110 RVA: 0x00049528 File Offset: 0x00047728
 	private void game_setSound()
 	{
 		EasyAudioUtility easyAudioUtility = Object.FindObjectOfType<EasyAudioUtility>();
@@ -146,7 +146,7 @@ public class OptionsController_Game : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000D42 RID: 3394 RVA: 0x0009AED0 File Offset: 0x000990D0
+	// Token: 0x06000C27 RID: 3111 RVA: 0x000495E0 File Offset: 0x000477E0
 	private void game_setDefaults()
 	{
 		this.toggleHud = PlayerPrefs.GetInt("toggleHud");
@@ -159,55 +159,55 @@ public class OptionsController_Game : MonoBehaviour
 		this.game_setSound();
 	}
 
-	// Token: 0x04000A65 RID: 2661
+	// Token: 0x0400086C RID: 2156
 	[Header("_Game Options_")]
 	[Space(5f)]
 	[Tooltip("HUD GameObject name in scene")]
 	public string HUD_name;
 
-	// Token: 0x04000A66 RID: 2662
+	// Token: 0x0400086D RID: 2157
 	public Text HUD_text;
 
-	// Token: 0x04000A67 RID: 2663
+	// Token: 0x0400086E RID: 2158
 	public int toggleHud = 1;
 
-	// Token: 0x04000A68 RID: 2664
+	// Token: 0x0400086F RID: 2159
 	[Space(10f)]
 	public Slider contrast_slider;
 
-	// Token: 0x04000A69 RID: 2665
+	// Token: 0x04000870 RID: 2160
 	[HideInInspector]
 	public float contrastValue;
 
-	// Token: 0x04000A6A RID: 2666
+	// Token: 0x04000871 RID: 2161
 	[Space(10f)]
 	[HideInInspector]
 	public float brightnessValue;
 
-	// Token: 0x04000A6B RID: 2667
+	// Token: 0x04000872 RID: 2162
 	public Slider brightness_slider;
 
-	// Token: 0x04000A6C RID: 2668
+	// Token: 0x04000873 RID: 2163
 	[Space(10f)]
 	[HideInInspector]
 	public float musicValue;
 
-	// Token: 0x04000A6D RID: 2669
+	// Token: 0x04000874 RID: 2164
 	[Tooltip("Music Source to control")]
 	public AudioSource musicSource;
 
-	// Token: 0x04000A6E RID: 2670
+	// Token: 0x04000875 RID: 2165
 	public Slider music_slider;
 
-	// Token: 0x04000A6F RID: 2671
+	// Token: 0x04000876 RID: 2166
 	[Space(10f)]
 	[HideInInspector]
 	public float soundValue;
 
-	// Token: 0x04000A70 RID: 2672
+	// Token: 0x04000877 RID: 2167
 	[Tooltip("Audio Sources to control")]
 	public EasyAudioUtility_Helper[] soundSource;
 
-	// Token: 0x04000A71 RID: 2673
+	// Token: 0x04000878 RID: 2168
 	public Slider sound_slider;
 }

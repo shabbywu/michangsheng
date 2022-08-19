@@ -2,11 +2,11 @@
 
 namespace Facebook
 {
-	// Token: 0x02000E8A RID: 3722
+	// Token: 0x02000B1B RID: 2843
 	public class CanvasFacebookLoader : FB.RemoteFacebookLoader
 	{
-		// Token: 0x1700084E RID: 2126
-		// (get) Token: 0x0600594F RID: 22863 RVA: 0x0003F713 File Offset: 0x0003D913
+		// Token: 0x170005FF RID: 1535
+		// (get) Token: 0x06004F3D RID: 20285 RVA: 0x00218E43 File Offset: 0x00217043
 		protected override string className
 		{
 			get

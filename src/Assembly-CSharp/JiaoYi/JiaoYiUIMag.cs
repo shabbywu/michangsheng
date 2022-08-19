@@ -5,26 +5,26 @@ using UnityEngine.UI;
 
 namespace JiaoYi
 {
-	// Token: 0x02000A91 RID: 2705
+	// Token: 0x02000731 RID: 1841
 	public class JiaoYiUIMag : MonoBehaviour, IESCClose
 	{
-		// Token: 0x0600455D RID: 17757 RVA: 0x000318B8 File Offset: 0x0002FAB8
+		// Token: 0x06003AA3 RID: 15011 RVA: 0x001930C4 File Offset: 0x001912C4
 		private void Awake()
 		{
 			JiaoYiUIMag.Inst = this;
 			ESCCloseManager.Inst.RegisterClose(this);
 		}
 
-		// Token: 0x0600455E RID: 17758 RVA: 0x000318CB File Offset: 0x0002FACB
+		// Token: 0x06003AA4 RID: 15012 RVA: 0x001930D7 File Offset: 0x001912D7
 		public void Init(int npcId)
 		{
-			this.NpcId = npcId;
+			this.NpcId = NPCEx.NPCIDToNew(npcId);
 			this.InitPlayerData();
 			this.InitNpcData();
 			base.transform.SetAsLastSibling();
 		}
 
-		// Token: 0x0600455F RID: 17759 RVA: 0x000318EB File Offset: 0x0002FAEB
+		// Token: 0x06003AA5 RID: 15013 RVA: 0x001930FC File Offset: 0x001912FC
 		public void Init(int npcId, UnityAction action)
 		{
 			this.NpcId = npcId;
@@ -36,7 +36,7 @@ namespace JiaoYi
 			this.NpcBag.UpdateMoney();
 		}
 
-		// Token: 0x06004560 RID: 17760 RVA: 0x00031928 File Offset: 0x0002FB28
+		// Token: 0x06003AA6 RID: 15014 RVA: 0x00193139 File Offset: 0x00191339
 		private void InitPlayerData()
 		{
 			this.PlayerName.SetText(Tools.GetPlayerName());
@@ -44,7 +44,7 @@ namespace JiaoYi
 			this.PlayerBag.Init(this.NpcId, true);
 		}
 
-		// Token: 0x06004561 RID: 17761 RVA: 0x001DABF4 File Offset: 0x001D8DF4
+		// Token: 0x06003AA7 RID: 15015 RVA: 0x00193170 File Offset: 0x00191370
 		private void InitNpcData()
 		{
 			NpcJieSuanManager.inst.SortNpcPack(this.NpcId);
@@ -54,7 +54,7 @@ namespace JiaoYi
 			this.NpcBag.Init(this.NpcId, false);
 		}
 
-		// Token: 0x06004562 RID: 17762 RVA: 0x001DAC9C File Offset: 0x001D8E9C
+		// Token: 0x06003AA8 RID: 15016 RVA: 0x00193218 File Offset: 0x00191418
 		public void SellItem(JiaoYiSlot dragSlot, JiaoYiSlot toSlot = null)
 		{
 			if (!dragSlot.Item.CanSale)
@@ -201,7 +201,7 @@ namespace JiaoYi
 			}
 		}
 
-		// Token: 0x06004563 RID: 17763 RVA: 0x001DB074 File Offset: 0x001D9274
+		// Token: 0x06003AA9 RID: 15017 RVA: 0x001935F0 File Offset: 0x001917F0
 		public void UpdatePlayerGetMoney()
 		{
 			this.PlayerGetMoney = 0;
@@ -227,7 +227,7 @@ namespace JiaoYi
 			this.PlayerGetMoneyText.SetText(string.Format("{0}", this.PlayerGetMoney));
 		}
 
-		// Token: 0x06004564 RID: 17764 RVA: 0x001DB1C0 File Offset: 0x001D93C0
+		// Token: 0x06003AAA RID: 15018 RVA: 0x0019373C File Offset: 0x0019193C
 		public void BackItem(JiaoYiSlot dragSlot, JiaoYiSlot toSlot = null)
 		{
 			if (!dragSlot.Item.CanSale)
@@ -379,7 +379,7 @@ namespace JiaoYi
 			this.UpdatePlayerGetMoney();
 		}
 
-		// Token: 0x06004565 RID: 17765 RVA: 0x001DB5AC File Offset: 0x001D97AC
+		// Token: 0x06003AAB RID: 15019 RVA: 0x00193B28 File Offset: 0x00191D28
 		public void JiaoYiBtn()
 		{
 			if (this.NpcSay())
@@ -408,7 +408,7 @@ namespace JiaoYi
 			}
 		}
 
-		// Token: 0x06004566 RID: 17766 RVA: 0x001DB770 File Offset: 0x001D9970
+		// Token: 0x06003AAC RID: 15020 RVA: 0x00193CEC File Offset: 0x00191EEC
 		public bool NpcSay()
 		{
 			bool result = true;
@@ -433,13 +433,13 @@ namespace JiaoYi
 			return result;
 		}
 
-		// Token: 0x06004567 RID: 17767 RVA: 0x0003195C File Offset: 0x0002FB5C
+		// Token: 0x06003AAD RID: 15021 RVA: 0x00193DE0 File Offset: 0x00191FE0
 		public void CloseSay()
 		{
 			this.NpcSayPanel.gameObject.SetActive(false);
 		}
 
-		// Token: 0x06004568 RID: 17768 RVA: 0x0003196F File Offset: 0x0002FB6F
+		// Token: 0x06003AAE RID: 15022 RVA: 0x00193DF3 File Offset: 0x00191FF3
 		public void Close()
 		{
 			ESCCloseManager.Inst.UnRegisterClose(this);
@@ -450,59 +450,59 @@ namespace JiaoYi
 			Object.Destroy(base.gameObject);
 		}
 
-		// Token: 0x06004569 RID: 17769 RVA: 0x0003199A File Offset: 0x0002FB9A
+		// Token: 0x06003AAF RID: 15023 RVA: 0x00193E1E File Offset: 0x0019201E
 		public bool TryEscClose()
 		{
 			this.Close();
 			return true;
 		}
 
-		// Token: 0x04003D83 RID: 15747
+		// Token: 0x040032D2 RID: 13010
 		public static JiaoYiUIMag Inst;
 
-		// Token: 0x04003D84 RID: 15748
+		// Token: 0x040032D3 RID: 13011
 		public int NpcId;
 
-		// Token: 0x04003D85 RID: 15749
+		// Token: 0x040032D4 RID: 13012
 		public JiaoBag PlayerBag;
 
-		// Token: 0x04003D86 RID: 15750
+		// Token: 0x040032D5 RID: 13013
 		public PlayerSetRandomFace PlayerFace;
 
-		// Token: 0x04003D87 RID: 15751
+		// Token: 0x040032D6 RID: 13014
 		public BagItemSelect bagItemSelect;
 
-		// Token: 0x04003D88 RID: 15752
+		// Token: 0x040032D7 RID: 13015
 		public Text PlayerName;
 
-		// Token: 0x04003D89 RID: 15753
+		// Token: 0x040032D8 RID: 13016
 		public Text PlayerTitle;
 
-		// Token: 0x04003D8A RID: 15754
+		// Token: 0x040032D9 RID: 13017
 		public JiaoBag NpcBag;
 
-		// Token: 0x04003D8B RID: 15755
+		// Token: 0x040032DA RID: 13018
 		public PlayerSetRandomFace NpcFace;
 
-		// Token: 0x04003D8C RID: 15756
+		// Token: 0x040032DB RID: 13019
 		public Text NpcName;
 
-		// Token: 0x04003D8D RID: 15757
+		// Token: 0x040032DC RID: 13020
 		public Text NpcTitle;
 
-		// Token: 0x04003D8E RID: 15758
+		// Token: 0x040032DD RID: 13021
 		public int PlayerGetMoney;
 
-		// Token: 0x04003D8F RID: 15759
+		// Token: 0x040032DE RID: 13022
 		public Text PlayerGetMoneyText;
 
-		// Token: 0x04003D90 RID: 15760
+		// Token: 0x040032DF RID: 13023
 		public GameObject NpcSayPanel;
 
-		// Token: 0x04003D91 RID: 15761
+		// Token: 0x040032E0 RID: 13024
 		public Text NpcSayText;
 
-		// Token: 0x04003D92 RID: 15762
+		// Token: 0x040032E1 RID: 13025
 		public UnityAction CloseAction;
 	}
 }

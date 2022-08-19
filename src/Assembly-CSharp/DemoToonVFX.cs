@@ -5,7 +5,7 @@ using UnityEngine;
 // Token: 0x0200000C RID: 12
 public class DemoToonVFX : MonoBehaviour
 {
-	// Token: 0x06000039 RID: 57 RVA: 0x0005D370 File Offset: 0x0005B570
+	// Token: 0x06000039 RID: 57 RVA: 0x00002A88 File Offset: 0x00000C88
 	private void Start()
 	{
 		if (Screen.dpi < 1f)
@@ -27,7 +27,7 @@ public class DemoToonVFX : MonoBehaviour
 		this.animObject.GetComponent<Animator>();
 	}
 
-	// Token: 0x0600003A RID: 58 RVA: 0x0005D3F8 File Offset: 0x0005B5F8
+	// Token: 0x0600003A RID: 58 RVA: 0x00002B10 File Offset: 0x00000D10
 	private void OnGUI()
 	{
 		if (GUI.Button(new Rect(5f * this.windowDpi, 5f * this.windowDpi, 110f * this.windowDpi, 35f * this.windowDpi), "Previous effect"))
@@ -59,7 +59,7 @@ public class DemoToonVFX : MonoBehaviour
 		}
 	}
 
-	// Token: 0x0600003B RID: 59 RVA: 0x0005D630 File Offset: 0x0005B830
+	// Token: 0x0600003B RID: 59 RVA: 0x00002D48 File Offset: 0x00000F48
 	private void Counter(int count)
 	{
 		this.Prefab += count;
@@ -106,13 +106,13 @@ public class DemoToonVFX : MonoBehaviour
 		}
 	}
 
-	// Token: 0x0600003C RID: 60 RVA: 0x00004110 File Offset: 0x00002310
+	// Token: 0x0600003C RID: 60 RVA: 0x00002EDD File Offset: 0x000010DD
 	private void Activate()
 	{
 		this.Instance.SetActive(true);
 	}
 
-	// Token: 0x0600003D RID: 61 RVA: 0x0005D7C8 File Offset: 0x0005B9C8
+	// Token: 0x0600003D RID: 61 RVA: 0x00002EEC File Offset: 0x000010EC
 	private void LateUpdate()
 	{
 		if (this.currDistance < 2f)
@@ -164,7 +164,7 @@ public class DemoToonVFX : MonoBehaviour
 		}
 	}
 
-	// Token: 0x0600003E RID: 62 RVA: 0x0000411E File Offset: 0x0000231E
+	// Token: 0x0600003E RID: 62 RVA: 0x00003117 File Offset: 0x00001317
 	private static float ClampAngle(float angle, float min, float max)
 	{
 		if (angle < -360f)
@@ -245,16 +245,16 @@ public class DemoToonVFX : MonoBehaviour
 	// Token: 0x04000026 RID: 38
 	public bool useAnimation;
 
-	// Token: 0x0200000D RID: 13
+	// Token: 0x020011C4 RID: 4548
 	public struct SVA
 	{
-		// Token: 0x04000027 RID: 39
+		// Token: 0x0400634F RID: 25423
 		public float S;
 
-		// Token: 0x04000028 RID: 40
+		// Token: 0x04006350 RID: 25424
 		public float V;
 
-		// Token: 0x04000029 RID: 41
+		// Token: 0x04006351 RID: 25425
 		public float A;
 	}
 }

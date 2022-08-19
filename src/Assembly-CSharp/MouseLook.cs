@@ -1,11 +1,11 @@
 ﻿using System;
 using UnityEngine;
 
-// Token: 0x0200030A RID: 778
+// Token: 0x020001F6 RID: 502
 [AddComponentMenu("Camera-Control/Mouse Look")]
 public class MouseLook : MonoBehaviour
 {
-	// Token: 0x06001741 RID: 5953 RVA: 0x000CCB70 File Offset: 0x000CAD70
+	// Token: 0x06001497 RID: 5271 RVA: 0x00083EB4 File Offset: 0x000820B4
 	private void Update()
 	{
 		if (Input.GetMouseButton(1))
@@ -29,7 +29,7 @@ public class MouseLook : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001742 RID: 5954 RVA: 0x000148C3 File Offset: 0x00012AC3
+	// Token: 0x06001498 RID: 5272 RVA: 0x00083FE7 File Offset: 0x000821E7
 	private void Start()
 	{
 		if (base.GetComponent<Rigidbody>())
@@ -38,38 +38,38 @@ public class MouseLook : MonoBehaviour
 		}
 	}
 
-	// Token: 0x04001296 RID: 4758
+	// Token: 0x04000F54 RID: 3924
 	public MouseLook.RotationAxes axes;
 
-	// Token: 0x04001297 RID: 4759
+	// Token: 0x04000F55 RID: 3925
 	public float sensitivityX = 15f;
 
-	// Token: 0x04001298 RID: 4760
+	// Token: 0x04000F56 RID: 3926
 	public float sensitivityY = 15f;
 
-	// Token: 0x04001299 RID: 4761
+	// Token: 0x04000F57 RID: 3927
 	public float minimumX = -360f;
 
-	// Token: 0x0400129A RID: 4762
+	// Token: 0x04000F58 RID: 3928
 	public float maximumX = 360f;
 
-	// Token: 0x0400129B RID: 4763
+	// Token: 0x04000F59 RID: 3929
 	public float minimumY = -60f;
 
-	// Token: 0x0400129C RID: 4764
+	// Token: 0x04000F5A RID: 3930
 	public float maximumY = 60f;
 
-	// Token: 0x0400129D RID: 4765
+	// Token: 0x04000F5B RID: 3931
 	private float rotationY;
 
-	// Token: 0x0200030B RID: 779
+	// Token: 0x020012DF RID: 4831
 	public enum RotationAxes
 	{
-		// Token: 0x0400129F RID: 4767
+		// Token: 0x040066E8 RID: 26344
 		MouseXAndY,
-		// Token: 0x040012A0 RID: 4768
+		// Token: 0x040066E9 RID: 26345
 		MouseX,
-		// Token: 0x040012A1 RID: 4769
+		// Token: 0x040066EA RID: 26346
 		MouseY
 	}
 }

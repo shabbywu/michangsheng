@@ -10,13 +10,13 @@ using UnityEngine.Events;
 
 namespace GUIPackage
 {
-	// Token: 0x02000D56 RID: 3414
+	// Token: 0x02000A4E RID: 2638
 	[Serializable]
 	public class item
 	{
-		// Token: 0x170007DA RID: 2010
-		// (get) Token: 0x06005141 RID: 20801 RVA: 0x0003A81E File Offset: 0x00038A1E
-		// (set) Token: 0x06005142 RID: 20802 RVA: 0x0003A856 File Offset: 0x00038A56
+		// Token: 0x170005BF RID: 1471
+		// (get) Token: 0x0600487C RID: 18556 RVA: 0x001E9C24 File Offset: 0x001E7E24
+		// (set) Token: 0x0600487D RID: 18557 RVA: 0x001E9C5C File Offset: 0x001E7E5C
 		public string itemName
 		{
 			get
@@ -33,9 +33,9 @@ namespace GUIPackage
 			}
 		}
 
-		// Token: 0x170007DB RID: 2011
-		// (get) Token: 0x06005143 RID: 20803 RVA: 0x0021D978 File Offset: 0x0021BB78
-		// (set) Token: 0x06005144 RID: 20804 RVA: 0x0003A85F File Offset: 0x00038A5F
+		// Token: 0x170005C0 RID: 1472
+		// (get) Token: 0x0600487E RID: 18558 RVA: 0x001E9C68 File Offset: 0x001E7E68
+		// (set) Token: 0x0600487F RID: 18559 RVA: 0x001E9CBB File Offset: 0x001E7EBB
 		public Texture2D itemIcon
 		{
 			get
@@ -53,9 +53,9 @@ namespace GUIPackage
 			}
 		}
 
-		// Token: 0x170007DC RID: 2012
-		// (get) Token: 0x06005145 RID: 20805 RVA: 0x0021D9CC File Offset: 0x0021BBCC
-		// (set) Token: 0x06005146 RID: 20806 RVA: 0x0003A868 File Offset: 0x00038A68
+		// Token: 0x170005C1 RID: 1473
+		// (get) Token: 0x06004880 RID: 18560 RVA: 0x001E9CC4 File Offset: 0x001E7EC4
+		// (set) Token: 0x06004881 RID: 18561 RVA: 0x001E9D17 File Offset: 0x001E7F17
 		public Sprite itemIconSprite
 		{
 			get
@@ -73,9 +73,9 @@ namespace GUIPackage
 			}
 		}
 
-		// Token: 0x170007DD RID: 2013
-		// (get) Token: 0x06005147 RID: 20807 RVA: 0x0021DA20 File Offset: 0x0021BC20
-		// (set) Token: 0x06005148 RID: 20808 RVA: 0x0003A871 File Offset: 0x00038A71
+		// Token: 0x170005C2 RID: 1474
+		// (get) Token: 0x06004882 RID: 18562 RVA: 0x001E9D20 File Offset: 0x001E7F20
+		// (set) Token: 0x06004883 RID: 18563 RVA: 0x001E9D86 File Offset: 0x001E7F86
 		public Texture2D itemPingZhi
 		{
 			get
@@ -94,9 +94,9 @@ namespace GUIPackage
 			}
 		}
 
-		// Token: 0x170007DE RID: 2014
-		// (get) Token: 0x06005149 RID: 20809 RVA: 0x0021DA88 File Offset: 0x0021BC88
-		// (set) Token: 0x0600514A RID: 20810 RVA: 0x0003A87A File Offset: 0x00038A7A
+		// Token: 0x170005C3 RID: 1475
+		// (get) Token: 0x06004884 RID: 18564 RVA: 0x001E9D90 File Offset: 0x001E7F90
+		// (set) Token: 0x06004885 RID: 18565 RVA: 0x001E9DF0 File Offset: 0x001E7FF0
 		public Sprite itemPingZhiSprite
 		{
 			get
@@ -114,9 +114,9 @@ namespace GUIPackage
 			}
 		}
 
-		// Token: 0x170007DF RID: 2015
-		// (get) Token: 0x0600514B RID: 20811 RVA: 0x0021DAE8 File Offset: 0x0021BCE8
-		// (set) Token: 0x0600514C RID: 20812 RVA: 0x0003A883 File Offset: 0x00038A83
+		// Token: 0x170005C4 RID: 1476
+		// (get) Token: 0x06004886 RID: 18566 RVA: 0x001E9DFC File Offset: 0x001E7FFC
+		// (set) Token: 0x06004887 RID: 18567 RVA: 0x001E9E62 File Offset: 0x001E8062
 		public Sprite itemPingZhiUP
 		{
 			get
@@ -135,9 +135,9 @@ namespace GUIPackage
 			}
 		}
 
-		// Token: 0x170007E0 RID: 2016
-		// (get) Token: 0x0600514D RID: 20813 RVA: 0x0021DB50 File Offset: 0x0021BD50
-		// (set) Token: 0x0600514E RID: 20814 RVA: 0x0003A88C File Offset: 0x00038A8C
+		// Token: 0x170005C5 RID: 1477
+		// (get) Token: 0x06004888 RID: 18568 RVA: 0x001E9E6C File Offset: 0x001E806C
+		// (set) Token: 0x06004889 RID: 18569 RVA: 0x001E9ED2 File Offset: 0x001E80D2
 		public Sprite newitemPingZhiSprite
 		{
 			get
@@ -156,9 +156,9 @@ namespace GUIPackage
 			}
 		}
 
-		// Token: 0x170007E1 RID: 2017
-		// (get) Token: 0x0600514F RID: 20815 RVA: 0x0021DBB8 File Offset: 0x0021BDB8
-		// (set) Token: 0x06005150 RID: 20816 RVA: 0x0003A895 File Offset: 0x00038A95
+		// Token: 0x170005C6 RID: 1478
+		// (get) Token: 0x0600488A RID: 18570 RVA: 0x001E9EDC File Offset: 0x001E80DC
+		// (set) Token: 0x0600488B RID: 18571 RVA: 0x001E9F49 File Offset: 0x001E8149
 		public Sprite newitemPingZhiUP
 		{
 			get
@@ -178,9 +178,9 @@ namespace GUIPackage
 			}
 		}
 
-		// Token: 0x170007E2 RID: 2018
-		// (get) Token: 0x06005151 RID: 20817 RVA: 0x0003A89E File Offset: 0x00038A9E
-		// (set) Token: 0x06005152 RID: 20818 RVA: 0x0003A8D6 File Offset: 0x00038AD6
+		// Token: 0x170005C7 RID: 1479
+		// (get) Token: 0x0600488C RID: 18572 RVA: 0x001E9F52 File Offset: 0x001E8152
+		// (set) Token: 0x0600488D RID: 18573 RVA: 0x001E9F8A File Offset: 0x001E818A
 		public int quality
 		{
 			get
@@ -197,7 +197,7 @@ namespace GUIPackage
 			}
 		}
 
-		// Token: 0x06005153 RID: 20819 RVA: 0x0021DC28 File Offset: 0x0021BE28
+		// Token: 0x0600488E RID: 18574 RVA: 0x001E9F94 File Offset: 0x001E8194
 		public item()
 		{
 			this.itemID = -1;
@@ -205,12 +205,12 @@ namespace GUIPackage
 			this.ExGoodsID = -1;
 		}
 
-		// Token: 0x06005154 RID: 20820 RVA: 0x0003A8DF File Offset: 0x00038ADF
+		// Token: 0x0600488F RID: 18575 RVA: 0x001E9FF0 File Offset: 0x001E81F0
 		public item(string name, int id, string nameCN, string desc, int max_num, item.ItemType type, int price)
 		{
 		}
 
-		// Token: 0x06005155 RID: 20821 RVA: 0x0021DC84 File Offset: 0x0021BE84
+		// Token: 0x06004890 RID: 18576 RVA: 0x001EA028 File Offset: 0x001E8228
 		public item(int id)
 		{
 			_ItemJsonData itemJsonData = _ItemJsonData.DataDict[id];
@@ -243,7 +243,7 @@ namespace GUIPackage
 			}
 		}
 
-		// Token: 0x06005156 RID: 20822 RVA: 0x0021DDF4 File Offset: 0x0021BFF4
+		// Token: 0x06004891 RID: 18577 RVA: 0x001EA198 File Offset: 0x001E8398
 		public void InitImage()
 		{
 			if (!this.initedImage)
@@ -292,7 +292,7 @@ namespace GUIPackage
 			}
 		}
 
-		// Token: 0x06005157 RID: 20823 RVA: 0x0021E110 File Offset: 0x0021C310
+		// Token: 0x06004892 RID: 18578 RVA: 0x001EA4B4 File Offset: 0x001E86B4
 		public override string ToString()
 		{
 			StringBuilder stringBuilder = new StringBuilder();
@@ -329,7 +329,7 @@ namespace GUIPackage
 			return stringBuilder.ToString();
 		}
 
-		// Token: 0x06005158 RID: 20824 RVA: 0x0021E34C File Offset: 0x0021C54C
+		// Token: 0x06004893 RID: 18579 RVA: 0x001EA6F0 File Offset: 0x001E88F0
 		public int GetItemPrice()
 		{
 			int i = this.itemPrice;
@@ -340,7 +340,7 @@ namespace GUIPackage
 			return (int)((float)i * 0.5f);
 		}
 
-		// Token: 0x06005159 RID: 20825 RVA: 0x0021E39C File Offset: 0x0021C59C
+		// Token: 0x06004894 RID: 18580 RVA: 0x001EA740 File Offset: 0x001E8940
 		public int GetItemOriPrice()
 		{
 			int i = this.itemPrice;
@@ -374,7 +374,7 @@ namespace GUIPackage
 			return (int)((float)i * num);
 		}
 
-		// Token: 0x0600515A RID: 20826 RVA: 0x0021E4D4 File Offset: 0x0021C6D4
+		// Token: 0x06004895 RID: 18581 RVA: 0x001EA878 File Offset: 0x001E8A78
 		public void CalcNPCZhuangTai(int npcid, out bool isJiXu, out bool isLaJi)
 		{
 			isJiXu = false;
@@ -428,7 +428,7 @@ namespace GUIPackage
 			}
 		}
 
-		// Token: 0x0600515B RID: 20827 RVA: 0x0021E628 File Offset: 0x0021C828
+		// Token: 0x06004896 RID: 18582 RVA: 0x001EA9CC File Offset: 0x001E8BCC
 		public int GetNPCZhuangTaiJiaCheng(int npcid)
 		{
 			bool flag;
@@ -441,7 +441,7 @@ namespace GUIPackage
 			return 0;
 		}
 
-		// Token: 0x0600515C RID: 20828 RVA: 0x0021E648 File Offset: 0x0021C848
+		// Token: 0x06004897 RID: 18583 RVA: 0x001EA9EC File Offset: 0x001E8BEC
 		public int GetJiaCheng(int npcid)
 		{
 			int num = 0;
@@ -464,7 +464,7 @@ namespace GUIPackage
 			return num;
 		}
 
-		// Token: 0x0600515D RID: 20829 RVA: 0x0021E6CC File Offset: 0x0021C8CC
+		// Token: 0x06004898 RID: 18584 RVA: 0x001EAA70 File Offset: 0x001E8C70
 		public int GetJiaoYiPrice(int npcid, bool isPlayer = false, bool zongjia = false)
 		{
 			npcid = NPCEx.NPCIDToNew(npcid);
@@ -509,13 +509,13 @@ namespace GUIPackage
 			return num4;
 		}
 
-		// Token: 0x0600515E RID: 20830 RVA: 0x0003A917 File Offset: 0x00038B17
+		// Token: 0x06004899 RID: 18585 RVA: 0x001EAB94 File Offset: 0x001E8D94
 		public item Clone()
 		{
 			return base.MemberwiseClone() as item;
 		}
 
-		// Token: 0x0600515F RID: 20831 RVA: 0x0021E7F0 File Offset: 0x0021C9F0
+		// Token: 0x0600489A RID: 18586 RVA: 0x001EABA4 File Offset: 0x001E8DA4
 		public void Copy(item A, item B)
 		{
 			PropertyInfo[] properties = A.GetType().GetProperties();
@@ -529,7 +529,7 @@ namespace GUIPackage
 			}
 		}
 
-		// Token: 0x06005160 RID: 20832 RVA: 0x0021E840 File Offset: 0x0021CA40
+		// Token: 0x0600489B RID: 18587 RVA: 0x001EABF4 File Offset: 0x001E8DF4
 		public bool IsWuDaoCanStudy(List<int> wudaoTypeList, List<int> wudaoLvList)
 		{
 			Avatar player = Tools.instance.getPlayer();
@@ -549,7 +549,7 @@ namespace GUIPackage
 			return true;
 		}
 
-		// Token: 0x06005161 RID: 20833 RVA: 0x000C6B9C File Offset: 0x000C4D9C
+		// Token: 0x0600489C RID: 18588 RVA: 0x001EACE8 File Offset: 0x001E8EE8
 		public static JSONObject getGongFaBookItem(int STSKillID)
 		{
 			foreach (KeyValuePair<string, JSONObject> keyValuePair in jsonData.instance.ItemJsonData)
@@ -566,7 +566,7 @@ namespace GUIPackage
 			return null;
 		}
 
-		// Token: 0x06005162 RID: 20834 RVA: 0x0021E934 File Offset: 0x0021CB34
+		// Token: 0x0600489D RID: 18589 RVA: 0x001EAD88 File Offset: 0x001E8F88
 		public static string StudyTiaoJian(List<int> wudaoTypeList, List<int> wudaoLvList)
 		{
 			Tools.instance.getPlayer();
@@ -604,7 +604,7 @@ namespace GUIPackage
 			return text;
 		}
 
-		// Token: 0x06005163 RID: 20835 RVA: 0x0021EA70 File Offset: 0x0021CC70
+		// Token: 0x0600489E RID: 18590 RVA: 0x001EAEC4 File Offset: 0x001E90C4
 		public static string StudyTiSheng(List<int> wudaoTypeList, string startString = "领悟后能够提升对")
 		{
 			Tools.instance.getPlayer();
@@ -624,7 +624,7 @@ namespace GUIPackage
 			return text;
 		}
 
-		// Token: 0x06005164 RID: 20836 RVA: 0x0021EB2C File Offset: 0x0021CD2C
+		// Token: 0x0600489F RID: 18591 RVA: 0x001EAF80 File Offset: 0x001E9180
 		public static void GetWuDaoType(int itemID, List<int> wudaoTypeList, List<int> wudaoLvList)
 		{
 			int num = 0;
@@ -642,7 +642,7 @@ namespace GUIPackage
 			}
 		}
 
-		// Token: 0x06005165 RID: 20837 RVA: 0x0021EBA0 File Offset: 0x0021CDA0
+		// Token: 0x060048A0 RID: 18592 RVA: 0x001EAFF4 File Offset: 0x001E91F4
 		public static int GetItemCanUseNum(int ItemID)
 		{
 			_ItemJsonData itemJsonData = _ItemJsonData.DataDict[ItemID];
@@ -656,7 +656,7 @@ namespace GUIPackage
 			return num;
 		}
 
-		// Token: 0x06005166 RID: 20838 RVA: 0x0021EBDC File Offset: 0x0021CDDC
+		// Token: 0x060048A1 RID: 18593 RVA: 0x001EB030 File Offset: 0x001E9230
 		public void gongneng(UnityAction Next = null, bool isTuPo = false)
 		{
 			Debug.Log("您使用了" + this.itemNameCN);
@@ -681,9 +681,9 @@ namespace GUIPackage
 					}
 				}
 				int num = this.itemID;
-				if (num > 100000)
+				if (num > jsonData.QingJiaoItemIDSegment)
 				{
-					num -= 100000;
+					num -= jsonData.QingJiaoItemIDSegment;
 				}
 				using (List<int>.Enumerator enumerator = _ItemJsonData.DataDict[num].seid.GetEnumerator())
 				{
@@ -764,11 +764,16 @@ namespace GUIPackage
 							}
 						}
 					}
-					goto IL_392;
+					goto IL_3DA;
 				}
 			}
 			if ((type == 5 || type == 13) && itemCanUseNum > 0)
 			{
+				if (jsonData.instance.ItemJsonData[string.Concat(this.itemID)]["seid"].ToList().Contains(35))
+				{
+					UIPopTip.Inst.Pop("仅能在装扮前服用", PopTipIconType.叹号);
+					return;
+				}
 				if (TpUIMag.inst == null && jsonData.instance.ItemJsonData[string.Concat(this.itemID)]["seid"].ToList().Contains(31))
 				{
 					UIPopTip.Inst.Pop("需要在突破前服用", PopTipIconType.叹号);
@@ -785,7 +790,7 @@ namespace GUIPackage
 					return;
 				}
 			}
-			IL_392:
+			IL_3DA:
 			if (isTuPo)
 			{
 				if (!Tools.canClickFlag)
@@ -854,7 +859,7 @@ namespace GUIPackage
 			}
 		}
 
-		// Token: 0x06005167 RID: 20839 RVA: 0x0021F2E8 File Offset: 0x0021D4E8
+		// Token: 0x060048A2 RID: 18594 RVA: 0x001EB784 File Offset: 0x001E9984
 		public void AddNaiYaoXin()
 		{
 			if (!Tools.instance.getPlayer().NaiYaoXin.HasField(string.Concat(this.itemID)))
@@ -865,7 +870,7 @@ namespace GUIPackage
 			Tools.instance.getPlayer().NaiYaoXin.SetField(string.Concat(this.itemID), num + 1);
 		}
 
-		// Token: 0x06005168 RID: 20840 RVA: 0x0021F394 File Offset: 0x0021D594
+		// Token: 0x060048A3 RID: 18595 RVA: 0x001EB830 File Offset: 0x001E9A30
 		public static void AddWuDao(int timeday, float xishu, List<int> xishuList, int listXi = 2)
 		{
 			Avatar player = Tools.instance.getPlayer();
@@ -885,7 +890,7 @@ namespace GUIPackage
 			}
 		}
 
-		// Token: 0x06005169 RID: 20841 RVA: 0x0021F418 File Offset: 0x0021D618
+		// Token: 0x060048A4 RID: 18596 RVA: 0x001EB8B4 File Offset: 0x001E9AB4
 		public static void AddWuDao(int num, List<int> xishuList, int listXi = 2)
 		{
 			Avatar player = Tools.instance.getPlayer();
@@ -904,7 +909,7 @@ namespace GUIPackage
 			}
 		}
 
-		// Token: 0x0600516A RID: 20842 RVA: 0x0021F498 File Offset: 0x0021D698
+		// Token: 0x060048A5 RID: 18597 RVA: 0x001EB934 File Offset: 0x001E9B34
 		public static int getAddWuDaoEx(int timeday, float xishu, List<int> xishuList, int listXi = 2)
 		{
 			Tools.instance.getPlayer();
@@ -925,7 +930,7 @@ namespace GUIPackage
 			return 0;
 		}
 
-		// Token: 0x0600516B RID: 20843 RVA: 0x0021F508 File Offset: 0x0021D708
+		// Token: 0x060048A6 RID: 18598 RVA: 0x001EB9A4 File Offset: 0x001E9BA4
 		public void realizeSeid(int seid)
 		{
 			int i = 0;
@@ -951,37 +956,37 @@ namespace GUIPackage
 			}
 		}
 
-		// Token: 0x0600516C RID: 20844 RVA: 0x0021F568 File Offset: 0x0021D768
+		// Token: 0x060048A7 RID: 18599 RVA: 0x001EBA04 File Offset: 0x001E9C04
 		public bool CanNextSeid(int seid)
 		{
 			Avatar player = Tools.instance.getPlayer();
 			return seid != 16 || player.TianFuID.HasField(string.Concat(17));
 		}
 
-		// Token: 0x0600516D RID: 20845 RVA: 0x0021F5A4 File Offset: 0x0021D7A4
+		// Token: 0x060048A8 RID: 18600 RVA: 0x001EBA40 File Offset: 0x001E9C40
 		public JSONObject getSeidJson(int seid)
 		{
 			int num = this.itemID;
-			if (num > 100000)
+			if (num > jsonData.QingJiaoItemIDSegment)
 			{
-				num -= 100000;
+				num -= jsonData.QingJiaoItemIDSegment;
 			}
 			return jsonData.instance.ItemsSeidJsonData[seid][num.ToString()];
 		}
 
-		// Token: 0x0600516E RID: 20846 RVA: 0x0003A924 File Offset: 0x00038B24
+		// Token: 0x060048A9 RID: 18601 RVA: 0x001EBA7C File Offset: 0x001E9C7C
 		public JSONObject getItemJson()
 		{
 			return jsonData.instance.ItemJsonData[this.itemID.ToString()];
 		}
 
-		// Token: 0x0600516F RID: 20847 RVA: 0x0003A940 File Offset: 0x00038B40
+		// Token: 0x060048AA RID: 18602 RVA: 0x001EBA98 File Offset: 0x001E9C98
 		public void realizeSeid1(int seid)
 		{
 			((Avatar)KBEngineApp.app.player()).addHasSkillList((int)this.getSeidJson(seid)["value1"].n);
 		}
 
-		// Token: 0x06005170 RID: 20848 RVA: 0x0021F5E0 File Offset: 0x0021D7E0
+		// Token: 0x060048AB RID: 18603 RVA: 0x001EBAC8 File Offset: 0x001E9CC8
 		public void realizeSeid2(int seid)
 		{
 			Avatar avatar = (Avatar)KBEngineApp.app.player();
@@ -989,13 +994,13 @@ namespace GUIPackage
 			new StaticSkill(Tools.instance.getStaticSkillKeyByID((int)this.getSeidJson(seid)["value1"].n), 0, 5).Puting(avatar, avatar, 3);
 		}
 
-		// Token: 0x06005171 RID: 20849 RVA: 0x0003A96D File Offset: 0x00038B6D
+		// Token: 0x060048AC RID: 18604 RVA: 0x001EBB33 File Offset: 0x001E9D33
 		public void realizeSeid3(int seid)
 		{
 			((Avatar)KBEngineApp.app.player()).AllMapAddHP((int)this.getSeidJson(seid)["value1"].n, DeathType.身死道消);
 		}
 
-		// Token: 0x06005172 RID: 20850 RVA: 0x0021F64C File Offset: 0x0021D84C
+		// Token: 0x060048AD RID: 18605 RVA: 0x001EBB64 File Offset: 0x001E9D64
 		public void realizeSeid4(int seid)
 		{
 			Avatar avatar = (Avatar)KBEngineApp.app.player();
@@ -1003,13 +1008,13 @@ namespace GUIPackage
 			avatar.addEXP(this.getSeidJson(seid)["value1"].I);
 		}
 
-		// Token: 0x06005173 RID: 20851 RVA: 0x0003A99B File Offset: 0x00038B9B
+		// Token: 0x060048AE RID: 18606 RVA: 0x001EBBCB File Offset: 0x001E9DCB
 		public void realizeSeid5(int seid)
 		{
 			((Avatar)KBEngineApp.app.player())._shengShi += this.getSeidJson(seid)["value1"].I;
 		}
 
-		// Token: 0x06005174 RID: 20852 RVA: 0x0021F6B4 File Offset: 0x0021D8B4
+		// Token: 0x060048AF RID: 18607 RVA: 0x001EBC00 File Offset: 0x001E9E00
 		public void realizeSeid6(int seid)
 		{
 			Avatar avatar = (Avatar)KBEngineApp.app.player();
@@ -1017,37 +1022,37 @@ namespace GUIPackage
 			avatar.HP += (int)this.getSeidJson(seid)["value1"].n;
 		}
 
-		// Token: 0x06005175 RID: 20853 RVA: 0x0003A9CE File Offset: 0x00038BCE
+		// Token: 0x060048B0 RID: 18608 RVA: 0x001EBC63 File Offset: 0x001E9E63
 		public void realizeSeid7(int seid)
 		{
 			((Avatar)KBEngineApp.app.player()).shouYuan += (uint)this.getSeidJson(seid)["value1"].n;
 		}
 
-		// Token: 0x06005176 RID: 20854 RVA: 0x0003AA02 File Offset: 0x00038C02
+		// Token: 0x060048B1 RID: 18609 RVA: 0x001EBC97 File Offset: 0x001E9E97
 		public void realizeSeid8(int seid)
 		{
 			((Avatar)KBEngineApp.app.player())._xinjin += (int)this.getSeidJson(seid)["value1"].n;
 		}
 
-		// Token: 0x06005177 RID: 20855 RVA: 0x0003AA36 File Offset: 0x00038C36
+		// Token: 0x060048B2 RID: 18610 RVA: 0x001EBCCB File Offset: 0x001E9ECB
 		public void realizeSeid9(int seid)
 		{
 			((Avatar)KBEngineApp.app.player()).addZiZhi((int)this.getSeidJson(seid)["value1"].n);
 		}
 
-		// Token: 0x06005178 RID: 20856 RVA: 0x0003AA63 File Offset: 0x00038C63
+		// Token: 0x060048B3 RID: 18611 RVA: 0x001EBCF8 File Offset: 0x001E9EF8
 		public void realizeSeid10(int seid)
 		{
 			((Avatar)KBEngineApp.app.player()).addWuXin((int)this.getSeidJson(seid)["value1"].n);
 		}
 
-		// Token: 0x06005179 RID: 20857 RVA: 0x0003AA90 File Offset: 0x00038C90
+		// Token: 0x060048B4 RID: 18612 RVA: 0x001EBD25 File Offset: 0x001E9F25
 		public void realizeSeid11(int seid)
 		{
 			((Avatar)KBEngineApp.app.player())._dunSu += (int)this.getSeidJson(seid)["value1"].n;
 		}
 
-		// Token: 0x0600517A RID: 20858 RVA: 0x0021F718 File Offset: 0x0021D918
+		// Token: 0x060048B5 RID: 18613 RVA: 0x001EBD5C File Offset: 0x001E9F5C
 		public void realizeSeid12(int seid)
 		{
 			Avatar avatar = (Avatar)KBEngineApp.app.player();
@@ -1068,7 +1073,7 @@ namespace GUIPackage
 			}
 		}
 
-		// Token: 0x0600517B RID: 20859 RVA: 0x0021F820 File Offset: 0x0021DA20
+		// Token: 0x060048B6 RID: 18614 RVA: 0x001EBE64 File Offset: 0x001EA064
 		public void realizeSeid13(int seid)
 		{
 			Avatar avatar = (Avatar)KBEngineApp.app.player();
@@ -1080,18 +1085,18 @@ namespace GUIPackage
 				list.Add((int)jsonobject["value" + i].n);
 				list2.Add((int)jsonobject["num" + i].n);
 			}
-			avatar.addDanFang((int)jsonobject["ItemID"].n, list, list2);
-			LianDanMag.AddWuDaoLianDan((int)jsonobject["ItemID"].n, 1);
+			avatar.addDanFang(jsonobject["ItemID"].I, list, list2);
+			LianDanMag.AddWuDaoLianDan(jsonobject["ItemID"].I, 1);
 			UIPopTip.Inst.Pop("学会了" + _ItemJsonData.DataDict[jsonobject["ItemID"].I].name + "炼制配方", PopTipIconType.包裹);
 		}
 
-		// Token: 0x0600517C RID: 20860 RVA: 0x0003AAC4 File Offset: 0x00038CC4
+		// Token: 0x060048B7 RID: 18615 RVA: 0x001EBF7A File Offset: 0x001EA17A
 		public void realizeSeid14(int seid)
 		{
 			((Avatar)KBEngineApp.app.player()).statiReduceDandu((int)this.getSeidJson(seid)["value1"].n);
 		}
 
-		// Token: 0x0600517D RID: 20861 RVA: 0x0021F938 File Offset: 0x0021DB38
+		// Token: 0x060048B8 RID: 18616 RVA: 0x001EBFA8 File Offset: 0x001EA1A8
 		public void realizeSeid15(int seid)
 		{
 			List<int> lingGeng = ((Avatar)KBEngineApp.app.player()).LingGeng;
@@ -1099,7 +1104,7 @@ namespace GUIPackage
 			lingGeng[index] += (int)this.getSeidJson(seid)["value2"].n;
 		}
 
-		// Token: 0x0600517E RID: 20862 RVA: 0x0021F998 File Offset: 0x0021DB98
+		// Token: 0x060048B9 RID: 18617 RVA: 0x001EC008 File Offset: 0x001EA208
 		public void realizeSeid17(int seid)
 		{
 			Avatar avatar = (Avatar)KBEngineApp.app.player();
@@ -1113,24 +1118,24 @@ namespace GUIPackage
 					list.Add((int)jsonobject2["value" + i].n);
 					list2.Add((int)jsonobject2["num" + i].n);
 				}
-				avatar.addDanFang((int)jsonobject2["ItemID"].n, list, list2);
+				avatar.addDanFang(jsonobject2["ItemID"].I, list, list2);
 				UIPopTip.Inst.Pop("学会了" + _ItemJsonData.DataDict[jsonobject2["ItemID"].I].name + "炼制配方", PopTipIconType.包裹);
 			}
 		}
 
-		// Token: 0x0600517F RID: 20863 RVA: 0x0003AAF1 File Offset: 0x00038CF1
+		// Token: 0x060048BA RID: 18618 RVA: 0x001EC154 File Offset: 0x001EA354
 		public void realizeSeid18(int seid)
 		{
 			Singleton.ints.TuJIanPlan.open();
 		}
 
-		// Token: 0x06005180 RID: 20864 RVA: 0x0021FAE4 File Offset: 0x0021DCE4
+		// Token: 0x060048BB RID: 18619 RVA: 0x001EC168 File Offset: 0x001EA368
 		public void realizeSeid19(int seid)
 		{
 			Tools.instance.getPlayer().wuDaoMag.addWuDaoEx(this.getSeidJson(seid)["value1"].I, this.getSeidJson(seid)["value2"].I);
 		}
 
-		// Token: 0x06005181 RID: 20865 RVA: 0x0021FB34 File Offset: 0x0021DD34
+		// Token: 0x060048BC RID: 18620 RVA: 0x001EC1B8 File Offset: 0x001EA3B8
 		public void realizeSeid20(int seid)
 		{
 			Avatar player = Tools.instance.getPlayer();
@@ -1143,7 +1148,7 @@ namespace GUIPackage
 			}
 		}
 
-		// Token: 0x06005182 RID: 20866 RVA: 0x0021FBF4 File Offset: 0x0021DDF4
+		// Token: 0x060048BD RID: 18621 RVA: 0x001EC278 File Offset: 0x001EA478
 		public void realizeSeid22(int seid)
 		{
 			Avatar player = Tools.instance.getPlayer();
@@ -1155,7 +1160,7 @@ namespace GUIPackage
 			UIPopTip.Inst.Pop("获得一条新的传闻", PopTipIconType.任务进度);
 		}
 
-		// Token: 0x06005183 RID: 20867 RVA: 0x0021FC60 File Offset: 0x0021DE60
+		// Token: 0x060048BE RID: 18622 RVA: 0x001EC2E4 File Offset: 0x001EA4E4
 		public void realizeSeid23(int seid)
 		{
 			Avatar player = Tools.instance.getPlayer();
@@ -1174,25 +1179,25 @@ namespace GUIPackage
 			}
 		}
 
-		// Token: 0x06005184 RID: 20868 RVA: 0x0003AB02 File Offset: 0x00038D02
+		// Token: 0x060048BF RID: 18623 RVA: 0x001EC414 File Offset: 0x001EA614
 		public void realizeSeid24(int seid)
 		{
 			Singleton.ints.ShowSeaMapUI();
 		}
 
-		// Token: 0x06005185 RID: 20869 RVA: 0x0021FAE4 File Offset: 0x0021DCE4
+		// Token: 0x060048C0 RID: 18624 RVA: 0x001EC420 File Offset: 0x001EA620
 		public void realizeSeid25(int seid)
 		{
 			Tools.instance.getPlayer().wuDaoMag.addWuDaoEx(this.getSeidJson(seid)["value1"].I, this.getSeidJson(seid)["value2"].I);
 		}
 
-		// Token: 0x06005186 RID: 20870 RVA: 0x0003AB0E File Offset: 0x00038D0E
+		// Token: 0x060048C1 RID: 18625 RVA: 0x001EC46D File Offset: 0x001EA66D
 		public void realizeSeid26(int seid)
 		{
 			Tools.instance.getPlayer()._WuDaoDian += this.getSeidJson(seid)["value1"].I;
 		}
 
-		// Token: 0x06005187 RID: 20871 RVA: 0x0021FD90 File Offset: 0x0021DF90
+		// Token: 0x060048C2 RID: 18626 RVA: 0x001EC49C File Offset: 0x001EA69C
 		public void realizeSeid27(int seid)
 		{
 			Avatar player = Tools.instance.getPlayer();
@@ -1205,7 +1210,7 @@ namespace GUIPackage
 			jobject["start"] = true;
 		}
 
-		// Token: 0x06005188 RID: 20872 RVA: 0x0021FE74 File Offset: 0x0021E074
+		// Token: 0x060048C3 RID: 18627 RVA: 0x001EC580 File Offset: 0x001EA780
 		public void realizeSeid28(int seid)
 		{
 			Avatar player = Tools.instance.getPlayer();
@@ -1215,7 +1220,7 @@ namespace GUIPackage
 			}
 		}
 
-		// Token: 0x06005189 RID: 20873 RVA: 0x0021FEEC File Offset: 0x0021E0EC
+		// Token: 0x060048C4 RID: 18628 RVA: 0x001EC5F8 File Offset: 0x001EA7F8
 		public void realizeSeid29(int seid)
 		{
 			Avatar player = Tools.instance.getPlayer();
@@ -1225,7 +1230,7 @@ namespace GUIPackage
 			}
 		}
 
-		// Token: 0x0600518A RID: 20874 RVA: 0x0021FF40 File Offset: 0x0021E140
+		// Token: 0x060048C5 RID: 18629 RVA: 0x001EC64C File Offset: 0x001EA84C
 		public void realizeSeid30(int seid)
 		{
 			Avatar avatar = (Avatar)KBEngineApp.app.player();
@@ -1234,7 +1239,7 @@ namespace GUIPackage
 			new StaticSkill(Tools.instance.getStaticSkillKeyByID((int)this.getSeidJson(seid)["value2"].n), 0, 5).Puting(avatar, avatar, 3);
 		}
 
-		// Token: 0x0600518B RID: 20875 RVA: 0x0021FFC8 File Offset: 0x0021E1C8
+		// Token: 0x060048C6 RID: 18630 RVA: 0x001EC6D4 File Offset: 0x001EA8D4
 		public void realizeSeid32(int seid)
 		{
 			int i = this.getSeidJson(seid)["value1"].I;
@@ -1242,7 +1247,7 @@ namespace GUIPackage
 			UIPopTip.Inst.Pop("学会了" + ShuangXiuMiShu.DataDict[i].name, PopTipIconType.包裹);
 		}
 
-		// Token: 0x0600518C RID: 20876 RVA: 0x00220018 File Offset: 0x0021E218
+		// Token: 0x060048C7 RID: 18631 RVA: 0x001EC724 File Offset: 0x001EA924
 		public void realizeSeid33(int seid)
 		{
 			int i = this.getSeidJson(seid)["value1"].I;
@@ -1250,7 +1255,7 @@ namespace GUIPackage
 			PlayerEx.AddSeaTanSuoDu(i, i2);
 		}
 
-		// Token: 0x0600518D RID: 20877 RVA: 0x00220058 File Offset: 0x0021E258
+		// Token: 0x060048C8 RID: 18632 RVA: 0x001EC764 File Offset: 0x001EA964
 		public void realizeSeid34(int seid)
 		{
 			List<int> list = this.getSeidJson(seid)["value1"].ToList();
@@ -1261,111 +1266,117 @@ namespace GUIPackage
 			}
 		}
 
-		// Token: 0x0400523F RID: 21055
+		// Token: 0x060048C9 RID: 18633 RVA: 0x001EC7D4 File Offset: 0x001EA9D4
+		public void realizeSeid35(int seid)
+		{
+			Tools.instance.getPlayer().IsCanSetFace = true;
+		}
+
+		// Token: 0x040048FB RID: 18683
 		private string _itemName;
 
-		// Token: 0x04005240 RID: 21056
+		// Token: 0x040048FC RID: 18684
 		public string UUID = "";
 
-		// Token: 0x04005241 RID: 21057
+		// Token: 0x040048FD RID: 18685
 		public int itemID = -1;
 
-		// Token: 0x04005242 RID: 21058
+		// Token: 0x040048FE RID: 18686
 		public string itemNameCN;
 
-		// Token: 0x04005243 RID: 21059
+		// Token: 0x040048FF RID: 18687
 		public string itemDesc;
 
-		// Token: 0x04005244 RID: 21060
+		// Token: 0x04004900 RID: 18688
 		private Texture2D _itemIcon;
 
-		// Token: 0x04005245 RID: 21061
+		// Token: 0x04004901 RID: 18689
 		private Sprite _itemIconSprite;
 
-		// Token: 0x04005246 RID: 21062
+		// Token: 0x04004902 RID: 18690
 		private Texture2D _itemPingZhi;
 
-		// Token: 0x04005247 RID: 21063
+		// Token: 0x04004903 RID: 18691
 		private Sprite _itemPingZhiSprite;
 
-		// Token: 0x04005248 RID: 21064
+		// Token: 0x04004904 RID: 18692
 		public Sprite _itemPingZhiUP;
 
-		// Token: 0x04005249 RID: 21065
+		// Token: 0x04004905 RID: 18693
 		private Sprite _newitemPingZhiSprite;
 
-		// Token: 0x0400524A RID: 21066
+		// Token: 0x04004906 RID: 18694
 		public Sprite _newitemPingZhiUP;
 
-		// Token: 0x0400524B RID: 21067
+		// Token: 0x04004907 RID: 18695
 		public int ColorIndex;
 
-		// Token: 0x0400524C RID: 21068
+		// Token: 0x04004908 RID: 18696
 		public int itemNum;
 
-		// Token: 0x0400524D RID: 21069
+		// Token: 0x04004909 RID: 18697
 		public int itemMaxNum;
 
-		// Token: 0x0400524E RID: 21070
+		// Token: 0x0400490A RID: 18698
 		public item.ItemType itemType;
 
-		// Token: 0x0400524F RID: 21071
+		// Token: 0x0400490B RID: 18699
 		public int itemtype;
 
-		// Token: 0x04005250 RID: 21072
+		// Token: 0x0400490C RID: 18700
 		public int itemPrice;
 
-		// Token: 0x04005251 RID: 21073
+		// Token: 0x0400490D RID: 18701
 		public JSONObject Seid = new JSONObject(JSONObject.Type.OBJECT);
 
-		// Token: 0x04005252 RID: 21074
+		// Token: 0x0400490E RID: 18702
 		public int ExGoodsID = -1;
 
-		// Token: 0x04005253 RID: 21075
+		// Token: 0x0400490F RID: 18703
 		public Texture2D ExItemIcon;
 
-		// Token: 0x04005254 RID: 21076
+		// Token: 0x04004910 RID: 18704
 		public int StuTime;
 
-		// Token: 0x04005255 RID: 21077
+		// Token: 0x04004911 RID: 18705
 		private int _quality;
 
-		// Token: 0x04005256 RID: 21078
+		// Token: 0x04004912 RID: 18706
 		public List<int> seid = new List<int>();
 
-		// Token: 0x04005257 RID: 21079
+		// Token: 0x04004913 RID: 18707
 		private bool initedImage;
 
-		// Token: 0x04005258 RID: 21080
+		// Token: 0x04004914 RID: 18708
 		private UnityAction inventoryNext;
 
-		// Token: 0x02000D57 RID: 3415
+		// Token: 0x0200157C RID: 5500
 		public enum ItemType
 		{
-			// Token: 0x0400525A RID: 21082
+			// Token: 0x04006F8A RID: 28554
 			Weapon,
-			// Token: 0x0400525B RID: 21083
+			// Token: 0x04006F8B RID: 28555
 			Clothing,
-			// Token: 0x0400525C RID: 21084
+			// Token: 0x04006F8C RID: 28556
 			Ring,
-			// Token: 0x0400525D RID: 21085
+			// Token: 0x04006F8D RID: 28557
 			Potion,
-			// Token: 0x0400525E RID: 21086
+			// Token: 0x04006F8E RID: 28558
 			Task,
-			// Token: 0x0400525F RID: 21087
+			// Token: 0x04006F8F RID: 28559
 			Casque,
-			// Token: 0x04005260 RID: 21088
+			// Token: 0x04006F90 RID: 28560
 			Shoes,
-			// Token: 0x04005261 RID: 21089
+			// Token: 0x04006F91 RID: 28561
 			Trousers,
-			// Token: 0x04005262 RID: 21090
+			// Token: 0x04006F92 RID: 28562
 			LinZhou = 14
 		}
 
-		// Token: 0x02000D58 RID: 3416
+		// Token: 0x0200157D RID: 5501
 		public enum ItemSeid
 		{
-			// Token: 0x04005264 RID: 21092
+			// Token: 0x04006F94 RID: 28564
 			Seid21 = 21
 		}
 	}

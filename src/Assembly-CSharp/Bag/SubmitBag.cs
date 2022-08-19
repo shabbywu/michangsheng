@@ -4,27 +4,27 @@ using SuperScrollView;
 
 namespace Bag
 {
-	// Token: 0x02000D4C RID: 3404
+	// Token: 0x020009C3 RID: 2499
 	public class SubmitBag : BaseBag2
 	{
-		// Token: 0x060050EA RID: 20714 RVA: 0x0003A3E9 File Offset: 0x000385E9
+		// Token: 0x06004585 RID: 17797 RVA: 0x001D79C7 File Offset: 0x001D5BC7
 		public void Open()
 		{
 			this.Init(0, true);
-			base.UpdateItem(true);
+			this.UpdateItem(true);
 		}
 
-		// Token: 0x060050EB RID: 20715 RVA: 0x0021B854 File Offset: 0x00219A54
+		// Token: 0x06004586 RID: 17798 RVA: 0x001D79D8 File Offset: 0x001D5BD8
 		public override void Init(int npcId, bool isPlayer = false)
 		{
 			this._player = Tools.instance.getPlayer();
 			this.NpcId = npcId;
 			this.IsPlayer = isPlayer;
 			this.MLoopListView.InitListView(base.GetCount(this.MItemTotalCount), new Func<LoopListView2, int, LoopListViewItem2>(base.OnGetItemByIndex), null);
-			base.CreateTempList();
+			this.CreateTempList();
 		}
 
-		// Token: 0x060050EC RID: 20716 RVA: 0x0003A3FA File Offset: 0x000385FA
+		// Token: 0x06004587 RID: 17799 RVA: 0x001D7A2D File Offset: 0x001D5C2D
 		protected override bool FiddlerItem(BaseItem baseItem)
 		{
 			return base.FiddlerItem(baseItem) && SubmitUIMag.Inst.CanPut(baseItem);

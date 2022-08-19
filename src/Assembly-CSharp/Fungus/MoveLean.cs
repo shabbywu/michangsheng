@@ -3,13 +3,13 @@ using UnityEngine;
 
 namespace Fungus
 {
-	// Token: 0x02001228 RID: 4648
+	// Token: 0x02000DE5 RID: 3557
 	[CommandInfo("LeanTween", "Move", "Moves a game object to a specified position over time. The position can be defined by a transform in another object (using To Transform) or by setting an absolute position (using To Position, if To Transform is set to None).", 0)]
 	[AddComponentMenu("")]
 	[ExecuteInEditMode]
 	public class MoveLean : BaseLeanTweenCommand
 	{
-		// Token: 0x0600716C RID: 29036 RVA: 0x002A5874 File Offset: 0x002A3A74
+		// Token: 0x060064E0 RID: 25824 RVA: 0x00280EC4 File Offset: 0x0027F0C4
 		public override LTDescr ExecuteTween()
 		{
 			Vector3 vector = (this._toTransform.Value == null) ? this._toPosition.Value : this._toTransform.Value.position;
@@ -30,23 +30,23 @@ namespace Fungus
 			return LeanTween.move(this._targetObject.Value, vector, this._duration);
 		}
 
-		// Token: 0x0600716D RID: 29037 RVA: 0x0004D133 File Offset: 0x0004B333
+		// Token: 0x060064E1 RID: 25825 RVA: 0x00280F9B File Offset: 0x0027F19B
 		public override bool HasReference(Variable variable)
 		{
 			return this._toTransform.transformRef == variable || this._toPosition.vector3Ref == variable || base.HasReference(variable);
 		}
 
-		// Token: 0x040063D8 RID: 25560
+		// Token: 0x040056CB RID: 22219
 		[Tooltip("Target transform that the GameObject will move to")]
 		[SerializeField]
 		protected TransformData _toTransform;
 
-		// Token: 0x040063D9 RID: 25561
+		// Token: 0x040056CC RID: 22220
 		[Tooltip("Target world position that the GameObject will move to, if no From Transform is set")]
 		[SerializeField]
 		protected Vector3Data _toPosition;
 
-		// Token: 0x040063DA RID: 25562
+		// Token: 0x040056CD RID: 22221
 		[Tooltip("Whether to animate in world space or relative to the parent. False by default.")]
 		[SerializeField]
 		protected bool isLocal;

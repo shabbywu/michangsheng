@@ -3,11 +3,11 @@ using System.IO;
 
 namespace MoonSharp.Interpreter.CoreLib
 {
-	// Token: 0x02001196 RID: 4502
+	// Token: 0x02000D7B RID: 3451
 	[MoonSharpModule]
 	public class LoadModule
 	{
-		// Token: 0x06006DE5 RID: 28133 RVA: 0x0029BD00 File Offset: 0x00299F00
+		// Token: 0x060061DB RID: 25051 RVA: 0x002756A4 File Offset: 0x002738A4
 		public static void MoonSharpInit(Table globalTable, Table ioTable)
 		{
 			DynValue dynValue = globalTable.Get("package");
@@ -24,21 +24,21 @@ namespace MoonSharp.Interpreter.CoreLib
 			dynValue.Table.Set("config", DynValue.NewString(str));
 		}
 
-		// Token: 0x06006DE6 RID: 28134 RVA: 0x0004AD1B File Offset: 0x00048F1B
+		// Token: 0x060061DC RID: 25052 RVA: 0x00275721 File Offset: 0x00273921
 		[MoonSharpModuleMethod]
 		public static DynValue load(ScriptExecutionContext executionContext, CallbackArguments args)
 		{
 			return LoadModule.load_impl(executionContext, args, null);
 		}
 
-		// Token: 0x06006DE7 RID: 28135 RVA: 0x0004AD25 File Offset: 0x00048F25
+		// Token: 0x060061DD RID: 25053 RVA: 0x0027572B File Offset: 0x0027392B
 		[MoonSharpModuleMethod]
 		public static DynValue loadsafe(ScriptExecutionContext executionContext, CallbackArguments args)
 		{
 			return LoadModule.load_impl(executionContext, args, LoadModule.GetSafeDefaultEnv(executionContext));
 		}
 
-		// Token: 0x06006DE8 RID: 28136 RVA: 0x0029BD80 File Offset: 0x00299F80
+		// Token: 0x060061DE RID: 25054 RVA: 0x0027573C File Offset: 0x0027393C
 		public static DynValue load_impl(ScriptExecutionContext executionContext, CallbackArguments args, Table defaultEnv)
 		{
 			DynValue result;
@@ -91,21 +91,21 @@ namespace MoonSharp.Interpreter.CoreLib
 			return result;
 		}
 
-		// Token: 0x06006DE9 RID: 28137 RVA: 0x0004AD34 File Offset: 0x00048F34
+		// Token: 0x060061DF RID: 25055 RVA: 0x00275888 File Offset: 0x00273A88
 		[MoonSharpModuleMethod]
 		public static DynValue loadfile(ScriptExecutionContext executionContext, CallbackArguments args)
 		{
 			return LoadModule.loadfile_impl(executionContext, args, null);
 		}
 
-		// Token: 0x06006DEA RID: 28138 RVA: 0x0004AD3E File Offset: 0x00048F3E
+		// Token: 0x060061E0 RID: 25056 RVA: 0x00275892 File Offset: 0x00273A92
 		[MoonSharpModuleMethod]
 		public static DynValue loadfilesafe(ScriptExecutionContext executionContext, CallbackArguments args)
 		{
 			return LoadModule.loadfile_impl(executionContext, args, LoadModule.GetSafeDefaultEnv(executionContext));
 		}
 
-		// Token: 0x06006DEB RID: 28139 RVA: 0x0029BECC File Offset: 0x0029A0CC
+		// Token: 0x060061E1 RID: 25057 RVA: 0x002758A4 File Offset: 0x00273AA4
 		private static DynValue loadfile_impl(ScriptExecutionContext executionContext, CallbackArguments args, Table defaultEnv)
 		{
 			DynValue result;
@@ -127,7 +127,7 @@ namespace MoonSharp.Interpreter.CoreLib
 			return result;
 		}
 
-		// Token: 0x06006DEC RID: 28140 RVA: 0x0004AD4D File Offset: 0x00048F4D
+		// Token: 0x060061E2 RID: 25058 RVA: 0x00275938 File Offset: 0x00273B38
 		private static Table GetSafeDefaultEnv(ScriptExecutionContext executionContext)
 		{
 			Table currentGlobalEnv = executionContext.CurrentGlobalEnv;
@@ -138,7 +138,7 @@ namespace MoonSharp.Interpreter.CoreLib
 			return currentGlobalEnv;
 		}
 
-		// Token: 0x06006DED RID: 28141 RVA: 0x0029BF60 File Offset: 0x0029A160
+		// Token: 0x060061E3 RID: 25059 RVA: 0x00275950 File Offset: 0x00273B50
 		[MoonSharpModuleMethod]
 		public static DynValue dofile(ScriptExecutionContext executionContext, CallbackArguments args)
 		{
@@ -156,7 +156,7 @@ namespace MoonSharp.Interpreter.CoreLib
 			return result;
 		}
 
-		// Token: 0x06006DEE RID: 28142 RVA: 0x0029BFB4 File Offset: 0x0029A1B4
+		// Token: 0x060061E4 RID: 25060 RVA: 0x002759A4 File Offset: 0x00273BA4
 		[MoonSharpModuleMethod]
 		public static DynValue __require_clr_impl(ScriptExecutionContext executionContext, CallbackArguments args)
 		{
@@ -165,7 +165,7 @@ namespace MoonSharp.Interpreter.CoreLib
 			return script.RequireModule(dynValue.String, null);
 		}
 
-		// Token: 0x04006239 RID: 25145
+		// Token: 0x0400558E RID: 21902
 		[MoonSharpModuleMethod]
 		public const string require = "\r\nfunction(modulename)\r\n\tif (package == nil) then package = { }; end\r\n\tif (package.loaded == nil) then package.loaded = { }; end\r\n\r\n\tlocal m = package.loaded[modulename];\r\n\r\n\tif (m ~= nil) then\r\n\t\treturn m;\r\n\tend\r\n\r\n\tlocal func = __require_clr_impl(modulename);\r\n\r\n\tlocal res = func(modulename);\r\n\r\n\tif (res == nil) then\r\n\t\tres = true;\r\n\tend\r\n\r\n\tpackage.loaded[modulename] = res;\r\n\r\n\treturn res;\r\nend";
 	}

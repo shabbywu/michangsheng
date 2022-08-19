@@ -4,27 +4,27 @@ using UnityEngine;
 
 namespace GUIPackage
 {
-	// Token: 0x02000D87 RID: 3463
+	// Token: 0x02000A5F RID: 2655
 	public class ItemDatebase : MonoBehaviour
 	{
-		// Token: 0x06005384 RID: 21380 RVA: 0x0003BBCA File Offset: 0x00039DCA
+		// Token: 0x06004A84 RID: 19076 RVA: 0x001FA83E File Offset: 0x001F8A3E
 		private void Awake()
 		{
 			ItemDatebase.Inst = this;
 		}
 
-		// Token: 0x06005385 RID: 21381 RVA: 0x0003BBD2 File Offset: 0x00039DD2
+		// Token: 0x06004A85 RID: 19077 RVA: 0x001FA848 File Offset: 0x001F8A48
 		public void Preload(int taskID)
 		{
-			this.LoadSync();
+			this.LoadSync(taskID);
 			Loom.RunAsync(delegate
 			{
 				this.LoadAsync(taskID);
 			});
 		}
 
-		// Token: 0x06005386 RID: 21382 RVA: 0x0022CC88 File Offset: 0x0022AE88
-		public void LoadSync()
+		// Token: 0x06004A86 RID: 19078 RVA: 0x001FA888 File Offset: 0x001F8A88
+		public void LoadSync(int taskID)
 		{
 			try
 			{
@@ -38,10 +38,11 @@ namespace GUIPackage
 			{
 				PreloadManager.IsException = true;
 				PreloadManager.ExceptionData += string.Format("{0}\n", arg);
+				PreloadManager.Inst.TaskDone(taskID);
 			}
 		}
 
-		// Token: 0x06005387 RID: 21383 RVA: 0x0022CD20 File Offset: 0x0022AF20
+		// Token: 0x06004A87 RID: 19079 RVA: 0x001FA92C File Offset: 0x001F8B2C
 		public void LoadAsync(int taskID)
 		{
 			try
@@ -56,19 +57,20 @@ namespace GUIPackage
 			{
 				PreloadManager.IsException = true;
 				PreloadManager.ExceptionData += string.Format("{0}\n", arg);
+				PreloadManager.Inst.TaskDone(taskID);
 			}
 		}
 
-		// Token: 0x04005340 RID: 21312
+		// Token: 0x040049B1 RID: 18865
 		public static ItemDatebase Inst;
 
-		// Token: 0x04005341 RID: 21313
+		// Token: 0x040049B2 RID: 18866
 		public Dictionary<int, item> items = new Dictionary<int, item>();
 
-		// Token: 0x04005342 RID: 21314
+		// Token: 0x040049B3 RID: 18867
 		public List<Texture2D> PingZhi;
 
-		// Token: 0x04005343 RID: 21315
+		// Token: 0x040049B4 RID: 18868
 		public List<Sprite> PingZhiUp;
 	}
 }

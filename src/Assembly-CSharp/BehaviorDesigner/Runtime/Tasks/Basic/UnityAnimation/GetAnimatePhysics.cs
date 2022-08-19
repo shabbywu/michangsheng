@@ -3,12 +3,12 @@ using UnityEngine;
 
 namespace BehaviorDesigner.Runtime.Tasks.Basic.UnityAnimation
 {
-	// Token: 0x0200166B RID: 5739
+	// Token: 0x020011A9 RID: 4521
 	[TaskCategory("Basic/Animation")]
 	[TaskDescription("Stores the animate physics value. Returns Success.")]
 	public class GetAnimatePhysics : Action
 	{
-		// Token: 0x06008548 RID: 34120 RVA: 0x002D0B14 File Offset: 0x002CED14
+		// Token: 0x0600773C RID: 30524 RVA: 0x002B8838 File Offset: 0x002B6A38
 		public override void OnStart()
 		{
 			GameObject defaultGameObject = base.GetDefaultGameObject(this.targetGameObject.Value);
@@ -19,7 +19,7 @@ namespace BehaviorDesigner.Runtime.Tasks.Basic.UnityAnimation
 			}
 		}
 
-		// Token: 0x06008549 RID: 34121 RVA: 0x0005C770 File Offset: 0x0005A970
+		// Token: 0x0600773D RID: 30525 RVA: 0x002B8878 File Offset: 0x002B6A78
 		public override TaskStatus OnUpdate()
 		{
 			if (this.animation == null)
@@ -31,26 +31,26 @@ namespace BehaviorDesigner.Runtime.Tasks.Basic.UnityAnimation
 			return 2;
 		}
 
-		// Token: 0x0600854A RID: 34122 RVA: 0x0005C7A3 File Offset: 0x0005A9A3
+		// Token: 0x0600773E RID: 30526 RVA: 0x002B88AB File Offset: 0x002B6AAB
 		public override void OnReset()
 		{
 			this.targetGameObject = null;
 			this.storeValue.Value = false;
 		}
 
-		// Token: 0x04007208 RID: 29192
+		// Token: 0x040062D9 RID: 25305
 		[Tooltip("The GameObject that the task operates on. If null the task GameObject is used.")]
 		public SharedGameObject targetGameObject;
 
-		// Token: 0x04007209 RID: 29193
+		// Token: 0x040062DA RID: 25306
 		[Tooltip("Are the if animations are executed in the physics loop?")]
 		[RequiredField]
 		public SharedBool storeValue;
 
-		// Token: 0x0400720A RID: 29194
+		// Token: 0x040062DB RID: 25307
 		private Animation animation;
 
-		// Token: 0x0400720B RID: 29195
+		// Token: 0x040062DC RID: 25308
 		private GameObject prevGameObject;
 	}
 }

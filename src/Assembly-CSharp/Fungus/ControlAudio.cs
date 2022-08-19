@@ -5,13 +5,13 @@ using UnityEngine.Serialization;
 
 namespace Fungus
 {
-	// Token: 0x020011F6 RID: 4598
+	// Token: 0x02000DC0 RID: 3520
 	[CommandInfo("Audio", "Control Audio", "Plays, loops, or stops an audiosource. Any AudioSources with the same tag as the target Audio Source will automatically be stoped.", 0)]
 	[ExecuteInEditMode]
 	public class ControlAudio : Command
 	{
-		// Token: 0x17000A5A RID: 2650
-		// (get) Token: 0x0600708A RID: 28810 RVA: 0x0004C722 File Offset: 0x0004A922
+		// Token: 0x170007F9 RID: 2041
+		// (get) Token: 0x0600641D RID: 25629 RVA: 0x0027D87F File Offset: 0x0027BA7F
 		public virtual ControlAudioType Control
 		{
 			get
@@ -20,7 +20,7 @@ namespace Fungus
 			}
 		}
 
-		// Token: 0x0600708B RID: 28811 RVA: 0x002A29A8 File Offset: 0x002A0BA8
+		// Token: 0x0600641E RID: 25630 RVA: 0x0027D888 File Offset: 0x0027BA88
 		protected virtual void StopAudioWithSameTag()
 		{
 			if (this._audioSource.Value == null || this._audioSource.Value.tag == "Untagged")
@@ -36,7 +36,7 @@ namespace Fungus
 			}
 		}
 
-		// Token: 0x0600708C RID: 28812 RVA: 0x002A2A34 File Offset: 0x002A0C34
+		// Token: 0x0600641F RID: 25631 RVA: 0x0027D914 File Offset: 0x0027BB14
 		protected virtual void PlayOnce()
 		{
 			if (this.fadeDuration > 0f)
@@ -53,7 +53,7 @@ namespace Fungus
 			}
 		}
 
-		// Token: 0x0600708D RID: 28813 RVA: 0x0004C72A File Offset: 0x0004A92A
+		// Token: 0x06006420 RID: 25632 RVA: 0x0027D9A6 File Offset: 0x0027BBA6
 		protected virtual IEnumerator WaitAndContinue()
 		{
 			while (this._audioSource.Value.isPlaying)
@@ -64,7 +64,7 @@ namespace Fungus
 			yield break;
 		}
 
-		// Token: 0x0600708E RID: 28814 RVA: 0x002A2AC8 File Offset: 0x002A0CC8
+		// Token: 0x06006421 RID: 25633 RVA: 0x0027D9B8 File Offset: 0x0027BBB8
 		protected virtual void PlayLoop()
 		{
 			if (this.fadeDuration > 0f)
@@ -89,7 +89,7 @@ namespace Fungus
 			this._audioSource.Value.GetComponent<AudioSource>().Play();
 		}
 
-		// Token: 0x0600708F RID: 28815 RVA: 0x002A2BA8 File Offset: 0x002A0DA8
+		// Token: 0x06006422 RID: 25634 RVA: 0x0027DA98 File Offset: 0x0027BC98
 		protected virtual void PauseLoop()
 		{
 			if (this.fadeDuration > 0f)
@@ -110,7 +110,7 @@ namespace Fungus
 			this._audioSource.Value.GetComponent<AudioSource>().Pause();
 		}
 
-		// Token: 0x06007090 RID: 28816 RVA: 0x002A2C2C File Offset: 0x002A0E2C
+		// Token: 0x06006423 RID: 25635 RVA: 0x0027DB1C File Offset: 0x0027BD1C
 		protected virtual void StopLoop(AudioSource source)
 		{
 			if (this.fadeDuration > 0f)
@@ -131,7 +131,7 @@ namespace Fungus
 			source.GetComponent<AudioSource>().Stop();
 		}
 
-		// Token: 0x06007091 RID: 28817 RVA: 0x002A2CBC File Offset: 0x002A0EBC
+		// Token: 0x06006424 RID: 25636 RVA: 0x0027DBAC File Offset: 0x0027BDAC
 		protected virtual void ChangeVolume()
 		{
 			LeanTween.value(this._audioSource.Value.gameObject, this._audioSource.Value.volume, this.endVolume, this.fadeDuration).setOnUpdate(delegate(float updateVolume)
@@ -146,7 +146,7 @@ namespace Fungus
 			});
 		}
 
-		// Token: 0x06007092 RID: 28818 RVA: 0x0004C739 File Offset: 0x0004A939
+		// Token: 0x06006425 RID: 25637 RVA: 0x0027DC0D File Offset: 0x0027BE0D
 		protected virtual void AudioFinished()
 		{
 			if (this.waitUntilFinished)
@@ -155,7 +155,7 @@ namespace Fungus
 			}
 		}
 
-		// Token: 0x06007093 RID: 28819 RVA: 0x002A2D20 File Offset: 0x002A0F20
+		// Token: 0x06006426 RID: 25638 RVA: 0x0027DC20 File Offset: 0x0027BE20
 		public override void OnEnter()
 		{
 			if (this._audioSource.Value == null)
@@ -193,7 +193,7 @@ namespace Fungus
 			}
 		}
 
-		// Token: 0x06007094 RID: 28820 RVA: 0x002A2DD4 File Offset: 0x002A0FD4
+		// Token: 0x06006427 RID: 25639 RVA: 0x0027DCD4 File Offset: 0x0027BED4
 		public override string GetSummary()
 		{
 			if (this._audioSource.Value == null)
@@ -230,19 +230,19 @@ namespace Fungus
 			});
 		}
 
-		// Token: 0x06007095 RID: 28821 RVA: 0x0004C749 File Offset: 0x0004A949
+		// Token: 0x06006428 RID: 25640 RVA: 0x0027DDC5 File Offset: 0x0027BFC5
 		public override Color GetButtonColor()
 		{
 			return new Color32(242, 209, 176, byte.MaxValue);
 		}
 
-		// Token: 0x06007096 RID: 28822 RVA: 0x0004C769 File Offset: 0x0004A969
+		// Token: 0x06006429 RID: 25641 RVA: 0x0027DDE5 File Offset: 0x0027BFE5
 		public override bool HasReference(Variable variable)
 		{
 			return this._audioSource.audioSourceRef == variable || base.HasReference(variable);
 		}
 
-		// Token: 0x06007097 RID: 28823 RVA: 0x0004C787 File Offset: 0x0004A987
+		// Token: 0x0600642A RID: 25642 RVA: 0x0027DE03 File Offset: 0x0027C003
 		protected virtual void OnEnable()
 		{
 			if (this.audioSourceOLD != null)
@@ -252,39 +252,39 @@ namespace Fungus
 			}
 		}
 
-		// Token: 0x04006314 RID: 25364
+		// Token: 0x0400561F RID: 22047
 		[Tooltip("What to do to audio")]
 		[SerializeField]
 		protected ControlAudioType control;
 
-		// Token: 0x04006315 RID: 25365
+		// Token: 0x04005620 RID: 22048
 		[Tooltip("Audio clip to play")]
 		[SerializeField]
 		protected AudioSourceData _audioSource;
 
-		// Token: 0x04006316 RID: 25366
+		// Token: 0x04005621 RID: 22049
 		[Range(0f, 1f)]
 		[Tooltip("Start audio at this volume")]
 		[SerializeField]
 		protected float startVolume = 1f;
 
-		// Token: 0x04006317 RID: 25367
+		// Token: 0x04005622 RID: 22050
 		[Range(0f, 1f)]
 		[Tooltip("End audio at this volume")]
 		[SerializeField]
 		protected float endVolume = 1f;
 
-		// Token: 0x04006318 RID: 25368
+		// Token: 0x04005623 RID: 22051
 		[Tooltip("Time to fade between current volume level and target volume level.")]
 		[SerializeField]
 		protected float fadeDuration;
 
-		// Token: 0x04006319 RID: 25369
+		// Token: 0x04005624 RID: 22052
 		[Tooltip("Wait until this command has finished before executing the next command.")]
 		[SerializeField]
 		protected bool waitUntilFinished;
 
-		// Token: 0x0400631A RID: 25370
+		// Token: 0x04005625 RID: 22053
 		[HideInInspector]
 		[FormerlySerializedAs("audioSource")]
 		public AudioSource audioSourceOLD;

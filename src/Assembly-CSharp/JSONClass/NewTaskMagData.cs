@@ -3,10 +3,10 @@ using System.Collections.Generic;
 
 namespace JSONClass
 {
-	// Token: 0x02000C20 RID: 3104
+	// Token: 0x02000892 RID: 2194
 	public class NewTaskMagData : IJSONClass
 	{
-		// Token: 0x06004BE9 RID: 19433 RVA: 0x00200A94 File Offset: 0x001FEC94
+		// Token: 0x0600405B RID: 16475 RVA: 0x001B7610 File Offset: 0x001B5810
 		public static void InitDataDict()
 		{
 			foreach (JSONObject jsonobject in jsonData.instance.NewTaskMagData.list)
@@ -42,33 +42,33 @@ namespace JSONClass
 			}
 		}
 
-		// Token: 0x06004BEA RID: 19434 RVA: 0x000042DD File Offset: 0x000024DD
+		// Token: 0x0600405C RID: 16476 RVA: 0x00004095 File Offset: 0x00002295
 		private static void OnInitFinish()
 		{
 		}
 
-		// Token: 0x0400490A RID: 18698
+		// Token: 0x04003DB1 RID: 15793
 		public static Dictionary<int, NewTaskMagData> DataDict = new Dictionary<int, NewTaskMagData>();
 
-		// Token: 0x0400490B RID: 18699
+		// Token: 0x04003DB2 RID: 15794
 		public static List<NewTaskMagData> DataList = new List<NewTaskMagData>();
 
-		// Token: 0x0400490C RID: 18700
+		// Token: 0x04003DB3 RID: 15795
 		public static Action OnInitFinishAction = new Action(NewTaskMagData.OnInitFinish);
 
-		// Token: 0x0400490D RID: 18701
+		// Token: 0x04003DB4 RID: 15796
 		public int id;
 
-		// Token: 0x0400490E RID: 18702
+		// Token: 0x04003DB5 RID: 15797
 		public int ShiBaiLevel;
 
-		// Token: 0x0400490F RID: 18703
+		// Token: 0x04003DB6 RID: 15798
 		public int continueTime;
 
-		// Token: 0x04004910 RID: 18704
+		// Token: 0x04003DB7 RID: 15799
 		public string EndTime;
 
-		// Token: 0x04004911 RID: 18705
+		// Token: 0x04003DB8 RID: 15800
 		public List<int> ShiBaiType = new List<int>();
 	}
 }

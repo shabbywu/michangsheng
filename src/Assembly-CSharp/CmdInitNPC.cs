@@ -2,12 +2,12 @@
 using Fungus;
 using UnityEngine;
 
-// Token: 0x02000362 RID: 866
+// Token: 0x02000246 RID: 582
 [CommandInfo("YSNPCJiaoHu", "初始化NPC", "初始化NPC", 0)]
 [AddComponentMenu("")]
 public class CmdInitNPC : Command
 {
-	// Token: 0x060018F0 RID: 6384 RVA: 0x000DEC00 File Offset: 0x000DCE00
+	// Token: 0x06001638 RID: 5688 RVA: 0x000966D0 File Offset: 0x000948D0
 	public override void OnEnter()
 	{
 		this.flowchart = this.GetFlowchart();
@@ -45,24 +45,24 @@ public class CmdInitNPC : Command
 		this.Continue();
 	}
 
-	// Token: 0x060018F1 RID: 6385 RVA: 0x000156A0 File Offset: 0x000138A0
+	// Token: 0x06001639 RID: 5689 RVA: 0x000968F8 File Offset: 0x00094AF8
 	private void Set(string name, int value)
 	{
 		this.flowchart.SetIntegerVariable(name, value);
 	}
 
-	// Token: 0x060018F2 RID: 6386 RVA: 0x000156AF File Offset: 0x000138AF
+	// Token: 0x0600163A RID: 5690 RVA: 0x00096907 File Offset: 0x00094B07
 	private void SetBool(string name, bool value)
 	{
 		this.flowchart.SetBooleanVariable(name, value);
 	}
 
-	// Token: 0x060018F3 RID: 6387 RVA: 0x000156BE File Offset: 0x000138BE
+	// Token: 0x0600163B RID: 5691 RVA: 0x00096916 File Offset: 0x00094B16
 	private void SetString(string name, string value)
 	{
 		this.flowchart.SetStringVariable(name, value);
 	}
 
-	// Token: 0x040013DE RID: 5086
+	// Token: 0x04001086 RID: 4230
 	private Flowchart flowchart;
 }

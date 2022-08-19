@@ -3,10 +3,10 @@ using System.Collections.Generic;
 
 namespace KBEngine
 {
-	// Token: 0x02000EE2 RID: 3810
+	// Token: 0x02000B65 RID: 2917
 	public class DATATYPE_FIXED_DICT : DATATYPE_BASE
 	{
-		// Token: 0x06005BA6 RID: 23462 RVA: 0x0025103C File Offset: 0x0024F23C
+		// Token: 0x0600516A RID: 20842 RVA: 0x00221D68 File Offset: 0x0021FF68
 		public override void bind()
 		{
 			string[] array = new string[this.dicttype.Keys.Count];
@@ -25,7 +25,7 @@ namespace KBEngine
 			}
 		}
 
-		// Token: 0x06005BA7 RID: 23463 RVA: 0x002510F0 File Offset: 0x0024F2F0
+		// Token: 0x0600516B RID: 20843 RVA: 0x00221E1C File Offset: 0x0022001C
 		public override object createFromStream(MemoryStream stream)
 		{
 			Dictionary<string, object> result = new Dictionary<string, object>();
@@ -35,7 +35,7 @@ namespace KBEngine
 			return result;
 		}
 
-		// Token: 0x06005BA8 RID: 23464 RVA: 0x00251148 File Offset: 0x0024F348
+		// Token: 0x0600516C RID: 20844 RVA: 0x00221E74 File Offset: 0x00220074
 		public override void addToStream(Bundle stream, object v)
 		{
 			foreach (string text in this.dicttype.Keys)
@@ -43,7 +43,7 @@ namespace KBEngine
 			}
 		}
 
-		// Token: 0x06005BA9 RID: 23465 RVA: 0x0025119C File Offset: 0x0024F39C
+		// Token: 0x0600516D RID: 20845 RVA: 0x00221EC8 File Offset: 0x002200C8
 		public override object parseDefaultValStr(string v)
 		{
 			Dictionary<string, object> dictionary = new Dictionary<string, object>();
@@ -54,7 +54,7 @@ namespace KBEngine
 			return dictionary;
 		}
 
-		// Token: 0x06005BAA RID: 23466 RVA: 0x00251218 File Offset: 0x0024F418
+		// Token: 0x0600516E RID: 20846 RVA: 0x00221F44 File Offset: 0x00220144
 		public override bool isSameType(object v)
 		{
 			if (v == null || v.GetType() != typeof(Dictionary<string, object>))
@@ -76,10 +76,10 @@ namespace KBEngine
 			return true;
 		}
 
-		// Token: 0x04005A0D RID: 23053
+		// Token: 0x04004F82 RID: 20354
 		public string implementedBy = "";
 
-		// Token: 0x04005A0E RID: 23054
+		// Token: 0x04004F83 RID: 20355
 		public Dictionary<string, object> dicttype = new Dictionary<string, object>();
 	}
 }

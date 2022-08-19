@@ -3,11 +3,11 @@ using UnityEngine;
 
 namespace UltimateSurvival
 {
-	// Token: 0x020008BF RID: 2239
+	// Token: 0x020005EC RID: 1516
 	public class FPMelee : FPWeaponBase
 	{
-		// Token: 0x1700060A RID: 1546
-		// (get) Token: 0x060039A0 RID: 14752 RVA: 0x00029D0D File Offset: 0x00027F0D
+		// Token: 0x1700042A RID: 1066
+		// (get) Token: 0x060030C2 RID: 12482 RVA: 0x0015CCF3 File Offset: 0x0015AEF3
 		public Message<bool> MeleeAttack
 		{
 			get
@@ -16,8 +16,8 @@ namespace UltimateSurvival
 			}
 		}
 
-		// Token: 0x1700060B RID: 1547
-		// (get) Token: 0x060039A1 RID: 14753 RVA: 0x00029D15 File Offset: 0x00027F15
+		// Token: 0x1700042B RID: 1067
+		// (get) Token: 0x060030C3 RID: 12483 RVA: 0x0015CCFB File Offset: 0x0015AEFB
 		public Message Miss
 		{
 			get
@@ -26,8 +26,8 @@ namespace UltimateSurvival
 			}
 		}
 
-		// Token: 0x1700060C RID: 1548
-		// (get) Token: 0x060039A2 RID: 14754 RVA: 0x00029D1D File Offset: 0x00027F1D
+		// Token: 0x1700042C RID: 1068
+		// (get) Token: 0x060030C4 RID: 12484 RVA: 0x0015CD03 File Offset: 0x0015AF03
 		public Message Hit
 		{
 			get
@@ -36,8 +36,8 @@ namespace UltimateSurvival
 			}
 		}
 
-		// Token: 0x1700060D RID: 1549
-		// (get) Token: 0x060039A3 RID: 14755 RVA: 0x00029D25 File Offset: 0x00027F25
+		// Token: 0x1700042D RID: 1069
+		// (get) Token: 0x060030C5 RID: 12485 RVA: 0x0015CD0B File Offset: 0x0015AF0B
 		public float MaxReach
 		{
 			get
@@ -46,8 +46,8 @@ namespace UltimateSurvival
 			}
 		}
 
-		// Token: 0x1700060E RID: 1550
-		// (get) Token: 0x060039A4 RID: 14756 RVA: 0x00029D2D File Offset: 0x00027F2D
+		// Token: 0x1700042E RID: 1070
+		// (get) Token: 0x060030C6 RID: 12486 RVA: 0x0015CD13 File Offset: 0x0015AF13
 		public float DamagePerHit
 		{
 			get
@@ -56,7 +56,7 @@ namespace UltimateSurvival
 			}
 		}
 
-		// Token: 0x060039A5 RID: 14757 RVA: 0x001A6498 File Offset: 0x001A4698
+		// Token: 0x060030C7 RID: 12487 RVA: 0x0015CD1C File Offset: 0x0015AF1C
 		public override bool TryAttackOnce(Camera camera)
 		{
 			if (Time.time < this.m_NextUseTime)
@@ -78,20 +78,20 @@ namespace UltimateSurvival
 			return true;
 		}
 
-		// Token: 0x060039A6 RID: 14758 RVA: 0x00029D35 File Offset: 0x00027F35
+		// Token: 0x060030C8 RID: 12488 RVA: 0x0015CDA0 File Offset: 0x0015AFA0
 		public override bool TryAttackContinuously(Camera camera)
 		{
 			return this.TryAttackOnce(camera);
 		}
 
-		// Token: 0x060039A7 RID: 14759 RVA: 0x00029D3E File Offset: 0x00027F3E
+		// Token: 0x060030C9 RID: 12489 RVA: 0x0015CDA9 File Offset: 0x0015AFA9
 		protected virtual void Start()
 		{
 			this.m_EventHandler.Hit.AddListener(new Action(this.On_Hit));
 			this.m_EventHandler.Woosh.AddListener(new Action(this.On_Woosh));
 		}
 
-		// Token: 0x060039A8 RID: 14760 RVA: 0x001A651C File Offset: 0x001A471C
+		// Token: 0x060030CA RID: 12490 RVA: 0x0015CDE4 File Offset: 0x0015AFE4
 		protected virtual void On_Hit()
 		{
 			RaycastData raycastData = base.Player.RaycastData.Get();
@@ -132,71 +132,71 @@ namespace UltimateSurvival
 			this.Hit.Send();
 		}
 
-		// Token: 0x060039A9 RID: 14761 RVA: 0x00029D79 File Offset: 0x00027F79
+		// Token: 0x060030CB RID: 12491 RVA: 0x0015CF63 File Offset: 0x0015B163
 		private void On_Woosh()
 		{
 			this.m_AttackAudio.Play(ItemSelectionMethod.Randomly, this.m_AudioSource, 0.6f);
 			this.Miss.Send();
 		}
 
-		// Token: 0x040033C8 RID: 13256
+		// Token: 0x04002AF5 RID: 10997
 		[Header("Melee Setup")]
 		[SerializeField]
 		[Tooltip("The animation event handler - that picks up animation events from Mecanim.")]
 		private FPMeleeEventHandler m_EventHandler;
 
-		// Token: 0x040033C9 RID: 13257
+		// Token: 0x04002AF6 RID: 10998
 		[Header("Melee Settings")]
 		[SerializeField]
 		[Tooltip("From how far can this object hit stuff?")]
 		private float m_MaxReach = 0.5f;
 
-		// Token: 0x040033CA RID: 13258
+		// Token: 0x04002AF7 RID: 10999
 		[SerializeField]
 		[Tooltip("Useful for limiting the number of hits you can do in a period of time.")]
 		private float m_TimeBetweenAttacks = 0.85f;
 
-		// Token: 0x040033CB RID: 13259
+		// Token: 0x04002AF8 RID: 11000
 		[SerializeField]
 		[Range(0f, 1000f)]
 		private float m_DamagePerHit = 15f;
 
-		// Token: 0x040033CC RID: 13260
+		// Token: 0x04002AF9 RID: 11001
 		[Range(0f, 1000f)]
 		[SerializeField]
 		private float m_ImpactForce = 15f;
 
-		// Token: 0x040033CD RID: 13261
+		// Token: 0x04002AFA RID: 11002
 		[Header("Audio")]
 		[SerializeField]
 		private AudioSource m_AudioSource;
 
-		// Token: 0x040033CE RID: 13262
+		// Token: 0x04002AFB RID: 11003
 		[SerializeField]
 		private SoundPlayer m_AttackAudio;
 
-		// Token: 0x040033CF RID: 13263
+		// Token: 0x04002AFC RID: 11004
 		[SerializeField]
 		private SoundType m_SoundType;
 
-		// Token: 0x040033D0 RID: 13264
+		// Token: 0x04002AFD RID: 11005
 		private Message<bool> m_MeleeAttack = new Message<bool>();
 
-		// Token: 0x040033D1 RID: 13265
+		// Token: 0x04002AFE RID: 11006
 		private Message m_Miss = new Message();
 
-		// Token: 0x040033D2 RID: 13266
+		// Token: 0x04002AFF RID: 11007
 		private Message m_Hit = new Message();
 
-		// Token: 0x040033D3 RID: 13267
+		// Token: 0x04002B00 RID: 11008
 		private float m_NextUseTime;
 
-		// Token: 0x020008C0 RID: 2240
+		// Token: 0x020014BD RID: 5309
 		public enum HitInvokeMethod
 		{
-			// Token: 0x040033D5 RID: 13269
+			// Token: 0x04006D16 RID: 27926
 			ByTimer,
-			// Token: 0x040033D6 RID: 13270
+			// Token: 0x04006D17 RID: 27927
 			ByAnimationEvent
 		}
 	}

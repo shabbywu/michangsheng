@@ -7,10 +7,10 @@ using MoonSharp.Interpreter.Tree.Expressions;
 
 namespace MoonSharp.Interpreter.Tree.Statements
 {
-	// Token: 0x020010AF RID: 4271
+	// Token: 0x02000CD8 RID: 3288
 	internal class FunctionDefinitionStatement : Statement
 	{
-		// Token: 0x0600672F RID: 26415 RVA: 0x00287864 File Offset: 0x00285A64
+		// Token: 0x06005C23 RID: 23587 RVA: 0x0025E0CC File Offset: 0x0025C2CC
 		public FunctionDefinitionStatement(ScriptLoadingContext lcontext, bool local, Token localToken) : base(lcontext)
 		{
 			Token token = NodeBase.CheckTokenType(lcontext, TokenType.Function);
@@ -63,7 +63,7 @@ namespace MoonSharp.Interpreter.Tree.Statements
 			lcontext.Source.Refs.Add(this.m_SourceRef);
 		}
 
-		// Token: 0x06006730 RID: 26416 RVA: 0x00287A68 File Offset: 0x00285C68
+		// Token: 0x06005C24 RID: 23588 RVA: 0x0025E2D0 File Offset: 0x0025C4D0
 		public override void Compile(ByteCode bc)
 		{
 			using (bc.EnterSource(this.m_SourceRef))
@@ -85,7 +85,7 @@ namespace MoonSharp.Interpreter.Tree.Statements
 			}
 		}
 
-		// Token: 0x06006731 RID: 26417 RVA: 0x00287B5C File Offset: 0x00285D5C
+		// Token: 0x06005C25 RID: 23589 RVA: 0x0025E3C4 File Offset: 0x0025C5C4
 		private int SetMethod(ByteCode bc)
 		{
 			int num = 0;
@@ -99,7 +99,7 @@ namespace MoonSharp.Interpreter.Tree.Statements
 			return 1 + num;
 		}
 
-		// Token: 0x06006732 RID: 26418 RVA: 0x00047060 File Offset: 0x00045260
+		// Token: 0x06005C26 RID: 23590 RVA: 0x0025E450 File Offset: 0x0025C650
 		private int SetFunction(ByteCode bc, int numPop)
 		{
 			int num = bc.Emit_Store(this.m_FuncSymbol, 0, 0);
@@ -107,28 +107,28 @@ namespace MoonSharp.Interpreter.Tree.Statements
 			return num + 1;
 		}
 
-		// Token: 0x04005F4E RID: 24398
+		// Token: 0x0400536A RID: 21354
 		private SymbolRef m_FuncSymbol;
 
-		// Token: 0x04005F4F RID: 24399
+		// Token: 0x0400536B RID: 21355
 		private SourceRef m_SourceRef;
 
-		// Token: 0x04005F50 RID: 24400
+		// Token: 0x0400536C RID: 21356
 		private bool m_Local;
 
-		// Token: 0x04005F51 RID: 24401
+		// Token: 0x0400536D RID: 21357
 		private bool m_IsMethodCallingConvention;
 
-		// Token: 0x04005F52 RID: 24402
+		// Token: 0x0400536E RID: 21358
 		private string m_MethodName;
 
-		// Token: 0x04005F53 RID: 24403
+		// Token: 0x0400536F RID: 21359
 		private string m_FriendlyName;
 
-		// Token: 0x04005F54 RID: 24404
+		// Token: 0x04005370 RID: 21360
 		private List<string> m_TableAccessors;
 
-		// Token: 0x04005F55 RID: 24405
+		// Token: 0x04005371 RID: 21361
 		private FunctionDefinitionExpression m_FuncDef;
 	}
 }

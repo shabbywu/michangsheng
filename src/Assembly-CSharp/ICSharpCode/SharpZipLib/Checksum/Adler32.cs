@@ -2,23 +2,23 @@
 
 namespace ICSharpCode.SharpZipLib.Checksum
 {
-	// Token: 0x02000834 RID: 2100
+	// Token: 0x0200058B RID: 1419
 	public sealed class Adler32 : IChecksum
 	{
-		// Token: 0x060036FB RID: 14075 RVA: 0x00028006 File Offset: 0x00026206
+		// Token: 0x06002E85 RID: 11909 RVA: 0x00152001 File Offset: 0x00150201
 		public Adler32()
 		{
 			this.Reset();
 		}
 
-		// Token: 0x060036FC RID: 14076 RVA: 0x00028014 File Offset: 0x00026214
+		// Token: 0x06002E86 RID: 11910 RVA: 0x0015200F File Offset: 0x0015020F
 		public void Reset()
 		{
 			this.checkValue = 1U;
 		}
 
-		// Token: 0x1700057D RID: 1405
-		// (get) Token: 0x060036FD RID: 14077 RVA: 0x0002801D File Offset: 0x0002621D
+		// Token: 0x170003C6 RID: 966
+		// (get) Token: 0x06002E87 RID: 11911 RVA: 0x00152018 File Offset: 0x00150218
 		public long Value
 		{
 			get
@@ -27,7 +27,7 @@ namespace ICSharpCode.SharpZipLib.Checksum
 			}
 		}
 
-		// Token: 0x060036FE RID: 14078 RVA: 0x0019CC74 File Offset: 0x0019AE74
+		// Token: 0x06002E88 RID: 11912 RVA: 0x00152024 File Offset: 0x00150224
 		public void Update(int bval)
 		{
 			uint num = this.checkValue & 65535U;
@@ -37,7 +37,7 @@ namespace ICSharpCode.SharpZipLib.Checksum
 			this.checkValue = (num2 << 16) + num;
 		}
 
-		// Token: 0x060036FF RID: 14079 RVA: 0x00028026 File Offset: 0x00026226
+		// Token: 0x06002E89 RID: 11913 RVA: 0x0015206E File Offset: 0x0015026E
 		public void Update(byte[] buffer)
 		{
 			if (buffer == null)
@@ -47,7 +47,7 @@ namespace ICSharpCode.SharpZipLib.Checksum
 			this.Update(new ArraySegment<byte>(buffer, 0, buffer.Length));
 		}
 
-		// Token: 0x06003700 RID: 14080 RVA: 0x0019CCC0 File Offset: 0x0019AEC0
+		// Token: 0x06002E8A RID: 11914 RVA: 0x00152090 File Offset: 0x00150290
 		public void Update(ArraySegment<byte> segment)
 		{
 			uint num = this.checkValue & 65535U;
@@ -73,10 +73,10 @@ namespace ICSharpCode.SharpZipLib.Checksum
 			this.checkValue = (num2 << 16 | num);
 		}
 
-		// Token: 0x04003129 RID: 12585
+		// Token: 0x040028EA RID: 10474
 		private static readonly uint BASE = 65521U;
 
-		// Token: 0x0400312A RID: 12586
+		// Token: 0x040028EB RID: 10475
 		private uint checkValue;
 	}
 }

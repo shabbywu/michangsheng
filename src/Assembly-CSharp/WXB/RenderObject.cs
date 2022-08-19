@@ -3,13 +3,13 @@ using UnityEngine;
 
 namespace WXB
 {
-	// Token: 0x020009B4 RID: 2484
+	// Token: 0x0200069F RID: 1695
 	[RequireComponent(typeof(RectTransform))]
 	[RequireComponent(typeof(CanvasRenderer))]
 	[ExecuteInEditMode]
 	public class RenderObject : MonoBehaviour
 	{
-		// Token: 0x06003F39 RID: 16185 RVA: 0x0002D6E1 File Offset: 0x0002B8E1
+		// Token: 0x06003578 RID: 13688 RVA: 0x00170CDC File Offset: 0x0016EEDC
 		protected virtual void OnTransformParentChanged()
 		{
 			if (base.isActiveAndEnabled)
@@ -19,7 +19,7 @@ namespace WXB
 			this.UpdateRect();
 		}
 
-		// Token: 0x06003F3A RID: 16186 RVA: 0x0002D6F2 File Offset: 0x0002B8F2
+		// Token: 0x06003579 RID: 13689 RVA: 0x00170CED File Offset: 0x0016EEED
 		protected void OnDisable()
 		{
 			if (this.m_CanvasRender == null)
@@ -29,14 +29,14 @@ namespace WXB
 			this.m_CanvasRender.Clear();
 		}
 
-		// Token: 0x06003F3B RID: 16187 RVA: 0x0002D70E File Offset: 0x0002B90E
+		// Token: 0x0600357A RID: 13690 RVA: 0x00170D09 File Offset: 0x0016EF09
 		protected void Start()
 		{
 			this.UpdateRect();
 		}
 
-		// Token: 0x17000712 RID: 1810
-		// (get) Token: 0x06003F3C RID: 16188 RVA: 0x0002D716 File Offset: 0x0002B916
+		// Token: 0x170004F2 RID: 1266
+		// (get) Token: 0x0600357B RID: 13691 RVA: 0x00170D11 File Offset: 0x0016EF11
 		public CanvasRenderer canvasRenderer
 		{
 			get
@@ -49,7 +49,7 @@ namespace WXB
 			}
 		}
 
-		// Token: 0x06003F3D RID: 16189 RVA: 0x001B8D44 File Offset: 0x001B6F44
+		// Token: 0x0600357C RID: 13692 RVA: 0x00170D34 File Offset: 0x0016EF34
 		private void UpdateRect()
 		{
 			if (this.rect == null)
@@ -68,13 +68,13 @@ namespace WXB
 			this.rect.offsetMin = Vector2.zero;
 		}
 
-		// Token: 0x06003F3E RID: 16190 RVA: 0x0002D738 File Offset: 0x0002B938
+		// Token: 0x0600357D RID: 13693 RVA: 0x00170DC7 File Offset: 0x0016EFC7
 		public void FillMesh(Mesh workerMesh)
 		{
 			this.canvasRenderer.SetMesh(workerMesh);
 		}
 
-		// Token: 0x06003F3F RID: 16191 RVA: 0x0002D746 File Offset: 0x0002B946
+		// Token: 0x0600357E RID: 13694 RVA: 0x00170DD5 File Offset: 0x0016EFD5
 		public void UpdateMaterial(Material mat, Texture texture)
 		{
 			this.canvasRenderer.materialCount = 1;
@@ -82,10 +82,10 @@ namespace WXB
 			this.canvasRenderer.SetTexture(texture);
 		}
 
-		// Token: 0x040038C3 RID: 14531
+		// Token: 0x04002F08 RID: 12040
 		private RectTransform rect;
 
-		// Token: 0x040038C4 RID: 14532
+		// Token: 0x04002F09 RID: 12041
 		[NonSerialized]
 		private CanvasRenderer m_CanvasRender;
 	}

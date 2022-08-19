@@ -4,10 +4,10 @@ using UnityEngine;
 
 namespace UltimateSurvival
 {
-	// Token: 0x020008CB RID: 2251
+	// Token: 0x020005F5 RID: 1525
 	public class FPTorch : FPObject
 	{
-		// Token: 0x060039E4 RID: 14820 RVA: 0x0002A136 File Offset: 0x00028336
+		// Token: 0x06003100 RID: 12544 RVA: 0x0015DBEC File Offset: 0x0015BDEC
 		public override void On_Draw(SavableItem correspondingItem)
 		{
 			base.On_Draw(correspondingItem);
@@ -15,7 +15,7 @@ namespace UltimateSurvival
 			base.StartCoroutine(this.C_ToggleTorch(true));
 		}
 
-		// Token: 0x060039E5 RID: 14821 RVA: 0x0002A153 File Offset: 0x00028353
+		// Token: 0x06003101 RID: 12545 RVA: 0x0015DC09 File Offset: 0x0015BE09
 		public override void On_Holster()
 		{
 			base.On_Holster();
@@ -26,14 +26,14 @@ namespace UltimateSurvival
 			}
 		}
 
-		// Token: 0x060039E6 RID: 14822 RVA: 0x0002A17C File Offset: 0x0002837C
+		// Token: 0x06003102 RID: 12546 RVA: 0x0015DC32 File Offset: 0x0015BE32
 		private void Start()
 		{
 			this.m_Light.intensity = this.m_LightIntensity;
 			this.m_Light.range = this.m_LightRange;
 		}
 
-		// Token: 0x060039E7 RID: 14823 RVA: 0x0002A1A0 File Offset: 0x000283A0
+		// Token: 0x06003103 RID: 12547 RVA: 0x0015DC56 File Offset: 0x0015BE56
 		private void Update()
 		{
 			if (!this.m_IsInTransition)
@@ -42,7 +42,7 @@ namespace UltimateSurvival
 			}
 		}
 
-		// Token: 0x060039E8 RID: 14824 RVA: 0x0002A1D8 File Offset: 0x000283D8
+		// Token: 0x06003104 RID: 12548 RVA: 0x0015DC8E File Offset: 0x0015BE8E
 		private IEnumerator C_ToggleTorch(bool toggle)
 		{
 			this.m_IsInTransition = true;
@@ -67,7 +67,7 @@ namespace UltimateSurvival
 			yield break;
 		}
 
-		// Token: 0x060039E9 RID: 14825 RVA: 0x001A7128 File Offset: 0x001A5328
+		// Token: 0x06003105 RID: 12549 RVA: 0x0015DCA4 File Offset: 0x0015BEA4
 		private void OnValidate()
 		{
 			if (this.m_Light)
@@ -81,52 +81,52 @@ namespace UltimateSurvival
 			}
 		}
 
-		// Token: 0x04003415 RID: 13333
+		// Token: 0x04002B37 RID: 11063
 		[Header("Torch Settings")]
 		[SerializeField]
 		[Tooltip("The torch light.")]
 		private Light m_Light;
 
-		// Token: 0x04003416 RID: 13334
+		// Token: 0x04002B38 RID: 11064
 		[SerializeField]
 		[Tooltip("The parent of all the torch particle systems.")]
 		private ParticleSystem m_MainSystem;
 
-		// Token: 0x04003417 RID: 13335
+		// Token: 0x04002B39 RID: 11065
 		[SerializeField]
 		[Range(0f, 10f)]
 		[Tooltip("The light intensity of the torch.")]
 		private float m_LightIntensity = 2f;
 
-		// Token: 0x04003418 RID: 13336
+		// Token: 0x04002B3A RID: 11066
 		[SerializeField]
 		[Range(0f, 20f)]
 		[Tooltip("The light range of the torch.")]
 		private float m_LightRange = 10f;
 
-		// Token: 0x04003419 RID: 13337
+		// Token: 0x04002B3B RID: 11067
 		[SerializeField]
 		[Range(0.1f, 1f)]
 		[Tooltip("Aproximately how much time it takes to draw / equip the torch.")]
 		private float m_LightDrawDuration = 0.5f;
 
-		// Token: 0x0400341A RID: 13338
+		// Token: 0x04002B3C RID: 11068
 		[SerializeField]
 		[Clamp(0f, float.PositiveInfinity)]
 		[Tooltip("How much the light intensity changes over time.")]
 		private float m_IntensityNoise = 1f;
 
-		// Token: 0x0400341B RID: 13339
+		// Token: 0x04002B3D RID: 11069
 		[Header("Audio")]
 		[SerializeField]
 		private AudioSource m_AudioSource;
 
-		// Token: 0x0400341C RID: 13340
+		// Token: 0x04002B3E RID: 11070
 		[SerializeField]
 		[Range(0f, 1f)]
 		private float m_Volume;
 
-		// Token: 0x0400341D RID: 13341
+		// Token: 0x04002B3F RID: 11071
 		private bool m_IsInTransition;
 	}
 }

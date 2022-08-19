@@ -6,10 +6,10 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
 
-// Token: 0x02000321 RID: 801
+// Token: 0x0200020B RID: 523
 public class UIJuLingZhenPanel : MonoBehaviour, IESCClose
 {
-	// Token: 0x0600179F RID: 6047 RVA: 0x000CE634 File Offset: 0x000CC834
+	// Token: 0x060014F3 RID: 5363 RVA: 0x00085F20 File Offset: 0x00084120
 	private void Awake()
 	{
 		UIJuLingZhenPanel.Inst = this;
@@ -18,7 +18,7 @@ public class UIJuLingZhenPanel : MonoBehaviour, IESCClose
 		this.ShengJiReturnBtn.mouseUpEvent.AddListener(new UnityAction(this.OnShengJiReturnClick));
 	}
 
-	// Token: 0x060017A0 RID: 6048 RVA: 0x000CE69C File Offset: 0x000CC89C
+	// Token: 0x060014F4 RID: 5364 RVA: 0x00085F88 File Offset: 0x00084188
 	public void RefreshUI()
 	{
 		UIJuLingZhenPanel.<>c__DisplayClass26_0 CS$<>8__locals1 = new UIJuLingZhenPanel.<>c__DisplayClass26_0();
@@ -111,7 +111,7 @@ public class UIJuLingZhenPanel : MonoBehaviour, IESCClose
 		});
 	}
 
-	// Token: 0x060017A1 RID: 6049 RVA: 0x000CEA50 File Offset: 0x000CCC50
+	// Token: 0x060014F5 RID: 5365 RVA: 0x0008633C File Offset: 0x0008453C
 	private void OnShengJiLeftHighlightClick()
 	{
 		this.nowSelectShengJiType = 1;
@@ -126,7 +126,7 @@ public class UIJuLingZhenPanel : MonoBehaviour, IESCClose
 		this.ShengJiOkBtn.enabled = true;
 	}
 
-	// Token: 0x060017A2 RID: 6050 RVA: 0x000CEAD4 File Offset: 0x000CCCD4
+	// Token: 0x060014F6 RID: 5366 RVA: 0x000863C0 File Offset: 0x000845C0
 	private void OnShengJiRightHighlightClick()
 	{
 		this.nowSelectShengJiType = 2;
@@ -141,106 +141,106 @@ public class UIJuLingZhenPanel : MonoBehaviour, IESCClose
 		this.ShengJiOkBtn.enabled = true;
 	}
 
-	// Token: 0x060017A3 RID: 6051 RVA: 0x00014E57 File Offset: 0x00013057
+	// Token: 0x060014F7 RID: 5367 RVA: 0x00086442 File Offset: 0x00084642
 	private void OnShengJiReturnClick()
 	{
 		this.NormalPanel.SetActive(true);
 		this.ShengJiPanel.SetActive(false);
 	}
 
-	// Token: 0x060017A4 RID: 6052 RVA: 0x00014E71 File Offset: 0x00013071
+	// Token: 0x060014F8 RID: 5368 RVA: 0x0008645C File Offset: 0x0008465C
 	public void OnShengJiBtnClick()
 	{
 		this.NormalPanel.SetActive(false);
 		this.ShengJiPanel.SetActive(true);
 	}
 
-	// Token: 0x060017A5 RID: 6053 RVA: 0x00014E8B File Offset: 0x0001308B
+	// Token: 0x060014F9 RID: 5369 RVA: 0x00086476 File Offset: 0x00084676
 	public void OnCloseBtnClick()
 	{
 		UIDongFu.Inst.HideJuLingZhenPanel();
 	}
 
-	// Token: 0x060017A6 RID: 6054 RVA: 0x00014E97 File Offset: 0x00013097
+	// Token: 0x060014FA RID: 5370 RVA: 0x00086482 File Offset: 0x00084682
 	public bool TryEscClose()
 	{
 		UIDongFu.Inst.HideJuLingZhenPanel();
 		return true;
 	}
 
-	// Token: 0x040012EF RID: 4847
+	// Token: 0x04000FA7 RID: 4007
 	public static UIJuLingZhenPanel Inst;
 
-	// Token: 0x040012F0 RID: 4848
+	// Token: 0x04000FA8 RID: 4008
 	public List<string> LingYanSpriteList;
 
-	// Token: 0x040012F1 RID: 4849
+	// Token: 0x04000FA9 RID: 4009
 	public GameObject NormalPanel;
 
-	// Token: 0x040012F2 RID: 4850
+	// Token: 0x04000FAA RID: 4010
 	public GameObject ShengJiBtn;
 
-	// Token: 0x040012F3 RID: 4851
+	// Token: 0x04000FAB RID: 4011
 	public ModImage LingYanImage;
 
-	// Token: 0x040012F4 RID: 4852
+	// Token: 0x04000FAC RID: 4012
 	public Text JuLingZhenLevel;
 
-	// Token: 0x040012F5 RID: 4853
+	// Token: 0x04000FAD RID: 4013
 	public Text LingYanLevel;
 
-	// Token: 0x040012F6 RID: 4854
+	// Token: 0x04000FAE RID: 4014
 	public Text ShengJiText;
 
-	// Token: 0x040012F7 RID: 4855
+	// Token: 0x04000FAF RID: 4015
 	public GameObject ShengJiPanel;
 
-	// Token: 0x040012F8 RID: 4856
+	// Token: 0x04000FB0 RID: 4016
 	public Text ShengJiLeftLevel;
 
-	// Token: 0x040012F9 RID: 4857
+	// Token: 0x04000FB1 RID: 4017
 	public Text ShengJiLeftDaCheng;
 
-	// Token: 0x040012FA RID: 4858
+	// Token: 0x04000FB2 RID: 4018
 	public Text ShengJiLeftDesc;
 
-	// Token: 0x040012FB RID: 4859
+	// Token: 0x04000FB3 RID: 4019
 	public FpBtn ShengJiLeftHighlight;
 
-	// Token: 0x040012FC RID: 4860
+	// Token: 0x04000FB4 RID: 4020
 	public Image ShengJiLeftZhenImage;
 
-	// Token: 0x040012FD RID: 4861
+	// Token: 0x04000FB5 RID: 4021
 	public Text ShengJiRightLevel;
 
-	// Token: 0x040012FE RID: 4862
+	// Token: 0x04000FB6 RID: 4022
 	public Text ShengJiRightDaCheng;
 
-	// Token: 0x040012FF RID: 4863
+	// Token: 0x04000FB7 RID: 4023
 	public Text ShengJiRightDesc;
 
-	// Token: 0x04001300 RID: 4864
+	// Token: 0x04000FB8 RID: 4024
 	public UIIconShow ShengJiRightItemIcon;
 
-	// Token: 0x04001301 RID: 4865
+	// Token: 0x04000FB9 RID: 4025
 	public FpBtn ShengJiRightHighlight;
 
-	// Token: 0x04001302 RID: 4866
+	// Token: 0x04000FBA RID: 4026
 	public FpBtn ShengJiReturnBtn;
 
-	// Token: 0x04001303 RID: 4867
+	// Token: 0x04000FBB RID: 4027
 	public FpBtn ShengJiOkBtn;
 
-	// Token: 0x04001304 RID: 4868
+	// Token: 0x04000FBC RID: 4028
 	private int nowSelectShengJiType;
 
-	// Token: 0x04001305 RID: 4869
+	// Token: 0x04000FBD RID: 4029
 	private bool canUseZhenDaoShengJi;
 
-	// Token: 0x04001306 RID: 4870
+	// Token: 0x04000FBE RID: 4030
 	private bool canUseItemShengJi;
 
-	// Token: 0x04001307 RID: 4871
+	// Token: 0x04000FBF RID: 4031
 	private static string[] szx = new string[]
 	{
 		"下",

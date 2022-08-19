@@ -7,10 +7,10 @@ using UnityEngine.UI;
 
 namespace QiYu
 {
-	// Token: 0x02000A77 RID: 2679
+	// Token: 0x02000722 RID: 1826
 	public class QiYuUIMag : MonoBehaviour
 	{
-		// Token: 0x060044E5 RID: 17637 RVA: 0x001D7B00 File Offset: 0x001D5D00
+		// Token: 0x06003A48 RID: 14920 RVA: 0x00190470 File Offset: 0x0018E670
 		public void Show(int id)
 		{
 			QiYuUIMag.Inst = this;
@@ -26,7 +26,7 @@ namespace QiYu
 			this.Init();
 		}
 
-		// Token: 0x060044E6 RID: 17638 RVA: 0x001D7BA8 File Offset: 0x001D5DA8
+		// Token: 0x06003A49 RID: 14921 RVA: 0x00190518 File Offset: 0x0018E718
 		private void Init()
 		{
 			AllMapShiJianOptionJsonData data = AllMapShiJianOptionJsonData.DataDict[this.EventId];
@@ -58,7 +58,7 @@ namespace QiYu
 			}
 		}
 
-		// Token: 0x060044E7 RID: 17639 RVA: 0x001D7CE0 File Offset: 0x001D5EE0
+		// Token: 0x06003A4A RID: 14922 RVA: 0x00190650 File Offset: 0x0018E850
 		private void OptionAction(int optionId)
 		{
 			AllMapOptionJsonData data = AllMapOptionJsonData.DataDict[optionId];
@@ -110,13 +110,13 @@ namespace QiYu
 			this.OkBtn.SetActive(true);
 		}
 
-		// Token: 0x060044E8 RID: 17640 RVA: 0x000111B3 File Offset: 0x0000F3B3
+		// Token: 0x06003A4B RID: 14923 RVA: 0x0005C928 File Offset: 0x0005AB28
 		public void Close()
 		{
 			Object.Destroy(base.gameObject);
 		}
 
-		// Token: 0x060044E9 RID: 17641 RVA: 0x00031468 File Offset: 0x0002F668
+		// Token: 0x06003A4C RID: 14924 RVA: 0x00190858 File Offset: 0x0018EA58
 		private void OnDestroy()
 		{
 			PanelMamager.CanOpenOrClose = true;
@@ -124,7 +124,7 @@ namespace QiYu
 			QiYuUIMag.Inst = null;
 		}
 
-		// Token: 0x060044EA RID: 17642 RVA: 0x0003147C File Offset: 0x0002F67C
+		// Token: 0x06003A4D RID: 14925 RVA: 0x0019086C File Offset: 0x0018EA6C
 		private void Update()
 		{
 			if (Input.GetKeyUp(27) && this.OkBtn.activeSelf)
@@ -133,34 +133,34 @@ namespace QiYu
 			}
 		}
 
-		// Token: 0x04003D0D RID: 15629
+		// Token: 0x04003275 RID: 12917
 		[SerializeField]
 		private Transform Panel;
 
-		// Token: 0x04003D0E RID: 15630
+		// Token: 0x04003276 RID: 12918
 		[SerializeField]
 		private Text EventName;
 
-		// Token: 0x04003D0F RID: 15631
+		// Token: 0x04003277 RID: 12919
 		[SerializeField]
 		private Text EventContent;
 
-		// Token: 0x04003D10 RID: 15632
+		// Token: 0x04003278 RID: 12920
 		[SerializeField]
 		private Transform OptionList;
 
-		// Token: 0x04003D11 RID: 15633
+		// Token: 0x04003279 RID: 12921
 		[SerializeField]
 		private GameObject Option;
 
-		// Token: 0x04003D12 RID: 15634
+		// Token: 0x0400327A RID: 12922
 		[SerializeField]
 		private GameObject OkBtn;
 
-		// Token: 0x04003D13 RID: 15635
+		// Token: 0x0400327B RID: 12923
 		public int EventId;
 
-		// Token: 0x04003D14 RID: 15636
+		// Token: 0x0400327C RID: 12924
 		public static QiYuUIMag Inst;
 	}
 }

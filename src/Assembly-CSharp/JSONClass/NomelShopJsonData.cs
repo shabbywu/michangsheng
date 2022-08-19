@@ -3,10 +3,10 @@ using System.Collections.Generic;
 
 namespace JSONClass
 {
-	// Token: 0x02000C21 RID: 3105
+	// Token: 0x02000893 RID: 2195
 	public class NomelShopJsonData : IJSONClass
 	{
-		// Token: 0x06004BED RID: 19437 RVA: 0x00200C14 File Offset: 0x001FEE14
+		// Token: 0x0600405F RID: 16479 RVA: 0x001B77CC File Offset: 0x001B59CC
 		public static void InitDataDict()
 		{
 			foreach (JSONObject jsonobject in jsonData.instance.NomelShopJsonData.list)
@@ -46,45 +46,45 @@ namespace JSONClass
 			}
 		}
 
-		// Token: 0x06004BEE RID: 19438 RVA: 0x000042DD File Offset: 0x000024DD
+		// Token: 0x06004060 RID: 16480 RVA: 0x00004095 File Offset: 0x00002295
 		private static void OnInitFinish()
 		{
 		}
 
-		// Token: 0x04004912 RID: 18706
+		// Token: 0x04003DB9 RID: 15801
 		public static Dictionary<int, NomelShopJsonData> DataDict = new Dictionary<int, NomelShopJsonData>();
 
-		// Token: 0x04004913 RID: 18707
+		// Token: 0x04003DBA RID: 15802
 		public static List<NomelShopJsonData> DataList = new List<NomelShopJsonData>();
 
-		// Token: 0x04004914 RID: 18708
+		// Token: 0x04003DBB RID: 15803
 		public static Action OnInitFinishAction = new Action(NomelShopJsonData.OnInitFinish);
 
-		// Token: 0x04004915 RID: 18709
+		// Token: 0x04003DBC RID: 15804
 		public int id;
 
-		// Token: 0x04004916 RID: 18710
+		// Token: 0x04003DBD RID: 15805
 		public int threeScene;
 
-		// Token: 0x04004917 RID: 18711
+		// Token: 0x04003DBE RID: 15806
 		public int SType;
 
-		// Token: 0x04004918 RID: 18712
+		// Token: 0x04003DBF RID: 15807
 		public int shopType;
 
-		// Token: 0x04004919 RID: 18713
+		// Token: 0x04003DC0 RID: 15808
 		public int price;
 
-		// Token: 0x0400491A RID: 18714
+		// Token: 0x04003DC1 RID: 15809
 		public int ExShopID;
 
-		// Token: 0x0400491B RID: 18715
+		// Token: 0x04003DC2 RID: 15810
 		public string ChildTitle;
 
-		// Token: 0x0400491C RID: 18716
+		// Token: 0x04003DC3 RID: 15811
 		public string Title;
 
-		// Token: 0x0400491D RID: 18717
+		// Token: 0x04003DC4 RID: 15812
 		public List<int> items = new List<int>();
 	}
 }

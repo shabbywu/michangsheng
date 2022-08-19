@@ -2,10 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-// Token: 0x02000011 RID: 17
+// Token: 0x02000010 RID: 16
 public class CameraHolder : MonoBehaviour
 {
-	// Token: 0x0600004A RID: 74 RVA: 0x0005DD0C File Offset: 0x0005BF0C
+	// Token: 0x0600004A RID: 74 RVA: 0x00003524 File Offset: 0x00001724
 	private void Start()
 	{
 		if (Screen.dpi < 1f)
@@ -26,7 +26,7 @@ public class CameraHolder : MonoBehaviour
 		this.Counter(0);
 	}
 
-	// Token: 0x0600004B RID: 75 RVA: 0x0005DD88 File Offset: 0x0005BF88
+	// Token: 0x0600004B RID: 75 RVA: 0x000035A0 File Offset: 0x000017A0
 	private void OnGUI()
 	{
 		if (GUI.Button(new Rect(5f * this.windowDpi, 5f * this.windowDpi, 110f * this.windowDpi, 35f * this.windowDpi), "Previous effect"))
@@ -58,7 +58,7 @@ public class CameraHolder : MonoBehaviour
 		}
 	}
 
-	// Token: 0x0600004C RID: 76 RVA: 0x0005DFC0 File Offset: 0x0005C1C0
+	// Token: 0x0600004C RID: 76 RVA: 0x000037D8 File Offset: 0x000019D8
 	private void Counter(int count)
 	{
 		this.Prefab += count;
@@ -88,7 +88,7 @@ public class CameraHolder : MonoBehaviour
 		}
 	}
 
-	// Token: 0x0600004D RID: 77 RVA: 0x0005E0C8 File Offset: 0x0005C2C8
+	// Token: 0x0600004D RID: 77 RVA: 0x000038E0 File Offset: 0x00001AE0
 	private void LateUpdate()
 	{
 		if (this.currDistance < 2f)
@@ -140,7 +140,7 @@ public class CameraHolder : MonoBehaviour
 		}
 	}
 
-	// Token: 0x0600004E RID: 78 RVA: 0x0000411E File Offset: 0x0000231E
+	// Token: 0x0600004E RID: 78 RVA: 0x00003117 File Offset: 0x00001317
 	private static float ClampAngle(float angle, float min, float max)
 	{
 		if (angle < -360f)
@@ -154,74 +154,74 @@ public class CameraHolder : MonoBehaviour
 		return Mathf.Clamp(angle, min, max);
 	}
 
-	// Token: 0x04000043 RID: 67
+	// Token: 0x04000040 RID: 64
 	public Transform Holder;
 
-	// Token: 0x04000044 RID: 68
+	// Token: 0x04000041 RID: 65
 	public float currDistance = 5f;
 
-	// Token: 0x04000045 RID: 69
+	// Token: 0x04000042 RID: 66
 	public float xRotate = 250f;
 
-	// Token: 0x04000046 RID: 70
+	// Token: 0x04000043 RID: 67
 	public float yRotate = 120f;
 
-	// Token: 0x04000047 RID: 71
+	// Token: 0x04000044 RID: 68
 	public float yMinLimit = -20f;
 
-	// Token: 0x04000048 RID: 72
+	// Token: 0x04000045 RID: 69
 	public float yMaxLimit = 80f;
 
-	// Token: 0x04000049 RID: 73
+	// Token: 0x04000046 RID: 70
 	public float prevDistance;
 
-	// Token: 0x0400004A RID: 74
+	// Token: 0x04000047 RID: 71
 	private float x;
 
-	// Token: 0x0400004B RID: 75
+	// Token: 0x04000048 RID: 72
 	private float y;
 
-	// Token: 0x0400004C RID: 76
+	// Token: 0x04000049 RID: 73
 	[Header("GUI")]
 	private float windowDpi;
 
-	// Token: 0x0400004D RID: 77
+	// Token: 0x0400004A RID: 74
 	public GameObject[] Prefabs;
 
-	// Token: 0x0400004E RID: 78
+	// Token: 0x0400004B RID: 75
 	private int Prefab;
 
-	// Token: 0x0400004F RID: 79
+	// Token: 0x0400004C RID: 76
 	private GameObject Instance;
 
-	// Token: 0x04000050 RID: 80
+	// Token: 0x0400004D RID: 77
 	private float StartColor;
 
-	// Token: 0x04000051 RID: 81
+	// Token: 0x0400004E RID: 78
 	private float HueColor;
 
-	// Token: 0x04000052 RID: 82
+	// Token: 0x0400004F RID: 79
 	public Texture HueTexture;
 
-	// Token: 0x04000053 RID: 83
+	// Token: 0x04000050 RID: 80
 	private ParticleSystem[] particleSystems = new ParticleSystem[0];
 
-	// Token: 0x04000054 RID: 84
+	// Token: 0x04000051 RID: 81
 	private List<CameraHolder.SVA> svList = new List<CameraHolder.SVA>();
 
-	// Token: 0x04000055 RID: 85
+	// Token: 0x04000052 RID: 82
 	private float H;
 
-	// Token: 0x02000012 RID: 18
+	// Token: 0x020011C5 RID: 4549
 	public struct SVA
 	{
-		// Token: 0x04000056 RID: 86
+		// Token: 0x04006352 RID: 25426
 		public float S;
 
-		// Token: 0x04000057 RID: 87
+		// Token: 0x04006353 RID: 25427
 		public float V;
 
-		// Token: 0x04000058 RID: 88
+		// Token: 0x04006354 RID: 25428
 		public float A;
 	}
 }

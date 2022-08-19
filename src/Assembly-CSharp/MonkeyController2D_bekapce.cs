@@ -2,10 +2,10 @@
 using System.Collections;
 using UnityEngine;
 
-// Token: 0x0200070D RID: 1805
+// Token: 0x020004C7 RID: 1223
 public class MonkeyController2D_bekapce : MonoBehaviour
 {
-	// Token: 0x06002DB1 RID: 11697 RVA: 0x0016CA68 File Offset: 0x0016AC68
+	// Token: 0x06002751 RID: 10065 RVA: 0x00122808 File Offset: 0x00120A08
 	private void Awake()
 	{
 		this.majmun = GameObject.Find("PrinceGorilla").transform;
@@ -18,7 +18,7 @@ public class MonkeyController2D_bekapce : MonoBehaviour
 		this.parentAnim = this.majmun.parent.GetComponent<Animator>();
 	}
 
-	// Token: 0x06002DB2 RID: 11698 RVA: 0x0016CB20 File Offset: 0x0016AD20
+	// Token: 0x06002752 RID: 10066 RVA: 0x001228C0 File Offset: 0x00120AC0
 	private void Start()
 	{
 		this.startSpeedX = this.maxSpeedX;
@@ -38,7 +38,7 @@ public class MonkeyController2D_bekapce : MonoBehaviour
 		this.trail = base.transform.Find("Trail").GetComponent<TrailRenderer>();
 	}
 
-	// Token: 0x06002DB3 RID: 11699 RVA: 0x0016CC2C File Offset: 0x0016AE2C
+	// Token: 0x06002753 RID: 10067 RVA: 0x001229CC File Offset: 0x00120BCC
 	private void Update()
 	{
 		this.hit = Physics2D.Linecast(base.transform.position + new Vector3(0.8f, 0f, 0f), base.transform.position + new Vector3(0.8f, -15.5f, 0f), 1 << LayerMask.NameToLayer("Ground") | 1 << LayerMask.NameToLayer("Platform"));
@@ -427,7 +427,7 @@ public class MonkeyController2D_bekapce : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06002DB4 RID: 11700 RVA: 0x0016E38C File Offset: 0x0016C58C
+	// Token: 0x06002754 RID: 10068 RVA: 0x0012412C File Offset: 0x0012232C
 	private void FixedUpdate()
 	{
 		this.currentBaseState = this.animator.GetCurrentAnimatorStateInfo(0);
@@ -607,7 +607,7 @@ public class MonkeyController2D_bekapce : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06002DB5 RID: 11701 RVA: 0x0016EB18 File Offset: 0x0016CD18
+	// Token: 0x06002755 RID: 10069 RVA: 0x001248B8 File Offset: 0x00122AB8
 	private void OnTriggerExit2D(Collider2D col)
 	{
 		if (col.tag == "Footer")
@@ -631,7 +631,7 @@ public class MonkeyController2D_bekapce : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06002DB6 RID: 11702 RVA: 0x0016EBE0 File Offset: 0x0016CDE0
+	// Token: 0x06002756 RID: 10070 RVA: 0x00124980 File Offset: 0x00122B80
 	private void OnCollisionEnter2D(Collision2D col)
 	{
 		if (this.state != MonkeyController2D_bekapce.State.completed || this.state != MonkeyController2D_bekapce.State.wasted)
@@ -807,13 +807,13 @@ public class MonkeyController2D_bekapce : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06002DB7 RID: 11703 RVA: 0x000224EF File Offset: 0x000206EF
+	// Token: 0x06002757 RID: 10071 RVA: 0x00124F55 File Offset: 0x00123155
 	public void majmunUtepanULetu()
 	{
 		base.StartCoroutine(this.FallDownAfterSpikes());
 	}
 
-	// Token: 0x06002DB8 RID: 11704 RVA: 0x000224FE File Offset: 0x000206FE
+	// Token: 0x06002758 RID: 10072 RVA: 0x00124F64 File Offset: 0x00123164
 	private IEnumerator FallDownAfterSpikes()
 	{
 		MonkeyController2D_bekapce.canRespawnThings = false;
@@ -849,7 +849,7 @@ public class MonkeyController2D_bekapce : MonoBehaviour
 		yield break;
 	}
 
-	// Token: 0x06002DB9 RID: 11705 RVA: 0x0002250D File Offset: 0x0002070D
+	// Token: 0x06002759 RID: 10073 RVA: 0x00124F73 File Offset: 0x00123173
 	private IEnumerator ProceduraPenjanja(GameObject obj)
 	{
 		yield return new WaitForSeconds(0.01f);
@@ -889,7 +889,7 @@ public class MonkeyController2D_bekapce : MonoBehaviour
 		yield break;
 	}
 
-	// Token: 0x06002DBA RID: 11706 RVA: 0x0002251C File Offset: 0x0002071C
+	// Token: 0x0600275A RID: 10074 RVA: 0x00124F82 File Offset: 0x00123182
 	private IEnumerator snappingProcess()
 	{
 		float t = 0f;
@@ -905,7 +905,7 @@ public class MonkeyController2D_bekapce : MonoBehaviour
 		yield break;
 	}
 
-	// Token: 0x06002DBB RID: 11707 RVA: 0x0016F1B8 File Offset: 0x0016D3B8
+	// Token: 0x0600275B RID: 10075 RVA: 0x00124F94 File Offset: 0x00123194
 	private void OnCollisionExit2D(Collision2D col)
 	{
 		if (col.gameObject.tag == "Footer")
@@ -946,13 +946,13 @@ public class MonkeyController2D_bekapce : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06002DBC RID: 11708 RVA: 0x0002252B File Offset: 0x0002072B
+	// Token: 0x0600275C RID: 10076 RVA: 0x001250F1 File Offset: 0x001232F1
 	private void NotifyManagerForFinish()
 	{
 		GameObject.Find("_GameManager").SendMessage("ShowWinScreen");
 	}
 
-	// Token: 0x06002DBD RID: 11709 RVA: 0x00022541 File Offset: 0x00020741
+	// Token: 0x0600275D RID: 10077 RVA: 0x00125107 File Offset: 0x00123307
 	private IEnumerator TutorialPlay(Transform obj, string ime, int next)
 	{
 		base.StartCoroutine(obj.GetComponent<Animation>().Play(ime, false, delegate(bool what)
@@ -975,7 +975,7 @@ public class MonkeyController2D_bekapce : MonoBehaviour
 		yield break;
 	}
 
-	// Token: 0x06002DBE RID: 11710 RVA: 0x0016F318 File Offset: 0x0016D518
+	// Token: 0x0600275E RID: 10078 RVA: 0x0012512C File Offset: 0x0012332C
 	private void OnTriggerEnter2D(Collider2D col)
 	{
 		if (this.state != MonkeyController2D_bekapce.State.completed || this.state != MonkeyController2D_bekapce.State.wasted)
@@ -1118,7 +1118,7 @@ public class MonkeyController2D_bekapce : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06002DBF RID: 11711 RVA: 0x0016F804 File Offset: 0x0016DA04
+	// Token: 0x0600275F RID: 10079 RVA: 0x00125618 File Offset: 0x00123818
 	private void OnTriggerStay2D(Collider2D col)
 	{
 		if (col.tag == "GrabLedge")
@@ -1127,7 +1127,7 @@ public class MonkeyController2D_bekapce : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06002DC0 RID: 11712 RVA: 0x00022565 File Offset: 0x00020765
+	// Token: 0x06002760 RID: 10080 RVA: 0x0012566B File Offset: 0x0012386B
 	private IEnumerator pratiLijanaTarget(Transform target)
 	{
 		while (this.lijana)
@@ -1138,7 +1138,7 @@ public class MonkeyController2D_bekapce : MonoBehaviour
 		yield break;
 	}
 
-	// Token: 0x06002DC1 RID: 11713 RVA: 0x0016F858 File Offset: 0x0016DA58
+	// Token: 0x06002761 RID: 10081 RVA: 0x00125684 File Offset: 0x00123884
 	public void OtkaciMajmuna()
 	{
 		this.lijana = false;
@@ -1154,7 +1154,7 @@ public class MonkeyController2D_bekapce : MonoBehaviour
 		this.animator.Play(this.jump_State);
 	}
 
-	// Token: 0x06002DC2 RID: 11714 RVA: 0x0016F8F8 File Offset: 0x0016DAF8
+	// Token: 0x06002762 RID: 10082 RVA: 0x00125724 File Offset: 0x00123924
 	private void SpustiMajmunaSaLijaneBrzo()
 	{
 		this.lijana = false;
@@ -1169,7 +1169,7 @@ public class MonkeyController2D_bekapce : MonoBehaviour
 		this.animator.Play(this.jump_State);
 	}
 
-	// Token: 0x06002DC3 RID: 11715 RVA: 0x0002257B File Offset: 0x0002077B
+	// Token: 0x06002763 RID: 10083 RVA: 0x001257A7 File Offset: 0x001239A7
 	private IEnumerator Bounce(float time)
 	{
 		yield return new WaitForSeconds(time);
@@ -1177,13 +1177,13 @@ public class MonkeyController2D_bekapce : MonoBehaviour
 		yield break;
 	}
 
-	// Token: 0x06002DC4 RID: 11716 RVA: 0x00022591 File Offset: 0x00020791
+	// Token: 0x06002764 RID: 10084 RVA: 0x001257BD File Offset: 0x001239BD
 	private void climb()
 	{
 		base.StartCoroutine(this.MoveUp(0.05f));
 	}
 
-	// Token: 0x06002DC5 RID: 11717 RVA: 0x000225A5 File Offset: 0x000207A5
+	// Token: 0x06002765 RID: 10085 RVA: 0x001257D1 File Offset: 0x001239D1
 	private IEnumerator ClimbLedge(Transform target, float time)
 	{
 		yield return null;
@@ -1208,7 +1208,7 @@ public class MonkeyController2D_bekapce : MonoBehaviour
 		yield break;
 	}
 
-	// Token: 0x06002DC6 RID: 11718 RVA: 0x000225BB File Offset: 0x000207BB
+	// Token: 0x06002766 RID: 10086 RVA: 0x001257E7 File Offset: 0x001239E7
 	private IEnumerator MoveUp(float time)
 	{
 		float target = base.transform.position.y + 1.85f;
@@ -1228,7 +1228,7 @@ public class MonkeyController2D_bekapce : MonoBehaviour
 		yield break;
 	}
 
-	// Token: 0x06002DC7 RID: 11719 RVA: 0x0016F97C File Offset: 0x0016DB7C
+	// Token: 0x06002767 RID: 10087 RVA: 0x001257F8 File Offset: 0x001239F8
 	public void majmunUtepan()
 	{
 		MonkeyController2D_bekapce.canRespawnThings = false;
@@ -1256,7 +1256,7 @@ public class MonkeyController2D_bekapce : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06002DC8 RID: 11720 RVA: 0x000225CA File Offset: 0x000207CA
+	// Token: 0x06002768 RID: 10088 RVA: 0x001258B5 File Offset: 0x00123AB5
 	private IEnumerator slowDown()
 	{
 		float finish = base.transform.position.x - 5f;
@@ -1275,19 +1275,19 @@ public class MonkeyController2D_bekapce : MonoBehaviour
 		yield break;
 	}
 
-	// Token: 0x06002DC9 RID: 11721 RVA: 0x000042DD File Offset: 0x000024DD
+	// Token: 0x06002769 RID: 10089 RVA: 0x00004095 File Offset: 0x00002295
 	public void CallShake()
 	{
 	}
 
-	// Token: 0x06002DCA RID: 11722 RVA: 0x000225D9 File Offset: 0x000207D9
+	// Token: 0x0600276A RID: 10090 RVA: 0x001258C4 File Offset: 0x00123AC4
 	private IEnumerator shakeCamera()
 	{
 		yield return null;
 		yield break;
 	}
 
-	// Token: 0x06002DCB RID: 11723 RVA: 0x00149A14 File Offset: 0x00147C14
+	// Token: 0x0600276B RID: 10091 RVA: 0x001258CC File Offset: 0x00123ACC
 	private string RaycastFunction(Vector3 vector)
 	{
 		RaycastHit raycastHit;
@@ -1298,7 +1298,7 @@ public class MonkeyController2D_bekapce : MonoBehaviour
 		return "";
 	}
 
-	// Token: 0x06002DCC RID: 11724 RVA: 0x000225E1 File Offset: 0x000207E1
+	// Token: 0x0600276C RID: 10092 RVA: 0x001258FF File Offset: 0x00123AFF
 	private IEnumerator turnHead(float step)
 	{
 		float t = 0f;
@@ -1322,7 +1322,7 @@ public class MonkeyController2D_bekapce : MonoBehaviour
 		yield break;
 	}
 
-	// Token: 0x06002DCD RID: 11725 RVA: 0x000225F7 File Offset: 0x000207F7
+	// Token: 0x0600276D RID: 10093 RVA: 0x00125915 File Offset: 0x00123B15
 	private IEnumerator easyStop()
 	{
 		while (this.maxSpeedX > 0f && this.usporavanje)
@@ -1337,7 +1337,7 @@ public class MonkeyController2D_bekapce : MonoBehaviour
 		yield break;
 	}
 
-	// Token: 0x06002DCE RID: 11726 RVA: 0x00022606 File Offset: 0x00020806
+	// Token: 0x0600276E RID: 10094 RVA: 0x00125924 File Offset: 0x00123B24
 	private IEnumerator easyGo()
 	{
 		while (this.maxSpeedX < this.startSpeedX && !this.usporavanje)
@@ -1352,7 +1352,7 @@ public class MonkeyController2D_bekapce : MonoBehaviour
 		yield break;
 	}
 
-	// Token: 0x06002DCF RID: 11727 RVA: 0x00022615 File Offset: 0x00020815
+	// Token: 0x0600276F RID: 10095 RVA: 0x00125933 File Offset: 0x00123B33
 	private IEnumerator reappearItem(GameObject obj)
 	{
 		yield return new WaitForSeconds(1.5f);
@@ -1360,7 +1360,7 @@ public class MonkeyController2D_bekapce : MonoBehaviour
 		yield break;
 	}
 
-	// Token: 0x06002DD0 RID: 11728 RVA: 0x00022624 File Offset: 0x00020824
+	// Token: 0x06002770 RID: 10096 RVA: 0x00125942 File Offset: 0x00123B42
 	private IEnumerator nestaniTrail(float step)
 	{
 		float t = 0f;
@@ -1374,395 +1374,395 @@ public class MonkeyController2D_bekapce : MonoBehaviour
 		yield break;
 	}
 
-	// Token: 0x04002860 RID: 10336
+	// Token: 0x040021A4 RID: 8612
 	public float moveForce = 300f;
 
-	// Token: 0x04002861 RID: 10337
+	// Token: 0x040021A5 RID: 8613
 	public float maxSpeedX = 8f;
 
-	// Token: 0x04002862 RID: 10338
+	// Token: 0x040021A6 RID: 8614
 	public float jumpForce = 700f;
 
-	// Token: 0x04002863 RID: 10339
+	// Token: 0x040021A7 RID: 8615
 	public float doubleJumpForce = 100f;
 
-	// Token: 0x04002864 RID: 10340
+	// Token: 0x040021A8 RID: 8616
 	public float gravity = 200f;
 
-	// Token: 0x04002865 RID: 10341
+	// Token: 0x040021A9 RID: 8617
 	public float maxSpeedY = 8f;
 
-	// Token: 0x04002866 RID: 10342
+	// Token: 0x040021AA RID: 8618
 	public float jumpSpeedX = 12f;
 
-	// Token: 0x04002867 RID: 10343
+	// Token: 0x040021AB RID: 8619
 	private bool jump;
 
-	// Token: 0x04002868 RID: 10344
+	// Token: 0x040021AC RID: 8620
 	private bool doubleJump;
 
-	// Token: 0x04002869 RID: 10345
+	// Token: 0x040021AD RID: 8621
 	[HideInInspector]
 	public bool inAir;
 
-	// Token: 0x0400286A RID: 10346
+	// Token: 0x040021AE RID: 8622
 	private bool hasJumped;
 
-	// Token: 0x0400286B RID: 10347
+	// Token: 0x040021AF RID: 8623
 	private bool jumpSafetyCheck;
 
-	// Token: 0x0400286C RID: 10348
+	// Token: 0x040021B0 RID: 8624
 	private bool proveriTerenIspredY;
 
-	// Token: 0x0400286D RID: 10349
+	// Token: 0x040021B1 RID: 8625
 	private bool downHit;
 
-	// Token: 0x0400286E RID: 10350
+	// Token: 0x040021B2 RID: 8626
 	[HideInInspector]
 	public bool zgaziEnemija;
 
-	// Token: 0x0400286F RID: 10351
+	// Token: 0x040021B3 RID: 8627
 	[HideInInspector]
 	public bool killed;
 
-	// Token: 0x04002870 RID: 10352
+	// Token: 0x040021B4 RID: 8628
 	[HideInInspector]
 	public bool stop;
 
-	// Token: 0x04002871 RID: 10353
+	// Token: 0x040021B5 RID: 8629
 	private bool triggerCheckDown;
 
-	// Token: 0x04002872 RID: 10354
+	// Token: 0x040021B6 RID: 8630
 	[HideInInspector]
 	public bool triggerCheckDownTrigger;
 
-	// Token: 0x04002873 RID: 10355
+	// Token: 0x040021B7 RID: 8631
 	[HideInInspector]
 	public bool triggerCheckDownBehind;
 
-	// Token: 0x04002874 RID: 10356
+	// Token: 0x040021B8 RID: 8632
 	private bool CheckWallHitNear;
 
-	// Token: 0x04002875 RID: 10357
+	// Token: 0x040021B9 RID: 8633
 	private bool CheckWallHitNear_low;
 
-	// Token: 0x04002876 RID: 10358
+	// Token: 0x040021BA RID: 8634
 	private bool startSpustanje;
 
-	// Token: 0x04002877 RID: 10359
+	// Token: 0x040021BB RID: 8635
 	private bool startPenjanje;
 
-	// Token: 0x04002878 RID: 10360
+	// Token: 0x040021BC RID: 8636
 	private bool spustanjeRastojanje;
 
-	// Token: 0x04002879 RID: 10361
+	// Token: 0x040021BD RID: 8637
 	private float pocetniY_spustanje;
 
-	// Token: 0x0400287A RID: 10362
+	// Token: 0x040021BE RID: 8638
 	[HideInInspector]
 	public float collisionAngle;
 
-	// Token: 0x0400287B RID: 10363
+	// Token: 0x040021BF RID: 8639
 	private float duzinaPritiskaZaSkok;
 
-	// Token: 0x0400287C RID: 10364
+	// Token: 0x040021C0 RID: 8640
 	private bool mozeDaSkociOpet;
 
-	// Token: 0x0400287D RID: 10365
+	// Token: 0x040021C1 RID: 8641
 	private float startY;
 
-	// Token: 0x0400287E RID: 10366
+	// Token: 0x040021C2 RID: 8642
 	private float endX;
 
-	// Token: 0x0400287F RID: 10367
+	// Token: 0x040021C3 RID: 8643
 	private float endY;
 
-	// Token: 0x04002880 RID: 10368
+	// Token: 0x040021C4 RID: 8644
 	private bool swoosh;
 
-	// Token: 0x04002881 RID: 10369
+	// Token: 0x040021C5 RID: 8645
 	private bool grab;
 
-	// Token: 0x04002882 RID: 10370
+	// Token: 0x040021C6 RID: 8646
 	private bool snappingToClimb;
 
-	// Token: 0x04002883 RID: 10371
+	// Token: 0x040021C7 RID: 8647
 	private Vector3 colliderForClimb;
 
-	// Token: 0x04002884 RID: 10372
+	// Token: 0x040021C8 RID: 8648
 	public bool Glide;
 
-	// Token: 0x04002885 RID: 10373
+	// Token: 0x040021C9 RID: 8649
 	public bool DupliSkok;
 
-	// Token: 0x04002886 RID: 10374
+	// Token: 0x040021CA RID: 8650
 	public bool KontrolisaniSkok;
 
-	// Token: 0x04002887 RID: 10375
+	// Token: 0x040021CB RID: 8651
 	public bool SlideNaDole;
 
-	// Token: 0x04002888 RID: 10376
+	// Token: 0x040021CC RID: 8652
 	public bool Zaustavljanje;
 
-	// Token: 0x04002889 RID: 10377
+	// Token: 0x040021CD RID: 8653
 	private Ray2D ray;
 
-	// Token: 0x0400288A RID: 10378
+	// Token: 0x040021CE RID: 8654
 	private RaycastHit2D hit;
 
-	// Token: 0x0400288B RID: 10379
+	// Token: 0x040021CF RID: 8655
 	private Transform ceilingCheck;
 
-	// Token: 0x0400288C RID: 10380
+	// Token: 0x040021D0 RID: 8656
 	private Transform groundCheck;
 
-	// Token: 0x0400288D RID: 10381
+	// Token: 0x040021D1 RID: 8657
 	private Transform majmun;
 
-	// Token: 0x0400288E RID: 10382
+	// Token: 0x040021D2 RID: 8658
 	public ParticleSystem trava;
 
-	// Token: 0x0400288F RID: 10383
+	// Token: 0x040021D3 RID: 8659
 	public ParticleSystem oblak;
 
-	// Token: 0x04002890 RID: 10384
+	// Token: 0x040021D4 RID: 8660
 	public ParticleSystem particleSkok;
 
-	// Token: 0x04002891 RID: 10385
+	// Token: 0x040021D5 RID: 8661
 	public ParticleSystem dupliSkokOblaci;
 
-	// Token: 0x04002892 RID: 10386
+	// Token: 0x040021D6 RID: 8662
 	public ParticleSystem runParticle;
 
-	// Token: 0x04002893 RID: 10387
+	// Token: 0x040021D7 RID: 8663
 	public ParticleSystem klizanje;
 
-	// Token: 0x04002894 RID: 10388
+	// Token: 0x040021D8 RID: 8664
 	public ParticleSystem izrazitiPad;
 
-	// Token: 0x04002895 RID: 10389
+	// Token: 0x040021D9 RID: 8665
 	public Transform zutiGlowSwooshVisoki;
 
-	// Token: 0x04002896 RID: 10390
+	// Token: 0x040021DA RID: 8666
 	private Transform whatToClimb;
 
-	// Token: 0x04002897 RID: 10391
+	// Token: 0x040021DB RID: 8667
 	private float currentSpeed;
 
-	// Token: 0x04002898 RID: 10392
+	// Token: 0x040021DC RID: 8668
 	[HideInInspector]
 	public GameObject cameraTarget;
 
-	// Token: 0x04002899 RID: 10393
+	// Token: 0x040021DD RID: 8669
 	[HideInInspector]
 	public GameObject cameraTarget_down;
 
-	// Token: 0x0400289A RID: 10394
+	// Token: 0x040021DE RID: 8670
 	private float cameraTarget_down_y;
 
-	// Token: 0x0400289B RID: 10395
+	// Token: 0x040021DF RID: 8671
 	private CameraFollow2D_new cameraFollow;
 
-	// Token: 0x0400289C RID: 10396
+	// Token: 0x040021E0 RID: 8672
 	public MonkeyController2D_bekapce.State state;
 
-	// Token: 0x0400289D RID: 10397
+	// Token: 0x040021E1 RID: 8673
 	[HideInInspector]
 	public float startSpeedX;
 
-	// Token: 0x0400289E RID: 10398
+	// Token: 0x040021E2 RID: 8674
 	[HideInInspector]
 	public float startJumpSpeedX;
 
-	// Token: 0x0400289F RID: 10399
+	// Token: 0x040021E3 RID: 8675
 	public bool neTrebaDaProdje;
 
-	// Token: 0x040028A0 RID: 10400
+	// Token: 0x040021E4 RID: 8676
 	[HideInInspector]
 	public Animator animator;
 
-	// Token: 0x040028A1 RID: 10401
+	// Token: 0x040021E5 RID: 8677
 	private Animator parentAnim;
 
-	// Token: 0x040028A2 RID: 10402
+	// Token: 0x040021E6 RID: 8678
 	[HideInInspector]
 	public string lastPlayedAnim;
 
-	// Token: 0x040028A3 RID: 10403
+	// Token: 0x040021E7 RID: 8679
 	private bool helpBool;
 
-	// Token: 0x040028A4 RID: 10404
+	// Token: 0x040021E8 RID: 8680
 	private AnimatorStateInfo currentBaseState;
 
-	// Token: 0x040028A5 RID: 10405
+	// Token: 0x040021E9 RID: 8681
 	[HideInInspector]
 	public int run_State = Animator.StringToHash("Base Layer.Running");
 
-	// Token: 0x040028A6 RID: 10406
+	// Token: 0x040021EA RID: 8682
 	[HideInInspector]
 	public int jump_State = Animator.StringToHash("Base Layer.Jump_Start");
 
-	// Token: 0x040028A7 RID: 10407
+	// Token: 0x040021EB RID: 8683
 	[HideInInspector]
 	public int fall_State = Animator.StringToHash("Base Layer.Jump_Falling");
 
-	// Token: 0x040028A8 RID: 10408
+	// Token: 0x040021EC RID: 8684
 	[HideInInspector]
 	public int landing_State = Animator.StringToHash("Base Layer.Landing");
 
-	// Token: 0x040028A9 RID: 10409
+	// Token: 0x040021ED RID: 8685
 	[HideInInspector]
 	public int doublejump_State = Animator.StringToHash("Base Layer.DoubleJump_Start");
 
-	// Token: 0x040028AA RID: 10410
+	// Token: 0x040021EE RID: 8686
 	[HideInInspector]
 	public int glide_start_State = Animator.StringToHash("Base Layer.Glide_Start");
 
-	// Token: 0x040028AB RID: 10411
+	// Token: 0x040021EF RID: 8687
 	[HideInInspector]
 	public int glide_loop_State = Animator.StringToHash("Base Layer.Glide_Loop");
 
-	// Token: 0x040028AC RID: 10412
+	// Token: 0x040021F0 RID: 8688
 	[HideInInspector]
 	public int grab_State = Animator.StringToHash("Base Layer.Grab");
 
-	// Token: 0x040028AD RID: 10413
+	// Token: 0x040021F1 RID: 8689
 	[HideInInspector]
 	public int wall_stop_State = Animator.StringToHash("Base Layer.WallStop");
 
-	// Token: 0x040028AE RID: 10414
+	// Token: 0x040021F2 RID: 8690
 	[HideInInspector]
 	public int wall_stop_from_jump_State = Animator.StringToHash("Base Layer.WallStop_From_Jump");
 
-	// Token: 0x040028AF RID: 10415
+	// Token: 0x040021F3 RID: 8691
 	[HideInInspector]
 	public int swoosh_State = Animator.StringToHash("Base Layer.Swoosh_Down");
 
-	// Token: 0x040028B0 RID: 10416
+	// Token: 0x040021F4 RID: 8692
 	[HideInInspector]
 	public int spikedeath_State = Animator.StringToHash("Base Layer.Spike_death");
 
-	// Token: 0x040028B1 RID: 10417
+	// Token: 0x040021F5 RID: 8693
 	[HideInInspector]
 	public int lijana_State = Animator.StringToHash("Base Layer.Lijana");
 
-	// Token: 0x040028B2 RID: 10418
+	// Token: 0x040021F6 RID: 8694
 	private Transform lookAtPos;
 
-	// Token: 0x040028B3 RID: 10419
+	// Token: 0x040021F7 RID: 8695
 	private float lookWeight;
 
-	// Token: 0x040028B4 RID: 10420
+	// Token: 0x040021F8 RID: 8696
 	private bool disableGlide;
 
-	// Token: 0x040028B5 RID: 10421
+	// Token: 0x040021F9 RID: 8697
 	private bool helper_disableMoveAfterGrab;
 
-	// Token: 0x040028B6 RID: 10422
+	// Token: 0x040021FA RID: 8698
 	private bool usporavanje;
 
-	// Token: 0x040028B7 RID: 10423
+	// Token: 0x040021FB RID: 8699
 	private bool sudarioSeSaZidom;
 
-	// Token: 0x040028B8 RID: 10424
+	// Token: 0x040021FC RID: 8700
 	[HideInInspector]
 	public bool lijana;
 
-	// Token: 0x040028B9 RID: 10425
+	// Token: 0x040021FD RID: 8701
 	private Transform grabLianaTransform;
 
-	// Token: 0x040028BA RID: 10426
+	// Token: 0x040021FE RID: 8702
 	[HideInInspector]
 	public bool heCanJump = true;
 
-	// Token: 0x040028BB RID: 10427
+	// Token: 0x040021FF RID: 8703
 	private bool saZidaNaZid;
 
-	// Token: 0x040028BC RID: 10428
+	// Token: 0x04002200 RID: 8704
 	private int povrsinaZaClick;
 
-	// Token: 0x040028BD RID: 10429
+	// Token: 0x04002201 RID: 8705
 	private bool jumpControlled;
 
-	// Token: 0x040028BE RID: 10430
+	// Token: 0x04002202 RID: 8706
 	private float tempForce;
 
-	// Token: 0x040028BF RID: 10431
+	// Token: 0x04002203 RID: 8707
 	[HideInInspector]
 	public bool activeShield;
 
-	// Token: 0x040028C0 RID: 10432
+	// Token: 0x04002204 RID: 8708
 	private float razmrk;
 
-	// Token: 0x040028C1 RID: 10433
+	// Token: 0x04002205 RID: 8709
 	private Vector3 pocScale;
 
-	// Token: 0x040028C2 RID: 10434
+	// Token: 0x04002206 RID: 8710
 	private Transform senka;
 
-	// Token: 0x040028C3 RID: 10435
+	// Token: 0x04002207 RID: 8711
 	public static bool canRespawnThings = true;
 
-	// Token: 0x040028C4 RID: 10436
+	// Token: 0x04002208 RID: 8712
 	[SerializeField]
 	private LayerMask whatIsGround;
 
-	// Token: 0x040028C5 RID: 10437
+	// Token: 0x04002209 RID: 8713
 	private float groundedRadius = 0.2f;
 
-	// Token: 0x040028C6 RID: 10438
+	// Token: 0x0400220A RID: 8714
 	private bool grounded;
 
-	// Token: 0x040028C7 RID: 10439
+	// Token: 0x0400220B RID: 8715
 	private float startVelY;
 
-	// Token: 0x040028C8 RID: 10440
+	// Token: 0x0400220C RID: 8716
 	private float korakce;
 
-	// Token: 0x040028C9 RID: 10441
+	// Token: 0x0400220D RID: 8717
 	[HideInInspector]
 	public bool canGlide;
 
-	// Token: 0x040028CA RID: 10442
+	// Token: 0x0400220E RID: 8718
 	private int proveraGround = 16;
 
-	// Token: 0x040028CB RID: 10443
+	// Token: 0x0400220F RID: 8719
 	private bool jumpHolding;
 
-	// Token: 0x040028CC RID: 10444
+	// Token: 0x04002210 RID: 8720
 	private TrailRenderer trail;
 
-	// Token: 0x040028CD RID: 10445
+	// Token: 0x04002211 RID: 8721
 	private bool powerfullImpact;
 
-	// Token: 0x040028CE RID: 10446
+	// Token: 0x04002212 RID: 8722
 	public float trailTime = 0.5f;
 
-	// Token: 0x0200070E RID: 1806
+	// Token: 0x02001430 RID: 5168
 	[HideInInspector]
 	public enum State
 	{
-		// Token: 0x040028D0 RID: 10448
+		// Token: 0x04006AFF RID: 27391
 		running,
-		// Token: 0x040028D1 RID: 10449
+		// Token: 0x04006B00 RID: 27392
 		jumped,
-		// Token: 0x040028D2 RID: 10450
+		// Token: 0x04006B01 RID: 27393
 		wallhit,
-		// Token: 0x040028D3 RID: 10451
+		// Token: 0x04006B02 RID: 27394
 		climbUp,
-		// Token: 0x040028D4 RID: 10452
+		// Token: 0x04006B03 RID: 27395
 		actualClimbing,
-		// Token: 0x040028D5 RID: 10453
+		// Token: 0x04006B04 RID: 27396
 		wasted,
-		// Token: 0x040028D6 RID: 10454
+		// Token: 0x04006B05 RID: 27397
 		idle,
-		// Token: 0x040028D7 RID: 10455
+		// Token: 0x04006B06 RID: 27398
 		completed,
-		// Token: 0x040028D8 RID: 10456
+		// Token: 0x04006B07 RID: 27399
 		lijana,
-		// Token: 0x040028D9 RID: 10457
+		// Token: 0x04006B08 RID: 27400
 		saZidaNaZid,
-		// Token: 0x040028DA RID: 10458
+		// Token: 0x04006B09 RID: 27401
 		preNegoDaSeOdbije
 	}
 }

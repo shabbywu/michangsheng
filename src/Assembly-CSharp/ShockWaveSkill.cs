@@ -1,17 +1,17 @@
 ﻿using System;
 using UnityEngine;
 
-// Token: 0x0200016C RID: 364
+// Token: 0x020000F4 RID: 244
 public class ShockWaveSkill : MonoBehaviour
 {
-	// Token: 0x06000C7E RID: 3198 RVA: 0x0000E653 File Offset: 0x0000C853
+	// Token: 0x06000B8F RID: 2959 RVA: 0x00046A97 File Offset: 0x00044C97
 	private void Start()
 	{
 		Object.Destroy(base.gameObject, this.LifeTime);
 		ShakeCamera.Shake(0.2f, 0.7f);
 	}
 
-	// Token: 0x06000C7F RID: 3199 RVA: 0x000984D8 File Offset: 0x000966D8
+	// Token: 0x06000B90 RID: 2960 RVA: 0x00046ABC File Offset: 0x00044CBC
 	private void Update()
 	{
 		base.transform.position += base.transform.forward * this.Speed * Time.deltaTime;
@@ -25,18 +25,18 @@ public class ShockWaveSkill : MonoBehaviour
 		}
 	}
 
-	// Token: 0x040009AF RID: 2479
+	// Token: 0x040007D1 RID: 2001
 	public GameObject Skill;
 
-	// Token: 0x040009B0 RID: 2480
+	// Token: 0x040007D2 RID: 2002
 	public float Speed;
 
-	// Token: 0x040009B1 RID: 2481
+	// Token: 0x040007D3 RID: 2003
 	public float Spawnrate;
 
-	// Token: 0x040009B2 RID: 2482
+	// Token: 0x040007D4 RID: 2004
 	public float LifeTime = 1f;
 
-	// Token: 0x040009B3 RID: 2483
+	// Token: 0x040007D5 RID: 2005
 	private float timeTemp;
 }

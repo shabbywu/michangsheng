@@ -8,20 +8,20 @@ using UnityEngine;
 
 namespace KBEngine
 {
-	// Token: 0x02001021 RID: 4129
+	// Token: 0x02000C7B RID: 3195
 	public class NomelTaskMag
 	{
-		// Token: 0x060062A5 RID: 25253
+		// Token: 0x06005825 RID: 22565
 		[MethodImpl(MethodImplOptions.InternalCall)]
 		private extern Coroutine StartCoroutineManaged2(IEnumerator enumerator);
 
-		// Token: 0x060062A6 RID: 25254 RVA: 0x000443B9 File Offset: 0x000425B9
+		// Token: 0x06005826 RID: 22566 RVA: 0x002490D1 File Offset: 0x002472D1
 		public NomelTaskMag(Avatar _avatar)
 		{
 			this.avatar = _avatar;
 		}
 
-		// Token: 0x060062A7 RID: 25255 RVA: 0x00274E7C File Offset: 0x0027307C
+		// Token: 0x06005827 RID: 22567 RVA: 0x002490E0 File Offset: 0x002472E0
 		public void restAllTaskType()
 		{
 			foreach (NTaskAllType ntaskAllType in NTaskAllType.DataList)
@@ -37,7 +37,7 @@ namespace KBEngine
 			}
 		}
 
-		// Token: 0x060062A8 RID: 25256 RVA: 0x00274EEC File Offset: 0x002730EC
+		// Token: 0x06005828 RID: 22568 RVA: 0x00249150 File Offset: 0x00247350
 		public void ResetAllStaticNTask()
 		{
 			foreach (KeyValuePair<string, JToken> keyValuePair in jsonData.instance.StaticNTaksTime)
@@ -74,7 +74,7 @@ namespace KBEngine
 			}
 		}
 
-		// Token: 0x060062A9 RID: 25257 RVA: 0x0027514C File Offset: 0x0027334C
+		// Token: 0x06005829 RID: 22569 RVA: 0x002493B0 File Offset: 0x002475B0
 		public void DeDaiSetWhereNode(int taskID, bool digui = false)
 		{
 			if (digui)
@@ -122,7 +122,7 @@ namespace KBEngine
 			}
 		}
 
-		// Token: 0x060062AA RID: 25258 RVA: 0x0027532C File Offset: 0x0027352C
+		// Token: 0x0600582A RID: 22570 RVA: 0x00249590 File Offset: 0x00247790
 		public void StartNTask(int taskID, int type = 1)
 		{
 			this.avatar.NomelTaskFlag.SetField(taskID.ToString(), new JSONObject(JSONObject.Type.OBJECT));
@@ -155,7 +155,7 @@ namespace KBEngine
 			this.avatar.nomelTaskMag.RefreshGetNowNTaskData();
 		}
 
-		// Token: 0x060062AB RID: 25259 RVA: 0x002754DC File Offset: 0x002736DC
+		// Token: 0x0600582B RID: 22571 RVA: 0x00249740 File Offset: 0x00247940
 		public void TimeOutEndTask(int taskID)
 		{
 			this.setNTaskEnd(taskID);
@@ -175,7 +175,7 @@ namespace KBEngine
 			}
 		}
 
-		// Token: 0x060062AC RID: 25260 RVA: 0x00275578 File Offset: 0x00273778
+		// Token: 0x0600582C RID: 22572 RVA: 0x002497DC File Offset: 0x002479DC
 		public void setNTaskEnd(int taskID)
 		{
 			this.avatar.NomelTaskJson[taskID.ToString()].SetField("IsEnd", true);
@@ -183,14 +183,14 @@ namespace KBEngine
 			this.avatar.nomelTaskMag.RefreshGetNowNTaskData();
 		}
 
-		// Token: 0x060062AD RID: 25261 RVA: 0x000443C8 File Offset: 0x000425C8
+		// Token: 0x0600582D RID: 22573 RVA: 0x0024983D File Offset: 0x00247A3D
 		public void EndNTask(int taskID)
 		{
 			this.issueReward(taskID);
 			this.setNTaskEnd(taskID);
 		}
 
-		// Token: 0x060062AE RID: 25262 RVA: 0x002755DC File Offset: 0x002737DC
+		// Token: 0x0600582E RID: 22574 RVA: 0x00249850 File Offset: 0x00247A50
 		public void getReward(int taskID, ref int money, ref int menpaihuobi)
 		{
 			List<JSONObject> list = this.avatar.NomelTaskJson[taskID.ToString()]["TaskChild"].list;
@@ -217,7 +217,7 @@ namespace KBEngine
 			}
 		}
 
-		// Token: 0x060062AF RID: 25263 RVA: 0x002757A8 File Offset: 0x002739A8
+		// Token: 0x0600582F RID: 22575 RVA: 0x00249A1C File Offset: 0x00247C1C
 		public int GetTaskMoney(int taskID)
 		{
 			int num = 0;
@@ -235,7 +235,7 @@ namespace KBEngine
 			return num;
 		}
 
-		// Token: 0x060062B0 RID: 25264 RVA: 0x00275888 File Offset: 0x00273A88
+		// Token: 0x06005830 RID: 22576 RVA: 0x00249AFC File Offset: 0x00247CFC
 		public void issueReward(int taskID)
 		{
 			int num = 0;
@@ -265,13 +265,13 @@ namespace KBEngine
 			PlayTutorial.CheckChuTaXianTu2(taskID);
 		}
 
-		// Token: 0x060062B1 RID: 25265 RVA: 0x000443D8 File Offset: 0x000425D8
+		// Token: 0x06005831 RID: 22577 RVA: 0x00249C05 File Offset: 0x00247E05
 		public bool IsNTaskStart(int taskID)
 		{
 			return this.avatar.NomelTaskJson[taskID.ToString()]["IsStart"].b;
 		}
 
-		// Token: 0x060062B2 RID: 25266 RVA: 0x00275994 File Offset: 0x00273B94
+		// Token: 0x06005832 RID: 22578 RVA: 0x00249C30 File Offset: 0x00247E30
 		public bool ISNTaskTimeOut(int taskID)
 		{
 			if (this.IsNTaskStart(taskID))
@@ -287,7 +287,7 @@ namespace KBEngine
 			return true;
 		}
 
-		// Token: 0x060062B3 RID: 25267 RVA: 0x00275A10 File Offset: 0x00273C10
+		// Token: 0x06005833 RID: 22579 RVA: 0x00249CAC File Offset: 0x00247EAC
 		public bool IsNTaskOutCD(int taskID)
 		{
 			if (!this.ISNTaskTimeOut(taskID))
@@ -307,7 +307,7 @@ namespace KBEngine
 			return true;
 		}
 
-		// Token: 0x060062B4 RID: 25268 RVA: 0x00275A9C File Offset: 0x00273C9C
+		// Token: 0x06005834 RID: 22580 RVA: 0x00249D38 File Offset: 0x00247F38
 		public void autoSetNtask()
 		{
 			foreach (JSONObject jsonobject in this.GetNowNTask())
@@ -319,7 +319,7 @@ namespace KBEngine
 			}
 		}
 
-		// Token: 0x060062B5 RID: 25269 RVA: 0x00275B30 File Offset: 0x00273D30
+		// Token: 0x06005835 RID: 22581 RVA: 0x00249DCC File Offset: 0x00247FCC
 		public void RefreshGetNowNTaskData()
 		{
 			JSONObject nomelTaskJson = this.avatar.NomelTaskJson;
@@ -343,7 +343,7 @@ namespace KBEngine
 			this._NowNTaskData = list;
 		}
 
-		// Token: 0x060062B6 RID: 25270 RVA: 0x00044400 File Offset: 0x00042600
+		// Token: 0x06005836 RID: 22582 RVA: 0x00249E70 File Offset: 0x00248070
 		public List<JSONObject> GetNowNTask()
 		{
 			if (this._NowNTaskData == null)
@@ -353,20 +353,20 @@ namespace KBEngine
 			return this._NowNTaskData;
 		}
 
-		// Token: 0x060062B7 RID: 25271 RVA: 0x00275BD4 File Offset: 0x00273DD4
+		// Token: 0x06005837 RID: 22583 RVA: 0x00249E88 File Offset: 0x00248088
 		public bool HasNTask(int TaskID)
 		{
 			return this.avatar.NomelTaskJson.list.Find((JSONObject aa) => aa["IsStart"].b && aa["id"].I == TaskID) != null;
 		}
 
-		// Token: 0x060062B8 RID: 25272 RVA: 0x00275C14 File Offset: 0x00273E14
+		// Token: 0x06005838 RID: 22584 RVA: 0x00249EC8 File Offset: 0x002480C8
 		public JSONObject GetNTaskXiangXiJson(int TaskID)
 		{
 			int i = this.avatar.NomelTaskJson[TaskID.ToString()]["TaskID"].I;
 			return jsonData.instance.NTaskXiangXi[i.ToString()];
 		}
 
-		// Token: 0x060062B9 RID: 25273 RVA: 0x00275C60 File Offset: 0x00273E60
+		// Token: 0x06005839 RID: 22585 RVA: 0x00249F14 File Offset: 0x00248114
 		public NTaskXiangXi GetNTaskXiangXiData(int TaskID)
 		{
 			JSONObject jsonobject = this.avatar.NomelTaskJson[TaskID.ToString()];
@@ -379,7 +379,7 @@ namespace KBEngine
 			return null;
 		}
 
-		// Token: 0x060062BA RID: 25274 RVA: 0x00275CBC File Offset: 0x00273EBC
+		// Token: 0x0600583A RID: 22586 RVA: 0x00249F70 File Offset: 0x00248170
 		public bool IsCanReSetCD(int TaskID)
 		{
 			if (!this.avatar.NomelTaskJson.HasField(TaskID.ToString()))
@@ -400,7 +400,7 @@ namespace KBEngine
 			return !(Tools.getShengYuShiJian(this.avatar.worldTimeMag.getNowTime(), endTime) > new DateTime(1, 1, 1));
 		}
 
-		// Token: 0x060062BB RID: 25275 RVA: 0x00044416 File Offset: 0x00042616
+		// Token: 0x0600583B RID: 22587 RVA: 0x0024A032 File Offset: 0x00248232
 		public IEnumerator TimeOutTask(int TaskID)
 		{
 			yield return new WaitForSeconds(1f);
@@ -408,7 +408,7 @@ namespace KBEngine
 			yield break;
 		}
 
-		// Token: 0x060062BC RID: 25276 RVA: 0x00275D80 File Offset: 0x00273F80
+		// Token: 0x0600583C RID: 22588 RVA: 0x0024A048 File Offset: 0x00248248
 		public void randomTask(int TaskID, bool Reset = false)
 		{
 			JSONObject AllTypeJson = jsonData.instance.NTaskAllType[TaskID.ToString()];
@@ -431,7 +431,7 @@ namespace KBEngine
 			int menpai = AllTypeJson["shili"].I;
 			List<JSONObject> list = jsonData.instance.NTaskXiangXi.list.FindAll(delegate(JSONObject aa)
 			{
-				bool flag = AllTypeJson["XiangXiID"].HasItem((int)aa["Type"].n);
+				bool flag = AllTypeJson["XiangXiID"].HasItem(aa["Type"].I);
 				bool flag2 = aa["menpaihaogan"].list.Count < 1 || Tools.IsInNum(this.avatar.MenPaiHaoGanDu.HasField(menpai.ToString()) ? this.avatar.MenPaiHaoGanDu[menpai.ToString()].I : 0, aa["menpaihaogan"][0].I, aa["menpaihaogan"][1].I);
 				bool flag3 = aa["Level"].list.Count < 1 || Tools.IsInNum((int)this.avatar.level, aa["Level"][0].I, aa["Level"][1].I);
 				return flag && flag2 && flag3;
@@ -503,7 +503,7 @@ namespace KBEngine
 			}
 		}
 
-		// Token: 0x060062BD RID: 25277 RVA: 0x002761FC File Offset: 0x002743FC
+		// Token: 0x0600583D RID: 22589 RVA: 0x0024A4C4 File Offset: 0x002486C4
 		public JSONObject getTaskJson(string taskInfo)
 		{
 			JSONObject jsonobject = new JSONObject(JSONObject.Type.ARRAY);
@@ -539,12 +539,12 @@ namespace KBEngine
 			return jsonobject;
 		}
 
-		// Token: 0x060062BE RID: 25278 RVA: 0x000042DD File Offset: 0x000024DD
+		// Token: 0x0600583E RID: 22590 RVA: 0x00004095 File Offset: 0x00002295
 		public void AutoGetNTaskDo(int TaskID)
 		{
 		}
 
-		// Token: 0x060062BF RID: 25279 RVA: 0x00276304 File Offset: 0x00274504
+		// Token: 0x0600583F RID: 22591 RVA: 0x0024A5CC File Offset: 0x002487CC
 		public int nowChildNTask(int TaskID)
 		{
 			List<JSONObject> ntaskXiangXiList = this.GetNTaskXiangXiList(TaskID);
@@ -560,7 +560,7 @@ namespace KBEngine
 			return -1;
 		}
 
-		// Token: 0x060062C0 RID: 25280 RVA: 0x0027636C File Offset: 0x0027456C
+		// Token: 0x06005840 RID: 22592 RVA: 0x0024A634 File Offset: 0x00248834
 		public void EndNTaskSeid(int TaskID)
 		{
 			List<JSONObject> ntaskXiangXiList = this.GetNTaskXiangXiList(TaskID);
@@ -572,13 +572,13 @@ namespace KBEngine
 			}
 		}
 
-		// Token: 0x060062C1 RID: 25281 RVA: 0x0004442C File Offset: 0x0004262C
+		// Token: 0x06005841 RID: 22593 RVA: 0x0024A690 File Offset: 0x00248890
 		public bool AllXiangXiTaskIsEnd(int TaskID)
 		{
 			return this.nowChildNTask(TaskID) == -1;
 		}
 
-		// Token: 0x060062C2 RID: 25282 RVA: 0x002763C8 File Offset: 0x002745C8
+		// Token: 0x06005842 RID: 22594 RVA: 0x0024A69C File Offset: 0x0024889C
 		public bool IsNTaskCanFinish(int TaskID)
 		{
 			if (!this.IsNTaskStart(TaskID))
@@ -599,7 +599,7 @@ namespace KBEngine
 			return result;
 		}
 
-		// Token: 0x060062C3 RID: 25283 RVA: 0x0027643C File Offset: 0x0027463C
+		// Token: 0x06005843 RID: 22595 RVA: 0x0024A710 File Offset: 0x00248910
 		public bool XiangXiTaskIsEnd(JSONObject json, int TaskID, int index)
 		{
 			int i = json["type"].I;
@@ -611,7 +611,7 @@ namespace KBEngine
 			});
 		}
 
-		// Token: 0x060062C4 RID: 25284 RVA: 0x0027649C File Offset: 0x0027469C
+		// Token: 0x06005844 RID: 22596 RVA: 0x0024A770 File Offset: 0x00248970
 		public void realizedNTaskFinish(JSONObject json, int TaskID, int index)
 		{
 			int i = json["type"].I;
@@ -623,25 +623,25 @@ namespace KBEngine
 			});
 		}
 
-		// Token: 0x060062C5 RID: 25285 RVA: 0x002764F8 File Offset: 0x002746F8
+		// Token: 0x06005845 RID: 22597 RVA: 0x0024A7CC File Offset: 0x002489CC
 		public List<JSONObject> GetNTaskXiangXiList(int TaskID)
 		{
 			string taskZiXiang = this.GetNTaskXiangXiData(TaskID).TaskZiXiang;
 			return this.getTaskJson(taskZiXiang).list;
 		}
 
-		// Token: 0x060062C6 RID: 25286 RVA: 0x00044438 File Offset: 0x00042638
+		// Token: 0x06005846 RID: 22598 RVA: 0x0024A7F2 File Offset: 0x002489F2
 		public JSONObject GetXiangXi(int TaskID, int index)
 		{
 			return this.GetNTaskXiangXiList(TaskID)[index];
 		}
 
-		// Token: 0x060062C7 RID: 25287 RVA: 0x000042DD File Offset: 0x000024DD
+		// Token: 0x06005847 RID: 22599 RVA: 0x00004095 File Offset: 0x00002295
 		public void GetNtaskZhuiZong()
 		{
 		}
 
-		// Token: 0x060062C8 RID: 25288 RVA: 0x00276520 File Offset: 0x00274720
+		// Token: 0x06005848 RID: 22600 RVA: 0x0024A804 File Offset: 0x00248A04
 		public void AutoNTaskSetKillAvatar(int AvatarID)
 		{
 			foreach (JSONObject jsonobject in this.GetNowNTask())
@@ -669,7 +669,7 @@ namespace KBEngine
 			}
 		}
 
-		// Token: 0x060062C9 RID: 25289 RVA: 0x002766CC File Offset: 0x002748CC
+		// Token: 0x06005849 RID: 22601 RVA: 0x0024A9B0 File Offset: 0x00248BB0
 		public void setTalkIndex(int TaskID, int index)
 		{
 			if (!this.avatar.NomelTaskFlag.HasField(TaskID.ToString()))
@@ -683,7 +683,7 @@ namespace KBEngine
 			this.avatar.NomelTaskFlag[TaskID.ToString()]["talkIndex"].Add(index);
 		}
 
-		// Token: 0x060062CA RID: 25290 RVA: 0x00276780 File Offset: 0x00274980
+		// Token: 0x0600584A RID: 22602 RVA: 0x0024AA64 File Offset: 0x00248C64
 		public void AutoSetLuJin()
 		{
 			foreach (JSONObject jsonobject in this.GetNowNTask())
@@ -691,7 +691,7 @@ namespace KBEngine
 			}
 		}
 
-		// Token: 0x060062CB RID: 25291 RVA: 0x002767CC File Offset: 0x002749CC
+		// Token: 0x0600584B RID: 22603 RVA: 0x0024AAB0 File Offset: 0x00248CB0
 		public int AutoThreeSceneHasNTask()
 		{
 			List<JSONObject> nowNTask = this.GetNowNTask();
@@ -714,7 +714,7 @@ namespace KBEngine
 			return list[0];
 		}
 
-		// Token: 0x060062CC RID: 25292 RVA: 0x00276870 File Offset: 0x00274A70
+		// Token: 0x0600584C RID: 22604 RVA: 0x0024AB54 File Offset: 0x00248D54
 		public int AutoAllMapPlaceHasNTask(List<int> flag)
 		{
 			List<JSONObject> nowNTask = this.GetNowNTask();
@@ -737,7 +737,7 @@ namespace KBEngine
 			return list[0];
 		}
 
-		// Token: 0x060062CD RID: 25293 RVA: 0x00276914 File Offset: 0x00274B14
+		// Token: 0x0600584D RID: 22605 RVA: 0x0024ABF8 File Offset: 0x00248DF8
 		public int GetYouXianTask(List<int> taskList)
 		{
 			Dictionary<int, List<int>> dictionary = new Dictionary<int, List<int>>();
@@ -780,7 +780,7 @@ namespace KBEngine
 			return taskList[0];
 		}
 
-		// Token: 0x060062CE RID: 25294 RVA: 0x00276AAC File Offset: 0x00274CAC
+		// Token: 0x0600584E RID: 22606 RVA: 0x0024AD90 File Offset: 0x00248F90
 		public JSONObject IsNTaskZiXiangInLuJin(int TaskID, List<int> flag)
 		{
 			int num = this.nowChildNTask(TaskID);
@@ -827,13 +827,13 @@ namespace KBEngine
 			return null;
 		}
 
-		// Token: 0x060062CF RID: 25295 RVA: 0x00044447 File Offset: 0x00042647
+		// Token: 0x0600584F RID: 22607 RVA: 0x0024AE88 File Offset: 0x00249088
 		public JSONObject getTaskChildList(int TaskID)
 		{
 			return this.avatar.NomelTaskJson[TaskID.ToString()]["TaskChild"];
 		}
 
-		// Token: 0x060062D0 RID: 25296 RVA: 0x00276BA4 File Offset: 0x00274DA4
+		// Token: 0x06005850 RID: 22608 RVA: 0x0024AEAC File Offset: 0x002490AC
 		public JSONObject getWhereTaskChildList(int TaskID)
 		{
 			if (!this.avatar.NomelTaskJson[TaskID.ToString()].HasField("TaskWhereChild"))
@@ -843,7 +843,7 @@ namespace KBEngine
 			return this.avatar.NomelTaskJson[TaskID.ToString()]["TaskWhereChild"];
 		}
 
-		// Token: 0x060062D1 RID: 25297 RVA: 0x00276BF8 File Offset: 0x00274DF8
+		// Token: 0x06005851 RID: 22609 RVA: 0x0024AF00 File Offset: 0x00249100
 		public JSONObject getWhereTaskChildTypeList(int TaskID)
 		{
 			if (!this.avatar.NomelTaskJson[TaskID.ToString()].HasField("TaskWhereChildType"))
@@ -853,19 +853,19 @@ namespace KBEngine
 			return this.avatar.NomelTaskJson[TaskID.ToString()]["TaskWhereChildType"];
 		}
 
-		// Token: 0x060062D2 RID: 25298 RVA: 0x0004446A File Offset: 0x0004266A
+		// Token: 0x06005852 RID: 22610 RVA: 0x0024AF53 File Offset: 0x00249153
 		public JSONObject getWhereTaskChildShuxingList(int TaskID)
 		{
 			return this.avatar.NomelTaskJson[TaskID.ToString()]["TaskWhereChildShuXin"];
 		}
 
-		// Token: 0x060062D3 RID: 25299 RVA: 0x0004448D File Offset: 0x0004268D
+		// Token: 0x06005853 RID: 22611 RVA: 0x0024AF76 File Offset: 0x00249176
 		public int getChilidID(int TaskID, int index)
 		{
 			return this.avatar.NomelTaskJson[TaskID.ToString()]["TaskChild"][index].I;
 		}
 
-		// Token: 0x060062D4 RID: 25300 RVA: 0x00276C4C File Offset: 0x00274E4C
+		// Token: 0x06005854 RID: 22612 RVA: 0x0024AFA4 File Offset: 0x002491A4
 		public JSONObject GetNowChildIDSuiJiJson(int TaskID)
 		{
 			int index = this.avatar.nomelTaskMag.nowChildNTask(TaskID);
@@ -873,13 +873,13 @@ namespace KBEngine
 			return jsonData.instance.NTaskSuiJI[chilidID.ToString()];
 		}
 
-		// Token: 0x060062D5 RID: 25301 RVA: 0x000444BB File Offset: 0x000426BB
+		// Token: 0x06005855 RID: 22613 RVA: 0x0024AFEC File Offset: 0x002491EC
 		public int getWhereChilidID(int TaskID, int index)
 		{
 			return this.avatar.NomelTaskJson[TaskID.ToString()]["TaskWhereChild"][index].I;
 		}
 
-		// Token: 0x060062D6 RID: 25302 RVA: 0x00276C94 File Offset: 0x00274E94
+		// Token: 0x06005856 RID: 22614 RVA: 0x0024B01C File Offset: 0x0024921C
 		public bool NTaskSeid1(JSONObject json, int TaskID, int index)
 		{
 			int i = json["num"].I;
@@ -895,7 +895,7 @@ namespace KBEngine
 			return false;
 		}
 
-		// Token: 0x060062D7 RID: 25303 RVA: 0x00276D4C File Offset: 0x00274F4C
+		// Token: 0x06005857 RID: 22615 RVA: 0x0024B0D4 File Offset: 0x002492D4
 		public void EndNTaskSeid1(JSONObject json, int TaskID, int index)
 		{
 			int i = json["num"].I;
@@ -904,7 +904,7 @@ namespace KBEngine
 			this.avatar.removeItem(i2, i);
 		}
 
-		// Token: 0x060062D8 RID: 25304 RVA: 0x00276DA8 File Offset: 0x00274FA8
+		// Token: 0x06005858 RID: 22616 RVA: 0x0024B130 File Offset: 0x00249330
 		public bool NTaskSeid2(JSONObject json, int TaskID, int index)
 		{
 			int chilidID = this.getChilidID(TaskID, index);
@@ -912,43 +912,43 @@ namespace KBEngine
 			return this.avatar.NomelTaskFlag.HasField(TaskID.ToString()) && this.avatar.NomelTaskFlag[TaskID.ToString()].HasField("killAvatar") && this.avatar.NomelTaskFlag[TaskID.ToString()]["killAvatar"].HasItem(i);
 		}
 
-		// Token: 0x060062D9 RID: 25305 RVA: 0x000444E9 File Offset: 0x000426E9
+		// Token: 0x06005859 RID: 22617 RVA: 0x0024B1D4 File Offset: 0x002493D4
 		public void EndNTaskSeid2(JSONObject json, int TaskID, int index)
 		{
 			this.avatar.NomelTaskFlag.SetField(TaskID.ToString(), new JSONObject(JSONObject.Type.OBJECT));
 		}
 
-		// Token: 0x060062DA RID: 25306 RVA: 0x00276E4C File Offset: 0x0027504C
+		// Token: 0x0600585A RID: 22618 RVA: 0x0024B1F4 File Offset: 0x002493F4
 		public bool NTaskSeid4(JSONObject json, int TaskID, int index)
 		{
 			return this.avatar.NomelTaskFlag.HasField(TaskID.ToString()) && this.avatar.NomelTaskFlag[TaskID.ToString()].HasField("talkIndex") && this.avatar.NomelTaskFlag[TaskID.ToString()]["talkIndex"].HasItem(index);
 		}
 
-		// Token: 0x060062DB RID: 25307 RVA: 0x000444E9 File Offset: 0x000426E9
+		// Token: 0x0600585B RID: 22619 RVA: 0x0024B1D4 File Offset: 0x002493D4
 		public void EndNTaskSeid4(JSONObject json, int TaskID, int index)
 		{
 			this.avatar.NomelTaskFlag.SetField(TaskID.ToString(), new JSONObject(JSONObject.Type.OBJECT));
 		}
 
-		// Token: 0x060062DC RID: 25308 RVA: 0x00276E4C File Offset: 0x0027504C
+		// Token: 0x0600585C RID: 22620 RVA: 0x0024B26C File Offset: 0x0024946C
 		public bool NTaskSeid5(JSONObject json, int TaskID, int index)
 		{
 			return this.avatar.NomelTaskFlag.HasField(TaskID.ToString()) && this.avatar.NomelTaskFlag[TaskID.ToString()].HasField("talkIndex") && this.avatar.NomelTaskFlag[TaskID.ToString()]["talkIndex"].HasItem(index);
 		}
 
-		// Token: 0x060062DD RID: 25309 RVA: 0x000444E9 File Offset: 0x000426E9
+		// Token: 0x0600585D RID: 22621 RVA: 0x0024B1D4 File Offset: 0x002493D4
 		public void EndNTaskSeid5(JSONObject json, int TaskID, int index)
 		{
 			this.avatar.NomelTaskFlag.SetField(TaskID.ToString(), new JSONObject(JSONObject.Type.OBJECT));
 		}
 
-		// Token: 0x060062DE RID: 25310 RVA: 0x0000A093 File Offset: 0x00008293
+		// Token: 0x0600585E RID: 22622 RVA: 0x00024C5F File Offset: 0x00022E5F
 		public bool NTaskSeid6(JSONObject json, int TaskID, int index)
 		{
 			return true;
 		}
 
-		// Token: 0x060062DF RID: 25311 RVA: 0x00276EC4 File Offset: 0x002750C4
+		// Token: 0x0600585F RID: 22623 RVA: 0x0024B2E4 File Offset: 0x002494E4
 		public void EndNTaskSeid6(JSONObject json, int TaskID, int _index)
 		{
 			List<JSONObject> list = this.avatar.NomelTaskJson[TaskID.ToString()]["TaskChild"].list;
@@ -957,7 +957,7 @@ namespace KBEngine
 			this.avatar.addItem(itemID, taskSeid6AddItemNum, Tools.CreateItemSeid(itemID), true);
 		}
 
-		// Token: 0x060062E0 RID: 25312 RVA: 0x00276F4C File Offset: 0x0027514C
+		// Token: 0x06005860 RID: 22624 RVA: 0x0024B36C File Offset: 0x0024956C
 		public int GetTaskSeid6AddItemNum(int TaskID, int _index)
 		{
 			List<JSONObject> list = this.avatar.NomelTaskJson[TaskID.ToString()]["TaskChild"].list;
@@ -979,35 +979,35 @@ namespace KBEngine
 			return (int)Math.Ceiling((double)((float)num / (float)jiaZhi));
 		}
 
-		// Token: 0x060062E1 RID: 25313 RVA: 0x0000A093 File Offset: 0x00008293
+		// Token: 0x06005861 RID: 22625 RVA: 0x00024C5F File Offset: 0x00022E5F
 		public bool NTaskSeid7(JSONObject json, int TaskID, int index)
 		{
 			return true;
 		}
 
-		// Token: 0x060062E2 RID: 25314 RVA: 0x000042DD File Offset: 0x000024DD
+		// Token: 0x06005862 RID: 22626 RVA: 0x00004095 File Offset: 0x00002295
 		public void EndNTaskSeid7(JSONObject json, int TaskID, int _index)
 		{
 		}
 
-		// Token: 0x060062E3 RID: 25315 RVA: 0x00004050 File Offset: 0x00002250
+		// Token: 0x06005863 RID: 22627 RVA: 0x0000280F File Offset: 0x00000A0F
 		public bool NTaskSeid10(JSONObject json, int TaskID, int index)
 		{
 			return false;
 		}
 
-		// Token: 0x060062E4 RID: 25316 RVA: 0x000042DD File Offset: 0x000024DD
+		// Token: 0x06005864 RID: 22628 RVA: 0x00004095 File Offset: 0x00002295
 		public void EndNTaskSeid10(JSONObject json, int TaskID, int _index)
 		{
 		}
 
-		// Token: 0x04005CEF RID: 23791
+		// Token: 0x040051FC RID: 20988
 		private Avatar avatar;
 
-		// Token: 0x04005CF0 RID: 23792
+		// Token: 0x040051FD RID: 20989
 		private static int DeDaiSetWhereNodeCount;
 
-		// Token: 0x04005CF1 RID: 23793
+		// Token: 0x040051FE RID: 20990
 		private List<JSONObject> _NowNTaskData;
 	}
 }

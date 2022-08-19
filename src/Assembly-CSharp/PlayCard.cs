@@ -2,10 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-// Token: 0x02000745 RID: 1861
+// Token: 0x020004D2 RID: 1234
 public class PlayCard : MonoBehaviour
 {
-	// Token: 0x06002F42 RID: 12098 RVA: 0x0017BFE0 File Offset: 0x0017A1E0
+	// Token: 0x060027EB RID: 10219 RVA: 0x0012F260 File Offset: 0x0012D460
 	public bool CheckSelectCards()
 	{
 		CardSprite[] componentsInChildren = base.GetComponentsInChildren<CardSprite>();
@@ -23,7 +23,7 @@ public class PlayCard : MonoBehaviour
 		return this.CheckPlayCards(list, list2);
 	}
 
-	// Token: 0x06002F43 RID: 12099 RVA: 0x0017C040 File Offset: 0x0017A240
+	// Token: 0x060027EC RID: 10220 RVA: 0x0012F2C0 File Offset: 0x0012D4C0
 	private bool CheckPlayCards(List<Card> selectedCardsList, List<CardSprite> selectedSpriteList)
 	{
 		GameController component = GameObject.Find("GameController").GetComponent<GameController>();
@@ -69,7 +69,7 @@ public class PlayCard : MonoBehaviour
 		return false;
 	}
 
-	// Token: 0x06002F44 RID: 12100 RVA: 0x0017C130 File Offset: 0x0017A330
+	// Token: 0x060027ED RID: 10221 RVA: 0x0012F3B0 File Offset: 0x0012D5B0
 	private void PlayCards(List<Card> selectedCardsList, List<CardSprite> selectedSpriteList, CardsType type)
 	{
 		HandCards component = GameObject.Find("Player").GetComponent<HandCards>();

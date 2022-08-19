@@ -6,12 +6,12 @@ using UnityEngine.UI;
 
 namespace YSGame.Fight
 {
-	// Token: 0x02000E01 RID: 3585
+	// Token: 0x02000AC3 RID: 2755
 	public class UIFightLingQiSlot : MonoBehaviour, IPointerEnterHandler, IEventSystemHandler, IPointerExitHandler, IPointerUpHandler, IPointerDownHandler
 	{
-		// Token: 0x17000805 RID: 2053
-		// (get) Token: 0x06005689 RID: 22153 RVA: 0x0003DD82 File Offset: 0x0003BF82
-		// (set) Token: 0x0600568A RID: 22154 RVA: 0x0003DD8A File Offset: 0x0003BF8A
+		// Token: 0x170005DC RID: 1500
+		// (get) Token: 0x06004D3A RID: 19770 RVA: 0x00210841 File Offset: 0x0020EA41
+		// (set) Token: 0x06004D3B RID: 19771 RVA: 0x00210849 File Offset: 0x0020EA49
 		public LingQiType LingQiType
 		{
 			get
@@ -30,9 +30,9 @@ namespace YSGame.Fight
 			}
 		}
 
-		// Token: 0x17000806 RID: 2054
-		// (get) Token: 0x0600568B RID: 22155 RVA: 0x0003DDB0 File Offset: 0x0003BFB0
-		// (set) Token: 0x0600568C RID: 22156 RVA: 0x00240DE8 File Offset: 0x0023EFE8
+		// Token: 0x170005DD RID: 1501
+		// (get) Token: 0x06004D3C RID: 19772 RVA: 0x0021086F File Offset: 0x0020EA6F
+		// (set) Token: 0x06004D3D RID: 19773 RVA: 0x00210878 File Offset: 0x0020EA78
 		public int LingQiCount
 		{
 			get
@@ -60,8 +60,8 @@ namespace YSGame.Fight
 			}
 		}
 
-		// Token: 0x17000807 RID: 2055
-		// (get) Token: 0x0600568D RID: 22157 RVA: 0x00240E58 File Offset: 0x0023F058
+		// Token: 0x170005DE RID: 1502
+		// (get) Token: 0x06004D3E RID: 19774 RVA: 0x002108E8 File Offset: 0x0020EAE8
 		public int SpriteIndex
 		{
 			get
@@ -86,7 +86,7 @@ namespace YSGame.Fight
 			}
 		}
 
-		// Token: 0x0600568E RID: 22158 RVA: 0x00240EA8 File Offset: 0x0023F0A8
+		// Token: 0x06004D3F RID: 19775 RVA: 0x00210938 File Offset: 0x0020EB38
 		public void SetLingQiSprite(int state)
 		{
 			int spriteIndex = this.SpriteIndex;
@@ -158,7 +158,7 @@ namespace YSGame.Fight
 			this.LingQiImage.sprite = sprite;
 		}
 
-		// Token: 0x0600568F RID: 22159 RVA: 0x0003DDB8 File Offset: 0x0003BFB8
+		// Token: 0x06004D40 RID: 19776 RVA: 0x00210B58 File Offset: 0x0020ED58
 		protected virtual void OnLingQiCountChanged(int change)
 		{
 			if (change != 0)
@@ -180,19 +180,19 @@ namespace YSGame.Fight
 			this.SetLingQiSprite(0);
 		}
 
-		// Token: 0x06005690 RID: 22160 RVA: 0x000042DD File Offset: 0x000024DD
+		// Token: 0x06004D41 RID: 19777 RVA: 0x00004095 File Offset: 0x00002295
 		protected virtual void PlayAddLingQiAnim(int count)
 		{
 		}
 
-		// Token: 0x06005691 RID: 22161 RVA: 0x000042DD File Offset: 0x000024DD
+		// Token: 0x06004D42 RID: 19778 RVA: 0x00004095 File Offset: 0x00002295
 		protected virtual void PlayRemoveLingQiAnim(int count)
 		{
 		}
 
-		// Token: 0x17000808 RID: 2056
-		// (get) Token: 0x06005692 RID: 22162 RVA: 0x0003DDED File Offset: 0x0003BFED
-		// (set) Token: 0x06005693 RID: 22163 RVA: 0x002410C8 File Offset: 0x0023F2C8
+		// Token: 0x170005DF RID: 1503
+		// (get) Token: 0x06004D43 RID: 19779 RVA: 0x00210B8D File Offset: 0x0020ED8D
+		// (set) Token: 0x06004D44 RID: 19780 RVA: 0x00210B98 File Offset: 0x0020ED98
 		public bool IsLock
 		{
 			get
@@ -217,13 +217,13 @@ namespace YSGame.Fight
 			}
 		}
 
-		// Token: 0x06005694 RID: 22164 RVA: 0x0003DDF5 File Offset: 0x0003BFF5
+		// Token: 0x06004D45 RID: 19781 RVA: 0x00210BFD File Offset: 0x0020EDFD
 		public bool CanInteractive()
 		{
 			return this.LingQiType != LingQiType.Count && !this.IsLock;
 		}
 
-		// Token: 0x06005695 RID: 22165 RVA: 0x0003DE0B File Offset: 0x0003C00B
+		// Token: 0x06004D46 RID: 19782 RVA: 0x00210C13 File Offset: 0x0020EE13
 		public void OnPointerEnter(PointerEventData eventData)
 		{
 			if (this.CanInteractive())
@@ -232,7 +232,7 @@ namespace YSGame.Fight
 			}
 		}
 
-		// Token: 0x06005696 RID: 22166 RVA: 0x0003DE1C File Offset: 0x0003C01C
+		// Token: 0x06004D47 RID: 19783 RVA: 0x00210C24 File Offset: 0x0020EE24
 		public void OnPointerExit(PointerEventData eventData)
 		{
 			if (this.CanInteractive())
@@ -241,7 +241,7 @@ namespace YSGame.Fight
 			}
 		}
 
-		// Token: 0x06005697 RID: 22167 RVA: 0x00241130 File Offset: 0x0023F330
+		// Token: 0x06004D48 RID: 19784 RVA: 0x00210C38 File Offset: 0x0020EE38
 		public void OnPointerUp(PointerEventData eventData)
 		{
 			if (this.CanInteractive())
@@ -264,7 +264,7 @@ namespace YSGame.Fight
 			}
 		}
 
-		// Token: 0x06005698 RID: 22168 RVA: 0x0003DE2D File Offset: 0x0003C02D
+		// Token: 0x06004D49 RID: 19785 RVA: 0x00210C7D File Offset: 0x0020EE7D
 		public void OnPointerDown(PointerEventData eventData)
 		{
 			if (this.CanInteractive())
@@ -273,22 +273,22 @@ namespace YSGame.Fight
 			}
 		}
 
-		// Token: 0x06005699 RID: 22169 RVA: 0x000042DD File Offset: 0x000024DD
+		// Token: 0x06004D4A RID: 19786 RVA: 0x00004095 File Offset: 0x00002295
 		protected virtual void OnClick()
 		{
 		}
 
-		// Token: 0x0600569A RID: 22170 RVA: 0x000042DD File Offset: 0x000024DD
+		// Token: 0x06004D4B RID: 19787 RVA: 0x00004095 File Offset: 0x00002295
 		protected virtual void OnLeftClick()
 		{
 		}
 
-		// Token: 0x0600569B RID: 22171 RVA: 0x000042DD File Offset: 0x000024DD
+		// Token: 0x06004D4C RID: 19788 RVA: 0x00004095 File Offset: 0x00002295
 		protected virtual void OnRightClick()
 		{
 		}
 
-		// Token: 0x0600569C RID: 22172 RVA: 0x0003DE3E File Offset: 0x0003C03E
+		// Token: 0x06004D4D RID: 19789 RVA: 0x00210C8E File Offset: 0x0020EE8E
 		public virtual void SetNull()
 		{
 			this.LingQiType = LingQiType.Count;
@@ -299,7 +299,7 @@ namespace YSGame.Fight
 			this.HighlightObj.SetActive(false);
 		}
 
-		// Token: 0x0600569D RID: 22173 RVA: 0x00241178 File Offset: 0x0023F378
+		// Token: 0x06004D4E RID: 19790 RVA: 0x00210CC8 File Offset: 0x0020EEC8
 		public void SetLingQiCountShow(bool show)
 		{
 			if (this.nowShowCount != show)
@@ -316,41 +316,41 @@ namespace YSGame.Fight
 			}
 		}
 
-		// Token: 0x0600569E RID: 22174 RVA: 0x0003DE78 File Offset: 0x0003C078
+		// Token: 0x06004D4F RID: 19791 RVA: 0x00210D4E File Offset: 0x0020EF4E
 		public void PlayLingQiSound()
 		{
 			UIFightPanel.Inst.NeedPlayLingQiSound = true;
 		}
 
-		// Token: 0x04005617 RID: 22039
+		// Token: 0x04004C3D RID: 19517
 		public static bool IgnoreEffect;
 
-		// Token: 0x04005618 RID: 22040
+		// Token: 0x04004C3E RID: 19518
 		public GameObject LingQiCountObj;
 
-		// Token: 0x04005619 RID: 22041
+		// Token: 0x04004C3F RID: 19519
 		public Text LingQiCountText;
 
-		// Token: 0x0400561A RID: 22042
+		// Token: 0x04004C40 RID: 19520
 		public Image LingQiImage;
 
-		// Token: 0x0400561B RID: 22043
+		// Token: 0x04004C41 RID: 19521
 		public GameObject HighlightObj;
 
-		// Token: 0x0400561C RID: 22044
+		// Token: 0x04004C42 RID: 19522
 		private bool nowShowCount = true;
 
-		// Token: 0x0400561D RID: 22045
+		// Token: 0x04004C43 RID: 19523
 		[SerializeField]
 		private LingQiType lingQiType = LingQiType.Count;
 
-		// Token: 0x0400561E RID: 22046
+		// Token: 0x04004C44 RID: 19524
 		protected float lingQiTweenTime = 1f;
 
-		// Token: 0x0400561F RID: 22047
+		// Token: 0x04004C45 RID: 19525
 		private int lingQiCount;
 
-		// Token: 0x04005620 RID: 22048
+		// Token: 0x04004C46 RID: 19526
 		private bool isLock;
 	}
 }

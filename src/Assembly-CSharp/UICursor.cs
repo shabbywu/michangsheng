@@ -1,24 +1,24 @@
 ﻿using System;
 using UnityEngine;
 
-// Token: 0x02000046 RID: 70
+// Token: 0x02000033 RID: 51
 [RequireComponent(typeof(UISprite))]
 [AddComponentMenu("NGUI/Examples/UI Cursor")]
 public class UICursor : MonoBehaviour
 {
-	// Token: 0x0600044E RID: 1102 RVA: 0x00007C97 File Offset: 0x00005E97
+	// Token: 0x06000406 RID: 1030 RVA: 0x0001677B File Offset: 0x0001497B
 	private void Awake()
 	{
 		UICursor.instance = this;
 	}
 
-	// Token: 0x0600044F RID: 1103 RVA: 0x00007C9F File Offset: 0x00005E9F
+	// Token: 0x06000407 RID: 1031 RVA: 0x00016783 File Offset: 0x00014983
 	private void OnDestroy()
 	{
 		UICursor.instance = null;
 	}
 
-	// Token: 0x06000450 RID: 1104 RVA: 0x0006DFA4 File Offset: 0x0006C1A4
+	// Token: 0x06000408 RID: 1032 RVA: 0x0001678C File Offset: 0x0001498C
 	private void Start()
 	{
 		this.mTrans = base.transform;
@@ -38,7 +38,7 @@ public class UICursor : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000451 RID: 1105 RVA: 0x0006E03C File Offset: 0x0006C23C
+	// Token: 0x06000409 RID: 1033 RVA: 0x00016824 File Offset: 0x00014A24
 	private void Update()
 	{
 		Vector3 mousePosition = Input.mousePosition;
@@ -66,7 +66,7 @@ public class UICursor : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000452 RID: 1106 RVA: 0x00007CA7 File Offset: 0x00005EA7
+	// Token: 0x0600040A RID: 1034 RVA: 0x0001693C File Offset: 0x00014B3C
 	public static void Clear()
 	{
 		if (UICursor.instance != null && UICursor.instance.mSprite != null)
@@ -75,7 +75,7 @@ public class UICursor : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000453 RID: 1107 RVA: 0x0006E154 File Offset: 0x0006C354
+	// Token: 0x0600040B RID: 1035 RVA: 0x00016978 File Offset: 0x00014B78
 	public static void Set(UIAtlas atlas, string sprite)
 	{
 		if (UICursor.instance != null && UICursor.instance.mSprite)
@@ -87,21 +87,21 @@ public class UICursor : MonoBehaviour
 		}
 	}
 
-	// Token: 0x04000278 RID: 632
+	// Token: 0x04000232 RID: 562
 	public static UICursor instance;
 
-	// Token: 0x04000279 RID: 633
+	// Token: 0x04000233 RID: 563
 	public Camera uiCamera;
 
-	// Token: 0x0400027A RID: 634
+	// Token: 0x04000234 RID: 564
 	private Transform mTrans;
 
-	// Token: 0x0400027B RID: 635
+	// Token: 0x04000235 RID: 565
 	private UISprite mSprite;
 
-	// Token: 0x0400027C RID: 636
+	// Token: 0x04000236 RID: 566
 	private UIAtlas mAtlas;
 
-	// Token: 0x0400027D RID: 637
+	// Token: 0x04000237 RID: 567
 	private string mSpriteName;
 }

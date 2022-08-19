@@ -6,10 +6,10 @@ using KBEngine;
 using UnityEngine;
 using UnityEngine.UI;
 
-// Token: 0x020003A3 RID: 931
+// Token: 0x0200027C RID: 636
 public class UINPCTanCha : MonoBehaviour
 {
-	// Token: 0x060019F5 RID: 6645 RVA: 0x000E5928 File Offset: 0x000E3B28
+	// Token: 0x06001725 RID: 5925 RVA: 0x0009E048 File Offset: 0x0009C248
 	public void RefreshUI()
 	{
 		UINPCTanCha.animTime = 2f;
@@ -67,7 +67,7 @@ public class UINPCTanCha : MonoBehaviour
 		}));
 	}
 
-	// Token: 0x060019F6 RID: 6646 RVA: 0x000E5B04 File Offset: 0x000E3D04
+	// Token: 0x06001726 RID: 5926 RVA: 0x0009E224 File Offset: 0x0009C424
 	private void TanChaChengGong()
 	{
 		this.npc.IsTanChaUnlock = true;
@@ -76,34 +76,34 @@ public class UINPCTanCha : MonoBehaviour
 		UINPCJiaoHu.Inst.ShowNPCInfoPanel(null);
 	}
 
-	// Token: 0x060019F7 RID: 6647 RVA: 0x00016491 File Offset: 0x00014691
+	// Token: 0x06001727 RID: 5927 RVA: 0x0009E286 File Offset: 0x0009C486
 	private void TanChaShiBai()
 	{
 		UINPCJiaoHu.Inst.HideNPCTanChaPanel();
 		UINPCJiaoHu.Inst.IsTanChaShiBaiOrFaXian = true;
 	}
 
-	// Token: 0x04001544 RID: 5444
+	// Token: 0x040011D1 RID: 4561
 	private UINPCData npc;
 
-	// Token: 0x04001545 RID: 5445
+	// Token: 0x040011D2 RID: 4562
 	public Slider TanChaSlider;
 
-	// Token: 0x04001546 RID: 5446
+	// Token: 0x040011D3 RID: 4563
 	public Text TanChaText;
 
-	// Token: 0x04001547 RID: 5447
+	// Token: 0x040011D4 RID: 4564
 	public GameObject GreenBG;
 
-	// Token: 0x04001548 RID: 5448
+	// Token: 0x040011D5 RID: 4565
 	public GameObject RedBG;
 
-	// Token: 0x04001549 RID: 5449
+	// Token: 0x040011D6 RID: 4566
 	private static Color Green = new Color(0.64705884f, 0.85882354f, 0.76862746f);
 
-	// Token: 0x0400154A RID: 5450
+	// Token: 0x040011D7 RID: 4567
 	private static Color Red = new Color(0.8392157f, 0.70980394f, 0.6039216f);
 
-	// Token: 0x0400154B RID: 5451
+	// Token: 0x040011D8 RID: 4568
 	private static float animTime = 2f;
 }

@@ -4,10 +4,10 @@ using ICSharpCode.SharpZipLib.Checksum;
 
 namespace ICSharpCode.SharpZipLib.Encryption
 {
-	// Token: 0x0200081A RID: 2074
+	// Token: 0x02000571 RID: 1393
 	public abstract class PkzipClassic : SymmetricAlgorithm
 	{
-		// Token: 0x06003668 RID: 13928 RVA: 0x0019B974 File Offset: 0x00199B74
+		// Token: 0x06002DF2 RID: 11762 RVA: 0x001507DC File Offset: 0x0014E9DC
 		public static byte[] GenerateKeys(byte[] seed)
 		{
 			if (seed == null)

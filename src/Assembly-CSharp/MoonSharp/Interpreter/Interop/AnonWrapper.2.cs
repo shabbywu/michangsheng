@@ -2,23 +2,23 @@
 
 namespace MoonSharp.Interpreter.Interop
 {
-	// Token: 0x020010F2 RID: 4338
+	// Token: 0x02000D0E RID: 3342
 	public class AnonWrapper<T> : AnonWrapper
 	{
-		// Token: 0x060068B6 RID: 26806 RVA: 0x00047C61 File Offset: 0x00045E61
+		// Token: 0x06005D87 RID: 23943 RVA: 0x00262ED5 File Offset: 0x002610D5
 		public AnonWrapper()
 		{
 		}
 
-		// Token: 0x060068B7 RID: 26807 RVA: 0x00047C69 File Offset: 0x00045E69
+		// Token: 0x06005D88 RID: 23944 RVA: 0x00262EDD File Offset: 0x002610DD
 		public AnonWrapper(T o)
 		{
 			this.Value = o;
 		}
 
-		// Token: 0x1700096D RID: 2413
-		// (get) Token: 0x060068B8 RID: 26808 RVA: 0x00047C78 File Offset: 0x00045E78
-		// (set) Token: 0x060068B9 RID: 26809 RVA: 0x00047C80 File Offset: 0x00045E80
+		// Token: 0x17000710 RID: 1808
+		// (get) Token: 0x06005D89 RID: 23945 RVA: 0x00262EEC File Offset: 0x002610EC
+		// (set) Token: 0x06005D8A RID: 23946 RVA: 0x00262EF4 File Offset: 0x002610F4
 		public T Value { get; set; }
 	}
 }

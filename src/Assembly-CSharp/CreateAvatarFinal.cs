@@ -2,15 +2,15 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-// Token: 0x02000588 RID: 1416
+// Token: 0x020003EA RID: 1002
 public class CreateAvatarFinal : MonoBehaviour
 {
-	// Token: 0x060023E5 RID: 9189 RVA: 0x000042DD File Offset: 0x000024DD
+	// Token: 0x0600205E RID: 8286 RVA: 0x00004095 File Offset: 0x00002295
 	private void Start()
 	{
 	}
 
-	// Token: 0x060023E6 RID: 9190 RVA: 0x00125FB4 File Offset: 0x001241B4
+	// Token: 0x0600205F RID: 8287 RVA: 0x000E3B0C File Offset: 0x000E1D0C
 	private void Update()
 	{
 		int num = 0;
@@ -25,7 +25,7 @@ public class CreateAvatarFinal : MonoBehaviour
 			while (enumerator2.MoveNext())
 			{
 				JSONObject _Temp = enumerator2.Current;
-				createAvatarChoice createAvatarChoice = CreateAvatarMag.inst.tianfuUI.getSelectChoice.Find((createAvatarChoice aa) => (int)_Temp["id"].n == aa.id);
+				createAvatarChoice createAvatarChoice = CreateAvatarMag.inst.tianfuUI.getSelectChoice.Find((createAvatarChoice aa) => _Temp["id"].I == aa.id);
 				if (createAvatarChoice != null && createAvatarChoice.id > 5)
 				{
 					UILabel shenpinText = this.ShenpinText;
@@ -37,9 +37,9 @@ public class CreateAvatarFinal : MonoBehaviour
 		shenpinText2.text += "十六岁那年，你意外捡到了一把满是锈迹的钝剑，无意间唤醒了其中沉睡的老者灵魂。在老者的指引下，长生之途的大门缓缓为你敞开——";
 	}
 
-	// Token: 0x04001EEC RID: 7916
+	// Token: 0x04001A48 RID: 6728
 	public GameObject zizhiLabel;
 
-	// Token: 0x04001EED RID: 7917
+	// Token: 0x04001A49 RID: 6729
 	public UILabel ShenpinText;
 }

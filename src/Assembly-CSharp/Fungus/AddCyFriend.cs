@@ -3,30 +3,30 @@ using UnityEngine;
 
 namespace Fungus
 {
-	// Token: 0x020013DB RID: 5083
+	// Token: 0x02000F25 RID: 3877
 	[CommandInfo("YSNew/Add", "AddCyFriend", "增加传音符好友", 0)]
 	[AddComponentMenu("")]
 	public class AddCyFriend : Command
 	{
-		// Token: 0x06007BC8 RID: 31688 RVA: 0x000543EC File Offset: 0x000525EC
+		// Token: 0x06006DDD RID: 28125 RVA: 0x002A3FCB File Offset: 0x002A21CB
 		public override void OnEnter()
 		{
 			Tools.instance.getPlayer().AddFriend(this.npcId.Value);
 			this.Continue();
 		}
 
-		// Token: 0x06007BC9 RID: 31689 RVA: 0x000113CF File Offset: 0x0000F5CF
+		// Token: 0x06006DDE RID: 28126 RVA: 0x0005E228 File Offset: 0x0005C428
 		public override Color GetButtonColor()
 		{
 			return new Color32(184, 210, 235, byte.MaxValue);
 		}
 
-		// Token: 0x06007BCA RID: 31690 RVA: 0x000042DD File Offset: 0x000024DD
+		// Token: 0x06006DDF RID: 28127 RVA: 0x00004095 File Offset: 0x00002295
 		public override void OnReset()
 		{
 		}
 
-		// Token: 0x04006A32 RID: 27186
+		// Token: 0x04005B60 RID: 23392
 		[Tooltip("增加npcId")]
 		[VariableProperty(new Type[]
 		{

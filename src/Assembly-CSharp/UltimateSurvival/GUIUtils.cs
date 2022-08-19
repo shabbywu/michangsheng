@@ -4,10 +4,10 @@ using UnityEngine.UI;
 
 namespace UltimateSurvival
 {
-	// Token: 0x02000908 RID: 2312
+	// Token: 0x02000621 RID: 1569
 	public static class GUIUtils
 	{
-		// Token: 0x06003B22 RID: 15138 RVA: 0x001AB544 File Offset: 0x001A9744
+		// Token: 0x060031EE RID: 12782 RVA: 0x00161C94 File Offset: 0x0015FE94
 		public static Text CreateTextUnder(string name, RectTransform parent, TextAnchor anchor, Vector2 offset)
 		{
 			Text component = new GameObject(name, new Type[]
@@ -23,7 +23,7 @@ namespace UltimateSurvival
 			return component;
 		}
 
-		// Token: 0x06003B23 RID: 15139 RVA: 0x001AB5D0 File Offset: 0x001A97D0
+		// Token: 0x060031EF RID: 12783 RVA: 0x00161D20 File Offset: 0x0015FF20
 		public static Image CreateImageUnder(string name, RectTransform parent, Vector2 offset, Vector2 size)
 		{
 			Image component = new GameObject(name, new Type[]

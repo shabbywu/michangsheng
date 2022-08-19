@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using KBEngine;
 using UnityEngine;
 
-// Token: 0x0200050D RID: 1293
+// Token: 0x02000389 RID: 905
 public class LingGanMag : MonoBehaviour
 {
-	// Token: 0x06002154 RID: 8532 RVA: 0x00116390 File Offset: 0x00114590
+	// Token: 0x06001DDB RID: 7643 RVA: 0x000D26B4 File Offset: 0x000D08B4
 	private void Awake()
 	{
 		LingGanMag.inst = this;
@@ -17,7 +17,7 @@ public class LingGanMag : MonoBehaviour
 		this.colors.Add("aaab96");
 	}
 
-	// Token: 0x06002155 RID: 8533 RVA: 0x001163F0 File Offset: 0x001145F0
+	// Token: 0x06001DDC RID: 7644 RVA: 0x000D2714 File Offset: 0x000D0914
 	public void UpdateData()
 	{
 		Avatar player = Tools.instance.getPlayer();
@@ -26,22 +26,22 @@ public class LingGanMag : MonoBehaviour
 		this.sprite.sprite2D = this.sprites[player.LunDaoState - 1];
 	}
 
-	// Token: 0x04001CD9 RID: 7385
+	// Token: 0x0400187B RID: 6267
 	public static LingGanMag inst;
 
-	// Token: 0x04001CDA RID: 7386
+	// Token: 0x0400187C RID: 6268
 	[SerializeField]
 	private List<Sprite> sprites;
 
-	// Token: 0x04001CDB RID: 7387
+	// Token: 0x0400187D RID: 6269
 	private List<string> colors;
 
-	// Token: 0x04001CDC RID: 7388
+	// Token: 0x0400187E RID: 6270
 	public UILabel curState;
 
-	// Token: 0x04001CDD RID: 7389
+	// Token: 0x0400187F RID: 6271
 	public UI2DSprite sprite;
 
-	// Token: 0x04001CDE RID: 7390
+	// Token: 0x04001880 RID: 6272
 	public UILabel num;
 }

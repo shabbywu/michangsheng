@@ -2,12 +2,12 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-// Token: 0x02000026 RID: 38
+// Token: 0x02000021 RID: 33
 public class LTDescr
 {
-	// Token: 0x1700001F RID: 31
-	// (get) Token: 0x06000182 RID: 386 RVA: 0x00005316 File Offset: 0x00003516
-	// (set) Token: 0x06000183 RID: 387 RVA: 0x0000531E File Offset: 0x0000351E
+	// Token: 0x1700001D RID: 29
+	// (get) Token: 0x0600017C RID: 380 RVA: 0x0000920C File Offset: 0x0000740C
+	// (set) Token: 0x0600017D RID: 381 RVA: 0x00009214 File Offset: 0x00007414
 	public Vector3 from
 	{
 		get
@@ -20,9 +20,9 @@ public class LTDescr
 		}
 	}
 
-	// Token: 0x17000020 RID: 32
-	// (get) Token: 0x06000184 RID: 388 RVA: 0x00005327 File Offset: 0x00003527
-	// (set) Token: 0x06000185 RID: 389 RVA: 0x0000532F File Offset: 0x0000352F
+	// Token: 0x1700001E RID: 30
+	// (get) Token: 0x0600017E RID: 382 RVA: 0x0000921D File Offset: 0x0000741D
+	// (set) Token: 0x0600017F RID: 383 RVA: 0x00009225 File Offset: 0x00007425
 	public Vector3 to
 	{
 		get
@@ -35,17 +35,17 @@ public class LTDescr
 		}
 	}
 
-	// Token: 0x17000021 RID: 33
-	// (get) Token: 0x06000186 RID: 390 RVA: 0x00005338 File Offset: 0x00003538
-	// (set) Token: 0x06000187 RID: 391 RVA: 0x00005340 File Offset: 0x00003540
+	// Token: 0x1700001F RID: 31
+	// (get) Token: 0x06000180 RID: 384 RVA: 0x0000922E File Offset: 0x0000742E
+	// (set) Token: 0x06000181 RID: 385 RVA: 0x00009236 File Offset: 0x00007436
 	public LTDescr.ActionMethodDelegate easeInternal { get; set; }
 
-	// Token: 0x17000022 RID: 34
-	// (get) Token: 0x06000188 RID: 392 RVA: 0x00005349 File Offset: 0x00003549
-	// (set) Token: 0x06000189 RID: 393 RVA: 0x00005351 File Offset: 0x00003551
+	// Token: 0x17000020 RID: 32
+	// (get) Token: 0x06000182 RID: 386 RVA: 0x0000923F File Offset: 0x0000743F
+	// (set) Token: 0x06000183 RID: 387 RVA: 0x00009247 File Offset: 0x00007447
 	public LTDescr.ActionMethodDelegate initInternal { get; set; }
 
-	// Token: 0x0600018A RID: 394 RVA: 0x000628F4 File Offset: 0x00060AF4
+	// Token: 0x06000184 RID: 388 RVA: 0x00009250 File Offset: 0x00007450
 	public override string ToString()
 	{
 		return string.Concat(new object[]
@@ -80,7 +80,7 @@ public class LTDescr
 		});
 	}
 
-	// Token: 0x0600018C RID: 396 RVA: 0x00005374 File Offset: 0x00003574
+	// Token: 0x06000186 RID: 390 RVA: 0x000093E5 File Offset: 0x000075E5
 	[Obsolete("Use 'LeanTween.cancel( id )' instead")]
 	public LTDescr cancel(GameObject gameObject)
 	{
@@ -91,8 +91,8 @@ public class LTDescr
 		return this;
 	}
 
-	// Token: 0x17000023 RID: 35
-	// (get) Token: 0x0600018D RID: 397 RVA: 0x0000539B File Offset: 0x0000359B
+	// Token: 0x17000021 RID: 33
+	// (get) Token: 0x06000187 RID: 391 RVA: 0x0000940C File Offset: 0x0000760C
 	public int uniqueId
 	{
 		get
@@ -101,8 +101,8 @@ public class LTDescr
 		}
 	}
 
-	// Token: 0x17000024 RID: 36
-	// (get) Token: 0x0600018E RID: 398 RVA: 0x000053AD File Offset: 0x000035AD
+	// Token: 0x17000022 RID: 34
+	// (get) Token: 0x06000188 RID: 392 RVA: 0x0000941E File Offset: 0x0000761E
 	public int id
 	{
 		get
@@ -111,9 +111,9 @@ public class LTDescr
 		}
 	}
 
-	// Token: 0x17000025 RID: 37
-	// (get) Token: 0x0600018F RID: 399 RVA: 0x000053B5 File Offset: 0x000035B5
-	// (set) Token: 0x06000190 RID: 400 RVA: 0x000053BD File Offset: 0x000035BD
+	// Token: 0x17000023 RID: 35
+	// (get) Token: 0x06000189 RID: 393 RVA: 0x00009426 File Offset: 0x00007626
+	// (set) Token: 0x0600018A RID: 394 RVA: 0x0000942E File Offset: 0x0000762E
 	public LTDescrOptional optional
 	{
 		get
@@ -126,7 +126,7 @@ public class LTDescr
 		}
 	}
 
-	// Token: 0x06000191 RID: 401 RVA: 0x00062A70 File Offset: 0x00060C70
+	// Token: 0x0600018B RID: 395 RVA: 0x0000943C File Offset: 0x0000763C
 	public void reset()
 	{
 		this.toggle = (this.useRecursion = (this.usesNormalDt = true));
@@ -145,7 +145,7 @@ public class LTDescr
 		this._optional.reset();
 	}
 
-	// Token: 0x06000192 RID: 402 RVA: 0x000053CB File Offset: 0x000035CB
+	// Token: 0x0600018C RID: 396 RVA: 0x0000955F File Offset: 0x0000775F
 	public LTDescr setMoveX()
 	{
 		this.type = TweenAction.MOVE_X;
@@ -160,7 +160,7 @@ public class LTDescr
 		return this;
 	}
 
-	// Token: 0x06000193 RID: 403 RVA: 0x000053F9 File Offset: 0x000035F9
+	// Token: 0x0600018D RID: 397 RVA: 0x0000958D File Offset: 0x0000778D
 	public LTDescr setMoveY()
 	{
 		this.type = TweenAction.MOVE_Y;
@@ -175,7 +175,7 @@ public class LTDescr
 		return this;
 	}
 
-	// Token: 0x06000194 RID: 404 RVA: 0x00005427 File Offset: 0x00003627
+	// Token: 0x0600018E RID: 398 RVA: 0x000095BB File Offset: 0x000077BB
 	public LTDescr setMoveZ()
 	{
 		this.type = TweenAction.MOVE_Z;
@@ -190,7 +190,7 @@ public class LTDescr
 		return this;
 	}
 
-	// Token: 0x06000195 RID: 405 RVA: 0x00005455 File Offset: 0x00003655
+	// Token: 0x0600018F RID: 399 RVA: 0x000095E9 File Offset: 0x000077E9
 	public LTDescr setMoveLocalX()
 	{
 		this.type = TweenAction.MOVE_LOCAL_X;
@@ -205,7 +205,7 @@ public class LTDescr
 		return this;
 	}
 
-	// Token: 0x06000196 RID: 406 RVA: 0x00005483 File Offset: 0x00003683
+	// Token: 0x06000190 RID: 400 RVA: 0x00009617 File Offset: 0x00007817
 	public LTDescr setMoveLocalY()
 	{
 		this.type = TweenAction.MOVE_LOCAL_Y;
@@ -220,7 +220,7 @@ public class LTDescr
 		return this;
 	}
 
-	// Token: 0x06000197 RID: 407 RVA: 0x000054B1 File Offset: 0x000036B1
+	// Token: 0x06000191 RID: 401 RVA: 0x00009645 File Offset: 0x00007845
 	public LTDescr setMoveLocalZ()
 	{
 		this.type = TweenAction.MOVE_LOCAL_Z;
@@ -235,13 +235,13 @@ public class LTDescr
 		return this;
 	}
 
-	// Token: 0x06000198 RID: 408 RVA: 0x000054DF File Offset: 0x000036DF
+	// Token: 0x06000192 RID: 402 RVA: 0x00009673 File Offset: 0x00007873
 	private void initFromInternal()
 	{
 		this.fromInternal.x = 0f;
 	}
 
-	// Token: 0x06000199 RID: 409 RVA: 0x000054F1 File Offset: 0x000036F1
+	// Token: 0x06000193 RID: 403 RVA: 0x00009685 File Offset: 0x00007885
 	public LTDescr setMoveCurved()
 	{
 		this.type = TweenAction.MOVE_CURVED;
@@ -265,7 +265,7 @@ public class LTDescr
 		return this;
 	}
 
-	// Token: 0x0600019A RID: 410 RVA: 0x0000551F File Offset: 0x0000371F
+	// Token: 0x06000194 RID: 404 RVA: 0x000096B3 File Offset: 0x000078B3
 	public LTDescr setMoveCurvedLocal()
 	{
 		this.type = TweenAction.MOVE_CURVED_LOCAL;
@@ -289,7 +289,7 @@ public class LTDescr
 		return this;
 	}
 
-	// Token: 0x0600019B RID: 411 RVA: 0x0000554D File Offset: 0x0000374D
+	// Token: 0x06000195 RID: 405 RVA: 0x000096E1 File Offset: 0x000078E1
 	public LTDescr setMoveSpline()
 	{
 		this.type = TweenAction.MOVE_SPLINE;
@@ -313,7 +313,7 @@ public class LTDescr
 		return this;
 	}
 
-	// Token: 0x0600019C RID: 412 RVA: 0x0000557B File Offset: 0x0000377B
+	// Token: 0x06000196 RID: 406 RVA: 0x0000970F File Offset: 0x0000790F
 	public LTDescr setMoveSplineLocal()
 	{
 		this.type = TweenAction.MOVE_SPLINE_LOCAL;
@@ -337,7 +337,7 @@ public class LTDescr
 		return this;
 	}
 
-	// Token: 0x0600019D RID: 413 RVA: 0x000055AA File Offset: 0x000037AA
+	// Token: 0x06000197 RID: 407 RVA: 0x0000973E File Offset: 0x0000793E
 	public LTDescr setScaleX()
 	{
 		this.type = TweenAction.SCALE_X;
@@ -352,7 +352,7 @@ public class LTDescr
 		return this;
 	}
 
-	// Token: 0x0600019E RID: 414 RVA: 0x000055D9 File Offset: 0x000037D9
+	// Token: 0x06000198 RID: 408 RVA: 0x0000976D File Offset: 0x0000796D
 	public LTDescr setScaleY()
 	{
 		this.type = TweenAction.SCALE_Y;
@@ -367,7 +367,7 @@ public class LTDescr
 		return this;
 	}
 
-	// Token: 0x0600019F RID: 415 RVA: 0x00005608 File Offset: 0x00003808
+	// Token: 0x06000199 RID: 409 RVA: 0x0000979C File Offset: 0x0000799C
 	public LTDescr setScaleZ()
 	{
 		this.type = TweenAction.SCALE_Z;
@@ -382,7 +382,7 @@ public class LTDescr
 		return this;
 	}
 
-	// Token: 0x060001A0 RID: 416 RVA: 0x00005637 File Offset: 0x00003837
+	// Token: 0x0600019A RID: 410 RVA: 0x000097CB File Offset: 0x000079CB
 	public LTDescr setRotateX()
 	{
 		this.type = TweenAction.ROTATE_X;
@@ -398,7 +398,7 @@ public class LTDescr
 		return this;
 	}
 
-	// Token: 0x060001A1 RID: 417 RVA: 0x00005666 File Offset: 0x00003866
+	// Token: 0x0600019B RID: 411 RVA: 0x000097FA File Offset: 0x000079FA
 	public LTDescr setRotateY()
 	{
 		this.type = TweenAction.ROTATE_Y;
@@ -414,7 +414,7 @@ public class LTDescr
 		return this;
 	}
 
-	// Token: 0x060001A2 RID: 418 RVA: 0x00005695 File Offset: 0x00003895
+	// Token: 0x0600019C RID: 412 RVA: 0x00009829 File Offset: 0x00007A29
 	public LTDescr setRotateZ()
 	{
 		this.type = TweenAction.ROTATE_Z;
@@ -430,7 +430,7 @@ public class LTDescr
 		return this;
 	}
 
-	// Token: 0x060001A3 RID: 419 RVA: 0x000056C4 File Offset: 0x000038C4
+	// Token: 0x0600019D RID: 413 RVA: 0x00009858 File Offset: 0x00007A58
 	public LTDescr setRotateAround()
 	{
 		this.type = TweenAction.ROTATE_AROUND;
@@ -456,7 +456,7 @@ public class LTDescr
 		return this;
 	}
 
-	// Token: 0x060001A4 RID: 420 RVA: 0x000056F3 File Offset: 0x000038F3
+	// Token: 0x0600019E RID: 414 RVA: 0x00009887 File Offset: 0x00007A87
 	public LTDescr setRotateAroundLocal()
 	{
 		this.type = TweenAction.ROTATE_AROUND_LOCAL;
@@ -481,7 +481,7 @@ public class LTDescr
 		return this;
 	}
 
-	// Token: 0x060001A5 RID: 421 RVA: 0x00005722 File Offset: 0x00003922
+	// Token: 0x0600019F RID: 415 RVA: 0x000098B6 File Offset: 0x00007AB6
 	public LTDescr setAlpha()
 	{
 		this.type = TweenAction.ALPHA;
@@ -541,7 +541,7 @@ public class LTDescr
 		return this;
 	}
 
-	// Token: 0x060001A6 RID: 422 RVA: 0x00005751 File Offset: 0x00003951
+	// Token: 0x060001A0 RID: 416 RVA: 0x000098E5 File Offset: 0x00007AE5
 	public LTDescr setTextAlpha()
 	{
 		this.type = TweenAction.TEXT_ALPHA;
@@ -557,7 +557,7 @@ public class LTDescr
 		return this;
 	}
 
-	// Token: 0x060001A7 RID: 423 RVA: 0x00005780 File Offset: 0x00003980
+	// Token: 0x060001A1 RID: 417 RVA: 0x00009914 File Offset: 0x00007B14
 	public LTDescr setAlphaVertex()
 	{
 		this.type = TweenAction.ALPHA_VERTEX;
@@ -594,7 +594,7 @@ public class LTDescr
 		return this;
 	}
 
-	// Token: 0x060001A8 RID: 424 RVA: 0x000057AF File Offset: 0x000039AF
+	// Token: 0x060001A2 RID: 418 RVA: 0x00009943 File Offset: 0x00007B43
 	public LTDescr setColor()
 	{
 		this.type = TweenAction.COLOR;
@@ -659,7 +659,7 @@ public class LTDescr
 		return this;
 	}
 
-	// Token: 0x060001A9 RID: 425 RVA: 0x000057DE File Offset: 0x000039DE
+	// Token: 0x060001A3 RID: 419 RVA: 0x00009972 File Offset: 0x00007B72
 	public LTDescr setCallbackColor()
 	{
 		this.type = TweenAction.CALLBACK_COLOR;
@@ -694,7 +694,7 @@ public class LTDescr
 		return this;
 	}
 
-	// Token: 0x060001AA RID: 426 RVA: 0x0000580D File Offset: 0x00003A0D
+	// Token: 0x060001A4 RID: 420 RVA: 0x000099A1 File Offset: 0x00007BA1
 	public LTDescr setTextColor()
 	{
 		this.type = TweenAction.TEXT_COLOR;
@@ -721,7 +721,7 @@ public class LTDescr
 		return this;
 	}
 
-	// Token: 0x060001AB RID: 427 RVA: 0x0000583C File Offset: 0x00003A3C
+	// Token: 0x060001A5 RID: 421 RVA: 0x000099D0 File Offset: 0x00007BD0
 	public LTDescr setCanvasAlpha()
 	{
 		this.type = TweenAction.CANVAS_ALPHA;
@@ -766,7 +766,7 @@ public class LTDescr
 		return this;
 	}
 
-	// Token: 0x060001AC RID: 428 RVA: 0x0000586B File Offset: 0x00003A6B
+	// Token: 0x060001A6 RID: 422 RVA: 0x000099FF File Offset: 0x00007BFF
 	public LTDescr setCanvasGroupAlpha()
 	{
 		this.type = TweenAction.CANVASGROUP_ALPHA;
@@ -781,7 +781,7 @@ public class LTDescr
 		return this;
 	}
 
-	// Token: 0x060001AD RID: 429 RVA: 0x0000589A File Offset: 0x00003A9A
+	// Token: 0x060001A7 RID: 423 RVA: 0x00009A2E File Offset: 0x00007C2E
 	public LTDescr setCanvasColor()
 	{
 		this.type = TweenAction.CANVAS_COLOR;
@@ -821,7 +821,7 @@ public class LTDescr
 		return this;
 	}
 
-	// Token: 0x060001AE RID: 430 RVA: 0x000058C9 File Offset: 0x00003AC9
+	// Token: 0x060001A8 RID: 424 RVA: 0x00009A5D File Offset: 0x00007C5D
 	public LTDescr setCanvasMoveX()
 	{
 		this.type = TweenAction.CANVAS_MOVE_X;
@@ -837,7 +837,7 @@ public class LTDescr
 		return this;
 	}
 
-	// Token: 0x060001AF RID: 431 RVA: 0x000058F8 File Offset: 0x00003AF8
+	// Token: 0x060001A9 RID: 425 RVA: 0x00009A8C File Offset: 0x00007C8C
 	public LTDescr setCanvasMoveY()
 	{
 		this.type = TweenAction.CANVAS_MOVE_Y;
@@ -853,7 +853,7 @@ public class LTDescr
 		return this;
 	}
 
-	// Token: 0x060001B0 RID: 432 RVA: 0x00005927 File Offset: 0x00003B27
+	// Token: 0x060001AA RID: 426 RVA: 0x00009ABB File Offset: 0x00007CBB
 	public LTDescr setCanvasMoveZ()
 	{
 		this.type = TweenAction.CANVAS_MOVE_Z;
@@ -869,7 +869,7 @@ public class LTDescr
 		return this;
 	}
 
-	// Token: 0x060001B1 RID: 433 RVA: 0x00005956 File Offset: 0x00003B56
+	// Token: 0x060001AB RID: 427 RVA: 0x00009AEA File Offset: 0x00007CEA
 	private void initCanvasRotateAround()
 	{
 		this.lastVal = 0f;
@@ -877,7 +877,7 @@ public class LTDescr
 		this._optional.origRotation = this.rectTransform.rotation;
 	}
 
-	// Token: 0x060001B2 RID: 434 RVA: 0x00005989 File Offset: 0x00003B89
+	// Token: 0x060001AC RID: 428 RVA: 0x00009B1D File Offset: 0x00007D1D
 	public LTDescr setCanvasRotateAround()
 	{
 		this.type = TweenAction.CANVAS_ROTATEAROUND;
@@ -897,7 +897,7 @@ public class LTDescr
 		return this;
 	}
 
-	// Token: 0x060001B3 RID: 435 RVA: 0x000059B8 File Offset: 0x00003BB8
+	// Token: 0x060001AD RID: 429 RVA: 0x00009B4C File Offset: 0x00007D4C
 	public LTDescr setCanvasRotateAroundLocal()
 	{
 		this.type = TweenAction.CANVAS_ROTATEAROUND_LOCAL;
@@ -917,7 +917,7 @@ public class LTDescr
 		return this;
 	}
 
-	// Token: 0x060001B4 RID: 436 RVA: 0x000059E7 File Offset: 0x00003BE7
+	// Token: 0x060001AE RID: 430 RVA: 0x00009B7B File Offset: 0x00007D7B
 	public LTDescr setCanvasPlaySprite()
 	{
 		this.type = TweenAction.CANVAS_PLAYSPRITE;
@@ -936,7 +936,7 @@ public class LTDescr
 		return this;
 	}
 
-	// Token: 0x060001B5 RID: 437 RVA: 0x00005A16 File Offset: 0x00003C16
+	// Token: 0x060001AF RID: 431 RVA: 0x00009BAA File Offset: 0x00007DAA
 	public LTDescr setCanvasMove()
 	{
 		this.type = TweenAction.CANVAS_MOVE;
@@ -951,7 +951,7 @@ public class LTDescr
 		return this;
 	}
 
-	// Token: 0x060001B6 RID: 438 RVA: 0x00005A45 File Offset: 0x00003C45
+	// Token: 0x060001B0 RID: 432 RVA: 0x00009BD9 File Offset: 0x00007DD9
 	public LTDescr setCanvasScale()
 	{
 		this.type = TweenAction.CANVAS_SCALE;
@@ -966,7 +966,7 @@ public class LTDescr
 		return this;
 	}
 
-	// Token: 0x060001B7 RID: 439 RVA: 0x00005A74 File Offset: 0x00003C74
+	// Token: 0x060001B1 RID: 433 RVA: 0x00009C08 File Offset: 0x00007E08
 	public LTDescr setCanvasSizeDelta()
 	{
 		this.type = TweenAction.CANVAS_SIZEDELTA;
@@ -981,14 +981,14 @@ public class LTDescr
 		return this;
 	}
 
-	// Token: 0x060001B8 RID: 440 RVA: 0x00005AA3 File Offset: 0x00003CA3
+	// Token: 0x060001B2 RID: 434 RVA: 0x00009C37 File Offset: 0x00007E37
 	private void callback()
 	{
 		LTDescr.newVect = this.easeMethod();
 		LTDescr.val = LTDescr.newVect.x;
 	}
 
-	// Token: 0x060001B9 RID: 441 RVA: 0x00062B94 File Offset: 0x00060D94
+	// Token: 0x060001B3 RID: 435 RVA: 0x00009C58 File Offset: 0x00007E58
 	public LTDescr setCallback()
 	{
 		this.type = TweenAction.CALLBACK;
@@ -999,7 +999,7 @@ public class LTDescr
 		return this;
 	}
 
-	// Token: 0x060001BA RID: 442 RVA: 0x00062BE4 File Offset: 0x00060DE4
+	// Token: 0x060001B4 RID: 436 RVA: 0x00009CA8 File Offset: 0x00007EA8
 	public LTDescr setValue3()
 	{
 		this.type = TweenAction.VALUE3;
@@ -1010,7 +1010,7 @@ public class LTDescr
 		return this;
 	}
 
-	// Token: 0x060001BB RID: 443 RVA: 0x00005AC4 File Offset: 0x00003CC4
+	// Token: 0x060001B5 RID: 437 RVA: 0x00009CF5 File Offset: 0x00007EF5
 	public LTDescr setMove()
 	{
 		this.type = TweenAction.MOVE;
@@ -1026,7 +1026,7 @@ public class LTDescr
 		return this;
 	}
 
-	// Token: 0x060001BC RID: 444 RVA: 0x00005AF3 File Offset: 0x00003CF3
+	// Token: 0x060001B6 RID: 438 RVA: 0x00009D24 File Offset: 0x00007F24
 	public LTDescr setMoveLocal()
 	{
 		this.type = TweenAction.MOVE_LOCAL;
@@ -1042,7 +1042,7 @@ public class LTDescr
 		return this;
 	}
 
-	// Token: 0x060001BD RID: 445 RVA: 0x00005B22 File Offset: 0x00003D22
+	// Token: 0x060001B7 RID: 439 RVA: 0x00009D53 File Offset: 0x00007F53
 	public LTDescr setMoveToTransform()
 	{
 		this.type = TweenAction.MOVE_TO_TRANSFORM;
@@ -1061,7 +1061,7 @@ public class LTDescr
 		return this;
 	}
 
-	// Token: 0x060001BE RID: 446 RVA: 0x00005B51 File Offset: 0x00003D51
+	// Token: 0x060001B8 RID: 440 RVA: 0x00009D82 File Offset: 0x00007F82
 	public LTDescr setRotate()
 	{
 		this.type = TweenAction.ROTATE;
@@ -1078,7 +1078,7 @@ public class LTDescr
 		return this;
 	}
 
-	// Token: 0x060001BF RID: 447 RVA: 0x00005B80 File Offset: 0x00003D80
+	// Token: 0x060001B9 RID: 441 RVA: 0x00009DB1 File Offset: 0x00007FB1
 	public LTDescr setRotateLocal()
 	{
 		this.type = TweenAction.ROTATE_LOCAL;
@@ -1095,7 +1095,7 @@ public class LTDescr
 		return this;
 	}
 
-	// Token: 0x060001C0 RID: 448 RVA: 0x00005BAF File Offset: 0x00003DAF
+	// Token: 0x060001BA RID: 442 RVA: 0x00009DE0 File Offset: 0x00007FE0
 	public LTDescr setScale()
 	{
 		this.type = TweenAction.SCALE;
@@ -1111,7 +1111,7 @@ public class LTDescr
 		return this;
 	}
 
-	// Token: 0x060001C1 RID: 449 RVA: 0x00005BDE File Offset: 0x00003DDE
+	// Token: 0x060001BB RID: 443 RVA: 0x00009E0F File Offset: 0x0000800F
 	public LTDescr setGUIMove()
 	{
 		this.type = TweenAction.GUI_MOVE;
@@ -1127,7 +1127,7 @@ public class LTDescr
 		return this;
 	}
 
-	// Token: 0x060001C2 RID: 450 RVA: 0x00005C0D File Offset: 0x00003E0D
+	// Token: 0x060001BC RID: 444 RVA: 0x00009E3E File Offset: 0x0000803E
 	public LTDescr setGUIMoveMargin()
 	{
 		this.type = TweenAction.GUI_MOVE_MARGIN;
@@ -1143,7 +1143,7 @@ public class LTDescr
 		return this;
 	}
 
-	// Token: 0x060001C3 RID: 451 RVA: 0x00005C3C File Offset: 0x00003E3C
+	// Token: 0x060001BD RID: 445 RVA: 0x00009E6D File Offset: 0x0000806D
 	public LTDescr setGUIScale()
 	{
 		this.type = TweenAction.GUI_SCALE;
@@ -1159,7 +1159,7 @@ public class LTDescr
 		return this;
 	}
 
-	// Token: 0x060001C4 RID: 452 RVA: 0x00005C6B File Offset: 0x00003E6B
+	// Token: 0x060001BE RID: 446 RVA: 0x00009E9C File Offset: 0x0000809C
 	public LTDescr setGUIAlpha()
 	{
 		this.type = TweenAction.GUI_ALPHA;
@@ -1174,7 +1174,7 @@ public class LTDescr
 		return this;
 	}
 
-	// Token: 0x060001C5 RID: 453 RVA: 0x00005C9A File Offset: 0x00003E9A
+	// Token: 0x060001BF RID: 447 RVA: 0x00009ECB File Offset: 0x000080CB
 	public LTDescr setGUIRotate()
 	{
 		this.type = TweenAction.GUI_ROTATE;
@@ -1194,7 +1194,7 @@ public class LTDescr
 		return this;
 	}
 
-	// Token: 0x060001C6 RID: 454 RVA: 0x00005CC9 File Offset: 0x00003EC9
+	// Token: 0x060001C0 RID: 448 RVA: 0x00009EFA File Offset: 0x000080FA
 	public LTDescr setDelayedSound()
 	{
 		this.type = TweenAction.DELAYED_SOUND;
@@ -1206,7 +1206,7 @@ public class LTDescr
 		return this;
 	}
 
-	// Token: 0x060001C7 RID: 455 RVA: 0x00062C34 File Offset: 0x00060E34
+	// Token: 0x060001C1 RID: 449 RVA: 0x00009F2C File Offset: 0x0000812C
 	private void init()
 	{
 		this.hasInitiliazed = true;
@@ -1236,7 +1236,7 @@ public class LTDescr
 		}
 	}
 
-	// Token: 0x060001C8 RID: 456 RVA: 0x00062D10 File Offset: 0x00060F10
+	// Token: 0x060001C2 RID: 450 RVA: 0x0000A008 File Offset: 0x00008208
 	private void initSpeed()
 	{
 		if (this.type == TweenAction.MOVE_CURVED || this.type == TweenAction.MOVE_CURVED_LOCAL)
@@ -1252,14 +1252,14 @@ public class LTDescr
 		this.time = (this.to - this.from).magnitude / this.speed;
 	}
 
-	// Token: 0x060001C9 RID: 457 RVA: 0x00005CF8 File Offset: 0x00003EF8
+	// Token: 0x060001C3 RID: 451 RVA: 0x0000A09C File Offset: 0x0000829C
 	public LTDescr updateNow()
 	{
 		this.updateInternal();
 		return this;
 	}
 
-	// Token: 0x060001CA RID: 458 RVA: 0x00062DA4 File Offset: 0x00060FA4
+	// Token: 0x060001C4 RID: 452 RVA: 0x0000A0A8 File Offset: 0x000082A8
 	public bool updateInternal()
 	{
 		float num = this.direction;
@@ -1325,7 +1325,7 @@ public class LTDescr
 		return false;
 	}
 
-	// Token: 0x060001CB RID: 459 RVA: 0x00062F74 File Offset: 0x00061174
+	// Token: 0x060001C5 RID: 453 RVA: 0x0000A278 File Offset: 0x00008478
 	public void callOnCompletes()
 	{
 		if (this.type == TweenAction.GUI_ROTATE)
@@ -1347,7 +1347,7 @@ public class LTDescr
 		}
 	}
 
-	// Token: 0x060001CC RID: 460 RVA: 0x00063014 File Offset: 0x00061214
+	// Token: 0x060001C6 RID: 454 RVA: 0x0000A318 File Offset: 0x00008518
 	public LTDescr setFromColor(Color col)
 	{
 		this.from = new Vector3(0f, col.a, 0f);
@@ -1356,7 +1356,7 @@ public class LTDescr
 		return this;
 	}
 
-	// Token: 0x060001CD RID: 461 RVA: 0x0006307C File Offset: 0x0006127C
+	// Token: 0x060001C7 RID: 455 RVA: 0x0000A380 File Offset: 0x00008580
 	private static void alphaRecursive(Transform transform, float val, bool useRecursion = true)
 	{
 		Renderer component = transform.gameObject.GetComponent<Renderer>();
@@ -1384,7 +1384,7 @@ public class LTDescr
 		}
 	}
 
-	// Token: 0x060001CE RID: 462 RVA: 0x00063198 File Offset: 0x00061398
+	// Token: 0x060001C8 RID: 456 RVA: 0x0000A49C File Offset: 0x0000869C
 	private static void colorRecursive(Transform transform, Color toColor, bool useRecursion = true)
 	{
 		Renderer component = transform.gameObject.GetComponent<Renderer>();
@@ -1405,7 +1405,7 @@ public class LTDescr
 		}
 	}
 
-	// Token: 0x060001CF RID: 463 RVA: 0x00063230 File Offset: 0x00061430
+	// Token: 0x060001C9 RID: 457 RVA: 0x0000A534 File Offset: 0x00008734
 	private static void alphaRecursive(RectTransform rectTransform, float val, int recursiveLevel = 0)
 	{
 		if (rectTransform.childCount > 0)
@@ -1435,7 +1435,7 @@ public class LTDescr
 		}
 	}
 
-	// Token: 0x060001D0 RID: 464 RVA: 0x000632E8 File Offset: 0x000614E8
+	// Token: 0x060001CA RID: 458 RVA: 0x0000A5EC File Offset: 0x000087EC
 	private static void alphaRecursiveSprite(Transform transform, float val)
 	{
 		if (transform.childCount > 0)
@@ -1453,7 +1453,7 @@ public class LTDescr
 		}
 	}
 
-	// Token: 0x060001D1 RID: 465 RVA: 0x00063380 File Offset: 0x00061580
+	// Token: 0x060001CB RID: 459 RVA: 0x0000A684 File Offset: 0x00008884
 	private static void colorRecursiveSprite(Transform transform, Color toColor)
 	{
 		if (transform.childCount > 0)
@@ -1471,7 +1471,7 @@ public class LTDescr
 		}
 	}
 
-	// Token: 0x060001D2 RID: 466 RVA: 0x000633F8 File Offset: 0x000615F8
+	// Token: 0x060001CC RID: 460 RVA: 0x0000A6FC File Offset: 0x000088FC
 	private static void colorRecursive(RectTransform rectTransform, Color toColor)
 	{
 		if (rectTransform.childCount > 0)
@@ -1497,7 +1497,7 @@ public class LTDescr
 		}
 	}
 
-	// Token: 0x060001D3 RID: 467 RVA: 0x00063488 File Offset: 0x00061688
+	// Token: 0x060001CD RID: 461 RVA: 0x0000A78C File Offset: 0x0000898C
 	private static void textAlphaChildrenRecursive(Transform trans, float val, bool useRecursion = true)
 	{
 		if (useRecursion && trans.childCount > 0)
@@ -1517,7 +1517,7 @@ public class LTDescr
 		}
 	}
 
-	// Token: 0x060001D4 RID: 468 RVA: 0x00063510 File Offset: 0x00061710
+	// Token: 0x060001CE RID: 462 RVA: 0x0000A814 File Offset: 0x00008A14
 	private static void textAlphaRecursive(Transform trans, float val, bool useRecursion = true)
 	{
 		Text component = trans.GetComponent<Text>();
@@ -1536,7 +1536,7 @@ public class LTDescr
 		}
 	}
 
-	// Token: 0x060001D5 RID: 469 RVA: 0x00063598 File Offset: 0x00061798
+	// Token: 0x060001CF RID: 463 RVA: 0x0000A89C File Offset: 0x00008A9C
 	private static void textColorRecursive(Transform trans, Color toColor)
 	{
 		if (trans.childCount > 0)
@@ -1554,7 +1554,7 @@ public class LTDescr
 		}
 	}
 
-	// Token: 0x060001D6 RID: 470 RVA: 0x0006360C File Offset: 0x0006180C
+	// Token: 0x060001D0 RID: 464 RVA: 0x0000A910 File Offset: 0x00008B10
 	private static Color tweenColor(LTDescr tween, float val)
 	{
 		Vector3 vector = tween._optional.point - tween._optional.axis;
@@ -1562,7 +1562,7 @@ public class LTDescr
 		return new Color(tween._optional.axis.x + vector.x * val, tween._optional.axis.y + vector.y * val, tween._optional.axis.z + vector.z * val, tween.from.y + num * val);
 	}
 
-	// Token: 0x060001D7 RID: 471 RVA: 0x00005D02 File Offset: 0x00003F02
+	// Token: 0x060001D1 RID: 465 RVA: 0x0000A9B0 File Offset: 0x00008BB0
 	public LTDescr pause()
 	{
 		if (this.direction != 0f)
@@ -1573,28 +1573,28 @@ public class LTDescr
 		return this;
 	}
 
-	// Token: 0x060001D8 RID: 472 RVA: 0x00005D29 File Offset: 0x00003F29
+	// Token: 0x060001D2 RID: 466 RVA: 0x0000A9D7 File Offset: 0x00008BD7
 	public LTDescr resume()
 	{
 		this.direction = this.directionLast;
 		return this;
 	}
 
-	// Token: 0x060001D9 RID: 473 RVA: 0x00005D38 File Offset: 0x00003F38
+	// Token: 0x060001D3 RID: 467 RVA: 0x0000A9E6 File Offset: 0x00008BE6
 	public LTDescr setAxis(Vector3 axis)
 	{
 		this._optional.axis = axis;
 		return this;
 	}
 
-	// Token: 0x060001DA RID: 474 RVA: 0x00005D47 File Offset: 0x00003F47
+	// Token: 0x060001D4 RID: 468 RVA: 0x0000A9F5 File Offset: 0x00008BF5
 	public LTDescr setDelay(float delay)
 	{
 		this.delay = delay;
 		return this;
 	}
 
-	// Token: 0x060001DB RID: 475 RVA: 0x000636AC File Offset: 0x000618AC
+	// Token: 0x060001D5 RID: 469 RVA: 0x0000AA00 File Offset: 0x00008C00
 	public LTDescr setEase(LeanTweenType easeType)
 	{
 		switch (easeType)
@@ -1708,7 +1708,7 @@ public class LTDescr
 		return this;
 	}
 
-	// Token: 0x060001DC RID: 476 RVA: 0x00005D51 File Offset: 0x00003F51
+	// Token: 0x060001D6 RID: 470 RVA: 0x0000AC18 File Offset: 0x00008E18
 	public LTDescr setEaseLinear()
 	{
 		this.easeType = LeanTweenType.linear;
@@ -1716,7 +1716,7 @@ public class LTDescr
 		return this;
 	}
 
-	// Token: 0x060001DD RID: 477 RVA: 0x00005D6D File Offset: 0x00003F6D
+	// Token: 0x060001D7 RID: 471 RVA: 0x0000AC34 File Offset: 0x00008E34
 	public LTDescr setEaseSpring()
 	{
 		this.easeType = LeanTweenType.easeSpring;
@@ -1724,7 +1724,7 @@ public class LTDescr
 		return this;
 	}
 
-	// Token: 0x060001DE RID: 478 RVA: 0x00005D8A File Offset: 0x00003F8A
+	// Token: 0x060001D8 RID: 472 RVA: 0x0000AC51 File Offset: 0x00008E51
 	public LTDescr setEaseInQuad()
 	{
 		this.easeType = LeanTweenType.easeInQuad;
@@ -1732,7 +1732,7 @@ public class LTDescr
 		return this;
 	}
 
-	// Token: 0x060001DF RID: 479 RVA: 0x00005DA6 File Offset: 0x00003FA6
+	// Token: 0x060001D9 RID: 473 RVA: 0x0000AC6D File Offset: 0x00008E6D
 	public LTDescr setEaseOutQuad()
 	{
 		this.easeType = LeanTweenType.easeOutQuad;
@@ -1740,7 +1740,7 @@ public class LTDescr
 		return this;
 	}
 
-	// Token: 0x060001E0 RID: 480 RVA: 0x00005DC2 File Offset: 0x00003FC2
+	// Token: 0x060001DA RID: 474 RVA: 0x0000AC89 File Offset: 0x00008E89
 	public LTDescr setEaseInOutQuad()
 	{
 		this.easeType = LeanTweenType.easeInOutQuad;
@@ -1748,7 +1748,7 @@ public class LTDescr
 		return this;
 	}
 
-	// Token: 0x060001E1 RID: 481 RVA: 0x00005DDE File Offset: 0x00003FDE
+	// Token: 0x060001DB RID: 475 RVA: 0x0000ACA5 File Offset: 0x00008EA5
 	public LTDescr setEaseInCubic()
 	{
 		this.easeType = LeanTweenType.easeInCubic;
@@ -1756,7 +1756,7 @@ public class LTDescr
 		return this;
 	}
 
-	// Token: 0x060001E2 RID: 482 RVA: 0x00005DFA File Offset: 0x00003FFA
+	// Token: 0x060001DC RID: 476 RVA: 0x0000ACC1 File Offset: 0x00008EC1
 	public LTDescr setEaseOutCubic()
 	{
 		this.easeType = LeanTweenType.easeOutCubic;
@@ -1764,7 +1764,7 @@ public class LTDescr
 		return this;
 	}
 
-	// Token: 0x060001E3 RID: 483 RVA: 0x00005E16 File Offset: 0x00004016
+	// Token: 0x060001DD RID: 477 RVA: 0x0000ACDD File Offset: 0x00008EDD
 	public LTDescr setEaseInOutCubic()
 	{
 		this.easeType = LeanTweenType.easeInOutCubic;
@@ -1772,7 +1772,7 @@ public class LTDescr
 		return this;
 	}
 
-	// Token: 0x060001E4 RID: 484 RVA: 0x00005E32 File Offset: 0x00004032
+	// Token: 0x060001DE RID: 478 RVA: 0x0000ACF9 File Offset: 0x00008EF9
 	public LTDescr setEaseInQuart()
 	{
 		this.easeType = LeanTweenType.easeInQuart;
@@ -1780,7 +1780,7 @@ public class LTDescr
 		return this;
 	}
 
-	// Token: 0x060001E5 RID: 485 RVA: 0x00005E4E File Offset: 0x0000404E
+	// Token: 0x060001DF RID: 479 RVA: 0x0000AD15 File Offset: 0x00008F15
 	public LTDescr setEaseOutQuart()
 	{
 		this.easeType = LeanTweenType.easeOutQuart;
@@ -1788,7 +1788,7 @@ public class LTDescr
 		return this;
 	}
 
-	// Token: 0x060001E6 RID: 486 RVA: 0x00005E6B File Offset: 0x0000406B
+	// Token: 0x060001E0 RID: 480 RVA: 0x0000AD32 File Offset: 0x00008F32
 	public LTDescr setEaseInOutQuart()
 	{
 		this.easeType = LeanTweenType.easeInOutQuart;
@@ -1796,7 +1796,7 @@ public class LTDescr
 		return this;
 	}
 
-	// Token: 0x060001E7 RID: 487 RVA: 0x00005E88 File Offset: 0x00004088
+	// Token: 0x060001E1 RID: 481 RVA: 0x0000AD4F File Offset: 0x00008F4F
 	public LTDescr setEaseInQuint()
 	{
 		this.easeType = LeanTweenType.easeInQuint;
@@ -1804,7 +1804,7 @@ public class LTDescr
 		return this;
 	}
 
-	// Token: 0x060001E8 RID: 488 RVA: 0x00005EA5 File Offset: 0x000040A5
+	// Token: 0x060001E2 RID: 482 RVA: 0x0000AD6C File Offset: 0x00008F6C
 	public LTDescr setEaseOutQuint()
 	{
 		this.easeType = LeanTweenType.easeOutQuint;
@@ -1812,7 +1812,7 @@ public class LTDescr
 		return this;
 	}
 
-	// Token: 0x060001E9 RID: 489 RVA: 0x00005EC2 File Offset: 0x000040C2
+	// Token: 0x060001E3 RID: 483 RVA: 0x0000AD89 File Offset: 0x00008F89
 	public LTDescr setEaseInOutQuint()
 	{
 		this.easeType = LeanTweenType.easeInOutQuint;
@@ -1820,7 +1820,7 @@ public class LTDescr
 		return this;
 	}
 
-	// Token: 0x060001EA RID: 490 RVA: 0x00005EDF File Offset: 0x000040DF
+	// Token: 0x060001E4 RID: 484 RVA: 0x0000ADA6 File Offset: 0x00008FA6
 	public LTDescr setEaseInSine()
 	{
 		this.easeType = LeanTweenType.easeInSine;
@@ -1828,7 +1828,7 @@ public class LTDescr
 		return this;
 	}
 
-	// Token: 0x060001EB RID: 491 RVA: 0x00005EFC File Offset: 0x000040FC
+	// Token: 0x060001E5 RID: 485 RVA: 0x0000ADC3 File Offset: 0x00008FC3
 	public LTDescr setEaseOutSine()
 	{
 		this.easeType = LeanTweenType.easeOutSine;
@@ -1836,7 +1836,7 @@ public class LTDescr
 		return this;
 	}
 
-	// Token: 0x060001EC RID: 492 RVA: 0x00005F19 File Offset: 0x00004119
+	// Token: 0x060001E6 RID: 486 RVA: 0x0000ADE0 File Offset: 0x00008FE0
 	public LTDescr setEaseInOutSine()
 	{
 		this.easeType = LeanTweenType.easeInOutSine;
@@ -1844,7 +1844,7 @@ public class LTDescr
 		return this;
 	}
 
-	// Token: 0x060001ED RID: 493 RVA: 0x00005F36 File Offset: 0x00004136
+	// Token: 0x060001E7 RID: 487 RVA: 0x0000ADFD File Offset: 0x00008FFD
 	public LTDescr setEaseInExpo()
 	{
 		this.easeType = LeanTweenType.easeInExpo;
@@ -1852,7 +1852,7 @@ public class LTDescr
 		return this;
 	}
 
-	// Token: 0x060001EE RID: 494 RVA: 0x00005F53 File Offset: 0x00004153
+	// Token: 0x060001E8 RID: 488 RVA: 0x0000AE1A File Offset: 0x0000901A
 	public LTDescr setEaseOutExpo()
 	{
 		this.easeType = LeanTweenType.easeOutExpo;
@@ -1860,7 +1860,7 @@ public class LTDescr
 		return this;
 	}
 
-	// Token: 0x060001EF RID: 495 RVA: 0x00005F70 File Offset: 0x00004170
+	// Token: 0x060001E9 RID: 489 RVA: 0x0000AE37 File Offset: 0x00009037
 	public LTDescr setEaseInOutExpo()
 	{
 		this.easeType = LeanTweenType.easeInOutExpo;
@@ -1868,7 +1868,7 @@ public class LTDescr
 		return this;
 	}
 
-	// Token: 0x060001F0 RID: 496 RVA: 0x00005F8D File Offset: 0x0000418D
+	// Token: 0x060001EA RID: 490 RVA: 0x0000AE54 File Offset: 0x00009054
 	public LTDescr setEaseInCirc()
 	{
 		this.easeType = LeanTweenType.easeInCirc;
@@ -1876,7 +1876,7 @@ public class LTDescr
 		return this;
 	}
 
-	// Token: 0x060001F1 RID: 497 RVA: 0x00005FAA File Offset: 0x000041AA
+	// Token: 0x060001EB RID: 491 RVA: 0x0000AE71 File Offset: 0x00009071
 	public LTDescr setEaseOutCirc()
 	{
 		this.easeType = LeanTweenType.easeOutCirc;
@@ -1884,7 +1884,7 @@ public class LTDescr
 		return this;
 	}
 
-	// Token: 0x060001F2 RID: 498 RVA: 0x00005FC7 File Offset: 0x000041C7
+	// Token: 0x060001EC RID: 492 RVA: 0x0000AE8E File Offset: 0x0000908E
 	public LTDescr setEaseInOutCirc()
 	{
 		this.easeType = LeanTweenType.easeInOutCirc;
@@ -1892,7 +1892,7 @@ public class LTDescr
 		return this;
 	}
 
-	// Token: 0x060001F3 RID: 499 RVA: 0x00005FE4 File Offset: 0x000041E4
+	// Token: 0x060001ED RID: 493 RVA: 0x0000AEAB File Offset: 0x000090AB
 	public LTDescr setEaseInBounce()
 	{
 		this.easeType = LeanTweenType.easeInBounce;
@@ -1900,7 +1900,7 @@ public class LTDescr
 		return this;
 	}
 
-	// Token: 0x060001F4 RID: 500 RVA: 0x00006001 File Offset: 0x00004201
+	// Token: 0x060001EE RID: 494 RVA: 0x0000AEC8 File Offset: 0x000090C8
 	public LTDescr setEaseOutBounce()
 	{
 		this.easeType = LeanTweenType.easeOutBounce;
@@ -1908,7 +1908,7 @@ public class LTDescr
 		return this;
 	}
 
-	// Token: 0x060001F5 RID: 501 RVA: 0x0000601E File Offset: 0x0000421E
+	// Token: 0x060001EF RID: 495 RVA: 0x0000AEE5 File Offset: 0x000090E5
 	public LTDescr setEaseInOutBounce()
 	{
 		this.easeType = LeanTweenType.easeInOutBounce;
@@ -1916,7 +1916,7 @@ public class LTDescr
 		return this;
 	}
 
-	// Token: 0x060001F6 RID: 502 RVA: 0x0000603B File Offset: 0x0000423B
+	// Token: 0x060001F0 RID: 496 RVA: 0x0000AF02 File Offset: 0x00009102
 	public LTDescr setEaseInBack()
 	{
 		this.easeType = LeanTweenType.easeInBack;
@@ -1924,7 +1924,7 @@ public class LTDescr
 		return this;
 	}
 
-	// Token: 0x060001F7 RID: 503 RVA: 0x00006058 File Offset: 0x00004258
+	// Token: 0x060001F1 RID: 497 RVA: 0x0000AF1F File Offset: 0x0000911F
 	public LTDescr setEaseOutBack()
 	{
 		this.easeType = LeanTweenType.easeOutBack;
@@ -1932,7 +1932,7 @@ public class LTDescr
 		return this;
 	}
 
-	// Token: 0x060001F8 RID: 504 RVA: 0x00006075 File Offset: 0x00004275
+	// Token: 0x060001F2 RID: 498 RVA: 0x0000AF3C File Offset: 0x0000913C
 	public LTDescr setEaseInOutBack()
 	{
 		this.easeType = LeanTweenType.easeInOutBack;
@@ -1940,7 +1940,7 @@ public class LTDescr
 		return this;
 	}
 
-	// Token: 0x060001F9 RID: 505 RVA: 0x00006092 File Offset: 0x00004292
+	// Token: 0x060001F3 RID: 499 RVA: 0x0000AF59 File Offset: 0x00009159
 	public LTDescr setEaseInElastic()
 	{
 		this.easeType = LeanTweenType.easeInElastic;
@@ -1948,7 +1948,7 @@ public class LTDescr
 		return this;
 	}
 
-	// Token: 0x060001FA RID: 506 RVA: 0x000060AF File Offset: 0x000042AF
+	// Token: 0x060001F4 RID: 500 RVA: 0x0000AF76 File Offset: 0x00009176
 	public LTDescr setEaseOutElastic()
 	{
 		this.easeType = LeanTweenType.easeOutElastic;
@@ -1956,7 +1956,7 @@ public class LTDescr
 		return this;
 	}
 
-	// Token: 0x060001FB RID: 507 RVA: 0x000060CC File Offset: 0x000042CC
+	// Token: 0x060001F5 RID: 501 RVA: 0x0000AF93 File Offset: 0x00009193
 	public LTDescr setEaseInOutElastic()
 	{
 		this.easeType = LeanTweenType.easeInOutElastic;
@@ -1964,7 +1964,7 @@ public class LTDescr
 		return this;
 	}
 
-	// Token: 0x060001FC RID: 508 RVA: 0x000638C4 File Offset: 0x00061AC4
+	// Token: 0x060001F6 RID: 502 RVA: 0x0000AFB0 File Offset: 0x000091B0
 	public LTDescr setEasePunch()
 	{
 		this._optional.animationCurve = LeanTween.punch;
@@ -1973,7 +1973,7 @@ public class LTDescr
 		return this;
 	}
 
-	// Token: 0x060001FD RID: 509 RVA: 0x00063918 File Offset: 0x00061B18
+	// Token: 0x060001F7 RID: 503 RVA: 0x0000B004 File Offset: 0x00009204
 	public LTDescr setEaseShake()
 	{
 		this._optional.animationCurve = LeanTween.shake;
@@ -1982,13 +1982,13 @@ public class LTDescr
 		return this;
 	}
 
-	// Token: 0x060001FE RID: 510 RVA: 0x0006396C File Offset: 0x00061B6C
+	// Token: 0x060001F8 RID: 504 RVA: 0x0000B058 File Offset: 0x00009258
 	private Vector3 tweenOnCurve()
 	{
 		return new Vector3(this.from.x + this.diff.x * this._optional.animationCurve.Evaluate(this.ratioPassed), this.from.y + this.diff.y * this._optional.animationCurve.Evaluate(this.ratioPassed), this.from.z + this.diff.z * this._optional.animationCurve.Evaluate(this.ratioPassed));
 	}
 
-	// Token: 0x060001FF RID: 511 RVA: 0x00063A08 File Offset: 0x00061C08
+	// Token: 0x060001F9 RID: 505 RVA: 0x0000B0F4 File Offset: 0x000092F4
 	private Vector3 easeInOutQuad()
 	{
 		LTDescr.val = this.ratioPassed * 2f;
@@ -2001,14 +2001,14 @@ public class LTDescr
 		return new Vector3(this.diffDiv2.x * LTDescr.val + this.from.x, this.diffDiv2.y * LTDescr.val + this.from.y, this.diffDiv2.z * LTDescr.val + this.from.z);
 	}
 
-	// Token: 0x06000200 RID: 512 RVA: 0x00063B20 File Offset: 0x00061D20
+	// Token: 0x060001FA RID: 506 RVA: 0x0000B20C File Offset: 0x0000940C
 	private Vector3 easeInQuad()
 	{
 		LTDescr.val = this.ratioPassed * this.ratioPassed;
 		return new Vector3(this.diff.x * LTDescr.val + this.from.x, this.diff.y * LTDescr.val + this.from.y, this.diff.z * LTDescr.val + this.from.z);
 	}
 
-	// Token: 0x06000201 RID: 513 RVA: 0x000060E9 File Offset: 0x000042E9
+	// Token: 0x060001FB RID: 507 RVA: 0x0000B287 File Offset: 0x00009487
 	private Vector3 easeOutQuad()
 	{
 		LTDescr.val = this.ratioPassed;
@@ -2016,14 +2016,14 @@ public class LTDescr
 		return this.diff * LTDescr.val + this.from;
 	}
 
-	// Token: 0x06000202 RID: 514 RVA: 0x00063B9C File Offset: 0x00061D9C
+	// Token: 0x060001FC RID: 508 RVA: 0x0000B2C8 File Offset: 0x000094C8
 	private Vector3 easeLinear()
 	{
 		LTDescr.val = this.ratioPassed;
 		return new Vector3(this.from.x + this.diff.x * LTDescr.val, this.from.y + this.diff.y * LTDescr.val, this.from.z + this.diff.z * LTDescr.val);
 	}
 
-	// Token: 0x06000203 RID: 515 RVA: 0x00063C10 File Offset: 0x00061E10
+	// Token: 0x060001FD RID: 509 RVA: 0x0000B33C File Offset: 0x0000953C
 	private Vector3 easeSpring()
 	{
 		LTDescr.val = Mathf.Clamp01(this.ratioPassed);
@@ -2031,14 +2031,14 @@ public class LTDescr
 		return this.from + this.diff * LTDescr.val;
 	}
 
-	// Token: 0x06000204 RID: 516 RVA: 0x00063CB0 File Offset: 0x00061EB0
+	// Token: 0x060001FE RID: 510 RVA: 0x0000B3DC File Offset: 0x000095DC
 	private Vector3 easeInCubic()
 	{
 		LTDescr.val = this.ratioPassed * this.ratioPassed * this.ratioPassed;
 		return new Vector3(this.diff.x * LTDescr.val + this.from.x, this.diff.y * LTDescr.val + this.from.y, this.diff.z * LTDescr.val + this.from.z);
 	}
 
-	// Token: 0x06000205 RID: 517 RVA: 0x00063D34 File Offset: 0x00061F34
+	// Token: 0x060001FF RID: 511 RVA: 0x0000B460 File Offset: 0x00009660
 	private Vector3 easeOutCubic()
 	{
 		LTDescr.val = this.ratioPassed - 1f;
@@ -2046,7 +2046,7 @@ public class LTDescr
 		return new Vector3(this.diff.x * LTDescr.val + this.from.x, this.diff.y * LTDescr.val + this.from.y, this.diff.z * LTDescr.val + this.from.z);
 	}
 
-	// Token: 0x06000206 RID: 518 RVA: 0x00063DCC File Offset: 0x00061FCC
+	// Token: 0x06000200 RID: 512 RVA: 0x0000B4F8 File Offset: 0x000096F8
 	private Vector3 easeInOutCubic()
 	{
 		LTDescr.val = this.ratioPassed * 2f;
@@ -2060,14 +2060,14 @@ public class LTDescr
 		return new Vector3(this.diffDiv2.x * LTDescr.val + this.from.x, this.diffDiv2.y * LTDescr.val + this.from.y, this.diffDiv2.z * LTDescr.val + this.from.z);
 	}
 
-	// Token: 0x06000207 RID: 519 RVA: 0x00006128 File Offset: 0x00004328
+	// Token: 0x06000201 RID: 513 RVA: 0x0000B61D File Offset: 0x0000981D
 	private Vector3 easeInQuart()
 	{
 		LTDescr.val = this.ratioPassed * this.ratioPassed * this.ratioPassed * this.ratioPassed;
 		return this.diff * LTDescr.val + this.from;
 	}
 
-	// Token: 0x06000208 RID: 520 RVA: 0x00063EF4 File Offset: 0x000620F4
+	// Token: 0x06000202 RID: 514 RVA: 0x0000B65C File Offset: 0x0000985C
 	private Vector3 easeOutQuart()
 	{
 		LTDescr.val = this.ratioPassed - 1f;
@@ -2075,7 +2075,7 @@ public class LTDescr
 		return new Vector3(this.diff.x * LTDescr.val + this.from.x, this.diff.y * LTDescr.val + this.from.y, this.diff.z * LTDescr.val + this.from.z);
 	}
 
-	// Token: 0x06000209 RID: 521 RVA: 0x00063F94 File Offset: 0x00062194
+	// Token: 0x06000203 RID: 515 RVA: 0x0000B6FC File Offset: 0x000098FC
 	private Vector3 easeInOutQuart()
 	{
 		LTDescr.val = this.ratioPassed * 2f;
@@ -2088,7 +2088,7 @@ public class LTDescr
 		return -this.diffDiv2 * (LTDescr.val * LTDescr.val * LTDescr.val * LTDescr.val - 2f) + this.from;
 	}
 
-	// Token: 0x0600020A RID: 522 RVA: 0x00064080 File Offset: 0x00062280
+	// Token: 0x06000204 RID: 516 RVA: 0x0000B7E8 File Offset: 0x000099E8
 	private Vector3 easeInQuint()
 	{
 		LTDescr.val = this.ratioPassed;
@@ -2096,7 +2096,7 @@ public class LTDescr
 		return new Vector3(this.diff.x * LTDescr.val + this.from.x, this.diff.y * LTDescr.val + this.from.y, this.diff.z * LTDescr.val + this.from.z);
 	}
 
-	// Token: 0x0600020B RID: 523 RVA: 0x00064118 File Offset: 0x00062318
+	// Token: 0x06000205 RID: 517 RVA: 0x0000B880 File Offset: 0x00009A80
 	private Vector3 easeOutQuint()
 	{
 		LTDescr.val = this.ratioPassed - 1f;
@@ -2104,7 +2104,7 @@ public class LTDescr
 		return new Vector3(this.diff.x * LTDescr.val + this.from.x, this.diff.y * LTDescr.val + this.from.y, this.diff.z * LTDescr.val + this.from.z);
 	}
 
-	// Token: 0x0600020C RID: 524 RVA: 0x000641BC File Offset: 0x000623BC
+	// Token: 0x06000206 RID: 518 RVA: 0x0000B924 File Offset: 0x00009B24
 	private Vector3 easeInOutQuint()
 	{
 		LTDescr.val = this.ratioPassed * 2f;
@@ -2118,42 +2118,42 @@ public class LTDescr
 		return new Vector3(this.diffDiv2.x * LTDescr.val + this.from.x, this.diffDiv2.y * LTDescr.val + this.from.y, this.diffDiv2.z * LTDescr.val + this.from.z);
 	}
 
-	// Token: 0x0600020D RID: 525 RVA: 0x000642FC File Offset: 0x000624FC
+	// Token: 0x06000207 RID: 519 RVA: 0x0000BA64 File Offset: 0x00009C64
 	private Vector3 easeInSine()
 	{
 		LTDescr.val = -Mathf.Cos(this.ratioPassed * LeanTween.PI_DIV2);
 		return new Vector3(this.diff.x * LTDescr.val + this.diff.x + this.from.x, this.diff.y * LTDescr.val + this.diff.y + this.from.y, this.diff.z * LTDescr.val + this.diff.z + this.from.z);
 	}
 
-	// Token: 0x0600020E RID: 526 RVA: 0x000643A0 File Offset: 0x000625A0
+	// Token: 0x06000208 RID: 520 RVA: 0x0000BB08 File Offset: 0x00009D08
 	private Vector3 easeOutSine()
 	{
 		LTDescr.val = Mathf.Sin(this.ratioPassed * LeanTween.PI_DIV2);
 		return new Vector3(this.diff.x * LTDescr.val + this.from.x, this.diff.y * LTDescr.val + this.from.y, this.diff.z * LTDescr.val + this.from.z);
 	}
 
-	// Token: 0x0600020F RID: 527 RVA: 0x00064420 File Offset: 0x00062620
+	// Token: 0x06000209 RID: 521 RVA: 0x0000BB88 File Offset: 0x00009D88
 	private Vector3 easeInOutSine()
 	{
 		LTDescr.val = -(Mathf.Cos(3.1415927f * this.ratioPassed) - 1f);
 		return new Vector3(this.diffDiv2.x * LTDescr.val + this.from.x, this.diffDiv2.y * LTDescr.val + this.from.y, this.diffDiv2.z * LTDescr.val + this.from.z);
 	}
 
-	// Token: 0x06000210 RID: 528 RVA: 0x000644A8 File Offset: 0x000626A8
+	// Token: 0x0600020A RID: 522 RVA: 0x0000BC10 File Offset: 0x00009E10
 	private Vector3 easeInExpo()
 	{
 		LTDescr.val = Mathf.Pow(2f, 10f * (this.ratioPassed - 1f));
 		return new Vector3(this.diff.x * LTDescr.val + this.from.x, this.diff.y * LTDescr.val + this.from.y, this.diff.z * LTDescr.val + this.from.z);
 	}
 
-	// Token: 0x06000211 RID: 529 RVA: 0x00064534 File Offset: 0x00062734
+	// Token: 0x0600020B RID: 523 RVA: 0x0000BC9C File Offset: 0x00009E9C
 	private Vector3 easeOutExpo()
 	{
 		LTDescr.val = -Mathf.Pow(2f, -10f * this.ratioPassed) + 1f;
 		return new Vector3(this.diff.x * LTDescr.val + this.from.x, this.diff.y * LTDescr.val + this.from.y, this.diff.z * LTDescr.val + this.from.z);
 	}
 
-	// Token: 0x06000212 RID: 530 RVA: 0x000645C0 File Offset: 0x000627C0
+	// Token: 0x0600020C RID: 524 RVA: 0x0000BD28 File Offset: 0x00009F28
 	private Vector3 easeInOutExpo()
 	{
 		LTDescr.val = this.ratioPassed * 2f;
@@ -2165,14 +2165,14 @@ public class LTDescr
 		return this.diffDiv2 * (-Mathf.Pow(2f, -10f * LTDescr.val) + 2f) + this.from;
 	}
 
-	// Token: 0x06000213 RID: 531 RVA: 0x00064660 File Offset: 0x00062860
+	// Token: 0x0600020D RID: 525 RVA: 0x0000BDC8 File Offset: 0x00009FC8
 	private Vector3 easeInCirc()
 	{
 		LTDescr.val = -(Mathf.Sqrt(1f - this.ratioPassed * this.ratioPassed) - 1f);
 		return new Vector3(this.diff.x * LTDescr.val + this.from.x, this.diff.y * LTDescr.val + this.from.y, this.diff.z * LTDescr.val + this.from.z);
 	}
 
-	// Token: 0x06000214 RID: 532 RVA: 0x000646F0 File Offset: 0x000628F0
+	// Token: 0x0600020E RID: 526 RVA: 0x0000BE58 File Offset: 0x0000A058
 	private Vector3 easeOutCirc()
 	{
 		LTDescr.val = this.ratioPassed - 1f;
@@ -2180,7 +2180,7 @@ public class LTDescr
 		return new Vector3(this.diff.x * LTDescr.val + this.from.x, this.diff.y * LTDescr.val + this.from.y, this.diff.z * LTDescr.val + this.from.z);
 	}
 
-	// Token: 0x06000215 RID: 533 RVA: 0x00064788 File Offset: 0x00062988
+	// Token: 0x0600020F RID: 527 RVA: 0x0000BEF0 File Offset: 0x0000A0F0
 	private Vector3 easeInOutCirc()
 	{
 		LTDescr.val = this.ratioPassed * 2f;
@@ -2194,7 +2194,7 @@ public class LTDescr
 		return new Vector3(this.diffDiv2.x * LTDescr.val + this.from.x, this.diffDiv2.y * LTDescr.val + this.from.y, this.diffDiv2.z * LTDescr.val + this.from.z);
 	}
 
-	// Token: 0x06000216 RID: 534 RVA: 0x000648C0 File Offset: 0x00062AC0
+	// Token: 0x06000210 RID: 528 RVA: 0x0000C028 File Offset: 0x0000A228
 	private Vector3 easeInBounce()
 	{
 		LTDescr.val = this.ratioPassed;
@@ -2202,7 +2202,7 @@ public class LTDescr
 		return new Vector3(this.diff.x - LeanTween.easeOutBounce(0f, this.diff.x, LTDescr.val) + this.from.x, this.diff.y - LeanTween.easeOutBounce(0f, this.diff.y, LTDescr.val) + this.from.y, this.diff.z - LeanTween.easeOutBounce(0f, this.diff.z, LTDescr.val) + this.from.z);
 	}
 
-	// Token: 0x06000217 RID: 535 RVA: 0x00064984 File Offset: 0x00062B84
+	// Token: 0x06000211 RID: 529 RVA: 0x0000C0EC File Offset: 0x0000A2EC
 	private Vector3 easeOutBounce()
 	{
 		LTDescr.val = this.ratioPassed;
@@ -2230,7 +2230,7 @@ public class LTDescr
 		return this.diff * LTDescr.val + this.from;
 	}
 
-	// Token: 0x06000218 RID: 536 RVA: 0x00064B10 File Offset: 0x00062D10
+	// Token: 0x06000212 RID: 530 RVA: 0x0000C278 File Offset: 0x0000A478
 	private Vector3 easeInOutBounce()
 	{
 		LTDescr.val = this.ratioPassed * 2f;
@@ -2242,7 +2242,7 @@ public class LTDescr
 		return new Vector3(LeanTween.easeOutBounce(0f, this.diff.x, LTDescr.val) * 0.5f + this.diffDiv2.x + this.from.x, LeanTween.easeOutBounce(0f, this.diff.y, LTDescr.val) * 0.5f + this.diffDiv2.y + this.from.y, LeanTween.easeOutBounce(0f, this.diff.z, LTDescr.val) * 0.5f + this.diffDiv2.z + this.from.z);
 	}
 
-	// Token: 0x06000219 RID: 537 RVA: 0x00064C84 File Offset: 0x00062E84
+	// Token: 0x06000213 RID: 531 RVA: 0x0000C3EC File Offset: 0x0000A5EC
 	private Vector3 easeInBack()
 	{
 		LTDescr.val = this.ratioPassed;
@@ -2251,7 +2251,7 @@ public class LTDescr
 		return this.diff * LTDescr.val * LTDescr.val * ((num + 1f) * LTDescr.val - num) + this.from;
 	}
 
-	// Token: 0x0600021A RID: 538 RVA: 0x00064CF4 File Offset: 0x00062EF4
+	// Token: 0x06000214 RID: 532 RVA: 0x0000C45C File Offset: 0x0000A65C
 	private Vector3 easeOutBack()
 	{
 		float num = 1.70158f * this.overshoot;
@@ -2260,7 +2260,7 @@ public class LTDescr
 		return this.diff * LTDescr.val + this.from;
 	}
 
-	// Token: 0x0600021B RID: 539 RVA: 0x00064D68 File Offset: 0x00062F68
+	// Token: 0x06000215 RID: 533 RVA: 0x0000C4D0 File Offset: 0x0000A6D0
 	private Vector3 easeInOutBack()
 	{
 		float num = 1.70158f * this.overshoot;
@@ -2276,46 +2276,46 @@ public class LTDescr
 		return this.diffDiv2 * LTDescr.val + this.from;
 	}
 
-	// Token: 0x0600021C RID: 540 RVA: 0x00064E40 File Offset: 0x00063040
+	// Token: 0x06000216 RID: 534 RVA: 0x0000C5A8 File Offset: 0x0000A7A8
 	private Vector3 easeInElastic()
 	{
 		return new Vector3(LeanTween.easeInElastic(this.from.x, this.to.x, this.ratioPassed, this.overshoot, this.period), LeanTween.easeInElastic(this.from.y, this.to.y, this.ratioPassed, this.overshoot, this.period), LeanTween.easeInElastic(this.from.z, this.to.z, this.ratioPassed, this.overshoot, this.period));
 	}
 
-	// Token: 0x0600021D RID: 541 RVA: 0x00064EDC File Offset: 0x000630DC
+	// Token: 0x06000217 RID: 535 RVA: 0x0000C644 File Offset: 0x0000A844
 	private Vector3 easeOutElastic()
 	{
 		return new Vector3(LeanTween.easeOutElastic(this.from.x, this.to.x, this.ratioPassed, this.overshoot, this.period), LeanTween.easeOutElastic(this.from.y, this.to.y, this.ratioPassed, this.overshoot, this.period), LeanTween.easeOutElastic(this.from.z, this.to.z, this.ratioPassed, this.overshoot, this.period));
 	}
 
-	// Token: 0x0600021E RID: 542 RVA: 0x00064F78 File Offset: 0x00063178
+	// Token: 0x06000218 RID: 536 RVA: 0x0000C6E0 File Offset: 0x0000A8E0
 	private Vector3 easeInOutElastic()
 	{
 		return new Vector3(LeanTween.easeInOutElastic(this.from.x, this.to.x, this.ratioPassed, this.overshoot, this.period), LeanTween.easeInOutElastic(this.from.y, this.to.y, this.ratioPassed, this.overshoot, this.period), LeanTween.easeInOutElastic(this.from.z, this.to.z, this.ratioPassed, this.overshoot, this.period));
 	}
 
-	// Token: 0x0600021F RID: 543 RVA: 0x00006165 File Offset: 0x00004365
+	// Token: 0x06000219 RID: 537 RVA: 0x0000C779 File Offset: 0x0000A979
 	public LTDescr setOvershoot(float overshoot)
 	{
 		this.overshoot = overshoot;
 		return this;
 	}
 
-	// Token: 0x06000220 RID: 544 RVA: 0x0000616F File Offset: 0x0000436F
+	// Token: 0x0600021A RID: 538 RVA: 0x0000C783 File Offset: 0x0000A983
 	public LTDescr setPeriod(float period)
 	{
 		this.period = period;
 		return this;
 	}
 
-	// Token: 0x06000221 RID: 545 RVA: 0x00006179 File Offset: 0x00004379
+	// Token: 0x0600021B RID: 539 RVA: 0x0000C78D File Offset: 0x0000A98D
 	public LTDescr setScale(float scale)
 	{
 		this.scale = scale;
 		return this;
 	}
 
-	// Token: 0x06000222 RID: 546 RVA: 0x00006183 File Offset: 0x00004383
+	// Token: 0x0600021C RID: 540 RVA: 0x0000C797 File Offset: 0x0000A997
 	public LTDescr setEase(AnimationCurve easeCurve)
 	{
 		this._optional.animationCurve = easeCurve;
@@ -2324,7 +2324,7 @@ public class LTDescr
 		return this;
 	}
 
-	// Token: 0x06000223 RID: 547 RVA: 0x000061AC File Offset: 0x000043AC
+	// Token: 0x0600021D RID: 541 RVA: 0x0000C7C0 File Offset: 0x0000A9C0
 	public LTDescr setTo(Vector3 to)
 	{
 		if (this.hasInitiliazed)
@@ -2339,14 +2339,14 @@ public class LTDescr
 		return this;
 	}
 
-	// Token: 0x06000224 RID: 548 RVA: 0x000061D9 File Offset: 0x000043D9
+	// Token: 0x0600021E RID: 542 RVA: 0x0000C7ED File Offset: 0x0000A9ED
 	public LTDescr setTo(Transform to)
 	{
 		this._optional.toTrans = to;
 		return this;
 	}
 
-	// Token: 0x06000225 RID: 549 RVA: 0x00065014 File Offset: 0x00063214
+	// Token: 0x0600021F RID: 543 RVA: 0x0000C7FC File Offset: 0x0000A9FC
 	public LTDescr setFrom(Vector3 from)
 	{
 		if (this.trans)
@@ -2359,27 +2359,27 @@ public class LTDescr
 		return this;
 	}
 
-	// Token: 0x06000226 RID: 550 RVA: 0x000061E8 File Offset: 0x000043E8
+	// Token: 0x06000220 RID: 544 RVA: 0x0000C851 File Offset: 0x0000AA51
 	public LTDescr setFrom(float from)
 	{
 		return this.setFrom(new Vector3(from, 0f, 0f));
 	}
 
-	// Token: 0x06000227 RID: 551 RVA: 0x00006200 File Offset: 0x00004400
+	// Token: 0x06000221 RID: 545 RVA: 0x0000C869 File Offset: 0x0000AA69
 	public LTDescr setDiff(Vector3 diff)
 	{
 		this.diff = diff;
 		return this;
 	}
 
-	// Token: 0x06000228 RID: 552 RVA: 0x0000620A File Offset: 0x0000440A
+	// Token: 0x06000222 RID: 546 RVA: 0x0000C873 File Offset: 0x0000AA73
 	public LTDescr setHasInitialized(bool has)
 	{
 		this.hasInitiliazed = has;
 		return this;
 	}
 
-	// Token: 0x06000229 RID: 553 RVA: 0x00006214 File Offset: 0x00004414
+	// Token: 0x06000223 RID: 547 RVA: 0x0000C87D File Offset: 0x0000AA7D
 	public LTDescr setId(uint id, uint global_counter)
 	{
 		this._id = id;
@@ -2387,14 +2387,14 @@ public class LTDescr
 		return this;
 	}
 
-	// Token: 0x0600022A RID: 554 RVA: 0x00006225 File Offset: 0x00004425
+	// Token: 0x06000224 RID: 548 RVA: 0x0000C88E File Offset: 0x0000AA8E
 	public LTDescr setPassed(float passed)
 	{
 		this.passed = passed;
 		return this;
 	}
 
-	// Token: 0x0600022B RID: 555 RVA: 0x0006506C File Offset: 0x0006326C
+	// Token: 0x06000225 RID: 549 RVA: 0x0000C898 File Offset: 0x0000AA98
 	public LTDescr setTime(float time)
 	{
 		float num = this.passed / this.time;
@@ -2403,7 +2403,7 @@ public class LTDescr
 		return this;
 	}
 
-	// Token: 0x0600022C RID: 556 RVA: 0x0000622F File Offset: 0x0000442F
+	// Token: 0x06000226 RID: 550 RVA: 0x0000C8C4 File Offset: 0x0000AAC4
 	public LTDescr setSpeed(float speed)
 	{
 		this.speed = speed;
@@ -2414,7 +2414,7 @@ public class LTDescr
 		return this;
 	}
 
-	// Token: 0x0600022D RID: 557 RVA: 0x00065098 File Offset: 0x00063298
+	// Token: 0x06000227 RID: 551 RVA: 0x0000C8DC File Offset: 0x0000AADC
 	public LTDescr setRepeat(int repeat)
 	{
 		this.loopCount = repeat;
@@ -2429,14 +2429,14 @@ public class LTDescr
 		return this;
 	}
 
-	// Token: 0x0600022E RID: 558 RVA: 0x00006247 File Offset: 0x00004447
+	// Token: 0x06000228 RID: 552 RVA: 0x0000C931 File Offset: 0x0000AB31
 	public LTDescr setLoopType(LeanTweenType loopType)
 	{
 		this.loopType = loopType;
 		return this;
 	}
 
-	// Token: 0x0600022F RID: 559 RVA: 0x00006251 File Offset: 0x00004451
+	// Token: 0x06000229 RID: 553 RVA: 0x0000C93B File Offset: 0x0000AB3B
 	public LTDescr setUseEstimatedTime(bool useEstimatedTime)
 	{
 		this.useEstimatedTime = useEstimatedTime;
@@ -2444,7 +2444,7 @@ public class LTDescr
 		return this;
 	}
 
-	// Token: 0x06000230 RID: 560 RVA: 0x00006251 File Offset: 0x00004451
+	// Token: 0x0600022A RID: 554 RVA: 0x0000C93B File Offset: 0x0000AB3B
 	public LTDescr setIgnoreTimeScale(bool useUnScaledTime)
 	{
 		this.useEstimatedTime = useUnScaledTime;
@@ -2452,7 +2452,7 @@ public class LTDescr
 		return this;
 	}
 
-	// Token: 0x06000231 RID: 561 RVA: 0x00006262 File Offset: 0x00004462
+	// Token: 0x0600022B RID: 555 RVA: 0x0000C94C File Offset: 0x0000AB4C
 	public LTDescr setUseFrames(bool useFrames)
 	{
 		this.useFrames = useFrames;
@@ -2460,7 +2460,7 @@ public class LTDescr
 		return this;
 	}
 
-	// Token: 0x06000232 RID: 562 RVA: 0x00006273 File Offset: 0x00004473
+	// Token: 0x0600022C RID: 556 RVA: 0x0000C95D File Offset: 0x0000AB5D
 	public LTDescr setUseManualTime(bool useManualTime)
 	{
 		this.useManualTime = useManualTime;
@@ -2468,7 +2468,7 @@ public class LTDescr
 		return this;
 	}
 
-	// Token: 0x06000233 RID: 563 RVA: 0x00006284 File Offset: 0x00004484
+	// Token: 0x0600022D RID: 557 RVA: 0x0000C96E File Offset: 0x0000AB6E
 	public LTDescr setLoopCount(int loopCount)
 	{
 		this.loopType = LeanTweenType.clamp;
@@ -2476,14 +2476,14 @@ public class LTDescr
 		return this;
 	}
 
-	// Token: 0x06000234 RID: 564 RVA: 0x00006296 File Offset: 0x00004496
+	// Token: 0x0600022E RID: 558 RVA: 0x0000C980 File Offset: 0x0000AB80
 	public LTDescr setLoopOnce()
 	{
 		this.loopType = LeanTweenType.once;
 		return this;
 	}
 
-	// Token: 0x06000235 RID: 565 RVA: 0x000062A1 File Offset: 0x000044A1
+	// Token: 0x0600022F RID: 559 RVA: 0x0000C98B File Offset: 0x0000AB8B
 	public LTDescr setLoopClamp()
 	{
 		this.loopType = LeanTweenType.clamp;
@@ -2494,14 +2494,14 @@ public class LTDescr
 		return this;
 	}
 
-	// Token: 0x06000236 RID: 566 RVA: 0x000062BB File Offset: 0x000044BB
+	// Token: 0x06000230 RID: 560 RVA: 0x0000C9A5 File Offset: 0x0000ABA5
 	public LTDescr setLoopClamp(int loops)
 	{
 		this.loopCount = loops;
 		return this;
 	}
 
-	// Token: 0x06000237 RID: 567 RVA: 0x000062C5 File Offset: 0x000044C5
+	// Token: 0x06000231 RID: 561 RVA: 0x0000C9AF File Offset: 0x0000ABAF
 	public LTDescr setLoopPingPong()
 	{
 		this.loopType = LeanTweenType.pingPong;
@@ -2512,7 +2512,7 @@ public class LTDescr
 		return this;
 	}
 
-	// Token: 0x06000238 RID: 568 RVA: 0x000062DF File Offset: 0x000044DF
+	// Token: 0x06000232 RID: 562 RVA: 0x0000C9C9 File Offset: 0x0000ABC9
 	public LTDescr setLoopPingPong(int loops)
 	{
 		this.loopType = LeanTweenType.pingPong;
@@ -2520,7 +2520,7 @@ public class LTDescr
 		return this;
 	}
 
-	// Token: 0x06000239 RID: 569 RVA: 0x000062FA File Offset: 0x000044FA
+	// Token: 0x06000233 RID: 563 RVA: 0x0000C9E4 File Offset: 0x0000ABE4
 	public LTDescr setOnComplete(Action onComplete)
 	{
 		this._optional.onComplete = onComplete;
@@ -2528,7 +2528,7 @@ public class LTDescr
 		return this;
 	}
 
-	// Token: 0x0600023A RID: 570 RVA: 0x00006310 File Offset: 0x00004510
+	// Token: 0x06000234 RID: 564 RVA: 0x0000C9FA File Offset: 0x0000ABFA
 	public LTDescr setOnComplete(Action<object> onComplete)
 	{
 		this._optional.onCompleteObject = onComplete;
@@ -2536,7 +2536,7 @@ public class LTDescr
 		return this;
 	}
 
-	// Token: 0x0600023B RID: 571 RVA: 0x00006326 File Offset: 0x00004526
+	// Token: 0x06000235 RID: 565 RVA: 0x0000CA10 File Offset: 0x0000AC10
 	public LTDescr setOnComplete(Action<object> onComplete, object onCompleteParam)
 	{
 		this._optional.onCompleteObject = onComplete;
@@ -2548,7 +2548,7 @@ public class LTDescr
 		return this;
 	}
 
-	// Token: 0x0600023C RID: 572 RVA: 0x0000634B File Offset: 0x0000454B
+	// Token: 0x06000236 RID: 566 RVA: 0x0000CA35 File Offset: 0x0000AC35
 	public LTDescr setOnCompleteParam(object onCompleteParam)
 	{
 		this._optional.onCompleteParam = onCompleteParam;
@@ -2556,7 +2556,7 @@ public class LTDescr
 		return this;
 	}
 
-	// Token: 0x0600023D RID: 573 RVA: 0x00006361 File Offset: 0x00004561
+	// Token: 0x06000237 RID: 567 RVA: 0x0000CA4B File Offset: 0x0000AC4B
 	public LTDescr setOnUpdate(Action<float> onUpdate)
 	{
 		this._optional.onUpdateFloat = onUpdate;
@@ -2564,7 +2564,7 @@ public class LTDescr
 		return this;
 	}
 
-	// Token: 0x0600023E RID: 574 RVA: 0x00006377 File Offset: 0x00004577
+	// Token: 0x06000238 RID: 568 RVA: 0x0000CA61 File Offset: 0x0000AC61
 	public LTDescr setOnUpdateRatio(Action<float, float> onUpdate)
 	{
 		this._optional.onUpdateFloatRatio = onUpdate;
@@ -2572,7 +2572,7 @@ public class LTDescr
 		return this;
 	}
 
-	// Token: 0x0600023F RID: 575 RVA: 0x0000638D File Offset: 0x0000458D
+	// Token: 0x06000239 RID: 569 RVA: 0x0000CA77 File Offset: 0x0000AC77
 	public LTDescr setOnUpdateObject(Action<float, object> onUpdate)
 	{
 		this._optional.onUpdateFloatObject = onUpdate;
@@ -2580,7 +2580,7 @@ public class LTDescr
 		return this;
 	}
 
-	// Token: 0x06000240 RID: 576 RVA: 0x000063A3 File Offset: 0x000045A3
+	// Token: 0x0600023A RID: 570 RVA: 0x0000CA8D File Offset: 0x0000AC8D
 	public LTDescr setOnUpdateVector2(Action<Vector2> onUpdate)
 	{
 		this._optional.onUpdateVector2 = onUpdate;
@@ -2588,7 +2588,7 @@ public class LTDescr
 		return this;
 	}
 
-	// Token: 0x06000241 RID: 577 RVA: 0x000063B9 File Offset: 0x000045B9
+	// Token: 0x0600023B RID: 571 RVA: 0x0000CAA3 File Offset: 0x0000ACA3
 	public LTDescr setOnUpdateVector3(Action<Vector3> onUpdate)
 	{
 		this._optional.onUpdateVector3 = onUpdate;
@@ -2596,7 +2596,7 @@ public class LTDescr
 		return this;
 	}
 
-	// Token: 0x06000242 RID: 578 RVA: 0x000063CF File Offset: 0x000045CF
+	// Token: 0x0600023C RID: 572 RVA: 0x0000CAB9 File Offset: 0x0000ACB9
 	public LTDescr setOnUpdateColor(Action<Color> onUpdate)
 	{
 		this._optional.onUpdateColor = onUpdate;
@@ -2604,7 +2604,7 @@ public class LTDescr
 		return this;
 	}
 
-	// Token: 0x06000243 RID: 579 RVA: 0x000063E5 File Offset: 0x000045E5
+	// Token: 0x0600023D RID: 573 RVA: 0x0000CACF File Offset: 0x0000ACCF
 	public LTDescr setOnUpdateColor(Action<Color, object> onUpdate)
 	{
 		this._optional.onUpdateColorObject = onUpdate;
@@ -2612,7 +2612,7 @@ public class LTDescr
 		return this;
 	}
 
-	// Token: 0x06000244 RID: 580 RVA: 0x000063CF File Offset: 0x000045CF
+	// Token: 0x0600023E RID: 574 RVA: 0x0000CAB9 File Offset: 0x0000ACB9
 	public LTDescr setOnUpdate(Action<Color> onUpdate)
 	{
 		this._optional.onUpdateColor = onUpdate;
@@ -2620,7 +2620,7 @@ public class LTDescr
 		return this;
 	}
 
-	// Token: 0x06000245 RID: 581 RVA: 0x000063E5 File Offset: 0x000045E5
+	// Token: 0x0600023F RID: 575 RVA: 0x0000CACF File Offset: 0x0000ACCF
 	public LTDescr setOnUpdate(Action<Color, object> onUpdate)
 	{
 		this._optional.onUpdateColorObject = onUpdate;
@@ -2628,7 +2628,7 @@ public class LTDescr
 		return this;
 	}
 
-	// Token: 0x06000246 RID: 582 RVA: 0x000063FB File Offset: 0x000045FB
+	// Token: 0x06000240 RID: 576 RVA: 0x0000CAE5 File Offset: 0x0000ACE5
 	public LTDescr setOnUpdate(Action<float, object> onUpdate, object onUpdateParam = null)
 	{
 		this._optional.onUpdateFloatObject = onUpdate;
@@ -2640,7 +2640,7 @@ public class LTDescr
 		return this;
 	}
 
-	// Token: 0x06000247 RID: 583 RVA: 0x00006420 File Offset: 0x00004620
+	// Token: 0x06000241 RID: 577 RVA: 0x0000CB0A File Offset: 0x0000AD0A
 	public LTDescr setOnUpdate(Action<Vector3, object> onUpdate, object onUpdateParam = null)
 	{
 		this._optional.onUpdateVector3Object = onUpdate;
@@ -2652,7 +2652,7 @@ public class LTDescr
 		return this;
 	}
 
-	// Token: 0x06000248 RID: 584 RVA: 0x00006445 File Offset: 0x00004645
+	// Token: 0x06000242 RID: 578 RVA: 0x0000CB2F File Offset: 0x0000AD2F
 	public LTDescr setOnUpdate(Action<Vector2> onUpdate, object onUpdateParam = null)
 	{
 		this._optional.onUpdateVector2 = onUpdate;
@@ -2664,7 +2664,7 @@ public class LTDescr
 		return this;
 	}
 
-	// Token: 0x06000249 RID: 585 RVA: 0x0000646A File Offset: 0x0000466A
+	// Token: 0x06000243 RID: 579 RVA: 0x0000CB54 File Offset: 0x0000AD54
 	public LTDescr setOnUpdate(Action<Vector3> onUpdate, object onUpdateParam = null)
 	{
 		this._optional.onUpdateVector3 = onUpdate;
@@ -2676,14 +2676,14 @@ public class LTDescr
 		return this;
 	}
 
-	// Token: 0x0600024A RID: 586 RVA: 0x0000648F File Offset: 0x0000468F
+	// Token: 0x06000244 RID: 580 RVA: 0x0000CB79 File Offset: 0x0000AD79
 	public LTDescr setOnUpdateParam(object onUpdateParam)
 	{
 		this._optional.onUpdateParam = onUpdateParam;
 		return this;
 	}
 
-	// Token: 0x0600024B RID: 587 RVA: 0x000650F0 File Offset: 0x000632F0
+	// Token: 0x06000245 RID: 581 RVA: 0x0000CB88 File Offset: 0x0000AD88
 	public LTDescr setOrientToPath(bool doesOrient)
 	{
 		if (this.type == TweenAction.MOVE_CURVED || this.type == TweenAction.MOVE_CURVED_LOCAL)
@@ -2701,7 +2701,7 @@ public class LTDescr
 		return this;
 	}
 
-	// Token: 0x0600024C RID: 588 RVA: 0x00065154 File Offset: 0x00063354
+	// Token: 0x06000246 RID: 582 RVA: 0x0000CBEC File Offset: 0x0000ADEC
 	public LTDescr setOrientToPath2d(bool doesOrient2d)
 	{
 		this.setOrientToPath(doesOrient2d);
@@ -2716,91 +2716,91 @@ public class LTDescr
 		return this;
 	}
 
-	// Token: 0x0600024D RID: 589 RVA: 0x0000649E File Offset: 0x0000469E
+	// Token: 0x06000247 RID: 583 RVA: 0x0000CC38 File Offset: 0x0000AE38
 	public LTDescr setRect(LTRect rect)
 	{
 		this._optional.ltRect = rect;
 		return this;
 	}
 
-	// Token: 0x0600024E RID: 590 RVA: 0x000064AD File Offset: 0x000046AD
+	// Token: 0x06000248 RID: 584 RVA: 0x0000CC47 File Offset: 0x0000AE47
 	public LTDescr setRect(Rect rect)
 	{
 		this._optional.ltRect = new LTRect(rect);
 		return this;
 	}
 
-	// Token: 0x0600024F RID: 591 RVA: 0x000064C1 File Offset: 0x000046C1
+	// Token: 0x06000249 RID: 585 RVA: 0x0000CC5B File Offset: 0x0000AE5B
 	public LTDescr setPath(LTBezierPath path)
 	{
 		this._optional.path = path;
 		return this;
 	}
 
-	// Token: 0x06000250 RID: 592 RVA: 0x000064D0 File Offset: 0x000046D0
+	// Token: 0x0600024A RID: 586 RVA: 0x0000CC6A File Offset: 0x0000AE6A
 	public LTDescr setPoint(Vector3 point)
 	{
 		this._optional.point = point;
 		return this;
 	}
 
-	// Token: 0x06000251 RID: 593 RVA: 0x000064DF File Offset: 0x000046DF
+	// Token: 0x0600024B RID: 587 RVA: 0x0000CC79 File Offset: 0x0000AE79
 	public LTDescr setDestroyOnComplete(bool doesDestroy)
 	{
 		this.destroyOnComplete = doesDestroy;
 		return this;
 	}
 
-	// Token: 0x06000252 RID: 594 RVA: 0x000064E9 File Offset: 0x000046E9
+	// Token: 0x0600024C RID: 588 RVA: 0x0000CC83 File Offset: 0x0000AE83
 	public LTDescr setAudio(object audio)
 	{
 		this._optional.onCompleteParam = audio;
 		return this;
 	}
 
-	// Token: 0x06000253 RID: 595 RVA: 0x000064F8 File Offset: 0x000046F8
+	// Token: 0x0600024D RID: 589 RVA: 0x0000CC92 File Offset: 0x0000AE92
 	public LTDescr setOnCompleteOnRepeat(bool isOn)
 	{
 		this.onCompleteOnRepeat = isOn;
 		return this;
 	}
 
-	// Token: 0x06000254 RID: 596 RVA: 0x00006502 File Offset: 0x00004702
+	// Token: 0x0600024E RID: 590 RVA: 0x0000CC9C File Offset: 0x0000AE9C
 	public LTDescr setOnCompleteOnStart(bool isOn)
 	{
 		this.onCompleteOnStart = isOn;
 		return this;
 	}
 
-	// Token: 0x06000255 RID: 597 RVA: 0x0000650C File Offset: 0x0000470C
+	// Token: 0x0600024F RID: 591 RVA: 0x0000CCA6 File Offset: 0x0000AEA6
 	public LTDescr setRect(RectTransform rect)
 	{
 		this.rectTransform = rect;
 		return this;
 	}
 
-	// Token: 0x06000256 RID: 598 RVA: 0x00006516 File Offset: 0x00004716
+	// Token: 0x06000250 RID: 592 RVA: 0x0000CCB0 File Offset: 0x0000AEB0
 	public LTDescr setSprites(Sprite[] sprites)
 	{
 		this.sprites = sprites;
 		return this;
 	}
 
-	// Token: 0x06000257 RID: 599 RVA: 0x00006520 File Offset: 0x00004720
+	// Token: 0x06000251 RID: 593 RVA: 0x0000CCBA File Offset: 0x0000AEBA
 	public LTDescr setFrameRate(float frameRate)
 	{
 		this.time = (float)this.sprites.Length / frameRate;
 		return this;
 	}
 
-	// Token: 0x06000258 RID: 600 RVA: 0x00006534 File Offset: 0x00004734
+	// Token: 0x06000252 RID: 594 RVA: 0x0000CCCE File Offset: 0x0000AECE
 	public LTDescr setOnStart(Action onStart)
 	{
 		this._optional.onStart = onStart;
 		return this;
 	}
 
-	// Token: 0x06000259 RID: 601 RVA: 0x000651A0 File Offset: 0x000633A0
+	// Token: 0x06000253 RID: 595 RVA: 0x0000CCE0 File Offset: 0x0000AEE0
 	public LTDescr setDirection(float direction)
 	{
 		if (this.direction != -1f && this.direction != 1f)
@@ -2826,156 +2826,156 @@ public class LTDescr
 		return this;
 	}
 
-	// Token: 0x0600025A RID: 602 RVA: 0x00006543 File Offset: 0x00004743
+	// Token: 0x06000254 RID: 596 RVA: 0x0000CDA4 File Offset: 0x0000AFA4
 	public LTDescr setRecursive(bool useRecursion)
 	{
 		this.useRecursion = useRecursion;
 		return this;
 	}
 
-	// Token: 0x04000134 RID: 308
+	// Token: 0x04000122 RID: 290
 	public bool toggle;
 
-	// Token: 0x04000135 RID: 309
+	// Token: 0x04000123 RID: 291
 	public bool useEstimatedTime;
 
-	// Token: 0x04000136 RID: 310
+	// Token: 0x04000124 RID: 292
 	public bool useFrames;
 
-	// Token: 0x04000137 RID: 311
+	// Token: 0x04000125 RID: 293
 	public bool useManualTime;
 
-	// Token: 0x04000138 RID: 312
+	// Token: 0x04000126 RID: 294
 	public bool usesNormalDt;
 
-	// Token: 0x04000139 RID: 313
+	// Token: 0x04000127 RID: 295
 	public bool hasInitiliazed;
 
-	// Token: 0x0400013A RID: 314
+	// Token: 0x04000128 RID: 296
 	public bool hasExtraOnCompletes;
 
-	// Token: 0x0400013B RID: 315
+	// Token: 0x04000129 RID: 297
 	public bool hasPhysics;
 
-	// Token: 0x0400013C RID: 316
+	// Token: 0x0400012A RID: 298
 	public bool onCompleteOnRepeat;
 
-	// Token: 0x0400013D RID: 317
+	// Token: 0x0400012B RID: 299
 	public bool onCompleteOnStart;
 
-	// Token: 0x0400013E RID: 318
+	// Token: 0x0400012C RID: 300
 	public bool useRecursion;
 
-	// Token: 0x0400013F RID: 319
+	// Token: 0x0400012D RID: 301
 	public float ratioPassed;
 
-	// Token: 0x04000140 RID: 320
+	// Token: 0x0400012E RID: 302
 	public float passed;
 
-	// Token: 0x04000141 RID: 321
+	// Token: 0x0400012F RID: 303
 	public float delay;
 
-	// Token: 0x04000142 RID: 322
+	// Token: 0x04000130 RID: 304
 	public float time;
 
-	// Token: 0x04000143 RID: 323
+	// Token: 0x04000131 RID: 305
 	public float speed;
 
-	// Token: 0x04000144 RID: 324
+	// Token: 0x04000132 RID: 306
 	public float lastVal;
 
-	// Token: 0x04000145 RID: 325
+	// Token: 0x04000133 RID: 307
 	private uint _id;
 
-	// Token: 0x04000146 RID: 326
+	// Token: 0x04000134 RID: 308
 	public int loopCount;
 
-	// Token: 0x04000147 RID: 327
+	// Token: 0x04000135 RID: 309
 	public uint counter = uint.MaxValue;
 
-	// Token: 0x04000148 RID: 328
+	// Token: 0x04000136 RID: 310
 	public float direction;
 
-	// Token: 0x04000149 RID: 329
+	// Token: 0x04000137 RID: 311
 	public float directionLast;
 
-	// Token: 0x0400014A RID: 330
+	// Token: 0x04000138 RID: 312
 	public float overshoot;
 
-	// Token: 0x0400014B RID: 331
+	// Token: 0x04000139 RID: 313
 	public float period;
 
-	// Token: 0x0400014C RID: 332
+	// Token: 0x0400013A RID: 314
 	public float scale;
 
-	// Token: 0x0400014D RID: 333
+	// Token: 0x0400013B RID: 315
 	public bool destroyOnComplete;
 
-	// Token: 0x0400014E RID: 334
+	// Token: 0x0400013C RID: 316
 	public Transform trans;
 
-	// Token: 0x0400014F RID: 335
+	// Token: 0x0400013D RID: 317
 	internal Vector3 fromInternal;
 
-	// Token: 0x04000150 RID: 336
+	// Token: 0x0400013E RID: 318
 	internal Vector3 toInternal;
 
-	// Token: 0x04000151 RID: 337
+	// Token: 0x0400013F RID: 319
 	internal Vector3 diff;
 
-	// Token: 0x04000152 RID: 338
+	// Token: 0x04000140 RID: 320
 	internal Vector3 diffDiv2;
 
-	// Token: 0x04000153 RID: 339
+	// Token: 0x04000141 RID: 321
 	public TweenAction type;
 
-	// Token: 0x04000154 RID: 340
+	// Token: 0x04000142 RID: 322
 	private LeanTweenType easeType;
 
-	// Token: 0x04000155 RID: 341
+	// Token: 0x04000143 RID: 323
 	public LeanTweenType loopType;
 
-	// Token: 0x04000156 RID: 342
+	// Token: 0x04000144 RID: 324
 	public bool hasUpdateCallback;
 
-	// Token: 0x04000157 RID: 343
+	// Token: 0x04000145 RID: 325
 	public LTDescr.EaseTypeDelegate easeMethod;
 
-	// Token: 0x0400015A RID: 346
+	// Token: 0x04000148 RID: 328
 	public SpriteRenderer spriteRen;
 
-	// Token: 0x0400015B RID: 347
+	// Token: 0x04000149 RID: 329
 	public RectTransform rectTransform;
 
-	// Token: 0x0400015C RID: 348
+	// Token: 0x0400014A RID: 330
 	public Text uiText;
 
-	// Token: 0x0400015D RID: 349
+	// Token: 0x0400014B RID: 331
 	public Image uiImage;
 
-	// Token: 0x0400015E RID: 350
+	// Token: 0x0400014C RID: 332
 	public RawImage rawImage;
 
-	// Token: 0x0400015F RID: 351
+	// Token: 0x0400014D RID: 333
 	public Sprite[] sprites;
 
-	// Token: 0x04000160 RID: 352
+	// Token: 0x0400014E RID: 334
 	public LTDescrOptional _optional = new LTDescrOptional();
 
-	// Token: 0x04000161 RID: 353
+	// Token: 0x0400014F RID: 335
 	public static float val;
 
-	// Token: 0x04000162 RID: 354
+	// Token: 0x04000150 RID: 336
 	public static float dt;
 
-	// Token: 0x04000163 RID: 355
+	// Token: 0x04000151 RID: 337
 	public static Vector3 newVect;
 
-	// Token: 0x02000027 RID: 39
-	// (Invoke) Token: 0x060002B6 RID: 694
+	// Token: 0x020011C9 RID: 4553
+	// (Invoke) Token: 0x060077BD RID: 30653
 	public delegate Vector3 EaseTypeDelegate();
 
-	// Token: 0x02000028 RID: 40
-	// (Invoke) Token: 0x060002BA RID: 698
+	// Token: 0x020011CA RID: 4554
+	// (Invoke) Token: 0x060077C1 RID: 30657
 	public delegate void ActionMethodDelegate();
 }

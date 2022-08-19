@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using System.Reflection;
 using UnityEngine;
 
-// Token: 0x0200003E RID: 62
+// Token: 0x0200002B RID: 43
 public static class JSONTemplates
 {
-	// Token: 0x06000410 RID: 1040 RVA: 0x0006C0CC File Offset: 0x0006A2CC
+	// Token: 0x060003C8 RID: 968 RVA: 0x0001469C File Offset: 0x0001289C
 	public static JSONObject TOJSON(object obj)
 	{
 		if (JSONTemplates.touched.Add(obj))
@@ -102,7 +102,7 @@ public static class JSONTemplates
 		return JSONObject.nullJO;
 	}
 
-	// Token: 0x06000411 RID: 1041 RVA: 0x0006C39C File Offset: 0x0006A59C
+	// Token: 0x060003C9 RID: 969 RVA: 0x0001496C File Offset: 0x00012B6C
 	public static Vector2 ToVector2(JSONObject obj)
 	{
 		float num = obj["x"] ? obj["x"].f : 0f;
@@ -110,7 +110,7 @@ public static class JSONTemplates
 		return new Vector2(num, num2);
 	}
 
-	// Token: 0x06000412 RID: 1042 RVA: 0x0006C404 File Offset: 0x0006A604
+	// Token: 0x060003CA RID: 970 RVA: 0x000149D4 File Offset: 0x00012BD4
 	public static JSONObject FromVector2(Vector2 v)
 	{
 		JSONObject obj = JSONObject.obj;
@@ -125,7 +125,7 @@ public static class JSONTemplates
 		return obj;
 	}
 
-	// Token: 0x06000413 RID: 1043 RVA: 0x0006C454 File Offset: 0x0006A654
+	// Token: 0x060003CB RID: 971 RVA: 0x00014A24 File Offset: 0x00012C24
 	public static JSONObject FromVector3(Vector3 v)
 	{
 		JSONObject obj = JSONObject.obj;
@@ -144,7 +144,7 @@ public static class JSONTemplates
 		return obj;
 	}
 
-	// Token: 0x06000414 RID: 1044 RVA: 0x0006C4C4 File Offset: 0x0006A6C4
+	// Token: 0x060003CC RID: 972 RVA: 0x00014A94 File Offset: 0x00012C94
 	public static Vector3 ToVector3(JSONObject obj)
 	{
 		float num = obj["x"] ? obj["x"].f : 0f;
@@ -153,7 +153,7 @@ public static class JSONTemplates
 		return new Vector3(num, num2, num3);
 	}
 
-	// Token: 0x06000415 RID: 1045 RVA: 0x0006C558 File Offset: 0x0006A758
+	// Token: 0x060003CD RID: 973 RVA: 0x00014B28 File Offset: 0x00012D28
 	public static JSONObject FromVector4(Vector4 v)
 	{
 		JSONObject obj = JSONObject.obj;
@@ -176,7 +176,7 @@ public static class JSONTemplates
 		return obj;
 	}
 
-	// Token: 0x06000416 RID: 1046 RVA: 0x0006C5E4 File Offset: 0x0006A7E4
+	// Token: 0x060003CE RID: 974 RVA: 0x00014BB4 File Offset: 0x00012DB4
 	public static Vector4 ToVector4(JSONObject obj)
 	{
 		float num = obj["x"] ? obj["x"].f : 0f;
@@ -186,7 +186,7 @@ public static class JSONTemplates
 		return new Vector4(num, num2, num3, num4);
 	}
 
-	// Token: 0x06000417 RID: 1047 RVA: 0x0006C6A0 File Offset: 0x0006A8A0
+	// Token: 0x060003CF RID: 975 RVA: 0x00014C70 File Offset: 0x00012E70
 	public static JSONObject FromMatrix4x4(Matrix4x4 m)
 	{
 		JSONObject obj = JSONObject.obj;
@@ -257,7 +257,7 @@ public static class JSONTemplates
 		return obj;
 	}
 
-	// Token: 0x06000418 RID: 1048 RVA: 0x0006C894 File Offset: 0x0006AA94
+	// Token: 0x060003D0 RID: 976 RVA: 0x00014E64 File Offset: 0x00013064
 	public static Matrix4x4 ToMatrix4x4(JSONObject obj)
 	{
 		Matrix4x4 result = default(Matrix4x4);
@@ -328,7 +328,7 @@ public static class JSONTemplates
 		return result;
 	}
 
-	// Token: 0x06000419 RID: 1049 RVA: 0x0006CB3C File Offset: 0x0006AD3C
+	// Token: 0x060003D1 RID: 977 RVA: 0x0001510C File Offset: 0x0001330C
 	public static JSONObject FromQuaternion(Quaternion q)
 	{
 		JSONObject obj = JSONObject.obj;
@@ -351,7 +351,7 @@ public static class JSONTemplates
 		return obj;
 	}
 
-	// Token: 0x0600041A RID: 1050 RVA: 0x0006CBC8 File Offset: 0x0006ADC8
+	// Token: 0x060003D2 RID: 978 RVA: 0x00015198 File Offset: 0x00013398
 	public static Quaternion ToQuaternion(JSONObject obj)
 	{
 		float num = obj["x"] ? obj["x"].f : 0f;
@@ -361,7 +361,7 @@ public static class JSONTemplates
 		return new Quaternion(num, num2, num3, num4);
 	}
 
-	// Token: 0x0600041B RID: 1051 RVA: 0x0006CC84 File Offset: 0x0006AE84
+	// Token: 0x060003D3 RID: 979 RVA: 0x00015254 File Offset: 0x00013454
 	public static JSONObject FromColor(Color c)
 	{
 		JSONObject obj = JSONObject.obj;
@@ -384,7 +384,7 @@ public static class JSONTemplates
 		return obj;
 	}
 
-	// Token: 0x0600041C RID: 1052 RVA: 0x0006CD10 File Offset: 0x0006AF10
+	// Token: 0x060003D4 RID: 980 RVA: 0x000152E0 File Offset: 0x000134E0
 	public static Color ToColor(JSONObject obj)
 	{
 		Color result = default(Color);
@@ -420,7 +420,7 @@ public static class JSONTemplates
 		return result;
 	}
 
-	// Token: 0x0600041D RID: 1053 RVA: 0x00007A92 File Offset: 0x00005C92
+	// Token: 0x060003D5 RID: 981 RVA: 0x000153A2 File Offset: 0x000135A2
 	public static JSONObject FromLayerMask(LayerMask l)
 	{
 		JSONObject obj = JSONObject.obj;
@@ -428,7 +428,7 @@ public static class JSONTemplates
 		return obj;
 	}
 
-	// Token: 0x0600041E RID: 1054 RVA: 0x0006CDD4 File Offset: 0x0006AFD4
+	// Token: 0x060003D6 RID: 982 RVA: 0x000153BC File Offset: 0x000135BC
 	public static LayerMask ToLayerMask(JSONObject obj)
 	{
 		LayerMask result = default(LayerMask);
@@ -436,7 +436,7 @@ public static class JSONTemplates
 		return result;
 	}
 
-	// Token: 0x0600041F RID: 1055 RVA: 0x0006CE04 File Offset: 0x0006B004
+	// Token: 0x060003D7 RID: 983 RVA: 0x000153EC File Offset: 0x000135EC
 	public static JSONObject FromRect(Rect r)
 	{
 		JSONObject obj = JSONObject.obj;
@@ -459,7 +459,7 @@ public static class JSONTemplates
 		return obj;
 	}
 
-	// Token: 0x06000420 RID: 1056 RVA: 0x0006CE98 File Offset: 0x0006B098
+	// Token: 0x060003D8 RID: 984 RVA: 0x00015480 File Offset: 0x00013680
 	public static Rect ToRect(JSONObject obj)
 	{
 		Rect result = default(Rect);
@@ -495,7 +495,7 @@ public static class JSONTemplates
 		return result;
 	}
 
-	// Token: 0x06000421 RID: 1057 RVA: 0x0006CF5C File Offset: 0x0006B15C
+	// Token: 0x060003D9 RID: 985 RVA: 0x00015544 File Offset: 0x00013744
 	public static JSONObject FromRectOffset(RectOffset r)
 	{
 		JSONObject obj = JSONObject.obj;
@@ -518,7 +518,7 @@ public static class JSONTemplates
 		return obj;
 	}
 
-	// Token: 0x06000422 RID: 1058 RVA: 0x0006CFD4 File Offset: 0x0006B1D4
+	// Token: 0x060003DA RID: 986 RVA: 0x000155BC File Offset: 0x000137BC
 	public static RectOffset ToRectOffset(JSONObject obj)
 	{
 		RectOffset rectOffset = new RectOffset();
@@ -554,7 +554,7 @@ public static class JSONTemplates
 		return rectOffset;
 	}
 
-	// Token: 0x06000423 RID: 1059 RVA: 0x0006D094 File Offset: 0x0006B294
+	// Token: 0x060003DB RID: 987 RVA: 0x0001567C File Offset: 0x0001387C
 	public static AnimationCurve ToAnimationCurve(JSONObject obj)
 	{
 		AnimationCurve animationCurve = new AnimationCurve();
@@ -577,7 +577,7 @@ public static class JSONTemplates
 		return animationCurve;
 	}
 
-	// Token: 0x06000424 RID: 1060 RVA: 0x0006D134 File Offset: 0x0006B334
+	// Token: 0x060003DC RID: 988 RVA: 0x0001571C File Offset: 0x0001391C
 	public static JSONObject FromAnimationCurve(AnimationCurve a)
 	{
 		JSONObject obj = JSONObject.obj;
@@ -595,7 +595,7 @@ public static class JSONTemplates
 		return obj;
 	}
 
-	// Token: 0x06000425 RID: 1061 RVA: 0x0006D1CC File Offset: 0x0006B3CC
+	// Token: 0x060003DD RID: 989 RVA: 0x000157B4 File Offset: 0x000139B4
 	public static Keyframe ToKeyframe(JSONObject obj)
 	{
 		Keyframe result;
@@ -615,7 +615,7 @@ public static class JSONTemplates
 		return result;
 	}
 
-	// Token: 0x06000426 RID: 1062 RVA: 0x0006D298 File Offset: 0x0006B498
+	// Token: 0x060003DE RID: 990 RVA: 0x00015880 File Offset: 0x00013A80
 	public static JSONObject FromKeyframe(Keyframe k)
 	{
 		JSONObject obj = JSONObject.obj;
@@ -642,6 +642,6 @@ public static class JSONTemplates
 		return obj;
 	}
 
-	// Token: 0x04000254 RID: 596
+	// Token: 0x0400020E RID: 526
 	private static readonly HashSet<object> touched = new HashSet<object>();
 }

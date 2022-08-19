@@ -3,10 +3,10 @@ using System.Collections.Generic;
 
 namespace JSONClass
 {
-	// Token: 0x02000BB4 RID: 2996
+	// Token: 0x0200081E RID: 2078
 	public class CreateAvatarJsonData : IJSONClass
 	{
-		// Token: 0x06004A38 RID: 19000 RVA: 0x001F6A28 File Offset: 0x001F4C28
+		// Token: 0x06003E8A RID: 16010 RVA: 0x001AB604 File Offset: 0x001A9804
 		public static void InitDataDict()
 		{
 			foreach (JSONObject jsonobject in jsonData.instance.CreateAvatarJsonData.list)
@@ -47,48 +47,48 @@ namespace JSONClass
 			}
 		}
 
-		// Token: 0x06004A39 RID: 19001 RVA: 0x000042DD File Offset: 0x000024DD
+		// Token: 0x06003E8B RID: 16011 RVA: 0x00004095 File Offset: 0x00002295
 		private static void OnInitFinish()
 		{
 		}
 
-		// Token: 0x04004565 RID: 17765
+		// Token: 0x040039DD RID: 14813
 		public static Dictionary<int, CreateAvatarJsonData> DataDict = new Dictionary<int, CreateAvatarJsonData>();
 
-		// Token: 0x04004566 RID: 17766
+		// Token: 0x040039DE RID: 14814
 		public static List<CreateAvatarJsonData> DataList = new List<CreateAvatarJsonData>();
 
-		// Token: 0x04004567 RID: 17767
+		// Token: 0x040039DF RID: 14815
 		public static Action OnInitFinishAction = new Action(CreateAvatarJsonData.OnInitFinish);
 
-		// Token: 0x04004568 RID: 17768
+		// Token: 0x040039E0 RID: 14816
 		public int id;
 
-		// Token: 0x04004569 RID: 17769
+		// Token: 0x040039E1 RID: 14817
 		public int fenZu;
 
-		// Token: 0x0400456A RID: 17770
+		// Token: 0x040039E2 RID: 14818
 		public int feiYong;
 
-		// Token: 0x0400456B RID: 17771
+		// Token: 0x040039E3 RID: 14819
 		public int fenLeiGuanLian;
 
-		// Token: 0x0400456C RID: 17772
+		// Token: 0x040039E4 RID: 14820
 		public int jiesuo;
 
-		// Token: 0x0400456D RID: 17773
+		// Token: 0x040039E5 RID: 14821
 		public string Title;
 
-		// Token: 0x0400456E RID: 17774
+		// Token: 0x040039E6 RID: 14822
 		public string fenLei;
 
-		// Token: 0x0400456F RID: 17775
+		// Token: 0x040039E7 RID: 14823
 		public string Desc;
 
-		// Token: 0x04004570 RID: 17776
+		// Token: 0x040039E8 RID: 14824
 		public string Info;
 
-		// Token: 0x04004571 RID: 17777
+		// Token: 0x040039E9 RID: 14825
 		public List<int> seid = new List<int>();
 	}
 }

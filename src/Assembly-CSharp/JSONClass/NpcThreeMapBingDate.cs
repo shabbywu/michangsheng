@@ -3,10 +3,10 @@ using System.Collections.Generic;
 
 namespace JSONClass
 {
-	// Token: 0x02000C40 RID: 3136
+	// Token: 0x020008B2 RID: 2226
 	public class NpcThreeMapBingDate : IJSONClass
 	{
-		// Token: 0x06004C69 RID: 19561 RVA: 0x00204928 File Offset: 0x00202B28
+		// Token: 0x060040DB RID: 16603 RVA: 0x001BBBE8 File Offset: 0x001B9DE8
 		public static void InitDataDict()
 		{
 			foreach (JSONObject jsonobject in jsonData.instance.NpcThreeMapBingDate.list)
@@ -56,75 +56,75 @@ namespace JSONClass
 			}
 		}
 
-		// Token: 0x06004C6A RID: 19562 RVA: 0x000042DD File Offset: 0x000024DD
+		// Token: 0x060040DC RID: 16604 RVA: 0x00004095 File Offset: 0x00002295
 		private static void OnInitFinish()
 		{
 		}
 
-		// Token: 0x04004AAC RID: 19116
+		// Token: 0x04003F58 RID: 16216
 		public static Dictionary<int, NpcThreeMapBingDate> DataDict = new Dictionary<int, NpcThreeMapBingDate>();
 
-		// Token: 0x04004AAD RID: 19117
+		// Token: 0x04003F59 RID: 16217
 		public static List<NpcThreeMapBingDate> DataList = new List<NpcThreeMapBingDate>();
 
-		// Token: 0x04004AAE RID: 19118
+		// Token: 0x04003F5A RID: 16218
 		public static Action OnInitFinishAction = new Action(NpcThreeMapBingDate.OnInitFinish);
 
-		// Token: 0x04004AAF RID: 19119
+		// Token: 0x04003F5B RID: 16219
 		public int id;
 
-		// Token: 0x04004AB0 RID: 19120
+		// Token: 0x04003F5C RID: 16220
 		public List<int> LianDan = new List<int>();
 
-		// Token: 0x04004AB1 RID: 19121
+		// Token: 0x04003F5D RID: 16221
 		public List<int> LianQi = new List<int>();
 
-		// Token: 0x04004AB2 RID: 19122
+		// Token: 0x04003F5E RID: 16222
 		public List<int> CaiJi = new List<int>();
 
-		// Token: 0x04004AB3 RID: 19123
+		// Token: 0x04003F5F RID: 16223
 		public List<int> CaiKuang = new List<int>();
 
-		// Token: 0x04004AB4 RID: 19124
+		// Token: 0x04003F60 RID: 16224
 		public List<int> MiJi = new List<int>();
 
-		// Token: 0x04004AB5 RID: 19125
+		// Token: 0x04003F61 RID: 16225
 		public List<int> FaBao = new List<int>();
 
-		// Token: 0x04004AB6 RID: 19126
+		// Token: 0x04003F62 RID: 16226
 		public List<int> GuangChang = new List<int>();
 
-		// Token: 0x04004AB7 RID: 19127
+		// Token: 0x04003F63 RID: 16227
 		public List<int> DaDian = new List<int>();
 
-		// Token: 0x04004AB8 RID: 19128
+		// Token: 0x04003F64 RID: 16228
 		public List<int> DongShiGuFangShi = new List<int>();
 
-		// Token: 0x04004AB9 RID: 19129
+		// Token: 0x04003F65 RID: 16229
 		public List<int> TianXingChengFangShi = new List<int>();
 
-		// Token: 0x04004ABA RID: 19130
+		// Token: 0x04003F66 RID: 16230
 		public List<int> HaiShangFangShi = new List<int>();
 
-		// Token: 0x04004ABB RID: 19131
+		// Token: 0x04003F67 RID: 16231
 		public List<int> DongShiGuPaiMai = new List<int>();
 
-		// Token: 0x04004ABC RID: 19132
+		// Token: 0x04003F68 RID: 16232
 		public List<int> TianJiGePaiMai = new List<int>();
 
-		// Token: 0x04004ABD RID: 19133
+		// Token: 0x04003F69 RID: 16233
 		public List<int> HaiShangPaiMai = new List<int>();
 
-		// Token: 0x04004ABE RID: 19134
+		// Token: 0x04003F6A RID: 16234
 		public List<int> NanYaChengPaiMai = new List<int>();
 
-		// Token: 0x04004ABF RID: 19135
+		// Token: 0x04003F6B RID: 16235
 		public List<int> YaoDian = new List<int>();
 
-		// Token: 0x04004AC0 RID: 19136
+		// Token: 0x04003F6C RID: 16236
 		public List<int> GangKou = new List<int>();
 
-		// Token: 0x04004AC1 RID: 19137
+		// Token: 0x04003F6D RID: 16237
 		public List<int> DongFu = new List<int>();
 	}
 }

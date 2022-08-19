@@ -3,11 +3,11 @@ using System.IO;
 
 namespace ICSharpCode.SharpZipLib.Tar
 {
-	// Token: 0x02000808 RID: 2056
+	// Token: 0x02000562 RID: 1378
 	public class TarBuffer
 	{
-		// Token: 0x17000523 RID: 1315
-		// (get) Token: 0x06003572 RID: 13682 RVA: 0x000270AE File Offset: 0x000252AE
+		// Token: 0x1700036C RID: 876
+		// (get) Token: 0x06002D04 RID: 11524 RVA: 0x0014D394 File Offset: 0x0014B594
 		public int RecordSize
 		{
 			get
@@ -16,15 +16,15 @@ namespace ICSharpCode.SharpZipLib.Tar
 			}
 		}
 
-		// Token: 0x06003573 RID: 13683 RVA: 0x000270AE File Offset: 0x000252AE
+		// Token: 0x06002D05 RID: 11525 RVA: 0x0014D394 File Offset: 0x0014B594
 		[Obsolete("Use RecordSize property instead")]
 		public int GetRecordSize()
 		{
 			return this.recordSize;
 		}
 
-		// Token: 0x17000524 RID: 1316
-		// (get) Token: 0x06003574 RID: 13684 RVA: 0x000270B6 File Offset: 0x000252B6
+		// Token: 0x1700036D RID: 877
+		// (get) Token: 0x06002D06 RID: 11526 RVA: 0x0014D39C File Offset: 0x0014B59C
 		public int BlockFactor
 		{
 			get
@@ -33,19 +33,19 @@ namespace ICSharpCode.SharpZipLib.Tar
 			}
 		}
 
-		// Token: 0x06003575 RID: 13685 RVA: 0x000270B6 File Offset: 0x000252B6
+		// Token: 0x06002D07 RID: 11527 RVA: 0x0014D39C File Offset: 0x0014B59C
 		[Obsolete("Use BlockFactor property instead")]
 		public int GetBlockFactor()
 		{
 			return this.blockFactor;
 		}
 
-		// Token: 0x06003576 RID: 13686 RVA: 0x000270BE File Offset: 0x000252BE
+		// Token: 0x06002D08 RID: 11528 RVA: 0x0014D3A4 File Offset: 0x0014B5A4
 		protected TarBuffer()
 		{
 		}
 
-		// Token: 0x06003577 RID: 13687 RVA: 0x000270E0 File Offset: 0x000252E0
+		// Token: 0x06002D09 RID: 11529 RVA: 0x0014D3C6 File Offset: 0x0014B5C6
 		public static TarBuffer CreateInputTarBuffer(Stream inputStream)
 		{
 			if (inputStream == null)
@@ -55,7 +55,7 @@ namespace ICSharpCode.SharpZipLib.Tar
 			return TarBuffer.CreateInputTarBuffer(inputStream, 20);
 		}
 
-		// Token: 0x06003578 RID: 13688 RVA: 0x000270F8 File Offset: 0x000252F8
+		// Token: 0x06002D0A RID: 11530 RVA: 0x0014D3DE File Offset: 0x0014B5DE
 		public static TarBuffer CreateInputTarBuffer(Stream inputStream, int blockFactor)
 		{
 			if (inputStream == null)
@@ -73,7 +73,7 @@ namespace ICSharpCode.SharpZipLib.Tar
 			return tarBuffer;
 		}
 
-		// Token: 0x06003579 RID: 13689 RVA: 0x00027136 File Offset: 0x00025336
+		// Token: 0x06002D0B RID: 11531 RVA: 0x0014D41C File Offset: 0x0014B61C
 		public static TarBuffer CreateOutputTarBuffer(Stream outputStream)
 		{
 			if (outputStream == null)
@@ -83,7 +83,7 @@ namespace ICSharpCode.SharpZipLib.Tar
 			return TarBuffer.CreateOutputTarBuffer(outputStream, 20);
 		}
 
-		// Token: 0x0600357A RID: 13690 RVA: 0x0002714E File Offset: 0x0002534E
+		// Token: 0x06002D0C RID: 11532 RVA: 0x0014D434 File Offset: 0x0014B634
 		public static TarBuffer CreateOutputTarBuffer(Stream outputStream, int blockFactor)
 		{
 			if (outputStream == null)
@@ -101,7 +101,7 @@ namespace ICSharpCode.SharpZipLib.Tar
 			return tarBuffer;
 		}
 
-		// Token: 0x0600357B RID: 13691 RVA: 0x00198F3C File Offset: 0x0019713C
+		// Token: 0x06002D0D RID: 11533 RVA: 0x0014D474 File Offset: 0x0014B674
 		private void Initialize(int archiveBlockFactor)
 		{
 			this.blockFactor = archiveBlockFactor;
@@ -117,7 +117,7 @@ namespace ICSharpCode.SharpZipLib.Tar
 			this.currentBlockIndex = 0;
 		}
 
-		// Token: 0x0600357C RID: 13692 RVA: 0x00198F98 File Offset: 0x00197198
+		// Token: 0x06002D0E RID: 11534 RVA: 0x0014D4D0 File Offset: 0x0014B6D0
 		[Obsolete("Use IsEndOfArchiveBlock instead")]
 		public bool IsEOFBlock(byte[] block)
 		{
@@ -139,7 +139,7 @@ namespace ICSharpCode.SharpZipLib.Tar
 			return true;
 		}
 
-		// Token: 0x0600357D RID: 13693 RVA: 0x00198FE0 File Offset: 0x001971E0
+		// Token: 0x06002D0F RID: 11535 RVA: 0x0014D518 File Offset: 0x0014B718
 		public static bool IsEndOfArchiveBlock(byte[] block)
 		{
 			if (block == null)
@@ -160,7 +160,7 @@ namespace ICSharpCode.SharpZipLib.Tar
 			return true;
 		}
 
-		// Token: 0x0600357E RID: 13694 RVA: 0x00199028 File Offset: 0x00197228
+		// Token: 0x06002D10 RID: 11536 RVA: 0x0014D560 File Offset: 0x0014B760
 		public void SkipBlock()
 		{
 			if (this.inputStream == null)
@@ -174,7 +174,7 @@ namespace ICSharpCode.SharpZipLib.Tar
 			this.currentBlockIndex++;
 		}
 
-		// Token: 0x0600357F RID: 13695 RVA: 0x00199078 File Offset: 0x00197278
+		// Token: 0x06002D11 RID: 11537 RVA: 0x0014D5B0 File Offset: 0x0014B7B0
 		public byte[] ReadBlock()
 		{
 			if (this.inputStream == null)
@@ -191,7 +191,7 @@ namespace ICSharpCode.SharpZipLib.Tar
 			return array;
 		}
 
-		// Token: 0x06003580 RID: 13696 RVA: 0x001990F4 File Offset: 0x001972F4
+		// Token: 0x06002D12 RID: 11538 RVA: 0x0014D62C File Offset: 0x0014B82C
 		private bool ReadRecord()
 		{
 			if (this.inputStream == null)
@@ -214,8 +214,8 @@ namespace ICSharpCode.SharpZipLib.Tar
 			return true;
 		}
 
-		// Token: 0x17000525 RID: 1317
-		// (get) Token: 0x06003581 RID: 13697 RVA: 0x0002718C File Offset: 0x0002538C
+		// Token: 0x1700036E RID: 878
+		// (get) Token: 0x06002D13 RID: 11539 RVA: 0x0014D695 File Offset: 0x0014B895
 		public int CurrentBlock
 		{
 			get
@@ -224,20 +224,20 @@ namespace ICSharpCode.SharpZipLib.Tar
 			}
 		}
 
-		// Token: 0x17000526 RID: 1318
-		// (get) Token: 0x06003582 RID: 13698 RVA: 0x00027194 File Offset: 0x00025394
-		// (set) Token: 0x06003583 RID: 13699 RVA: 0x0002719C File Offset: 0x0002539C
+		// Token: 0x1700036F RID: 879
+		// (get) Token: 0x06002D14 RID: 11540 RVA: 0x0014D69D File Offset: 0x0014B89D
+		// (set) Token: 0x06002D15 RID: 11541 RVA: 0x0014D6A5 File Offset: 0x0014B8A5
 		public bool IsStreamOwner { get; set; } = true;
 
-		// Token: 0x06003584 RID: 13700 RVA: 0x0002718C File Offset: 0x0002538C
+		// Token: 0x06002D16 RID: 11542 RVA: 0x0014D695 File Offset: 0x0014B895
 		[Obsolete("Use CurrentBlock property instead")]
 		public int GetCurrentBlockNum()
 		{
 			return this.currentBlockIndex;
 		}
 
-		// Token: 0x17000527 RID: 1319
-		// (get) Token: 0x06003585 RID: 13701 RVA: 0x000271A5 File Offset: 0x000253A5
+		// Token: 0x17000370 RID: 880
+		// (get) Token: 0x06002D17 RID: 11543 RVA: 0x0014D6AE File Offset: 0x0014B8AE
 		public int CurrentRecord
 		{
 			get
@@ -246,14 +246,14 @@ namespace ICSharpCode.SharpZipLib.Tar
 			}
 		}
 
-		// Token: 0x06003586 RID: 13702 RVA: 0x000271A5 File Offset: 0x000253A5
+		// Token: 0x06002D18 RID: 11544 RVA: 0x0014D6AE File Offset: 0x0014B8AE
 		[Obsolete("Use CurrentRecord property instead")]
 		public int GetCurrentRecordNum()
 		{
 			return this.currentRecordIndex;
 		}
 
-		// Token: 0x06003587 RID: 13703 RVA: 0x00199160 File Offset: 0x00197360
+		// Token: 0x06002D19 RID: 11545 RVA: 0x0014D6B8 File Offset: 0x0014B8B8
 		public void WriteBlock(byte[] block)
 		{
 			if (block == null)
@@ -276,7 +276,7 @@ namespace ICSharpCode.SharpZipLib.Tar
 			this.currentBlockIndex++;
 		}
 
-		// Token: 0x06003588 RID: 13704 RVA: 0x001991FC File Offset: 0x001973FC
+		// Token: 0x06002D1A RID: 11546 RVA: 0x0014D754 File Offset: 0x0014B954
 		public void WriteBlock(byte[] buffer, int offset)
 		{
 			if (buffer == null)
@@ -303,7 +303,7 @@ namespace ICSharpCode.SharpZipLib.Tar
 			this.currentBlockIndex++;
 		}
 
-		// Token: 0x06003589 RID: 13705 RVA: 0x001992B4 File Offset: 0x001974B4
+		// Token: 0x06002D1B RID: 11547 RVA: 0x0014D80C File Offset: 0x0014BA0C
 		private void WriteRecord()
 		{
 			if (this.outputStream == null)
@@ -316,7 +316,7 @@ namespace ICSharpCode.SharpZipLib.Tar
 			this.currentRecordIndex++;
 		}
 
-		// Token: 0x0600358A RID: 13706 RVA: 0x0019930C File Offset: 0x0019750C
+		// Token: 0x06002D1C RID: 11548 RVA: 0x0014D864 File Offset: 0x0014BA64
 		private void WriteFinalRecord()
 		{
 			if (this.outputStream == null)
@@ -332,7 +332,7 @@ namespace ICSharpCode.SharpZipLib.Tar
 			this.outputStream.Flush();
 		}
 
-		// Token: 0x0600358B RID: 13707 RVA: 0x00199368 File Offset: 0x00197568
+		// Token: 0x06002D1D RID: 11549 RVA: 0x0014D8C0 File Offset: 0x0014BAC0
 		public void Close()
 		{
 			if (this.outputStream != null)
@@ -355,34 +355,34 @@ namespace ICSharpCode.SharpZipLib.Tar
 			}
 		}
 
-		// Token: 0x04003055 RID: 12373
+		// Token: 0x0400281C RID: 10268
 		public const int BlockSize = 512;
 
-		// Token: 0x04003056 RID: 12374
+		// Token: 0x0400281D RID: 10269
 		public const int DefaultBlockFactor = 20;
 
-		// Token: 0x04003057 RID: 12375
+		// Token: 0x0400281E RID: 10270
 		public const int DefaultRecordSize = 10240;
 
-		// Token: 0x04003059 RID: 12377
+		// Token: 0x04002820 RID: 10272
 		private Stream inputStream;
 
-		// Token: 0x0400305A RID: 12378
+		// Token: 0x04002821 RID: 10273
 		private Stream outputStream;
 
-		// Token: 0x0400305B RID: 12379
+		// Token: 0x04002822 RID: 10274
 		private byte[] recordBuffer;
 
-		// Token: 0x0400305C RID: 12380
+		// Token: 0x04002823 RID: 10275
 		private int currentBlockIndex;
 
-		// Token: 0x0400305D RID: 12381
+		// Token: 0x04002824 RID: 10276
 		private int currentRecordIndex;
 
-		// Token: 0x0400305E RID: 12382
+		// Token: 0x04002825 RID: 10277
 		private int recordSize = 10240;
 
-		// Token: 0x0400305F RID: 12383
+		// Token: 0x04002826 RID: 10278
 		private int blockFactor = 20;
 	}
 }

@@ -3,27 +3,27 @@ using Fungus;
 using UnityEngine;
 using UnityEngine.Events;
 
-// Token: 0x0200038E RID: 910
+// Token: 0x02000275 RID: 629
 public class UINPCLiaoTian : MonoBehaviour
 {
-	// Token: 0x060019A6 RID: 6566 RVA: 0x00016192 File Offset: 0x00014392
+	// Token: 0x060016F4 RID: 5876 RVA: 0x0009C478 File Offset: 0x0009A678
 	private void Awake()
 	{
 		UINPCLiaoTian.Inst = this;
 	}
 
-	// Token: 0x060019A7 RID: 6567 RVA: 0x000042DD File Offset: 0x000024DD
+	// Token: 0x060016F5 RID: 5877 RVA: 0x00004095 File Offset: 0x00002295
 	private void Update()
 	{
 	}
 
-	// Token: 0x060019A8 RID: 6568 RVA: 0x0001619A File Offset: 0x0001439A
+	// Token: 0x060016F6 RID: 5878 RVA: 0x0009C480 File Offset: 0x0009A680
 	public void RefreshUI()
 	{
 		this.Init();
 	}
 
-	// Token: 0x060019A9 RID: 6569 RVA: 0x000161A2 File Offset: 0x000143A2
+	// Token: 0x060016F7 RID: 5879 RVA: 0x0009C488 File Offset: 0x0009A688
 	public void OnChatExit()
 	{
 		Object.Destroy(this.nowChatObj, 2f);
@@ -33,7 +33,7 @@ public class UINPCLiaoTian : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060019AA RID: 6570 RVA: 0x000E3B1C File Offset: 0x000E1D1C
+	// Token: 0x060016F8 RID: 5880 RVA: 0x0009C4B0 File Offset: 0x0009A6B0
 	public void ShowTalk(int avatarid, string msg, UnityAction onExit = null)
 	{
 		this.nowChatObj = Object.Instantiate<GameObject>(Resources.Load<GameObject>("talkPrefab/BasePrefab/NPCLiaoTianTalk"));
@@ -43,7 +43,7 @@ public class UINPCLiaoTian : MonoBehaviour
 		this.onChatExit = onExit;
 	}
 
-	// Token: 0x060019AB RID: 6571 RVA: 0x000161C7 File Offset: 0x000143C7
+	// Token: 0x060016F9 RID: 5881 RVA: 0x0009C51A File Offset: 0x0009A71A
 	private void Init()
 	{
 		if (!this._inited)
@@ -52,28 +52,28 @@ public class UINPCLiaoTian : MonoBehaviour
 		}
 	}
 
-	// Token: 0x040014D2 RID: 5330
+	// Token: 0x04001181 RID: 4481
 	public static UINPCLiaoTian Inst;
 
-	// Token: 0x040014D3 RID: 5331
+	// Token: 0x04001182 RID: 4482
 	private UINPCData npc;
 
-	// Token: 0x040014D4 RID: 5332
+	// Token: 0x04001183 RID: 4483
 	private bool _inited;
 
-	// Token: 0x040014D5 RID: 5333
+	// Token: 0x04001184 RID: 4484
 	public RectTransform ContentRT;
 
-	// Token: 0x040014D6 RID: 5334
+	// Token: 0x04001185 RID: 4485
 	public GameObject SVItemPrefab;
 
-	// Token: 0x040014D7 RID: 5335
+	// Token: 0x04001186 RID: 4486
 	public Flowchart NPCFlowchart;
 
-	// Token: 0x040014D8 RID: 5336
+	// Token: 0x04001187 RID: 4487
 	private GameObject nowChatObj;
 
-	// Token: 0x040014D9 RID: 5337
+	// Token: 0x04001188 RID: 4488
 	[HideInInspector]
 	public UnityAction onChatExit;
 }

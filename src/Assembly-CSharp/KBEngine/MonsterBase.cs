@@ -4,186 +4,186 @@ using UnityEngine;
 
 namespace KBEngine
 {
-	// Token: 0x02000FD4 RID: 4052
+	// Token: 0x02000C4F RID: 3151
 	public abstract class MonsterBase : Entity
 	{
-		// Token: 0x06005F96 RID: 24470 RVA: 0x000042DD File Offset: 0x000024DD
+		// Token: 0x06005558 RID: 21848 RVA: 0x00004095 File Offset: 0x00002295
 		public virtual void onHPChanged(int oldValue)
 		{
 		}
 
-		// Token: 0x06005F97 RID: 24471 RVA: 0x000042DD File Offset: 0x000024DD
+		// Token: 0x06005559 RID: 21849 RVA: 0x00004095 File Offset: 0x00002295
 		public virtual void onMPChanged(int oldValue)
 		{
 		}
 
-		// Token: 0x06005F98 RID: 24472 RVA: 0x000042DD File Offset: 0x000024DD
+		// Token: 0x0600555A RID: 21850 RVA: 0x00004095 File Offset: 0x00002295
 		public virtual void onMP_MaxChanged(int oldValue)
 		{
 		}
 
-		// Token: 0x06005F99 RID: 24473 RVA: 0x000042DD File Offset: 0x000024DD
+		// Token: 0x0600555B RID: 21851 RVA: 0x00004095 File Offset: 0x00002295
 		public virtual void on_HP_MaxChanged(int oldValue)
 		{
 		}
 
-		// Token: 0x06005F9A RID: 24474 RVA: 0x000042DD File Offset: 0x000024DD
+		// Token: 0x0600555C RID: 21852 RVA: 0x00004095 File Offset: 0x00002295
 		public virtual void onAttack_MaxChanged(int oldValue)
 		{
 		}
 
-		// Token: 0x06005F9B RID: 24475 RVA: 0x000042DD File Offset: 0x000024DD
+		// Token: 0x0600555D RID: 21853 RVA: 0x00004095 File Offset: 0x00002295
 		public virtual void onAttack_MinChanged(int oldValue)
 		{
 		}
 
-		// Token: 0x06005F9C RID: 24476 RVA: 0x000042DD File Offset: 0x000024DD
+		// Token: 0x0600555E RID: 21854 RVA: 0x00004095 File Offset: 0x00002295
 		public virtual void onBuffsChanged(List<ushort> oldValue)
 		{
 		}
 
-		// Token: 0x06005F9D RID: 24477 RVA: 0x000042DD File Offset: 0x000024DD
+		// Token: 0x0600555F RID: 21855 RVA: 0x00004095 File Offset: 0x00002295
 		public virtual void onDefenceChanged(int oldValue)
 		{
 		}
 
-		// Token: 0x06005F9E RID: 24478 RVA: 0x000042DD File Offset: 0x000024DD
+		// Token: 0x06005560 RID: 21856 RVA: 0x00004095 File Offset: 0x00002295
 		public virtual void onDialogIDChanged(uint oldValue)
 		{
 		}
 
-		// Token: 0x06005F9F RID: 24479 RVA: 0x000042DD File Offset: 0x000024DD
+		// Token: 0x06005561 RID: 21857 RVA: 0x00004095 File Offset: 0x00002295
 		public virtual void onDodgeChanged(int oldValue)
 		{
 		}
 
-		// Token: 0x06005FA0 RID: 24480 RVA: 0x000042DD File Offset: 0x000024DD
+		// Token: 0x06005562 RID: 21858 RVA: 0x00004095 File Offset: 0x00002295
 		public virtual void onEntityNOChanged(uint oldValue)
 		{
 		}
 
-		// Token: 0x06005FA1 RID: 24481 RVA: 0x000042DD File Offset: 0x000024DD
+		// Token: 0x06005563 RID: 21859 RVA: 0x00004095 File Offset: 0x00002295
 		public virtual void onForbidsChanged(int oldValue)
 		{
 		}
 
-		// Token: 0x06005FA2 RID: 24482 RVA: 0x000042DD File Offset: 0x000024DD
+		// Token: 0x06005564 RID: 21860 RVA: 0x00004095 File Offset: 0x00002295
 		public virtual void onModelIDChanged(uint oldValue)
 		{
 		}
 
-		// Token: 0x06005FA3 RID: 24483 RVA: 0x000042DD File Offset: 0x000024DD
+		// Token: 0x06005565 RID: 21861 RVA: 0x00004095 File Offset: 0x00002295
 		public virtual void onModelScaleChanged(byte oldValue)
 		{
 		}
 
-		// Token: 0x06005FA4 RID: 24484 RVA: 0x000042DD File Offset: 0x000024DD
+		// Token: 0x06005566 RID: 21862 RVA: 0x00004095 File Offset: 0x00002295
 		public virtual void onMoveSpeedChanged(byte oldValue)
 		{
 		}
 
-		// Token: 0x06005FA5 RID: 24485 RVA: 0x000042DD File Offset: 0x000024DD
+		// Token: 0x06005567 RID: 21863 RVA: 0x00004095 File Offset: 0x00002295
 		public virtual void onNameChanged(string oldValue)
 		{
 		}
 
-		// Token: 0x06005FA6 RID: 24486 RVA: 0x000042DD File Offset: 0x000024DD
+		// Token: 0x06005568 RID: 21864 RVA: 0x00004095 File Offset: 0x00002295
 		public virtual void onRatingChanged(int oldValue)
 		{
 		}
 
-		// Token: 0x06005FA7 RID: 24487 RVA: 0x000042DD File Offset: 0x000024DD
+		// Token: 0x06005569 RID: 21865 RVA: 0x00004095 File Offset: 0x00002295
 		public virtual void onRoleSurfaceCallChanged(ushort oldValue)
 		{
 		}
 
-		// Token: 0x06005FA8 RID: 24488 RVA: 0x000042DD File Offset: 0x000024DD
+		// Token: 0x0600556A RID: 21866 RVA: 0x00004095 File Offset: 0x00002295
 		public virtual void onRoleTypeCellChanged(uint oldValue)
 		{
 		}
 
-		// Token: 0x06005FA9 RID: 24489 RVA: 0x000042DD File Offset: 0x000024DD
+		// Token: 0x0600556B RID: 21867 RVA: 0x00004095 File Offset: 0x00002295
 		public virtual void onStateChanged(sbyte oldValue)
 		{
 		}
 
-		// Token: 0x06005FAA RID: 24490 RVA: 0x000042DD File Offset: 0x000024DD
+		// Token: 0x0600556C RID: 21868 RVA: 0x00004095 File Offset: 0x00002295
 		public virtual void onSubStateChanged(byte oldValue)
 		{
 		}
 
-		// Token: 0x06005FAB RID: 24491 RVA: 0x000042DD File Offset: 0x000024DD
+		// Token: 0x0600556D RID: 21869 RVA: 0x00004095 File Offset: 0x00002295
 		public virtual void onUidChanged(uint oldValue)
 		{
 		}
 
-		// Token: 0x06005FAC RID: 24492 RVA: 0x000042DD File Offset: 0x000024DD
+		// Token: 0x0600556E RID: 21870 RVA: 0x00004095 File Offset: 0x00002295
 		public virtual void onUtypeChanged(uint oldValue)
 		{
 		}
 
-		// Token: 0x06005FAD RID: 24493
+		// Token: 0x0600556F RID: 21871
 		public abstract void recvDamage(int arg1, int arg2, int arg3, int arg4);
 
-		// Token: 0x06005FAE RID: 24494
+		// Token: 0x06005570 RID: 21872
 		public abstract void recvSkill(int arg1, int arg2);
 
-		// Token: 0x06005FAF RID: 24495 RVA: 0x00264C44 File Offset: 0x00262E44
+		// Token: 0x06005571 RID: 21873 RVA: 0x00237AC4 File Offset: 0x00235CC4
 		public MonsterBase()
 		{
 		}
 
-		// Token: 0x06005FB0 RID: 24496 RVA: 0x000042DD File Offset: 0x000024DD
+		// Token: 0x06005572 RID: 21874 RVA: 0x00004095 File Offset: 0x00002295
 		public override void onComponentsEnterworld()
 		{
 		}
 
-		// Token: 0x06005FB1 RID: 24497 RVA: 0x000042DD File Offset: 0x000024DD
+		// Token: 0x06005573 RID: 21875 RVA: 0x00004095 File Offset: 0x00002295
 		public override void onComponentsLeaveworld()
 		{
 		}
 
-		// Token: 0x06005FB2 RID: 24498 RVA: 0x00042A10 File Offset: 0x00040C10
+		// Token: 0x06005574 RID: 21876 RVA: 0x00237B14 File Offset: 0x00235D14
 		public override void onGetBase()
 		{
 			this.baseEntityCall = new EntityBaseEntityCall_MonsterBase(this.id, this.className);
 		}
 
-		// Token: 0x06005FB3 RID: 24499 RVA: 0x00042A29 File Offset: 0x00040C29
+		// Token: 0x06005575 RID: 21877 RVA: 0x00237B2D File Offset: 0x00235D2D
 		public override void onGetCell()
 		{
 			this.cellEntityCall = new EntityCellEntityCall_MonsterBase(this.id, this.className);
 		}
 
-		// Token: 0x06005FB4 RID: 24500 RVA: 0x00042A42 File Offset: 0x00040C42
+		// Token: 0x06005576 RID: 21878 RVA: 0x00237B46 File Offset: 0x00235D46
 		public override void onLoseCell()
 		{
 			this.cellEntityCall = null;
 		}
 
-		// Token: 0x06005FB5 RID: 24501 RVA: 0x00042A4B File Offset: 0x00040C4B
+		// Token: 0x06005577 RID: 21879 RVA: 0x00237B4F File Offset: 0x00235D4F
 		public override EntityCall getBaseEntityCall()
 		{
 			return this.baseEntityCall;
 		}
 
-		// Token: 0x06005FB6 RID: 24502 RVA: 0x00042A53 File Offset: 0x00040C53
+		// Token: 0x06005578 RID: 21880 RVA: 0x00237B57 File Offset: 0x00235D57
 		public override EntityCall getCellEntityCall()
 		{
 			return this.cellEntityCall;
 		}
 
-		// Token: 0x06005FB7 RID: 24503 RVA: 0x000042DD File Offset: 0x000024DD
+		// Token: 0x06005579 RID: 21881 RVA: 0x00004095 File Offset: 0x00002295
 		public override void attachComponents()
 		{
 		}
 
-		// Token: 0x06005FB8 RID: 24504 RVA: 0x000042DD File Offset: 0x000024DD
+		// Token: 0x0600557A RID: 21882 RVA: 0x00004095 File Offset: 0x00002295
 		public override void detachComponents()
 		{
 		}
 
-		// Token: 0x06005FB9 RID: 24505 RVA: 0x00264C94 File Offset: 0x00262E94
+		// Token: 0x0600557B RID: 21883 RVA: 0x00237B60 File Offset: 0x00235D60
 		public override void onRemoteMethodCall(MemoryStream stream)
 		{
 			ScriptModule scriptModule = EntityDef.moduledefs["Monster"];
@@ -230,7 +230,7 @@ namespace KBEngine
 			this.recvSkill(arg5, arg6);
 		}
 
-		// Token: 0x06005FBA RID: 24506 RVA: 0x00264D70 File Offset: 0x00262F70
+		// Token: 0x0600557C RID: 21884 RVA: 0x00237C3C File Offset: 0x00235E3C
 		public override void onUpdatePropertys(MemoryStream stream)
 		{
 			ScriptModule scriptModule = EntityDef.moduledefs["Monster"];
@@ -719,7 +719,7 @@ namespace KBEngine
 			}
 		}
 
-		// Token: 0x06005FBB RID: 24507 RVA: 0x00265654 File Offset: 0x00263854
+		// Token: 0x0600557D RID: 21885 RVA: 0x00238520 File Offset: 0x00236720
 		public override void callPropertysSetMethods()
 		{
 			Dictionary<ushort, Property> idpropertys = EntityDef.moduledefs["Monster"].idpropertys;
@@ -1051,79 +1051,79 @@ namespace KBEngine
 			}
 		}
 
-		// Token: 0x04005B3D RID: 23357
+		// Token: 0x04005094 RID: 20628
 		public EntityBaseEntityCall_MonsterBase baseEntityCall;
 
-		// Token: 0x04005B3E RID: 23358
+		// Token: 0x04005095 RID: 20629
 		public EntityCellEntityCall_MonsterBase cellEntityCall;
 
-		// Token: 0x04005B3F RID: 23359
+		// Token: 0x04005096 RID: 20630
 		public int HP;
 
-		// Token: 0x04005B40 RID: 23360
+		// Token: 0x04005097 RID: 20631
 		public int MP;
 
-		// Token: 0x04005B41 RID: 23361
+		// Token: 0x04005098 RID: 20632
 		public int MP_Max;
 
-		// Token: 0x04005B42 RID: 23362
+		// Token: 0x04005099 RID: 20633
 		public int _HP_Max;
 
-		// Token: 0x04005B43 RID: 23363
+		// Token: 0x0400509A RID: 20634
 		public int attack_Max = 10;
 
-		// Token: 0x04005B44 RID: 23364
+		// Token: 0x0400509B RID: 20635
 		public int attack_Min;
 
-		// Token: 0x04005B45 RID: 23365
+		// Token: 0x0400509C RID: 20636
 		public List<ushort> buffs = new List<ushort>();
 
-		// Token: 0x04005B46 RID: 23366
+		// Token: 0x0400509D RID: 20637
 		public int defence;
 
-		// Token: 0x04005B47 RID: 23367
+		// Token: 0x0400509E RID: 20638
 		public uint dialogID;
 
-		// Token: 0x04005B48 RID: 23368
+		// Token: 0x0400509F RID: 20639
 		public int dodge;
 
-		// Token: 0x04005B49 RID: 23369
+		// Token: 0x040050A0 RID: 20640
 		public uint entityNO;
 
-		// Token: 0x04005B4A RID: 23370
+		// Token: 0x040050A1 RID: 20641
 		public int forbids;
 
-		// Token: 0x04005B4B RID: 23371
+		// Token: 0x040050A2 RID: 20642
 		public uint modelID;
 
-		// Token: 0x04005B4C RID: 23372
+		// Token: 0x040050A3 RID: 20643
 		public byte modelScale = 30;
 
-		// Token: 0x04005B4D RID: 23373
+		// Token: 0x040050A4 RID: 20644
 		public byte moveSpeed = 50;
 
-		// Token: 0x04005B4E RID: 23374
+		// Token: 0x040050A5 RID: 20645
 		public string name = "";
 
-		// Token: 0x04005B4F RID: 23375
+		// Token: 0x040050A6 RID: 20646
 		public int rating = 99;
 
-		// Token: 0x04005B50 RID: 23376
+		// Token: 0x040050A7 RID: 20647
 		public ushort roleSurfaceCall = 1;
 
-		// Token: 0x04005B51 RID: 23377
+		// Token: 0x040050A8 RID: 20648
 		public uint roleTypeCell;
 
-		// Token: 0x04005B52 RID: 23378
+		// Token: 0x040050A9 RID: 20649
 		public sbyte state;
 
-		// Token: 0x04005B53 RID: 23379
+		// Token: 0x040050AA RID: 20650
 		public byte subState;
 
-		// Token: 0x04005B54 RID: 23380
+		// Token: 0x040050AB RID: 20651
 		public uint uid;
 
-		// Token: 0x04005B55 RID: 23381
+		// Token: 0x040050AC RID: 20652
 		public uint utype;
 	}
 }

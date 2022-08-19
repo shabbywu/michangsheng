@@ -1,10 +1,10 @@
 ﻿using System;
 using UnityEngine;
 
-// Token: 0x02000190 RID: 400
+// Token: 0x0200010C RID: 268
 public class C_EasyButtonTemplate : MonoBehaviour
 {
-	// Token: 0x06000D5E RID: 3422 RVA: 0x0000F16F File Offset: 0x0000D36F
+	// Token: 0x06000C3D RID: 3133 RVA: 0x00049E66 File Offset: 0x00048066
 	private void OnEnable()
 	{
 		EasyButton.On_ButtonDown += this.On_ButtonDown;
@@ -12,7 +12,7 @@ public class C_EasyButtonTemplate : MonoBehaviour
 		EasyButton.On_ButtonUp += this.On_ButtonUp;
 	}
 
-	// Token: 0x06000D5F RID: 3423 RVA: 0x0000F1A4 File Offset: 0x0000D3A4
+	// Token: 0x06000C3E RID: 3134 RVA: 0x00049E9B File Offset: 0x0004809B
 	private void OnDisable()
 	{
 		EasyButton.On_ButtonDown -= this.On_ButtonDown;
@@ -20,7 +20,7 @@ public class C_EasyButtonTemplate : MonoBehaviour
 		EasyButton.On_ButtonUp -= this.On_ButtonUp;
 	}
 
-	// Token: 0x06000D60 RID: 3424 RVA: 0x0000F1A4 File Offset: 0x0000D3A4
+	// Token: 0x06000C3F RID: 3135 RVA: 0x00049E9B File Offset: 0x0004809B
 	private void OnDestroy()
 	{
 		EasyButton.On_ButtonDown -= this.On_ButtonDown;
@@ -28,17 +28,17 @@ public class C_EasyButtonTemplate : MonoBehaviour
 		EasyButton.On_ButtonUp -= this.On_ButtonUp;
 	}
 
-	// Token: 0x06000D61 RID: 3425 RVA: 0x000042DD File Offset: 0x000024DD
+	// Token: 0x06000C40 RID: 3136 RVA: 0x00004095 File Offset: 0x00002295
 	private void On_ButtonDown(string buttonName)
 	{
 	}
 
-	// Token: 0x06000D62 RID: 3426 RVA: 0x000042DD File Offset: 0x000024DD
+	// Token: 0x06000C41 RID: 3137 RVA: 0x00004095 File Offset: 0x00002295
 	private void On_ButtonPress(string buttonName)
 	{
 	}
 
-	// Token: 0x06000D63 RID: 3427 RVA: 0x000042DD File Offset: 0x000024DD
+	// Token: 0x06000C42 RID: 3138 RVA: 0x00004095 File Offset: 0x00002295
 	private void On_ButtonUp(string buttonName)
 	{
 	}

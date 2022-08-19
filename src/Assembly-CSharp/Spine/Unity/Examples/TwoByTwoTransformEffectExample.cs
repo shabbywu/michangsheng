@@ -3,10 +3,10 @@ using UnityEngine;
 
 namespace Spine.Unity.Examples
 {
-	// Token: 0x02000E53 RID: 3667
+	// Token: 0x02000AFA RID: 2810
 	public class TwoByTwoTransformEffectExample : MonoBehaviour
 	{
-		// Token: 0x060057FC RID: 22524 RVA: 0x002465BC File Offset: 0x002447BC
+		// Token: 0x06004E5B RID: 20059 RVA: 0x00216650 File Offset: 0x00214850
 		private void OnEnable()
 		{
 			this.skeletonRenderer = base.GetComponent<SkeletonRenderer>();
@@ -19,7 +19,7 @@ namespace Spine.Unity.Examples
 			Debug.Log("2x2 Transform Effect Enabled.");
 		}
 
-		// Token: 0x060057FD RID: 22525 RVA: 0x0024661C File Offset: 0x0024481C
+		// Token: 0x06004E5C RID: 20060 RVA: 0x002166B0 File Offset: 0x002148B0
 		private void ProcessVertices(MeshGeneratorBuffers buffers)
 		{
 			if (!base.enabled)
@@ -38,7 +38,7 @@ namespace Spine.Unity.Examples
 			}
 		}
 
-		// Token: 0x060057FE RID: 22526 RVA: 0x0003EEBD File Offset: 0x0003D0BD
+		// Token: 0x06004E5D RID: 20061 RVA: 0x00216755 File Offset: 0x00214955
 		private void OnDisable()
 		{
 			if (this.skeletonRenderer == null)
@@ -49,13 +49,13 @@ namespace Spine.Unity.Examples
 			Debug.Log("2x2 Transform Effect Disabled.");
 		}
 
-		// Token: 0x040057FC RID: 22524
+		// Token: 0x04004DD0 RID: 19920
 		public Vector2 xAxis = new Vector2(1f, 0f);
 
-		// Token: 0x040057FD RID: 22525
+		// Token: 0x04004DD1 RID: 19921
 		public Vector2 yAxis = new Vector2(0f, 1f);
 
-		// Token: 0x040057FE RID: 22526
+		// Token: 0x04004DD2 RID: 19922
 		private SkeletonRenderer skeletonRenderer;
 	}
 }

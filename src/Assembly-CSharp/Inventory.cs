@@ -6,35 +6,35 @@ using UltimateSurvival.GUISystem;
 using UnityEngine;
 using UnityEngine.UI;
 
-// Token: 0x02000209 RID: 521
+// Token: 0x02000138 RID: 312
 public class Inventory : MonoBehaviour
 {
 	// Token: 0x1400002F RID: 47
-	// (add) Token: 0x06001059 RID: 4185 RVA: 0x000A51AC File Offset: 0x000A33AC
-	// (remove) Token: 0x0600105A RID: 4186 RVA: 0x000A51E0 File Offset: 0x000A33E0
+	// (add) Token: 0x06000E4B RID: 3659 RVA: 0x00054C20 File Offset: 0x00052E20
+	// (remove) Token: 0x06000E4C RID: 3660 RVA: 0x00054C54 File Offset: 0x00052E54
 	public static event Inventory.ItemDelegate ItemConsumed;
 
 	// Token: 0x14000030 RID: 48
-	// (add) Token: 0x0600105B RID: 4187 RVA: 0x000A5214 File Offset: 0x000A3414
-	// (remove) Token: 0x0600105C RID: 4188 RVA: 0x000A5248 File Offset: 0x000A3448
+	// (add) Token: 0x06000E4D RID: 3661 RVA: 0x00054C88 File Offset: 0x00052E88
+	// (remove) Token: 0x06000E4E RID: 3662 RVA: 0x00054CBC File Offset: 0x00052EBC
 	public static event Inventory.ItemDelegate ItemEquip;
 
 	// Token: 0x14000031 RID: 49
-	// (add) Token: 0x0600105D RID: 4189 RVA: 0x000A527C File Offset: 0x000A347C
-	// (remove) Token: 0x0600105E RID: 4190 RVA: 0x000A52B0 File Offset: 0x000A34B0
+	// (add) Token: 0x06000E4F RID: 3663 RVA: 0x00054CF0 File Offset: 0x00052EF0
+	// (remove) Token: 0x06000E50 RID: 3664 RVA: 0x00054D24 File Offset: 0x00052F24
 	public static event Inventory.ItemDelegate UnEquipItem;
 
 	// Token: 0x14000032 RID: 50
-	// (add) Token: 0x0600105F RID: 4191 RVA: 0x000A52E4 File Offset: 0x000A34E4
-	// (remove) Token: 0x06001060 RID: 4192 RVA: 0x000A5318 File Offset: 0x000A3518
+	// (add) Token: 0x06000E51 RID: 3665 RVA: 0x00054D58 File Offset: 0x00052F58
+	// (remove) Token: 0x06000E52 RID: 3666 RVA: 0x00054D8C File Offset: 0x00052F8C
 	public static event Inventory.InventoryOpened InventoryOpen;
 
 	// Token: 0x14000033 RID: 51
-	// (add) Token: 0x06001061 RID: 4193 RVA: 0x000A534C File Offset: 0x000A354C
-	// (remove) Token: 0x06001062 RID: 4194 RVA: 0x000A5380 File Offset: 0x000A3580
+	// (add) Token: 0x06000E53 RID: 3667 RVA: 0x00054DC0 File Offset: 0x00052FC0
+	// (remove) Token: 0x06000E54 RID: 3668 RVA: 0x00054DF4 File Offset: 0x00052FF4
 	public static event Inventory.InventoryOpened AllInventoriesClosed;
 
-	// Token: 0x06001063 RID: 4195 RVA: 0x00010502 File Offset: 0x0000E702
+	// Token: 0x06000E55 RID: 3669 RVA: 0x00054E27 File Offset: 0x00053027
 	private void Start()
 	{
 		if (base.transform.GetComponent<global::Hotbar>() == null)
@@ -45,7 +45,7 @@ public class Inventory : MonoBehaviour
 		this.inputManagerDatabase = (InputManager)Resources.Load("InputManager");
 	}
 
-	// Token: 0x06001064 RID: 4196 RVA: 0x000A53B4 File Offset: 0x000A35B4
+	// Token: 0x06000E56 RID: 3670 RVA: 0x00054E64 File Offset: 0x00053064
 	public void sortItems()
 	{
 		int num = -1;
@@ -66,13 +66,13 @@ public class Inventory : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001065 RID: 4197 RVA: 0x0001053E File Offset: 0x0000E73E
+	// Token: 0x06000E57 RID: 3671 RVA: 0x00054F33 File Offset: 0x00053133
 	private void Update()
 	{
 		this.updateItemIndex();
 	}
 
-	// Token: 0x06001066 RID: 4198 RVA: 0x00010546 File Offset: 0x0000E746
+	// Token: 0x06000E58 RID: 3672 RVA: 0x00054F3B File Offset: 0x0005313B
 	public void setAsMain()
 	{
 		if (this.mainInventory)
@@ -86,20 +86,20 @@ public class Inventory : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001067 RID: 4199 RVA: 0x00010579 File Offset: 0x0000E779
+	// Token: 0x06000E59 RID: 3673 RVA: 0x00054F6E File Offset: 0x0005316E
 	public void OnUpdateItemList()
 	{
 		this.updateItemList();
 	}
 
-	// Token: 0x06001068 RID: 4200 RVA: 0x00010581 File Offset: 0x0000E781
+	// Token: 0x06000E5A RID: 3674 RVA: 0x00054F76 File Offset: 0x00053176
 	public void closeInventory()
 	{
 		base.gameObject.SetActive(false);
 		this.checkIfAllInventoryClosed();
 	}
 
-	// Token: 0x06001069 RID: 4201 RVA: 0x00010595 File Offset: 0x0000E795
+	// Token: 0x06000E5B RID: 3675 RVA: 0x00054F8A File Offset: 0x0005318A
 	public void openInventory()
 	{
 		base.gameObject.SetActive(true);
@@ -109,7 +109,7 @@ public class Inventory : MonoBehaviour
 		}
 	}
 
-	// Token: 0x0600106A RID: 4202 RVA: 0x000A5484 File Offset: 0x000A3684
+	// Token: 0x06000E5C RID: 3676 RVA: 0x00054FAC File Offset: 0x000531AC
 	public void checkIfAllInventoryClosed()
 	{
 		GameObject gameObject = GameObject.FindGameObjectWithTag("Canvas");
@@ -137,7 +137,7 @@ public class Inventory : MonoBehaviour
 		}
 	}
 
-	// Token: 0x0600106B RID: 4203 RVA: 0x000105B4 File Offset: 0x0000E7B4
+	// Token: 0x06000E5D RID: 3677 RVA: 0x000550D9 File Offset: 0x000532D9
 	public void ConsumeItem(Item item)
 	{
 		if (Inventory.ItemConsumed != null)
@@ -146,7 +146,7 @@ public class Inventory : MonoBehaviour
 		}
 	}
 
-	// Token: 0x0600106C RID: 4204 RVA: 0x000105C8 File Offset: 0x0000E7C8
+	// Token: 0x06000E5E RID: 3678 RVA: 0x000550ED File Offset: 0x000532ED
 	public void EquiptItem(Item item)
 	{
 		if (Inventory.ItemEquip != null)
@@ -155,7 +155,7 @@ public class Inventory : MonoBehaviour
 		}
 	}
 
-	// Token: 0x0600106D RID: 4205 RVA: 0x000105DC File Offset: 0x0000E7DC
+	// Token: 0x06000E5F RID: 3679 RVA: 0x00055101 File Offset: 0x00053301
 	public void UnEquipItem1(Item item)
 	{
 		if (Inventory.UnEquipItem != null)
@@ -164,7 +164,7 @@ public class Inventory : MonoBehaviour
 		}
 	}
 
-	// Token: 0x0600106E RID: 4206 RVA: 0x000A55B4 File Offset: 0x000A37B4
+	// Token: 0x06000E60 RID: 3680 RVA: 0x00055118 File Offset: 0x00053318
 	public void setImportantVariables()
 	{
 		this.PanelRectTransform = base.GetComponent<RectTransform>();
@@ -173,7 +173,7 @@ public class Inventory : MonoBehaviour
 		this.SlotGridRectTransform = this.SlotContainer.GetComponent<RectTransform>();
 	}
 
-	// Token: 0x0600106F RID: 4207 RVA: 0x000A5608 File Offset: 0x000A3808
+	// Token: 0x06000E61 RID: 3681 RVA: 0x0005516C File Offset: 0x0005336C
 	public void getPrefabs()
 	{
 		if (this.prefabCanvasWithPanel == null)
@@ -212,7 +212,7 @@ public class Inventory : MonoBehaviour
 		this.updatePadding(this.paddingBetweenX, this.paddingBetweenY);
 	}
 
-	// Token: 0x06001070 RID: 4208 RVA: 0x000A5748 File Offset: 0x000A3948
+	// Token: 0x06000E62 RID: 3682 RVA: 0x000552AC File Offset: 0x000534AC
 	public void updateItemList()
 	{
 		this.ItemsInInventory.Clear();
@@ -226,13 +226,13 @@ public class Inventory : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001071 RID: 4209 RVA: 0x000105F0 File Offset: 0x0000E7F0
+	// Token: 0x06000E63 RID: 3683 RVA: 0x00055315 File Offset: 0x00053515
 	public bool characterSystem()
 	{
 		return base.GetComponent<EquipmentSystem>() != null;
 	}
 
-	// Token: 0x06001072 RID: 4210 RVA: 0x000A57B4 File Offset: 0x000A39B4
+	// Token: 0x06000E64 RID: 3684 RVA: 0x00055328 File Offset: 0x00053528
 	public void setDefaultSettings()
 	{
 		if (base.GetComponent<EquipmentSystem>() == null && base.GetComponent<global::Hotbar>() == null && base.GetComponent<CraftSystem>() == null)
@@ -289,7 +289,7 @@ public class Inventory : MonoBehaviour
 		this.paddingRight = 10;
 	}
 
-	// Token: 0x06001073 RID: 4211 RVA: 0x000A5940 File Offset: 0x000A3B40
+	// Token: 0x06000E65 RID: 3685 RVA: 0x000554B4 File Offset: 0x000536B4
 	public void adjustInventorySize()
 	{
 		int num = this.width * this.slotSize + (this.width - 1) * this.paddingBetweenX + this.paddingLeft + this.paddingRight;
@@ -298,7 +298,7 @@ public class Inventory : MonoBehaviour
 		this.SlotGridRectTransform.sizeDelta = new Vector2((float)num, (float)num2);
 	}
 
-	// Token: 0x06001074 RID: 4212 RVA: 0x000A59D0 File Offset: 0x000A3BD0
+	// Token: 0x06000E66 RID: 3686 RVA: 0x00055544 File Offset: 0x00053744
 	public void updateSlotAmount(int width, int height)
 	{
 		if (this.prefabSlot == null)
@@ -369,7 +369,7 @@ public class Inventory : MonoBehaviour
 		goto IL_126;
 	}
 
-	// Token: 0x06001075 RID: 4213 RVA: 0x000A5C38 File Offset: 0x000A3E38
+	// Token: 0x06000E67 RID: 3687 RVA: 0x000557AC File Offset: 0x000539AC
 	public void updateSlotAmount()
 	{
 		if (this.prefabSlot == null)
@@ -440,21 +440,21 @@ public class Inventory : MonoBehaviour
 		goto IL_126;
 	}
 
-	// Token: 0x06001076 RID: 4214 RVA: 0x00010603 File Offset: 0x0000E803
+	// Token: 0x06000E68 RID: 3688 RVA: 0x00055A3C File Offset: 0x00053C3C
 	public void updateSlotSize(int slotSize)
 	{
 		this.SlotGridLayout.cellSize = new Vector2((float)slotSize, (float)slotSize);
 		this.updateItemSize();
 	}
 
-	// Token: 0x06001077 RID: 4215 RVA: 0x0001061F File Offset: 0x0000E81F
+	// Token: 0x06000E69 RID: 3689 RVA: 0x00055A58 File Offset: 0x00053C58
 	public void updateSlotSize()
 	{
 		this.SlotGridLayout.cellSize = new Vector2((float)this.slotSize, (float)this.slotSize);
 		this.updateItemSize();
 	}
 
-	// Token: 0x06001078 RID: 4216 RVA: 0x000A5EC8 File Offset: 0x000A40C8
+	// Token: 0x06000E6A RID: 3690 RVA: 0x00055A80 File Offset: 0x00053C80
 	private void updateItemSize()
 	{
 		for (int i = 0; i < this.SlotContainer.transform.childCount; i++)
@@ -467,7 +467,7 @@ public class Inventory : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001079 RID: 4217 RVA: 0x000A5F80 File Offset: 0x000A4180
+	// Token: 0x06000E6B RID: 3691 RVA: 0x00055B38 File Offset: 0x00053D38
 	public void updatePadding(int spacingBetweenX, int spacingBetweenY)
 	{
 		this.SlotGridLayout.spacing = new Vector2((float)this.paddingBetweenX, (float)this.paddingBetweenY);
@@ -477,7 +477,7 @@ public class Inventory : MonoBehaviour
 		this.SlotGridLayout.padding.top = this.paddingTop;
 	}
 
-	// Token: 0x0600107A RID: 4218 RVA: 0x000A5F80 File Offset: 0x000A4180
+	// Token: 0x06000E6C RID: 3692 RVA: 0x00055BBC File Offset: 0x00053DBC
 	public void updatePadding()
 	{
 		this.SlotGridLayout.spacing = new Vector2((float)this.paddingBetweenX, (float)this.paddingBetweenY);
@@ -487,7 +487,7 @@ public class Inventory : MonoBehaviour
 		this.SlotGridLayout.padding.top = this.paddingTop;
 	}
 
-	// Token: 0x0600107B RID: 4219 RVA: 0x000A6004 File Offset: 0x000A4204
+	// Token: 0x06000E6D RID: 3693 RVA: 0x00055C40 File Offset: 0x00053E40
 	public void addAllItemsToInventory()
 	{
 		for (int i = 0; i < this.ItemsInInventory.Count; i++)
@@ -509,7 +509,7 @@ public class Inventory : MonoBehaviour
 		this.stackableSettings();
 	}
 
-	// Token: 0x0600107C RID: 4220 RVA: 0x000A60E8 File Offset: 0x000A42E8
+	// Token: 0x06000E6E RID: 3694 RVA: 0x00055D24 File Offset: 0x00053F24
 	public bool checkIfItemAllreadyExist(int itemID, int itemValue)
 	{
 		this.updateItemList();
@@ -533,7 +533,7 @@ public class Inventory : MonoBehaviour
 		return false;
 	}
 
-	// Token: 0x0600107D RID: 4221 RVA: 0x000A61B8 File Offset: 0x000A43B8
+	// Token: 0x06000E6F RID: 3695 RVA: 0x00055DF4 File Offset: 0x00053FF4
 	public void addItemToInventory(int id)
 	{
 		for (int i = 0; i < this.SlotContainer.transform.childCount; i++)
@@ -553,7 +553,7 @@ public class Inventory : MonoBehaviour
 		this.updateItemList();
 	}
 
-	// Token: 0x0600107E RID: 4222 RVA: 0x000A62A4 File Offset: 0x000A44A4
+	// Token: 0x06000E70 RID: 3696 RVA: 0x00055EE0 File Offset: 0x000540E0
 	public GameObject addItemToInventory(int id, int value)
 	{
 		for (int i = 0; i < this.SlotContainer.transform.childCount; i++)
@@ -587,7 +587,7 @@ public class Inventory : MonoBehaviour
 		return null;
 	}
 
-	// Token: 0x0600107F RID: 4223 RVA: 0x000A63E8 File Offset: 0x000A45E8
+	// Token: 0x06000E71 RID: 3697 RVA: 0x00056024 File Offset: 0x00054224
 	public GameObject addItemToInventory(int id, ulong itemUUID, int value)
 	{
 		for (int i = 0; i < this.SlotContainer.transform.childCount; i++)
@@ -622,7 +622,7 @@ public class Inventory : MonoBehaviour
 		return null;
 	}
 
-	// Token: 0x06001080 RID: 4224 RVA: 0x000A6538 File Offset: 0x000A4738
+	// Token: 0x06000E72 RID: 3698 RVA: 0x00056174 File Offset: 0x00054374
 	public GameObject addItemToInventory(int itemId, ulong itemUUID, int value, int itemIndex)
 	{
 		if (itemIndex < 0 || itemIndex >= this.SlotContainer.transform.childCount)
@@ -676,7 +676,7 @@ public class Inventory : MonoBehaviour
 		return gameObject;
 	}
 
-	// Token: 0x06001081 RID: 4225 RVA: 0x000A671C File Offset: 0x000A491C
+	// Token: 0x06000E73 RID: 3699 RVA: 0x00056358 File Offset: 0x00054558
 	public void addItemToInventoryStorage(int itemID, int value)
 	{
 		for (int i = 0; i < this.SlotContainer.transform.childCount; i++)
@@ -710,7 +710,7 @@ public class Inventory : MonoBehaviour
 		this.updateItemList();
 	}
 
-	// Token: 0x06001082 RID: 4226 RVA: 0x000A6844 File Offset: 0x000A4A44
+	// Token: 0x06000E74 RID: 3700 RVA: 0x00056480 File Offset: 0x00054680
 	public void updateIconSize(int iconSize)
 	{
 		for (int i = 0; i < this.SlotContainer.transform.childCount; i++)
@@ -723,7 +723,7 @@ public class Inventory : MonoBehaviour
 		this.updateItemSize();
 	}
 
-	// Token: 0x06001083 RID: 4227 RVA: 0x000A68BC File Offset: 0x000A4ABC
+	// Token: 0x06000E75 RID: 3701 RVA: 0x000564F8 File Offset: 0x000546F8
 	public void updateIconSize()
 	{
 		for (int i = 0; i < this.SlotContainer.transform.childCount; i++)
@@ -736,7 +736,7 @@ public class Inventory : MonoBehaviour
 		this.updateItemSize();
 	}
 
-	// Token: 0x06001084 RID: 4228 RVA: 0x000A6940 File Offset: 0x000A4B40
+	// Token: 0x06000E76 RID: 3702 RVA: 0x0005657C File Offset: 0x0005477C
 	public void stackableSettings(bool stackable, Vector3 posi)
 	{
 		for (int i = 0; i < this.SlotContainer.transform.childCount; i++)
@@ -756,7 +756,7 @@ public class Inventory : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001085 RID: 4229 RVA: 0x000A6A20 File Offset: 0x000A4C20
+	// Token: 0x06000E77 RID: 3703 RVA: 0x0005665C File Offset: 0x0005485C
 	public void deleteAllItems()
 	{
 		for (int i = 0; i < this.SlotContainer.transform.childCount; i++)
@@ -768,7 +768,7 @@ public class Inventory : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001086 RID: 4230 RVA: 0x000A6A84 File Offset: 0x000A4C84
+	// Token: 0x06000E78 RID: 3704 RVA: 0x000566C0 File Offset: 0x000548C0
 	public List<Item> getItemList()
 	{
 		List<Item> list = new List<Item>();
@@ -782,7 +782,7 @@ public class Inventory : MonoBehaviour
 		return list;
 	}
 
-	// Token: 0x06001087 RID: 4231 RVA: 0x000A6AF4 File Offset: 0x000A4CF4
+	// Token: 0x06000E79 RID: 3705 RVA: 0x00056730 File Offset: 0x00054930
 	public void stackableSettings()
 	{
 		for (int i = 0; i < this.SlotContainer.transform.childCount; i++)
@@ -806,7 +806,7 @@ public class Inventory : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001088 RID: 4232 RVA: 0x000A6C20 File Offset: 0x000A4E20
+	// Token: 0x06000E7A RID: 3706 RVA: 0x0005685C File Offset: 0x00054A5C
 	public GameObject getItemGameObjectByName(Item item)
 	{
 		for (int i = 0; i < this.SlotContainer.transform.childCount; i++)
@@ -823,7 +823,7 @@ public class Inventory : MonoBehaviour
 		return null;
 	}
 
-	// Token: 0x06001089 RID: 4233 RVA: 0x000A6CA0 File Offset: 0x000A4EA0
+	// Token: 0x06000E7B RID: 3707 RVA: 0x000568DC File Offset: 0x00054ADC
 	public GameObject getItemGameObject(Item item)
 	{
 		for (int i = 0; i < this.SlotContainer.transform.childCount; i++)
@@ -840,7 +840,7 @@ public class Inventory : MonoBehaviour
 		return null;
 	}
 
-	// Token: 0x0600108A RID: 4234 RVA: 0x000A6D14 File Offset: 0x000A4F14
+	// Token: 0x06000E7C RID: 3708 RVA: 0x00056950 File Offset: 0x00054B50
 	public GameObject getItemGameObject(int itemId)
 	{
 		int num = -1;
@@ -859,7 +859,7 @@ public class Inventory : MonoBehaviour
 		return null;
 	}
 
-	// Token: 0x0600108B RID: 4235 RVA: 0x000A6DB0 File Offset: 0x000A4FB0
+	// Token: 0x06000E7D RID: 3709 RVA: 0x000569EC File Offset: 0x00054BEC
 	public void changeInventoryPanelDesign(Image image)
 	{
 		Image component = base.transform.GetChild(0).GetChild(0).GetComponent<Image>();
@@ -870,7 +870,7 @@ public class Inventory : MonoBehaviour
 		component.fillCenter = image.fillCenter;
 	}
 
-	// Token: 0x0600108C RID: 4236 RVA: 0x000A6E10 File Offset: 0x000A5010
+	// Token: 0x06000E7E RID: 3710 RVA: 0x00056A4C File Offset: 0x00054C4C
 	public void deleteItem(Item item)
 	{
 		for (int i = 0; i < this.ItemsInInventory.Count; i++)
@@ -882,7 +882,7 @@ public class Inventory : MonoBehaviour
 		}
 	}
 
-	// Token: 0x0600108D RID: 4237 RVA: 0x00010645 File Offset: 0x0000E845
+	// Token: 0x06000E7F RID: 3711 RVA: 0x00056A94 File Offset: 0x00054C94
 	public void deleteItemByIndex(int index)
 	{
 		if (this.SlotContainer.transform.GetChild(index).childCount != 0)
@@ -891,7 +891,7 @@ public class Inventory : MonoBehaviour
 		}
 	}
 
-	// Token: 0x0600108E RID: 4238 RVA: 0x000A6E58 File Offset: 0x000A5058
+	// Token: 0x06000E80 RID: 3712 RVA: 0x00056AD0 File Offset: 0x00054CD0
 	public void deleteItemFromInventory(Item item)
 	{
 		for (int i = 0; i < this.ItemsInInventory.Count; i++)
@@ -903,7 +903,7 @@ public class Inventory : MonoBehaviour
 		}
 	}
 
-	// Token: 0x0600108F RID: 4239 RVA: 0x000A6E9C File Offset: 0x000A509C
+	// Token: 0x06000E81 RID: 3713 RVA: 0x00056B14 File Offset: 0x00054D14
 	public void deleteItemFromInventoryWithGameObject(Item item)
 	{
 		for (int i = 0; i < this.ItemsInInventory.Count; i++)
@@ -927,7 +927,7 @@ public class Inventory : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001090 RID: 4240 RVA: 0x000A6F4C File Offset: 0x000A514C
+	// Token: 0x06000E82 RID: 3714 RVA: 0x00056BC4 File Offset: 0x00054DC4
 	public int getPositionOfItem(Item item)
 	{
 		for (int i = 0; i < this.SlotContainer.transform.childCount; i++)
@@ -944,7 +944,7 @@ public class Inventory : MonoBehaviour
 		return -1;
 	}
 
-	// Token: 0x06001091 RID: 4241 RVA: 0x000A6FBC File Offset: 0x000A51BC
+	// Token: 0x06000E83 RID: 3715 RVA: 0x00056C34 File Offset: 0x00054E34
 	public void addItemToInventory(int ignoreSlot, int itemID, int itemValue)
 	{
 		for (int i = 0; i < this.SlotContainer.transform.childCount; i++)
@@ -974,7 +974,7 @@ public class Inventory : MonoBehaviour
 		this.updateItemList();
 	}
 
-	// Token: 0x06001092 RID: 4242 RVA: 0x000A70C8 File Offset: 0x000A52C8
+	// Token: 0x06000E84 RID: 3716 RVA: 0x00056D40 File Offset: 0x00054F40
 	public int getFirstEmptyItemIndex()
 	{
 		for (int i = 0; i < this.SlotContainer.transform.childCount; i++)
@@ -987,7 +987,7 @@ public class Inventory : MonoBehaviour
 		return -1;
 	}
 
-	// Token: 0x06001093 RID: 4243 RVA: 0x000A710C File Offset: 0x000A530C
+	// Token: 0x06000E85 RID: 3717 RVA: 0x00056D84 File Offset: 0x00054F84
 	public void updateItemIndex()
 	{
 		for (int i = 0; i < this.ItemsInInventory.Count; i++)
@@ -996,138 +996,138 @@ public class Inventory : MonoBehaviour
 		}
 	}
 
-	// Token: 0x04000CF0 RID: 3312
+	// Token: 0x04000A58 RID: 2648
 	[SerializeField]
 	private GameObject prefabCanvasWithPanel;
 
-	// Token: 0x04000CF1 RID: 3313
+	// Token: 0x04000A59 RID: 2649
 	[SerializeField]
 	private GameObject prefabSlot;
 
-	// Token: 0x04000CF2 RID: 3314
+	// Token: 0x04000A5A RID: 2650
 	[SerializeField]
 	private GameObject prefabSlotContainer;
 
-	// Token: 0x04000CF3 RID: 3315
+	// Token: 0x04000A5B RID: 2651
 	[SerializeField]
 	private GameObject prefabItem;
 
-	// Token: 0x04000CF4 RID: 3316
+	// Token: 0x04000A5C RID: 2652
 	[SerializeField]
 	private GameObject prefabDraggingItemContainer;
 
-	// Token: 0x04000CF5 RID: 3317
+	// Token: 0x04000A5D RID: 2653
 	[SerializeField]
 	private GameObject prefabPanel;
 
-	// Token: 0x04000CF6 RID: 3318
+	// Token: 0x04000A5E RID: 2654
 	[SerializeField]
 	private ItemDataBaseList itemDatabase;
 
-	// Token: 0x04000CF7 RID: 3319
+	// Token: 0x04000A5F RID: 2655
 	[SerializeField]
 	private string inventoryTitle;
 
-	// Token: 0x04000CF8 RID: 3320
+	// Token: 0x04000A60 RID: 2656
 	[SerializeField]
 	private RectTransform PanelRectTransform;
 
-	// Token: 0x04000CF9 RID: 3321
+	// Token: 0x04000A61 RID: 2657
 	[SerializeField]
 	private Image PanelImage;
 
-	// Token: 0x04000CFA RID: 3322
+	// Token: 0x04000A62 RID: 2658
 	[SerializeField]
 	private GameObject SlotContainer;
 
-	// Token: 0x04000CFB RID: 3323
+	// Token: 0x04000A63 RID: 2659
 	[SerializeField]
 	private GameObject DraggingItemContainer;
 
-	// Token: 0x04000CFC RID: 3324
+	// Token: 0x04000A64 RID: 2660
 	[SerializeField]
 	private RectTransform SlotContainerRectTransform;
 
-	// Token: 0x04000CFD RID: 3325
+	// Token: 0x04000A65 RID: 2661
 	[SerializeField]
 	private GridLayoutGroup SlotGridLayout;
 
-	// Token: 0x04000CFE RID: 3326
+	// Token: 0x04000A66 RID: 2662
 	[SerializeField]
 	private RectTransform SlotGridRectTransform;
 
-	// Token: 0x04000CFF RID: 3327
+	// Token: 0x04000A67 RID: 2663
 	[SerializeField]
 	public bool mainInventory;
 
-	// Token: 0x04000D00 RID: 3328
+	// Token: 0x04000A68 RID: 2664
 	[SerializeField]
 	public List<Item> ItemsInInventory = new List<Item>();
 
-	// Token: 0x04000D01 RID: 3329
+	// Token: 0x04000A69 RID: 2665
 	[SerializeField]
 	public int height;
 
-	// Token: 0x04000D02 RID: 3330
+	// Token: 0x04000A6A RID: 2666
 	[SerializeField]
 	public int width;
 
-	// Token: 0x04000D03 RID: 3331
+	// Token: 0x04000A6B RID: 2667
 	[SerializeField]
 	public bool stackable;
 
-	// Token: 0x04000D04 RID: 3332
+	// Token: 0x04000A6C RID: 2668
 	[SerializeField]
 	public static bool inventoryOpen;
 
-	// Token: 0x04000D05 RID: 3333
+	// Token: 0x04000A6D RID: 2669
 	[SerializeField]
 	public int slotSize;
 
-	// Token: 0x04000D06 RID: 3334
+	// Token: 0x04000A6E RID: 2670
 	[SerializeField]
 	public int iconSize;
 
-	// Token: 0x04000D07 RID: 3335
+	// Token: 0x04000A6F RID: 2671
 	[SerializeField]
 	public int paddingBetweenX;
 
-	// Token: 0x04000D08 RID: 3336
+	// Token: 0x04000A70 RID: 2672
 	[SerializeField]
 	public int paddingBetweenY;
 
-	// Token: 0x04000D09 RID: 3337
+	// Token: 0x04000A71 RID: 2673
 	[SerializeField]
 	public int paddingLeft;
 
-	// Token: 0x04000D0A RID: 3338
+	// Token: 0x04000A72 RID: 2674
 	[SerializeField]
 	public int paddingRight;
 
-	// Token: 0x04000D0B RID: 3339
+	// Token: 0x04000A73 RID: 2675
 	[SerializeField]
 	public int paddingBottom;
 
-	// Token: 0x04000D0C RID: 3340
+	// Token: 0x04000A74 RID: 2676
 	[SerializeField]
 	public int paddingTop;
 
-	// Token: 0x04000D0D RID: 3341
+	// Token: 0x04000A75 RID: 2677
 	[SerializeField]
 	public int positionNumberX;
 
-	// Token: 0x04000D0E RID: 3342
+	// Token: 0x04000A76 RID: 2678
 	[SerializeField]
 	public int positionNumberY;
 
-	// Token: 0x04000D0F RID: 3343
+	// Token: 0x04000A77 RID: 2679
 	private InputManager inputManagerDatabase;
 
-	// Token: 0x0200020A RID: 522
-	// (Invoke) Token: 0x06001096 RID: 4246
+	// Token: 0x0200128E RID: 4750
+	// (Invoke) Token: 0x060079B1 RID: 31153
 	public delegate void ItemDelegate(Item item);
 
-	// Token: 0x0200020B RID: 523
-	// (Invoke) Token: 0x0600109A RID: 4250
+	// Token: 0x0200128F RID: 4751
+	// (Invoke) Token: 0x060079B5 RID: 31157
 	public delegate void InventoryOpened();
 }

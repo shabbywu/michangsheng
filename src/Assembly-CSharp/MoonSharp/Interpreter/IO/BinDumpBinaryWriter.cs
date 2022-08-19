@@ -5,20 +5,20 @@ using System.Text;
 
 namespace MoonSharp.Interpreter.IO
 {
-	// Token: 0x020010E2 RID: 4322
+	// Token: 0x02000D03 RID: 3331
 	public class BinDumpBinaryWriter : BinaryWriter
 	{
-		// Token: 0x06006853 RID: 26707 RVA: 0x000479A5 File Offset: 0x00045BA5
+		// Token: 0x06005D35 RID: 23861 RVA: 0x00262528 File Offset: 0x00260728
 		public BinDumpBinaryWriter(Stream s) : base(s)
 		{
 		}
 
-		// Token: 0x06006854 RID: 26708 RVA: 0x000479B9 File Offset: 0x00045BB9
+		// Token: 0x06005D36 RID: 23862 RVA: 0x0026253C File Offset: 0x0026073C
 		public BinDumpBinaryWriter(Stream s, Encoding e) : base(s, e)
 		{
 		}
 
-		// Token: 0x06006855 RID: 26709 RVA: 0x0028B3F4 File Offset: 0x002895F4
+		// Token: 0x06005D37 RID: 23863 RVA: 0x00262554 File Offset: 0x00260754
 		public override void Write(uint value)
 		{
 			byte b = (byte)value;
@@ -38,7 +38,7 @@ namespace MoonSharp.Interpreter.IO
 			base.Write(value);
 		}
 
-		// Token: 0x06006856 RID: 26710 RVA: 0x0028B440 File Offset: 0x00289640
+		// Token: 0x06005D38 RID: 23864 RVA: 0x002625A0 File Offset: 0x002607A0
 		public override void Write(int value)
 		{
 			sbyte b = (sbyte)value;
@@ -58,7 +58,7 @@ namespace MoonSharp.Interpreter.IO
 			base.Write(value);
 		}
 
-		// Token: 0x06006857 RID: 26711 RVA: 0x0028B48C File Offset: 0x0028968C
+		// Token: 0x06005D39 RID: 23865 RVA: 0x002625EC File Offset: 0x002607EC
 		public override void Write(string value)
 		{
 			int count;
@@ -73,7 +73,7 @@ namespace MoonSharp.Interpreter.IO
 			base.Write(value);
 		}
 
-		// Token: 0x04005FE2 RID: 24546
+		// Token: 0x040053D8 RID: 21464
 		private Dictionary<string, int> m_StringMap = new Dictionary<string, int>();
 	}
 }

@@ -8,11 +8,11 @@ using UnityEngine.UI;
 
 namespace Tab
 {
-	// Token: 0x02000A43 RID: 2627
+	// Token: 0x020006FB RID: 1787
 	[Serializable]
 	public class TabShuXingPanel : ITabPanelBase
 	{
-		// Token: 0x060043E4 RID: 17380 RVA: 0x000308CA File Offset: 0x0002EACA
+		// Token: 0x0600396B RID: 14699 RVA: 0x001888D8 File Offset: 0x00186AD8
 		public TabShuXingPanel(GameObject gameObject)
 		{
 			this.HasHp = true;
@@ -20,7 +20,7 @@ namespace Tab
 			this._player = Tools.instance.getPlayer();
 		}
 
-		// Token: 0x060043E5 RID: 17381 RVA: 0x001D00F4 File Offset: 0x001CE2F4
+		// Token: 0x0600396C RID: 14700 RVA: 0x00188900 File Offset: 0x00186B00
 		private void Init()
 		{
 			this._levelImgDict1 = ResManager.inst.LoadSpriteAtlas("NewTab/LevelImg1");
@@ -80,13 +80,13 @@ namespace Tab
 					GameObject gameObject = base.Get("BaseData/" + data.Title, false);
 					if (gameObject != null)
 					{
-						TabListener tabListener = gameObject.AddComponent<TabListener>();
+						UIListener uilistener = gameObject.AddComponent<UIListener>();
 						Vector3 position = gameObject.transform.position;
-						tabListener.mouseEnterEvent.AddListener(delegate()
+						uilistener.mouseEnterEvent.AddListener(delegate()
 						{
 							dataTips.Show(data.Desc, position);
 						});
-						tabListener.mouseOutEvent.AddListener(new UnityAction(dataTips.Hide));
+						uilistener.mouseOutEvent.AddListener(new UnityAction(dataTips.Hide));
 					}
 				}
 			}
@@ -101,7 +101,7 @@ namespace Tab
 			this._tu = base.Get<Text>("LingGen/土灵根/Value");
 		}
 
-		// Token: 0x060043E6 RID: 17382 RVA: 0x001D0718 File Offset: 0x001CE918
+		// Token: 0x0600396D RID: 14701 RVA: 0x00188F24 File Offset: 0x00187124
 		private void UpdateUI()
 		{
 			this._levelName.text = LevelUpDataJsonData.DataDict[(int)this._player.level].Name.Insert(2, "   ");
@@ -169,7 +169,7 @@ namespace Tab
 			this._tu.text = this._player.GetLingGeng[4].ToString();
 		}
 
-		// Token: 0x060043E7 RID: 17383 RVA: 0x000308F0 File Offset: 0x0002EAF0
+		// Token: 0x0600396E RID: 14702 RVA: 0x0018950E File Offset: 0x0018770E
 		public override void Show()
 		{
 			if (!this._isInit)
@@ -181,121 +181,121 @@ namespace Tab
 			this.UpdateUI();
 		}
 
-		// Token: 0x04003BDC RID: 15324
+		// Token: 0x04003169 RID: 12649
 		private Dictionary<string, Sprite> _levelImgDict1;
 
-		// Token: 0x04003BDD RID: 15325
+		// Token: 0x0400316A RID: 12650
 		private Dictionary<string, Sprite> _levelImgDict2;
 
-		// Token: 0x04003BDE RID: 15326
+		// Token: 0x0400316B RID: 12651
 		private Dictionary<string, Sprite> _xinJingImgDict;
 
-		// Token: 0x04003BDF RID: 15327
+		// Token: 0x0400316C RID: 12652
 		private Dictionary<int, Color32> _xinJingColor;
 
-		// Token: 0x04003BE0 RID: 15328
+		// Token: 0x0400316D RID: 12653
 		private Dictionary<string, Sprite> _danDuImgDict;
 
-		// Token: 0x04003BE1 RID: 15329
+		// Token: 0x0400316E RID: 12654
 		private Dictionary<int, Color32> _danDuImgColor;
 
-		// Token: 0x04003BE2 RID: 15330
+		// Token: 0x0400316F RID: 12655
 		private Dictionary<string, Sprite> _lingGanImgDict;
 
-		// Token: 0x04003BE3 RID: 15331
+		// Token: 0x04003170 RID: 12656
 		private Dictionary<int, Color32> _lingGanColor;
 
-		// Token: 0x04003BE4 RID: 15332
+		// Token: 0x04003171 RID: 12657
 		private Avatar _player;
 
-		// Token: 0x04003BE5 RID: 15333
+		// Token: 0x04003172 RID: 12658
 		private bool _isInit;
 
-		// Token: 0x04003BE6 RID: 15334
+		// Token: 0x04003173 RID: 12659
 		private Text _levelName;
 
-		// Token: 0x04003BE7 RID: 15335
+		// Token: 0x04003174 RID: 12660
 		private Image _levelImg1;
 
-		// Token: 0x04003BE8 RID: 15336
+		// Token: 0x04003175 RID: 12661
 		private Image _levelImg2;
 
-		// Token: 0x04003BE9 RID: 15337
+		// Token: 0x04003176 RID: 12662
 		private FpBtn _levelBtn;
 
-		// Token: 0x04003BEA RID: 15338
+		// Token: 0x04003177 RID: 12663
 		private Text _age;
 
-		// Token: 0x04003BEB RID: 15339
+		// Token: 0x04003178 RID: 12664
 		private Text _shouYuan;
 
-		// Token: 0x04003BEC RID: 15340
+		// Token: 0x04003179 RID: 12665
 		private Text _ziZi;
 
-		// Token: 0x04003BED RID: 15341
+		// Token: 0x0400317A RID: 12666
 		private Text _shenShi;
 
-		// Token: 0x04003BEE RID: 15342
+		// Token: 0x0400317B RID: 12667
 		private Text _wuXing;
 
-		// Token: 0x04003BEF RID: 15343
+		// Token: 0x0400317C RID: 12668
 		private Text _dunSu;
 
-		// Token: 0x04003BF0 RID: 15344
+		// Token: 0x0400317D RID: 12669
 		private Text _xiuLianSpeed;
 
-		// Token: 0x04003BF1 RID: 15345
+		// Token: 0x0400317E RID: 12670
 		private Text _xinJingValueName;
 
-		// Token: 0x04003BF2 RID: 15346
+		// Token: 0x0400317F RID: 12671
 		private Text _xinJingValue;
 
-		// Token: 0x04003BF3 RID: 15347
+		// Token: 0x04003180 RID: 12672
 		private Image _xinJingImg;
 
-		// Token: 0x04003BF4 RID: 15348
+		// Token: 0x04003181 RID: 12673
 		private Text _danduValueName;
 
-		// Token: 0x04003BF5 RID: 15349
+		// Token: 0x04003182 RID: 12674
 		private Text _danduValue;
 
-		// Token: 0x04003BF6 RID: 15350
+		// Token: 0x04003183 RID: 12675
 		private Image _danduImg;
 
-		// Token: 0x04003BF7 RID: 15351
+		// Token: 0x04003184 RID: 12676
 		private Text _lingganValueName;
 
-		// Token: 0x04003BF8 RID: 15352
+		// Token: 0x04003185 RID: 12677
 		private Text _lingganValue;
 
-		// Token: 0x04003BF9 RID: 15353
+		// Token: 0x04003186 RID: 12678
 		private Image _lingganImg;
 
-		// Token: 0x04003BFA RID: 15354
+		// Token: 0x04003187 RID: 12679
 		private Text _menPaiValue;
 
-		// Token: 0x04003BFB RID: 15355
+		// Token: 0x04003188 RID: 12680
 		private Text _menPaiShengWangValue;
 
-		// Token: 0x04003BFC RID: 15356
+		// Token: 0x04003189 RID: 12681
 		private Text _zhiWeiValue;
 
-		// Token: 0x04003BFD RID: 15357
+		// Token: 0x0400318A RID: 12682
 		private Text _fengLuValue;
 
-		// Token: 0x04003BFE RID: 15358
+		// Token: 0x0400318B RID: 12683
 		private Text _jin;
 
-		// Token: 0x04003BFF RID: 15359
+		// Token: 0x0400318C RID: 12684
 		private Text _mu;
 
-		// Token: 0x04003C00 RID: 15360
+		// Token: 0x0400318D RID: 12685
 		private Text _shui;
 
-		// Token: 0x04003C01 RID: 15361
+		// Token: 0x0400318E RID: 12686
 		private Text _huo;
 
-		// Token: 0x04003C02 RID: 15362
+		// Token: 0x0400318F RID: 12687
 		private Text _tu;
 	}
 }

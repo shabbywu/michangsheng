@@ -3,16 +3,16 @@ using System.IO;
 
 namespace ICSharpCode.SharpZipLib.Core
 {
-	// Token: 0x0200082F RID: 2095
+	// Token: 0x02000586 RID: 1414
 	public class PathFilter : IScanFilter
 	{
-		// Token: 0x060036DE RID: 14046 RVA: 0x00027E2E File Offset: 0x0002602E
+		// Token: 0x06002E68 RID: 11880 RVA: 0x00151930 File Offset: 0x0014FB30
 		public PathFilter(string filter)
 		{
 			this.nameFilter_ = new NameFilter(filter);
 		}
 
-		// Token: 0x060036DF RID: 14047 RVA: 0x0019C778 File Offset: 0x0019A978
+		// Token: 0x06002E69 RID: 11881 RVA: 0x00151944 File Offset: 0x0014FB44
 		public virtual bool IsMatch(string name)
 		{
 			bool result = false;
@@ -24,7 +24,7 @@ namespace ICSharpCode.SharpZipLib.Core
 			return result;
 		}
 
-		// Token: 0x04003122 RID: 12578
+		// Token: 0x040028E3 RID: 10467
 		private readonly NameFilter nameFilter_;
 	}
 }

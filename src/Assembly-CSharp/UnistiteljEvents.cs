@@ -2,10 +2,10 @@
 using System.Collections;
 using UnityEngine;
 
-// Token: 0x020007A4 RID: 1956
+// Token: 0x02000511 RID: 1297
 public class UnistiteljEvents : MonoBehaviour
 {
-	// Token: 0x060031C8 RID: 12744 RVA: 0x0018BE58 File Offset: 0x0018A058
+	// Token: 0x060029BB RID: 10683 RVA: 0x0013ED44 File Offset: 0x0013CF44
 	private void Start()
 	{
 		this.enemyPool = GameObject.Find("__EnemiesPool").transform;
@@ -14,7 +14,7 @@ public class UnistiteljEvents : MonoBehaviour
 		this.specialPool = GameObject.Find("__SpecialPool").transform;
 	}
 
-	// Token: 0x060031C9 RID: 12745 RVA: 0x0018BEBC File Offset: 0x0018A0BC
+	// Token: 0x060029BC RID: 10684 RVA: 0x0013EDA8 File Offset: 0x0013CFA8
 	private void OnTriggerEnter2D(Collider2D col)
 	{
 		if (this.start > 0)
@@ -36,7 +36,7 @@ public class UnistiteljEvents : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060031CA RID: 12746 RVA: 0x00024697 File Offset: 0x00022897
+	// Token: 0x060029BD RID: 10685 RVA: 0x0013EE37 File Offset: 0x0013D037
 	private IEnumerator vratiNazadUPool(Collider2D col)
 	{
 		LevelPrefabProperties component = col.transform.parent.GetComponent<LevelPrefabProperties>();
@@ -125,7 +125,7 @@ public class UnistiteljEvents : MonoBehaviour
 		yield break;
 	}
 
-	// Token: 0x060031CB RID: 12747 RVA: 0x0018BF4C File Offset: 0x0018A14C
+	// Token: 0x060029BE RID: 10686 RVA: 0x0013EE50 File Offset: 0x0013D050
 	private void TrenutnoSeKoristi()
 	{
 		for (int i = 0; i < this.enemyPool.childCount; i++)
@@ -162,24 +162,24 @@ public class UnistiteljEvents : MonoBehaviour
 		}
 	}
 
-	// Token: 0x04002DFC RID: 11772
+	// Token: 0x04002610 RID: 9744
 	public Transform terrainPool;
 
-	// Token: 0x04002DFD RID: 11773
+	// Token: 0x04002611 RID: 9745
 	private Transform enemyPool;
 
-	// Token: 0x04002DFE RID: 11774
+	// Token: 0x04002612 RID: 9746
 	private Transform environmentPool;
 
-	// Token: 0x04002DFF RID: 11775
+	// Token: 0x04002613 RID: 9747
 	private Transform coinsPool;
 
-	// Token: 0x04002E00 RID: 11776
+	// Token: 0x04002614 RID: 9748
 	private Transform specialPool;
 
-	// Token: 0x04002E01 RID: 11777
+	// Token: 0x04002615 RID: 9749
 	private int start;
 
-	// Token: 0x04002E02 RID: 11778
+	// Token: 0x04002616 RID: 9750
 	private int brojac;
 }

@@ -3,12 +3,12 @@ using UnityEngine;
 
 namespace Fungus
 {
-	// Token: 0x02001367 RID: 4967
+	// Token: 0x02000EC9 RID: 3785
 	[Serializable]
 	public class SaveDataItem
 	{
-		// Token: 0x17000B4C RID: 2892
-		// (get) Token: 0x0600787C RID: 30844 RVA: 0x00051D72 File Offset: 0x0004FF72
+		// Token: 0x170008AF RID: 2223
+		// (get) Token: 0x06006AE1 RID: 27361 RVA: 0x0029475F File Offset: 0x0029295F
 		public virtual string DataType
 		{
 			get
@@ -17,8 +17,8 @@ namespace Fungus
 			}
 		}
 
-		// Token: 0x17000B4D RID: 2893
-		// (get) Token: 0x0600787D RID: 30845 RVA: 0x00051D7A File Offset: 0x0004FF7A
+		// Token: 0x170008B0 RID: 2224
+		// (get) Token: 0x06006AE2 RID: 27362 RVA: 0x00294767 File Offset: 0x00292967
 		public virtual string Data
 		{
 			get
@@ -27,7 +27,7 @@ namespace Fungus
 			}
 		}
 
-		// Token: 0x0600787E RID: 30846 RVA: 0x00051D82 File Offset: 0x0004FF82
+		// Token: 0x06006AE3 RID: 27363 RVA: 0x0029476F File Offset: 0x0029296F
 		public static SaveDataItem Create(string dataType, string data)
 		{
 			return new SaveDataItem
@@ -37,11 +37,11 @@ namespace Fungus
 			};
 		}
 
-		// Token: 0x0400688F RID: 26767
+		// Token: 0x04005A30 RID: 23088
 		[SerializeField]
 		protected string dataType = "";
 
-		// Token: 0x04006890 RID: 26768
+		// Token: 0x04005A31 RID: 23089
 		[SerializeField]
 		protected string data = "";
 	}

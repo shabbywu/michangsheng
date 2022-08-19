@@ -2,28 +2,28 @@
 
 namespace KBEngine
 {
-	// Token: 0x02000ED9 RID: 3801
+	// Token: 0x02000B5C RID: 2908
 	public class DATATYPE_STRING : DATATYPE_BASE
 	{
-		// Token: 0x06005B78 RID: 23416 RVA: 0x0004068D File Offset: 0x0003E88D
+		// Token: 0x0600513C RID: 20796 RVA: 0x002219AC File Offset: 0x0021FBAC
 		public override object createFromStream(MemoryStream stream)
 		{
 			return stream.readString();
 		}
 
-		// Token: 0x06005B79 RID: 23417 RVA: 0x00040695 File Offset: 0x0003E895
+		// Token: 0x0600513D RID: 20797 RVA: 0x002219B4 File Offset: 0x0021FBB4
 		public override void addToStream(Bundle stream, object v)
 		{
 			stream.writeString(Convert.ToString(v));
 		}
 
-		// Token: 0x06005B7A RID: 23418 RVA: 0x00010DC9 File Offset: 0x0000EFC9
+		// Token: 0x0600513E RID: 20798 RVA: 0x001086F1 File Offset: 0x001068F1
 		public override object parseDefaultValStr(string v)
 		{
 			return v;
 		}
 
-		// Token: 0x06005B7B RID: 23419 RVA: 0x000406A3 File Offset: 0x0003E8A3
+		// Token: 0x0600513F RID: 20799 RVA: 0x002219C2 File Offset: 0x0021FBC2
 		public override bool isSameType(object v)
 		{
 			return v != null && v.GetType() == typeof(string);

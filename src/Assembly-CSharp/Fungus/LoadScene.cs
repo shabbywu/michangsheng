@@ -4,13 +4,13 @@ using UnityEngine.Serialization;
 
 namespace Fungus
 {
-	// Token: 0x0200122D RID: 4653
+	// Token: 0x02000DE9 RID: 3561
 	[CommandInfo("Flow", "Load Scene", "Loads a new Unity scene and displays an optional loading image. This is useful for splitting a large game across multiple scene files to reduce peak memory usage. Previously loaded assets will be released before loading the scene to free up memory.The scene to be loaded must be added to the scene list in Build Settings.", 0)]
 	[AddComponentMenu("")]
 	[ExecuteInEditMode]
 	public class LoadScene : Command
 	{
-		// Token: 0x0600717A RID: 29050 RVA: 0x002A5BF0 File Offset: 0x002A3DF0
+		// Token: 0x060064EE RID: 25838 RVA: 0x00281364 File Offset: 0x0027F564
 		public override void OnEnter()
 		{
 			Tools.instance.getPlayer().zulinContorl.kezhanLastScence = Tools.getScreenName();
@@ -25,7 +25,7 @@ namespace Fungus
 			this.Continue();
 		}
 
-		// Token: 0x0600717B RID: 29051 RVA: 0x0004D259 File Offset: 0x0004B459
+		// Token: 0x060064EF RID: 25839 RVA: 0x002813D0 File Offset: 0x0027F5D0
 		public override string GetSummary()
 		{
 			if (this._sceneName.Value.Length == 0)
@@ -35,19 +35,19 @@ namespace Fungus
 			return this._sceneName.Value;
 		}
 
-		// Token: 0x0600717C RID: 29052 RVA: 0x0004C5E0 File Offset: 0x0004A7E0
+		// Token: 0x060064F0 RID: 25840 RVA: 0x0027D3DB File Offset: 0x0027B5DB
 		public override Color GetButtonColor()
 		{
 			return new Color32(235, 191, 217, byte.MaxValue);
 		}
 
-		// Token: 0x0600717D RID: 29053 RVA: 0x0004D27E File Offset: 0x0004B47E
+		// Token: 0x060064F1 RID: 25841 RVA: 0x002813F5 File Offset: 0x0027F5F5
 		public override bool HasReference(Variable variable)
 		{
 			return this._sceneName.stringRef == variable || base.HasReference(variable);
 		}
 
-		// Token: 0x0600717E RID: 29054 RVA: 0x0004D29C File Offset: 0x0004B49C
+		// Token: 0x060064F2 RID: 25842 RVA: 0x00281413 File Offset: 0x0027F613
 		protected virtual void OnEnable()
 		{
 			if (this.sceneNameOLD != "")
@@ -57,22 +57,22 @@ namespace Fungus
 			}
 		}
 
-		// Token: 0x040063E6 RID: 25574
+		// Token: 0x040056D5 RID: 22229
 		[Tooltip("Name of the scene to load. The scene must also be added to the build settings.")]
 		[SerializeField]
 		protected StringData _sceneName = new StringData("");
 
-		// Token: 0x040063E7 RID: 25575
+		// Token: 0x040056D6 RID: 22230
 		[Tooltip("Image to display while loading the scene")]
 		[SerializeField]
 		protected Texture2D loadingImage;
 
-		// Token: 0x040063E8 RID: 25576
+		// Token: 0x040056D7 RID: 22231
 		[Tooltip("是否重新設置返回的上一個場景為當前設置的值")]
 		[SerializeField]
 		protected bool ResetLastScene = true;
 
-		// Token: 0x040063E9 RID: 25577
+		// Token: 0x040056D8 RID: 22232
 		[HideInInspector]
 		[FormerlySerializedAs("sceneName")]
 		public string sceneNameOLD = "";

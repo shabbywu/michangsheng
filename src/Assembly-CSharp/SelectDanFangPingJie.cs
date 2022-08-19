@@ -2,17 +2,17 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-// Token: 0x02000448 RID: 1096
+// Token: 0x020002ED RID: 749
 public class SelectDanFangPingJie : MonoBehaviour
 {
-	// Token: 0x06001D32 RID: 7474 RVA: 0x00018555 File Offset: 0x00016755
+	// Token: 0x06001A0E RID: 6670 RVA: 0x000BA9A6 File Offset: 0x000B8BA6
 	public void openSelectPanel()
 	{
 		this.Content.SetActive(true);
 		this.Selected.SetActive(false);
 	}
 
-	// Token: 0x06001D33 RID: 7475 RVA: 0x0010108C File Offset: 0x000FF28C
+	// Token: 0x06001A0F RID: 6671 RVA: 0x000BA9C0 File Offset: 0x000B8BC0
 	public void selectPingJie(int pinjie)
 	{
 		LianDanSystemManager.inst.DanFangPageManager.setPingJie((DanFangPageManager.DanFangPingJie)pinjie);
@@ -21,15 +21,15 @@ public class SelectDanFangPingJie : MonoBehaviour
 		this.Selected.SetActive(true);
 	}
 
-	// Token: 0x04001924 RID: 6436
+	// Token: 0x0400151E RID: 5406
 	[SerializeField]
 	private GameObject Selected;
 
-	// Token: 0x04001925 RID: 6437
+	// Token: 0x0400151F RID: 5407
 	[SerializeField]
 	private GameObject Content;
 
-	// Token: 0x04001926 RID: 6438
+	// Token: 0x04001520 RID: 5408
 	[SerializeField]
 	private Image SelectedImage;
 }

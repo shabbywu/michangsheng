@@ -2,29 +2,29 @@
 
 namespace KBEngine
 {
-	// Token: 0x02000F22 RID: 3874
+	// Token: 0x02000B9F RID: 2975
 	public struct INT16
 	{
-		// Token: 0x06005D6B RID: 23915 RVA: 0x00041B01 File Offset: 0x0003FD01
+		// Token: 0x0600532D RID: 21293 RVA: 0x002339A0 File Offset: 0x00231BA0
 		private INT16(short value)
 		{
 			this.value = value;
 		}
 
-		// Token: 0x06005D6C RID: 23916 RVA: 0x00041B0A File Offset: 0x0003FD0A
+		// Token: 0x0600532E RID: 21294 RVA: 0x002339A9 File Offset: 0x00231BA9
 		public static implicit operator short(INT16 value)
 		{
 			return value.value;
 		}
 
-		// Token: 0x06005D6D RID: 23917 RVA: 0x00041B12 File Offset: 0x0003FD12
+		// Token: 0x0600532F RID: 21295 RVA: 0x002339B1 File Offset: 0x00231BB1
 		public static implicit operator INT16(short value)
 		{
 			return new INT16(value);
 		}
 
-		// Token: 0x17000863 RID: 2147
-		// (get) Token: 0x06005D6E RID: 23918 RVA: 0x00041B1A File Offset: 0x0003FD1A
+		// Token: 0x17000610 RID: 1552
+		// (get) Token: 0x06005330 RID: 21296 RVA: 0x002339B9 File Offset: 0x00231BB9
 		public static short MaxValue
 		{
 			get
@@ -33,8 +33,8 @@ namespace KBEngine
 			}
 		}
 
-		// Token: 0x17000864 RID: 2148
-		// (get) Token: 0x06005D6F RID: 23919 RVA: 0x00041B21 File Offset: 0x0003FD21
+		// Token: 0x17000611 RID: 1553
+		// (get) Token: 0x06005331 RID: 21297 RVA: 0x002339C0 File Offset: 0x00231BC0
 		public static short MinValue
 		{
 			get
@@ -43,7 +43,7 @@ namespace KBEngine
 			}
 		}
 
-		// Token: 0x04005ACC RID: 23244
+		// Token: 0x0400502B RID: 20523
 		private short value;
 	}
 }

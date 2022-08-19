@@ -6,10 +6,10 @@ using UltimateSurvival.GUISystem;
 using UnityEngine;
 using UnityEngine.UI;
 
-// Token: 0x020005AC RID: 1452
+// Token: 0x020003FC RID: 1020
 public class ShopList : ScrollList
 {
-	// Token: 0x06002499 RID: 9369 RVA: 0x0001D684 File Offset: 0x0001B884
+	// Token: 0x060020E7 RID: 8423 RVA: 0x000E6FC7 File Offset: 0x000E51C7
 	private void Start()
 	{
 		this.database = (ItemDatabase)Resources.Load("Custom Data/Items/PlayerItem Database");
@@ -17,19 +17,19 @@ public class ShopList : ScrollList
 		Event.registerOut("ShopOnDeselect", this, "ShopOnDeselect");
 	}
 
-	// Token: 0x0600249A RID: 9370 RVA: 0x0001429C File Offset: 0x0001249C
+	// Token: 0x060020E8 RID: 8424 RVA: 0x000826BE File Offset: 0x000808BE
 	private void OnDestroy()
 	{
 		Event.deregisterOut(this);
 	}
 
-	// Token: 0x0600249B RID: 9371 RVA: 0x0001D6BD File Offset: 0x0001B8BD
+	// Token: 0x060020E9 RID: 8425 RVA: 0x000E7000 File Offset: 0x000E5200
 	public void ShopOnDeselect(RecipeSlot slot)
 	{
 		this.ItemInspector.SetActive(true);
 	}
 
-	// Token: 0x0600249C RID: 9372 RVA: 0x00128FD8 File Offset: 0x001271D8
+	// Token: 0x060020EA RID: 8426 RVA: 0x000E7010 File Offset: 0x000E5210
 	private int SortList(ITEM_INFO c, ITEM_INFO d)
 	{
 		if (Convert.ToInt32(c.itemCount) > Convert.ToInt32(d.itemCount))
@@ -43,7 +43,7 @@ public class ShopList : ScrollList
 		return 0;
 	}
 
-	// Token: 0x0600249D RID: 9373 RVA: 0x00129020 File Offset: 0x00127220
+	// Token: 0x060020EB RID: 8427 RVA: 0x000E7058 File Offset: 0x000E5258
 	public void onReqShopList(ITEM_INFO_LIST infos, string shopPrice)
 	{
 		this.clenrNowBtn();
@@ -85,6 +85,6 @@ public class ShopList : ScrollList
 		}
 	}
 
-	// Token: 0x04001F71 RID: 8049
+	// Token: 0x04001AB5 RID: 6837
 	public GameObject ItemInspector;
 }

@@ -5,10 +5,10 @@ using KBEngine;
 using UnityEngine;
 using UnityEngine.UI;
 
-// Token: 0x02000618 RID: 1560
+// Token: 0x0200045E RID: 1118
 public class JieDanHuiHe : MonoBehaviour
 {
-	// Token: 0x060026C4 RID: 9924 RVA: 0x0012FEC8 File Offset: 0x0012E0C8
+	// Token: 0x06002311 RID: 8977 RVA: 0x000EF99C File Offset: 0x000EDB9C
 	private void Start()
 	{
 		this.jieDanBuff = new List<int>
@@ -24,7 +24,7 @@ public class JieDanHuiHe : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060026C5 RID: 9925 RVA: 0x0012FF68 File Offset: 0x0012E168
+	// Token: 0x06002312 RID: 8978 RVA: 0x000EFA3C File Offset: 0x000EDC3C
 	private void Update()
 	{
 		Avatar player = PlayerEx.Player;
@@ -38,12 +38,12 @@ public class JieDanHuiHe : MonoBehaviour
 		}
 	}
 
-	// Token: 0x04002111 RID: 8465
+	// Token: 0x04001C41 RID: 7233
 	public Text text;
 
-	// Token: 0x04002112 RID: 8466
+	// Token: 0x04001C42 RID: 7234
 	private List<int> jieDanBuff;
 
-	// Token: 0x04002113 RID: 8467
+	// Token: 0x04001C43 RID: 7235
 	private List<string> jieDanBuffName;
 }

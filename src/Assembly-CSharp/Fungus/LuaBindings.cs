@@ -5,11 +5,11 @@ using UnityEngine;
 
 namespace Fungus
 {
-	// Token: 0x0200139C RID: 5020
+	// Token: 0x02000EFA RID: 3834
 	[ExecuteInEditMode]
 	public class LuaBindings : LuaBindingsBase
 	{
-		// Token: 0x0600798B RID: 31115 RVA: 0x00052FC0 File Offset: 0x000511C0
+		// Token: 0x06006BE6 RID: 27622 RVA: 0x00297378 File Offset: 0x00295578
 		protected virtual void Update()
 		{
 			if (this.boundObjects.Count == 0)
@@ -18,7 +18,7 @@ namespace Fungus
 			}
 		}
 
-		// Token: 0x0600798C RID: 31116 RVA: 0x002B86A8 File Offset: 0x002B68A8
+		// Token: 0x06006BE7 RID: 27623 RVA: 0x00297394 File Offset: 0x00295594
 		public override void AddBindings(LuaEnvironment luaEnv)
 		{
 			if (!this.allEnvironments && this.luaEnvironment != null && !this.luaEnvironment.Equals(luaEnv))
@@ -88,8 +88,8 @@ namespace Fungus
 			}
 		}
 
-		// Token: 0x17000B77 RID: 2935
-		// (get) Token: 0x0600798D RID: 31117 RVA: 0x00052FDB File Offset: 0x000511DB
+		// Token: 0x170008D8 RID: 2264
+		// (get) Token: 0x06006BE8 RID: 27624 RVA: 0x00297564 File Offset: 0x00295764
 		public override List<BoundObject> BoundObjects
 		{
 			get
@@ -98,37 +98,37 @@ namespace Fungus
 			}
 		}
 
-		// Token: 0x0400693C RID: 26940
+		// Token: 0x04005AD0 RID: 23248
 		[Tooltip("Add bindings to every Lua Environment in the scene. If false, only add bindings to a specific Lua Environment.")]
 		[SerializeField]
 		protected bool allEnvironments = true;
 
-		// Token: 0x0400693D RID: 26941
+		// Token: 0x04005AD1 RID: 23249
 		[Tooltip("The specific LuaEnvironment to register the bindings in.")]
 		[SerializeField]
 		protected LuaEnvironment luaEnvironment;
 
-		// Token: 0x0400693E RID: 26942
+		// Token: 0x04005AD2 RID: 23250
 		[Tooltip("Name of global table variable to store bindings in. If left blank then each binding will be added as a global variable.")]
 		[SerializeField]
 		protected string tableName = "";
 
-		// Token: 0x0400693F RID: 26943
+		// Token: 0x04005AD3 RID: 23251
 		[Tooltip("Register all CLR types used by the bound objects so that they can be accessed from Lua. If you don't use this option you will need to register these types yourself.")]
 		[SerializeField]
 		protected bool registerTypes = true;
 
-		// Token: 0x04006940 RID: 26944
+		// Token: 0x04005AD4 RID: 23252
 		[HideInInspector]
 		[SerializeField]
 		protected List<string> boundTypes = new List<string>();
 
-		// Token: 0x04006941 RID: 26945
+		// Token: 0x04005AD5 RID: 23253
 		[Tooltip("The list of Unity objects to be bound to make them accessible in Lua script.")]
 		[SerializeField]
 		protected List<BoundObject> boundObjects = new List<BoundObject>();
 
-		// Token: 0x04006942 RID: 26946
+		// Token: 0x04005AD6 RID: 23254
 		[Tooltip("Show inherited public members.")]
 		[SerializeField]
 		protected bool showInherited;

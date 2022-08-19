@@ -6,10 +6,10 @@ using KBEngine;
 using UniRx;
 using UnityEngine;
 
-// Token: 0x02000266 RID: 614
+// Token: 0x02000186 RID: 390
 public class CheckTool : MonoBehaviour
 {
-	// Token: 0x060012EE RID: 4846 RVA: 0x000B06C0 File Offset: 0x000AE8C0
+	// Token: 0x06001098 RID: 4248 RVA: 0x00061BA8 File Offset: 0x0005FDA8
 	public void Init()
 	{
 		Tools.instance.getPlayer();
@@ -41,7 +41,7 @@ public class CheckTool : MonoBehaviour
 		Tools.instance.CaiYaoData = null;
 	}
 
-	// Token: 0x060012EF RID: 4847 RVA: 0x000B07C8 File Offset: 0x000AE9C8
+	// Token: 0x06001099 RID: 4249 RVA: 0x00061CB0 File Offset: 0x0005FEB0
 	public void setSay(Flowchart flowchart, string block, JSONObject qiecuoInfo, string excel)
 	{
 		Say say = (Say)flowchart.FindBlock(block).CommandList[0];
@@ -49,7 +49,7 @@ public class CheckTool : MonoBehaviour
 		say.pubAvatarIntID = Tools.instance.MonstarID;
 	}
 
-	// Token: 0x060012F0 RID: 4848 RVA: 0x000B0818 File Offset: 0x000AEA18
+	// Token: 0x0600109A RID: 4250 RVA: 0x00061D00 File Offset: 0x0005FF00
 	public void showTalk()
 	{
 		int talk = GlobalValue.GetTalk(0, "CheckTool.showTalk");
@@ -58,7 +58,7 @@ public class CheckTool : MonoBehaviour
 		if (talk == 505)
 		{
 			Flowchart component = gameObject.transform.Find("Flowchart").GetComponent<Flowchart>();
-			JSONObject jsonobject = jsonData.instance.QieCuoJsonData.list.Find((JSONObject aa) => (int)aa["AvatarID"].n == Tools.instance.MonstarID);
+			JSONObject jsonobject = jsonData.instance.QieCuoJsonData.list.Find((JSONObject aa) => aa["AvatarID"].I == Tools.instance.MonstarID);
 			if (jsonobject != null)
 			{
 				this.setSay(component, "win", jsonobject, "win");

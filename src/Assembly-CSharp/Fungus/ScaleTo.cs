@@ -5,13 +5,13 @@ using UnityEngine.Serialization;
 
 namespace Fungus
 {
-	// Token: 0x0200127B RID: 4731
+	// Token: 0x02000E2A RID: 3626
 	[CommandInfo("iTween", "Scale To", "Changes a game object's scale to a specified value over time.", 0)]
 	[AddComponentMenu("")]
 	[ExecuteInEditMode]
 	public class ScaleTo : iTweenCommand
 	{
-		// Token: 0x060072C3 RID: 29379 RVA: 0x002A9354 File Offset: 0x002A7554
+		// Token: 0x06006635 RID: 26165 RVA: 0x00285A8C File Offset: 0x00283C8C
 		public override void DoTween()
 		{
 			Hashtable hashtable = new Hashtable();
@@ -33,13 +33,13 @@ namespace Fungus
 			iTween.ScaleTo(this._targetObject.Value, hashtable);
 		}
 
-		// Token: 0x060072C4 RID: 29380 RVA: 0x0004E248 File Offset: 0x0004C448
+		// Token: 0x06006636 RID: 26166 RVA: 0x00285B80 File Offset: 0x00283D80
 		public override bool HasReference(Variable variable)
 		{
 			return this._toTransform.transformRef == variable || this._toScale.vector3Ref == variable || base.HasReference(variable);
 		}
 
-		// Token: 0x060072C5 RID: 29381 RVA: 0x002A9448 File Offset: 0x002A7648
+		// Token: 0x06006637 RID: 26167 RVA: 0x00285BB4 File Offset: 0x00283DB4
 		protected override void OnEnable()
 		{
 			base.OnEnable();
@@ -55,22 +55,22 @@ namespace Fungus
 			}
 		}
 
-		// Token: 0x040064EA RID: 25834
+		// Token: 0x040057A6 RID: 22438
 		[Tooltip("Target transform that the GameObject will scale to")]
 		[SerializeField]
 		protected TransformData _toTransform;
 
-		// Token: 0x040064EB RID: 25835
+		// Token: 0x040057A7 RID: 22439
 		[Tooltip("Target scale that the GameObject will scale to, if no To Transform is set")]
 		[SerializeField]
 		protected Vector3Data _toScale = new Vector3Data(Vector3.one);
 
-		// Token: 0x040064EC RID: 25836
+		// Token: 0x040057A8 RID: 22440
 		[HideInInspector]
 		[FormerlySerializedAs("toTransform")]
 		public Transform toTransformOLD;
 
-		// Token: 0x040064ED RID: 25837
+		// Token: 0x040057A9 RID: 22441
 		[HideInInspector]
 		[FormerlySerializedAs("toScale")]
 		public Vector3 toScaleOLD;

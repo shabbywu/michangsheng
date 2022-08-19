@@ -3,26 +3,26 @@ using UnityEngine;
 
 namespace Fungus
 {
-	// Token: 0x02001375 RID: 4981
+	// Token: 0x02000ED4 RID: 3796
 	[Serializable]
 	public struct AnimatorData
 	{
-		// Token: 0x060078B6 RID: 30902 RVA: 0x00051F5B File Offset: 0x0005015B
+		// Token: 0x06006B17 RID: 27415 RVA: 0x002959AA File Offset: 0x00293BAA
 		public static implicit operator Animator(AnimatorData animatorData)
 		{
 			return animatorData.Value;
 		}
 
-		// Token: 0x060078B7 RID: 30903 RVA: 0x00051F64 File Offset: 0x00050164
+		// Token: 0x06006B18 RID: 27416 RVA: 0x002959B3 File Offset: 0x00293BB3
 		public AnimatorData(Animator v)
 		{
 			this.animatorVal = v;
 			this.animatorRef = null;
 		}
 
-		// Token: 0x17000B55 RID: 2901
-		// (get) Token: 0x060078B8 RID: 30904 RVA: 0x00051F74 File Offset: 0x00050174
-		// (set) Token: 0x060078B9 RID: 30905 RVA: 0x00051F96 File Offset: 0x00050196
+		// Token: 0x170008B8 RID: 2232
+		// (get) Token: 0x06006B19 RID: 27417 RVA: 0x002959C3 File Offset: 0x00293BC3
+		// (set) Token: 0x06006B1A RID: 27418 RVA: 0x002959E5 File Offset: 0x00293BE5
 		public Animator Value
 		{
 			get
@@ -44,7 +44,7 @@ namespace Fungus
 			}
 		}
 
-		// Token: 0x060078BA RID: 30906 RVA: 0x00051FBA File Offset: 0x000501BA
+		// Token: 0x06006B1B RID: 27419 RVA: 0x00295A09 File Offset: 0x00293C09
 		public string GetDescription()
 		{
 			if (this.animatorRef == null)
@@ -54,7 +54,7 @@ namespace Fungus
 			return this.animatorRef.Key;
 		}
 
-		// Token: 0x040068CF RID: 26831
+		// Token: 0x04005A66 RID: 23142
 		[SerializeField]
 		[VariableProperty("<Value>", new Type[]
 		{
@@ -62,7 +62,7 @@ namespace Fungus
 		})]
 		public AnimatorVariable animatorRef;
 
-		// Token: 0x040068D0 RID: 26832
+		// Token: 0x04005A67 RID: 23143
 		[SerializeField]
 		public Animator animatorVal;
 	}

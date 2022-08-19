@@ -1,47 +1,47 @@
 ﻿using System;
 using UnityEngine;
 
-// Token: 0x0200019C RID: 412
+// Token: 0x02000110 RID: 272
 [ExecuteInEditMode]
 public class EasyJoystick : MonoBehaviour
 {
 	// Token: 0x14000004 RID: 4
-	// (add) Token: 0x06000DBF RID: 3519 RVA: 0x0009C5D4 File Offset: 0x0009A7D4
-	// (remove) Token: 0x06000DC0 RID: 3520 RVA: 0x0009C608 File Offset: 0x0009A808
+	// (add) Token: 0x06000C92 RID: 3218 RVA: 0x0004B1FC File Offset: 0x000493FC
+	// (remove) Token: 0x06000C93 RID: 3219 RVA: 0x0004B230 File Offset: 0x00049430
 	public static event EasyJoystick.JoystickMoveStartHandler On_JoystickMoveStart;
 
 	// Token: 0x14000005 RID: 5
-	// (add) Token: 0x06000DC1 RID: 3521 RVA: 0x0009C63C File Offset: 0x0009A83C
-	// (remove) Token: 0x06000DC2 RID: 3522 RVA: 0x0009C670 File Offset: 0x0009A870
+	// (add) Token: 0x06000C94 RID: 3220 RVA: 0x0004B264 File Offset: 0x00049464
+	// (remove) Token: 0x06000C95 RID: 3221 RVA: 0x0004B298 File Offset: 0x00049498
 	public static event EasyJoystick.JoystickMoveHandler On_JoystickMove;
 
 	// Token: 0x14000006 RID: 6
-	// (add) Token: 0x06000DC3 RID: 3523 RVA: 0x0009C6A4 File Offset: 0x0009A8A4
-	// (remove) Token: 0x06000DC4 RID: 3524 RVA: 0x0009C6D8 File Offset: 0x0009A8D8
+	// (add) Token: 0x06000C96 RID: 3222 RVA: 0x0004B2CC File Offset: 0x000494CC
+	// (remove) Token: 0x06000C97 RID: 3223 RVA: 0x0004B300 File Offset: 0x00049500
 	public static event EasyJoystick.JoystickMoveEndHandler On_JoystickMoveEnd;
 
 	// Token: 0x14000007 RID: 7
-	// (add) Token: 0x06000DC5 RID: 3525 RVA: 0x0009C70C File Offset: 0x0009A90C
-	// (remove) Token: 0x06000DC6 RID: 3526 RVA: 0x0009C740 File Offset: 0x0009A940
+	// (add) Token: 0x06000C98 RID: 3224 RVA: 0x0004B334 File Offset: 0x00049534
+	// (remove) Token: 0x06000C99 RID: 3225 RVA: 0x0004B368 File Offset: 0x00049568
 	public static event EasyJoystick.JoystickTouchStartHandler On_JoystickTouchStart;
 
 	// Token: 0x14000008 RID: 8
-	// (add) Token: 0x06000DC7 RID: 3527 RVA: 0x0009C774 File Offset: 0x0009A974
-	// (remove) Token: 0x06000DC8 RID: 3528 RVA: 0x0009C7A8 File Offset: 0x0009A9A8
+	// (add) Token: 0x06000C9A RID: 3226 RVA: 0x0004B39C File Offset: 0x0004959C
+	// (remove) Token: 0x06000C9B RID: 3227 RVA: 0x0004B3D0 File Offset: 0x000495D0
 	public static event EasyJoystick.JoystickTapHandler On_JoystickTap;
 
 	// Token: 0x14000009 RID: 9
-	// (add) Token: 0x06000DC9 RID: 3529 RVA: 0x0009C7DC File Offset: 0x0009A9DC
-	// (remove) Token: 0x06000DCA RID: 3530 RVA: 0x0009C810 File Offset: 0x0009AA10
+	// (add) Token: 0x06000C9C RID: 3228 RVA: 0x0004B404 File Offset: 0x00049604
+	// (remove) Token: 0x06000C9D RID: 3229 RVA: 0x0004B438 File Offset: 0x00049638
 	public static event EasyJoystick.JoystickDoubleTapHandler On_JoystickDoubleTap;
 
 	// Token: 0x1400000A RID: 10
-	// (add) Token: 0x06000DCB RID: 3531 RVA: 0x0009C844 File Offset: 0x0009AA44
-	// (remove) Token: 0x06000DCC RID: 3532 RVA: 0x0009C878 File Offset: 0x0009AA78
+	// (add) Token: 0x06000C9E RID: 3230 RVA: 0x0004B46C File Offset: 0x0004966C
+	// (remove) Token: 0x06000C9F RID: 3231 RVA: 0x0004B4A0 File Offset: 0x000496A0
 	public static event EasyJoystick.JoystickTouchUpHandler On_JoystickTouchUp;
 
-	// Token: 0x17000203 RID: 515
-	// (get) Token: 0x06000DCD RID: 3533 RVA: 0x0000F2F1 File Offset: 0x0000D4F1
+	// Token: 0x170001DA RID: 474
+	// (get) Token: 0x06000CA0 RID: 3232 RVA: 0x0004B4D3 File Offset: 0x000496D3
 	public Vector2 JoystickAxis
 	{
 		get
@@ -50,9 +50,9 @@ public class EasyJoystick : MonoBehaviour
 		}
 	}
 
-	// Token: 0x17000204 RID: 516
-	// (get) Token: 0x06000DCE RID: 3534 RVA: 0x0000F2F9 File Offset: 0x0000D4F9
-	// (set) Token: 0x06000DCF RID: 3535 RVA: 0x0009C8AC File Offset: 0x0009AAAC
+	// Token: 0x170001DB RID: 475
+	// (get) Token: 0x06000CA1 RID: 3233 RVA: 0x0004B4DB File Offset: 0x000496DB
+	// (set) Token: 0x06000CA2 RID: 3234 RVA: 0x0004B508 File Offset: 0x00049708
 	public Vector2 JoystickTouch
 	{
 		get
@@ -67,8 +67,8 @@ public class EasyJoystick : MonoBehaviour
 		}
 	}
 
-	// Token: 0x17000205 RID: 517
-	// (get) Token: 0x06000DD0 RID: 3536 RVA: 0x0000F324 File Offset: 0x0000D524
+	// Token: 0x170001DC RID: 476
+	// (get) Token: 0x06000CA3 RID: 3235 RVA: 0x0004B55C File Offset: 0x0004975C
 	public Vector2 JoystickValue
 	{
 		get
@@ -77,9 +77,9 @@ public class EasyJoystick : MonoBehaviour
 		}
 	}
 
-	// Token: 0x17000206 RID: 518
-	// (get) Token: 0x06000DD1 RID: 3537 RVA: 0x0000F32C File Offset: 0x0000D52C
-	// (set) Token: 0x06000DD2 RID: 3538 RVA: 0x0000F334 File Offset: 0x0000D534
+	// Token: 0x170001DD RID: 477
+	// (get) Token: 0x06000CA4 RID: 3236 RVA: 0x0004B564 File Offset: 0x00049764
+	// (set) Token: 0x06000CA5 RID: 3237 RVA: 0x0004B56C File Offset: 0x0004976C
 	public bool DynamicJoystick
 	{
 		get
@@ -103,9 +103,9 @@ public class EasyJoystick : MonoBehaviour
 		}
 	}
 
-	// Token: 0x17000207 RID: 519
-	// (get) Token: 0x06000DD3 RID: 3539 RVA: 0x0000F36E File Offset: 0x0000D56E
-	// (set) Token: 0x06000DD4 RID: 3540 RVA: 0x0000F376 File Offset: 0x0000D576
+	// Token: 0x170001DE RID: 478
+	// (get) Token: 0x06000CA6 RID: 3238 RVA: 0x0004B5A6 File Offset: 0x000497A6
+	// (set) Token: 0x06000CA7 RID: 3239 RVA: 0x0004B5AE File Offset: 0x000497AE
 	public EasyJoystick.JoystickAnchor JoyAnchor
 	{
 		get
@@ -119,9 +119,9 @@ public class EasyJoystick : MonoBehaviour
 		}
 	}
 
-	// Token: 0x17000208 RID: 520
-	// (get) Token: 0x06000DD5 RID: 3541 RVA: 0x0000F38B File Offset: 0x0000D58B
-	// (set) Token: 0x06000DD6 RID: 3542 RVA: 0x0000F393 File Offset: 0x0000D593
+	// Token: 0x170001DF RID: 479
+	// (get) Token: 0x06000CA8 RID: 3240 RVA: 0x0004B5C3 File Offset: 0x000497C3
+	// (set) Token: 0x06000CA9 RID: 3241 RVA: 0x0004B5CB File Offset: 0x000497CB
 	public Vector2 JoystickPositionOffset
 	{
 		get
@@ -135,9 +135,9 @@ public class EasyJoystick : MonoBehaviour
 		}
 	}
 
-	// Token: 0x17000209 RID: 521
-	// (get) Token: 0x06000DD7 RID: 3543 RVA: 0x0000F3A8 File Offset: 0x0000D5A8
-	// (set) Token: 0x06000DD8 RID: 3544 RVA: 0x0000F3B0 File Offset: 0x0000D5B0
+	// Token: 0x170001E0 RID: 480
+	// (get) Token: 0x06000CAA RID: 3242 RVA: 0x0004B5E0 File Offset: 0x000497E0
+	// (set) Token: 0x06000CAB RID: 3243 RVA: 0x0004B5E8 File Offset: 0x000497E8
 	public float ZoneRadius
 	{
 		get
@@ -151,9 +151,9 @@ public class EasyJoystick : MonoBehaviour
 		}
 	}
 
-	// Token: 0x1700020A RID: 522
-	// (get) Token: 0x06000DD9 RID: 3545 RVA: 0x0000F3C5 File Offset: 0x0000D5C5
-	// (set) Token: 0x06000DDA RID: 3546 RVA: 0x0009C900 File Offset: 0x0009AB00
+	// Token: 0x170001E1 RID: 481
+	// (get) Token: 0x06000CAC RID: 3244 RVA: 0x0004B5FD File Offset: 0x000497FD
+	// (set) Token: 0x06000CAD RID: 3245 RVA: 0x0004B608 File Offset: 0x00049808
 	public float TouchSize
 	{
 		get
@@ -171,9 +171,9 @@ public class EasyJoystick : MonoBehaviour
 		}
 	}
 
-	// Token: 0x1700020B RID: 523
-	// (get) Token: 0x06000DDB RID: 3547 RVA: 0x0000F3CD File Offset: 0x0000D5CD
-	// (set) Token: 0x06000DDC RID: 3548 RVA: 0x0000F3D5 File Offset: 0x0000D5D5
+	// Token: 0x170001E2 RID: 482
+	// (get) Token: 0x06000CAE RID: 3246 RVA: 0x0004B656 File Offset: 0x00049856
+	// (set) Token: 0x06000CAF RID: 3247 RVA: 0x0004B65E File Offset: 0x0004985E
 	public bool RestrictArea
 	{
 		get
@@ -195,9 +195,9 @@ public class EasyJoystick : MonoBehaviour
 		}
 	}
 
-	// Token: 0x1700020C RID: 524
-	// (get) Token: 0x06000DDD RID: 3549 RVA: 0x0000F40B File Offset: 0x0000D60B
-	// (set) Token: 0x06000DDE RID: 3550 RVA: 0x0000F413 File Offset: 0x0000D613
+	// Token: 0x170001E3 RID: 483
+	// (get) Token: 0x06000CB0 RID: 3248 RVA: 0x0004B694 File Offset: 0x00049894
+	// (set) Token: 0x06000CB1 RID: 3249 RVA: 0x0004B69C File Offset: 0x0004989C
 	public EasyJoystick.InteractionType Interaction
 	{
 		get
@@ -214,9 +214,9 @@ public class EasyJoystick : MonoBehaviour
 		}
 	}
 
-	// Token: 0x1700020D RID: 525
-	// (get) Token: 0x06000DDF RID: 3551 RVA: 0x0000F434 File Offset: 0x0000D634
-	// (set) Token: 0x06000DE0 RID: 3552 RVA: 0x0000F43C File Offset: 0x0000D63C
+	// Token: 0x170001E4 RID: 484
+	// (get) Token: 0x06000CB2 RID: 3250 RVA: 0x0004B6BD File Offset: 0x000498BD
+	// (set) Token: 0x06000CB3 RID: 3251 RVA: 0x0004B6C5 File Offset: 0x000498C5
 	public Transform XAxisTransform
 	{
 		get
@@ -236,9 +236,9 @@ public class EasyJoystick : MonoBehaviour
 		}
 	}
 
-	// Token: 0x1700020E RID: 526
-	// (get) Token: 0x06000DE1 RID: 3553 RVA: 0x0000F477 File Offset: 0x0000D677
-	// (set) Token: 0x06000DE2 RID: 3554 RVA: 0x0000F47F File Offset: 0x0000D67F
+	// Token: 0x170001E5 RID: 485
+	// (get) Token: 0x06000CB4 RID: 3252 RVA: 0x0004B700 File Offset: 0x00049900
+	// (set) Token: 0x06000CB5 RID: 3253 RVA: 0x0004B708 File Offset: 0x00049908
 	public EasyJoystick.PropertiesInfluenced XTI
 	{
 		get
@@ -256,9 +256,9 @@ public class EasyJoystick : MonoBehaviour
 		}
 	}
 
-	// Token: 0x1700020F RID: 527
-	// (get) Token: 0x06000DE3 RID: 3555 RVA: 0x0000F49F File Offset: 0x0000D69F
-	// (set) Token: 0x06000DE4 RID: 3556 RVA: 0x0000F4A7 File Offset: 0x0000D6A7
+	// Token: 0x170001E6 RID: 486
+	// (get) Token: 0x06000CB6 RID: 3254 RVA: 0x0004B728 File Offset: 0x00049928
+	// (set) Token: 0x06000CB7 RID: 3255 RVA: 0x0004B730 File Offset: 0x00049930
 	public float ThresholdX
 	{
 		get
@@ -276,9 +276,9 @@ public class EasyJoystick : MonoBehaviour
 		}
 	}
 
-	// Token: 0x17000210 RID: 528
-	// (get) Token: 0x06000DE5 RID: 3557 RVA: 0x0000F4C6 File Offset: 0x0000D6C6
-	// (set) Token: 0x06000DE6 RID: 3558 RVA: 0x0000F4CE File Offset: 0x0000D6CE
+	// Token: 0x170001E7 RID: 487
+	// (get) Token: 0x06000CB8 RID: 3256 RVA: 0x0004B74F File Offset: 0x0004994F
+	// (set) Token: 0x06000CB9 RID: 3257 RVA: 0x0004B757 File Offset: 0x00049957
 	public float StabSpeedX
 	{
 		get
@@ -296,9 +296,9 @@ public class EasyJoystick : MonoBehaviour
 		}
 	}
 
-	// Token: 0x17000211 RID: 529
-	// (get) Token: 0x06000DE7 RID: 3559 RVA: 0x0000F4ED File Offset: 0x0000D6ED
-	// (set) Token: 0x06000DE8 RID: 3560 RVA: 0x0000F4F5 File Offset: 0x0000D6F5
+	// Token: 0x170001E8 RID: 488
+	// (get) Token: 0x06000CBA RID: 3258 RVA: 0x0004B776 File Offset: 0x00049976
+	// (set) Token: 0x06000CBB RID: 3259 RVA: 0x0004B77E File Offset: 0x0004997E
 	public Transform YAxisTransform
 	{
 		get
@@ -318,9 +318,9 @@ public class EasyJoystick : MonoBehaviour
 		}
 	}
 
-	// Token: 0x17000212 RID: 530
-	// (get) Token: 0x06000DE9 RID: 3561 RVA: 0x0000F530 File Offset: 0x0000D730
-	// (set) Token: 0x06000DEA RID: 3562 RVA: 0x0000F538 File Offset: 0x0000D738
+	// Token: 0x170001E9 RID: 489
+	// (get) Token: 0x06000CBC RID: 3260 RVA: 0x0004B7B9 File Offset: 0x000499B9
+	// (set) Token: 0x06000CBD RID: 3261 RVA: 0x0004B7C1 File Offset: 0x000499C1
 	public EasyJoystick.PropertiesInfluenced YTI
 	{
 		get
@@ -338,9 +338,9 @@ public class EasyJoystick : MonoBehaviour
 		}
 	}
 
-	// Token: 0x17000213 RID: 531
-	// (get) Token: 0x06000DEB RID: 3563 RVA: 0x0000F558 File Offset: 0x0000D758
-	// (set) Token: 0x06000DEC RID: 3564 RVA: 0x0000F560 File Offset: 0x0000D760
+	// Token: 0x170001EA RID: 490
+	// (get) Token: 0x06000CBE RID: 3262 RVA: 0x0004B7E1 File Offset: 0x000499E1
+	// (set) Token: 0x06000CBF RID: 3263 RVA: 0x0004B7E9 File Offset: 0x000499E9
 	public float ThresholdY
 	{
 		get
@@ -358,9 +358,9 @@ public class EasyJoystick : MonoBehaviour
 		}
 	}
 
-	// Token: 0x17000214 RID: 532
-	// (get) Token: 0x06000DED RID: 3565 RVA: 0x0000F57F File Offset: 0x0000D77F
-	// (set) Token: 0x06000DEE RID: 3566 RVA: 0x0000F587 File Offset: 0x0000D787
+	// Token: 0x170001EB RID: 491
+	// (get) Token: 0x06000CC0 RID: 3264 RVA: 0x0004B808 File Offset: 0x00049A08
+	// (set) Token: 0x06000CC1 RID: 3265 RVA: 0x0004B810 File Offset: 0x00049A10
 	public float StabSpeedY
 	{
 		get
@@ -378,9 +378,9 @@ public class EasyJoystick : MonoBehaviour
 		}
 	}
 
-	// Token: 0x17000215 RID: 533
-	// (get) Token: 0x06000DEF RID: 3567 RVA: 0x0000F5A6 File Offset: 0x0000D7A6
-	// (set) Token: 0x06000DF0 RID: 3568 RVA: 0x0009C950 File Offset: 0x0009AB50
+	// Token: 0x170001EC RID: 492
+	// (get) Token: 0x06000CC2 RID: 3266 RVA: 0x0004B82F File Offset: 0x00049A2F
+	// (set) Token: 0x06000CC3 RID: 3267 RVA: 0x0004B838 File Offset: 0x00049A38
 	public Vector2 Smoothing
 	{
 		get
@@ -401,9 +401,9 @@ public class EasyJoystick : MonoBehaviour
 		}
 	}
 
-	// Token: 0x17000216 RID: 534
-	// (get) Token: 0x06000DF1 RID: 3569 RVA: 0x0000F5AE File Offset: 0x0000D7AE
-	// (set) Token: 0x06000DF2 RID: 3570 RVA: 0x0009C9A8 File Offset: 0x0009ABA8
+	// Token: 0x170001ED RID: 493
+	// (get) Token: 0x06000CC4 RID: 3268 RVA: 0x0004B890 File Offset: 0x00049A90
+	// (set) Token: 0x06000CC5 RID: 3269 RVA: 0x0004B898 File Offset: 0x00049A98
 	public Vector2 Inertia
 	{
 		get
@@ -424,7 +424,7 @@ public class EasyJoystick : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000DF3 RID: 3571 RVA: 0x0009CA00 File Offset: 0x0009AC00
+	// Token: 0x06000CC6 RID: 3270 RVA: 0x0004B8F0 File Offset: 0x00049AF0
 	private void OnEnable()
 	{
 		EasyTouch.On_TouchStart += this.On_TouchStart;
@@ -434,7 +434,7 @@ public class EasyJoystick : MonoBehaviour
 		EasyTouch.On_DoubleTap += this.On_DoubleTap;
 	}
 
-	// Token: 0x06000DF4 RID: 3572 RVA: 0x0009CA64 File Offset: 0x0009AC64
+	// Token: 0x06000CC7 RID: 3271 RVA: 0x0004B954 File Offset: 0x00049B54
 	private void OnDisable()
 	{
 		EasyTouch.On_TouchStart -= this.On_TouchStart;
@@ -448,7 +448,7 @@ public class EasyJoystick : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000DF5 RID: 3573 RVA: 0x0009CA64 File Offset: 0x0009AC64
+	// Token: 0x06000CC8 RID: 3272 RVA: 0x0004B9C8 File Offset: 0x00049BC8
 	private void OnDestroy()
 	{
 		EasyTouch.On_TouchStart -= this.On_TouchStart;
@@ -462,7 +462,7 @@ public class EasyJoystick : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000DF6 RID: 3574 RVA: 0x0009CAD8 File Offset: 0x0009ACD8
+	// Token: 0x06000CC9 RID: 3273 RVA: 0x0004BA3C File Offset: 0x00049C3C
 	private void Start()
 	{
 		if (!this.dynamicJoystick)
@@ -480,7 +480,7 @@ public class EasyJoystick : MonoBehaviour
 		this.startYLocalAngle = this.GetStartAutoStabAngle(this.yAxisTransform, this.yAI);
 	}
 
-	// Token: 0x06000DF7 RID: 3575 RVA: 0x0000F5B6 File Offset: 0x0000D7B6
+	// Token: 0x06000CCA RID: 3274 RVA: 0x0004BAAE File Offset: 0x00049CAE
 	private void Update()
 	{
 		if (!this.useFixedUpdate && this.enable)
@@ -489,7 +489,7 @@ public class EasyJoystick : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000DF8 RID: 3576 RVA: 0x0000F5CE File Offset: 0x0000D7CE
+	// Token: 0x06000CCB RID: 3275 RVA: 0x0004BAC6 File Offset: 0x00049CC6
 	private void FixedUpdate()
 	{
 		if (this.useFixedUpdate && this.enable)
@@ -498,7 +498,7 @@ public class EasyJoystick : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000DF9 RID: 3577 RVA: 0x0009CB4C File Offset: 0x0009AD4C
+	// Token: 0x06000CCC RID: 3276 RVA: 0x0004BAE0 File Offset: 0x00049CE0
 	private void UpdateJoystick()
 	{
 		if (Application.isPlaying && this.isActivated)
@@ -591,7 +591,7 @@ public class EasyJoystick : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000DFA RID: 3578 RVA: 0x0009CE5C File Offset: 0x0009B05C
+	// Token: 0x06000CCD RID: 3277 RVA: 0x0004BDF0 File Offset: 0x00049FF0
 	private void OnGUI()
 	{
 		if (this.enable)
@@ -684,12 +684,12 @@ public class EasyJoystick : MonoBehaviour
 		EasyTouch.RemoveReservedArea(this.areaRect);
 	}
 
-	// Token: 0x06000DFB RID: 3579 RVA: 0x000042DD File Offset: 0x000024DD
+	// Token: 0x06000CCE RID: 3278 RVA: 0x00004095 File Offset: 0x00002295
 	private void OnDrawGizmos()
 	{
 	}
 
-	// Token: 0x06000DFC RID: 3580 RVA: 0x0009D214 File Offset: 0x0009B414
+	// Token: 0x06000CCF RID: 3279 RVA: 0x0004C1A8 File Offset: 0x0004A3A8
 	private void CreateEvent(EasyJoystick.MessageName message)
 	{
 		MovingJoystick movingJoystick = new MovingJoystick();
@@ -780,7 +780,7 @@ public class EasyJoystick : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000DFD RID: 3581 RVA: 0x0009D3C4 File Offset: 0x0009B5C4
+	// Token: 0x06000CD0 RID: 3280 RVA: 0x0004C358 File Offset: 0x0004A558
 	private void UpdateDirect()
 	{
 		if (this.xAxisTransform != null)
@@ -803,7 +803,7 @@ public class EasyJoystick : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000DFE RID: 3582 RVA: 0x0009D4BC File Offset: 0x0009B6BC
+	// Token: 0x06000CD1 RID: 3281 RVA: 0x0004C450 File Offset: 0x0004A650
 	private void UpdateGravity()
 	{
 		if (this.xAxisCharacterController != null && this.xAxisGravity > 0f)
@@ -816,7 +816,7 @@ public class EasyJoystick : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000DFF RID: 3583 RVA: 0x0009D54C File Offset: 0x0009B74C
+	// Token: 0x06000CD2 RID: 3282 RVA: 0x0004C4E0 File Offset: 0x0004A6E0
 	private Vector3 GetInfluencedAxis(EasyJoystick.AxisInfluenced axisInfluenced)
 	{
 		Vector3 result = Vector3.zero;
@@ -838,7 +838,7 @@ public class EasyJoystick : MonoBehaviour
 		return result;
 	}
 
-	// Token: 0x06000E00 RID: 3584 RVA: 0x0009D598 File Offset: 0x0009B798
+	// Token: 0x06000CD3 RID: 3283 RVA: 0x0004C52C File Offset: 0x0004A72C
 	private void DoActionDirect(Transform axisTransform, EasyJoystick.PropertiesInfluenced inlfuencedProperty, Vector3 axis, float sensibility, CharacterController charact)
 	{
 		switch (inlfuencedProperty)
@@ -873,7 +873,7 @@ public class EasyJoystick : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000E01 RID: 3585 RVA: 0x0009D6A4 File Offset: 0x0009B8A4
+	// Token: 0x06000CD4 RID: 3284 RVA: 0x0004C638 File Offset: 0x0004A838
 	private void DoAngleLimitation(Transform axisTransform, EasyJoystick.AxisInfluenced axisInfluenced, float clampMin, float clampMax, float startAngle)
 	{
 		float num = 0f;
@@ -910,7 +910,7 @@ public class EasyJoystick : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000E02 RID: 3586 RVA: 0x0009D7AC File Offset: 0x0009B9AC
+	// Token: 0x06000CD5 RID: 3285 RVA: 0x0004C740 File Offset: 0x0004A940
 	private void DoAutoStabilisation(Transform axisTransform, EasyJoystick.AxisInfluenced axisInfluenced, float threshold, float speed, float startAngle)
 	{
 		float num = 0f;
@@ -958,7 +958,7 @@ public class EasyJoystick : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000E03 RID: 3587 RVA: 0x0009D944 File Offset: 0x0009BB44
+	// Token: 0x06000CD6 RID: 3286 RVA: 0x0004C8D8 File Offset: 0x0004AAD8
 	private float GetStartAutoStabAngle(Transform axisTransform, EasyJoystick.AxisInfluenced axisInfluenced)
 	{
 		float num = 0f;
@@ -984,7 +984,7 @@ public class EasyJoystick : MonoBehaviour
 		return num;
 	}
 
-	// Token: 0x06000E04 RID: 3588 RVA: 0x0009D9D0 File Offset: 0x0009BBD0
+	// Token: 0x06000CD7 RID: 3287 RVA: 0x0004C964 File Offset: 0x0004AB64
 	private float ComputeDeadZone()
 	{
 		float num = Mathf.Max(this.joystickTouch.magnitude, 0.1f);
@@ -1000,7 +1000,7 @@ public class EasyJoystick : MonoBehaviour
 		return result;
 	}
 
-	// Token: 0x06000E05 RID: 3589 RVA: 0x0009DA54 File Offset: 0x0009BC54
+	// Token: 0x06000CD8 RID: 3288 RVA: 0x0004C9E8 File Offset: 0x0004ABE8
 	private void ComputeJoystickAnchor(EasyJoystick.JoystickAnchor anchor)
 	{
 		float num = 0f;
@@ -1045,7 +1045,7 @@ public class EasyJoystick : MonoBehaviour
 		this.deadRect = new Rect(this.anchorPosition.x + this.joystickCenter.x - this.deadZone, this.anchorPosition.y + this.joystickCenter.y - this.deadZone, this.deadZone * 2f, this.deadZone * 2f);
 	}
 
-	// Token: 0x06000E06 RID: 3590 RVA: 0x0009DCBC File Offset: 0x0009BEBC
+	// Token: 0x06000CD9 RID: 3289 RVA: 0x0004CC50 File Offset: 0x0004AE50
 	private void On_TouchStart(Gesture gesture)
 	{
 		if (((!gesture.isHoverReservedArea && this.dynamicJoystick) || !this.dynamicJoystick) && this.isActivated)
@@ -1127,7 +1127,7 @@ public class EasyJoystick : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000E07 RID: 3591 RVA: 0x0000F5E6 File Offset: 0x0000D7E6
+	// Token: 0x06000CDA RID: 3290 RVA: 0x0004CF1C File Offset: 0x0004B11C
 	private void On_SimpleTap(Gesture gesture)
 	{
 		if (((!gesture.isHoverReservedArea && this.dynamicJoystick) || !this.dynamicJoystick) && this.isActivated && gesture.fingerIndex == this.joystickIndex)
@@ -1136,7 +1136,7 @@ public class EasyJoystick : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000E08 RID: 3592 RVA: 0x0000F61D File Offset: 0x0000D81D
+	// Token: 0x06000CDB RID: 3291 RVA: 0x0004CF53 File Offset: 0x0004B153
 	private void On_DoubleTap(Gesture gesture)
 	{
 		if (((!gesture.isHoverReservedArea && this.dynamicJoystick) || !this.dynamicJoystick) && this.isActivated && gesture.fingerIndex == this.joystickIndex)
@@ -1145,7 +1145,7 @@ public class EasyJoystick : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000E09 RID: 3593 RVA: 0x0009DF88 File Offset: 0x0009C188
+	// Token: 0x06000CDC RID: 3292 RVA: 0x0004CF8C File Offset: 0x0004B18C
 	private void On_TouchDown(Gesture gesture)
 	{
 		if (((!gesture.isHoverReservedArea && this.dynamicJoystick) || !this.dynamicJoystick) && this.isActivated)
@@ -1181,7 +1181,7 @@ public class EasyJoystick : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000E0A RID: 3594 RVA: 0x0009E134 File Offset: 0x0009C334
+	// Token: 0x06000CDD RID: 3293 RVA: 0x0004D138 File Offset: 0x0004B338
 	private void On_TouchUp(Gesture gesture)
 	{
 		if (((!gesture.isHoverReservedArea && this.dynamicJoystick) || !this.dynamicJoystick) && this.isActivated && gesture.fingerIndex == this.joystickIndex)
@@ -1195,392 +1195,392 @@ public class EasyJoystick : MonoBehaviour
 		}
 	}
 
-	// Token: 0x04000ACA RID: 2762
+	// Token: 0x040008B4 RID: 2228
 	private Vector2 joystickAxis;
 
-	// Token: 0x04000ACB RID: 2763
+	// Token: 0x040008B5 RID: 2229
 	private Vector2 joystickTouch;
 
-	// Token: 0x04000ACC RID: 2764
+	// Token: 0x040008B6 RID: 2230
 	private Vector2 joystickValue;
 
-	// Token: 0x04000ACD RID: 2765
+	// Token: 0x040008B7 RID: 2231
 	public bool enable = true;
 
-	// Token: 0x04000ACE RID: 2766
+	// Token: 0x040008B8 RID: 2232
 	public bool isActivated = true;
 
-	// Token: 0x04000ACF RID: 2767
+	// Token: 0x040008B9 RID: 2233
 	public bool showDebugRadius;
 
-	// Token: 0x04000AD0 RID: 2768
+	// Token: 0x040008BA RID: 2234
 	public bool useFixedUpdate;
 
-	// Token: 0x04000AD1 RID: 2769
+	// Token: 0x040008BB RID: 2235
 	public bool isUseGuiLayout = true;
 
-	// Token: 0x04000AD2 RID: 2770
+	// Token: 0x040008BC RID: 2236
 	[SerializeField]
 	private bool dynamicJoystick;
 
-	// Token: 0x04000AD3 RID: 2771
+	// Token: 0x040008BD RID: 2237
 	public EasyJoystick.DynamicArea area;
 
-	// Token: 0x04000AD4 RID: 2772
+	// Token: 0x040008BE RID: 2238
 	[SerializeField]
 	private EasyJoystick.JoystickAnchor joyAnchor = EasyJoystick.JoystickAnchor.LowerLeft;
 
-	// Token: 0x04000AD5 RID: 2773
+	// Token: 0x040008BF RID: 2239
 	[SerializeField]
 	private Vector2 joystickPositionOffset = Vector2.zero;
 
-	// Token: 0x04000AD6 RID: 2774
+	// Token: 0x040008C0 RID: 2240
 	[SerializeField]
 	private float zoneRadius = 100f;
 
-	// Token: 0x04000AD7 RID: 2775
+	// Token: 0x040008C1 RID: 2241
 	[SerializeField]
 	private float touchSize = 30f;
 
-	// Token: 0x04000AD8 RID: 2776
+	// Token: 0x040008C2 RID: 2242
 	public float deadZone = 20f;
 
-	// Token: 0x04000AD9 RID: 2777
+	// Token: 0x040008C3 RID: 2243
 	[SerializeField]
 	private bool restrictArea;
 
-	// Token: 0x04000ADA RID: 2778
+	// Token: 0x040008C4 RID: 2244
 	public bool resetFingerExit;
 
-	// Token: 0x04000ADB RID: 2779
+	// Token: 0x040008C5 RID: 2245
 	[SerializeField]
 	private EasyJoystick.InteractionType interaction;
 
-	// Token: 0x04000ADC RID: 2780
+	// Token: 0x040008C6 RID: 2246
 	public bool useBroadcast;
 
-	// Token: 0x04000ADD RID: 2781
+	// Token: 0x040008C7 RID: 2247
 	public EasyJoystick.Broadcast messageMode;
 
-	// Token: 0x04000ADE RID: 2782
+	// Token: 0x040008C8 RID: 2248
 	public GameObject receiverGameObject;
 
-	// Token: 0x04000ADF RID: 2783
+	// Token: 0x040008C9 RID: 2249
 	public Vector2 speed;
 
-	// Token: 0x04000AE0 RID: 2784
+	// Token: 0x040008CA RID: 2250
 	public bool enableXaxis = true;
 
-	// Token: 0x04000AE1 RID: 2785
+	// Token: 0x040008CB RID: 2251
 	[SerializeField]
 	private Transform xAxisTransform;
 
-	// Token: 0x04000AE2 RID: 2786
+	// Token: 0x040008CC RID: 2252
 	public CharacterController xAxisCharacterController;
 
-	// Token: 0x04000AE3 RID: 2787
+	// Token: 0x040008CD RID: 2253
 	public float xAxisGravity;
 
-	// Token: 0x04000AE4 RID: 2788
+	// Token: 0x040008CE RID: 2254
 	[SerializeField]
 	private EasyJoystick.PropertiesInfluenced xTI;
 
-	// Token: 0x04000AE5 RID: 2789
+	// Token: 0x040008CF RID: 2255
 	public EasyJoystick.AxisInfluenced xAI;
 
-	// Token: 0x04000AE6 RID: 2790
+	// Token: 0x040008D0 RID: 2256
 	public bool inverseXAxis;
 
-	// Token: 0x04000AE7 RID: 2791
+	// Token: 0x040008D1 RID: 2257
 	public bool enableXClamp;
 
-	// Token: 0x04000AE8 RID: 2792
+	// Token: 0x040008D2 RID: 2258
 	public float clampXMax;
 
-	// Token: 0x04000AE9 RID: 2793
+	// Token: 0x040008D3 RID: 2259
 	public float clampXMin;
 
-	// Token: 0x04000AEA RID: 2794
+	// Token: 0x040008D4 RID: 2260
 	public bool enableXAutoStab;
 
-	// Token: 0x04000AEB RID: 2795
+	// Token: 0x040008D5 RID: 2261
 	[SerializeField]
 	private float thresholdX = 0.01f;
 
-	// Token: 0x04000AEC RID: 2796
+	// Token: 0x040008D6 RID: 2262
 	[SerializeField]
 	private float stabSpeedX = 20f;
 
-	// Token: 0x04000AED RID: 2797
+	// Token: 0x040008D7 RID: 2263
 	public bool enableYaxis = true;
 
-	// Token: 0x04000AEE RID: 2798
+	// Token: 0x040008D8 RID: 2264
 	[SerializeField]
 	private Transform yAxisTransform;
 
-	// Token: 0x04000AEF RID: 2799
+	// Token: 0x040008D9 RID: 2265
 	public CharacterController yAxisCharacterController;
 
-	// Token: 0x04000AF0 RID: 2800
+	// Token: 0x040008DA RID: 2266
 	public float yAxisGravity;
 
-	// Token: 0x04000AF1 RID: 2801
+	// Token: 0x040008DB RID: 2267
 	[SerializeField]
 	private EasyJoystick.PropertiesInfluenced yTI;
 
-	// Token: 0x04000AF2 RID: 2802
+	// Token: 0x040008DC RID: 2268
 	public EasyJoystick.AxisInfluenced yAI;
 
-	// Token: 0x04000AF3 RID: 2803
+	// Token: 0x040008DD RID: 2269
 	public bool inverseYAxis;
 
-	// Token: 0x04000AF4 RID: 2804
+	// Token: 0x040008DE RID: 2270
 	public bool enableYClamp;
 
-	// Token: 0x04000AF5 RID: 2805
+	// Token: 0x040008DF RID: 2271
 	public float clampYMax;
 
-	// Token: 0x04000AF6 RID: 2806
+	// Token: 0x040008E0 RID: 2272
 	public float clampYMin;
 
-	// Token: 0x04000AF7 RID: 2807
+	// Token: 0x040008E1 RID: 2273
 	public bool enableYAutoStab;
 
-	// Token: 0x04000AF8 RID: 2808
+	// Token: 0x040008E2 RID: 2274
 	[SerializeField]
 	private float thresholdY = 0.01f;
 
-	// Token: 0x04000AF9 RID: 2809
+	// Token: 0x040008E3 RID: 2275
 	[SerializeField]
 	private float stabSpeedY = 20f;
 
-	// Token: 0x04000AFA RID: 2810
+	// Token: 0x040008E4 RID: 2276
 	public bool enableSmoothing;
 
-	// Token: 0x04000AFB RID: 2811
+	// Token: 0x040008E5 RID: 2277
 	[SerializeField]
 	public Vector2 smoothing = new Vector2(2f, 2f);
 
-	// Token: 0x04000AFC RID: 2812
+	// Token: 0x040008E6 RID: 2278
 	public bool enableInertia;
 
-	// Token: 0x04000AFD RID: 2813
+	// Token: 0x040008E7 RID: 2279
 	[SerializeField]
 	public Vector2 inertia = new Vector2(100f, 100f);
 
-	// Token: 0x04000AFE RID: 2814
+	// Token: 0x040008E8 RID: 2280
 	public int guiDepth;
 
-	// Token: 0x04000AFF RID: 2815
+	// Token: 0x040008E9 RID: 2281
 	public bool showZone = true;
 
-	// Token: 0x04000B00 RID: 2816
+	// Token: 0x040008EA RID: 2282
 	public bool showTouch = true;
 
-	// Token: 0x04000B01 RID: 2817
+	// Token: 0x040008EB RID: 2283
 	public bool showDeadZone = true;
 
-	// Token: 0x04000B02 RID: 2818
+	// Token: 0x040008EC RID: 2284
 	public Texture areaTexture;
 
-	// Token: 0x04000B03 RID: 2819
+	// Token: 0x040008ED RID: 2285
 	public Color areaColor = Color.white;
 
-	// Token: 0x04000B04 RID: 2820
+	// Token: 0x040008EE RID: 2286
 	public Texture touchTexture;
 
-	// Token: 0x04000B05 RID: 2821
+	// Token: 0x040008EF RID: 2287
 	public Color touchColor = Color.white;
 
-	// Token: 0x04000B06 RID: 2822
+	// Token: 0x040008F0 RID: 2288
 	public Texture deadTexture;
 
-	// Token: 0x04000B07 RID: 2823
+	// Token: 0x040008F1 RID: 2289
 	public bool showProperties = true;
 
-	// Token: 0x04000B08 RID: 2824
+	// Token: 0x040008F2 RID: 2290
 	public bool showInteraction;
 
-	// Token: 0x04000B09 RID: 2825
+	// Token: 0x040008F3 RID: 2291
 	public bool showAppearance;
 
-	// Token: 0x04000B0A RID: 2826
+	// Token: 0x040008F4 RID: 2292
 	public bool showPosition = true;
 
-	// Token: 0x04000B0B RID: 2827
+	// Token: 0x040008F5 RID: 2293
 	private Vector2 joystickCenter;
 
-	// Token: 0x04000B0C RID: 2828
+	// Token: 0x040008F6 RID: 2294
 	private Rect areaRect;
 
-	// Token: 0x04000B0D RID: 2829
+	// Token: 0x040008F7 RID: 2295
 	private Rect deadRect;
 
-	// Token: 0x04000B0E RID: 2830
+	// Token: 0x040008F8 RID: 2296
 	private Vector2 anchorPosition = Vector2.zero;
 
-	// Token: 0x04000B0F RID: 2831
+	// Token: 0x040008F9 RID: 2297
 	private bool virtualJoystick = true;
 
-	// Token: 0x04000B10 RID: 2832
+	// Token: 0x040008FA RID: 2298
 	private int joystickIndex = -1;
 
-	// Token: 0x04000B11 RID: 2833
+	// Token: 0x040008FB RID: 2299
 	private float touchSizeCoef;
 
-	// Token: 0x04000B12 RID: 2834
+	// Token: 0x040008FC RID: 2300
 	private bool sendEnd = true;
 
-	// Token: 0x04000B13 RID: 2835
+	// Token: 0x040008FD RID: 2301
 	private float startXLocalAngle;
 
-	// Token: 0x04000B14 RID: 2836
+	// Token: 0x040008FE RID: 2302
 	private float startYLocalAngle;
 
-	// Token: 0x0200019D RID: 413
-	// (Invoke) Token: 0x06000E0D RID: 3597
+	// Token: 0x02001250 RID: 4688
+	// (Invoke) Token: 0x060078E4 RID: 30948
 	public delegate void JoystickMoveStartHandler(MovingJoystick move);
 
-	// Token: 0x0200019E RID: 414
-	// (Invoke) Token: 0x06000E11 RID: 3601
+	// Token: 0x02001251 RID: 4689
+	// (Invoke) Token: 0x060078E8 RID: 30952
 	public delegate void JoystickMoveHandler(MovingJoystick move);
 
-	// Token: 0x0200019F RID: 415
-	// (Invoke) Token: 0x06000E15 RID: 3605
+	// Token: 0x02001252 RID: 4690
+	// (Invoke) Token: 0x060078EC RID: 30956
 	public delegate void JoystickMoveEndHandler(MovingJoystick move);
 
-	// Token: 0x020001A0 RID: 416
-	// (Invoke) Token: 0x06000E19 RID: 3609
+	// Token: 0x02001253 RID: 4691
+	// (Invoke) Token: 0x060078F0 RID: 30960
 	public delegate void JoystickTouchStartHandler(MovingJoystick move);
 
-	// Token: 0x020001A1 RID: 417
-	// (Invoke) Token: 0x06000E1D RID: 3613
+	// Token: 0x02001254 RID: 4692
+	// (Invoke) Token: 0x060078F4 RID: 30964
 	public delegate void JoystickTapHandler(MovingJoystick move);
 
-	// Token: 0x020001A2 RID: 418
-	// (Invoke) Token: 0x06000E21 RID: 3617
+	// Token: 0x02001255 RID: 4693
+	// (Invoke) Token: 0x060078F8 RID: 30968
 	public delegate void JoystickDoubleTapHandler(MovingJoystick move);
 
-	// Token: 0x020001A3 RID: 419
-	// (Invoke) Token: 0x06000E25 RID: 3621
+	// Token: 0x02001256 RID: 4694
+	// (Invoke) Token: 0x060078FC RID: 30972
 	public delegate void JoystickTouchUpHandler(MovingJoystick move);
 
-	// Token: 0x020001A4 RID: 420
+	// Token: 0x02001257 RID: 4695
 	public enum JoystickAnchor
 	{
-		// Token: 0x04000B16 RID: 2838
+		// Token: 0x04006566 RID: 25958
 		None,
-		// Token: 0x04000B17 RID: 2839
+		// Token: 0x04006567 RID: 25959
 		UpperLeft,
-		// Token: 0x04000B18 RID: 2840
+		// Token: 0x04006568 RID: 25960
 		UpperCenter,
-		// Token: 0x04000B19 RID: 2841
+		// Token: 0x04006569 RID: 25961
 		UpperRight,
-		// Token: 0x04000B1A RID: 2842
+		// Token: 0x0400656A RID: 25962
 		MiddleLeft,
-		// Token: 0x04000B1B RID: 2843
+		// Token: 0x0400656B RID: 25963
 		MiddleCenter,
-		// Token: 0x04000B1C RID: 2844
+		// Token: 0x0400656C RID: 25964
 		MiddleRight,
-		// Token: 0x04000B1D RID: 2845
+		// Token: 0x0400656D RID: 25965
 		LowerLeft,
-		// Token: 0x04000B1E RID: 2846
+		// Token: 0x0400656E RID: 25966
 		LowerCenter,
-		// Token: 0x04000B1F RID: 2847
+		// Token: 0x0400656F RID: 25967
 		LowerRight
 	}
 
-	// Token: 0x020001A5 RID: 421
+	// Token: 0x02001258 RID: 4696
 	public enum PropertiesInfluenced
 	{
-		// Token: 0x04000B21 RID: 2849
+		// Token: 0x04006571 RID: 25969
 		Rotate,
-		// Token: 0x04000B22 RID: 2850
+		// Token: 0x04006572 RID: 25970
 		RotateLocal,
-		// Token: 0x04000B23 RID: 2851
+		// Token: 0x04006573 RID: 25971
 		Translate,
-		// Token: 0x04000B24 RID: 2852
+		// Token: 0x04006574 RID: 25972
 		TranslateLocal,
-		// Token: 0x04000B25 RID: 2853
+		// Token: 0x04006575 RID: 25973
 		Scale
 	}
 
-	// Token: 0x020001A6 RID: 422
+	// Token: 0x02001259 RID: 4697
 	public enum AxisInfluenced
 	{
-		// Token: 0x04000B27 RID: 2855
+		// Token: 0x04006577 RID: 25975
 		X,
-		// Token: 0x04000B28 RID: 2856
+		// Token: 0x04006578 RID: 25976
 		Y,
-		// Token: 0x04000B29 RID: 2857
+		// Token: 0x04006579 RID: 25977
 		Z,
-		// Token: 0x04000B2A RID: 2858
+		// Token: 0x0400657A RID: 25978
 		XYZ
 	}
 
-	// Token: 0x020001A7 RID: 423
+	// Token: 0x0200125A RID: 4698
 	public enum DynamicArea
 	{
-		// Token: 0x04000B2C RID: 2860
+		// Token: 0x0400657C RID: 25980
 		FullScreen,
-		// Token: 0x04000B2D RID: 2861
+		// Token: 0x0400657D RID: 25981
 		Left,
-		// Token: 0x04000B2E RID: 2862
+		// Token: 0x0400657E RID: 25982
 		Right,
-		// Token: 0x04000B2F RID: 2863
+		// Token: 0x0400657F RID: 25983
 		Top,
-		// Token: 0x04000B30 RID: 2864
+		// Token: 0x04006580 RID: 25984
 		Bottom,
-		// Token: 0x04000B31 RID: 2865
+		// Token: 0x04006581 RID: 25985
 		TopLeft,
-		// Token: 0x04000B32 RID: 2866
+		// Token: 0x04006582 RID: 25986
 		TopRight,
-		// Token: 0x04000B33 RID: 2867
+		// Token: 0x04006583 RID: 25987
 		BottomLeft,
-		// Token: 0x04000B34 RID: 2868
+		// Token: 0x04006584 RID: 25988
 		BottomRight
 	}
 
-	// Token: 0x020001A8 RID: 424
+	// Token: 0x0200125B RID: 4699
 	public enum InteractionType
 	{
-		// Token: 0x04000B36 RID: 2870
+		// Token: 0x04006586 RID: 25990
 		Direct,
-		// Token: 0x04000B37 RID: 2871
+		// Token: 0x04006587 RID: 25991
 		Include,
-		// Token: 0x04000B38 RID: 2872
+		// Token: 0x04006588 RID: 25992
 		EventNotification,
-		// Token: 0x04000B39 RID: 2873
+		// Token: 0x04006589 RID: 25993
 		DirectAndEvent
 	}
 
-	// Token: 0x020001A9 RID: 425
+	// Token: 0x0200125C RID: 4700
 	public enum Broadcast
 	{
-		// Token: 0x04000B3B RID: 2875
+		// Token: 0x0400658B RID: 25995
 		SendMessage,
-		// Token: 0x04000B3C RID: 2876
+		// Token: 0x0400658C RID: 25996
 		SendMessageUpwards,
-		// Token: 0x04000B3D RID: 2877
+		// Token: 0x0400658D RID: 25997
 		BroadcastMessage
 	}
 
-	// Token: 0x020001AA RID: 426
+	// Token: 0x0200125D RID: 4701
 	private enum MessageName
 	{
-		// Token: 0x04000B3F RID: 2879
+		// Token: 0x0400658F RID: 25999
 		On_JoystickMoveStart,
-		// Token: 0x04000B40 RID: 2880
+		// Token: 0x04006590 RID: 26000
 		On_JoystickTouchStart,
-		// Token: 0x04000B41 RID: 2881
+		// Token: 0x04006591 RID: 26001
 		On_JoystickTouchUp,
-		// Token: 0x04000B42 RID: 2882
+		// Token: 0x04006592 RID: 26002
 		On_JoystickMove,
-		// Token: 0x04000B43 RID: 2883
+		// Token: 0x04006593 RID: 26003
 		On_JoystickMoveEnd,
-		// Token: 0x04000B44 RID: 2884
+		// Token: 0x04006594 RID: 26004
 		On_JoystickTap,
-		// Token: 0x04000B45 RID: 2885
+		// Token: 0x04006595 RID: 26005
 		On_JoystickDoubleTap
 	}
 }

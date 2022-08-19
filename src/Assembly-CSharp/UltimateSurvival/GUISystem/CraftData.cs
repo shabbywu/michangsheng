@@ -2,13 +2,13 @@
 
 namespace UltimateSurvival.GUISystem
 {
-	// Token: 0x02000941 RID: 2369
+	// Token: 0x02000647 RID: 1607
 	public class CraftData
 	{
-		// Token: 0x040036D6 RID: 14038
+		// Token: 0x04002D6D RID: 11629
 		public ItemData Result;
 
-		// Token: 0x040036D7 RID: 14039
+		// Token: 0x04002D6E RID: 11630
 		public int Amount;
 	}
 }

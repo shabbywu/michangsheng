@@ -3,12 +3,12 @@ using UnityEngine;
 
 namespace BehaviorDesigner.Runtime.Tasks.Basic.UnityLight
 {
-	// Token: 0x020015D4 RID: 5588
+	// Token: 0x02001115 RID: 4373
 	[TaskCategory("Basic/Light")]
 	[TaskDescription("Stores the spot angle of the light.")]
 	public class GetSpotAngle : Action
 	{
-		// Token: 0x06008304 RID: 33540 RVA: 0x002CE5AC File Offset: 0x002CC7AC
+		// Token: 0x0600750A RID: 29962 RVA: 0x002B3BE4 File Offset: 0x002B1DE4
 		public override void OnStart()
 		{
 			GameObject defaultGameObject = base.GetDefaultGameObject(this.targetGameObject.Value);
@@ -19,7 +19,7 @@ namespace BehaviorDesigner.Runtime.Tasks.Basic.UnityLight
 			}
 		}
 
-		// Token: 0x06008305 RID: 33541 RVA: 0x00059F77 File Offset: 0x00058177
+		// Token: 0x0600750B RID: 29963 RVA: 0x002B3C24 File Offset: 0x002B1E24
 		public override TaskStatus OnUpdate()
 		{
 			if (this.light == null)
@@ -31,26 +31,26 @@ namespace BehaviorDesigner.Runtime.Tasks.Basic.UnityLight
 			return 2;
 		}
 
-		// Token: 0x06008306 RID: 33542 RVA: 0x00059FAA File Offset: 0x000581AA
+		// Token: 0x0600750C RID: 29964 RVA: 0x002B3C57 File Offset: 0x002B1E57
 		public override void OnReset()
 		{
 			this.targetGameObject = null;
 			this.storeValue = 0f;
 		}
 
-		// Token: 0x04006FD7 RID: 28631
+		// Token: 0x040060B4 RID: 24756
 		[Tooltip("The GameObject that the task operates on. If null the task GameObject is used.")]
 		public SharedGameObject targetGameObject;
 
-		// Token: 0x04006FD8 RID: 28632
+		// Token: 0x040060B5 RID: 24757
 		[RequiredField]
 		[Tooltip("The spot angle to store")]
 		public SharedFloat storeValue;
 
-		// Token: 0x04006FD9 RID: 28633
+		// Token: 0x040060B6 RID: 24758
 		private Light light;
 
-		// Token: 0x04006FDA RID: 28634
+		// Token: 0x040060B7 RID: 24759
 		private GameObject prevGameObject;
 	}
 }

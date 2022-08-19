@@ -4,10 +4,10 @@ using UnityEngine;
 
 namespace Fungus
 {
-	// Token: 0x02001397 RID: 5015
+	// Token: 0x02000EF6 RID: 3830
 	public class ExecuteHandler : MonoBehaviour, IExecuteHandlerConfigurator
 	{
-		// Token: 0x0600794B RID: 31051 RVA: 0x00052CD6 File Offset: 0x00050ED6
+		// Token: 0x06006BAC RID: 27564 RVA: 0x0029704E File Offset: 0x0029524E
 		protected static string GetPath(Transform current)
 		{
 			if (current.parent == null)
@@ -17,7 +17,7 @@ namespace Fungus
 			return ExecuteHandler.GetPath(current.parent) + "." + current.name;
 		}
 
-		// Token: 0x0600794C RID: 31052 RVA: 0x00052D08 File Offset: 0x00050F08
+		// Token: 0x06006BAD RID: 27565 RVA: 0x00297080 File Offset: 0x00295280
 		protected void Start()
 		{
 			this.Execute(ExecuteMethod.Start);
@@ -31,7 +31,7 @@ namespace Fungus
 			}
 		}
 
-		// Token: 0x0600794D RID: 31053 RVA: 0x00052D42 File Offset: 0x00050F42
+		// Token: 0x06006BAE RID: 27566 RVA: 0x002970BA File Offset: 0x002952BA
 		protected IEnumerator ExecutePeriodically()
 		{
 			yield return new WaitForSeconds(this.executeAfterTime);
@@ -44,7 +44,7 @@ namespace Fungus
 			yield break;
 		}
 
-		// Token: 0x0600794E RID: 31054 RVA: 0x00052D51 File Offset: 0x00050F51
+		// Token: 0x06006BAF RID: 27567 RVA: 0x002970C9 File Offset: 0x002952C9
 		protected bool ShouldExecuteOnFrame()
 		{
 			if (Time.frameCount > this.m_ExecuteOnFrame)
@@ -62,25 +62,25 @@ namespace Fungus
 			return false;
 		}
 
-		// Token: 0x0600794F RID: 31055 RVA: 0x00052D8B File Offset: 0x00050F8B
+		// Token: 0x06006BB0 RID: 27568 RVA: 0x00297103 File Offset: 0x00295303
 		protected void OnDisable()
 		{
 			this.Execute(ExecuteMethod.OnDisable);
 		}
 
-		// Token: 0x06007950 RID: 31056 RVA: 0x00052D98 File Offset: 0x00050F98
+		// Token: 0x06006BB1 RID: 27569 RVA: 0x00297110 File Offset: 0x00295310
 		protected void OnEnable()
 		{
 			this.Execute(ExecuteMethod.OnEnable);
 		}
 
-		// Token: 0x06007951 RID: 31057 RVA: 0x00052DA2 File Offset: 0x00050FA2
+		// Token: 0x06006BB2 RID: 27570 RVA: 0x0029711A File Offset: 0x0029531A
 		protected void OnDestroy()
 		{
 			this.Execute(ExecuteMethod.OnDestroy);
 		}
 
-		// Token: 0x06007952 RID: 31058 RVA: 0x00052DAC File Offset: 0x00050FAC
+		// Token: 0x06006BB3 RID: 27571 RVA: 0x00297124 File Offset: 0x00295324
 		protected void Update()
 		{
 			if (this.IsExecuteMethodSelected(ExecuteMethod.Update) && this.ShouldExecuteOnFrame())
@@ -89,121 +89,121 @@ namespace Fungus
 			}
 		}
 
-		// Token: 0x06007953 RID: 31059 RVA: 0x00052DC6 File Offset: 0x00050FC6
+		// Token: 0x06006BB4 RID: 27572 RVA: 0x0029713E File Offset: 0x0029533E
 		protected void FixedUpdate()
 		{
 			this.Execute(ExecuteMethod.FixedUpdate);
 		}
 
-		// Token: 0x06007954 RID: 31060 RVA: 0x00052DCF File Offset: 0x00050FCF
+		// Token: 0x06006BB5 RID: 27573 RVA: 0x00297147 File Offset: 0x00295347
 		protected void LateUpdate()
 		{
 			this.Execute(ExecuteMethod.LateUpdate);
 		}
 
-		// Token: 0x06007955 RID: 31061 RVA: 0x00052DD9 File Offset: 0x00050FD9
+		// Token: 0x06006BB6 RID: 27574 RVA: 0x00297151 File Offset: 0x00295351
 		protected void OnControllerColliderHit()
 		{
 			this.Execute(ExecuteMethod.OnControllerColliderHit);
 		}
 
-		// Token: 0x06007956 RID: 31062 RVA: 0x00052DE6 File Offset: 0x00050FE6
+		// Token: 0x06006BB7 RID: 27575 RVA: 0x0029715E File Offset: 0x0029535E
 		protected void OnParticleCollision()
 		{
 			this.Execute(ExecuteMethod.OnParticleCollision);
 		}
 
-		// Token: 0x06007957 RID: 31063 RVA: 0x00052DF3 File Offset: 0x00050FF3
+		// Token: 0x06006BB8 RID: 27576 RVA: 0x0029716B File Offset: 0x0029536B
 		protected void OnJointBreak()
 		{
 			this.Execute(ExecuteMethod.OnJointBreak);
 		}
 
-		// Token: 0x06007958 RID: 31064 RVA: 0x00052E00 File Offset: 0x00051000
+		// Token: 0x06006BB9 RID: 27577 RVA: 0x00297178 File Offset: 0x00295378
 		protected void OnBecameInvisible()
 		{
 			this.Execute(ExecuteMethod.OnBecameInvisible);
 		}
 
-		// Token: 0x06007959 RID: 31065 RVA: 0x00052E0D File Offset: 0x0005100D
+		// Token: 0x06006BBA RID: 27578 RVA: 0x00297185 File Offset: 0x00295385
 		protected void OnBecameVisible()
 		{
 			this.Execute(ExecuteMethod.OnBecameVisible);
 		}
 
-		// Token: 0x0600795A RID: 31066 RVA: 0x00052E1A File Offset: 0x0005101A
+		// Token: 0x06006BBB RID: 27579 RVA: 0x00297192 File Offset: 0x00295392
 		protected void OnTriggerEnter()
 		{
 			this.Execute(ExecuteMethod.OnTriggerEnter);
 		}
 
-		// Token: 0x0600795B RID: 31067 RVA: 0x00052E27 File Offset: 0x00051027
+		// Token: 0x06006BBC RID: 27580 RVA: 0x0029719F File Offset: 0x0029539F
 		protected void OnTriggerExit()
 		{
 			this.Execute(ExecuteMethod.OnTriggerExit);
 		}
 
-		// Token: 0x0600795C RID: 31068 RVA: 0x00052E34 File Offset: 0x00051034
+		// Token: 0x06006BBD RID: 27581 RVA: 0x002971AC File Offset: 0x002953AC
 		protected void OnTriggerStay()
 		{
 			this.Execute(ExecuteMethod.OnTriggerStay);
 		}
 
-		// Token: 0x0600795D RID: 31069 RVA: 0x00052E41 File Offset: 0x00051041
+		// Token: 0x06006BBE RID: 27582 RVA: 0x002971B9 File Offset: 0x002953B9
 		protected void OnCollisionEnter()
 		{
 			this.Execute(ExecuteMethod.OnCollisionEnter);
 		}
 
-		// Token: 0x0600795E RID: 31070 RVA: 0x00052E4E File Offset: 0x0005104E
+		// Token: 0x06006BBF RID: 27583 RVA: 0x002971C6 File Offset: 0x002953C6
 		protected void OnCollisionExit()
 		{
 			this.Execute(ExecuteMethod.OnCollisionExit);
 		}
 
-		// Token: 0x0600795F RID: 31071 RVA: 0x00052E5B File Offset: 0x0005105B
+		// Token: 0x06006BC0 RID: 27584 RVA: 0x002971D3 File Offset: 0x002953D3
 		protected void OnCollisionStay()
 		{
 			this.Execute(ExecuteMethod.OnCollisionStay);
 		}
 
-		// Token: 0x06007960 RID: 31072 RVA: 0x00052E68 File Offset: 0x00051068
+		// Token: 0x06006BC1 RID: 27585 RVA: 0x002971E0 File Offset: 0x002953E0
 		protected void OnTriggerEnter2D()
 		{
 			this.Execute(ExecuteMethod.OnTriggerEnter2D);
 		}
 
-		// Token: 0x06007961 RID: 31073 RVA: 0x00052E75 File Offset: 0x00051075
+		// Token: 0x06006BC2 RID: 27586 RVA: 0x002971ED File Offset: 0x002953ED
 		protected void OnTriggerExit2D()
 		{
 			this.Execute(ExecuteMethod.OnTriggerExit2D);
 		}
 
-		// Token: 0x06007962 RID: 31074 RVA: 0x00052E82 File Offset: 0x00051082
+		// Token: 0x06006BC3 RID: 27587 RVA: 0x002971FA File Offset: 0x002953FA
 		protected void OnTriggerStay2D()
 		{
 			this.Execute(ExecuteMethod.OnTriggerStay2D);
 		}
 
-		// Token: 0x06007963 RID: 31075 RVA: 0x00052E8F File Offset: 0x0005108F
+		// Token: 0x06006BC4 RID: 27588 RVA: 0x00297207 File Offset: 0x00295407
 		protected void OnCollisionEnter2D()
 		{
 			this.Execute(ExecuteMethod.OnCollisionEnter2D);
 		}
 
-		// Token: 0x06007964 RID: 31076 RVA: 0x00052E9C File Offset: 0x0005109C
+		// Token: 0x06006BC5 RID: 27589 RVA: 0x00297214 File Offset: 0x00295414
 		protected void OnCollisionExit2D()
 		{
 			this.Execute(ExecuteMethod.OnCollisionExit2D);
 		}
 
-		// Token: 0x06007965 RID: 31077 RVA: 0x00052EA9 File Offset: 0x000510A9
+		// Token: 0x06006BC6 RID: 27590 RVA: 0x00297221 File Offset: 0x00295421
 		protected void OnCollisionStay2D()
 		{
 			this.Execute(ExecuteMethod.OnCollisionStay2D);
 		}
 
-		// Token: 0x06007966 RID: 31078 RVA: 0x00052EB6 File Offset: 0x000510B6
+		// Token: 0x06006BC7 RID: 27591 RVA: 0x0029722E File Offset: 0x0029542E
 		protected void Execute(ExecuteMethod executeMethod)
 		{
 			if (this.IsExecuteMethodSelected(executeMethod))
@@ -212,9 +212,9 @@ namespace Fungus
 			}
 		}
 
-		// Token: 0x17000B66 RID: 2918
-		// (get) Token: 0x06007967 RID: 31079 RVA: 0x00052EC7 File Offset: 0x000510C7
-		// (set) Token: 0x06007968 RID: 31080 RVA: 0x00052ECF File Offset: 0x000510CF
+		// Token: 0x170008C9 RID: 2249
+		// (get) Token: 0x06006BC8 RID: 27592 RVA: 0x0029723F File Offset: 0x0029543F
+		// (set) Token: 0x06006BC9 RID: 27593 RVA: 0x00297247 File Offset: 0x00295447
 		public virtual float ExecuteAfterTime
 		{
 			get
@@ -227,9 +227,9 @@ namespace Fungus
 			}
 		}
 
-		// Token: 0x17000B67 RID: 2919
-		// (get) Token: 0x06007969 RID: 31081 RVA: 0x00052ED8 File Offset: 0x000510D8
-		// (set) Token: 0x0600796A RID: 31082 RVA: 0x00052EE0 File Offset: 0x000510E0
+		// Token: 0x170008CA RID: 2250
+		// (get) Token: 0x06006BCA RID: 27594 RVA: 0x00297250 File Offset: 0x00295450
+		// (set) Token: 0x06006BCB RID: 27595 RVA: 0x00297258 File Offset: 0x00295458
 		public virtual bool RepeatExecuteTime
 		{
 			get
@@ -242,9 +242,9 @@ namespace Fungus
 			}
 		}
 
-		// Token: 0x17000B68 RID: 2920
-		// (get) Token: 0x0600796B RID: 31083 RVA: 0x00052EE9 File Offset: 0x000510E9
-		// (set) Token: 0x0600796C RID: 31084 RVA: 0x00052EF1 File Offset: 0x000510F1
+		// Token: 0x170008CB RID: 2251
+		// (get) Token: 0x06006BCC RID: 27596 RVA: 0x00297261 File Offset: 0x00295461
+		// (set) Token: 0x06006BCD RID: 27597 RVA: 0x00297269 File Offset: 0x00295469
 		public virtual float RepeatEveryTime
 		{
 			get
@@ -257,9 +257,9 @@ namespace Fungus
 			}
 		}
 
-		// Token: 0x17000B69 RID: 2921
-		// (get) Token: 0x0600796D RID: 31085 RVA: 0x00052EFA File Offset: 0x000510FA
-		// (set) Token: 0x0600796E RID: 31086 RVA: 0x00052F02 File Offset: 0x00051102
+		// Token: 0x170008CC RID: 2252
+		// (get) Token: 0x06006BCE RID: 27598 RVA: 0x00297272 File Offset: 0x00295472
+		// (set) Token: 0x06006BCF RID: 27599 RVA: 0x0029727A File Offset: 0x0029547A
 		public virtual int ExecuteAfterFrames
 		{
 			get
@@ -272,9 +272,9 @@ namespace Fungus
 			}
 		}
 
-		// Token: 0x17000B6A RID: 2922
-		// (get) Token: 0x0600796F RID: 31087 RVA: 0x00052F0B File Offset: 0x0005110B
-		// (set) Token: 0x06007970 RID: 31088 RVA: 0x00052F13 File Offset: 0x00051113
+		// Token: 0x170008CD RID: 2253
+		// (get) Token: 0x06006BD0 RID: 27600 RVA: 0x00297283 File Offset: 0x00295483
+		// (set) Token: 0x06006BD1 RID: 27601 RVA: 0x0029728B File Offset: 0x0029548B
 		public virtual bool RepeatExecuteFrame
 		{
 			get
@@ -287,9 +287,9 @@ namespace Fungus
 			}
 		}
 
-		// Token: 0x17000B6B RID: 2923
-		// (get) Token: 0x06007971 RID: 31089 RVA: 0x00052F1C File Offset: 0x0005111C
-		// (set) Token: 0x06007972 RID: 31090 RVA: 0x00052F24 File Offset: 0x00051124
+		// Token: 0x170008CE RID: 2254
+		// (get) Token: 0x06006BD2 RID: 27602 RVA: 0x00297294 File Offset: 0x00295494
+		// (set) Token: 0x06006BD3 RID: 27603 RVA: 0x0029729C File Offset: 0x0029549C
 		public virtual int RepeatEveryFrame
 		{
 			get
@@ -302,9 +302,9 @@ namespace Fungus
 			}
 		}
 
-		// Token: 0x17000B6C RID: 2924
-		// (get) Token: 0x06007973 RID: 31091 RVA: 0x00052F2D File Offset: 0x0005112D
-		// (set) Token: 0x06007974 RID: 31092 RVA: 0x00052F35 File Offset: 0x00051135
+		// Token: 0x170008CF RID: 2255
+		// (get) Token: 0x06006BD4 RID: 27604 RVA: 0x002972A5 File Offset: 0x002954A5
+		// (set) Token: 0x06006BD5 RID: 27605 RVA: 0x002972AD File Offset: 0x002954AD
 		public virtual ExecuteMethod ExecuteMethods
 		{
 			get
@@ -317,13 +317,13 @@ namespace Fungus
 			}
 		}
 
-		// Token: 0x06007975 RID: 31093 RVA: 0x00052F3E File Offset: 0x0005113E
+		// Token: 0x06006BD6 RID: 27606 RVA: 0x002972B6 File Offset: 0x002954B6
 		public virtual bool IsExecuteMethodSelected(ExecuteMethod method)
 		{
 			return method == (this.executeMethods & method);
 		}
 
-		// Token: 0x06007976 RID: 31094 RVA: 0x00052F4B File Offset: 0x0005114B
+		// Token: 0x06006BD7 RID: 27607 RVA: 0x002972C3 File Offset: 0x002954C3
 		public virtual void Execute()
 		{
 			if (this.executeMethodName != "")
@@ -332,8 +332,8 @@ namespace Fungus
 			}
 		}
 
-		// Token: 0x17000B6D RID: 2925
-		// (set) Token: 0x06007977 RID: 31095 RVA: 0x00052F02 File Offset: 0x00051102
+		// Token: 0x170008D0 RID: 2256
+		// (set) Token: 0x06006BD8 RID: 27608 RVA: 0x0029727A File Offset: 0x0029547A
 		public int UpdateExecuteStartOnFrame
 		{
 			set
@@ -342,8 +342,8 @@ namespace Fungus
 			}
 		}
 
-		// Token: 0x17000B6E RID: 2926
-		// (set) Token: 0x06007978 RID: 31096 RVA: 0x00052F24 File Offset: 0x00051124
+		// Token: 0x170008D1 RID: 2257
+		// (set) Token: 0x06006BD9 RID: 27609 RVA: 0x0029729C File Offset: 0x0029549C
 		public int UpdateExecuteRepeatFrequency
 		{
 			set
@@ -352,8 +352,8 @@ namespace Fungus
 			}
 		}
 
-		// Token: 0x17000B6F RID: 2927
-		// (set) Token: 0x06007979 RID: 31097 RVA: 0x00052F13 File Offset: 0x00051113
+		// Token: 0x170008D2 RID: 2258
+		// (set) Token: 0x06006BDA RID: 27610 RVA: 0x0029728B File Offset: 0x0029548B
 		public bool UpdateExecuteRepeat
 		{
 			set
@@ -362,8 +362,8 @@ namespace Fungus
 			}
 		}
 
-		// Token: 0x17000B70 RID: 2928
-		// (set) Token: 0x0600797A RID: 31098 RVA: 0x00052ECF File Offset: 0x000510CF
+		// Token: 0x170008D3 RID: 2259
+		// (set) Token: 0x06006BDB RID: 27611 RVA: 0x00297247 File Offset: 0x00295447
 		public float TimeExecuteStartAfter
 		{
 			set
@@ -372,8 +372,8 @@ namespace Fungus
 			}
 		}
 
-		// Token: 0x17000B71 RID: 2929
-		// (set) Token: 0x0600797B RID: 31099 RVA: 0x00052EF1 File Offset: 0x000510F1
+		// Token: 0x170008D4 RID: 2260
+		// (set) Token: 0x06006BDC RID: 27612 RVA: 0x00297269 File Offset: 0x00295469
 		public float TimeExecuteRepeatFrequency
 		{
 			set
@@ -382,8 +382,8 @@ namespace Fungus
 			}
 		}
 
-		// Token: 0x17000B72 RID: 2930
-		// (set) Token: 0x0600797C RID: 31100 RVA: 0x00052EE0 File Offset: 0x000510E0
+		// Token: 0x170008D5 RID: 2261
+		// (set) Token: 0x06006BDD RID: 27613 RVA: 0x00297258 File Offset: 0x00295458
 		public bool TimeExecuteRepeat
 		{
 			set
@@ -392,8 +392,8 @@ namespace Fungus
 			}
 		}
 
-		// Token: 0x17000B73 RID: 2931
-		// (get) Token: 0x0600797D RID: 31101 RVA: 0x0002FB09 File Offset: 0x0002DD09
+		// Token: 0x170008D6 RID: 2262
+		// (get) Token: 0x06006BDE RID: 27614 RVA: 0x00183D24 File Offset: 0x00181F24
 		public ExecuteHandler Component
 		{
 			get
@@ -402,47 +402,47 @@ namespace Fungus
 			}
 		}
 
-		// Token: 0x0400692C RID: 26924
+		// Token: 0x04005AC3 RID: 23235
 		[Tooltip("Execute after a period of time.")]
 		[SerializeField]
 		protected float executeAfterTime = 1f;
 
-		// Token: 0x0400692D RID: 26925
+		// Token: 0x04005AC4 RID: 23236
 		[Tooltip("Repeat execution after a period of time.")]
 		[SerializeField]
 		protected bool repeatExecuteTime = true;
 
-		// Token: 0x0400692E RID: 26926
+		// Token: 0x04005AC5 RID: 23237
 		[Tooltip("Repeat forever.")]
 		[SerializeField]
 		protected float repeatEveryTime = 1f;
 
-		// Token: 0x0400692F RID: 26927
+		// Token: 0x04005AC6 RID: 23238
 		[Tooltip("Execute after a number of frames have elapsed.")]
 		[SerializeField]
 		protected int executeAfterFrames = 1;
 
-		// Token: 0x04006930 RID: 26928
+		// Token: 0x04005AC7 RID: 23239
 		[Tooltip("Repeat execution after a number of frames have elapsed.")]
 		[SerializeField]
 		protected bool repeatExecuteFrame = true;
 
-		// Token: 0x04006931 RID: 26929
+		// Token: 0x04005AC8 RID: 23240
 		[Tooltip("Execute on every frame.")]
 		[SerializeField]
 		protected int repeatEveryFrame = 1;
 
-		// Token: 0x04006932 RID: 26930
+		// Token: 0x04005AC9 RID: 23241
 		[Tooltip("The bitmask for the currently selected execution methods.")]
 		[SerializeField]
 		protected ExecuteMethod executeMethods = ExecuteMethod.Start;
 
-		// Token: 0x04006933 RID: 26931
+		// Token: 0x04005ACA RID: 23242
 		[Tooltip("Name of the method on a component in this gameobject to call when executing.")]
 		[SerializeField]
 		protected string executeMethodName = "OnExecute";
 
-		// Token: 0x04006934 RID: 26932
+		// Token: 0x04005ACB RID: 23243
 		protected int m_ExecuteOnFrame;
 	}
 }

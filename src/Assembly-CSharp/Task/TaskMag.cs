@@ -5,11 +5,11 @@ using UnityEngine;
 
 namespace Task
 {
-	// Token: 0x02000A26 RID: 2598
+	// Token: 0x020006E7 RID: 1767
 	[Serializable]
 	public class TaskMag
 	{
-		// Token: 0x0600435A RID: 17242 RVA: 0x00030200 File Offset: 0x0002E400
+		// Token: 0x060038F3 RID: 14579 RVA: 0x00184B85 File Offset: 0x00182D85
 		public void Init()
 		{
 			if (this.HasGetTaskId == null)
@@ -22,7 +22,7 @@ namespace Task
 			}
 		}
 
-		// Token: 0x0600435B RID: 17243 RVA: 0x001CC6AC File Offset: 0x001CA8AC
+		// Token: 0x060038F4 RID: 14580 RVA: 0x00184BB0 File Offset: 0x00182DB0
 		public void CheckHasOut()
 		{
 			List<int> list = new List<int>();
@@ -44,7 +44,7 @@ namespace Task
 					if (num > 1)
 					{
 						int randomInt = Tools.instance.GetRandomInt(1, 3);
-						JSONObject npcData = NpcJieSuanManager.inst.getNpcData(taskData.SendNpcId);
+						JSONObject npcData = NpcJieSuanManager.inst.GetNpcData(taskData.SendNpcId);
 						int duiBaiId = NpcJieSuanManager.inst.GetDuiBaiId(npcData["XingGe"].I, jsonData.instance.CyRandomTaskFailData[taskData.TaskId.ToString()]["ShiBaiInfo" + num].I);
 						Tools.instance.getPlayer().emailDateMag.TaskFailSendToPlayer(this.TaskDict[num2].SendNpcId, duiBaiId, randomInt, NpcJieSuanManager.inst.JieSuanTime);
 						if (taskData.TaskType == 1)
@@ -57,7 +57,7 @@ namespace Task
 				}
 				else if (Tools.instance.getPlayer().taskMag._TaskData["Task"].HasField(taskData.TaskId.ToString()) && TaskUIManager.checkIsGuoShi(Tools.instance.getPlayer().taskMag._TaskData["Task"][taskData.TaskId.ToString()]))
 				{
-					JSONObject npcData = NpcJieSuanManager.inst.getNpcData(taskData.SendNpcId);
+					JSONObject npcData = NpcJieSuanManager.inst.GetNpcData(taskData.SendNpcId);
 					npcData.RemoveField("LockAction");
 					if (taskData.TaskType == 1)
 					{
@@ -72,7 +72,7 @@ namespace Task
 			}
 		}
 
-		// Token: 0x0600435C RID: 17244 RVA: 0x001CC9D4 File Offset: 0x001CABD4
+		// Token: 0x060038F5 RID: 14581 RVA: 0x00184ED8 File Offset: 0x001830D8
 		public void AddTask(int TaskId, int taskType, int CyId, int NpcId, int failStaticId, DateTime SendTime)
 		{
 			if (!this.HasGetTaskId.Contains(TaskId))
@@ -102,13 +102,13 @@ namespace Task
 			}
 		}
 
-		// Token: 0x04003B5D RID: 15197
+		// Token: 0x040030FE RID: 12542
 		public Dictionary<int, TaskData> TaskDict = new Dictionary<int, TaskData>();
 
-		// Token: 0x04003B5E RID: 15198
+		// Token: 0x040030FF RID: 12543
 		public List<int> HasGetTaskId = new List<int>();
 
-		// Token: 0x04003B5F RID: 15199
+		// Token: 0x04003100 RID: 12544
 		public List<int> HasTaskNpcList = new List<int>();
 	}
 }

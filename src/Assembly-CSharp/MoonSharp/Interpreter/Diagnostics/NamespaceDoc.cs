@@ -2,7 +2,7 @@
 
 namespace MoonSharp.Interpreter.Diagnostics
 {
-	// Token: 0x02001173 RID: 4467
+	// Token: 0x02000D5F RID: 3423
 	internal static class NamespaceDoc
 	{
 	}

@@ -2,13 +2,13 @@
 
 namespace GUIPackage
 {
-	// Token: 0x02000D68 RID: 3432
+	// Token: 0x02000A51 RID: 2641
 	public class LateDamage
 	{
-		// Token: 0x0400529F RID: 21151
+		// Token: 0x04004937 RID: 18743
 		public int SkillId;
 
-		// Token: 0x040052A0 RID: 21152
+		// Token: 0x04004938 RID: 18744
 		public int Damage;
 	}
 }

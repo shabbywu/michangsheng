@@ -3,10 +3,10 @@ using System.Collections.Generic;
 
 namespace JSONClass
 {
-	// Token: 0x02000CEF RID: 3311
+	// Token: 0x0200096B RID: 2411
 	public class StaticValueSay : IJSONClass
 	{
-		// Token: 0x06004F24 RID: 20260 RVA: 0x0021314C File Offset: 0x0021134C
+		// Token: 0x060043BE RID: 17342 RVA: 0x001CD680 File Offset: 0x001CB880
 		public static void InitDataDict()
 		{
 			foreach (JSONObject jsonobject in jsonData.instance.StaticValueSay.list)
@@ -41,30 +41,30 @@ namespace JSONClass
 			}
 		}
 
-		// Token: 0x06004F25 RID: 20261 RVA: 0x000042DD File Offset: 0x000024DD
+		// Token: 0x060043BF RID: 17343 RVA: 0x00004095 File Offset: 0x00002295
 		private static void OnInitFinish()
 		{
 		}
 
-		// Token: 0x04004FC2 RID: 20418
+		// Token: 0x040044B2 RID: 17586
 		public static Dictionary<int, StaticValueSay> DataDict = new Dictionary<int, StaticValueSay>();
 
-		// Token: 0x04004FC3 RID: 20419
+		// Token: 0x040044B3 RID: 17587
 		public static List<StaticValueSay> DataList = new List<StaticValueSay>();
 
-		// Token: 0x04004FC4 RID: 20420
+		// Token: 0x040044B4 RID: 17588
 		public static Action OnInitFinishAction = new Action(StaticValueSay.OnInitFinish);
 
-		// Token: 0x04004FC5 RID: 20421
+		// Token: 0x040044B5 RID: 17589
 		public int id;
 
-		// Token: 0x04004FC6 RID: 20422
+		// Token: 0x040044B6 RID: 17590
 		public int StaticID;
 
-		// Token: 0x04004FC7 RID: 20423
+		// Token: 0x040044B7 RID: 17591
 		public int staticValue;
 
-		// Token: 0x04004FC8 RID: 20424
+		// Token: 0x040044B8 RID: 17592
 		public string ChinaText;
 	}
 }

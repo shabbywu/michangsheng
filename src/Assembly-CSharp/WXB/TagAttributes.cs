@@ -5,10 +5,10 @@ using UnityEngine;
 
 namespace WXB
 {
-	// Token: 0x020009B7 RID: 2487
+	// Token: 0x020006A2 RID: 1698
 	public class TagAttributes
 	{
-		// Token: 0x06003F45 RID: 16197 RVA: 0x001B8E80 File Offset: 0x001B7080
+		// Token: 0x06003584 RID: 13700 RVA: 0x00170EBC File Offset: 0x0016F0BC
 		public override string ToString()
 		{
 			string result;
@@ -32,13 +32,13 @@ namespace WXB
 			return result;
 		}
 
-		// Token: 0x06003F46 RID: 16198 RVA: 0x0002D785 File Offset: 0x0002B985
+		// Token: 0x06003585 RID: 13701 RVA: 0x00170F90 File Offset: 0x0016F190
 		public void Release()
 		{
 			this.d_attrs.Clear();
 		}
 
-		// Token: 0x06003F47 RID: 16199 RVA: 0x001B8F54 File Offset: 0x001B7154
+		// Token: 0x06003586 RID: 13702 RVA: 0x00170FA0 File Offset: 0x0016F1A0
 		public void Add(string text)
 		{
 			int i = 0;
@@ -76,31 +76,31 @@ namespace WXB
 			}
 		}
 
-		// Token: 0x06003F48 RID: 16200 RVA: 0x0002D792 File Offset: 0x0002B992
+		// Token: 0x06003587 RID: 13703 RVA: 0x0017104F File Offset: 0x0016F24F
 		public void add(string attrName, string attrValue)
 		{
 			this.d_attrs[attrName] = attrValue;
 		}
 
-		// Token: 0x06003F49 RID: 16201 RVA: 0x0002D7A1 File Offset: 0x0002B9A1
+		// Token: 0x06003588 RID: 13704 RVA: 0x0017105E File Offset: 0x0016F25E
 		public void remove(ref string attrName)
 		{
 			this.d_attrs.Remove(attrName);
 		}
 
-		// Token: 0x06003F4A RID: 16202 RVA: 0x0002D7B1 File Offset: 0x0002B9B1
+		// Token: 0x06003589 RID: 13705 RVA: 0x0017106E File Offset: 0x0016F26E
 		public bool exists(string attrName)
 		{
 			return this.d_attrs.ContainsKey(attrName);
 		}
 
-		// Token: 0x06003F4B RID: 16203 RVA: 0x0002D7BF File Offset: 0x0002B9BF
+		// Token: 0x0600358A RID: 13706 RVA: 0x0017107C File Offset: 0x0016F27C
 		public int getCount()
 		{
 			return this.d_attrs.Count;
 		}
 
-		// Token: 0x06003F4C RID: 16204 RVA: 0x001B9004 File Offset: 0x001B7204
+		// Token: 0x0600358B RID: 13707 RVA: 0x0017108C File Offset: 0x0016F28C
 		public string getValue(string attrName)
 		{
 			string result = "";
@@ -108,7 +108,7 @@ namespace WXB
 			return result;
 		}
 
-		// Token: 0x06003F4D RID: 16205 RVA: 0x001B9028 File Offset: 0x001B7228
+		// Token: 0x0600358C RID: 13708 RVA: 0x001710B0 File Offset: 0x0016F2B0
 		public string getValueAsString(string attrName)
 		{
 			string result = "";
@@ -119,7 +119,7 @@ namespace WXB
 			return result;
 		}
 
-		// Token: 0x06003F4E RID: 16206 RVA: 0x001B9054 File Offset: 0x001B7254
+		// Token: 0x0600358D RID: 13709 RVA: 0x001710DC File Offset: 0x0016F2DC
 		public Color getValueAsColor(string attrName, Color color)
 		{
 			string text = "";
@@ -130,7 +130,7 @@ namespace WXB
 			return Tools.ParseColor(text, 0, Color.white);
 		}
 
-		// Token: 0x06003F4F RID: 16207 RVA: 0x001B9088 File Offset: 0x001B7288
+		// Token: 0x0600358E RID: 13710 RVA: 0x00171110 File Offset: 0x0016F310
 		public string getValueAsString(string attrName, string def)
 		{
 			string result = "";
@@ -141,7 +141,7 @@ namespace WXB
 			return result;
 		}
 
-		// Token: 0x06003F50 RID: 16208 RVA: 0x001B90B0 File Offset: 0x001B72B0
+		// Token: 0x0600358F RID: 13711 RVA: 0x00171138 File Offset: 0x0016F338
 		public bool getValueAsBool(string attrName, bool def)
 		{
 			string text = "";
@@ -162,7 +162,7 @@ namespace WXB
 			return def;
 		}
 
-		// Token: 0x06003F51 RID: 16209 RVA: 0x001B90F8 File Offset: 0x001B72F8
+		// Token: 0x06003590 RID: 13712 RVA: 0x00171180 File Offset: 0x0016F380
 		public int getValueAsInteger(string attrName, int def)
 		{
 			string s = "";
@@ -178,7 +178,7 @@ namespace WXB
 			return result;
 		}
 
-		// Token: 0x06003F52 RID: 16210 RVA: 0x001B912C File Offset: 0x001B732C
+		// Token: 0x06003591 RID: 13713 RVA: 0x001711B4 File Offset: 0x0016F3B4
 		public float getValueAsFloat(string attrName, float def)
 		{
 			string s = "";
@@ -194,7 +194,7 @@ namespace WXB
 			return result;
 		}
 
-		// Token: 0x040038C7 RID: 14535
+		// Token: 0x04002F0C RID: 12044
 		private Dictionary<string, string> d_attrs = new Dictionary<string, string>();
 	}
 }

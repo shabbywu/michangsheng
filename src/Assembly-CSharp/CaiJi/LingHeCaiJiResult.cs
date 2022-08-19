@@ -2,19 +2,19 @@
 
 namespace CaiJi
 {
-	// Token: 0x02000AA1 RID: 2721
+	// Token: 0x02000739 RID: 1849
 	public class LingHeCaiJiResult
 	{
-		// Token: 0x04003DE9 RID: 15849
+		// Token: 0x04003318 RID: 13080
 		public int LingHeCount;
 
-		// Token: 0x04003DEA RID: 15850
+		// Token: 0x04003319 RID: 13081
 		public int LingShiCount;
 
-		// Token: 0x04003DEB RID: 15851
+		// Token: 0x0400331A RID: 13082
 		public int RealCostTime;
 
-		// Token: 0x04003DEC RID: 15852
+		// Token: 0x0400331B RID: 13083
 		public bool HasTiaoZhan;
 	}
 }

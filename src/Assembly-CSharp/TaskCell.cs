@@ -5,10 +5,10 @@ using KBEngine;
 using UnityEngine;
 using UnityEngine.UI;
 
-// Token: 0x020002A5 RID: 677
+// Token: 0x020001A8 RID: 424
 public class TaskCell : MonoBehaviour
 {
-	// Token: 0x0600149B RID: 5275 RVA: 0x00012FC6 File Offset: 0x000111C6
+	// Token: 0x060011F4 RID: 4596 RVA: 0x0006C0F5 File Offset: 0x0006A2F5
 	private void Start()
 	{
 		this.hongdian = base.transform.Find("hongdian").gameObject;
@@ -16,7 +16,7 @@ public class TaskCell : MonoBehaviour
 		this.disableSelf();
 	}
 
-	// Token: 0x0600149C RID: 5276 RVA: 0x000BA050 File Offset: 0x000B8250
+	// Token: 0x060011F5 RID: 4597 RVA: 0x0006C120 File Offset: 0x0006A320
 	public static string getTaskNextTime(int circulation, DateTime now, DateTime StarTime, DateTime EndTime)
 	{
 		string result = "";
@@ -78,7 +78,7 @@ public class TaskCell : MonoBehaviour
 		return result;
 	}
 
-	// Token: 0x0600149D RID: 5277 RVA: 0x000BA290 File Offset: 0x000B8490
+	// Token: 0x060011F6 RID: 4598 RVA: 0x0006C360 File Offset: 0x0006A560
 	public void openView()
 	{
 		UILabel component = this.DescBG.transform.Find("title").GetComponent<UILabel>();
@@ -244,7 +244,7 @@ public class TaskCell : MonoBehaviour
 		}
 	}
 
-	// Token: 0x0600149E RID: 5278 RVA: 0x000BAC94 File Offset: 0x000B8E94
+	// Token: 0x060011F7 RID: 4599 RVA: 0x0006CD64 File Offset: 0x0006AF64
 	public void AddZiXiang(JSONObject task, Transform tempText, Transform textGrid, Avatar avatar, int index1)
 	{
 		Transform transform = Object.Instantiate<Transform>(tempText);
@@ -268,7 +268,7 @@ public class TaskCell : MonoBehaviour
 		}
 	}
 
-	// Token: 0x0600149F RID: 5279 RVA: 0x000BAE30 File Offset: 0x000B9030
+	// Token: 0x060011F8 RID: 4600 RVA: 0x0006CF00 File Offset: 0x0006B100
 	public void showToggle()
 	{
 		Avatar player = Tools.instance.getPlayer();
@@ -281,7 +281,7 @@ public class TaskCell : MonoBehaviour
 		component.transform.localScale = new Vector3(1f, 1f, 1f);
 	}
 
-	// Token: 0x060014A0 RID: 5280 RVA: 0x000BAEBC File Offset: 0x000B90BC
+	// Token: 0x060011F9 RID: 4601 RVA: 0x0006CF8C File Offset: 0x0006B18C
 	public void showBiaoJi()
 	{
 		Avatar player = Tools.instance.getPlayer();
@@ -294,7 +294,7 @@ public class TaskCell : MonoBehaviour
 		component.transform.localScale = new Vector3(1f, 1f, 1f);
 	}
 
-	// Token: 0x060014A1 RID: 5281 RVA: 0x000BAF64 File Offset: 0x000B9164
+	// Token: 0x060011FA RID: 4602 RVA: 0x0006D034 File Offset: 0x0006B234
 	public void ChangedisableTask()
 	{
 		JSONObject jsonobject = Tools.instance.getPlayer().taskMag._TaskData["Task"][this.taskID.ToString()];
@@ -304,7 +304,7 @@ public class TaskCell : MonoBehaviour
 		this.showBiaoJi();
 	}
 
-	// Token: 0x060014A2 RID: 5282 RVA: 0x000BAFD8 File Offset: 0x000B91D8
+	// Token: 0x060011FB RID: 4603 RVA: 0x0006D0A8 File Offset: 0x0006B2A8
 	public void SetTextPosition()
 	{
 		UIToggle component = base.GetComponent<UIToggle>();
@@ -323,7 +323,7 @@ public class TaskCell : MonoBehaviour
 		transform3.localPosition = new Vector3(-33f, 0f);
 	}
 
-	// Token: 0x060014A3 RID: 5283 RVA: 0x000BB0A4 File Offset: 0x000B92A4
+	// Token: 0x060011FC RID: 4604 RVA: 0x0006D174 File Offset: 0x0006B374
 	public void disableSelf()
 	{
 		Avatar player = Tools.instance.getPlayer();
@@ -351,7 +351,7 @@ public class TaskCell : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060014A4 RID: 5284 RVA: 0x000BB1B0 File Offset: 0x000B93B0
+	// Token: 0x060011FD RID: 4605 RVA: 0x0006D280 File Offset: 0x0006B480
 	public void setAvatarGuide()
 	{
 		Avatar player = Tools.instance.getPlayer();
@@ -378,12 +378,12 @@ public class TaskCell : MonoBehaviour
 		this.showToggle();
 	}
 
-	// Token: 0x060014A5 RID: 5285 RVA: 0x000042DD File Offset: 0x000024DD
+	// Token: 0x060011FE RID: 4606 RVA: 0x00004095 File Offset: 0x00002295
 	private void Update()
 	{
 	}
 
-	// Token: 0x060014A6 RID: 5286 RVA: 0x000BB2D4 File Offset: 0x000B94D4
+	// Token: 0x060011FF RID: 4607 RVA: 0x0006D3A4 File Offset: 0x0006B5A4
 	public void setHongDian()
 	{
 		if (Tools.instance.getPlayer().taskMag.isNowTask(this.taskID))
@@ -395,20 +395,20 @@ public class TaskCell : MonoBehaviour
 		this.hongdian.transform.localScale = new Vector3(0f, 0f, 0f);
 	}
 
-	// Token: 0x060014A7 RID: 5287 RVA: 0x00012FEF File Offset: 0x000111EF
+	// Token: 0x06001200 RID: 4608 RVA: 0x0006D41C File Offset: 0x0006B61C
 	public void ToTop()
 	{
 		base.transform.SetSiblingIndex(0);
 	}
 
-	// Token: 0x060014A8 RID: 5288 RVA: 0x000BB34C File Offset: 0x000B954C
+	// Token: 0x06001201 RID: 4609 RVA: 0x0006D42C File Offset: 0x0006B62C
 	public void ToDown()
 	{
 		int childCount = base.transform.parent.childCount;
 		base.transform.SetSiblingIndex(childCount - 1);
 	}
 
-	// Token: 0x060014A9 RID: 5289 RVA: 0x000BB378 File Offset: 0x000B9578
+	// Token: 0x06001202 RID: 4610 RVA: 0x0006D458 File Offset: 0x0006B658
 	public string getTaskInfoDesc(int taskID, int index)
 	{
 		foreach (JSONObject jsonobject in jsonData.instance.TaskInfoJsonData.list)
@@ -421,15 +421,15 @@ public class TaskCell : MonoBehaviour
 		return "";
 	}
 
-	// Token: 0x04000FE7 RID: 4071
+	// Token: 0x04000CBF RID: 3263
 	public GameObject DescBG;
 
-	// Token: 0x04000FE8 RID: 4072
+	// Token: 0x04000CC0 RID: 3264
 	public int taskID;
 
-	// Token: 0x04000FE9 RID: 4073
+	// Token: 0x04000CC1 RID: 3265
 	private GameObject hongdian;
 
-	// Token: 0x04000FEA RID: 4074
+	// Token: 0x04000CC2 RID: 3266
 	public int TaskType;
 }

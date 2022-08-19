@@ -1,15 +1,15 @@
 ﻿using System;
 using UnityEngine;
 
-// Token: 0x02000265 RID: 613
+// Token: 0x02000185 RID: 389
 public class changjinming : MonoBehaviour
 {
-	// Token: 0x060012EB RID: 4843 RVA: 0x000042DD File Offset: 0x000024DD
+	// Token: 0x06001095 RID: 4245 RVA: 0x00004095 File Offset: 0x00002295
 	private void Start()
 	{
 	}
 
-	// Token: 0x060012EC RID: 4844 RVA: 0x000042DD File Offset: 0x000024DD
+	// Token: 0x06001096 RID: 4246 RVA: 0x00004095 File Offset: 0x00002295
 	private void Update()
 	{
 	}

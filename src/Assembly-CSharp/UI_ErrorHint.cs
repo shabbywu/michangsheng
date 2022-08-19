@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-// Token: 0x020005BB RID: 1467
+// Token: 0x0200040B RID: 1035
 public class UI_ErrorHint : MonoBehaviour
 {
-	// Token: 0x170002CE RID: 718
-	// (get) Token: 0x06002502 RID: 9474 RVA: 0x00129EE4 File Offset: 0x001280E4
+	// Token: 0x17000284 RID: 644
+	// (get) Token: 0x06002150 RID: 8528 RVA: 0x000E840C File Offset: 0x000E660C
 	public static UI_ErrorHint _instance
 	{
 		get
@@ -21,20 +21,20 @@ public class UI_ErrorHint : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06002503 RID: 9475 RVA: 0x0001DB7C File Offset: 0x0001BD7C
+	// Token: 0x06002151 RID: 8529 RVA: 0x000E846C File Offset: 0x000E666C
 	private void Awake()
 	{
 		UI_ErrorHint.instance = this;
 		this.ani_control = base.gameObject.GetComponent<Animator>();
 	}
 
-	// Token: 0x06002504 RID: 9476 RVA: 0x0001DB95 File Offset: 0x0001BD95
+	// Token: 0x06002152 RID: 8530 RVA: 0x000E8485 File Offset: 0x000E6685
 	private void OnDestroy()
 	{
 		UI_ErrorHint.instance = null;
 	}
 
-	// Token: 0x06002505 RID: 9477 RVA: 0x00129F44 File Offset: 0x00128144
+	// Token: 0x06002153 RID: 8531 RVA: 0x000E8490 File Offset: 0x000E6690
 	public virtual void errorShow(string str, int showType = 0)
 	{
 		this.delegateList.Add(delegate(string aa)
@@ -53,7 +53,7 @@ public class UI_ErrorHint : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06002506 RID: 9478 RVA: 0x0001DB9D File Offset: 0x0001BD9D
+	// Token: 0x06002154 RID: 8532 RVA: 0x000E84F4 File Offset: 0x000E66F4
 	public virtual void animationFinsh()
 	{
 		this.isShowing = false;
@@ -64,34 +64,34 @@ public class UI_ErrorHint : MonoBehaviour
 		}
 	}
 
-	// Token: 0x04001F9C RID: 8092
+	// Token: 0x04001AE0 RID: 6880
 	private static UI_ErrorHint instance;
 
-	// Token: 0x04001F9D RID: 8093
+	// Token: 0x04001AE1 RID: 6881
 	protected List<UI_ErrorHint.showNextDelegate> delegateList = new List<UI_ErrorHint.showNextDelegate>();
 
-	// Token: 0x04001F9E RID: 8094
+	// Token: 0x04001AE2 RID: 6882
 	protected bool closequen;
 
-	// Token: 0x04001F9F RID: 8095
+	// Token: 0x04001AE3 RID: 6883
 	public List<Sprite> spriteList;
 
-	// Token: 0x04001FA0 RID: 8096
+	// Token: 0x04001AE4 RID: 6884
 	public Image spritUI;
 
-	// Token: 0x04001FA1 RID: 8097
+	// Token: 0x04001AE5 RID: 6885
 	public bool isShowing;
 
-	// Token: 0x04001FA2 RID: 8098
+	// Token: 0x04001AE6 RID: 6886
 	public Text text_content;
 
-	// Token: 0x04001FA3 RID: 8099
+	// Token: 0x04001AE7 RID: 6887
 	protected Animator ani_control;
 
-	// Token: 0x04001FA4 RID: 8100
+	// Token: 0x04001AE8 RID: 6888
 	public string anmaitonName = "Error";
 
-	// Token: 0x020005BC RID: 1468
-	// (Invoke) Token: 0x06002509 RID: 9481
+	// Token: 0x02001394 RID: 5012
+	// (Invoke) Token: 0x06007C59 RID: 31833
 	protected delegate void showNextDelegate(string aa);
 }

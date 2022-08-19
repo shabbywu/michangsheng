@@ -5,10 +5,10 @@ using KBEngine;
 using Newtonsoft.Json.Linq;
 using UnityEngine;
 
-// Token: 0x020004B5 RID: 1205
+// Token: 0x02000343 RID: 835
 public class UIMapSea : MonoBehaviour
 {
-	// Token: 0x06001FE4 RID: 8164 RVA: 0x00110F24 File Offset: 0x0010F124
+	// Token: 0x06001C97 RID: 7319 RVA: 0x000CC564 File Offset: 0x000CA764
 	public void Init()
 	{
 		for (int i = 0; i < this.HighlightBlockRoot.childCount; i++)
@@ -39,7 +39,7 @@ public class UIMapSea : MonoBehaviour
 		this.TanSuoDuInfoTrigger.gameObject.SetActive(false);
 	}
 
-	// Token: 0x06001FE5 RID: 8165 RVA: 0x00111014 File Offset: 0x0010F214
+	// Token: 0x06001C98 RID: 7320 RVA: 0x000CC654 File Offset: 0x000CA854
 	public void Show()
 	{
 		this.HighlightBlockRoot.gameObject.SetActive(true);
@@ -120,7 +120,7 @@ public class UIMapSea : MonoBehaviour
 		Debug.LogError(string.Format("海上地图高亮模式出错，没有ID为{0}的高亮区域", UIMapPanel.Inst.NeedHighlightBlock));
 	}
 
-	// Token: 0x06001FE6 RID: 8166 RVA: 0x00111384 File Offset: 0x0010F584
+	// Token: 0x06001C99 RID: 7321 RVA: 0x000CC9C4 File Offset: 0x000CABC4
 	public void Hide()
 	{
 		this.HighlightBlockRoot.gameObject.SetActive(false);
@@ -129,7 +129,7 @@ public class UIMapSea : MonoBehaviour
 		this.TanSuoDuInfoTrigger.gameObject.SetActive(false);
 	}
 
-	// Token: 0x06001FE7 RID: 8167 RVA: 0x001113D8 File Offset: 0x0010F5D8
+	// Token: 0x06001C9A RID: 7322 RVA: 0x000CCA18 File Offset: 0x000CAC18
 	public void CloseAllHighlight()
 	{
 		foreach (UIMapHighlight uimapHighlight in this.highLights.Values)
@@ -138,7 +138,7 @@ public class UIMapSea : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001FE8 RID: 8168 RVA: 0x00111430 File Offset: 0x0010F630
+	// Token: 0x06001C9B RID: 7323 RVA: 0x000CCA70 File Offset: 0x000CAC70
 	public void OnNodeClick(UIMapSeaNode node)
 	{
 		Debug.Log("点击了" + node.NodeName);
@@ -151,7 +151,7 @@ public class UIMapSea : MonoBehaviour
 		UIPopTip.Inst.Pop("仅能在海域时快速移动", PopTipIconType.叹号);
 	}
 
-	// Token: 0x06001FE9 RID: 8169 RVA: 0x0011147C File Offset: 0x0010F67C
+	// Token: 0x06001C9C RID: 7324 RVA: 0x000CCABC File Offset: 0x000CACBC
 	public void OnMouseEnterHighlightBlock(UIMapHighlight highLight)
 	{
 		switch (UIMapPanel.Inst.NowState)
@@ -171,7 +171,7 @@ public class UIMapSea : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001FEA RID: 8170 RVA: 0x001114C8 File Offset: 0x0010F6C8
+	// Token: 0x06001C9D RID: 7325 RVA: 0x000CCB08 File Offset: 0x000CAD08
 	public void OnMouseExitHighlightBlock(UIMapHighlight highLight)
 	{
 		switch (UIMapPanel.Inst.NowState)
@@ -191,7 +191,7 @@ public class UIMapSea : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001FEB RID: 8171 RVA: 0x00111514 File Offset: 0x0010F714
+	// Token: 0x06001C9E RID: 7326 RVA: 0x000CCB54 File Offset: 0x000CAD54
 	private void SetTanSuoDuShow(UIMapHighlight highLight, bool show)
 	{
 		foreach (UIMapSeaName uimapSeaName in this.seaNames.Values)
@@ -207,7 +207,7 @@ public class UIMapSea : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001FEC RID: 8172 RVA: 0x00111584 File Offset: 0x0010F784
+	// Token: 0x06001C9F RID: 7327 RVA: 0x000CCBC4 File Offset: 0x000CADC4
 	public SeaQuickMoveData CalcQuickMove(int startIndex, int endIndex, int lingZhouQuality, Avatar avatar)
 	{
 		SeaQuickMoveData seaQuickMoveData = new SeaQuickMoveData();
@@ -296,7 +296,7 @@ public class UIMapSea : MonoBehaviour
 		return seaQuickMoveData;
 	}
 
-	// Token: 0x06001FED RID: 8173 RVA: 0x00111904 File Offset: 0x0010FB04
+	// Token: 0x06001CA0 RID: 7328 RVA: 0x000CCF44 File Offset: 0x000CB144
 	private void QuickMoveToNode(UIMapSeaNode node)
 	{
 		Avatar player = PlayerEx.Player;
@@ -340,7 +340,7 @@ public class UIMapSea : MonoBehaviour
 		}, null);
 	}
 
-	// Token: 0x06001FEE RID: 8174 RVA: 0x00111A30 File Offset: 0x0010FC30
+	// Token: 0x06001CA1 RID: 7329 RVA: 0x000CD070 File Offset: 0x000CB270
 	public void QuickMoveSlider(int costDaySum, string warpSceneName)
 	{
 		PlayerEx.Player.AddTime(costDaySum, 0, 0);
@@ -350,7 +350,7 @@ public class UIMapSea : MonoBehaviour
 		});
 	}
 
-	// Token: 0x06001FEF RID: 8175 RVA: 0x00111A74 File Offset: 0x0010FC74
+	// Token: 0x06001CA2 RID: 7330 RVA: 0x000CD0B4 File Offset: 0x000CB2B4
 	private List<Vector2Int> CalcPathForQuickMove(Vector2Int start, Vector2Int end)
 	{
 		List<Vector2Int> list = new List<Vector2Int>();
@@ -377,30 +377,30 @@ public class UIMapSea : MonoBehaviour
 		return list;
 	}
 
-	// Token: 0x04001B51 RID: 6993
+	// Token: 0x04001715 RID: 5909
 	public RectTransform HighlightBlockRoot;
 
-	// Token: 0x04001B52 RID: 6994
+	// Token: 0x04001716 RID: 5910
 	public RectTransform NamesRoot;
 
-	// Token: 0x04001B53 RID: 6995
+	// Token: 0x04001717 RID: 5911
 	public RectTransform NodesRoot;
 
-	// Token: 0x04001B54 RID: 6996
+	// Token: 0x04001718 RID: 5912
 	public Sprite BGSprite;
 
-	// Token: 0x04001B55 RID: 6997
+	// Token: 0x04001719 RID: 5913
 	public UTooltipTrigger TanSuoDuInfoTrigger;
 
-	// Token: 0x04001B56 RID: 6998
+	// Token: 0x0400171A RID: 5914
 	private Dictionary<int, UIMapHighlight> highLights = new Dictionary<int, UIMapHighlight>();
 
-	// Token: 0x04001B57 RID: 6999
+	// Token: 0x0400171B RID: 5915
 	private Dictionary<int, UIMapSeaName> seaNames = new Dictionary<int, UIMapSeaName>();
 
-	// Token: 0x04001B58 RID: 7000
+	// Token: 0x0400171C RID: 5916
 	private List<UIMapSeaNode> nodes = new List<UIMapSeaNode>();
 
-	// Token: 0x04001B59 RID: 7001
+	// Token: 0x0400171D RID: 5917
 	private float noLingZhouCostMul = 2f;
 }

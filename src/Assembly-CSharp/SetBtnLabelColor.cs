@@ -1,16 +1,16 @@
 ﻿using System;
 using UnityEngine;
 
-// Token: 0x020005D3 RID: 1491
+// Token: 0x0200041F RID: 1055
 public class SetBtnLabelColor : MonoBehaviour
 {
-	// Token: 0x06002595 RID: 9621 RVA: 0x0001E1B4 File Offset: 0x0001C3B4
+	// Token: 0x060021DB RID: 8667 RVA: 0x000E9D66 File Offset: 0x000E7F66
 	private void Start()
 	{
 		this.label = base.GetComponentInChildren<UILabel>();
 	}
 
-	// Token: 0x06002596 RID: 9622 RVA: 0x0001E1C2 File Offset: 0x0001C3C2
+	// Token: 0x060021DC RID: 8668 RVA: 0x000E9D74 File Offset: 0x000E7F74
 	public void OnHover(bool isOver)
 	{
 		if (isOver)
@@ -21,7 +21,7 @@ public class SetBtnLabelColor : MonoBehaviour
 		this.label.color = this.hoverColorStart;
 	}
 
-	// Token: 0x06002597 RID: 9623 RVA: 0x0001E1EA File Offset: 0x0001C3EA
+	// Token: 0x060021DD RID: 8669 RVA: 0x000E9D9C File Offset: 0x000E7F9C
 	private void Update()
 	{
 		if (UICamera.GetMouse(0).current != base.gameObject)
@@ -30,12 +30,12 @@ public class SetBtnLabelColor : MonoBehaviour
 		}
 	}
 
-	// Token: 0x04002017 RID: 8215
+	// Token: 0x04001B51 RID: 6993
 	public Color hoverColor;
 
-	// Token: 0x04002018 RID: 8216
+	// Token: 0x04001B52 RID: 6994
 	public Color hoverColorStart;
 
-	// Token: 0x04002019 RID: 8217
+	// Token: 0x04001B53 RID: 6995
 	private UILabel label;
 }

@@ -3,10 +3,10 @@ using MoonSharp.Interpreter.Loaders;
 
 namespace MoonSharp.Interpreter.REPL
 {
-	// Token: 0x020010D0 RID: 4304
+	// Token: 0x02000CF3 RID: 3315
 	public class ReplInterpreterScriptLoader : FileSystemScriptLoader
 	{
-		// Token: 0x060067D5 RID: 26581 RVA: 0x0028ACAC File Offset: 0x00288EAC
+		// Token: 0x06005CBF RID: 23743 RVA: 0x00261AD8 File Offset: 0x0025FCD8
 		public ReplInterpreterScriptLoader()
 		{
 			string environmentVariable = Environment.GetEnvironmentVariable("MOONSHARP_PATH");
@@ -36,7 +36,7 @@ namespace MoonSharp.Interpreter.REPL
 			}
 		}
 
-		// Token: 0x060067D6 RID: 26582 RVA: 0x0028AD44 File Offset: 0x00288F44
+		// Token: 0x06005CC0 RID: 23744 RVA: 0x00261B70 File Offset: 0x0025FD70
 		public override string ResolveModuleName(string modname, Table globalContext)
 		{
 			DynValue dynValue = globalContext.RawGet("LUA_PATH");

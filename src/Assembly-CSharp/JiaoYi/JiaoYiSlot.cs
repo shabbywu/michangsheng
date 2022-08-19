@@ -4,10 +4,10 @@ using UnityEngine.EventSystems;
 
 namespace JiaoYi
 {
-	// Token: 0x02000A90 RID: 2704
+	// Token: 0x02000730 RID: 1840
 	public class JiaoYiSlot : SlotBase
 	{
-		// Token: 0x06004559 RID: 17753 RVA: 0x001DAAE8 File Offset: 0x001D8CE8
+		// Token: 0x06003A9F RID: 15007 RVA: 0x00192FB8 File Offset: 0x001911B8
 		public override void OnPointerEnter(PointerEventData eventData)
 		{
 			if (DragMag.Inst.IsDraging)
@@ -30,7 +30,7 @@ namespace JiaoYi
 			this._selectPanel.SetActive(true);
 		}
 
-		// Token: 0x0600455A RID: 17754 RVA: 0x001DAB90 File Offset: 0x001D8D90
+		// Token: 0x06003AA0 RID: 15008 RVA: 0x00193060 File Offset: 0x00191260
 		public override void OnPointerUp(PointerEventData eventData)
 		{
 			if (eventData.dragging)
@@ -59,16 +59,16 @@ namespace JiaoYi
 			this._selectPanel.SetActive(false);
 		}
 
-		// Token: 0x0600455B RID: 17755 RVA: 0x00030EE2 File Offset: 0x0002F0E2
+		// Token: 0x06003AA1 RID: 15009 RVA: 0x0018C39D File Offset: 0x0018A59D
 		public override bool CanDrag()
 		{
 			return !base.IsNull() && this.Item.CanSale && base.CanDrag();
 		}
 
-		// Token: 0x04003D81 RID: 15745
+		// Token: 0x040032D0 RID: 13008
 		public bool IsPlayer;
 
-		// Token: 0x04003D82 RID: 15746
+		// Token: 0x040032D1 RID: 13009
 		public bool IsInBag;
 	}
 }

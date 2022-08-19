@@ -4,14 +4,14 @@ using UnityEngine;
 
 namespace YSGame
 {
-	// Token: 0x02000DB3 RID: 3507
+	// Token: 0x02000A81 RID: 2689
 	[Serializable]
 	public class FightBtnGroup
 	{
-		// Token: 0x04005453 RID: 21587
+		// Token: 0x04004A94 RID: 19092
 		public string name = "";
 
-		// Token: 0x04005454 RID: 21588
+		// Token: 0x04004A95 RID: 19093
 		public List<GameObject> btn;
 	}
 }

@@ -6,11 +6,11 @@ using System.Linq;
 using System.Xml.Linq;
 using UnityEngine;
 
-// Token: 0x0200077F RID: 1919
+// Token: 0x020004F6 RID: 1270
 public class StagesParser : MonoBehaviour
 {
-	// Token: 0x17000446 RID: 1094
-	// (get) Token: 0x060030FC RID: 12540 RVA: 0x00023F5B File Offset: 0x0002215B
+	// Token: 0x170002B9 RID: 697
+	// (get) Token: 0x06002921 RID: 10529 RVA: 0x00138324 File Offset: 0x00136524
 	public static StagesParser Instance
 	{
 		get
@@ -23,7 +23,7 @@ public class StagesParser : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060030FD RID: 12541 RVA: 0x0018503C File Offset: 0x0018323C
+	// Token: 0x06002922 RID: 10530 RVA: 0x00138354 File Offset: 0x00136554
 	private void Awake()
 	{
 		StagesParser.instance = this;
@@ -287,7 +287,7 @@ public class StagesParser : MonoBehaviour
 		base.StartCoroutine(this.checkInternetConnection());
 	}
 
-	// Token: 0x060030FE RID: 12542 RVA: 0x001858C8 File Offset: 0x00183AC8
+	// Token: 0x06002923 RID: 10531 RVA: 0x00138BE0 File Offset: 0x00136DE0
 	public void ObrisiProgresNaLogOut()
 	{
 		int num = 0;
@@ -402,7 +402,7 @@ public class StagesParser : MonoBehaviour
 		this.UgasiLoading();
 	}
 
-	// Token: 0x060030FF RID: 12543 RVA: 0x00185CBC File Offset: 0x00183EBC
+	// Token: 0x06002924 RID: 10532 RVA: 0x00138FD4 File Offset: 0x001371D4
 	public static void RecountTotalStars()
 	{
 		StagesParser.currentStarsNEW = 0;
@@ -433,7 +433,7 @@ public class StagesParser : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06003100 RID: 12544 RVA: 0x00023F88 File Offset: 0x00022188
+	// Token: 0x06002925 RID: 10533 RVA: 0x001390E8 File Offset: 0x001372E8
 	public IEnumerator checkInternetConnection()
 	{
 		WWW www = new WWW("https://www.google.com");
@@ -449,19 +449,19 @@ public class StagesParser : MonoBehaviour
 		yield break;
 	}
 
-	// Token: 0x06003101 RID: 12545 RVA: 0x00023F90 File Offset: 0x00022190
+	// Token: 0x06002926 RID: 10534 RVA: 0x001390F0 File Offset: 0x001372F0
 	public void CallLoad()
 	{
 		base.StartCoroutine("LoadStages");
 	}
 
-	// Token: 0x06003102 RID: 12546 RVA: 0x00023F9E File Offset: 0x0002219E
+	// Token: 0x06002927 RID: 10535 RVA: 0x001390FE File Offset: 0x001372FE
 	public void CallSave()
 	{
 		base.StartCoroutine("SaveStages");
 	}
 
-	// Token: 0x06003103 RID: 12547 RVA: 0x00023FAC File Offset: 0x000221AC
+	// Token: 0x06002928 RID: 10536 RVA: 0x0013910C File Offset: 0x0013730C
 	public IEnumerator LoadStages()
 	{
 		if (PlayerPrefs.HasKey("firstSave18819"))
@@ -552,7 +552,7 @@ public class StagesParser : MonoBehaviour
 		yield break;
 	}
 
-	// Token: 0x06003104 RID: 12548 RVA: 0x00023FBB File Offset: 0x000221BB
+	// Token: 0x06002929 RID: 10537 RVA: 0x0013911B File Offset: 0x0013731B
 	public IEnumerator SaveStages()
 	{
 		string text = string.Empty;
@@ -604,7 +604,7 @@ public class StagesParser : MonoBehaviour
 		yield break;
 	}
 
-	// Token: 0x06003105 RID: 12549 RVA: 0x00023FCA File Offset: 0x000221CA
+	// Token: 0x0600292A RID: 10538 RVA: 0x0013912A File Offset: 0x0013732A
 	public IEnumerator moneyCounter(int kolicina, TextMesh moneyText, bool hasOutline)
 	{
 		if (kolicina > 0 && PlaySounds.soundOn)
@@ -629,7 +629,7 @@ public class StagesParser : MonoBehaviour
 		yield break;
 	}
 
-	// Token: 0x06003106 RID: 12550 RVA: 0x00185DD0 File Offset: 0x00183FD0
+	// Token: 0x0600292B RID: 10539 RVA: 0x00139148 File Offset: 0x00137348
 	public void UcitajLoadingPoruke()
 	{
 		IEnumerable<XElement> source = XElement.Parse(((TextAsset)Resources.Load("LoadingBackground/Loading" + LanguageManager.chosenLanguage)).ToString()).Elements();
@@ -662,7 +662,7 @@ public class StagesParser : MonoBehaviour
 		StagesParser.LoadingPoruke.Add(source.ElementAt(21).Value);
 	}
 
-	// Token: 0x06003107 RID: 12551 RVA: 0x00186034 File Offset: 0x00184234
+	// Token: 0x0600292C RID: 10540 RVA: 0x001393AC File Offset: 0x001375AC
 	public void CompareScores()
 	{
 		Debug.Log(string.Concat(new object[]
@@ -951,13 +951,13 @@ public class StagesParser : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06003108 RID: 12552 RVA: 0x00023FE7 File Offset: 0x000221E7
+	// Token: 0x0600292D RID: 10541 RVA: 0x00139D16 File Offset: 0x00137F16
 	public void UgasiLoading()
 	{
 		GameObject.Find("Loading Buffer HOLDER").transform.GetChild(0).gameObject.SetActive(false);
 	}
 
-	// Token: 0x06003109 RID: 12553 RVA: 0x001869A0 File Offset: 0x00184BA0
+	// Token: 0x0600292E RID: 10542 RVA: 0x00139D38 File Offset: 0x00137F38
 	public void ShopDeoIzCompareScores()
 	{
 		ShopManagerFull.ShopObject.OcistiMajmuna();
@@ -998,269 +998,269 @@ public class StagesParser : MonoBehaviour
 		}
 	}
 
-	// Token: 0x04002CD4 RID: 11476
+	// Token: 0x0400250E RID: 9486
 	private string xmlName = "StarsAndStages.xml";
 
-	// Token: 0x04002CD5 RID: 11477
+	// Token: 0x0400250F RID: 9487
 	public static int totalSets = 0;
 
-	// Token: 0x04002CD6 RID: 11478
+	// Token: 0x04002510 RID: 9488
 	public static Set[] SetsInGame;
 
-	// Token: 0x04002CD7 RID: 11479
+	// Token: 0x04002511 RID: 9489
 	public static bool stagesLoaded = false;
 
-	// Token: 0x04002CD8 RID: 11480
+	// Token: 0x04002512 RID: 9490
 	public static bool saving = false;
 
-	// Token: 0x04002CD9 RID: 11481
+	// Token: 0x04002513 RID: 9491
 	public static int totalStars = 0;
 
-	// Token: 0x04002CDA RID: 11482
+	// Token: 0x04002514 RID: 9492
 	public static int currentStars = 0;
 
-	// Token: 0x04002CDB RID: 11483
+	// Token: 0x04002515 RID: 9493
 	public static int currSetIndex = 0;
 
-	// Token: 0x04002CDC RID: 11484
+	// Token: 0x04002516 RID: 9494
 	public static int currStageIndex = 0;
 
-	// Token: 0x04002CDD RID: 11485
+	// Token: 0x04002517 RID: 9495
 	public static int[] currWorldGridIndex = new int[5];
 
-	// Token: 0x04002CDE RID: 11486
+	// Token: 0x04002518 RID: 9496
 	public static bool[] unlockedWorlds = new bool[6];
 
-	// Token: 0x04002CDF RID: 11487
+	// Token: 0x04002519 RID: 9497
 	public static bool[] openedButNotPlayed = new bool[6];
 
-	// Token: 0x04002CE0 RID: 11488
+	// Token: 0x0400251A RID: 9498
 	public static bool isJustOpened = false;
 
-	// Token: 0x04002CE1 RID: 11489
+	// Token: 0x0400251B RID: 9499
 	public static bool NemaRequiredStars_VratiULevele = false;
 
-	// Token: 0x04002CE2 RID: 11490
+	// Token: 0x0400251C RID: 9500
 	public static bool nemojDaAnimirasZvezdice = false;
 
-	// Token: 0x04002CE3 RID: 11491
+	// Token: 0x0400251D RID: 9501
 	public static int starsGained = 0;
 
-	// Token: 0x04002CE4 RID: 11492
+	// Token: 0x0400251E RID: 9502
 	public static int animate = 0;
 
-	// Token: 0x04002CE5 RID: 11493
+	// Token: 0x0400251F RID: 9503
 	public static int currentMoney = 0;
 
-	// Token: 0x04002CE6 RID: 11494
+	// Token: 0x04002520 RID: 9504
 	public static int currentBananas = 0;
 
-	// Token: 0x04002CE7 RID: 11495
+	// Token: 0x04002521 RID: 9505
 	public static int bananaCost = 2000;
 
-	// Token: 0x04002CE8 RID: 11496
+	// Token: 0x04002522 RID: 9506
 	public static int currentPoints = 0;
 
-	// Token: 0x04002CE9 RID: 11497
+	// Token: 0x04002523 RID: 9507
 	public static int powerup_magnets = 0;
 
-	// Token: 0x04002CEA RID: 11498
+	// Token: 0x04002524 RID: 9508
 	public static int powerup_doublecoins = 0;
 
-	// Token: 0x04002CEB RID: 11499
+	// Token: 0x04002525 RID: 9509
 	public static int powerup_shields = 0;
 
-	// Token: 0x04002CEC RID: 11500
+	// Token: 0x04002526 RID: 9510
 	public static int cost_magnet = 100;
 
-	// Token: 0x04002CED RID: 11501
+	// Token: 0x04002527 RID: 9511
 	public static int cost_doublecoins = 250;
 
-	// Token: 0x04002CEE RID: 11502
+	// Token: 0x04002528 RID: 9512
 	public static int cost_shield = 500;
 
-	// Token: 0x04002CEF RID: 11503
+	// Token: 0x04002529 RID: 9513
 	public static int numberGotKilled = 0;
 
-	// Token: 0x04002CF0 RID: 11504
+	// Token: 0x0400252A RID: 9514
 	public static int lastOpenedNotPlayedYet = 1;
 
-	// Token: 0x04002CF1 RID: 11505
+	// Token: 0x0400252B RID: 9515
 	public static int lastUnlockedWorldIndex = 0;
 
-	// Token: 0x04002CF2 RID: 11506
+	// Token: 0x0400252C RID: 9516
 	private bool prefs;
 
-	// Token: 0x04002CF3 RID: 11507
+	// Token: 0x0400252D RID: 9517
 	public static int worldToFocus = 0;
 
-	// Token: 0x04002CF4 RID: 11508
+	// Token: 0x0400252E RID: 9518
 	public static int levelToFocus = 0;
 
-	// Token: 0x04002CF5 RID: 11509
+	// Token: 0x0400252F RID: 9519
 	public static int currentWorld = 1;
 
-	// Token: 0x04002CF6 RID: 11510
+	// Token: 0x04002530 RID: 9520
 	public static int currentLevel = 1;
 
-	// Token: 0x04002CF7 RID: 11511
+	// Token: 0x04002531 RID: 9521
 	public static int totalWorlds = 6;
 
-	// Token: 0x04002CF8 RID: 11512
+	// Token: 0x04002532 RID: 9522
 	public static int currentStarsNEW = 0;
 
-	// Token: 0x04002CF9 RID: 11513
+	// Token: 0x04002533 RID: 9523
 	private int tour;
 
-	// Token: 0x04002CFA RID: 11514
+	// Token: 0x04002534 RID: 9524
 	public static int maxLevel = 1;
 
-	// Token: 0x04002CFB RID: 11515
+	// Token: 0x04002535 RID: 9525
 	public static bool maska = false;
 
-	// Token: 0x04002CFC RID: 11516
+	// Token: 0x04002536 RID: 9526
 	public static int[] trenutniNivoNaOstrvu;
 
-	// Token: 0x04002CFD RID: 11517
+	// Token: 0x04002537 RID: 9527
 	public static int nivoZaUcitavanje;
 
-	// Token: 0x04002CFE RID: 11518
+	// Token: 0x04002538 RID: 9528
 	public static int zadnjiOtkljucanNivo = 0;
 
-	// Token: 0x04002CFF RID: 11519
+	// Token: 0x04002539 RID: 9529
 	public static Vector3 pozicijaMajmuncetaNaMapi = Vector3.zero;
 
-	// Token: 0x04002D00 RID: 11520
+	// Token: 0x0400253A RID: 9530
 	public static bool bonusLevel = false;
 
-	// Token: 0x04002D01 RID: 11521
+	// Token: 0x0400253B RID: 9531
 	public static string bonusName;
 
-	// Token: 0x04002D02 RID: 11522
+	// Token: 0x0400253C RID: 9532
 	public static int bonusID;
 
-	// Token: 0x04002D03 RID: 11523
+	// Token: 0x0400253D RID: 9533
 	public static bool dodatnaProveraIzasaoIzBonusa = false;
 
-	// Token: 0x04002D04 RID: 11524
+	// Token: 0x0400253E RID: 9534
 	public static bool bossStage = false;
 
-	// Token: 0x04002D05 RID: 11525
+	// Token: 0x0400253F RID: 9535
 	public static bool vratioSeNaSvaOstrva = false;
 
-	// Token: 0x04002D06 RID: 11526
+	// Token: 0x04002540 RID: 9536
 	public static List<string> LoadingPoruke = new List<string>();
 
-	// Token: 0x04002D07 RID: 11527
+	// Token: 0x04002541 RID: 9537
 	public static int odgledaoTutorial = 0;
 
-	// Token: 0x04002D08 RID: 11528
+	// Token: 0x04002542 RID: 9538
 	public static int loadingTip = -1;
 
-	// Token: 0x04002D09 RID: 11529
+	// Token: 0x04002543 RID: 9539
 	public static int odgledanihTipova = 0;
 
-	// Token: 0x04002D0A RID: 11530
+	// Token: 0x04002544 RID: 9540
 	public static int otvaraoShopNekad = 0;
 
-	// Token: 0x04002D0B RID: 11531
+	// Token: 0x04002545 RID: 9541
 	public static bool imaUsi = true;
 
-	// Token: 0x04002D0C RID: 11532
+	// Token: 0x04002546 RID: 9542
 	public static bool imaKosu = true;
 
-	// Token: 0x04002D0D RID: 11533
+	// Token: 0x04002547 RID: 9543
 	public static int majica = -1;
 
-	// Token: 0x04002D0E RID: 11534
+	// Token: 0x04002548 RID: 9544
 	public static int glava = -1;
 
-	// Token: 0x04002D0F RID: 11535
+	// Token: 0x04002549 RID: 9545
 	public static int ledja = -1;
 
-	// Token: 0x04002D10 RID: 11536
+	// Token: 0x0400254A RID: 9546
 	public static Color bojaMajice = Color.white;
 
-	// Token: 0x04002D11 RID: 11537
+	// Token: 0x0400254B RID: 9547
 	public static string svekupovineGlava = string.Empty;
 
-	// Token: 0x04002D12 RID: 11538
+	// Token: 0x0400254C RID: 9548
 	public static string svekupovineMajica = string.Empty;
 
-	// Token: 0x04002D13 RID: 11539
+	// Token: 0x0400254D RID: 9549
 	public static string svekupovineLedja = string.Empty;
 
-	// Token: 0x04002D14 RID: 11540
+	// Token: 0x0400254E RID: 9550
 	public static int[] PointsPoNivoima;
 
-	// Token: 0x04002D15 RID: 11541
+	// Token: 0x0400254F RID: 9551
 	public static int[] StarsPoNivoima;
 
-	// Token: 0x04002D16 RID: 11542
+	// Token: 0x04002550 RID: 9552
 	public static int[] maxLevelNaOstrvu;
 
-	// Token: 0x04002D17 RID: 11543
+	// Token: 0x04002551 RID: 9553
 	public static List<int> RedniBrojSlike = new List<int>();
 
-	// Token: 0x04002D18 RID: 11544
+	// Token: 0x04002552 RID: 9554
 	public static int ServerUpdate = 0;
 
-	// Token: 0x04002D19 RID: 11545
+	// Token: 0x04002553 RID: 9555
 	public static string[] allLevels;
 
-	// Token: 0x04002D1A RID: 11546
+	// Token: 0x04002554 RID: 9556
 	public static string bonusLevels;
 
-	// Token: 0x04002D1B RID: 11547
+	// Token: 0x04002555 RID: 9557
 	public static int LoginReward = 1000;
 
-	// Token: 0x04002D1C RID: 11548
+	// Token: 0x04002556 RID: 9558
 	public static int InviteReward = 100;
 
-	// Token: 0x04002D1D RID: 11549
+	// Token: 0x04002557 RID: 9559
 	public static int ShareReward = 100;
 
-	// Token: 0x04002D1E RID: 11550
+	// Token: 0x04002558 RID: 9560
 	public static int likePageReward = 1000;
 
-	// Token: 0x04002D1F RID: 11551
+	// Token: 0x04002559 RID: 9561
 	public static int watchVideoReward = 1000;
 
-	// Token: 0x04002D20 RID: 11552
+	// Token: 0x0400255A RID: 9562
 	public static bool internetOn = false;
 
-	// Token: 0x04002D21 RID: 11553
+	// Token: 0x0400255B RID: 9563
 	public static string lastLoggedUser = string.Empty;
 
-	// Token: 0x04002D22 RID: 11554
+	// Token: 0x0400255C RID: 9564
 	public static int brojIgranja = 0;
 
-	// Token: 0x04002D23 RID: 11555
+	// Token: 0x0400255D RID: 9565
 	public static bool obucenSeLogovaoNaDrugojSceni = false;
 
-	// Token: 0x04002D24 RID: 11556
+	// Token: 0x0400255E RID: 9566
 	public static bool ucitaoMainScenuPrviPut = false;
 
-	// Token: 0x04002D25 RID: 11557
+	// Token: 0x0400255F RID: 9567
 	public static int jezikPromenjen = 0;
 
-	// Token: 0x04002D26 RID: 11558
+	// Token: 0x04002560 RID: 9568
 	public static int sceneID = 0;
 
-	// Token: 0x04002D27 RID: 11559
+	// Token: 0x04002561 RID: 9569
 	public static string languageBefore = "";
 
-	// Token: 0x04002D28 RID: 11560
+	// Token: 0x04002562 RID: 9570
 	[Header("Rate Link Set Up:")]
 	public string rateLink;
 
-	// Token: 0x04002D29 RID: 11561
+	// Token: 0x04002563 RID: 9571
 	[Header("Advertisement Set Up:")]
 	public string AdMobInterstitialID;
 
-	// Token: 0x04002D2A RID: 11562
+	// Token: 0x04002564 RID: 9572
 	public string UnityAdsVideoGameID;
 
-	// Token: 0x04002D2B RID: 11563
+	// Token: 0x04002565 RID: 9573
 	private static StagesParser instance;
 }

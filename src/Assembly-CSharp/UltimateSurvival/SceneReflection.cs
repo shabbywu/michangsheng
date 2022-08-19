@@ -4,10 +4,10 @@ using UnityEngine;
 
 namespace UltimateSurvival
 {
-	// Token: 0x02000885 RID: 2181
+	// Token: 0x020005C4 RID: 1476
 	public class SceneReflection : MonoBehaviour
 	{
-		// Token: 0x06003847 RID: 14407 RVA: 0x00028E8E File Offset: 0x0002708E
+		// Token: 0x06002FBD RID: 12221 RVA: 0x001589BD File Offset: 0x00156BBD
 		private IEnumerator Start()
 		{
 			WaitForSeconds waitInterval = new WaitForSeconds(0.2f);
@@ -20,7 +20,7 @@ namespace UltimateSurvival
 			yield break;
 		}
 
-		// Token: 0x040032A0 RID: 12960
+		// Token: 0x04002A0E RID: 10766
 		[SerializeField]
 		private ReflectionProbe m_ReflectionProbe;
 	}

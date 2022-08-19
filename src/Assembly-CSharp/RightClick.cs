@@ -2,10 +2,10 @@
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-// Token: 0x020001FC RID: 508
+// Token: 0x0200012B RID: 299
 public class RightClick : MonoBehaviour, IPointerDownHandler, IEventSystemHandler
 {
-	// Token: 0x06001027 RID: 4135 RVA: 0x000A3C04 File Offset: 0x000A1E04
+	// Token: 0x06000E19 RID: 3609 RVA: 0x000534B4 File Offset: 0x000516B4
 	public void OnPointerDown(PointerEventData data)
 	{
 		if (this.craftSystem == null)
@@ -21,9 +21,9 @@ public class RightClick : MonoBehaviour, IPointerDownHandler, IEventSystemHandle
 		this.resultScript.temp = 0;
 	}
 
-	// Token: 0x04000C9C RID: 3228
+	// Token: 0x04000A04 RID: 2564
 	private CraftResultSlot resultScript;
 
-	// Token: 0x04000C9D RID: 3229
+	// Token: 0x04000A05 RID: 2565
 	private CraftSystem craftSystem;
 }

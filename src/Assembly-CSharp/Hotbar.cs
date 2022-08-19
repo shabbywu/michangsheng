@@ -1,10 +1,10 @@
 ﻿using System;
 using UnityEngine;
 
-// Token: 0x02000202 RID: 514
+// Token: 0x02000131 RID: 305
 public class Hotbar : MonoBehaviour
 {
-	// Token: 0x06001042 RID: 4162 RVA: 0x000A4C98 File Offset: 0x000A2E98
+	// Token: 0x06000E34 RID: 3636 RVA: 0x00054648 File Offset: 0x00052848
 	private void Update()
 	{
 		for (int i = 0; i < this.slotsInTotal; i++)
@@ -20,18 +20,18 @@ public class Hotbar : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001043 RID: 4163 RVA: 0x000A4DB8 File Offset: 0x000A2FB8
+	// Token: 0x06000E35 RID: 3637 RVA: 0x00054768 File Offset: 0x00052968
 	public int getSlotsInTotal()
 	{
 		Inventory component = base.GetComponent<Inventory>();
 		return this.slotsInTotal = component.width * component.height;
 	}
 
-	// Token: 0x04000CD6 RID: 3286
+	// Token: 0x04000A3E RID: 2622
 	[SerializeField]
 	public KeyCode[] keyCodesForSlots = new KeyCode[999];
 
-	// Token: 0x04000CD7 RID: 3287
+	// Token: 0x04000A3F RID: 2623
 	[SerializeField]
 	public int slotsInTotal;
 }

@@ -1,33 +1,33 @@
 ﻿using System;
 using UnityEngine;
 
-// Token: 0x020004C8 RID: 1224
+// Token: 0x0200034C RID: 844
 public class AutoSetHeightByOther : MonoBehaviour
 {
-	// Token: 0x0600202B RID: 8235 RVA: 0x0001A60A File Offset: 0x0001880A
+	// Token: 0x06001CC4 RID: 7364 RVA: 0x000CDC84 File Offset: 0x000CBE84
 	private void Start()
 	{
 		this.self = base.GetComponent<RectTransform>();
 	}
 
-	// Token: 0x0600202C RID: 8236 RVA: 0x0001A618 File Offset: 0x00018818
+	// Token: 0x06001CC5 RID: 7365 RVA: 0x000CDC92 File Offset: 0x000CBE92
 	private void Update()
 	{
 		this.self.sizeDelta = new Vector2(this.Width, this.Other.sizeDelta.y + this.ExHeight);
 	}
 
-	// Token: 0x04001BA4 RID: 7076
+	// Token: 0x0400174E RID: 5966
 	[Header("高度参考")]
 	public RectTransform Other;
 
-	// Token: 0x04001BA5 RID: 7077
+	// Token: 0x0400174F RID: 5967
 	[Header("宽度")]
 	public float Width;
 
-	// Token: 0x04001BA6 RID: 7078
+	// Token: 0x04001750 RID: 5968
 	[Header("额外高度")]
 	public float ExHeight;
 
-	// Token: 0x04001BA7 RID: 7079
+	// Token: 0x04001751 RID: 5969
 	private RectTransform self;
 }

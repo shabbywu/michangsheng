@@ -2,10 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-// Token: 0x0200032A RID: 810
+// Token: 0x02000212 RID: 530
 public class NPCLiLian
 {
-	// Token: 0x060017D4 RID: 6100 RVA: 0x000CFEC0 File Offset: 0x000CE0C0
+	// Token: 0x06001523 RID: 5411 RVA: 0x00087854 File Offset: 0x00085A54
 	public NPCLiLian()
 	{
 		this.yaoShouDropDictionary = new Dictionary<int, Dictionary<int, List<int>>>();
@@ -19,20 +19,20 @@ public class NPCLiLian
 		this.qiYuQuanZhongDictionary.Add(5, new Dictionary<int, int>());
 	}
 
-	// Token: 0x060017D5 RID: 6101 RVA: 0x0001501A File Offset: 0x0001321A
+	// Token: 0x06001524 RID: 5412 RVA: 0x000878F4 File Offset: 0x00085AF4
 	public void NPCNingZhouKillYaoShou(int npcId)
 	{
 		NpcJieSuanManager.inst.npcMap.AddNpcToBigMap(npcId, 1, true);
 		this.NPCGetYaoShouDrop(npcId, 1);
 	}
 
-	// Token: 0x060017D6 RID: 6102 RVA: 0x00015036 File Offset: 0x00013236
+	// Token: 0x06001525 RID: 5413 RVA: 0x00087910 File Offset: 0x00085B10
 	public void NPCHaiShangKillYaoShou(int npcId)
 	{
 		this.NPCGetYaoShouDrop(npcId, 2);
 	}
 
-	// Token: 0x060017D7 RID: 6103 RVA: 0x000CFF60 File Offset: 0x000CE160
+	// Token: 0x06001526 RID: 5414 RVA: 0x0008791C File Offset: 0x00085B1C
 	public void NPCDoZhuChengTask(int npcId)
 	{
 		float n = jsonData.instance.AvatarRandomJsonData[npcId.ToString()]["HaoGanDu"].n;
@@ -41,7 +41,7 @@ public class NPCLiLian
 		NpcJieSuanManager.inst.npcSetField.AddNpcMoney(npcId, jsonData.instance.NpcLevelShouYiDate[jsonobject["Level"].I.ToString()]["money"].I);
 	}
 
-	// Token: 0x060017D8 RID: 6104 RVA: 0x000D0004 File Offset: 0x000CE204
+	// Token: 0x06001527 RID: 5415 RVA: 0x000879C0 File Offset: 0x00085BC0
 	public void NPCDoMenPaiTask(int npcId)
 	{
 		JSONObject jsonobject = jsonData.instance.AvatarJsonData[npcId.ToString()];
@@ -72,23 +72,23 @@ public class NPCLiLian
 		NpcJieSuanManager.inst.npcMap.AddNpcToFuBen(npcId, i2, i3);
 	}
 
-	// Token: 0x060017D9 RID: 6105 RVA: 0x00015040 File Offset: 0x00013240
+	// Token: 0x06001528 RID: 5416 RVA: 0x00087BB0 File Offset: 0x00085DB0
 	public void NPCNingZhouYouLi(int npcId)
 	{
 		NpcJieSuanManager.inst.npcMap.AddNpcToBigMap(npcId, 1, true);
 		this.NPCYouLi(npcId);
 	}
 
-	// Token: 0x060017DA RID: 6106 RVA: 0x0001505B File Offset: 0x0001325B
+	// Token: 0x06001529 RID: 5417 RVA: 0x00087BCB File Offset: 0x00085DCB
 	public void NpcHaiShangYouLi(int npcId)
 	{
 		this.NPCYouLi(npcId);
 	}
 
-	// Token: 0x060017DB RID: 6107 RVA: 0x000D01F4 File Offset: 0x000CE3F4
+	// Token: 0x0600152A RID: 5418 RVA: 0x00087BD4 File Offset: 0x00085DD4
 	private void NPCYouLi(int npcId)
 	{
-		NpcJieSuanManager.inst.getNpcData(npcId);
+		NpcJieSuanManager.inst.GetNpcData(npcId);
 		if (NpcJieSuanManager.inst.getRandomInt(1, 100) > 40)
 		{
 			return;
@@ -103,7 +103,7 @@ public class NPCLiLian
 				}
 			}
 		}
-		int randomQiYu = this.GetRandomQiYu(NpcJieSuanManager.inst.getNpcBigLevel(npcId));
+		int randomQiYu = this.GetRandomQiYu(NpcJieSuanManager.inst.GetNpcBigLevel(npcId));
 		JSONObject jsonobject2 = jsonData.instance.NpcQiYuDate[randomQiYu.ToString()];
 		int num = -1;
 		int num2 = -1;
@@ -131,7 +131,7 @@ public class NPCLiLian
 		NpcJieSuanManager.inst.npcNoteBook.NoteQiYu(npcId, randomQiYu, num, num2);
 	}
 
-	// Token: 0x060017DC RID: 6108 RVA: 0x000D0458 File Offset: 0x000CE658
+	// Token: 0x0600152B RID: 5419 RVA: 0x00087E38 File Offset: 0x00086038
 	public int GetRandomQiYu(int bigLevel)
 	{
 		int num = 0;
@@ -154,11 +154,11 @@ public class NPCLiLian
 		return result;
 	}
 
-	// Token: 0x060017DD RID: 6109 RVA: 0x000D0544 File Offset: 0x000CE744
+	// Token: 0x0600152C RID: 5420 RVA: 0x00087F24 File Offset: 0x00086124
 	private void NPCGetYaoShouDrop(int npcId, int yaoShouType)
 	{
 		JSONObject jsonobject = jsonData.instance.AvatarJsonData[npcId.ToString()];
-		int num = NpcJieSuanManager.inst.getNpcBigLevel(npcId);
+		int num = NpcJieSuanManager.inst.GetNpcBigLevel(npcId);
 		if (num >= 5)
 		{
 			num = 4;
@@ -241,9 +241,9 @@ public class NPCLiLian
 		}
 	}
 
-	// Token: 0x04001332 RID: 4914
+	// Token: 0x04000FE2 RID: 4066
 	private Dictionary<int, Dictionary<int, List<int>>> yaoShouDropDictionary;
 
-	// Token: 0x04001333 RID: 4915
+	// Token: 0x04000FE3 RID: 4067
 	private Dictionary<int, Dictionary<int, int>> qiYuQuanZhongDictionary;
 }

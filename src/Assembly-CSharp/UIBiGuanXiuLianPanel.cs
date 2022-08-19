@@ -5,12 +5,12 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
 
-// Token: 0x020003B9 RID: 953
+// Token: 0x0200028B RID: 651
 public class UIBiGuanXiuLianPanel : TabPanelBase
 {
-	// Token: 0x17000286 RID: 646
-	// (get) Token: 0x06001A61 RID: 6753 RVA: 0x00016813 File Offset: 0x00014A13
-	// (set) Token: 0x06001A62 RID: 6754 RVA: 0x000E8D80 File Offset: 0x000E6F80
+	// Token: 0x1700023E RID: 574
+	// (get) Token: 0x06001784 RID: 6020 RVA: 0x000A18AC File Offset: 0x0009FAAC
+	// (set) Token: 0x06001785 RID: 6021 RVA: 0x000A18B4 File Offset: 0x0009FAB4
 	private int BiGuanTime
 	{
 		get
@@ -25,14 +25,14 @@ public class UIBiGuanXiuLianPanel : TabPanelBase
 		}
 	}
 
-	// Token: 0x06001A63 RID: 6755 RVA: 0x0001681B File Offset: 0x00014A1B
+	// Token: 0x06001786 RID: 6022 RVA: 0x000A190E File Offset: 0x0009FB0E
 	public override void OnPanelShow()
 	{
 		base.OnPanelShow();
 		this.RefreshUI();
 	}
 
-	// Token: 0x06001A64 RID: 6756 RVA: 0x00016829 File Offset: 0x00014A29
+	// Token: 0x06001787 RID: 6023 RVA: 0x000A191C File Offset: 0x0009FB1C
 	public void RefreshUI()
 	{
 		this.RefreshEventUI();
@@ -40,7 +40,7 @@ public class UIBiGuanXiuLianPanel : TabPanelBase
 		UIBiGuanPanel.Inst.RefreshKeFangTime();
 	}
 
-	// Token: 0x06001A65 RID: 6757 RVA: 0x000E8DDC File Offset: 0x000E6FDC
+	// Token: 0x06001788 RID: 6024 RVA: 0x000A1934 File Offset: 0x0009FB34
 	public void RefreshEventUI()
 	{
 		this.EventSVContent.DestoryAllChild();
@@ -48,30 +48,40 @@ public class UIBiGuanXiuLianPanel : TabPanelBase
 		int num = 0;
 		foreach (JSONObject jsonobject in player.taskMag._TaskData["Task"].list)
 		{
-			JSONObject jsonobject2 = jsonData.instance.TaskJsonData[((int)jsonobject["id"].n).ToString()];
-			if ((int)jsonobject2["Type"].n == 0)
+			try
 			{
-				DateTime starTime = DateTime.Parse(jsonobject2["StarTime"].str);
-				DateTime endTime = DateTime.Parse(jsonobject2["EndTime"].str);
-				int i = jsonobject2["circulation"].I;
-				DateTime nowTime = player.worldTimeMag.getNowTime();
-				string taskNextTime = TaskCell.getTaskNextTime(i, nowTime, starTime, endTime);
-				if (!(taskNextTime == "") && !TaskUIManager.checkIsGuoShi(jsonobject))
+				JSONObject jsonobject2 = jsonData.instance.TaskJsonData[jsonobject["id"].I.ToString()];
+				if (jsonobject2["Type"].I == 0)
 				{
-					GameObject gameObject = Object.Instantiate<GameObject>(this.EventItemPrefab, this.EventSVContent);
-					gameObject.transform.GetChild(0).GetComponent<Text>().text = jsonobject2["Name"].Str;
-					gameObject.transform.GetChild(1).GetComponent<Text>().text = taskNextTime;
-					if (num % 2 == 0)
+					DateTime starTime = DateTime.Parse(jsonobject2["StarTime"].str);
+					DateTime endTime = DateTime.Parse(jsonobject2["EndTime"].str);
+					int i = jsonobject2["circulation"].I;
+					DateTime nowTime = player.worldTimeMag.getNowTime();
+					string taskNextTime = TaskCell.getTaskNextTime(i, nowTime, starTime, endTime);
+					if (!(taskNextTime == ""))
 					{
-						gameObject.GetComponent<Image>().enabled = false;
+						if (!TaskUIManager.checkIsGuoShi(jsonobject))
+						{
+							GameObject gameObject = Object.Instantiate<GameObject>(this.EventItemPrefab, this.EventSVContent);
+							gameObject.transform.GetChild(0).GetComponent<Text>().text = jsonobject2["Name"].Str;
+							gameObject.transform.GetChild(1).GetComponent<Text>().text = taskNextTime;
+							if (num % 2 == 0)
+							{
+								gameObject.GetComponent<Image>().enabled = false;
+							}
+							num++;
+						}
 					}
-					num++;
 				}
+			}
+			catch (Exception arg)
+			{
+				Debug.LogError(string.Format("闭关修炼UI刷新任务UI时出现异常:\njson:{0}\n异常:{1}", jsonobject, arg));
 			}
 		}
 	}
 
-	// Token: 0x06001A66 RID: 6758 RVA: 0x000E8F84 File Offset: 0x000E7184
+	// Token: 0x06001789 RID: 6025 RVA: 0x000A1B14 File Offset: 0x0009FD14
 	public void RefreshSpeedUI()
 	{
 		Avatar player = Tools.instance.getPlayer();
@@ -153,7 +163,7 @@ public class UIBiGuanXiuLianPanel : TabPanelBase
 		this.JingYuanDescText.text = "";
 	}
 
-	// Token: 0x06001A67 RID: 6759 RVA: 0x000E9480 File Offset: 0x000E7680
+	// Token: 0x0600178A RID: 6026 RVA: 0x000A2010 File Offset: 0x000A0210
 	public static float GetBiguanSpeed(bool log = false, int biGuanType = 1, string sceneName = "")
 	{
 		Avatar player = PlayerEx.Player;
@@ -217,7 +227,7 @@ public class UIBiGuanXiuLianPanel : TabPanelBase
 		return 0f;
 	}
 
-	// Token: 0x06001A68 RID: 6760 RVA: 0x000E96BC File Offset: 0x000E78BC
+	// Token: 0x0600178B RID: 6027 RVA: 0x000A224C File Offset: 0x000A044C
 	public int GetBiGuanMaxTime()
 	{
 		Avatar player = Tools.instance.getPlayer();
@@ -232,7 +242,7 @@ public class UIBiGuanXiuLianPanel : TabPanelBase
 		return Mathf.Min(Mathf.Min(240, timeSum), num);
 	}
 
-	// Token: 0x06001A69 RID: 6761 RVA: 0x000E9784 File Offset: 0x000E7984
+	// Token: 0x0600178C RID: 6028 RVA: 0x000A2314 File Offset: 0x000A0514
 	private static string GetZiZhiStr(int zizhi)
 	{
 		int num = 0;
@@ -243,7 +253,7 @@ public class UIBiGuanXiuLianPanel : TabPanelBase
 		return UIBiGuanXiuLianPanel.ziZhiStr[num - 1];
 	}
 
-	// Token: 0x06001A6A RID: 6762 RVA: 0x00016841 File Offset: 0x00014A41
+	// Token: 0x0600178D RID: 6029 RVA: 0x000A2346 File Offset: 0x000A0546
 	public void OnStartBiGuanClick()
 	{
 		if (this.BiGuanTime == 0)
@@ -257,7 +267,7 @@ public class UIBiGuanXiuLianPanel : TabPanelBase
 		base.Invoke("OkEvent", 0.5f);
 	}
 
-	// Token: 0x06001A6B RID: 6763 RVA: 0x000E97B8 File Offset: 0x000E79B8
+	// Token: 0x0600178E RID: 6030 RVA: 0x000A237C File Offset: 0x000A057C
 	private void OkEvent()
 	{
 		Avatar player = PlayerEx.Player;
@@ -280,7 +290,7 @@ public class UIBiGuanXiuLianPanel : TabPanelBase
 		}
 	}
 
-	// Token: 0x06001A6C RID: 6764 RVA: 0x000E9858 File Offset: 0x000E7A58
+	// Token: 0x0600178F RID: 6031 RVA: 0x000A241C File Offset: 0x000A061C
 	public static void CalcShuangXiu(int biGuanTime)
 	{
 		Avatar player = PlayerEx.Player;
@@ -317,7 +327,7 @@ public class UIBiGuanXiuLianPanel : TabPanelBase
 		}
 	}
 
-	// Token: 0x06001A6D RID: 6765 RVA: 0x000E9980 File Offset: 0x000E7B80
+	// Token: 0x06001790 RID: 6032 RVA: 0x000A2544 File Offset: 0x000A0744
 	public void OnLeftTimeBtnClick()
 	{
 		Slider timeSlider = this.TimeSlider;
@@ -325,7 +335,7 @@ public class UIBiGuanXiuLianPanel : TabPanelBase
 		timeSlider.value = value - 1f;
 	}
 
-	// Token: 0x06001A6E RID: 6766 RVA: 0x000E99A8 File Offset: 0x000E7BA8
+	// Token: 0x06001791 RID: 6033 RVA: 0x000A256C File Offset: 0x000A076C
 	public void OnRightTimeBtnClick()
 	{
 		Slider timeSlider = this.TimeSlider;
@@ -333,67 +343,67 @@ public class UIBiGuanXiuLianPanel : TabPanelBase
 		timeSlider.value = value + 1f;
 	}
 
-	// Token: 0x06001A6F RID: 6767 RVA: 0x00016877 File Offset: 0x00014A77
+	// Token: 0x06001792 RID: 6034 RVA: 0x000A2592 File Offset: 0x000A0792
 	public void OnTimeSliderValueChanged(float value)
 	{
 		this.BiGuanTime = (int)value;
 	}
 
-	// Token: 0x040015C4 RID: 5572
+	// Token: 0x04001241 RID: 4673
 	public GameObject EventItemPrefab;
 
-	// Token: 0x040015C5 RID: 5573
+	// Token: 0x04001242 RID: 4674
 	public RectTransform EventSVContent;
 
-	// Token: 0x040015C6 RID: 5574
+	// Token: 0x04001243 RID: 4675
 	public Text GongFaName;
 
-	// Token: 0x040015C7 RID: 5575
+	// Token: 0x04001244 RID: 4676
 	public Text GongFaSpeed;
 
-	// Token: 0x040015C8 RID: 5576
+	// Token: 0x04001245 RID: 4677
 	public Text ZiZhiName;
 
-	// Token: 0x040015C9 RID: 5577
+	// Token: 0x04001246 RID: 4678
 	public Text ZiZhiSpeed;
 
-	// Token: 0x040015CA RID: 5578
+	// Token: 0x04001247 RID: 4679
 	public Text DiMaiName;
 
-	// Token: 0x040015CB RID: 5579
+	// Token: 0x04001248 RID: 4680
 	public Text DiMaiSpeed;
 
-	// Token: 0x040015CC RID: 5580
+	// Token: 0x04001249 RID: 4681
 	public Text XinJingName;
 
-	// Token: 0x040015CD RID: 5581
+	// Token: 0x0400124A RID: 4682
 	public Text XinJingSpeed;
 
-	// Token: 0x040015CE RID: 5582
+	// Token: 0x0400124B RID: 4683
 	public Text XinJingChange;
 
-	// Token: 0x040015CF RID: 5583
+	// Token: 0x0400124C RID: 4684
 	public Text JingYuanTimeText;
 
-	// Token: 0x040015D0 RID: 5584
+	// Token: 0x0400124D RID: 4685
 	public Text JingYuanDescText;
 
-	// Token: 0x040015D1 RID: 5585
+	// Token: 0x0400124E RID: 4686
 	public Text TotalSpeed;
 
-	// Token: 0x040015D2 RID: 5586
+	// Token: 0x0400124F RID: 4687
 	public Slider TimeSlider;
 
-	// Token: 0x040015D3 RID: 5587
+	// Token: 0x04001250 RID: 4688
 	public Text YearText;
 
-	// Token: 0x040015D4 RID: 5588
+	// Token: 0x04001251 RID: 4689
 	public Text MonthText;
 
-	// Token: 0x040015D5 RID: 5589
+	// Token: 0x04001252 RID: 4690
 	private int biGuanTime;
 
-	// Token: 0x040015D6 RID: 5590
+	// Token: 0x04001253 RID: 4691
 	private static int[] ziZhiNum = new int[]
 	{
 		0,
@@ -404,7 +414,7 @@ public class UIBiGuanXiuLianPanel : TabPanelBase
 		85
 	};
 
-	// Token: 0x040015D7 RID: 5591
+	// Token: 0x04001254 RID: 4692
 	private static string[] ziZhiStr = new string[]
 	{
 		"资质愚钝",

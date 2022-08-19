@@ -4,17 +4,17 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
 
-// Token: 0x02000574 RID: 1396
+// Token: 0x020003D9 RID: 985
 public class Friendinfo : MonoBehaviour
 {
-	// Token: 0x06002377 RID: 9079 RVA: 0x00124094 File Offset: 0x00122294
+	// Token: 0x06001FF7 RID: 8183 RVA: 0x000E1620 File Offset: 0x000DF820
 	private void Start()
 	{
 		base.transform.Find("talk").GetComponent<Button>().onClick.AddListener(new UnityAction(this.OpenTalkingUI));
 		base.transform.Find("join").GetComponent<Button>().onClick.AddListener(new UnityAction(this.receiveFriend));
 	}
 
-	// Token: 0x06002378 RID: 9080 RVA: 0x0001CAD2 File Offset: 0x0001ACD2
+	// Token: 0x06001FF8 RID: 8184 RVA: 0x000E1683 File Offset: 0x000DF883
 	public void OpenTalkingUI()
 	{
 		GameObject talkingUI = UI_HOMESCENE.instense.talkingUI;
@@ -23,7 +23,7 @@ public class Friendinfo : MonoBehaviour
 		talkingUI.GetComponent<FriendTalkingInfo>().friendName = this.friendName;
 	}
 
-	// Token: 0x06002379 RID: 9081 RVA: 0x001240F8 File Offset: 0x001222F8
+	// Token: 0x06001FF9 RID: 8185 RVA: 0x000E16B8 File Offset: 0x000DF8B8
 	public void receiveFriend()
 	{
 		Account account = (Account)KBEngineApp.app.player();
@@ -36,12 +36,12 @@ public class Friendinfo : MonoBehaviour
 		component.requestJoinTeam(this.friendDbid);
 	}
 
-	// Token: 0x04001E8B RID: 7819
+	// Token: 0x040019F9 RID: 6649
 	public ulong friendDbid;
 
-	// Token: 0x04001E8C RID: 7820
+	// Token: 0x040019FA RID: 6650
 	public string friendName;
 
-	// Token: 0x04001E8D RID: 7821
+	// Token: 0x040019FB RID: 6651
 	public int friendLeval;
 }

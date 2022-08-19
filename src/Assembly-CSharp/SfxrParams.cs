@@ -1,12 +1,12 @@
 ﻿using System;
 using UnityEngine;
 
-// Token: 0x02000030 RID: 48
+// Token: 0x02000026 RID: 38
 public class SfxrParams
 {
-	// Token: 0x17000040 RID: 64
-	// (get) Token: 0x06000316 RID: 790 RVA: 0x00006E45 File Offset: 0x00005045
-	// (set) Token: 0x06000317 RID: 791 RVA: 0x00006E4D File Offset: 0x0000504D
+	// Token: 0x1700003A RID: 58
+	// (get) Token: 0x060002F8 RID: 760 RVA: 0x0000F2CF File Offset: 0x0000D4CF
+	// (set) Token: 0x060002F9 RID: 761 RVA: 0x0000F2D7 File Offset: 0x0000D4D7
 	public uint waveType
 	{
 		get
@@ -20,9 +20,9 @@ public class SfxrParams
 		}
 	}
 
-	// Token: 0x17000041 RID: 65
-	// (get) Token: 0x06000318 RID: 792 RVA: 0x00006E64 File Offset: 0x00005064
-	// (set) Token: 0x06000319 RID: 793 RVA: 0x00006E6C File Offset: 0x0000506C
+	// Token: 0x1700003B RID: 59
+	// (get) Token: 0x060002FA RID: 762 RVA: 0x0000F2EE File Offset: 0x0000D4EE
+	// (set) Token: 0x060002FB RID: 763 RVA: 0x0000F2F6 File Offset: 0x0000D4F6
 	public float masterVolume
 	{
 		get
@@ -36,9 +36,9 @@ public class SfxrParams
 		}
 	}
 
-	// Token: 0x17000042 RID: 66
-	// (get) Token: 0x0600031A RID: 794 RVA: 0x00006E8B File Offset: 0x0000508B
-	// (set) Token: 0x0600031B RID: 795 RVA: 0x00006E93 File Offset: 0x00005093
+	// Token: 0x1700003C RID: 60
+	// (get) Token: 0x060002FC RID: 764 RVA: 0x0000F315 File Offset: 0x0000D515
+	// (set) Token: 0x060002FD RID: 765 RVA: 0x0000F31D File Offset: 0x0000D51D
 	public float attackTime
 	{
 		get
@@ -52,9 +52,9 @@ public class SfxrParams
 		}
 	}
 
-	// Token: 0x17000043 RID: 67
-	// (get) Token: 0x0600031C RID: 796 RVA: 0x00006EB2 File Offset: 0x000050B2
-	// (set) Token: 0x0600031D RID: 797 RVA: 0x00006EBA File Offset: 0x000050BA
+	// Token: 0x1700003D RID: 61
+	// (get) Token: 0x060002FE RID: 766 RVA: 0x0000F33C File Offset: 0x0000D53C
+	// (set) Token: 0x060002FF RID: 767 RVA: 0x0000F344 File Offset: 0x0000D544
 	public float sustainTime
 	{
 		get
@@ -68,9 +68,9 @@ public class SfxrParams
 		}
 	}
 
-	// Token: 0x17000044 RID: 68
-	// (get) Token: 0x0600031E RID: 798 RVA: 0x00006ED9 File Offset: 0x000050D9
-	// (set) Token: 0x0600031F RID: 799 RVA: 0x00006EE1 File Offset: 0x000050E1
+	// Token: 0x1700003E RID: 62
+	// (get) Token: 0x06000300 RID: 768 RVA: 0x0000F363 File Offset: 0x0000D563
+	// (set) Token: 0x06000301 RID: 769 RVA: 0x0000F36B File Offset: 0x0000D56B
 	public float sustainPunch
 	{
 		get
@@ -84,9 +84,9 @@ public class SfxrParams
 		}
 	}
 
-	// Token: 0x17000045 RID: 69
-	// (get) Token: 0x06000320 RID: 800 RVA: 0x00006F00 File Offset: 0x00005100
-	// (set) Token: 0x06000321 RID: 801 RVA: 0x00006F08 File Offset: 0x00005108
+	// Token: 0x1700003F RID: 63
+	// (get) Token: 0x06000302 RID: 770 RVA: 0x0000F38A File Offset: 0x0000D58A
+	// (set) Token: 0x06000303 RID: 771 RVA: 0x0000F392 File Offset: 0x0000D592
 	public float decayTime
 	{
 		get
@@ -100,9 +100,9 @@ public class SfxrParams
 		}
 	}
 
-	// Token: 0x17000046 RID: 70
-	// (get) Token: 0x06000322 RID: 802 RVA: 0x00006F27 File Offset: 0x00005127
-	// (set) Token: 0x06000323 RID: 803 RVA: 0x00006F2F File Offset: 0x0000512F
+	// Token: 0x17000040 RID: 64
+	// (get) Token: 0x06000304 RID: 772 RVA: 0x0000F3B1 File Offset: 0x0000D5B1
+	// (set) Token: 0x06000305 RID: 773 RVA: 0x0000F3B9 File Offset: 0x0000D5B9
 	public float startFrequency
 	{
 		get
@@ -116,9 +116,9 @@ public class SfxrParams
 		}
 	}
 
-	// Token: 0x17000047 RID: 71
-	// (get) Token: 0x06000324 RID: 804 RVA: 0x00006F4E File Offset: 0x0000514E
-	// (set) Token: 0x06000325 RID: 805 RVA: 0x00006F56 File Offset: 0x00005156
+	// Token: 0x17000041 RID: 65
+	// (get) Token: 0x06000306 RID: 774 RVA: 0x0000F3D8 File Offset: 0x0000D5D8
+	// (set) Token: 0x06000307 RID: 775 RVA: 0x0000F3E0 File Offset: 0x0000D5E0
 	public float minFrequency
 	{
 		get
@@ -132,9 +132,9 @@ public class SfxrParams
 		}
 	}
 
-	// Token: 0x17000048 RID: 72
-	// (get) Token: 0x06000326 RID: 806 RVA: 0x00006F75 File Offset: 0x00005175
-	// (set) Token: 0x06000327 RID: 807 RVA: 0x00006F7D File Offset: 0x0000517D
+	// Token: 0x17000042 RID: 66
+	// (get) Token: 0x06000308 RID: 776 RVA: 0x0000F3FF File Offset: 0x0000D5FF
+	// (set) Token: 0x06000309 RID: 777 RVA: 0x0000F407 File Offset: 0x0000D607
 	public float slide
 	{
 		get
@@ -148,9 +148,9 @@ public class SfxrParams
 		}
 	}
 
-	// Token: 0x17000049 RID: 73
-	// (get) Token: 0x06000328 RID: 808 RVA: 0x00006F9C File Offset: 0x0000519C
-	// (set) Token: 0x06000329 RID: 809 RVA: 0x00006FA4 File Offset: 0x000051A4
+	// Token: 0x17000043 RID: 67
+	// (get) Token: 0x0600030A RID: 778 RVA: 0x0000F426 File Offset: 0x0000D626
+	// (set) Token: 0x0600030B RID: 779 RVA: 0x0000F42E File Offset: 0x0000D62E
 	public float deltaSlide
 	{
 		get
@@ -164,9 +164,9 @@ public class SfxrParams
 		}
 	}
 
-	// Token: 0x1700004A RID: 74
-	// (get) Token: 0x0600032A RID: 810 RVA: 0x00006FC3 File Offset: 0x000051C3
-	// (set) Token: 0x0600032B RID: 811 RVA: 0x00006FCB File Offset: 0x000051CB
+	// Token: 0x17000044 RID: 68
+	// (get) Token: 0x0600030C RID: 780 RVA: 0x0000F44D File Offset: 0x0000D64D
+	// (set) Token: 0x0600030D RID: 781 RVA: 0x0000F455 File Offset: 0x0000D655
 	public float vibratoDepth
 	{
 		get
@@ -180,9 +180,9 @@ public class SfxrParams
 		}
 	}
 
-	// Token: 0x1700004B RID: 75
-	// (get) Token: 0x0600032C RID: 812 RVA: 0x00006FEA File Offset: 0x000051EA
-	// (set) Token: 0x0600032D RID: 813 RVA: 0x00006FF2 File Offset: 0x000051F2
+	// Token: 0x17000045 RID: 69
+	// (get) Token: 0x0600030E RID: 782 RVA: 0x0000F474 File Offset: 0x0000D674
+	// (set) Token: 0x0600030F RID: 783 RVA: 0x0000F47C File Offset: 0x0000D67C
 	public float vibratoSpeed
 	{
 		get
@@ -196,9 +196,9 @@ public class SfxrParams
 		}
 	}
 
-	// Token: 0x1700004C RID: 76
-	// (get) Token: 0x0600032E RID: 814 RVA: 0x00007011 File Offset: 0x00005211
-	// (set) Token: 0x0600032F RID: 815 RVA: 0x00007019 File Offset: 0x00005219
+	// Token: 0x17000046 RID: 70
+	// (get) Token: 0x06000310 RID: 784 RVA: 0x0000F49B File Offset: 0x0000D69B
+	// (set) Token: 0x06000311 RID: 785 RVA: 0x0000F4A3 File Offset: 0x0000D6A3
 	public float changeAmount
 	{
 		get
@@ -212,9 +212,9 @@ public class SfxrParams
 		}
 	}
 
-	// Token: 0x1700004D RID: 77
-	// (get) Token: 0x06000330 RID: 816 RVA: 0x00007038 File Offset: 0x00005238
-	// (set) Token: 0x06000331 RID: 817 RVA: 0x00007040 File Offset: 0x00005240
+	// Token: 0x17000047 RID: 71
+	// (get) Token: 0x06000312 RID: 786 RVA: 0x0000F4C2 File Offset: 0x0000D6C2
+	// (set) Token: 0x06000313 RID: 787 RVA: 0x0000F4CA File Offset: 0x0000D6CA
 	public float changeSpeed
 	{
 		get
@@ -228,9 +228,9 @@ public class SfxrParams
 		}
 	}
 
-	// Token: 0x1700004E RID: 78
-	// (get) Token: 0x06000332 RID: 818 RVA: 0x0000705F File Offset: 0x0000525F
-	// (set) Token: 0x06000333 RID: 819 RVA: 0x00007067 File Offset: 0x00005267
+	// Token: 0x17000048 RID: 72
+	// (get) Token: 0x06000314 RID: 788 RVA: 0x0000F4E9 File Offset: 0x0000D6E9
+	// (set) Token: 0x06000315 RID: 789 RVA: 0x0000F4F1 File Offset: 0x0000D6F1
 	public float squareDuty
 	{
 		get
@@ -244,9 +244,9 @@ public class SfxrParams
 		}
 	}
 
-	// Token: 0x1700004F RID: 79
-	// (get) Token: 0x06000334 RID: 820 RVA: 0x00007086 File Offset: 0x00005286
-	// (set) Token: 0x06000335 RID: 821 RVA: 0x0000708E File Offset: 0x0000528E
+	// Token: 0x17000049 RID: 73
+	// (get) Token: 0x06000316 RID: 790 RVA: 0x0000F510 File Offset: 0x0000D710
+	// (set) Token: 0x06000317 RID: 791 RVA: 0x0000F518 File Offset: 0x0000D718
 	public float dutySweep
 	{
 		get
@@ -260,9 +260,9 @@ public class SfxrParams
 		}
 	}
 
-	// Token: 0x17000050 RID: 80
-	// (get) Token: 0x06000336 RID: 822 RVA: 0x000070AD File Offset: 0x000052AD
-	// (set) Token: 0x06000337 RID: 823 RVA: 0x000070B5 File Offset: 0x000052B5
+	// Token: 0x1700004A RID: 74
+	// (get) Token: 0x06000318 RID: 792 RVA: 0x0000F537 File Offset: 0x0000D737
+	// (set) Token: 0x06000319 RID: 793 RVA: 0x0000F53F File Offset: 0x0000D73F
 	public float repeatSpeed
 	{
 		get
@@ -276,9 +276,9 @@ public class SfxrParams
 		}
 	}
 
-	// Token: 0x17000051 RID: 81
-	// (get) Token: 0x06000338 RID: 824 RVA: 0x000070D4 File Offset: 0x000052D4
-	// (set) Token: 0x06000339 RID: 825 RVA: 0x000070DC File Offset: 0x000052DC
+	// Token: 0x1700004B RID: 75
+	// (get) Token: 0x0600031A RID: 794 RVA: 0x0000F55E File Offset: 0x0000D75E
+	// (set) Token: 0x0600031B RID: 795 RVA: 0x0000F566 File Offset: 0x0000D766
 	public float phaserOffset
 	{
 		get
@@ -292,9 +292,9 @@ public class SfxrParams
 		}
 	}
 
-	// Token: 0x17000052 RID: 82
-	// (get) Token: 0x0600033A RID: 826 RVA: 0x000070FB File Offset: 0x000052FB
-	// (set) Token: 0x0600033B RID: 827 RVA: 0x00007103 File Offset: 0x00005303
+	// Token: 0x1700004C RID: 76
+	// (get) Token: 0x0600031C RID: 796 RVA: 0x0000F585 File Offset: 0x0000D785
+	// (set) Token: 0x0600031D RID: 797 RVA: 0x0000F58D File Offset: 0x0000D78D
 	public float phaserSweep
 	{
 		get
@@ -308,9 +308,9 @@ public class SfxrParams
 		}
 	}
 
-	// Token: 0x17000053 RID: 83
-	// (get) Token: 0x0600033C RID: 828 RVA: 0x00007122 File Offset: 0x00005322
-	// (set) Token: 0x0600033D RID: 829 RVA: 0x0000712A File Offset: 0x0000532A
+	// Token: 0x1700004D RID: 77
+	// (get) Token: 0x0600031E RID: 798 RVA: 0x0000F5AC File Offset: 0x0000D7AC
+	// (set) Token: 0x0600031F RID: 799 RVA: 0x0000F5B4 File Offset: 0x0000D7B4
 	public float lpFilterCutoff
 	{
 		get
@@ -324,9 +324,9 @@ public class SfxrParams
 		}
 	}
 
-	// Token: 0x17000054 RID: 84
-	// (get) Token: 0x0600033E RID: 830 RVA: 0x00007149 File Offset: 0x00005349
-	// (set) Token: 0x0600033F RID: 831 RVA: 0x00007151 File Offset: 0x00005351
+	// Token: 0x1700004E RID: 78
+	// (get) Token: 0x06000320 RID: 800 RVA: 0x0000F5D3 File Offset: 0x0000D7D3
+	// (set) Token: 0x06000321 RID: 801 RVA: 0x0000F5DB File Offset: 0x0000D7DB
 	public float lpFilterCutoffSweep
 	{
 		get
@@ -340,9 +340,9 @@ public class SfxrParams
 		}
 	}
 
-	// Token: 0x17000055 RID: 85
-	// (get) Token: 0x06000340 RID: 832 RVA: 0x00007170 File Offset: 0x00005370
-	// (set) Token: 0x06000341 RID: 833 RVA: 0x00007178 File Offset: 0x00005378
+	// Token: 0x1700004F RID: 79
+	// (get) Token: 0x06000322 RID: 802 RVA: 0x0000F5FA File Offset: 0x0000D7FA
+	// (set) Token: 0x06000323 RID: 803 RVA: 0x0000F602 File Offset: 0x0000D802
 	public float lpFilterResonance
 	{
 		get
@@ -356,9 +356,9 @@ public class SfxrParams
 		}
 	}
 
-	// Token: 0x17000056 RID: 86
-	// (get) Token: 0x06000342 RID: 834 RVA: 0x00007197 File Offset: 0x00005397
-	// (set) Token: 0x06000343 RID: 835 RVA: 0x0000719F File Offset: 0x0000539F
+	// Token: 0x17000050 RID: 80
+	// (get) Token: 0x06000324 RID: 804 RVA: 0x0000F621 File Offset: 0x0000D821
+	// (set) Token: 0x06000325 RID: 805 RVA: 0x0000F629 File Offset: 0x0000D829
 	public float hpFilterCutoff
 	{
 		get
@@ -372,9 +372,9 @@ public class SfxrParams
 		}
 	}
 
-	// Token: 0x17000057 RID: 87
-	// (get) Token: 0x06000344 RID: 836 RVA: 0x000071BE File Offset: 0x000053BE
-	// (set) Token: 0x06000345 RID: 837 RVA: 0x000071C6 File Offset: 0x000053C6
+	// Token: 0x17000051 RID: 81
+	// (get) Token: 0x06000326 RID: 806 RVA: 0x0000F648 File Offset: 0x0000D848
+	// (set) Token: 0x06000327 RID: 807 RVA: 0x0000F650 File Offset: 0x0000D850
 	public float hpFilterCutoffSweep
 	{
 		get
@@ -388,9 +388,9 @@ public class SfxrParams
 		}
 	}
 
-	// Token: 0x17000058 RID: 88
-	// (get) Token: 0x06000346 RID: 838 RVA: 0x000071E5 File Offset: 0x000053E5
-	// (set) Token: 0x06000347 RID: 839 RVA: 0x000071ED File Offset: 0x000053ED
+	// Token: 0x17000052 RID: 82
+	// (get) Token: 0x06000328 RID: 808 RVA: 0x0000F66F File Offset: 0x0000D86F
+	// (set) Token: 0x06000329 RID: 809 RVA: 0x0000F677 File Offset: 0x0000D877
 	public float changeRepeat
 	{
 		get
@@ -404,9 +404,9 @@ public class SfxrParams
 		}
 	}
 
-	// Token: 0x17000059 RID: 89
-	// (get) Token: 0x06000348 RID: 840 RVA: 0x0000720C File Offset: 0x0000540C
-	// (set) Token: 0x06000349 RID: 841 RVA: 0x00007214 File Offset: 0x00005414
+	// Token: 0x17000053 RID: 83
+	// (get) Token: 0x0600032A RID: 810 RVA: 0x0000F696 File Offset: 0x0000D896
+	// (set) Token: 0x0600032B RID: 811 RVA: 0x0000F69E File Offset: 0x0000D89E
 	public float changeAmount2
 	{
 		get
@@ -420,9 +420,9 @@ public class SfxrParams
 		}
 	}
 
-	// Token: 0x1700005A RID: 90
-	// (get) Token: 0x0600034A RID: 842 RVA: 0x00007233 File Offset: 0x00005433
-	// (set) Token: 0x0600034B RID: 843 RVA: 0x0000723B File Offset: 0x0000543B
+	// Token: 0x17000054 RID: 84
+	// (get) Token: 0x0600032C RID: 812 RVA: 0x0000F6BD File Offset: 0x0000D8BD
+	// (set) Token: 0x0600032D RID: 813 RVA: 0x0000F6C5 File Offset: 0x0000D8C5
 	public float changeSpeed2
 	{
 		get
@@ -436,9 +436,9 @@ public class SfxrParams
 		}
 	}
 
-	// Token: 0x1700005B RID: 91
-	// (get) Token: 0x0600034C RID: 844 RVA: 0x0000725A File Offset: 0x0000545A
-	// (set) Token: 0x0600034D RID: 845 RVA: 0x00007262 File Offset: 0x00005462
+	// Token: 0x17000055 RID: 85
+	// (get) Token: 0x0600032E RID: 814 RVA: 0x0000F6E4 File Offset: 0x0000D8E4
+	// (set) Token: 0x0600032F RID: 815 RVA: 0x0000F6EC File Offset: 0x0000D8EC
 	public float compressionAmount
 	{
 		get
@@ -452,9 +452,9 @@ public class SfxrParams
 		}
 	}
 
-	// Token: 0x1700005C RID: 92
-	// (get) Token: 0x0600034E RID: 846 RVA: 0x00007281 File Offset: 0x00005481
-	// (set) Token: 0x0600034F RID: 847 RVA: 0x00007289 File Offset: 0x00005489
+	// Token: 0x17000056 RID: 86
+	// (get) Token: 0x06000330 RID: 816 RVA: 0x0000F70B File Offset: 0x0000D90B
+	// (set) Token: 0x06000331 RID: 817 RVA: 0x0000F713 File Offset: 0x0000D913
 	public float overtones
 	{
 		get
@@ -468,9 +468,9 @@ public class SfxrParams
 		}
 	}
 
-	// Token: 0x1700005D RID: 93
-	// (get) Token: 0x06000350 RID: 848 RVA: 0x000072A8 File Offset: 0x000054A8
-	// (set) Token: 0x06000351 RID: 849 RVA: 0x000072B0 File Offset: 0x000054B0
+	// Token: 0x17000057 RID: 87
+	// (get) Token: 0x06000332 RID: 818 RVA: 0x0000F732 File Offset: 0x0000D932
+	// (set) Token: 0x06000333 RID: 819 RVA: 0x0000F73A File Offset: 0x0000D93A
 	public float overtoneFalloff
 	{
 		get
@@ -484,9 +484,9 @@ public class SfxrParams
 		}
 	}
 
-	// Token: 0x1700005E RID: 94
-	// (get) Token: 0x06000352 RID: 850 RVA: 0x000072CF File Offset: 0x000054CF
-	// (set) Token: 0x06000353 RID: 851 RVA: 0x000072D7 File Offset: 0x000054D7
+	// Token: 0x17000058 RID: 88
+	// (get) Token: 0x06000334 RID: 820 RVA: 0x0000F759 File Offset: 0x0000D959
+	// (set) Token: 0x06000335 RID: 821 RVA: 0x0000F761 File Offset: 0x0000D961
 	public float bitCrush
 	{
 		get
@@ -500,9 +500,9 @@ public class SfxrParams
 		}
 	}
 
-	// Token: 0x1700005F RID: 95
-	// (get) Token: 0x06000354 RID: 852 RVA: 0x000072F6 File Offset: 0x000054F6
-	// (set) Token: 0x06000355 RID: 853 RVA: 0x000072FE File Offset: 0x000054FE
+	// Token: 0x17000059 RID: 89
+	// (get) Token: 0x06000336 RID: 822 RVA: 0x0000F780 File Offset: 0x0000D980
+	// (set) Token: 0x06000337 RID: 823 RVA: 0x0000F788 File Offset: 0x0000D988
 	public float bitCrushSweep
 	{
 		get
@@ -516,7 +516,7 @@ public class SfxrParams
 		}
 	}
 
-	// Token: 0x06000356 RID: 854 RVA: 0x00066EC8 File Offset: 0x000650C8
+	// Token: 0x06000338 RID: 824 RVA: 0x0000F7A8 File Offset: 0x0000D9A8
 	public void GeneratePickupCoin()
 	{
 		this.resetParams();
@@ -533,7 +533,7 @@ public class SfxrParams
 		}
 	}
 
-	// Token: 0x06000357 RID: 855 RVA: 0x00066F84 File Offset: 0x00065184
+	// Token: 0x06000339 RID: 825 RVA: 0x0000F864 File Offset: 0x0000DA64
 	public void GenerateLaserShoot()
 	{
 		this.resetParams();
@@ -582,7 +582,7 @@ public class SfxrParams
 		}
 	}
 
-	// Token: 0x06000358 RID: 856 RVA: 0x00067170 File Offset: 0x00065370
+	// Token: 0x0600033A RID: 826 RVA: 0x0000FA50 File Offset: 0x0000DC50
 	public void GenerateExplosion()
 	{
 		this.resetParams();
@@ -621,7 +621,7 @@ public class SfxrParams
 		}
 	}
 
-	// Token: 0x06000359 RID: 857 RVA: 0x000672F8 File Offset: 0x000654F8
+	// Token: 0x0600033B RID: 827 RVA: 0x0000FBD8 File Offset: 0x0000DDD8
 	public void GeneratePowerup()
 	{
 		this.resetParams();
@@ -653,7 +653,7 @@ public class SfxrParams
 		this._decayTime = 0.1f + this.GetRandom() * 0.4f;
 	}
 
-	// Token: 0x0600035A RID: 858 RVA: 0x00067408 File Offset: 0x00065608
+	// Token: 0x0600033C RID: 828 RVA: 0x0000FCE8 File Offset: 0x0000DEE8
 	public void GenerateHitHurt()
 	{
 		this.resetParams();
@@ -676,7 +676,7 @@ public class SfxrParams
 		}
 	}
 
-	// Token: 0x0600035B RID: 859 RVA: 0x000674D0 File Offset: 0x000656D0
+	// Token: 0x0600033D RID: 829 RVA: 0x0000FDB0 File Offset: 0x0000DFB0
 	public void GenerateJump()
 	{
 		this.resetParams();
@@ -696,7 +696,7 @@ public class SfxrParams
 		}
 	}
 
-	// Token: 0x0600035C RID: 860 RVA: 0x00067598 File Offset: 0x00065798
+	// Token: 0x0600033E RID: 830 RVA: 0x0000FE78 File Offset: 0x0000E078
 	public void GenerateBlipSelect()
 	{
 		this.resetParams();
@@ -711,7 +711,7 @@ public class SfxrParams
 		this._hpFilterCutoff = 0.1f;
 	}
 
-	// Token: 0x0600035D RID: 861 RVA: 0x00067628 File Offset: 0x00065828
+	// Token: 0x0600033F RID: 831 RVA: 0x0000FF08 File Offset: 0x0000E108
 	protected void resetParams()
 	{
 		this.paramsDirty = true;
@@ -748,7 +748,7 @@ public class SfxrParams
 		this._bitCrushSweep = 0f;
 	}
 
-	// Token: 0x0600035E RID: 862 RVA: 0x00067790 File Offset: 0x00065990
+	// Token: 0x06000340 RID: 832 RVA: 0x00010070 File Offset: 0x0000E270
 	public void Mutate(float __mutation = 0.05f)
 	{
 		if (this.GetRandomBool())
@@ -873,7 +873,7 @@ public class SfxrParams
 		}
 	}
 
-	// Token: 0x0600035F RID: 863 RVA: 0x00067BF4 File Offset: 0x00065DF4
+	// Token: 0x06000341 RID: 833 RVA: 0x000104D4 File Offset: 0x0000E6D4
 	public void Randomize()
 	{
 		this.resetParams();
@@ -923,19 +923,19 @@ public class SfxrParams
 		this._bitCrushSweep = this.GetRandom() * 2f - 1f;
 	}
 
-	// Token: 0x06000360 RID: 864 RVA: 0x00067FB8 File Offset: 0x000661B8
+	// Token: 0x06000342 RID: 834 RVA: 0x00010898 File Offset: 0x0000EA98
 	public string GetSettingsStringLegacy()
 	{
 		return "" + this.waveType.ToString() + "," + this.To4DP(this._attackTime) + "," + this.To4DP(this._sustainTime) + "," + this.To4DP(this._sustainPunch) + "," + this.To4DP(this._decayTime) + "," + this.To4DP(this._startFrequency) + "," + this.To4DP(this._minFrequency) + "," + this.To4DP(this._slide) + "," + this.To4DP(this._deltaSlide) + "," + this.To4DP(this._vibratoDepth) + "," + this.To4DP(this._vibratoSpeed) + "," + this.To4DP(this._changeAmount) + "," + this.To4DP(this._changeSpeed) + "," + this.To4DP(this._squareDuty) + "," + this.To4DP(this._dutySweep) + "," + this.To4DP(this._repeatSpeed) + "," + this.To4DP(this._phaserOffset) + "," + this.To4DP(this._phaserSweep) + "," + this.To4DP(this._lpFilterCutoff) + "," + this.To4DP(this._lpFilterCutoffSweep) + "," + this.To4DP(this._lpFilterResonance) + "," + this.To4DP(this._hpFilterCutoff) + "," + this.To4DP(this._hpFilterCutoffSweep) + "," + this.To4DP(this._masterVolume);
 	}
 
-	// Token: 0x06000361 RID: 865 RVA: 0x000681D8 File Offset: 0x000663D8
+	// Token: 0x06000343 RID: 835 RVA: 0x00010AB8 File Offset: 0x0000ECB8
 	public string GetSettingsString()
 	{
 		return "" + this.waveType.ToString() + "," + this.To4DP(this._masterVolume) + "," + this.To4DP(this._attackTime) + "," + this.To4DP(this._sustainTime) + "," + this.To4DP(this._sustainPunch) + "," + this.To4DP(this._decayTime) + "," + this.To4DP(this._compressionAmount) + "," + this.To4DP(this._startFrequency) + "," + this.To4DP(this._minFrequency) + "," + this.To4DP(this._slide) + "," + this.To4DP(this._deltaSlide) + "," + this.To4DP(this._vibratoDepth) + "," + this.To4DP(this._vibratoSpeed) + "," + this.To4DP(this._overtones) + "," + this.To4DP(this._overtoneFalloff) + "," + this.To4DP(this._changeRepeat) + "," + this.To4DP(this._changeAmount) + "," + this.To4DP(this._changeSpeed) + "," + this.To4DP(this._changeAmount2) + "," + this.To4DP(this._changeSpeed2) + "," + this.To4DP(this._squareDuty) + "," + this.To4DP(this._dutySweep) + "," + this.To4DP(this._repeatSpeed) + "," + this.To4DP(this._phaserOffset) + "," + this.To4DP(this._phaserSweep) + "," + this.To4DP(this._lpFilterCutoff) + "," + this.To4DP(this._lpFilterCutoffSweep) + "," + this.To4DP(this._lpFilterResonance) + "," + this.To4DP(this._hpFilterCutoff) + "," + this.To4DP(this._hpFilterCutoffSweep) + "," + this.To4DP(this._bitCrush) + "," + this.To4DP(this._bitCrushSweep);
 	}
 
-	// Token: 0x06000362 RID: 866 RVA: 0x000684A8 File Offset: 0x000666A8
+	// Token: 0x06000344 RID: 836 RVA: 0x00010D88 File Offset: 0x0000EF88
 	public bool SetSettingsString(string __string)
 	{
 		string[] array = __string.Split(new char[]
@@ -1014,7 +1014,7 @@ public class SfxrParams
 		return true;
 	}
 
-	// Token: 0x06000363 RID: 867 RVA: 0x0000731D File Offset: 0x0000551D
+	// Token: 0x06000345 RID: 837 RVA: 0x0001115B File Offset: 0x0000F35B
 	public SfxrParams Clone()
 	{
 		SfxrParams sfxrParams = new SfxrParams();
@@ -1022,7 +1022,7 @@ public class SfxrParams
 		return sfxrParams;
 	}
 
-	// Token: 0x06000364 RID: 868 RVA: 0x0006887C File Offset: 0x00066A7C
+	// Token: 0x06000346 RID: 838 RVA: 0x0001116C File Offset: 0x0000F36C
 	public void CopyFrom(SfxrParams __params, bool __makeDirty = false)
 	{
 		bool flag = this.paramsDirty;
@@ -1030,7 +1030,7 @@ public class SfxrParams
 		this.paramsDirty = (flag || __makeDirty);
 	}
 
-	// Token: 0x06000365 RID: 869 RVA: 0x0000732C File Offset: 0x0000552C
+	// Token: 0x06000347 RID: 839 RVA: 0x00011196 File Offset: 0x0000F396
 	private float Pow(float __pbase, int __power)
 	{
 		switch (__power)
@@ -1048,7 +1048,7 @@ public class SfxrParams
 		}
 	}
 
-	// Token: 0x06000366 RID: 870 RVA: 0x00007369 File Offset: 0x00005569
+	// Token: 0x06000348 RID: 840 RVA: 0x000111D3 File Offset: 0x0000F3D3
 	private string To4DP(float __value)
 	{
 		if (__value < 0.0001f && __value > -0.0001f)
@@ -1058,7 +1058,7 @@ public class SfxrParams
 		return __value.ToString("#.####");
 	}
 
-	// Token: 0x06000367 RID: 871 RVA: 0x0000738D File Offset: 0x0000558D
+	// Token: 0x06000349 RID: 841 RVA: 0x000111F7 File Offset: 0x0000F3F7
 	private uint ParseUint(string __value)
 	{
 		if (__value.Length == 0)
@@ -1068,7 +1068,7 @@ public class SfxrParams
 		return uint.Parse(__value);
 	}
 
-	// Token: 0x06000368 RID: 872 RVA: 0x0000739F File Offset: 0x0000559F
+	// Token: 0x0600034A RID: 842 RVA: 0x00011209 File Offset: 0x0000F409
 	private float ParseFloat(string __value)
 	{
 		if (__value.Length == 0)
@@ -1078,114 +1078,114 @@ public class SfxrParams
 		return float.Parse(__value);
 	}
 
-	// Token: 0x06000369 RID: 873 RVA: 0x000073B5 File Offset: 0x000055B5
+	// Token: 0x0600034B RID: 843 RVA: 0x0001121F File Offset: 0x0000F41F
 	private float GetRandom()
 	{
 		return Random.value % 1f;
 	}
 
-	// Token: 0x0600036A RID: 874 RVA: 0x000073C2 File Offset: 0x000055C2
+	// Token: 0x0600034C RID: 844 RVA: 0x0001122C File Offset: 0x0000F42C
 	private bool GetRandomBool()
 	{
 		return Random.value > 0.5f;
 	}
 
-	// Token: 0x04000197 RID: 407
+	// Token: 0x04000176 RID: 374
 	public bool paramsDirty;
 
-	// Token: 0x04000198 RID: 408
+	// Token: 0x04000177 RID: 375
 	private uint _waveType;
 
-	// Token: 0x04000199 RID: 409
+	// Token: 0x04000178 RID: 376
 	private float _masterVolume = 0.5f;
 
-	// Token: 0x0400019A RID: 410
+	// Token: 0x04000179 RID: 377
 	private float _attackTime;
 
-	// Token: 0x0400019B RID: 411
+	// Token: 0x0400017A RID: 378
 	private float _sustainTime;
 
-	// Token: 0x0400019C RID: 412
+	// Token: 0x0400017B RID: 379
 	private float _sustainPunch;
 
-	// Token: 0x0400019D RID: 413
+	// Token: 0x0400017C RID: 380
 	private float _decayTime;
 
-	// Token: 0x0400019E RID: 414
+	// Token: 0x0400017D RID: 381
 	private float _startFrequency;
 
-	// Token: 0x0400019F RID: 415
+	// Token: 0x0400017E RID: 382
 	private float _minFrequency;
 
-	// Token: 0x040001A0 RID: 416
+	// Token: 0x0400017F RID: 383
 	private float _slide;
 
-	// Token: 0x040001A1 RID: 417
+	// Token: 0x04000180 RID: 384
 	private float _deltaSlide;
 
-	// Token: 0x040001A2 RID: 418
+	// Token: 0x04000181 RID: 385
 	private float _vibratoDepth;
 
-	// Token: 0x040001A3 RID: 419
+	// Token: 0x04000182 RID: 386
 	private float _vibratoSpeed;
 
-	// Token: 0x040001A4 RID: 420
+	// Token: 0x04000183 RID: 387
 	private float _changeAmount;
 
-	// Token: 0x040001A5 RID: 421
+	// Token: 0x04000184 RID: 388
 	private float _changeSpeed;
 
-	// Token: 0x040001A6 RID: 422
+	// Token: 0x04000185 RID: 389
 	private float _squareDuty;
 
-	// Token: 0x040001A7 RID: 423
+	// Token: 0x04000186 RID: 390
 	private float _dutySweep;
 
-	// Token: 0x040001A8 RID: 424
+	// Token: 0x04000187 RID: 391
 	private float _repeatSpeed;
 
-	// Token: 0x040001A9 RID: 425
+	// Token: 0x04000188 RID: 392
 	private float _phaserOffset;
 
-	// Token: 0x040001AA RID: 426
+	// Token: 0x04000189 RID: 393
 	private float _phaserSweep;
 
-	// Token: 0x040001AB RID: 427
+	// Token: 0x0400018A RID: 394
 	private float _lpFilterCutoff;
 
-	// Token: 0x040001AC RID: 428
+	// Token: 0x0400018B RID: 395
 	private float _lpFilterCutoffSweep;
 
-	// Token: 0x040001AD RID: 429
+	// Token: 0x0400018C RID: 396
 	private float _lpFilterResonance;
 
-	// Token: 0x040001AE RID: 430
+	// Token: 0x0400018D RID: 397
 	private float _hpFilterCutoff;
 
-	// Token: 0x040001AF RID: 431
+	// Token: 0x0400018E RID: 398
 	private float _hpFilterCutoffSweep;
 
-	// Token: 0x040001B0 RID: 432
+	// Token: 0x0400018F RID: 399
 	private float _changeRepeat;
 
-	// Token: 0x040001B1 RID: 433
+	// Token: 0x04000190 RID: 400
 	private float _changeAmount2;
 
-	// Token: 0x040001B2 RID: 434
+	// Token: 0x04000191 RID: 401
 	private float _changeSpeed2;
 
-	// Token: 0x040001B3 RID: 435
+	// Token: 0x04000192 RID: 402
 	private float _compressionAmount;
 
-	// Token: 0x040001B4 RID: 436
+	// Token: 0x04000193 RID: 403
 	private float _overtones;
 
-	// Token: 0x040001B5 RID: 437
+	// Token: 0x04000194 RID: 404
 	private float _overtoneFalloff;
 
-	// Token: 0x040001B6 RID: 438
+	// Token: 0x04000195 RID: 405
 	private float _bitCrush;
 
-	// Token: 0x040001B7 RID: 439
+	// Token: 0x04000196 RID: 406
 	private float _bitCrushSweep;
 }

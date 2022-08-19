@@ -3,12 +3,12 @@ using UnityEngine;
 
 namespace BehaviorDesigner.Runtime.Tasks.Basic.UnityAnimator
 {
-	// Token: 0x02001655 RID: 5717
+	// Token: 0x02001196 RID: 4502
 	[TaskCategory("Basic/Animator")]
 	[TaskDescription("Returns success if the specified parameter is controlled by an additional curve on an animation.")]
 	public class IsParameterControlledByCurve : Conditional
 	{
-		// Token: 0x060084E5 RID: 34021 RVA: 0x002D01D8 File Offset: 0x002CE3D8
+		// Token: 0x060076EB RID: 30443 RVA: 0x002B7A48 File Offset: 0x002B5C48
 		public override void OnStart()
 		{
 			GameObject defaultGameObject = base.GetDefaultGameObject(this.targetGameObject.Value);
@@ -19,7 +19,7 @@ namespace BehaviorDesigner.Runtime.Tasks.Basic.UnityAnimator
 			}
 		}
 
-		// Token: 0x060084E6 RID: 34022 RVA: 0x0005C17A File Offset: 0x0005A37A
+		// Token: 0x060076EC RID: 30444 RVA: 0x002B7A88 File Offset: 0x002B5C88
 		public override TaskStatus OnUpdate()
 		{
 			if (this.animator == null)
@@ -34,25 +34,25 @@ namespace BehaviorDesigner.Runtime.Tasks.Basic.UnityAnimator
 			return 2;
 		}
 
-		// Token: 0x060084E7 RID: 34023 RVA: 0x0005C1B1 File Offset: 0x0005A3B1
+		// Token: 0x060076ED RID: 30445 RVA: 0x002B7ABF File Offset: 0x002B5CBF
 		public override void OnReset()
 		{
 			this.targetGameObject = null;
 			this.paramaterName = "";
 		}
 
-		// Token: 0x04007194 RID: 29076
+		// Token: 0x04006271 RID: 25201
 		[Tooltip("The GameObject that the task operates on. If null the task GameObject is used.")]
 		public SharedGameObject targetGameObject;
 
-		// Token: 0x04007195 RID: 29077
+		// Token: 0x04006272 RID: 25202
 		[Tooltip("The name of the parameter")]
 		public SharedString paramaterName;
 
-		// Token: 0x04007196 RID: 29078
+		// Token: 0x04006273 RID: 25203
 		private Animator animator;
 
-		// Token: 0x04007197 RID: 29079
+		// Token: 0x04006274 RID: 25204
 		private GameObject prevGameObject;
 	}
 }

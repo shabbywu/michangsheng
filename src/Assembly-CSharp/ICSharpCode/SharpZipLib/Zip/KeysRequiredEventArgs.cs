@@ -2,24 +2,24 @@
 
 namespace ICSharpCode.SharpZipLib.Zip
 {
-	// Token: 0x020007D2 RID: 2002
+	// Token: 0x02000539 RID: 1337
 	public class KeysRequiredEventArgs : EventArgs
 	{
-		// Token: 0x06003316 RID: 13078 RVA: 0x00025495 File Offset: 0x00023695
+		// Token: 0x06002AFF RID: 11007 RVA: 0x00142DC6 File Offset: 0x00140FC6
 		public KeysRequiredEventArgs(string name)
 		{
 			this.fileName = name;
 		}
 
-		// Token: 0x06003317 RID: 13079 RVA: 0x000254A4 File Offset: 0x000236A4
+		// Token: 0x06002B00 RID: 11008 RVA: 0x00142DD5 File Offset: 0x00140FD5
 		public KeysRequiredEventArgs(string name, byte[] keyValue)
 		{
 			this.fileName = name;
 			this.key = keyValue;
 		}
 
-		// Token: 0x170004A4 RID: 1188
-		// (get) Token: 0x06003318 RID: 13080 RVA: 0x000254BA File Offset: 0x000236BA
+		// Token: 0x17000305 RID: 773
+		// (get) Token: 0x06002B01 RID: 11009 RVA: 0x00142DEB File Offset: 0x00140FEB
 		public string FileName
 		{
 			get
@@ -28,9 +28,9 @@ namespace ICSharpCode.SharpZipLib.Zip
 			}
 		}
 
-		// Token: 0x170004A5 RID: 1189
-		// (get) Token: 0x06003319 RID: 13081 RVA: 0x000254C2 File Offset: 0x000236C2
-		// (set) Token: 0x0600331A RID: 13082 RVA: 0x000254CA File Offset: 0x000236CA
+		// Token: 0x17000306 RID: 774
+		// (get) Token: 0x06002B02 RID: 11010 RVA: 0x00142DF3 File Offset: 0x00140FF3
+		// (set) Token: 0x06002B03 RID: 11011 RVA: 0x00142DFB File Offset: 0x00140FFB
 		public byte[] Key
 		{
 			get
@@ -43,10 +43,10 @@ namespace ICSharpCode.SharpZipLib.Zip
 			}
 		}
 
-		// Token: 0x04002F05 RID: 12037
+		// Token: 0x040026FE RID: 9982
 		private readonly string fileName;
 
-		// Token: 0x04002F06 RID: 12038
+		// Token: 0x040026FF RID: 9983
 		private byte[] key;
 	}
 }

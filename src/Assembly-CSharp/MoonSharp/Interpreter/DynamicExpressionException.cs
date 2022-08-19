@@ -2,16 +2,16 @@
 
 namespace MoonSharp.Interpreter
 {
-	// Token: 0x0200107B RID: 4219
+	// Token: 0x02000CAC RID: 3244
 	[Serializable]
 	public class DynamicExpressionException : ScriptRuntimeException
 	{
-		// Token: 0x060065DD RID: 26077 RVA: 0x00046289 File Offset: 0x00044489
+		// Token: 0x06005AEB RID: 23275 RVA: 0x00259232 File Offset: 0x00257432
 		public DynamicExpressionException(string format, params object[] args) : base("<dynamic>: " + format, args)
 		{
 		}
 
-		// Token: 0x060065DE RID: 26078 RVA: 0x0004629D File Offset: 0x0004449D
+		// Token: 0x06005AEC RID: 23276 RVA: 0x00259246 File Offset: 0x00257446
 		public DynamicExpressionException(string message) : base("<dynamic>: " + message)
 		{
 		}

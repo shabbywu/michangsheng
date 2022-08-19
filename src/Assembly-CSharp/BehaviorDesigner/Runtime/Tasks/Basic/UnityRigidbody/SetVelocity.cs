@@ -3,12 +3,12 @@ using UnityEngine;
 
 namespace BehaviorDesigner.Runtime.Tasks.Basic.UnityRigidbody
 {
-	// Token: 0x02001566 RID: 5478
+	// Token: 0x020010AC RID: 4268
 	[TaskCategory("Basic/Rigidbody")]
 	[TaskDescription("Sets the velocity of the Rigidbody. Returns Success.")]
 	public class SetVelocity : Action
 	{
-		// Token: 0x06008196 RID: 33174 RVA: 0x002CC56C File Offset: 0x002CA76C
+		// Token: 0x0600739C RID: 29596 RVA: 0x002B05D4 File Offset: 0x002AE7D4
 		public override void OnStart()
 		{
 			GameObject defaultGameObject = base.GetDefaultGameObject(this.targetGameObject.Value);
@@ -19,7 +19,7 @@ namespace BehaviorDesigner.Runtime.Tasks.Basic.UnityRigidbody
 			}
 		}
 
-		// Token: 0x06008197 RID: 33175 RVA: 0x000589D0 File Offset: 0x00056BD0
+		// Token: 0x0600739D RID: 29597 RVA: 0x002B0614 File Offset: 0x002AE814
 		public override TaskStatus OnUpdate()
 		{
 			if (this.rigidbody == null)
@@ -31,25 +31,25 @@ namespace BehaviorDesigner.Runtime.Tasks.Basic.UnityRigidbody
 			return 2;
 		}
 
-		// Token: 0x06008198 RID: 33176 RVA: 0x00058A03 File Offset: 0x00056C03
+		// Token: 0x0600739E RID: 29598 RVA: 0x002B0647 File Offset: 0x002AE847
 		public override void OnReset()
 		{
 			this.targetGameObject = null;
 			this.velocity = Vector3.zero;
 		}
 
-		// Token: 0x04006E50 RID: 28240
+		// Token: 0x04005F50 RID: 24400
 		[Tooltip("The GameObject that the task operates on. If null the task GameObject is used.")]
 		public SharedGameObject targetGameObject;
 
-		// Token: 0x04006E51 RID: 28241
+		// Token: 0x04005F51 RID: 24401
 		[Tooltip("The velocity of the Rigidbody")]
 		public SharedVector3 velocity;
 
-		// Token: 0x04006E52 RID: 28242
+		// Token: 0x04005F52 RID: 24402
 		private Rigidbody rigidbody;
 
-		// Token: 0x04006E53 RID: 28243
+		// Token: 0x04005F53 RID: 24403
 		private GameObject prevGameObject;
 	}
 }

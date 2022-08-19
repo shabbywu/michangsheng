@@ -2,12 +2,12 @@
 
 namespace Fungus
 {
-	// Token: 0x020012B8 RID: 4792
+	// Token: 0x02000E62 RID: 3682
 	public enum ExecutionState
 	{
-		// Token: 0x040065C7 RID: 26055
+		// Token: 0x04005864 RID: 22628
 		Idle,
-		// Token: 0x040065C8 RID: 26056
+		// Token: 0x04005865 RID: 22629
 		Executing
 	}
 }

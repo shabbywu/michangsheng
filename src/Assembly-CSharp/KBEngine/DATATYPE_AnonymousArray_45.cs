@@ -3,10 +3,10 @@ using System.Collections.Generic;
 
 namespace KBEngine
 {
-	// Token: 0x02000EC8 RID: 3784
+	// Token: 0x02000B4B RID: 2891
 	public class DATATYPE_AnonymousArray_45 : DATATYPE_BASE
 	{
-		// Token: 0x06005B2E RID: 23342 RVA: 0x002508CC File Offset: 0x0024EACC
+		// Token: 0x060050F2 RID: 20722 RVA: 0x002211E8 File Offset: 0x0021F3E8
 		public List<int> createFromStreamEx(MemoryStream stream)
 		{
 			uint num = stream.readUint32();
@@ -19,7 +19,7 @@ namespace KBEngine
 			return list;
 		}
 
-		// Token: 0x06005B2F RID: 23343 RVA: 0x002504E0 File Offset: 0x0024E6E0
+		// Token: 0x060050F3 RID: 20723 RVA: 0x0022121C File Offset: 0x0021F41C
 		public void addToStreamEx(Bundle stream, List<int> v)
 		{
 			stream.writeUint32((uint)v.Count);

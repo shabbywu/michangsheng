@@ -5,11 +5,11 @@ using UnityEngine.UI;
 
 namespace GUIPackage
 {
-	// Token: 0x02000D77 RID: 3447
+	// Token: 0x02000A57 RID: 2647
 	[AddComponentMenu("UI/Effects/TextSpacingEasyTest")]
 	public class TextSpacingEasyTest : BaseMeshEffect
 	{
-		// Token: 0x060052CF RID: 21199 RVA: 0x00227F44 File Offset: 0x00226144
+		// Token: 0x060049E4 RID: 18916 RVA: 0x001F54E8 File Offset: 0x001F36E8
 		private void Start()
 		{
 			this.text = base.GetComponent<Text>();
@@ -18,7 +18,7 @@ namespace GUIPackage
 			this.fontSize = this.text.fontSize;
 		}
 
-		// Token: 0x060052D0 RID: 21200 RVA: 0x00227F98 File Offset: 0x00226198
+		// Token: 0x060049E5 RID: 18917 RVA: 0x001F553C File Offset: 0x001F373C
 		public override void ModifyMesh(VertexHelper vh)
 		{
 			if (this.text.text.Length >= 6)
@@ -53,25 +53,25 @@ namespace GUIPackage
 			}
 		}
 
-		// Token: 0x040052D6 RID: 21206
+		// Token: 0x04004951 RID: 18769
 		[SerializeField]
 		private Text text;
 
-		// Token: 0x040052D7 RID: 21207
+		// Token: 0x04004952 RID: 18770
 		[SerializeField]
 		private float textWidth;
 
-		// Token: 0x040052D8 RID: 21208
+		// Token: 0x04004953 RID: 18771
 		[SerializeField]
 		private bool AutoSpace;
 
-		// Token: 0x040052D9 RID: 21209
+		// Token: 0x04004954 RID: 18772
 		private int fontSize = 14;
 
-		// Token: 0x040052DA RID: 21210
+		// Token: 0x04004955 RID: 18773
 		private RectTransform rect;
 
-		// Token: 0x040052DB RID: 21211
+		// Token: 0x04004956 RID: 18774
 		public float spacing;
 	}
 }

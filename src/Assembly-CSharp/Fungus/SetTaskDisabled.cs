@@ -5,12 +5,12 @@ using UnityEngine;
 
 namespace Fungus
 {
-	// Token: 0x0200141F RID: 5151
+	// Token: 0x02000F68 RID: 3944
 	[CommandInfo("YSNew/Set", "SetTaskDisabled", "将传闻置灰", 0)]
 	[AddComponentMenu("")]
 	public class SetTaskDisabled : Command
 	{
-		// Token: 0x06007CCA RID: 31946 RVA: 0x002C5694 File Offset: 0x002C3894
+		// Token: 0x06006EDA RID: 28378 RVA: 0x002A58F8 File Offset: 0x002A3AF8
 		public override void OnEnter()
 		{
 			Avatar player = Tools.instance.getPlayer();
@@ -29,13 +29,13 @@ namespace Fungus
 			this.Continue();
 		}
 
-		// Token: 0x06007CCB RID: 31947 RVA: 0x000113CF File Offset: 0x0000F5CF
+		// Token: 0x06006EDB RID: 28379 RVA: 0x0005E228 File Offset: 0x0005C428
 		public override Color GetButtonColor()
 		{
 			return new Color32(184, 210, 235, byte.MaxValue);
 		}
 
-		// Token: 0x04006AA7 RID: 27303
+		// Token: 0x04005BD2 RID: 23506
 		[Tooltip("需要置灰的任务的ID")]
 		[SerializeField]
 		protected int TaskID;

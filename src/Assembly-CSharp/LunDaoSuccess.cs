@@ -8,10 +8,10 @@ using KBEngine;
 using UnityEngine;
 using UnityEngine.UI;
 
-// Token: 0x02000481 RID: 1153
+// Token: 0x0200031E RID: 798
 public class LunDaoSuccess : MonoBehaviour
 {
-	// Token: 0x06001ED0 RID: 7888 RVA: 0x001098CC File Offset: 0x00107ACC
+	// Token: 0x06001B9D RID: 7069 RVA: 0x000C46DC File Offset: 0x000C28DC
 	public void Init()
 	{
 		if (base.gameObject.activeSelf)
@@ -73,7 +73,7 @@ public class LunDaoSuccess : MonoBehaviour
 		NpcJieSuanManager.inst.npcNoteBook.NoteLunDaoSuccess(LunDaoManager.inst.npcId, player.name);
 	}
 
-	// Token: 0x06001ED1 RID: 7889 RVA: 0x00109C08 File Offset: 0x00107E08
+	// Token: 0x06001B9E RID: 7070 RVA: 0x000C4A18 File Offset: 0x000C2C18
 	private int GetWuDaoZhi()
 	{
 		int num = LunDaoManager.inst.getWuDaoZhi;
@@ -88,7 +88,7 @@ public class LunDaoSuccess : MonoBehaviour
 		return num;
 	}
 
-	// Token: 0x06001ED2 RID: 7890 RVA: 0x00109CA0 File Offset: 0x00107EA0
+	// Token: 0x06001B9F RID: 7071 RVA: 0x000C4AB0 File Offset: 0x000C2CB0
 	private int GetPlayerLevel(int curLevel, int curExp, ref int endExp)
 	{
 		int i = jsonData.instance.WuDaoZhiData[curLevel.ToString()]["LevelUpExp"].I;
@@ -108,7 +108,7 @@ public class LunDaoSuccess : MonoBehaviour
 		return num;
 	}
 
-	// Token: 0x06001ED3 RID: 7891 RVA: 0x00109D30 File Offset: 0x00107F30
+	// Token: 0x06001BA0 RID: 7072 RVA: 0x000C4B40 File Offset: 0x000C2D40
 	private void MoreSlider(int curExp, int endExp, int curLevel, float time, bool flag = false)
 	{
 		int nextExp = jsonData.instance.WuDaoZhiData[curLevel.ToString()]["LevelUpExp"].I;
@@ -158,7 +158,7 @@ public class LunDaoSuccess : MonoBehaviour
 		}));
 	}
 
-	// Token: 0x06001ED4 RID: 7892 RVA: 0x00109E7C File Offset: 0x0010807C
+	// Token: 0x06001BA1 RID: 7073 RVA: 0x000C4C8C File Offset: 0x000C2E8C
 	private void AddPlayerLunDaoSiXu()
 	{
 		Avatar player = Tools.instance.getPlayer();
@@ -231,7 +231,7 @@ public class LunDaoSuccess : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001ED5 RID: 7893 RVA: 0x0010A19C File Offset: 0x0010839C
+	// Token: 0x06001BA2 RID: 7074 RVA: 0x000C4FAC File Offset: 0x000C31AC
 	private void AddNpcWuDaoExp()
 	{
 		int npcId = LunDaoManager.inst.npcId;
@@ -254,30 +254,30 @@ public class LunDaoSuccess : MonoBehaviour
 		}
 	}
 
-	// Token: 0x04001A3C RID: 6716
+	// Token: 0x04001621 RID: 5665
 	[SerializeField]
 	private Image siXuCell;
 
-	// Token: 0x04001A3D RID: 6717
+	// Token: 0x04001622 RID: 5666
 	[SerializeField]
 	private Transform siXuCellParent;
 
-	// Token: 0x04001A3E RID: 6718
+	// Token: 0x04001623 RID: 5667
 	public List<Sprite> siXuList;
 
-	// Token: 0x04001A3F RID: 6719
+	// Token: 0x04001624 RID: 5668
 	[SerializeField]
 	private Image curJinDu;
 
-	// Token: 0x04001A40 RID: 6720
+	// Token: 0x04001625 RID: 5669
 	[SerializeField]
 	private Text jinDu;
 
-	// Token: 0x04001A41 RID: 6721
+	// Token: 0x04001626 RID: 5670
 	[SerializeField]
 	private Text addWuDaoZhiText;
 
-	// Token: 0x04001A42 RID: 6722
+	// Token: 0x04001627 RID: 5671
 	[SerializeField]
 	private Text addWuDaoDian;
 }

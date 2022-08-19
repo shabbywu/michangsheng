@@ -5,112 +5,112 @@ using System.Reflection;
 
 namespace MarkerMetro.Unity.WinLegacy.Reflection
 {
-	// Token: 0x02001058 RID: 4184
+	// Token: 0x02000C93 RID: 3219
 	public static class ReflectionExtensions
 	{
-		// Token: 0x06006465 RID: 25701 RVA: 0x00045161 File Offset: 0x00043361
+		// Token: 0x060059A5 RID: 22949 RVA: 0x00256921 File Offset: 0x00254B21
 		public static bool IsValueType(this Type type)
 		{
 			return type.IsValueType;
 		}
 
-		// Token: 0x06006466 RID: 25702 RVA: 0x00045169 File Offset: 0x00043369
+		// Token: 0x060059A6 RID: 22950 RVA: 0x00256929 File Offset: 0x00254B29
 		public static bool IsGenericType(this Type type)
 		{
 			return type.IsGenericType;
 		}
 
-		// Token: 0x06006467 RID: 25703 RVA: 0x0001C722 File Offset: 0x0001A922
+		// Token: 0x060059A7 RID: 22951 RVA: 0x000DBFA9 File Offset: 0x000DA1A9
 		public static object[] GetCustomAttributes(this Type type, bool inherit)
 		{
 			throw new NotImplementedException();
 		}
 
-		// Token: 0x06006468 RID: 25704 RVA: 0x0001C722 File Offset: 0x0001A922
+		// Token: 0x060059A8 RID: 22952 RVA: 0x000DBFA9 File Offset: 0x000DA1A9
 		public static object[] GetCustomAttributes(this Type type, Type attrType)
 		{
 			throw new NotImplementedException();
 		}
 
-		// Token: 0x06006469 RID: 25705 RVA: 0x0001C722 File Offset: 0x0001A922
+		// Token: 0x060059A9 RID: 22953 RVA: 0x000DBFA9 File Offset: 0x000DA1A9
 		public static object[] GetCustomAttributes(this Type type, Type attrType, bool inherit)
 		{
 			throw new NotImplementedException();
 		}
 
-		// Token: 0x0600646A RID: 25706 RVA: 0x0001C722 File Offset: 0x0001A922
+		// Token: 0x060059AA RID: 22954 RVA: 0x000DBFA9 File Offset: 0x000DA1A9
 		public static Assembly GetAssembly(this Type type)
 		{
 			throw new NotImplementedException();
 		}
 
-		// Token: 0x0600646B RID: 25707 RVA: 0x00045171 File Offset: 0x00043371
+		// Token: 0x060059AB RID: 22955 RVA: 0x00256931 File Offset: 0x00254B31
 		public static bool IsAbstract(this Type type)
 		{
 			return type.IsAbstract;
 		}
 
-		// Token: 0x0600646C RID: 25708 RVA: 0x0001C722 File Offset: 0x0001A922
+		// Token: 0x060059AC RID: 22956 RVA: 0x000DBFA9 File Offset: 0x000DA1A9
 		public static bool IsDefined(this Type type, Type attributeType)
 		{
 			throw new NotImplementedException();
 		}
 
-		// Token: 0x0600646D RID: 25709 RVA: 0x0001C722 File Offset: 0x0001A922
+		// Token: 0x060059AD RID: 22957 RVA: 0x000DBFA9 File Offset: 0x000DA1A9
 		public static bool IsDefined(this Type type, Type attributeType, bool inherit)
 		{
 			throw new NotImplementedException();
 		}
 
-		// Token: 0x0600646E RID: 25710 RVA: 0x00045179 File Offset: 0x00043379
+		// Token: 0x060059AE RID: 22958 RVA: 0x00256939 File Offset: 0x00254B39
 		public static bool IsClass(this Type type)
 		{
 			return type.IsClass;
 		}
 
-		// Token: 0x0600646F RID: 25711 RVA: 0x00045181 File Offset: 0x00043381
+		// Token: 0x060059AF RID: 22959 RVA: 0x00256941 File Offset: 0x00254B41
 		public static bool IsEnum(this Type type)
 		{
 			return type.IsEnum;
 		}
 
-		// Token: 0x06006470 RID: 25712 RVA: 0x00045189 File Offset: 0x00043389
+		// Token: 0x060059B0 RID: 22960 RVA: 0x00256949 File Offset: 0x00254B49
 		public static bool IsPublic(this Type type)
 		{
 			return type.IsPublic;
 		}
 
-		// Token: 0x06006471 RID: 25713 RVA: 0x00045191 File Offset: 0x00043391
+		// Token: 0x060059B1 RID: 22961 RVA: 0x00256951 File Offset: 0x00254B51
 		public static bool IsVisible(this Type type)
 		{
 			return type.IsVisible;
 		}
 
-		// Token: 0x06006472 RID: 25714 RVA: 0x0001C722 File Offset: 0x0001A922
+		// Token: 0x060059B2 RID: 22962 RVA: 0x000DBFA9 File Offset: 0x000DA1A9
 		public static ConstructorInfo GetParameterlessConstructor(this Type type)
 		{
 			throw new NotImplementedException();
 		}
 
-		// Token: 0x06006473 RID: 25715 RVA: 0x0001C722 File Offset: 0x0001A922
+		// Token: 0x060059B3 RID: 22963 RVA: 0x000DBFA9 File Offset: 0x000DA1A9
 		public static ConstructorInfo[] GetConstructors(this Type type)
 		{
 			throw new NotImplementedException();
 		}
 
-		// Token: 0x06006474 RID: 25716 RVA: 0x00045199 File Offset: 0x00043399
+		// Token: 0x060059B4 RID: 22964 RVA: 0x00256959 File Offset: 0x00254B59
 		public static Type GetInterface(this Type type, string name)
 		{
 			return type.GetInterface(name, false);
 		}
 
-		// Token: 0x06006475 RID: 25717 RVA: 0x0001C722 File Offset: 0x0001A922
+		// Token: 0x060059B5 RID: 22965 RVA: 0x000DBFA9 File Offset: 0x000DA1A9
 		public static Type GetInterface(this Type type, string name, bool ignoreCase)
 		{
 			throw new NotImplementedException();
 		}
 
-		// Token: 0x06006476 RID: 25718 RVA: 0x000451A3 File Offset: 0x000433A3
+		// Token: 0x060059B6 RID: 22966 RVA: 0x00256963 File Offset: 0x00254B63
 		public static PropertyInfo[] GetProperties(this Type type)
 		{
 			if (type == null)
@@ -120,19 +120,19 @@ namespace MarkerMetro.Unity.WinLegacy.Reflection
 			throw new NotImplementedException();
 		}
 
-		// Token: 0x06006477 RID: 25719 RVA: 0x0001C722 File Offset: 0x0001A922
+		// Token: 0x060059B7 RID: 22967 RVA: 0x000DBFA9 File Offset: 0x000DA1A9
 		public static PropertyInfo[] GetProperties(this Type type, BindingFlags flags)
 		{
 			throw new NotImplementedException();
 		}
 
-		// Token: 0x06006478 RID: 25720 RVA: 0x0001C722 File Offset: 0x0001A922
+		// Token: 0x060059B8 RID: 22968 RVA: 0x000DBFA9 File Offset: 0x000DA1A9
 		public static PropertyInfo GetProperty(this Type type, string name, BindingFlags bindingAttr)
 		{
 			throw new NotImplementedException();
 		}
 
-		// Token: 0x06006479 RID: 25721 RVA: 0x00281954 File Offset: 0x0027FB54
+		// Token: 0x060059B9 RID: 22969 RVA: 0x0025697C File Offset: 0x00254B7C
 		public static PropertyInfo GetProperty(this Type type, string name)
 		{
 			PropertyInfo[] properties = type.GetProperties();
@@ -143,7 +143,7 @@ namespace MarkerMetro.Unity.WinLegacy.Reflection
 			return properties.FirstOrDefault((PropertyInfo f) => f.Name == name);
 		}
 
-		// Token: 0x0600647A RID: 25722 RVA: 0x000451A3 File Offset: 0x000433A3
+		// Token: 0x060059BA RID: 22970 RVA: 0x00256963 File Offset: 0x00254B63
 		public static MethodInfo[] GetMethods(this Type type)
 		{
 			if (type == null)
@@ -153,19 +153,19 @@ namespace MarkerMetro.Unity.WinLegacy.Reflection
 			throw new NotImplementedException();
 		}
 
-		// Token: 0x0600647B RID: 25723 RVA: 0x0001C722 File Offset: 0x0001A922
+		// Token: 0x060059BB RID: 22971 RVA: 0x000DBFA9 File Offset: 0x000DA1A9
 		public static MethodInfo[] GetMethods(this Type t, BindingFlags flags = BindingFlags.InvokeMethod)
 		{
 			throw new NotImplementedException();
 		}
 
-		// Token: 0x0600647C RID: 25724 RVA: 0x0001C722 File Offset: 0x0001A922
+		// Token: 0x060059BC RID: 22972 RVA: 0x000DBFA9 File Offset: 0x000DA1A9
 		private static bool TestBindingFlags(Type t, MethodInfo method, BindingFlags flags)
 		{
 			throw new NotImplementedException();
 		}
 
-		// Token: 0x0600647D RID: 25725 RVA: 0x000451A3 File Offset: 0x000433A3
+		// Token: 0x060059BD RID: 22973 RVA: 0x00256963 File Offset: 0x00254B63
 		public static MemberInfo[] GetMembers(this Type type)
 		{
 			if (type == null)
@@ -175,115 +175,115 @@ namespace MarkerMetro.Unity.WinLegacy.Reflection
 			throw new NotImplementedException();
 		}
 
-		// Token: 0x0600647E RID: 25726 RVA: 0x0001C722 File Offset: 0x0001A922
+		// Token: 0x060059BE RID: 22974 RVA: 0x000DBFA9 File Offset: 0x000DA1A9
 		public static MemberInfo[] GetMembers(this Type t, BindingFlags flags)
 		{
 			throw new NotImplementedException();
 		}
 
-		// Token: 0x0600647F RID: 25727 RVA: 0x0001C722 File Offset: 0x0001A922
+		// Token: 0x060059BF RID: 22975 RVA: 0x000DBFA9 File Offset: 0x000DA1A9
 		public static object InvokeMember(this Type t, string name, BindingFlags flags, object binder, object target, object[] args)
 		{
 			throw new NotImplementedException();
 		}
 
-		// Token: 0x06006480 RID: 25728 RVA: 0x0001C722 File Offset: 0x0001A922
+		// Token: 0x060059C0 RID: 22976 RVA: 0x000DBFA9 File Offset: 0x000DA1A9
 		public static FieldInfo[] GetFields(this Type type)
 		{
 			throw new NotImplementedException();
 		}
 
-		// Token: 0x06006481 RID: 25729 RVA: 0x0001C722 File Offset: 0x0001A922
+		// Token: 0x060059C1 RID: 22977 RVA: 0x000DBFA9 File Offset: 0x000DA1A9
 		public static FieldInfo[] GetFields(this Type t, BindingFlags flags)
 		{
 			throw new NotImplementedException();
 		}
 
-		// Token: 0x06006482 RID: 25730 RVA: 0x0001C722 File Offset: 0x0001A922
+		// Token: 0x060059C2 RID: 22978 RVA: 0x000DBFA9 File Offset: 0x000DA1A9
 		public static FieldInfo GetField(this Type type, string name)
 		{
 			throw new NotImplementedException();
 		}
 
-		// Token: 0x06006483 RID: 25731 RVA: 0x0001C722 File Offset: 0x0001A922
+		// Token: 0x060059C3 RID: 22979 RVA: 0x000DBFA9 File Offset: 0x000DA1A9
 		public static FieldInfo GetField(this Type type, string name, BindingFlags flags)
 		{
 			throw new NotImplementedException();
 		}
 
-		// Token: 0x06006484 RID: 25732 RVA: 0x000451B9 File Offset: 0x000433B9
+		// Token: 0x060059C4 RID: 22980 RVA: 0x002569B9 File Offset: 0x00254BB9
 		public static MethodInfo GetMethod(this Type type, string name)
 		{
 			return ReflectionExtensions.GetMethod(type, name, BindingFlags.Default, null);
 		}
 
-		// Token: 0x06006485 RID: 25733 RVA: 0x000451C4 File Offset: 0x000433C4
+		// Token: 0x060059C5 RID: 22981 RVA: 0x002569C4 File Offset: 0x00254BC4
 		public static MethodInfo GetMethod(this Type type, string name, Type[] types)
 		{
 			return ReflectionExtensions.GetMethod(type, name, BindingFlags.Default, types);
 		}
 
-		// Token: 0x06006486 RID: 25734 RVA: 0x000451CF File Offset: 0x000433CF
+		// Token: 0x060059C6 RID: 22982 RVA: 0x002569CF File Offset: 0x00254BCF
 		public static MethodInfo GetMethod(this Type t, string name, BindingFlags flags)
 		{
 			return ReflectionExtensions.GetMethod(t, name, flags, null);
 		}
 
-		// Token: 0x06006487 RID: 25735 RVA: 0x0001C722 File Offset: 0x0001A922
+		// Token: 0x060059C7 RID: 22983 RVA: 0x000DBFA9 File Offset: 0x000DA1A9
 		public static Type GetBaseType(this Type type)
 		{
 			throw new NotImplementedException();
 		}
 
-		// Token: 0x06006488 RID: 25736 RVA: 0x0001C722 File Offset: 0x0001A922
+		// Token: 0x060059C8 RID: 22984 RVA: 0x000DBFA9 File Offset: 0x000DA1A9
 		public static MethodInfo GetMethod(Type t, string name, BindingFlags flags, Type[] parameters)
 		{
 			throw new NotImplementedException();
 		}
 
-		// Token: 0x06006489 RID: 25737 RVA: 0x0001C722 File Offset: 0x0001A922
+		// Token: 0x060059C9 RID: 22985 RVA: 0x000DBFA9 File Offset: 0x000DA1A9
 		public static Type[] GetGenericArguments(this Type t)
 		{
 			throw new NotImplementedException();
 		}
 
-		// Token: 0x0600648A RID: 25738 RVA: 0x0001C722 File Offset: 0x0001A922
+		// Token: 0x060059CA RID: 22986 RVA: 0x000DBFA9 File Offset: 0x000DA1A9
 		public static bool IsAssignableFrom(this Type current, Type toCompare)
 		{
 			throw new NotImplementedException();
 		}
 
-		// Token: 0x0600648B RID: 25739 RVA: 0x000451DA File Offset: 0x000433DA
+		// Token: 0x060059CB RID: 22987 RVA: 0x002569DA File Offset: 0x00254BDA
 		public static bool IsInterface(this Type type)
 		{
 			return type.IsInterface;
 		}
 
-		// Token: 0x0600648C RID: 25740 RVA: 0x000451E2 File Offset: 0x000433E2
+		// Token: 0x060059CC RID: 22988 RVA: 0x002569E2 File Offset: 0x00254BE2
 		public static bool IsPrimitive(this Type type)
 		{
 			return type.IsPrimitive;
 		}
 
-		// Token: 0x0600648D RID: 25741 RVA: 0x0001C722 File Offset: 0x0001A922
+		// Token: 0x060059CD RID: 22989 RVA: 0x000DBFA9 File Offset: 0x000DA1A9
 		public static bool IsSubclassOf(this Type type, Type parent)
 		{
 			throw new NotImplementedException();
 		}
 
-		// Token: 0x0600648E RID: 25742 RVA: 0x0001C722 File Offset: 0x0001A922
+		// Token: 0x060059CE RID: 22990 RVA: 0x000DBFA9 File Offset: 0x000DA1A9
 		public static Type[] GetTypes(this Assembly assembly)
 		{
 			throw new NotImplementedException();
 		}
 
-		// Token: 0x0600648F RID: 25743 RVA: 0x0001C722 File Offset: 0x0001A922
+		// Token: 0x060059CF RID: 22991 RVA: 0x000DBFA9 File Offset: 0x000DA1A9
 		public static Type GetType(this Assembly assembly)
 		{
 			throw new NotImplementedException();
 		}
 
-		// Token: 0x06006490 RID: 25744 RVA: 0x00281994 File Offset: 0x0027FB94
+		// Token: 0x060059D0 RID: 22992 RVA: 0x002569EC File Offset: 0x00254BEC
 		public static TypeCode GetTypeCode(this Type type)
 		{
 			if (type == null)
@@ -298,7 +298,7 @@ namespace MarkerMetro.Unity.WinLegacy.Reflection
 			return result;
 		}
 
-		// Token: 0x04005DF9 RID: 24057
+		// Token: 0x0400524B RID: 21067
 		private static readonly Dictionary<Type, TypeCode> _typeCodeTable = new Dictionary<Type, TypeCode>
 		{
 			{

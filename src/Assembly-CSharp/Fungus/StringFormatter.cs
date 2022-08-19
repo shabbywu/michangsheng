@@ -3,10 +3,10 @@ using System.Text;
 
 namespace Fungus
 {
-	// Token: 0x0200136B RID: 4971
+	// Token: 0x02000ECC RID: 3788
 	public static class StringFormatter
 	{
-		// Token: 0x06007897 RID: 30871 RVA: 0x002B6E04 File Offset: 0x002B5004
+		// Token: 0x06006AFA RID: 27386 RVA: 0x00294B38 File Offset: 0x00292D38
 		public static string[] FormatEnumNames(Enum e, string firstLabel)
 		{
 			string[] names = Enum.GetNames(e.GetType());
@@ -18,7 +18,7 @@ namespace Fungus
 			return names;
 		}
 
-		// Token: 0x06007898 RID: 30872 RVA: 0x002B6E3C File Offset: 0x002B503C
+		// Token: 0x06006AFB RID: 27387 RVA: 0x00294B70 File Offset: 0x00292D70
 		public static string SplitCamelCase(string text)
 		{
 			if (string.IsNullOrEmpty(text))
@@ -38,7 +38,7 @@ namespace Fungus
 			return stringBuilder.ToString();
 		}
 
-		// Token: 0x06007899 RID: 30873 RVA: 0x002B6EBC File Offset: 0x002B50BC
+		// Token: 0x06006AFC RID: 27388 RVA: 0x00294BF0 File Offset: 0x00292DF0
 		public static bool IsNullOrWhiteSpace(string value)
 		{
 			if (value != null)

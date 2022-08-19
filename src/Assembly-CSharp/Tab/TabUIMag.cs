@@ -9,16 +9,16 @@ using UnityEngine.UI;
 
 namespace Tab
 {
-	// Token: 0x02000A55 RID: 2645
+	// Token: 0x02000708 RID: 1800
 	public class TabUIMag : SingletonMono<TabUIMag>, IESCClose
 	{
-		// Token: 0x0600443A RID: 17466 RVA: 0x00030D7B File Offset: 0x0002EF7B
+		// Token: 0x060039B6 RID: 14774 RVA: 0x0018B0EC File Offset: 0x001892EC
 		private void Awake()
 		{
 			SingletonMono<TabUIMag>._instance = this;
 		}
 
-		// Token: 0x0600443B RID: 17467 RVA: 0x001D2840 File Offset: 0x001D0A40
+		// Token: 0x060039B7 RID: 14775 RVA: 0x0018B0F4 File Offset: 0x001892F4
 		private void Init()
 		{
 			ESCCloseManager.Inst.RegisterClose(this);
@@ -42,7 +42,7 @@ namespace Tab
 			MessageMag.Instance.Register(MessageName.MSG_PLAYER_USE_ITEM, new Action<MessageData>(this.UpdateBaseUI));
 		}
 
-		// Token: 0x0600443C RID: 17468 RVA: 0x001D2A68 File Offset: 0x001D0C68
+		// Token: 0x060039B8 RID: 14776 RVA: 0x0018B31C File Offset: 0x0018951C
 		public static void OpenTab(int index = 0, UnityAction action = null)
 		{
 			if (RoundManager.instance != null)
@@ -87,7 +87,7 @@ namespace Tab
 			SingletonMono<TabUIMag>.Instance.CloseAction = action;
 		}
 
-		// Token: 0x0600443D RID: 17469 RVA: 0x001D2B94 File Offset: 0x001D0D94
+		// Token: 0x060039B9 RID: 14777 RVA: 0x0018B448 File Offset: 0x00189648
 		public static void OpenTab2(int index = 0)
 		{
 			if (RoundManager.instance != null)
@@ -105,7 +105,7 @@ namespace Tab
 			SingletonMono<TabUIMag>.Instance.TabSelect.SetDeafultSelect(index);
 		}
 
-		// Token: 0x0600443E RID: 17470 RVA: 0x00030D83 File Offset: 0x0002EF83
+		// Token: 0x060039BA RID: 14778 RVA: 0x0018B4DC File Offset: 0x001896DC
 		private void Close()
 		{
 			if (this.CloseAction != null)
@@ -116,21 +116,21 @@ namespace Tab
 			Object.Destroy(base.gameObject);
 		}
 
-		// Token: 0x0600443F RID: 17471 RVA: 0x00030DAA File Offset: 0x0002EFAA
+		// Token: 0x060039BB RID: 14779 RVA: 0x0018B503 File Offset: 0x00189703
 		public bool TryEscClose()
 		{
 			this.Close();
 			return true;
 		}
 
-		// Token: 0x06004440 RID: 17472 RVA: 0x00030DB3 File Offset: 0x0002EFB3
+		// Token: 0x060039BC RID: 14780 RVA: 0x0018B50C File Offset: 0x0018970C
 		public void ShowBaseData()
 		{
 			this.BaseDataPanel.SetActive(true);
 			this.UpdateBaseUI(new MessageData(0));
 		}
 
-		// Token: 0x06004441 RID: 17473 RVA: 0x001D2C28 File Offset: 0x001D0E28
+		// Token: 0x060039BD RID: 14781 RVA: 0x0018B528 File Offset: 0x00189728
 		public void UpdateBaseUI(MessageData data)
 		{
 			Avatar player = Tools.instance.getPlayer();
@@ -143,13 +143,13 @@ namespace Tab
 			this.ExpText.SetText(player.exp.ToCNNumberWithUnit() + "/" + ((ulong)((long)maxExp)).ToCNNumberWithUnit());
 		}
 
-		// Token: 0x06004442 RID: 17474 RVA: 0x00030DCD File Offset: 0x0002EFCD
+		// Token: 0x060039BE RID: 14782 RVA: 0x0018B622 File Offset: 0x00189822
 		public void HideBaseData()
 		{
 			this.BaseDataPanel.SetActive(false);
 		}
 
-		// Token: 0x06004443 RID: 17475 RVA: 0x001D2D24 File Offset: 0x001D0F24
+		// Token: 0x060039BF RID: 14783 RVA: 0x0018B630 File Offset: 0x00189830
 		private void OnDestroy()
 		{
 			ESCCloseManager.Inst.UnRegisterClose(this);
@@ -159,55 +159,55 @@ namespace Tab
 			SingletonMono<TabUIMag>._instance = null;
 		}
 
-		// Token: 0x04003C43 RID: 15427
+		// Token: 0x040031C7 RID: 12743
 		public TabSelectMag TabSelect;
 
-		// Token: 0x04003C44 RID: 15428
+		// Token: 0x040031C8 RID: 12744
 		public TabShuXingPanel XingPanel;
 
-		// Token: 0x04003C45 RID: 15429
+		// Token: 0x040031C9 RID: 12745
 		public TabWuDaoPanel WuDaoPanel;
 
-		// Token: 0x04003C46 RID: 15430
+		// Token: 0x040031CA RID: 12746
 		public TabGongFaPanel GongFaPanel;
 
-		// Token: 0x04003C47 RID: 15431
+		// Token: 0x040031CB RID: 12747
 		public TabShenTongPanel ShenTongPanel;
 
-		// Token: 0x04003C48 RID: 15432
+		// Token: 0x040031CC RID: 12748
 		public TabWuPingPanel WuPingPanel;
 
-		// Token: 0x04003C49 RID: 15433
+		// Token: 0x040031CD RID: 12749
 		public TabShengWangPanel ShengWangPanel;
 
-		// Token: 0x04003C4A RID: 15434
+		// Token: 0x040031CE RID: 12750
 		public TabSystemPanel SystemPanel;
 
-		// Token: 0x04003C4B RID: 15435
+		// Token: 0x040031CF RID: 12751
 		public TabFangAnPanel TabFangAnPanel;
 
-		// Token: 0x04003C4C RID: 15436
+		// Token: 0x040031D0 RID: 12752
 		public GameObject BaseDataPanel;
 
-		// Token: 0x04003C4D RID: 15437
+		// Token: 0x040031D1 RID: 12753
 		public UnityAction CloseAction;
 
-		// Token: 0x04003C4E RID: 15438
+		// Token: 0x040031D2 RID: 12754
 		public Text HPText;
 
-		// Token: 0x04003C4F RID: 15439
+		// Token: 0x040031D3 RID: 12755
 		public Transform Fire1;
 
-		// Token: 0x04003C50 RID: 15440
+		// Token: 0x040031D4 RID: 12756
 		public Transform Fire2;
 
-		// Token: 0x04003C51 RID: 15441
+		// Token: 0x040031D5 RID: 12757
 		public Text ExpText;
 
-		// Token: 0x04003C52 RID: 15442
+		// Token: 0x040031D6 RID: 12758
 		public TabBag TabBag;
 
-		// Token: 0x04003C53 RID: 15443
+		// Token: 0x040031D7 RID: 12759
 		public List<ITabPanelBase> PanelList = new List<ITabPanelBase>();
 	}
 }

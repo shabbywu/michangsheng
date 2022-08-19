@@ -2,7 +2,7 @@
 
 namespace UltimateSurvival
 {
-	// Token: 0x0200085B RID: 2139
+	// Token: 0x0200059F RID: 1439
 	[Serializable]
 	public class ReorderableFloatList : ReorderableGenericList<float>
 	{

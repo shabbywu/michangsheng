@@ -3,10 +3,10 @@ using System.Collections.Generic;
 
 namespace Fungus
 {
-	// Token: 0x02001220 RID: 4640
+	// Token: 0x02000DDF RID: 3551
 	public static class ReflectionHelper
 	{
-		// Token: 0x0600714E RID: 29006 RVA: 0x0004CF3A File Offset: 0x0004B13A
+		// Token: 0x060064C2 RID: 25794 RVA: 0x00280973 File Offset: 0x0027EB73
 		public static Type GetType(string typeName)
 		{
 			if (ReflectionHelper.types.ContainsKey(typeName))
@@ -17,7 +17,7 @@ namespace Fungus
 			return ReflectionHelper.types[typeName];
 		}
 
-		// Token: 0x040063B5 RID: 25525
+		// Token: 0x040056AE RID: 22190
 		private static Dictionary<string, Type> types = new Dictionary<string, Type>();
 	}
 }

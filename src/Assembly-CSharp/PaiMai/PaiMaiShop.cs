@@ -4,16 +4,16 @@ using JSONClass;
 
 namespace PaiMai
 {
-	// Token: 0x02000A69 RID: 2665
+	// Token: 0x02000717 RID: 1815
 	[Serializable]
 	public class PaiMaiShop : IComparable<PaiMaiShop>
 	{
-		// Token: 0x170007D4 RID: 2004
-		// (get) Token: 0x060044B0 RID: 17584 RVA: 0x000311E0 File Offset: 0x0002F3E0
-		// (set) Token: 0x060044B1 RID: 17585 RVA: 0x000311E8 File Offset: 0x0002F3E8
+		// Token: 0x170005A2 RID: 1442
+		// (get) Token: 0x06003A21 RID: 14881 RVA: 0x0018F0CB File Offset: 0x0018D2CB
+		// (set) Token: 0x06003A22 RID: 14882 RVA: 0x0018F0D3 File Offset: 0x0018D2D3
 		public int Quality { get; private set; }
 
-		// Token: 0x060044B2 RID: 17586 RVA: 0x001D6688 File Offset: 0x001D4888
+		// Token: 0x06003A23 RID: 14883 RVA: 0x0018F0DC File Offset: 0x0018D2DC
 		public void Init()
 		{
 			this.TagList = new List<int>();
@@ -89,52 +89,52 @@ namespace PaiMai
 			this.MayPrice = this.Price;
 		}
 
-		// Token: 0x060044B3 RID: 17587 RVA: 0x000311F1 File Offset: 0x0002F3F1
+		// Token: 0x06003A24 RID: 14884 RVA: 0x0018F398 File Offset: 0x0018D598
 		public int CompareTo(PaiMaiShop other)
 		{
 			return this.Price.CompareTo(other.Price);
 		}
 
-		// Token: 0x04003CB4 RID: 15540
+		// Token: 0x04003229 RID: 12841
 		public int ShopId;
 
-		// Token: 0x04003CB5 RID: 15541
+		// Token: 0x0400322A RID: 12842
 		public int Count;
 
-		// Token: 0x04003CB6 RID: 15542
+		// Token: 0x0400322B RID: 12843
 		public int Price;
 
-		// Token: 0x04003CB7 RID: 15543
+		// Token: 0x0400322C RID: 12844
 		public int CurPrice;
 
-		// Token: 0x04003CB8 RID: 15544
+		// Token: 0x0400322D RID: 12845
 		public int MinAddPrice;
 
-		// Token: 0x04003CB9 RID: 15545
+		// Token: 0x0400322E RID: 12846
 		public int MayPrice;
 
-		// Token: 0x04003CBA RID: 15546
+		// Token: 0x0400322F RID: 12847
 		public bool IsPlayer;
 
-		// Token: 0x04003CBB RID: 15547
+		// Token: 0x04003230 RID: 12848
 		public string ShopName;
 
-		// Token: 0x04003CBC RID: 15548
+		// Token: 0x04003231 RID: 12849
 		public int Type;
 
-		// Token: 0x04003CBE RID: 15550
+		// Token: 0x04003233 RID: 12851
 		public int BaseQuality;
 
-		// Token: 0x04003CBF RID: 15551
+		// Token: 0x04003234 RID: 12852
 		public int Level;
 
-		// Token: 0x04003CC0 RID: 15552
+		// Token: 0x04003235 RID: 12853
 		public List<int> TagList;
 
-		// Token: 0x04003CC1 RID: 15553
+		// Token: 0x04003236 RID: 12854
 		public PaiMaiAvatar Owner;
 
-		// Token: 0x04003CC2 RID: 15554
+		// Token: 0x04003237 RID: 12855
 		public JSONObject Seid;
 	}
 }

@@ -5,23 +5,23 @@ using KBEngine;
 
 namespace GUIPackage
 {
-	// Token: 0x02000D54 RID: 3412
+	// Token: 0x02000A4D RID: 2637
 	public class Equips : StaticSkill
 	{
-		// Token: 0x06005137 RID: 20791 RVA: 0x0003A7C5 File Offset: 0x000389C5
+		// Token: 0x06004872 RID: 18546 RVA: 0x001E9973 File Offset: 0x001E7B73
 		public Equips(int id, int level, int max)
 		{
 			this.skill_ID = id;
 			this.skill_level = level;
 		}
 
-		// Token: 0x06005138 RID: 20792 RVA: 0x0003A7DB File Offset: 0x000389DB
+		// Token: 0x06004873 RID: 18547 RVA: 0x001E9989 File Offset: 0x001E7B89
 		public override Dictionary<int, Dictionary<int, int>> getSeidFlag(Avatar attaker)
 		{
 			return attaker.EquipSeidFlag;
 		}
 
-		// Token: 0x06005139 RID: 20793 RVA: 0x0021D724 File Offset: 0x0021B924
+		// Token: 0x06004874 RID: 18548 RVA: 0x001E9994 File Offset: 0x001E7B94
 		public override void realizeSeid(int seid, List<int> flag, Entity _attaker, Entity _receiver, int type)
 		{
 			Avatar avatar = (Avatar)_attaker;
@@ -53,13 +53,13 @@ namespace GUIPackage
 			}
 		}
 
-		// Token: 0x0600513A RID: 20794 RVA: 0x0003A7E3 File Offset: 0x000389E3
+		// Token: 0x06004875 RID: 18549 RVA: 0x001E9A18 File Offset: 0x001E7C18
 		public override JSONObject getJsonData()
 		{
 			return jsonData.instance._ItemJsonData;
 		}
 
-		// Token: 0x0600513B RID: 20795 RVA: 0x0021D7A8 File Offset: 0x0021B9A8
+		// Token: 0x06004876 RID: 18550 RVA: 0x001E9A24 File Offset: 0x001E7C24
 		public static void resetEquipSeid(Avatar attaker)
 		{
 			attaker.EquipSeidFlag.Clear();
@@ -91,13 +91,13 @@ namespace GUIPackage
 			}
 		}
 
-		// Token: 0x0600513C RID: 20796 RVA: 0x0003A7EF File Offset: 0x000389EF
+		// Token: 0x06004877 RID: 18551 RVA: 0x001E9B60 File Offset: 0x001E7D60
 		public override string getMethodName()
 		{
 			return "realizeEquipSeid";
 		}
 
-		// Token: 0x0600513D RID: 20797 RVA: 0x0021D8E4 File Offset: 0x0021BAE4
+		// Token: 0x06004878 RID: 18552 RVA: 0x001E9B68 File Offset: 0x001E7D68
 		public override JSONObject getSeidJson(int seid)
 		{
 			if (this.ItemAddSeid != null)
@@ -113,39 +113,39 @@ namespace GUIPackage
 			return jsonData.instance.EquipSeidJsonData[seid][string.Concat(this.skill_ID)];
 		}
 
-		// Token: 0x0600513E RID: 20798 RVA: 0x0003A7F6 File Offset: 0x000389F6
+		// Token: 0x06004879 RID: 18553 RVA: 0x001E9BFC File Offset: 0x001E7DFC
 		public void realizeEquipSeid3(int seid, List<int> damage, Avatar attaker, Avatar receiver, int type)
 		{
 			this.realizeSeid3(seid, damage, attaker, receiver, type);
 		}
 
-		// Token: 0x0600513F RID: 20799 RVA: 0x0003A805 File Offset: 0x00038A05
+		// Token: 0x0600487A RID: 18554 RVA: 0x001E9C0B File Offset: 0x001E7E0B
 		public void realizeEquipSeid4(int seid, List<int> damage, Avatar attaker, Avatar receiver, int type)
 		{
 			this.resetSeidFlag(seid, attaker);
 		}
 
-		// Token: 0x06005140 RID: 20800 RVA: 0x0003A80F File Offset: 0x00038A0F
+		// Token: 0x0600487B RID: 18555 RVA: 0x001E9C15 File Offset: 0x001E7E15
 		public void realizeEquipSeid8(int seid, List<int> damage, Avatar attaker, Avatar receiver, int type)
 		{
 			base.realizeSeid8(seid, damage, attaker, receiver, type);
 		}
 
-		// Token: 0x04005238 RID: 21048
+		// Token: 0x040048FA RID: 18682
 		public JSONObject ItemAddSeid;
 
-		// Token: 0x02000D55 RID: 3413
+		// Token: 0x0200157B RID: 5499
 		public enum EquipSeidAll
 		{
-			// Token: 0x0400523A RID: 21050
+			// Token: 0x04006F84 RID: 28548
 			EquiSEID4 = 4,
-			// Token: 0x0400523B RID: 21051
+			// Token: 0x04006F85 RID: 28549
 			EquiSEID3,
-			// Token: 0x0400523C RID: 21052
+			// Token: 0x04006F86 RID: 28550
 			EquiSEID5 = 5,
-			// Token: 0x0400523D RID: 21053
+			// Token: 0x04006F87 RID: 28551
 			EquiSEID6,
-			// Token: 0x0400523E RID: 21054
+			// Token: 0x04006F88 RID: 28552
 			EquiSEID7
 		}
 	}

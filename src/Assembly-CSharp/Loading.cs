@@ -2,11 +2,11 @@
 using System.Collections;
 using UnityEngine;
 
-// Token: 0x020006B7 RID: 1719
+// Token: 0x020004BA RID: 1210
 public class Loading : MonoBehaviour
 {
-	// Token: 0x1700032F RID: 815
-	// (get) Token: 0x06002AFC RID: 11004 RVA: 0x000213E0 File Offset: 0x0001F5E0
+	// Token: 0x170002AC RID: 684
+	// (get) Token: 0x06002648 RID: 9800 RVA: 0x0010A009 File Offset: 0x00108209
 	public static Loading Instance
 	{
 		get
@@ -19,13 +19,13 @@ public class Loading : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06002AFD RID: 11005 RVA: 0x0002140D File Offset: 0x0001F60D
+	// Token: 0x06002649 RID: 9801 RVA: 0x0010A036 File Offset: 0x00108236
 	private void Awake()
 	{
 		Loading.instance = this;
 	}
 
-	// Token: 0x06002AFE RID: 11006 RVA: 0x0014E068 File Offset: 0x0014C268
+	// Token: 0x0600264A RID: 9802 RVA: 0x0010A040 File Offset: 0x00108240
 	private void Start()
 	{
 		base.gameObject.name = "LOADING ZA BRISANJE";
@@ -81,7 +81,7 @@ public class Loading : MonoBehaviour
 		base.StartCoroutine(this.LoadNextLevel());
 	}
 
-	// Token: 0x06002AFF RID: 11007 RVA: 0x00021415 File Offset: 0x0001F615
+	// Token: 0x0600264B RID: 9803 RVA: 0x0010A2F4 File Offset: 0x001084F4
 	private IEnumerator LoadNextLevel()
 	{
 		GC.Collect();
@@ -110,7 +110,7 @@ public class Loading : MonoBehaviour
 		yield break;
 	}
 
-	// Token: 0x06002B00 RID: 11008 RVA: 0x0002141D File Offset: 0x0001F61D
+	// Token: 0x0600264C RID: 9804 RVA: 0x0010A2FC File Offset: 0x001084FC
 	public IEnumerator UcitanaScena(Camera camera, int skaliraj, float delay)
 	{
 		StagesParser.loadingTip = -1;
@@ -143,7 +143,7 @@ public class Loading : MonoBehaviour
 		yield break;
 	}
 
-	// Token: 0x06002B01 RID: 11009 RVA: 0x00021441 File Offset: 0x0001F641
+	// Token: 0x0600264D RID: 9805 RVA: 0x0010A320 File Offset: 0x00108520
 	private IEnumerator unistiObjekat(float time, int kojaScena)
 	{
 		yield return new WaitForSeconds(time);
@@ -157,21 +157,21 @@ public class Loading : MonoBehaviour
 		yield break;
 	}
 
-	// Token: 0x04002533 RID: 9523
+	// Token: 0x04001F8E RID: 8078
 	private GameObject Tips;
 
-	// Token: 0x04002534 RID: 9524
+	// Token: 0x04001F8F RID: 8079
 	private GameObject Vrata;
 
-	// Token: 0x04002535 RID: 9525
+	// Token: 0x04001F90 RID: 8080
 	private TextMesh PozadinaText;
 
-	// Token: 0x04002536 RID: 9526
+	// Token: 0x04001F91 RID: 8081
 	private int RandomBroj;
 
-	// Token: 0x04002537 RID: 9527
+	// Token: 0x04001F92 RID: 8082
 	private string LoadingText;
 
-	// Token: 0x04002538 RID: 9528
+	// Token: 0x04001F93 RID: 8083
 	private static Loading instance;
 }

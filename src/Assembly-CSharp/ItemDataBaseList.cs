@@ -2,10 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-// Token: 0x02000218 RID: 536
+// Token: 0x02000143 RID: 323
 public class ItemDataBaseList : ScriptableObject
 {
-	// Token: 0x060010CC RID: 4300 RVA: 0x000A9CB4 File Offset: 0x000A7EB4
+	// Token: 0x06000EAC RID: 3756 RVA: 0x0005990C File Offset: 0x00057B0C
 	public Item getItemByID(int id)
 	{
 		for (int i = 0; i < this.itemList.Count; i++)
@@ -18,7 +18,7 @@ public class ItemDataBaseList : ScriptableObject
 		return null;
 	}
 
-	// Token: 0x060010CD RID: 4301 RVA: 0x000A9D00 File Offset: 0x000A7F00
+	// Token: 0x06000EAD RID: 3757 RVA: 0x00059958 File Offset: 0x00057B58
 	public Item getItemByName(string name)
 	{
 		for (int i = 0; i < this.itemList.Count; i++)
@@ -31,7 +31,7 @@ public class ItemDataBaseList : ScriptableObject
 		return null;
 	}
 
-	// Token: 0x04000D59 RID: 3417
+	// Token: 0x04000ABE RID: 2750
 	[SerializeField]
 	public List<Item> itemList = new List<Item>();
 }

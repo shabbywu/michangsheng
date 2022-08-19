@@ -3,39 +3,39 @@ using UnityEngine;
 
 namespace UltimateSurvival
 {
-	// Token: 0x0200088E RID: 2190
+	// Token: 0x020005CC RID: 1484
 	public class Activity
 	{
-		// Token: 0x170005C2 RID: 1474
-		// (get) Token: 0x06003865 RID: 14437 RVA: 0x00029049 File Offset: 0x00027249
-		// (set) Token: 0x06003866 RID: 14438 RVA: 0x00029051 File Offset: 0x00027251
+		// Token: 0x17000405 RID: 1029
+		// (get) Token: 0x06002FD5 RID: 12245 RVA: 0x001593BF File Offset: 0x001575BF
+		// (set) Token: 0x06002FD6 RID: 12246 RVA: 0x001593C7 File Offset: 0x001575C7
 		public bool Active { get; private set; }
 
-		// Token: 0x06003867 RID: 14439 RVA: 0x0002905A File Offset: 0x0002725A
+		// Token: 0x06002FD7 RID: 12247 RVA: 0x001593D0 File Offset: 0x001575D0
 		public void AddStartTryer(TryerDelegate tryer)
 		{
 			this.m_StartTryers = (TryerDelegate)Delegate.Combine(this.m_StartTryers, tryer);
 		}
 
-		// Token: 0x06003868 RID: 14440 RVA: 0x00029073 File Offset: 0x00027273
+		// Token: 0x06002FD8 RID: 12248 RVA: 0x001593E9 File Offset: 0x001575E9
 		public void AddStopTryer(TryerDelegate tryer)
 		{
 			this.m_StopTryers = (TryerDelegate)Delegate.Combine(this.m_StopTryers, tryer);
 		}
 
-		// Token: 0x06003869 RID: 14441 RVA: 0x0002908C File Offset: 0x0002728C
+		// Token: 0x06002FD9 RID: 12249 RVA: 0x00159402 File Offset: 0x00157602
 		public void AddStartListener(Action listener)
 		{
 			this.m_OnStart = (Action)Delegate.Combine(this.m_OnStart, listener);
 		}
 
-		// Token: 0x0600386A RID: 14442 RVA: 0x000290A5 File Offset: 0x000272A5
+		// Token: 0x06002FDA RID: 12250 RVA: 0x0015941B File Offset: 0x0015761B
 		public void AddStopListener(Action listener)
 		{
 			this.m_OnStop = (Action)Delegate.Combine(this.m_OnStop, listener);
 		}
 
-		// Token: 0x0600386B RID: 14443 RVA: 0x000290BE File Offset: 0x000272BE
+		// Token: 0x06002FDB RID: 12251 RVA: 0x00159434 File Offset: 0x00157634
 		public void ForceStart()
 		{
 			if (this.Active)
@@ -49,7 +49,7 @@ namespace UltimateSurvival
 			}
 		}
 
-		// Token: 0x0600386C RID: 14444 RVA: 0x001A32B0 File Offset: 0x001A14B0
+		// Token: 0x06002FDC RID: 12252 RVA: 0x0015945C File Offset: 0x0015765C
 		public bool TryStart()
 		{
 			if (this.Active)
@@ -73,7 +73,7 @@ namespace UltimateSurvival
 			return false;
 		}
 
-		// Token: 0x0600386D RID: 14445 RVA: 0x000290E3 File Offset: 0x000272E3
+		// Token: 0x06002FDD RID: 12253 RVA: 0x001594AD File Offset: 0x001576AD
 		public bool TryStop()
 		{
 			if (!this.Active)
@@ -92,7 +92,7 @@ namespace UltimateSurvival
 			return false;
 		}
 
-		// Token: 0x0600386E RID: 14446 RVA: 0x0002911C File Offset: 0x0002731C
+		// Token: 0x06002FDE RID: 12254 RVA: 0x001594E6 File Offset: 0x001576E6
 		public void ForceStop()
 		{
 			if (!this.Active)
@@ -106,7 +106,7 @@ namespace UltimateSurvival
 			}
 		}
 
-		// Token: 0x0600386F RID: 14447 RVA: 0x001A3304 File Offset: 0x001A1504
+		// Token: 0x06002FDF RID: 12255 RVA: 0x0015950C File Offset: 0x0015770C
 		private bool CallStartApprovers()
 		{
 			Delegate[] invocationList = this.m_StartTryers.GetInvocationList();
@@ -120,7 +120,7 @@ namespace UltimateSurvival
 			return true;
 		}
 
-		// Token: 0x06003870 RID: 14448 RVA: 0x001A3344 File Offset: 0x001A1544
+		// Token: 0x06002FE0 RID: 12256 RVA: 0x0015954C File Offset: 0x0015774C
 		private bool CallStopApprovers()
 		{
 			Delegate[] invocationList = this.m_StopTryers.GetInvocationList();
@@ -134,16 +134,16 @@ namespace UltimateSurvival
 			return true;
 		}
 
-		// Token: 0x040032ED RID: 13037
+		// Token: 0x04002A57 RID: 10839
 		private TryerDelegate m_StartTryers;
 
-		// Token: 0x040032EE RID: 13038
+		// Token: 0x04002A58 RID: 10840
 		private TryerDelegate m_StopTryers;
 
-		// Token: 0x040032EF RID: 13039
+		// Token: 0x04002A59 RID: 10841
 		private Action m_OnStart;
 
-		// Token: 0x040032F0 RID: 13040
+		// Token: 0x04002A5A RID: 10842
 		private Action m_OnStop;
 	}
 }

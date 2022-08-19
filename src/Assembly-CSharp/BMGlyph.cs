@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 
-// Token: 0x020000B5 RID: 181
+// Token: 0x0200007F RID: 127
 [Serializable]
 public class BMGlyph
 {
-	// Token: 0x060006BC RID: 1724 RVA: 0x00079034 File Offset: 0x00077234
+	// Token: 0x06000642 RID: 1602 RVA: 0x000236C0 File Offset: 0x000218C0
 	public int GetKerning(int previousChar)
 	{
 		if (this.kerning != null && previousChar != 0)
@@ -24,7 +24,7 @@ public class BMGlyph
 		return 0;
 	}
 
-	// Token: 0x060006BD RID: 1725 RVA: 0x00079084 File Offset: 0x00077284
+	// Token: 0x06000643 RID: 1603 RVA: 0x00023710 File Offset: 0x00021910
 	public void SetKerning(int previousChar, int amount)
 	{
 		if (this.kerning == null)
@@ -43,7 +43,7 @@ public class BMGlyph
 		this.kerning.Add(amount);
 	}
 
-	// Token: 0x060006BE RID: 1726 RVA: 0x000790F4 File Offset: 0x000772F4
+	// Token: 0x06000644 RID: 1604 RVA: 0x00023780 File Offset: 0x00021980
 	public void Trim(int xMin, int yMin, int xMax, int yMax)
 	{
 		int num = this.x + this.width;
@@ -72,33 +72,33 @@ public class BMGlyph
 		}
 	}
 
-	// Token: 0x04000503 RID: 1283
+	// Token: 0x0400042F RID: 1071
 	public int index;
 
-	// Token: 0x04000504 RID: 1284
+	// Token: 0x04000430 RID: 1072
 	public int x;
 
-	// Token: 0x04000505 RID: 1285
+	// Token: 0x04000431 RID: 1073
 	public int y;
 
-	// Token: 0x04000506 RID: 1286
+	// Token: 0x04000432 RID: 1074
 	public int width;
 
-	// Token: 0x04000507 RID: 1287
+	// Token: 0x04000433 RID: 1075
 	public int height;
 
-	// Token: 0x04000508 RID: 1288
+	// Token: 0x04000434 RID: 1076
 	public int offsetX;
 
-	// Token: 0x04000509 RID: 1289
+	// Token: 0x04000435 RID: 1077
 	public int offsetY;
 
-	// Token: 0x0400050A RID: 1290
+	// Token: 0x04000436 RID: 1078
 	public int advance;
 
-	// Token: 0x0400050B RID: 1291
+	// Token: 0x04000437 RID: 1079
 	public int channel;
 
-	// Token: 0x0400050C RID: 1292
+	// Token: 0x04000438 RID: 1080
 	public List<int> kerning;
 }

@@ -3,10 +3,10 @@ using System.IO;
 
 namespace ICSharpCode.SharpZipLib.Zip
 {
-	// Token: 0x020007E5 RID: 2021
+	// Token: 0x02000543 RID: 1347
 	public class DynamicDiskDataSource : IDynamicDataSource
 	{
-		// Token: 0x060033D5 RID: 13269 RVA: 0x001922F4 File Offset: 0x001904F4
+		// Token: 0x06002B7E RID: 11134 RVA: 0x00145FB0 File Offset: 0x001441B0
 		public Stream GetSource(ZipEntry entry, string name)
 		{
 			Stream result = null;

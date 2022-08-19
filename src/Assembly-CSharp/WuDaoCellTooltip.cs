@@ -3,15 +3,15 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
 
-// Token: 0x0200079D RID: 1949
+// Token: 0x0200050C RID: 1292
 public class WuDaoCellTooltip : MonoBehaviour
 {
-	// Token: 0x0600318F RID: 12687 RVA: 0x000042DD File Offset: 0x000024DD
+	// Token: 0x0600298A RID: 10634 RVA: 0x00004095 File Offset: 0x00002295
 	private void Start()
 	{
 	}
 
-	// Token: 0x06003190 RID: 12688 RVA: 0x0018A910 File Offset: 0x00188B10
+	// Token: 0x0600298B RID: 10635 RVA: 0x0013D678 File Offset: 0x0013B878
 	public void open(int _id, Image icon)
 	{
 		base.gameObject.SetActive(true);
@@ -65,20 +65,20 @@ public class WuDaoCellTooltip : MonoBehaviour
 		this.tooltipItem.showType = 3;
 	}
 
-	// Token: 0x06003191 RID: 12689 RVA: 0x0002448E File Offset: 0x0002268E
+	// Token: 0x0600298C RID: 10636 RVA: 0x0013DA79 File Offset: 0x0013BC79
 	private void Update()
 	{
 		this.bgImage.rectTransform.sizeDelta = this.ContentParent.GetComponent<RectTransform>().sizeDelta;
 	}
 
-	// Token: 0x06003192 RID: 12690 RVA: 0x000244B0 File Offset: 0x000226B0
+	// Token: 0x0600298D RID: 10637 RVA: 0x0013DA9B File Offset: 0x0013BC9B
 	public void close()
 	{
 		base.gameObject.SetActive(false);
 		this.tooltipItem.showTooltip = false;
 	}
 
-	// Token: 0x06003193 RID: 12691 RVA: 0x000244CA File Offset: 0x000226CA
+	// Token: 0x0600298E RID: 10638 RVA: 0x0013DAB5 File Offset: 0x0013BCB5
 	public void Btn()
 	{
 		if (this.action != null)
@@ -88,33 +88,33 @@ public class WuDaoCellTooltip : MonoBehaviour
 		this.close();
 	}
 
-	// Token: 0x04002DCE RID: 11726
+	// Token: 0x040025E6 RID: 9702
 	public int ID;
 
-	// Token: 0x04002DCF RID: 11727
+	// Token: 0x040025E7 RID: 9703
 	public TooltipItem tooltipItem;
 
-	// Token: 0x04002DD0 RID: 11728
+	// Token: 0x040025E8 RID: 9704
 	public Text title;
 
-	// Token: 0x04002DD1 RID: 11729
+	// Token: 0x040025E9 RID: 9705
 	public Text desc;
 
-	// Token: 0x04002DD2 RID: 11730
+	// Token: 0x040025EA RID: 9706
 	public Text seid;
 
-	// Token: 0x04002DD3 RID: 11731
+	// Token: 0x040025EB RID: 9707
 	public Text castText;
 
-	// Token: 0x04002DD4 RID: 11732
+	// Token: 0x040025EC RID: 9708
 	public Text qianzhiTemp;
 
-	// Token: 0x04002DD5 RID: 11733
+	// Token: 0x040025ED RID: 9709
 	public GameObject ContentParent;
 
-	// Token: 0x04002DD6 RID: 11734
+	// Token: 0x040025EE RID: 9710
 	public Image bgImage;
 
-	// Token: 0x04002DD7 RID: 11735
+	// Token: 0x040025EF RID: 9711
 	public UnityAction action;
 }

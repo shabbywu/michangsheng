@@ -2,10 +2,10 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-// Token: 0x02000451 RID: 1105
+// Token: 0x020002F4 RID: 756
 public class MyUIPolygon : MaskableGraphic
 {
-	// Token: 0x06001D93 RID: 7571 RVA: 0x00102828 File Offset: 0x00100A28
+	// Token: 0x06001A6D RID: 6765 RVA: 0x000BC5C0 File Offset: 0x000BA7C0
 	public void DrawPolygon(int _sides)
 	{
 		this.sides = _sides;
@@ -17,7 +17,7 @@ public class MyUIPolygon : MaskableGraphic
 		this.rotation = 0f;
 	}
 
-	// Token: 0x06001D94 RID: 7572 RVA: 0x000189CB File Offset: 0x00016BCB
+	// Token: 0x06001A6E RID: 6766 RVA: 0x000BC606 File Offset: 0x000BA806
 	public void DrawPolygon(int _sides, float[] _VerticesDistances)
 	{
 		this.sides = _sides;
@@ -25,7 +25,7 @@ public class MyUIPolygon : MaskableGraphic
 		this.rotation = 0f;
 	}
 
-	// Token: 0x06001D95 RID: 7573 RVA: 0x000189E6 File Offset: 0x00016BE6
+	// Token: 0x06001A6F RID: 6767 RVA: 0x000BC621 File Offset: 0x000BA821
 	public void DrawPolygon(int _sides, float[] _VerticesDistances, float _rotation)
 	{
 		this.sides = _sides;
@@ -33,7 +33,7 @@ public class MyUIPolygon : MaskableGraphic
 		this.rotation = _rotation;
 	}
 
-	// Token: 0x06001D96 RID: 7574 RVA: 0x00102870 File Offset: 0x00100A70
+	// Token: 0x06001A70 RID: 6768 RVA: 0x000BC638 File Offset: 0x000BA838
 	private void Update()
 	{
 		this.size = base.rectTransform.rect.width;
@@ -48,7 +48,7 @@ public class MyUIPolygon : MaskableGraphic
 		this.thickness = Mathf.Clamp(this.thickness, 0f, this.size / 2f);
 	}
 
-	// Token: 0x06001D97 RID: 7575 RVA: 0x00102918 File Offset: 0x00100B18
+	// Token: 0x06001A71 RID: 6769 RVA: 0x000BC6E0 File Offset: 0x000BA8E0
 	protected override void OnPopulateMesh(VertexHelper vh)
 	{
 		vh.Clear();
@@ -118,7 +118,7 @@ public class MyUIPolygon : MaskableGraphic
 		}
 	}
 
-	// Token: 0x06001D98 RID: 7576 RVA: 0x00102B58 File Offset: 0x00100D58
+	// Token: 0x06001A72 RID: 6770 RVA: 0x000BC920 File Offset: 0x000BAB20
 	private void SetVbo(Vector2[] vertices, Vector2[] uvs)
 	{
 		for (int i = 0; i < vertices.Length; i++)
@@ -131,34 +131,34 @@ public class MyUIPolygon : MaskableGraphic
 		}
 	}
 
-	// Token: 0x06001D99 RID: 7577 RVA: 0x000189FD File Offset: 0x00016BFD
+	// Token: 0x06001A73 RID: 6771 RVA: 0x000BC981 File Offset: 0x000BAB81
 	public void updateImage()
 	{
 		this.SetNativeSize();
 		this.SetVerticesDirty();
 	}
 
-	// Token: 0x0400194C RID: 6476
+	// Token: 0x0400153F RID: 5439
 	public bool fill = true;
 
-	// Token: 0x0400194D RID: 6477
+	// Token: 0x04001540 RID: 5440
 	public float thickness = 5f;
 
-	// Token: 0x0400194E RID: 6478
+	// Token: 0x04001541 RID: 5441
 	[Range(3f, 360f)]
 	public int sides = 3;
 
-	// Token: 0x0400194F RID: 6479
+	// Token: 0x04001542 RID: 5442
 	[Range(0f, 360f)]
 	public float rotation;
 
-	// Token: 0x04001950 RID: 6480
+	// Token: 0x04001543 RID: 5443
 	[Range(0f, 1f)]
 	public float[] VerticesDistances = new float[3];
 
-	// Token: 0x04001951 RID: 6481
+	// Token: 0x04001544 RID: 5444
 	private float size;
 
-	// Token: 0x04001952 RID: 6482
+	// Token: 0x04001545 RID: 5445
 	private UIVertex[] vbo = new UIVertex[4];
 }

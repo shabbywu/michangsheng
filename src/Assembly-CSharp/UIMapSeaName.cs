@@ -3,10 +3,10 @@ using JSONClass;
 using UnityEngine;
 using UnityEngine.UI;
 
-// Token: 0x020004B9 RID: 1209
+// Token: 0x02000345 RID: 837
 public class UIMapSeaName : MonoBehaviour
 {
-	// Token: 0x06001FF7 RID: 8183 RVA: 0x00111BD8 File Offset: 0x0010FDD8
+	// Token: 0x06001CA5 RID: 7333 RVA: 0x000CD1C4 File Offset: 0x000CB3C4
 	public void RefreshUI()
 	{
 		if (SeaHaiYuTanSuo.DataDict.ContainsKey(this.SeaID))
@@ -24,7 +24,7 @@ public class UIMapSeaName : MonoBehaviour
 		Debug.LogError(string.Format("UIMap海域名字出错，海域探索度表中没有ID为{0}的海域", this.SeaID));
 	}
 
-	// Token: 0x06001FF8 RID: 8184 RVA: 0x00111C5C File Offset: 0x0010FE5C
+	// Token: 0x06001CA6 RID: 7334 RVA: 0x000CD248 File Offset: 0x000CB448
 	public void SetTanSuoDuShow(bool show)
 	{
 		if (show)
@@ -42,21 +42,21 @@ public class UIMapSeaName : MonoBehaviour
 		}
 	}
 
-	// Token: 0x04001B64 RID: 7012
+	// Token: 0x04001723 RID: 5923
 	public int SeaID;
 
-	// Token: 0x04001B65 RID: 7013
+	// Token: 0x04001724 RID: 5924
 	public int BindHighlightID;
 
-	// Token: 0x04001B66 RID: 7014
+	// Token: 0x04001725 RID: 5925
 	public Text SeaNameText;
 
-	// Token: 0x04001B67 RID: 7015
+	// Token: 0x04001726 RID: 5926
 	public Text TanSuoDuText;
 
-	// Token: 0x04001B68 RID: 7016
+	// Token: 0x04001727 RID: 5927
 	public bool HasTanSuoDu;
 
-	// Token: 0x04001B69 RID: 7017
+	// Token: 0x04001728 RID: 5928
 	public int TanSuoDu;
 }

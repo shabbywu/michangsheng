@@ -6,11 +6,11 @@ using UnityEngine.SceneManagement;
 
 namespace Fungus
 {
-	// Token: 0x02001369 RID: 4969
+	// Token: 0x02000ECB RID: 3787
 	[Serializable]
 	public class SavePointData
 	{
-		// Token: 0x0600788A RID: 30858 RVA: 0x00051E46 File Offset: 0x00050046
+		// Token: 0x06006AEF RID: 27375 RVA: 0x00294A45 File Offset: 0x00292C45
 		protected static SavePointData Create(string _savePointKey, string _savePointDescription, string _sceneName)
 		{
 			return new SavePointData
@@ -21,9 +21,9 @@ namespace Fungus
 			};
 		}
 
-		// Token: 0x17000B50 RID: 2896
-		// (get) Token: 0x0600788B RID: 30859 RVA: 0x00051E62 File Offset: 0x00050062
-		// (set) Token: 0x0600788C RID: 30860 RVA: 0x00051E6A File Offset: 0x0005006A
+		// Token: 0x170008B3 RID: 2227
+		// (get) Token: 0x06006AF0 RID: 27376 RVA: 0x00294A61 File Offset: 0x00292C61
+		// (set) Token: 0x06006AF1 RID: 27377 RVA: 0x00294A69 File Offset: 0x00292C69
 		public string SavePointKey
 		{
 			get
@@ -36,9 +36,9 @@ namespace Fungus
 			}
 		}
 
-		// Token: 0x17000B51 RID: 2897
-		// (get) Token: 0x0600788D RID: 30861 RVA: 0x00051E73 File Offset: 0x00050073
-		// (set) Token: 0x0600788E RID: 30862 RVA: 0x00051E7B File Offset: 0x0005007B
+		// Token: 0x170008B4 RID: 2228
+		// (get) Token: 0x06006AF2 RID: 27378 RVA: 0x00294A72 File Offset: 0x00292C72
+		// (set) Token: 0x06006AF3 RID: 27379 RVA: 0x00294A7A File Offset: 0x00292C7A
 		public string SavePointDescription
 		{
 			get
@@ -51,9 +51,9 @@ namespace Fungus
 			}
 		}
 
-		// Token: 0x17000B52 RID: 2898
-		// (get) Token: 0x0600788F RID: 30863 RVA: 0x00051E84 File Offset: 0x00050084
-		// (set) Token: 0x06007890 RID: 30864 RVA: 0x00051E8C File Offset: 0x0005008C
+		// Token: 0x170008B5 RID: 2229
+		// (get) Token: 0x06006AF4 RID: 27380 RVA: 0x00294A83 File Offset: 0x00292C83
+		// (set) Token: 0x06006AF5 RID: 27381 RVA: 0x00294A8B File Offset: 0x00292C8B
 		public string SceneName
 		{
 			get
@@ -66,8 +66,8 @@ namespace Fungus
 			}
 		}
 
-		// Token: 0x17000B53 RID: 2899
-		// (get) Token: 0x06007891 RID: 30865 RVA: 0x00051E95 File Offset: 0x00050095
+		// Token: 0x170008B6 RID: 2230
+		// (get) Token: 0x06006AF6 RID: 27382 RVA: 0x00294A94 File Offset: 0x00292C94
 		public List<SaveDataItem> SaveDataItems
 		{
 			get
@@ -76,7 +76,7 @@ namespace Fungus
 			}
 		}
 
-		// Token: 0x06007892 RID: 30866 RVA: 0x002B6D10 File Offset: 0x002B4F10
+		// Token: 0x06006AF7 RID: 27383 RVA: 0x00294A9C File Offset: 0x00292C9C
 		public static string Encode(string _savePointKey, string _savePointDescription, string _sceneName)
 		{
 			SavePointData savePointData = SavePointData.Create(_savePointKey, _savePointDescription, _sceneName);
@@ -88,7 +88,7 @@ namespace Fungus
 			return JsonUtility.ToJson(savePointData, true);
 		}
 
-		// Token: 0x06007893 RID: 30867 RVA: 0x002B6D48 File Offset: 0x002B4F48
+		// Token: 0x06006AF8 RID: 27384 RVA: 0x00294AD4 File Offset: 0x00292CD4
 		public static void Decode(string saveDataJSON)
 		{
 			SavePointData savePointData = JsonUtility.FromJson<SavePointData>(saveDataJSON);
@@ -111,19 +111,19 @@ namespace Fungus
 			SceneManager.LoadScene(savePointData.SceneName);
 		}
 
-		// Token: 0x04006895 RID: 26773
+		// Token: 0x04005A36 RID: 23094
 		[SerializeField]
 		protected string savePointKey;
 
-		// Token: 0x04006896 RID: 26774
+		// Token: 0x04005A37 RID: 23095
 		[SerializeField]
 		protected string savePointDescription;
 
-		// Token: 0x04006897 RID: 26775
+		// Token: 0x04005A38 RID: 23096
 		[SerializeField]
 		protected string sceneName;
 
-		// Token: 0x04006898 RID: 26776
+		// Token: 0x04005A39 RID: 23097
 		[SerializeField]
 		protected List<SaveDataItem> saveDataItems = new List<SaveDataItem>();
 	}

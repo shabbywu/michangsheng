@@ -5,16 +5,16 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
 
-// Token: 0x02000235 RID: 565
+// Token: 0x0200015D RID: 349
 public class MenuBox : ModalBox
 {
-	// Token: 0x06001163 RID: 4451 RVA: 0x00010DCC File Offset: 0x0000EFCC
+	// Token: 0x06000F34 RID: 3892 RVA: 0x0005BB83 File Offset: 0x00059D83
 	public static bool hasMenu()
 	{
 		return GameObject.Find("Menu Box(Clone)") != null;
 	}
 
-	// Token: 0x06001164 RID: 4452 RVA: 0x00010DDE File Offset: 0x0000EFDE
+	// Token: 0x06000F35 RID: 3893 RVA: 0x0005BB95 File Offset: 0x00059D95
 	public static MenuBox Show(IEnumerable<string> options, IEnumerable<UnityAction> actions, string title = "")
 	{
 		if (options.Count<string>() != actions.Count<UnityAction>())
@@ -27,7 +27,7 @@ public class MenuBox : ModalBox
 		return component;
 	}
 
-	// Token: 0x06001165 RID: 4453 RVA: 0x000ABAD4 File Offset: 0x000A9CD4
+	// Token: 0x06000F36 RID: 3894 RVA: 0x0005BBD4 File Offset: 0x00059DD4
 	private void SetUpButtons(IEnumerable<string> options, IEnumerable<UnityAction> actions)
 	{
 		this.bgButton.onClick.RemoveAllListeners();
@@ -54,7 +54,7 @@ public class MenuBox : ModalBox
 		Object.Destroy(this.Button.gameObject);
 	}
 
-	// Token: 0x06001166 RID: 4454 RVA: 0x000ABB9C File Offset: 0x000A9D9C
+	// Token: 0x06000F37 RID: 3895 RVA: 0x0005BC9C File Offset: 0x00059E9C
 	private GameObject CreateButton(GameObject buttonToClone, string label, UnityAction action)
 	{
 		GameObject gameObject = Object.Instantiate<GameObject>(buttonToClone);
@@ -68,10 +68,10 @@ public class MenuBox : ModalBox
 		return gameObject;
 	}
 
-	// Token: 0x04000E0F RID: 3599
+	// Token: 0x04000B69 RID: 2921
 	[Tooltip("Set this to the name of the prefab that should be loaded when a menu box is shown.")]
 	public static string PrefabResourceName = "Menu Box";
 
-	// Token: 0x04000E10 RID: 3600
+	// Token: 0x04000B6A RID: 2922
 	public Button bgButton;
 }

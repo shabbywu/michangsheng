@@ -4,10 +4,10 @@ using UnityEngine;
 
 namespace Fungus
 {
-	// Token: 0x020012ED RID: 4845
+	// Token: 0x02000E80 RID: 3712
 	public class SaveData : MonoBehaviour
 	{
-		// Token: 0x060075F8 RID: 30200 RVA: 0x002B1FD0 File Offset: 0x002B01D0
+		// Token: 0x06006909 RID: 26889 RVA: 0x0028FA28 File Offset: 0x0028DC28
 		public virtual void Encode(List<SaveDataItem> saveDataItems)
 		{
 			for (int i = 0; i < this.flowcharts.Count; i++)
@@ -20,7 +20,7 @@ namespace Fungus
 			}
 		}
 
-		// Token: 0x060075F9 RID: 30201 RVA: 0x002B2040 File Offset: 0x002B0240
+		// Token: 0x0600690A RID: 26890 RVA: 0x0028FA98 File Offset: 0x0028DC98
 		public virtual void Decode(List<SaveDataItem> saveDataItems)
 		{
 			for (int i = 0; i < saveDataItems.Count; i++)
@@ -46,13 +46,13 @@ namespace Fungus
 			}
 		}
 
-		// Token: 0x040066EC RID: 26348
+		// Token: 0x0400591E RID: 22814
 		protected const string FlowchartDataKey = "FlowchartData";
 
-		// Token: 0x040066ED RID: 26349
+		// Token: 0x0400591F RID: 22815
 		protected const string NarrativeLogKey = "NarrativeLogData";
 
-		// Token: 0x040066EE RID: 26350
+		// Token: 0x04005920 RID: 22816
 		[Tooltip("A list of Flowchart objects whose variables will be encoded in the save data. Boolean, Integer, Float and String variables are supported.")]
 		[SerializeField]
 		protected List<Flowchart> flowcharts = new List<Flowchart>();

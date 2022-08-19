@@ -3,18 +3,18 @@ using System.Collections.Generic;
 
 namespace MoonSharp.Interpreter.CoreLib
 {
-	// Token: 0x02001192 RID: 4498
+	// Token: 0x02000D78 RID: 3448
 	[MoonSharpModule]
 	public class ErrorHandlingModule
 	{
-		// Token: 0x06006DBF RID: 28095 RVA: 0x0004ABBC File Offset: 0x00048DBC
+		// Token: 0x060061B8 RID: 25016 RVA: 0x00274BF4 File Offset: 0x00272DF4
 		[MoonSharpModuleMethod]
 		public static DynValue pcall(ScriptExecutionContext executionContext, CallbackArguments args)
 		{
 			return ErrorHandlingModule.SetErrorHandlerStrategy("pcall", executionContext, args, null);
 		}
 
-		// Token: 0x06006DC0 RID: 28096 RVA: 0x0029B3A8 File Offset: 0x002995A8
+		// Token: 0x060061B9 RID: 25017 RVA: 0x00274C04 File Offset: 0x00272E04
 		private static DynValue SetErrorHandlerStrategy(string funcName, ScriptExecutionContext executionContext, CallbackArguments args, DynValue handlerBeforeUnwind)
 		{
 			DynValue function = args[0];
@@ -90,7 +90,7 @@ namespace MoonSharp.Interpreter.CoreLib
 			});
 		}
 
-		// Token: 0x06006DC1 RID: 28097 RVA: 0x0029B5C4 File Offset: 0x002997C4
+		// Token: 0x060061BA RID: 25018 RVA: 0x00274E20 File Offset: 0x00273020
 		private static DynValue MakeReturnTuple(bool retstatus, CallbackArguments args)
 		{
 			DynValue[] array = new DynValue[args.Count + 1];
@@ -102,19 +102,19 @@ namespace MoonSharp.Interpreter.CoreLib
 			return DynValue.NewTuple(array);
 		}
 
-		// Token: 0x06006DC2 RID: 28098 RVA: 0x0004ABCB File Offset: 0x00048DCB
+		// Token: 0x060061BB RID: 25019 RVA: 0x00274E67 File Offset: 0x00273067
 		public static DynValue pcall_continuation(ScriptExecutionContext executionContext, CallbackArguments args)
 		{
 			return ErrorHandlingModule.MakeReturnTuple(true, args);
 		}
 
-		// Token: 0x06006DC3 RID: 28099 RVA: 0x0004ABD4 File Offset: 0x00048DD4
+		// Token: 0x060061BC RID: 25020 RVA: 0x00274E70 File Offset: 0x00273070
 		public static DynValue pcall_onerror(ScriptExecutionContext executionContext, CallbackArguments args)
 		{
 			return ErrorHandlingModule.MakeReturnTuple(false, args);
 		}
 
-		// Token: 0x06006DC4 RID: 28100 RVA: 0x0029B60C File Offset: 0x0029980C
+		// Token: 0x060061BD RID: 25021 RVA: 0x00274E7C File Offset: 0x0027307C
 		[MoonSharpModuleMethod]
 		public static DynValue xpcall(ScriptExecutionContext executionContext, CallbackArguments args)
 		{

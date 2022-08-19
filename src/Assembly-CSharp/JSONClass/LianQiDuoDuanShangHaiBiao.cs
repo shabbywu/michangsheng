@@ -3,10 +3,10 @@ using System.Collections.Generic;
 
 namespace JSONClass
 {
-	// Token: 0x02000C03 RID: 3075
+	// Token: 0x02000875 RID: 2165
 	public class LianQiDuoDuanShangHaiBiao : IJSONClass
 	{
-		// Token: 0x06004B75 RID: 19317 RVA: 0x001FDBE4 File Offset: 0x001FBDE4
+		// Token: 0x06003FE7 RID: 16359 RVA: 0x001B426C File Offset: 0x001B246C
 		public static void InitDataDict()
 		{
 			foreach (JSONObject jsonobject in jsonData.instance.LianQiDuoDuanShangHaiBiao.list)
@@ -44,39 +44,39 @@ namespace JSONClass
 			}
 		}
 
-		// Token: 0x06004B76 RID: 19318 RVA: 0x000042DD File Offset: 0x000024DD
+		// Token: 0x06003FE8 RID: 16360 RVA: 0x00004095 File Offset: 0x00002295
 		private static void OnInitFinish()
 		{
 		}
 
-		// Token: 0x040047F6 RID: 18422
+		// Token: 0x04003C9D RID: 15517
 		public static Dictionary<int, LianQiDuoDuanShangHaiBiao> DataDict = new Dictionary<int, LianQiDuoDuanShangHaiBiao>();
 
-		// Token: 0x040047F7 RID: 18423
+		// Token: 0x04003C9E RID: 15518
 		public static List<LianQiDuoDuanShangHaiBiao> DataList = new List<LianQiDuoDuanShangHaiBiao>();
 
-		// Token: 0x040047F8 RID: 18424
+		// Token: 0x04003C9F RID: 15519
 		public static Action OnInitFinishAction = new Action(LianQiDuoDuanShangHaiBiao.OnInitFinish);
 
-		// Token: 0x040047F9 RID: 18425
+		// Token: 0x04003CA0 RID: 15520
 		public int id;
 
-		// Token: 0x040047FA RID: 18426
+		// Token: 0x04003CA1 RID: 15521
 		public int seid;
 
-		// Token: 0x040047FB RID: 18427
+		// Token: 0x04003CA2 RID: 15522
 		public int value1;
 
-		// Token: 0x040047FC RID: 18428
+		// Token: 0x04003CA3 RID: 15523
 		public int value2;
 
-		// Token: 0x040047FD RID: 18429
+		// Token: 0x04003CA4 RID: 15524
 		public int value3;
 
-		// Token: 0x040047FE RID: 18430
+		// Token: 0x04003CA5 RID: 15525
 		public int cast;
 
-		// Token: 0x040047FF RID: 18431
+		// Token: 0x04003CA6 RID: 15526
 		public string desc;
 	}
 }

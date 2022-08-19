@@ -2,12 +2,12 @@
 using Fungus;
 using UnityEngine;
 
-// Token: 0x020003E4 RID: 996
+// Token: 0x020002A9 RID: 681
 [CommandInfo("渡劫", "保存神游前场景名称", "保存神游前场景名称", 0)]
 [AddComponentMenu("")]
 public class CmdSaveSceneNameBeforeShenYou : Command
 {
-	// Token: 0x06001B20 RID: 6944 RVA: 0x000EFBD8 File Offset: 0x000EDDD8
+	// Token: 0x06001827 RID: 6183 RVA: 0x000A8ADC File Offset: 0x000A6CDC
 	public override void OnEnter()
 	{
 		string text = SceneEx.NowSceneName;

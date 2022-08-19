@@ -2,10 +2,10 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-// Token: 0x02000637 RID: 1591
+// Token: 0x02000479 RID: 1145
 public class helptext : MonoBehaviour
 {
-	// Token: 0x0600277E RID: 10110 RVA: 0x0001F450 File Offset: 0x0001D650
+	// Token: 0x060023C1 RID: 9153 RVA: 0x000F4B21 File Offset: 0x000F2D21
 	private void Awake()
 	{
 		helptext.instence = this;
@@ -13,12 +13,12 @@ public class helptext : MonoBehaviour
 		this.heloanimation = base.gameObject.GetComponent<Animation>();
 	}
 
-	// Token: 0x0600277F RID: 10111 RVA: 0x000042DD File Offset: 0x000024DD
+	// Token: 0x060023C2 RID: 9154 RVA: 0x00004095 File Offset: 0x00002295
 	private void Start()
 	{
 	}
 
-	// Token: 0x06002780 RID: 10112 RVA: 0x00134A40 File Offset: 0x00132C40
+	// Token: 0x060023C3 RID: 9155 RVA: 0x000F4B58 File Offset: 0x000F2D58
 	public void open()
 	{
 		this.heloanimation["helptxt"].speed = -1f;
@@ -26,7 +26,7 @@ public class helptext : MonoBehaviour
 		this.heloanimation.CrossFade("helptxt");
 	}
 
-	// Token: 0x06002781 RID: 10113 RVA: 0x00134AA8 File Offset: 0x00132CA8
+	// Token: 0x060023C4 RID: 9156 RVA: 0x000F4BC0 File Offset: 0x000F2DC0
 	public void close()
 	{
 		this.heloanimation["helptxt"].speed = 1f;
@@ -34,19 +34,19 @@ public class helptext : MonoBehaviour
 		this.heloanimation.CrossFade("helptxt");
 	}
 
-	// Token: 0x06002782 RID: 10114 RVA: 0x0001F484 File Offset: 0x0001D684
+	// Token: 0x060023C5 RID: 9157 RVA: 0x000F4C11 File Offset: 0x000F2E11
 	public void showhelp(string text)
 	{
 		this.helptextinfo.text = text;
 		this.open();
 	}
 
-	// Token: 0x04002171 RID: 8561
+	// Token: 0x04001C96 RID: 7318
 	public static helptext instence;
 
-	// Token: 0x04002172 RID: 8562
+	// Token: 0x04001C97 RID: 7319
 	public Text helptextinfo;
 
-	// Token: 0x04002173 RID: 8563
+	// Token: 0x04001C98 RID: 7320
 	public Animation heloanimation;
 }

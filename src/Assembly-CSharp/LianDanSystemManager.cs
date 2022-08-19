@@ -6,10 +6,10 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
 
-// Token: 0x0200043E RID: 1086
+// Token: 0x020002E5 RID: 741
 public class LianDanSystemManager : MonoBehaviour
 {
-	// Token: 0x06001CE9 RID: 7401 RVA: 0x00018200 File Offset: 0x00016400
+	// Token: 0x060019C7 RID: 6599 RVA: 0x000B8836 File Offset: 0x000B6A36
 	private void Awake()
 	{
 		LianDanSystemManager.inst = this;
@@ -19,7 +19,7 @@ public class LianDanSystemManager : MonoBehaviour
 		this.DanLuSprite = ResManager.inst.LoadSprites("NewUI/LianDan/DanLu/DanLu");
 	}
 
-	// Token: 0x06001CEA RID: 7402 RVA: 0x000FF250 File Offset: 0x000FD450
+	// Token: 0x060019C8 RID: 6600 RVA: 0x000B8868 File Offset: 0x000B6A68
 	private void init()
 	{
 		this.LianDanCanvas.worldCamera = UI_Manager.inst.RootCamera;
@@ -30,7 +30,7 @@ public class LianDanSystemManager : MonoBehaviour
 		this.closeButton.onClick.AddListener(new UnityAction(this.close));
 	}
 
-	// Token: 0x06001CEB RID: 7403 RVA: 0x000FF2E4 File Offset: 0x000FD4E4
+	// Token: 0x060019C9 RID: 6601 RVA: 0x000B88FC File Offset: 0x000B6AFC
 	public void FixPostion()
 	{
 		this.uIWidget.enabled = true;
@@ -44,13 +44,13 @@ public class LianDanSystemManager : MonoBehaviour
 		base.Invoke("lateAction", 1f);
 	}
 
-	// Token: 0x06001CEC RID: 7404 RVA: 0x0001822F File Offset: 0x0001642F
+	// Token: 0x060019CA RID: 6602 RVA: 0x000B89AB File Offset: 0x000B6BAB
 	public void lateAction()
 	{
 		this.uIWidget.updateAnchors = UIRect.AnchorUpdate.OnEnable;
 	}
 
-	// Token: 0x06001CED RID: 7405 RVA: 0x0001823D File Offset: 0x0001643D
+	// Token: 0x060019CB RID: 6603 RVA: 0x000B89B9 File Offset: 0x000B6BB9
 	public void close()
 	{
 		if (!this.BgMask.activeSelf)
@@ -60,7 +60,7 @@ public class LianDanSystemManager : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001CEE RID: 7406 RVA: 0x000FF394 File Offset: 0x000FD594
+	// Token: 0x060019CC RID: 6604 RVA: 0x000B89DC File Offset: 0x000B6BDC
 	public void lianDanFinshCallBack()
 	{
 		this.DanFangPageManager.updateState();
@@ -94,7 +94,7 @@ public class LianDanSystemManager : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001CEF RID: 7407 RVA: 0x000FF508 File Offset: 0x000FD708
+	// Token: 0x060019CD RID: 6605 RVA: 0x000B8B50 File Offset: 0x000B6D50
 	public void putLianDanCaiLiaoCallBack()
 	{
 		item item = this.lianDanPageManager.putLianDanCellList[5].Item;
@@ -148,7 +148,7 @@ public class LianDanSystemManager : MonoBehaviour
 		this.startLianDanWordImage.sprite = this.lianDanBtnWordSprite[3];
 	}
 
-	// Token: 0x06001CF0 RID: 7408 RVA: 0x000FF6F8 File Offset: 0x000FD8F8
+	// Token: 0x060019CE RID: 6606 RVA: 0x000B8D40 File Offset: 0x000B6F40
 	public void putDanLuCallBack()
 	{
 		if (this.DanFangPageManager.curSelectDanFangBg != null)
@@ -163,13 +163,13 @@ public class LianDanSystemManager : MonoBehaviour
 		this.lianDanPageManager.updateDanLu();
 	}
 
-	// Token: 0x06001CF1 RID: 7409 RVA: 0x0001825E File Offset: 0x0001645E
+	// Token: 0x060019CF RID: 6607 RVA: 0x000B8DC3 File Offset: 0x000B6FC3
 	private void OnDestroy()
 	{
 		PanelMamager.inst.closePanel(PanelMamager.PanelType.炼丹, 1);
 	}
 
-	// Token: 0x06001CF2 RID: 7410 RVA: 0x000FF77C File Offset: 0x000FD97C
+	// Token: 0x060019D0 RID: 6608 RVA: 0x000B8DD4 File Offset: 0x000B6FD4
 	private void initInventory()
 	{
 		this.inventory.inventory = new List<item>();
@@ -179,94 +179,94 @@ public class LianDanSystemManager : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001CF3 RID: 7411 RVA: 0x0001826C File Offset: 0x0001646C
+	// Token: 0x060019D1 RID: 6609 RVA: 0x000B8E1C File Offset: 0x000B701C
 	public void openMask()
 	{
 		this.BgMask.SetActive(true);
 	}
 
-	// Token: 0x06001CF4 RID: 7412 RVA: 0x0001827A File Offset: 0x0001647A
+	// Token: 0x060019D2 RID: 6610 RVA: 0x000B8E2A File Offset: 0x000B702A
 	public void closeMask()
 	{
 		this.BgMask.SetActive(false);
 	}
 
-	// Token: 0x040018DC RID: 6364
+	// Token: 0x040014DF RID: 5343
 	[SerializeField]
 	private Canvas LianDanCanvas;
 
-	// Token: 0x040018DD RID: 6365
+	// Token: 0x040014E0 RID: 5344
 	public DanFangPageManager DanFangPageManager;
 
-	// Token: 0x040018DE RID: 6366
+	// Token: 0x040014E1 RID: 5345
 	public SelectLianDanCaiLiaoPage selectLianDanCaiLiaoPage;
 
-	// Token: 0x040018DF RID: 6367
+	// Token: 0x040014E2 RID: 5346
 	public PutDanLuManager putDanLuManager;
 
-	// Token: 0x040018E0 RID: 6368
+	// Token: 0x040014E3 RID: 5347
 	public LianDanPageManager lianDanPageManager;
 
-	// Token: 0x040018E1 RID: 6369
+	// Token: 0x040014E4 RID: 5348
 	public LianDanResultManager lianDanResultManager;
 
-	// Token: 0x040018E2 RID: 6370
+	// Token: 0x040014E5 RID: 5349
 	public static LianDanSystemManager inst;
 
-	// Token: 0x040018E3 RID: 6371
+	// Token: 0x040014E6 RID: 5350
 	[SerializeField]
 	private Button closeButton;
 
-	// Token: 0x040018E4 RID: 6372
+	// Token: 0x040014E7 RID: 5351
 	[SerializeField]
 	private GameObject BgMask;
 
-	// Token: 0x040018E5 RID: 6373
+	// Token: 0x040014E8 RID: 5352
 	[SerializeField]
 	private UIWidget uIWidget;
 
-	// Token: 0x040018E6 RID: 6374
+	// Token: 0x040014E9 RID: 5353
 	public LianDanInventory inventory;
 
-	// Token: 0x040018E7 RID: 6375
+	// Token: 0x040014EA RID: 5354
 	public Transform sumSelectTransform;
 
-	// Token: 0x040018E8 RID: 6376
+	// Token: 0x040014EB RID: 5355
 	public Sprite LockSprite;
 
-	// Token: 0x040018E9 RID: 6377
+	// Token: 0x040014EC RID: 5356
 	public Sprite NoLockSprite;
 
-	// Token: 0x040018EA RID: 6378
+	// Token: 0x040014ED RID: 5357
 	public List<Sprite> lianDanBtnWordSprite;
 
-	// Token: 0x040018EB RID: 6379
+	// Token: 0x040014EE RID: 5358
 	public Button startLianDanBtn;
 
-	// Token: 0x040018EC RID: 6380
+	// Token: 0x040014EF RID: 5359
 	public Image startLianDanImage;
 
-	// Token: 0x040018ED RID: 6381
+	// Token: 0x040014F0 RID: 5360
 	public Image startLianDanWordImage;
 
-	// Token: 0x040018EE RID: 6382
+	// Token: 0x040014F1 RID: 5361
 	[HideInInspector]
 	public Object[] DanLuSprite;
 
-	// Token: 0x0200043F RID: 1087
+	// Token: 0x0200132F RID: 4911
 	public enum PutCellType
 	{
-		// Token: 0x040018F0 RID: 6384
+		// Token: 0x040067C0 RID: 26560
 		药引 = 25,
-		// Token: 0x040018F1 RID: 6385
+		// Token: 0x040067C1 RID: 26561
 		主药1,
-		// Token: 0x040018F2 RID: 6386
+		// Token: 0x040067C2 RID: 26562
 		主药2,
-		// Token: 0x040018F3 RID: 6387
+		// Token: 0x040067C3 RID: 26563
 		辅药1,
-		// Token: 0x040018F4 RID: 6388
+		// Token: 0x040067C4 RID: 26564
 		辅药2,
-		// Token: 0x040018F5 RID: 6389
+		// Token: 0x040067C5 RID: 26565
 		丹炉
 	}
 }

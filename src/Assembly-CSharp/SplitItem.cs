@@ -2,10 +2,10 @@
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-// Token: 0x0200021E RID: 542
+// Token: 0x02000149 RID: 329
 public class SplitItem : MonoBehaviour, IPointerDownHandler, IEventSystemHandler
 {
-	// Token: 0x060010DE RID: 4318 RVA: 0x00010812 File Offset: 0x0000EA12
+	// Token: 0x06000EBE RID: 3774 RVA: 0x00059ECD File Offset: 0x000580CD
 	private void Update()
 	{
 		if (Input.GetKeyDown(SplitItem.inputManagerDatabase.SplitItem))
@@ -18,13 +18,13 @@ public class SplitItem : MonoBehaviour, IPointerDownHandler, IEventSystemHandler
 		}
 	}
 
-	// Token: 0x060010DF RID: 4319 RVA: 0x00010844 File Offset: 0x0000EA44
+	// Token: 0x06000EBF RID: 3775 RVA: 0x00059EFF File Offset: 0x000580FF
 	private void Start()
 	{
 		SplitItem.inputManagerDatabase = (InputManager)Resources.Load("InputManager");
 	}
 
-	// Token: 0x060010E0 RID: 4320 RVA: 0x000AA1C4 File Offset: 0x000A83C4
+	// Token: 0x06000EC0 RID: 3776 RVA: 0x00059F18 File Offset: 0x00058118
 	public void OnPointerDown(PointerEventData data)
 	{
 		this.inv = base.transform.parent.parent.parent.GetComponent<Inventory>();
@@ -49,12 +49,12 @@ public class SplitItem : MonoBehaviour, IPointerDownHandler, IEventSystemHandler
 		}
 	}
 
-	// Token: 0x04000D8A RID: 3466
+	// Token: 0x04000AEF RID: 2799
 	private bool pressingButtonToSplit;
 
-	// Token: 0x04000D8B RID: 3467
+	// Token: 0x04000AF0 RID: 2800
 	public Inventory inv;
 
-	// Token: 0x04000D8C RID: 3468
+	// Token: 0x04000AF1 RID: 2801
 	private static InputManager inputManagerDatabase;
 }

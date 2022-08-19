@@ -1,20 +1,20 @@
 ﻿using System;
 
-// Token: 0x02000734 RID: 1844
+// Token: 0x020004CE RID: 1230
 public class OrderController
 {
 	// Token: 0x14000036 RID: 54
-	// (add) Token: 0x06002EBB RID: 11963 RVA: 0x001746E4 File Offset: 0x001728E4
-	// (remove) Token: 0x06002EBC RID: 11964 RVA: 0x0017471C File Offset: 0x0017291C
+	// (add) Token: 0x060027AD RID: 10157 RVA: 0x00128CF0 File Offset: 0x00126EF0
+	// (remove) Token: 0x060027AE RID: 10158 RVA: 0x00128D28 File Offset: 0x00126F28
 	public event CardEvent smartCard;
 
 	// Token: 0x14000037 RID: 55
-	// (add) Token: 0x06002EBD RID: 11965 RVA: 0x00174754 File Offset: 0x00172954
-	// (remove) Token: 0x06002EBE RID: 11966 RVA: 0x0017478C File Offset: 0x0017298C
+	// (add) Token: 0x060027AF RID: 10159 RVA: 0x00128D60 File Offset: 0x00126F60
+	// (remove) Token: 0x060027B0 RID: 10160 RVA: 0x00128D98 File Offset: 0x00126F98
 	public event CardEvent activeButton;
 
-	// Token: 0x170003F9 RID: 1017
-	// (get) Token: 0x06002EBF RID: 11967 RVA: 0x00022AEA File Offset: 0x00020CEA
+	// Token: 0x170002B0 RID: 688
+	// (get) Token: 0x060027B1 RID: 10161 RVA: 0x00128DCD File Offset: 0x00126FCD
 	public static OrderController Instance
 	{
 		get
@@ -27,8 +27,8 @@ public class OrderController
 		}
 	}
 
-	// Token: 0x170003FA RID: 1018
-	// (get) Token: 0x06002EC0 RID: 11968 RVA: 0x00022B02 File Offset: 0x00020D02
+	// Token: 0x170002B1 RID: 689
+	// (get) Token: 0x060027B2 RID: 10162 RVA: 0x00128DE5 File Offset: 0x00126FE5
 	public CharacterType Type
 	{
 		get
@@ -37,9 +37,9 @@ public class OrderController
 		}
 	}
 
-	// Token: 0x170003FB RID: 1019
-	// (get) Token: 0x06002EC2 RID: 11970 RVA: 0x00022B13 File Offset: 0x00020D13
-	// (set) Token: 0x06002EC1 RID: 11969 RVA: 0x00022B0A File Offset: 0x00020D0A
+	// Token: 0x170002B2 RID: 690
+	// (get) Token: 0x060027B4 RID: 10164 RVA: 0x00128DF6 File Offset: 0x00126FF6
+	// (set) Token: 0x060027B3 RID: 10163 RVA: 0x00128DED File Offset: 0x00126FED
 	public CharacterType Biggest
 	{
 		get
@@ -52,13 +52,13 @@ public class OrderController
 		}
 	}
 
-	// Token: 0x06002EC3 RID: 11971 RVA: 0x00022B1B File Offset: 0x00020D1B
+	// Token: 0x060027B5 RID: 10165 RVA: 0x00128DFE File Offset: 0x00126FFE
 	private OrderController()
 	{
 		this.currentAuthority = CharacterType.Desk;
 	}
 
-	// Token: 0x06002EC4 RID: 11972 RVA: 0x00022B2A File Offset: 0x00020D2A
+	// Token: 0x060027B6 RID: 10166 RVA: 0x00128E0D File Offset: 0x0012700D
 	public void Init(CharacterType type)
 	{
 		this.currentAuthority = type;
@@ -71,7 +71,7 @@ public class OrderController
 		this.smartCard(true);
 	}
 
-	// Token: 0x06002EC5 RID: 11973 RVA: 0x001747C4 File Offset: 0x001729C4
+	// Token: 0x060027B7 RID: 10167 RVA: 0x00128E40 File Offset: 0x00127040
 	public void Turn()
 	{
 		this.currentAuthority++;
@@ -90,24 +90,24 @@ public class OrderController
 		}
 	}
 
-	// Token: 0x06002EC6 RID: 11974 RVA: 0x00022B5C File Offset: 0x00020D5C
+	// Token: 0x060027B8 RID: 10168 RVA: 0x00128EBC File Offset: 0x001270BC
 	public void ResetButton()
 	{
 		this.activeButton = null;
 	}
 
-	// Token: 0x06002EC7 RID: 11975 RVA: 0x00022B65 File Offset: 0x00020D65
+	// Token: 0x060027B9 RID: 10169 RVA: 0x00128EC5 File Offset: 0x001270C5
 	public void ResetSmartCard()
 	{
 		this.smartCard = null;
 	}
 
-	// Token: 0x040029D6 RID: 10710
+	// Token: 0x04002288 RID: 8840
 	private CharacterType biggest;
 
-	// Token: 0x040029D7 RID: 10711
+	// Token: 0x04002289 RID: 8841
 	private CharacterType currentAuthority;
 
-	// Token: 0x040029D8 RID: 10712
+	// Token: 0x0400228A RID: 8842
 	private static OrderController instance;
 }

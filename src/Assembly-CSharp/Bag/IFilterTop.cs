@@ -2,16 +2,16 @@
 
 namespace Bag
 {
-	// Token: 0x02000D20 RID: 3360
+	// Token: 0x0200099B RID: 2459
 	public interface IFilterTop
 	{
-		// Token: 0x06004FEF RID: 20463
+		// Token: 0x0600448F RID: 17551
 		void Init(object data, FilterType type, string title);
 
-		// Token: 0x06004FF0 RID: 20464
+		// Token: 0x06004490 RID: 17552
 		void ClickEvent();
 
-		// Token: 0x06004FF1 RID: 20465
+		// Token: 0x06004491 RID: 17553
 		void CreateChild();
 	}
 }

@@ -3,31 +3,31 @@ using System.Runtime.Serialization;
 
 namespace ICSharpCode.SharpZipLib
 {
-	// Token: 0x020007B5 RID: 1973
+	// Token: 0x02000521 RID: 1313
 	[Serializable]
 	public class StreamDecodingException : SharpZipBaseException
 	{
-		// Token: 0x06003218 RID: 12824 RVA: 0x00024881 File Offset: 0x00022A81
+		// Token: 0x06002A05 RID: 10757 RVA: 0x001402C6 File Offset: 0x0013E4C6
 		public StreamDecodingException() : base("Input stream could not be decoded")
 		{
 		}
 
-		// Token: 0x06003219 RID: 12825 RVA: 0x0002488E File Offset: 0x00022A8E
+		// Token: 0x06002A06 RID: 10758 RVA: 0x001402D3 File Offset: 0x0013E4D3
 		public StreamDecodingException(string message) : base(message)
 		{
 		}
 
-		// Token: 0x0600321A RID: 12826 RVA: 0x00024897 File Offset: 0x00022A97
+		// Token: 0x06002A07 RID: 10759 RVA: 0x001402DC File Offset: 0x0013E4DC
 		public StreamDecodingException(string message, Exception innerException) : base(message, innerException)
 		{
 		}
 
-		// Token: 0x0600321B RID: 12827 RVA: 0x000248A1 File Offset: 0x00022AA1
+		// Token: 0x06002A08 RID: 10760 RVA: 0x001402E6 File Offset: 0x0013E4E6
 		protected StreamDecodingException(SerializationInfo info, StreamingContext context) : base(info, context)
 		{
 		}
 
-		// Token: 0x04002E39 RID: 11833
+		// Token: 0x04002649 RID: 9801
 		private const string GenericMessage = "Input stream could not be decoded";
 	}
 }

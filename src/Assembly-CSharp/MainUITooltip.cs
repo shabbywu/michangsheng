@@ -2,10 +2,10 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-// Token: 0x0200049E RID: 1182
+// Token: 0x02000330 RID: 816
 public class MainUITooltip : MonoBehaviour
 {
-	// Token: 0x06001F77 RID: 8055 RVA: 0x0010EB4C File Offset: 0x0010CD4C
+	// Token: 0x06001C25 RID: 7205 RVA: 0x000C97C8 File Offset: 0x000C79C8
 	public void Show(string content, Vector3 vector3)
 	{
 		base.gameObject.SetActive(true);
@@ -18,25 +18,25 @@ public class MainUITooltip : MonoBehaviour
 		base.transform.localPosition = new Vector3(base.transform.localPosition.x - this.rectTransform.rect.width / 2f, base.transform.localPosition.y, base.transform.localPosition.z);
 	}
 
-	// Token: 0x06001F78 RID: 8056 RVA: 0x00017C2D File Offset: 0x00015E2D
+	// Token: 0x06001C26 RID: 7206 RVA: 0x000B5E62 File Offset: 0x000B4062
 	public void Hide()
 	{
 		base.gameObject.SetActive(false);
 	}
 
-	// Token: 0x04001AE6 RID: 6886
+	// Token: 0x040016B0 RID: 5808
 	[SerializeField]
 	private Text desc;
 
-	// Token: 0x04001AE7 RID: 6887
+	// Token: 0x040016B1 RID: 5809
 	[SerializeField]
 	private RectTransform rectTransform;
 
-	// Token: 0x04001AE8 RID: 6888
+	// Token: 0x040016B2 RID: 5810
 	[SerializeField]
 	private ContentSizeFitter childSizeFitter;
 
-	// Token: 0x04001AE9 RID: 6889
+	// Token: 0x040016B3 RID: 5811
 	[SerializeField]
 	private ContentSizeFitter sizeFitter;
 }

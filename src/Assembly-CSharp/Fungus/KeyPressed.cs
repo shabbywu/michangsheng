@@ -3,12 +3,12 @@ using UnityEngine;
 
 namespace Fungus
 {
-	// Token: 0x0200131E RID: 4894
+	// Token: 0x02000E9F RID: 3743
 	[EventHandlerInfo("Input", "Key Pressed", "The block will execute when a key press event occurs.")]
 	[AddComponentMenu("")]
 	public class KeyPressed : EventHandler
 	{
-		// Token: 0x06007740 RID: 30528 RVA: 0x002B510C File Offset: 0x002B330C
+		// Token: 0x06006A0A RID: 27146 RVA: 0x002928B0 File Offset: 0x00290AB0
 		protected virtual void Update()
 		{
 			switch (this.keyPressType)
@@ -38,18 +38,18 @@ namespace Fungus
 			}
 		}
 
-		// Token: 0x06007741 RID: 30529 RVA: 0x000513ED File Offset: 0x0004F5ED
+		// Token: 0x06006A0B RID: 27147 RVA: 0x00292915 File Offset: 0x00290B15
 		public override string GetSummary()
 		{
 			return this.keyCode.ToString();
 		}
 
-		// Token: 0x040067F0 RID: 26608
+		// Token: 0x040059D6 RID: 22998
 		[Tooltip("The type of keypress to activate on")]
 		[SerializeField]
 		protected KeyPressType keyPressType;
 
-		// Token: 0x040067F1 RID: 26609
+		// Token: 0x040059D7 RID: 22999
 		[Tooltip("Keycode of the key to activate on")]
 		[SerializeField]
 		protected KeyCode keyCode;

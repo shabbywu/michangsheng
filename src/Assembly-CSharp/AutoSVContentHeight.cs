@@ -2,17 +2,17 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-// Token: 0x020004CA RID: 1226
+// Token: 0x0200034E RID: 846
 public class AutoSVContentHeight : MonoBehaviour
 {
-	// Token: 0x06002031 RID: 8241 RVA: 0x0001A68B File Offset: 0x0001888B
+	// Token: 0x06001CCA RID: 7370 RVA: 0x000CDD05 File Offset: 0x000CBF05
 	private void Start()
 	{
 		this.rt = (base.transform as RectTransform);
 		this.ver = base.GetComponent<VerticalLayoutGroup>();
 	}
 
-	// Token: 0x06002032 RID: 8242 RVA: 0x00112D30 File Offset: 0x00110F30
+	// Token: 0x06001CCB RID: 7371 RVA: 0x000CDD24 File Offset: 0x000CBF24
 	private void Update()
 	{
 		int childCount = this.rt.childCount;
@@ -46,28 +46,28 @@ public class AutoSVContentHeight : MonoBehaviour
 		}
 	}
 
-	// Token: 0x04001BAC RID: 7084
+	// Token: 0x04001756 RID: 5974
 	private VerticalLayoutGroup ver;
 
-	// Token: 0x04001BAD RID: 7085
+	// Token: 0x04001757 RID: 5975
 	private RectTransform rt;
 
-	// Token: 0x04001BAE RID: 7086
+	// Token: 0x04001758 RID: 5976
 	private int lastChildCount;
 
-	// Token: 0x04001BAF RID: 7087
+	// Token: 0x04001759 RID: 5977
 	[Header("额外高度")]
 	public int ExHeigt;
 
-	// Token: 0x04001BB0 RID: 7088
+	// Token: 0x0400175A RID: 5978
 	[Header("是否现在滑动")]
 	[Tooltip("当子物体高度小于SV高度时，禁止滑动")]
 	public bool IsLimitSliding;
 
-	// Token: 0x04001BB1 RID: 7089
+	// Token: 0x0400175B RID: 5979
 	public ScrollRect SR;
 
-	// Token: 0x04001BB2 RID: 7090
+	// Token: 0x0400175C RID: 5980
 	[Tooltip("根据物体数量的变动进行高度刷新。关闭的话会一直检测")]
 	public bool ChildCountMode = true;
 }

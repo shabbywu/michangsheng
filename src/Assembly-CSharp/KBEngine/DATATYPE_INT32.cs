@@ -2,22 +2,22 @@
 
 namespace KBEngine
 {
-	// Token: 0x02000ED1 RID: 3793
+	// Token: 0x02000B54 RID: 2900
 	public class DATATYPE_INT32 : DATATYPE_BASE
 	{
-		// Token: 0x06005B50 RID: 23376 RVA: 0x000405B4 File Offset: 0x0003E7B4
+		// Token: 0x06005114 RID: 20756 RVA: 0x0022156A File Offset: 0x0021F76A
 		public override object createFromStream(MemoryStream stream)
 		{
 			return stream.readInt32();
 		}
 
-		// Token: 0x06005B51 RID: 23377 RVA: 0x000405C1 File Offset: 0x0003E7C1
+		// Token: 0x06005115 RID: 20757 RVA: 0x00221577 File Offset: 0x0021F777
 		public override void addToStream(Bundle stream, object v)
 		{
 			stream.writeInt32(Convert.ToInt32(v));
 		}
 
-		// Token: 0x06005B52 RID: 23378 RVA: 0x00250B04 File Offset: 0x0024ED04
+		// Token: 0x06005116 RID: 20758 RVA: 0x00221588 File Offset: 0x0021F788
 		public override object parseDefaultValStr(string v)
 		{
 			int num = 0;
@@ -25,7 +25,7 @@ namespace KBEngine
 			return num;
 		}
 
-		// Token: 0x06005B53 RID: 23379 RVA: 0x00250B24 File Offset: 0x0024ED24
+		// Token: 0x06005117 RID: 20759 RVA: 0x002215A8 File Offset: 0x0021F7A8
 		public override bool isSameType(object v)
 		{
 			if (!KBEMath.isNumeric(v))

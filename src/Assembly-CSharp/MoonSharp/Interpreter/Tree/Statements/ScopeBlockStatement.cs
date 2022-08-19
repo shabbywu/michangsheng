@@ -5,10 +5,10 @@ using MoonSharp.Interpreter.Execution.VM;
 
 namespace MoonSharp.Interpreter.Tree.Statements
 {
-	// Token: 0x020010B7 RID: 4279
+	// Token: 0x02000CDE RID: 3294
 	internal class ScopeBlockStatement : Statement
 	{
-		// Token: 0x06006760 RID: 26464 RVA: 0x00288338 File Offset: 0x00286538
+		// Token: 0x06005C4F RID: 23631 RVA: 0x0025ED0C File Offset: 0x0025CF0C
 		public ScopeBlockStatement(ScriptLoadingContext lcontext) : base(lcontext)
 		{
 			lcontext.Scope.PushBlock();
@@ -20,7 +20,7 @@ namespace MoonSharp.Interpreter.Tree.Statements
 			lcontext.Source.Refs.Add(this.m_End);
 		}
 
-		// Token: 0x06006761 RID: 26465 RVA: 0x002883C8 File Offset: 0x002865C8
+		// Token: 0x06005C50 RID: 23632 RVA: 0x0025ED9C File Offset: 0x0025CF9C
 		public override void Compile(ByteCode bc)
 		{
 			using (bc.EnterSource(this.m_Do))
@@ -34,16 +34,16 @@ namespace MoonSharp.Interpreter.Tree.Statements
 			}
 		}
 
-		// Token: 0x04005F75 RID: 24437
+		// Token: 0x0400538B RID: 21387
 		private Statement m_Block;
 
-		// Token: 0x04005F76 RID: 24438
+		// Token: 0x0400538C RID: 21388
 		private RuntimeScopeBlock m_StackFrame;
 
-		// Token: 0x04005F77 RID: 24439
+		// Token: 0x0400538D RID: 21389
 		private SourceRef m_Do;
 
-		// Token: 0x04005F78 RID: 24440
+		// Token: 0x0400538E RID: 21390
 		private SourceRef m_End;
 	}
 }

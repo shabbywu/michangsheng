@@ -4,10 +4,10 @@ using UnityEngine.EventSystems;
 
 namespace Bag
 {
-	// Token: 0x02000D3E RID: 3390
+	// Token: 0x020009B6 RID: 2486
 	public class ActiveSkillSlot : SlotBase
 	{
-		// Token: 0x06005086 RID: 20614 RVA: 0x00039F6D File Offset: 0x0003816D
+		// Token: 0x06004523 RID: 17699 RVA: 0x001D5B4A File Offset: 0x001D3D4A
 		public override void OnEndDrag(PointerEventData eventData)
 		{
 			if (!this.CanDrag())
@@ -21,7 +21,7 @@ namespace Bag
 			DragMag.Inst.Clear();
 		}
 
-		// Token: 0x06005087 RID: 20615 RVA: 0x00039FAB File Offset: 0x000381AB
+		// Token: 0x06004524 RID: 17700 RVA: 0x001D5B88 File Offset: 0x001D3D88
 		public override void OnPointerUp(PointerEventData eventData)
 		{
 			if (eventData.dragging)
@@ -35,7 +35,7 @@ namespace Bag
 			}
 		}
 
-		// Token: 0x040051CA RID: 20938
+		// Token: 0x040046C8 RID: 18120
 		public int index;
 	}
 }

@@ -2,10 +2,10 @@
 using KBEngine;
 using UnityEngine;
 
-// Token: 0x0200062D RID: 1581
+// Token: 0x02000470 RID: 1136
 public class showUIJinDan : MonoBehaviour
 {
-	// Token: 0x06002743 RID: 10051 RVA: 0x0001F272 File Offset: 0x0001D472
+	// Token: 0x0600238A RID: 9098 RVA: 0x000F328B File Offset: 0x000F148B
 	private void Start()
 	{
 		if (this.getJinDanID() != -1)
@@ -16,7 +16,7 @@ public class showUIJinDan : MonoBehaviour
 		this.Icon.transform.localScale = Vector3.zero;
 	}
 
-	// Token: 0x06002744 RID: 10052 RVA: 0x00133374 File Offset: 0x00131574
+	// Token: 0x0600238B RID: 9099 RVA: 0x000F32C4 File Offset: 0x000F14C4
 	public int getJinDanID()
 	{
 		Avatar player = Tools.instance.getPlayer();
@@ -28,7 +28,7 @@ public class showUIJinDan : MonoBehaviour
 		return result;
 	}
 
-	// Token: 0x06002745 RID: 10053 RVA: 0x0001F2A8 File Offset: 0x0001D4A8
+	// Token: 0x0600238C RID: 9100 RVA: 0x000F3324 File Offset: 0x000F1524
 	public void OnPress()
 	{
 		if (Input.GetMouseButtonDown(0))
@@ -42,7 +42,7 @@ public class showUIJinDan : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06002746 RID: 10054 RVA: 0x001333D4 File Offset: 0x001315D4
+	// Token: 0x0600238D RID: 9101 RVA: 0x000F3348 File Offset: 0x000F1548
 	private void OnHover(bool isOver)
 	{
 		int jinDanID = this.getJinDanID();
@@ -125,7 +125,7 @@ public class showUIJinDan : MonoBehaviour
 		this.tooltips.showTooltip = false;
 	}
 
-	// Token: 0x06002747 RID: 10055 RVA: 0x00133764 File Offset: 0x00131964
+	// Token: 0x0600238E RID: 9102 RVA: 0x000F36D8 File Offset: 0x000F18D8
 	private void Update()
 	{
 		int jinDanID = this.getJinDanID();
@@ -145,21 +145,21 @@ public class showUIJinDan : MonoBehaviour
 		this.yuanYinIcon.transform.localScale = Vector3.zero;
 	}
 
-	// Token: 0x06002748 RID: 10056 RVA: 0x0001F2C9 File Offset: 0x0001D4C9
+	// Token: 0x0600238F RID: 9103 RVA: 0x000F3778 File Offset: 0x000F1978
 	private bool IsYuanYing()
 	{
 		return Tools.instance.getPlayer().level >= 10;
 	}
 
-	// Token: 0x04002153 RID: 8531
+	// Token: 0x04001C7B RID: 7291
 	public TooltipScale tooltips;
 
-	// Token: 0x04002154 RID: 8532
+	// Token: 0x04001C7C RID: 7292
 	public UILabel iLabel;
 
-	// Token: 0x04002155 RID: 8533
+	// Token: 0x04001C7D RID: 7293
 	public GameObject Icon;
 
-	// Token: 0x04002156 RID: 8534
+	// Token: 0x04001C7E RID: 7294
 	public GameObject yuanYinIcon;
 }

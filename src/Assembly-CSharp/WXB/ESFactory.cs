@@ -3,28 +3,28 @@ using System.Collections.Generic;
 
 namespace WXB
 {
-	// Token: 0x020009A3 RID: 2467
+	// Token: 0x02000690 RID: 1680
 	public class ESFactory
 	{
-		// Token: 0x06003EE4 RID: 16100 RVA: 0x0002D3F0 File Offset: 0x0002B5F0
+		// Token: 0x06003529 RID: 13609 RVA: 0x001702BC File Offset: 0x0016E4BC
 		static ESFactory()
 		{
 			ESFactory.TypeList.Add("Default", new DefaultES());
 		}
 
-		// Token: 0x06003EE5 RID: 16101 RVA: 0x0002D410 File Offset: 0x0002B610
+		// Token: 0x0600352A RID: 13610 RVA: 0x001702DC File Offset: 0x0016E4DC
 		public static void Add(string name, ElementSegment es)
 		{
 			ESFactory.TypeList.Add(name, es);
 		}
 
-		// Token: 0x06003EE6 RID: 16102 RVA: 0x0002D41E File Offset: 0x0002B61E
+		// Token: 0x0600352B RID: 13611 RVA: 0x001702EA File Offset: 0x0016E4EA
 		public static bool Remove(string name)
 		{
 			return ESFactory.TypeList.Remove(name);
 		}
 
-		// Token: 0x06003EE7 RID: 16103 RVA: 0x001B85E8 File Offset: 0x001B67E8
+		// Token: 0x0600352C RID: 13612 RVA: 0x001702F8 File Offset: 0x0016E4F8
 		public static ElementSegment Get(string name)
 		{
 			ElementSegment result = null;
@@ -35,7 +35,7 @@ namespace WXB
 			return null;
 		}
 
-		// Token: 0x06003EE8 RID: 16104 RVA: 0x001B860C File Offset: 0x001B680C
+		// Token: 0x0600352D RID: 13613 RVA: 0x0017031C File Offset: 0x0016E51C
 		public static List<string> GetAllName()
 		{
 			List<string> list = new List<string>();
@@ -46,7 +46,7 @@ namespace WXB
 			return list;
 		}
 
-		// Token: 0x040038A3 RID: 14499
+		// Token: 0x04002EEB RID: 12011
 		private static Dictionary<string, ElementSegment> TypeList = new Dictionary<string, ElementSegment>();
 	}
 }

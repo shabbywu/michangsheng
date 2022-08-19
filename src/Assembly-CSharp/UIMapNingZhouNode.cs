@@ -3,17 +3,17 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-// Token: 0x020004B1 RID: 1201
+// Token: 0x0200033F RID: 831
 public class UIMapNingZhouNode : MonoBehaviour, IPointerEnterHandler, IEventSystemHandler, IPointerExitHandler, IPointerClickHandler
 {
-	// Token: 0x06001FCB RID: 8139 RVA: 0x0001A28C File Offset: 0x0001848C
+	// Token: 0x06001C7E RID: 7294 RVA: 0x000CC013 File Offset: 0x000CA213
 	public void SetNodeName(string nodeName)
 	{
 		this.NodeName = nodeName;
 		this.nodeNameText.text = nodeName;
 	}
 
-	// Token: 0x06001FCC RID: 8140 RVA: 0x00110B10 File Offset: 0x0010ED10
+	// Token: 0x06001C7F RID: 7295 RVA: 0x000CC028 File Offset: 0x000CA228
 	public void Init()
 	{
 		this.iconImage = base.transform.GetChild(0).GetComponent<Image>();
@@ -22,14 +22,14 @@ public class UIMapNingZhouNode : MonoBehaviour, IPointerEnterHandler, IEventSyst
 		this.textOriColor = this.nodeNameText.color;
 	}
 
-	// Token: 0x06001FCD RID: 8141 RVA: 0x0001A2A1 File Offset: 0x000184A1
+	// Token: 0x06001C80 RID: 7296 RVA: 0x000CC08A File Offset: 0x000CA28A
 	public void SetCanJiaoHu(bool can)
 	{
 		this.iconImage.transform.localScale = this.imageOriScale;
 		this.iconImage.raycastTarget = can;
 	}
 
-	// Token: 0x06001FCE RID: 8142 RVA: 0x00110B74 File Offset: 0x0010ED74
+	// Token: 0x06001C81 RID: 7297 RVA: 0x000CC0B0 File Offset: 0x000CA2B0
 	public void SetNodeAlpha(bool alpha)
 	{
 		if (alpha)
@@ -42,42 +42,42 @@ public class UIMapNingZhouNode : MonoBehaviour, IPointerEnterHandler, IEventSyst
 		this.nodeNameText.color = this.textOriColor;
 	}
 
-	// Token: 0x06001FCF RID: 8143 RVA: 0x0001A2C5 File Offset: 0x000184C5
+	// Token: 0x06001C82 RID: 7298 RVA: 0x000CC117 File Offset: 0x000CA317
 	void IPointerClickHandler.OnPointerClick(PointerEventData eventData)
 	{
 		UIMapPanel.Inst.NingZhou.OnNodeClick(this);
 	}
 
-	// Token: 0x06001FD0 RID: 8144 RVA: 0x0001A2D7 File Offset: 0x000184D7
+	// Token: 0x06001C83 RID: 7299 RVA: 0x000CC129 File Offset: 0x000CA329
 	void IPointerEnterHandler.OnPointerEnter(PointerEventData eventData)
 	{
 		this.iconImage.transform.localScale = this.imageOriScale * 1.2f;
 	}
 
-	// Token: 0x06001FD1 RID: 8145 RVA: 0x0001A2F9 File Offset: 0x000184F9
+	// Token: 0x06001C84 RID: 7300 RVA: 0x000CC14B File Offset: 0x000CA34B
 	void IPointerExitHandler.OnPointerExit(PointerEventData eventData)
 	{
 		this.iconImage.transform.localScale = this.imageOriScale;
 	}
 
-	// Token: 0x04001B31 RID: 6961
+	// Token: 0x040016F5 RID: 5877
 	public string NodeName;
 
-	// Token: 0x04001B32 RID: 6962
+	// Token: 0x040016F6 RID: 5878
 	public string WarpSceneName;
 
-	// Token: 0x04001B33 RID: 6963
+	// Token: 0x040016F7 RID: 5879
 	private Image iconImage;
 
-	// Token: 0x04001B34 RID: 6964
+	// Token: 0x040016F8 RID: 5880
 	private Text nodeNameText;
 
-	// Token: 0x04001B35 RID: 6965
+	// Token: 0x040016F9 RID: 5881
 	private Vector3 imageOriScale;
 
-	// Token: 0x04001B36 RID: 6966
+	// Token: 0x040016FA RID: 5882
 	private Color textOriColor;
 
-	// Token: 0x04001B37 RID: 6967
+	// Token: 0x040016FB RID: 5883
 	private Color textAnColor = new Color(0.76862746f, 0.75686276f, 0.59607846f);
 }

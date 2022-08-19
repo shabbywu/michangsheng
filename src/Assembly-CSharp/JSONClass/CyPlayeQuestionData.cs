@@ -3,10 +3,10 @@ using System.Collections.Generic;
 
 namespace JSONClass
 {
-	// Token: 0x02000BB9 RID: 3001
+	// Token: 0x02000823 RID: 2083
 	public class CyPlayeQuestionData : IJSONClass
 	{
-		// Token: 0x06004A4C RID: 19020 RVA: 0x001F736C File Offset: 0x001F556C
+		// Token: 0x06003E9E RID: 16030 RVA: 0x001AC064 File Offset: 0x001AA264
 		public static void InitDataDict()
 		{
 			foreach (JSONObject jsonobject in jsonData.instance.CyPlayeQuestionData.list)
@@ -40,27 +40,27 @@ namespace JSONClass
 			}
 		}
 
-		// Token: 0x06004A4D RID: 19021 RVA: 0x000042DD File Offset: 0x000024DD
+		// Token: 0x06003E9F RID: 16031 RVA: 0x00004095 File Offset: 0x00002295
 		private static void OnInitFinish()
 		{
 		}
 
-		// Token: 0x040045A3 RID: 17827
+		// Token: 0x04003A1B RID: 14875
 		public static Dictionary<int, CyPlayeQuestionData> DataDict = new Dictionary<int, CyPlayeQuestionData>();
 
-		// Token: 0x040045A4 RID: 17828
+		// Token: 0x04003A1C RID: 14876
 		public static List<CyPlayeQuestionData> DataList = new List<CyPlayeQuestionData>();
 
-		// Token: 0x040045A5 RID: 17829
+		// Token: 0x04003A1D RID: 14877
 		public static Action OnInitFinishAction = new Action(CyPlayeQuestionData.OnInitFinish);
 
-		// Token: 0x040045A6 RID: 17830
+		// Token: 0x04003A1E RID: 14878
 		public int id;
 
-		// Token: 0x040045A7 RID: 17831
+		// Token: 0x04003A1F RID: 14879
 		public int SendAction;
 
-		// Token: 0x040045A8 RID: 17832
+		// Token: 0x04003A20 RID: 14880
 		public string WenTi;
 	}
 }

@@ -5,10 +5,10 @@ using UnityEngine.Events;
 
 namespace Spine.Unity.Prototyping
 {
-	// Token: 0x02000E13 RID: 3603
+	// Token: 0x02000AD3 RID: 2771
 	public class SpineEventUnityHandler : MonoBehaviour
 	{
-		// Token: 0x06005708 RID: 22280 RVA: 0x00243804 File Offset: 0x00241A04
+		// Token: 0x06004DB6 RID: 19894 RVA: 0x0021389C File Offset: 0x00211A9C
 		private void Start()
 		{
 			this.skeletonComponent = (this.skeletonComponent ?? base.GetComponent<ISkeletonComponent>());
@@ -47,7 +47,7 @@ namespace Spine.Unity.Prototyping
 			}
 		}
 
-		// Token: 0x06005709 RID: 22281 RVA: 0x00243944 File Offset: 0x00241B44
+		// Token: 0x06004DB7 RID: 19895 RVA: 0x002139DC File Offset: 0x00211BDC
 		private void OnDestroy()
 		{
 			this.animationStateComponent = (this.animationStateComponent ?? base.GetComponent<IAnimationStateComponent>());
@@ -66,27 +66,27 @@ namespace Spine.Unity.Prototyping
 			}
 		}
 
-		// Token: 0x040056B5 RID: 22197
+		// Token: 0x04004CD8 RID: 19672
 		public List<SpineEventUnityHandler.EventPair> events = new List<SpineEventUnityHandler.EventPair>();
 
-		// Token: 0x040056B6 RID: 22198
+		// Token: 0x04004CD9 RID: 19673
 		private ISkeletonComponent skeletonComponent;
 
-		// Token: 0x040056B7 RID: 22199
+		// Token: 0x04004CDA RID: 19674
 		private IAnimationStateComponent animationStateComponent;
 
-		// Token: 0x02000E14 RID: 3604
+		// Token: 0x020015B6 RID: 5558
 		[Serializable]
 		public class EventPair
 		{
-			// Token: 0x040056B8 RID: 22200
+			// Token: 0x04007034 RID: 28724
 			[SpineEvent("", "", true, false, false)]
 			public string spineEvent;
 
-			// Token: 0x040056B9 RID: 22201
+			// Token: 0x04007035 RID: 28725
 			public UnityEvent unityHandler;
 
-			// Token: 0x040056BA RID: 22202
+			// Token: 0x04007036 RID: 28726
 			public AnimationState.TrackEntryEventDelegate eventDelegate;
 		}
 	}

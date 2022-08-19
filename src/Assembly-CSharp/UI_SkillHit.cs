@@ -2,11 +2,11 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-// Token: 0x020005C6 RID: 1478
+// Token: 0x02000414 RID: 1044
 public class UI_SkillHit : UI_ErrorHint
 {
-	// Token: 0x170002CF RID: 719
-	// (get) Token: 0x0600255F RID: 9567 RVA: 0x0012ADB4 File Offset: 0x00128FB4
+	// Token: 0x17000285 RID: 645
+	// (get) Token: 0x060021A7 RID: 8615 RVA: 0x000E9670 File Offset: 0x000E7870
 	public static UI_SkillHit _ince
 	{
 		get
@@ -22,7 +22,7 @@ public class UI_SkillHit : UI_ErrorHint
 		}
 	}
 
-	// Token: 0x06002560 RID: 9568 RVA: 0x0001DF62 File Offset: 0x0001C162
+	// Token: 0x060021A8 RID: 8616 RVA: 0x000E9703 File Offset: 0x000E7903
 	private void Awake()
 	{
 		UI_SkillHit.ince = this;
@@ -30,7 +30,7 @@ public class UI_SkillHit : UI_ErrorHint
 		this.ani_control = base.gameObject.GetComponent<Animator>();
 	}
 
-	// Token: 0x06002561 RID: 9569 RVA: 0x0012AE48 File Offset: 0x00129048
+	// Token: 0x060021A9 RID: 8617 RVA: 0x000E973C File Offset: 0x000E793C
 	public override void errorShow(string str, int showType = 0)
 	{
 		this.delegateList.Add(delegate(string aa)
@@ -44,7 +44,7 @@ public class UI_SkillHit : UI_ErrorHint
 		}
 	}
 
-	// Token: 0x06002562 RID: 9570 RVA: 0x0001DF9B File Offset: 0x0001C19B
+	// Token: 0x060021AA RID: 8618 RVA: 0x000E9799 File Offset: 0x000E7999
 	public override void animationFinsh()
 	{
 		this.delegateList.RemoveAt(0);
@@ -54,6 +54,6 @@ public class UI_SkillHit : UI_ErrorHint
 		}
 	}
 
-	// Token: 0x04001FDF RID: 8159
+	// Token: 0x04001B20 RID: 6944
 	private static UI_SkillHit ince;
 }

@@ -5,10 +5,10 @@ using UnityEngine.EventSystems;
 
 namespace EIU
 {
-	// Token: 0x02000E9E RID: 3742
+	// Token: 0x02000B2A RID: 2858
 	public class EIU_ControlsMenu : MonoBehaviour
 	{
-		// Token: 0x060059C5 RID: 22981 RVA: 0x00249F5C File Offset: 0x0024815C
+		// Token: 0x06004FA6 RID: 20390 RVA: 0x0021A21C File Offset: 0x0021841C
 		public void Init()
 		{
 			if (!this.initOnce)
@@ -23,7 +23,7 @@ namespace EIU
 			EasyInputUtility.instance.Axes = this.Axes;
 		}
 
-		// Token: 0x060059C6 RID: 22982 RVA: 0x00249FB4 File Offset: 0x002481B4
+		// Token: 0x06004FA7 RID: 20391 RVA: 0x0021A274 File Offset: 0x00218474
 		private void ResetAxes()
 		{
 			foreach (EIU_AxisBase eiu_AxisBase in this.Axes)
@@ -50,7 +50,7 @@ namespace EIU
 			}
 		}
 
-		// Token: 0x060059C7 RID: 22983 RVA: 0x0024A0B8 File Offset: 0x002482B8
+		// Token: 0x06004FA8 RID: 20392 RVA: 0x0021A378 File Offset: 0x00218578
 		private void FixedUpdate()
 		{
 			for (int i = 0; i < this.Axes.Count; i++)
@@ -63,7 +63,7 @@ namespace EIU
 			}
 		}
 
-		// Token: 0x060059C8 RID: 22984 RVA: 0x0024A150 File Offset: 0x00248350
+		// Token: 0x06004FA9 RID: 20393 RVA: 0x0021A410 File Offset: 0x00218610
 		private void OnGUI()
 		{
 			if (this.rebinding)
@@ -102,7 +102,7 @@ namespace EIU
 			}
 		}
 
-		// Token: 0x060059C9 RID: 22985 RVA: 0x0024A218 File Offset: 0x00248418
+		// Token: 0x06004FAA RID: 20394 RVA: 0x0021A4D8 File Offset: 0x002186D8
 		public void ResetAllAxes()
 		{
 			foreach (EIU_AxisBase eiu_AxisBase in this.Axes)
@@ -122,7 +122,7 @@ namespace EIU
 			}
 		}
 
-		// Token: 0x060059CA RID: 22986 RVA: 0x0024A304 File Offset: 0x00248504
+		// Token: 0x06004FAB RID: 20395 RVA: 0x0021A5C4 File Offset: 0x002187C4
 		public void ChangeInputKey(string name, KeyCode newKey, bool negative = false)
 		{
 			EIU_AxisBase eiu_AxisBase = this.ReturnAxis(name);
@@ -144,7 +144,7 @@ namespace EIU
 			this.SaveAxis(eiu_AxisBase);
 		}
 
-		// Token: 0x060059CB RID: 22987 RVA: 0x0024A37C File Offset: 0x0024857C
+		// Token: 0x06004FAC RID: 20396 RVA: 0x0021A63C File Offset: 0x0021883C
 		private void CreateAxisButtons()
 		{
 			foreach (EIU_AxisBase eiu_AxisBase in this.Axes)
@@ -169,7 +169,7 @@ namespace EIU
 			}
 		}
 
-		// Token: 0x060059CC RID: 22988 RVA: 0x0024A4C8 File Offset: 0x002486C8
+		// Token: 0x06004FAD RID: 20397 RVA: 0x0021A788 File Offset: 0x00218988
 		private EIU_AxisBase ReturnAxis(string name)
 		{
 			EIU_AxisBase result = null;
@@ -183,7 +183,7 @@ namespace EIU
 			return result;
 		}
 
-		// Token: 0x060059CD RID: 22989 RVA: 0x0024A514 File Offset: 0x00248714
+		// Token: 0x06004FAE RID: 20398 RVA: 0x0021A7D4 File Offset: 0x002189D4
 		public void OpenRebindButtonDialog(string axisName, bool negative)
 		{
 			this.targetAxis = this.ReturnAxis(axisName);
@@ -200,7 +200,7 @@ namespace EIU
 			this.negativeKey = negative;
 		}
 
-		// Token: 0x060059CE RID: 22990 RVA: 0x0003FB5B File Offset: 0x0003DD5B
+		// Token: 0x06004FAF RID: 20399 RVA: 0x0021A83E File Offset: 0x00218A3E
 		private void CloseRebindingDialog()
 		{
 			this.rebinding = false;
@@ -208,13 +208,13 @@ namespace EIU
 			this.controlsList.gameObject.SetActive(true);
 		}
 
-		// Token: 0x060059CF RID: 22991 RVA: 0x0003FB86 File Offset: 0x0003DD86
+		// Token: 0x06004FB0 RID: 20400 RVA: 0x0021A869 File Offset: 0x00218A69
 		public void CancelRebinding()
 		{
 			this.CloseRebindingDialog();
 		}
 
-		// Token: 0x060059D0 RID: 22992 RVA: 0x0024A580 File Offset: 0x00248780
+		// Token: 0x06004FB1 RID: 20401 RVA: 0x0021A874 File Offset: 0x00218A74
 		private void SaveAllAxes()
 		{
 			for (int i = 0; i < this.Axes.Count; i++)
@@ -223,21 +223,21 @@ namespace EIU
 			}
 		}
 
-		// Token: 0x060059D1 RID: 22993 RVA: 0x0003FB8E File Offset: 0x0003DD8E
+		// Token: 0x06004FB2 RID: 20402 RVA: 0x0021A8A9 File Offset: 0x00218AA9
 		private void SaveAxis(EIU_AxisBase axis)
 		{
 			PlayerPrefs.SetInt(axis.axisName + "pKey", axis.positiveKey);
 			PlayerPrefs.SetInt(axis.axisName + "nKey", axis.negativeKey);
 		}
 
-		// Token: 0x060059D2 RID: 22994 RVA: 0x0024A5B8 File Offset: 0x002487B8
+		// Token: 0x06004FB3 RID: 20403 RVA: 0x0021A8E4 File Offset: 0x00218AE4
 		private void SaveAxesDefault(EIU_AxisBase axis)
 		{
 			this.defaultAxes.Add(axis.axisName + "pKey", axis.positiveKey);
 			this.defaultAxes.Add(axis.axisName + "nKey", axis.negativeKey);
 		}
 
-		// Token: 0x060059D3 RID: 22995 RVA: 0x0024A608 File Offset: 0x00248808
+		// Token: 0x06004FB4 RID: 20404 RVA: 0x0021A934 File Offset: 0x00218B34
 		private void LoadAllAxes()
 		{
 			for (int i = 0; i < this.Axes.Count; i++)
@@ -250,19 +250,19 @@ namespace EIU
 			}
 		}
 
-		// Token: 0x060059D4 RID: 22996 RVA: 0x0003FBC6 File Offset: 0x0003DDC6
+		// Token: 0x06004FB5 RID: 20405 RVA: 0x0021A99C File Offset: 0x00218B9C
 		public static EIU_ControlsMenu Instance()
 		{
 			return EIU_ControlsMenu.instance;
 		}
 
-		// Token: 0x060059D5 RID: 22997 RVA: 0x0003FBCD File Offset: 0x0003DDCD
+		// Token: 0x06004FB6 RID: 20406 RVA: 0x0021A9A3 File Offset: 0x00218BA3
 		private void Awake()
 		{
 			EIU_ControlsMenu.instance = this;
 		}
 
-		// Token: 0x060059D6 RID: 22998 RVA: 0x0024A670 File Offset: 0x00248870
+		// Token: 0x06004FB7 RID: 20407 RVA: 0x0021A9AC File Offset: 0x00218BAC
 		public float GetAxis(string name)
 		{
 			float result = 0f;
@@ -276,7 +276,7 @@ namespace EIU
 			return result;
 		}
 
-		// Token: 0x060059D7 RID: 22999 RVA: 0x0024A6C8 File Offset: 0x002488C8
+		// Token: 0x06004FB8 RID: 20408 RVA: 0x0021AA04 File Offset: 0x00218C04
 		public bool GetButton(string name)
 		{
 			bool result = false;
@@ -290,38 +290,38 @@ namespace EIU
 			return result;
 		}
 
-		// Token: 0x0400591F RID: 22815
+		// Token: 0x04004EA8 RID: 20136
 		[HideInInspector]
 		public List<EIU_AxisBase> Axes = new List<EIU_AxisBase>();
 
-		// Token: 0x04005920 RID: 22816
+		// Token: 0x04004EA9 RID: 20137
 		private Dictionary<string, int> defaultAxes = new Dictionary<string, int>();
 
-		// Token: 0x04005921 RID: 22817
+		// Token: 0x04004EAA RID: 20138
 		[Header("UI References")]
 		[Space(5f)]
 		public GameObject axisPrefab;
 
-		// Token: 0x04005922 RID: 22818
+		// Token: 0x04004EAB RID: 20139
 		public Transform controlsList;
 
-		// Token: 0x04005923 RID: 22819
+		// Token: 0x04004EAC RID: 20140
 		public EIU_RebindButton rebBtn;
 
-		// Token: 0x04005924 RID: 22820
+		// Token: 0x04004EAD RID: 20141
 		[HideInInspector]
 		public bool rebinding;
 
-		// Token: 0x04005925 RID: 22821
+		// Token: 0x04004EAE RID: 20142
 		private bool negativeKey;
 
-		// Token: 0x04005926 RID: 22822
+		// Token: 0x04004EAF RID: 20143
 		private EIU_AxisBase targetAxis;
 
-		// Token: 0x04005927 RID: 22823
+		// Token: 0x04004EB0 RID: 20144
 		private bool initOnce;
 
-		// Token: 0x04005928 RID: 22824
+		// Token: 0x04004EB1 RID: 20145
 		public static EIU_ControlsMenu instance;
 	}
 }

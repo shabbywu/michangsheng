@@ -1,18 +1,18 @@
 ﻿using System;
 using UnityEngine;
 
-// Token: 0x020004E3 RID: 1251
+// Token: 0x02000366 RID: 870
 [RequireComponent(typeof(RectTransform))]
 public class UIPosFollow : MonoBehaviour
 {
-	// Token: 0x0600209D RID: 8349 RVA: 0x0001AD25 File Offset: 0x00018F25
+	// Token: 0x06001D33 RID: 7475 RVA: 0x000CF08C File Offset: 0x000CD28C
 	private void Awake()
 	{
 		this.Me = (RectTransform)base.transform;
 		this.Obj = base.transform.GetChild(0).gameObject;
 	}
 
-	// Token: 0x0600209E RID: 8350 RVA: 0x00113998 File Offset: 0x00111B98
+	// Token: 0x06001D34 RID: 7476 RVA: 0x000CF0B8 File Offset: 0x000CD2B8
 	private void LateUpdate()
 	{
 		if (this.Target != null)
@@ -25,15 +25,15 @@ public class UIPosFollow : MonoBehaviour
 		}
 	}
 
-	// Token: 0x04001C1B RID: 7195
+	// Token: 0x040017C9 RID: 6089
 	public RectTransform Target;
 
-	// Token: 0x04001C1C RID: 7196
+	// Token: 0x040017CA RID: 6090
 	public bool FollowActive;
 
-	// Token: 0x04001C1D RID: 7197
+	// Token: 0x040017CB RID: 6091
 	private RectTransform Me;
 
-	// Token: 0x04001C1E RID: 7198
+	// Token: 0x040017CC RID: 6092
 	private GameObject Obj;
 }

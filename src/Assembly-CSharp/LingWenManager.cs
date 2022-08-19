@@ -4,29 +4,29 @@ using KBEngine;
 using UnityEngine;
 using UnityEngine.UI;
 
-// Token: 0x02000457 RID: 1111
+// Token: 0x020002FA RID: 762
 public class LingWenManager : MonoBehaviour
 {
-	// Token: 0x06001DBB RID: 7611 RVA: 0x00018BBF File Offset: 0x00016DBF
+	// Token: 0x06001A95 RID: 6805 RVA: 0x000BD3D9 File Offset: 0x000BB5D9
 	public int getSelectLinWenType()
 	{
 		return this.selcetLinWenType;
 	}
 
-	// Token: 0x06001DBC RID: 7612 RVA: 0x00018BC7 File Offset: 0x00016DC7
+	// Token: 0x06001A96 RID: 6806 RVA: 0x000BD3E1 File Offset: 0x000BB5E1
 	public void setSelectLinWenID(int id)
 	{
 		this.selectLinWenID = id;
 		LianQiTotalManager.inst.selectLingWenCiTiaoCallBack();
 	}
 
-	// Token: 0x06001DBD RID: 7613 RVA: 0x00018BDA File Offset: 0x00016DDA
+	// Token: 0x06001A97 RID: 6807 RVA: 0x000BD3F4 File Offset: 0x000BB5F4
 	public int getSelectLingWenID()
 	{
 		return this.selectLinWenID;
 	}
 
-	// Token: 0x06001DBE RID: 7614 RVA: 0x00018BE2 File Offset: 0x00016DE2
+	// Token: 0x06001A98 RID: 6808 RVA: 0x000BD3FC File Offset: 0x000BB5FC
 	public void init()
 	{
 		this.selcetLinWenType = 0;
@@ -37,7 +37,7 @@ public class LingWenManager : MonoBehaviour
 		this.checkIsCanSeclet();
 	}
 
-	// Token: 0x06001DBF RID: 7615 RVA: 0x001033D8 File Offset: 0x001015D8
+	// Token: 0x06001A99 RID: 6809 RVA: 0x000BD43C File Offset: 0x000BB63C
 	private void initToggle()
 	{
 		for (int i = 0; i < 4; i++)
@@ -46,7 +46,7 @@ public class LingWenManager : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001DC0 RID: 7616 RVA: 0x00103404 File Offset: 0x00101604
+	// Token: 0x06001A9A RID: 6810 RVA: 0x000BD468 File Offset: 0x000BB668
 	private void checkIsCanSeclet()
 	{
 		Avatar player = Tools.instance.getPlayer();
@@ -98,7 +98,7 @@ public class LingWenManager : MonoBehaviour
 		this.lingWenToggles[3].transform.GetChild(2).gameObject.SetActive(false);
 	}
 
-	// Token: 0x06001DC1 RID: 7617 RVA: 0x0010376C File Offset: 0x0010196C
+	// Token: 0x06001A9B RID: 6811 RVA: 0x000BD7D0 File Offset: 0x000BB9D0
 	private void checkSelectEquipType()
 	{
 		if (LianQiTotalManager.inst.getCurSelectEquipType() != 1)
@@ -113,7 +113,7 @@ public class LingWenManager : MonoBehaviour
 		this.lingWenToggles[0].transform.GetChild(2).gameObject.SetActive(true);
 	}
 
-	// Token: 0x06001DC2 RID: 7618 RVA: 0x0010384C File Offset: 0x00101A4C
+	// Token: 0x06001A9C RID: 6812 RVA: 0x000BD8B0 File Offset: 0x000BBAB0
 	public void selectLingWen(int index)
 	{
 		this.checkIsallUnSelect();
@@ -161,7 +161,7 @@ public class LingWenManager : MonoBehaviour
 		this.lingWenToggles[index].transform.GetChild(0).GetComponent<Image>().sprite = this.xianSprite[0];
 	}
 
-	// Token: 0x06001DC3 RID: 7619 RVA: 0x00018C20 File Offset: 0x00016E20
+	// Token: 0x06001A9D RID: 6813 RVA: 0x000BDA4D File Offset: 0x000BBC4D
 	public void setLingWenXiaoGuo()
 	{
 		if (this.selcetLinWenType == 3)
@@ -172,7 +172,7 @@ public class LingWenManager : MonoBehaviour
 		this.nomalSeceltLingWen.showSelect();
 	}
 
-	// Token: 0x06001DC4 RID: 7620 RVA: 0x001039EC File Offset: 0x00101BEC
+	// Token: 0x06001A9E RID: 6814 RVA: 0x000BDA70 File Offset: 0x000BBC70
 	private void checkIsallUnSelect()
 	{
 		if (this.lingWenToggles[0].isOn || this.lingWenToggles[1].isOn || this.lingWenToggles[2].isOn)
@@ -191,35 +191,35 @@ public class LingWenManager : MonoBehaviour
 		this.selcetLinWenType = -1;
 	}
 
-	// Token: 0x04001965 RID: 6501
+	// Token: 0x04001558 RID: 5464
 	[SerializeField]
 	private List<Sprite> selectToggleImage = new List<Sprite>();
 
-	// Token: 0x04001966 RID: 6502
+	// Token: 0x04001559 RID: 5465
 	[SerializeField]
 	private List<Sprite> xianSprite = new List<Sprite>();
 
-	// Token: 0x04001967 RID: 6503
+	// Token: 0x0400155A RID: 5466
 	[SerializeField]
 	private List<Toggle> lingWenToggles = new List<Toggle>();
 
-	// Token: 0x04001968 RID: 6504
+	// Token: 0x0400155B RID: 5467
 	private int selcetLinWenType = -1;
 
-	// Token: 0x04001969 RID: 6505
+	// Token: 0x0400155C RID: 5468
 	[SerializeField]
 	private List<Sprite> lingWenSprites = new List<Sprite>();
 
-	// Token: 0x0400196A RID: 6506
+	// Token: 0x0400155D RID: 5469
 	[SerializeField]
 	private Image lingWenImage;
 
-	// Token: 0x0400196B RID: 6507
+	// Token: 0x0400155E RID: 5470
 	private int selectLinWenID = -1;
 
-	// Token: 0x0400196C RID: 6508
+	// Token: 0x0400155F RID: 5471
 	public NomalSeceltLingWenCell nomalSeceltLingWen;
 
-	// Token: 0x0400196D RID: 6509
+	// Token: 0x04001560 RID: 5472
 	public XuanWuSelectLingWenCell xuanWuSelectLingWenCell;
 }

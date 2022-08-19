@@ -3,11 +3,11 @@ using System.IO;
 
 namespace ICSharpCode.SharpZipLib.Zip
 {
-	// Token: 0x020007CF RID: 1999
+	// Token: 0x02000536 RID: 1334
 	public class NTTaggedData : ITaggedData
 	{
-		// Token: 0x1700049C RID: 1180
-		// (get) Token: 0x060032EC RID: 13036 RVA: 0x000251E2 File Offset: 0x000233E2
+		// Token: 0x170002FD RID: 765
+		// (get) Token: 0x06002AD5 RID: 10965 RVA: 0x00142574 File Offset: 0x00140774
 		public short TagID
 		{
 			get
@@ -16,7 +16,7 @@ namespace ICSharpCode.SharpZipLib.Zip
 			}
 		}
 
-		// Token: 0x060032ED RID: 13037 RVA: 0x0018EDB0 File Offset: 0x0018CFB0
+		// Token: 0x06002AD6 RID: 10966 RVA: 0x00142578 File Offset: 0x00140778
 		public void SetData(byte[] data, int index, int count)
 		{
 			using (MemoryStream memoryStream = new MemoryStream(data, index, count, false))
@@ -51,7 +51,7 @@ namespace ICSharpCode.SharpZipLib.Zip
 			}
 		}
 
-		// Token: 0x060032EE RID: 13038 RVA: 0x0018EE78 File Offset: 0x0018D078
+		// Token: 0x06002AD7 RID: 10967 RVA: 0x00142640 File Offset: 0x00140840
 		public byte[] GetData()
 		{
 			byte[] result;
@@ -72,7 +72,7 @@ namespace ICSharpCode.SharpZipLib.Zip
 			return result;
 		}
 
-		// Token: 0x060032EF RID: 13039 RVA: 0x0018EF1C File Offset: 0x0018D11C
+		// Token: 0x06002AD8 RID: 10968 RVA: 0x001426E4 File Offset: 0x001408E4
 		public static bool IsValidValue(DateTime value)
 		{
 			bool result = true;
@@ -87,9 +87,9 @@ namespace ICSharpCode.SharpZipLib.Zip
 			return result;
 		}
 
-		// Token: 0x1700049D RID: 1181
-		// (get) Token: 0x060032F0 RID: 13040 RVA: 0x000251E6 File Offset: 0x000233E6
-		// (set) Token: 0x060032F1 RID: 13041 RVA: 0x000251EE File Offset: 0x000233EE
+		// Token: 0x170002FE RID: 766
+		// (get) Token: 0x06002AD9 RID: 10969 RVA: 0x00142714 File Offset: 0x00140914
+		// (set) Token: 0x06002ADA RID: 10970 RVA: 0x0014271C File Offset: 0x0014091C
 		public DateTime LastModificationTime
 		{
 			get
@@ -106,9 +106,9 @@ namespace ICSharpCode.SharpZipLib.Zip
 			}
 		}
 
-		// Token: 0x1700049E RID: 1182
-		// (get) Token: 0x060032F2 RID: 13042 RVA: 0x0002520A File Offset: 0x0002340A
-		// (set) Token: 0x060032F3 RID: 13043 RVA: 0x00025212 File Offset: 0x00023412
+		// Token: 0x170002FF RID: 767
+		// (get) Token: 0x06002ADB RID: 10971 RVA: 0x00142738 File Offset: 0x00140938
+		// (set) Token: 0x06002ADC RID: 10972 RVA: 0x00142740 File Offset: 0x00140940
 		public DateTime CreateTime
 		{
 			get
@@ -125,9 +125,9 @@ namespace ICSharpCode.SharpZipLib.Zip
 			}
 		}
 
-		// Token: 0x1700049F RID: 1183
-		// (get) Token: 0x060032F4 RID: 13044 RVA: 0x0002522E File Offset: 0x0002342E
-		// (set) Token: 0x060032F5 RID: 13045 RVA: 0x00025236 File Offset: 0x00023436
+		// Token: 0x17000300 RID: 768
+		// (get) Token: 0x06002ADD RID: 10973 RVA: 0x0014275C File Offset: 0x0014095C
+		// (set) Token: 0x06002ADE RID: 10974 RVA: 0x00142764 File Offset: 0x00140964
 		public DateTime LastAccessTime
 		{
 			get
@@ -144,13 +144,13 @@ namespace ICSharpCode.SharpZipLib.Zip
 			}
 		}
 
-		// Token: 0x04002EFD RID: 12029
+		// Token: 0x040026F6 RID: 9974
 		private DateTime _lastAccessTime = DateTime.FromFileTimeUtc(0L);
 
-		// Token: 0x04002EFE RID: 12030
+		// Token: 0x040026F7 RID: 9975
 		private DateTime _lastModificationTime = DateTime.FromFileTimeUtc(0L);
 
-		// Token: 0x04002EFF RID: 12031
+		// Token: 0x040026F8 RID: 9976
 		private DateTime _createTime = DateTime.FromFileTimeUtc(0L);
 	}
 }

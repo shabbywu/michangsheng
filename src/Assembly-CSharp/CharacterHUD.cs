@@ -2,10 +2,10 @@
 using KBEngine;
 using UnityEngine;
 
-// Token: 0x02000144 RID: 324
+// Token: 0x020000D3 RID: 211
 public class CharacterHUD : MonoBehaviour
 {
-	// Token: 0x06000BE6 RID: 3046 RVA: 0x0000DFCE File Offset: 0x0000C1CE
+	// Token: 0x06000B03 RID: 2819 RVA: 0x00042B5F File Offset: 0x00040D5F
 	private void Start()
 	{
 		base.enabled = true;
@@ -15,7 +15,7 @@ public class CharacterHUD : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000BE7 RID: 3047 RVA: 0x0009490C File Offset: 0x00092B0C
+	// Token: 0x06000B04 RID: 2820 RVA: 0x00042B8C File Offset: 0x00040D8C
 	public void AddFloatingText(Vector3 pos, string text)
 	{
 		if (this.FloatingText)
@@ -29,7 +29,7 @@ public class CharacterHUD : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000BE8 RID: 3048 RVA: 0x00094964 File Offset: 0x00092B64
+	// Token: 0x06000B05 RID: 2821 RVA: 0x00042BE4 File Offset: 0x00040DE4
 	private void OnGUI()
 	{
 		Vector3 vector = Camera.main.WorldToScreenPoint(base.transform.position);
@@ -70,36 +70,36 @@ public class CharacterHUD : MonoBehaviour
 		}
 	}
 
-	// Token: 0x040008D2 RID: 2258
+	// Token: 0x04000727 RID: 1831
 	public GUISkin Skin;
 
-	// Token: 0x040008D3 RID: 2259
+	// Token: 0x04000728 RID: 1832
 	public bool AlwayShow;
 
-	// Token: 0x040008D4 RID: 2260
+	// Token: 0x04000729 RID: 1833
 	public Texture2D Bar_bg;
 
-	// Token: 0x040008D5 RID: 2261
+	// Token: 0x0400072A RID: 1834
 	public Texture2D Bar_hp;
 
-	// Token: 0x040008D6 RID: 2262
+	// Token: 0x0400072B RID: 1835
 	public Texture2D Bar_Rhp;
 
-	// Token: 0x040008D7 RID: 2263
+	// Token: 0x0400072C RID: 1836
 	public Texture2D Bar_sp;
 
-	// Token: 0x040008D8 RID: 2264
+	// Token: 0x0400072D RID: 1837
 	public Texture2D Bar_target;
 
-	// Token: 0x040008D9 RID: 2265
+	// Token: 0x0400072E RID: 1838
 	private CharacterStatus character;
 
-	// Token: 0x040008DA RID: 2266
+	// Token: 0x0400072F RID: 1839
 	private GameEntity gameEntity;
 
-	// Token: 0x040008DB RID: 2267
+	// Token: 0x04000730 RID: 1840
 	public bool isTarget;
 
-	// Token: 0x040008DC RID: 2268
+	// Token: 0x04000731 RID: 1841
 	public GameObject FloatingText;
 }

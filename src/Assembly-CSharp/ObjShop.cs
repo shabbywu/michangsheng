@@ -1,10 +1,10 @@
 ﻿using System;
 using UnityEngine;
 
-// Token: 0x0200075C RID: 1884
+// Token: 0x020004E6 RID: 1254
 public class ObjShop : MonoBehaviour
 {
-	// Token: 0x06002FE6 RID: 12262 RVA: 0x0002398E File Offset: 0x00021B8E
+	// Token: 0x0600287D RID: 10365 RVA: 0x00132980 File Offset: 0x00130B80
 	private void Awake()
 	{
 		ObjShop.Shop = false;
@@ -16,7 +16,7 @@ public class ObjShop : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06002FE7 RID: 12263 RVA: 0x0017EE20 File Offset: 0x0017D020
+	// Token: 0x0600287E RID: 10366 RVA: 0x001329C0 File Offset: 0x00130BC0
 	private void Start()
 	{
 		this.xDist = this.maxXPos - this.minXPos;
@@ -37,7 +37,7 @@ public class ObjShop : MonoBehaviour
 		this.rememberYPos = this.obj[0].position.y;
 	}
 
-	// Token: 0x06002FE8 RID: 12264 RVA: 0x0017EF48 File Offset: 0x0017D148
+	// Token: 0x0600287F RID: 10367 RVA: 0x00132AE8 File Offset: 0x00130CE8
 	private void Update()
 	{
 		if (ObjShop.Shop)
@@ -49,33 +49,33 @@ public class ObjShop : MonoBehaviour
 		}
 	}
 
-	// Token: 0x04002B54 RID: 11092
+	// Token: 0x040023C6 RID: 9158
 	public static bool Shop;
 
-	// Token: 0x04002B55 RID: 11093
+	// Token: 0x040023C7 RID: 9159
 	public SwipeControlShop swipeCtrl;
 
-	// Token: 0x04002B56 RID: 11094
+	// Token: 0x040023C8 RID: 9160
 	public Transform[] obj = new Transform[0];
 
-	// Token: 0x04002B57 RID: 11095
+	// Token: 0x040023C9 RID: 9161
 	public float minXPos;
 
-	// Token: 0x04002B58 RID: 11096
+	// Token: 0x040023CA RID: 9162
 	public float maxXPos = 115f;
 
-	// Token: 0x04002B59 RID: 11097
+	// Token: 0x040023CB RID: 9163
 	private float xDist;
 
-	// Token: 0x04002B5A RID: 11098
+	// Token: 0x040023CC RID: 9164
 	private float xDistFactor;
 
-	// Token: 0x04002B5B RID: 11099
+	// Token: 0x040023CD RID: 9165
 	private float swipeSmoothFactor = 1f;
 
-	// Token: 0x04002B5C RID: 11100
+	// Token: 0x040023CE RID: 9166
 	public float xPosReal = -11f;
 
-	// Token: 0x04002B5D RID: 11101
+	// Token: 0x040023CF RID: 9167
 	private float rememberYPos;
 }

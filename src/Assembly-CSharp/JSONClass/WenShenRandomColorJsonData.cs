@@ -3,10 +3,10 @@ using System.Collections.Generic;
 
 namespace JSONClass
 {
-	// Token: 0x02000CFD RID: 3325
+	// Token: 0x0200097D RID: 2429
 	public class WenShenRandomColorJsonData : IJSONClass
 	{
-		// Token: 0x06004F5E RID: 20318 RVA: 0x00214C88 File Offset: 0x00212E88
+		// Token: 0x06004408 RID: 17416 RVA: 0x001CFAAC File Offset: 0x001CDCAC
 		public static void InitDataDict()
 		{
 			foreach (JSONObject jsonobject in jsonData.instance.WenShenRandomColorJsonData.list)
@@ -42,33 +42,33 @@ namespace JSONClass
 			}
 		}
 
-		// Token: 0x06004F5F RID: 20319 RVA: 0x000042DD File Offset: 0x000024DD
+		// Token: 0x06004409 RID: 17417 RVA: 0x00004095 File Offset: 0x00002295
 		private static void OnInitFinish()
 		{
 		}
 
-		// Token: 0x04005067 RID: 20583
+		// Token: 0x04004573 RID: 17779
 		public static Dictionary<int, WenShenRandomColorJsonData> DataDict = new Dictionary<int, WenShenRandomColorJsonData>();
 
-		// Token: 0x04005068 RID: 20584
+		// Token: 0x04004574 RID: 17780
 		public static List<WenShenRandomColorJsonData> DataList = new List<WenShenRandomColorJsonData>();
 
-		// Token: 0x04005069 RID: 20585
+		// Token: 0x04004575 RID: 17781
 		public static Action OnInitFinishAction = new Action(WenShenRandomColorJsonData.OnInitFinish);
 
-		// Token: 0x0400506A RID: 20586
+		// Token: 0x04004576 RID: 17782
 		public int id;
 
-		// Token: 0x0400506B RID: 20587
+		// Token: 0x04004577 RID: 17783
 		public int R;
 
-		// Token: 0x0400506C RID: 20588
+		// Token: 0x04004578 RID: 17784
 		public int G;
 
-		// Token: 0x0400506D RID: 20589
+		// Token: 0x04004579 RID: 17785
 		public int B;
 
-		// Token: 0x0400506E RID: 20590
+		// Token: 0x0400457A RID: 17786
 		public string beizhu;
 	}
 }

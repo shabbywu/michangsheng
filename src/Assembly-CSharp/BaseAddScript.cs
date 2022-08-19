@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using KBEngine;
 using UnityEngine;
 
-// Token: 0x02000608 RID: 1544
+// Token: 0x0200044F RID: 1103
 public class BaseAddScript : MonoBehaviour
 {
-	// Token: 0x0600268D RID: 9869 RVA: 0x0012EA38 File Offset: 0x0012CC38
+	// Token: 0x060022D6 RID: 8918 RVA: 0x000EE204 File Offset: 0x000EC404
 	public void Start()
 	{
 		if (base.gameObject.GetComponent<CharacterController>() == null)
@@ -19,7 +19,7 @@ public class BaseAddScript : MonoBehaviour
 		Object.Destroy(base.gameObject.transform.GetChild(0).GetComponent<CharacterController>());
 	}
 
-	// Token: 0x0600268E RID: 9870 RVA: 0x0012EAEC File Offset: 0x0012CCEC
+	// Token: 0x060022D7 RID: 8919 RVA: 0x000EE2B8 File Offset: 0x000EC4B8
 	public void resetRotation()
 	{
 		Transform child = base.transform.GetChild(0);
@@ -33,12 +33,12 @@ public class BaseAddScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x0600268F RID: 9871 RVA: 0x000042DD File Offset: 0x000024DD
+	// Token: 0x060022D8 RID: 8920 RVA: 0x00004095 File Offset: 0x00002295
 	public virtual void setBuff()
 	{
 	}
 
-	// Token: 0x06002690 RID: 9872 RVA: 0x0012EBB4 File Offset: 0x0012CDB4
+	// Token: 0x060022D9 RID: 8921 RVA: 0x000EE380 File Offset: 0x000EC580
 	public void displayBuff(int buffid)
 	{
 		string str = jsonData.instance.BuffJsonData[string.Concat(buffid)]["skillEffect"].str;
@@ -49,7 +49,7 @@ public class BaseAddScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06002691 RID: 9873 RVA: 0x0012EC48 File Offset: 0x0012CE48
+	// Token: 0x060022DA RID: 8922 RVA: 0x000EE414 File Offset: 0x000EC614
 	private void Update()
 	{
 		int num = (int)((uint)this.entity.getDefinedProperty("roleTypeCell"));
@@ -93,7 +93,7 @@ public class BaseAddScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06002692 RID: 9874 RVA: 0x0012EE60 File Offset: 0x0012D060
+	// Token: 0x060022DB RID: 8923 RVA: 0x000EE62C File Offset: 0x000EC82C
 	public void changeCanAttak()
 	{
 		foreach (KeyValuePair<int, Entity> keyValuePair in KBEngineApp.app.entities)
@@ -105,12 +105,12 @@ public class BaseAddScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x040020DC RID: 8412
+	// Token: 0x04001C0C RID: 7180
 	public int nowRoleType;
 
-	// Token: 0x040020DD RID: 8413
+	// Token: 0x04001C0D RID: 7181
 	public int nowRoleFace;
 
-	// Token: 0x040020DE RID: 8414
+	// Token: 0x04001C0E RID: 7182
 	public Entity entity;
 }

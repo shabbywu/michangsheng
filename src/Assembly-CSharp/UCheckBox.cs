@@ -3,10 +3,10 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
 
-// Token: 0x020004DA RID: 1242
+// Token: 0x0200035E RID: 862
 public class UCheckBox : MonoBehaviour
 {
-	// Token: 0x06002073 RID: 8307 RVA: 0x0001AACB File Offset: 0x00018CCB
+	// Token: 0x06001D0F RID: 7439 RVA: 0x000CE86C File Offset: 0x000CCA6C
 	private void Awake()
 	{
 		if (UCheckBox.inst != null)
@@ -17,7 +17,7 @@ public class UCheckBox : MonoBehaviour
 		Object.DontDestroyOnLoad(base.gameObject);
 	}
 
-	// Token: 0x06002074 RID: 8308 RVA: 0x0011333C File Offset: 0x0011153C
+	// Token: 0x06001D10 RID: 7440 RVA: 0x000CE898 File Offset: 0x000CCA98
 	private void Update()
 	{
 		if (UCheckBox.needShow)
@@ -35,14 +35,14 @@ public class UCheckBox : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06002075 RID: 8309 RVA: 0x0001AAF6 File Offset: 0x00018CF6
+	// Token: 0x06001D11 RID: 7441 RVA: 0x000CE927 File Offset: 0x000CCB27
 	private void Close()
 	{
 		UCheckBox.IsShow = false;
 		base.transform.GetChild(0).gameObject.SetActive(false);
 	}
 
-	// Token: 0x06002076 RID: 8310 RVA: 0x0001AB15 File Offset: 0x00018D15
+	// Token: 0x06001D12 RID: 7442 RVA: 0x000CE946 File Offset: 0x000CCB46
 	public static void Show(string text, UnityAction onOK = null)
 	{
 		if (UCheckBox.inst == null)
@@ -54,27 +54,27 @@ public class UCheckBox : MonoBehaviour
 		UCheckBox.needShow = true;
 	}
 
-	// Token: 0x04001BE2 RID: 7138
+	// Token: 0x04001793 RID: 6035
 	private static UCheckBox inst;
 
-	// Token: 0x04001BE3 RID: 7139
+	// Token: 0x04001794 RID: 6036
 	private static string prefabPath = "UCheckBox";
 
-	// Token: 0x04001BE4 RID: 7140
+	// Token: 0x04001795 RID: 6037
 	private static bool needShow;
 
-	// Token: 0x04001BE5 RID: 7141
+	// Token: 0x04001796 RID: 6038
 	private static string showText = "";
 
-	// Token: 0x04001BE6 RID: 7142
+	// Token: 0x04001797 RID: 6039
 	private static UnityAction OKAction;
 
-	// Token: 0x04001BE7 RID: 7143
+	// Token: 0x04001798 RID: 6040
 	public Text ShowText;
 
-	// Token: 0x04001BE8 RID: 7144
+	// Token: 0x04001799 RID: 6041
 	public Button OKBtn;
 
-	// Token: 0x04001BE9 RID: 7145
+	// Token: 0x0400179A RID: 6042
 	public static bool IsShow;
 }

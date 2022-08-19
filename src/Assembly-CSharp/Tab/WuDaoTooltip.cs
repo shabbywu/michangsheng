@@ -6,10 +6,10 @@ using UnityEngine.UI;
 
 namespace Tab
 {
-	// Token: 0x02000A35 RID: 2613
+	// Token: 0x020006F4 RID: 1780
 	public class WuDaoTooltip : UIBase, IESCClose
 	{
-		// Token: 0x0600439B RID: 17307 RVA: 0x001CE1FC File Offset: 0x001CC3FC
+		// Token: 0x06003930 RID: 14640 RVA: 0x00186924 File Offset: 0x00184B24
 		public WuDaoTooltip(GameObject go)
 		{
 			this._go = go;
@@ -27,7 +27,7 @@ namespace Tab
 			base.Get<Button>("Mask").onClick.AddListener(new UnityAction(this.Close));
 		}
 
-		// Token: 0x0600439C RID: 17308 RVA: 0x001CE2F4 File Offset: 0x001CC4F4
+		// Token: 0x06003931 RID: 14641 RVA: 0x00186A1C File Offset: 0x00184C1C
 		public void Show(Sprite sprite, int wudaoId, UnityAction action)
 		{
 			ESCCloseManager.Inst.RegisterClose(this);
@@ -54,7 +54,7 @@ namespace Tab
 			this.UpdateSize();
 		}
 
-		// Token: 0x0600439D RID: 17309 RVA: 0x00030591 File Offset: 0x0002E791
+		// Token: 0x06003932 RID: 14642 RVA: 0x00186B68 File Offset: 0x00184D68
 		private void UpdateSize()
 		{
 			LayoutRebuilder.ForceRebuildLayoutImmediate(this._downRect);
@@ -63,51 +63,51 @@ namespace Tab
 			LayoutRebuilder.ForceRebuildLayoutImmediate(this._bgRect);
 		}
 
-		// Token: 0x0600439E RID: 17310 RVA: 0x000305BF File Offset: 0x0002E7BF
+		// Token: 0x06003933 RID: 14643 RVA: 0x00186B96 File Offset: 0x00184D96
 		public void Close()
 		{
 			this._go.SetActive(false);
 			ESCCloseManager.Inst.UnRegisterClose(this);
 		}
 
-		// Token: 0x0600439F RID: 17311 RVA: 0x000305D8 File Offset: 0x0002E7D8
+		// Token: 0x06003934 RID: 14644 RVA: 0x00186BAF File Offset: 0x00184DAF
 		public bool TryEscClose()
 		{
 			this.Close();
 			return true;
 		}
 
-		// Token: 0x04003B9D RID: 15261
+		// Token: 0x04003138 RID: 12600
 		private Image _icon;
 
-		// Token: 0x04003B9E RID: 15262
+		// Token: 0x04003139 RID: 12601
 		private Text _name;
 
-		// Token: 0x04003B9F RID: 15263
+		// Token: 0x0400313A RID: 12602
 		private Text _xiaoGuo;
 
-		// Token: 0x04003BA0 RID: 15264
+		// Token: 0x0400313B RID: 12603
 		private Text _cost;
 
-		// Token: 0x04003BA1 RID: 15265
+		// Token: 0x0400313C RID: 12604
 		private Text _tiaoJian;
 
-		// Token: 0x04003BA2 RID: 15266
+		// Token: 0x0400313D RID: 12605
 		private Text _desc;
 
-		// Token: 0x04003BA3 RID: 15267
+		// Token: 0x0400313E RID: 12606
 		private RectTransform _bgRect;
 
-		// Token: 0x04003BA4 RID: 15268
+		// Token: 0x0400313F RID: 12607
 		private RectTransform _upRect;
 
-		// Token: 0x04003BA5 RID: 15269
+		// Token: 0x04003140 RID: 12608
 		private RectTransform _centerRect;
 
-		// Token: 0x04003BA6 RID: 15270
+		// Token: 0x04003141 RID: 12609
 		private RectTransform _downRect;
 
-		// Token: 0x04003BA7 RID: 15271
+		// Token: 0x04003142 RID: 12610
 		private FpBtn _btn;
 	}
 }

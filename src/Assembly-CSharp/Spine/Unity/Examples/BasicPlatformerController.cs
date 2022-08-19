@@ -4,26 +4,26 @@ using UnityEngine.Events;
 
 namespace Spine.Unity.Examples
 {
-	// Token: 0x02000E22 RID: 3618
+	// Token: 0x02000ADA RID: 2778
 	[RequireComponent(typeof(CharacterController))]
 	public class BasicPlatformerController : MonoBehaviour
 	{
 		// Token: 0x1400004C RID: 76
-		// (add) Token: 0x06005735 RID: 22325 RVA: 0x002441BC File Offset: 0x002423BC
-		// (remove) Token: 0x06005736 RID: 22326 RVA: 0x002441F4 File Offset: 0x002423F4
+		// (add) Token: 0x06004DD1 RID: 19921 RVA: 0x00214248 File Offset: 0x00212448
+		// (remove) Token: 0x06004DD2 RID: 19922 RVA: 0x00214280 File Offset: 0x00212480
 		public event UnityAction OnJump;
 
 		// Token: 0x1400004D RID: 77
-		// (add) Token: 0x06005737 RID: 22327 RVA: 0x0024422C File Offset: 0x0024242C
-		// (remove) Token: 0x06005738 RID: 22328 RVA: 0x00244264 File Offset: 0x00242464
+		// (add) Token: 0x06004DD3 RID: 19923 RVA: 0x002142B8 File Offset: 0x002124B8
+		// (remove) Token: 0x06004DD4 RID: 19924 RVA: 0x002142F0 File Offset: 0x002124F0
 		public event UnityAction OnLand;
 
 		// Token: 0x1400004E RID: 78
-		// (add) Token: 0x06005739 RID: 22329 RVA: 0x0024429C File Offset: 0x0024249C
-		// (remove) Token: 0x0600573A RID: 22330 RVA: 0x002442D4 File Offset: 0x002424D4
+		// (add) Token: 0x06004DD5 RID: 19925 RVA: 0x00214328 File Offset: 0x00212528
+		// (remove) Token: 0x06004DD6 RID: 19926 RVA: 0x00214360 File Offset: 0x00212560
 		public event UnityAction OnHardLand;
 
-		// Token: 0x0600573B RID: 22331 RVA: 0x0024430C File Offset: 0x0024250C
+		// Token: 0x06004DD7 RID: 19927 RVA: 0x00214398 File Offset: 0x00212598
 		private void Update()
 		{
 			float deltaTime = Time.deltaTime;
@@ -133,7 +133,7 @@ namespace Spine.Unity.Examples
 			}
 		}
 
-		// Token: 0x0600573C RID: 22332 RVA: 0x00244624 File Offset: 0x00242824
+		// Token: 0x06004DD8 RID: 19928 RVA: 0x002146B0 File Offset: 0x002128B0
 		private void HandleStateChanged()
 		{
 			string stateShortName = null;
@@ -164,89 +164,89 @@ namespace Spine.Unity.Examples
 			this.animationHandle.PlayAnimationForState(stateShortName, 0);
 		}
 
-		// Token: 0x040056FB RID: 22267
+		// Token: 0x04004D0A RID: 19722
 		[Header("Components")]
 		public CharacterController controller;
 
-		// Token: 0x040056FC RID: 22268
+		// Token: 0x04004D0B RID: 19723
 		[Header("Controls")]
 		public string XAxis = "Horizontal";
 
-		// Token: 0x040056FD RID: 22269
+		// Token: 0x04004D0C RID: 19724
 		public string YAxis = "Vertical";
 
-		// Token: 0x040056FE RID: 22270
+		// Token: 0x04004D0D RID: 19725
 		public string JumpButton = "Jump";
 
-		// Token: 0x040056FF RID: 22271
+		// Token: 0x04004D0E RID: 19726
 		[Header("Moving")]
 		public float walkSpeed = 1.5f;
 
-		// Token: 0x04005700 RID: 22272
+		// Token: 0x04004D0F RID: 19727
 		public float runSpeed = 7f;
 
-		// Token: 0x04005701 RID: 22273
+		// Token: 0x04004D10 RID: 19728
 		public float gravityScale = 6.6f;
 
-		// Token: 0x04005702 RID: 22274
+		// Token: 0x04004D11 RID: 19729
 		[Header("Jumping")]
 		public float jumpSpeed = 25f;
 
-		// Token: 0x04005703 RID: 22275
+		// Token: 0x04004D12 RID: 19730
 		public float minimumJumpDuration = 0.5f;
 
-		// Token: 0x04005704 RID: 22276
+		// Token: 0x04004D13 RID: 19731
 		public float jumpInterruptFactor = 0.5f;
 
-		// Token: 0x04005705 RID: 22277
+		// Token: 0x04004D14 RID: 19732
 		public float forceCrouchVelocity = 25f;
 
-		// Token: 0x04005706 RID: 22278
+		// Token: 0x04004D15 RID: 19733
 		public float forceCrouchDuration = 0.5f;
 
-		// Token: 0x04005707 RID: 22279
+		// Token: 0x04004D16 RID: 19734
 		[Header("Animation")]
 		public SkeletonAnimationHandleExample animationHandle;
 
-		// Token: 0x0400570B RID: 22283
+		// Token: 0x04004D1A RID: 19738
 		private Vector2 input;
 
-		// Token: 0x0400570C RID: 22284
+		// Token: 0x04004D1B RID: 19739
 		private Vector3 velocity;
 
-		// Token: 0x0400570D RID: 22285
+		// Token: 0x04004D1C RID: 19740
 		private float minimumJumpEndTime;
 
-		// Token: 0x0400570E RID: 22286
+		// Token: 0x04004D1D RID: 19741
 		private float forceCrouchEndTime;
 
-		// Token: 0x0400570F RID: 22287
+		// Token: 0x04004D1E RID: 19742
 		private bool wasGrounded;
 
-		// Token: 0x04005710 RID: 22288
+		// Token: 0x04004D1F RID: 19743
 		private BasicPlatformerController.CharacterState previousState;
 
-		// Token: 0x04005711 RID: 22289
+		// Token: 0x04004D20 RID: 19744
 		private BasicPlatformerController.CharacterState currentState;
 
-		// Token: 0x02000E23 RID: 3619
+		// Token: 0x020015BE RID: 5566
 		public enum CharacterState
 		{
-			// Token: 0x04005713 RID: 22291
+			// Token: 0x04007049 RID: 28745
 			None,
-			// Token: 0x04005714 RID: 22292
+			// Token: 0x0400704A RID: 28746
 			Idle,
-			// Token: 0x04005715 RID: 22293
+			// Token: 0x0400704B RID: 28747
 			Walk,
-			// Token: 0x04005716 RID: 22294
+			// Token: 0x0400704C RID: 28748
 			Run,
-			// Token: 0x04005717 RID: 22295
+			// Token: 0x0400704D RID: 28749
 			Crouch,
-			// Token: 0x04005718 RID: 22296
+			// Token: 0x0400704E RID: 28750
 			Rise,
-			// Token: 0x04005719 RID: 22297
+			// Token: 0x0400704F RID: 28751
 			Fall,
-			// Token: 0x0400571A RID: 22298
+			// Token: 0x04007050 RID: 28752
 			Attack
 		}
 	}

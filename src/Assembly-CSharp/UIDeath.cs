@@ -9,10 +9,10 @@ using UnityEngine.UI;
 using YSGame;
 using YSGame.TuJian;
 
-// Token: 0x020003DF RID: 991
+// Token: 0x020002A5 RID: 677
 public class UIDeath : MonoBehaviour
 {
-	// Token: 0x06001B0D RID: 6925 RVA: 0x00016E54 File Offset: 0x00015054
+	// Token: 0x0600181A RID: 6170 RVA: 0x000A87B1 File Offset: 0x000A69B1
 	private void Awake()
 	{
 		UIDeath.Inst = this;
@@ -37,7 +37,7 @@ public class UIDeath : MonoBehaviour
 		};
 	}
 
-	// Token: 0x06001B0E RID: 6926 RVA: 0x00016E6D File Offset: 0x0001506D
+	// Token: 0x0600181B RID: 6171 RVA: 0x000A87CA File Offset: 0x000A69CA
 	private void Update()
 	{
 		if (this.isOpen && this.checkPress && Input.anyKeyDown)
@@ -46,7 +46,7 @@ public class UIDeath : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001B0F RID: 6927 RVA: 0x00016E8C File Offset: 0x0001508C
+	// Token: 0x0600181C RID: 6172 RVA: 0x000A87E9 File Offset: 0x000A69E9
 	public void Show(DeathType deathType)
 	{
 		ESCCloseManager.Inst.CloseAll();
@@ -56,7 +56,7 @@ public class UIDeath : MonoBehaviour
 		Tools.instance.loadOtherScenes("DeathScene");
 	}
 
-	// Token: 0x06001B10 RID: 6928 RVA: 0x000EF8F8 File Offset: 0x000EDAF8
+	// Token: 0x0600181D RID: 6173 RVA: 0x000A8820 File Offset: 0x000A6A20
 	private void Show()
 	{
 		if (FpUIMag.inst != null)
@@ -98,7 +98,7 @@ public class UIDeath : MonoBehaviour
 		this.isOpen = true;
 	}
 
-	// Token: 0x06001B11 RID: 6929 RVA: 0x00016EC0 File Offset: 0x000150C0
+	// Token: 0x0600181E RID: 6174 RVA: 0x000A8974 File Offset: 0x000A6B74
 	private IEnumerator ShowPressAnyKey()
 	{
 		yield return new WaitForSeconds(3f);
@@ -107,7 +107,7 @@ public class UIDeath : MonoBehaviour
 		yield break;
 	}
 
-	// Token: 0x06001B12 RID: 6930 RVA: 0x00016ECF File Offset: 0x000150CF
+	// Token: 0x0600181F RID: 6175 RVA: 0x000A8983 File Offset: 0x000A6B83
 	private void Close()
 	{
 		this.needClose = false;
@@ -115,7 +115,7 @@ public class UIDeath : MonoBehaviour
 		this.ScaleObj.SetActive(false);
 	}
 
-	// Token: 0x06001B13 RID: 6931 RVA: 0x000EFA4C File Offset: 0x000EDC4C
+	// Token: 0x06001820 RID: 6176 RVA: 0x000A89A0 File Offset: 0x000A6BA0
 	public void BackToMainMenu()
 	{
 		YSSaveGame.Reset();
@@ -125,36 +125,36 @@ public class UIDeath : MonoBehaviour
 		Tools.instance.loadOtherScenes("MainMenu");
 	}
 
-	// Token: 0x040016C4 RID: 5828
+	// Token: 0x04001326 RID: 4902
 	public static UIDeath Inst;
 
-	// Token: 0x040016C5 RID: 5829
+	// Token: 0x04001327 RID: 4903
 	public GameObject ScaleObj;
 
-	// Token: 0x040016C6 RID: 5830
+	// Token: 0x04001328 RID: 4904
 	public GameObject PressAnyKey;
 
-	// Token: 0x040016C7 RID: 5831
+	// Token: 0x04001329 RID: 4905
 	public Text PressAnyKeyReturnText;
 
-	// Token: 0x040016C8 RID: 5832
+	// Token: 0x0400132A RID: 4906
 	public List<GameObject> DeathAnimList;
 
-	// Token: 0x040016C9 RID: 5833
+	// Token: 0x0400132B RID: 4907
 	public List<Color> DeathColorList;
 
-	// Token: 0x040016CA RID: 5834
+	// Token: 0x0400132C RID: 4908
 	private bool isOpen;
 
-	// Token: 0x040016CB RID: 5835
+	// Token: 0x0400132D RID: 4909
 	private bool needClose;
 
-	// Token: 0x040016CC RID: 5836
+	// Token: 0x0400132E RID: 4910
 	private bool needShow;
 
-	// Token: 0x040016CD RID: 5837
+	// Token: 0x0400132F RID: 4911
 	private bool checkPress;
 
-	// Token: 0x040016CE RID: 5838
+	// Token: 0x04001330 RID: 4912
 	private DeathType showDeathType;
 }

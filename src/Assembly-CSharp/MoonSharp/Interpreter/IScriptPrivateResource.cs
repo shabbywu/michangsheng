@@ -2,11 +2,11 @@
 
 namespace MoonSharp.Interpreter
 {
-	// Token: 0x0200106B RID: 4203
+	// Token: 0x02000C9E RID: 3230
 	public interface IScriptPrivateResource
 	{
-		// Token: 0x170008F2 RID: 2290
-		// (get) Token: 0x0600654F RID: 25935
+		// Token: 0x17000697 RID: 1687
+		// (get) Token: 0x06005A65 RID: 23141
 		Script OwnerScript { get; }
 	}
 }

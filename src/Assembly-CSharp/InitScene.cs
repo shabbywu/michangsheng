@@ -3,10 +3,10 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
 
-// Token: 0x020002FC RID: 764
+// Token: 0x020001E9 RID: 489
 public class InitScene : MonoBehaviour
 {
-	// Token: 0x060016FD RID: 5885 RVA: 0x000CBF70 File Offset: 0x000CA170
+	// Token: 0x06001459 RID: 5209 RVA: 0x00082FC4 File Offset: 0x000811C4
 	private void Start()
 	{
 		Debug.unityLogger.filterLogType = 0;
@@ -53,12 +53,12 @@ public class InitScene : MonoBehaviour
 		};
 	}
 
-	// Token: 0x060016FE RID: 5886 RVA: 0x00014588 File Offset: 0x00012788
+	// Token: 0x0600145A RID: 5210 RVA: 0x0008315B File Offset: 0x0008135B
 	public void CreateUIToNewCanvas(string path)
 	{
 		Object.Instantiate<GameObject>(Resources.Load<GameObject>(path), this.newCanvas.transform);
 	}
 
-	// Token: 0x0400125C RID: 4700
+	// Token: 0x04000F1E RID: 3870
 	private GameObject newCanvas;
 }

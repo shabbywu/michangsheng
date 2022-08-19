@@ -1,33 +1,65 @@
 ﻿using System;
+using System.Diagnostics;
+using System.IO;
+using TMPro;
 using UnityEngine;
-using UnityEngine.UI;
 
-// Token: 0x020004A5 RID: 1189
+// Token: 0x02000335 RID: 821
 public class MainGongGaoUI : MonoBehaviour
 {
-	// Token: 0x06001F8F RID: 8079 RVA: 0x0010F418 File Offset: 0x0010D618
+	// Token: 0x06001C3F RID: 7231 RVA: 0x000CA504 File Offset: 0x000C8704
 	private void Start()
 	{
 		if (this.show)
 		{
-			this.titleText.text = this.title;
-			this.content.text = this.desc;
-			this.timeText.text = this.time;
+			string text = "";
+			if (this.TryGetGongGao(out text))
+			{
+				this.GongGaoText.text = text;
+			}
 			this.gonggaoPanel.SetActive(true);
-			return;
 		}
-		this.gonggaoPanel.SetActive(false);
-		this.CheckTimeZone();
+		else
+		{
+			this.gonggaoPanel.SetActive(false);
+			this.CheckTimeZone();
+		}
+		if (PreloadManager.IsException)
+		{
+			UBigCheckBox.Show("<color=red>在初始化时出现异常！可能会影响到游戏正常运行，请检查是否有Mod冲突!</color>\n" + PreloadManager.ExceptionData, null);
+			PreloadManager.IsException = false;
+		}
 	}
 
-	// Token: 0x06001F90 RID: 8080 RVA: 0x0001A0EE File Offset: 0x000182EE
+	// Token: 0x06001C40 RID: 7232 RVA: 0x000CA577 File Offset: 0x000C8777
+	public void OpenGongGaoText()
+	{
+		Process.Start(Application.streamingAssetsPath + "/GongGao.txt");
+	}
+
+	// Token: 0x06001C41 RID: 7233 RVA: 0x000CA590 File Offset: 0x000C8790
+	public bool TryGetGongGao(out string text)
+	{
+		text = "";
+		try
+		{
+			text = File.ReadAllText(Application.streamingAssetsPath + "/GongGao.txt");
+			return true;
+		}
+		catch
+		{
+		}
+		return false;
+	}
+
+	// Token: 0x06001C42 RID: 7234 RVA: 0x000CA5D4 File Offset: 0x000C87D4
 	public void CloseGongGao()
 	{
 		this.gonggaoPanel.SetActive(false);
 		this.CheckTimeZone();
 	}
 
-	// Token: 0x06001F91 RID: 8081 RVA: 0x0010F480 File Offset: 0x0010D680
+	// Token: 0x06001C43 RID: 7235 RVA: 0x000CA5E8 File Offset: 0x000C87E8
 	public void CheckTimeZone()
 	{
 		try
@@ -45,36 +77,15 @@ public class MainGongGaoUI : MonoBehaviour
 		}
 	}
 
-	// Token: 0x04001AF9 RID: 6905
+	// Token: 0x040016C3 RID: 5827
 	[Tooltip("是否显示公告")]
 	public bool show;
 
-	// Token: 0x04001AFA RID: 6906
-	[Tooltip("公告标题")]
-	public string title;
-
-	// Token: 0x04001AFB RID: 6907
-	[Tooltip("公告文字")]
-	[TextArea(5, 10)]
-	public string desc;
-
-	// Token: 0x04001AFC RID: 6908
-	[Tooltip("公告时间")]
-	public string time;
-
-	// Token: 0x04001AFD RID: 6909
+	// Token: 0x040016C4 RID: 5828
 	[SerializeField]
-	private Text titleText;
+	private TextMeshProUGUI GongGaoText;
 
-	// Token: 0x04001AFE RID: 6910
-	[SerializeField]
-	private Text content;
-
-	// Token: 0x04001AFF RID: 6911
-	[SerializeField]
-	private Text timeText;
-
-	// Token: 0x04001B00 RID: 6912
+	// Token: 0x040016C5 RID: 5829
 	[SerializeField]
 	private GameObject gonggaoPanel;
 }

@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-// Token: 0x02000388 RID: 904
+// Token: 0x02000270 RID: 624
 public class UINPCHeadFavor : MonoBehaviour
 {
-	// Token: 0x0600194C RID: 6476 RVA: 0x000E2164 File Offset: 0x000E0364
+	// Token: 0x0600169A RID: 5786 RVA: 0x0009A278 File Offset: 0x00098478
 	public void SetFavor(int favor)
 	{
 		int favorIndex = UINPCHeadFavor.GetFavorIndex(favor);
@@ -14,7 +14,7 @@ public class UINPCHeadFavor : MonoBehaviour
 		this.FavorImage.sprite = this.FavorSpriteList[favorIndex];
 	}
 
-	// Token: 0x0600194D RID: 6477 RVA: 0x000E21A8 File Offset: 0x000E03A8
+	// Token: 0x0600169B RID: 5787 RVA: 0x0009A2BC File Offset: 0x000984BC
 	private static void InitFavor()
 	{
 		foreach (JSONObject jsonobject in jsonData.instance.NpcHaoGanDuData.list)
@@ -24,13 +24,13 @@ public class UINPCHeadFavor : MonoBehaviour
 		}
 	}
 
-	// Token: 0x0600194E RID: 6478 RVA: 0x00015AC4 File Offset: 0x00013CC4
+	// Token: 0x0600169C RID: 5788 RVA: 0x0009A350 File Offset: 0x00098550
 	public static int GetFavorLevel(int favor)
 	{
 		return UINPCHeadFavor.GetFavorIndex(favor) + 1;
 	}
 
-	// Token: 0x0600194F RID: 6479 RVA: 0x000E223C File Offset: 0x000E043C
+	// Token: 0x0600169D RID: 5789 RVA: 0x0009A35C File Offset: 0x0009855C
 	public static int GetFavorIndex(int favor)
 	{
 		if (UINPCHeadFavor.favorStrList.Count == 0)
@@ -47,18 +47,18 @@ public class UINPCHeadFavor : MonoBehaviour
 		return result;
 	}
 
-	// Token: 0x04001462 RID: 5218
+	// Token: 0x04001112 RID: 4370
 	public Image FavorImage;
 
-	// Token: 0x04001463 RID: 5219
+	// Token: 0x04001113 RID: 4371
 	public Text FavorText;
 
-	// Token: 0x04001464 RID: 5220
+	// Token: 0x04001114 RID: 4372
 	private static List<string> favorStrList = new List<string>();
 
-	// Token: 0x04001465 RID: 5221
+	// Token: 0x04001115 RID: 4373
 	private static List<int> favorQuJianList = new List<int>();
 
-	// Token: 0x04001466 RID: 5222
+	// Token: 0x04001116 RID: 4374
 	public List<Sprite> FavorSpriteList = new List<Sprite>();
 }

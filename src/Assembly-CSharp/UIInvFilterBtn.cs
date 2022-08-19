@@ -6,12 +6,12 @@ using UnityEngine.EventSystems;
 using UnityEngine.UI;
 using YSGame;
 
-// Token: 0x02000417 RID: 1047
+// Token: 0x020002CC RID: 716
 public class UIInvFilterBtn : MonoBehaviour, IPointerEnterHandler, IEventSystemHandler, IPointerExitHandler
 {
-	// Token: 0x17000292 RID: 658
-	// (get) Token: 0x06001C2C RID: 7212 RVA: 0x000178CF File Offset: 0x00015ACF
-	// (set) Token: 0x06001C2D RID: 7213 RVA: 0x000FACBC File Offset: 0x000F8EBC
+	// Token: 0x17000248 RID: 584
+	// (get) Token: 0x06001924 RID: 6436 RVA: 0x000B4C0D File Offset: 0x000B2E0D
+	// (set) Token: 0x06001925 RID: 6437 RVA: 0x000B4C18 File Offset: 0x000B2E18
 	public UIInvFilterBtn.BtnState State
 	{
 		get
@@ -55,7 +55,7 @@ public class UIInvFilterBtn : MonoBehaviour, IPointerEnterHandler, IEventSystemH
 		}
 	}
 
-	// Token: 0x06001C2E RID: 7214 RVA: 0x000178D7 File Offset: 0x00015AD7
+	// Token: 0x06001926 RID: 6438 RVA: 0x000B4D27 File Offset: 0x000B2F27
 	public void ClearListener()
 	{
 		this.IsNew = true;
@@ -66,7 +66,7 @@ public class UIInvFilterBtn : MonoBehaviour, IPointerEnterHandler, IEventSystemH
 		this.button.onClick.RemoveAllListeners();
 	}
 
-	// Token: 0x06001C2F RID: 7215 RVA: 0x0001790A File Offset: 0x00015B0A
+	// Token: 0x06001927 RID: 6439 RVA: 0x000B4D5A File Offset: 0x000B2F5A
 	public void AddClickEvent(UnityAction call)
 	{
 		if (this.button == null)
@@ -76,7 +76,7 @@ public class UIInvFilterBtn : MonoBehaviour, IPointerEnterHandler, IEventSystemH
 		this.button.onClick.AddListener(call);
 	}
 
-	// Token: 0x06001C30 RID: 7216 RVA: 0x000FADCC File Offset: 0x000F8FCC
+	// Token: 0x06001928 RID: 6440 RVA: 0x000B4D88 File Offset: 0x000B2F88
 	private void Awake()
 	{
 		if (this.IsNew)
@@ -92,7 +92,7 @@ public class UIInvFilterBtn : MonoBehaviour, IPointerEnterHandler, IEventSystemH
 		});
 	}
 
-	// Token: 0x06001C31 RID: 7217 RVA: 0x00017937 File Offset: 0x00015B37
+	// Token: 0x06001929 RID: 6441 RVA: 0x000B4DE6 File Offset: 0x000B2FE6
 	public void OnPointerEnter(PointerEventData eventData)
 	{
 		if (this.State == UIInvFilterBtn.BtnState.Normal)
@@ -105,7 +105,7 @@ public class UIInvFilterBtn : MonoBehaviour, IPointerEnterHandler, IEventSystemH
 		}
 	}
 
-	// Token: 0x06001C32 RID: 7218 RVA: 0x00017961 File Offset: 0x00015B61
+	// Token: 0x0600192A RID: 6442 RVA: 0x000B4E10 File Offset: 0x000B3010
 	public void OnPointerExit(PointerEventData eventData)
 	{
 		if (this.State == UIInvFilterBtn.BtnState.HoverNoActive)
@@ -114,56 +114,56 @@ public class UIInvFilterBtn : MonoBehaviour, IPointerEnterHandler, IEventSystemH
 		}
 	}
 
-	// Token: 0x0400182A RID: 6186
+	// Token: 0x04001460 RID: 5216
 	private UIInventory inventory;
 
-	// Token: 0x0400182B RID: 6187
+	// Token: 0x04001461 RID: 5217
 	private Button button;
 
-	// Token: 0x0400182C RID: 6188
+	// Token: 0x04001462 RID: 5218
 	public Image BGImage;
 
-	// Token: 0x0400182D RID: 6189
+	// Token: 0x04001463 RID: 5219
 	public Image SanJiao;
 
-	// Token: 0x0400182E RID: 6190
+	// Token: 0x04001464 RID: 5220
 	public Text ShowText;
 
-	// Token: 0x0400182F RID: 6191
+	// Token: 0x04001465 RID: 5221
 	public string DeafaultName;
 
-	// Token: 0x04001830 RID: 6192
+	// Token: 0x04001466 RID: 5222
 	public Color TextNormalColor;
 
-	// Token: 0x04001831 RID: 6193
+	// Token: 0x04001467 RID: 5223
 	public Color TextActiveColor;
 
-	// Token: 0x04001832 RID: 6194
+	// Token: 0x04001468 RID: 5224
 	public Sprite NormalSprite;
 
-	// Token: 0x04001833 RID: 6195
+	// Token: 0x04001469 RID: 5225
 	public Sprite ActiveSprite;
 
-	// Token: 0x04001834 RID: 6196
+	// Token: 0x0400146A RID: 5226
 	public bool IsSelected;
 
-	// Token: 0x04001835 RID: 6197
+	// Token: 0x0400146B RID: 5227
 	private UIInvFilterBtn.BtnState state;
 
-	// Token: 0x04001836 RID: 6198
+	// Token: 0x0400146C RID: 5228
 	public int BtnData;
 
-	// Token: 0x04001837 RID: 6199
+	// Token: 0x0400146D RID: 5229
 	public bool IsNew;
 
-	// Token: 0x02000418 RID: 1048
+	// Token: 0x02001321 RID: 4897
 	public enum BtnState
 	{
-		// Token: 0x04001839 RID: 6201
+		// Token: 0x0400678C RID: 26508
 		Normal,
-		// Token: 0x0400183A RID: 6202
+		// Token: 0x0400678D RID: 26509
 		Active,
-		// Token: 0x0400183B RID: 6203
+		// Token: 0x0400678E RID: 26510
 		HoverNoActive
 	}
 }

@@ -6,15 +6,15 @@ using JSONClass;
 using KBEngine;
 using UnityEngine;
 
-// Token: 0x02000272 RID: 626
+// Token: 0x0200018B RID: 395
 public class headUIMag : MonoBehaviour
 {
-	// Token: 0x06001352 RID: 4946 RVA: 0x000042DD File Offset: 0x000024DD
+	// Token: 0x060010E8 RID: 4328 RVA: 0x00004095 File Offset: 0x00002295
 	private void Start()
 	{
 	}
 
-	// Token: 0x06001353 RID: 4947 RVA: 0x000B309C File Offset: 0x000B129C
+	// Token: 0x060010E9 RID: 4329 RVA: 0x00064874 File Offset: 0x00062A74
 	public void showHeadUI()
 	{
 		Avatar avatar = (Avatar)KBEngineApp.app.player();
@@ -107,7 +107,7 @@ public class headUIMag : MonoBehaviour
 		this.ShowEquip();
 	}
 
-	// Token: 0x06001354 RID: 4948 RVA: 0x000B37DC File Offset: 0x000B19DC
+	// Token: 0x060010EA RID: 4330 RVA: 0x00064FB4 File Offset: 0x000631B4
 	public void showStaticSkill()
 	{
 		Avatar avatar = (Avatar)KBEngineApp.app.player();
@@ -134,7 +134,7 @@ public class headUIMag : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001355 RID: 4949 RVA: 0x000B38FC File Offset: 0x000B1AFC
+	// Token: 0x060010EB RID: 4331 RVA: 0x000650D4 File Offset: 0x000632D4
 	public void ShowSkill()
 	{
 		Avatar avatar = (Avatar)KBEngineApp.app.player();
@@ -161,33 +161,33 @@ public class headUIMag : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001356 RID: 4950 RVA: 0x000122C3 File Offset: 0x000104C3
+	// Token: 0x060010EC RID: 4332 RVA: 0x00065200 File Offset: 0x00063400
 	public void ShowEquip()
 	{
 		Avatar avatar = (Avatar)KBEngineApp.app.player();
 	}
 
-	// Token: 0x06001357 RID: 4951 RVA: 0x000122D5 File Offset: 0x000104D5
+	// Token: 0x060010ED RID: 4333 RVA: 0x00065212 File Offset: 0x00063412
 	public void Close()
 	{
 		base.transform.localPosition = new Vector3(10000f, 10000f, 0f);
 	}
 
-	// Token: 0x04000F0B RID: 3851
+	// Token: 0x04000C24 RID: 3108
 	public List<Sprite> UIDanDu;
 
-	// Token: 0x04000F0C RID: 3852
+	// Token: 0x04000C25 RID: 3109
 	public List<Sprite> UIXinJin;
 
-	// Token: 0x04000F0D RID: 3853
+	// Token: 0x04000C26 RID: 3110
 	public List<Sprite> UIDengJi;
 
-	// Token: 0x04000F0E RID: 3854
+	// Token: 0x04000C27 RID: 3111
 	public List<int> danduTypeIconID;
 
-	// Token: 0x04000F0F RID: 3855
+	// Token: 0x04000C28 RID: 3112
 	public List<Color> DanDuColor;
 
-	// Token: 0x04000F10 RID: 3856
+	// Token: 0x04000C29 RID: 3113
 	public List<Color> XinJInColor;
 }

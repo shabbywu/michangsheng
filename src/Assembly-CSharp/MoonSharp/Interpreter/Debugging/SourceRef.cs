@@ -2,50 +2,50 @@
 
 namespace MoonSharp.Interpreter.Debugging
 {
-	// Token: 0x0200117F RID: 4479
+	// Token: 0x02000D69 RID: 3433
 	public class SourceRef
 	{
-		// Token: 0x17000A02 RID: 2562
-		// (get) Token: 0x06006D01 RID: 27905 RVA: 0x0004A50D File Offset: 0x0004870D
-		// (set) Token: 0x06006D02 RID: 27906 RVA: 0x0004A515 File Offset: 0x00048715
+		// Token: 0x170007A5 RID: 1957
+		// (get) Token: 0x0600610D RID: 24845 RVA: 0x00272C3A File Offset: 0x00270E3A
+		// (set) Token: 0x0600610E RID: 24846 RVA: 0x00272C42 File Offset: 0x00270E42
 		public bool IsClrLocation { get; private set; }
 
-		// Token: 0x17000A03 RID: 2563
-		// (get) Token: 0x06006D03 RID: 27907 RVA: 0x0004A51E File Offset: 0x0004871E
-		// (set) Token: 0x06006D04 RID: 27908 RVA: 0x0004A526 File Offset: 0x00048726
+		// Token: 0x170007A6 RID: 1958
+		// (get) Token: 0x0600610F RID: 24847 RVA: 0x00272C4B File Offset: 0x00270E4B
+		// (set) Token: 0x06006110 RID: 24848 RVA: 0x00272C53 File Offset: 0x00270E53
 		public int SourceIdx { get; private set; }
 
-		// Token: 0x17000A04 RID: 2564
-		// (get) Token: 0x06006D05 RID: 27909 RVA: 0x0004A52F File Offset: 0x0004872F
-		// (set) Token: 0x06006D06 RID: 27910 RVA: 0x0004A537 File Offset: 0x00048737
+		// Token: 0x170007A7 RID: 1959
+		// (get) Token: 0x06006111 RID: 24849 RVA: 0x00272C5C File Offset: 0x00270E5C
+		// (set) Token: 0x06006112 RID: 24850 RVA: 0x00272C64 File Offset: 0x00270E64
 		public int FromChar { get; private set; }
 
-		// Token: 0x17000A05 RID: 2565
-		// (get) Token: 0x06006D07 RID: 27911 RVA: 0x0004A540 File Offset: 0x00048740
-		// (set) Token: 0x06006D08 RID: 27912 RVA: 0x0004A548 File Offset: 0x00048748
+		// Token: 0x170007A8 RID: 1960
+		// (get) Token: 0x06006113 RID: 24851 RVA: 0x00272C6D File Offset: 0x00270E6D
+		// (set) Token: 0x06006114 RID: 24852 RVA: 0x00272C75 File Offset: 0x00270E75
 		public int ToChar { get; private set; }
 
-		// Token: 0x17000A06 RID: 2566
-		// (get) Token: 0x06006D09 RID: 27913 RVA: 0x0004A551 File Offset: 0x00048751
-		// (set) Token: 0x06006D0A RID: 27914 RVA: 0x0004A559 File Offset: 0x00048759
+		// Token: 0x170007A9 RID: 1961
+		// (get) Token: 0x06006115 RID: 24853 RVA: 0x00272C7E File Offset: 0x00270E7E
+		// (set) Token: 0x06006116 RID: 24854 RVA: 0x00272C86 File Offset: 0x00270E86
 		public int FromLine { get; private set; }
 
-		// Token: 0x17000A07 RID: 2567
-		// (get) Token: 0x06006D0B RID: 27915 RVA: 0x0004A562 File Offset: 0x00048762
-		// (set) Token: 0x06006D0C RID: 27916 RVA: 0x0004A56A File Offset: 0x0004876A
+		// Token: 0x170007AA RID: 1962
+		// (get) Token: 0x06006117 RID: 24855 RVA: 0x00272C8F File Offset: 0x00270E8F
+		// (set) Token: 0x06006118 RID: 24856 RVA: 0x00272C97 File Offset: 0x00270E97
 		public int ToLine { get; private set; }
 
-		// Token: 0x17000A08 RID: 2568
-		// (get) Token: 0x06006D0D RID: 27917 RVA: 0x0004A573 File Offset: 0x00048773
-		// (set) Token: 0x06006D0E RID: 27918 RVA: 0x0004A57B File Offset: 0x0004877B
+		// Token: 0x170007AB RID: 1963
+		// (get) Token: 0x06006119 RID: 24857 RVA: 0x00272CA0 File Offset: 0x00270EA0
+		// (set) Token: 0x0600611A RID: 24858 RVA: 0x00272CA8 File Offset: 0x00270EA8
 		public bool IsStepStop { get; private set; }
 
-		// Token: 0x17000A09 RID: 2569
-		// (get) Token: 0x06006D0F RID: 27919 RVA: 0x0004A584 File Offset: 0x00048784
-		// (set) Token: 0x06006D10 RID: 27920 RVA: 0x0004A58C File Offset: 0x0004878C
+		// Token: 0x170007AC RID: 1964
+		// (get) Token: 0x0600611B RID: 24859 RVA: 0x00272CB1 File Offset: 0x00270EB1
+		// (set) Token: 0x0600611C RID: 24860 RVA: 0x00272CB9 File Offset: 0x00270EB9
 		public bool CannotBreakpoint { get; private set; }
 
-		// Token: 0x06006D11 RID: 27921 RVA: 0x0004A595 File Offset: 0x00048795
+		// Token: 0x0600611D RID: 24861 RVA: 0x00272CC2 File Offset: 0x00270EC2
 		internal static SourceRef GetClrLocation()
 		{
 			return new SourceRef(0, 0, 0, 0, 0, false)
@@ -54,7 +54,7 @@ namespace MoonSharp.Interpreter.Debugging
 			};
 		}
 
-		// Token: 0x06006D12 RID: 27922 RVA: 0x00299950 File Offset: 0x00297B50
+		// Token: 0x0600611E RID: 24862 RVA: 0x00272CD8 File Offset: 0x00270ED8
 		public SourceRef(SourceRef src, bool isStepStop)
 		{
 			this.SourceIdx = src.SourceIdx;
@@ -65,7 +65,7 @@ namespace MoonSharp.Interpreter.Debugging
 			this.IsStepStop = isStepStop;
 		}
 
-		// Token: 0x06006D13 RID: 27923 RVA: 0x0004A5A9 File Offset: 0x000487A9
+		// Token: 0x0600611F RID: 24863 RVA: 0x00272D2E File Offset: 0x00270F2E
 		public SourceRef(int sourceIdx, int from, int to, int fromline, int toline, bool isStepStop)
 		{
 			this.SourceIdx = sourceIdx;
@@ -76,7 +76,7 @@ namespace MoonSharp.Interpreter.Debugging
 			this.IsStepStop = isStepStop;
 		}
 
-		// Token: 0x06006D14 RID: 27924 RVA: 0x002999A8 File Offset: 0x00297BA8
+		// Token: 0x06006120 RID: 24864 RVA: 0x00272D64 File Offset: 0x00270F64
 		public override string ToString()
 		{
 			return string.Format("[{0}]{1} ({2}, {3}) -> ({4}, {5})", new object[]
@@ -90,7 +90,7 @@ namespace MoonSharp.Interpreter.Debugging
 			});
 		}
 
-		// Token: 0x06006D15 RID: 27925 RVA: 0x00299A24 File Offset: 0x00297C24
+		// Token: 0x06006121 RID: 24865 RVA: 0x00272DE0 File Offset: 0x00270FE0
 		internal int GetLocationDistance(int sourceIdx, int line, int col)
 		{
 			if (sourceIdx != this.SourceIdx)
@@ -143,7 +143,7 @@ namespace MoonSharp.Interpreter.Debugging
 			}
 		}
 
-		// Token: 0x06006D16 RID: 27926 RVA: 0x00299B10 File Offset: 0x00297D10
+		// Token: 0x06006122 RID: 24866 RVA: 0x00272ECC File Offset: 0x002710CC
 		public bool IncludesLocation(int sourceIdx, int line, int col)
 		{
 			if (sourceIdx != this.SourceIdx || line < this.FromLine || line > this.ToLine)
@@ -161,14 +161,14 @@ namespace MoonSharp.Interpreter.Debugging
 			return line != this.ToLine || col <= this.ToChar;
 		}
 
-		// Token: 0x06006D17 RID: 27927 RVA: 0x0004A5DE File Offset: 0x000487DE
+		// Token: 0x06006123 RID: 24867 RVA: 0x00272F49 File Offset: 0x00271149
 		public SourceRef SetNoBreakPoint()
 		{
 			this.CannotBreakpoint = true;
 			return this;
 		}
 
-		// Token: 0x06006D18 RID: 27928 RVA: 0x00299B90 File Offset: 0x00297D90
+		// Token: 0x06006124 RID: 24868 RVA: 0x00272F54 File Offset: 0x00271154
 		public string FormatLocation(Script script, bool forceClassicFormat = false)
 		{
 			SourceCode sourceCode = script.GetSourceCode(this.SourceIdx);
@@ -212,7 +212,7 @@ namespace MoonSharp.Interpreter.Debugging
 			});
 		}
 
-		// Token: 0x0400620C RID: 25100
+		// Token: 0x04005571 RID: 21873
 		public bool Breakpoint;
 	}
 }

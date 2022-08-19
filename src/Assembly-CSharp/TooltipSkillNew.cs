@@ -1,14 +1,14 @@
 ﻿using System;
 
-// Token: 0x020005E4 RID: 1508
+// Token: 0x0200042D RID: 1069
 public class TooltipSkillNew : TooltipSkill
 {
-	// Token: 0x060025EB RID: 9707 RVA: 0x000042DD File Offset: 0x000024DD
+	// Token: 0x0600222C RID: 8748 RVA: 0x00004095 File Offset: 0x00002295
 	private new void Start()
 	{
 	}
 
-	// Token: 0x060025EC RID: 9708 RVA: 0x000042DD File Offset: 0x000024DD
+	// Token: 0x0600222D RID: 8749 RVA: 0x00004095 File Offset: 0x00002295
 	protected override void Update()
 	{
 	}

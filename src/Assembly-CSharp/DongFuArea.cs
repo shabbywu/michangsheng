@@ -1,12 +1,12 @@
 ﻿using System;
 
-// Token: 0x0200031C RID: 796
+// Token: 0x02000207 RID: 519
 public enum DongFuArea
 {
-	// Token: 0x040012D2 RID: 4818
+	// Token: 0x04000F8C RID: 3980
 	灵田,
-	// Token: 0x040012D3 RID: 4819
+	// Token: 0x04000F8D RID: 3981
 	炼丹,
-	// Token: 0x040012D4 RID: 4820
+	// Token: 0x04000F8E RID: 3982
 	炼器
 }

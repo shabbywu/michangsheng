@@ -1,26 +1,26 @@
 ﻿using System;
 using UnityEngine;
 
-// Token: 0x02000626 RID: 1574
+// Token: 0x0200046A RID: 1130
 public class showDanFang : MonoBehaviour
 {
-	// Token: 0x0600271F RID: 10015 RVA: 0x0001F173 File Offset: 0x0001D373
+	// Token: 0x06002369 RID: 9065 RVA: 0x000F25BB File Offset: 0x000F07BB
 	private void Start()
 	{
 		this.lianDanDanFang.InitDanFang();
 	}
 
-	// Token: 0x06002720 RID: 10016 RVA: 0x0001F173 File Offset: 0x0001D373
+	// Token: 0x0600236A RID: 9066 RVA: 0x000F25BB File Offset: 0x000F07BB
 	public void Open()
 	{
 		this.lianDanDanFang.InitDanFang();
 	}
 
-	// Token: 0x06002721 RID: 10017 RVA: 0x000042DD File Offset: 0x000024DD
+	// Token: 0x0600236B RID: 9067 RVA: 0x00004095 File Offset: 0x00002295
 	private void Update()
 	{
 	}
 
-	// Token: 0x04002141 RID: 8513
+	// Token: 0x04001C6C RID: 7276
 	public LianDanDanFang lianDanDanFang;
 }

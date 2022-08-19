@@ -5,10 +5,10 @@ using UnityEngine.UI;
 
 namespace UltimateSurvival.GUISystem
 {
-	// Token: 0x0200092A RID: 2346
+	// Token: 0x02000638 RID: 1592
 	public class MessageDisplayer : MonoSingleton<MessageDisplayer>
 	{
-		// Token: 0x06003BC5 RID: 15301 RVA: 0x001AEFBC File Offset: 0x001AD1BC
+		// Token: 0x0600328B RID: 12939 RVA: 0x00165B6C File Offset: 0x00163D6C
 		public void PushMessage(string message, Color color = default(Color), int lineHeight = 16)
 		{
 			if (color == default(Color))
@@ -30,13 +30,13 @@ namespace UltimateSurvival.GUISystem
 			}
 		}
 
-		// Token: 0x06003BC6 RID: 15302 RVA: 0x0002B393 File Offset: 0x00029593
+		// Token: 0x0600328C RID: 12940 RVA: 0x00165C2D File Offset: 0x00163E2D
 		private void Start()
 		{
 			this.m_MessageTemplate.SetActive(false);
 		}
 
-		// Token: 0x06003BC7 RID: 15303 RVA: 0x0002B3A1 File Offset: 0x000295A1
+		// Token: 0x0600328D RID: 12941 RVA: 0x00165C3B File Offset: 0x00163E3B
 		private IEnumerator FadeMessage(CanvasGroup group)
 		{
 			if (!group)
@@ -53,19 +53,19 @@ namespace UltimateSurvival.GUISystem
 			yield break;
 		}
 
-		// Token: 0x0400364E RID: 13902
+		// Token: 0x04002CFD RID: 11517
 		[SerializeField]
 		private GameObject m_MessageTemplate;
 
-		// Token: 0x0400364F RID: 13903
+		// Token: 0x04002CFE RID: 11518
 		[SerializeField]
 		private Color m_BaseMessageColor = Color.yellow;
 
-		// Token: 0x04003650 RID: 13904
+		// Token: 0x04002CFF RID: 11519
 		[SerializeField]
 		private float m_FadeDelay = 3f;
 
-		// Token: 0x04003651 RID: 13905
+		// Token: 0x04002D00 RID: 11520
 		[SerializeField]
 		private float m_FadeSpeed = 0.3f;
 	}

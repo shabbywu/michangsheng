@@ -1,10 +1,10 @@
 ﻿using System;
 using UnityEngine;
 
-// Token: 0x020001DF RID: 479
+// Token: 0x0200011D RID: 285
 public class ETFXProjectileScript : MonoBehaviour
 {
-	// Token: 0x06000F72 RID: 3954 RVA: 0x000A1EF0 File Offset: 0x000A00F0
+	// Token: 0x06000D99 RID: 3481 RVA: 0x00051424 File Offset: 0x0004F624
 	private void Start()
 	{
 		this.projectileParticle = Object.Instantiate<GameObject>(this.projectileParticle, base.transform.position, base.transform.rotation);
@@ -16,7 +16,7 @@ public class ETFXProjectileScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000F73 RID: 3955 RVA: 0x000A1F80 File Offset: 0x000A0180
+	// Token: 0x06000D9A RID: 3482 RVA: 0x000514B4 File Offset: 0x0004F6B4
 	private void OnCollisionEnter(Collision hit)
 	{
 		if (!this.hasCollided)
@@ -49,22 +49,22 @@ public class ETFXProjectileScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x04000C1E RID: 3102
+	// Token: 0x0400099A RID: 2458
 	public GameObject impactParticle;
 
-	// Token: 0x04000C1F RID: 3103
+	// Token: 0x0400099B RID: 2459
 	public GameObject projectileParticle;
 
-	// Token: 0x04000C20 RID: 3104
+	// Token: 0x0400099C RID: 2460
 	public GameObject muzzleParticle;
 
-	// Token: 0x04000C21 RID: 3105
+	// Token: 0x0400099D RID: 2461
 	public GameObject[] trailParticles;
 
-	// Token: 0x04000C22 RID: 3106
+	// Token: 0x0400099E RID: 2462
 	[HideInInspector]
 	public Vector3 impactNormal;
 
-	// Token: 0x04000C23 RID: 3107
+	// Token: 0x0400099F RID: 2463
 	private bool hasCollided;
 }

@@ -3,11 +3,11 @@ using UnityEngine;
 
 namespace UltimateSurvival
 {
-	// Token: 0x020008DE RID: 2270
+	// Token: 0x02000601 RID: 1537
 	[Serializable]
 	public class ItemToGenerate
 	{
-		// Token: 0x06003A52 RID: 14930 RVA: 0x001A7E34 File Offset: 0x001A6034
+		// Token: 0x0600314F RID: 12623 RVA: 0x0015E9BC File Offset: 0x0015CBBC
 		public bool TryGenerate(out SavableItem runtimeItem)
 		{
 			runtimeItem = null;
@@ -29,7 +29,7 @@ namespace UltimateSurvival
 			return false;
 		}
 
-		// Token: 0x06003A53 RID: 14931 RVA: 0x001A7EAC File Offset: 0x001A60AC
+		// Token: 0x06003150 RID: 12624 RVA: 0x0015EA34 File Offset: 0x0015CC34
 		public ItemData GenerateItemData()
 		{
 			ItemDatabase database = MonoSingleton<InventoryController>.Instance.Database;
@@ -45,15 +45,15 @@ namespace UltimateSurvival
 			return result;
 		}
 
-		// Token: 0x04003467 RID: 13415
+		// Token: 0x04002B6E RID: 11118
 		[SerializeField]
 		private bool m_Random;
 
-		// Token: 0x04003468 RID: 13416
+		// Token: 0x04002B6F RID: 11119
 		[SerializeField]
 		private string m_CustomName;
 
-		// Token: 0x04003469 RID: 13417
+		// Token: 0x04002B70 RID: 11120
 		[SerializeField]
 		[Clamp(1f, 9999999f)]
 		private int m_StackSize = 1;

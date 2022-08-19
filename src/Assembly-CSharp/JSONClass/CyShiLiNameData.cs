@@ -3,10 +3,10 @@ using System.Collections.Generic;
 
 namespace JSONClass
 {
-	// Token: 0x02000BBC RID: 3004
+	// Token: 0x02000826 RID: 2086
 	public class CyShiLiNameData : IJSONClass
 	{
-		// Token: 0x06004A58 RID: 19032 RVA: 0x001F7AA4 File Offset: 0x001F5CA4
+		// Token: 0x06003EAA RID: 16042 RVA: 0x001AC810 File Offset: 0x001AAA10
 		public static void InitDataDict()
 		{
 			foreach (JSONObject jsonobject in jsonData.instance.CyShiLiNameData.list)
@@ -39,24 +39,24 @@ namespace JSONClass
 			}
 		}
 
-		// Token: 0x06004A59 RID: 19033 RVA: 0x000042DD File Offset: 0x000024DD
+		// Token: 0x06003EAB RID: 16043 RVA: 0x00004095 File Offset: 0x00002295
 		private static void OnInitFinish()
 		{
 		}
 
-		// Token: 0x040045D3 RID: 17875
+		// Token: 0x04003A4B RID: 14923
 		public static Dictionary<int, CyShiLiNameData> DataDict = new Dictionary<int, CyShiLiNameData>();
 
-		// Token: 0x040045D4 RID: 17876
+		// Token: 0x04003A4C RID: 14924
 		public static List<CyShiLiNameData> DataList = new List<CyShiLiNameData>();
 
-		// Token: 0x040045D5 RID: 17877
+		// Token: 0x04003A4D RID: 14925
 		public static Action OnInitFinishAction = new Action(CyShiLiNameData.OnInitFinish);
 
-		// Token: 0x040045D6 RID: 17878
+		// Token: 0x04003A4E RID: 14926
 		public int id;
 
-		// Token: 0x040045D7 RID: 17879
+		// Token: 0x04003A4F RID: 14927
 		public string name;
 	}
 }

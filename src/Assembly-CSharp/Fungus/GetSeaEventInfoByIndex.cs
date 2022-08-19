@@ -4,12 +4,12 @@ using UnityEngine;
 
 namespace Fungus
 {
-	// Token: 0x02001407 RID: 5127
+	// Token: 0x02000F51 RID: 3921
 	[CommandInfo("YSNew/Get", "GetSeaEventInfoByIndex", "通过下标获取周围海域的事件信息", 0)]
 	[AddComponentMenu("")]
 	public class GetSeaEventInfoByIndex : Command
 	{
-		// Token: 0x06007C73 RID: 31859 RVA: 0x0001CA4F File Offset: 0x0001AC4F
+		// Token: 0x06006E88 RID: 28296 RVA: 0x000E111A File Offset: 0x000DF31A
 		public void setHasVariable(string name, int num, Flowchart flowchart)
 		{
 			if (flowchart.HasVariable(name))
@@ -18,7 +18,7 @@ namespace Fungus
 			}
 		}
 
-		// Token: 0x06007C74 RID: 31860 RVA: 0x002C4F70 File Offset: 0x002C3170
+		// Token: 0x06006E89 RID: 28297 RVA: 0x002A509C File Offset: 0x002A329C
 		public override void OnEnter()
 		{
 			Tools.instance.getPlayer();
@@ -41,18 +41,18 @@ namespace Fungus
 			this.Continue();
 		}
 
-		// Token: 0x06007C75 RID: 31861 RVA: 0x000113CF File Offset: 0x0000F5CF
+		// Token: 0x06006E8A RID: 28298 RVA: 0x0005E228 File Offset: 0x0005C428
 		public override Color GetButtonColor()
 		{
 			return new Color32(184, 210, 235, byte.MaxValue);
 		}
 
-		// Token: 0x06007C76 RID: 31862 RVA: 0x000042DD File Offset: 0x000024DD
+		// Token: 0x06006E8B RID: 28299 RVA: 0x00004095 File Offset: 0x00002295
 		public override void OnReset()
 		{
 		}
 
-		// Token: 0x04006A7E RID: 27262
+		// Token: 0x04005BAD RID: 23469
 		[Tooltip("下标")]
 		[VariableProperty(new Type[]
 		{
@@ -61,7 +61,7 @@ namespace Fungus
 		[SerializeField]
 		protected IntegerVariable index;
 
-		// Token: 0x04006A7F RID: 27263
+		// Token: 0x04005BAE RID: 23470
 		[Tooltip("返回的事件ID")]
 		[VariableProperty(new Type[]
 		{
@@ -70,7 +70,7 @@ namespace Fungus
 		[SerializeField]
 		protected IntegerVariable EventID;
 
-		// Token: 0x04006A80 RID: 27264
+		// Token: 0x04005BAF RID: 23471
 		[Tooltip("返回的名称")]
 		[VariableProperty(new Type[]
 		{

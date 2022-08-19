@@ -6,15 +6,15 @@ using UnityEngine;
 
 namespace Fungus
 {
-	// Token: 0x02001302 RID: 4866
+	// Token: 0x02000E91 RID: 3729
 	public class Writer : MonoBehaviour, IDialogInputListener
 	{
-		// Token: 0x17000B15 RID: 2837
-		// (get) Token: 0x0600769E RID: 30366 RVA: 0x00050C09 File Offset: 0x0004EE09
-		// (set) Token: 0x0600769F RID: 30367 RVA: 0x00050C11 File Offset: 0x0004EE11
+		// Token: 0x17000896 RID: 2198
+		// (get) Token: 0x0600699F RID: 27039 RVA: 0x0029147F File Offset: 0x0028F67F
+		// (set) Token: 0x060069A0 RID: 27040 RVA: 0x00291487 File Offset: 0x0028F687
 		public WriterAudio AttachedWriterAudio { get; set; }
 
-		// Token: 0x060076A0 RID: 30368 RVA: 0x002B3674 File Offset: 0x002B1874
+		// Token: 0x060069A1 RID: 27041 RVA: 0x00291490 File Offset: 0x0028F690
 		protected virtual void Awake()
 		{
 			GameObject gameObject = this.targetTextObject;
@@ -35,7 +35,7 @@ namespace Fungus
 			this.CacheHiddenColorStrings();
 		}
 
-		// Token: 0x060076A1 RID: 30369 RVA: 0x002B36D8 File Offset: 0x002B18D8
+		// Token: 0x060069A2 RID: 27042 RVA: 0x002914F4 File Offset: 0x0028F6F4
 		protected virtual void CacheHiddenColorStrings()
 		{
 			Color32 color = this.hiddenTextColor;
@@ -49,7 +49,7 @@ namespace Fungus
 			this.hiddenColorClose = "</color>";
 		}
 
-		// Token: 0x060076A2 RID: 30370 RVA: 0x00050C1A File Offset: 0x0004EE1A
+		// Token: 0x060069A3 RID: 27043 RVA: 0x00291566 File Offset: 0x0028F766
 		protected virtual void Start()
 		{
 			if (this.forceRichText)
@@ -58,7 +58,7 @@ namespace Fungus
 			}
 		}
 
-		// Token: 0x060076A3 RID: 30371 RVA: 0x002B374C File Offset: 0x002B194C
+		// Token: 0x060069A4 RID: 27044 RVA: 0x0029157C File Offset: 0x0028F77C
 		protected virtual void UpdateOpenMarkup()
 		{
 			this.openString.Length = 0;
@@ -87,7 +87,7 @@ namespace Fungus
 			}
 		}
 
-		// Token: 0x060076A4 RID: 30372 RVA: 0x002B3820 File Offset: 0x002B1A20
+		// Token: 0x060069A5 RID: 27045 RVA: 0x00291650 File Offset: 0x0028F850
 		protected virtual void UpdateCloseMarkup()
 		{
 			this.closeString.Length = 0;
@@ -112,7 +112,7 @@ namespace Fungus
 			}
 		}
 
-		// Token: 0x060076A5 RID: 30373 RVA: 0x00050C2F File Offset: 0x0004EE2F
+		// Token: 0x060069A6 RID: 27046 RVA: 0x002916DA File Offset: 0x0028F8DA
 		protected virtual bool CheckParamCount(List<string> paramList, int count)
 		{
 			if (paramList == null)
@@ -128,7 +128,7 @@ namespace Fungus
 			return true;
 		}
 
-		// Token: 0x060076A6 RID: 30374 RVA: 0x00050C6B File Offset: 0x0004EE6B
+		// Token: 0x060069A7 RID: 27047 RVA: 0x00291716 File Offset: 0x0028F916
 		protected virtual bool TryGetSingleParam(List<string> paramList, int index, float defaultValue, out float value)
 		{
 			value = defaultValue;
@@ -140,7 +140,7 @@ namespace Fungus
 			return false;
 		}
 
-		// Token: 0x060076A7 RID: 30375 RVA: 0x00050C8C File Offset: 0x0004EE8C
+		// Token: 0x060069A8 RID: 27048 RVA: 0x00291737 File Offset: 0x0028F937
 		protected virtual IEnumerator ProcessTokens(List<TextTagToken> tokens, bool stopAudio, Action onComplete)
 		{
 			this.boldActive = false;
@@ -356,7 +356,7 @@ namespace Fungus
 			yield break;
 		}
 
-		// Token: 0x060076A8 RID: 30376 RVA: 0x00050CB0 File Offset: 0x0004EEB0
+		// Token: 0x060069A9 RID: 27049 RVA: 0x0029175B File Offset: 0x0028F95B
 		protected virtual IEnumerator DoWords(List<string> paramList, TokenType previousTokenType)
 		{
 			if (!this.CheckParamCount(paramList, 1))
@@ -420,7 +420,7 @@ namespace Fungus
 			yield break;
 		}
 
-		// Token: 0x060076A9 RID: 30377 RVA: 0x002B38AC File Offset: 0x002B1AAC
+		// Token: 0x060069AA RID: 27050 RVA: 0x00291778 File Offset: 0x0028F978
 		protected virtual void PartitionString(bool wholeWords, string inputString, int i)
 		{
 			this.leftString.Length = 0;
@@ -448,7 +448,7 @@ namespace Fungus
 			this.rightString.Remove(0, i);
 		}
 
-		// Token: 0x060076AA RID: 30378 RVA: 0x002B3964 File Offset: 0x002B1B64
+		// Token: 0x060069AB RID: 27051 RVA: 0x00291830 File Offset: 0x0028FA30
 		protected virtual void ConcatenateString(string startText)
 		{
 			this.outputString.Length = 0;
@@ -470,7 +470,7 @@ namespace Fungus
 			}
 		}
 
-		// Token: 0x060076AB RID: 30379 RVA: 0x00050CCD File Offset: 0x0004EECD
+		// Token: 0x060069AC RID: 27052 RVA: 0x0029191F File Offset: 0x0028FB1F
 		protected virtual IEnumerator DoWait(List<string> paramList)
 		{
 			string s = "";
@@ -487,7 +487,7 @@ namespace Fungus
 			yield break;
 		}
 
-		// Token: 0x060076AC RID: 30380 RVA: 0x00050CE3 File Offset: 0x0004EEE3
+		// Token: 0x060069AD RID: 27053 RVA: 0x00291935 File Offset: 0x0028FB35
 		protected virtual IEnumerator DoWaitVO()
 		{
 			float duration = 0f;
@@ -499,7 +499,7 @@ namespace Fungus
 			yield break;
 		}
 
-		// Token: 0x060076AD RID: 30381 RVA: 0x00050CF2 File Offset: 0x0004EEF2
+		// Token: 0x060069AE RID: 27054 RVA: 0x00291944 File Offset: 0x0028FB44
 		protected virtual IEnumerator DoWait(float duration)
 		{
 			this.NotifyPause();
@@ -513,7 +513,7 @@ namespace Fungus
 			yield break;
 		}
 
-		// Token: 0x060076AE RID: 30382 RVA: 0x00050D08 File Offset: 0x0004EF08
+		// Token: 0x060069AF RID: 27055 RVA: 0x0029195A File Offset: 0x0028FB5A
 		protected virtual IEnumerator DoWaitForInput(bool clear)
 		{
 			this.NotifyPause();
@@ -533,13 +533,13 @@ namespace Fungus
 			yield break;
 		}
 
-		// Token: 0x060076AF RID: 30383 RVA: 0x00050D1E File Offset: 0x0004EF1E
+		// Token: 0x060069B0 RID: 27056 RVA: 0x00291970 File Offset: 0x0028FB70
 		protected virtual bool IsPunctuation(char character)
 		{
 			return character == '.' || character == '?' || character == '!' || character == ',' || character == ':' || character == ';' || character == ')';
 		}
 
-		// Token: 0x060076B0 RID: 30384 RVA: 0x002B3A54 File Offset: 0x002B1C54
+		// Token: 0x060069B1 RID: 27057 RVA: 0x00291998 File Offset: 0x0028FB98
 		protected virtual void Punch(Vector3 axis, float time)
 		{
 			GameObject gameObject = this.punchObject;
@@ -553,7 +553,7 @@ namespace Fungus
 			}
 		}
 
-		// Token: 0x060076B1 RID: 30385 RVA: 0x002B3A90 File Offset: 0x002B1C90
+		// Token: 0x060069B2 RID: 27058 RVA: 0x002919D4 File Offset: 0x0028FBD4
 		protected virtual void Flash(float duration)
 		{
 			CameraManager cameraManager = FungusManager.Instance.CameraManager;
@@ -565,7 +565,7 @@ namespace Fungus
 			});
 		}
 
-		// Token: 0x060076B2 RID: 30386 RVA: 0x002B3B0C File Offset: 0x002B1D0C
+		// Token: 0x060069B3 RID: 27059 RVA: 0x00291A50 File Offset: 0x0028FC50
 		protected virtual AudioSource FindAudio(string audioObjectName)
 		{
 			GameObject gameObject = GameObject.Find(audioObjectName);
@@ -576,7 +576,7 @@ namespace Fungus
 			return gameObject.GetComponent<AudioSource>();
 		}
 
-		// Token: 0x060076B3 RID: 30387 RVA: 0x002B3B34 File Offset: 0x002B1D34
+		// Token: 0x060069B4 RID: 27060 RVA: 0x00291A78 File Offset: 0x0028FC78
 		protected virtual void NotifyInput()
 		{
 			WriterSignals.DoWriterInput(this);
@@ -586,7 +586,7 @@ namespace Fungus
 			}
 		}
 
-		// Token: 0x060076B4 RID: 30388 RVA: 0x002B3B70 File Offset: 0x002B1D70
+		// Token: 0x060069B5 RID: 27061 RVA: 0x00291AB4 File Offset: 0x0028FCB4
 		protected virtual void NotifyStart(AudioClip audioClip)
 		{
 			WriterSignals.DoWriterState(this, WriterState.Start);
@@ -596,7 +596,7 @@ namespace Fungus
 			}
 		}
 
-		// Token: 0x060076B5 RID: 30389 RVA: 0x002B3BAC File Offset: 0x002B1DAC
+		// Token: 0x060069B6 RID: 27062 RVA: 0x00291AF0 File Offset: 0x0028FCF0
 		protected virtual void NotifyPause()
 		{
 			WriterSignals.DoWriterState(this, WriterState.Pause);
@@ -606,7 +606,7 @@ namespace Fungus
 			}
 		}
 
-		// Token: 0x060076B6 RID: 30390 RVA: 0x002B3BE8 File Offset: 0x002B1DE8
+		// Token: 0x060069B7 RID: 27063 RVA: 0x00291B2C File Offset: 0x0028FD2C
 		protected virtual void NotifyResume()
 		{
 			WriterSignals.DoWriterState(this, WriterState.Resume);
@@ -616,7 +616,7 @@ namespace Fungus
 			}
 		}
 
-		// Token: 0x060076B7 RID: 30391 RVA: 0x002B3C24 File Offset: 0x002B1E24
+		// Token: 0x060069B8 RID: 27064 RVA: 0x00291B68 File Offset: 0x0028FD68
 		protected virtual void NotifyEnd(bool stopAudio)
 		{
 			WriterSignals.DoWriterState(this, WriterState.End);
@@ -626,7 +626,7 @@ namespace Fungus
 			}
 		}
 
-		// Token: 0x060076B8 RID: 30392 RVA: 0x002B3C60 File Offset: 0x002B1E60
+		// Token: 0x060069B9 RID: 27065 RVA: 0x00291BA4 File Offset: 0x0028FDA4
 		protected virtual void NotifyGlyph()
 		{
 			WriterSignals.DoWriterGlyph(this);
@@ -636,8 +636,8 @@ namespace Fungus
 			}
 		}
 
-		// Token: 0x17000B16 RID: 2838
-		// (get) Token: 0x060076B9 RID: 30393 RVA: 0x00050D45 File Offset: 0x0004EF45
+		// Token: 0x17000897 RID: 2199
+		// (get) Token: 0x060069BA RID: 27066 RVA: 0x00291BDE File Offset: 0x0028FDDE
 		public virtual bool IsWriting
 		{
 			get
@@ -646,8 +646,8 @@ namespace Fungus
 			}
 		}
 
-		// Token: 0x17000B17 RID: 2839
-		// (get) Token: 0x060076BA RID: 30394 RVA: 0x00050D4D File Offset: 0x0004EF4D
+		// Token: 0x17000898 RID: 2200
+		// (get) Token: 0x060069BB RID: 27067 RVA: 0x00291BE6 File Offset: 0x0028FDE6
 		public virtual bool IsWaitingForInput
 		{
 			get
@@ -656,12 +656,12 @@ namespace Fungus
 			}
 		}
 
-		// Token: 0x17000B18 RID: 2840
-		// (get) Token: 0x060076BC RID: 30396 RVA: 0x00050D5E File Offset: 0x0004EF5E
-		// (set) Token: 0x060076BB RID: 30395 RVA: 0x00050D55 File Offset: 0x0004EF55
+		// Token: 0x17000899 RID: 2201
+		// (get) Token: 0x060069BD RID: 27069 RVA: 0x00291BF7 File Offset: 0x0028FDF7
+		// (set) Token: 0x060069BC RID: 27068 RVA: 0x00291BEE File Offset: 0x0028FDEE
 		public virtual bool Paused { get; set; }
 
-		// Token: 0x060076BD RID: 30397 RVA: 0x00050D66 File Offset: 0x0004EF66
+		// Token: 0x060069BE RID: 27070 RVA: 0x00291BFF File Offset: 0x0028FDFF
 		public virtual void Stop()
 		{
 			if (this.isWriting || this.isWaitingForInput)
@@ -670,7 +670,7 @@ namespace Fungus
 			}
 		}
 
-		// Token: 0x060076BE RID: 30398 RVA: 0x002B3C9C File Offset: 0x002B1E9C
+		// Token: 0x060069BF RID: 27071 RVA: 0x00291C18 File Offset: 0x0028FE18
 		public virtual IEnumerator Write(string content, bool clear, bool waitForInput, bool stopAudio, bool waitForVO, AudioClip audioClip, Action onComplete)
 		{
 			if (clear)
@@ -698,19 +698,19 @@ namespace Fungus
 			yield break;
 		}
 
-		// Token: 0x060076BF RID: 30399 RVA: 0x00050D7F File Offset: 0x0004EF7F
+		// Token: 0x060069C0 RID: 27072 RVA: 0x00291C67 File Offset: 0x0028FE67
 		public void SetTextColor(Color textColor)
 		{
 			this.textAdapter.SetTextColor(textColor);
 		}
 
-		// Token: 0x060076C0 RID: 30400 RVA: 0x00050D8D File Offset: 0x0004EF8D
+		// Token: 0x060069C1 RID: 27073 RVA: 0x00291C75 File Offset: 0x0028FE75
 		public void SetTextAlpha(float textAlpha)
 		{
 			this.textAdapter.SetTextAlpha(textAlpha);
 		}
 
-		// Token: 0x060076C1 RID: 30401 RVA: 0x00050D9B File Offset: 0x0004EF9B
+		// Token: 0x060069C2 RID: 27074 RVA: 0x00291C83 File Offset: 0x0028FE83
 		public virtual void OnNextLineEvent()
 		{
 			this.inputFlag = true;
@@ -720,113 +720,113 @@ namespace Fungus
 			}
 		}
 
-		// Token: 0x04006772 RID: 26482
+		// Token: 0x04005991 RID: 22929
 		[Tooltip("Gameobject containing a Text, Inout Field or Text Mesh object to write to")]
 		[SerializeField]
 		protected GameObject targetTextObject;
 
-		// Token: 0x04006773 RID: 26483
+		// Token: 0x04005992 RID: 22930
 		[Tooltip("Gameobject to punch when the punch tags are displayed. If none is set, the main camera will shake instead.")]
 		[SerializeField]
 		protected GameObject punchObject;
 
-		// Token: 0x04006774 RID: 26484
+		// Token: 0x04005993 RID: 22931
 		[Tooltip("Writing characters per second")]
 		[SerializeField]
 		protected float writingSpeed = 60f;
 
-		// Token: 0x04006775 RID: 26485
+		// Token: 0x04005994 RID: 22932
 		[Tooltip("Pause duration for punctuation characters")]
 		[SerializeField]
 		protected float punctuationPause = 0.25f;
 
-		// Token: 0x04006776 RID: 26486
+		// Token: 0x04005995 RID: 22933
 		[Tooltip("Color of text that has not been revealed yet")]
 		[SerializeField]
 		protected Color hiddenTextColor = new Color(1f, 1f, 1f, 0f);
 
-		// Token: 0x04006777 RID: 26487
+		// Token: 0x04005996 RID: 22934
 		[Tooltip("Write one word at a time rather one character at a time")]
 		[SerializeField]
 		protected bool writeWholeWords;
 
-		// Token: 0x04006778 RID: 26488
+		// Token: 0x04005997 RID: 22935
 		[Tooltip("Force the target text object to use Rich Text mode so text color and alpha appears correctly")]
 		[SerializeField]
 		protected bool forceRichText = true;
 
-		// Token: 0x04006779 RID: 26489
+		// Token: 0x04005998 RID: 22936
 		[Tooltip("Click while text is writing to finish writing immediately")]
 		[SerializeField]
 		protected bool instantComplete = true;
 
-		// Token: 0x0400677A RID: 26490
+		// Token: 0x04005999 RID: 22937
 		protected bool isWaitingForInput;
 
-		// Token: 0x0400677B RID: 26491
+		// Token: 0x0400599A RID: 22938
 		protected bool isWriting;
 
-		// Token: 0x0400677C RID: 26492
+		// Token: 0x0400599B RID: 22939
 		protected float currentWritingSpeed;
 
-		// Token: 0x0400677D RID: 26493
+		// Token: 0x0400599C RID: 22940
 		protected float currentPunctuationPause;
 
-		// Token: 0x0400677E RID: 26494
+		// Token: 0x0400599D RID: 22941
 		protected TextAdapter textAdapter = new TextAdapter();
 
-		// Token: 0x0400677F RID: 26495
+		// Token: 0x0400599E RID: 22942
 		protected bool boldActive;
 
-		// Token: 0x04006780 RID: 26496
+		// Token: 0x0400599F RID: 22943
 		protected bool italicActive;
 
-		// Token: 0x04006781 RID: 26497
+		// Token: 0x040059A0 RID: 22944
 		protected bool colorActive;
 
-		// Token: 0x04006782 RID: 26498
+		// Token: 0x040059A1 RID: 22945
 		protected string colorText = "";
 
-		// Token: 0x04006783 RID: 26499
+		// Token: 0x040059A2 RID: 22946
 		protected bool sizeActive;
 
-		// Token: 0x04006784 RID: 26500
+		// Token: 0x040059A3 RID: 22947
 		protected float sizeValue = 16f;
 
-		// Token: 0x04006785 RID: 26501
+		// Token: 0x040059A4 RID: 22948
 		protected bool inputFlag;
 
-		// Token: 0x04006786 RID: 26502
+		// Token: 0x040059A5 RID: 22949
 		protected bool exitFlag;
 
-		// Token: 0x04006787 RID: 26503
+		// Token: 0x040059A6 RID: 22950
 		protected List<IWriterListener> writerListeners = new List<IWriterListener>();
 
-		// Token: 0x04006788 RID: 26504
+		// Token: 0x040059A7 RID: 22951
 		protected StringBuilder openString = new StringBuilder(256);
 
-		// Token: 0x04006789 RID: 26505
+		// Token: 0x040059A8 RID: 22952
 		protected StringBuilder closeString = new StringBuilder(256);
 
-		// Token: 0x0400678A RID: 26506
+		// Token: 0x040059A9 RID: 22953
 		protected StringBuilder leftString = new StringBuilder(1024);
 
-		// Token: 0x0400678B RID: 26507
+		// Token: 0x040059AA RID: 22954
 		protected StringBuilder rightString = new StringBuilder(1024);
 
-		// Token: 0x0400678C RID: 26508
+		// Token: 0x040059AB RID: 22955
 		protected StringBuilder outputString = new StringBuilder(1024);
 
-		// Token: 0x0400678D RID: 26509
+		// Token: 0x040059AC RID: 22956
 		protected StringBuilder readAheadString = new StringBuilder(1024);
 
-		// Token: 0x0400678E RID: 26510
+		// Token: 0x040059AD RID: 22957
 		protected string hiddenColorOpen = "";
 
-		// Token: 0x0400678F RID: 26511
+		// Token: 0x040059AE RID: 22958
 		protected string hiddenColorClose = "";
 
-		// Token: 0x04006790 RID: 26512
+		// Token: 0x040059AF RID: 22959
 		protected int visibleCharacterCount;
 	}
 }

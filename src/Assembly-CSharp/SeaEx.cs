@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using Newtonsoft.Json.Linq;
 using UnityEngine;
 
-// Token: 0x020002D9 RID: 729
+// Token: 0x020001CE RID: 462
 public static class SeaEx
 {
-	// Token: 0x060015FB RID: 5627 RVA: 0x000C5E5C File Offset: 0x000C405C
+	// Token: 0x0600133F RID: 4927 RVA: 0x000790E4 File Offset: 0x000772E4
 	public static void Init()
 	{
 		if (!SeaEx.inited)
@@ -31,7 +31,7 @@ public static class SeaEx
 		}
 	}
 
-	// Token: 0x060015FC RID: 5628 RVA: 0x000C5FC4 File Offset: 0x000C41C4
+	// Token: 0x06001340 RID: 4928 RVA: 0x0007924C File Offset: 0x0007744C
 	public static SeaNodeData GetSeaNodeDataByNodeIndex(int nodeIndex)
 	{
 		SeaEx.Init();
@@ -47,20 +47,20 @@ public static class SeaEx
 		return SeaEx.seaNodeDatas[nodeIndex - 1];
 	}
 
-	// Token: 0x060015FD RID: 5629 RVA: 0x00013B9F File Offset: 0x00011D9F
+	// Token: 0x06001341 RID: 4929 RVA: 0x000792B2 File Offset: 0x000774B2
 	public static SeaNodeData GetSeaNodeDataByNodePos(Vector2Int nodePos)
 	{
 		return SeaEx.GetSeaNodeDataByNodeIndex(SeaEx.GetNodeIndexByNodePos(nodePos));
 	}
 
-	// Token: 0x060015FE RID: 5630 RVA: 0x000C602C File Offset: 0x000C422C
+	// Token: 0x06001342 RID: 4930 RVA: 0x000792C0 File Offset: 0x000774C0
 	public static int GetSmallSeaIDByNodeIndex(int nodeIndex)
 	{
 		Vector2Int smallSeaPosByNodePos = SeaEx.GetSmallSeaPosByNodePos(SeaEx.GetNodePosByNodeIndex(nodeIndex));
 		return SeaEx.bigSeaColCount / SeaEx.smallSeaSideLen * smallSeaPosByNodePos.y + smallSeaPosByNodePos.x + 1;
 	}
 
-	// Token: 0x060015FF RID: 5631 RVA: 0x000C6064 File Offset: 0x000C4264
+	// Token: 0x06001343 RID: 4931 RVA: 0x000792F8 File Offset: 0x000774F8
 	public static Vector2Int GetNodePosByNodeIndex(int nodeIndex)
 	{
 		int num = (nodeIndex - 1) % SeaEx.bigSeaColCount;
@@ -68,13 +68,13 @@ public static class SeaEx
 		return new Vector2Int(num, num2);
 	}
 
-	// Token: 0x06001600 RID: 5632 RVA: 0x00013BAC File Offset: 0x00011DAC
+	// Token: 0x06001344 RID: 4932 RVA: 0x0007931E File Offset: 0x0007751E
 	public static int GetNodeIndexByNodePos(Vector2Int nodePos)
 	{
 		return nodePos.y * SeaEx.bigSeaColCount + nodePos.x + 1;
 	}
 
-	// Token: 0x06001601 RID: 5633 RVA: 0x000C608C File Offset: 0x000C428C
+	// Token: 0x06001345 RID: 4933 RVA: 0x00079338 File Offset: 0x00077538
 	public static Vector2Int GetSmallSeaPosByNodePos(Vector2Int nodePos)
 	{
 		int num = nodePos.x / SeaEx.smallSeaSideLen;
@@ -82,33 +82,33 @@ public static class SeaEx
 		return new Vector2Int(num, num2);
 	}
 
-	// Token: 0x040011CB RID: 4555
+	// Token: 0x04000E8C RID: 3724
 	private static int smallSeaSideLen = 7;
 
-	// Token: 0x040011CC RID: 4556
+	// Token: 0x04000E8D RID: 3725
 	private static int smallSeaColCount = 19;
 
-	// Token: 0x040011CD RID: 4557
+	// Token: 0x04000E8E RID: 3726
 	private static int smallSeaRowCount = 10;
 
-	// Token: 0x040011CE RID: 4558
+	// Token: 0x04000E8F RID: 3727
 	private static int bigSeaColCount = SeaEx.smallSeaColCount * SeaEx.smallSeaSideLen;
 
-	// Token: 0x040011CF RID: 4559
+	// Token: 0x04000E90 RID: 3728
 	private static int bigSeaRowCount = SeaEx.smallSeaRowCount * SeaEx.smallSeaSideLen;
 
-	// Token: 0x040011D0 RID: 4560
+	// Token: 0x04000E91 RID: 3729
 	private static int totalSeaNodeCount = SeaEx.bigSeaColCount * SeaEx.bigSeaRowCount;
 
-	// Token: 0x040011D1 RID: 4561
+	// Token: 0x04000E92 RID: 3730
 	private static SeaNodeData[] seaNodeDatas;
 
-	// Token: 0x040011D2 RID: 4562
+	// Token: 0x04000E93 RID: 3731
 	public static Dictionary<int, List<int>> BigSeaHasSmallSeaIDDict = new Dictionary<int, List<int>>();
 
-	// Token: 0x040011D3 RID: 4563
+	// Token: 0x04000E94 RID: 3732
 	public static Dictionary<int, int> SmallSeaSafeLevelDict = new Dictionary<int, int>();
 
-	// Token: 0x040011D4 RID: 4564
+	// Token: 0x04000E95 RID: 3733
 	private static bool inited;
 }

@@ -1,34 +1,34 @@
 ﻿using System;
 using UnityEngine;
 
-// Token: 0x020003F7 RID: 1015
+// Token: 0x020002BB RID: 699
 public class GameVersion : MonoBehaviour
 {
-	// Token: 0x06001B8D RID: 7053 RVA: 0x00017273 File Offset: 0x00015473
+	// Token: 0x06001899 RID: 6297 RVA: 0x000B08DD File Offset: 0x000AEADD
 	private void Awake()
 	{
 		GameVersion.inst = this;
 	}
 
-	// Token: 0x06001B8E RID: 7054 RVA: 0x0001727B File Offset: 0x0001547B
+	// Token: 0x0600189A RID: 6298 RVA: 0x000B08E5 File Offset: 0x000AEAE5
 	private void Start()
 	{
 		this.realTest = false;
 	}
 
-	// Token: 0x06001B8F RID: 7055 RVA: 0x00017284 File Offset: 0x00015484
+	// Token: 0x0600189B RID: 6299 RVA: 0x000B08EE File Offset: 0x000AEAEE
 	public int GetGameVersion()
 	{
 		return this.gameVersion;
 	}
 
-	// Token: 0x0400174D RID: 5965
+	// Token: 0x040013AA RID: 5034
 	[SerializeField]
 	private int gameVersion;
 
-	// Token: 0x0400174E RID: 5966
+	// Token: 0x040013AB RID: 5035
 	public static GameVersion inst;
 
-	// Token: 0x0400174F RID: 5967
+	// Token: 0x040013AC RID: 5036
 	public bool realTest;
 }

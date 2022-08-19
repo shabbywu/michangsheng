@@ -4,11 +4,11 @@ using UnityEngine;
 
 namespace Fungus
 {
-	// Token: 0x020013A2 RID: 5026
+	// Token: 0x02000EFD RID: 3837
 	public class LuaScript : MonoBehaviour
 	{
-		// Token: 0x17000B7E RID: 2942
-		// (set) Token: 0x060079B3 RID: 31155 RVA: 0x000530F5 File Offset: 0x000512F5
+		// Token: 0x170008DB RID: 2267
+		// (set) Token: 0x06006BFF RID: 27647 RVA: 0x002979A6 File Offset: 0x00295BA6
 		public bool Initialised
 		{
 			set
@@ -17,7 +17,7 @@ namespace Fungus
 			}
 		}
 
-		// Token: 0x060079B4 RID: 31156 RVA: 0x000530FE File Offset: 0x000512FE
+		// Token: 0x06006C00 RID: 27648 RVA: 0x002979AF File Offset: 0x00295BAF
 		protected static string GetPath(Transform current)
 		{
 			if (current.parent == null)
@@ -27,13 +27,13 @@ namespace Fungus
 			return LuaScript.GetPath(current.parent) + "." + current.name;
 		}
 
-		// Token: 0x060079B5 RID: 31157 RVA: 0x00053130 File Offset: 0x00051330
+		// Token: 0x06006C01 RID: 27649 RVA: 0x002979E1 File Offset: 0x00295BE1
 		protected virtual void Start()
 		{
 			this.InitLuaScript();
 		}
 
-		// Token: 0x060079B6 RID: 31158 RVA: 0x002B8D14 File Offset: 0x002B6F14
+		// Token: 0x06006C02 RID: 27650 RVA: 0x002979EC File Offset: 0x00295BEC
 		protected virtual void InitLuaScript()
 		{
 			if (this.initialised)
@@ -56,7 +56,7 @@ namespace Fungus
 			this.initialised = true;
 		}
 
-		// Token: 0x060079B7 RID: 31159 RVA: 0x002B8DA8 File Offset: 0x002B6FA8
+		// Token: 0x06006C03 RID: 27651 RVA: 0x00297A80 File Offset: 0x00295C80
 		protected virtual string GetLuaString()
 		{
 			string text = "";
@@ -71,7 +71,7 @@ namespace Fungus
 			return text;
 		}
 
-		// Token: 0x060079B8 RID: 31160 RVA: 0x00053138 File Offset: 0x00051338
+		// Token: 0x06006C04 RID: 27652 RVA: 0x00297AC9 File Offset: 0x00295CC9
 		public virtual void OnExecute()
 		{
 			this.InitLuaScript();
@@ -83,34 +83,34 @@ namespace Fungus
 			this.luaEnvironment.RunLuaFunction(this.luaFunction, this.runAsCoroutine, null);
 		}
 
-		// Token: 0x04006955 RID: 26965
+		// Token: 0x04005ADC RID: 23260
 		[Tooltip("The Lua Environment to use when executing Lua script.")]
 		[SerializeField]
 		protected LuaEnvironment luaEnvironment;
 
-		// Token: 0x04006956 RID: 26966
+		// Token: 0x04005ADD RID: 23261
 		[Tooltip("Text file containing Lua script to be executed.")]
 		[SerializeField]
 		protected TextAsset luaFile;
 
-		// Token: 0x04006957 RID: 26967
+		// Token: 0x04005ADE RID: 23262
 		[Tooltip("A Lua string to execute, appended to the contents of Lua File (if one is specified).")]
 		[TextArea(5, 50)]
 		[SerializeField]
 		protected string luaScript = "";
 
-		// Token: 0x04006958 RID: 26968
+		// Token: 0x04005ADF RID: 23263
 		[Tooltip("Run the script as a Lua coroutine so execution can be yielded for asynchronous operations.")]
 		[SerializeField]
 		protected bool runAsCoroutine = true;
 
-		// Token: 0x04006959 RID: 26969
+		// Token: 0x04005AE0 RID: 23264
 		protected string friendlyName = "";
 
-		// Token: 0x0400695A RID: 26970
+		// Token: 0x04005AE1 RID: 23265
 		protected bool initialised;
 
-		// Token: 0x0400695B RID: 26971
+		// Token: 0x04005AE2 RID: 23266
 		protected Closure luaFunction;
 	}
 }

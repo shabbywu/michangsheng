@@ -4,10 +4,10 @@ using ICSharpCode.SharpZipLib.Zip.Compression.Streams;
 
 namespace ICSharpCode.SharpZipLib.Zip.Compression
 {
-	// Token: 0x020007FE RID: 2046
+	// Token: 0x02000558 RID: 1368
 	public class InflaterHuffmanTree
 	{
-		// Token: 0x060034CE RID: 13518 RVA: 0x00197340 File Offset: 0x00195540
+		// Token: 0x06002C60 RID: 11360 RVA: 0x0014B024 File Offset: 0x00149224
 		static InflaterHuffmanTree()
 		{
 			try
@@ -45,13 +45,13 @@ namespace ICSharpCode.SharpZipLib.Zip.Compression
 			}
 		}
 
-		// Token: 0x060034CF RID: 13519 RVA: 0x00026940 File Offset: 0x00024B40
+		// Token: 0x06002C61 RID: 11361 RVA: 0x0014B0D4 File Offset: 0x001492D4
 		public InflaterHuffmanTree(IList<byte> codeLengths)
 		{
 			this.BuildTree(codeLengths);
 		}
 
-		// Token: 0x060034D0 RID: 13520 RVA: 0x001973F0 File Offset: 0x001955F0
+		// Token: 0x06002C62 RID: 11362 RVA: 0x0014B0E4 File Offset: 0x001492E4
 		private void BuildTree(IList<byte> codeLengths)
 		{
 			int[] array = new int[16];
@@ -122,7 +122,7 @@ namespace ICSharpCode.SharpZipLib.Zip.Compression
 			}
 		}
 
-		// Token: 0x060034D1 RID: 13521 RVA: 0x001975DC File Offset: 0x001957DC
+		// Token: 0x06002C63 RID: 11363 RVA: 0x0014B2D0 File Offset: 0x001494D0
 		public int GetSymbol(StreamManipulator input)
 		{
 			int num;
@@ -173,16 +173,16 @@ namespace ICSharpCode.SharpZipLib.Zip.Compression
 			}
 		}
 
-		// Token: 0x0400301E RID: 12318
+		// Token: 0x040027E5 RID: 10213
 		private const int MAX_BITLEN = 15;
 
-		// Token: 0x0400301F RID: 12319
+		// Token: 0x040027E6 RID: 10214
 		private short[] tree;
 
-		// Token: 0x04003020 RID: 12320
+		// Token: 0x040027E7 RID: 10215
 		public static InflaterHuffmanTree defLitLenTree;
 
-		// Token: 0x04003021 RID: 12321
+		// Token: 0x040027E8 RID: 10216
 		public static InflaterHuffmanTree defDistTree;
 	}
 }

@@ -3,11 +3,11 @@ using UnityEngine;
 
 namespace UltimateSurvival.AI.Goals
 {
-	// Token: 0x02000980 RID: 2432
+	// Token: 0x02000673 RID: 1651
 	public class Goal : ScriptableObject
 	{
-		// Token: 0x170006E4 RID: 1764
-		// (get) Token: 0x06003E26 RID: 15910 RVA: 0x0002CC5D File Offset: 0x0002AE5D
+		// Token: 0x170004C4 RID: 1220
+		// (get) Token: 0x06003476 RID: 13430 RVA: 0x0016E16F File Offset: 0x0016C36F
 		public float Priority
 		{
 			get
@@ -16,8 +16,8 @@ namespace UltimateSurvival.AI.Goals
 			}
 		}
 
-		// Token: 0x170006E5 RID: 1765
-		// (get) Token: 0x06003E27 RID: 15911 RVA: 0x0002CC65 File Offset: 0x0002AE65
+		// Token: 0x170004C5 RID: 1221
+		// (get) Token: 0x06003477 RID: 13431 RVA: 0x0016E177 File Offset: 0x0016C377
 		public StateData GoalState
 		{
 			get
@@ -26,26 +26,26 @@ namespace UltimateSurvival.AI.Goals
 			}
 		}
 
-		// Token: 0x06003E28 RID: 15912 RVA: 0x000042DD File Offset: 0x000024DD
+		// Token: 0x06003478 RID: 13432 RVA: 0x00004095 File Offset: 0x00002295
 		public virtual void OnStart()
 		{
 		}
 
-		// Token: 0x06003E29 RID: 15913 RVA: 0x000042DD File Offset: 0x000024DD
+		// Token: 0x06003479 RID: 13433 RVA: 0x00004095 File Offset: 0x00002295
 		public virtual void RecalculatePriority(AIBrain brain)
 		{
 		}
 
-		// Token: 0x04003838 RID: 14392
+		// Token: 0x04002E92 RID: 11922
 		[SerializeField]
 		[ShowOnly]
 		protected float m_Priority;
 
-		// Token: 0x04003839 RID: 14393
+		// Token: 0x04002E93 RID: 11923
 		[SerializeField]
 		protected Vector2 m_PriorityRange;
 
-		// Token: 0x0400383A RID: 14394
+		// Token: 0x04002E94 RID: 11924
 		private StateData m_GoalState = new StateData();
 	}
 }

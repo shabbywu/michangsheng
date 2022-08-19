@@ -3,12 +3,12 @@ using UnityEngine;
 
 namespace BehaviorDesigner.Runtime.Tasks.Basic.UnityBoxCollider
 {
-	// Token: 0x02001620 RID: 5664
+	// Token: 0x02001161 RID: 4449
 	[TaskCategory("Basic/BoxCollider")]
 	[TaskDescription("Sets the size of the BoxCollider. Returns Success.")]
 	public class SetSize : Action
 	{
-		// Token: 0x06008415 RID: 33813 RVA: 0x002CF3A0 File Offset: 0x002CD5A0
+		// Token: 0x0600761B RID: 30235 RVA: 0x002B5CF0 File Offset: 0x002B3EF0
 		public override void OnStart()
 		{
 			GameObject defaultGameObject = base.GetDefaultGameObject(this.targetGameObject.Value);
@@ -19,7 +19,7 @@ namespace BehaviorDesigner.Runtime.Tasks.Basic.UnityBoxCollider
 			}
 		}
 
-		// Token: 0x06008416 RID: 33814 RVA: 0x0005B282 File Offset: 0x00059482
+		// Token: 0x0600761C RID: 30236 RVA: 0x002B5D30 File Offset: 0x002B3F30
 		public override TaskStatus OnUpdate()
 		{
 			if (this.boxCollider == null)
@@ -31,25 +31,25 @@ namespace BehaviorDesigner.Runtime.Tasks.Basic.UnityBoxCollider
 			return 2;
 		}
 
-		// Token: 0x06008417 RID: 33815 RVA: 0x0005B2B5 File Offset: 0x000594B5
+		// Token: 0x0600761D RID: 30237 RVA: 0x002B5D63 File Offset: 0x002B3F63
 		public override void OnReset()
 		{
 			this.targetGameObject = null;
 			this.size = Vector3.zero;
 		}
 
-		// Token: 0x040070C4 RID: 28868
+		// Token: 0x040061A1 RID: 24993
 		[Tooltip("The GameObject that the task operates on. If null the task GameObject is used.")]
 		public SharedGameObject targetGameObject;
 
-		// Token: 0x040070C5 RID: 28869
+		// Token: 0x040061A2 RID: 24994
 		[Tooltip("The size of the BoxCollider")]
 		public SharedVector3 size;
 
-		// Token: 0x040070C6 RID: 28870
+		// Token: 0x040061A3 RID: 24995
 		private BoxCollider boxCollider;
 
-		// Token: 0x040070C7 RID: 28871
+		// Token: 0x040061A4 RID: 24996
 		private GameObject prevGameObject;
 	}
 }

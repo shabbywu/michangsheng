@@ -2,11 +2,11 @@
 using KBEngine;
 using UnityEngine;
 
-// Token: 0x020002A8 RID: 680
+// Token: 0x020001AB RID: 427
 public class UIBiGuan : MonoBehaviour
 {
-	// Token: 0x17000265 RID: 613
-	// (get) Token: 0x060014B6 RID: 5302 RVA: 0x0001309A File Offset: 0x0001129A
+	// Token: 0x1700021D RID: 541
+	// (get) Token: 0x0600120F RID: 4623 RVA: 0x0006D8A2 File Offset: 0x0006BAA2
 	public UIInput getInputYear
 	{
 		get
@@ -15,8 +15,8 @@ public class UIBiGuan : MonoBehaviour
 		}
 	}
 
-	// Token: 0x17000266 RID: 614
-	// (get) Token: 0x060014B7 RID: 5303 RVA: 0x000130A2 File Offset: 0x000112A2
+	// Token: 0x1700021E RID: 542
+	// (get) Token: 0x06001210 RID: 4624 RVA: 0x0006D8AA File Offset: 0x0006BAAA
 	public UIInput getInputMonth
 	{
 		get
@@ -25,7 +25,7 @@ public class UIBiGuan : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060014B8 RID: 5304 RVA: 0x000BB728 File Offset: 0x000B9928
+	// Token: 0x06001211 RID: 4625 RVA: 0x0006D8B4 File Offset: 0x0006BAB4
 	private void Start()
 	{
 		this.avatar = Tools.instance.getPlayer();
@@ -36,14 +36,14 @@ public class UIBiGuan : MonoBehaviour
 		this.InputOnChenge();
 	}
 
-	// Token: 0x060014B9 RID: 5305 RVA: 0x000BB7B8 File Offset: 0x000B99B8
+	// Token: 0x06001212 RID: 4626 RVA: 0x0006D944 File Offset: 0x0006BB44
 	public void sliderOnChenge()
 	{
 		int num = (int)((this.slider.value + 1E-06f) * (float)this.MaxTime);
 		this.setInputPercent(num / 12, num % 12);
 	}
 
-	// Token: 0x060014BA RID: 5306 RVA: 0x000BB7F0 File Offset: 0x000B99F0
+	// Token: 0x06001213 RID: 4627 RVA: 0x0006D97C File Offset: 0x0006BB7C
 	public void InputOnChenge()
 	{
 		try
@@ -68,20 +68,20 @@ public class UIBiGuan : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060014BB RID: 5307 RVA: 0x000130AA File Offset: 0x000112AA
+	// Token: 0x06001214 RID: 4628 RVA: 0x0006DA24 File Offset: 0x0006BC24
 	public void setInputPercent(int year, int month)
 	{
 		this.inputYear.value = string.Concat(year);
 		this.inputMonth.value = string.Concat(month);
 	}
 
-	// Token: 0x060014BC RID: 5308 RVA: 0x000130D8 File Offset: 0x000112D8
+	// Token: 0x06001215 RID: 4629 RVA: 0x0006DA52 File Offset: 0x0006BC52
 	public void setSliderPercent(float value)
 	{
 		this.slider.value = value;
 	}
 
-	// Token: 0x060014BD RID: 5309 RVA: 0x000BB898 File Offset: 0x000B9A98
+	// Token: 0x06001216 RID: 4630 RVA: 0x0006DA60 File Offset: 0x0006BC60
 	public void init()
 	{
 		UILabel component = base.transform.Find("Panel/desc").GetComponent<UILabel>();
@@ -91,7 +91,7 @@ public class UIBiGuan : MonoBehaviour
 		this.setSliderPercent(0.5f);
 	}
 
-	// Token: 0x060014BE RID: 5310 RVA: 0x000BB94C File Offset: 0x000B9B4C
+	// Token: 0x06001217 RID: 4631 RVA: 0x0006DB14 File Offset: 0x0006BD14
 	public float getBiguanSpeed()
 	{
 		int staticID = this.avatar.getStaticID();
@@ -110,7 +110,7 @@ public class UIBiGuan : MonoBehaviour
 		return 0f;
 	}
 
-	// Token: 0x060014BF RID: 5311 RVA: 0x000BBA70 File Offset: 0x000B9C70
+	// Token: 0x06001218 RID: 4632 RVA: 0x0006DC38 File Offset: 0x0006BE38
 	private void OkEvent()
 	{
 		this.flagSwitch = true;
@@ -139,7 +139,7 @@ public class UIBiGuan : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060014C0 RID: 5312 RVA: 0x000BBBA0 File Offset: 0x000B9DA0
+	// Token: 0x06001219 RID: 4633 RVA: 0x0006DD68 File Offset: 0x0006BF68
 	public void OK()
 	{
 		if (!Tools.canClickFlag)
@@ -161,46 +161,46 @@ public class UIBiGuan : MonoBehaviour
 		base.Invoke("OkEvent", 0.5f);
 	}
 
-	// Token: 0x060014C1 RID: 5313 RVA: 0x000122F6 File Offset: 0x000104F6
+	// Token: 0x0600121A RID: 4634 RVA: 0x00065233 File Offset: 0x00063433
 	public void close()
 	{
 		base.transform.localPosition = new Vector3(0f, 1000f, 0f);
 	}
 
-	// Token: 0x060014C2 RID: 5314 RVA: 0x000042DD File Offset: 0x000024DD
+	// Token: 0x0600121B RID: 4635 RVA: 0x00004095 File Offset: 0x00002295
 	private void Update()
 	{
 	}
 
-	// Token: 0x04000FF4 RID: 4084
+	// Token: 0x04000CCC RID: 3276
 	public int biguanType = 1;
 
-	// Token: 0x04000FF5 RID: 4085
+	// Token: 0x04000CCD RID: 3277
 	[SerializeField]
 	private UISlider slider;
 
-	// Token: 0x04000FF6 RID: 4086
+	// Token: 0x04000CCE RID: 3278
 	[SerializeField]
 	private UIInput inputYear;
 
-	// Token: 0x04000FF7 RID: 4087
+	// Token: 0x04000CCF RID: 3279
 	[SerializeField]
 	private UIInput inputMonth;
 
-	// Token: 0x04000FF8 RID: 4088
+	// Token: 0x04000CD0 RID: 3280
 	public BiGuanYinfo biGuanYinfo;
 
-	// Token: 0x04000FF9 RID: 4089
+	// Token: 0x04000CD1 RID: 3281
 	private Avatar avatar;
 
-	// Token: 0x04000FFA RID: 4090
+	// Token: 0x04000CD2 RID: 3282
 	[SerializeField]
 	public int MaxTime = 100;
 
-	// Token: 0x04000FFB RID: 4091
+	// Token: 0x04000CD3 RID: 3283
 	[SerializeField]
 	private int MinTime = 1;
 
-	// Token: 0x04000FFC RID: 4092
+	// Token: 0x04000CD4 RID: 3284
 	private bool flagSwitch = true;
 }

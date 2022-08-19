@@ -4,16 +4,16 @@ using UnityEngine.EventSystems;
 
 namespace EpicToonFX
 {
-	// Token: 0x02000E93 RID: 3731
+	// Token: 0x02000B21 RID: 2849
 	public class ETFXFireProjectile : MonoBehaviour
 	{
-		// Token: 0x0600599C RID: 22940 RVA: 0x0003F96D File Offset: 0x0003DB6D
+		// Token: 0x06004F83 RID: 20355 RVA: 0x002198DF File Offset: 0x00217ADF
 		private void Start()
 		{
 			this.selectedProjectileButton = GameObject.Find("Button").GetComponent<ETFXButtonScript>();
 		}
 
-		// Token: 0x0600599D RID: 22941 RVA: 0x00249714 File Offset: 0x00247914
+		// Token: 0x06004F84 RID: 20356 RVA: 0x002198F8 File Offset: 0x00217AF8
 		private void Update()
 		{
 			if (Input.GetKeyDown(275))
@@ -42,7 +42,7 @@ namespace EpicToonFX
 			Debug.DrawRay(Camera.main.ScreenPointToRay(Input.mousePosition).origin, Camera.main.ScreenPointToRay(Input.mousePosition).direction * 100f, Color.yellow);
 		}
 
-		// Token: 0x0600599E RID: 22942 RVA: 0x0003F984 File Offset: 0x0003DB84
+		// Token: 0x06004F85 RID: 20357 RVA: 0x00219A3A File Offset: 0x00217C3A
 		public void nextEffect()
 		{
 			if (this.currentProjectile < this.projectiles.Length - 1)
@@ -56,7 +56,7 @@ namespace EpicToonFX
 			this.selectedProjectileButton.getProjectileNames();
 		}
 
-		// Token: 0x0600599F RID: 22943 RVA: 0x0003F9BA File Offset: 0x0003DBBA
+		// Token: 0x06004F86 RID: 20358 RVA: 0x00219A70 File Offset: 0x00217C70
 		public void previousEffect()
 		{
 			if (this.currentProjectile > 0)
@@ -70,29 +70,29 @@ namespace EpicToonFX
 			this.selectedProjectileButton.getProjectileNames();
 		}
 
-		// Token: 0x060059A0 RID: 22944 RVA: 0x0003F9F0 File Offset: 0x0003DBF0
+		// Token: 0x06004F87 RID: 20359 RVA: 0x00219AA6 File Offset: 0x00217CA6
 		public void AdjustSpeed(float newSpeed)
 		{
 			this.speed = newSpeed;
 		}
 
-		// Token: 0x040058E7 RID: 22759
+		// Token: 0x04004E77 RID: 20087
 		private RaycastHit hit;
 
-		// Token: 0x040058E8 RID: 22760
+		// Token: 0x04004E78 RID: 20088
 		public GameObject[] projectiles;
 
-		// Token: 0x040058E9 RID: 22761
+		// Token: 0x04004E79 RID: 20089
 		public Transform spawnPosition;
 
-		// Token: 0x040058EA RID: 22762
+		// Token: 0x04004E7A RID: 20090
 		[HideInInspector]
 		public int currentProjectile;
 
-		// Token: 0x040058EB RID: 22763
+		// Token: 0x04004E7B RID: 20091
 		public float speed = 1000f;
 
-		// Token: 0x040058EC RID: 22764
+		// Token: 0x04004E7C RID: 20092
 		private ETFXButtonScript selectedProjectileButton;
 	}
 }

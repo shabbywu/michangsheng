@@ -4,11 +4,11 @@ using JSONClass;
 using KBEngine;
 using UnityEngine.Events;
 
-// Token: 0x02000606 RID: 1542
+// Token: 0x0200044C RID: 1100
 public class VersionMag
 {
-	// Token: 0x170002D5 RID: 725
-	// (get) Token: 0x06002682 RID: 9858 RVA: 0x0001EB7B File Offset: 0x0001CD7B
+	// Token: 0x1700028B RID: 651
+	// (get) Token: 0x060022C2 RID: 8898 RVA: 0x000EDD28 File Offset: 0x000EBF28
 	public static VersionMag Inst
 	{
 		get
@@ -21,14 +21,14 @@ public class VersionMag
 		}
 	}
 
-	// Token: 0x06002683 RID: 9859 RVA: 0x0001EB93 File Offset: 0x0001CD93
+	// Token: 0x060022C3 RID: 8899 RVA: 0x000EDD40 File Offset: 0x000EBF40
 	private VersionMag()
 	{
 		this.VersionDict = new Dictionary<int, UnityAction>();
 		this.VersionDict.Add(4, new UnityAction(this.Version4));
 	}
 
-	// Token: 0x06002684 RID: 9860 RVA: 0x0012E870 File Offset: 0x0012CA70
+	// Token: 0x060022C4 RID: 8900 RVA: 0x000EDD6C File Offset: 0x000EBF6C
 	public void UpdateVersion(int nowVersion, int oldVersion)
 	{
 		if (oldVersion >= nowVersion)
@@ -49,7 +49,7 @@ public class VersionMag
 		}
 	}
 
-	// Token: 0x06002685 RID: 9861 RVA: 0x0012E8B8 File Offset: 0x0012CAB8
+	// Token: 0x060022C5 RID: 8901 RVA: 0x000EDDB4 File Offset: 0x000EBFB4
 	public void Version4()
 	{
 		Avatar player = Tools.instance.getPlayer();
@@ -60,9 +60,9 @@ public class VersionMag
 		player._dunSu += versionJsonData.DunSu;
 	}
 
-	// Token: 0x040020DA RID: 8410
+	// Token: 0x04001C07 RID: 7175
 	public Dictionary<int, UnityAction> VersionDict;
 
-	// Token: 0x040020DB RID: 8411
+	// Token: 0x04001C08 RID: 7176
 	private static VersionMag _inst;
 }

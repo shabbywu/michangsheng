@@ -2,29 +2,29 @@
 
 namespace KBEngine
 {
-	// Token: 0x02000F24 RID: 3876
+	// Token: 0x02000BA1 RID: 2977
 	public struct INT64
 	{
-		// Token: 0x06005D75 RID: 23925 RVA: 0x00041B4F File Offset: 0x0003FD4F
+		// Token: 0x06005337 RID: 21303 RVA: 0x002339EE File Offset: 0x00231BEE
 		private INT64(long value)
 		{
 			this.value = value;
 		}
 
-		// Token: 0x06005D76 RID: 23926 RVA: 0x00041B58 File Offset: 0x0003FD58
+		// Token: 0x06005338 RID: 21304 RVA: 0x002339F7 File Offset: 0x00231BF7
 		public static implicit operator long(INT64 value)
 		{
 			return value.value;
 		}
 
-		// Token: 0x06005D77 RID: 23927 RVA: 0x00041B60 File Offset: 0x0003FD60
+		// Token: 0x06005339 RID: 21305 RVA: 0x002339FF File Offset: 0x00231BFF
 		public static implicit operator INT64(long value)
 		{
 			return new INT64(value);
 		}
 
-		// Token: 0x17000867 RID: 2151
-		// (get) Token: 0x06005D78 RID: 23928 RVA: 0x00041B68 File Offset: 0x0003FD68
+		// Token: 0x17000614 RID: 1556
+		// (get) Token: 0x0600533A RID: 21306 RVA: 0x00233A07 File Offset: 0x00231C07
 		public static long MaxValue
 		{
 			get
@@ -33,8 +33,8 @@ namespace KBEngine
 			}
 		}
 
-		// Token: 0x17000868 RID: 2152
-		// (get) Token: 0x06005D79 RID: 23929 RVA: 0x00041B73 File Offset: 0x0003FD73
+		// Token: 0x17000615 RID: 1557
+		// (get) Token: 0x0600533B RID: 21307 RVA: 0x00233A12 File Offset: 0x00231C12
 		public static long MinValue
 		{
 			get
@@ -43,7 +43,7 @@ namespace KBEngine
 			}
 		}
 
-		// Token: 0x04005ACE RID: 23246
+		// Token: 0x0400502D RID: 20525
 		private long value;
 	}
 }

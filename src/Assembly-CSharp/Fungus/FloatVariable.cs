@@ -3,13 +3,13 @@ using UnityEngine;
 
 namespace Fungus
 {
-	// Token: 0x0200137C RID: 4988
+	// Token: 0x02000EDB RID: 3803
 	[VariableInfo("", "Float", 0)]
 	[AddComponentMenu("")]
 	[Serializable]
 	public class FloatVariable : VariableBase<float>
 	{
-		// Token: 0x060078D7 RID: 30935 RVA: 0x002B7E28 File Offset: 0x002B6028
+		// Token: 0x06006B38 RID: 27448 RVA: 0x00295E58 File Offset: 0x00294058
 		public virtual bool Evaluate(CompareOperator compareOperator, float floatValue)
 		{
 			float value = this.Value;
@@ -41,7 +41,7 @@ namespace Fungus
 			return result;
 		}
 
-		// Token: 0x060078D8 RID: 30936 RVA: 0x002B7EB8 File Offset: 0x002B60B8
+		// Token: 0x06006B39 RID: 27449 RVA: 0x00295EE8 File Offset: 0x002940E8
 		public override void Apply(SetOperator setOperator, float value)
 		{
 			switch (setOperator)
@@ -68,7 +68,7 @@ namespace Fungus
 			Debug.LogError("The " + setOperator.ToString() + " set operator is not valid.");
 		}
 
-		// Token: 0x040068DD RID: 26845
+		// Token: 0x04005A74 RID: 23156
 		public static readonly CompareOperator[] compareOperators = new CompareOperator[]
 		{
 			CompareOperator.Equals,
@@ -79,7 +79,7 @@ namespace Fungus
 			CompareOperator.GreaterThanOrEquals
 		};
 
-		// Token: 0x040068DE RID: 26846
+		// Token: 0x04005A75 RID: 23157
 		public static readonly SetOperator[] setOperators = new SetOperator[]
 		{
 			SetOperator.Assign,

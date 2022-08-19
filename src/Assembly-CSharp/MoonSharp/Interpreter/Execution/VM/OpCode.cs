@@ -2,120 +2,120 @@
 
 namespace MoonSharp.Interpreter.Execution.VM
 {
-	// Token: 0x02001167 RID: 4455
+	// Token: 0x02000D56 RID: 3414
 	internal enum OpCode
 	{
-		// Token: 0x04006164 RID: 24932
+		// Token: 0x040054E6 RID: 21734
 		Nop,
-		// Token: 0x04006165 RID: 24933
+		// Token: 0x040054E7 RID: 21735
 		Debug,
-		// Token: 0x04006166 RID: 24934
+		// Token: 0x040054E8 RID: 21736
 		Pop,
-		// Token: 0x04006167 RID: 24935
+		// Token: 0x040054E9 RID: 21737
 		Copy,
-		// Token: 0x04006168 RID: 24936
+		// Token: 0x040054EA RID: 21738
 		Swap,
-		// Token: 0x04006169 RID: 24937
+		// Token: 0x040054EB RID: 21739
 		Literal,
-		// Token: 0x0400616A RID: 24938
+		// Token: 0x040054EC RID: 21740
 		Closure,
-		// Token: 0x0400616B RID: 24939
+		// Token: 0x040054ED RID: 21741
 		NewTable,
-		// Token: 0x0400616C RID: 24940
+		// Token: 0x040054EE RID: 21742
 		TblInitN,
-		// Token: 0x0400616D RID: 24941
+		// Token: 0x040054EF RID: 21743
 		TblInitI,
-		// Token: 0x0400616E RID: 24942
+		// Token: 0x040054F0 RID: 21744
 		StoreLcl,
-		// Token: 0x0400616F RID: 24943
+		// Token: 0x040054F1 RID: 21745
 		Local,
-		// Token: 0x04006170 RID: 24944
+		// Token: 0x040054F2 RID: 21746
 		StoreUpv,
-		// Token: 0x04006171 RID: 24945
+		// Token: 0x040054F3 RID: 21747
 		Upvalue,
-		// Token: 0x04006172 RID: 24946
+		// Token: 0x040054F4 RID: 21748
 		IndexSet,
-		// Token: 0x04006173 RID: 24947
+		// Token: 0x040054F5 RID: 21749
 		Index,
-		// Token: 0x04006174 RID: 24948
+		// Token: 0x040054F6 RID: 21750
 		IndexSetN,
-		// Token: 0x04006175 RID: 24949
+		// Token: 0x040054F7 RID: 21751
 		IndexN,
-		// Token: 0x04006176 RID: 24950
+		// Token: 0x040054F8 RID: 21752
 		IndexSetL,
-		// Token: 0x04006177 RID: 24951
+		// Token: 0x040054F9 RID: 21753
 		IndexL,
-		// Token: 0x04006178 RID: 24952
+		// Token: 0x040054FA RID: 21754
 		Clean,
-		// Token: 0x04006179 RID: 24953
+		// Token: 0x040054FB RID: 21755
 		Meta,
-		// Token: 0x0400617A RID: 24954
+		// Token: 0x040054FC RID: 21756
 		BeginFn,
-		// Token: 0x0400617B RID: 24955
+		// Token: 0x040054FD RID: 21757
 		Args,
-		// Token: 0x0400617C RID: 24956
+		// Token: 0x040054FE RID: 21758
 		Call,
-		// Token: 0x0400617D RID: 24957
+		// Token: 0x040054FF RID: 21759
 		ThisCall,
-		// Token: 0x0400617E RID: 24958
+		// Token: 0x04005500 RID: 21760
 		Ret,
-		// Token: 0x0400617F RID: 24959
+		// Token: 0x04005501 RID: 21761
 		Jump,
-		// Token: 0x04006180 RID: 24960
+		// Token: 0x04005502 RID: 21762
 		Jf,
-		// Token: 0x04006181 RID: 24961
+		// Token: 0x04005503 RID: 21763
 		JNil,
-		// Token: 0x04006182 RID: 24962
+		// Token: 0x04005504 RID: 21764
 		JFor,
-		// Token: 0x04006183 RID: 24963
+		// Token: 0x04005505 RID: 21765
 		JtOrPop,
-		// Token: 0x04006184 RID: 24964
+		// Token: 0x04005506 RID: 21766
 		JfOrPop,
-		// Token: 0x04006185 RID: 24965
+		// Token: 0x04005507 RID: 21767
 		Concat,
-		// Token: 0x04006186 RID: 24966
+		// Token: 0x04005508 RID: 21768
 		LessEq,
-		// Token: 0x04006187 RID: 24967
+		// Token: 0x04005509 RID: 21769
 		Less,
-		// Token: 0x04006188 RID: 24968
+		// Token: 0x0400550A RID: 21770
 		Eq,
-		// Token: 0x04006189 RID: 24969
+		// Token: 0x0400550B RID: 21771
 		Add,
-		// Token: 0x0400618A RID: 24970
+		// Token: 0x0400550C RID: 21772
 		Sub,
-		// Token: 0x0400618B RID: 24971
+		// Token: 0x0400550D RID: 21773
 		Mul,
-		// Token: 0x0400618C RID: 24972
+		// Token: 0x0400550E RID: 21774
 		Div,
-		// Token: 0x0400618D RID: 24973
+		// Token: 0x0400550F RID: 21775
 		Mod,
-		// Token: 0x0400618E RID: 24974
+		// Token: 0x04005510 RID: 21776
 		Not,
-		// Token: 0x0400618F RID: 24975
+		// Token: 0x04005511 RID: 21777
 		Len,
-		// Token: 0x04006190 RID: 24976
+		// Token: 0x04005512 RID: 21778
 		Neg,
-		// Token: 0x04006191 RID: 24977
+		// Token: 0x04005513 RID: 21779
 		Power,
-		// Token: 0x04006192 RID: 24978
+		// Token: 0x04005514 RID: 21780
 		CNot,
-		// Token: 0x04006193 RID: 24979
+		// Token: 0x04005515 RID: 21781
 		MkTuple,
-		// Token: 0x04006194 RID: 24980
+		// Token: 0x04005516 RID: 21782
 		Scalar,
-		// Token: 0x04006195 RID: 24981
+		// Token: 0x04005517 RID: 21783
 		Incr,
-		// Token: 0x04006196 RID: 24982
+		// Token: 0x04005518 RID: 21784
 		ToNum,
-		// Token: 0x04006197 RID: 24983
+		// Token: 0x04005519 RID: 21785
 		ToBool,
-		// Token: 0x04006198 RID: 24984
+		// Token: 0x0400551A RID: 21786
 		ExpTuple,
-		// Token: 0x04006199 RID: 24985
+		// Token: 0x0400551B RID: 21787
 		IterPrep,
-		// Token: 0x0400619A RID: 24986
+		// Token: 0x0400551C RID: 21788
 		IterUpd,
-		// Token: 0x0400619B RID: 24987
+		// Token: 0x0400551D RID: 21789
 		Invalid
 	}
 }

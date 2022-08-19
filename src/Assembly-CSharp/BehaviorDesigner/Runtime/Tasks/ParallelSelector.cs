@@ -2,50 +2,50 @@
 
 namespace BehaviorDesigner.Runtime.Tasks
 {
-	// Token: 0x02001495 RID: 5269
+	// Token: 0x02000FDD RID: 4061
 	[TaskDescription("Similar to the selector task, the parallel selector task will return success as soon as a child task returns success. The difference is that the parallel task will run all of its children tasks simultaneously versus running each task one at a time. If one tasks returns success the parallel selector task will end all of the child tasks and return success. If every child task returns failure then the parallel selector task will return failure.")]
 	[HelpURL("http://www.opsive.com/assets/BehaviorDesigner/documentation.php?id=28")]
 	[TaskIcon("{SkinColor}ParallelSelectorIcon.png")]
 	public class ParallelSelector : Composite
 	{
-		// Token: 0x06007E68 RID: 32360 RVA: 0x00055845 File Offset: 0x00053A45
+		// Token: 0x0600706E RID: 28782 RVA: 0x002A9BAC File Offset: 0x002A7DAC
 		public override void OnAwake()
 		{
 			this.executionStatus = new TaskStatus[this.children.Count];
 		}
 
-		// Token: 0x06007E69 RID: 32361 RVA: 0x0005585D File Offset: 0x00053A5D
+		// Token: 0x0600706F RID: 28783 RVA: 0x002A9BC4 File Offset: 0x002A7DC4
 		public override void OnChildStarted(int childIndex)
 		{
 			this.currentChildIndex++;
 			this.executionStatus[childIndex] = 3;
 		}
 
-		// Token: 0x06007E6A RID: 32362 RVA: 0x0000A093 File Offset: 0x00008293
+		// Token: 0x06007070 RID: 28784 RVA: 0x00024C5F File Offset: 0x00022E5F
 		public override bool CanRunParallelChildren()
 		{
 			return true;
 		}
 
-		// Token: 0x06007E6B RID: 32363 RVA: 0x00055876 File Offset: 0x00053A76
+		// Token: 0x06007071 RID: 28785 RVA: 0x002A9BDD File Offset: 0x002A7DDD
 		public override int CurrentChildIndex()
 		{
 			return this.currentChildIndex;
 		}
 
-		// Token: 0x06007E6C RID: 32364 RVA: 0x0005587E File Offset: 0x00053A7E
+		// Token: 0x06007072 RID: 28786 RVA: 0x002A9BE5 File Offset: 0x002A7DE5
 		public override bool CanExecute()
 		{
 			return this.currentChildIndex < this.children.Count;
 		}
 
-		// Token: 0x06007E6D RID: 32365 RVA: 0x00055893 File Offset: 0x00053A93
+		// Token: 0x06007073 RID: 28787 RVA: 0x002A9BFA File Offset: 0x002A7DFA
 		public override void OnChildExecuted(int childIndex, TaskStatus childStatus)
 		{
 			this.executionStatus[childIndex] = childStatus;
 		}
 
-		// Token: 0x06007E6E RID: 32366 RVA: 0x002C8D00 File Offset: 0x002C6F00
+		// Token: 0x06007074 RID: 28788 RVA: 0x002A9C08 File Offset: 0x002A7E08
 		public override void OnConditionalAbort(int childIndex)
 		{
 			this.currentChildIndex = 0;
@@ -55,7 +55,7 @@ namespace BehaviorDesigner.Runtime.Tasks
 			}
 		}
 
-		// Token: 0x06007E6F RID: 32367 RVA: 0x002C8D30 File Offset: 0x002C6F30
+		// Token: 0x06007075 RID: 28789 RVA: 0x002A9C38 File Offset: 0x002A7E38
 		public override TaskStatus OverrideStatus(TaskStatus status)
 		{
 			bool flag = true;
@@ -77,7 +77,7 @@ namespace BehaviorDesigner.Runtime.Tasks
 			return 1;
 		}
 
-		// Token: 0x06007E70 RID: 32368 RVA: 0x002C8D74 File Offset: 0x002C6F74
+		// Token: 0x06007076 RID: 28790 RVA: 0x002A9C7C File Offset: 0x002A7E7C
 		public override void OnEnd()
 		{
 			for (int i = 0; i < this.executionStatus.Length; i++)
@@ -87,10 +87,10 @@ namespace BehaviorDesigner.Runtime.Tasks
 			this.currentChildIndex = 0;
 		}
 
-		// Token: 0x04006BA7 RID: 27559
+		// Token: 0x04005CAF RID: 23727
 		private int currentChildIndex;
 
-		// Token: 0x04006BA8 RID: 27560
+		// Token: 0x04005CB0 RID: 23728
 		private TaskStatus[] executionStatus;
 	}
 }

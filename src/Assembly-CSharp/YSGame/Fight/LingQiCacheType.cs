@@ -2,12 +2,12 @@
 
 namespace YSGame.Fight
 {
-	// Token: 0x02000DF6 RID: 3574
+	// Token: 0x02000ABA RID: 2746
 	public enum LingQiCacheType
 	{
-		// Token: 0x040055DF RID: 21983
+		// Token: 0x04004C08 RID: 19464
 		None,
-		// Token: 0x040055E0 RID: 21984
+		// Token: 0x04004C09 RID: 19465
 		DontMove
 	}
 }

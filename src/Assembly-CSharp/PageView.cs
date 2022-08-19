@@ -4,10 +4,10 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-// Token: 0x020005A5 RID: 1445
+// Token: 0x020003F5 RID: 1013
 public class PageView : MonoBehaviour, IBeginDragHandler, IEventSystemHandler, IEndDragHandler
 {
-	// Token: 0x06002464 RID: 9316 RVA: 0x001285D0 File Offset: 0x001267D0
+	// Token: 0x060020B2 RID: 8370 RVA: 0x000E63C4 File Offset: 0x000E45C4
 	private void Awake()
 	{
 		this.rect = base.transform.GetComponent<ScrollRect>();
@@ -20,7 +20,7 @@ public class PageView : MonoBehaviour, IBeginDragHandler, IEventSystemHandler, I
 		this.posList.Add(1f);
 	}
 
-	// Token: 0x06002465 RID: 9317 RVA: 0x00128680 File Offset: 0x00126880
+	// Token: 0x060020B3 RID: 8371 RVA: 0x000E6474 File Offset: 0x000E4674
 	private void Update()
 	{
 		if (!this.isDrag && !this.stopMove)
@@ -35,7 +35,7 @@ public class PageView : MonoBehaviour, IBeginDragHandler, IEventSystemHandler, I
 		}
 	}
 
-	// Token: 0x06002466 RID: 9318 RVA: 0x0001D484 File Offset: 0x0001B684
+	// Token: 0x060020B4 RID: 8372 RVA: 0x000E64E2 File Offset: 0x000E46E2
 	public void pageTo(int index)
 	{
 		if (index >= 0 && index < this.posList.Count)
@@ -47,7 +47,7 @@ public class PageView : MonoBehaviour, IBeginDragHandler, IEventSystemHandler, I
 		Debug.LogWarning("页码不存在");
 	}
 
-	// Token: 0x06002467 RID: 9319 RVA: 0x0001D4C1 File Offset: 0x0001B6C1
+	// Token: 0x060020B5 RID: 8373 RVA: 0x000E651F File Offset: 0x000E471F
 	private void SetPageIndex(int index)
 	{
 		if (this.currentPageIndex != index)
@@ -60,14 +60,14 @@ public class PageView : MonoBehaviour, IBeginDragHandler, IEventSystemHandler, I
 		}
 	}
 
-	// Token: 0x06002468 RID: 9320 RVA: 0x0001D4E7 File Offset: 0x0001B6E7
+	// Token: 0x060020B6 RID: 8374 RVA: 0x000E6545 File Offset: 0x000E4745
 	public void OnBeginDrag(PointerEventData eventData)
 	{
 		this.isDrag = true;
 		this.startDragHorizontal = this.rect.horizontalNormalizedPosition;
 	}
 
-	// Token: 0x06002469 RID: 9321 RVA: 0x001286F0 File Offset: 0x001268F0
+	// Token: 0x060020B7 RID: 8375 RVA: 0x000E6560 File Offset: 0x000E4760
 	public void OnEndDrag(PointerEventData eventData)
 	{
 		float num = this.rect.horizontalNormalizedPosition;
@@ -92,36 +92,36 @@ public class PageView : MonoBehaviour, IBeginDragHandler, IEventSystemHandler, I
 		this.stopMove = false;
 	}
 
-	// Token: 0x04001F52 RID: 8018
+	// Token: 0x04001A96 RID: 6806
 	private ScrollRect rect;
 
-	// Token: 0x04001F53 RID: 8019
+	// Token: 0x04001A97 RID: 6807
 	private float targethorizontal;
 
-	// Token: 0x04001F54 RID: 8020
+	// Token: 0x04001A98 RID: 6808
 	private bool isDrag;
 
-	// Token: 0x04001F55 RID: 8021
+	// Token: 0x04001A99 RID: 6809
 	private List<float> posList = new List<float>();
 
-	// Token: 0x04001F56 RID: 8022
+	// Token: 0x04001A9A RID: 6810
 	private int currentPageIndex = -1;
 
-	// Token: 0x04001F57 RID: 8023
+	// Token: 0x04001A9B RID: 6811
 	public Action<int> OnPageChanged;
 
-	// Token: 0x04001F58 RID: 8024
+	// Token: 0x04001A9C RID: 6812
 	private bool stopMove = true;
 
-	// Token: 0x04001F59 RID: 8025
+	// Token: 0x04001A9D RID: 6813
 	public float smooting = 4f;
 
-	// Token: 0x04001F5A RID: 8026
+	// Token: 0x04001A9E RID: 6814
 	public float sensitivity;
 
-	// Token: 0x04001F5B RID: 8027
+	// Token: 0x04001A9F RID: 6815
 	private float startTime;
 
-	// Token: 0x04001F5C RID: 8028
+	// Token: 0x04001AA0 RID: 6816
 	private float startDragHorizontal;
 }

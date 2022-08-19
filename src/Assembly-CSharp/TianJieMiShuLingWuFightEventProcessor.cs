@@ -5,10 +5,10 @@ using KBEngine;
 using MoonSharp.Interpreter;
 using UnityEngine;
 
-// Token: 0x02000655 RID: 1621
+// Token: 0x02000488 RID: 1160
 public class TianJieMiShuLingWuFightEventProcessor : IFightEventProcessor
 {
-	// Token: 0x06002845 RID: 10309 RVA: 0x0013B420 File Offset: 0x00139620
+	// Token: 0x06002478 RID: 9336 RVA: 0x000FBE6C File Offset: 0x000FA06C
 	public TianJieMiShuLingWuFightEventProcessor()
 	{
 		this.luaScript = new Script();
@@ -17,7 +17,7 @@ public class TianJieMiShuLingWuFightEventProcessor : IFightEventProcessor
 		this.BindLua();
 	}
 
-	// Token: 0x06002846 RID: 10310 RVA: 0x0013B480 File Offset: 0x00139680
+	// Token: 0x06002479 RID: 9337 RVA: 0x000FBECC File Offset: 0x000FA0CC
 	public void BindLua()
 	{
 		this.luaScript.Globals["自身buff层数"] = new Func<bool, int, int>(this.MeBuffCount);
@@ -45,7 +45,7 @@ public class TianJieMiShuLingWuFightEventProcessor : IFightEventProcessor
 		}
 	}
 
-	// Token: 0x06002847 RID: 10311 RVA: 0x0013B700 File Offset: 0x00139900
+	// Token: 0x0600247A RID: 9338 RVA: 0x000FC14C File Offset: 0x000FA34C
 	void IFightEventProcessor.OnStartFight()
 	{
 		GameObject gameObject = Object.Instantiate<GameObject>(Resources.Load<GameObject>("NewUI/DuJie/UIGanYingFight"), NewUICanvas.Inst.Canvas.transform);
@@ -58,32 +58,32 @@ public class TianJieMiShuLingWuFightEventProcessor : IFightEventProcessor
 		}
 	}
 
-	// Token: 0x06002848 RID: 10312 RVA: 0x0001F970 File Offset: 0x0001DB70
+	// Token: 0x0600247B RID: 9339 RVA: 0x000FC1D5 File Offset: 0x000FA3D5
 	void IFightEventProcessor.SetAvatar(Avatar player, Avatar monstar)
 	{
 		this.player = player;
 		this.target = monstar;
 	}
 
-	// Token: 0x06002849 RID: 10313 RVA: 0x0001F980 File Offset: 0x0001DB80
+	// Token: 0x0600247C RID: 9340 RVA: 0x000FC1E5 File Offset: 0x000FA3E5
 	void IFightEventProcessor.OnUpdateBuff()
 	{
 		this.OnAnyUpdate();
 	}
 
-	// Token: 0x0600284A RID: 10314 RVA: 0x0001F980 File Offset: 0x0001DB80
+	// Token: 0x0600247D RID: 9341 RVA: 0x000FC1E5 File Offset: 0x000FA3E5
 	void IFightEventProcessor.OnUpdateHP()
 	{
 		this.OnAnyUpdate();
 	}
 
-	// Token: 0x0600284B RID: 10315 RVA: 0x0001F980 File Offset: 0x0001DB80
+	// Token: 0x0600247E RID: 9342 RVA: 0x000FC1E5 File Offset: 0x000FA3E5
 	void IFightEventProcessor.OnUpdateLingQi()
 	{
 		this.OnAnyUpdate();
 	}
 
-	// Token: 0x0600284C RID: 10316 RVA: 0x0013B78C File Offset: 0x0013998C
+	// Token: 0x0600247F RID: 9343 RVA: 0x000FC1F0 File Offset: 0x000FA3F0
 	void IFightEventProcessor.OnUpdateRound()
 	{
 		if (RoundManager.instance.StaticRoundNum <= this.miShuData.RoundLimit)
@@ -109,7 +109,7 @@ public class TianJieMiShuLingWuFightEventProcessor : IFightEventProcessor
 		this.player.die();
 	}
 
-	// Token: 0x0600284D RID: 10317 RVA: 0x0013B840 File Offset: 0x00139A40
+	// Token: 0x06002480 RID: 9344 RVA: 0x000FC2A4 File Offset: 0x000FA4A4
 	private void OnAnyUpdate()
 	{
 		try
@@ -130,7 +130,7 @@ public class TianJieMiShuLingWuFightEventProcessor : IFightEventProcessor
 		}
 	}
 
-	// Token: 0x0600284E RID: 10318 RVA: 0x0001F988 File Offset: 0x0001DB88
+	// Token: 0x06002481 RID: 9345 RVA: 0x000FC324 File Offset: 0x000FA524
 	private void RecordValue(int value)
 	{
 		if (value > this.recordValue)
@@ -140,7 +140,7 @@ public class TianJieMiShuLingWuFightEventProcessor : IFightEventProcessor
 		}
 	}
 
-	// Token: 0x0600284F RID: 10319 RVA: 0x0013B8C0 File Offset: 0x00139AC0
+	// Token: 0x06002482 RID: 9346 RVA: 0x000FC34C File Offset: 0x000FA54C
 	public int GetSaveRecordValue()
 	{
 		Avatar avatar = PlayerEx.Player;
@@ -151,14 +151,14 @@ public class TianJieMiShuLingWuFightEventProcessor : IFightEventProcessor
 		return 0;
 	}
 
-	// Token: 0x06002850 RID: 10320 RVA: 0x0001F9AF File Offset: 0x0001DBAF
+	// Token: 0x06002483 RID: 9347 RVA: 0x000FC388 File Offset: 0x000FA588
 	public void SaveRecordValue()
 	{
 		this.player.TianJieSkillRecordValue.SetField(TianJieMiShuLingWuFightEventProcessor.MiShuID, this.recordValue);
 		Debug.Log(string.Format("保存了 {0} 的历史记录:{1}", TianJieMiShuLingWuFightEventProcessor.MiShuID, this.recordValue));
 	}
 
-	// Token: 0x06002851 RID: 10321 RVA: 0x0013B8FC File Offset: 0x00139AFC
+	// Token: 0x06002484 RID: 9348 RVA: 0x000FC3C4 File Offset: 0x000FA5C4
 	private void OnSucessSetStaticValue()
 	{
 		JSONObject jsonobject = null;
@@ -205,19 +205,19 @@ public class TianJieMiShuLingWuFightEventProcessor : IFightEventProcessor
 		Debug.Log(string.Format("最终分数{0}小于当前记录分数{1}，不记录", num3, num4));
 	}
 
-	// Token: 0x06002852 RID: 10322 RVA: 0x0001F9EB File Offset: 0x0001DBEB
+	// Token: 0x06002485 RID: 9349 RVA: 0x000FC5D4 File Offset: 0x000FA7D4
 	public void SetPlayerHP(int hp)
 	{
 		this.player.setHP(hp);
 	}
 
-	// Token: 0x06002853 RID: 10323 RVA: 0x0001F9F9 File Offset: 0x0001DBF9
+	// Token: 0x06002486 RID: 9350 RVA: 0x000FC5E2 File Offset: 0x000FA7E2
 	public void AddPlayerBuff(int buffid, int count)
 	{
 		this.player.spell.addBuff(buffid, count);
 	}
 
-	// Token: 0x06002854 RID: 10324 RVA: 0x0013BB0C File Offset: 0x00139D0C
+	// Token: 0x06002487 RID: 9351 RVA: 0x000FC5F8 File Offset: 0x000FA7F8
 	public int MeBuffCount(bool needRecord, int buffid)
 	{
 		int buffSum = this.player.buffmag.GetBuffSum(buffid);
@@ -228,7 +228,7 @@ public class TianJieMiShuLingWuFightEventProcessor : IFightEventProcessor
 		return buffSum;
 	}
 
-	// Token: 0x06002855 RID: 10325 RVA: 0x0013BB38 File Offset: 0x00139D38
+	// Token: 0x06002488 RID: 9352 RVA: 0x000FC624 File Offset: 0x000FA824
 	public int TargetBuffCount(bool needRecord, int buffid)
 	{
 		int buffSum = this.target.buffmag.GetBuffSum(buffid);
@@ -239,7 +239,7 @@ public class TianJieMiShuLingWuFightEventProcessor : IFightEventProcessor
 		return buffSum;
 	}
 
-	// Token: 0x06002856 RID: 10326 RVA: 0x0013BB64 File Offset: 0x00139D64
+	// Token: 0x06002489 RID: 9353 RVA: 0x000FC650 File Offset: 0x000FA850
 	public int TotalDamage(bool needRecord)
 	{
 		int allDamage = this.player.fightTemp.AllDamage;
@@ -250,7 +250,7 @@ public class TianJieMiShuLingWuFightEventProcessor : IFightEventProcessor
 		return allDamage;
 	}
 
-	// Token: 0x06002857 RID: 10327 RVA: 0x0013BB90 File Offset: 0x00139D90
+	// Token: 0x0600248A RID: 9354 RVA: 0x000FC67C File Offset: 0x000FA87C
 	public int TotalAttackTypeDamage(bool needRecord, int attackType)
 	{
 		int attackTypeRoundDamage = this.player.fightTemp.GetAttackTypeRoundDamage(attackType);
@@ -261,7 +261,7 @@ public class TianJieMiShuLingWuFightEventProcessor : IFightEventProcessor
 		return attackTypeRoundDamage;
 	}
 
-	// Token: 0x06002858 RID: 10328 RVA: 0x0013BBBC File Offset: 0x00139DBC
+	// Token: 0x0600248B RID: 9355 RVA: 0x000FC6A8 File Offset: 0x000FA8A8
 	public int RoundDamage(bool needRecord)
 	{
 		int num = this.player.fightTemp.lastRoundDamage[0];
@@ -272,7 +272,7 @@ public class TianJieMiShuLingWuFightEventProcessor : IFightEventProcessor
 		return num;
 	}
 
-	// Token: 0x06002859 RID: 10329 RVA: 0x0013BBE8 File Offset: 0x00139DE8
+	// Token: 0x0600248C RID: 9356 RVA: 0x000FC6D4 File Offset: 0x000FA8D4
 	public int RoundDamageCount(bool needRecord)
 	{
 		int num = this.player.fightTemp.lastRoundDamageCount[0];
@@ -283,7 +283,7 @@ public class TianJieMiShuLingWuFightEventProcessor : IFightEventProcessor
 		return num;
 	}
 
-	// Token: 0x0600285A RID: 10330 RVA: 0x0013BC14 File Offset: 0x00139E14
+	// Token: 0x0600248D RID: 9357 RVA: 0x000FC700 File Offset: 0x000FA900
 	public int TotalAddLingQi(bool needRecord)
 	{
 		int totalAddLingQi = this.player.fightTemp.TotalAddLingQi;
@@ -294,7 +294,7 @@ public class TianJieMiShuLingWuFightEventProcessor : IFightEventProcessor
 		return totalAddLingQi;
 	}
 
-	// Token: 0x0600285B RID: 10331 RVA: 0x0013BC40 File Offset: 0x00139E40
+	// Token: 0x0600248E RID: 9358 RVA: 0x000FC72C File Offset: 0x000FA92C
 	public int TotalHealHP(bool needRecord)
 	{
 		int totalHealHP = this.player.fightTemp.TotalHealHP;
@@ -305,7 +305,7 @@ public class TianJieMiShuLingWuFightEventProcessor : IFightEventProcessor
 		return totalHealHP;
 	}
 
-	// Token: 0x0600285C RID: 10332 RVA: 0x0013BC6C File Offset: 0x00139E6C
+	// Token: 0x0600248F RID: 9359 RVA: 0x000FC758 File Offset: 0x000FA958
 	public int TotalLingQiCount(bool needRecord)
 	{
 		int cardNum = this.player.cardMag.getCardNum();
@@ -316,7 +316,7 @@ public class TianJieMiShuLingWuFightEventProcessor : IFightEventProcessor
 		return cardNum;
 	}
 
-	// Token: 0x0600285D RID: 10333 RVA: 0x0013BC98 File Offset: 0x00139E98
+	// Token: 0x06002490 RID: 9360 RVA: 0x000FC784 File Offset: 0x000FA984
 	public int MeRoundLossHP(bool needRecord)
 	{
 		int num = this.player.fightTemp.RoundLossHP[0];
@@ -327,7 +327,7 @@ public class TianJieMiShuLingWuFightEventProcessor : IFightEventProcessor
 		return num;
 	}
 
-	// Token: 0x0600285E RID: 10334 RVA: 0x0013BCC4 File Offset: 0x00139EC4
+	// Token: 0x06002491 RID: 9361 RVA: 0x000FC7B0 File Offset: 0x000FA9B0
 	public int TargetRoundLossHP(bool needRecord)
 	{
 		int num = this.target.fightTemp.RoundLossHP[0];
@@ -338,7 +338,7 @@ public class TianJieMiShuLingWuFightEventProcessor : IFightEventProcessor
 		return num;
 	}
 
-	// Token: 0x0600285F RID: 10335 RVA: 0x0013BCF0 File Offset: 0x00139EF0
+	// Token: 0x06002492 RID: 9362 RVA: 0x000FC7DC File Offset: 0x000FA9DC
 	public int MeTotalLossHP(bool needRecord)
 	{
 		int totalLossHP = this.player.fightTemp.TotalLossHP;
@@ -349,7 +349,7 @@ public class TianJieMiShuLingWuFightEventProcessor : IFightEventProcessor
 		return totalLossHP;
 	}
 
-	// Token: 0x06002860 RID: 10336 RVA: 0x0013BD1C File Offset: 0x00139F1C
+	// Token: 0x06002493 RID: 9363 RVA: 0x000FC808 File Offset: 0x000FAA08
 	public int TargetTotalLossHP(bool needRecord)
 	{
 		int totalLossHP = this.target.fightTemp.TotalLossHP;
@@ -360,7 +360,7 @@ public class TianJieMiShuLingWuFightEventProcessor : IFightEventProcessor
 		return totalLossHP;
 	}
 
-	// Token: 0x06002861 RID: 10337 RVA: 0x0013BD48 File Offset: 0x00139F48
+	// Token: 0x06002494 RID: 9364 RVA: 0x000FC834 File Offset: 0x000FAA34
 	public int HasLingQiTypeCount(bool needRecord)
 	{
 		int num = 0;
@@ -378,33 +378,33 @@ public class TianJieMiShuLingWuFightEventProcessor : IFightEventProcessor
 		return num;
 	}
 
-	// Token: 0x040021FF RID: 8703
+	// Token: 0x04001D22 RID: 7458
 	public static string MiShuID;
 
-	// Token: 0x04002200 RID: 8704
+	// Token: 0x04001D23 RID: 7459
 	public Avatar player;
 
-	// Token: 0x04002201 RID: 8705
+	// Token: 0x04001D24 RID: 7460
 	public Avatar target;
 
-	// Token: 0x04002202 RID: 8706
+	// Token: 0x04001D25 RID: 7461
 	public TianJieMiShuData miShuData;
 
-	// Token: 0x04002203 RID: 8707
+	// Token: 0x04001D26 RID: 7462
 	public int recordValue;
 
-	// Token: 0x04002204 RID: 8708
+	// Token: 0x04001D27 RID: 7463
 	public bool isSucess;
 
-	// Token: 0x04002205 RID: 8709
+	// Token: 0x04001D28 RID: 7464
 	public Script luaScript;
 
-	// Token: 0x04002206 RID: 8710
+	// Token: 0x04001D29 RID: 7465
 	public string checkSucessScript = "";
 
-	// Token: 0x04002207 RID: 8711
+	// Token: 0x04001D2A RID: 7466
 	public UIGanYingFight GanYingUI;
 
-	// Token: 0x04002208 RID: 8712
+	// Token: 0x04001D2B RID: 7467
 	public static Dictionary<string, object> OtherBindLuaObjects = new Dictionary<string, object>();
 }

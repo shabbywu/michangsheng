@@ -1,11 +1,11 @@
 ﻿using System;
 using UnityEngine;
 
-// Token: 0x02000076 RID: 118
+// Token: 0x0200005B RID: 91
 [AddComponentMenu("NGUI/Interaction/Button Scale")]
 public class UIButtonScale : MonoBehaviour
 {
-	// Token: 0x06000512 RID: 1298 RVA: 0x0000881F File Offset: 0x00006A1F
+	// Token: 0x060004C4 RID: 1220 RVA: 0x00019FF1 File Offset: 0x000181F1
 	private void Start()
 	{
 		if (!this.mStarted)
@@ -19,7 +19,7 @@ public class UIButtonScale : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000513 RID: 1299 RVA: 0x0000885B File Offset: 0x00006A5B
+	// Token: 0x060004C5 RID: 1221 RVA: 0x0001A02D File Offset: 0x0001822D
 	private void OnEnable()
 	{
 		if (this.mStarted)
@@ -28,7 +28,7 @@ public class UIButtonScale : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000514 RID: 1300 RVA: 0x00070D3C File Offset: 0x0006EF3C
+	// Token: 0x060004C6 RID: 1222 RVA: 0x0001A048 File Offset: 0x00018248
 	private void OnDisable()
 	{
 		if (this.mStarted && this.tweenTarget != null)
@@ -42,7 +42,7 @@ public class UIButtonScale : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000515 RID: 1301 RVA: 0x00070D88 File Offset: 0x0006EF88
+	// Token: 0x060004C7 RID: 1223 RVA: 0x0001A094 File Offset: 0x00018294
 	private void OnPress(bool isPressed)
 	{
 		if (base.enabled)
@@ -55,7 +55,7 @@ public class UIButtonScale : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000516 RID: 1302 RVA: 0x00070E04 File Offset: 0x0006F004
+	// Token: 0x060004C8 RID: 1224 RVA: 0x0001A110 File Offset: 0x00018310
 	private void OnHover(bool isOver)
 	{
 		if (base.enabled)
@@ -68,7 +68,7 @@ public class UIButtonScale : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000517 RID: 1303 RVA: 0x00008876 File Offset: 0x00006A76
+	// Token: 0x060004C9 RID: 1225 RVA: 0x0001A16B File Offset: 0x0001836B
 	private void OnSelect(bool isSelected)
 	{
 		if (base.enabled && (!isSelected || UICamera.currentScheme == UICamera.ControlScheme.Controller))
@@ -77,21 +77,21 @@ public class UIButtonScale : MonoBehaviour
 		}
 	}
 
-	// Token: 0x04000365 RID: 869
+	// Token: 0x040002E6 RID: 742
 	public Transform tweenTarget;
 
-	// Token: 0x04000366 RID: 870
+	// Token: 0x040002E7 RID: 743
 	public Vector3 hover = new Vector3(1.1f, 1.1f, 1.1f);
 
-	// Token: 0x04000367 RID: 871
+	// Token: 0x040002E8 RID: 744
 	public Vector3 pressed = new Vector3(1.05f, 1.05f, 1.05f);
 
-	// Token: 0x04000368 RID: 872
+	// Token: 0x040002E9 RID: 745
 	public float duration = 0.2f;
 
-	// Token: 0x04000369 RID: 873
+	// Token: 0x040002EA RID: 746
 	private Vector3 mScale;
 
-	// Token: 0x0400036A RID: 874
+	// Token: 0x040002EB RID: 747
 	private bool mStarted;
 }

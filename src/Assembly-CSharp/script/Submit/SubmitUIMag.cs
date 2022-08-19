@@ -7,10 +7,10 @@ using UnityEngine.UI;
 
 namespace script.Submit
 {
-	// Token: 0x02000ABC RID: 2748
+	// Token: 0x020009D3 RID: 2515
 	public class SubmitUIMag : MonoBehaviour, IESCClose
 	{
-		// Token: 0x06004639 RID: 17977 RVA: 0x001DF114 File Offset: 0x001DD314
+		// Token: 0x060045D8 RID: 17880 RVA: 0x001D9390 File Offset: 0x001D7590
 		private void Awake()
 		{
 			this.ChengHao.text = PlayerEx.GetMenPaiChengHao();
@@ -23,7 +23,7 @@ namespace script.Submit
 			ESCCloseManager.Inst.RegisterClose(this);
 		}
 
-		// Token: 0x0600463A RID: 17978 RVA: 0x001DF1B4 File Offset: 0x001DD3B4
+		// Token: 0x060045D9 RID: 17881 RVA: 0x001D9430 File Offset: 0x001D7630
 		public void OpenLianQi(Func<BaseItem, bool> canPut, UnityAction submit, string title, int num)
 		{
 			this.SubmitAction = submit;
@@ -35,7 +35,7 @@ namespace script.Submit
 			this.InitSlotList(num);
 		}
 
-		// Token: 0x0600463B RID: 17979 RVA: 0x001DF208 File Offset: 0x001DD408
+		// Token: 0x060045DA RID: 17882 RVA: 0x001D9484 File Offset: 0x001D7684
 		private void InitSlotList(int num)
 		{
 			Transform transform = base.transform.Find(string.Format("提交/物品列表{0}", num));
@@ -52,7 +52,7 @@ namespace script.Submit
 			}
 		}
 
-		// Token: 0x0600463C RID: 17980 RVA: 0x001DF2BC File Offset: 0x001DD4BC
+		// Token: 0x060045DB RID: 17883 RVA: 0x001D9538 File Offset: 0x001D7738
 		public void PutItem(SubmitSlot dragSlot, SubmitSlot toSlot = null)
 		{
 			if (!dragSlot.Item.CanSale)
@@ -79,7 +79,7 @@ namespace script.Submit
 			this.Bag.UpdateItem(true);
 		}
 
-		// Token: 0x0600463D RID: 17981 RVA: 0x001DF374 File Offset: 0x001DD574
+		// Token: 0x060045DC RID: 17884 RVA: 0x001D95F0 File Offset: 0x001D77F0
 		public void BackItem(SubmitSlot dragSlot, SubmitSlot toSlot = null)
 		{
 			if (toSlot == null)
@@ -110,7 +110,7 @@ namespace script.Submit
 			this.Bag.UpdateItem(true);
 		}
 
-		// Token: 0x0600463E RID: 17982 RVA: 0x001DF448 File Offset: 0x001DD648
+		// Token: 0x060045DD RID: 17885 RVA: 0x001D96C4 File Offset: 0x001D78C4
 		public SubmitSlot GetNullSlot()
 		{
 			foreach (SubmitSlot submitSlot in this.SlotList)
@@ -123,13 +123,13 @@ namespace script.Submit
 			return null;
 		}
 
-		// Token: 0x0600463F RID: 17983 RVA: 0x000111B3 File Offset: 0x0000F3B3
+		// Token: 0x060045DE RID: 17886 RVA: 0x0005C928 File Offset: 0x0005AB28
 		public void Close()
 		{
 			Object.Destroy(base.gameObject);
 		}
 
-		// Token: 0x06004640 RID: 17984 RVA: 0x001DF4A4 File Offset: 0x001DD6A4
+		// Token: 0x060045DF RID: 17887 RVA: 0x001D9720 File Offset: 0x001D7920
 		public void Submit()
 		{
 			if (!this.CheckPutAll())
@@ -149,7 +149,7 @@ namespace script.Submit
 			Object.Destroy(base.gameObject);
 		}
 
-		// Token: 0x06004641 RID: 17985 RVA: 0x001DF53C File Offset: 0x001DD73C
+		// Token: 0x060045E0 RID: 17888 RVA: 0x001D97B8 File Offset: 0x001D79B8
 		public bool CheckPutAll()
 		{
 			using (List<SubmitSlot>.Enumerator enumerator = this.SlotList.GetEnumerator())
@@ -165,42 +165,42 @@ namespace script.Submit
 			return true;
 		}
 
-		// Token: 0x06004642 RID: 17986 RVA: 0x00032376 File Offset: 0x00030576
+		// Token: 0x060045E1 RID: 17889 RVA: 0x001D9814 File Offset: 0x001D7A14
 		private void OnDestroy()
 		{
 			SubmitUIMag.Inst = null;
 			ESCCloseManager.Inst.UnRegisterClose(this);
 		}
 
-		// Token: 0x06004643 RID: 17987 RVA: 0x00032389 File Offset: 0x00030589
+		// Token: 0x060045E2 RID: 17890 RVA: 0x001D9827 File Offset: 0x001D7A27
 		public bool TryEscClose()
 		{
 			this.Close();
 			return true;
 		}
 
-		// Token: 0x04003E59 RID: 15961
+		// Token: 0x04004743 RID: 18243
 		public static SubmitUIMag Inst;
 
-		// Token: 0x04003E5A RID: 15962
+		// Token: 0x04004744 RID: 18244
 		public SubmitBag Bag;
 
-		// Token: 0x04003E5B RID: 15963
+		// Token: 0x04004745 RID: 18245
 		public UnityAction SubmitAction;
 
-		// Token: 0x04003E5C RID: 15964
+		// Token: 0x04004746 RID: 18246
 		public List<SubmitSlot> SlotList;
 
-		// Token: 0x04003E5D RID: 15965
+		// Token: 0x04004747 RID: 18247
 		public Func<BaseItem, bool> CanPut;
 
-		// Token: 0x04003E5E RID: 15966
+		// Token: 0x04004748 RID: 18248
 		public Text ChengHao;
 
-		// Token: 0x04003E5F RID: 15967
+		// Token: 0x04004749 RID: 18249
 		public Text Name;
 
-		// Token: 0x04003E60 RID: 15968
+		// Token: 0x0400474A RID: 18250
 		public Text Title;
 	}
 }

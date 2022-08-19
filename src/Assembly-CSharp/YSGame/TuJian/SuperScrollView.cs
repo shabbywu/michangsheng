@@ -6,12 +6,12 @@ using UnityEngine.UI;
 
 namespace YSGame.TuJian
 {
-	// Token: 0x02000DD3 RID: 3539
+	// Token: 0x02000A99 RID: 2713
 	public class SuperScrollView : MonoBehaviour
 	{
-		// Token: 0x170007FA RID: 2042
-		// (get) Token: 0x06005535 RID: 21813 RVA: 0x0003CE4C File Offset: 0x0003B04C
-		// (set) Token: 0x06005536 RID: 21814 RVA: 0x0003CE54 File Offset: 0x0003B054
+		// Token: 0x170005D3 RID: 1491
+		// (get) Token: 0x06004BF5 RID: 19445 RVA: 0x00205F6F File Offset: 0x0020416F
+		// (set) Token: 0x06004BF6 RID: 19446 RVA: 0x00205F77 File Offset: 0x00204177
 		[HideInInspector]
 		public List<Dictionary<int, string>> DataList
 		{
@@ -27,9 +27,9 @@ namespace YSGame.TuJian
 			}
 		}
 
-		// Token: 0x170007FB RID: 2043
-		// (get) Token: 0x06005537 RID: 21815 RVA: 0x00237674 File Offset: 0x00235874
-		// (set) Token: 0x06005538 RID: 21816 RVA: 0x002376D0 File Offset: 0x002358D0
+		// Token: 0x170005D4 RID: 1492
+		// (get) Token: 0x06004BF7 RID: 19447 RVA: 0x00205F90 File Offset: 0x00204190
+		// (set) Token: 0x06004BF8 RID: 19448 RVA: 0x00205FEC File Offset: 0x002041EC
 		public int NowSelectID
 		{
 			get
@@ -57,14 +57,14 @@ namespace YSGame.TuJian
 			}
 		}
 
-		// Token: 0x06005539 RID: 21817 RVA: 0x0003CE6B File Offset: 0x0003B06B
+		// Token: 0x06004BF9 RID: 19449 RVA: 0x00206030 File Offset: 0x00204230
 		private void Start()
 		{
 			this.Init();
 			this.SetScroller();
 		}
 
-		// Token: 0x0600553A RID: 21818 RVA: 0x00237714 File Offset: 0x00235914
+		// Token: 0x06004BFA RID: 19450 RVA: 0x00206040 File Offset: 0x00204240
 		public void Init()
 		{
 			this.itemList = new List<SSVItem>();
@@ -82,7 +82,7 @@ namespace YSGame.TuJian
 			}
 		}
 
-		// Token: 0x0600553B RID: 21819 RVA: 0x0003CE79 File Offset: 0x0003B079
+		// Token: 0x06004BFB RID: 19451 RVA: 0x002060E5 File Offset: 0x002042E5
 		private void Update()
 		{
 			if (this.NeedResetToTop)
@@ -97,7 +97,7 @@ namespace YSGame.TuJian
 			}
 		}
 
-		// Token: 0x0600553C RID: 21820 RVA: 0x0003CEA5 File Offset: 0x0003B0A5
+		// Token: 0x06004BFC RID: 19452 RVA: 0x00206111 File Offset: 0x00204311
 		private void ResetToTop()
 		{
 			this.NowSelectItemIndex = 0;
@@ -106,7 +106,7 @@ namespace YSGame.TuJian
 			this.mContentRect.anchoredPosition = new Vector2(this.mContentRect.anchoredPosition.x, 0f);
 		}
 
-		// Token: 0x0600553D RID: 21821 RVA: 0x0003CEE1 File Offset: 0x0003B0E1
+		// Token: 0x06004BFD RID: 19453 RVA: 0x0020614D File Offset: 0x0020434D
 		public void ResetToTopByHyperlink()
 		{
 			this.firstIndex = 0;
@@ -114,20 +114,20 @@ namespace YSGame.TuJian
 			this.mContentRect.anchoredPosition = new Vector2(this.mContentRect.anchoredPosition.x, 0f);
 		}
 
-		// Token: 0x0600553E RID: 21822 RVA: 0x0003CF16 File Offset: 0x0003B116
+		// Token: 0x06004BFE RID: 19454 RVA: 0x00206182 File Offset: 0x00204382
 		private void SetScroller()
 		{
 			this.SetContentHeight();
 			this.InitCountent();
 		}
 
-		// Token: 0x0600553F RID: 21823 RVA: 0x0003CF24 File Offset: 0x0003B124
+		// Token: 0x06004BFF RID: 19455 RVA: 0x00206190 File Offset: 0x00204390
 		public void SetContentHeight()
 		{
 			this.mContentRect.sizeDelta = new Vector2(this.mContentRect.sizeDelta.x, this.itemHeight * (float)this.DataList.Count);
 		}
 
-		// Token: 0x06005540 RID: 21824 RVA: 0x002377BC File Offset: 0x002359BC
+		// Token: 0x06004C00 RID: 19456 RVA: 0x002061C8 File Offset: 0x002043C8
 		public void InitCountent()
 		{
 			int num = Mathf.Clamp(this.DataList.Count, 0, this.maxItemCount);
@@ -161,7 +161,7 @@ namespace YSGame.TuJian
 			}
 		}
 
-		// Token: 0x06005541 RID: 21825 RVA: 0x00237940 File Offset: 0x00235B40
+		// Token: 0x06004C01 RID: 19457 RVA: 0x0020634C File Offset: 0x0020454C
 		private void OnScrollMove(Vector2 pVec)
 		{
 			if (this.DataList == null || this.DataList.Count == 0)
@@ -198,45 +198,45 @@ namespace YSGame.TuJian
 			}
 		}
 
-		// Token: 0x040054EC RID: 21740
+		// Token: 0x04004B14 RID: 19220
 		private ScrollRect mScrollRect;
 
-		// Token: 0x040054ED RID: 21741
+		// Token: 0x04004B15 RID: 19221
 		private RectTransform mContentRect;
 
-		// Token: 0x040054EE RID: 21742
+		// Token: 0x04004B16 RID: 19222
 		public GameObject itemPrefab;
 
-		// Token: 0x040054EF RID: 21743
+		// Token: 0x04004B17 RID: 19223
 		public float itemHeight;
 
-		// Token: 0x040054F0 RID: 21744
+		// Token: 0x04004B18 RID: 19224
 		private int maxItemCount = 20;
 
-		// Token: 0x040054F1 RID: 21745
+		// Token: 0x04004B19 RID: 19225
 		private List<Dictionary<int, string>> _DataList = new List<Dictionary<int, string>>();
 
-		// Token: 0x040054F2 RID: 21746
+		// Token: 0x04004B1A RID: 19226
 		private int firstIndex;
 
-		// Token: 0x040054F3 RID: 21747
+		// Token: 0x04004B1B RID: 19227
 		private int lastIndex;
 
-		// Token: 0x040054F4 RID: 21748
+		// Token: 0x04004B1C RID: 19228
 		private List<SSVItem> itemList;
 
-		// Token: 0x040054F5 RID: 21749
+		// Token: 0x04004B1D RID: 19229
 		private SSVPool pool = new SSVPool();
 
-		// Token: 0x040054F6 RID: 21750
+		// Token: 0x04004B1E RID: 19230
 		[HideInInspector]
 		public int NowSelectItemIndex;
 
-		// Token: 0x040054F7 RID: 21751
+		// Token: 0x04004B1F RID: 19231
 		[HideInInspector]
 		public bool NeedResetToTop;
 
-		// Token: 0x040054F8 RID: 21752
+		// Token: 0x04004B20 RID: 19232
 		[HideInInspector]
 		public bool NeedSetScroller;
 	}

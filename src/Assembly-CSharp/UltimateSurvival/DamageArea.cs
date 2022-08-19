@@ -3,15 +3,15 @@ using UnityEngine;
 
 namespace UltimateSurvival
 {
-	// Token: 0x02000875 RID: 2165
+	// Token: 0x020005B7 RID: 1463
 	public class DamageArea : MonoBehaviour
 	{
-		// Token: 0x170005AD RID: 1453
-		// (get) Token: 0x06003807 RID: 14343 RVA: 0x00028B50 File Offset: 0x00026D50
-		// (set) Token: 0x06003808 RID: 14344 RVA: 0x00028B58 File Offset: 0x00026D58
+		// Token: 0x170003F2 RID: 1010
+		// (get) Token: 0x06002F83 RID: 12163 RVA: 0x00157E32 File Offset: 0x00156032
+		// (set) Token: 0x06002F84 RID: 12164 RVA: 0x00157E3A File Offset: 0x0015603A
 		public bool Active { get; set; }
 
-		// Token: 0x06003809 RID: 14345 RVA: 0x001A216C File Offset: 0x001A036C
+		// Token: 0x06002F85 RID: 12165 RVA: 0x00157E44 File Offset: 0x00156044
 		private void OnTriggerStay(Collider other)
 		{
 			if (!this.Active)
@@ -26,7 +26,7 @@ namespace UltimateSurvival
 			}
 		}
 
-		// Token: 0x0400325E RID: 12894
+		// Token: 0x040029D4 RID: 10708
 		[SerializeField]
 		private Vector2 m_DamagePerSecond = new Vector2(3f, 5f);
 	}

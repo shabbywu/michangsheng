@@ -1,15 +1,15 @@
 ﻿using System;
 using UnityEngine;
 
-// Token: 0x02000416 RID: 1046
+// Token: 0x020002CB RID: 715
 public class UIInventorySolt : MonoBehaviour
 {
-	// Token: 0x06001C29 RID: 7209 RVA: 0x000042DD File Offset: 0x000024DD
+	// Token: 0x06001921 RID: 6433 RVA: 0x00004095 File Offset: 0x00002295
 	private void Start()
 	{
 	}
 
-	// Token: 0x06001C2A RID: 7210 RVA: 0x000042DD File Offset: 0x000024DD
+	// Token: 0x06001922 RID: 6434 RVA: 0x00004095 File Offset: 0x00002295
 	private void Update()
 	{
 	}

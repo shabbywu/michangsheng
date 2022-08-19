@@ -3,16 +3,16 @@ using System.Text;
 
 namespace MoonSharp.Interpreter.CoreLib.IO
 {
-	// Token: 0x020011A9 RID: 4521
+	// Token: 0x02000D87 RID: 3463
 	internal class BinaryEncoding : Encoding
 	{
-		// Token: 0x06006EA6 RID: 28326 RVA: 0x0004B51E File Offset: 0x0004971E
+		// Token: 0x06006278 RID: 25208 RVA: 0x00279422 File Offset: 0x00277622
 		public override int GetByteCount(char[] chars, int index, int count)
 		{
 			return count;
 		}
 
-		// Token: 0x06006EA7 RID: 28327 RVA: 0x0029F3F4 File Offset: 0x0029D5F4
+		// Token: 0x06006279 RID: 25209 RVA: 0x00279428 File Offset: 0x00277628
 		public override int GetBytes(char[] chars, int charIndex, int charCount, byte[] bytes, int byteIndex)
 		{
 			for (int i = 0; i < charCount; i++)
@@ -22,13 +22,13 @@ namespace MoonSharp.Interpreter.CoreLib.IO
 			return charCount;
 		}
 
-		// Token: 0x06006EA8 RID: 28328 RVA: 0x0004B51E File Offset: 0x0004971E
+		// Token: 0x0600627A RID: 25210 RVA: 0x00279422 File Offset: 0x00277622
 		public override int GetCharCount(byte[] bytes, int index, int count)
 		{
 			return count;
 		}
 
-		// Token: 0x06006EA9 RID: 28329 RVA: 0x0029F41C File Offset: 0x0029D61C
+		// Token: 0x0600627B RID: 25211 RVA: 0x00279450 File Offset: 0x00277650
 		public override int GetChars(byte[] bytes, int byteIndex, int byteCount, char[] chars, int charIndex)
 		{
 			for (int i = 0; i < byteCount; i++)
@@ -38,13 +38,13 @@ namespace MoonSharp.Interpreter.CoreLib.IO
 			return byteCount;
 		}
 
-		// Token: 0x06006EAA RID: 28330 RVA: 0x00010DC9 File Offset: 0x0000EFC9
+		// Token: 0x0600627C RID: 25212 RVA: 0x001086F1 File Offset: 0x001068F1
 		public override int GetMaxByteCount(int charCount)
 		{
 			return charCount;
 		}
 
-		// Token: 0x06006EAB RID: 28331 RVA: 0x00010DC9 File Offset: 0x0000EFC9
+		// Token: 0x0600627D RID: 25213 RVA: 0x001086F1 File Offset: 0x001068F1
 		public override int GetMaxCharCount(int byteCount)
 		{
 			return byteCount;

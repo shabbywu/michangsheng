@@ -4,10 +4,10 @@ using UnityEngine;
 
 namespace WXB
 {
-	// Token: 0x020009A4 RID: 2468
+	// Token: 0x02000691 RID: 1681
 	public static class FontCache
 	{
-		// Token: 0x06003EEA RID: 16106 RVA: 0x001B866C File Offset: 0x001B686C
+		// Token: 0x0600352F RID: 13615 RVA: 0x0017037C File Offset: 0x0016E57C
 		public static int GetLineHeight(Font font, int size, FontStyle fs)
 		{
 			long key = fs | (long)size << 24 | (long)font.GetInstanceID() << 32;
@@ -41,7 +41,7 @@ namespace WXB
 			return num;
 		}
 
-		// Token: 0x06003EEB RID: 16107 RVA: 0x001B878C File Offset: 0x001B698C
+		// Token: 0x06003530 RID: 13616 RVA: 0x0017049C File Offset: 0x0016E69C
 		public static int GetAdvance(Font font, int size, FontStyle fs, char ch)
 		{
 			long key = (long)((ulong)ch | (ulong)((ulong)fs << 16) | (ulong)((ulong)((long)size) << 24) | (ulong)((ulong)((long)font.GetInstanceID()) << 32));
@@ -64,16 +64,16 @@ namespace WXB
 			return 0;
 		}
 
-		// Token: 0x040038A4 RID: 14500
+		// Token: 0x04002EEC RID: 12012
 		private static CharacterInfo s_Info;
 
-		// Token: 0x040038A5 RID: 14501
+		// Token: 0x04002EED RID: 12013
 		private static Dictionary<long, int> FontLineHeight = new Dictionary<long, int>();
 
-		// Token: 0x040038A6 RID: 14502
+		// Token: 0x04002EEE RID: 12014
 		private static TextGenerator sCachedTextGenerator = new TextGenerator();
 
-		// Token: 0x040038A7 RID: 14503
+		// Token: 0x04002EEF RID: 12015
 		private static Dictionary<long, int> FontAdvances = new Dictionary<long, int>();
 	}
 }

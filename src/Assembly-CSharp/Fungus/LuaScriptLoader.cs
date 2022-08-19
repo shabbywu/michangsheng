@@ -6,22 +6,22 @@ using UnityEngine;
 
 namespace Fungus
 {
-	// Token: 0x020013AA RID: 5034
+	// Token: 0x02000F05 RID: 3845
 	public class LuaScriptLoader : ScriptLoaderBase
 	{
-		// Token: 0x060079F0 RID: 31216 RVA: 0x00010DC9 File Offset: 0x0000EFC9
+		// Token: 0x06006C3C RID: 27708 RVA: 0x001086F1 File Offset: 0x001068F1
 		protected override string ResolveModuleName(string modname, string[] paths)
 		{
 			return modname;
 		}
 
-		// Token: 0x060079F1 RID: 31217 RVA: 0x00053304 File Offset: 0x00051504
+		// Token: 0x06006C3D RID: 27709 RVA: 0x002985D9 File Offset: 0x002967D9
 		public LuaScriptLoader(IEnumerable<TextAsset> luaScripts)
 		{
 			this.luaScripts = luaScripts;
 		}
 
-		// Token: 0x060079F2 RID: 31218 RVA: 0x002B9734 File Offset: 0x002B7934
+		// Token: 0x06006C3E RID: 27710 RVA: 0x002985E8 File Offset: 0x002967E8
 		public override object LoadFile(string file, Table globalContext)
 		{
 			foreach (TextAsset textAsset in this.luaScripts)
@@ -34,7 +34,7 @@ namespace Fungus
 			return "";
 		}
 
-		// Token: 0x060079F3 RID: 31219 RVA: 0x002B979C File Offset: 0x002B799C
+		// Token: 0x06006C3F RID: 27711 RVA: 0x00298650 File Offset: 0x00296850
 		public override bool ScriptFileExists(string name)
 		{
 			using (IEnumerator<TextAsset> enumerator = this.luaScripts.GetEnumerator())
@@ -50,7 +50,7 @@ namespace Fungus
 			return false;
 		}
 
-		// Token: 0x0400696C RID: 26988
+		// Token: 0x04005AF3 RID: 23283
 		protected IEnumerable<TextAsset> luaScripts;
 	}
 }

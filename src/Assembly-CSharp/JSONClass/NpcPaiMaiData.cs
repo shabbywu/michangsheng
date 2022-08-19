@@ -3,10 +3,10 @@ using System.Collections.Generic;
 
 namespace JSONClass
 {
-	// Token: 0x02000C35 RID: 3125
+	// Token: 0x020008A7 RID: 2215
 	public class NpcPaiMaiData : IJSONClass
 	{
-		// Token: 0x06004C3D RID: 19517 RVA: 0x00203138 File Offset: 0x00201338
+		// Token: 0x060040AF RID: 16559 RVA: 0x001BA128 File Offset: 0x001B8328
 		public static void InitDataDict()
 		{
 			foreach (JSONObject jsonobject in jsonData.instance.NpcPaiMaiData.list)
@@ -42,33 +42,33 @@ namespace JSONClass
 			}
 		}
 
-		// Token: 0x06004C3E RID: 19518 RVA: 0x000042DD File Offset: 0x000024DD
+		// Token: 0x060040B0 RID: 16560 RVA: 0x00004095 File Offset: 0x00002295
 		private static void OnInitFinish()
 		{
 		}
 
-		// Token: 0x040049FB RID: 18939
+		// Token: 0x04003EA2 RID: 16034
 		public static Dictionary<int, NpcPaiMaiData> DataDict = new Dictionary<int, NpcPaiMaiData>();
 
-		// Token: 0x040049FC RID: 18940
+		// Token: 0x04003EA3 RID: 16035
 		public static List<NpcPaiMaiData> DataList = new List<NpcPaiMaiData>();
 
-		// Token: 0x040049FD RID: 18941
+		// Token: 0x04003EA4 RID: 16036
 		public static Action OnInitFinishAction = new Action(NpcPaiMaiData.OnInitFinish);
 
-		// Token: 0x040049FE RID: 18942
+		// Token: 0x04003EA5 RID: 16037
 		public int id;
 
-		// Token: 0x040049FF RID: 18943
+		// Token: 0x04003EA6 RID: 16038
 		public int PaiMaiID;
 
-		// Token: 0x04004A00 RID: 18944
+		// Token: 0x04003EA7 RID: 16039
 		public int ItemNum;
 
-		// Token: 0x04004A01 RID: 18945
+		// Token: 0x04003EA8 RID: 16040
 		public List<int> Type = new List<int>();
 
-		// Token: 0x04004A02 RID: 18946
+		// Token: 0x04003EA9 RID: 16041
 		public List<int> quality = new List<int>();
 	}
 }

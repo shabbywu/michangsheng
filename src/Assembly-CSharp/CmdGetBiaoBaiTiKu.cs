@@ -2,12 +2,12 @@
 using Fungus;
 using UnityEngine;
 
-// Token: 0x0200033A RID: 826
+// Token: 0x0200021E RID: 542
 [CommandInfo("YSDongFu", "获取表白题库", "获取表白题库，赋值到TiWen，optionDesc1，optionDesc2，optionDesc3", 0)]
 [AddComponentMenu("")]
 public class CmdGetBiaoBaiTiKu : Command
 {
-	// Token: 0x06001865 RID: 6245 RVA: 0x000D9E68 File Offset: 0x000D8068
+	// Token: 0x060015AD RID: 5549 RVA: 0x00091344 File Offset: 0x0008F544
 	public override void OnEnter()
 	{
 		TiKuData tiKuData;
@@ -20,7 +20,7 @@ public class CmdGetBiaoBaiTiKu : Command
 		this.Continue();
 	}
 
-	// Token: 0x04001390 RID: 5008
+	// Token: 0x04001038 RID: 4152
 	[Tooltip("题干类型 1正邪2性格3标签")]
 	[SerializeField]
 	protected int type;

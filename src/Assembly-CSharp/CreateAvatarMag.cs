@@ -3,22 +3,22 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-// Token: 0x0200058A RID: 1418
+// Token: 0x020003EB RID: 1003
 public class CreateAvatarMag : MonoBehaviour
 {
-	// Token: 0x060023EA RID: 9194 RVA: 0x0001CFAE File Offset: 0x0001B1AE
+	// Token: 0x06002061 RID: 8289 RVA: 0x000E3C7C File Offset: 0x000E1E7C
 	private void Awake()
 	{
 		CreateAvatarMag.inst = this;
 	}
 
-	// Token: 0x060023EB RID: 9195 RVA: 0x00017C2D File Offset: 0x00015E2D
+	// Token: 0x06002062 RID: 8290 RVA: 0x000B5E62 File Offset: 0x000B4062
 	private void Start()
 	{
 		base.gameObject.SetActive(false);
 	}
 
-	// Token: 0x060023EC RID: 9196 RVA: 0x00126124 File Offset: 0x00124324
+	// Token: 0x06002063 RID: 8291 RVA: 0x000E3C84 File Offset: 0x000E1E84
 	public void resetRandomFace()
 	{
 		this.isChangeSex = true;
@@ -27,7 +27,7 @@ public class CreateAvatarMag : MonoBehaviour
 		this.player.randomAvatar(1);
 	}
 
-	// Token: 0x060023ED RID: 9197 RVA: 0x00126180 File Offset: 0x00124380
+	// Token: 0x06002064 RID: 8292 RVA: 0x000E3CE0 File Offset: 0x000E1EE0
 	public void startGameClick(CreateAvatarMag.createAvatardelegate aa)
 	{
 		LevelSelectManager component = GameObject.Find("Main Menu/MainMenuCanvas").GetComponent<LevelSelectManager>();
@@ -47,14 +47,14 @@ public class CreateAvatarMag : MonoBehaviour
 		this.showSetFace();
 	}
 
-	// Token: 0x060023EE RID: 9198 RVA: 0x0001CFB6 File Offset: 0x0001B1B6
+	// Token: 0x06002065 RID: 8293 RVA: 0x000E3D61 File Offset: 0x000E1F61
 	public void resetAvatarFace()
 	{
 		jsonData.instance.AvatarRandomJsonData["1"].SetField("Sex", this.faceUI.faceDatabase.ListType);
 		this.player.randomAvatar(1);
 	}
 
-	// Token: 0x060023EF RID: 9199 RVA: 0x0001CFF2 File Offset: 0x0001B1F2
+	// Token: 0x06002066 RID: 8294 RVA: 0x000E3D9D File Offset: 0x000E1F9D
 	public void setMan()
 	{
 		this.faceUI.faceDatabase.ListType = 1;
@@ -63,7 +63,7 @@ public class CreateAvatarMag : MonoBehaviour
 		this.resetRandomFace();
 	}
 
-	// Token: 0x060023F0 RID: 9200 RVA: 0x0001D01D File Offset: 0x0001B21D
+	// Token: 0x06002067 RID: 8295 RVA: 0x000E3DC8 File Offset: 0x000E1FC8
 	public void setWoman()
 	{
 		this.faceUI.faceDatabase.ListType = 2;
@@ -72,13 +72,13 @@ public class CreateAvatarMag : MonoBehaviour
 		this.resetRandomFace();
 	}
 
-	// Token: 0x060023F1 RID: 9201 RVA: 0x00017C2D File Offset: 0x00015E2D
+	// Token: 0x06002068 RID: 8296 RVA: 0x000B5E62 File Offset: 0x000B4062
 	public void close()
 	{
 		base.gameObject.SetActive(false);
 	}
 
-	// Token: 0x060023F2 RID: 9202 RVA: 0x0001D048 File Offset: 0x0001B248
+	// Token: 0x06002069 RID: 8297 RVA: 0x000E3DF3 File Offset: 0x000E1FF3
 	public IEnumerator DengDaiToSet(GameObject obj)
 	{
 		yield return new WaitForSeconds(0.01f);
@@ -86,13 +86,13 @@ public class CreateAvatarMag : MonoBehaviour
 		yield break;
 	}
 
-	// Token: 0x060023F3 RID: 9203 RVA: 0x0001D057 File Offset: 0x0001B257
+	// Token: 0x0600206A RID: 8298 RVA: 0x000E3E02 File Offset: 0x000E2002
 	public void ChuangjueHome()
 	{
 		selectBox.instence.setChoice("是否直接退出创角", new EventDelegate(new EventDelegate.Callback(this.close)), null);
 	}
 
-	// Token: 0x060023F4 RID: 9204 RVA: 0x00126204 File Offset: 0x00124404
+	// Token: 0x0600206B RID: 8299 RVA: 0x000E3E28 File Offset: 0x000E2028
 	public void showSetFace()
 	{
 		this.tianfuUI.gameObject.SetActive(false);
@@ -104,7 +104,7 @@ public class CreateAvatarMag : MonoBehaviour
 		this.Sea1.SetActive(false);
 	}
 
-	// Token: 0x060023F5 RID: 9205 RVA: 0x0012627C File Offset: 0x0012447C
+	// Token: 0x0600206C RID: 8300 RVA: 0x000E3EA0 File Offset: 0x000E20A0
 	public void showTianfuUI()
 	{
 		this.tianfuUI.gameObject.SetActive(true);
@@ -123,7 +123,7 @@ public class CreateAvatarMag : MonoBehaviour
 		this.Sea1.SetActive(false);
 	}
 
-	// Token: 0x060023F6 RID: 9206 RVA: 0x00126334 File Offset: 0x00124534
+	// Token: 0x0600206D RID: 8301 RVA: 0x000E3F58 File Offset: 0x000E2158
 	public void showLingenUI()
 	{
 		if (this.tianfuUI.TianFuDian < 0)
@@ -138,7 +138,7 @@ public class CreateAvatarMag : MonoBehaviour
 		this.lingenUI.resetLinGen();
 	}
 
-	// Token: 0x060023F7 RID: 9207 RVA: 0x001263B0 File Offset: 0x001245B0
+	// Token: 0x0600206E RID: 8302 RVA: 0x000E3FD4 File Offset: 0x000E21D4
 	public void TianFuNext()
 	{
 		if (this.tianfuUI.nowPage < this.tianfuUI.MaxPage)
@@ -173,7 +173,7 @@ public class CreateAvatarMag : MonoBehaviour
 		this.showFinalUI();
 	}
 
-	// Token: 0x060023F8 RID: 9208 RVA: 0x0001D07A File Offset: 0x0001B27A
+	// Token: 0x0600206F RID: 8303 RVA: 0x000E4130 File Offset: 0x000E2330
 	public void TianFuLaset()
 	{
 		if (this.tianfuUI.nowPage > 1)
@@ -185,7 +185,7 @@ public class CreateAvatarMag : MonoBehaviour
 		this.showSetFace();
 	}
 
-	// Token: 0x060023F9 RID: 9209 RVA: 0x0012650C File Offset: 0x0012470C
+	// Token: 0x06002070 RID: 8304 RVA: 0x000E4170 File Offset: 0x000E2370
 	public void showFinalUI()
 	{
 		this.tianfuUI.gameObject.SetActive(false);
@@ -194,7 +194,7 @@ public class CreateAvatarMag : MonoBehaviour
 		this.faceUI.gameObject.SetActive(false);
 	}
 
-	// Token: 0x060023FA RID: 9210 RVA: 0x0001D0BA File Offset: 0x0001B2BA
+	// Token: 0x06002071 RID: 8305 RVA: 0x000E41C1 File Offset: 0x000E23C1
 	public void OK()
 	{
 		if (!this.isStart)
@@ -204,7 +204,7 @@ public class CreateAvatarMag : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060023FB RID: 9211 RVA: 0x00126560 File Offset: 0x00124760
+	// Token: 0x06002072 RID: 8306 RVA: 0x000E41E0 File Offset: 0x000E23E0
 	private void Update()
 	{
 		JSONObject jsonobject = jsonData.instance.AvatarJsonData["1"];
@@ -260,7 +260,7 @@ public class CreateAvatarMag : MonoBehaviour
 		this.jinziDown.gameObject.SetActive(false);
 	}
 
-	// Token: 0x060023FC RID: 9212 RVA: 0x0001D0D6 File Offset: 0x0001B2D6
+	// Token: 0x06002073 RID: 8307 RVA: 0x000E4620 File Offset: 0x000E2820
 	public string setTextColor(int Num, int basenum)
 	{
 		if (Num - basenum > 0)
@@ -270,116 +270,116 @@ public class CreateAvatarMag : MonoBehaviour
 		return "[FFFCFB]" + Num + "[-]";
 	}
 
-	// Token: 0x060023FD RID: 9213 RVA: 0x001269A0 File Offset: 0x00124BA0
+	// Token: 0x06002074 RID: 8308 RVA: 0x000E4654 File Offset: 0x000E2854
 	public int getXinJinType()
 	{
 		foreach (JSONObject jsonobject in jsonData.instance.XinJinJsonData.list)
 		{
 			if ((int)jsonobject["Max"].n > this.tianfuUI.XinJin)
 			{
-				return (int)jsonobject["id"].n;
+				return jsonobject["id"].I;
 			}
 		}
 		return jsonData.instance.XinJinJsonData.Count;
 	}
 
-	// Token: 0x04001EEF RID: 7919
+	// Token: 0x04001A4A RID: 6730
 	public static CreateAvatarMag inst;
 
-	// Token: 0x04001EF0 RID: 7920
+	// Token: 0x04001A4B RID: 6731
 	public createTianfu tianfuUI;
 
-	// Token: 0x04001EF1 RID: 7921
+	// Token: 0x04001A4C RID: 6732
 	public CreatLinGen lingenUI;
 
-	// Token: 0x04001EF2 RID: 7922
+	// Token: 0x04001A4D RID: 6733
 	public CreateAvatarFinal finalUI;
 
-	// Token: 0x04001EF3 RID: 7923
+	// Token: 0x04001A4E RID: 6734
 	public Create_face faceUI;
 
-	// Token: 0x04001EF4 RID: 7924
+	// Token: 0x04001A4F RID: 6735
 	public UILabel zizhi;
 
-	// Token: 0x04001EF5 RID: 7925
+	// Token: 0x04001A50 RID: 6736
 	public UILabel linggeng;
 
-	// Token: 0x04001EF6 RID: 7926
+	// Token: 0x04001A51 RID: 6737
 	public UILabel gongfa;
 
-	// Token: 0x04001EF7 RID: 7927
+	// Token: 0x04001A52 RID: 6738
 	public UILabel shenshi;
 
-	// Token: 0x04001EF8 RID: 7928
+	// Token: 0x04001A53 RID: 6739
 	public UILabel dunsu;
 
-	// Token: 0x04001EF9 RID: 7929
+	// Token: 0x04001A54 RID: 6740
 	public UILabel xinjin;
 
-	// Token: 0x04001EFA RID: 7930
+	// Token: 0x04001A55 RID: 6741
 	public UILabel wuxing;
 
-	// Token: 0x04001EFB RID: 7931
+	// Token: 0x04001A56 RID: 6742
 	public UILabel showyuan;
 
-	// Token: 0x04001EFC RID: 7932
+	// Token: 0x04001A57 RID: 6743
 	public UILabel qixie;
 
-	// Token: 0x04001EFD RID: 7933
+	// Token: 0x04001A58 RID: 6744
 	public UILabel lingshi;
 
-	// Token: 0x04001EFE RID: 7934
+	// Token: 0x04001A59 RID: 6745
 	public List<Vector3> playerPosition;
 
-	// Token: 0x04001EFF RID: 7935
+	// Token: 0x04001A5A RID: 6746
 	public GameObject playerCavas;
 
-	// Token: 0x04001F00 RID: 7936
+	// Token: 0x04001A5B RID: 6747
 	public GameObject playerInfoText;
 
-	// Token: 0x04001F01 RID: 7937
+	// Token: 0x04001A5C RID: 6748
 	public PlayerSetRandomFace player;
 
-	// Token: 0x04001F02 RID: 7938
+	// Token: 0x04001A5D RID: 6749
 	public List<Sprite> jinziUplist = new List<Sprite>();
 
-	// Token: 0x04001F03 RID: 7939
+	// Token: 0x04001A5E RID: 6750
 	public List<Sprite> jinziDownlist = new List<Sprite>();
 
-	// Token: 0x04001F04 RID: 7940
+	// Token: 0x04001A5F RID: 6751
 	public List<Vector3> jinziUpPositon = new List<Vector3>();
 
-	// Token: 0x04001F05 RID: 7941
+	// Token: 0x04001A60 RID: 6752
 	public List<Vector3> jinziDownPositon = new List<Vector3>();
 
-	// Token: 0x04001F06 RID: 7942
+	// Token: 0x04001A61 RID: 6753
 	public UI2DSprite jinziup;
 
-	// Token: 0x04001F07 RID: 7943
+	// Token: 0x04001A62 RID: 6754
 	public UI2DSprite jinziDown;
 
-	// Token: 0x04001F08 RID: 7944
+	// Token: 0x04001A63 RID: 6755
 	public GameObject Sea1;
 
-	// Token: 0x04001F09 RID: 7945
+	// Token: 0x04001A64 RID: 6756
 	public GameObject Sea2;
 
-	// Token: 0x04001F0A RID: 7946
+	// Token: 0x04001A65 RID: 6757
 	public bool isChangeSex;
 
-	// Token: 0x04001F0B RID: 7947
+	// Token: 0x04001A66 RID: 6758
 	private bool isStart;
 
-	// Token: 0x04001F0C RID: 7948
+	// Token: 0x04001A67 RID: 6759
 	public CreateAvatarMag.createAvatardelegate Eventdel;
 
-	// Token: 0x04001F0D RID: 7949
+	// Token: 0x04001A68 RID: 6760
 	public int maxLevel;
 
-	// Token: 0x04001F0E RID: 7950
+	// Token: 0x04001A69 RID: 6761
 	public Sprite LockImage;
 
-	// Token: 0x0200058B RID: 1419
-	// (Invoke) Token: 0x06002400 RID: 9216
+	// Token: 0x02001383 RID: 4995
+	// (Invoke) Token: 0x06007C30 RID: 31792
 	public delegate void createAvatardelegate();
 }

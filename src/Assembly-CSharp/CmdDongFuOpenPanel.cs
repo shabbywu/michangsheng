@@ -2,12 +2,12 @@
 using Fungus;
 using UnityEngine;
 
-// Token: 0x02000311 RID: 785
+// Token: 0x020001FC RID: 508
 [CommandInfo("YSDongFu", "打开面板", "打开面板", 0)]
 [AddComponentMenu("")]
 public class CmdDongFuOpenPanel : Command
 {
-	// Token: 0x06001752 RID: 5970 RVA: 0x000CD6DC File Offset: 0x000CB8DC
+	// Token: 0x060014A8 RID: 5288 RVA: 0x00084B38 File Offset: 0x00082D38
 	public override void OnEnter()
 	{
 		this.DongFu = new DongFuData(DongFuManager.NowDongFuID);
@@ -27,7 +27,7 @@ public class CmdDongFuOpenPanel : Command
 		this.Continue();
 	}
 
-	// Token: 0x06001753 RID: 5971 RVA: 0x00014948 File Offset: 0x00012B48
+	// Token: 0x060014A9 RID: 5289 RVA: 0x00084B96 File Offset: 0x00082D96
 	public void OpenLianQi()
 	{
 		if (this.DongFu.AreaUnlock[0] == 0)
@@ -38,7 +38,7 @@ public class CmdDongFuOpenPanel : Command
 		DongFuScene.Inst.OnLianQiBuildFuncClick();
 	}
 
-	// Token: 0x06001754 RID: 5972 RVA: 0x00014972 File Offset: 0x00012B72
+	// Token: 0x060014AA RID: 5290 RVA: 0x00084BC0 File Offset: 0x00082DC0
 	public void OpenLianDan()
 	{
 		if (this.DongFu.AreaUnlock[1] == 0)
@@ -49,7 +49,7 @@ public class CmdDongFuOpenPanel : Command
 		DongFuScene.Inst.OnLianDanBuildFuncClick();
 	}
 
-	// Token: 0x06001755 RID: 5973 RVA: 0x0001499C File Offset: 0x00012B9C
+	// Token: 0x060014AB RID: 5291 RVA: 0x00084BEA File Offset: 0x00082DEA
 	public void OpenLingTian()
 	{
 		if (this.DongFu.AreaUnlock[2] == 0)
@@ -60,10 +60,10 @@ public class CmdDongFuOpenPanel : Command
 		DongFuScene.Inst.OnLingTianBuildFuncClick();
 	}
 
-	// Token: 0x040012B5 RID: 4789
+	// Token: 0x04000F6F RID: 3951
 	[SerializeField]
 	protected DongFuArea Panel;
 
-	// Token: 0x040012B6 RID: 4790
+	// Token: 0x04000F70 RID: 3952
 	private DongFuData DongFu;
 }

@@ -6,10 +6,10 @@ using UnityEngine.UI;
 
 namespace PaiMai
 {
-	// Token: 0x02000A61 RID: 2657
+	// Token: 0x02000711 RID: 1809
 	public class AvatarUI : MonoBehaviour, IPointerEnterHandler, IEventSystemHandler, IPointerExitHandler, IPointerClickHandler
 	{
-		// Token: 0x0600447C RID: 17532 RVA: 0x001D49B8 File Offset: 0x001D2BB8
+		// Token: 0x060039F0 RID: 14832 RVA: 0x0018D214 File Offset: 0x0018B414
 		public void Init(PaiMaiAvatar data)
 		{
 			this._avatar = data;
@@ -27,13 +27,13 @@ namespace PaiMai
 			this._selected = base.transform.Find("Active/BG/Selected").gameObject;
 		}
 
-		// Token: 0x0600447D RID: 17533 RVA: 0x00030FAD File Offset: 0x0002F1AD
+		// Token: 0x060039F1 RID: 14833 RVA: 0x0018D38A File Offset: 0x0018B58A
 		public void SayWord(string msg)
 		{
 			this._say.SayWord(msg, null, 2f);
 		}
 
-		// Token: 0x0600447E RID: 17534 RVA: 0x001D4B30 File Offset: 0x001D2D30
+		// Token: 0x060039F2 RID: 14834 RVA: 0x0018D3A0 File Offset: 0x0018B5A0
 		public void SetState(PaiMaiAvatar.StateType state, bool isSay = false)
 		{
 			if (state == PaiMaiAvatar.StateType.放弃)
@@ -65,7 +65,7 @@ namespace PaiMai
 			this._avatar.State = state;
 		}
 
-		// Token: 0x0600447F RID: 17535 RVA: 0x00030FC1 File Offset: 0x0002F1C1
+		// Token: 0x060039F3 RID: 14835 RVA: 0x0018D4C9 File Offset: 0x0018B6C9
 		public void OnPointerEnter(PointerEventData eventData)
 		{
 			if (!this._avatar.CanSelect)
@@ -75,7 +75,7 @@ namespace PaiMai
 			this._selected.SetActive(true);
 		}
 
-		// Token: 0x06004480 RID: 17536 RVA: 0x00030FDD File Offset: 0x0002F1DD
+		// Token: 0x060039F4 RID: 14836 RVA: 0x0018D4E5 File Offset: 0x0018B6E5
 		public void OnPointerExit(PointerEventData eventData)
 		{
 			if (!this._avatar.CanSelect)
@@ -85,7 +85,7 @@ namespace PaiMai
 			this._selected.SetActive(false);
 		}
 
-		// Token: 0x06004481 RID: 17537 RVA: 0x00030FF9 File Offset: 0x0002F1F9
+		// Token: 0x060039F5 RID: 14837 RVA: 0x0018D501 File Offset: 0x0018B701
 		public void OnPointerClick(PointerEventData eventData)
 		{
 			if (!this._avatar.CanSelect)
@@ -96,25 +96,25 @@ namespace PaiMai
 			this._avatar.Select();
 		}
 
-		// Token: 0x04003C83 RID: 15491
+		// Token: 0x040031FC RID: 12796
 		private PaiMaiAvatar _avatar;
 
-		// Token: 0x04003C84 RID: 15492
+		// Token: 0x040031FD RID: 12797
 		private GameObject _activeGo;
 
-		// Token: 0x04003C85 RID: 15493
+		// Token: 0x040031FE RID: 12798
 		private GameObject _noActiveGo;
 
-		// Token: 0x04003C86 RID: 15494
+		// Token: 0x040031FF RID: 12799
 		private Image _stateImg;
 
-		// Token: 0x04003C87 RID: 15495
+		// Token: 0x04003200 RID: 12800
 		private Text _state;
 
-		// Token: 0x04003C88 RID: 15496
+		// Token: 0x04003201 RID: 12801
 		private PaiMaiSay _say;
 
-		// Token: 0x04003C89 RID: 15497
+		// Token: 0x04003202 RID: 12802
 		private GameObject _selected;
 	}
 }

@@ -1,14 +1,14 @@
 ﻿using System;
 using UnityEngine;
 
-// Token: 0x0200009C RID: 156
+// Token: 0x02000072 RID: 114
 [ExecuteInEditMode]
 [AddComponentMenu("NGUI/Interaction/NGUI Scroll Bar")]
 public class UIScrollBar : UISlider
 {
-	// Token: 0x170000AC RID: 172
-	// (get) Token: 0x06000618 RID: 1560 RVA: 0x000097E6 File Offset: 0x000079E6
-	// (set) Token: 0x06000619 RID: 1561 RVA: 0x000097EE File Offset: 0x000079EE
+	// Token: 0x1700009C RID: 156
+	// (get) Token: 0x060005B4 RID: 1460 RVA: 0x0001F779 File Offset: 0x0001D979
+	// (set) Token: 0x060005B5 RID: 1461 RVA: 0x0001F781 File Offset: 0x0001D981
 	[Obsolete("Use 'value' instead")]
 	public float scrollValue
 	{
@@ -22,9 +22,9 @@ public class UIScrollBar : UISlider
 		}
 	}
 
-	// Token: 0x170000AD RID: 173
-	// (get) Token: 0x0600061A RID: 1562 RVA: 0x000097F7 File Offset: 0x000079F7
-	// (set) Token: 0x0600061B RID: 1563 RVA: 0x000755D4 File Offset: 0x000737D4
+	// Token: 0x1700009D RID: 157
+	// (get) Token: 0x060005B6 RID: 1462 RVA: 0x0001F78A File Offset: 0x0001D98A
+	// (set) Token: 0x060005B7 RID: 1463 RVA: 0x0001F794 File Offset: 0x0001D994
 	public float barSize
 	{
 		get
@@ -52,7 +52,7 @@ public class UIScrollBar : UISlider
 		}
 	}
 
-	// Token: 0x0600061C RID: 1564 RVA: 0x0007563C File Offset: 0x0007383C
+	// Token: 0x060005B8 RID: 1464 RVA: 0x0001F7FC File Offset: 0x0001D9FC
 	protected override void Upgrade()
 	{
 		if (this.mDir != UIScrollBar.Direction.Upgraded)
@@ -70,7 +70,7 @@ public class UIScrollBar : UISlider
 		}
 	}
 
-	// Token: 0x0600061D RID: 1565 RVA: 0x00075694 File Offset: 0x00073894
+	// Token: 0x060005B9 RID: 1465 RVA: 0x0001F854 File Offset: 0x0001DA54
 	protected override void OnStart()
 	{
 		base.OnStart();
@@ -87,7 +87,7 @@ public class UIScrollBar : UISlider
 		}
 	}
 
-	// Token: 0x0600061E RID: 1566 RVA: 0x0007575C File Offset: 0x0007395C
+	// Token: 0x060005BA RID: 1466 RVA: 0x0001F91C File Offset: 0x0001DB1C
 	protected override float LocalToValue(Vector2 localPos)
 	{
 		if (!(this.mFG != null))
@@ -130,7 +130,7 @@ public class UIScrollBar : UISlider
 		}
 	}
 
-	// Token: 0x0600061F RID: 1567 RVA: 0x00075898 File Offset: 0x00073A98
+	// Token: 0x060005BB RID: 1467 RVA: 0x0001FA58 File Offset: 0x0001DC58
 	public override void ForceUpdate()
 	{
 		if (this.mFG != null)
@@ -163,29 +163,29 @@ public class UIScrollBar : UISlider
 		}
 	}
 
-	// Token: 0x04000477 RID: 1143
+	// Token: 0x040003C5 RID: 965
 	[HideInInspector]
 	[SerializeField]
 	protected float mSize = 1f;
 
-	// Token: 0x04000478 RID: 1144
+	// Token: 0x040003C6 RID: 966
 	[HideInInspector]
 	[SerializeField]
 	private float mScroll;
 
-	// Token: 0x04000479 RID: 1145
+	// Token: 0x040003C7 RID: 967
 	[HideInInspector]
 	[SerializeField]
 	private UIScrollBar.Direction mDir = UIScrollBar.Direction.Upgraded;
 
-	// Token: 0x0200009D RID: 157
+	// Token: 0x020011EE RID: 4590
 	private enum Direction
 	{
-		// Token: 0x0400047B RID: 1147
+		// Token: 0x04006402 RID: 25602
 		Horizontal,
-		// Token: 0x0400047C RID: 1148
+		// Token: 0x04006403 RID: 25603
 		Vertical,
-		// Token: 0x0400047D RID: 1149
+		// Token: 0x04006404 RID: 25604
 		Upgraded
 	}
 }

@@ -1,16 +1,16 @@
 ﻿using System;
 using UnityEngine;
 
-// Token: 0x020007AE RID: 1966
+// Token: 0x0200051A RID: 1306
 public class CannibalResetter : MonoBehaviour
 {
-	// Token: 0x060031FE RID: 12798 RVA: 0x000247E8 File Offset: 0x000229E8
+	// Token: 0x060029EB RID: 10731 RVA: 0x0013FF0D File Offset: 0x0013E10D
 	private void Start()
 	{
 		this.ResetCannibals();
 	}
 
-	// Token: 0x060031FF RID: 12799 RVA: 0x000247F0 File Offset: 0x000229F0
+	// Token: 0x060029EC RID: 10732 RVA: 0x0013FF15 File Offset: 0x0013E115
 	private void Update()
 	{
 		if (Input.GetKeyDown(111))
@@ -19,7 +19,7 @@ public class CannibalResetter : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06003200 RID: 12800 RVA: 0x0018D178 File Offset: 0x0018B378
+	// Token: 0x060029ED RID: 10733 RVA: 0x0013FF28 File Offset: 0x0013E128
 	private void ResetCannibals()
 	{
 		int childCount = this.m_Container.childCount;
@@ -33,15 +33,15 @@ public class CannibalResetter : MonoBehaviour
 		}
 	}
 
-	// Token: 0x04002E2A RID: 11818
+	// Token: 0x0400263A RID: 9786
 	[SerializeField]
 	private GameObject m_CannibalPrefab;
 
-	// Token: 0x04002E2B RID: 11819
+	// Token: 0x0400263B RID: 9787
 	[SerializeField]
 	private Transform[] m_SpawnPoints;
 
-	// Token: 0x04002E2C RID: 11820
+	// Token: 0x0400263C RID: 9788
 	[SerializeField]
 	private Transform m_Container;
 }

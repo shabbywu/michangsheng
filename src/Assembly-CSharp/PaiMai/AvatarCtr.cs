@@ -5,10 +5,10 @@ using UnityEngine;
 
 namespace PaiMai
 {
-	// Token: 0x02000A60 RID: 2656
+	// Token: 0x02000710 RID: 1808
 	public class AvatarCtr : MonoBehaviour
 	{
-		// Token: 0x06004472 RID: 17522 RVA: 0x001D463C File Offset: 0x001D283C
+		// Token: 0x060039E6 RID: 14822 RVA: 0x0018CE70 File Offset: 0x0018B070
 		public void AllAvatarThinkItem()
 		{
 			foreach (PaiMaiAvatar paiMaiAvatar in this.AvatarList)
@@ -17,14 +17,14 @@ namespace PaiMai
 			}
 		}
 
-		// Token: 0x06004473 RID: 17523 RVA: 0x00030F88 File Offset: 0x0002F188
+		// Token: 0x060039E7 RID: 14823 RVA: 0x0018CEC0 File Offset: 0x0018B0C0
 		public void AvatarStart()
 		{
 			this.index = 0;
 			base.Invoke("AvatarAddPrice", 0.75f);
 		}
 
-		// Token: 0x06004474 RID: 17524 RVA: 0x001D468C File Offset: 0x001D288C
+		// Token: 0x060039E8 RID: 14824 RVA: 0x0018CEDC File Offset: 0x0018B0DC
 		private void AvatarAddPrice()
 		{
 			if (this.index >= this.AvatarList.Count)
@@ -50,7 +50,7 @@ namespace PaiMai
 			base.Invoke("AvatarAddPrice", 0.75f);
 		}
 
-		// Token: 0x06004475 RID: 17525 RVA: 0x001D4770 File Offset: 0x001D2970
+		// Token: 0x060039E9 RID: 14825 RVA: 0x0018CFC0 File Offset: 0x0018B1C0
 		public void AvatarSayWord()
 		{
 			foreach (PaiMaiAvatar paiMaiAvatar in this.AvatarList)
@@ -63,7 +63,7 @@ namespace PaiMai
 			}
 		}
 
-		// Token: 0x06004476 RID: 17526 RVA: 0x001D482C File Offset: 0x001D2A2C
+		// Token: 0x060039EA RID: 14826 RVA: 0x0018D07C File Offset: 0x0018B27C
 		public bool IsAllGiveUp()
 		{
 			using (List<PaiMaiAvatar>.Enumerator enumerator = this.AvatarList.GetEnumerator())
@@ -79,7 +79,7 @@ namespace PaiMai
 			return true;
 		}
 
-		// Token: 0x06004477 RID: 17527 RVA: 0x001D4888 File Offset: 0x001D2A88
+		// Token: 0x060039EB RID: 14827 RVA: 0x0018D0D8 File Offset: 0x0018B2D8
 		public void AddTagetStateMaxPrice(PaiMaiAvatar curAvatar, PaiMaiAvatar.StateType stateType, int lv, float precent)
 		{
 			foreach (PaiMaiAvatar paiMaiAvatar in this.AvatarList)
@@ -91,7 +91,7 @@ namespace PaiMai
 			}
 		}
 
-		// Token: 0x06004478 RID: 17528 RVA: 0x001D4908 File Offset: 0x001D2B08
+		// Token: 0x060039EC RID: 14828 RVA: 0x0018D158 File Offset: 0x0018B358
 		public void SetCanSelect(CeLueType ceLueType)
 		{
 			foreach (PaiMaiAvatar paiMaiAvatar in this.AvatarList)
@@ -103,7 +103,7 @@ namespace PaiMai
 			}
 		}
 
-		// Token: 0x06004479 RID: 17529 RVA: 0x001D4964 File Offset: 0x001D2B64
+		// Token: 0x060039ED RID: 14829 RVA: 0x0018D1B4 File Offset: 0x0018B3B4
 		public void StopSelect()
 		{
 			foreach (PaiMaiAvatar paiMaiAvatar in this.AvatarList)
@@ -112,16 +112,16 @@ namespace PaiMai
 			}
 		}
 
-		// Token: 0x0600447A RID: 17530 RVA: 0x00030FA1 File Offset: 0x0002F1A1
+		// Token: 0x060039EE RID: 14830 RVA: 0x0018D208 File Offset: 0x0018B408
 		private void EndRound()
 		{
 			SingletonMono<PaiMaiUiMag>.Instance.EndRound();
 		}
 
-		// Token: 0x04003C81 RID: 15489
+		// Token: 0x040031FA RID: 12794
 		public List<PaiMaiAvatar> AvatarList;
 
-		// Token: 0x04003C82 RID: 15490
+		// Token: 0x040031FB RID: 12795
 		private int index;
 	}
 }

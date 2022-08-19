@@ -3,32 +3,32 @@ using UnityEngine;
 
 namespace UltimateSurvival.InputSystem
 {
-	// Token: 0x02000925 RID: 2341
+	// Token: 0x02000633 RID: 1587
 	public class ButtonHandler : MonoBehaviour
 	{
-		// Token: 0x17000661 RID: 1633
-		// (get) Token: 0x06003B93 RID: 15251 RVA: 0x0002B155 File Offset: 0x00029355
-		// (set) Token: 0x06003B94 RID: 15252 RVA: 0x0002B15D File Offset: 0x0002935D
+		// Token: 0x17000461 RID: 1121
+		// (get) Token: 0x06003259 RID: 12889 RVA: 0x001653FE File Offset: 0x001635FE
+		// (set) Token: 0x0600325A RID: 12890 RVA: 0x00165406 File Offset: 0x00163606
 		public ET.ButtonState State { get; private set; }
 
 		// Token: 0x1400003C RID: 60
-		// (add) Token: 0x06003B95 RID: 15253 RVA: 0x001AEA8C File Offset: 0x001ACC8C
-		// (remove) Token: 0x06003B96 RID: 15254 RVA: 0x001AEAC4 File Offset: 0x001ACCC4
+		// (add) Token: 0x0600325B RID: 12891 RVA: 0x00165410 File Offset: 0x00163610
+		// (remove) Token: 0x0600325C RID: 12892 RVA: 0x00165448 File Offset: 0x00163648
 		public event Action OnButtonDown;
 
-		// Token: 0x06003B97 RID: 15255 RVA: 0x0002B166 File Offset: 0x00029366
+		// Token: 0x0600325D RID: 12893 RVA: 0x0016547D File Offset: 0x0016367D
 		private void Start()
 		{
 			this.State = ET.ButtonState.Up;
 		}
 
-		// Token: 0x06003B98 RID: 15256 RVA: 0x0002B166 File Offset: 0x00029366
+		// Token: 0x0600325E RID: 12894 RVA: 0x0016547D File Offset: 0x0016367D
 		public void SetUpState()
 		{
 			this.State = ET.ButtonState.Up;
 		}
 
-		// Token: 0x06003B99 RID: 15257 RVA: 0x0002B16F File Offset: 0x0002936F
+		// Token: 0x0600325F RID: 12895 RVA: 0x00165486 File Offset: 0x00163686
 		public void SetDownState()
 		{
 			this.State = ET.ButtonState.Down;

@@ -1,17 +1,17 @@
 ﻿using System;
 using UnityEngine;
 
-// Token: 0x020006A6 RID: 1702
+// Token: 0x020004B2 RID: 1202
 public class HUDFPS1 : MonoBehaviour
 {
-	// Token: 0x06002A91 RID: 10897 RVA: 0x00021067 File Offset: 0x0001F267
+	// Token: 0x06002613 RID: 9747 RVA: 0x00107B3E File Offset: 0x00105D3E
 	private void Start()
 	{
 		this.timeleft = this.updateInterval;
 		this.guiText1 = base.transform.GetComponent<TextMesh>();
 	}
 
-	// Token: 0x06002A92 RID: 10898 RVA: 0x00147EF4 File Offset: 0x001460F4
+	// Token: 0x06002614 RID: 9748 RVA: 0x00107B60 File Offset: 0x00105D60
 	private void Update()
 	{
 		this.timeleft -= Time.deltaTime;
@@ -40,18 +40,18 @@ public class HUDFPS1 : MonoBehaviour
 		}
 	}
 
-	// Token: 0x0400243B RID: 9275
+	// Token: 0x04001EC8 RID: 7880
 	public float updateInterval = 0.5f;
 
-	// Token: 0x0400243C RID: 9276
+	// Token: 0x04001EC9 RID: 7881
 	private float accum;
 
-	// Token: 0x0400243D RID: 9277
+	// Token: 0x04001ECA RID: 7882
 	private int frames;
 
-	// Token: 0x0400243E RID: 9278
+	// Token: 0x04001ECB RID: 7883
 	private float timeleft;
 
-	// Token: 0x0400243F RID: 9279
+	// Token: 0x04001ECC RID: 7884
 	private TextMesh guiText1;
 }

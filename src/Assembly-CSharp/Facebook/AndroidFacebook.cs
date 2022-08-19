@@ -5,11 +5,11 @@ using UnityEngine;
 
 namespace Facebook
 {
-	// Token: 0x02000E88 RID: 3720
+	// Token: 0x02000B19 RID: 2841
 	internal sealed class AndroidFacebook : AbstractFacebook, IFacebook
 	{
-		// Token: 0x1700084A RID: 2122
-		// (get) Token: 0x06005930 RID: 22832 RVA: 0x0003F642 File Offset: 0x0003D842
+		// Token: 0x170005FB RID: 1531
+		// (get) Token: 0x06004F1E RID: 20254 RVA: 0x00218450 File Offset: 0x00216650
 		public string KeyHash
 		{
 			get
@@ -18,9 +18,9 @@ namespace Facebook
 			}
 		}
 
-		// Token: 0x1700084B RID: 2123
-		// (get) Token: 0x06005931 RID: 22833 RVA: 0x00004050 File Offset: 0x00002250
-		// (set) Token: 0x06005932 RID: 22834 RVA: 0x000042DD File Offset: 0x000024DD
+		// Token: 0x170005FC RID: 1532
+		// (get) Token: 0x06004F1F RID: 20255 RVA: 0x0000280F File Offset: 0x00000A0F
+		// (set) Token: 0x06004F20 RID: 20256 RVA: 0x00004095 File Offset: 0x00002295
 		public override int DialogMode
 		{
 			get
@@ -32,9 +32,9 @@ namespace Facebook
 			}
 		}
 
-		// Token: 0x1700084C RID: 2124
-		// (get) Token: 0x06005933 RID: 22835 RVA: 0x0003F64A File Offset: 0x0003D84A
-		// (set) Token: 0x06005934 RID: 22836 RVA: 0x0003F652 File Offset: 0x0003D852
+		// Token: 0x170005FD RID: 1533
+		// (get) Token: 0x06004F21 RID: 20257 RVA: 0x00218458 File Offset: 0x00216658
+		// (set) Token: 0x06004F22 RID: 20258 RVA: 0x00218460 File Offset: 0x00216660
 		public override bool LimitEventUsage
 		{
 			get
@@ -48,25 +48,25 @@ namespace Facebook
 			}
 		}
 
-		// Token: 0x06005935 RID: 22837 RVA: 0x0003F66D File Offset: 0x0003D86D
+		// Token: 0x06004F23 RID: 20259 RVA: 0x0021847B File Offset: 0x0021667B
 		private void CallFB(string method, string args)
 		{
 			FbDebug.Error("Using Android when not on an Android build!  Doesn't Work!");
 		}
 
-		// Token: 0x06005936 RID: 22838 RVA: 0x0003F679 File Offset: 0x0003D879
+		// Token: 0x06004F24 RID: 20260 RVA: 0x00218487 File Offset: 0x00216687
 		protected override void OnAwake()
 		{
 			this.keyHash = "";
 		}
 
-		// Token: 0x06005937 RID: 22839 RVA: 0x00004050 File Offset: 0x00002250
+		// Token: 0x06004F25 RID: 20261 RVA: 0x0000280F File Offset: 0x00000A0F
 		private bool IsErrorResponse(string response)
 		{
 			return false;
 		}
 
-		// Token: 0x06005938 RID: 22840 RVA: 0x002484EC File Offset: 0x002466EC
+		// Token: 0x06004F26 RID: 20262 RVA: 0x00218494 File Offset: 0x00216694
 		public override void Init(InitDelegate onInitComplete, string appId, bool cookie = false, bool logging = true, bool status = true, bool xfbml = false, string channelUrl = "", string authResponse = null, bool frictionlessRequests = false, HideUnityDelegate hideUnityDelegate = null)
 		{
 			if (string.IsNullOrEmpty(appId))
@@ -108,7 +108,7 @@ namespace Facebook
 			this.CallFB("Init", text.ToString());
 		}
 
-		// Token: 0x06005939 RID: 22841 RVA: 0x0003F686 File Offset: 0x0003D886
+		// Token: 0x06004F27 RID: 20263 RVA: 0x00218579 File Offset: 0x00216779
 		public void OnInitComplete(string message)
 		{
 			this.OnLoginComplete(message);
@@ -118,7 +118,7 @@ namespace Facebook
 			}
 		}
 
-		// Token: 0x0600593A RID: 22842 RVA: 0x002485D4 File Offset: 0x002467D4
+		// Token: 0x06004F28 RID: 20264 RVA: 0x00218598 File Offset: 0x00216798
 		public override void Login(string scope = "", FacebookDelegate callback = null)
 		{
 			string args = Json.Serialize(new Dictionary<string, object>
@@ -132,7 +132,7 @@ namespace Facebook
 			this.CallFB("Login", args);
 		}
 
-		// Token: 0x0600593B RID: 22843 RVA: 0x0024860C File Offset: 0x0024680C
+		// Token: 0x06004F29 RID: 20265 RVA: 0x002185D0 File Offset: 0x002167D0
 		public void OnLoginComplete(string message)
 		{
 			Dictionary<string, object> dictionary = (Dictionary<string, object>)Json.Deserialize(message);
@@ -151,7 +151,7 @@ namespace Facebook
 			base.OnAuthResponse(new FBResult(message, null));
 		}
 
-		// Token: 0x0600593C RID: 22844 RVA: 0x002486CC File Offset: 0x002468CC
+		// Token: 0x06004F2A RID: 20266 RVA: 0x00218690 File Offset: 0x00216890
 		public void OnAccessTokenRefresh(string message)
 		{
 			Dictionary<string, object> dictionary = (Dictionary<string, object>)Json.Deserialize(message);
@@ -162,13 +162,13 @@ namespace Facebook
 			}
 		}
 
-		// Token: 0x0600593D RID: 22845 RVA: 0x0003F6A2 File Offset: 0x0003D8A2
+		// Token: 0x06004F2B RID: 20267 RVA: 0x002186ED File Offset: 0x002168ED
 		public override void Logout()
 		{
 			this.CallFB("Logout", "");
 		}
 
-		// Token: 0x0600593E RID: 22846 RVA: 0x0003F6B4 File Offset: 0x0003D8B4
+		// Token: 0x06004F2C RID: 20268 RVA: 0x002186FF File Offset: 0x002168FF
 		public void OnLogoutComplete(string message)
 		{
 			this.isLoggedIn = false;
@@ -176,7 +176,7 @@ namespace Facebook
 			this.accessToken = "";
 		}
 
-		// Token: 0x0600593F RID: 22847 RVA: 0x0024872C File Offset: 0x0024692C
+		// Token: 0x06004F2D RID: 20269 RVA: 0x00218720 File Offset: 0x00216920
 		public override void AppRequest(string message, string[] to = null, string filters = "", string[] excludeIds = null, int? maxRecipients = null, string data = "", string title = "", FacebookDelegate callback = null)
 		{
 			Dictionary<string, object> dictionary = new Dictionary<string, object>();
@@ -208,7 +208,7 @@ namespace Facebook
 			this.CallFB("AppRequest", Json.Serialize(dictionary));
 		}
 
-		// Token: 0x06005940 RID: 22848 RVA: 0x002487EC File Offset: 0x002469EC
+		// Token: 0x06004F2E RID: 20270 RVA: 0x002187E0 File Offset: 0x002169E0
 		public void OnAppRequestsComplete(string message)
 		{
 			Dictionary<string, object> dictionary = (Dictionary<string, object>)Json.Deserialize(message);
@@ -240,7 +240,7 @@ namespace Facebook
 			}
 		}
 
-		// Token: 0x06005941 RID: 22849 RVA: 0x00248904 File Offset: 0x00246B04
+		// Token: 0x06004F2F RID: 20271 RVA: 0x002188F8 File Offset: 0x00216AF8
 		public override void FeedRequest(string toId = "", string link = "", string linkName = "", string linkCaption = "", string linkDescription = "", string picture = "", string mediaSource = "", string actionName = "", string actionLink = "", string reference = "", Dictionary<string, string[]> properties = null, FacebookDelegate callback = null)
 		{
 			Dictionary<string, object> dictionary = new Dictionary<string, object>();
@@ -322,7 +322,7 @@ namespace Facebook
 			this.CallFB("FeedRequest", Json.Serialize(dictionary));
 		}
 
-		// Token: 0x06005942 RID: 22850 RVA: 0x00248AF8 File Offset: 0x00246CF8
+		// Token: 0x06004F30 RID: 20272 RVA: 0x00218AEC File Offset: 0x00216CEC
 		public void OnFeedRequestComplete(string message)
 		{
 			Dictionary<string, object> dictionary = (Dictionary<string, object>)Json.Deserialize(message);
@@ -345,13 +345,13 @@ namespace Facebook
 			}
 		}
 
-		// Token: 0x06005943 RID: 22851 RVA: 0x0003F6D3 File Offset: 0x0003D8D3
+		// Token: 0x06004F31 RID: 20273 RVA: 0x00218BC4 File Offset: 0x00216DC4
 		public override void Pay(string product, string action = "purchaseitem", int quantity = 1, int? quantityMin = null, int? quantityMax = null, string requestId = null, string pricepointId = null, string testCurrency = null, FacebookDelegate callback = null)
 		{
 			throw new PlatformNotSupportedException("There is no Facebook Pay Dialog on Android");
 		}
 
-		// Token: 0x06005944 RID: 22852 RVA: 0x0003F6DF File Offset: 0x0003D8DF
+		// Token: 0x06004F32 RID: 20274 RVA: 0x00218BD0 File Offset: 0x00216DD0
 		public override void GetDeepLink(FacebookDelegate callback)
 		{
 			if (callback != null)
@@ -361,7 +361,7 @@ namespace Facebook
 			}
 		}
 
-		// Token: 0x06005945 RID: 22853 RVA: 0x00248BD0 File Offset: 0x00246DD0
+		// Token: 0x06004F33 RID: 20275 RVA: 0x00218BEC File Offset: 0x00216DEC
 		public void OnGetDeepLinkComplete(string message)
 		{
 			Dictionary<string, object> dictionary = (Dictionary<string, object>)Json.Deserialize(message);
@@ -373,7 +373,7 @@ namespace Facebook
 			}
 		}
 
-		// Token: 0x06005946 RID: 22854 RVA: 0x00248C1C File Offset: 0x00246E1C
+		// Token: 0x06004F34 RID: 20276 RVA: 0x00218C38 File Offset: 0x00216E38
 		public override void AppEventsLogEvent(string logEvent, float? valueToSum = null, Dictionary<string, object> parameters = null)
 		{
 			Dictionary<string, object> dictionary = new Dictionary<string, object>();
@@ -389,7 +389,7 @@ namespace Facebook
 			this.CallFB("AppEvents", Json.Serialize(dictionary));
 		}
 
-		// Token: 0x06005947 RID: 22855 RVA: 0x00248C84 File Offset: 0x00246E84
+		// Token: 0x06004F35 RID: 20277 RVA: 0x00218CA0 File Offset: 0x00216EA0
 		public override void AppEventsLogPurchase(float logPurchase, string currency = "USD", Dictionary<string, object> parameters = null)
 		{
 			Dictionary<string, object> dictionary = new Dictionary<string, object>();
@@ -402,7 +402,7 @@ namespace Facebook
 			this.CallFB("AppEvents", Json.Serialize(dictionary));
 		}
 
-		// Token: 0x06005948 RID: 22856 RVA: 0x00248CEC File Offset: 0x00246EEC
+		// Token: 0x06004F36 RID: 20278 RVA: 0x00218D08 File Offset: 0x00216F08
 		public override void PublishInstall(string appId, FacebookDelegate callback = null)
 		{
 			Dictionary<string, string> dictionary = new Dictionary<string, string>(2);
@@ -414,7 +414,7 @@ namespace Facebook
 			this.CallFB("PublishInstall", Json.Serialize(dictionary));
 		}
 
-		// Token: 0x06005949 RID: 22857 RVA: 0x00248D34 File Offset: 0x00246F34
+		// Token: 0x06004F37 RID: 20279 RVA: 0x00218D50 File Offset: 0x00216F50
 		public void OnPublishInstallComplete(string message)
 		{
 			Dictionary<string, object> dictionary = (Dictionary<string, object>)Json.Deserialize(message);
@@ -424,7 +424,7 @@ namespace Facebook
 			}
 		}
 
-		// Token: 0x0600594A RID: 22858 RVA: 0x00248D7C File Offset: 0x00246F7C
+		// Token: 0x06004F38 RID: 20280 RVA: 0x00218D98 File Offset: 0x00216F98
 		private Dictionary<string, string> ToStringDict(Dictionary<string, object> dict)
 		{
 			if (dict == null)
@@ -439,28 +439,28 @@ namespace Facebook
 			return dictionary;
 		}
 
-		// Token: 0x0600594B RID: 22859 RVA: 0x00248DE8 File Offset: 0x00246FE8
+		// Token: 0x06004F39 RID: 20281 RVA: 0x00218E04 File Offset: 0x00217004
 		private DateTime FromTimestamp(int timestamp)
 		{
 			return new DateTime(1970, 1, 1, 0, 0, 0, 0).AddSeconds((double)timestamp);
 		}
 
-		// Token: 0x040058BE RID: 22718
+		// Token: 0x04004E61 RID: 20065
 		public const int BrowserDialogMode = 0;
 
-		// Token: 0x040058BF RID: 22719
+		// Token: 0x04004E62 RID: 20066
 		private const string AndroidJavaFacebookClass = "com.facebook.unity.FB";
 
-		// Token: 0x040058C0 RID: 22720
+		// Token: 0x04004E63 RID: 20067
 		private const string CallbackIdKey = "callback_id";
 
-		// Token: 0x040058C1 RID: 22721
+		// Token: 0x04004E64 RID: 20068
 		private string keyHash;
 
-		// Token: 0x040058C2 RID: 22722
+		// Token: 0x04004E65 RID: 20069
 		private FacebookDelegate deepLinkDelegate;
 
-		// Token: 0x040058C3 RID: 22723
+		// Token: 0x04004E66 RID: 20070
 		private InitDelegate onInitComplete;
 	}
 }

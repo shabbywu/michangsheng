@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 
-// Token: 0x02000686 RID: 1670
+// Token: 0x020004A6 RID: 1190
 public class Deck
 {
-	// Token: 0x17000309 RID: 777
-	// (get) Token: 0x060029BB RID: 10683 RVA: 0x00020680 File Offset: 0x0001E880
+	// Token: 0x170002A2 RID: 674
+	// (get) Token: 0x0600257F RID: 9599 RVA: 0x00103FDC File Offset: 0x001021DC
 	public static Deck Instance
 	{
 		get
@@ -18,8 +18,8 @@ public class Deck
 		}
 	}
 
-	// Token: 0x1700030A RID: 778
-	// (get) Token: 0x060029BC RID: 10684 RVA: 0x00020698 File Offset: 0x0001E898
+	// Token: 0x170002A3 RID: 675
+	// (get) Token: 0x06002580 RID: 9600 RVA: 0x00103FF4 File Offset: 0x001021F4
 	public int CardsCount
 	{
 		get
@@ -28,7 +28,7 @@ public class Deck
 		}
 	}
 
-	// Token: 0x1700030B RID: 779
+	// Token: 0x170002A4 RID: 676
 	public Card this[int index]
 	{
 		get
@@ -37,7 +37,7 @@ public class Deck
 		}
 	}
 
-	// Token: 0x060029BE RID: 10686 RVA: 0x000206B3 File Offset: 0x0001E8B3
+	// Token: 0x06002582 RID: 9602 RVA: 0x0010400F File Offset: 0x0010220F
 	private Deck()
 	{
 		this.library = new List<Card>();
@@ -45,7 +45,7 @@ public class Deck
 		this.CreateDeck();
 	}
 
-	// Token: 0x060029BF RID: 10687 RVA: 0x00143CDC File Offset: 0x00141EDC
+	// Token: 0x06002583 RID: 9603 RVA: 0x00104030 File Offset: 0x00102230
 	private void CreateDeck()
 	{
 		for (int i = 0; i < 4; i++)
@@ -64,7 +64,7 @@ public class Deck
 		this.library.Add(item3);
 	}
 
-	// Token: 0x060029C0 RID: 10688 RVA: 0x00143D88 File Offset: 0x00141F88
+	// Token: 0x06002584 RID: 9604 RVA: 0x001040DC File Offset: 0x001022DC
 	public void Shuffle()
 	{
 		if (this.CardsCount == 54)
@@ -84,7 +84,7 @@ public class Deck
 		}
 	}
 
-	// Token: 0x060029C1 RID: 10689 RVA: 0x00143E58 File Offset: 0x00142058
+	// Token: 0x06002585 RID: 9605 RVA: 0x001041AC File Offset: 0x001023AC
 	public Card Deal()
 	{
 		Card card = this.library[this.library.Count - 1];
@@ -92,19 +92,19 @@ public class Deck
 		return card;
 	}
 
-	// Token: 0x060029C2 RID: 10690 RVA: 0x000206D3 File Offset: 0x0001E8D3
+	// Token: 0x06002586 RID: 9606 RVA: 0x001041E0 File Offset: 0x001023E0
 	public void AddCard(Card card)
 	{
 		card.Attribution = this.ctype;
 		this.library.Add(card);
 	}
 
-	// Token: 0x04002369 RID: 9065
+	// Token: 0x04001E43 RID: 7747
 	private static Deck instance;
 
-	// Token: 0x0400236A RID: 9066
+	// Token: 0x04001E44 RID: 7748
 	private List<Card> library;
 
-	// Token: 0x0400236B RID: 9067
+	// Token: 0x04001E45 RID: 7749
 	private CharacterType ctype;
 }

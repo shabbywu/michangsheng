@@ -2,34 +2,34 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-// Token: 0x020004C9 RID: 1225
+// Token: 0x0200034D RID: 845
 [RequireComponent(typeof(Text))]
 public class AutoSetTextHeight : MonoBehaviour
 {
-	// Token: 0x0600202E RID: 8238 RVA: 0x0001A647 File Offset: 0x00018847
+	// Token: 0x06001CC7 RID: 7367 RVA: 0x000CDCC1 File Offset: 0x000CBEC1
 	private void Start()
 	{
 		this.self = base.GetComponent<RectTransform>();
 		this.myText = base.GetComponent<Text>();
 	}
 
-	// Token: 0x0600202F RID: 8239 RVA: 0x0001A661 File Offset: 0x00018861
+	// Token: 0x06001CC8 RID: 7368 RVA: 0x000CDCDB File Offset: 0x000CBEDB
 	private void Update()
 	{
 		this.self.sizeDelta = new Vector2(this.Width, this.myText.preferredHeight + this.ExHeight);
 	}
 
-	// Token: 0x04001BA8 RID: 7080
+	// Token: 0x04001752 RID: 5970
 	[Header("宽度")]
 	public float Width;
 
-	// Token: 0x04001BA9 RID: 7081
+	// Token: 0x04001753 RID: 5971
 	[Header("额外高度")]
 	public float ExHeight;
 
-	// Token: 0x04001BAA RID: 7082
+	// Token: 0x04001754 RID: 5972
 	private RectTransform self;
 
-	// Token: 0x04001BAB RID: 7083
+	// Token: 0x04001755 RID: 5973
 	private Text myText;
 }

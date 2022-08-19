@@ -2,28 +2,28 @@
 
 namespace MoonSharp.VsCodeDebugger.SDK
 {
-	// Token: 0x020011D6 RID: 4566
+	// Token: 0x02000DAA RID: 3498
 	public class ProtocolMessage
 	{
-		// Token: 0x17000A49 RID: 2633
-		// (get) Token: 0x06006FB9 RID: 28601 RVA: 0x0004BEB2 File Offset: 0x0004A0B2
-		// (set) Token: 0x06006FBA RID: 28602 RVA: 0x0004BEBA File Offset: 0x0004A0BA
+		// Token: 0x170007E8 RID: 2024
+		// (get) Token: 0x06006373 RID: 25459 RVA: 0x0027AF64 File Offset: 0x00279164
+		// (set) Token: 0x06006374 RID: 25460 RVA: 0x0027AF6C File Offset: 0x0027916C
 		public string type { get; private set; }
 
-		// Token: 0x06006FBB RID: 28603 RVA: 0x0004BEC3 File Offset: 0x0004A0C3
+		// Token: 0x06006375 RID: 25461 RVA: 0x0027AF75 File Offset: 0x00279175
 		public ProtocolMessage(string typ)
 		{
 			this.type = typ;
 		}
 
-		// Token: 0x06006FBC RID: 28604 RVA: 0x0004BED2 File Offset: 0x0004A0D2
+		// Token: 0x06006376 RID: 25462 RVA: 0x0027AF84 File Offset: 0x00279184
 		public ProtocolMessage(string typ, int sq)
 		{
 			this.type = typ;
 			this.seq = sq;
 		}
 
-		// Token: 0x040062BF RID: 25279
+		// Token: 0x040055D8 RID: 21976
 		public int seq;
 	}
 }

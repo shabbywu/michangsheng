@@ -3,40 +3,40 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-// Token: 0x020005C3 RID: 1475
+// Token: 0x02000411 RID: 1041
 [Obsolete]
 public class UI_SelectAvatar : MonoBehaviour
 {
-	// Token: 0x04001FD3 RID: 8147
+	// Token: 0x04001B14 RID: 6932
 	public Button bt_createAvatar;
 
-	// Token: 0x04001FD4 RID: 8148
+	// Token: 0x04001B15 RID: 6933
 	public Button bt_removeAvatar;
 
-	// Token: 0x04001FD5 RID: 8149
+	// Token: 0x04001B16 RID: 6934
 	public Toggle[] tg_avatars = new Toggle[3];
 
-	// Token: 0x04001FD6 RID: 8150
+	// Token: 0x04001B17 RID: 6935
 	public int nowAvater;
 
-	// Token: 0x04001FD7 RID: 8151
+	// Token: 0x04001B18 RID: 6936
 	public int nowAvaterSurface = 1;
 
-	// Token: 0x04001FD8 RID: 8152
+	// Token: 0x04001B19 RID: 6937
 	public GameObject selectAvaterUI;
 
-	// Token: 0x04001FD9 RID: 8153
+	// Token: 0x04001B1A RID: 6938
 	public GameObject selectAvaterUITemple;
 
-	// Token: 0x04001FDA RID: 8154
+	// Token: 0x04001B1B RID: 6939
 	public GameObject selectAvaterSurfaceUI;
 
-	// Token: 0x04001FDB RID: 8155
+	// Token: 0x04001B1C RID: 6940
 	public GameObject selectAvaterSurfaceUITemple;
 
-	// Token: 0x04001FDC RID: 8156
+	// Token: 0x04001B1D RID: 6941
 	private Dictionary<ulong, Dictionary<string, object>> ui_avatarList;
 
-	// Token: 0x04001FDD RID: 8157
+	// Token: 0x04001B1E RID: 6942
 	private Dictionary<string, ulong> dic_name_to_dbid = new Dictionary<string, ulong>();
 }

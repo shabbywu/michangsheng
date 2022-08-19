@@ -3,12 +3,12 @@ using System.Collections.Generic;
 using Fungus;
 using UnityEngine;
 
-// Token: 0x0200034E RID: 846
+// Token: 0x02000232 RID: 562
 [CommandInfo("YSNPCJiaoHu", "获取当前NPC的ActionID关联对话", "获取当前NPC的ActionID关联对话，赋值到TmpTalkString", 0)]
 [AddComponentMenu("")]
 public class CmdGetGuanLianTalkByActionID : Command
 {
-	// Token: 0x060018BA RID: 6330 RVA: 0x000DD7BC File Offset: 0x000DB9BC
+	// Token: 0x06001602 RID: 5634 RVA: 0x00095134 File Offset: 0x00093334
 	public override void OnEnter()
 	{
 		CmdGetGuanLianTalkByActionID.Init();
@@ -24,7 +24,7 @@ public class CmdGetGuanLianTalkByActionID : Command
 		this.Continue();
 	}
 
-	// Token: 0x060018BB RID: 6331 RVA: 0x000DD840 File Offset: 0x000DBA40
+	// Token: 0x06001603 RID: 5635 RVA: 0x000951B8 File Offset: 0x000933B8
 	private static void Init()
 	{
 		if (!CmdGetGuanLianTalkByActionID.inited)
@@ -37,9 +37,9 @@ public class CmdGetGuanLianTalkByActionID : Command
 		}
 	}
 
-	// Token: 0x040013B3 RID: 5043
+	// Token: 0x0400105B RID: 4187
 	private static bool inited;
 
-	// Token: 0x040013B4 RID: 5044
+	// Token: 0x0400105C RID: 4188
 	private static Dictionary<int, string> talkDict = new Dictionary<int, string>();
 }

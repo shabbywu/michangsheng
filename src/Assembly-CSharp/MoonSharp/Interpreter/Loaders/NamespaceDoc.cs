@@ -2,7 +2,7 @@
 
 namespace MoonSharp.Interpreter.Loaders
 {
-	// Token: 0x020010E0 RID: 4320
+	// Token: 0x02000D01 RID: 3329
 	internal static class NamespaceDoc
 	{
 	}

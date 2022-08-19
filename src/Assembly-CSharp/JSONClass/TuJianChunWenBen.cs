@@ -3,10 +3,10 @@ using System.Collections.Generic;
 
 namespace JSONClass
 {
-	// Token: 0x02000CFB RID: 3323
+	// Token: 0x0200097B RID: 2427
 	public class TuJianChunWenBen : IJSONClass
 	{
-		// Token: 0x06004F56 RID: 20310 RVA: 0x002149A0 File Offset: 0x00212BA0
+		// Token: 0x06004400 RID: 17408 RVA: 0x001CF76C File Offset: 0x001CD96C
 		public static void InitDataDict()
 		{
 			foreach (JSONObject jsonobject in jsonData.instance.TuJianChunWenBen.list)
@@ -43,36 +43,36 @@ namespace JSONClass
 			}
 		}
 
-		// Token: 0x06004F57 RID: 20311 RVA: 0x000042DD File Offset: 0x000024DD
+		// Token: 0x06004401 RID: 17409 RVA: 0x00004095 File Offset: 0x00002295
 		private static void OnInitFinish()
 		{
 		}
 
-		// Token: 0x04005056 RID: 20566
+		// Token: 0x04004562 RID: 17762
 		public static Dictionary<int, TuJianChunWenBen> DataDict = new Dictionary<int, TuJianChunWenBen>();
 
-		// Token: 0x04005057 RID: 20567
+		// Token: 0x04004563 RID: 17763
 		public static List<TuJianChunWenBen> DataList = new List<TuJianChunWenBen>();
 
-		// Token: 0x04005058 RID: 20568
+		// Token: 0x04004564 RID: 17764
 		public static Action OnInitFinishAction = new Action(TuJianChunWenBen.OnInitFinish);
 
-		// Token: 0x04005059 RID: 20569
+		// Token: 0x04004565 RID: 17765
 		public int id;
 
-		// Token: 0x0400505A RID: 20570
+		// Token: 0x04004566 RID: 17766
 		public int typenum;
 
-		// Token: 0x0400505B RID: 20571
+		// Token: 0x04004567 RID: 17767
 		public int type;
 
-		// Token: 0x0400505C RID: 20572
+		// Token: 0x04004568 RID: 17768
 		public string name1;
 
-		// Token: 0x0400505D RID: 20573
+		// Token: 0x04004569 RID: 17769
 		public string name2;
 
-		// Token: 0x0400505E RID: 20574
+		// Token: 0x0400456A RID: 17770
 		public string descr;
 	}
 }

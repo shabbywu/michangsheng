@@ -6,22 +6,22 @@ using UnityEngine.UI;
 
 namespace YSGame.TianJiDaBi
 {
-	// Token: 0x02000DCA RID: 3530
+	// Token: 0x02000A96 RID: 2710
 	public class UITianJiDaBiPlayerInfo : MonoBehaviour, IESCClose
 	{
-		// Token: 0x06005508 RID: 21768 RVA: 0x0003CC7B File Offset: 0x0003AE7B
+		// Token: 0x06004BDF RID: 19423 RVA: 0x00205585 File Offset: 0x00203785
 		private void Awake()
 		{
 			UITianJiDaBiPlayerInfo.Inst = this;
 		}
 
-		// Token: 0x06005509 RID: 21769 RVA: 0x0003CC83 File Offset: 0x0003AE83
+		// Token: 0x06004BE0 RID: 19424 RVA: 0x0020558D File Offset: 0x0020378D
 		public static void Show(DaBiPlayer player, Match match)
 		{
 			Object.Instantiate<GameObject>(Resources.Load<GameObject>("NewUI/TianJiDaBi/UITianJiDaBiPlayerInfo"), NewUICanvas.Inst.Canvas.transform).GetComponent<UITianJiDaBiPlayerInfo>().RefreshUI(player, match);
 		}
 
-		// Token: 0x0600550A RID: 21770 RVA: 0x00236944 File Offset: 0x00234B44
+		// Token: 0x06004BE1 RID: 19425 RVA: 0x002055BC File Offset: 0x002037BC
 		public void RefreshUI(DaBiPlayer player, Match match)
 		{
 			this.CloseBtn.mouseUpEvent.RemoveAllListeners();
@@ -71,7 +71,7 @@ namespace YSGame.TianJiDaBi
 			}
 		}
 
-		// Token: 0x0600550B RID: 21771 RVA: 0x0003CCAF File Offset: 0x0003AEAF
+		// Token: 0x06004BE2 RID: 19426 RVA: 0x002057A3 File Offset: 0x002039A3
 		public void Close()
 		{
 			ESCCloseManager.Inst.UnRegisterClose(this);
@@ -79,29 +79,29 @@ namespace YSGame.TianJiDaBi
 			Object.Destroy(base.gameObject);
 		}
 
-		// Token: 0x0600550C RID: 21772 RVA: 0x0003CCCD File Offset: 0x0003AECD
+		// Token: 0x06004BE3 RID: 19427 RVA: 0x002057C1 File Offset: 0x002039C1
 		bool IESCClose.TryEscClose()
 		{
 			this.Close();
 			return true;
 		}
 
-		// Token: 0x040054C1 RID: 21697
+		// Token: 0x04004AFC RID: 19196
 		public static UITianJiDaBiPlayerInfo Inst;
 
-		// Token: 0x040054C2 RID: 21698
+		// Token: 0x04004AFD RID: 19197
 		public Text ShengChangText;
 
-		// Token: 0x040054C3 RID: 21699
+		// Token: 0x04004AFE RID: 19198
 		public Text TianJiDianText;
 
-		// Token: 0x040054C4 RID: 21700
+		// Token: 0x04004AFF RID: 19199
 		public FpBtn CloseBtn;
 
-		// Token: 0x040054C5 RID: 21701
+		// Token: 0x04004B00 RID: 19200
 		public List<UITianJiDaBi2Player> TianJiDaBi2Players;
 
-		// Token: 0x040054C6 RID: 21702
+		// Token: 0x04004B01 RID: 19201
 		public List<GameObject> NoStarts;
 	}
 }

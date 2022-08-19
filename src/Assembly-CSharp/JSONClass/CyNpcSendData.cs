@@ -3,10 +3,10 @@ using System.Collections.Generic;
 
 namespace JSONClass
 {
-	// Token: 0x02000BB8 RID: 3000
+	// Token: 0x02000822 RID: 2082
 	public class CyNpcSendData : IJSONClass
 	{
-		// Token: 0x06004A48 RID: 19016 RVA: 0x001F7078 File Offset: 0x001F5278
+		// Token: 0x06003E9A RID: 16026 RVA: 0x001ABD08 File Offset: 0x001A9F08
 		public static void InitDataDict()
 		{
 			foreach (JSONObject jsonobject in jsonData.instance.CyNpcSendData.list)
@@ -59,84 +59,84 @@ namespace JSONClass
 			}
 		}
 
-		// Token: 0x06004A49 RID: 19017 RVA: 0x000042DD File Offset: 0x000024DD
+		// Token: 0x06003E9B RID: 16027 RVA: 0x00004095 File Offset: 0x00002295
 		private static void OnInitFinish()
 		{
 		}
 
-		// Token: 0x0400458A RID: 17802
+		// Token: 0x04003A02 RID: 14850
 		public static Dictionary<int, CyNpcSendData> DataDict = new Dictionary<int, CyNpcSendData>();
 
-		// Token: 0x0400458B RID: 17803
+		// Token: 0x04003A03 RID: 14851
 		public static List<CyNpcSendData> DataList = new List<CyNpcSendData>();
 
-		// Token: 0x0400458C RID: 17804
+		// Token: 0x04003A04 RID: 14852
 		public static Action OnInitFinishAction = new Action(CyNpcSendData.OnInitFinish);
 
-		// Token: 0x0400458D RID: 17805
+		// Token: 0x04003A05 RID: 14853
 		public int id;
 
-		// Token: 0x0400458E RID: 17806
+		// Token: 0x04003A06 RID: 14854
 		public int IsChuFa;
 
-		// Token: 0x0400458F RID: 17807
+		// Token: 0x04003A07 RID: 14855
 		public int NPCshenfen;
 
-		// Token: 0x04004590 RID: 17808
+		// Token: 0x04003A08 RID: 14856
 		public int HaoGanDu;
 
-		// Token: 0x04004591 RID: 17809
+		// Token: 0x04003A09 RID: 14857
 		public int IsOnly;
 
-		// Token: 0x04004592 RID: 17810
+		// Token: 0x04003A0A RID: 14858
 		public int XiaoXiType;
 
-		// Token: 0x04004593 RID: 17811
+		// Token: 0x04003A0B RID: 14859
 		public int Rate;
 
-		// Token: 0x04004594 RID: 17812
+		// Token: 0x04003A0C RID: 14860
 		public int XingWeiType;
 
-		// Token: 0x04004595 RID: 17813
+		// Token: 0x04003A0D RID: 14861
 		public int ItemJiaGe;
 
-		// Token: 0x04004596 RID: 17814
+		// Token: 0x04003A0E RID: 14862
 		public int GuoQiShiJian;
 
-		// Token: 0x04004597 RID: 17815
+		// Token: 0x04003A0F RID: 14863
 		public int HaoGanDuChange;
 
-		// Token: 0x04004598 RID: 17816
+		// Token: 0x04003A10 RID: 14864
 		public int DuiBaiType;
 
-		// Token: 0x04004599 RID: 17817
+		// Token: 0x04003A11 RID: 14865
 		public int QingFen;
 
-		// Token: 0x0400459A RID: 17818
+		// Token: 0x04003A12 RID: 14866
 		public string fuhao1;
 
-		// Token: 0x0400459B RID: 17819
+		// Token: 0x04003A13 RID: 14867
 		public string fuhao2;
 
-		// Token: 0x0400459C RID: 17820
+		// Token: 0x04003A14 RID: 14868
 		public string StarTime;
 
-		// Token: 0x0400459D RID: 17821
+		// Token: 0x04003A15 RID: 14869
 		public string EndTime;
 
-		// Token: 0x0400459E RID: 17822
+		// Token: 0x04003A16 RID: 14870
 		public List<int> NPCXingWei = new List<int>();
 
-		// Token: 0x0400459F RID: 17823
+		// Token: 0x04003A17 RID: 14871
 		public List<int> NPCLevel = new List<int>();
 
-		// Token: 0x040045A0 RID: 17824
+		// Token: 0x04003A18 RID: 14872
 		public List<int> EventValue = new List<int>();
 
-		// Token: 0x040045A1 RID: 17825
+		// Token: 0x04003A19 RID: 14873
 		public List<int> ZhuangTaiInfo = new List<int>();
 
-		// Token: 0x040045A2 RID: 17826
+		// Token: 0x04003A1A RID: 14874
 		public List<int> RandomItemID = new List<int>();
 	}
 }

@@ -1,15 +1,15 @@
 ﻿using System;
 using UnityEngine;
 
-// Token: 0x02000631 RID: 1585
+// Token: 0x02000474 RID: 1140
 public class UGUIToggleGameobject : MonoBehaviour
 {
-	// Token: 0x0600275F RID: 10079 RVA: 0x000042DD File Offset: 0x000024DD
+	// Token: 0x060023A6 RID: 9126 RVA: 0x00004095 File Offset: 0x00002295
 	private void Start()
 	{
 	}
 
-	// Token: 0x06002760 RID: 10080 RVA: 0x000042DD File Offset: 0x000024DD
+	// Token: 0x060023A7 RID: 9127 RVA: 0x00004095 File Offset: 0x00002295
 	private void Update()
 	{
 	}

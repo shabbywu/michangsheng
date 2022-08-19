@@ -1,12 +1,12 @@
 ﻿using System;
 using UnityEngine;
 
-// Token: 0x020000EE RID: 238
+// Token: 0x0200009D RID: 157
 [AddComponentMenu("NGUI/Tween/Tween Scale")]
 public class TweenScale : UITweener
 {
-	// Token: 0x1700013E RID: 318
-	// (get) Token: 0x06000939 RID: 2361 RVA: 0x0000B893 File Offset: 0x00009A93
+	// Token: 0x1700012A RID: 298
+	// (get) Token: 0x06000881 RID: 2177 RVA: 0x000327BB File Offset: 0x000309BB
 	public Transform cachedTransform
 	{
 		get
@@ -19,9 +19,9 @@ public class TweenScale : UITweener
 		}
 	}
 
-	// Token: 0x1700013F RID: 319
-	// (get) Token: 0x0600093A RID: 2362 RVA: 0x0000B8B5 File Offset: 0x00009AB5
-	// (set) Token: 0x0600093B RID: 2363 RVA: 0x0000B8C2 File Offset: 0x00009AC2
+	// Token: 0x1700012B RID: 299
+	// (get) Token: 0x06000882 RID: 2178 RVA: 0x000327DD File Offset: 0x000309DD
+	// (set) Token: 0x06000883 RID: 2179 RVA: 0x000327EA File Offset: 0x000309EA
 	public Vector3 value
 	{
 		get
@@ -34,9 +34,9 @@ public class TweenScale : UITweener
 		}
 	}
 
-	// Token: 0x17000140 RID: 320
-	// (get) Token: 0x0600093C RID: 2364 RVA: 0x0000B8D0 File Offset: 0x00009AD0
-	// (set) Token: 0x0600093D RID: 2365 RVA: 0x0000B8D8 File Offset: 0x00009AD8
+	// Token: 0x1700012C RID: 300
+	// (get) Token: 0x06000884 RID: 2180 RVA: 0x000327F8 File Offset: 0x000309F8
+	// (set) Token: 0x06000885 RID: 2181 RVA: 0x00032800 File Offset: 0x00030A00
 	[Obsolete("Use 'value' instead")]
 	public Vector3 scale
 	{
@@ -50,7 +50,7 @@ public class TweenScale : UITweener
 		}
 	}
 
-	// Token: 0x0600093E RID: 2366 RVA: 0x00086940 File Offset: 0x00084B40
+	// Token: 0x06000886 RID: 2182 RVA: 0x0003280C File Offset: 0x00030A0C
 	protected override void OnUpdate(float factor, bool isFinished)
 	{
 		this.value = this.from * (1f - factor) + this.to * factor;
@@ -69,7 +69,7 @@ public class TweenScale : UITweener
 		}
 	}
 
-	// Token: 0x0600093F RID: 2367 RVA: 0x000869C0 File Offset: 0x00084BC0
+	// Token: 0x06000887 RID: 2183 RVA: 0x0003288C File Offset: 0x00030A8C
 	public static TweenScale Begin(GameObject go, float duration, Vector3 scale)
 	{
 		TweenScale tweenScale = UITweener.Begin<TweenScale>(go, duration);
@@ -83,46 +83,46 @@ public class TweenScale : UITweener
 		return tweenScale;
 	}
 
-	// Token: 0x06000940 RID: 2368 RVA: 0x0000B8E1 File Offset: 0x00009AE1
+	// Token: 0x06000888 RID: 2184 RVA: 0x000328D0 File Offset: 0x00030AD0
 	[ContextMenu("Set 'From' to current value")]
 	public override void SetStartToCurrentValue()
 	{
 		this.from = this.value;
 	}
 
-	// Token: 0x06000941 RID: 2369 RVA: 0x0000B8EF File Offset: 0x00009AEF
+	// Token: 0x06000889 RID: 2185 RVA: 0x000328DE File Offset: 0x00030ADE
 	[ContextMenu("Set 'To' to current value")]
 	public override void SetEndToCurrentValue()
 	{
 		this.to = this.value;
 	}
 
-	// Token: 0x06000942 RID: 2370 RVA: 0x0000B8FD File Offset: 0x00009AFD
+	// Token: 0x0600088A RID: 2186 RVA: 0x000328EC File Offset: 0x00030AEC
 	[ContextMenu("Assume value of 'From'")]
 	private void SetCurrentValueToStart()
 	{
 		this.value = this.from;
 	}
 
-	// Token: 0x06000943 RID: 2371 RVA: 0x0000B90B File Offset: 0x00009B0B
+	// Token: 0x0600088B RID: 2187 RVA: 0x000328FA File Offset: 0x00030AFA
 	[ContextMenu("Assume value of 'To'")]
 	private void SetCurrentValueToEnd()
 	{
 		this.value = this.to;
 	}
 
-	// Token: 0x04000657 RID: 1623
+	// Token: 0x04000534 RID: 1332
 	public Vector3 from = Vector3.one;
 
-	// Token: 0x04000658 RID: 1624
+	// Token: 0x04000535 RID: 1333
 	public Vector3 to = Vector3.one;
 
-	// Token: 0x04000659 RID: 1625
+	// Token: 0x04000536 RID: 1334
 	public bool updateTable;
 
-	// Token: 0x0400065A RID: 1626
+	// Token: 0x04000537 RID: 1335
 	private Transform mTrans;
 
-	// Token: 0x0400065B RID: 1627
+	// Token: 0x04000538 RID: 1336
 	private UITable mTable;
 }

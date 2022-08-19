@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-// Token: 0x020004D3 RID: 1235
+// Token: 0x02000356 RID: 854
 public class SpriteRef : MonoBehaviour
 {
-	// Token: 0x04001BC9 RID: 7113
+	// Token: 0x04001771 RID: 6001
 	public List<Sprite> sprites;
 }

@@ -2,10 +2,10 @@
 using UnityEngine;
 using UnityEngine.Events;
 
-// Token: 0x02000422 RID: 1058
+// Token: 0x020002D6 RID: 726
 public class UIJianLingPanel : MonoBehaviour, IESCClose
 {
-	// Token: 0x06001C4B RID: 7243 RVA: 0x000FB0DC File Offset: 0x000F92DC
+	// Token: 0x06001943 RID: 6467 RVA: 0x000B5200 File Offset: 0x000B3400
 	private void Awake()
 	{
 		UIJianLingPanel.Inst = this;
@@ -16,7 +16,16 @@ public class UIJianLingPanel : MonoBehaviour, IESCClose
 		ESCCloseManager.Inst.RegisterClose(this);
 	}
 
-	// Token: 0x06001C4C RID: 7244 RVA: 0x000FB16C File Offset: 0x000F936C
+	// Token: 0x06001944 RID: 6468 RVA: 0x000B5290 File Offset: 0x000B3490
+	private void Update()
+	{
+		if (UIHeadPanel.Inst != null && this.QingJiaoRedPoint.activeSelf != UIHeadPanel.Inst.TieJianRedPoint.activeSelf)
+		{
+			this.QingJiaoRedPoint.SetActive(UIHeadPanel.Inst.TieJianRedPoint.activeSelf);
+		}
+	}
+
+	// Token: 0x06001945 RID: 6469 RVA: 0x000B52E0 File Offset: 0x000B34E0
 	public static void OpenPanel()
 	{
 		int num = GlobalValue.Get(692, "打开剑灵界面");
@@ -28,68 +37,71 @@ public class UIJianLingPanel : MonoBehaviour, IESCClose
 		Object.Instantiate<GameObject>(Resources.Load<GameObject>("NewUI/JianLing/UIJianLingPanel"), NewUICanvas.Inst.Canvas.transform).transform.SetAsLastSibling();
 	}
 
-	// Token: 0x06001C4D RID: 7245 RVA: 0x00017A63 File Offset: 0x00015C63
+	// Token: 0x06001946 RID: 6470 RVA: 0x000B5338 File Offset: 0x000B3538
 	bool IESCClose.TryEscClose()
 	{
 		this.Close();
 		return true;
 	}
 
-	// Token: 0x06001C4E RID: 7246 RVA: 0x00017A6C File Offset: 0x00015C6C
+	// Token: 0x06001947 RID: 6471 RVA: 0x000B5341 File Offset: 0x000B3541
 	public void Close()
 	{
 		ESCCloseManager.Inst.UnRegisterClose(this);
 		Object.Destroy(base.gameObject);
 	}
 
-	// Token: 0x06001C4F RID: 7247 RVA: 0x00017A84 File Offset: 0x00015C84
+	// Token: 0x06001948 RID: 6472 RVA: 0x000B5359 File Offset: 0x000B3559
 	public void OnJiaoTanBtnClick()
 	{
 		NPCEx.OpenTalk(518);
 		this.CenterObj.SetActive(false);
 	}
 
-	// Token: 0x06001C50 RID: 7248 RVA: 0x00017A9C File Offset: 0x00015C9C
+	// Token: 0x06001949 RID: 6473 RVA: 0x000B5371 File Offset: 0x000B3571
 	public void OnJiaoTanEnd()
 	{
 		this.CenterObj.SetActive(true);
 	}
 
-	// Token: 0x06001C51 RID: 7249 RVA: 0x00017AAA File Offset: 0x00015CAA
+	// Token: 0x0600194A RID: 6474 RVA: 0x000B537F File Offset: 0x000B357F
 	public void OnXianSuoBtnClick()
 	{
 		Object.Instantiate<GameObject>(Resources.Load<GameObject>("NewUI/JianLing/UIJianLingXianSuoPanel"), NewUICanvas.Inst.Canvas.transform).transform.SetAsLastSibling();
 		this.Close();
 	}
 
-	// Token: 0x06001C52 RID: 7250 RVA: 0x00017ADA File Offset: 0x00015CDA
+	// Token: 0x0600194B RID: 6475 RVA: 0x000B53AF File Offset: 0x000B35AF
 	public void OnQingJiaoBtnClick()
 	{
 		Object.Instantiate<GameObject>(Resources.Load<GameObject>("NewUI/JianLing/UIJianLingQingJiaoPanel"), NewUICanvas.Inst.Canvas.transform).transform.SetAsLastSibling();
 		this.Close();
 	}
 
-	// Token: 0x06001C53 RID: 7251 RVA: 0x00017B0A File Offset: 0x00015D0A
+	// Token: 0x0600194C RID: 6476 RVA: 0x000B53DF File Offset: 0x000B35DF
 	public void OnLiKaiBtnClick()
 	{
 		this.Close();
 	}
 
-	// Token: 0x04001843 RID: 6211
+	// Token: 0x04001475 RID: 5237
 	public static UIJianLingPanel Inst;
 
-	// Token: 0x04001844 RID: 6212
+	// Token: 0x04001476 RID: 5238
 	public FpBtn JiaoTanBtn;
 
-	// Token: 0x04001845 RID: 6213
+	// Token: 0x04001477 RID: 5239
 	public FpBtn XianSuoBtn;
 
-	// Token: 0x04001846 RID: 6214
+	// Token: 0x04001478 RID: 5240
 	public FpBtn QingJiaoBtn;
 
-	// Token: 0x04001847 RID: 6215
+	// Token: 0x04001479 RID: 5241
 	public FpBtn LiKaiBtn;
 
-	// Token: 0x04001848 RID: 6216
+	// Token: 0x0400147A RID: 5242
 	public GameObject CenterObj;
+
+	// Token: 0x0400147B RID: 5243
+	public GameObject QingJiaoRedPoint;
 }

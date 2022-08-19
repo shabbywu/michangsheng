@@ -3,10 +3,10 @@ using System.Collections.Generic;
 
 namespace JSONClass
 {
-	// Token: 0x02000C30 RID: 3120
+	// Token: 0x020008A2 RID: 2210
 	public class NpcImprotantEventData : IJSONClass
 	{
-		// Token: 0x06004C29 RID: 19497 RVA: 0x00202744 File Offset: 0x00200944
+		// Token: 0x0600409B RID: 16539 RVA: 0x001B9620 File Offset: 0x001B7820
 		public static void InitDataDict()
 		{
 			foreach (JSONObject jsonobject in jsonData.instance.NpcImprotantEventData.list)
@@ -43,36 +43,36 @@ namespace JSONClass
 			}
 		}
 
-		// Token: 0x06004C2A RID: 19498 RVA: 0x000042DD File Offset: 0x000024DD
+		// Token: 0x0600409C RID: 16540 RVA: 0x00004095 File Offset: 0x00002295
 		private static void OnInitFinish()
 		{
 		}
 
-		// Token: 0x040049BB RID: 18875
+		// Token: 0x04003E62 RID: 15970
 		public static Dictionary<int, NpcImprotantEventData> DataDict = new Dictionary<int, NpcImprotantEventData>();
 
-		// Token: 0x040049BC RID: 18876
+		// Token: 0x04003E63 RID: 15971
 		public static List<NpcImprotantEventData> DataList = new List<NpcImprotantEventData>();
 
-		// Token: 0x040049BD RID: 18877
+		// Token: 0x04003E64 RID: 15972
 		public static Action OnInitFinishAction = new Action(NpcImprotantEventData.OnInitFinish);
 
-		// Token: 0x040049BE RID: 18878
+		// Token: 0x04003E65 RID: 15973
 		public int id;
 
-		// Token: 0x040049BF RID: 18879
+		// Token: 0x04003E66 RID: 15974
 		public int ImportantNPC;
 
-		// Token: 0x040049C0 RID: 18880
+		// Token: 0x04003E67 RID: 15975
 		public string Time;
 
-		// Token: 0x040049C1 RID: 18881
+		// Token: 0x04003E68 RID: 15976
 		public string fuhao;
 
-		// Token: 0x040049C2 RID: 18882
+		// Token: 0x04003E69 RID: 15977
 		public string ShiJianInfo;
 
-		// Token: 0x040049C3 RID: 18883
+		// Token: 0x04003E6A RID: 15978
 		public List<int> EventLv = new List<int>();
 	}
 }

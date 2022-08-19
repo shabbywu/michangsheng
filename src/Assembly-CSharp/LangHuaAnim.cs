@@ -2,16 +2,16 @@
 using Spine.Unity;
 using UnityEngine;
 
-// Token: 0x0200053C RID: 1340
+// Token: 0x020003B1 RID: 945
 public class LangHuaAnim : MonoBehaviour
 {
-	// Token: 0x06002234 RID: 8756 RVA: 0x0001C0D5 File Offset: 0x0001A2D5
+	// Token: 0x06001EB1 RID: 7857 RVA: 0x000D7A39 File Offset: 0x000D5C39
 	private void OnEnable()
 	{
 		base.Invoke("NextPlay", 3.1f);
 	}
 
-	// Token: 0x06002235 RID: 8757 RVA: 0x0011AEF4 File Offset: 0x001190F4
+	// Token: 0x06001EB2 RID: 7858 RVA: 0x000D7A4C File Offset: 0x000D5C4C
 	public void NextPlay()
 	{
 		SkeletonAnimation componentInChildren = base.GetComponentInChildren<SkeletonAnimation>();
@@ -21,7 +21,7 @@ public class LangHuaAnim : MonoBehaviour
 		base.Invoke("EndPlay", 3.2f);
 	}
 
-	// Token: 0x06002236 RID: 8758 RVA: 0x0011AF40 File Offset: 0x00119140
+	// Token: 0x06001EB3 RID: 7859 RVA: 0x000D7A98 File Offset: 0x000D5C98
 	public void EndPlay()
 	{
 		SkeletonAnimation componentInChildren = base.GetComponentInChildren<SkeletonAnimation>();
@@ -31,12 +31,12 @@ public class LangHuaAnim : MonoBehaviour
 		base.Invoke("Recovery", 3.2f);
 	}
 
-	// Token: 0x06002237 RID: 8759 RVA: 0x0001C0E7 File Offset: 0x0001A2E7
+	// Token: 0x06001EB4 RID: 7860 RVA: 0x000D7AE2 File Offset: 0x000D5CE2
 	public void Recovery()
 	{
 		GameObjectPool.Recovery(base.gameObject);
 	}
 
-	// Token: 0x04001D9A RID: 7578
+	// Token: 0x04001926 RID: 6438
 	public float time = 1f;
 }

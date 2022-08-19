@@ -1,27 +1,27 @@
 ﻿using System;
 using UnityEngine;
 
-// Token: 0x020000E4 RID: 228
+// Token: 0x02000094 RID: 148
 [ExecuteInEditMode]
 [RequireComponent(typeof(UIWidget))]
 public class AnimatedColor : MonoBehaviour
 {
-	// Token: 0x060008DC RID: 2268 RVA: 0x0000B38E File Offset: 0x0000958E
+	// Token: 0x06000828 RID: 2088 RVA: 0x00031B3E File Offset: 0x0002FD3E
 	private void OnEnable()
 	{
 		this.mWidget = base.GetComponent<UIWidget>();
 		this.LateUpdate();
 	}
 
-	// Token: 0x060008DD RID: 2269 RVA: 0x0000B3A2 File Offset: 0x000095A2
+	// Token: 0x06000829 RID: 2089 RVA: 0x00031B52 File Offset: 0x0002FD52
 	private void LateUpdate()
 	{
 		this.mWidget.color = this.color;
 	}
 
-	// Token: 0x0400062D RID: 1581
+	// Token: 0x0400050A RID: 1290
 	public Color color = Color.white;
 
-	// Token: 0x0400062E RID: 1582
+	// Token: 0x0400050B RID: 1291
 	private UIWidget mWidget;
 }

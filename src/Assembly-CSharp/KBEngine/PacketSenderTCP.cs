@@ -4,10 +4,10 @@ using System.Threading;
 
 namespace KBEngine
 {
-	// Token: 0x02000FE5 RID: 4069
+	// Token: 0x02000C5B RID: 3163
 	public class PacketSenderTCP : PacketSenderBase
 	{
-		// Token: 0x0600603B RID: 24635 RVA: 0x00042E83 File Offset: 0x00041083
+		// Token: 0x060055EC RID: 21996 RVA: 0x0023AA44 File Offset: 0x00238C44
 		public PacketSenderTCP(NetworkInterfaceBase networkInterface) : base(networkInterface)
 		{
 			this._buffer = new byte[KBEngineApp.app.getInitArgs().TCP_SEND_BUFFER_MAX];
@@ -16,13 +16,13 @@ namespace KBEngine
 			this._sending = 0;
 		}
 
-		// Token: 0x0600603C RID: 24636 RVA: 0x00267710 File Offset: 0x00265910
+		// Token: 0x060055ED RID: 21997 RVA: 0x0023AA7C File Offset: 0x00238C7C
 		~PacketSenderTCP()
 		{
 			Dbg.DEBUG_MSG("PacketSenderTCP::~PacketSenderTCP(), destroyed!");
 		}
 
-		// Token: 0x0600603D RID: 24637 RVA: 0x00267740 File Offset: 0x00265940
+		// Token: 0x060055EE RID: 21998 RVA: 0x0023AAAC File Offset: 0x00238CAC
 		public override bool send(MemoryStream stream)
 		{
 			int num = (int)stream.length();
@@ -81,7 +81,7 @@ namespace KBEngine
 			return true;
 		}
 
-		// Token: 0x0600603E RID: 24638 RVA: 0x002678C8 File Offset: 0x00265AC8
+		// Token: 0x060055EF RID: 21999 RVA: 0x0023AC34 File Offset: 0x00238E34
 		protected override void _asyncSend()
 		{
 			if (this._networkInterface == null || !this._networkInterface.valid())
@@ -122,16 +122,16 @@ namespace KBEngine
 			Interlocked.Exchange(ref this._sending, 0);
 		}
 
-		// Token: 0x04005B84 RID: 23428
+		// Token: 0x040050D4 RID: 20692
 		private byte[] _buffer;
 
-		// Token: 0x04005B85 RID: 23429
+		// Token: 0x040050D5 RID: 20693
 		private int _wpos;
 
-		// Token: 0x04005B86 RID: 23430
+		// Token: 0x040050D6 RID: 20694
 		private int _spos;
 
-		// Token: 0x04005B87 RID: 23431
+		// Token: 0x040050D7 RID: 20695
 		private int _sending;
 	}
 }

@@ -3,10 +3,10 @@ using System.Collections.Generic;
 
 namespace JSONClass
 {
-	// Token: 0x02000C05 RID: 3077
+	// Token: 0x02000877 RID: 2167
 	public class LianQiHeCheng : IJSONClass
 	{
-		// Token: 0x06004B7D RID: 19325 RVA: 0x001FDF10 File Offset: 0x001FC110
+		// Token: 0x06003FEF RID: 16367 RVA: 0x001B45E8 File Offset: 0x001B27E8
 		public static void InitDataDict()
 		{
 			foreach (JSONObject jsonobject in jsonData.instance.LianQiHeCheng.list)
@@ -61,90 +61,90 @@ namespace JSONClass
 			}
 		}
 
-		// Token: 0x06004B7E RID: 19326 RVA: 0x000042DD File Offset: 0x000024DD
+		// Token: 0x06003FF0 RID: 16368 RVA: 0x00004095 File Offset: 0x00002295
 		private static void OnInitFinish()
 		{
 		}
 
-		// Token: 0x04004808 RID: 18440
+		// Token: 0x04003CAF RID: 15535
 		public static Dictionary<int, LianQiHeCheng> DataDict = new Dictionary<int, LianQiHeCheng>();
 
-		// Token: 0x04004809 RID: 18441
+		// Token: 0x04003CB0 RID: 15536
 		public static List<LianQiHeCheng> DataList = new List<LianQiHeCheng>();
 
-		// Token: 0x0400480A RID: 18442
+		// Token: 0x04003CB1 RID: 15537
 		public static Action OnInitFinishAction = new Action(LianQiHeCheng.OnInitFinish);
 
-		// Token: 0x0400480B RID: 18443
+		// Token: 0x04003CB2 RID: 15538
 		public int id;
 
-		// Token: 0x0400480C RID: 18444
+		// Token: 0x04003CB3 RID: 15539
 		public int ShuXingType;
 
-		// Token: 0x0400480D RID: 18445
+		// Token: 0x04003CB4 RID: 15540
 		public int zhonglei;
 
-		// Token: 0x0400480E RID: 18446
+		// Token: 0x04003CB5 RID: 15541
 		public int cast;
 
-		// Token: 0x0400480F RID: 18447
+		// Token: 0x04003CB6 RID: 15542
 		public int seid;
 
-		// Token: 0x04004810 RID: 18448
+		// Token: 0x04003CB7 RID: 15543
 		public int HP;
 
-		// Token: 0x04004811 RID: 18449
+		// Token: 0x04003CB8 RID: 15544
 		public int intvalue1;
 
-		// Token: 0x04004812 RID: 18450
+		// Token: 0x04003CB9 RID: 15545
 		public int intvalue2;
 
-		// Token: 0x04004813 RID: 18451
+		// Token: 0x04003CBA RID: 15546
 		public int intvalue3;
 
-		// Token: 0x04004814 RID: 18452
+		// Token: 0x04003CBB RID: 15547
 		public int Itemseid;
 
-		// Token: 0x04004815 RID: 18453
+		// Token: 0x04003CBC RID: 15548
 		public int itemfanbei;
 
-		// Token: 0x04004816 RID: 18454
+		// Token: 0x04003CBD RID: 15549
 		public string ZhuShi1;
 
-		// Token: 0x04004817 RID: 18455
+		// Token: 0x04003CBE RID: 15550
 		public string ZhuShi2;
 
-		// Token: 0x04004818 RID: 18456
+		// Token: 0x04003CBF RID: 15551
 		public string ZhuShi3;
 
-		// Token: 0x04004819 RID: 18457
+		// Token: 0x04003CC0 RID: 15552
 		public string xiangxidesc;
 
-		// Token: 0x0400481A RID: 18458
+		// Token: 0x04003CC1 RID: 15553
 		public string descfirst;
 
-		// Token: 0x0400481B RID: 18459
+		// Token: 0x04003CC2 RID: 15554
 		public string desc;
 
-		// Token: 0x0400481C RID: 18460
+		// Token: 0x04003CC3 RID: 15555
 		public List<int> Affix = new List<int>();
 
-		// Token: 0x0400481D RID: 18461
+		// Token: 0x04003CC4 RID: 15556
 		public List<int> fanbei = new List<int>();
 
-		// Token: 0x0400481E RID: 18462
+		// Token: 0x04003CC5 RID: 15557
 		public List<int> listvalue1 = new List<int>();
 
-		// Token: 0x0400481F RID: 18463
+		// Token: 0x04003CC6 RID: 15558
 		public List<int> listvalue2 = new List<int>();
 
-		// Token: 0x04004820 RID: 18464
+		// Token: 0x04003CC7 RID: 15559
 		public List<int> listvalue3 = new List<int>();
 
-		// Token: 0x04004821 RID: 18465
+		// Token: 0x04003CC8 RID: 15560
 		public List<int> Itemintvalue1 = new List<int>();
 
-		// Token: 0x04004822 RID: 18466
+		// Token: 0x04003CC9 RID: 15561
 		public List<int> Itemintvalue2 = new List<int>();
 	}
 }

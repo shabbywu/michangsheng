@@ -1,19 +1,19 @@
 ﻿using System;
 using UnityEngine;
 
-// Token: 0x02000058 RID: 88
+// Token: 0x02000040 RID: 64
 [RequireComponent(typeof(UIWidget))]
 [AddComponentMenu("NGUI/Examples/Envelop Content")]
 public class EnvelopContent : MonoBehaviour
 {
-	// Token: 0x06000498 RID: 1176 RVA: 0x0000806A File Offset: 0x0000626A
+	// Token: 0x0600044A RID: 1098 RVA: 0x00017B89 File Offset: 0x00015D89
 	private void Start()
 	{
 		this.mStarted = true;
 		this.Execute();
 	}
 
-	// Token: 0x06000499 RID: 1177 RVA: 0x00008079 File Offset: 0x00006279
+	// Token: 0x0600044B RID: 1099 RVA: 0x00017B98 File Offset: 0x00015D98
 	private void OnEnable()
 	{
 		if (this.mStarted)
@@ -22,7 +22,7 @@ public class EnvelopContent : MonoBehaviour
 		}
 	}
 
-	// Token: 0x0600049A RID: 1178 RVA: 0x0006F090 File Offset: 0x0006D290
+	// Token: 0x0600044C RID: 1100 RVA: 0x00017BA8 File Offset: 0x00015DA8
 	[ContextMenu("Execute")]
 	public void Execute()
 	{
@@ -45,21 +45,21 @@ public class EnvelopContent : MonoBehaviour
 		base.BroadcastMessage("UpdateAnchors", 1);
 	}
 
-	// Token: 0x040002DE RID: 734
+	// Token: 0x0400026E RID: 622
 	public Transform targetRoot;
 
-	// Token: 0x040002DF RID: 735
+	// Token: 0x0400026F RID: 623
 	public int padLeft;
 
-	// Token: 0x040002E0 RID: 736
+	// Token: 0x04000270 RID: 624
 	public int padRight;
 
-	// Token: 0x040002E1 RID: 737
+	// Token: 0x04000271 RID: 625
 	public int padBottom;
 
-	// Token: 0x040002E2 RID: 738
+	// Token: 0x04000272 RID: 626
 	public int padTop;
 
-	// Token: 0x040002E3 RID: 739
+	// Token: 0x04000273 RID: 627
 	private bool mStarted;
 }

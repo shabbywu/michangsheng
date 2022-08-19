@@ -4,12 +4,12 @@ using Fungus;
 using KBEngine;
 using UnityEngine;
 
-// Token: 0x0200035B RID: 859
+// Token: 0x0200023F RID: 575
 [CommandInfo("YSPlayer", "检查玩家是否拥有某悟道特性", "检查玩家是否拥有某悟道特性", 0)]
 [AddComponentMenu("")]
 public class CmdGetPlayerHasWuDaoSeid : Command
 {
-	// Token: 0x060018DE RID: 6366 RVA: 0x000DE4E4 File Offset: 0x000DC6E4
+	// Token: 0x06001626 RID: 5670 RVA: 0x00095F40 File Offset: 0x00094140
 	public override void OnEnter()
 	{
 		List<SkillItem> allWuDaoSkills = PlayerEx.Player.wuDaoMag.GetAllWuDaoSkills();
@@ -28,12 +28,12 @@ public class CmdGetPlayerHasWuDaoSeid : Command
 		this.Continue();
 	}
 
-	// Token: 0x040013CE RID: 5070
+	// Token: 0x04001076 RID: 4214
 	[Tooltip("悟道特性ID(如2006洗髓)")]
 	[SerializeField]
 	protected int SeidID;
 
-	// Token: 0x040013CF RID: 5071
+	// Token: 0x04001077 RID: 4215
 	[Tooltip("是否拥有")]
 	[SerializeField]
 	[VariableProperty(new Type[]

@@ -2,15 +2,15 @@
 using Fungus;
 using UnityEngine;
 
-// Token: 0x020002F2 RID: 754
+// Token: 0x020001DF RID: 479
 [Serializable]
 public class ShengPingArg
 {
-	// Token: 0x04001239 RID: 4665
+	// Token: 0x04000EFB RID: 3835
 	[Tooltip("变量名")]
 	public string ArgName;
 
-	// Token: 0x0400123A RID: 4666
+	// Token: 0x04000EFC RID: 3836
 	[Tooltip("变量值")]
 	[VariableProperty(new Type[]
 	{

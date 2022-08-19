@@ -2,10 +2,10 @@
 
 namespace MoonSharp.Interpreter.Interop
 {
-	// Token: 0x020010EC RID: 4332
+	// Token: 0x02000D08 RID: 3336
 	public interface IGeneratorUserDataDescriptor : IUserDataDescriptor
 	{
-		// Token: 0x060068A0 RID: 26784
+		// Token: 0x06005D71 RID: 23921
 		IUserDataDescriptor Generate(Type type);
 	}
 }

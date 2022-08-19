@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using KBEngine;
 using UnityEngine;
 
-// Token: 0x020003F0 RID: 1008
+// Token: 0x020002B4 RID: 692
 public class NPCFactory
 {
-	// Token: 0x06001B5A RID: 7002 RVA: 0x000F1E58 File Offset: 0x000F0058
+	// Token: 0x06001865 RID: 6245 RVA: 0x000AB534 File Offset: 0x000A9734
 	public void firstCreateNpcs()
 	{
 		Tools.instance.getPlayer();
@@ -52,7 +52,7 @@ public class NPCFactory
 		}
 	}
 
-	// Token: 0x06001B5B RID: 7003 RVA: 0x000F2150 File Offset: 0x000F0350
+	// Token: 0x06001866 RID: 6246 RVA: 0x000AB82C File Offset: 0x000A9A2C
 	public int CreateHaiShangNpc(int id)
 	{
 		int num = 0;
@@ -70,7 +70,7 @@ public class NPCFactory
 		return num;
 	}
 
-	// Token: 0x06001B5C RID: 7004 RVA: 0x000F2248 File Offset: 0x000F0448
+	// Token: 0x06001867 RID: 6247 RVA: 0x000AB924 File Offset: 0x000A9B24
 	public void AuToCreateNpcs()
 	{
 		JSONObject npcCreateData = jsonData.instance.NpcCreateData;
@@ -115,7 +115,7 @@ public class NPCFactory
 		}
 	}
 
-	// Token: 0x06001B5D RID: 7005 RVA: 0x000F2490 File Offset: 0x000F0690
+	// Token: 0x06001868 RID: 6248 RVA: 0x000ABB6C File Offset: 0x000A9D6C
 	public int CreateNpcByLiuPaiAndLevel(int liuPai, int level, int sex = 0)
 	{
 		foreach (JSONObject jsonobject in jsonData.instance.NPCLeiXingDate.list)
@@ -130,7 +130,7 @@ public class NPCFactory
 		return 0;
 	}
 
-	// Token: 0x06001B5E RID: 7006 RVA: 0x000F2538 File Offset: 0x000F0738
+	// Token: 0x06001869 RID: 6249 RVA: 0x000ABC14 File Offset: 0x000A9E14
 	public int createNpc(JSONObject npcDate, bool isImportant, int ZhiDingindex = 0, bool isNewPlayer = true, JSONObject importantJson = null)
 	{
 		Avatar player = Tools.instance.getPlayer();
@@ -275,36 +275,36 @@ public class NPCFactory
 					int num = 0;
 					int i3 = jsonobject4["equipWeapon"].I;
 					int i4 = npcDate["equipWeapon"][this.getRandom(0, npcDate["equipWeapon"].I)].I;
-					JSONObject obj = new JSONObject();
-					RandomNPCEquip.CreateLoveEquip(ref num, ref obj, i4, null, i3);
-					jsonobject["equipList"].SetField("Weapon1", obj);
+					JSONObject jsonobject5 = new JSONObject();
+					RandomNPCEquip.CreateLoveEquip(ref num, ref jsonobject5, i4, null, i3);
+					jsonobject["equipList"].SetField("Weapon1", jsonobject5);
 				}
 				if (jsonobject4["equipWeapon2"].I > 0)
 				{
 					int num2 = 0;
 					int i5 = jsonobject4["equipWeapon2"].I;
 					int i6 = npcDate["equipWeapon"][this.getRandom(0, npcDate["equipWeapon"].I)].I;
-					JSONObject obj2 = new JSONObject();
-					RandomNPCEquip.CreateLoveEquip(ref num2, ref obj2, i6, null, i5);
-					jsonobject["equipList"].SetField("Weapon2", obj2);
+					JSONObject jsonobject6 = new JSONObject();
+					RandomNPCEquip.CreateLoveEquip(ref num2, ref jsonobject6, i6, null, i5);
+					jsonobject["equipList"].SetField("Weapon2", jsonobject6);
 				}
 				if (jsonobject4["equipClothing"].I > 0)
 				{
 					int num3 = 0;
 					int i7 = jsonobject4["equipClothing"].I;
 					int i8 = npcDate["equipClothing"][this.getRandom(0, npcDate["equipClothing"].I)].I;
-					JSONObject obj3 = new JSONObject();
-					RandomNPCEquip.CreateLoveEquip(ref num3, ref obj3, i8, null, i7);
-					jsonobject["equipList"].SetField("Clothing", obj3);
+					JSONObject jsonobject7 = new JSONObject();
+					RandomNPCEquip.CreateLoveEquip(ref num3, ref jsonobject7, i8, null, i7);
+					jsonobject["equipList"].SetField("Clothing", jsonobject7);
 				}
 				if (jsonobject4["equipRing"].I > 0)
 				{
 					int num4 = 0;
 					int i9 = jsonobject4["equipRing"].I;
 					int i10 = npcDate["equipRing"][this.getRandom(0, npcDate["equipRing"].I)].I;
-					JSONObject obj4 = new JSONObject();
-					RandomNPCEquip.CreateLoveEquip(ref num4, ref obj4, i10, null, i9);
-					jsonobject["equipList"].SetField("Ring", obj4);
+					JSONObject jsonobject8 = new JSONObject();
+					RandomNPCEquip.CreateLoveEquip(ref num4, ref jsonobject8, i10, null, i9);
+					jsonobject["equipList"].SetField("Ring", jsonobject8);
 				}
 				jsonobject.SetField("equipWeaponPianHao", npcDate["equipWeapon"]);
 				jsonobject.SetField("equipWeapon2PianHao", npcDate["equipWeapon"]);
@@ -354,7 +354,7 @@ public class NPCFactory
 		return jsonobject["id"].I;
 	}
 
-	// Token: 0x06001B5F RID: 7007 RVA: 0x000F342C File Offset: 0x000F162C
+	// Token: 0x0600186A RID: 6250 RVA: 0x000ACB08 File Offset: 0x000AAD08
 	public void SetNpcLevel(int npcId, int npcLevel)
 	{
 		if (!jsonData.instance.AvatarJsonData.HasField(npcId.ToString()))
@@ -401,36 +401,36 @@ public class NPCFactory
 					int num = 0;
 					int i3 = jsonobject3["equipWeapon"].I;
 					int i4 = jsonobject2["equipWeapon"][this.getRandom(0, jsonobject2["equipWeapon"].I)].I;
-					JSONObject obj = new JSONObject();
-					RandomNPCEquip.CreateLoveEquip(ref num, ref obj, i4, null, i3);
-					jsonobject["equipList"].SetField("Weapon1", obj);
+					JSONObject jsonobject4 = new JSONObject();
+					RandomNPCEquip.CreateLoveEquip(ref num, ref jsonobject4, i4, null, i3);
+					jsonobject["equipList"].SetField("Weapon1", jsonobject4);
 				}
 				if (jsonobject3["equipWeapon2"].I > 0)
 				{
 					int num2 = 0;
 					int i5 = jsonobject3["equipWeapon2"].I;
 					int i6 = jsonobject2["equipWeapon"][this.getRandom(0, jsonobject2["equipWeapon"].I)].I;
-					JSONObject obj2 = new JSONObject();
-					RandomNPCEquip.CreateLoveEquip(ref num2, ref obj2, i6, null, i5);
-					jsonobject["equipList"].SetField("Weapon2", obj2);
+					JSONObject jsonobject5 = new JSONObject();
+					RandomNPCEquip.CreateLoveEquip(ref num2, ref jsonobject5, i6, null, i5);
+					jsonobject["equipList"].SetField("Weapon2", jsonobject5);
 				}
 				if (jsonobject3["equipClothing"].I > 0)
 				{
 					int num3 = 0;
 					int i7 = jsonobject3["equipClothing"].I;
 					int i8 = jsonobject2["equipClothing"][this.getRandom(0, jsonobject2["equipClothing"].I)].I;
-					JSONObject obj3 = new JSONObject();
-					RandomNPCEquip.CreateLoveEquip(ref num3, ref obj3, i8, null, i7);
-					jsonobject["equipList"].SetField("Clothing", obj3);
+					JSONObject jsonobject6 = new JSONObject();
+					RandomNPCEquip.CreateLoveEquip(ref num3, ref jsonobject6, i8, null, i7);
+					jsonobject["equipList"].SetField("Clothing", jsonobject6);
 				}
 				if (jsonobject3["equipRing"].I > 0)
 				{
 					int num4 = 0;
 					int i9 = jsonobject3["equipRing"].I;
 					int i10 = jsonobject2["equipRing"][this.getRandom(0, jsonobject2["equipRing"].I)].I;
-					JSONObject obj4 = new JSONObject();
-					RandomNPCEquip.CreateLoveEquip(ref num4, ref obj4, i10, null, i9);
-					jsonobject["equipList"].SetField("Ring", obj4);
+					JSONObject jsonobject7 = new JSONObject();
+					RandomNPCEquip.CreateLoveEquip(ref num4, ref jsonobject7, i10, null, i9);
+					jsonobject["equipList"].SetField("Ring", jsonobject7);
 				}
 				jsonobject.SetField("yuanying", jsonobject2["yuanying"]);
 				jsonobject.SetField("LingGen", jsonobject2["LingGen"]);
@@ -445,7 +445,7 @@ public class NPCFactory
 		FactoryManager.inst.npcFactory.InitAutoCreateNpcBackpack(jsonData.instance.AvatarBackpackJsonData, jsonobject["id"].I, jsonobject);
 	}
 
-	// Token: 0x06001B60 RID: 7008 RVA: 0x000F3A78 File Offset: 0x000F1C78
+	// Token: 0x0600186B RID: 6251 RVA: 0x000AD154 File Offset: 0x000AB354
 	public int AfterCreateNpc(JSONObject npcDate, bool isImportant, int ZhiDingindex = 0, bool isNewPlayer = true, JSONObject importantJson = null, int setSex = 0)
 	{
 		Avatar player = Tools.instance.getPlayer();
@@ -572,8 +572,16 @@ public class NPCFactory
 			{
 				jsonobject.SetField("HP", this.getRandom(jsonobject4["HP"][0].I, jsonobject4["HP"][1].I));
 				jsonobject.SetField("dunSu", this.getRandom(jsonobject4["dunSu"][0].I, jsonobject4["dunSu"][1].I));
-				jsonobject.SetField("ziZhi", this.getRandom(jsonobject4["ziZhi"][0].I, jsonobject4["ziZhi"][1].I));
-				jsonobject.SetField("wuXin", this.getRandom(jsonobject4["wuXin"][0].I, jsonobject4["wuXin"][1].I));
+				if (npcDate["MengPai"].I > 0)
+				{
+					jsonobject.SetField("ziZhi", this.getRandom(jsonobject4["ziZhi"][0].I, jsonobject4["ziZhi"][1].I) + 20);
+					jsonobject.SetField("wuXin", this.getRandom(jsonobject4["wuXin"][0].I, jsonobject4["wuXin"][1].I) + 20);
+				}
+				else
+				{
+					jsonobject.SetField("ziZhi", this.getRandom(jsonobject4["ziZhi"][0].I, jsonobject4["ziZhi"][1].I));
+					jsonobject.SetField("wuXin", this.getRandom(jsonobject4["wuXin"][0].I, jsonobject4["wuXin"][1].I));
+				}
 				jsonobject.SetField("shengShi", this.getRandom(jsonobject4["shengShi"][0].I, jsonobject4["shengShi"][1].I));
 				jsonobject.SetField("shaQi", 0);
 				jsonobject.SetField("shouYuan", this.getRandom(jsonobject4["shouYuan"][0].I, jsonobject4["shouYuan"][1].I));
@@ -594,36 +602,36 @@ public class NPCFactory
 					int num = 0;
 					int i3 = jsonobject4["equipWeapon"].I;
 					int i4 = npcDate["equipWeapon"][this.getRandom(0, npcDate["equipWeapon"].I)].I;
-					JSONObject obj = new JSONObject();
-					RandomNPCEquip.CreateLoveEquip(ref num, ref obj, i4, null, i3);
-					jsonobject["equipList"].SetField("Weapon1", obj);
+					JSONObject jsonobject5 = new JSONObject();
+					RandomNPCEquip.CreateLoveEquip(ref num, ref jsonobject5, i4, null, i3);
+					jsonobject["equipList"].SetField("Weapon1", jsonobject5);
 				}
 				if (jsonobject4["equipWeapon2"].I > 0)
 				{
 					int num2 = 0;
 					int i5 = jsonobject4["equipWeapon2"].I;
 					int i6 = npcDate["equipWeapon"][this.getRandom(0, npcDate["equipWeapon"].I)].I;
-					JSONObject obj2 = new JSONObject();
-					RandomNPCEquip.CreateLoveEquip(ref num2, ref obj2, i6, null, i5);
-					jsonobject["equipList"].SetField("Weapon2", obj2);
+					JSONObject jsonobject6 = new JSONObject();
+					RandomNPCEquip.CreateLoveEquip(ref num2, ref jsonobject6, i6, null, i5);
+					jsonobject["equipList"].SetField("Weapon2", jsonobject6);
 				}
 				if (jsonobject4["equipClothing"].I > 0)
 				{
 					int num3 = 0;
 					int i7 = jsonobject4["equipClothing"].I;
 					int i8 = npcDate["equipClothing"][this.getRandom(0, npcDate["equipClothing"].I)].I;
-					JSONObject obj3 = new JSONObject();
-					RandomNPCEquip.CreateLoveEquip(ref num3, ref obj3, i8, null, i7);
-					jsonobject["equipList"].SetField("Clothing", obj3);
+					JSONObject jsonobject7 = new JSONObject();
+					RandomNPCEquip.CreateLoveEquip(ref num3, ref jsonobject7, i8, null, i7);
+					jsonobject["equipList"].SetField("Clothing", jsonobject7);
 				}
 				if (jsonobject4["equipRing"].I > 0)
 				{
 					int num4 = 0;
 					int i9 = jsonobject4["equipRing"].I;
 					int i10 = npcDate["equipRing"][this.getRandom(0, npcDate["equipRing"].I)].I;
-					JSONObject obj4 = new JSONObject();
-					RandomNPCEquip.CreateLoveEquip(ref num4, ref obj4, i10, null, i9);
-					jsonobject["equipList"].SetField("Ring", obj4);
+					JSONObject jsonobject8 = new JSONObject();
+					RandomNPCEquip.CreateLoveEquip(ref num4, ref jsonobject8, i10, null, i9);
+					jsonobject["equipList"].SetField("Ring", jsonobject8);
 				}
 				jsonobject.SetField("equipWeaponPianHao", npcDate["equipWeapon"]);
 				jsonobject.SetField("equipWeapon2PianHao", npcDate["equipWeapon"]);
@@ -667,8 +675,8 @@ public class NPCFactory
 		}
 		else
 		{
-			JSONObject jsonobject5 = jsonData.instance.randomAvatarFace(jsonobject, jsonData.instance.AvatarRandomJsonData.HasField(string.Concat((int)jsonobject["id"].n)) ? jsonData.instance.AvatarRandomJsonData[((int)jsonobject["id"].n).ToString()] : null);
-			jsonData.instance.AvatarRandomJsonData.SetField(string.Concat((int)jsonobject["id"].n), jsonobject5.Clone());
+			JSONObject jsonobject9 = jsonData.instance.randomAvatarFace(jsonobject, null);
+			jsonData.instance.AvatarRandomJsonData.SetField(string.Concat(jsonobject["id"].I), jsonobject9.Copy());
 		}
 		FactoryManager.inst.npcFactory.InitAutoCreateNpcBackpack(jsonData.instance.AvatarBackpackJsonData, jsonobject["id"].I, jsonobject);
 		if (ZhiDingindex > 0)
@@ -683,7 +691,7 @@ public class NPCFactory
 		return jsonobject["id"].I;
 	}
 
-	// Token: 0x06001B61 RID: 7009 RVA: 0x000F4A90 File Offset: 0x000F2C90
+	// Token: 0x0600186C RID: 6252 RVA: 0x000AE1AC File Offset: 0x000AC3AC
 	public int getXiuLianSpeed(JSONObject gongFaList, float zizhi)
 	{
 		float num = 0f;
@@ -698,7 +706,7 @@ public class NPCFactory
 		return (int)num;
 	}
 
-	// Token: 0x06001B62 RID: 7010 RVA: 0x000F4B38 File Offset: 0x000F2D38
+	// Token: 0x0600186D RID: 6253 RVA: 0x000AE254 File Offset: 0x000AC454
 	public void SetNpcWuDao(int level, int wudaoType, JSONObject npcDate)
 	{
 		for (int i = 0; i < jsonData.instance.NPCWuDaoJson.Count; i++)
@@ -734,7 +742,7 @@ public class NPCFactory
 		}
 	}
 
-	// Token: 0x06001B63 RID: 7011 RVA: 0x000F4CF0 File Offset: 0x000F2EF0
+	// Token: 0x0600186E RID: 6254 RVA: 0x000AE40C File Offset: 0x000AC60C
 	public void UpNpcWuDaoByTag(int tag, JSONObject npcData)
 	{
 		JSONObject jsonobject = jsonData.instance.NPCTagDate[tag.ToString()];
@@ -756,7 +764,7 @@ public class NPCFactory
 		}
 	}
 
-	// Token: 0x06001B64 RID: 7012 RVA: 0x000F4DFC File Offset: 0x000F2FFC
+	// Token: 0x0600186F RID: 6255 RVA: 0x000AE518 File Offset: 0x000AC718
 	public void createImprotantNpc(JSONObject ImprotantNpcDate, bool isNewPlayer = true)
 	{
 		for (int i = 0; i < jsonData.instance.NPCLeiXingDate.Count; i++)
@@ -800,7 +808,7 @@ public class NPCFactory
 		}
 	}
 
-	// Token: 0x06001B65 RID: 7013 RVA: 0x000F50B4 File Offset: 0x000F32B4
+	// Token: 0x06001870 RID: 6256 RVA: 0x000AE7D0 File Offset: 0x000AC9D0
 	public void AfterCreateImprotantNpc(JSONObject ImprotantNpcDate, bool isNewPlayer = true)
 	{
 		for (int i = 0; i < jsonData.instance.NPCLeiXingDate.Count; i++)
@@ -861,13 +869,13 @@ public class NPCFactory
 		}
 	}
 
-	// Token: 0x06001B66 RID: 7014 RVA: 0x000170FB File Offset: 0x000152FB
+	// Token: 0x06001871 RID: 6257 RVA: 0x000AEB97 File Offset: 0x000ACD97
 	public int getRandom(int min, int max)
 	{
 		return this.random.Next(min, max + 1);
 	}
 
-	// Token: 0x06001B67 RID: 7015 RVA: 0x000F547C File Offset: 0x000F367C
+	// Token: 0x06001872 RID: 6258 RVA: 0x000AEBA8 File Offset: 0x000ACDA8
 	public void InitAutoCreateNpcBackpack(JSONObject jsondata, int avatarID, JSONObject data = null)
 	{
 		if (jsondata == null)
@@ -933,20 +941,20 @@ public class NPCFactory
 		}
 		foreach (int num4 in dictionary.Keys)
 		{
-			JSONObject obj = jsonData.instance.setAvatarBackpack(Tools.getUUID(), num4, dictionary[num4], 1, 100, 1, Tools.CreateItemSeid(num4), 0);
-			jsondata[avatarID.ToString()]["Backpack"].Add(obj);
+			JSONObject jsonobject2 = jsonData.instance.setAvatarBackpack(Tools.getUUID(), num4, dictionary[num4], 1, 100, 1, Tools.CreateItemSeid(num4), 0);
+			jsondata[avatarID.ToString()]["Backpack"].Add(jsonobject2);
 		}
 		for (int k = 0; k < list.Count; k++)
 		{
-			JSONObject obj2 = jsonData.instance.setAvatarBackpack(Tools.getUUID(), list[k], 1, 1, 100, 1, Tools.CreateItemSeid(list[k]), 0);
-			jsondata[avatarID.ToString()]["Backpack"].Add(obj2);
+			JSONObject jsonobject3 = jsonData.instance.setAvatarBackpack(Tools.getUUID(), list[k], 1, 1, 100, 1, Tools.CreateItemSeid(list[k]), 0);
+			jsondata[avatarID.ToString()]["Backpack"].Add(jsonobject3);
 		}
 		jsondata[avatarID.ToString()].SetField("CanSell", 1);
 		jsondata[avatarID.ToString()].SetField("SellPercent", 100);
 		jsondata[avatarID.ToString()].SetField("CanDrop", 1);
 	}
 
-	// Token: 0x06001B68 RID: 7016 RVA: 0x000F58E0 File Offset: 0x000F3AE0
+	// Token: 0x06001873 RID: 6259 RVA: 0x000AF00C File Offset: 0x000AD20C
 	public int getRandomXingGe(int zhengXie)
 	{
 		if (!this.NpcXingGeDictionary.ContainsKey(zhengXie))
@@ -969,55 +977,59 @@ public class NPCFactory
 		return this.NpcXingGeDictionary[zhengXie][this.getRandom(0, this.NpcXingGeDictionary[zhengXie].Count - 1)];
 	}
 
-	// Token: 0x06001B69 RID: 7017 RVA: 0x000F5A1C File Offset: 0x000F3C1C
+	// Token: 0x06001874 RID: 6260 RVA: 0x000AF148 File Offset: 0x000AD348
 	public JSONObject GetRandomItemByShopType(int shopType, int quality)
 	{
-		if (!this.shopTypeDictionary.ContainsKey(shopType))
+		object obj = NPCFactory.obj;
+		JSONObject result;
+		lock (obj)
 		{
-			JSONObject itemJsonData = jsonData.instance._ItemJsonData;
-			for (int i = 0; i < itemJsonData.Count; i++)
+			if (!this.shopTypeDictionary.ContainsKey(shopType))
 			{
-				int i2 = itemJsonData[i]["ShopType"].I;
-				int i3 = itemJsonData[i]["quality"].I;
-				if (this.shopTypeDictionary.ContainsKey(i2))
+				JSONObject itemJsonData = jsonData.instance._ItemJsonData;
+				for (int i = 0; i < itemJsonData.Count; i++)
 				{
-					if (this.shopTypeDictionary[i2].ContainsKey(i3))
+					int i2 = itemJsonData[i]["ShopType"].I;
+					int i3 = itemJsonData[i]["quality"].I;
+					if (this.shopTypeDictionary.ContainsKey(i2))
 					{
-						this.shopTypeDictionary[i2][i3].Add(itemJsonData[i]);
+						if (this.shopTypeDictionary[i2].ContainsKey(i3))
+						{
+							this.shopTypeDictionary[i2][i3].Add(itemJsonData[i]);
+						}
+						else
+						{
+							this.shopTypeDictionary[i2].Add(i3, new List<JSONObject>
+							{
+								itemJsonData[i]
+							});
+						}
 					}
 					else
 					{
-						this.shopTypeDictionary[i2].Add(i3, new List<JSONObject>
+						Dictionary<int, List<JSONObject>> dictionary = new Dictionary<int, List<JSONObject>>();
+						dictionary.Add(i3, new List<JSONObject>
 						{
 							itemJsonData[i]
 						});
+						this.shopTypeDictionary.Add(i2, dictionary);
 					}
 				}
-				else
-				{
-					Dictionary<int, List<JSONObject>> dictionary = new Dictionary<int, List<JSONObject>>();
-					dictionary.Add(i3, new List<JSONObject>
-					{
-						itemJsonData[i]
-					});
-					this.shopTypeDictionary.Add(i2, dictionary);
-				}
 			}
-		}
-		JSONObject result;
-		try
-		{
-			result = this.shopTypeDictionary[shopType][quality][this.getRandom(0, this.shopTypeDictionary[shopType][quality].Count - 1)];
-		}
-		catch (Exception)
-		{
-			Debug.LogError(string.Format("不存在shopType:{0},quality{1}", shopType, quality));
-			result = null;
+			try
+			{
+				result = this.shopTypeDictionary[shopType][quality][this.getRandom(0, this.shopTypeDictionary[shopType][quality].Count - 1)];
+			}
+			catch (Exception)
+			{
+				Debug.LogError(string.Format("不存在shopType:{0},quality{1}", shopType, quality));
+				result = null;
+			}
 		}
 		return result;
 	}
 
-	// Token: 0x06001B6A RID: 7018 RVA: 0x000F5B94 File Offset: 0x000F3D94
+	// Token: 0x06001875 RID: 6261 RVA: 0x000AF310 File Offset: 0x000AD510
 	public int GetBeiBaoIdByTag(int tag, int level)
 	{
 		JSONObject jsonobject = jsonData.instance.NPCTagDate[tag.ToString()]["BeiBaoType"];
@@ -1033,7 +1045,7 @@ public class NPCFactory
 		return 1;
 	}
 
-	// Token: 0x06001B6B RID: 7019 RVA: 0x000F5C70 File Offset: 0x000F3E70
+	// Token: 0x06001876 RID: 6262 RVA: 0x000AF3EC File Offset: 0x000AD5EC
 	public JSONObject GetRandomItemByType(int targetType, int quality)
 	{
 		if (!this.typeDictionary.ContainsKey(targetType))
@@ -1081,7 +1093,7 @@ public class NPCFactory
 		return result;
 	}
 
-	// Token: 0x06001B6C RID: 7020 RVA: 0x000F5DE8 File Offset: 0x000F3FE8
+	// Token: 0x06001877 RID: 6263 RVA: 0x000AF564 File Offset: 0x000AD764
 	public int GetEWaiXiuLianSpeed(int curLevel, int targetLevel, string _curTime, string _targetTime)
 	{
 		try
@@ -1102,21 +1114,24 @@ public class NPCFactory
 		return 0;
 	}
 
-	// Token: 0x04001715 RID: 5909
+	// Token: 0x0400136E RID: 4974
 	private Random random = new Random();
 
-	// Token: 0x04001716 RID: 5910
+	// Token: 0x0400136F RID: 4975
 	private Dictionary<int, Dictionary<int, List<JSONObject>>> shopTypeDictionary = new Dictionary<int, Dictionary<int, List<JSONObject>>>();
 
-	// Token: 0x04001717 RID: 5911
+	// Token: 0x04001370 RID: 4976
 	private Dictionary<int, Dictionary<int, List<JSONObject>>> typeDictionary = new Dictionary<int, Dictionary<int, List<JSONObject>>>();
 
-	// Token: 0x04001718 RID: 5912
+	// Token: 0x04001371 RID: 4977
 	private Dictionary<int, List<int>> NpcXingGeDictionary = new Dictionary<int, List<int>>();
 
-	// Token: 0x04001719 RID: 5913
+	// Token: 0x04001372 RID: 4978
 	private Dictionary<int, List<string>> NpcAuToCreateDictionary = new Dictionary<int, List<string>>();
 
-	// Token: 0x0400171A RID: 5914
+	// Token: 0x04001373 RID: 4979
 	public bool isNewGame;
+
+	// Token: 0x04001374 RID: 4980
+	public static object obj = new object();
 }

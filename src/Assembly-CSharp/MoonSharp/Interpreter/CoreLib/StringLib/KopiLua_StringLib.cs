@@ -3,10 +3,10 @@ using MoonSharp.Interpreter.Interop.LuaStateInterop;
 
 namespace MoonSharp.Interpreter.CoreLib.StringLib
 {
-	// Token: 0x020011A3 RID: 4515
+	// Token: 0x02000D85 RID: 3461
 	internal class KopiLua_StringLib : LuaBase
 	{
-		// Token: 0x06006E75 RID: 28277 RVA: 0x0004B411 File Offset: 0x00049611
+		// Token: 0x0600624C RID: 25164 RVA: 0x00277BD3 File Offset: 0x00275DD3
 		private static int posrelat(int pos, uint len)
 		{
 			if (pos < 0)
@@ -20,7 +20,7 @@ namespace MoonSharp.Interpreter.CoreLib.StringLib
 			return pos;
 		}
 
-		// Token: 0x06006E76 RID: 28278 RVA: 0x0029DC58 File Offset: 0x0029BE58
+		// Token: 0x0600624D RID: 25165 RVA: 0x00277BE8 File Offset: 0x00275DE8
 		private static int check_capture(KopiLua_StringLib.MatchState ms, int l)
 		{
 			l -= 49;
@@ -34,7 +34,7 @@ namespace MoonSharp.Interpreter.CoreLib.StringLib
 			return l;
 		}
 
-		// Token: 0x06006E77 RID: 28279 RVA: 0x0029DCAC File Offset: 0x0029BEAC
+		// Token: 0x0600624E RID: 25166 RVA: 0x00277C3C File Offset: 0x00275E3C
 		private static int capture_to_close(KopiLua_StringLib.MatchState ms)
 		{
 			int i = ms.level;
@@ -48,7 +48,7 @@ namespace MoonSharp.Interpreter.CoreLib.StringLib
 			return LuaBase.LuaLError(ms.L, "invalid pattern capture", Array.Empty<object>());
 		}
 
-		// Token: 0x06006E78 RID: 28280 RVA: 0x0029DCF8 File Offset: 0x0029BEF8
+		// Token: 0x0600624F RID: 25167 RVA: 0x00277C88 File Offset: 0x00275E88
 		private static CharPtr classend(KopiLua_StringLib.MatchState ms, CharPtr p)
 		{
 			p = new CharPtr(p);
@@ -87,7 +87,7 @@ namespace MoonSharp.Interpreter.CoreLib.StringLib
 			return p + 1;
 		}
 
-		// Token: 0x06006E79 RID: 28281 RVA: 0x0029DDE8 File Offset: 0x0029BFE8
+		// Token: 0x06006250 RID: 25168 RVA: 0x00277D78 File Offset: 0x00275F78
 		private static int match_class(char c, char cl)
 		{
 			char c2 = LuaBase.tolower(cl);
@@ -184,7 +184,7 @@ namespace MoonSharp.Interpreter.CoreLib.StringLib
 			}
 		}
 
-		// Token: 0x06006E7A RID: 28282 RVA: 0x0029DEDC File Offset: 0x0029C0DC
+		// Token: 0x06006251 RID: 25169 RVA: 0x00277E6C File Offset: 0x0027606C
 		private static int matchbracketclass(int c, CharPtr p, CharPtr ec)
 		{
 			int num = 1;
@@ -223,7 +223,7 @@ namespace MoonSharp.Interpreter.CoreLib.StringLib
 			return 1;
 		}
 
-		// Token: 0x06006E7B RID: 28283 RVA: 0x0029DF88 File Offset: 0x0029C188
+		// Token: 0x06006252 RID: 25170 RVA: 0x00277F18 File Offset: 0x00276118
 		private static int singlematch(int c, CharPtr p, CharPtr ep)
 		{
 			char c2 = p[0];
@@ -246,7 +246,7 @@ namespace MoonSharp.Interpreter.CoreLib.StringLib
 			return 1;
 		}
 
-		// Token: 0x06006E7C RID: 28284 RVA: 0x0029DFDC File Offset: 0x0029C1DC
+		// Token: 0x06006253 RID: 25171 RVA: 0x00277F6C File Offset: 0x0027616C
 		private static CharPtr matchbalance(KopiLua_StringLib.MatchState ms, CharPtr s, CharPtr p)
 		{
 			if (p[0] == '\0' || p[1] == '\0')
@@ -277,7 +277,7 @@ namespace MoonSharp.Interpreter.CoreLib.StringLib
 			return null;
 		}
 
-		// Token: 0x06006E7D RID: 28285 RVA: 0x0029E078 File Offset: 0x0029C278
+		// Token: 0x06006254 RID: 25172 RVA: 0x00278008 File Offset: 0x00276208
 		private static CharPtr max_expand(KopiLua_StringLib.MatchState ms, CharPtr s, CharPtr p, CharPtr ep)
 		{
 			int i = 0;
@@ -301,7 +301,7 @@ namespace MoonSharp.Interpreter.CoreLib.StringLib
 			return null;
 		}
 
-		// Token: 0x06006E7E RID: 28286 RVA: 0x0029E0E0 File Offset: 0x0029C2E0
+		// Token: 0x06006255 RID: 25173 RVA: 0x00278070 File Offset: 0x00276270
 		private static CharPtr min_expand(KopiLua_StringLib.MatchState ms, CharPtr s, CharPtr p, CharPtr ep)
 		{
 			CharPtr charPtr;
@@ -323,7 +323,7 @@ namespace MoonSharp.Interpreter.CoreLib.StringLib
 			return null;
 		}
 
-		// Token: 0x06006E7F RID: 28287 RVA: 0x0029E134 File Offset: 0x0029C334
+		// Token: 0x06006256 RID: 25174 RVA: 0x002780C4 File Offset: 0x002762C4
 		private static CharPtr start_capture(KopiLua_StringLib.MatchState ms, CharPtr s, CharPtr p, int what)
 		{
 			int level = ms.level;
@@ -342,7 +342,7 @@ namespace MoonSharp.Interpreter.CoreLib.StringLib
 			return charPtr;
 		}
 
-		// Token: 0x06006E80 RID: 28288 RVA: 0x0029E1A8 File Offset: 0x0029C3A8
+		// Token: 0x06006257 RID: 25175 RVA: 0x00278138 File Offset: 0x00276338
 		private static CharPtr end_capture(KopiLua_StringLib.MatchState ms, CharPtr s, CharPtr p)
 		{
 			int num = KopiLua_StringLib.capture_to_close(ms);
@@ -355,7 +355,7 @@ namespace MoonSharp.Interpreter.CoreLib.StringLib
 			return charPtr;
 		}
 
-		// Token: 0x06006E81 RID: 28289 RVA: 0x0029E1FC File Offset: 0x0029C3FC
+		// Token: 0x06006258 RID: 25176 RVA: 0x0027818C File Offset: 0x0027638C
 		private static CharPtr match_capture(KopiLua_StringLib.MatchState ms, CharPtr s, int l)
 		{
 			l = KopiLua_StringLib.check_capture(ms, l);
@@ -367,7 +367,7 @@ namespace MoonSharp.Interpreter.CoreLib.StringLib
 			return null;
 		}
 
-		// Token: 0x06006E82 RID: 28290 RVA: 0x0029E250 File Offset: 0x0029C450
+		// Token: 0x06006259 RID: 25177 RVA: 0x002781E0 File Offset: 0x002763E0
 		private static CharPtr match(KopiLua_StringLib.MatchState ms, CharPtr s, CharPtr p)
 		{
 			s = new CharPtr(s);
@@ -568,7 +568,7 @@ namespace MoonSharp.Interpreter.CoreLib.StringLib
 			return null;
 		}
 
-		// Token: 0x06006E83 RID: 28291 RVA: 0x0029E5E4 File Offset: 0x0029C7E4
+		// Token: 0x0600625A RID: 25178 RVA: 0x00278574 File Offset: 0x00276774
 		private static CharPtr lmemfind(CharPtr s1, uint l1, CharPtr s2, uint l2)
 		{
 			if (l2 == 0U)
@@ -595,7 +595,7 @@ namespace MoonSharp.Interpreter.CoreLib.StringLib
 			return null;
 		}
 
-		// Token: 0x06006E84 RID: 28292 RVA: 0x0029E654 File Offset: 0x0029C854
+		// Token: 0x0600625B RID: 25179 RVA: 0x002785E4 File Offset: 0x002767E4
 		private static void push_onecapture(KopiLua_StringLib.MatchState ms, int i, CharPtr s, CharPtr e)
 		{
 			if (i >= ms.level)
@@ -625,7 +625,7 @@ namespace MoonSharp.Interpreter.CoreLib.StringLib
 			}
 		}
 
-		// Token: 0x06006E85 RID: 28293 RVA: 0x0029E704 File Offset: 0x0029C904
+		// Token: 0x0600625C RID: 25180 RVA: 0x00278694 File Offset: 0x00276894
 		private static int push_captures(KopiLua_StringLib.MatchState ms, CharPtr s, CharPtr e)
 		{
 			int num = (ms.level == 0 && s != null) ? 1 : ms.level;
@@ -637,7 +637,7 @@ namespace MoonSharp.Interpreter.CoreLib.StringLib
 			return num;
 		}
 
-		// Token: 0x06006E86 RID: 28294 RVA: 0x0029E754 File Offset: 0x0029C954
+		// Token: 0x0600625D RID: 25181 RVA: 0x002786E4 File Offset: 0x002768E4
 		private static int str_find_aux(LuaState L, int find)
 		{
 			uint num;
@@ -704,19 +704,19 @@ namespace MoonSharp.Interpreter.CoreLib.StringLib
 			return 1;
 		}
 
-		// Token: 0x06006E87 RID: 28295 RVA: 0x0004B425 File Offset: 0x00049625
+		// Token: 0x0600625E RID: 25182 RVA: 0x0027887E File Offset: 0x00276A7E
 		public static int str_find(LuaState L)
 		{
 			return KopiLua_StringLib.str_find_aux(L, 1);
 		}
 
-		// Token: 0x06006E88 RID: 28296 RVA: 0x0004B42E File Offset: 0x0004962E
+		// Token: 0x0600625F RID: 25183 RVA: 0x00278887 File Offset: 0x00276A87
 		public static int str_match(LuaState L)
 		{
 			return KopiLua_StringLib.str_find_aux(L, 0);
 		}
 
-		// Token: 0x06006E89 RID: 28297 RVA: 0x0029E8F0 File Offset: 0x0029CAF0
+		// Token: 0x06006260 RID: 25184 RVA: 0x00278890 File Offset: 0x00276A90
 		private static int gmatch_aux(LuaState L, KopiLua_StringLib.GMatchAuxData auxdata)
 		{
 			KopiLua_StringLib.MatchState matchState = new KopiLua_StringLib.MatchState();
@@ -748,13 +748,13 @@ namespace MoonSharp.Interpreter.CoreLib.StringLib
 			return 0;
 		}
 
-		// Token: 0x06006E8A RID: 28298 RVA: 0x0029E9BC File Offset: 0x0029CBBC
+		// Token: 0x06006261 RID: 25185 RVA: 0x0027895C File Offset: 0x00276B5C
 		private static DynValue gmatch_aux_2(ScriptExecutionContext executionContext, CallbackArguments args)
 		{
 			return executionContext.EmulateClassicCall(args, "gmatch", (LuaState L) => KopiLua_StringLib.gmatch_aux(L, (KopiLua_StringLib.GMatchAuxData)executionContext.AdditionalData));
 		}
 
-		// Token: 0x06006E8B RID: 28299 RVA: 0x0029E9F4 File Offset: 0x0029CBF4
+		// Token: 0x06006262 RID: 25186 RVA: 0x00278994 File Offset: 0x00276B94
 		public static int str_gmatch(LuaState L)
 		{
 			CallbackFunction callbackFunction = new CallbackFunction(new Func<ScriptExecutionContext, CallbackArguments, DynValue>(KopiLua_StringLib.gmatch_aux_2), "gmatch");
@@ -771,13 +771,13 @@ namespace MoonSharp.Interpreter.CoreLib.StringLib
 			return 1;
 		}
 
-		// Token: 0x06006E8C RID: 28300 RVA: 0x0004B437 File Offset: 0x00049637
+		// Token: 0x06006263 RID: 25187 RVA: 0x00278A1E File Offset: 0x00276C1E
 		private static int gfind_nodef(LuaState L)
 		{
 			return LuaBase.LuaLError(L, LuaBase.LUA_QL("string.gfind") + " was renamed to " + LuaBase.LUA_QL("string.gmatch"), Array.Empty<object>());
 		}
 
-		// Token: 0x06006E8D RID: 28301 RVA: 0x0029EA80 File Offset: 0x0029CC80
+		// Token: 0x06006264 RID: 25188 RVA: 0x00278A4C File Offset: 0x00276C4C
 		private static void add_s(KopiLua_StringLib.MatchState ms, LuaLBuffer b, CharPtr s, CharPtr e)
 		{
 			uint num;
@@ -812,7 +812,7 @@ namespace MoonSharp.Interpreter.CoreLib.StringLib
 			}
 		}
 
-		// Token: 0x06006E8E RID: 28302 RVA: 0x0029EB44 File Offset: 0x0029CD44
+		// Token: 0x06006265 RID: 25189 RVA: 0x00278B10 File Offset: 0x00276D10
 		private static void add_value(KopiLua_StringLib.MatchState ms, LuaLBuffer b, CharPtr s, CharPtr e)
 		{
 			LuaState l = ms.L;
@@ -849,7 +849,7 @@ namespace MoonSharp.Interpreter.CoreLib.StringLib
 			LuaBase.LuaLAddValue(b);
 		}
 
-		// Token: 0x06006E8F RID: 28303 RVA: 0x0029EBFC File Offset: 0x0029CDFC
+		// Token: 0x06006266 RID: 25190 RVA: 0x00278BC8 File Offset: 0x00276DC8
 		public static int str_gsub(LuaState L)
 		{
 			uint num;
@@ -907,7 +907,7 @@ namespace MoonSharp.Interpreter.CoreLib.StringLib
 			return 2;
 		}
 
-		// Token: 0x06006E90 RID: 28304 RVA: 0x0029ED70 File Offset: 0x0029CF70
+		// Token: 0x06006267 RID: 25191 RVA: 0x00278D3C File Offset: 0x00276F3C
 		private static void addquoted(LuaState L, LuaLBuffer b, int arg)
 		{
 			uint num;
@@ -965,7 +965,7 @@ namespace MoonSharp.Interpreter.CoreLib.StringLib
 			LuaBase.LuaLAddChar(b, '"');
 		}
 
-		// Token: 0x06006E91 RID: 28305 RVA: 0x0029EE70 File Offset: 0x0029D070
+		// Token: 0x06006268 RID: 25192 RVA: 0x00278E3C File Offset: 0x0027703C
 		private static CharPtr scanformat(LuaState L, CharPtr strfrmt, CharPtr form)
 		{
 			CharPtr charPtr = strfrmt;
@@ -1009,7 +1009,7 @@ namespace MoonSharp.Interpreter.CoreLib.StringLib
 			return charPtr;
 		}
 
-		// Token: 0x06006E92 RID: 28306 RVA: 0x0029EFA0 File Offset: 0x0029D1A0
+		// Token: 0x06006269 RID: 25193 RVA: 0x00278F6C File Offset: 0x0027716C
 		private static void addintlen(CharPtr form)
 		{
 			uint num = (uint)LuaBase.strlen(form);
@@ -1019,7 +1019,7 @@ namespace MoonSharp.Interpreter.CoreLib.StringLib
 			form[(long)((ulong)num + (ulong)((long)("l".Length + 1)) - 1UL)] = '\0';
 		}
 
-		// Token: 0x06006E93 RID: 28307 RVA: 0x0029F010 File Offset: 0x0029D210
+		// Token: 0x0600626A RID: 25194 RVA: 0x00278FDC File Offset: 0x002771DC
 		public static int str_format(LuaState L)
 		{
 			int num = LuaBase.LuaGetTop(L);
@@ -1151,43 +1151,43 @@ namespace MoonSharp.Interpreter.CoreLib.StringLib
 			return 1;
 		}
 
-		// Token: 0x06006E94 RID: 28308 RVA: 0x0004B462 File Offset: 0x00049662
+		// Token: 0x0600626B RID: 25195 RVA: 0x002792B1 File Offset: 0x002774B1
 		private static string PatchPattern(string charPtr)
 		{
 			return charPtr.Replace("\0", "%z");
 		}
 
-		// Token: 0x0400625C RID: 25180
+		// Token: 0x04005594 RID: 21908
 		public const int LUA_MAXCAPTURES = 32;
 
-		// Token: 0x0400625D RID: 25181
+		// Token: 0x04005595 RID: 21909
 		public const int CAP_UNFINISHED = -1;
 
-		// Token: 0x0400625E RID: 25182
+		// Token: 0x04005596 RID: 21910
 		public const int CAP_POSITION = -2;
 
-		// Token: 0x0400625F RID: 25183
+		// Token: 0x04005597 RID: 21911
 		public const int MAXCCALLS = 200;
 
-		// Token: 0x04006260 RID: 25184
+		// Token: 0x04005598 RID: 21912
 		public const char L_ESC = '%';
 
-		// Token: 0x04006261 RID: 25185
+		// Token: 0x04005599 RID: 21913
 		public const string SPECIALS = "^$*+?.([%-";
 
-		// Token: 0x04006262 RID: 25186
+		// Token: 0x0400559A RID: 21914
 		public const int MAX_ITEM = 512;
 
-		// Token: 0x04006263 RID: 25187
+		// Token: 0x0400559B RID: 21915
 		public const string FLAGS = "-+ #0";
 
-		// Token: 0x04006264 RID: 25188
+		// Token: 0x0400559C RID: 21916
 		public static readonly int MAX_FORMAT = "-+ #0".Length + 1 + ("l".Length + 1) + 10;
 
-		// Token: 0x020011A4 RID: 4516
+		// Token: 0x02001693 RID: 5779
 		public class MatchState
 		{
-			// Token: 0x06006E97 RID: 28311 RVA: 0x0029F2E8 File Offset: 0x0029D4E8
+			// Token: 0x06008794 RID: 34708 RVA: 0x002E71C0 File Offset: 0x002E53C0
 			public MatchState()
 			{
 				for (int i = 0; i < 32; i++)
@@ -1196,48 +1196,48 @@ namespace MoonSharp.Interpreter.CoreLib.StringLib
 				}
 			}
 
-			// Token: 0x04006265 RID: 25189
+			// Token: 0x04007325 RID: 29477
 			public int matchdepth;
 
-			// Token: 0x04006266 RID: 25190
+			// Token: 0x04007326 RID: 29478
 			public CharPtr src_init;
 
-			// Token: 0x04006267 RID: 25191
+			// Token: 0x04007327 RID: 29479
 			public CharPtr src_end;
 
-			// Token: 0x04006268 RID: 25192
+			// Token: 0x04007328 RID: 29480
 			public LuaState L;
 
-			// Token: 0x04006269 RID: 25193
+			// Token: 0x04007329 RID: 29481
 			public int level;
 
-			// Token: 0x0400626A RID: 25194
+			// Token: 0x0400732A RID: 29482
 			public KopiLua_StringLib.MatchState.capture_[] capture = new KopiLua_StringLib.MatchState.capture_[32];
 
-			// Token: 0x020011A5 RID: 4517
+			// Token: 0x0200175F RID: 5983
 			public class capture_
 			{
-				// Token: 0x0400626B RID: 25195
+				// Token: 0x040075AC RID: 30124
 				public CharPtr init;
 
-				// Token: 0x0400626C RID: 25196
+				// Token: 0x040075AD RID: 30125
 				public int len;
 			}
 		}
 
-		// Token: 0x020011A6 RID: 4518
+		// Token: 0x02001694 RID: 5780
 		private class GMatchAuxData
 		{
-			// Token: 0x0400626D RID: 25197
+			// Token: 0x0400732B RID: 29483
 			public CharPtr S;
 
-			// Token: 0x0400626E RID: 25198
+			// Token: 0x0400732C RID: 29484
 			public CharPtr P;
 
-			// Token: 0x0400626F RID: 25199
+			// Token: 0x0400732D RID: 29485
 			public uint LS;
 
-			// Token: 0x04006270 RID: 25200
+			// Token: 0x0400732E RID: 29486
 			public uint POS;
 		}
 	}

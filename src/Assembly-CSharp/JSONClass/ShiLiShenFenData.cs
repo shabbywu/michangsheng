@@ -3,10 +3,10 @@ using System.Collections.Generic;
 
 namespace JSONClass
 {
-	// Token: 0x02000C6A RID: 3178
+	// Token: 0x020008DD RID: 2269
 	public class ShiLiShenFenData : IJSONClass
 	{
-		// Token: 0x06004D11 RID: 19729 RVA: 0x00208C60 File Offset: 0x00206E60
+		// Token: 0x06004187 RID: 16775 RVA: 0x001C0988 File Offset: 0x001BEB88
 		public static void InitDataDict()
 		{
 			foreach (JSONObject jsonobject in jsonData.instance.ShiLiShenFenData.list)
@@ -42,33 +42,33 @@ namespace JSONClass
 			}
 		}
 
-		// Token: 0x06004D12 RID: 19730 RVA: 0x000042DD File Offset: 0x000024DD
+		// Token: 0x06004188 RID: 16776 RVA: 0x00004095 File Offset: 0x00002295
 		private static void OnInitFinish()
 		{
 		}
 
-		// Token: 0x04004C31 RID: 19505
+		// Token: 0x040040E7 RID: 16615
 		public static Dictionary<int, ShiLiShenFenData> DataDict = new Dictionary<int, ShiLiShenFenData>();
 
-		// Token: 0x04004C32 RID: 19506
+		// Token: 0x040040E8 RID: 16616
 		public static List<ShiLiShenFenData> DataList = new List<ShiLiShenFenData>();
 
-		// Token: 0x04004C33 RID: 19507
+		// Token: 0x040040E9 RID: 16617
 		public static Action OnInitFinishAction = new Action(ShiLiShenFenData.OnInitFinish);
 
-		// Token: 0x04004C34 RID: 19508
+		// Token: 0x040040EA RID: 16618
 		public int id;
 
-		// Token: 0x04004C35 RID: 19509
+		// Token: 0x040040EB RID: 16619
 		public int ShenFen;
 
-		// Token: 0x04004C36 RID: 19510
+		// Token: 0x040040EC RID: 16620
 		public int ShiLi;
 
-		// Token: 0x04004C37 RID: 19511
+		// Token: 0x040040ED RID: 16621
 		public string ZongMen;
 
-		// Token: 0x04004C38 RID: 19512
+		// Token: 0x040040EE RID: 16622
 		public string Name;
 	}
 }

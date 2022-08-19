@@ -2,16 +2,16 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-// Token: 0x0200058E RID: 1422
+// Token: 0x020003ED RID: 1005
 public class CreateFaceButton : MonoBehaviour
 {
-	// Token: 0x0600240E RID: 9230 RVA: 0x0001D18E File Offset: 0x0001B38E
+	// Token: 0x0600207B RID: 8315 RVA: 0x000E4C36 File Offset: 0x000E2E36
 	private void Start()
 	{
 		base.GetComponent<UIButton>().onClick.Add(new EventDelegate(new EventDelegate.Callback(this.resteChoice)));
 	}
 
-	// Token: 0x0600240F RID: 9231 RVA: 0x00126F68 File Offset: 0x00125168
+	// Token: 0x0600207C RID: 8316 RVA: 0x000E4C5C File Offset: 0x000E2E5C
 	public void resteChoice()
 	{
 		string text = base.transform.Find("Label").GetComponent<UILabel>().text;

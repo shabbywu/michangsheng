@@ -3,10 +3,10 @@ using UnityEngine;
 
 namespace Spine.Unity.Examples
 {
-	// Token: 0x02000E30 RID: 3632
+	// Token: 0x02000AE3 RID: 2787
 	public class SpineboyTargetController : MonoBehaviour
 	{
-		// Token: 0x06005774 RID: 22388 RVA: 0x0003E7F4 File Offset: 0x0003C9F4
+		// Token: 0x06004DF8 RID: 19960 RVA: 0x00214DB4 File Offset: 0x00212FB4
 		private void OnValidate()
 		{
 			if (this.skeletonAnimation == null)
@@ -15,13 +15,13 @@ namespace Spine.Unity.Examples
 			}
 		}
 
-		// Token: 0x06005775 RID: 22389 RVA: 0x0003E810 File Offset: 0x0003CA10
+		// Token: 0x06004DF9 RID: 19961 RVA: 0x00214DD0 File Offset: 0x00212FD0
 		private void Start()
 		{
 			this.bone = this.skeletonAnimation.Skeleton.FindBone(this.boneName);
 		}
 
-		// Token: 0x06005776 RID: 22390 RVA: 0x00244FC4 File Offset: 0x002431C4
+		// Token: 0x06004DFA RID: 19962 RVA: 0x00214DF0 File Offset: 0x00212FF0
 		private void Update()
 		{
 			Vector3 mousePosition = Input.mousePosition;
@@ -32,17 +32,17 @@ namespace Spine.Unity.Examples
 			SkeletonExtensions.SetLocalPosition(this.bone, vector2);
 		}
 
-		// Token: 0x0400575D RID: 22365
+		// Token: 0x04004D54 RID: 19796
 		public SkeletonAnimation skeletonAnimation;
 
-		// Token: 0x0400575E RID: 22366
+		// Token: 0x04004D55 RID: 19797
 		[SpineBone("", "skeletonAnimation", true, false)]
 		public string boneName;
 
-		// Token: 0x0400575F RID: 22367
+		// Token: 0x04004D56 RID: 19798
 		public Camera camera;
 
-		// Token: 0x04005760 RID: 22368
+		// Token: 0x04004D57 RID: 19799
 		private Bone bone;
 	}
 }

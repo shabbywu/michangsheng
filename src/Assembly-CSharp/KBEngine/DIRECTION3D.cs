@@ -3,30 +3,30 @@ using UnityEngine;
 
 namespace KBEngine
 {
-	// Token: 0x02000F41 RID: 3905
+	// Token: 0x02000BBE RID: 3006
 	public struct DIRECTION3D
 	{
-		// Token: 0x06005E12 RID: 24082 RVA: 0x00042037 File Offset: 0x00040237
+		// Token: 0x060053D4 RID: 21460 RVA: 0x00233ED6 File Offset: 0x002320D6
 		private DIRECTION3D(Vector3 value)
 		{
 			this.value = value;
 		}
 
-		// Token: 0x06005E13 RID: 24083 RVA: 0x00042040 File Offset: 0x00040240
+		// Token: 0x060053D5 RID: 21461 RVA: 0x00233EDF File Offset: 0x002320DF
 		public static implicit operator Vector3(DIRECTION3D value)
 		{
 			return value.value;
 		}
 
-		// Token: 0x06005E14 RID: 24084 RVA: 0x00042048 File Offset: 0x00040248
+		// Token: 0x060053D6 RID: 21462 RVA: 0x00233EE7 File Offset: 0x002320E7
 		public static implicit operator DIRECTION3D(Vector3 value)
 		{
 			return new DIRECTION3D(value);
 		}
 
-		// Token: 0x1700089A RID: 2202
-		// (get) Token: 0x06005E15 RID: 24085 RVA: 0x00042050 File Offset: 0x00040250
-		// (set) Token: 0x06005E16 RID: 24086 RVA: 0x0004205D File Offset: 0x0004025D
+		// Token: 0x17000647 RID: 1607
+		// (get) Token: 0x060053D7 RID: 21463 RVA: 0x00233EEF File Offset: 0x002320EF
+		// (set) Token: 0x060053D8 RID: 21464 RVA: 0x00233EFC File Offset: 0x002320FC
 		public float x
 		{
 			get
@@ -39,9 +39,9 @@ namespace KBEngine
 			}
 		}
 
-		// Token: 0x1700089B RID: 2203
-		// (get) Token: 0x06005E17 RID: 24087 RVA: 0x0004206B File Offset: 0x0004026B
-		// (set) Token: 0x06005E18 RID: 24088 RVA: 0x00042078 File Offset: 0x00040278
+		// Token: 0x17000648 RID: 1608
+		// (get) Token: 0x060053D9 RID: 21465 RVA: 0x00233F0A File Offset: 0x0023210A
+		// (set) Token: 0x060053DA RID: 21466 RVA: 0x00233F17 File Offset: 0x00232117
 		public float y
 		{
 			get
@@ -54,9 +54,9 @@ namespace KBEngine
 			}
 		}
 
-		// Token: 0x1700089C RID: 2204
-		// (get) Token: 0x06005E19 RID: 24089 RVA: 0x00042086 File Offset: 0x00040286
-		// (set) Token: 0x06005E1A RID: 24090 RVA: 0x00042093 File Offset: 0x00040293
+		// Token: 0x17000649 RID: 1609
+		// (get) Token: 0x060053DB RID: 21467 RVA: 0x00233F25 File Offset: 0x00232125
+		// (set) Token: 0x060053DC RID: 21468 RVA: 0x00233F32 File Offset: 0x00232132
 		public float z
 		{
 			get
@@ -69,7 +69,7 @@ namespace KBEngine
 			}
 		}
 
-		// Token: 0x04005AEB RID: 23275
+		// Token: 0x0400504A RID: 20554
 		private Vector3 value;
 	}
 }

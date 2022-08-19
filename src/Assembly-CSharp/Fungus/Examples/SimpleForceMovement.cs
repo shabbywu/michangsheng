@@ -3,10 +3,10 @@ using UnityEngine;
 
 namespace Fungus.Examples
 {
-	// Token: 0x02001468 RID: 5224
+	// Token: 0x02000FB0 RID: 4016
 	public class SimpleForceMovement : MonoBehaviour
 	{
-		// Token: 0x06007DE6 RID: 32230 RVA: 0x002C80A0 File Offset: 0x002C62A0
+		// Token: 0x06006FEC RID: 28652 RVA: 0x002A88B8 File Offset: 0x002A6AB8
 		private void FixedUpdate()
 		{
 			Vector3 vector = this.getForwardFrom.forward;
@@ -25,13 +25,13 @@ namespace Fungus.Examples
 			this.rb.AddForce(vector3 * this.forceScale);
 		}
 
-		// Token: 0x04006B57 RID: 27479
+		// Token: 0x04005C5F RID: 23647
 		public Rigidbody rb;
 
-		// Token: 0x04006B58 RID: 27480
+		// Token: 0x04005C60 RID: 23648
 		public Transform getForwardFrom;
 
-		// Token: 0x04006B59 RID: 27481
+		// Token: 0x04005C61 RID: 23649
 		public float forceScale;
 	}
 }

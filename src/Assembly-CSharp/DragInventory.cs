@@ -2,10 +2,10 @@
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-// Token: 0x02000206 RID: 518
+// Token: 0x02000135 RID: 309
 public class DragInventory : MonoBehaviour, IPointerDownHandler, IEventSystemHandler, IDragHandler
 {
-	// Token: 0x06001051 RID: 4177 RVA: 0x000A50E8 File Offset: 0x000A32E8
+	// Token: 0x06000E43 RID: 3651 RVA: 0x00054B00 File Offset: 0x00052D00
 	private void Awake()
 	{
 		Canvas componentInParent = base.GetComponentInParent<Canvas>();
@@ -16,13 +16,13 @@ public class DragInventory : MonoBehaviour, IPointerDownHandler, IEventSystemHan
 		}
 	}
 
-	// Token: 0x06001052 RID: 4178 RVA: 0x000104A5 File Offset: 0x0000E6A5
+	// Token: 0x06000E44 RID: 3652 RVA: 0x00054B44 File Offset: 0x00052D44
 	public void OnPointerDown(PointerEventData data)
 	{
 		RectTransformUtility.ScreenPointToLocalPointInRectangle(this.panelRectTransform, data.position, data.pressEventCamera, ref this.pointerOffset);
 	}
 
-	// Token: 0x06001053 RID: 4179 RVA: 0x000A512C File Offset: 0x000A332C
+	// Token: 0x06000E45 RID: 3653 RVA: 0x00054B64 File Offset: 0x00052D64
 	public void OnDrag(PointerEventData data)
 	{
 		if (this.panelRectTransform == null)
@@ -36,12 +36,12 @@ public class DragInventory : MonoBehaviour, IPointerDownHandler, IEventSystemHan
 		}
 	}
 
-	// Token: 0x04000CE3 RID: 3299
+	// Token: 0x04000A4B RID: 2635
 	private Vector2 pointerOffset;
 
-	// Token: 0x04000CE4 RID: 3300
+	// Token: 0x04000A4C RID: 2636
 	private RectTransform canvasRectTransform;
 
-	// Token: 0x04000CE5 RID: 3301
+	// Token: 0x04000A4D RID: 2637
 	private RectTransform panelRectTransform;
 }

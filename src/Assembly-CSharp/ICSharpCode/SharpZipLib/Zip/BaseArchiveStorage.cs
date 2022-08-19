@@ -3,32 +3,32 @@ using System.IO;
 
 namespace ICSharpCode.SharpZipLib.Zip
 {
-	// Token: 0x020007E7 RID: 2023
+	// Token: 0x02000545 RID: 1349
 	public abstract class BaseArchiveStorage : IArchiveStorage
 	{
-		// Token: 0x060033DD RID: 13277 RVA: 0x00025CF5 File Offset: 0x00023EF5
+		// Token: 0x06002B86 RID: 11142 RVA: 0x00145FCD File Offset: 0x001441CD
 		protected BaseArchiveStorage(FileUpdateMode updateMode)
 		{
 			this.updateMode_ = updateMode;
 		}
 
-		// Token: 0x060033DE RID: 13278
+		// Token: 0x06002B87 RID: 11143
 		public abstract Stream GetTemporaryOutput();
 
-		// Token: 0x060033DF RID: 13279
+		// Token: 0x06002B88 RID: 11144
 		public abstract Stream ConvertTemporaryToFinal();
 
-		// Token: 0x060033E0 RID: 13280
+		// Token: 0x06002B89 RID: 11145
 		public abstract Stream MakeTemporaryCopy(Stream stream);
 
-		// Token: 0x060033E1 RID: 13281
+		// Token: 0x06002B8A RID: 11146
 		public abstract Stream OpenForDirectUpdate(Stream stream);
 
-		// Token: 0x060033E2 RID: 13282
+		// Token: 0x06002B8B RID: 11147
 		public abstract void Dispose();
 
-		// Token: 0x170004D3 RID: 1235
-		// (get) Token: 0x060033E3 RID: 13283 RVA: 0x00025D04 File Offset: 0x00023F04
+		// Token: 0x1700031E RID: 798
+		// (get) Token: 0x06002B8C RID: 11148 RVA: 0x00145FDC File Offset: 0x001441DC
 		public FileUpdateMode UpdateMode
 		{
 			get
@@ -37,7 +37,7 @@ namespace ICSharpCode.SharpZipLib.Zip
 			}
 		}
 
-		// Token: 0x04002F4E RID: 12110
+		// Token: 0x0400272C RID: 10028
 		private readonly FileUpdateMode updateMode_;
 	}
 }

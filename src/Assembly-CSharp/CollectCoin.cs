@@ -2,10 +2,10 @@
 using System.Collections;
 using UnityEngine;
 
-// Token: 0x02000682 RID: 1666
+// Token: 0x020004A3 RID: 1187
 public class CollectCoin : MonoBehaviour
 {
-	// Token: 0x060029A4 RID: 10660 RVA: 0x00142E20 File Offset: 0x00141020
+	// Token: 0x0600256E RID: 9582 RVA: 0x00103230 File Offset: 0x00101430
 	private void Awake()
 	{
 		this.gameManager = GameObject.Find("_GameManager");
@@ -16,14 +16,14 @@ public class CollectCoin : MonoBehaviour
 		this.novcicMeshRenderer = base.transform.Find("NovcicNovi").GetChild(1).GetComponent<Renderer>();
 	}
 
-	// Token: 0x060029A5 RID: 10661 RVA: 0x0002053B File Offset: 0x0001E73B
+	// Token: 0x0600256F RID: 9583 RVA: 0x001032B6 File Offset: 0x001014B6
 	private void Start()
 	{
 		this.coinsCollectedText = this.manage.coinsCollectedText;
 		this.effects = this.coinsCollectedText.GetComponent<TextMeshEffects>();
 	}
 
-	// Token: 0x060029A6 RID: 10662 RVA: 0x00142EA8 File Offset: 0x001410A8
+	// Token: 0x06002570 RID: 9584 RVA: 0x001032DC File Offset: 0x001014DC
 	private void OnTriggerEnter2D(Collider2D col)
 	{
 		if (col.tag == "Monkey" && this.controller.state != MonkeyController2D.State.wasted)
@@ -86,7 +86,7 @@ public class CollectCoin : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060029A7 RID: 10663 RVA: 0x0002055F File Offset: 0x0001E75F
+	// Token: 0x06002571 RID: 9585 RVA: 0x0010348C File Offset: 0x0010168C
 	private void DisableRenderer()
 	{
 		this.novcicMeshRenderer.enabled = false;
@@ -94,7 +94,7 @@ public class CollectCoin : MonoBehaviour
 		this.magnetAnimacija = false;
 	}
 
-	// Token: 0x060029A8 RID: 10664 RVA: 0x00020584 File Offset: 0x0001E784
+	// Token: 0x06002572 RID: 9586 RVA: 0x001034B1 File Offset: 0x001016B1
 	private IEnumerator magnetWorking()
 	{
 		this.orgPos = base.transform.localPosition;
@@ -149,7 +149,7 @@ public class CollectCoin : MonoBehaviour
 		yield break;
 	}
 
-	// Token: 0x060029A9 RID: 10665 RVA: 0x00020593 File Offset: 0x0001E793
+	// Token: 0x06002573 RID: 9587 RVA: 0x001034C0 File Offset: 0x001016C0
 	private void WaitAndTurnOff()
 	{
 		if (MonkeyController2D.canRespawnThings)
@@ -160,45 +160,45 @@ public class CollectCoin : MonoBehaviour
 		}
 	}
 
-	// Token: 0x04002345 RID: 9029
+	// Token: 0x04001E23 RID: 7715
 	public ParticleSystem coinSparkle;
 
-	// Token: 0x04002346 RID: 9030
+	// Token: 0x04001E24 RID: 7716
 	public ParticleSystem coinSparkle1;
 
-	// Token: 0x04002347 RID: 9031
+	// Token: 0x04001E25 RID: 7717
 	public ParticleSystem coinWave;
 
-	// Token: 0x04002348 RID: 9032
+	// Token: 0x04001E26 RID: 7718
 	private GameObject gameManager;
 
-	// Token: 0x04002349 RID: 9033
+	// Token: 0x04001E27 RID: 7719
 	private TextMesh coinsCollectedText;
 
-	// Token: 0x0400234A RID: 9034
+	// Token: 0x04001E28 RID: 7720
 	private Manage manage;
 
-	// Token: 0x0400234B RID: 9035
+	// Token: 0x04001E29 RID: 7721
 	private Animation coinRotate;
 
-	// Token: 0x0400234C RID: 9036
+	// Token: 0x04001E2A RID: 7722
 	private bool magnetDrag;
 
-	// Token: 0x0400234D RID: 9037
+	// Token: 0x04001E2B RID: 7723
 	private Transform Monkey;
 
-	// Token: 0x0400234E RID: 9038
+	// Token: 0x04001E2C RID: 7724
 	private MonkeyController2D controller;
 
-	// Token: 0x0400234F RID: 9039
+	// Token: 0x04001E2D RID: 7725
 	private Renderer novcicMeshRenderer;
 
-	// Token: 0x04002350 RID: 9040
+	// Token: 0x04001E2E RID: 7726
 	private Vector3 orgPos;
 
-	// Token: 0x04002351 RID: 9041
+	// Token: 0x04001E2F RID: 7727
 	private TextMeshEffects effects;
 
-	// Token: 0x04002352 RID: 9042
+	// Token: 0x04001E30 RID: 7728
 	private bool magnetAnimacija;
 }

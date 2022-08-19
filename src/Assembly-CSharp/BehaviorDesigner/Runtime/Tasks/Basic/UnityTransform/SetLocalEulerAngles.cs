@@ -3,12 +3,12 @@ using UnityEngine;
 
 namespace BehaviorDesigner.Runtime.Tasks.Basic.UnityTransform
 {
-	// Token: 0x020014ED RID: 5357
+	// Token: 0x02001033 RID: 4147
 	[TaskCategory("Basic/Transform")]
 	[TaskDescription("Sets the local euler angles of the Transform. Returns Success.")]
 	public class SetLocalEulerAngles : Action
 	{
-		// Token: 0x06007FE1 RID: 32737 RVA: 0x002CAA54 File Offset: 0x002C8C54
+		// Token: 0x060071E7 RID: 29159 RVA: 0x002ACE14 File Offset: 0x002AB014
 		public override void OnStart()
 		{
 			GameObject defaultGameObject = base.GetDefaultGameObject(this.targetGameObject.Value);
@@ -19,7 +19,7 @@ namespace BehaviorDesigner.Runtime.Tasks.Basic.UnityTransform
 			}
 		}
 
-		// Token: 0x06007FE2 RID: 32738 RVA: 0x00056D52 File Offset: 0x00054F52
+		// Token: 0x060071E8 RID: 29160 RVA: 0x002ACE54 File Offset: 0x002AB054
 		public override TaskStatus OnUpdate()
 		{
 			if (this.targetTransform == null)
@@ -31,25 +31,25 @@ namespace BehaviorDesigner.Runtime.Tasks.Basic.UnityTransform
 			return 2;
 		}
 
-		// Token: 0x06007FE3 RID: 32739 RVA: 0x00056D85 File Offset: 0x00054F85
+		// Token: 0x060071E9 RID: 29161 RVA: 0x002ACE87 File Offset: 0x002AB087
 		public override void OnReset()
 		{
 			this.targetGameObject = null;
 			this.localEulerAngles = Vector3.zero;
 		}
 
-		// Token: 0x04006CC8 RID: 27848
+		// Token: 0x04005DC8 RID: 24008
 		[Tooltip("The GameObject that the task operates on. If null the task GameObject is used.")]
 		public SharedGameObject targetGameObject;
 
-		// Token: 0x04006CC9 RID: 27849
+		// Token: 0x04005DC9 RID: 24009
 		[Tooltip("The local euler angles of the Transform")]
 		public SharedVector3 localEulerAngles;
 
-		// Token: 0x04006CCA RID: 27850
+		// Token: 0x04005DCA RID: 24010
 		private Transform targetTransform;
 
-		// Token: 0x04006CCB RID: 27851
+		// Token: 0x04005DCB RID: 24011
 		private GameObject prevGameObject;
 	}
 }

@@ -2,16 +2,16 @@
 
 namespace SuperScrollView
 {
-	// Token: 0x020009EA RID: 2538
+	// Token: 0x020006BF RID: 1727
 	public enum GridItemArrangeType
 	{
-		// Token: 0x040039AC RID: 14764
+		// Token: 0x04002FA7 RID: 12199
 		TopLeftToBottomRight,
-		// Token: 0x040039AD RID: 14765
+		// Token: 0x04002FA8 RID: 12200
 		BottomLeftToTopRight,
-		// Token: 0x040039AE RID: 14766
+		// Token: 0x04002FA9 RID: 12201
 		TopRightToBottomLeft,
-		// Token: 0x040039AF RID: 14767
+		// Token: 0x04002FAA RID: 12202
 		BottomRightToTopLeft
 	}
 }

@@ -4,10 +4,10 @@ using UnityEngine;
 
 namespace UltimateSurvival.Building
 {
-	// Token: 0x02000964 RID: 2404
+	// Token: 0x02000660 RID: 1632
 	public class BuildingHolder : MonoBehaviour
 	{
-		// Token: 0x06003D6D RID: 15725 RVA: 0x001B468C File Offset: 0x001B288C
+		// Token: 0x060033DC RID: 13276 RVA: 0x0016B898 File Offset: 0x00169A98
 		public bool HasCollider(Collider col)
 		{
 			for (int i = 0; i < this.m_Pieces.Count; i++)
@@ -20,7 +20,7 @@ namespace UltimateSurvival.Building
 			return false;
 		}
 
-		// Token: 0x06003D6E RID: 15726 RVA: 0x001B46C8 File Offset: 0x001B28C8
+		// Token: 0x060033DD RID: 13277 RVA: 0x0016B8D4 File Offset: 0x00169AD4
 		public void AddPiece(BuildingPiece piece)
 		{
 			if (!this.m_Pieces.Contains(piece))
@@ -33,7 +33,7 @@ namespace UltimateSurvival.Building
 			}
 		}
 
-		// Token: 0x06003D6F RID: 15727 RVA: 0x001B4730 File Offset: 0x001B2930
+		// Token: 0x060033DE RID: 13278 RVA: 0x0016B93C File Offset: 0x00169B3C
 		private void OnPieceDeath(BuildingPiece piece)
 		{
 			this.m_Pieces.Remove(piece);
@@ -46,7 +46,7 @@ namespace UltimateSurvival.Building
 			}
 		}
 
-		// Token: 0x04003797 RID: 14231
+		// Token: 0x04002E10 RID: 11792
 		private List<BuildingPiece> m_Pieces = new List<BuildingPiece>();
 	}
 }

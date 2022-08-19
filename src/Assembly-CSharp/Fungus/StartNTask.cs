@@ -4,25 +4,25 @@ using UnityEngine;
 
 namespace Fungus
 {
-	// Token: 0x0200142E RID: 5166
+	// Token: 0x02000F76 RID: 3958
 	[CommandInfo("YSTask", "StartNTask", "开始一个任务", 0)]
 	[AddComponentMenu("")]
 	public class StartNTask : Command
 	{
-		// Token: 0x06007D01 RID: 32001 RVA: 0x00054992 File Offset: 0x00052B92
+		// Token: 0x06006F0F RID: 28431 RVA: 0x002A63EC File Offset: 0x002A45EC
 		public override void OnEnter()
 		{
 			StartNTask.Do(this.NTaskID.Value);
 			this.Continue();
 		}
 
-		// Token: 0x06007D02 RID: 32002 RVA: 0x000113CF File Offset: 0x0000F5CF
+		// Token: 0x06006F10 RID: 28432 RVA: 0x0005E228 File Offset: 0x0005C428
 		public override Color GetButtonColor()
 		{
 			return new Color32(184, 210, 235, byte.MaxValue);
 		}
 
-		// Token: 0x06007D03 RID: 32003 RVA: 0x002C60C0 File Offset: 0x002C42C0
+		// Token: 0x06006F11 RID: 28433 RVA: 0x002A6404 File Offset: 0x002A4604
 		public static void Do(int _NTaskID)
 		{
 			Avatar player = Tools.instance.getPlayer();
@@ -32,7 +32,7 @@ namespace Fungus
 			}
 		}
 
-		// Token: 0x04006ABD RID: 27325
+		// Token: 0x04005BE7 RID: 23527
 		[Tooltip("需要开始的任务ID")]
 		[VariableProperty(new Type[]
 		{

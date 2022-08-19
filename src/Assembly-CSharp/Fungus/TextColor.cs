@@ -2,16 +2,16 @@
 
 namespace Fungus
 {
-	// Token: 0x020012B6 RID: 4790
+	// Token: 0x02000E60 RID: 3680
 	public enum TextColor
 	{
-		// Token: 0x040065BA RID: 26042
+		// Token: 0x04005857 RID: 22615
 		Default,
-		// Token: 0x040065BB RID: 26043
+		// Token: 0x04005858 RID: 22616
 		SetVisible,
-		// Token: 0x040065BC RID: 26044
+		// Token: 0x04005859 RID: 22617
 		SetAlpha,
-		// Token: 0x040065BD RID: 26045
+		// Token: 0x0400585A RID: 22618
 		SetColor
 	}
 }

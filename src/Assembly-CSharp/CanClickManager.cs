@@ -2,16 +2,18 @@
 using System.Collections.Generic;
 using Fungus;
 using JiaoYi;
+using script.ExchangeMeeting.UI.Interface;
+using script.MenPaiTask.ZhangLao.UI;
 using Tab;
 using UnityEngine;
 using YSGame.TianJiDaBi;
 using YSGame.TuJian;
 
-// Token: 0x020002B6 RID: 694
+// Token: 0x020001B8 RID: 440
 public class CanClickManager : MonoBehaviour
 {
-	// Token: 0x1700026D RID: 621
-	// (get) Token: 0x0600150A RID: 5386 RVA: 0x0001347F File Offset: 0x0001167F
+	// Token: 0x17000225 RID: 549
+	// (get) Token: 0x0600125F RID: 4703 RVA: 0x0006F4B0 File Offset: 0x0006D6B0
 	public static CanClickManager Inst
 	{
 		get
@@ -26,13 +28,13 @@ public class CanClickManager : MonoBehaviour
 		}
 	}
 
-	// Token: 0x0600150B RID: 5387 RVA: 0x000134AD File Offset: 0x000116AD
+	// Token: 0x06001260 RID: 4704 RVA: 0x0006F4DE File Offset: 0x0006D6DE
 	private void LateUpdate()
 	{
 		this.IsFinshed = false;
 	}
 
-	// Token: 0x0600150C RID: 5388 RVA: 0x000BCFAC File Offset: 0x000BB1AC
+	// Token: 0x06001261 RID: 4705 RVA: 0x0006F4E8 File Offset: 0x0006D6E8
 	public void RefreshCanClick(bool show = false)
 	{
 		this.ResultCount = 0;
@@ -280,6 +282,30 @@ public class CanClickManager : MonoBehaviour
 			}
 			this.ResultCache[29] = true;
 		}
+		if (SetFaceUI.Inst != null)
+		{
+			if (show)
+			{
+				Debug.Log("CanClickManager:因捏脸界面不允许点击");
+			}
+			this.ResultCache[30] = true;
+		}
+		if (ElderTaskUIMag.Inst != null)
+		{
+			if (show)
+			{
+				Debug.Log("CanClickManager:因发布任务界面不允许点击");
+			}
+			this.ResultCache[31] = true;
+		}
+		if (IExchangeUIMag.Inst != null)
+		{
+			if (show)
+			{
+				Debug.Log("CanClickManager:因发交易会界面不允许点击");
+			}
+			this.ResultCache[32] = true;
+		}
 		for (int j = this.MenuDialogCache.Count - 1; j >= 0; j--)
 		{
 			if (this.MenuDialogCache[j] != null)
@@ -326,27 +352,27 @@ public class CanClickManager : MonoBehaviour
 		this.Result = (this.ResultCount == 0);
 	}
 
-	// Token: 0x04001027 RID: 4135
+	// Token: 0x04000CFF RID: 3327
 	private static CanClickManager inst;
 
-	// Token: 0x04001028 RID: 4136
+	// Token: 0x04000D00 RID: 3328
 	public bool IsFinshed;
 
-	// Token: 0x04001029 RID: 4137
+	// Token: 0x04000D01 RID: 3329
 	public bool Result;
 
-	// Token: 0x0400102A RID: 4138
+	// Token: 0x04000D02 RID: 3330
 	public bool[] ResultCache = new bool[CanClickManager.CacheCount];
 
-	// Token: 0x0400102B RID: 4139
+	// Token: 0x04000D03 RID: 3331
 	public int ResultCount;
 
-	// Token: 0x0400102C RID: 4140
+	// Token: 0x04000D04 RID: 3332
 	public List<MenuDialog> MenuDialogCache = new List<MenuDialog>();
 
-	// Token: 0x0400102D RID: 4141
+	// Token: 0x04000D05 RID: 3333
 	public List<SayDialog> SayDialogCache = new List<SayDialog>();
 
-	// Token: 0x0400102E RID: 4142
+	// Token: 0x04000D06 RID: 3334
 	public static int CacheCount = 50;
 }

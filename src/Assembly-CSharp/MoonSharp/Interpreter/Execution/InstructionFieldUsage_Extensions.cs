@@ -3,10 +3,10 @@ using MoonSharp.Interpreter.Execution.VM;
 
 namespace MoonSharp.Interpreter.Execution
 {
-	// Token: 0x02001156 RID: 4438
+	// Token: 0x02000D48 RID: 3400
 	internal static class InstructionFieldUsage_Extensions
 	{
-		// Token: 0x06006BB5 RID: 27573 RVA: 0x002948E8 File Offset: 0x00292AE8
+		// Token: 0x06005FD1 RID: 24529 RVA: 0x0026CD78 File Offset: 0x0026AF78
 		internal static InstructionFieldUsage GetFieldUsage(this OpCode op)
 		{
 			switch (op)

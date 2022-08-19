@@ -10,10 +10,10 @@ using UnityEngine.Events;
 using UnityEngine.SceneManagement;
 using YSGame;
 
-// Token: 0x02000261 RID: 609
+// Token: 0x02000183 RID: 387
 public class BaseMapCompont : MonoBehaviour
 {
-	// Token: 0x060012BC RID: 4796 RVA: 0x00011C9E File Offset: 0x0000FE9E
+	// Token: 0x0600106F RID: 4207 RVA: 0x0006094E File Offset: 0x0005EB4E
 	protected virtual void Awake()
 	{
 		this.NodeIndex = int.Parse(base.name);
@@ -21,19 +21,19 @@ public class BaseMapCompont : MonoBehaviour
 		this.MapRandomJsonData = jsonData.instance.MapRandomJsonData;
 	}
 
-	// Token: 0x060012BD RID: 4797 RVA: 0x00011CD1 File Offset: 0x0000FED1
+	// Token: 0x06001070 RID: 4208 RVA: 0x00060981 File Offset: 0x0005EB81
 	protected virtual void Start()
 	{
 		this.StartSeting();
 	}
 
-	// Token: 0x060012BE RID: 4798 RVA: 0x00011CD9 File Offset: 0x0000FED9
+	// Token: 0x06001071 RID: 4209 RVA: 0x00060989 File Offset: 0x0005EB89
 	public virtual void Update()
 	{
 		this.SetStatic();
 	}
 
-	// Token: 0x060012BF RID: 4799 RVA: 0x000AF600 File Offset: 0x000AD800
+	// Token: 0x06001072 RID: 4210 RVA: 0x00060994 File Offset: 0x0005EB94
 	public virtual void StartSeting()
 	{
 		Transform transform = base.transform.Find("flowchat/enter");
@@ -60,13 +60,13 @@ public class BaseMapCompont : MonoBehaviour
 		this.BaseSetFlag();
 	}
 
-	// Token: 0x060012C0 RID: 4800 RVA: 0x00011CE1 File Offset: 0x0000FEE1
+	// Token: 0x06001073 RID: 4211 RVA: 0x00060A78 File Offset: 0x0005EC78
 	public virtual void BaseSetFlag()
 	{
 		this.setFlag();
 	}
 
-	// Token: 0x060012C1 RID: 4801 RVA: 0x000AF6E4 File Offset: 0x000AD8E4
+	// Token: 0x06001074 RID: 4212 RVA: 0x00060A80 File Offset: 0x0005EC80
 	public int getRandomNumSum()
 	{
 		int num = 0;
@@ -80,7 +80,7 @@ public class BaseMapCompont : MonoBehaviour
 		return num;
 	}
 
-	// Token: 0x060012C2 RID: 4802 RVA: 0x000AF784 File Offset: 0x000AD984
+	// Token: 0x06001075 RID: 4213 RVA: 0x00060B20 File Offset: 0x0005ED20
 	public int getRandomNum()
 	{
 		byte[] array = new byte[8];
@@ -88,7 +88,7 @@ public class BaseMapCompont : MonoBehaviour
 		return Math.Abs(BitConverter.ToInt32(array, 0));
 	}
 
-	// Token: 0x060012C3 RID: 4803 RVA: 0x000AF7B0 File Offset: 0x000AD9B0
+	// Token: 0x06001076 RID: 4214 RVA: 0x00060B4C File Offset: 0x0005ED4C
 	public int getEventID()
 	{
 		int randomNumSum = this.getRandomNumSum();
@@ -111,7 +111,7 @@ public class BaseMapCompont : MonoBehaviour
 			{
 				if ((int)jsonobject["percent"].n >= num)
 				{
-					result = (int)jsonobject["id"].n;
+					result = jsonobject["id"].I;
 					break;
 				}
 				num -= (int)jsonobject["percent"].n;
@@ -120,29 +120,29 @@ public class BaseMapCompont : MonoBehaviour
 		return result;
 	}
 
-	// Token: 0x060012C4 RID: 4804 RVA: 0x000042DD File Offset: 0x000024DD
+	// Token: 0x06001077 RID: 4215 RVA: 0x00004095 File Offset: 0x00002295
 	public void Talk()
 	{
 	}
 
-	// Token: 0x060012C5 RID: 4805 RVA: 0x000042DD File Offset: 0x000024DD
+	// Token: 0x06001078 RID: 4216 RVA: 0x00004095 File Offset: 0x00002295
 	public void StartGame()
 	{
 	}
 
-	// Token: 0x060012C6 RID: 4806 RVA: 0x00004050 File Offset: 0x00002250
+	// Token: 0x06001079 RID: 4217 RVA: 0x0000280F File Offset: 0x00000A0F
 	public virtual bool YuJianFeiXing()
 	{
 		return false;
 	}
 
-	// Token: 0x060012C7 RID: 4807 RVA: 0x000AF8DC File Offset: 0x000ADADC
+	// Token: 0x0600107A RID: 4218 RVA: 0x00060C74 File Offset: 0x0005EE74
 	public bool CanClick()
 	{
 		return !AllMapManage.instance.isPlayMove && (this.YuJianFeiXing() || (AllMapManage.instance.mapIndex[this.getAvatarNowMapIndex()].nextIndex.Contains(this.NodeIndex) && this.getAvatarNowMapIndex() != this.NodeIndex));
 	}
 
-	// Token: 0x060012C8 RID: 4808 RVA: 0x000AF93C File Offset: 0x000ADB3C
+	// Token: 0x0600107B RID: 4219 RVA: 0x00060CD4 File Offset: 0x0005EED4
 	public void showDebugLine()
 	{
 		foreach (int num in this.nextIndex)
@@ -167,7 +167,7 @@ public class BaseMapCompont : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060012C9 RID: 4809 RVA: 0x000AFA3C File Offset: 0x000ADC3C
+	// Token: 0x0600107C RID: 4220 RVA: 0x00060DD4 File Offset: 0x0005EFD4
 	public virtual void SetStatic()
 	{
 		if (this.IsStatic && this.PlayerPosition != null)
@@ -186,7 +186,7 @@ public class BaseMapCompont : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060012CA RID: 4810 RVA: 0x000AFB0C File Offset: 0x000ADD0C
+	// Token: 0x0600107D RID: 4221 RVA: 0x00060EA4 File Offset: 0x0005F0A4
 	public void setFlag()
 	{
 		if (this.ComAvatar.taskMag._TaskData.HasField("ShowTask") && (int)this.ComAvatar.taskMag._TaskData["ShowTask"].n != 0)
@@ -203,7 +203,7 @@ public class BaseMapCompont : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060012CB RID: 4811 RVA: 0x000AFC58 File Offset: 0x000ADE58
+	// Token: 0x0600107E RID: 4222 RVA: 0x00060FF0 File Offset: 0x0005F1F0
 	public virtual void movaAvatar()
 	{
 		if (!this.CanClick())
@@ -219,7 +219,7 @@ public class BaseMapCompont : MonoBehaviour
 		this.BaseAddTime();
 	}
 
-	// Token: 0x060012CC RID: 4812 RVA: 0x000AFCDC File Offset: 0x000ADEDC
+	// Token: 0x0600107F RID: 4223 RVA: 0x00061074 File Offset: 0x0005F274
 	public virtual void BaseAddTime()
 	{
 		JSONObject jsonobject = this.AllMapCastTimeJsonData.list.Find((JSONObject aa) => (int)aa["dunSu"].n >= this.ComAvatar.dunSu);
@@ -229,7 +229,7 @@ public class BaseMapCompont : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060012CD RID: 4813 RVA: 0x00011CE9 File Offset: 0x0000FEE9
+	// Token: 0x06001080 RID: 4224 RVA: 0x000610BF File Offset: 0x0005F2BF
 	public virtual void AvatarMoveToThis()
 	{
 		if (AllMapManage.instance != null)
@@ -239,46 +239,46 @@ public class BaseMapCompont : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060012CE RID: 4814 RVA: 0x00011D1D File Offset: 0x0000FF1D
+	// Token: 0x06001081 RID: 4225 RVA: 0x000610F3 File Offset: 0x0005F2F3
 	public virtual void setAvatarNowMapIndex()
 	{
 		Tools.instance.fubenLastIndex = this.ComAvatar.NowMapIndex;
 		this.ComAvatar.NowMapIndex = this.NodeIndex;
 	}
 
-	// Token: 0x060012CF RID: 4815 RVA: 0x00011D45 File Offset: 0x0000FF45
+	// Token: 0x06001082 RID: 4226 RVA: 0x0006111B File Offset: 0x0005F31B
 	public virtual int getAvatarNowMapIndex()
 	{
 		return this.ComAvatar.NowMapIndex;
 	}
 
-	// Token: 0x060012D0 RID: 4816 RVA: 0x00011D52 File Offset: 0x0000FF52
+	// Token: 0x06001083 RID: 4227 RVA: 0x00061128 File Offset: 0x0005F328
 	public virtual void addOption(int talkID)
 	{
 		new AddOption().addOption(talkID);
 	}
 
-	// Token: 0x060012D1 RID: 4817 RVA: 0x000042DD File Offset: 0x000024DD
+	// Token: 0x06001084 RID: 4228 RVA: 0x00004095 File Offset: 0x00002295
 	public virtual void fuBenSetClick()
 	{
 	}
 
-	// Token: 0x060012D2 RID: 4818 RVA: 0x000042DD File Offset: 0x000024DD
+	// Token: 0x06001085 RID: 4229 RVA: 0x00004095 File Offset: 0x00002295
 	public virtual void showLuDian()
 	{
 	}
 
-	// Token: 0x060012D3 RID: 4819 RVA: 0x000042DD File Offset: 0x000024DD
+	// Token: 0x06001086 RID: 4230 RVA: 0x00004095 File Offset: 0x00002295
 	public virtual void CloseLuDian()
 	{
 	}
 
-	// Token: 0x060012D4 RID: 4820 RVA: 0x000042DD File Offset: 0x000024DD
+	// Token: 0x06001087 RID: 4231 RVA: 0x00004095 File Offset: 0x00002295
 	public virtual void ResteAllMapNode()
 	{
 	}
 
-	// Token: 0x060012D5 RID: 4821 RVA: 0x000AFD28 File Offset: 0x000ADF28
+	// Token: 0x06001088 RID: 4232 RVA: 0x00061138 File Offset: 0x0005F338
 	public virtual void EventRandom()
 	{
 		if (!this.CanClick())
@@ -319,9 +319,9 @@ public class BaseMapCompont : MonoBehaviour
 				YSFuncList.Ints.Continue();
 				return;
 			}
-			int num2 = (int)avatar.AllMapRandomNode[this.NodeIndex.ToString()]["EventId"].n;
-			int num3 = (int)avatar.AllMapRandomNode[this.NodeIndex.ToString()]["Type"].n;
-			if (num3 == 2 || num3 == 5 || (int)avatar.AllMapRandomNode[this.NodeIndex.ToString()]["EventId"].n == 0)
+			int i = avatar.AllMapRandomNode[this.NodeIndex.ToString()]["EventId"].I;
+			int num2 = (int)avatar.AllMapRandomNode[this.NodeIndex.ToString()]["Type"].n;
+			if (num2 == 2 || num2 == 5 || avatar.AllMapRandomNode[this.NodeIndex.ToString()]["EventId"].I == 0)
 			{
 				if (FungusManager.Instance.jieShaBlock == null)
 				{
@@ -342,27 +342,27 @@ public class BaseMapCompont : MonoBehaviour
 				YSFuncList.Ints.Continue();
 				return;
 			}
-			int num4 = (int)this.MapRandomJsonData[string.Concat(num2)]["EventData"].n;
-			int monstarID = (int)this.MapRandomJsonData[string.Concat(num2)]["MosterID"].n;
-			if ((int)this.MapRandomJsonData[string.Concat(num2)]["once"].n != 0)
+			int i2 = this.MapRandomJsonData[string.Concat(i)]["EventData"].I;
+			int i3 = this.MapRandomJsonData[string.Concat(i)]["MosterID"].I;
+			if (this.MapRandomJsonData[string.Concat(i)]["once"].I != 0)
 			{
 				if (!avatar.SuiJiShiJian.HasField(Tools.getScreenName()))
 				{
 					avatar.SuiJiShiJian.AddField(Tools.getScreenName(), new JSONObject(JSONObject.Type.ARRAY));
 				}
-				avatar.SuiJiShiJian[Tools.getScreenName()].Add(num2);
+				avatar.SuiJiShiJian[Tools.getScreenName()].Add(i);
 			}
-			switch ((int)this.MapRandomJsonData[string.Concat(num2)]["EventList"].n)
+			switch ((int)this.MapRandomJsonData[string.Concat(i)]["EventList"].n)
 			{
 			case 0:
-				Object.Instantiate<GameObject>(Resources.Load<GameObject>("talkPrefab/TalkPrefab/talk" + num4));
+				Object.Instantiate<GameObject>(Resources.Load<GameObject>("talkPrefab/TalkPrefab/talk" + i2));
 				break;
 			case 1:
-				this.addOption(num4);
+				this.addOption(i2);
 				break;
 			case 2:
-				Tools.instance.MonstarID = monstarID;
-				Object.Instantiate<GameObject>(Resources.Load<GameObject>("talkPrefab/FightPrefab/Fight" + num4));
+				Tools.instance.MonstarID = i3;
+				Object.Instantiate<GameObject>(Resources.Load<GameObject>("talkPrefab/FightPrefab/Fight" + i2));
 				break;
 			case 3:
 				this.OpenDadituCaiJi();
@@ -376,13 +376,13 @@ public class BaseMapCompont : MonoBehaviour
 		YSFuncList.Ints.AddFunc(queue);
 	}
 
-	// Token: 0x060012D6 RID: 4822 RVA: 0x00011D5F File Offset: 0x0000FF5F
+	// Token: 0x06001089 RID: 4233 RVA: 0x00061188 File Offset: 0x0005F388
 	public void OpenDadituCaiJi()
 	{
 		ResManager.inst.LoadPrefab("CaiYaoEvent").Inst(null).GetComponent<CaiYaoUIMag>().ShowNomal();
 	}
 
-	// Token: 0x060012D7 RID: 4823 RVA: 0x00011D80 File Offset: 0x0000FF80
+	// Token: 0x0600108A RID: 4234 RVA: 0x000611A9 File Offset: 0x0005F3A9
 	public void closeOption(GameObject OptionObject)
 	{
 		UltimateSurvival.MonoSingleton<UI_Backgroud>.Instance.Value = false;
@@ -390,32 +390,32 @@ public class BaseMapCompont : MonoBehaviour
 		Tools.canClickFlag = true;
 	}
 
-	// Token: 0x04000EB7 RID: 3767
+	// Token: 0x04000BE6 RID: 3046
 	[NonSerialized]
 	public int NodeIndex;
 
-	// Token: 0x04000EB8 RID: 3768
+	// Token: 0x04000BE7 RID: 3047
 	public List<int> nextIndex = new List<int>();
 
-	// Token: 0x04000EB9 RID: 3769
+	// Token: 0x04000BE8 RID: 3048
 	public Vector2 MapPositon;
 
-	// Token: 0x04000EBA RID: 3770
+	// Token: 0x04000BE9 RID: 3049
 	[Tooltip("是否是固定场景，在副本中这个选项决定是否显示节点名称")]
 	public bool IsStatic;
 
-	// Token: 0x04000EBB RID: 3771
+	// Token: 0x04000BEA RID: 3050
 	public JSONObject MapRandomJsonData;
 
-	// Token: 0x04000EBC RID: 3772
+	// Token: 0x04000BEB RID: 3051
 	public JSONObject AllMapCastTimeJsonData;
 
-	// Token: 0x04000EBD RID: 3773
+	// Token: 0x04000BEC RID: 3052
 	protected Avatar ComAvatar;
 
-	// Token: 0x04000EBE RID: 3774
+	// Token: 0x04000BED RID: 3053
 	protected GameObject enterScenes;
 
-	// Token: 0x04000EBF RID: 3775
+	// Token: 0x04000BEE RID: 3054
 	protected Transform PlayerPosition;
 }

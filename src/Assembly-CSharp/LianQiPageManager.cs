@@ -2,10 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-// Token: 0x02000453 RID: 1107
+// Token: 0x020002F6 RID: 758
 public class LianQiPageManager : MonoBehaviour
 {
-	// Token: 0x06001D9F RID: 7583 RVA: 0x00018A8D File Offset: 0x00016C8D
+	// Token: 0x06001A79 RID: 6777 RVA: 0x000BCAB4 File Offset: 0x000BACB4
 	public void init()
 	{
 		if (LianQiTotalManager.inst.IsFirstSelect)
@@ -16,20 +16,20 @@ public class LianQiPageManager : MonoBehaviour
 		this.showEquipCell.init();
 	}
 
-	// Token: 0x06001DA0 RID: 7584 RVA: 0x00102C60 File Offset: 0x00100E60
+	// Token: 0x06001A7A RID: 6778 RVA: 0x000BCAE4 File Offset: 0x000BACE4
 	public void updateEuipImage()
 	{
 		int selectZhongLei = LianQiTotalManager.inst.selectTypePageManager.getSelectZhongLei();
 		this.showEquipCell.setEquipImage((Sprite)LianQiTotalManager.inst.equipSprites[selectZhongLei]);
 	}
 
-	// Token: 0x06001DA1 RID: 7585 RVA: 0x00018ABC File Offset: 0x00016CBC
+	// Token: 0x06001A7B RID: 6779 RVA: 0x000BCB1D File Offset: 0x000BAD1D
 	public PutMaterialCell GetCaiLiaoCellByName(string name)
 	{
 		return this.putCaiLiaoCell.caiLiaoCellDictionary[name];
 	}
 
-	// Token: 0x06001DA2 RID: 7586 RVA: 0x00102C9C File Offset: 0x00100E9C
+	// Token: 0x06001A7C RID: 6780 RVA: 0x000BCB30 File Offset: 0x000BAD30
 	public List<PutMaterialCell> GetHasItemSlot()
 	{
 		List<PutMaterialCell> list = new List<PutMaterialCell>();
@@ -43,11 +43,11 @@ public class LianQiPageManager : MonoBehaviour
 		return list;
 	}
 
-	// Token: 0x04001956 RID: 6486
+	// Token: 0x04001549 RID: 5449
 	[SerializeField]
 	public PutCaiLiaoCell putCaiLiaoCell;
 
-	// Token: 0x04001957 RID: 6487
+	// Token: 0x0400154A RID: 5450
 	[SerializeField]
 	public ShowEquipCell showEquipCell;
 }

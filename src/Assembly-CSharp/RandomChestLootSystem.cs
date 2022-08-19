@@ -2,10 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-// Token: 0x020001FF RID: 511
+// Token: 0x0200012E RID: 302
 public class RandomChestLootSystem : MonoBehaviour
 {
-	// Token: 0x0600103B RID: 4155 RVA: 0x000A48C0 File Offset: 0x000A2AC0
+	// Token: 0x06000E2D RID: 3629 RVA: 0x00054200 File Offset: 0x00052400
 	private void Start()
 	{
 		RandomChestLootSystem.inventoryItemList = (ItemDataBaseList)Resources.Load("ItemDatabase");
@@ -41,27 +41,27 @@ public class RandomChestLootSystem : MonoBehaviour
 		}
 	}
 
-	// Token: 0x04000CC5 RID: 3269
+	// Token: 0x04000A2D RID: 2605
 	public int amountOfChest = 10;
 
-	// Token: 0x04000CC6 RID: 3270
+	// Token: 0x04000A2E RID: 2606
 	public int minItemInChest = 2;
 
-	// Token: 0x04000CC7 RID: 3271
+	// Token: 0x04000A2F RID: 2607
 	public int maxItemInChest = 10;
 
-	// Token: 0x04000CC8 RID: 3272
+	// Token: 0x04000A30 RID: 2608
 	private static ItemDataBaseList inventoryItemList;
 
-	// Token: 0x04000CC9 RID: 3273
+	// Token: 0x04000A31 RID: 2609
 	public GameObject storageBox;
 
-	// Token: 0x04000CCA RID: 3274
+	// Token: 0x04000A32 RID: 2610
 	private int counter;
 
-	// Token: 0x04000CCB RID: 3275
+	// Token: 0x04000A33 RID: 2611
 	private int creatingItemsForChest;
 
-	// Token: 0x04000CCC RID: 3276
+	// Token: 0x04000A34 RID: 2612
 	private int randomItemNumber;
 }

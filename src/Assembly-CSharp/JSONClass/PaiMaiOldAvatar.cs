@@ -3,10 +3,10 @@ using System.Collections.Generic;
 
 namespace JSONClass
 {
-	// Token: 0x02000C56 RID: 3158
+	// Token: 0x020008C8 RID: 2248
 	public class PaiMaiOldAvatar : IJSONClass
 	{
-		// Token: 0x06004CC1 RID: 19649 RVA: 0x002070C8 File Offset: 0x002052C8
+		// Token: 0x06004133 RID: 16691 RVA: 0x001BE830 File Offset: 0x001BCA30
 		public static void InitDataDict()
 		{
 			foreach (JSONObject jsonobject in jsonData.instance.PaiMaiOldAvatar.list)
@@ -41,30 +41,30 @@ namespace JSONClass
 			}
 		}
 
-		// Token: 0x06004CC2 RID: 19650 RVA: 0x000042DD File Offset: 0x000024DD
+		// Token: 0x06004134 RID: 16692 RVA: 0x00004095 File Offset: 0x00002295
 		private static void OnInitFinish()
 		{
 		}
 
-		// Token: 0x04004B9F RID: 19359
+		// Token: 0x0400404B RID: 16459
 		public static Dictionary<int, PaiMaiOldAvatar> DataDict = new Dictionary<int, PaiMaiOldAvatar>();
 
-		// Token: 0x04004BA0 RID: 19360
+		// Token: 0x0400404C RID: 16460
 		public static List<PaiMaiOldAvatar> DataList = new List<PaiMaiOldAvatar>();
 
-		// Token: 0x04004BA1 RID: 19361
+		// Token: 0x0400404D RID: 16461
 		public static Action OnInitFinishAction = new Action(PaiMaiOldAvatar.OnInitFinish);
 
-		// Token: 0x04004BA2 RID: 19362
+		// Token: 0x0400404E RID: 16462
 		public int id;
 
-		// Token: 0x04004BA3 RID: 19363
+		// Token: 0x0400404F RID: 16463
 		public int LingShi;
 
-		// Token: 0x04004BA4 RID: 19364
+		// Token: 0x04004050 RID: 16464
 		public int GaiLv;
 
-		// Token: 0x04004BA5 RID: 19365
+		// Token: 0x04004051 RID: 16465
 		public List<int> PaiMaiID = new List<int>();
 	}
 }

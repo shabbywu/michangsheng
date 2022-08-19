@@ -2,25 +2,25 @@
 
 namespace MoonSharp.Interpreter.Execution
 {
-	// Token: 0x02001155 RID: 4437
+	// Token: 0x02000D47 RID: 3399
 	[Flags]
 	internal enum InstructionFieldUsage
 	{
-		// Token: 0x04006123 RID: 24867
+		// Token: 0x040054AA RID: 21674
 		None = 0,
-		// Token: 0x04006124 RID: 24868
+		// Token: 0x040054AB RID: 21675
 		Symbol = 1,
-		// Token: 0x04006125 RID: 24869
+		// Token: 0x040054AC RID: 21676
 		SymbolList = 2,
-		// Token: 0x04006126 RID: 24870
+		// Token: 0x040054AD RID: 21677
 		Name = 4,
-		// Token: 0x04006127 RID: 24871
+		// Token: 0x040054AE RID: 21678
 		Value = 8,
-		// Token: 0x04006128 RID: 24872
+		// Token: 0x040054AF RID: 21679
 		NumVal = 16,
-		// Token: 0x04006129 RID: 24873
+		// Token: 0x040054B0 RID: 21680
 		NumVal2 = 32,
-		// Token: 0x0400612A RID: 24874
+		// Token: 0x040054B1 RID: 21681
 		NumValAsCodeAddress = 32784
 	}
 }

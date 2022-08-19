@@ -3,18 +3,18 @@ using UnityEngine;
 
 namespace Fungus
 {
-	// Token: 0x02001449 RID: 5193
+	// Token: 0x02000F96 RID: 3990
 	[CommandInfo("YSTools", "打开炼器提交界面", "打开炼器提交界面", 0)]
 	[AddComponentMenu("")]
 	public class OpenLianQiTiJiao : Command
 	{
-		// Token: 0x06007D71 RID: 32113 RVA: 0x00011424 File Offset: 0x0000F624
+		// Token: 0x06006F8A RID: 28554 RVA: 0x0005E3AF File Offset: 0x0005C5AF
 		public override void OnEnter()
 		{
 			this.Continue();
 		}
 
-		// Token: 0x04006AE3 RID: 27363
+		// Token: 0x04005C14 RID: 23572
 		[Tooltip("TaskId")]
 		[VariableProperty(new Type[]
 		{

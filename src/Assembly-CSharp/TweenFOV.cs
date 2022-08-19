@@ -1,13 +1,13 @@
 ﻿using System;
 using UnityEngine;
 
-// Token: 0x020000E9 RID: 233
+// Token: 0x02000098 RID: 152
 [RequireComponent(typeof(Camera))]
 [AddComponentMenu("NGUI/Tween/Tween Field of View")]
 public class TweenFOV : UITweener
 {
-	// Token: 0x1700012F RID: 303
-	// (get) Token: 0x060008FE RID: 2302 RVA: 0x0000B54A File Offset: 0x0000974A
+	// Token: 0x1700011B RID: 283
+	// (get) Token: 0x06000846 RID: 2118 RVA: 0x0003214E File Offset: 0x0003034E
 	public Camera cachedCamera
 	{
 		get
@@ -20,9 +20,9 @@ public class TweenFOV : UITweener
 		}
 	}
 
-	// Token: 0x17000130 RID: 304
-	// (get) Token: 0x060008FF RID: 2303 RVA: 0x0000B56C File Offset: 0x0000976C
-	// (set) Token: 0x06000900 RID: 2304 RVA: 0x0000B574 File Offset: 0x00009774
+	// Token: 0x1700011C RID: 284
+	// (get) Token: 0x06000847 RID: 2119 RVA: 0x00032170 File Offset: 0x00030370
+	// (set) Token: 0x06000848 RID: 2120 RVA: 0x00032178 File Offset: 0x00030378
 	[Obsolete("Use 'value' instead")]
 	public float fov
 	{
@@ -36,9 +36,9 @@ public class TweenFOV : UITweener
 		}
 	}
 
-	// Token: 0x17000131 RID: 305
-	// (get) Token: 0x06000901 RID: 2305 RVA: 0x0000B57D File Offset: 0x0000977D
-	// (set) Token: 0x06000902 RID: 2306 RVA: 0x0000B58A File Offset: 0x0000978A
+	// Token: 0x1700011D RID: 285
+	// (get) Token: 0x06000849 RID: 2121 RVA: 0x00032181 File Offset: 0x00030381
+	// (set) Token: 0x0600084A RID: 2122 RVA: 0x0003218E File Offset: 0x0003038E
 	public float value
 	{
 		get
@@ -51,13 +51,13 @@ public class TweenFOV : UITweener
 		}
 	}
 
-	// Token: 0x06000903 RID: 2307 RVA: 0x0000B598 File Offset: 0x00009798
+	// Token: 0x0600084B RID: 2123 RVA: 0x0003219C File Offset: 0x0003039C
 	protected override void OnUpdate(float factor, bool isFinished)
 	{
 		this.value = this.from * (1f - factor) + this.to * factor;
 	}
 
-	// Token: 0x06000904 RID: 2308 RVA: 0x00086620 File Offset: 0x00084820
+	// Token: 0x0600084C RID: 2124 RVA: 0x000321BC File Offset: 0x000303BC
 	public static TweenFOV Begin(GameObject go, float duration, float to)
 	{
 		TweenFOV tweenFOV = UITweener.Begin<TweenFOV>(go, duration);
@@ -71,40 +71,40 @@ public class TweenFOV : UITweener
 		return tweenFOV;
 	}
 
-	// Token: 0x06000905 RID: 2309 RVA: 0x0000B5B7 File Offset: 0x000097B7
+	// Token: 0x0600084D RID: 2125 RVA: 0x00032200 File Offset: 0x00030400
 	[ContextMenu("Set 'From' to current value")]
 	public override void SetStartToCurrentValue()
 	{
 		this.from = this.value;
 	}
 
-	// Token: 0x06000906 RID: 2310 RVA: 0x0000B5C5 File Offset: 0x000097C5
+	// Token: 0x0600084E RID: 2126 RVA: 0x0003220E File Offset: 0x0003040E
 	[ContextMenu("Set 'To' to current value")]
 	public override void SetEndToCurrentValue()
 	{
 		this.to = this.value;
 	}
 
-	// Token: 0x06000907 RID: 2311 RVA: 0x0000B5D3 File Offset: 0x000097D3
+	// Token: 0x0600084F RID: 2127 RVA: 0x0003221C File Offset: 0x0003041C
 	[ContextMenu("Assume value of 'From'")]
 	private void SetCurrentValueToStart()
 	{
 		this.value = this.from;
 	}
 
-	// Token: 0x06000908 RID: 2312 RVA: 0x0000B5E1 File Offset: 0x000097E1
+	// Token: 0x06000850 RID: 2128 RVA: 0x0003222A File Offset: 0x0003042A
 	[ContextMenu("Assume value of 'To'")]
 	private void SetCurrentValueToEnd()
 	{
 		this.value = this.to;
 	}
 
-	// Token: 0x04000644 RID: 1604
+	// Token: 0x04000521 RID: 1313
 	public float from = 45f;
 
-	// Token: 0x04000645 RID: 1605
+	// Token: 0x04000522 RID: 1314
 	public float to = 45f;
 
-	// Token: 0x04000646 RID: 1606
+	// Token: 0x04000523 RID: 1315
 	private Camera mCam;
 }

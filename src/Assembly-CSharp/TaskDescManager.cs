@@ -6,10 +6,10 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
 
-// Token: 0x0200050F RID: 1295
+// Token: 0x0200038B RID: 907
 public class TaskDescManager : MonoBehaviour
 {
-	// Token: 0x0600215A RID: 8538 RVA: 0x001164A8 File Offset: 0x001146A8
+	// Token: 0x06001DE1 RID: 7649 RVA: 0x000D2804 File Offset: 0x000D0A04
 	private void Awake()
 	{
 		this.MapBtn.GetComponent<Image>().raycastTarget = true;
@@ -21,14 +21,14 @@ public class TaskDescManager : MonoBehaviour
 		this.MapBtn.mouseUpEvent.AddListener(new UnityAction(this.MapBtnEvent));
 	}
 
-	// Token: 0x0600215B RID: 8539 RVA: 0x00116508 File Offset: 0x00114708
+	// Token: 0x06001DE2 RID: 7650 RVA: 0x000D2864 File Offset: 0x000D0A64
 	public void MapBtnEvent()
 	{
 		int id = int.Parse(this.MapBtn.name);
 		UIMapPanel.Inst.OpenHighlight(id);
 	}
 
-	// Token: 0x0600215C RID: 8540 RVA: 0x00116534 File Offset: 0x00114734
+	// Token: 0x06001DE3 RID: 7651 RVA: 0x000D2890 File Offset: 0x000D0A90
 	public void setCurTaskDesc(JSONObject task)
 	{
 		this.clear();
@@ -43,7 +43,7 @@ public class TaskDescManager : MonoBehaviour
 		{
 			indexList.Add(task["AllIndex"][i].I);
 		}
-		List<JSONObject> list = jsonData.instance.TaskInfoJsonData.list.FindAll((JSONObject aa) => (int)aa["TaskID"].n == (int)task["id"].n && indexList.Contains(aa["TaskIndex"].I));
+		List<JSONObject> list = jsonData.instance.TaskInfoJsonData.list.FindAll((JSONObject aa) => aa["TaskID"].I == task["id"].I && indexList.Contains(aa["TaskIndex"].I));
 		if (task["disableTask"].b)
 		{
 			for (int j = 0; j < task["AllIndex"].Count; j++)
@@ -71,12 +71,12 @@ public class TaskDescManager : MonoBehaviour
 		}
 	}
 
-	// Token: 0x0600215D RID: 8541 RVA: 0x001167F4 File Offset: 0x001149F4
+	// Token: 0x06001DE4 RID: 7652 RVA: 0x000D2B50 File Offset: 0x000D0D50
 	private void setCurTime(JSONObject task)
 	{
-		int num = (int)task["id"].n;
+		int i = task["id"].I;
 		Avatar player = Tools.instance.getPlayer();
-		if (jsonData.instance.TaskJsonData[num.ToString()]["Type"].I == 1)
+		if (jsonData.instance.TaskJsonData[i.ToString()]["Type"].I == 1)
 		{
 			if (TaskUIManager.checkIsGuoShi(task))
 			{
@@ -92,7 +92,7 @@ public class TaskDescManager : MonoBehaviour
 			}
 			else
 			{
-				DateTime endTime2 = DateTime.Parse(jsonData.instance.TaskJsonData[num.ToString()]["EndTime"].str);
+				DateTime endTime2 = DateTime.Parse(jsonData.instance.TaskJsonData[i.ToString()]["EndTime"].str);
 				text = Tools.Code64(Tools.TimeToShengYuTime(Tools.getShengYuShiJian(player.worldTimeMag.getNowTime(), endTime2), "剩余时间"));
 			}
 			if (text.Contains("剩余时间"))
@@ -104,9 +104,9 @@ public class TaskDescManager : MonoBehaviour
 		}
 		else
 		{
-			DateTime starTime = DateTime.Parse(jsonData.instance.TaskJsonData[num.ToString()]["StarTime"].str);
-			DateTime endTime3 = DateTime.Parse(jsonData.instance.TaskJsonData[num.ToString()]["EndTime"].str);
-			int circulation = (int)jsonData.instance.TaskJsonData[num.ToString()]["circulation"].n;
+			DateTime starTime = DateTime.Parse(jsonData.instance.TaskJsonData[i.ToString()]["StarTime"].str);
+			DateTime endTime3 = DateTime.Parse(jsonData.instance.TaskJsonData[i.ToString()]["EndTime"].str);
+			int circulation = (int)jsonData.instance.TaskJsonData[i.ToString()]["circulation"].n;
 			DateTime nowTime = player.worldTimeMag.getNowTime();
 			string text = Tools.Code64(TaskCell.getTaskNextTime(circulation, nowTime, starTime, endTime3));
 			if (TaskUIManager.checkIsGuoShi(task))
@@ -132,25 +132,25 @@ public class TaskDescManager : MonoBehaviour
 		}
 	}
 
-	// Token: 0x0600215E RID: 8542 RVA: 0x0001B7F5 File Offset: 0x000199F5
+	// Token: 0x06001DE5 RID: 7653 RVA: 0x000D2DF6 File Offset: 0x000D0FF6
 	private void setDesc(string str)
 	{
 		this.Desc.text = str.STVarReplace().ToCN();
 	}
 
-	// Token: 0x0600215F RID: 8543 RVA: 0x0001B80D File Offset: 0x00019A0D
+	// Token: 0x06001DE6 RID: 7654 RVA: 0x000D2E0E File Offset: 0x000D100E
 	private void setDescTaskName(string str)
 	{
 		this.Name.text = Tools.Code64(str);
 	}
 
-	// Token: 0x06002160 RID: 8544 RVA: 0x0001B820 File Offset: 0x00019A20
+	// Token: 0x06001DE7 RID: 7655 RVA: 0x000D2E21 File Offset: 0x000D1021
 	private void setTaskNameColor(Color color)
 	{
 		this.Name.color = color;
 	}
 
-	// Token: 0x06002161 RID: 8545 RVA: 0x00116A9C File Offset: 0x00114C9C
+	// Token: 0x06001DE8 RID: 7656 RVA: 0x000D2E30 File Offset: 0x000D1030
 	private void clear()
 	{
 		foreach (object obj in this.TaskIndex.transform.parent)
@@ -166,14 +166,14 @@ public class TaskDescManager : MonoBehaviour
 		this.ChuanWenShengYuShiJian.SetActive(false);
 	}
 
-	// Token: 0x06002162 RID: 8546 RVA: 0x0001B82E File Offset: 0x00019A2E
+	// Token: 0x06001DE9 RID: 7657 RVA: 0x000D2ED0 File Offset: 0x000D10D0
 	public void clearCurTaskDesc()
 	{
 		this.clear();
 		base.gameObject.SetActive(false);
 	}
 
-	// Token: 0x06002163 RID: 8547 RVA: 0x00116B3C File Offset: 0x00114D3C
+	// Token: 0x06001DEA RID: 7658 RVA: 0x000D2EE4 File Offset: 0x000D10E4
 	public void setChuanWenWenTuo(JSONObject weiTuo)
 	{
 		this.clear();
@@ -181,26 +181,26 @@ public class TaskDescManager : MonoBehaviour
 		this.ChuanWenShengYuShiJian.SetActive(true);
 		this.NomalTaskRenWuJinDu.SetActive(false);
 		this.setTitle("事件状态:", "传闻时间", "传闻描述");
-		int num = (int)weiTuo["id"].n;
+		int i = weiTuo["id"].I;
 		Avatar player = Tools.instance.getPlayer();
-		NTaskXiangXi ntaskXiangXiData = player.nomelTaskMag.GetNTaskXiangXiData(num);
+		NTaskXiangXi ntaskXiangXiData = player.nomelTaskMag.GetNTaskXiangXiData(i);
 		string text = ntaskXiangXiData.zongmiaoshu;
 		if (text.Contains("{where=99}"))
 		{
-			int i = player.NomelTaskJson[num.ToString()]["TaskWhereChild"][0].I;
-			text = text.Replace("{where=99}", NTaskSuiJI.DataDict[i].name);
+			int i2 = player.NomelTaskJson[i.ToString()]["TaskWhereChild"][0].I;
+			text = text.Replace("{where=99}", NTaskSuiJI.DataDict[i2].name);
 			this.MapBtn.gameObject.SetActive(true);
-			this.MapBtn.gameObject.name = this.GetMapIndex(i).ToString();
+			this.MapBtn.gameObject.name = this.GetMapIndex(i2).ToString();
 			text = text.Replace("‘", "");
 			text = text.Replace("\"", "");
 		}
 		this.ChuanWenShengYuTime.text = TaskDescManager.getWeiTuoShengYuShiJian(weiTuo);
 		this.HasTime.text = "   已开启";
 		this.setDescTaskName(ntaskXiangXiData.name);
-		this.setDesc((!text.Contains("{ZongMiaoShu}")) ? text : text.Replace("{ZongMiaoShu}", NTaskAllType.DataDict[num].ZongMiaoShu));
+		this.setDesc((!text.Contains("{ZongMiaoShu}")) ? text : text.Replace("{ZongMiaoShu}", NTaskAllType.DataDict[i].ZongMiaoShu));
 	}
 
-	// Token: 0x06002164 RID: 8548 RVA: 0x00116CC4 File Offset: 0x00114EC4
+	// Token: 0x06001DEB RID: 7659 RVA: 0x000D3068 File Offset: 0x000D1268
 	public int GetMapIndex(int id)
 	{
 		int num = 0;
@@ -220,39 +220,39 @@ public class TaskDescManager : MonoBehaviour
 		return num;
 	}
 
-	// Token: 0x06002165 RID: 8549 RVA: 0x00116D54 File Offset: 0x00114F54
+	// Token: 0x06001DEC RID: 7660 RVA: 0x000D30F8 File Offset: 0x000D12F8
 	public void setWeiTuoDesc(JSONObject weiTuo)
 	{
 		this.clear();
 		base.gameObject.SetActive(true);
-		int num = (int)weiTuo["id"].n;
+		int i = weiTuo["id"].I;
 		Avatar player = Tools.instance.getPlayer();
-		NTaskXiangXi ntaskXiangXiData = player.nomelTaskMag.GetNTaskXiangXiData(num);
+		NTaskXiangXi ntaskXiangXiData = player.nomelTaskMag.GetNTaskXiangXiData(i);
 		string zongmiaoshu = ntaskXiangXiData.zongmiaoshu;
-		DateTime endTime = Tools.GetEndTime(player.NomelTaskJson[num.ToString()]["StartTime"].str, 0, ntaskXiangXiData.shiXian, 0);
+		DateTime endTime = Tools.GetEndTime(player.NomelTaskJson[i.ToString()]["StartTime"].str, 0, ntaskXiangXiData.shiXian, 0);
 		this.HasTime.text = Tools.TimeToShengYuTime(Tools.getShengYuShiJian(player.worldTimeMag.getNowTime(), endTime), "").ToCN();
 		this.setDescTaskName(ntaskXiangXiData.name);
-		this.setDesc((!zongmiaoshu.Contains("{ZongMiaoShu}")) ? zongmiaoshu : zongmiaoshu.Replace("{ZongMiaoShu}", NTaskAllType.DataDict[num].ZongMiaoShu));
-		int num2 = 0;
-		foreach (JSONObject jsonobject in player.nomelTaskMag.GetNTaskXiangXiList(num))
+		this.setDesc((!zongmiaoshu.Contains("{ZongMiaoShu}")) ? zongmiaoshu : zongmiaoshu.Replace("{ZongMiaoShu}", NTaskAllType.DataDict[i].ZongMiaoShu));
+		int num = 0;
+		foreach (JSONObject jsonobject in player.nomelTaskMag.GetNTaskXiangXiList(i))
 		{
-			int i = player.NomelTaskJson[num.ToString()]["TaskChild"][num2].I;
-			NTaskSuiJI ntaskSuiJI = NTaskSuiJI.DataDict[i];
+			int i2 = player.NomelTaskJson[i.ToString()]["TaskChild"][num].I;
+			NTaskSuiJI ntaskSuiJI = NTaskSuiJI.DataDict[i2];
 			string text = jsonobject["desc"].str.Replace(jsonobject["TaskID"].str, ntaskSuiJI.name);
 			if (jsonobject["Place"].str != "0" && text.Contains(jsonobject["Place"].str))
 			{
-				int whereChilidID = player.nomelTaskMag.getWhereChilidID(num, num2);
+				int whereChilidID = player.nomelTaskMag.getWhereChilidID(i, num);
 				text = text.Replace(jsonobject["Place"].str, NTaskSuiJI.DataDict[whereChilidID].name);
 				this.MapBtn.gameObject.SetActive(true);
 				this.MapBtn.gameObject.name = this.GetMapIndex(whereChilidID).ToString();
 			}
 			string str = text.ToCN();
-			Tools.InstantiateGameObject(this.TaskIndex, this.TaskIndex.transform.parent).GetComponent<TaskIndexCell>().setContent(str, player.nomelTaskMag.XiangXiTaskIsEnd(jsonobject, num, num2));
-			num2++;
+			Tools.InstantiateGameObject(this.TaskIndex, this.TaskIndex.transform.parent).GetComponent<TaskIndexCell>().setContent(str, player.nomelTaskMag.XiangXiTaskIsEnd(jsonobject, i, num));
+			num++;
 		}
 	}
 
-	// Token: 0x06002166 RID: 8550 RVA: 0x00116FF0 File Offset: 0x001151F0
+	// Token: 0x06001DED RID: 7661 RVA: 0x000D3394 File Offset: 0x000D1594
 	public void checkIsZhuiZhong()
 	{
 		Avatar player = Tools.instance.getPlayer();
@@ -268,7 +268,7 @@ public class TaskDescManager : MonoBehaviour
 		this.NoZhuiZhongImage.SetActive(true);
 	}
 
-	// Token: 0x06002167 RID: 8551 RVA: 0x0001B842 File Offset: 0x00019A42
+	// Token: 0x06001DEE RID: 7662 RVA: 0x000D3465 File Offset: 0x000D1665
 	private void setTitle(string status = "剩余时间:", string jindu = "任务进度", string des = "任务描述")
 	{
 		this.TaskStatus.text = status;
@@ -276,7 +276,7 @@ public class TaskDescManager : MonoBehaviour
 		this.TaskDes.text = des;
 	}
 
-	// Token: 0x06002168 RID: 8552 RVA: 0x001170C4 File Offset: 0x001152C4
+	// Token: 0x06001DEF RID: 7663 RVA: 0x000D348C File Offset: 0x000D168C
 	public void setChuanMiaoShu(JSONObject task)
 	{
 		this.clear();
@@ -296,13 +296,13 @@ public class TaskDescManager : MonoBehaviour
 		this.setIsShowFinish(task);
 	}
 
-	// Token: 0x06002169 RID: 8553 RVA: 0x00117188 File Offset: 0x00115388
+	// Token: 0x06001DF0 RID: 7664 RVA: 0x000D3550 File Offset: 0x000D1750
 	public static string getShengYuShiJi(JSONObject task)
 	{
-		int num = (int)task["id"].n;
+		int i = task["id"].I;
 		Avatar player = Tools.instance.getPlayer();
 		string text;
-		if (jsonData.instance.TaskJsonData[num.ToString()]["Type"].I == 1)
+		if (jsonData.instance.TaskJsonData[i.ToString()]["Type"].I == 1)
 		{
 			if (TaskUIManager.checkIsGuoShi(task))
 			{
@@ -315,7 +315,7 @@ public class TaskDescManager : MonoBehaviour
 			}
 			else
 			{
-				DateTime endTime2 = DateTime.Parse(jsonData.instance.TaskJsonData[num.ToString()]["EndTime"].str);
+				DateTime endTime2 = DateTime.Parse(jsonData.instance.TaskJsonData[i.ToString()]["EndTime"].str);
 				text = Tools.TimeToShengYuTime(Tools.getShengYuShiJian(player.worldTimeMag.getNowTime(), endTime2), "剩余时间").ToCN();
 			}
 			if (text.Contains("剩余时间"))
@@ -325,9 +325,9 @@ public class TaskDescManager : MonoBehaviour
 		}
 		else
 		{
-			DateTime starTime = DateTime.Parse(jsonData.instance.TaskJsonData[num.ToString()]["StarTime"].str);
-			DateTime endTime3 = DateTime.Parse(jsonData.instance.TaskJsonData[num.ToString()]["EndTime"].str);
-			int circulation = (int)jsonData.instance.TaskJsonData[num.ToString()]["circulation"].n;
+			DateTime starTime = DateTime.Parse(jsonData.instance.TaskJsonData[i.ToString()]["StarTime"].str);
+			DateTime endTime3 = DateTime.Parse(jsonData.instance.TaskJsonData[i.ToString()]["EndTime"].str);
+			int circulation = (int)jsonData.instance.TaskJsonData[i.ToString()]["circulation"].n;
 			DateTime nowTime = player.worldTimeMag.getNowTime();
 			text = TaskCell.getTaskNextTime(circulation, nowTime, starTime, endTime3).ToCN();
 			if (text.Contains("距离事件开始还有"))
@@ -342,22 +342,22 @@ public class TaskDescManager : MonoBehaviour
 		return text;
 	}
 
-	// Token: 0x0600216A RID: 8554 RVA: 0x001173AC File Offset: 0x001155AC
+	// Token: 0x06001DF1 RID: 7665 RVA: 0x000D3774 File Offset: 0x000D1974
 	public static string getWeiTuoShengYuShiJian(JSONObject weiTuo)
 	{
-		int taskID = (int)weiTuo["id"].n;
+		int i = weiTuo["id"].I;
 		Avatar player = Tools.instance.getPlayer();
-		if (!player.NomelTaskJson[taskID.ToString()].HasField("StartTime"))
+		if (!player.NomelTaskJson[i.ToString()].HasField("StartTime"))
 		{
-			player.NomelTaskJson[taskID.ToString()].SetField("StartTime", player.worldTimeMag.nowTime);
+			player.NomelTaskJson[i.ToString()].SetField("StartTime", player.worldTimeMag.nowTime);
 			player.nomelTaskMag.RefreshGetNowNTaskData();
 		}
-		DateTime endTime = Tools.GetEndTime(player.NomelTaskJson[taskID.ToString()]["StartTime"].str, 0, player.nomelTaskMag.GetNTaskXiangXiData(taskID).shiXian, 0);
+		DateTime endTime = Tools.GetEndTime(player.NomelTaskJson[i.ToString()]["StartTime"].str, 0, player.nomelTaskMag.GetNTaskXiangXiData(i).shiXian, 0);
 		player.worldTimeMag.getNowTime();
 		return Tools.Code64(Tools.TimeToShengYuTime(Tools.getShengYuShiJian(player.worldTimeMag.getNowTime(), endTime), ""));
 	}
 
-	// Token: 0x0600216B RID: 8555 RVA: 0x0001B868 File Offset: 0x00019A68
+	// Token: 0x06001DF2 RID: 7666 RVA: 0x000D3853 File Offset: 0x000D1A53
 	private void setIsShowFinish(JSONObject task)
 	{
 		if (TaskUIManager.checkIsGuoShi(task) && TaskUIManager.inst.getIsOld())
@@ -368,68 +368,68 @@ public class TaskDescManager : MonoBehaviour
 		this.FinshImage.SetActive(false);
 	}
 
-	// Token: 0x04001CE2 RID: 7394
+	// Token: 0x04001884 RID: 6276
 	[SerializeField]
 	private GameObject TaskIndex;
 
-	// Token: 0x04001CE3 RID: 7395
+	// Token: 0x04001885 RID: 6277
 	[SerializeField]
 	private Text HasTime;
 
-	// Token: 0x04001CE4 RID: 7396
+	// Token: 0x04001886 RID: 6278
 	[SerializeField]
 	private Text Desc;
 
-	// Token: 0x04001CE5 RID: 7397
+	// Token: 0x04001887 RID: 6279
 	[SerializeField]
 	private Text Name;
 
-	// Token: 0x04001CE6 RID: 7398
+	// Token: 0x04001888 RID: 6280
 	[SerializeField]
 	private GameObject FinshImage;
 
-	// Token: 0x04001CE7 RID: 7399
+	// Token: 0x04001889 RID: 6281
 	[SerializeField]
 	private GameObject ZhuiZhongImage;
 
-	// Token: 0x04001CE8 RID: 7400
+	// Token: 0x0400188A RID: 6282
 	[SerializeField]
 	private GameObject NoZhuiZhongImage;
 
-	// Token: 0x04001CE9 RID: 7401
+	// Token: 0x0400188B RID: 6283
 	[SerializeField]
 	private Text TaskStatus;
 
-	// Token: 0x04001CEA RID: 7402
+	// Token: 0x0400188C RID: 6284
 	[SerializeField]
 	private Text TaskJinDu;
 
-	// Token: 0x04001CEB RID: 7403
+	// Token: 0x0400188D RID: 6285
 	[SerializeField]
 	private Text TaskDes;
 
-	// Token: 0x04001CEC RID: 7404
+	// Token: 0x0400188E RID: 6286
 	[SerializeField]
 	private Text chunWenStatus;
 
-	// Token: 0x04001CED RID: 7405
+	// Token: 0x0400188F RID: 6287
 	public GameObject HasOpen;
 
-	// Token: 0x04001CEE RID: 7406
+	// Token: 0x04001890 RID: 6288
 	public GameObject NoOpen;
 
-	// Token: 0x04001CEF RID: 7407
+	// Token: 0x04001891 RID: 6289
 	[SerializeField]
 	private GameObject ChuanWenShengYuShiJian;
 
-	// Token: 0x04001CF0 RID: 7408
+	// Token: 0x04001892 RID: 6290
 	[SerializeField]
 	private Text ChuanWenShengYuTime;
 
-	// Token: 0x04001CF1 RID: 7409
+	// Token: 0x04001893 RID: 6291
 	[SerializeField]
 	private GameObject NomalTaskRenWuJinDu;
 
-	// Token: 0x04001CF2 RID: 7410
+	// Token: 0x04001894 RID: 6292
 	public FpBtn MapBtn;
 }

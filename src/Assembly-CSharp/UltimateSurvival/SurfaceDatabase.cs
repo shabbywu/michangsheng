@@ -3,10 +3,10 @@ using UnityEngine;
 
 namespace UltimateSurvival
 {
-	// Token: 0x020008FE RID: 2302
+	// Token: 0x02000618 RID: 1560
 	public class SurfaceDatabase : ScriptableSingleton<SurfaceDatabase>
 	{
-		// Token: 0x06003AF9 RID: 15097 RVA: 0x001AAD58 File Offset: 0x001A8F58
+		// Token: 0x060031CB RID: 12747 RVA: 0x00161418 File Offset: 0x0015F618
 		public SurfaceData GetSurfaceData(Texture texture)
 		{
 			for (int i = 0; i < this.m_Surfaces.Length; i++)
@@ -19,7 +19,7 @@ namespace UltimateSurvival
 			return this.m_DefaultSurface;
 		}
 
-		// Token: 0x06003AFA RID: 15098 RVA: 0x001AAD98 File Offset: 0x001A8F98
+		// Token: 0x060031CC RID: 12748 RVA: 0x00161458 File Offset: 0x0015F658
 		public SurfaceData GetSurfaceData(Ray ray, float maxDistance, LayerMask mask)
 		{
 			RaycastHit raycastHit;
@@ -30,13 +30,13 @@ namespace UltimateSurvival
 			return null;
 		}
 
-		// Token: 0x06003AFB RID: 15099 RVA: 0x0002AC7A File Offset: 0x00028E7A
+		// Token: 0x060031CD RID: 12749 RVA: 0x00161494 File Offset: 0x0015F694
 		public SurfaceData GetSurfaceData(RaycastHit hitInfo)
 		{
 			return this.GetSurfaceData(hitInfo.collider, hitInfo.point, hitInfo.triangleIndex);
 		}
 
-		// Token: 0x06003AFC RID: 15100 RVA: 0x001AADD4 File Offset: 0x001A8FD4
+		// Token: 0x060031CE RID: 12750 RVA: 0x001614B4 File Offset: 0x0015F6B4
 		public SurfaceData GetSurfaceData(Collider collider, Vector3 position, int triangleIndex)
 		{
 			Texture texture;
@@ -66,7 +66,7 @@ namespace UltimateSurvival
 			return this.m_DefaultSurface;
 		}
 
-		// Token: 0x06003AFD RID: 15101 RVA: 0x001AAE84 File Offset: 0x001A9084
+		// Token: 0x060031CF RID: 12751 RVA: 0x00161564 File Offset: 0x0015F764
 		private Texture GetMeshTexture(Collider collider, int triangleIndex)
 		{
 			SurfaceIdentity component = collider.GetComponent<SurfaceIdentity>();
@@ -108,7 +108,7 @@ namespace UltimateSurvival
 			return component2.materials[num].mainTexture;
 		}
 
-		// Token: 0x06003AFE RID: 15102 RVA: 0x001AAF98 File Offset: 0x001A9198
+		// Token: 0x060031D0 RID: 12752 RVA: 0x00161678 File Offset: 0x0015F878
 		private float[] GetTerrainTextureMix(Vector3 worldPos, TerrainData terrainData, Vector3 terrainPos)
 		{
 			int num = (int)((worldPos.x - terrainPos.x) / terrainData.size.x * (float)terrainData.alphamapWidth);
@@ -122,7 +122,7 @@ namespace UltimateSurvival
 			return array;
 		}
 
-		// Token: 0x06003AFF RID: 15103 RVA: 0x001AB028 File Offset: 0x001A9228
+		// Token: 0x060031D1 RID: 12753 RVA: 0x00161708 File Offset: 0x0015F908
 		private int GetTerrainTextureIndex(Vector3 worldPos, float[] textureMix)
 		{
 			float num = 0f;
@@ -138,11 +138,11 @@ namespace UltimateSurvival
 			return result;
 		}
 
-		// Token: 0x0400354A RID: 13642
+		// Token: 0x04002C29 RID: 11305
 		[SerializeField]
 		private SurfaceData m_DefaultSurface;
 
-		// Token: 0x0400354B RID: 13643
+		// Token: 0x04002C2A RID: 11306
 		[SerializeField]
 		private SurfaceData[] m_Surfaces;
 	}

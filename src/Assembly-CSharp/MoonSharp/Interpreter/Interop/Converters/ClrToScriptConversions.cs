@@ -5,10 +5,10 @@ using System.Text;
 
 namespace MoonSharp.Interpreter.Interop.Converters
 {
-	// Token: 0x02001142 RID: 4418
+	// Token: 0x02000D3A RID: 3386
 	internal static class ClrToScriptConversions
 	{
-		// Token: 0x06006B39 RID: 27449 RVA: 0x00292968 File Offset: 0x00290B68
+		// Token: 0x06005F67 RID: 24423 RVA: 0x0026AAA0 File Offset: 0x00268CA0
 		internal static DynValue TryObjectToTrivialDynValue(Script script, object obj)
 		{
 			if (obj == null)
@@ -39,7 +39,7 @@ namespace MoonSharp.Interpreter.Interop.Converters
 			return null;
 		}
 
-		// Token: 0x06006B3A RID: 27450 RVA: 0x002929FC File Offset: 0x00290BFC
+		// Token: 0x06005F68 RID: 24424 RVA: 0x0026AB34 File Offset: 0x00268D34
 		internal static DynValue TryObjectToSimpleDynValue(Script script, object obj)
 		{
 			if (obj == null)
@@ -95,7 +95,7 @@ namespace MoonSharp.Interpreter.Interop.Converters
 			return null;
 		}
 
-		// Token: 0x06006B3B RID: 27451 RVA: 0x00292B08 File Offset: 0x00290D08
+		// Token: 0x06005F69 RID: 24425 RVA: 0x0026AC40 File Offset: 0x00268E40
 		internal static DynValue ObjectToDynValue(Script script, object obj)
 		{
 			DynValue dynValue = ClrToScriptConversions.TryObjectToSimpleDynValue(script, obj);
@@ -148,7 +148,7 @@ namespace MoonSharp.Interpreter.Interop.Converters
 			throw ScriptRuntimeException.ConvertObjectFailed(obj);
 		}
 
-		// Token: 0x06006B3C RID: 27452 RVA: 0x00292BF0 File Offset: 0x00290DF0
+		// Token: 0x06005F6A RID: 24426 RVA: 0x0026AD28 File Offset: 0x00268F28
 		public static DynValue EnumerationToDynValue(Script script, object obj)
 		{
 			if (obj is IEnumerable)

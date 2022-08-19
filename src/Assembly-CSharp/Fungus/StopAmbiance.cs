@@ -3,19 +3,19 @@ using UnityEngine;
 
 namespace Fungus
 {
-	// Token: 0x0200129F RID: 4767
+	// Token: 0x02000E4E RID: 3662
 	[CommandInfo("Audio", "Stop Ambiance", "Stops the currently playing game ambiance.", 0)]
 	[AddComponentMenu("")]
 	public class StopAmbiance : Command
 	{
-		// Token: 0x06007386 RID: 29574 RVA: 0x0004ED0F File Offset: 0x0004CF0F
+		// Token: 0x060066F8 RID: 26360 RVA: 0x00288647 File Offset: 0x00286847
 		public override void OnEnter()
 		{
 			FungusManager.Instance.MusicManager.StopAmbiance();
 			this.Continue();
 		}
 
-		// Token: 0x06007387 RID: 29575 RVA: 0x0004C749 File Offset: 0x0004A949
+		// Token: 0x060066F9 RID: 26361 RVA: 0x0027DDC5 File Offset: 0x0027BFC5
 		public override Color GetButtonColor()
 		{
 			return new Color32(242, 209, 176, byte.MaxValue);

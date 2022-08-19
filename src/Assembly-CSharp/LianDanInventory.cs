@@ -4,10 +4,10 @@ using GUIPackage;
 using KBEngine;
 using UnityEngine;
 
-// Token: 0x02000443 RID: 1091
+// Token: 0x020002E9 RID: 745
 public class LianDanInventory : Inventory2
 {
-	// Token: 0x06001D07 RID: 7431 RVA: 0x00100190 File Offset: 0x000FE390
+	// Token: 0x060019E5 RID: 6629 RVA: 0x000B98E8 File Offset: 0x000B7AE8
 	private List<ITEM_INFO> getRealItemList()
 	{
 		Avatar player = Tools.instance.getPlayer();
@@ -31,7 +31,7 @@ public class LianDanInventory : Inventory2
 		return list;
 	}
 
-	// Token: 0x06001D08 RID: 7432 RVA: 0x00100260 File Offset: 0x000FE460
+	// Token: 0x060019E6 RID: 6630 RVA: 0x000B99B8 File Offset: 0x000B7BB8
 	public new void Awake()
 	{
 		this.nowIndex = 0;
@@ -48,61 +48,61 @@ public class LianDanInventory : Inventory2
 		}
 	}
 
-	// Token: 0x06001D09 RID: 7433 RVA: 0x0001836C File Offset: 0x0001656C
+	// Token: 0x060019E7 RID: 6631 RVA: 0x000B9A1D File Offset: 0x000B7C1D
 	public void selectPingJieAll()
 	{
 		this.Quaily = 0;
 		this.LoadCaiLiaoInventory();
 	}
 
-	// Token: 0x06001D0A RID: 7434 RVA: 0x0001837B File Offset: 0x0001657B
+	// Token: 0x060019E8 RID: 6632 RVA: 0x000B9A2C File Offset: 0x000B7C2C
 	public void selectPingJie1()
 	{
 		this.Quaily = 1;
 		this.LoadCaiLiaoInventory();
 	}
 
-	// Token: 0x06001D0B RID: 7435 RVA: 0x0001838A File Offset: 0x0001658A
+	// Token: 0x060019E9 RID: 6633 RVA: 0x000B9A3B File Offset: 0x000B7C3B
 	public void selectPingJie2()
 	{
 		this.Quaily = 2;
 		this.LoadCaiLiaoInventory();
 	}
 
-	// Token: 0x06001D0C RID: 7436 RVA: 0x00018399 File Offset: 0x00016599
+	// Token: 0x060019EA RID: 6634 RVA: 0x000B9A4A File Offset: 0x000B7C4A
 	public void selectPingJie3()
 	{
 		this.Quaily = 3;
 		this.LoadCaiLiaoInventory();
 	}
 
-	// Token: 0x06001D0D RID: 7437 RVA: 0x000183A8 File Offset: 0x000165A8
+	// Token: 0x060019EB RID: 6635 RVA: 0x000B9A59 File Offset: 0x000B7C59
 	public void selectPingJie4()
 	{
 		this.Quaily = 4;
 		this.LoadCaiLiaoInventory();
 	}
 
-	// Token: 0x06001D0E RID: 7438 RVA: 0x000183B7 File Offset: 0x000165B7
+	// Token: 0x060019EC RID: 6636 RVA: 0x000B9A68 File Offset: 0x000B7C68
 	public void selectPingJie5()
 	{
 		this.Quaily = 5;
 		this.LoadCaiLiaoInventory();
 	}
 
-	// Token: 0x06001D0F RID: 7439 RVA: 0x000183C6 File Offset: 0x000165C6
+	// Token: 0x060019ED RID: 6637 RVA: 0x000B9A77 File Offset: 0x000B7C77
 	public void selectPingJie6()
 	{
 		this.Quaily = 6;
 		this.LoadCaiLiaoInventory();
 	}
 
-	// Token: 0x06001D10 RID: 7440 RVA: 0x000042DD File Offset: 0x000024DD
+	// Token: 0x060019EE RID: 6638 RVA: 0x00004095 File Offset: 0x00002295
 	public new void Update()
 	{
 	}
 
-	// Token: 0x06001D11 RID: 7441 RVA: 0x001002C8 File Offset: 0x000FE4C8
+	// Token: 0x060019EF RID: 6639 RVA: 0x000B9A88 File Offset: 0x000B7C88
 	public void LoadCaiLiaoInventory()
 	{
 		this.resteInventoryItem();
@@ -132,7 +132,7 @@ public class LianDanInventory : Inventory2
 		}
 	}
 
-	// Token: 0x06001D12 RID: 7442 RVA: 0x00100470 File Offset: 0x000FE670
+	// Token: 0x060019F0 RID: 6640 RVA: 0x000B9C30 File Offset: 0x000B7E30
 	public new void resteInventoryItem()
 	{
 		for (int i = 0; i < 25; i++)
@@ -142,7 +142,7 @@ public class LianDanInventory : Inventory2
 		}
 	}
 
-	// Token: 0x06001D13 RID: 7443 RVA: 0x001004B0 File Offset: 0x000FE6B0
+	// Token: 0x060019F1 RID: 6641 RVA: 0x000B9C70 File Offset: 0x000B7E70
 	public void resterLianDanFinshCell()
 	{
 		for (int i = 31; i < 37; i++)
@@ -152,7 +152,7 @@ public class LianDanInventory : Inventory2
 		}
 	}
 
-	// Token: 0x06001D14 RID: 7444 RVA: 0x001004F0 File Offset: 0x000FE6F0
+	// Token: 0x060019F2 RID: 6642 RVA: 0x000B9CB0 File Offset: 0x000B7EB0
 	public new int addItemToNullInventory(int id, int num, string uuid, JSONObject Seid)
 	{
 		for (int i = 25; i < 37; i++)
@@ -180,18 +180,18 @@ public class LianDanInventory : Inventory2
 		return 0;
 	}
 
-	// Token: 0x06001D15 RID: 7445 RVA: 0x000183D5 File Offset: 0x000165D5
+	// Token: 0x060019F3 RID: 6643 RVA: 0x000B9D8C File Offset: 0x000B7F8C
 	public new bool isInPage(int curpage, int itemIndex, int pagesize)
 	{
 		return itemIndex >= curpage * pagesize && itemIndex < (curpage + 1) * pagesize;
 	}
 
-	// Token: 0x0400190D RID: 6413
+	// Token: 0x04001509 RID: 5385
 	public SelectLianDanPage lianDanSelectPage;
 
-	// Token: 0x0400190E RID: 6414
+	// Token: 0x0400150A RID: 5386
 	public int Quaily;
 
-	// Token: 0x0400190F RID: 6415
+	// Token: 0x0400150B RID: 5387
 	public int selectType = -1;
 }

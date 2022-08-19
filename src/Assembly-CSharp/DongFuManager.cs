@@ -3,12 +3,12 @@ using JSONClass;
 using KBEngine;
 using UnityEngine;
 
-// Token: 0x0200031B RID: 795
+// Token: 0x02000206 RID: 518
 public static class DongFuManager
 {
-	// Token: 0x17000280 RID: 640
-	// (get) Token: 0x0600176F RID: 5999 RVA: 0x00014B12 File Offset: 0x00012D12
-	// (set) Token: 0x06001770 RID: 6000 RVA: 0x00014B23 File Offset: 0x00012D23
+	// Token: 0x17000238 RID: 568
+	// (get) Token: 0x060014C5 RID: 5317 RVA: 0x000852B3 File Offset: 0x000834B3
+	// (set) Token: 0x060014C6 RID: 5318 RVA: 0x000852C4 File Offset: 0x000834C4
 	public static int NowDongFuID
 	{
 		get
@@ -21,26 +21,26 @@ public static class DongFuManager
 		}
 	}
 
-	// Token: 0x06001771 RID: 6001 RVA: 0x00014B35 File Offset: 0x00012D35
+	// Token: 0x060014C7 RID: 5319 RVA: 0x000852D6 File Offset: 0x000834D6
 	public static void LoadDongFuScene(int dongFuID)
 	{
 		DongFuManager.NowDongFuID = dongFuID;
 		Tools.instance.loadMapScenes("S101", true);
 	}
 
-	// Token: 0x06001772 RID: 6002 RVA: 0x00014B4D File Offset: 0x00012D4D
+	// Token: 0x060014C8 RID: 5320 RVA: 0x000852EE File Offset: 0x000834EE
 	public static JSONObject GetNowDongFuJson()
 	{
 		return PlayerEx.Player.DongFuData[string.Format("DongFu{0}", DongFuManager.NowDongFuID)];
 	}
 
-	// Token: 0x06001773 RID: 6003 RVA: 0x00014B72 File Offset: 0x00012D72
+	// Token: 0x060014C9 RID: 5321 RVA: 0x00085313 File Offset: 0x00083513
 	public static void SetDongFuName(int dongFuID, string name)
 	{
 		PlayerEx.Player.DongFuData[string.Format("DongFu{0}", dongFuID)].SetField("DongFuName", name);
 	}
 
-	// Token: 0x06001774 RID: 6004 RVA: 0x000CDC8C File Offset: 0x000CBE8C
+	// Token: 0x060014CA RID: 5322 RVA: 0x00085340 File Offset: 0x00083540
 	public static string GetDongFuName(int dongFuID)
 	{
 		string result = "洞府";
@@ -52,7 +52,7 @@ public static class DongFuManager
 		return result;
 	}
 
-	// Token: 0x06001775 RID: 6005 RVA: 0x000CDD18 File Offset: 0x000CBF18
+	// Token: 0x060014CB RID: 5323 RVA: 0x000853CC File Offset: 0x000835CC
 	public static void CreateDongFu(int dongFuID, int level)
 	{
 		Avatar player = PlayerEx.Player;
@@ -82,7 +82,7 @@ public static class DongFuManager
 		Debug.Log(string.Format("洞府:\n{0}", player.DongFuData));
 	}
 
-	// Token: 0x06001776 RID: 6006 RVA: 0x00014B9E File Offset: 0x00012D9E
+	// Token: 0x060014CC RID: 5324 RVA: 0x0008560A File Offset: 0x0008380A
 	public static void RefreshDongFuShow()
 	{
 		if (DongFuScene.Inst != null)
@@ -95,7 +95,7 @@ public static class DongFuManager
 		}
 	}
 
-	// Token: 0x06001777 RID: 6007 RVA: 0x00014BCE File Offset: 0x00012DCE
+	// Token: 0x060014CD RID: 5325 RVA: 0x0008563A File Offset: 0x0008383A
 	public static void ZhongZhi(int dongFuID, int slot, int id)
 	{
 		DongFuData dongFuData = new DongFuData(dongFuID);
@@ -106,7 +106,7 @@ public static class DongFuManager
 		DongFuManager.RefreshDongFuShow();
 	}
 
-	// Token: 0x06001778 RID: 6008 RVA: 0x000CDF58 File Offset: 0x000CC158
+	// Token: 0x060014CE RID: 5326 RVA: 0x00085678 File Offset: 0x00083878
 	public static void ShouHuo(int dongFuID, int slot)
 	{
 		DongFuData dongFuData = new DongFuData(dongFuID);
@@ -130,7 +130,7 @@ public static class DongFuManager
 		DongFuManager.RefreshDongFuShow();
 	}
 
-	// Token: 0x06001779 RID: 6009 RVA: 0x000CE00C File Offset: 0x000CC20C
+	// Token: 0x060014CF RID: 5327 RVA: 0x0008572C File Offset: 0x0008392C
 	public static void LingTianAddTime(int month)
 	{
 		if (month < 1)
@@ -187,13 +187,13 @@ public static class DongFuManager
 		DongFuManager.RefreshDongFuShow();
 	}
 
-	// Token: 0x0600177A RID: 6010 RVA: 0x00014C0A File Offset: 0x00012E0A
+	// Token: 0x060014D0 RID: 5328 RVA: 0x00085A0C File Offset: 0x00083C0C
 	public static void UnlockArea(int dongFuID, DongFuArea area)
 	{
 		PlayerEx.Player.DongFuData[string.Format("DongFu{0}", dongFuID)].SetField(string.Format("Area{0}Unlock", (int)area), 1);
 	}
 
-	// Token: 0x0600177B RID: 6011 RVA: 0x000CE2EC File Offset: 0x000CC4EC
+	// Token: 0x060014D1 RID: 5329 RVA: 0x00085A44 File Offset: 0x00083C44
 	public static bool IsAreaUnlocked(int dongFuID, DongFuArea area)
 	{
 		Avatar player = PlayerEx.Player;
@@ -201,18 +201,18 @@ public static class DongFuManager
 		return player.DongFuData[string.Format("DongFu{0}", dongFuID)].HasField(text) && player.DongFuData[string.Format("DongFu{0}", dongFuID)][text].I == 1;
 	}
 
-	// Token: 0x0600177C RID: 6012 RVA: 0x00014C41 File Offset: 0x00012E41
+	// Token: 0x060014D2 RID: 5330 RVA: 0x00085AB7 File Offset: 0x00083CB7
 	public static int GetPlayerDongFuCount()
 	{
 		return PlayerEx.Player.DongFuData.Count;
 	}
 
-	// Token: 0x0600177D RID: 6013 RVA: 0x00014C52 File Offset: 0x00012E52
+	// Token: 0x060014D3 RID: 5331 RVA: 0x00085AC8 File Offset: 0x00083CC8
 	public static bool PlayerHasDongFu(int dongFuID)
 	{
 		return PlayerEx.Player.DongFuData.HasField(string.Format("DongFu{0}", dongFuID));
 	}
 
-	// Token: 0x040012D0 RID: 4816
+	// Token: 0x04000F8A RID: 3978
 	public static int LingTianCount = 9;
 }

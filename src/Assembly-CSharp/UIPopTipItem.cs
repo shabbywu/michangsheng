@@ -5,12 +5,12 @@ using DG.Tweening.Plugins.Options;
 using UnityEngine;
 using UnityEngine.UI;
 
-// Token: 0x020004E2 RID: 1250
+// Token: 0x02000365 RID: 869
 public class UIPopTipItem : MonoBehaviour
 {
-	// Token: 0x170002A7 RID: 679
-	// (get) Token: 0x06002095 RID: 8341 RVA: 0x0001AC9F File Offset: 0x00018E9F
-	// (set) Token: 0x06002096 RID: 8342 RVA: 0x0001ACA7 File Offset: 0x00018EA7
+	// Token: 0x17000259 RID: 601
+	// (get) Token: 0x06001D2B RID: 7467 RVA: 0x000CEF5F File Offset: 0x000CD15F
+	// (set) Token: 0x06001D2C RID: 7468 RVA: 0x000CEF67 File Offset: 0x000CD167
 	public int MsgIndex
 	{
 		get
@@ -29,13 +29,13 @@ public class UIPopTipItem : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06002097 RID: 8343 RVA: 0x0001ACCC File Offset: 0x00018ECC
+	// Token: 0x06001D2D RID: 7469 RVA: 0x000CEF8C File Offset: 0x000CD18C
 	private void Awake()
 	{
 		this.RT = (base.transform as RectTransform);
 	}
 
-	// Token: 0x06002098 RID: 8344 RVA: 0x001138F0 File Offset: 0x00111AF0
+	// Token: 0x06001D2E RID: 7470 RVA: 0x000CEFA0 File Offset: 0x000CD1A0
 	private void MovePos()
 	{
 		if (this.MsgIndex == 0)
@@ -49,7 +49,7 @@ public class UIPopTipItem : MonoBehaviour
 		DOTweenModuleUI.DOAnchorPosY(this.RT, num, UIPopTipItem.tweenDur, false);
 	}
 
-	// Token: 0x06002099 RID: 8345 RVA: 0x0001ACDF File Offset: 0x00018EDF
+	// Token: 0x06001D2F RID: 7471 RVA: 0x000CF046 File Offset: 0x000CD246
 	public void TweenDestory()
 	{
 		TweenSettingsExtensions.SetEase<TweenerCore<Vector2, Vector2, VectorOptions>>(DOTweenModuleUI.DOAnchorPosX(this.RT, 500f, 1f, false), 14).onComplete = delegate()
@@ -58,21 +58,21 @@ public class UIPopTipItem : MonoBehaviour
 		};
 	}
 
-	// Token: 0x04001C15 RID: 7189
+	// Token: 0x040017C3 RID: 6083
 	public Image IconImage;
 
-	// Token: 0x04001C16 RID: 7190
+	// Token: 0x040017C4 RID: 6084
 	public Text MsgText;
 
-	// Token: 0x04001C17 RID: 7191
+	// Token: 0x040017C5 RID: 6085
 	private int msgIndex;
 
-	// Token: 0x04001C18 RID: 7192
+	// Token: 0x040017C6 RID: 6086
 	private RectTransform RT;
 
-	// Token: 0x04001C19 RID: 7193
+	// Token: 0x040017C7 RID: 6087
 	private static float tweenDur = 0.5f;
 
-	// Token: 0x04001C1A RID: 7194
+	// Token: 0x040017C8 RID: 6088
 	private static float scaleNum = 0.9f;
 }

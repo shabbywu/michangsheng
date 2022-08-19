@@ -3,10 +3,10 @@ using System.Collections.Generic;
 
 namespace JSONClass
 {
-	// Token: 0x02000BD3 RID: 3027
+	// Token: 0x02000842 RID: 2114
 	public class GaoShi : IJSONClass
 	{
-		// Token: 0x06004AB4 RID: 19124 RVA: 0x001F99E4 File Offset: 0x001F7BE4
+		// Token: 0x06003F1A RID: 16154 RVA: 0x001AF1F8 File Offset: 0x001AD3F8
 		public static void InitDataDict()
 		{
 			foreach (JSONObject jsonobject in jsonData.instance.GaoShi.list)
@@ -46,45 +46,45 @@ namespace JSONClass
 			}
 		}
 
-		// Token: 0x06004AB5 RID: 19125 RVA: 0x000042DD File Offset: 0x000024DD
+		// Token: 0x06003F1B RID: 16155 RVA: 0x00004095 File Offset: 0x00002295
 		private static void OnInitFinish()
 		{
 		}
 
-		// Token: 0x0400467B RID: 18043
+		// Token: 0x04003B0D RID: 15117
 		public static Dictionary<int, GaoShi> DataDict = new Dictionary<int, GaoShi>();
 
-		// Token: 0x0400467C RID: 18044
+		// Token: 0x04003B0E RID: 15118
 		public static List<GaoShi> DataList = new List<GaoShi>();
 
-		// Token: 0x0400467D RID: 18045
+		// Token: 0x04003B0F RID: 15119
 		public static Action OnInitFinishAction = new Action(GaoShi.OnInitFinish);
 
-		// Token: 0x0400467E RID: 18046
+		// Token: 0x04003B10 RID: 15120
 		public int id;
 
-		// Token: 0x0400467F RID: 18047
+		// Token: 0x04003B11 RID: 15121
 		public int itemid;
 
-		// Token: 0x04004680 RID: 18048
+		// Token: 0x04003B12 RID: 15122
 		public int type;
 
-		// Token: 0x04004681 RID: 18049
+		// Token: 0x04003B13 RID: 15123
 		public int num;
 
-		// Token: 0x04004682 RID: 18050
+		// Token: 0x04003B14 RID: 15124
 		public int jiagexishu;
 
-		// Token: 0x04004683 RID: 18051
+		// Token: 0x04003B15 RID: 15125
 		public int shengwangid;
 
-		// Token: 0x04004684 RID: 18052
+		// Token: 0x04003B16 RID: 15126
 		public int shengwang;
 
-		// Token: 0x04004685 RID: 18053
+		// Token: 0x04003B17 RID: 15127
 		public int taskid;
 
-		// Token: 0x04004686 RID: 18054
+		// Token: 0x04003B18 RID: 15128
 		public int menpaihuobi;
 	}
 }

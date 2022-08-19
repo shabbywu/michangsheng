@@ -7,10 +7,10 @@ using UnityEngine.UI;
 
 namespace PaiMai
 {
-	// Token: 0x02000A66 RID: 2662
+	// Token: 0x02000716 RID: 1814
 	public class PaiMaiUiMag : SingletonMono<PaiMaiUiMag>
 	{
-		// Token: 0x06004494 RID: 17556 RVA: 0x001D5028 File Offset: 0x001D3228
+		// Token: 0x06003A08 RID: 14856 RVA: 0x0018D95C File Offset: 0x0018BB5C
 		private void Awake()
 		{
 			SingletonMono<PaiMaiUiMag>._instance = this;
@@ -62,7 +62,7 @@ namespace PaiMai
 			this.Init();
 		}
 
-		// Token: 0x06004495 RID: 17557 RVA: 0x001D5224 File Offset: 0x001D3424
+		// Token: 0x06003A09 RID: 14857 RVA: 0x0018DB58 File Offset: 0x0018BD58
 		public void Init()
 		{
 			this.ShopIndex = 0;
@@ -79,7 +79,7 @@ namespace PaiMai
 			this.StartPaiMai();
 		}
 
-		// Token: 0x06004496 RID: 17558 RVA: 0x001D52D8 File Offset: 0x001D34D8
+		// Token: 0x06003A0A RID: 14858 RVA: 0x0018DC0C File Offset: 0x0018BE0C
 		private void CreatePaiMaiNpcList()
 		{
 			List<int> list = new List<int>();
@@ -204,7 +204,7 @@ namespace PaiMai
 			this._playerCtr = new PlayerCtr(player, dictionary, component, tips);
 		}
 
-		// Token: 0x06004497 RID: 17559 RVA: 0x00031087 File Offset: 0x0002F287
+		// Token: 0x06003A0B RID: 14859 RVA: 0x0018E0D0 File Offset: 0x0018C2D0
 		public void PlayerUseCeLue(PlayerCommand command)
 		{
 			this._ceLueMask.SetActive(true);
@@ -212,7 +212,7 @@ namespace PaiMai
 			this._avatarCtr.SetCanSelect(this._ceLueType);
 		}
 
-		// Token: 0x06004498 RID: 17560 RVA: 0x001D579C File Offset: 0x001D399C
+		// Token: 0x06003A0C RID: 14860 RVA: 0x0018E0FC File Offset: 0x0018C2FC
 		public void SelectAvatarCallBack(PaiMaiAvatar avatar)
 		{
 			this._ceLueMask.SetActive(false);
@@ -322,14 +322,14 @@ namespace PaiMai
 			}
 		}
 
-		// Token: 0x06004499 RID: 17561 RVA: 0x000310B2 File Offset: 0x0002F2B2
+		// Token: 0x06003A0D RID: 14861 RVA: 0x0018E440 File Offset: 0x0018C640
 		public void CancelUserCelue()
 		{
 			this._ceLueMask.SetActive(false);
 			this._avatarCtr.StopSelect();
 		}
 
-		// Token: 0x0600449A RID: 17562 RVA: 0x001D5AE0 File Offset: 0x001D3CE0
+		// Token: 0x06003A0E RID: 14862 RVA: 0x0018E45C File Offset: 0x0018C65C
 		private void StartPaiMai()
 		{
 			this.ShopIndex = 0;
@@ -353,7 +353,7 @@ namespace PaiMai
 			}, 1f);
 		}
 
-		// Token: 0x0600449B RID: 17563 RVA: 0x001D5B44 File Offset: 0x001D3D44
+		// Token: 0x06003A0F RID: 14863 RVA: 0x0018E4C0 File Offset: 0x0018C6C0
 		private string GetDesc()
 		{
 			string result = "";
@@ -368,7 +368,7 @@ namespace PaiMai
 			return result;
 		}
 
-		// Token: 0x0600449C RID: 17564 RVA: 0x001D5BD0 File Offset: 0x001D3DD0
+		// Token: 0x06003A10 RID: 14864 RVA: 0x0018E54C File Offset: 0x0018C74C
 		public bool AddPrice(int type = 0)
 		{
 			int num2;
@@ -453,7 +453,7 @@ namespace PaiMai
 			return true;
 		}
 
-		// Token: 0x0600449D RID: 17565 RVA: 0x001D5F1C File Offset: 0x001D411C
+		// Token: 0x06003A11 RID: 14865 RVA: 0x0018E898 File Offset: 0x0018CA98
 		private void AddPriceCallBack(int type)
 		{
 			this.ItemUI.UpdateUI();
@@ -482,7 +482,7 @@ namespace PaiMai
 			}
 		}
 
-		// Token: 0x0600449E RID: 17566 RVA: 0x001D6028 File Offset: 0x001D4228
+		// Token: 0x06003A12 RID: 14866 RVA: 0x0018E9A4 File Offset: 0x0018CBA4
 		public void EndRound()
 		{
 			if (this.CurAvatar == null)
@@ -527,7 +527,7 @@ namespace PaiMai
 			}
 		}
 
-		// Token: 0x0600449F RID: 17567 RVA: 0x000310CB File Offset: 0x0002F2CB
+		// Token: 0x06003A13 RID: 14867 RVA: 0x0018EA88 File Offset: 0x0018CC88
 		private void NextRound()
 		{
 			this.AddRound();
@@ -535,7 +535,7 @@ namespace PaiMai
 			this._avatarCtr.AvatarStart();
 		}
 
-		// Token: 0x060044A0 RID: 17568 RVA: 0x001D610C File Offset: 0x001D430C
+		// Token: 0x06003A14 RID: 14868 RVA: 0x0018EAA4 File Offset: 0x0018CCA4
 		private void EndCurShop()
 		{
 			this.ShopIndex++;
@@ -570,7 +570,7 @@ namespace PaiMai
 			this.Host.SayWord(string.Format("恭喜{0}道友以{1}灵石的价格拍得这件宝物。", this.ItemUI.Owner.Name, this.CurShop.CurPrice), new UnityAction(this.NextShop), 2f);
 		}
 
-		// Token: 0x060044A1 RID: 17569 RVA: 0x001D62D0 File Offset: 0x001D44D0
+		// Token: 0x06003A15 RID: 14869 RVA: 0x0018EC68 File Offset: 0x0018CE68
 		private void NextShop()
 		{
 			this.RestartRound();
@@ -612,7 +612,7 @@ namespace PaiMai
 			}, 2f);
 		}
 
-		// Token: 0x060044A2 RID: 17570 RVA: 0x001D6478 File Offset: 0x001D4678
+		// Token: 0x06003A16 RID: 14870 RVA: 0x0018EE10 File Offset: 0x0018D010
 		private void EndPaiMai()
 		{
 			foreach (PaiMaiShop paiMaiShop in this.ShopList)
@@ -645,21 +645,21 @@ namespace PaiMai
 			}, 2f);
 		}
 
-		// Token: 0x060044A3 RID: 17571 RVA: 0x000310E5 File Offset: 0x0002F2E5
+		// Token: 0x06003A17 RID: 14871 RVA: 0x0018EF30 File Offset: 0x0018D130
 		private void AddRound()
 		{
 			this._round++;
 			this._roundText.text = "第" + this._round.ToCNNumber() + "轮";
 		}
 
-		// Token: 0x060044A4 RID: 17572 RVA: 0x0003111A File Offset: 0x0002F31A
+		// Token: 0x06003A18 RID: 14872 RVA: 0x0018EF65 File Offset: 0x0018D165
 		private void RestartRound()
 		{
 			this._round = 1;
 			this._roundText.text = "第" + this._round.ToCNNumber() + "轮";
 		}
 
-		// Token: 0x060044A5 RID: 17573 RVA: 0x00031148 File Offset: 0x0002F348
+		// Token: 0x06003A19 RID: 14873 RVA: 0x0018EF93 File Offset: 0x0018D193
 		public void QuickEnd()
 		{
 			if (this._playerCtr.IsAllQuickEnd)
@@ -674,7 +674,7 @@ namespace PaiMai
 			}
 		}
 
-		// Token: 0x060044A6 RID: 17574 RVA: 0x00031181 File Offset: 0x0002F381
+		// Token: 0x06003A1A RID: 14874 RVA: 0x0018EFCC File Offset: 0x0018D1CC
 		public void Close()
 		{
 			Object.Destroy(base.gameObject);
@@ -682,84 +682,84 @@ namespace PaiMai
 			Tools.instance.loadMapScenes(Tools.instance.getPlayer().lastScence, true);
 		}
 
-		// Token: 0x04003C98 RID: 15512
+		// Token: 0x04003211 RID: 12817
 		public int PaiMaiId;
 
-		// Token: 0x04003C99 RID: 15513
+		// Token: 0x04003212 RID: 12818
 		[SerializeField]
 		private AvatarCtr _avatarCtr;
 
-		// Token: 0x04003C9A RID: 15514
+		// Token: 0x04003213 RID: 12819
 		[SerializeField]
 		private PlayerCtr _playerCtr;
 
-		// Token: 0x04003C9B RID: 15515
+		// Token: 0x04003214 RID: 12820
 		[SerializeField]
 		private PaiMaiSay _playerSayCtr;
 
-		// Token: 0x04003C9C RID: 15516
+		// Token: 0x04003215 RID: 12821
 		[SerializeField]
 		public FungusSay _fungusSay;
 
-		// Token: 0x04003C9D RID: 15517
+		// Token: 0x04003216 RID: 12822
 		public List<PaiMaiShop> ShopList;
 
-		// Token: 0x04003C9E RID: 15518
+		// Token: 0x04003217 RID: 12823
 		public List<Sprite> StateSprites;
 
-		// Token: 0x04003C9F RID: 15519
+		// Token: 0x04003218 RID: 12824
 		public List<Sprite> HostSprites;
 
-		// Token: 0x04003CA0 RID: 15520
+		// Token: 0x04003219 RID: 12825
 		public Dictionary<PaiMaiAvatar.StateType, string> StateColors;
 
-		// Token: 0x04003CA1 RID: 15521
+		// Token: 0x0400321A RID: 12826
 		public PaiMaiShop CurShop;
 
-		// Token: 0x04003CA2 RID: 15522
+		// Token: 0x0400321B RID: 12827
 		public int ShopIndex;
 
-		// Token: 0x04003CA3 RID: 15523
+		// Token: 0x0400321C RID: 12828
 		public PaiMaiAvatar CurAvatar;
 
-		// Token: 0x04003CA4 RID: 15524
+		// Token: 0x0400321D RID: 12829
 		public PaiMaiHost Host;
 
-		// Token: 0x04003CA5 RID: 15525
+		// Token: 0x0400321E RID: 12830
 		public PaiMaiItem ItemUI;
 
-		// Token: 0x04003CA6 RID: 15526
+		// Token: 0x0400321F RID: 12831
 		public Dictionary<int, List<int>> WordDict;
 
-		// Token: 0x04003CA7 RID: 15527
+		// Token: 0x04003220 RID: 12832
 		public Dictionary<int, List<int>> AddPriceWordDict;
 
-		// Token: 0x04003CA8 RID: 15528
+		// Token: 0x04003221 RID: 12833
 		private int _curRoundAddNum;
 
-		// Token: 0x04003CA9 RID: 15529
+		// Token: 0x04003222 RID: 12834
 		private int _round;
 
-		// Token: 0x04003CAA RID: 15530
+		// Token: 0x04003223 RID: 12835
 		private CeLueType _ceLueType;
 
-		// Token: 0x04003CAB RID: 15531
+		// Token: 0x04003224 RID: 12836
 		[SerializeField]
 		private Text _roundText;
 
-		// Token: 0x04003CAC RID: 15532
+		// Token: 0x04003225 RID: 12837
 		[SerializeField]
 		private GameObject _ceLueMask;
 
-		// Token: 0x04003CAD RID: 15533
+		// Token: 0x04003226 RID: 12838
 		[SerializeField]
 		private GameObject _endPanel;
 
-		// Token: 0x04003CAE RID: 15534
+		// Token: 0x04003227 RID: 12839
 		[SerializeField]
 		private Text _paiMaiJiLu;
 
-		// Token: 0x04003CAF RID: 15535
+		// Token: 0x04003228 RID: 12840
 		[SerializeField]
 		private Text _sceneName;
 	}

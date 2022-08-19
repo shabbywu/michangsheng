@@ -5,11 +5,11 @@ using UnityEngine;
 
 namespace PaiMai
 {
-	// Token: 0x02000A5F RID: 2655
+	// Token: 0x0200070F RID: 1807
 	[Serializable]
 	public class PaiMaiDataMag
 	{
-		// Token: 0x06004469 RID: 17513 RVA: 0x001D3C10 File Offset: 0x001D1E10
+		// Token: 0x060039DD RID: 14813 RVA: 0x0018C430 File Offset: 0x0018A630
 		public PaiMaiData GetShopInfo(int paiMaiId)
 		{
 			if (this.PaiMaiDict.Count == 0)
@@ -28,7 +28,7 @@ namespace PaiMai
 			return this.PaiMaiDict[paiMaiId];
 		}
 
-		// Token: 0x0600446A RID: 17514 RVA: 0x001D3C80 File Offset: 0x001D1E80
+		// Token: 0x060039DE RID: 14814 RVA: 0x0018C4A0 File Offset: 0x0018A6A0
 		private void Init()
 		{
 			this.PaiMaiShopTypeDict = new Dictionary<int, List<int>>();
@@ -82,7 +82,7 @@ namespace PaiMai
 			}
 		}
 
-		// Token: 0x0600446B RID: 17515 RVA: 0x001D3FA8 File Offset: 0x001D21A8
+		// Token: 0x060039DF RID: 14815 RVA: 0x0018C7C8 File Offset: 0x0018A9C8
 		public bool IsJoin(int id)
 		{
 			if (this.PaiMaiDict.ContainsKey(id))
@@ -98,7 +98,7 @@ namespace PaiMai
 			return false;
 		}
 
-		// Token: 0x0600446C RID: 17516 RVA: 0x001D4014 File Offset: 0x001D2214
+		// Token: 0x060039E0 RID: 14816 RVA: 0x0018C834 File Offset: 0x0018AA34
 		public void AuToUpDate()
 		{
 			if (!this.IsInit)
@@ -128,7 +128,7 @@ namespace PaiMai
 			}
 		}
 
-		// Token: 0x0600446D RID: 17517 RVA: 0x001D4128 File Offset: 0x001D2328
+		// Token: 0x060039E1 RID: 14817 RVA: 0x0018C948 File Offset: 0x0018AB48
 		public void UpdateById(int id)
 		{
 			if (!this.IsInit)
@@ -142,7 +142,7 @@ namespace PaiMai
 			this.PaiMaiDict[id].IsJoined = false;
 		}
 
-		// Token: 0x0600446E RID: 17518 RVA: 0x001D41C4 File Offset: 0x001D23C4
+		// Token: 0x060039E2 RID: 14818 RVA: 0x0018C9E4 File Offset: 0x0018ABE4
 		public void UpdateById(int id, int num)
 		{
 			if (!this.IsInit)
@@ -156,7 +156,7 @@ namespace PaiMai
 			this.PaiMaiDict[id].IsJoined = false;
 		}
 
-		// Token: 0x0600446F RID: 17519 RVA: 0x001D4264 File Offset: 0x001D2464
+		// Token: 0x060039E3 RID: 14819 RVA: 0x0018CA84 File Offset: 0x0018AC84
 		public int GetNowPaiMaiJieNum(int id)
 		{
 			DateTime t = DateTime.Parse(PaiMaiBiao.DataDict[id].StarTime);
@@ -176,7 +176,7 @@ namespace PaiMai
 			return num;
 		}
 
-		// Token: 0x06004470 RID: 17520 RVA: 0x001D42F8 File Offset: 0x001D24F8
+		// Token: 0x060039E4 RID: 14820 RVA: 0x0018CB18 File Offset: 0x0018AD18
 		private List<int> RandomPaiMaiShopList(int id)
 		{
 			List<int> list = new List<int>();
@@ -258,18 +258,18 @@ namespace PaiMai
 			return list;
 		}
 
-		// Token: 0x04003C7D RID: 15485
+		// Token: 0x040031F6 RID: 12790
 		public Dictionary<int, PaiMaiData> PaiMaiDict = new Dictionary<int, PaiMaiData>();
 
-		// Token: 0x04003C7E RID: 15486
+		// Token: 0x040031F7 RID: 12791
 		[NonSerialized]
 		public bool IsInit;
 
-		// Token: 0x04003C7F RID: 15487
+		// Token: 0x040031F8 RID: 12792
 		[NonSerialized]
 		private Dictionary<int, List<int>> PaiMaiShopTypeDict;
 
-		// Token: 0x04003C80 RID: 15488
+		// Token: 0x040031F9 RID: 12793
 		[NonSerialized]
 		private Dictionary<int, List<int>> PaiMaiShopQualityDict;
 	}

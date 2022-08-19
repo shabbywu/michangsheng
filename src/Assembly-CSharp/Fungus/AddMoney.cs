@@ -4,12 +4,12 @@ using UnityEngine;
 
 namespace Fungus
 {
-	// Token: 0x020013E6 RID: 5094
+	// Token: 0x02000F30 RID: 3888
 	[CommandInfo("YSNew/Add", "AddMoney", "增加或减少金钱（减少的话直接填负数）", 0)]
 	[AddComponentMenu("")]
 	public class AddMoney : Command
 	{
-		// Token: 0x06007BF0 RID: 31728 RVA: 0x002C43B4 File Offset: 0x002C25B4
+		// Token: 0x06006E05 RID: 28165 RVA: 0x002A4264 File Offset: 0x002A2464
 		public override void OnEnter()
 		{
 			Avatar player = Tools.instance.getPlayer();
@@ -46,18 +46,18 @@ namespace Fungus
 			this.Continue();
 		}
 
-		// Token: 0x06007BF1 RID: 31729 RVA: 0x000113CF File Offset: 0x0000F5CF
+		// Token: 0x06006E06 RID: 28166 RVA: 0x0005E228 File Offset: 0x0005C428
 		public override Color GetButtonColor()
 		{
 			return new Color32(184, 210, 235, byte.MaxValue);
 		}
 
-		// Token: 0x04006A46 RID: 27206
+		// Token: 0x04005B74 RID: 23412
 		[Tooltip("增加金钱的数量")]
 		[SerializeField]
 		public int AddNum;
 
-		// Token: 0x04006A47 RID: 27207
+		// Token: 0x04005B75 RID: 23413
 		[Tooltip("增加金钱的数量")]
 		[VariableProperty(new Type[]
 		{

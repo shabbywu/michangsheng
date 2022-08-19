@@ -2,7 +2,7 @@
 
 namespace ICSharpCode.SharpZipLib.Core
 {
-	// Token: 0x02000826 RID: 2086
-	// (Invoke) Token: 0x060036B2 RID: 14002
+	// Token: 0x0200057D RID: 1405
+	// (Invoke) Token: 0x06002E3C RID: 11836
 	public delegate void ProgressHandler(object sender, ProgressEventArgs e);
 }

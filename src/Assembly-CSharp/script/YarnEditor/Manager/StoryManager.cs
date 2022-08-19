@@ -18,10 +18,10 @@ using Yarn.Unity;
 
 namespace script.YarnEditor.Manager
 {
-	// Token: 0x02000AAD RID: 2733
+	// Token: 0x020009C8 RID: 2504
 	public class StoryManager : MonoBehaviour
 	{
-		// Token: 0x060045ED RID: 17901 RVA: 0x00032020 File Offset: 0x00030220
+		// Token: 0x06004598 RID: 17816 RVA: 0x001D7BE9 File Offset: 0x001D5DE9
 		private void Show()
 		{
 			if (!Directory.Exists(this.GetBepPath()))
@@ -34,13 +34,13 @@ namespace script.YarnEditor.Manager
 			base.transform.SetAsLastSibling();
 		}
 
-		// Token: 0x060045EE RID: 17902 RVA: 0x00032053 File Offset: 0x00030253
+		// Token: 0x06004599 RID: 17817 RVA: 0x001D7C1C File Offset: 0x001D5E1C
 		private void Hide()
 		{
 			this.UI.SetActive(false);
 		}
 
-		// Token: 0x060045EF RID: 17903 RVA: 0x001DDB54 File Offset: 0x001DBD54
+		// Token: 0x0600459A RID: 17818 RVA: 0x001D7C2C File Offset: 0x001D5E2C
 		private void UpdateDrop()
 		{
 			this.ModDrop.options.Clear();
@@ -60,7 +60,7 @@ namespace script.YarnEditor.Manager
 			}
 		}
 
-		// Token: 0x060045F0 RID: 17904 RVA: 0x001DDC34 File Offset: 0x001DBE34
+		// Token: 0x0600459B RID: 17819 RVA: 0x001D7D0C File Offset: 0x001D5F0C
 		private void SelectMod(int id)
 		{
 			this.CurStory = this.StoryList[id];
@@ -80,7 +80,7 @@ namespace script.YarnEditor.Manager
 			}
 		}
 
-		// Token: 0x060045F1 RID: 17905 RVA: 0x001DDD28 File Offset: 0x001DBF28
+		// Token: 0x0600459C RID: 17820 RVA: 0x001D7E00 File Offset: 0x001D6000
 		private void SelectYarn(int id)
 		{
 			this.CurYarn = this.CurStory.YarnDict[this.YarnList[id]];
@@ -92,7 +92,7 @@ namespace script.YarnEditor.Manager
 			this.UpdateTriggerUI();
 		}
 
-		// Token: 0x060045F2 RID: 17906 RVA: 0x001DDD98 File Offset: 0x001DBF98
+		// Token: 0x0600459D RID: 17821 RVA: 0x001D7E70 File Offset: 0x001D6070
 		private void UpdateTriggerUI()
 		{
 			this.TriggerTypeDrop.value = this.CurTriggerConfig.Type;
@@ -103,7 +103,7 @@ namespace script.YarnEditor.Manager
 			this.InputValue.text = this.CurTriggerConfig.Value;
 		}
 
-		// Token: 0x060045F3 RID: 17907 RVA: 0x001DDE2C File Offset: 0x001DC02C
+		// Token: 0x0600459E RID: 17822 RVA: 0x001D7F04 File Offset: 0x001D6104
 		public void SaveCurTrigger()
 		{
 			if (this.CurYarn == null)
@@ -132,7 +132,7 @@ namespace script.YarnEditor.Manager
 			this.Log("保存成功");
 		}
 
-		// Token: 0x060045F4 RID: 17908 RVA: 0x001DDF80 File Offset: 0x001DC180
+		// Token: 0x0600459F RID: 17823 RVA: 0x001D8058 File Offset: 0x001D6258
 		public void CheckError()
 		{
 			if (!this.IsInit)
@@ -153,20 +153,20 @@ namespace script.YarnEditor.Manager
 			this.Log("编译完成，Yarn没有错误！");
 		}
 
-		// Token: 0x060045F5 RID: 17909 RVA: 0x00032061 File Offset: 0x00030261
+		// Token: 0x060045A0 RID: 17824 RVA: 0x001D8144 File Offset: 0x001D6344
 		public void Log(string msg)
 		{
 			TextMeshProUGUI errorText = this.ErrorText;
 			errorText.text = errorText.text + msg + "\n";
 		}
 
-		// Token: 0x060045F6 RID: 17910 RVA: 0x0003207F File Offset: 0x0003027F
+		// Token: 0x060045A1 RID: 17825 RVA: 0x001D8162 File Offset: 0x001D6362
 		public void ClearLog()
 		{
 			this.ErrorText.text = "";
 		}
 
-		// Token: 0x060045F7 RID: 17911 RVA: 0x00032091 File Offset: 0x00030291
+		// Token: 0x060045A2 RID: 17826 RVA: 0x001D8174 File Offset: 0x001D6374
 		public void DeleteTrigger()
 		{
 			this.CurTriggerConfig = new TriggerConfig();
@@ -176,7 +176,7 @@ namespace script.YarnEditor.Manager
 			this.Log("删除成功");
 		}
 
-		// Token: 0x060045F8 RID: 17912 RVA: 0x000320CB File Offset: 0x000302CB
+		// Token: 0x060045A3 RID: 17827 RVA: 0x001D81AE File Offset: 0x001D63AE
 		private void Awake()
 		{
 			StoryManager.Inst = this;
@@ -184,13 +184,13 @@ namespace script.YarnEditor.Manager
 			this.Init();
 		}
 
-		// Token: 0x060045F9 RID: 17913 RVA: 0x000320E4 File Offset: 0x000302E4
+		// Token: 0x060045A4 RID: 17828 RVA: 0x001D81C7 File Offset: 0x001D63C7
 		private void OnDestroy()
 		{
 			StoryManager.Inst = null;
 		}
 
-		// Token: 0x060045FA RID: 17914 RVA: 0x001DE06C File Offset: 0x001DC26C
+		// Token: 0x060045A5 RID: 17829 RVA: 0x001D81D0 File Offset: 0x001D63D0
 		public void Init()
 		{
 			this.IsEnd = true;
@@ -206,7 +206,7 @@ namespace script.YarnEditor.Manager
 			this.IsInit = true;
 		}
 
-		// Token: 0x060045FB RID: 17915 RVA: 0x001DE10C File Offset: 0x001DC30C
+		// Token: 0x060045A6 RID: 17830 RVA: 0x001D8270 File Offset: 0x001D6470
 		public void InitStory()
 		{
 			this.StoryList = new List<Story>();
@@ -261,25 +261,25 @@ namespace script.YarnEditor.Manager
 			}
 		}
 
-		// Token: 0x060045FC RID: 17916 RVA: 0x000320EC File Offset: 0x000302EC
+		// Token: 0x060045A7 RID: 17831 RVA: 0x001D847C File Offset: 0x001D667C
 		public string AddBasePath(string BasePath, string ModName)
 		{
 			return BasePath + "/" + ModName + "/Yarn";
 		}
 
-		// Token: 0x060045FD RID: 17917 RVA: 0x000320FF File Offset: 0x000302FF
+		// Token: 0x060045A8 RID: 17832 RVA: 0x001D848F File Offset: 0x001D668F
 		public string GetBepPath()
 		{
 			return Application.dataPath + "/../BepInEx/plugins/Next/";
 		}
 
-		// Token: 0x060045FE RID: 17918 RVA: 0x00032110 File Offset: 0x00030310
+		// Token: 0x060045A9 RID: 17833 RVA: 0x001D84A0 File Offset: 0x001D66A0
 		public string GetWorkShop()
 		{
 			return "";
 		}
 
-		// Token: 0x060045FF RID: 17919 RVA: 0x001DE318 File Offset: 0x001DC518
+		// Token: 0x060045AA RID: 17834 RVA: 0x001D84A8 File Offset: 0x001D66A8
 		public bool CheckTrigger(string sceneName)
 		{
 			if (!this.IsInit)
@@ -302,7 +302,7 @@ namespace script.YarnEditor.Manager
 			return false;
 		}
 
-		// Token: 0x06004600 RID: 17920 RVA: 0x001DE408 File Offset: 0x001DC608
+		// Token: 0x060045AB RID: 17835 RVA: 0x001D8598 File Offset: 0x001D6798
 		public bool CheckTrigger(int npcId)
 		{
 			if (!this.IsInit)
@@ -325,7 +325,7 @@ namespace script.YarnEditor.Manager
 			return false;
 		}
 
-		// Token: 0x06004601 RID: 17921 RVA: 0x001DE4FC File Offset: 0x001DC6FC
+		// Token: 0x060045AC RID: 17836 RVA: 0x001D868C File Offset: 0x001D688C
 		public void StartYarn(Yarn yarn)
 		{
 			if (this.IsEnd)
@@ -345,19 +345,19 @@ namespace script.YarnEditor.Manager
 			}
 		}
 
-		// Token: 0x06004602 RID: 17922 RVA: 0x00032117 File Offset: 0x00030317
+		// Token: 0x060045AD RID: 17837 RVA: 0x001D8710 File Offset: 0x001D6910
 		public void ReInit()
 		{
 			this.IsEnd = true;
 		}
 
-		// Token: 0x06004603 RID: 17923 RVA: 0x00032120 File Offset: 0x00030320
+		// Token: 0x060045AE RID: 17838 RVA: 0x001D8719 File Offset: 0x001D6919
 		public void StopCurStory()
 		{
 			this.CoreSystem.Stop();
 		}
 
-		// Token: 0x06004604 RID: 17924 RVA: 0x0003212D File Offset: 0x0003032D
+		// Token: 0x060045AF RID: 17839 RVA: 0x001D8726 File Offset: 0x001D6926
 		private void OnCommand(string command)
 		{
 			UnityAction beforeCommandStart = this.BeforeCommandStart;
@@ -368,7 +368,7 @@ namespace script.YarnEditor.Manager
 			Debug.Log(command);
 		}
 
-		// Token: 0x06004605 RID: 17925 RVA: 0x00032146 File Offset: 0x00030346
+		// Token: 0x060045B0 RID: 17840 RVA: 0x001D873F File Offset: 0x001D693F
 		private void OnNodeStart(string node)
 		{
 			UnityAction nodeStart = this.NodeStart;
@@ -379,7 +379,7 @@ namespace script.YarnEditor.Manager
 			Debug.Log(node);
 		}
 
-		// Token: 0x06004606 RID: 17926 RVA: 0x0003215F File Offset: 0x0003035F
+		// Token: 0x060045B1 RID: 17841 RVA: 0x001D8758 File Offset: 0x001D6958
 		private void OnNodeEnd(string node)
 		{
 			UnityAction nodeEnd = this.NodeEnd;
@@ -390,7 +390,7 @@ namespace script.YarnEditor.Manager
 			Debug.Log(node);
 		}
 
-		// Token: 0x06004607 RID: 17927 RVA: 0x001DE580 File Offset: 0x001DC780
+		// Token: 0x060045B2 RID: 17842 RVA: 0x001D8774 File Offset: 0x001D6974
 		private void OnStoryEnd()
 		{
 			UnityAction storyEnd = this.StoryEnd;
@@ -420,7 +420,7 @@ namespace script.YarnEditor.Manager
 			}
 		}
 
-		// Token: 0x06004608 RID: 17928 RVA: 0x001DE614 File Offset: 0x001DC814
+		// Token: 0x060045B3 RID: 17843 RVA: 0x001D8808 File Offset: 0x001D6A08
 		private void LoadYarn(string fileName)
 		{
 			YarnProject yarnProject = this.CoreSystem.yarnProject;
@@ -460,7 +460,7 @@ namespace script.YarnEditor.Manager
 			yarnProject.compiledYarnProgram = compiledYarnProgram;
 		}
 
-		// Token: 0x06004609 RID: 17929 RVA: 0x001DE748 File Offset: 0x001DC948
+		// Token: 0x060045B4 RID: 17844 RVA: 0x001D893C File Offset: 0x001D6B3C
 		public bool CheckCompiler(string path)
 		{
 			CompilationJob compilationJob = CompilationJob.CreateFromString(path, File.ReadAllText(path), null);
@@ -494,26 +494,26 @@ namespace script.YarnEditor.Manager
 			return true;
 		}
 
-		// Token: 0x0600460A RID: 17930 RVA: 0x00032178 File Offset: 0x00030378
+		// Token: 0x060045B5 RID: 17845 RVA: 0x001D8A8C File Offset: 0x001D6C8C
 		public void LogError(string msg)
 		{
 			TextMeshProUGUI errorText = this.ErrorText;
 			errorText.text = errorText.text + "<color=#FF0000>" + msg + "</color>\n";
 		}
 
-		// Token: 0x0600460B RID: 17931 RVA: 0x0003219B File Offset: 0x0003039B
+		// Token: 0x060045B6 RID: 17846 RVA: 0x001D8AAF File Offset: 0x001D6CAF
 		public void SetGoalValue(string key, string value)
 		{
 			Tools.instance.getPlayer().StreamData.SaveValueManager.SetValue(key, value);
 		}
 
-		// Token: 0x0600460C RID: 17932 RVA: 0x000321B8 File Offset: 0x000303B8
+		// Token: 0x060045B7 RID: 17847 RVA: 0x001D8ACC File Offset: 0x001D6CCC
 		public string GetGoalValue(string key)
 		{
 			return Tools.instance.getPlayer().StreamData.SaveValueManager.GetValue(key);
 		}
 
-		// Token: 0x0600460D RID: 17933 RVA: 0x001DE898 File Offset: 0x001DCA98
+		// Token: 0x060045B8 RID: 17848 RVA: 0x001D8AE8 File Offset: 0x001D6CE8
 		private static string GetHashString(string inputString, int limitCharacters = -1)
 		{
 			StringBuilder stringBuilder = new StringBuilder();
@@ -528,7 +528,7 @@ namespace script.YarnEditor.Manager
 			return stringBuilder.ToString(0, Mathf.Min(stringBuilder.Length, limitCharacters));
 		}
 
-		// Token: 0x0600460E RID: 17934 RVA: 0x001DE8F8 File Offset: 0x001DCAF8
+		// Token: 0x060045B9 RID: 17849 RVA: 0x001D8B48 File Offset: 0x001D6D48
 		private static byte[] GetHash(string inputString)
 		{
 			byte[] result;
@@ -539,93 +539,93 @@ namespace script.YarnEditor.Manager
 			return result;
 		}
 
-		// Token: 0x0600460F RID: 17935 RVA: 0x000042DD File Offset: 0x000024DD
+		// Token: 0x060045BA RID: 17850 RVA: 0x00004095 File Offset: 0x00002295
 		private void Update()
 		{
 		}
 
-		// Token: 0x04003E22 RID: 15906
+		// Token: 0x04004716 RID: 18198
 		public DialogueRunner CoreSystem;
 
-		// Token: 0x04003E23 RID: 15907
+		// Token: 0x04004717 RID: 18199
 		public InMemoryVariableStorage TempValueSystem;
 
-		// Token: 0x04003E24 RID: 15908
+		// Token: 0x04004718 RID: 18200
 		public List<Story> StoryList = new List<Story>();
 
-		// Token: 0x04003E25 RID: 15909
+		// Token: 0x04004719 RID: 18201
 		public Story CurStory;
 
-		// Token: 0x04003E26 RID: 15910
+		// Token: 0x0400471A RID: 18202
 		public Yarn CurYarn;
 
-		// Token: 0x04003E27 RID: 15911
+		// Token: 0x0400471B RID: 18203
 		public GameObject UI;
 
-		// Token: 0x04003E28 RID: 15912
+		// Token: 0x0400471C RID: 18204
 		public static StoryManager Inst;
 
-		// Token: 0x04003E29 RID: 15913
+		// Token: 0x0400471D RID: 18205
 		public bool IsEnd = true;
 
-		// Token: 0x04003E2A RID: 15914
+		// Token: 0x0400471E RID: 18206
 		public bool IsInit;
 
-		// Token: 0x04003E2B RID: 15915
+		// Token: 0x0400471F RID: 18207
 		public UnityAction BeforeCommandStart;
 
-		// Token: 0x04003E2C RID: 15916
+		// Token: 0x04004720 RID: 18208
 		public UnityAction NodeStart;
 
-		// Token: 0x04003E2D RID: 15917
+		// Token: 0x04004721 RID: 18209
 		public UnityAction NodeEnd;
 
-		// Token: 0x04003E2E RID: 15918
+		// Token: 0x04004722 RID: 18210
 		public UnityAction StoryEnd;
 
-		// Token: 0x04003E2F RID: 15919
+		// Token: 0x04004723 RID: 18211
 		public TextMeshProUGUI ErrorText;
 
-		// Token: 0x04003E30 RID: 15920
+		// Token: 0x04004724 RID: 18212
 		public TMP_Dropdown ModDrop;
 
-		// Token: 0x04003E31 RID: 15921
+		// Token: 0x04004725 RID: 18213
 		public List<string> ModList = new List<string>();
 
-		// Token: 0x04003E32 RID: 15922
+		// Token: 0x04004726 RID: 18214
 		public string CurMod;
 
-		// Token: 0x04003E33 RID: 15923
+		// Token: 0x04004727 RID: 18215
 		public TMP_Dropdown YarnDrop;
 
-		// Token: 0x04003E34 RID: 15924
+		// Token: 0x04004728 RID: 18216
 		public List<string> YarnList = new List<string>();
 
-		// Token: 0x04003E35 RID: 15925
+		// Token: 0x04004729 RID: 18217
 		public TMP_Dropdown TriggerTypeDrop;
 
-		// Token: 0x04003E36 RID: 15926
+		// Token: 0x0400472A RID: 18218
 		public Toggle ValueToggle;
 
-		// Token: 0x04003E37 RID: 15927
+		// Token: 0x0400472B RID: 18219
 		public TMP_InputField InputNpcId;
 
-		// Token: 0x04003E38 RID: 15928
+		// Token: 0x0400472C RID: 18220
 		public TMP_InputField InputSceneName;
 
-		// Token: 0x04003E39 RID: 15929
+		// Token: 0x0400472D RID: 18221
 		public TMP_InputField InputValueKey;
 
-		// Token: 0x04003E3A RID: 15930
+		// Token: 0x0400472E RID: 18222
 		public TMP_InputField InputValue;
 
-		// Token: 0x04003E3B RID: 15931
+		// Token: 0x0400472F RID: 18223
 		public TriggerConfig CurTriggerConfig;
 
-		// Token: 0x04003E3C RID: 15932
+		// Token: 0x04004730 RID: 18224
 		public string NextYarn = "";
 
-		// Token: 0x04003E3D RID: 15933
+		// Token: 0x04004731 RID: 18225
 		public UnityAction OldTalk;
 	}
 }

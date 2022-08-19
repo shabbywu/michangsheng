@@ -2,15 +2,15 @@
 
 namespace KBEngine
 {
-	// Token: 0x0200104E RID: 4174
+	// Token: 0x02000C8B RID: 3211
 	public class testEntity : GameObject
 	{
-		// Token: 0x0600643F RID: 25663 RVA: 0x000042DD File Offset: 0x000024DD
+		// Token: 0x06005982 RID: 22914 RVA: 0x00004095 File Offset: 0x00002295
 		public override void __init__()
 		{
 		}
 
-		// Token: 0x06006440 RID: 25664 RVA: 0x00044F15 File Offset: 0x00043115
+		// Token: 0x06005983 RID: 22915 RVA: 0x00255FF1 File Offset: 0x002541F1
 		public void hello(string msg)
 		{
 			Dbg.DEBUG_MSG("Account::hello: dbid=" + msg);
@@ -20,7 +20,7 @@ namespace KBEngine
 			});
 		}
 
-		// Token: 0x06006441 RID: 25665 RVA: 0x00044F3C File Offset: 0x0004313C
+		// Token: 0x06005984 RID: 22916 RVA: 0x00256018 File Offset: 0x00254218
 		public void helloClient(string msg)
 		{
 			Dbg.DEBUG_MSG("Account::hello: dbid=" + msg);

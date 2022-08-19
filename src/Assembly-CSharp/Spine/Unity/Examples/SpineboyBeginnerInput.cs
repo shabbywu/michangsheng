@@ -3,10 +3,10 @@ using UnityEngine;
 
 namespace Spine.Unity.Examples
 {
-	// Token: 0x02000E2B RID: 3627
+	// Token: 0x02000ADF RID: 2783
 	public class SpineboyBeginnerInput : MonoBehaviour
 	{
-		// Token: 0x0600575A RID: 22362 RVA: 0x0003E6B5 File Offset: 0x0003C8B5
+		// Token: 0x06004DE4 RID: 19940 RVA: 0x00214949 File Offset: 0x00212B49
 		private void OnValidate()
 		{
 			if (this.model == null)
@@ -15,7 +15,7 @@ namespace Spine.Unity.Examples
 			}
 		}
 
-		// Token: 0x0600575B RID: 22363 RVA: 0x00244B28 File Offset: 0x00242D28
+		// Token: 0x06004DE5 RID: 19941 RVA: 0x00214968 File Offset: 0x00212B68
 		private void Update()
 		{
 			if (this.model == null)
@@ -34,16 +34,16 @@ namespace Spine.Unity.Examples
 			}
 		}
 
-		// Token: 0x0400573C RID: 22332
+		// Token: 0x04004D38 RID: 19768
 		public string horizontalAxis = "Horizontal";
 
-		// Token: 0x0400573D RID: 22333
+		// Token: 0x04004D39 RID: 19769
 		public string attackButton = "Fire1";
 
-		// Token: 0x0400573E RID: 22334
+		// Token: 0x04004D3A RID: 19770
 		public string jumpButton = "Jump";
 
-		// Token: 0x0400573F RID: 22335
+		// Token: 0x04004D3B RID: 19771
 		public SpineboyBeginnerModel model;
 	}
 }

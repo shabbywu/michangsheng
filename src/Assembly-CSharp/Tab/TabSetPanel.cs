@@ -7,17 +7,17 @@ using YSGame;
 
 namespace Tab
 {
-	// Token: 0x02000A4D RID: 2637
+	// Token: 0x02000702 RID: 1794
 	public class TabSetPanel : ISysPanelBase
 	{
-		// Token: 0x06004406 RID: 17414 RVA: 0x00030ACE File Offset: 0x0002ECCE
+		// Token: 0x06003988 RID: 14728 RVA: 0x00189CEC File Offset: 0x00187EEC
 		public TabSetPanel(GameObject go)
 		{
 			this._go = go;
 			this._isInit = false;
 		}
 
-		// Token: 0x06004407 RID: 17415 RVA: 0x00030AE4 File Offset: 0x0002ECE4
+		// Token: 0x06003989 RID: 14729 RVA: 0x00189D02 File Offset: 0x00187F02
 		public override void Show()
 		{
 			if (!this._isInit)
@@ -29,7 +29,7 @@ namespace Tab
 			this._go.SetActive(true);
 		}
 
-		// Token: 0x06004408 RID: 17416 RVA: 0x001D1608 File Offset: 0x001CF808
+		// Token: 0x0600398A RID: 14730 RVA: 0x00189D2C File Offset: 0x00187F2C
 		protected virtual void Init()
 		{
 			this.InitDropdown();
@@ -47,7 +47,7 @@ namespace Tab
 			this.BgSlider.onValueChanged.AddListener(new UnityAction<float>(this.UpdateMusicBg));
 		}
 
-		// Token: 0x06004409 RID: 17417 RVA: 0x001D1730 File Offset: 0x001CF930
+		// Token: 0x0600398B RID: 14731 RVA: 0x00189E54 File Offset: 0x00188054
 		private void InitDropdown()
 		{
 			this.InitResolutionsDict();
@@ -77,7 +77,7 @@ namespace Tab
 			this.NpcActionTimesDropdown = base.Get<Dropdown>("结算频率/Dropdown");
 		}
 
-		// Token: 0x0600440A RID: 17418 RVA: 0x001D187C File Offset: 0x001CFA7C
+		// Token: 0x0600398C RID: 14732 RVA: 0x00189FA0 File Offset: 0x001881A0
 		private void InitResolutionsDict()
 		{
 			List<int> list = new List<int>();
@@ -97,7 +97,7 @@ namespace Tab
 			}
 		}
 
-		// Token: 0x0600440B RID: 17419 RVA: 0x00030B0D File Offset: 0x0002ED0D
+		// Token: 0x0600398D RID: 14733 RVA: 0x0018A059 File Offset: 0x00188259
 		private void InitFullScreenDict()
 		{
 			this.FullScreenDict = new Dictionary<int, bool>();
@@ -105,16 +105,17 @@ namespace Tab
 			this.FullScreenDict.Add(1, true);
 		}
 
-		// Token: 0x0600440C RID: 17420 RVA: 0x00030B34 File Offset: 0x0002ED34
+		// Token: 0x0600398E RID: 14734 RVA: 0x0018A080 File Offset: 0x00188280
 		private void InitSaveTimesDict()
 		{
 			this.SaveTimesDict = new Dictionary<int, int>();
-			this.SaveTimesDict.Add(0, 5);
-			this.SaveTimesDict.Add(1, 10);
-			this.SaveTimesDict.Add(2, -1);
+			this.SaveTimesDict.Add(0, 0);
+			this.SaveTimesDict.Add(1, 5);
+			this.SaveTimesDict.Add(2, 10);
+			this.SaveTimesDict.Add(3, -1);
 		}
 
-		// Token: 0x0600440D RID: 17421 RVA: 0x00030B69 File Offset: 0x0002ED69
+		// Token: 0x0600398F RID: 14735 RVA: 0x0018A0CD File Offset: 0x001882CD
 		private void InitNpcActionTimesDict()
 		{
 			this.NpcActionTimesDict = new Dictionary<int, int>();
@@ -123,7 +124,7 @@ namespace Tab
 			this.NpcActionTimesDict.Add(2, 2);
 		}
 
-		// Token: 0x0600440E RID: 17422 RVA: 0x001D1938 File Offset: 0x001CFB38
+		// Token: 0x06003990 RID: 14736 RVA: 0x0018A104 File Offset: 0x00188304
 		public void UpdateUI()
 		{
 			this.YinXiaoSlider.value = SystemConfig.Inst.GetEffectVolume();
@@ -157,26 +158,26 @@ namespace Tab
 			this.NpcActionTimesDropdown.value = SystemConfig.Inst.GetNpcActionTimes();
 		}
 
-		// Token: 0x0600440F RID: 17423 RVA: 0x00030B9D File Offset: 0x0002ED9D
+		// Token: 0x06003991 RID: 14737 RVA: 0x0018A230 File Offset: 0x00188430
 		public void UpdateMusicEffect(float value)
 		{
 			MusicMag.instance.setEffectVolum(value);
 		}
 
-		// Token: 0x06004410 RID: 17424 RVA: 0x00030BAA File Offset: 0x0002EDAA
+		// Token: 0x06003992 RID: 14738 RVA: 0x0018A23D File Offset: 0x0018843D
 		public void UpdateMusicBg(float value)
 		{
 			MusicMag.instance.setBackGroundVolume(value);
 		}
 
-		// Token: 0x06004411 RID: 17425 RVA: 0x00030BB7 File Offset: 0x0002EDB7
+		// Token: 0x06003993 RID: 14739 RVA: 0x0018A24A File Offset: 0x0018844A
 		public void StopAllMusice()
 		{
 			this.YinXiaoSlider.value = 0f;
 			this.BgSlider.value = 0f;
 		}
 
-		// Token: 0x06004412 RID: 17426 RVA: 0x001D1A64 File Offset: 0x001CFC64
+		// Token: 0x06003994 RID: 14740 RVA: 0x0018A26C File Offset: 0x0018846C
 		public void SaveConfig()
 		{
 			PlayerPrefs.SetFloat("MusicBg", MusicMag.instance.audioSource.volume);
@@ -186,43 +187,43 @@ namespace Tab
 			SystemConfig.Inst.SetActionTimes(this.NpcActionTimesDict[this.NpcActionTimesDropdown.value]);
 		}
 
-		// Token: 0x04003C1A RID: 15386
+		// Token: 0x040031A2 RID: 12706
 		private bool _isInit;
 
-		// Token: 0x04003C1B RID: 15387
+		// Token: 0x040031A3 RID: 12707
 		public Slider YinXiaoSlider;
 
-		// Token: 0x04003C1C RID: 15388
+		// Token: 0x040031A4 RID: 12708
 		public Slider BgSlider;
 
-		// Token: 0x04003C1D RID: 15389
+		// Token: 0x040031A5 RID: 12709
 		public string CurResolutionTextStr;
 
-		// Token: 0x04003C1E RID: 15390
+		// Token: 0x040031A6 RID: 12710
 		public List<string> ResolutionsList;
 
-		// Token: 0x04003C1F RID: 15391
+		// Token: 0x040031A7 RID: 12711
 		public Dictionary<int, MResolution> ResolutionsDict;
 
-		// Token: 0x04003C20 RID: 15392
+		// Token: 0x040031A8 RID: 12712
 		public Dropdown ResolutionDropdown;
 
-		// Token: 0x04003C21 RID: 15393
+		// Token: 0x040031A9 RID: 12713
 		public Dictionary<int, bool> FullScreenDict;
 
-		// Token: 0x04003C22 RID: 15394
+		// Token: 0x040031AA RID: 12714
 		public Dropdown FullScreenDropdown;
 
-		// Token: 0x04003C23 RID: 15395
+		// Token: 0x040031AB RID: 12715
 		public Dictionary<int, int> SaveTimesDict;
 
-		// Token: 0x04003C24 RID: 15396
+		// Token: 0x040031AC RID: 12716
 		public Dropdown SaveTimesDropdown;
 
-		// Token: 0x04003C25 RID: 15397
+		// Token: 0x040031AD RID: 12717
 		public Dictionary<int, int> NpcActionTimesDict;
 
-		// Token: 0x04003C26 RID: 15398
+		// Token: 0x040031AE RID: 12718
 		public Dropdown NpcActionTimesDropdown;
 	}
 }

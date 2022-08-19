@@ -6,18 +6,18 @@ using GoogleMobileAds.Common;
 
 namespace GoogleMobileAds.iOS
 {
-	// Token: 0x02000E68 RID: 3688
+	// Token: 0x02000B08 RID: 2824
 	internal class IOSBannerClient : IGoogleMobileAdsBannerClient
 	{
-		// Token: 0x0600585F RID: 22623 RVA: 0x0003F176 File Offset: 0x0003D376
+		// Token: 0x06004E9B RID: 20123 RVA: 0x00217344 File Offset: 0x00215544
 		public IOSBannerClient(IAdListener listener)
 		{
 			this.listener = listener;
 		}
 
-		// Token: 0x17000836 RID: 2102
-		// (get) Token: 0x06005860 RID: 22624 RVA: 0x0003F185 File Offset: 0x0003D385
-		// (set) Token: 0x06005861 RID: 22625 RVA: 0x0003F18D File Offset: 0x0003D38D
+		// Token: 0x170005ED RID: 1517
+		// (get) Token: 0x06004E9C RID: 20124 RVA: 0x00217353 File Offset: 0x00215553
+		// (set) Token: 0x06004E9D RID: 20125 RVA: 0x0021735B File Offset: 0x0021555B
 		private IntPtr BannerViewPtr
 		{
 			get
@@ -31,7 +31,7 @@ namespace GoogleMobileAds.iOS
 			}
 		}
 
-		// Token: 0x06005862 RID: 22626 RVA: 0x002477AC File Offset: 0x002459AC
+		// Token: 0x06004E9E RID: 20126 RVA: 0x00217370 File Offset: 0x00215570
 		public void CreateBannerView(string adUnitId, AdSize adSize, AdPosition position)
 		{
 			IntPtr bannerClient = (IntPtr)GCHandle.Alloc(this);
@@ -46,7 +46,7 @@ namespace GoogleMobileAds.iOS
 			Externs.GADUSetBannerCallbacks(this.BannerViewPtr, new IOSBannerClient.GADUAdViewDidReceiveAdCallback(IOSBannerClient.AdViewDidReceiveAdCallback), new IOSBannerClient.GADUAdViewDidFailToReceiveAdWithErrorCallback(IOSBannerClient.AdViewDidFailToReceiveAdWithErrorCallback), new IOSBannerClient.GADUAdViewWillPresentScreenCallback(IOSBannerClient.AdViewWillPresentScreenCallback), new IOSBannerClient.GADUAdViewWillDismissScreenCallback(IOSBannerClient.AdViewWillDismissScreenCallback), new IOSBannerClient.GADUAdViewDidDismissScreenCallback(IOSBannerClient.AdViewDidDismissScreenCallback), new IOSBannerClient.GADUAdViewWillLeaveApplicationCallback(IOSBannerClient.AdViewWillLeaveApplicationCallback));
 		}
 
-		// Token: 0x06005863 RID: 22627 RVA: 0x0024784C File Offset: 0x00245A4C
+		// Token: 0x06004E9F RID: 20127 RVA: 0x00217410 File Offset: 0x00215610
 		public void LoadAd(AdRequest request)
 		{
 			IntPtr intPtr = Externs.GADUCreateRequest();
@@ -79,104 +79,104 @@ namespace GoogleMobileAds.iOS
 			Externs.GADURelease(intPtr);
 		}
 
-		// Token: 0x06005864 RID: 22628 RVA: 0x0003F1A1 File Offset: 0x0003D3A1
+		// Token: 0x06004EA0 RID: 20128 RVA: 0x0021759C File Offset: 0x0021579C
 		public void ShowBannerView()
 		{
 			Externs.GADUShowBannerView(this.BannerViewPtr);
 		}
 
-		// Token: 0x06005865 RID: 22629 RVA: 0x0003F1AE File Offset: 0x0003D3AE
+		// Token: 0x06004EA1 RID: 20129 RVA: 0x002175A9 File Offset: 0x002157A9
 		public void HideBannerView()
 		{
 			Externs.GADUHideBannerView(this.BannerViewPtr);
 		}
 
-		// Token: 0x06005866 RID: 22630 RVA: 0x0003F1BB File Offset: 0x0003D3BB
+		// Token: 0x06004EA2 RID: 20130 RVA: 0x002175B6 File Offset: 0x002157B6
 		public void DestroyBannerView()
 		{
 			Externs.GADURemoveBannerView(this.BannerViewPtr);
 			this.BannerViewPtr = IntPtr.Zero;
 		}
 
-		// Token: 0x06005867 RID: 22631 RVA: 0x0003F1D3 File Offset: 0x0003D3D3
+		// Token: 0x06004EA3 RID: 20131 RVA: 0x002175CE File Offset: 0x002157CE
 		[MonoPInvokeCallback(typeof(IOSBannerClient.GADUAdViewDidReceiveAdCallback))]
 		private static void AdViewDidReceiveAdCallback(IntPtr bannerClient)
 		{
 			IOSBannerClient.IntPtrToBannerClient(bannerClient).listener.FireAdLoaded();
 		}
 
-		// Token: 0x06005868 RID: 22632 RVA: 0x0003F1E5 File Offset: 0x0003D3E5
+		// Token: 0x06004EA4 RID: 20132 RVA: 0x002175E0 File Offset: 0x002157E0
 		[MonoPInvokeCallback(typeof(IOSBannerClient.GADUAdViewDidFailToReceiveAdWithErrorCallback))]
 		private static void AdViewDidFailToReceiveAdWithErrorCallback(IntPtr bannerClient, string error)
 		{
 			IOSBannerClient.IntPtrToBannerClient(bannerClient).listener.FireAdFailedToLoad(error);
 		}
 
-		// Token: 0x06005869 RID: 22633 RVA: 0x0003F1F8 File Offset: 0x0003D3F8
+		// Token: 0x06004EA5 RID: 20133 RVA: 0x002175F3 File Offset: 0x002157F3
 		[MonoPInvokeCallback(typeof(IOSBannerClient.GADUAdViewWillPresentScreenCallback))]
 		private static void AdViewWillPresentScreenCallback(IntPtr bannerClient)
 		{
 			IOSBannerClient.IntPtrToBannerClient(bannerClient).listener.FireAdOpened();
 		}
 
-		// Token: 0x0600586A RID: 22634 RVA: 0x0003F20A File Offset: 0x0003D40A
+		// Token: 0x06004EA6 RID: 20134 RVA: 0x00217605 File Offset: 0x00215805
 		[MonoPInvokeCallback(typeof(IOSBannerClient.GADUAdViewWillDismissScreenCallback))]
 		private static void AdViewWillDismissScreenCallback(IntPtr bannerClient)
 		{
 			IOSBannerClient.IntPtrToBannerClient(bannerClient).listener.FireAdClosing();
 		}
 
-		// Token: 0x0600586B RID: 22635 RVA: 0x0003F21C File Offset: 0x0003D41C
+		// Token: 0x06004EA7 RID: 20135 RVA: 0x00217617 File Offset: 0x00215817
 		[MonoPInvokeCallback(typeof(IOSBannerClient.GADUAdViewDidDismissScreenCallback))]
 		private static void AdViewDidDismissScreenCallback(IntPtr bannerClient)
 		{
 			IOSBannerClient.IntPtrToBannerClient(bannerClient).listener.FireAdClosed();
 		}
 
-		// Token: 0x0600586C RID: 22636 RVA: 0x0003F22E File Offset: 0x0003D42E
+		// Token: 0x06004EA8 RID: 20136 RVA: 0x00217629 File Offset: 0x00215829
 		[MonoPInvokeCallback(typeof(IOSBannerClient.GADUAdViewWillLeaveApplicationCallback))]
 		private static void AdViewWillLeaveApplicationCallback(IntPtr bannerClient)
 		{
 			IOSBannerClient.IntPtrToBannerClient(bannerClient).listener.FireAdLeftApplication();
 		}
 
-		// Token: 0x0600586D RID: 22637 RVA: 0x002479D8 File Offset: 0x00245BD8
+		// Token: 0x06004EA9 RID: 20137 RVA: 0x0021763C File Offset: 0x0021583C
 		private static IOSBannerClient IntPtrToBannerClient(IntPtr bannerClient)
 		{
 			return ((GCHandle)bannerClient).Target as IOSBannerClient;
 		}
 
-		// Token: 0x04005876 RID: 22646
+		// Token: 0x04004E2D RID: 20013
 		private IAdListener listener;
 
-		// Token: 0x04005877 RID: 22647
+		// Token: 0x04004E2E RID: 20014
 		private IntPtr bannerViewPtr;
 
-		// Token: 0x04005878 RID: 22648
+		// Token: 0x04004E2F RID: 20015
 		private static Dictionary<IntPtr, IOSBannerClient> bannerClients;
 
-		// Token: 0x02000E69 RID: 3689
-		// (Invoke) Token: 0x0600586F RID: 22639
+		// Token: 0x020015D6 RID: 5590
+		// (Invoke) Token: 0x0600852B RID: 34091
 		internal delegate void GADUAdViewDidReceiveAdCallback(IntPtr bannerClient);
 
-		// Token: 0x02000E6A RID: 3690
-		// (Invoke) Token: 0x06005873 RID: 22643
+		// Token: 0x020015D7 RID: 5591
+		// (Invoke) Token: 0x0600852F RID: 34095
 		internal delegate void GADUAdViewDidFailToReceiveAdWithErrorCallback(IntPtr bannerClient, string error);
 
-		// Token: 0x02000E6B RID: 3691
-		// (Invoke) Token: 0x06005877 RID: 22647
+		// Token: 0x020015D8 RID: 5592
+		// (Invoke) Token: 0x06008533 RID: 34099
 		internal delegate void GADUAdViewWillPresentScreenCallback(IntPtr bannerClient);
 
-		// Token: 0x02000E6C RID: 3692
-		// (Invoke) Token: 0x0600587B RID: 22651
+		// Token: 0x020015D9 RID: 5593
+		// (Invoke) Token: 0x06008537 RID: 34103
 		internal delegate void GADUAdViewWillDismissScreenCallback(IntPtr bannerClient);
 
-		// Token: 0x02000E6D RID: 3693
-		// (Invoke) Token: 0x0600587F RID: 22655
+		// Token: 0x020015DA RID: 5594
+		// (Invoke) Token: 0x0600853B RID: 34107
 		internal delegate void GADUAdViewDidDismissScreenCallback(IntPtr bannerClient);
 
-		// Token: 0x02000E6E RID: 3694
-		// (Invoke) Token: 0x06005883 RID: 22659
+		// Token: 0x020015DB RID: 5595
+		// (Invoke) Token: 0x0600853F RID: 34111
 		internal delegate void GADUAdViewWillLeaveApplicationCallback(IntPtr bannerClient);
 	}
 }

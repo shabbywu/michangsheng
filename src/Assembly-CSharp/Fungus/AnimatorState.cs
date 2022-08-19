@@ -3,12 +3,12 @@ using UnityEngine;
 
 namespace Fungus
 {
-	// Token: 0x02001320 RID: 4896
+	// Token: 0x02000EA1 RID: 3745
 	[EventHandlerInfo("MonoBehaviour", "Animator", "The block will execute when the desired OnAnimator* message for the monobehaviour is received.")]
 	[AddComponentMenu("")]
 	public class AnimatorState : EventHandler
 	{
-		// Token: 0x06007746 RID: 30534 RVA: 0x00051432 File Offset: 0x0004F632
+		// Token: 0x06006A10 RID: 27152 RVA: 0x0029295A File Offset: 0x00290B5A
 		private void OnAnimatorIK(int layer)
 		{
 			if ((this.FireOn & AnimatorState.AnimatorMessageFlags.OnAnimatorIK) != (AnimatorState.AnimatorMessageFlags)0 && (this.IKLayer == layer || this.IKLayer < 0))
@@ -17,7 +17,7 @@ namespace Fungus
 			}
 		}
 
-		// Token: 0x06007747 RID: 30535 RVA: 0x00051457 File Offset: 0x0004F657
+		// Token: 0x06006A11 RID: 27153 RVA: 0x0029297F File Offset: 0x00290B7F
 		private void OnAnimatorMove()
 		{
 			if ((this.FireOn & AnimatorState.AnimatorMessageFlags.OnAnimatorMove) != (AnimatorState.AnimatorMessageFlags)0)
@@ -26,24 +26,24 @@ namespace Fungus
 			}
 		}
 
-		// Token: 0x040067F3 RID: 26611
+		// Token: 0x040059D9 RID: 23001
 		[Tooltip("Which of the OnAnimator messages to trigger on.")]
 		[SerializeField]
 		[EnumFlag]
 		protected AnimatorState.AnimatorMessageFlags FireOn = AnimatorState.AnimatorMessageFlags.OnAnimatorMove;
 
-		// Token: 0x040067F4 RID: 26612
+		// Token: 0x040059DA RID: 23002
 		[Tooltip("IK layer to trigger on. Negative is all.")]
 		[SerializeField]
 		protected int IKLayer = 1;
 
-		// Token: 0x02001321 RID: 4897
+		// Token: 0x020016F3 RID: 5875
 		[Flags]
 		public enum AnimatorMessageFlags
 		{
-			// Token: 0x040067F6 RID: 26614
+			// Token: 0x04007476 RID: 29814
 			OnAnimatorIK = 1,
-			// Token: 0x040067F7 RID: 26615
+			// Token: 0x04007477 RID: 29815
 			OnAnimatorMove = 2
 		}
 	}

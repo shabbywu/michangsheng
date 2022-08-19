@@ -4,12 +4,12 @@ using Fungus;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-// Token: 0x02000250 RID: 592
+// Token: 0x02000173 RID: 371
 [CommandInfo("YSTools", "召唤掌门到玩家位置", "召唤掌门到玩家位置", 0)]
 [AddComponentMenu("")]
 public class CallZhangMenToThis : Command
 {
-	// Token: 0x0600120A RID: 4618 RVA: 0x000ADCB4 File Offset: 0x000ABEB4
+	// Token: 0x06000FAA RID: 4010 RVA: 0x0005E250 File Offset: 0x0005C450
 	public override void OnEnter()
 	{
 		this.NpcId.Value = -1;
@@ -56,7 +56,7 @@ public class CallZhangMenToThis : Command
 		this.Continue();
 	}
 
-	// Token: 0x04000E90 RID: 3728
+	// Token: 0x04000BBF RID: 3007
 	[SerializeField]
 	[Tooltip("门派Id")]
 	[VariableProperty(new Type[]
@@ -65,7 +65,7 @@ public class CallZhangMenToThis : Command
 	})]
 	protected IntegerVariable MenPaiId;
 
-	// Token: 0x04000E91 RID: 3729
+	// Token: 0x04000BC0 RID: 3008
 	[SerializeField]
 	[Tooltip("掌门Id")]
 	[VariableProperty(new Type[]

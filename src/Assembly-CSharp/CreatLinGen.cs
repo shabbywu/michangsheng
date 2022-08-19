@@ -4,15 +4,15 @@ using System.Linq;
 using UnityEngine;
 using XCharts;
 
-// Token: 0x0200059E RID: 1438
+// Token: 0x020003F0 RID: 1008
 public class CreatLinGen : MonoBehaviour
 {
-	// Token: 0x0600244A RID: 9290 RVA: 0x000042DD File Offset: 0x000024DD
+	// Token: 0x0600209A RID: 8346 RVA: 0x00004095 File Offset: 0x00002295
 	private void Start()
 	{
 	}
 
-	// Token: 0x0600244B RID: 9291 RVA: 0x00127E10 File Offset: 0x00126010
+	// Token: 0x0600209B RID: 8347 RVA: 0x000E5B28 File Offset: 0x000E3D28
 	public void resetLinGen()
 	{
 		for (int i = 0; i < this.createLingen.Count; i++)
@@ -35,7 +35,7 @@ public class CreatLinGen : MonoBehaviour
 		}
 	}
 
-	// Token: 0x0600244C RID: 9292 RVA: 0x00127EB8 File Offset: 0x001260B8
+	// Token: 0x0600209C RID: 8348 RVA: 0x000E5BD0 File Offset: 0x000E3DD0
 	private void Update()
 	{
 		int num = 0;
@@ -70,16 +70,16 @@ public class CreatLinGen : MonoBehaviour
 		this.radarChart.RefreshChart();
 	}
 
-	// Token: 0x04001F38 RID: 7992
+	// Token: 0x04001A80 RID: 6784
 	public GameObject zizhiLabel;
 
-	// Token: 0x04001F39 RID: 7993
+	// Token: 0x04001A81 RID: 6785
 	public List<int> createLingen = new List<int>();
 
-	// Token: 0x04001F3A RID: 7994
+	// Token: 0x04001A82 RID: 6786
 	public RadarChart radarChart;
 
-	// Token: 0x04001F3B RID: 7995
+	// Token: 0x04001A83 RID: 6787
 	private List<int> TuBiaoList = new List<int>
 	{
 		0,

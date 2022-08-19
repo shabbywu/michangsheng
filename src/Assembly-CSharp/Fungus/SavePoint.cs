@@ -3,13 +3,13 @@ using UnityEngine;
 
 namespace Fungus
 {
-	// Token: 0x02001274 RID: 4724
+	// Token: 0x02000E25 RID: 3621
 	[CommandInfo("Flow", "Save Point", "Creates a Save Point and adds it to the Save History. The player can save the Save History to persistent storage and load it again later using the Save Menu.", 0)]
 	public class SavePoint : Command
 	{
-		// Token: 0x17000A78 RID: 2680
-		// (get) Token: 0x06007297 RID: 29335 RVA: 0x0004E0D6 File Offset: 0x0004C2D6
-		// (set) Token: 0x06007298 RID: 29336 RVA: 0x0004E0DE File Offset: 0x0004C2DE
+		// Token: 0x17000811 RID: 2065
+		// (get) Token: 0x06006609 RID: 26121 RVA: 0x00284E8C File Offset: 0x0028308C
+		// (set) Token: 0x0600660A RID: 26122 RVA: 0x00284E94 File Offset: 0x00283094
 		public bool IsStartPoint
 		{
 			get
@@ -22,8 +22,8 @@ namespace Fungus
 			}
 		}
 
-		// Token: 0x17000A79 RID: 2681
-		// (get) Token: 0x06007299 RID: 29337 RVA: 0x002A88CC File Offset: 0x002A6ACC
+		// Token: 0x17000812 RID: 2066
+		// (get) Token: 0x0600660B RID: 26123 RVA: 0x00284EA0 File Offset: 0x002830A0
 		public string SavePointKey
 		{
 			get
@@ -40,8 +40,8 @@ namespace Fungus
 			}
 		}
 
-		// Token: 0x17000A7A RID: 2682
-		// (get) Token: 0x0600729A RID: 29338 RVA: 0x002A891C File Offset: 0x002A6B1C
+		// Token: 0x17000813 RID: 2067
+		// (get) Token: 0x0600660C RID: 26124 RVA: 0x00284EF0 File Offset: 0x002830F0
 		public string SavePointDescription
 		{
 			get
@@ -54,8 +54,8 @@ namespace Fungus
 			}
 		}
 
-		// Token: 0x17000A7B RID: 2683
-		// (get) Token: 0x0600729B RID: 29339 RVA: 0x0004E0E7 File Offset: 0x0004C2E7
+		// Token: 0x17000814 RID: 2068
+		// (get) Token: 0x0600660D RID: 26125 RVA: 0x00284F1E File Offset: 0x0028311E
 		public bool ResumeOnLoad
 		{
 			get
@@ -64,7 +64,7 @@ namespace Fungus
 			}
 		}
 
-		// Token: 0x0600729C RID: 29340 RVA: 0x0004E0EF File Offset: 0x0004C2EF
+		// Token: 0x0600660E RID: 26126 RVA: 0x00284F26 File Offset: 0x00283126
 		public override void OnEnter()
 		{
 			FungusManager.Instance.SaveManager.AddSavePoint(this.SavePointKey, this.SavePointDescription);
@@ -75,7 +75,7 @@ namespace Fungus
 			this.Continue();
 		}
 
-		// Token: 0x0600729D RID: 29341 RVA: 0x002A894C File Offset: 0x002A6B4C
+		// Token: 0x0600660F RID: 26127 RVA: 0x00284F5C File Offset: 0x0028315C
 		public override string GetSummary()
 		{
 			if (this.keyMode == SavePoint.KeyMode.BlockName)
@@ -89,75 +89,75 @@ namespace Fungus
 			return "key: " + this.customKey;
 		}
 
-		// Token: 0x0600729E RID: 29342 RVA: 0x0004C5E0 File Offset: 0x0004A7E0
+		// Token: 0x06006610 RID: 26128 RVA: 0x0027D3DB File Offset: 0x0027B5DB
 		public override Color GetButtonColor()
 		{
 			return new Color32(235, 191, 217, byte.MaxValue);
 		}
 
-		// Token: 0x0600729F RID: 29343 RVA: 0x002A89B4 File Offset: 0x002A6BB4
+		// Token: 0x06006611 RID: 26129 RVA: 0x00284FC4 File Offset: 0x002831C4
 		public override bool IsPropertyVisible(string propertyName)
 		{
 			return (!(propertyName == "customKey") || this.keyMode == SavePoint.KeyMode.Custom || this.keyMode == SavePoint.KeyMode.BlockNameAndCustom) && (!(propertyName == "keySeparator") || this.keyMode == SavePoint.KeyMode.BlockNameAndCustom) && (!(propertyName == "customDescription") || this.descriptionMode == SavePoint.DescriptionMode.Custom);
 		}
 
-		// Token: 0x040064C2 RID: 25794
+		// Token: 0x04005785 RID: 22405
 		[Tooltip("Marks this Save Point as the starting point for Flowchart execution in the scene. Each scene in your game should have exactly one Save Point with this enabled.")]
 		[SerializeField]
 		protected bool isStartPoint;
 
-		// Token: 0x040064C3 RID: 25795
+		// Token: 0x04005786 RID: 22406
 		[Tooltip("How the Save Point Key for this Save Point is defined.")]
 		[SerializeField]
 		protected SavePoint.KeyMode keyMode;
 
-		// Token: 0x040064C4 RID: 25796
+		// Token: 0x04005787 RID: 22407
 		[Tooltip("A string key which uniquely identifies this save point.")]
 		[SerializeField]
 		protected string customKey = "";
 
-		// Token: 0x040064C5 RID: 25797
+		// Token: 0x04005788 RID: 22408
 		[Tooltip("A string to seperate the block name and custom key when using KeyMode.Both.")]
 		[SerializeField]
 		protected string keySeparator = "_";
 
-		// Token: 0x040064C6 RID: 25798
+		// Token: 0x04005789 RID: 22409
 		[Tooltip("How the description for this Save Point is defined.")]
 		[SerializeField]
 		protected SavePoint.DescriptionMode descriptionMode;
 
-		// Token: 0x040064C7 RID: 25799
+		// Token: 0x0400578A RID: 22410
 		[Tooltip("A short description of this save point.")]
 		[SerializeField]
 		protected string customDescription;
 
-		// Token: 0x040064C8 RID: 25800
+		// Token: 0x0400578B RID: 22411
 		[Tooltip("Fire a Save Point Loaded event when this command executes.")]
 		[SerializeField]
 		protected bool fireEvent = true;
 
-		// Token: 0x040064C9 RID: 25801
+		// Token: 0x0400578C RID: 22412
 		[Tooltip("Resume execution from this location after loading this Save Point.")]
 		[SerializeField]
 		protected bool resumeOnLoad = true;
 
-		// Token: 0x02001275 RID: 4725
+		// Token: 0x020016C3 RID: 5827
 		public enum KeyMode
 		{
-			// Token: 0x040064CB RID: 25803
+			// Token: 0x04007399 RID: 29593
 			BlockName,
-			// Token: 0x040064CC RID: 25804
+			// Token: 0x0400739A RID: 29594
 			Custom,
-			// Token: 0x040064CD RID: 25805
+			// Token: 0x0400739B RID: 29595
 			BlockNameAndCustom
 		}
 
-		// Token: 0x02001276 RID: 4726
+		// Token: 0x020016C4 RID: 5828
 		public enum DescriptionMode
 		{
-			// Token: 0x040064CF RID: 25807
+			// Token: 0x0400739D RID: 29597
 			Timestamp,
-			// Token: 0x040064D0 RID: 25808
+			// Token: 0x0400739E RID: 29598
 			Custom
 		}
 	}

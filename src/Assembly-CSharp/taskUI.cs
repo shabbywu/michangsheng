@@ -4,10 +4,10 @@ using GUIPackage;
 using UnityEngine;
 using UnityEngine.UI;
 
-// Token: 0x020002A7 RID: 679
+// Token: 0x020001AA RID: 426
 public class taskUI : MonoBehaviour, IESCClose
 {
-	// Token: 0x060014AE RID: 5294 RVA: 0x000BB414 File Offset: 0x000B9614
+	// Token: 0x06001207 RID: 4615 RVA: 0x0006D4F4 File Offset: 0x0006B6F4
 	private void Awake()
 	{
 		this.panelCanvas.worldCamera = UI_Manager.inst.RootCamera;
@@ -31,13 +31,13 @@ public class taskUI : MonoBehaviour, IESCClose
 		base.Invoke("lateAction", 1f);
 	}
 
-	// Token: 0x060014AF RID: 5295 RVA: 0x00012FFD File Offset: 0x000111FD
+	// Token: 0x06001208 RID: 4616 RVA: 0x0006D671 File Offset: 0x0006B871
 	public void lateAction()
 	{
 		this.uIWidget.updateAnchors = UIRect.AnchorUpdate.OnEnable;
 	}
 
-	// Token: 0x060014B0 RID: 5296 RVA: 0x000BB594 File Offset: 0x000B9794
+	// Token: 0x06001209 RID: 4617 RVA: 0x0006D680 File Offset: 0x0006B880
 	public void selectTab(int index)
 	{
 		switch (index)
@@ -80,7 +80,7 @@ public class taskUI : MonoBehaviour, IESCClose
 		}
 	}
 
-	// Token: 0x060014B1 RID: 5297 RVA: 0x0001300B File Offset: 0x0001120B
+	// Token: 0x0600120A RID: 4618 RVA: 0x0006D813 File Offset: 0x0006BA13
 	public void openTaskPanel()
 	{
 		if (!Tools.instance.canClick(false, true))
@@ -93,7 +93,7 @@ public class taskUI : MonoBehaviour, IESCClose
 		ESCCloseManager.Inst.RegisterClose(this);
 	}
 
-	// Token: 0x060014B2 RID: 5298 RVA: 0x00013046 File Offset: 0x00011246
+	// Token: 0x0600120B RID: 4619 RVA: 0x0006D84E File Offset: 0x0006BA4E
 	public void closeTaskPanel()
 	{
 		Tools.canClickFlag = true;
@@ -101,43 +101,43 @@ public class taskUI : MonoBehaviour, IESCClose
 		ESCCloseManager.Inst.UnRegisterClose(this);
 	}
 
-	// Token: 0x060014B3 RID: 5299 RVA: 0x00013065 File Offset: 0x00011265
+	// Token: 0x0600120C RID: 4620 RVA: 0x0006D86D File Offset: 0x0006BA6D
 	public void OnDestroy()
 	{
 		PanelMamager.inst.closePanel(PanelMamager.PanelType.任务, 1);
 	}
 
-	// Token: 0x060014B4 RID: 5300 RVA: 0x00013073 File Offset: 0x00011273
+	// Token: 0x0600120D RID: 4621 RVA: 0x0006D87B File Offset: 0x0006BA7B
 	public bool TryEscClose()
 	{
 		this.closeTaskPanel();
 		return true;
 	}
 
-	// Token: 0x04000FED RID: 4077
+	// Token: 0x04000CC5 RID: 3269
 	[SerializeField]
 	private Canvas panelCanvas;
 
-	// Token: 0x04000FEE RID: 4078
+	// Token: 0x04000CC6 RID: 3270
 	[SerializeField]
 	private UIWidget uIWidget;
 
-	// Token: 0x04000FEF RID: 4079
+	// Token: 0x04000CC7 RID: 3271
 	[SerializeField]
 	private Canvas bgCanvas;
 
-	// Token: 0x04000FF0 RID: 4080
+	// Token: 0x04000CC8 RID: 3272
 	private GameObject Head;
 
-	// Token: 0x04000FF1 RID: 4081
+	// Token: 0x04000CC9 RID: 3273
 	[SerializeField]
 	private List<Sprite> TasksToggleIcon = new List<Sprite>();
 
-	// Token: 0x04000FF2 RID: 4082
+	// Token: 0x04000CCA RID: 3274
 	[SerializeField]
 	private List<Toggle> Tasks = new List<Toggle>();
 
-	// Token: 0x04000FF3 RID: 4083
+	// Token: 0x04000CCB RID: 3275
 	[SerializeField]
 	private TaskUIManager taskUIManager;
 }

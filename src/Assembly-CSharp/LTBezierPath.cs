@@ -1,21 +1,21 @@
 ﻿using System;
 using UnityEngine;
 
-// Token: 0x02000020 RID: 32
+// Token: 0x0200001C RID: 28
 public class LTBezierPath
 {
-	// Token: 0x06000132 RID: 306 RVA: 0x0000403D File Offset: 0x0000223D
+	// Token: 0x0600012C RID: 300 RVA: 0x000027FC File Offset: 0x000009FC
 	public LTBezierPath()
 	{
 	}
 
-	// Token: 0x06000133 RID: 307 RVA: 0x00004FC6 File Offset: 0x000031C6
+	// Token: 0x0600012D RID: 301 RVA: 0x000076B6 File Offset: 0x000058B6
 	public LTBezierPath(Vector3[] pts_)
 	{
 		this.setPoints(pts_);
 	}
 
-	// Token: 0x06000134 RID: 308 RVA: 0x000610F0 File Offset: 0x0005F2F0
+	// Token: 0x0600012E RID: 302 RVA: 0x000076C8 File Offset: 0x000058C8
 	public void setPoints(Vector3[] pts_)
 	{
 		if (pts_.Length < 4)
@@ -43,8 +43,8 @@ public class LTBezierPath
 		}
 	}
 
-	// Token: 0x17000017 RID: 23
-	// (get) Token: 0x06000135 RID: 309 RVA: 0x00004FD5 File Offset: 0x000031D5
+	// Token: 0x17000015 RID: 21
+	// (get) Token: 0x0600012F RID: 303 RVA: 0x000077DC File Offset: 0x000059DC
 	public float distance
 	{
 		get
@@ -53,7 +53,7 @@ public class LTBezierPath
 		}
 	}
 
-	// Token: 0x06000136 RID: 310 RVA: 0x00061204 File Offset: 0x0005F404
+	// Token: 0x06000130 RID: 304 RVA: 0x000077E4 File Offset: 0x000059E4
 	public Vector3 point(float ratio)
 	{
 		float num = 0f;
@@ -68,7 +68,7 @@ public class LTBezierPath
 		return this.beziers[this.lengthRatio.Length - 1].point(1f);
 	}
 
-	// Token: 0x06000137 RID: 311 RVA: 0x00061278 File Offset: 0x0005F478
+	// Token: 0x06000131 RID: 305 RVA: 0x00007858 File Offset: 0x00005A58
 	public void place2d(Transform transform, float ratio)
 	{
 		transform.position = this.point(ratio);
@@ -81,7 +81,7 @@ public class LTBezierPath
 		}
 	}
 
-	// Token: 0x06000138 RID: 312 RVA: 0x000612E4 File Offset: 0x0005F4E4
+	// Token: 0x06000132 RID: 306 RVA: 0x000078C4 File Offset: 0x00005AC4
 	public void placeLocal2d(Transform transform, float ratio)
 	{
 		transform.localPosition = this.point(ratio);
@@ -94,13 +94,13 @@ public class LTBezierPath
 		}
 	}
 
-	// Token: 0x06000139 RID: 313 RVA: 0x00004FDD File Offset: 0x000031DD
+	// Token: 0x06000133 RID: 307 RVA: 0x00007930 File Offset: 0x00005B30
 	public void place(Transform transform, float ratio)
 	{
 		this.place(transform, ratio, Vector3.up);
 	}
 
-	// Token: 0x0600013A RID: 314 RVA: 0x00004FEC File Offset: 0x000031EC
+	// Token: 0x06000134 RID: 308 RVA: 0x0000793F File Offset: 0x00005B3F
 	public void place(Transform transform, float ratio, Vector3 worldUp)
 	{
 		transform.position = this.point(ratio);
@@ -111,13 +111,13 @@ public class LTBezierPath
 		}
 	}
 
-	// Token: 0x0600013B RID: 315 RVA: 0x0000501A File Offset: 0x0000321A
+	// Token: 0x06000135 RID: 309 RVA: 0x0000796D File Offset: 0x00005B6D
 	public void placeLocal(Transform transform, float ratio)
 	{
 		this.placeLocal(transform, ratio, Vector3.up);
 	}
 
-	// Token: 0x0600013C RID: 316 RVA: 0x00061350 File Offset: 0x0005F550
+	// Token: 0x06000136 RID: 310 RVA: 0x0000797C File Offset: 0x00005B7C
 	public void placeLocal(Transform transform, float ratio, Vector3 worldUp)
 	{
 		ratio = Mathf.Clamp01(ratio);
@@ -129,7 +129,7 @@ public class LTBezierPath
 		}
 	}
 
-	// Token: 0x0600013D RID: 317 RVA: 0x000613A4 File Offset: 0x0005F5A4
+	// Token: 0x06000137 RID: 311 RVA: 0x000079D0 File Offset: 0x00005BD0
 	public void gizmoDraw(float t = -1f)
 	{
 		Vector3 vector = this.point(0f);
@@ -144,27 +144,27 @@ public class LTBezierPath
 		}
 	}
 
-	// Token: 0x040000FB RID: 251
+	// Token: 0x040000EC RID: 236
 	public Vector3[] pts;
 
-	// Token: 0x040000FC RID: 252
+	// Token: 0x040000ED RID: 237
 	public float length;
 
-	// Token: 0x040000FD RID: 253
+	// Token: 0x040000EE RID: 238
 	public bool orientToPath;
 
-	// Token: 0x040000FE RID: 254
+	// Token: 0x040000EF RID: 239
 	public bool orientToPath2d;
 
-	// Token: 0x040000FF RID: 255
+	// Token: 0x040000F0 RID: 240
 	private LTBezier[] beziers;
 
-	// Token: 0x04000100 RID: 256
+	// Token: 0x040000F1 RID: 241
 	private float[] lengthRatio;
 
-	// Token: 0x04000101 RID: 257
+	// Token: 0x040000F2 RID: 242
 	private int currentBezier;
 
-	// Token: 0x04000102 RID: 258
+	// Token: 0x040000F3 RID: 243
 	private int previousBezier;
 }

@@ -3,10 +3,10 @@ using JSONClass;
 using KBEngine;
 using UnityEngine;
 
-// Token: 0x02000282 RID: 642
+// Token: 0x02000192 RID: 402
 public class MapPlayerController : MonoBehaviour
 {
-	// Token: 0x060013B4 RID: 5044 RVA: 0x000B5C40 File Offset: 0x000B3E40
+	// Token: 0x06001131 RID: 4401 RVA: 0x00067648 File Offset: 0x00065848
 	private void Awake()
 	{
 		MapPlayerController.Inst = this;
@@ -17,13 +17,13 @@ public class MapPlayerController : MonoBehaviour
 		this.IsOnSea = SceneEx.NowSceneName.StartsWith("Sea");
 	}
 
-	// Token: 0x060013B5 RID: 5045 RVA: 0x000126DE File Offset: 0x000108DE
+	// Token: 0x06001132 RID: 4402 RVA: 0x000676A0 File Offset: 0x000658A0
 	private void Start()
 	{
 		base.InvokeRepeating("Refresh", 0.1f, 0.5f);
 	}
 
-	// Token: 0x060013B6 RID: 5046 RVA: 0x000B5C98 File Offset: 0x000B3E98
+	// Token: 0x06001133 RID: 4403 RVA: 0x000676B8 File Offset: 0x000658B8
 	public void Refresh()
 	{
 		Avatar player = PlayerEx.Player;
@@ -59,7 +59,7 @@ public class MapPlayerController : MonoBehaviour
 		this.SeaShow.Refresh();
 	}
 
-	// Token: 0x060013B7 RID: 5047 RVA: 0x000B5D54 File Offset: 0x000B3F54
+	// Token: 0x06001134 RID: 4404 RVA: 0x00067774 File Offset: 0x00065974
 	public StaticSkillSeidJsonData9 FindSpineDunShuSkill()
 	{
 		foreach (SkillItem skillItem in PlayerEx.Player.equipStaticSkillList)
@@ -73,37 +73,37 @@ public class MapPlayerController : MonoBehaviour
 		return null;
 	}
 
-	// Token: 0x060013B8 RID: 5048 RVA: 0x000126F5 File Offset: 0x000108F5
+	// Token: 0x06001135 RID: 4405 RVA: 0x00067800 File Offset: 0x00065A00
 	public void SetSpeed(int speed)
 	{
 		this.NormalShow.Anim.SetInteger("speed", speed);
 		this.SeaShow.Anim.SetInteger("speed", speed);
 	}
 
-	// Token: 0x04000F4C RID: 3916
+	// Token: 0x04000C4C RID: 3148
 	public static MapPlayerController Inst;
 
-	// Token: 0x04000F4D RID: 3917
+	// Token: 0x04000C4D RID: 3149
 	[HideInInspector]
 	public MapPlayerNormalShow NormalShow;
 
-	// Token: 0x04000F4E RID: 3918
+	// Token: 0x04000C4E RID: 3150
 	[HideInInspector]
 	public MapPlayerSeaShow SeaShow;
 
-	// Token: 0x04000F4F RID: 3919
+	// Token: 0x04000C4F RID: 3151
 	[HideInInspector]
 	public bool IsNan;
 
-	// Token: 0x04000F50 RID: 3920
+	// Token: 0x04000C50 RID: 3152
 	[HideInInspector]
 	public bool IsOnSea;
 
-	// Token: 0x04000F51 RID: 3921
+	// Token: 0x04000C51 RID: 3153
 	[HideInInspector]
 	public MapPlayerShowType ShowType;
 
-	// Token: 0x04000F52 RID: 3922
+	// Token: 0x04000C52 RID: 3154
 	[HideInInspector]
 	public _ItemJsonData EquipLingZhou;
 }

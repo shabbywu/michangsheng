@@ -1,10 +1,10 @@
 ﻿using System;
 using UnityEngine;
 
-// Token: 0x020005CC RID: 1484
+// Token: 0x02000419 RID: 1049
 public class UIHeadName : MonoBehaviour
 {
-	// Token: 0x0600257C RID: 9596 RVA: 0x0001E0AC File Offset: 0x0001C2AC
+	// Token: 0x060021C2 RID: 8642 RVA: 0x000E999D File Offset: 0x000E7B9D
 	private void Update()
 	{
 		base.transform.rotation = Camera.main.transform.rotation;

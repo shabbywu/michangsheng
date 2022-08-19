@@ -1,12 +1,12 @@
 ﻿using System;
 
-// Token: 0x020004B4 RID: 1204
+// Token: 0x02000342 RID: 834
 public enum MapArea
 {
-	// Token: 0x04001B4E RID: 6990
+	// Token: 0x04001712 RID: 5906
 	NingZhou,
-	// Token: 0x04001B4F RID: 6991
+	// Token: 0x04001713 RID: 5907
 	Sea,
-	// Token: 0x04001B50 RID: 6992
+	// Token: 0x04001714 RID: 5908
 	Unknow
 }

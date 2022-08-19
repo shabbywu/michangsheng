@@ -4,17 +4,17 @@ using UnityEngine;
 
 namespace Fungus
 {
-	// Token: 0x02001363 RID: 4963
+	// Token: 0x02000EC5 RID: 3781
 	public class GlobalVariables : MonoBehaviour
 	{
-		// Token: 0x06007875 RID: 30837 RVA: 0x00051D32 File Offset: 0x0004FF32
+		// Token: 0x06006ADA RID: 27354 RVA: 0x00294313 File Offset: 0x00292513
 		private void Awake()
 		{
 			this.holder = new GameObject("GlobalVariables").AddComponent<Flowchart>();
 			this.holder.transform.parent = base.transform;
 		}
 
-		// Token: 0x06007876 RID: 30838 RVA: 0x002B66F0 File Offset: 0x002B48F0
+		// Token: 0x06006ADB RID: 27355 RVA: 0x00294340 File Offset: 0x00292540
 		public Variable GetVariable(string variableKey)
 		{
 			Variable result = null;
@@ -22,7 +22,7 @@ namespace Fungus
 			return result;
 		}
 
-		// Token: 0x06007877 RID: 30839 RVA: 0x002B6710 File Offset: 0x002B4910
+		// Token: 0x06006ADC RID: 27356 RVA: 0x00294360 File Offset: 0x00292560
 		public VariableBase<T> GetOrAddVariable<T>(string variableKey, T defaultvalue, Type type)
 		{
 			Variable variable = null;
@@ -48,10 +48,10 @@ namespace Fungus
 			return variableBase;
 		}
 
-		// Token: 0x04006876 RID: 26742
+		// Token: 0x04005A17 RID: 23063
 		private Flowchart holder;
 
-		// Token: 0x04006877 RID: 26743
+		// Token: 0x04005A18 RID: 23064
 		private Dictionary<string, Variable> variables = new Dictionary<string, Variable>();
 	}
 }

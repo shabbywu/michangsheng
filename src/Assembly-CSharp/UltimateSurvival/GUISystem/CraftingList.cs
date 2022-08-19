@@ -4,11 +4,11 @@ using UnityEngine;
 
 namespace UltimateSurvival.GUISystem
 {
-	// Token: 0x0200093E RID: 2366
+	// Token: 0x02000644 RID: 1604
 	public class CraftingList : MonoBehaviour
 	{
-		// Token: 0x17000690 RID: 1680
-		// (get) Token: 0x06003C86 RID: 15494 RVA: 0x0002BAC4 File Offset: 0x00029CC4
+		// Token: 0x17000488 RID: 1160
+		// (get) Token: 0x0600332A RID: 13098 RVA: 0x00167F69 File Offset: 0x00166169
 		public List<ObjectHolder> RecipesByCategory
 		{
 			get
@@ -17,27 +17,27 @@ namespace UltimateSurvival.GUISystem
 			}
 		}
 
-		// Token: 0x06003C87 RID: 15495 RVA: 0x0002BACC File Offset: 0x00029CCC
+		// Token: 0x0600332B RID: 13099 RVA: 0x00167F71 File Offset: 0x00166171
 		private void Awake()
 		{
 			this.m_CraftingMenu.SelectedCategory.AddChangeListener(new Action(this.OnChanged_SelectedCategory));
 			this.m_CraftingMenu.SelectedCategory.AddChangeListener(new Action(this.OnChanged_Category));
 		}
 
-		// Token: 0x06003C88 RID: 15496 RVA: 0x0002BB06 File Offset: 0x00029D06
+		// Token: 0x0600332C RID: 13100 RVA: 0x00167FAB File Offset: 0x001661AB
 		private void Start()
 		{
 			this.GenerateRecipes();
 			this.m_ListTransform.anchoredPosition = new Vector2(this.m_ListTransform.anchoredPosition.x, 0f);
 		}
 
-		// Token: 0x06003C89 RID: 15497 RVA: 0x0002BB33 File Offset: 0x00029D33
+		// Token: 0x0600332D RID: 13101 RVA: 0x00167FD8 File Offset: 0x001661D8
 		private void OnChanged_SelectedCategory()
 		{
 			this.m_ListTransform.anchoredPosition = new Vector2(this.m_ListTransform.anchoredPosition.x, 0f);
 		}
 
-		// Token: 0x06003C8A RID: 15498 RVA: 0x001B0F54 File Offset: 0x001AF154
+		// Token: 0x0600332E RID: 13102 RVA: 0x00168000 File Offset: 0x00166200
 		private void OnChanged_Category()
 		{
 			CraftingCategory craftingCategory = this.m_CraftingMenu.SelectedCategory.Get();
@@ -47,7 +47,7 @@ namespace UltimateSurvival.GUISystem
 			}
 		}
 
-		// Token: 0x06003C8B RID: 15499 RVA: 0x001B0FC4 File Offset: 0x001AF1C4
+		// Token: 0x0600332F RID: 13103 RVA: 0x00168070 File Offset: 0x00166270
 		private void GenerateRecipes()
 		{
 			ItemDatabase database = MonoSingleton<InventoryController>.Instance.Database;
@@ -73,22 +73,22 @@ namespace UltimateSurvival.GUISystem
 			this.RecipesGenerated.Send();
 		}
 
-		// Token: 0x040036C5 RID: 14021
+		// Token: 0x04002D5C RID: 11612
 		public Message RecipesGenerated = new Message();
 
-		// Token: 0x040036C6 RID: 14022
+		// Token: 0x04002D5D RID: 11613
 		[SerializeField]
 		protected CraftingMenu m_CraftingMenu;
 
-		// Token: 0x040036C7 RID: 14023
+		// Token: 0x04002D5E RID: 11614
 		[SerializeField]
 		protected RectTransform m_ListTransform;
 
-		// Token: 0x040036C8 RID: 14024
+		// Token: 0x04002D5F RID: 11615
 		[SerializeField]
 		protected RecipeSlot m_RecipeTemplate;
 
-		// Token: 0x040036C9 RID: 14025
+		// Token: 0x04002D60 RID: 11616
 		protected List<ObjectHolder> m_RecipesByCategory = new List<ObjectHolder>();
 	}
 }

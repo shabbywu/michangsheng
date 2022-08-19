@@ -1,10 +1,11 @@
 ﻿using System;
 using KBEngine;
+using UnityEngine;
 
-// Token: 0x020003BD RID: 957
+// Token: 0x0200028F RID: 655
 public class ChuanYingManager
 {
-	// Token: 0x06001A7A RID: 6778 RVA: 0x000168BF File Offset: 0x00014ABF
+	// Token: 0x0600179D RID: 6045 RVA: 0x000A2AAB File Offset: 0x000A0CAB
 	public ChuanYingManager(Entity avater)
 	{
 		this.NewTipsSum = 0;
@@ -12,7 +13,7 @@ public class ChuanYingManager
 		this.rd = new Random();
 	}
 
-	// Token: 0x06001A7B RID: 6779 RVA: 0x000E9EA4 File Offset: 0x000E80A4
+	// Token: 0x0600179E RID: 6046 RVA: 0x000A2AD4 File Offset: 0x000A0CD4
 	public void addChuanYingFu(int id)
 	{
 		JSONObject jsonobject = jsonData.instance.ChuanYingFuBiao[id.ToString()];
@@ -30,7 +31,36 @@ public class ChuanYingManager
 		}
 	}
 
-	// Token: 0x06001A7C RID: 6780 RVA: 0x000E9F78 File Offset: 0x000E8178
+	// Token: 0x0600179F RID: 6047 RVA: 0x000A2BA8 File Offset: 0x000A0DA8
+	public void AddCy(int cyId, int itemID)
+	{
+		JSONObject jsonobject = jsonData.instance.ChuanYingFuBiao[cyId.ToString()];
+		if (jsonobject["DelayTime"].Count > 0)
+		{
+			this.avatar.NoGetChuanYingList.SetField(cyId.ToString(), this.ReadData(jsonobject));
+			return;
+		}
+		JSONObject jsonobject2 = this.ReadData(jsonobject);
+		jsonobject2.SetField("ItemID", itemID);
+		this.avatar.NewChuanYingList.SetField(cyId.ToString(), jsonobject2.Copy());
+		this.avatar.emailDateMag.OldToPlayer(jsonobject2["AvatarID"].I, cyId, jsonobject2["sendTime"].str);
+	}
+
+	// Token: 0x060017A0 RID: 6048 RVA: 0x000A2C60 File Offset: 0x000A0E60
+	public void AddCyByExchange(int cyId, int itemId)
+	{
+		JSONObject jsonobject = new JSONObject();
+		jsonobject.SetField("AvatarID", 912);
+		jsonobject.SetField("id", cyId + PlayerEx.Player.ExchangeMeetingID);
+		jsonobject.SetField("ItemID", itemId);
+		jsonobject.SetField("ItemHasGet", false);
+		jsonobject.SetField("sendTime", PlayerEx.Player.worldTimeMag.nowTime);
+		this.avatar.NewChuanYingList.SetField((cyId + PlayerEx.Player.ExchangeMeetingID).ToString(), jsonobject.Copy());
+		this.avatar.emailDateMag.OldToPlayerByExchange(jsonobject["AvatarID"].I, cyId + PlayerEx.Player.ExchangeMeetingID, jsonobject["sendTime"].str);
+		PlayerEx.Player.ExchangeMeetingID++;
+	}
+
+	// Token: 0x060017A1 RID: 6049 RVA: 0x000A2D44 File Offset: 0x000A0F44
 	private JSONObject ReadData(JSONObject obj)
 	{
 		JSONObject jsonobject = new JSONObject();
@@ -44,7 +74,14 @@ public class ChuanYingManager
 		DateTime dateTime = this.avatar.worldTimeMag.getNowTime();
 		if (obj["Type"].I == 1)
 		{
-			dateTime = DateTime.Parse(obj["StarTime"].str);
+			try
+			{
+				dateTime = DateTime.Parse(obj["StarTime"].str);
+			}
+			catch
+			{
+				Debug.Log("错误" + obj["StarTime"].str);
+			}
 		}
 		if (obj["DelayTime"].Count > 0)
 		{
@@ -99,12 +136,12 @@ public class ChuanYingManager
 		return jsonobject;
 	}
 
-	// Token: 0x040015E9 RID: 5609
+	// Token: 0x04001266 RID: 4710
 	private Avatar avatar;
 
-	// Token: 0x040015EA RID: 5610
+	// Token: 0x04001267 RID: 4711
 	private Random rd;
 
-	// Token: 0x040015EB RID: 5611
+	// Token: 0x04001268 RID: 4712
 	public int NewTipsSum;
 }

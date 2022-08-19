@@ -3,10 +3,10 @@ using System.Collections.Generic;
 
 namespace JSONClass
 {
-	// Token: 0x02000C48 RID: 3144
+	// Token: 0x020008BA RID: 2234
 	public class NTaskSuiJI : IJSONClass
 	{
-		// Token: 0x06004C89 RID: 19593 RVA: 0x00205920 File Offset: 0x00203B20
+		// Token: 0x060040FB RID: 16635 RVA: 0x001BCD74 File Offset: 0x001BAF74
 		public static void InitDataDict()
 		{
 			foreach (JSONObject jsonobject in jsonData.instance.NTaskSuiJI.list)
@@ -46,45 +46,45 @@ namespace JSONClass
 			}
 		}
 
-		// Token: 0x06004C8A RID: 19594 RVA: 0x000042DD File Offset: 0x000024DD
+		// Token: 0x060040FC RID: 16636 RVA: 0x00004095 File Offset: 0x00002295
 		private static void OnInitFinish()
 		{
 		}
 
-		// Token: 0x04004B10 RID: 19216
+		// Token: 0x04003FBC RID: 16316
 		public static Dictionary<int, NTaskSuiJI> DataDict = new Dictionary<int, NTaskSuiJI>();
 
-		// Token: 0x04004B11 RID: 19217
+		// Token: 0x04003FBD RID: 16317
 		public static List<NTaskSuiJI> DataList = new List<NTaskSuiJI>();
 
-		// Token: 0x04004B12 RID: 19218
+		// Token: 0x04003FBE RID: 16318
 		public static Action OnInitFinishAction = new Action(NTaskSuiJI.OnInitFinish);
 
-		// Token: 0x04004B13 RID: 19219
+		// Token: 0x04003FBF RID: 16319
 		public int id;
 
-		// Token: 0x04004B14 RID: 19220
+		// Token: 0x04003FC0 RID: 16320
 		public int Value;
 
-		// Token: 0x04004B15 RID: 19221
+		// Token: 0x04003FC1 RID: 16321
 		public int jiaZhi;
 
-		// Token: 0x04004B16 RID: 19222
+		// Token: 0x04003FC2 RID: 16322
 		public int huobi;
 
-		// Token: 0x04004B17 RID: 19223
+		// Token: 0x04003FC3 RID: 16323
 		public string Str;
 
-		// Token: 0x04004B18 RID: 19224
+		// Token: 0x04003FC4 RID: 16324
 		public string StrValue;
 
-		// Token: 0x04004B19 RID: 19225
+		// Token: 0x04003FC5 RID: 16325
 		public string name;
 
-		// Token: 0x04004B1A RID: 19226
+		// Token: 0x04003FC6 RID: 16326
 		public List<int> type = new List<int>();
 
-		// Token: 0x04004B1B RID: 19227
+		// Token: 0x04003FC7 RID: 16327
 		public List<int> shuxing = new List<int>();
 	}
 }

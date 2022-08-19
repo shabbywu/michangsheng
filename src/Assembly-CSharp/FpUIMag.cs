@@ -9,12 +9,13 @@ using UnityEngine.Events;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-// Token: 0x020003F4 RID: 1012
+// Token: 0x020002B8 RID: 696
 public class FpUIMag : MonoBehaviour
 {
-	// Token: 0x06001B7A RID: 7034 RVA: 0x000F6814 File Offset: 0x000F4A14
+	// Token: 0x06001886 RID: 6278 RVA: 0x000B00A4 File Offset: 0x000AE2A4
 	private void Awake()
 	{
+		Tools.instance.FinalScene = SceneManager.GetActiveScene().name;
 		FpUIMag.inst = this;
 		base.transform.SetParent(NewUICanvas.Inst.gameObject.transform);
 		base.transform.SetAsFirstSibling();
@@ -22,7 +23,7 @@ public class FpUIMag : MonoBehaviour
 		base.transform.localScale = Vector3.one;
 	}
 
-	// Token: 0x06001B7B RID: 7035 RVA: 0x000F686C File Offset: 0x000F4A6C
+	// Token: 0x06001887 RID: 6279 RVA: 0x000B0114 File Offset: 0x000AE314
 	public void Init()
 	{
 		this.playerFace.SetNPCFace(1);
@@ -46,10 +47,27 @@ public class FpUIMag : MonoBehaviour
 		}
 		this.fighthPrepareBtn.mouseUpEvent.AddListener(new UnityAction(this.OpenBag));
 		this.taoPaoBtn.mouseUpEvent.AddListener(new UnityAction(this.PlayRunAway));
+		string tips = this.GetTips();
+		if (tips == "无")
+		{
+			this.DisableSkipFight.gameObject.SetActive(false);
+			this.SkipFight.gameObject.SetActive(true);
+			this.SkipFight.mouseUpEvent.AddListener(delegate()
+			{
+				ResManager.inst.LoadPrefab("VictoryPanel").Inst(null);
+				this.Close();
+			});
+		}
+		else
+		{
+			this.DisableSkipFight.gameObject.SetActive(true);
+			this.SkipFight.gameObject.SetActive(false);
+			this.TipsText.text = tips;
+		}
 		UINPCJiaoHu.AllShouldHide = false;
 	}
 
-	// Token: 0x06001B7C RID: 7036 RVA: 0x000F69FC File Offset: 0x000F4BFC
+	// Token: 0x06001888 RID: 6280 RVA: 0x000B0324 File Offset: 0x000AE524
 	private void StartFight()
 	{
 		Tools.instance.FinalScene = SceneManager.GetActiveScene().name;
@@ -58,7 +76,7 @@ public class FpUIMag : MonoBehaviour
 		Object.Destroy(base.gameObject);
 	}
 
-	// Token: 0x06001B7D RID: 7037 RVA: 0x000F6A40 File Offset: 0x000F4C40
+	// Token: 0x06001889 RID: 6281 RVA: 0x000B0368 File Offset: 0x000AE568
 	private void TanCai()
 	{
 		UINPCData uinpcdata = new UINPCData(this.npcId, false);
@@ -76,13 +94,13 @@ public class FpUIMag : MonoBehaviour
 		UINPCJiaoHu.Inst.InfoPanel.TabGroup.HideTab();
 	}
 
-	// Token: 0x06001B7E RID: 7038 RVA: 0x000171A8 File Offset: 0x000153A8
+	// Token: 0x0600188A RID: 6282 RVA: 0x000B03D2 File Offset: 0x000AE5D2
 	private void OpenBag()
 	{
 		TabUIMag.OpenTab2(2);
 	}
 
-	// Token: 0x06001B7F RID: 7039 RVA: 0x000F6AAC File Offset: 0x000F4CAC
+	// Token: 0x0600188B RID: 6283 RVA: 0x000B03DC File Offset: 0x000AE5DC
 	private void PlayRunAway()
 	{
 		try
@@ -155,7 +173,7 @@ public class FpUIMag : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001B80 RID: 7040 RVA: 0x000171B0 File Offset: 0x000153B0
+	// Token: 0x0600188C RID: 6284 RVA: 0x000B0538 File Offset: 0x000AE738
 	public void Close()
 	{
 		UI_Manager.inst.checkTool.Init();
@@ -163,44 +181,71 @@ public class FpUIMag : MonoBehaviour
 		Object.Destroy(base.gameObject);
 	}
 
-	// Token: 0x0400172F RID: 5935
+	// Token: 0x0600188D RID: 6285 RVA: 0x000B055C File Offset: 0x000AE75C
+	private string GetTips()
+	{
+		if (Tools.instance.monstarMag.FightType != Fungus.StartFight.FightEnumType.Normal)
+		{
+			return "该战斗类型无法跳过";
+		}
+		if ((int)PlayerEx.Player.level <= jsonData.instance.AvatarJsonData[this.npcId.ToString()]["Level"].I)
+		{
+			return "境界未高于此对手";
+		}
+		if (!PlayerEx.Player.HasDefeatNpcList.Contains(this.npcId))
+		{
+			return "未曾战胜过此对手";
+		}
+		return "无";
+	}
+
+	// Token: 0x04001389 RID: 5001
 	public static FpUIMag inst;
 
-	// Token: 0x04001730 RID: 5936
+	// Token: 0x0400138A RID: 5002
 	[SerializeField]
 	private PlayerSetRandomFace playerFace;
 
-	// Token: 0x04001731 RID: 5937
+	// Token: 0x0400138B RID: 5003
 	[SerializeField]
 	private Text playerName;
 
-	// Token: 0x04001732 RID: 5938
+	// Token: 0x0400138C RID: 5004
 	[SerializeField]
 	private PlayerSetRandomFace npcFace;
 
-	// Token: 0x04001733 RID: 5939
+	// Token: 0x0400138D RID: 5005
 	[SerializeField]
 	private Text npcName;
 
-	// Token: 0x04001734 RID: 5940
+	// Token: 0x0400138E RID: 5006
 	public int npcId;
 
-	// Token: 0x04001735 RID: 5941
+	// Token: 0x0400138F RID: 5007
 	public FpBtn startFightBtn;
 
-	// Token: 0x04001736 RID: 5942
+	// Token: 0x04001390 RID: 5008
 	public FpBtn tanCai1Btn;
 
-	// Token: 0x04001737 RID: 5943
+	// Token: 0x04001391 RID: 5009
+	public FpBtn SkipFight;
+
+	// Token: 0x04001392 RID: 5010
+	public FpBtn DisableSkipFight;
+
+	// Token: 0x04001393 RID: 5011
+	public Text TipsText;
+
+	// Token: 0x04001394 RID: 5012
 	public FpBtn tanCai2Btn;
 
-	// Token: 0x04001738 RID: 5944
+	// Token: 0x04001395 RID: 5013
 	public FpBtn fighthPrepareBtn;
 
-	// Token: 0x04001739 RID: 5945
+	// Token: 0x04001396 RID: 5014
 	public FpBtn taoPaoBtn;
 
-	// Token: 0x0400173A RID: 5946
+	// Token: 0x04001397 RID: 5015
 	private readonly List<StartFight.FightEnumType> TouXiangTypes = new List<StartFight.FightEnumType>
 	{
 		Fungus.StartFight.FightEnumType.LeiTai,

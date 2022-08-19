@@ -5,15 +5,10 @@ using UnityEngine.EventSystems;
 using UnityEngine.UI;
 using YSGame;
 
-// Token: 0x020003F6 RID: 1014
+// Token: 0x020002BA RID: 698
 public class FpBtn : MonoBehaviour, IPointerEnterHandler, IEventSystemHandler, IPointerExitHandler, IPointerDownHandler, IPointerUpHandler
 {
-	// Token: 0x06001B85 RID: 7045 RVA: 0x000042DD File Offset: 0x000024DD
-	private void Start()
-	{
-	}
-
-	// Token: 0x06001B86 RID: 7046 RVA: 0x000F6CFC File Offset: 0x000F4EFC
+	// Token: 0x06001892 RID: 6290 RVA: 0x000B06BC File Offset: 0x000AE8BC
 	public void SetCanClick(bool flag)
 	{
 		this.IsCanClick = flag;
@@ -33,8 +28,8 @@ public class FpBtn : MonoBehaviour, IPointerEnterHandler, IEventSystemHandler, I
 		}
 	}
 
-	// Token: 0x06001B87 RID: 7047 RVA: 0x00017203 File Offset: 0x00015403
-	public void OnPointerDown(PointerEventData eventData)
+	// Token: 0x06001893 RID: 6291 RVA: 0x000B0724 File Offset: 0x000AE924
+	public virtual void OnPointerDown(PointerEventData eventData)
 	{
 		if (this.IsCanClick)
 		{
@@ -46,8 +41,8 @@ public class FpBtn : MonoBehaviour, IPointerEnterHandler, IEventSystemHandler, I
 		}
 	}
 
-	// Token: 0x06001B88 RID: 7048 RVA: 0x000F6D64 File Offset: 0x000F4F64
-	public void OnPointerEnter(PointerEventData eventData)
+	// Token: 0x06001894 RID: 6292 RVA: 0x000B0758 File Offset: 0x000AE958
+	public virtual void OnPointerEnter(PointerEventData eventData)
 	{
 		if (eventData.dragging)
 		{
@@ -64,8 +59,8 @@ public class FpBtn : MonoBehaviour, IPointerEnterHandler, IEventSystemHandler, I
 		this.IsInBtn = true;
 	}
 
-	// Token: 0x06001B89 RID: 7049 RVA: 0x00017237 File Offset: 0x00015437
-	public void OnPointerExit(PointerEventData eventData)
+	// Token: 0x06001895 RID: 6293 RVA: 0x000B07A7 File Offset: 0x000AE9A7
+	public virtual void OnPointerExit(PointerEventData eventData)
 	{
 		if (this.IsCanClick)
 		{
@@ -75,8 +70,8 @@ public class FpBtn : MonoBehaviour, IPointerEnterHandler, IEventSystemHandler, I
 		this.IsInBtn = false;
 	}
 
-	// Token: 0x06001B8A RID: 7050 RVA: 0x000F6DB4 File Offset: 0x000F4FB4
-	public void OnPointerUp(PointerEventData eventData)
+	// Token: 0x06001896 RID: 6294 RVA: 0x000B07D4 File Offset: 0x000AE9D4
+	public virtual void OnPointerUp(PointerEventData eventData)
 	{
 		if (eventData.dragging)
 		{
@@ -116,7 +111,7 @@ public class FpBtn : MonoBehaviour, IPointerEnterHandler, IEventSystemHandler, I
 		}
 	}
 
-	// Token: 0x06001B8B RID: 7051 RVA: 0x000F6E70 File Offset: 0x000F5070
+	// Token: 0x06001897 RID: 6295 RVA: 0x000B0890 File Offset: 0x000AEA90
 	public void SetGrey(bool isGrey)
 	{
 		this.NowIsGrey = isGrey;
@@ -128,52 +123,52 @@ public class FpBtn : MonoBehaviour, IPointerEnterHandler, IEventSystemHandler, I
 		}
 	}
 
-	// Token: 0x0400173D RID: 5949
+	// Token: 0x0400139A RID: 5018
 	public Image targetImage;
 
-	// Token: 0x0400173E RID: 5950
+	// Token: 0x0400139B RID: 5019
 	public Sprite nomalSprite;
 
-	// Token: 0x0400173F RID: 5951
+	// Token: 0x0400139C RID: 5020
 	public Sprite mouseEnterSprite;
 
-	// Token: 0x04001740 RID: 5952
+	// Token: 0x0400139D RID: 5021
 	public Sprite mouseDownSprite;
 
-	// Token: 0x04001741 RID: 5953
+	// Token: 0x0400139E RID: 5022
 	public Sprite mouseUpSprite;
 
-	// Token: 0x04001742 RID: 5954
+	// Token: 0x0400139F RID: 5023
 	public Sprite stopClickSprite;
 
-	// Token: 0x04001743 RID: 5955
+	// Token: 0x040013A0 RID: 5024
 	public AudioClip audioClip;
 
-	// Token: 0x04001744 RID: 5956
+	// Token: 0x040013A1 RID: 5025
 	public AudioClip MouseHoverAudioClip;
 
-	// Token: 0x04001745 RID: 5957
+	// Token: 0x040013A2 RID: 5026
 	public UnityEvent mouseUpEvent;
 
-	// Token: 0x04001746 RID: 5958
+	// Token: 0x040013A3 RID: 5027
 	public UnityEvent mouseDownEvent;
 
-	// Token: 0x04001747 RID: 5959
+	// Token: 0x040013A4 RID: 5028
 	public UnityEvent mouseEnterEvent;
 
-	// Token: 0x04001748 RID: 5960
+	// Token: 0x040013A5 RID: 5029
 	public UnityEvent mouseOutEvent;
 
-	// Token: 0x04001749 RID: 5961
+	// Token: 0x040013A6 RID: 5030
 	public UnityAction<PointerEventData> MouseUp;
 
-	// Token: 0x0400174A RID: 5962
+	// Token: 0x040013A7 RID: 5031
 	public bool IsInBtn;
 
-	// Token: 0x0400174B RID: 5963
+	// Token: 0x040013A8 RID: 5032
 	private bool IsCanClick = true;
 
-	// Token: 0x0400174C RID: 5964
+	// Token: 0x040013A9 RID: 5033
 	[HideInInspector]
 	public bool NowIsGrey;
 }

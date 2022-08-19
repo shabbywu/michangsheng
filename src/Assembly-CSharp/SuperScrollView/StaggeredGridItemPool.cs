@@ -4,10 +4,10 @@ using UnityEngine;
 
 namespace SuperScrollView
 {
-	// Token: 0x02000A05 RID: 2565
+	// Token: 0x020006D7 RID: 1751
 	public class StaggeredGridItemPool
 	{
-		// Token: 0x06004278 RID: 17016 RVA: 0x001CAAA0 File Offset: 0x001C8CA0
+		// Token: 0x06003856 RID: 14422 RVA: 0x0018310C File Offset: 0x0018130C
 		public void Init(GameObject prefabObj, float padding, int createCount, RectTransform parent)
 		{
 			this.mPrefabObj = prefabObj;
@@ -23,7 +23,7 @@ namespace SuperScrollView
 			}
 		}
 
-		// Token: 0x06004279 RID: 17017 RVA: 0x001CAB08 File Offset: 0x001C8D08
+		// Token: 0x06003857 RID: 14423 RVA: 0x00183174 File Offset: 0x00181374
 		public LoopStaggeredGridViewItem GetItem()
 		{
 			StaggeredGridItemPool.mCurItemIdCount++;
@@ -54,7 +54,7 @@ namespace SuperScrollView
 			return loopStaggeredGridViewItem;
 		}
 
-		// Token: 0x0600427A RID: 17018 RVA: 0x001CABC4 File Offset: 0x001C8DC4
+		// Token: 0x06003858 RID: 14424 RVA: 0x00183230 File Offset: 0x00181430
 		public void DestroyAllItem()
 		{
 			this.ClearTmpRecycledItem();
@@ -66,7 +66,7 @@ namespace SuperScrollView
 			this.mPooledItemList.Clear();
 		}
 
-		// Token: 0x0600427B RID: 17019 RVA: 0x001CAC10 File Offset: 0x001C8E10
+		// Token: 0x06003859 RID: 14425 RVA: 0x0018327C File Offset: 0x0018147C
 		public LoopStaggeredGridViewItem CreateItem()
 		{
 			GameObject gameObject = Object.Instantiate<GameObject>(this.mPrefabObj, Vector3.zero, Quaternion.identity, this.mItemParent);
@@ -81,20 +81,20 @@ namespace SuperScrollView
 			return component2;
 		}
 
-		// Token: 0x0600427C RID: 17020 RVA: 0x0002F6A0 File Offset: 0x0002D8A0
+		// Token: 0x0600385A RID: 14426 RVA: 0x001832ED File Offset: 0x001814ED
 		private void RecycleItemReal(LoopStaggeredGridViewItem item)
 		{
 			item.gameObject.SetActive(false);
 			this.mPooledItemList.Add(item);
 		}
 
-		// Token: 0x0600427D RID: 17021 RVA: 0x0002F6BA File Offset: 0x0002D8BA
+		// Token: 0x0600385B RID: 14427 RVA: 0x00183307 File Offset: 0x00181507
 		public void RecycleItem(LoopStaggeredGridViewItem item)
 		{
 			this.mTmpPooledItemList.Add(item);
 		}
 
-		// Token: 0x0600427E RID: 17022 RVA: 0x001CAC84 File Offset: 0x001C8E84
+		// Token: 0x0600385C RID: 14428 RVA: 0x00183318 File Offset: 0x00181518
 		public void ClearTmpRecycledItem()
 		{
 			int count = this.mTmpPooledItemList.Count;
@@ -109,28 +109,28 @@ namespace SuperScrollView
 			this.mTmpPooledItemList.Clear();
 		}
 
-		// Token: 0x04003ADC RID: 15068
+		// Token: 0x040030C4 RID: 12484
 		private GameObject mPrefabObj;
 
-		// Token: 0x04003ADD RID: 15069
+		// Token: 0x040030C5 RID: 12485
 		private string mPrefabName;
 
-		// Token: 0x04003ADE RID: 15070
+		// Token: 0x040030C6 RID: 12486
 		private int mInitCreateCount = 1;
 
-		// Token: 0x04003ADF RID: 15071
+		// Token: 0x040030C7 RID: 12487
 		private float mPadding;
 
-		// Token: 0x04003AE0 RID: 15072
+		// Token: 0x040030C8 RID: 12488
 		private List<LoopStaggeredGridViewItem> mTmpPooledItemList = new List<LoopStaggeredGridViewItem>();
 
-		// Token: 0x04003AE1 RID: 15073
+		// Token: 0x040030C9 RID: 12489
 		private List<LoopStaggeredGridViewItem> mPooledItemList = new List<LoopStaggeredGridViewItem>();
 
-		// Token: 0x04003AE2 RID: 15074
+		// Token: 0x040030CA RID: 12490
 		private static int mCurItemIdCount;
 
-		// Token: 0x04003AE3 RID: 15075
+		// Token: 0x040030CB RID: 12491
 		private RectTransform mItemParent;
 	}
 }

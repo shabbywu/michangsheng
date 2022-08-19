@@ -3,12 +3,12 @@ using UnityEngine;
 
 namespace BehaviorDesigner.Runtime.Tasks.Basic.UnityRigidbody
 {
-	// Token: 0x0200155B RID: 5467
+	// Token: 0x020010A1 RID: 4257
 	[TaskCategory("Basic/Rigidbody")]
 	[TaskDescription("Sets the angular drag of the Rigidbody. Returns Success.")]
 	public class SetAngularDrag : Action
 	{
-		// Token: 0x0600816A RID: 33130 RVA: 0x002CC2AC File Offset: 0x002CA4AC
+		// Token: 0x06007370 RID: 29552 RVA: 0x002AFFE8 File Offset: 0x002AE1E8
 		public override void OnStart()
 		{
 			GameObject defaultGameObject = base.GetDefaultGameObject(this.targetGameObject.Value);
@@ -19,7 +19,7 @@ namespace BehaviorDesigner.Runtime.Tasks.Basic.UnityRigidbody
 			}
 		}
 
-		// Token: 0x0600816B RID: 33131 RVA: 0x000586A6 File Offset: 0x000568A6
+		// Token: 0x06007371 RID: 29553 RVA: 0x002B0028 File Offset: 0x002AE228
 		public override TaskStatus OnUpdate()
 		{
 			if (this.rigidbody == null)
@@ -31,25 +31,25 @@ namespace BehaviorDesigner.Runtime.Tasks.Basic.UnityRigidbody
 			return 2;
 		}
 
-		// Token: 0x0600816C RID: 33132 RVA: 0x000586D9 File Offset: 0x000568D9
+		// Token: 0x06007372 RID: 29554 RVA: 0x002B005B File Offset: 0x002AE25B
 		public override void OnReset()
 		{
 			this.targetGameObject = null;
 			this.angularDrag = 0f;
 		}
 
-		// Token: 0x04006E24 RID: 28196
+		// Token: 0x04005F24 RID: 24356
 		[Tooltip("The GameObject that the task operates on. If null the task GameObject is used.")]
 		public SharedGameObject targetGameObject;
 
-		// Token: 0x04006E25 RID: 28197
+		// Token: 0x04005F25 RID: 24357
 		[Tooltip("The angular drag of the Rigidbody")]
 		public SharedFloat angularDrag;
 
-		// Token: 0x04006E26 RID: 28198
+		// Token: 0x04005F26 RID: 24358
 		private Rigidbody rigidbody;
 
-		// Token: 0x04006E27 RID: 28199
+		// Token: 0x04005F27 RID: 24359
 		private GameObject prevGameObject;
 	}
 }

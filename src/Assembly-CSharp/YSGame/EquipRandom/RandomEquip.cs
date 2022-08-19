@@ -1,17 +1,21 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
+using System.IO;
+using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
+using JSONClass;
 using KBEngine;
 using Newtonsoft.Json.Linq;
 using UnityEngine;
 
 namespace YSGame.EquipRandom
 {
-	// Token: 0x02000DB7 RID: 3511
+	// Token: 0x02000A85 RID: 2693
 	public static class RandomEquip
 	{
-		// Token: 0x060054A0 RID: 21664 RVA: 0x0003C93C File Offset: 0x0003AB3C
+		// Token: 0x06004B80 RID: 19328 RVA: 0x00200712 File Offset: 0x001FE912
 		private static void Init()
 		{
 			if (!RandomEquip.isInited)
@@ -24,7 +28,7 @@ namespace YSGame.EquipRandom
 			}
 		}
 
-		// Token: 0x060054A1 RID: 21665 RVA: 0x00232154 File Offset: 0x00230354
+		// Token: 0x06004B81 RID: 19329 RVA: 0x00200738 File Offset: 0x001FE938
 		private static void InitQualityLingLiData()
 		{
 			for (int i = 1; i <= 5; i++)
@@ -39,7 +43,7 @@ namespace YSGame.EquipRandom
 			}
 		}
 
-		// Token: 0x060054A2 RID: 21666 RVA: 0x00232274 File Offset: 0x00230474
+		// Token: 0x06004B82 RID: 19330 RVA: 0x00200858 File Offset: 0x001FEA58
 		private static void InitHeChengBiaoData()
 		{
 			for (int i = 1; i <= 10; i++)
@@ -58,47 +62,53 @@ namespace YSGame.EquipRandom
 			}
 		}
 
-		// Token: 0x060054A3 RID: 21667 RVA: 0x002323A8 File Offset: 0x002305A8
+		// Token: 0x06004B83 RID: 19331 RVA: 0x0020098C File Offset: 0x001FEB8C
 		private static void InitNameData()
 		{
-			JSONObject faBaoFirstNameJsonData = jsonData.instance._FaBaoFirstNameJsonData;
-			JSONObject faBaoLastNameJsonData = jsonData.instance._FaBaoLastNameJsonData;
+			List<_FaBaoFirstNameJsonData> dataList = _FaBaoFirstNameJsonData.DataList;
+			List<_FaBaoLastNameJsonData> dataList2 = _FaBaoLastNameJsonData.DataList;
 			for (int i = 1; i <= 5; i++)
 			{
-				RandomEquip.FirstNameDict.Add(i, new Dictionary<int, List<string>>());
-				RandomEquip.LastNameDict.Add(i, new Dictionary<int, List<string>>());
+				RandomEquip.FirstNameDict.Add(i, new Dictionary<int, List<_FaBaoFirstNameJsonData>>());
+				RandomEquip.LastNameDict.Add(i, new Dictionary<int, List<_FaBaoLastNameJsonData>>());
 			}
-			foreach (JSONObject jsonobject in faBaoFirstNameJsonData.list)
+			foreach (_FaBaoFirstNameJsonData faBaoFirstNameJsonData in dataList)
 			{
-				for (int j = 0; j < jsonobject["quality"].list.Count; j++)
+				for (int j = 0; j < faBaoFirstNameJsonData.quality.Count; j++)
 				{
-					for (int k = 0; k < jsonobject["Type"].list.Count; k++)
+					for (int k = 0; k < faBaoFirstNameJsonData.Type.Count; k++)
 					{
-						if (!RandomEquip.FirstNameDict[jsonobject["quality"].list[j].I].ContainsKey(jsonobject["Type"].list[k].I))
+						int key = faBaoFirstNameJsonData.quality[j];
+						int key2 = faBaoFirstNameJsonData.Type[k];
+						string firstName = faBaoFirstNameJsonData.FirstName;
+						if (!RandomEquip.FirstNameDict[key].ContainsKey(key2))
 						{
-							RandomEquip.FirstNameDict[jsonobject["quality"].list[j].I].Add(jsonobject["Type"].list[k].I, new List<string>());
+							RandomEquip.FirstNameDict[key].Add(key2, new List<_FaBaoFirstNameJsonData>());
 						}
-						RandomEquip.FirstNameDict[jsonobject["quality"].list[j].I][jsonobject["Type"].list[k].I].Add(jsonobject["FirstName"].Str);
+						RandomEquip.FirstNameDict[key][key2].Add(faBaoFirstNameJsonData);
 					}
 				}
 			}
-			foreach (JSONObject jsonobject2 in faBaoLastNameJsonData.list)
+			foreach (_FaBaoLastNameJsonData faBaoLastNameJsonData in dataList2)
 			{
-				for (int l = 0; l < jsonobject2["quality"].list.Count; l++)
+				for (int l = 0; l < faBaoLastNameJsonData.quality.Count; l++)
 				{
-					for (int m = 0; m < jsonobject2["Type"].list.Count; m++)
+					for (int m = 0; m < faBaoLastNameJsonData.Type.Count; m++)
 					{
-						if (!RandomEquip.LastNameDict[jsonobject2["quality"].list[l].I].ContainsKey(jsonobject2["Type"].list[m].I))
+						int key3 = faBaoLastNameJsonData.quality[l];
+						int key4 = faBaoLastNameJsonData.Type[m];
+						string lastName = faBaoLastNameJsonData.LastName;
+						if (!RandomEquip.LastNameDict[key3].ContainsKey(key4))
 						{
-							RandomEquip.LastNameDict[jsonobject2["quality"].list[l].I].Add(jsonobject2["Type"].list[m].I, new List<string>());
+							RandomEquip.LastNameDict[key3].Add(key4, new List<_FaBaoLastNameJsonData>());
 						}
-						RandomEquip.LastNameDict[jsonobject2["quality"].list[l].I][jsonobject2["Type"].list[m].I].Add(jsonobject2["LastName"].Str);
+						RandomEquip.LastNameDict[key3][key4].Add(faBaoLastNameJsonData);
 					}
 				}
 			}
 		}
 
-		// Token: 0x060054A4 RID: 21668 RVA: 0x00232734 File Offset: 0x00230934
+		// Token: 0x06004B84 RID: 19332 RVA: 0x00200BAC File Offset: 0x001FEDAC
 		private static void InitCaiLiaoData()
 		{
 			JSONObject itemJsonData = jsonData.instance._ItemJsonData;
@@ -127,13 +137,13 @@ namespace YSGame.EquipRandom
 			}
 		}
 
-		// Token: 0x060054A5 RID: 21669 RVA: 0x0003C95F File Offset: 0x0003AB5F
+		// Token: 0x06004B85 RID: 19333 RVA: 0x00200D00 File Offset: 0x001FEF00
 		private static int Range(int min, int max)
 		{
 			return RandomEquip.random.Next(min, max + 1);
 		}
 
-		// Token: 0x060054A6 RID: 21670 RVA: 0x0003C96F File Offset: 0x0003AB6F
+		// Token: 0x06004B86 RID: 19334 RVA: 0x00200D10 File Offset: 0x001FEF10
 		private static int GetItemCD(int lingWenID)
 		{
 			if (lingWenID > 3)
@@ -147,7 +157,7 @@ namespace YSGame.EquipRandom
 			return 1;
 		}
 
-		// Token: 0x060054A7 RID: 21671 RVA: 0x00232888 File Offset: 0x00230A88
+		// Token: 0x06004B87 RID: 19335 RVA: 0x00200D44 File Offset: 0x001FEF44
 		private static JSONObject AddItemSeid(int seid, int value1 = -9999, int value2 = -9999)
 		{
 			JSONObject jsonobject = new JSONObject();
@@ -163,7 +173,7 @@ namespace YSGame.EquipRandom
 			return jsonobject;
 		}
 
-		// Token: 0x060054A8 RID: 21672 RVA: 0x002328D0 File Offset: 0x00230AD0
+		// Token: 0x06004B88 RID: 19336 RVA: 0x00200D8C File Offset: 0x001FEF8C
 		private static void SetLingWenSeid(JSONObject skillSeids, JSONObject itemSeid, int LingWenID, int equipType)
 		{
 			if (LingWenID == -1)
@@ -237,7 +247,7 @@ namespace YSGame.EquipRandom
 			itemSeid.Add(jsonobject2);
 		}
 
-		// Token: 0x060054A9 RID: 21673 RVA: 0x00232AB8 File Offset: 0x00230CB8
+		// Token: 0x06004B89 RID: 19337 RVA: 0x00200F74 File Offset: 0x001FF174
 		private static string BuildNomalLingWenDesc(JSONObject obj)
 		{
 			string text = (obj["value3"].I == 1) ? "x" : "+";
@@ -263,7 +273,7 @@ namespace YSGame.EquipRandom
 			return result;
 		}
 
-		// Token: 0x060054AA RID: 21674 RVA: 0x00232BE0 File Offset: 0x00230DE0
+		// Token: 0x06004B8A RID: 19338 RVA: 0x0020109C File Offset: 0x001FF29C
 		private static string GetLingWenDesc(int LingWenID)
 		{
 			string result = "";
@@ -282,7 +292,7 @@ namespace YSGame.EquipRandom
 			return result;
 		}
 
-		// Token: 0x060054AB RID: 21675 RVA: 0x00232C84 File Offset: 0x00230E84
+		// Token: 0x06004B8B RID: 19339 RVA: 0x00201140 File Offset: 0x001FF340
 		private static string GetEquipIconPath(int EquipType, int Quality, int Shangxia)
 		{
 			List<JSONObject> list = jsonData.instance.LianQiEquipIconBiao.list;
@@ -300,7 +310,17 @@ namespace YSGame.EquipRandom
 			return "";
 		}
 
-		// Token: 0x060054AC RID: 21676 RVA: 0x00232D34 File Offset: 0x00230F34
+		// Token: 0x06004B8C RID: 19340 RVA: 0x002011EE File Offset: 0x001FF3EE
+		private static string NewGetEquipIconPath(int EquipType, int Quality, int AttackType)
+		{
+			if (EquipType == -1)
+			{
+				return "";
+			}
+			return string.Format("LianQiIcon/MCS_fabao_{0}_{1}_{2}", RandomEquip.EquipTypePinYinList[EquipType - 1], AttackType, Quality);
+		}
+
+		// Token: 0x06004B8D RID: 19341 RVA: 0x00201220 File Offset: 0x001FF420
 		private static JSONObject GetEquipItemFlag(int EquipType, int EquipQuality, JSONObject AttackType)
 		{
 			JSONObject jsonobject = new JSONObject(JSONObject.Type.ARRAY);
@@ -328,7 +348,7 @@ namespace YSGame.EquipRandom
 			return jsonobject;
 		}
 
-		// Token: 0x060054AD RID: 21677 RVA: 0x00232DA8 File Offset: 0x00230FA8
+		// Token: 0x06004B8E RID: 19342 RVA: 0x00201294 File Offset: 0x001FF494
 		private static string GetEquipQualityDesc(int Quality, int ShangXia)
 		{
 			string result = "";
@@ -366,33 +386,33 @@ namespace YSGame.EquipRandom
 			return result;
 		}
 
-		// Token: 0x060054AE RID: 21678 RVA: 0x00232E50 File Offset: 0x00231050
+		// Token: 0x06004B8F RID: 19343 RVA: 0x0020133C File Offset: 0x001FF53C
 		private static int RandomShuXingID()
 		{
 			JSONObject lianQiHeCheng = jsonData.instance.LianQiHeCheng;
 			return RandomEquip.Range(1, lianQiHeCheng.list.Count);
 		}
 
-		// Token: 0x060054AF RID: 21679 RVA: 0x00232E7C File Offset: 0x0023107C
+		// Token: 0x06004B90 RID: 19344 RVA: 0x00201368 File Offset: 0x001FF568
 		private static int RandomShuXingID(int EuqipType)
 		{
 			int index = RandomEquip.Range(0, RandomEquip.EquipTypeShuXingIDList[EuqipType].Count - 1);
 			return RandomEquip.EquipTypeShuXingIDList[EuqipType][index];
 		}
 
-		// Token: 0x060054B0 RID: 21680 RVA: 0x0003C9A2 File Offset: 0x0003ABA2
+		// Token: 0x06004B91 RID: 19345 RVA: 0x0020139F File Offset: 0x001FF59F
 		private static int GetItemIDByEquipType(int EquipType)
 		{
 			return 18000 + EquipType;
 		}
 
-		// Token: 0x060054B1 RID: 21681 RVA: 0x0003C9AB File Offset: 0x0003ABAB
+		// Token: 0x06004B92 RID: 19346 RVA: 0x002013A8 File Offset: 0x001FF5A8
 		private static int GetEquipTypeByShuXingID(int id)
 		{
 			return jsonData.instance.LianQiHeCheng[id.ToString()]["zhonglei"].I;
 		}
 
-		// Token: 0x060054B2 RID: 21682 RVA: 0x00232EB4 File Offset: 0x002310B4
+		// Token: 0x06004B93 RID: 19347 RVA: 0x002013D0 File Offset: 0x001FF5D0
 		private static int RandomLingWenIDByLingWenType(int LingWenType, List<int> banAffix = null)
 		{
 			JSONObject lianQiLingWenBiao = jsonData.instance.LianQiLingWenBiao;
@@ -424,7 +444,7 @@ namespace YSGame.EquipRandom
 			return list[RandomEquip.Range(0, list.Count - 1)];
 		}
 
-		// Token: 0x060054B3 RID: 21683 RVA: 0x00232FB4 File Offset: 0x002311B4
+		// Token: 0x06004B94 RID: 19348 RVA: 0x002014D0 File Offset: 0x001FF6D0
 		private static JSONObject GetAttackType(List<CaiLiao> CaiLiaoList, int EquipType)
 		{
 			JSONObject jsonobject = new JSONObject(JSONObject.Type.ARRAY);
@@ -452,7 +472,7 @@ namespace YSGame.EquipRandom
 			return jsonobject;
 		}
 
-		// Token: 0x060054B4 RID: 21684 RVA: 0x00233034 File Offset: 0x00231234
+		// Token: 0x06004B95 RID: 19349 RVA: 0x00201550 File Offset: 0x001FF750
 		private static int GetEquipPrice(int EquipQuality, int ShangXia)
 		{
 			int result = 0;
@@ -466,7 +486,7 @@ namespace YSGame.EquipRandom
 			return result;
 		}
 
-		// Token: 0x060054B5 RID: 21685 RVA: 0x002330CC File Offset: 0x002312CC
+		// Token: 0x06004B96 RID: 19350 RVA: 0x002015E8 File Offset: 0x001FF7E8
 		private static int GetDuoDuanIDByLingLi(int sum)
 		{
 			int result = 0;
@@ -480,7 +500,7 @@ namespace YSGame.EquipRandom
 			return result;
 		}
 
-		// Token: 0x060054B6 RID: 21686 RVA: 0x00233130 File Offset: 0x00231330
+		// Token: 0x06004B97 RID: 19351 RVA: 0x0020164C File Offset: 0x001FF84C
 		private static string GetCiTiaoDesc(int id, Dictionary<int, int> entryDictionary)
 		{
 			string text = "";
@@ -518,7 +538,7 @@ namespace YSGame.EquipRandom
 			}
 		}
 
-		// Token: 0x060054B7 RID: 21687 RVA: 0x00233298 File Offset: 0x00231498
+		// Token: 0x06004B98 RID: 19352 RVA: 0x002017B4 File Offset: 0x001FF9B4
 		private static List<CaiLiao> RandomCaiLiao(int EquipQuality, int TargetShuXing, ref int ShangXia)
 		{
 			List<CaiLiao> list = new List<CaiLiao>();
@@ -631,17 +651,126 @@ namespace YSGame.EquipRandom
 			return list;
 		}
 
-		// Token: 0x060054B8 RID: 21688 RVA: 0x002335B8 File Offset: 0x002317B8
+		// Token: 0x06004B99 RID: 19353 RVA: 0x00201AD4 File Offset: 0x001FFCD4
 		public static string RandomEquipName(int EquipQuality, int EquipType, int ShuXingType)
 		{
-			int index = RandomEquip.Range(0, RandomEquip.FirstNameDict[EquipQuality][ShuXingType].Count - 1);
-			string str = RandomEquip.FirstNameDict[EquipQuality][ShuXingType][index];
-			int index2 = RandomEquip.Range(0, RandomEquip.LastNameDict[EquipQuality][EquipType].Count - 1);
-			string str2 = RandomEquip.LastNameDict[EquipQuality][EquipType][index2];
-			return str + str2 + RandomEquip.EquipTypeNameList[EquipType - 1];
+			return RandomEquip.BetterRandomEquipName(EquipQuality, EquipType, ShuXingType);
 		}
 
-		// Token: 0x060054B9 RID: 21689 RVA: 0x00233648 File Offset: 0x00231848
+		// Token: 0x06004B9A RID: 19354 RVA: 0x00201AE0 File Offset: 0x001FFCE0
+		public static string NormalRandomEquipName(int EquipQuality, int EquipType, int ShuXingType)
+		{
+			List<_FaBaoFirstNameJsonData> list = RandomEquip.FirstNameDict[EquipQuality][ShuXingType];
+			List<_FaBaoLastNameJsonData> list2 = RandomEquip.LastNameDict[EquipQuality][EquipType];
+			int index = RandomEquip.Range(0, list.Count - 1);
+			string firstName = list[index].FirstName;
+			int index2 = RandomEquip.Range(0, list2.Count - 1);
+			string lastName = list2[index2].LastName;
+			return firstName + lastName + RandomEquip.EquipTypeNameList[EquipType - 1];
+		}
+
+		// Token: 0x06004B9B RID: 19355 RVA: 0x00201B60 File Offset: 0x001FFD60
+		public static string BetterRandomEquipName(int EquipQuality, int EquipType, int ShuXingType)
+		{
+			string result;
+			try
+			{
+				List<_FaBaoFirstNameJsonData> list = RandomEquip.FirstNameDict[EquipQuality][ShuXingType];
+				List<_FaBaoLastNameJsonData> list2 = RandomEquip.LastNameDict[EquipQuality][EquipType];
+				int index = RandomEquip.Range(0, list.Count - 1);
+				_FaBaoFirstNameJsonData faBaoFirstNameJsonData = list[index];
+				int index2 = RandomEquip.Range(0, list2.Count - 1);
+				_FaBaoLastNameJsonData faBaoLastNameJsonData = list2[index2];
+				string text;
+				if (faBaoFirstNameJsonData.PosReverse == 1 || faBaoLastNameJsonData.PosReverse == 1)
+				{
+					text = faBaoLastNameJsonData.LastName + faBaoFirstNameJsonData.FirstName + RandomEquip.EquipTypeNameList[EquipType - 1];
+				}
+				else
+				{
+					text = faBaoFirstNameJsonData.FirstName + faBaoLastNameJsonData.LastName + RandomEquip.EquipTypeNameList[EquipType - 1];
+				}
+				result = text;
+			}
+			catch
+			{
+				string text2 = string.Format("错误{0}_{1}_{2}", EquipQuality, EquipType, ShuXingType);
+				Debug.LogError(string.Format("炼器随机名字失败，目标装备品质{0} 目标装备类型{1} 目标装备属性{2}", EquipQuality, EquipType, ShuXingType));
+				result = text2;
+			}
+			return result;
+		}
+
+		// Token: 0x06004B9C RID: 19356 RVA: 0x00201C74 File Offset: 0x001FFE74
+		public static void TestLogAllBetterRandomEquipName()
+		{
+			RandomEquip.Init();
+			Stopwatch stopwatch = new Stopwatch();
+			stopwatch.Start();
+			StringBuilder stringBuilder = new StringBuilder();
+			int num = 0;
+			List<string> list = new List<string>();
+			for (int i = 1; i <= 5; i++)
+			{
+				stringBuilder.AppendLine(string.Format("[装备品质.{0}↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓]", i));
+				List<int> list2 = RandomEquip.LastNameDict[i].Keys.ToList<int>();
+				List<int> list3 = RandomEquip.FirstNameDict[i].Keys.ToList<int>();
+				int num2 = 0;
+				for (int j = 0; j < list2.Count; j++)
+				{
+					int num3 = list2[j];
+					string text = RandomEquip.EquipTypeNameList[num3 - 1];
+					int num4 = 0;
+					for (int k = 0; k < list3.Count; k++)
+					{
+						int num5 = list3[k];
+						StringBuilder stringBuilder2 = new StringBuilder();
+						int num6 = 0;
+						foreach (_FaBaoFirstNameJsonData faBaoFirstNameJsonData in RandomEquip.FirstNameDict[i][num5])
+						{
+							foreach (_FaBaoLastNameJsonData faBaoLastNameJsonData in RandomEquip.LastNameDict[i][num3])
+							{
+								string text2;
+								if (faBaoFirstNameJsonData.PosReverse == 1 || faBaoLastNameJsonData.PosReverse == 1)
+								{
+									text2 = faBaoLastNameJsonData.LastName + faBaoFirstNameJsonData.FirstName + text;
+								}
+								else
+								{
+									text2 = faBaoFirstNameJsonData.FirstName + faBaoLastNameJsonData.LastName + text;
+								}
+								stringBuilder2.Append(text2 + " ");
+								num++;
+								num2++;
+								num4++;
+								num6++;
+								if (!list.Contains(text2))
+								{
+									list.Add(text2);
+								}
+							}
+						}
+						stringBuilder.AppendLine(stringBuilder2.ToString());
+						stringBuilder.AppendLine(string.Format("[装备属性.{0}.有{1}个名字组合]", num5, num6));
+					}
+					stringBuilder.AppendLine(string.Format("[装备类型.{0}.有{1}个名字组合]", text, num4));
+				}
+				stringBuilder.AppendLine(string.Format("[装备品质.{0}.有{1}个名字组合]\n", i, num2));
+			}
+			stopwatch.Stop();
+			stringBuilder.AppendLine(string.Format("遍历完毕，全局一共有{0}个名字组合，{1}个不重复组合，遍历耗时{2}ms", num, list.Count, stopwatch.ElapsedMilliseconds));
+			File.WriteAllText(Environment.GetFolderPath(Environment.SpecialFolder.Desktop) + "/装备随机名遍历结果.log", stringBuilder.ToString());
+			stringBuilder.Clear();
+			foreach (string str in list)
+			{
+				stringBuilder.Append(str + " ");
+			}
+			stringBuilder.AppendLine(string.Format("\n共有{0}个不重复组合", list.Count));
+			File.WriteAllText(Environment.GetFolderPath(Environment.SpecialFolder.Desktop) + "/装备随机名遍历结果_不重复.log", stringBuilder.ToString());
+			Debug.Log(string.Format("遍历完毕，全局一共有{0}个名字组合，{1}个不重复组合，遍历耗时{2}ms，日志已输出到桌面", num, list.Count, stopwatch.ElapsedMilliseconds));
+		}
+
+		// Token: 0x06004B9D RID: 19357 RVA: 0x00201FF8 File Offset: 0x002001F8
 		private static float CalcWuWeiBaiFenBi(List<CaiLiao> CaiLiaoList)
 		{
 			float num = 2200f;
@@ -658,7 +787,7 @@ namespace YSGame.EquipRandom
 			return num3;
 		}
 
-		// Token: 0x060054BA RID: 21690 RVA: 0x00233694 File Offset: 0x00231894
+		// Token: 0x06004B9E RID: 19358 RVA: 0x00202044 File Offset: 0x00200244
 		private static Dictionary<int, int> CalcCiTiao(List<CaiLiao> data, int EquipType, int EquipQuality, int lingWenID, Avatar Maker)
 		{
 			Dictionary<int, int> dictionary = new Dictionary<int, int>();
@@ -840,7 +969,7 @@ namespace YSGame.EquipRandom
 			return dictionary4;
 		}
 
-		// Token: 0x060054BB RID: 21691 RVA: 0x00233D4C File Offset: 0x00231F4C
+		// Token: 0x06004B9F RID: 19359 RVA: 0x002026FC File Offset: 0x002008FC
 		private static string GetEquipDesc(int EquipType, int EquipQuality, int ShangXia, int LingWenID, List<CaiLiao> CaiLiaoList, Avatar Maker)
 		{
 			string text = "";
@@ -904,13 +1033,13 @@ namespace YSGame.EquipRandom
 			return result;
 		}
 
-		// Token: 0x060054BC RID: 21692 RVA: 0x0003C9D2 File Offset: 0x0003ABD2
+		// Token: 0x06004BA0 RID: 19360 RVA: 0x00202878 File Offset: 0x00200A78
 		public static int FindShuXingIDByEquipTypeAndShuXingType(int ShuXingType, int EquipType)
 		{
 			return RandomEquip.HeChengBiaoDict[EquipType][ShuXingType];
 		}
 
-		// Token: 0x060054BD RID: 21693 RVA: 0x00233EC8 File Offset: 0x002320C8
+		// Token: 0x06004BA1 RID: 19361 RVA: 0x0020288C File Offset: 0x00200A8C
 		public static void CreateRandomEquip(ref int ItemID, ref JSONObject ItemJson, int EquipQuality = -1, int TargetShuXing = -1, int EquipType = -1, int LingWenType = -1, int LingWenID = -1, Avatar Maker = null)
 		{
 			if (RandomEquip.failCount >= 10)
@@ -1153,7 +1282,7 @@ namespace YSGame.EquipRandom
 				ItemJson.AddField("ItemID", ItemID);
 				ItemJson.AddField("Name", RandomEquip.RandomEquipName(EquipQuality, EquipType, num));
 				ItemJson.AddField("SeidDesc", text);
-				ItemJson.AddField("ItemIcon", RandomEquip.GetEquipIconPath(EquipType, EquipQuality, num4));
+				ItemJson.AddField("ItemIcon", RandomEquip.NewGetEquipIconPath(EquipType, EquipQuality, attackType[0].I));
 				if (num3 > 0)
 				{
 					ItemJson.AddField("Damage", num3);
@@ -1183,47 +1312,47 @@ namespace YSGame.EquipRandom
 			RandomEquip.CreateRandomEquip(ref ItemID, ref ItemJson, equipQuality, targetShuXing, equipType, lingWenType, lingWenID, null);
 		}
 
-		// Token: 0x0400545B RID: 21595
+		// Token: 0x04004A9C RID: 19100
 		private static int failCount;
 
-		// Token: 0x0400545C RID: 21596
+		// Token: 0x04004A9D RID: 19101
 		private static bool LogFailInfo;
 
-		// Token: 0x0400545D RID: 21597
+		// Token: 0x04004A9E RID: 19102
 		private static StringBuilder failInfoSB;
 
-		// Token: 0x0400545E RID: 21598
+		// Token: 0x04004A9F RID: 19103
 		private static bool isInited = false;
 
-		// Token: 0x0400545F RID: 21599
+		// Token: 0x04004AA0 RID: 19104
 		private static Dictionary<int, Dictionary<int, int>> QualityLingLiDict = new Dictionary<int, Dictionary<int, int>>();
 
-		// Token: 0x04005460 RID: 21600
+		// Token: 0x04004AA1 RID: 19105
 		private static Dictionary<int, Dictionary<int, int>> QualityPriceDict = new Dictionary<int, Dictionary<int, int>>();
 
-		// Token: 0x04005461 RID: 21601
+		// Token: 0x04004AA2 RID: 19106
 		private static Dictionary<int, Dictionary<int, int>> HeChengBiaoDict = new Dictionary<int, Dictionary<int, int>>();
 
-		// Token: 0x04005462 RID: 21602
+		// Token: 0x04004AA3 RID: 19107
 		private static Dictionary<int, List<int>> EquipTypeShuXingIDList = new Dictionary<int, List<int>>();
 
-		// Token: 0x04005463 RID: 21603
+		// Token: 0x04004AA4 RID: 19108
 		private static Dictionary<int, int> ShuXingCastDict = new Dictionary<int, int>();
 
-		// Token: 0x04005464 RID: 21604
+		// Token: 0x04004AA5 RID: 19109
 		private static Dictionary<int, int> ShuXingTypeDict = new Dictionary<int, int>();
 
-		// Token: 0x04005465 RID: 21605
-		private static Dictionary<int, Dictionary<int, List<string>>> FirstNameDict = new Dictionary<int, Dictionary<int, List<string>>>();
+		// Token: 0x04004AA6 RID: 19110
+		private static Dictionary<int, Dictionary<int, List<_FaBaoFirstNameJsonData>>> FirstNameDict = new Dictionary<int, Dictionary<int, List<_FaBaoFirstNameJsonData>>>();
 
-		// Token: 0x04005466 RID: 21606
-		private static Dictionary<int, Dictionary<int, List<string>>> LastNameDict = new Dictionary<int, Dictionary<int, List<string>>>();
+		// Token: 0x04004AA7 RID: 19111
+		private static Dictionary<int, Dictionary<int, List<_FaBaoLastNameJsonData>>> LastNameDict = new Dictionary<int, Dictionary<int, List<_FaBaoLastNameJsonData>>>();
 
-		// Token: 0x04005467 RID: 21607
+		// Token: 0x04004AA8 RID: 19112
 		private static List<string> EquipTypeNameList = new List<string>
 		{
 			"剑",
-			"尺",
+			"钟",
 			"环",
 			"针",
 			"匣",
@@ -1234,11 +1363,11 @@ namespace YSGame.EquipRandom
 			"印"
 		};
 
-		// Token: 0x04005468 RID: 21608
+		// Token: 0x04004AA9 RID: 19113
 		private static List<string> EquipTypeFullNameList = new List<string>
 		{
 			"剑",
-			"尺",
+			"钟",
 			"环",
 			"飞针",
 			"匣",
@@ -1249,13 +1378,28 @@ namespace YSGame.EquipRandom
 			"印"
 		};
 
-		// Token: 0x04005469 RID: 21609
+		// Token: 0x04004AAA RID: 19114
+		private static List<string> EquipTypePinYinList = new List<string>
+		{
+			"jian",
+			"zhong",
+			"huan",
+			"zhen",
+			"xia",
+			"pao",
+			"jia",
+			"zhu",
+			"ling",
+			"yin"
+		};
+
+		// Token: 0x04004AAB RID: 19115
 		private static Dictionary<int, Dictionary<int, List<JSONObject>>> QualityShuXingCaiLiaoDict = new Dictionary<int, Dictionary<int, List<JSONObject>>>();
 
-		// Token: 0x0400546A RID: 21610
+		// Token: 0x04004AAC RID: 19116
 		private static Dictionary<int, Dictionary<int, List<CaiLiao>>> CaiLiaoDict = new Dictionary<int, Dictionary<int, List<CaiLiao>>>();
 
-		// Token: 0x0400546B RID: 21611
+		// Token: 0x04004AAD RID: 19117
 		private static Random random = new Random();
 	}
 }

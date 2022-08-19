@@ -5,16 +5,16 @@ using UnityEngine.UI;
 
 namespace WXB
 {
-	// Token: 0x0200099D RID: 2461
+	// Token: 0x0200068B RID: 1675
 	public static class Effect
 	{
-		// Token: 0x06003ED5 RID: 16085 RVA: 0x0002D394 File Offset: 0x0002B594
+		// Token: 0x0600351A RID: 13594 RVA: 0x0016FE49 File Offset: 0x0016E049
 		private static void ApplyShadow(List<UIVertex> verts, Color32 color, int start, int end, float x, float y)
 		{
 			Effect.ApplyShadowZeroAlloc(verts, color, start, end, x, y);
 		}
 
-		// Token: 0x06003ED6 RID: 16086 RVA: 0x001B81D0 File Offset: 0x001B63D0
+		// Token: 0x0600351B RID: 13595 RVA: 0x0016FE58 File Offset: 0x0016E058
 		private static void ApplyShadowZeroAlloc(List<UIVertex> verts, Color32 color, int start, int end, float x, float y)
 		{
 			int num = verts.Count + end - start;
@@ -37,7 +37,7 @@ namespace WXB
 			}
 		}
 
-		// Token: 0x06003ED7 RID: 16087 RVA: 0x001B8278 File Offset: 0x001B6478
+		// Token: 0x0600351C RID: 13596 RVA: 0x0016FF00 File Offset: 0x0016E100
 		public static void Shadow(VertexHelper vh, int start, Color effectColor, Vector2 effectDistance)
 		{
 			List<UIVertex> list = ListPool<UIVertex>.Get();
@@ -48,7 +48,7 @@ namespace WXB
 			ListPool<UIVertex>.Release(list);
 		}
 
-		// Token: 0x06003ED8 RID: 16088 RVA: 0x001B82C4 File Offset: 0x001B64C4
+		// Token: 0x0600351D RID: 13597 RVA: 0x0016FF4C File Offset: 0x0016E14C
 		public static void Outline(VertexHelper vh, int start, Color effectColor, Vector2 effectDistance)
 		{
 			List<UIVertex> list = ListPool<UIVertex>.Get();

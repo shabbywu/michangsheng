@@ -3,10 +3,10 @@ using System.Collections.Generic;
 
 namespace JSONClass
 {
-	// Token: 0x02000BD4 RID: 3028
+	// Token: 0x02000843 RID: 2115
 	public class GaoShiLeiXing : IJSONClass
 	{
-		// Token: 0x06004AB8 RID: 19128 RVA: 0x001F9BBC File Offset: 0x001F7DBC
+		// Token: 0x06003F1E RID: 16158 RVA: 0x001AF3F8 File Offset: 0x001AD5F8
 		public static void InitDataDict()
 		{
 			foreach (JSONObject jsonobject in jsonData.instance.GaoShiLeiXing.list)
@@ -42,33 +42,33 @@ namespace JSONClass
 			}
 		}
 
-		// Token: 0x06004AB9 RID: 19129 RVA: 0x000042DD File Offset: 0x000024DD
+		// Token: 0x06003F1F RID: 16159 RVA: 0x00004095 File Offset: 0x00002295
 		private static void OnInitFinish()
 		{
 		}
 
-		// Token: 0x04004687 RID: 18055
+		// Token: 0x04003B19 RID: 15129
 		public static Dictionary<string, GaoShiLeiXing> DataDict = new Dictionary<string, GaoShiLeiXing>();
 
-		// Token: 0x04004688 RID: 18056
+		// Token: 0x04003B1A RID: 15130
 		public static List<GaoShiLeiXing> DataList = new List<GaoShiLeiXing>();
 
-		// Token: 0x04004689 RID: 18057
+		// Token: 0x04003B1B RID: 15131
 		public static Action OnInitFinishAction = new Action(GaoShiLeiXing.OnInitFinish);
 
-		// Token: 0x0400468A RID: 18058
+		// Token: 0x04003B1C RID: 15132
 		public int cd;
 
-		// Token: 0x0400468B RID: 18059
+		// Token: 0x04003B1D RID: 15133
 		public string id;
 
-		// Token: 0x0400468C RID: 18060
+		// Token: 0x04003B1E RID: 15134
 		public string name;
 
-		// Token: 0x0400468D RID: 18061
+		// Token: 0x04003B1F RID: 15135
 		public List<int> num = new List<int>();
 
-		// Token: 0x0400468E RID: 18062
+		// Token: 0x04003B20 RID: 15136
 		public List<int> qujian = new List<int>();
 	}
 }

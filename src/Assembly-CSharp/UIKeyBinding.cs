@@ -1,11 +1,11 @@
 ﻿using System;
 using UnityEngine;
 
-// Token: 0x0200008B RID: 139
+// Token: 0x0200006A RID: 106
 [AddComponentMenu("NGUI/Interaction/Key Binding")]
 public class UIKeyBinding : MonoBehaviour
 {
-	// Token: 0x0600058E RID: 1422 RVA: 0x00072D24 File Offset: 0x00070F24
+	// Token: 0x06000538 RID: 1336 RVA: 0x0001C81C File Offset: 0x0001AA1C
 	private void Start()
 	{
 		UIInput component = base.GetComponent<UIInput>();
@@ -16,7 +16,7 @@ public class UIKeyBinding : MonoBehaviour
 		}
 	}
 
-	// Token: 0x0600058F RID: 1423 RVA: 0x0000906C File Offset: 0x0000726C
+	// Token: 0x06000539 RID: 1337 RVA: 0x0001C85E File Offset: 0x0001AA5E
 	private void OnSubmit()
 	{
 		if (UICamera.currentKey == this.keyCode && this.IsModifierActive())
@@ -25,7 +25,7 @@ public class UIKeyBinding : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000590 RID: 1424 RVA: 0x00072D68 File Offset: 0x00070F68
+	// Token: 0x0600053A RID: 1338 RVA: 0x0001C87C File Offset: 0x0001AA7C
 	private bool IsModifierActive()
 	{
 		if (this.modifier == UIKeyBinding.Modifier.None)
@@ -53,7 +53,7 @@ public class UIKeyBinding : MonoBehaviour
 		return false;
 	}
 
-	// Token: 0x06000591 RID: 1425 RVA: 0x00072DEC File Offset: 0x00070FEC
+	// Token: 0x0600053B RID: 1339 RVA: 0x0001C900 File Offset: 0x0001AB00
 	private void Update()
 	{
 		if (this.keyCode == null || !this.IsModifierActive())
@@ -101,43 +101,43 @@ public class UIKeyBinding : MonoBehaviour
 		UICamera.currentTouch.current = null;
 	}
 
-	// Token: 0x040003EF RID: 1007
+	// Token: 0x0400035E RID: 862
 	public KeyCode keyCode;
 
-	// Token: 0x040003F0 RID: 1008
+	// Token: 0x0400035F RID: 863
 	public UIKeyBinding.Modifier modifier;
 
-	// Token: 0x040003F1 RID: 1009
+	// Token: 0x04000360 RID: 864
 	public UIKeyBinding.Action action;
 
-	// Token: 0x040003F2 RID: 1010
+	// Token: 0x04000361 RID: 865
 	private bool mIgnoreUp;
 
-	// Token: 0x040003F3 RID: 1011
+	// Token: 0x04000362 RID: 866
 	private bool mIsInput;
 
-	// Token: 0x040003F4 RID: 1012
+	// Token: 0x04000363 RID: 867
 	private bool mPress;
 
-	// Token: 0x0200008C RID: 140
+	// Token: 0x020011E5 RID: 4581
 	public enum Action
 	{
-		// Token: 0x040003F6 RID: 1014
+		// Token: 0x040063E1 RID: 25569
 		PressAndClick,
-		// Token: 0x040003F7 RID: 1015
+		// Token: 0x040063E2 RID: 25570
 		Select
 	}
 
-	// Token: 0x0200008D RID: 141
+	// Token: 0x020011E6 RID: 4582
 	public enum Modifier
 	{
-		// Token: 0x040003F9 RID: 1017
+		// Token: 0x040063E4 RID: 25572
 		None,
-		// Token: 0x040003FA RID: 1018
+		// Token: 0x040063E5 RID: 25573
 		Shift,
-		// Token: 0x040003FB RID: 1019
+		// Token: 0x040063E6 RID: 25574
 		Control,
-		// Token: 0x040003FC RID: 1020
+		// Token: 0x040063E7 RID: 25575
 		Alt
 	}
 }

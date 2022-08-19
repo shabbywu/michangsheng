@@ -8,16 +8,16 @@ using UnityEngine;
 
 namespace Fungus
 {
-	// Token: 0x0200139D RID: 5021
+	// Token: 0x02000EFB RID: 3835
 	public class LuaEnvironment : MonoBehaviour
 	{
-		// Token: 0x0600798F RID: 31119 RVA: 0x0005301A File Offset: 0x0005121A
+		// Token: 0x06006BEA RID: 27626 RVA: 0x002975A3 File Offset: 0x002957A3
 		protected virtual void Start()
 		{
 			this.InitEnvironment();
 		}
 
-		// Token: 0x06007990 RID: 31120 RVA: 0x00053022 File Offset: 0x00051222
+		// Token: 0x06006BEB RID: 27627 RVA: 0x002975AB File Offset: 0x002957AB
 		protected virtual void OnDestroy()
 		{
 			if (LuaEnvironment.DebugServer != null)
@@ -26,7 +26,7 @@ namespace Fungus
 			}
 		}
 
-		// Token: 0x06007991 RID: 31121 RVA: 0x002B8878 File Offset: 0x002B6A78
+		// Token: 0x06006BEC RID: 27628 RVA: 0x002975C4 File Offset: 0x002957C4
 		protected virtual void InitLuaScriptFiles()
 		{
 			object[] array = Resources.LoadAll("Lua", typeof(TextAsset));
@@ -34,7 +34,7 @@ namespace Fungus
 			this.interpreter.Options.ScriptLoader = new LuaScriptLoader(source.OfType<TextAsset>());
 		}
 
-		// Token: 0x06007992 RID: 31122 RVA: 0x0005303B File Offset: 0x0005123B
+		// Token: 0x06006BED RID: 27629 RVA: 0x00297603 File Offset: 0x00295803
 		protected virtual IEnumerator RunLuaCoroutine(Closure closure, Action<DynValue> onComplete = null)
 		{
 			DynValue co = this.interpreter.CreateCoroutine(closure);
@@ -58,7 +58,7 @@ namespace Fungus
 			yield break;
 		}
 
-		// Token: 0x06007993 RID: 31123 RVA: 0x002B88B8 File Offset: 0x002B6AB8
+		// Token: 0x06006BEE RID: 27630 RVA: 0x00297620 File Offset: 0x00295820
 		protected virtual string GetSourceCode()
 		{
 			string result = "";
@@ -73,7 +73,7 @@ namespace Fungus
 			return result;
 		}
 
-		// Token: 0x06007994 RID: 31124 RVA: 0x00053058 File Offset: 0x00051258
+		// Token: 0x06006BEF RID: 27631 RVA: 0x00297665 File Offset: 0x00295865
 		protected virtual IEnumerator RunUnityCoroutineImpl(IEnumerator coroutine)
 		{
 			if (coroutine == null)
@@ -85,7 +85,7 @@ namespace Fungus
 			yield break;
 		}
 
-		// Token: 0x06007995 RID: 31125 RVA: 0x002B8900 File Offset: 0x002B6B00
+		// Token: 0x06006BF0 RID: 27632 RVA: 0x0029767C File Offset: 0x0029587C
 		protected static void LogException(string decoratedMessage, string debugInfo)
 		{
 			string text = decoratedMessage + "\n";
@@ -111,12 +111,12 @@ namespace Fungus
 			Debug.LogError(text);
 		}
 
-		// Token: 0x17000B78 RID: 2936
-		// (get) Token: 0x06007996 RID: 31126 RVA: 0x0005306E File Offset: 0x0005126E
-		// (set) Token: 0x06007997 RID: 31127 RVA: 0x00053075 File Offset: 0x00051275
+		// Token: 0x170008D9 RID: 2265
+		// (get) Token: 0x06006BF1 RID: 27633 RVA: 0x00297702 File Offset: 0x00295902
+		// (set) Token: 0x06006BF2 RID: 27634 RVA: 0x00297709 File Offset: 0x00295909
 		public static MoonSharpVsCodeDebugServer DebugServer { get; private set; }
 
-		// Token: 0x06007998 RID: 31128 RVA: 0x002B8988 File Offset: 0x002B6B88
+		// Token: 0x06006BF3 RID: 27635 RVA: 0x00297714 File Offset: 0x00295914
 		public static LuaEnvironment GetLua()
 		{
 			LuaEnvironment luaEnvironment = Object.FindObjectOfType<LuaEnvironment>();
@@ -133,7 +133,7 @@ namespace Fungus
 			return luaEnvironment;
 		}
 
-		// Token: 0x06007999 RID: 31129 RVA: 0x002B89D0 File Offset: 0x002B6BD0
+		// Token: 0x06006BF4 RID: 27636 RVA: 0x0029775C File Offset: 0x0029595C
 		public static void RegisterType(string typeName, bool extensionType = false)
 		{
 			Type type = null;
@@ -173,7 +173,7 @@ namespace Fungus
 			}
 		}
 
-		// Token: 0x0600799A RID: 31130 RVA: 0x0005307D File Offset: 0x0005127D
+		// Token: 0x06006BF5 RID: 27637 RVA: 0x002977EC File Offset: 0x002959EC
 		public virtual Task RunUnityCoroutine(IEnumerator coroutine)
 		{
 			if (coroutine == null)
@@ -183,7 +183,7 @@ namespace Fungus
 			return new Task(this.RunUnityCoroutineImpl(coroutine), true);
 		}
 
-		// Token: 0x0600799B RID: 31131 RVA: 0x002B8A60 File Offset: 0x002B6C60
+		// Token: 0x06006BF6 RID: 27638 RVA: 0x00297800 File Offset: 0x00295A00
 		public virtual void InitEnvironment()
 		{
 			if (this.initialised)
@@ -204,8 +204,8 @@ namespace Fungus
 			this.initialised = true;
 		}
 
-		// Token: 0x17000B79 RID: 2937
-		// (get) Token: 0x0600799C RID: 31132 RVA: 0x00053091 File Offset: 0x00051291
+		// Token: 0x170008DA RID: 2266
+		// (get) Token: 0x06006BF7 RID: 27639 RVA: 0x00297879 File Offset: 0x00295A79
 		public virtual Script Interpreter
 		{
 			get
@@ -214,7 +214,7 @@ namespace Fungus
 			}
 		}
 
-		// Token: 0x0600799D RID: 31133 RVA: 0x002B8ADC File Offset: 0x002B6CDC
+		// Token: 0x06006BF8 RID: 27640 RVA: 0x00297884 File Offset: 0x00295A84
 		public virtual Closure LoadLuaFunction(string luaString, string friendlyName)
 		{
 			this.InitEnvironment();
@@ -245,7 +245,7 @@ namespace Fungus
 			return dynValue.Function;
 		}
 
-		// Token: 0x0600799E RID: 31134 RVA: 0x002B8B5C File Offset: 0x002B6D5C
+		// Token: 0x06006BF9 RID: 27641 RVA: 0x00297904 File Offset: 0x00295B04
 		public virtual void RunLuaFunction(Closure fn, bool runAsCoroutine, Action<DynValue> onComplete = null)
 		{
 			if (fn == null)
@@ -276,27 +276,27 @@ namespace Fungus
 			}
 		}
 
-		// Token: 0x0600799F RID: 31135 RVA: 0x002B8BC4 File Offset: 0x002B6DC4
+		// Token: 0x06006BFA RID: 27642 RVA: 0x0029796C File Offset: 0x00295B6C
 		public virtual void DoLuaString(string luaString, string friendlyName, bool runAsCoroutine, Action<DynValue> onComplete = null)
 		{
 			Closure fn = this.LoadLuaFunction(luaString, friendlyName);
 			this.RunLuaFunction(fn, runAsCoroutine, onComplete);
 		}
 
-		// Token: 0x04006943 RID: 26947
+		// Token: 0x04005AD7 RID: 23255
 		[Tooltip("Start a Lua debug server on scene start.")]
 		[SerializeField]
 		protected bool startDebugServer = true;
 
-		// Token: 0x04006944 RID: 26948
+		// Token: 0x04005AD8 RID: 23256
 		[Tooltip("Port to use for the Lua debug server.")]
 		[SerializeField]
 		protected int debugServerPort = 41912;
 
-		// Token: 0x04006945 RID: 26949
+		// Token: 0x04005AD9 RID: 23257
 		protected Script interpreter;
 
-		// Token: 0x04006946 RID: 26950
+		// Token: 0x04005ADA RID: 23258
 		protected bool initialised;
 	}
 }

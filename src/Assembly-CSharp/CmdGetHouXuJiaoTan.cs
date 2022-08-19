@@ -4,12 +4,12 @@ using Fungus;
 using KBEngine;
 using UnityEngine;
 
-// Token: 0x02000350 RID: 848
+// Token: 0x02000234 RID: 564
 [CommandInfo("YSNPCJiaoHu", "获取后续聊天文本", "获取当前NPC的后续聊天内容，赋值到TmpTalkString", 0)]
 [AddComponentMenu("")]
 public class CmdGetHouXuJiaoTan : Command
 {
-	// Token: 0x060018C2 RID: 6338 RVA: 0x000DD9DC File Offset: 0x000DBBDC
+	// Token: 0x0600160A RID: 5642 RVA: 0x0009536C File Offset: 0x0009356C
 	private static void Init()
 	{
 		if (!CmdGetHouXuJiaoTan.isInited)
@@ -26,7 +26,7 @@ public class CmdGetHouXuJiaoTan : Command
 		}
 	}
 
-	// Token: 0x060018C3 RID: 6339 RVA: 0x000DDAC4 File Offset: 0x000DBCC4
+	// Token: 0x0600160B RID: 5643 RVA: 0x00095454 File Offset: 0x00093654
 	public override void OnEnter()
 	{
 		CmdGetHouXuJiaoTan.Init();
@@ -77,18 +77,18 @@ public class CmdGetHouXuJiaoTan : Command
 		this.Continue();
 	}
 
-	// Token: 0x040013B7 RID: 5047
+	// Token: 0x0400105F RID: 4191
 	private static bool isInited;
 
-	// Token: 0x040013B8 RID: 5048
+	// Token: 0x04001060 RID: 4192
 	private static Dictionary<int, int> _JingJieDict = new Dictionary<int, int>();
 
-	// Token: 0x040013B9 RID: 5049
+	// Token: 0x04001061 RID: 4193
 	private static Dictionary<int, int> _XingGeDict = new Dictionary<int, int>();
 
-	// Token: 0x040013BA RID: 5050
+	// Token: 0x04001062 RID: 4194
 	private static Dictionary<int, int> _FavorDict = new Dictionary<int, int>();
 
-	// Token: 0x040013BB RID: 5051
+	// Token: 0x04001063 RID: 4195
 	private static Dictionary<int, string> _TalkDict = new Dictionary<int, string>();
 }

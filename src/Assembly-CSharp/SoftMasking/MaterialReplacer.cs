@@ -7,11 +7,11 @@ using UnityEngine;
 
 namespace SoftMasking
 {
-	// Token: 0x02000A0C RID: 2572
+	// Token: 0x020006DD RID: 1757
 	public static class MaterialReplacer
 	{
-		// Token: 0x170007AF RID: 1967
-		// (get) Token: 0x06004296 RID: 17046 RVA: 0x0002F754 File Offset: 0x0002D954
+		// Token: 0x17000582 RID: 1410
+		// (get) Token: 0x0600386D RID: 14445 RVA: 0x00183520 File Offset: 0x00181720
 		public static IEnumerable<IMaterialReplacer> globalReplacers
 		{
 			get
@@ -24,7 +24,7 @@ namespace SoftMasking
 			}
 		}
 
-		// Token: 0x06004297 RID: 17047 RVA: 0x001CAE78 File Offset: 0x001C9078
+		// Token: 0x0600386E RID: 14446 RVA: 0x00183540 File Offset: 0x00181740
 		private static IEnumerable<IMaterialReplacer> CollectGlobalReplacers()
 		{
 			return from t in AppDomain.CurrentDomain.GetAssemblies().SelectMany((Assembly x) => x.GetTypesSafe())
@@ -34,13 +34,13 @@ namespace SoftMasking
 			select t;
 		}
 
-		// Token: 0x06004298 RID: 17048 RVA: 0x0002F771 File Offset: 0x0002D971
+		// Token: 0x0600386F RID: 14447 RVA: 0x001835E7 File Offset: 0x001817E7
 		private static bool IsMaterialReplacerType(Type t)
 		{
 			return !(t is TypeBuilder) && !t.IsAbstract && t.IsDefined(typeof(GlobalMaterialReplacerAttribute), false) && typeof(IMaterialReplacer).IsAssignableFrom(t);
 		}
 
-		// Token: 0x06004299 RID: 17049 RVA: 0x001CAF20 File Offset: 0x001C9120
+		// Token: 0x06003870 RID: 14448 RVA: 0x00183624 File Offset: 0x00181824
 		private static IMaterialReplacer TryCreateInstance(Type t)
 		{
 			IMaterialReplacer result;
@@ -60,7 +60,7 @@ namespace SoftMasking
 			return result;
 		}
 
-		// Token: 0x0600429A RID: 17050 RVA: 0x001CAF70 File Offset: 0x001C9170
+		// Token: 0x06003871 RID: 14449 RVA: 0x00183674 File Offset: 0x00181874
 		private static IEnumerable<Type> GetTypesSafe(this Assembly asm)
 		{
 			IEnumerable<Type> result;
@@ -77,7 +77,7 @@ namespace SoftMasking
 			return result;
 		}
 
-		// Token: 0x04003AEB RID: 15083
+		// Token: 0x040030D0 RID: 12496
 		private static List<IMaterialReplacer> _globalReplacers;
 	}
 }

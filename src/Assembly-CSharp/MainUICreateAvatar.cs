@@ -4,10 +4,10 @@ using KBEngine;
 using UnityEngine;
 using YSGame;
 
-// Token: 0x0200048C RID: 1164
+// Token: 0x02000327 RID: 807
 public class MainUICreateAvatar : MonoBehaviour
 {
-	// Token: 0x06001F10 RID: 7952 RVA: 0x00019BD4 File Offset: 0x00017DD4
+	// Token: 0x06001BD0 RID: 7120 RVA: 0x000C5E6C File Offset: 0x000C406C
 	public void Init()
 	{
 		if (!this.isInit)
@@ -18,21 +18,22 @@ public class MainUICreateAvatar : MonoBehaviour
 		base.gameObject.SetActive(true);
 	}
 
-	// Token: 0x06001F11 RID: 7953 RVA: 0x0010B034 File Offset: 0x00109234
+	// Token: 0x06001BD1 RID: 7121 RVA: 0x000C5E94 File Offset: 0x000C4094
 	public void CreateFinsh()
 	{
 		PlayerPrefs.SetString("sceneToLoad", "AllMaps");
 		Tools.instance.isNewAvatar = true;
 		MusicMag.instance.stopMusic();
-		YSSaveGame.save("FirstSetAvatarRandomJsonData" + Tools.instance.getSaveID(this.curIndex, 0), 0, "-1");
+		YSNewSaveSystem.Save(YSNewSaveSystem.GetAvatarSavePathPre(this.curIndex, 0) + "/FirstSetAvatarRandomJsonData.txt", 0, false);
 		this.creatAvatar(10, 51, 100, new Vector3(-5f, 0f, 0f), new Vector3(0f, 0f, 80f), 1);
+		YSNewSaveSystem.CreatAvatar(10, 51, 100, new Vector3(-5f, 0f, 0f), new Vector3(0f, 0f, 80f), 1);
 		KBEngineApp.app.entity_id = 10;
 		Avatar avatar = (Avatar)KBEngineApp.app.player();
 		this.setTianfuInfo(avatar);
 		FactoryManager.inst.createNewPlayerFactory.createPlayer(this.curIndex, 0, MainUIPlayerInfo.inst.firstName, MainUIPlayerInfo.inst.lastName, avatar);
 	}
 
-	// Token: 0x06001F12 RID: 7954 RVA: 0x0010B110 File Offset: 0x00109310
+	// Token: 0x06001BD2 RID: 7122 RVA: 0x000C5F9C File Offset: 0x000C419C
 	private void setTianfuInfo(Avatar avatar)
 	{
 		avatar.ZiZhi = MainUIPlayerInfo.inst.GetZiZhi();
@@ -116,7 +117,7 @@ public class MainUICreateAvatar : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001F13 RID: 7955 RVA: 0x0010B620 File Offset: 0x00109820
+	// Token: 0x06001BD3 RID: 7123 RVA: 0x000C64AC File Offset: 0x000C46AC
 	private void creatAvatar(int avaterID, int roleType, int HP_Max, Vector3 position, Vector3 direction, int AvatarID = 1)
 	{
 		KBEngineApp.app.Client_onCreatedProxies((ulong)((long)avaterID), avaterID, "Avatar");
@@ -124,7 +125,7 @@ public class MainUICreateAvatar : MonoBehaviour
 		this.setAvatar(avaterID, roleType, HP_Max, position, direction, avatar, AvatarID);
 	}
 
-	// Token: 0x06001F14 RID: 7956 RVA: 0x0010B668 File Offset: 0x00109868
+	// Token: 0x06001BD4 RID: 7124 RVA: 0x000C64F4 File Offset: 0x000C46F4
 	private void setAvatar(int avaterID, int roleType, int HP_Max, Vector3 position, Vector3 direction, Avatar avatar, int AvatarID = 1)
 	{
 		avatar.position = position;
@@ -172,27 +173,27 @@ public class MainUICreateAvatar : MonoBehaviour
 		});
 	}
 
-	// Token: 0x06001F15 RID: 7957 RVA: 0x00017C2D File Offset: 0x00015E2D
+	// Token: 0x06001BD5 RID: 7125 RVA: 0x000B5E62 File Offset: 0x000B4062
 	public void Close()
 	{
 		base.gameObject.SetActive(false);
 	}
 
-	// Token: 0x04001A8A RID: 6794
+	// Token: 0x04001666 RID: 5734
 	private bool isInit;
 
-	// Token: 0x04001A8B RID: 6795
+	// Token: 0x04001667 RID: 5735
 	public MainUISetName setNamePanel;
 
-	// Token: 0x04001A8C RID: 6796
+	// Token: 0x04001668 RID: 5736
 	public MainUISetFace setFacePanel;
 
-	// Token: 0x04001A8D RID: 6797
+	// Token: 0x04001669 RID: 5737
 	public MainUISelectTianFu setTianFu;
 
-	// Token: 0x04001A8E RID: 6798
+	// Token: 0x0400166A RID: 5738
 	public GameObject facePanel;
 
-	// Token: 0x04001A8F RID: 6799
+	// Token: 0x0400166B RID: 5739
 	public int curIndex = -1;
 }

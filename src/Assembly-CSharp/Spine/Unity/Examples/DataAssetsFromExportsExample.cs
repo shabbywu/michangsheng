@@ -4,17 +4,17 @@ using UnityEngine;
 
 namespace Spine.Unity.Examples
 {
-	// Token: 0x02000E1D RID: 3613
+	// Token: 0x02000AD7 RID: 2775
 	public class DataAssetsFromExportsExample : MonoBehaviour
 	{
-		// Token: 0x0600571D RID: 22301 RVA: 0x0003E48D File Offset: 0x0003C68D
+		// Token: 0x06004DC5 RID: 19909 RVA: 0x0021400B File Offset: 0x0021220B
 		private void CreateRuntimeAssetsAndGameObject()
 		{
 			this.runtimeAtlasAsset = SpineAtlasAsset.CreateRuntimeInstance(this.atlasText, this.textures, this.materialPropertySource, true);
 			this.runtimeSkeletonDataAsset = SkeletonDataAsset.CreateRuntimeInstance(this.skeletonJson, this.runtimeAtlasAsset, true, 0.01f);
 		}
 
-		// Token: 0x0600571E RID: 22302 RVA: 0x0003E4CA File Offset: 0x0003C6CA
+		// Token: 0x06004DC6 RID: 19910 RVA: 0x00214048 File Offset: 0x00212248
 		private IEnumerator Start()
 		{
 			this.CreateRuntimeAssetsAndGameObject();
@@ -30,25 +30,25 @@ namespace Spine.Unity.Examples
 			yield break;
 		}
 
-		// Token: 0x040056DF RID: 22239
+		// Token: 0x04004CF4 RID: 19700
 		public TextAsset skeletonJson;
 
-		// Token: 0x040056E0 RID: 22240
+		// Token: 0x04004CF5 RID: 19701
 		public TextAsset atlasText;
 
-		// Token: 0x040056E1 RID: 22241
+		// Token: 0x04004CF6 RID: 19702
 		public Texture2D[] textures;
 
-		// Token: 0x040056E2 RID: 22242
+		// Token: 0x04004CF7 RID: 19703
 		public Material materialPropertySource;
 
-		// Token: 0x040056E3 RID: 22243
+		// Token: 0x04004CF8 RID: 19704
 		private SpineAtlasAsset runtimeAtlasAsset;
 
-		// Token: 0x040056E4 RID: 22244
+		// Token: 0x04004CF9 RID: 19705
 		private SkeletonDataAsset runtimeSkeletonDataAsset;
 
-		// Token: 0x040056E5 RID: 22245
+		// Token: 0x04004CFA RID: 19706
 		private SkeletonAnimation runtimeSkeletonAnimation;
 	}
 }

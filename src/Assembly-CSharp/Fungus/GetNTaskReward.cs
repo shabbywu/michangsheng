@@ -5,12 +5,12 @@ using UnityEngine;
 
 namespace Fungus
 {
-	// Token: 0x02001428 RID: 5160
+	// Token: 0x02000F70 RID: 3952
 	[CommandInfo("YSTask", "GetNTaskReward", "获取任务奖励文字描述", 0)]
 	[AddComponentMenu("")]
 	public class GetNTaskReward : Command
 	{
-		// Token: 0x06007CEA RID: 31978 RVA: 0x002C5C3C File Offset: 0x002C3E3C
+		// Token: 0x06006EF8 RID: 28408 RVA: 0x002A5EF8 File Offset: 0x002A40F8
 		public override void OnEnter()
 		{
 			Avatar player = Tools.instance.getPlayer();
@@ -29,13 +29,13 @@ namespace Fungus
 			this.Continue();
 		}
 
-		// Token: 0x06007CEB RID: 31979 RVA: 0x000113CF File Offset: 0x0000F5CF
+		// Token: 0x06006EF9 RID: 28409 RVA: 0x0005E228 File Offset: 0x0005C428
 		public override Color GetButtonColor()
 		{
 			return new Color32(184, 210, 235, byte.MaxValue);
 		}
 
-		// Token: 0x04006AB2 RID: 27314
+		// Token: 0x04005BDC RID: 23516
 		[Tooltip("需要获取的任务ID")]
 		[VariableProperty(new Type[]
 		{
@@ -44,7 +44,7 @@ namespace Fungus
 		[SerializeField]
 		protected IntegerVariable NTaskID;
 
-		// Token: 0x04006AB3 RID: 27315
+		// Token: 0x04005BDD RID: 23517
 		[Tooltip("奖励描述")]
 		[VariableProperty(new Type[]
 		{

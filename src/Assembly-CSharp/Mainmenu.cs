@@ -1,15 +1,15 @@
 ﻿using System;
 using UnityEngine;
 
-// Token: 0x0200015C RID: 348
+// Token: 0x020000E5 RID: 229
 public class Mainmenu : MonoBehaviour
 {
-	// Token: 0x06000C58 RID: 3160 RVA: 0x000042DD File Offset: 0x000024DD
+	// Token: 0x06000B69 RID: 2921 RVA: 0x00004095 File Offset: 0x00002295
 	private void Start()
 	{
 	}
 
-	// Token: 0x06000C59 RID: 3161 RVA: 0x00097188 File Offset: 0x00095388
+	// Token: 0x06000B6A RID: 2922 RVA: 0x00045658 File Offset: 0x00043858
 	private void OnGUI()
 	{
 		Screen.lockCursor = false;
@@ -29,14 +29,14 @@ public class Mainmenu : MonoBehaviour
 		GUI.Label(new Rect(0f, (float)(Screen.height - 50), (float)Screen.width, 30f), "Dungeon Breaker Starter Kit beta.  By Rachan Neamprasert | www.hardworkerstudio.com");
 	}
 
-	// Token: 0x06000C5A RID: 3162 RVA: 0x000042DD File Offset: 0x000024DD
+	// Token: 0x06000B6B RID: 2923 RVA: 0x00004095 File Offset: 0x00002295
 	private void Update()
 	{
 	}
 
-	// Token: 0x04000971 RID: 2417
+	// Token: 0x04000796 RID: 1942
 	public Texture2D LogoGame;
 
-	// Token: 0x04000972 RID: 2418
+	// Token: 0x04000797 RID: 1943
 	public GUISkin skin;
 }

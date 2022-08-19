@@ -3,17 +3,17 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
 
-// Token: 0x02000484 RID: 1156
+// Token: 0x0200031F RID: 799
 public class AnimatorUtils : MonoBehaviour
 {
-	// Token: 0x06001EE4 RID: 7908 RVA: 0x00019999 File Offset: 0x00017B99
+	// Token: 0x06001BA4 RID: 7076 RVA: 0x000C5130 File Offset: 0x000C3330
 	private void Awake()
 	{
 		this.spriteRenderer = base.GetComponent<SpriteRenderer>();
 		this.image = base.GetComponent<Image>();
 	}
 
-	// Token: 0x06001EE5 RID: 7909 RVA: 0x000199B3 File Offset: 0x00017BB3
+	// Token: 0x06001BA5 RID: 7077 RVA: 0x000C514A File Offset: 0x000C334A
 	private void Update()
 	{
 		if (this.iscomplete)
@@ -25,15 +25,15 @@ public class AnimatorUtils : MonoBehaviour
 		this.image.sprite = this.spriteRenderer.sprite;
 	}
 
-	// Token: 0x04001A4D RID: 6733
+	// Token: 0x04001628 RID: 5672
 	public bool iscomplete;
 
-	// Token: 0x04001A4E RID: 6734
+	// Token: 0x04001629 RID: 5673
 	private SpriteRenderer spriteRenderer;
 
-	// Token: 0x04001A4F RID: 6735
+	// Token: 0x0400162A RID: 5674
 	private Image image;
 
-	// Token: 0x04001A50 RID: 6736
+	// Token: 0x0400162B RID: 5675
 	public UnityAction completeCallBack;
 }

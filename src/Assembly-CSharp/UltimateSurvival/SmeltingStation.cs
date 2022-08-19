@@ -5,25 +5,25 @@ using UnityEngine;
 
 namespace UltimateSurvival
 {
-	// Token: 0x020008E9 RID: 2281
+	// Token: 0x0200060A RID: 1546
 	public class SmeltingStation : InteractableObject, IInventoryTrigger
 	{
-		// Token: 0x1700063D RID: 1597
-		// (get) Token: 0x06003A82 RID: 14978 RVA: 0x0002A8A8 File Offset: 0x00028AA8
-		// (set) Token: 0x06003A83 RID: 14979 RVA: 0x0002A8B0 File Offset: 0x00028AB0
+		// Token: 0x1700044C RID: 1100
+		// (get) Token: 0x06003173 RID: 12659 RVA: 0x0015F336 File Offset: 0x0015D536
+		// (set) Token: 0x06003174 RID: 12660 RVA: 0x0015F33E File Offset: 0x0015D53E
 		public ItemHolder FuelSlot { get; private set; }
 
-		// Token: 0x1700063E RID: 1598
-		// (get) Token: 0x06003A84 RID: 14980 RVA: 0x0002A8B9 File Offset: 0x00028AB9
-		// (set) Token: 0x06003A85 RID: 14981 RVA: 0x0002A8C1 File Offset: 0x00028AC1
+		// Token: 0x1700044D RID: 1101
+		// (get) Token: 0x06003175 RID: 12661 RVA: 0x0015F347 File Offset: 0x0015D547
+		// (set) Token: 0x06003176 RID: 12662 RVA: 0x0015F34F File Offset: 0x0015D54F
 		public ItemHolder InputSlot { get; private set; }
 
-		// Token: 0x1700063F RID: 1599
-		// (get) Token: 0x06003A86 RID: 14982 RVA: 0x0002A8CA File Offset: 0x00028ACA
-		// (set) Token: 0x06003A87 RID: 14983 RVA: 0x0002A8D2 File Offset: 0x00028AD2
+		// Token: 0x1700044E RID: 1102
+		// (get) Token: 0x06003177 RID: 12663 RVA: 0x0015F358 File Offset: 0x0015D558
+		// (set) Token: 0x06003178 RID: 12664 RVA: 0x0015F360 File Offset: 0x0015D560
 		public List<ItemHolder> LootSlots { get; private set; }
 
-		// Token: 0x06003A88 RID: 14984 RVA: 0x0002A8DB File Offset: 0x00028ADB
+		// Token: 0x06003179 RID: 12665 RVA: 0x0015F369 File Offset: 0x0015D569
 		public override void OnInteract(PlayerEventHandler player)
 		{
 			if (this.m_Type == SmeltingStationType.Campfire)
@@ -37,7 +37,7 @@ namespace UltimateSurvival
 			}
 		}
 
-		// Token: 0x06003A89 RID: 14985 RVA: 0x001A8778 File Offset: 0x001A6978
+		// Token: 0x0600317A RID: 12666 RVA: 0x0015F3A0 File Offset: 0x0015D5A0
 		private void Start()
 		{
 			this.FuelSlot = new ItemHolder();
@@ -53,7 +53,7 @@ namespace UltimateSurvival
 			this.IsBurning.SetAndForceUpdate(false);
 		}
 
-		// Token: 0x06003A8A RID: 14986 RVA: 0x001A8824 File Offset: 0x001A6A24
+		// Token: 0x0600317B RID: 12667 RVA: 0x0015F44C File Offset: 0x0015D64C
 		private void On_HolderUpdated(ItemHolder holder)
 		{
 			bool flag = false;
@@ -86,7 +86,7 @@ namespace UltimateSurvival
 			}
 		}
 
-		// Token: 0x06003A8B RID: 14987 RVA: 0x001A8940 File Offset: 0x001A6B40
+		// Token: 0x0600317C RID: 12668 RVA: 0x0015F568 File Offset: 0x0015D768
 		private void OnChanged_IsBurning()
 		{
 			if (this.IsBurning.Is(true))
@@ -111,7 +111,7 @@ namespace UltimateSurvival
 			this.m_FireLight.Toggle(this.IsBurning.Get());
 		}
 
-		// Token: 0x06003A8C RID: 14988 RVA: 0x0002A911 File Offset: 0x00028B11
+		// Token: 0x0600317D RID: 12669 RVA: 0x0015F62A File Offset: 0x0015D82A
 		private IEnumerator C_Burn()
 		{
 			for (;;)
@@ -175,7 +175,7 @@ namespace UltimateSurvival
 			yield break;
 		}
 
-		// Token: 0x06003A8D RID: 14989 RVA: 0x001A8A04 File Offset: 0x001A6C04
+		// Token: 0x0600317E RID: 12670 RVA: 0x0015F63C File Offset: 0x0015D83C
 		private void StopBurning()
 		{
 			this.m_FuelTimeProperty = null;
@@ -189,63 +189,63 @@ namespace UltimateSurvival
 			this.m_BurningHandler = null;
 		}
 
-		// Token: 0x040034A7 RID: 13479
+		// Token: 0x04002BA2 RID: 11170
 		private const float UPDATE_INTERVAL = 0.1f;
 
-		// Token: 0x040034A8 RID: 13480
+		// Token: 0x04002BA3 RID: 11171
 		public Value<bool> IsBurning = new Value<bool>(false);
 
-		// Token: 0x040034A9 RID: 13481
+		// Token: 0x04002BA4 RID: 11172
 		public Value<float> Progress = new Value<float>(0f);
 
-		// Token: 0x040034AA RID: 13482
+		// Token: 0x04002BA5 RID: 11173
 		public Message BurnedItem = new Message();
 
-		// Token: 0x040034AE RID: 13486
+		// Token: 0x04002BA9 RID: 11177
 		[SerializeField]
 		private SmeltingStationType m_Type;
 
-		// Token: 0x040034AF RID: 13487
+		// Token: 0x04002BAA RID: 11178
 		[SerializeField]
 		[Range(1f, 18f)]
 		private int m_LootContainerSize = 6;
 
-		// Token: 0x040034B0 RID: 13488
+		// Token: 0x04002BAB RID: 11179
 		[Header("Fire")]
 		[SerializeField]
 		private ParticleSystem m_Fire;
 
-		// Token: 0x040034B1 RID: 13489
+		// Token: 0x04002BAC RID: 11180
 		[SerializeField]
 		private AudioSource m_FireSource;
 
-		// Token: 0x040034B2 RID: 13490
+		// Token: 0x04002BAD RID: 11181
 		[SerializeField]
 		private Firelight m_FireLight;
 
-		// Token: 0x040034B3 RID: 13491
+		// Token: 0x04002BAE RID: 11182
 		[SerializeField]
 		[Range(0f, 1f)]
 		private float m_FireVolume = 0.6f;
 
-		// Token: 0x040034B4 RID: 13492
+		// Token: 0x04002BAF RID: 11183
 		[Header("Damage (Optional)")]
 		[SerializeField]
 		private DamageArea m_DamageArea;
 
-		// Token: 0x040034B5 RID: 13493
+		// Token: 0x04002BB0 RID: 11184
 		private WaitForSeconds m_UpdateInterval = new WaitForSeconds(0.1f);
 
-		// Token: 0x040034B6 RID: 13494
+		// Token: 0x04002BB1 RID: 11185
 		private Coroutine m_BurningHandler;
 
-		// Token: 0x040034B7 RID: 13495
+		// Token: 0x04002BB2 RID: 11186
 		private ItemProperty.Value m_BurnTimeProperty;
 
-		// Token: 0x040034B8 RID: 13496
+		// Token: 0x04002BB3 RID: 11187
 		private ItemProperty.Value m_FuelTimeProperty;
 
-		// Token: 0x040034B9 RID: 13497
+		// Token: 0x04002BB4 RID: 11188
 		private string m_ItemResult;
 	}
 }

@@ -9,11 +9,11 @@ using UnityEngine.Events;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-// Token: 0x0200056A RID: 1386
+// Token: 0x020003D3 RID: 979
 public class ThreeSceneMag : MonoBehaviour
 {
-	// Token: 0x170002BB RID: 699
-	// (get) Token: 0x06002345 RID: 9029 RVA: 0x0001C993 File Offset: 0x0001AB93
+	// Token: 0x17000273 RID: 627
+	// (get) Token: 0x06001FCC RID: 8140 RVA: 0x000E0080 File Offset: 0x000DE280
 	public int getNowAvatar
 	{
 		get
@@ -22,7 +22,7 @@ public class ThreeSceneMag : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06002346 RID: 9030 RVA: 0x00122B64 File Offset: 0x00120D64
+	// Token: 0x06001FCD RID: 8141 RVA: 0x000E0088 File Offset: 0x000DE288
 	public void init()
 	{
 		UINPCData.ThreeSceneNPCTalkCache.Clear();
@@ -44,9 +44,9 @@ public class ThreeSceneMag : MonoBehaviour
 		}
 		foreach (JSONObject jsonobject in jsonData.instance.ThreeSenceJsonData.list)
 		{
-			if ((int)jsonobject["SceneID"].n == num)
+			if (jsonobject["SceneID"].I == num)
 			{
-				this.addTalkAvatar((int)jsonobject["id"].n);
+				this.addTalkAvatar(jsonobject["id"].I);
 			}
 		}
 		int num2 = this.avatar.nomelTaskMag.AutoThreeSceneHasNTask();
@@ -67,18 +67,18 @@ public class ThreeSceneMag : MonoBehaviour
 		NpcJieSuanManager.inst.isUpDateNpcList = true;
 	}
 
-	// Token: 0x06002347 RID: 9031 RVA: 0x0001C99B File Offset: 0x0001AB9B
+	// Token: 0x06001FCE RID: 8142 RVA: 0x000E0260 File Offset: 0x000DE460
 	public void xiaLaBtn()
 	{
 		this.CraftingList.transform.parent.parent.GetComponent<ScrollRect>().verticalNormalizedPosition = 0f;
 	}
 
-	// Token: 0x06002348 RID: 9032 RVA: 0x00122D3C File Offset: 0x00120F3C
+	// Token: 0x06001FCF RID: 8143 RVA: 0x000E0288 File Offset: 0x000DE488
 	public void addTalkAvatar(int key)
 	{
 		JSONObject jsonobject = jsonData.instance.ThreeSenceJsonData[string.Concat(key)];
 		bool flag = true;
-		if (jsonData.instance.MonstarIsDeath((int)jsonobject["AvatarID"].n))
+		if (jsonData.instance.MonstarIsDeath(jsonobject["AvatarID"].I))
 		{
 			flag = false;
 		}
@@ -127,7 +127,7 @@ public class ThreeSceneMag : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06002349 RID: 9033 RVA: 0x00122FE8 File Offset: 0x001211E8
+	// Token: 0x06001FD0 RID: 8144 RVA: 0x000E0534 File Offset: 0x000DE734
 	public void AddAvatarObj(int AvatarID, UnityAction Next)
 	{
 		if (NPCEx.IsDeath(AvatarID))
@@ -144,7 +144,7 @@ public class ThreeSceneMag : MonoBehaviour
 		UINPCData.ThreeSceneNPCTalkCache.Add(AvatarID, Next);
 	}
 
-	// Token: 0x0600234A RID: 9034 RVA: 0x00123034 File Offset: 0x00121234
+	// Token: 0x06001FD1 RID: 8145 RVA: 0x000E0580 File Offset: 0x000DE780
 	public void openChoic()
 	{
 		this.NPCChoice.gameObject.SetActive(true);
@@ -165,8 +165,8 @@ public class ThreeSceneMag : MonoBehaviour
 		{
 			this.NPCChoice.transform.Find("UIGrid/GongFa").gameObject.SetActive(false);
 		}
-		int num = (int)jsonobject["AvatarID"].n;
-		if ((int)jsonobject["transaction3"].n == 1 && (int)jsonData.instance.AvatarRandomJsonData[string.Concat(num)]["HaoGanDu"].n >= 40 && (int)Tools.instance.getPlayer().level >= jsonobject["qiecuoLv"].I)
+		int i = jsonobject["AvatarID"].I;
+		if ((int)jsonobject["transaction3"].n == 1 && (int)jsonData.instance.AvatarRandomJsonData[string.Concat(i)]["HaoGanDu"].n >= 40 && (int)Tools.instance.getPlayer().level >= jsonobject["qiecuoLv"].I)
 		{
 			this.NPCChoice.transform.Find("UIGrid/qiecuo").gameObject.SetActive(true);
 		}
@@ -176,34 +176,34 @@ public class ThreeSceneMag : MonoBehaviour
 		}
 		Transform transform = this.NPCChoice.transform.Find("UIGrid");
 		transform.GetComponent<UIGrid>().repositionNow = true;
-		int num2 = 0;
+		int num = 0;
 		using (IEnumerator enumerator = transform.transform.GetEnumerator())
 		{
 			while (enumerator.MoveNext())
 			{
 				if (((Transform)enumerator.Current).gameObject.activeSelf)
 				{
-					num2++;
+					num++;
 				}
 			}
 		}
 		this.tempSay = null;
-		if (num2 <= 2)
+		if (num <= 2)
 		{
 			this.NPCChoice.gameObject.SetActive(false);
-			Object.Instantiate<GameObject>(Resources.Load<GameObject>("talkPrefab/TalkPrefab/talk" + (int)jsonobject["TalkID"].n));
+			Object.Instantiate<GameObject>(Resources.Load<GameObject>("talkPrefab/TalkPrefab/talk" + jsonobject["TalkID"].I));
 			return;
 		}
 		if (jsonobject["FirstSay"].str != "")
 		{
 			Say say = (Say)Object.Instantiate<GameObject>(Resources.Load<GameObject>("talkPrefab/BasePrefab/NPCTalk")).transform.Find("Flowchart").GetComponent<Flowchart>().FindBlock("Splash").CommandList[0];
-			say.pubAvatarIntID = (int)jsonobject["AvatarID"].n;
+			say.pubAvatarIntID = jsonobject["AvatarID"].I;
 			say.SetStandardText(Tools.Code64(jsonobject["FirstSay"].str));
 			this.tempSay = say;
 		}
 	}
 
-	// Token: 0x0600234B RID: 9035 RVA: 0x0001C9C1 File Offset: 0x0001ABC1
+	// Token: 0x06001FD2 RID: 8146 RVA: 0x000E0878 File Offset: 0x000DEA78
 	public void SayNext()
 	{
 		if (this.tempSay != null)
@@ -212,15 +212,15 @@ public class ThreeSceneMag : MonoBehaviour
 		}
 	}
 
-	// Token: 0x0600234C RID: 9036 RVA: 0x00123330 File Offset: 0x00121530
+	// Token: 0x06001FD3 RID: 8147 RVA: 0x000E0894 File Offset: 0x000DEA94
 	public void statrTalk()
 	{
 		JSONObject jsonobject = jsonData.instance.ThreeSenceJsonData[string.Concat(this.nowAvatar)];
-		Object.Instantiate<GameObject>(Resources.Load<GameObject>("talkPrefab/TalkPrefab/talk" + (int)jsonobject["TalkID"].n));
+		Object.Instantiate<GameObject>(Resources.Load<GameObject>("talkPrefab/TalkPrefab/talk" + jsonobject["TalkID"].I));
 		this.close();
 	}
 
-	// Token: 0x0600234D RID: 9037 RVA: 0x00123390 File Offset: 0x00121590
+	// Token: 0x06001FD4 RID: 8148 RVA: 0x000E08F4 File Offset: 0x000DEAF4
 	public void exchengeItem()
 	{
 		Object.Instantiate<GameObject>(ResManager.inst.LoadPrefab("JiaoYiPanel"), UI_Manager.inst.gameObject.transform);
@@ -230,7 +230,7 @@ public class ThreeSceneMag : MonoBehaviour
 		this.exchangeUI.transform.localPosition = Vector3.zero;
 		this.exchangeUI.transform.localScale = new Vector3(0.752f, 0.752f, 1f);
 		this.exchangeUI.SetActive(true);
-		this.exchangeUI.GetComponent<ExchangePlan>().MonstarID = (int)jsonobject["AvatarID"].n;
+		this.exchangeUI.GetComponent<ExchangePlan>().MonstarID = jsonobject["AvatarID"].I;
 		this.exchangeUI.GetComponent<ExchangePlan>().initPlan();
 		UIButton component = this.exchangeUI.transform.Find("Panel/close").GetComponent<UIButton>();
 		component.onClick.Clear();
@@ -241,7 +241,7 @@ public class ThreeSceneMag : MonoBehaviour
 		this.close();
 	}
 
-	// Token: 0x0600234E RID: 9038 RVA: 0x001234D4 File Offset: 0x001216D4
+	// Token: 0x06001FD5 RID: 8149 RVA: 0x000E0A34 File Offset: 0x000DEC34
 	public int getMonstarIndex(List<int> list)
 	{
 		Avatar player = Tools.instance.getPlayer();
@@ -257,9 +257,9 @@ public class ThreeSceneMag : MonoBehaviour
 				{
 					if (num == 0 || (int)jsonobject["JinDu"].n > (int)jsonData.instance.FavorabilityInfoJsonData[string.Concat(num)]["JinDu"].n)
 					{
-						num = (int)jsonobject["id"].n;
+						num = jsonobject["id"].I;
 					}
-					if (!player.AvatarGotChuanGong.HasField(((int)jsonobject["id"].n).ToString()))
+					if (!player.AvatarGotChuanGong.HasField(jsonobject["id"].I.ToString()))
 					{
 						flag = true;
 						bool flag4 = false;
@@ -291,7 +291,7 @@ public class ThreeSceneMag : MonoBehaviour
 						}
 						if (flag4 && flag5)
 						{
-							return (int)jsonobject["id"].n;
+							return jsonobject["id"].I;
 						}
 					}
 				}
@@ -324,7 +324,7 @@ public class ThreeSceneMag : MonoBehaviour
 		return 0;
 	}
 
-	// Token: 0x0600234F RID: 9039 RVA: 0x001237E0 File Offset: 0x001219E0
+	// Token: 0x06001FD6 RID: 8150 RVA: 0x000E0D40 File Offset: 0x000DEF40
 	public void qingJiaoGongFanom(int _AvatarID)
 	{
 		List<int> haoGanDUGuanLian = jsonData.instance.getHaoGanDUGuanLian(_AvatarID);
@@ -335,45 +335,45 @@ public class ThreeSceneMag : MonoBehaviour
 			player.AvatarGotChuanGong.AddField(monstarIndex.ToString(), 1);
 			JSONObject jsonobject = jsonData.instance.FavorabilityInfoJsonData[monstarIndex.ToString()];
 			Tools.Say(Tools.instance.Code64ToString(jsonobject["yes"].str), _AvatarID);
-			player.addItem((int)jsonobject["ItemID"].n, 1, Tools.CreateItemSeid((int)jsonobject["ItemID"].n), true);
+			player.addItem(jsonobject["ItemID"].I, 1, Tools.CreateItemSeid(jsonobject["ItemID"].I), true);
 		}
 		this.close();
 	}
 
-	// Token: 0x06002350 RID: 9040 RVA: 0x00123898 File Offset: 0x00121A98
+	// Token: 0x06001FD7 RID: 8151 RVA: 0x000E0DF4 File Offset: 0x000DEFF4
 	public void qingJiaoGongFa()
 	{
 		JSONObject jsonobject = jsonData.instance.ThreeSenceJsonData[string.Concat(this.nowAvatar)];
-		this.qingJiaoGongFanom((int)jsonobject["AvatarID"].n);
+		this.qingJiaoGongFanom(jsonobject["AvatarID"].I);
 	}
 
-	// Token: 0x06002351 RID: 9041 RVA: 0x001238DC File Offset: 0x00121ADC
+	// Token: 0x06001FD8 RID: 8152 RVA: 0x000E0E38 File Offset: 0x000DF038
 	public void qiecuo()
 	{
 		JSONObject jsonobject = jsonData.instance.ThreeSenceJsonData[string.Concat(this.nowAvatar)];
-		int monstarId = (int)jsonobject["AvatarID"].n;
+		int monstarId = jsonobject["AvatarID"].I;
 		Block block = Object.Instantiate<GameObject>(Resources.Load("uiPrefab/fungus/qiecuostart") as GameObject).GetComponent<Flowchart>().FindBlock("statr");
 		Say say = (Say)block.CommandList[0];
 		say.pubAvatarIntID = monstarId;
-		JSONObject jsonobject2 = jsonData.instance.QieCuoJsonData.list.Find((JSONObject aa) => (int)aa["AvatarID"].n == monstarId);
+		JSONObject jsonobject2 = jsonData.instance.QieCuoJsonData.list.Find((JSONObject aa) => aa["AvatarID"].I == monstarId);
 		say.SetStandardText(Tools.instance.Code64ToString(jsonobject2["jieshou"].str));
 		((StartFight)block.CommandList[2]).MonstarID = monstarId;
 		this.close();
 	}
 
-	// Token: 0x06002352 RID: 9042 RVA: 0x0001C9DC File Offset: 0x0001ABDC
+	// Token: 0x06001FD9 RID: 8153 RVA: 0x000E0F22 File Offset: 0x000DF122
 	public void close()
 	{
 		this.NPCChoice.SetActive(false);
 	}
 
-	// Token: 0x06002353 RID: 9043 RVA: 0x0001C9EA File Offset: 0x0001ABEA
+	// Token: 0x06001FDA RID: 8154 RVA: 0x000E0F30 File Offset: 0x000DF130
 	private void OnDestroy()
 	{
 		ThreeSceneMag.inst = null;
 	}
 
-	// Token: 0x06002354 RID: 9044 RVA: 0x001239C8 File Offset: 0x00121BC8
+	// Token: 0x06001FDB RID: 8155 RVA: 0x000E0F38 File Offset: 0x000DF138
 	private void Update()
 	{
 		if (this.NPCChoice != null && PanelMamager.inst != null)
@@ -387,33 +387,33 @@ public class ThreeSceneMag : MonoBehaviour
 		}
 	}
 
-	// Token: 0x04001E6A RID: 7786
+	// Token: 0x040019E0 RID: 6624
 	public GameObject CraftingList;
 
-	// Token: 0x04001E6B RID: 7787
+	// Token: 0x040019E1 RID: 6625
 	public GameObject TempRecipe;
 
-	// Token: 0x04001E6C RID: 7788
+	// Token: 0x040019E2 RID: 6626
 	public GameObject NPCChoice;
 
-	// Token: 0x04001E6D RID: 7789
+	// Token: 0x040019E3 RID: 6627
 	public GameObject exchangeUI;
 
-	// Token: 0x04001E6E RID: 7790
+	// Token: 0x040019E4 RID: 6628
 	public Avatar avatar;
 
-	// Token: 0x04001E6F RID: 7791
+	// Token: 0x040019E5 RID: 6629
 	public GameObject xiala;
 
-	// Token: 0x04001E70 RID: 7792
+	// Token: 0x040019E6 RID: 6630
 	public Say tempSay;
 
-	// Token: 0x04001E71 RID: 7793
+	// Token: 0x040019E7 RID: 6631
 	public static ThreeSceneMag inst;
 
-	// Token: 0x04001E72 RID: 7794
+	// Token: 0x040019E8 RID: 6632
 	private int nowAvatar;
 
-	// Token: 0x04001E73 RID: 7795
+	// Token: 0x040019E9 RID: 6633
 	public GameObject face0;
 }

@@ -2,10 +2,10 @@
 using System.Linq;
 using UnityEngine;
 
-// Token: 0x0200014E RID: 334
+// Token: 0x020000D7 RID: 215
 public class CharacterStatus : MonoBehaviour
 {
-	// Token: 0x06000C1F RID: 3103 RVA: 0x0009619C File Offset: 0x0009439C
+	// Token: 0x06000B30 RID: 2864 RVA: 0x00044384 File Offset: 0x00042584
 	private void Update()
 	{
 		if (Time.time - this.lastRegen >= 1f)
@@ -24,7 +24,7 @@ public class CharacterStatus : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000C20 RID: 3104 RVA: 0x00096224 File Offset: 0x00094424
+	// Token: 0x06000B31 RID: 2865 RVA: 0x0004440C File Offset: 0x0004260C
 	public int ApplayDamage(int damage, Vector3 dirdamge)
 	{
 		if (this.HP < 0)
@@ -57,7 +57,7 @@ public class CharacterStatus : MonoBehaviour
 		return num2;
 	}
 
-	// Token: 0x06000C21 RID: 3105 RVA: 0x0000E27C File Offset: 0x0000C47C
+	// Token: 0x06000B32 RID: 2866 RVA: 0x000444BF File Offset: 0x000426BF
 	public void AddParticle(Vector3 pos)
 	{
 		if (this.ParticleObject)
@@ -66,7 +66,7 @@ public class CharacterStatus : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000C22 RID: 3106 RVA: 0x000962D8 File Offset: 0x000944D8
+	// Token: 0x06000B33 RID: 2867 RVA: 0x000444F0 File Offset: 0x000426F0
 	private void Dead()
 	{
 		if (this.DeadbodyModel)
@@ -78,7 +78,7 @@ public class CharacterStatus : MonoBehaviour
 		Object.Destroy(base.gameObject);
 	}
 
-	// Token: 0x06000C23 RID: 3107 RVA: 0x0009634C File Offset: 0x0009454C
+	// Token: 0x06000B34 RID: 2868 RVA: 0x00044564 File Offset: 0x00042764
 	public void CopyTransformsRecurse(Transform src, Transform dst)
 	{
 		dst.position = src.position;
@@ -98,45 +98,45 @@ public class CharacterStatus : MonoBehaviour
 		}
 	}
 
-	// Token: 0x04000928 RID: 2344
+	// Token: 0x0400074D RID: 1869
 	public GameObject DeadbodyModel;
 
-	// Token: 0x04000929 RID: 2345
+	// Token: 0x0400074E RID: 1870
 	public GameObject ParticleObject;
 
-	// Token: 0x0400092A RID: 2346
+	// Token: 0x0400074F RID: 1871
 	public string Name = "";
 
-	// Token: 0x0400092B RID: 2347
+	// Token: 0x04000750 RID: 1872
 	public int HP = 10;
 
-	// Token: 0x0400092C RID: 2348
+	// Token: 0x04000751 RID: 1873
 	public int SP = 10;
 
-	// Token: 0x0400092D RID: 2349
+	// Token: 0x04000752 RID: 1874
 	public int SPmax = 10;
 
-	// Token: 0x0400092E RID: 2350
+	// Token: 0x04000753 RID: 1875
 	public int HPmax = 10;
 
-	// Token: 0x0400092F RID: 2351
+	// Token: 0x04000754 RID: 1876
 	public int Damage = 1;
 
-	// Token: 0x04000930 RID: 2352
+	// Token: 0x04000755 RID: 1877
 	public int Defend = 1;
 
-	// Token: 0x04000931 RID: 2353
+	// Token: 0x04000756 RID: 1878
 	public int HPregen = 1;
 
-	// Token: 0x04000932 RID: 2354
+	// Token: 0x04000757 RID: 1879
 	public int SPregen = 1;
 
-	// Token: 0x04000933 RID: 2355
+	// Token: 0x04000758 RID: 1880
 	public AudioClip[] SoundHit;
 
-	// Token: 0x04000934 RID: 2356
+	// Token: 0x04000759 RID: 1881
 	private Vector3 velocityDamage;
 
-	// Token: 0x04000935 RID: 2357
+	// Token: 0x0400075A RID: 1882
 	private float lastRegen;
 }

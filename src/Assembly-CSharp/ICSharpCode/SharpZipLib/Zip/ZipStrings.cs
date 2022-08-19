@@ -3,10 +3,10 @@ using System.Text;
 
 namespace ICSharpCode.SharpZipLib.Zip
 {
-	// Token: 0x020007F2 RID: 2034
+	// Token: 0x0200054F RID: 1359
 	public static class ZipStrings
 	{
-		// Token: 0x0600345A RID: 13402 RVA: 0x001944C4 File Offset: 0x001926C4
+		// Token: 0x06002BFF RID: 11263 RVA: 0x001487A4 File Offset: 0x001469A4
 		static ZipStrings()
 		{
 			try
@@ -20,9 +20,9 @@ namespace ICSharpCode.SharpZipLib.Zip
 			}
 		}
 
-		// Token: 0x170004E9 RID: 1257
-		// (get) Token: 0x0600345B RID: 13403 RVA: 0x00026311 File Offset: 0x00024511
-		// (set) Token: 0x0600345C RID: 13404 RVA: 0x0002632B File Offset: 0x0002452B
+		// Token: 0x17000334 RID: 820
+		// (get) Token: 0x06002C00 RID: 11264 RVA: 0x00148800 File Offset: 0x00146A00
+		// (set) Token: 0x06002C01 RID: 11265 RVA: 0x0014881A File Offset: 0x00146A1A
 		public static int CodePage
 		{
 			get
@@ -43,13 +43,13 @@ namespace ICSharpCode.SharpZipLib.Zip
 			}
 		}
 
-		// Token: 0x170004EA RID: 1258
-		// (get) Token: 0x0600345D RID: 13405 RVA: 0x0002635B File Offset: 0x0002455B
+		// Token: 0x17000335 RID: 821
+		// (get) Token: 0x06002C02 RID: 11266 RVA: 0x0014884A File Offset: 0x00146A4A
 		public static int SystemDefaultCodePage { get; }
 
-		// Token: 0x170004EB RID: 1259
-		// (get) Token: 0x0600345E RID: 13406 RVA: 0x00026362 File Offset: 0x00024562
-		// (set) Token: 0x0600345F RID: 13407 RVA: 0x00026375 File Offset: 0x00024575
+		// Token: 0x17000336 RID: 822
+		// (get) Token: 0x06002C03 RID: 11267 RVA: 0x00148851 File Offset: 0x00146A51
+		// (set) Token: 0x06002C04 RID: 11268 RVA: 0x00148864 File Offset: 0x00146A64
 		public static bool UseUnicode
 		{
 			get
@@ -67,7 +67,7 @@ namespace ICSharpCode.SharpZipLib.Zip
 			}
 		}
 
-		// Token: 0x06003460 RID: 13408 RVA: 0x00026394 File Offset: 0x00024594
+		// Token: 0x06002C05 RID: 11269 RVA: 0x00148883 File Offset: 0x00146A83
 		public static string ConvertToString(byte[] data, int count)
 		{
 			if (data != null)
@@ -77,13 +77,13 @@ namespace ICSharpCode.SharpZipLib.Zip
 			return string.Empty;
 		}
 
-		// Token: 0x06003461 RID: 13409 RVA: 0x000263B1 File Offset: 0x000245B1
+		// Token: 0x06002C06 RID: 11270 RVA: 0x001488A0 File Offset: 0x00146AA0
 		public static string ConvertToString(byte[] data)
 		{
 			return ZipStrings.ConvertToString(data, data.Length);
 		}
 
-		// Token: 0x06003462 RID: 13410 RVA: 0x000263BC File Offset: 0x000245BC
+		// Token: 0x06002C07 RID: 11271 RVA: 0x001488AB File Offset: 0x00146AAB
 		private static Encoding EncodingFromFlag(int flags)
 		{
 			if ((flags & 2048) == 0)
@@ -93,7 +93,7 @@ namespace ICSharpCode.SharpZipLib.Zip
 			return Encoding.UTF8;
 		}
 
-		// Token: 0x06003463 RID: 13411 RVA: 0x000263E6 File Offset: 0x000245E6
+		// Token: 0x06002C08 RID: 11272 RVA: 0x001488D5 File Offset: 0x00146AD5
 		public static string ConvertToStringExt(int flags, byte[] data, int count)
 		{
 			if (data != null)
@@ -103,13 +103,13 @@ namespace ICSharpCode.SharpZipLib.Zip
 			return string.Empty;
 		}
 
-		// Token: 0x06003464 RID: 13412 RVA: 0x000263FF File Offset: 0x000245FF
+		// Token: 0x06002C09 RID: 11273 RVA: 0x001488EE File Offset: 0x00146AEE
 		public static string ConvertToStringExt(int flags, byte[] data)
 		{
 			return ZipStrings.ConvertToStringExt(flags, data, data.Length);
 		}
 
-		// Token: 0x06003465 RID: 13413 RVA: 0x0002640B File Offset: 0x0002460B
+		// Token: 0x06002C0A RID: 11274 RVA: 0x001488FA File Offset: 0x00146AFA
 		public static byte[] ConvertToArray(string str)
 		{
 			if (str != null)
@@ -119,7 +119,7 @@ namespace ICSharpCode.SharpZipLib.Zip
 			return new byte[0];
 		}
 
-		// Token: 0x06003466 RID: 13414 RVA: 0x00026427 File Offset: 0x00024627
+		// Token: 0x06002C0B RID: 11275 RVA: 0x00148916 File Offset: 0x00146B16
 		public static byte[] ConvertToArray(int flags, string str)
 		{
 			if (!string.IsNullOrEmpty(str))
@@ -129,13 +129,13 @@ namespace ICSharpCode.SharpZipLib.Zip
 			return new byte[0];
 		}
 
-		// Token: 0x04002F72 RID: 12146
+		// Token: 0x04002750 RID: 10064
 		private static int codePage = -1;
 
-		// Token: 0x04002F73 RID: 12147
+		// Token: 0x04002751 RID: 10065
 		private const int AutomaticCodePage = -1;
 
-		// Token: 0x04002F74 RID: 12148
+		// Token: 0x04002752 RID: 10066
 		private const int FallbackCodePage = 437;
 	}
 }

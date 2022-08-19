@@ -1,10 +1,10 @@
 ﻿using System;
 using UnityEngine;
 
-// Token: 0x02000754 RID: 1876
+// Token: 0x020004DE RID: 1246
 public class ObjCustomizationBackPacks : MonoBehaviour
 {
-	// Token: 0x06002FC3 RID: 12227 RVA: 0x00023678 File Offset: 0x00021878
+	// Token: 0x0600285A RID: 10330 RVA: 0x001317FB File Offset: 0x0012F9FB
 	private void Awake()
 	{
 		ObjCustomizationBackPacks.CustomizationBackPacks = false;
@@ -16,7 +16,7 @@ public class ObjCustomizationBackPacks : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06002FC4 RID: 12228 RVA: 0x0017DFAC File Offset: 0x0017C1AC
+	// Token: 0x0600285B RID: 10331 RVA: 0x0013183C File Offset: 0x0012FA3C
 	private void Start()
 	{
 		ObjCustomizationBackPacks.ObjCustomizationInstance = this;
@@ -38,7 +38,7 @@ public class ObjCustomizationBackPacks : MonoBehaviour
 		this.rememberYPos = this.obj[0].position.y;
 	}
 
-	// Token: 0x06002FC5 RID: 12229 RVA: 0x0017E0D0 File Offset: 0x0017C2D0
+	// Token: 0x0600285C RID: 10332 RVA: 0x00131960 File Offset: 0x0012FB60
 	private void Update()
 	{
 		if (ObjCustomizationBackPacks.CustomizationBackPacks)
@@ -55,45 +55,45 @@ public class ObjCustomizationBackPacks : MonoBehaviour
 		}
 	}
 
-	// Token: 0x04002AFB RID: 11003
+	// Token: 0x0400236D RID: 9069
 	public static bool CustomizationBackPacks;
 
-	// Token: 0x04002AFC RID: 11004
+	// Token: 0x0400236E RID: 9070
 	public static SwipeControlCustomizationBackPacks swipeCtrl;
 
-	// Token: 0x04002AFD RID: 11005
+	// Token: 0x0400236F RID: 9071
 	public Transform[] obj = new Transform[0];
 
-	// Token: 0x04002AFE RID: 11006
+	// Token: 0x04002370 RID: 9072
 	public static ObjCustomizationBackPacks ObjCustomizationInstance;
 
-	// Token: 0x04002AFF RID: 11007
+	// Token: 0x04002371 RID: 9073
 	public float minXPos;
 
-	// Token: 0x04002B00 RID: 11008
+	// Token: 0x04002372 RID: 9074
 	public float maxXPos = 115f;
 
-	// Token: 0x04002B01 RID: 11009
+	// Token: 0x04002373 RID: 9075
 	private float xDist;
 
-	// Token: 0x04002B02 RID: 11010
+	// Token: 0x04002374 RID: 9076
 	private float xDistFactor;
 
-	// Token: 0x04002B03 RID: 11011
+	// Token: 0x04002375 RID: 9077
 	public static int HatsNumber = 8;
 
-	// Token: 0x04002B04 RID: 11012
+	// Token: 0x04002376 RID: 9078
 	public static int ShirtsNumber = 8;
 
-	// Token: 0x04002B05 RID: 11013
+	// Token: 0x04002377 RID: 9079
 	public static int BackBacksNumber = 8;
 
-	// Token: 0x04002B06 RID: 11014
+	// Token: 0x04002378 RID: 9080
 	private float swipeSmoothFactor = 1f;
 
-	// Token: 0x04002B07 RID: 11015
+	// Token: 0x04002379 RID: 9081
 	public float xPosReal = -11f;
 
-	// Token: 0x04002B08 RID: 11016
+	// Token: 0x0400237A RID: 9082
 	private float rememberYPos;
 }

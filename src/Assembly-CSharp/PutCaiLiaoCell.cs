@@ -2,10 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-// Token: 0x02000455 RID: 1109
+// Token: 0x020002F8 RID: 760
 public class PutCaiLiaoCell : MonoBehaviour
 {
-	// Token: 0x06001DAE RID: 7598 RVA: 0x00102F94 File Offset: 0x00101194
+	// Token: 0x06001A88 RID: 6792 RVA: 0x000BCF34 File Offset: 0x000BB134
 	public void init()
 	{
 		this.caiLiaoCellParent.SetActive(true);
@@ -17,7 +17,7 @@ public class PutCaiLiaoCell : MonoBehaviour
 		this.ResetCaiLiao();
 	}
 
-	// Token: 0x06001DAF RID: 7599 RVA: 0x00102FFC File Offset: 0x001011FC
+	// Token: 0x06001A89 RID: 6793 RVA: 0x000BCF9C File Offset: 0x000BB19C
 	private void ResetCaiLiao()
 	{
 		foreach (PutMaterialCell putMaterialCell in this.caiLiaoCells)
@@ -27,7 +27,7 @@ public class PutCaiLiaoCell : MonoBehaviour
 		LianQiTotalManager.inst.putCaiLiaoCallBack();
 	}
 
-	// Token: 0x06001DB0 RID: 7600 RVA: 0x00103058 File Offset: 0x00101258
+	// Token: 0x06001A8A RID: 6794 RVA: 0x000BCFF8 File Offset: 0x000BB1F8
 	public void RemoveItem(int itemId)
 	{
 		foreach (PutMaterialCell putMaterialCell in this.caiLiaoCells)
@@ -39,7 +39,7 @@ public class PutCaiLiaoCell : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001DB1 RID: 7601 RVA: 0x001030C0 File Offset: 0x001012C0
+	// Token: 0x06001A8B RID: 6795 RVA: 0x000BD060 File Offset: 0x000BB260
 	public Dictionary<int, int> GetNeedDict()
 	{
 		Dictionary<int, int> dictionary = new Dictionary<int, int>();
@@ -59,7 +59,7 @@ public class PutCaiLiaoCell : MonoBehaviour
 		return dictionary;
 	}
 
-	// Token: 0x06001DB2 RID: 7602 RVA: 0x00103170 File Offset: 0x00101370
+	// Token: 0x06001A8C RID: 6796 RVA: 0x000BD110 File Offset: 0x000BB310
 	public void UpdateCell()
 	{
 		foreach (PutMaterialCell putMaterialCell in this.caiLiaoCells)
@@ -68,13 +68,13 @@ public class PutCaiLiaoCell : MonoBehaviour
 		}
 	}
 
-	// Token: 0x04001960 RID: 6496
+	// Token: 0x04001553 RID: 5459
 	[SerializeField]
 	public List<PutMaterialCell> caiLiaoCells = new List<PutMaterialCell>();
 
-	// Token: 0x04001961 RID: 6497
+	// Token: 0x04001554 RID: 5460
 	public GameObject caiLiaoCellParent;
 
-	// Token: 0x04001962 RID: 6498
+	// Token: 0x04001555 RID: 5461
 	public Dictionary<string, PutMaterialCell> caiLiaoCellDictionary;
 }

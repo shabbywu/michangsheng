@@ -4,16 +4,16 @@ using UnityEngine;
 
 namespace UltimateSurvival
 {
-	// Token: 0x0200090B RID: 2315
+	// Token: 0x02000624 RID: 1572
 	[Serializable]
 	public class LerpControlledBob
 	{
-		// Token: 0x17000656 RID: 1622
-		// (get) Token: 0x06003B2F RID: 15151 RVA: 0x0002ADFC File Offset: 0x00028FFC
-		// (set) Token: 0x06003B30 RID: 15152 RVA: 0x0002AE04 File Offset: 0x00029004
+		// Token: 0x17000458 RID: 1112
+		// (get) Token: 0x060031FB RID: 12795 RVA: 0x00162077 File Offset: 0x00160277
+		// (set) Token: 0x060031FC RID: 12796 RVA: 0x0016207F File Offset: 0x0016027F
 		public float Value { get; private set; }
 
-		// Token: 0x06003B31 RID: 15153 RVA: 0x0002AE0D File Offset: 0x0002900D
+		// Token: 0x060031FD RID: 12797 RVA: 0x00162088 File Offset: 0x00160288
 		public IEnumerator DoBobCycle(float displacement)
 		{
 			float t = 0f;
@@ -36,19 +36,19 @@ namespace UltimateSurvival
 			yield break;
 		}
 
-		// Token: 0x04003574 RID: 13684
+		// Token: 0x04002C4D RID: 11341
 		[SerializeField]
 		private float m_MaxBobDuration;
 
-		// Token: 0x04003575 RID: 13685
+		// Token: 0x04002C4E RID: 11342
 		[SerializeField]
 		private float m_MaxBobAmount;
 
-		// Token: 0x04003576 RID: 13686
+		// Token: 0x04002C4F RID: 11343
 		[SerializeField]
 		private AnimationCurve m_DurationCurve;
 
-		// Token: 0x04003577 RID: 13687
+		// Token: 0x04002C50 RID: 11344
 		[SerializeField]
 		private AnimationCurve m_DisplacementCurve;
 	}

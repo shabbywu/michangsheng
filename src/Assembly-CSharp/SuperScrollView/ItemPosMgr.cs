@@ -3,16 +3,16 @@ using System.Collections.Generic;
 
 namespace SuperScrollView
 {
-	// Token: 0x020009EE RID: 2542
+	// Token: 0x020006C3 RID: 1731
 	public class ItemPosMgr
 	{
-		// Token: 0x060040D2 RID: 16594 RVA: 0x0002E9BF File Offset: 0x0002CBBF
+		// Token: 0x060036B5 RID: 14005 RVA: 0x001761D0 File Offset: 0x001743D0
 		public ItemPosMgr(float itemDefaultSize)
 		{
 			this.mItemDefaultSize = itemDefaultSize;
 		}
 
-		// Token: 0x060040D3 RID: 16595 RVA: 0x001BEA48 File Offset: 0x001BCC48
+		// Token: 0x060036B6 RID: 14006 RVA: 0x00176200 File Offset: 0x00174400
 		public void SetItemMaxCount(int maxCount)
 		{
 			this.mDirtyBeginIndex = 0;
@@ -75,7 +75,7 @@ namespace SuperScrollView
 			}
 		}
 
-		// Token: 0x060040D4 RID: 16596 RVA: 0x001BEBA8 File Offset: 0x001BCDA8
+		// Token: 0x060036B7 RID: 14007 RVA: 0x00176360 File Offset: 0x00174560
 		public void SetItemSize(int itemIndex, float size)
 		{
 			int num = itemIndex / 100;
@@ -92,7 +92,7 @@ namespace SuperScrollView
 			}
 		}
 
-		// Token: 0x060040D5 RID: 16597 RVA: 0x001BEC14 File Offset: 0x001BCE14
+		// Token: 0x060036B8 RID: 14008 RVA: 0x001763CC File Offset: 0x001745CC
 		public float GetItemPos(int itemIndex)
 		{
 			this.Update(true);
@@ -101,7 +101,7 @@ namespace SuperScrollView
 			return this.mItemSizeGroupList[index].GetItemStartPos(index2);
 		}
 
-		// Token: 0x060040D6 RID: 16598 RVA: 0x001BEC44 File Offset: 0x001BCE44
+		// Token: 0x060036B9 RID: 14009 RVA: 0x001763FC File Offset: 0x001745FC
 		public bool GetItemIndexAndPosAtGivenPos(float pos, ref int index, ref float itemPos)
 		{
 			this.Update(true);
@@ -155,7 +155,7 @@ namespace SuperScrollView
 			return true;
 		}
 
-		// Token: 0x060040D7 RID: 16599 RVA: 0x001BED24 File Offset: 0x001BCF24
+		// Token: 0x060036BA RID: 14010 RVA: 0x001764DC File Offset: 0x001746DC
 		public void Update(bool updateAll)
 		{
 			int count = this.mItemSizeGroupList.Count;
@@ -191,22 +191,22 @@ namespace SuperScrollView
 			}
 		}
 
-		// Token: 0x040039BF RID: 14783
+		// Token: 0x04002FBA RID: 12218
 		public const int mItemMaxCountPerGroup = 100;
 
-		// Token: 0x040039C0 RID: 14784
+		// Token: 0x04002FBB RID: 12219
 		private List<ItemSizeGroup> mItemSizeGroupList = new List<ItemSizeGroup>();
 
-		// Token: 0x040039C1 RID: 14785
+		// Token: 0x04002FBC RID: 12220
 		private int mDirtyBeginIndex = int.MaxValue;
 
-		// Token: 0x040039C2 RID: 14786
+		// Token: 0x04002FBD RID: 12221
 		public float mTotalSize;
 
-		// Token: 0x040039C3 RID: 14787
+		// Token: 0x04002FBE RID: 12222
 		public float mItemDefaultSize = 20f;
 
-		// Token: 0x040039C4 RID: 14788
+		// Token: 0x04002FBF RID: 12223
 		private int mMaxNotEmptyGroupIndex;
 	}
 }

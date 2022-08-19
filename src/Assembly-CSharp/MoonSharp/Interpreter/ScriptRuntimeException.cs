@@ -4,33 +4,33 @@ using MoonSharp.Interpreter.Interop.BasicDescriptors;
 
 namespace MoonSharp.Interpreter
 {
-	// Token: 0x0200107E RID: 4222
+	// Token: 0x02000CAF RID: 3247
 	[Serializable]
 	public class ScriptRuntimeException : InterpreterException
 	{
-		// Token: 0x060065EF RID: 26095 RVA: 0x0004632F File Offset: 0x0004452F
+		// Token: 0x06005AFD RID: 23293 RVA: 0x00259345 File Offset: 0x00257545
 		public ScriptRuntimeException(Exception ex) : base(ex)
 		{
 		}
 
-		// Token: 0x060065F0 RID: 26096 RVA: 0x00046338 File Offset: 0x00044538
+		// Token: 0x06005AFE RID: 23294 RVA: 0x0025934E File Offset: 0x0025754E
 		public ScriptRuntimeException(ScriptRuntimeException ex) : base(ex, ex.DecoratedMessage)
 		{
 			base.DecoratedMessage = this.Message;
 			base.DoNotDecorateMessage = true;
 		}
 
-		// Token: 0x060065F1 RID: 26097 RVA: 0x000462B0 File Offset: 0x000444B0
+		// Token: 0x06005AFF RID: 23295 RVA: 0x00259259 File Offset: 0x00257459
 		public ScriptRuntimeException(string message) : base(message)
 		{
 		}
 
-		// Token: 0x060065F2 RID: 26098 RVA: 0x000462B9 File Offset: 0x000444B9
+		// Token: 0x06005B00 RID: 23296 RVA: 0x00259262 File Offset: 0x00257462
 		public ScriptRuntimeException(string format, params object[] args) : base(format, args)
 		{
 		}
 
-		// Token: 0x060065F3 RID: 26099 RVA: 0x00283710 File Offset: 0x00281910
+		// Token: 0x06005B01 RID: 23297 RVA: 0x00259370 File Offset: 0x00257570
 		public static ScriptRuntimeException ArithmeticOnNonNumber(DynValue l, DynValue r = null)
 		{
 			if (l.Type != DataType.Number && l.Type != DataType.String)
@@ -54,7 +54,7 @@ namespace MoonSharp.Interpreter
 			throw new InternalErrorException("ArithmeticOnNonNumber - both are numbers");
 		}
 
-		// Token: 0x060065F4 RID: 26100 RVA: 0x002837AC File Offset: 0x002819AC
+		// Token: 0x06005B02 RID: 23298 RVA: 0x0025940C File Offset: 0x0025760C
 		public static ScriptRuntimeException ConcatOnNonString(DynValue l, DynValue r)
 		{
 			if (l.Type != DataType.Number && l.Type != DataType.String)
@@ -74,7 +74,7 @@ namespace MoonSharp.Interpreter
 			throw new InternalErrorException("ConcatOnNonString - both are numbers/strings");
 		}
 
-		// Token: 0x060065F5 RID: 26101 RVA: 0x0004635A File Offset: 0x0004455A
+		// Token: 0x06005B03 RID: 23299 RVA: 0x00259488 File Offset: 0x00257688
 		public static ScriptRuntimeException LenOnInvalidType(DynValue r)
 		{
 			return new ScriptRuntimeException("attempt to get length of a {0} value", new object[]
@@ -83,7 +83,7 @@ namespace MoonSharp.Interpreter
 			});
 		}
 
-		// Token: 0x060065F6 RID: 26102 RVA: 0x00283828 File Offset: 0x00281A28
+		// Token: 0x06005B04 RID: 23300 RVA: 0x002594A8 File Offset: 0x002576A8
 		public static ScriptRuntimeException CompareInvalidType(DynValue l, DynValue r)
 		{
 			if (l.Type.ToLuaTypeString() == r.Type.ToLuaTypeString())
@@ -100,7 +100,7 @@ namespace MoonSharp.Interpreter
 			});
 		}
 
-		// Token: 0x060065F7 RID: 26103 RVA: 0x0004637A File Offset: 0x0004457A
+		// Token: 0x06005B05 RID: 23301 RVA: 0x0025951D File Offset: 0x0025771D
 		public static ScriptRuntimeException BadArgument(int argNum, string funcName, string message)
 		{
 			return new ScriptRuntimeException("bad argument #{0} to '{1}' ({2})", new object[]
@@ -111,7 +111,7 @@ namespace MoonSharp.Interpreter
 			});
 		}
 
-		// Token: 0x060065F8 RID: 26104 RVA: 0x002838A0 File Offset: 0x00281AA0
+		// Token: 0x06005B06 RID: 23302 RVA: 0x00259544 File Offset: 0x00257744
 		public static ScriptRuntimeException BadArgumentUserData(int argNum, string funcName, Type expected, object got, bool allowNil)
 		{
 			return new ScriptRuntimeException("bad argument #{0} to '{1}' (userdata<{2}>{3} expected, got {4})", new object[]
@@ -124,13 +124,13 @@ namespace MoonSharp.Interpreter
 			});
 		}
 
-		// Token: 0x060065F9 RID: 26105 RVA: 0x0004639F File Offset: 0x0004459F
+		// Token: 0x06005B07 RID: 23303 RVA: 0x002595B3 File Offset: 0x002577B3
 		public static ScriptRuntimeException BadArgument(int argNum, string funcName, DataType expected, DataType got, bool allowNil)
 		{
 			return ScriptRuntimeException.BadArgument(argNum, funcName, expected.ToErrorTypeString(), got.ToErrorTypeString(), allowNil);
 		}
 
-		// Token: 0x060065FA RID: 26106 RVA: 0x000463B6 File Offset: 0x000445B6
+		// Token: 0x06005B08 RID: 23304 RVA: 0x002595CA File Offset: 0x002577CA
 		public static ScriptRuntimeException BadArgument(int argNum, string funcName, string expected, string got, bool allowNil)
 		{
 			return new ScriptRuntimeException("bad argument #{0} to '{1}' ({2}{3} expected, got {4})", new object[]
@@ -143,7 +143,7 @@ namespace MoonSharp.Interpreter
 			});
 		}
 
-		// Token: 0x060065FB RID: 26107 RVA: 0x000463F2 File Offset: 0x000445F2
+		// Token: 0x06005B09 RID: 23305 RVA: 0x00259606 File Offset: 0x00257806
 		public static ScriptRuntimeException BadArgumentNoValue(int argNum, string funcName, DataType expected)
 		{
 			return new ScriptRuntimeException("bad argument #{0} to '{1}' ({2} expected, got no value)", new object[]
@@ -154,7 +154,7 @@ namespace MoonSharp.Interpreter
 			});
 		}
 
-		// Token: 0x060065FC RID: 26108 RVA: 0x0004641C File Offset: 0x0004461C
+		// Token: 0x06005B0A RID: 23306 RVA: 0x00259630 File Offset: 0x00257830
 		public static ScriptRuntimeException BadArgumentIndexOutOfRange(string funcName, int argNum)
 		{
 			return new ScriptRuntimeException("bad argument #{0} to '{1}' (index out of range)", new object[]
@@ -164,7 +164,7 @@ namespace MoonSharp.Interpreter
 			});
 		}
 
-		// Token: 0x060065FD RID: 26109 RVA: 0x0004643D File Offset: 0x0004463D
+		// Token: 0x06005B0B RID: 23307 RVA: 0x00259651 File Offset: 0x00257851
 		public static ScriptRuntimeException BadArgumentNoNegativeNumbers(int argNum, string funcName)
 		{
 			return new ScriptRuntimeException("bad argument #{0} to '{1}' (not a non-negative number in proper range)", new object[]
@@ -174,7 +174,7 @@ namespace MoonSharp.Interpreter
 			});
 		}
 
-		// Token: 0x060065FE RID: 26110 RVA: 0x0004645E File Offset: 0x0004465E
+		// Token: 0x06005B0C RID: 23308 RVA: 0x00259672 File Offset: 0x00257872
 		public static ScriptRuntimeException BadArgumentValueExpected(int argNum, string funcName)
 		{
 			return new ScriptRuntimeException("bad argument #{0} to '{1}' (value expected)", new object[]
@@ -184,7 +184,7 @@ namespace MoonSharp.Interpreter
 			});
 		}
 
-		// Token: 0x060065FF RID: 26111 RVA: 0x0004647F File Offset: 0x0004467F
+		// Token: 0x06005B0D RID: 23309 RVA: 0x00259693 File Offset: 0x00257893
 		public static ScriptRuntimeException IndexType(DynValue obj)
 		{
 			return new ScriptRuntimeException("attempt to index a {0} value", new object[]
@@ -193,37 +193,37 @@ namespace MoonSharp.Interpreter
 			});
 		}
 
-		// Token: 0x06006600 RID: 26112 RVA: 0x0004649F File Offset: 0x0004469F
+		// Token: 0x06005B0E RID: 23310 RVA: 0x002596B3 File Offset: 0x002578B3
 		public static ScriptRuntimeException LoopInIndex()
 		{
 			return new ScriptRuntimeException("loop in gettable");
 		}
 
-		// Token: 0x06006601 RID: 26113 RVA: 0x000464AB File Offset: 0x000446AB
+		// Token: 0x06005B0F RID: 23311 RVA: 0x002596BF File Offset: 0x002578BF
 		public static ScriptRuntimeException LoopInNewIndex()
 		{
 			return new ScriptRuntimeException("loop in settable");
 		}
 
-		// Token: 0x06006602 RID: 26114 RVA: 0x000464B7 File Offset: 0x000446B7
+		// Token: 0x06005B10 RID: 23312 RVA: 0x002596CB File Offset: 0x002578CB
 		public static ScriptRuntimeException LoopInCall()
 		{
 			return new ScriptRuntimeException("loop in call");
 		}
 
-		// Token: 0x06006603 RID: 26115 RVA: 0x000464C3 File Offset: 0x000446C3
+		// Token: 0x06005B11 RID: 23313 RVA: 0x002596D7 File Offset: 0x002578D7
 		public static ScriptRuntimeException TableIndexIsNil()
 		{
 			return new ScriptRuntimeException("table index is nil");
 		}
 
-		// Token: 0x06006604 RID: 26116 RVA: 0x000464CF File Offset: 0x000446CF
+		// Token: 0x06005B12 RID: 23314 RVA: 0x002596E3 File Offset: 0x002578E3
 		public static ScriptRuntimeException TableIndexIsNaN()
 		{
 			return new ScriptRuntimeException("table index is NaN");
 		}
 
-		// Token: 0x06006605 RID: 26117 RVA: 0x00283910 File Offset: 0x00281B10
+		// Token: 0x06005B13 RID: 23315 RVA: 0x002596F0 File Offset: 0x002578F0
 		public static ScriptRuntimeException ConvertToNumberFailed(int stage)
 		{
 			switch (stage)
@@ -239,7 +239,7 @@ namespace MoonSharp.Interpreter
 			}
 		}
 
-		// Token: 0x06006606 RID: 26118 RVA: 0x000464DB File Offset: 0x000446DB
+		// Token: 0x06005B14 RID: 23316 RVA: 0x0025973E File Offset: 0x0025793E
 		public static ScriptRuntimeException ConvertObjectFailed(object obj)
 		{
 			return new ScriptRuntimeException("cannot convert clr type {0}", new object[]
@@ -248,7 +248,7 @@ namespace MoonSharp.Interpreter
 			});
 		}
 
-		// Token: 0x06006607 RID: 26119 RVA: 0x000464F6 File Offset: 0x000446F6
+		// Token: 0x06005B15 RID: 23317 RVA: 0x00259759 File Offset: 0x00257959
 		public static ScriptRuntimeException ConvertObjectFailed(DataType t)
 		{
 			return new ScriptRuntimeException("cannot convert a {0} to a clr type", new object[]
@@ -257,7 +257,7 @@ namespace MoonSharp.Interpreter
 			});
 		}
 
-		// Token: 0x06006608 RID: 26120 RVA: 0x0004651D File Offset: 0x0004471D
+		// Token: 0x06005B16 RID: 23318 RVA: 0x00259780 File Offset: 0x00257980
 		public static ScriptRuntimeException ConvertObjectFailed(DataType t, Type t2)
 		{
 			return new ScriptRuntimeException("cannot convert a {0} to a clr type {1}", new object[]
@@ -267,7 +267,7 @@ namespace MoonSharp.Interpreter
 			});
 		}
 
-		// Token: 0x06006609 RID: 26121 RVA: 0x0004654D File Offset: 0x0004474D
+		// Token: 0x06005B17 RID: 23319 RVA: 0x002597B0 File Offset: 0x002579B0
 		public static ScriptRuntimeException UserDataArgumentTypeMismatch(DataType t, Type clrType)
 		{
 			return new ScriptRuntimeException("cannot find a conversion from a MoonSharp {0} to a clr {1}", new object[]
@@ -277,7 +277,7 @@ namespace MoonSharp.Interpreter
 			});
 		}
 
-		// Token: 0x0600660A RID: 26122 RVA: 0x0004657D File Offset: 0x0004477D
+		// Token: 0x06005B18 RID: 23320 RVA: 0x002597E0 File Offset: 0x002579E0
 		public static ScriptRuntimeException UserDataMissingField(string typename, string fieldname)
 		{
 			return new ScriptRuntimeException("cannot access field {0} of userdata<{1}>", new object[]
@@ -287,7 +287,7 @@ namespace MoonSharp.Interpreter
 			});
 		}
 
-		// Token: 0x0600660B RID: 26123 RVA: 0x00046597 File Offset: 0x00044797
+		// Token: 0x06005B19 RID: 23321 RVA: 0x002597FA File Offset: 0x002579FA
 		public static ScriptRuntimeException CannotResumeNotSuspended(CoroutineState state)
 		{
 			if (state == CoroutineState.Dead)
@@ -297,19 +297,19 @@ namespace MoonSharp.Interpreter
 			return new ScriptRuntimeException("cannot resume non-suspended coroutine");
 		}
 
-		// Token: 0x0600660C RID: 26124 RVA: 0x000465B2 File Offset: 0x000447B2
+		// Token: 0x06005B1A RID: 23322 RVA: 0x00259815 File Offset: 0x00257A15
 		public static ScriptRuntimeException CannotYield()
 		{
 			return new ScriptRuntimeException("attempt to yield across a CLR-call boundary");
 		}
 
-		// Token: 0x0600660D RID: 26125 RVA: 0x000465BE File Offset: 0x000447BE
+		// Token: 0x06005B1B RID: 23323 RVA: 0x00259821 File Offset: 0x00257A21
 		public static ScriptRuntimeException CannotYieldMain()
 		{
 			return new ScriptRuntimeException("attempt to yield from outside a coroutine");
 		}
 
-		// Token: 0x0600660E RID: 26126 RVA: 0x00283960 File Offset: 0x00281B60
+		// Token: 0x06005B1C RID: 23324 RVA: 0x00259830 File Offset: 0x00257A30
 		public static ScriptRuntimeException AttemptToCallNonFunc(DataType type, string debugText = null)
 		{
 			string text = type.ToErrorTypeString();
@@ -327,7 +327,7 @@ namespace MoonSharp.Interpreter
 			});
 		}
 
-		// Token: 0x0600660F RID: 26127 RVA: 0x000465CA File Offset: 0x000447CA
+		// Token: 0x06005B1D RID: 23325 RVA: 0x00259874 File Offset: 0x00257A74
 		public static ScriptRuntimeException AccessInstanceMemberOnStatics(IMemberDescriptor desc)
 		{
 			return new ScriptRuntimeException("attempt to access instance member {0} from a static userdata", new object[]
@@ -336,7 +336,7 @@ namespace MoonSharp.Interpreter
 			});
 		}
 
-		// Token: 0x06006610 RID: 26128 RVA: 0x000465E5 File Offset: 0x000447E5
+		// Token: 0x06005B1E RID: 23326 RVA: 0x0025988F File Offset: 0x00257A8F
 		public static ScriptRuntimeException AccessInstanceMemberOnStatics(IUserDataDescriptor typeDescr, IMemberDescriptor desc)
 		{
 			return new ScriptRuntimeException("attempt to access instance member {0}.{1} from a static userdata", new object[]
@@ -346,7 +346,7 @@ namespace MoonSharp.Interpreter
 			});
 		}
 
-		// Token: 0x06006611 RID: 26129 RVA: 0x00046609 File Offset: 0x00044809
+		// Token: 0x06005B1F RID: 23327 RVA: 0x002598B3 File Offset: 0x00257AB3
 		public override void Rethrow()
 		{
 			if (Script.GlobalOptions.RethrowExceptionNested)

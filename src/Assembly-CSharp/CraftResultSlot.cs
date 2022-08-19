@@ -2,10 +2,10 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-// Token: 0x020001F8 RID: 504
+// Token: 0x02000127 RID: 295
 public class CraftResultSlot : MonoBehaviour
 {
-	// Token: 0x06001016 RID: 4118 RVA: 0x000A3494 File Offset: 0x000A1694
+	// Token: 0x06000E08 RID: 3592 RVA: 0x00052C98 File Offset: 0x00050E98
 	private void Start()
 	{
 		this.craftSystem = base.transform.parent.GetComponent<CraftSystem>();
@@ -18,7 +18,7 @@ public class CraftResultSlot : MonoBehaviour
 		this.itemGameObject.transform.GetChild(1).GetComponent<RectTransform>().localPosition = new Vector2((float)GameObject.FindGameObjectWithTag("MainInventory").GetComponent<Inventory>().positionNumberX, (float)GameObject.FindGameObjectWithTag("MainInventory").GetComponent<Inventory>().positionNumberY);
 	}
 
-	// Token: 0x06001017 RID: 4119 RVA: 0x000A358C File Offset: 0x000A178C
+	// Token: 0x06000E09 RID: 3593 RVA: 0x00052D90 File Offset: 0x00050F90
 	private void Update()
 	{
 		if (this.craftSystem.possibleItems.Count != 0)
@@ -30,12 +30,12 @@ public class CraftResultSlot : MonoBehaviour
 		this.itemGameObject.SetActive(false);
 	}
 
-	// Token: 0x04000C87 RID: 3207
+	// Token: 0x040009EF RID: 2543
 	private CraftSystem craftSystem;
 
-	// Token: 0x04000C88 RID: 3208
+	// Token: 0x040009F0 RID: 2544
 	public int temp;
 
-	// Token: 0x04000C89 RID: 3209
+	// Token: 0x040009F1 RID: 2545
 	private GameObject itemGameObject;
 }

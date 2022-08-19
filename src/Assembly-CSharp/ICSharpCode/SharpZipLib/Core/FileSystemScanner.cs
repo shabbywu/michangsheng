@@ -3,29 +3,29 @@ using System.IO;
 
 namespace ICSharpCode.SharpZipLib.Core
 {
-	// Token: 0x0200082A RID: 2090
+	// Token: 0x02000581 RID: 1409
 	public class FileSystemScanner
 	{
-		// Token: 0x060036C1 RID: 14017 RVA: 0x00027D6D File Offset: 0x00025F6D
+		// Token: 0x06002E4B RID: 11851 RVA: 0x00151258 File Offset: 0x0014F458
 		public FileSystemScanner(string filter)
 		{
 			this.fileFilter_ = new PathFilter(filter);
 		}
 
-		// Token: 0x060036C2 RID: 14018 RVA: 0x00027D81 File Offset: 0x00025F81
+		// Token: 0x06002E4C RID: 11852 RVA: 0x0015126C File Offset: 0x0014F46C
 		public FileSystemScanner(string fileFilter, string directoryFilter)
 		{
 			this.fileFilter_ = new PathFilter(fileFilter);
 			this.directoryFilter_ = new PathFilter(directoryFilter);
 		}
 
-		// Token: 0x060036C3 RID: 14019 RVA: 0x00027DA1 File Offset: 0x00025FA1
+		// Token: 0x06002E4D RID: 11853 RVA: 0x0015128C File Offset: 0x0014F48C
 		public FileSystemScanner(IScanFilter fileFilter)
 		{
 			this.fileFilter_ = fileFilter;
 		}
 
-		// Token: 0x060036C4 RID: 14020 RVA: 0x00027DB0 File Offset: 0x00025FB0
+		// Token: 0x06002E4E RID: 11854 RVA: 0x0015129B File Offset: 0x0014F49B
 		public FileSystemScanner(IScanFilter fileFilter, IScanFilter directoryFilter)
 		{
 			this.fileFilter_ = fileFilter;
@@ -33,11 +33,11 @@ namespace ICSharpCode.SharpZipLib.Core
 		}
 
 		// Token: 0x1400003A RID: 58
-		// (add) Token: 0x060036C5 RID: 14021 RVA: 0x0019C164 File Offset: 0x0019A364
-		// (remove) Token: 0x060036C6 RID: 14022 RVA: 0x0019C19C File Offset: 0x0019A39C
+		// (add) Token: 0x06002E4F RID: 11855 RVA: 0x001512B4 File Offset: 0x0014F4B4
+		// (remove) Token: 0x06002E50 RID: 11856 RVA: 0x001512EC File Offset: 0x0014F4EC
 		public event EventHandler<DirectoryEventArgs> ProcessDirectory;
 
-		// Token: 0x060036C7 RID: 14023 RVA: 0x0019C1D4 File Offset: 0x0019A3D4
+		// Token: 0x06002E51 RID: 11857 RVA: 0x00151324 File Offset: 0x0014F524
 		private bool OnDirectoryFailure(string directory, Exception e)
 		{
 			DirectoryFailureHandler directoryFailure = this.DirectoryFailure;
@@ -51,7 +51,7 @@ namespace ICSharpCode.SharpZipLib.Core
 			return flag;
 		}
 
-		// Token: 0x060036C8 RID: 14024 RVA: 0x0019C20C File Offset: 0x0019A40C
+		// Token: 0x06002E52 RID: 11858 RVA: 0x0015135C File Offset: 0x0014F55C
 		private bool OnFileFailure(string file, Exception e)
 		{
 			bool flag = this.FileFailure != null;
@@ -64,7 +64,7 @@ namespace ICSharpCode.SharpZipLib.Core
 			return flag;
 		}
 
-		// Token: 0x060036C9 RID: 14025 RVA: 0x0019C248 File Offset: 0x0019A448
+		// Token: 0x06002E53 RID: 11859 RVA: 0x00151398 File Offset: 0x0014F598
 		private void OnProcessFile(string file)
 		{
 			ProcessFileHandler processFile = this.ProcessFile;
@@ -76,7 +76,7 @@ namespace ICSharpCode.SharpZipLib.Core
 			}
 		}
 
-		// Token: 0x060036CA RID: 14026 RVA: 0x0019C27C File Offset: 0x0019A47C
+		// Token: 0x06002E54 RID: 11860 RVA: 0x001513CC File Offset: 0x0014F5CC
 		private void OnCompleteFile(string file)
 		{
 			CompletedFileHandler completedFile = this.CompletedFile;
@@ -88,7 +88,7 @@ namespace ICSharpCode.SharpZipLib.Core
 			}
 		}
 
-		// Token: 0x060036CB RID: 14027 RVA: 0x0019C2B0 File Offset: 0x0019A4B0
+		// Token: 0x06002E55 RID: 11861 RVA: 0x00151400 File Offset: 0x0014F600
 		private void OnProcessDirectory(string directory, bool hasMatchingFiles)
 		{
 			EventHandler<DirectoryEventArgs> processDirectory = this.ProcessDirectory;
@@ -100,14 +100,14 @@ namespace ICSharpCode.SharpZipLib.Core
 			}
 		}
 
-		// Token: 0x060036CC RID: 14028 RVA: 0x00027DC6 File Offset: 0x00025FC6
+		// Token: 0x06002E56 RID: 11862 RVA: 0x00151433 File Offset: 0x0014F633
 		public void Scan(string directory, bool recurse)
 		{
 			this.alive_ = true;
 			this.ScanDir(directory, recurse);
 		}
 
-		// Token: 0x060036CD RID: 14029 RVA: 0x0019C2E4 File Offset: 0x0019A4E4
+		// Token: 0x06002E57 RID: 11863 RVA: 0x00151444 File Offset: 0x0014F644
 		private void ScanDir(string directory, bool recurse)
 		{
 			try
@@ -184,25 +184,25 @@ namespace ICSharpCode.SharpZipLib.Core
 			}
 		}
 
-		// Token: 0x04003118 RID: 12568
+		// Token: 0x040028D9 RID: 10457
 		public ProcessFileHandler ProcessFile;
 
-		// Token: 0x04003119 RID: 12569
+		// Token: 0x040028DA RID: 10458
 		public CompletedFileHandler CompletedFile;
 
-		// Token: 0x0400311A RID: 12570
+		// Token: 0x040028DB RID: 10459
 		public DirectoryFailureHandler DirectoryFailure;
 
-		// Token: 0x0400311B RID: 12571
+		// Token: 0x040028DC RID: 10460
 		public FileFailureHandler FileFailure;
 
-		// Token: 0x0400311C RID: 12572
+		// Token: 0x040028DD RID: 10461
 		private IScanFilter fileFilter_;
 
-		// Token: 0x0400311D RID: 12573
+		// Token: 0x040028DE RID: 10462
 		private IScanFilter directoryFilter_;
 
-		// Token: 0x0400311E RID: 12574
+		// Token: 0x040028DF RID: 10463
 		private bool alive_;
 	}
 }

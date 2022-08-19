@@ -3,12 +3,12 @@ using UnityEngine;
 
 namespace BehaviorDesigner.Runtime.Tasks.Basic.UnityInput
 {
-	// Token: 0x020015E3 RID: 5603
+	// Token: 0x02001124 RID: 4388
 	[TaskCategory("Basic/Input")]
 	[TaskDescription("Stores the value of the specified axis and stores it in a float.")]
 	public class GetAxis : Action
 	{
-		// Token: 0x0600833D RID: 33597 RVA: 0x002CE8E4 File Offset: 0x002CCAE4
+		// Token: 0x06007543 RID: 30019 RVA: 0x002B430C File Offset: 0x002B250C
 		public override TaskStatus OnUpdate()
 		{
 			float num = Input.GetAxis(this.axisName.Value);
@@ -20,7 +20,7 @@ namespace BehaviorDesigner.Runtime.Tasks.Basic.UnityInput
 			return 2;
 		}
 
-		// Token: 0x0600833E RID: 33598 RVA: 0x0005A363 File Offset: 0x00058563
+		// Token: 0x06007544 RID: 30020 RVA: 0x002B4352 File Offset: 0x002B2552
 		public override void OnReset()
 		{
 			this.axisName = "";
@@ -28,15 +28,15 @@ namespace BehaviorDesigner.Runtime.Tasks.Basic.UnityInput
 			this.storeResult = 0f;
 		}
 
-		// Token: 0x0400700C RID: 28684
+		// Token: 0x040060E9 RID: 24809
 		[Tooltip("The name of the axis")]
 		public SharedString axisName;
 
-		// Token: 0x0400700D RID: 28685
+		// Token: 0x040060EA RID: 24810
 		[Tooltip("Axis values are in the range -1 to 1. Use the multiplier to set a larger range")]
 		public SharedFloat multiplier;
 
-		// Token: 0x0400700E RID: 28686
+		// Token: 0x040060EB RID: 24811
 		[RequiredField]
 		[Tooltip("The stored result")]
 		public SharedFloat storeResult;

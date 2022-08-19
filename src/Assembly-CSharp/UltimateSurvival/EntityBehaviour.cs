@@ -3,11 +3,11 @@ using UnityEngine;
 
 namespace UltimateSurvival
 {
-	// Token: 0x02000889 RID: 2185
+	// Token: 0x020005C7 RID: 1479
 	public class EntityBehaviour : MonoBehaviour
 	{
-		// Token: 0x170005C0 RID: 1472
-		// (get) Token: 0x0600385E RID: 14430 RVA: 0x00028FD5 File Offset: 0x000271D5
+		// Token: 0x17000403 RID: 1027
+		// (get) Token: 0x06002FCE RID: 12238 RVA: 0x001590CD File Offset: 0x001572CD
 		public EntityEventHandler Entity
 		{
 			get
@@ -24,7 +24,7 @@ namespace UltimateSurvival
 			}
 		}
 
-		// Token: 0x040032BC RID: 12988
+		// Token: 0x04002A26 RID: 10790
 		private EntityEventHandler m_Entity;
 	}
 }

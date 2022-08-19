@@ -2,14 +2,14 @@
 
 namespace MoonSharp.Interpreter
 {
-	// Token: 0x02001097 RID: 4247
+	// Token: 0x02000CC2 RID: 3266
 	public enum ColonOperatorBehaviour
 	{
-		// Token: 0x04005EC0 RID: 24256
+		// Token: 0x040052DF RID: 21215
 		TreatAsDot,
-		// Token: 0x04005EC1 RID: 24257
+		// Token: 0x040052E0 RID: 21216
 		TreatAsDotOnUserData,
-		// Token: 0x04005EC2 RID: 24258
+		// Token: 0x040052E1 RID: 21217
 		TreatAsColon
 	}
 }

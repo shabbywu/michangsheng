@@ -4,12 +4,12 @@ using UnityEngine;
 
 namespace Fungus
 {
-	// Token: 0x0200142B RID: 5163
+	// Token: 0x02000F73 RID: 3955
 	[CommandInfo("YSTask", "IsNTaskStart", "判断任务是否开始", 0)]
 	[AddComponentMenu("")]
 	public class IsNTaskStart : Command
 	{
-		// Token: 0x06007CF5 RID: 31989 RVA: 0x002C5DF4 File Offset: 0x002C3FF4
+		// Token: 0x06006F03 RID: 28419 RVA: 0x002A60D4 File Offset: 0x002A42D4
 		public override void OnEnter()
 		{
 			Avatar player = Tools.instance.getPlayer();
@@ -24,18 +24,18 @@ namespace Fungus
 			this.Continue();
 		}
 
-		// Token: 0x06007CF6 RID: 31990 RVA: 0x000113CF File Offset: 0x0000F5CF
+		// Token: 0x06006F04 RID: 28420 RVA: 0x0005E228 File Offset: 0x0005C428
 		public override Color GetButtonColor()
 		{
 			return new Color32(184, 210, 235, byte.MaxValue);
 		}
 
-		// Token: 0x06007CF7 RID: 31991 RVA: 0x000042DD File Offset: 0x000024DD
+		// Token: 0x06006F05 RID: 28421 RVA: 0x00004095 File Offset: 0x00002295
 		public override void OnReset()
 		{
 		}
 
-		// Token: 0x04006AB8 RID: 27320
+		// Token: 0x04005BE2 RID: 23522
 		[Tooltip("需要判断是否开始的任务ID")]
 		[VariableProperty(new Type[]
 		{
@@ -44,7 +44,7 @@ namespace Fungus
 		[SerializeField]
 		protected IntegerVariable NTaskID;
 
-		// Token: 0x04006AB9 RID: 27321
+		// Token: 0x04005BE3 RID: 23523
 		[Tooltip("将判断后的值保存到一个变量中")]
 		[VariableProperty(new Type[]
 		{

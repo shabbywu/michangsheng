@@ -5,21 +5,21 @@ using JSONClass;
 using KBEngine;
 using UnityEngine;
 
-// Token: 0x020005E0 RID: 1504
+// Token: 0x0200042A RID: 1066
 public class TooltipItem : TooltipBase
 {
-	// Token: 0x060025C8 RID: 9672 RVA: 0x000042DD File Offset: 0x000024DD
+	// Token: 0x0600220C RID: 8716 RVA: 0x00004095 File Offset: 0x00002295
 	private new void Start()
 	{
 	}
 
-	// Token: 0x060025C9 RID: 9673 RVA: 0x0001E3FB File Offset: 0x0001C5FB
+	// Token: 0x0600220D RID: 8717 RVA: 0x000EA768 File Offset: 0x000E8968
 	public void Close()
 	{
 		this.showTooltip = false;
 	}
 
-	// Token: 0x060025CA RID: 9674 RVA: 0x0012BA68 File Offset: 0x00129C68
+	// Token: 0x0600220E RID: 8718 RVA: 0x000EA774 File Offset: 0x000E8974
 	public void Clear()
 	{
 		this.showType = 0;
@@ -59,20 +59,20 @@ public class TooltipItem : TooltipBase
 		this.moneyGameobject.SetActive(false);
 	}
 
-	// Token: 0x060025CB RID: 9675 RVA: 0x0012BC78 File Offset: 0x00129E78
+	// Token: 0x0600220F RID: 8719 RVA: 0x000EA984 File Offset: 0x000E8B84
 	public void ShowSkillGride()
 	{
 		this.LingQiGride.transform.parent.gameObject.SetActive(true);
 		this.Label1.transform.localPosition = new Vector3(this.Label1.transform.localPosition.x, -316f, 0f);
 	}
 
-	// Token: 0x060025CC RID: 9676 RVA: 0x0001E404 File Offset: 0x0001C604
+	// Token: 0x06002210 RID: 8720 RVA: 0x000EA9E0 File Offset: 0x000E8BE0
 	public void ShowMoney()
 	{
 		this.moneyGameobject.SetActive(true);
 	}
 
-	// Token: 0x060025CD RID: 9677 RVA: 0x0012BCD4 File Offset: 0x00129ED4
+	// Token: 0x06002211 RID: 8721 RVA: 0x000EA9F0 File Offset: 0x000E8BF0
 	public void SetBtnSprite(string name1 = "", string name2 = "")
 	{
 		if (name1 != "" && name2 != "")
@@ -102,14 +102,14 @@ public class TooltipItem : TooltipBase
 		this.DownBtn.SetActive(false);
 	}
 
-	// Token: 0x060025CE RID: 9678 RVA: 0x0001E412 File Offset: 0x0001C612
+	// Token: 0x06002212 RID: 8722 RVA: 0x000EAB68 File Offset: 0x000E8D68
 	public void ShowSkillTime(string Desc)
 	{
 		this.LingWuInfo.SetActive(true);
 		this.LingWuInfo.GetComponentInChildren<UILabel>().text = Desc;
 	}
 
-	// Token: 0x060025CF RID: 9679 RVA: 0x0012BE4C File Offset: 0x0012A04C
+	// Token: 0x06002213 RID: 8723 RVA: 0x000EAB88 File Offset: 0x000E8D88
 	public void ShowPlayerInfo()
 	{
 		this.PlayerInfo.SetActive(true);
@@ -154,7 +154,7 @@ public class TooltipItem : TooltipBase
 		this.PlayerInfo.transform.Find("xinjin/Desc").GetComponent<UILabel>().text = string.Format("[E0DDB4]{0}[-][BFBA7D]/{1}", avatar.xinjin, XinJinJsonData.DataDict[xinJingLevel].Max);
 	}
 
-	// Token: 0x060025D0 RID: 9680 RVA: 0x0012C0C8 File Offset: 0x0012A2C8
+	// Token: 0x06002214 RID: 8724 RVA: 0x000EAE04 File Offset: 0x000E9004
 	public void setCenterTextTitle(string Title1 = "", string Title2 = "", string Title3 = "")
 	{
 		this.CenterLayer.SetActive(true);
@@ -174,7 +174,7 @@ public class TooltipItem : TooltipBase
 		this.centerSize.height = this.CenterHight;
 	}
 
-	// Token: 0x060025D1 RID: 9681 RVA: 0x0012C174 File Offset: 0x0012A374
+	// Token: 0x06002215 RID: 8725 RVA: 0x000EAEB0 File Offset: 0x000E90B0
 	private void setTitleText(string Title1, UILabel uILabel)
 	{
 		if (Title1 != "")
@@ -186,7 +186,7 @@ public class TooltipItem : TooltipBase
 		uILabel.gameObject.SetActive(false);
 	}
 
-	// Token: 0x060025D2 RID: 9682 RVA: 0x0012C1CC File Offset: 0x0012A3CC
+	// Token: 0x06002216 RID: 8726 RVA: 0x000EAF08 File Offset: 0x000E9108
 	protected override void Update()
 	{
 		base.Update();
@@ -198,129 +198,129 @@ public class TooltipItem : TooltipBase
 		}
 	}
 
-	// Token: 0x0400203C RID: 8252
+	// Token: 0x04001B72 RID: 7026
 	public UILabel Label1;
 
-	// Token: 0x0400203D RID: 8253
+	// Token: 0x04001B73 RID: 7027
 	public UILabel Label2;
 
-	// Token: 0x0400203E RID: 8254
+	// Token: 0x04001B74 RID: 7028
 	public UILabel Label3;
 
-	// Token: 0x0400203F RID: 8255
+	// Token: 0x04001B75 RID: 7029
 	public UILabel Label4;
 
-	// Token: 0x04002040 RID: 8256
+	// Token: 0x04001B76 RID: 7030
 	public UILabel Label5;
 
-	// Token: 0x04002041 RID: 8257
+	// Token: 0x04001B77 RID: 7031
 	public UILabel Label6;
 
-	// Token: 0x04002042 RID: 8258
+	// Token: 0x04001B78 RID: 7032
 	public UILabel Label7;
 
-	// Token: 0x04002043 RID: 8259
+	// Token: 0x04001B79 RID: 7033
 	public UILabel Label8;
 
-	// Token: 0x04002044 RID: 8260
+	// Token: 0x04001B7A RID: 7034
 	public UILabel Label9;
 
-	// Token: 0x04002045 RID: 8261
+	// Token: 0x04001B7B RID: 7035
 	public GameObject LingQiGride;
 
-	// Token: 0x04002046 RID: 8262
+	// Token: 0x04001B7C RID: 7036
 	public GameObject LingQifengexianImage;
 
-	// Token: 0x04002047 RID: 8263
+	// Token: 0x04001B7D RID: 7037
 	public GameObject lingqiGridImage;
 
-	// Token: 0x04002048 RID: 8264
+	// Token: 0x04001B7E RID: 7038
 	public List<Sprite> lingQiGrid;
 
-	// Token: 0x04002049 RID: 8265
+	// Token: 0x04001B7F RID: 7039
 	public List<Sprite> DownSprite;
 
-	// Token: 0x0400204A RID: 8266
+	// Token: 0x04001B80 RID: 7040
 	public GameObject DownSpriteList;
 
-	// Token: 0x0400204B RID: 8267
+	// Token: 0x04001B81 RID: 7041
 	public GameObject DownBtn;
 
-	// Token: 0x0400204C RID: 8268
+	// Token: 0x04001B82 RID: 7042
 	public GameObject DownSpriteObj;
 
-	// Token: 0x0400204D RID: 8269
+	// Token: 0x04001B83 RID: 7043
 	public UITexture pingZhi;
 
-	// Token: 0x0400204E RID: 8270
+	// Token: 0x04001B84 RID: 7044
 	public UITexture icon;
 
-	// Token: 0x0400204F RID: 8271
+	// Token: 0x04001B85 RID: 7045
 	public GameObject CenterLayer;
 
-	// Token: 0x04002050 RID: 8272
+	// Token: 0x04001B86 RID: 7046
 	public GameObject UpSprite;
 
-	// Token: 0x04002051 RID: 8273
+	// Token: 0x04001B87 RID: 7047
 	public GameObject TooltipHelp;
 
-	// Token: 0x04002052 RID: 8274
+	// Token: 0x04001B88 RID: 7048
 	public GameObject PlayerInfo;
 
-	// Token: 0x04002053 RID: 8275
+	// Token: 0x04001B89 RID: 7049
 	public GameObject LingWuInfo;
 
-	// Token: 0x04002054 RID: 8276
+	// Token: 0x04001B8A RID: 7050
 	public GameObject moneyGameobject;
 
-	// Token: 0x04002055 RID: 8277
+	// Token: 0x04001B8B RID: 7051
 	public UIWidget centerSize;
 
-	// Token: 0x04002056 RID: 8278
+	// Token: 0x04001B8C RID: 7052
 	public UILabel CenterText1;
 
-	// Token: 0x04002057 RID: 8279
+	// Token: 0x04001B8D RID: 7053
 	public UILabel CenterText2;
 
-	// Token: 0x04002058 RID: 8280
+	// Token: 0x04001B8E RID: 7054
 	public UILabel CenterText3;
 
-	// Token: 0x04002059 RID: 8281
+	// Token: 0x04001B8F RID: 7055
 	public GameObject Slot;
 
-	// Token: 0x0400205A RID: 8282
+	// Token: 0x04001B90 RID: 7056
 	public GameObject pingji;
 
-	// Token: 0x0400205B RID: 8283
+	// Token: 0x04001B91 RID: 7057
 	public string btn1Name = "";
 
-	// Token: 0x0400205C RID: 8284
+	// Token: 0x04001B92 RID: 7058
 	public string btn2Name = "";
 
-	// Token: 0x0400205D RID: 8285
+	// Token: 0x04001B93 RID: 7059
 	public int BtnType = 1;
 
-	// Token: 0x0400205E RID: 8286
+	// Token: 0x04001B94 RID: 7060
 	public int BaseHight;
 
-	// Token: 0x0400205F RID: 8287
+	// Token: 0x04001B95 RID: 7061
 	private int UpHight;
 
-	// Token: 0x04002060 RID: 8288
+	// Token: 0x04001B96 RID: 7062
 	private int CenterHight;
 
-	// Token: 0x04002061 RID: 8289
+	// Token: 0x04001B97 RID: 7063
 	private int DownHight;
 
-	// Token: 0x04002062 RID: 8290
+	// Token: 0x04001B98 RID: 7064
 	public GameObject wudao;
 
-	// Token: 0x04002063 RID: 8291
+	// Token: 0x04001B99 RID: 7065
 	public UI2DSprite wudao_Icon;
 
-	// Token: 0x04002064 RID: 8292
+	// Token: 0x04001B9A RID: 7066
 	public UILabel wuDaoCast;
 
-	// Token: 0x04002065 RID: 8293
+	// Token: 0x04001B9B RID: 7067
 	public UILabel wudaoYaoQiu;
 }

@@ -8,10 +8,10 @@ using UnityEngine.Events;
 using UnityEngine.UI;
 using YSGame;
 
-// Token: 0x0200046A RID: 1130
+// Token: 0x0200030D RID: 781
 public class LunDaoAmrMag
 {
-	// Token: 0x06001E5D RID: 7773 RVA: 0x0010763C File Offset: 0x0010583C
+	// Token: 0x06001B37 RID: 6967 RVA: 0x000C1F40 File Offset: 0x000C0140
 	public LunDaoAmrMag.LunDaoAnimationController PlayStartLunDao()
 	{
 		GameObject gameObject = Object.Instantiate<GameObject>(this.LoadAnimation("StartLunDao"), LunDaoManager.inst.transform);
@@ -21,14 +21,14 @@ public class LunDaoAmrMag
 		return this.controller;
 	}
 
-	// Token: 0x06001E5E RID: 7774 RVA: 0x000192D6 File Offset: 0x000174D6
+	// Token: 0x06001B38 RID: 6968 RVA: 0x000C1F87 File Offset: 0x000C0187
 	public void AddHeCheng(Transform transform)
 	{
 		this.heChengQueue.Enqueue(transform);
 		this.PlayHeCheng();
 	}
 
-	// Token: 0x06001E5F RID: 7775 RVA: 0x00107684 File Offset: 0x00105884
+	// Token: 0x06001B39 RID: 6969 RVA: 0x000C1F9C File Offset: 0x000C019C
 	public void AddChuPai(int id)
 	{
 		Image component = Object.Instantiate<GameObject>(this.LoadAnimation("NpcUseCard"), LunDaoManager.inst.AnimatorPanel).GetComponent<Image>();
@@ -37,7 +37,7 @@ public class LunDaoAmrMag
 		this.PlayChuPai();
 	}
 
-	// Token: 0x06001E60 RID: 7776 RVA: 0x001076DC File Offset: 0x001058DC
+	// Token: 0x06001B3A RID: 6970 RVA: 0x000C1FF4 File Offset: 0x000C01F4
 	public void AddCompleteLunTi(Image bg, Image img)
 	{
 		if (img != null && bg != null)
@@ -53,7 +53,7 @@ public class LunDaoAmrMag
 		img.gameObject.SetActive(true);
 	}
 
-	// Token: 0x06001E61 RID: 7777 RVA: 0x0010772C File Offset: 0x0010592C
+	// Token: 0x06001B3B RID: 6971 RVA: 0x000C2044 File Offset: 0x000C0244
 	private void PlayCompleteLunTi()
 	{
 		if (this.completeLunTiLock && this.completeLunTiQueue.Count > 0)
@@ -72,7 +72,7 @@ public class LunDaoAmrMag
 		}
 	}
 
-	// Token: 0x06001E62 RID: 7778 RVA: 0x001077F4 File Offset: 0x001059F4
+	// Token: 0x06001B3C RID: 6972 RVA: 0x000C210C File Offset: 0x000C030C
 	private void PlayChuPai()
 	{
 		if (this.useCardLock && this.useCardQueue.Count > 0)
@@ -93,7 +93,7 @@ public class LunDaoAmrMag
 		}
 	}
 
-	// Token: 0x06001E63 RID: 7779 RVA: 0x001078CC File Offset: 0x00105ACC
+	// Token: 0x06001B3D RID: 6973 RVA: 0x000C21E4 File Offset: 0x000C03E4
 	private void PlayHeCheng()
 	{
 		if (this.heChengLock && this.heChengQueue.Count > 0)
@@ -134,58 +134,58 @@ public class LunDaoAmrMag
 		}
 	}
 
-	// Token: 0x06001E64 RID: 7780 RVA: 0x000192EA File Offset: 0x000174EA
+	// Token: 0x06001B3E RID: 6974 RVA: 0x000C2457 File Offset: 0x000C0657
 	private GameObject LoadAnimation(string name)
 	{
 		return Resources.Load<GameObject>("NewUI/LunDao/DongHua/Prefab/" + name);
 	}
 
-	// Token: 0x040019BD RID: 6589
+	// Token: 0x040015B0 RID: 5552
 	private LunDaoAmrMag.LunDaoAnimationController controller;
 
-	// Token: 0x040019BE RID: 6590
+	// Token: 0x040015B1 RID: 5553
 	private Queue<Transform> heChengQueue = new Queue<Transform>();
 
-	// Token: 0x040019BF RID: 6591
+	// Token: 0x040015B2 RID: 5554
 	private Queue<Image> useCardQueue = new Queue<Image>();
 
-	// Token: 0x040019C0 RID: 6592
+	// Token: 0x040015B3 RID: 5555
 	private Queue<List<Image>> completeLunTiQueue = new Queue<List<Image>>();
 
-	// Token: 0x040019C1 RID: 6593
+	// Token: 0x040015B4 RID: 5556
 	private bool heChengLock = true;
 
-	// Token: 0x040019C2 RID: 6594
+	// Token: 0x040015B5 RID: 5557
 	private bool useCardLock = true;
 
-	// Token: 0x040019C3 RID: 6595
+	// Token: 0x040015B6 RID: 5558
 	private bool completeLunTiLock = true;
 
-	// Token: 0x0200046B RID: 1131
+	// Token: 0x02001333 RID: 4915
 	public class LunDaoAnimationController
 	{
-		// Token: 0x06001E68 RID: 7784 RVA: 0x00019358 File Offset: 0x00017558
+		// Token: 0x06007B5B RID: 31579 RVA: 0x002C1829 File Offset: 0x002BFA29
 		public LunDaoAnimationController(Animator animator, AnimatorUtils animatorUtils)
 		{
 			this.animator = animator;
 			this.animatorUtils = animatorUtils;
 		}
 
-		// Token: 0x06001E69 RID: 7785 RVA: 0x0001936E File Offset: 0x0001756E
+		// Token: 0x06007B5C RID: 31580 RVA: 0x002C183F File Offset: 0x002BFA3F
 		public LunDaoAmrMag.LunDaoAnimationController PlayingAction(UnityAction playingAction)
 		{
 			this.playingAction = playingAction;
 			return this;
 		}
 
-		// Token: 0x06001E6A RID: 7786 RVA: 0x00019378 File Offset: 0x00017578
+		// Token: 0x06007B5D RID: 31581 RVA: 0x002C1849 File Offset: 0x002BFA49
 		public LunDaoAmrMag.LunDaoAnimationController CompleteAction(UnityAction completeCallBack)
 		{
 			this.completeCallBack = completeCallBack;
 			return this;
 		}
 
-		// Token: 0x06001E6B RID: 7787 RVA: 0x00019382 File Offset: 0x00017582
+		// Token: 0x06007B5E RID: 31582 RVA: 0x002C1853 File Offset: 0x002BFA53
 		public void Run()
 		{
 			this.animatorUtils.completeCallBack = this.completeCallBack;
@@ -193,23 +193,23 @@ public class LunDaoAmrMag
 			this.playingAction.Invoke();
 		}
 
-		// Token: 0x040019C4 RID: 6596
+		// Token: 0x040067CF RID: 26575
 		private UnityAction playingAction;
 
-		// Token: 0x040019C5 RID: 6597
+		// Token: 0x040067D0 RID: 26576
 		private UnityAction completeCallBack;
 
-		// Token: 0x040019C6 RID: 6598
+		// Token: 0x040067D1 RID: 26577
 		private AnimatorUtils animatorUtils;
 
-		// Token: 0x040019C7 RID: 6599
+		// Token: 0x040067D2 RID: 26578
 		private Animator animator;
 	}
 
-	// Token: 0x0200046C RID: 1132
+	// Token: 0x02001334 RID: 4916
 	public enum AnimationName
 	{
-		// Token: 0x040019C9 RID: 6601
+		// Token: 0x040067D4 RID: 26580
 		StartLunDao = 1
 	}
 }

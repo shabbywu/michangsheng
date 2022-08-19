@@ -6,11 +6,11 @@ using UnityEngine;
 
 namespace Bag
 {
-	// Token: 0x02000D26 RID: 3366
+	// Token: 0x020009A1 RID: 2465
 	[Serializable]
 	public class EquipItem : BaseItem
 	{
-		// Token: 0x06005026 RID: 20518 RVA: 0x002189BC File Offset: 0x00216BBC
+		// Token: 0x060044CA RID: 17610 RVA: 0x001D41B4 File Offset: 0x001D23B4
 		public override void SetItem(int id, int count, JSONObject seid)
 		{
 			base.SetItem(id, count, seid);
@@ -48,7 +48,7 @@ namespace Bag
 			this.EquipQuality = this.GetEquipQualityType();
 		}
 
-		// Token: 0x06005027 RID: 20519 RVA: 0x00039C86 File Offset: 0x00037E86
+		// Token: 0x060044CB RID: 17611 RVA: 0x001D429B File Offset: 0x001D249B
 		public override string GetDesc1()
 		{
 			if (this.Seid.HasField("SeidDesc"))
@@ -58,7 +58,7 @@ namespace Bag
 			return base.GetDesc1();
 		}
 
-		// Token: 0x06005028 RID: 20520 RVA: 0x00039CB6 File Offset: 0x00037EB6
+		// Token: 0x060044CC RID: 17612 RVA: 0x001D42CB File Offset: 0x001D24CB
 		public override string GetDesc2()
 		{
 			if (this.Seid.HasField("Desc"))
@@ -68,7 +68,7 @@ namespace Bag
 			return base.GetDesc2();
 		}
 
-		// Token: 0x06005029 RID: 20521 RVA: 0x00039CE6 File Offset: 0x00037EE6
+		// Token: 0x060044CD RID: 17613 RVA: 0x001D42FB File Offset: 0x001D24FB
 		public override void SetItem(int id, int count)
 		{
 			base.SetItem(id, count);
@@ -76,7 +76,7 @@ namespace Bag
 			this.EquipQuality = this.GetEquipQualityType();
 		}
 
-		// Token: 0x0600502A RID: 20522 RVA: 0x00218AA4 File Offset: 0x00216CA4
+		// Token: 0x060044CE RID: 17614 RVA: 0x001D4320 File Offset: 0x001D2520
 		public override int GetImgQuality()
 		{
 			int result = this.Quality;
@@ -87,7 +87,7 @@ namespace Bag
 			return result;
 		}
 
-		// Token: 0x0600502B RID: 20523 RVA: 0x00218AD4 File Offset: 0x00216CD4
+		// Token: 0x060044CF RID: 17615 RVA: 0x001D4350 File Offset: 0x001D2550
 		public override List<int> GetCiZhui()
 		{
 			if (this.Seid.HasField("SkillSeids") || this.Seid.HasField("ItemSeids"))
@@ -144,7 +144,7 @@ namespace Bag
 			return base.GetCiZhui();
 		}
 
-		// Token: 0x0600502C RID: 20524 RVA: 0x00218D0C File Offset: 0x00216F0C
+		// Token: 0x060044D0 RID: 17616 RVA: 0x001D4588 File Offset: 0x001D2788
 		public override Sprite GetIconSprite()
 		{
 			if (this.Seid != null && this.Seid.HasField("ItemIcon"))
@@ -154,19 +154,19 @@ namespace Bag
 			return base.GetIconSprite();
 		}
 
-		// Token: 0x0600502D RID: 20525 RVA: 0x002182A8 File Offset: 0x002164A8
+		// Token: 0x060044D1 RID: 17617 RVA: 0x001D45D8 File Offset: 0x001D27D8
 		public override Sprite GetQualitySprite()
 		{
 			return BagMag.Inst.QualityDict[this.GetImgQuality().ToString()];
 		}
 
-		// Token: 0x0600502E RID: 20526 RVA: 0x002182D4 File Offset: 0x002164D4
+		// Token: 0x060044D2 RID: 17618 RVA: 0x001D4604 File Offset: 0x001D2804
 		public override Sprite GetQualityUpSprite()
 		{
 			return BagMag.Inst.QualityUpDict[this.GetImgQuality().ToString()];
 		}
 
-		// Token: 0x0600502F RID: 20527 RVA: 0x00218D5C File Offset: 0x00216F5C
+		// Token: 0x060044D3 RID: 17619 RVA: 0x001D4630 File Offset: 0x001D2830
 		public override int GetPrice()
 		{
 			if (this.Seid != null && this.Seid.HasField("Money"))
@@ -180,13 +180,13 @@ namespace Bag
 			return base.GetPrice();
 		}
 
-		// Token: 0x06005030 RID: 20528 RVA: 0x00039983 File Offset: 0x00037B83
+		// Token: 0x060044D4 RID: 17620 RVA: 0x001D3742 File Offset: 0x001D1942
 		public override int GetPlayerPrice()
 		{
 			return (int)((float)this.GetPrice() * 0.5f);
 		}
 
-		// Token: 0x06005031 RID: 20529 RVA: 0x00039D08 File Offset: 0x00037F08
+		// Token: 0x060044D5 RID: 17621 RVA: 0x001D469D File Offset: 0x001D289D
 		public override string GetName()
 		{
 			if (this.Seid != null && this.Seid.HasField("Name"))
@@ -196,7 +196,7 @@ namespace Bag
 			return base.GetName();
 		}
 
-		// Token: 0x06005032 RID: 20530 RVA: 0x00218DCC File Offset: 0x00216FCC
+		// Token: 0x060044D6 RID: 17622 RVA: 0x001D46D8 File Offset: 0x001D28D8
 		public EquipType GetEquipType()
 		{
 			EquipType result = EquipType.武器;
@@ -229,7 +229,7 @@ namespace Bag
 			return result;
 		}
 
-		// Token: 0x06005033 RID: 20531 RVA: 0x00218E14 File Offset: 0x00217014
+		// Token: 0x060044D7 RID: 17623 RVA: 0x001D4720 File Offset: 0x001D2920
 		public EquipQuality GetEquipQualityType()
 		{
 			EquipQuality result = EquipQuality.下品;
@@ -248,7 +248,7 @@ namespace Bag
 			return result;
 		}
 
-		// Token: 0x06005034 RID: 20532 RVA: 0x00039D40 File Offset: 0x00037F40
+		// Token: 0x060044D8 RID: 17624 RVA: 0x001D4757 File Offset: 0x001D2957
 		public bool EquipTypeIsEqual(EquipType targetType)
 		{
 			if (targetType == EquipType.装备)
@@ -258,7 +258,7 @@ namespace Bag
 			return targetType == this.EquipType;
 		}
 
-		// Token: 0x06005035 RID: 20533 RVA: 0x00218E4C File Offset: 0x0021704C
+		// Token: 0x060044D9 RID: 17625 RVA: 0x001D4788 File Offset: 0x001D2988
 		public override string GetQualityName()
 		{
 			if (this.EquipType == EquipType.丹炉 || this.EquipType == EquipType.灵舟)
@@ -272,7 +272,7 @@ namespace Bag
 			return this.GetEquipQualityType().ToString() + StrTextJsonData.DataDict["EquipPingji" + this.Quality].ChinaText;
 		}
 
-		// Token: 0x06005036 RID: 20534 RVA: 0x00218ED8 File Offset: 0x002170D8
+		// Token: 0x060044DA RID: 17626 RVA: 0x001D4814 File Offset: 0x001D2A14
 		public int GetCd()
 		{
 			int num = 1;
@@ -288,7 +288,7 @@ namespace Bag
 			return num;
 		}
 
-		// Token: 0x06005037 RID: 20535 RVA: 0x00218F2C File Offset: 0x0021712C
+		// Token: 0x060044DB RID: 17627 RVA: 0x001D4868 File Offset: 0x001D2A68
 		public string GetShuXing()
 		{
 			int value = EquipSeidJsonData2.DataDict[this.Id].value1;
@@ -305,7 +305,7 @@ namespace Bag
 			return text;
 		}
 
-		// Token: 0x06005038 RID: 20536 RVA: 0x00218FE8 File Offset: 0x002171E8
+		// Token: 0x060044DC RID: 17628 RVA: 0x001D4924 File Offset: 0x001D2B24
 		public List<int> GetShuXingList()
 		{
 			List<int> list = new List<int>();
@@ -324,7 +324,7 @@ namespace Bag
 			return list;
 		}
 
-		// Token: 0x06005039 RID: 20537 RVA: 0x00039D6E File Offset: 0x00037F6E
+		// Token: 0x060044DD RID: 17629 RVA: 0x001D49B0 File Offset: 0x001D2BB0
 		public int GetCurNaiJiu()
 		{
 			if (this.EquipType != EquipType.丹炉 && this.EquipType != EquipType.灵舟)
@@ -335,7 +335,7 @@ namespace Bag
 			return this.Seid["NaiJiu"].I;
 		}
 
-		// Token: 0x0600503A RID: 20538 RVA: 0x00219074 File Offset: 0x00217274
+		// Token: 0x060044DE RID: 17630 RVA: 0x001D49E8 File Offset: 0x001D2BE8
 		public int GetMaxNaiJiu()
 		{
 			int result = 0;
@@ -355,7 +355,7 @@ namespace Bag
 			return result;
 		}
 
-		// Token: 0x0600503B RID: 20539 RVA: 0x002190E4 File Offset: 0x002172E4
+		// Token: 0x060044DF RID: 17631 RVA: 0x001D4A58 File Offset: 0x001D2C58
 		private static int GetItemCD(JSONObject Seid, int oldCD)
 		{
 			if (Seid == null || !Seid.HasField("SkillSeids"))
@@ -365,16 +365,16 @@ namespace Bag
 			return Seid["SkillSeids"].list.Find((JSONObject aa) => aa["id"].I == 29)["value1"].I;
 		}
 
-		// Token: 0x0600503C RID: 20540 RVA: 0x00039DA3 File Offset: 0x00037FA3
+		// Token: 0x060044E0 RID: 17632 RVA: 0x001D4ABA File Offset: 0x001D2CBA
 		public override void Use()
 		{
 			SingletonMono<TabUIMag>.Instance.WuPingPanel.AddEquip((EquipItem)base.Clone());
 		}
 
-		// Token: 0x04005161 RID: 20833
+		// Token: 0x04004663 RID: 18019
 		public EquipType EquipType;
 
-		// Token: 0x04005162 RID: 20834
+		// Token: 0x04004664 RID: 18020
 		public EquipQuality EquipQuality;
 	}
 }

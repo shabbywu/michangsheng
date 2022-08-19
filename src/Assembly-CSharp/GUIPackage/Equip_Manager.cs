@@ -5,12 +5,12 @@ using UnityEngine;
 
 namespace GUIPackage
 {
-	// Token: 0x02000D78 RID: 3448
+	// Token: 0x02000A58 RID: 2648
 	public class Equip_Manager : MonoBehaviour
 	{
-		// Token: 0x170007EA RID: 2026
-		// (get) Token: 0x060052D2 RID: 21202 RVA: 0x0003B4D6 File Offset: 0x000396D6
-		// (set) Token: 0x060052D3 RID: 21203 RVA: 0x0003B4DE File Offset: 0x000396DE
+		// Token: 0x170005CD RID: 1485
+		// (get) Token: 0x060049E7 RID: 18919 RVA: 0x001F5670 File Offset: 0x001F3870
+		// (set) Token: 0x060049E8 RID: 18920 RVA: 0x001F5678 File Offset: 0x001F3878
 		public List<item> Equip
 		{
 			get
@@ -23,19 +23,19 @@ namespace GUIPackage
 			}
 		}
 
-		// Token: 0x060052D4 RID: 21204 RVA: 0x0003B4E7 File Offset: 0x000396E7
+		// Token: 0x060049E9 RID: 18921 RVA: 0x001F5681 File Offset: 0x001F3881
 		private void Awake()
 		{
 			this.is_draged = false;
 			this.initEuip();
 		}
 
-		// Token: 0x060052D5 RID: 21205 RVA: 0x000042DD File Offset: 0x000024DD
+		// Token: 0x060049EA RID: 18922 RVA: 0x00004095 File Offset: 0x00002295
 		private void Start()
 		{
 		}
 
-		// Token: 0x060052D6 RID: 21206 RVA: 0x0003B4F6 File Offset: 0x000396F6
+		// Token: 0x060049EB RID: 18923 RVA: 0x001F5690 File Offset: 0x001F3890
 		private void Update()
 		{
 			if (Input.GetKeyDown(101))
@@ -44,7 +44,7 @@ namespace GUIPackage
 			}
 		}
 
-		// Token: 0x060052D7 RID: 21207 RVA: 0x002280BC File Offset: 0x002262BC
+		// Token: 0x060049EC RID: 18924 RVA: 0x001F56A4 File Offset: 0x001F38A4
 		private void Show()
 		{
 			this.showEquipment = !this.showEquipment;
@@ -60,7 +60,7 @@ namespace GUIPackage
 			Singleton.UI.UI_Top(this.EquipUI.transform);
 		}
 
-		// Token: 0x060052D8 RID: 21208 RVA: 0x00228144 File Offset: 0x00226344
+		// Token: 0x060049ED RID: 18925 RVA: 0x001F572C File Offset: 0x001F392C
 		private void initEuip()
 		{
 			for (int i = 0; i < 15; i++)
@@ -70,12 +70,12 @@ namespace GUIPackage
 			this.EquipUI.SetActive(this.showEquipment);
 		}
 
-		// Token: 0x060052D9 RID: 21209 RVA: 0x000042DD File Offset: 0x000024DD
+		// Token: 0x060049EE RID: 18926 RVA: 0x00004095 File Offset: 0x00002295
 		public void SaveEquipment()
 		{
 		}
 
-		// Token: 0x060052DA RID: 21210 RVA: 0x00228180 File Offset: 0x00226380
+		// Token: 0x060049EF RID: 18927 RVA: 0x001F5768 File Offset: 0x001F3968
 		public void LoadEquipment()
 		{
 			for (int i = 0; i < this.Equip.Count; i++)
@@ -97,7 +97,7 @@ namespace GUIPackage
 			}
 		}
 
-		// Token: 0x060052DB RID: 21211 RVA: 0x00228284 File Offset: 0x00226484
+		// Token: 0x060049F0 RID: 18928 RVA: 0x001F586C File Offset: 0x001F3A6C
 		public int GetEquipID(string name)
 		{
 			uint num = <PrivateImplementationDetails>.ComputeStringHash(name);
@@ -159,7 +159,7 @@ namespace GUIPackage
 			return -1;
 		}
 
-		// Token: 0x060052DC RID: 21212 RVA: 0x0022837C File Offset: 0x0022657C
+		// Token: 0x060049F1 RID: 18929 RVA: 0x001F5964 File Offset: 0x001F3B64
 		public void addEquip(string UUID, int key = 0)
 		{
 			Avatar avatar = (Avatar)KBEngineApp.app.player();
@@ -171,30 +171,30 @@ namespace GUIPackage
 			avatar.YSequipItem(UUID, (int)jsonData.instance.ItemJsonData[string.Concat(item_INFO.itemId)]["type"].n, key);
 		}
 
-		// Token: 0x060052DD RID: 21213 RVA: 0x0003B507 File Offset: 0x00039707
+		// Token: 0x060049F2 RID: 18930 RVA: 0x001F59CD File Offset: 0x001F3BCD
 		public void UnEquip(string UUID, int index = 0)
 		{
 			((Avatar)KBEngineApp.app.player()).YSUnequipItem(UUID, index);
 		}
 
-		// Token: 0x060052DE RID: 21214 RVA: 0x000042DD File Offset: 0x000024DD
+		// Token: 0x060049F3 RID: 18931 RVA: 0x00004095 File Offset: 0x00002295
 		private void OnDestroy()
 		{
 		}
 
-		// Token: 0x040052DC RID: 21212
+		// Token: 0x04004957 RID: 18775
 		public GameObject EquipUI;
 
-		// Token: 0x040052DD RID: 21213
+		// Token: 0x04004958 RID: 18776
 		public GameObject Temp;
 
-		// Token: 0x040052DE RID: 21214
+		// Token: 0x04004959 RID: 18777
 		private bool showEquipment = true;
 
-		// Token: 0x040052DF RID: 21215
+		// Token: 0x0400495A RID: 18778
 		private List<item> _Equip = new List<item>();
 
-		// Token: 0x040052E0 RID: 21216
+		// Token: 0x0400495B RID: 18779
 		public bool is_draged;
 	}
 }

@@ -3,12 +3,12 @@ using UnityEngine;
 
 namespace Fungus
 {
-	// Token: 0x02001424 RID: 5156
+	// Token: 0x02000F6C RID: 3948
 	[CommandInfo("YS", "resetWuDao", "重置悟道", 0)]
 	[AddComponentMenu("")]
 	public class resetWuDao : Command
 	{
-		// Token: 0x06007CDB RID: 31963 RVA: 0x002C5A38 File Offset: 0x002C3C38
+		// Token: 0x06006EE9 RID: 28393 RVA: 0x002A5CE0 File Offset: 0x002A3EE0
 		public override void OnEnter()
 		{
 			foreach (JSONObject jsonobject in Tools.instance.getPlayer().WuDaoJson.list)
@@ -18,18 +18,18 @@ namespace Fungus
 			this.Continue();
 		}
 
-		// Token: 0x06007CDC RID: 31964 RVA: 0x000113CF File Offset: 0x0000F5CF
+		// Token: 0x06006EEA RID: 28394 RVA: 0x0005E228 File Offset: 0x0005C428
 		public override Color GetButtonColor()
 		{
 			return new Color32(184, 210, 235, byte.MaxValue);
 		}
 
-		// Token: 0x06007CDD RID: 31965 RVA: 0x000042DD File Offset: 0x000024DD
+		// Token: 0x06006EEB RID: 28395 RVA: 0x00004095 File Offset: 0x00002295
 		public override void OnReset()
 		{
 		}
 
-		// Token: 0x04006AAD RID: 27309
+		// Token: 0x04005BD7 RID: 23511
 		[Tooltip("描述")]
 		[SerializeField]
 		protected string desc = "重置所有悟道点数";

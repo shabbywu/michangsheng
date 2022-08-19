@@ -3,10 +3,10 @@ using System.Collections.Generic;
 
 namespace JSONClass
 {
-	// Token: 0x02000AEA RID: 2794
+	// Token: 0x02000752 RID: 1874
 	public class AvatarRandomJsonData : IJSONClass
 	{
-		// Token: 0x06004712 RID: 18194 RVA: 0x001E6B40 File Offset: 0x001E4D40
+		// Token: 0x06003B5C RID: 15196 RVA: 0x00198AA4 File Offset: 0x00196CA4
 		public static void InitDataDict()
 		{
 			foreach (JSONObject jsonobject in jsonData.instance.AvatarRandomJsonData.list)
@@ -75,132 +75,132 @@ namespace JSONClass
 			}
 		}
 
-		// Token: 0x06004713 RID: 18195 RVA: 0x000042DD File Offset: 0x000024DD
+		// Token: 0x06003B5D RID: 15197 RVA: 0x00004095 File Offset: 0x00002295
 		private static void OnInitFinish()
 		{
 		}
 
-		// Token: 0x04003FD1 RID: 16337
+		// Token: 0x04003438 RID: 13368
 		public static Dictionary<int, AvatarRandomJsonData> DataDict = new Dictionary<int, AvatarRandomJsonData>();
 
-		// Token: 0x04003FD2 RID: 16338
+		// Token: 0x04003439 RID: 13369
 		public static List<AvatarRandomJsonData> DataList = new List<AvatarRandomJsonData>();
 
-		// Token: 0x04003FD3 RID: 16339
+		// Token: 0x0400343A RID: 13370
 		public static Action OnInitFinishAction = new Action(AvatarRandomJsonData.OnInitFinish);
 
-		// Token: 0x04003FD4 RID: 16340
+		// Token: 0x0400343B RID: 13371
 		public int Sex;
 
-		// Token: 0x04003FD5 RID: 16341
+		// Token: 0x0400343C RID: 13372
 		public int feature;
 
-		// Token: 0x04003FD6 RID: 16342
+		// Token: 0x0400343D RID: 13373
 		public int yanying;
 
-		// Token: 0x04003FD7 RID: 16343
+		// Token: 0x0400343E RID: 13374
 		public int Shawl_hair;
 
-		// Token: 0x04003FD8 RID: 16344
+		// Token: 0x0400343F RID: 13375
 		public int back_gown;
 
-		// Token: 0x04003FD9 RID: 16345
+		// Token: 0x04003440 RID: 13376
 		public int r_arm;
 
-		// Token: 0x04003FDA RID: 16346
+		// Token: 0x04003441 RID: 13377
 		public int gown;
 
-		// Token: 0x04003FDB RID: 16347
+		// Token: 0x04003442 RID: 13378
 		public int l_arm;
 
-		// Token: 0x04003FDC RID: 16348
+		// Token: 0x04003443 RID: 13379
 		public int l_big_arm;
 
-		// Token: 0x04003FDD RID: 16349
+		// Token: 0x04003444 RID: 13380
 		public int lower_body;
 
-		// Token: 0x04003FDE RID: 16350
+		// Token: 0x04003445 RID: 13381
 		public int r_big_arm;
 
-		// Token: 0x04003FDF RID: 16351
+		// Token: 0x04003446 RID: 13382
 		public int blush;
 
-		// Token: 0x04003FE0 RID: 16352
+		// Token: 0x04003447 RID: 13383
 		public int tattoo;
 
-		// Token: 0x04003FE1 RID: 16353
+		// Token: 0x04003448 RID: 13384
 		public int shoes;
 
-		// Token: 0x04003FE2 RID: 16354
+		// Token: 0x04003449 RID: 13385
 		public int upper_body;
 
-		// Token: 0x04003FE3 RID: 16355
+		// Token: 0x0400344A RID: 13386
 		public int yanqiu;
 
-		// Token: 0x04003FE4 RID: 16356
+		// Token: 0x0400344B RID: 13387
 		public int hairColorG;
 
-		// Token: 0x04003FE5 RID: 16357
+		// Token: 0x0400344C RID: 13388
 		public int hairColorB;
 
-		// Token: 0x04003FE6 RID: 16358
+		// Token: 0x0400344D RID: 13389
 		public int mouthColor;
 
-		// Token: 0x04003FE7 RID: 16359
+		// Token: 0x0400344E RID: 13390
 		public int tattooColor;
 
-		// Token: 0x04003FE8 RID: 16360
+		// Token: 0x0400344F RID: 13391
 		public int blushColor;
 
-		// Token: 0x04003FE9 RID: 16361
+		// Token: 0x04003450 RID: 13392
 		public int HaoGanDu;
 
-		// Token: 0x04003FEA RID: 16362
+		// Token: 0x04003451 RID: 13393
 		public int head;
 
-		// Token: 0x04003FEB RID: 16363
+		// Token: 0x04003452 RID: 13394
 		public int eyes;
 
-		// Token: 0x04003FEC RID: 16364
+		// Token: 0x04003453 RID: 13395
 		public int mouth;
 
-		// Token: 0x04003FED RID: 16365
+		// Token: 0x04003454 RID: 13396
 		public int nose;
 
-		// Token: 0x04003FEE RID: 16366
+		// Token: 0x04003455 RID: 13397
 		public int eyebrow;
 
-		// Token: 0x04003FEF RID: 16367
+		// Token: 0x04003456 RID: 13398
 		public int hair;
 
-		// Token: 0x04003FF0 RID: 16368
+		// Token: 0x04003457 RID: 13399
 		public int a_hair;
 
-		// Token: 0x04003FF1 RID: 16369
+		// Token: 0x04003458 RID: 13400
 		public int b_hair;
 
-		// Token: 0x04003FF2 RID: 16370
+		// Token: 0x04003459 RID: 13401
 		public int characteristic;
 
-		// Token: 0x04003FF3 RID: 16371
+		// Token: 0x0400345A RID: 13402
 		public int a_suit;
 
-		// Token: 0x04003FF4 RID: 16372
+		// Token: 0x0400345B RID: 13403
 		public int hairColorR;
 
-		// Token: 0x04003FF5 RID: 16373
+		// Token: 0x0400345C RID: 13404
 		public int yanzhuColor;
 
-		// Token: 0x04003FF6 RID: 16374
+		// Token: 0x0400345D RID: 13405
 		public int tezhengColor;
 
-		// Token: 0x04003FF7 RID: 16375
+		// Token: 0x0400345E RID: 13406
 		public int eyebrowColor;
 
-		// Token: 0x04003FF8 RID: 16376
+		// Token: 0x0400345F RID: 13407
 		public string BirthdayTime;
 
-		// Token: 0x04003FF9 RID: 16377
+		// Token: 0x04003460 RID: 13408
 		public string Name;
 	}
 }

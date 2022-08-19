@@ -1,14 +1,14 @@
 ﻿using System;
 using UnityEngine;
 
-// Token: 0x02000132 RID: 306
+// Token: 0x020000C2 RID: 194
 [ExecuteInEditMode]
 [RequireComponent(typeof(Camera))]
 [AddComponentMenu("Image Effects/Glow")]
 public class GlowEffect : MonoBehaviour
 {
-	// Token: 0x170001E6 RID: 486
-	// (get) Token: 0x06000BA3 RID: 2979 RVA: 0x0000DB93 File Offset: 0x0000BD93
+	// Token: 0x170001CD RID: 461
+	// (get) Token: 0x06000AC0 RID: 2752 RVA: 0x00040F6C File Offset: 0x0003F16C
 	protected Material compositeMaterial
 	{
 		get
@@ -22,8 +22,8 @@ public class GlowEffect : MonoBehaviour
 		}
 	}
 
-	// Token: 0x170001E7 RID: 487
-	// (get) Token: 0x06000BA4 RID: 2980 RVA: 0x0000DBC7 File Offset: 0x0000BDC7
+	// Token: 0x170001CE RID: 462
+	// (get) Token: 0x06000AC1 RID: 2753 RVA: 0x00040FA0 File Offset: 0x0003F1A0
 	protected Material blurMaterial
 	{
 		get
@@ -37,8 +37,8 @@ public class GlowEffect : MonoBehaviour
 		}
 	}
 
-	// Token: 0x170001E8 RID: 488
-	// (get) Token: 0x06000BA5 RID: 2981 RVA: 0x0000DBFB File Offset: 0x0000BDFB
+	// Token: 0x170001CF RID: 463
+	// (get) Token: 0x06000AC2 RID: 2754 RVA: 0x00040FD4 File Offset: 0x0003F1D4
 	protected Material downsampleMaterial
 	{
 		get
@@ -52,7 +52,7 @@ public class GlowEffect : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000BA6 RID: 2982 RVA: 0x00093150 File Offset: 0x00091350
+	// Token: 0x06000AC3 RID: 2755 RVA: 0x00041008 File Offset: 0x0003F208
 	protected void OnDisable()
 	{
 		if (this.m_CompositeMaterial)
@@ -69,7 +69,7 @@ public class GlowEffect : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000BA7 RID: 2983 RVA: 0x000931A8 File Offset: 0x000913A8
+	// Token: 0x06000AC4 RID: 2756 RVA: 0x00041060 File Offset: 0x0003F260
 	protected void Start()
 	{
 		if (!SystemInfo.supportsImageEffects)
@@ -97,7 +97,7 @@ public class GlowEffect : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000BA8 RID: 2984 RVA: 0x00093230 File Offset: 0x00091430
+	// Token: 0x06000AC5 RID: 2757 RVA: 0x000410E8 File Offset: 0x0003F2E8
 	public void FourTapCone(RenderTexture source, RenderTexture dest, int iteration)
 	{
 		float num = 0.5f + (float)iteration * this.blurSpread;
@@ -110,14 +110,14 @@ public class GlowEffect : MonoBehaviour
 		});
 	}
 
-	// Token: 0x06000BA9 RID: 2985 RVA: 0x0009329C File Offset: 0x0009149C
+	// Token: 0x06000AC6 RID: 2758 RVA: 0x00041154 File Offset: 0x0003F354
 	private void DownSample4x(RenderTexture source, RenderTexture dest)
 	{
 		this.downsampleMaterial.color = new Color(this.glowTint.r, this.glowTint.g, this.glowTint.b, this.glowTint.a / 4f);
 		Graphics.Blit(source, dest, this.downsampleMaterial);
 	}
 
-	// Token: 0x06000BAA RID: 2986 RVA: 0x000932F8 File Offset: 0x000914F8
+	// Token: 0x06000AC7 RID: 2759 RVA: 0x000411B0 File Offset: 0x0003F3B0
 	private void OnRenderImage(RenderTexture source, RenderTexture destination)
 	{
 		this.glowIntensity = Mathf.Clamp(this.glowIntensity, 0f, 10f);
@@ -154,40 +154,40 @@ public class GlowEffect : MonoBehaviour
 		RenderTexture.ReleaseTemporary(temporary2);
 	}
 
-	// Token: 0x06000BAB RID: 2987 RVA: 0x0000DC2F File Offset: 0x0000BE2F
+	// Token: 0x06000AC8 RID: 2760 RVA: 0x000412D8 File Offset: 0x0003F4D8
 	public void BlitGlow(RenderTexture source, RenderTexture dest)
 	{
 		this.compositeMaterial.color = new Color(1f, 1f, 1f, Mathf.Clamp01(this.glowIntensity));
 		Graphics.Blit(source, dest, this.compositeMaterial);
 	}
 
-	// Token: 0x0400086C RID: 2156
+	// Token: 0x040006C5 RID: 1733
 	public float glowIntensity = 1.5f;
 
-	// Token: 0x0400086D RID: 2157
+	// Token: 0x040006C6 RID: 1734
 	public int blurIterations = 3;
 
-	// Token: 0x0400086E RID: 2158
+	// Token: 0x040006C7 RID: 1735
 	public float blurSpread = 0.7f;
 
-	// Token: 0x0400086F RID: 2159
+	// Token: 0x040006C8 RID: 1736
 	public Color glowTint = new Color(1f, 1f, 1f, 0f);
 
-	// Token: 0x04000870 RID: 2160
+	// Token: 0x040006C9 RID: 1737
 	public Shader compositeShader;
 
-	// Token: 0x04000871 RID: 2161
+	// Token: 0x040006CA RID: 1738
 	private Material m_CompositeMaterial;
 
-	// Token: 0x04000872 RID: 2162
+	// Token: 0x040006CB RID: 1739
 	public Shader blurShader;
 
-	// Token: 0x04000873 RID: 2163
+	// Token: 0x040006CC RID: 1740
 	private Material m_BlurMaterial;
 
-	// Token: 0x04000874 RID: 2164
+	// Token: 0x040006CD RID: 1741
 	public Shader downsampleShader;
 
-	// Token: 0x04000875 RID: 2165
+	// Token: 0x040006CE RID: 1742
 	private Material m_DownsampleMaterial;
 }

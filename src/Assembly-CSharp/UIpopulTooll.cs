@@ -1,16 +1,16 @@
 ﻿using System;
 using UnityEngine;
 
-// Token: 0x020005A3 RID: 1443
+// Token: 0x020003F4 RID: 1012
 public class UIpopulTooll : MonoBehaviour
 {
-	// Token: 0x0600245E RID: 9310 RVA: 0x0001D43F File Offset: 0x0001B63F
+	// Token: 0x060020AC RID: 8364 RVA: 0x000E61CE File Offset: 0x000E43CE
 	private void Start()
 	{
 		this.popupList = base.GetComponent<UIPopupList>();
 	}
 
-	// Token: 0x0600245F RID: 9311 RVA: 0x00128420 File Offset: 0x00126620
+	// Token: 0x060020AD RID: 8365 RVA: 0x000E61DC File Offset: 0x000E43DC
 	public void OnCheng()
 	{
 		this.popupList.Close();
@@ -59,56 +59,56 @@ public class UIpopulTooll : MonoBehaviour
 		this.TextGrid.repositionNow = true;
 	}
 
-	// Token: 0x06002460 RID: 9312 RVA: 0x0001D44D File Offset: 0x0001B64D
+	// Token: 0x060020AE RID: 8366 RVA: 0x000E638C File Offset: 0x000E458C
 	public void ItemPress(GameObject go, bool isslelct)
 	{
 		this.popupList.OnItemPress(go, isslelct);
 		this.Close();
 	}
 
-	// Token: 0x06002461 RID: 9313 RVA: 0x0001D462 File Offset: 0x0001B662
+	// Token: 0x060020AF RID: 8367 RVA: 0x000E63A1 File Offset: 0x000E45A1
 	public void ItemClicek(GameObject go)
 	{
 		this.Close();
 	}
 
-	// Token: 0x06002462 RID: 9314 RVA: 0x0001D46A File Offset: 0x0001B66A
+	// Token: 0x060020B0 RID: 8368 RVA: 0x000E63A9 File Offset: 0x000E45A9
 	public void Close()
 	{
 		this.uiBase.SetActive(false);
 		base.GetComponent<UIToggle>().value = false;
 	}
 
-	// Token: 0x04001F47 RID: 8007
+	// Token: 0x04001A8E RID: 6798
 	public GameObject uiBase;
 
-	// Token: 0x04001F48 RID: 8008
+	// Token: 0x04001A8F RID: 6799
 	public UIGrid TextGrid;
 
-	// Token: 0x04001F49 RID: 8009
+	// Token: 0x04001A90 RID: 6800
 	public UI2DSprite i2DSprite;
 
-	// Token: 0x04001F4A RID: 8010
+	// Token: 0x04001A91 RID: 6801
 	public UILabel iLabelBase;
 
-	// Token: 0x04001F4B RID: 8011
+	// Token: 0x04001A92 RID: 6802
 	public int WightSize;
 
-	// Token: 0x04001F4C RID: 8012
+	// Token: 0x04001A93 RID: 6803
 	public int StartSize;
 
-	// Token: 0x04001F4D RID: 8013
+	// Token: 0x04001A94 RID: 6804
 	public UIpopulTooll.TType ttypeA;
 
-	// Token: 0x04001F4E RID: 8014
+	// Token: 0x04001A95 RID: 6805
 	private UIPopupList popupList;
 
-	// Token: 0x020005A4 RID: 1444
+	// Token: 0x02001393 RID: 5011
 	public enum TType
 	{
-		// Token: 0x04001F50 RID: 8016
+		// Token: 0x040068CB RID: 26827
 		wight,
-		// Token: 0x04001F51 RID: 8017
+		// Token: 0x040068CC RID: 26828
 		hight
 	}
 }

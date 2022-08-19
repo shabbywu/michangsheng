@@ -4,10 +4,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Advertisements;
 
-// Token: 0x02000737 RID: 1847
+// Token: 0x020004D0 RID: 1232
 public class KameraMovement : MonoBehaviour
 {
-	// Token: 0x06002ED7 RID: 11991 RVA: 0x00174DD4 File Offset: 0x00172FD4
+	// Token: 0x060027C3 RID: 10179 RVA: 0x00129468 File Offset: 0x00127668
 	private void Awake()
 	{
 		if (Advertisement.isSupported)
@@ -107,7 +107,7 @@ public class KameraMovement : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06002ED8 RID: 11992 RVA: 0x00175364 File Offset: 0x00173564
+	// Token: 0x060027C4 RID: 10180 RVA: 0x001299F8 File Offset: 0x00127BF8
 	private void PodesiReward()
 	{
 		if (StagesParser.bonusID == 4)
@@ -211,7 +211,7 @@ public class KameraMovement : MonoBehaviour
 		base.Invoke("PozoviRewardPopup", 4.15f);
 	}
 
-	// Token: 0x06002ED9 RID: 11993 RVA: 0x001759A0 File Offset: 0x00173BA0
+	// Token: 0x060027C5 RID: 10181 RVA: 0x0012A034 File Offset: 0x00128234
 	private void PozoviRewardPopup()
 	{
 		this._GUI.Find("REWARD HOLDER/AnimationHolderGlavni").localPosition += new Vector3(0f, 35f, 0f);
@@ -219,7 +219,7 @@ public class KameraMovement : MonoBehaviour
 		KameraMovement.makniPopup = 7;
 	}
 
-	// Token: 0x06002EDA RID: 11994 RVA: 0x00175A08 File Offset: 0x00173C08
+	// Token: 0x060027C6 RID: 10182 RVA: 0x0012A09C File Offset: 0x0012829C
 	private void RefreshScene()
 	{
 		StagesParser.lastUnlockedWorldIndex = 0;
@@ -321,7 +321,7 @@ public class KameraMovement : MonoBehaviour
 		StagesParser.Instance.UcitajLoadingPoruke();
 	}
 
-	// Token: 0x06002EDB RID: 11995 RVA: 0x00175EE8 File Offset: 0x001740E8
+	// Token: 0x060027C7 RID: 10183 RVA: 0x0012A57C File Offset: 0x0012877C
 	private void Start()
 	{
 		this.changeLanguage();
@@ -373,13 +373,13 @@ public class KameraMovement : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06002EDC RID: 11996 RVA: 0x00022BC6 File Offset: 0x00020DC6
+	// Token: 0x060027C8 RID: 10184 RVA: 0x0012A9A1 File Offset: 0x00128BA1
 	private void MaliDelayPreNegoDaSePozoveCompareScoresShopDeo()
 	{
 		StagesParser.Instance.ShopDeoIzCompareScores();
 	}
 
-	// Token: 0x06002EDD RID: 11997 RVA: 0x00022BD2 File Offset: 0x00020DD2
+	// Token: 0x060027C9 RID: 10185 RVA: 0x0012A9AD File Offset: 0x00128BAD
 	private void UvecavajBrojac()
 	{
 		if (this.angleIndex > 7)
@@ -389,7 +389,7 @@ public class KameraMovement : MonoBehaviour
 		this.angleIndex++;
 	}
 
-	// Token: 0x06002EDE RID: 11998 RVA: 0x00176310 File Offset: 0x00174510
+	// Token: 0x060027CA RID: 10186 RVA: 0x0012A9D0 File Offset: 0x00128BD0
 	private void InitLevels(bool refreshed)
 	{
 		StagesParser.SetsInGame[StagesParser.currSetIndex].CurrentStarsInStageNEW = 0;
@@ -575,7 +575,7 @@ public class KameraMovement : MonoBehaviour
 		StagesParser.zadnjiOtkljucanNivo = 0;
 	}
 
-	// Token: 0x06002EDF RID: 11999 RVA: 0x00176A98 File Offset: 0x00174C98
+	// Token: 0x060027CB RID: 10187 RVA: 0x0012B158 File Offset: 0x00129358
 	private void Update()
 	{
 		if (Input.GetKeyUp(27))
@@ -1466,7 +1466,7 @@ public class KameraMovement : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06002EE0 RID: 12000 RVA: 0x00178B08 File Offset: 0x00176D08
+	// Token: 0x060027CC RID: 10188 RVA: 0x0012D1C8 File Offset: 0x0012B3C8
 	private void DodeliNagrade()
 	{
 		switch (this.reward1Type)
@@ -1532,7 +1532,7 @@ public class KameraMovement : MonoBehaviour
 		StagesParser.ServerUpdate = 1;
 	}
 
-	// Token: 0x06002EE1 RID: 12001 RVA: 0x00178D40 File Offset: 0x00176F40
+	// Token: 0x060027CD RID: 10189 RVA: 0x0012D400 File Offset: 0x0012B600
 	private void DajMuItem()
 	{
 		if (this.cetvrtiKovcegNagrada == "Glava")
@@ -1600,7 +1600,7 @@ public class KameraMovement : MonoBehaviour
 		this.indexNagradeZaCetvrtiKovceg = -1;
 	}
 
-	// Token: 0x06002EE2 RID: 12002 RVA: 0x00178FE8 File Offset: 0x001771E8
+	// Token: 0x060027CE RID: 10190 RVA: 0x0012D6A8 File Offset: 0x0012B8A8
 	private void IspitajItem()
 	{
 		string text = string.Empty;
@@ -1718,7 +1718,7 @@ public class KameraMovement : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06002EE3 RID: 12003 RVA: 0x001794F8 File Offset: 0x001776F8
+	// Token: 0x060027CF RID: 10191 RVA: 0x0012DBB8 File Offset: 0x0012BDB8
 	private Transform pronadjiKovceg(string name)
 	{
 		for (int i = 0; i < this.BonusNivoi.Length; i++)
@@ -1731,7 +1731,7 @@ public class KameraMovement : MonoBehaviour
 		return null;
 	}
 
-	// Token: 0x06002EE4 RID: 12004 RVA: 0x00179538 File Offset: 0x00177738
+	// Token: 0x060027D0 RID: 10192 RVA: 0x0012DBF8 File Offset: 0x0012BDF8
 	private int GetMapLevelIndex(int value)
 	{
 		for (int i = 0; i < this.izmedjneTacke.childCount; i++)
@@ -1745,7 +1745,7 @@ public class KameraMovement : MonoBehaviour
 		return -1;
 	}
 
-	// Token: 0x06002EE5 RID: 12005 RVA: 0x0017957C File Offset: 0x0017777C
+	// Token: 0x060027D1 RID: 10193 RVA: 0x0012DC3C File Offset: 0x0012BE3C
 	private int GetWatchVideoIndex(string tvsuffix)
 	{
 		for (int i = 0; i < this.izmedjneTacke.childCount; i++)
@@ -1758,7 +1758,7 @@ public class KameraMovement : MonoBehaviour
 		return -1;
 	}
 
-	// Token: 0x06002EE6 RID: 12006 RVA: 0x001795C8 File Offset: 0x001777C8
+	// Token: 0x060027D2 RID: 10194 RVA: 0x0012DC88 File Offset: 0x0012BE88
 	private int findAngleDir(Transform start, Vector3 target)
 	{
 		Vector3 vector = target - start.position;
@@ -1798,7 +1798,7 @@ public class KameraMovement : MonoBehaviour
 		return 7;
 	}
 
-	// Token: 0x06002EE7 RID: 12007 RVA: 0x00022BF2 File Offset: 0x00020DF2
+	// Token: 0x060027D3 RID: 10195 RVA: 0x0012DD67 File Offset: 0x0012BF67
 	private IEnumerator KretanjeMajmunceta()
 	{
 		this.majmunceSeMrda = true;
@@ -2044,7 +2044,7 @@ public class KameraMovement : MonoBehaviour
 		yield break;
 	}
 
-	// Token: 0x06002EE8 RID: 12008 RVA: 0x001796A8 File Offset: 0x001778A8
+	// Token: 0x060027D4 RID: 10196 RVA: 0x0012DD78 File Offset: 0x0012BF78
 	private void ocistiMisije()
 	{
 		Transform transform = this._GUI.Find("MISSION HOLDER/AnimationHolderGlavni/AnimationHolder/Popup za Mission HOLDER/Popup za Mission");
@@ -2071,7 +2071,7 @@ public class KameraMovement : MonoBehaviour
 		transform.Find("Text/Mission 3").GetComponent<TextMeshEffects>().RefreshTextOutline(false, true, true);
 	}
 
-	// Token: 0x06002EE9 RID: 12009 RVA: 0x001797F8 File Offset: 0x001779F8
+	// Token: 0x060027D5 RID: 10197 RVA: 0x0012DEC8 File Offset: 0x0012C0C8
 	private string RaycastFunction(Vector3 vector)
 	{
 		RaycastHit raycastHit;
@@ -2086,7 +2086,7 @@ public class KameraMovement : MonoBehaviour
 		return "";
 	}
 
-	// Token: 0x06002EEA RID: 12010 RVA: 0x00022C01 File Offset: 0x00020E01
+	// Token: 0x060027D6 RID: 10198 RVA: 0x0012DF1D File Offset: 0x0012C11D
 	private IEnumerator closeDoorAndPlay()
 	{
 		this._GUI.Find("LOADING HOLDER NEW/Loading Animation Vrata").GetComponent<Animator>().Play("Loading Zidovi Dolazak");
@@ -2095,7 +2095,7 @@ public class KameraMovement : MonoBehaviour
 		yield break;
 	}
 
-	// Token: 0x06002EEB RID: 12011 RVA: 0x00022C10 File Offset: 0x00020E10
+	// Token: 0x060027D7 RID: 10199 RVA: 0x0012DF2C File Offset: 0x0012C12C
 	private IEnumerator UcitajOstrvo(string ime)
 	{
 		this._GUI.Find("LOADING HOLDER NEW/Loading Animation Vrata").GetComponent<Animator>().Play("Loading Zidovi Dolazak");
@@ -2104,7 +2104,7 @@ public class KameraMovement : MonoBehaviour
 		yield break;
 	}
 
-	// Token: 0x06002EEC RID: 12012 RVA: 0x00022C26 File Offset: 0x00020E26
+	// Token: 0x060027D8 RID: 10200 RVA: 0x0012DF42 File Offset: 0x0012C142
 	private IEnumerator PlayAndWaitForAnimation(Animation animation, string animName, bool loadAnotherScene, int indexOfSceneToLoad)
 	{
 		yield return null;
@@ -2116,7 +2116,7 @@ public class KameraMovement : MonoBehaviour
 		yield break;
 	}
 
-	// Token: 0x06002EED RID: 12013 RVA: 0x00022C3D File Offset: 0x00020E3D
+	// Token: 0x060027D9 RID: 10201 RVA: 0x0012DF59 File Offset: 0x0012C159
 	private IEnumerator PostaviKameruUGranice(Vector3 rez)
 	{
 		float t = 0f;
@@ -2130,7 +2130,7 @@ public class KameraMovement : MonoBehaviour
 		yield break;
 	}
 
-	// Token: 0x06002EEE RID: 12014 RVA: 0x00022C4C File Offset: 0x00020E4C
+	// Token: 0x060027DA RID: 10202 RVA: 0x0012DF68 File Offset: 0x0012C168
 	private IEnumerator PokaziMuCustomize()
 	{
 		this.TutorialShop = Object.Instantiate<GameObject>(this.TutorialShopPrefab, new Vector3(-33.2f, -95f, -60f), Quaternion.identity);
@@ -2148,7 +2148,7 @@ public class KameraMovement : MonoBehaviour
 		yield break;
 	}
 
-	// Token: 0x06002EEF RID: 12015 RVA: 0x00179850 File Offset: 0x00177A50
+	// Token: 0x060027DB RID: 10203 RVA: 0x0012DF78 File Offset: 0x0012C178
 	private void changeLanguage()
 	{
 		if (!FB.IsLoggedIn)
@@ -2215,7 +2215,7 @@ public class KameraMovement : MonoBehaviour
 		GameObject.Find("Shop POWERUP Shield/Text/ime").GetComponent<TextMeshEffects>().RefreshTextOutline(true, true, true);
 	}
 
-	// Token: 0x06002EF0 RID: 12016 RVA: 0x00179E40 File Offset: 0x00178040
+	// Token: 0x060027DC RID: 10204 RVA: 0x0012E568 File Offset: 0x0012C768
 	private void getFriendsScoresOnLevel(int level)
 	{
 		if (!this.popunioSlike)
@@ -2369,7 +2369,7 @@ public class KameraMovement : MonoBehaviour
 		list.Clear();
 	}
 
-	// Token: 0x06002EF1 RID: 12017 RVA: 0x0017A4D4 File Offset: 0x001786D4
+	// Token: 0x060027DD RID: 10205 RVA: 0x0012EBFC File Offset: 0x0012CDFC
 	private void prebaciStrelicuNaItem()
 	{
 		this.TutorialShop.transform.position = new Vector3(-20f, -105.5f, -75f);
@@ -2381,14 +2381,14 @@ public class KameraMovement : MonoBehaviour
 		this.TutorialShop.transform.GetChild(0).Find("RedArrowHolder/RedArrow").GetComponent<Animation>().Play();
 	}
 
-	// Token: 0x06002EF2 RID: 12018 RVA: 0x00022C5B File Offset: 0x00020E5B
+	// Token: 0x060027DE RID: 10206 RVA: 0x0012ED17 File Offset: 0x0012CF17
 	private void spustiPopup()
 	{
 		this.popupZaSpustanje.localPosition += new Vector3(0f, -35f, 0f);
 		this.popupZaSpustanje = null;
 	}
 
-	// Token: 0x06002EF3 RID: 12019 RVA: 0x00022C8E File Offset: 0x00020E8E
+	// Token: 0x060027DF RID: 10207 RVA: 0x0012ED4A File Offset: 0x0012CF4A
 	private IEnumerator checkConnectionForLoginButton()
 	{
 		base.StartCoroutine(CheckInternetConnection.Instance.checkInternetConnection());
@@ -2417,7 +2417,7 @@ public class KameraMovement : MonoBehaviour
 		yield break;
 	}
 
-	// Token: 0x06002EF4 RID: 12020 RVA: 0x00022C9D File Offset: 0x00020E9D
+	// Token: 0x060027E0 RID: 10208 RVA: 0x0012ED59 File Offset: 0x0012CF59
 	private IEnumerator checkConnectionForPageLike(string url, string key)
 	{
 		base.StartCoroutine(CheckInternetConnection.Instance.checkInternetConnection());
@@ -2432,7 +2432,7 @@ public class KameraMovement : MonoBehaviour
 		yield break;
 	}
 
-	// Token: 0x06002EF5 RID: 12021 RVA: 0x00022CAC File Offset: 0x00020EAC
+	// Token: 0x060027E1 RID: 10209 RVA: 0x0012ED68 File Offset: 0x0012CF68
 	private IEnumerator checkConnectionForWatchVideo()
 	{
 		base.StartCoroutine(CheckInternetConnection.Instance.checkInternetConnection());
@@ -2485,7 +2485,7 @@ public class KameraMovement : MonoBehaviour
 		yield break;
 	}
 
-	// Token: 0x06002EF6 RID: 12022 RVA: 0x00022CBB File Offset: 0x00020EBB
+	// Token: 0x060027E2 RID: 10210 RVA: 0x0012ED77 File Offset: 0x0012CF77
 	private IEnumerator checkConnectionForInviteFriend()
 	{
 		base.StartCoroutine(CheckInternetConnection.Instance.checkInternetConnection());
@@ -2504,7 +2504,7 @@ public class KameraMovement : MonoBehaviour
 		yield break;
 	}
 
-	// Token: 0x06002EF7 RID: 12023 RVA: 0x00022CCA File Offset: 0x00020ECA
+	// Token: 0x060027E3 RID: 10211 RVA: 0x0012ED86 File Offset: 0x0012CF86
 	private IEnumerator checkConnectionForTelevizor()
 	{
 		base.StartCoroutine(CheckInternetConnection.Instance.checkInternetConnection());
@@ -2565,7 +2565,7 @@ public class KameraMovement : MonoBehaviour
 		yield break;
 	}
 
-	// Token: 0x06002EF8 RID: 12024 RVA: 0x0017A5F0 File Offset: 0x001787F0
+	// Token: 0x060027E4 RID: 10212 RVA: 0x0012ED98 File Offset: 0x0012CF98
 	public void WatchVideoCallback(int value)
 	{
 		if (value == 1)
@@ -2594,272 +2594,272 @@ public class KameraMovement : MonoBehaviour
 		}
 	}
 
-	// Token: 0x040029E9 RID: 10729
+	// Token: 0x04002298 RID: 8856
 	private GameObject Kamera;
 
-	// Token: 0x040029EA RID: 10730
+	// Token: 0x04002299 RID: 8857
 	private Camera guiCamera;
 
-	// Token: 0x040029EB RID: 10731
+	// Token: 0x0400229A RID: 8858
 	private int currentLevelStars;
 
-	// Token: 0x040029EC RID: 10732
+	// Token: 0x0400229B RID: 8859
 	private string clickedItem;
 
-	// Token: 0x040029ED RID: 10733
+	// Token: 0x0400229C RID: 8860
 	private string releasedItem;
 
-	// Token: 0x040029EE RID: 10734
+	// Token: 0x0400229D RID: 8861
 	private float trajanjeKlika;
 
-	// Token: 0x040029EF RID: 10735
+	// Token: 0x0400229E RID: 8862
 	private float pomerajOdKlika_X;
 
-	// Token: 0x040029F0 RID: 10736
+	// Token: 0x0400229F RID: 8863
 	private float pomerajOdKlika_Y;
 
-	// Token: 0x040029F1 RID: 10737
+	// Token: 0x040022A0 RID: 8864
 	private float startX;
 
-	// Token: 0x040029F2 RID: 10738
+	// Token: 0x040022A1 RID: 8865
 	private float startY;
 
-	// Token: 0x040029F3 RID: 10739
+	// Token: 0x040022A2 RID: 8866
 	private float endX;
 
-	// Token: 0x040029F4 RID: 10740
+	// Token: 0x040022A3 RID: 8867
 	private float endY;
 
-	// Token: 0x040029F5 RID: 10741
+	// Token: 0x040022A4 RID: 8868
 	private float pomerajX;
 
-	// Token: 0x040029F6 RID: 10742
+	// Token: 0x040022A5 RID: 8869
 	private float pomerajY;
 
-	// Token: 0x040029F7 RID: 10743
+	// Token: 0x040022A6 RID: 8870
 	private bool moved;
 
-	// Token: 0x040029F8 RID: 10744
+	// Token: 0x040022A7 RID: 8871
 	private bool released;
 
-	// Token: 0x040029F9 RID: 10745
+	// Token: 0x040022A8 RID: 8872
 	private bool bounce;
 
-	// Token: 0x040029FA RID: 10746
+	// Token: 0x040022A9 RID: 8873
 	private float levaGranica = 9f;
 
-	// Token: 0x040029FB RID: 10747
+	// Token: 0x040022AA RID: 8874
 	private float desnaGranica = 31.95f;
 
-	// Token: 0x040029FC RID: 10748
+	// Token: 0x040022AB RID: 8875
 	private float donjaGranica = -15.35f;
 
-	// Token: 0x040029FD RID: 10749
+	// Token: 0x040022AC RID: 8876
 	private float gornjaGranica = -5.2f;
 
-	// Token: 0x040029FE RID: 10750
+	// Token: 0x040022AD RID: 8877
 	private Transform lifeManager;
 
-	// Token: 0x040029FF RID: 10751
+	// Token: 0x040022AE RID: 8878
 	private Vector2 prevDist = new Vector2(0f, 0f);
 
-	// Token: 0x04002A00 RID: 10752
+	// Token: 0x040022AF RID: 8879
 	private Vector2 curDist = new Vector2(0f, 0f);
 
-	// Token: 0x04002A01 RID: 10753
+	// Token: 0x040022B0 RID: 8880
 	private float touchDelta;
 
-	// Token: 0x04002A02 RID: 10754
+	// Token: 0x040022B1 RID: 8881
 	private float touchDeltaY;
 
-	// Token: 0x04002A03 RID: 10755
+	// Token: 0x040022B2 RID: 8882
 	private float minPinchSpeed = 0.001f;
 
-	// Token: 0x04002A04 RID: 10756
+	// Token: 0x040022B3 RID: 8883
 	private float varianceInDistances = 9f;
 
-	// Token: 0x04002A05 RID: 10757
+	// Token: 0x040022B4 RID: 8884
 	private float speedTouch0;
 
-	// Token: 0x04002A06 RID: 10758
+	// Token: 0x040022B5 RID: 8885
 	private float speedTouch1;
 
-	// Token: 0x04002A07 RID: 10759
+	// Token: 0x040022B6 RID: 8886
 	private float moveFactor = 0.07f;
 
-	// Token: 0x04002A08 RID: 10760
+	// Token: 0x040022B7 RID: 8887
 	private bool zoom;
 
-	// Token: 0x04002A09 RID: 10761
+	// Token: 0x040022B8 RID: 8888
 	public Transform doleLevo;
 
-	// Token: 0x04002A0A RID: 10762
+	// Token: 0x040022B9 RID: 8889
 	public Transform doleDesno;
 
-	// Token: 0x04002A0B RID: 10763
+	// Token: 0x040022BA RID: 8890
 	public Transform goreLevo;
 
-	// Token: 0x04002A0C RID: 10764
+	// Token: 0x040022BB RID: 8891
 	public Transform goreDesno;
 
-	// Token: 0x04002A0D RID: 10765
+	// Token: 0x040022BC RID: 8892
 	private bool pomeriKameruUGranice;
 
-	// Token: 0x04002A0E RID: 10766
+	// Token: 0x040022BD RID: 8893
 	private float ortSize;
 
-	// Token: 0x04002A0F RID: 10767
+	// Token: 0x040022BE RID: 8894
 	private float aspect;
 
-	// Token: 0x04002A10 RID: 10768
+	// Token: 0x040022BF RID: 8895
 	private Vector3 ivicaEkrana;
 
-	// Token: 0x04002A11 RID: 10769
+	// Token: 0x040022C0 RID: 8896
 	private Transform holderMajmun;
 
-	// Token: 0x04002A12 RID: 10770
+	// Token: 0x040022C1 RID: 8897
 	private Transform majmun;
 
-	// Token: 0x04002A13 RID: 10771
+	// Token: 0x040022C2 RID: 8898
 	private Animator animator;
 
-	// Token: 0x04002A14 RID: 10772
+	// Token: 0x040022C3 RID: 8899
 	private Vector3[] angles;
 
-	// Token: 0x04002A15 RID: 10773
+	// Token: 0x040022C4 RID: 8900
 	public int angleIndex;
 
-	// Token: 0x04002A16 RID: 10774
+	// Token: 0x040022C5 RID: 8901
 	private Vector3 newAngle;
 
-	// Token: 0x04002A17 RID: 10775
+	// Token: 0x040022C6 RID: 8902
 	private Vector3 monkeyDestination;
 
-	// Token: 0x04002A18 RID: 10776
+	// Token: 0x040022C7 RID: 8903
 	public Transform izmedjneTacke;
 
-	// Token: 0x04002A19 RID: 10777
+	// Token: 0x040022C8 RID: 8904
 	private bool majmunceSeMrda;
 
-	// Token: 0x04002A1A RID: 10778
+	// Token: 0x040022C9 RID: 8905
 	private int monkeyCurrentLevelIndex;
 
-	// Token: 0x04002A1B RID: 10779
+	// Token: 0x040022CA RID: 8906
 	private int monkeyDestinationLevelIndex;
 
-	// Token: 0x04002A1C RID: 10780
+	// Token: 0x040022CB RID: 8907
 	private int levelName;
 
-	// Token: 0x04002A1D RID: 10781
+	// Token: 0x040022CC RID: 8908
 	private bool kretanjeDoKovcega;
 
-	// Token: 0x04002A1E RID: 10782
+	// Token: 0x040022CD RID: 8909
 	private Transform trenutniKovceg;
 
-	// Token: 0x04002A1F RID: 10783
+	// Token: 0x040022CE RID: 8910
 	private Transform kovcegNaPocetku;
 
-	// Token: 0x04002A20 RID: 10784
+	// Token: 0x040022CF RID: 8911
 	public Transform[] BonusNivoi;
 
-	// Token: 0x04002A21 RID: 10785
+	// Token: 0x040022D0 RID: 8912
 	private int zadnjiOtkljucanNivo_proveraZaBonus;
 
-	// Token: 0x04002A22 RID: 10786
+	// Token: 0x040022D1 RID: 8913
 	private bool televizorNaMapi;
 
-	// Token: 0x04002A23 RID: 10787
+	// Token: 0x040022D2 RID: 8914
 	public GameObject quad;
 
-	// Token: 0x04002A24 RID: 10788
+	// Token: 0x040022D3 RID: 8915
 	private int watchVideoIndex_pom;
 
-	// Token: 0x04002A25 RID: 10789
+	// Token: 0x040022D4 RID: 8916
 	public Transform[] Televizori;
 
-	// Token: 0x04002A26 RID: 10790
+	// Token: 0x040022D5 RID: 8917
 	private int trenutniTelevizor;
 
-	// Token: 0x04002A27 RID: 10791
+	// Token: 0x040022D6 RID: 8918
 	private Transform _GUI;
 
-	// Token: 0x04002A28 RID: 10792
+	// Token: 0x040022D7 RID: 8919
 	private bool televizorIzabrao;
 
-	// Token: 0x04002A29 RID: 10793
+	// Token: 0x040022D8 RID: 8920
 	private bool prejasiTelevizor;
 
-	// Token: 0x04002A2A RID: 10794
+	// Token: 0x040022D9 RID: 8921
 	public static Renderer aktivnaIkonicaMisija1;
 
-	// Token: 0x04002A2B RID: 10795
+	// Token: 0x040022DA RID: 8922
 	public static Renderer aktivnaIkonicaMisija2;
 
-	// Token: 0x04002A2C RID: 10796
+	// Token: 0x040022DB RID: 8923
 	public static Renderer aktivnaIkonicaMisija3;
 
-	// Token: 0x04002A2D RID: 10797
+	// Token: 0x040022DC RID: 8924
 	private float guiCameraY;
 
-	// Token: 0x04002A2E RID: 10798
+	// Token: 0x040022DD RID: 8925
 	private int[] televizorCenePoSvetovima;
 
-	// Token: 0x04002A2F RID: 10799
+	// Token: 0x040022DE RID: 8926
 	public static int makniPopup;
 
-	// Token: 0x04002A30 RID: 10800
+	// Token: 0x040022DF RID: 8927
 	public GameObject TutorialShopPrefab;
 
-	// Token: 0x04002A31 RID: 10801
+	// Token: 0x040022E0 RID: 8928
 	private GameObject TutorialShop;
 
-	// Token: 0x04002A32 RID: 10802
+	// Token: 0x040022E1 RID: 8929
 	private GameObject shop;
 
-	// Token: 0x04002A33 RID: 10803
+	// Token: 0x040022E2 RID: 8930
 	private int reward1Type;
 
-	// Token: 0x04002A34 RID: 10804
+	// Token: 0x040022E3 RID: 8931
 	private int reward2Type;
 
-	// Token: 0x04002A35 RID: 10805
+	// Token: 0x040022E4 RID: 8932
 	private int reward3Type;
 
-	// Token: 0x04002A36 RID: 10806
+	// Token: 0x040022E5 RID: 8933
 	private int kolicinaReward1;
 
-	// Token: 0x04002A37 RID: 10807
+	// Token: 0x040022E6 RID: 8934
 	private int kolicinaReward2;
 
-	// Token: 0x04002A38 RID: 10808
+	// Token: 0x040022E7 RID: 8935
 	private int kolicinaReward3;
 
-	// Token: 0x04002A39 RID: 10809
+	// Token: 0x040022E8 RID: 8936
 	private string cetvrtiKovcegNagrada = "";
 
-	// Token: 0x04002A3A RID: 10810
+	// Token: 0x040022E9 RID: 8937
 	private int indexNagradeZaCetvrtiKovceg = -1;
 
-	// Token: 0x04002A3B RID: 10811
+	// Token: 0x040022EA RID: 8938
 	private Transform popupZaSpustanje;
 
-	// Token: 0x04002A3C RID: 10812
+	// Token: 0x040022EB RID: 8939
 	private bool popunioSlike;
 
-	// Token: 0x02000738 RID: 1848
+	// Token: 0x02001451 RID: 5201
 	private struct scoreAndIndex
 	{
-		// Token: 0x06002EFC RID: 12028 RVA: 0x00022CD9 File Offset: 0x00020ED9
+		// Token: 0x06007FF0 RID: 32752 RVA: 0x002D4032 File Offset: 0x002D2232
 		public scoreAndIndex(int score, int index)
 		{
 			this.score = score;
 			this.index = index;
 		}
 
-		// Token: 0x04002A3D RID: 10813
+		// Token: 0x04006B93 RID: 27539
 		public int score;
 
-		// Token: 0x04002A3E RID: 10814
+		// Token: 0x04006B94 RID: 27540
 		public int index;
 	}
 }

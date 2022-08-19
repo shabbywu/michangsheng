@@ -1,10 +1,10 @@
 ﻿using System;
 using UnityEngine;
 
-// Token: 0x020000F6 RID: 246
+// Token: 0x020000A3 RID: 163
 public class UI2DSpriteAnimation : MonoBehaviour
 {
-	// Token: 0x06000988 RID: 2440 RVA: 0x000878C8 File Offset: 0x00085AC8
+	// Token: 0x060008D0 RID: 2256 RVA: 0x00033C68 File Offset: 0x00031E68
 	private void Start()
 	{
 		this.mUnitySprite = base.GetComponent<SpriteRenderer>();
@@ -15,7 +15,7 @@ public class UI2DSpriteAnimation : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000989 RID: 2441 RVA: 0x00087920 File Offset: 0x00085B20
+	// Token: 0x060008D1 RID: 2257 RVA: 0x00033CC0 File Offset: 0x00031EC0
 	private void Update()
 	{
 		if (this.framerate != 0 && this.frames != null && this.frames.Length != 0)
@@ -39,24 +39,24 @@ public class UI2DSpriteAnimation : MonoBehaviour
 		}
 	}
 
-	// Token: 0x0400068E RID: 1678
+	// Token: 0x04000560 RID: 1376
 	public int framerate = 20;
 
-	// Token: 0x0400068F RID: 1679
+	// Token: 0x04000561 RID: 1377
 	public bool ignoreTimeScale = true;
 
-	// Token: 0x04000690 RID: 1680
+	// Token: 0x04000562 RID: 1378
 	public Sprite[] frames;
 
-	// Token: 0x04000691 RID: 1681
+	// Token: 0x04000563 RID: 1379
 	private SpriteRenderer mUnitySprite;
 
-	// Token: 0x04000692 RID: 1682
+	// Token: 0x04000564 RID: 1380
 	private UI2DSprite mNguiSprite;
 
-	// Token: 0x04000693 RID: 1683
+	// Token: 0x04000565 RID: 1381
 	private int mIndex;
 
-	// Token: 0x04000694 RID: 1684
+	// Token: 0x04000566 RID: 1382
 	private float mUpdate;
 }

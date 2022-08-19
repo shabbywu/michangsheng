@@ -4,11 +4,11 @@ using UnityEngine;
 
 namespace YSGame.TianJiDaBi
 {
-	// Token: 0x02000DC2 RID: 3522
+	// Token: 0x02000A90 RID: 2704
 	[Serializable]
 	public class DaBiPlayer : IComparable
 	{
-		// Token: 0x060054E0 RID: 21728 RVA: 0x00235728 File Offset: 0x00233928
+		// Token: 0x06004BC4 RID: 19396 RVA: 0x002042B0 File Offset: 0x002024B0
 		public void CalcSmallScore(Match match)
 		{
 			this.SmallScore = 0;
@@ -23,7 +23,7 @@ namespace YSGame.TianJiDaBi
 			}
 		}
 
-		// Token: 0x060054E1 RID: 21729 RVA: 0x002357AC File Offset: 0x002339AC
+		// Token: 0x06004BC5 RID: 19397 RVA: 0x00204334 File Offset: 0x00202534
 		public void CalcHideScore(Match match)
 		{
 			this.HideScore = 0;
@@ -35,7 +35,7 @@ namespace YSGame.TianJiDaBi
 			}
 		}
 
-		// Token: 0x060054E2 RID: 21730 RVA: 0x00235820 File Offset: 0x00233A20
+		// Token: 0x06004BC6 RID: 19398 RVA: 0x002043A8 File Offset: 0x002025A8
 		public void LogRecord(Match match)
 		{
 			Debug.Log(string.Format("开始输出ID:{0}的对战记录", this.ID));
@@ -57,62 +57,65 @@ namespace YSGame.TianJiDaBi
 			}
 		}
 
-		// Token: 0x060054E3 RID: 21731 RVA: 0x002358F8 File Offset: 0x00233AF8
+		// Token: 0x06004BC7 RID: 19399 RVA: 0x00204480 File Offset: 0x00202680
 		public int CompareTo(object obj)
 		{
 			DaBiPlayer daBiPlayer = obj as DaBiPlayer;
 			return -this.BigScore.CompareTo(daBiPlayer.BigScore);
 		}
 
-		// Token: 0x04005487 RID: 21639
+		// Token: 0x04004AC9 RID: 19145
 		public int ID;
 
-		// Token: 0x04005488 RID: 21640
+		// Token: 0x04004ACA RID: 19146
 		public string Name;
 
-		// Token: 0x04005489 RID: 21641
+		// Token: 0x04004ACB RID: 19147
 		public string Title;
 
-		// Token: 0x0400548A RID: 21642
+		// Token: 0x04004ACC RID: 19148
 		public int BigScore;
 
-		// Token: 0x0400548B RID: 21643
+		// Token: 0x04004ACD RID: 19149
 		public int SmallScore;
 
-		// Token: 0x0400548C RID: 21644
+		// Token: 0x04004ACE RID: 19150
 		public int HideScore;
 
-		// Token: 0x0400548D RID: 21645
+		// Token: 0x04004ACF RID: 19151
 		public int LastFightID;
 
-		// Token: 0x0400548E RID: 21646
+		// Token: 0x04004AD0 RID: 19152
 		public List<FightRecord> FightRecords = new List<FightRecord>();
 
-		// Token: 0x0400548F RID: 21647
+		// Token: 0x04004AD1 RID: 19153
 		public bool IsWanJia;
 
-		// Token: 0x04005490 RID: 21648
+		// Token: 0x04004AD2 RID: 19154
 		public int Level;
 
-		// Token: 0x04005491 RID: 21649
+		// Token: 0x04004AD3 RID: 19155
 		public int LiuPai;
 
-		// Token: 0x04005492 RID: 21650
+		// Token: 0x04004AD4 RID: 19156
 		public int Atk;
 
-		// Token: 0x04005493 RID: 21651
+		// Token: 0x04004AD5 RID: 19157
 		public int MinAtk;
 
-		// Token: 0x04005494 RID: 21652
+		// Token: 0x04004AD6 RID: 19158
 		public int MaxAtk;
 
-		// Token: 0x04005495 RID: 21653
+		// Token: 0x04004AD7 RID: 19159
 		public int DunSu;
 
-		// Token: 0x04005496 RID: 21654
+		// Token: 0x04004AD8 RID: 19160
 		public int AtkType;
 
-		// Token: 0x04005497 RID: 21655
+		// Token: 0x04004AD9 RID: 19161
 		public int DefType;
+
+		// Token: 0x04004ADA RID: 19162
+		public int HP;
 	}
 }

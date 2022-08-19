@@ -1,16 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
 
-// Token: 0x02000319 RID: 793
+// Token: 0x02000204 RID: 516
 public class DongFuData
 {
-	// Token: 0x0600176B RID: 5995 RVA: 0x00014AE2 File Offset: 0x00012CE2
+	// Token: 0x060014C1 RID: 5313 RVA: 0x00084F0E File Offset: 0x0008310E
 	public DongFuData(int id)
 	{
 		this.ID = id;
 	}
 
-	// Token: 0x0600176C RID: 5996 RVA: 0x000CD918 File Offset: 0x000CBB18
+	// Token: 0x060014C2 RID: 5314 RVA: 0x00084F40 File Offset: 0x00083140
 	public void Load()
 	{
 		JSONObject jsonobject = PlayerEx.Player.DongFuData[string.Format("DongFu{0}", this.ID)];
@@ -48,7 +48,7 @@ public class DongFuData
 		}
 	}
 
-	// Token: 0x0600176D RID: 5997 RVA: 0x000CDB14 File Offset: 0x000CBD14
+	// Token: 0x060014C3 RID: 5315 RVA: 0x0008513C File Offset: 0x0008333C
 	public void Save()
 	{
 		JSONObject jsonobject = new JSONObject(JSONObject.Type.OBJECT);
@@ -76,30 +76,30 @@ public class DongFuData
 		PlayerEx.Player.DongFuData.SetField(string.Format("DongFu{0}", this.ID), jsonobject);
 	}
 
-	// Token: 0x040012C5 RID: 4805
+	// Token: 0x04000F7F RID: 3967
 	public int ID;
 
-	// Token: 0x040012C6 RID: 4806
+	// Token: 0x04000F80 RID: 3968
 	public bool HasDongFu;
 
-	// Token: 0x040012C7 RID: 4807
+	// Token: 0x04000F81 RID: 3969
 	public string DongFuName;
 
-	// Token: 0x040012C8 RID: 4808
+	// Token: 0x04000F82 RID: 3970
 	public int LingYanLevel;
 
-	// Token: 0x040012C9 RID: 4809
+	// Token: 0x04000F83 RID: 3971
 	public int JuLingZhenLevel;
 
-	// Token: 0x040012CA RID: 4810
+	// Token: 0x04000F84 RID: 3972
 	public List<int> AreaUnlock = new List<int>();
 
-	// Token: 0x040012CB RID: 4811
+	// Token: 0x04000F85 RID: 3973
 	public List<int> Decorate = new List<int>();
 
-	// Token: 0x040012CC RID: 4812
+	// Token: 0x04000F86 RID: 3974
 	public int CuiShengLingLi;
 
-	// Token: 0x040012CD RID: 4813
+	// Token: 0x04000F87 RID: 3975
 	public List<LingTianData> LingTian = new List<LingTianData>();
 }

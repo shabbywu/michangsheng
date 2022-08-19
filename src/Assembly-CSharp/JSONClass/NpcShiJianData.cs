@@ -3,10 +3,10 @@ using System.Collections.Generic;
 
 namespace JSONClass
 {
-	// Token: 0x02000C39 RID: 3129
+	// Token: 0x020008AB RID: 2219
 	public class NpcShiJianData : IJSONClass
 	{
-		// Token: 0x06004C4D RID: 19533 RVA: 0x00203988 File Offset: 0x00201B88
+		// Token: 0x060040BF RID: 16575 RVA: 0x001BAAA4 File Offset: 0x001B8CA4
 		public static void InitDataDict()
 		{
 			foreach (JSONObject jsonobject in jsonData.instance.NpcShiJianData.list)
@@ -40,27 +40,27 @@ namespace JSONClass
 			}
 		}
 
-		// Token: 0x06004C4E RID: 19534 RVA: 0x000042DD File Offset: 0x000024DD
+		// Token: 0x060040C0 RID: 16576 RVA: 0x00004095 File Offset: 0x00002295
 		private static void OnInitFinish()
 		{
 		}
 
-		// Token: 0x04004A36 RID: 18998
+		// Token: 0x04003EDE RID: 16094
 		public static Dictionary<int, NpcShiJianData> DataDict = new Dictionary<int, NpcShiJianData>();
 
-		// Token: 0x04004A37 RID: 18999
+		// Token: 0x04003EDF RID: 16095
 		public static List<NpcShiJianData> DataList = new List<NpcShiJianData>();
 
-		// Token: 0x04004A38 RID: 19000
+		// Token: 0x04003EE0 RID: 16096
 		public static Action OnInitFinishAction = new Action(NpcShiJianData.OnInitFinish);
 
-		// Token: 0x04004A39 RID: 19001
+		// Token: 0x04003EE1 RID: 16097
 		public int id;
 
-		// Token: 0x04004A3A RID: 19002
+		// Token: 0x04003EE2 RID: 16098
 		public string ShiJianType;
 
-		// Token: 0x04004A3B RID: 19003
+		// Token: 0x04003EE3 RID: 16099
 		public string ShiJianInfo;
 	}
 }

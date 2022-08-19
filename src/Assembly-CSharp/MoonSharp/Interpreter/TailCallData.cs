@@ -2,32 +2,32 @@
 
 namespace MoonSharp.Interpreter
 {
-	// Token: 0x02001075 RID: 4213
+	// Token: 0x02000CA7 RID: 3239
 	public class TailCallData
 	{
-		// Token: 0x17000904 RID: 2308
-		// (get) Token: 0x060065A7 RID: 26023 RVA: 0x00045FF7 File Offset: 0x000441F7
-		// (set) Token: 0x060065A8 RID: 26024 RVA: 0x00045FFF File Offset: 0x000441FF
+		// Token: 0x170006A9 RID: 1705
+		// (get) Token: 0x06005AB8 RID: 23224 RVA: 0x00258EEB File Offset: 0x002570EB
+		// (set) Token: 0x06005AB9 RID: 23225 RVA: 0x00258EF3 File Offset: 0x002570F3
 		public DynValue Function { get; set; }
 
-		// Token: 0x17000905 RID: 2309
-		// (get) Token: 0x060065A9 RID: 26025 RVA: 0x00046008 File Offset: 0x00044208
-		// (set) Token: 0x060065AA RID: 26026 RVA: 0x00046010 File Offset: 0x00044210
+		// Token: 0x170006AA RID: 1706
+		// (get) Token: 0x06005ABA RID: 23226 RVA: 0x00258EFC File Offset: 0x002570FC
+		// (set) Token: 0x06005ABB RID: 23227 RVA: 0x00258F04 File Offset: 0x00257104
 		public DynValue[] Args { get; set; }
 
-		// Token: 0x17000906 RID: 2310
-		// (get) Token: 0x060065AB RID: 26027 RVA: 0x00046019 File Offset: 0x00044219
-		// (set) Token: 0x060065AC RID: 26028 RVA: 0x00046021 File Offset: 0x00044221
+		// Token: 0x170006AB RID: 1707
+		// (get) Token: 0x06005ABC RID: 23228 RVA: 0x00258F0D File Offset: 0x0025710D
+		// (set) Token: 0x06005ABD RID: 23229 RVA: 0x00258F15 File Offset: 0x00257115
 		public CallbackFunction Continuation { get; set; }
 
-		// Token: 0x17000907 RID: 2311
-		// (get) Token: 0x060065AD RID: 26029 RVA: 0x0004602A File Offset: 0x0004422A
-		// (set) Token: 0x060065AE RID: 26030 RVA: 0x00046032 File Offset: 0x00044232
+		// Token: 0x170006AC RID: 1708
+		// (get) Token: 0x06005ABE RID: 23230 RVA: 0x00258F1E File Offset: 0x0025711E
+		// (set) Token: 0x06005ABF RID: 23231 RVA: 0x00258F26 File Offset: 0x00257126
 		public CallbackFunction ErrorHandler { get; set; }
 
-		// Token: 0x17000908 RID: 2312
-		// (get) Token: 0x060065AF RID: 26031 RVA: 0x0004603B File Offset: 0x0004423B
-		// (set) Token: 0x060065B0 RID: 26032 RVA: 0x00046043 File Offset: 0x00044243
+		// Token: 0x170006AD RID: 1709
+		// (get) Token: 0x06005AC0 RID: 23232 RVA: 0x00258F2F File Offset: 0x0025712F
+		// (set) Token: 0x06005AC1 RID: 23233 RVA: 0x00258F37 File Offset: 0x00257137
 		public DynValue ErrorHandlerBeforeUnwind { get; set; }
 	}
 }

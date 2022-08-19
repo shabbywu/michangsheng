@@ -1,10 +1,10 @@
 ﻿using System;
 using UnityEngine;
 
-// Token: 0x0200001F RID: 31
+// Token: 0x0200001B RID: 27
 public class LTBezier
 {
-	// Token: 0x0600012E RID: 302 RVA: 0x00060F64 File Offset: 0x0005F164
+	// Token: 0x06000128 RID: 296 RVA: 0x000074E0 File Offset: 0x000056E0
 	public LTBezier(Vector3 a, Vector3 b, Vector3 c, Vector3 d, float precision)
 	{
 		this.a = a;
@@ -28,7 +28,7 @@ public class LTBezier
 		this.length = num;
 	}
 
-	// Token: 0x0600012F RID: 303 RVA: 0x00061060 File Offset: 0x0005F260
+	// Token: 0x06000129 RID: 297 RVA: 0x000075DC File Offset: 0x000057DC
 	private float map(float u)
 	{
 		float num = u * this.arcLengths[(int)this.len];
@@ -58,36 +58,36 @@ public class LTBezier
 		return ((float)num3 + (num - this.arcLengths[num3]) / (this.arcLengths[num3 + 1] - this.arcLengths[num3])) / this.len;
 	}
 
-	// Token: 0x06000130 RID: 304 RVA: 0x00004F7C File Offset: 0x0000317C
+	// Token: 0x0600012A RID: 298 RVA: 0x0000766C File Offset: 0x0000586C
 	private Vector3 bezierPoint(float t)
 	{
 		return ((this.aa * t + this.bb) * t + this.cc) * t + this.a;
 	}
 
-	// Token: 0x06000131 RID: 305 RVA: 0x00004FB7 File Offset: 0x000031B7
+	// Token: 0x0600012B RID: 299 RVA: 0x000076A7 File Offset: 0x000058A7
 	public Vector3 point(float t)
 	{
 		return this.bezierPoint(this.map(t));
 	}
 
-	// Token: 0x040000F4 RID: 244
+	// Token: 0x040000E5 RID: 229
 	public float length;
 
-	// Token: 0x040000F5 RID: 245
+	// Token: 0x040000E6 RID: 230
 	private Vector3 a;
 
-	// Token: 0x040000F6 RID: 246
+	// Token: 0x040000E7 RID: 231
 	private Vector3 aa;
 
-	// Token: 0x040000F7 RID: 247
+	// Token: 0x040000E8 RID: 232
 	private Vector3 bb;
 
-	// Token: 0x040000F8 RID: 248
+	// Token: 0x040000E9 RID: 233
 	private Vector3 cc;
 
-	// Token: 0x040000F9 RID: 249
+	// Token: 0x040000EA RID: 234
 	private float len;
 
-	// Token: 0x040000FA RID: 250
+	// Token: 0x040000EB RID: 235
 	private float[] arcLengths;
 }

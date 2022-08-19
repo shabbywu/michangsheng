@@ -7,19 +7,19 @@ using UnityEngine.UI;
 
 namespace SoftMasking
 {
-	// Token: 0x02000A20 RID: 2592
+	// Token: 0x020006E1 RID: 1761
 	[ExecuteInEditMode]
 	[DisallowMultipleComponent]
 	[AddComponentMenu("")]
 	public class SoftMaskable : UIBehaviour, IMaterialModifier
 	{
-		// Token: 0x170007CA RID: 1994
-		// (get) Token: 0x06004331 RID: 17201 RVA: 0x0002FFEA File Offset: 0x0002E1EA
-		// (set) Token: 0x06004332 RID: 17202 RVA: 0x0002FFF2 File Offset: 0x0002E1F2
+		// Token: 0x17000598 RID: 1432
+		// (get) Token: 0x060038CA RID: 14538 RVA: 0x00184609 File Offset: 0x00182809
+		// (set) Token: 0x060038CB RID: 14539 RVA: 0x00184611 File Offset: 0x00182811
 		public bool shaderIsNotSupported { get; private set; }
 
-		// Token: 0x170007CB RID: 1995
-		// (get) Token: 0x06004333 RID: 17203 RVA: 0x0002FFFB File Offset: 0x0002E1FB
+		// Token: 0x17000599 RID: 1433
+		// (get) Token: 0x060038CC RID: 14540 RVA: 0x0018461A File Offset: 0x0018281A
 		public bool isMaskingEnabled
 		{
 			get
@@ -28,9 +28,9 @@ namespace SoftMasking
 			}
 		}
 
-		// Token: 0x170007CC RID: 1996
-		// (get) Token: 0x06004334 RID: 17204 RVA: 0x00030027 File Offset: 0x0002E227
-		// (set) Token: 0x06004335 RID: 17205 RVA: 0x0003002F File Offset: 0x0002E22F
+		// Token: 0x1700059A RID: 1434
+		// (get) Token: 0x060038CD RID: 14541 RVA: 0x00184646 File Offset: 0x00182846
+		// (set) Token: 0x060038CE RID: 14542 RVA: 0x0018464E File Offset: 0x0018284E
 		public ISoftMask mask
 		{
 			get
@@ -51,7 +51,7 @@ namespace SoftMasking
 			}
 		}
 
-		// Token: 0x06004336 RID: 17206 RVA: 0x001CC34C File Offset: 0x001CA54C
+		// Token: 0x060038CF RID: 14543 RVA: 0x00184684 File Offset: 0x00182884
 		public Material GetModifiedMaterial(Material baseMaterial)
 		{
 			if (this.isMaskingEnabled)
@@ -76,7 +76,7 @@ namespace SoftMasking
 			return baseMaterial;
 		}
 
-		// Token: 0x06004337 RID: 17207 RVA: 0x00030064 File Offset: 0x0002E264
+		// Token: 0x060038D0 RID: 14544 RVA: 0x001846E8 File Offset: 0x001828E8
 		public void Invalidate()
 		{
 			if (this.graphic)
@@ -85,7 +85,7 @@ namespace SoftMasking
 			}
 		}
 
-		// Token: 0x06004338 RID: 17208 RVA: 0x0003007E File Offset: 0x0002E27E
+		// Token: 0x060038D1 RID: 14545 RVA: 0x00184702 File Offset: 0x00182902
 		public void MaskMightChanged()
 		{
 			if (this.FindMaskOrDie())
@@ -94,14 +94,14 @@ namespace SoftMasking
 			}
 		}
 
-		// Token: 0x06004339 RID: 17209 RVA: 0x0003008E File Offset: 0x0002E28E
+		// Token: 0x060038D2 RID: 14546 RVA: 0x00184712 File Offset: 0x00182912
 		protected override void Awake()
 		{
 			base.Awake();
 			base.hideFlags = 2;
 		}
 
-		// Token: 0x0600433A RID: 17210 RVA: 0x0003009D File Offset: 0x0002E29D
+		// Token: 0x060038D3 RID: 14547 RVA: 0x00184721 File Offset: 0x00182921
 		protected override void OnEnable()
 		{
 			base.OnEnable();
@@ -111,41 +111,41 @@ namespace SoftMasking
 			}
 		}
 
-		// Token: 0x0600433B RID: 17211 RVA: 0x000300B3 File Offset: 0x0002E2B3
+		// Token: 0x060038D4 RID: 14548 RVA: 0x00184737 File Offset: 0x00182937
 		protected override void OnDisable()
 		{
 			base.OnDisable();
 			this.mask = null;
 		}
 
-		// Token: 0x0600433C RID: 17212 RVA: 0x000300C2 File Offset: 0x0002E2C2
+		// Token: 0x060038D5 RID: 14549 RVA: 0x00184746 File Offset: 0x00182946
 		protected override void OnDestroy()
 		{
 			base.OnDestroy();
 			this._destroyed = true;
 		}
 
-		// Token: 0x0600433D RID: 17213 RVA: 0x000300D1 File Offset: 0x0002E2D1
+		// Token: 0x060038D6 RID: 14550 RVA: 0x00184755 File Offset: 0x00182955
 		protected override void OnTransformParentChanged()
 		{
 			base.OnTransformParentChanged();
 			this.FindMaskOrDie();
 		}
 
-		// Token: 0x0600433E RID: 17214 RVA: 0x000300E0 File Offset: 0x0002E2E0
+		// Token: 0x060038D7 RID: 14551 RVA: 0x00184764 File Offset: 0x00182964
 		protected override void OnCanvasHierarchyChanged()
 		{
 			base.OnCanvasHierarchyChanged();
 			this.FindMaskOrDie();
 		}
 
-		// Token: 0x0600433F RID: 17215 RVA: 0x000300EF File Offset: 0x0002E2EF
+		// Token: 0x060038D8 RID: 14552 RVA: 0x00184773 File Offset: 0x00182973
 		private void OnTransformChildrenChanged()
 		{
 			this.RequestChildTransformUpdate();
 		}
 
-		// Token: 0x06004340 RID: 17216 RVA: 0x000300F7 File Offset: 0x0002E2F7
+		// Token: 0x060038D9 RID: 14553 RVA: 0x0018477B File Offset: 0x0018297B
 		private void RequestChildTransformUpdate()
 		{
 			if (this.mask != null)
@@ -154,8 +154,8 @@ namespace SoftMasking
 			}
 		}
 
-		// Token: 0x170007CD RID: 1997
-		// (get) Token: 0x06004341 RID: 17217 RVA: 0x001CC3B0 File Offset: 0x001CA5B0
+		// Token: 0x1700059B RID: 1435
+		// (get) Token: 0x060038DA RID: 14554 RVA: 0x00184798 File Offset: 0x00182998
 		private Graphic graphic
 		{
 			get
@@ -168,9 +168,9 @@ namespace SoftMasking
 			}
 		}
 
-		// Token: 0x170007CE RID: 1998
-		// (get) Token: 0x06004342 RID: 17218 RVA: 0x00030112 File Offset: 0x0002E312
-		// (set) Token: 0x06004343 RID: 17219 RVA: 0x0003011A File Offset: 0x0002E31A
+		// Token: 0x1700059C RID: 1436
+		// (get) Token: 0x060038DB RID: 14555 RVA: 0x001847C8 File Offset: 0x001829C8
+		// (set) Token: 0x060038DC RID: 14556 RVA: 0x001847D0 File Offset: 0x001829D0
 		private Material replacement
 		{
 			get
@@ -190,7 +190,7 @@ namespace SoftMasking
 			}
 		}
 
-		// Token: 0x06004344 RID: 17220 RVA: 0x001CC3E0 File Offset: 0x001CA5E0
+		// Token: 0x060038DD RID: 14557 RVA: 0x00184810 File Offset: 0x00182A10
 		private bool FindMaskOrDie()
 		{
 			if (this._destroyed)
@@ -207,7 +207,7 @@ namespace SoftMasking
 			return true;
 		}
 
-		// Token: 0x06004345 RID: 17221 RVA: 0x001CC440 File Offset: 0x001CA640
+		// Token: 0x060038DE RID: 14558 RVA: 0x00184870 File Offset: 0x00182A70
 		private static ISoftMask NearestMask(Transform transform, out bool processedByThisMask, bool enabledOnly = true)
 		{
 			processedByThisMask = true;
@@ -231,7 +231,7 @@ namespace SoftMasking
 			return null;
 		}
 
-		// Token: 0x06004346 RID: 17222 RVA: 0x001CC488 File Offset: 0x001CA688
+		// Token: 0x060038DF RID: 14559 RVA: 0x001848B8 File Offset: 0x00182AB8
 		private static ISoftMask GetISoftMask(Transform current, bool shouldBeEnabled = true)
 		{
 			ISoftMask component = SoftMaskable.GetComponent<ISoftMask>(current, SoftMaskable.s_softMasks);
@@ -242,14 +242,14 @@ namespace SoftMasking
 			return null;
 		}
 
-		// Token: 0x06004347 RID: 17223 RVA: 0x001CC4BC File Offset: 0x001CA6BC
+		// Token: 0x060038E0 RID: 14560 RVA: 0x001848EC File Offset: 0x00182AEC
 		private static bool IsOverridingSortingCanvas(Transform transform)
 		{
 			Canvas component = SoftMaskable.GetComponent<Canvas>(transform, SoftMaskable.s_canvases);
 			return component && component.overrideSorting;
 		}
 
-		// Token: 0x06004348 RID: 17224 RVA: 0x001CC4E8 File Offset: 0x001CA6E8
+		// Token: 0x060038E1 RID: 14561 RVA: 0x00184918 File Offset: 0x00182B18
 		private static T GetComponent<T>(Component component, List<T> cachedList) where T : class
 		{
 			component.GetComponents<T>(cachedList);
@@ -271,7 +271,7 @@ namespace SoftMasking
 			return t;
 		}
 
-		// Token: 0x06004349 RID: 17225 RVA: 0x00030158 File Offset: 0x0002E358
+		// Token: 0x060038E2 RID: 14562 RVA: 0x00184974 File Offset: 0x00182B74
 		private void SetShaderNotSupported(Material material)
 		{
 			if (!this.shaderIsNotSupported)
@@ -285,25 +285,25 @@ namespace SoftMasking
 			}
 		}
 
-		// Token: 0x04003B52 RID: 15186
+		// Token: 0x040030F3 RID: 12531
 		private ISoftMask _mask;
 
-		// Token: 0x04003B53 RID: 15187
+		// Token: 0x040030F4 RID: 12532
 		private Graphic _graphic;
 
-		// Token: 0x04003B54 RID: 15188
+		// Token: 0x040030F5 RID: 12533
 		private Material _replacement;
 
-		// Token: 0x04003B55 RID: 15189
+		// Token: 0x040030F6 RID: 12534
 		private bool _affectedByMask;
 
-		// Token: 0x04003B56 RID: 15190
+		// Token: 0x040030F7 RID: 12535
 		private bool _destroyed;
 
-		// Token: 0x04003B58 RID: 15192
+		// Token: 0x040030F9 RID: 12537
 		private static List<ISoftMask> s_softMasks = new List<ISoftMask>();
 
-		// Token: 0x04003B59 RID: 15193
+		// Token: 0x040030FA RID: 12538
 		private static List<Canvas> s_canvases = new List<Canvas>();
 	}
 }

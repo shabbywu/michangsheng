@@ -5,30 +5,30 @@ using MoonSharp.Interpreter.Tree.Expressions;
 
 namespace MoonSharp.Interpreter.Tree
 {
-	// Token: 0x0200109C RID: 4252
+	// Token: 0x02000CC6 RID: 3270
 	internal abstract class Expression : NodeBase
 	{
-		// Token: 0x060066CA RID: 26314 RVA: 0x00046D55 File Offset: 0x00044F55
+		// Token: 0x06005BC1 RID: 23489 RVA: 0x0025B2E1 File Offset: 0x002594E1
 		public Expression(ScriptLoadingContext lcontext) : base(lcontext)
 		{
 		}
 
-		// Token: 0x060066CB RID: 26315 RVA: 0x0000B171 File Offset: 0x00009371
+		// Token: 0x06005BC2 RID: 23490 RVA: 0x000306E7 File Offset: 0x0002E8E7
 		public virtual string GetFriendlyDebugName()
 		{
 			return null;
 		}
 
-		// Token: 0x060066CC RID: 26316
+		// Token: 0x06005BC3 RID: 23491
 		public abstract DynValue Eval(ScriptExecutionContext context);
 
-		// Token: 0x060066CD RID: 26317 RVA: 0x0000B171 File Offset: 0x00009371
+		// Token: 0x06005BC4 RID: 23492 RVA: 0x000306E7 File Offset: 0x0002E8E7
 		public virtual SymbolRef FindDynamic(ScriptExecutionContext context)
 		{
 			return null;
 		}
 
-		// Token: 0x060066CE RID: 26318 RVA: 0x00284D68 File Offset: 0x00282F68
+		// Token: 0x06005BC5 RID: 23493 RVA: 0x0025B2EC File Offset: 0x002594EC
 		internal static List<Expression> ExprListAfterFirstExpr(ScriptLoadingContext lcontext, Expression expr1)
 		{
 			List<Expression> list = new List<Expression>();
@@ -41,7 +41,7 @@ namespace MoonSharp.Interpreter.Tree
 			return list;
 		}
 
-		// Token: 0x060066CF RID: 26319 RVA: 0x00284DB0 File Offset: 0x00282FB0
+		// Token: 0x06005BC6 RID: 23494 RVA: 0x0025B334 File Offset: 0x00259534
 		internal static List<Expression> ExprList(ScriptLoadingContext lcontext)
 		{
 			List<Expression> list = new List<Expression>();
@@ -57,13 +57,13 @@ namespace MoonSharp.Interpreter.Tree
 			return list;
 		}
 
-		// Token: 0x060066D0 RID: 26320 RVA: 0x00046D5E File Offset: 0x00044F5E
+		// Token: 0x06005BC7 RID: 23495 RVA: 0x0025B375 File Offset: 0x00259575
 		internal static Expression Expr(ScriptLoadingContext lcontext)
 		{
 			return Expression.SubExpr(lcontext, true);
 		}
 
-		// Token: 0x060066D1 RID: 26321 RVA: 0x00284DF4 File Offset: 0x00282FF4
+		// Token: 0x06005BC8 RID: 23496 RVA: 0x0025B380 File Offset: 0x00259580
 		internal static Expression SubExpr(ScriptLoadingContext lcontext, bool isPrimary)
 		{
 			Token token = lcontext.Lexer.Current;
@@ -114,7 +114,7 @@ namespace MoonSharp.Interpreter.Tree
 			return expression;
 		}
 
-		// Token: 0x060066D2 RID: 26322 RVA: 0x00284F40 File Offset: 0x00283140
+		// Token: 0x06005BC9 RID: 23497 RVA: 0x0025B4CC File Offset: 0x002596CC
 		internal static Expression SimpleExp(ScriptLoadingContext lcontext)
 		{
 			Token token = lcontext.Lexer.Current;
@@ -169,7 +169,7 @@ namespace MoonSharp.Interpreter.Tree
 			return Expression.PrimaryExp(lcontext);
 		}
 
-		// Token: 0x060066D3 RID: 26323 RVA: 0x00284FF0 File Offset: 0x002831F0
+		// Token: 0x06005BCA RID: 23498 RVA: 0x0025B57C File Offset: 0x0025977C
 		internal static Expression PrimaryExp(ScriptLoadingContext lcontext)
 		{
 			Expression expression = Expression.PrefixExp(lcontext);
@@ -230,7 +230,7 @@ namespace MoonSharp.Interpreter.Tree
 			return expression;
 		}
 
-		// Token: 0x060066D4 RID: 26324 RVA: 0x00285110 File Offset: 0x00283310
+		// Token: 0x06005BCB RID: 23499 RVA: 0x0025B69C File Offset: 0x0025989C
 		private static Expression PrefixExp(ScriptLoadingContext lcontext)
 		{
 			Token token = lcontext.Lexer.Current;

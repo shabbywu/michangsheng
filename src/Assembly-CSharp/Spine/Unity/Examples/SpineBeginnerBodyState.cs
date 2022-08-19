@@ -2,14 +2,14 @@
 
 namespace Spine.Unity.Examples
 {
-	// Token: 0x02000E2E RID: 3630
+	// Token: 0x02000AE1 RID: 2785
 	public enum SpineBeginnerBodyState
 	{
-		// Token: 0x0400574C RID: 22348
+		// Token: 0x04004D43 RID: 19779
 		Idle,
-		// Token: 0x0400574D RID: 22349
+		// Token: 0x04004D44 RID: 19780
 		Running,
-		// Token: 0x0400574E RID: 22350
+		// Token: 0x04004D45 RID: 19781
 		Jumping
 	}
 }

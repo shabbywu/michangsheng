@@ -2,10 +2,10 @@
 using System.Collections.Generic;
 using JSONClass;
 
-// Token: 0x02000329 RID: 809
+// Token: 0x02000211 RID: 529
 public class NPCFuYe
 {
-	// Token: 0x060017CF RID: 6095 RVA: 0x000CF878 File Offset: 0x000CDA78
+	// Token: 0x0600151E RID: 5406 RVA: 0x000871E8 File Offset: 0x000853E8
 	public void NpcLianDan(int npcId)
 	{
 		JSONObject jsonobject = jsonData.instance.AvatarJsonData[npcId.ToString()];
@@ -45,7 +45,7 @@ public class NPCFuYe
 		NpcJieSuanManager.inst.npcMap.AddNpcToThreeScene(npcId, i4);
 	}
 
-	// Token: 0x060017D0 RID: 6096 RVA: 0x000CFAE4 File Offset: 0x000CDCE4
+	// Token: 0x0600151F RID: 5407 RVA: 0x00087454 File Offset: 0x00085654
 	public void NpcCreateZhenQi(int npcId)
 	{
 		int i = jsonData.instance.AvatarJsonData[npcId.ToString()]["wuDaoJson"]["10"]["level"].I;
@@ -63,7 +63,7 @@ public class NPCFuYe
 		NpcJieSuanManager.inst.npcSetField.AddNpcMoney(npcId, (int)((float)jsonData.instance.NpcLevelShouYiDate[jsonobject["Level"].I.ToString()]["money"].I * 1.5f));
 	}
 
-	// Token: 0x060017D1 RID: 6097 RVA: 0x000CFC20 File Offset: 0x000CDE20
+	// Token: 0x06001520 RID: 5408 RVA: 0x00087590 File Offset: 0x00085790
 	private int GetRandomDanYao(int targetQuality)
 	{
 		if (targetQuality == 6 && Tools.instance.GetRandomInt(0, 100) > 10)
@@ -74,7 +74,7 @@ public class NPCFuYe
 		{
 			foreach (string text in jsonData.instance.ItemJsonData.Keys)
 			{
-				if (jsonData.instance.ItemJsonData[text]["type"].I == 5)
+				if (jsonData.instance.ItemJsonData[text]["type"].I == 5 && jsonData.instance.ItemJsonData[text]["ShopType"].I != 99)
 				{
 					int i = jsonData.instance.ItemJsonData[text]["quality"].I;
 					if (this.danYaoQualityDictionary.ContainsKey(i))
@@ -94,7 +94,7 @@ public class NPCFuYe
 		return this.danYaoQualityDictionary[targetQuality][NpcJieSuanManager.inst.getRandomInt(0, this.danYaoQualityDictionary[targetQuality].Count - 1)];
 	}
 
-	// Token: 0x060017D2 RID: 6098 RVA: 0x000CFD5C File Offset: 0x000CDF5C
+	// Token: 0x06001521 RID: 5409 RVA: 0x000876F0 File Offset: 0x000858F0
 	public void NpcLianQi(int npcId)
 	{
 		JSONObject jsonobject = jsonData.instance.AvatarJsonData[npcId.ToString()];
@@ -117,10 +117,10 @@ public class NPCFuYe
 		NpcJieSuanManager.inst.npcMap.AddNpcToThreeScene(npcId, i3);
 	}
 
-	// Token: 0x04001330 RID: 4912
+	// Token: 0x04000FE0 RID: 4064
 	private Dictionary<int, List<int>> danYaoQualityDictionary = new Dictionary<int, List<int>>();
 
-	// Token: 0x04001331 RID: 4913
+	// Token: 0x04000FE1 RID: 4065
 	private List<int> danYaoQualityList = new List<int>
 	{
 		10,

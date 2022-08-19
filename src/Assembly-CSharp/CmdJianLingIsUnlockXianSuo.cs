@@ -2,12 +2,12 @@
 using Fungus;
 using UnityEngine;
 
-// Token: 0x0200041C RID: 1052
+// Token: 0x020002D0 RID: 720
 [CommandInfo("剑灵", "检查是否解锁线索", "检查是否解锁了线索(赋值到TmpBool)", 0)]
 [AddComponentMenu("")]
 public class CmdJianLingIsUnlockXianSuo : Command
 {
-	// Token: 0x06001C3A RID: 7226 RVA: 0x000FAE60 File Offset: 0x000F9060
+	// Token: 0x06001932 RID: 6450 RVA: 0x000B4E94 File Offset: 0x000B3094
 	public override void OnEnter()
 	{
 		bool value = PlayerEx.Player.jianLingManager.IsXianSuoUnlocked(this.ID);
@@ -15,7 +15,7 @@ public class CmdJianLingIsUnlockXianSuo : Command
 		this.Continue();
 	}
 
-	// Token: 0x0400183E RID: 6206
+	// Token: 0x04001470 RID: 5232
 	[SerializeField]
 	protected string ID;
 }

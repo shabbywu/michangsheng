@@ -2,19 +2,19 @@
 using Fungus;
 using UnityEngine;
 
-// Token: 0x02000345 RID: 837
+// Token: 0x02000229 RID: 553
 [CommandInfo("YSNPCJiaoHu", "根据变量增加好感度", "根据变量增加好感度", 0)]
 [AddComponentMenu("")]
 public class CmdAddFavor : Command
 {
-	// Token: 0x060018A8 RID: 6312 RVA: 0x000154C1 File Offset: 0x000136C1
+	// Token: 0x060015F0 RID: 5616 RVA: 0x00094D84 File Offset: 0x00092F84
 	public override void OnEnter()
 	{
 		NPCEx.AddFavor(UINPCSVItem.RefreshNPCFavorID = NPCEx.NPCIDToNew(this.NPCID.Value), this.Favor.Value, true, this.ShowTips);
 		this.Continue();
 	}
 
-	// Token: 0x040013A1 RID: 5025
+	// Token: 0x04001049 RID: 4169
 	[SerializeField]
 	[Tooltip("NPCID(老ID或者新ID皆可)")]
 	[VariableProperty(new Type[]
@@ -23,7 +23,7 @@ public class CmdAddFavor : Command
 	})]
 	protected IntegerVariable NPCID;
 
-	// Token: 0x040013A2 RID: 5026
+	// Token: 0x0400104A RID: 4170
 	[SerializeField]
 	[Tooltip("增加的好感度")]
 	[VariableProperty(new Type[]
@@ -32,7 +32,7 @@ public class CmdAddFavor : Command
 	})]
 	protected IntegerVariable Favor;
 
-	// Token: 0x040013A3 RID: 5027
+	// Token: 0x0400104B RID: 4171
 	[SerializeField]
 	[Tooltip("是否显示提示")]
 	protected bool ShowTips;

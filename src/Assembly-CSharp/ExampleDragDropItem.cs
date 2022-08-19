@@ -1,11 +1,11 @@
 ﻿using System;
 using UnityEngine;
 
-// Token: 0x02000059 RID: 89
+// Token: 0x02000041 RID: 65
 [AddComponentMenu("NGUI/Examples/Drag and Drop Item (Example)")]
 public class ExampleDragDropItem : UIDragDropItem
 {
-	// Token: 0x0600049C RID: 1180 RVA: 0x0006F168 File Offset: 0x0006D368
+	// Token: 0x0600044E RID: 1102 RVA: 0x00017C80 File Offset: 0x00015E80
 	protected override void OnDragDropRelease(GameObject surface)
 	{
 		if (surface != null)
@@ -28,6 +28,6 @@ public class ExampleDragDropItem : UIDragDropItem
 		base.OnDragDropRelease(surface);
 	}
 
-	// Token: 0x040002E4 RID: 740
+	// Token: 0x04000274 RID: 628
 	public GameObject prefab;
 }

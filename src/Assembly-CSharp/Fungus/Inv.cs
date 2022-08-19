@@ -3,12 +3,12 @@ using UnityEngine;
 
 namespace Fungus
 {
-	// Token: 0x0200123B RID: 4667
+	// Token: 0x02000DF5 RID: 3573
 	[CommandInfo("Math", "Inverse", "Multiplicative Inverse of a float (1/f)", 0)]
 	[AddComponentMenu("")]
 	public class Inv : BaseUnaryMathCommand
 	{
-		// Token: 0x060071AE RID: 29102 RVA: 0x002A64E8 File Offset: 0x002A46E8
+		// Token: 0x06006520 RID: 25888 RVA: 0x00281EB4 File Offset: 0x002800B4
 		public override void OnEnter()
 		{
 			float value = this.inValue.Value;

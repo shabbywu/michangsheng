@@ -5,31 +5,31 @@ using UnityEngine;
 
 namespace Spine.Unity.Examples
 {
-	// Token: 0x02000E4A RID: 3658
+	// Token: 0x02000AF3 RID: 2803
 	public class RaggedySpineboy : MonoBehaviour
 	{
-		// Token: 0x060057D2 RID: 22482 RVA: 0x0003EC9B File Offset: 0x0003CE9B
+		// Token: 0x06004E3D RID: 20029 RVA: 0x00215EC6 File Offset: 0x002140C6
 		private void Start()
 		{
 			this.ragdoll = base.GetComponent<SkeletonRagdoll2D>();
 			this.naturalCollider = base.GetComponent<Collider2D>();
 		}
 
-		// Token: 0x060057D3 RID: 22483 RVA: 0x0003ECB5 File Offset: 0x0003CEB5
+		// Token: 0x06004E3E RID: 20030 RVA: 0x00215EE0 File Offset: 0x002140E0
 		private void AddRigidbody()
 		{
 			base.gameObject.AddComponent<Rigidbody2D>().freezeRotation = true;
 			this.naturalCollider.enabled = true;
 		}
 
-		// Token: 0x060057D4 RID: 22484 RVA: 0x0003ECD4 File Offset: 0x0003CED4
+		// Token: 0x06004E3F RID: 20031 RVA: 0x00215EFF File Offset: 0x002140FF
 		private void RemoveRigidbody()
 		{
 			Object.Destroy(base.GetComponent<Rigidbody2D>());
 			this.naturalCollider.enabled = false;
 		}
 
-		// Token: 0x060057D5 RID: 22485 RVA: 0x0003ECED File Offset: 0x0003CEED
+		// Token: 0x06004E40 RID: 20032 RVA: 0x00215F18 File Offset: 0x00214118
 		private void OnMouseUp()
 		{
 			if (this.naturalCollider.enabled)
@@ -38,7 +38,7 @@ namespace Spine.Unity.Examples
 			}
 		}
 
-		// Token: 0x060057D6 RID: 22486 RVA: 0x00245E60 File Offset: 0x00244060
+		// Token: 0x06004E41 RID: 20033 RVA: 0x00215F30 File Offset: 0x00214130
 		private void Launch()
 		{
 			this.RemoveRigidbody();
@@ -47,7 +47,7 @@ namespace Spine.Unity.Examples
 			base.StartCoroutine(this.WaitUntilStopped());
 		}
 
-		// Token: 0x060057D7 RID: 22487 RVA: 0x0003ED02 File Offset: 0x0003CF02
+		// Token: 0x06004E42 RID: 20034 RVA: 0x00215F97 File Offset: 0x00214197
 		private IEnumerator Restore()
 		{
 			Vector3 estimatedSkeletonPosition = this.ragdoll.EstimatedSkeletonPosition;
@@ -66,7 +66,7 @@ namespace Spine.Unity.Examples
 			yield break;
 		}
 
-		// Token: 0x060057D8 RID: 22488 RVA: 0x0003ED11 File Offset: 0x0003CF11
+		// Token: 0x06004E43 RID: 20035 RVA: 0x00215FA6 File Offset: 0x002141A6
 		private IEnumerator WaitUntilStopped()
 		{
 			yield return new WaitForSeconds(0.5f);
@@ -80,19 +80,19 @@ namespace Spine.Unity.Examples
 			yield break;
 		}
 
-		// Token: 0x040057D8 RID: 22488
+		// Token: 0x04004DB3 RID: 19891
 		public LayerMask groundMask;
 
-		// Token: 0x040057D9 RID: 22489
+		// Token: 0x04004DB4 RID: 19892
 		public float restoreDuration = 0.5f;
 
-		// Token: 0x040057DA RID: 22490
+		// Token: 0x04004DB5 RID: 19893
 		public Vector2 launchVelocity = new Vector2(50f, 100f);
 
-		// Token: 0x040057DB RID: 22491
+		// Token: 0x04004DB6 RID: 19894
 		private SkeletonRagdoll2D ragdoll;
 
-		// Token: 0x040057DC RID: 22492
+		// Token: 0x04004DB7 RID: 19895
 		private Collider2D naturalCollider;
 	}
 }

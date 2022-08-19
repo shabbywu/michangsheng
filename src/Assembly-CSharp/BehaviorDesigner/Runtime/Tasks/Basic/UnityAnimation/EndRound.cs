@@ -6,27 +6,31 @@ using YSGame;
 
 namespace BehaviorDesigner.Runtime.Tasks.Basic.UnityAnimation
 {
-	// Token: 0x02001675 RID: 5749
+	// Token: 0x020011B3 RID: 4531
 	[TaskCategory("YS")]
 	[TaskDescription("结束回合")]
 	public class EndRound : Action
 	{
-		// Token: 0x06008571 RID: 34161 RVA: 0x000042DD File Offset: 0x000024DD
+		// Token: 0x06007765 RID: 30565 RVA: 0x00004095 File Offset: 0x00002295
 		public override void OnAwake()
 		{
 		}
 
-		// Token: 0x06008572 RID: 34162 RVA: 0x0005C95E File Offset: 0x0005AB5E
+		// Token: 0x06007766 RID: 30566 RVA: 0x002B9020 File Offset: 0x002B7220
 		public override void OnStart()
 		{
 			this.avatar = (Avatar)this.gameObject.GetComponent<AvaterAddScript>().entity;
 		}
 
-		// Token: 0x06008573 RID: 34163 RVA: 0x002D110C File Offset: 0x002CF30C
+		// Token: 0x06007767 RID: 30567 RVA: 0x002B9040 File Offset: 0x002B7240
 		public override TaskStatus OnUpdate()
 		{
 			if (!this.avatar.isPlayer())
 			{
+				if (!this.CanEndRound())
+				{
+					return 3;
+				}
 				this.avatar.state = 2;
 				Queue<UnityAction> queue = new Queue<UnityAction>();
 				UnityAction item = delegate()
@@ -40,15 +44,30 @@ namespace BehaviorDesigner.Runtime.Tasks.Basic.UnityAnimation
 			return 2;
 		}
 
-		// Token: 0x06008574 RID: 34164 RVA: 0x000042DD File Offset: 0x000024DD
+		// Token: 0x06007768 RID: 30568 RVA: 0x002B9098 File Offset: 0x002B7298
+		private bool CanEndRound()
+		{
+			string text = this.transform.GetChild(this.transform.childCount - 1).name;
+			if (RoundManager.instance != null)
+			{
+				text = text.Replace("(Clone)", "");
+				if (RoundManager.instance.SkillList.Contains(text))
+				{
+					return false;
+				}
+			}
+			return true;
+		}
+
+		// Token: 0x06007769 RID: 30569 RVA: 0x00004095 File Offset: 0x00002295
 		public override void OnReset()
 		{
 		}
 
-		// Token: 0x04007234 RID: 29236
+		// Token: 0x04006305 RID: 25349
 		private Avatar avatar;
 
-		// Token: 0x04007235 RID: 29237
+		// Token: 0x04006306 RID: 25350
 		private SharedInt tempWeith;
 	}
 }

@@ -4,12 +4,12 @@ using UnityEngine;
 
 namespace UltimateSurvival
 {
-	// Token: 0x0200089D RID: 2205
+	// Token: 0x020005D8 RID: 1496
 	[Serializable]
 	public class ItemHolder
 	{
-		// Token: 0x170005D8 RID: 1496
-		// (get) Token: 0x060038D2 RID: 14546 RVA: 0x000294E6 File Offset: 0x000276E6
+		// Token: 0x1700041B RID: 1051
+		// (get) Token: 0x06003036 RID: 12342 RVA: 0x0015A11B File Offset: 0x0015831B
 		public bool HasItem
 		{
 			get
@@ -18,18 +18,18 @@ namespace UltimateSurvival
 			}
 		}
 
-		// Token: 0x170005D9 RID: 1497
-		// (get) Token: 0x060038D3 RID: 14547 RVA: 0x000294F1 File Offset: 0x000276F1
-		// (set) Token: 0x060038D4 RID: 14548 RVA: 0x000294F9 File Offset: 0x000276F9
+		// Token: 0x1700041C RID: 1052
+		// (get) Token: 0x06003037 RID: 12343 RVA: 0x0015A126 File Offset: 0x00158326
+		// (set) Token: 0x06003038 RID: 12344 RVA: 0x0015A12E File Offset: 0x0015832E
 		public SavableItem CurrentItem { get; private set; }
 
-		// Token: 0x060038D5 RID: 14549 RVA: 0x000079B2 File Offset: 0x00005BB2
+		// Token: 0x06003039 RID: 12345 RVA: 0x00014667 File Offset: 0x00012867
 		public static implicit operator bool(ItemHolder holder)
 		{
 			return holder != null;
 		}
 
-		// Token: 0x060038D6 RID: 14550 RVA: 0x001A3B6C File Offset: 0x001A1D6C
+		// Token: 0x0600303A RID: 12346 RVA: 0x0015A138 File Offset: 0x00158338
 		public bool TryAddItem(ItemData itemData, int amount, out int added, List<ItemProperty.Value> customPropertyValues = null, ulong _uuid = 0UL, int _index = 0)
 		{
 			added = 0;
@@ -64,7 +64,7 @@ namespace UltimateSurvival
 			return added > 0;
 		}
 
-		// Token: 0x060038D7 RID: 14551 RVA: 0x001A3C5C File Offset: 0x001A1E5C
+		// Token: 0x0600303B RID: 12347 RVA: 0x0015A228 File Offset: 0x00158428
 		public void SetItem(SavableItem item)
 		{
 			if (this.CurrentItem)
@@ -81,7 +81,7 @@ namespace UltimateSurvival
 			this.Updated.Send(this);
 		}
 
-		// Token: 0x060038D8 RID: 14552 RVA: 0x001A3D08 File Offset: 0x001A1F08
+		// Token: 0x0600303C RID: 12348 RVA: 0x0015A2D4 File Offset: 0x001584D4
 		public void RemoveFromStack(int amount, out int removed)
 		{
 			removed = 0;
@@ -101,7 +101,7 @@ namespace UltimateSurvival
 			this.Updated.Send(this);
 		}
 
-		// Token: 0x060038D9 RID: 14553 RVA: 0x001A3D8C File Offset: 0x001A1F8C
+		// Token: 0x0600303D RID: 12349 RVA: 0x0015A358 File Offset: 0x00158558
 		public void RemoveFromStack(int amount)
 		{
 			if (!this.HasItem)
@@ -113,28 +113,28 @@ namespace UltimateSurvival
 			this.Updated.Send(this);
 		}
 
-		// Token: 0x060038DA RID: 14554 RVA: 0x00029502 File Offset: 0x00027702
+		// Token: 0x0600303E RID: 12350 RVA: 0x0015A3A4 File Offset: 0x001585A4
 		private void On_PropertyChanged(ItemProperty.Value propertyValue)
 		{
 			this.Updated.Send(this);
 		}
 
-		// Token: 0x060038DB RID: 14555 RVA: 0x00029502 File Offset: 0x00027702
+		// Token: 0x0600303F RID: 12351 RVA: 0x0015A3A4 File Offset: 0x001585A4
 		private void On_StackChanged()
 		{
 			this.Updated.Send(this);
 		}
 
-		// Token: 0x04003314 RID: 13076
+		// Token: 0x04002A7E RID: 10878
 		public Message<ItemHolder> Updated = new Message<ItemHolder>();
 
-		// Token: 0x04003316 RID: 13078
+		// Token: 0x04002A80 RID: 10880
 		public ulong uuid;
 
-		// Token: 0x04003317 RID: 13079
+		// Token: 0x04002A81 RID: 10881
 		public int index;
 
-		// Token: 0x04003318 RID: 13080
+		// Token: 0x04002A82 RID: 10882
 		public int itemID;
 	}
 }

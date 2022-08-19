@@ -4,17 +4,17 @@ using DG.Tweening;
 using Spine.Unity;
 using UnityEngine;
 
-// Token: 0x0200055B RID: 1371
+// Token: 0x020003C7 RID: 967
 public class EndlessFengBao : MonoBehaviour
 {
-	// Token: 0x0600230C RID: 8972 RVA: 0x0001C827 File Offset: 0x0001AA27
+	// Token: 0x06001F99 RID: 8089 RVA: 0x000DF06C File Offset: 0x000DD26C
 	private void Awake()
 	{
 		this.mr = base.GetComponentInChildren<MeshRenderer>();
 		this.anim = base.GetComponentInChildren<SkeletonAnimation>();
 	}
 
-	// Token: 0x0600230D RID: 8973 RVA: 0x00121BE4 File Offset: 0x0011FDE4
+	// Token: 0x06001F9A RID: 8090 RVA: 0x000DF088 File Offset: 0x000DD288
 	public void Show()
 	{
 		this.anim.gameObject.SetActive(false);
@@ -37,7 +37,7 @@ public class EndlessFengBao : MonoBehaviour
 		base.StartCoroutine("RandomPlay");
 	}
 
-	// Token: 0x0600230E RID: 8974 RVA: 0x0001C841 File Offset: 0x0001AA41
+	// Token: 0x06001F9B RID: 8091 RVA: 0x000DF150 File Offset: 0x000DD350
 	private IEnumerator RandomPlay()
 	{
 		float num;
@@ -56,27 +56,27 @@ public class EndlessFengBao : MonoBehaviour
 		yield break;
 	}
 
-	// Token: 0x0600230F RID: 8975 RVA: 0x0001C850 File Offset: 0x0001AA50
+	// Token: 0x06001F9C RID: 8092 RVA: 0x000DF15F File Offset: 0x000DD35F
 	public void Move(Vector3 endPositon)
 	{
 		ShortcutExtensions.DOMove(base.transform, endPositon, 1f, false);
 	}
 
-	// Token: 0x04001E23 RID: 7715
+	// Token: 0x040019A5 RID: 6565
 	public int id;
 
-	// Token: 0x04001E24 RID: 7716
+	// Token: 0x040019A6 RID: 6566
 	public int index;
 
-	// Token: 0x04001E25 RID: 7717
+	// Token: 0x040019A7 RID: 6567
 	public int lv;
 
-	// Token: 0x04001E26 RID: 7718
+	// Token: 0x040019A8 RID: 6568
 	public int seaid;
 
-	// Token: 0x04001E27 RID: 7719
+	// Token: 0x040019A9 RID: 6569
 	private MeshRenderer mr;
 
-	// Token: 0x04001E28 RID: 7720
+	// Token: 0x040019AA RID: 6570
 	private SkeletonAnimation anim;
 }

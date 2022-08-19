@@ -6,10 +6,10 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
 
-// Token: 0x020003C7 RID: 967
+// Token: 0x02000297 RID: 663
 public class ChuanYingMessage : MonoBehaviour
 {
-	// Token: 0x06001ABA RID: 6842 RVA: 0x000EC2D4 File Offset: 0x000EA4D4
+	// Token: 0x060017DA RID: 6106 RVA: 0x000A5318 File Offset: 0x000A3518
 	public void init()
 	{
 		this.isInit = false;
@@ -52,7 +52,7 @@ public class ChuanYingMessage : MonoBehaviour
 		this.updateSelfHeight();
 	}
 
-	// Token: 0x06001ABB RID: 6843 RVA: 0x000EC504 File Offset: 0x000EA704
+	// Token: 0x060017DB RID: 6107 RVA: 0x000A5548 File Offset: 0x000A3748
 	private void selectClick()
 	{
 		if (this.isRead && this.deleteBtn.isIn)
@@ -151,7 +151,7 @@ public class ChuanYingMessage : MonoBehaviour
 		ChuanYingSystemManager.inst.checkHasRead();
 	}
 
-	// Token: 0x06001ABC RID: 6844 RVA: 0x000EC9D8 File Offset: 0x000EABD8
+	// Token: 0x060017DC RID: 6108 RVA: 0x000A5A1C File Offset: 0x000A3C1C
 	public void updateSelfHeight()
 	{
 		LayoutRebuilder.ForceRebuildLayoutImmediate(this.childContentRectTransform);
@@ -168,66 +168,66 @@ public class ChuanYingMessage : MonoBehaviour
 		LayoutRebuilder.ForceRebuildLayoutImmediate(ChuanYingSystemManager.inst.rectTransform);
 	}
 
-	// Token: 0x04001619 RID: 5657
+	// Token: 0x04001290 RID: 4752
 	public GameObject content;
 
-	// Token: 0x0400161A RID: 5658
+	// Token: 0x04001291 RID: 4753
 	[SerializeField]
 	private Button BtnSelect;
 
-	// Token: 0x0400161B RID: 5659
+	// Token: 0x04001292 RID: 4754
 	[SerializeField]
 	private Image Bg;
 
-	// Token: 0x0400161C RID: 5660
+	// Token: 0x04001293 RID: 4755
 	[SerializeField]
 	private Image statusImage;
 
-	// Token: 0x0400161D RID: 5661
+	// Token: 0x04001294 RID: 4756
 	public bool isRead;
 
-	// Token: 0x0400161E RID: 5662
+	// Token: 0x04001295 RID: 4757
 	public JSONObject ChuanYingData;
 
-	// Token: 0x0400161F RID: 5663
+	// Token: 0x04001296 RID: 4758
 	public bool isShow;
 
-	// Token: 0x04001620 RID: 5664
+	// Token: 0x04001297 RID: 4759
 	[SerializeField]
 	private Text getTimeText;
 
-	// Token: 0x04001621 RID: 5665
+	// Token: 0x04001298 RID: 4760
 	[SerializeField]
 	private Text Title;
 
-	// Token: 0x04001622 RID: 5666
+	// Token: 0x04001299 RID: 4761
 	[SerializeField]
 	private Text TextContent;
 
-	// Token: 0x04001623 RID: 5667
+	// Token: 0x0400129A RID: 4762
 	[SerializeField]
 	private GameObject ItemGameObject;
 
-	// Token: 0x04001624 RID: 5668
+	// Token: 0x0400129B RID: 4763
 	[SerializeField]
 	private ChuanYingItem item;
 
-	// Token: 0x04001625 RID: 5669
+	// Token: 0x0400129C RID: 4764
 	private bool isInit;
 
-	// Token: 0x04001626 RID: 5670
+	// Token: 0x0400129D RID: 4765
 	[SerializeField]
 	private RectTransform startRectTransform;
 
-	// Token: 0x04001627 RID: 5671
+	// Token: 0x0400129E RID: 4766
 	[SerializeField]
 	private RectTransform contentRectTransform;
 
-	// Token: 0x04001628 RID: 5672
+	// Token: 0x0400129F RID: 4767
 	[SerializeField]
 	private RectTransform childContentRectTransform;
 
-	// Token: 0x04001629 RID: 5673
+	// Token: 0x040012A0 RID: 4768
 	[SerializeField]
 	private BtnISShow deleteBtn;
 }

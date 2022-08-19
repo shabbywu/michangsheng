@@ -2,13 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-// Token: 0x020000BC RID: 188
+// Token: 0x02000084 RID: 132
 [AddComponentMenu("NGUI/Internal/Debug")]
 public class NGUIDebug : MonoBehaviour
 {
-	// Token: 0x170000DD RID: 221
-	// (get) Token: 0x0600070C RID: 1804 RVA: 0x0000A0FD File Offset: 0x000082FD
-	// (set) Token: 0x0600070D RID: 1805 RVA: 0x0000A104 File Offset: 0x00008304
+	// Token: 0x170000C9 RID: 201
+	// (get) Token: 0x0600068A RID: 1674 RVA: 0x00024CC9 File Offset: 0x00022EC9
+	// (set) Token: 0x0600068B RID: 1675 RVA: 0x00024CD0 File Offset: 0x00022ED0
 	public static bool debugRaycast
 	{
 		get
@@ -28,7 +28,7 @@ public class NGUIDebug : MonoBehaviour
 		}
 	}
 
-	// Token: 0x0600070E RID: 1806 RVA: 0x0000A11B File Offset: 0x0000831B
+	// Token: 0x0600068C RID: 1676 RVA: 0x00024CE7 File Offset: 0x00022EE7
 	public static void CreateInstance()
 	{
 		if (NGUIDebug.mInstance == null)
@@ -39,7 +39,7 @@ public class NGUIDebug : MonoBehaviour
 		}
 	}
 
-	// Token: 0x0600070F RID: 1807 RVA: 0x0000A144 File Offset: 0x00008344
+	// Token: 0x0600068D RID: 1677 RVA: 0x00024D10 File Offset: 0x00022F10
 	private static void LogString(string text)
 	{
 		if (Application.isPlaying)
@@ -55,7 +55,7 @@ public class NGUIDebug : MonoBehaviour
 		Debug.Log(text);
 	}
 
-	// Token: 0x06000710 RID: 1808 RVA: 0x0007A39C File Offset: 0x0007859C
+	// Token: 0x0600068E RID: 1678 RVA: 0x00024D4C File Offset: 0x00022F4C
 	public static void Log(params object[] objs)
 	{
 		string text = "";
@@ -73,7 +73,7 @@ public class NGUIDebug : MonoBehaviour
 		NGUIDebug.LogString(text);
 	}
 
-	// Token: 0x06000711 RID: 1809 RVA: 0x0007A3EC File Offset: 0x000785EC
+	// Token: 0x0600068F RID: 1679 RVA: 0x00024D9C File Offset: 0x00022F9C
 	public static void DrawBounds(Bounds b)
 	{
 		Vector3 center = b.center;
@@ -85,7 +85,7 @@ public class NGUIDebug : MonoBehaviour
 		Debug.DrawLine(new Vector3(vector.x, vector2.y, center.z), new Vector3(vector2.x, vector2.y, center.z), Color.red);
 	}
 
-	// Token: 0x06000712 RID: 1810 RVA: 0x0007A50C File Offset: 0x0007870C
+	// Token: 0x06000690 RID: 1680 RVA: 0x00024EBC File Offset: 0x000230BC
 	private void OnGUI()
 	{
 		if (NGUIDebug.mLines.Count == 0)
@@ -108,12 +108,12 @@ public class NGUIDebug : MonoBehaviour
 		}
 	}
 
-	// Token: 0x04000531 RID: 1329
+	// Token: 0x04000457 RID: 1111
 	private static bool mRayDebug = false;
 
-	// Token: 0x04000532 RID: 1330
+	// Token: 0x04000458 RID: 1112
 	private static List<string> mLines = new List<string>();
 
-	// Token: 0x04000533 RID: 1331
+	// Token: 0x04000459 RID: 1113
 	private static NGUIDebug mInstance = null;
 }

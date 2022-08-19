@@ -1,10 +1,10 @@
 ﻿using System;
 using UnityEngine;
 
-// Token: 0x02000746 RID: 1862
+// Token: 0x020004D3 RID: 1235
 public class PlaySounds : MonoBehaviour
 {
-	// Token: 0x06002F46 RID: 12102 RVA: 0x0017C210 File Offset: 0x0017A410
+	// Token: 0x060027EF RID: 10223 RVA: 0x0012F490 File Offset: 0x0012D690
 	private void Awake()
 	{
 		Object.DontDestroyOnLoad(base.gameObject);
@@ -73,7 +73,7 @@ public class PlaySounds : MonoBehaviour
 		PlayerPrefs.Save();
 	}
 
-	// Token: 0x06002F47 RID: 12103 RVA: 0x00022DE6 File Offset: 0x00020FE6
+	// Token: 0x060027F0 RID: 10224 RVA: 0x0012FA6A File Offset: 0x0012DC6A
 	public static void Play_Button_MusicOn()
 	{
 		if (PlaySounds.Button_MusicOn.clip != null)
@@ -82,7 +82,7 @@ public class PlaySounds : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06002F48 RID: 12104 RVA: 0x00022E04 File Offset: 0x00021004
+	// Token: 0x060027F1 RID: 10225 RVA: 0x0012FA88 File Offset: 0x0012DC88
 	public static void Play_Button_SoundOn()
 	{
 		if (PlaySounds.Button_SoundOn.clip != null)
@@ -91,7 +91,7 @@ public class PlaySounds : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06002F49 RID: 12105 RVA: 0x00022E22 File Offset: 0x00021022
+	// Token: 0x060027F2 RID: 10226 RVA: 0x0012FAA6 File Offset: 0x0012DCA6
 	public static void Play_Button_Play()
 	{
 		if (PlaySounds.Button_Play.clip != null)
@@ -100,7 +100,7 @@ public class PlaySounds : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06002F4A RID: 12106 RVA: 0x00022E40 File Offset: 0x00021040
+	// Token: 0x060027F3 RID: 10227 RVA: 0x0012FAC4 File Offset: 0x0012DCC4
 	public static void Play_Button_GoBack()
 	{
 		if (PlaySounds.Button_GoBack.clip != null)
@@ -109,7 +109,7 @@ public class PlaySounds : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06002F4B RID: 12107 RVA: 0x00022E5E File Offset: 0x0002105E
+	// Token: 0x060027F4 RID: 10228 RVA: 0x0012FAE2 File Offset: 0x0012DCE2
 	public static void Play_Button_OpenWorld()
 	{
 		if (PlaySounds.Button_OpenWorld.clip != null)
@@ -118,7 +118,7 @@ public class PlaySounds : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06002F4C RID: 12108 RVA: 0x00022E7C File Offset: 0x0002107C
+	// Token: 0x060027F5 RID: 10229 RVA: 0x0012FB00 File Offset: 0x0012DD00
 	public static void Play_Button_OpenLevel()
 	{
 		if (PlaySounds.Button_OpenLevel.clip != null)
@@ -127,7 +127,7 @@ public class PlaySounds : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06002F4D RID: 12109 RVA: 0x00022E7C File Offset: 0x0002107C
+	// Token: 0x060027F6 RID: 10230 RVA: 0x0012FB00 File Offset: 0x0012DD00
 	public static void Play_Button_Pause()
 	{
 		if (PlaySounds.Button_OpenLevel.clip != null)
@@ -136,7 +136,7 @@ public class PlaySounds : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06002F4E RID: 12110 RVA: 0x00022E9A File Offset: 0x0002109A
+	// Token: 0x060027F7 RID: 10231 RVA: 0x0012FB1E File Offset: 0x0012DD1E
 	public static void Play_Button_NextLevel()
 	{
 		if (PlaySounds.Button_NextLevel.clip != null)
@@ -145,7 +145,7 @@ public class PlaySounds : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06002F4F RID: 12111 RVA: 0x00022EB8 File Offset: 0x000210B8
+	// Token: 0x060027F8 RID: 10232 RVA: 0x0012FB3C File Offset: 0x0012DD3C
 	public static void Play_Button_RestartLevel()
 	{
 		if (PlaySounds.Button_RestartLevel.clip != null)
@@ -154,7 +154,7 @@ public class PlaySounds : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06002F50 RID: 12112 RVA: 0x00022ED6 File Offset: 0x000210D6
+	// Token: 0x060027F9 RID: 10233 RVA: 0x0012FB5A File Offset: 0x0012DD5A
 	public static void Play_Button_LockedLevel_Click()
 	{
 		if (PlaySounds.Button_LockedLevel_Click.clip != null)
@@ -163,7 +163,7 @@ public class PlaySounds : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06002F51 RID: 12113 RVA: 0x00022EF4 File Offset: 0x000210F4
+	// Token: 0x060027FA RID: 10234 RVA: 0x0012FB78 File Offset: 0x0012DD78
 	public static void Play_Run()
 	{
 		if (PlaySounds.Run.clip != null)
@@ -173,7 +173,7 @@ public class PlaySounds : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06002F52 RID: 12114 RVA: 0x00022F2B File Offset: 0x0002112B
+	// Token: 0x060027FB RID: 10235 RVA: 0x0012FBAF File Offset: 0x0012DDAF
 	public static void Stop_Run()
 	{
 		if (PlaySounds.Run.clip != null)
@@ -182,7 +182,7 @@ public class PlaySounds : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06002F53 RID: 12115 RVA: 0x0017C7EC File Offset: 0x0017A9EC
+	// Token: 0x060027FC RID: 10236 RVA: 0x0012FBD0 File Offset: 0x0012DDD0
 	public static void Play_Jump()
 	{
 		switch (Random.Range(1, 4))
@@ -212,7 +212,7 @@ public class PlaySounds : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06002F54 RID: 12116 RVA: 0x0017C86C File Offset: 0x0017AA6C
+	// Token: 0x060027FD RID: 10237 RVA: 0x0012FC50 File Offset: 0x0012DE50
 	public static void Play_VoiceJump()
 	{
 		switch (Random.Range(1, 56))
@@ -277,7 +277,7 @@ public class PlaySounds : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06002F55 RID: 12117 RVA: 0x0017C99C File Offset: 0x0017AB9C
+	// Token: 0x060027FE RID: 10238 RVA: 0x0012FD80 File Offset: 0x0012DF80
 	public static void Play_Landing()
 	{
 		switch (Random.Range(1, 4))
@@ -307,7 +307,7 @@ public class PlaySounds : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06002F56 RID: 12118 RVA: 0x00022F49 File Offset: 0x00021149
+	// Token: 0x060027FF RID: 10239 RVA: 0x0012FE00 File Offset: 0x0012E000
 	public static void Play_Landing_Strong()
 	{
 		if (PlaySounds.Landing_Strong.clip != null)
@@ -316,7 +316,7 @@ public class PlaySounds : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06002F57 RID: 12119 RVA: 0x0017CA1C File Offset: 0x0017AC1C
+	// Token: 0x06002800 RID: 10240 RVA: 0x0012FE20 File Offset: 0x0012E020
 	public static void Play_SmashBaboon()
 	{
 		PlaySounds.zvukZaBabuna++;
@@ -334,7 +334,7 @@ public class PlaySounds : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06002F58 RID: 12120 RVA: 0x00022F67 File Offset: 0x00021167
+	// Token: 0x06002801 RID: 10241 RVA: 0x0012FE7B File Offset: 0x0012E07B
 	public static void Play_Level_Failed_Popup()
 	{
 		if (PlaySounds.Level_Failed_Popup.clip != null)
@@ -343,7 +343,7 @@ public class PlaySounds : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06002F59 RID: 12121 RVA: 0x00022F85 File Offset: 0x00021185
+	// Token: 0x06002802 RID: 10242 RVA: 0x0012FE99 File Offset: 0x0012E099
 	public static void Play_Level_Completed_Popup()
 	{
 		if (PlaySounds.Level_Completed_Popup.clip != null)
@@ -352,7 +352,7 @@ public class PlaySounds : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06002F5A RID: 12122 RVA: 0x00022FA3 File Offset: 0x000211A3
+	// Token: 0x06002803 RID: 10243 RVA: 0x0012FEB7 File Offset: 0x0012E0B7
 	public static void Play_CollectCoin()
 	{
 		if (PlaySounds.CollectCoin.clip != null)
@@ -361,7 +361,7 @@ public class PlaySounds : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06002F5B RID: 12123 RVA: 0x00022FC1 File Offset: 0x000211C1
+	// Token: 0x06002804 RID: 10244 RVA: 0x0012FED5 File Offset: 0x0012E0D5
 	public static void Play_CollectCoin_2nd()
 	{
 		if (PlaySounds.CollectCoin_2nd.clip != null)
@@ -370,7 +370,7 @@ public class PlaySounds : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06002F5C RID: 12124 RVA: 0x00022FDF File Offset: 0x000211DF
+	// Token: 0x06002805 RID: 10245 RVA: 0x0012FEF3 File Offset: 0x0012E0F3
 	public static void Play_CollectCoin_3rd()
 	{
 		if (PlaySounds.CollectCoin_3rd.clip != null)
@@ -379,7 +379,7 @@ public class PlaySounds : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06002F5D RID: 12125 RVA: 0x00022FFD File Offset: 0x000211FD
+	// Token: 0x06002806 RID: 10246 RVA: 0x0012FF11 File Offset: 0x0012E111
 	public static void Play_GetStar()
 	{
 		if (PlaySounds.GetStar.clip != null)
@@ -388,7 +388,7 @@ public class PlaySounds : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06002F5E RID: 12126 RVA: 0x0002301B File Offset: 0x0002121B
+	// Token: 0x06002807 RID: 10247 RVA: 0x0012FF2F File Offset: 0x0012E12F
 	public static void Play_GetStar2()
 	{
 		if (PlaySounds.GetStar2.clip != null)
@@ -397,7 +397,7 @@ public class PlaySounds : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06002F5F RID: 12127 RVA: 0x00023039 File Offset: 0x00021239
+	// Token: 0x06002808 RID: 10248 RVA: 0x0012FF4D File Offset: 0x0012E14D
 	public static void Play_GetStar3()
 	{
 		if (PlaySounds.GetStar3.clip != null)
@@ -406,7 +406,7 @@ public class PlaySounds : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06002F60 RID: 12128 RVA: 0x00023057 File Offset: 0x00021257
+	// Token: 0x06002809 RID: 10249 RVA: 0x0012FF6B File Offset: 0x0012E16B
 	public static void Play_CoinsSpent()
 	{
 		if (PlaySounds.CoinsSpent.clip != null)
@@ -415,7 +415,7 @@ public class PlaySounds : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06002F61 RID: 12129 RVA: 0x00023075 File Offset: 0x00021275
+	// Token: 0x0600280A RID: 10250 RVA: 0x0012FF89 File Offset: 0x0012E189
 	public static void Play_NoMoreCoins()
 	{
 		if (PlaySounds.NoMoreCoins.clip != null)
@@ -424,7 +424,7 @@ public class PlaySounds : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06002F62 RID: 12130 RVA: 0x00023093 File Offset: 0x00021293
+	// Token: 0x0600280B RID: 10251 RVA: 0x0012FFA7 File Offset: 0x0012E1A7
 	public static void Play_BiljkaUgriz()
 	{
 		if (PlaySounds.Biljka_Ugriz_NEW.clip != null)
@@ -433,7 +433,7 @@ public class PlaySounds : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06002F63 RID: 12131 RVA: 0x000230B1 File Offset: 0x000212B1
+	// Token: 0x0600280C RID: 10252 RVA: 0x0012FFC5 File Offset: 0x0012E1C5
 	public static void Play_CollectBanana()
 	{
 		if (PlaySounds.Collect_Banana_NEW.clip != null)
@@ -442,7 +442,7 @@ public class PlaySounds : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06002F64 RID: 12132 RVA: 0x000230CF File Offset: 0x000212CF
+	// Token: 0x0600280D RID: 10253 RVA: 0x0012FFE3 File Offset: 0x0012E1E3
 	public static void Play_CollectDiamond()
 	{
 		if (PlaySounds.Collect_Diamond_NEW.clip != null)
@@ -451,7 +451,7 @@ public class PlaySounds : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06002F65 RID: 12133 RVA: 0x000230ED File Offset: 0x000212ED
+	// Token: 0x0600280E RID: 10254 RVA: 0x00130001 File Offset: 0x0012E201
 	public static void Play_CollectPowerUp()
 	{
 		if (PlaySounds.Collect_PowerUp_NEW.clip != null)
@@ -460,7 +460,7 @@ public class PlaySounds : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06002F66 RID: 12134 RVA: 0x0002310B File Offset: 0x0002130B
+	// Token: 0x0600280F RID: 10255 RVA: 0x0013001F File Offset: 0x0012E21F
 	public static void Play_Glide()
 	{
 		if (PlaySounds.Glide_NEW.clip != null)
@@ -469,7 +469,7 @@ public class PlaySounds : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06002F67 RID: 12135 RVA: 0x00023129 File Offset: 0x00021329
+	// Token: 0x06002810 RID: 10256 RVA: 0x0013003D File Offset: 0x0012E23D
 	public static void Stop_Glide()
 	{
 		if (PlaySounds.Glide_NEW.clip != null)
@@ -478,7 +478,7 @@ public class PlaySounds : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06002F68 RID: 12136 RVA: 0x00023147 File Offset: 0x00021347
+	// Token: 0x06002811 RID: 10257 RVA: 0x0013005B File Offset: 0x0012E25B
 	public static void Play_OtkljucavanjeNivoa()
 	{
 		if (PlaySounds.OtkljucavanjeNivoa_NEW.clip != null)
@@ -487,7 +487,7 @@ public class PlaySounds : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06002F69 RID: 12137 RVA: 0x00023165 File Offset: 0x00021365
+	// Token: 0x06002812 RID: 10258 RVA: 0x00130079 File Offset: 0x0012E279
 	public static void Play_SmashGorilla()
 	{
 		if (PlaySounds.SmashGorilla_NEW.clip != null)
@@ -496,7 +496,7 @@ public class PlaySounds : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06002F6A RID: 12138 RVA: 0x00023183 File Offset: 0x00021383
+	// Token: 0x06002813 RID: 10259 RVA: 0x00130097 File Offset: 0x0012E297
 	public static void Play_Otvaranje_Kovcega()
 	{
 		if (PlaySounds.Otvaranje_Kovcega_NEW.clip != null)
@@ -505,7 +505,7 @@ public class PlaySounds : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06002F6B RID: 12139 RVA: 0x000231A1 File Offset: 0x000213A1
+	// Token: 0x06002814 RID: 10260 RVA: 0x001300B5 File Offset: 0x0012E2B5
 	public static void Play_Bure_Eksplozija()
 	{
 		if (PlaySounds.Bure_Eksplozija_NEW.clip != null)
@@ -514,7 +514,7 @@ public class PlaySounds : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06002F6C RID: 12140 RVA: 0x000231BF File Offset: 0x000213BF
+	// Token: 0x06002815 RID: 10261 RVA: 0x001300D3 File Offset: 0x0012E2D3
 	public static void Play_MushroomBounce()
 	{
 		if (PlaySounds.MushroomBounce.clip != null)
@@ -523,7 +523,7 @@ public class PlaySounds : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06002F6D RID: 12141 RVA: 0x000231DD File Offset: 0x000213DD
+	// Token: 0x06002816 RID: 10262 RVA: 0x001300F1 File Offset: 0x0012E2F1
 	public static void Play_BackgroundMusic_Gameplay()
 	{
 		if (PlaySounds.BackgroundMusic_Gameplay.clip != null)
@@ -532,7 +532,7 @@ public class PlaySounds : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06002F6E RID: 12142 RVA: 0x000231FB File Offset: 0x000213FB
+	// Token: 0x06002817 RID: 10263 RVA: 0x0013010F File Offset: 0x0012E30F
 	public static void Play_BackgroundMusic_Menu()
 	{
 		if (PlaySounds.BackgroundMusic_Menu.clip != null)
@@ -541,7 +541,7 @@ public class PlaySounds : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06002F6F RID: 12143 RVA: 0x00023219 File Offset: 0x00021419
+	// Token: 0x06002818 RID: 10264 RVA: 0x0013012D File Offset: 0x0012E32D
 	public static void Stop_BackgroundMusic_Gameplay()
 	{
 		if (PlaySounds.BackgroundMusic_Gameplay.clip != null)
@@ -550,7 +550,7 @@ public class PlaySounds : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06002F70 RID: 12144 RVA: 0x00023237 File Offset: 0x00021437
+	// Token: 0x06002819 RID: 10265 RVA: 0x0013014B File Offset: 0x0012E34B
 	public static void Stop_BackgroundMusic_Menu()
 	{
 		if (PlaySounds.BackgroundMusic_Menu.clip != null)
@@ -559,7 +559,7 @@ public class PlaySounds : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06002F71 RID: 12145 RVA: 0x00023255 File Offset: 0x00021455
+	// Token: 0x0600281A RID: 10266 RVA: 0x00130169 File Offset: 0x0012E369
 	public static void Stop_Level_Failed_Popup()
 	{
 		if (PlaySounds.Level_Failed_Popup.clip != null)
@@ -568,7 +568,7 @@ public class PlaySounds : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06002F72 RID: 12146 RVA: 0x00023273 File Offset: 0x00021473
+	// Token: 0x0600281B RID: 10267 RVA: 0x00130187 File Offset: 0x0012E387
 	public static void Play_Siljci()
 	{
 		if (PlaySounds.Siljci.clip != null)
@@ -577,7 +577,7 @@ public class PlaySounds : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06002F73 RID: 12147 RVA: 0x00023291 File Offset: 0x00021491
+	// Token: 0x0600281C RID: 10268 RVA: 0x001301A5 File Offset: 0x0012E3A5
 	public static void Play_TNTBure_Eksplozija()
 	{
 		if (PlaySounds.TNTBure_Eksplozija.clip != null)
@@ -586,7 +586,7 @@ public class PlaySounds : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06002F74 RID: 12148 RVA: 0x000232AF File Offset: 0x000214AF
+	// Token: 0x0600281D RID: 10269 RVA: 0x001301C3 File Offset: 0x0012E3C3
 	public static void Play_LooseShield()
 	{
 		if (PlaySounds.LooseShield.clip != null)
@@ -595,7 +595,7 @@ public class PlaySounds : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06002F75 RID: 12149 RVA: 0x000232CD File Offset: 0x000214CD
+	// Token: 0x0600281E RID: 10270 RVA: 0x001301E1 File Offset: 0x0012E3E1
 	public static void Play_MajmunUtepan()
 	{
 		if (PlaySounds.MajmunUtepan.clip != null)
@@ -604,178 +604,178 @@ public class PlaySounds : MonoBehaviour
 		}
 	}
 
-	// Token: 0x04002A77 RID: 10871
+	// Token: 0x040022F7 RID: 8951
 	private static AudioSource Button_MusicOn;
 
-	// Token: 0x04002A78 RID: 10872
+	// Token: 0x040022F8 RID: 8952
 	private static AudioSource Button_SoundOn;
 
-	// Token: 0x04002A79 RID: 10873
+	// Token: 0x040022F9 RID: 8953
 	private static AudioSource Button_Play;
 
-	// Token: 0x04002A7A RID: 10874
+	// Token: 0x040022FA RID: 8954
 	private static AudioSource Button_GoBack;
 
-	// Token: 0x04002A7B RID: 10875
+	// Token: 0x040022FB RID: 8955
 	private static AudioSource Button_OpenWorld;
 
-	// Token: 0x04002A7C RID: 10876
+	// Token: 0x040022FC RID: 8956
 	private static AudioSource Button_OpenLevel;
 
-	// Token: 0x04002A7D RID: 10877
+	// Token: 0x040022FD RID: 8957
 	private static AudioSource Button_LockedLevel_Click;
 
-	// Token: 0x04002A7E RID: 10878
+	// Token: 0x040022FE RID: 8958
 	private static AudioSource Button_Pause;
 
-	// Token: 0x04002A7F RID: 10879
+	// Token: 0x040022FF RID: 8959
 	private static AudioSource Button_NextLevel;
 
-	// Token: 0x04002A80 RID: 10880
+	// Token: 0x04002300 RID: 8960
 	private static AudioSource Button_RestartLevel;
 
-	// Token: 0x04002A81 RID: 10881
+	// Token: 0x04002301 RID: 8961
 	[HideInInspector]
 	public static AudioSource Run;
 
-	// Token: 0x04002A82 RID: 10882
+	// Token: 0x04002302 RID: 8962
 	private static AudioSource Jump1;
 
-	// Token: 0x04002A83 RID: 10883
+	// Token: 0x04002303 RID: 8963
 	private static AudioSource Jump2;
 
-	// Token: 0x04002A84 RID: 10884
+	// Token: 0x04002304 RID: 8964
 	private static AudioSource Jump3;
 
-	// Token: 0x04002A85 RID: 10885
+	// Token: 0x04002305 RID: 8965
 	private static AudioSource VoiceJump1;
 
-	// Token: 0x04002A86 RID: 10886
+	// Token: 0x04002306 RID: 8966
 	private static AudioSource VoiceJump2;
 
-	// Token: 0x04002A87 RID: 10887
+	// Token: 0x04002307 RID: 8967
 	private static AudioSource VoiceJump3;
 
-	// Token: 0x04002A88 RID: 10888
+	// Token: 0x04002308 RID: 8968
 	private static AudioSource VoiceJump4;
 
-	// Token: 0x04002A89 RID: 10889
+	// Token: 0x04002309 RID: 8969
 	private static AudioSource VoiceJump5;
 
-	// Token: 0x04002A8A RID: 10890
+	// Token: 0x0400230A RID: 8970
 	private static AudioSource VoiceJump6;
 
-	// Token: 0x04002A8B RID: 10891
+	// Token: 0x0400230B RID: 8971
 	private static AudioSource VoiceJump7;
 
-	// Token: 0x04002A8C RID: 10892
+	// Token: 0x0400230C RID: 8972
 	private static AudioSource VoiceJump8;
 
-	// Token: 0x04002A8D RID: 10893
+	// Token: 0x0400230D RID: 8973
 	private static AudioSource Landing1;
 
-	// Token: 0x04002A8E RID: 10894
+	// Token: 0x0400230E RID: 8974
 	private static AudioSource Landing2;
 
-	// Token: 0x04002A8F RID: 10895
+	// Token: 0x0400230F RID: 8975
 	private static AudioSource Landing3;
 
-	// Token: 0x04002A90 RID: 10896
+	// Token: 0x04002310 RID: 8976
 	private static AudioSource Landing_Strong;
 
-	// Token: 0x04002A91 RID: 10897
+	// Token: 0x04002311 RID: 8977
 	private static AudioSource SmashBaboon;
 
-	// Token: 0x04002A92 RID: 10898
+	// Token: 0x04002312 RID: 8978
 	[HideInInspector]
 	public static AudioSource Level_Failed_Popup;
 
-	// Token: 0x04002A93 RID: 10899
+	// Token: 0x04002313 RID: 8979
 	private static AudioSource Level_Completed_Popup;
 
-	// Token: 0x04002A94 RID: 10900
+	// Token: 0x04002314 RID: 8980
 	private static AudioSource CollectCoin;
 
-	// Token: 0x04002A95 RID: 10901
+	// Token: 0x04002315 RID: 8981
 	private static AudioSource CollectCoin_2nd;
 
-	// Token: 0x04002A96 RID: 10902
+	// Token: 0x04002316 RID: 8982
 	private static AudioSource CollectCoin_3rd;
 
-	// Token: 0x04002A97 RID: 10903
+	// Token: 0x04002317 RID: 8983
 	private static AudioSource GetStar;
 
-	// Token: 0x04002A98 RID: 10904
+	// Token: 0x04002318 RID: 8984
 	private static AudioSource GetStar2;
 
-	// Token: 0x04002A99 RID: 10905
+	// Token: 0x04002319 RID: 8985
 	private static AudioSource GetStar3;
 
-	// Token: 0x04002A9A RID: 10906
+	// Token: 0x0400231A RID: 8986
 	private static AudioSource CoinsSpent;
 
-	// Token: 0x04002A9B RID: 10907
+	// Token: 0x0400231B RID: 8987
 	private static AudioSource NoMoreCoins;
 
-	// Token: 0x04002A9C RID: 10908
+	// Token: 0x0400231C RID: 8988
 	private static AudioSource Biljka_Ugriz_NEW;
 
-	// Token: 0x04002A9D RID: 10909
+	// Token: 0x0400231D RID: 8989
 	private static AudioSource Collect_Banana_NEW;
 
-	// Token: 0x04002A9E RID: 10910
+	// Token: 0x0400231E RID: 8990
 	private static AudioSource Collect_Diamond_NEW;
 
-	// Token: 0x04002A9F RID: 10911
+	// Token: 0x0400231F RID: 8991
 	private static AudioSource Collect_PowerUp_NEW;
 
-	// Token: 0x04002AA0 RID: 10912
+	// Token: 0x04002320 RID: 8992
 	[HideInInspector]
 	public static AudioSource Glide_NEW;
 
-	// Token: 0x04002AA1 RID: 10913
+	// Token: 0x04002321 RID: 8993
 	private static AudioSource OtkljucavanjeNivoa_NEW;
 
-	// Token: 0x04002AA2 RID: 10914
+	// Token: 0x04002322 RID: 8994
 	private static AudioSource SmashGorilla_NEW;
 
-	// Token: 0x04002AA3 RID: 10915
+	// Token: 0x04002323 RID: 8995
 	private static AudioSource Otvaranje_Kovcega_NEW;
 
-	// Token: 0x04002AA4 RID: 10916
+	// Token: 0x04002324 RID: 8996
 	private static AudioSource Bure_Eksplozija_NEW;
 
-	// Token: 0x04002AA5 RID: 10917
+	// Token: 0x04002325 RID: 8997
 	private static AudioSource MushroomBounce;
 
-	// Token: 0x04002AA6 RID: 10918
+	// Token: 0x04002326 RID: 8998
 	private static AudioSource Siljci;
 
-	// Token: 0x04002AA7 RID: 10919
+	// Token: 0x04002327 RID: 8999
 	private static AudioSource TNTBure_Eksplozija;
 
-	// Token: 0x04002AA8 RID: 10920
+	// Token: 0x04002328 RID: 9000
 	private static AudioSource LooseShield;
 
-	// Token: 0x04002AA9 RID: 10921
+	// Token: 0x04002329 RID: 9001
 	private static AudioSource MajmunUtepan;
 
-	// Token: 0x04002AAA RID: 10922
+	// Token: 0x0400232A RID: 9002
 	[HideInInspector]
 	public static AudioSource BackgroundMusic_Gameplay;
 
-	// Token: 0x04002AAB RID: 10923
+	// Token: 0x0400232B RID: 9003
 	[HideInInspector]
 	public static AudioSource BackgroundMusic_Menu;
 
-	// Token: 0x04002AAC RID: 10924
+	// Token: 0x0400232C RID: 9004
 	[HideInInspector]
 	public static bool soundOn;
 
-	// Token: 0x04002AAD RID: 10925
+	// Token: 0x0400232D RID: 9005
 	[HideInInspector]
 	public static bool musicOn;
 
-	// Token: 0x04002AAE RID: 10926
+	// Token: 0x0400232E RID: 9006
 	private static int zvukZaBabuna;
 }

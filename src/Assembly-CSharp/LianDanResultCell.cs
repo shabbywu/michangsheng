@@ -4,10 +4,10 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-// Token: 0x02000446 RID: 1094
+// Token: 0x020002EB RID: 747
 public class LianDanResultCell : MonoBehaviour, IPointerEnterHandler, IEventSystemHandler, IPointerExitHandler
 {
-	// Token: 0x06001D20 RID: 7456 RVA: 0x00100898 File Offset: 0x000FEA98
+	// Token: 0x060019FC RID: 6652 RVA: 0x000BA0D4 File Offset: 0x000B82D4
 	public void updateItem()
 	{
 		if (this.inventory == null)
@@ -38,7 +38,7 @@ public class LianDanResultCell : MonoBehaviour, IPointerEnterHandler, IEventSyst
 		this.itemSum.gameObject.SetActive(false);
 	}
 
-	// Token: 0x06001D21 RID: 7457 RVA: 0x00100AC4 File Offset: 0x000FECC4
+	// Token: 0x060019FD RID: 6653 RVA: 0x000BA300 File Offset: 0x000B8500
 	public void OnPointerEnter(PointerEventData eventData)
 	{
 		if (this.inventory.inventory[int.Parse(base.name)].itemName != null)
@@ -50,43 +50,43 @@ public class LianDanResultCell : MonoBehaviour, IPointerEnterHandler, IEventSyst
 		this.inventory.showTooltip = false;
 	}
 
-	// Token: 0x06001D22 RID: 7458 RVA: 0x00100B3C File Offset: 0x000FED3C
+	// Token: 0x060019FE RID: 6654 RVA: 0x000BA378 File Offset: 0x000B8578
 	public virtual int getItemPrice()
 	{
 		return (int)((float)((int)jsonData.instance.ItemJsonData[string.Concat(this.inventory.inventory[int.Parse(base.name)].itemID)]["price"].n) * 0.5f);
 	}
 
-	// Token: 0x06001D23 RID: 7459 RVA: 0x00018474 File Offset: 0x00016674
+	// Token: 0x060019FF RID: 6655 RVA: 0x000BA3D6 File Offset: 0x000B85D6
 	public void OnPointerExit(PointerEventData eventData)
 	{
 		this.inventory.showTooltip = false;
 	}
 
-	// Token: 0x04001913 RID: 6419
+	// Token: 0x0400150D RID: 5389
 	[SerializeField]
 	private Image itemIcon;
 
-	// Token: 0x04001914 RID: 6420
+	// Token: 0x0400150E RID: 5390
 	[SerializeField]
 	private GameObject NameBG;
 
-	// Token: 0x04001915 RID: 6421
+	// Token: 0x0400150F RID: 5391
 	[SerializeField]
 	private Text itemName;
 
-	// Token: 0x04001916 RID: 6422
+	// Token: 0x04001510 RID: 5392
 	[SerializeField]
 	private Text itemSum;
 
-	// Token: 0x04001917 RID: 6423
+	// Token: 0x04001511 RID: 5393
 	[SerializeField]
 	private Image PingZhi;
 
-	// Token: 0x04001918 RID: 6424
+	// Token: 0x04001512 RID: 5394
 	[HideInInspector]
 	public LianDanInventory inventory;
 
-	// Token: 0x04001919 RID: 6425
+	// Token: 0x04001513 RID: 5395
 	[HideInInspector]
 	public item Item = new item();
 }

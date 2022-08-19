@@ -3,11 +3,11 @@ using UnityEngine;
 
 namespace Fungus
 {
-	// Token: 0x020012FF RID: 4863
+	// Token: 0x02000E8E RID: 3726
 	public abstract class VariableBase<T> : Variable
 	{
-		// Token: 0x17000B10 RID: 2832
-		// (get) Token: 0x0600768E RID: 30350 RVA: 0x002B35F8 File Offset: 0x002B17F8
+		// Token: 0x17000891 RID: 2193
+		// (get) Token: 0x0600698F RID: 27023 RVA: 0x0029131C File Offset: 0x0028F51C
 		private VariableBase<T> globalStaicRef
 		{
 			get
@@ -24,9 +24,9 @@ namespace Fungus
 			}
 		}
 
-		// Token: 0x17000B11 RID: 2833
-		// (get) Token: 0x0600768F RID: 30351 RVA: 0x00050B1F File Offset: 0x0004ED1F
-		// (set) Token: 0x06007690 RID: 30352 RVA: 0x00050B43 File Offset: 0x0004ED43
+		// Token: 0x17000892 RID: 2194
+		// (get) Token: 0x06006990 RID: 27024 RVA: 0x00291371 File Offset: 0x0028F571
+		// (set) Token: 0x06006991 RID: 27025 RVA: 0x00291395 File Offset: 0x0028F595
 		public virtual T Value
 		{
 			get
@@ -48,39 +48,39 @@ namespace Fungus
 			}
 		}
 
-		// Token: 0x06007691 RID: 30353 RVA: 0x00050B69 File Offset: 0x0004ED69
+		// Token: 0x06006992 RID: 27026 RVA: 0x002913BB File Offset: 0x0028F5BB
 		public override void OnReset()
 		{
 			this.Value = this.startValue;
 		}
 
-		// Token: 0x06007692 RID: 30354 RVA: 0x002B3650 File Offset: 0x002B1850
+		// Token: 0x06006993 RID: 27027 RVA: 0x002913CC File Offset: 0x0028F5CC
 		public override string ToString()
 		{
 			T t = this.Value;
 			return t.ToString();
 		}
 
-		// Token: 0x06007693 RID: 30355 RVA: 0x00050B77 File Offset: 0x0004ED77
+		// Token: 0x06006994 RID: 27028 RVA: 0x002913ED File Offset: 0x0028F5ED
 		protected virtual void Start()
 		{
 			this.startValue = this.Value;
 		}
 
-		// Token: 0x06007694 RID: 30356 RVA: 0x00050B85 File Offset: 0x0004ED85
+		// Token: 0x06006995 RID: 27029 RVA: 0x002913FB File Offset: 0x0028F5FB
 		public virtual void Apply(SetOperator setOperator, T value)
 		{
 			Debug.LogError("Variable doesn't have any operators.");
 		}
 
-		// Token: 0x04006766 RID: 26470
+		// Token: 0x04005985 RID: 22917
 		private VariableBase<T> _globalStaicRef;
 
-		// Token: 0x04006767 RID: 26471
+		// Token: 0x04005986 RID: 22918
 		[SerializeField]
 		protected T value;
 
-		// Token: 0x04006768 RID: 26472
+		// Token: 0x04005987 RID: 22919
 		protected T startValue;
 	}
 }

@@ -2,10 +2,10 @@
 using System.Collections;
 using UnityEngine;
 
-// Token: 0x0200074B RID: 1867
+// Token: 0x020004D8 RID: 1240
 public class RunWithSpeed : MonoBehaviour
 {
-	// Token: 0x06002F86 RID: 12166 RVA: 0x0017CACC File Offset: 0x0017ACCC
+	// Token: 0x0600282F RID: 10287 RVA: 0x00130334 File Offset: 0x0012E534
 	private void Awake()
 	{
 		this.player = GameObject.FindGameObjectWithTag("Monkey");
@@ -14,14 +14,14 @@ public class RunWithSpeed : MonoBehaviour
 		this.bgCameraX = GameObject.FindGameObjectWithTag("bgCamera").transform.position.x;
 	}
 
-	// Token: 0x06002F87 RID: 12167 RVA: 0x000233C7 File Offset: 0x000215C7
+	// Token: 0x06002830 RID: 10288 RVA: 0x00130396 File Offset: 0x0012E596
 	private void Start()
 	{
 		this.offset = base.transform.position.y - Camera.main.transform.position.y;
 		this.startSpeed = this.speed;
 	}
 
-	// Token: 0x06002F88 RID: 12168 RVA: 0x0017CB30 File Offset: 0x0017AD30
+	// Token: 0x06002831 RID: 10289 RVA: 0x001303D0 File Offset: 0x0012E5D0
 	private void Update()
 	{
 		if (this.desnaGranica != null && this.desnaGranica.position.x < this.bgCameraX - this.bgCamera.orthographicSize * this.bgCamera.aspect)
@@ -56,7 +56,7 @@ public class RunWithSpeed : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06002F89 RID: 12169 RVA: 0x00023400 File Offset: 0x00021600
+	// Token: 0x06002832 RID: 10290 RVA: 0x001305DF File Offset: 0x0012E7DF
 	private IEnumerator SmoothMovePlan()
 	{
 		float targetPos = base.transform.position.x - 5f;
@@ -68,42 +68,42 @@ public class RunWithSpeed : MonoBehaviour
 		yield break;
 	}
 
-	// Token: 0x04002AB2 RID: 10930
+	// Token: 0x04002332 RID: 9010
 	public float speed = 5f;
 
-	// Token: 0x04002AB3 RID: 10931
+	// Token: 0x04002333 RID: 9011
 	public bool continueMoving;
 
-	// Token: 0x04002AB4 RID: 10932
+	// Token: 0x04002334 RID: 9012
 	private MonkeyController2D playerController;
 
-	// Token: 0x04002AB5 RID: 10933
+	// Token: 0x04002335 RID: 9013
 	private GameObject player;
 
-	// Token: 0x04002AB6 RID: 10934
+	// Token: 0x04002336 RID: 9014
 	private float offset;
 
-	// Token: 0x04002AB7 RID: 10935
+	// Token: 0x04002337 RID: 9015
 	public bool FollowCameraHeight;
 
-	// Token: 0x04002AB8 RID: 10936
+	// Token: 0x04002338 RID: 9016
 	public bool IskljuciKadIzadjeIzKadra;
 
-	// Token: 0x04002AB9 RID: 10937
+	// Token: 0x04002339 RID: 9017
 	public bool smooth;
 
-	// Token: 0x04002ABA RID: 10938
+	// Token: 0x0400233A RID: 9018
 	private bool smoothMove;
 
-	// Token: 0x04002ABB RID: 10939
+	// Token: 0x0400233B RID: 9019
 	private float startSpeed;
 
-	// Token: 0x04002ABC RID: 10940
+	// Token: 0x0400233C RID: 9020
 	public Transform desnaGranica;
 
-	// Token: 0x04002ABD RID: 10941
+	// Token: 0x0400233D RID: 9021
 	private Camera bgCamera;
 
-	// Token: 0x04002ABE RID: 10942
+	// Token: 0x0400233E RID: 9022
 	private float bgCameraX;
 }

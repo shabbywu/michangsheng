@@ -3,10 +3,10 @@ using KBEngine;
 using UnityEngine;
 using UnityEngine.UI;
 
-// Token: 0x02000612 RID: 1554
+// Token: 0x02000459 RID: 1113
 public class AvatarShowSkill : AvatarShowHpDamage
 {
-	// Token: 0x060026AA RID: 9898 RVA: 0x0012F2A4 File Offset: 0x0012D4A4
+	// Token: 0x060022F9 RID: 8953 RVA: 0x000EED00 File Offset: 0x000ECF00
 	public void setText(string _demage, Avatar avatar)
 	{
 		GameObject gameObject = Object.Instantiate<GameObject>(this.DamageTemp);

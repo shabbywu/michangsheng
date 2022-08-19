@@ -3,17 +3,17 @@ using UnityEngine;
 
 namespace YSGame.Fight
 {
-	// Token: 0x02000DFF RID: 3583
+	// Token: 0x02000AC1 RID: 2753
 	public class UIFightLingQiCacheSlot : UIFightLingQiSlot
 	{
-		// Token: 0x0600566F RID: 22127 RVA: 0x0003DCE4 File Offset: 0x0003BEE4
+		// Token: 0x06004D20 RID: 19744 RVA: 0x0021004B File Offset: 0x0020E24B
 		public override void SetNull()
 		{
 			base.SetNull();
 			this.LimitCount = 0;
 		}
 
-		// Token: 0x06005670 RID: 22128 RVA: 0x0024070C File Offset: 0x0023E90C
+		// Token: 0x06004D21 RID: 19745 RVA: 0x0021005C File Offset: 0x0020E25C
 		protected override void OnLingQiCountChanged(int change)
 		{
 			base.OnLingQiCountChanged(change);
@@ -34,7 +34,7 @@ namespace YSGame.Fight
 			UIFightPanel.Inst.CacheLingQiController.RefreshShengKe();
 		}
 
-		// Token: 0x06005671 RID: 22129 RVA: 0x002407B4 File Offset: 0x0023E9B4
+		// Token: 0x06004D22 RID: 19746 RVA: 0x00210104 File Offset: 0x0020E304
 		public void UseSkillMoveLingQi()
 		{
 			if (UIFightPanel.Inst.UIFightState == UIFightState.释放技能准备灵气阶段 && base.LingQiCount > 0)
@@ -44,7 +44,7 @@ namespace YSGame.Fight
 			}
 		}
 
-		// Token: 0x06005672 RID: 22130 RVA: 0x00240808 File Offset: 0x0023EA08
+		// Token: 0x06004D23 RID: 19747 RVA: 0x00210158 File Offset: 0x0020E358
 		public void XiaoSanLingQiMoveOne()
 		{
 			if (UIFightPanel.Inst.UIFightState == UIFightState.回合结束弃置灵气阶段 && base.LingQiCount > 0)
@@ -54,7 +54,7 @@ namespace YSGame.Fight
 			}
 		}
 
-		// Token: 0x06005673 RID: 22131 RVA: 0x0024085C File Offset: 0x0023EA5C
+		// Token: 0x06004D24 RID: 19748 RVA: 0x002101AC File Offset: 0x0020E3AC
 		public void XiaoSanLingQiMoveAll()
 		{
 			if (UIFightPanel.Inst.UIFightState == UIFightState.回合结束弃置灵气阶段 && base.LingQiCount > 0)
@@ -64,34 +64,34 @@ namespace YSGame.Fight
 			}
 		}
 
-		// Token: 0x06005674 RID: 22132 RVA: 0x0003DCF3 File Offset: 0x0003BEF3
+		// Token: 0x06004D25 RID: 19749 RVA: 0x002101FD File Offset: 0x0020E3FD
 		protected override void OnClick()
 		{
 			base.OnClick();
 			this.UseSkillMoveLingQi();
 		}
 
-		// Token: 0x06005675 RID: 22133 RVA: 0x0003DD01 File Offset: 0x0003BF01
+		// Token: 0x06004D26 RID: 19750 RVA: 0x0021020B File Offset: 0x0020E40B
 		protected override void OnLeftClick()
 		{
 			base.OnLeftClick();
 			this.XiaoSanLingQiMoveOne();
 		}
 
-		// Token: 0x06005676 RID: 22134 RVA: 0x0003DD0F File Offset: 0x0003BF0F
+		// Token: 0x06004D27 RID: 19751 RVA: 0x00210219 File Offset: 0x0020E419
 		protected override void OnRightClick()
 		{
 			base.OnRightClick();
 			this.XiaoSanLingQiMoveAll();
 		}
 
-		// Token: 0x06005677 RID: 22135 RVA: 0x0003DD1D File Offset: 0x0003BF1D
+		// Token: 0x06004D28 RID: 19752 RVA: 0x00210227 File Offset: 0x0020E427
 		protected override void PlayAddLingQiAnim(int count)
 		{
 			base.PlayAddLingQiAnim(count);
 		}
 
-		// Token: 0x06005678 RID: 22136 RVA: 0x002408B0 File Offset: 0x0023EAB0
+		// Token: 0x06004D29 RID: 19753 RVA: 0x00210230 File Offset: 0x0020E430
 		protected override void PlayRemoveLingQiAnim(int count)
 		{
 			base.PlayRemoveLingQiAnim(count);
@@ -104,7 +104,7 @@ namespace YSGame.Fight
 			this.AnimToEnv(count);
 		}
 
-		// Token: 0x06005679 RID: 22137 RVA: 0x00240904 File Offset: 0x0023EB04
+		// Token: 0x06004D2A RID: 19754 RVA: 0x00210284 File Offset: 0x0020E484
 		protected void AnimToEnv(int count)
 		{
 			if (!UIFightLingQiSlot.IgnoreEffect)
@@ -114,7 +114,7 @@ namespace YSGame.Fight
 			}
 		}
 
-		// Token: 0x0600567A RID: 22138 RVA: 0x00240984 File Offset: 0x0023EB84
+		// Token: 0x06004D2B RID: 19755 RVA: 0x00210304 File Offset: 0x0020E504
 		protected void AnimCacheToPlayer(UIFightLingQiPlayerSlot target, int count)
 		{
 			if (!UIFightLingQiSlot.IgnoreEffect)
@@ -124,7 +124,7 @@ namespace YSGame.Fight
 			}
 		}
 
-		// Token: 0x04005615 RID: 22037
+		// Token: 0x04004C3B RID: 19515
 		public int LimitCount;
 	}
 }

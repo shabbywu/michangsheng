@@ -6,11 +6,11 @@ using UnityEngine.UI;
 
 namespace GUIPackage
 {
-	// Token: 0x02000D82 RID: 3458
+	// Token: 0x02000A5C RID: 2652
 	public class ItemCell : MonoBehaviour, IPointerEnterHandler, IEventSystemHandler, IPointerExitHandler
 	{
-		// Token: 0x170007EC RID: 2028
-		// (get) Token: 0x0600535D RID: 21341 RVA: 0x0003BA72 File Offset: 0x00039C72
+		// Token: 0x170005CF RID: 1487
+		// (get) Token: 0x06004A61 RID: 19041 RVA: 0x001F9334 File Offset: 0x001F7534
 		public item GetItem
 		{
 			get
@@ -19,7 +19,7 @@ namespace GUIPackage
 			}
 		}
 
-		// Token: 0x0600535E RID: 21342 RVA: 0x0003BA7A File Offset: 0x00039C7A
+		// Token: 0x06004A62 RID: 19042 RVA: 0x001F933C File Offset: 0x001F753C
 		private void Start()
 		{
 			if (this.inventory == null)
@@ -29,7 +29,7 @@ namespace GUIPackage
 			this.Item = this.inventory.inventory[int.Parse(base.name)];
 		}
 
-		// Token: 0x0600535F RID: 21343 RVA: 0x0022B8B4 File Offset: 0x00229AB4
+		// Token: 0x06004A63 RID: 19043 RVA: 0x001F9378 File Offset: 0x001F7578
 		public void ShowName()
 		{
 			if (this.Item.itemID != -1 && this.KeyName != null && this.KeyObject != null)
@@ -52,7 +52,7 @@ namespace GUIPackage
 			}
 		}
 
-		// Token: 0x06005360 RID: 21344 RVA: 0x0003BAB6 File Offset: 0x00039CB6
+		// Token: 0x06004A64 RID: 19044 RVA: 0x001F9484 File Offset: 0x001F7684
 		private void Update()
 		{
 			if (this.refreshCD < 0f)
@@ -64,7 +64,7 @@ namespace GUIPackage
 			this.refreshCD -= Time.deltaTime;
 		}
 
-		// Token: 0x06005361 RID: 21345 RVA: 0x0022B9C0 File Offset: 0x00229BC0
+		// Token: 0x06004A65 RID: 19045 RVA: 0x001F94B8 File Offset: 0x001F76B8
 		public void UpdateRefresh()
 		{
 			this.Item = this.inventory.inventory[int.Parse(base.name)];
@@ -120,7 +120,7 @@ namespace GUIPackage
 			this.ShowName();
 		}
 
-		// Token: 0x06005362 RID: 21346 RVA: 0x0022BD0C File Offset: 0x00229F0C
+		// Token: 0x06004A66 RID: 19046 RVA: 0x001F9804 File Offset: 0x001F7A04
 		public void showYiWu()
 		{
 			if (this.YiWu != null)
@@ -134,9 +134,9 @@ namespace GUIPackage
 						int getskillID = 0;
 						try
 						{
-							if (item.itemID > 100000)
+							if (item.itemID > jsonData.QingJiaoItemIDSegment)
 							{
-								JSONObject jsonobject2 = jsonData.instance.ItemsSeidJsonData[1][(item.itemID - 100000).ToString()];
+								JSONObject jsonobject2 = jsonData.instance.ItemsSeidJsonData[1][(item.itemID - jsonData.QingJiaoItemIDSegment).ToString()];
 								getskillID = jsonobject2["value1"].I;
 							}
 							else
@@ -163,9 +163,9 @@ namespace GUIPackage
 						int getskillID = 0;
 						try
 						{
-							if (item.itemID > 100000)
+							if (item.itemID > jsonData.QingJiaoItemIDSegment)
 							{
-								JSONObject jsonobject3 = jsonData.instance.ItemsSeidJsonData[2][(item.itemID - 100000).ToString()];
+								JSONObject jsonobject3 = jsonData.instance.ItemsSeidJsonData[2][(item.itemID - jsonData.QingJiaoItemIDSegment).ToString()];
 								getskillID = jsonobject3["value1"].I;
 							}
 							else
@@ -236,7 +236,7 @@ namespace GUIPackage
 			}
 		}
 
-		// Token: 0x06005363 RID: 21347 RVA: 0x0003BAE9 File Offset: 0x00039CE9
+		// Token: 0x06004A67 RID: 19047 RVA: 0x001F9C78 File Offset: 0x001F7E78
 		private void OnDrop(GameObject obj)
 		{
 			if (Input.GetMouseButtonUp(0) && !this.JustShow)
@@ -245,13 +245,13 @@ namespace GUIPackage
 			}
 		}
 
-		// Token: 0x06005364 RID: 21348 RVA: 0x0003BB01 File Offset: 0x00039D01
+		// Token: 0x06004A68 RID: 19048 RVA: 0x001F9C90 File Offset: 0x001F7E90
 		private void OnPress()
 		{
 			this.PCOnPress();
 		}
 
-		// Token: 0x06005365 RID: 21349 RVA: 0x0022C180 File Offset: 0x0022A380
+		// Token: 0x06004A69 RID: 19049 RVA: 0x001F9C98 File Offset: 0x001F7E98
 		public virtual void MobilePress()
 		{
 			if (this.Item.itemID == -1)
@@ -275,7 +275,7 @@ namespace GUIPackage
 			};
 		}
 
-		// Token: 0x06005366 RID: 21350 RVA: 0x0022C1E0 File Offset: 0x0022A3E0
+		// Token: 0x06004A6A RID: 19050 RVA: 0x001F9CF8 File Offset: 0x001F7EF8
 		public virtual void PCOnPress()
 		{
 			if (this.JustShow)
@@ -297,7 +297,7 @@ namespace GUIPackage
 			}
 		}
 
-		// Token: 0x06005367 RID: 21351 RVA: 0x0022C258 File Offset: 0x0022A458
+		// Token: 0x06004A6B RID: 19051 RVA: 0x001F9D70 File Offset: 0x001F7F70
 		public void ClickUseItem()
 		{
 			int num = (int)jsonData.instance.ItemJsonData[this.inventory.inventory[int.Parse(base.name)].itemID.ToString()]["type"].n;
@@ -317,7 +317,7 @@ namespace GUIPackage
 			this.inventory.UseItem(int.Parse(base.name));
 		}
 
-		// Token: 0x06005368 RID: 21352 RVA: 0x0022C338 File Offset: 0x0022A538
+		// Token: 0x06004A6C RID: 19052 RVA: 0x001F9E50 File Offset: 0x001F8050
 		private void chengeItem()
 		{
 			if (!this.inventory.CanClick())
@@ -369,7 +369,7 @@ namespace GUIPackage
 			}
 		}
 
-		// Token: 0x06005369 RID: 21353 RVA: 0x0022C550 File Offset: 0x0022A750
+		// Token: 0x06004A6D RID: 19053 RVA: 0x001FA068 File Offset: 0x001F8268
 		public virtual int getItemPrice()
 		{
 			int num = (int)jsonData.instance.ItemJsonData[string.Concat(this.inventory.inventory[int.Parse(base.name)].itemID)]["price"].n;
@@ -380,19 +380,19 @@ namespace GUIPackage
 			return (int)((float)num * 0.5f);
 		}
 
-		// Token: 0x0600536A RID: 21354 RVA: 0x0003BB09 File Offset: 0x00039D09
+		// Token: 0x06004A6E RID: 19054 RVA: 0x001FA146 File Offset: 0x001F8346
 		private void OnHover(bool isOver)
 		{
 			this.PCOnHover(isOver);
 		}
 
-		// Token: 0x0600536B RID: 21355 RVA: 0x00004050 File Offset: 0x00002250
+		// Token: 0x06004A6F RID: 19055 RVA: 0x0000280F File Offset: 0x00000A0F
 		public virtual int MoneyPercent(item a)
 		{
 			return 0;
 		}
 
-		// Token: 0x0600536C RID: 21356 RVA: 0x0022C630 File Offset: 0x0022A830
+		// Token: 0x06004A70 RID: 19056 RVA: 0x001FA150 File Offset: 0x001F8350
 		public virtual void PCOnHover(bool isOver)
 		{
 			if (isOver && this.inventory.inventory[int.Parse(base.name)].itemName != null)
@@ -404,7 +404,7 @@ namespace GUIPackage
 			this.inventory.showTooltip = false;
 		}
 
-		// Token: 0x0600536D RID: 21357 RVA: 0x0003BB12 File Offset: 0x00039D12
+		// Token: 0x06004A71 RID: 19057 RVA: 0x001FA1E8 File Offset: 0x001F83E8
 		public void OnPointerExit(PointerEventData eventData)
 		{
 			if (this.isUGUI)
@@ -413,7 +413,7 @@ namespace GUIPackage
 			}
 		}
 
-		// Token: 0x0600536E RID: 21358 RVA: 0x0003BB23 File Offset: 0x00039D23
+		// Token: 0x06004A72 RID: 19058 RVA: 0x001FA1F9 File Offset: 0x001F83F9
 		public void OnPointerEnter(PointerEventData eventData)
 		{
 			if (this.isUGUI)
@@ -422,64 +422,64 @@ namespace GUIPackage
 			}
 		}
 
-		// Token: 0x04005326 RID: 21286
+		// Token: 0x04004999 RID: 18841
 		public GameObject Icon;
 
-		// Token: 0x04005327 RID: 21287
+		// Token: 0x0400499A RID: 18842
 		public GameObject Num;
 
-		// Token: 0x04005328 RID: 21288
+		// Token: 0x0400499B RID: 18843
 		public GameObject PingZhi;
 
-		// Token: 0x04005329 RID: 21289
+		// Token: 0x0400499C RID: 18844
 		public GameObject PingZhiUI;
 
-		// Token: 0x0400532A RID: 21290
+		// Token: 0x0400499D RID: 18845
 		public ItemDatebase itemDatebase;
 
-		// Token: 0x0400532B RID: 21291
+		// Token: 0x0400499E RID: 18846
 		public bool JustShow;
 
-		// Token: 0x0400532C RID: 21292
+		// Token: 0x0400499F RID: 18847
 		public bool isPlayer = true;
 
-		// Token: 0x0400532D RID: 21293
+		// Token: 0x040049A0 RID: 18848
 		public bool isUGUI;
 
-		// Token: 0x0400532E RID: 21294
+		// Token: 0x040049A1 RID: 18849
 		public Inventory2 inventory;
 
-		// Token: 0x0400532F RID: 21295
+		// Token: 0x040049A2 RID: 18850
 		public GameObject YiWu;
 
-		// Token: 0x04005330 RID: 21296
+		// Token: 0x040049A3 RID: 18851
 		public GameObject NaiYao;
 
-		// Token: 0x04005331 RID: 21297
+		// Token: 0x040049A4 RID: 18852
 		public string Btn1Text = "";
 
-		// Token: 0x04005332 RID: 21298
+		// Token: 0x040049A5 RID: 18853
 		public bool AutoSetBtnText;
 
-		// Token: 0x04005333 RID: 21299
+		// Token: 0x040049A6 RID: 18854
 		public bool CanShowTooltips = true;
 
-		// Token: 0x04005334 RID: 21300
+		// Token: 0x040049A7 RID: 18855
 		public bool CanDrawItem;
 
-		// Token: 0x04005335 RID: 21301
+		// Token: 0x040049A8 RID: 18856
 		protected item Item = new item();
 
-		// Token: 0x04005336 RID: 21302
+		// Token: 0x040049A9 RID: 18857
 		public bool ISPrepare;
 
-		// Token: 0x04005337 RID: 21303
+		// Token: 0x040049AA RID: 18858
 		public GameObject KeyObject;
 
-		// Token: 0x04005338 RID: 21304
+		// Token: 0x040049AB RID: 18859
 		public UILabel KeyName;
 
-		// Token: 0x04005339 RID: 21305
+		// Token: 0x040049AC RID: 18860
 		private float refreshCD;
 	}
 }

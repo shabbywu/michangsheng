@@ -1,11 +1,11 @@
 ﻿using System;
 using UnityEngine;
 
-// Token: 0x020002B3 RID: 691
+// Token: 0x020001B5 RID: 437
 public class SystemConfig
 {
-	// Token: 0x1700026C RID: 620
-	// (get) Token: 0x060014FD RID: 5373 RVA: 0x000133E0 File Offset: 0x000115E0
+	// Token: 0x17000224 RID: 548
+	// (get) Token: 0x06001252 RID: 4690 RVA: 0x0006F39E File Offset: 0x0006D59E
 	public static SystemConfig Inst
 	{
 		get
@@ -18,48 +18,48 @@ public class SystemConfig
 		}
 	}
 
-	// Token: 0x060014FE RID: 5374 RVA: 0x000133F8 File Offset: 0x000115F8
+	// Token: 0x06001253 RID: 4691 RVA: 0x0006F3B6 File Offset: 0x0006D5B6
 	public float GetBackGroundVolume()
 	{
 		return PlayerPrefs.GetFloat("MusicBg", 0.5f);
 	}
 
-	// Token: 0x060014FF RID: 5375 RVA: 0x00013409 File Offset: 0x00011609
+	// Token: 0x06001254 RID: 4692 RVA: 0x0006F3C7 File Offset: 0x0006D5C7
 	public float GetEffectVolume()
 	{
 		return PlayerPrefs.GetFloat("MusicEffect", 0.5f);
 	}
 
-	// Token: 0x06001500 RID: 5376 RVA: 0x0001341A File Offset: 0x0001161A
+	// Token: 0x06001255 RID: 4693 RVA: 0x0006F3D8 File Offset: 0x0006D5D8
 	public int GetSaveTimes()
 	{
 		return PlayerPrefs.GetInt("SaveTimes", 10);
 	}
 
-	// Token: 0x06001501 RID: 5377 RVA: 0x00013428 File Offset: 0x00011628
+	// Token: 0x06001256 RID: 4694 RVA: 0x0006F3E6 File Offset: 0x0006D5E6
 	public void SetSaveTimes(int value)
 	{
 		PlayerPrefs.SetInt("SaveTimes", value);
 	}
 
-	// Token: 0x06001502 RID: 5378 RVA: 0x00013435 File Offset: 0x00011635
+	// Token: 0x06001257 RID: 4695 RVA: 0x0006F3F3 File Offset: 0x0006D5F3
 	public int GetNpcActionTimes()
 	{
 		return PlayerPrefs.GetInt("NpcActionTimes", 0);
 	}
 
-	// Token: 0x06001503 RID: 5379 RVA: 0x00013442 File Offset: 0x00011642
+	// Token: 0x06001258 RID: 4696 RVA: 0x0006F400 File Offset: 0x0006D600
 	public void SetActionTimes(int value)
 	{
 		PlayerPrefs.SetInt("NpcActionTimes", value);
 	}
 
-	// Token: 0x06001504 RID: 5380 RVA: 0x0001344F File Offset: 0x0001164F
+	// Token: 0x06001259 RID: 4697 RVA: 0x0006F40D File Offset: 0x0006D60D
 	public void Reset()
 	{
 		Screen.SetResolution(1280, 720, false);
 	}
 
-	// Token: 0x04001020 RID: 4128
+	// Token: 0x04000CF8 RID: 3320
 	private static SystemConfig _inst;
 }

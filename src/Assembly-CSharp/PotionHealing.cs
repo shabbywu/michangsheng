@@ -1,10 +1,10 @@
 ﻿using System;
 using UnityEngine;
 
-// Token: 0x02000163 RID: 355
+// Token: 0x020000EC RID: 236
 public class PotionHealing : MonoBehaviour
 {
-	// Token: 0x06000C66 RID: 3174 RVA: 0x0009765C File Offset: 0x0009585C
+	// Token: 0x06000B77 RID: 2935 RVA: 0x00045B6C File Offset: 0x00043D6C
 	private void Start()
 	{
 		if (base.gameObject.transform.parent && base.gameObject.transform.parent.gameObject.GetComponent<CharacterStatus>())
@@ -14,6 +14,6 @@ public class PotionHealing : MonoBehaviour
 		Object.Destroy(base.gameObject, 3f);
 	}
 
-	// Token: 0x0400098A RID: 2442
+	// Token: 0x040007AF RID: 1967
 	public int HPheal = 10;
 }

@@ -2,10 +2,10 @@
 
 namespace ICSharpCode.SharpZipLib.Zip.Compression
 {
-	// Token: 0x020007F8 RID: 2040
+	// Token: 0x02000554 RID: 1364
 	public class DeflaterHuffman
 	{
-		// Token: 0x06003491 RID: 13457 RVA: 0x00195848 File Offset: 0x00193A48
+		// Token: 0x06002C36 RID: 11318 RVA: 0x00149E54 File Offset: 0x00148054
 		static DeflaterHuffman()
 		{
 			int i = 0;
@@ -38,7 +38,7 @@ namespace ICSharpCode.SharpZipLib.Zip.Compression
 			}
 		}
 
-		// Token: 0x06003492 RID: 13458 RVA: 0x00195988 File Offset: 0x00193B88
+		// Token: 0x06002C37 RID: 11319 RVA: 0x00149F94 File Offset: 0x00148194
 		public DeflaterHuffman(DeflaterPending pending)
 		{
 			this.pending = pending;
@@ -49,7 +49,7 @@ namespace ICSharpCode.SharpZipLib.Zip.Compression
 			this.l_buf = new byte[16384];
 		}
 
-		// Token: 0x06003493 RID: 13459 RVA: 0x0002663A File Offset: 0x0002483A
+		// Token: 0x06002C38 RID: 11320 RVA: 0x0014A007 File Offset: 0x00148207
 		public void Reset()
 		{
 			this.last_lit = 0;
@@ -59,7 +59,7 @@ namespace ICSharpCode.SharpZipLib.Zip.Compression
 			this.blTree.Reset();
 		}
 
-		// Token: 0x06003494 RID: 13460 RVA: 0x001959FC File Offset: 0x00193BFC
+		// Token: 0x06002C39 RID: 11321 RVA: 0x0014A038 File Offset: 0x00148238
 		public void SendAllTrees(int blTreeCodes)
 		{
 			this.blTree.BuildCodes();
@@ -76,7 +76,7 @@ namespace ICSharpCode.SharpZipLib.Zip.Compression
 			this.distTree.WriteTree(this.blTree);
 		}
 
-		// Token: 0x06003495 RID: 13461 RVA: 0x00195ABC File Offset: 0x00193CBC
+		// Token: 0x06002C3A RID: 11322 RVA: 0x0014A0F8 File Offset: 0x001482F8
 		public void CompressBlock()
 		{
 			for (int i = 0; i < this.last_lit; i++)
@@ -108,7 +108,7 @@ namespace ICSharpCode.SharpZipLib.Zip.Compression
 			this.literalTree.WriteSymbol(256);
 		}
 
-		// Token: 0x06003496 RID: 13462 RVA: 0x00195B98 File Offset: 0x00193D98
+		// Token: 0x06002C3B RID: 11323 RVA: 0x0014A1D4 File Offset: 0x001483D4
 		public void FlushStoredBlock(byte[] stored, int storedOffset, int storedLength, bool lastBlock)
 		{
 			this.pending.WriteBits(lastBlock ? 1 : 0, 3);
@@ -119,7 +119,7 @@ namespace ICSharpCode.SharpZipLib.Zip.Compression
 			this.Reset();
 		}
 
-		// Token: 0x06003497 RID: 13463 RVA: 0x00195BF4 File Offset: 0x00193DF4
+		// Token: 0x06002C3C RID: 11324 RVA: 0x0014A230 File Offset: 0x00148430
 		public void FlushBlock(byte[] stored, int storedOffset, int storedLength, bool lastBlock)
 		{
 			short[] freqs = this.literalTree.freqs;
@@ -172,13 +172,13 @@ namespace ICSharpCode.SharpZipLib.Zip.Compression
 			this.Reset();
 		}
 
-		// Token: 0x06003498 RID: 13464 RVA: 0x0002666B File Offset: 0x0002486B
+		// Token: 0x06002C3D RID: 11325 RVA: 0x0014A3EE File Offset: 0x001485EE
 		public bool IsFull()
 		{
 			return this.last_lit >= 16384;
 		}
 
-		// Token: 0x06003499 RID: 13465 RVA: 0x00195DB4 File Offset: 0x00193FB4
+		// Token: 0x06002C3E RID: 11326 RVA: 0x0014A400 File Offset: 0x00148600
 		public bool TallyLit(int literal)
 		{
 			this.d_buf[this.last_lit] = 0;
@@ -191,7 +191,7 @@ namespace ICSharpCode.SharpZipLib.Zip.Compression
 			return this.IsFull();
 		}
 
-		// Token: 0x0600349A RID: 13466 RVA: 0x00195E08 File Offset: 0x00194008
+		// Token: 0x06002C3F RID: 11327 RVA: 0x0014A454 File Offset: 0x00148654
 		public bool TallyDist(int distance, int length)
 		{
 			this.d_buf[this.last_lit] = (short)distance;
@@ -218,13 +218,13 @@ namespace ICSharpCode.SharpZipLib.Zip.Compression
 			return this.IsFull();
 		}
 
-		// Token: 0x0600349B RID: 13467 RVA: 0x0002667D File Offset: 0x0002487D
+		// Token: 0x06002C40 RID: 11328 RVA: 0x0014A50E File Offset: 0x0014870E
 		public static short BitReverse(int toReverse)
 		{
 			return (short)((int)DeflaterHuffman.bit4Reverse[toReverse & 15] << 12 | (int)DeflaterHuffman.bit4Reverse[toReverse >> 4 & 15] << 8 | (int)DeflaterHuffman.bit4Reverse[toReverse >> 8 & 15] << 4 | (int)DeflaterHuffman.bit4Reverse[toReverse >> 12]);
 		}
 
-		// Token: 0x0600349C RID: 13468 RVA: 0x00195EC4 File Offset: 0x001940C4
+		// Token: 0x06002C41 RID: 11329 RVA: 0x0014A548 File Offset: 0x00148748
 		private static int Lcode(int length)
 		{
 			if (length == 255)
@@ -240,7 +240,7 @@ namespace ICSharpCode.SharpZipLib.Zip.Compression
 			return num + length;
 		}
 
-		// Token: 0x0600349D RID: 13469 RVA: 0x00195EF8 File Offset: 0x001940F8
+		// Token: 0x06002C42 RID: 11330 RVA: 0x0014A57C File Offset: 0x0014877C
 		private static int Dcode(int distance)
 		{
 			int num = 0;
@@ -252,31 +252,31 @@ namespace ICSharpCode.SharpZipLib.Zip.Compression
 			return num + distance;
 		}
 
-		// Token: 0x04002FC8 RID: 12232
+		// Token: 0x040027A0 RID: 10144
 		private const int BUFSIZE = 16384;
 
-		// Token: 0x04002FC9 RID: 12233
+		// Token: 0x040027A1 RID: 10145
 		private const int LITERAL_NUM = 286;
 
-		// Token: 0x04002FCA RID: 12234
+		// Token: 0x040027A2 RID: 10146
 		private const int DIST_NUM = 30;
 
-		// Token: 0x04002FCB RID: 12235
+		// Token: 0x040027A3 RID: 10147
 		private const int BITLEN_NUM = 19;
 
-		// Token: 0x04002FCC RID: 12236
+		// Token: 0x040027A4 RID: 10148
 		private const int REP_3_6 = 16;
 
-		// Token: 0x04002FCD RID: 12237
+		// Token: 0x040027A5 RID: 10149
 		private const int REP_3_10 = 17;
 
-		// Token: 0x04002FCE RID: 12238
+		// Token: 0x040027A6 RID: 10150
 		private const int REP_11_138 = 18;
 
-		// Token: 0x04002FCF RID: 12239
+		// Token: 0x040027A7 RID: 10151
 		private const int EOF_SYMBOL = 256;
 
-		// Token: 0x04002FD0 RID: 12240
+		// Token: 0x040027A8 RID: 10152
 		private static readonly int[] BL_ORDER = new int[]
 		{
 			16,
@@ -300,7 +300,7 @@ namespace ICSharpCode.SharpZipLib.Zip.Compression
 			15
 		};
 
-		// Token: 0x04002FD1 RID: 12241
+		// Token: 0x040027A9 RID: 10153
 		private static readonly byte[] bit4Reverse = new byte[]
 		{
 			0,
@@ -321,46 +321,46 @@ namespace ICSharpCode.SharpZipLib.Zip.Compression
 			15
 		};
 
-		// Token: 0x04002FD2 RID: 12242
+		// Token: 0x040027AA RID: 10154
 		private static short[] staticLCodes = new short[286];
 
-		// Token: 0x04002FD3 RID: 12243
+		// Token: 0x040027AB RID: 10155
 		private static byte[] staticLLength = new byte[286];
 
-		// Token: 0x04002FD4 RID: 12244
+		// Token: 0x040027AC RID: 10156
 		private static short[] staticDCodes;
 
-		// Token: 0x04002FD5 RID: 12245
+		// Token: 0x040027AD RID: 10157
 		private static byte[] staticDLength;
 
-		// Token: 0x04002FD6 RID: 12246
+		// Token: 0x040027AE RID: 10158
 		public DeflaterPending pending;
 
-		// Token: 0x04002FD7 RID: 12247
+		// Token: 0x040027AF RID: 10159
 		private DeflaterHuffman.Tree literalTree;
 
-		// Token: 0x04002FD8 RID: 12248
+		// Token: 0x040027B0 RID: 10160
 		private DeflaterHuffman.Tree distTree;
 
-		// Token: 0x04002FD9 RID: 12249
+		// Token: 0x040027B1 RID: 10161
 		private DeflaterHuffman.Tree blTree;
 
-		// Token: 0x04002FDA RID: 12250
+		// Token: 0x040027B2 RID: 10162
 		private short[] d_buf;
 
-		// Token: 0x04002FDB RID: 12251
+		// Token: 0x040027B3 RID: 10163
 		private byte[] l_buf;
 
-		// Token: 0x04002FDC RID: 12252
+		// Token: 0x040027B4 RID: 10164
 		private int last_lit;
 
-		// Token: 0x04002FDD RID: 12253
+		// Token: 0x040027B5 RID: 10165
 		private int extra_bits;
 
-		// Token: 0x020007F9 RID: 2041
+		// Token: 0x0200148E RID: 5262
 		private class Tree
 		{
-			// Token: 0x0600349E RID: 13470 RVA: 0x000266B6 File Offset: 0x000248B6
+			// Token: 0x06008137 RID: 33079 RVA: 0x002D7FA6 File Offset: 0x002D61A6
 			public Tree(DeflaterHuffman dh, int elems, int minCodes, int maxLength)
 			{
 				this.dh = dh;
@@ -370,7 +370,7 @@ namespace ICSharpCode.SharpZipLib.Zip.Compression
 				this.bl_counts = new int[maxLength];
 			}
 
-			// Token: 0x0600349F RID: 13471 RVA: 0x00195F1C File Offset: 0x0019411C
+			// Token: 0x06008138 RID: 33080 RVA: 0x002D7FE0 File Offset: 0x002D61E0
 			public void Reset()
 			{
 				for (int i = 0; i < this.freqs.Length; i++)
@@ -381,13 +381,13 @@ namespace ICSharpCode.SharpZipLib.Zip.Compression
 				this.length = null;
 			}
 
-			// Token: 0x060034A0 RID: 13472 RVA: 0x000266ED File Offset: 0x000248ED
+			// Token: 0x06008139 RID: 33081 RVA: 0x002D8017 File Offset: 0x002D6217
 			public void WriteSymbol(int code)
 			{
 				this.dh.pending.WriteBits((int)this.codes[code] & 65535, (int)this.length[code]);
 			}
 
-			// Token: 0x060034A1 RID: 13473 RVA: 0x00195F54 File Offset: 0x00194154
+			// Token: 0x0600813A RID: 33082 RVA: 0x002D8040 File Offset: 0x002D6240
 			public void CheckEmpty()
 			{
 				bool flag = true;
@@ -401,14 +401,14 @@ namespace ICSharpCode.SharpZipLib.Zip.Compression
 				}
 			}
 
-			// Token: 0x060034A2 RID: 13474 RVA: 0x00026715 File Offset: 0x00024915
+			// Token: 0x0600813B RID: 33083 RVA: 0x002D807E File Offset: 0x002D627E
 			public void SetStaticCodes(short[] staticCodes, byte[] staticLengths)
 			{
 				this.codes = staticCodes;
 				this.length = staticLengths;
 			}
 
-			// Token: 0x060034A3 RID: 13475 RVA: 0x00195F94 File Offset: 0x00194194
+			// Token: 0x0600813C RID: 33084 RVA: 0x002D8090 File Offset: 0x002D6290
 			public void BuildCodes()
 			{
 				int num = this.freqs.Length;
@@ -431,7 +431,7 @@ namespace ICSharpCode.SharpZipLib.Zip.Compression
 				}
 			}
 
-			// Token: 0x060034A4 RID: 13476 RVA: 0x00196040 File Offset: 0x00194240
+			// Token: 0x0600813D RID: 33085 RVA: 0x002D813C File Offset: 0x002D633C
 			public void BuildTree()
 			{
 				int num = this.freqs.Length;
@@ -523,7 +523,7 @@ namespace ICSharpCode.SharpZipLib.Zip.Compression
 				this.BuildLength(array2);
 			}
 
-			// Token: 0x060034A5 RID: 13477 RVA: 0x001962AC File Offset: 0x001944AC
+			// Token: 0x0600813E RID: 33086 RVA: 0x002D83A8 File Offset: 0x002D65A8
 			public int GetEncodedLength()
 			{
 				int num = 0;
@@ -534,7 +534,7 @@ namespace ICSharpCode.SharpZipLib.Zip.Compression
 				return num;
 			}
 
-			// Token: 0x060034A6 RID: 13478 RVA: 0x001962E4 File Offset: 0x001944E4
+			// Token: 0x0600813F RID: 33087 RVA: 0x002D83E0 File Offset: 0x002D65E0
 			public void CalcBLFreq(DeflaterHuffman.Tree blTree)
 			{
 				int num = -1;
@@ -599,7 +599,7 @@ namespace ICSharpCode.SharpZipLib.Zip.Compression
 				}
 			}
 
-			// Token: 0x060034A7 RID: 13479 RVA: 0x001963D0 File Offset: 0x001945D0
+			// Token: 0x06008140 RID: 33088 RVA: 0x002D84CC File Offset: 0x002D66CC
 			public void WriteTree(DeflaterHuffman.Tree blTree)
 			{
 				int num = -1;
@@ -660,7 +660,7 @@ namespace ICSharpCode.SharpZipLib.Zip.Compression
 				}
 			}
 
-			// Token: 0x060034A8 RID: 13480 RVA: 0x001964CC File Offset: 0x001946CC
+			// Token: 0x06008141 RID: 33089 RVA: 0x002D85C8 File Offset: 0x002D67C8
 			private void BuildLength(int[] childs)
 			{
 				this.length = new byte[this.freqs.Length];
@@ -732,28 +732,28 @@ namespace ICSharpCode.SharpZipLib.Zip.Compression
 				}
 			}
 
-			// Token: 0x04002FDE RID: 12254
+			// Token: 0x04006C6A RID: 27754
 			public short[] freqs;
 
-			// Token: 0x04002FDF RID: 12255
+			// Token: 0x04006C6B RID: 27755
 			public byte[] length;
 
-			// Token: 0x04002FE0 RID: 12256
+			// Token: 0x04006C6C RID: 27756
 			public int minNumCodes;
 
-			// Token: 0x04002FE1 RID: 12257
+			// Token: 0x04006C6D RID: 27757
 			public int numCodes;
 
-			// Token: 0x04002FE2 RID: 12258
+			// Token: 0x04006C6E RID: 27758
 			private short[] codes;
 
-			// Token: 0x04002FE3 RID: 12259
+			// Token: 0x04006C6F RID: 27759
 			private readonly int[] bl_counts;
 
-			// Token: 0x04002FE4 RID: 12260
+			// Token: 0x04006C70 RID: 27760
 			private readonly int maxLength;
 
-			// Token: 0x04002FE5 RID: 12261
+			// Token: 0x04006C71 RID: 27761
 			private DeflaterHuffman dh;
 		}
 	}

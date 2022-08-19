@@ -4,10 +4,10 @@ using WXB;
 
 namespace YSGame.TuJian
 {
-	// Token: 0x02000DD9 RID: 3545
+	// Token: 0x02000A9E RID: 2718
 	public class TuJianHyperlinkEvent : MonoBehaviour
 	{
-		// Token: 0x06005565 RID: 21861 RVA: 0x00239810 File Offset: 0x00237A10
+		// Token: 0x06004C21 RID: 19489 RVA: 0x00208324 File Offset: 0x00206524
 		public void OnHyperlinkClick(NodeBase node)
 		{
 			if (node is HyperlinkNode)

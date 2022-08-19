@@ -4,15 +4,15 @@ using MoonSharp.Interpreter.Execution.VM;
 
 namespace MoonSharp.Interpreter.Tree.Statements
 {
-	// Token: 0x020010AA RID: 4266
+	// Token: 0x02000CD4 RID: 3284
 	internal class EmptyStatement : Statement
 	{
-		// Token: 0x06006723 RID: 26403 RVA: 0x00047002 File Offset: 0x00045202
+		// Token: 0x06005C1A RID: 23578 RVA: 0x0025DAB4 File Offset: 0x0025BCB4
 		public EmptyStatement(ScriptLoadingContext lcontext) : base(lcontext)
 		{
 		}
 
-		// Token: 0x06006724 RID: 26404 RVA: 0x000042DD File Offset: 0x000024DD
+		// Token: 0x06005C1B RID: 23579 RVA: 0x00004095 File Offset: 0x00002295
 		public override void Compile(ByteCode bc)
 		{
 		}

@@ -3,26 +3,26 @@ using UnityEngine;
 
 namespace Fungus
 {
-	// Token: 0x02001377 RID: 4983
+	// Token: 0x02000ED6 RID: 3798
 	[Serializable]
 	public struct AudioSourceData
 	{
-		// Token: 0x060078BF RID: 30911 RVA: 0x00052033 File Offset: 0x00050233
+		// Token: 0x06006B20 RID: 27424 RVA: 0x00295ADA File Offset: 0x00293CDA
 		public static implicit operator AudioSource(AudioSourceData audioSourceData)
 		{
 			return audioSourceData.Value;
 		}
 
-		// Token: 0x060078C0 RID: 30912 RVA: 0x0005203C File Offset: 0x0005023C
+		// Token: 0x06006B21 RID: 27425 RVA: 0x00295AE3 File Offset: 0x00293CE3
 		public AudioSourceData(AudioSource v)
 		{
 			this.audioSourceVal = v;
 			this.audioSourceRef = null;
 		}
 
-		// Token: 0x17000B56 RID: 2902
-		// (get) Token: 0x060078C1 RID: 30913 RVA: 0x0005204C File Offset: 0x0005024C
-		// (set) Token: 0x060078C2 RID: 30914 RVA: 0x0005206E File Offset: 0x0005026E
+		// Token: 0x170008B9 RID: 2233
+		// (get) Token: 0x06006B22 RID: 27426 RVA: 0x00295AF3 File Offset: 0x00293CF3
+		// (set) Token: 0x06006B23 RID: 27427 RVA: 0x00295B15 File Offset: 0x00293D15
 		public AudioSource Value
 		{
 			get
@@ -44,7 +44,7 @@ namespace Fungus
 			}
 		}
 
-		// Token: 0x060078C3 RID: 30915 RVA: 0x00052092 File Offset: 0x00050292
+		// Token: 0x06006B24 RID: 27428 RVA: 0x00295B39 File Offset: 0x00293D39
 		public string GetDescription()
 		{
 			if (this.audioSourceRef == null)
@@ -54,7 +54,7 @@ namespace Fungus
 			return this.audioSourceRef.Key;
 		}
 
-		// Token: 0x040068D3 RID: 26835
+		// Token: 0x04005A6A RID: 23146
 		[SerializeField]
 		[VariableProperty("<Value>", new Type[]
 		{
@@ -62,7 +62,7 @@ namespace Fungus
 		})]
 		public AudioSourceVariable audioSourceRef;
 
-		// Token: 0x040068D4 RID: 26836
+		// Token: 0x04005A6B RID: 23147
 		[SerializeField]
 		public AudioSource audioSourceVal;
 	}

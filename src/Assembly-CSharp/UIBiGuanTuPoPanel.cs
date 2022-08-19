@@ -6,17 +6,17 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-// Token: 0x020003B5 RID: 949
+// Token: 0x0200028A RID: 650
 public class UIBiGuanTuPoPanel : TabPanelBase
 {
-	// Token: 0x06001A52 RID: 6738 RVA: 0x0001675B File Offset: 0x0001495B
+	// Token: 0x0600177A RID: 6010 RVA: 0x000A1037 File Offset: 0x0009F237
 	public override void OnPanelShow()
 	{
 		base.OnPanelShow();
 		this.RefreshUI();
 	}
 
-	// Token: 0x06001A53 RID: 6739 RVA: 0x00016769 File Offset: 0x00014969
+	// Token: 0x0600177B RID: 6011 RVA: 0x000A1045 File Offset: 0x0009F245
 	public void RefreshUI()
 	{
 		this.RefreshInventory();
@@ -24,7 +24,7 @@ public class UIBiGuanTuPoPanel : TabPanelBase
 		UIBiGuanPanel.Inst.RefreshKeFangTime();
 	}
 
-	// Token: 0x06001A54 RID: 6740 RVA: 0x000E8550 File Offset: 0x000E6750
+	// Token: 0x0600177C RID: 6012 RVA: 0x000A1060 File Offset: 0x0009F260
 	public void RefreshInventory()
 	{
 		this.SVContent.DestoryAllChild();
@@ -78,7 +78,7 @@ public class UIBiGuanTuPoPanel : TabPanelBase
 		}
 	}
 
-	// Token: 0x06001A55 RID: 6741 RVA: 0x000E8728 File Offset: 0x000E6928
+	// Token: 0x0600177D RID: 6013 RVA: 0x000A1238 File Offset: 0x0009F438
 	public void SetAllIconUnSelected()
 	{
 		int childCount = this.SVContent.childCount;
@@ -88,7 +88,7 @@ public class UIBiGuanTuPoPanel : TabPanelBase
 		}
 	}
 
-	// Token: 0x06001A56 RID: 6742 RVA: 0x000E876C File Offset: 0x000E696C
+	// Token: 0x0600177E RID: 6014 RVA: 0x000A127C File Offset: 0x0009F47C
 	public void SetNull()
 	{
 		this.tmpIcon = null;
@@ -103,7 +103,7 @@ public class UIBiGuanTuPoPanel : TabPanelBase
 		this.JieDuanBar.gameObject.SetActive(false);
 	}
 
-	// Token: 0x06001A57 RID: 6743 RVA: 0x000E87F8 File Offset: 0x000E69F8
+	// Token: 0x0600177F RID: 6015 RVA: 0x000A1308 File Offset: 0x0009F508
 	public void SetTuPo(UIIconShow iconShow, string tupoTime)
 	{
 		this.RightContent.anchoredPosition = new Vector2(this.RightContent.anchoredPosition.x, 0f);
@@ -130,7 +130,7 @@ public class UIBiGuanTuPoPanel : TabPanelBase
 		}
 	}
 
-	// Token: 0x06001A58 RID: 6744 RVA: 0x00016781 File Offset: 0x00014981
+	// Token: 0x06001780 RID: 6016 RVA: 0x000A1468 File Offset: 0x0009F668
 	public void OnTuPoButtonClick()
 	{
 		if (this.tmpIcon == null)
@@ -140,7 +140,7 @@ public class UIBiGuanTuPoPanel : TabPanelBase
 		this.TuPo();
 	}
 
-	// Token: 0x06001A59 RID: 6745 RVA: 0x000E8958 File Offset: 0x000E6B58
+	// Token: 0x06001781 RID: 6017 RVA: 0x000A1480 File Offset: 0x0009F680
 	public void TuPo()
 	{
 		Avatar player = PlayerEx.Player;
@@ -183,7 +183,7 @@ public class UIBiGuanTuPoPanel : TabPanelBase
 				while (enumerator2.MoveNext())
 				{
 					SkillItem _skillTemp = enumerator2.Current;
-					if (_skillTemp.itemId == (int)jsonobject["Skill_ID"].n && _skillTemp.level < 5)
+					if (_skillTemp.itemId == jsonobject["Skill_ID"].I && _skillTemp.level < 5)
 					{
 						_skillTemp.level++;
 						int equipindex = 0;
@@ -216,39 +216,39 @@ public class UIBiGuanTuPoPanel : TabPanelBase
 		UIPopTip.Inst.Pop(str + "后方可继续突破", PopTipIconType.叹号);
 	}
 
-	// Token: 0x040015B2 RID: 5554
+	// Token: 0x04001235 RID: 4661
 	public RectTransform SVContent;
 
-	// Token: 0x040015B3 RID: 5555
+	// Token: 0x04001236 RID: 4662
 	public RectTransform RightContent;
 
-	// Token: 0x040015B4 RID: 5556
+	// Token: 0x04001237 RID: 4663
 	public Dropdown Fillter1;
 
-	// Token: 0x040015B5 RID: 5557
+	// Token: 0x04001238 RID: 4664
 	public Dropdown Filter2;
 
-	// Token: 0x040015B6 RID: 5558
+	// Token: 0x04001239 RID: 4665
 	public Text RightTitle;
 
-	// Token: 0x040015B7 RID: 5559
+	// Token: 0x0400123A RID: 4666
 	public Text TuPoXiaoHaoText;
 
-	// Token: 0x040015B8 RID: 5560
+	// Token: 0x0400123B RID: 4667
 	public Scrollbar JieDuanBar;
 
-	// Token: 0x040015B9 RID: 5561
+	// Token: 0x0400123C RID: 4668
 	public Image BtnImage1;
 
-	// Token: 0x040015BA RID: 5562
+	// Token: 0x0400123D RID: 4669
 	public Image BtnImage2;
 
-	// Token: 0x040015BB RID: 5563
+	// Token: 0x0400123E RID: 4670
 	public Material GreyMat;
 
-	// Token: 0x040015BC RID: 5564
+	// Token: 0x0400123F RID: 4671
 	private UIIconShow tmpIcon;
 
-	// Token: 0x040015BD RID: 5565
+	// Token: 0x04001240 RID: 4672
 	public List<Text> DescItem;
 }

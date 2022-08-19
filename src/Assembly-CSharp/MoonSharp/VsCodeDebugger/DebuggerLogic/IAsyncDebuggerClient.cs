@@ -4,25 +4,25 @@ using MoonSharp.Interpreter.Debugging;
 
 namespace MoonSharp.VsCodeDebugger.DebuggerLogic
 {
-	// Token: 0x020011E2 RID: 4578
+	// Token: 0x02000DB4 RID: 3508
 	internal interface IAsyncDebuggerClient
 	{
-		// Token: 0x06007022 RID: 28706
+		// Token: 0x060063D8 RID: 25560
 		void SendStopEvent();
 
-		// Token: 0x06007023 RID: 28707
+		// Token: 0x060063D9 RID: 25561
 		void OnWatchesUpdated(WatchType watchType);
 
-		// Token: 0x06007024 RID: 28708
+		// Token: 0x060063DA RID: 25562
 		void OnSourceCodeChanged(int sourceID);
 
-		// Token: 0x06007025 RID: 28709
+		// Token: 0x060063DB RID: 25563
 		void OnExecutionEnded();
 
-		// Token: 0x06007026 RID: 28710
+		// Token: 0x060063DC RID: 25564
 		void OnException(ScriptRuntimeException ex);
 
-		// Token: 0x06007027 RID: 28711
+		// Token: 0x060063DD RID: 25565
 		void Unbind();
 	}
 }

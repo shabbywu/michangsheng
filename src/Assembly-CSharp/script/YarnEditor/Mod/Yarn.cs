@@ -5,11 +5,11 @@ using script.YarnEditor.Component.TriggerData;
 
 namespace script.YarnEditor.Mod
 {
-	// Token: 0x02000AAB RID: 2731
+	// Token: 0x020009C6 RID: 2502
 	[Serializable]
 	public class Yarn
 	{
-		// Token: 0x060045E7 RID: 17895 RVA: 0x001DDB14 File Offset: 0x001DBD14
+		// Token: 0x06004592 RID: 17810 RVA: 0x001D7B50 File Offset: 0x001D5D50
 		public void SaveTrigger()
 		{
 			FileStream fileStream = new FileStream(this.Path.Replace(".yarn", ".trigger"), FileMode.Create);
@@ -17,13 +17,13 @@ namespace script.YarnEditor.Mod
 			fileStream.Close();
 		}
 
-		// Token: 0x04003E1E RID: 15902
+		// Token: 0x04004712 RID: 18194
 		public string Name;
 
-		// Token: 0x04003E1F RID: 15903
+		// Token: 0x04004713 RID: 18195
 		public string Path;
 
-		// Token: 0x04003E20 RID: 15904
+		// Token: 0x04004714 RID: 18196
 		public TriggerConfig TriggerConfig;
 	}
 }

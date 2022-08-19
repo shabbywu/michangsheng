@@ -5,10 +5,10 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
 
-// Token: 0x02000435 RID: 1077
+// Token: 0x020002E2 RID: 738
 public class DanFangPageManager : MonoBehaviour
 {
-	// Token: 0x06001CBA RID: 7354 RVA: 0x000180F6 File Offset: 0x000162F6
+	// Token: 0x060019A1 RID: 6561 RVA: 0x000B6E57 File Offset: 0x000B5057
 	public void init()
 	{
 		this.updateDanFang();
@@ -16,7 +16,7 @@ public class DanFangPageManager : MonoBehaviour
 		this.topButton.onClick.AddListener(new UnityAction(this.topDanFang));
 	}
 
-	// Token: 0x06001CBB RID: 7355 RVA: 0x000FCAE8 File Offset: 0x000FACE8
+	// Token: 0x060019A2 RID: 6562 RVA: 0x000B6E98 File Offset: 0x000B5098
 	public void updateDanFang()
 	{
 		Tools.ClearObj(this.parentDanFang.transform);
@@ -35,7 +35,7 @@ public class DanFangPageManager : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001CBC RID: 7356 RVA: 0x000FCBAC File Offset: 0x000FADAC
+	// Token: 0x060019A3 RID: 6563 RVA: 0x000B6F5C File Offset: 0x000B515C
 	private Dictionary<int, List<JSONObject>> getNoSameDanFangList()
 	{
 		Dictionary<int, List<JSONObject>> dictionary = new Dictionary<int, List<JSONObject>>();
@@ -59,13 +59,13 @@ public class DanFangPageManager : MonoBehaviour
 		return dictionary;
 	}
 
-	// Token: 0x06001CBD RID: 7357 RVA: 0x00018136 File Offset: 0x00016336
+	// Token: 0x060019A4 RID: 6564 RVA: 0x000B7063 File Offset: 0x000B5263
 	public void clickCallBack()
 	{
 		LayoutRebuilder.ForceRebuildLayoutImmediate(this.rectTransform);
 	}
 
-	// Token: 0x06001CBE RID: 7358 RVA: 0x000FCCB4 File Offset: 0x000FAEB4
+	// Token: 0x060019A5 RID: 6565 RVA: 0x000B7070 File Offset: 0x000B5270
 	public bool checkCanLianZhi(List<JSONObject> childs)
 	{
 		if (childs.Count == 0)
@@ -83,7 +83,7 @@ public class DanFangPageManager : MonoBehaviour
 		return false;
 	}
 
-	// Token: 0x06001CBF RID: 7359 RVA: 0x000FCCF4 File Offset: 0x000FAEF4
+	// Token: 0x060019A6 RID: 6566 RVA: 0x000B70B0 File Offset: 0x000B52B0
 	public bool checkCanLianZhi(JSONObject child)
 	{
 		if (child == null)
@@ -127,7 +127,7 @@ public class DanFangPageManager : MonoBehaviour
 		return true;
 	}
 
-	// Token: 0x06001CC0 RID: 7360 RVA: 0x000FCE58 File Offset: 0x000FB058
+	// Token: 0x060019A7 RID: 6567 RVA: 0x000B7214 File Offset: 0x000B5414
 	public void updateState()
 	{
 		for (int i = 0; i < this.danFangParentCells.Count; i++)
@@ -136,7 +136,7 @@ public class DanFangPageManager : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001CC1 RID: 7361 RVA: 0x000FCE8C File Offset: 0x000FB08C
+	// Token: 0x060019A8 RID: 6568 RVA: 0x000B7248 File Offset: 0x000B5448
 	public void IsSame(JSONObject obj, ref int index)
 	{
 		List<JSONObject> list = Tools.instance.getPlayer().DanFang.list;
@@ -164,7 +164,7 @@ public class DanFangPageManager : MonoBehaviour
 		index = -1;
 	}
 
-	// Token: 0x06001CC2 RID: 7362 RVA: 0x000FCF88 File Offset: 0x000FB188
+	// Token: 0x060019A9 RID: 6569 RVA: 0x000B7344 File Offset: 0x000B5544
 	public void addDanFang(JSONObject obj)
 	{
 		int num = -1;
@@ -196,7 +196,7 @@ public class DanFangPageManager : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001CC3 RID: 7363 RVA: 0x000FD06C File Offset: 0x000FB26C
+	// Token: 0x060019AA RID: 6570 RVA: 0x000B7428 File Offset: 0x000B5628
 	private void deleteDanFang()
 	{
 		if (this.curSelectDanFanParent == null || this.curSelectDanFanParent.DanFangID < 1)
@@ -249,82 +249,82 @@ public class DanFangPageManager : MonoBehaviour
 		}), new EventDelegate(new EventDelegate.Callback(LianDanSystemManager.inst.closeMask)), new Vector3(0.8f, 0.8f, 0.8f));
 	}
 
-	// Token: 0x06001CC4 RID: 7364 RVA: 0x00018143 File Offset: 0x00016343
+	// Token: 0x060019AB RID: 6571 RVA: 0x000B74F2 File Offset: 0x000B56F2
 	private void topDanFang()
 	{
 		this.curSelectDanFang.transform.SetSiblingIndex(0);
 	}
 
-	// Token: 0x06001CC5 RID: 7365 RVA: 0x00018156 File Offset: 0x00016356
+	// Token: 0x060019AC RID: 6572 RVA: 0x000B7505 File Offset: 0x000B5705
 	public void setPingJie(DanFangPageManager.DanFangPingJie pingJie)
 	{
 		this.danFangPingJie = pingJie;
 		this.updateDanFang();
 	}
 
-	// Token: 0x040018AA RID: 6314
+	// Token: 0x040014C7 RID: 5319
 	[SerializeField]
 	private GameObject parentDanFang;
 
-	// Token: 0x040018AB RID: 6315
+	// Token: 0x040014C8 RID: 5320
 	private DanFangPageManager.DanFangPingJie danFangPingJie;
 
-	// Token: 0x040018AC RID: 6316
+	// Token: 0x040014C9 RID: 5321
 	[SerializeField]
 	public List<Sprite> sprites = new List<Sprite>();
 
-	// Token: 0x040018AD RID: 6317
+	// Token: 0x040014CA RID: 5322
 	[HideInInspector]
 	public List<DanFangParentCell> danFangParentCells;
 
-	// Token: 0x040018AE RID: 6318
+	// Token: 0x040014CB RID: 5323
 	[SerializeField]
 	private RectTransform rectTransform;
 
-	// Token: 0x040018AF RID: 6319
+	// Token: 0x040014CC RID: 5324
 	[HideInInspector]
 	public GameObject curSelectDanFang;
 
-	// Token: 0x040018B0 RID: 6320
+	// Token: 0x040014CD RID: 5325
 	[HideInInspector]
 	public GameObject curSelectDanFangBg;
 
-	// Token: 0x040018B1 RID: 6321
+	// Token: 0x040014CE RID: 5326
 	[HideInInspector]
 	public JSONObject curSelectJSONObject;
 
-	// Token: 0x040018B2 RID: 6322
+	// Token: 0x040014CF RID: 5327
 	[HideInInspector]
 	public DanFangParentCell curSelectDanFanParent;
 
-	// Token: 0x040018B3 RID: 6323
+	// Token: 0x040014D0 RID: 5328
 	[SerializeField]
 	private Button deleteButton;
 
-	// Token: 0x040018B4 RID: 6324
+	// Token: 0x040014D1 RID: 5329
 	[SerializeField]
 	private Button topButton;
 
-	// Token: 0x040018B5 RID: 6325
+	// Token: 0x040014D2 RID: 5330
 	[SerializeField]
 	public List<Sprite> pingJieSprites = new List<Sprite>();
 
-	// Token: 0x02000436 RID: 1078
+	// Token: 0x02001329 RID: 4905
 	public enum DanFangPingJie
 	{
-		// Token: 0x040018B7 RID: 6327
+		// Token: 0x040067A6 RID: 26534
 		所有,
-		// Token: 0x040018B8 RID: 6328
+		// Token: 0x040067A7 RID: 26535
 		一品,
-		// Token: 0x040018B9 RID: 6329
+		// Token: 0x040067A8 RID: 26536
 		二品,
-		// Token: 0x040018BA RID: 6330
+		// Token: 0x040067A9 RID: 26537
 		三品,
-		// Token: 0x040018BB RID: 6331
+		// Token: 0x040067AA RID: 26538
 		四品,
-		// Token: 0x040018BC RID: 6332
+		// Token: 0x040067AB RID: 26539
 		五品,
-		// Token: 0x040018BD RID: 6333
+		// Token: 0x040067AC RID: 26540
 		六品
 	}
 }

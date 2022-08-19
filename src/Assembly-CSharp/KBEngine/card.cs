@@ -2,25 +2,25 @@
 
 namespace KBEngine
 {
-	// Token: 0x02001017 RID: 4119
+	// Token: 0x02000C73 RID: 3187
 	public class card
 	{
-		// Token: 0x06006273 RID: 25203 RVA: 0x0000403D File Offset: 0x0000223D
+		// Token: 0x060057F8 RID: 22520 RVA: 0x000027FC File Offset: 0x000009FC
 		public card()
 		{
 		}
 
-		// Token: 0x06006274 RID: 25204 RVA: 0x000442B2 File Offset: 0x000424B2
+		// Token: 0x060057F9 RID: 22521 RVA: 0x0024891A File Offset: 0x00246B1A
 		public card(int type)
 		{
 			this.uuid = Tools.getUUID();
 			this.cardType = type;
 		}
 
-		// Token: 0x04005CE6 RID: 23782
+		// Token: 0x040051F6 RID: 20982
 		public string uuid;
 
-		// Token: 0x04005CE7 RID: 23783
+		// Token: 0x040051F7 RID: 20983
 		public int cardType;
 	}
 }

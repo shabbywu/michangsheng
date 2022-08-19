@@ -4,16 +4,16 @@ using UnityEngine;
 
 namespace UltimateSurvival
 {
-	// Token: 0x020008B1 RID: 2225
+	// Token: 0x020005E3 RID: 1507
 	public class PoolManager : MonoBehaviour
 	{
-		// Token: 0x06003950 RID: 14672 RVA: 0x0002992E File Offset: 0x00027B2E
+		// Token: 0x06003084 RID: 12420 RVA: 0x0015B73A File Offset: 0x0015993A
 		private void Awake()
 		{
 			this.InitializePools();
 		}
 
-		// Token: 0x06003951 RID: 14673 RVA: 0x001A5120 File Offset: 0x001A3320
+		// Token: 0x06003085 RID: 12421 RVA: 0x0015B744 File Offset: 0x00159944
 		private void InitializePools()
 		{
 			for (int i = 0; i < this._pools.Count; i++)
@@ -41,7 +41,7 @@ namespace UltimateSurvival
 			}
 		}
 
-		// Token: 0x06003952 RID: 14674 RVA: 0x001A5214 File Offset: 0x001A3414
+		// Token: 0x06003086 RID: 12422 RVA: 0x0015B838 File Offset: 0x00159A38
 		public Pool GetPool(string name)
 		{
 			Pool pool = null;
@@ -59,7 +59,7 @@ namespace UltimateSurvival
 			return pool;
 		}
 
-		// Token: 0x04003369 RID: 13161
+		// Token: 0x04002AAB RID: 10923
 		[SerializeField]
 		private List<Pool> _pools = new List<Pool>();
 	}

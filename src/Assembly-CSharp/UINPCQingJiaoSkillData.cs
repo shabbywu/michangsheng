@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 
-// Token: 0x02000398 RID: 920
+// Token: 0x02000277 RID: 631
 public class UINPCQingJiaoSkillData
 {
-	// Token: 0x060019CC RID: 6604 RVA: 0x000E4D28 File Offset: 0x000E2F28
+	// Token: 0x06001707 RID: 5895 RVA: 0x0009D378 File Offset: 0x0009B578
 	private static void Init()
 	{
 		if (!UINPCQingJiaoSkillData.isinited)
@@ -28,7 +28,7 @@ public class UINPCQingJiaoSkillData
 			foreach (JSONObject jsonobject3 in jsonData.instance._ItemJsonData.list)
 			{
 				int i = jsonobject3["id"].I;
-				if (i > 100000)
+				if (i > jsonData.QingJiaoItemIDSegment)
 				{
 					int i2 = jsonobject3["type"].I;
 					if (i2 == 3)
@@ -47,7 +47,7 @@ public class UINPCQingJiaoSkillData
 		}
 	}
 
-	// Token: 0x060019CD RID: 6605 RVA: 0x000E4F50 File Offset: 0x000E3150
+	// Token: 0x06001708 RID: 5896 RVA: 0x0009D5A0 File Offset: 0x0009B7A0
 	public UINPCQingJiaoSkillData(JSONObject json)
 	{
 		UINPCQingJiaoSkillData.Init();
@@ -79,46 +79,46 @@ public class UINPCQingJiaoSkillData
 		}
 	}
 
-	// Token: 0x04001515 RID: 5397
+	// Token: 0x040011AB RID: 4523
 	public int LiuPai;
 
-	// Token: 0x04001516 RID: 5398
+	// Token: 0x040011AC RID: 4524
 	public int NPCLevel;
 
-	// Token: 0x04001517 RID: 5399
+	// Token: 0x040011AD RID: 4525
 	public static Dictionary<int, int> SkillItemDict = new Dictionary<int, int>();
 
-	// Token: 0x04001518 RID: 5400
+	// Token: 0x040011AE RID: 4526
 	public static Dictionary<int, int> GongFaItemDict = new Dictionary<int, int>();
 
-	// Token: 0x04001519 RID: 5401
+	// Token: 0x040011AF RID: 4527
 	public static List<UINPCQingJiaoSkillData.SData> SkillList = new List<UINPCQingJiaoSkillData.SData>();
 
-	// Token: 0x0400151A RID: 5402
+	// Token: 0x040011B0 RID: 4528
 	public static List<UINPCQingJiaoSkillData.SData> StaticSkillList = new List<UINPCQingJiaoSkillData.SData>();
 
-	// Token: 0x0400151B RID: 5403
+	// Token: 0x040011B1 RID: 4529
 	public List<UINPCQingJiaoSkillData.SData> Skills = new List<UINPCQingJiaoSkillData.SData>();
 
-	// Token: 0x0400151C RID: 5404
+	// Token: 0x040011B2 RID: 4530
 	public List<UINPCQingJiaoSkillData.SData> StaticSkills = new List<UINPCQingJiaoSkillData.SData>();
 
-	// Token: 0x0400151D RID: 5405
+	// Token: 0x040011B3 RID: 4531
 	public UINPCQingJiaoSkillData.SData YuanYingStaticSkill;
 
-	// Token: 0x0400151E RID: 5406
+	// Token: 0x040011B4 RID: 4532
 	private static bool isinited;
 
-	// Token: 0x02000399 RID: 921
+	// Token: 0x020012F2 RID: 4850
 	public class SData
 	{
-		// Token: 0x0400151F RID: 5407
+		// Token: 0x0400671B RID: 26395
 		public int ID;
 
-		// Token: 0x04001520 RID: 5408
+		// Token: 0x0400671C RID: 26396
 		public int SkillID;
 
-		// Token: 0x04001521 RID: 5409
+		// Token: 0x0400671D RID: 26397
 		public int Quality;
 	}
 }

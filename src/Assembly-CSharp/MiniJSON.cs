@@ -3,10 +3,10 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Text;
 
-// Token: 0x020007A9 RID: 1961
+// Token: 0x02000515 RID: 1301
 public class MiniJSON
 {
-	// Token: 0x060031DD RID: 12765 RVA: 0x0018C5E4 File Offset: 0x0018A7E4
+	// Token: 0x060029CA RID: 10698 RVA: 0x0013F2A0 File Offset: 0x0013D4A0
 	public static object jsonDecode(string json)
 	{
 		MiniJSON.lastDecode = json;
@@ -27,7 +27,7 @@ public class MiniJSON
 		return result;
 	}
 
-	// Token: 0x060031DE RID: 12766 RVA: 0x0018C620 File Offset: 0x0018A820
+	// Token: 0x060029CB RID: 10699 RVA: 0x0013F2DC File Offset: 0x0013D4DC
 	public static string jsonEncode(object json)
 	{
 		MiniJSON.indentLevel = 0;
@@ -39,19 +39,19 @@ public class MiniJSON
 		return stringBuilder.ToString();
 	}
 
-	// Token: 0x060031DF RID: 12767 RVA: 0x00024705 File Offset: 0x00022905
+	// Token: 0x060029CC RID: 10700 RVA: 0x0013F30B File Offset: 0x0013D50B
 	public static bool lastDecodeSuccessful()
 	{
 		return MiniJSON.lastErrorIndex == -1;
 	}
 
-	// Token: 0x060031E0 RID: 12768 RVA: 0x0002470F File Offset: 0x0002290F
+	// Token: 0x060029CD RID: 10701 RVA: 0x0013F315 File Offset: 0x0013D515
 	public static int getLastErrorIndex()
 	{
 		return MiniJSON.lastErrorIndex;
 	}
 
-	// Token: 0x060031E1 RID: 12769 RVA: 0x0018C650 File Offset: 0x0018A850
+	// Token: 0x060029CE RID: 10702 RVA: 0x0013F31C File Offset: 0x0013D51C
 	public static string getLastErrorSnippet()
 	{
 		if (MiniJSON.lastErrorIndex == -1)
@@ -71,7 +71,7 @@ public class MiniJSON
 		return MiniJSON.lastDecode.Substring(num, num2 - num + 1);
 	}
 
-	// Token: 0x060031E2 RID: 12770 RVA: 0x0018C6AC File Offset: 0x0018A8AC
+	// Token: 0x060029CF RID: 10703 RVA: 0x0013F378 File Offset: 0x0013D578
 	protected static Hashtable parseObject(char[] json, ref int index)
 	{
 		Hashtable hashtable = new Hashtable();
@@ -117,7 +117,7 @@ public class MiniJSON
 		return hashtable;
 	}
 
-	// Token: 0x060031E3 RID: 12771 RVA: 0x0018C734 File Offset: 0x0018A934
+	// Token: 0x060029D0 RID: 10704 RVA: 0x0013F400 File Offset: 0x0013D600
 	protected static ArrayList parseArray(char[] json, ref int index)
 	{
 		ArrayList arrayList = new ArrayList();
@@ -153,7 +153,7 @@ public class MiniJSON
 		return arrayList;
 	}
 
-	// Token: 0x060031E4 RID: 12772 RVA: 0x0018C79C File Offset: 0x0018A99C
+	// Token: 0x060029D1 RID: 10705 RVA: 0x0013F468 File Offset: 0x0013D668
 	protected static object parseValue(char[] json, ref int index, ref bool success)
 	{
 		switch (MiniJSON.lookAhead(json, index))
@@ -183,7 +183,7 @@ public class MiniJSON
 		return null;
 	}
 
-	// Token: 0x060031E5 RID: 12773 RVA: 0x0018C864 File Offset: 0x0018AA64
+	// Token: 0x060029D2 RID: 10706 RVA: 0x0013F530 File Offset: 0x0013D730
 	protected static string parseString(char[] json, ref int index)
 	{
 		string text = "";
@@ -267,7 +267,7 @@ public class MiniJSON
 		return text;
 	}
 
-	// Token: 0x060031E6 RID: 12774 RVA: 0x0018C9D4 File Offset: 0x0018ABD4
+	// Token: 0x060029D3 RID: 10707 RVA: 0x0013F6A0 File Offset: 0x0013D8A0
 	protected static float parseNumber(char[] json, ref int index)
 	{
 		MiniJSON.eatWhitespace(json, ref index);
@@ -279,7 +279,7 @@ public class MiniJSON
 		return float.Parse(new string(array));
 	}
 
-	// Token: 0x060031E7 RID: 12775 RVA: 0x0018CA1C File Offset: 0x0018AC1C
+	// Token: 0x060029D4 RID: 10708 RVA: 0x0013F6E8 File Offset: 0x0013D8E8
 	protected static int getLastIndexOfNumber(char[] json, int index)
 	{
 		int num = index;
@@ -290,7 +290,7 @@ public class MiniJSON
 		return num - 1;
 	}
 
-	// Token: 0x060031E8 RID: 12776 RVA: 0x00024716 File Offset: 0x00022916
+	// Token: 0x060029D5 RID: 10709 RVA: 0x0013F716 File Offset: 0x0013D916
 	protected static void eatWhitespace(char[] json, ref int index)
 	{
 		while (index < json.Length && " \t\n\r".IndexOf(json[index]) != -1)
@@ -299,14 +299,14 @@ public class MiniJSON
 		}
 	}
 
-	// Token: 0x060031E9 RID: 12777 RVA: 0x0018CA4C File Offset: 0x0018AC4C
+	// Token: 0x060029D6 RID: 10710 RVA: 0x0013F738 File Offset: 0x0013D938
 	protected static int lookAhead(char[] json, int index)
 	{
 		int num = index;
 		return MiniJSON.nextToken(json, ref num);
 	}
 
-	// Token: 0x060031EA RID: 12778 RVA: 0x0018CA64 File Offset: 0x0018AC64
+	// Token: 0x060029D7 RID: 10711 RVA: 0x0013F750 File Offset: 0x0013D950
 	protected static int nextToken(char[] json, ref int index)
 	{
 		MiniJSON.eatWhitespace(json, ref index);
@@ -398,7 +398,7 @@ public class MiniJSON
 		return 0;
 	}
 
-	// Token: 0x060031EB RID: 12779 RVA: 0x00024738 File Offset: 0x00022938
+	// Token: 0x060029D8 RID: 10712 RVA: 0x0013F91E File Offset: 0x0013DB1E
 	protected static bool serializeObjectOrArray(object objectOrArray, StringBuilder builder)
 	{
 		if (objectOrArray is Hashtable)
@@ -408,7 +408,7 @@ public class MiniJSON
 		return objectOrArray is ArrayList && MiniJSON.serializeArray((ArrayList)objectOrArray, builder);
 	}
 
-	// Token: 0x060031EC RID: 12780 RVA: 0x0018CC34 File Offset: 0x0018AE34
+	// Token: 0x060029D9 RID: 10713 RVA: 0x0013F94C File Offset: 0x0013DB4C
 	protected static bool serializeObject(Hashtable anObject, StringBuilder builder)
 	{
 		MiniJSON.indentLevel++;
@@ -446,7 +446,7 @@ public class MiniJSON
 		return true;
 	}
 
-	// Token: 0x060031ED RID: 12781 RVA: 0x0018CD28 File Offset: 0x0018AF28
+	// Token: 0x060029DA RID: 10714 RVA: 0x0013FA40 File Offset: 0x0013DC40
 	protected static bool serializeDictionary(Dictionary<string, string> dict, StringBuilder builder)
 	{
 		builder.Append("{");
@@ -466,7 +466,7 @@ public class MiniJSON
 		return true;
 	}
 
-	// Token: 0x060031EE RID: 12782 RVA: 0x0018CDC4 File Offset: 0x0018AFC4
+	// Token: 0x060029DB RID: 10715 RVA: 0x0013FADC File Offset: 0x0013DCDC
 	protected static bool serializeArray(ArrayList anArray, StringBuilder builder)
 	{
 		MiniJSON.indentLevel++;
@@ -500,7 +500,7 @@ public class MiniJSON
 		return true;
 	}
 
-	// Token: 0x060031EF RID: 12783 RVA: 0x0018CE98 File Offset: 0x0018B098
+	// Token: 0x060029DC RID: 10716 RVA: 0x0013FBB0 File Offset: 0x0013DDB0
 	protected static bool serializeValue(object value, StringBuilder builder)
 	{
 		if (value == null)
@@ -550,7 +550,7 @@ public class MiniJSON
 		return true;
 	}
 
-	// Token: 0x060031F0 RID: 12784 RVA: 0x0018CFB8 File Offset: 0x0018B1B8
+	// Token: 0x060029DD RID: 10717 RVA: 0x0013FCD0 File Offset: 0x0013DED0
 	protected static void serializeString(string aString, StringBuilder builder)
 	{
 		builder.Append("\"");
@@ -600,60 +600,60 @@ public class MiniJSON
 		builder.Append("\"");
 	}
 
-	// Token: 0x060031F1 RID: 12785 RVA: 0x00024765 File Offset: 0x00022965
+	// Token: 0x060029DE RID: 10718 RVA: 0x0013FDDD File Offset: 0x0013DFDD
 	protected static void serializeNumber(float number, StringBuilder builder)
 	{
 		builder.Append(Convert.ToString(number));
 	}
 
-	// Token: 0x04002E17 RID: 11799
+	// Token: 0x04002627 RID: 9767
 	private const int TOKEN_NONE = 0;
 
-	// Token: 0x04002E18 RID: 11800
+	// Token: 0x04002628 RID: 9768
 	private const int TOKEN_CURLY_OPEN = 1;
 
-	// Token: 0x04002E19 RID: 11801
+	// Token: 0x04002629 RID: 9769
 	private const int TOKEN_CURLY_CLOSE = 2;
 
-	// Token: 0x04002E1A RID: 11802
+	// Token: 0x0400262A RID: 9770
 	private const int TOKEN_SQUARED_OPEN = 3;
 
-	// Token: 0x04002E1B RID: 11803
+	// Token: 0x0400262B RID: 9771
 	private const int TOKEN_SQUARED_CLOSE = 4;
 
-	// Token: 0x04002E1C RID: 11804
+	// Token: 0x0400262C RID: 9772
 	private const int TOKEN_COLON = 5;
 
-	// Token: 0x04002E1D RID: 11805
+	// Token: 0x0400262D RID: 9773
 	private const int TOKEN_COMMA = 6;
 
-	// Token: 0x04002E1E RID: 11806
+	// Token: 0x0400262E RID: 9774
 	private const int TOKEN_STRING = 7;
 
-	// Token: 0x04002E1F RID: 11807
+	// Token: 0x0400262F RID: 9775
 	private const int TOKEN_NUMBER = 8;
 
-	// Token: 0x04002E20 RID: 11808
+	// Token: 0x04002630 RID: 9776
 	private const int TOKEN_TRUE = 9;
 
-	// Token: 0x04002E21 RID: 11809
+	// Token: 0x04002631 RID: 9777
 	private const int TOKEN_FALSE = 10;
 
-	// Token: 0x04002E22 RID: 11810
+	// Token: 0x04002632 RID: 9778
 	private const int TOKEN_NULL = 11;
 
-	// Token: 0x04002E23 RID: 11811
+	// Token: 0x04002633 RID: 9779
 	private const int TOKEN_INFINITY = 12;
 
-	// Token: 0x04002E24 RID: 11812
+	// Token: 0x04002634 RID: 9780
 	private const int BUILDER_CAPACITY = 2000;
 
-	// Token: 0x04002E25 RID: 11813
+	// Token: 0x04002635 RID: 9781
 	protected static int lastErrorIndex = -1;
 
-	// Token: 0x04002E26 RID: 11814
+	// Token: 0x04002636 RID: 9782
 	protected static string lastDecode = "";
 
-	// Token: 0x04002E27 RID: 11815
+	// Token: 0x04002637 RID: 9783
 	protected static int indentLevel = 0;
 }

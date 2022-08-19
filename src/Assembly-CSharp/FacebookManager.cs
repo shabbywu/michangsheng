@@ -8,17 +8,17 @@ using Facebook.MiniJSON;
 using Parse;
 using UnityEngine;
 
-// Token: 0x0200068C RID: 1676
+// Token: 0x020004AC RID: 1196
 public class FacebookManager : MonoBehaviour
 {
-	// Token: 0x060029DB RID: 10715 RVA: 0x00020886 File Offset: 0x0001EA86
+	// Token: 0x0600259F RID: 9631 RVA: 0x00104549 File Offset: 0x00102749
 	private void Awake()
 	{
 		FacebookManager.FacebookObject = this;
 		Object.DontDestroyOnLoad(base.gameObject);
 	}
 
-	// Token: 0x060029DC RID: 10716 RVA: 0x00144044 File Offset: 0x00142244
+	// Token: 0x060025A0 RID: 9632 RVA: 0x0010455C File Offset: 0x0010275C
 	private void Start()
 	{
 		for (int i = 0; i < 100; i++)
@@ -61,7 +61,7 @@ public class FacebookManager : MonoBehaviour
 		FacebookManager.Ulogovan = false;
 	}
 
-	// Token: 0x060029DD RID: 10717 RVA: 0x00020899 File Offset: 0x0001EA99
+	// Token: 0x060025A1 RID: 9633 RVA: 0x00104647 File Offset: 0x00102847
 	public static void FacebookLogout()
 	{
 		if (FB.IsLoggedIn)
@@ -72,25 +72,25 @@ public class FacebookManager : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060029DE RID: 10718 RVA: 0x000208B7 File Offset: 0x0001EAB7
+	// Token: 0x060025A2 RID: 9634 RVA: 0x00104665 File Offset: 0x00102865
 	private void OnInitComplete()
 	{
 		this.isInit = true;
 	}
 
-	// Token: 0x060029DF RID: 10719 RVA: 0x0000FC3C File Offset: 0x0000DE3C
+	// Token: 0x060025A3 RID: 9635 RVA: 0x0010466E File Offset: 0x0010286E
 	private void OnHideUnity(bool isGameShown)
 	{
 		Debug.Log("Is game showing? " + isGameShown.ToString());
 	}
 
-	// Token: 0x060029E0 RID: 10720 RVA: 0x000208C0 File Offset: 0x0001EAC0
+	// Token: 0x060025A4 RID: 9636 RVA: 0x00104686 File Offset: 0x00102886
 	public void FacebookLogin()
 	{
 		FB.Login(this.permissions, new FacebookDelegate(this.LoginCallback));
 	}
 
-	// Token: 0x060029E1 RID: 10721 RVA: 0x00144130 File Offset: 0x00142330
+	// Token: 0x060025A5 RID: 9637 RVA: 0x001046A0 File Offset: 0x001028A0
 	public void LoginCallback(FBResult result)
 	{
 		if (result.Error != null)
@@ -139,28 +139,28 @@ public class FacebookManager : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060029E2 RID: 10722 RVA: 0x000208D9 File Offset: 0x0001EAD9
+	// Token: 0x060025A6 RID: 9638 RVA: 0x00104886 File Offset: 0x00102A86
 	public void RefreshujScenu1PosleLogina()
 	{
 		MainScene.FacebookLogIn.SetActive(false);
 		MainScene.LeaderBoardInvite.SetActive(true);
 	}
 
-	// Token: 0x060029E3 RID: 10723 RVA: 0x000208F1 File Offset: 0x0001EAF1
+	// Token: 0x060025A7 RID: 9639 RVA: 0x0010489E File Offset: 0x00102A9E
 	public void RefreshujScenu2PosleLogina()
 	{
 		GameObject.Find("FB Login").SetActive(false);
 		AllMapsManageFull.makniPopup = 0;
 	}
 
-	// Token: 0x060029E4 RID: 10724 RVA: 0x00020909 File Offset: 0x0001EB09
+	// Token: 0x060025A8 RID: 9640 RVA: 0x001048B6 File Offset: 0x00102AB6
 	public void RefreshujScenu3PosleLogina()
 	{
 		GameObject.Find("FB Login").SetActive(false);
 		KameraMovement.makniPopup = 0;
 	}
 
-	// Token: 0x060029E5 RID: 10725 RVA: 0x00144318 File Offset: 0x00142518
+	// Token: 0x060025A9 RID: 9641 RVA: 0x001048D0 File Offset: 0x00102AD0
 	private void OpenPage()
 	{
 		if (FacebookManager.stranica == "BananaIsland")
@@ -186,7 +186,7 @@ public class FacebookManager : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060029E6 RID: 10726 RVA: 0x001443E0 File Offset: 0x001425E0
+	// Token: 0x060025AA RID: 9642 RVA: 0x00104998 File Offset: 0x00102B98
 	private void OnApplicationPause(bool pauseStatus)
 	{
 		if (!pauseStatus)
@@ -274,13 +274,13 @@ public class FacebookManager : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060029E7 RID: 10727 RVA: 0x00020921 File Offset: 0x0001EB21
+	// Token: 0x060025AB RID: 9643 RVA: 0x00104E61 File Offset: 0x00103061
 	public void GetProfilePicture()
 	{
 		FB.API("/" + FacebookManager.User + "/picture?redirect=true&height=64&type=normal&width=64", HttpMethod.GET, new FacebookDelegate(this.MyPictureCallback), null);
 	}
 
-	// Token: 0x060029E8 RID: 10728 RVA: 0x0002094E File Offset: 0x0001EB4E
+	// Token: 0x060025AC RID: 9644 RVA: 0x00104E8E File Offset: 0x0010308E
 	public void MyPictureCallback(FBResult result)
 	{
 		if (result.Error != null)
@@ -292,13 +292,13 @@ public class FacebookManager : MonoBehaviour
 		GameObject.Find("FaceButton").GetComponent<Renderer>().material.mainTexture = FacebookManager.ProfilePicture;
 	}
 
-	// Token: 0x060029E9 RID: 10729 RVA: 0x0002098C File Offset: 0x0001EB8C
+	// Token: 0x060025AD RID: 9645 RVA: 0x00104ECC File Offset: 0x001030CC
 	public void GetFacebookName()
 	{
 		FB.API("me?fields=id,name", HttpMethod.GET, new FacebookDelegate(this.GetFacebookNameCallback), null);
 	}
 
-	// Token: 0x060029EA RID: 10730 RVA: 0x000209AA File Offset: 0x0001EBAA
+	// Token: 0x060025AE RID: 9646 RVA: 0x00104EEA File Offset: 0x001030EA
 	public void GetFacebookNameCallback(FBResult result)
 	{
 		if (result.Error != null)
@@ -309,7 +309,7 @@ public class FacebookManager : MonoBehaviour
 		FacebookManager.UserName = (Json.Deserialize(result.Text) as Dictionary<string, object>)["name"].ToString();
 	}
 
-	// Token: 0x060029EB RID: 10731 RVA: 0x001448AC File Offset: 0x00142AAC
+	// Token: 0x060025AF RID: 9647 RVA: 0x00104F24 File Offset: 0x00103124
 	public void FaceInvite()
 	{
 		if (FB.IsLoggedIn)
@@ -335,7 +335,7 @@ public class FacebookManager : MonoBehaviour
 		FacebookManager.FacebookObject.FacebookLogin();
 	}
 
-	// Token: 0x060029EC RID: 10732 RVA: 0x00144968 File Offset: 0x00142B68
+	// Token: 0x060025B0 RID: 9648 RVA: 0x00104FE0 File Offset: 0x001031E0
 	private void InviteCallback(FBResult result)
 	{
 		List<object> list = (List<object>)(Json.Deserialize(result.Text) as Dictionary<string, object>)["to"];
@@ -349,7 +349,7 @@ public class FacebookManager : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060029ED RID: 10733 RVA: 0x00144A08 File Offset: 0x00142C08
+	// Token: 0x060025B1 RID: 9649 RVA: 0x00105080 File Offset: 0x00103280
 	public void CallFBFeed(string ImeOstrva, int BrojNivoa)
 	{
 		Dictionary<string, string[]> properties = null;
@@ -368,18 +368,18 @@ public class FacebookManager : MonoBehaviour
 		}), this.LinkSlike, this.LinkVideailiZvuka, this.FeedActionName, this.FeedActionLink, this.FeedReference, properties, new FacebookDelegate(this.FeedCallback));
 	}
 
-	// Token: 0x060029EE RID: 10734 RVA: 0x000042DD File Offset: 0x000024DD
+	// Token: 0x060025B2 RID: 9650 RVA: 0x00004095 File Offset: 0x00002295
 	private void FeedCallback(FBResult result)
 	{
 	}
 
-	// Token: 0x060029EF RID: 10735 RVA: 0x000209E3 File Offset: 0x0001EBE3
+	// Token: 0x060025B3 RID: 9651 RVA: 0x00105115 File Offset: 0x00103315
 	public void ProveriPermisije()
 	{
 		FB.API("/me/permissions", HttpMethod.GET, new FacebookDelegate(this.MyPermissionsCallback), null);
 	}
 
-	// Token: 0x060029F0 RID: 10736 RVA: 0x00144AA0 File Offset: 0x00142CA0
+	// Token: 0x060025B4 RID: 9652 RVA: 0x00105134 File Offset: 0x00103334
 	public void MyPermissionsCallback(FBResult result)
 	{
 		if (result.Error != null)
@@ -447,13 +447,13 @@ public class FacebookManager : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060029F1 RID: 10737 RVA: 0x00020A01 File Offset: 0x0001EC01
+	// Token: 0x060025B5 RID: 9653 RVA: 0x001052E3 File Offset: 0x001034E3
 	public void proveraPublish_ActionPermisije()
 	{
 		FB.API("/me/permissions", HttpMethod.GET, new FacebookDelegate(this.Publish_ActionsCallback), null);
 	}
 
-	// Token: 0x060029F2 RID: 10738 RVA: 0x00144C50 File Offset: 0x00142E50
+	// Token: 0x060025B6 RID: 9654 RVA: 0x00105304 File Offset: 0x00103504
 	public void Publish_ActionsCallback(FBResult result)
 	{
 		if (result.Error != null)
@@ -486,13 +486,13 @@ public class FacebookManager : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060029F3 RID: 10739 RVA: 0x00020A1F File Offset: 0x0001EC1F
+	// Token: 0x060025B7 RID: 9655 RVA: 0x0010540C File Offset: 0x0010360C
 	public void GetRodjendan()
 	{
 		FB.API("/me?fields=birthday", HttpMethod.GET, new FacebookDelegate(this.MyBirthdayCallback), null);
 	}
 
-	// Token: 0x060029F4 RID: 10740 RVA: 0x00144D58 File Offset: 0x00142F58
+	// Token: 0x060025B8 RID: 9656 RVA: 0x0010542C File Offset: 0x0010362C
 	public void MyBirthdayCallback(FBResult result)
 	{
 		if (result.Error != null)
@@ -504,7 +504,7 @@ public class FacebookManager : MonoBehaviour
 		this.UserRodjendan = dictionary["birthday"].ToString();
 	}
 
-	// Token: 0x060029F5 RID: 10741 RVA: 0x00144DA0 File Offset: 0x00142FA0
+	// Token: 0x060025B9 RID: 9657 RVA: 0x00105474 File Offset: 0x00103674
 	public void SetFacebookHighScore(int trenutniScore)
 	{
 		if (FB.IsLoggedIn)
@@ -515,7 +515,7 @@ public class FacebookManager : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060029F6 RID: 10742 RVA: 0x00020A3D File Offset: 0x0001EC3D
+	// Token: 0x060025BA RID: 9658 RVA: 0x001054BC File Offset: 0x001036BC
 	public void SetFacebookScoreCallback(FBResult result)
 	{
 		if (result.Error == null && this.resetovanScoreNaNulu == 2)
@@ -524,13 +524,13 @@ public class FacebookManager : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060029F7 RID: 10743 RVA: 0x00020A57 File Offset: 0x0001EC57
+	// Token: 0x060025BB RID: 9659 RVA: 0x001054D6 File Offset: 0x001036D6
 	public void GetFacebookHighScore()
 	{
 		FB.API("me?fields=scores", HttpMethod.GET, new FacebookDelegate(this.GetFacebookHighScoreCallback), null);
 	}
 
-	// Token: 0x060029F8 RID: 10744 RVA: 0x00144DE8 File Offset: 0x00142FE8
+	// Token: 0x060025BC RID: 9660 RVA: 0x001054F4 File Offset: 0x001036F4
 	public void GetFacebookHighScoreCallback(FBResult result)
 	{
 		if (result.Error == null)
@@ -546,13 +546,13 @@ public class FacebookManager : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060029F9 RID: 10745 RVA: 0x00020A75 File Offset: 0x0001EC75
+	// Token: 0x060025BD RID: 9661 RVA: 0x00105564 File Offset: 0x00103764
 	public void GetFacebookFriendScores()
 	{
 		FB.API("1609658469261083/scores", HttpMethod.GET, new FacebookDelegate(this.GetFacebookFriendScoresCallback), null);
 	}
 
-	// Token: 0x060029FA RID: 10746 RVA: 0x00144E58 File Offset: 0x00143058
+	// Token: 0x060025BE RID: 9662 RVA: 0x00105584 File Offset: 0x00103784
 	public void GetFacebookFriendScoresCallback(FBResult result)
 	{
 		if (result.Error != null)
@@ -621,7 +621,7 @@ public class FacebookManager : MonoBehaviour
 		base.StartCoroutine("TrenutniNivoSvihPrijatelja");
 	}
 
-	// Token: 0x060029FB RID: 10747 RVA: 0x00020A93 File Offset: 0x0001EC93
+	// Token: 0x060025BF RID: 9663 RVA: 0x0010594C File Offset: 0x00103B4C
 	private IEnumerator GetFriendPictures()
 	{
 		int i = 0;
@@ -667,13 +667,13 @@ public class FacebookManager : MonoBehaviour
 		yield break;
 	}
 
-	// Token: 0x060029FC RID: 10748 RVA: 0x00020AA2 File Offset: 0x0001ECA2
+	// Token: 0x060025C0 RID: 9664 RVA: 0x0010595B File Offset: 0x00103B5B
 	public void SpisakSvihFacebookPrijatelja()
 	{
 		FB.API("/fql?q=SELECT+uid,name,pic_square+FROM+user+WHERE+is_app_user=1+AND+uid+IN+(SELECT+uid2+FROM+friend+WHERE+uid1=me())", HttpMethod.GET, new FacebookDelegate(this.SviPrijateljiFacebookCallback), null);
 	}
 
-	// Token: 0x060029FD RID: 10749 RVA: 0x00145220 File Offset: 0x00143420
+	// Token: 0x060025C1 RID: 9665 RVA: 0x0010597C File Offset: 0x00103B7C
 	public void SviPrijateljiFacebookCallback(FBResult result)
 	{
 		if (result.Error != null)
@@ -699,7 +699,7 @@ public class FacebookManager : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060029FE RID: 10750 RVA: 0x00020AC0 File Offset: 0x0001ECC0
+	// Token: 0x060025C2 RID: 9666 RVA: 0x00105A2E File Offset: 0x00103C2E
 	public void GetFacebookFriendPicture(string PrijateljevID)
 	{
 		if (FacebookManager.Ulogovan)
@@ -709,7 +709,7 @@ public class FacebookManager : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060029FF RID: 10751 RVA: 0x001452D4 File Offset: 0x001434D4
+	// Token: 0x060025C3 RID: 9667 RVA: 0x00105A60 File Offset: 0x00103C60
 	public void FacebookFriendPictureCallback(FBResult result)
 	{
 		if (result.Error != null)
@@ -783,13 +783,13 @@ public class FacebookManager : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06002A00 RID: 10752 RVA: 0x00020AF2 File Offset: 0x0001ECF2
+	// Token: 0x060025C4 RID: 9668 RVA: 0x00105D3D File Offset: 0x00103F3D
 	public void GetFacebookGameAchievements()
 	{
 		FB.API(FB.AppId + "/achievements", HttpMethod.GET, new FacebookDelegate(this.GetFacebookGameAchievementsCallback), null);
 	}
 
-	// Token: 0x06002A01 RID: 10753 RVA: 0x001455B4 File Offset: 0x001437B4
+	// Token: 0x060025C5 RID: 9669 RVA: 0x00105D68 File Offset: 0x00103F68
 	public void GetFacebookGameAchievementsCallback(FBResult result)
 	{
 		if (result.Error == null)
@@ -806,7 +806,7 @@ public class FacebookManager : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06002A02 RID: 10754 RVA: 0x00145620 File Offset: 0x00143820
+	// Token: 0x060025C6 RID: 9670 RVA: 0x00105DD4 File Offset: 0x00103FD4
 	public void DodajFacebookAchievement(string URLAchivmenta)
 	{
 		Dictionary<string, string> dictionary = new Dictionary<string, string>();
@@ -814,37 +814,37 @@ public class FacebookManager : MonoBehaviour
 		FB.API("me/achievements", HttpMethod.POST, new FacebookDelegate(this.DodajFacebookAchievementCallback), dictionary);
 	}
 
-	// Token: 0x06002A03 RID: 10755 RVA: 0x00020B1A File Offset: 0x0001ED1A
+	// Token: 0x060025C7 RID: 9671 RVA: 0x00105E0F File Offset: 0x0010400F
 	public void DodajFacebookAchievementCallback(FBResult result)
 	{
 		string error = result.Error;
 	}
 
-	// Token: 0x06002A04 RID: 10756 RVA: 0x00020B23 File Offset: 0x0001ED23
+	// Token: 0x060025C8 RID: 9672 RVA: 0x00105E18 File Offset: 0x00104018
 	public void ObrisiFacebookAchievement(string UrlACH)
 	{
 		FB.API("me/achievements?achievement=" + UrlACH, HttpMethod.DELETE, new FacebookDelegate(this.ObrisiFacebookAchievementCallback), null);
 	}
 
-	// Token: 0x06002A05 RID: 10757 RVA: 0x00020B1A File Offset: 0x0001ED1A
+	// Token: 0x060025C9 RID: 9673 RVA: 0x00105E0F File Offset: 0x0010400F
 	public void ObrisiFacebookAchievementCallback(FBResult result)
 	{
 		string error = result.Error;
 	}
 
-	// Token: 0x06002A06 RID: 10758 RVA: 0x00020B47 File Offset: 0x0001ED47
+	// Token: 0x060025CA RID: 9674 RVA: 0x00105E3C File Offset: 0x0010403C
 	public void ProveraFacebookAchievmenta()
 	{
 		FB.API("me/achievements", HttpMethod.GET, new FacebookDelegate(this.ProveraAchievmentaCallback), null);
 	}
 
-	// Token: 0x06002A07 RID: 10759 RVA: 0x00020B1A File Offset: 0x0001ED1A
+	// Token: 0x060025CB RID: 9675 RVA: 0x00105E0F File Offset: 0x0010400F
 	public void ProveraAchievmentaCallback(FBResult result)
 	{
 		string error = result.Error;
 	}
 
-	// Token: 0x06002A08 RID: 10760 RVA: 0x0014565C File Offset: 0x0014385C
+	// Token: 0x060025CC RID: 9676 RVA: 0x00105E5C File Offset: 0x0010405C
 	public void InicijalizujKorisnika(string KorisnikovID, int numCoins, int Score, string Jezik, int Banana, int Shield, int Magnet, int DoubleCoins, string UserSveKupovineHats, string UserSveKupovineShirts, string UserSveKupovineBackPacks)
 	{
 		if (FB.IsLoggedIn)
@@ -872,7 +872,7 @@ public class FacebookManager : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06002A09 RID: 10761 RVA: 0x00145828 File Offset: 0x00143A28
+	// Token: 0x060025CD RID: 9677 RVA: 0x00106028 File Offset: 0x00104228
 	public void ProcitajPodatkeKorisnika()
 	{
 		StagesParser.languageBefore = LanguageManager.chosenLanguage;
@@ -943,14 +943,14 @@ public class FacebookManager : MonoBehaviour
 		FacebookManager.KorisnikoviPodaciSpremni = true;
 	}
 
-	// Token: 0x06002A0A RID: 10762 RVA: 0x00020B65 File Offset: 0x0001ED65
+	// Token: 0x060025CE RID: 9678 RVA: 0x00106126 File Offset: 0x00104326
 	public void ProveriKorisnika()
 	{
 		FacebookManager.ListaStructPrijatelja.Clear();
 		base.StartCoroutine("DaLiPostojiKorisnik");
 	}
 
-	// Token: 0x06002A0B RID: 10763 RVA: 0x00020B7D File Offset: 0x0001ED7D
+	// Token: 0x060025CF RID: 9679 RVA: 0x0010613E File Offset: 0x0010433E
 	private IEnumerator DaLiPostojiKorisnik()
 	{
 		if (FB.IsLoggedIn)
@@ -1000,7 +1000,7 @@ public class FacebookManager : MonoBehaviour
 		yield break;
 	}
 
-	// Token: 0x06002A0C RID: 10764 RVA: 0x00145928 File Offset: 0x00143B28
+	// Token: 0x060025D0 RID: 9680 RVA: 0x00106150 File Offset: 0x00104350
 	public void UpdateujPodatkeKorisnika(int BrojCoina, int Score, string Jezik, int Banana, int PowerMagnet, int PowerShield, int PowerDoubleCoins, string UserSveKupovineHats, string UserSveKupovineShirts, string UserSveKupovineBackPacks, int Ledja, int Glava, int Telo, bool Usi, bool Kosa, int NumberOfFriends)
 	{
 		if (FB.IsLoggedIn)
@@ -1046,13 +1046,13 @@ public class FacebookManager : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06002A0D RID: 10765 RVA: 0x00020B8C File Offset: 0x0001ED8C
+	// Token: 0x060025D1 RID: 9681 RVA: 0x0010621E File Offset: 0x0010441E
 	private void SkloniCoinsReward()
 	{
 		GameObject.Find("CoinsReward").GetComponent<Animation>().Play("CoinsRewardOdlazak");
 	}
 
-	// Token: 0x06002A0E RID: 10766 RVA: 0x001459F8 File Offset: 0x00143BF8
+	// Token: 0x060025D2 RID: 9682 RVA: 0x0010623C File Offset: 0x0010443C
 	public void SacuvajBrojNovcica(int numCoins)
 	{
 		if (FB.IsLoggedIn)
@@ -1076,7 +1076,7 @@ public class FacebookManager : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06002A0F RID: 10767 RVA: 0x00145A4C File Offset: 0x00143C4C
+	// Token: 0x060025D3 RID: 9683 RVA: 0x00106290 File Offset: 0x00104490
 	public void ProcitajBrojNovcica()
 	{
 		if (FB.IsLoggedIn)
@@ -1098,7 +1098,7 @@ public class FacebookManager : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06002A10 RID: 10768 RVA: 0x00145AA8 File Offset: 0x00143CA8
+	// Token: 0x060025D4 RID: 9684 RVA: 0x001062EC File Offset: 0x001044EC
 	public void SacuvajBrojBanana(int BrojBanana)
 	{
 		if (FB.IsLoggedIn)
@@ -1122,7 +1122,7 @@ public class FacebookManager : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06002A11 RID: 10769 RVA: 0x00145AFC File Offset: 0x00143CFC
+	// Token: 0x060025D5 RID: 9685 RVA: 0x00106340 File Offset: 0x00104540
 	public void ProcitajBrojBanana()
 	{
 		if (FB.IsLoggedIn)
@@ -1144,7 +1144,7 @@ public class FacebookManager : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06002A12 RID: 10770 RVA: 0x00145B58 File Offset: 0x00143D58
+	// Token: 0x060025D6 RID: 9686 RVA: 0x0010639C File Offset: 0x0010459C
 	public void SacuvajScore(int GlobalScore)
 	{
 		if (FB.IsLoggedIn)
@@ -1168,7 +1168,7 @@ public class FacebookManager : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06002A13 RID: 10771 RVA: 0x00145BAC File Offset: 0x00143DAC
+	// Token: 0x060025D7 RID: 9687 RVA: 0x001063F0 File Offset: 0x001045F0
 	public void ProcitajScore()
 	{
 		if (FB.IsLoggedIn)
@@ -1190,7 +1190,7 @@ public class FacebookManager : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06002A14 RID: 10772 RVA: 0x00145C08 File Offset: 0x00143E08
+	// Token: 0x060025D8 RID: 9688 RVA: 0x0010644C File Offset: 0x0010464C
 	public void SacuvajLanguage(string NoviJezik)
 	{
 		if (FB.IsLoggedIn)
@@ -1214,7 +1214,7 @@ public class FacebookManager : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06002A15 RID: 10773 RVA: 0x00145C5C File Offset: 0x00143E5C
+	// Token: 0x060025D9 RID: 9689 RVA: 0x001064A0 File Offset: 0x001046A0
 	public void ProcitajLanguage()
 	{
 		if (FB.IsLoggedIn)
@@ -1236,7 +1236,7 @@ public class FacebookManager : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06002A16 RID: 10774 RVA: 0x00145CB8 File Offset: 0x00143EB8
+	// Token: 0x060025DA RID: 9690 RVA: 0x001064FC File Offset: 0x001046FC
 	public void SacuvajPowerShield(int BrojPowerShield)
 	{
 		if (FB.IsLoggedIn)
@@ -1260,7 +1260,7 @@ public class FacebookManager : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06002A17 RID: 10775 RVA: 0x00145D0C File Offset: 0x00143F0C
+	// Token: 0x060025DB RID: 9691 RVA: 0x00106550 File Offset: 0x00104750
 	public void ProcitajPowerShield()
 	{
 		if (FB.IsLoggedIn)
@@ -1282,7 +1282,7 @@ public class FacebookManager : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06002A18 RID: 10776 RVA: 0x00145D68 File Offset: 0x00143F68
+	// Token: 0x060025DC RID: 9692 RVA: 0x001065AC File Offset: 0x001047AC
 	public void SacuvajPowerMagnet(int BrojPowerMagnet)
 	{
 		if (FB.IsLoggedIn)
@@ -1306,7 +1306,7 @@ public class FacebookManager : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06002A19 RID: 10777 RVA: 0x00145DBC File Offset: 0x00143FBC
+	// Token: 0x060025DD RID: 9693 RVA: 0x00106600 File Offset: 0x00104800
 	public void ProcitajPowerMagnet()
 	{
 		if (FB.IsLoggedIn)
@@ -1328,7 +1328,7 @@ public class FacebookManager : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06002A1A RID: 10778 RVA: 0x00145E18 File Offset: 0x00144018
+	// Token: 0x060025DE RID: 9694 RVA: 0x0010665C File Offset: 0x0010485C
 	public void SacuvajPowerDoubleCoins(int BrojPowerDoubleCoins)
 	{
 		if (FB.IsLoggedIn)
@@ -1352,7 +1352,7 @@ public class FacebookManager : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06002A1B RID: 10779 RVA: 0x00145E6C File Offset: 0x0014406C
+	// Token: 0x060025DF RID: 9695 RVA: 0x001066B0 File Offset: 0x001048B0
 	public void ProcitajPowerDoubleCoins()
 	{
 		if (FB.IsLoggedIn)
@@ -1374,7 +1374,7 @@ public class FacebookManager : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06002A1C RID: 10780 RVA: 0x00145EC8 File Offset: 0x001440C8
+	// Token: 0x060025E0 RID: 9696 RVA: 0x0010670C File Offset: 0x0010490C
 	public void SacuvajSveMoci(int BrojPowerShield, int BrojPowerMagnet, int BrojPowerDoubleCoins)
 	{
 		if (FB.IsLoggedIn)
@@ -1400,7 +1400,7 @@ public class FacebookManager : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06002A1D RID: 10781 RVA: 0x00145F2C File Offset: 0x0014412C
+	// Token: 0x060025E1 RID: 9697 RVA: 0x00106770 File Offset: 0x00104970
 	public void ProcitajSveMoci()
 	{
 		if (FB.IsLoggedIn)
@@ -1425,7 +1425,7 @@ public class FacebookManager : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06002A1E RID: 10782 RVA: 0x00145F88 File Offset: 0x00144188
+	// Token: 0x060025E2 RID: 9698 RVA: 0x001067CC File Offset: 0x001049CC
 	public void SacuvajKupljeneStvari(string UserSveKupovineHats, string UserSveKupovineShirts, string UserSveKupovineBackPacks)
 	{
 		if (FB.IsLoggedIn)
@@ -1451,7 +1451,7 @@ public class FacebookManager : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06002A1F RID: 10783 RVA: 0x00145FEC File Offset: 0x001441EC
+	// Token: 0x060025E3 RID: 9699 RVA: 0x00106830 File Offset: 0x00104A30
 	public void ProcitajKupljeneStvari()
 	{
 		if (FB.IsLoggedIn)
@@ -1476,7 +1476,7 @@ public class FacebookManager : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06002A20 RID: 10784 RVA: 0x00146048 File Offset: 0x00144248
+	// Token: 0x060025E4 RID: 9700 RVA: 0x0010688C File Offset: 0x00104A8C
 	public void InicijalizujScoreNaNivoima(int[] NizBrojZvezdaPoNivou, int[] NizScorovaPoNivoima, int MaxNivo, string BonusLevels)
 	{
 		this.LevelScore["NumOfStars"] = NizBrojZvezdaPoNivou;
@@ -1486,7 +1486,7 @@ public class FacebookManager : MonoBehaviour
 		this.LevelScore["UserID"] = FacebookManager.User;
 	}
 
-	// Token: 0x06002A21 RID: 10785 RVA: 0x001460B4 File Offset: 0x001442B4
+	// Token: 0x060025E5 RID: 9701 RVA: 0x001068F8 File Offset: 0x00104AF8
 	public void SacuvajScoreNaNivoima(int[] ScorePoNivoima, int[] BrojZvezdaPoNivoima, int TrenutniNivoIgraca, string BonusLevels)
 	{
 		if (FB.IsLoggedIn)
@@ -1523,7 +1523,7 @@ public class FacebookManager : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06002A22 RID: 10786 RVA: 0x00020BA8 File Offset: 0x0001EDA8
+	// Token: 0x060025E6 RID: 9702 RVA: 0x00106990 File Offset: 0x00104B90
 	public void ProcitajScoreNaNivoima()
 	{
 		if (FB.IsLoggedIn)
@@ -1546,7 +1546,7 @@ public class FacebookManager : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06002A23 RID: 10787 RVA: 0x0014614C File Offset: 0x0014434C
+	// Token: 0x060025E7 RID: 9703 RVA: 0x001069CC File Offset: 0x00104BCC
 	public void ProcitajScorovePrijatelja(string FriendID)
 	{
 		if (FB.IsLoggedIn)
@@ -1579,7 +1579,7 @@ public class FacebookManager : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06002A24 RID: 10788 RVA: 0x00020BE1 File Offset: 0x0001EDE1
+	// Token: 0x060025E8 RID: 9704 RVA: 0x00106A25 File Offset: 0x00104C25
 	private IEnumerator TrenutniNivoSvihPrijatelja()
 	{
 		int i = 0;
@@ -1658,310 +1658,310 @@ public class FacebookManager : MonoBehaviour
 		yield break;
 	}
 
-	// Token: 0x04002386 RID: 9094
+	// Token: 0x04001E60 RID: 7776
 	public static string UserSveKupovineHats;
 
-	// Token: 0x04002387 RID: 9095
+	// Token: 0x04001E61 RID: 7777
 	public static string UserSveKupovineShirts;
 
-	// Token: 0x04002388 RID: 9096
+	// Token: 0x04001E62 RID: 7778
 	public static string UserSveKupovineBackPacks;
 
-	// Token: 0x04002389 RID: 9097
+	// Token: 0x04001E63 RID: 7779
 	public static int UserCoins;
 
-	// Token: 0x0400238A RID: 9098
+	// Token: 0x04001E64 RID: 7780
 	public static string bonusLevels;
 
-	// Token: 0x0400238B RID: 9099
+	// Token: 0x04001E65 RID: 7781
 	public static int UserScore;
 
-	// Token: 0x0400238C RID: 9100
+	// Token: 0x04001E66 RID: 7782
 	public static string UserLanguage;
 
-	// Token: 0x0400238D RID: 9101
+	// Token: 0x04001E67 RID: 7783
 	public static int UserBanana;
 
-	// Token: 0x0400238E RID: 9102
+	// Token: 0x04001E68 RID: 7784
 	public static int UserPowerMagnet;
 
-	// Token: 0x0400238F RID: 9103
+	// Token: 0x04001E69 RID: 7785
 	public static int UserPowerShield;
 
-	// Token: 0x04002390 RID: 9104
+	// Token: 0x04001E6A RID: 7786
 	public static int UserPowerDoubleCoins;
 
-	// Token: 0x04002391 RID: 9105
+	// Token: 0x04001E6B RID: 7787
 	public static int GlavaItem;
 
-	// Token: 0x04002392 RID: 9106
+	// Token: 0x04001E6C RID: 7788
 	public static int TeloItem;
 
-	// Token: 0x04002393 RID: 9107
+	// Token: 0x04001E6D RID: 7789
 	public static int LedjaItem;
 
-	// Token: 0x04002394 RID: 9108
+	// Token: 0x04001E6E RID: 7790
 	public static bool Usi;
 
-	// Token: 0x04002395 RID: 9109
+	// Token: 0x04001E6F RID: 7791
 	public static bool Kosa;
 
-	// Token: 0x04002396 RID: 9110
+	// Token: 0x04001E70 RID: 7792
 	public static int indexUListaStructPrijatelja;
 
-	// Token: 0x04002397 RID: 9111
+	// Token: 0x04001E71 RID: 7793
 	public static int MestoPozivanjaLogina = 1;
 
-	// Token: 0x04002398 RID: 9112
+	// Token: 0x04001E72 RID: 7794
 	public static bool KorisnikoviPodaciSpremni = false;
 
-	// Token: 0x04002399 RID: 9113
+	// Token: 0x04001E73 RID: 7795
 	private bool isInit;
 
-	// Token: 0x0400239A RID: 9114
+	// Token: 0x04001E74 RID: 7796
 	public static FacebookManager FacebookObject;
 
-	// Token: 0x0400239B RID: 9115
+	// Token: 0x04001E75 RID: 7797
 	private Texture2D lastResponseTexture;
 
-	// Token: 0x0400239C RID: 9116
+	// Token: 0x04001E76 RID: 7798
 	private string ApiQuery = "";
 
-	// Token: 0x0400239D RID: 9117
+	// Token: 0x04001E77 RID: 7799
 	public static bool Ulogovan;
 
-	// Token: 0x0400239E RID: 9118
+	// Token: 0x04001E78 RID: 7800
 	public static string stranica = string.Empty;
 
-	// Token: 0x0400239F RID: 9119
+	// Token: 0x04001E79 RID: 7801
 	private static bool otisaoDaLajkuje = false;
 
-	// Token: 0x040023A0 RID: 9120
+	// Token: 0x04001E7A RID: 7802
 	public static string IDstranice = string.Empty;
 
-	// Token: 0x040023A1 RID: 9121
+	// Token: 0x04001E7B RID: 7803
 	private static bool lajkovao = false;
 
-	// Token: 0x040023A2 RID: 9122
+	// Token: 0x04001E7C RID: 7804
 	private static int nagrada = 0;
 
-	// Token: 0x040023A3 RID: 9123
+	// Token: 0x04001E7D RID: 7805
 	private DateTime timeToShowNextElement;
 
-	// Token: 0x040023A4 RID: 9124
+	// Token: 0x04001E7E RID: 7806
 	private bool leftApp;
 
-	// Token: 0x040023A5 RID: 9125
+	// Token: 0x04001E7F RID: 7807
 	public static string lokacijaProvere = "Shop";
 
-	// Token: 0x040023A6 RID: 9126
+	// Token: 0x04001E80 RID: 7808
 	public static string User;
 
-	// Token: 0x040023A7 RID: 9127
+	// Token: 0x04001E81 RID: 7809
 	private string UserRodjendan;
 
-	// Token: 0x040023A8 RID: 9128
+	// Token: 0x04001E82 RID: 7810
 	private List<string> Prijatelji;
 
-	// Token: 0x040023A9 RID: 9129
+	// Token: 0x04001E83 RID: 7811
 	public static List<FacebookManager.IDiSlika> ProfileSlikePrijatelja = new List<FacebookManager.IDiSlika>();
 
-	// Token: 0x040023AA RID: 9130
+	// Token: 0x04001E84 RID: 7812
 	public List<string> Korisnici;
 
-	// Token: 0x040023AB RID: 9131
+	// Token: 0x04001E85 RID: 7813
 	public List<string> Scorovi;
 
-	// Token: 0x040023AC RID: 9132
+	// Token: 0x04001E86 RID: 7814
 	public List<string> Imena;
 
-	// Token: 0x040023AD RID: 9133
+	// Token: 0x04001E87 RID: 7815
 	public static int NumberOfFriends;
 
-	// Token: 0x040023AE RID: 9134
+	// Token: 0x04001E88 RID: 7816
 	public bool odobrioPublishActions;
 
-	// Token: 0x040023AF RID: 9135
+	// Token: 0x04001E89 RID: 7817
 	public int scoreToSet;
 
-	// Token: 0x040023B0 RID: 9136
+	// Token: 0x04001E8A RID: 7818
 	public bool nePostojiKorisnik = true;
 
-	// Token: 0x040023B1 RID: 9137
+	// Token: 0x04001E8B RID: 7819
 	public bool zavrsioUcitavanje;
 
-	// Token: 0x040023B2 RID: 9138
+	// Token: 0x04001E8C RID: 7820
 	public static string[] permisija;
 
-	// Token: 0x040023B3 RID: 9139
+	// Token: 0x04001E8D RID: 7821
 	public static string[] statusPermisije;
 
-	// Token: 0x040023B4 RID: 9140
+	// Token: 0x04001E8E RID: 7822
 	public static List<FacebookManager.StrukturaPrijatelja> ListaStructPrijatelja = new List<FacebookManager.StrukturaPrijatelja>();
 
-	// Token: 0x040023B5 RID: 9141
+	// Token: 0x04001E8F RID: 7823
 	private int TrenutniNivoIgraca;
 
-	// Token: 0x040023B6 RID: 9142
+	// Token: 0x04001E90 RID: 7824
 	private int[] scorePoNivouPrijatelja = new int[120];
 
-	// Token: 0x040023B7 RID: 9143
+	// Token: 0x04001E91 RID: 7825
 	private int[] ScorePoNivoimaNiz = new int[120];
 
-	// Token: 0x040023B8 RID: 9144
+	// Token: 0x04001E92 RID: 7826
 	private int[] BrojZvezdaPoNivouNiz = new int[120];
 
-	// Token: 0x040023B9 RID: 9145
+	// Token: 0x04001E93 RID: 7827
 	private int[] testNiz = new int[120];
 
-	// Token: 0x040023BA RID: 9146
+	// Token: 0x04001E94 RID: 7828
 	private bool WaitForFacebook;
 
-	// Token: 0x040023BB RID: 9147
+	// Token: 0x04001E95 RID: 7829
 	private bool WaitForFacebookFriend;
 
-	// Token: 0x040023BC RID: 9148
+	// Token: 0x04001E96 RID: 7830
 	public static string UserName;
 
-	// Token: 0x040023BD RID: 9149
+	// Token: 0x04001E97 RID: 7831
 	public static Texture ProfilePicture;
 
-	// Token: 0x040023BE RID: 9150
+	// Token: 0x04001E98 RID: 7832
 	public static Texture FriendPic1;
 
-	// Token: 0x040023BF RID: 9151
+	// Token: 0x04001E99 RID: 7833
 	public static Texture FriendPic2;
 
-	// Token: 0x040023C0 RID: 9152
+	// Token: 0x04001E9A RID: 7834
 	public static Texture FriendPic3;
 
-	// Token: 0x040023C1 RID: 9153
+	// Token: 0x04001E9B RID: 7835
 	public static Texture FriendPic4;
 
-	// Token: 0x040023C2 RID: 9154
+	// Token: 0x04001E9C RID: 7836
 	public static Texture FriendPic5;
 
-	// Token: 0x040023C3 RID: 9155
+	// Token: 0x04001E9D RID: 7837
 	private string permissions = "user_friends,publish_actions";
 
-	// Token: 0x040023C4 RID: 9156
+	// Token: 0x04001E9E RID: 7838
 	private string Code;
 
-	// Token: 0x040023C5 RID: 9157
+	// Token: 0x04001E9F RID: 7839
 	private string TipNagrade;
 
-	// Token: 0x040023C6 RID: 9158
+	// Token: 0x04001EA0 RID: 7840
 	private int IznosNagrade;
 
-	// Token: 0x040023C7 RID: 9159
+	// Token: 0x04001EA1 RID: 7841
 	private ParseObject Korisnik = new ParseObject("User");
 
-	// Token: 0x040023C8 RID: 9160
+	// Token: 0x04001EA2 RID: 7842
 	private ParseObject LevelScore = new ParseObject("LevelScore");
 
-	// Token: 0x040023C9 RID: 9161
+	// Token: 0x04001EA3 RID: 7843
 	private string JezikServer;
 
-	// Token: 0x040023CA RID: 9162
+	// Token: 0x04001EA4 RID: 7844
 	private int NivoServer;
 
-	// Token: 0x040023CB RID: 9163
+	// Token: 0x04001EA5 RID: 7845
 	private bool updatedSuccessfullyScoreNaNivoima;
 
-	// Token: 0x040023CC RID: 9164
+	// Token: 0x04001EA6 RID: 7846
 	private bool updatedSuccessfullyPodaciKorisnika;
 
-	// Token: 0x040023CD RID: 9165
+	// Token: 0x04001EA7 RID: 7847
 	[HideInInspector]
 	public bool OKzaLogout;
 
-	// Token: 0x040023CE RID: 9166
+	// Token: 0x04001EA8 RID: 7848
 	[HideInInspector]
 	public int resetovanScoreNaNulu;
 
-	// Token: 0x040023CF RID: 9167
+	// Token: 0x04001EA9 RID: 7849
 	private string FriendSelectorTitle = "Banana Island - Bobo's Epic Tale";
 
-	// Token: 0x040023D0 RID: 9168
+	// Token: 0x04001EAA RID: 7850
 	private string FriendSelectorMessage = LanguageManager.Play + " \"Banana Island - Bobo's Epic Tale\"";
 
-	// Token: 0x040023D1 RID: 9169
+	// Token: 0x04001EAB RID: 7851
 	private string FriendSelectorFilters = "[\"all\",\"app_users\",\"app_non_users\"]";
 
-	// Token: 0x040023D2 RID: 9170
+	// Token: 0x04001EAC RID: 7852
 	private string FriendSelectorData = "{}";
 
-	// Token: 0x040023D3 RID: 9171
+	// Token: 0x04001EAD RID: 7853
 	private string FriendSelectorExcludeIds = "";
 
-	// Token: 0x040023D4 RID: 9172
+	// Token: 0x04001EAE RID: 7854
 	private string FriendSelectorMax = "";
 
-	// Token: 0x040023D5 RID: 9173
+	// Token: 0x04001EAF RID: 7855
 	private string lastResponse = "";
 
-	// Token: 0x040023D6 RID: 9174
+	// Token: 0x04001EB0 RID: 7856
 	private string FeedLinkKratakOpis = " ";
 
-	// Token: 0x040023D7 RID: 9175
+	// Token: 0x04001EB1 RID: 7857
 	private string LinkSlike = "https://trello-attachments.s3.amazonaws.com/52fb9e010aaea80557f83f1f/1024x500/d64a4cc319932dde0630258aee32d7d4/Feature-Graphic.jpg";
 
-	// Token: 0x040023D8 RID: 9176
+	// Token: 0x04001EB2 RID: 7858
 	private string LinkVideailiZvuka = "";
 
-	// Token: 0x040023D9 RID: 9177
+	// Token: 0x04001EB3 RID: 7859
 	private string FeedActionName = "";
 
-	// Token: 0x040023DA RID: 9178
+	// Token: 0x04001EB4 RID: 7860
 	private string FeedActionLink = "";
 
-	// Token: 0x040023DB RID: 9179
+	// Token: 0x04001EB5 RID: 7861
 	private string FeedReference = "";
 
-	// Token: 0x040023DC RID: 9180
+	// Token: 0x04001EB6 RID: 7862
 	private bool IncludeFeedProperties;
 
-	// Token: 0x040023DD RID: 9181
+	// Token: 0x04001EB7 RID: 7863
 	private Dictionary<string, string[]> FeedProperties = new Dictionary<string, string[]>();
 
-	// Token: 0x040023DE RID: 9182
+	// Token: 0x04001EB8 RID: 7864
 	private int nesto;
 
-	// Token: 0x040023DF RID: 9183
+	// Token: 0x04001EB9 RID: 7865
 	public int BrojPrijatelja;
 
-	// Token: 0x040023E0 RID: 9184
+	// Token: 0x04001EBA RID: 7866
 	private string URL;
 
-	// Token: 0x040023E1 RID: 9185
+	// Token: 0x04001EBB RID: 7867
 	private string prijateljevIDzaSliku;
 
-	// Token: 0x0200068D RID: 1677
+	// Token: 0x020013CA RID: 5066
 	public struct IDiSlika
 	{
-		// Token: 0x040023E2 RID: 9186
+		// Token: 0x04006968 RID: 26984
 		public string PrijateljID;
 
-		// Token: 0x040023E3 RID: 9187
+		// Token: 0x04006969 RID: 26985
 		public Texture profilePicture;
 	}
 
-	// Token: 0x0200068E RID: 1678
+	// Token: 0x020013CB RID: 5067
 	public struct StrukturaPrijatelja
 	{
-		// Token: 0x040023E4 RID: 9188
+		// Token: 0x0400696A RID: 26986
 		public string PrijateljID;
 
-		// Token: 0x040023E5 RID: 9189
+		// Token: 0x0400696B RID: 26987
 		public IList<int> scores;
 
-		// Token: 0x040023E6 RID: 9190
+		// Token: 0x0400696C RID: 26988
 		public IList<int> stars;
 
-		// Token: 0x040023E7 RID: 9191
+		// Token: 0x0400696D RID: 26989
 		public int MaxLevel;
 
-		// Token: 0x040023E8 RID: 9192
+		// Token: 0x0400696E RID: 26990
 		public Texture profilePicture;
 	}
 }

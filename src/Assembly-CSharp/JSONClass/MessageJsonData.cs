@@ -3,10 +3,10 @@ using System.Collections.Generic;
 
 namespace JSONClass
 {
-	// Token: 0x02000C1C RID: 3100
+	// Token: 0x0200088E RID: 2190
 	public class MessageJsonData : IJSONClass
 	{
-		// Token: 0x06004BD9 RID: 19417 RVA: 0x00200414 File Offset: 0x001FE614
+		// Token: 0x0600404B RID: 16459 RVA: 0x001B6EF0 File Offset: 0x001B50F0
 		public static void InitDataDict()
 		{
 			foreach (JSONObject jsonobject in jsonData.instance.MessageJsonData.list)
@@ -52,63 +52,63 @@ namespace JSONClass
 			}
 		}
 
-		// Token: 0x06004BDA RID: 19418 RVA: 0x000042DD File Offset: 0x000024DD
+		// Token: 0x0600404C RID: 16460 RVA: 0x00004095 File Offset: 0x00002295
 		private static void OnInitFinish()
 		{
 		}
 
-		// Token: 0x040048E3 RID: 18659
+		// Token: 0x04003D8A RID: 15754
 		public static Dictionary<int, MessageJsonData> DataDict = new Dictionary<int, MessageJsonData>();
 
-		// Token: 0x040048E4 RID: 18660
+		// Token: 0x04003D8B RID: 15755
 		public static List<MessageJsonData> DataList = new List<MessageJsonData>();
 
-		// Token: 0x040048E5 RID: 18661
+		// Token: 0x04003D8C RID: 15756
 		public static Action OnInitFinishAction = new Action(MessageJsonData.OnInitFinish);
 
-		// Token: 0x040048E6 RID: 18662
+		// Token: 0x04003D8D RID: 15757
 		public int id;
 
-		// Token: 0x040048E7 RID: 18663
+		// Token: 0x04003D8E RID: 15758
 		public int headID;
 
-		// Token: 0x040048E8 RID: 18664
+		// Token: 0x04003D8F RID: 15759
 		public string messageInfo;
 
-		// Token: 0x040048E9 RID: 18665
+		// Token: 0x04003D90 RID: 15760
 		public string title;
 
-		// Token: 0x040048EA RID: 18666
+		// Token: 0x04003D91 RID: 15761
 		public string body;
 
-		// Token: 0x040048EB RID: 18667
+		// Token: 0x04003D92 RID: 15762
 		public string func1;
 
-		// Token: 0x040048EC RID: 18668
+		// Token: 0x04003D93 RID: 15763
 		public string funcargs1;
 
-		// Token: 0x040048ED RID: 18669
+		// Token: 0x04003D94 RID: 15764
 		public string func2;
 
-		// Token: 0x040048EE RID: 18670
+		// Token: 0x04003D95 RID: 15765
 		public string funcargs2;
 
-		// Token: 0x040048EF RID: 18671
+		// Token: 0x04003D96 RID: 15766
 		public string func3;
 
-		// Token: 0x040048F0 RID: 18672
+		// Token: 0x04003D97 RID: 15767
 		public string funcargs3;
 
-		// Token: 0x040048F1 RID: 18673
+		// Token: 0x04003D98 RID: 15768
 		public string func4;
 
-		// Token: 0x040048F2 RID: 18674
+		// Token: 0x04003D99 RID: 15769
 		public string funcargs4;
 
-		// Token: 0x040048F3 RID: 18675
+		// Token: 0x04003D9A RID: 15770
 		public string func5;
 
-		// Token: 0x040048F4 RID: 18676
+		// Token: 0x04003D9B RID: 15771
 		public string funcargs5;
 	}
 }

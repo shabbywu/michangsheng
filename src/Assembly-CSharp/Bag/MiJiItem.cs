@@ -7,11 +7,11 @@ using UnityEngine;
 
 namespace Bag
 {
-	// Token: 0x02000D33 RID: 3379
+	// Token: 0x020009AD RID: 2477
 	[Serializable]
 	public class MiJiItem : BaseItem
 	{
-		// Token: 0x06005046 RID: 20550 RVA: 0x00219148 File Offset: 0x00217348
+		// Token: 0x060044E7 RID: 17639 RVA: 0x001D4AD8 File Offset: 0x001D2CD8
 		public override void SetItem(int id, int count)
 		{
 			base.SetItem(id, count);
@@ -20,7 +20,7 @@ namespace Bag
 			this.PinJie = _ItemJsonData.DataDict[id].typePinJie;
 		}
 
-		// Token: 0x06005047 RID: 20551 RVA: 0x00039DE1 File Offset: 0x00037FE1
+		// Token: 0x060044E8 RID: 17640 RVA: 0x001D4B25 File Offset: 0x001D2D25
 		public override string GetQualityName()
 		{
 			if (this.MiJiType == MiJiType.功法 || this.MiJiType == MiJiType.技能)
@@ -30,7 +30,7 @@ namespace Bag
 			return base.GetQualityName();
 		}
 
-		// Token: 0x06005048 RID: 20552 RVA: 0x00219198 File Offset: 0x00217398
+		// Token: 0x060044E9 RID: 17641 RVA: 0x001D4B54 File Offset: 0x001D2D54
 		public override JiaoBiaoType GetJiaoBiaoType()
 		{
 			if (Tools.getJsonobject(Tools.instance.getPlayer().NaiYaoXin, string.Concat(this.Id)) >= this.CanUse && this.MiJiType == MiJiType.书籍2)
@@ -47,9 +47,9 @@ namespace Bag
 			else if (this.MiJiType == MiJiType.功法)
 			{
 				int id = 0;
-				if (this.Id > 100000)
+				if (this.Id > jsonData.QingJiaoItemIDSegment)
 				{
-					id = ItemsSeidJsonData2.DataDict[this.Id - 100000].value1;
+					id = ItemsSeidJsonData2.DataDict[this.Id - jsonData.QingJiaoItemIDSegment].value1;
 				}
 				else
 				{
@@ -63,9 +63,9 @@ namespace Bag
 			else if (this.MiJiType == MiJiType.技能)
 			{
 				int id = 0;
-				if (this.Id > 100000)
+				if (this.Id > jsonData.QingJiaoItemIDSegment)
 				{
-					id = ItemsSeidJsonData1.DataDict[this.Id - 100000].value1;
+					id = ItemsSeidJsonData1.DataDict[this.Id - jsonData.QingJiaoItemIDSegment].value1;
 				}
 				else
 				{
@@ -79,7 +79,7 @@ namespace Bag
 			return base.GetJiaoBiaoType();
 		}
 
-		// Token: 0x06005049 RID: 20553 RVA: 0x0021931C File Offset: 0x0021751C
+		// Token: 0x060044EA RID: 17642 RVA: 0x001D4CD8 File Offset: 0x001D2ED8
 		public override string GetDesc1()
 		{
 			if (this.MiJiType == MiJiType.功法)
@@ -130,7 +130,7 @@ namespace Bag
 			return base.GetDesc1();
 		}
 
-		// Token: 0x0600504A RID: 20554 RVA: 0x002194B0 File Offset: 0x002176B0
+		// Token: 0x060044EB RID: 17643 RVA: 0x001D4E6C File Offset: 0x001D306C
 		public override List<int> GetCiZhui()
 		{
 			new List<int>();
@@ -178,7 +178,7 @@ namespace Bag
 			return base.GetCiZhui();
 		}
 
-		// Token: 0x0600504B RID: 20555 RVA: 0x00219658 File Offset: 0x00217858
+		// Token: 0x060044EC RID: 17644 RVA: 0x001D5014 File Offset: 0x001D3214
 		public List<SkillCost> GetMiJiCost()
 		{
 			int id = int.Parse(_ItemJsonData.DataDict[this.Id].desc.Replace(".0", ""));
@@ -187,19 +187,19 @@ namespace Bag
 			return activeSkill.GetSkillCost();
 		}
 
-		// Token: 0x0600504C RID: 20556 RVA: 0x002182A8 File Offset: 0x002164A8
+		// Token: 0x060044ED RID: 17645 RVA: 0x001D506C File Offset: 0x001D326C
 		public override Sprite GetQualitySprite()
 		{
 			return BagMag.Inst.QualityDict[this.GetImgQuality().ToString()];
 		}
 
-		// Token: 0x0600504D RID: 20557 RVA: 0x002182D4 File Offset: 0x002164D4
+		// Token: 0x060044EE RID: 17646 RVA: 0x001D5098 File Offset: 0x001D3298
 		public override Sprite GetQualityUpSprite()
 		{
 			return BagMag.Inst.QualityUpDict[this.GetImgQuality().ToString()];
 		}
 
-		// Token: 0x0600504E RID: 20558 RVA: 0x002196B0 File Offset: 0x002178B0
+		// Token: 0x060044EF RID: 17647 RVA: 0x001D50C4 File Offset: 0x001D32C4
 		public override int GetImgQuality()
 		{
 			int num = this.Quality;
@@ -210,7 +210,7 @@ namespace Bag
 			return num;
 		}
 
-		// Token: 0x0600504F RID: 20559 RVA: 0x002196DC File Offset: 0x002178DC
+		// Token: 0x060044F0 RID: 17648 RVA: 0x001D50F0 File Offset: 0x001D32F0
 		public MiJiType GetMiJiType()
 		{
 			MiJiType result = MiJiType.技能;
@@ -244,7 +244,7 @@ namespace Bag
 			return result;
 		}
 
-		// Token: 0x06005050 RID: 20560 RVA: 0x00219728 File Offset: 0x00217928
+		// Token: 0x060044F1 RID: 17649 RVA: 0x001D513C File Offset: 0x001D333C
 		private string GetPinJie()
 		{
 			switch (this.Quality)
@@ -260,7 +260,7 @@ namespace Bag
 			}
 		}
 
-		// Token: 0x06005051 RID: 20561 RVA: 0x0021976C File Offset: 0x0021796C
+		// Token: 0x060044F2 RID: 17650 RVA: 0x001D5180 File Offset: 0x001D3380
 		public string GetPinJieName()
 		{
 			switch (this.PinJie)
@@ -276,7 +276,7 @@ namespace Bag
 			}
 		}
 
-		// Token: 0x06005052 RID: 20562 RVA: 0x002197B0 File Offset: 0x002179B0
+		// Token: 0x060044F3 RID: 17651 RVA: 0x001D51C4 File Offset: 0x001D33C4
 		public override void Use()
 		{
 			if (this.MiJiType == MiJiType.书籍1 || this.MiJiType == MiJiType.丹方)
@@ -291,13 +291,13 @@ namespace Bag
 			UIPopTip.Inst.Pop("需在闭关时领悟", PopTipIconType.叹号);
 		}
 
-		// Token: 0x040051B3 RID: 20915
+		// Token: 0x040046B3 RID: 18099
 		public MiJiType MiJiType;
 
-		// Token: 0x040051B4 RID: 20916
+		// Token: 0x040046B4 RID: 18100
 		public int CanUse;
 
-		// Token: 0x040051B5 RID: 20917
+		// Token: 0x040046B5 RID: 18101
 		public new int PinJie;
 	}
 }

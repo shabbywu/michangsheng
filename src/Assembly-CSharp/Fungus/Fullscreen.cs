@@ -3,12 +3,12 @@ using UnityEngine;
 
 namespace Fungus
 {
-	// Token: 0x0200120F RID: 4623
+	// Token: 0x02000DD4 RID: 3540
 	[CommandInfo("Camera", "Fullscreen", "Sets the application to fullscreen, windowed or toggles the current state.", 0)]
 	[AddComponentMenu("")]
 	public class Fullscreen : Command
 	{
-		// Token: 0x06007113 RID: 28947 RVA: 0x002A442C File Offset: 0x002A262C
+		// Token: 0x06006491 RID: 25745 RVA: 0x0027F710 File Offset: 0x0027D910
 		public override void OnEnter()
 		{
 			switch (this.fullscreenMode)
@@ -26,19 +26,19 @@ namespace Fungus
 			this.Continue();
 		}
 
-		// Token: 0x06007114 RID: 28948 RVA: 0x0004CD18 File Offset: 0x0004AF18
+		// Token: 0x06006492 RID: 25746 RVA: 0x0027F75B File Offset: 0x0027D95B
 		public override string GetSummary()
 		{
 			return this.fullscreenMode.ToString();
 		}
 
-		// Token: 0x06007115 RID: 28949 RVA: 0x0004CAB8 File Offset: 0x0004ACB8
+		// Token: 0x06006493 RID: 25747 RVA: 0x0027EC04 File Offset: 0x0027CE04
 		public override Color GetButtonColor()
 		{
 			return new Color32(216, 228, 170, byte.MaxValue);
 		}
 
-		// Token: 0x0400636C RID: 25452
+		// Token: 0x0400566C RID: 22124
 		[SerializeField]
 		protected FullscreenMode fullscreenMode;
 	}

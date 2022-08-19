@@ -3,10 +3,10 @@ using System.Collections.Generic;
 
 namespace JSONClass
 {
-	// Token: 0x02000C63 RID: 3171
+	// Token: 0x020008D6 RID: 2262
 	public class SeaJiZhiID : IJSONClass
 	{
-		// Token: 0x06004CF5 RID: 19701 RVA: 0x002082E4 File Offset: 0x002064E4
+		// Token: 0x0600416B RID: 16747 RVA: 0x001BFECC File Offset: 0x001BE0CC
 		public static void InitDataDict()
 		{
 			foreach (JSONObject jsonobject in jsonData.instance.SeaJiZhiID.list)
@@ -43,36 +43,36 @@ namespace JSONClass
 			}
 		}
 
-		// Token: 0x06004CF6 RID: 19702 RVA: 0x000042DD File Offset: 0x000024DD
+		// Token: 0x0600416C RID: 16748 RVA: 0x00004095 File Offset: 0x00002295
 		private static void OnInitFinish()
 		{
 		}
 
-		// Token: 0x04004BFF RID: 19455
+		// Token: 0x040040B5 RID: 16565
 		public static Dictionary<int, SeaJiZhiID> DataDict = new Dictionary<int, SeaJiZhiID>();
 
-		// Token: 0x04004C00 RID: 19456
+		// Token: 0x040040B6 RID: 16566
 		public static List<SeaJiZhiID> DataList = new List<SeaJiZhiID>();
 
-		// Token: 0x04004C01 RID: 19457
+		// Token: 0x040040B7 RID: 16567
 		public static Action OnInitFinishAction = new Action(SeaJiZhiID.OnInitFinish);
 
-		// Token: 0x04004C02 RID: 19458
+		// Token: 0x040040B8 RID: 16568
 		public int id;
 
-		// Token: 0x04004C03 RID: 19459
+		// Token: 0x040040B9 RID: 16569
 		public int Type;
 
-		// Token: 0x04004C04 RID: 19460
+		// Token: 0x040040BA RID: 16570
 		public int TalkID;
 
-		// Token: 0x04004C05 RID: 19461
+		// Token: 0x040040BB RID: 16571
 		public int FuBenType;
 
-		// Token: 0x04004C06 RID: 19462
+		// Token: 0x040040BC RID: 16572
 		public int XingXiang;
 
-		// Token: 0x04004C07 RID: 19463
+		// Token: 0x040040BD RID: 16573
 		public List<int> AvatarID = new List<int>();
 	}
 }

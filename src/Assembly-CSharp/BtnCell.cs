@@ -5,10 +5,10 @@ using UnityEngine.Events;
 using UnityEngine.UI;
 using YSGame;
 
-// Token: 0x02000485 RID: 1157
+// Token: 0x02000320 RID: 800
 public class BtnCell : LunDaoBtnBase
 {
-	// Token: 0x06001EE7 RID: 7911 RVA: 0x0010A42C File Offset: 0x0010862C
+	// Token: 0x06001BA7 RID: 7079 RVA: 0x000C5184 File Offset: 0x000C3384
 	private void Awake()
 	{
 		if (base.GetComponent<Image>() == null)
@@ -21,7 +21,7 @@ public class BtnCell : LunDaoBtnBase
 		base.AddMouseDownCallBack(new UnityAction(this.MouseDown));
 	}
 
-	// Token: 0x06001EE8 RID: 7912 RVA: 0x0010A4B8 File Offset: 0x001086B8
+	// Token: 0x06001BA8 RID: 7080 RVA: 0x000C5210 File Offset: 0x000C3410
 	private void MouseUp()
 	{
 		if (!this.isStopSuoFang)
@@ -54,7 +54,7 @@ public class BtnCell : LunDaoBtnBase
 		this.mouseUp.Invoke();
 	}
 
-	// Token: 0x06001EE9 RID: 7913 RVA: 0x0010A5D0 File Offset: 0x001087D0
+	// Token: 0x06001BA9 RID: 7081 RVA: 0x000C5328 File Offset: 0x000C3528
 	private void MouseDown()
 	{
 		if (!this.isStopSuoFang)
@@ -75,7 +75,7 @@ public class BtnCell : LunDaoBtnBase
 		this.mouseDown.Invoke();
 	}
 
-	// Token: 0x06001EEA RID: 7914 RVA: 0x0010A6B0 File Offset: 0x001088B0
+	// Token: 0x06001BAA RID: 7082 RVA: 0x000C5408 File Offset: 0x000C3608
 	private void MouseEnter()
 	{
 		this.IsIn = true;
@@ -94,7 +94,7 @@ public class BtnCell : LunDaoBtnBase
 		MusicMag.instance.PlayEffectMusic(3, 1f);
 	}
 
-	// Token: 0x06001EEB RID: 7915 RVA: 0x0010A794 File Offset: 0x00108994
+	// Token: 0x06001BAB RID: 7083 RVA: 0x000C54EC File Offset: 0x000C36EC
 	private void MouseOut()
 	{
 		this.IsIn = false;
@@ -112,38 +112,38 @@ public class BtnCell : LunDaoBtnBase
 		this.mouseOut.Invoke();
 	}
 
-	// Token: 0x04001A51 RID: 6737
+	// Token: 0x0400162C RID: 5676
 	public bool isStopBlack;
 
-	// Token: 0x04001A52 RID: 6738
+	// Token: 0x0400162D RID: 5677
 	public bool isStopSuoFang;
 
-	// Token: 0x04001A53 RID: 6739
+	// Token: 0x0400162E RID: 5678
 	public bool isStopMusic;
 
-	// Token: 0x04001A54 RID: 6740
+	// Token: 0x0400162F RID: 5679
 	public bool IsIn;
 
-	// Token: 0x04001A55 RID: 6741
+	// Token: 0x04001630 RID: 5680
 	[SerializeField]
 	private List<Image> targetImageList;
 
-	// Token: 0x04001A56 RID: 6742
+	// Token: 0x04001631 RID: 5681
 	[SerializeField]
 	private List<Text> targetTextList;
 
-	// Token: 0x04001A57 RID: 6743
+	// Token: 0x04001632 RID: 5682
 	public AudioClip audioClip;
 
-	// Token: 0x04001A58 RID: 6744
+	// Token: 0x04001633 RID: 5683
 	public UnityEvent mouseUp;
 
-	// Token: 0x04001A59 RID: 6745
+	// Token: 0x04001634 RID: 5684
 	public UnityEvent mouseDown;
 
-	// Token: 0x04001A5A RID: 6746
+	// Token: 0x04001635 RID: 5685
 	public UnityEvent mouseEnter;
 
-	// Token: 0x04001A5B RID: 6747
+	// Token: 0x04001636 RID: 5686
 	public UnityEvent mouseOut;
 }

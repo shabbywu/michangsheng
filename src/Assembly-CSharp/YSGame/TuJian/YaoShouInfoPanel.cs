@@ -8,23 +8,23 @@ using WXB;
 
 namespace YSGame.TuJian
 {
-	// Token: 0x02000DF2 RID: 3570
+	// Token: 0x02000AB5 RID: 2741
 	public class YaoShouInfoPanel : InfoPanelBase
 	{
-		// Token: 0x06005624 RID: 22052 RVA: 0x0003DAB5 File Offset: 0x0003BCB5
+		// Token: 0x06004CD7 RID: 19671 RVA: 0x0020DC01 File Offset: 0x0020BE01
 		public void Start()
 		{
 			this.Init();
 		}
 
-		// Token: 0x06005625 RID: 22053 RVA: 0x0003DABD File Offset: 0x0003BCBD
+		// Token: 0x06004CD8 RID: 19672 RVA: 0x0020DC09 File Offset: 0x0020BE09
 		public override void Update()
 		{
 			base.Update();
 			this.RefreshSVHeight();
 		}
 
-		// Token: 0x06005626 RID: 22054 RVA: 0x0023E7F0 File Offset: 0x0023C9F0
+		// Token: 0x06004CD9 RID: 19673 RVA: 0x0020DC18 File Offset: 0x0020BE18
 		public override void RefreshDataList()
 		{
 			base.RefreshDataList();
@@ -82,7 +82,7 @@ namespace YSGame.TuJian
 			}
 		}
 
-		// Token: 0x06005627 RID: 22055 RVA: 0x0023EA10 File Offset: 0x0023CC10
+		// Token: 0x06004CDA RID: 19674 RVA: 0x0020DE38 File Offset: 0x0020C038
 		public override void RefreshPanelData()
 		{
 			base.RefreshPanelData();
@@ -128,7 +128,7 @@ namespace YSGame.TuJian
 			this._YaoShouImage.sprite = TuJianDB.GetYaoShouFace(nowSelectID);
 		}
 
-		// Token: 0x06005628 RID: 22056 RVA: 0x0023EC2C File Offset: 0x0023CE2C
+		// Token: 0x06004CDB RID: 19675 RVA: 0x0020E054 File Offset: 0x0020C254
 		public void Init()
 		{
 			this._YaoShouImage = base.transform.Find("YaoShouMask/YaoShouImage").GetComponent<Image>();
@@ -136,7 +136,7 @@ namespace YSGame.TuJian
 			this._HyText = base.transform.Find("HyTextSV/Viewport/Content/Text").GetComponent<SymbolText>();
 		}
 
-		// Token: 0x06005629 RID: 22057 RVA: 0x0023EC8C File Offset: 0x0023CE8C
+		// Token: 0x06004CDC RID: 19676 RVA: 0x0020E0B4 File Offset: 0x0020C2B4
 		public void RefreshSVHeight()
 		{
 			if (this._HyContentTransform != null && this._HyContentTransform.sizeDelta.y != this._HyText.preferredHeight + 34f)
@@ -145,28 +145,28 @@ namespace YSGame.TuJian
 			}
 		}
 
-		// Token: 0x040055C0 RID: 21952
+		// Token: 0x04004BE2 RID: 19426
 		private Image _YaoShouImage;
 
-		// Token: 0x040055C1 RID: 21953
+		// Token: 0x04004BE3 RID: 19427
 		protected RectTransform _HyContentTransform;
 
-		// Token: 0x040055C2 RID: 21954
+		// Token: 0x04004BE4 RID: 19428
 		protected SymbolText _HyText;
 
-		// Token: 0x040055C3 RID: 21955
+		// Token: 0x04004BE5 RID: 19429
 		public Color HyTextColor1 = new Color(0.12156863f, 0.37254903f, 0.54901963f);
 
-		// Token: 0x040055C4 RID: 21956
+		// Token: 0x04004BE6 RID: 19430
 		public Color HyTextHoverColor1 = new Color(0.105882354f, 0.3137255f, 0.4627451f);
 
-		// Token: 0x040055C5 RID: 21957
+		// Token: 0x04004BE7 RID: 19431
 		public Color HyTextColor2 = new Color(0.4627451f, 0.26666668f, 0.02745098f);
 
-		// Token: 0x040055C6 RID: 21958
+		// Token: 0x04004BE8 RID: 19432
 		public Color HyTextHoverColor2 = new Color(0.3764706f, 0.21960784f, 0.02745098f);
 
-		// Token: 0x040055C7 RID: 21959
+		// Token: 0x04004BE9 RID: 19433
 		private static Dictionary<string, int> LevelDropdownDict = new Dictionary<string, int>
 		{
 			{

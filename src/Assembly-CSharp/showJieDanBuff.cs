@@ -5,10 +5,10 @@ using UnityEngine;
 using UnityEngine.UI;
 using YSGame.Fight;
 
-// Token: 0x02000628 RID: 1576
+// Token: 0x0200046C RID: 1132
 public class showJieDanBuff : MonoBehaviour
 {
-	// Token: 0x06002728 RID: 10024 RVA: 0x00132980 File Offset: 0x00130B80
+	// Token: 0x06002372 RID: 9074 RVA: 0x000F2814 File Offset: 0x000F0A14
 	private void Start()
 	{
 		for (int i = 4014; i <= 4027; i++)
@@ -23,7 +23,7 @@ public class showJieDanBuff : MonoBehaviour
 		};
 	}
 
-	// Token: 0x06002729 RID: 10025 RVA: 0x001329DC File Offset: 0x00130BDC
+	// Token: 0x06002373 RID: 9075 RVA: 0x000F2870 File Offset: 0x000F0A70
 	public void playMoveAdd(GameObject obj)
 	{
 		iTween.MoveTo(obj.gameObject, iTween.Hash(new object[]
@@ -56,7 +56,7 @@ public class showJieDanBuff : MonoBehaviour
 		obj.transform.localScale = Vector3.zero;
 	}
 
-	// Token: 0x0600272A RID: 10026 RVA: 0x00132B1C File Offset: 0x00130D1C
+	// Token: 0x06002374 RID: 9076 RVA: 0x000F29B0 File Offset: 0x000F0BB0
 	public void playMoveRemove(GameObject obj)
 	{
 		iTween.MoveTo(obj.gameObject, iTween.Hash(new object[]
@@ -87,7 +87,7 @@ public class showJieDanBuff : MonoBehaviour
 		}));
 	}
 
-	// Token: 0x0600272B RID: 10027 RVA: 0x00132C10 File Offset: 0x00130E10
+	// Token: 0x06002375 RID: 9077 RVA: 0x000F2AA4 File Offset: 0x000F0CA4
 	private void Update()
 	{
 		Avatar player = Tools.instance.getPlayer();
@@ -187,7 +187,7 @@ public class showJieDanBuff : MonoBehaviour
 		}
 	}
 
-	// Token: 0x0600272C RID: 10028 RVA: 0x00133008 File Offset: 0x00131208
+	// Token: 0x06002376 RID: 9078 RVA: 0x000F2E9C File Offset: 0x000F109C
 	public List<GameObject> getShowObj()
 	{
 		List<GameObject> list = new List<GameObject>();
@@ -202,7 +202,7 @@ public class showJieDanBuff : MonoBehaviour
 		return list;
 	}
 
-	// Token: 0x0600272D RID: 10029 RVA: 0x001330A4 File Offset: 0x001312A4
+	// Token: 0x06002377 RID: 9079 RVA: 0x000F2F38 File Offset: 0x000F1138
 	public List<GameObject> getNotShowObj()
 	{
 		List<GameObject> list = new List<GameObject>();
@@ -217,13 +217,13 @@ public class showJieDanBuff : MonoBehaviour
 		return list;
 	}
 
-	// Token: 0x0600272E RID: 10030 RVA: 0x0001F180 File Offset: 0x0001D380
+	// Token: 0x06002378 RID: 9080 RVA: 0x000F2FB8 File Offset: 0x000F11B8
 	public string getSqlName()
 	{
 		return this.splName + this.RoundBuffID[this.RoundBuffcount - 1];
 	}
 
-	// Token: 0x0600272F RID: 10031 RVA: 0x00133124 File Offset: 0x00131324
+	// Token: 0x06002379 RID: 9081 RVA: 0x000F2FE0 File Offset: 0x000F11E0
 	public int getNotShow(int BuffID)
 	{
 		int num = 0;
@@ -253,24 +253,24 @@ public class showJieDanBuff : MonoBehaviour
 		return -1;
 	}
 
-	// Token: 0x04002144 RID: 8516
+	// Token: 0x04001C6F RID: 7279
 	public List<int> showBuffID = new List<int>();
 
-	// Token: 0x04002145 RID: 8517
+	// Token: 0x04001C70 RID: 7280
 	public List<int> RoundBuffID;
 
-	// Token: 0x04002146 RID: 8518
+	// Token: 0x04001C71 RID: 7281
 	public Animator animator;
 
-	// Token: 0x04002147 RID: 8519
+	// Token: 0x04001C72 RID: 7282
 	private string splName = "RecipeJiedan";
 
-	// Token: 0x04002148 RID: 8520
+	// Token: 0x04001C73 RID: 7283
 	private int buffcount;
 
-	// Token: 0x04002149 RID: 8521
+	// Token: 0x04001C74 RID: 7284
 	private int RoundBuffcount;
 
-	// Token: 0x0400214A RID: 8522
+	// Token: 0x04001C75 RID: 7285
 	private float buffPalyTime = 1f;
 }

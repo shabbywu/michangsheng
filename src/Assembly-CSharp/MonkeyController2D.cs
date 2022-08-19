@@ -2,11 +2,11 @@
 using System.Collections;
 using UnityEngine;
 
-// Token: 0x020006F9 RID: 1785
+// Token: 0x020004C6 RID: 1222
 public class MonkeyController2D : MonoBehaviour
 {
-	// Token: 0x1700039A RID: 922
-	// (get) Token: 0x06002D17 RID: 11543 RVA: 0x0002211A File Offset: 0x0002031A
+	// Token: 0x170002AF RID: 687
+	// (get) Token: 0x06002723 RID: 10019 RVA: 0x0011EAEF File Offset: 0x0011CCEF
 	public static MonkeyController2D Instance
 	{
 		get
@@ -19,7 +19,7 @@ public class MonkeyController2D : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06002D18 RID: 11544 RVA: 0x00167CDC File Offset: 0x00165EDC
+	// Token: 0x06002724 RID: 10020 RVA: 0x0011EB1C File Offset: 0x0011CD1C
 	private void Awake()
 	{
 		this.majmun = GameObject.Find("PrinceGorilla").transform;
@@ -34,7 +34,7 @@ public class MonkeyController2D : MonoBehaviour
 		MonkeyController2D.instance = this;
 	}
 
-	// Token: 0x06002D19 RID: 11545 RVA: 0x00167DAC File Offset: 0x00165FAC
+	// Token: 0x06002725 RID: 10021 RVA: 0x0011EBEC File Offset: 0x0011CDEC
 	private void Start()
 	{
 		if (!StagesParser.imaKosu)
@@ -79,7 +79,7 @@ public class MonkeyController2D : MonoBehaviour
 		this.originalCameraTargetPosition = this.cameraTarget.transform.localPosition.y;
 	}
 
-	// Token: 0x06002D1A RID: 11546 RVA: 0x0016802C File Offset: 0x0016622C
+	// Token: 0x06002726 RID: 10022 RVA: 0x0011EE6C File Offset: 0x0011D06C
 	private void Update()
 	{
 		this.hit = Physics2D.Linecast(base.transform.position + new Vector3(0.8f, 0f, 0f), base.transform.position + new Vector3(0.8f, -15.5f, 0f), 1 << LayerMask.NameToLayer("Ground") | 1 << LayerMask.NameToLayer("Platform"));
@@ -460,7 +460,7 @@ public class MonkeyController2D : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06002D1B RID: 11547 RVA: 0x0016940C File Offset: 0x0016760C
+	// Token: 0x06002727 RID: 10023 RVA: 0x0012024C File Offset: 0x0011E44C
 	private void FixedUpdate()
 	{
 		this.currentBaseState = this.animator.GetCurrentAnimatorStateInfo(0);
@@ -639,7 +639,7 @@ public class MonkeyController2D : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06002D1C RID: 11548 RVA: 0x00169A8C File Offset: 0x00167C8C
+	// Token: 0x06002728 RID: 10024 RVA: 0x001208CC File Offset: 0x0011EACC
 	private void OnTriggerExit2D(Collider2D col)
 	{
 		if (col.tag == "Footer")
@@ -663,7 +663,7 @@ public class MonkeyController2D : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06002D1D RID: 11549 RVA: 0x00169B54 File Offset: 0x00167D54
+	// Token: 0x06002729 RID: 10025 RVA: 0x00120994 File Offset: 0x0011EB94
 	private void OnCollisionEnter2D(Collision2D col)
 	{
 		if (this.state == MonkeyController2D.State.completed && this.inAir)
@@ -922,20 +922,20 @@ public class MonkeyController2D : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06002D1E RID: 11550 RVA: 0x00022147 File Offset: 0x00020347
+	// Token: 0x0600272A RID: 10026 RVA: 0x001211EB File Offset: 0x0011F3EB
 	private void EnableColliderBackOnEnemy()
 	{
 		this.enemyCollider.enabled = true;
 		this.enemyCollider = null;
 	}
 
-	// Token: 0x06002D1F RID: 11551 RVA: 0x0002215C File Offset: 0x0002035C
+	// Token: 0x0600272B RID: 10027 RVA: 0x00121200 File Offset: 0x0011F400
 	public void majmunUtepanULetu()
 	{
 		base.StartCoroutine(this.FallDownAfterSpikes());
 	}
 
-	// Token: 0x06002D20 RID: 11552 RVA: 0x0002216B File Offset: 0x0002036B
+	// Token: 0x0600272C RID: 10028 RVA: 0x0012120F File Offset: 0x0011F40F
 	private IEnumerator FallDownAfterSpikes()
 	{
 		if (base.GetComponent<Rigidbody2D>().drag != 0f)
@@ -983,7 +983,7 @@ public class MonkeyController2D : MonoBehaviour
 		yield break;
 	}
 
-	// Token: 0x06002D21 RID: 11553 RVA: 0x0002217A File Offset: 0x0002037A
+	// Token: 0x0600272D RID: 10029 RVA: 0x0012121E File Offset: 0x0011F41E
 	private IEnumerator AfterFallDown()
 	{
 		this.utepanULetu = false;
@@ -1013,7 +1013,7 @@ public class MonkeyController2D : MonoBehaviour
 		yield break;
 	}
 
-	// Token: 0x06002D22 RID: 11554 RVA: 0x0016A3AC File Offset: 0x001685AC
+	// Token: 0x0600272E RID: 10030 RVA: 0x00121230 File Offset: 0x0011F430
 	private void OnCollisionExit2D(Collision2D col)
 	{
 		if (col.gameObject.tag == "Footer")
@@ -1070,13 +1070,13 @@ public class MonkeyController2D : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06002D23 RID: 11555 RVA: 0x00022189 File Offset: 0x00020389
+	// Token: 0x0600272F RID: 10031 RVA: 0x00121539 File Offset: 0x0011F739
 	private void NotifyManagerForFinish()
 	{
 		this.manage.SendMessage("ShowWinScreen");
 	}
 
-	// Token: 0x06002D24 RID: 11556 RVA: 0x0002219B File Offset: 0x0002039B
+	// Token: 0x06002730 RID: 10032 RVA: 0x0012154B File Offset: 0x0011F74B
 	private IEnumerator TutorialPlay(Transform obj, string ime, int next)
 	{
 		base.StartCoroutine(obj.GetComponent<Animation>().Play(ime, false, delegate(bool what)
@@ -1099,7 +1099,7 @@ public class MonkeyController2D : MonoBehaviour
 		yield break;
 	}
 
-	// Token: 0x06002D25 RID: 11557 RVA: 0x0016A6B8 File Offset: 0x001688B8
+	// Token: 0x06002731 RID: 10033 RVA: 0x00121570 File Offset: 0x0011F770
 	private void OnTriggerEnter2D(Collider2D col)
 	{
 		if (this.state != MonkeyController2D.State.completed || this.state != MonkeyController2D.State.wasted)
@@ -1367,7 +1367,7 @@ public class MonkeyController2D : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06002D26 RID: 11558 RVA: 0x0016B16C File Offset: 0x0016936C
+	// Token: 0x06002732 RID: 10034 RVA: 0x00122024 File Offset: 0x00120224
 	public void Finish()
 	{
 		MonkeyController2D.canRespawnThings = false;
@@ -1398,7 +1398,7 @@ public class MonkeyController2D : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06002D27 RID: 11559 RVA: 0x000221BF File Offset: 0x000203BF
+	// Token: 0x06002733 RID: 10035 RVA: 0x00122114 File Offset: 0x00120314
 	private IEnumerator ReduceMaxSpeedGradually()
 	{
 		while (this.maxSpeedX > 0.1f)
@@ -1423,7 +1423,7 @@ public class MonkeyController2D : MonoBehaviour
 		yield break;
 	}
 
-	// Token: 0x06002D28 RID: 11560 RVA: 0x0016B25C File Offset: 0x0016945C
+	// Token: 0x06002734 RID: 10036 RVA: 0x00122124 File Offset: 0x00120324
 	private void RestoreMaxSpeed()
 	{
 		this.dancing = false;
@@ -1433,13 +1433,13 @@ public class MonkeyController2D : MonoBehaviour
 		base.Invoke("NotifyManagerForFinish", 1.25f);
 	}
 
-	// Token: 0x06002D29 RID: 11561 RVA: 0x000221CE File Offset: 0x000203CE
+	// Token: 0x06002735 RID: 10037 RVA: 0x00122173 File Offset: 0x00120373
 	private void TurnOnKinematic()
 	{
 		base.GetComponent<Rigidbody2D>().isKinematic = true;
 	}
 
-	// Token: 0x06002D2A RID: 11562 RVA: 0x000221DC File Offset: 0x000203DC
+	// Token: 0x06002736 RID: 10038 RVA: 0x00122181 File Offset: 0x00120381
 	private IEnumerator pratiLijanaTarget(Transform target)
 	{
 		for (;;)
@@ -1450,7 +1450,7 @@ public class MonkeyController2D : MonoBehaviour
 		yield break;
 	}
 
-	// Token: 0x06002D2B RID: 11563 RVA: 0x0016B2AC File Offset: 0x001694AC
+	// Token: 0x06002737 RID: 10039 RVA: 0x00122198 File Offset: 0x00120398
 	public void OtkaciMajmuna()
 	{
 		if (this.state == MonkeyController2D.State.lijana)
@@ -1469,7 +1469,7 @@ public class MonkeyController2D : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06002D2C RID: 11564 RVA: 0x0016B360 File Offset: 0x00169560
+	// Token: 0x06002738 RID: 10040 RVA: 0x0012224C File Offset: 0x0012044C
 	private void SpustiMajmunaSaLijaneBrzo()
 	{
 		base.StopCoroutine("pratiLijanaTarget");
@@ -1483,7 +1483,7 @@ public class MonkeyController2D : MonoBehaviour
 		this.animator.Play(this.jump_State);
 	}
 
-	// Token: 0x06002D2D RID: 11565 RVA: 0x000221F2 File Offset: 0x000203F2
+	// Token: 0x06002739 RID: 10041 RVA: 0x001222C8 File Offset: 0x001204C8
 	private IEnumerator Bounce(float time)
 	{
 		yield return new WaitForSeconds(time);
@@ -1491,7 +1491,7 @@ public class MonkeyController2D : MonoBehaviour
 		yield break;
 	}
 
-	// Token: 0x06002D2E RID: 11566 RVA: 0x0016B3DC File Offset: 0x001695DC
+	// Token: 0x0600273A RID: 10042 RVA: 0x001222E0 File Offset: 0x001204E0
 	public void majmunUtepan()
 	{
 		if (this.magnet)
@@ -1521,7 +1521,7 @@ public class MonkeyController2D : MonoBehaviour
 		this.maxSpeedX = 0f;
 	}
 
-	// Token: 0x06002D2F RID: 11567 RVA: 0x00022208 File Offset: 0x00020408
+	// Token: 0x0600273B RID: 10043 RVA: 0x001223D2 File Offset: 0x001205D2
 	private IEnumerator checkGrounded()
 	{
 		yield return new WaitForSeconds(0.5f);
@@ -1548,7 +1548,7 @@ public class MonkeyController2D : MonoBehaviour
 		yield break;
 	}
 
-	// Token: 0x06002D30 RID: 11568 RVA: 0x00022217 File Offset: 0x00020417
+	// Token: 0x0600273C RID: 10044 RVA: 0x001223E1 File Offset: 0x001205E1
 	private IEnumerator slowDown()
 	{
 		float finish = base.transform.position.x - 5f;
@@ -1562,7 +1562,7 @@ public class MonkeyController2D : MonoBehaviour
 		yield break;
 	}
 
-	// Token: 0x06002D31 RID: 11569 RVA: 0x0016B4D0 File Offset: 0x001696D0
+	// Token: 0x0600273D RID: 10045 RVA: 0x001223F0 File Offset: 0x001205F0
 	private string RaycastFunction(Vector3 vector)
 	{
 		RaycastHit raycastHit;
@@ -1577,7 +1577,7 @@ public class MonkeyController2D : MonoBehaviour
 		return "";
 	}
 
-	// Token: 0x06002D32 RID: 11570 RVA: 0x00022226 File Offset: 0x00020426
+	// Token: 0x0600273E RID: 10046 RVA: 0x00122445 File Offset: 0x00120645
 	private IEnumerator turnHead(float step)
 	{
 		float t = 0f;
@@ -1601,7 +1601,7 @@ public class MonkeyController2D : MonoBehaviour
 		yield break;
 	}
 
-	// Token: 0x06002D33 RID: 11571 RVA: 0x0002223C File Offset: 0x0002043C
+	// Token: 0x0600273F RID: 10047 RVA: 0x0012245B File Offset: 0x0012065B
 	private IEnumerator easyStop()
 	{
 		while (this.maxSpeedX > 0f && this.usporavanje)
@@ -1616,7 +1616,7 @@ public class MonkeyController2D : MonoBehaviour
 		yield break;
 	}
 
-	// Token: 0x06002D34 RID: 11572 RVA: 0x0002224B File Offset: 0x0002044B
+	// Token: 0x06002740 RID: 10048 RVA: 0x0012246A File Offset: 0x0012066A
 	private IEnumerator easyGo()
 	{
 		while (this.maxSpeedX < this.startSpeedX && !this.usporavanje)
@@ -1631,7 +1631,7 @@ public class MonkeyController2D : MonoBehaviour
 		yield break;
 	}
 
-	// Token: 0x06002D35 RID: 11573 RVA: 0x0002225A File Offset: 0x0002045A
+	// Token: 0x06002741 RID: 10049 RVA: 0x00122479 File Offset: 0x00120679
 	private IEnumerator reappearItem(GameObject obj)
 	{
 		if (MonkeyController2D.canRespawnThings)
@@ -1642,7 +1642,7 @@ public class MonkeyController2D : MonoBehaviour
 		yield break;
 	}
 
-	// Token: 0x06002D36 RID: 11574 RVA: 0x00022269 File Offset: 0x00020469
+	// Token: 0x06002742 RID: 10050 RVA: 0x00122488 File Offset: 0x00120688
 	private IEnumerator nestaniTrail(float step)
 	{
 		float t = 0f;
@@ -1656,13 +1656,13 @@ public class MonkeyController2D : MonoBehaviour
 		yield break;
 	}
 
-	// Token: 0x06002D37 RID: 11575 RVA: 0x00022278 File Offset: 0x00020478
+	// Token: 0x06002743 RID: 10051 RVA: 0x00122497 File Offset: 0x00120697
 	private void PustiVoiceJump()
 	{
 		PlaySounds.Play_VoiceJump();
 	}
 
-	// Token: 0x06002D38 RID: 11576 RVA: 0x0016B528 File Offset: 0x00169728
+	// Token: 0x06002744 RID: 10052 RVA: 0x001224A0 File Offset: 0x001206A0
 	public void SetInvincible()
 	{
 		this.jumpSpeedX = Mathf.Abs(this.jumpSpeedX);
@@ -1688,7 +1688,7 @@ public class MonkeyController2D : MonoBehaviour
 		this.cameraFollow.stopFollow = false;
 	}
 
-	// Token: 0x06002D39 RID: 11577 RVA: 0x0002227F File Offset: 0x0002047F
+	// Token: 0x06002745 RID: 10053 RVA: 0x001225DC File Offset: 0x001207DC
 	private IEnumerator blink()
 	{
 		float t = 0f;
@@ -1766,7 +1766,7 @@ public class MonkeyController2D : MonoBehaviour
 		yield break;
 	}
 
-	// Token: 0x06002D3A RID: 11578 RVA: 0x0002228E File Offset: 0x0002048E
+	// Token: 0x06002746 RID: 10054 RVA: 0x001225EB File Offset: 0x001207EB
 	private IEnumerator RemoveFog(float time, Collider2D col)
 	{
 		yield return new WaitForSeconds(time);
@@ -1776,13 +1776,13 @@ public class MonkeyController2D : MonoBehaviour
 		yield break;
 	}
 
-	// Token: 0x06002D3B RID: 11579 RVA: 0x000222A4 File Offset: 0x000204A4
+	// Token: 0x06002747 RID: 10055 RVA: 0x00122601 File Offset: 0x00120801
 	private void DisableImpact()
 	{
 		base.transform.Find("Impact").gameObject.SetActive(false);
 	}
 
-	// Token: 0x06002D3C RID: 11580 RVA: 0x000222C1 File Offset: 0x000204C1
+	// Token: 0x06002748 RID: 10056 RVA: 0x0012261E File Offset: 0x0012081E
 	public void cancelPowerfullImpact()
 	{
 		this.powerfullImpact = false;
@@ -1793,13 +1793,13 @@ public class MonkeyController2D : MonoBehaviour
 		this.zutiGlowSwooshVisoki.gameObject.SetActive(false);
 	}
 
-	// Token: 0x06002D3D RID: 11581 RVA: 0x000222EC File Offset: 0x000204EC
+	// Token: 0x06002749 RID: 10057 RVA: 0x00122649 File Offset: 0x00120849
 	private void reaktivirajVoiceJump()
 	{
 		this.pustenVoiceJump = false;
 	}
 
-	// Token: 0x06002D3E RID: 11582 RVA: 0x000222F5 File Offset: 0x000204F5
+	// Token: 0x0600274A RID: 10058 RVA: 0x00122652 File Offset: 0x00120852
 	private IEnumerator pojaviMaglu(Collider2D col)
 	{
 		Transform fogOfWar = Camera.main.transform.Find("FogOfWar");
@@ -1826,7 +1826,7 @@ public class MonkeyController2D : MonoBehaviour
 		yield break;
 	}
 
-	// Token: 0x06002D3F RID: 11583 RVA: 0x00022304 File Offset: 0x00020504
+	// Token: 0x0600274B RID: 10059 RVA: 0x00122661 File Offset: 0x00120861
 	private IEnumerator Spusti2DFollow()
 	{
 		Vector3 target = this.cameraTarget.transform.localPosition - new Vector3(0f, 4.5f, 0f);
@@ -1838,7 +1838,7 @@ public class MonkeyController2D : MonoBehaviour
 		yield break;
 	}
 
-	// Token: 0x06002D40 RID: 11584 RVA: 0x00022313 File Offset: 0x00020513
+	// Token: 0x0600274C RID: 10060 RVA: 0x00122670 File Offset: 0x00120870
 	private IEnumerator Podigni2DFollow()
 	{
 		while (this.cameraTarget.transform.localPosition.y <= this.originalCameraTargetPosition - 0.1f)
@@ -1850,439 +1850,439 @@ public class MonkeyController2D : MonoBehaviour
 		yield break;
 	}
 
-	// Token: 0x06002D41 RID: 11585 RVA: 0x00022322 File Offset: 0x00020522
+	// Token: 0x0600274D RID: 10061 RVA: 0x0012267F File Offset: 0x0012087F
 	private void ReturnFromMushroom()
 	{
 		base.GetComponent<Rigidbody2D>().isKinematic = false;
 		base.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
 	}
 
-	// Token: 0x0400278C RID: 10124
+	// Token: 0x0400212B RID: 8491
 	public float moveForce = 300f;
 
-	// Token: 0x0400278D RID: 10125
+	// Token: 0x0400212C RID: 8492
 	public float maxSpeedX = 8f;
 
-	// Token: 0x0400278E RID: 10126
+	// Token: 0x0400212D RID: 8493
 	public float jumpForce = 700f;
 
-	// Token: 0x0400278F RID: 10127
+	// Token: 0x0400212E RID: 8494
 	public float doubleJumpForce = 100f;
 
-	// Token: 0x04002790 RID: 10128
+	// Token: 0x0400212F RID: 8495
 	public float gravity = 200f;
 
-	// Token: 0x04002791 RID: 10129
+	// Token: 0x04002130 RID: 8496
 	public float maxSpeedY = 8f;
 
-	// Token: 0x04002792 RID: 10130
+	// Token: 0x04002131 RID: 8497
 	public float jumpSpeedX = 12f;
 
-	// Token: 0x04002793 RID: 10131
+	// Token: 0x04002132 RID: 8498
 	private bool jump;
 
-	// Token: 0x04002794 RID: 10132
+	// Token: 0x04002133 RID: 8499
 	private bool doubleJump;
 
-	// Token: 0x04002795 RID: 10133
+	// Token: 0x04002134 RID: 8500
 	[HideInInspector]
 	public bool inAir;
 
-	// Token: 0x04002796 RID: 10134
+	// Token: 0x04002135 RID: 8501
 	private bool hasJumped;
 
-	// Token: 0x04002797 RID: 10135
+	// Token: 0x04002136 RID: 8502
 	[HideInInspector]
 	public bool zgaziEnemija;
 
-	// Token: 0x04002798 RID: 10136
+	// Token: 0x04002137 RID: 8503
 	[HideInInspector]
 	public bool killed;
 
-	// Token: 0x04002799 RID: 10137
+	// Token: 0x04002138 RID: 8504
 	[HideInInspector]
 	public bool stop;
 
-	// Token: 0x0400279A RID: 10138
+	// Token: 0x04002139 RID: 8505
 	[HideInInspector]
 	public bool triggerCheckDownTrigger;
 
-	// Token: 0x0400279B RID: 10139
+	// Token: 0x0400213A RID: 8506
 	[HideInInspector]
 	public bool triggerCheckDownBehind;
 
-	// Token: 0x0400279C RID: 10140
+	// Token: 0x0400213B RID: 8507
 	private bool CheckWallHitNear;
 
-	// Token: 0x0400279D RID: 10141
+	// Token: 0x0400213C RID: 8508
 	private bool CheckWallHitNear_low;
 
-	// Token: 0x0400279E RID: 10142
+	// Token: 0x0400213D RID: 8509
 	private bool startSpustanje;
 
-	// Token: 0x0400279F RID: 10143
+	// Token: 0x0400213E RID: 8510
 	private bool startPenjanje;
 
-	// Token: 0x040027A0 RID: 10144
+	// Token: 0x0400213F RID: 8511
 	private float pocetniY_spustanje;
 
-	// Token: 0x040027A1 RID: 10145
+	// Token: 0x04002140 RID: 8512
 	[HideInInspector]
 	public float collisionAngle;
 
-	// Token: 0x040027A2 RID: 10146
+	// Token: 0x04002141 RID: 8513
 	private float duzinaPritiskaZaSkok;
 
-	// Token: 0x040027A3 RID: 10147
+	// Token: 0x04002142 RID: 8514
 	private bool mozeDaSkociOpet;
 
-	// Token: 0x040027A4 RID: 10148
+	// Token: 0x04002143 RID: 8515
 	private float startY;
 
-	// Token: 0x040027A5 RID: 10149
+	// Token: 0x04002144 RID: 8516
 	private float endX;
 
-	// Token: 0x040027A6 RID: 10150
+	// Token: 0x04002145 RID: 8517
 	private float endY;
 
-	// Token: 0x040027A7 RID: 10151
+	// Token: 0x04002146 RID: 8518
 	private bool swoosh;
 
-	// Token: 0x040027A8 RID: 10152
+	// Token: 0x04002147 RID: 8519
 	private Vector3 colliderForClimb;
 
-	// Token: 0x040027A9 RID: 10153
+	// Token: 0x04002148 RID: 8520
 	public bool Glide;
 
-	// Token: 0x040027AA RID: 10154
+	// Token: 0x04002149 RID: 8521
 	public bool DupliSkok;
 
-	// Token: 0x040027AB RID: 10155
+	// Token: 0x0400214A RID: 8522
 	public bool KontrolisaniSkok;
 
-	// Token: 0x040027AC RID: 10156
+	// Token: 0x0400214B RID: 8523
 	public bool SlideNaDole;
 
-	// Token: 0x040027AD RID: 10157
+	// Token: 0x0400214C RID: 8524
 	public bool Zaustavljanje;
 
-	// Token: 0x040027AE RID: 10158
+	// Token: 0x0400214D RID: 8525
 	private Ray2D ray;
 
-	// Token: 0x040027AF RID: 10159
+	// Token: 0x0400214E RID: 8526
 	private RaycastHit2D hit;
 
-	// Token: 0x040027B0 RID: 10160
+	// Token: 0x0400214F RID: 8527
 	private Transform ceilingCheck;
 
-	// Token: 0x040027B1 RID: 10161
+	// Token: 0x04002150 RID: 8528
 	private Transform groundCheck;
 
-	// Token: 0x040027B2 RID: 10162
+	// Token: 0x04002151 RID: 8529
 	[HideInInspector]
 	public Transform majmun;
 
-	// Token: 0x040027B3 RID: 10163
+	// Token: 0x04002152 RID: 8530
 	public ParticleSystem trava;
 
-	// Token: 0x040027B4 RID: 10164
+	// Token: 0x04002153 RID: 8531
 	public ParticleSystem oblak;
 
-	// Token: 0x040027B5 RID: 10165
+	// Token: 0x04002154 RID: 8532
 	public ParticleSystem particleSkok;
 
-	// Token: 0x040027B6 RID: 10166
+	// Token: 0x04002155 RID: 8533
 	public ParticleSystem dupliSkokOblaci;
 
-	// Token: 0x040027B7 RID: 10167
+	// Token: 0x04002156 RID: 8534
 	public ParticleSystem runParticle;
 
-	// Token: 0x040027B8 RID: 10168
+	// Token: 0x04002157 RID: 8535
 	public ParticleSystem klizanje;
 
-	// Token: 0x040027B9 RID: 10169
+	// Token: 0x04002158 RID: 8536
 	public ParticleSystem izrazitiPad;
 
-	// Token: 0x040027BA RID: 10170
+	// Token: 0x04002159 RID: 8537
 	public Transform zutiGlowSwooshVisoki;
 
-	// Token: 0x040027BB RID: 10171
+	// Token: 0x0400215A RID: 8538
 	public ParticleSystem collectItem;
 
-	// Token: 0x040027BC RID: 10172
+	// Token: 0x0400215B RID: 8539
 	private Transform whatToClimb;
 
-	// Token: 0x040027BD RID: 10173
+	// Token: 0x0400215C RID: 8540
 	private float currentSpeed;
 
-	// Token: 0x040027BE RID: 10174
+	// Token: 0x0400215D RID: 8541
 	[HideInInspector]
 	public GameObject cameraTarget;
 
-	// Token: 0x040027BF RID: 10175
+	// Token: 0x0400215E RID: 8542
 	[HideInInspector]
 	public GameObject cameraTarget_down;
 
-	// Token: 0x040027C0 RID: 10176
+	// Token: 0x0400215F RID: 8543
 	private float cameraTarget_down_y;
 
-	// Token: 0x040027C1 RID: 10177
+	// Token: 0x04002160 RID: 8544
 	private CameraFollow2D_new cameraFollow;
 
-	// Token: 0x040027C2 RID: 10178
+	// Token: 0x04002161 RID: 8545
 	public MonkeyController2D.State state;
 
-	// Token: 0x040027C3 RID: 10179
+	// Token: 0x04002162 RID: 8546
 	[HideInInspector]
 	public float startSpeedX;
 
-	// Token: 0x040027C4 RID: 10180
+	// Token: 0x04002163 RID: 8547
 	[HideInInspector]
 	public float startJumpSpeedX;
 
-	// Token: 0x040027C5 RID: 10181
+	// Token: 0x04002164 RID: 8548
 	public bool neTrebaDaProdje;
 
-	// Token: 0x040027C6 RID: 10182
+	// Token: 0x04002165 RID: 8549
 	[HideInInspector]
 	public Animator animator;
 
-	// Token: 0x040027C7 RID: 10183
+	// Token: 0x04002166 RID: 8550
 	[HideInInspector]
 	public string lastPlayedAnim;
 
-	// Token: 0x040027C8 RID: 10184
+	// Token: 0x04002167 RID: 8551
 	private bool helpBool;
 
-	// Token: 0x040027C9 RID: 10185
+	// Token: 0x04002168 RID: 8552
 	private AnimatorStateInfo currentBaseState;
 
-	// Token: 0x040027CA RID: 10186
+	// Token: 0x04002169 RID: 8553
 	[HideInInspector]
 	public int run_State = Animator.StringToHash("Base Layer.Running");
 
-	// Token: 0x040027CB RID: 10187
+	// Token: 0x0400216A RID: 8554
 	[HideInInspector]
 	public int jump_State = Animator.StringToHash("Base Layer.Jump_Start");
 
-	// Token: 0x040027CC RID: 10188
+	// Token: 0x0400216B RID: 8555
 	[HideInInspector]
 	public int fall_State = Animator.StringToHash("Base Layer.Jump_Falling");
 
-	// Token: 0x040027CD RID: 10189
+	// Token: 0x0400216C RID: 8556
 	[HideInInspector]
 	public int landing_State = Animator.StringToHash("Base Layer.Landing");
 
-	// Token: 0x040027CE RID: 10190
+	// Token: 0x0400216D RID: 8557
 	[HideInInspector]
 	public int doublejump_State = Animator.StringToHash("Base Layer.DoubleJump_Start");
 
-	// Token: 0x040027CF RID: 10191
+	// Token: 0x0400216E RID: 8558
 	[HideInInspector]
 	public int glide_start_State = Animator.StringToHash("Base Layer.Glide_Start");
 
-	// Token: 0x040027D0 RID: 10192
+	// Token: 0x0400216F RID: 8559
 	[HideInInspector]
 	public int glide_loop_State = Animator.StringToHash("Base Layer.Glide_Loop");
 
-	// Token: 0x040027D1 RID: 10193
+	// Token: 0x04002170 RID: 8560
 	[HideInInspector]
 	public int grab_State = Animator.StringToHash("Base Layer.Grab");
 
-	// Token: 0x040027D2 RID: 10194
+	// Token: 0x04002171 RID: 8561
 	[HideInInspector]
 	public int wall_stop_State = Animator.StringToHash("Base Layer.WallStop");
 
-	// Token: 0x040027D3 RID: 10195
+	// Token: 0x04002172 RID: 8562
 	[HideInInspector]
 	public int wall_stop_from_jump_State = Animator.StringToHash("Base Layer.WallStop_From_Jump");
 
-	// Token: 0x040027D4 RID: 10196
+	// Token: 0x04002173 RID: 8563
 	[HideInInspector]
 	public int swoosh_State = Animator.StringToHash("Base Layer.Swoosh_Down");
 
-	// Token: 0x040027D5 RID: 10197
+	// Token: 0x04002174 RID: 8564
 	[HideInInspector]
 	public int spikedeath_State = Animator.StringToHash("Base Layer.Spike_death");
 
-	// Token: 0x040027D6 RID: 10198
+	// Token: 0x04002175 RID: 8565
 	[HideInInspector]
 	public int lijana_State = Animator.StringToHash("Base Layer.Lijana");
 
-	// Token: 0x040027D7 RID: 10199
+	// Token: 0x04002176 RID: 8566
 	private Transform lookAtPos;
 
-	// Token: 0x040027D8 RID: 10200
+	// Token: 0x04002177 RID: 8567
 	private float lookWeight;
 
-	// Token: 0x040027D9 RID: 10201
+	// Token: 0x04002178 RID: 8568
 	private bool disableGlide;
 
-	// Token: 0x040027DA RID: 10202
+	// Token: 0x04002179 RID: 8569
 	private bool usporavanje;
 
-	// Token: 0x040027DB RID: 10203
+	// Token: 0x0400217A RID: 8570
 	[HideInInspector]
 	public bool lijana;
 
-	// Token: 0x040027DC RID: 10204
+	// Token: 0x0400217B RID: 8571
 	private Transform grabLianaTransform;
 
-	// Token: 0x040027DD RID: 10205
+	// Token: 0x0400217C RID: 8572
 	[HideInInspector]
 	public bool heCanJump = true;
 
-	// Token: 0x040027DE RID: 10206
+	// Token: 0x0400217D RID: 8573
 	private bool saZidaNaZid;
 
-	// Token: 0x040027DF RID: 10207
+	// Token: 0x0400217E RID: 8574
 	private int povrsinaZaClick;
 
-	// Token: 0x040027E0 RID: 10208
+	// Token: 0x0400217F RID: 8575
 	private bool jumpControlled;
 
-	// Token: 0x040027E1 RID: 10209
+	// Token: 0x04002180 RID: 8576
 	private float tempForce;
 
-	// Token: 0x040027E2 RID: 10210
+	// Token: 0x04002181 RID: 8577
 	[HideInInspector]
 	public bool activeShield;
 
-	// Token: 0x040027E3 RID: 10211
+	// Token: 0x04002182 RID: 8578
 	private float razmrk;
 
-	// Token: 0x040027E4 RID: 10212
+	// Token: 0x04002183 RID: 8579
 	private Vector3 pocScale;
 
-	// Token: 0x040027E5 RID: 10213
+	// Token: 0x04002184 RID: 8580
 	private Transform senka;
 
-	// Token: 0x040027E6 RID: 10214
+	// Token: 0x04002185 RID: 8581
 	public static bool canRespawnThings = true;
 
-	// Token: 0x040027E7 RID: 10215
+	// Token: 0x04002186 RID: 8582
 	[SerializeField]
 	private LayerMask whatIsGround;
 
-	// Token: 0x040027E8 RID: 10216
+	// Token: 0x04002187 RID: 8583
 	private float groundedRadius = 0.2f;
 
-	// Token: 0x040027E9 RID: 10217
+	// Token: 0x04002188 RID: 8584
 	[HideInInspector]
 	public bool grounded;
 
-	// Token: 0x040027EA RID: 10218
+	// Token: 0x04002189 RID: 8585
 	private float korakce;
 
-	// Token: 0x040027EB RID: 10219
+	// Token: 0x0400218A RID: 8586
 	[HideInInspector]
 	public bool canGlide;
 
-	// Token: 0x040027EC RID: 10220
+	// Token: 0x0400218B RID: 8587
 	private int proveraGround = 16;
 
-	// Token: 0x040027ED RID: 10221
+	// Token: 0x0400218C RID: 8588
 	private bool jumpHolding;
 
-	// Token: 0x040027EE RID: 10222
+	// Token: 0x0400218D RID: 8589
 	private TrailRenderer trail;
 
-	// Token: 0x040027EF RID: 10223
+	// Token: 0x0400218E RID: 8590
 	[HideInInspector]
 	public bool powerfullImpact;
 
-	// Token: 0x040027F0 RID: 10224
+	// Token: 0x0400218F RID: 8591
 	public float trailTime = 0.5f;
 
-	// Token: 0x040027F1 RID: 10225
+	// Token: 0x04002190 RID: 8592
 	public bool invincible;
 
-	// Token: 0x040027F2 RID: 10226
+	// Token: 0x04002191 RID: 8593
 	private bool utepanULetu;
 
-	// Token: 0x040027F3 RID: 10227
+	// Token: 0x04002192 RID: 8594
 	public bool magnet;
 
-	// Token: 0x040027F4 RID: 10228
+	// Token: 0x04002193 RID: 8595
 	public bool doublecoins;
 
-	// Token: 0x040027F5 RID: 10229
+	// Token: 0x04002194 RID: 8596
 	private Manage manage;
 
-	// Token: 0x040027F6 RID: 10230
+	// Token: 0x04002195 RID: 8597
 	public bool measureDistance;
 
-	// Token: 0x040027F7 RID: 10231
+	// Token: 0x04002196 RID: 8598
 	public float distance;
 
-	// Token: 0x040027F8 RID: 10232
+	// Token: 0x04002197 RID: 8599
 	private float startPosX;
 
-	// Token: 0x040027F9 RID: 10233
+	// Token: 0x04002198 RID: 8600
 	public bool misijaSaDistance;
 
-	// Token: 0x040027FA RID: 10234
+	// Token: 0x04002199 RID: 8601
 	private bool pustenVoiceJump;
 
-	// Token: 0x040027FB RID: 10235
+	// Token: 0x0400219A RID: 8602
 	private Camera guiCamera;
 
-	// Token: 0x040027FC RID: 10236
+	// Token: 0x0400219B RID: 8603
 	[HideInInspector]
 	public bool isSliding;
 
-	// Token: 0x040027FD RID: 10237
+	// Token: 0x0400219C RID: 8604
 	private Collider2D enemyCollider;
 
-	// Token: 0x040027FE RID: 10238
+	// Token: 0x0400219D RID: 8605
 	[HideInInspector]
 	public float originalCameraTargetPosition;
 
-	// Token: 0x040027FF RID: 10239
+	// Token: 0x0400219E RID: 8606
 	private bool podigniMaloKameru;
 
-	// Token: 0x04002800 RID: 10240
+	// Token: 0x0400219F RID: 8607
 	private bool dancing;
 
-	// Token: 0x04002801 RID: 10241
+	// Token: 0x040021A0 RID: 8608
 	public PhysicsMaterial2D finishDontMove;
 
-	// Token: 0x04002802 RID: 10242
+	// Token: 0x040021A1 RID: 8609
 	[HideInInspector]
 	public bool mushroomJumped;
 
-	// Token: 0x04002803 RID: 10243
+	// Token: 0x040021A2 RID: 8610
 	[HideInInspector]
 	public bool wallHitGlide;
 
-	// Token: 0x04002804 RID: 10244
+	// Token: 0x040021A3 RID: 8611
 	private static MonkeyController2D instance;
 
-	// Token: 0x020006FA RID: 1786
+	// Token: 0x0200141D RID: 5149
 	[HideInInspector]
 	public enum State
 	{
-		// Token: 0x04002806 RID: 10246
+		// Token: 0x04006AA4 RID: 27300
 		running,
-		// Token: 0x04002807 RID: 10247
+		// Token: 0x04006AA5 RID: 27301
 		jumped,
-		// Token: 0x04002808 RID: 10248
+		// Token: 0x04006AA6 RID: 27302
 		wallhit,
-		// Token: 0x04002809 RID: 10249
+		// Token: 0x04006AA7 RID: 27303
 		climbUp,
-		// Token: 0x0400280A RID: 10250
+		// Token: 0x04006AA8 RID: 27304
 		actualClimbing,
-		// Token: 0x0400280B RID: 10251
+		// Token: 0x04006AA9 RID: 27305
 		wasted,
-		// Token: 0x0400280C RID: 10252
+		// Token: 0x04006AAA RID: 27306
 		idle,
-		// Token: 0x0400280D RID: 10253
+		// Token: 0x04006AAB RID: 27307
 		completed,
-		// Token: 0x0400280E RID: 10254
+		// Token: 0x04006AAC RID: 27308
 		lijana,
-		// Token: 0x0400280F RID: 10255
+		// Token: 0x04006AAD RID: 27309
 		saZidaNaZid,
-		// Token: 0x04002810 RID: 10256
+		// Token: 0x04006AAE RID: 27310
 		preNegoDaSeOdbije
 	}
 }

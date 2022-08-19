@@ -2,10 +2,10 @@
 using KBEngine;
 using UnityEngine;
 
-// Token: 0x02000513 RID: 1299
+// Token: 0x0200038E RID: 910
 public class TaskUIManager : MonoBehaviour
 {
-	// Token: 0x06002178 RID: 8568 RVA: 0x00117698 File Offset: 0x00115898
+	// Token: 0x06001DFD RID: 7677 RVA: 0x000D3A64 File Offset: 0x000D1C64
 	public void initTaskList(int type = 1)
 	{
 		TaskUIManager.inst = this;
@@ -29,30 +29,29 @@ public class TaskUIManager : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06002179 RID: 8569 RVA: 0x001176F0 File Offset: 0x001158F0
+	// Token: 0x06001DFE RID: 7678 RVA: 0x000D3ABC File Offset: 0x000D1CBC
 	private void initZhuXianAndChuanWen()
 	{
 		foreach (JSONObject jsonobject in Tools.instance.getPlayer().taskMag._TaskData["Task"].list)
 		{
-			int num = (int)jsonData.instance.TaskJsonData[((int)jsonobject["id"].n).ToString()]["Type"].n;
-			if (jsonData.instance.TaskJsonData.HasField(((int)jsonobject["id"].n).ToString()))
+			int i = jsonData.instance.TaskJsonData[jsonobject["id"].I.ToString()]["Type"].I;
+			if (jsonData.instance.TaskJsonData.HasField(jsonobject["id"].I.ToString()))
 			{
+				bool flag = false;
 				if (!TaskUIManager.checkIsGuoShi(jsonobject) && !this.isOld)
 				{
-					if (num == this.curType)
-					{
-						TaskRenWuCell component = Tools.InstantiateGameObject(this._TaskCell, this._TaskCell.transform.parent).GetComponent<TaskRenWuCell>();
-						int num2 = (int)jsonobject["id"].n;
-						component.setTaskName(Tools.Code64(jsonData.instance.TaskJsonData[num2.ToString()]["Name"].str));
-						component.setTaskInfo(jsonobject);
-					}
+					flag = true;
 				}
-				else if (this.isOld && TaskUIManager.checkIsGuoShi(jsonobject) && num == this.curType)
+				else if (this.isOld && TaskUIManager.checkIsGuoShi(jsonobject))
 				{
-					TaskRenWuCell component2 = Tools.InstantiateGameObject(this._TaskCell, this._TaskCell.transform.parent).GetComponent<TaskRenWuCell>();
-					int num3 = (int)jsonobject["id"].n;
-					component2.setTaskName(Tools.Code64(jsonData.instance.TaskJsonData[num3.ToString()]["Name"].str));
-					component2.setTaskInfo(jsonobject);
+					flag = true;
+				}
+				if (flag && i == this.curType)
+				{
+					TaskRenWuCell component = Tools.InstantiateGameObject(this._TaskCell, this._TaskCell.transform.parent).GetComponent<TaskRenWuCell>();
+					int i2 = jsonobject["id"].I;
+					component.setTaskName(Tools.Code64(jsonData.instance.TaskJsonData[i2.ToString()]["Name"].str));
+					component.setTaskInfo(jsonobject);
 				}
 			}
 		}
@@ -63,16 +62,16 @@ public class TaskUIManager : MonoBehaviour
 				JSONObject jsonobject3 = jsonData.instance.NTaskAllType[jsonobject2["id"].I.ToString()];
 				if (jsonobject3.HasField("seid") && jsonobject3["seid"].HasItem(2) && !TaskUIManager.CheckWeiTuoIsOut(jsonobject2))
 				{
-					TaskRenWuCell component3 = Tools.InstantiateGameObject(this._TaskCell, this._TaskCell.transform.parent).GetComponent<TaskRenWuCell>();
-					component3.setTaskName(Tools.Code64(jsonobject3["name"].str));
-					component3.setWeTuoInfo(jsonobject2);
-					component3.setIsChuanWen(true);
+					TaskRenWuCell component2 = Tools.InstantiateGameObject(this._TaskCell, this._TaskCell.transform.parent).GetComponent<TaskRenWuCell>();
+					component2.setTaskName(Tools.Code64(jsonobject3["name"].str));
+					component2.setWeTuoInfo(jsonobject2);
+					component2.setIsChuanWen(true);
 				}
 			}
 		}
 	}
 
-	// Token: 0x0600217A RID: 8570 RVA: 0x001179F4 File Offset: 0x00115BF4
+	// Token: 0x06001DFF RID: 7679 RVA: 0x000D3D4C File Offset: 0x000D1F4C
 	private void initWeiTuo()
 	{
 		foreach (JSONObject jsonobject in Tools.instance.getPlayer().nomelTaskMag.GetNowNTask())
@@ -87,7 +86,7 @@ public class TaskUIManager : MonoBehaviour
 		}
 	}
 
-	// Token: 0x0600217B RID: 8571 RVA: 0x00117AF8 File Offset: 0x00115CF8
+	// Token: 0x06001E00 RID: 7680 RVA: 0x000D3E50 File Offset: 0x000D2050
 	private void clear()
 	{
 		foreach (object obj in this._TaskCell.transform.parent)
@@ -100,43 +99,43 @@ public class TaskUIManager : MonoBehaviour
 		}
 	}
 
-	// Token: 0x0600217C RID: 8572 RVA: 0x0001B8BF File Offset: 0x00019ABF
+	// Token: 0x06001E01 RID: 7681 RVA: 0x000D3EC4 File Offset: 0x000D20C4
 	public void setOld(bool flag)
 	{
 		this.isOld = flag;
 	}
 
-	// Token: 0x0600217D RID: 8573 RVA: 0x0001B8C8 File Offset: 0x00019AC8
+	// Token: 0x06001E02 RID: 7682 RVA: 0x000D3ECD File Offset: 0x000D20CD
 	public void setCurTaskID(int id)
 	{
 		this.CurTaskID = id;
 	}
 
-	// Token: 0x0600217E RID: 8574 RVA: 0x0001B8D1 File Offset: 0x00019AD1
+	// Token: 0x06001E03 RID: 7683 RVA: 0x000D3ED6 File Offset: 0x000D20D6
 	public bool getIsOld()
 	{
 		return this.isOld;
 	}
 
-	// Token: 0x0600217F RID: 8575 RVA: 0x0001B8D9 File Offset: 0x00019AD9
+	// Token: 0x06001E04 RID: 7684 RVA: 0x000D3EDE File Offset: 0x000D20DE
 	public int getCurTaskID()
 	{
 		return this.CurTaskID;
 	}
 
-	// Token: 0x06002180 RID: 8576 RVA: 0x0001B8E1 File Offset: 0x00019AE1
+	// Token: 0x06001E05 RID: 7685 RVA: 0x000D3EE6 File Offset: 0x000D20E6
 	public int getCurType()
 	{
 		return this.curType;
 	}
 
-	// Token: 0x06002181 RID: 8577 RVA: 0x0001B8E9 File Offset: 0x00019AE9
+	// Token: 0x06001E06 RID: 7686 RVA: 0x000D3EEE File Offset: 0x000D20EE
 	private void OnDestroy()
 	{
 		TaskUIManager.inst = null;
 	}
 
-	// Token: 0x06002182 RID: 8578 RVA: 0x0001B8F1 File Offset: 0x00019AF1
+	// Token: 0x06001E07 RID: 7687 RVA: 0x000D3EF6 File Offset: 0x000D20F6
 	public void ClickJiuShi(bool isOn)
 	{
 		this.taskDesc.SetActive(false);
@@ -144,19 +143,19 @@ public class TaskUIManager : MonoBehaviour
 		this.initTaskList(this.curType);
 	}
 
-	// Token: 0x06002183 RID: 8579 RVA: 0x0001B912 File Offset: 0x00019B12
+	// Token: 0x06001E08 RID: 7688 RVA: 0x000D3F17 File Offset: 0x000D2117
 	public void setCurSelectIsChuanWen(bool flag)
 	{
 		this.CurisChuanWen = flag;
 	}
 
-	// Token: 0x06002184 RID: 8580 RVA: 0x0001B91B File Offset: 0x00019B1B
+	// Token: 0x06001E09 RID: 7689 RVA: 0x000D3F20 File Offset: 0x000D2120
 	public bool getCurSelectIsChuanWen()
 	{
 		return this.CurisChuanWen;
 	}
 
-	// Token: 0x06002185 RID: 8581 RVA: 0x00117B6C File Offset: 0x00115D6C
+	// Token: 0x06001E0A RID: 7690 RVA: 0x000D3F28 File Offset: 0x000D2128
 	public void setCurZhuiZhong()
 	{
 		Avatar player = Tools.instance.getPlayer();
@@ -179,18 +178,18 @@ public class TaskUIManager : MonoBehaviour
 		player.TaskZhuiZhong.SetField("curTask", this.curTask);
 	}
 
-	// Token: 0x06002186 RID: 8582 RVA: 0x0001B923 File Offset: 0x00019B23
+	// Token: 0x06001E0B RID: 7691 RVA: 0x000D4086 File Offset: 0x000D2286
 	public void setCurTask(JSONObject task)
 	{
 		this.curTask = task;
 	}
 
-	// Token: 0x06002187 RID: 8583 RVA: 0x00117CCC File Offset: 0x00115ECC
+	// Token: 0x06001E0C RID: 7692 RVA: 0x000D4090 File Offset: 0x000D2290
 	public static bool checkIsGuoShi(JSONObject task)
 	{
-		int num = (int)task["id"].n;
+		int i = task["id"].I;
 		Avatar player = Tools.instance.getPlayer();
-		if (jsonData.instance.TaskJsonData[num.ToString()]["Type"].I == 0)
+		if (jsonData.instance.TaskJsonData[i.ToString()]["Type"].I == 0)
 		{
 			if (task.HasField("isBlack") && task["isBlack"].b)
 			{
@@ -200,15 +199,15 @@ public class TaskUIManager : MonoBehaviour
 			{
 				return false;
 			}
-			DateTime starTime = DateTime.Parse(jsonData.instance.TaskJsonData[num.ToString()]["StarTime"].str);
-			DateTime endTime = DateTime.Parse(jsonData.instance.TaskJsonData[num.ToString()]["EndTime"].str);
-			int circulation = (int)jsonData.instance.TaskJsonData[num.ToString()]["circulation"].n;
+			DateTime starTime = DateTime.Parse(jsonData.instance.TaskJsonData[i.ToString()]["StarTime"].str);
+			DateTime endTime = DateTime.Parse(jsonData.instance.TaskJsonData[i.ToString()]["EndTime"].str);
+			int circulation = (int)jsonData.instance.TaskJsonData[i.ToString()]["circulation"].n;
 			DateTime nowTime = player.worldTimeMag.getNowTime();
 			return Tools.Code64(TaskCell.getTaskNextTime(circulation, nowTime, starTime, endTime)).Contains("传闻已过时");
 		}
 		else
 		{
-			if (jsonData.instance.TaskJsonData[num.ToString()]["Type"].I != 1)
+			if (jsonData.instance.TaskJsonData[i.ToString()]["Type"].I != 1)
 			{
 				return false;
 			}
@@ -226,9 +225,9 @@ public class TaskUIManager : MonoBehaviour
 				return !(t.AddMonths(task["continueTime"].I) >= t);
 			}
 			string s = "3000-01-01";
-			if (jsonData.instance.TaskJsonData[num.ToString()]["EndTime"].str != "")
+			if (jsonData.instance.TaskJsonData[i.ToString()]["EndTime"].str != "")
 			{
-				s = jsonData.instance.TaskJsonData[num.ToString()]["EndTime"].str;
+				s = jsonData.instance.TaskJsonData[i.ToString()]["EndTime"].str;
 			}
 			DateTime t2 = DateTime.Parse(s);
 			DateTime nowTime2 = player.worldTimeMag.getNowTime();
@@ -236,47 +235,47 @@ public class TaskUIManager : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06002188 RID: 8584 RVA: 0x00117F48 File Offset: 0x00116148
+	// Token: 0x06001E0D RID: 7693 RVA: 0x000D430C File Offset: 0x000D250C
 	public static bool CheckWeiTuoIsOut(JSONObject weiTuo)
 	{
-		int taskID = (int)weiTuo["id"].n;
+		int i = weiTuo["id"].I;
 		Avatar player = Tools.instance.getPlayer();
 		string startTime = "0001-01-01";
-		if (player.NomelTaskJson[taskID.ToString()].HasField("StartTime"))
+		if (player.NomelTaskJson[i.ToString()].HasField("StartTime"))
 		{
-			startTime = player.NomelTaskJson[taskID.ToString()]["StartTime"].str;
+			startTime = player.NomelTaskJson[i.ToString()]["StartTime"].str;
 		}
-		DateTime endTime = Tools.GetEndTime(startTime, 0, player.nomelTaskMag.GetNTaskXiangXiData(taskID).shiXian, 0);
+		DateTime endTime = Tools.GetEndTime(startTime, 0, player.nomelTaskMag.GetNTaskXiangXiData(i).shiXian, 0);
 		DateTime nowTime = player.worldTimeMag.getNowTime();
 		return !(endTime > nowTime);
 	}
 
-	// Token: 0x04001D00 RID: 7424
+	// Token: 0x040018A0 RID: 6304
 	[SerializeField]
 	private GameObject _TaskCell;
 
-	// Token: 0x04001D01 RID: 7425
+	// Token: 0x040018A1 RID: 6305
 	private int CurTaskID = -1;
 
-	// Token: 0x04001D02 RID: 7426
+	// Token: 0x040018A2 RID: 6306
 	private int curType = -1;
 
-	// Token: 0x04001D03 RID: 7427
+	// Token: 0x040018A3 RID: 6307
 	private bool isOld;
 
-	// Token: 0x04001D04 RID: 7428
+	// Token: 0x040018A4 RID: 6308
 	private bool isZhuiZhong;
 
-	// Token: 0x04001D05 RID: 7429
+	// Token: 0x040018A5 RID: 6309
 	public static TaskUIManager inst;
 
-	// Token: 0x04001D06 RID: 7430
+	// Token: 0x040018A6 RID: 6310
 	[SerializeField]
 	private GameObject taskDesc;
 
-	// Token: 0x04001D07 RID: 7431
+	// Token: 0x040018A7 RID: 6311
 	private bool CurisChuanWen;
 
-	// Token: 0x04001D08 RID: 7432
+	// Token: 0x040018A8 RID: 6312
 	private JSONObject curTask;
 }

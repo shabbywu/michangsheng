@@ -4,11 +4,11 @@ using UnityEngine.UI;
 
 namespace UltimateSurvival.GUISystem
 {
-	// Token: 0x0200093A RID: 2362
+	// Token: 0x02000640 RID: 1600
 	public class BuildingWheel : GUIBehaviour
 	{
-		// Token: 0x17000689 RID: 1673
-		// (get) Token: 0x06003C70 RID: 15472 RVA: 0x0002B9C1 File Offset: 0x00029BC1
+		// Token: 0x17000481 RID: 1153
+		// (get) Token: 0x06003314 RID: 13076 RVA: 0x00167814 File Offset: 0x00165A14
 		public RectTransform SelectionHighlight
 		{
 			get
@@ -17,8 +17,8 @@ namespace UltimateSurvival.GUISystem
 			}
 		}
 
-		// Token: 0x1700068A RID: 1674
-		// (get) Token: 0x06003C71 RID: 15473 RVA: 0x0002B9C9 File Offset: 0x00029BC9
+		// Token: 0x17000482 RID: 1154
+		// (get) Token: 0x06003315 RID: 13077 RVA: 0x0016781C File Offset: 0x00165A1C
 		public float Distance
 		{
 			get
@@ -27,8 +27,8 @@ namespace UltimateSurvival.GUISystem
 			}
 		}
 
-		// Token: 0x1700068B RID: 1675
-		// (get) Token: 0x06003C72 RID: 15474 RVA: 0x0002B9D1 File Offset: 0x00029BD1
+		// Token: 0x17000483 RID: 1155
+		// (get) Token: 0x06003316 RID: 13078 RVA: 0x00167824 File Offset: 0x00165A24
 		public float Offset
 		{
 			get
@@ -37,8 +37,8 @@ namespace UltimateSurvival.GUISystem
 			}
 		}
 
-		// Token: 0x1700068C RID: 1676
-		// (get) Token: 0x06003C73 RID: 15475 RVA: 0x0002B9D9 File Offset: 0x00029BD9
+		// Token: 0x17000484 RID: 1156
+		// (get) Token: 0x06003317 RID: 13079 RVA: 0x0016782C File Offset: 0x00165A2C
 		public float Spacing
 		{
 			get
@@ -47,7 +47,7 @@ namespace UltimateSurvival.GUISystem
 			}
 		}
 
-		// Token: 0x06003C74 RID: 15476 RVA: 0x001B0900 File Offset: 0x001AEB00
+		// Token: 0x06003318 RID: 13080 RVA: 0x00167834 File Offset: 0x00165A34
 		private void Update()
 		{
 			if (!this.m_Window.IsOpen)
@@ -141,7 +141,7 @@ namespace UltimateSurvival.GUISystem
 			}
 		}
 
-		// Token: 0x06003C75 RID: 15477 RVA: 0x001B0C90 File Offset: 0x001AEE90
+		// Token: 0x06003319 RID: 13081 RVA: 0x00167BC4 File Offset: 0x00165DC4
 		private void Start()
 		{
 			this.m_Categories = base.GetComponentsInChildren<BuildingCategory>(false);
@@ -156,7 +156,7 @@ namespace UltimateSurvival.GUISystem
 			this.m_PieceName.enabled = false;
 		}
 
-		// Token: 0x06003C76 RID: 15478 RVA: 0x0002B9E1 File Offset: 0x00029BE1
+		// Token: 0x0600331A RID: 13082 RVA: 0x00167C5B File Offset: 0x00165E5B
 		private void OnChanged_InventoryState()
 		{
 			if (!MonoSingleton<InventoryController>.Instance.IsClosed)
@@ -168,7 +168,7 @@ namespace UltimateSurvival.GUISystem
 			}
 		}
 
-		// Token: 0x06003C77 RID: 15479 RVA: 0x001B0D28 File Offset: 0x001AEF28
+		// Token: 0x0600331B RID: 13083 RVA: 0x00167C90 File Offset: 0x00165E90
 		private bool TryStart_SelectBuildable()
 		{
 			if (!MonoSingleton<InventoryController>.Instance.IsClosed || !base.Player.EquippedItem.Get() || !base.Player.EquippedItem.Get().HasProperty("Allows Building"))
@@ -180,7 +180,7 @@ namespace UltimateSurvival.GUISystem
 			return true;
 		}
 
-		// Token: 0x06003C78 RID: 15480 RVA: 0x0002BA14 File Offset: 0x00029C14
+		// Token: 0x0600331C RID: 13084 RVA: 0x00167CFB File Offset: 0x00165EFB
 		private bool TryStop_SelectBuildable()
 		{
 			if (this.m_ChoosingPiece)
@@ -193,77 +193,77 @@ namespace UltimateSurvival.GUISystem
 			return true;
 		}
 
-		// Token: 0x040036AB RID: 13995
+		// Token: 0x04002D42 RID: 11586
 		[SerializeField]
 		private Window m_Window;
 
-		// Token: 0x040036AC RID: 13996
+		// Token: 0x04002D43 RID: 11587
 		[SerializeField]
 		private Camera m_GUICamera;
 
-		// Token: 0x040036AD RID: 13997
+		// Token: 0x04002D44 RID: 11588
 		[SerializeField]
 		private RectTransform m_SelectionHighlight;
 
-		// Token: 0x040036AE RID: 13998
+		// Token: 0x04002D45 RID: 11589
 		[SerializeField]
 		private Text m_CategoryName;
 
-		// Token: 0x040036AF RID: 13999
+		// Token: 0x04002D46 RID: 11590
 		[SerializeField]
 		private Text m_PieceName;
 
-		// Token: 0x040036B0 RID: 14000
+		// Token: 0x04002D47 RID: 11591
 		[SerializeField]
 		[Range(0f, 50f)]
 		private float m_ScrollThreeshold = 1f;
 
-		// Token: 0x040036B1 RID: 14001
+		// Token: 0x04002D48 RID: 11592
 		[Header("Audio")]
 		[SerializeField]
 		private SoundPlayer m_RefreshAudio;
 
-		// Token: 0x040036B2 RID: 14002
+		// Token: 0x04002D49 RID: 11593
 		[SerializeField]
 		private SoundPlayer m_SelectPieceAudio;
 
-		// Token: 0x040036B3 RID: 14003
+		// Token: 0x04002D4A RID: 11594
 		[Header("Layout")]
 		[SerializeField]
 		private float m_Distance = 211.7f;
 
-		// Token: 0x040036B4 RID: 14004
+		// Token: 0x04002D4B RID: 11595
 		[SerializeField]
 		[Range(-90f, 90f)]
 		private float m_Offset;
 
-		// Token: 0x040036B5 RID: 14005
+		// Token: 0x04002D4C RID: 11596
 		[SerializeField]
 		[Range(-90f, 90f)]
 		private float m_Spacing;
 
-		// Token: 0x040036B6 RID: 14006
+		// Token: 0x04002D4D RID: 11597
 		private BuildingCategory[] m_Categories;
 
-		// Token: 0x040036B7 RID: 14007
+		// Token: 0x04002D4E RID: 11598
 		private BuildingCategory m_SelectedCategory;
 
-		// Token: 0x040036B8 RID: 14008
+		// Token: 0x04002D4F RID: 11599
 		private int m_CategoryIndex;
 
-		// Token: 0x040036B9 RID: 14009
+		// Token: 0x04002D50 RID: 11600
 		private bool m_ChoosingPiece;
 
-		// Token: 0x040036BA RID: 14010
+		// Token: 0x04002D51 RID: 11601
 		private BuildingPiece m_SelectedPiece;
 
-		// Token: 0x040036BB RID: 14011
+		// Token: 0x04002D52 RID: 11602
 		private BuildingPiece m_HighlightedPiece;
 
-		// Token: 0x040036BC RID: 14012
+		// Token: 0x04002D53 RID: 11603
 		private float m_CategoryScrollPos;
 
-		// Token: 0x040036BD RID: 14013
+		// Token: 0x04002D54 RID: 11604
 		private float m_PieceScrollPos;
 	}
 }

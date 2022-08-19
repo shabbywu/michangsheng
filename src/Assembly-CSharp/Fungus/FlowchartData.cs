@@ -4,13 +4,13 @@ using UnityEngine;
 
 namespace Fungus
 {
-	// Token: 0x02001361 RID: 4961
+	// Token: 0x02000EC3 RID: 3779
 	[Serializable]
 	public class FlowchartData
 	{
-		// Token: 0x17000B47 RID: 2887
-		// (get) Token: 0x06007867 RID: 30823 RVA: 0x00051CA9 File Offset: 0x0004FEA9
-		// (set) Token: 0x06007868 RID: 30824 RVA: 0x00051CB1 File Offset: 0x0004FEB1
+		// Token: 0x170008AA RID: 2218
+		// (get) Token: 0x06006ACC RID: 27340 RVA: 0x00293FA5 File Offset: 0x002921A5
+		// (set) Token: 0x06006ACD RID: 27341 RVA: 0x00293FAD File Offset: 0x002921AD
 		public string FlowchartName
 		{
 			get
@@ -23,9 +23,9 @@ namespace Fungus
 			}
 		}
 
-		// Token: 0x17000B48 RID: 2888
-		// (get) Token: 0x06007869 RID: 30825 RVA: 0x00051CBA File Offset: 0x0004FEBA
-		// (set) Token: 0x0600786A RID: 30826 RVA: 0x00051CC2 File Offset: 0x0004FEC2
+		// Token: 0x170008AB RID: 2219
+		// (get) Token: 0x06006ACE RID: 27342 RVA: 0x00293FB6 File Offset: 0x002921B6
+		// (set) Token: 0x06006ACF RID: 27343 RVA: 0x00293FBE File Offset: 0x002921BE
 		public List<StringVar> StringVars
 		{
 			get
@@ -38,9 +38,9 @@ namespace Fungus
 			}
 		}
 
-		// Token: 0x17000B49 RID: 2889
-		// (get) Token: 0x0600786B RID: 30827 RVA: 0x00051CCB File Offset: 0x0004FECB
-		// (set) Token: 0x0600786C RID: 30828 RVA: 0x00051CD3 File Offset: 0x0004FED3
+		// Token: 0x170008AC RID: 2220
+		// (get) Token: 0x06006AD0 RID: 27344 RVA: 0x00293FC7 File Offset: 0x002921C7
+		// (set) Token: 0x06006AD1 RID: 27345 RVA: 0x00293FCF File Offset: 0x002921CF
 		public List<IntVar> IntVars
 		{
 			get
@@ -53,9 +53,9 @@ namespace Fungus
 			}
 		}
 
-		// Token: 0x17000B4A RID: 2890
-		// (get) Token: 0x0600786D RID: 30829 RVA: 0x00051CDC File Offset: 0x0004FEDC
-		// (set) Token: 0x0600786E RID: 30830 RVA: 0x00051CE4 File Offset: 0x0004FEE4
+		// Token: 0x170008AD RID: 2221
+		// (get) Token: 0x06006AD2 RID: 27346 RVA: 0x00293FD8 File Offset: 0x002921D8
+		// (set) Token: 0x06006AD3 RID: 27347 RVA: 0x00293FE0 File Offset: 0x002921E0
 		public List<FloatVar> FloatVars
 		{
 			get
@@ -68,9 +68,9 @@ namespace Fungus
 			}
 		}
 
-		// Token: 0x17000B4B RID: 2891
-		// (get) Token: 0x0600786F RID: 30831 RVA: 0x00051CED File Offset: 0x0004FEED
-		// (set) Token: 0x06007870 RID: 30832 RVA: 0x00051CF5 File Offset: 0x0004FEF5
+		// Token: 0x170008AE RID: 2222
+		// (get) Token: 0x06006AD4 RID: 27348 RVA: 0x00293FE9 File Offset: 0x002921E9
+		// (set) Token: 0x06006AD5 RID: 27349 RVA: 0x00293FF1 File Offset: 0x002921F1
 		public List<BoolVar> BoolVars
 		{
 			get
@@ -83,7 +83,7 @@ namespace Fungus
 			}
 		}
 
-		// Token: 0x06007871 RID: 30833 RVA: 0x002B640C File Offset: 0x002B460C
+		// Token: 0x06006AD6 RID: 27350 RVA: 0x00293FFC File Offset: 0x002921FC
 		public static FlowchartData Encode(Flowchart flowchart)
 		{
 			FlowchartData flowchartData = new FlowchartData();
@@ -127,7 +127,7 @@ namespace Fungus
 			return flowchartData;
 		}
 
-		// Token: 0x06007872 RID: 30834 RVA: 0x002B6554 File Offset: 0x002B4754
+		// Token: 0x06006AD7 RID: 27351 RVA: 0x00294144 File Offset: 0x00292344
 		public static void Decode(FlowchartData flowchartData)
 		{
 			GameObject gameObject = GameObject.Find(flowchartData.FlowchartName);
@@ -164,23 +164,23 @@ namespace Fungus
 			}
 		}
 
-		// Token: 0x0400686A RID: 26730
+		// Token: 0x04005A0B RID: 23051
 		[SerializeField]
 		protected string flowchartName;
 
-		// Token: 0x0400686B RID: 26731
+		// Token: 0x04005A0C RID: 23052
 		[SerializeField]
 		protected List<StringVar> stringVars = new List<StringVar>();
 
-		// Token: 0x0400686C RID: 26732
+		// Token: 0x04005A0D RID: 23053
 		[SerializeField]
 		protected List<IntVar> intVars = new List<IntVar>();
 
-		// Token: 0x0400686D RID: 26733
+		// Token: 0x04005A0E RID: 23054
 		[SerializeField]
 		protected List<FloatVar> floatVars = new List<FloatVar>();
 
-		// Token: 0x0400686E RID: 26734
+		// Token: 0x04005A0F RID: 23055
 		[SerializeField]
 		protected List<BoolVar> boolVars = new List<BoolVar>();
 	}

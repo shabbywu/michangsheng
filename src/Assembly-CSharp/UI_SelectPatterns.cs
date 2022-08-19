@@ -2,16 +2,16 @@
 using KBEngine;
 using UnityEngine;
 
-// Token: 0x020005C4 RID: 1476
+// Token: 0x02000412 RID: 1042
 public class UI_SelectPatterns : MonoBehaviour
 {
-	// Token: 0x06002554 RID: 9556 RVA: 0x0001DF0F File Offset: 0x0001C10F
+	// Token: 0x0600219C RID: 8604 RVA: 0x000E95DE File Offset: 0x000E77DE
 	private void Start()
 	{
 		World.instance.init();
 	}
 
-	// Token: 0x06002555 RID: 9557 RVA: 0x0001DF1B File Offset: 0x0001C11B
+	// Token: 0x0600219D RID: 8605 RVA: 0x000E95EA File Offset: 0x000E77EA
 	public void onZombieEnterGame()
 	{
 		if ((Account)KBEngineApp.app.player() != null)
@@ -20,7 +20,7 @@ public class UI_SelectPatterns : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06002556 RID: 9558 RVA: 0x0001DF1B File Offset: 0x0001C11B
+	// Token: 0x0600219E RID: 8606 RVA: 0x000E95EA File Offset: 0x000E77EA
 	public void onHeroEnterGame()
 	{
 		if ((Account)KBEngineApp.app.player() != null)

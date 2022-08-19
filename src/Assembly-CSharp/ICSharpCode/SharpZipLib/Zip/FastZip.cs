@@ -6,23 +6,23 @@ using ICSharpCode.SharpZipLib.Zip.Compression;
 
 namespace ICSharpCode.SharpZipLib.Zip
 {
-	// Token: 0x020007BA RID: 1978
+	// Token: 0x02000526 RID: 1318
 	public class FastZip
 	{
-		// Token: 0x06003234 RID: 12852 RVA: 0x00024984 File Offset: 0x00022B84
+		// Token: 0x06002A21 RID: 10785 RVA: 0x00140532 File Offset: 0x0013E732
 		public FastZip()
 		{
 		}
 
-		// Token: 0x06003235 RID: 12853 RVA: 0x000249AC File Offset: 0x00022BAC
+		// Token: 0x06002A22 RID: 10786 RVA: 0x0014055A File Offset: 0x0013E75A
 		public FastZip(FastZipEvents events)
 		{
 			this.events_ = events;
 		}
 
-		// Token: 0x1700045F RID: 1119
-		// (get) Token: 0x06003236 RID: 12854 RVA: 0x000249DB File Offset: 0x00022BDB
-		// (set) Token: 0x06003237 RID: 12855 RVA: 0x000249E3 File Offset: 0x00022BE3
+		// Token: 0x170002C0 RID: 704
+		// (get) Token: 0x06002A23 RID: 10787 RVA: 0x00140589 File Offset: 0x0013E789
+		// (set) Token: 0x06002A24 RID: 10788 RVA: 0x00140591 File Offset: 0x0013E791
 		public bool CreateEmptyDirectories
 		{
 			get
@@ -35,9 +35,9 @@ namespace ICSharpCode.SharpZipLib.Zip
 			}
 		}
 
-		// Token: 0x17000460 RID: 1120
-		// (get) Token: 0x06003238 RID: 12856 RVA: 0x000249EC File Offset: 0x00022BEC
-		// (set) Token: 0x06003239 RID: 12857 RVA: 0x000249F4 File Offset: 0x00022BF4
+		// Token: 0x170002C1 RID: 705
+		// (get) Token: 0x06002A25 RID: 10789 RVA: 0x0014059A File Offset: 0x0013E79A
+		// (set) Token: 0x06002A26 RID: 10790 RVA: 0x001405A2 File Offset: 0x0013E7A2
 		public string Password
 		{
 			get
@@ -50,14 +50,14 @@ namespace ICSharpCode.SharpZipLib.Zip
 			}
 		}
 
-		// Token: 0x17000461 RID: 1121
-		// (get) Token: 0x0600323A RID: 12858 RVA: 0x000249FD File Offset: 0x00022BFD
-		// (set) Token: 0x0600323B RID: 12859 RVA: 0x00024A05 File Offset: 0x00022C05
+		// Token: 0x170002C2 RID: 706
+		// (get) Token: 0x06002A27 RID: 10791 RVA: 0x001405AB File Offset: 0x0013E7AB
+		// (set) Token: 0x06002A28 RID: 10792 RVA: 0x001405B3 File Offset: 0x0013E7B3
 		public ZipEncryptionMethod EntryEncryptionMethod { get; set; } = ZipEncryptionMethod.ZipCrypto;
 
-		// Token: 0x17000462 RID: 1122
-		// (get) Token: 0x0600323C RID: 12860 RVA: 0x00024A0E File Offset: 0x00022C0E
-		// (set) Token: 0x0600323D RID: 12861 RVA: 0x00024A1B File Offset: 0x00022C1B
+		// Token: 0x170002C3 RID: 707
+		// (get) Token: 0x06002A29 RID: 10793 RVA: 0x001405BC File Offset: 0x0013E7BC
+		// (set) Token: 0x06002A2A RID: 10794 RVA: 0x001405C9 File Offset: 0x0013E7C9
 		public INameTransform NameTransform
 		{
 			get
@@ -70,9 +70,9 @@ namespace ICSharpCode.SharpZipLib.Zip
 			}
 		}
 
-		// Token: 0x17000463 RID: 1123
-		// (get) Token: 0x0600323E RID: 12862 RVA: 0x00024A29 File Offset: 0x00022C29
-		// (set) Token: 0x0600323F RID: 12863 RVA: 0x00024A31 File Offset: 0x00022C31
+		// Token: 0x170002C4 RID: 708
+		// (get) Token: 0x06002A2B RID: 10795 RVA: 0x001405D7 File Offset: 0x0013E7D7
+		// (set) Token: 0x06002A2C RID: 10796 RVA: 0x001405DF File Offset: 0x0013E7DF
 		public IEntryFactory EntryFactory
 		{
 			get
@@ -90,9 +90,9 @@ namespace ICSharpCode.SharpZipLib.Zip
 			}
 		}
 
-		// Token: 0x17000464 RID: 1124
-		// (get) Token: 0x06003240 RID: 12864 RVA: 0x00024A49 File Offset: 0x00022C49
-		// (set) Token: 0x06003241 RID: 12865 RVA: 0x00024A51 File Offset: 0x00022C51
+		// Token: 0x170002C5 RID: 709
+		// (get) Token: 0x06002A2D RID: 10797 RVA: 0x001405F7 File Offset: 0x0013E7F7
+		// (set) Token: 0x06002A2E RID: 10798 RVA: 0x001405FF File Offset: 0x0013E7FF
 		public UseZip64 UseZip64
 		{
 			get
@@ -105,9 +105,9 @@ namespace ICSharpCode.SharpZipLib.Zip
 			}
 		}
 
-		// Token: 0x17000465 RID: 1125
-		// (get) Token: 0x06003242 RID: 12866 RVA: 0x00024A5A File Offset: 0x00022C5A
-		// (set) Token: 0x06003243 RID: 12867 RVA: 0x00024A62 File Offset: 0x00022C62
+		// Token: 0x170002C6 RID: 710
+		// (get) Token: 0x06002A2F RID: 10799 RVA: 0x00140608 File Offset: 0x0013E808
+		// (set) Token: 0x06002A30 RID: 10800 RVA: 0x00140610 File Offset: 0x0013E810
 		public bool RestoreDateTimeOnExtract
 		{
 			get
@@ -120,9 +120,9 @@ namespace ICSharpCode.SharpZipLib.Zip
 			}
 		}
 
-		// Token: 0x17000466 RID: 1126
-		// (get) Token: 0x06003244 RID: 12868 RVA: 0x00024A6B File Offset: 0x00022C6B
-		// (set) Token: 0x06003245 RID: 12869 RVA: 0x00024A73 File Offset: 0x00022C73
+		// Token: 0x170002C7 RID: 711
+		// (get) Token: 0x06002A31 RID: 10801 RVA: 0x00140619 File Offset: 0x0013E819
+		// (set) Token: 0x06002A32 RID: 10802 RVA: 0x00140621 File Offset: 0x0013E821
 		public bool RestoreAttributesOnExtract
 		{
 			get
@@ -135,9 +135,9 @@ namespace ICSharpCode.SharpZipLib.Zip
 			}
 		}
 
-		// Token: 0x17000467 RID: 1127
-		// (get) Token: 0x06003246 RID: 12870 RVA: 0x00024A7C File Offset: 0x00022C7C
-		// (set) Token: 0x06003247 RID: 12871 RVA: 0x00024A84 File Offset: 0x00022C84
+		// Token: 0x170002C8 RID: 712
+		// (get) Token: 0x06002A33 RID: 10803 RVA: 0x0014062A File Offset: 0x0013E82A
+		// (set) Token: 0x06002A34 RID: 10804 RVA: 0x00140632 File Offset: 0x0013E832
 		public Deflater.CompressionLevel CompressionLevel
 		{
 			get
@@ -150,45 +150,45 @@ namespace ICSharpCode.SharpZipLib.Zip
 			}
 		}
 
-		// Token: 0x06003248 RID: 12872 RVA: 0x00024A8D File Offset: 0x00022C8D
+		// Token: 0x06002A35 RID: 10805 RVA: 0x0014063B File Offset: 0x0013E83B
 		public void CreateZip(string zipFileName, string sourceDirectory, bool recurse, string fileFilter, string directoryFilter)
 		{
 			this.CreateZip(File.Create(zipFileName), sourceDirectory, recurse, fileFilter, directoryFilter);
 		}
 
-		// Token: 0x06003249 RID: 12873 RVA: 0x00024AA1 File Offset: 0x00022CA1
+		// Token: 0x06002A36 RID: 10806 RVA: 0x0014064F File Offset: 0x0013E84F
 		public void CreateZip(string zipFileName, string sourceDirectory, bool recurse, string fileFilter)
 		{
 			this.CreateZip(File.Create(zipFileName), sourceDirectory, recurse, fileFilter, null);
 		}
 
-		// Token: 0x0600324A RID: 12874 RVA: 0x00024AB4 File Offset: 0x00022CB4
+		// Token: 0x06002A37 RID: 10807 RVA: 0x00140662 File Offset: 0x0013E862
 		public void CreateZip(Stream outputStream, string sourceDirectory, bool recurse, string fileFilter, string directoryFilter)
 		{
 			this.CreateZip(outputStream, sourceDirectory, recurse, fileFilter, directoryFilter, false);
 		}
 
-		// Token: 0x0600324B RID: 12875 RVA: 0x0018D5D8 File Offset: 0x0018B7D8
+		// Token: 0x06002A38 RID: 10808 RVA: 0x00140674 File Offset: 0x0013E874
 		public void CreateZip(Stream outputStream, string sourceDirectory, bool recurse, string fileFilter, string directoryFilter, bool leaveOpen)
 		{
 			FileSystemScanner scanner = new FileSystemScanner(fileFilter, directoryFilter);
 			this.CreateZip(outputStream, sourceDirectory, recurse, scanner, leaveOpen);
 		}
 
-		// Token: 0x0600324C RID: 12876 RVA: 0x00024AC4 File Offset: 0x00022CC4
+		// Token: 0x06002A39 RID: 10809 RVA: 0x00140697 File Offset: 0x0013E897
 		public void CreateZip(string zipFileName, string sourceDirectory, bool recurse, IScanFilter fileFilter, IScanFilter directoryFilter)
 		{
 			this.CreateZip(File.Create(zipFileName), sourceDirectory, recurse, fileFilter, directoryFilter, false);
 		}
 
-		// Token: 0x0600324D RID: 12877 RVA: 0x0018D5FC File Offset: 0x0018B7FC
+		// Token: 0x06002A3A RID: 10810 RVA: 0x001406AC File Offset: 0x0013E8AC
 		public void CreateZip(Stream outputStream, string sourceDirectory, bool recurse, IScanFilter fileFilter, IScanFilter directoryFilter, bool leaveOpen = false)
 		{
 			FileSystemScanner scanner = new FileSystemScanner(fileFilter, directoryFilter);
 			this.CreateZip(outputStream, sourceDirectory, recurse, scanner, leaveOpen);
 		}
 
-		// Token: 0x0600324E RID: 12878 RVA: 0x0018D620 File Offset: 0x0018B820
+		// Token: 0x06002A3B RID: 10811 RVA: 0x001406D0 File Offset: 0x0013E8D0
 		private void CreateZip(Stream outputStream, string sourceDirectory, bool recurse, FileSystemScanner scanner, bool leaveOpen)
 		{
 			this.NameTransform = new ZipNameTransform(sourceDirectory);
@@ -223,20 +223,20 @@ namespace ICSharpCode.SharpZipLib.Zip
 			}
 		}
 
-		// Token: 0x0600324F RID: 12879 RVA: 0x0018D78C File Offset: 0x0018B98C
+		// Token: 0x06002A3C RID: 10812 RVA: 0x0014083C File Offset: 0x0013EA3C
 		public void ExtractZip(string zipFileName, string targetDirectory, string fileFilter)
 		{
 			this.ExtractZip(zipFileName, targetDirectory, FastZip.Overwrite.Always, null, fileFilter, null, this.restoreDateTimeOnExtract_, false);
 		}
 
-		// Token: 0x06003250 RID: 12880 RVA: 0x0018D7AC File Offset: 0x0018B9AC
+		// Token: 0x06002A3D RID: 10813 RVA: 0x0014085C File Offset: 0x0013EA5C
 		public void ExtractZip(string zipFileName, string targetDirectory, FastZip.Overwrite overwrite, FastZip.ConfirmOverwriteDelegate confirmDelegate, string fileFilter, string directoryFilter, bool restoreDateTime, bool allowParentTraversal = false)
 		{
 			Stream inputStream = File.Open(zipFileName, FileMode.Open, FileAccess.Read, FileShare.Read);
 			this.ExtractZip(inputStream, targetDirectory, overwrite, confirmDelegate, fileFilter, directoryFilter, restoreDateTime, true, allowParentTraversal);
 		}
 
-		// Token: 0x06003251 RID: 12881 RVA: 0x0018D7D8 File Offset: 0x0018B9D8
+		// Token: 0x06002A3E RID: 10814 RVA: 0x00140888 File Offset: 0x0013EA88
 		public void ExtractZip(Stream inputStream, string targetDirectory, FastZip.Overwrite overwrite, FastZip.ConfirmOverwriteDelegate confirmDelegate, string fileFilter, string directoryFilter, bool restoreDateTime, bool isStreamOwner, bool allowParentTraversal = false)
 		{
 			if (overwrite == FastZip.Overwrite.Prompt && confirmDelegate == null)
@@ -275,7 +275,7 @@ namespace ICSharpCode.SharpZipLib.Zip
 			}
 		}
 
-		// Token: 0x06003252 RID: 12882 RVA: 0x0018D91C File Offset: 0x0018BB1C
+		// Token: 0x06002A3F RID: 10815 RVA: 0x001409CC File Offset: 0x0013EBCC
 		private void ProcessDirectory(object sender, DirectoryEventArgs e)
 		{
 			if (!e.HasMatchingFiles && this.CreateEmptyDirectories)
@@ -292,7 +292,7 @@ namespace ICSharpCode.SharpZipLib.Zip
 			}
 		}
 
-		// Token: 0x06003253 RID: 12883 RVA: 0x0018D994 File Offset: 0x0018BB94
+		// Token: 0x06002A40 RID: 10816 RVA: 0x00140A44 File Offset: 0x0013EC44
 		private void ProcessFile(object sender, ScanEventArgs e)
 		{
 			if (this.events_ != null && this.events_.ProcessFile != null)
@@ -323,7 +323,7 @@ namespace ICSharpCode.SharpZipLib.Zip
 			}
 		}
 
-		// Token: 0x06003254 RID: 12884 RVA: 0x0018DA6C File Offset: 0x0018BC6C
+		// Token: 0x06002A41 RID: 10817 RVA: 0x00140B1C File Offset: 0x0013ED1C
 		private void ConfigureEntryEncryption(ZipEntry entry)
 		{
 			if (!string.IsNullOrEmpty(this.Password) && entry.AESEncryptionStrength == 0)
@@ -342,7 +342,7 @@ namespace ICSharpCode.SharpZipLib.Zip
 			}
 		}
 
-		// Token: 0x06003255 RID: 12885 RVA: 0x0018DAB8 File Offset: 0x0018BCB8
+		// Token: 0x06002A42 RID: 10818 RVA: 0x00140B68 File Offset: 0x0013ED68
 		private void AddFileContents(string name, Stream stream)
 		{
 			if (stream == null)
@@ -367,7 +367,7 @@ namespace ICSharpCode.SharpZipLib.Zip
 			}
 		}
 
-		// Token: 0x06003256 RID: 12886 RVA: 0x0018DB58 File Offset: 0x0018BD58
+		// Token: 0x06002A43 RID: 10819 RVA: 0x00140C08 File Offset: 0x0013EE08
 		private void ExtractFileEntry(ZipEntry entry, string targetName)
 		{
 			bool flag = true;
@@ -431,7 +431,7 @@ namespace ICSharpCode.SharpZipLib.Zip
 			}
 		}
 
-		// Token: 0x06003257 RID: 12887 RVA: 0x0018DD18 File Offset: 0x0018BF18
+		// Token: 0x06002A44 RID: 10820 RVA: 0x00140DC8 File Offset: 0x0013EFC8
 		private void ExtractEntry(ZipEntry entry)
 		{
 			bool flag = entry.IsCompressionMethodSupported();
@@ -503,85 +503,85 @@ namespace ICSharpCode.SharpZipLib.Zip
 			}
 		}
 
-		// Token: 0x06003258 RID: 12888 RVA: 0x00024AD9 File Offset: 0x00022CD9
+		// Token: 0x06002A45 RID: 10821 RVA: 0x00140F18 File Offset: 0x0013F118
 		private static int MakeExternalAttributes(FileInfo info)
 		{
 			return (int)info.Attributes;
 		}
 
-		// Token: 0x06003259 RID: 12889 RVA: 0x00024AE1 File Offset: 0x00022CE1
+		// Token: 0x06002A46 RID: 10822 RVA: 0x00140F20 File Offset: 0x0013F120
 		private static bool NameIsValid(string name)
 		{
 			return !string.IsNullOrEmpty(name) && name.IndexOfAny(Path.GetInvalidPathChars()) < 0;
 		}
 
-		// Token: 0x04002E44 RID: 11844
+		// Token: 0x04002654 RID: 9812
 		private bool continueRunning_;
 
-		// Token: 0x04002E45 RID: 11845
+		// Token: 0x04002655 RID: 9813
 		private byte[] buffer_;
 
-		// Token: 0x04002E46 RID: 11846
+		// Token: 0x04002656 RID: 9814
 		private ZipOutputStream outputStream_;
 
-		// Token: 0x04002E47 RID: 11847
+		// Token: 0x04002657 RID: 9815
 		private ZipFile zipFile_;
 
-		// Token: 0x04002E48 RID: 11848
+		// Token: 0x04002658 RID: 9816
 		private string sourceDirectory_;
 
-		// Token: 0x04002E49 RID: 11849
+		// Token: 0x04002659 RID: 9817
 		private NameFilter fileFilter_;
 
-		// Token: 0x04002E4A RID: 11850
+		// Token: 0x0400265A RID: 9818
 		private NameFilter directoryFilter_;
 
-		// Token: 0x04002E4B RID: 11851
+		// Token: 0x0400265B RID: 9819
 		private FastZip.Overwrite overwrite_;
 
-		// Token: 0x04002E4C RID: 11852
+		// Token: 0x0400265C RID: 9820
 		private FastZip.ConfirmOverwriteDelegate confirmDelegate_;
 
-		// Token: 0x04002E4D RID: 11853
+		// Token: 0x0400265D RID: 9821
 		private bool restoreDateTimeOnExtract_;
 
-		// Token: 0x04002E4E RID: 11854
+		// Token: 0x0400265E RID: 9822
 		private bool restoreAttributesOnExtract_;
 
-		// Token: 0x04002E4F RID: 11855
+		// Token: 0x0400265F RID: 9823
 		private bool createEmptyDirectories_;
 
-		// Token: 0x04002E50 RID: 11856
+		// Token: 0x04002660 RID: 9824
 		private FastZipEvents events_;
 
-		// Token: 0x04002E51 RID: 11857
+		// Token: 0x04002661 RID: 9825
 		private IEntryFactory entryFactory_ = new ZipEntryFactory();
 
-		// Token: 0x04002E52 RID: 11858
+		// Token: 0x04002662 RID: 9826
 		private INameTransform extractNameTransform_;
 
-		// Token: 0x04002E53 RID: 11859
+		// Token: 0x04002663 RID: 9827
 		private UseZip64 useZip64_ = UseZip64.Dynamic;
 
-		// Token: 0x04002E54 RID: 11860
+		// Token: 0x04002664 RID: 9828
 		private Deflater.CompressionLevel compressionLevel_ = Deflater.CompressionLevel.DEFAULT_COMPRESSION;
 
-		// Token: 0x04002E55 RID: 11861
+		// Token: 0x04002665 RID: 9829
 		private string password_;
 
-		// Token: 0x020007BB RID: 1979
+		// Token: 0x0200147E RID: 5246
 		public enum Overwrite
 		{
-			// Token: 0x04002E57 RID: 11863
+			// Token: 0x04006C33 RID: 27699
 			Prompt,
-			// Token: 0x04002E58 RID: 11864
+			// Token: 0x04006C34 RID: 27700
 			Never,
-			// Token: 0x04002E59 RID: 11865
+			// Token: 0x04006C35 RID: 27701
 			Always
 		}
 
-		// Token: 0x020007BC RID: 1980
-		// (Invoke) Token: 0x0600325B RID: 12891
+		// Token: 0x0200147F RID: 5247
+		// (Invoke) Token: 0x060080F0 RID: 33008
 		public delegate bool ConfirmOverwriteDelegate(string fileName);
 	}
 }

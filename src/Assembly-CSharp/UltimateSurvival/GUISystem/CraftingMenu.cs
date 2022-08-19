@@ -4,10 +4,10 @@ using UnityEngine.UI;
 
 namespace UltimateSurvival.GUISystem
 {
-	// Token: 0x0200093F RID: 2367
+	// Token: 0x02000645 RID: 1605
 	public class CraftingMenu : MonoBehaviour
 	{
-		// Token: 0x06003C8D RID: 15501 RVA: 0x001B10DC File Offset: 0x001AF2DC
+		// Token: 0x06003331 RID: 13105 RVA: 0x001681A4 File Offset: 0x001663A4
 		private void Awake()
 		{
 			this.m_Categories = base.GetComponentsInChildren<CraftingCategory>();
@@ -23,7 +23,7 @@ namespace UltimateSurvival.GUISystem
 			Debug.LogWarning("No categories were found as children, this menu is useless!", this);
 		}
 
-		// Token: 0x06003C8E RID: 15502 RVA: 0x001B1138 File Offset: 0x001AF338
+		// Token: 0x06003332 RID: 13106 RVA: 0x00168200 File Offset: 0x00166400
 		private void Start()
 		{
 			if (this.m_SelectionHighlight)
@@ -39,7 +39,7 @@ namespace UltimateSurvival.GUISystem
 			}
 		}
 
-		// Token: 0x06003C8F RID: 15503 RVA: 0x001B11C0 File Offset: 0x001AF3C0
+		// Token: 0x06003333 RID: 13107 RVA: 0x00168288 File Offset: 0x00166488
 		private void On_CategorySelected(CraftingCategory selectedCategory)
 		{
 			if (this.m_SelectionHighlight)
@@ -61,25 +61,25 @@ namespace UltimateSurvival.GUISystem
 			this.SelectedCategory.Set(selectedCategory);
 		}
 
-		// Token: 0x040036CA RID: 14026
+		// Token: 0x04002D61 RID: 11617
 		public Value<CraftingCategory> SelectedCategory = new Value<CraftingCategory>(null);
 
-		// Token: 0x040036CB RID: 14027
+		// Token: 0x04002D62 RID: 11618
 		[SerializeField]
 		private CraftingCategory m_FirstSelected;
 
-		// Token: 0x040036CC RID: 14028
+		// Token: 0x04002D63 RID: 11619
 		[SerializeField]
 		private GameObject m_SelectionHighlight;
 
-		// Token: 0x040036CD RID: 14029
+		// Token: 0x04002D64 RID: 11620
 		[SerializeField]
 		private Text m_CategoryName;
 
-		// Token: 0x040036CE RID: 14030
+		// Token: 0x04002D65 RID: 11621
 		private CraftingCategory[] m_Categories;
 
-		// Token: 0x040036CF RID: 14031
+		// Token: 0x04002D66 RID: 11622
 		private GameObject m_SpawnedBackground;
 	}
 }

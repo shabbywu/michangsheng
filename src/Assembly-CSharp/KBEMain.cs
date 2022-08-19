@@ -2,16 +2,16 @@
 using KBEngine;
 using UnityEngine;
 
-// Token: 0x0200003F RID: 63
+// Token: 0x0200002C RID: 44
 public class KBEMain : MonoBehaviour
 {
-	// Token: 0x06000428 RID: 1064 RVA: 0x00007AB7 File Offset: 0x00005CB7
+	// Token: 0x060003E0 RID: 992 RVA: 0x0001593B File Offset: 0x00013B3B
 	protected virtual void Awake()
 	{
 		Object.DontDestroyOnLoad(base.transform.gameObject);
 	}
 
-	// Token: 0x06000429 RID: 1065 RVA: 0x00007AC9 File Offset: 0x00005CC9
+	// Token: 0x060003E1 RID: 993 RVA: 0x0001594D File Offset: 0x00013B4D
 	protected virtual void Start()
 	{
 		MonoBehaviour.print("clientapp::start()");
@@ -19,24 +19,24 @@ public class KBEMain : MonoBehaviour
 		this.initKBEngine();
 	}
 
-	// Token: 0x0600042A RID: 1066 RVA: 0x00007AE1 File Offset: 0x00005CE1
+	// Token: 0x060003E2 RID: 994 RVA: 0x00015965 File Offset: 0x00013B65
 	public virtual void installEvents()
 	{
 		Event.registerOut("onVersionNotMatch", this, "onVersionNotMatch");
 		Event.registerOut("onScriptVersionNotMatch", this, "onScriptVersionNotMatch");
 	}
 
-	// Token: 0x0600042B RID: 1067 RVA: 0x000042DD File Offset: 0x000024DD
+	// Token: 0x060003E3 RID: 995 RVA: 0x00004095 File Offset: 0x00002295
 	public void onVersionNotMatch(string verInfo, string serVerInfo)
 	{
 	}
 
-	// Token: 0x0600042C RID: 1068 RVA: 0x000042DD File Offset: 0x000024DD
+	// Token: 0x060003E4 RID: 996 RVA: 0x00004095 File Offset: 0x00002295
 	public void onScriptVersionNotMatch(string verInfo, string serVerInfo)
 	{
 	}
 
-	// Token: 0x0600042D RID: 1069 RVA: 0x0006D348 File Offset: 0x0006B548
+	// Token: 0x060003E5 RID: 997 RVA: 0x0001598C File Offset: 0x00013B8C
 	public virtual void initKBEngine()
 	{
 		Dbg.debugLevel = this.debugLevel;
@@ -64,7 +64,7 @@ public class KBEMain : MonoBehaviour
 		this.gameapp = new KBEngineApp(kbengineArgs);
 	}
 
-	// Token: 0x0600042E RID: 1070 RVA: 0x00007B05 File Offset: 0x00005D05
+	// Token: 0x060003E6 RID: 998 RVA: 0x00015A81 File Offset: 0x00013C81
 	protected virtual void OnDestroy()
 	{
 		MonoBehaviour.print("clientapp::OnDestroy(): begin");
@@ -77,69 +77,69 @@ public class KBEMain : MonoBehaviour
 		MonoBehaviour.print("clientapp::OnDestroy(): end");
 	}
 
-	// Token: 0x0600042F RID: 1071 RVA: 0x00007B37 File Offset: 0x00005D37
+	// Token: 0x060003E7 RID: 999 RVA: 0x00015AB3 File Offset: 0x00013CB3
 	protected virtual void FixedUpdate()
 	{
 		this.KBEUpdate();
 	}
 
-	// Token: 0x06000430 RID: 1072 RVA: 0x00007B3F File Offset: 0x00005D3F
+	// Token: 0x060003E8 RID: 1000 RVA: 0x00015ABB File Offset: 0x00013CBB
 	public virtual void KBEUpdate()
 	{
 		Event.processOutEvents();
 	}
 
-	// Token: 0x04000255 RID: 597
+	// Token: 0x0400020F RID: 527
 	public KBEngineApp gameapp;
 
-	// Token: 0x04000256 RID: 598
+	// Token: 0x04000210 RID: 528
 	public DEBUGLEVEL debugLevel;
 
-	// Token: 0x04000257 RID: 599
+	// Token: 0x04000211 RID: 529
 	public bool isMultiThreads;
 
-	// Token: 0x04000258 RID: 600
+	// Token: 0x04000212 RID: 530
 	public string ip = "127.0.0.1";
 
-	// Token: 0x04000259 RID: 601
+	// Token: 0x04000213 RID: 531
 	public int port = 20013;
 
-	// Token: 0x0400025A RID: 602
+	// Token: 0x04000214 RID: 532
 	public KBEngineApp.CLIENT_TYPE clientType = KBEngineApp.CLIENT_TYPE.CLIENT_TYPE_MINI;
 
-	// Token: 0x0400025B RID: 603
+	// Token: 0x04000215 RID: 533
 	public KBEngineApp.NETWORK_ENCRYPT_TYPE networkEncryptType;
 
-	// Token: 0x0400025C RID: 604
+	// Token: 0x04000216 RID: 534
 	public int syncPlayerMS = 100;
 
-	// Token: 0x0400025D RID: 605
+	// Token: 0x04000217 RID: 535
 	public int threadUpdateHZ = 20;
 
-	// Token: 0x0400025E RID: 606
+	// Token: 0x04000218 RID: 536
 	public int serverHeartbeatTick = 60;
 
-	// Token: 0x0400025F RID: 607
+	// Token: 0x04000219 RID: 537
 	public int TCP_SEND_BUFFER_MAX = 1460;
 
-	// Token: 0x04000260 RID: 608
+	// Token: 0x0400021A RID: 538
 	public int TCP_RECV_BUFFER_MAX = 1460;
 
-	// Token: 0x04000261 RID: 609
+	// Token: 0x0400021B RID: 539
 	public int UDP_SEND_BUFFER_MAX = 1472;
 
-	// Token: 0x04000262 RID: 610
+	// Token: 0x0400021C RID: 540
 	public int UDP_RECV_BUFFER_MAX = 1472;
 
-	// Token: 0x04000263 RID: 611
+	// Token: 0x0400021D RID: 541
 	public bool useAliasEntityID = true;
 
-	// Token: 0x04000264 RID: 612
+	// Token: 0x0400021E RID: 542
 	public bool isOnInitCallPropertysSetMethods = true;
 
-	// Token: 0x04000265 RID: 613
+	// Token: 0x0400021F RID: 543
 	public bool forceDisableUDP;
 
-	// Token: 0x04000266 RID: 614
+	// Token: 0x04000220 RID: 544
 	public bool automaticallyUpdateSDK = true;
 }

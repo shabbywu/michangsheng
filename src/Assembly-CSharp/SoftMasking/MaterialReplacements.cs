@@ -4,17 +4,17 @@ using UnityEngine;
 
 namespace SoftMasking
 {
-	// Token: 0x02000A08 RID: 2568
+	// Token: 0x020006DA RID: 1754
 	internal class MaterialReplacements
 	{
-		// Token: 0x06004287 RID: 17031 RVA: 0x0002F6DE File Offset: 0x0002D8DE
+		// Token: 0x06003865 RID: 14437 RVA: 0x00183374 File Offset: 0x00181574
 		public MaterialReplacements(IMaterialReplacer replacer, Action<Material> applyParameters)
 		{
 			this._replacer = replacer;
 			this._applyParameters = applyParameters;
 		}
 
-		// Token: 0x06004288 RID: 17032 RVA: 0x001CACCC File Offset: 0x001C8ECC
+		// Token: 0x06003866 RID: 14438 RVA: 0x00183398 File Offset: 0x00181598
 		public Material Get(Material original)
 		{
 			for (int i = 0; i < this._overrides.Count; i++)
@@ -41,7 +41,7 @@ namespace SoftMasking
 			return material2;
 		}
 
-		// Token: 0x06004289 RID: 17033 RVA: 0x001CAD68 File Offset: 0x001C8F68
+		// Token: 0x06003867 RID: 14439 RVA: 0x00183434 File Offset: 0x00181634
 		public void Release(Material replacement)
 		{
 			for (int i = 0; i < this._overrides.Count; i++)
@@ -56,7 +56,7 @@ namespace SoftMasking
 			}
 		}
 
-		// Token: 0x0600428A RID: 17034 RVA: 0x001CADC4 File Offset: 0x001C8FC4
+		// Token: 0x06003868 RID: 14440 RVA: 0x00183490 File Offset: 0x00181690
 		public void ApplyAll()
 		{
 			for (int i = 0; i < this._overrides.Count; i++)
@@ -69,7 +69,7 @@ namespace SoftMasking
 			}
 		}
 
-		// Token: 0x0600428B RID: 17035 RVA: 0x001CAE10 File Offset: 0x001C9010
+		// Token: 0x06003869 RID: 14441 RVA: 0x001834DC File Offset: 0x001816DC
 		public void DestroyAllAndClear()
 		{
 			for (int i = 0; i < this._overrides.Count; i++)
@@ -79,19 +79,19 @@ namespace SoftMasking
 			this._overrides.Clear();
 		}
 
-		// Token: 0x04003AE5 RID: 15077
+		// Token: 0x040030CD RID: 12493
 		private readonly IMaterialReplacer _replacer;
 
-		// Token: 0x04003AE6 RID: 15078
+		// Token: 0x040030CE RID: 12494
 		private readonly Action<Material> _applyParameters;
 
-		// Token: 0x04003AE7 RID: 15079
+		// Token: 0x040030CF RID: 12495
 		private readonly List<MaterialReplacements.MaterialOverride> _overrides = new List<MaterialReplacements.MaterialOverride>();
 
-		// Token: 0x02000A09 RID: 2569
+		// Token: 0x02001514 RID: 5396
 		private class MaterialOverride
 		{
-			// Token: 0x0600428C RID: 17036 RVA: 0x0002F6FF File Offset: 0x0002D8FF
+			// Token: 0x060082F6 RID: 33526 RVA: 0x002DD494 File Offset: 0x002DB694
 			public MaterialOverride(Material original, Material replacement)
 			{
 				this.original = original;
@@ -99,24 +99,24 @@ namespace SoftMasking
 				this._useCount = 1;
 			}
 
-			// Token: 0x170007AC RID: 1964
-			// (get) Token: 0x0600428D RID: 17037 RVA: 0x0002F71C File Offset: 0x0002D91C
-			// (set) Token: 0x0600428E RID: 17038 RVA: 0x0002F724 File Offset: 0x0002D924
+			// Token: 0x17000B32 RID: 2866
+			// (get) Token: 0x060082F7 RID: 33527 RVA: 0x002DD4B1 File Offset: 0x002DB6B1
+			// (set) Token: 0x060082F8 RID: 33528 RVA: 0x002DD4B9 File Offset: 0x002DB6B9
 			public Material original { get; private set; }
 
-			// Token: 0x170007AD RID: 1965
-			// (get) Token: 0x0600428F RID: 17039 RVA: 0x0002F72D File Offset: 0x0002D92D
-			// (set) Token: 0x06004290 RID: 17040 RVA: 0x0002F735 File Offset: 0x0002D935
+			// Token: 0x17000B33 RID: 2867
+			// (get) Token: 0x060082F9 RID: 33529 RVA: 0x002DD4C2 File Offset: 0x002DB6C2
+			// (set) Token: 0x060082FA RID: 33530 RVA: 0x002DD4CA File Offset: 0x002DB6CA
 			public Material replacement { get; private set; }
 
-			// Token: 0x06004291 RID: 17041 RVA: 0x0002F73E File Offset: 0x0002D93E
+			// Token: 0x060082FB RID: 33531 RVA: 0x002DD4D3 File Offset: 0x002DB6D3
 			public Material Get()
 			{
 				this._useCount++;
 				return this.replacement;
 			}
 
-			// Token: 0x06004292 RID: 17042 RVA: 0x001CAE54 File Offset: 0x001C9054
+			// Token: 0x060082FC RID: 33532 RVA: 0x002DD4EC File Offset: 0x002DB6EC
 			public bool Release()
 			{
 				int num = this._useCount - 1;
@@ -124,7 +124,7 @@ namespace SoftMasking
 				return num == 0;
 			}
 
-			// Token: 0x04003AE8 RID: 15080
+			// Token: 0x04006E5B RID: 28251
 			private int _useCount;
 		}
 	}

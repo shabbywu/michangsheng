@@ -2,14 +2,14 @@
 
 namespace GoogleMobileAds.Api
 {
-	// Token: 0x02000E82 RID: 3714
+	// Token: 0x02000B14 RID: 2836
 	public enum Gender
 	{
-		// Token: 0x040058A9 RID: 22697
+		// Token: 0x04004E53 RID: 20051
 		Unknown,
-		// Token: 0x040058AA RID: 22698
+		// Token: 0x04004E54 RID: 20052
 		Male,
-		// Token: 0x040058AB RID: 22699
+		// Token: 0x04004E55 RID: 20053
 		Female
 	}
 }

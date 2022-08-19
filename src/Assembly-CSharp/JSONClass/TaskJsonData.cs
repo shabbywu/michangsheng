@@ -3,10 +3,10 @@ using System.Collections.Generic;
 
 namespace JSONClass
 {
-	// Token: 0x02000CF4 RID: 3316
+	// Token: 0x02000970 RID: 2416
 	public class TaskJsonData : IJSONClass
 	{
-		// Token: 0x06004F38 RID: 20280 RVA: 0x00213AA4 File Offset: 0x00211CA4
+		// Token: 0x060043D2 RID: 17362 RVA: 0x001CE0C4 File Offset: 0x001CC2C4
 		public static void InitDataDict()
 		{
 			foreach (JSONObject jsonobject in jsonData.instance.TaskJsonData.list)
@@ -49,54 +49,54 @@ namespace JSONClass
 			}
 		}
 
-		// Token: 0x06004F39 RID: 20281 RVA: 0x000042DD File Offset: 0x000024DD
+		// Token: 0x060043D3 RID: 17363 RVA: 0x00004095 File Offset: 0x00002295
 		private static void OnInitFinish()
 		{
 		}
 
-		// Token: 0x04004FFE RID: 20478
+		// Token: 0x040044EE RID: 17646
 		public static Dictionary<int, TaskJsonData> DataDict = new Dictionary<int, TaskJsonData>();
 
-		// Token: 0x04004FFF RID: 20479
+		// Token: 0x040044EF RID: 17647
 		public static List<TaskJsonData> DataList = new List<TaskJsonData>();
 
-		// Token: 0x04005000 RID: 20480
+		// Token: 0x040044F0 RID: 17648
 		public static Action OnInitFinishAction = new Action(TaskJsonData.OnInitFinish);
 
-		// Token: 0x04005001 RID: 20481
+		// Token: 0x040044F1 RID: 17649
 		public int id;
 
-		// Token: 0x04005002 RID: 20482
+		// Token: 0x040044F2 RID: 17650
 		public int Type;
 
-		// Token: 0x04005003 RID: 20483
+		// Token: 0x040044F3 RID: 17651
 		public int variable;
 
-		// Token: 0x04005004 RID: 20484
+		// Token: 0x040044F4 RID: 17652
 		public int circulation;
 
-		// Token: 0x04005005 RID: 20485
+		// Token: 0x040044F5 RID: 17653
 		public int mapIndex;
 
-		// Token: 0x04005006 RID: 20486
+		// Token: 0x040044F6 RID: 17654
 		public int continueTime;
 
-		// Token: 0x04005007 RID: 20487
+		// Token: 0x040044F7 RID: 17655
 		public int isFinsh;
 
-		// Token: 0x04005008 RID: 20488
+		// Token: 0x040044F8 RID: 17656
 		public string Name;
 
-		// Token: 0x04005009 RID: 20489
+		// Token: 0x040044F9 RID: 17657
 		public string Title;
 
-		// Token: 0x0400500A RID: 20490
+		// Token: 0x040044FA RID: 17658
 		public string Desc;
 
-		// Token: 0x0400500B RID: 20491
+		// Token: 0x040044FB RID: 17659
 		public string StarTime;
 
-		// Token: 0x0400500C RID: 20492
+		// Token: 0x040044FC RID: 17660
 		public string EndTime;
 	}
 }

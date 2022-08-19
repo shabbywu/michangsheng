@@ -2,14 +2,14 @@
 
 namespace Fungus
 {
-	// Token: 0x0200131D RID: 4893
+	// Token: 0x02000E9E RID: 3742
 	public enum KeyPressType
 	{
-		// Token: 0x040067ED RID: 26605
+		// Token: 0x040059D3 RID: 22995
 		KeyDown,
-		// Token: 0x040067EE RID: 26606
+		// Token: 0x040059D4 RID: 22996
 		KeyUp,
-		// Token: 0x040067EF RID: 26607
+		// Token: 0x040059D5 RID: 22997
 		KeyRepeat
 	}
 }

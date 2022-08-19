@@ -4,12 +4,12 @@ using UnityEngine;
 
 namespace BehaviorDesigner.Runtime.Tasks.Basic.UnityAnimator
 {
-	// Token: 0x0200165D RID: 5725
+	// Token: 0x0200119C RID: 4508
 	[TaskCategory("Basic/Animator")]
 	[TaskDescription("Sets the int parameter on an animator. Returns Success.")]
 	public class SetIntegerParameter : Action
 	{
-		// Token: 0x0600850B RID: 34059 RVA: 0x002D05EC File Offset: 0x002CE7EC
+		// Token: 0x06007705 RID: 30469 RVA: 0x002B7F50 File Offset: 0x002B6150
 		public override void OnStart()
 		{
 			GameObject defaultGameObject = base.GetDefaultGameObject(this.targetGameObject.Value);
@@ -20,7 +20,7 @@ namespace BehaviorDesigner.Runtime.Tasks.Basic.UnityAnimator
 			}
 		}
 
-		// Token: 0x0600850C RID: 34060 RVA: 0x002D062C File Offset: 0x002CE82C
+		// Token: 0x06007706 RID: 30470 RVA: 0x002B7F90 File Offset: 0x002B6190
 		public override TaskStatus OnUpdate()
 		{
 			if (this.animator == null)
@@ -38,7 +38,7 @@ namespace BehaviorDesigner.Runtime.Tasks.Basic.UnityAnimator
 			return 2;
 		}
 
-		// Token: 0x0600850D RID: 34061 RVA: 0x0005C351 File Offset: 0x0005A551
+		// Token: 0x06007707 RID: 30471 RVA: 0x002B8012 File Offset: 0x002B6212
 		public IEnumerator ResetValue(int origVale)
 		{
 			yield return null;
@@ -46,7 +46,7 @@ namespace BehaviorDesigner.Runtime.Tasks.Basic.UnityAnimator
 			yield break;
 		}
 
-		// Token: 0x0600850E RID: 34062 RVA: 0x0005C367 File Offset: 0x0005A567
+		// Token: 0x06007708 RID: 30472 RVA: 0x002B8028 File Offset: 0x002B6228
 		public override void OnReset()
 		{
 			this.targetGameObject = null;
@@ -54,29 +54,29 @@ namespace BehaviorDesigner.Runtime.Tasks.Basic.UnityAnimator
 			this.intValue = 0;
 		}
 
-		// Token: 0x040071C2 RID: 29122
+		// Token: 0x04006297 RID: 25239
 		[Tooltip("The GameObject that the task operates on. If null the task GameObject is used.")]
 		public SharedGameObject targetGameObject;
 
-		// Token: 0x040071C3 RID: 29123
+		// Token: 0x04006298 RID: 25240
 		[Tooltip("The name of the parameter")]
 		public SharedString paramaterName;
 
-		// Token: 0x040071C4 RID: 29124
+		// Token: 0x04006299 RID: 25241
 		[Tooltip("The value of the int parameter")]
 		public SharedInt intValue;
 
-		// Token: 0x040071C5 RID: 29125
+		// Token: 0x0400629A RID: 25242
 		[Tooltip("Should the value be reverted back to its original value after it has been set?")]
 		public bool setOnce;
 
-		// Token: 0x040071C6 RID: 29126
+		// Token: 0x0400629B RID: 25243
 		private int hashID;
 
-		// Token: 0x040071C7 RID: 29127
+		// Token: 0x0400629C RID: 25244
 		private Animator animator;
 
-		// Token: 0x040071C8 RID: 29128
+		// Token: 0x0400629D RID: 25245
 		private GameObject prevGameObject;
 	}
 }

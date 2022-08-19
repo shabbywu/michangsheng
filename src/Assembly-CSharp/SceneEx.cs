@@ -4,10 +4,10 @@ using Fungus;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-// Token: 0x020002D8 RID: 728
+// Token: 0x020001CD RID: 461
 public static class SceneEx
 {
-	// Token: 0x060015F3 RID: 5619 RVA: 0x000C5A04 File Offset: 0x000C3C04
+	// Token: 0x06001337 RID: 4919 RVA: 0x00078C60 File Offset: 0x00076E60
 	private static void Init()
 	{
 		if (!SceneEx.isInited)
@@ -37,8 +37,8 @@ public static class SceneEx
 		}
 	}
 
-	// Token: 0x17000270 RID: 624
-	// (get) Token: 0x060015F4 RID: 5620 RVA: 0x000C5BFC File Offset: 0x000C3DFC
+	// Token: 0x17000228 RID: 552
+	// (get) Token: 0x06001338 RID: 4920 RVA: 0x00078E58 File Offset: 0x00077058
 	public static string NowSceneName
 	{
 		get
@@ -47,7 +47,7 @@ public static class SceneEx
 		}
 	}
 
-	// Token: 0x060015F5 RID: 5621 RVA: 0x000C5C18 File Offset: 0x000C3E18
+	// Token: 0x06001339 RID: 4921 RVA: 0x00078E74 File Offset: 0x00077074
 	public static int GetNowSceneType()
 	{
 		SceneEx.Init();
@@ -75,7 +75,7 @@ public static class SceneEx
 		return 0;
 	}
 
-	// Token: 0x060015F6 RID: 5622 RVA: 0x000C5CE0 File Offset: 0x000C3EE0
+	// Token: 0x0600133A RID: 4922 RVA: 0x00078F3C File Offset: 0x0007713C
 	public static int ItemNowSceneJiaCheng(int itemid)
 	{
 		int result = 0;
@@ -98,13 +98,13 @@ public static class SceneEx
 		return result;
 	}
 
-	// Token: 0x060015F7 RID: 5623 RVA: 0x00013B76 File Offset: 0x00011D76
+	// Token: 0x0600133B RID: 4923 RVA: 0x0007900C File Offset: 0x0007720C
 	public static void LoadFuBen(string fubenName, int pos)
 	{
 		Fungus.LoadFuBen.loadfuben(fubenName, pos);
 	}
 
-	// Token: 0x060015F8 RID: 5624 RVA: 0x000C5DB0 File Offset: 0x000C3FB0
+	// Token: 0x0600133C RID: 4924 RVA: 0x00079018 File Offset: 0x00077218
 	public static void CloseYSFight()
 	{
 		foreach (GameObject gameObject in SceneManager.GetActiveScene().GetRootGameObjects())
@@ -123,7 +123,7 @@ public static class SceneEx
 		}
 	}
 
-	// Token: 0x060015F9 RID: 5625 RVA: 0x000C5E30 File Offset: 0x000C4030
+	// Token: 0x0600133D RID: 4925 RVA: 0x00079098 File Offset: 0x00077298
 	public static MapArea GetNowMapArea()
 	{
 		SceneEx.Init();
@@ -143,15 +143,15 @@ public static class SceneEx
 		return MapArea.Unknow;
 	}
 
-	// Token: 0x040011C7 RID: 4551
+	// Token: 0x04000E88 RID: 3720
 	private static bool isInited;
 
-	// Token: 0x040011C8 RID: 4552
+	// Token: 0x04000E89 RID: 3721
 	private static Dictionary<string, int> _SceneTypeDict = new Dictionary<string, int>();
 
-	// Token: 0x040011C9 RID: 4553
+	// Token: 0x04000E8A RID: 3722
 	private static Dictionary<int, List<int>> _SceneItemFlagType = new Dictionary<int, List<int>>();
 
-	// Token: 0x040011CA RID: 4554
+	// Token: 0x04000E8B RID: 3723
 	private static Dictionary<int, List<int>> _SceneItemPercent = new Dictionary<int, List<int>>();
 }

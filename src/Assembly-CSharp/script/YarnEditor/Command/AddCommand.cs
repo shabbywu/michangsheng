@@ -3,10 +3,10 @@ using Yarn.Unity;
 
 namespace script.YarnEditor.Command
 {
-	// Token: 0x02000AB5 RID: 2741
+	// Token: 0x020009CC RID: 2508
 	public class AddCommand
 	{
-		// Token: 0x06004623 RID: 17955 RVA: 0x000322C0 File Offset: 0x000304C0
+		// Token: 0x060045C4 RID: 17860 RVA: 0x001D90FB File Offset: 0x001D72FB
 		[YarnCommand("AddWuDaoDian")]
 		public static void AddWuDaoDian(int num)
 		{

@@ -2,16 +2,16 @@
 using Spine.Unity;
 using UnityEngine;
 
-// Token: 0x02000543 RID: 1347
+// Token: 0x020003B7 RID: 951
 public class autoRemoveSelf : MonoBehaviour
 {
-	// Token: 0x06002262 RID: 8802 RVA: 0x0001C322 File Offset: 0x0001A522
+	// Token: 0x06001EE4 RID: 7908 RVA: 0x000D8674 File Offset: 0x000D6874
 	private void Start()
 	{
 		base.Invoke("nextplay", 3.1f);
 	}
 
-	// Token: 0x06002263 RID: 8803 RVA: 0x0011B724 File Offset: 0x00119924
+	// Token: 0x06001EE5 RID: 7909 RVA: 0x000D8688 File Offset: 0x000D6888
 	public void nextplay()
 	{
 		SkeletonAnimation componentInChildren = base.GetComponentInChildren<SkeletonAnimation>();
@@ -21,7 +21,7 @@ public class autoRemoveSelf : MonoBehaviour
 		base.Invoke("endplay", 3.2f);
 	}
 
-	// Token: 0x06002264 RID: 8804 RVA: 0x0011B770 File Offset: 0x00119970
+	// Token: 0x06001EE6 RID: 7910 RVA: 0x000D86D4 File Offset: 0x000D68D4
 	public void endplay()
 	{
 		SkeletonAnimation componentInChildren = base.GetComponentInChildren<SkeletonAnimation>();
@@ -31,12 +31,12 @@ public class autoRemoveSelf : MonoBehaviour
 		base.Invoke("Removere", 3.2f);
 	}
 
-	// Token: 0x06002265 RID: 8805 RVA: 0x000111B3 File Offset: 0x0000F3B3
+	// Token: 0x06001EE7 RID: 7911 RVA: 0x0005C928 File Offset: 0x0005AB28
 	public void Removere()
 	{
 		Object.Destroy(base.gameObject);
 	}
 
-	// Token: 0x04001DB7 RID: 7607
+	// Token: 0x0400194A RID: 6474
 	public float time = 1f;
 }

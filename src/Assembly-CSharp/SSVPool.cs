@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 
-// Token: 0x0200050B RID: 1291
+// Token: 0x02000387 RID: 903
 public class SSVPool
 {
-	// Token: 0x0600214C RID: 8524 RVA: 0x001161D0 File Offset: 0x001143D0
+	// Token: 0x06001DD3 RID: 7635 RVA: 0x000D2498 File Offset: 0x000D0698
 	public SSVItem Get()
 	{
 		SSVItem ssvitem = null;
@@ -16,13 +16,13 @@ public class SSVPool
 		return ssvitem;
 	}
 
-	// Token: 0x0600214D RID: 8525 RVA: 0x0001B764 File Offset: 0x00019964
+	// Token: 0x06001DD4 RID: 7636 RVA: 0x000D24CE File Offset: 0x000D06CE
 	public void Recovery(SSVItem item)
 	{
 		item.gameObject.SetActive(false);
 		this.Items.Push(item);
 	}
 
-	// Token: 0x04001CD6 RID: 7382
+	// Token: 0x04001878 RID: 6264
 	private Stack<SSVItem> Items = new Stack<SSVItem>();
 }

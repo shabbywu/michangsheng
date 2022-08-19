@@ -2,10 +2,10 @@
 
 namespace KBEngine
 {
-	// Token: 0x02000EF0 RID: 3824
+	// Token: 0x02000B72 RID: 2930
 	public class EntityCellEntityCall_BuildBase : EntityCall
 	{
-		// Token: 0x06005C3F RID: 23615 RVA: 0x00040E9C File Offset: 0x0003F09C
+		// Token: 0x06005203 RID: 20995 RVA: 0x00223AFA File Offset: 0x00221CFA
 		public EntityCellEntityCall_BuildBase(int eid, string ename) : base(eid, ename)
 		{
 			this.type = EntityCall.ENTITYCALL_TYPE.ENTITYCALL_TYPE_CELL;

@@ -3,10 +3,10 @@ using System.Collections.Generic;
 
 namespace JSONClass
 {
-	// Token: 0x02000C3B RID: 3131
+	// Token: 0x020008AD RID: 2221
 	public class NPCTagDate : IJSONClass
 	{
-		// Token: 0x06004C55 RID: 19541 RVA: 0x00203C14 File Offset: 0x00201E14
+		// Token: 0x060040C7 RID: 16583 RVA: 0x001BAD80 File Offset: 0x001B8F80
 		public static void InitDataDict()
 		{
 			foreach (JSONObject jsonobject in jsonData.instance.NPCTagDate.list)
@@ -44,39 +44,39 @@ namespace JSONClass
 			}
 		}
 
-		// Token: 0x06004C56 RID: 19542 RVA: 0x000042DD File Offset: 0x000024DD
+		// Token: 0x060040C8 RID: 16584 RVA: 0x00004095 File Offset: 0x00002295
 		private static void OnInitFinish()
 		{
 		}
 
-		// Token: 0x04004A43 RID: 19011
+		// Token: 0x04003EEB RID: 16107
 		public static Dictionary<int, NPCTagDate> DataDict = new Dictionary<int, NPCTagDate>();
 
-		// Token: 0x04004A44 RID: 19012
+		// Token: 0x04003EEC RID: 16108
 		public static List<NPCTagDate> DataList = new List<NPCTagDate>();
 
-		// Token: 0x04004A45 RID: 19013
+		// Token: 0x04003EED RID: 16109
 		public static Action OnInitFinishAction = new Action(NPCTagDate.OnInitFinish);
 
-		// Token: 0x04004A46 RID: 19014
+		// Token: 0x04003EEE RID: 16110
 		public int id;
 
-		// Token: 0x04004A47 RID: 19015
+		// Token: 0x04003EEF RID: 16111
 		public int zhengxie;
 
-		// Token: 0x04004A48 RID: 19016
+		// Token: 0x04003EF0 RID: 16112
 		public string GuanLianTalk;
 
-		// Token: 0x04004A49 RID: 19017
+		// Token: 0x04003EF1 RID: 16113
 		public List<int> WuDao = new List<int>();
 
-		// Token: 0x04004A4A RID: 19018
+		// Token: 0x04003EF2 RID: 16114
 		public List<int> Change = new List<int>();
 
-		// Token: 0x04004A4B RID: 19019
+		// Token: 0x04003EF3 RID: 16115
 		public List<int> ChangeTo = new List<int>();
 
-		// Token: 0x04004A4C RID: 19020
+		// Token: 0x04003EF4 RID: 16116
 		public List<int> BeiBaoType = new List<int>();
 	}
 }

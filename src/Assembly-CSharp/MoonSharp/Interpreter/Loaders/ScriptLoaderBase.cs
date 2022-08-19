@@ -3,16 +3,16 @@ using System.Linq;
 
 namespace MoonSharp.Interpreter.Loaders
 {
-	// Token: 0x020010DD RID: 4317
+	// Token: 0x02000CFF RID: 3327
 	public abstract class ScriptLoaderBase : IScriptLoader
 	{
-		// Token: 0x06006837 RID: 26679
+		// Token: 0x06005D1D RID: 23837
 		public abstract bool ScriptFileExists(string name);
 
-		// Token: 0x06006838 RID: 26680
+		// Token: 0x06005D1E RID: 23838
 		public abstract object LoadFile(string file, Table globalContext);
 
-		// Token: 0x06006839 RID: 26681 RVA: 0x0028B078 File Offset: 0x00289278
+		// Token: 0x06005D1F RID: 23839 RVA: 0x002620BC File Offset: 0x002602BC
 		protected virtual string ResolveModuleName(string modname, string[] paths)
 		{
 			if (paths == null)
@@ -31,7 +31,7 @@ namespace MoonSharp.Interpreter.Loaders
 			return null;
 		}
 
-		// Token: 0x0600683A RID: 26682 RVA: 0x0028B0C4 File Offset: 0x002892C4
+		// Token: 0x06005D20 RID: 23840 RVA: 0x00262108 File Offset: 0x00260308
 		public virtual string ResolveModuleName(string modname, Table globalContext)
 		{
 			if (!this.IgnoreLuaPathGlobal)
@@ -45,12 +45,12 @@ namespace MoonSharp.Interpreter.Loaders
 			return this.ResolveModuleName(modname, this.ModulePaths);
 		}
 
-		// Token: 0x17000957 RID: 2391
-		// (get) Token: 0x0600683B RID: 26683 RVA: 0x00047897 File Offset: 0x00045A97
-		// (set) Token: 0x0600683C RID: 26684 RVA: 0x0004789F File Offset: 0x00045A9F
+		// Token: 0x170006FC RID: 1788
+		// (get) Token: 0x06005D21 RID: 23841 RVA: 0x00262155 File Offset: 0x00260355
+		// (set) Token: 0x06005D22 RID: 23842 RVA: 0x0026215D File Offset: 0x0026035D
 		public string[] ModulePaths { get; set; }
 
-		// Token: 0x0600683D RID: 26685 RVA: 0x0028B114 File Offset: 0x00289314
+		// Token: 0x06005D23 RID: 23843 RVA: 0x00262168 File Offset: 0x00260368
 		public static string[] UnpackStringPaths(string str)
 		{
 			return (from s in str.Split(new char[]
@@ -62,7 +62,7 @@ namespace MoonSharp.Interpreter.Loaders
 			select s).ToArray<string>();
 		}
 
-		// Token: 0x0600683E RID: 26686 RVA: 0x0028B180 File Offset: 0x00289380
+		// Token: 0x06005D24 RID: 23844 RVA: 0x002621D4 File Offset: 0x002603D4
 		public static string[] GetDefaultEnvironmentPaths()
 		{
 			string[] array = null;
@@ -89,15 +89,15 @@ namespace MoonSharp.Interpreter.Loaders
 			return array;
 		}
 
-		// Token: 0x0600683F RID: 26687 RVA: 0x00010DC9 File Offset: 0x0000EFC9
+		// Token: 0x06005D25 RID: 23845 RVA: 0x001086F1 File Offset: 0x001068F1
 		public virtual string ResolveFileName(string filename, Table globalContext)
 		{
 			return filename;
 		}
 
-		// Token: 0x17000958 RID: 2392
-		// (get) Token: 0x06006840 RID: 26688 RVA: 0x000478A8 File Offset: 0x00045AA8
-		// (set) Token: 0x06006841 RID: 26689 RVA: 0x000478B0 File Offset: 0x00045AB0
+		// Token: 0x170006FD RID: 1789
+		// (get) Token: 0x06005D26 RID: 23846 RVA: 0x00262240 File Offset: 0x00260440
+		// (set) Token: 0x06005D27 RID: 23847 RVA: 0x00262248 File Offset: 0x00260448
 		public bool IgnoreLuaPathGlobal { get; set; }
 	}
 }

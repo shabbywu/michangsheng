@@ -3,10 +3,10 @@ using KBEngine;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-// Token: 0x0200062C RID: 1580
+// Token: 0x0200046F RID: 1135
 public class showShouPai : MonoBehaviour, IPointerEnterHandler, IEventSystemHandler, IPointerExitHandler
 {
-	// Token: 0x0600273E RID: 10046 RVA: 0x00133300 File Offset: 0x00131500
+	// Token: 0x06002385 RID: 9093 RVA: 0x000F320C File Offset: 0x000F140C
 	public void OnPointerEnter(PointerEventData eventData)
 	{
 		Avatar avatar = this.target.avatar;
@@ -20,25 +20,25 @@ public class showShouPai : MonoBehaviour, IPointerEnterHandler, IEventSystemHand
 		this.tooltip.showTooltip = true;
 	}
 
-	// Token: 0x0600273F RID: 10047 RVA: 0x0001F264 File Offset: 0x0001D464
+	// Token: 0x06002386 RID: 9094 RVA: 0x000F327D File Offset: 0x000F147D
 	public void OnPointerExit(PointerEventData eventData)
 	{
 		this.tooltip.showTooltip = false;
 	}
 
-	// Token: 0x06002740 RID: 10048 RVA: 0x000042DD File Offset: 0x000024DD
+	// Token: 0x06002387 RID: 9095 RVA: 0x00004095 File Offset: 0x00002295
 	private void Start()
 	{
 	}
 
-	// Token: 0x06002741 RID: 10049 RVA: 0x000042DD File Offset: 0x000024DD
+	// Token: 0x06002388 RID: 9096 RVA: 0x00004095 File Offset: 0x00002295
 	private void Update()
 	{
 	}
 
-	// Token: 0x04002151 RID: 8529
+	// Token: 0x04001C79 RID: 7289
 	public TooltipScale tooltip;
 
-	// Token: 0x04002152 RID: 8530
+	// Token: 0x04001C7A RID: 7290
 	public UI_Target target;
 }

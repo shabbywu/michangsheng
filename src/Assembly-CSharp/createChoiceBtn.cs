@@ -3,17 +3,17 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-// Token: 0x0200058D RID: 1421
+// Token: 0x020003EC RID: 1004
 public class createChoiceBtn : MonoBehaviour
 {
-	// Token: 0x06002409 RID: 9225 RVA: 0x00126A8C File Offset: 0x00124C8C
+	// Token: 0x06002076 RID: 8310 RVA: 0x000E4720 File Offset: 0x000E2920
 	private void Start()
 	{
 		base.GetComponent<UIButton>().onClick.Add(new EventDelegate(new EventDelegate.Callback(this.resteChoice)));
 		base.GetComponent<UIButton>().onClick.Add(new EventDelegate(new EventDelegate.Callback(this.SetHasColorSelect)));
 	}
 
-	// Token: 0x0600240A RID: 9226 RVA: 0x00126ADC File Offset: 0x00124CDC
+	// Token: 0x06002077 RID: 8311 RVA: 0x000E4770 File Offset: 0x000E2970
 	public void SetHasColorSelect()
 	{
 		string text = base.transform.Find("Label").GetComponent<UILabel>().text;
@@ -58,7 +58,7 @@ public class createChoiceBtn : MonoBehaviour
 		}
 	}
 
-	// Token: 0x0600240B RID: 9227 RVA: 0x00126D68 File Offset: 0x00124F68
+	// Token: 0x06002078 RID: 8312 RVA: 0x000E49FC File Offset: 0x000E2BFC
 	public void resteChoice()
 	{
 		string text = base.transform.Find("Label").GetComponent<UILabel>().text;
@@ -100,7 +100,7 @@ public class createChoiceBtn : MonoBehaviour
 		UIPopTip.Inst.Pop("找不到类型" + text, PopTipIconType.叹号);
 	}
 
-	// Token: 0x0600240C RID: 9228 RVA: 0x0001D154 File Offset: 0x0001B354
+	// Token: 0x06002079 RID: 8313 RVA: 0x000E4BFC File Offset: 0x000E2DFC
 	private void setImage(GameObject _temp, string imageName, Sprite img)
 	{
 		if (img == null)

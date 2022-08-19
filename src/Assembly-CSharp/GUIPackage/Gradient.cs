@@ -5,11 +5,11 @@ using UnityEngine.UI;
 
 namespace GUIPackage
 {
-	// Token: 0x02000D76 RID: 3446
+	// Token: 0x02000A56 RID: 2646
 	[AddComponentMenu("UI/Effects/Gradient")]
 	public class Gradient : BaseMeshEffect
 	{
-		// Token: 0x060052CC RID: 21196 RVA: 0x00227E50 File Offset: 0x00226050
+		// Token: 0x060049E1 RID: 18913 RVA: 0x001F53CC File Offset: 0x001F35CC
 		public override void ModifyMesh(VertexHelper vh)
 		{
 			if (!this.IsActive())
@@ -24,7 +24,7 @@ namespace GUIPackage
 			vh.AddUIVertexTriangleStream(list);
 		}
 
-		// Token: 0x060052CD RID: 21197 RVA: 0x00227E90 File Offset: 0x00226090
+		// Token: 0x060049E2 RID: 18914 RVA: 0x001F540C File Offset: 0x001F360C
 		private void ApplyGradient(List<UIVertex> vertexList, int start, int end)
 		{
 			float num = vertexList[0].position.y;
@@ -50,11 +50,11 @@ namespace GUIPackage
 			}
 		}
 
-		// Token: 0x040052D4 RID: 21204
+		// Token: 0x0400494F RID: 18767
 		[SerializeField]
 		private Color32 topColor = Color.white;
 
-		// Token: 0x040052D5 RID: 21205
+		// Token: 0x04004950 RID: 18768
 		[SerializeField]
 		private Color32 bottomColor = Color.black;
 	}

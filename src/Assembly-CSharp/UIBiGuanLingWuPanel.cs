@@ -9,17 +9,17 @@ using UnityEngine.EventSystems;
 using UnityEngine.UI;
 using YSGame;
 
-// Token: 0x020003B1 RID: 945
+// Token: 0x02000288 RID: 648
 public class UIBiGuanLingWuPanel : TabPanelBase
 {
-	// Token: 0x06001A3D RID: 6717 RVA: 0x000166BB File Offset: 0x000148BB
+	// Token: 0x06001769 RID: 5993 RVA: 0x000A06BF File Offset: 0x0009E8BF
 	public override void OnPanelShow()
 	{
 		base.OnPanelShow();
 		this.RefreshUI();
 	}
 
-	// Token: 0x06001A3E RID: 6718 RVA: 0x000166C9 File Offset: 0x000148C9
+	// Token: 0x0600176A RID: 5994 RVA: 0x000A06CD File Offset: 0x0009E8CD
 	public void RefreshUI()
 	{
 		this.RefreshInventory();
@@ -27,7 +27,7 @@ public class UIBiGuanLingWuPanel : TabPanelBase
 		UIBiGuanPanel.Inst.RefreshKeFangTime();
 	}
 
-	// Token: 0x06001A3F RID: 6719 RVA: 0x000E7BBC File Offset: 0x000E5DBC
+	// Token: 0x0600176B RID: 5995 RVA: 0x000A06E8 File Offset: 0x0009E8E8
 	public void RefreshInventory()
 	{
 		this.SVContent.DestoryAllChild();
@@ -215,7 +215,7 @@ public class UIBiGuanLingWuPanel : TabPanelBase
 		}
 	}
 
-	// Token: 0x06001A40 RID: 6720 RVA: 0x000E81A4 File Offset: 0x000E63A4
+	// Token: 0x0600176C RID: 5996 RVA: 0x000A0CD0 File Offset: 0x0009EED0
 	public void SetAllIconUnSelected()
 	{
 		int childCount = this.SVContent.childCount;
@@ -225,7 +225,7 @@ public class UIBiGuanLingWuPanel : TabPanelBase
 		}
 	}
 
-	// Token: 0x06001A41 RID: 6721 RVA: 0x000E81E8 File Offset: 0x000E63E8
+	// Token: 0x0600176D RID: 5997 RVA: 0x000A0D14 File Offset: 0x0009EF14
 	public void SetNull()
 	{
 		this.tmpIcon = null;
@@ -237,7 +237,7 @@ public class UIBiGuanLingWuPanel : TabPanelBase
 		this.BtnImage2.material = this.GreyMat;
 	}
 
-	// Token: 0x06001A42 RID: 6722 RVA: 0x000E8260 File Offset: 0x000E6460
+	// Token: 0x0600176E RID: 5998 RVA: 0x000A0D8C File Offset: 0x0009EF8C
 	public void SetLingWu(UIIconShow iconShow, string tiaojian, string castTime, string shuoming)
 	{
 		this.tmpIcon = iconShow;
@@ -249,19 +249,19 @@ public class UIBiGuanLingWuPanel : TabPanelBase
 		this.LingWuShuoMingText.text = shuoming;
 	}
 
-	// Token: 0x06001A43 RID: 6723 RVA: 0x000166E1 File Offset: 0x000148E1
+	// Token: 0x0600176F RID: 5999 RVA: 0x000A0DF3 File Offset: 0x0009EFF3
 	public void OnLingWuButtonClick()
 	{
 		this.ReadBook();
 	}
 
-	// Token: 0x06001A44 RID: 6724 RVA: 0x000166E9 File Offset: 0x000148E9
+	// Token: 0x06001770 RID: 6000 RVA: 0x000A0DFB File Offset: 0x0009EFFB
 	public void OnFilterChanged()
 	{
 		this.RefreshUI();
 	}
 
-	// Token: 0x06001A45 RID: 6725 RVA: 0x000E82C8 File Offset: 0x000E64C8
+	// Token: 0x06001771 RID: 6001 RVA: 0x000A0E04 File Offset: 0x0009F004
 	public void ReadBook()
 	{
 		if (this.tmpIcon == null)
@@ -287,36 +287,36 @@ public class UIBiGuanLingWuPanel : TabPanelBase
 		}, true);
 	}
 
-	// Token: 0x04001598 RID: 5528
+	// Token: 0x04001222 RID: 4642
 	public RectTransform SVContent;
 
-	// Token: 0x04001599 RID: 5529
+	// Token: 0x04001223 RID: 4643
 	public Dropdown Fillter1;
 
-	// Token: 0x0400159A RID: 5530
+	// Token: 0x04001224 RID: 4644
 	public Dropdown Filter2;
 
-	// Token: 0x0400159B RID: 5531
+	// Token: 0x04001225 RID: 4645
 	public Text RightTitle;
 
-	// Token: 0x0400159C RID: 5532
+	// Token: 0x04001226 RID: 4646
 	public Text LingWuTiaoJianText;
 
-	// Token: 0x0400159D RID: 5533
+	// Token: 0x04001227 RID: 4647
 	public Text LingWuXiaoHaoText;
 
-	// Token: 0x0400159E RID: 5534
+	// Token: 0x04001228 RID: 4648
 	public Text LingWuShuoMingText;
 
-	// Token: 0x0400159F RID: 5535
+	// Token: 0x04001229 RID: 4649
 	public Image BtnImage1;
 
-	// Token: 0x040015A0 RID: 5536
+	// Token: 0x0400122A RID: 4650
 	public Image BtnImage2;
 
-	// Token: 0x040015A1 RID: 5537
+	// Token: 0x0400122B RID: 4651
 	public Material GreyMat;
 
-	// Token: 0x040015A2 RID: 5538
+	// Token: 0x0400122C RID: 4652
 	private UIIconShow tmpIcon;
 }

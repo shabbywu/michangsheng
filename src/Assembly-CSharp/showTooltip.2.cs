@@ -1,11 +1,11 @@
 ﻿using System;
 using UnityEngine;
 
-// Token: 0x020005DA RID: 1498
+// Token: 0x02000426 RID: 1062
 public class showTooltip : MonoBehaviour
 {
-	// Token: 0x170002D0 RID: 720
-	// (get) Token: 0x060025AE RID: 9646 RVA: 0x0001E2CF File Offset: 0x0001C4CF
+	// Token: 0x17000286 RID: 646
+	// (get) Token: 0x060021F4 RID: 8692 RVA: 0x000E9ED0 File Offset: 0x000E80D0
 	public static showTooltip Instence
 	{
 		get
@@ -15,19 +15,19 @@ public class showTooltip : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060025AF RID: 9647 RVA: 0x0001E2E2 File Offset: 0x0001C4E2
+	// Token: 0x060021F5 RID: 8693 RVA: 0x000E9EE3 File Offset: 0x000E80E3
 	private void Start()
 	{
 		showTooltip.instence = this;
 	}
 
-	// Token: 0x060025B0 RID: 9648 RVA: 0x0001E2EA File Offset: 0x0001C4EA
+	// Token: 0x060021F6 RID: 8694 RVA: 0x000E9EEB File Offset: 0x000E80EB
 	private void OnDestroy()
 	{
 		showTooltip.instence = null;
 	}
 
-	// Token: 0x060025B1 RID: 9649 RVA: 0x0012B2DC File Offset: 0x001294DC
+	// Token: 0x060021F7 RID: 8695 RVA: 0x000E9EF4 File Offset: 0x000E80F4
 	private void Update()
 	{
 		if (this.ISshowTooltip)
@@ -48,9 +48,9 @@ public class showTooltip : MonoBehaviour
 		base.transform.position = new Vector3(0f, 10000f, 0f);
 	}
 
-	// Token: 0x04002023 RID: 8227
+	// Token: 0x04001B5D RID: 7005
 	private static showTooltip instence;
 
-	// Token: 0x04002024 RID: 8228
+	// Token: 0x04001B5E RID: 7006
 	public bool ISshowTooltip;
 }

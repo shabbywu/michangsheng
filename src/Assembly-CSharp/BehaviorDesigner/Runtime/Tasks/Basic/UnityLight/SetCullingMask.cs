@@ -3,12 +3,12 @@ using UnityEngine;
 
 namespace BehaviorDesigner.Runtime.Tasks.Basic.UnityLight
 {
-	// Token: 0x020015D8 RID: 5592
+	// Token: 0x02001119 RID: 4377
 	[TaskCategory("Basic/Light")]
 	[TaskDescription("Sets the culling mask of the light.")]
 	public class SetCullingMask : Action
 	{
-		// Token: 0x06008314 RID: 33556 RVA: 0x002CE6AC File Offset: 0x002CC8AC
+		// Token: 0x0600751A RID: 29978 RVA: 0x002B3E08 File Offset: 0x002B2008
 		public override void OnStart()
 		{
 			GameObject defaultGameObject = base.GetDefaultGameObject(this.targetGameObject.Value);
@@ -19,7 +19,7 @@ namespace BehaviorDesigner.Runtime.Tasks.Basic.UnityLight
 			}
 		}
 
-		// Token: 0x06008315 RID: 33557 RVA: 0x0005A099 File Offset: 0x00058299
+		// Token: 0x0600751B RID: 29979 RVA: 0x002B3E48 File Offset: 0x002B2048
 		public override TaskStatus OnUpdate()
 		{
 			if (this.light == null)
@@ -31,25 +31,25 @@ namespace BehaviorDesigner.Runtime.Tasks.Basic.UnityLight
 			return 2;
 		}
 
-		// Token: 0x06008316 RID: 33558 RVA: 0x0005A0CC File Offset: 0x000582CC
+		// Token: 0x0600751C RID: 29980 RVA: 0x002B3E7B File Offset: 0x002B207B
 		public override void OnReset()
 		{
 			this.targetGameObject = null;
 			this.cullingMask = -1;
 		}
 
-		// Token: 0x04006FE7 RID: 28647
+		// Token: 0x040060C4 RID: 24772
 		[Tooltip("The GameObject that the task operates on. If null the task GameObject is used.")]
 		public SharedGameObject targetGameObject;
 
-		// Token: 0x04006FE8 RID: 28648
+		// Token: 0x040060C5 RID: 24773
 		[Tooltip("The culling mask to set")]
 		public LayerMask cullingMask;
 
-		// Token: 0x04006FE9 RID: 28649
+		// Token: 0x040060C6 RID: 24774
 		private Light light;
 
-		// Token: 0x04006FEA RID: 28650
+		// Token: 0x040060C7 RID: 24775
 		private GameObject prevGameObject;
 	}
 }

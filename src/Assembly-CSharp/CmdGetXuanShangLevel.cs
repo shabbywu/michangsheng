@@ -2,12 +2,12 @@
 using Fungus;
 using UnityEngine;
 
-// Token: 0x02000360 RID: 864
+// Token: 0x02000244 RID: 580
 [CommandInfo("YSPlayer", "获取悬赏等级", "获取悬赏等级赋值到TmpValue", 0)]
 [AddComponentMenu("")]
 public class CmdGetXuanShangLevel : Command
 {
-	// Token: 0x060018EC RID: 6380 RVA: 0x000DEBC4 File Offset: 0x000DCDC4
+	// Token: 0x06001634 RID: 5684 RVA: 0x00096680 File Offset: 0x00094880
 	public override void OnEnter()
 	{
 		Flowchart flowchart = this.GetFlowchart();
@@ -16,7 +16,7 @@ public class CmdGetXuanShangLevel : Command
 		this.Continue();
 	}
 
-	// Token: 0x040013DC RID: 5084
+	// Token: 0x04001084 RID: 4228
 	[SerializeField]
 	[Tooltip("势力ID 0宁州 19无尽之海")]
 	[VariableProperty(new Type[]

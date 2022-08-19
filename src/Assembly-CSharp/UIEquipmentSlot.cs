@@ -1,12 +1,12 @@
 ﻿using System;
 using UnityEngine;
 
-// Token: 0x02000047 RID: 71
+// Token: 0x02000034 RID: 52
 [AddComponentMenu("NGUI/Examples/UI Equipment Slot")]
 public class UIEquipmentSlot : UIItemSlot
 {
-	// Token: 0x1700007C RID: 124
-	// (get) Token: 0x06000455 RID: 1109 RVA: 0x00007CE1 File Offset: 0x00005EE1
+	// Token: 0x17000070 RID: 112
+	// (get) Token: 0x0600040D RID: 1037 RVA: 0x000169DC File Offset: 0x00014BDC
 	protected override InvGameItem observedItem
 	{
 		get
@@ -19,7 +19,7 @@ public class UIEquipmentSlot : UIItemSlot
 		}
 	}
 
-	// Token: 0x06000456 RID: 1110 RVA: 0x00007D04 File Offset: 0x00005F04
+	// Token: 0x0600040E RID: 1038 RVA: 0x000169FF File Offset: 0x00014BFF
 	protected override InvGameItem Replace(InvGameItem item)
 	{
 		if (!(this.equipment != null))
@@ -29,9 +29,9 @@ public class UIEquipmentSlot : UIItemSlot
 		return this.equipment.Replace(this.slot, item);
 	}
 
-	// Token: 0x0400027E RID: 638
+	// Token: 0x04000238 RID: 568
 	public InvEquipment equipment;
 
-	// Token: 0x0400027F RID: 639
+	// Token: 0x04000239 RID: 569
 	public InvBaseItem.Slot slot;
 }

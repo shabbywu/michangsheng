@@ -3,26 +3,26 @@ using System.Runtime.Serialization;
 
 namespace ICSharpCode.SharpZipLib.GZip
 {
-	// Token: 0x02000816 RID: 2070
+	// Token: 0x0200056E RID: 1390
 	[Serializable]
 	public class GZipException : SharpZipBaseException
 	{
-		// Token: 0x06003656 RID: 13910 RVA: 0x0002505B File Offset: 0x0002325B
+		// Token: 0x06002DE0 RID: 11744 RVA: 0x001421C7 File Offset: 0x001403C7
 		public GZipException()
 		{
 		}
 
-		// Token: 0x06003657 RID: 13911 RVA: 0x0002488E File Offset: 0x00022A8E
+		// Token: 0x06002DE1 RID: 11745 RVA: 0x001402D3 File Offset: 0x0013E4D3
 		public GZipException(string message) : base(message)
 		{
 		}
 
-		// Token: 0x06003658 RID: 13912 RVA: 0x00024897 File Offset: 0x00022A97
+		// Token: 0x06002DE2 RID: 11746 RVA: 0x001402DC File Offset: 0x0013E4DC
 		public GZipException(string message, Exception innerException) : base(message, innerException)
 		{
 		}
 
-		// Token: 0x06003659 RID: 13913 RVA: 0x000248A1 File Offset: 0x00022AA1
+		// Token: 0x06002DE3 RID: 11747 RVA: 0x001402E6 File Offset: 0x0013E4E6
 		protected GZipException(SerializationInfo info, StreamingContext context) : base(info, context)
 		{
 		}

@@ -2,10 +2,10 @@
 using System.Collections;
 using UnityEngine;
 
-// Token: 0x02000128 RID: 296
+// Token: 0x020000B9 RID: 185
 public class FlickerLight : MonoBehaviour
 {
-	// Token: 0x06000B7A RID: 2938 RVA: 0x0009291C File Offset: 0x00090B1C
+	// Token: 0x06000A9D RID: 2717 RVA: 0x000405E8 File Offset: 0x0003E7E8
 	private void Start()
 	{
 		this.lamp = base.gameObject;
@@ -15,7 +15,7 @@ public class FlickerLight : MonoBehaviour
 		base.StartCoroutine(this.Timer());
 	}
 
-	// Token: 0x06000B7B RID: 2939 RVA: 0x00092984 File Offset: 0x00090B84
+	// Token: 0x06000A9E RID: 2718 RVA: 0x00040650 File Offset: 0x0003E850
 	private void LateUpdate()
 	{
 		if (this.loopEnd)
@@ -30,7 +30,7 @@ public class FlickerLight : MonoBehaviour
 		this.lamp.GetComponent<Light>().color = this.col_Main;
 	}
 
-	// Token: 0x06000B7C RID: 2940 RVA: 0x0000D8A0 File Offset: 0x0000BAA0
+	// Token: 0x06000A9F RID: 2719 RVA: 0x0004071D File Offset: 0x0003E91D
 	private IEnumerator Timer()
 	{
 		this.timung = false;
@@ -51,60 +51,60 @@ public class FlickerLight : MonoBehaviour
 		yield break;
 	}
 
-	// Token: 0x04000836 RID: 2102
+	// Token: 0x04000692 RID: 1682
 	public float lampSpeed = 0.1f;
 
-	// Token: 0x04000837 RID: 2103
+	// Token: 0x04000693 RID: 1683
 	public float intens_Speed = 9f;
 
-	// Token: 0x04000838 RID: 2104
+	// Token: 0x04000694 RID: 1684
 	public bool timung;
 
-	// Token: 0x04000839 RID: 2105
+	// Token: 0x04000695 RID: 1685
 	public float minIntens = 0.8f;
 
-	// Token: 0x0400083A RID: 2106
+	// Token: 0x04000696 RID: 1686
 	public float maxIntens = 3.5f;
 
-	// Token: 0x0400083B RID: 2107
+	// Token: 0x04000697 RID: 1687
 	public bool loopEnd;
 
-	// Token: 0x0400083C RID: 2108
+	// Token: 0x04000698 RID: 1688
 	public float range_Speed = 12f;
 
-	// Token: 0x0400083D RID: 2109
+	// Token: 0x04000699 RID: 1689
 	public float minRange = 2.8f;
 
-	// Token: 0x0400083E RID: 2110
+	// Token: 0x0400069A RID: 1690
 	public float maxRange = 13.5f;
 
-	// Token: 0x0400083F RID: 2111
+	// Token: 0x0400069B RID: 1691
 	public Color col_Main = Color.white;
 
-	// Token: 0x04000840 RID: 2112
+	// Token: 0x0400069C RID: 1692
 	public float col_Speed = 1.5f;
 
-	// Token: 0x04000841 RID: 2113
+	// Token: 0x0400069D RID: 1693
 	public Color col_Blend1 = Color.yellow;
 
-	// Token: 0x04000842 RID: 2114
+	// Token: 0x0400069E RID: 1694
 	public Color col_Blend2 = Color.red;
 
-	// Token: 0x04000843 RID: 2115
+	// Token: 0x0400069F RID: 1695
 	private Color refCol;
 
-	// Token: 0x04000844 RID: 2116
+	// Token: 0x040006A0 RID: 1696
 	private float intens;
 
-	// Token: 0x04000845 RID: 2117
+	// Token: 0x040006A1 RID: 1697
 	private float randomIntens;
 
-	// Token: 0x04000846 RID: 2118
+	// Token: 0x040006A2 RID: 1698
 	private float range;
 
-	// Token: 0x04000847 RID: 2119
+	// Token: 0x040006A3 RID: 1699
 	private float randomRange;
 
-	// Token: 0x04000848 RID: 2120
+	// Token: 0x040006A4 RID: 1700
 	private GameObject lamp;
 }

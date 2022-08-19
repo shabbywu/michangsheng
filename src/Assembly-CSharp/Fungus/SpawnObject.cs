@@ -4,14 +4,14 @@ using UnityEngine.Serialization;
 
 namespace Fungus
 {
-	// Token: 0x0200129C RID: 4764
+	// Token: 0x02000E4B RID: 3659
 	[CommandInfo("Scripting", "Spawn Object", "Spawns a new object based on a reference to a scene or prefab game object.", 0, Priority = 10)]
 	[CommandInfo("GameObject", "Instantiate", "Instantiate a game object", 0)]
 	[AddComponentMenu("")]
 	[ExecuteInEditMode]
 	public class SpawnObject : Command
 	{
-		// Token: 0x06007377 RID: 29559 RVA: 0x002AB160 File Offset: 0x002A9360
+		// Token: 0x060066E9 RID: 26345 RVA: 0x002882D0 File Offset: 0x002864D0
 		public override void OnEnter()
 		{
 			if (this._sourceObject.Value == null)
@@ -41,7 +41,7 @@ namespace Fungus
 			this.Continue();
 		}
 
-		// Token: 0x06007378 RID: 29560 RVA: 0x0004EC76 File Offset: 0x0004CE76
+		// Token: 0x060066EA RID: 26346 RVA: 0x002883AE File Offset: 0x002865AE
 		public override string GetSummary()
 		{
 			if (this._sourceObject.Value == null)
@@ -51,19 +51,19 @@ namespace Fungus
 			return this._sourceObject.Value.name;
 		}
 
-		// Token: 0x06007379 RID: 29561 RVA: 0x0004C5E0 File Offset: 0x0004A7E0
+		// Token: 0x060066EB RID: 26347 RVA: 0x0027D3DB File Offset: 0x0027B5DB
 		public override Color GetButtonColor()
 		{
 			return new Color32(235, 191, 217, byte.MaxValue);
 		}
 
-		// Token: 0x0600737A RID: 29562 RVA: 0x002AB240 File Offset: 0x002A9440
+		// Token: 0x060066EC RID: 26348 RVA: 0x002883DC File Offset: 0x002865DC
 		public override bool HasReference(Variable variable)
 		{
 			return this._sourceObject.gameObjectRef == variable || this._parentTransform.transformRef == variable || this._spawnAtSelf.booleanRef == variable || this._spawnPosition.vector3Ref == variable || this._spawnRotation.vector3Ref == variable;
 		}
 
-		// Token: 0x0600737B RID: 29563 RVA: 0x002AB2B0 File Offset: 0x002A94B0
+		// Token: 0x060066ED RID: 26349 RVA: 0x0028844C File Offset: 0x0028664C
 		protected virtual void OnEnable()
 		{
 			if (this.sourceObjectOLD != null)
@@ -88,52 +88,52 @@ namespace Fungus
 			}
 		}
 
-		// Token: 0x04006558 RID: 25944
+		// Token: 0x04005814 RID: 22548
 		[Tooltip("Game object to copy when spawning. Can be a scene object or a prefab.")]
 		[SerializeField]
 		protected GameObjectData _sourceObject;
 
-		// Token: 0x04006559 RID: 25945
+		// Token: 0x04005815 RID: 22549
 		[Tooltip("Transform to use as parent during instantiate.")]
 		[SerializeField]
 		protected TransformData _parentTransform;
 
-		// Token: 0x0400655A RID: 25946
+		// Token: 0x04005816 RID: 22550
 		[Tooltip("If true, will use the Transfrom of this Flowchart for the position and rotation.")]
 		[SerializeField]
 		protected BooleanData _spawnAtSelf = new BooleanData(false);
 
-		// Token: 0x0400655B RID: 25947
+		// Token: 0x04005817 RID: 22551
 		[Tooltip("Local position of newly spawned object.")]
 		[SerializeField]
 		protected Vector3Data _spawnPosition;
 
-		// Token: 0x0400655C RID: 25948
+		// Token: 0x04005818 RID: 22552
 		[Tooltip("Local rotation of newly spawned object.")]
 		[SerializeField]
 		protected Vector3Data _spawnRotation;
 
-		// Token: 0x0400655D RID: 25949
+		// Token: 0x04005819 RID: 22553
 		[Tooltip("Optional variable to store the GameObject that was just created.")]
 		[SerializeField]
 		protected GameObjectData _newlySpawnedObject;
 
-		// Token: 0x0400655E RID: 25950
+		// Token: 0x0400581A RID: 22554
 		[HideInInspector]
 		[FormerlySerializedAs("sourceObject")]
 		public GameObject sourceObjectOLD;
 
-		// Token: 0x0400655F RID: 25951
+		// Token: 0x0400581B RID: 22555
 		[HideInInspector]
 		[FormerlySerializedAs("parentTransform")]
 		public Transform parentTransformOLD;
 
-		// Token: 0x04006560 RID: 25952
+		// Token: 0x0400581C RID: 22556
 		[HideInInspector]
 		[FormerlySerializedAs("spawnPosition")]
 		public Vector3 spawnPositionOLD;
 
-		// Token: 0x04006561 RID: 25953
+		// Token: 0x0400581D RID: 22557
 		[HideInInspector]
 		[FormerlySerializedAs("spawnRotation")]
 		public Vector3 spawnRotationOLD;

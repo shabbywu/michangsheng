@@ -3,17 +3,17 @@ using UnityEngine;
 
 namespace UltimateSurvival
 {
-	// Token: 0x02000878 RID: 2168
+	// Token: 0x020005BA RID: 1466
 	public class GenericVitals : EntityBehaviour
 	{
-		// Token: 0x06003815 RID: 14357 RVA: 0x00028C25 File Offset: 0x00026E25
+		// Token: 0x06002F91 RID: 12177 RVA: 0x001580F8 File Offset: 0x001562F8
 		private void Start()
 		{
 			base.Entity.ChangeHealth.SetTryer(new Attempt<HealthEventData>.GenericTryerDelegate(this.Try_ChangeHealth));
 			this.m_MaxHealth *= 5f;
 		}
 
-		// Token: 0x06003816 RID: 14358 RVA: 0x001A2360 File Offset: 0x001A0560
+		// Token: 0x06002F92 RID: 12178 RVA: 0x0015812C File Offset: 0x0015632C
 		protected virtual void Update()
 		{
 			if (this.m_HealthRegeneration.CanRegenerate && base.Entity.Health.Get() < 100f && base.Entity.Health.Get() > 0f)
@@ -23,7 +23,7 @@ namespace UltimateSurvival
 			}
 		}
 
-		// Token: 0x06003817 RID: 14359 RVA: 0x001A23E4 File Offset: 0x001A05E4
+		// Token: 0x06002F93 RID: 12179 RVA: 0x001581B0 File Offset: 0x001563B0
 		protected virtual bool Try_ChangeHealth(HealthEventData healthEventData)
 		{
 			if (base.Entity.Health.Get() == 0f)
@@ -48,31 +48,31 @@ namespace UltimateSurvival
 			return true;
 		}
 
-		// Token: 0x0400326B RID: 12907
+		// Token: 0x040029E1 RID: 10721
 		[Header("Health & Damage")]
 		[SerializeField]
 		[Tooltip("The health to start with.")]
 		private float m_MaxHealth = 100f;
 
-		// Token: 0x0400326C RID: 12908
+		// Token: 0x040029E2 RID: 10722
 		[SerializeField]
 		private StatRegenData m_HealthRegeneration;
 
-		// Token: 0x0400326D RID: 12909
+		// Token: 0x040029E3 RID: 10723
 		[SerializeField]
 		[Range(0f, 1f)]
 		[Tooltip("0 -> the damage received will not be decreased, \n1 -> the damage will be reduced to 0 (GOD mode).")]
 		private float m_Resistance = 0.1f;
 
-		// Token: 0x0400326E RID: 12910
+		// Token: 0x040029E4 RID: 10724
 		[Header("Audio")]
 		[SerializeField]
 		protected AudioSource m_AudioSource;
 
-		// Token: 0x0400326F RID: 12911
+		// Token: 0x040029E5 RID: 10725
 		protected float m_HealthDelta;
 
-		// Token: 0x04003270 RID: 12912
+		// Token: 0x040029E6 RID: 10726
 		private float m_NextRegenTime;
 	}
 }

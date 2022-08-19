@@ -2,7 +2,7 @@
 
 namespace KBEngine
 {
-	// Token: 0x02001050 RID: 4176
+	// Token: 0x02000C8D RID: 3213
 	public class CreateAvatar
 	{
 	}

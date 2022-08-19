@@ -3,15 +3,15 @@ using System.Collections.Generic;
 
 namespace KBEngine
 {
-	// Token: 0x02000F69 RID: 3945
+	// Token: 0x02000BE4 RID: 3044
 	public class Message_Client_onUpdateBasePos : Message
 	{
-		// Token: 0x06005EBF RID: 24255 RVA: 0x00042600 File Offset: 0x00040800
+		// Token: 0x06005481 RID: 21633 RVA: 0x002357A6 File Offset: 0x002339A6
 		public Message_Client_onUpdateBasePos(ushort msgid, string msgname, short length, sbyte argstype, List<byte> msgargtypes) : base(msgid, msgname, length, argstype, msgargtypes)
 		{
 		}
 
-		// Token: 0x06005EC0 RID: 24256 RVA: 0x00262D58 File Offset: 0x00260F58
+		// Token: 0x06005482 RID: 21634 RVA: 0x0023580C File Offset: 0x00233A0C
 		public override void handleMessage(MemoryStream msgstream)
 		{
 			float x = msgstream.readFloat();

@@ -2,28 +2,28 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-// Token: 0x02000143 RID: 323
+// Token: 0x020000D2 RID: 210
 public class CharacterAttack : MonoBehaviour
 {
-	// Token: 0x06000BE0 RID: 3040 RVA: 0x0000DF77 File Offset: 0x0000C177
+	// Token: 0x06000AFD RID: 2813 RVA: 0x00042878 File Offset: 0x00040A78
 	public void StartDamage()
 	{
 		this.listObjHitted.Clear();
 		this.Activated = false;
 	}
 
-	// Token: 0x06000BE1 RID: 3041 RVA: 0x0000DF8B File Offset: 0x0000C18B
+	// Token: 0x06000AFE RID: 2814 RVA: 0x0004288C File Offset: 0x00040A8C
 	private void AddObjHitted(GameObject obj)
 	{
 		this.listObjHitted.Add(obj);
 	}
 
-	// Token: 0x06000BE2 RID: 3042 RVA: 0x000042DD File Offset: 0x000024DD
+	// Token: 0x06000AFF RID: 2815 RVA: 0x00004095 File Offset: 0x00002295
 	private void Update()
 	{
 	}
 
-	// Token: 0x06000BE3 RID: 3043 RVA: 0x0009467C File Offset: 0x0009287C
+	// Token: 0x06000B00 RID: 2816 RVA: 0x0004289C File Offset: 0x00040A9C
 	public void AddFloatingText(Vector3 pos, string text)
 	{
 		if (this.FloatingText)
@@ -37,7 +37,7 @@ public class CharacterAttack : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000BE4 RID: 3044 RVA: 0x000946D4 File Offset: 0x000928D4
+	// Token: 0x06000B01 RID: 2817 RVA: 0x000428F4 File Offset: 0x00040AF4
 	public void DoDamage()
 	{
 		this.Activated = true;
@@ -77,24 +77,24 @@ public class CharacterAttack : MonoBehaviour
 		}
 	}
 
-	// Token: 0x040008CB RID: 2251
+	// Token: 0x04000720 RID: 1824
 	public float Direction = 0.5f;
 
-	// Token: 0x040008CC RID: 2252
+	// Token: 0x04000721 RID: 1825
 	public float Radius = 1f;
 
-	// Token: 0x040008CD RID: 2253
+	// Token: 0x04000722 RID: 1826
 	public int Force = 500;
 
-	// Token: 0x040008CE RID: 2254
+	// Token: 0x04000723 RID: 1827
 	public AudioClip[] SoundHit;
 
-	// Token: 0x040008CF RID: 2255
+	// Token: 0x04000724 RID: 1828
 	public bool Activated;
 
-	// Token: 0x040008D0 RID: 2256
+	// Token: 0x04000725 RID: 1829
 	public GameObject FloatingText;
 
-	// Token: 0x040008D1 RID: 2257
+	// Token: 0x04000726 RID: 1830
 	private HashSet<GameObject> listObjHitted = new HashSet<GameObject>();
 }

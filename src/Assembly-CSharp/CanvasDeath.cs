@@ -6,27 +6,27 @@ using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using YSGame;
 
-// Token: 0x02000798 RID: 1944
+// Token: 0x02000507 RID: 1287
 public class CanvasDeath : MonoBehaviour
 {
-	// Token: 0x06003170 RID: 12656 RVA: 0x000042DD File Offset: 0x000024DD
+	// Token: 0x0600296B RID: 10603 RVA: 0x00004095 File Offset: 0x00002295
 	private void Awake()
 	{
 	}
 
-	// Token: 0x06003171 RID: 12657 RVA: 0x0002428D File Offset: 0x0002248D
+	// Token: 0x0600296C RID: 10604 RVA: 0x0013CF38 File Offset: 0x0013B138
 	public void showDeath()
 	{
 		base.transform.Find("Win").localScale = Vector3.one;
 	}
 
-	// Token: 0x06003172 RID: 12658 RVA: 0x000242A9 File Offset: 0x000224A9
+	// Token: 0x0600296D RID: 10605 RVA: 0x0013CF54 File Offset: 0x0013B154
 	private void Start()
 	{
 		MusicMag.instance.PlayEffectMusic(8, 1f);
 	}
 
-	// Token: 0x06003173 RID: 12659 RVA: 0x000242BB File Offset: 0x000224BB
+	// Token: 0x0600296E RID: 10606 RVA: 0x0013CF66 File Offset: 0x0013B166
 	public void Update()
 	{
 		if (Input.anyKeyDown)
@@ -35,7 +35,7 @@ public class CanvasDeath : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06003174 RID: 12660 RVA: 0x0018A3D8 File Offset: 0x001885D8
+	// Token: 0x0600296F RID: 10607 RVA: 0x0013CF78 File Offset: 0x0013B178
 	public void setText(int type)
 	{
 		this.text = base.transform.Find("Win/desc").GetComponent<Text>();
@@ -46,7 +46,7 @@ public class CanvasDeath : MonoBehaviour
 		this.WenZiObj[type - 1].SetActive(true);
 	}
 
-	// Token: 0x06003175 RID: 12661 RVA: 0x0018A460 File Offset: 0x00188660
+	// Token: 0x06002970 RID: 10608 RVA: 0x0013D000 File Offset: 0x0013B200
 	public void backToHome()
 	{
 		if (this.isclick)
@@ -60,18 +60,18 @@ public class CanvasDeath : MonoBehaviour
 		SceneManager.LoadScene("MainMenu");
 	}
 
-	// Token: 0x04002DBC RID: 11708
+	// Token: 0x040025D4 RID: 9684
 	private Text text;
 
-	// Token: 0x04002DBD RID: 11709
+	// Token: 0x040025D5 RID: 9685
 	public List<Sprite> sprites;
 
-	// Token: 0x04002DBE RID: 11710
+	// Token: 0x040025D6 RID: 9686
 	public Image image;
 
-	// Token: 0x04002DBF RID: 11711
+	// Token: 0x040025D7 RID: 9687
 	private bool isclick;
 
-	// Token: 0x04002DC0 RID: 11712
+	// Token: 0x040025D8 RID: 9688
 	public List<GameObject> WenZiObj;
 }

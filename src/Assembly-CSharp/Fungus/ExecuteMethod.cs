@@ -2,59 +2,59 @@
 
 namespace Fungus
 {
-	// Token: 0x02001396 RID: 5014
+	// Token: 0x02000EF5 RID: 3829
 	[Flags]
 	public enum ExecuteMethod
 	{
-		// Token: 0x04006913 RID: 26899
+		// Token: 0x04005AAA RID: 23210
 		AfterPeriodOfTime = 1,
-		// Token: 0x04006914 RID: 26900
+		// Token: 0x04005AAB RID: 23211
 		Start = 2,
-		// Token: 0x04006915 RID: 26901
+		// Token: 0x04005AAC RID: 23212
 		Update = 4,
-		// Token: 0x04006916 RID: 26902
+		// Token: 0x04005AAD RID: 23213
 		FixedUpdate = 8,
-		// Token: 0x04006917 RID: 26903
+		// Token: 0x04005AAE RID: 23214
 		LateUpdate = 16,
-		// Token: 0x04006918 RID: 26904
+		// Token: 0x04005AAF RID: 23215
 		OnDestroy = 32,
-		// Token: 0x04006919 RID: 26905
+		// Token: 0x04005AB0 RID: 23216
 		OnEnable = 64,
-		// Token: 0x0400691A RID: 26906
+		// Token: 0x04005AB1 RID: 23217
 		OnDisable = 128,
-		// Token: 0x0400691B RID: 26907
+		// Token: 0x04005AB2 RID: 23218
 		OnControllerColliderHit = 256,
-		// Token: 0x0400691C RID: 26908
+		// Token: 0x04005AB3 RID: 23219
 		OnParticleCollision = 512,
-		// Token: 0x0400691D RID: 26909
+		// Token: 0x04005AB4 RID: 23220
 		OnJointBreak = 1024,
-		// Token: 0x0400691E RID: 26910
+		// Token: 0x04005AB5 RID: 23221
 		OnBecameInvisible = 2048,
-		// Token: 0x0400691F RID: 26911
+		// Token: 0x04005AB6 RID: 23222
 		OnBecameVisible = 4096,
-		// Token: 0x04006920 RID: 26912
+		// Token: 0x04005AB7 RID: 23223
 		OnTriggerEnter = 8192,
-		// Token: 0x04006921 RID: 26913
+		// Token: 0x04005AB8 RID: 23224
 		OnTriggerExit = 16384,
-		// Token: 0x04006922 RID: 26914
+		// Token: 0x04005AB9 RID: 23225
 		OnTriggerStay = 32768,
-		// Token: 0x04006923 RID: 26915
+		// Token: 0x04005ABA RID: 23226
 		OnCollisionEnter = 65536,
-		// Token: 0x04006924 RID: 26916
+		// Token: 0x04005ABB RID: 23227
 		OnCollisionExit = 131072,
-		// Token: 0x04006925 RID: 26917
+		// Token: 0x04005ABC RID: 23228
 		OnCollisionStay = 262144,
-		// Token: 0x04006926 RID: 26918
+		// Token: 0x04005ABD RID: 23229
 		OnTriggerEnter2D = 524288,
-		// Token: 0x04006927 RID: 26919
+		// Token: 0x04005ABE RID: 23230
 		OnTriggerExit2D = 1048576,
-		// Token: 0x04006928 RID: 26920
+		// Token: 0x04005ABF RID: 23231
 		OnTriggerStay2D = 2097152,
-		// Token: 0x04006929 RID: 26921
+		// Token: 0x04005AC0 RID: 23232
 		OnCollisionEnter2D = 4194304,
-		// Token: 0x0400692A RID: 26922
+		// Token: 0x04005AC1 RID: 23233
 		OnCollisionExit2D = 8388608,
-		// Token: 0x0400692B RID: 26923
+		// Token: 0x04005AC2 RID: 23234
 		OnCollisionStay2D = 16777216
 	}
 }

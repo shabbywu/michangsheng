@@ -6,15 +6,15 @@ using UnityEngine.UI;
 
 namespace UltimateSurvival.GUISystem
 {
-	// Token: 0x02000944 RID: 2372
+	// Token: 0x02000649 RID: 1609
 	public class RecipeInspector : MonoBehaviour
 	{
-		// Token: 0x17000693 RID: 1683
-		// (get) Token: 0x06003CA2 RID: 15522 RVA: 0x0002BC46 File Offset: 0x00029E46
-		// (set) Token: 0x06003CA3 RID: 15523 RVA: 0x0002BC4E File Offset: 0x00029E4E
+		// Token: 0x17000489 RID: 1161
+		// (get) Token: 0x06003340 RID: 13120 RVA: 0x00168699 File Offset: 0x00166899
+		// (set) Token: 0x06003341 RID: 13121 RVA: 0x001686A1 File Offset: 0x001668A1
 		public RecipeSlot InspectedSlot { get; private set; }
 
-		// Token: 0x06003CA4 RID: 15524 RVA: 0x001B16B4 File Offset: 0x001AF8B4
+		// Token: 0x06003342 RID: 13122 RVA: 0x001686AC File Offset: 0x001668AC
 		public void Try_StartCrafting()
 		{
 			bool flag = this.m_CurrentDesiredAmount > 0;
@@ -42,7 +42,7 @@ namespace UltimateSurvival.GUISystem
 			}
 		}
 
-		// Token: 0x06003CA5 RID: 15525 RVA: 0x0002BC57 File Offset: 0x00029E57
+		// Token: 0x06003343 RID: 13123 RVA: 0x00168755 File Offset: 0x00166955
 		public void TryIncreaseAmount()
 		{
 			if (this.m_InspectedItem == null)
@@ -53,7 +53,7 @@ namespace UltimateSurvival.GUISystem
 			this.ShowRecipeInfo(this.m_InspectedItem);
 		}
 
-		// Token: 0x06003CA6 RID: 15526 RVA: 0x0002BC7C File Offset: 0x00029E7C
+		// Token: 0x06003344 RID: 13124 RVA: 0x0016877A File Offset: 0x0016697A
 		public void TryDecreaseAmount()
 		{
 			if (this.m_InspectedItem == null)
@@ -64,7 +64,7 @@ namespace UltimateSurvival.GUISystem
 			this.ShowRecipeInfo(this.m_InspectedItem);
 		}
 
-		// Token: 0x06003CA7 RID: 15527 RVA: 0x001B1760 File Offset: 0x001AF960
+		// Token: 0x06003345 RID: 13125 RVA: 0x001687AC File Offset: 0x001669AC
 		private void Awake()
 		{
 			if (!this.m_CraftingList)
@@ -75,7 +75,7 @@ namespace UltimateSurvival.GUISystem
 			this.m_TotalTime.text = "";
 		}
 
-		// Token: 0x06003CA8 RID: 15528 RVA: 0x001B17B4 File Offset: 0x001AF9B4
+		// Token: 0x06003346 RID: 13126 RVA: 0x00168800 File Offset: 0x00166A00
 		private void On_RecipesGenerated()
 		{
 			foreach (ObjectHolder objectHolder in this.m_CraftingList.RecipesByCategory)
@@ -91,7 +91,7 @@ namespace UltimateSurvival.GUISystem
 			}
 		}
 
-		// Token: 0x06003CA9 RID: 15529 RVA: 0x001B1860 File Offset: 0x001AFA60
+		// Token: 0x06003347 RID: 13127 RVA: 0x001688AC File Offset: 0x00166AAC
 		private void On_Slot_PointerUp(BaseEventData data, RecipeSlot slot)
 		{
 			if (!MonoSingleton<InventoryController>.Instance.IsClosed && EventSystem.current.currentSelectedGameObject == slot.gameObject)
@@ -110,7 +110,7 @@ namespace UltimateSurvival.GUISystem
 			this.On_Slot_Deselect(data, slot);
 		}
 
-		// Token: 0x06003CAA RID: 15530 RVA: 0x001B18EC File Offset: 0x001AFAEC
+		// Token: 0x06003348 RID: 13128 RVA: 0x00168938 File Offset: 0x00166B38
 		private void ShowRecipeInfo(ItemData itemData)
 		{
 			ItemDatabase database = MonoSingleton<InventoryController>.Instance.Database;
@@ -136,13 +136,13 @@ namespace UltimateSurvival.GUISystem
 			this.m_DesiredAmount.text = ((this.m_CurrentDesiredAmount > 0) ? "x" : "") + this.m_CurrentDesiredAmount.ToString();
 		}
 
-		// Token: 0x06003CAB RID: 15531 RVA: 0x0002BCAD File Offset: 0x00029EAD
+		// Token: 0x06003349 RID: 13129 RVA: 0x00168A8C File Offset: 0x00166C8C
 		private void On_Slot_Deselect(BaseEventData data, RecipeSlot deselectedSlot)
 		{
 			base.StartCoroutine(this.C_CheckNextSelection());
 		}
 
-		// Token: 0x06003CAC RID: 15532 RVA: 0x0002BCBC File Offset: 0x00029EBC
+		// Token: 0x0600334A RID: 13130 RVA: 0x00168A9B File Offset: 0x00166C9B
 		private IEnumerator C_CheckNextSelection()
 		{
 			yield return null;
@@ -163,52 +163,52 @@ namespace UltimateSurvival.GUISystem
 			yield break;
 		}
 
-		// Token: 0x040036E9 RID: 14057
+		// Token: 0x04002D7A RID: 11642
 		[Header("Setup")]
 		[SerializeField]
 		private ItemContainer m_Inventory;
 
-		// Token: 0x040036EA RID: 14058
+		// Token: 0x04002D7B RID: 11643
 		[SerializeField]
 		private CraftingList m_CraftingList;
 
-		// Token: 0x040036EB RID: 14059
+		// Token: 0x04002D7C RID: 11644
 		[SerializeField]
 		private Window m_Window;
 
-		// Token: 0x040036EC RID: 14060
+		// Token: 0x04002D7D RID: 11645
 		[SerializeField]
 		private int m_MaxCraftAmount = 999;
 
-		// Token: 0x040036ED RID: 14061
+		// Token: 0x04002D7E RID: 11646
 		[Header("GUI Elements")]
 		[SerializeField]
 		private Text m_ItemName;
 
-		// Token: 0x040036EE RID: 14062
+		// Token: 0x04002D7F RID: 11647
 		[SerializeField]
 		private Text m_Description;
 
-		// Token: 0x040036EF RID: 14063
+		// Token: 0x04002D80 RID: 11648
 		[SerializeField]
 		private Image m_Icon;
 
-		// Token: 0x040036F0 RID: 14064
+		// Token: 0x04002D81 RID: 11649
 		[SerializeField]
 		private RequiredItemRow[] m_RequiredItemsTable;
 
-		// Token: 0x040036F1 RID: 14065
+		// Token: 0x04002D82 RID: 11650
 		[SerializeField]
 		private Text m_TotalTime;
 
-		// Token: 0x040036F2 RID: 14066
+		// Token: 0x04002D83 RID: 11651
 		[SerializeField]
 		private Text m_DesiredAmount;
 
-		// Token: 0x040036F3 RID: 14067
+		// Token: 0x04002D84 RID: 11652
 		private ItemData m_InspectedItem;
 
-		// Token: 0x040036F4 RID: 14068
+		// Token: 0x04002D85 RID: 11653
 		private int m_CurrentDesiredAmount;
 	}
 }

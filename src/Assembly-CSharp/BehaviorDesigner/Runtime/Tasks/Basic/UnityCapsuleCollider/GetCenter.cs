@@ -3,12 +3,12 @@ using UnityEngine;
 
 namespace BehaviorDesigner.Runtime.Tasks.Basic.UnityCapsuleCollider
 {
-	// Token: 0x02001613 RID: 5651
+	// Token: 0x02001154 RID: 4436
 	[TaskCategory("Basic/CapsuleCollider")]
 	[TaskDescription("Stores the center of the CapsuleCollider. Returns Success.")]
 	public class GetCenter : Action
 	{
-		// Token: 0x060083E1 RID: 33761 RVA: 0x002CF060 File Offset: 0x002CD260
+		// Token: 0x060075E7 RID: 30183 RVA: 0x002B55DC File Offset: 0x002B37DC
 		public override void OnStart()
 		{
 			GameObject defaultGameObject = base.GetDefaultGameObject(this.targetGameObject.Value);
@@ -19,7 +19,7 @@ namespace BehaviorDesigner.Runtime.Tasks.Basic.UnityCapsuleCollider
 			}
 		}
 
-		// Token: 0x060083E2 RID: 33762 RVA: 0x0005AEAE File Offset: 0x000590AE
+		// Token: 0x060075E8 RID: 30184 RVA: 0x002B561C File Offset: 0x002B381C
 		public override TaskStatus OnUpdate()
 		{
 			if (this.capsuleCollider == null)
@@ -31,26 +31,26 @@ namespace BehaviorDesigner.Runtime.Tasks.Basic.UnityCapsuleCollider
 			return 2;
 		}
 
-		// Token: 0x060083E3 RID: 33763 RVA: 0x0005AEE1 File Offset: 0x000590E1
+		// Token: 0x060075E9 RID: 30185 RVA: 0x002B564F File Offset: 0x002B384F
 		public override void OnReset()
 		{
 			this.targetGameObject = null;
 			this.storeValue = Vector3.zero;
 		}
 
-		// Token: 0x04007090 RID: 28816
+		// Token: 0x0400616D RID: 24941
 		[Tooltip("The GameObject that the task operates on. If null the task GameObject is used.")]
 		public SharedGameObject targetGameObject;
 
-		// Token: 0x04007091 RID: 28817
+		// Token: 0x0400616E RID: 24942
 		[Tooltip("The center of the CapsuleCollider")]
 		[RequiredField]
 		public SharedVector3 storeValue;
 
-		// Token: 0x04007092 RID: 28818
+		// Token: 0x0400616F RID: 24943
 		private CapsuleCollider capsuleCollider;
 
-		// Token: 0x04007093 RID: 28819
+		// Token: 0x04006170 RID: 24944
 		private GameObject prevGameObject;
 	}
 }

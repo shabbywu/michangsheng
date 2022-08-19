@@ -5,13 +5,13 @@ using UnityEngine.Serialization;
 
 namespace Fungus
 {
-	// Token: 0x02001253 RID: 4691
+	// Token: 0x02000E06 RID: 3590
 	[CommandInfo("iTween", "Move Add", "Moves a game object by a specified offset over time.", 0)]
 	[AddComponentMenu("")]
 	[ExecuteInEditMode]
 	public class MoveAdd : iTweenCommand
 	{
-		// Token: 0x060071F7 RID: 29175 RVA: 0x002A7258 File Offset: 0x002A5458
+		// Token: 0x06006569 RID: 25961 RVA: 0x00282F84 File Offset: 0x00281184
 		public override void DoTween()
 		{
 			Hashtable hashtable = new Hashtable();
@@ -27,13 +27,13 @@ namespace Fungus
 			iTween.MoveAdd(this._targetObject.Value, hashtable);
 		}
 
-		// Token: 0x060071F8 RID: 29176 RVA: 0x0004D846 File Offset: 0x0004BA46
+		// Token: 0x0600656A RID: 25962 RVA: 0x00283063 File Offset: 0x00281263
 		public override bool HasReference(Variable variable)
 		{
 			return this._offset.vector3Ref == variable || base.HasReference(variable);
 		}
 
-		// Token: 0x060071F9 RID: 29177 RVA: 0x002A7338 File Offset: 0x002A5538
+		// Token: 0x0600656B RID: 25963 RVA: 0x00283084 File Offset: 0x00281284
 		protected override void OnEnable()
 		{
 			base.OnEnable();
@@ -44,17 +44,17 @@ namespace Fungus
 			}
 		}
 
-		// Token: 0x04006454 RID: 25684
+		// Token: 0x0400571F RID: 22303
 		[Tooltip("A translation offset in space the GameObject will animate to")]
 		[SerializeField]
 		protected Vector3Data _offset;
 
-		// Token: 0x04006455 RID: 25685
+		// Token: 0x04005720 RID: 22304
 		[Tooltip("Apply the transformation in either the world coordinate or local cordinate system")]
 		[SerializeField]
 		protected Space space = 1;
 
-		// Token: 0x04006456 RID: 25686
+		// Token: 0x04005721 RID: 22305
 		[HideInInspector]
 		[FormerlySerializedAs("offset")]
 		public Vector3 offsetOLD;

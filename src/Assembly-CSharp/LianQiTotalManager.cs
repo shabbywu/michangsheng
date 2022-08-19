@@ -6,52 +6,52 @@ using Newtonsoft.Json.Linq;
 using UnityEngine;
 using UnityEngine.Events;
 
-// Token: 0x0200044F RID: 1103
+// Token: 0x020002F2 RID: 754
 public class LianQiTotalManager : MonoBehaviour
 {
-	// Token: 0x06001D73 RID: 7539 RVA: 0x00018780 File Offset: 0x00016980
+	// Token: 0x06001A4D RID: 6733 RVA: 0x000BBF51 File Offset: 0x000BA151
 	public bool checkIsInLianQiPage()
 	{
 		return this.lianQiPanel.activeSelf;
 	}
 
-	// Token: 0x06001D74 RID: 7540 RVA: 0x00018792 File Offset: 0x00016992
+	// Token: 0x06001A4E RID: 6734 RVA: 0x000BBF63 File Offset: 0x000BA163
 	public void OpenBlack()
 	{
 		this.Black.SetActive(true);
 	}
 
-	// Token: 0x06001D75 RID: 7541 RVA: 0x000187A0 File Offset: 0x000169A0
+	// Token: 0x06001A4F RID: 6735 RVA: 0x000BBF71 File Offset: 0x000BA171
 	public void CloseBlack()
 	{
 		this.Black.SetActive(false);
 	}
 
-	// Token: 0x06001D76 RID: 7542 RVA: 0x000187AE File Offset: 0x000169AE
+	// Token: 0x06001A50 RID: 6736 RVA: 0x000BBF7F File Offset: 0x000BA17F
 	public void setCurSelectEquipMuBanID(int num)
 	{
 		this.curSelectEquipMuBanID = num;
 	}
 
-	// Token: 0x06001D77 RID: 7543 RVA: 0x000187B7 File Offset: 0x000169B7
+	// Token: 0x06001A51 RID: 6737 RVA: 0x000BBF88 File Offset: 0x000BA188
 	public int getCurSelectEquipMuBanID()
 	{
 		return this.curSelectEquipMuBanID;
 	}
 
-	// Token: 0x06001D78 RID: 7544 RVA: 0x000187BF File Offset: 0x000169BF
+	// Token: 0x06001A52 RID: 6738 RVA: 0x000BBF90 File Offset: 0x000BA190
 	public void setCurSelectEquipType(int num)
 	{
 		this.curSelectEquipType = num;
 	}
 
-	// Token: 0x06001D79 RID: 7545 RVA: 0x000187C8 File Offset: 0x000169C8
+	// Token: 0x06001A53 RID: 6739 RVA: 0x000BBF99 File Offset: 0x000BA199
 	public int getCurSelectEquipType()
 	{
 		return this.curSelectEquipType;
 	}
 
-	// Token: 0x06001D7A RID: 7546 RVA: 0x0010240C File Offset: 0x0010060C
+	// Token: 0x06001A54 RID: 6740 RVA: 0x000BBFA4 File Offset: 0x000BA1A4
 	private void Awake()
 	{
 		LianQiTotalManager.inst = this;
@@ -72,14 +72,14 @@ public class LianQiTotalManager : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001D7B RID: 7547 RVA: 0x000187D0 File Offset: 0x000169D0
+	// Token: 0x06001A55 RID: 6741 RVA: 0x000BC040 File Offset: 0x000BA240
 	public void openLianQiPanle()
 	{
 		this.init();
 		this.selectTypePageManager.OpenSelectEquipPanel();
 	}
 
-	// Token: 0x06001D7C RID: 7548 RVA: 0x000187E3 File Offset: 0x000169E3
+	// Token: 0x06001A56 RID: 6742 RVA: 0x000BC053 File Offset: 0x000BA253
 	private void init()
 	{
 		this.curSelectEquipMuBanID = -1;
@@ -89,7 +89,7 @@ public class LianQiTotalManager : MonoBehaviour
 		this.lianQiResultManager.init();
 	}
 
-	// Token: 0x06001D7D RID: 7549 RVA: 0x000187E3 File Offset: 0x000169E3
+	// Token: 0x06001A57 RID: 6743 RVA: 0x000BC053 File Offset: 0x000BA253
 	public void ChangeEquip()
 	{
 		this.curSelectEquipMuBanID = -1;
@@ -99,20 +99,20 @@ public class LianQiTotalManager : MonoBehaviour
 		this.lianQiResultManager.init();
 	}
 
-	// Token: 0x06001D7E RID: 7550 RVA: 0x00018814 File Offset: 0x00016A14
+	// Token: 0x06001A58 RID: 6744 RVA: 0x000BC084 File Offset: 0x000BA284
 	public void closeLianQiPanel()
 	{
 		PanelMamager.inst.closePanel(PanelMamager.PanelType.炼器, 0);
 	}
 
-	// Token: 0x06001D7F RID: 7551 RVA: 0x00018822 File Offset: 0x00016A22
+	// Token: 0x06001A59 RID: 6745 RVA: 0x000BC092 File Offset: 0x000BA292
 	public void restartSelectEquip()
 	{
 		this.ChangeEquip();
 		this.selectTypePageManager.OpenSelectEquipPanel();
 	}
 
-	// Token: 0x06001D80 RID: 7552 RVA: 0x001024A8 File Offset: 0x001006A8
+	// Token: 0x06001A5A RID: 6746 RVA: 0x000BC0A8 File Offset: 0x000BA2A8
 	public void putCaiLiaoCallBack()
 	{
 		this.putMaterialPageManager.wuWeiManager.updateWuWei();
@@ -124,20 +124,20 @@ public class LianQiTotalManager : MonoBehaviour
 		this.putMaterialPageManager.updateCaiLiaoSum();
 	}
 
-	// Token: 0x06001D81 RID: 7553 RVA: 0x00018835 File Offset: 0x00016A35
+	// Token: 0x06001A5B RID: 6747 RVA: 0x000BC120 File Offset: 0x000BA320
 	public void selectEquipCallBack()
 	{
 		this.putMaterialPageManager.openPutMaterialPage();
 	}
 
-	// Token: 0x06001D82 RID: 7554 RVA: 0x00018842 File Offset: 0x00016A42
+	// Token: 0x06001A5C RID: 6748 RVA: 0x000BC12D File Offset: 0x000BA32D
 	public void selectLingWenCiTiaoCallBack()
 	{
 		this.putMaterialPageManager.zhongLingLiManager.updateZhongLingLi();
 		this.putMaterialPageManager.showXiaoGuoManager.updateEquipCiTiao();
 	}
 
-	// Token: 0x06001D83 RID: 7555 RVA: 0x00102520 File Offset: 0x00100720
+	// Token: 0x06001A5D RID: 6749 RVA: 0x000BC150 File Offset: 0x000BA350
 	public string buildNomalLingWenDesc(JSONObject obj)
 	{
 		string text = (obj["value3"].I == 1) ? "x" : "+";
@@ -163,7 +163,7 @@ public class LianQiTotalManager : MonoBehaviour
 		return result;
 	}
 
-	// Token: 0x06001D84 RID: 7556 RVA: 0x00102648 File Offset: 0x00100848
+	// Token: 0x06001A5E RID: 6750 RVA: 0x000BC278 File Offset: 0x000BA478
 	public int getLingWenIDByBUFFIDAndSum(int id, int sum)
 	{
 		List<JSONObject> list = jsonData.instance.LianQiLingWenBiao.list;
@@ -177,7 +177,7 @@ public class LianQiTotalManager : MonoBehaviour
 		return -1;
 	}
 
-	// Token: 0x06001D85 RID: 7557 RVA: 0x001026C0 File Offset: 0x001008C0
+	// Token: 0x06001A5F RID: 6751 RVA: 0x000BC2F0 File Offset: 0x000BA4F0
 	public JToken getcurEquipQualityDate()
 	{
 		JObject lianQiWuQiQuality = jsonData.instance.LianQiWuQiQuality;
@@ -193,7 +193,7 @@ public class LianQiTotalManager : MonoBehaviour
 		return result;
 	}
 
-	// Token: 0x06001D86 RID: 7558 RVA: 0x00018864 File Offset: 0x00016A64
+	// Token: 0x06001A60 RID: 6752 RVA: 0x000BC374 File Offset: 0x000BA574
 	public void lianQiSuccess()
 	{
 		this.lianQiResultManager.addLianQiTime();
@@ -204,7 +204,7 @@ public class LianQiTotalManager : MonoBehaviour
 		});
 	}
 
-	// Token: 0x06001D87 RID: 7559 RVA: 0x0001888C File Offset: 0x00016A8C
+	// Token: 0x06001A61 RID: 6753 RVA: 0x000BC39C File Offset: 0x000BA59C
 	public void lianQiFaile()
 	{
 		this.lianQiResultManager.addLianQiTime();
@@ -215,19 +215,19 @@ public class LianQiTotalManager : MonoBehaviour
 		});
 	}
 
-	// Token: 0x06001D88 RID: 7560 RVA: 0x000188B4 File Offset: 0x00016AB4
+	// Token: 0x06001A62 RID: 6754 RVA: 0x000BC3C4 File Offset: 0x000BA5C4
 	public void OpenBag()
 	{
 		this.Bag.Open();
 	}
 
-	// Token: 0x06001D89 RID: 7561 RVA: 0x000188C1 File Offset: 0x00016AC1
+	// Token: 0x06001A63 RID: 6755 RVA: 0x000BC3D1 File Offset: 0x000BA5D1
 	public void CloseBag()
 	{
 		this.Bag.Close();
 	}
 
-	// Token: 0x06001D8A RID: 7562 RVA: 0x00102744 File Offset: 0x00100944
+	// Token: 0x06001A64 RID: 6756 RVA: 0x000BC3E0 File Offset: 0x000BA5E0
 	public void PutItem(LianQiSlot dragSlot)
 	{
 		if (this.ToSlot == null)
@@ -246,7 +246,7 @@ public class LianQiTotalManager : MonoBehaviour
 		this.putCaiLiaoCallBack();
 	}
 
-	// Token: 0x06001D8B RID: 7563 RVA: 0x001027C8 File Offset: 0x001009C8
+	// Token: 0x06001A65 RID: 6757 RVA: 0x000BC464 File Offset: 0x000BA664
 	private void OnDestroy()
 	{
 		Tools.canClickFlag = true;
@@ -262,40 +262,40 @@ public class LianQiTotalManager : MonoBehaviour
 		}
 	}
 
-	// Token: 0x0400193D RID: 6461
+	// Token: 0x04001530 RID: 5424
 	public static LianQiTotalManager inst;
 
-	// Token: 0x0400193E RID: 6462
+	// Token: 0x04001531 RID: 5425
 	[SerializeField]
 	private GameObject lianQiPanel;
 
-	// Token: 0x0400193F RID: 6463
+	// Token: 0x04001532 RID: 5426
 	public SelectTypePageManager selectTypePageManager;
 
-	// Token: 0x04001940 RID: 6464
+	// Token: 0x04001533 RID: 5427
 	public GameObject Black;
 
-	// Token: 0x04001941 RID: 6465
+	// Token: 0x04001534 RID: 5428
 	public PutMaterialPageManager putMaterialPageManager;
 
-	// Token: 0x04001942 RID: 6466
+	// Token: 0x04001535 RID: 5429
 	public LianQiBag Bag;
 
-	// Token: 0x04001943 RID: 6467
+	// Token: 0x04001536 RID: 5430
 	public LianQiResultManager lianQiResultManager;
 
-	// Token: 0x04001944 RID: 6468
+	// Token: 0x04001537 RID: 5431
 	public LianQiSlot ToSlot;
 
-	// Token: 0x04001945 RID: 6469
+	// Token: 0x04001538 RID: 5432
 	public bool IsFirstSelect = true;
 
-	// Token: 0x04001946 RID: 6470
+	// Token: 0x04001539 RID: 5433
 	public Object[] equipSprites;
 
-	// Token: 0x04001947 RID: 6471
+	// Token: 0x0400153A RID: 5434
 	private int curSelectEquipMuBanID = -1;
 
-	// Token: 0x04001948 RID: 6472
+	// Token: 0x0400153B RID: 5435
 	private int curSelectEquipType = -1;
 }

@@ -4,13 +4,13 @@ using UnityEngine;
 
 namespace Fungus
 {
-	// Token: 0x020012B3 RID: 4787
+	// Token: 0x02000E5E RID: 3678
 	[CommandInfo("Flow", "Wait Frames", "Waits for a number of frames before executing the next command in the block.", 0)]
 	[AddComponentMenu("")]
 	[ExecuteInEditMode]
 	public class WaitFrames : Command
 	{
-		// Token: 0x060073D6 RID: 29654 RVA: 0x0004F10E File Offset: 0x0004D30E
+		// Token: 0x06006748 RID: 26440 RVA: 0x00289EC7 File Offset: 0x002880C7
 		protected virtual IEnumerator WaitForFrames()
 		{
 			int num;
@@ -23,31 +23,31 @@ namespace Fungus
 			yield break;
 		}
 
-		// Token: 0x060073D7 RID: 29655 RVA: 0x0004F11D File Offset: 0x0004D31D
+		// Token: 0x06006749 RID: 26441 RVA: 0x00289ED6 File Offset: 0x002880D6
 		public override void OnEnter()
 		{
 			base.StartCoroutine(this.WaitForFrames());
 		}
 
-		// Token: 0x060073D8 RID: 29656 RVA: 0x002AC8C4 File Offset: 0x002AAAC4
+		// Token: 0x0600674A RID: 26442 RVA: 0x00289EE8 File Offset: 0x002880E8
 		public override string GetSummary()
 		{
 			return this.frameCount.Value.ToString() + " frames";
 		}
 
-		// Token: 0x060073D9 RID: 29657 RVA: 0x0004C5E0 File Offset: 0x0004A7E0
+		// Token: 0x0600674B RID: 26443 RVA: 0x0027D3DB File Offset: 0x0027B5DB
 		public override Color GetButtonColor()
 		{
 			return new Color32(235, 191, 217, byte.MaxValue);
 		}
 
-		// Token: 0x060073DA RID: 29658 RVA: 0x0004F12C File Offset: 0x0004D32C
+		// Token: 0x0600674C RID: 26444 RVA: 0x00289F12 File Offset: 0x00288112
 		public override bool HasReference(Variable variable)
 		{
 			return this.frameCount.integerRef == variable || base.HasReference(variable);
 		}
 
-		// Token: 0x040065B4 RID: 26036
+		// Token: 0x04005855 RID: 22613
 		[Tooltip("Number of frames to wait for")]
 		[SerializeField]
 		protected IntegerData frameCount = new IntegerData(1);

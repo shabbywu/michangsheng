@@ -3,10 +3,10 @@ using KBEngine;
 using UnityEngine;
 using UnityEngine.UI;
 
-// Token: 0x020003D0 RID: 976
+// Token: 0x0200029C RID: 668
 public class CySelectWord : MonoBehaviour
 {
-	// Token: 0x06001ADE RID: 6878 RVA: 0x00016C6D File Offset: 0x00014E6D
+	// Token: 0x060017F6 RID: 6134 RVA: 0x000A738A File Offset: 0x000A558A
 	public void Init(string msg, int id)
 	{
 		this.msg.text = msg;
@@ -14,7 +14,7 @@ public class CySelectWord : MonoBehaviour
 		base.gameObject.SetActive(true);
 	}
 
-	// Token: 0x06001ADF RID: 6879 RVA: 0x000EE4E4 File Offset: 0x000EC6E4
+	// Token: 0x060017F7 RID: 6135 RVA: 0x000A73AC File Offset: 0x000A55AC
 	public void Say(object obj = null)
 	{
 		if (this.player == null)
@@ -28,22 +28,22 @@ public class CySelectWord : MonoBehaviour
 		}
 	}
 
-	// Token: 0x04001666 RID: 5734
+	// Token: 0x040012D5 RID: 4821
 	[SerializeField]
 	private Text msg;
 
-	// Token: 0x04001667 RID: 5735
+	// Token: 0x040012D6 RID: 4822
 	public int questionId;
 
-	// Token: 0x04001668 RID: 5736
+	// Token: 0x040012D7 RID: 4823
 	public BtnCell btnCell;
 
-	// Token: 0x04001669 RID: 5737
+	// Token: 0x040012D8 RID: 4824
 	private Avatar player;
 
-	// Token: 0x0400166A RID: 5738
+	// Token: 0x040012D9 RID: 4825
 	public GameObject ChildPanel;
 
-	// Token: 0x0400166B RID: 5739
+	// Token: 0x040012DA RID: 4826
 	public GameObject ChildSelect;
 }

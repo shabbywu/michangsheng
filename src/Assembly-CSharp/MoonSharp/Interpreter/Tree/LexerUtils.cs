@@ -5,10 +5,10 @@ using MoonSharp.Interpreter.Compatibility;
 
 namespace MoonSharp.Interpreter.Tree
 {
-	// Token: 0x0200109F RID: 4255
+	// Token: 0x02000CC9 RID: 3273
 	internal static class LexerUtils
 	{
-		// Token: 0x060066ED RID: 26349 RVA: 0x00285D24 File Offset: 0x00283F24
+		// Token: 0x06005BE4 RID: 23524 RVA: 0x0025C344 File Offset: 0x0025A544
 		public static double ParseNumber(Token T)
 		{
 			string text = T.Text;
@@ -23,7 +23,7 @@ namespace MoonSharp.Interpreter.Tree
 			return result;
 		}
 
-		// Token: 0x060066EE RID: 26350 RVA: 0x00285D64 File Offset: 0x00283F64
+		// Token: 0x06005BE5 RID: 23525 RVA: 0x0025C384 File Offset: 0x0025A584
 		public static double ParseHexInteger(Token T)
 		{
 			string text = T.Text;
@@ -45,7 +45,7 @@ namespace MoonSharp.Interpreter.Tree
 			return num;
 		}
 
-		// Token: 0x060066EF RID: 26351 RVA: 0x00285DE4 File Offset: 0x00283FE4
+		// Token: 0x06005BE6 RID: 23526 RVA: 0x0025C404 File Offset: 0x0025A604
 		public static string ReadHexProgressive(string s, ref double d, out int digits)
 		{
 			digits = 0;
@@ -64,7 +64,7 @@ namespace MoonSharp.Interpreter.Tree
 			return string.Empty;
 		}
 
-		// Token: 0x060066F0 RID: 26352 RVA: 0x00285E48 File Offset: 0x00284048
+		// Token: 0x06005BE7 RID: 23527 RVA: 0x0025C468 File Offset: 0x0025A668
 		public static double ParseHexFloat(Token T)
 		{
 			string text = T.Text;
@@ -114,7 +114,7 @@ namespace MoonSharp.Interpreter.Tree
 			return result;
 		}
 
-		// Token: 0x060066F1 RID: 26353 RVA: 0x00285F80 File Offset: 0x00284180
+		// Token: 0x06005BE8 RID: 23528 RVA: 0x0025C5A0 File Offset: 0x0025A7A0
 		public static int HexDigit2Value(char c)
 		{
 			if (c >= '0' && c <= '9')
@@ -135,19 +135,19 @@ namespace MoonSharp.Interpreter.Tree
 			});
 		}
 
-		// Token: 0x060066F2 RID: 26354 RVA: 0x00046DFE File Offset: 0x00044FFE
+		// Token: 0x06005BE9 RID: 23529 RVA: 0x0025C5F9 File Offset: 0x0025A7F9
 		public static bool CharIsDigit(char c)
 		{
 			return c >= '0' && c <= '9';
 		}
 
-		// Token: 0x060066F3 RID: 26355 RVA: 0x00285FDC File Offset: 0x002841DC
+		// Token: 0x06005BEA RID: 23530 RVA: 0x0025C60C File Offset: 0x0025A80C
 		public static bool CharIsHexDigit(char c)
 		{
 			return LexerUtils.CharIsDigit(c) || c == 'a' || c == 'b' || c == 'c' || c == 'd' || c == 'e' || c == 'f' || c == 'A' || c == 'B' || c == 'C' || c == 'D' || c == 'E' || c == 'F';
 		}
 
-		// Token: 0x060066F4 RID: 26356 RVA: 0x00046E0F File Offset: 0x0004500F
+		// Token: 0x06005BEB RID: 23531 RVA: 0x0025C65F File Offset: 0x0025A85F
 		public static string AdjustLuaLongString(string str)
 		{
 			if (str.StartsWith("\r\n"))
@@ -161,7 +161,7 @@ namespace MoonSharp.Interpreter.Tree
 			return str;
 		}
 
-		// Token: 0x060066F5 RID: 26357 RVA: 0x00286030 File Offset: 0x00284230
+		// Token: 0x06005BEC RID: 23532 RVA: 0x0025C690 File Offset: 0x0025A890
 		public static string UnescapeLuaString(Token token, string str)
 		{
 			if (!Framework.Do.StringContainsChar(str, '\\'))
@@ -390,7 +390,7 @@ namespace MoonSharp.Interpreter.Tree
 			return stringBuilder.ToString();
 		}
 
-		// Token: 0x060066F6 RID: 26358 RVA: 0x00046E40 File Offset: 0x00045040
+		// Token: 0x06005BED RID: 23533 RVA: 0x0025CAB1 File Offset: 0x0025ACB1
 		private static string ConvertUtf32ToChar(int i)
 		{
 			return char.ConvertFromUtf32(i);

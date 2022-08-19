@@ -1,15 +1,15 @@
 ﻿using System;
 using UnityEngine;
 
-// Token: 0x020005CD RID: 1485
+// Token: 0x0200041A RID: 1050
 public class changAnButton : MonoBehaviour
 {
-	// Token: 0x0600257E RID: 9598 RVA: 0x000042DD File Offset: 0x000024DD
+	// Token: 0x060021C4 RID: 8644 RVA: 0x00004095 File Offset: 0x00002295
 	private void Start()
 	{
 	}
 
-	// Token: 0x0600257F RID: 9599 RVA: 0x0012AFD0 File Offset: 0x001291D0
+	// Token: 0x060021C5 RID: 8645 RVA: 0x000E99BC File Offset: 0x000E7BBC
 	private void Update()
 	{
 		if (this.flagSwitch)
@@ -28,7 +28,7 @@ public class changAnButton : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06002580 RID: 9600 RVA: 0x0001E0C8 File Offset: 0x0001C2C8
+	// Token: 0x060021C6 RID: 8646 RVA: 0x000E9A49 File Offset: 0x000E7C49
 	protected void OnPress()
 	{
 		if (Input.GetMouseButtonDown(0))
@@ -44,12 +44,12 @@ public class changAnButton : MonoBehaviour
 		}
 	}
 
-	// Token: 0x04001FFD RID: 8189
+	// Token: 0x04001B3C RID: 6972
 	private bool flagSwitch;
 
-	// Token: 0x04001FFE RID: 8190
+	// Token: 0x04001B3D RID: 6973
 	private float lastTime;
 
-	// Token: 0x04001FFF RID: 8191
+	// Token: 0x04001B3E RID: 6974
 	private float AllTime;
 }

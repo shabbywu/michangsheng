@@ -3,10 +3,10 @@ using KBEngine;
 using UnityEngine;
 using UnityEngine.UI;
 
-// Token: 0x02000462 RID: 1122
+// Token: 0x02000305 RID: 773
 public class ZhongLingLiManager : MonoBehaviour
 {
-	// Token: 0x06001E09 RID: 7689 RVA: 0x00018F1B File Offset: 0x0001711B
+	// Token: 0x06001AE3 RID: 6883 RVA: 0x000BF832 File Offset: 0x000BDA32
 	public void init()
 	{
 		this.yunSuanFu.text = "";
@@ -15,21 +15,21 @@ public class ZhongLingLiManager : MonoBehaviour
 		this.initZhongLingLiRing();
 	}
 
-	// Token: 0x06001E0A RID: 7690 RVA: 0x00018F53 File Offset: 0x00017153
+	// Token: 0x06001AE4 RID: 6884 RVA: 0x000BF86A File Offset: 0x000BDA6A
 	public void updateZhongLingLi()
 	{
 		this.updateZhongLingLiRing();
 		this.totalZongLingLi.text = string.Concat((int)this.getTotalZongLingLi());
 	}
 
-	// Token: 0x06001E0B RID: 7691 RVA: 0x001053FC File Offset: 0x001035FC
+	// Token: 0x06001AE5 RID: 6885 RVA: 0x000BF890 File Offset: 0x000BDA90
 	private void updateZhongLingLiRing()
 	{
 		float num = this.getTotalZongLingLi() / this.LingLiMax * 0.32f + 0.68f;
 		this.zhongLingLiRing.transform.localScale = new Vector3(num, num, 1f);
 	}
 
-	// Token: 0x06001E0C RID: 7692 RVA: 0x00105440 File Offset: 0x00103640
+	// Token: 0x06001AE6 RID: 6886 RVA: 0x000BF8D4 File Offset: 0x000BDAD4
 	public int getRealZongLingLi()
 	{
 		if (LianQiTotalManager.inst.putMaterialPageManager.wuWeiManager.checkWuWeiIsDaoBiao())
@@ -40,7 +40,7 @@ public class ZhongLingLiManager : MonoBehaviour
 		return (int)((float)LianQiTotalManager.inst.putMaterialPageManager.chuShiLingLiManager.getAllchuShiLingLi() * wuWeiBaiFenBi);
 	}
 
-	// Token: 0x06001E0D RID: 7693 RVA: 0x001054A8 File Offset: 0x001036A8
+	// Token: 0x06001AE7 RID: 6887 RVA: 0x000BF93C File Offset: 0x000BDB3C
 	public float getTotalZongLingLi()
 	{
 		Avatar player = Tools.instance.getPlayer();
@@ -74,28 +74,28 @@ public class ZhongLingLiManager : MonoBehaviour
 		return num;
 	}
 
-	// Token: 0x06001E0E RID: 7694 RVA: 0x00018F77 File Offset: 0x00017177
+	// Token: 0x06001AE8 RID: 6888 RVA: 0x000BFA34 File Offset: 0x000BDC34
 	private void initZhongLingLiRing()
 	{
 		this.zhongLingLiRing.transform.localScale = new Vector3(0.68f, 0.68f, 1f);
 	}
 
-	// Token: 0x040019A2 RID: 6562
+	// Token: 0x04001595 RID: 5525
 	private float LingLiMax = 2160f;
 
-	// Token: 0x040019A3 RID: 6563
+	// Token: 0x04001596 RID: 5526
 	[SerializeField]
 	private GameObject zhongLingLiRing;
 
-	// Token: 0x040019A4 RID: 6564
+	// Token: 0x04001597 RID: 5527
 	[SerializeField]
 	private Text yunSuanFu;
 
-	// Token: 0x040019A5 RID: 6565
+	// Token: 0x04001598 RID: 5528
 	[SerializeField]
 	private Text totalZongLingLi;
 
-	// Token: 0x040019A6 RID: 6566
+	// Token: 0x04001599 RID: 5529
 	[SerializeField]
 	private Text lingWenXiaoGuo;
 }

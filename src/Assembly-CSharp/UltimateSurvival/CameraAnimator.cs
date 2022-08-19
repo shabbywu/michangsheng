@@ -3,29 +3,29 @@ using UnityEngine;
 
 namespace UltimateSurvival
 {
-	// Token: 0x02000868 RID: 2152
+	// Token: 0x020005AC RID: 1452
 	public class CameraAnimator : PlayerBehaviour
 	{
-		// Token: 0x060037C4 RID: 14276 RVA: 0x0002874E File Offset: 0x0002694E
+		// Token: 0x06002F46 RID: 12102 RVA: 0x001568BB File Offset: 0x00154ABB
 		private void Awake()
 		{
 			base.Player.Run.AddStartListener(new Action(this.OnStart_Run));
 			base.Player.Run.AddStopListener(new Action(this.OnStop_Run));
 		}
 
-		// Token: 0x060037C5 RID: 14277 RVA: 0x00028788 File Offset: 0x00026988
+		// Token: 0x06002F47 RID: 12103 RVA: 0x001568F5 File Offset: 0x00154AF5
 		private void OnStart_Run()
 		{
 			this.m_Animator.SetBool("Run", true);
 		}
 
-		// Token: 0x060037C6 RID: 14278 RVA: 0x0002879B File Offset: 0x0002699B
+		// Token: 0x06002F48 RID: 12104 RVA: 0x00156908 File Offset: 0x00154B08
 		private void OnStop_Run()
 		{
 			this.m_Animator.SetBool("Run", false);
 		}
 
-		// Token: 0x04003201 RID: 12801
+		// Token: 0x04002980 RID: 10624
 		[SerializeField]
 		private Animator m_Animator;
 	}

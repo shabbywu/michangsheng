@@ -2,12 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-// Token: 0x020000B4 RID: 180
+// Token: 0x0200007E RID: 126
 [Serializable]
 public class BMFont
 {
-	// Token: 0x170000C2 RID: 194
-	// (get) Token: 0x060006AA RID: 1706 RVA: 0x00009CA4 File Offset: 0x00007EA4
+	// Token: 0x170000B0 RID: 176
+	// (get) Token: 0x06000630 RID: 1584 RVA: 0x00023515 File Offset: 0x00021715
 	public bool isValid
 	{
 		get
@@ -16,9 +16,9 @@ public class BMFont
 		}
 	}
 
-	// Token: 0x170000C3 RID: 195
-	// (get) Token: 0x060006AB RID: 1707 RVA: 0x00009CB4 File Offset: 0x00007EB4
-	// (set) Token: 0x060006AC RID: 1708 RVA: 0x00009CBC File Offset: 0x00007EBC
+	// Token: 0x170000B1 RID: 177
+	// (get) Token: 0x06000631 RID: 1585 RVA: 0x00023525 File Offset: 0x00021725
+	// (set) Token: 0x06000632 RID: 1586 RVA: 0x0002352D File Offset: 0x0002172D
 	public int charSize
 	{
 		get
@@ -31,9 +31,9 @@ public class BMFont
 		}
 	}
 
-	// Token: 0x170000C4 RID: 196
-	// (get) Token: 0x060006AD RID: 1709 RVA: 0x00009CC5 File Offset: 0x00007EC5
-	// (set) Token: 0x060006AE RID: 1710 RVA: 0x00009CCD File Offset: 0x00007ECD
+	// Token: 0x170000B2 RID: 178
+	// (get) Token: 0x06000633 RID: 1587 RVA: 0x00023536 File Offset: 0x00021736
+	// (set) Token: 0x06000634 RID: 1588 RVA: 0x0002353E File Offset: 0x0002173E
 	public int baseOffset
 	{
 		get
@@ -46,9 +46,9 @@ public class BMFont
 		}
 	}
 
-	// Token: 0x170000C5 RID: 197
-	// (get) Token: 0x060006AF RID: 1711 RVA: 0x00009CD6 File Offset: 0x00007ED6
-	// (set) Token: 0x060006B0 RID: 1712 RVA: 0x00009CDE File Offset: 0x00007EDE
+	// Token: 0x170000B3 RID: 179
+	// (get) Token: 0x06000635 RID: 1589 RVA: 0x00023547 File Offset: 0x00021747
+	// (set) Token: 0x06000636 RID: 1590 RVA: 0x0002354F File Offset: 0x0002174F
 	public int texWidth
 	{
 		get
@@ -61,9 +61,9 @@ public class BMFont
 		}
 	}
 
-	// Token: 0x170000C6 RID: 198
-	// (get) Token: 0x060006B1 RID: 1713 RVA: 0x00009CE7 File Offset: 0x00007EE7
-	// (set) Token: 0x060006B2 RID: 1714 RVA: 0x00009CEF File Offset: 0x00007EEF
+	// Token: 0x170000B4 RID: 180
+	// (get) Token: 0x06000637 RID: 1591 RVA: 0x00023558 File Offset: 0x00021758
+	// (set) Token: 0x06000638 RID: 1592 RVA: 0x00023560 File Offset: 0x00021760
 	public int texHeight
 	{
 		get
@@ -76,8 +76,8 @@ public class BMFont
 		}
 	}
 
-	// Token: 0x170000C7 RID: 199
-	// (get) Token: 0x060006B3 RID: 1715 RVA: 0x00009CF8 File Offset: 0x00007EF8
+	// Token: 0x170000B5 RID: 181
+	// (get) Token: 0x06000639 RID: 1593 RVA: 0x00023569 File Offset: 0x00021769
 	public int glyphCount
 	{
 		get
@@ -90,9 +90,9 @@ public class BMFont
 		}
 	}
 
-	// Token: 0x170000C8 RID: 200
-	// (get) Token: 0x060006B4 RID: 1716 RVA: 0x00009D0F File Offset: 0x00007F0F
-	// (set) Token: 0x060006B5 RID: 1717 RVA: 0x00009D17 File Offset: 0x00007F17
+	// Token: 0x170000B6 RID: 182
+	// (get) Token: 0x0600063A RID: 1594 RVA: 0x00023580 File Offset: 0x00021780
+	// (set) Token: 0x0600063B RID: 1595 RVA: 0x00023588 File Offset: 0x00021788
 	public string spriteName
 	{
 		get
@@ -105,8 +105,8 @@ public class BMFont
 		}
 	}
 
-	// Token: 0x170000C9 RID: 201
-	// (get) Token: 0x060006B6 RID: 1718 RVA: 0x00009D20 File Offset: 0x00007F20
+	// Token: 0x170000B7 RID: 183
+	// (get) Token: 0x0600063C RID: 1596 RVA: 0x00023591 File Offset: 0x00021791
 	public List<BMGlyph> glyphs
 	{
 		get
@@ -115,7 +115,7 @@ public class BMFont
 		}
 	}
 
-	// Token: 0x060006B7 RID: 1719 RVA: 0x00078F5C File Offset: 0x0007715C
+	// Token: 0x0600063D RID: 1597 RVA: 0x0002359C File Offset: 0x0002179C
 	public BMGlyph GetGlyph(int index, bool createIfMissing)
 	{
 		BMGlyph bmglyph = null;
@@ -140,20 +140,20 @@ public class BMFont
 		return bmglyph;
 	}
 
-	// Token: 0x060006B8 RID: 1720 RVA: 0x00009D28 File Offset: 0x00007F28
+	// Token: 0x0600063E RID: 1598 RVA: 0x0002362B File Offset: 0x0002182B
 	public BMGlyph GetGlyph(int index)
 	{
 		return this.GetGlyph(index, false);
 	}
 
-	// Token: 0x060006B9 RID: 1721 RVA: 0x00009D32 File Offset: 0x00007F32
+	// Token: 0x0600063F RID: 1599 RVA: 0x00023635 File Offset: 0x00021835
 	public void Clear()
 	{
 		this.mDict.Clear();
 		this.mSaved.Clear();
 	}
 
-	// Token: 0x060006BA RID: 1722 RVA: 0x00078FEC File Offset: 0x000771EC
+	// Token: 0x06000640 RID: 1600 RVA: 0x00023650 File Offset: 0x00021850
 	public void Trim(int xMin, int yMin, int xMax, int yMax)
 	{
 		if (this.isValid)
@@ -172,36 +172,36 @@ public class BMFont
 		}
 	}
 
-	// Token: 0x040004FC RID: 1276
+	// Token: 0x04000428 RID: 1064
 	[HideInInspector]
 	[SerializeField]
 	private int mSize = 16;
 
-	// Token: 0x040004FD RID: 1277
+	// Token: 0x04000429 RID: 1065
 	[HideInInspector]
 	[SerializeField]
 	private int mBase;
 
-	// Token: 0x040004FE RID: 1278
+	// Token: 0x0400042A RID: 1066
 	[HideInInspector]
 	[SerializeField]
 	private int mWidth;
 
-	// Token: 0x040004FF RID: 1279
+	// Token: 0x0400042B RID: 1067
 	[HideInInspector]
 	[SerializeField]
 	private int mHeight;
 
-	// Token: 0x04000500 RID: 1280
+	// Token: 0x0400042C RID: 1068
 	[HideInInspector]
 	[SerializeField]
 	private string mSpriteName;
 
-	// Token: 0x04000501 RID: 1281
+	// Token: 0x0400042D RID: 1069
 	[HideInInspector]
 	[SerializeField]
 	private List<BMGlyph> mSaved = new List<BMGlyph>();
 
-	// Token: 0x04000502 RID: 1282
+	// Token: 0x0400042E RID: 1070
 	private Dictionary<int, BMGlyph> mDict = new Dictionary<int, BMGlyph>();
 }

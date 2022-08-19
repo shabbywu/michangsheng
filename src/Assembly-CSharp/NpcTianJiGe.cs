@@ -2,16 +2,16 @@
 using System.Collections.Generic;
 using JSONClass;
 
-// Token: 0x02000343 RID: 835
+// Token: 0x02000227 RID: 551
 public class NpcTianJiGe
 {
-	// Token: 0x06001896 RID: 6294 RVA: 0x00015250 File Offset: 0x00013450
+	// Token: 0x060015DE RID: 5598 RVA: 0x00090158 File Offset: 0x0008E358
 	public void TianJiGePaoShang(int npcId)
 	{
 		NpcJieSuanManager.inst.npcMap.AddNpcToBigMap(npcId, 1, true);
 	}
 
-	// Token: 0x06001897 RID: 6295 RVA: 0x000DB850 File Offset: 0x000D9A50
+	// Token: 0x060015DF RID: 5599 RVA: 0x00092FFC File Offset: 0x000911FC
 	public void TianJiGeJinHuo(int npcId)
 	{
 		NpcJinHuoData npcJinHuoData = NpcJinHuoData.DataDict[1];
@@ -60,9 +60,9 @@ public class NpcTianJiGe
 		}
 	}
 
-	// Token: 0x0400139C RID: 5020
+	// Token: 0x04001044 RID: 4164
 	private List<int> itemTypeList = new List<int>();
 
-	// Token: 0x0400139D RID: 5021
+	// Token: 0x04001045 RID: 4165
 	private List<int> itemQualityList = new List<int>();
 }

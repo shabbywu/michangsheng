@@ -1,32 +1,32 @@
 ﻿using System;
 using UnityEngine;
 
-// Token: 0x020005D9 RID: 1497
+// Token: 0x02000425 RID: 1061
 public class SetSpriteColor : MonoBehaviour
 {
-	// Token: 0x060025AA RID: 9642 RVA: 0x000042DD File Offset: 0x000024DD
+	// Token: 0x060021F0 RID: 8688 RVA: 0x00004095 File Offset: 0x00002295
 	private void Start()
 	{
 	}
 
-	// Token: 0x060025AB RID: 9643 RVA: 0x0001E2A9 File Offset: 0x0001C4A9
+	// Token: 0x060021F1 RID: 8689 RVA: 0x000E9EAA File Offset: 0x000E80AA
 	protected virtual void OnMouseEnter()
 	{
 		this.sprite.color = this.onHover;
 	}
 
-	// Token: 0x060025AC RID: 9644 RVA: 0x0001E2BC File Offset: 0x0001C4BC
+	// Token: 0x060021F2 RID: 8690 RVA: 0x000E9EBD File Offset: 0x000E80BD
 	protected virtual void OnMouseExit()
 	{
 		this.sprite.color = this.Namel;
 	}
 
-	// Token: 0x04002020 RID: 8224
+	// Token: 0x04001B5A RID: 7002
 	public Color Namel;
 
-	// Token: 0x04002021 RID: 8225
+	// Token: 0x04001B5B RID: 7003
 	public Color onHover;
 
-	// Token: 0x04002022 RID: 8226
+	// Token: 0x04001B5C RID: 7004
 	public SpriteRenderer sprite;
 }

@@ -2,18 +2,18 @@
 using UltimateSurvival;
 using UnityEngine;
 
-// Token: 0x020007AC RID: 1964
+// Token: 0x02000518 RID: 1304
 [RequireComponent(typeof(Animator))]
 public class AIAnimator : EntityBehaviour
 {
-	// Token: 0x060031FA RID: 12794 RVA: 0x000247AE File Offset: 0x000229AE
+	// Token: 0x060029E7 RID: 10727 RVA: 0x0013FE8A File Offset: 0x0013E08A
 	private void Start()
 	{
 		base.Entity.ChangeHealth.AddListener(new Action<HealthEventData>(this.OnAttempt_HealthChange));
 		this.m_Animator = base.GetComponent<Animator>();
 	}
 
-	// Token: 0x060031FB RID: 12795 RVA: 0x0018D12C File Offset: 0x0018B32C
+	// Token: 0x060029E8 RID: 10728 RVA: 0x0013FEB4 File Offset: 0x0013E0B4
 	private void OnAttempt_HealthChange(HealthEventData data)
 	{
 		if (data.Delta < 0f)
@@ -24,6 +24,6 @@ public class AIAnimator : EntityBehaviour
 		}
 	}
 
-	// Token: 0x04002E29 RID: 11817
+	// Token: 0x04002639 RID: 9785
 	private Animator m_Animator;
 }

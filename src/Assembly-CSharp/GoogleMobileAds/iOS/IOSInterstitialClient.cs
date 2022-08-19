@@ -6,12 +6,12 @@ using GoogleMobileAds.Common;
 
 namespace GoogleMobileAds.iOS
 {
-	// Token: 0x02000E6F RID: 3695
+	// Token: 0x02000B09 RID: 2825
 	internal class IOSInterstitialClient : IGoogleMobileAdsInterstitialClient
 	{
-		// Token: 0x17000837 RID: 2103
-		// (get) Token: 0x06005886 RID: 22662 RVA: 0x0003F240 File Offset: 0x0003D440
-		// (set) Token: 0x06005887 RID: 22663 RVA: 0x0003F248 File Offset: 0x0003D448
+		// Token: 0x170005EE RID: 1518
+		// (get) Token: 0x06004EAA RID: 20138 RVA: 0x0021765C File Offset: 0x0021585C
+		// (set) Token: 0x06004EAB RID: 20139 RVA: 0x00217664 File Offset: 0x00215864
 		private IntPtr InterstitialPtr
 		{
 			get
@@ -25,13 +25,13 @@ namespace GoogleMobileAds.iOS
 			}
 		}
 
-		// Token: 0x06005888 RID: 22664 RVA: 0x0003F25C File Offset: 0x0003D45C
+		// Token: 0x06004EAC RID: 20140 RVA: 0x00217678 File Offset: 0x00215878
 		public IOSInterstitialClient(IAdListener listener)
 		{
 			this.listener = listener;
 		}
 
-		// Token: 0x06005889 RID: 22665 RVA: 0x002479F8 File Offset: 0x00245BF8
+		// Token: 0x06004EAD RID: 20141 RVA: 0x00217688 File Offset: 0x00215888
 		public void CreateInterstitialAd(string adUnitId)
 		{
 			IntPtr interstitialClient = (IntPtr)GCHandle.Alloc(this);
@@ -39,7 +39,7 @@ namespace GoogleMobileAds.iOS
 			Externs.GADUSetInterstitialCallbacks(this.InterstitialPtr, new IOSInterstitialClient.GADUInterstitialDidReceiveAdCallback(IOSInterstitialClient.InterstitialDidReceiveAdCallback), new IOSInterstitialClient.GADUInterstitialDidFailToReceiveAdWithErrorCallback(IOSInterstitialClient.InterstitialDidFailToReceiveAdWithErrorCallback), new IOSInterstitialClient.GADUInterstitialWillPresentScreenCallback(IOSInterstitialClient.InterstitialWillPresentScreenCallback), new IOSInterstitialClient.GADUInterstitialWillDismissScreenCallback(IOSInterstitialClient.InterstitialWillDismissScreenCallback), new IOSInterstitialClient.GADUInterstitialDidDismissScreenCallback(IOSInterstitialClient.InterstitialDidDismissScreenCallback), new IOSInterstitialClient.GADUInterstitialWillLeaveApplicationCallback(IOSInterstitialClient.InterstitialWillLeaveApplicationCallback));
 		}
 
-		// Token: 0x0600588A RID: 22666 RVA: 0x00247A74 File Offset: 0x00245C74
+		// Token: 0x06004EAE RID: 20142 RVA: 0x00217704 File Offset: 0x00215904
 		public void LoadAd(AdRequest request)
 		{
 			IntPtr intPtr = Externs.GADUCreateRequest();
@@ -73,108 +73,108 @@ namespace GoogleMobileAds.iOS
 			Externs.GADURelease(intPtr);
 		}
 
-		// Token: 0x0600588B RID: 22667 RVA: 0x0003F26B File Offset: 0x0003D46B
+		// Token: 0x06004EAF RID: 20143 RVA: 0x002178A0 File Offset: 0x00215AA0
 		public bool IsLoaded()
 		{
 			return Externs.GADUInterstitialReady(this.InterstitialPtr);
 		}
 
-		// Token: 0x0600588C RID: 22668 RVA: 0x0003F278 File Offset: 0x0003D478
+		// Token: 0x06004EB0 RID: 20144 RVA: 0x002178AD File Offset: 0x00215AAD
 		public void ShowInterstitial()
 		{
 			Externs.GADUShowInterstitial(this.InterstitialPtr);
 		}
 
-		// Token: 0x0600588D RID: 22669 RVA: 0x0003F285 File Offset: 0x0003D485
+		// Token: 0x06004EB1 RID: 20145 RVA: 0x002178BA File Offset: 0x00215ABA
 		public void DestroyInterstitial()
 		{
 			this.InterstitialPtr = IntPtr.Zero;
 		}
 
-		// Token: 0x0600588E RID: 22670 RVA: 0x0003F292 File Offset: 0x0003D492
+		// Token: 0x06004EB2 RID: 20146 RVA: 0x002178C7 File Offset: 0x00215AC7
 		[MonoPInvokeCallback(typeof(IOSInterstitialClient.GADUInterstitialDidReceiveAdCallback))]
 		private static void InterstitialDidReceiveAdCallback(IntPtr interstitialClient)
 		{
 			IOSInterstitialClient.IntPtrToInterstitialClient(interstitialClient).listener.FireAdLoaded();
 		}
 
-		// Token: 0x0600588F RID: 22671 RVA: 0x0003F2A4 File Offset: 0x0003D4A4
+		// Token: 0x06004EB3 RID: 20147 RVA: 0x002178D9 File Offset: 0x00215AD9
 		[MonoPInvokeCallback(typeof(IOSInterstitialClient.GADUInterstitialDidFailToReceiveAdWithErrorCallback))]
 		private static void InterstitialDidFailToReceiveAdWithErrorCallback(IntPtr interstitialClient, string error)
 		{
 			IOSInterstitialClient.IntPtrToInterstitialClient(interstitialClient).listener.FireAdFailedToLoad(error);
 		}
 
-		// Token: 0x06005890 RID: 22672 RVA: 0x0003F2B7 File Offset: 0x0003D4B7
+		// Token: 0x06004EB4 RID: 20148 RVA: 0x002178EC File Offset: 0x00215AEC
 		[MonoPInvokeCallback(typeof(IOSInterstitialClient.GADUInterstitialWillPresentScreenCallback))]
 		private static void InterstitialWillPresentScreenCallback(IntPtr interstitialClient)
 		{
 			IOSInterstitialClient.IntPtrToInterstitialClient(interstitialClient).listener.FireAdOpened();
 		}
 
-		// Token: 0x06005891 RID: 22673 RVA: 0x0003F2C9 File Offset: 0x0003D4C9
+		// Token: 0x06004EB5 RID: 20149 RVA: 0x002178FE File Offset: 0x00215AFE
 		[MonoPInvokeCallback(typeof(IOSInterstitialClient.GADUInterstitialWillDismissScreenCallback))]
 		private static void InterstitialWillDismissScreenCallback(IntPtr interstitialClient)
 		{
 			IOSInterstitialClient.IntPtrToInterstitialClient(interstitialClient).listener.FireAdClosing();
 		}
 
-		// Token: 0x06005892 RID: 22674 RVA: 0x0003F2DB File Offset: 0x0003D4DB
+		// Token: 0x06004EB6 RID: 20150 RVA: 0x00217910 File Offset: 0x00215B10
 		[MonoPInvokeCallback(typeof(IOSInterstitialClient.GADUInterstitialDidDismissScreenCallback))]
 		private static void InterstitialDidDismissScreenCallback(IntPtr interstitialClient)
 		{
 			IOSInterstitialClient.IntPtrToInterstitialClient(interstitialClient).listener.FireAdClosed();
 		}
 
-		// Token: 0x06005893 RID: 22675 RVA: 0x0003F2ED File Offset: 0x0003D4ED
+		// Token: 0x06004EB7 RID: 20151 RVA: 0x00217922 File Offset: 0x00215B22
 		[MonoPInvokeCallback(typeof(IOSInterstitialClient.GADUInterstitialWillLeaveApplicationCallback))]
 		private static void InterstitialWillLeaveApplicationCallback(IntPtr interstitialClient)
 		{
 			IOSInterstitialClient.IntPtrToInterstitialClient(interstitialClient).listener.FireAdLeftApplication();
 		}
 
-		// Token: 0x06005894 RID: 22676 RVA: 0x00247C10 File Offset: 0x00245E10
+		// Token: 0x06004EB8 RID: 20152 RVA: 0x00217934 File Offset: 0x00215B34
 		private static IOSInterstitialClient IntPtrToInterstitialClient(IntPtr interstitialClient)
 		{
 			return ((GCHandle)interstitialClient).Target as IOSInterstitialClient;
 		}
 
-		// Token: 0x06005895 RID: 22677 RVA: 0x000042DD File Offset: 0x000024DD
+		// Token: 0x06004EB9 RID: 20153 RVA: 0x00004095 File Offset: 0x00002295
 		public void SetInAppPurchaseParams(IInAppPurchaseListener listener, string publicKey)
 		{
 		}
 
-		// Token: 0x04005879 RID: 22649
+		// Token: 0x04004E30 RID: 20016
 		private IAdListener listener;
 
-		// Token: 0x0400587A RID: 22650
+		// Token: 0x04004E31 RID: 20017
 		private IntPtr interstitialPtr;
 
-		// Token: 0x0400587B RID: 22651
+		// Token: 0x04004E32 RID: 20018
 		private static Dictionary<IntPtr, IOSBannerClient> bannerClients;
 
-		// Token: 0x02000E70 RID: 3696
-		// (Invoke) Token: 0x06005897 RID: 22679
+		// Token: 0x020015DC RID: 5596
+		// (Invoke) Token: 0x06008543 RID: 34115
 		internal delegate void GADUInterstitialDidReceiveAdCallback(IntPtr interstitialClient);
 
-		// Token: 0x02000E71 RID: 3697
-		// (Invoke) Token: 0x0600589B RID: 22683
+		// Token: 0x020015DD RID: 5597
+		// (Invoke) Token: 0x06008547 RID: 34119
 		internal delegate void GADUInterstitialDidFailToReceiveAdWithErrorCallback(IntPtr interstitialClient, string error);
 
-		// Token: 0x02000E72 RID: 3698
-		// (Invoke) Token: 0x0600589F RID: 22687
+		// Token: 0x020015DE RID: 5598
+		// (Invoke) Token: 0x0600854B RID: 34123
 		internal delegate void GADUInterstitialWillPresentScreenCallback(IntPtr interstitialClient);
 
-		// Token: 0x02000E73 RID: 3699
-		// (Invoke) Token: 0x060058A3 RID: 22691
+		// Token: 0x020015DF RID: 5599
+		// (Invoke) Token: 0x0600854F RID: 34127
 		internal delegate void GADUInterstitialWillDismissScreenCallback(IntPtr interstitialClient);
 
-		// Token: 0x02000E74 RID: 3700
-		// (Invoke) Token: 0x060058A7 RID: 22695
+		// Token: 0x020015E0 RID: 5600
+		// (Invoke) Token: 0x06008553 RID: 34131
 		internal delegate void GADUInterstitialDidDismissScreenCallback(IntPtr interstitialClient);
 
-		// Token: 0x02000E75 RID: 3701
-		// (Invoke) Token: 0x060058AB RID: 22699
+		// Token: 0x020015E1 RID: 5601
+		// (Invoke) Token: 0x06008557 RID: 34135
 		internal delegate void GADUInterstitialWillLeaveApplicationCallback(IntPtr interstitialClient);
 	}
 }

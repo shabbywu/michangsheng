@@ -3,12 +3,12 @@ using UnityEngine;
 
 namespace BehaviorDesigner.Runtime.Tasks.Basic.UnityRenderer
 {
-	// Token: 0x0200156A RID: 5482
+	// Token: 0x020010B0 RID: 4272
 	[TaskCategory("Basic/Renderer")]
 	[TaskDescription("Returns Success if the Renderer is visible, otherwise Failure.")]
 	public class IsVisible : Conditional
 	{
-		// Token: 0x060081A6 RID: 33190 RVA: 0x002CC66C File Offset: 0x002CA86C
+		// Token: 0x060073AC RID: 29612 RVA: 0x002B07C0 File Offset: 0x002AE9C0
 		public override void OnStart()
 		{
 			GameObject defaultGameObject = base.GetDefaultGameObject(this.targetGameObject.Value);
@@ -19,7 +19,7 @@ namespace BehaviorDesigner.Runtime.Tasks.Basic.UnityRenderer
 			}
 		}
 
-		// Token: 0x060081A7 RID: 33191 RVA: 0x00058AB3 File Offset: 0x00056CB3
+		// Token: 0x060073AD RID: 29613 RVA: 0x002B0800 File Offset: 0x002AEA00
 		public override TaskStatus OnUpdate()
 		{
 			if (this.renderer == null)
@@ -34,20 +34,20 @@ namespace BehaviorDesigner.Runtime.Tasks.Basic.UnityRenderer
 			return 2;
 		}
 
-		// Token: 0x060081A8 RID: 33192 RVA: 0x00058ADF File Offset: 0x00056CDF
+		// Token: 0x060073AE RID: 29614 RVA: 0x002B082C File Offset: 0x002AEA2C
 		public override void OnReset()
 		{
 			this.targetGameObject = null;
 		}
 
-		// Token: 0x04006E5D RID: 28253
+		// Token: 0x04005F5D RID: 24413
 		[Tooltip("The GameObject that the task operates on. If null the task GameObject is used.")]
 		public SharedGameObject targetGameObject;
 
-		// Token: 0x04006E5E RID: 28254
+		// Token: 0x04005F5E RID: 24414
 		private Renderer renderer;
 
-		// Token: 0x04006E5F RID: 28255
+		// Token: 0x04005F5F RID: 24415
 		private GameObject prevGameObject;
 	}
 }

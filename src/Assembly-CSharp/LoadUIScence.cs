@@ -1,10 +1,10 @@
 ﻿using System;
 using UnityEngine;
 
-// Token: 0x02000521 RID: 1313
+// Token: 0x02000398 RID: 920
 public class LoadUIScence : MonoBehaviour
 {
-	// Token: 0x060021BA RID: 8634 RVA: 0x0001BB8D File Offset: 0x00019D8D
+	// Token: 0x06001E39 RID: 7737 RVA: 0x000D5474 File Offset: 0x000D3674
 	private void Start()
 	{
 		Object.Instantiate<GameObject>(ResManager.inst.LoadPrefab("GameObject"));

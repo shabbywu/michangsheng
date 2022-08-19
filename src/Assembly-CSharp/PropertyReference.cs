@@ -3,13 +3,13 @@ using System.Diagnostics;
 using System.Reflection;
 using UnityEngine;
 
-// Token: 0x020000C6 RID: 198
+// Token: 0x02000089 RID: 137
 [Serializable]
 public class PropertyReference
 {
-	// Token: 0x170000E2 RID: 226
-	// (get) Token: 0x060007C2 RID: 1986 RVA: 0x0000A7EA File Offset: 0x000089EA
-	// (set) Token: 0x060007C3 RID: 1987 RVA: 0x0000A7F2 File Offset: 0x000089F2
+	// Token: 0x170000CE RID: 206
+	// (get) Token: 0x0600073F RID: 1855 RVA: 0x0002B114 File Offset: 0x00029314
+	// (set) Token: 0x06000740 RID: 1856 RVA: 0x0002B11C File Offset: 0x0002931C
 	public Component target
 	{
 		get
@@ -24,9 +24,9 @@ public class PropertyReference
 		}
 	}
 
-	// Token: 0x170000E3 RID: 227
-	// (get) Token: 0x060007C4 RID: 1988 RVA: 0x0000A809 File Offset: 0x00008A09
-	// (set) Token: 0x060007C5 RID: 1989 RVA: 0x0000A811 File Offset: 0x00008A11
+	// Token: 0x170000CF RID: 207
+	// (get) Token: 0x06000741 RID: 1857 RVA: 0x0002B133 File Offset: 0x00029333
+	// (set) Token: 0x06000742 RID: 1858 RVA: 0x0002B13B File Offset: 0x0002933B
 	public string name
 	{
 		get
@@ -41,8 +41,8 @@ public class PropertyReference
 		}
 	}
 
-	// Token: 0x170000E4 RID: 228
-	// (get) Token: 0x060007C6 RID: 1990 RVA: 0x0000A828 File Offset: 0x00008A28
+	// Token: 0x170000D0 RID: 208
+	// (get) Token: 0x06000743 RID: 1859 RVA: 0x0002B152 File Offset: 0x00029352
 	public bool isValid
 	{
 		get
@@ -51,8 +51,8 @@ public class PropertyReference
 		}
 	}
 
-	// Token: 0x170000E5 RID: 229
-	// (get) Token: 0x060007C7 RID: 1991 RVA: 0x000800FC File Offset: 0x0007E2FC
+	// Token: 0x170000D1 RID: 209
+	// (get) Token: 0x06000744 RID: 1860 RVA: 0x0002B174 File Offset: 0x00029374
 	public bool isEnabled
 	{
 		get
@@ -66,19 +66,19 @@ public class PropertyReference
 		}
 	}
 
-	// Token: 0x060007C8 RID: 1992 RVA: 0x0000403D File Offset: 0x0000223D
+	// Token: 0x06000745 RID: 1861 RVA: 0x000027FC File Offset: 0x000009FC
 	public PropertyReference()
 	{
 	}
 
-	// Token: 0x060007C9 RID: 1993 RVA: 0x0000A848 File Offset: 0x00008A48
+	// Token: 0x06000746 RID: 1862 RVA: 0x0002B1AE File Offset: 0x000293AE
 	public PropertyReference(Component target, string fieldName)
 	{
 		this.mTarget = target;
 		this.mName = fieldName;
 	}
 
-	// Token: 0x060007CA RID: 1994 RVA: 0x00080138 File Offset: 0x0007E338
+	// Token: 0x06000747 RID: 1863 RVA: 0x0002B1C4 File Offset: 0x000293C4
 	public Type GetPropertyType()
 	{
 		if (this.mProperty == null && this.mField == null && this.isValid)
@@ -96,7 +96,7 @@ public class PropertyReference
 		return typeof(void);
 	}
 
-	// Token: 0x060007CB RID: 1995 RVA: 0x000801B0 File Offset: 0x0007E3B0
+	// Token: 0x06000748 RID: 1864 RVA: 0x0002B23C File Offset: 0x0002943C
 	public override bool Equals(object obj)
 	{
 		if (obj == null)
@@ -111,40 +111,40 @@ public class PropertyReference
 		return false;
 	}
 
-	// Token: 0x060007CC RID: 1996 RVA: 0x0000A85E File Offset: 0x00008A5E
+	// Token: 0x06000749 RID: 1865 RVA: 0x0002B28D File Offset: 0x0002948D
 	public override int GetHashCode()
 	{
 		return PropertyReference.s_Hash;
 	}
 
-	// Token: 0x060007CD RID: 1997 RVA: 0x0000A865 File Offset: 0x00008A65
+	// Token: 0x0600074A RID: 1866 RVA: 0x0002B294 File Offset: 0x00029494
 	public void Set(Component target, string methodName)
 	{
 		this.mTarget = target;
 		this.mName = methodName;
 	}
 
-	// Token: 0x060007CE RID: 1998 RVA: 0x0000A875 File Offset: 0x00008A75
+	// Token: 0x0600074B RID: 1867 RVA: 0x0002B2A4 File Offset: 0x000294A4
 	public void Clear()
 	{
 		this.mTarget = null;
 		this.mName = null;
 	}
 
-	// Token: 0x060007CF RID: 1999 RVA: 0x0000A885 File Offset: 0x00008A85
+	// Token: 0x0600074C RID: 1868 RVA: 0x0002B2B4 File Offset: 0x000294B4
 	public void Reset()
 	{
 		this.mField = null;
 		this.mProperty = null;
 	}
 
-	// Token: 0x060007D0 RID: 2000 RVA: 0x0000A895 File Offset: 0x00008A95
+	// Token: 0x0600074D RID: 1869 RVA: 0x0002B2C4 File Offset: 0x000294C4
 	public override string ToString()
 	{
 		return PropertyReference.ToString(this.mTarget, this.name);
 	}
 
-	// Token: 0x060007D1 RID: 2001 RVA: 0x00080204 File Offset: 0x0007E404
+	// Token: 0x0600074E RID: 1870 RVA: 0x0002B2D8 File Offset: 0x000294D8
 	public static string ToString(Component comp, string property)
 	{
 		if (!(comp != null))
@@ -164,7 +164,7 @@ public class PropertyReference
 		return text + ".[property]";
 	}
 
-	// Token: 0x060007D2 RID: 2002 RVA: 0x00080260 File Offset: 0x0007E460
+	// Token: 0x0600074F RID: 1871 RVA: 0x0002B334 File Offset: 0x00029534
 	[DebuggerHidden]
 	[DebuggerStepThrough]
 	public object Get()
@@ -187,7 +187,7 @@ public class PropertyReference
 		return null;
 	}
 
-	// Token: 0x060007D3 RID: 2003 RVA: 0x000802E8 File Offset: 0x0007E4E8
+	// Token: 0x06000750 RID: 1872 RVA: 0x0002B3BC File Offset: 0x000295BC
 	[DebuggerHidden]
 	[DebuggerStepThrough]
 	public bool Set(object value)
@@ -247,7 +247,7 @@ public class PropertyReference
 		return false;
 	}
 
-	// Token: 0x060007D4 RID: 2004 RVA: 0x0008041C File Offset: 0x0007E61C
+	// Token: 0x06000751 RID: 1873 RVA: 0x0002B4F0 File Offset: 0x000296F0
 	[DebuggerHidden]
 	[DebuggerStepThrough]
 	private bool Cache()
@@ -266,7 +266,7 @@ public class PropertyReference
 		return this.mField != null || this.mProperty != null;
 	}
 
-	// Token: 0x060007D5 RID: 2005 RVA: 0x000804A0 File Offset: 0x0007E6A0
+	// Token: 0x06000752 RID: 1874 RVA: 0x0002B574 File Offset: 0x00029774
 	private bool Convert(ref object value)
 	{
 		if (this.mTarget == null)
@@ -290,14 +290,14 @@ public class PropertyReference
 		return PropertyReference.Convert(ref value, from, propertyType);
 	}
 
-	// Token: 0x060007D6 RID: 2006 RVA: 0x000804E8 File Offset: 0x0007E6E8
+	// Token: 0x06000753 RID: 1875 RVA: 0x0002B5BC File Offset: 0x000297BC
 	public static bool Convert(Type from, Type to)
 	{
 		object obj = null;
 		return PropertyReference.Convert(ref obj, from, to);
 	}
 
-	// Token: 0x060007D7 RID: 2007 RVA: 0x0000A8A8 File Offset: 0x00008AA8
+	// Token: 0x06000754 RID: 1876 RVA: 0x0002B5D4 File Offset: 0x000297D4
 	public static bool Convert(object value, Type to)
 	{
 		if (value == null)
@@ -308,7 +308,7 @@ public class PropertyReference
 		return PropertyReference.Convert(ref value, value.GetType(), to);
 	}
 
-	// Token: 0x060007D8 RID: 2008 RVA: 0x00080500 File Offset: 0x0007E700
+	// Token: 0x06000755 RID: 1877 RVA: 0x0002B5F4 File Offset: 0x000297F4
 	public static bool Convert(ref object value, Type from, Type to)
 	{
 		if (to.IsAssignableFrom(from))
@@ -350,20 +350,20 @@ public class PropertyReference
 		return false;
 	}
 
-	// Token: 0x04000579 RID: 1401
+	// Token: 0x04000485 RID: 1157
 	[SerializeField]
 	private Component mTarget;
 
-	// Token: 0x0400057A RID: 1402
+	// Token: 0x04000486 RID: 1158
 	[SerializeField]
 	private string mName;
 
-	// Token: 0x0400057B RID: 1403
+	// Token: 0x04000487 RID: 1159
 	private FieldInfo mField;
 
-	// Token: 0x0400057C RID: 1404
+	// Token: 0x04000488 RID: 1160
 	private PropertyInfo mProperty;
 
-	// Token: 0x0400057D RID: 1405
+	// Token: 0x04000489 RID: 1161
 	private static int s_Hash = "PropertyBinding".GetHashCode();
 }

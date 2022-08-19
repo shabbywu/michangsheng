@@ -4,90 +4,90 @@ using UnityEngine;
 
 namespace KBEngine
 {
-	// Token: 0x02000FF1 RID: 4081
+	// Token: 0x02000C66 RID: 3174
 	public abstract class SpawnPointBase : Entity
 	{
-		// Token: 0x060060B6 RID: 24758 RVA: 0x000042DD File Offset: 0x000024DD
+		// Token: 0x06005667 RID: 22119 RVA: 0x00004095 File Offset: 0x00002295
 		public virtual void onModelIDChanged(uint oldValue)
 		{
 		}
 
-		// Token: 0x060060B7 RID: 24759 RVA: 0x000042DD File Offset: 0x000024DD
+		// Token: 0x06005668 RID: 22120 RVA: 0x00004095 File Offset: 0x00002295
 		public virtual void onModelScaleChanged(byte oldValue)
 		{
 		}
 
-		// Token: 0x060060B8 RID: 24760 RVA: 0x000042DD File Offset: 0x000024DD
+		// Token: 0x06005669 RID: 22121 RVA: 0x00004095 File Offset: 0x00002295
 		public virtual void onNameChanged(string oldValue)
 		{
 		}
 
-		// Token: 0x060060B9 RID: 24761 RVA: 0x000042DD File Offset: 0x000024DD
+		// Token: 0x0600566A RID: 22122 RVA: 0x00004095 File Offset: 0x00002295
 		public virtual void onUidChanged(uint oldValue)
 		{
 		}
 
-		// Token: 0x060060BA RID: 24762 RVA: 0x000042DD File Offset: 0x000024DD
+		// Token: 0x0600566B RID: 22123 RVA: 0x00004095 File Offset: 0x00002295
 		public virtual void onUtypeChanged(uint oldValue)
 		{
 		}
 
-		// Token: 0x060060BB RID: 24763 RVA: 0x00043129 File Offset: 0x00041329
+		// Token: 0x0600566C RID: 22124 RVA: 0x0023DF82 File Offset: 0x0023C182
 		public SpawnPointBase()
 		{
 		}
 
-		// Token: 0x060060BC RID: 24764 RVA: 0x000042DD File Offset: 0x000024DD
+		// Token: 0x0600566D RID: 22125 RVA: 0x00004095 File Offset: 0x00002295
 		public override void onComponentsEnterworld()
 		{
 		}
 
-		// Token: 0x060060BD RID: 24765 RVA: 0x000042DD File Offset: 0x000024DD
+		// Token: 0x0600566E RID: 22126 RVA: 0x00004095 File Offset: 0x00002295
 		public override void onComponentsLeaveworld()
 		{
 		}
 
-		// Token: 0x060060BE RID: 24766 RVA: 0x00043144 File Offset: 0x00041344
+		// Token: 0x0600566F RID: 22127 RVA: 0x0023DF9D File Offset: 0x0023C19D
 		public override void onGetBase()
 		{
 			this.baseEntityCall = new EntityBaseEntityCall_SpawnPointBase(this.id, this.className);
 		}
 
-		// Token: 0x060060BF RID: 24767 RVA: 0x0004315D File Offset: 0x0004135D
+		// Token: 0x06005670 RID: 22128 RVA: 0x0023DFB6 File Offset: 0x0023C1B6
 		public override void onGetCell()
 		{
 			this.cellEntityCall = new EntityCellEntityCall_SpawnPointBase(this.id, this.className);
 		}
 
-		// Token: 0x060060C0 RID: 24768 RVA: 0x00043176 File Offset: 0x00041376
+		// Token: 0x06005671 RID: 22129 RVA: 0x0023DFCF File Offset: 0x0023C1CF
 		public override void onLoseCell()
 		{
 			this.cellEntityCall = null;
 		}
 
-		// Token: 0x060060C1 RID: 24769 RVA: 0x0004317F File Offset: 0x0004137F
+		// Token: 0x06005672 RID: 22130 RVA: 0x0023DFD8 File Offset: 0x0023C1D8
 		public override EntityCall getBaseEntityCall()
 		{
 			return this.baseEntityCall;
 		}
 
-		// Token: 0x060060C2 RID: 24770 RVA: 0x00043187 File Offset: 0x00041387
+		// Token: 0x06005673 RID: 22131 RVA: 0x0023DFE0 File Offset: 0x0023C1E0
 		public override EntityCall getCellEntityCall()
 		{
 			return this.cellEntityCall;
 		}
 
-		// Token: 0x060060C3 RID: 24771 RVA: 0x000042DD File Offset: 0x000024DD
+		// Token: 0x06005674 RID: 22132 RVA: 0x00004095 File Offset: 0x00002295
 		public override void attachComponents()
 		{
 		}
 
-		// Token: 0x060060C4 RID: 24772 RVA: 0x000042DD File Offset: 0x000024DD
+		// Token: 0x06005675 RID: 22133 RVA: 0x00004095 File Offset: 0x00002295
 		public override void detachComponents()
 		{
 		}
 
-		// Token: 0x060060C5 RID: 24773 RVA: 0x0026A984 File Offset: 0x00268B84
+		// Token: 0x06005676 RID: 22134 RVA: 0x0023DFE8 File Offset: 0x0023C1E8
 		public override void onRemoteMethodCall(MemoryStream stream)
 		{
 			ScriptModule scriptModule = EntityDef.moduledefs["SpawnPoint"];
@@ -118,7 +118,7 @@ namespace KBEngine
 			ushort properUtype = scriptModule.idpropertys[num].properUtype;
 		}
 
-		// Token: 0x060060C6 RID: 24774 RVA: 0x0026AA04 File Offset: 0x00268C04
+		// Token: 0x06005677 RID: 22135 RVA: 0x0023E068 File Offset: 0x0023C268
 		public override void onUpdatePropertys(MemoryStream stream)
 		{
 			ScriptModule scriptModule = EntityDef.moduledefs["SpawnPoint"];
@@ -277,7 +277,7 @@ namespace KBEngine
 			}
 		}
 
-		// Token: 0x060060C7 RID: 24775 RVA: 0x0026ACD8 File Offset: 0x00268ED8
+		// Token: 0x06005678 RID: 22136 RVA: 0x0023E33C File Offset: 0x0023C53C
 		public override void callPropertysSetMethods()
 		{
 			Dictionary<ushort, Property> idpropertys = EntityDef.moduledefs["SpawnPoint"].idpropertys;
@@ -375,25 +375,25 @@ namespace KBEngine
 			}
 		}
 
-		// Token: 0x04005BD9 RID: 23513
+		// Token: 0x0400511F RID: 20767
 		public EntityBaseEntityCall_SpawnPointBase baseEntityCall;
 
-		// Token: 0x04005BDA RID: 23514
+		// Token: 0x04005120 RID: 20768
 		public EntityCellEntityCall_SpawnPointBase cellEntityCall;
 
-		// Token: 0x04005BDB RID: 23515
+		// Token: 0x04005121 RID: 20769
 		public uint modelID;
 
-		// Token: 0x04005BDC RID: 23516
+		// Token: 0x04005122 RID: 20770
 		public byte modelScale = 30;
 
-		// Token: 0x04005BDD RID: 23517
+		// Token: 0x04005123 RID: 20771
 		public string name = "";
 
-		// Token: 0x04005BDE RID: 23518
+		// Token: 0x04005124 RID: 20772
 		public uint uid;
 
-		// Token: 0x04005BDF RID: 23519
+		// Token: 0x04005125 RID: 20773
 		public uint utype;
 	}
 }

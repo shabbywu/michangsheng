@@ -5,10 +5,10 @@ using UnityEngine;
 
 namespace KBEngine
 {
-	// Token: 0x02000F17 RID: 3863
+	// Token: 0x02000B97 RID: 2967
 	public class KBEngineApp
 	{
-		// Token: 0x06005CB8 RID: 23736 RVA: 0x0025E3B0 File Offset: 0x0025C5B0
+		// Token: 0x0600527C RID: 21116 RVA: 0x0022FF2C File Offset: 0x0022E12C
 		public KBEngineApp(KBEngineArgs args)
 		{
 			if (KBEngineApp.app != null)
@@ -20,7 +20,7 @@ namespace KBEngine
 			this.initialize(args);
 		}
 
-		// Token: 0x06005CB9 RID: 23737 RVA: 0x000416A1 File Offset: 0x0003F8A1
+		// Token: 0x0600527D RID: 21117 RVA: 0x002300A8 File Offset: 0x0022E2A8
 		public static KBEngineApp getSingleton()
 		{
 			if (KBEngineApp.app == null)
@@ -30,7 +30,7 @@ namespace KBEngine
 			return KBEngineApp.app;
 		}
 
-		// Token: 0x06005CBA RID: 23738 RVA: 0x000416BA File Offset: 0x0003F8BA
+		// Token: 0x0600527E RID: 21118 RVA: 0x002300C1 File Offset: 0x0022E2C1
 		public virtual bool initialize(KBEngineArgs args)
 		{
 			this._args = args;
@@ -41,7 +41,7 @@ namespace KBEngine
 			return true;
 		}
 
-		// Token: 0x06005CBB RID: 23739 RVA: 0x000416E8 File Offset: 0x0003F8E8
+		// Token: 0x0600527F RID: 21119 RVA: 0x002300EF File Offset: 0x0022E2EF
 		private void initNetwork()
 		{
 			this._filter = null;
@@ -49,7 +49,7 @@ namespace KBEngine
 			this._networkInterface = new NetworkInterfaceTCP();
 		}
 
-		// Token: 0x06005CBC RID: 23740 RVA: 0x0025E52C File Offset: 0x0025C72C
+		// Token: 0x06005280 RID: 21120 RVA: 0x0023010C File Offset: 0x0022E30C
 		private void installEvents()
 		{
 			Event.registerIn("createAccount", this, "createAccount");
@@ -62,13 +62,13 @@ namespace KBEngine
 			Event.registerIn("_closeNetwork", this, "_closeNetwork");
 		}
 
-		// Token: 0x06005CBD RID: 23741 RVA: 0x00041702 File Offset: 0x0003F902
+		// Token: 0x06005281 RID: 21121 RVA: 0x002301A1 File Offset: 0x0022E3A1
 		public KBEngineArgs getInitArgs()
 		{
 			return this._args;
 		}
 
-		// Token: 0x06005CBE RID: 23742 RVA: 0x0004170A File Offset: 0x0003F90A
+		// Token: 0x06005282 RID: 21122 RVA: 0x002301A9 File Offset: 0x0022E3A9
 		public virtual void destroy()
 		{
 			Dbg.WARNING_MSG("KBEngine::destroy()");
@@ -82,25 +82,25 @@ namespace KBEngine
 			KBEngineApp.app = null;
 		}
 
-		// Token: 0x06005CBF RID: 23743 RVA: 0x00041747 File Offset: 0x0003F947
+		// Token: 0x06005283 RID: 21123 RVA: 0x002301E6 File Offset: 0x0022E3E6
 		public NetworkInterfaceBase networkInterface()
 		{
 			return this._networkInterface;
 		}
 
-		// Token: 0x06005CC0 RID: 23744 RVA: 0x0004174F File Offset: 0x0003F94F
+		// Token: 0x06005284 RID: 21124 RVA: 0x002301EE File Offset: 0x0022E3EE
 		public byte[] serverdatas()
 		{
 			return this._serverdatas;
 		}
 
-		// Token: 0x06005CC1 RID: 23745 RVA: 0x00041757 File Offset: 0x0003F957
+		// Token: 0x06005285 RID: 21125 RVA: 0x002301F6 File Offset: 0x0022E3F6
 		public void entityServerPos(Vector3 pos)
 		{
 			this._entityServerPos = pos;
 		}
 
-		// Token: 0x06005CC2 RID: 23746 RVA: 0x00041760 File Offset: 0x0003F960
+		// Token: 0x06005286 RID: 21126 RVA: 0x002301FF File Offset: 0x0022E3FF
 		public void resetMessages()
 		{
 			this._serverErrs.Clear();
@@ -110,7 +110,7 @@ namespace KBEngine
 			Dbg.DEBUG_MSG("KBEngine::resetMessages()");
 		}
 
-		// Token: 0x06005CC3 RID: 23747 RVA: 0x0025E5C4 File Offset: 0x0025C7C4
+		// Token: 0x06005287 RID: 21127 RVA: 0x00230228 File Offset: 0x0022E428
 		public virtual void reset()
 		{
 			Event.clearFiredEvents();
@@ -140,13 +140,13 @@ namespace KBEngine
 			this._spacedatas.Clear();
 		}
 
-		// Token: 0x06005CC4 RID: 23748 RVA: 0x00041787 File Offset: 0x0003F987
+		// Token: 0x06005288 RID: 21128 RVA: 0x00230313 File Offset: 0x0022E513
 		public static bool validEmail(string strEmail)
 		{
 			return Regex.IsMatch(strEmail, "^([\\w-\\.]+)@((\\[[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\.)\r\n\t\t\t\t|(([\\w-]+\\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\\]?)$");
 		}
 
-		// Token: 0x06005CC5 RID: 23749 RVA: 0x00041794 File Offset: 0x0003F994
+		// Token: 0x06005289 RID: 21129 RVA: 0x00230320 File Offset: 0x0022E520
 		public virtual void process()
 		{
 			if (this._networkInterface != null)
@@ -157,7 +157,7 @@ namespace KBEngine
 			this.sendTick();
 		}
 
-		// Token: 0x06005CC6 RID: 23750 RVA: 0x0025E6B0 File Offset: 0x0025C8B0
+		// Token: 0x0600528A RID: 21130 RVA: 0x00230340 File Offset: 0x0022E540
 		public Entity player()
 		{
 			Entity result;
@@ -168,13 +168,13 @@ namespace KBEngine
 			return null;
 		}
 
-		// Token: 0x06005CC7 RID: 23751 RVA: 0x000417B4 File Offset: 0x0003F9B4
+		// Token: 0x0600528B RID: 21131 RVA: 0x00230365 File Offset: 0x0022E565
 		public void _closeNetwork(NetworkInterfaceBase networkInterface)
 		{
 			networkInterface.close();
 		}
 
-		// Token: 0x06005CC8 RID: 23752 RVA: 0x0025E6D8 File Offset: 0x0025C8D8
+		// Token: 0x0600528C RID: 21132 RVA: 0x00230370 File Offset: 0x0022E570
 		public void sendTick()
 		{
 			if (this._networkInterface == null || !this._networkInterface.connected)
@@ -214,13 +214,13 @@ namespace KBEngine
 			}
 		}
 
-		// Token: 0x06005CC9 RID: 23753 RVA: 0x000417BC File Offset: 0x0003F9BC
+		// Token: 0x0600528D RID: 21133 RVA: 0x0023049B File Offset: 0x0022E69B
 		public void Client_onAppActiveTickCB()
 		{
 			this._lastTickCBTime = DateTime.Now;
 		}
 
-		// Token: 0x06005CCA RID: 23754 RVA: 0x0025E804 File Offset: 0x0025CA04
+		// Token: 0x0600528E RID: 21134 RVA: 0x002304A8 File Offset: 0x0022E6A8
 		public void hello()
 		{
 			Bundle bundle = ObjectPool<Bundle>.createObject();
@@ -245,7 +245,7 @@ namespace KBEngine
 			bundle.send(this._networkInterface);
 		}
 
-		// Token: 0x06005CCB RID: 23755 RVA: 0x0025E8C8 File Offset: 0x0025CAC8
+		// Token: 0x0600528F RID: 21135 RVA: 0x0023056C File Offset: 0x0022E76C
 		public void Client_onHelloCB(MemoryStream stream)
 		{
 			string text = stream.readString();
@@ -302,22 +302,22 @@ namespace KBEngine
 			this.onLogin_loginapp();
 		}
 
-		// Token: 0x06005CCC RID: 23756 RVA: 0x000042DD File Offset: 0x000024DD
+		// Token: 0x06005290 RID: 21136 RVA: 0x00004095 File Offset: 0x00002295
 		public void Client_onImportServerErrorsDescr(MemoryStream stream)
 		{
 		}
 
-		// Token: 0x06005CCD RID: 23757 RVA: 0x000042DD File Offset: 0x000024DD
+		// Token: 0x06005291 RID: 21137 RVA: 0x00004095 File Offset: 0x00002295
 		public void Client_onImportClientMessages(MemoryStream stream)
 		{
 		}
 
-		// Token: 0x06005CCE RID: 23758 RVA: 0x000042DD File Offset: 0x000024DD
+		// Token: 0x06005292 RID: 21138 RVA: 0x00004095 File Offset: 0x00002295
 		public void Client_onImportClientEntityDef(MemoryStream stream)
 		{
 		}
 
-		// Token: 0x06005CCF RID: 23759 RVA: 0x0025EA30 File Offset: 0x0025CC30
+		// Token: 0x06005293 RID: 21139 RVA: 0x002306D4 File Offset: 0x0022E8D4
 		public void Client_onImportClientSDK(MemoryStream stream)
 		{
 			int num = stream.readInt32();
@@ -334,7 +334,7 @@ namespace KBEngine
 			});
 		}
 
-		// Token: 0x06005CD0 RID: 23760 RVA: 0x0025EA90 File Offset: 0x0025CC90
+		// Token: 0x06005294 RID: 21140 RVA: 0x00230734 File Offset: 0x0022E934
 		public void Client_onVersionNotMatch(MemoryStream stream)
 		{
 			this.serverVersion = stream.readString();
@@ -353,7 +353,7 @@ namespace KBEngine
 			});
 		}
 
-		// Token: 0x06005CD1 RID: 23761 RVA: 0x0025EB08 File Offset: 0x0025CD08
+		// Token: 0x06005295 RID: 21141 RVA: 0x002307AC File Offset: 0x0022E9AC
 		public void Client_onScriptVersionNotMatch(MemoryStream stream)
 		{
 			this.serverScriptVersion = stream.readString();
@@ -372,7 +372,7 @@ namespace KBEngine
 			});
 		}
 
-		// Token: 0x06005CD2 RID: 23762 RVA: 0x0025EB80 File Offset: 0x0025CD80
+		// Token: 0x06005296 RID: 21142 RVA: 0x00230824 File Offset: 0x0022EA24
 		public void Client_onKicked(ushort failedcode)
 		{
 			Dbg.DEBUG_MSG(string.Concat(new object[]
@@ -389,7 +389,7 @@ namespace KBEngine
 			});
 		}
 
-		// Token: 0x06005CD3 RID: 23763 RVA: 0x000417C9 File Offset: 0x0003F9C9
+		// Token: 0x06005297 RID: 21143 RVA: 0x00230885 File Offset: 0x0022EA85
 		public void login(string username, string password, byte[] datas)
 		{
 			KBEngineApp.app.username = username;
@@ -398,7 +398,7 @@ namespace KBEngine
 			KBEngineApp.app.login_loginapp(true);
 		}
 
-		// Token: 0x06005CD4 RID: 23764 RVA: 0x0025EBE4 File Offset: 0x0025CDE4
+		// Token: 0x06005298 RID: 21144 RVA: 0x002308B4 File Offset: 0x0022EAB4
 		public void login_loginapp(bool noconnect)
 		{
 			if (noconnect)
@@ -417,7 +417,7 @@ namespace KBEngine
 			bundle.send(this._networkInterface);
 		}
 
-		// Token: 0x06005CD5 RID: 23765 RVA: 0x0025ECA0 File Offset: 0x0025CEA0
+		// Token: 0x06005299 RID: 21145 RVA: 0x00230970 File Offset: 0x0022EB70
 		private void onConnectTo_loginapp_callback(string ip, int port, bool success, object userData)
 		{
 			this._lastTickCBTime = DateTime.Now;
@@ -432,14 +432,14 @@ namespace KBEngine
 			this.hello();
 		}
 
-		// Token: 0x06005CD6 RID: 23766 RVA: 0x000417F7 File Offset: 0x0003F9F7
+		// Token: 0x0600529A RID: 21146 RVA: 0x002309D4 File Offset: 0x0022EBD4
 		private void onLogin_loginapp()
 		{
 			this._lastTickCBTime = DateTime.Now;
 			this.login_loginapp(false);
 		}
 
-		// Token: 0x06005CD7 RID: 23767 RVA: 0x0025ED04 File Offset: 0x0025CF04
+		// Token: 0x0600529B RID: 21147 RVA: 0x002309E8 File Offset: 0x0022EBE8
 		public void login_baseapp(bool noconnect)
 		{
 			if (!noconnect)
@@ -463,7 +463,7 @@ namespace KBEngine
 			this._networkInterface.connectTo(this.baseappIP, (int)this.baseappUdpPort, new NetworkInterfaceBase.ConnectCallback(this.onConnectTo_baseapp_callback), null);
 		}
 
-		// Token: 0x06005CD8 RID: 23768 RVA: 0x0025EDE4 File Offset: 0x0025CFE4
+		// Token: 0x0600529C RID: 21148 RVA: 0x00230AC8 File Offset: 0x0022ECC8
 		private void onConnectTo_baseapp_callback(string ip, int port, bool success, object userData)
 		{
 			this._lastTickCBTime = DateTime.Now;
@@ -478,14 +478,14 @@ namespace KBEngine
 			this.hello();
 		}
 
-		// Token: 0x06005CD9 RID: 23769 RVA: 0x0004180B File Offset: 0x0003FA0B
+		// Token: 0x0600529D RID: 21149 RVA: 0x00230B2C File Offset: 0x0022ED2C
 		private void onLogin_baseapp()
 		{
 			this._lastTickCBTime = DateTime.Now;
 			this.login_baseapp(false);
 		}
 
-		// Token: 0x06005CDA RID: 23770 RVA: 0x0025EE48 File Offset: 0x0025D048
+		// Token: 0x0600529E RID: 21150 RVA: 0x00230B40 File Offset: 0x0022ED40
 		public void reloginBaseapp()
 		{
 			this._lastTickTime = DateTime.Now;
@@ -506,7 +506,7 @@ namespace KBEngine
 			this._networkInterface.connectTo(this.baseappIP, (int)this.baseappUdpPort, new NetworkInterfaceBase.ConnectCallback(this.onReConnectTo_baseapp_callback), null);
 		}
 
-		// Token: 0x06005CDB RID: 23771 RVA: 0x0025EF08 File Offset: 0x0025D108
+		// Token: 0x0600529F RID: 21151 RVA: 0x00230C00 File Offset: 0x0022EE00
 		private void onReConnectTo_baseapp_callback(string ip, int port, bool success, object userData)
 		{
 			if (!success)
@@ -525,7 +525,7 @@ namespace KBEngine
 			this._lastTickCBTime = DateTime.Now;
 		}
 
-		// Token: 0x06005CDC RID: 23772 RVA: 0x0004181F File Offset: 0x0003FA1F
+		// Token: 0x060052A0 RID: 21152 RVA: 0x00230C9D File Offset: 0x0022EE9D
 		public void logout()
 		{
 			Bundle bundle = ObjectPool<Bundle>.createObject();
@@ -535,13 +535,13 @@ namespace KBEngine
 			bundle.send(this._networkInterface);
 		}
 
-		// Token: 0x06005CDD RID: 23773 RVA: 0x0004185E File Offset: 0x0003FA5E
+		// Token: 0x060052A1 RID: 21153 RVA: 0x00230CDC File Offset: 0x0022EEDC
 		public string serverErr(ushort id)
 		{
 			return this._serverErrs.serverErrStr(id);
 		}
 
-		// Token: 0x06005CDE RID: 23774 RVA: 0x0004186C File Offset: 0x0003FA6C
+		// Token: 0x060052A2 RID: 21154 RVA: 0x00230CEA File Offset: 0x0022EEEA
 		public void onOpenLoginapp_resetpassword()
 		{
 			Dbg.DEBUG_MSG("KBEngine::onOpenLoginapp_resetpassword: successfully!");
@@ -551,14 +551,14 @@ namespace KBEngine
 			this.resetpassword_loginapp(false);
 		}
 
-		// Token: 0x06005CDF RID: 23775 RVA: 0x000418A0 File Offset: 0x0003FAA0
+		// Token: 0x060052A3 RID: 21155 RVA: 0x00230D1E File Offset: 0x0022EF1E
 		public void resetPassword(string username)
 		{
 			KBEngineApp.app.username = username;
 			this.resetpassword_loginapp(true);
 		}
 
-		// Token: 0x06005CE0 RID: 23776 RVA: 0x0025EFA8 File Offset: 0x0025D1A8
+		// Token: 0x060052A4 RID: 21156 RVA: 0x00230D34 File Offset: 0x0022EF34
 		public void resetpassword_loginapp(bool noconnect)
 		{
 			if (noconnect)
@@ -573,7 +573,7 @@ namespace KBEngine
 			bundle.send(this._networkInterface);
 		}
 
-		// Token: 0x06005CE1 RID: 23777 RVA: 0x0025F020 File Offset: 0x0025D220
+		// Token: 0x060052A5 RID: 21157 RVA: 0x00230DAC File Offset: 0x0022EFAC
 		private void onConnectTo_resetpassword_callback(string ip, int port, bool success, object userData)
 		{
 			this._lastTickCBTime = DateTime.Now;
@@ -586,7 +586,7 @@ namespace KBEngine
 			this.onOpenLoginapp_resetpassword();
 		}
 
-		// Token: 0x06005CE2 RID: 23778 RVA: 0x0025F070 File Offset: 0x0025D270
+		// Token: 0x060052A6 RID: 21158 RVA: 0x00230DFC File Offset: 0x0022EFFC
 		public void Client_onReqAccountResetPasswordCB(ushort failcode)
 		{
 			if (failcode != 0)
@@ -606,7 +606,7 @@ namespace KBEngine
 			Dbg.DEBUG_MSG("KBEngine::Client_onReqAccountResetPasswordCB: " + this.username + " success!");
 		}
 
-		// Token: 0x06005CE3 RID: 23779 RVA: 0x0025F0E8 File Offset: 0x0025D2E8
+		// Token: 0x060052A7 RID: 21159 RVA: 0x00230E74 File Offset: 0x0022F074
 		public void bindAccountEmail(string emailAddress)
 		{
 			Bundle bundle = ObjectPool<Bundle>.createObject();
@@ -617,7 +617,7 @@ namespace KBEngine
 			bundle.send(this._networkInterface);
 		}
 
-		// Token: 0x06005CE4 RID: 23780 RVA: 0x0025F13C File Offset: 0x0025D33C
+		// Token: 0x060052A8 RID: 21160 RVA: 0x00230EC8 File Offset: 0x0022F0C8
 		public void Client_onReqAccountBindEmailCB(ushort failcode)
 		{
 			if (failcode != 0)
@@ -637,7 +637,7 @@ namespace KBEngine
 			Dbg.DEBUG_MSG("KBEngine::Client_onReqAccountBindEmailCB: " + this.username + " success!");
 		}
 
-		// Token: 0x06005CE5 RID: 23781 RVA: 0x0025F1B4 File Offset: 0x0025D3B4
+		// Token: 0x060052A9 RID: 21161 RVA: 0x00230F40 File Offset: 0x0022F140
 		public void newPassword(string old_password, string new_password)
 		{
 			Bundle bundle = ObjectPool<Bundle>.createObject();
@@ -648,7 +648,7 @@ namespace KBEngine
 			bundle.send(this._networkInterface);
 		}
 
-		// Token: 0x06005CE6 RID: 23782 RVA: 0x0025F200 File Offset: 0x0025D400
+		// Token: 0x060052AA RID: 21162 RVA: 0x00230F8C File Offset: 0x0022F18C
 		public void Client_onReqAccountNewPasswordCB(ushort failcode)
 		{
 			if (failcode != 0)
@@ -668,7 +668,7 @@ namespace KBEngine
 			Dbg.DEBUG_MSG("KBEngine::Client_onReqAccountNewPasswordCB: " + this.username + " success!");
 		}
 
-		// Token: 0x06005CE7 RID: 23783 RVA: 0x000418B4 File Offset: 0x0003FAB4
+		// Token: 0x060052AB RID: 21163 RVA: 0x00231003 File Offset: 0x0022F203
 		public void createAccount(string username, string password, byte[] datas)
 		{
 			KBEngineApp.app.username = username;
@@ -677,7 +677,7 @@ namespace KBEngine
 			KBEngineApp.app.createAccount_loginapp(true);
 		}
 
-		// Token: 0x06005CE8 RID: 23784 RVA: 0x0025F278 File Offset: 0x0025D478
+		// Token: 0x060052AC RID: 21164 RVA: 0x00231034 File Offset: 0x0022F234
 		public void createAccount_loginapp(bool noconnect)
 		{
 			if (noconnect)
@@ -694,7 +694,7 @@ namespace KBEngine
 			bundle.send(this._networkInterface);
 		}
 
-		// Token: 0x06005CE9 RID: 23785 RVA: 0x000418E2 File Offset: 0x0003FAE2
+		// Token: 0x060052AD RID: 21165 RVA: 0x002310C6 File Offset: 0x0022F2C6
 		public void onOpenLoginapp_createAccount()
 		{
 			Dbg.DEBUG_MSG("KBEngine::onOpenLoginapp_createAccount: successfully!");
@@ -704,7 +704,7 @@ namespace KBEngine
 			this.createAccount_loginapp(false);
 		}
 
-		// Token: 0x06005CEA RID: 23786 RVA: 0x0025F30C File Offset: 0x0025D50C
+		// Token: 0x060052AE RID: 21166 RVA: 0x002310FC File Offset: 0x0022F2FC
 		private void onConnectTo_createAccount_callback(string ip, int port, bool success, object userData)
 		{
 			this._lastTickCBTime = DateTime.Now;
@@ -717,12 +717,12 @@ namespace KBEngine
 			this.onOpenLoginapp_createAccount();
 		}
 
-		// Token: 0x06005CEB RID: 23787 RVA: 0x000042DD File Offset: 0x000024DD
+		// Token: 0x060052AF RID: 21167 RVA: 0x00004095 File Offset: 0x00002295
 		public void onServerDigest()
 		{
 		}
 
-		// Token: 0x06005CEC RID: 23788 RVA: 0x0025F35C File Offset: 0x0025D55C
+		// Token: 0x060052B0 RID: 21168 RVA: 0x0023114C File Offset: 0x0022F34C
 		public void Client_onLoginFailed(MemoryStream stream)
 		{
 			ushort num = stream.readUint16();
@@ -743,7 +743,7 @@ namespace KBEngine
 			});
 		}
 
-		// Token: 0x06005CED RID: 23789 RVA: 0x0025F3E8 File Offset: 0x0025D5E8
+		// Token: 0x060052B1 RID: 21169 RVA: 0x002311D8 File Offset: 0x0022F3D8
 		public void Client_onLoginSuccessfully(MemoryStream stream)
 		{
 			string text = stream.readString();
@@ -769,7 +769,7 @@ namespace KBEngine
 			this.login_baseapp(true);
 		}
 
-		// Token: 0x06005CEE RID: 23790 RVA: 0x0025F4B8 File Offset: 0x0025D6B8
+		// Token: 0x060052B2 RID: 21170 RVA: 0x002312A8 File Offset: 0x0022F4A8
 		public void Client_onLoginBaseappFailed(ushort failedcode)
 		{
 			Dbg.ERROR_MSG(string.Concat(new object[]
@@ -786,7 +786,7 @@ namespace KBEngine
 			});
 		}
 
-		// Token: 0x06005CEF RID: 23791 RVA: 0x0025F51C File Offset: 0x0025D71C
+		// Token: 0x060052B3 RID: 21171 RVA: 0x0023130C File Offset: 0x0022F50C
 		public void Client_onReloginBaseappFailed(ushort failedcode)
 		{
 			Dbg.ERROR_MSG(string.Concat(new object[]
@@ -803,7 +803,7 @@ namespace KBEngine
 			});
 		}
 
-		// Token: 0x06005CF0 RID: 23792 RVA: 0x00041916 File Offset: 0x0003FB16
+		// Token: 0x060052B4 RID: 21172 RVA: 0x0023136D File Offset: 0x0022F56D
 		public void Client_onReloginBaseappSuccessfully(MemoryStream stream)
 		{
 			this.entity_uuid = stream.readUint64();
@@ -811,7 +811,7 @@ namespace KBEngine
 			Event.fireAll("onReloginBaseappSuccessfully", Array.Empty<object>());
 		}
 
-		// Token: 0x06005CF1 RID: 23793 RVA: 0x0025F580 File Offset: 0x0025D780
+		// Token: 0x060052B5 RID: 21173 RVA: 0x002313A4 File Offset: 0x0022F5A4
 		public void Client_onCreatedProxies(ulong rndUUID, int eid, string entityType)
 		{
 			Dbg.DEBUG_MSG(string.Concat(new object[]
@@ -873,7 +873,7 @@ namespace KBEngine
 			}
 		}
 
-		// Token: 0x06005CF2 RID: 23794 RVA: 0x0025F6D4 File Offset: 0x0025D8D4
+		// Token: 0x060052B6 RID: 21174 RVA: 0x002314F8 File Offset: 0x0022F6F8
 		public Entity findEntity(int entityID)
 		{
 			Entity result = null;
@@ -884,7 +884,7 @@ namespace KBEngine
 			return result;
 		}
 
-		// Token: 0x06005CF3 RID: 23795 RVA: 0x0025F6F8 File Offset: 0x0025D8F8
+		// Token: 0x060052B7 RID: 21175 RVA: 0x0023151C File Offset: 0x0022F71C
 		public int getViewEntityIDFromStream(MemoryStream stream)
 		{
 			if (!this._args.useAliasEntityID)
@@ -908,21 +908,21 @@ namespace KBEngine
 			return result;
 		}
 
-		// Token: 0x06005CF4 RID: 23796 RVA: 0x0025F75C File Offset: 0x0025D95C
+		// Token: 0x060052B8 RID: 21176 RVA: 0x00231580 File Offset: 0x0022F780
 		public void Client_onUpdatePropertysOptimized(MemoryStream stream)
 		{
 			int viewEntityIDFromStream = this.getViewEntityIDFromStream(stream);
 			this.onUpdatePropertys_(viewEntityIDFromStream, stream);
 		}
 
-		// Token: 0x06005CF5 RID: 23797 RVA: 0x0025F77C File Offset: 0x0025D97C
+		// Token: 0x060052B9 RID: 21177 RVA: 0x002315A0 File Offset: 0x0022F7A0
 		public void Client_onUpdatePropertys(MemoryStream stream)
 		{
 			int eid = stream.readInt32();
 			this.onUpdatePropertys_(eid, stream);
 		}
 
-		// Token: 0x06005CF6 RID: 23798 RVA: 0x0025F798 File Offset: 0x0025D998
+		// Token: 0x060052BA RID: 21178 RVA: 0x002315BC File Offset: 0x0022F7BC
 		public void onUpdatePropertys_(int eid, MemoryStream stream)
 		{
 			Entity entity = null;
@@ -944,21 +944,21 @@ namespace KBEngine
 			this._bufferedCreateEntityMessages[eid] = memoryStream2;
 		}
 
-		// Token: 0x06005CF7 RID: 23799 RVA: 0x0025F830 File Offset: 0x0025DA30
+		// Token: 0x060052BB RID: 21179 RVA: 0x00231654 File Offset: 0x0022F854
 		public void Client_onRemoteMethodCallOptimized(MemoryStream stream)
 		{
 			int viewEntityIDFromStream = this.getViewEntityIDFromStream(stream);
 			this.onRemoteMethodCall_(viewEntityIDFromStream, stream);
 		}
 
-		// Token: 0x06005CF8 RID: 23800 RVA: 0x0025F850 File Offset: 0x0025DA50
+		// Token: 0x060052BC RID: 21180 RVA: 0x00231674 File Offset: 0x0022F874
 		public void Client_onRemoteMethodCall(MemoryStream stream)
 		{
 			int eid = stream.readInt32();
 			this.onRemoteMethodCall_(eid, stream);
 		}
 
-		// Token: 0x06005CF9 RID: 23801 RVA: 0x0025F86C File Offset: 0x0025DA6C
+		// Token: 0x060052BD RID: 21181 RVA: 0x00231690 File Offset: 0x0022F890
 		public void onRemoteMethodCall_(int eid, MemoryStream stream)
 		{
 			Entity entity = null;
@@ -970,7 +970,7 @@ namespace KBEngine
 			entity.onRemoteMethodCall(stream);
 		}
 
-		// Token: 0x06005CFA RID: 23802 RVA: 0x0025F8B0 File Offset: 0x0025DAB0
+		// Token: 0x060052BE RID: 21182 RVA: 0x002316D4 File Offset: 0x0022F8D4
 		public void Client_onEntityEnterWorld(MemoryStream stream)
 		{
 			int num = stream.readInt32();
@@ -1053,14 +1053,14 @@ namespace KBEngine
 			}
 		}
 
-		// Token: 0x06005CFB RID: 23803 RVA: 0x0025FAE8 File Offset: 0x0025DCE8
+		// Token: 0x060052BF RID: 21183 RVA: 0x0023190C File Offset: 0x0022FB0C
 		public void Client_onEntityLeaveWorldOptimized(MemoryStream stream)
 		{
 			int viewEntityIDFromStream = this.getViewEntityIDFromStream(stream);
 			KBEngineApp.app.Client_onEntityLeaveWorld(viewEntityIDFromStream);
 		}
 
-		// Token: 0x06005CFC RID: 23804 RVA: 0x0025FB08 File Offset: 0x0025DD08
+		// Token: 0x060052C0 RID: 21184 RVA: 0x0023192C File Offset: 0x0022FB2C
 		public void Client_onEntityLeaveWorld(int eid)
 		{
 			Entity entity = null;
@@ -1091,7 +1091,7 @@ namespace KBEngine
 			this._entityIDAliasIDList.Remove(eid);
 		}
 
-		// Token: 0x06005CFD RID: 23805 RVA: 0x0025FBAC File Offset: 0x0025DDAC
+		// Token: 0x060052C1 RID: 21185 RVA: 0x002319D0 File Offset: 0x0022FBD0
 		public void Client_onEntityEnterSpace(MemoryStream stream)
 		{
 			int num = stream.readInt32();
@@ -1112,7 +1112,7 @@ namespace KBEngine
 			entity.enterSpace();
 		}
 
-		// Token: 0x06005CFE RID: 23806 RVA: 0x0025FC28 File Offset: 0x0025DE28
+		// Token: 0x060052C2 RID: 21186 RVA: 0x00231A4C File Offset: 0x0022FC4C
 		public void Client_onEntityLeaveSpace(int eid)
 		{
 			Entity entity = null;
@@ -1125,7 +1125,7 @@ namespace KBEngine
 			this.clearSpace(false);
 		}
 
-		// Token: 0x06005CFF RID: 23807 RVA: 0x0025FC70 File Offset: 0x0025DE70
+		// Token: 0x060052C3 RID: 21187 RVA: 0x00231A94 File Offset: 0x0022FC94
 		public void Client_onCreateAccountResult(MemoryStream stream)
 		{
 			ushort num = stream.readUint16();
@@ -1152,7 +1152,7 @@ namespace KBEngine
 			Dbg.DEBUG_MSG("KBEngine::Client_onCreateAccountResult: " + this.username + " create is successfully!");
 		}
 
-		// Token: 0x06005D00 RID: 23808 RVA: 0x0025FD14 File Offset: 0x0025DF14
+		// Token: 0x060052C4 RID: 21188 RVA: 0x00231B38 File Offset: 0x0022FD38
 		public void Client_onControlEntity(int eid, sbyte isControlled)
 		{
 			Entity entity = null;
@@ -1189,7 +1189,7 @@ namespace KBEngine
 			}
 		}
 
-		// Token: 0x06005D01 RID: 23809 RVA: 0x0025FDE0 File Offset: 0x0025DFE0
+		// Token: 0x060052C5 RID: 21189 RVA: 0x00231C04 File Offset: 0x0022FE04
 		public void updatePlayerToServer()
 		{
 			if (this._updatePlayerToServerPeroid <= 0.01f || this.spaceID == 0U)
@@ -1285,7 +1285,7 @@ namespace KBEngine
 			}
 		}
 
-		// Token: 0x06005D02 RID: 23810 RVA: 0x002601EC File Offset: 0x0025E3EC
+		// Token: 0x060052C6 RID: 21190 RVA: 0x00232010 File Offset: 0x00230210
 		public void addSpaceGeometryMapping(uint uspaceID, string respath)
 		{
 			Dbg.DEBUG_MSG(string.Concat(new object[]
@@ -1305,7 +1305,7 @@ namespace KBEngine
 			});
 		}
 
-		// Token: 0x06005D03 RID: 23811 RVA: 0x0004194D File Offset: 0x0003FB4D
+		// Token: 0x060052C7 RID: 21191 RVA: 0x00232080 File Offset: 0x00230280
 		public void clearSpace(bool isall)
 		{
 			this._entityIDAliasIDList.Clear();
@@ -1315,7 +1315,7 @@ namespace KBEngine
 			this.spaceID = 0U;
 		}
 
-		// Token: 0x06005D04 RID: 23812 RVA: 0x0026025C File Offset: 0x0025E45C
+		// Token: 0x060052C8 RID: 21192 RVA: 0x002320B0 File Offset: 0x002302B0
 		public void clearEntities(bool isall)
 		{
 			this._controlledEntities.Clear();
@@ -1348,7 +1348,7 @@ namespace KBEngine
 			this.entities.Clear();
 		}
 
-		// Token: 0x06005D05 RID: 23813 RVA: 0x00260380 File Offset: 0x0025E580
+		// Token: 0x060052C9 RID: 21193 RVA: 0x002321D4 File Offset: 0x002303D4
 		public void Client_initSpaceData(MemoryStream stream)
 		{
 			this.clearSpace(false);
@@ -1369,7 +1369,7 @@ namespace KBEngine
 			}));
 		}
 
-		// Token: 0x06005D06 RID: 23814 RVA: 0x00260410 File Offset: 0x0025E610
+		// Token: 0x060052CA RID: 21194 RVA: 0x00232264 File Offset: 0x00230464
 		public void Client_setSpaceData(uint spaceID, string key, string value)
 		{
 			Dbg.DEBUG_MSG(string.Concat(new object[]
@@ -1395,7 +1395,7 @@ namespace KBEngine
 			});
 		}
 
-		// Token: 0x06005D07 RID: 23815 RVA: 0x002604A4 File Offset: 0x0025E6A4
+		// Token: 0x060052CB RID: 21195 RVA: 0x002322F8 File Offset: 0x002304F8
 		public void Client_delSpaceData(uint spaceID, string key)
 		{
 			Dbg.DEBUG_MSG(string.Concat(new object[]
@@ -1414,7 +1414,7 @@ namespace KBEngine
 			});
 		}
 
-		// Token: 0x06005D08 RID: 23816 RVA: 0x00260510 File Offset: 0x0025E710
+		// Token: 0x060052CC RID: 21196 RVA: 0x00232364 File Offset: 0x00230564
 		public string getSpaceData(string key)
 		{
 			string result = "";
@@ -1425,7 +1425,7 @@ namespace KBEngine
 			return result;
 		}
 
-		// Token: 0x06005D09 RID: 23817 RVA: 0x0026053C File Offset: 0x0025E73C
+		// Token: 0x060052CD RID: 21197 RVA: 0x00232390 File Offset: 0x00230590
 		public void Client_onEntityDestroyed(int eid)
 		{
 			Dbg.DEBUG_MSG("KBEngine::Client_onEntityDestroyed: entity(" + eid + ")");
@@ -1454,7 +1454,7 @@ namespace KBEngine
 			entity.destroy();
 		}
 
-		// Token: 0x06005D0A RID: 23818 RVA: 0x002605E4 File Offset: 0x0025E7E4
+		// Token: 0x060052CE RID: 21198 RVA: 0x00232438 File Offset: 0x00230638
 		public void Client_onUpdateBasePos(float x, float y, float z)
 		{
 			this._entityServerPos.x = x;
@@ -1472,7 +1472,7 @@ namespace KBEngine
 			}
 		}
 
-		// Token: 0x06005D0B RID: 23819 RVA: 0x00260670 File Offset: 0x0025E870
+		// Token: 0x060052CF RID: 21199 RVA: 0x002324C4 File Offset: 0x002306C4
 		public void Client_onUpdateBasePosXZ(float x, float z)
 		{
 			this._entityServerPos.x = x;
@@ -1490,7 +1490,7 @@ namespace KBEngine
 			}
 		}
 
-		// Token: 0x06005D0C RID: 23820 RVA: 0x002606F0 File Offset: 0x0025E8F0
+		// Token: 0x060052D0 RID: 21200 RVA: 0x00232544 File Offset: 0x00230744
 		public void Client_onUpdateBaseDir(MemoryStream stream)
 		{
 			float num = stream.readFloat() * 360f / 6.2831855f;
@@ -1508,7 +1508,7 @@ namespace KBEngine
 			}
 		}
 
-		// Token: 0x06005D0D RID: 23821 RVA: 0x00260770 File Offset: 0x0025E970
+		// Token: 0x060052D1 RID: 21201 RVA: 0x002325C4 File Offset: 0x002307C4
 		public void Client_onUpdateData(MemoryStream stream)
 		{
 			int viewEntityIDFromStream = this.getViewEntityIDFromStream(stream);
@@ -1520,7 +1520,7 @@ namespace KBEngine
 			}
 		}
 
-		// Token: 0x06005D0E RID: 23822 RVA: 0x002607B4 File Offset: 0x0025E9B4
+		// Token: 0x060052D2 RID: 21202 RVA: 0x00232608 File Offset: 0x00230808
 		public void Client_onSetEntityPosAndDir(MemoryStream stream)
 		{
 			int num = stream.readInt32();
@@ -1546,7 +1546,7 @@ namespace KBEngine
 			entity.onPositionChanged(oldValue);
 		}
 
-		// Token: 0x06005D0F RID: 23823 RVA: 0x002608D4 File Offset: 0x0025EAD4
+		// Token: 0x060052D3 RID: 21203 RVA: 0x00232728 File Offset: 0x00230928
 		public void Client_onUpdateData_ypr(MemoryStream stream)
 		{
 			int viewEntityIDFromStream = this.getViewEntityIDFromStream(stream);
@@ -1556,7 +1556,7 @@ namespace KBEngine
 			this._updateVolatileData(viewEntityIDFromStream, KBEMath.KBE_FLT_MAX, KBEMath.KBE_FLT_MAX, KBEMath.KBE_FLT_MAX, yaw, pitch, roll, -1, false);
 		}
 
-		// Token: 0x06005D10 RID: 23824 RVA: 0x0026091C File Offset: 0x0025EB1C
+		// Token: 0x060052D4 RID: 21204 RVA: 0x00232770 File Offset: 0x00230970
 		public void Client_onUpdateData_yp(MemoryStream stream)
 		{
 			int viewEntityIDFromStream = this.getViewEntityIDFromStream(stream);
@@ -1565,7 +1565,7 @@ namespace KBEngine
 			this._updateVolatileData(viewEntityIDFromStream, KBEMath.KBE_FLT_MAX, KBEMath.KBE_FLT_MAX, KBEMath.KBE_FLT_MAX, yaw, pitch, KBEMath.KBE_FLT_MAX, -1, false);
 		}
 
-		// Token: 0x06005D11 RID: 23825 RVA: 0x00260960 File Offset: 0x0025EB60
+		// Token: 0x060052D5 RID: 21205 RVA: 0x002327B4 File Offset: 0x002309B4
 		public void Client_onUpdateData_yr(MemoryStream stream)
 		{
 			int viewEntityIDFromStream = this.getViewEntityIDFromStream(stream);
@@ -1574,7 +1574,7 @@ namespace KBEngine
 			this._updateVolatileData(viewEntityIDFromStream, KBEMath.KBE_FLT_MAX, KBEMath.KBE_FLT_MAX, KBEMath.KBE_FLT_MAX, yaw, KBEMath.KBE_FLT_MAX, roll, -1, false);
 		}
 
-		// Token: 0x06005D12 RID: 23826 RVA: 0x002609A4 File Offset: 0x0025EBA4
+		// Token: 0x060052D6 RID: 21206 RVA: 0x002327F8 File Offset: 0x002309F8
 		public void Client_onUpdateData_pr(MemoryStream stream)
 		{
 			int viewEntityIDFromStream = this.getViewEntityIDFromStream(stream);
@@ -1583,7 +1583,7 @@ namespace KBEngine
 			this._updateVolatileData(viewEntityIDFromStream, KBEMath.KBE_FLT_MAX, KBEMath.KBE_FLT_MAX, KBEMath.KBE_FLT_MAX, KBEMath.KBE_FLT_MAX, pitch, roll, -1, false);
 		}
 
-		// Token: 0x06005D13 RID: 23827 RVA: 0x002609E8 File Offset: 0x0025EBE8
+		// Token: 0x060052D7 RID: 21207 RVA: 0x0023283C File Offset: 0x00230A3C
 		public void Client_onUpdateData_y(MemoryStream stream)
 		{
 			int viewEntityIDFromStream = this.getViewEntityIDFromStream(stream);
@@ -1591,7 +1591,7 @@ namespace KBEngine
 			this._updateVolatileData(viewEntityIDFromStream, KBEMath.KBE_FLT_MAX, KBEMath.KBE_FLT_MAX, KBEMath.KBE_FLT_MAX, yaw, KBEMath.KBE_FLT_MAX, KBEMath.KBE_FLT_MAX, -1, false);
 		}
 
-		// Token: 0x06005D14 RID: 23828 RVA: 0x00260A28 File Offset: 0x0025EC28
+		// Token: 0x060052D8 RID: 21208 RVA: 0x0023287C File Offset: 0x00230A7C
 		public void Client_onUpdateData_p(MemoryStream stream)
 		{
 			int viewEntityIDFromStream = this.getViewEntityIDFromStream(stream);
@@ -1599,7 +1599,7 @@ namespace KBEngine
 			this._updateVolatileData(viewEntityIDFromStream, KBEMath.KBE_FLT_MAX, KBEMath.KBE_FLT_MAX, KBEMath.KBE_FLT_MAX, KBEMath.KBE_FLT_MAX, pitch, KBEMath.KBE_FLT_MAX, -1, false);
 		}
 
-		// Token: 0x06005D15 RID: 23829 RVA: 0x00260A68 File Offset: 0x0025EC68
+		// Token: 0x060052D9 RID: 21209 RVA: 0x002328BC File Offset: 0x00230ABC
 		public void Client_onUpdateData_r(MemoryStream stream)
 		{
 			int viewEntityIDFromStream = this.getViewEntityIDFromStream(stream);
@@ -1607,7 +1607,7 @@ namespace KBEngine
 			this._updateVolatileData(viewEntityIDFromStream, KBEMath.KBE_FLT_MAX, KBEMath.KBE_FLT_MAX, KBEMath.KBE_FLT_MAX, KBEMath.KBE_FLT_MAX, KBEMath.KBE_FLT_MAX, roll, -1, false);
 		}
 
-		// Token: 0x06005D16 RID: 23830 RVA: 0x00260AA8 File Offset: 0x0025ECA8
+		// Token: 0x060052DA RID: 21210 RVA: 0x002328FC File Offset: 0x00230AFC
 		public void Client_onUpdateData_xz(MemoryStream stream)
 		{
 			int viewEntityIDFromStream = this.getViewEntityIDFromStream(stream);
@@ -1616,7 +1616,7 @@ namespace KBEngine
 			this._updateVolatileData(viewEntityIDFromStream, x, KBEMath.KBE_FLT_MAX, z, KBEMath.KBE_FLT_MAX, KBEMath.KBE_FLT_MAX, KBEMath.KBE_FLT_MAX, 1, false);
 		}
 
-		// Token: 0x06005D17 RID: 23831 RVA: 0x00260AEC File Offset: 0x0025ECEC
+		// Token: 0x060052DB RID: 21211 RVA: 0x00232940 File Offset: 0x00230B40
 		public void Client_onUpdateData_xz_ypr(MemoryStream stream)
 		{
 			int viewEntityIDFromStream = this.getViewEntityIDFromStream(stream);
@@ -1628,7 +1628,7 @@ namespace KBEngine
 			this._updateVolatileData(viewEntityIDFromStream, x, KBEMath.KBE_FLT_MAX, z, yaw, pitch, roll, 1, false);
 		}
 
-		// Token: 0x06005D18 RID: 23832 RVA: 0x00260B3C File Offset: 0x0025ED3C
+		// Token: 0x060052DC RID: 21212 RVA: 0x00232990 File Offset: 0x00230B90
 		public void Client_onUpdateData_xz_yp(MemoryStream stream)
 		{
 			int viewEntityIDFromStream = this.getViewEntityIDFromStream(stream);
@@ -1639,7 +1639,7 @@ namespace KBEngine
 			this._updateVolatileData(viewEntityIDFromStream, x, KBEMath.KBE_FLT_MAX, z, yaw, pitch, KBEMath.KBE_FLT_MAX, 1, false);
 		}
 
-		// Token: 0x06005D19 RID: 23833 RVA: 0x00260B88 File Offset: 0x0025ED88
+		// Token: 0x060052DD RID: 21213 RVA: 0x002329DC File Offset: 0x00230BDC
 		public void Client_onUpdateData_xz_yr(MemoryStream stream)
 		{
 			int viewEntityIDFromStream = this.getViewEntityIDFromStream(stream);
@@ -1650,7 +1650,7 @@ namespace KBEngine
 			this._updateVolatileData(viewEntityIDFromStream, x, KBEMath.KBE_FLT_MAX, z, yaw, KBEMath.KBE_FLT_MAX, roll, 1, false);
 		}
 
-		// Token: 0x06005D1A RID: 23834 RVA: 0x00260BD4 File Offset: 0x0025EDD4
+		// Token: 0x060052DE RID: 21214 RVA: 0x00232A28 File Offset: 0x00230C28
 		public void Client_onUpdateData_xz_pr(MemoryStream stream)
 		{
 			int viewEntityIDFromStream = this.getViewEntityIDFromStream(stream);
@@ -1661,7 +1661,7 @@ namespace KBEngine
 			this._updateVolatileData(viewEntityIDFromStream, x, KBEMath.KBE_FLT_MAX, z, KBEMath.KBE_FLT_MAX, pitch, roll, 1, false);
 		}
 
-		// Token: 0x06005D1B RID: 23835 RVA: 0x00260C20 File Offset: 0x0025EE20
+		// Token: 0x060052DF RID: 21215 RVA: 0x00232A74 File Offset: 0x00230C74
 		public void Client_onUpdateData_xz_y(MemoryStream stream)
 		{
 			int viewEntityIDFromStream = this.getViewEntityIDFromStream(stream);
@@ -1671,7 +1671,7 @@ namespace KBEngine
 			this._updateVolatileData(viewEntityIDFromStream, x, KBEMath.KBE_FLT_MAX, z, yaw, KBEMath.KBE_FLT_MAX, KBEMath.KBE_FLT_MAX, 1, false);
 		}
 
-		// Token: 0x06005D1C RID: 23836 RVA: 0x00260C68 File Offset: 0x0025EE68
+		// Token: 0x060052E0 RID: 21216 RVA: 0x00232ABC File Offset: 0x00230CBC
 		public void Client_onUpdateData_xz_p(MemoryStream stream)
 		{
 			int viewEntityIDFromStream = this.getViewEntityIDFromStream(stream);
@@ -1681,7 +1681,7 @@ namespace KBEngine
 			this._updateVolatileData(viewEntityIDFromStream, x, KBEMath.KBE_FLT_MAX, z, KBEMath.KBE_FLT_MAX, pitch, KBEMath.KBE_FLT_MAX, 1, false);
 		}
 
-		// Token: 0x06005D1D RID: 23837 RVA: 0x00260CB0 File Offset: 0x0025EEB0
+		// Token: 0x060052E1 RID: 21217 RVA: 0x00232B04 File Offset: 0x00230D04
 		public void Client_onUpdateData_xz_r(MemoryStream stream)
 		{
 			int viewEntityIDFromStream = this.getViewEntityIDFromStream(stream);
@@ -1691,7 +1691,7 @@ namespace KBEngine
 			this._updateVolatileData(viewEntityIDFromStream, x, KBEMath.KBE_FLT_MAX, z, KBEMath.KBE_FLT_MAX, KBEMath.KBE_FLT_MAX, roll, 1, false);
 		}
 
-		// Token: 0x06005D1E RID: 23838 RVA: 0x00260CF8 File Offset: 0x0025EEF8
+		// Token: 0x060052E2 RID: 21218 RVA: 0x00232B4C File Offset: 0x00230D4C
 		public void Client_onUpdateData_xyz(MemoryStream stream)
 		{
 			int viewEntityIDFromStream = this.getViewEntityIDFromStream(stream);
@@ -1701,7 +1701,7 @@ namespace KBEngine
 			this._updateVolatileData(viewEntityIDFromStream, x, y, z, KBEMath.KBE_FLT_MAX, KBEMath.KBE_FLT_MAX, KBEMath.KBE_FLT_MAX, 0, false);
 		}
 
-		// Token: 0x06005D1F RID: 23839 RVA: 0x00260D40 File Offset: 0x0025EF40
+		// Token: 0x060052E3 RID: 21219 RVA: 0x00232B94 File Offset: 0x00230D94
 		public void Client_onUpdateData_xyz_ypr(MemoryStream stream)
 		{
 			int viewEntityIDFromStream = this.getViewEntityIDFromStream(stream);
@@ -1714,7 +1714,7 @@ namespace KBEngine
 			this._updateVolatileData(viewEntityIDFromStream, x, y, z, yaw, pitch, roll, 0, false);
 		}
 
-		// Token: 0x06005D20 RID: 23840 RVA: 0x00260D94 File Offset: 0x0025EF94
+		// Token: 0x060052E4 RID: 21220 RVA: 0x00232BE8 File Offset: 0x00230DE8
 		public void Client_onUpdateData_xyz_yp(MemoryStream stream)
 		{
 			int viewEntityIDFromStream = this.getViewEntityIDFromStream(stream);
@@ -1726,7 +1726,7 @@ namespace KBEngine
 			this._updateVolatileData(viewEntityIDFromStream, x, y, z, yaw, pitch, KBEMath.KBE_FLT_MAX, 0, false);
 		}
 
-		// Token: 0x06005D21 RID: 23841 RVA: 0x00260DE4 File Offset: 0x0025EFE4
+		// Token: 0x060052E5 RID: 21221 RVA: 0x00232C38 File Offset: 0x00230E38
 		public void Client_onUpdateData_xyz_yr(MemoryStream stream)
 		{
 			int viewEntityIDFromStream = this.getViewEntityIDFromStream(stream);
@@ -1738,7 +1738,7 @@ namespace KBEngine
 			this._updateVolatileData(viewEntityIDFromStream, x, y, z, yaw, KBEMath.KBE_FLT_MAX, roll, 0, false);
 		}
 
-		// Token: 0x06005D22 RID: 23842 RVA: 0x00260E34 File Offset: 0x0025F034
+		// Token: 0x060052E6 RID: 21222 RVA: 0x00232C88 File Offset: 0x00230E88
 		public void Client_onUpdateData_xyz_pr(MemoryStream stream)
 		{
 			int viewEntityIDFromStream = this.getViewEntityIDFromStream(stream);
@@ -1750,7 +1750,7 @@ namespace KBEngine
 			this._updateVolatileData(viewEntityIDFromStream, x, y, z, KBEMath.KBE_FLT_MAX, pitch, roll, 0, false);
 		}
 
-		// Token: 0x06005D23 RID: 23843 RVA: 0x00260E84 File Offset: 0x0025F084
+		// Token: 0x060052E7 RID: 21223 RVA: 0x00232CD8 File Offset: 0x00230ED8
 		public void Client_onUpdateData_xyz_y(MemoryStream stream)
 		{
 			int viewEntityIDFromStream = this.getViewEntityIDFromStream(stream);
@@ -1761,7 +1761,7 @@ namespace KBEngine
 			this._updateVolatileData(viewEntityIDFromStream, x, y, z, yaw, KBEMath.KBE_FLT_MAX, KBEMath.KBE_FLT_MAX, 0, false);
 		}
 
-		// Token: 0x06005D24 RID: 23844 RVA: 0x00260ED0 File Offset: 0x0025F0D0
+		// Token: 0x060052E8 RID: 21224 RVA: 0x00232D24 File Offset: 0x00230F24
 		public void Client_onUpdateData_xyz_p(MemoryStream stream)
 		{
 			int viewEntityIDFromStream = this.getViewEntityIDFromStream(stream);
@@ -1772,7 +1772,7 @@ namespace KBEngine
 			this._updateVolatileData(viewEntityIDFromStream, x, y, z, KBEMath.KBE_FLT_MAX, pitch, KBEMath.KBE_FLT_MAX, 0, false);
 		}
 
-		// Token: 0x06005D25 RID: 23845 RVA: 0x00260F1C File Offset: 0x0025F11C
+		// Token: 0x060052E9 RID: 21225 RVA: 0x00232D70 File Offset: 0x00230F70
 		public void Client_onUpdateData_xyz_r(MemoryStream stream)
 		{
 			int viewEntityIDFromStream = this.getViewEntityIDFromStream(stream);
@@ -1783,7 +1783,7 @@ namespace KBEngine
 			this._updateVolatileData(viewEntityIDFromStream, x, y, z, KBEMath.KBE_FLT_MAX, KBEMath.KBE_FLT_MAX, roll, 0, false);
 		}
 
-		// Token: 0x06005D26 RID: 23846 RVA: 0x00260F68 File Offset: 0x0025F168
+		// Token: 0x060052EA RID: 21226 RVA: 0x00232DBC File Offset: 0x00230FBC
 		public void Client_onUpdateData_ypr_optimized(MemoryStream stream)
 		{
 			int viewEntityIDFromStream = this.getViewEntityIDFromStream(stream);
@@ -1793,7 +1793,7 @@ namespace KBEngine
 			this._updateVolatileData(viewEntityIDFromStream, KBEMath.KBE_FLT_MAX, KBEMath.KBE_FLT_MAX, KBEMath.KBE_FLT_MAX, (float)b, (float)b2, (float)b3, -1, true);
 		}
 
-		// Token: 0x06005D27 RID: 23847 RVA: 0x00260FB0 File Offset: 0x0025F1B0
+		// Token: 0x060052EB RID: 21227 RVA: 0x00232E04 File Offset: 0x00231004
 		public void Client_onUpdateData_yp_optimized(MemoryStream stream)
 		{
 			int viewEntityIDFromStream = this.getViewEntityIDFromStream(stream);
@@ -1802,7 +1802,7 @@ namespace KBEngine
 			this._updateVolatileData(viewEntityIDFromStream, KBEMath.KBE_FLT_MAX, KBEMath.KBE_FLT_MAX, KBEMath.KBE_FLT_MAX, (float)b, (float)b2, KBEMath.KBE_FLT_MAX, -1, true);
 		}
 
-		// Token: 0x06005D28 RID: 23848 RVA: 0x00260FF4 File Offset: 0x0025F1F4
+		// Token: 0x060052EC RID: 21228 RVA: 0x00232E48 File Offset: 0x00231048
 		public void Client_onUpdateData_yr_optimized(MemoryStream stream)
 		{
 			int viewEntityIDFromStream = this.getViewEntityIDFromStream(stream);
@@ -1811,7 +1811,7 @@ namespace KBEngine
 			this._updateVolatileData(viewEntityIDFromStream, KBEMath.KBE_FLT_MAX, KBEMath.KBE_FLT_MAX, KBEMath.KBE_FLT_MAX, (float)b, KBEMath.KBE_FLT_MAX, (float)b2, -1, true);
 		}
 
-		// Token: 0x06005D29 RID: 23849 RVA: 0x00261038 File Offset: 0x0025F238
+		// Token: 0x060052ED RID: 21229 RVA: 0x00232E8C File Offset: 0x0023108C
 		public void Client_onUpdateData_pr_optimized(MemoryStream stream)
 		{
 			int viewEntityIDFromStream = this.getViewEntityIDFromStream(stream);
@@ -1820,7 +1820,7 @@ namespace KBEngine
 			this._updateVolatileData(viewEntityIDFromStream, KBEMath.KBE_FLT_MAX, KBEMath.KBE_FLT_MAX, KBEMath.KBE_FLT_MAX, KBEMath.KBE_FLT_MAX, (float)b, (float)b2, -1, true);
 		}
 
-		// Token: 0x06005D2A RID: 23850 RVA: 0x0026107C File Offset: 0x0025F27C
+		// Token: 0x060052EE RID: 21230 RVA: 0x00232ED0 File Offset: 0x002310D0
 		public void Client_onUpdateData_y_optimized(MemoryStream stream)
 		{
 			int viewEntityIDFromStream = this.getViewEntityIDFromStream(stream);
@@ -1828,7 +1828,7 @@ namespace KBEngine
 			this._updateVolatileData(viewEntityIDFromStream, KBEMath.KBE_FLT_MAX, KBEMath.KBE_FLT_MAX, KBEMath.KBE_FLT_MAX, (float)b, KBEMath.KBE_FLT_MAX, KBEMath.KBE_FLT_MAX, -1, true);
 		}
 
-		// Token: 0x06005D2B RID: 23851 RVA: 0x002610BC File Offset: 0x0025F2BC
+		// Token: 0x060052EF RID: 21231 RVA: 0x00232F10 File Offset: 0x00231110
 		public void Client_onUpdateData_p_optimized(MemoryStream stream)
 		{
 			int viewEntityIDFromStream = this.getViewEntityIDFromStream(stream);
@@ -1836,7 +1836,7 @@ namespace KBEngine
 			this._updateVolatileData(viewEntityIDFromStream, KBEMath.KBE_FLT_MAX, KBEMath.KBE_FLT_MAX, KBEMath.KBE_FLT_MAX, KBEMath.KBE_FLT_MAX, (float)b, KBEMath.KBE_FLT_MAX, -1, true);
 		}
 
-		// Token: 0x06005D2C RID: 23852 RVA: 0x002610FC File Offset: 0x0025F2FC
+		// Token: 0x060052F0 RID: 21232 RVA: 0x00232F50 File Offset: 0x00231150
 		public void Client_onUpdateData_r_optimized(MemoryStream stream)
 		{
 			int viewEntityIDFromStream = this.getViewEntityIDFromStream(stream);
@@ -1844,7 +1844,7 @@ namespace KBEngine
 			this._updateVolatileData(viewEntityIDFromStream, KBEMath.KBE_FLT_MAX, KBEMath.KBE_FLT_MAX, KBEMath.KBE_FLT_MAX, KBEMath.KBE_FLT_MAX, KBEMath.KBE_FLT_MAX, (float)b, -1, true);
 		}
 
-		// Token: 0x06005D2D RID: 23853 RVA: 0x0026113C File Offset: 0x0025F33C
+		// Token: 0x060052F1 RID: 21233 RVA: 0x00232F90 File Offset: 0x00231190
 		public void Client_onUpdateData_xz_optimized(MemoryStream stream)
 		{
 			int viewEntityIDFromStream = this.getViewEntityIDFromStream(stream);
@@ -1852,7 +1852,7 @@ namespace KBEngine
 			this._updateVolatileData(viewEntityIDFromStream, vector[0], KBEMath.KBE_FLT_MAX, vector[1], KBEMath.KBE_FLT_MAX, KBEMath.KBE_FLT_MAX, KBEMath.KBE_FLT_MAX, 1, true);
 		}
 
-		// Token: 0x06005D2E RID: 23854 RVA: 0x00261188 File Offset: 0x0025F388
+		// Token: 0x060052F2 RID: 21234 RVA: 0x00232FDC File Offset: 0x002311DC
 		public void Client_onUpdateData_xz_ypr_optimized(MemoryStream stream)
 		{
 			int viewEntityIDFromStream = this.getViewEntityIDFromStream(stream);
@@ -1863,7 +1863,7 @@ namespace KBEngine
 			this._updateVolatileData(viewEntityIDFromStream, vector[0], KBEMath.KBE_FLT_MAX, vector[1], (float)b, (float)b2, (float)b3, 1, true);
 		}
 
-		// Token: 0x06005D2F RID: 23855 RVA: 0x002611E0 File Offset: 0x0025F3E0
+		// Token: 0x060052F3 RID: 21235 RVA: 0x00233034 File Offset: 0x00231234
 		public void Client_onUpdateData_xz_yp_optimized(MemoryStream stream)
 		{
 			int viewEntityIDFromStream = this.getViewEntityIDFromStream(stream);
@@ -1873,7 +1873,7 @@ namespace KBEngine
 			this._updateVolatileData(viewEntityIDFromStream, vector[0], KBEMath.KBE_FLT_MAX, vector[1], (float)b, (float)b2, KBEMath.KBE_FLT_MAX, 1, true);
 		}
 
-		// Token: 0x06005D30 RID: 23856 RVA: 0x00261234 File Offset: 0x0025F434
+		// Token: 0x060052F4 RID: 21236 RVA: 0x00233088 File Offset: 0x00231288
 		public void Client_onUpdateData_xz_yr_optimized(MemoryStream stream)
 		{
 			int viewEntityIDFromStream = this.getViewEntityIDFromStream(stream);
@@ -1883,7 +1883,7 @@ namespace KBEngine
 			this._updateVolatileData(viewEntityIDFromStream, vector[0], KBEMath.KBE_FLT_MAX, vector[1], (float)b, KBEMath.KBE_FLT_MAX, (float)b2, 1, true);
 		}
 
-		// Token: 0x06005D31 RID: 23857 RVA: 0x00261288 File Offset: 0x0025F488
+		// Token: 0x060052F5 RID: 21237 RVA: 0x002330DC File Offset: 0x002312DC
 		public void Client_onUpdateData_xz_pr_optimized(MemoryStream stream)
 		{
 			int viewEntityIDFromStream = this.getViewEntityIDFromStream(stream);
@@ -1893,7 +1893,7 @@ namespace KBEngine
 			this._updateVolatileData(viewEntityIDFromStream, vector[0], KBEMath.KBE_FLT_MAX, vector[1], KBEMath.KBE_FLT_MAX, (float)b, (float)b2, 1, true);
 		}
 
-		// Token: 0x06005D32 RID: 23858 RVA: 0x002612DC File Offset: 0x0025F4DC
+		// Token: 0x060052F6 RID: 21238 RVA: 0x00233130 File Offset: 0x00231330
 		public void Client_onUpdateData_xz_y_optimized(MemoryStream stream)
 		{
 			int viewEntityIDFromStream = this.getViewEntityIDFromStream(stream);
@@ -1902,7 +1902,7 @@ namespace KBEngine
 			this._updateVolatileData(viewEntityIDFromStream, vector[0], KBEMath.KBE_FLT_MAX, vector[1], (float)b, KBEMath.KBE_FLT_MAX, KBEMath.KBE_FLT_MAX, 1, true);
 		}
 
-		// Token: 0x06005D33 RID: 23859 RVA: 0x0026132C File Offset: 0x0025F52C
+		// Token: 0x060052F7 RID: 21239 RVA: 0x00233180 File Offset: 0x00231380
 		public void Client_onUpdateData_xz_p_optimized(MemoryStream stream)
 		{
 			int viewEntityIDFromStream = this.getViewEntityIDFromStream(stream);
@@ -1911,7 +1911,7 @@ namespace KBEngine
 			this._updateVolatileData(viewEntityIDFromStream, vector[0], KBEMath.KBE_FLT_MAX, vector[1], KBEMath.KBE_FLT_MAX, (float)b, KBEMath.KBE_FLT_MAX, 1, true);
 		}
 
-		// Token: 0x06005D34 RID: 23860 RVA: 0x0026137C File Offset: 0x0025F57C
+		// Token: 0x060052F8 RID: 21240 RVA: 0x002331D0 File Offset: 0x002313D0
 		public void Client_onUpdateData_xz_r_optimized(MemoryStream stream)
 		{
 			int viewEntityIDFromStream = this.getViewEntityIDFromStream(stream);
@@ -1920,7 +1920,7 @@ namespace KBEngine
 			this._updateVolatileData(viewEntityIDFromStream, vector[0], KBEMath.KBE_FLT_MAX, vector[1], KBEMath.KBE_FLT_MAX, KBEMath.KBE_FLT_MAX, (float)b, 1, true);
 		}
 
-		// Token: 0x06005D35 RID: 23861 RVA: 0x002613CC File Offset: 0x0025F5CC
+		// Token: 0x060052F9 RID: 21241 RVA: 0x00233220 File Offset: 0x00231420
 		public void Client_onUpdateData_xyz_optimized(MemoryStream stream)
 		{
 			int viewEntityIDFromStream = this.getViewEntityIDFromStream(stream);
@@ -1929,7 +1929,7 @@ namespace KBEngine
 			this._updateVolatileData(viewEntityIDFromStream, vector[0], y, vector[1], KBEMath.KBE_FLT_MAX, KBEMath.KBE_FLT_MAX, KBEMath.KBE_FLT_MAX, 0, true);
 		}
 
-		// Token: 0x06005D36 RID: 23862 RVA: 0x00261418 File Offset: 0x0025F618
+		// Token: 0x060052FA RID: 21242 RVA: 0x0023326C File Offset: 0x0023146C
 		public void Client_onUpdateData_xyz_ypr_optimized(MemoryStream stream)
 		{
 			int viewEntityIDFromStream = this.getViewEntityIDFromStream(stream);
@@ -1941,7 +1941,7 @@ namespace KBEngine
 			this._updateVolatileData(viewEntityIDFromStream, vector[0], y, vector[1], (float)b, (float)b2, (float)b3, 0, true);
 		}
 
-		// Token: 0x06005D37 RID: 23863 RVA: 0x00261474 File Offset: 0x0025F674
+		// Token: 0x060052FB RID: 21243 RVA: 0x002332C8 File Offset: 0x002314C8
 		public void Client_onUpdateData_xyz_yp_optimized(MemoryStream stream)
 		{
 			int viewEntityIDFromStream = this.getViewEntityIDFromStream(stream);
@@ -1952,7 +1952,7 @@ namespace KBEngine
 			this._updateVolatileData(viewEntityIDFromStream, vector[0], y, vector[1], (float)b, (float)b2, KBEMath.KBE_FLT_MAX, 0, true);
 		}
 
-		// Token: 0x06005D38 RID: 23864 RVA: 0x002614CC File Offset: 0x0025F6CC
+		// Token: 0x060052FC RID: 21244 RVA: 0x00233320 File Offset: 0x00231520
 		public void Client_onUpdateData_xyz_yr_optimized(MemoryStream stream)
 		{
 			int viewEntityIDFromStream = this.getViewEntityIDFromStream(stream);
@@ -1963,7 +1963,7 @@ namespace KBEngine
 			this._updateVolatileData(viewEntityIDFromStream, vector[0], y, vector[1], (float)b, KBEMath.KBE_FLT_MAX, (float)b2, 0, true);
 		}
 
-		// Token: 0x06005D39 RID: 23865 RVA: 0x00261524 File Offset: 0x0025F724
+		// Token: 0x060052FD RID: 21245 RVA: 0x00233378 File Offset: 0x00231578
 		public void Client_onUpdateData_xyz_pr_optimized(MemoryStream stream)
 		{
 			int viewEntityIDFromStream = this.getViewEntityIDFromStream(stream);
@@ -1974,7 +1974,7 @@ namespace KBEngine
 			this._updateVolatileData(viewEntityIDFromStream, vector[0], y, vector[1], KBEMath.KBE_FLT_MAX, (float)b, (float)b2, 0, true);
 		}
 
-		// Token: 0x06005D3A RID: 23866 RVA: 0x0026157C File Offset: 0x0025F77C
+		// Token: 0x060052FE RID: 21246 RVA: 0x002333D0 File Offset: 0x002315D0
 		public void Client_onUpdateData_xyz_y_optimized(MemoryStream stream)
 		{
 			int viewEntityIDFromStream = this.getViewEntityIDFromStream(stream);
@@ -1984,7 +1984,7 @@ namespace KBEngine
 			this._updateVolatileData(viewEntityIDFromStream, vector[0], y, vector[1], (float)b, KBEMath.KBE_FLT_MAX, KBEMath.KBE_FLT_MAX, 0, true);
 		}
 
-		// Token: 0x06005D3B RID: 23867 RVA: 0x002615CC File Offset: 0x0025F7CC
+		// Token: 0x060052FF RID: 21247 RVA: 0x00233420 File Offset: 0x00231620
 		public void Client_onUpdateData_xyz_p_optimized(MemoryStream stream)
 		{
 			int viewEntityIDFromStream = this.getViewEntityIDFromStream(stream);
@@ -1994,7 +1994,7 @@ namespace KBEngine
 			this._updateVolatileData(viewEntityIDFromStream, vector[0], y, vector[1], KBEMath.KBE_FLT_MAX, (float)b, KBEMath.KBE_FLT_MAX, 0, true);
 		}
 
-		// Token: 0x06005D3C RID: 23868 RVA: 0x0026161C File Offset: 0x0025F81C
+		// Token: 0x06005300 RID: 21248 RVA: 0x00233470 File Offset: 0x00231670
 		public void Client_onUpdateData_xyz_r_optimized(MemoryStream stream)
 		{
 			int viewEntityIDFromStream = this.getViewEntityIDFromStream(stream);
@@ -2004,7 +2004,7 @@ namespace KBEngine
 			this._updateVolatileData(viewEntityIDFromStream, vector[0], y, vector[1], KBEMath.KBE_FLT_MAX, KBEMath.KBE_FLT_MAX, (float)b, 0, true);
 		}
 
-		// Token: 0x06005D3D RID: 23869 RVA: 0x0026166C File Offset: 0x0025F86C
+		// Token: 0x06005301 RID: 21249 RVA: 0x002334C0 File Offset: 0x002316C0
 		private void _updateVolatileData(int entityID, float x, float y, float z, float yaw, float pitch, float roll, sbyte isOnGround, bool isOptimized)
 		{
 			Entity entity = null;
@@ -2071,7 +2071,7 @@ namespace KBEngine
 			}
 		}
 
-		// Token: 0x06005D3E RID: 23870 RVA: 0x0004197A File Offset: 0x0003FB7A
+		// Token: 0x06005302 RID: 21250 RVA: 0x0023365A File Offset: 0x0023185A
 		public void Client_onStreamDataStarted(short id, uint datasize, string descr)
 		{
 			Event.fireOut("onStreamDataStarted", new object[]
@@ -2082,7 +2082,7 @@ namespace KBEngine
 			});
 		}
 
-		// Token: 0x06005D3F RID: 23871 RVA: 0x00261808 File Offset: 0x0025FA08
+		// Token: 0x06005303 RID: 21251 RVA: 0x00233684 File Offset: 0x00231884
 		public void Client_onStreamDataRecv(MemoryStream stream)
 		{
 			short num = stream.readInt16();
@@ -2094,7 +2094,7 @@ namespace KBEngine
 			});
 		}
 
-		// Token: 0x06005D40 RID: 23872 RVA: 0x000419A2 File Offset: 0x0003FBA2
+		// Token: 0x06005304 RID: 21252 RVA: 0x002336BC File Offset: 0x002318BC
 		public void Client_onStreamDataCompleted(short id)
 		{
 			Event.fireOut("onStreamDataCompleted", new object[]
@@ -2103,148 +2103,148 @@ namespace KBEngine
 			});
 		}
 
-		// Token: 0x04005A7E RID: 23166
+		// Token: 0x04004FEA RID: 20458
 		public static KBEngineApp app;
 
-		// Token: 0x04005A7F RID: 23167
+		// Token: 0x04004FEB RID: 20459
 		private NetworkInterfaceBase _networkInterface;
 
-		// Token: 0x04005A80 RID: 23168
+		// Token: 0x04004FEC RID: 20460
 		private KBEngineArgs _args;
 
-		// Token: 0x04005A81 RID: 23169
+		// Token: 0x04004FED RID: 20461
 		public string username = "kbengine";
 
-		// Token: 0x04005A82 RID: 23170
+		// Token: 0x04004FEE RID: 20462
 		public string password = "123456";
 
-		// Token: 0x04005A83 RID: 23171
+		// Token: 0x04004FEF RID: 20463
 		public string baseappIP = "";
 
-		// Token: 0x04005A84 RID: 23172
+		// Token: 0x04004FF0 RID: 20464
 		public ushort baseappTcpPort;
 
-		// Token: 0x04005A85 RID: 23173
+		// Token: 0x04004FF1 RID: 20465
 		public ushort baseappUdpPort;
 
-		// Token: 0x04005A86 RID: 23174
+		// Token: 0x04004FF2 RID: 20466
 		public string currserver = "";
 
-		// Token: 0x04005A87 RID: 23175
+		// Token: 0x04004FF3 RID: 20467
 		public string currstate = "";
 
-		// Token: 0x04005A88 RID: 23176
+		// Token: 0x04004FF4 RID: 20468
 		private byte[] _serverdatas = new byte[0];
 
-		// Token: 0x04005A89 RID: 23177
+		// Token: 0x04004FF5 RID: 20469
 		private byte[] _clientdatas = new byte[0];
 
-		// Token: 0x04005A8A RID: 23178
+		// Token: 0x04004FF6 RID: 20470
 		private byte[] _encryptedKey = new byte[0];
 
-		// Token: 0x04005A8B RID: 23179
+		// Token: 0x04004FF7 RID: 20471
 		public string serverVersion = "";
 
-		// Token: 0x04005A8C RID: 23180
+		// Token: 0x04004FF8 RID: 20472
 		public string clientVersion = "2.4.4";
 
-		// Token: 0x04005A8D RID: 23181
+		// Token: 0x04004FF9 RID: 20473
 		public string serverScriptVersion = "";
 
-		// Token: 0x04005A8E RID: 23182
+		// Token: 0x04004FFA RID: 20474
 		public string clientScriptVersion = "0.1.0";
 
-		// Token: 0x04005A8F RID: 23183
+		// Token: 0x04004FFB RID: 20475
 		public string serverProtocolMD5 = "6211B63FBCDC965450606C12A12B752E";
 
-		// Token: 0x04005A90 RID: 23184
+		// Token: 0x04004FFC RID: 20476
 		public string serverEntitydefMD5 = "CFFEFCB602BAD93896662DE58C2D01F2";
 
-		// Token: 0x04005A91 RID: 23185
+		// Token: 0x04004FFD RID: 20477
 		public ulong entity_uuid;
 
-		// Token: 0x04005A92 RID: 23186
+		// Token: 0x04004FFE RID: 20478
 		public int entity_id;
 
-		// Token: 0x04005A93 RID: 23187
+		// Token: 0x04004FFF RID: 20479
 		public string entity_type = "";
 
-		// Token: 0x04005A94 RID: 23188
+		// Token: 0x04005000 RID: 20480
 		private List<Entity> _controlledEntities = new List<Entity>();
 
-		// Token: 0x04005A95 RID: 23189
+		// Token: 0x04005001 RID: 20481
 		private Vector3 _entityServerPos = new Vector3(0f, 0f, 0f);
 
-		// Token: 0x04005A96 RID: 23190
+		// Token: 0x04005002 RID: 20482
 		private Dictionary<string, string> _spacedatas = new Dictionary<string, string>();
 
-		// Token: 0x04005A97 RID: 23191
+		// Token: 0x04005003 RID: 20483
 		public Dictionary<int, Entity> entities = new Dictionary<int, Entity>();
 
-		// Token: 0x04005A98 RID: 23192
+		// Token: 0x04005004 RID: 20484
 		private List<int> _entityIDAliasIDList = new List<int>();
 
-		// Token: 0x04005A99 RID: 23193
+		// Token: 0x04005005 RID: 20485
 		private Dictionary<int, MemoryStream> _bufferedCreateEntityMessages = new Dictionary<int, MemoryStream>();
 
-		// Token: 0x04005A9A RID: 23194
+		// Token: 0x04005006 RID: 20486
 		private ServerErrorDescrs _serverErrs = new ServerErrorDescrs();
 
-		// Token: 0x04005A9B RID: 23195
+		// Token: 0x04005007 RID: 20487
 		private DateTime _lastTickTime = DateTime.Now;
 
-		// Token: 0x04005A9C RID: 23196
+		// Token: 0x04005008 RID: 20488
 		private DateTime _lastTickCBTime = DateTime.Now;
 
-		// Token: 0x04005A9D RID: 23197
+		// Token: 0x04005009 RID: 20489
 		private DateTime _lastUpdateToServerTime = DateTime.Now;
 
-		// Token: 0x04005A9E RID: 23198
+		// Token: 0x0400500A RID: 20490
 		private float _updatePlayerToServerPeroid = 100f;
 
-		// Token: 0x04005A9F RID: 23199
+		// Token: 0x0400500B RID: 20491
 		private const int _1MS_TO_100NS = 10000;
 
-		// Token: 0x04005AA0 RID: 23200
+		// Token: 0x0400500C RID: 20492
 		private EncryptionFilter _filter;
 
-		// Token: 0x04005AA1 RID: 23201
+		// Token: 0x0400500D RID: 20493
 		public uint spaceID;
 
-		// Token: 0x04005AA2 RID: 23202
+		// Token: 0x0400500E RID: 20494
 		public string spaceResPath = "";
 
-		// Token: 0x04005AA3 RID: 23203
+		// Token: 0x0400500F RID: 20495
 		public bool isLoadedGeometry;
 
-		// Token: 0x04005AA4 RID: 23204
+		// Token: 0x04005010 RID: 20496
 		public const string component = "client";
 
-		// Token: 0x02000F18 RID: 3864
+		// Token: 0x020015F6 RID: 5622
 		public enum CLIENT_TYPE
 		{
-			// Token: 0x04005AA6 RID: 23206
+			// Token: 0x040070EC RID: 28908
 			CLIENT_TYPE_MOBILE = 1,
-			// Token: 0x04005AA7 RID: 23207
+			// Token: 0x040070ED RID: 28909
 			CLIENT_TYPE_WIN,
-			// Token: 0x04005AA8 RID: 23208
+			// Token: 0x040070EE RID: 28910
 			CLIENT_TYPE_LINUX,
-			// Token: 0x04005AA9 RID: 23209
+			// Token: 0x040070EF RID: 28911
 			CLIENT_TYPE_MAC,
-			// Token: 0x04005AAA RID: 23210
+			// Token: 0x040070F0 RID: 28912
 			CLIENT_TYPE_BROWSER,
-			// Token: 0x04005AAB RID: 23211
+			// Token: 0x040070F1 RID: 28913
 			CLIENT_TYPE_BOTS,
-			// Token: 0x04005AAC RID: 23212
+			// Token: 0x040070F2 RID: 28914
 			CLIENT_TYPE_MINI
 		}
 
-		// Token: 0x02000F19 RID: 3865
+		// Token: 0x020015F7 RID: 5623
 		public enum NETWORK_ENCRYPT_TYPE
 		{
-			// Token: 0x04005AAE RID: 23214
+			// Token: 0x040070F4 RID: 28916
 			ENCRYPT_TYPE_NONE,
-			// Token: 0x04005AAF RID: 23215
+			// Token: 0x040070F5 RID: 28917
 			ENCRYPT_TYPE_BLOWFISH
 		}
 	}

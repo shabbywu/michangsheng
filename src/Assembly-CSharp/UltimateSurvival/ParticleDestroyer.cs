@@ -4,10 +4,10 @@ using UnityEngine;
 
 namespace UltimateSurvival
 {
-	// Token: 0x02000841 RID: 2113
+	// Token: 0x02000597 RID: 1431
 	public class ParticleDestroyer : MonoBehaviour
 	{
-		// Token: 0x06003786 RID: 14214 RVA: 0x00028520 File Offset: 0x00026720
+		// Token: 0x06002F10 RID: 12048 RVA: 0x0015618A File Offset: 0x0015438A
 		private IEnumerator Start()
 		{
 			ParticleSystem[] systems = base.GetComponentsInChildren<ParticleSystem>();
@@ -30,24 +30,24 @@ namespace UltimateSurvival
 			yield break;
 		}
 
-		// Token: 0x06003787 RID: 14215 RVA: 0x0002852F File Offset: 0x0002672F
+		// Token: 0x06002F11 RID: 12049 RVA: 0x00156199 File Offset: 0x00154399
 		public void Stop()
 		{
 			this.m_EarlyStop = true;
 		}
 
-		// Token: 0x0400319C RID: 12700
+		// Token: 0x0400295A RID: 10586
 		[SerializeField]
 		private float m_MinDuration = 8f;
 
-		// Token: 0x0400319D RID: 12701
+		// Token: 0x0400295B RID: 10587
 		[SerializeField]
 		private float m_MaxDuration = 10f;
 
-		// Token: 0x0400319E RID: 12702
+		// Token: 0x0400295C RID: 10588
 		private float m_MaxLifetime;
 
-		// Token: 0x0400319F RID: 12703
+		// Token: 0x0400295D RID: 10589
 		private bool m_EarlyStop;
 	}
 }

@@ -4,11 +4,11 @@ using JSONClass;
 using KBEngine;
 using PaiMai;
 
-// Token: 0x020003C3 RID: 963
+// Token: 0x02000294 RID: 660
 [Serializable]
 public class EmailDataMag
 {
-	// Token: 0x06001A92 RID: 6802 RVA: 0x000169D8 File Offset: 0x00014BD8
+	// Token: 0x060017B5 RID: 6069 RVA: 0x000A3634 File Offset: 0x000A1834
 	public bool IsFriend(int npcId)
 	{
 		if (NpcJieSuanManager.inst.ImportantNpcBangDingDictionary.ContainsKey(npcId))
@@ -18,7 +18,7 @@ public class EmailDataMag
 		return this.cyNpcList.Contains(npcId);
 	}
 
-	// Token: 0x06001A93 RID: 6803 RVA: 0x000EA7E0 File Offset: 0x000E89E0
+	// Token: 0x060017B6 RID: 6070 RVA: 0x000A366C File Offset: 0x000A186C
 	public EmailDataMag()
 	{
 		this.hasReadEmailDictionary = new Dictionary<string, List<EmailData>>();
@@ -27,7 +27,7 @@ public class EmailDataMag
 		this.Init();
 	}
 
-	// Token: 0x06001A94 RID: 6804 RVA: 0x000EA830 File Offset: 0x000E8A30
+	// Token: 0x060017B7 RID: 6071 RVA: 0x000A36BC File Offset: 0x000A18BC
 	public void Init()
 	{
 		this.AnswerActionDict = new Dictionary<int, Action<EmailData, object>>();
@@ -48,7 +48,7 @@ public class EmailDataMag
 		}
 	}
 
-	// Token: 0x06001A95 RID: 6805 RVA: 0x000EA90C File Offset: 0x000E8B0C
+	// Token: 0x060017B8 RID: 6072 RVA: 0x000A3798 File Offset: 0x000A1998
 	public void InitNewJson(JSONObject newJson)
 	{
 		this.newEmailDictionary = new Dictionary<string, List<EmailData>>();
@@ -91,13 +91,13 @@ public class EmailDataMag
 		}
 	}
 
-	// Token: 0x06001A96 RID: 6806 RVA: 0x00016A0F File Offset: 0x00014C0F
+	// Token: 0x060017B9 RID: 6073 RVA: 0x000A3A80 File Offset: 0x000A1C80
 	public void InitNewJson(Dictionary<string, List<EmailData>> dict)
 	{
 		this.newEmailDictionary = dict;
 	}
 
-	// Token: 0x06001A97 RID: 6807 RVA: 0x000EABF4 File Offset: 0x000E8DF4
+	// Token: 0x060017BA RID: 6074 RVA: 0x000A3A8C File Offset: 0x000A1C8C
 	public void InitHasReadJson(JSONObject hasReadJson)
 	{
 		this.hasReadEmailDictionary = new Dictionary<string, List<EmailData>>();
@@ -140,7 +140,7 @@ public class EmailDataMag
 		}
 	}
 
-	// Token: 0x06001A98 RID: 6808 RVA: 0x000EAEDC File Offset: 0x000E90DC
+	// Token: 0x060017BB RID: 6075 RVA: 0x000A3D74 File Offset: 0x000A1F74
 	public JSONObject CyNpcListToJson()
 	{
 		JSONObject jsonobject = new JSONObject();
@@ -155,7 +155,7 @@ public class EmailDataMag
 		return jsonobject;
 	}
 
-	// Token: 0x06001A99 RID: 6809 RVA: 0x000EAF44 File Offset: 0x000E9144
+	// Token: 0x060017BC RID: 6076 RVA: 0x000A3DDC File Offset: 0x000A1FDC
 	public JSONObject NewToJson()
 	{
 		JSONObject jsonobject = new JSONObject();
@@ -243,7 +243,7 @@ public class EmailDataMag
 		return jsonobject;
 	}
 
-	// Token: 0x06001A9A RID: 6810 RVA: 0x000EB2E4 File Offset: 0x000E94E4
+	// Token: 0x060017BD RID: 6077 RVA: 0x000A417C File Offset: 0x000A237C
 	public JSONObject HasReadToJson()
 	{
 		JSONObject jsonobject = new JSONObject();
@@ -331,7 +331,7 @@ public class EmailDataMag
 		return jsonobject;
 	}
 
-	// Token: 0x06001A9B RID: 6811 RVA: 0x000EB684 File Offset: 0x000E9884
+	// Token: 0x060017BE RID: 6078 RVA: 0x000A451C File Offset: 0x000A271C
 	public void RandomTaskSendToPlayer(RandomTask randomTask, int npcId, int contentId, int contentNum, int actionId, int itemId, int itemNum, string sendTime)
 	{
 		if (NpcJieSuanManager.inst.ImportantNpcBangDingDictionary.ContainsKey(npcId))
@@ -357,7 +357,7 @@ public class EmailDataMag
 		NpcJieSuanManager.inst.lateEmailDict.Add(emailData.RandomTask.CyId, emailData);
 	}
 
-	// Token: 0x06001A9C RID: 6812 RVA: 0x000EB770 File Offset: 0x000E9970
+	// Token: 0x060017BF RID: 6079 RVA: 0x000A4608 File Offset: 0x000A2808
 	public void TaskFailSendToPlayer(int npcId, int contentId, int contentNum, string sendTime)
 	{
 		if (NpcJieSuanManager.inst.ImportantNpcBangDingDictionary.ContainsKey(npcId))
@@ -382,7 +382,7 @@ public class EmailDataMag
 		this.AddNewEmail(npcId.ToString(), emailData);
 	}
 
-	// Token: 0x06001A9D RID: 6813 RVA: 0x000EB844 File Offset: 0x000E9A44
+	// Token: 0x060017C0 RID: 6080 RVA: 0x000A46DC File Offset: 0x000A28DC
 	public EmailData SendToPlayer(int npcId, int contentId, int contentNum, int actionId, int itemId, int itemNum, int outTime, int addHaoGanDu, string sendTime)
 	{
 		if (NpcJieSuanManager.inst.ImportantNpcBangDingDictionary.ContainsKey(npcId))
@@ -408,7 +408,7 @@ public class EmailDataMag
 		return emailData;
 	}
 
-	// Token: 0x06001A9E RID: 6814 RVA: 0x000EB91C File Offset: 0x000E9B1C
+	// Token: 0x060017C1 RID: 6081 RVA: 0x000A47B4 File Offset: 0x000A29B4
 	public EmailData SendToPlayerLate(int npcId, int contentId, int contentNum, int actionId, int itemId, int itemNum, int outTime, int addHaoGanDu, string sendTime)
 	{
 		if (NpcJieSuanManager.inst.ImportantNpcBangDingDictionary.ContainsKey(npcId))
@@ -434,13 +434,13 @@ public class EmailDataMag
 		return emailData;
 	}
 
-	// Token: 0x06001A9F RID: 6815 RVA: 0x000EB9F4 File Offset: 0x000E9BF4
+	// Token: 0x060017C2 RID: 6082 RVA: 0x000A488C File Offset: 0x000A2A8C
 	public void SendToPlayerNoPd(int npcId, int contentId, int contentNum, string npcName, string sendTime)
 	{
 		this.SendToPlayer(npcId, contentId, contentNum, 999, 0, 0, 120, 0, sendTime).npcName = npcName;
 	}
 
-	// Token: 0x06001AA0 RID: 6816 RVA: 0x000EBA20 File Offset: 0x000E9C20
+	// Token: 0x060017C3 RID: 6083 RVA: 0x000A48B8 File Offset: 0x000A2AB8
 	public void AuToSendToPlayer(int npcId, int actionId, int answerType, string sendTime, object obj = null)
 	{
 		if (NpcJieSuanManager.inst.ImportantNpcBangDingDictionary.ContainsKey(npcId))
@@ -448,7 +448,7 @@ public class EmailDataMag
 			npcId = NpcJieSuanManager.inst.ImportantNpcBangDingDictionary[npcId];
 		}
 		CyNpcAnswerData cyNpcAnswerData = null;
-		JSONObject npcData = NpcJieSuanManager.inst.getNpcData(npcId);
+		JSONObject npcData = NpcJieSuanManager.inst.GetNpcData(npcId);
 		if (npcData.HasField("LockAction"))
 		{
 			actionId = npcData["LockAction"].I;
@@ -474,7 +474,7 @@ public class EmailDataMag
 		this.AddNewEmail(npcId.ToString(), emailData);
 	}
 
-	// Token: 0x06001AA1 RID: 6817 RVA: 0x000EBB5C File Offset: 0x000E9D5C
+	// Token: 0x060017C4 RID: 6084 RVA: 0x000A49F4 File Offset: 0x000A2BF4
 	public void SendToNpc(int questionId, int npcId, string sendTime, object obj = null)
 	{
 		EmailData emailData = new EmailData(npcId, questionId, true, sendTime);
@@ -485,7 +485,7 @@ public class EmailDataMag
 		this.NewToHasRead(npcId.ToString());
 	}
 
-	// Token: 0x06001AA2 RID: 6818 RVA: 0x000EBBE4 File Offset: 0x000E9DE4
+	// Token: 0x060017C5 RID: 6085 RVA: 0x000A4A7C File Offset: 0x000A2C7C
 	public void OldToPlayer(int npcId, int oldId, string sendTime)
 	{
 		if (NpcJieSuanManager.inst.ImportantNpcBangDingDictionary.ContainsKey(npcId))
@@ -493,11 +493,25 @@ public class EmailDataMag
 			npcId = NpcJieSuanManager.inst.ImportantNpcBangDingDictionary[npcId];
 		}
 		Tools.instance.getPlayer().AddFriend(npcId);
-		EmailData data = new EmailData(npcId, true, oldId, sendTime);
-		this.AddNewEmail(npcId.ToString(), data);
+		EmailData emailData = new EmailData(npcId, true, oldId, sendTime);
+		JSONObject jsonobject = Tools.instance.getPlayer().NewChuanYingList[emailData.oldId.ToString()];
+		int i = jsonData.instance.ChuanYingFuBiao[emailData.oldId.ToString()]["SPvalueID"].I;
+		if (jsonData.instance.ChuanYingFuBiao[emailData.oldId.ToString()]["SPvalueID"].I > 0)
+		{
+			Tools.instance.getPlayer().StaticValue.Value[i] = Tools.instance.getPlayer().worldTimeMag.getNowTime().Year;
+		}
+		this.GetEmailContentKey(jsonobject["info"].Str, emailData);
+		this.AddNewEmail(npcId.ToString(), emailData);
 	}
 
-	// Token: 0x06001AA3 RID: 6819 RVA: 0x000EBC40 File Offset: 0x000E9E40
+	// Token: 0x060017C6 RID: 6086 RVA: 0x000A4B94 File Offset: 0x000A2D94
+	public void OldToPlayerByExchange(int npcId, int oldId, string sendTime)
+	{
+		Tools.instance.getPlayer().AddFriend(npcId);
+		this.AddNewEmail(npcId.ToString(), new EmailData(npcId, true, oldId, sendTime));
+	}
+
+	// Token: 0x060017C7 RID: 6087 RVA: 0x000A4BBC File Offset: 0x000A2DBC
 	public void AddNewEmail(string npcId, EmailData data)
 	{
 		if (this.newEmailDictionary.ContainsKey(npcId))
@@ -532,7 +546,7 @@ public class EmailDataMag
 		}
 	}
 
-	// Token: 0x06001AA4 RID: 6820 RVA: 0x000EBCEC File Offset: 0x000E9EEC
+	// Token: 0x060017C8 RID: 6088 RVA: 0x000A4C68 File Offset: 0x000A2E68
 	public void NewToHasRead(string npcId)
 	{
 		if (this.newEmailDictionary.ContainsKey(npcId))
@@ -555,7 +569,7 @@ public class EmailDataMag
 		}
 	}
 
-	// Token: 0x06001AA5 RID: 6821 RVA: 0x000EBD94 File Offset: 0x000E9F94
+	// Token: 0x060017C9 RID: 6089 RVA: 0x000A4D10 File Offset: 0x000A2F10
 	public void GetEmailContentKey(string msg, EmailData emailData)
 	{
 		int npcId = emailData.npcId;
@@ -673,12 +687,12 @@ public class EmailDataMag
 		}
 	}
 
-	// Token: 0x06001AA6 RID: 6822 RVA: 0x000042DD File Offset: 0x000024DD
+	// Token: 0x060017CA RID: 6090 RVA: 0x00004095 File Offset: 0x00002295
 	private void DoNothing(EmailData email, object obj)
 	{
 	}
 
-	// Token: 0x06001AA7 RID: 6823 RVA: 0x000EBF84 File Offset: 0x000EA184
+	// Token: 0x060017CB RID: 6091 RVA: 0x000A4F00 File Offset: 0x000A3100
 	private void NpcToDongFu(EmailData email, object obj)
 	{
 		if (PlayerEx.IsDaoLv(email.npcId))
@@ -692,7 +706,7 @@ public class EmailDataMag
 		jsonData.instance.AvatarJsonData[email.npcId.ToString()].SetField("DongFuId", (int)obj);
 	}
 
-	// Token: 0x06001AA8 RID: 6824 RVA: 0x000EBFF8 File Offset: 0x000EA1F8
+	// Token: 0x060017CC RID: 6092 RVA: 0x000A4F74 File Offset: 0x000A3174
 	private void NpcAnswerPaiMaiInfo(EmailData email, object obj)
 	{
 		int num = (int)obj;
@@ -711,41 +725,41 @@ public class EmailDataMag
 		email.PaiMaiInfo = paiMaiInfo;
 	}
 
-	// Token: 0x06001AA9 RID: 6825 RVA: 0x00016A18 File Offset: 0x00014C18
+	// Token: 0x060017CD RID: 6093 RVA: 0x000A5035 File Offset: 0x000A3235
 	private void YaoQingNpcToDongFu(EmailData emailData, object obj)
 	{
 		emailData.DongFuId = (int)obj;
 	}
 
-	// Token: 0x06001AAA RID: 6826 RVA: 0x00016A26 File Offset: 0x00014C26
+	// Token: 0x060017CE RID: 6094 RVA: 0x000A5043 File Offset: 0x000A3243
 	public void QuestionPaiMai(EmailData emailData, object obj)
 	{
 		jsonData.instance.AvatarJsonData[emailData.npcId.ToString()].SetField("ActionId", 1000);
 	}
 
-	// Token: 0x04001604 RID: 5636
+	// Token: 0x0400127E RID: 4734
 	public Dictionary<string, List<EmailData>> hasReadEmailDictionary;
 
-	// Token: 0x04001605 RID: 5637
+	// Token: 0x0400127F RID: 4735
 	public Dictionary<string, List<EmailData>> newEmailDictionary;
 
-	// Token: 0x04001606 RID: 5638
+	// Token: 0x04001280 RID: 4736
 	public List<int> TagNpcList;
 
-	// Token: 0x04001607 RID: 5639
+	// Token: 0x04001281 RID: 4737
 	public List<int> cyNpcList;
 
-	// Token: 0x04001608 RID: 5640
+	// Token: 0x04001282 RID: 4738
 	public List<int> HasReceiveList;
 
-	// Token: 0x04001609 RID: 5641
+	// Token: 0x04001283 RID: 4739
 	public bool IsStopAll;
 
-	// Token: 0x0400160A RID: 5642
+	// Token: 0x04001284 RID: 4740
 	[NonSerialized]
 	public Dictionary<int, Action<EmailData, object>> AnswerActionDict = new Dictionary<int, Action<EmailData, object>>();
 
-	// Token: 0x0400160B RID: 5643
+	// Token: 0x04001285 RID: 4741
 	[NonSerialized]
 	public Dictionary<int, Action<EmailData, object>> QuestionActionDict = new Dictionary<int, Action<EmailData, object>>();
 }

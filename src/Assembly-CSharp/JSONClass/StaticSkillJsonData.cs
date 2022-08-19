@@ -3,10 +3,10 @@ using System.Collections.Generic;
 
 namespace JSONClass
 {
-	// Token: 0x02000CE4 RID: 3300
+	// Token: 0x02000960 RID: 2400
 	public class StaticSkillJsonData : IJSONClass
 	{
-		// Token: 0x06004EF8 RID: 20216 RVA: 0x0021229C File Offset: 0x0021049C
+		// Token: 0x06004392 RID: 17298 RVA: 0x001CC594 File Offset: 0x001CA794
 		public static void InitDataDict()
 		{
 			foreach (JSONObject jsonobject in jsonData.instance.StaticSkillJsonData.list)
@@ -54,69 +54,69 @@ namespace JSONClass
 			}
 		}
 
-		// Token: 0x06004EF9 RID: 20217 RVA: 0x000042DD File Offset: 0x000024DD
+		// Token: 0x06004393 RID: 17299 RVA: 0x00004095 File Offset: 0x00002295
 		private static void OnInitFinish()
 		{
 		}
 
-		// Token: 0x04004F6D RID: 20333
+		// Token: 0x0400445D RID: 17501
 		public static Dictionary<int, StaticSkillJsonData> DataDict = new Dictionary<int, StaticSkillJsonData>();
 
-		// Token: 0x04004F6E RID: 20334
+		// Token: 0x0400445E RID: 17502
 		public static List<StaticSkillJsonData> DataList = new List<StaticSkillJsonData>();
 
-		// Token: 0x04004F6F RID: 20335
+		// Token: 0x0400445F RID: 17503
 		public static Action OnInitFinishAction = new Action(StaticSkillJsonData.OnInitFinish);
 
-		// Token: 0x04004F70 RID: 20336
+		// Token: 0x04004460 RID: 17504
 		public int id;
 
-		// Token: 0x04004F71 RID: 20337
+		// Token: 0x04004461 RID: 17505
 		public int Skill_ID;
 
-		// Token: 0x04004F72 RID: 20338
+		// Token: 0x04004462 RID: 17506
 		public int Skill_Lv;
 
-		// Token: 0x04004F73 RID: 20339
+		// Token: 0x04004463 RID: 17507
 		public int qingjiaotype;
 
-		// Token: 0x04004F74 RID: 20340
+		// Token: 0x04004464 RID: 17508
 		public int AttackType;
 
-		// Token: 0x04004F75 RID: 20341
+		// Token: 0x04004465 RID: 17509
 		public int icon;
 
-		// Token: 0x04004F76 RID: 20342
+		// Token: 0x04004466 RID: 17510
 		public int Skill_LV;
 
-		// Token: 0x04004F77 RID: 20343
+		// Token: 0x04004467 RID: 17511
 		public int typePinJie;
 
-		// Token: 0x04004F78 RID: 20344
+		// Token: 0x04004468 RID: 17512
 		public int Skill_castTime;
 
-		// Token: 0x04004F79 RID: 20345
+		// Token: 0x04004469 RID: 17513
 		public int Skill_Speed;
 
-		// Token: 0x04004F7A RID: 20346
+		// Token: 0x0400446A RID: 17514
 		public int DF;
 
-		// Token: 0x04004F7B RID: 20347
+		// Token: 0x0400446B RID: 17515
 		public int TuJianType;
 
-		// Token: 0x04004F7C RID: 20348
+		// Token: 0x0400446C RID: 17516
 		public string name;
 
-		// Token: 0x04004F7D RID: 20349
+		// Token: 0x0400446D RID: 17517
 		public string TuJiandescr;
 
-		// Token: 0x04004F7E RID: 20350
+		// Token: 0x0400446E RID: 17518
 		public string descr;
 
-		// Token: 0x04004F7F RID: 20351
+		// Token: 0x0400446F RID: 17519
 		public List<int> Affix = new List<int>();
 
-		// Token: 0x04004F80 RID: 20352
+		// Token: 0x04004470 RID: 17520
 		public List<int> seid = new List<int>();
 	}
 }

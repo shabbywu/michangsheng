@@ -3,18 +3,18 @@ using System.Collections.Generic;
 using Spine.Unity;
 using UnityEngine;
 
-// Token: 0x020002D7 RID: 727
+// Token: 0x020001CC RID: 460
 public class ResRefHolder : MonoBehaviour
 {
-	// Token: 0x060015F1 RID: 5617 RVA: 0x00013B6E File Offset: 0x00011D6E
+	// Token: 0x06001335 RID: 4917 RVA: 0x00078C55 File Offset: 0x00076E55
 	private void Awake()
 	{
 		ResRefHolder.Inst = this;
 	}
 
-	// Token: 0x040011C5 RID: 4549
+	// Token: 0x04000E86 RID: 3718
 	public static ResRefHolder Inst;
 
-	// Token: 0x040011C6 RID: 4550
+	// Token: 0x04000E87 RID: 3719
 	public List<SkeletonDataAsset> SeaJiZhiRes;
 }

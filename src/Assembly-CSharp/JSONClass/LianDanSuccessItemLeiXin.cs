@@ -3,10 +3,10 @@ using System.Collections.Generic;
 
 namespace JSONClass
 {
-	// Token: 0x02000C02 RID: 3074
+	// Token: 0x02000874 RID: 2164
 	public class LianDanSuccessItemLeiXin : IJSONClass
 	{
-		// Token: 0x06004B71 RID: 19313 RVA: 0x001FDAA8 File Offset: 0x001FBCA8
+		// Token: 0x06003FE3 RID: 16355 RVA: 0x001B4108 File Offset: 0x001B2308
 		public static void InitDataDict()
 		{
 			foreach (JSONObject jsonobject in jsonData.instance.LianDanSuccessItemLeiXin.list)
@@ -40,27 +40,27 @@ namespace JSONClass
 			}
 		}
 
-		// Token: 0x06004B72 RID: 19314 RVA: 0x000042DD File Offset: 0x000024DD
+		// Token: 0x06003FE4 RID: 16356 RVA: 0x00004095 File Offset: 0x00002295
 		private static void OnInitFinish()
 		{
 		}
 
-		// Token: 0x040047F0 RID: 18416
+		// Token: 0x04003C97 RID: 15511
 		public static Dictionary<int, LianDanSuccessItemLeiXin> DataDict = new Dictionary<int, LianDanSuccessItemLeiXin>();
 
-		// Token: 0x040047F1 RID: 18417
+		// Token: 0x04003C98 RID: 15512
 		public static List<LianDanSuccessItemLeiXin> DataList = new List<LianDanSuccessItemLeiXin>();
 
-		// Token: 0x040047F2 RID: 18418
+		// Token: 0x04003C99 RID: 15513
 		public static Action OnInitFinishAction = new Action(LianDanSuccessItemLeiXin.OnInitFinish);
 
-		// Token: 0x040047F3 RID: 18419
+		// Token: 0x04003C9A RID: 15514
 		public int id;
 
-		// Token: 0x040047F4 RID: 18420
+		// Token: 0x04003C9B RID: 15515
 		public int zhonglei;
 
-		// Token: 0x040047F5 RID: 18421
+		// Token: 0x04003C9C RID: 15516
 		public string desc;
 	}
 }

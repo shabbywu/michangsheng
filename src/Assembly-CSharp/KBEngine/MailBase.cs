@@ -4,80 +4,80 @@ using UnityEngine;
 
 namespace KBEngine
 {
-	// Token: 0x02000F5A RID: 3930
+	// Token: 0x02000BD7 RID: 3031
 	public abstract class MailBase : Entity
 	{
-		// Token: 0x06005E58 RID: 24152 RVA: 0x000042DD File Offset: 0x000024DD
+		// Token: 0x0600541A RID: 21530 RVA: 0x00004095 File Offset: 0x00002295
 		public virtual void onMailTypeChanged(byte oldValue)
 		{
 		}
 
-		// Token: 0x06005E59 RID: 24153 RVA: 0x000042DD File Offset: 0x000024DD
+		// Token: 0x0600541B RID: 21531 RVA: 0x00004095 File Offset: 0x00002295
 		public virtual void onStatusChanged(byte oldValue)
 		{
 		}
 
-		// Token: 0x06005E5A RID: 24154 RVA: 0x000042DD File Offset: 0x000024DD
+		// Token: 0x0600541C RID: 21532 RVA: 0x00004095 File Offset: 0x00002295
 		public virtual void onUserIDChanged(ulong oldValue)
 		{
 		}
 
-		// Token: 0x06005E5B RID: 24155 RVA: 0x00040112 File Offset: 0x0003E312
+		// Token: 0x0600541D RID: 21533 RVA: 0x00220682 File Offset: 0x0021E882
 		public MailBase()
 		{
 		}
 
-		// Token: 0x06005E5C RID: 24156 RVA: 0x000042DD File Offset: 0x000024DD
+		// Token: 0x0600541E RID: 21534 RVA: 0x00004095 File Offset: 0x00002295
 		public override void onComponentsEnterworld()
 		{
 		}
 
-		// Token: 0x06005E5D RID: 24157 RVA: 0x000042DD File Offset: 0x000024DD
+		// Token: 0x0600541F RID: 21535 RVA: 0x00004095 File Offset: 0x00002295
 		public override void onComponentsLeaveworld()
 		{
 		}
 
-		// Token: 0x06005E5E RID: 24158 RVA: 0x0004225C File Offset: 0x0004045C
+		// Token: 0x06005420 RID: 21536 RVA: 0x002341A1 File Offset: 0x002323A1
 		public override void onGetBase()
 		{
 			this.baseEntityCall = new EntityBaseEntityCall_MailBase(this.id, this.className);
 		}
 
-		// Token: 0x06005E5F RID: 24159 RVA: 0x00042275 File Offset: 0x00040475
+		// Token: 0x06005421 RID: 21537 RVA: 0x002341BA File Offset: 0x002323BA
 		public override void onGetCell()
 		{
 			this.cellEntityCall = new EntityCellEntityCall_MailBase(this.id, this.className);
 		}
 
-		// Token: 0x06005E60 RID: 24160 RVA: 0x0004228E File Offset: 0x0004048E
+		// Token: 0x06005422 RID: 21538 RVA: 0x002341D3 File Offset: 0x002323D3
 		public override void onLoseCell()
 		{
 			this.cellEntityCall = null;
 		}
 
-		// Token: 0x06005E61 RID: 24161 RVA: 0x00042297 File Offset: 0x00040497
+		// Token: 0x06005423 RID: 21539 RVA: 0x002341DC File Offset: 0x002323DC
 		public override EntityCall getBaseEntityCall()
 		{
 			return this.baseEntityCall;
 		}
 
-		// Token: 0x06005E62 RID: 24162 RVA: 0x0004229F File Offset: 0x0004049F
+		// Token: 0x06005424 RID: 21540 RVA: 0x002341E4 File Offset: 0x002323E4
 		public override EntityCall getCellEntityCall()
 		{
 			return this.cellEntityCall;
 		}
 
-		// Token: 0x06005E63 RID: 24163 RVA: 0x000042DD File Offset: 0x000024DD
+		// Token: 0x06005425 RID: 21541 RVA: 0x00004095 File Offset: 0x00002295
 		public override void attachComponents()
 		{
 		}
 
-		// Token: 0x06005E64 RID: 24164 RVA: 0x000042DD File Offset: 0x000024DD
+		// Token: 0x06005426 RID: 21542 RVA: 0x00004095 File Offset: 0x00002295
 		public override void detachComponents()
 		{
 		}
 
-		// Token: 0x06005E65 RID: 24165 RVA: 0x00261AD0 File Offset: 0x0025FCD0
+		// Token: 0x06005427 RID: 21543 RVA: 0x002341EC File Offset: 0x002323EC
 		public override void onRemoteMethodCall(MemoryStream stream)
 		{
 			ScriptModule scriptModule = EntityDef.moduledefs["Mail"];
@@ -108,7 +108,7 @@ namespace KBEngine
 			ushort properUtype = scriptModule.idpropertys[num].properUtype;
 		}
 
-		// Token: 0x06005E66 RID: 24166 RVA: 0x00261B50 File Offset: 0x0025FD50
+		// Token: 0x06005428 RID: 21544 RVA: 0x0023426C File Offset: 0x0023246C
 		public override void onUpdatePropertys(MemoryStream stream)
 		{
 			ScriptModule scriptModule = EntityDef.moduledefs["Mail"];
@@ -233,7 +233,7 @@ namespace KBEngine
 			}
 		}
 
-		// Token: 0x06005E67 RID: 24167 RVA: 0x00261D84 File Offset: 0x0025FF84
+		// Token: 0x06005429 RID: 21545 RVA: 0x002344A0 File Offset: 0x002326A0
 		public override void callPropertysSetMethods()
 		{
 			Dictionary<ushort, Property> idpropertys = EntityDef.moduledefs["Mail"].idpropertys;
@@ -305,19 +305,19 @@ namespace KBEngine
 			}
 		}
 
-		// Token: 0x04005B16 RID: 23318
+		// Token: 0x04005075 RID: 20597
 		public EntityBaseEntityCall_MailBase baseEntityCall;
 
-		// Token: 0x04005B17 RID: 23319
+		// Token: 0x04005076 RID: 20598
 		public EntityCellEntityCall_MailBase cellEntityCall;
 
-		// Token: 0x04005B18 RID: 23320
+		// Token: 0x04005077 RID: 20599
 		public byte MailType;
 
-		// Token: 0x04005B19 RID: 23321
+		// Token: 0x04005078 RID: 20600
 		public byte status;
 
-		// Token: 0x04005B1A RID: 23322
+		// Token: 0x04005079 RID: 20601
 		public ulong userID;
 	}
 }

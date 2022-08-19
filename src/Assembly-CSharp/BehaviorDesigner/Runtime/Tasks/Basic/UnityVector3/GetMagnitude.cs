@@ -3,30 +3,30 @@ using UnityEngine;
 
 namespace BehaviorDesigner.Runtime.Tasks.Basic.UnityVector3
 {
-	// Token: 0x020014B8 RID: 5304
+	// Token: 0x02001000 RID: 4096
 	[TaskCategory("Basic/Vector3")]
 	[TaskDescription("Stores the magnitude of the Vector3.")]
 	public class GetMagnitude : Action
 	{
-		// Token: 0x06007F33 RID: 32563 RVA: 0x002C9B74 File Offset: 0x002C7D74
+		// Token: 0x06007139 RID: 28985 RVA: 0x002AB52C File Offset: 0x002A972C
 		public override TaskStatus OnUpdate()
 		{
 			this.storeResult.Value = this.vector3Variable.Value.magnitude;
 			return 2;
 		}
 
-		// Token: 0x06007F34 RID: 32564 RVA: 0x00056357 File Offset: 0x00054557
+		// Token: 0x0600713A RID: 28986 RVA: 0x002AB558 File Offset: 0x002A9758
 		public override void OnReset()
 		{
 			this.vector3Variable = Vector3.zero;
 			this.storeResult = 0f;
 		}
 
-		// Token: 0x04006C10 RID: 27664
+		// Token: 0x04005D18 RID: 23832
 		[Tooltip("The Vector3 to get the magnitude of")]
 		public SharedVector3 vector3Variable;
 
-		// Token: 0x04006C11 RID: 27665
+		// Token: 0x04005D19 RID: 23833
 		[Tooltip("The magnitude of the vector")]
 		[RequiredField]
 		public SharedFloat storeResult;

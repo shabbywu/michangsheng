@@ -3,13 +3,13 @@ using UnityEngine;
 
 namespace UltimateSurvival.InputSystem
 {
-	// Token: 0x02000923 RID: 2339
+	// Token: 0x02000631 RID: 1585
 	[Serializable]
 	public class Axis
 	{
-		// Token: 0x17000659 RID: 1625
-		// (get) Token: 0x06003B82 RID: 15234 RVA: 0x0002B07E File Offset: 0x0002927E
-		// (set) Token: 0x06003B83 RID: 15235 RVA: 0x0002B086 File Offset: 0x00029286
+		// Token: 0x17000459 RID: 1113
+		// (get) Token: 0x06003248 RID: 12872 RVA: 0x00165327 File Offset: 0x00163527
+		// (set) Token: 0x06003249 RID: 12873 RVA: 0x0016532F File Offset: 0x0016352F
 		public string AxisName
 		{
 			get
@@ -22,8 +22,8 @@ namespace UltimateSurvival.InputSystem
 			}
 		}
 
-		// Token: 0x1700065A RID: 1626
-		// (get) Token: 0x06003B84 RID: 15236 RVA: 0x0002B08F File Offset: 0x0002928F
+		// Token: 0x1700045A RID: 1114
+		// (get) Token: 0x0600324A RID: 12874 RVA: 0x00165338 File Offset: 0x00163538
 		public ET.StandaloneAxisType AxisType
 		{
 			get
@@ -32,8 +32,8 @@ namespace UltimateSurvival.InputSystem
 			}
 		}
 
-		// Token: 0x1700065B RID: 1627
-		// (get) Token: 0x06003B85 RID: 15237 RVA: 0x0002B097 File Offset: 0x00029297
+		// Token: 0x1700045B RID: 1115
+		// (get) Token: 0x0600324B RID: 12875 RVA: 0x00165340 File Offset: 0x00163540
 		public string UnityAxisName
 		{
 			get
@@ -42,8 +42,8 @@ namespace UltimateSurvival.InputSystem
 			}
 		}
 
-		// Token: 0x1700065C RID: 1628
-		// (get) Token: 0x06003B86 RID: 15238 RVA: 0x0002B09F File Offset: 0x0002929F
+		// Token: 0x1700045C RID: 1116
+		// (get) Token: 0x0600324C RID: 12876 RVA: 0x00165348 File Offset: 0x00163548
 		public KeyCode NegativeKey
 		{
 			get
@@ -52,8 +52,8 @@ namespace UltimateSurvival.InputSystem
 			}
 		}
 
-		// Token: 0x1700065D RID: 1629
-		// (get) Token: 0x06003B87 RID: 15239 RVA: 0x0002B0A7 File Offset: 0x000292A7
+		// Token: 0x1700045D RID: 1117
+		// (get) Token: 0x0600324D RID: 12877 RVA: 0x00165350 File Offset: 0x00163550
 		public KeyCode PositiveKey
 		{
 			get
@@ -62,8 +62,8 @@ namespace UltimateSurvival.InputSystem
 			}
 		}
 
-		// Token: 0x1700065E RID: 1630
-		// (get) Token: 0x06003B88 RID: 15240 RVA: 0x0002B0AF File Offset: 0x000292AF
+		// Token: 0x1700045E RID: 1118
+		// (get) Token: 0x0600324E RID: 12878 RVA: 0x00165358 File Offset: 0x00163558
 		public bool Normalize
 		{
 			get
@@ -72,21 +72,21 @@ namespace UltimateSurvival.InputSystem
 			}
 		}
 
-		// Token: 0x06003B89 RID: 15241 RVA: 0x0002B0B7 File Offset: 0x000292B7
+		// Token: 0x0600324F RID: 12879 RVA: 0x00165360 File Offset: 0x00163560
 		public Axis(string name, ET.StandaloneAxisType axisType)
 		{
 			this.m_AxisName = name;
 			this.m_AxisType = axisType;
 		}
 
-		// Token: 0x06003B8A RID: 15242 RVA: 0x0002B0B7 File Offset: 0x000292B7
+		// Token: 0x06003250 RID: 12880 RVA: 0x00165360 File Offset: 0x00163560
 		public Axis(string name, ET.StandaloneAxisType axisType, Joystick joystick)
 		{
 			this.m_AxisName = name;
 			this.m_AxisType = axisType;
 		}
 
-		// Token: 0x06003B8B RID: 15243 RVA: 0x0002B0CD File Offset: 0x000292CD
+		// Token: 0x06003251 RID: 12881 RVA: 0x00165376 File Offset: 0x00163576
 		public Axis(string name, ET.StandaloneAxisType axisType, string unityAxisName)
 		{
 			this.m_AxisName = name;
@@ -94,7 +94,7 @@ namespace UltimateSurvival.InputSystem
 			this.m_UnityAxisName = unityAxisName;
 		}
 
-		// Token: 0x06003B8C RID: 15244 RVA: 0x0002B0EA File Offset: 0x000292EA
+		// Token: 0x06003252 RID: 12882 RVA: 0x00165393 File Offset: 0x00163593
 		public Axis(string name, ET.StandaloneAxisType axisType, KeyCode positiveKey, KeyCode negativeKey, string unityAxisName)
 		{
 			this.m_AxisName = name;
@@ -104,27 +104,27 @@ namespace UltimateSurvival.InputSystem
 			this.m_UnityAxisName = unityAxisName;
 		}
 
-		// Token: 0x04003633 RID: 13875
+		// Token: 0x04002CE2 RID: 11490
 		[SerializeField]
 		private string m_AxisName;
 
-		// Token: 0x04003634 RID: 13876
+		// Token: 0x04002CE3 RID: 11491
 		[SerializeField]
 		private bool m_Normalize;
 
-		// Token: 0x04003635 RID: 13877
+		// Token: 0x04002CE4 RID: 11492
 		[SerializeField]
 		private ET.StandaloneAxisType m_AxisType;
 
-		// Token: 0x04003636 RID: 13878
+		// Token: 0x04002CE5 RID: 11493
 		[SerializeField]
 		private string m_UnityAxisName;
 
-		// Token: 0x04003637 RID: 13879
+		// Token: 0x04002CE6 RID: 11494
 		[SerializeField]
 		private KeyCode m_PositiveKey;
 
-		// Token: 0x04003638 RID: 13880
+		// Token: 0x04002CE7 RID: 11495
 		[SerializeField]
 		private KeyCode m_NegativeKey;
 	}

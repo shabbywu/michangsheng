@@ -2,27 +2,27 @@
 
 namespace ICSharpCode.SharpZipLib.Zip.Compression
 {
-	// Token: 0x020007FF RID: 2047
+	// Token: 0x02000559 RID: 1369
 	public class PendingBuffer
 	{
-		// Token: 0x060034D2 RID: 13522 RVA: 0x0002694F File Offset: 0x00024B4F
+		// Token: 0x06002C64 RID: 11364 RVA: 0x0014B3B1 File Offset: 0x001495B1
 		public PendingBuffer() : this(4096)
 		{
 		}
 
-		// Token: 0x060034D3 RID: 13523 RVA: 0x0002695C File Offset: 0x00024B5C
+		// Token: 0x06002C65 RID: 11365 RVA: 0x0014B3BE File Offset: 0x001495BE
 		public PendingBuffer(int bufferSize)
 		{
 			this.buffer = new byte[bufferSize];
 		}
 
-		// Token: 0x060034D4 RID: 13524 RVA: 0x001976C0 File Offset: 0x001958C0
+		// Token: 0x06002C66 RID: 11366 RVA: 0x0014B3D4 File Offset: 0x001495D4
 		public void Reset()
 		{
 			this.start = (this.end = (this.bitCount = 0));
 		}
 
-		// Token: 0x060034D5 RID: 13525 RVA: 0x001976E8 File Offset: 0x001958E8
+		// Token: 0x06002C67 RID: 11367 RVA: 0x0014B3FC File Offset: 0x001495FC
 		public void WriteByte(int value)
 		{
 			byte[] array = this.buffer;
@@ -31,7 +31,7 @@ namespace ICSharpCode.SharpZipLib.Zip.Compression
 			array[num] = (byte)value;
 		}
 
-		// Token: 0x060034D6 RID: 13526 RVA: 0x00197710 File Offset: 0x00195910
+		// Token: 0x06002C68 RID: 11368 RVA: 0x0014B424 File Offset: 0x00149624
 		public void WriteShort(int value)
 		{
 			byte[] array = this.buffer;
@@ -44,7 +44,7 @@ namespace ICSharpCode.SharpZipLib.Zip.Compression
 			array2[num] = (byte)(value >> 8);
 		}
 
-		// Token: 0x060034D7 RID: 13527 RVA: 0x00197754 File Offset: 0x00195954
+		// Token: 0x06002C69 RID: 11369 RVA: 0x0014B468 File Offset: 0x00149668
 		public void WriteInt(int value)
 		{
 			byte[] array = this.buffer;
@@ -65,15 +65,15 @@ namespace ICSharpCode.SharpZipLib.Zip.Compression
 			array4[num] = (byte)(value >> 24);
 		}
 
-		// Token: 0x060034D8 RID: 13528 RVA: 0x00026970 File Offset: 0x00024B70
+		// Token: 0x06002C6A RID: 11370 RVA: 0x0014B4E5 File Offset: 0x001496E5
 		public void WriteBlock(byte[] block, int offset, int length)
 		{
 			Array.Copy(block, offset, this.buffer, this.end, length);
 			this.end += length;
 		}
 
-		// Token: 0x170004FF RID: 1279
-		// (get) Token: 0x060034D9 RID: 13529 RVA: 0x00026994 File Offset: 0x00024B94
+		// Token: 0x17000348 RID: 840
+		// (get) Token: 0x06002C6B RID: 11371 RVA: 0x0014B509 File Offset: 0x00149709
 		public int BitCount
 		{
 			get
@@ -82,7 +82,7 @@ namespace ICSharpCode.SharpZipLib.Zip.Compression
 			}
 		}
 
-		// Token: 0x060034DA RID: 13530 RVA: 0x001977D4 File Offset: 0x001959D4
+		// Token: 0x06002C6C RID: 11372 RVA: 0x0014B514 File Offset: 0x00149714
 		public void AlignToByte()
 		{
 			if (this.bitCount > 0)
@@ -103,7 +103,7 @@ namespace ICSharpCode.SharpZipLib.Zip.Compression
 			this.bitCount = 0;
 		}
 
-		// Token: 0x060034DB RID: 13531 RVA: 0x00197844 File Offset: 0x00195A44
+		// Token: 0x06002C6D RID: 11373 RVA: 0x0014B584 File Offset: 0x00149784
 		public void WriteBits(int b, int count)
 		{
 			this.bits |= (uint)((uint)b << this.bitCount);
@@ -123,7 +123,7 @@ namespace ICSharpCode.SharpZipLib.Zip.Compression
 			}
 		}
 
-		// Token: 0x060034DC RID: 13532 RVA: 0x001978E0 File Offset: 0x00195AE0
+		// Token: 0x06002C6E RID: 11374 RVA: 0x0014B620 File Offset: 0x00149820
 		public void WriteShortMSB(int s)
 		{
 			byte[] array = this.buffer;
@@ -136,8 +136,8 @@ namespace ICSharpCode.SharpZipLib.Zip.Compression
 			array2[num] = (byte)s;
 		}
 
-		// Token: 0x17000500 RID: 1280
-		// (get) Token: 0x060034DD RID: 13533 RVA: 0x0002699C File Offset: 0x00024B9C
+		// Token: 0x17000349 RID: 841
+		// (get) Token: 0x06002C6F RID: 11375 RVA: 0x0014B663 File Offset: 0x00149863
 		public bool IsFlushed
 		{
 			get
@@ -146,7 +146,7 @@ namespace ICSharpCode.SharpZipLib.Zip.Compression
 			}
 		}
 
-		// Token: 0x060034DE RID: 13534 RVA: 0x00197924 File Offset: 0x00195B24
+		// Token: 0x06002C70 RID: 11376 RVA: 0x0014B670 File Offset: 0x00149870
 		public int Flush(byte[] output, int offset, int length)
 		{
 			if (this.bitCount >= 8)
@@ -173,7 +173,7 @@ namespace ICSharpCode.SharpZipLib.Zip.Compression
 			return length;
 		}
 
-		// Token: 0x060034DF RID: 13535 RVA: 0x001979DC File Offset: 0x00195BDC
+		// Token: 0x06002C71 RID: 11377 RVA: 0x0014B728 File Offset: 0x00149928
 		public byte[] ToByteArray()
 		{
 			this.AlignToByte();
@@ -184,19 +184,19 @@ namespace ICSharpCode.SharpZipLib.Zip.Compression
 			return array;
 		}
 
-		// Token: 0x04003022 RID: 12322
+		// Token: 0x040027E9 RID: 10217
 		private readonly byte[] buffer;
 
-		// Token: 0x04003023 RID: 12323
+		// Token: 0x040027EA RID: 10218
 		private int start;
 
-		// Token: 0x04003024 RID: 12324
+		// Token: 0x040027EB RID: 10219
 		private int end;
 
-		// Token: 0x04003025 RID: 12325
+		// Token: 0x040027EC RID: 10220
 		private uint bits;
 
-		// Token: 0x04003026 RID: 12326
+		// Token: 0x040027ED RID: 10221
 		private int bitCount;
 	}
 }

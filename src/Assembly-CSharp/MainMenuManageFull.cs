@@ -2,10 +2,10 @@
 using System.Collections;
 using UnityEngine;
 
-// Token: 0x020006C1 RID: 1729
+// Token: 0x020004BE RID: 1214
 public class MainMenuManageFull : MonoBehaviour
 {
-	// Token: 0x06002B36 RID: 11062 RVA: 0x0014F000 File Offset: 0x0014D200
+	// Token: 0x0600265E RID: 9822 RVA: 0x0010AC68 File Offset: 0x00108E68
 	private void Awake()
 	{
 		GameObject.Find("HolderGornjiDesniUgaoDugmici").GetComponent<Transform>().position = new Vector3(Camera.main.ViewportToWorldPoint(Vector3.one).x, Camera.main.ViewportToWorldPoint(Vector3.one).y, -0.05f);
@@ -29,7 +29,7 @@ public class MainMenuManageFull : MonoBehaviour
 		this.TextJezik = GameObject.Find("Text2letters");
 	}
 
-	// Token: 0x06002B37 RID: 11063 RVA: 0x0014F23C File Offset: 0x0014D43C
+	// Token: 0x0600265F RID: 9823 RVA: 0x0010AEA4 File Offset: 0x001090A4
 	private void Start()
 	{
 		GameObject.Find("PrinceGorilla").GetComponent<Animator>().Play("Idle Main Screen");
@@ -118,7 +118,7 @@ public class MainMenuManageFull : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06002B38 RID: 11064 RVA: 0x0014F6AC File Offset: 0x0014D8AC
+	// Token: 0x06002660 RID: 9824 RVA: 0x0010B314 File Offset: 0x00109514
 	private void Update()
 	{
 		if (Input.GetKeyUp(27))
@@ -526,7 +526,7 @@ public class MainMenuManageFull : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06002B39 RID: 11065 RVA: 0x00021525 File Offset: 0x0001F725
+	// Token: 0x06002661 RID: 9825 RVA: 0x0010C501 File Offset: 0x0010A701
 	private IEnumerator otvoriSledeciNivo()
 	{
 		yield return null;
@@ -542,7 +542,7 @@ public class MainMenuManageFull : MonoBehaviour
 		yield break;
 	}
 
-	// Token: 0x06002B3A RID: 11066 RVA: 0x00149A14 File Offset: 0x00147C14
+	// Token: 0x06002662 RID: 9826 RVA: 0x0010C50C File Offset: 0x0010A70C
 	private string RaycastFunction(Vector3 vector)
 	{
 		RaycastHit raycastHit;
@@ -553,7 +553,7 @@ public class MainMenuManageFull : MonoBehaviour
 		return "";
 	}
 
-	// Token: 0x06002B3B RID: 11067 RVA: 0x0002152D File Offset: 0x0001F72D
+	// Token: 0x06002663 RID: 9827 RVA: 0x0010C53F File Offset: 0x0010A73F
 	private IEnumerator PrikaziZastave()
 	{
 		yield return new WaitForSeconds(0.5f);
@@ -561,88 +561,88 @@ public class MainMenuManageFull : MonoBehaviour
 		yield break;
 	}
 
-	// Token: 0x04002565 RID: 9573
+	// Token: 0x04001FAC RID: 8108
 	private FacebookManager Face;
 
-	// Token: 0x04002566 RID: 9574
+	// Token: 0x04001FAD RID: 8109
 	private Sprite dugmeMuzikaSprite;
 
-	// Token: 0x04002567 RID: 9575
+	// Token: 0x04001FAE RID: 8110
 	private Sprite dugmeSoundSprite;
 
-	// Token: 0x04002568 RID: 9576
+	// Token: 0x04001FAF RID: 8111
 	private Sprite dugmeMuzikaOffSprite;
 
-	// Token: 0x04002569 RID: 9577
+	// Token: 0x04001FB0 RID: 8112
 	private Sprite dugmeSoundOffSprite;
 
-	// Token: 0x0400256A RID: 9578
+	// Token: 0x04001FB1 RID: 8113
 	private GameObject dugmeMuzika;
 
-	// Token: 0x0400256B RID: 9579
+	// Token: 0x04001FB2 RID: 8114
 	private GameObject dugmeSound;
 
-	// Token: 0x0400256C RID: 9580
+	// Token: 0x04001FB3 RID: 8115
 	private GameObject dugmePlay;
 
-	// Token: 0x0400256D RID: 9581
+	// Token: 0x04001FB4 RID: 8116
 	private GameObject holderLogo;
 
-	// Token: 0x0400256E RID: 9582
+	// Token: 0x04001FB5 RID: 8117
 	private GameObject majmunLogo;
 
-	// Token: 0x0400256F RID: 9583
+	// Token: 0x04001FB6 RID: 8118
 	private GameObject LeaderBoard;
 
-	// Token: 0x04002570 RID: 9584
+	// Token: 0x04001FB7 RID: 8119
 	private GameObject Languages;
 
-	// Token: 0x04002571 RID: 9585
+	// Token: 0x04001FB8 RID: 8120
 	private GameObject TrenutnaZastava;
 
-	// Token: 0x04002572 RID: 9586
+	// Token: 0x04001FB9 RID: 8121
 	private bool muzikaOff;
 
-	// Token: 0x04002573 RID: 9587
+	// Token: 0x04001FBA RID: 8122
 	private bool soundOff;
 
-	// Token: 0x04002574 RID: 9588
+	// Token: 0x04001FBB RID: 8123
 	private NivoManager nivoManager;
 
-	// Token: 0x04002575 RID: 9589
+	// Token: 0x04001FBC RID: 8124
 	private AudioSource MusicOn_Button;
 
-	// Token: 0x04002576 RID: 9590
+	// Token: 0x04001FBD RID: 8125
 	private AudioSource SoundOn_Button;
 
-	// Token: 0x04002577 RID: 9591
+	// Token: 0x04001FBE RID: 8126
 	private AudioSource Play_Button;
 
-	// Token: 0x04002578 RID: 9592
+	// Token: 0x04001FBF RID: 8127
 	private bool LeaderBoardAktivan;
 
-	// Token: 0x04002579 RID: 9593
+	// Token: 0x04001FC0 RID: 8128
 	private int BrojZastave;
 
-	// Token: 0x0400257A RID: 9594
+	// Token: 0x04001FC1 RID: 8129
 	public static bool LanguagesAktivan;
 
-	// Token: 0x0400257B RID: 9595
+	// Token: 0x04001FC2 RID: 8130
 	private float x;
 
-	// Token: 0x0400257C RID: 9596
+	// Token: 0x04001FC3 RID: 8131
 	private float y;
 
-	// Token: 0x0400257D RID: 9597
+	// Token: 0x04001FC4 RID: 8132
 	private float z;
 
-	// Token: 0x0400257E RID: 9598
+	// Token: 0x04001FC5 RID: 8133
 	private GameObject Zastave;
 
-	// Token: 0x0400257F RID: 9599
+	// Token: 0x04001FC6 RID: 8134
 	private GameObject TextJezik;
 
-	// Token: 0x04002580 RID: 9600
+	// Token: 0x04001FC7 RID: 8135
 	private string[] JezikTekst = new string[]
 	{
 		"RU",

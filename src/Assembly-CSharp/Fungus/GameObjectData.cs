@@ -3,26 +3,26 @@ using UnityEngine;
 
 namespace Fungus
 {
-	// Token: 0x0200137F RID: 4991
+	// Token: 0x02000EDE RID: 3806
 	[Serializable]
 	public struct GameObjectData
 	{
-		// Token: 0x060078E4 RID: 30948 RVA: 0x00052382 File Offset: 0x00050582
+		// Token: 0x06006B45 RID: 27461 RVA: 0x002960F5 File Offset: 0x002942F5
 		public GameObjectData(GameObject v)
 		{
 			this.gameObjectVal = v;
 			this.gameObjectRef = null;
 		}
 
-		// Token: 0x060078E5 RID: 30949 RVA: 0x00052392 File Offset: 0x00050592
+		// Token: 0x06006B46 RID: 27462 RVA: 0x00296105 File Offset: 0x00294305
 		public static implicit operator GameObject(GameObjectData gameObjectData)
 		{
 			return gameObjectData.Value;
 		}
 
-		// Token: 0x17000B5A RID: 2906
-		// (get) Token: 0x060078E6 RID: 30950 RVA: 0x0005239B File Offset: 0x0005059B
-		// (set) Token: 0x060078E7 RID: 30951 RVA: 0x000523BD File Offset: 0x000505BD
+		// Token: 0x170008BD RID: 2237
+		// (get) Token: 0x06006B47 RID: 27463 RVA: 0x0029610E File Offset: 0x0029430E
+		// (set) Token: 0x06006B48 RID: 27464 RVA: 0x00296130 File Offset: 0x00294330
 		public GameObject Value
 		{
 			get
@@ -44,7 +44,7 @@ namespace Fungus
 			}
 		}
 
-		// Token: 0x060078E8 RID: 30952 RVA: 0x000523E1 File Offset: 0x000505E1
+		// Token: 0x06006B49 RID: 27465 RVA: 0x00296154 File Offset: 0x00294354
 		public string GetDescription()
 		{
 			if (this.gameObjectRef == null)
@@ -54,7 +54,7 @@ namespace Fungus
 			return this.gameObjectRef.Key;
 		}
 
-		// Token: 0x040068E3 RID: 26851
+		// Token: 0x04005A7A RID: 23162
 		[SerializeField]
 		[VariableProperty("<Value>", new Type[]
 		{
@@ -62,7 +62,7 @@ namespace Fungus
 		})]
 		public GameObjectVariable gameObjectRef;
 
-		// Token: 0x040068E4 RID: 26852
+		// Token: 0x04005A7B RID: 23163
 		[SerializeField]
 		public GameObject gameObjectVal;
 	}

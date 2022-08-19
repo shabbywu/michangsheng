@@ -3,10 +3,10 @@ using System.Collections.Generic;
 
 namespace JSONClass
 {
-	// Token: 0x02000C45 RID: 3141
+	// Token: 0x020008B7 RID: 2231
 	public class NpcYaoShouDrop : IJSONClass
 	{
-		// Token: 0x06004C7D RID: 19581 RVA: 0x00205424 File Offset: 0x00203624
+		// Token: 0x060040EF RID: 16623 RVA: 0x001BC7CC File Offset: 0x001BA9CC
 		public static void InitDataDict()
 		{
 			foreach (JSONObject jsonobject in jsonData.instance.NpcYaoShouDrop.list)
@@ -43,36 +43,36 @@ namespace JSONClass
 			}
 		}
 
-		// Token: 0x06004C7E RID: 19582 RVA: 0x000042DD File Offset: 0x000024DD
+		// Token: 0x060040F0 RID: 16624 RVA: 0x00004095 File Offset: 0x00002295
 		private static void OnInitFinish()
 		{
 		}
 
-		// Token: 0x04004AF1 RID: 19185
+		// Token: 0x04003F9D RID: 16285
 		public static Dictionary<int, NpcYaoShouDrop> DataDict = new Dictionary<int, NpcYaoShouDrop>();
 
-		// Token: 0x04004AF2 RID: 19186
+		// Token: 0x04003F9E RID: 16286
 		public static List<NpcYaoShouDrop> DataList = new List<NpcYaoShouDrop>();
 
-		// Token: 0x04004AF3 RID: 19187
+		// Token: 0x04003F9F RID: 16287
 		public static Action OnInitFinishAction = new Action(NpcYaoShouDrop.OnInitFinish);
 
-		// Token: 0x04004AF4 RID: 19188
+		// Token: 0x04003FA0 RID: 16288
 		public int id;
 
-		// Token: 0x04004AF5 RID: 19189
+		// Token: 0x04003FA1 RID: 16289
 		public int avatarid;
 
-		// Token: 0x04004AF6 RID: 19190
+		// Token: 0x04003FA2 RID: 16290
 		public int jingjie;
 
-		// Token: 0x04004AF7 RID: 19191
+		// Token: 0x04003FA3 RID: 16291
 		public int NingZhou;
 
-		// Token: 0x04004AF8 RID: 19192
+		// Token: 0x04003FA4 RID: 16292
 		public int HaiShang;
 
-		// Token: 0x04004AF9 RID: 19193
+		// Token: 0x04003FA5 RID: 16293
 		public List<int> chanchu = new List<int>();
 	}
 }

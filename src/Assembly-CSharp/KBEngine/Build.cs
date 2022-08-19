@@ -2,15 +2,15 @@
 
 namespace KBEngine
 {
-	// Token: 0x0200100B RID: 4107
+	// Token: 0x02000C6C RID: 3180
 	public class Build : BuildBase
 	{
-		// Token: 0x06006227 RID: 25127 RVA: 0x000042DD File Offset: 0x000024DD
+		// Token: 0x060057AF RID: 22447 RVA: 0x00004095 File Offset: 0x00002295
 		public override void __init__()
 		{
 		}
 
-		// Token: 0x06006228 RID: 25128 RVA: 0x00044081 File Offset: 0x00042281
+		// Token: 0x060057B0 RID: 22448 RVA: 0x00246F82 File Offset: 0x00245182
 		public override object getDefinedProperty(string name)
 		{
 			if (name == "BuildId")

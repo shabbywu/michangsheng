@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using KBEngine;
 using UnityEngine;
 
-// Token: 0x02000332 RID: 818
+// Token: 0x02000218 RID: 536
 public static class BiaoBaiManager
 {
-	// Token: 0x06001855 RID: 6229 RVA: 0x000D96FC File Offset: 0x000D78FC
+	// Token: 0x060015A1 RID: 5537 RVA: 0x00090B64 File Offset: 0x0008ED64
 	private static void Init()
 	{
 		if (!BiaoBaiManager.isinited)
@@ -38,7 +38,7 @@ public static class BiaoBaiManager
 		}
 	}
 
-	// Token: 0x06001856 RID: 6230 RVA: 0x00015288 File Offset: 0x00013488
+	// Token: 0x060015A2 RID: 5538 RVA: 0x00090D70 File Offset: 0x0008EF70
 	public static void InitBiaoBai()
 	{
 		BiaoBaiManager.Init();
@@ -48,7 +48,7 @@ public static class BiaoBaiManager
 		BiaoBaiManager.CalcBiaoBaiScore();
 	}
 
-	// Token: 0x06001857 RID: 6231 RVA: 0x000D9908 File Offset: 0x000D7B08
+	// Token: 0x060015A3 RID: 5539 RVA: 0x00090D9C File Offset: 0x0008EF9C
 	public static void CalcBiaoBaiScore()
 	{
 		BiaoBaiManager.npc = UINPCJiaoHu.Inst.NowJiaoHuNPC;
@@ -126,7 +126,7 @@ public static class BiaoBaiManager
 		}
 	}
 
-	// Token: 0x06001858 RID: 6232 RVA: 0x000D9C80 File Offset: 0x000D7E80
+	// Token: 0x060015A4 RID: 5540 RVA: 0x00091114 File Offset: 0x0008F314
 	public static void GetRandomTiKu(int type, out TiKuData ti)
 	{
 		List<TiKuData> list = BiaoBaiManager.TiKuDatas.FindAll((TiKuData t) => t.Type == type);
@@ -134,30 +134,30 @@ public static class BiaoBaiManager
 		BiaoBaiManager.options[type - 1] = ti.id;
 	}
 
-	// Token: 0x06001859 RID: 6233 RVA: 0x000152B4 File Offset: 0x000134B4
+	// Token: 0x060015A5 RID: 5541 RVA: 0x0009116E File Offset: 0x0008F36E
 	public static void SetPlayerOptionResult(int type, int xuanze)
 	{
 		BiaoBaiManager.optionResults[type - 1] = xuanze;
 	}
 
-	// Token: 0x04001368 RID: 4968
+	// Token: 0x04001012 RID: 4114
 	private static bool isinited;
 
-	// Token: 0x04001369 RID: 4969
+	// Token: 0x04001013 RID: 4115
 	private static List<TiKuData> TiKuDatas = new List<TiKuData>();
 
-	// Token: 0x0400136A RID: 4970
+	// Token: 0x04001014 RID: 4116
 	private static List<TiWenData> TiWenDatas = new List<TiWenData>();
 
-	// Token: 0x0400136B RID: 4971
+	// Token: 0x04001015 RID: 4117
 	private static UINPCData npc;
 
-	// Token: 0x0400136C RID: 4972
+	// Token: 0x04001016 RID: 4118
 	public static BiaoBaiScore BiaoBaiScore;
 
-	// Token: 0x0400136D RID: 4973
+	// Token: 0x04001017 RID: 4119
 	private static int[] options;
 
-	// Token: 0x0400136E RID: 4974
+	// Token: 0x04001018 RID: 4120
 	private static int[] optionResults;
 }

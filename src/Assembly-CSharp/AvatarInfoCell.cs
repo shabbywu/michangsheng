@@ -3,22 +3,22 @@ using KBEngine;
 using UnityEngine;
 using YSGame;
 
-// Token: 0x0200025D RID: 605
+// Token: 0x02000180 RID: 384
 public class AvatarInfoCell : MonoBehaviour
 {
-	// Token: 0x0600129E RID: 4766 RVA: 0x00011B38 File Offset: 0x0000FD38
+	// Token: 0x0600104C RID: 4172 RVA: 0x0005FB7B File Offset: 0x0005DD7B
 	private void Start()
 	{
 		AvatarInfoCell.inst = this;
 	}
 
-	// Token: 0x0600129F RID: 4767 RVA: 0x00011B38 File Offset: 0x0000FD38
+	// Token: 0x0600104D RID: 4173 RVA: 0x0005FB7B File Offset: 0x0005DD7B
 	private void Awake()
 	{
 		AvatarInfoCell.inst = this;
 	}
 
-	// Token: 0x060012A0 RID: 4768 RVA: 0x000AEB64 File Offset: 0x000ACD64
+	// Token: 0x0600104E RID: 4174 RVA: 0x0005FB84 File Offset: 0x0005DD84
 	public void click()
 	{
 		int @int = PlayerPrefs.GetInt("NowPlayerFileAvatar");
@@ -69,7 +69,7 @@ public class AvatarInfoCell : MonoBehaviour
 		this.saveGame();
 	}
 
-	// Token: 0x060012A1 RID: 4769 RVA: 0x000AEC3C File Offset: 0x000ACE3C
+	// Token: 0x0600104F RID: 4175 RVA: 0x0005FC5C File Offset: 0x0005DE5C
 	public void loadGame()
 	{
 		int @int = PlayerPrefs.GetInt("NowPlayerFileAvatar");
@@ -81,28 +81,28 @@ public class AvatarInfoCell : MonoBehaviour
 		gameObject.GetComponent<StartGame>().startGame(@int, this.index, -1);
 	}
 
-	// Token: 0x060012A2 RID: 4770 RVA: 0x000AEC9C File Offset: 0x000ACE9C
+	// Token: 0x06001050 RID: 4176 RVA: 0x0005FCBC File Offset: 0x0005DEBC
 	public void saveGame()
 	{
 		int @int = PlayerPrefs.GetInt("NowPlayerFileAvatar");
 		Tools.instance.playerSaveGame(@int, this.index, null);
 	}
 
-	// Token: 0x04000EA8 RID: 3752
+	// Token: 0x04000BD6 RID: 3030
 	public AvatarInfoCell.FileType fileType;
 
-	// Token: 0x04000EA9 RID: 3753
+	// Token: 0x04000BD7 RID: 3031
 	public int index;
 
-	// Token: 0x04000EAA RID: 3754
+	// Token: 0x04000BD8 RID: 3032
 	public static AvatarInfoCell inst;
 
-	// Token: 0x0200025E RID: 606
+	// Token: 0x0200129C RID: 4764
 	public enum FileType
 	{
-		// Token: 0x04000EAC RID: 3756
+		// Token: 0x04006625 RID: 26149
 		SAVE,
-		// Token: 0x04000EAD RID: 3757
+		// Token: 0x04006626 RID: 26150
 		LOAD
 	}
 }

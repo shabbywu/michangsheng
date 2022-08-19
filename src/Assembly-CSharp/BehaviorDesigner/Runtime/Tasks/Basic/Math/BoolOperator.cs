@@ -2,12 +2,12 @@
 
 namespace BehaviorDesigner.Runtime.Tasks.Basic.Math
 {
-	// Token: 0x020015B6 RID: 5558
+	// Token: 0x020010FC RID: 4348
 	[TaskCategory("Basic/Math")]
 	[TaskDescription("Performs a math operation on two bools: AND, OR, NAND, or XOR.")]
 	public class BoolOperator : Action
 	{
-		// Token: 0x060082B3 RID: 33459 RVA: 0x002CDD6C File Offset: 0x002CBF6C
+		// Token: 0x060074B9 RID: 29881 RVA: 0x002B2E58 File Offset: 0x002B1058
 		public override TaskStatus OnUpdate()
 		{
 			switch (this.operation)
@@ -28,7 +28,7 @@ namespace BehaviorDesigner.Runtime.Tasks.Basic.Math
 			return 2;
 		}
 
-		// Token: 0x060082B4 RID: 33460 RVA: 0x00059A2D File Offset: 0x00057C2D
+		// Token: 0x060074BA RID: 29882 RVA: 0x002B2F25 File Offset: 0x002B1125
 		public override void OnReset()
 		{
 			this.operation = BoolOperator.Operation.AND;
@@ -37,32 +37,32 @@ namespace BehaviorDesigner.Runtime.Tasks.Basic.Math
 			this.storeResult.Value = false;
 		}
 
-		// Token: 0x04006F69 RID: 28521
+		// Token: 0x04006069 RID: 24681
 		[Tooltip("The operation to perform")]
 		public BoolOperator.Operation operation;
 
-		// Token: 0x04006F6A RID: 28522
+		// Token: 0x0400606A RID: 24682
 		[Tooltip("The first bool")]
 		public SharedBool bool1;
 
-		// Token: 0x04006F6B RID: 28523
+		// Token: 0x0400606B RID: 24683
 		[Tooltip("The second bool")]
 		public SharedBool bool2;
 
-		// Token: 0x04006F6C RID: 28524
+		// Token: 0x0400606C RID: 24684
 		[Tooltip("The variable to store the result")]
 		public SharedBool storeResult;
 
-		// Token: 0x020015B7 RID: 5559
+		// Token: 0x02001733 RID: 5939
 		public enum Operation
 		{
-			// Token: 0x04006F6E RID: 28526
+			// Token: 0x04007558 RID: 30040
 			AND,
-			// Token: 0x04006F6F RID: 28527
+			// Token: 0x04007559 RID: 30041
 			OR,
-			// Token: 0x04006F70 RID: 28528
+			// Token: 0x0400755A RID: 30042
 			NAND,
-			// Token: 0x04006F71 RID: 28529
+			// Token: 0x0400755B RID: 30043
 			XOR
 		}
 	}

@@ -4,10 +4,10 @@ using UnityEngine;
 
 namespace WXB
 {
-	// Token: 0x020009B5 RID: 2485
+	// Token: 0x020006A0 RID: 1696
 	internal static class SpriteMaterial
 	{
-		// Token: 0x06003F41 RID: 16193 RVA: 0x001B8DD8 File Offset: 0x001B6FD8
+		// Token: 0x06003580 RID: 13696 RVA: 0x00170DFC File Offset: 0x0016EFFC
 		public static Material Get(Texture t)
 		{
 			Material material = null;
@@ -21,7 +21,7 @@ namespace WXB
 			return material;
 		}
 
-		// Token: 0x040038C5 RID: 14533
+		// Token: 0x04002F0A RID: 12042
 		private static Dictionary<Texture, Material> SpriteToMaterials = new Dictionary<Texture, Material>();
 	}
 }

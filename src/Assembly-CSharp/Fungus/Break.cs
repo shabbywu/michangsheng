@@ -3,12 +3,12 @@ using UnityEngine;
 
 namespace Fungus
 {
-	// Token: 0x020011ED RID: 4589
+	// Token: 0x02000DB8 RID: 3512
 	[CommandInfo("Flow", "Break", "Force a loop to terminate immediately.", 0)]
 	[AddComponentMenu("")]
 	public class Break : Command
 	{
-		// Token: 0x06007068 RID: 28776 RVA: 0x002A2368 File Offset: 0x002A0568
+		// Token: 0x060063FD RID: 25597 RVA: 0x0027D0E0 File Offset: 0x0027B2E0
 		public override void OnEnter()
 		{
 			int num = -1;
@@ -49,7 +49,7 @@ namespace Fungus
 			this.Continue();
 		}
 
-		// Token: 0x06007069 RID: 28777 RVA: 0x0004C5A3 File Offset: 0x0004A7A3
+		// Token: 0x060063FE RID: 25598 RVA: 0x0027D1B6 File Offset: 0x0027B3B6
 		public override Color GetButtonColor()
 		{
 			return new Color32(253, 253, 150, byte.MaxValue);

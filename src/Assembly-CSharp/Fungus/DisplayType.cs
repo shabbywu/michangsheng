@@ -2,18 +2,18 @@
 
 namespace Fungus
 {
-	// Token: 0x020012E7 RID: 4839
+	// Token: 0x02000E7C RID: 3708
 	public enum DisplayType
 	{
-		// Token: 0x040066D7 RID: 26327
+		// Token: 0x0400590F RID: 22799
 		None,
-		// Token: 0x040066D8 RID: 26328
+		// Token: 0x04005910 RID: 22800
 		Show,
-		// Token: 0x040066D9 RID: 26329
+		// Token: 0x04005911 RID: 22801
 		Hide,
-		// Token: 0x040066DA RID: 26330
+		// Token: 0x04005912 RID: 22802
 		Replace,
-		// Token: 0x040066DB RID: 26331
+		// Token: 0x04005913 RID: 22803
 		MoveToFront
 	}
 }

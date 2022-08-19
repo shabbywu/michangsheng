@@ -1,12 +1,12 @@
 ﻿using System;
 using UnityEngine;
 
-// Token: 0x0200011D RID: 285
+// Token: 0x020000B1 RID: 177
 [ExecuteInEditMode]
 [AddComponentMenu("NGUI/UI/Stretch")]
 public class UIStretch : MonoBehaviour
 {
-	// Token: 0x06000B3F RID: 2879 RVA: 0x00091228 File Offset: 0x0008F428
+	// Token: 0x06000A63 RID: 2659 RVA: 0x0003EAF0 File Offset: 0x0003CCF0
 	private void Awake()
 	{
 		this.mAnim = base.GetComponent<Animation>();
@@ -18,13 +18,13 @@ public class UIStretch : MonoBehaviour
 		UICamera.onScreenResize = (UICamera.OnScreenResize)Delegate.Combine(UICamera.onScreenResize, new UICamera.OnScreenResize(this.ScreenSizeChanged));
 	}
 
-	// Token: 0x06000B40 RID: 2880 RVA: 0x0000D496 File Offset: 0x0000B696
+	// Token: 0x06000A64 RID: 2660 RVA: 0x0003EB65 File Offset: 0x0003CD65
 	private void OnDestroy()
 	{
 		UICamera.onScreenResize = (UICamera.OnScreenResize)Delegate.Remove(UICamera.onScreenResize, new UICamera.OnScreenResize(this.ScreenSizeChanged));
 	}
 
-	// Token: 0x06000B41 RID: 2881 RVA: 0x0000D4B8 File Offset: 0x0000B6B8
+	// Token: 0x06000A65 RID: 2661 RVA: 0x0003EB87 File Offset: 0x0003CD87
 	private void ScreenSizeChanged()
 	{
 		if (this.mStarted && this.runOnlyOnce)
@@ -33,7 +33,7 @@ public class UIStretch : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000B42 RID: 2882 RVA: 0x000912A0 File Offset: 0x0008F4A0
+	// Token: 0x06000A66 RID: 2662 RVA: 0x0003EBA0 File Offset: 0x0003CDA0
 	private void Start()
 	{
 		if (this.container == null && this.widgetContainer != null)
@@ -50,7 +50,7 @@ public class UIStretch : MonoBehaviour
 		this.mStarted = true;
 	}
 
-	// Token: 0x06000B43 RID: 2883 RVA: 0x00091324 File Offset: 0x0008F524
+	// Token: 0x06000A67 RID: 2663 RVA: 0x0003EC24 File Offset: 0x0003CE24
 	private void Update()
 	{
 		if (this.mAnim != null && this.mAnim.isPlaying)
@@ -230,72 +230,72 @@ public class UIStretch : MonoBehaviour
 		}
 	}
 
-	// Token: 0x040007F1 RID: 2033
+	// Token: 0x0400065A RID: 1626
 	public Camera uiCamera;
 
-	// Token: 0x040007F2 RID: 2034
+	// Token: 0x0400065B RID: 1627
 	public GameObject container;
 
-	// Token: 0x040007F3 RID: 2035
+	// Token: 0x0400065C RID: 1628
 	public UIStretch.Style style;
 
-	// Token: 0x040007F4 RID: 2036
+	// Token: 0x0400065D RID: 1629
 	public bool runOnlyOnce = true;
 
-	// Token: 0x040007F5 RID: 2037
+	// Token: 0x0400065E RID: 1630
 	public Vector2 relativeSize = Vector2.one;
 
-	// Token: 0x040007F6 RID: 2038
+	// Token: 0x0400065F RID: 1631
 	public Vector2 initialSize = Vector2.one;
 
-	// Token: 0x040007F7 RID: 2039
+	// Token: 0x04000660 RID: 1632
 	public Vector2 borderPadding = Vector2.zero;
 
-	// Token: 0x040007F8 RID: 2040
+	// Token: 0x04000661 RID: 1633
 	[HideInInspector]
 	[SerializeField]
 	private UIWidget widgetContainer;
 
-	// Token: 0x040007F9 RID: 2041
+	// Token: 0x04000662 RID: 1634
 	private Transform mTrans;
 
-	// Token: 0x040007FA RID: 2042
+	// Token: 0x04000663 RID: 1635
 	private UIWidget mWidget;
 
-	// Token: 0x040007FB RID: 2043
+	// Token: 0x04000664 RID: 1636
 	private UISprite mSprite;
 
-	// Token: 0x040007FC RID: 2044
+	// Token: 0x04000665 RID: 1637
 	private UIPanel mPanel;
 
-	// Token: 0x040007FD RID: 2045
+	// Token: 0x04000666 RID: 1638
 	private UIRoot mRoot;
 
-	// Token: 0x040007FE RID: 2046
+	// Token: 0x04000667 RID: 1639
 	private Animation mAnim;
 
-	// Token: 0x040007FF RID: 2047
+	// Token: 0x04000668 RID: 1640
 	private Rect mRect;
 
-	// Token: 0x04000800 RID: 2048
+	// Token: 0x04000669 RID: 1641
 	private bool mStarted;
 
-	// Token: 0x0200011E RID: 286
+	// Token: 0x02001230 RID: 4656
 	public enum Style
 	{
-		// Token: 0x04000802 RID: 2050
+		// Token: 0x040064E7 RID: 25831
 		None,
-		// Token: 0x04000803 RID: 2051
+		// Token: 0x040064E8 RID: 25832
 		Horizontal,
-		// Token: 0x04000804 RID: 2052
+		// Token: 0x040064E9 RID: 25833
 		Vertical,
-		// Token: 0x04000805 RID: 2053
+		// Token: 0x040064EA RID: 25834
 		Both,
-		// Token: 0x04000806 RID: 2054
+		// Token: 0x040064EB RID: 25835
 		BasedOnHeight,
-		// Token: 0x04000807 RID: 2055
+		// Token: 0x040064EC RID: 25836
 		FillKeepingRatio,
-		// Token: 0x04000808 RID: 2056
+		// Token: 0x040064ED RID: 25837
 		FitInternalKeepingRatio
 	}
 }

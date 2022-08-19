@@ -4,10 +4,10 @@ using MoonSharp.Interpreter.DataStructs;
 
 namespace MoonSharp.Interpreter
 {
-	// Token: 0x0200105C RID: 4188
+	// Token: 0x02000C96 RID: 3222
 	public class CallbackArguments
 	{
-		// Token: 0x06006497 RID: 25751 RVA: 0x00281B28 File Offset: 0x0027FD28
+		// Token: 0x060059D5 RID: 22997 RVA: 0x00256B80 File Offset: 0x00254D80
 		public CallbackArguments(IList<DynValue> args, bool isMethodCall)
 		{
 			this.m_Args = args;
@@ -35,8 +35,8 @@ namespace MoonSharp.Interpreter
 			this.IsMethodCall = isMethodCall;
 		}
 
-		// Token: 0x170008CA RID: 2250
-		// (get) Token: 0x06006498 RID: 25752 RVA: 0x000451FD File Offset: 0x000433FD
+		// Token: 0x17000677 RID: 1655
+		// (get) Token: 0x060059D6 RID: 22998 RVA: 0x00256C2E File Offset: 0x00254E2E
 		public int Count
 		{
 			get
@@ -45,12 +45,12 @@ namespace MoonSharp.Interpreter
 			}
 		}
 
-		// Token: 0x170008CB RID: 2251
-		// (get) Token: 0x06006499 RID: 25753 RVA: 0x00045205 File Offset: 0x00043405
-		// (set) Token: 0x0600649A RID: 25754 RVA: 0x0004520D File Offset: 0x0004340D
+		// Token: 0x17000678 RID: 1656
+		// (get) Token: 0x060059D7 RID: 22999 RVA: 0x00256C36 File Offset: 0x00254E36
+		// (set) Token: 0x060059D8 RID: 23000 RVA: 0x00256C3E File Offset: 0x00254E3E
 		public bool IsMethodCall { get; private set; }
 
-		// Token: 0x170008CC RID: 2252
+		// Token: 0x17000679 RID: 1657
 		public DynValue this[int index]
 		{
 			get
@@ -59,7 +59,7 @@ namespace MoonSharp.Interpreter
 			}
 		}
 
-		// Token: 0x0600649C RID: 25756 RVA: 0x00281BD8 File Offset: 0x0027FDD8
+		// Token: 0x060059DA RID: 23002 RVA: 0x00256C5C File Offset: 0x00254E5C
 		public DynValue RawGet(int index, bool translateVoids)
 		{
 			if (index >= this.m_Count)
@@ -93,7 +93,7 @@ namespace MoonSharp.Interpreter
 			return dynValue;
 		}
 
-		// Token: 0x0600649D RID: 25757 RVA: 0x00281C7C File Offset: 0x0027FE7C
+		// Token: 0x060059DB RID: 23003 RVA: 0x00256D00 File Offset: 0x00254F00
 		public DynValue[] GetArray(int skip = 0)
 		{
 			if (skip >= this.m_Count)
@@ -108,31 +108,31 @@ namespace MoonSharp.Interpreter
 			return array;
 		}
 
-		// Token: 0x0600649E RID: 25758 RVA: 0x00045229 File Offset: 0x00043429
+		// Token: 0x060059DC RID: 23004 RVA: 0x00256D49 File Offset: 0x00254F49
 		public DynValue AsType(int argNum, string funcName, DataType type, bool allowNil = false)
 		{
 			return this[argNum].CheckType(funcName, type, argNum, allowNil ? (TypeValidationFlags.AllowNil | TypeValidationFlags.AutoConvert) : TypeValidationFlags.AutoConvert);
 		}
 
-		// Token: 0x0600649F RID: 25759 RVA: 0x00045242 File Offset: 0x00043442
+		// Token: 0x060059DD RID: 23005 RVA: 0x00256D62 File Offset: 0x00254F62
 		public T AsUserData<T>(int argNum, string funcName, bool allowNil = false)
 		{
 			return this[argNum].CheckUserDataType<T>(funcName, argNum, allowNil ? TypeValidationFlags.AllowNil : TypeValidationFlags.None);
 		}
 
-		// Token: 0x060064A0 RID: 25760 RVA: 0x00045259 File Offset: 0x00043459
+		// Token: 0x060059DE RID: 23006 RVA: 0x00256D79 File Offset: 0x00254F79
 		public int AsInt(int argNum, string funcName)
 		{
 			return (int)this.AsType(argNum, funcName, DataType.Number, false).Number;
 		}
 
-		// Token: 0x060064A1 RID: 25761 RVA: 0x0004526B File Offset: 0x0004346B
+		// Token: 0x060059DF RID: 23007 RVA: 0x00256D8B File Offset: 0x00254F8B
 		public long AsLong(int argNum, string funcName)
 		{
 			return (long)this.AsType(argNum, funcName, DataType.Number, false).Number;
 		}
 
-		// Token: 0x060064A2 RID: 25762 RVA: 0x00281CC8 File Offset: 0x0027FEC8
+		// Token: 0x060059E0 RID: 23008 RVA: 0x00256DA0 File Offset: 0x00254FA0
 		public string AsStringUsingMeta(ScriptExecutionContext executionContext, int argNum, string funcName)
 		{
 			if (this[argNum].Type != DataType.Table || this[argNum].Table.MetaTable == null || this[argNum].Table.MetaTable.RawGet("__tostring") == null)
@@ -153,7 +153,7 @@ namespace MoonSharp.Interpreter
 			return dynValue.ToPrintString();
 		}
 
-		// Token: 0x060064A3 RID: 25763 RVA: 0x0004527D File Offset: 0x0004347D
+		// Token: 0x060059E1 RID: 23009 RVA: 0x00256E57 File Offset: 0x00255057
 		public CallbackArguments SkipMethodCall()
 		{
 			if (this.IsMethodCall)
@@ -163,13 +163,13 @@ namespace MoonSharp.Interpreter
 			return this;
 		}
 
-		// Token: 0x04005DFB RID: 24059
+		// Token: 0x0400524C RID: 21068
 		private IList<DynValue> m_Args;
 
-		// Token: 0x04005DFC RID: 24060
+		// Token: 0x0400524D RID: 21069
 		private int m_Count;
 
-		// Token: 0x04005DFD RID: 24061
+		// Token: 0x0400524E RID: 21070
 		private bool m_LastIsTuple;
 	}
 }

@@ -2,27 +2,28 @@
 using System.Collections.Generic;
 using DG.Tweening;
 using GUIPackage;
+using JSONClass;
 using KBEngine;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 using YSGame.TuJian;
 
-// Token: 0x02000402 RID: 1026
+// Token: 0x020002C2 RID: 706
 public class UIHeadPanel : MonoBehaviour, IPointerEnterHandler, IEventSystemHandler, IPointerExitHandler
 {
-	// Token: 0x06001BB3 RID: 7091 RVA: 0x0001738F File Offset: 0x0001558F
+	// Token: 0x060018B8 RID: 6328 RVA: 0x000B1826 File Offset: 0x000AFA26
 	private void Awake()
 	{
 		UIHeadPanel.Inst = this;
 	}
 
-	// Token: 0x06001BB4 RID: 7092 RVA: 0x000042DD File Offset: 0x000024DD
+	// Token: 0x060018B9 RID: 6329 RVA: 0x00004095 File Offset: 0x00002295
 	private void Start()
 	{
 	}
 
-	// Token: 0x06001BB5 RID: 7093 RVA: 0x00017397 File Offset: 0x00015597
+	// Token: 0x060018BA RID: 6330 RVA: 0x000B182E File Offset: 0x000AFA2E
 	private void Update()
 	{
 		if (PanelMamager.inst != null && PanelMamager.inst.UISceneGameObject != null)
@@ -33,7 +34,7 @@ public class UIHeadPanel : MonoBehaviour, IPointerEnterHandler, IEventSystemHand
 		this.ScaleObj.SetActive(false);
 	}
 
-	// Token: 0x06001BB6 RID: 7094 RVA: 0x000F7E54 File Offset: 0x000F6054
+	// Token: 0x060018BB RID: 6331 RVA: 0x000B1864 File Offset: 0x000AFA64
 	public void CheckHongDian(bool checkChuanYin = false)
 	{
 		Avatar player = Tools.instance.getPlayer();
@@ -41,7 +42,7 @@ public class UIHeadPanel : MonoBehaviour, IPointerEnterHandler, IEventSystemHand
 		{
 			return;
 		}
-		this.TieJianRedPoint.SetActive(player.TieJianHongDianList.Count > 0);
+		this.RefreshTieJianRedPoint();
 		this.TuJianPoint.SetActive(!TuJianManager.Inst.IsUnlockedHongDian(1));
 		if (checkChuanYin)
 		{
@@ -49,7 +50,7 @@ public class UIHeadPanel : MonoBehaviour, IPointerEnterHandler, IEventSystemHand
 		}
 	}
 
-	// Token: 0x06001BB7 RID: 7095 RVA: 0x000F7EC4 File Offset: 0x000F60C4
+	// Token: 0x060018BC RID: 6332 RVA: 0x000B18C0 File Offset: 0x000AFAC0
 	public void RefreshUI()
 	{
 		Avatar player = Tools.instance.getPlayer();
@@ -104,23 +105,53 @@ public class UIHeadPanel : MonoBehaviour, IPointerEnterHandler, IEventSystemHand
 		}
 	}
 
-	// Token: 0x06001BB8 RID: 7096 RVA: 0x000173CC File Offset: 0x000155CC
+	// Token: 0x060018BD RID: 6333 RVA: 0x000B1ABC File Offset: 0x000AFCBC
+	public void RefreshTieJianRedPoint()
+	{
+		JianLingManager jianLingManager = PlayerEx.Player.jianLingManager;
+		bool active = false;
+		int jiYiHuiFuDu = jianLingManager.GetJiYiHuiFuDu();
+		foreach (JianLingQingJiao jianLingQingJiao in JianLingQingJiao.DataList)
+		{
+			if (jiYiHuiFuDu < jianLingQingJiao.JiYi)
+			{
+				break;
+			}
+			bool flag = false;
+			if (jianLingQingJiao.SkillID > 0)
+			{
+				flag = PlayerEx.HasSkill(jianLingQingJiao.SkillID);
+			}
+			else if (jianLingQingJiao.StaticSkillID > 0)
+			{
+				flag = PlayerEx.HasStaticSkill(jianLingQingJiao.StaticSkillID);
+			}
+			if (!flag)
+			{
+				active = true;
+				break;
+			}
+		}
+		this.TieJianRedPoint.SetActive(active);
+	}
+
+	// Token: 0x060018BE RID: 6334 RVA: 0x000B1B68 File Offset: 0x000AFD68
 	public bool BtnCanClick()
 	{
 		Tools.instance.canClick(false, true);
 		return CanClickManager.Inst.ResultCount == 0 || (CanClickManager.Inst.ResultCount == 1 && CanClickManager.Inst.ResultCache[3]);
 	}
 
-	// Token: 0x06001BB9 RID: 7097 RVA: 0x00017407 File Offset: 0x00015607
+	// Token: 0x060018BF RID: 6335 RVA: 0x000B1BA3 File Offset: 0x000AFDA3
 	public void OnTieJianBtnClick()
 	{
 		if (this.BtnCanClick())
 		{
-			Object.Instantiate<GameObject>(Resources.Load<GameObject>("talkPrefab/TalkPrefab/talk" + 518));
+			UIJianLingPanel.OpenPanel();
 		}
 	}
 
-	// Token: 0x06001BBA RID: 7098 RVA: 0x00017430 File Offset: 0x00015630
+	// Token: 0x060018C0 RID: 6336 RVA: 0x000B1BB2 File Offset: 0x000AFDB2
 	public void OnChuanYinFuBtnClick()
 	{
 		if (this.BtnCanClick())
@@ -129,7 +160,7 @@ public class UIHeadPanel : MonoBehaviour, IPointerEnterHandler, IEventSystemHand
 		}
 	}
 
-	// Token: 0x06001BBB RID: 7099 RVA: 0x00017446 File Offset: 0x00015646
+	// Token: 0x060018C1 RID: 6337 RVA: 0x000B1BC8 File Offset: 0x000AFDC8
 	public void OnTuJianBtnClick()
 	{
 		if (this.BtnCanClick())
@@ -138,20 +169,20 @@ public class UIHeadPanel : MonoBehaviour, IPointerEnterHandler, IEventSystemHand
 		}
 	}
 
-	// Token: 0x06001BBC RID: 7100 RVA: 0x0001745C File Offset: 0x0001565C
+	// Token: 0x060018C2 RID: 6338 RVA: 0x000B1BDE File Offset: 0x000AFDDE
 	public void OnHeadBtnClick()
 	{
 		base.Invoke("OpenTab", 0.1f);
 	}
 
-	// Token: 0x06001BBD RID: 7101 RVA: 0x0001746E File Offset: 0x0001566E
+	// Token: 0x060018C3 RID: 6339 RVA: 0x000B1BF0 File Offset: 0x000AFDF0
 	private void OpenTab()
 	{
 		this.IsMouseInUI = false;
 		GameObject.Find("UI Root (2D)").GetComponent<Singleton>().ClickTab();
 	}
 
-	// Token: 0x06001BBE RID: 7102 RVA: 0x0001748B File Offset: 0x0001568B
+	// Token: 0x060018C4 RID: 6340 RVA: 0x000B1C0D File Offset: 0x000AFE0D
 	public void OnMapBtnClick()
 	{
 		if (this.BtnCanClick())
@@ -160,73 +191,73 @@ public class UIHeadPanel : MonoBehaviour, IPointerEnterHandler, IEventSystemHand
 		}
 	}
 
-	// Token: 0x06001BBF RID: 7103 RVA: 0x0001749F File Offset: 0x0001569F
+	// Token: 0x060018C5 RID: 6341 RVA: 0x000B1C21 File Offset: 0x000AFE21
 	public void OnPointerEnter(PointerEventData eventData)
 	{
 		this.IsMouseInUI = true;
 	}
 
-	// Token: 0x06001BC0 RID: 7104 RVA: 0x000174A8 File Offset: 0x000156A8
+	// Token: 0x060018C6 RID: 6342 RVA: 0x000B1C2A File Offset: 0x000AFE2A
 	public void OnPointerExit(PointerEventData eventData)
 	{
 		this.IsMouseInUI = false;
 	}
 
-	// Token: 0x0400177E RID: 6014
+	// Token: 0x040013CE RID: 5070
 	public static UIHeadPanel Inst;
 
-	// Token: 0x0400177F RID: 6015
+	// Token: 0x040013CF RID: 5071
 	public GameObject ScaleObj;
 
-	// Token: 0x04001780 RID: 6016
+	// Token: 0x040013D0 RID: 5072
 	public Text NameText;
 
-	// Token: 0x04001781 RID: 6017
+	// Token: 0x040013D1 RID: 5073
 	public Text HPText;
 
-	// Token: 0x04001782 RID: 6018
+	// Token: 0x040013D2 RID: 5074
 	public Text ExpText;
 
-	// Token: 0x04001783 RID: 6019
+	// Token: 0x040013D3 RID: 5075
 	public Slider HPSlider;
 
-	// Token: 0x04001784 RID: 6020
+	// Token: 0x040013D4 RID: 5076
 	public Slider ExpSlider;
 
-	// Token: 0x04001785 RID: 6021
+	// Token: 0x040013D5 RID: 5077
 	public PlayerSetRandomFace Face;
 
-	// Token: 0x04001786 RID: 6022
+	// Token: 0x040013D6 RID: 5078
 	public Image LevelImage;
 
-	// Token: 0x04001787 RID: 6023
+	// Token: 0x040013D7 RID: 5079
 	public GameObject TieJianRedPoint;
 
-	// Token: 0x04001788 RID: 6024
+	// Token: 0x040013D8 RID: 5080
 	public GameObject ChuanYinFuPoint;
 
-	// Token: 0x04001789 RID: 6025
+	// Token: 0x040013D9 RID: 5081
 	public GameObject TuJianPoint;
 
-	// Token: 0x0400178A RID: 6026
+	// Token: 0x040013DA RID: 5082
 	public GameObject TianJieObj;
 
-	// Token: 0x0400178B RID: 6027
+	// Token: 0x040013DB RID: 5083
 	public Text TianJieTime;
 
-	// Token: 0x0400178C RID: 6028
+	// Token: 0x040013DC RID: 5084
 	public GameObject CunDangObj;
 
-	// Token: 0x0400178D RID: 6029
+	// Token: 0x040013DD RID: 5085
 	public CanvasGroup CunDangAlpha;
 
-	// Token: 0x0400178E RID: 6030
+	// Token: 0x040013DE RID: 5086
 	[HideInInspector]
 	public bool IsMouseInUI;
 
-	// Token: 0x0400178F RID: 6031
+	// Token: 0x040013DF RID: 5087
 	private bool saving;
 
-	// Token: 0x04001790 RID: 6032
+	// Token: 0x040013E0 RID: 5088
 	public List<Sprite> LevelSprite;
 }

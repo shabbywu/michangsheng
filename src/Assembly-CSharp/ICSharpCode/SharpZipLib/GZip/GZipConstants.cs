@@ -2,30 +2,30 @@
 
 namespace ICSharpCode.SharpZipLib.GZip
 {
-	// Token: 0x02000815 RID: 2069
+	// Token: 0x0200056D RID: 1389
 	public sealed class GZipConstants
 	{
-		// Token: 0x06003655 RID: 13909 RVA: 0x0000403D File Offset: 0x0000223D
+		// Token: 0x06002DDF RID: 11743 RVA: 0x000027FC File Offset: 0x000009FC
 		private GZipConstants()
 		{
 		}
 
-		// Token: 0x040030E4 RID: 12516
+		// Token: 0x040028AA RID: 10410
 		public const int GZIP_MAGIC = 8075;
 
-		// Token: 0x040030E5 RID: 12517
+		// Token: 0x040028AB RID: 10411
 		public const int FTEXT = 1;
 
-		// Token: 0x040030E6 RID: 12518
+		// Token: 0x040028AC RID: 10412
 		public const int FHCRC = 2;
 
-		// Token: 0x040030E7 RID: 12519
+		// Token: 0x040028AD RID: 10413
 		public const int FEXTRA = 4;
 
-		// Token: 0x040030E8 RID: 12520
+		// Token: 0x040028AE RID: 10414
 		public const int FNAME = 8;
 
-		// Token: 0x040030E9 RID: 12521
+		// Token: 0x040028AF RID: 10415
 		public const int FCOMMENT = 16;
 	}
 }

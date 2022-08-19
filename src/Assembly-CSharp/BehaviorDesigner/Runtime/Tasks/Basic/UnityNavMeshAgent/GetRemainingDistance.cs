@@ -4,12 +4,12 @@ using UnityEngine.AI;
 
 namespace BehaviorDesigner.Runtime.Tasks.Basic.UnityNavMeshAgent
 {
-	// Token: 0x020015A9 RID: 5545
+	// Token: 0x020010EF RID: 4335
 	[TaskCategory("Basic/NavMeshAgent")]
 	[TaskDescription("Gets the distance between the agent's position and the destination on the current path. Returns Success.")]
 	public class GetRemainingDistance : Action
 	{
-		// Token: 0x06008281 RID: 33409 RVA: 0x002CDAAC File Offset: 0x002CBCAC
+		// Token: 0x06007487 RID: 29831 RVA: 0x002B2834 File Offset: 0x002B0A34
 		public override void OnStart()
 		{
 			GameObject defaultGameObject = base.GetDefaultGameObject(this.targetGameObject.Value);
@@ -20,7 +20,7 @@ namespace BehaviorDesigner.Runtime.Tasks.Basic.UnityNavMeshAgent
 			}
 		}
 
-		// Token: 0x06008282 RID: 33410 RVA: 0x000596D2 File Offset: 0x000578D2
+		// Token: 0x06007488 RID: 29832 RVA: 0x002B2874 File Offset: 0x002B0A74
 		public override TaskStatus OnUpdate()
 		{
 			if (this.navMeshAgent == null)
@@ -32,26 +32,26 @@ namespace BehaviorDesigner.Runtime.Tasks.Basic.UnityNavMeshAgent
 			return 2;
 		}
 
-		// Token: 0x06008283 RID: 33411 RVA: 0x00059705 File Offset: 0x00057905
+		// Token: 0x06007489 RID: 29833 RVA: 0x002B28A7 File Offset: 0x002B0AA7
 		public override void OnReset()
 		{
 			this.targetGameObject = null;
 			this.storeValue = 0f;
 		}
 
-		// Token: 0x04006F3D RID: 28477
+		// Token: 0x0400603D RID: 24637
 		[Tooltip("The GameObject that the task operates on. If null the task GameObject is used.")]
 		public SharedGameObject targetGameObject;
 
-		// Token: 0x04006F3E RID: 28478
+		// Token: 0x0400603E RID: 24638
 		[SharedRequired]
 		[Tooltip("The remaining distance")]
 		public SharedFloat storeValue;
 
-		// Token: 0x04006F3F RID: 28479
+		// Token: 0x0400603F RID: 24639
 		private NavMeshAgent navMeshAgent;
 
-		// Token: 0x04006F40 RID: 28480
+		// Token: 0x04006040 RID: 24640
 		private GameObject prevGameObject;
 	}
 }

@@ -3,12 +3,12 @@ using UnityEngine;
 
 namespace UltimateSurvival.InputSystem
 {
-	// Token: 0x02000928 RID: 2344
+	// Token: 0x02000636 RID: 1590
 	public class MGInputManager : MonoBehaviour
 	{
-		// Token: 0x17000665 RID: 1637
-		// (get) Token: 0x06003BA7 RID: 15271 RVA: 0x0002B259 File Offset: 0x00029459
-		// (set) Token: 0x06003BA8 RID: 15272 RVA: 0x0002B261 File Offset: 0x00029461
+		// Token: 0x17000465 RID: 1125
+		// (get) Token: 0x0600326D RID: 12909 RVA: 0x00165611 File Offset: 0x00163811
+		// (set) Token: 0x0600326E RID: 12910 RVA: 0x00165619 File Offset: 0x00163819
 		public InputData InputData
 		{
 			get
@@ -21,7 +21,7 @@ namespace UltimateSurvival.InputSystem
 			}
 		}
 
-		// Token: 0x06003BA9 RID: 15273 RVA: 0x001AEB9C File Offset: 0x001ACD9C
+		// Token: 0x0600326F RID: 12911 RVA: 0x00165624 File Offset: 0x00163824
 		public void SetupDefaults(ET.InputType inputType, ET.InputMode inputMode)
 		{
 			if (inputType != ET.InputType.Standalone)
@@ -48,7 +48,7 @@ namespace UltimateSurvival.InputSystem
 			this.AddDefaultButtons();
 		}
 
-		// Token: 0x06003BAA RID: 15274 RVA: 0x001AEC38 File Offset: 0x001ACE38
+		// Token: 0x06003270 RID: 12912 RVA: 0x001656C0 File Offset: 0x001638C0
 		private void AddDefaultButtons()
 		{
 			this.AddButton(new Button("Sprint", 304));
@@ -58,7 +58,7 @@ namespace UltimateSurvival.InputSystem
 			this.AddButton(new Button("Reload", 114));
 		}
 
-		// Token: 0x06003BAB RID: 15275 RVA: 0x0002B26A File Offset: 0x0002946A
+		// Token: 0x06003271 RID: 12913 RVA: 0x0016572D File Offset: 0x0016392D
 		public void Clear(ET.InputMode inputMode)
 		{
 			if (inputMode == ET.InputMode.Axes)
@@ -72,14 +72,14 @@ namespace UltimateSurvival.InputSystem
 			}
 		}
 
-		// Token: 0x06003BAC RID: 15276 RVA: 0x0002B294 File Offset: 0x00029494
+		// Token: 0x06003272 RID: 12914 RVA: 0x00165757 File Offset: 0x00163957
 		public void ClearAll()
 		{
 			this.m_InputData.Axes.Clear();
 			this.m_InputData.Buttons.Clear();
 		}
 
-		// Token: 0x06003BAD RID: 15277 RVA: 0x001AECA8 File Offset: 0x001ACEA8
+		// Token: 0x06003273 RID: 12915 RVA: 0x0016577C File Offset: 0x0016397C
 		public float GetAxis(string name)
 		{
 			Axis axis = this.FindAxis(name);
@@ -102,7 +102,7 @@ namespace UltimateSurvival.InputSystem
 			return Mathf.Clamp(num, -1f, 1f);
 		}
 
-		// Token: 0x06003BAE RID: 15278 RVA: 0x001AED28 File Offset: 0x001ACF28
+		// Token: 0x06003274 RID: 12916 RVA: 0x001657FC File Offset: 0x001639FC
 		public float GetAxisRaw(string name)
 		{
 			Axis axis = this.FindAxis(name);
@@ -125,7 +125,7 @@ namespace UltimateSurvival.InputSystem
 			return Mathf.Clamp(num, -1f, 1f);
 		}
 
-		// Token: 0x06003BAF RID: 15279 RVA: 0x001AEDA8 File Offset: 0x001ACFA8
+		// Token: 0x06003275 RID: 12917 RVA: 0x0016587C File Offset: 0x00163A7C
 		public bool GetButton(string name)
 		{
 			Button button = this.FindButton(name);
@@ -137,7 +137,7 @@ namespace UltimateSurvival.InputSystem
 			return result;
 		}
 
-		// Token: 0x06003BB0 RID: 15280 RVA: 0x001AEDD0 File Offset: 0x001ACFD0
+		// Token: 0x06003276 RID: 12918 RVA: 0x001658A4 File Offset: 0x00163AA4
 		public bool GetButtonDown(string name)
 		{
 			Button button = this.FindButton(name);
@@ -149,7 +149,7 @@ namespace UltimateSurvival.InputSystem
 			return result;
 		}
 
-		// Token: 0x06003BB1 RID: 15281 RVA: 0x001AEDF8 File Offset: 0x001ACFF8
+		// Token: 0x06003277 RID: 12919 RVA: 0x001658CC File Offset: 0x00163ACC
 		public bool GetButtonUp(string name)
 		{
 			Button button = this.FindButton(name);
@@ -161,19 +161,19 @@ namespace UltimateSurvival.InputSystem
 			return result;
 		}
 
-		// Token: 0x06003BB2 RID: 15282 RVA: 0x0002B2B6 File Offset: 0x000294B6
+		// Token: 0x06003278 RID: 12920 RVA: 0x001658F3 File Offset: 0x00163AF3
 		private void AddButton(Button toAdd)
 		{
 			this.m_InputData.Buttons.Add(toAdd);
 		}
 
-		// Token: 0x06003BB3 RID: 15283 RVA: 0x0002B2C9 File Offset: 0x000294C9
+		// Token: 0x06003279 RID: 12921 RVA: 0x00165906 File Offset: 0x00163B06
 		private void AddAxis(Axis toAdd)
 		{
 			this.m_InputData.Axes.Add(toAdd);
 		}
 
-		// Token: 0x06003BB4 RID: 15284 RVA: 0x001AEE20 File Offset: 0x001AD020
+		// Token: 0x0600327A RID: 12922 RVA: 0x0016591C File Offset: 0x00163B1C
 		private Button FindButton(string name)
 		{
 			for (int i = 0; i < this.m_InputData.Buttons.Count; i++)
@@ -186,7 +186,7 @@ namespace UltimateSurvival.InputSystem
 			return null;
 		}
 
-		// Token: 0x06003BB5 RID: 15285 RVA: 0x001AEE7C File Offset: 0x001AD07C
+		// Token: 0x0600327B RID: 12923 RVA: 0x00165978 File Offset: 0x00163B78
 		private Axis FindAxis(string name)
 		{
 			for (int i = 0; i < this.m_InputData.Axes.Count; i++)
@@ -199,7 +199,7 @@ namespace UltimateSurvival.InputSystem
 			return null;
 		}
 
-		// Token: 0x06003BB6 RID: 15286 RVA: 0x0002B2DC File Offset: 0x000294DC
+		// Token: 0x0600327C RID: 12924 RVA: 0x001659D1 File Offset: 0x00163BD1
 		private int GetKeyPress(KeyCode key)
 		{
 			if (Input.GetKey(key))
@@ -209,7 +209,7 @@ namespace UltimateSurvival.InputSystem
 			return 0;
 		}
 
-		// Token: 0x04003645 RID: 13893
+		// Token: 0x04002CF4 RID: 11508
 		[SerializeField]
 		private InputData m_InputData;
 	}

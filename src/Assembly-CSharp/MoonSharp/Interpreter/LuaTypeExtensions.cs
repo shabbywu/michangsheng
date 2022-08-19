@@ -2,16 +2,16 @@
 
 namespace MoonSharp.Interpreter
 {
-	// Token: 0x02001068 RID: 4200
+	// Token: 0x02000C9C RID: 3228
 	public static class LuaTypeExtensions
 	{
-		// Token: 0x060064FB RID: 25851 RVA: 0x000456C3 File Offset: 0x000438C3
+		// Token: 0x06005A18 RID: 23064 RVA: 0x002573AF File Offset: 0x002555AF
 		public static bool CanHaveTypeMetatables(this DataType type)
 		{
 			return type < DataType.Table;
 		}
 
-		// Token: 0x060064FC RID: 25852 RVA: 0x00282374 File Offset: 0x00280574
+		// Token: 0x06005A19 RID: 23065 RVA: 0x002573B8 File Offset: 0x002555B8
 		public static string ToErrorTypeString(this DataType type)
 		{
 			switch (type)
@@ -40,13 +40,13 @@ namespace MoonSharp.Interpreter
 			return string.Format("internal<{0}>", type.ToLuaDebuggerString());
 		}
 
-		// Token: 0x060064FD RID: 25853 RVA: 0x000456C9 File Offset: 0x000438C9
+		// Token: 0x06005A1A RID: 23066 RVA: 0x0025744D File Offset: 0x0025564D
 		public static string ToLuaDebuggerString(this DataType type)
 		{
 			return type.ToString().ToLowerInvariant();
 		}
 
-		// Token: 0x060064FE RID: 25854 RVA: 0x0028240C File Offset: 0x0028060C
+		// Token: 0x06005A1B RID: 23067 RVA: 0x00257464 File Offset: 0x00255664
 		public static string ToLuaTypeString(this DataType type)
 		{
 			switch (type)
@@ -77,10 +77,10 @@ namespace MoonSharp.Interpreter
 			});
 		}
 
-		// Token: 0x04005E3A RID: 24122
+		// Token: 0x04005271 RID: 21105
 		internal const DataType MaxMetaTypes = DataType.Table;
 
-		// Token: 0x04005E3B RID: 24123
+		// Token: 0x04005272 RID: 21106
 		internal const DataType MaxConvertibleTypes = DataType.ClrFunction;
 	}
 }

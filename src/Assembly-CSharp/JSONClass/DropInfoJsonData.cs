@@ -3,10 +3,10 @@ using System.Collections.Generic;
 
 namespace JSONClass
 {
-	// Token: 0x02000BC7 RID: 3015
+	// Token: 0x02000833 RID: 2099
 	public class DropInfoJsonData : IJSONClass
 	{
-		// Token: 0x06004A84 RID: 19076 RVA: 0x001F8950 File Offset: 0x001F6B50
+		// Token: 0x06003EDE RID: 16094 RVA: 0x001ADB38 File Offset: 0x001ABD38
 		public static void InitDataDict()
 		{
 			foreach (JSONObject jsonobject in jsonData.instance.DropInfoJsonData.list)
@@ -48,51 +48,51 @@ namespace JSONClass
 			}
 		}
 
-		// Token: 0x06004A85 RID: 19077 RVA: 0x000042DD File Offset: 0x000024DD
+		// Token: 0x06003EDF RID: 16095 RVA: 0x00004095 File Offset: 0x00002295
 		private static void OnInitFinish()
 		{
 		}
 
-		// Token: 0x0400461E RID: 17950
+		// Token: 0x04003AA1 RID: 15009
 		public static Dictionary<int, DropInfoJsonData> DataDict = new Dictionary<int, DropInfoJsonData>();
 
-		// Token: 0x0400461F RID: 17951
+		// Token: 0x04003AA2 RID: 15010
 		public static List<DropInfoJsonData> DataList = new List<DropInfoJsonData>();
 
-		// Token: 0x04004620 RID: 17952
+		// Token: 0x04003AA3 RID: 15011
 		public static Action OnInitFinishAction = new Action(DropInfoJsonData.OnInitFinish);
 
-		// Token: 0x04004621 RID: 17953
+		// Token: 0x04003AA4 RID: 15012
 		public int id;
 
-		// Token: 0x04004622 RID: 17954
+		// Token: 0x04003AA5 RID: 15013
 		public int dropType;
 
-		// Token: 0x04004623 RID: 17955
+		// Token: 0x04003AA6 RID: 15014
 		public int loseHp;
 
-		// Token: 0x04004624 RID: 17956
+		// Token: 0x04003AA7 RID: 15015
 		public int round;
 
-		// Token: 0x04004625 RID: 17957
+		// Token: 0x04003AA8 RID: 15016
 		public int moneydrop;
 
-		// Token: 0x04004626 RID: 17958
+		// Token: 0x04003AA9 RID: 15017
 		public int backpack;
 
-		// Token: 0x04004627 RID: 17959
+		// Token: 0x04003AAA RID: 15018
 		public int wepen;
 
-		// Token: 0x04004628 RID: 17960
+		// Token: 0x04003AAB RID: 15019
 		public int cloth;
 
-		// Token: 0x04004629 RID: 17961
+		// Token: 0x04003AAC RID: 15020
 		public int ring;
 
-		// Token: 0x0400462A RID: 17962
+		// Token: 0x04003AAD RID: 15021
 		public string Title;
 
-		// Token: 0x0400462B RID: 17963
+		// Token: 0x04003AAE RID: 15022
 		public string TextDesc;
 	}
 }

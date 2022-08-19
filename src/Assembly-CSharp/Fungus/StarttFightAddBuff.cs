@@ -3,22 +3,22 @@ using UnityEngine;
 
 namespace Fungus
 {
-	// Token: 0x02001451 RID: 5201
+	// Token: 0x02000FA2 RID: 4002
 	[Serializable]
 	public class StarttFightAddBuff
 	{
-		// Token: 0x06007D8F RID: 32143 RVA: 0x00054EA2 File Offset: 0x000530A2
+		// Token: 0x06006FB1 RID: 28593 RVA: 0x002A74BC File Offset: 0x002A56BC
 		public StarttFightAddBuff()
 		{
 			this.buffID = 0;
 			this.BuffNum = 1;
 		}
 
-		// Token: 0x04006AF2 RID: 27378
+		// Token: 0x04005C23 RID: 23587
 		[Tooltip("buff的ID")]
 		public int buffID;
 
-		// Token: 0x04006AF3 RID: 27379
+		// Token: 0x04005C24 RID: 23588
 		[Tooltip("buff的层数")]
 		public int BuffNum = 1;
 	}

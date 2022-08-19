@@ -3,12 +3,12 @@ using UnityEngine;
 
 namespace BehaviorDesigner.Runtime.Tasks.Basic.UnityTransform
 {
-	// Token: 0x020014E9 RID: 5353
+	// Token: 0x0200102F RID: 4143
 	[TaskCategory("Basic/Transform")]
 	[TaskDescription("Applies a rotation. Returns Success.")]
 	public class Rotate : Action
 	{
-		// Token: 0x06007FD1 RID: 32721 RVA: 0x002CA900 File Offset: 0x002C8B00
+		// Token: 0x060071D7 RID: 29143 RVA: 0x002ACB84 File Offset: 0x002AAD84
 		public override void OnStart()
 		{
 			GameObject defaultGameObject = base.GetDefaultGameObject(this.targetGameObject.Value);
@@ -19,7 +19,7 @@ namespace BehaviorDesigner.Runtime.Tasks.Basic.UnityTransform
 			}
 		}
 
-		// Token: 0x06007FD2 RID: 32722 RVA: 0x00056C19 File Offset: 0x00054E19
+		// Token: 0x060071D8 RID: 29144 RVA: 0x002ACBC4 File Offset: 0x002AADC4
 		public override TaskStatus OnUpdate()
 		{
 			if (this.targetTransform == null)
@@ -31,7 +31,7 @@ namespace BehaviorDesigner.Runtime.Tasks.Basic.UnityTransform
 			return 2;
 		}
 
-		// Token: 0x06007FD3 RID: 32723 RVA: 0x00056C52 File Offset: 0x00054E52
+		// Token: 0x060071D9 RID: 29145 RVA: 0x002ACBFD File Offset: 0x002AADFD
 		public override void OnReset()
 		{
 			this.targetGameObject = null;
@@ -39,22 +39,22 @@ namespace BehaviorDesigner.Runtime.Tasks.Basic.UnityTransform
 			this.relativeTo = 1;
 		}
 
-		// Token: 0x04006CB5 RID: 27829
+		// Token: 0x04005DB5 RID: 23989
 		[Tooltip("The GameObject that the task operates on. If null the task GameObject is used.")]
 		public SharedGameObject targetGameObject;
 
-		// Token: 0x04006CB6 RID: 27830
+		// Token: 0x04005DB6 RID: 23990
 		[Tooltip("Amount to rotate")]
 		public SharedVector3 eulerAngles;
 
-		// Token: 0x04006CB7 RID: 27831
+		// Token: 0x04005DB7 RID: 23991
 		[Tooltip("Specifies which axis the rotation is relative to")]
 		public Space relativeTo = 1;
 
-		// Token: 0x04006CB8 RID: 27832
+		// Token: 0x04005DB8 RID: 23992
 		private Transform targetTransform;
 
-		// Token: 0x04006CB9 RID: 27833
+		// Token: 0x04005DB9 RID: 23993
 		private GameObject prevGameObject;
 	}
 }

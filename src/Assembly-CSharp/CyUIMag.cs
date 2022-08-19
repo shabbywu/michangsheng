@@ -2,10 +2,10 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-// Token: 0x020003C2 RID: 962
+// Token: 0x02000293 RID: 659
 public class CyUIMag : MonoBehaviour, IESCClose
 {
-	// Token: 0x06001A8C RID: 6796 RVA: 0x000EA774 File Offset: 0x000E8974
+	// Token: 0x060017AF RID: 6063 RVA: 0x000A3564 File Offset: 0x000A1764
 	private void Awake()
 	{
 		SceneManager.activeSceneChanged += delegate(Scene s1, Scene s2)
@@ -19,7 +19,7 @@ public class CyUIMag : MonoBehaviour, IESCClose
 		CyUIMag.inst = this;
 	}
 
-	// Token: 0x06001A8D RID: 6797 RVA: 0x00016971 File Offset: 0x00014B71
+	// Token: 0x060017B0 RID: 6064 RVA: 0x000A35CD File Offset: 0x000A17CD
 	private void Start()
 	{
 		this.npcList.Init();
@@ -27,7 +27,7 @@ public class CyUIMag : MonoBehaviour, IESCClose
 		ESCCloseManager.Inst.RegisterClose(this);
 	}
 
-	// Token: 0x06001A8E RID: 6798 RVA: 0x00016995 File Offset: 0x00014B95
+	// Token: 0x060017B1 RID: 6065 RVA: 0x000A35F1 File Offset: 0x000A17F1
 	public void Close()
 	{
 		if (CyUIMag.inst == null)
@@ -39,25 +39,25 @@ public class CyUIMag : MonoBehaviour, IESCClose
 		ESCCloseManager.Inst.UnRegisterClose(this);
 	}
 
-	// Token: 0x06001A8F RID: 6799 RVA: 0x000169C7 File Offset: 0x00014BC7
+	// Token: 0x060017B2 RID: 6066 RVA: 0x000A3623 File Offset: 0x000A1823
 	public bool TryEscClose()
 	{
 		this.Close();
 		return true;
 	}
 
-	// Token: 0x040015FF RID: 5631
+	// Token: 0x04001279 RID: 4729
 	public static CyUIMag inst;
 
-	// Token: 0x04001600 RID: 5632
+	// Token: 0x0400127A RID: 4730
 	public CyNpcList npcList;
 
-	// Token: 0x04001601 RID: 5633
+	// Token: 0x0400127B RID: 4731
 	public CyPaiMaiPanel PaiMaiPanel;
 
-	// Token: 0x04001602 RID: 5634
+	// Token: 0x0400127C RID: 4732
 	public CyEmail cyEmail;
 
-	// Token: 0x04001603 RID: 5635
+	// Token: 0x0400127D RID: 4733
 	public GameObject No;
 }

@@ -7,28 +7,28 @@ using UltimateSurvival;
 using UnityEngine;
 using UnityEngine.UI;
 
-// Token: 0x020007A2 RID: 1954
+// Token: 0x02000510 RID: 1296
 public class WuDaoUIMag : MonoBehaviour
 {
-	// Token: 0x060031B3 RID: 12723 RVA: 0x000245E6 File Offset: 0x000227E6
+	// Token: 0x060029AC RID: 10668 RVA: 0x0013E6B3 File Offset: 0x0013C8B3
 	private void Awake()
 	{
 		WuDaoUIMag.inst = this;
 	}
 
-	// Token: 0x060031B4 RID: 12724 RVA: 0x000245EE File Offset: 0x000227EE
+	// Token: 0x060029AD RID: 10669 RVA: 0x0013E6BB File Offset: 0x0013C8BB
 	private void OnDestroy()
 	{
 		WuDaoUIMag.inst = null;
 	}
 
-	// Token: 0x060031B5 RID: 12725 RVA: 0x000245F6 File Offset: 0x000227F6
+	// Token: 0x060029AE RID: 10670 RVA: 0x0013E6C3 File Offset: 0x0013C8C3
 	private void Start()
 	{
 		this.init();
 	}
 
-	// Token: 0x060031B6 RID: 12726 RVA: 0x000245FE File Offset: 0x000227FE
+	// Token: 0x060029AF RID: 10671 RVA: 0x0013E6CB File Offset: 0x0013C8CB
 	public void open()
 	{
 		UltimateSurvival.MonoSingleton<UI_Backgroud>.Instance.Value = true;
@@ -36,14 +36,14 @@ public class WuDaoUIMag : MonoBehaviour
 		this.init();
 	}
 
-	// Token: 0x060031B7 RID: 12727 RVA: 0x0002461D File Offset: 0x0002281D
+	// Token: 0x060029B0 RID: 10672 RVA: 0x0013E6EA File Offset: 0x0013C8EA
 	public void close()
 	{
 		UltimateSurvival.MonoSingleton<UI_Backgroud>.Instance.Value = false;
 		base.gameObject.SetActive(false);
 	}
 
-	// Token: 0x060031B8 RID: 12728 RVA: 0x0018B80C File Offset: 0x00189A0C
+	// Token: 0x060029B1 RID: 10673 RVA: 0x0013E704 File Offset: 0x0013C904
 	public void init()
 	{
 		foreach (object obj in this.TypeCell.transform.parent)
@@ -94,7 +94,7 @@ public class WuDaoUIMag : MonoBehaviour
 		base.StartCoroutine(this.selectDefault(obj2, wudaocell));
 	}
 
-	// Token: 0x060031B9 RID: 12729 RVA: 0x00024636 File Offset: 0x00022836
+	// Token: 0x060029B2 RID: 10674 RVA: 0x0013E918 File Offset: 0x0013CB18
 	private IEnumerator selectDefault(GameObject _obj, wudaoTypeCell wudaocell)
 	{
 		yield return new WaitForSeconds(0.01f);
@@ -102,14 +102,14 @@ public class WuDaoUIMag : MonoBehaviour
 		yield break;
 	}
 
-	// Token: 0x060031BA RID: 12730 RVA: 0x0018BA20 File Offset: 0x00189C20
+	// Token: 0x060029B3 RID: 10675 RVA: 0x0013E928 File Offset: 0x0013CB28
 	public static string getWuDaoTypeName(int type)
 	{
 		Avatar player = Tools.instance.getPlayer();
 		return Tools.Code64(jsonData.instance.WuDaoJinJieJson[player.wuDaoMag.getWuDaoLevelByType(type).ToString()]["Text"].str);
 	}
 
-	// Token: 0x060031BB RID: 12731 RVA: 0x0018BA70 File Offset: 0x00189C70
+	// Token: 0x060029B4 RID: 10676 RVA: 0x0013E978 File Offset: 0x0013CB78
 	public void ClearCenten()
 	{
 		foreach (GameObject gameObject in this.WuDaoCententList)
@@ -125,7 +125,7 @@ public class WuDaoUIMag : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060031BC RID: 12732 RVA: 0x0018BB14 File Offset: 0x00189D14
+	// Token: 0x060029B5 RID: 10677 RVA: 0x0013EA1C File Offset: 0x0013CC1C
 	public void ResetCellButton()
 	{
 		foreach (GameObject gameObject in this.WuDaoCententList)
@@ -163,12 +163,12 @@ public class WuDaoUIMag : MonoBehaviour
 		this.setShengyuDianshu();
 	}
 
-	// Token: 0x060031BD RID: 12733 RVA: 0x000042DD File Offset: 0x000024DD
+	// Token: 0x060029B6 RID: 10678 RVA: 0x00004095 File Offset: 0x00002295
 	public void setShengyuDianshu()
 	{
 	}
 
-	// Token: 0x060031BE RID: 12734 RVA: 0x0018BCC0 File Offset: 0x00189EC0
+	// Token: 0x060029B7 RID: 10679 RVA: 0x0013EBC8 File Offset: 0x0013CDC8
 	public void ResetEx(int wudaoType)
 	{
 		this.slider.value = Tools.instance.getPlayer().wuDaoMag.getWuDaoExPercent(wudaoType) / 100f;
@@ -187,67 +187,67 @@ public class WuDaoUIMag : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060031BF RID: 12735 RVA: 0x0018BDA0 File Offset: 0x00189FA0
+	// Token: 0x060029B8 RID: 10680 RVA: 0x0013ECA8 File Offset: 0x0013CEA8
 	public void upWuDaoDate()
 	{
 		this.WuDaoDian.text = Tools.instance.getPlayer().wuDaoMag.GetNowWuDaoDian().ToString();
 		this.ShiXu.text = Tools.instance.getPlayer().LingGuang.list.Count.ToString();
 	}
 
-	// Token: 0x060031C0 RID: 12736 RVA: 0x000042DD File Offset: 0x000024DD
+	// Token: 0x060029B9 RID: 10681 RVA: 0x00004095 File Offset: 0x00002295
 	private void Update()
 	{
 	}
 
-	// Token: 0x04002DE8 RID: 11752
+	// Token: 0x040025FF RID: 9727
 	public GameObject TypeCell;
 
-	// Token: 0x04002DE9 RID: 11753
+	// Token: 0x04002600 RID: 9728
 	public static WuDaoUIMag inst;
 
-	// Token: 0x04002DEA RID: 11754
+	// Token: 0x04002601 RID: 9729
 	public List<Sprite> TuBiaoList = new List<Sprite>();
 
-	// Token: 0x04002DEB RID: 11755
+	// Token: 0x04002602 RID: 9730
 	public List<Sprite> BGList = new List<Sprite>();
 
-	// Token: 0x04002DEC RID: 11756
+	// Token: 0x04002603 RID: 9731
 	public List<UI2DSprite> BGs = new List<UI2DSprite>();
 
-	// Token: 0x04002DED RID: 11757
+	// Token: 0x04002604 RID: 9732
 	public Text WuDaoDian;
 
-	// Token: 0x04002DEE RID: 11758
+	// Token: 0x04002605 RID: 9733
 	public Text ShiXu;
 
-	// Token: 0x04002DEF RID: 11759
+	// Token: 0x04002606 RID: 9734
 	[SerializeField]
 	private GameObject wuDaoEmpty;
 
-	// Token: 0x04002DF0 RID: 11760
+	// Token: 0x04002607 RID: 9735
 	public List<Sprite> Sprites_Lv = new List<Sprite>();
 
-	// Token: 0x04002DF1 RID: 11761
+	// Token: 0x04002608 RID: 9736
 	public Slider slider;
 
-	// Token: 0x04002DF2 RID: 11762
+	// Token: 0x04002609 RID: 9737
 	public Text shengyudianshu;
 
-	// Token: 0x04002DF3 RID: 11763
+	// Token: 0x0400260A RID: 9738
 	public List<GameObject> WuDaoCententList;
 
-	// Token: 0x04002DF4 RID: 11764
+	// Token: 0x0400260B RID: 9739
 	public List<Text> labelText;
 
-	// Token: 0x04002DF5 RID: 11765
+	// Token: 0x0400260C RID: 9740
 	public WuDaoCellTooltip wuDaoCellTooltip;
 
-	// Token: 0x04002DF6 RID: 11766
+	// Token: 0x0400260D RID: 9741
 	public WuDaoHelp wuDaoHelp1;
 
-	// Token: 0x04002DF7 RID: 11767
+	// Token: 0x0400260E RID: 9742
 	public List<Sprite> IconBgSprite;
 
-	// Token: 0x04002DF8 RID: 11768
+	// Token: 0x0400260F RID: 9743
 	public int NowType = -1;
 }

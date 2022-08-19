@@ -3,10 +3,10 @@ using System.Collections.Generic;
 
 namespace JSONClass
 {
-	// Token: 0x02000BCE RID: 3022
+	// Token: 0x0200083D RID: 2109
 	public class FavorabilityAvatarInfoJsonData : IJSONClass
 	{
-		// Token: 0x06004AA0 RID: 19104 RVA: 0x001F9240 File Offset: 0x001F7440
+		// Token: 0x06003F06 RID: 16134 RVA: 0x001AE964 File Offset: 0x001ACB64
 		public static void InitDataDict()
 		{
 			foreach (JSONObject jsonobject in jsonData.instance.FavorabilityAvatarInfoJsonData.list)
@@ -39,24 +39,24 @@ namespace JSONClass
 			}
 		}
 
-		// Token: 0x06004AA1 RID: 19105 RVA: 0x000042DD File Offset: 0x000024DD
+		// Token: 0x06003F07 RID: 16135 RVA: 0x00004095 File Offset: 0x00002295
 		private static void OnInitFinish()
 		{
 		}
 
-		// Token: 0x0400464F RID: 17999
+		// Token: 0x04003AE1 RID: 15073
 		public static Dictionary<int, FavorabilityAvatarInfoJsonData> DataDict = new Dictionary<int, FavorabilityAvatarInfoJsonData>();
 
-		// Token: 0x04004650 RID: 18000
+		// Token: 0x04003AE2 RID: 15074
 		public static List<FavorabilityAvatarInfoJsonData> DataList = new List<FavorabilityAvatarInfoJsonData>();
 
-		// Token: 0x04004651 RID: 18001
+		// Token: 0x04003AE3 RID: 15075
 		public static Action OnInitFinishAction = new Action(FavorabilityAvatarInfoJsonData.OnInitFinish);
 
-		// Token: 0x04004652 RID: 18002
+		// Token: 0x04003AE4 RID: 15076
 		public int id;
 
-		// Token: 0x04004653 RID: 18003
+		// Token: 0x04003AE5 RID: 15077
 		public List<int> AvatarID = new List<int>();
 	}
 }

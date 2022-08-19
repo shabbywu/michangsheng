@@ -5,10 +5,10 @@ using UnityEngine.UI;
 
 namespace Tab
 {
-	// Token: 0x02000A2B RID: 2603
+	// Token: 0x020006EA RID: 1770
 	public class BaseDataTips : ITabTips
 	{
-		// Token: 0x0600436F RID: 17263 RVA: 0x001CD044 File Offset: 0x001CB244
+		// Token: 0x06003904 RID: 14596 RVA: 0x00185520 File Offset: 0x00183720
 		public BaseDataTips(GameObject go)
 		{
 			this._go = go;
@@ -18,7 +18,7 @@ namespace Tab
 			this._text = base.Get<Text>("Bg/Content");
 		}
 
-		// Token: 0x06004370 RID: 17264 RVA: 0x001CD0A4 File Offset: 0x001CB2A4
+		// Token: 0x06003905 RID: 14597 RVA: 0x00185580 File Offset: 0x00183780
 		protected override string Replace(string msg)
 		{
 			if (msg.Contains("[24a5d6]"))

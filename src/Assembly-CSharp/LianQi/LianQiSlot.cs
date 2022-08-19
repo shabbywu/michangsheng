@@ -4,10 +4,10 @@ using UnityEngine.EventSystems;
 
 namespace LianQi
 {
-	// Token: 0x02000A75 RID: 2677
+	// Token: 0x02000720 RID: 1824
 	public class LianQiSlot : SlotBase
 	{
-		// Token: 0x060044DF RID: 17631 RVA: 0x001D79E8 File Offset: 0x001D5BE8
+		// Token: 0x06003A42 RID: 14914 RVA: 0x0019032C File Offset: 0x0018E52C
 		public override void OnPointerEnter(PointerEventData eventData)
 		{
 			if (this.SlotType == SlotType.空)
@@ -26,7 +26,7 @@ namespace LianQi
 			this._selectPanel.SetActive(true);
 		}
 
-		// Token: 0x060044E0 RID: 17632 RVA: 0x001D7A5C File Offset: 0x001D5C5C
+		// Token: 0x06003A43 RID: 14915 RVA: 0x001903A0 File Offset: 0x0018E5A0
 		public override void OnPointerUp(PointerEventData eventData)
 		{
 			if (eventData.dragging)
@@ -59,16 +59,16 @@ namespace LianQi
 			this._selectPanel.SetActive(false);
 		}
 
-		// Token: 0x060044E1 RID: 17633 RVA: 0x00004050 File Offset: 0x00002250
+		// Token: 0x06003A44 RID: 14916 RVA: 0x0000280F File Offset: 0x00000A0F
 		public override bool CanDrag()
 		{
 			return false;
 		}
 
-		// Token: 0x04003D09 RID: 15625
+		// Token: 0x04003271 RID: 12913
 		public bool IsPlayer;
 
-		// Token: 0x04003D0A RID: 15626
+		// Token: 0x04003272 RID: 12914
 		public bool IsInBag;
 	}
 }

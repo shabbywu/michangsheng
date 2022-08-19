@@ -4,16 +4,16 @@ using System.Text;
 
 namespace ICSharpCode.SharpZipLib.Tar
 {
-	// Token: 0x0200080B RID: 2059
+	// Token: 0x02000565 RID: 1381
 	public class TarExtendedHeaderReader
 	{
-		// Token: 0x060035B4 RID: 13748 RVA: 0x000273BA File Offset: 0x000255BA
+		// Token: 0x06002D46 RID: 11590 RVA: 0x0014DDF9 File Offset: 0x0014BFF9
 		public TarExtendedHeaderReader()
 		{
 			this.ResetBuffers();
 		}
 
-		// Token: 0x060035B5 RID: 13749 RVA: 0x00199694 File Offset: 0x00197894
+		// Token: 0x06002D47 RID: 11591 RVA: 0x0014DE3C File Offset: 0x0014C03C
 		public void Read(byte[] buffer, int length)
 		{
 			for (int i = 0; i < length; i++)
@@ -47,7 +47,7 @@ namespace ICSharpCode.SharpZipLib.Tar
 			}
 		}
 
-		// Token: 0x060035B6 RID: 13750 RVA: 0x0019975C File Offset: 0x0019795C
+		// Token: 0x06002D48 RID: 11592 RVA: 0x0014DF04 File Offset: 0x0014C104
 		private void Flush()
 		{
 			int num;
@@ -58,7 +58,7 @@ namespace ICSharpCode.SharpZipLib.Tar
 			this.ResetBuffers();
 		}
 
-		// Token: 0x060035B7 RID: 13751 RVA: 0x000273FA File Offset: 0x000255FA
+		// Token: 0x06002D49 RID: 11593 RVA: 0x0014DF52 File Offset: 0x0014C152
 		private void ResetBuffers()
 		{
 			this.charBuffer = new char[4];
@@ -66,8 +66,8 @@ namespace ICSharpCode.SharpZipLib.Tar
 			this.bbIndex = 0;
 		}
 
-		// Token: 0x17000532 RID: 1330
-		// (get) Token: 0x060035B8 RID: 13752 RVA: 0x0002741B File Offset: 0x0002561B
+		// Token: 0x1700037B RID: 891
+		// (get) Token: 0x06002D4A RID: 11594 RVA: 0x0014DF73 File Offset: 0x0014C173
 		public Dictionary<string, string> Headers
 		{
 			get
@@ -76,43 +76,43 @@ namespace ICSharpCode.SharpZipLib.Tar
 			}
 		}
 
-		// Token: 0x04003062 RID: 12386
+		// Token: 0x04002829 RID: 10281
 		private const byte LENGTH = 0;
 
-		// Token: 0x04003063 RID: 12387
+		// Token: 0x0400282A RID: 10282
 		private const byte KEY = 1;
 
-		// Token: 0x04003064 RID: 12388
+		// Token: 0x0400282B RID: 10283
 		private const byte VALUE = 2;
 
-		// Token: 0x04003065 RID: 12389
+		// Token: 0x0400282C RID: 10284
 		private const byte END = 3;
 
-		// Token: 0x04003066 RID: 12390
+		// Token: 0x0400282D RID: 10285
 		private readonly Dictionary<string, string> headers = new Dictionary<string, string>();
 
-		// Token: 0x04003067 RID: 12391
+		// Token: 0x0400282E RID: 10286
 		private string[] headerParts = new string[3];
 
-		// Token: 0x04003068 RID: 12392
+		// Token: 0x0400282F RID: 10287
 		private int bbIndex;
 
-		// Token: 0x04003069 RID: 12393
+		// Token: 0x04002830 RID: 10288
 		private byte[] byteBuffer;
 
-		// Token: 0x0400306A RID: 12394
+		// Token: 0x04002831 RID: 10289
 		private char[] charBuffer;
 
-		// Token: 0x0400306B RID: 12395
+		// Token: 0x04002832 RID: 10290
 		private readonly StringBuilder sb = new StringBuilder();
 
-		// Token: 0x0400306C RID: 12396
+		// Token: 0x04002833 RID: 10291
 		private readonly Decoder decoder = Encoding.UTF8.GetDecoder();
 
-		// Token: 0x0400306D RID: 12397
+		// Token: 0x04002834 RID: 10292
 		private int state;
 
-		// Token: 0x0400306E RID: 12398
+		// Token: 0x04002835 RID: 10293
 		private static readonly byte[] StateNext = new byte[]
 		{
 			32,

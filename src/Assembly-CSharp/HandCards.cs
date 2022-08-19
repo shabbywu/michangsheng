@@ -2,10 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-// Token: 0x02000678 RID: 1656
+// Token: 0x0200049C RID: 1180
 public class HandCards : MonoBehaviour
 {
-	// Token: 0x06002966 RID: 10598 RVA: 0x0002026E File Offset: 0x0001E46E
+	// Token: 0x06002542 RID: 9538 RVA: 0x00102CE1 File Offset: 0x00100EE1
 	private void Start()
 	{
 		this.multiples = 1;
@@ -13,9 +13,9 @@ public class HandCards : MonoBehaviour
 		this.library = new List<Card>();
 	}
 
-	// Token: 0x170002FA RID: 762
-	// (get) Token: 0x06002968 RID: 10600 RVA: 0x00020292 File Offset: 0x0001E492
-	// (set) Token: 0x06002967 RID: 10599 RVA: 0x00020289 File Offset: 0x0001E489
+	// Token: 0x1700029B RID: 667
+	// (get) Token: 0x06002544 RID: 9540 RVA: 0x00102D05 File Offset: 0x00100F05
+	// (set) Token: 0x06002543 RID: 9539 RVA: 0x00102CFC File Offset: 0x00100EFC
 	public int Integration
 	{
 		get
@@ -28,9 +28,9 @@ public class HandCards : MonoBehaviour
 		}
 	}
 
-	// Token: 0x170002FB RID: 763
-	// (get) Token: 0x0600296A RID: 10602 RVA: 0x000202AA File Offset: 0x0001E4AA
-	// (set) Token: 0x06002969 RID: 10601 RVA: 0x0002029A File Offset: 0x0001E49A
+	// Token: 0x1700029C RID: 668
+	// (get) Token: 0x06002546 RID: 9542 RVA: 0x00102D1D File Offset: 0x00100F1D
+	// (set) Token: 0x06002545 RID: 9541 RVA: 0x00102D0D File Offset: 0x00100F0D
 	public int Multiples
 	{
 		get
@@ -43,8 +43,8 @@ public class HandCards : MonoBehaviour
 		}
 	}
 
-	// Token: 0x170002FC RID: 764
-	// (get) Token: 0x0600296B RID: 10603 RVA: 0x000202B2 File Offset: 0x0001E4B2
+	// Token: 0x1700029D RID: 669
+	// (get) Token: 0x06002547 RID: 9543 RVA: 0x00102D25 File Offset: 0x00100F25
 	public int CardsCount
 	{
 		get
@@ -53,9 +53,9 @@ public class HandCards : MonoBehaviour
 		}
 	}
 
-	// Token: 0x170002FD RID: 765
-	// (get) Token: 0x0600296D RID: 10605 RVA: 0x000202C8 File Offset: 0x0001E4C8
-	// (set) Token: 0x0600296C RID: 10604 RVA: 0x000202BF File Offset: 0x0001E4BF
+	// Token: 0x1700029E RID: 670
+	// (get) Token: 0x06002549 RID: 9545 RVA: 0x00102D3B File Offset: 0x00100F3B
+	// (set) Token: 0x06002548 RID: 9544 RVA: 0x00102D32 File Offset: 0x00100F32
 	public Identity AccessIdentity
 	{
 		get
@@ -68,7 +68,7 @@ public class HandCards : MonoBehaviour
 		}
 	}
 
-	// Token: 0x170002FE RID: 766
+	// Token: 0x1700029F RID: 671
 	public Card this[int index]
 	{
 		get
@@ -77,7 +77,7 @@ public class HandCards : MonoBehaviour
 		}
 	}
 
-	// Token: 0x170002FF RID: 767
+	// Token: 0x170002A0 RID: 672
 	public int this[Card card]
 	{
 		get
@@ -86,46 +86,46 @@ public class HandCards : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06002970 RID: 10608 RVA: 0x000202EC File Offset: 0x0001E4EC
+	// Token: 0x0600254C RID: 9548 RVA: 0x00102D5F File Offset: 0x00100F5F
 	public void AddCard(Card card)
 	{
 		card.Attribution = this.cType;
 		this.library.Add(card);
 	}
 
-	// Token: 0x06002971 RID: 10609 RVA: 0x00020306 File Offset: 0x0001E506
+	// Token: 0x0600254D RID: 9549 RVA: 0x00102D79 File Offset: 0x00100F79
 	public void AddCardSprite(CardSprite sprite)
 	{
 		this.cardSpriteslist.Add(sprite);
 	}
 
-	// Token: 0x06002972 RID: 10610 RVA: 0x00020314 File Offset: 0x0001E514
+	// Token: 0x0600254E RID: 9550 RVA: 0x00102D87 File Offset: 0x00100F87
 	public void PopCard(Card card)
 	{
 		this.library.Remove(card);
 	}
 
-	// Token: 0x06002973 RID: 10611 RVA: 0x00020323 File Offset: 0x0001E523
+	// Token: 0x0600254F RID: 9551 RVA: 0x00102D96 File Offset: 0x00100F96
 	public void Sort()
 	{
 		CardRules.SortCards(this.library, false);
 	}
 
-	// Token: 0x04002326 RID: 8998
+	// Token: 0x04001E0F RID: 7695
 	public CharacterType cType;
 
-	// Token: 0x04002327 RID: 8999
+	// Token: 0x04001E10 RID: 7696
 	public List<CardSprite> cardSpriteslist;
 
-	// Token: 0x04002328 RID: 9000
+	// Token: 0x04001E11 RID: 7697
 	private List<Card> library;
 
-	// Token: 0x04002329 RID: 9001
+	// Token: 0x04001E12 RID: 7698
 	private Identity identity;
 
-	// Token: 0x0400232A RID: 9002
+	// Token: 0x04001E13 RID: 7699
 	private int multiples;
 
-	// Token: 0x0400232B RID: 9003
+	// Token: 0x04001E14 RID: 7700
 	private int integration;
 }

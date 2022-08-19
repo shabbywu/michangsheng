@@ -3,22 +3,22 @@ using KBEngine;
 using UnityEngine;
 using UnityEngine.UI;
 
-// Token: 0x020005F1 RID: 1521
+// Token: 0x0200043A RID: 1082
 public class LingGuangMag : MonoBehaviour
 {
-	// Token: 0x06002629 RID: 9769 RVA: 0x0001E74C File Offset: 0x0001C94C
+	// Token: 0x0600226A RID: 8810 RVA: 0x000ECB94 File Offset: 0x000EAD94
 	private void Start()
 	{
 		Event.registerOut("ClickLingGuangCell", this, "ClickLingGuangCell");
 	}
 
-	// Token: 0x0600262A RID: 9770 RVA: 0x0001429C File Offset: 0x0001249C
+	// Token: 0x0600226B RID: 8811 RVA: 0x000826BE File Offset: 0x000808BE
 	private void OnDestroy()
 	{
 		Event.deregisterOut(this);
 	}
 
-	// Token: 0x0600262B RID: 9771 RVA: 0x0012DB58 File Offset: 0x0012BD58
+	// Token: 0x0600226C RID: 8812 RVA: 0x000ECBA8 File Offset: 0x000EADA8
 	public void Init()
 	{
 		Avatar player = Tools.instance.getPlayer();
@@ -39,7 +39,7 @@ public class LingGuangMag : MonoBehaviour
 		}
 	}
 
-	// Token: 0x0600262C RID: 9772 RVA: 0x0012DC6C File Offset: 0x0012BE6C
+	// Token: 0x0600226D RID: 8813 RVA: 0x000ECCBC File Offset: 0x000EAEBC
 	public void ClickLingGuangCell(JSONObject json)
 	{
 		int wuXin = (int)Tools.instance.getPlayer().wuXin;
@@ -64,7 +64,7 @@ public class LingGuangMag : MonoBehaviour
 		this.GanWuTime.text = string.Format("<color=#DE5900>感悟时间：</color>{0}年{1}月{2}日", Tools.DayToYear(day), Tools.DayToMonth(day), Tools.DayToDay(day));
 	}
 
-	// Token: 0x0600262D RID: 9773 RVA: 0x0012DECC File Offset: 0x0012C0CC
+	// Token: 0x0600226E RID: 8814 RVA: 0x000ECF1C File Offset: 0x000EB11C
 	public void GanWu()
 	{
 		if (this.NowJson != null)
@@ -86,7 +86,7 @@ public class LingGuangMag : MonoBehaviour
 		}
 	}
 
-	// Token: 0x0600262E RID: 9774 RVA: 0x0001E75F File Offset: 0x0001C95F
+	// Token: 0x0600226F RID: 8815 RVA: 0x000ECFAF File Offset: 0x000EB1AF
 	public void YiWang()
 	{
 		if (this.NowJson != null)
@@ -96,7 +96,7 @@ public class LingGuangMag : MonoBehaviour
 		}
 	}
 
-	// Token: 0x0600262F RID: 9775 RVA: 0x0012DF60 File Offset: 0x0012C160
+	// Token: 0x06002270 RID: 8816 RVA: 0x000ECFE8 File Offset: 0x000EB1E8
 	public void clear()
 	{
 		this.NowJson = null;
@@ -107,7 +107,7 @@ public class LingGuangMag : MonoBehaviour
 		this.GanWuTime.text = "";
 	}
 
-	// Token: 0x06002630 RID: 9776 RVA: 0x0012DFC4 File Offset: 0x0012C1C4
+	// Token: 0x06002271 RID: 8817 RVA: 0x000ED04C File Offset: 0x000EB24C
 	public string GetShengYuShiJian(JSONObject json)
 	{
 		Avatar player = Tools.instance.getPlayer();
@@ -116,35 +116,35 @@ public class LingGuangMag : MonoBehaviour
 		return "这条思绪将在" + str + "后被遗忘。";
 	}
 
-	// Token: 0x06002631 RID: 9777 RVA: 0x0001E798 File Offset: 0x0001C998
+	// Token: 0x06002272 RID: 8818 RVA: 0x000ED0BD File Offset: 0x000EB2BD
 	public string getDesc(JSONObject info)
 	{
 		return Tools.Code64(info["desc"].str);
 	}
 
-	// Token: 0x06002632 RID: 9778 RVA: 0x000042DD File Offset: 0x000024DD
+	// Token: 0x06002273 RID: 8819 RVA: 0x00004095 File Offset: 0x00002295
 	private void Update()
 	{
 	}
 
-	// Token: 0x040020A0 RID: 8352
+	// Token: 0x04001BD4 RID: 7124
 	public LingGuangCell TempObj;
 
-	// Token: 0x040020A1 RID: 8353
+	// Token: 0x04001BD5 RID: 7125
 	public UILabel Name;
 
-	// Token: 0x040020A2 RID: 8354
+	// Token: 0x04001BD6 RID: 7126
 	public Text desc;
 
-	// Token: 0x040020A3 RID: 8355
+	// Token: 0x04001BD7 RID: 7127
 	public Text guoshiTime;
 
-	// Token: 0x040020A4 RID: 8356
+	// Token: 0x04001BD8 RID: 7128
 	public Text Type;
 
-	// Token: 0x040020A5 RID: 8357
+	// Token: 0x04001BD9 RID: 7129
 	public Text GanWuTime;
 
-	// Token: 0x040020A6 RID: 8358
+	// Token: 0x04001BDA RID: 7130
 	public JSONObject NowJson;
 }

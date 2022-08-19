@@ -2,47 +2,47 @@
 
 namespace MoonSharp.Interpreter.Debugging
 {
-	// Token: 0x02001179 RID: 4473
+	// Token: 0x02000D64 RID: 3428
 	public class DebuggerAction
 	{
-		// Token: 0x170009F4 RID: 2548
-		// (get) Token: 0x06006CD4 RID: 27860 RVA: 0x0004A3D2 File Offset: 0x000485D2
-		// (set) Token: 0x06006CD5 RID: 27861 RVA: 0x0004A3DA File Offset: 0x000485DA
+		// Token: 0x17000797 RID: 1943
+		// (get) Token: 0x060060E0 RID: 24800 RVA: 0x002728EC File Offset: 0x00270AEC
+		// (set) Token: 0x060060E1 RID: 24801 RVA: 0x002728F4 File Offset: 0x00270AF4
 		public DebuggerAction.ActionType Action { get; set; }
 
-		// Token: 0x170009F5 RID: 2549
-		// (get) Token: 0x06006CD6 RID: 27862 RVA: 0x0004A3E3 File Offset: 0x000485E3
-		// (set) Token: 0x06006CD7 RID: 27863 RVA: 0x0004A3EB File Offset: 0x000485EB
+		// Token: 0x17000798 RID: 1944
+		// (get) Token: 0x060060E2 RID: 24802 RVA: 0x002728FD File Offset: 0x00270AFD
+		// (set) Token: 0x060060E3 RID: 24803 RVA: 0x00272905 File Offset: 0x00270B05
 		public DateTime TimeStampUTC { get; private set; }
 
-		// Token: 0x170009F6 RID: 2550
-		// (get) Token: 0x06006CD8 RID: 27864 RVA: 0x0004A3F4 File Offset: 0x000485F4
-		// (set) Token: 0x06006CD9 RID: 27865 RVA: 0x0004A3FC File Offset: 0x000485FC
+		// Token: 0x17000799 RID: 1945
+		// (get) Token: 0x060060E4 RID: 24804 RVA: 0x0027290E File Offset: 0x00270B0E
+		// (set) Token: 0x060060E5 RID: 24805 RVA: 0x00272916 File Offset: 0x00270B16
 		public int SourceID { get; set; }
 
-		// Token: 0x170009F7 RID: 2551
-		// (get) Token: 0x06006CDA RID: 27866 RVA: 0x0004A405 File Offset: 0x00048605
-		// (set) Token: 0x06006CDB RID: 27867 RVA: 0x0004A40D File Offset: 0x0004860D
+		// Token: 0x1700079A RID: 1946
+		// (get) Token: 0x060060E6 RID: 24806 RVA: 0x0027291F File Offset: 0x00270B1F
+		// (set) Token: 0x060060E7 RID: 24807 RVA: 0x00272927 File Offset: 0x00270B27
 		public int SourceLine { get; set; }
 
-		// Token: 0x170009F8 RID: 2552
-		// (get) Token: 0x06006CDC RID: 27868 RVA: 0x0004A416 File Offset: 0x00048616
-		// (set) Token: 0x06006CDD RID: 27869 RVA: 0x0004A41E File Offset: 0x0004861E
+		// Token: 0x1700079B RID: 1947
+		// (get) Token: 0x060060E8 RID: 24808 RVA: 0x00272930 File Offset: 0x00270B30
+		// (set) Token: 0x060060E9 RID: 24809 RVA: 0x00272938 File Offset: 0x00270B38
 		public int SourceCol { get; set; }
 
-		// Token: 0x170009F9 RID: 2553
-		// (get) Token: 0x06006CDE RID: 27870 RVA: 0x0004A427 File Offset: 0x00048627
-		// (set) Token: 0x06006CDF RID: 27871 RVA: 0x0004A42F File Offset: 0x0004862F
+		// Token: 0x1700079C RID: 1948
+		// (get) Token: 0x060060EA RID: 24810 RVA: 0x00272941 File Offset: 0x00270B41
+		// (set) Token: 0x060060EB RID: 24811 RVA: 0x00272949 File Offset: 0x00270B49
 		public int[] Lines { get; set; }
 
-		// Token: 0x06006CE0 RID: 27872 RVA: 0x0004A438 File Offset: 0x00048638
+		// Token: 0x060060EC RID: 24812 RVA: 0x00272952 File Offset: 0x00270B52
 		public DebuggerAction()
 		{
 			this.TimeStampUTC = DateTime.UtcNow;
 		}
 
-		// Token: 0x170009FA RID: 2554
-		// (get) Token: 0x06006CE1 RID: 27873 RVA: 0x0004A44B File Offset: 0x0004864B
+		// Token: 0x1700079D RID: 1949
+		// (get) Token: 0x060060ED RID: 24813 RVA: 0x00272965 File Offset: 0x00270B65
 		public TimeSpan Age
 		{
 			get
@@ -51,7 +51,7 @@ namespace MoonSharp.Interpreter.Debugging
 			}
 		}
 
-		// Token: 0x06006CE2 RID: 27874 RVA: 0x0029973C File Offset: 0x0029793C
+		// Token: 0x060060EE RID: 24814 RVA: 0x00272978 File Offset: 0x00270B78
 		public override string ToString()
 		{
 			if (this.Action == DebuggerAction.ActionType.ToggleBreakpoint || this.Action == DebuggerAction.ActionType.SetBreakpoint || this.Action == DebuggerAction.ActionType.ClearBreakpoint)
@@ -67,36 +67,36 @@ namespace MoonSharp.Interpreter.Debugging
 			return this.Action.ToString();
 		}
 
-		// Token: 0x0200117A RID: 4474
+		// Token: 0x0200168A RID: 5770
 		public enum ActionType
 		{
-			// Token: 0x040061EB RID: 25067
+			// Token: 0x040072EA RID: 29418
 			ByteCodeStepIn,
-			// Token: 0x040061EC RID: 25068
+			// Token: 0x040072EB RID: 29419
 			ByteCodeStepOver,
-			// Token: 0x040061ED RID: 25069
+			// Token: 0x040072EC RID: 29420
 			ByteCodeStepOut,
-			// Token: 0x040061EE RID: 25070
+			// Token: 0x040072ED RID: 29421
 			StepIn,
-			// Token: 0x040061EF RID: 25071
+			// Token: 0x040072EE RID: 29422
 			StepOver,
-			// Token: 0x040061F0 RID: 25072
+			// Token: 0x040072EF RID: 29423
 			StepOut,
-			// Token: 0x040061F1 RID: 25073
+			// Token: 0x040072F0 RID: 29424
 			Run,
-			// Token: 0x040061F2 RID: 25074
+			// Token: 0x040072F1 RID: 29425
 			ToggleBreakpoint,
-			// Token: 0x040061F3 RID: 25075
+			// Token: 0x040072F2 RID: 29426
 			SetBreakpoint,
-			// Token: 0x040061F4 RID: 25076
+			// Token: 0x040072F3 RID: 29427
 			ClearBreakpoint,
-			// Token: 0x040061F5 RID: 25077
+			// Token: 0x040072F4 RID: 29428
 			ResetBreakpoints,
-			// Token: 0x040061F6 RID: 25078
+			// Token: 0x040072F5 RID: 29429
 			Refresh,
-			// Token: 0x040061F7 RID: 25079
+			// Token: 0x040072F6 RID: 29430
 			HardRefresh,
-			// Token: 0x040061F8 RID: 25080
+			// Token: 0x040072F7 RID: 29431
 			None
 		}
 	}

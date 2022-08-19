@@ -5,10 +5,10 @@ using UnityEngine.UI;
 
 namespace JiaoYi
 {
-	// Token: 0x02000A94 RID: 2708
+	// Token: 0x02000732 RID: 1842
 	public class NpcLove : MonoBehaviour
 	{
-		// Token: 0x0600456F RID: 17775 RVA: 0x001DBAEC File Offset: 0x001D9CEC
+		// Token: 0x06003AB1 RID: 15025 RVA: 0x00193E28 File Offset: 0x00192028
 		public void InitNpcLove(int npcId)
 		{
 			if (!jsonData.instance.AvatarBackpackJsonData[string.Concat(npcId)].HasField("XinQuType"))
@@ -35,7 +35,7 @@ namespace JiaoYi
 			this.Temp.Inst(this.Parent).SetActive(true);
 		}
 
-		// Token: 0x06004570 RID: 17776 RVA: 0x000319A3 File Offset: 0x0002FBA3
+		// Token: 0x06003AB2 RID: 15026 RVA: 0x00193F90 File Offset: 0x00192190
 		public void ShowLove()
 		{
 			if (!this._isInit)
@@ -46,22 +46,22 @@ namespace JiaoYi
 			this.Panel.SetActive(true);
 		}
 
-		// Token: 0x06004571 RID: 17777 RVA: 0x000319D0 File Offset: 0x0002FBD0
+		// Token: 0x06003AB3 RID: 15027 RVA: 0x00193FBD File Offset: 0x001921BD
 		public void HideLove()
 		{
 			this.Panel.SetActive(false);
 		}
 
-		// Token: 0x04003D9B RID: 15771
+		// Token: 0x040032E2 RID: 13026
 		public GameObject Temp;
 
-		// Token: 0x04003D9C RID: 15772
+		// Token: 0x040032E3 RID: 13027
 		public Transform Parent;
 
-		// Token: 0x04003D9D RID: 15773
+		// Token: 0x040032E4 RID: 13028
 		public GameObject Panel;
 
-		// Token: 0x04003D9E RID: 15774
+		// Token: 0x040032E5 RID: 13029
 		private bool _isInit;
 	}
 }

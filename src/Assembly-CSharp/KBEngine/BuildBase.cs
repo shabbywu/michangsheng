@@ -4,105 +4,105 @@ using UnityEngine;
 
 namespace KBEngine
 {
-	// Token: 0x02000EAD RID: 3757
+	// Token: 0x02000B36 RID: 2870
 	public abstract class BuildBase : Entity
 	{
-		// Token: 0x06005AA0 RID: 23200 RVA: 0x000042DD File Offset: 0x000024DD
+		// Token: 0x06005076 RID: 20598 RVA: 0x00004095 File Offset: 0x00002295
 		public virtual void onBuildIdChanged(int oldValue)
 		{
 		}
 
-		// Token: 0x06005AA1 RID: 23201 RVA: 0x000042DD File Offset: 0x000024DD
+		// Token: 0x06005077 RID: 20599 RVA: 0x00004095 File Offset: 0x00002295
 		public virtual void onDialogIDChanged(uint oldValue)
 		{
 		}
 
-		// Token: 0x06005AA2 RID: 23202 RVA: 0x000042DD File Offset: 0x000024DD
+		// Token: 0x06005078 RID: 20600 RVA: 0x00004095 File Offset: 0x00002295
 		public virtual void onEntityNOChanged(uint oldValue)
 		{
 		}
 
-		// Token: 0x06005AA3 RID: 23203 RVA: 0x000042DD File Offset: 0x000024DD
+		// Token: 0x06005079 RID: 20601 RVA: 0x00004095 File Offset: 0x00002295
 		public virtual void onModelIDChanged(uint oldValue)
 		{
 		}
 
-		// Token: 0x06005AA4 RID: 23204 RVA: 0x000042DD File Offset: 0x000024DD
+		// Token: 0x0600507A RID: 20602 RVA: 0x00004095 File Offset: 0x00002295
 		public virtual void onModelScaleChanged(byte oldValue)
 		{
 		}
 
-		// Token: 0x06005AA5 RID: 23205 RVA: 0x000042DD File Offset: 0x000024DD
+		// Token: 0x0600507B RID: 20603 RVA: 0x00004095 File Offset: 0x00002295
 		public virtual void onNameChanged(string oldValue)
 		{
 		}
 
-		// Token: 0x06005AA6 RID: 23206 RVA: 0x000042DD File Offset: 0x000024DD
+		// Token: 0x0600507C RID: 20604 RVA: 0x00004095 File Offset: 0x00002295
 		public virtual void onUidChanged(uint oldValue)
 		{
 		}
 
-		// Token: 0x06005AA7 RID: 23207 RVA: 0x000042DD File Offset: 0x000024DD
+		// Token: 0x0600507D RID: 20605 RVA: 0x00004095 File Offset: 0x00002295
 		public virtual void onUtypeChanged(uint oldValue)
 		{
 		}
 
-		// Token: 0x06005AA8 RID: 23208 RVA: 0x0003FF1C File Offset: 0x0003E11C
+		// Token: 0x0600507E RID: 20606 RVA: 0x0021FA04 File Offset: 0x0021DC04
 		public BuildBase()
 		{
 		}
 
-		// Token: 0x06005AA9 RID: 23209 RVA: 0x000042DD File Offset: 0x000024DD
+		// Token: 0x0600507F RID: 20607 RVA: 0x00004095 File Offset: 0x00002295
 		public override void onComponentsEnterworld()
 		{
 		}
 
-		// Token: 0x06005AAA RID: 23210 RVA: 0x000042DD File Offset: 0x000024DD
+		// Token: 0x06005080 RID: 20608 RVA: 0x00004095 File Offset: 0x00002295
 		public override void onComponentsLeaveworld()
 		{
 		}
 
-		// Token: 0x06005AAB RID: 23211 RVA: 0x0003FF37 File Offset: 0x0003E137
+		// Token: 0x06005081 RID: 20609 RVA: 0x0021FA1F File Offset: 0x0021DC1F
 		public override void onGetBase()
 		{
 			this.baseEntityCall = new EntityBaseEntityCall_BuildBase(this.id, this.className);
 		}
 
-		// Token: 0x06005AAC RID: 23212 RVA: 0x0003FF50 File Offset: 0x0003E150
+		// Token: 0x06005082 RID: 20610 RVA: 0x0021FA38 File Offset: 0x0021DC38
 		public override void onGetCell()
 		{
 			this.cellEntityCall = new EntityCellEntityCall_BuildBase(this.id, this.className);
 		}
 
-		// Token: 0x06005AAD RID: 23213 RVA: 0x0003FF69 File Offset: 0x0003E169
+		// Token: 0x06005083 RID: 20611 RVA: 0x0021FA51 File Offset: 0x0021DC51
 		public override void onLoseCell()
 		{
 			this.cellEntityCall = null;
 		}
 
-		// Token: 0x06005AAE RID: 23214 RVA: 0x0003FF72 File Offset: 0x0003E172
+		// Token: 0x06005084 RID: 20612 RVA: 0x0021FA5A File Offset: 0x0021DC5A
 		public override EntityCall getBaseEntityCall()
 		{
 			return this.baseEntityCall;
 		}
 
-		// Token: 0x06005AAF RID: 23215 RVA: 0x0003FF7A File Offset: 0x0003E17A
+		// Token: 0x06005085 RID: 20613 RVA: 0x0021FA62 File Offset: 0x0021DC62
 		public override EntityCall getCellEntityCall()
 		{
 			return this.cellEntityCall;
 		}
 
-		// Token: 0x06005AB0 RID: 23216 RVA: 0x000042DD File Offset: 0x000024DD
+		// Token: 0x06005086 RID: 20614 RVA: 0x00004095 File Offset: 0x00002295
 		public override void attachComponents()
 		{
 		}
 
-		// Token: 0x06005AB1 RID: 23217 RVA: 0x000042DD File Offset: 0x000024DD
+		// Token: 0x06005087 RID: 20615 RVA: 0x00004095 File Offset: 0x00002295
 		public override void detachComponents()
 		{
 		}
 
-		// Token: 0x06005AB2 RID: 23218 RVA: 0x0024F4DC File Offset: 0x0024D6DC
+		// Token: 0x06005088 RID: 20616 RVA: 0x0021FA6C File Offset: 0x0021DC6C
 		public override void onRemoteMethodCall(MemoryStream stream)
 		{
 			ScriptModule scriptModule = EntityDef.moduledefs["Build"];
@@ -133,7 +133,7 @@ namespace KBEngine
 			ushort properUtype = scriptModule.idpropertys[num].properUtype;
 		}
 
-		// Token: 0x06005AB3 RID: 23219 RVA: 0x0024F55C File Offset: 0x0024D75C
+		// Token: 0x06005089 RID: 20617 RVA: 0x0021FAEC File Offset: 0x0021DCEC
 		public override void onUpdatePropertys(MemoryStream stream)
 		{
 			ScriptModule scriptModule = EntityDef.moduledefs["Build"];
@@ -351,7 +351,7 @@ namespace KBEngine
 			}
 		}
 
-		// Token: 0x06005AB4 RID: 23220 RVA: 0x0024F93C File Offset: 0x0024DB3C
+		// Token: 0x0600508A RID: 20618 RVA: 0x0021FECC File Offset: 0x0021E0CC
 		public override void callPropertysSetMethods()
 		{
 			Dictionary<ushort, Property> idpropertys = EntityDef.moduledefs["Build"].idpropertys;
@@ -488,34 +488,34 @@ namespace KBEngine
 			}
 		}
 
-		// Token: 0x040059EC RID: 23020
+		// Token: 0x04004F67 RID: 20327
 		public EntityBaseEntityCall_BuildBase baseEntityCall;
 
-		// Token: 0x040059ED RID: 23021
+		// Token: 0x04004F68 RID: 20328
 		public EntityCellEntityCall_BuildBase cellEntityCall;
 
-		// Token: 0x040059EE RID: 23022
+		// Token: 0x04004F69 RID: 20329
 		public int BuildId;
 
-		// Token: 0x040059EF RID: 23023
+		// Token: 0x04004F6A RID: 20330
 		public uint dialogID;
 
-		// Token: 0x040059F0 RID: 23024
+		// Token: 0x04004F6B RID: 20331
 		public uint entityNO;
 
-		// Token: 0x040059F1 RID: 23025
+		// Token: 0x04004F6C RID: 20332
 		public uint modelID;
 
-		// Token: 0x040059F2 RID: 23026
+		// Token: 0x04004F6D RID: 20333
 		public byte modelScale = 30;
 
-		// Token: 0x040059F3 RID: 23027
+		// Token: 0x04004F6E RID: 20334
 		public string name = "";
 
-		// Token: 0x040059F4 RID: 23028
+		// Token: 0x04004F6F RID: 20335
 		public uint uid;
 
-		// Token: 0x040059F5 RID: 23029
+		// Token: 0x04004F70 RID: 20336
 		public uint utype;
 	}
 }

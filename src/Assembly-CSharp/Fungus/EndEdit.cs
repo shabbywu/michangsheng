@@ -5,24 +5,24 @@ using UnityEngine.UI;
 
 namespace Fungus
 {
-	// Token: 0x02001319 RID: 4889
+	// Token: 0x02000E9B RID: 3739
 	[EventHandlerInfo("UI", "End Edit", "The block will execute when the user finishes editing the text in the input field.")]
 	[AddComponentMenu("")]
 	public class EndEdit : EventHandler
 	{
-		// Token: 0x0600772F RID: 30511 RVA: 0x00051366 File Offset: 0x0004F566
+		// Token: 0x060069FF RID: 27135 RVA: 0x00292727 File Offset: 0x00290927
 		protected virtual void Start()
 		{
 			this.targetInputField.onEndEdit.AddListener(new UnityAction<string>(this.OnEndEdit));
 		}
 
-		// Token: 0x06007730 RID: 30512 RVA: 0x00050FED File Offset: 0x0004F1ED
+		// Token: 0x06006A00 RID: 27136 RVA: 0x002921CC File Offset: 0x002903CC
 		protected virtual void OnEndEdit(string text)
 		{
 			this.ExecuteBlock();
 		}
 
-		// Token: 0x06007731 RID: 30513 RVA: 0x00051385 File Offset: 0x0004F585
+		// Token: 0x06006A01 RID: 27137 RVA: 0x00292746 File Offset: 0x00290946
 		public override string GetSummary()
 		{
 			if (this.targetInputField != null)
@@ -32,7 +32,7 @@ namespace Fungus
 			return "None";
 		}
 
-		// Token: 0x040067E6 RID: 26598
+		// Token: 0x040059D0 RID: 22992
 		[Tooltip("The UI Input Field that the user can enter text into")]
 		[SerializeField]
 		protected InputField targetInputField;

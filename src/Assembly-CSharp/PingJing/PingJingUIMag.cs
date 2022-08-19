@@ -6,10 +6,10 @@ using UnityEngine.UI;
 
 namespace PingJing
 {
-	// Token: 0x02000A7A RID: 2682
+	// Token: 0x02000723 RID: 1827
 	public class PingJingUIMag : MonoBehaviour
 	{
-		// Token: 0x060044F2 RID: 17650 RVA: 0x001D7EE8 File Offset: 0x001D60E8
+		// Token: 0x06003A4F RID: 14927 RVA: 0x0019088C File Offset: 0x0018EA8C
 		public void Show()
 		{
 			base.transform.SetParent(NewUICanvas.Inst.gameObject.transform);
@@ -22,14 +22,14 @@ namespace PingJing
 			ShortcutExtensions.DOScale(this.Panel, Vector3.one, 0.5f);
 		}
 
-		// Token: 0x060044F3 RID: 17651 RVA: 0x00031551 File Offset: 0x0002F751
+		// Token: 0x06003A50 RID: 14928 RVA: 0x00190951 File Offset: 0x0018EB51
 		public void Close()
 		{
 			Tools.canClickFlag = true;
 			Object.Destroy(base.gameObject);
 		}
 
-		// Token: 0x060044F4 RID: 17652 RVA: 0x00031564 File Offset: 0x0002F764
+		// Token: 0x06003A51 RID: 14929 RVA: 0x00190964 File Offset: 0x0018EB64
 		private void Update()
 		{
 			if (Input.GetKeyUp(27))
@@ -38,11 +38,11 @@ namespace PingJing
 			}
 		}
 
-		// Token: 0x04003D18 RID: 15640
+		// Token: 0x0400327D RID: 12925
 		[SerializeField]
 		private Text Desc;
 
-		// Token: 0x04003D19 RID: 15641
+		// Token: 0x0400327E RID: 12926
 		[SerializeField]
 		private Transform Panel;
 	}

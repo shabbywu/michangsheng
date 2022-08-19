@@ -5,46 +5,46 @@ using MoonSharp.Interpreter.Compatibility;
 
 namespace MoonSharp.Interpreter.Interop.BasicDescriptors
 {
-	// Token: 0x02001153 RID: 4435
+	// Token: 0x02000D45 RID: 3397
 	public sealed class ParameterDescriptor : IWireableDescriptor
 	{
-		// Token: 0x170009D0 RID: 2512
-		// (get) Token: 0x06006B9E RID: 27550 RVA: 0x000494A6 File Offset: 0x000476A6
-		// (set) Token: 0x06006B9F RID: 27551 RVA: 0x000494AE File Offset: 0x000476AE
+		// Token: 0x17000773 RID: 1907
+		// (get) Token: 0x06005FBA RID: 24506 RVA: 0x0026C9F0 File Offset: 0x0026ABF0
+		// (set) Token: 0x06005FBB RID: 24507 RVA: 0x0026C9F8 File Offset: 0x0026ABF8
 		public string Name { get; private set; }
 
-		// Token: 0x170009D1 RID: 2513
-		// (get) Token: 0x06006BA0 RID: 27552 RVA: 0x000494B7 File Offset: 0x000476B7
-		// (set) Token: 0x06006BA1 RID: 27553 RVA: 0x000494BF File Offset: 0x000476BF
+		// Token: 0x17000774 RID: 1908
+		// (get) Token: 0x06005FBC RID: 24508 RVA: 0x0026CA01 File Offset: 0x0026AC01
+		// (set) Token: 0x06005FBD RID: 24509 RVA: 0x0026CA09 File Offset: 0x0026AC09
 		public Type Type { get; private set; }
 
-		// Token: 0x170009D2 RID: 2514
-		// (get) Token: 0x06006BA2 RID: 27554 RVA: 0x000494C8 File Offset: 0x000476C8
-		// (set) Token: 0x06006BA3 RID: 27555 RVA: 0x000494D0 File Offset: 0x000476D0
+		// Token: 0x17000775 RID: 1909
+		// (get) Token: 0x06005FBE RID: 24510 RVA: 0x0026CA12 File Offset: 0x0026AC12
+		// (set) Token: 0x06005FBF RID: 24511 RVA: 0x0026CA1A File Offset: 0x0026AC1A
 		public bool HasDefaultValue { get; private set; }
 
-		// Token: 0x170009D3 RID: 2515
-		// (get) Token: 0x06006BA4 RID: 27556 RVA: 0x000494D9 File Offset: 0x000476D9
-		// (set) Token: 0x06006BA5 RID: 27557 RVA: 0x000494E1 File Offset: 0x000476E1
+		// Token: 0x17000776 RID: 1910
+		// (get) Token: 0x06005FC0 RID: 24512 RVA: 0x0026CA23 File Offset: 0x0026AC23
+		// (set) Token: 0x06005FC1 RID: 24513 RVA: 0x0026CA2B File Offset: 0x0026AC2B
 		public object DefaultValue { get; private set; }
 
-		// Token: 0x170009D4 RID: 2516
-		// (get) Token: 0x06006BA6 RID: 27558 RVA: 0x000494EA File Offset: 0x000476EA
-		// (set) Token: 0x06006BA7 RID: 27559 RVA: 0x000494F2 File Offset: 0x000476F2
+		// Token: 0x17000777 RID: 1911
+		// (get) Token: 0x06005FC2 RID: 24514 RVA: 0x0026CA34 File Offset: 0x0026AC34
+		// (set) Token: 0x06005FC3 RID: 24515 RVA: 0x0026CA3C File Offset: 0x0026AC3C
 		public bool IsOut { get; private set; }
 
-		// Token: 0x170009D5 RID: 2517
-		// (get) Token: 0x06006BA8 RID: 27560 RVA: 0x000494FB File Offset: 0x000476FB
-		// (set) Token: 0x06006BA9 RID: 27561 RVA: 0x00049503 File Offset: 0x00047703
+		// Token: 0x17000778 RID: 1912
+		// (get) Token: 0x06005FC4 RID: 24516 RVA: 0x0026CA45 File Offset: 0x0026AC45
+		// (set) Token: 0x06005FC5 RID: 24517 RVA: 0x0026CA4D File Offset: 0x0026AC4D
 		public bool IsRef { get; private set; }
 
-		// Token: 0x170009D6 RID: 2518
-		// (get) Token: 0x06006BAA RID: 27562 RVA: 0x0004950C File Offset: 0x0004770C
-		// (set) Token: 0x06006BAB RID: 27563 RVA: 0x00049514 File Offset: 0x00047714
+		// Token: 0x17000779 RID: 1913
+		// (get) Token: 0x06005FC6 RID: 24518 RVA: 0x0026CA56 File Offset: 0x0026AC56
+		// (set) Token: 0x06005FC7 RID: 24519 RVA: 0x0026CA5E File Offset: 0x0026AC5E
 		public bool IsVarArgs { get; private set; }
 
-		// Token: 0x170009D7 RID: 2519
-		// (get) Token: 0x06006BAC RID: 27564 RVA: 0x0004951D File Offset: 0x0004771D
+		// Token: 0x1700077A RID: 1914
+		// (get) Token: 0x06005FC8 RID: 24520 RVA: 0x0026CA67 File Offset: 0x0026AC67
 		public bool HasBeenRestricted
 		{
 			get
@@ -53,8 +53,8 @@ namespace MoonSharp.Interpreter.Interop.BasicDescriptors
 			}
 		}
 
-		// Token: 0x170009D8 RID: 2520
-		// (get) Token: 0x06006BAD RID: 27565 RVA: 0x0004952B File Offset: 0x0004772B
+		// Token: 0x1700077B RID: 1915
+		// (get) Token: 0x06005FC9 RID: 24521 RVA: 0x0026CA75 File Offset: 0x0026AC75
 		public Type OriginalType
 		{
 			get
@@ -63,7 +63,7 @@ namespace MoonSharp.Interpreter.Interop.BasicDescriptors
 			}
 		}
 
-		// Token: 0x06006BAE RID: 27566 RVA: 0x0004953D File Offset: 0x0004773D
+		// Token: 0x06005FCA RID: 24522 RVA: 0x0026CA87 File Offset: 0x0026AC87
 		public ParameterDescriptor(string name, Type type, bool hasDefaultValue = false, object defaultValue = null, bool isOut = false, bool isRef = false, bool isVarArgs = false)
 		{
 			this.Name = name;
@@ -75,7 +75,7 @@ namespace MoonSharp.Interpreter.Interop.BasicDescriptors
 			this.IsVarArgs = isVarArgs;
 		}
 
-		// Token: 0x06006BAF RID: 27567 RVA: 0x00294664 File Offset: 0x00292864
+		// Token: 0x06005FCB RID: 24523 RVA: 0x0026CAC4 File Offset: 0x0026ACC4
 		public ParameterDescriptor(string name, Type type, bool hasDefaultValue, object defaultValue, bool isOut, bool isRef, bool isVarArgs, Type typeRestriction)
 		{
 			this.Name = name;
@@ -91,7 +91,7 @@ namespace MoonSharp.Interpreter.Interop.BasicDescriptors
 			}
 		}
 
-		// Token: 0x06006BB0 RID: 27568 RVA: 0x002946C0 File Offset: 0x002928C0
+		// Token: 0x06005FCC RID: 24524 RVA: 0x0026CB20 File Offset: 0x0026AD20
 		public ParameterDescriptor(ParameterInfo pi)
 		{
 			this.Name = pi.Name;
@@ -103,13 +103,13 @@ namespace MoonSharp.Interpreter.Interop.BasicDescriptors
 			this.IsVarArgs = (pi.ParameterType.IsArray && pi.GetCustomAttributes(typeof(ParamArrayAttribute), true).Any<object>());
 		}
 
-		// Token: 0x06006BB1 RID: 27569 RVA: 0x0004957A File Offset: 0x0004777A
+		// Token: 0x06005FCD RID: 24525 RVA: 0x0026CBB9 File Offset: 0x0026ADB9
 		public override string ToString()
 		{
 			return string.Format("{0} {1}{2}", this.Type.Name, this.Name, this.HasDefaultValue ? " = ..." : "");
 		}
 
-		// Token: 0x06006BB2 RID: 27570 RVA: 0x0029475C File Offset: 0x0029295C
+		// Token: 0x06005FCE RID: 24526 RVA: 0x0026CBEC File Offset: 0x0026ADEC
 		public void RestrictType(Type type)
 		{
 			if (this.IsOut || this.IsRef || this.IsVarArgs)
@@ -124,7 +124,7 @@ namespace MoonSharp.Interpreter.Interop.BasicDescriptors
 			this.Type = type;
 		}
 
-		// Token: 0x06006BB3 RID: 27571 RVA: 0x002947C0 File Offset: 0x002929C0
+		// Token: 0x06005FCF RID: 24527 RVA: 0x0026CC50 File Offset: 0x0026AE50
 		public void PrepareForWiring(Table table)
 		{
 			table.Set("name", DynValue.NewString(this.Name));
@@ -151,7 +151,7 @@ namespace MoonSharp.Interpreter.Interop.BasicDescriptors
 			table.Set("restricted", DynValue.NewBoolean(this.HasBeenRestricted));
 		}
 
-		// Token: 0x04006121 RID: 24865
+		// Token: 0x040054A8 RID: 21672
 		private Type m_OriginalType;
 	}
 }

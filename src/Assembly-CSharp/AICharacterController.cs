@@ -1,17 +1,17 @@
 ﻿using System;
 using UnityEngine;
 
-// Token: 0x02000165 RID: 357
+// Token: 0x020000EE RID: 238
 [RequireComponent(typeof(CharacterSystem))]
 public class AICharacterController : MonoBehaviour
 {
-	// Token: 0x06000C6A RID: 3178 RVA: 0x0000E5B6 File Offset: 0x0000C7B6
+	// Token: 0x06000B7B RID: 2939 RVA: 0x00045CB3 File Offset: 0x00043EB3
 	private void Start()
 	{
 		this.character = base.gameObject.GetComponent<CharacterSystem>();
 	}
 
-	// Token: 0x06000C6B RID: 3179 RVA: 0x00097794 File Offset: 0x00095994
+	// Token: 0x06000B7C RID: 2940 RVA: 0x00045CC8 File Offset: 0x00043EC8
 	private void Update()
 	{
 		Vector3 dir = Vector3.zero;
@@ -50,18 +50,18 @@ public class AICharacterController : MonoBehaviour
 		}
 	}
 
-	// Token: 0x0400098D RID: 2445
+	// Token: 0x040007B2 RID: 1970
 	public GameObject ObjectTarget;
 
-	// Token: 0x0400098E RID: 2446
+	// Token: 0x040007B3 RID: 1971
 	public string TargetTag = "Player";
 
-	// Token: 0x0400098F RID: 2447
+	// Token: 0x040007B4 RID: 1972
 	private CharacterSystem character;
 
-	// Token: 0x04000990 RID: 2448
+	// Token: 0x040007B5 RID: 1973
 	private int aiTime;
 
-	// Token: 0x04000991 RID: 2449
+	// Token: 0x040007B6 RID: 1974
 	private int aiState;
 }

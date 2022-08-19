@@ -2,10 +2,10 @@
 
 namespace KBEngine
 {
-	// Token: 0x02000F5F RID: 3935
+	// Token: 0x02000BDB RID: 3035
 	public abstract class MessageReaderBase
 	{
-		// Token: 0x06005EAE RID: 24238
+		// Token: 0x06005470 RID: 21616
 		public abstract void process(byte[] datas, uint offset, uint length);
 	}
 }

@@ -2,7 +2,7 @@
 
 namespace UltimateSurvival
 {
-	// Token: 0x02000874 RID: 2164
+	// Token: 0x020005B6 RID: 1462
 	public class AnimalVitals : EntityVitals
 	{
 	}

@@ -1,20 +1,20 @@
 ﻿using System;
 using UnityEngine;
 
-// Token: 0x0200062E RID: 1582
+// Token: 0x02000471 RID: 1137
 public class showYaoCaiMag : MonoBehaviour
 {
-	// Token: 0x0600274A RID: 10058 RVA: 0x000042DD File Offset: 0x000024DD
+	// Token: 0x06002391 RID: 9105 RVA: 0x00004095 File Offset: 0x00002295
 	private void Awake()
 	{
 	}
 
-	// Token: 0x0600274B RID: 10059 RVA: 0x000042DD File Offset: 0x000024DD
+	// Token: 0x06002392 RID: 9106 RVA: 0x00004095 File Offset: 0x00002295
 	private void Start()
 	{
 	}
 
-	// Token: 0x0600274C RID: 10060 RVA: 0x00133804 File Offset: 0x00131A04
+	// Token: 0x06002393 RID: 9107 RVA: 0x000F3790 File Offset: 0x000F1990
 	public void open()
 	{
 		this.AddItems();
@@ -29,7 +29,7 @@ public class showYaoCaiMag : MonoBehaviour
 		}
 	}
 
-	// Token: 0x0600274D RID: 10061 RVA: 0x00133890 File Offset: 0x00131A90
+	// Token: 0x06002394 RID: 9108 RVA: 0x000F381C File Offset: 0x000F1A1C
 	public void AddItems()
 	{
 		foreach (JSONObject jsonobject in Tools.instance.getPlayer().YaoCaiIsGet.list)
@@ -53,7 +53,7 @@ public class showYaoCaiMag : MonoBehaviour
 		}
 	}
 
-	// Token: 0x0600274E RID: 10062 RVA: 0x001339D0 File Offset: 0x00131BD0
+	// Token: 0x06002395 RID: 9109 RVA: 0x000F395C File Offset: 0x000F1B5C
 	public void setShowType()
 	{
 		int inputID = this.getInputID(this.mList.value);
@@ -83,7 +83,7 @@ public class showYaoCaiMag : MonoBehaviour
 		}
 	}
 
-	// Token: 0x0600274F RID: 10063 RVA: 0x00133AB8 File Offset: 0x00131CB8
+	// Token: 0x06002396 RID: 9110 RVA: 0x000F3A44 File Offset: 0x000F1C44
 	public int getInputID(string name)
 	{
 		int num = 0;
@@ -98,20 +98,20 @@ public class showYaoCaiMag : MonoBehaviour
 		return num;
 	}
 
-	// Token: 0x06002750 RID: 10064 RVA: 0x000042DD File Offset: 0x000024DD
+	// Token: 0x06002397 RID: 9111 RVA: 0x00004095 File Offset: 0x00002295
 	private void Update()
 	{
 	}
 
-	// Token: 0x04002157 RID: 8535
+	// Token: 0x04001C7F RID: 7295
 	public GameObject InstantObj;
 
-	// Token: 0x04002158 RID: 8536
+	// Token: 0x04001C80 RID: 7296
 	public UIPopupList mList;
 
-	// Token: 0x04002159 RID: 8537
+	// Token: 0x04001C81 RID: 7297
 	public GameObject content;
 
-	// Token: 0x0400215A RID: 8538
+	// Token: 0x04001C82 RID: 7298
 	public UIToggle caoYaoUIToggle;
 }

@@ -9,11 +9,11 @@ using UnityEngine.UI;
 
 namespace Tab
 {
-	// Token: 0x02000A33 RID: 2611
+	// Token: 0x020006F2 RID: 1778
 	[Serializable]
 	public class WuDaoSlot : UIBase
 	{
-		// Token: 0x0600438D RID: 17293 RVA: 0x001CDA88 File Offset: 0x001CBC88
+		// Token: 0x06003922 RID: 14626 RVA: 0x001860E4 File Offset: 0x001842E4
 		public WuDaoSlot(GameObject go, int id)
 		{
 			this._go = go;
@@ -30,13 +30,13 @@ namespace Tab
 			this._black = base.Get("Black", true);
 			this._white = this._go.GetComponent<Image>();
 			this.WuDaoJson = jsonData.instance.WuDaoJson[this.Id.ToString()];
-			this._go.AddComponent<TabListener>().mouseUpEvent.AddListener(delegate()
+			this._go.AddComponent<UIListener>().mouseUpEvent.AddListener(delegate()
 			{
 				SingletonMono<TabUIMag>.Instance.WuDaoPanel.WuDaoTooltip.Show(this._icon.sprite, this.Id, new UnityAction(this.Study));
 			});
 		}
 
-		// Token: 0x0600438E RID: 17294 RVA: 0x001CDBC8 File Offset: 0x001CBDC8
+		// Token: 0x06003923 RID: 14627 RVA: 0x00186224 File Offset: 0x00184424
 		public void SetState(int state)
 		{
 			this.State = state;
@@ -74,7 +74,7 @@ namespace Tab
 			}
 		}
 
-		// Token: 0x0600438F RID: 17295 RVA: 0x001CDD04 File Offset: 0x001CBF04
+		// Token: 0x06003924 RID: 14628 RVA: 0x00186360 File Offset: 0x00184560
 		private void Study()
 		{
 			Avatar player = Tools.instance.getPlayer();
@@ -116,7 +116,7 @@ namespace Tab
 			SingletonMono<TabUIMag>.Instance.WuDaoPanel.WuDaoTooltip.Close();
 		}
 
-		// Token: 0x06004390 RID: 17296 RVA: 0x001CDE48 File Offset: 0x001CC048
+		// Token: 0x06003925 RID: 14629 RVA: 0x001864A4 File Offset: 0x001846A4
 		public bool CanStudyWuDao()
 		{
 			JSONObject jsonobject = jsonData.instance.WuDaoJson[this.Id.ToString()];
@@ -135,7 +135,7 @@ namespace Tab
 			return !flag;
 		}
 
-		// Token: 0x06004391 RID: 17297 RVA: 0x001CDEE4 File Offset: 0x001CC0E4
+		// Token: 0x06003926 RID: 14630 RVA: 0x00186540 File Offset: 0x00184740
 		public bool CanEx(int WuDaoType)
 		{
 			int wuDaoLevelByType = Tools.instance.getPlayer().wuDaoMag.getWuDaoLevelByType(WuDaoType);
@@ -143,7 +143,7 @@ namespace Tab
 			return wuDaoLevelByType >= i;
 		}
 
-		// Token: 0x06004392 RID: 17298 RVA: 0x001CDF24 File Offset: 0x001CC124
+		// Token: 0x06003927 RID: 14631 RVA: 0x00186580 File Offset: 0x00184780
 		public bool MoreCheck()
 		{
 			foreach (JSONObject jsonobject in jsonData.instance.WuDaoJson[this.Id.ToString()]["Type"].list)
@@ -156,7 +156,7 @@ namespace Tab
 			return false;
 		}
 
-		// Token: 0x06004393 RID: 17299 RVA: 0x001CDFA8 File Offset: 0x001CC1A8
+		// Token: 0x06003928 RID: 14632 RVA: 0x00186604 File Offset: 0x00184804
 		public bool CanLastWuDao(int wudaoType)
 		{
 			Avatar player = Tools.instance.getPlayer();
@@ -190,34 +190,34 @@ namespace Tab
 			return true;
 		}
 
-		// Token: 0x04003B8F RID: 15247
+		// Token: 0x0400312A RID: 12586
 		private GameObject _name;
 
-		// Token: 0x04003B90 RID: 15248
+		// Token: 0x0400312B RID: 12587
 		private GameObject _cost;
 
-		// Token: 0x04003B91 RID: 15249
+		// Token: 0x0400312C RID: 12588
 		private GameObject _black;
 
-		// Token: 0x04003B92 RID: 15250
+		// Token: 0x0400312D RID: 12589
 		private Image _icon;
 
-		// Token: 0x04003B93 RID: 15251
+		// Token: 0x0400312E RID: 12590
 		private Image _white;
 
-		// Token: 0x04003B94 RID: 15252
+		// Token: 0x0400312F RID: 12591
 		private UIEffect _iconEffect;
 
-		// Token: 0x04003B95 RID: 15253
+		// Token: 0x04003130 RID: 12592
 		public int Id;
 
-		// Token: 0x04003B96 RID: 15254
+		// Token: 0x04003131 RID: 12593
 		public int State;
 
-		// Token: 0x04003B97 RID: 15255
+		// Token: 0x04003132 RID: 12594
 		public int Cost;
 
-		// Token: 0x04003B98 RID: 15256
+		// Token: 0x04003133 RID: 12595
 		public JSONObject WuDaoJson;
 	}
 }

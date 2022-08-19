@@ -2,20 +2,20 @@
 
 namespace MoonSharp.VsCodeDebugger.SDK
 {
-	// Token: 0x020011DA RID: 4570
+	// Token: 0x02000DAE RID: 3502
 	public class Event : ProtocolMessage
 	{
-		// Token: 0x17000A4F RID: 2639
-		// (get) Token: 0x06006FCC RID: 28620 RVA: 0x0004BFC0 File Offset: 0x0004A1C0
-		// (set) Token: 0x06006FCD RID: 28621 RVA: 0x0004BFC8 File Offset: 0x0004A1C8
+		// Token: 0x170007EE RID: 2030
+		// (get) Token: 0x06006386 RID: 25478 RVA: 0x0027B072 File Offset: 0x00279272
+		// (set) Token: 0x06006387 RID: 25479 RVA: 0x0027B07A File Offset: 0x0027927A
 		public string @event { get; private set; }
 
-		// Token: 0x17000A50 RID: 2640
-		// (get) Token: 0x06006FCE RID: 28622 RVA: 0x0004BFD1 File Offset: 0x0004A1D1
-		// (set) Token: 0x06006FCF RID: 28623 RVA: 0x0004BFD9 File Offset: 0x0004A1D9
+		// Token: 0x170007EF RID: 2031
+		// (get) Token: 0x06006388 RID: 25480 RVA: 0x0027B083 File Offset: 0x00279283
+		// (set) Token: 0x06006389 RID: 25481 RVA: 0x0027B08B File Offset: 0x0027928B
 		public object body { get; private set; }
 
-		// Token: 0x06006FD0 RID: 28624 RVA: 0x0004BFE2 File Offset: 0x0004A1E2
+		// Token: 0x0600638A RID: 25482 RVA: 0x0027B094 File Offset: 0x00279294
 		public Event(string type, object bdy = null) : base("event")
 		{
 			this.@event = type;

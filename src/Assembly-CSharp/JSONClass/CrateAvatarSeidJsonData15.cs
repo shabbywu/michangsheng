@@ -3,10 +3,10 @@ using System.Collections.Generic;
 
 namespace JSONClass
 {
-	// Token: 0x02000BA5 RID: 2981
+	// Token: 0x0200080F RID: 2063
 	public class CrateAvatarSeidJsonData15 : IJSONClass
 	{
-		// Token: 0x060049FC RID: 18940 RVA: 0x001F5850 File Offset: 0x001F3A50
+		// Token: 0x06003E4E RID: 15950 RVA: 0x001AA0E4 File Offset: 0x001A82E4
 		public static void InitDataDict()
 		{
 			foreach (JSONObject jsonobject in jsonData.instance.CrateAvatarSeidJsonData[15].list)
@@ -40,30 +40,30 @@ namespace JSONClass
 			}
 		}
 
-		// Token: 0x060049FD RID: 18941 RVA: 0x000042DD File Offset: 0x000024DD
+		// Token: 0x06003E4F RID: 15951 RVA: 0x00004095 File Offset: 0x00002295
 		private static void OnInitFinish()
 		{
 		}
 
-		// Token: 0x04004506 RID: 17670
+		// Token: 0x0400397E RID: 14718
 		public static int SEIDID = 15;
 
-		// Token: 0x04004507 RID: 17671
+		// Token: 0x0400397F RID: 14719
 		public static Dictionary<int, CrateAvatarSeidJsonData15> DataDict = new Dictionary<int, CrateAvatarSeidJsonData15>();
 
-		// Token: 0x04004508 RID: 17672
+		// Token: 0x04003980 RID: 14720
 		public static List<CrateAvatarSeidJsonData15> DataList = new List<CrateAvatarSeidJsonData15>();
 
-		// Token: 0x04004509 RID: 17673
+		// Token: 0x04003981 RID: 14721
 		public static Action OnInitFinishAction = new Action(CrateAvatarSeidJsonData15.OnInitFinish);
 
-		// Token: 0x0400450A RID: 17674
+		// Token: 0x04003982 RID: 14722
 		public int id;
 
-		// Token: 0x0400450B RID: 17675
+		// Token: 0x04003983 RID: 14723
 		public int value1;
 
-		// Token: 0x0400450C RID: 17676
+		// Token: 0x04003984 RID: 14724
 		public int value2;
 	}
 }

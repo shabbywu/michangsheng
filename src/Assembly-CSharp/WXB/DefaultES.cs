@@ -4,10 +4,10 @@ using System.Text;
 
 namespace WXB
 {
-	// Token: 0x020009A1 RID: 2465
+	// Token: 0x0200068F RID: 1679
 	internal class DefaultES : ElementSegment
 	{
-		// Token: 0x06003EE0 RID: 16096 RVA: 0x001B83E8 File Offset: 0x001B65E8
+		// Token: 0x06003525 RID: 13605 RVA: 0x001700BC File Offset: 0x0016E2BC
 		private static DefaultES.CharType GetCharType(char c)
 		{
 			if (c <= ';')
@@ -44,7 +44,7 @@ namespace WXB
 			return DefaultES.CharType.English;
 		}
 
-		// Token: 0x06003EE1 RID: 16097 RVA: 0x001B8468 File Offset: 0x001B6668
+		// Token: 0x06003526 RID: 13606 RVA: 0x0017013C File Offset: 0x0016E33C
 		private static NodeBase.Element Create(StringBuilder sb, Func<char, float> fontwidth)
 		{
 			if (sb.Length == 1)
@@ -63,7 +63,7 @@ namespace WXB
 			return result2;
 		}
 
-		// Token: 0x06003EE2 RID: 16098 RVA: 0x001B84D0 File Offset: 0x001B66D0
+		// Token: 0x06003527 RID: 13607 RVA: 0x001701A4 File Offset: 0x0016E3A4
 		public void Segment(string text, List<NodeBase.Element> widths, Func<char, float> fontwidth)
 		{
 			using (PD<StringBuilder> sb = Pool.GetSB())
@@ -110,16 +110,16 @@ namespace WXB
 			}
 		}
 
-		// Token: 0x020009A2 RID: 2466
+		// Token: 0x020014FC RID: 5372
 		private enum CharType
 		{
-			// Token: 0x0400389F RID: 14495
+			// Token: 0x04006DF6 RID: 28150
 			Null,
-			// Token: 0x040038A0 RID: 14496
+			// Token: 0x04006DF7 RID: 28151
 			English,
-			// Token: 0x040038A1 RID: 14497
+			// Token: 0x04006DF8 RID: 28152
 			Chinese,
-			// Token: 0x040038A2 RID: 14498
+			// Token: 0x04006DF9 RID: 28153
 			Punctuation
 		}
 	}

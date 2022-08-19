@@ -1,9 +1,10 @@
 ﻿using System;
+using UnityEngine;
 
-// Token: 0x0200032C RID: 812
+// Token: 0x02000214 RID: 532
 public class NPCNoteBook
 {
-	// Token: 0x060017E6 RID: 6118 RVA: 0x000D102C File Offset: 0x000CF22C
+	// Token: 0x06001535 RID: 5429 RVA: 0x00088A9C File Offset: 0x00086C9C
 	public int GetEventCount(int npcId, int eventId)
 	{
 		JSONObject jsonobject = jsonData.instance.AvatarJsonData[npcId.ToString()];
@@ -14,7 +15,7 @@ public class NPCNoteBook
 		return jsonobject["NoteBook"][eventId.ToString()].Count;
 	}
 
-	// Token: 0x060017E7 RID: 6119 RVA: 0x000150F1 File Offset: 0x000132F1
+	// Token: 0x06001536 RID: 5430 RVA: 0x00088AF7 File Offset: 0x00086CF7
 	public void CreateEventID(JSONObject npc, int id)
 	{
 		if (!npc["NoteBook"].HasField(id.ToString()))
@@ -23,7 +24,7 @@ public class NPCNoteBook
 		}
 	}
 
-	// Token: 0x060017E8 RID: 6120 RVA: 0x000D1088 File Offset: 0x000CF288
+	// Token: 0x06001537 RID: 5431 RVA: 0x00088B30 File Offset: 0x00086D30
 	public void NoteUseDanYao(int npcId, int eventId, int itemId, int useNum)
 	{
 		JSONObject jsonobject = jsonData.instance.AvatarJsonData[npcId.ToString()];
@@ -35,7 +36,7 @@ public class NPCNoteBook
 		jsonobject["NoteBook"][eventId.ToString()].Add(jsonobject2);
 	}
 
-	// Token: 0x060017E9 RID: 6121 RVA: 0x000D1108 File Offset: 0x000CF308
+	// Token: 0x06001538 RID: 5432 RVA: 0x00088BB0 File Offset: 0x00086DB0
 	public void NoteSmallTuPo(int npcId)
 	{
 		JSONObject jsonobject = jsonData.instance.AvatarJsonData[npcId.ToString()];
@@ -47,7 +48,7 @@ public class NPCNoteBook
 		jsonobject["NoteBook"][21.ToString()].Add(jsonobject2);
 	}
 
-	// Token: 0x060017EA RID: 6122 RVA: 0x000D1190 File Offset: 0x000CF390
+	// Token: 0x06001539 RID: 5433 RVA: 0x00088C38 File Offset: 0x00086E38
 	public void NoteLianDan(int npcId, int itemId, int quality, int num)
 	{
 		JSONObject jsonobject = jsonData.instance.AvatarJsonData[npcId.ToString()];
@@ -59,7 +60,7 @@ public class NPCNoteBook
 		jsonobject["NoteBook"][31.ToString()].Add(jsonobject2);
 	}
 
-	// Token: 0x060017EB RID: 6123 RVA: 0x000D1214 File Offset: 0x000CF414
+	// Token: 0x0600153A RID: 5434 RVA: 0x00088CBC File Offset: 0x00086EBC
 	public void NoteLianQi(int npcId, int quality, int equipType, string name)
 	{
 		JSONObject jsonobject = jsonData.instance.AvatarJsonData[npcId.ToString()];
@@ -72,7 +73,7 @@ public class NPCNoteBook
 		jsonobject["NoteBook"][32.ToString()].Add(jsonobject2);
 	}
 
-	// Token: 0x060017EC RID: 6124 RVA: 0x000D12A4 File Offset: 0x000CF4A4
+	// Token: 0x0600153B RID: 5435 RVA: 0x00088D4C File Offset: 0x00086F4C
 	public void NoteQiYu(int npcId, int qiYuId, int itemId = -1, int itemNum = -1)
 	{
 		JSONObject jsonobject = jsonData.instance.AvatarJsonData[npcId.ToString()];
@@ -88,7 +89,7 @@ public class NPCNoteBook
 		jsonobject["NoteBook"][33.ToString()].Add(jsonobject2);
 	}
 
-	// Token: 0x060017ED RID: 6125 RVA: 0x000D1338 File Offset: 0x000CF538
+	// Token: 0x0600153C RID: 5436 RVA: 0x00088DE0 File Offset: 0x00086FE0
 	public void NoteBigTuPoFail(int npcId, int eventId)
 	{
 		JSONObject jsonobject = jsonData.instance.AvatarJsonData[npcId.ToString()];
@@ -98,7 +99,7 @@ public class NPCNoteBook
 		jsonobject["NoteBook"][eventId.ToString()].Add(jsonobject2);
 	}
 
-	// Token: 0x060017EE RID: 6126 RVA: 0x000D139C File Offset: 0x000CF59C
+	// Token: 0x0600153D RID: 5437 RVA: 0x00088E44 File Offset: 0x00087044
 	public void NoteZhuJiSuccess(int npcId)
 	{
 		JSONObject jsonobject = jsonData.instance.AvatarJsonData[npcId.ToString()];
@@ -108,7 +109,7 @@ public class NPCNoteBook
 		jsonobject["NoteBook"][22.ToString()].Add(jsonobject2);
 	}
 
-	// Token: 0x060017EF RID: 6127 RVA: 0x000D1404 File Offset: 0x000CF604
+	// Token: 0x0600153E RID: 5438 RVA: 0x00088EAC File Offset: 0x000870AC
 	public void NoteJinDanSuccess(int npcId, int level)
 	{
 		JSONObject jsonobject = jsonData.instance.AvatarJsonData[npcId.ToString()];
@@ -119,7 +120,7 @@ public class NPCNoteBook
 		jsonobject["NoteBook"][23.ToString()].Add(jsonobject2);
 	}
 
-	// Token: 0x060017F0 RID: 6128 RVA: 0x000D1478 File Offset: 0x000CF678
+	// Token: 0x0600153F RID: 5439 RVA: 0x00088F20 File Offset: 0x00087120
 	public void NoteYuanYingSuccess(int npcId)
 	{
 		JSONObject jsonobject = jsonData.instance.AvatarJsonData[npcId.ToString()];
@@ -129,7 +130,7 @@ public class NPCNoteBook
 		jsonobject["NoteBook"][24.ToString()].Add(jsonobject2);
 	}
 
-	// Token: 0x060017F1 RID: 6129 RVA: 0x000D14E0 File Offset: 0x000CF6E0
+	// Token: 0x06001540 RID: 5440 RVA: 0x00088F88 File Offset: 0x00087188
 	public void NoteHuaShenSuccess(int npcId)
 	{
 		JSONObject jsonobject = jsonData.instance.AvatarJsonData[npcId.ToString()];
@@ -139,7 +140,7 @@ public class NPCNoteBook
 		jsonobject["NoteBook"][25.ToString()].Add(jsonobject2);
 	}
 
-	// Token: 0x060017F2 RID: 6130 RVA: 0x000D1548 File Offset: 0x000CF748
+	// Token: 0x06001541 RID: 5441 RVA: 0x00088FF0 File Offset: 0x000871F0
 	public void NoteLunDaoSuccess(int npcId, string name)
 	{
 		JSONObject jsonobject = jsonData.instance.AvatarJsonData[npcId.ToString()];
@@ -150,7 +151,7 @@ public class NPCNoteBook
 		jsonobject["NoteBook"][50.ToString()].Add(jsonobject2);
 	}
 
-	// Token: 0x060017F3 RID: 6131 RVA: 0x000D15BC File Offset: 0x000CF7BC
+	// Token: 0x06001542 RID: 5442 RVA: 0x00089064 File Offset: 0x00087264
 	public void NoteLunDaoFail(int npcId, string name)
 	{
 		JSONObject jsonobject = jsonData.instance.AvatarJsonData[npcId.ToString()];
@@ -161,7 +162,7 @@ public class NPCNoteBook
 		jsonobject["NoteBook"][51.ToString()].Add(jsonobject2);
 	}
 
-	// Token: 0x060017F4 RID: 6132 RVA: 0x000D1630 File Offset: 0x000CF830
+	// Token: 0x06001543 RID: 5443 RVA: 0x000890D8 File Offset: 0x000872D8
 	public void NotePaiMai(int npcId, int itemId, string name = "")
 	{
 		JSONObject jsonobject = jsonData.instance.AvatarJsonData[npcId.ToString()];
@@ -173,7 +174,7 @@ public class NPCNoteBook
 		jsonobject["NoteBook"][60.ToString()].Add(jsonobject2);
 	}
 
-	// Token: 0x060017F5 RID: 6133 RVA: 0x000D16B0 File Offset: 0x000CF8B0
+	// Token: 0x06001544 RID: 5444 RVA: 0x00089158 File Offset: 0x00087358
 	public void NoteImprotantEvent(int npcId, int eventId, string time)
 	{
 		JSONObject jsonobject = jsonData.instance.AvatarJsonData[npcId.ToString()];
@@ -184,7 +185,7 @@ public class NPCNoteBook
 		jsonobject["NoteBook"][101.ToString()].Add(jsonobject2);
 	}
 
-	// Token: 0x060017F6 RID: 6134 RVA: 0x000D171C File Offset: 0x000CF91C
+	// Token: 0x06001545 RID: 5445 RVA: 0x000891C4 File Offset: 0x000873C4
 	public void NoteJieShaSuccess(int npcId, string name = "")
 	{
 		JSONObject jsonobject = jsonData.instance.AvatarJsonData[npcId.ToString()];
@@ -195,7 +196,7 @@ public class NPCNoteBook
 		jsonobject["NoteBook"][40.ToString()].Add(jsonobject2);
 	}
 
-	// Token: 0x060017F7 RID: 6135 RVA: 0x000D1790 File Offset: 0x000CF990
+	// Token: 0x06001546 RID: 5446 RVA: 0x00089238 File Offset: 0x00087438
 	public void NoteJieShaFail1(int npcId, string name = "")
 	{
 		JSONObject jsonobject = jsonData.instance.AvatarJsonData[npcId.ToString()];
@@ -206,7 +207,7 @@ public class NPCNoteBook
 		jsonobject["NoteBook"][41.ToString()].Add(jsonobject2);
 	}
 
-	// Token: 0x060017F8 RID: 6136 RVA: 0x000D1804 File Offset: 0x000CFA04
+	// Token: 0x06001547 RID: 5447 RVA: 0x000892AC File Offset: 0x000874AC
 	public void NoteJieShaFail2(int npcId, string name = "")
 	{
 		JSONObject jsonobject = jsonData.instance.AvatarJsonData[npcId.ToString()];
@@ -217,7 +218,7 @@ public class NPCNoteBook
 		jsonobject["NoteBook"][42.ToString()].Add(jsonobject2);
 	}
 
-	// Token: 0x060017F9 RID: 6137 RVA: 0x000D1878 File Offset: 0x000CFA78
+	// Token: 0x06001548 RID: 5448 RVA: 0x00089320 File Offset: 0x00087520
 	public void NoteFanShaSuccess(int npcId, string name = "")
 	{
 		JSONObject jsonobject = jsonData.instance.AvatarJsonData[npcId.ToString()];
@@ -228,7 +229,7 @@ public class NPCNoteBook
 		jsonobject["NoteBook"][43.ToString()].Add(jsonobject2);
 	}
 
-	// Token: 0x060017FA RID: 6138 RVA: 0x000D18EC File Offset: 0x000CFAEC
+	// Token: 0x06001549 RID: 5449 RVA: 0x00089394 File Offset: 0x00087594
 	public void NoteFanShaFail1(int npcId, string name = "")
 	{
 		JSONObject jsonobject = jsonData.instance.AvatarJsonData[npcId.ToString()];
@@ -239,7 +240,7 @@ public class NPCNoteBook
 		jsonobject["NoteBook"][45.ToString()].Add(jsonobject2);
 	}
 
-	// Token: 0x060017FB RID: 6139 RVA: 0x000D1960 File Offset: 0x000CFB60
+	// Token: 0x0600154A RID: 5450 RVA: 0x00089408 File Offset: 0x00087608
 	public void NoteFanShaFail2(int npcId, string name = "")
 	{
 		JSONObject jsonobject = jsonData.instance.AvatarJsonData[npcId.ToString()];
@@ -250,27 +251,40 @@ public class NPCNoteBook
 		jsonobject["NoteBook"][44.ToString()].Add(jsonobject2);
 	}
 
-	// Token: 0x060017FC RID: 6140 RVA: 0x000D19D4 File Offset: 0x000CFBD4
+	// Token: 0x0600154B RID: 5451 RVA: 0x0008947C File Offset: 0x0008767C
 	public void NoteTianJiDaBi(int npcId, int rank, string time)
 	{
-		JSONObject jsonobject = jsonData.instance.AvatarJsonData[npcId.ToString()];
-		int id;
-		if (rank == 1)
+		try
 		{
-			id = 70;
+			JSONObject jsonobject = jsonData.instance.AvatarJsonData[npcId.ToString()];
+			int id;
+			if (rank == 1)
+			{
+				id = 70;
+			}
+			else if (rank >= 2 && rank <= 10)
+			{
+				id = 71;
+			}
+			else
+			{
+				id = 72;
+			}
+			this.CreateEventID(jsonobject, id);
+			JSONObject jsonobject2 = new JSONObject();
+			jsonobject2.SetField("rank", rank);
+			jsonobject2.SetField("time", time);
+			jsonobject["NoteBook"][id.ToString()].Add(jsonobject2);
 		}
-		else if (rank >= 2 && rank <= 10)
+		catch (Exception ex)
 		{
-			id = 71;
+			Debug.LogError(string.Format("为NPC记录天机大比数据出错，NPCID:{0} 排名:{1} 时间:{2}，异常:{3}", new object[]
+			{
+				npcId,
+				rank,
+				time,
+				ex
+			}));
 		}
-		else
-		{
-			id = 72;
-		}
-		this.CreateEventID(jsonobject, id);
-		JSONObject jsonobject2 = new JSONObject();
-		jsonobject2.SetField("rank", rank);
-		jsonobject2.SetField("time", time);
-		jsonobject["NoteBook"][id.ToString()].Add(jsonobject2);
 	}
 }

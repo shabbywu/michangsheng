@@ -2,12 +2,12 @@
 
 namespace UltimateSurvival
 {
-	// Token: 0x020008F2 RID: 2290
+	// Token: 0x0200060F RID: 1551
 	public enum FootType
 	{
-		// Token: 0x04003500 RID: 13568
+		// Token: 0x04002BEC RID: 11244
 		Left,
-		// Token: 0x04003501 RID: 13569
+		// Token: 0x04002BED RID: 11245
 		Right
 	}
 }

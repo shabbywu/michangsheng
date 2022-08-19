@@ -2,10 +2,10 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-// Token: 0x02000205 RID: 517
+// Token: 0x02000134 RID: 308
 public class DesignForInventory : MonoBehaviour
 {
-	// Token: 0x0600104E RID: 4174 RVA: 0x000A5024 File Offset: 0x000A3224
+	// Token: 0x06000E40 RID: 3648 RVA: 0x00054A3C File Offset: 0x00052C3C
 	private void Start()
 	{
 		this.inventoryTitle = base.transform.GetChild(0).GetComponent<Text>();
@@ -14,7 +14,7 @@ public class DesignForInventory : MonoBehaviour
 		this.amountSlot = this.getTextAmountOfItem();
 	}
 
-	// Token: 0x0600104F RID: 4175 RVA: 0x000A5080 File Offset: 0x000A3280
+	// Token: 0x06000E41 RID: 3649 RVA: 0x00054A98 File Offset: 0x00052C98
 	public Text getTextAmountOfItem()
 	{
 		for (int i = 0; i < base.transform.GetChild(1).childCount; i++)
@@ -27,15 +27,15 @@ public class DesignForInventory : MonoBehaviour
 		return null;
 	}
 
-	// Token: 0x04000CDF RID: 3295
+	// Token: 0x04000A47 RID: 2631
 	public Text inventoryTitle;
 
-	// Token: 0x04000CE0 RID: 3296
+	// Token: 0x04000A48 RID: 2632
 	public Image backgroundInventory;
 
-	// Token: 0x04000CE1 RID: 3297
+	// Token: 0x04000A49 RID: 2633
 	public Image backgroundSlot;
 
-	// Token: 0x04000CE2 RID: 3298
+	// Token: 0x04000A4A RID: 2634
 	public Text amountSlot;
 }

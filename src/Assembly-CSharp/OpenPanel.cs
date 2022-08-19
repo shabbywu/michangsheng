@@ -2,30 +2,30 @@
 using Fungus;
 using UnityEngine;
 
-// Token: 0x02000252 RID: 594
+// Token: 0x02000175 RID: 373
 [CommandInfo("YSTools", "OpenPanel", "打开UI界面", 0)]
 [AddComponentMenu("")]
 public class OpenPanel : Command
 {
-	// Token: 0x06001210 RID: 4624 RVA: 0x0001140B File Offset: 0x0000F60B
+	// Token: 0x06000FB0 RID: 4016 RVA: 0x0005E396 File Offset: 0x0005C596
 	public override void OnEnter()
 	{
 		PanelMamager.inst.OpenPanel(this.PanelName, 0);
 		this.Continue();
 	}
 
-	// Token: 0x06001211 RID: 4625 RVA: 0x000113CF File Offset: 0x0000F5CF
+	// Token: 0x06000FB1 RID: 4017 RVA: 0x0005E228 File Offset: 0x0005C428
 	public override Color GetButtonColor()
 	{
 		return new Color32(184, 210, 235, byte.MaxValue);
 	}
 
-	// Token: 0x06001212 RID: 4626 RVA: 0x000042DD File Offset: 0x000024DD
+	// Token: 0x06000FB2 RID: 4018 RVA: 0x00004095 File Offset: 0x00002295
 	public override void OnReset()
 	{
 	}
 
-	// Token: 0x04000E92 RID: 3730
+	// Token: 0x04000BC1 RID: 3009
 	[Tooltip("打开界面名称")]
 	[SerializeField]
 	protected PanelMamager.PanelType PanelName;

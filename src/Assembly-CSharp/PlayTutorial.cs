@@ -6,11 +6,11 @@ using JSONClass;
 using KBEngine;
 using UnityEngine;
 
-// Token: 0x02000539 RID: 1337
+// Token: 0x020003AE RID: 942
 public static class PlayTutorial
 {
-	// Token: 0x170002AF RID: 687
-	// (get) Token: 0x0600220B RID: 8715 RVA: 0x000132CA File Offset: 0x000114CA
+	// Token: 0x1700025D RID: 605
+	// (get) Token: 0x06001E88 RID: 7816 RVA: 0x0006EC50 File Offset: 0x0006CE50
 	public static Avatar Player
 	{
 		get
@@ -19,7 +19,7 @@ public static class PlayTutorial
 		}
 	}
 
-	// Token: 0x0600220C RID: 8716 RVA: 0x0011A2C8 File Offset: 0x001184C8
+	// Token: 0x06001E89 RID: 7817 RVA: 0x000D6C14 File Offset: 0x000D4E14
 	private static void Init()
 	{
 		if (!PlayTutorial.Player.PlayTutorialData.HasField("T61_1"))
@@ -40,13 +40,13 @@ public static class PlayTutorial
 		}
 	}
 
-	// Token: 0x0600220D RID: 8717 RVA: 0x0001BEDA File Offset: 0x0001A0DA
+	// Token: 0x06001E8A RID: 7818 RVA: 0x000D6D4B File Offset: 0x000D4F4B
 	public static void CheckSkillTask()
 	{
 		PlayTutorial.CheckXiuLianZhiLu1();
 	}
 
-	// Token: 0x0600220E RID: 8718 RVA: 0x0001BEE1 File Offset: 0x0001A0E1
+	// Token: 0x06001E8B RID: 7819 RVA: 0x000D6D52 File Offset: 0x000D4F52
 	public static void CheckGongFaTask()
 	{
 		PlayTutorial.CheckXiuLianZhiLu2();
@@ -57,34 +57,34 @@ public static class PlayTutorial
 		PlayTutorial.CheckXiuLianZhiLu7();
 	}
 
-	// Token: 0x0600220F RID: 8719 RVA: 0x0001BF01 File Offset: 0x0001A101
+	// Token: 0x06001E8C RID: 7820 RVA: 0x000D6D72 File Offset: 0x000D4F72
 	public static bool IsFinished(string taskid)
 	{
 		return PlayTutorial.Player.PlayTutorialData[taskid].b;
 	}
 
-	// Token: 0x06002210 RID: 8720 RVA: 0x0001BF18 File Offset: 0x0001A118
+	// Token: 0x06001E8D RID: 7821 RVA: 0x000D6D89 File Offset: 0x000D4F89
 	public static void SetFinish(string taskid, bool finish = true)
 	{
 		Debug.Log(string.Format("设置任务{0}的状态为{1}", taskid, finish));
 		PlayTutorial.Player.PlayTutorialData.SetField(taskid, finish);
 	}
 
-	// Token: 0x06002211 RID: 8721 RVA: 0x0001BF41 File Offset: 0x0001A141
+	// Token: 0x06001E8E RID: 7822 RVA: 0x000D6DB2 File Offset: 0x000D4FB2
 	public static void Test()
 	{
 		PlayTutorial.Player.taskMag.addTask(67);
 		PlayTutorial.FinishTaskIndex(67, 1);
 	}
 
-	// Token: 0x06002212 RID: 8722 RVA: 0x0001BF5C File Offset: 0x0001A15C
+	// Token: 0x06001E8F RID: 7823 RVA: 0x000D6DCD File Offset: 0x000D4FCD
 	public static void FinishTaskIndex(int taskID, int index)
 	{
 		SetTaskIndexFinish.Do(taskID, index);
 		PlayTutorial.Player.taskMag.setTaskIndex(taskID, index + 1);
 	}
 
-	// Token: 0x06002213 RID: 8723 RVA: 0x0011A400 File Offset: 0x00118600
+	// Token: 0x06001E90 RID: 7824 RVA: 0x000D6DEC File Offset: 0x000D4FEC
 	private static void UpdateTaskIndex(string taskIdPre, int taskId, int taskCount)
 	{
 		int num = 0;
@@ -110,20 +110,20 @@ public static class PlayTutorial
 		}
 	}
 
-	// Token: 0x06002214 RID: 8724 RVA: 0x0001BF78 File Offset: 0x0001A178
+	// Token: 0x06001E91 RID: 7825 RVA: 0x000D6E5F File Offset: 0x000D505F
 	public static bool IsCanCheck(int taskID, int index)
 	{
 		PlayTutorial.Init();
 		return PlayTutorial.Player.taskMag.isHasTask(taskID) && PlayTutorial.Player.taskMag.GetTaskNowIndex(taskID) == index;
 	}
 
-	// Token: 0x06002215 RID: 8725 RVA: 0x0001BFA9 File Offset: 0x0001A1A9
+	// Token: 0x06001E92 RID: 7826 RVA: 0x000D6E90 File Offset: 0x000D5090
 	private static void UpdateXiuLianZhiLuTaskIndex()
 	{
 		PlayTutorial.UpdateTaskIndex("T61_", 61, 7);
 	}
 
-	// Token: 0x06002216 RID: 8726 RVA: 0x0011A474 File Offset: 0x00118674
+	// Token: 0x06001E93 RID: 7827 RVA: 0x000D6EA0 File Offset: 0x000D50A0
 	public static void CheckXiuLianZhiLu1()
 	{
 		PlayTutorial.Init();
@@ -149,7 +149,7 @@ public static class PlayTutorial
 		}
 	}
 
-	// Token: 0x06002217 RID: 8727 RVA: 0x0011A520 File Offset: 0x00118720
+	// Token: 0x06001E94 RID: 7828 RVA: 0x000D6F4C File Offset: 0x000D514C
 	public static void CheckXiuLianZhiLu2()
 	{
 		PlayTutorial.Init();
@@ -180,7 +180,7 @@ public static class PlayTutorial
 		}
 	}
 
-	// Token: 0x06002218 RID: 8728 RVA: 0x0011A62C File Offset: 0x0011882C
+	// Token: 0x06001E95 RID: 7829 RVA: 0x000D7058 File Offset: 0x000D5258
 	public static void CheckXiuLianZhiLu3()
 	{
 		PlayTutorial.Init();
@@ -204,7 +204,7 @@ public static class PlayTutorial
 		}
 	}
 
-	// Token: 0x06002219 RID: 8729 RVA: 0x0011A6E4 File Offset: 0x001188E4
+	// Token: 0x06001E96 RID: 7830 RVA: 0x000D7110 File Offset: 0x000D5310
 	public static void CheckXiuLianZhiLu4()
 	{
 		PlayTutorial.Init();
@@ -229,14 +229,14 @@ public static class PlayTutorial
 		}
 	}
 
-	// Token: 0x0600221A RID: 8730 RVA: 0x0011A7C8 File Offset: 0x001189C8
+	// Token: 0x06001E97 RID: 7831 RVA: 0x000D71F4 File Offset: 0x000D53F4
 	private static bool CheckZhuXiuGongFaSpeed(int targetSpeed)
 	{
 		int staticID = PlayTutorial.Player.getStaticID();
 		return staticID != 0 && jsonData.instance.StaticSkillJsonData[staticID.ToString()]["Skill_Speed"].I >= targetSpeed;
 	}
 
-	// Token: 0x0600221B RID: 8731 RVA: 0x0011A810 File Offset: 0x00118A10
+	// Token: 0x06001E98 RID: 7832 RVA: 0x000D723C File Offset: 0x000D543C
 	public static void CheckXiuLianZhiLu5()
 	{
 		PlayTutorial.Init();
@@ -255,7 +255,7 @@ public static class PlayTutorial
 		}
 	}
 
-	// Token: 0x0600221C RID: 8732 RVA: 0x0011A860 File Offset: 0x00118A60
+	// Token: 0x06001E99 RID: 7833 RVA: 0x000D728C File Offset: 0x000D548C
 	public static void CheckXiuLianZhiLu6()
 	{
 		PlayTutorial.Init();
@@ -279,7 +279,7 @@ public static class PlayTutorial
 		}
 	}
 
-	// Token: 0x0600221D RID: 8733 RVA: 0x0011A91C File Offset: 0x00118B1C
+	// Token: 0x06001E9A RID: 7834 RVA: 0x000D7348 File Offset: 0x000D5548
 	public static void CheckXiuLianZhiLu7()
 	{
 		PlayTutorial.Init();
@@ -298,13 +298,13 @@ public static class PlayTutorial
 		}
 	}
 
-	// Token: 0x0600221E RID: 8734 RVA: 0x0001BFB8 File Offset: 0x0001A1B8
+	// Token: 0x06001E9B RID: 7835 RVA: 0x000D7397 File Offset: 0x000D5597
 	private static void UpdateGanWuTianDiTaskIndex()
 	{
 		PlayTutorial.UpdateTaskIndex("T62_", 62, 4);
 	}
 
-	// Token: 0x0600221F RID: 8735 RVA: 0x0001BFC7 File Offset: 0x0001A1C7
+	// Token: 0x06001E9C RID: 7836 RVA: 0x000D73A6 File Offset: 0x000D55A6
 	public static void CheckGanWuTianDi1()
 	{
 		PlayTutorial.Init();
@@ -320,7 +320,7 @@ public static class PlayTutorial
 		PlayTutorial.UpdateGanWuTianDiTaskIndex();
 	}
 
-	// Token: 0x06002220 RID: 8736 RVA: 0x0011A96C File Offset: 0x00118B6C
+	// Token: 0x06001E9D RID: 7837 RVA: 0x000D73E0 File Offset: 0x000D55E0
 	public static bool CheckWuDaoExp(int targetExp)
 	{
 		using (List<JSONObject>.Enumerator enumerator = PlayTutorial.Player.WuDaoJson.list.GetEnumerator())
@@ -336,7 +336,7 @@ public static class PlayTutorial
 		return false;
 	}
 
-	// Token: 0x06002221 RID: 8737 RVA: 0x0011A9DC File Offset: 0x00118BDC
+	// Token: 0x06001E9E RID: 7838 RVA: 0x000D7450 File Offset: 0x000D5650
 	public static void CheckGanWuTianDi2()
 	{
 		PlayTutorial.Init();
@@ -355,7 +355,7 @@ public static class PlayTutorial
 		}
 	}
 
-	// Token: 0x06002222 RID: 8738 RVA: 0x0011AA2C File Offset: 0x00118C2C
+	// Token: 0x06001E9F RID: 7839 RVA: 0x000D74A0 File Offset: 0x000D56A0
 	public static void CheckGanWuTianDi3()
 	{
 		PlayTutorial.Init();
@@ -374,7 +374,7 @@ public static class PlayTutorial
 		}
 	}
 
-	// Token: 0x06002223 RID: 8739 RVA: 0x0011AA88 File Offset: 0x00118C88
+	// Token: 0x06001EA0 RID: 7840 RVA: 0x000D74FC File Offset: 0x000D56FC
 	public static void CheckGanWuTianDi4()
 	{
 		PlayTutorial.Init();
@@ -393,7 +393,7 @@ public static class PlayTutorial
 		}
 	}
 
-	// Token: 0x06002224 RID: 8740 RVA: 0x0001BFFF File Offset: 0x0001A1FF
+	// Token: 0x06001EA1 RID: 7841 RVA: 0x000D754B File Offset: 0x000D574B
 	public static void CheckChuTaXianTu2(int taskID)
 	{
 		if (!PlayTutorial.IsCanCheck(64, 2))
@@ -406,7 +406,7 @@ public static class PlayTutorial
 		}
 	}
 
-	// Token: 0x06002225 RID: 8741 RVA: 0x0011AAD8 File Offset: 0x00118CD8
+	// Token: 0x06001EA2 RID: 7842 RVA: 0x000D756C File Offset: 0x000D576C
 	public static void CheckLianDan2(int itemID, List<LianDanResultManager.DanyaoItem> yaocaiList)
 	{
 		if (!PlayTutorial.IsCanCheck(65, 2))
@@ -425,7 +425,7 @@ public static class PlayTutorial
 		}
 	}
 
-	// Token: 0x06002226 RID: 8742 RVA: 0x0011AB68 File Offset: 0x00118D68
+	// Token: 0x06001EA3 RID: 7843 RVA: 0x000D75FC File Offset: 0x000D57FC
 	public static void CheckLianDan3(int itemID, List<LianDanResultManager.DanyaoItem> yaocaiList)
 	{
 		if (!PlayTutorial.IsCanCheck(65, 3))
@@ -446,7 +446,7 @@ public static class PlayTutorial
 		}
 	}
 
-	// Token: 0x06002227 RID: 8743 RVA: 0x0001C020 File Offset: 0x0001A220
+	// Token: 0x06001EA4 RID: 7844 RVA: 0x000D7698 File Offset: 0x000D5898
 	public static void CheckLianDan4(int itemID)
 	{
 		if (!PlayTutorial.IsCanCheck(65, 4))
@@ -460,7 +460,7 @@ public static class PlayTutorial
 		}
 	}
 
-	// Token: 0x06002228 RID: 8744 RVA: 0x0011AC04 File Offset: 0x00118E04
+	// Token: 0x06001EA5 RID: 7845 RVA: 0x000D76BC File Offset: 0x000D58BC
 	public static void CheckLianQi2()
 	{
 		if (!PlayTutorial.IsCanCheck(66, 2))
@@ -473,7 +473,7 @@ public static class PlayTutorial
 		}
 	}
 
-	// Token: 0x06002229 RID: 8745 RVA: 0x0001C044 File Offset: 0x0001A244
+	// Token: 0x06001EA6 RID: 7846 RVA: 0x000D771C File Offset: 0x000D591C
 	public static void CheckLianQi3(int quality, int shangxia)
 	{
 		if (!PlayTutorial.IsCanCheck(66, 3))
@@ -487,7 +487,7 @@ public static class PlayTutorial
 		}
 	}
 
-	// Token: 0x0600222A RID: 8746 RVA: 0x0001C068 File Offset: 0x0001A268
+	// Token: 0x06001EA7 RID: 7847 RVA: 0x000D7740 File Offset: 0x000D5940
 	public static void CheckCaoYao2()
 	{
 		if (!PlayTutorial.IsCanCheck(67, 2))
@@ -498,7 +498,7 @@ public static class PlayTutorial
 		SetTaskCompelet.Do(67);
 	}
 
-	// Token: 0x04001D92 RID: 7570
+	// Token: 0x0400191E RID: 6430
 	private static List<int> ChuShiShenTong = new List<int>
 	{
 		1,
@@ -510,7 +510,7 @@ public static class PlayTutorial
 		519
 	};
 
-	// Token: 0x04001D93 RID: 7571
+	// Token: 0x0400191F RID: 6431
 	private static List<int> ChuShiGongFa = new List<int>
 	{
 		501,

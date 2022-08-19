@@ -1,16 +1,16 @@
 ﻿using System;
 using UnityEngine;
 
-// Token: 0x0200066C RID: 1644
+// Token: 0x02000493 RID: 1171
 public class BarrelExplode : MonoBehaviour
 {
-	// Token: 0x0600291A RID: 10522 RVA: 0x0001FF5C File Offset: 0x0001E15C
+	// Token: 0x06002504 RID: 9476 RVA: 0x0010162B File Offset: 0x000FF82B
 	private void Start()
 	{
 		this.anim = base.transform.GetChild(0).GetComponent<Animator>();
 	}
 
-	// Token: 0x0600291B RID: 10523 RVA: 0x00141244 File Offset: 0x0013F444
+	// Token: 0x06002505 RID: 9477 RVA: 0x00101644 File Offset: 0x000FF844
 	private void OnTriggerEnter2D(Collider2D col)
 	{
 		if (col.tag.Equals("Monkey"))
@@ -49,7 +49,7 @@ public class BarrelExplode : MonoBehaviour
 		}
 	}
 
-	// Token: 0x0600291C RID: 10524 RVA: 0x001413E4 File Offset: 0x0013F5E4
+	// Token: 0x06002506 RID: 9478 RVA: 0x001017E4 File Offset: 0x000FF9E4
 	public void ObnoviBure()
 	{
 		if (this.razbijenoBure)
@@ -62,24 +62,24 @@ public class BarrelExplode : MonoBehaviour
 		}
 	}
 
-	// Token: 0x040022DF RID: 8927
+	// Token: 0x04001DD1 RID: 7633
 	private Animator anim;
 
-	// Token: 0x040022E0 RID: 8928
+	// Token: 0x04001DD2 RID: 7634
 	public ParticleSystem eksplozija1;
 
-	// Token: 0x040022E1 RID: 8929
+	// Token: 0x04001DD3 RID: 7635
 	public ParticleSystem eksplozija2;
 
-	// Token: 0x040022E2 RID: 8930
+	// Token: 0x04001DD4 RID: 7636
 	public ParticleSystem eksplozija3;
 
-	// Token: 0x040022E3 RID: 8931
+	// Token: 0x04001DD5 RID: 7637
 	public ParticleSystem eksplozija4;
 
-	// Token: 0x040022E4 RID: 8932
+	// Token: 0x04001DD6 RID: 7638
 	private bool razbijenoBure;
 
-	// Token: 0x040022E5 RID: 8933
+	// Token: 0x04001DD7 RID: 7639
 	public Animator coinsReward;
 }

@@ -3,12 +3,12 @@ using UnityEngine;
 
 namespace Fungus
 {
-	// Token: 0x020013EF RID: 5103
+	// Token: 0x02000F39 RID: 3897
 	[CommandInfo("YSNew/Add", "AddXinJin", "增加心境", 0)]
 	[AddComponentMenu("")]
 	public class AddXinJin : Command
 	{
-		// Token: 0x06007C12 RID: 31762 RVA: 0x002C463C File Offset: 0x002C283C
+		// Token: 0x06006E27 RID: 28199 RVA: 0x002A45DC File Offset: 0x002A27DC
 		public override void OnEnter()
 		{
 			string str = (this.AddXinjinNum >= 0) ? ("提升了" + Math.Abs(this.AddXinjinNum)) : ("降低了" + Math.Abs(this.AddXinjinNum));
@@ -18,13 +18,13 @@ namespace Fungus
 			this.Continue();
 		}
 
-		// Token: 0x06007C13 RID: 31763 RVA: 0x000113CF File Offset: 0x0000F5CF
+		// Token: 0x06006E28 RID: 28200 RVA: 0x0005E228 File Offset: 0x0005C428
 		public override Color GetButtonColor()
 		{
 			return new Color32(184, 210, 235, byte.MaxValue);
 		}
 
-		// Token: 0x04006A57 RID: 27223
+		// Token: 0x04005B85 RID: 23429
 		[Tooltip("增加心境的数量")]
 		[SerializeField]
 		public int AddXinjinNum;

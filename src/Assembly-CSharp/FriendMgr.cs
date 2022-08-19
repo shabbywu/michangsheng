@@ -4,10 +4,10 @@ using KBEngine;
 using UnityEngine;
 using UnityEngine.UI;
 
-// Token: 0x02000575 RID: 1397
+// Token: 0x020003DA RID: 986
 public class FriendMgr
 {
-	// Token: 0x0600237B RID: 9083 RVA: 0x00124148 File Offset: 0x00122348
+	// Token: 0x06001FFB RID: 8187 RVA: 0x000E1708 File Offset: 0x000DF908
 	public FriendMgr()
 	{
 		this.mainHomeUI = UI_HOMESCENE.instense;
@@ -23,13 +23,13 @@ public class FriendMgr
 		Event.registerOut("receiveaddfriend", this, "receiveaddfriend");
 	}
 
-	// Token: 0x0600237C RID: 9084 RVA: 0x00124274 File Offset: 0x00122474
+	// Token: 0x06001FFC RID: 8188 RVA: 0x000E1834 File Offset: 0x000DFA34
 	~FriendMgr()
 	{
 		Event.deregisterOut(this);
 	}
 
-	// Token: 0x0600237D RID: 9085 RVA: 0x001242A4 File Offset: 0x001224A4
+	// Token: 0x06001FFD RID: 8189 RVA: 0x000E1864 File Offset: 0x000DFA64
 	public void receiveaddfriend(string friendname, ulong frienddbid)
 	{
 		GameObject gameObject = Object.Instantiate<GameObject>(this.ChoiceUI.gameObject);
@@ -43,7 +43,7 @@ public class FriendMgr
 		gameObject.transform.localPosition = new Vector3(0f, 0f, 0f);
 	}
 
-	// Token: 0x0600237E RID: 9086 RVA: 0x0012434C File Offset: 0x0012254C
+	// Token: 0x06001FFE RID: 8190 RVA: 0x000E190C File Offset: 0x000DFB0C
 	public void OpenFriendUI()
 	{
 		Account account = (Account)KBEngineApp.app.player();
@@ -53,7 +53,7 @@ public class FriendMgr
 		}
 	}
 
-	// Token: 0x0600237F RID: 9087 RVA: 0x00124374 File Offset: 0x00122574
+	// Token: 0x06001FFF RID: 8191 RVA: 0x000E1934 File Offset: 0x000DFB34
 	public void requestOnlineFriend(FRIEND_INFO_LIST infos)
 	{
 		foreach (object obj in this.FriendCraftingList.gameObject.transform)
@@ -71,7 +71,7 @@ public class FriendMgr
 		}
 	}
 
-	// Token: 0x06002380 RID: 9088 RVA: 0x00124404 File Offset: 0x00122604
+	// Token: 0x06002000 RID: 8192 RVA: 0x000E19C4 File Offset: 0x000DFBC4
 	private void addfriendlistdo(FRIEND_INFO_LIST infos, Account account)
 	{
 		List<FRIEND_INFO> values = account.FriendList.values;
@@ -102,7 +102,7 @@ public class FriendMgr
 		}
 	}
 
-	// Token: 0x06002381 RID: 9089 RVA: 0x00124594 File Offset: 0x00122794
+	// Token: 0x06002001 RID: 8193 RVA: 0x000E1B54 File Offset: 0x000DFD54
 	public void getTalkingMsg(FRIEND_INFO Info, string msg)
 	{
 		GameObject gameObject = Object.Instantiate<GameObject>(this.talkingTemplate.gameObject);
@@ -111,24 +111,24 @@ public class FriendMgr
 		gameObject.transform.parent = this.talkingsCraftingList.gameObject.transform;
 	}
 
-	// Token: 0x04001E8E RID: 7822
+	// Token: 0x040019FC RID: 6652
 	private UI_HOMESCENE mainHomeUI;
 
-	// Token: 0x04001E8F RID: 7823
+	// Token: 0x040019FD RID: 6653
 	private GameObject FriendCraftingList;
 
-	// Token: 0x04001E90 RID: 7824
+	// Token: 0x040019FE RID: 6654
 	private GameObject FriendTemplate;
 
-	// Token: 0x04001E91 RID: 7825
+	// Token: 0x040019FF RID: 6655
 	private GameObject ChoiceUI;
 
-	// Token: 0x04001E92 RID: 7826
+	// Token: 0x04001A00 RID: 6656
 	private List<GameObject> receiveadd;
 
-	// Token: 0x04001E93 RID: 7827
+	// Token: 0x04001A01 RID: 6657
 	private GameObject talkingTemplate;
 
-	// Token: 0x04001E94 RID: 7828
+	// Token: 0x04001A02 RID: 6658
 	private GameObject talkingsCraftingList;
 }

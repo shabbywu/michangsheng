@@ -3,36 +3,36 @@ using UnityEngine;
 
 namespace UltimateSurvival
 {
-	// Token: 0x020008D4 RID: 2260
+	// Token: 0x020005FA RID: 1530
 	public class RaycastData
 	{
-		// Token: 0x1700062A RID: 1578
-		// (get) Token: 0x06003A27 RID: 14887 RVA: 0x0002A406 File Offset: 0x00028606
-		// (set) Token: 0x06003A28 RID: 14888 RVA: 0x0002A40E File Offset: 0x0002860E
+		// Token: 0x1700043F RID: 1087
+		// (get) Token: 0x0600312A RID: 12586 RVA: 0x0015E358 File Offset: 0x0015C558
+		// (set) Token: 0x0600312B RID: 12587 RVA: 0x0015E360 File Offset: 0x0015C560
 		public bool ObjectIsInteractable { get; private set; }
 
-		// Token: 0x1700062B RID: 1579
-		// (get) Token: 0x06003A29 RID: 14889 RVA: 0x0002A417 File Offset: 0x00028617
-		// (set) Token: 0x06003A2A RID: 14890 RVA: 0x0002A41F File Offset: 0x0002861F
+		// Token: 0x17000440 RID: 1088
+		// (get) Token: 0x0600312C RID: 12588 RVA: 0x0015E369 File Offset: 0x0015C569
+		// (set) Token: 0x0600312D RID: 12589 RVA: 0x0015E371 File Offset: 0x0015C571
 		public GameObject GameObject { get; private set; }
 
-		// Token: 0x1700062C RID: 1580
-		// (get) Token: 0x06003A2B RID: 14891 RVA: 0x0002A428 File Offset: 0x00028628
-		// (set) Token: 0x06003A2C RID: 14892 RVA: 0x0002A430 File Offset: 0x00028630
+		// Token: 0x17000441 RID: 1089
+		// (get) Token: 0x0600312E RID: 12590 RVA: 0x0015E37A File Offset: 0x0015C57A
+		// (set) Token: 0x0600312F RID: 12591 RVA: 0x0015E382 File Offset: 0x0015C582
 		public InteractableObject InteractableObject { get; private set; }
 
-		// Token: 0x1700062D RID: 1581
-		// (get) Token: 0x06003A2D RID: 14893 RVA: 0x0002A439 File Offset: 0x00028639
-		// (set) Token: 0x06003A2E RID: 14894 RVA: 0x0002A441 File Offset: 0x00028641
+		// Token: 0x17000442 RID: 1090
+		// (get) Token: 0x06003130 RID: 12592 RVA: 0x0015E38B File Offset: 0x0015C58B
+		// (set) Token: 0x06003131 RID: 12593 RVA: 0x0015E393 File Offset: 0x0015C593
 		public RaycastHit HitInfo { get; private set; }
 
-		// Token: 0x06003A2F RID: 14895 RVA: 0x000079B2 File Offset: 0x00005BB2
+		// Token: 0x06003132 RID: 12594 RVA: 0x00014667 File Offset: 0x00012867
 		public static implicit operator bool(RaycastData raycastData)
 		{
 			return raycastData != null;
 		}
 
-		// Token: 0x06003A30 RID: 14896 RVA: 0x001A78F0 File Offset: 0x001A5AF0
+		// Token: 0x06003133 RID: 12595 RVA: 0x0015E39C File Offset: 0x0015C59C
 		public RaycastData(RaycastHit hitInfo)
 		{
 			this.GameObject = hitInfo.collider.gameObject;

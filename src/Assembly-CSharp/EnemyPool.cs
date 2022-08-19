@@ -1,16 +1,16 @@
 ﻿using System;
 using UnityEngine;
 
-// Token: 0x02000689 RID: 1673
+// Token: 0x020004A9 RID: 1193
 public class EnemyPool : MonoBehaviour
 {
-	// Token: 0x060029D2 RID: 10706 RVA: 0x000207B7 File Offset: 0x0001E9B7
+	// Token: 0x06002596 RID: 9622 RVA: 0x00104391 File Offset: 0x00102591
 	private void Start()
 	{
 		EnemyPool.AvailableEnemies = base.transform.childCount;
 	}
 
-	// Token: 0x060029D3 RID: 10707 RVA: 0x000207C9 File Offset: 0x0001E9C9
+	// Token: 0x06002597 RID: 9623 RVA: 0x001043A3 File Offset: 0x001025A3
 	public GameObject getEnemy()
 	{
 		if (base.transform.childCount > 0)
@@ -20,6 +20,6 @@ public class EnemyPool : MonoBehaviour
 		return null;
 	}
 
-	// Token: 0x04002371 RID: 9073
+	// Token: 0x04001E4B RID: 7755
 	public static int AvailableEnemies;
 }

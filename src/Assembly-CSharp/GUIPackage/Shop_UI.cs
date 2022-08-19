@@ -5,16 +5,16 @@ using UnityEngine.SceneManagement;
 
 namespace GUIPackage
 {
-	// Token: 0x02000D6C RID: 3436
+	// Token: 0x02000A54 RID: 2644
 	public class Shop_UI : MonoBehaviour
 	{
-		// Token: 0x06005299 RID: 21145 RVA: 0x0003B317 File Offset: 0x00039517
+		// Token: 0x060049C1 RID: 18881 RVA: 0x001F46E6 File Offset: 0x001F28E6
 		private void Start()
 		{
 			this.initCangJinGeShop();
 		}
 
-		// Token: 0x0600529A RID: 21146 RVA: 0x002270E0 File Offset: 0x002252E0
+		// Token: 0x060049C2 RID: 18882 RVA: 0x001F46F0 File Offset: 0x001F28F0
 		public void initCangJinGeShop()
 		{
 			List<JSONObject> shopList = this.GetShopList();
@@ -40,7 +40,7 @@ namespace GUIPackage
 			}
 		}
 
-		// Token: 0x0600529B RID: 21147 RVA: 0x00227194 File Offset: 0x00225394
+		// Token: 0x060049C3 RID: 18883 RVA: 0x001F47A4 File Offset: 0x001F29A4
 		public void InitMoneyByMethod(int index)
 		{
 			this.InitShopPage(0, this.invList[index], index + 1);
@@ -49,26 +49,26 @@ namespace GUIPackage
 			this.setPageText(shopJsonData, this.invList[index], index);
 		}
 
-		// Token: 0x0600529C RID: 21148 RVA: 0x002271EC File Offset: 0x002253EC
+		// Token: 0x060049C4 RID: 18884 RVA: 0x001F47FC File Offset: 0x001F29FC
 		public JSONObject GetShopJsonData(int shopType)
 		{
 			return this.GetShopList().Find((JSONObject aa) => shopType == (int)aa["shopType"].n);
 		}
 
-		// Token: 0x0600529D RID: 21149 RVA: 0x00227220 File Offset: 0x00225420
+		// Token: 0x060049C5 RID: 18885 RVA: 0x001F4830 File Offset: 0x001F2A30
 		public List<JSONObject> GetShopList()
 		{
 			string scencName = SceneManager.GetActiveScene().name;
 			return jsonData.instance.NomelShopJsonData.list.FindAll((JSONObject aa) => "S" + (int)aa["threeScene"].n == scencName);
 		}
 
-		// Token: 0x0600529E RID: 21150 RVA: 0x00227268 File Offset: 0x00225468
+		// Token: 0x060049C6 RID: 18886 RVA: 0x001F4878 File Offset: 0x001F2A78
 		public List<JSONObject> GetJiaoHuanShop(int JiaohanShopID)
 		{
-			return jsonData.instance.jiaoHuanShopGoods.list.FindAll((JSONObject aa) => JiaohanShopID == (int)aa["ShopID"].n);
+			return jsonData.instance.jiaoHuanShopGoods.list.FindAll((JSONObject aa) => JiaohanShopID == aa["ShopID"].I);
 		}
 
-		// Token: 0x0600529F RID: 21151 RVA: 0x002272A4 File Offset: 0x002254A4
+		// Token: 0x060049C7 RID: 18887 RVA: 0x001F48B4 File Offset: 0x001F2AB4
 		public void setPageText(JSONObject info, Inventory2 cc, int indaa)
 		{
 			if (info != null)
@@ -84,7 +84,7 @@ namespace GUIPackage
 			}
 		}
 
-		// Token: 0x060052A0 RID: 21152 RVA: 0x0022734C File Offset: 0x0022554C
+		// Token: 0x060049C8 RID: 18888 RVA: 0x001F495C File Offset: 0x001F2B5C
 		public void InitExChengShopItems(int index)
 		{
 			Inventory2 inventory = this.invList[index];
@@ -97,7 +97,7 @@ namespace GUIPackage
 			}, "Win/item");
 		}
 
-		// Token: 0x060052A1 RID: 21153 RVA: 0x002273BC File Offset: 0x002255BC
+		// Token: 0x060049C9 RID: 18889 RVA: 0x001F49CC File Offset: 0x001F2BCC
 		public void InitExChengMethod(int index)
 		{
 			this.InitExShopPage(0, this.invList[index], index + 1);
@@ -118,13 +118,13 @@ namespace GUIPackage
 			}
 		}
 
-		// Token: 0x060052A2 RID: 21154 RVA: 0x0003B31F File Offset: 0x0003951F
+		// Token: 0x060049CA RID: 18890 RVA: 0x001F4AC4 File Offset: 0x001F2CC4
 		public virtual int getExShopID(int type)
 		{
 			return this.GetShopJsonData(type)["ExShopID"].I;
 		}
 
-		// Token: 0x060052A3 RID: 21155 RVA: 0x002274B4 File Offset: 0x002256B4
+		// Token: 0x060049CB RID: 18891 RVA: 0x001F4ADC File Offset: 0x001F2CDC
 		public void resetInventory(Inventory2 inv)
 		{
 			for (int i = 0; i < inv.inventory.Count; i++)
@@ -134,24 +134,24 @@ namespace GUIPackage
 			}
 		}
 
-		// Token: 0x060052A4 RID: 21156 RVA: 0x000042DD File Offset: 0x000024DD
+		// Token: 0x060049CC RID: 18892 RVA: 0x00004095 File Offset: 0x00002295
 		public void getShopJson()
 		{
 		}
 
-		// Token: 0x060052A5 RID: 21157 RVA: 0x0003B337 File Offset: 0x00039537
+		// Token: 0x060049CD RID: 18893 RVA: 0x001F4B22 File Offset: 0x001F2D22
 		public virtual bool ShouldSetLevel(int Type = 0)
 		{
 			return Type == 1;
 		}
 
-		// Token: 0x060052A6 RID: 21158 RVA: 0x0003B340 File Offset: 0x00039540
+		// Token: 0x060049CE RID: 18894 RVA: 0x001F4B2B File Offset: 0x001F2D2B
 		public virtual int getShopType(int type)
 		{
 			return this.GetShopJsonData(type)["SType"].I;
 		}
 
-		// Token: 0x060052A7 RID: 21159 RVA: 0x002274FC File Offset: 0x002256FC
+		// Token: 0x060049CF RID: 18895 RVA: 0x001F4B44 File Offset: 0x001F2D44
 		public virtual void InitExShopPage(int page, Inventory2 inv, int type)
 		{
 			this.resetInventory(inv);
@@ -159,13 +159,13 @@ namespace GUIPackage
 			int shopExID = this.getExShopID(type);
 			int num = 0;
 			ItemDatebase component = jsonData.instance.GetComponent<ItemDatebase>();
-			List<JSONObject> list = jsonData.instance.jiaoHuanShopGoods.list.FindAll((JSONObject aa) => (int)aa["ShopID"].n == shopExID);
+			List<JSONObject> list = jsonData.instance.jiaoHuanShopGoods.list.FindAll((JSONObject aa) => aa["ShopID"].I == shopExID);
 			this.sortItem(list);
 			foreach (JSONObject jsonobject in list)
 			{
 				if (this.ShouldSetLevel(shopType))
 				{
-					JSONObject jsonobject2 = jsonData.instance.ItemJsonData[((int)jsonobject["GoodsID"].n).ToString()];
+					JSONObject jsonobject2 = jsonData.instance.ItemJsonData[jsonobject["GoodsID"].I.ToString()];
 					if (Tools.instance.getPlayer().getLevelType() < (int)jsonobject2["quality"].n && (jsonobject2["type"].I == 3 || jsonobject2["type"].I == 4))
 					{
 						continue;
@@ -173,13 +173,13 @@ namespace GUIPackage
 				}
 				if (inv.isInPage(page, num, (int)inv.count))
 				{
-					int index = inv.addItemToNullInventory((int)jsonobject["GoodsID"].n, 1, Tools.getUUID(), null);
+					int index = inv.addItemToNullInventory(jsonobject["GoodsID"].I, 1, Tools.getUUID(), null);
 					if ((int)jsonobject["Money"].n == 0 && (int)jsonobject["percent"].n > 0)
 					{
 						int itemPrice = (int)Math.Ceiling((double)(jsonData.instance.ItemJsonData[jsonobject["GoodsID"].I.ToString()]["price"].n / jsonobject["percent"].n));
 						inv.inventory[index].itemPrice = itemPrice;
 					}
-					else if ((int)jsonobject["EXGoodsID"].n == 10035)
+					else if (jsonobject["EXGoodsID"].I == 10035)
 					{
 						inv.inventory[index].itemPrice = (int)((float)((int)jsonData.instance.ItemJsonData[string.Concat(inv.inventory[index].itemID)]["price"].n) * (jsonobject["price"].n / 100f));
 					}
@@ -187,18 +187,18 @@ namespace GUIPackage
 					{
 						inv.inventory[index].itemPrice = (int)jsonobject["Money"].n;
 					}
-					inv.inventory[index].ExGoodsID = (int)jsonobject["EXGoodsID"].n;
-					inv.inventory[index].ExItemIcon = component.items[(int)jsonobject["EXGoodsID"].n].itemIcon;
+					inv.inventory[index].ExGoodsID = jsonobject["EXGoodsID"].I;
+					inv.inventory[index].ExItemIcon = component.items[jsonobject["EXGoodsID"].I].itemIcon;
 					if (this.ExShopMoney != null)
 					{
-						this.ExShopMoney.ExGoodsID = (int)jsonobject["EXGoodsID"].n;
+						this.ExShopMoney.ExGoodsID = jsonobject["EXGoodsID"].I;
 					}
 				}
 				num++;
 			}
 		}
 
-		// Token: 0x060052A8 RID: 21160 RVA: 0x00227830 File Offset: 0x00225A30
+		// Token: 0x060049D0 RID: 18896 RVA: 0x001F4E74 File Offset: 0x001F3074
 		public virtual void updateItem()
 		{
 			List<JSONObject> shopList = this.GetShopList();
@@ -224,7 +224,7 @@ namespace GUIPackage
 			}
 		}
 
-		// Token: 0x060052A9 RID: 21161 RVA: 0x002278EC File Offset: 0x00225AEC
+		// Token: 0x060049D1 RID: 18897 RVA: 0x001F4F30 File Offset: 0x001F3130
 		public void showBtn()
 		{
 			string scencName = SceneManager.GetActiveScene().name;
@@ -252,7 +252,7 @@ namespace GUIPackage
 			}
 		}
 
-		// Token: 0x060052AA RID: 21162 RVA: 0x00227A08 File Offset: 0x00225C08
+		// Token: 0x060049D2 RID: 18898 RVA: 0x001F504C File Offset: 0x001F324C
 		private void initShopItems(int index)
 		{
 			Inventory2 inventory = this.invList[index];
@@ -263,7 +263,7 @@ namespace GUIPackage
 			inventory.InitSlot("SlotShop", "Win/item");
 		}
 
-		// Token: 0x060052AB RID: 21163 RVA: 0x00227A54 File Offset: 0x00225C54
+		// Token: 0x060049D3 RID: 18899 RVA: 0x001F5098 File Offset: 0x001F3298
 		public virtual void InitShopPage(int page, Inventory2 inv, int type)
 		{
 			this.resetInventory(inv);
@@ -293,7 +293,7 @@ namespace GUIPackage
 			}
 		}
 
-		// Token: 0x060052AC RID: 21164 RVA: 0x00227C2C File Offset: 0x00225E2C
+		// Token: 0x060049D4 RID: 18900 RVA: 0x001F5270 File Offset: 0x001F3470
 		public List<int> sortItem(JSONObject shop)
 		{
 			List<int> itemsList = new List<int>();
@@ -310,47 +310,47 @@ namespace GUIPackage
 			return itemsList;
 		}
 
-		// Token: 0x060052AD RID: 21165 RVA: 0x0003B358 File Offset: 0x00039558
+		// Token: 0x060049D5 RID: 18901 RVA: 0x001F52DF File Offset: 0x001F34DF
 		public void sortItem(List<JSONObject> shop)
 		{
 			shop.Sort(delegate(JSONObject a, JSONObject b)
 			{
-				int num = (int)jsonData.instance.ItemJsonData[a["GoodsID"].I.ToString()]["quality"].n;
-				int value = (int)jsonData.instance.ItemJsonData[b["GoodsID"].I.ToString()]["quality"].n;
-				return num.CompareTo(value);
+				int i = jsonData.instance.ItemJsonData[a["GoodsID"].I.ToString()]["quality"].I;
+				int i2 = jsonData.instance.ItemJsonData[b["GoodsID"].I.ToString()]["quality"].I;
+				return i.CompareTo(i2);
 			});
 		}
 
-		// Token: 0x060052AE RID: 21166 RVA: 0x0003B37F File Offset: 0x0003957F
+		// Token: 0x060049D6 RID: 18902 RVA: 0x001F5306 File Offset: 0x001F3506
 		public void closeShop()
 		{
 			base.gameObject.SetActive(false);
 			Object.Destroy(base.gameObject);
 		}
 
-		// Token: 0x060052AF RID: 21167 RVA: 0x0001EE73 File Offset: 0x0001D073
+		// Token: 0x060049D7 RID: 18903 RVA: 0x000F03FC File Offset: 0x000EE5FC
 		public void openShop()
 		{
 			base.transform.localPosition = Vector3.zero;
 			base.gameObject.SetActive(true);
 		}
 
-		// Token: 0x040052BE RID: 21182
+		// Token: 0x04004946 RID: 18758
 		public List<Inventory2> invList;
 
-		// Token: 0x040052BF RID: 21183
+		// Token: 0x04004947 RID: 18759
 		public List<UIselect> selectList;
 
-		// Token: 0x040052C0 RID: 21184
+		// Token: 0x04004948 RID: 18760
 		public List<UILabel> ChildTitle;
 
-		// Token: 0x040052C1 RID: 21185
+		// Token: 0x04004949 RID: 18761
 		public ThreeSceernUI threeSceernUI;
 
-		// Token: 0x040052C2 RID: 21186
+		// Token: 0x0400494A RID: 18762
 		public UILabel ShopName;
 
-		// Token: 0x040052C3 RID: 21187
+		// Token: 0x0400494B RID: 18763
 		public ExGoods ExShopMoney;
 	}
 }

@@ -2,7 +2,7 @@
 
 namespace UltimateSurvival
 {
-	// Token: 0x020008D6 RID: 2262
+	// Token: 0x020005FC RID: 1532
 	public interface IOpenable
 	{
 	}

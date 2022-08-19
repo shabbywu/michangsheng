@@ -5,17 +5,17 @@ using UnityEngine.UI;
 
 namespace YSGame.TuJian
 {
-	// Token: 0x02000DEF RID: 3567
+	// Token: 0x02000AB2 RID: 2738
 	public class TuJianSSVItem : SSVItem
 	{
-		// Token: 0x0600560E RID: 22030 RVA: 0x0003D903 File Offset: 0x0003BB03
+		// Token: 0x06004CC1 RID: 19649 RVA: 0x0020D27E File Offset: 0x0020B47E
 		public override void Start()
 		{
 			base.Start();
 			this._BtnImage = this._button.GetComponent<Image>();
 		}
 
-		// Token: 0x0600560F RID: 22031 RVA: 0x0023E01C File Offset: 0x0023C21C
+		// Token: 0x06004CC2 RID: 19650 RVA: 0x0020D298 File Offset: 0x0020B498
 		public override void Update()
 		{
 			base.Update();
@@ -33,19 +33,19 @@ namespace YSGame.TuJian
 			}
 		}
 
-		// Token: 0x06005610 RID: 22032 RVA: 0x0003D91C File Offset: 0x0003BB1C
+		// Token: 0x06004CC3 RID: 19651 RVA: 0x0020D2E6 File Offset: 0x0020B4E6
 		private void OnEnable()
 		{
 			this._button.onClick.AddListener(new UnityAction(this.OnClick));
 		}
 
-		// Token: 0x06005611 RID: 22033 RVA: 0x0003D93A File Offset: 0x0003BB3A
+		// Token: 0x06004CC4 RID: 19652 RVA: 0x0020D304 File Offset: 0x0020B504
 		private void OnDisable()
 		{
 			this._button.onClick.RemoveAllListeners();
 		}
 
-		// Token: 0x06005612 RID: 22034 RVA: 0x0003D94C File Offset: 0x0003BB4C
+		// Token: 0x06004CC5 RID: 19653 RVA: 0x0020D316 File Offset: 0x0020B516
 		public void OnClick()
 		{
 			if (this.SSV.NowSelectItemIndex != base.DataIndex)
@@ -56,7 +56,7 @@ namespace YSGame.TuJian
 			}
 		}
 
-		// Token: 0x06005613 RID: 22035 RVA: 0x0003D982 File Offset: 0x0003BB82
+		// Token: 0x06004CC6 RID: 19654 RVA: 0x0020D34C File Offset: 0x0020B54C
 		public void OnSelect()
 		{
 			this._IsSelected = true;
@@ -64,7 +64,7 @@ namespace YSGame.TuJian
 			this._BtnImage.color = Color.white;
 		}
 
-		// Token: 0x06005614 RID: 22036 RVA: 0x0003D9AC File Offset: 0x0003BBAC
+		// Token: 0x06004CC7 RID: 19655 RVA: 0x0020D376 File Offset: 0x0020B576
 		public void OnLoseSelect()
 		{
 			this._IsSelected = false;
@@ -72,23 +72,23 @@ namespace YSGame.TuJian
 			this._BtnImage.color = this._AlphaColor;
 		}
 
-		// Token: 0x040055B2 RID: 21938
+		// Token: 0x04004BD4 RID: 19412
 		[HideInInspector]
 		public bool needRefresh;
 
-		// Token: 0x040055B3 RID: 21939
+		// Token: 0x04004BD5 RID: 19413
 		private bool _IsSelected;
 
-		// Token: 0x040055B4 RID: 21940
+		// Token: 0x04004BD6 RID: 19414
 		private Color _SelectedTextColor = new Color(0.46666667f, 0.87058824f, 0.76862746f);
 
-		// Token: 0x040055B5 RID: 21941
+		// Token: 0x04004BD7 RID: 19415
 		private Color _NormalTextColor = new Color(0.14117648f, 0.34509805f, 0.35686275f);
 
-		// Token: 0x040055B6 RID: 21942
+		// Token: 0x04004BD8 RID: 19416
 		private Color _AlphaColor = new Color(0f, 0f, 0f, 0f);
 
-		// Token: 0x040055B7 RID: 21943
+		// Token: 0x04004BD9 RID: 19417
 		private Image _BtnImage;
 	}
 }

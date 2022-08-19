@@ -2,10 +2,10 @@
 using System.Collections;
 using UnityEngine;
 
-// Token: 0x0200078A RID: 1930
+// Token: 0x020004FC RID: 1276
 public class TimeManager : MonoBehaviour
 {
-	// Token: 0x06003140 RID: 12608 RVA: 0x00024163 File Offset: 0x00022363
+	// Token: 0x0600294D RID: 10573 RVA: 0x0013BD1E File Offset: 0x00139F1E
 	private void Awake()
 	{
 		base.transform.name = "TimeManager";
@@ -13,7 +13,7 @@ public class TimeManager : MonoBehaviour
 		this.GetCurrentTime();
 	}
 
-	// Token: 0x06003141 RID: 12609 RVA: 0x00188FD8 File Offset: 0x001871D8
+	// Token: 0x0600294E RID: 10574 RVA: 0x0013BD44 File Offset: 0x00139F44
 	private void OnApplicationPause(bool pauseStatus)
 	{
 		if (pauseStatus)
@@ -36,7 +36,7 @@ public class TimeManager : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06003142 RID: 12610 RVA: 0x00189074 File Offset: 0x00187274
+	// Token: 0x0600294F RID: 10575 RVA: 0x0013BDE0 File Offset: 0x00139FE0
 	private void GetCurrentTime()
 	{
 		string text = "http://tapsong.net/content/3DGeoQuiz/index.php";
@@ -45,7 +45,7 @@ public class TimeManager : MonoBehaviour
 		base.StartCoroutine("WaitWWW");
 	}
 
-	// Token: 0x06003143 RID: 12611 RVA: 0x00024186 File Offset: 0x00022386
+	// Token: 0x06002950 RID: 10576 RVA: 0x0013BE17 File Offset: 0x0013A017
 	private IEnumerator WaitWWW()
 	{
 		yield return this.www;
@@ -75,7 +75,7 @@ public class TimeManager : MonoBehaviour
 		yield break;
 	}
 
-	// Token: 0x06003144 RID: 12612 RVA: 0x00024195 File Offset: 0x00022395
+	// Token: 0x06002951 RID: 10577 RVA: 0x0013BE26 File Offset: 0x0013A026
 	private IEnumerator Wait5()
 	{
 		yield return new WaitForSeconds(5f);
@@ -105,7 +105,7 @@ public class TimeManager : MonoBehaviour
 		yield break;
 	}
 
-	// Token: 0x06003145 RID: 12613 RVA: 0x000241A4 File Offset: 0x000223A4
+	// Token: 0x06002952 RID: 10578 RVA: 0x0013BE35 File Offset: 0x0013A035
 	private IEnumerator CountTime()
 	{
 		for (;;)
@@ -117,7 +117,7 @@ public class TimeManager : MonoBehaviour
 		yield break;
 	}
 
-	// Token: 0x06003146 RID: 12614 RVA: 0x001890AC File Offset: 0x001872AC
+	// Token: 0x06002953 RID: 10579 RVA: 0x0013BE40 File Offset: 0x0013A040
 	private void CheckForDailyReward()
 	{
 		if (TimeManager.currentDate.Year != 42)
@@ -149,9 +149,9 @@ public class TimeManager : MonoBehaviour
 		}
 	}
 
-	// Token: 0x04002D5D RID: 11613
+	// Token: 0x0400257D RID: 9597
 	public static DateTime currentDate;
 
-	// Token: 0x04002D5E RID: 11614
+	// Token: 0x0400257E RID: 9598
 	private WWW www;
 }

@@ -3,12 +3,12 @@ using UnityEngine;
 
 namespace Fungus
 {
-	// Token: 0x020012B5 RID: 4789
+	// Token: 0x02000E5F RID: 3679
 	[CommandInfo("Flow", "While", "Continuously loop through a block of commands while the condition is true. Use the Break command to force the loop to terminate immediately.", 0)]
 	[AddComponentMenu("")]
 	public class While : If
 	{
-		// Token: 0x060073E2 RID: 29666 RVA: 0x002AC96C File Offset: 0x002AAB6C
+		// Token: 0x0600674E RID: 26446 RVA: 0x00289F44 File Offset: 0x00288144
 		public override void OnEnter()
 		{
 			bool flag = true;
@@ -35,13 +35,13 @@ namespace Fungus
 			this.Continue(end.CommandIndex + 1);
 		}
 
-		// Token: 0x060073E3 RID: 29667 RVA: 0x0000A093 File Offset: 0x00008293
+		// Token: 0x0600674F RID: 26447 RVA: 0x00024C5F File Offset: 0x00022E5F
 		public override bool OpenBlock()
 		{
 			return true;
 		}
 
-		// Token: 0x060073E4 RID: 29668 RVA: 0x0004C5A3 File Offset: 0x0004A7A3
+		// Token: 0x06006750 RID: 26448 RVA: 0x0027D1B6 File Offset: 0x0027B3B6
 		public override Color GetButtonColor()
 		{
 			return new Color32(253, 253, 150, byte.MaxValue);

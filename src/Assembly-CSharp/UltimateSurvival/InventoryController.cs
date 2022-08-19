@@ -6,11 +6,11 @@ using UnityEngine.EventSystems;
 
 namespace UltimateSurvival
 {
-	// Token: 0x020008AB RID: 2219
+	// Token: 0x020005DD RID: 1501
 	public class InventoryController : MonoSingleton<InventoryController>
 	{
-		// Token: 0x170005FB RID: 1531
-		// (get) Token: 0x06003915 RID: 14613 RVA: 0x000297A5 File Offset: 0x000279A5
+		// Token: 0x17000421 RID: 1057
+		// (get) Token: 0x06003049 RID: 12361 RVA: 0x0015A3F4 File Offset: 0x001585F4
 		public bool IsClosed
 		{
 			get
@@ -19,8 +19,8 @@ namespace UltimateSurvival
 			}
 		}
 
-		// Token: 0x170005FC RID: 1532
-		// (get) Token: 0x06003916 RID: 14614 RVA: 0x000297B3 File Offset: 0x000279B3
+		// Token: 0x17000422 RID: 1058
+		// (get) Token: 0x0600304A RID: 12362 RVA: 0x0015A402 File Offset: 0x00158602
 		public ItemDatabase Database
 		{
 			get
@@ -29,7 +29,7 @@ namespace UltimateSurvival
 			}
 		}
 
-		// Token: 0x06003917 RID: 14615 RVA: 0x001A3F64 File Offset: 0x001A2164
+		// Token: 0x0600304B RID: 12363 RVA: 0x0015A40C File Offset: 0x0015860C
 		public bool AddItemToCollection(int itemID, int amount, string collection, out int added)
 		{
 			added = 0;
@@ -57,7 +57,7 @@ namespace UltimateSurvival
 			return false;
 		}
 
-		// Token: 0x06003918 RID: 14616 RVA: 0x001A3FE8 File Offset: 0x001A21E8
+		// Token: 0x0600304C RID: 12364 RVA: 0x0015A490 File Offset: 0x00158690
 		public bool AddItemToCollection(int itemID, ulong uuid, int amount, string collection, out int added, int index)
 		{
 			added = 0;
@@ -85,7 +85,7 @@ namespace UltimateSurvival
 			return false;
 		}
 
-		// Token: 0x06003919 RID: 14617 RVA: 0x001A406C File Offset: 0x001A226C
+		// Token: 0x0600304D RID: 12365 RVA: 0x0015A514 File Offset: 0x00158714
 		public bool AddItemToCollection(string itemName, int amount, string collection, out int added)
 		{
 			added = 0;
@@ -113,13 +113,13 @@ namespace UltimateSurvival
 			return false;
 		}
 
-		// Token: 0x0600391A RID: 14618 RVA: 0x000297BB File Offset: 0x000279BB
+		// Token: 0x0600304E RID: 12366 RVA: 0x0015A596 File Offset: 0x00158796
 		public int GetItemCount(string name)
 		{
 			return MonoSingleton<GUIController>.Instance.GetContainer("Inventory").GetItemCount(name);
 		}
 
-		// Token: 0x0600391B RID: 14619 RVA: 0x001A40F0 File Offset: 0x001A22F0
+		// Token: 0x0600304F RID: 12367 RVA: 0x0015A5B0 File Offset: 0x001587B0
 		public bool TryRemoveItem(SavableItem item)
 		{
 			if (!base.enabled)
@@ -136,7 +136,7 @@ namespace UltimateSurvival
 			return false;
 		}
 
-		// Token: 0x0600391C RID: 14620 RVA: 0x001A4130 File Offset: 0x001A2330
+		// Token: 0x06003050 RID: 12368 RVA: 0x0015A5F0 File Offset: 0x001587F0
 		public void RemoveItems(int ID, ulong uuid)
 		{
 			ItemContainer[] containers = MonoSingleton<GUIController>.Instance.Containers;
@@ -155,7 +155,7 @@ namespace UltimateSurvival
 			}
 		}
 
-		// Token: 0x0600391D RID: 14621 RVA: 0x001A4214 File Offset: 0x001A2414
+		// Token: 0x06003051 RID: 12369 RVA: 0x0015A6D4 File Offset: 0x001588D4
 		public int findItemCount(ulong uuid)
 		{
 			int num = 0;
@@ -173,7 +173,7 @@ namespace UltimateSurvival
 			return num;
 		}
 
-		// Token: 0x0600391E RID: 14622 RVA: 0x001A42B0 File Offset: 0x001A24B0
+		// Token: 0x06003052 RID: 12370 RVA: 0x0015A770 File Offset: 0x00158970
 		public int findItemCount(string tiemName)
 		{
 			int num = 0;
@@ -191,7 +191,7 @@ namespace UltimateSurvival
 			return num;
 		}
 
-		// Token: 0x0600391F RID: 14623 RVA: 0x001A4354 File Offset: 0x001A2554
+		// Token: 0x06003053 RID: 12371 RVA: 0x0015A814 File Offset: 0x00158A14
 		public string findItemInCintainersName(ulong uuid)
 		{
 			string result = "";
@@ -209,13 +209,13 @@ namespace UltimateSurvival
 			return result;
 		}
 
-		// Token: 0x06003920 RID: 14624 RVA: 0x000297D2 File Offset: 0x000279D2
+		// Token: 0x06003054 RID: 12372 RVA: 0x0015A8B0 File Offset: 0x00158AB0
 		public void RemoveItems(string itemName, int amount = 1)
 		{
 			MonoSingleton<GUIController>.Instance.GetContainer("Inventory").RemoveItems(itemName, amount);
 		}
 
-		// Token: 0x06003921 RID: 14625 RVA: 0x000297EA File Offset: 0x000279EA
+		// Token: 0x06003055 RID: 12373 RVA: 0x0015A8C8 File Offset: 0x00158AC8
 		public bool Try_DropItem(SavableItem item, Slot parentSlot = null)
 		{
 			if (item && item.ItemData.WorldObject)
@@ -229,13 +229,13 @@ namespace UltimateSurvival
 			return false;
 		}
 
-		// Token: 0x06003922 RID: 14626 RVA: 0x0002981D File Offset: 0x00027A1D
+		// Token: 0x06003056 RID: 12374 RVA: 0x0015A8FB File Offset: 0x00158AFB
 		public List<ItemHolder> GetEquipmentHolders()
 		{
 			return this.m_EquipmentHolders;
 		}
 
-		// Token: 0x06003923 RID: 14627 RVA: 0x001A43F0 File Offset: 0x001A25F0
+		// Token: 0x06003057 RID: 12375 RVA: 0x0015A904 File Offset: 0x00158B04
 		private void Awake()
 		{
 			if (!this.m_ItemDatabase)
@@ -274,7 +274,7 @@ namespace UltimateSurvival
 			this.m_Player.Death.AddListener(new Action(this.On_PlayerDeath));
 		}
 
-		// Token: 0x06003924 RID: 14628 RVA: 0x001A456C File Offset: 0x001A276C
+		// Token: 0x06003058 RID: 12376 RVA: 0x0015AA80 File Offset: 0x00158C80
 		private void OnChanged_PlayerHealth(HealthEventData data)
 		{
 			if (data.Delta < 0f)
@@ -295,7 +295,7 @@ namespace UltimateSurvival
 			}
 		}
 
-		// Token: 0x06003925 RID: 14629 RVA: 0x001A462C File Offset: 0x001A282C
+		// Token: 0x06003059 RID: 12377 RVA: 0x0015AB40 File Offset: 0x00158D40
 		private void On_PlayerDeath()
 		{
 			if (this.State.Get() != ET.InventoryState.Closed)
@@ -310,7 +310,7 @@ namespace UltimateSurvival
 			}
 		}
 
-		// Token: 0x06003926 RID: 14630 RVA: 0x001A46AC File Offset: 0x001A28AC
+		// Token: 0x0600305A RID: 12378 RVA: 0x0015ABC0 File Offset: 0x00158DC0
 		private void RemoveItemsFromCollection(string collection)
 		{
 			ItemContainer container = MonoSingleton<GUIController>.Instance.GetContainer(collection);
@@ -327,7 +327,7 @@ namespace UltimateSurvival
 			}
 		}
 
-		// Token: 0x06003927 RID: 14631 RVA: 0x001A4724 File Offset: 0x001A2924
+		// Token: 0x0600305B RID: 12379 RVA: 0x0015AC38 File Offset: 0x00158E38
 		private void DropItemsFromCollection(string collection)
 		{
 			ItemContainer container = MonoSingleton<GUIController>.Instance.GetContainer(collection);
@@ -351,7 +351,7 @@ namespace UltimateSurvival
 			}
 		}
 
-		// Token: 0x06003928 RID: 14632 RVA: 0x001A47BC File Offset: 0x001A29BC
+		// Token: 0x0600305C RID: 12380 RVA: 0x0015ACD0 File Offset: 0x00158ED0
 		private bool TryChange_State(ET.InventoryState state)
 		{
 			bool flag = false;
@@ -368,7 +368,7 @@ namespace UltimateSurvival
 			return flag;
 		}
 
-		// Token: 0x06003929 RID: 14633 RVA: 0x001A4808 File Offset: 0x001A2A08
+		// Token: 0x0600305D RID: 12381 RVA: 0x0015AD1C File Offset: 0x00158F1C
 		private List<ItemHolder> CreateListOfHolders(int size)
 		{
 			List<ItemHolder> list = new List<ItemHolder>();
@@ -379,80 +379,80 @@ namespace UltimateSurvival
 			return list;
 		}
 
-		// Token: 0x04003345 RID: 13125
+		// Token: 0x04002A87 RID: 10887
 		public Value<ET.InventoryState> State = new Value<ET.InventoryState>(ET.InventoryState.Closed);
 
-		// Token: 0x04003346 RID: 13126
+		// Token: 0x04002A88 RID: 10888
 		public Attempt<ET.InventoryState> SetState = new Attempt<ET.InventoryState>();
 
-		// Token: 0x04003347 RID: 13127
+		// Token: 0x04002A89 RID: 10889
 		public Attempt<SmeltingStation> OpenFurnace = new Attempt<SmeltingStation>();
 
-		// Token: 0x04003348 RID: 13128
+		// Token: 0x04002A8A RID: 10890
 		public Attempt<SmeltingStation> OpenCampfire = new Attempt<SmeltingStation>();
 
-		// Token: 0x04003349 RID: 13129
+		// Token: 0x04002A8B RID: 10891
 		public Attempt<LootObject> OpenLootContainer = new Attempt<LootObject>();
 
-		// Token: 0x0400334A RID: 13130
+		// Token: 0x04002A8C RID: 10892
 		public Attempt<Anvil> OpenAnvil = new Attempt<Anvil>();
 
-		// Token: 0x0400334B RID: 13131
+		// Token: 0x04002A8D RID: 10893
 		public Attempt<CraftData> CraftItem = new Attempt<CraftData>();
 
-		// Token: 0x0400334C RID: 13132
+		// Token: 0x04002A8E RID: 10894
 		public Message<ItemHolder> EquipmentChanged = new Message<ItemHolder>();
 
-		// Token: 0x0400334D RID: 13133
+		// Token: 0x04002A8F RID: 10895
 		[SerializeField]
 		[Tooltip("The inventory cannot function without this, as some operations, like ADD, LOAD require a database.")]
 		private ItemDatabase m_ItemDatabase;
 
-		// Token: 0x0400334E RID: 13134
+		// Token: 0x04002A90 RID: 10896
 		[Header("Item Collections")]
 		[SerializeField]
 		[Range(1f, 48f)]
 		private int m_InventorySize = 24;
 
-		// Token: 0x0400334F RID: 13135
+		// Token: 0x04002A91 RID: 10897
 		[SerializeField]
 		[Range(1f, 12f)]
 		private int m_HotbarSize = 6;
 
-		// Token: 0x04003350 RID: 13136
+		// Token: 0x04002A92 RID: 10898
 		[SerializeField]
 		[Reorderable]
 		private ReorderableStringList m_EquipmentList;
 
-		// Token: 0x04003351 RID: 13137
+		// Token: 0x04002A93 RID: 10899
 		[Header("Item Drop")]
 		[SerializeField]
 		private Vector3 m_DropOffset = new Vector3(0f, 0f, 0.8f);
 
-		// Token: 0x04003352 RID: 13138
+		// Token: 0x04002A94 RID: 10900
 		[SerializeField]
 		private float m_DropAngularFactor = 150f;
 
-		// Token: 0x04003353 RID: 13139
+		// Token: 0x04002A95 RID: 10901
 		[SerializeField]
 		private float m_DropSpeed = 8f;
 
-		// Token: 0x04003354 RID: 13140
+		// Token: 0x04002A96 RID: 10902
 		private PlayerEventHandler m_Player;
 
-		// Token: 0x04003355 RID: 13141
+		// Token: 0x04002A97 RID: 10903
 		private ItemContainer[] m_AllCollections;
 
-		// Token: 0x04003356 RID: 13142
+		// Token: 0x04002A98 RID: 10904
 		private float m_LastTimeToggledInventory;
 
-		// Token: 0x04003357 RID: 13143
+		// Token: 0x04002A99 RID: 10905
 		private List<ItemHolder> m_InventoryCollection;
 
-		// Token: 0x04003358 RID: 13144
+		// Token: 0x04002A9A RID: 10906
 		private List<ItemHolder> m_HotbarCollection;
 
-		// Token: 0x04003359 RID: 13145
+		// Token: 0x04002A9B RID: 10907
 		private List<ItemHolder> m_EquipmentHolders;
 	}
 }

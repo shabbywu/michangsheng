@@ -3,10 +3,10 @@ using System.Collections.Generic;
 
 namespace JSONClass
 {
-	// Token: 0x02000ADF RID: 2783
+	// Token: 0x02000747 RID: 1863
 	public class _skillJsonData : IJSONClass
 	{
-		// Token: 0x060046E6 RID: 18150 RVA: 0x001E54B0 File Offset: 0x001E36B0
+		// Token: 0x06003B30 RID: 15152 RVA: 0x001971D4 File Offset: 0x001953D4
 		public static void InitDataDict()
 		{
 			foreach (JSONObject jsonobject in jsonData.instance._skillJsonData.list)
@@ -66,105 +66,105 @@ namespace JSONClass
 			}
 		}
 
-		// Token: 0x060046E7 RID: 18151 RVA: 0x000042DD File Offset: 0x000024DD
+		// Token: 0x06003B31 RID: 15153 RVA: 0x00004095 File Offset: 0x00002295
 		private static void OnInitFinish()
 		{
 		}
 
-		// Token: 0x04003F32 RID: 16178
+		// Token: 0x04003399 RID: 13209
 		public static Dictionary<int, _skillJsonData> DataDict = new Dictionary<int, _skillJsonData>();
 
-		// Token: 0x04003F33 RID: 16179
+		// Token: 0x0400339A RID: 13210
 		public static List<_skillJsonData> DataList = new List<_skillJsonData>();
 
-		// Token: 0x04003F34 RID: 16180
+		// Token: 0x0400339B RID: 13211
 		public static Action OnInitFinishAction = new Action(_skillJsonData.OnInitFinish);
 
-		// Token: 0x04003F35 RID: 16181
+		// Token: 0x0400339C RID: 13212
 		public int id;
 
-		// Token: 0x04003F36 RID: 16182
+		// Token: 0x0400339D RID: 13213
 		public int Skill_ID;
 
-		// Token: 0x04003F37 RID: 16183
+		// Token: 0x0400339E RID: 13214
 		public int Skill_Lv;
 
-		// Token: 0x04003F38 RID: 16184
+		// Token: 0x0400339F RID: 13215
 		public int Skill_Type;
 
-		// Token: 0x04003F39 RID: 16185
+		// Token: 0x040033A0 RID: 13216
 		public int qingjiaotype;
 
-		// Token: 0x04003F3A RID: 16186
+		// Token: 0x040033A1 RID: 13217
 		public int HP;
 
-		// Token: 0x04003F3B RID: 16187
+		// Token: 0x040033A2 RID: 13218
 		public int speed;
 
-		// Token: 0x04003F3C RID: 16188
+		// Token: 0x040033A3 RID: 13219
 		public int icon;
 
-		// Token: 0x04003F3D RID: 16189
+		// Token: 0x040033A4 RID: 13220
 		public int Skill_DisplayType;
 
-		// Token: 0x04003F3E RID: 16190
+		// Token: 0x040033A5 RID: 13221
 		public int Skill_LV;
 
-		// Token: 0x04003F3F RID: 16191
+		// Token: 0x040033A6 RID: 13222
 		public int typePinJie;
 
-		// Token: 0x04003F40 RID: 16192
+		// Token: 0x040033A7 RID: 13223
 		public int DF;
 
-		// Token: 0x04003F41 RID: 16193
+		// Token: 0x040033A8 RID: 13224
 		public int TuJianType;
 
-		// Token: 0x04003F42 RID: 16194
+		// Token: 0x040033A9 RID: 13225
 		public int Skill_Open;
 
-		// Token: 0x04003F43 RID: 16195
+		// Token: 0x040033AA RID: 13226
 		public int Skill_castTime;
 
-		// Token: 0x04003F44 RID: 16196
+		// Token: 0x040033AB RID: 13227
 		public int canUseDistMax;
 
-		// Token: 0x04003F45 RID: 16197
+		// Token: 0x040033AC RID: 13228
 		public int CD;
 
-		// Token: 0x04003F46 RID: 16198
+		// Token: 0x040033AD RID: 13229
 		public string skillEffect;
 
-		// Token: 0x04003F47 RID: 16199
+		// Token: 0x040033AE RID: 13230
 		public string name;
 
-		// Token: 0x04003F48 RID: 16200
+		// Token: 0x040033AF RID: 13231
 		public string descr;
 
-		// Token: 0x04003F49 RID: 16201
+		// Token: 0x040033B0 RID: 13232
 		public string TuJiandescr;
 
-		// Token: 0x04003F4A RID: 16202
+		// Token: 0x040033B1 RID: 13233
 		public string script;
 
-		// Token: 0x04003F4B RID: 16203
+		// Token: 0x040033B2 RID: 13234
 		public List<int> seid = new List<int>();
 
-		// Token: 0x04003F4C RID: 16204
+		// Token: 0x040033B3 RID: 13235
 		public List<int> Affix = new List<int>();
 
-		// Token: 0x04003F4D RID: 16205
+		// Token: 0x040033B4 RID: 13236
 		public List<int> Affix2 = new List<int>();
 
-		// Token: 0x04003F4E RID: 16206
+		// Token: 0x040033B5 RID: 13237
 		public List<int> AttackType = new List<int>();
 
-		// Token: 0x04003F4F RID: 16207
+		// Token: 0x040033B6 RID: 13238
 		public List<int> skill_SameCastNum = new List<int>();
 
-		// Token: 0x04003F50 RID: 16208
+		// Token: 0x040033B7 RID: 13239
 		public List<int> skill_CastType = new List<int>();
 
-		// Token: 0x04003F51 RID: 16209
+		// Token: 0x040033B8 RID: 13240
 		public List<int> skill_Cast = new List<int>();
 	}
 }

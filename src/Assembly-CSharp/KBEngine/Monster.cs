@@ -3,16 +3,16 @@ using System.Collections.Generic;
 
 namespace KBEngine
 {
-	// Token: 0x02001038 RID: 4152
+	// Token: 0x02000C80 RID: 3200
 	public class Monster : MonsterBase
 	{
-		// Token: 0x0600635B RID: 25435 RVA: 0x0001C722 File Offset: 0x0001A922
+		// Token: 0x060058B2 RID: 22706 RVA: 0x000DBFA9 File Offset: 0x000DA1A9
 		public override void recvSkill(int arg1, int arg2)
 		{
 			throw new NotImplementedException();
 		}
 
-		// Token: 0x0600635C RID: 25436 RVA: 0x0027B658 File Offset: 0x00279858
+		// Token: 0x060058B3 RID: 22707 RVA: 0x0024FA84 File Offset: 0x0024DC84
 		public override object getDefinedProperty(string name)
 		{
 			uint num = <PrivateImplementationDetails>.ComputeStringHash(name);
@@ -91,7 +91,7 @@ namespace KBEngine
 			return null;
 		}
 
-		// Token: 0x0600635D RID: 25437 RVA: 0x00272248 File Offset: 0x00270448
+		// Token: 0x060058B4 RID: 22708 RVA: 0x0024FC28 File Offset: 0x0024DE28
 		public override void onHPChanged(int oldValue)
 		{
 			object definedProperty = this.getDefinedProperty("HP");
@@ -102,13 +102,13 @@ namespace KBEngine
 			});
 		}
 
-		// Token: 0x0600635E RID: 25438 RVA: 0x00043EC5 File Offset: 0x000420C5
+		// Token: 0x060058B5 RID: 22709 RVA: 0x00246801 File Offset: 0x00244A01
 		public override void onMPChanged(int oldValue)
 		{
 			this.getDefinedProperty("MP");
 		}
 
-		// Token: 0x0600635F RID: 25439 RVA: 0x0027227C File Offset: 0x0027047C
+		// Token: 0x060058B6 RID: 22710 RVA: 0x0024FC5C File Offset: 0x0024DE5C
 		public override void on_HP_MaxChanged(int oldValue)
 		{
 			object definedProperty = this.getDefinedProperty("HP_Max");
@@ -119,13 +119,13 @@ namespace KBEngine
 			});
 		}
 
-		// Token: 0x06006360 RID: 25440 RVA: 0x00043ED3 File Offset: 0x000420D3
+		// Token: 0x060058B7 RID: 22711 RVA: 0x00248FB1 File Offset: 0x002471B1
 		public override void onMP_MaxChanged(int oldValue)
 		{
 			this.getDefinedProperty("MP_Max");
 		}
 
-		// Token: 0x06006361 RID: 25441 RVA: 0x002722B0 File Offset: 0x002704B0
+		// Token: 0x060058B8 RID: 22712 RVA: 0x0024FC90 File Offset: 0x0024DE90
 		public override void onNameChanged(string oldValue)
 		{
 			object definedProperty = this.getDefinedProperty("name");
@@ -136,7 +136,7 @@ namespace KBEngine
 			});
 		}
 
-		// Token: 0x06006362 RID: 25442 RVA: 0x002722E4 File Offset: 0x002704E4
+		// Token: 0x060058B9 RID: 22713 RVA: 0x0024FCC4 File Offset: 0x0024DEC4
 		public override void onStateChanged(sbyte oldValue)
 		{
 			object definedProperty = this.getDefinedProperty("state");
@@ -147,28 +147,28 @@ namespace KBEngine
 			});
 		}
 
-		// Token: 0x06006363 RID: 25443 RVA: 0x000042DD File Offset: 0x000024DD
+		// Token: 0x060058BA RID: 22714 RVA: 0x00004095 File Offset: 0x00002295
 		public override void onSubStateChanged(byte oldValue)
 		{
 		}
 
-		// Token: 0x06006364 RID: 25444 RVA: 0x000042DD File Offset: 0x000024DD
+		// Token: 0x060058BB RID: 22715 RVA: 0x00004095 File Offset: 0x00002295
 		public override void onUtypeChanged(uint oldValue)
 		{
 		}
 
-		// Token: 0x06006365 RID: 25445 RVA: 0x000042DD File Offset: 0x000024DD
+		// Token: 0x060058BC RID: 22716 RVA: 0x00004095 File Offset: 0x00002295
 		public override void onUidChanged(uint oldValue)
 		{
 		}
 
-		// Token: 0x06006366 RID: 25446 RVA: 0x00043EE1 File Offset: 0x000420E1
+		// Token: 0x060058BD RID: 22717 RVA: 0x00249059 File Offset: 0x00247259
 		public override void onMoveSpeedChanged(byte oldValue)
 		{
 			this.getDefinedProperty("moveSpeed");
 		}
 
-		// Token: 0x06006367 RID: 25447 RVA: 0x0011EE44 File Offset: 0x0011D044
+		// Token: 0x060058BE RID: 22718 RVA: 0x0024FCF8 File Offset: 0x0024DEF8
 		public override void recvDamage(int attackerID, int skillID, int damageType, int damage)
 		{
 			Entity entity = KBEngineApp.app.findEntity(attackerID);
@@ -182,12 +182,12 @@ namespace KBEngine
 			});
 		}
 
-		// Token: 0x06006368 RID: 25448 RVA: 0x000042DD File Offset: 0x000024DD
+		// Token: 0x060058BF RID: 22719 RVA: 0x00004095 File Offset: 0x00002295
 		public override void __init__()
 		{
 		}
 
-		// Token: 0x06006369 RID: 25449 RVA: 0x000448F4 File Offset: 0x00042AF4
+		// Token: 0x060058C0 RID: 22720 RVA: 0x0024FD45 File Offset: 0x0024DF45
 		public override void onBuffsChanged(List<ushort> oldValue)
 		{
 			if (this.renderObj != null)

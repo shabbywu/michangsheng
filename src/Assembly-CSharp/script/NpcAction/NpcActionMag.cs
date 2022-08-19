@@ -1,27 +1,23 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using UnityEngine;
 
 namespace script.NpcAction
 {
-	// Token: 0x02000ABE RID: 2750
+	// Token: 0x020009F1 RID: 2545
 	public class NpcActionMag : MonoBehaviour
 	{
-		// Token: 0x06004648 RID: 17992 RVA: 0x001DF660 File Offset: 0x001DD860
+		// Token: 0x06004690 RID: 18064 RVA: 0x001DD87C File Offset: 0x001DBA7C
 		private void Awake()
 		{
-			if (NpcActionMag.Inst != null)
-			{
-				Object.Destroy(NpcActionMag.Inst.gameObject);
-			}
 			this.Pool = new GroupPool();
 			NpcActionMag.Inst = this;
 			Object.DontDestroyOnLoad(NpcActionMag.Inst.gameObject);
-			jsonData.instance.init("Effect/json/d_avatar.py.datas", out jsonData.instance.AvatarJsonData);
 		}
 
-		// Token: 0x06004649 RID: 17993 RVA: 0x001DF6C4 File Offset: 0x001DD8C4
-		public void NpcAction(int times, bool isCanChanger = true)
+		// Token: 0x06004691 RID: 18065 RVA: 0x001DD8A0 File Offset: 0x001DBAA0
+		public void GroupAction(int times, bool isCanChanger = true)
 		{
 			this.GroupNum = 0;
 			this.CompleteGroupNum = 0;
@@ -32,7 +28,6 @@ namespace script.NpcAction
 				this.IsNoJieSuan = false;
 				return;
 			}
-			DateTime.Parse(this.JieSuanTime).AddMonths(times);
 			foreach (string s in jsonData.instance.AvatarJsonData.keys)
 			{
 				int num = int.Parse(s);
@@ -73,17 +68,69 @@ namespace script.NpcAction
 			{
 				this.IsFree = false;
 			}
+			this.NeedTimes = times;
+			this.BeforeAction();
+		}
+
+		// Token: 0x06004692 RID: 18066 RVA: 0x001DDA48 File Offset: 0x001DBC48
+		private void BeforeAction()
+		{
+			Loom.RunAsync(delegate
+			{
+				try
+				{
+					NpcJieSuanManager.inst.PaiMaiAction();
+					NpcJieSuanManager.inst.LunDaoAction();
+					NpcJieSuanManager.inst.npcTeShu.NextJieSha();
+					NpcJieSuanManager.inst.npcMap.RestartMap();
+				}
+				catch (Exception ex)
+				{
+					Debug.LogError("BeforeAction出错");
+					Debug.LogError(ex);
+					throw;
+				}
+				Loom.QueueOnMainThread(delegate(object obj)
+				{
+					this.StartAction();
+				}, null);
+			});
+		}
+
+		// Token: 0x06004693 RID: 18067 RVA: 0x001DDA5C File Offset: 0x001DBC5C
+		private void AfterAction()
+		{
+			Loom.RunAsync(delegate
+			{
+				Loom.QueueOnMainThread(delegate(object obj)
+				{
+					this.CompleteGroupNum = 0;
+					this.NeedTimes--;
+					NpcJieSuanManager.inst.JieSuanTimes++;
+					NpcJieSuanManager.inst.JieSuanTime = DateTime.Parse(NpcJieSuanManager.inst.JieSuanTime).AddMonths(1).ToString(CultureInfo.CurrentCulture);
+					if (this.NeedTimes == 0)
+					{
+						this.ActionCompleteCallBack();
+						return;
+					}
+					this.BeforeAction();
+				}, null);
+			});
+		}
+
+		// Token: 0x06004694 RID: 18068 RVA: 0x001DDA70 File Offset: 0x001DBC70
+		private void StartAction()
+		{
 			foreach (NpcDataGroup npcDataGroup in this.GroupList)
 			{
-				npcDataGroup.GroupAction(times);
+				npcDataGroup.Start(false);
 			}
 		}
 
-		// Token: 0x0600464A RID: 17994 RVA: 0x001DF8B8 File Offset: 0x001DDAB8
-		public void GroupCompleteCallBack()
+		// Token: 0x06004695 RID: 18069 RVA: 0x001DDAC4 File Offset: 0x001DBCC4
+		public void ActionCompleteCallBack()
 		{
-			this.CompleteGroupNum++;
-			if (this.CompleteGroupNum == this.GroupNum)
+			Loom.RunAsync(delegate
 			{
 				try
 				{
@@ -105,43 +152,52 @@ namespace script.NpcAction
 				{
 					this.IsFree = true;
 				}
+			});
+		}
+
+		// Token: 0x06004696 RID: 18070 RVA: 0x001DDAD8 File Offset: 0x001DBCD8
+		public void SendMessage()
+		{
+			foreach (NpcDataGroup npcDataGroup in this.GroupList)
+			{
+				foreach (int num in npcDataGroup.NpcDict.Keys)
+				{
+				}
 			}
 		}
 
-		// Token: 0x04003E62 RID: 15970
+		// Token: 0x06004697 RID: 18071 RVA: 0x001DDB64 File Offset: 0x001DBD64
+		public void GroupCompleteCallBack()
+		{
+			this.CompleteGroupNum++;
+			if (this.CompleteGroupNum == this.GroupNum)
+			{
+				this.AfterAction();
+			}
+		}
+
+		// Token: 0x040047F3 RID: 18419
 		public static NpcActionMag Inst;
 
-		// Token: 0x04003E63 RID: 15971
-		public bool isUpDateNpcList;
-
-		// Token: 0x04003E64 RID: 15972
-		public bool isCanJieSuan = true;
-
-		// Token: 0x04003E65 RID: 15973
-		public bool JieSuanAnimation;
-
-		// Token: 0x04003E66 RID: 15974
-		public int JieSuanTimes;
-
-		// Token: 0x04003E67 RID: 15975
-		public string JieSuanTime = "0001-1-1";
-
-		// Token: 0x04003E68 RID: 15976
+		// Token: 0x040047F4 RID: 18420
 		public bool IsNoJieSuan;
 
-		// Token: 0x04003E69 RID: 15977
+		// Token: 0x040047F5 RID: 18421
 		public int GroupNum;
 
-		// Token: 0x04003E6A RID: 15978
+		// Token: 0x040047F6 RID: 18422
 		public int CompleteGroupNum;
 
-		// Token: 0x04003E6B RID: 15979
+		// Token: 0x040047F7 RID: 18423
 		public List<NpcDataGroup> GroupList;
 
-		// Token: 0x04003E6C RID: 15980
+		// Token: 0x040047F8 RID: 18424
 		public GroupPool Pool;
 
-		// Token: 0x04003E6D RID: 15981
+		// Token: 0x040047F9 RID: 18425
+		public int NeedTimes;
+
+		// Token: 0x040047FA RID: 18426
 		public bool IsFree;
 	}
 }

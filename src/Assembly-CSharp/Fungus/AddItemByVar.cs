@@ -4,12 +4,12 @@ using UnityEngine;
 
 namespace Fungus
 {
-	// Token: 0x020013E3 RID: 5091
+	// Token: 0x02000F2D RID: 3885
 	[CommandInfo("YSNew/Add", "AddItemByVar", "增加物品", 0)]
 	[AddComponentMenu("")]
 	public class AddItemByVar : Command
 	{
-		// Token: 0x06007BE7 RID: 31719 RVA: 0x002C42CC File Offset: 0x002C24CC
+		// Token: 0x06006DFC RID: 28156 RVA: 0x002A4144 File Offset: 0x002A2344
 		public override void OnEnter()
 		{
 			Avatar player = Tools.instance.getPlayer();
@@ -29,13 +29,13 @@ namespace Fungus
 			this.Continue();
 		}
 
-		// Token: 0x06007BE8 RID: 31720 RVA: 0x000113CF File Offset: 0x0000F5CF
+		// Token: 0x06006DFD RID: 28157 RVA: 0x0005E228 File Offset: 0x0005C428
 		public override Color GetButtonColor()
 		{
 			return new Color32(184, 210, 235, byte.MaxValue);
 		}
 
-		// Token: 0x04006A3E RID: 27198
+		// Token: 0x04005B6C RID: 23404
 		[Tooltip("增加物品的ID")]
 		[VariableProperty(new Type[]
 		{
@@ -44,12 +44,12 @@ namespace Fungus
 		[SerializeField]
 		protected IntegerVariable ItemID;
 
-		// Token: 0x04006A3F RID: 27199
+		// Token: 0x04005B6D RID: 23405
 		[Tooltip("增加物品的数量")]
 		[SerializeField]
 		protected int ItemNum;
 
-		// Token: 0x04006A40 RID: 27200
+		// Token: 0x04005B6E RID: 23406
 		[Tooltip("增加物品的数量(如果为Null则使用数字)")]
 		[VariableProperty(new Type[]
 		{

@@ -5,12 +5,12 @@ using UnityEngine;
 
 namespace Fungus
 {
-	// Token: 0x02001414 RID: 5140
+	// Token: 0x02000F5E RID: 3934
 	[CommandInfo("YSNew/Set", "setMenPaiHaoGanDu", "设置门派id", 0)]
 	[AddComponentMenu("")]
 	public class setMenPaiHaoGanDu : Command
 	{
-		// Token: 0x06007CA9 RID: 31913 RVA: 0x002C53A8 File Offset: 0x002C35A8
+		// Token: 0x06006EB9 RID: 28345 RVA: 0x002A5520 File Offset: 0x002A3720
 		public override void OnEnter()
 		{
 			Avatar player = Tools.instance.getPlayer();
@@ -46,18 +46,18 @@ namespace Fungus
 			this.Continue();
 		}
 
-		// Token: 0x06007CAA RID: 31914 RVA: 0x000113CF File Offset: 0x0000F5CF
+		// Token: 0x06006EBA RID: 28346 RVA: 0x0005E228 File Offset: 0x0005C428
 		public override Color GetButtonColor()
 		{
 			return new Color32(184, 210, 235, byte.MaxValue);
 		}
 
-		// Token: 0x04006A94 RID: 27284
+		// Token: 0x04005BC2 RID: 23490
 		[Tooltip("设置的方式set表示将值设置为该值，add表示在原有的值的基础上进行加减")]
 		[SerializeField]
 		protected setMenPaiHaoGanDu.SetType Type;
 
-		// Token: 0x04006A95 RID: 27285
+		// Token: 0x04005BC3 RID: 23491
 		[Tooltip("设置门派的ID")]
 		[VariableProperty(new Type[]
 		{
@@ -66,17 +66,17 @@ namespace Fungus
 		[SerializeField]
 		protected IntegerVariable MenPaiID;
 
-		// Token: 0x04006A96 RID: 27286
+		// Token: 0x04005BC4 RID: 23492
 		[Tooltip("设置的值")]
 		[SerializeField]
 		protected int Value;
 
-		// Token: 0x02001415 RID: 5141
+		// Token: 0x02001727 RID: 5927
 		public enum SetType
 		{
-			// Token: 0x04006A98 RID: 27288
+			// Token: 0x04007524 RID: 29988
 			set,
-			// Token: 0x04006A99 RID: 27289
+			// Token: 0x04007525 RID: 29989
 			add
 		}
 	}

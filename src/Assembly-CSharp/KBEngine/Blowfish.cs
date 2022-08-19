@@ -4,22 +4,22 @@ using System.Text;
 
 namespace KBEngine
 {
-	// Token: 0x02000EAC RID: 3756
+	// Token: 0x02000B35 RID: 2869
 	public class Blowfish
 	{
-		// Token: 0x06005A91 RID: 23185 RVA: 0x0003FE56 File Offset: 0x0003E056
+		// Token: 0x06005067 RID: 20583 RVA: 0x0021F3D4 File Offset: 0x0021D5D4
 		public Blowfish(byte[] key)
 		{
 			this._key = key;
 			this.init();
 		}
 
-		// Token: 0x06005A92 RID: 23186 RVA: 0x0003FE7E File Offset: 0x0003E07E
+		// Token: 0x06005068 RID: 20584 RVA: 0x0021F3FC File Offset: 0x0021D5FC
 		public Blowfish(string key) : this(Encoding.Unicode.GetBytes(key))
 		{
 		}
 
-		// Token: 0x06005A93 RID: 23187 RVA: 0x0003FE91 File Offset: 0x0003E091
+		// Token: 0x06005069 RID: 20585 RVA: 0x0021F40F File Offset: 0x0021D60F
 		public Blowfish(int keySize = 16)
 		{
 			this._key = new byte[keySize];
@@ -27,18 +27,18 @@ namespace KBEngine
 			this.init();
 		}
 
-		// Token: 0x06005A94 RID: 23188 RVA: 0x0024EF70 File Offset: 0x0024D170
+		// Token: 0x0600506A RID: 20586 RVA: 0x0021F44C File Offset: 0x0021D64C
 		~Blowfish()
 		{
 		}
 
-		// Token: 0x06005A95 RID: 23189 RVA: 0x0003FECE File Offset: 0x0003E0CE
+		// Token: 0x0600506B RID: 20587 RVA: 0x0021F474 File Offset: 0x0021D674
 		public bool isGood()
 		{
 			return this._isGood;
 		}
 
-		// Token: 0x06005A96 RID: 23190 RVA: 0x0024EF98 File Offset: 0x0024D198
+		// Token: 0x0600506C RID: 20588 RVA: 0x0021F47C File Offset: 0x0021D67C
 		private void init()
 		{
 			if (this._key.Length < 4 || this._key.Length > 56)
@@ -84,7 +84,7 @@ namespace KBEngine
 			this._isGood = true;
 		}
 
-		// Token: 0x06005A97 RID: 23191 RVA: 0x0024F0E0 File Offset: 0x0024D2E0
+		// Token: 0x0600506D RID: 20589 RVA: 0x0021F5C4 File Offset: 0x0021D7C4
 		private uint f(uint x)
 		{
 			ushort num = (ushort)(x & 255U);
@@ -97,7 +97,7 @@ namespace KBEngine
 			return (this.S[0, (int)num4] + this.S[1, (int)num3] ^ this.S[2, (int)num2]) + this.S[3, (int)num];
 		}
 
-		// Token: 0x06005A98 RID: 23192 RVA: 0x0024F158 File Offset: 0x0024D358
+		// Token: 0x0600506E RID: 20590 RVA: 0x0021F63C File Offset: 0x0021D83C
 		public void encipher(byte[] data, int length)
 		{
 			if (length % 8 != 0)
@@ -139,7 +139,7 @@ namespace KBEngine
 			}
 		}
 
-		// Token: 0x06005A99 RID: 23193 RVA: 0x0024F284 File Offset: 0x0024D484
+		// Token: 0x0600506F RID: 20591 RVA: 0x0021F768 File Offset: 0x0021D968
 		private void encipher(ref uint xl, ref uint xr)
 		{
 			uint num = xl;
@@ -161,7 +161,7 @@ namespace KBEngine
 			xr = num2;
 		}
 
-		// Token: 0x06005A9A RID: 23194 RVA: 0x0024F2E0 File Offset: 0x0024D4E0
+		// Token: 0x06005070 RID: 20592 RVA: 0x0021F7C4 File Offset: 0x0021D9C4
 		public string encipher(string data)
 		{
 			byte[] bytes = Encoding.Unicode.GetBytes(data);
@@ -169,7 +169,7 @@ namespace KBEngine
 			return Convert.ToBase64String(bytes);
 		}
 
-		// Token: 0x06005A9B RID: 23195 RVA: 0x0024F30C File Offset: 0x0024D50C
+		// Token: 0x06005071 RID: 20593 RVA: 0x0021F7F0 File Offset: 0x0021D9F0
 		public void decipher(byte[] data, int startIndex, int length)
 		{
 			if (length % 8 != 0)
@@ -207,7 +207,7 @@ namespace KBEngine
 			}
 		}
 
-		// Token: 0x06005A9C RID: 23196 RVA: 0x0024F454 File Offset: 0x0024D654
+		// Token: 0x06005072 RID: 20594 RVA: 0x0021F938 File Offset: 0x0021DB38
 		private void decipher(ref uint xl, ref uint xr)
 		{
 			uint num = xl;
@@ -229,7 +229,7 @@ namespace KBEngine
 			xr = num2;
 		}
 
-		// Token: 0x06005A9D RID: 23197 RVA: 0x0024F4B0 File Offset: 0x0024D6B0
+		// Token: 0x06005073 RID: 20595 RVA: 0x0021F994 File Offset: 0x0021DB94
 		public string decipher(string data)
 		{
 			byte[] array = Convert.FromBase64String(data);
@@ -237,37 +237,37 @@ namespace KBEngine
 			return Encoding.Unicode.GetString(array);
 		}
 
-		// Token: 0x06005A9E RID: 23198 RVA: 0x0003FED6 File Offset: 0x0003E0D6
+		// Token: 0x06005074 RID: 20596 RVA: 0x0021F9BE File Offset: 0x0021DBBE
 		public byte[] key()
 		{
 			return this._key;
 		}
 
-		// Token: 0x040059E0 RID: 23008
+		// Token: 0x04004F5B RID: 20315
 		private const int N = 16;
 
-		// Token: 0x040059E1 RID: 23009
+		// Token: 0x04004F5C RID: 20316
 		private const int KEYBYTES = 8;
 
-		// Token: 0x040059E2 RID: 23010
+		// Token: 0x04004F5D RID: 20317
 		private byte[] _key = new byte[0];
 
-		// Token: 0x040059E3 RID: 23011
+		// Token: 0x04004F5E RID: 20318
 		private bool _isGood = true;
 
-		// Token: 0x040059E4 RID: 23012
+		// Token: 0x04004F5F RID: 20319
 		private static RNGCryptoServiceProvider rngCsp = new RNGCryptoServiceProvider();
 
-		// Token: 0x040059E5 RID: 23013
+		// Token: 0x04004F60 RID: 20320
 		private const int MIN_KEY_SIZE = 4;
 
-		// Token: 0x040059E6 RID: 23014
+		// Token: 0x04004F61 RID: 20321
 		private const int MAX_KEY_SIZE = 56;
 
-		// Token: 0x040059E7 RID: 23015
+		// Token: 0x04004F62 RID: 20322
 		private const int DEFAULT_KEY_SIZE = 16;
 
-		// Token: 0x040059E8 RID: 23016
+		// Token: 0x04004F63 RID: 20323
 		private static uint[] _P = new uint[]
 		{
 			608135816U,
@@ -290,7 +290,7 @@ namespace KBEngine
 			2306472731U
 		};
 
-		// Token: 0x040059E9 RID: 23017
+		// Token: 0x04004F64 RID: 20324
 		private static uint[,] _S = new uint[,]
 		{
 			{
@@ -1327,10 +1327,10 @@ namespace KBEngine
 			}
 		};
 
-		// Token: 0x040059EA RID: 23018
+		// Token: 0x04004F65 RID: 20325
 		private uint[] P;
 
-		// Token: 0x040059EB RID: 23019
+		// Token: 0x04004F66 RID: 20326
 		private uint[,] S;
 	}
 }

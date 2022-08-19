@@ -7,17 +7,17 @@ using KBEngine;
 using UnityEngine;
 using UnityEngine.UI;
 
-// Token: 0x020005E3 RID: 1507
+// Token: 0x0200042C RID: 1068
 public class TooltipSkill : TooltipBase
 {
-	// Token: 0x060025DA RID: 9690 RVA: 0x0001E48C File Offset: 0x0001C68C
+	// Token: 0x0600221B RID: 8731 RVA: 0x000EB011 File Offset: 0x000E9211
 	protected override void Start()
 	{
 		base.Start();
 		this.canShowTooltip = true;
 	}
 
-	// Token: 0x060025DB RID: 9691 RVA: 0x0012C298 File Offset: 0x0012A498
+	// Token: 0x0600221C RID: 8732 RVA: 0x000EB020 File Offset: 0x000E9220
 	public void setItemText(int skillID, ITEM_INFO _item)
 	{
 		if (skillID == this.SkillID)
@@ -68,13 +68,13 @@ public class TooltipSkill : TooltipBase
 		this.Show();
 	}
 
-	// Token: 0x060025DC RID: 9692 RVA: 0x0001E49B File Offset: 0x0001C69B
+	// Token: 0x0600221D RID: 8733 RVA: 0x000EB30C File Offset: 0x000E950C
 	public int GetUITextureHigh()
 	{
 		return 153 + this.desc.height;
 	}
 
-	// Token: 0x060025DD RID: 9693 RVA: 0x0012C584 File Offset: 0x0012A784
+	// Token: 0x0600221E RID: 8734 RVA: 0x000EB320 File Offset: 0x000E9520
 	public void ClickChenge()
 	{
 		bool value = UIToggle.current.value;
@@ -94,7 +94,7 @@ public class TooltipSkill : TooltipBase
 		this.Hide();
 	}
 
-	// Token: 0x060025DE RID: 9694 RVA: 0x0012C5C4 File Offset: 0x0012A7C4
+	// Token: 0x0600221F RID: 8735 RVA: 0x000EB360 File Offset: 0x000E9560
 	public void ClickXiangXi()
 	{
 		if (!jsonData.instance.skillJsonData.ContainsKey(this.SkillID.ToString()))
@@ -131,7 +131,7 @@ public class TooltipSkill : TooltipBase
 		this.clearCiZhui();
 	}
 
-	// Token: 0x060025DF RID: 9695 RVA: 0x0012C6E0 File Offset: 0x0012A8E0
+	// Token: 0x06002220 RID: 8736 RVA: 0x000EB47C File Offset: 0x000E967C
 	private void clearCiZhui()
 	{
 		foreach (object obj in this.cizhui.transform)
@@ -144,7 +144,7 @@ public class TooltipSkill : TooltipBase
 		}
 	}
 
-	// Token: 0x060025E0 RID: 9696 RVA: 0x0001E4AE File Offset: 0x0001C6AE
+	// Token: 0x06002221 RID: 8737 RVA: 0x000EB4EC File Offset: 0x000E96EC
 	public void Show()
 	{
 		if (this.canShowTooltip)
@@ -154,14 +154,14 @@ public class TooltipSkill : TooltipBase
 		}
 	}
 
-	// Token: 0x060025E1 RID: 9697 RVA: 0x0001E4D5 File Offset: 0x0001C6D5
+	// Token: 0x06002222 RID: 8738 RVA: 0x000EB513 File Offset: 0x000E9713
 	public void Hide()
 	{
 		this.uITexture.height = 40;
 		this.Daride.SetActive(false);
 	}
 
-	// Token: 0x060025E2 RID: 9698 RVA: 0x0012C750 File Offset: 0x0012A950
+	// Token: 0x06002223 RID: 8739 RVA: 0x000EB530 File Offset: 0x000E9730
 	public void setText(int skillID, GUIPackage.Skill keyCell)
 	{
 		if (skillID == this.SkillID)
@@ -225,7 +225,7 @@ public class TooltipSkill : TooltipBase
 		this.Show();
 	}
 
-	// Token: 0x060025E3 RID: 9699 RVA: 0x0012CAB0 File Offset: 0x0012ACB0
+	// Token: 0x06002224 RID: 8740 RVA: 0x000EB890 File Offset: 0x000E9A90
 	public float addAffix(int id, float start = -1f)
 	{
 		GameObject gameObject = Object.Instantiate<GameObject>(this.toolstiiptemp);
@@ -254,7 +254,7 @@ public class TooltipSkill : TooltipBase
 		return result;
 	}
 
-	// Token: 0x060025E4 RID: 9700 RVA: 0x0001E4F0 File Offset: 0x0001C6F0
+	// Token: 0x06002225 RID: 8741 RVA: 0x000EBA04 File Offset: 0x000E9C04
 	public GameObject CreatGameObjectToParent(GameObject parent, GameObject Temp)
 	{
 		GameObject gameObject = Object.Instantiate<Transform>(Temp.transform).gameObject;
@@ -264,7 +264,7 @@ public class TooltipSkill : TooltipBase
 		return gameObject;
 	}
 
-	// Token: 0x060025E5 RID: 9701 RVA: 0x0012CC24 File Offset: 0x0012AE24
+	// Token: 0x06002226 RID: 8742 RVA: 0x000EBA40 File Offset: 0x000E9C40
 	public void clearItem()
 	{
 		foreach (object obj in this.itemobj.transform)
@@ -277,7 +277,7 @@ public class TooltipSkill : TooltipBase
 		}
 	}
 
-	// Token: 0x060025E6 RID: 9702 RVA: 0x0012CC94 File Offset: 0x0012AE94
+	// Token: 0x06002227 RID: 8743 RVA: 0x000EBAB0 File Offset: 0x000E9CB0
 	public void addItemAffix(int id)
 	{
 		GameObject gameObject = Object.Instantiate<GameObject>(this.toolstiiptemp);
@@ -292,7 +292,7 @@ public class TooltipSkill : TooltipBase
 		gameObject.GetComponent<Animation>().Play("ShowBuff");
 	}
 
-	// Token: 0x060025E7 RID: 9703 RVA: 0x0012CDC4 File Offset: 0x0012AFC4
+	// Token: 0x06002228 RID: 8744 RVA: 0x000EBBE0 File Offset: 0x000E9DE0
 	public void newSlot(int type, int Num)
 	{
 		GameObject gameObject = Object.Instantiate<GameObject>(this.slots);
@@ -303,7 +303,7 @@ public class TooltipSkill : TooltipBase
 		gameObject.GetComponent<UITexture>().mainTexture = (Resources.Load("Ui Icon/Fight/chast_" + type) as Texture);
 	}
 
-	// Token: 0x060025E8 RID: 9704 RVA: 0x0001E52A File Offset: 0x0001C72A
+	// Token: 0x06002229 RID: 8745 RVA: 0x000EBC6A File Offset: 0x000E9E6A
 	protected override void Update()
 	{
 		if (this.shoudSetPos)
@@ -313,7 +313,7 @@ public class TooltipSkill : TooltipBase
 		}
 	}
 
-	// Token: 0x060025E9 RID: 9705 RVA: 0x0012CE50 File Offset: 0x0012B050
+	// Token: 0x0600222A RID: 8746 RVA: 0x000EBC80 File Offset: 0x000E9E80
 	public void updateCizhui()
 	{
 		Vector3 vector;
@@ -363,54 +363,54 @@ public class TooltipSkill : TooltipBase
 		}
 	}
 
-	// Token: 0x0400206C RID: 8300
+	// Token: 0x04001BA0 RID: 7072
 	public int SkillID;
 
-	// Token: 0x0400206D RID: 8301
+	// Token: 0x04001BA1 RID: 7073
 	public UILabel lengque;
 
-	// Token: 0x0400206E RID: 8302
+	// Token: 0x04001BA2 RID: 7074
 	public UILabel Lname;
 
-	// Token: 0x0400206F RID: 8303
+	// Token: 0x04001BA3 RID: 7075
 	public UILabel LLV;
 
-	// Token: 0x04002070 RID: 8304
+	// Token: 0x04001BA4 RID: 7076
 	public UILabel desc;
 
-	// Token: 0x04002071 RID: 8305
+	// Token: 0x04001BA5 RID: 7077
 	public GameObject slots;
 
-	// Token: 0x04002072 RID: 8306
+	// Token: 0x04001BA6 RID: 7078
 	public GameObject grid;
 
-	// Token: 0x04002073 RID: 8307
+	// Token: 0x04001BA7 RID: 7079
 	public GameObject toolstiiptemp;
 
-	// Token: 0x04002074 RID: 8308
+	// Token: 0x04001BA8 RID: 7080
 	public GameObject cizhui;
 
-	// Token: 0x04002075 RID: 8309
+	// Token: 0x04001BA9 RID: 7081
 	public GameObject itemobj;
 
-	// Token: 0x04002076 RID: 8310
+	// Token: 0x04001BAA RID: 7082
 	public List<Sprite> lingQi;
 
-	// Token: 0x04002077 RID: 8311
+	// Token: 0x04001BAB RID: 7083
 	public GameObject fengexianImage;
 
-	// Token: 0x04002078 RID: 8312
+	// Token: 0x04001BAC RID: 7084
 	public GameObject lingqiimage;
 
-	// Token: 0x04002079 RID: 8313
+	// Token: 0x04001BAD RID: 7085
 	public UITexture uITexture;
 
-	// Token: 0x0400207A RID: 8314
+	// Token: 0x04001BAE RID: 7086
 	public GameObject Daride;
 
-	// Token: 0x0400207B RID: 8315
+	// Token: 0x04001BAF RID: 7087
 	private bool canShowTooltip = true;
 
-	// Token: 0x0400207C RID: 8316
+	// Token: 0x04001BB0 RID: 7088
 	private bool firstCall = true;
 }

@@ -4,12 +4,12 @@ using UnityEngine.Events;
 
 namespace YSGame.Fight
 {
-	// Token: 0x02000DFA RID: 3578
+	// Token: 0x02000ABD RID: 2749
 	public class UIFightCenterButtonController : MonoBehaviour
 	{
-		// Token: 0x17000804 RID: 2052
-		// (get) Token: 0x0600565A RID: 22106 RVA: 0x0003DB6C File Offset: 0x0003BD6C
-		// (set) Token: 0x0600565B RID: 22107 RVA: 0x002404C0 File Offset: 0x0023E6C0
+		// Token: 0x170005DB RID: 1499
+		// (get) Token: 0x06004D0E RID: 19726 RVA: 0x0020FC9F File Offset: 0x0020DE9F
+		// (set) Token: 0x06004D0F RID: 19727 RVA: 0x0020FCA8 File Offset: 0x0020DEA8
 		public UIFightCenterButtonType ButtonType
 		{
 			get
@@ -42,7 +42,7 @@ namespace YSGame.Fight
 			}
 		}
 
-		// Token: 0x0600565C RID: 22108 RVA: 0x0024055C File Offset: 0x0023E75C
+		// Token: 0x06004D10 RID: 19728 RVA: 0x0020FD44 File Offset: 0x0020DF44
 		private void Update()
 		{
 			if (Input.GetKeyUp(27))
@@ -70,7 +70,7 @@ namespace YSGame.Fight
 			}
 		}
 
-		// Token: 0x0600565D RID: 22109 RVA: 0x0003DB74 File Offset: 0x0003BD74
+		// Token: 0x06004D11 RID: 19729 RVA: 0x0020FDCA File Offset: 0x0020DFCA
 		private void AllHide()
 		{
 			this.EndRoundBtnObj.SetActive(false);
@@ -78,7 +78,7 @@ namespace YSGame.Fight
 			this.OkCancelBtnObj.SetActive(false);
 		}
 
-		// Token: 0x0600565E RID: 22110 RVA: 0x002405E4 File Offset: 0x0023E7E4
+		// Token: 0x06004D12 RID: 19730 RVA: 0x0020FDF0 File Offset: 0x0020DFF0
 		public void SetOkCancelEvent(UnityAction ok, UnityAction cancel)
 		{
 			this.OkBtn.mouseUpEvent.RemoveAllListeners();
@@ -87,35 +87,35 @@ namespace YSGame.Fight
 			this.CancelBtn.mouseUpEvent.AddListener(cancel);
 		}
 
-		// Token: 0x0600565F RID: 22111 RVA: 0x0003DB9A File Offset: 0x0003BD9A
+		// Token: 0x06004D13 RID: 19731 RVA: 0x0020FE3F File Offset: 0x0020E03F
 		public void SetOnlyOKEvent(UnityAction ok)
 		{
 			this.OnlyOKBtn.mouseUpEvent.RemoveAllListeners();
 			this.OnlyOKBtn.mouseUpEvent.AddListener(ok);
 		}
 
-		// Token: 0x040055FA RID: 22010
+		// Token: 0x04004C22 RID: 19490
 		public GameObject EndRoundBtnObj;
 
-		// Token: 0x040055FB RID: 22011
+		// Token: 0x04004C23 RID: 19491
 		public GameObject OnlyOKBtnObj;
 
-		// Token: 0x040055FC RID: 22012
+		// Token: 0x04004C24 RID: 19492
 		public GameObject OkCancelBtnObj;
 
-		// Token: 0x040055FD RID: 22013
+		// Token: 0x04004C25 RID: 19493
 		public FpBtn EndRoundBtn;
 
-		// Token: 0x040055FE RID: 22014
+		// Token: 0x04004C26 RID: 19494
 		public FpBtn OnlyOKBtn;
 
-		// Token: 0x040055FF RID: 22015
+		// Token: 0x04004C27 RID: 19495
 		public FpBtn OkBtn;
 
-		// Token: 0x04005600 RID: 22016
+		// Token: 0x04004C28 RID: 19496
 		public FpBtn CancelBtn;
 
-		// Token: 0x04005601 RID: 22017
+		// Token: 0x04004C29 RID: 19497
 		private UIFightCenterButtonType buttonType;
 	}
 }

@@ -2,27 +2,27 @@
 
 namespace MarkerMetro.Unity.WinLegacy.Reflection
 {
-	// Token: 0x02001056 RID: 4182
+	// Token: 0x02000C91 RID: 3217
 	[Flags]
 	public enum BindingFlags
 	{
-		// Token: 0x04005DDD RID: 24029
+		// Token: 0x0400522F RID: 21039
 		Default = 0,
-		// Token: 0x04005DDE RID: 24030
+		// Token: 0x04005230 RID: 21040
 		Public = 1,
-		// Token: 0x04005DDF RID: 24031
+		// Token: 0x04005231 RID: 21041
 		Instance = 2,
-		// Token: 0x04005DE0 RID: 24032
+		// Token: 0x04005232 RID: 21042
 		InvokeMethod = 3,
-		// Token: 0x04005DE1 RID: 24033
+		// Token: 0x04005233 RID: 21043
 		NonPublic = 4,
-		// Token: 0x04005DE2 RID: 24034
+		// Token: 0x04005234 RID: 21044
 		Static = 5,
-		// Token: 0x04005DE3 RID: 24035
+		// Token: 0x04005235 RID: 21045
 		FlattenHierarchy = 6,
-		// Token: 0x04005DE4 RID: 24036
+		// Token: 0x04005236 RID: 21046
 		DeclaredOnly = 7,
-		// Token: 0x04005DE5 RID: 24037
+		// Token: 0x04005237 RID: 21047
 		IgnoreCase = 8
 	}
 }

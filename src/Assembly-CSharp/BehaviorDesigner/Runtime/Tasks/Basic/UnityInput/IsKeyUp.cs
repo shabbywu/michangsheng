@@ -3,12 +3,12 @@ using UnityEngine;
 
 namespace BehaviorDesigner.Runtime.Tasks.Basic.UnityInput
 {
-	// Token: 0x020015EC RID: 5612
+	// Token: 0x0200112D RID: 4397
 	[TaskCategory("Basic/Input")]
 	[TaskDescription("Returns success when the specified key is released.")]
 	public class IsKeyUp : Conditional
 	{
-		// Token: 0x06008358 RID: 33624 RVA: 0x0005A500 File Offset: 0x00058700
+		// Token: 0x0600755E RID: 30046 RVA: 0x002B4535 File Offset: 0x002B2735
 		public override TaskStatus OnUpdate()
 		{
 			if (!Input.GetKeyUp(this.key))
@@ -18,13 +18,13 @@ namespace BehaviorDesigner.Runtime.Tasks.Basic.UnityInput
 			return 2;
 		}
 
-		// Token: 0x06008359 RID: 33625 RVA: 0x0005A512 File Offset: 0x00058712
+		// Token: 0x0600755F RID: 30047 RVA: 0x002B4547 File Offset: 0x002B2747
 		public override void OnReset()
 		{
 			this.key = 0;
 		}
 
-		// Token: 0x0400701C RID: 28700
+		// Token: 0x040060F9 RID: 24825
 		[Tooltip("The key to test")]
 		public KeyCode key;
 	}

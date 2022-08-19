@@ -6,13 +6,13 @@ using UnityEngine;
 
 namespace Fungus
 {
-	// Token: 0x020013C8 RID: 5064
+	// Token: 0x02000F15 RID: 3861
 	[CommandInfo("PaiMai", "PaiMaiSay", "Writes text in a dialog box.", 0)]
 	[AddComponentMenu("")]
 	public class PaiMaiSay : Command, ILocalizable
 	{
-		// Token: 0x17000B98 RID: 2968
-		// (set) Token: 0x06007B72 RID: 31602 RVA: 0x00054245 File Offset: 0x00052445
+		// Token: 0x170008EB RID: 2283
+		// (set) Token: 0x06006D89 RID: 28041 RVA: 0x002A3715 File Offset: 0x002A1915
 		public StartFight.MonstarType pubAvatarIDSetType
 		{
 			set
@@ -21,8 +21,8 @@ namespace Fungus
 			}
 		}
 
-		// Token: 0x17000B99 RID: 2969
-		// (set) Token: 0x06007B73 RID: 31603 RVA: 0x0005424E File Offset: 0x0005244E
+		// Token: 0x170008EC RID: 2284
+		// (set) Token: 0x06006D8A RID: 28042 RVA: 0x002A371E File Offset: 0x002A191E
 		public bool SetfadeWhenDone
 		{
 			set
@@ -31,8 +31,8 @@ namespace Fungus
 			}
 		}
 
-		// Token: 0x17000B9A RID: 2970
-		// (set) Token: 0x06007B74 RID: 31604 RVA: 0x00054257 File Offset: 0x00052457
+		// Token: 0x170008ED RID: 2285
+		// (set) Token: 0x06006D8B RID: 28043 RVA: 0x002A3727 File Offset: 0x002A1927
 		public bool SetwaitForClick
 		{
 			set
@@ -41,8 +41,8 @@ namespace Fungus
 			}
 		}
 
-		// Token: 0x17000B9B RID: 2971
-		// (get) Token: 0x06007B75 RID: 31605 RVA: 0x00054260 File Offset: 0x00052460
+		// Token: 0x170008EE RID: 2286
+		// (get) Token: 0x06006D8C RID: 28044 RVA: 0x002A3730 File Offset: 0x002A1930
 		public virtual Character _Character
 		{
 			get
@@ -51,8 +51,8 @@ namespace Fungus
 			}
 		}
 
-		// Token: 0x17000B9C RID: 2972
-		// (get) Token: 0x06007B76 RID: 31606 RVA: 0x00054268 File Offset: 0x00052468
+		// Token: 0x170008EF RID: 2287
+		// (get) Token: 0x06006D8D RID: 28045 RVA: 0x002A3738 File Offset: 0x002A1938
 		public virtual StartFight.MonstarType _AvatarIDSetType
 		{
 			get
@@ -61,9 +61,9 @@ namespace Fungus
 			}
 		}
 
-		// Token: 0x17000B9D RID: 2973
-		// (get) Token: 0x06007B77 RID: 31607 RVA: 0x00054270 File Offset: 0x00052470
-		// (set) Token: 0x06007B78 RID: 31608 RVA: 0x00054278 File Offset: 0x00052478
+		// Token: 0x170008F0 RID: 2288
+		// (get) Token: 0x06006D8E RID: 28046 RVA: 0x002A3740 File Offset: 0x002A1940
+		// (set) Token: 0x06006D8F RID: 28047 RVA: 0x002A3748 File Offset: 0x002A1948
 		public virtual Sprite Portrait
 		{
 			get
@@ -76,8 +76,8 @@ namespace Fungus
 			}
 		}
 
-		// Token: 0x17000B9E RID: 2974
-		// (get) Token: 0x06007B79 RID: 31609 RVA: 0x00054281 File Offset: 0x00052481
+		// Token: 0x170008F1 RID: 2289
+		// (get) Token: 0x06006D90 RID: 28048 RVA: 0x002A3751 File Offset: 0x002A1951
 		public virtual bool ExtendPrevious
 		{
 			get
@@ -86,7 +86,7 @@ namespace Fungus
 			}
 		}
 
-		// Token: 0x06007B7A RID: 31610 RVA: 0x002C3B64 File Offset: 0x002C1D64
+		// Token: 0x06006D91 RID: 28049 RVA: 0x002A375C File Offset: 0x002A195C
 		public override void OnEnter()
 		{
 			if (!this.showAlways && this.executionCount >= this.showCount)
@@ -141,7 +141,7 @@ namespace Fungus
 			});
 		}
 
-		// Token: 0x06007B7B RID: 31611 RVA: 0x002C3D6C File Offset: 0x002C1F6C
+		// Token: 0x06006D92 RID: 28050 RVA: 0x002A3964 File Offset: 0x002A1B64
 		public override string GetSummary()
 		{
 			string str = "";
@@ -156,25 +156,25 @@ namespace Fungus
 			return str + "\"" + this.storyText + "\"";
 		}
 
-		// Token: 0x06007B7C RID: 31612 RVA: 0x0004E1CA File Offset: 0x0004C3CA
+		// Token: 0x06006D93 RID: 28051 RVA: 0x002856B3 File Offset: 0x002838B3
 		public Say Clone()
 		{
 			return base.MemberwiseClone() as Say;
 		}
 
-		// Token: 0x06007B7D RID: 31613 RVA: 0x000113CF File Offset: 0x0000F5CF
+		// Token: 0x06006D94 RID: 28052 RVA: 0x0005E228 File Offset: 0x0005C428
 		public override Color GetButtonColor()
 		{
 			return new Color32(184, 210, 235, byte.MaxValue);
 		}
 
-		// Token: 0x06007B7E RID: 31614 RVA: 0x00054289 File Offset: 0x00052489
+		// Token: 0x06006D95 RID: 28053 RVA: 0x002A39BF File Offset: 0x002A1BBF
 		public override void OnReset()
 		{
 			this.executionCount = 0;
 		}
 
-		// Token: 0x06007B7F RID: 31615 RVA: 0x002A8FFC File Offset: 0x002A71FC
+		// Token: 0x06006D96 RID: 28054 RVA: 0x002A39C8 File Offset: 0x002A1BC8
 		public override void OnStopExecuting()
 		{
 			SayDialog sayDialog = SayDialog.GetSayDialog();
@@ -185,25 +185,25 @@ namespace Fungus
 			sayDialog.Stop();
 		}
 
-		// Token: 0x06007B80 RID: 31616 RVA: 0x00054292 File Offset: 0x00052492
+		// Token: 0x06006D97 RID: 28055 RVA: 0x002A39EB File Offset: 0x002A1BEB
 		public virtual string GetStandardText()
 		{
 			return this.storyText;
 		}
 
-		// Token: 0x06007B81 RID: 31617 RVA: 0x0005429A File Offset: 0x0005249A
+		// Token: 0x06006D98 RID: 28056 RVA: 0x002A39F3 File Offset: 0x002A1BF3
 		public virtual void SetStandardText(string standardText)
 		{
 			this.storyText = standardText;
 		}
 
-		// Token: 0x06007B82 RID: 31618 RVA: 0x000542A3 File Offset: 0x000524A3
+		// Token: 0x06006D99 RID: 28057 RVA: 0x002A39FC File Offset: 0x002A1BFC
 		public virtual string GetDescription()
 		{
 			return this.description;
 		}
 
-		// Token: 0x06007B83 RID: 31619 RVA: 0x002C3DC8 File Offset: 0x002C1FC8
+		// Token: 0x06006D9A RID: 28058 RVA: 0x002A3A04 File Offset: 0x002A1C04
 		public virtual string GetStringId()
 		{
 			string text = string.Concat(new object[]
@@ -221,77 +221,77 @@ namespace Fungus
 			return text;
 		}
 
-		// Token: 0x040069F9 RID: 27129
+		// Token: 0x04005B32 RID: 23346
 		[TextArea(5, 10)]
 		[SerializeField]
 		protected string storyText = "";
 
-		// Token: 0x040069FA RID: 27130
+		// Token: 0x04005B33 RID: 23347
 		[Tooltip("Notes about this story text for other authors, localization, etc.")]
 		[SerializeField]
 		protected string description = "";
 
-		// Token: 0x040069FB RID: 27131
+		// Token: 0x04005B34 RID: 23348
 		[Tooltip("设置对话ID的方式")]
 		[SerializeField]
 		protected StartFight.MonstarType AvatarIDSetType = StartFight.MonstarType.FungusVariable;
 
-		// Token: 0x040069FC RID: 27132
+		// Token: 0x04005B35 RID: 23349
 		[Tooltip("Character that is speaking")]
 		[SerializeField]
 		protected Character character;
 
-		// Token: 0x040069FD RID: 27133
+		// Token: 0x04005B36 RID: 23350
 		[Tooltip("Portrait that represents speaking character")]
 		[SerializeField]
 		protected Sprite portrait;
 
-		// Token: 0x040069FE RID: 27134
+		// Token: 0x04005B37 RID: 23351
 		[Tooltip("Voiceover audio to play when writing the text")]
 		[SerializeField]
 		protected AudioClip voiceOverClip;
 
-		// Token: 0x040069FF RID: 27135
+		// Token: 0x04005B38 RID: 23352
 		[Tooltip("Always show this Say text when the command is executed multiple times")]
 		[SerializeField]
 		protected bool showAlways = true;
 
-		// Token: 0x04006A00 RID: 27136
+		// Token: 0x04005B39 RID: 23353
 		[Tooltip("Number of times to show this Say text when the command is executed multiple times")]
 		[SerializeField]
 		protected int showCount = 1;
 
-		// Token: 0x04006A01 RID: 27137
+		// Token: 0x04005B3A RID: 23354
 		[Tooltip("Type this text in the previous dialog box.")]
 		[SerializeField]
 		protected bool extendPrevious;
 
-		// Token: 0x04006A02 RID: 27138
+		// Token: 0x04005B3B RID: 23355
 		[Tooltip("Fade out the dialog box when writing has finished and not waiting for input.")]
 		[SerializeField]
 		protected bool fadeWhenDone = true;
 
-		// Token: 0x04006A03 RID: 27139
+		// Token: 0x04005B3C RID: 23356
 		[Tooltip("Wait for player to click before continuing.")]
 		[SerializeField]
 		protected bool waitForClick = true;
 
-		// Token: 0x04006A04 RID: 27140
+		// Token: 0x04005B3D RID: 23357
 		[Tooltip("Stop playing voiceover when text finishes writing.")]
 		[SerializeField]
 		protected bool stopVoiceover = true;
 
-		// Token: 0x04006A05 RID: 27141
+		// Token: 0x04005B3E RID: 23358
 		[Tooltip("Wait for the Voice Over to complete before continuing")]
 		[SerializeField]
 		protected bool waitForVO;
 
-		// Token: 0x04006A06 RID: 27142
+		// Token: 0x04005B3F RID: 23359
 		[Tooltip("Sets the active Say dialog with a reference to a Say Dialog object in the scene. All story text will now display using this Say Dialog.")]
 		[SerializeField]
 		protected SayDialog setSayDialog;
 
-		// Token: 0x04006A07 RID: 27143
+		// Token: 0x04005B40 RID: 23360
 		protected int executionCount;
 	}
 }

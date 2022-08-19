@@ -6,16 +6,16 @@ using MoonSharp.VsCodeDebugger.SDK;
 
 namespace MoonSharp.VsCodeDebugger.DebuggerLogic
 {
-	// Token: 0x020011E1 RID: 4577
+	// Token: 0x02000DB3 RID: 3507
 	internal class EmptyDebugSession : DebugSession
 	{
-		// Token: 0x0600700D RID: 28685 RVA: 0x0004C207 File Offset: 0x0004A407
+		// Token: 0x060063C3 RID: 25539 RVA: 0x0027BC66 File Offset: 0x00279E66
 		internal EmptyDebugSession(MoonSharpVsCodeDebugServer server) : base(true, false)
 		{
 			this.m_Server = server;
 		}
 
-		// Token: 0x0600700E RID: 28686 RVA: 0x002A1158 File Offset: 0x0029F358
+		// Token: 0x060063C4 RID: 25540 RVA: 0x0027BC78 File Offset: 0x00279E78
 		public override void Initialize(Response response, Table args)
 		{
 			this.SendText("Connected to MoonSharp {0} [{1}] on process {2} (PID {3})", new object[]
@@ -38,7 +38,7 @@ namespace MoonSharp.VsCodeDebugger.DebuggerLogic
 			base.SendEvent(new InitializedEvent());
 		}
 
-		// Token: 0x0600700F RID: 28687 RVA: 0x002A1204 File Offset: 0x0029F404
+		// Token: 0x060063C5 RID: 25541 RVA: 0x0027BD24 File Offset: 0x00279F24
 		private void SendList()
 		{
 			int num = this.m_Server.CurrentId ?? -1000;
@@ -57,26 +57,26 @@ namespace MoonSharp.VsCodeDebugger.DebuggerLogic
 			this.SendText("Type the number of the script to debug, or '!' to refresh", Array.Empty<object>());
 		}
 
-		// Token: 0x06007010 RID: 28688 RVA: 0x0004C218 File Offset: 0x0004A418
+		// Token: 0x060063C6 RID: 25542 RVA: 0x0027BE18 File Offset: 0x0027A018
 		public override void Attach(Response response, Table arguments)
 		{
 			base.SendResponse(response, null);
 		}
 
-		// Token: 0x06007011 RID: 28689 RVA: 0x0004C222 File Offset: 0x0004A422
+		// Token: 0x060063C7 RID: 25543 RVA: 0x0027BE22 File Offset: 0x0027A022
 		public override void Continue(Response response, Table arguments)
 		{
 			this.SendList();
 			base.SendResponse(response, null);
 		}
 
-		// Token: 0x06007012 RID: 28690 RVA: 0x0004C218 File Offset: 0x0004A418
+		// Token: 0x060063C8 RID: 25544 RVA: 0x0027BE18 File Offset: 0x0027A018
 		public override void Disconnect(Response response, Table arguments)
 		{
 			base.SendResponse(response, null);
 		}
 
-		// Token: 0x06007013 RID: 28691 RVA: 0x002A12F8 File Offset: 0x0029F4F8
+		// Token: 0x060063C9 RID: 25545 RVA: 0x0027BE34 File Offset: 0x0027A034
 		private static string getString(Table args, string property, string dflt = null)
 		{
 			string text = (string)args[property];
@@ -92,7 +92,7 @@ namespace MoonSharp.VsCodeDebugger.DebuggerLogic
 			return text;
 		}
 
-		// Token: 0x06007014 RID: 28692 RVA: 0x002A132C File Offset: 0x0029F52C
+		// Token: 0x060063CA RID: 25546 RVA: 0x0027BE68 File Offset: 0x0027A068
 		public override void Evaluate(Response response, Table args)
 		{
 			string @string = EmptyDebugSession.getString(args, "expression", null);
@@ -103,7 +103,7 @@ namespace MoonSharp.VsCodeDebugger.DebuggerLogic
 			base.SendResponse(response, null);
 		}
 
-		// Token: 0x06007015 RID: 28693 RVA: 0x002A1378 File Offset: 0x0029F578
+		// Token: 0x060063CB RID: 25547 RVA: 0x0027BEB4 File Offset: 0x0027A0B4
 		private void ExecuteRepl(string cmd)
 		{
 			int value = 0;
@@ -117,59 +117,59 @@ namespace MoonSharp.VsCodeDebugger.DebuggerLogic
 			this.SendList();
 		}
 
-		// Token: 0x06007016 RID: 28694 RVA: 0x0004C218 File Offset: 0x0004A418
+		// Token: 0x060063CC RID: 25548 RVA: 0x0027BE18 File Offset: 0x0027A018
 		public override void Launch(Response response, Table arguments)
 		{
 			base.SendResponse(response, null);
 		}
 
-		// Token: 0x06007017 RID: 28695 RVA: 0x0004C222 File Offset: 0x0004A422
+		// Token: 0x060063CD RID: 25549 RVA: 0x0027BE22 File Offset: 0x0027A022
 		public override void Next(Response response, Table arguments)
 		{
 			this.SendList();
 			base.SendResponse(response, null);
 		}
 
-		// Token: 0x06007018 RID: 28696 RVA: 0x0004C222 File Offset: 0x0004A422
+		// Token: 0x060063CE RID: 25550 RVA: 0x0027BE22 File Offset: 0x0027A022
 		public override void Pause(Response response, Table arguments)
 		{
 			this.SendList();
 			base.SendResponse(response, null);
 		}
 
-		// Token: 0x06007019 RID: 28697 RVA: 0x0004C218 File Offset: 0x0004A418
+		// Token: 0x060063CF RID: 25551 RVA: 0x0027BE18 File Offset: 0x0027A018
 		public override void Scopes(Response response, Table arguments)
 		{
 			base.SendResponse(response, null);
 		}
 
-		// Token: 0x0600701A RID: 28698 RVA: 0x0004C218 File Offset: 0x0004A418
+		// Token: 0x060063D0 RID: 25552 RVA: 0x0027BE18 File Offset: 0x0027A018
 		public override void SetBreakpoints(Response response, Table args)
 		{
 			base.SendResponse(response, null);
 		}
 
-		// Token: 0x0600701B RID: 28699 RVA: 0x0004C218 File Offset: 0x0004A418
+		// Token: 0x060063D1 RID: 25553 RVA: 0x0027BE18 File Offset: 0x0027A018
 		public override void StackTrace(Response response, Table args)
 		{
 			base.SendResponse(response, null);
 		}
 
-		// Token: 0x0600701C RID: 28700 RVA: 0x0004C222 File Offset: 0x0004A422
+		// Token: 0x060063D2 RID: 25554 RVA: 0x0027BE22 File Offset: 0x0027A022
 		public override void StepIn(Response response, Table arguments)
 		{
 			this.SendList();
 			base.SendResponse(response, null);
 		}
 
-		// Token: 0x0600701D RID: 28701 RVA: 0x0004C222 File Offset: 0x0004A422
+		// Token: 0x060063D3 RID: 25555 RVA: 0x0027BE22 File Offset: 0x0027A022
 		public override void StepOut(Response response, Table arguments)
 		{
 			this.SendList();
 			base.SendResponse(response, null);
 		}
 
-		// Token: 0x0600701E RID: 28702 RVA: 0x002A13C0 File Offset: 0x0029F5C0
+		// Token: 0x060063D4 RID: 25556 RVA: 0x0027BEFC File Offset: 0x0027A0FC
 		public override void Threads(Response response, Table arguments)
 		{
 			List<Thread> vars = new List<Thread>
@@ -179,27 +179,27 @@ namespace MoonSharp.VsCodeDebugger.DebuggerLogic
 			base.SendResponse(response, new ThreadsResponseBody(vars));
 		}
 
-		// Token: 0x0600701F RID: 28703 RVA: 0x0004C218 File Offset: 0x0004A418
+		// Token: 0x060063D5 RID: 25557 RVA: 0x0027BE18 File Offset: 0x0027A018
 		public override void Variables(Response response, Table arguments)
 		{
 			base.SendResponse(response, null);
 		}
 
-		// Token: 0x06007020 RID: 28704 RVA: 0x0004C232 File Offset: 0x0004A432
+		// Token: 0x060063D6 RID: 25558 RVA: 0x0027BF2D File Offset: 0x0027A12D
 		private void SendText(string msg, params object[] args)
 		{
 			msg = string.Format(msg, args);
 			base.SendEvent(new OutputEvent("console", msg + "\n"));
 		}
 
-		// Token: 0x06007021 RID: 28705 RVA: 0x0004C258 File Offset: 0x0004A458
+		// Token: 0x060063D7 RID: 25559 RVA: 0x0027BF53 File Offset: 0x0027A153
 		public void Unbind()
 		{
 			this.SendText("Bye.", Array.Empty<object>());
 			base.SendEvent(new TerminatedEvent());
 		}
 
-		// Token: 0x040062EA RID: 25322
+		// Token: 0x040055FF RID: 22015
 		private MoonSharpVsCodeDebugServer m_Server;
 	}
 }

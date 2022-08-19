@@ -1,33 +1,33 @@
 ﻿using System;
 using UnityEngine;
 
-// Token: 0x020006A2 RID: 1698
+// Token: 0x020004AF RID: 1199
 public class FreezeRotation : MonoBehaviour
 {
-	// Token: 0x06002A6A RID: 10858 RVA: 0x00020F99 File Offset: 0x0001F199
+	// Token: 0x060025F2 RID: 9714 RVA: 0x00106C86 File Offset: 0x00104E86
 	private void Start()
 	{
 		this.shieldPosition = base.transform.position;
 	}
 
-	// Token: 0x06002A6B RID: 10859 RVA: 0x00147078 File Offset: 0x00145278
+	// Token: 0x060025F3 RID: 9715 RVA: 0x00106C9C File Offset: 0x00104E9C
 	private void Update()
 	{
 		base.transform.position = new Vector3(this.tr.position.x, this.tr.position.y, base.transform.position.z);
 	}
 
-	// Token: 0x0400242C RID: 9260
+	// Token: 0x04001EBD RID: 7869
 	public Transform tr;
 
-	// Token: 0x0400242D RID: 9261
+	// Token: 0x04001EBE RID: 7870
 	private Transform myTransform;
 
-	// Token: 0x0400242E RID: 9262
+	// Token: 0x04001EBF RID: 7871
 	private Vector3 shieldPosition;
 
-	// Token: 0x0400242F RID: 9263
+	// Token: 0x04001EC0 RID: 7872
 	private float x;
 
-	// Token: 0x04002430 RID: 9264
+	// Token: 0x04001EC1 RID: 7873
 	private float y;
 }

@@ -7,10 +7,10 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
 
-// Token: 0x0200052F RID: 1327
+// Token: 0x020003A6 RID: 934
 public class UIXiuChuanPanel : MonoBehaviour, IESCClose
 {
-	// Token: 0x060021EB RID: 8683 RVA: 0x0001BD6E File Offset: 0x00019F6E
+	// Token: 0x06001E6A RID: 7786 RVA: 0x000D60B3 File Offset: 0x000D42B3
 	private void Awake()
 	{
 		UIXiuChuanPanel.Inst = this;
@@ -18,14 +18,14 @@ public class UIXiuChuanPanel : MonoBehaviour, IESCClose
 		ESCCloseManager.Inst.RegisterClose(this);
 	}
 
-	// Token: 0x060021EC RID: 8684 RVA: 0x0001BD9D File Offset: 0x00019F9D
+	// Token: 0x06001E6B RID: 7787 RVA: 0x000D60E2 File Offset: 0x000D42E2
 	public void Close()
 	{
 		UIXiuChuanPanel.Inst = null;
 		Object.Destroy(base.gameObject);
 	}
 
-	// Token: 0x060021ED RID: 8685 RVA: 0x00119860 File Offset: 0x00117A60
+	// Token: 0x06001E6C RID: 7788 RVA: 0x000D60F8 File Offset: 0x000D42F8
 	public void SetLingZhou(ITEM_INFO item)
 	{
 		_ItemJsonData itemJsonData = _ItemJsonData.DataDict[item.itemId];
@@ -58,7 +58,7 @@ public class UIXiuChuanPanel : MonoBehaviour, IESCClose
 		});
 	}
 
-	// Token: 0x060021EE RID: 8686 RVA: 0x001199B0 File Offset: 0x00117BB0
+	// Token: 0x06001E6D RID: 7789 RVA: 0x000D6248 File Offset: 0x000D4448
 	public static void OpenDefaultXiuChuan()
 	{
 		AvatarBase player = PlayerEx.Player;
@@ -94,7 +94,7 @@ public class UIXiuChuanPanel : MonoBehaviour, IESCClose
 		Object.Instantiate<GameObject>(Resources.Load<GameObject>("Prefab/UIXiuChuan"), NewUICanvas.Inst.Canvas.transform).GetComponent<UIXiuChuanPanel>().SetLingZhou(item_INFO);
 	}
 
-	// Token: 0x060021EF RID: 8687 RVA: 0x0001BDB0 File Offset: 0x00019FB0
+	// Token: 0x06001E6E RID: 7790 RVA: 0x000D6384 File Offset: 0x000D4584
 	bool IESCClose.TryEscClose()
 	{
 		ESCCloseManager.Inst.UnRegisterClose(this);
@@ -102,18 +102,18 @@ public class UIXiuChuanPanel : MonoBehaviour, IESCClose
 		return true;
 	}
 
-	// Token: 0x04001D56 RID: 7510
+	// Token: 0x040018ED RID: 6381
 	public static UIXiuChuanPanel Inst;
 
-	// Token: 0x04001D57 RID: 7511
+	// Token: 0x040018EE RID: 6382
 	public Text Tip;
 
-	// Token: 0x04001D58 RID: 7512
+	// Token: 0x040018EF RID: 6383
 	public BaseSlot Slot;
 
-	// Token: 0x04001D59 RID: 7513
+	// Token: 0x040018F0 RID: 6384
 	public FpBtn OkBtn;
 
-	// Token: 0x04001D5A RID: 7514
+	// Token: 0x040018F1 RID: 6385
 	public FpBtn CancelBtn;
 }

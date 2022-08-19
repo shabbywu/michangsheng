@@ -2,16 +2,16 @@
 using System.Collections;
 using UnityEngine;
 
-// Token: 0x02000771 RID: 1905
+// Token: 0x020004F1 RID: 1265
 public class ShopManager : MonoBehaviour
 {
-	// Token: 0x06003094 RID: 12436 RVA: 0x00022ADD File Offset: 0x00020CDD
+	// Token: 0x060028EF RID: 10479 RVA: 0x00128CE2 File Offset: 0x00126EE2
 	private void Awake()
 	{
 		Object.DontDestroyOnLoad(base.gameObject);
 	}
 
-	// Token: 0x06003095 RID: 12437 RVA: 0x00182948 File Offset: 0x00180B48
+	// Token: 0x060028F0 RID: 10480 RVA: 0x0013655C File Offset: 0x0013475C
 	private void Start()
 	{
 		ShopManager.shopHolder = GameObject.Find("_HolderShop").transform;
@@ -63,7 +63,7 @@ public class ShopManager : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06003096 RID: 12438 RVA: 0x00182E04 File Offset: 0x00181004
+	// Token: 0x060028F1 RID: 10481 RVA: 0x00136A18 File Offset: 0x00134C18
 	private void Update()
 	{
 		if (Input.GetMouseButtonDown(0))
@@ -248,7 +248,7 @@ public class ShopManager : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06003097 RID: 12439 RVA: 0x00023D12 File Offset: 0x00021F12
+	// Token: 0x060028F2 RID: 10482 RVA: 0x0013722E File Offset: 0x0013542E
 	public static IEnumerator OpenShopCard()
 	{
 		ShopManager.shopDesnaIvica.transform.Find("ShopRamDesno/FinishCoins/TextFreeCoinsUp1").GetComponent<TextMesh>().text = PlayerPrefs.GetInt("TotalMoney").ToString();
@@ -278,7 +278,7 @@ public class ShopManager : MonoBehaviour
 		yield break;
 	}
 
-	// Token: 0x06003098 RID: 12440 RVA: 0x00023D1A File Offset: 0x00021F1A
+	// Token: 0x060028F3 RID: 10483 RVA: 0x00137236 File Offset: 0x00135436
 	public static IEnumerator OpenFreeCoinsCard()
 	{
 		ShopManager.shopDesnaIvica.transform.Find("ShopRamDesno/FinishCoins/TextFreeCoinsUp1").GetComponent<TextMesh>().text = PlayerPrefs.GetInt("TotalMoney").ToString();
@@ -312,13 +312,13 @@ public class ShopManager : MonoBehaviour
 		yield break;
 	}
 
-	// Token: 0x06003099 RID: 12441 RVA: 0x00023D22 File Offset: 0x00021F22
+	// Token: 0x060028F4 RID: 10484 RVA: 0x0013723E File Offset: 0x0013543E
 	public void ShopCardPaused()
 	{
 		base.StartCoroutine(this.OpenShopCardPaused());
 	}
 
-	// Token: 0x0600309A RID: 12442 RVA: 0x00023D31 File Offset: 0x00021F31
+	// Token: 0x060028F5 RID: 10485 RVA: 0x0013724D File Offset: 0x0013544D
 	public IEnumerator OpenShopCardPaused()
 	{
 		yield return null;
@@ -326,13 +326,13 @@ public class ShopManager : MonoBehaviour
 		yield break;
 	}
 
-	// Token: 0x0600309B RID: 12443 RVA: 0x00023D40 File Offset: 0x00021F40
+	// Token: 0x060028F6 RID: 10486 RVA: 0x0013725C File Offset: 0x0013545C
 	public void FreeCoinsCardPaused()
 	{
 		base.StartCoroutine(this.OpenFreeCoinsCardPaused());
 	}
 
-	// Token: 0x0600309C RID: 12444 RVA: 0x0018361C File Offset: 0x0018181C
+	// Token: 0x060028F7 RID: 10487 RVA: 0x0013726C File Offset: 0x0013546C
 	public static void shopPreparation_Paused()
 	{
 		ShopManager.shopDesnaIvica.transform.Find("ShopRamDesno/FinishCoins/TextFreeCoinsUp1").GetComponent<TextMesh>().text = PlayerPrefs.GetInt("TotalMoney").ToString();
@@ -351,7 +351,7 @@ public class ShopManager : MonoBehaviour
 		ShopManager.otvorenShop = true;
 	}
 
-	// Token: 0x0600309D RID: 12445 RVA: 0x00023D4F File Offset: 0x00021F4F
+	// Token: 0x060028F8 RID: 10488 RVA: 0x0013737B File Offset: 0x0013557B
 	public IEnumerator OpenFreeCoinsCardPaused()
 	{
 		yield return null;
@@ -359,7 +359,7 @@ public class ShopManager : MonoBehaviour
 		yield break;
 	}
 
-	// Token: 0x0600309E RID: 12446 RVA: 0x0018372C File Offset: 0x0018192C
+	// Token: 0x060028F9 RID: 10489 RVA: 0x0013738C File Offset: 0x0013558C
 	public static void freeCoinsPreparation_Paused()
 	{
 		ShopManager.shopDesnaIvica.transform.Find("ShopRamDesno/FinishCoins/TextFreeCoinsUp1").GetComponent<TextMesh>().text = PlayerPrefs.GetInt("TotalMoney").ToString();
@@ -382,7 +382,7 @@ public class ShopManager : MonoBehaviour
 		}
 	}
 
-	// Token: 0x0600309F RID: 12447 RVA: 0x00023D5E File Offset: 0x00021F5E
+	// Token: 0x060028FA RID: 10490 RVA: 0x001374A7 File Offset: 0x001356A7
 	private IEnumerator CloseShop()
 	{
 		yield return new WaitForSeconds(0.85f);
@@ -393,7 +393,7 @@ public class ShopManager : MonoBehaviour
 		yield break;
 	}
 
-	// Token: 0x060030A0 RID: 12448 RVA: 0x00023D66 File Offset: 0x00021F66
+	// Token: 0x060028FB RID: 10491 RVA: 0x001374AF File Offset: 0x001356AF
 	private IEnumerator CloseShopPaused()
 	{
 		ShopManager.timeToShowNextElement = DateTime.Now.AddSeconds(0.8500000238418579);
@@ -408,7 +408,7 @@ public class ShopManager : MonoBehaviour
 		yield break;
 	}
 
-	// Token: 0x060030A1 RID: 12449 RVA: 0x00149A14 File Offset: 0x00147C14
+	// Token: 0x060028FC RID: 10492 RVA: 0x001374B8 File Offset: 0x001356B8
 	public string RaycastFunction(Vector3 vector)
 	{
 		RaycastHit raycastHit;
@@ -419,7 +419,7 @@ public class ShopManager : MonoBehaviour
 		return "";
 	}
 
-	// Token: 0x060030A2 RID: 12450 RVA: 0x00183848 File Offset: 0x00181A48
+	// Token: 0x060028FD RID: 10493 RVA: 0x001374EC File Offset: 0x001356EC
 	public static void RescaleShop()
 	{
 		ShopManager.shopHolder.localScale = ShopManager.originalScale * Camera.main.orthographicSize / 5f;
@@ -431,7 +431,7 @@ public class ShopManager : MonoBehaviour
 		ShopManager.desnaGranica = ShopManager.shopLevaIvica.transform.position.x + num;
 	}
 
-	// Token: 0x060030A3 RID: 12451 RVA: 0x00023D6E File Offset: 0x00021F6E
+	// Token: 0x060028FE RID: 10494 RVA: 0x0013763B File Offset: 0x0013583B
 	private IEnumerator PausedAnim(Transform obj, string ime)
 	{
 		base.StartCoroutine(obj.GetComponent<Animation>().Play(ime, false, delegate(bool what)
@@ -446,7 +446,7 @@ public class ShopManager : MonoBehaviour
 		yield break;
 	}
 
-	// Token: 0x060030A4 RID: 12452 RVA: 0x00183998 File Offset: 0x00181B98
+	// Token: 0x060028FF RID: 10495 RVA: 0x00137658 File Offset: 0x00135858
 	private void VideoNotAvailable()
 	{
 		GameObject.Find("Card3_FC_WatchVideo").transform.Find("HolderCard").gameObject.SetActive(false);
@@ -454,7 +454,7 @@ public class ShopManager : MonoBehaviour
 		ShopManager.videoNotAvailable = true;
 	}
 
-	// Token: 0x060030A5 RID: 12453 RVA: 0x001839F4 File Offset: 0x00181BF4
+	// Token: 0x06002900 RID: 10496 RVA: 0x001376B4 File Offset: 0x001358B4
 	private static void ResetVideoNotAvailable()
 	{
 		GameObject.Find("Card3_FC_WatchVideo").transform.Find("HolderCard").gameObject.SetActive(true);
@@ -462,102 +462,102 @@ public class ShopManager : MonoBehaviour
 		ShopManager.videoNotAvailable = false;
 	}
 
-	// Token: 0x04002C94 RID: 11412
+	// Token: 0x040024E8 RID: 9448
 	public static Transform shopHolder;
 
-	// Token: 0x04002C95 RID: 11413
+	// Token: 0x040024E9 RID: 9449
 	public static Transform shopLevaIvica;
 
-	// Token: 0x04002C96 RID: 11414
+	// Token: 0x040024EA RID: 9450
 	public static Transform shopDesnaIvica;
 
-	// Token: 0x04002C97 RID: 11415
+	// Token: 0x040024EB RID: 9451
 	public static GameObject shopHeaderOn;
 
-	// Token: 0x04002C98 RID: 11416
+	// Token: 0x040024EC RID: 9452
 	public static GameObject shopHeaderOff;
 
-	// Token: 0x04002C99 RID: 11417
+	// Token: 0x040024ED RID: 9453
 	public static GameObject freeCoinsHeaderOn;
 
-	// Token: 0x04002C9A RID: 11418
+	// Token: 0x040024EE RID: 9454
 	public static GameObject freeCoinsHeaderOff;
 
-	// Token: 0x04002C9B RID: 11419
+	// Token: 0x040024EF RID: 9455
 	public static GameObject holderShopCard;
 
-	// Token: 0x04002C9C RID: 11420
+	// Token: 0x040024F0 RID: 9456
 	public static GameObject holderFreeCoinsCard;
 
-	// Token: 0x04002C9D RID: 11421
+	// Token: 0x040024F1 RID: 9457
 	public static Transform buttonShopBack;
 
-	// Token: 0x04002C9E RID: 11422
+	// Token: 0x040024F2 RID: 9458
 	private string clickedItem;
 
-	// Token: 0x04002C9F RID: 11423
+	// Token: 0x040024F3 RID: 9459
 	private string releasedItem;
 
-	// Token: 0x04002CA0 RID: 11424
+	// Token: 0x040024F4 RID: 9460
 	private float vremeKlika;
 
-	// Token: 0x04002CA1 RID: 11425
+	// Token: 0x040024F5 RID: 9461
 	private float startX;
 
-	// Token: 0x04002CA2 RID: 11426
+	// Token: 0x040024F6 RID: 9462
 	private float endX;
 
-	// Token: 0x04002CA3 RID: 11427
+	// Token: 0x040024F7 RID: 9463
 	private float pomerajX;
 
-	// Token: 0x04002CA4 RID: 11428
+	// Token: 0x040024F8 RID: 9464
 	private static float levaGranica;
 
-	// Token: 0x04002CA5 RID: 11429
+	// Token: 0x040024F9 RID: 9465
 	private static float desnaGranica;
 
-	// Token: 0x04002CA6 RID: 11430
+	// Token: 0x040024FA RID: 9466
 	private bool moved;
 
-	// Token: 0x04002CA7 RID: 11431
+	// Token: 0x040024FB RID: 9467
 	private bool released;
 
-	// Token: 0x04002CA8 RID: 11432
+	// Token: 0x040024FC RID: 9468
 	private bool bounce;
 
-	// Token: 0x04002CA9 RID: 11433
+	// Token: 0x040024FD RID: 9469
 	private bool started;
 
-	// Token: 0x04002CAA RID: 11434
+	// Token: 0x040024FE RID: 9470
 	private Transform tempObject;
 
-	// Token: 0x04002CAB RID: 11435
+	// Token: 0x040024FF RID: 9471
 	private GameObject temp;
 
-	// Token: 0x04002CAC RID: 11436
+	// Token: 0x04002500 RID: 9472
 	private float clickedPos;
 
-	// Token: 0x04002CAD RID: 11437
+	// Token: 0x04002501 RID: 9473
 	public static bool shopExists = true;
 
-	// Token: 0x04002CAE RID: 11438
+	// Token: 0x04002502 RID: 9474
 	public static bool freeCoinsExists = true;
 
-	// Token: 0x04002CAF RID: 11439
+	// Token: 0x04002503 RID: 9475
 	private static Vector3 originalScale;
 
-	// Token: 0x04002CB0 RID: 11440
+	// Token: 0x04002504 RID: 9476
 	private static float offset;
 
-	// Token: 0x04002CB1 RID: 11441
+	// Token: 0x04002505 RID: 9477
 	private static DateTime timeToShowNextElement;
 
-	// Token: 0x04002CB2 RID: 11442
+	// Token: 0x04002506 RID: 9478
 	private bool helpBool;
 
-	// Token: 0x04002CB3 RID: 11443
+	// Token: 0x04002507 RID: 9479
 	private static bool videoNotAvailable = false;
 
-	// Token: 0x04002CB4 RID: 11444
+	// Token: 0x04002508 RID: 9480
 	public static bool otvorenShop = false;
 }

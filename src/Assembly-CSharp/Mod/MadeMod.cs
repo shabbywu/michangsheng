@@ -3,10 +3,10 @@ using UnityEngine;
 
 namespace Mod
 {
-	// Token: 0x02000AA9 RID: 2729
+	// Token: 0x0200073C RID: 1852
 	public class MadeMod : MonoBehaviour, IESCClose
 	{
-		// Token: 0x060045E0 RID: 17888 RVA: 0x001DDAB4 File Offset: 0x001DBCB4
+		// Token: 0x06003B00 RID: 15104 RVA: 0x00195D98 File Offset: 0x00193F98
 		private void Awake()
 		{
 			MadeMod.Inst = this;
@@ -18,7 +18,7 @@ namespace Mod
 			PanelMamager.CanOpenOrClose = false;
 		}
 
-		// Token: 0x060045E1 RID: 17889 RVA: 0x00031F59 File Offset: 0x00030159
+		// Token: 0x06003B01 RID: 15105 RVA: 0x00195DF8 File Offset: 0x00193FF8
 		private void OnDestroy()
 		{
 			Tools.canClickFlag = true;
@@ -26,14 +26,14 @@ namespace Mod
 			MadeMod.Inst = null;
 		}
 
-		// Token: 0x060045E2 RID: 17890 RVA: 0x00031F6D File Offset: 0x0003016D
+		// Token: 0x06003B02 RID: 15106 RVA: 0x00195E0C File Offset: 0x0019400C
 		public void Show()
 		{
 			ESCCloseManager.Inst.RegisterClose(this);
 			base.gameObject.SetActive(true);
 		}
 
-		// Token: 0x060045E3 RID: 17891 RVA: 0x00031F86 File Offset: 0x00030186
+		// Token: 0x06003B03 RID: 15107 RVA: 0x00195E25 File Offset: 0x00194025
 		public void Close()
 		{
 			Tools.canClickFlag = true;
@@ -42,17 +42,17 @@ namespace Mod
 			ESCCloseManager.Inst.UnRegisterClose(this);
 		}
 
-		// Token: 0x060045E4 RID: 17892 RVA: 0x00031FAB File Offset: 0x000301AB
+		// Token: 0x06003B04 RID: 15108 RVA: 0x00195E4A File Offset: 0x0019404A
 		public bool TryEscClose()
 		{
 			this.Close();
 			return true;
 		}
 
-		// Token: 0x04003E1A RID: 15898
+		// Token: 0x04003335 RID: 13109
 		public static MadeMod Inst;
 
-		// Token: 0x04003E1B RID: 15899
+		// Token: 0x04003336 RID: 13110
 		public Transform Transform;
 	}
 }

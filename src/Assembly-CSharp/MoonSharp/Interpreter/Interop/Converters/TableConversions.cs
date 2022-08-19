@@ -5,10 +5,10 @@ using MoonSharp.Interpreter.Compatibility;
 
 namespace MoonSharp.Interpreter.Interop.Converters
 {
-	// Token: 0x02001147 RID: 4423
+	// Token: 0x02000D3E RID: 3390
 	internal static class TableConversions
 	{
-		// Token: 0x06006B46 RID: 27462 RVA: 0x00293574 File Offset: 0x00291774
+		// Token: 0x06005F74 RID: 24436 RVA: 0x0026B754 File Offset: 0x00269954
 		internal static Table ConvertIListToTable(Script script, IList list)
 		{
 			Table table = new Table(script);
@@ -19,7 +19,7 @@ namespace MoonSharp.Interpreter.Interop.Converters
 			return table;
 		}
 
-		// Token: 0x06006B47 RID: 27463 RVA: 0x002935B8 File Offset: 0x002917B8
+		// Token: 0x06005F75 RID: 24437 RVA: 0x0026B798 File Offset: 0x00269998
 		internal static Table ConvertIDictionaryToTable(Script script, IDictionary dict)
 		{
 			Table table = new Table(script);
@@ -33,7 +33,7 @@ namespace MoonSharp.Interpreter.Interop.Converters
 			return table;
 		}
 
-		// Token: 0x06006B48 RID: 27464 RVA: 0x00293638 File Offset: 0x00291838
+		// Token: 0x06005F76 RID: 24438 RVA: 0x0026B818 File Offset: 0x00269A18
 		internal static bool CanConvertTableToType(Table table, Type t)
 		{
 			if (Framework.Do.IsAssignableFrom(t, typeof(Dictionary<object, object>)))
@@ -75,7 +75,7 @@ namespace MoonSharp.Interpreter.Interop.Converters
 			return t.IsArray && t.GetArrayRank() == 1;
 		}
 
-		// Token: 0x06006B49 RID: 27465 RVA: 0x00293774 File Offset: 0x00291974
+		// Token: 0x06005F77 RID: 24439 RVA: 0x0026B954 File Offset: 0x00269B54
 		internal static object ConvertTableToType(Table table, Type t)
 		{
 			if (Framework.Do.IsAssignableFrom(t, typeof(Dictionary<object, object>)))
@@ -121,7 +121,7 @@ namespace MoonSharp.Interpreter.Interop.Converters
 			return null;
 		}
 
-		// Token: 0x06006B4A RID: 27466 RVA: 0x00293A14 File Offset: 0x00291C14
+		// Token: 0x06005F78 RID: 24440 RVA: 0x0026BBF4 File Offset: 0x00269DF4
 		internal static object ConvertTableToDictionaryOfGenericType(Type dictionaryType, Type keyType, Type valueType, Table table)
 		{
 			if (dictionaryType.GetGenericTypeDefinition() != typeof(Dictionary<, >))
@@ -143,7 +143,7 @@ namespace MoonSharp.Interpreter.Interop.Converters
 			return dictionary;
 		}
 
-		// Token: 0x06006B4B RID: 27467 RVA: 0x00293ACC File Offset: 0x00291CCC
+		// Token: 0x06005F79 RID: 24441 RVA: 0x0026BCAC File Offset: 0x00269EAC
 		internal static object ConvertTableToArrayOfGenericType(Type arrayType, Type itemType, Table table)
 		{
 			List<object> list = new List<object>();
@@ -166,7 +166,7 @@ namespace MoonSharp.Interpreter.Interop.Converters
 			return list2;
 		}
 
-		// Token: 0x06006B4C RID: 27468 RVA: 0x00293B54 File Offset: 0x00291D54
+		// Token: 0x06005F7A RID: 24442 RVA: 0x0026BD34 File Offset: 0x00269F34
 		internal static object ConvertTableToListOfGenericType(Type listType, Type itemType, Table table)
 		{
 			if (listType.GetGenericTypeDefinition() != typeof(List<>))
@@ -189,7 +189,7 @@ namespace MoonSharp.Interpreter.Interop.Converters
 			return list;
 		}
 
-		// Token: 0x06006B4D RID: 27469 RVA: 0x00293BD0 File Offset: 0x00291DD0
+		// Token: 0x06005F7B RID: 24443 RVA: 0x0026BDB0 File Offset: 0x00269FB0
 		internal static List<T> TableToList<T>(Table table, Func<DynValue, T> converter)
 		{
 			List<T> list = new List<T>();
@@ -205,7 +205,7 @@ namespace MoonSharp.Interpreter.Interop.Converters
 			return list;
 		}
 
-		// Token: 0x06006B4E RID: 27470 RVA: 0x00293C10 File Offset: 0x00291E10
+		// Token: 0x06005F7C RID: 24444 RVA: 0x0026BDF0 File Offset: 0x00269FF0
 		internal static Dictionary<TK, TV> TableToDictionary<TK, TV>(Table table, Func<DynValue, TK> keyconverter, Func<DynValue, TV> valconverter)
 		{
 			Dictionary<TK, TV> dictionary = new Dictionary<TK, TV>();

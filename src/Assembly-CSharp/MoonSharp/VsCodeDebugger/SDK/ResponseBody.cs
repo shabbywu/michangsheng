@@ -2,7 +2,7 @@
 
 namespace MoonSharp.VsCodeDebugger.SDK
 {
-	// Token: 0x020011D8 RID: 4568
+	// Token: 0x02000DAC RID: 3500
 	public class ResponseBody
 	{
 	}

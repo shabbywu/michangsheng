@@ -1,12 +1,12 @@
 ﻿using System;
 using UnityEngine;
 
-// Token: 0x020000DC RID: 220
+// Token: 0x02000091 RID: 145
 [ExecuteInEditMode]
 [AddComponentMenu("NGUI/Internal/Snapshot Point")]
 public class UISnapshotPoint : MonoBehaviour
 {
-	// Token: 0x06000883 RID: 2179 RVA: 0x0000B003 File Offset: 0x00009203
+	// Token: 0x060007DB RID: 2011 RVA: 0x0002FE21 File Offset: 0x0002E021
 	private void Start()
 	{
 		if (base.tag != "EditorOnly")
@@ -15,19 +15,19 @@ public class UISnapshotPoint : MonoBehaviour
 		}
 	}
 
-	// Token: 0x040005FA RID: 1530
+	// Token: 0x040004E5 RID: 1253
 	public bool isOrthographic = true;
 
-	// Token: 0x040005FB RID: 1531
+	// Token: 0x040004E6 RID: 1254
 	public float nearClip = -100f;
 
-	// Token: 0x040005FC RID: 1532
+	// Token: 0x040004E7 RID: 1255
 	public float farClip = 100f;
 
-	// Token: 0x040005FD RID: 1533
+	// Token: 0x040004E8 RID: 1256
 	[Range(10f, 80f)]
 	public int fieldOfView = 35;
 
-	// Token: 0x040005FE RID: 1534
+	// Token: 0x040004E9 RID: 1257
 	public float orthoSize = 30f;
 }

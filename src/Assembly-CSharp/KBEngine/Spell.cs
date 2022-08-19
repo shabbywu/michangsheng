@@ -11,16 +11,16 @@ using YSGame.Fight;
 
 namespace KBEngine
 {
-	// Token: 0x0200102A RID: 4138
+	// Token: 0x02000C7D RID: 3197
 	public class Spell
 	{
-		// Token: 0x06006304 RID: 25348 RVA: 0x0004463D File Offset: 0x0004283D
+		// Token: 0x06005870 RID: 22640 RVA: 0x0024B75D File Offset: 0x0024995D
 		public Spell(Entity avater)
 		{
 			this.entity = avater;
 		}
 
-		// Token: 0x06006305 RID: 25349 RVA: 0x00277498 File Offset: 0x00275698
+		// Token: 0x06005871 RID: 22641 RVA: 0x0024B778 File Offset: 0x00249978
 		public void UseSkillLateAddBuff(int id, int count)
 		{
 			if (this.UseSkillLateDict == null)
@@ -36,7 +36,7 @@ namespace KBEngine
 			this.UseSkillLateDict.Add(id, count);
 		}
 
-		// Token: 0x06006306 RID: 25350 RVA: 0x002774F0 File Offset: 0x002756F0
+		// Token: 0x06005872 RID: 22642 RVA: 0x0024B7D0 File Offset: 0x002499D0
 		public void VirtualspellSkill(int skillID, string uuid = "")
 		{
 			if (!jsonData.instance.skillJsonData.HasField(string.Concat(skillID)))
@@ -72,7 +72,7 @@ namespace KBEngine
 			UIFightPanel.Inst.PlayerLingQiController.ResetPlayerLingQiCount();
 		}
 
-		// Token: 0x06006307 RID: 25351 RVA: 0x00277660 File Offset: 0x00275860
+		// Token: 0x06005873 RID: 22643 RVA: 0x0024B940 File Offset: 0x00249B40
 		private void VirtualspellTarget(int skillID, int targetID, string uuid = "")
 		{
 			foreach (Skill skill in ((Avatar)this.entity).skill)
@@ -95,7 +95,7 @@ namespace KBEngine
 			}
 		}
 
-		// Token: 0x06006308 RID: 25352 RVA: 0x00277730 File Offset: 0x00275930
+		// Token: 0x06005874 RID: 22644 RVA: 0x0024BA10 File Offset: 0x00249C10
 		public void spellSkill(int skillID, string uuid = "")
 		{
 			if (!jsonData.instance.skillJsonData.HasField(string.Concat(skillID)))
@@ -131,7 +131,7 @@ namespace KBEngine
 			UIFightPanel.Inst.PlayerLingQiController.ResetPlayerLingQiCount();
 		}
 
-		// Token: 0x06006309 RID: 25353 RVA: 0x002778A0 File Offset: 0x00275AA0
+		// Token: 0x06005875 RID: 22645 RVA: 0x0024BB80 File Offset: 0x00249D80
 		private void spellTarget(int skillID, int targetID, string uuid = "")
 		{
 			foreach (Skill skill in ((Avatar)this.entity).skill)
@@ -154,7 +154,7 @@ namespace KBEngine
 			}
 		}
 
-		// Token: 0x0600630A RID: 25354 RVA: 0x00277974 File Offset: 0x00275B74
+		// Token: 0x06005876 RID: 22646 RVA: 0x0024BC54 File Offset: 0x00249E54
 		public void addDBuff(int buffid, int time)
 		{
 			for (int i = 0; i < time; i++)
@@ -163,14 +163,14 @@ namespace KBEngine
 			}
 		}
 
-		// Token: 0x0600630B RID: 25355 RVA: 0x00044657 File Offset: 0x00042857
+		// Token: 0x06005877 RID: 22647 RVA: 0x0024BC75 File Offset: 0x00249E75
 		public void getBuffFlag(int buffid, List<int> Buffflag)
 		{
 			Buffflag.Add(buffid);
 			Buffflag.Add(1);
 		}
 
-		// Token: 0x0600630C RID: 25356 RVA: 0x00277998 File Offset: 0x00275B98
+		// Token: 0x06005878 RID: 22648 RVA: 0x0024BC88 File Offset: 0x00249E88
 		public List<int> addDBuff(int buffid)
 		{
 			if (!_BuffJsonData.DataDict.ContainsKey(buffid))
@@ -355,7 +355,7 @@ namespace KBEngine
 			return list3;
 		}
 
-		// Token: 0x0600630D RID: 25357 RVA: 0x00278168 File Offset: 0x00276368
+		// Token: 0x06005879 RID: 22649 RVA: 0x0024C458 File Offset: 0x0024A658
 		public List<int> addBuff(int buffid, int num)
 		{
 			if (!_BuffJsonData.DataDict.ContainsKey(buffid))
@@ -541,7 +541,7 @@ namespace KBEngine
 			return list3;
 		}
 
-		// Token: 0x0600630E RID: 25358 RVA: 0x00278920 File Offset: 0x00276B20
+		// Token: 0x0600587A RID: 22650 RVA: 0x0024CC10 File Offset: 0x0024AE10
 		public void removeBuff(List<int> buffid)
 		{
 			Avatar avatar = (Avatar)this.entity;
@@ -586,7 +586,7 @@ namespace KBEngine
 			YSFuncList.Ints.AddFunc(queue);
 		}
 
-		// Token: 0x0600630F RID: 25359 RVA: 0x00278B6C File Offset: 0x00276D6C
+		// Token: 0x0600587B RID: 22651 RVA: 0x0024CE5C File Offset: 0x0024B05C
 		public bool HasBuff(int buffID)
 		{
 			Avatar avatar = (Avatar)this.entity;
@@ -600,31 +600,52 @@ namespace KBEngine
 			return false;
 		}
 
-		// Token: 0x06006310 RID: 25360 RVA: 0x00044667 File Offset: 0x00042867
+		// Token: 0x0600587C RID: 22652 RVA: 0x0024CEA3 File Offset: 0x0024B0A3
 		public void removeAllBuff()
 		{
 			((Avatar)this.entity).bufflist.Clear();
 		}
 
-		// Token: 0x06006311 RID: 25361 RVA: 0x00278BB4 File Offset: 0x00276DB4
+		// Token: 0x0600587D RID: 22653 RVA: 0x0024CEBC File Offset: 0x0024B0BC
 		public void BuffSeidRealizeCheck(int index, BuffLoopData buffLoopData)
 		{
 			Avatar avatar = (Avatar)this.entity;
-			if (avatar.buffmag.HasBuffSeid(136))
+			if (avatar.buffmag.HasBuffSeid(219))
 			{
 				int num = avatar.bufflist[index][2];
-				foreach (List<int> list in avatar.buffmag.getBuffBySeid(136))
+				foreach (List<int> list in avatar.buffmag.getBuffBySeid(219))
 				{
-					JSONObject seidJson = jsonData.instance.Buff[list[2]].getSeidJson(136);
-					if (seidJson["value1"].I == num)
+					JSONObject seidJson = jsonData.instance.Buff[list[2]].getSeidJson(219);
+					int i = seidJson["value1"].I;
+					int i2 = seidJson["value2"].I;
+					int i3 = seidJson["value3"].I;
+					JSONObject json = seidJson["value4"];
+					if (i3 == num)
 					{
-						buffLoopData.SetSeid(Tools.JsonListToList(seidJson["value2"]));
+						float buffSum = (float)avatar.buffmag.GetBuffSum(i);
+						float num2 = (float)avatar.HP_Max * ((float)i2 / 100f);
+						if (buffSum < num2)
+						{
+							buffLoopData.SetSeid(Tools.JsonListToList(json));
+						}
+					}
+				}
+			}
+			if (avatar.buffmag.HasBuffSeid(136))
+			{
+				int num3 = avatar.bufflist[index][2];
+				foreach (List<int> list2 in avatar.buffmag.getBuffBySeid(136))
+				{
+					JSONObject seidJson2 = jsonData.instance.Buff[list2[2]].getSeidJson(136);
+					if (seidJson2["value1"].I == num3)
+					{
+						buffLoopData.SetSeid(Tools.JsonListToList(seidJson2["value2"]));
 					}
 				}
 			}
 		}
 
-		// Token: 0x06006312 RID: 25362 RVA: 0x00278C8C File Offset: 0x00276E8C
+		// Token: 0x0600587E RID: 22654 RVA: 0x0024D0A4 File Offset: 0x0024B2A4
 		public void onBuffTick(int index, List<int> flag = null, int type = 0)
 		{
 			Avatar avatar = (Avatar)this.entity;
@@ -703,7 +724,7 @@ namespace KBEngine
 			Event.fireOut("UpdataBuff", Array.Empty<object>());
 		}
 
-		// Token: 0x06006313 RID: 25363 RVA: 0x00279000 File Offset: 0x00277200
+		// Token: 0x0600587F RID: 22655 RVA: 0x0024D418 File Offset: 0x0024B618
 		public void onBuffTickById(int id, List<int> flag = null, int type = 0)
 		{
 			Avatar avatar = (Avatar)this.entity;
@@ -794,7 +815,7 @@ namespace KBEngine
 			Event.fireOut("UpdataBuff", Array.Empty<object>());
 		}
 
-		// Token: 0x06006314 RID: 25364 RVA: 0x0027935C File Offset: 0x0027755C
+		// Token: 0x06005880 RID: 22656 RVA: 0x0024D774 File Offset: 0x0024B974
 		public void AutoRemoveBuff()
 		{
 			Avatar avatar = (Avatar)this.entity;
@@ -821,7 +842,7 @@ namespace KBEngine
 			}
 		}
 
-		// Token: 0x06006315 RID: 25365 RVA: 0x0027942C File Offset: 0x0027762C
+		// Token: 0x06005881 RID: 22657 RVA: 0x0024D844 File Offset: 0x0024BA44
 		public void onRemoveBuffByType(int type, int removeCount = 1)
 		{
 			Avatar avatar = (Avatar)this.entity;
@@ -873,7 +894,7 @@ namespace KBEngine
 			Event.fireOut("UpdataBuff", Array.Empty<object>());
 		}
 
-		// Token: 0x06006316 RID: 25366 RVA: 0x00279678 File Offset: 0x00277878
+		// Token: 0x06005882 RID: 22658 RVA: 0x0024DA90 File Offset: 0x0024BC90
 		public void ONBuffTick(int buffindex, int type)
 		{
 			Avatar avatar = (Avatar)this.entity;
@@ -883,7 +904,7 @@ namespace KBEngine
 			}
 		}
 
-		// Token: 0x06006317 RID: 25367 RVA: 0x002796DC File Offset: 0x002778DC
+		// Token: 0x06005883 RID: 22659 RVA: 0x0024DAF4 File Offset: 0x0024BCF4
 		public void onBuffTickByType(int type)
 		{
 			Avatar avatar = (Avatar)this.entity;
@@ -906,7 +927,7 @@ namespace KBEngine
 			Event.fireOut("UpdataBuff", Array.Empty<object>());
 		}
 
-		// Token: 0x06006318 RID: 25368 RVA: 0x002797A4 File Offset: 0x002779A4
+		// Token: 0x06005884 RID: 22660 RVA: 0x0024DBBC File Offset: 0x0024BDBC
 		public void onBuffTickByType(int type, List<int> flag)
 		{
 			try
@@ -1032,20 +1053,20 @@ namespace KBEngine
 			}
 		}
 
-		// Token: 0x04005D02 RID: 23810
+		// Token: 0x04005202 RID: 20994
 		public Entity entity;
 
-		// Token: 0x04005D03 RID: 23811
+		// Token: 0x04005203 RID: 20995
 		public Dictionary<int, int> UseSkillLateDict = new Dictionary<int, int>();
 
-		// Token: 0x0200102B RID: 4139
+		// Token: 0x02001623 RID: 5667
 		public enum buffList
 		{
-			// Token: 0x04005D05 RID: 23813
+			// Token: 0x0400715D RID: 29021
 			NUM,
-			// Token: 0x04005D06 RID: 23814
+			// Token: 0x0400715E RID: 29022
 			ROUND,
-			// Token: 0x04005D07 RID: 23815
+			// Token: 0x0400715F RID: 29023
 			ID
 		}
 	}

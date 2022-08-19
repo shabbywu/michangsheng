@@ -3,12 +3,12 @@ using UnityEngine;
 
 namespace Fungus
 {
-	// Token: 0x0200142F RID: 5167
+	// Token: 0x02000F78 RID: 3960
 	[CommandInfo("YSTools", "AvatarDeath", "设置英雄死亡", 0)]
 	[AddComponentMenu("")]
 	public class AvatarDeath : Command
 	{
-		// Token: 0x06007D05 RID: 32005 RVA: 0x0001CA4F File Offset: 0x0001AC4F
+		// Token: 0x06006F15 RID: 28437 RVA: 0x000E111A File Offset: 0x000DF31A
 		public void setHasVariable(string name, int num, Flowchart flowchart)
 		{
 			if (flowchart.HasVariable(name))
@@ -17,25 +17,25 @@ namespace Fungus
 			}
 		}
 
-		// Token: 0x06007D06 RID: 32006 RVA: 0x000549AA File Offset: 0x00052BAA
+		// Token: 0x06006F16 RID: 28438 RVA: 0x002A645A File Offset: 0x002A465A
 		public override void OnEnter()
 		{
 			jsonData.instance.setMonstarDeath(this.MonstarID.Value, true);
 			this.Continue();
 		}
 
-		// Token: 0x06007D07 RID: 32007 RVA: 0x000113CF File Offset: 0x0000F5CF
+		// Token: 0x06006F17 RID: 28439 RVA: 0x0005E228 File Offset: 0x0005C428
 		public override Color GetButtonColor()
 		{
 			return new Color32(184, 210, 235, byte.MaxValue);
 		}
 
-		// Token: 0x06007D08 RID: 32008 RVA: 0x000042DD File Offset: 0x000024DD
+		// Token: 0x06006F18 RID: 28440 RVA: 0x00004095 File Offset: 0x00002295
 		public override void OnReset()
 		{
 		}
 
-		// Token: 0x04006ABE RID: 27326
+		// Token: 0x04005BEA RID: 23530
 		[Tooltip("死亡的英雄ID")]
 		[VariableProperty(new Type[]
 		{

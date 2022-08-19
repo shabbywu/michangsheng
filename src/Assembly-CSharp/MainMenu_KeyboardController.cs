@@ -2,16 +2,16 @@
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-// Token: 0x0200018A RID: 394
+// Token: 0x02000107 RID: 263
 public class MainMenu_KeyboardController : MonoBehaviour
 {
-	// Token: 0x06000D1E RID: 3358 RVA: 0x0000ED83 File Offset: 0x0000CF83
+	// Token: 0x06000C03 RID: 3075 RVA: 0x00048EC1 File Offset: 0x000470C1
 	private void Start()
 	{
 		this.currentSelectedGameobject = this.eventSystem.currentSelectedGameObject;
 	}
 
-	// Token: 0x06000D1F RID: 3359 RVA: 0x0009AAC8 File Offset: 0x00098CC8
+	// Token: 0x06000C04 RID: 3076 RVA: 0x00048ED4 File Offset: 0x000470D4
 	private void Update()
 	{
 		if (this.eventSystem.currentSelectedGameObject != this.currentSelectedGameobject)
@@ -25,7 +25,7 @@ public class MainMenu_KeyboardController : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000D20 RID: 3360 RVA: 0x0000ED96 File Offset: 0x0000CF96
+	// Token: 0x06000C05 RID: 3077 RVA: 0x00048F2F File Offset: 0x0004712F
 	public void SetNextSelectedGameobject(GameObject NextGameObject)
 	{
 		if (NextGameObject != null)
@@ -35,9 +35,9 @@ public class MainMenu_KeyboardController : MonoBehaviour
 		}
 	}
 
-	// Token: 0x04000A54 RID: 2644
+	// Token: 0x0400085B RID: 2139
 	public EventSystem eventSystem;
 
-	// Token: 0x04000A55 RID: 2645
+	// Token: 0x0400085C RID: 2140
 	public GameObject currentSelectedGameobject;
 }

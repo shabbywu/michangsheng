@@ -5,10 +5,10 @@ using UnityEngine.UI;
 
 namespace Bag
 {
-	// Token: 0x02000D48 RID: 3400
+	// Token: 0x020009BF RID: 2495
 	public class DanLuSlot : BaseSlot
 	{
-		// Token: 0x060050D2 RID: 20690 RVA: 0x0021B22C File Offset: 0x0021942C
+		// Token: 0x0600456D RID: 17773 RVA: 0x001D7284 File Offset: 0x001D5484
 		public override void OnPointerUp(PointerEventData eventData)
 		{
 			if (this.IsInBag)
@@ -30,7 +30,7 @@ namespace Bag
 			this._selectPanel.SetActive(false);
 		}
 
-		// Token: 0x060050D3 RID: 20691 RVA: 0x0021B2BC File Offset: 0x002194BC
+		// Token: 0x0600456E RID: 17774 RVA: 0x001D7314 File Offset: 0x001D5514
 		public override void SetSlotData(object data)
 		{
 			base.SetSlotData(data);
@@ -40,7 +40,7 @@ namespace Bag
 			}
 		}
 
-		// Token: 0x060050D4 RID: 20692 RVA: 0x0021B314 File Offset: 0x00219514
+		// Token: 0x0600456F RID: 17775 RVA: 0x001D736C File Offset: 0x001D556C
 		public void UpdateNaiJiu()
 		{
 			if (!this.IsInBag)
@@ -54,7 +54,7 @@ namespace Bag
 			}
 		}
 
-		// Token: 0x04005200 RID: 20992
+		// Token: 0x040046FC RID: 18172
 		public bool IsInBag;
 	}
 }

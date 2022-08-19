@@ -1,17 +1,17 @@
 ﻿using System;
 using UnityEngine;
 
-// Token: 0x02000677 RID: 1655
+// Token: 0x0200049B RID: 1179
 public class CardSprite : MonoBehaviour
 {
-	// Token: 0x06002958 RID: 10584 RVA: 0x000042DD File Offset: 0x000024DD
+	// Token: 0x06002534 RID: 9524 RVA: 0x00004095 File Offset: 0x00002295
 	private void Start()
 	{
 	}
 
-	// Token: 0x170002F8 RID: 760
-	// (get) Token: 0x0600295A RID: 10586 RVA: 0x00020205 File Offset: 0x0001E405
-	// (set) Token: 0x06002959 RID: 10585 RVA: 0x000201EA File Offset: 0x0001E3EA
+	// Token: 0x17000299 RID: 665
+	// (get) Token: 0x06002536 RID: 9526 RVA: 0x00102AAE File Offset: 0x00100CAE
+	// (set) Token: 0x06002535 RID: 9525 RVA: 0x00102A93 File Offset: 0x00100C93
 	public Card Poker
 	{
 		get
@@ -26,9 +26,9 @@ public class CardSprite : MonoBehaviour
 		}
 	}
 
-	// Token: 0x170002F9 RID: 761
-	// (get) Token: 0x0600295C RID: 10588 RVA: 0x00020216 File Offset: 0x0001E416
-	// (set) Token: 0x0600295B RID: 10587 RVA: 0x0002020D File Offset: 0x0001E40D
+	// Token: 0x1700029A RID: 666
+	// (get) Token: 0x06002538 RID: 9528 RVA: 0x00102ABF File Offset: 0x00100CBF
+	// (set) Token: 0x06002537 RID: 9527 RVA: 0x00102AB6 File Offset: 0x00100CB6
 	public bool Select
 	{
 		get
@@ -41,7 +41,7 @@ public class CardSprite : MonoBehaviour
 		}
 	}
 
-	// Token: 0x0600295D RID: 10589 RVA: 0x001426D4 File Offset: 0x001408D4
+	// Token: 0x06002539 RID: 9529 RVA: 0x00102AC8 File Offset: 0x00100CC8
 	private void SetSprite()
 	{
 		if (this.card.Attribution == CharacterType.Player || this.card.Attribution == CharacterType.Desk)
@@ -52,14 +52,14 @@ public class CardSprite : MonoBehaviour
 		this.sprite.name = "SmallCardBack1";
 	}
 
-	// Token: 0x0600295E RID: 10590 RVA: 0x0002021E File Offset: 0x0001E41E
+	// Token: 0x0600253A RID: 9530 RVA: 0x00102B18 File Offset: 0x00100D18
 	public void Destroy()
 	{
 		this.card.isSprite = false;
 		Object.Destroy(base.gameObject);
 	}
 
-	// Token: 0x0600295F RID: 10591 RVA: 0x00142724 File Offset: 0x00140924
+	// Token: 0x0600253B RID: 9531 RVA: 0x00102B34 File Offset: 0x00100D34
 	public void GoToPosition(GameObject parent, int index, int maxIndex = 100, int chaiBase = 0)
 	{
 		this.sprite.sortingOrder = index;
@@ -89,24 +89,24 @@ public class CardSprite : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06002960 RID: 10592 RVA: 0x00020237 File Offset: 0x0001E437
+	// Token: 0x0600253C RID: 9532 RVA: 0x00102CAA File Offset: 0x00100EAA
 	public void UIOnHover()
 	{
 		this.onHover = true;
 	}
 
-	// Token: 0x06002961 RID: 10593 RVA: 0x00020240 File Offset: 0x0001E440
+	// Token: 0x0600253D RID: 9533 RVA: 0x00102CB3 File Offset: 0x00100EB3
 	public void UIOnHoverOut()
 	{
 		this.onHover = false;
 	}
 
-	// Token: 0x06002962 RID: 10594 RVA: 0x000042DD File Offset: 0x000024DD
+	// Token: 0x0600253E RID: 9534 RVA: 0x00004095 File Offset: 0x00002295
 	private void Update()
 	{
 	}
 
-	// Token: 0x06002963 RID: 10595 RVA: 0x00020249 File Offset: 0x0001E449
+	// Token: 0x0600253F RID: 9535 RVA: 0x00102CBC File Offset: 0x00100EBC
 	private void OnDragOver(GameObject obj)
 	{
 		if (obj != base.gameObject)
@@ -115,29 +115,29 @@ public class CardSprite : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06002964 RID: 10596 RVA: 0x000042DD File Offset: 0x000024DD
+	// Token: 0x06002540 RID: 9536 RVA: 0x00004095 File Offset: 0x00002295
 	public void UIOnClick()
 	{
 	}
 
-	// Token: 0x0400231F RID: 8991
+	// Token: 0x04001E08 RID: 7688
 	private Card card;
 
-	// Token: 0x04002320 RID: 8992
+	// Token: 0x04001E09 RID: 7689
 	public SpriteRenderer sprite;
 
-	// Token: 0x04002321 RID: 8993
+	// Token: 0x04001E0A RID: 7690
 	public bool isSelected;
 
-	// Token: 0x04002322 RID: 8994
+	// Token: 0x04001E0B RID: 7691
 	public bool onHover;
 
-	// Token: 0x04002323 RID: 8995
+	// Token: 0x04001E0C RID: 7692
 	private GameObject last;
 
-	// Token: 0x04002324 RID: 8996
+	// Token: 0x04001E0D RID: 7693
 	public bool isUsed;
 
-	// Token: 0x04002325 RID: 8997
+	// Token: 0x04001E0E RID: 7694
 	public bool firstDraw = true;
 }

@@ -2,7 +2,7 @@
 
 namespace Fungus
 {
-	// Token: 0x02001464 RID: 5220
+	// Token: 0x02000FAC RID: 4012
 	public interface INoCommand
 	{
 	}

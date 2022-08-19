@@ -6,10 +6,10 @@ using UnityEngine.UI;
 
 namespace Bag.Filter
 {
-	// Token: 0x02000D4D RID: 3405
+	// Token: 0x020009C4 RID: 2500
 	public class LianDanFilter : MonoBehaviour, IPointerDownHandler, IEventSystemHandler, IPointerUpHandler, IPointerEnterHandler, IPointerExitHandler
 	{
-		// Token: 0x060050EE RID: 20718 RVA: 0x0021B8AC File Offset: 0x00219AAC
+		// Token: 0x06004589 RID: 17801 RVA: 0x001D7A4C File Offset: 0x001D5C4C
 		public void Init(int value, string content, UnityAction<LianDanFilter> action, float x, float y)
 		{
 			this.Value = value;
@@ -21,7 +21,7 @@ namespace Bag.Filter
 			base.gameObject.SetActive(true);
 		}
 
-		// Token: 0x060050EF RID: 20719 RVA: 0x0003A417 File Offset: 0x00038617
+		// Token: 0x0600458A RID: 17802 RVA: 0x001D7AB0 File Offset: 0x001D5CB0
 		public void Click()
 		{
 			if (this.IsSelect)
@@ -36,7 +36,7 @@ namespace Bag.Filter
 			selectCall.Invoke(this);
 		}
 
-		// Token: 0x060050F0 RID: 20720 RVA: 0x0003A433 File Offset: 0x00038633
+		// Token: 0x0600458B RID: 17803 RVA: 0x001D7ACC File Offset: 0x001D5CCC
 		public void SetState(bool selected)
 		{
 			this.IsSelect = selected;
@@ -44,18 +44,18 @@ namespace Bag.Filter
 			this.UnSelect.SetActive(!selected);
 		}
 
-		// Token: 0x060050F1 RID: 20721 RVA: 0x000042DD File Offset: 0x000024DD
+		// Token: 0x0600458C RID: 17804 RVA: 0x00004095 File Offset: 0x00002295
 		public void OnPointerDown(PointerEventData eventData)
 		{
 		}
 
-		// Token: 0x060050F2 RID: 20722 RVA: 0x0003A457 File Offset: 0x00038657
+		// Token: 0x0600458D RID: 17805 RVA: 0x001D7AF0 File Offset: 0x001D5CF0
 		public void OnPointerUp(PointerEventData eventData)
 		{
 			this.Click();
 		}
 
-		// Token: 0x060050F3 RID: 20723 RVA: 0x0003A45F File Offset: 0x0003865F
+		// Token: 0x0600458E RID: 17806 RVA: 0x001D7AF8 File Offset: 0x001D5CF8
 		public void OnPointerEnter(PointerEventData eventData)
 		{
 			if (!this.IsSelect)
@@ -65,7 +65,7 @@ namespace Bag.Filter
 			}
 		}
 
-		// Token: 0x060050F4 RID: 20724 RVA: 0x0003A481 File Offset: 0x00038681
+		// Token: 0x0600458F RID: 17807 RVA: 0x001D7B1A File Offset: 0x001D5D1A
 		public void OnPointerExit(PointerEventData eventData)
 		{
 			if (!this.IsSelect)
@@ -75,25 +75,25 @@ namespace Bag.Filter
 			}
 		}
 
-		// Token: 0x0400520D RID: 21005
+		// Token: 0x04004709 RID: 18185
 		public bool IsSelect;
 
-		// Token: 0x0400520E RID: 21006
+		// Token: 0x0400470A RID: 18186
 		public int Value;
 
-		// Token: 0x0400520F RID: 21007
+		// Token: 0x0400470B RID: 18187
 		public GameObject Select;
 
-		// Token: 0x04005210 RID: 21008
+		// Token: 0x0400470C RID: 18188
 		public GameObject UnSelect;
 
-		// Token: 0x04005211 RID: 21009
+		// Token: 0x0400470D RID: 18189
 		public Text Content1;
 
-		// Token: 0x04005212 RID: 21010
+		// Token: 0x0400470E RID: 18190
 		public Text Content2;
 
-		// Token: 0x04005213 RID: 21011
+		// Token: 0x0400470F RID: 18191
 		public UnityAction<LianDanFilter> SelectCall;
 	}
 }

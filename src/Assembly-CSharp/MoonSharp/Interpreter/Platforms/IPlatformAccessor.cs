@@ -4,49 +4,49 @@ using System.Text;
 
 namespace MoonSharp.Interpreter.Platforms
 {
-	// Token: 0x020010D2 RID: 4306
+	// Token: 0x02000CF5 RID: 3317
 	public interface IPlatformAccessor
 	{
-		// Token: 0x060067D7 RID: 26583
+		// Token: 0x06005CC1 RID: 23745
 		CoreModules FilterSupportedCoreModules(CoreModules module);
 
-		// Token: 0x060067D8 RID: 26584
+		// Token: 0x06005CC2 RID: 23746
 		string GetEnvironmentVariable(string envvarname);
 
-		// Token: 0x060067D9 RID: 26585
+		// Token: 0x06005CC3 RID: 23747
 		bool IsRunningOnAOT();
 
-		// Token: 0x060067DA RID: 26586
+		// Token: 0x06005CC4 RID: 23748
 		string GetPlatformName();
 
-		// Token: 0x060067DB RID: 26587
+		// Token: 0x06005CC5 RID: 23749
 		void DefaultPrint(string content);
 
-		// Token: 0x060067DC RID: 26588
+		// Token: 0x06005CC6 RID: 23750
 		string DefaultInput(string prompt);
 
-		// Token: 0x060067DD RID: 26589
+		// Token: 0x06005CC7 RID: 23751
 		Stream IO_OpenFile(Script script, string filename, Encoding encoding, string mode);
 
-		// Token: 0x060067DE RID: 26590
+		// Token: 0x06005CC8 RID: 23752
 		Stream IO_GetStandardStream(StandardFileType type);
 
-		// Token: 0x060067DF RID: 26591
+		// Token: 0x06005CC9 RID: 23753
 		string IO_OS_GetTempFilename();
 
-		// Token: 0x060067E0 RID: 26592
+		// Token: 0x06005CCA RID: 23754
 		void OS_ExitFast(int exitCode);
 
-		// Token: 0x060067E1 RID: 26593
+		// Token: 0x06005CCB RID: 23755
 		bool OS_FileExists(string file);
 
-		// Token: 0x060067E2 RID: 26594
+		// Token: 0x06005CCC RID: 23756
 		void OS_FileDelete(string file);
 
-		// Token: 0x060067E3 RID: 26595
+		// Token: 0x06005CCD RID: 23757
 		void OS_FileMove(string src, string dst);
 
-		// Token: 0x060067E4 RID: 26596
+		// Token: 0x06005CCE RID: 23758
 		int OS_Execute(string cmdline);
 	}
 }

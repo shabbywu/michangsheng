@@ -4,22 +4,22 @@ using UnityEngine;
 
 namespace YSGame.TuJian
 {
-	// Token: 0x02000DEA RID: 3562
+	// Token: 0x02000AAD RID: 2733
 	public class TuJianButtonEvent : MonoBehaviour
 	{
-		// Token: 0x060055E7 RID: 21991 RVA: 0x0003D746 File Offset: 0x0003B946
+		// Token: 0x06004C9A RID: 19610 RVA: 0x0020C6B8 File Offset: 0x0020A8B8
 		public void CloseTuJian()
 		{
 			TuJianManager.Inst.CloseTuJian();
 		}
 
-		// Token: 0x060055E8 RID: 21992 RVA: 0x0003D752 File Offset: 0x0003B952
+		// Token: 0x06004C9B RID: 19611 RVA: 0x0020C6C4 File Offset: 0x0020A8C4
 		public void ReturnLastPage()
 		{
 			TuJianManager.Inst.ReturnHyperlink();
 		}
 
-		// Token: 0x060055E9 RID: 21993 RVA: 0x0023D614 File Offset: 0x0023B814
+		// Token: 0x06004C9C RID: 19612 RVA: 0x0020C6D0 File Offset: 0x0020A8D0
 		public void BeiBaoToTuJian()
 		{
 			Transform parent = base.transform.parent;
@@ -54,49 +54,49 @@ namespace YSGame.TuJian
 			Singleton.ints.ClickTab();
 		}
 
-		// Token: 0x060055EA RID: 21994 RVA: 0x0003D75E File Offset: 0x0003B95E
+		// Token: 0x06004C9D RID: 19613 RVA: 0x0020C7FB File Offset: 0x0020A9FB
 		public void FightLink()
 		{
 			TuJianManager.Inst.OnHyperlink("2_502_0");
 		}
 
-		// Token: 0x060055EB RID: 21995 RVA: 0x0003D76F File Offset: 0x0003B96F
+		// Token: 0x06004C9E RID: 19614 RVA: 0x0020C80C File Offset: 0x0020AA0C
 		public void JiaoYiLink()
 		{
 			TuJianManager.Inst.OnHyperlink("2_505_4");
 		}
 
-		// Token: 0x060055EC RID: 21996 RVA: 0x0003D780 File Offset: 0x0003B980
+		// Token: 0x06004C9F RID: 19615 RVA: 0x0020C81D File Offset: 0x0020AA1D
 		public void ZhuJiLink()
 		{
 			TuJianManager.Inst.OnHyperlink("2_507_1");
 		}
 
-		// Token: 0x060055ED RID: 21997 RVA: 0x0003D791 File Offset: 0x0003B991
+		// Token: 0x06004CA0 RID: 19616 RVA: 0x0020C82E File Offset: 0x0020AA2E
 		public void JieDanLink()
 		{
 			TuJianManager.Inst.OnHyperlink("2_507_2");
 		}
 
-		// Token: 0x060055EE RID: 21998 RVA: 0x0003D7A2 File Offset: 0x0003B9A2
+		// Token: 0x06004CA1 RID: 19617 RVA: 0x0020C83F File Offset: 0x0020AA3F
 		public void JieYingLink()
 		{
 			TuJianManager.Inst.OnHyperlink("2_507_3");
 		}
 
-		// Token: 0x060055EF RID: 21999 RVA: 0x0003D7B3 File Offset: 0x0003B9B3
+		// Token: 0x06004CA2 RID: 19618 RVA: 0x0020C850 File Offset: 0x0020AA50
 		public void HuaShenLink()
 		{
 			TuJianManager.Inst.OnHyperlink("2_507_4");
 		}
 
-		// Token: 0x060055F0 RID: 22000 RVA: 0x0003D7C4 File Offset: 0x0003B9C4
+		// Token: 0x06004CA3 RID: 19619 RVA: 0x0020C861 File Offset: 0x0020AA61
 		public void NPCInfoLink()
 		{
 			TuJianManager.Inst.OnHyperlink("2_109_0");
 		}
 
-		// Token: 0x060055F1 RID: 22001 RVA: 0x0003D7D5 File Offset: 0x0003B9D5
+		// Token: 0x06004CA4 RID: 19620 RVA: 0x0020C872 File Offset: 0x0020AA72
 		public void QingJiaoLink()
 		{
 			TuJianManager.Inst.OnHyperlink("2_505_6");

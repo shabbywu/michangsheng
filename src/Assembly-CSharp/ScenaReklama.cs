@@ -3,17 +3,17 @@ using System.Collections;
 using System.IO;
 using UnityEngine;
 
-// Token: 0x0200074F RID: 1871
+// Token: 0x020004DA RID: 1242
 public class ScenaReklama : MonoBehaviour
 {
-	// Token: 0x06002F9E RID: 12190 RVA: 0x000234B4 File Offset: 0x000216B4
+	// Token: 0x0600283B RID: 10299 RVA: 0x00130989 File Offset: 0x0012EB89
 	private void Start()
 	{
 		this.invalidMail = GameObject.Find("IncorrectMail");
 		this.invalidMail.SetActive(false);
 	}
 
-	// Token: 0x06002F9F RID: 12191 RVA: 0x0017D224 File Offset: 0x0017B424
+	// Token: 0x0600283C RID: 10300 RVA: 0x001309A8 File Offset: 0x0012EBA8
 	private void Update()
 	{
 		if (Input.GetKeyUp(27))
@@ -60,7 +60,7 @@ public class ScenaReklama : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06002FA0 RID: 12192 RVA: 0x001499E4 File Offset: 0x00147BE4
+	// Token: 0x0600283D RID: 10301 RVA: 0x00130B50 File Offset: 0x0012ED50
 	private byte[] GetBytes(string str)
 	{
 		byte[] array = new byte[str.Length * 2];
@@ -68,7 +68,7 @@ public class ScenaReklama : MonoBehaviour
 		return array;
 	}
 
-	// Token: 0x06002FA1 RID: 12193 RVA: 0x000234D2 File Offset: 0x000216D2
+	// Token: 0x0600283E RID: 10302 RVA: 0x00130B7D File Offset: 0x0012ED7D
 	private IEnumerator postToServer()
 	{
 		yield return new WaitForEndOfFrame();
@@ -89,7 +89,7 @@ public class ScenaReklama : MonoBehaviour
 		yield break;
 	}
 
-	// Token: 0x06002FA2 RID: 12194 RVA: 0x00149A14 File Offset: 0x00147C14
+	// Token: 0x0600283F RID: 10303 RVA: 0x00130B8C File Offset: 0x0012ED8C
 	private string RaycastFunction(Vector3 vector)
 	{
 		RaycastHit raycastHit;
@@ -100,21 +100,21 @@ public class ScenaReklama : MonoBehaviour
 		return "";
 	}
 
-	// Token: 0x04002AD7 RID: 10967
+	// Token: 0x0400234D RID: 9037
 	private Vector3 originalScale;
 
-	// Token: 0x04002AD8 RID: 10968
+	// Token: 0x0400234E RID: 9038
 	private string clickedItem;
 
-	// Token: 0x04002AD9 RID: 10969
+	// Token: 0x0400234F RID: 9039
 	private string releasedItem;
 
-	// Token: 0x04002ADA RID: 10970
+	// Token: 0x04002350 RID: 9040
 	private TouchScreenKeyboard keyboard;
 
-	// Token: 0x04002ADB RID: 10971
+	// Token: 0x04002351 RID: 9041
 	private string mail;
 
-	// Token: 0x04002ADC RID: 10972
+	// Token: 0x04002352 RID: 9042
 	private GameObject invalidMail;
 }

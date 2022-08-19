@@ -6,23 +6,23 @@ using WXB;
 
 namespace YSGame.TuJian
 {
-	// Token: 0x02000DE8 RID: 3560
+	// Token: 0x02000AAB RID: 2731
 	public class RuleInfoPanel : InfoPanelBase
 	{
-		// Token: 0x060055D8 RID: 21976 RVA: 0x0003D6C9 File Offset: 0x0003B8C9
+		// Token: 0x06004C8B RID: 19595 RVA: 0x0020B905 File Offset: 0x00209B05
 		public void Start()
 		{
 			this.Init();
 		}
 
-		// Token: 0x060055D9 RID: 21977 RVA: 0x0003D6D1 File Offset: 0x0003B8D1
+		// Token: 0x06004C8C RID: 19596 RVA: 0x0020B90D File Offset: 0x00209B0D
 		public override void Update()
 		{
 			base.Update();
 			this.RefreshSVHeight();
 		}
 
-		// Token: 0x060055DA RID: 21978 RVA: 0x0023C8E0 File Offset: 0x0023AAE0
+		// Token: 0x06004C8D RID: 19597 RVA: 0x0020B91C File Offset: 0x00209B1C
 		public void Init()
 		{
 			this._NormalSV = base.transform.Find("HyTextSV").gameObject;
@@ -34,7 +34,7 @@ namespace YSGame.TuJian
 			this._DoubleScrollbar = base.transform.Find("DoubleHyTextSV/Scrollbar Vertical").GetComponent<Scrollbar>();
 		}
 
-		// Token: 0x060055DB RID: 21979 RVA: 0x0023C9AC File Offset: 0x0023ABAC
+		// Token: 0x06004C8E RID: 19598 RVA: 0x0020B9E8 File Offset: 0x00209BE8
 		public void RefreshSVHeight()
 		{
 			if (this._HyContentTransform != null && this._HyContentTransform.sizeDelta.y != this._HyText.preferredHeight + 34f)
@@ -73,21 +73,21 @@ namespace YSGame.TuJian
 			}
 		}
 
-		// Token: 0x060055DC RID: 21980 RVA: 0x0003D6DF File Offset: 0x0003B8DF
+		// Token: 0x06004C8F RID: 19599 RVA: 0x0020BB98 File Offset: 0x00209D98
 		public void EnableNormalPanel()
 		{
 			this._DoubleSV.SetActive(false);
 			this._NormalSV.SetActive(true);
 		}
 
-		// Token: 0x060055DD RID: 21981 RVA: 0x0003D6F9 File Offset: 0x0003B8F9
+		// Token: 0x06004C90 RID: 19600 RVA: 0x0020BBB2 File Offset: 0x00209DB2
 		public void EnableDoublePanel()
 		{
 			this._NormalSV.SetActive(false);
 			this._DoubleSV.SetActive(true);
 		}
 
-		// Token: 0x060055DE RID: 21982 RVA: 0x0003D713 File Offset: 0x0003B913
+		// Token: 0x06004C91 RID: 19601 RVA: 0x0020BBCC File Offset: 0x00209DCC
 		public override void OnHyperlink(int[] args)
 		{
 			base.OnHyperlink(args);
@@ -103,7 +103,7 @@ namespace YSGame.TuJian
 			}
 		}
 
-		// Token: 0x060055DF RID: 21983 RVA: 0x0023CB5C File Offset: 0x0023AD5C
+		// Token: 0x06004C92 RID: 19602 RVA: 0x0020BC00 File Offset: 0x00209E00
 		public string FindSearch()
 		{
 			string result = "";
@@ -136,7 +136,7 @@ namespace YSGame.TuJian
 			return result;
 		}
 
-		// Token: 0x060055E0 RID: 21984 RVA: 0x0023CD10 File Offset: 0x0023AF10
+		// Token: 0x06004C93 RID: 19603 RVA: 0x0020BDB4 File Offset: 0x00209FB4
 		public override void RefreshPanelData()
 		{
 			base.RefreshPanelData();
@@ -206,7 +206,7 @@ namespace YSGame.TuJian
 			this._HyScrollbar.value = 1f;
 		}
 
-		// Token: 0x060055E1 RID: 21985 RVA: 0x0023CF90 File Offset: 0x0023B190
+		// Token: 0x06004C94 RID: 19604 RVA: 0x0020C034 File Offset: 0x0020A234
 		public void HideAllDoubleItem()
 		{
 			foreach (CiZhuiSVItem ciZhuiSVItem in this.DoubleSVItemList)
@@ -217,7 +217,7 @@ namespace YSGame.TuJian
 			this.DoubleSVItemList.Clear();
 		}
 
-		// Token: 0x060055E2 RID: 21986 RVA: 0x0023D000 File Offset: 0x0023B200
+		// Token: 0x06004C95 RID: 19605 RVA: 0x0020C0A4 File Offset: 0x0020A2A4
 		public CiZhuiSVItem GetDoubleItem()
 		{
 			CiZhuiSVItem ciZhuiSVItem;
@@ -235,49 +235,49 @@ namespace YSGame.TuJian
 			return ciZhuiSVItem;
 		}
 
-		// Token: 0x04005588 RID: 21896
+		// Token: 0x04004BAA RID: 19370
 		public GameObject DoubleSVItem;
 
-		// Token: 0x04005589 RID: 21897
+		// Token: 0x04004BAB RID: 19371
 		private GameObject _NormalSV;
 
-		// Token: 0x0400558A RID: 21898
+		// Token: 0x04004BAC RID: 19372
 		private GameObject _DoubleSV;
 
-		// Token: 0x0400558B RID: 21899
+		// Token: 0x04004BAD RID: 19373
 		private RectTransform _HyContentTransform;
 
-		// Token: 0x0400558C RID: 21900
+		// Token: 0x04004BAE RID: 19374
 		private RectTransform _DoubleContentTransform;
 
-		// Token: 0x0400558D RID: 21901
+		// Token: 0x04004BAF RID: 19375
 		private Scrollbar _HyScrollbar;
 
-		// Token: 0x0400558E RID: 21902
+		// Token: 0x04004BB0 RID: 19376
 		private Scrollbar _DoubleScrollbar;
 
-		// Token: 0x0400558F RID: 21903
+		// Token: 0x04004BB1 RID: 19377
 		private SymbolText _HyText;
 
-		// Token: 0x04005590 RID: 21904
+		// Token: 0x04004BB2 RID: 19378
 		public Color HyTextColor = new Color(0.003921569f, 0.4745098f, 0.43529412f);
 
-		// Token: 0x04005591 RID: 21905
+		// Token: 0x04004BB3 RID: 19379
 		public Color HyTextHoverColor = new Color(0.015686275f, 0.3882353f, 0.35686275f);
 
-		// Token: 0x04005592 RID: 21906
+		// Token: 0x04004BB4 RID: 19380
 		private List<CiZhuiSVItem> DoubleSVItemList = new List<CiZhuiSVItem>();
 
-		// Token: 0x04005593 RID: 21907
+		// Token: 0x04004BB5 RID: 19381
 		private List<CiZhuiSVItem> HideDoubleSVItemList = new List<CiZhuiSVItem>();
 
-		// Token: 0x04005594 RID: 21908
+		// Token: 0x04004BB6 RID: 19382
 		private bool needSetPos;
 
-		// Token: 0x04005595 RID: 21909
+		// Token: 0x04004BB7 RID: 19383
 		private int setPosCount;
 
-		// Token: 0x04005596 RID: 21910
+		// Token: 0x04004BB8 RID: 19384
 		private int posID;
 	}
 }

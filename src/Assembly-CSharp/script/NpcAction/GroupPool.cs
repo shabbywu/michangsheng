@@ -3,10 +3,10 @@ using System.Collections.Generic;
 
 namespace script.NpcAction
 {
-	// Token: 0x02000ABD RID: 2749
+	// Token: 0x020009F0 RID: 2544
 	public class GroupPool
 	{
-		// Token: 0x06004645 RID: 17989 RVA: 0x001DF598 File Offset: 0x001DD798
+		// Token: 0x0600468D RID: 18061 RVA: 0x001DD7C0 File Offset: 0x001DB9C0
 		public GroupPool()
 		{
 			this.Pools = new List<NpcDataGroup>();
@@ -16,15 +16,13 @@ namespace script.NpcAction
 			}
 		}
 
-		// Token: 0x06004646 RID: 17990 RVA: 0x001DF5D8 File Offset: 0x001DD7D8
+		// Token: 0x0600468E RID: 18062 RVA: 0x001DD800 File Offset: 0x001DBA00
 		public NpcDataGroup GetGroup()
 		{
 			foreach (NpcDataGroup npcDataGroup in this.Pools)
 			{
 				if (npcDataGroup.IsFree)
 				{
-					npcDataGroup.NpcDict = new Dictionary<int, NpcData>();
-					npcDataGroup.IsFree = false;
 					return npcDataGroup;
 				}
 			}
@@ -34,13 +32,13 @@ namespace script.NpcAction
 			return npcDataGroup2;
 		}
 
-		// Token: 0x06004647 RID: 17991 RVA: 0x00032392 File Offset: 0x00030592
+		// Token: 0x0600468F RID: 18063 RVA: 0x001DD874 File Offset: 0x001DBA74
 		public void BackGroup(NpcDataGroup group)
 		{
-			group.IsFree = true;
+			group.Clear();
 		}
 
-		// Token: 0x04003E61 RID: 15969
+		// Token: 0x040047F2 RID: 18418
 		public List<NpcDataGroup> Pools;
 	}
 }

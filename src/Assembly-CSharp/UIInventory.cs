@@ -8,12 +8,12 @@ using UnityEngine.Events;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-// Token: 0x0200040E RID: 1038
+// Token: 0x020002C6 RID: 710
 public class UIInventory : MonoBehaviour
 {
-	// Token: 0x1700028E RID: 654
-	// (get) Token: 0x06001C04 RID: 7172 RVA: 0x000176E1 File Offset: 0x000158E1
-	// (set) Token: 0x06001C05 RID: 7173 RVA: 0x000176E9 File Offset: 0x000158E9
+	// Token: 0x17000244 RID: 580
+	// (get) Token: 0x06001902 RID: 6402 RVA: 0x000B36D7 File Offset: 0x000B18D7
+	// (set) Token: 0x06001903 RID: 6403 RVA: 0x000B36DF File Offset: 0x000B18DF
 	[HideInInspector]
 	public bool FilterActive
 	{
@@ -33,7 +33,7 @@ public class UIInventory : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001C06 RID: 7174 RVA: 0x000F9808 File Offset: 0x000F7A08
+	// Token: 0x06001904 RID: 6404 RVA: 0x000B3700 File Offset: 0x000B1900
 	public void ShowFilter()
 	{
 		this.FilterGO.SetActive(true);
@@ -68,7 +68,7 @@ public class UIInventory : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001C07 RID: 7175 RVA: 0x00017707 File Offset: 0x00015907
+	// Token: 0x06001905 RID: 6405 RVA: 0x000B37FC File Offset: 0x000B19FC
 	public void HideFilter()
 	{
 		this.LianZiAnim.Play("Hide");
@@ -76,14 +76,14 @@ public class UIInventory : MonoBehaviour
 		base.Invoke("CloseFilter", 0.5f);
 	}
 
-	// Token: 0x06001C08 RID: 7176 RVA: 0x00017739 File Offset: 0x00015939
+	// Token: 0x06001906 RID: 6406 RVA: 0x000B382E File Offset: 0x000B1A2E
 	public void CloseFilter()
 	{
 		this.FilterGO.SetActive(false);
 		this.LianZiAnim.gameObject.SetActive(false);
 	}
 
-	// Token: 0x06001C09 RID: 7177 RVA: 0x000F9904 File Offset: 0x000F7B04
+	// Token: 0x06001907 RID: 6407 RVA: 0x000B3850 File Offset: 0x000B1A50
 	public void OnFilterBtnClick(UIInvFilterBtn btn)
 	{
 		if (this.UITmpValue == -1)
@@ -161,9 +161,9 @@ public class UIInventory : MonoBehaviour
 		}
 	}
 
-	// Token: 0x1700028F RID: 655
-	// (get) Token: 0x06001C0A RID: 7178 RVA: 0x00017758 File Offset: 0x00015958
-	// (set) Token: 0x06001C0B RID: 7179 RVA: 0x000F9C10 File Offset: 0x000F7E10
+	// Token: 0x17000245 RID: 581
+	// (get) Token: 0x06001908 RID: 6408 RVA: 0x000B3B5C File Offset: 0x000B1D5C
+	// (set) Token: 0x06001909 RID: 6409 RVA: 0x000B3B64 File Offset: 0x000B1D64
 	private float SliderPer
 	{
 		get
@@ -177,7 +177,7 @@ public class UIInventory : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001C0C RID: 7180 RVA: 0x00017760 File Offset: 0x00015960
+	// Token: 0x0600190A RID: 6410 RVA: 0x000B3BB9 File Offset: 0x000B1DB9
 	public void OnSVSliderBeginDrag(PointerEventData eventData)
 	{
 		this.sliderBeginDragY = this.SVSliderDragAera.RT.anchoredPosition.y;
@@ -185,7 +185,7 @@ public class UIInventory : MonoBehaviour
 		this.isSVSliderDragging = true;
 	}
 
-	// Token: 0x06001C0D RID: 7181 RVA: 0x000F9C68 File Offset: 0x000F7E68
+	// Token: 0x0600190B RID: 6411 RVA: 0x000B3BF0 File Offset: 0x000B1DF0
 	public void OnSVSliderDrag(PointerEventData eventData)
 	{
 		this.isSVSliderDragging = true;
@@ -197,13 +197,13 @@ public class UIInventory : MonoBehaviour
 		this.SVBar.value = this.sliderPer;
 	}
 
-	// Token: 0x06001C0E RID: 7182 RVA: 0x00017795 File Offset: 0x00015995
+	// Token: 0x0600190C RID: 6412 RVA: 0x000B3CA3 File Offset: 0x000B1EA3
 	public void OnSVSliderEndDrag(PointerEventData eventData)
 	{
 		this.isSVSliderDragging = false;
 	}
 
-	// Token: 0x06001C0F RID: 7183 RVA: 0x0001779E File Offset: 0x0001599E
+	// Token: 0x0600190D RID: 6413 RVA: 0x000B3CAC File Offset: 0x000B1EAC
 	public void OnSVBarValueChanged(float value)
 	{
 		if (!this.isSVSliderDragging && this.SVBar.gameObject.activeInHierarchy)
@@ -212,8 +212,8 @@ public class UIInventory : MonoBehaviour
 		}
 	}
 
-	// Token: 0x17000290 RID: 656
-	// (get) Token: 0x06001C10 RID: 7184 RVA: 0x000177C1 File Offset: 0x000159C1
+	// Token: 0x17000246 RID: 582
+	// (get) Token: 0x0600190E RID: 6414 RVA: 0x000B3CCF File Offset: 0x000B1ECF
 	[HideInInspector]
 	public Avatar Player
 	{
@@ -223,7 +223,7 @@ public class UIInventory : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001C11 RID: 7185 RVA: 0x000F9D1C File Offset: 0x000F7F1C
+	// Token: 0x0600190F RID: 6415 RVA: 0x000B3CD8 File Offset: 0x000B1ED8
 	private void Awake()
 	{
 		this.SVSliderDragAera.OnBeginDragAction = new UnityAction<PointerEventData>(this.OnSVSliderBeginDrag);
@@ -234,13 +234,13 @@ public class UIInventory : MonoBehaviour
 		this.SVBar.onValueChanged.AddListener(new UnityAction<float>(this.OnSVBarValueChanged));
 	}
 
-	// Token: 0x06001C12 RID: 7186 RVA: 0x000177C8 File Offset: 0x000159C8
+	// Token: 0x06001910 RID: 6416 RVA: 0x000B3D71 File Offset: 0x000B1F71
 	private void Start()
 	{
 		this.InventoryLayout.RT.anchoredPosition = new Vector2(this.InventoryLayout.RT.anchoredPosition.x, 0f);
 	}
 
-	// Token: 0x06001C13 RID: 7187 RVA: 0x000177F9 File Offset: 0x000159F9
+	// Token: 0x06001911 RID: 6417 RVA: 0x000B3DA2 File Offset: 0x000B1FA2
 	private void Update()
 	{
 		if (Mathf.Abs(this.InventoryLayout.RTY - this.lastY) > 0.1f)
@@ -250,7 +250,7 @@ public class UIInventory : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001C14 RID: 7188 RVA: 0x000F9DB8 File Offset: 0x000F7FB8
+	// Token: 0x06001912 RID: 6418 RVA: 0x000B3DE0 File Offset: 0x000B1FE0
 	public void RefreshUI()
 	{
 		if (this.IsPlayer)
@@ -303,7 +303,7 @@ public class UIInventory : MonoBehaviour
 		this.SlotSVRT.sizeDelta = new Vector2(this.SlotSVRT.sizeDelta.x, (float)((count - 1) / 3 + 1) * 144.5f + 19f);
 	}
 
-	// Token: 0x06001C15 RID: 7189 RVA: 0x000F9F50 File Offset: 0x000F8150
+	// Token: 0x06001913 RID: 6419 RVA: 0x000B3F78 File Offset: 0x000B2178
 	public void LoadPlayerItems()
 	{
 		List<string> list = new List<string>();
@@ -323,7 +323,7 @@ public class UIInventory : MonoBehaviour
 				else
 				{
 					_ItemJsonData itemJsonData = _ItemJsonData.DataDict[item_INFO2.itemId];
-					if (this.FilterQingJiao || item_INFO2.itemId < 100000)
+					if (this.FilterQingJiao || item_INFO2.itemId < jsonData.QingJiaoItemIDSegment)
 					{
 						int num2 = itemJsonData.quality;
 						if (item_INFO2.Seid != null && item_INFO2.Seid.HasField("quality"))
@@ -368,7 +368,7 @@ public class UIInventory : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001C16 RID: 7190 RVA: 0x000FA248 File Offset: 0x000F8448
+	// Token: 0x06001914 RID: 6420 RVA: 0x000B4270 File Offset: 0x000B2470
 	public void LoadPlayerLingTianItems()
 	{
 		List<string> list = new List<string>();
@@ -388,7 +388,7 @@ public class UIInventory : MonoBehaviour
 				else
 				{
 					_ItemJsonData itemJsonData = _ItemJsonData.DataDict[item_INFO2.itemId];
-					if (this.FilterQingJiao || item_INFO2.itemId < 100000)
+					if (this.FilterQingJiao || item_INFO2.itemId < jsonData.QingJiaoItemIDSegment)
 					{
 						int num2 = itemJsonData.quality;
 						if (item_INFO2.Seid != null && item_INFO2.Seid.HasField("quality"))
@@ -424,14 +424,14 @@ public class UIInventory : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001C17 RID: 7191 RVA: 0x000FA4D4 File Offset: 0x000F86D4
+	// Token: 0x06001915 RID: 6421 RVA: 0x000B44FC File Offset: 0x000B26FC
 	public void LoadNPCItems()
 	{
 		int num = 0;
 		foreach (item item in this.NPC.Inventory)
 		{
 			_ItemJsonData itemJsonData = _ItemJsonData.DataDict[item.itemID];
-			if (this.FilterQingJiao || item.itemID < 100000)
+			if (this.FilterQingJiao || item.itemID < jsonData.QingJiaoItemIDSegment)
 			{
 				int quality = item.quality;
 				int type = itemJsonData.type;
@@ -467,7 +467,7 @@ public class UIInventory : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001C18 RID: 7192 RVA: 0x00017835 File Offset: 0x00015A35
+	// Token: 0x06001916 RID: 6422 RVA: 0x000B46D8 File Offset: 0x000B28D8
 	public void Sort()
 	{
 		if (this.IsPlayer)
@@ -477,115 +477,115 @@ public class UIInventory : MonoBehaviour
 		}
 	}
 
-	// Token: 0x040017E7 RID: 6119
+	// Token: 0x04001423 RID: 5155
 	public PlayerSetRandomFace Face;
 
-	// Token: 0x040017E8 RID: 6120
+	// Token: 0x04001424 RID: 5156
 	public Text TitleText;
 
-	// Token: 0x040017E9 RID: 6121
+	// Token: 0x04001425 RID: 5157
 	public Text MoneyText;
 
-	// Token: 0x040017EA RID: 6122
+	// Token: 0x04001426 RID: 5158
 	public RectTransform SlotSVRT;
 
-	// Token: 0x040017EB RID: 6123
+	// Token: 0x04001427 RID: 5159
 	public GameObject FilterGO;
 
-	// Token: 0x040017EC RID: 6124
+	// Token: 0x04001428 RID: 5160
 	public Animator LianZiAnim;
 
-	// Token: 0x040017ED RID: 6125
+	// Token: 0x04001429 RID: 5161
 	public Animator RightFilterAnim;
 
-	// Token: 0x040017EE RID: 6126
+	// Token: 0x0400142A RID: 5162
 	private bool filterActive;
 
-	// Token: 0x040017EF RID: 6127
+	// Token: 0x0400142B RID: 5163
 	[HideInInspector]
 	public int UITmpValue;
 
-	// Token: 0x040017F0 RID: 6128
+	// Token: 0x0400142C RID: 5164
 	public UIInvFilterBtn FilterA;
 
-	// Token: 0x040017F1 RID: 6129
+	// Token: 0x0400142D RID: 5165
 	public UIInvFilterBtn FilterB;
 
-	// Token: 0x040017F2 RID: 6130
+	// Token: 0x0400142E RID: 5166
 	public List<UIInvFilterBtn> FilterBtns = new List<UIInvFilterBtn>();
 
-	// Token: 0x040017F3 RID: 6131
+	// Token: 0x0400142F RID: 5167
 	public UIIconShow.ShowPriceType ShowPriceType;
 
-	// Token: 0x040017F4 RID: 6132
+	// Token: 0x04001430 RID: 5168
 	public DragAera SVSliderDragAera;
 
-	// Token: 0x040017F5 RID: 6133
+	// Token: 0x04001431 RID: 5169
 	public RectTransform SVSliderButtomPos;
 
-	// Token: 0x040017F6 RID: 6134
+	// Token: 0x04001432 RID: 5170
 	public Scrollbar SVBar;
 
-	// Token: 0x040017F7 RID: 6135
+	// Token: 0x04001433 RID: 5171
 	public Button SortBtn;
 
-	// Token: 0x040017F8 RID: 6136
+	// Token: 0x04001434 RID: 5172
 	public UIInventoryLayout InventoryLayout;
 
-	// Token: 0x040017F9 RID: 6137
+	// Token: 0x04001435 RID: 5173
 	public bool CanDrag;
 
-	// Token: 0x040017FA RID: 6138
+	// Token: 0x04001436 RID: 5174
 	public int NPCID;
 
-	// Token: 0x040017FB RID: 6139
+	// Token: 0x04001437 RID: 5175
 	private bool isSVSliderDragging;
 
-	// Token: 0x040017FC RID: 6140
+	// Token: 0x04001438 RID: 5176
 	private float sliderBeginDragY;
 
-	// Token: 0x040017FD RID: 6141
+	// Token: 0x04001439 RID: 5177
 	private float sliderBeginDragMouseY;
 
-	// Token: 0x040017FE RID: 6142
+	// Token: 0x0400143A RID: 5178
 	private float sliderPer;
 
-	// Token: 0x040017FF RID: 6143
+	// Token: 0x0400143B RID: 5179
 	[HideInInspector]
 	public bool IsGuDing;
 
-	// Token: 0x04001800 RID: 6144
+	// Token: 0x0400143C RID: 5180
 	public InventoryType InventoryType;
 
-	// Token: 0x04001801 RID: 6145
+	// Token: 0x0400143D RID: 5181
 	public SpecialInventoryMode SpecialInventoryMode;
 
-	// Token: 0x04001802 RID: 6146
+	// Token: 0x0400143E RID: 5182
 	[HideInInspector]
 	public Inventory2 oldInventory;
 
-	// Token: 0x04001803 RID: 6147
+	// Token: 0x0400143F RID: 5183
 	public bool IsPlayer;
 
-	// Token: 0x04001804 RID: 6148
+	// Token: 0x04001440 RID: 5184
 	public int ID;
 
-	// Token: 0x04001805 RID: 6149
+	// Token: 0x04001441 RID: 5185
 	public bool FilterCanSell = true;
 
-	// Token: 0x04001806 RID: 6150
+	// Token: 0x04001442 RID: 5186
 	public bool FilterNum = true;
 
-	// Token: 0x04001807 RID: 6151
+	// Token: 0x04001443 RID: 5187
 	public bool FilterQingJiao = true;
 
-	// Token: 0x04001808 RID: 6152
+	// Token: 0x04001444 RID: 5188
 	public int FilterQuality;
 
-	// Token: 0x04001809 RID: 6153
+	// Token: 0x04001445 RID: 5189
 	public int FilterType;
 
-	// Token: 0x0400180A RID: 6154
+	// Token: 0x04001446 RID: 5190
 	private static Dictionary<int, List<int>> FilterTypeDict = new Dictionary<int, List<int>>
 	{
 		{
@@ -646,15 +646,15 @@ public class UIInventory : MonoBehaviour
 		}
 	};
 
-	// Token: 0x0400180B RID: 6155
+	// Token: 0x04001447 RID: 5191
 	public UIInventory dragTargetInventory;
 
-	// Token: 0x0400180C RID: 6156
+	// Token: 0x04001448 RID: 5192
 	public UIIconShow dragTargetSlot;
 
-	// Token: 0x0400180D RID: 6157
+	// Token: 0x04001449 RID: 5193
 	public UINPCData NPC;
 
-	// Token: 0x0400180E RID: 6158
+	// Token: 0x0400144A RID: 5194
 	private float lastY;
 }

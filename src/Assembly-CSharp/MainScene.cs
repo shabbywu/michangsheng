@@ -6,10 +6,10 @@ using KBEngine;
 using UnityEngine;
 using UnityEngine.Advertisements;
 
-// Token: 0x020006EA RID: 1770
+// Token: 0x020004C4 RID: 1220
 public class MainScene : MonoBehaviour
 {
-	// Token: 0x06002C7B RID: 11387 RVA: 0x0015BF84 File Offset: 0x0015A184
+	// Token: 0x060026D5 RID: 9941 RVA: 0x0011580C File Offset: 0x00113A0C
 	private void Start()
 	{
 		if (Advertisement.isSupported)
@@ -238,7 +238,7 @@ public class MainScene : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06002C7C RID: 11388 RVA: 0x00021CA8 File Offset: 0x0001FEA8
+	// Token: 0x060026D6 RID: 9942 RVA: 0x00115F34 File Offset: 0x00114134
 	private IEnumerator checkConnectionForAutologin()
 	{
 		base.StartCoroutine(CheckInternetConnection.Instance.checkInternetConnection());
@@ -288,7 +288,7 @@ public class MainScene : MonoBehaviour
 		yield break;
 	}
 
-	// Token: 0x06002C7D RID: 11389 RVA: 0x00021CB7 File Offset: 0x0001FEB7
+	// Token: 0x060026D7 RID: 9943 RVA: 0x00115F43 File Offset: 0x00114143
 	private IEnumerator checkConnectionForLoginButton()
 	{
 		base.StartCoroutine(CheckInternetConnection.Instance.checkInternetConnection());
@@ -311,7 +311,7 @@ public class MainScene : MonoBehaviour
 		yield break;
 	}
 
-	// Token: 0x06002C7E RID: 11390 RVA: 0x00021CC6 File Offset: 0x0001FEC6
+	// Token: 0x060026D8 RID: 9944 RVA: 0x00115F52 File Offset: 0x00114152
 	private IEnumerator checkConnectionForLeaderboardLogin()
 	{
 		base.StartCoroutine(CheckInternetConnection.Instance.checkInternetConnection());
@@ -330,7 +330,7 @@ public class MainScene : MonoBehaviour
 		yield break;
 	}
 
-	// Token: 0x06002C7F RID: 11391 RVA: 0x00021CD5 File Offset: 0x0001FED5
+	// Token: 0x060026D9 RID: 9945 RVA: 0x00115F61 File Offset: 0x00114161
 	private IEnumerator checkConnectionForPageLike(string url, string key)
 	{
 		base.StartCoroutine(CheckInternetConnection.Instance.checkInternetConnection());
@@ -345,7 +345,7 @@ public class MainScene : MonoBehaviour
 		yield break;
 	}
 
-	// Token: 0x06002C80 RID: 11392 RVA: 0x00021CE4 File Offset: 0x0001FEE4
+	// Token: 0x060026DA RID: 9946 RVA: 0x00115F70 File Offset: 0x00114170
 	private IEnumerator checkConnectionForWatchVideo()
 	{
 		base.StartCoroutine(CheckInternetConnection.Instance.checkInternetConnection());
@@ -398,7 +398,7 @@ public class MainScene : MonoBehaviour
 		yield break;
 	}
 
-	// Token: 0x06002C81 RID: 11393 RVA: 0x00021CF3 File Offset: 0x0001FEF3
+	// Token: 0x060026DB RID: 9947 RVA: 0x00115F7F File Offset: 0x0011417F
 	private IEnumerator checkConnectionForLogout()
 	{
 		base.StartCoroutine(CheckInternetConnection.Instance.checkInternetConnection());
@@ -454,7 +454,7 @@ public class MainScene : MonoBehaviour
 		yield break;
 	}
 
-	// Token: 0x06002C82 RID: 11394 RVA: 0x00021D02 File Offset: 0x0001FF02
+	// Token: 0x060026DC RID: 9948 RVA: 0x00115F8E File Offset: 0x0011418E
 	private IEnumerator checkConnectionForResetProgress()
 	{
 		base.StartCoroutine(CheckInternetConnection.Instance.checkInternetConnection());
@@ -477,7 +477,7 @@ public class MainScene : MonoBehaviour
 		yield break;
 	}
 
-	// Token: 0x06002C83 RID: 11395 RVA: 0x0015C6AC File Offset: 0x0015A8AC
+	// Token: 0x060026DD RID: 9949 RVA: 0x00115FA0 File Offset: 0x001141A0
 	private void Update()
 	{
 		Input.GetKeyUp(27);
@@ -1542,7 +1542,7 @@ public class MainScene : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06002C84 RID: 11396 RVA: 0x00149A14 File Offset: 0x00147C14
+	// Token: 0x060026DE RID: 9950 RVA: 0x00118690 File Offset: 0x00116890
 	private string RaycastFunction(Vector3 vector)
 	{
 		RaycastHit raycastHit;
@@ -1553,21 +1553,21 @@ public class MainScene : MonoBehaviour
 		return "";
 	}
 
-	// Token: 0x06002C85 RID: 11397 RVA: 0x00021D11 File Offset: 0x0001FF11
+	// Token: 0x060026DF RID: 9951 RVA: 0x001186C3 File Offset: 0x001168C3
 	public void AktivirajLeaderboard()
 	{
 		ObjLeaderboard.Leaderboard = true;
 		SwipeControlLeaderboard.controlEnabled = true;
 	}
 
-	// Token: 0x06002C86 RID: 11398 RVA: 0x00021D1F File Offset: 0x0001FF1F
+	// Token: 0x060026E0 RID: 9952 RVA: 0x001186D1 File Offset: 0x001168D1
 	public void DeaktivirajLeaderboard()
 	{
 		ObjLeaderboard.Leaderboard = false;
 		SwipeControlLeaderboard.controlEnabled = false;
 	}
 
-	// Token: 0x06002C87 RID: 11399 RVA: 0x0015ED9C File Offset: 0x0015CF9C
+	// Token: 0x060026E1 RID: 9953 RVA: 0x001186E0 File Offset: 0x001168E0
 	public void OcistiLeaderboard()
 	{
 		Transform transform = MainScene.LeaderBoardInvite.transform.parent.Find("Friends Tabs");
@@ -1583,35 +1583,35 @@ public class MainScene : MonoBehaviour
 		FacebookManager.ListaStructPrijatelja.Clear();
 	}
 
-	// Token: 0x06002C88 RID: 11400 RVA: 0x00021D2D File Offset: 0x0001FF2D
+	// Token: 0x060026E2 RID: 9954 RVA: 0x00118780 File Offset: 0x00116980
 	public void AktivirajSettings()
 	{
 		ObjSettingsTabs.SettingsTabs = true;
 		SwipeControlSettingsTabs.controlEnabled = true;
 	}
 
-	// Token: 0x06002C89 RID: 11401 RVA: 0x00021D3B File Offset: 0x0001FF3B
+	// Token: 0x060026E3 RID: 9955 RVA: 0x0011878E File Offset: 0x0011698E
 	public void DeaktivirajSettings()
 	{
 		ObjSettingsTabs.SettingsTabs = false;
 		SwipeControlSettingsTabs.controlEnabled = false;
 	}
 
-	// Token: 0x06002C8A RID: 11402 RVA: 0x00021D49 File Offset: 0x0001FF49
+	// Token: 0x060026E4 RID: 9956 RVA: 0x0011879C File Offset: 0x0011699C
 	public void AktivirajLanguages()
 	{
 		ObjLanguages.Languages = true;
 		SwipeControlLanguages.controlEnabled = true;
 	}
 
-	// Token: 0x06002C8B RID: 11403 RVA: 0x00021D57 File Offset: 0x0001FF57
+	// Token: 0x060026E5 RID: 9957 RVA: 0x001187AA File Offset: 0x001169AA
 	public void DeaktivirajLanguages()
 	{
 		ObjLanguages.Languages = false;
 		SwipeControlLanguages.controlEnabled = false;
 	}
 
-	// Token: 0x06002C8C RID: 11404 RVA: 0x0015EE3C File Offset: 0x0015D03C
+	// Token: 0x060026E6 RID: 9958 RVA: 0x001187B8 File Offset: 0x001169B8
 	public void PrikaziJezike()
 	{
 		this.SettingState = 2;
@@ -1621,7 +1621,7 @@ public class MainScene : MonoBehaviour
 		GameObject.Find("Settings i Language Scena/Language Tabs").GetComponent<Animation>().Play("TabSettingsDolazak");
 	}
 
-	// Token: 0x06002C8D RID: 11405 RVA: 0x0015EE8C File Offset: 0x0015D08C
+	// Token: 0x060026E7 RID: 9959 RVA: 0x00118808 File Offset: 0x00116A08
 	public void PrikaziSettings()
 	{
 		if (FB.IsLoggedIn)
@@ -1641,7 +1641,7 @@ public class MainScene : MonoBehaviour
 		GameObject.Find("Settings i Language Scena/Settings Tabs").GetComponent<Animation>().Play("TabSettingsDolazak");
 	}
 
-	// Token: 0x06002C8E RID: 11406 RVA: 0x0015EF40 File Offset: 0x0015D140
+	// Token: 0x060026E8 RID: 9960 RVA: 0x001188BC File Offset: 0x00116ABC
 	public void PromeniZastavuNaOsnovuImena()
 	{
 		if (!StagesParser.languageBefore.Equals(LanguageManager.chosenLanguage))
@@ -1789,7 +1789,7 @@ public class MainScene : MonoBehaviour
 		StagesParser.Instance.UcitajLoadingPoruke();
 	}
 
-	// Token: 0x06002C8F RID: 11407 RVA: 0x0015F288 File Offset: 0x0015D488
+	// Token: 0x060026E9 RID: 9961 RVA: 0x00118C04 File Offset: 0x00116E04
 	public void PromeniZastavu(int BrojZastave)
 	{
 		Texture texture = Resources.Load("Zastave/" + BrojZastave) as Texture;
@@ -1861,7 +1861,7 @@ public class MainScene : MonoBehaviour
 		StagesParser.Instance.UcitajLoadingPoruke();
 	}
 
-	// Token: 0x06002C90 RID: 11408 RVA: 0x0015F4B0 File Offset: 0x0015D6B0
+	// Token: 0x060026EA RID: 9962 RVA: 0x00118E2C File Offset: 0x0011702C
 	private void PrevediTekstove()
 	{
 		GameObject.Find("Kovceg/Text/Collect").GetComponent<TextMesh>().text = LanguageManager.Collect;
@@ -1946,7 +1946,7 @@ public class MainScene : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06002C91 RID: 11409 RVA: 0x0015FC3C File Offset: 0x0015DE3C
+	// Token: 0x060026EB RID: 9963 RVA: 0x001195B8 File Offset: 0x001177B8
 	public void addAvatar()
 	{
 		this.creatAvatar(10, 51, 100, new Vector3(-5f, 0f, 0f), new Vector3(0f, 0f, 80f));
@@ -1954,7 +1954,7 @@ public class MainScene : MonoBehaviour
 		new Dictionary<int, int>();
 	}
 
-	// Token: 0x06002C92 RID: 11410 RVA: 0x0015FC90 File Offset: 0x0015DE90
+	// Token: 0x060026EC RID: 9964 RVA: 0x0011960C File Offset: 0x0011780C
 	public void creatAvatar(int avaterID, int roleType, int HP_Max, Vector3 position, Vector3 direction)
 	{
 		KBEngineApp.app.Client_onCreatedProxies((ulong)((long)avaterID), avaterID, "Avatar");
@@ -1970,7 +1970,7 @@ public class MainScene : MonoBehaviour
 		avatar.LingGeng.Add(2);
 	}
 
-	// Token: 0x06002C93 RID: 11411 RVA: 0x00021D65 File Offset: 0x0001FF65
+	// Token: 0x060026ED RID: 9965 RVA: 0x00119690 File Offset: 0x00117890
 	private IEnumerator otvoriSledeciNivo()
 	{
 		yield return new WaitForSeconds(1.1f);
@@ -1989,21 +1989,21 @@ public class MainScene : MonoBehaviour
 		yield break;
 	}
 
-	// Token: 0x06002C94 RID: 11412 RVA: 0x00021D74 File Offset: 0x0001FF74
+	// Token: 0x060026EE RID: 9966 RVA: 0x0011969F File Offset: 0x0011789F
 	private void SkloniCoinsReward()
 	{
 		GameObject.Find("CoinsReward").GetComponent<Animation>().Play("CoinsRewardOdlazak");
 		GameObject.Find("DailyReward").GetComponent<Animation>().Play("DailyOdlazak");
 	}
 
-	// Token: 0x06002C95 RID: 11413 RVA: 0x00021DAA File Offset: 0x0001FFAA
+	// Token: 0x060026EF RID: 9967 RVA: 0x001196D5 File Offset: 0x001178D5
 	private void DelayZaOdbrojavanje()
 	{
 		base.StartCoroutine(StagesParser.Instance.moneyCounter(this.dailyReward, GameObject.Find("CoinsReward/Coins Number").GetComponent<TextMesh>(), true));
 		base.Invoke("SkloniCoinsReward", 1.2f);
 	}
 
-	// Token: 0x06002C96 RID: 11414 RVA: 0x0015FD14 File Offset: 0x0015DF14
+	// Token: 0x060026F0 RID: 9968 RVA: 0x00119710 File Offset: 0x00117910
 	private void MysteryBox()
 	{
 		GameObject gameObject = GameObject.Find("Day 6 - Magic Box");
@@ -2097,20 +2097,20 @@ public class MainScene : MonoBehaviour
 		base.Invoke("SkloniDailyRewardsPosleMysteryBox", 4.5f);
 	}
 
-	// Token: 0x06002C97 RID: 11415 RVA: 0x00021DE3 File Offset: 0x0001FFE3
+	// Token: 0x060026F1 RID: 9969 RVA: 0x00119C0E File Offset: 0x00117E0E
 	private void SkloniDailyRewardsPosleMysteryBox()
 	{
 		GameObject.Find("DailyReward").GetComponent<Animation>().Play("DailyOdlazak");
 		base.Invoke("UgasiMysteryBox", 2f);
 	}
 
-	// Token: 0x06002C98 RID: 11416 RVA: 0x00021E0F File Offset: 0x0002000F
+	// Token: 0x060026F2 RID: 9970 RVA: 0x00119C3A File Offset: 0x00117E3A
 	private void UgasiMysteryBox()
 	{
 		GameObject.Find("Day 6 - Magic Box").SetActive(false);
 	}
 
-	// Token: 0x06002C99 RID: 11417 RVA: 0x00160214 File Offset: 0x0015E414
+	// Token: 0x060026F3 RID: 9971 RVA: 0x00119C4C File Offset: 0x00117E4C
 	private void ResetProgress()
 	{
 		Transform transform = GameObject.Find("Loading Buffer HOLDER").transform;
@@ -2153,7 +2153,7 @@ public class MainScene : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06002C9A RID: 11418 RVA: 0x00021E21 File Offset: 0x00020021
+	// Token: 0x060026F4 RID: 9972 RVA: 0x00119DC8 File Offset: 0x00117FC8
 	private IEnumerator SacekajDaSePostaviScoreNaNulu()
 	{
 		while (FacebookManager.FacebookObject.resetovanScoreNaNulu == 2)
@@ -2166,7 +2166,7 @@ public class MainScene : MonoBehaviour
 		yield break;
 	}
 
-	// Token: 0x06002C9B RID: 11419 RVA: 0x00160390 File Offset: 0x0015E590
+	// Token: 0x060026F5 RID: 9973 RVA: 0x00119DD8 File Offset: 0x00117FD8
 	private void ResetTutorials()
 	{
 		StagesParser.odgledaoTutorial = 0;
@@ -2176,7 +2176,7 @@ public class MainScene : MonoBehaviour
 		PlayerPrefs.Save();
 	}
 
-	// Token: 0x06002C9C RID: 11420 RVA: 0x00021E30 File Offset: 0x00020030
+	// Token: 0x060026F6 RID: 9974 RVA: 0x00119E24 File Offset: 0x00118024
 	private IEnumerator DoLogout()
 	{
 		while (!FacebookManager.FacebookObject.OKzaLogout)
@@ -2188,7 +2188,7 @@ public class MainScene : MonoBehaviour
 		yield break;
 	}
 
-	// Token: 0x06002C9D RID: 11421 RVA: 0x001603DC File Offset: 0x0015E5DC
+	// Token: 0x060026F7 RID: 9975 RVA: 0x00119E2C File Offset: 0x0011802C
 	private void ProveraZaLogoutZbogDugmica()
 	{
 		if (this.logoutKliknut)
@@ -2223,54 +2223,54 @@ public class MainScene : MonoBehaviour
 		}
 	}
 
-	// Token: 0x040026EF RID: 9967
+	// Token: 0x040020B7 RID: 8375
 	public Transform[] FriendsObjects = new Transform[0];
 
-	// Token: 0x040026F0 RID: 9968
+	// Token: 0x040020B8 RID: 8376
 	public Transform[] SettingsObjects = new Transform[0];
 
-	// Token: 0x040026F1 RID: 9969
+	// Token: 0x040020B9 RID: 8377
 	public Transform[] LanguagesObjects = new Transform[0];
 
-	// Token: 0x040026F2 RID: 9970
+	// Token: 0x040020BA RID: 8378
 	public static GameObject LeaderBoardInvite;
 
-	// Token: 0x040026F3 RID: 9971
+	// Token: 0x040020BB RID: 8379
 	public static GameObject FacebookLogIn;
 
-	// Token: 0x040026F4 RID: 9972
+	// Token: 0x040020BC RID: 8380
 	private bool SettingsOtvoren;
 
-	// Token: 0x040026F5 RID: 9973
+	// Token: 0x040020BD RID: 8381
 	private bool LeaderboardOtvoren;
 
-	// Token: 0x040026F6 RID: 9974
+	// Token: 0x040020BE RID: 8382
 	private int SettingState = 1;
 
-	// Token: 0x040026F7 RID: 9975
+	// Token: 0x040020BF RID: 8383
 	private string releasedItem;
 
-	// Token: 0x040026F8 RID: 9976
+	// Token: 0x040020C0 RID: 8384
 	private string clickedItem;
 
-	// Token: 0x040026F9 RID: 9977
+	// Token: 0x040020C1 RID: 8385
 	private Vector3 originalScale;
 
-	// Token: 0x040026FA RID: 9978
+	// Token: 0x040020C2 RID: 8386
 	private GameObject temp;
 
-	// Token: 0x040026FB RID: 9979
+	// Token: 0x040020C3 RID: 8387
 	private DateTimeFormatInfo format;
 
-	// Token: 0x040026FC RID: 9980
+	// Token: 0x040020C4 RID: 8388
 	private int selectedLanguage;
 
-	// Token: 0x040026FD RID: 9981
+	// Token: 0x040020C5 RID: 8389
 	private int dailyReward;
 
-	// Token: 0x040026FE RID: 9982
+	// Token: 0x040020C6 RID: 8390
 	private string jezikPreUlaskaUPromenuJezika;
 
-	// Token: 0x040026FF RID: 9983
+	// Token: 0x040020C7 RID: 8391
 	private bool logoutKliknut;
 }

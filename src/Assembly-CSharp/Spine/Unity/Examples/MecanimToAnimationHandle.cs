@@ -3,10 +3,10 @@ using UnityEngine;
 
 namespace Spine.Unity.Examples
 {
-	// Token: 0x02000E65 RID: 3685
+	// Token: 0x02000B05 RID: 2821
 	public class MecanimToAnimationHandle : StateMachineBehaviour
 	{
-		// Token: 0x06005845 RID: 22597 RVA: 0x002476E4 File Offset: 0x002458E4
+		// Token: 0x06004E81 RID: 20097 RVA: 0x00217274 File Offset: 0x00215474
 		public override void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
 		{
 			if (!this.initialized)
@@ -27,10 +27,10 @@ namespace Spine.Unity.Examples
 			}
 		}
 
-		// Token: 0x04005874 RID: 22644
+		// Token: 0x04004E2B RID: 20011
 		private SkeletonAnimation animationHandle;
 
-		// Token: 0x04005875 RID: 22645
+		// Token: 0x04004E2C RID: 20012
 		private bool initialized;
 	}
 }

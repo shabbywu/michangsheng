@@ -1,16 +1,16 @@
 ﻿using System;
 using KBEngine;
 
-// Token: 0x020003BB RID: 955
+// Token: 0x0200028D RID: 653
 public class SiXuData
 {
-	// Token: 0x06001A76 RID: 6774 RVA: 0x000E9AB0 File Offset: 0x000E7CB0
+	// Token: 0x06001799 RID: 6041 RVA: 0x000A26B8 File Offset: 0x000A08B8
 	public SiXuData(JSONObject json)
 	{
 		this.Init(json);
 	}
 
-	// Token: 0x06001A77 RID: 6775 RVA: 0x000E9B08 File Offset: 0x000E7D08
+	// Token: 0x0600179A RID: 6042 RVA: 0x000A2710 File Offset: 0x000A0910
 	public void Init(JSONObject json)
 	{
 		this.info = json;
@@ -67,40 +67,40 @@ public class SiXuData
 		});
 	}
 
-	// Token: 0x040015DD RID: 5597
+	// Token: 0x0400125A RID: 4698
 	public JSONObject info;
 
-	// Token: 0x040015DE RID: 5598
+	// Token: 0x0400125B RID: 4699
 	public string XiaoGuo;
 
-	// Token: 0x040015DF RID: 5599
+	// Token: 0x0400125C RID: 4700
 	public string ShengYuTimeFull;
 
-	// Token: 0x040015E0 RID: 5600
+	// Token: 0x0400125D RID: 4701
 	public string ShengYuTime;
 
-	// Token: 0x040015E1 RID: 5601
+	// Token: 0x0400125E RID: 4702
 	public string XiaoHao;
 
-	// Token: 0x040015E2 RID: 5602
+	// Token: 0x0400125F RID: 4703
 	public string ShuoMing;
 
-	// Token: 0x040015E3 RID: 5603
+	// Token: 0x04001260 RID: 4704
 	public int PinJie;
 
-	// Token: 0x040015E4 RID: 5604
+	// Token: 0x04001261 RID: 4705
 	public string PinJieStr;
 
-	// Token: 0x040015E5 RID: 5605
+	// Token: 0x04001262 RID: 4706
 	public int wuDaoFilter;
 
-	// Token: 0x040015E6 RID: 5606
+	// Token: 0x04001263 RID: 4707
 	public int WuDaoType;
 
-	// Token: 0x040015E7 RID: 5607
+	// Token: 0x04001264 RID: 4708
 	public string WuDaoTypeStr;
 
-	// Token: 0x040015E8 RID: 5608
+	// Token: 0x04001265 RID: 4709
 	private string[] pinJieColors = new string[]
 	{
 		"79796E",

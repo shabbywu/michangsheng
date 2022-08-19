@@ -1,11 +1,11 @@
 ﻿using System;
 using UnityEngine;
 
-// Token: 0x0200005B RID: 91
+// Token: 0x02000043 RID: 67
 [AddComponentMenu("NGUI/Examples/Lag Position")]
 public class LagPosition : MonoBehaviour
 {
-	// Token: 0x0600049F RID: 1183 RVA: 0x00008091 File Offset: 0x00006291
+	// Token: 0x06000451 RID: 1105 RVA: 0x00017D32 File Offset: 0x00015F32
 	private void OnEnable()
 	{
 		this.mTrans = base.transform;
@@ -13,7 +13,7 @@ public class LagPosition : MonoBehaviour
 		this.mRelative = this.mTrans.localPosition;
 	}
 
-	// Token: 0x060004A0 RID: 1184 RVA: 0x0006F214 File Offset: 0x0006D414
+	// Token: 0x06000452 RID: 1106 RVA: 0x00017D64 File Offset: 0x00015F64
 	private void Update()
 	{
 		Transform parent = this.mTrans.parent;
@@ -28,21 +28,21 @@ public class LagPosition : MonoBehaviour
 		}
 	}
 
-	// Token: 0x040002E6 RID: 742
+	// Token: 0x04000276 RID: 630
 	public int updateOrder;
 
-	// Token: 0x040002E7 RID: 743
+	// Token: 0x04000277 RID: 631
 	public Vector3 speed = new Vector3(10f, 10f, 10f);
 
-	// Token: 0x040002E8 RID: 744
+	// Token: 0x04000278 RID: 632
 	public bool ignoreTimeScale;
 
-	// Token: 0x040002E9 RID: 745
+	// Token: 0x04000279 RID: 633
 	private Transform mTrans;
 
-	// Token: 0x040002EA RID: 746
+	// Token: 0x0400027A RID: 634
 	private Vector3 mRelative;
 
-	// Token: 0x040002EB RID: 747
+	// Token: 0x0400027B RID: 635
 	private Vector3 mAbsolute;
 }

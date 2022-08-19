@@ -2,11 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-// Token: 0x0200055D RID: 1373
+// Token: 0x020003C8 RID: 968
 [ExecuteInEditMode]
 public class FubenGrid : MonoBehaviour
 {
-	// Token: 0x06002317 RID: 8983 RVA: 0x0001C87C File Offset: 0x0001AA7C
+	// Token: 0x06001F9E RID: 8094 RVA: 0x000DF174 File Offset: 0x000DD374
 	private void Awake()
 	{
 		WASDMove.DelMoreComponent(base.gameObject);
@@ -16,7 +16,7 @@ public class FubenGrid : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06002318 RID: 8984 RVA: 0x00121D68 File Offset: 0x0011FF68
+	// Token: 0x06001F9F RID: 8095 RVA: 0x000DF194 File Offset: 0x000DD394
 	private void Update()
 	{
 		float num = 0f;
@@ -38,7 +38,7 @@ public class FubenGrid : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06002319 RID: 8985 RVA: 0x00121E10 File Offset: 0x00120010
+	// Token: 0x06001FA0 RID: 8096 RVA: 0x000DF23C File Offset: 0x000DD43C
 	public virtual void addNodeIndex(int index, MapInstComport comp)
 	{
 		foreach (int num in this.DestroyNode)
@@ -61,53 +61,53 @@ public class FubenGrid : MonoBehaviour
 		}
 	}
 
-	// Token: 0x04001E2C RID: 7724
+	// Token: 0x040019AB RID: 6571
 	[Tooltip("列间距")]
 	public float intervalX;
 
-	// Token: 0x04001E2D RID: 7725
+	// Token: 0x040019AC RID: 6572
 	[Tooltip("行间距")]
 	public float intervalY;
 
-	// Token: 0x04001E2E RID: 7726
+	// Token: 0x040019AD RID: 6573
 	[Tooltip("每行的数量")]
 	public int num;
 
-	// Token: 0x04001E2F RID: 7727
+	// Token: 0x040019AE RID: 6574
 	[Tooltip("进行初始化，只有在没有任何子节点的时候才会生效")]
 	public bool initGrid;
 
-	// Token: 0x04001E30 RID: 7728
+	// Token: 0x040019AF RID: 6575
 	[Tooltip("自动创建的子节点的基类")]
 	public GameObject NodeTemp;
 
-	// Token: 0x04001E31 RID: 7729
+	// Token: 0x040019B0 RID: 6576
 	[Tooltip("创建的子节点个数")]
 	public int creatNum;
 
-	// Token: 0x04001E32 RID: 7730
+	// Token: 0x040019B1 RID: 6577
 	[Tooltip("初始化固定场景")]
 	public List<FubenGrid.StaticNodeInfo> StaticNodeList = new List<FubenGrid.StaticNodeInfo>();
 
-	// Token: 0x04001E33 RID: 7731
+	// Token: 0x040019B2 RID: 6578
 	[Tooltip("需要删除的通道")]
 	public List<Vector2> RemoveLine = new List<Vector2>();
 
-	// Token: 0x04001E34 RID: 7732
+	// Token: 0x040019B3 RID: 6579
 	[Tooltip("完全不能走的点")]
 	public List<int> DestroyNode = new List<int>();
 
-	// Token: 0x0200055E RID: 1374
+	// Token: 0x02001378 RID: 4984
 	[Serializable]
 	public class StaticNodeInfo
 	{
-		// Token: 0x04001E35 RID: 7733
+		// Token: 0x04006893 RID: 26771
 		public string Name = "";
 
-		// Token: 0x04001E36 RID: 7734
+		// Token: 0x04006894 RID: 26772
 		public int index;
 
-		// Token: 0x04001E37 RID: 7735
+		// Token: 0x04006895 RID: 26773
 		public Sprite Image;
 	}
 }

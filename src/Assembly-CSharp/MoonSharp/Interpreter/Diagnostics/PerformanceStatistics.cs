@@ -4,12 +4,12 @@ using MoonSharp.Interpreter.Diagnostics.PerformanceCounters;
 
 namespace MoonSharp.Interpreter.Diagnostics
 {
-	// Token: 0x02001172 RID: 4466
+	// Token: 0x02000D5E RID: 3422
 	public class PerformanceStatistics
 	{
-		// Token: 0x170009F3 RID: 2547
-		// (get) Token: 0x06006CBB RID: 27835 RVA: 0x0004A279 File Offset: 0x00048479
-		// (set) Token: 0x06006CBC RID: 27836 RVA: 0x00299570 File Offset: 0x00297770
+		// Token: 0x17000796 RID: 1942
+		// (get) Token: 0x060060C9 RID: 24777 RVA: 0x002725FE File Offset: 0x002707FE
+		// (set) Token: 0x060060CA RID: 24778 RVA: 0x00272608 File Offset: 0x00270808
 		public bool Enabled
 		{
 			get
@@ -38,7 +38,7 @@ namespace MoonSharp.Interpreter.Diagnostics
 			}
 		}
 
-		// Token: 0x06006CBD RID: 27837 RVA: 0x002995F0 File Offset: 0x002977F0
+		// Token: 0x060060CB RID: 24779 RVA: 0x00272688 File Offset: 0x00270888
 		public PerformanceResult GetPerformanceCounterResult(PerformanceCounter pc)
 		{
 			IPerformanceStopwatch performanceStopwatch = this.m_Stopwatches[(int)pc];
@@ -49,7 +49,7 @@ namespace MoonSharp.Interpreter.Diagnostics
 			return performanceStopwatch.GetResult();
 		}
 
-		// Token: 0x06006CBE RID: 27838 RVA: 0x00299614 File Offset: 0x00297814
+		// Token: 0x060060CC RID: 24780 RVA: 0x002726AC File Offset: 0x002708AC
 		internal IDisposable StartStopwatch(PerformanceCounter pc)
 		{
 			IPerformanceStopwatch performanceStopwatch = this.m_Stopwatches[(int)pc];
@@ -60,7 +60,7 @@ namespace MoonSharp.Interpreter.Diagnostics
 			return performanceStopwatch.Start();
 		}
 
-		// Token: 0x06006CBF RID: 27839 RVA: 0x00299638 File Offset: 0x00297838
+		// Token: 0x060060CD RID: 24781 RVA: 0x002726D0 File Offset: 0x002708D0
 		internal static IDisposable StartGlobalStopwatch(PerformanceCounter pc)
 		{
 			IPerformanceStopwatch performanceStopwatch = PerformanceStatistics.m_GlobalStopwatches[(int)pc];
@@ -71,7 +71,7 @@ namespace MoonSharp.Interpreter.Diagnostics
 			return performanceStopwatch.Start();
 		}
 
-		// Token: 0x06006CC0 RID: 27840 RVA: 0x00299658 File Offset: 0x00297858
+		// Token: 0x060060CE RID: 24782 RVA: 0x002726F0 File Offset: 0x002708F0
 		public string GetPerformanceLog()
 		{
 			StringBuilder stringBuilder = new StringBuilder();
@@ -86,13 +86,13 @@ namespace MoonSharp.Interpreter.Diagnostics
 			return stringBuilder.ToString();
 		}
 
-		// Token: 0x040061D6 RID: 25046
+		// Token: 0x0400554C RID: 21836
 		private IPerformanceStopwatch[] m_Stopwatches = new IPerformanceStopwatch[4];
 
-		// Token: 0x040061D7 RID: 25047
+		// Token: 0x0400554D RID: 21837
 		private static IPerformanceStopwatch[] m_GlobalStopwatches = new IPerformanceStopwatch[4];
 
-		// Token: 0x040061D8 RID: 25048
+		// Token: 0x0400554E RID: 21838
 		private bool m_Enabled;
 	}
 }

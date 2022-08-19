@@ -3,16 +3,16 @@ using System.IO;
 using System.Text;
 using YSGame;
 
-// Token: 0x020003F1 RID: 1009
+// Token: 0x020002B5 RID: 693
 public class SaveLoadFactory
 {
-	// Token: 0x06001B6E RID: 7022 RVA: 0x0001714B File Offset: 0x0001534B
+	// Token: 0x0600187A RID: 6266 RVA: 0x000AF63B File Offset: 0x000AD83B
 	public SaveLoadFactory()
 	{
 		this.gamePath = Paths.GetSavePath();
 	}
 
-	// Token: 0x06001B6F RID: 7023 RVA: 0x000F5E74 File Offset: 0x000F4074
+	// Token: 0x0600187B RID: 6267 RVA: 0x000AF650 File Offset: 0x000AD850
 	public JSONObject GetJSONObject(string fileName)
 	{
 		try
@@ -30,7 +30,7 @@ public class SaveLoadFactory
 		return new JSONObject();
 	}
 
-	// Token: 0x06001B70 RID: 7024 RVA: 0x000F5EC8 File Offset: 0x000F40C8
+	// Token: 0x0600187C RID: 6268 RVA: 0x000AF6A4 File Offset: 0x000AD8A4
 	public int GetInt(string fileName)
 	{
 		try
@@ -48,7 +48,7 @@ public class SaveLoadFactory
 		return 0;
 	}
 
-	// Token: 0x06001B71 RID: 7025 RVA: 0x000F5F10 File Offset: 0x000F4110
+	// Token: 0x0600187D RID: 6269 RVA: 0x000AF6EC File Offset: 0x000AD8EC
 	public string ReadOutTxt(string TextName)
 	{
 		string text = "";
@@ -71,6 +71,6 @@ public class SaveLoadFactory
 		return text;
 	}
 
-	// Token: 0x0400171B RID: 5915
+	// Token: 0x04001375 RID: 4981
 	public string gamePath;
 }

@@ -3,16 +3,16 @@ using UnityEngine;
 
 namespace UltimateSurvival.GUISystem
 {
-	// Token: 0x02000958 RID: 2392
+	// Token: 0x02000656 RID: 1622
 	public class LootContainerOpener : MonoBehaviour
 	{
-		// Token: 0x06003D25 RID: 15653 RVA: 0x0002C07E File Offset: 0x0002A27E
+		// Token: 0x0600339D RID: 13213 RVA: 0x0016A5D6 File Offset: 0x001687D6
 		private void Start()
 		{
 			MonoSingleton<InventoryController>.Instance.OpenLootContainer.SetTryer(new Attempt<LootObject>.GenericTryerDelegate(this.Try_OpenLootContainer));
 		}
 
-		// Token: 0x06003D26 RID: 15654 RVA: 0x0002C09B File Offset: 0x0002A29B
+		// Token: 0x0600339E RID: 13214 RVA: 0x0016A5F3 File Offset: 0x001687F3
 		private bool Try_OpenLootContainer(LootObject lootObject)
 		{
 			if (MonoSingleton<InventoryController>.Instance.IsClosed && MonoSingleton<InventoryController>.Instance.SetState.Try(ET.InventoryState.Loot))
@@ -24,7 +24,7 @@ namespace UltimateSurvival.GUISystem
 			return false;
 		}
 
-		// Token: 0x06003D27 RID: 15655 RVA: 0x0002C0D6 File Offset: 0x0002A2D6
+		// Token: 0x0600339F RID: 13215 RVA: 0x0016A62E File Offset: 0x0016882E
 		private void OnChanged_InventoryState()
 		{
 			if (this.m_CurLootObject && MonoSingleton<InventoryController>.Instance.IsClosed)
@@ -33,11 +33,11 @@ namespace UltimateSurvival.GUISystem
 			}
 		}
 
-		// Token: 0x04003766 RID: 14182
+		// Token: 0x04002DE5 RID: 11749
 		[SerializeField]
 		private ItemContainer m_ItemContainer;
 
-		// Token: 0x04003767 RID: 14183
+		// Token: 0x04002DE6 RID: 11750
 		private LootObject m_CurLootObject;
 	}
 }

@@ -3,10 +3,10 @@ using GUIPackage;
 using UnityEngine;
 using UnityEngine.UI;
 
-// Token: 0x020004E8 RID: 1256
+// Token: 0x0200036A RID: 874
 public class UToolTip : MonoBehaviour
 {
-	// Token: 0x060020B9 RID: 8377 RVA: 0x00113E04 File Offset: 0x00112004
+	// Token: 0x06001D4A RID: 7498 RVA: 0x000CF664 File Offset: 0x000CD864
 	private void Awake()
 	{
 		if (UToolTip.inst != null)
@@ -18,7 +18,7 @@ public class UToolTip : MonoBehaviour
 		Object.DontDestroyOnLoad(base.transform.parent.gameObject);
 	}
 
-	// Token: 0x060020BA RID: 8378 RVA: 0x00113E60 File Offset: 0x00112060
+	// Token: 0x06001D4B RID: 7499 RVA: 0x000CF6C0 File Offset: 0x000CD8C0
 	private void Update()
 	{
 		if (UToolTip.needShow)
@@ -71,13 +71,13 @@ public class UToolTip : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060020BB RID: 8379 RVA: 0x0011408C File Offset: 0x0011228C
+	// Token: 0x06001D4C RID: 7500 RVA: 0x000CF8EC File Offset: 0x000CDAEC
 	public static bool IsShouldCloseInput()
 	{
 		return Input.anyKeyDown && !Input.GetKeyDown(304) && !Input.GetKeyDown(306) && !Input.GetKeyDown(308) && !Input.GetKeyDown(311) && !Input.GetKeyDown(303) && !Input.GetKeyDown(305) && !Input.GetKeyDown(307) && !Input.GetKeyDown(312);
 	}
 
-	// Token: 0x060020BC RID: 8380 RVA: 0x0001AEB7 File Offset: 0x000190B7
+	// Token: 0x06001D4D RID: 7501 RVA: 0x000CF973 File Offset: 0x000CDB73
 	public static void Close()
 	{
 		UToolTip.startShow = false;
@@ -88,7 +88,7 @@ public class UToolTip : MonoBehaviour
 		UToolTip.CloseOldTooltip();
 	}
 
-	// Token: 0x060020BD RID: 8381 RVA: 0x00114114 File Offset: 0x00112314
+	// Token: 0x06001D4E RID: 7502 RVA: 0x000CF9A4 File Offset: 0x000CDBA4
 	public static void Show(string text, float width = 600f, float height = 200f)
 	{
 		if (UToolTip.inst == null)
@@ -102,7 +102,7 @@ public class UToolTip : MonoBehaviour
 		UToolTip.needShow = true;
 	}
 
-	// Token: 0x060020BE RID: 8382 RVA: 0x00114164 File Offset: 0x00112364
+	// Token: 0x06001D4F RID: 7503 RVA: 0x000CF9F4 File Offset: 0x000CDBF4
 	private static void Init()
 	{
 		GameObject gameObject = PanelMamager.inst.UISceneGameObject;
@@ -135,7 +135,7 @@ public class UToolTip : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060020BF RID: 8383 RVA: 0x0001AEE7 File Offset: 0x000190E7
+	// Token: 0x06001D50 RID: 7504 RVA: 0x000CFAB0 File Offset: 0x000CDCB0
 	public static void OpenItemTooltip(item item, int money = 0)
 	{
 		UToolTip.Init();
@@ -147,7 +147,7 @@ public class UToolTip : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060020C0 RID: 8384 RVA: 0x0001AF1E File Offset: 0x0001911E
+	// Token: 0x06001D51 RID: 7505 RVA: 0x000CFAE7 File Offset: 0x000CDCE7
 	public static void OpenSkillTooltip(Skill skill)
 	{
 		UToolTip.Init();
@@ -159,7 +159,7 @@ public class UToolTip : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060020C1 RID: 8385 RVA: 0x0001AF53 File Offset: 0x00019153
+	// Token: 0x06001D52 RID: 7506 RVA: 0x000CFB1C File Offset: 0x000CDD1C
 	public static void OpenStaticSkillTooltip(Skill skill)
 	{
 		UToolTip.Init();
@@ -171,7 +171,7 @@ public class UToolTip : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060020C2 RID: 8386 RVA: 0x0001AF89 File Offset: 0x00019189
+	// Token: 0x06001D53 RID: 7507 RVA: 0x000CFB52 File Offset: 0x000CDD52
 	public static void CloseOldTooltip()
 	{
 		if (UToolTip.OldTooltip != null)
@@ -180,45 +180,45 @@ public class UToolTip : MonoBehaviour
 		}
 	}
 
-	// Token: 0x04001C40 RID: 7232
+	// Token: 0x040017EA RID: 6122
 	private static UToolTip inst;
 
-	// Token: 0x04001C41 RID: 7233
+	// Token: 0x040017EB RID: 6123
 	private static RectTransform myRT;
 
-	// Token: 0x04001C42 RID: 7234
+	// Token: 0x040017EC RID: 6124
 	private static string prefabPath = "UToolTip";
 
-	// Token: 0x04001C43 RID: 7235
+	// Token: 0x040017ED RID: 6125
 	private static bool needShow;
 
-	// Token: 0x04001C44 RID: 7236
+	// Token: 0x040017EE RID: 6126
 	private static bool startShow;
 
-	// Token: 0x04001C45 RID: 7237
+	// Token: 0x040017EF RID: 6127
 	private static string showText1 = "";
 
-	// Token: 0x04001C46 RID: 7238
+	// Token: 0x040017F0 RID: 6128
 	private static Vector2 widthHeight;
 
-	// Token: 0x04001C47 RID: 7239
+	// Token: 0x040017F1 RID: 6129
 	public static string debugData = "";
 
-	// Token: 0x04001C48 RID: 7240
+	// Token: 0x040017F2 RID: 6130
 	public Text Text1;
 
-	// Token: 0x04001C49 RID: 7241
+	// Token: 0x040017F3 RID: 6131
 	public static GameObject BindObj;
 
-	// Token: 0x04001C4A RID: 7242
+	// Token: 0x040017F4 RID: 6132
 	private static Inventory2 ItemTip;
 
-	// Token: 0x04001C4B RID: 7243
+	// Token: 0x040017F5 RID: 6133
 	private static Skill_UI SkillTip;
 
-	// Token: 0x04001C4C RID: 7244
+	// Token: 0x040017F6 RID: 6134
 	private static Skill_UIST GongFaTip;
 
-	// Token: 0x04001C4D RID: 7245
+	// Token: 0x040017F7 RID: 6135
 	private static TooltipItem OldTooltip;
 }

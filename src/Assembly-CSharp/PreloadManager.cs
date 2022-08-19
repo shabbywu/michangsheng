@@ -3,23 +3,23 @@ using System.Collections.Generic;
 using GUIPackage;
 using UnityEngine;
 
-// Token: 0x0200053D RID: 1341
+// Token: 0x020003B2 RID: 946
 public class PreloadManager : MonoBehaviour
 {
-	// Token: 0x06002239 RID: 8761 RVA: 0x0001C107 File Offset: 0x0001A307
+	// Token: 0x06001EB6 RID: 7862 RVA: 0x000D7B02 File Offset: 0x000D5D02
 	private void Awake()
 	{
 		PreloadManager.Inst = this;
 		Object.DontDestroyOnLoad(base.gameObject);
 	}
 
-	// Token: 0x0600223A RID: 8762 RVA: 0x0001C11A File Offset: 0x0001A31A
+	// Token: 0x06001EB7 RID: 7863 RVA: 0x000D7B15 File Offset: 0x000D5D15
 	private void Start()
 	{
 		this.Init();
 	}
 
-	// Token: 0x0600223B RID: 8763 RVA: 0x0011AF8C File Offset: 0x0011918C
+	// Token: 0x06001EB8 RID: 7864 RVA: 0x000D7B20 File Offset: 0x000D5D20
 	private void Update()
 	{
 		if (!this.PreloadFinished)
@@ -55,6 +55,7 @@ public class PreloadManager : MonoBehaviour
 					Debug.LogError("初始化时的错误:");
 					Debug.LogError(PreloadManager.ExceptionData);
 					Debug.LogError("----------------------------------------");
+					MessageMag.Instance.Send(MessageName.MSG_PreloadFinish, null);
 					return;
 				}
 				MessageMag.Instance.Send(MessageName.MSG_PreloadFinish, null);
@@ -62,7 +63,7 @@ public class PreloadManager : MonoBehaviour
 		}
 	}
 
-	// Token: 0x0600223C RID: 8764 RVA: 0x0011B060 File Offset: 0x00119260
+	// Token: 0x06001EB9 RID: 7865 RVA: 0x000D7C04 File Offset: 0x000D5E04
 	private void OnGUI()
 	{
 		if (PreloadManager.IsException)
@@ -74,7 +75,7 @@ public class PreloadManager : MonoBehaviour
 		}
 	}
 
-	// Token: 0x0600223D RID: 8765 RVA: 0x0001C122 File Offset: 0x0001A322
+	// Token: 0x06001EBA RID: 7866 RVA: 0x000D7C59 File Offset: 0x000D5E59
 	public static void LogException(string log)
 	{
 		PreloadManager.IsException = true;
@@ -84,7 +85,7 @@ public class PreloadManager : MonoBehaviour
 		PreloadManager.ExceptionData = PreloadManager.ExceptionData + log + "\n";
 	}
 
-	// Token: 0x0600223E RID: 8766 RVA: 0x0011B0B8 File Offset: 0x001192B8
+	// Token: 0x06001EBB RID: 7867 RVA: 0x000D7C8C File Offset: 0x000D5E8C
 	public void Init()
 	{
 		this.CreateTask("jsonData初始化", new Action<int>(jsonData.instance.Preload));
@@ -95,7 +96,7 @@ public class PreloadManager : MonoBehaviour
 		this.CreateTask("ResManager初始化", new Action<int>(ResManager.inst.Preload));
 	}
 
-	// Token: 0x0600223F RID: 8767 RVA: 0x0011B164 File Offset: 0x00119364
+	// Token: 0x06001EBC RID: 7868 RVA: 0x000D7D38 File Offset: 0x000D5F38
 	private void CreateTask(string taskName, Action<int> preload)
 	{
 		PreloadTask preloadTask = new PreloadTask();
@@ -104,7 +105,7 @@ public class PreloadManager : MonoBehaviour
 		PreloadManager.preloadTasks.Add(preloadTask);
 	}
 
-	// Token: 0x06002240 RID: 8768 RVA: 0x0011B190 File Offset: 0x00119390
+	// Token: 0x06001EBD RID: 7869 RVA: 0x000D7D64 File Offset: 0x000D5F64
 	public void TaskDone(int taskID)
 	{
 		PreloadManager.preloadTasks[taskID].IsDone = true;
@@ -112,18 +113,18 @@ public class PreloadManager : MonoBehaviour
 		Debug.Log(string.Format("初始化任务{0} {1} 完成 {2}", taskID, PreloadManager.preloadTasks[taskID].Name, DateTime.Now));
 	}
 
-	// Token: 0x04001D9B RID: 7579
+	// Token: 0x04001927 RID: 6439
 	public static PreloadManager Inst;
 
-	// Token: 0x04001D9C RID: 7580
+	// Token: 0x04001928 RID: 6440
 	public static bool IsException;
 
-	// Token: 0x04001D9D RID: 7581
+	// Token: 0x04001929 RID: 6441
 	public static string ExceptionData = "";
 
-	// Token: 0x04001D9E RID: 7582
+	// Token: 0x0400192A RID: 6442
 	public static List<PreloadTask> preloadTasks = new List<PreloadTask>();
 
-	// Token: 0x04001D9F RID: 7583
+	// Token: 0x0400192B RID: 6443
 	public bool PreloadFinished;
 }

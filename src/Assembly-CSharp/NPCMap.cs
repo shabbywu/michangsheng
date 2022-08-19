@@ -1,16 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
 
-// Token: 0x0200032B RID: 811
+// Token: 0x02000213 RID: 531
 public class NPCMap
 {
-	// Token: 0x060017DE RID: 6110 RVA: 0x00015064 File Offset: 0x00013264
+	// Token: 0x0600152D RID: 5421 RVA: 0x00088310 File Offset: 0x00086510
 	public NPCMap()
 	{
 		this.RestartMap();
 	}
 
-	// Token: 0x060017DF RID: 6111 RVA: 0x0001507D File Offset: 0x0001327D
+	// Token: 0x0600152E RID: 5422 RVA: 0x00088329 File Offset: 0x00086529
 	public void RestartMap()
 	{
 		this.bigMapNPCDictionary = new Dictionary<int, List<int>>();
@@ -20,7 +20,7 @@ public class NPCMap
 		this.allMapIndexList = new List<int>();
 	}
 
-	// Token: 0x060017E0 RID: 6112 RVA: 0x000D0930 File Offset: 0x000CEB30
+	// Token: 0x0600152F RID: 5423 RVA: 0x00088364 File Offset: 0x00086564
 	public void AddNpcToBigMap(int npcId, int type, bool isCanJieSha = true)
 	{
 		List<int> list = new List<int>();
@@ -81,7 +81,7 @@ public class NPCMap
 		}
 	}
 
-	// Token: 0x060017E1 RID: 6113 RVA: 0x000D0B84 File Offset: 0x000CED84
+	// Token: 0x06001530 RID: 5424 RVA: 0x000885B8 File Offset: 0x000867B8
 	public void AddNpcToThreeScene(int npcId, int sceneId)
 	{
 		string key = "S" + sceneId;
@@ -96,7 +96,7 @@ public class NPCMap
 		});
 	}
 
-	// Token: 0x060017E2 RID: 6114 RVA: 0x000150B6 File Offset: 0x000132B6
+	// Token: 0x06001531 RID: 5425 RVA: 0x0008860F File Offset: 0x0008680F
 	public void AddNpcToThreeScene(int npcId, string sceneName)
 	{
 		if (this.threeSenceNPCDictionary.ContainsKey(sceneName))
@@ -110,7 +110,7 @@ public class NPCMap
 		});
 	}
 
-	// Token: 0x060017E3 RID: 6115 RVA: 0x000D0BDC File Offset: 0x000CEDDC
+	// Token: 0x06001532 RID: 5426 RVA: 0x0008864C File Offset: 0x0008684C
 	public void AddNpcToFuBen(int npcId, int sceneId, int fuBenIndex)
 	{
 		string key = "F" + sceneId;
@@ -135,7 +135,7 @@ public class NPCMap
 		});
 	}
 
-	// Token: 0x060017E4 RID: 6116 RVA: 0x000D0C7C File Offset: 0x000CEE7C
+	// Token: 0x06001533 RID: 5427 RVA: 0x000886EC File Offset: 0x000868EC
 	public void RemoveNpcByList(int npcId)
 	{
 		int num = -1;
@@ -179,7 +179,7 @@ public class NPCMap
 		}
 	}
 
-	// Token: 0x060017E5 RID: 6117 RVA: 0x000D0E48 File Offset: 0x000CF048
+	// Token: 0x06001534 RID: 5428 RVA: 0x000888B8 File Offset: 0x00086AB8
 	public string GetNpcSceneName(int npcId)
 	{
 		foreach (int key in this.bigMapNPCDictionary.Keys)
@@ -209,18 +209,18 @@ public class NPCMap
 		return "null";
 	}
 
-	// Token: 0x04001334 RID: 4916
+	// Token: 0x04000FE4 RID: 4068
 	public Dictionary<int, List<int>> bigMapNPCDictionary;
 
-	// Token: 0x04001335 RID: 4917
+	// Token: 0x04000FE5 RID: 4069
 	public Dictionary<string, List<int>> threeSenceNPCDictionary;
 
-	// Token: 0x04001336 RID: 4918
+	// Token: 0x04000FE6 RID: 4070
 	public Dictionary<string, Dictionary<int, List<int>>> fuBenNPCDictionary;
 
-	// Token: 0x04001337 RID: 4919
+	// Token: 0x04000FE7 RID: 4071
 	private Dictionary<int, List<int>> bigMapNpcTypeIndexDictionary;
 
-	// Token: 0x04001338 RID: 4920
+	// Token: 0x04000FE8 RID: 4072
 	private List<int> allMapIndexList = new List<int>();
 }

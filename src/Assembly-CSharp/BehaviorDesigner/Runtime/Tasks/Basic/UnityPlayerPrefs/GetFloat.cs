@@ -3,19 +3,19 @@ using UnityEngine;
 
 namespace BehaviorDesigner.Runtime.Tasks.Basic.UnityPlayerPrefs
 {
-	// Token: 0x02001579 RID: 5497
+	// Token: 0x020010BF RID: 4287
 	[TaskCategory("Basic/PlayerPrefs")]
 	[TaskDescription("Stores the value with the specified key from the PlayerPrefs.")]
 	public class GetFloat : Action
 	{
-		// Token: 0x060081D4 RID: 33236 RVA: 0x00058D8D File Offset: 0x00056F8D
+		// Token: 0x060073DA RID: 29658 RVA: 0x002B0CAC File Offset: 0x002AEEAC
 		public override TaskStatus OnUpdate()
 		{
 			this.storeResult.Value = PlayerPrefs.GetFloat(this.key.Value, this.defaultValue.Value);
 			return 2;
 		}
 
-		// Token: 0x060081D5 RID: 33237 RVA: 0x00058DB6 File Offset: 0x00056FB6
+		// Token: 0x060073DB RID: 29659 RVA: 0x002B0CD5 File Offset: 0x002AEED5
 		public override void OnReset()
 		{
 			this.key = "";
@@ -23,15 +23,15 @@ namespace BehaviorDesigner.Runtime.Tasks.Basic.UnityPlayerPrefs
 			this.storeResult = 0f;
 		}
 
-		// Token: 0x04006E85 RID: 28293
+		// Token: 0x04005F85 RID: 24453
 		[Tooltip("The key to store")]
 		public SharedString key;
 
-		// Token: 0x04006E86 RID: 28294
+		// Token: 0x04005F86 RID: 24454
 		[Tooltip("The default value")]
 		public SharedFloat defaultValue;
 
-		// Token: 0x04006E87 RID: 28295
+		// Token: 0x04005F87 RID: 24455
 		[Tooltip("The value retrieved from the PlayerPrefs")]
 		[RequiredField]
 		public SharedFloat storeResult;

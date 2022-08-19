@@ -2,29 +2,29 @@
 
 namespace KBEngine
 {
-	// Token: 0x02000F3A RID: 3898
+	// Token: 0x02000BB7 RID: 2999
 	public struct DBID
 	{
-		// Token: 0x06005DEB RID: 24043 RVA: 0x00041F22 File Offset: 0x00040122
+		// Token: 0x060053AD RID: 21421 RVA: 0x00233DC1 File Offset: 0x00231FC1
 		private DBID(ulong value)
 		{
 			this.value = value;
 		}
 
-		// Token: 0x06005DEC RID: 24044 RVA: 0x00041F2B File Offset: 0x0004012B
+		// Token: 0x060053AE RID: 21422 RVA: 0x00233DCA File Offset: 0x00231FCA
 		public static implicit operator ulong(DBID value)
 		{
 			return value.value;
 		}
 
-		// Token: 0x06005DED RID: 24045 RVA: 0x00041F33 File Offset: 0x00040133
+		// Token: 0x060053AF RID: 21423 RVA: 0x00233DD2 File Offset: 0x00231FD2
 		public static implicit operator DBID(ulong value)
 		{
 			return new DBID(value);
 		}
 
-		// Token: 0x1700088C RID: 2188
-		// (get) Token: 0x06005DEE RID: 24046 RVA: 0x00041AC0 File Offset: 0x0003FCC0
+		// Token: 0x17000639 RID: 1593
+		// (get) Token: 0x060053B0 RID: 21424 RVA: 0x0023395B File Offset: 0x00231B5B
 		public static ulong MaxValue
 		{
 			get
@@ -33,8 +33,8 @@ namespace KBEngine
 			}
 		}
 
-		// Token: 0x1700088D RID: 2189
-		// (get) Token: 0x06005DEF RID: 24047 RVA: 0x00025C53 File Offset: 0x00023E53
+		// Token: 0x1700063A RID: 1594
+		// (get) Token: 0x060053B1 RID: 21425 RVA: 0x0023395F File Offset: 0x00231B5F
 		public static ulong MinValue
 		{
 			get
@@ -43,7 +43,7 @@ namespace KBEngine
 			}
 		}
 
-		// Token: 0x04005AE4 RID: 23268
+		// Token: 0x04005043 RID: 20547
 		private ulong value;
 	}
 }

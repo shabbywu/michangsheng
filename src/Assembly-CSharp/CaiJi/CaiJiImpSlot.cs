@@ -7,16 +7,16 @@ using UnityEngine.Events;
 
 namespace CaiJi
 {
-	// Token: 0x02000A96 RID: 2710
+	// Token: 0x02000734 RID: 1844
 	public class CaiJiImpSlot : MonoBehaviour
 	{
-		// Token: 0x06004583 RID: 17795 RVA: 0x00031B5F File Offset: 0x0002FD5F
+		// Token: 0x06003AC5 RID: 15045 RVA: 0x0019433A File Offset: 0x0019253A
 		private void Awake()
 		{
 			this.Btn.mouseUpEvent.AddListener(new UnityAction(this.CancelSelectItem));
 		}
 
-		// Token: 0x06004584 RID: 17796 RVA: 0x00031B7D File Offset: 0x0002FD7D
+		// Token: 0x06003AC6 RID: 15046 RVA: 0x00194358 File Offset: 0x00192558
 		public void PutItem(int itemId)
 		{
 			this.Item.SetItem(itemId);
@@ -26,7 +26,7 @@ namespace CaiJi
 			this.PlayerShowEffect();
 		}
 
-		// Token: 0x06004585 RID: 17797 RVA: 0x001DBE44 File Offset: 0x001DA044
+		// Token: 0x06003AC7 RID: 15047 RVA: 0x00194390 File Offset: 0x00192590
 		public void CancelSelectItem()
 		{
 			this.IsNull = true;
@@ -36,7 +36,7 @@ namespace CaiJi
 			MessageMag.Instance.Send("CaiJi_Item_Cancel", this.data);
 		}
 
-		// Token: 0x06004586 RID: 17798 RVA: 0x001DBE9C File Offset: 0x001DA09C
+		// Token: 0x06003AC8 RID: 15048 RVA: 0x001943E8 File Offset: 0x001925E8
 		private void PlayerShowEffect()
 		{
 			TweenSettingsExtensions.OnComplete<TweenerCore<Vector3, Vector3, VectorOptions>>(ShortcutExtensions.DOScale(this.Item.gameObject.transform, new Vector2(0.94f, 0.94f), 0.05f), delegate()
@@ -51,7 +51,7 @@ namespace CaiJi
 			});
 		}
 
-		// Token: 0x06004587 RID: 17799 RVA: 0x001DBEEC File Offset: 0x001DA0EC
+		// Token: 0x06003AC9 RID: 15049 RVA: 0x00194438 File Offset: 0x00192638
 		private void PlayerHideEffect()
 		{
 			TweenSettingsExtensions.OnComplete<TweenerCore<Vector3, Vector3, VectorOptions>>(ShortcutExtensions.DOScale(this.Item.gameObject.transform, new Vector2(0.95f, 0.95f), 0.05f), delegate()
@@ -63,18 +63,18 @@ namespace CaiJi
 			});
 		}
 
-		// Token: 0x04003DA5 RID: 15781
+		// Token: 0x040032EC RID: 13036
 		public bool IsNull = true;
 
-		// Token: 0x04003DA6 RID: 15782
+		// Token: 0x040032ED RID: 13037
 		[SerializeField]
 		private UIIconShow Item;
 
-		// Token: 0x04003DA7 RID: 15783
+		// Token: 0x040032EE RID: 13038
 		[SerializeField]
 		private FpBtn Btn;
 
-		// Token: 0x04003DA8 RID: 15784
+		// Token: 0x040032EF RID: 13039
 		private MessageData data = new MessageData(0);
 	}
 }

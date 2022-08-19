@@ -2,30 +2,30 @@
 
 namespace MoonSharp.Interpreter.Interop.BasicDescriptors
 {
-	// Token: 0x02001151 RID: 4433
+	// Token: 0x02000D43 RID: 3395
 	public interface IOverloadableMemberDescriptor : IMemberDescriptor
 	{
-		// Token: 0x06006B98 RID: 27544
+		// Token: 0x06005FB4 RID: 24500
 		DynValue Execute(Script script, object obj, ScriptExecutionContext context, CallbackArguments args);
 
-		// Token: 0x170009CB RID: 2507
-		// (get) Token: 0x06006B99 RID: 27545
+		// Token: 0x1700076E RID: 1902
+		// (get) Token: 0x06005FB5 RID: 24501
 		Type ExtensionMethodType { get; }
 
-		// Token: 0x170009CC RID: 2508
-		// (get) Token: 0x06006B9A RID: 27546
+		// Token: 0x1700076F RID: 1903
+		// (get) Token: 0x06005FB6 RID: 24502
 		ParameterDescriptor[] Parameters { get; }
 
-		// Token: 0x170009CD RID: 2509
-		// (get) Token: 0x06006B9B RID: 27547
+		// Token: 0x17000770 RID: 1904
+		// (get) Token: 0x06005FB7 RID: 24503
 		Type VarArgsArrayType { get; }
 
-		// Token: 0x170009CE RID: 2510
-		// (get) Token: 0x06006B9C RID: 27548
+		// Token: 0x17000771 RID: 1905
+		// (get) Token: 0x06005FB8 RID: 24504
 		Type VarArgsElementType { get; }
 
-		// Token: 0x170009CF RID: 2511
-		// (get) Token: 0x06006B9D RID: 27549
+		// Token: 0x17000772 RID: 1906
+		// (get) Token: 0x06005FB9 RID: 24505
 		string SortDiscriminant { get; }
 	}
 }

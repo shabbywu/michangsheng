@@ -5,11 +5,11 @@ using UnityEngine.UI;
 
 namespace Tab
 {
-	// Token: 0x02000A31 RID: 2609
+	// Token: 0x020006F0 RID: 1776
 	[Serializable]
 	public class TabWuDaoLevel : UIBase
 	{
-		// Token: 0x06004387 RID: 17287 RVA: 0x00030467 File Offset: 0x0002E667
+		// Token: 0x0600391C RID: 14620 RVA: 0x00185CA0 File Offset: 0x00183EA0
 		public TabWuDaoLevel(GameObject go, int id)
 		{
 			this._go = go;
@@ -18,7 +18,7 @@ namespace Tab
 			this.UpdateUI(id);
 		}
 
-		// Token: 0x06004388 RID: 17288 RVA: 0x001CD6A4 File Offset: 0x001CB8A4
+		// Token: 0x0600391D RID: 14621 RVA: 0x00185CD8 File Offset: 0x00183ED8
 		public void UpdateUI(int id)
 		{
 			this.CurExp = Tools.instance.getPlayer().wuDaoMag.getWuDaoEx(id).I;
@@ -35,16 +35,16 @@ namespace Tab
 			}
 		}
 
-		// Token: 0x04003B86 RID: 15238
+		// Token: 0x04003121 RID: 12577
 		private List<TabWuDaoLevelBase> levelList;
 
-		// Token: 0x04003B87 RID: 15239
+		// Token: 0x04003122 RID: 12578
 		public int CurExp;
 
-		// Token: 0x04003B88 RID: 15240
+		// Token: 0x04003123 RID: 12579
 		private Text _wudaoExpText;
 
-		// Token: 0x04003B89 RID: 15241
+		// Token: 0x04003124 RID: 12580
 		private Image _slider;
 	}
 }

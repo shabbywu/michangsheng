@@ -3,14 +3,14 @@ using UnityEngine;
 
 namespace SuperScrollView
 {
-	// Token: 0x020009F1 RID: 2545
+	// Token: 0x020006C6 RID: 1734
 	[Serializable]
 	public class GridViewItemPrefabConfData
 	{
-		// Token: 0x040039D0 RID: 14800
+		// Token: 0x04002FCB RID: 12235
 		public GameObject mItemPrefab;
 
-		// Token: 0x040039D1 RID: 14801
+		// Token: 0x04002FCC RID: 12236
 		public int mInitCreateCount;
 	}
 }

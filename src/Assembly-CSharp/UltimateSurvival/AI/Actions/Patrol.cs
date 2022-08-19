@@ -3,11 +3,11 @@ using UnityEngine;
 
 namespace UltimateSurvival.AI.Actions
 {
-	// Token: 0x02000989 RID: 2441
+	// Token: 0x0200067C RID: 1660
 	[Serializable]
 	public class Patrol : PointBased
 	{
-		// Token: 0x06003E65 RID: 15973 RVA: 0x0002CEC1 File Offset: 0x0002B0C1
+		// Token: 0x060034B5 RID: 13493 RVA: 0x0016EAD3 File Offset: 0x0016CCD3
 		public override void OnStart(AIBrain brain)
 		{
 			this.m_Priority = 0;
@@ -17,7 +17,7 @@ namespace UltimateSurvival.AI.Actions
 			this.m_Brain = brain;
 		}
 
-		// Token: 0x06003E66 RID: 15974 RVA: 0x001B7010 File Offset: 0x001B5210
+		// Token: 0x060034B6 RID: 13494 RVA: 0x0016EAF8 File Offset: 0x0016CCF8
 		public override void Activate(AIBrain brain)
 		{
 			brain.Settings.Movement.MoveTo(this.m_PointPositions[this.m_CurrentIndex], false);
@@ -25,7 +25,7 @@ namespace UltimateSurvival.AI.Actions
 			GameController.Audio.LastGunshot.AddChangeListener(new Action(this.OnChanged_LastGunshot));
 		}
 
-		// Token: 0x06003E67 RID: 15975 RVA: 0x001B7078 File Offset: 0x001B5278
+		// Token: 0x060034B7 RID: 13495 RVA: 0x0016EB60 File Offset: 0x0016CD60
 		public override void OnUpdate(AIBrain brain)
 		{
 			if (this.m_SuspectedTarget != null)
@@ -60,7 +60,7 @@ namespace UltimateSurvival.AI.Actions
 			}
 		}
 
-		// Token: 0x06003E68 RID: 15976 RVA: 0x001B71C0 File Offset: 0x001B53C0
+		// Token: 0x060034B8 RID: 13496 RVA: 0x0016ECA8 File Offset: 0x0016CEA8
 		public override void OnDeactivation(AIBrain brain)
 		{
 			brain.Settings.Animation.ToggleBool("Walk", false);
@@ -70,13 +70,13 @@ namespace UltimateSurvival.AI.Actions
 			brain.Settings.AudioSource.Stop();
 		}
 
-		// Token: 0x06003E69 RID: 15977 RVA: 0x00004050 File Offset: 0x00002250
+		// Token: 0x060034B9 RID: 13497 RVA: 0x0000280F File Offset: 0x00000A0F
 		public override bool IsDone(AIBrain brain)
 		{
 			return false;
 		}
 
-		// Token: 0x06003E6A RID: 15978 RVA: 0x0002CEE6 File Offset: 0x0002B0E6
+		// Token: 0x060034BA RID: 13498 RVA: 0x0016ED28 File Offset: 0x0016CF28
 		private void OnSucceded_ChangeHealth(HealthEventData data)
 		{
 			if (data.Damager != null)
@@ -85,7 +85,7 @@ namespace UltimateSurvival.AI.Actions
 			}
 		}
 
-		// Token: 0x06003E6B RID: 15979 RVA: 0x001B7240 File Offset: 0x001B5440
+		// Token: 0x060034BB RID: 13499 RVA: 0x0016ED54 File Offset: 0x0016CF54
 		private void OnChanged_LastGunshot()
 		{
 			if (this.m_Brain == null)
@@ -99,33 +99,33 @@ namespace UltimateSurvival.AI.Actions
 			}
 		}
 
-		// Token: 0x04003853 RID: 14419
+		// Token: 0x04002EAD RID: 11949
 		[SerializeField]
 		private Vector2 m_WaitTime = new Vector2(8f, 15f);
 
-		// Token: 0x04003854 RID: 14420
+		// Token: 0x04002EAE RID: 11950
 		[Header("Audio")]
 		[SerializeField]
 		private SoundPlayer m_Audio;
 
-		// Token: 0x04003855 RID: 14421
+		// Token: 0x04002EAF RID: 11951
 		[SerializeField]
 		[Clamp(0f, 15f)]
 		private float m_AudioPlayInterval = 1f;
 
-		// Token: 0x04003856 RID: 14422
+		// Token: 0x04002EB0 RID: 11952
 		private float m_NextMoveTime;
 
-		// Token: 0x04003857 RID: 14423
+		// Token: 0x04002EB1 RID: 11953
 		private bool m_Waiting;
 
-		// Token: 0x04003858 RID: 14424
+		// Token: 0x04002EB2 RID: 11954
 		private Vector3? m_SuspectedTarget = new Vector3?(Vector3.zero);
 
-		// Token: 0x04003859 RID: 14425
+		// Token: 0x04002EB3 RID: 11955
 		private AIBrain m_Brain;
 
-		// Token: 0x0400385A RID: 14426
+		// Token: 0x04002EB4 RID: 11956
 		private float m_LastAudioPlayTime;
 	}
 }

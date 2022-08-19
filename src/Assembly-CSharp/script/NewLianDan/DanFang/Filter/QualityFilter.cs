@@ -5,10 +5,10 @@ using UnityEngine.UI;
 
 namespace script.NewLianDan.DanFang.Filter
 {
-	// Token: 0x02000AD2 RID: 2770
+	// Token: 0x02000A03 RID: 2563
 	public class QualityFilter : UIBase
 	{
-		// Token: 0x060046B1 RID: 18097 RVA: 0x001E41EC File Offset: 0x001E23EC
+		// Token: 0x06004701 RID: 18177 RVA: 0x001E1DB0 File Offset: 0x001DFFB0
 		public QualityFilter(GameObject go, string name, int value, float x, float y)
 		{
 			this._go = go;
@@ -28,10 +28,10 @@ namespace script.NewLianDan.DanFang.Filter
 			this._go.SetActive(true);
 		}
 
-		// Token: 0x04003ECC RID: 16076
+		// Token: 0x0400484D RID: 18509
 		public int Value;
 
-		// Token: 0x04003ECD RID: 16077
+		// Token: 0x0400484E RID: 18510
 		public UnityAction<int> Action;
 	}
 }

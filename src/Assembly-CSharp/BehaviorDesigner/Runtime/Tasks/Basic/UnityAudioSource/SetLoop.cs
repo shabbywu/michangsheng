@@ -3,12 +3,12 @@ using UnityEngine;
 
 namespace BehaviorDesigner.Runtime.Tasks.Basic.UnityAudioSource
 {
-	// Token: 0x02001639 RID: 5689
+	// Token: 0x0200117A RID: 4474
 	[TaskCategory("Basic/AudioSource")]
 	[TaskDescription("Sets the loop value of the AudioSource. Returns Success.")]
 	public class SetLoop : Action
 	{
-		// Token: 0x06008476 RID: 33910 RVA: 0x002CFA68 File Offset: 0x002CDC68
+		// Token: 0x0600767C RID: 30332 RVA: 0x002B6A54 File Offset: 0x002B4C54
 		public override void OnStart()
 		{
 			GameObject defaultGameObject = base.GetDefaultGameObject(this.targetGameObject.Value);
@@ -19,7 +19,7 @@ namespace BehaviorDesigner.Runtime.Tasks.Basic.UnityAudioSource
 			}
 		}
 
-		// Token: 0x06008477 RID: 33911 RVA: 0x0005B90B File Offset: 0x00059B0B
+		// Token: 0x0600767D RID: 30333 RVA: 0x002B6A94 File Offset: 0x002B4C94
 		public override TaskStatus OnUpdate()
 		{
 			if (this.audioSource == null)
@@ -31,25 +31,25 @@ namespace BehaviorDesigner.Runtime.Tasks.Basic.UnityAudioSource
 			return 2;
 		}
 
-		// Token: 0x06008478 RID: 33912 RVA: 0x0005B93E File Offset: 0x00059B3E
+		// Token: 0x0600767E RID: 30334 RVA: 0x002B6AC7 File Offset: 0x002B4CC7
 		public override void OnReset()
 		{
 			this.targetGameObject = null;
 			this.loop = false;
 		}
 
-		// Token: 0x0400711F RID: 28959
+		// Token: 0x040061FC RID: 25084
 		[Tooltip("The GameObject that the task operates on. If null the task GameObject is used.")]
 		public SharedGameObject targetGameObject;
 
-		// Token: 0x04007120 RID: 28960
+		// Token: 0x040061FD RID: 25085
 		[Tooltip("The loop value of the AudioSource")]
 		public SharedBool loop;
 
-		// Token: 0x04007121 RID: 28961
+		// Token: 0x040061FE RID: 25086
 		private AudioSource audioSource;
 
-		// Token: 0x04007122 RID: 28962
+		// Token: 0x040061FF RID: 25087
 		private GameObject prevGameObject;
 	}
 }

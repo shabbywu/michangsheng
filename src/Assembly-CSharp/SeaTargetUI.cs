@@ -4,17 +4,17 @@ using System.Collections.Generic;
 using Newtonsoft.Json.Linq;
 using UnityEngine;
 
-// Token: 0x02000566 RID: 1382
+// Token: 0x020003CF RID: 975
 public class SeaTargetUI : MonoBehaviour
 {
-	// Token: 0x06002336 RID: 9014 RVA: 0x0001C97F File Offset: 0x0001AB7F
+	// Token: 0x06001FBD RID: 8125 RVA: 0x000DFB1F File Offset: 0x000DDD1F
 	private void Start()
 	{
 		SeaTargetUI.Inst = this;
 		base.gameObject.SetActive(false);
 	}
 
-	// Token: 0x06002337 RID: 9015 RVA: 0x00122618 File Offset: 0x00120818
+	// Token: 0x06001FBE RID: 8126 RVA: 0x000DFB34 File Offset: 0x000DDD34
 	public void PlayDanfangIn()
 	{
 		if (this.DanfunPlan.transform.localPosition.x < -800f)
@@ -25,7 +25,7 @@ public class SeaTargetUI : MonoBehaviour
 		this.DanfunPlan.GetComponent<Animation>().Play("Danfang");
 	}
 
-	// Token: 0x06002338 RID: 9016 RVA: 0x00122670 File Offset: 0x00120870
+	// Token: 0x06001FBF RID: 8127 RVA: 0x000DFB8C File Offset: 0x000DDD8C
 	private void Update()
 	{
 		List<int> list = new List<int>();
@@ -76,7 +76,7 @@ public class SeaTargetUI : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06002339 RID: 9017 RVA: 0x00122854 File Offset: 0x00120A54
+	// Token: 0x06001FC0 RID: 8128 RVA: 0x000DFD70 File Offset: 0x000DDF70
 	public void CreatObj(int temp)
 	{
 		SeaTargetUICell seaTargetUICell = Object.Instantiate<SeaTargetUICell>(this.eventuiBase);
@@ -90,15 +90,15 @@ public class SeaTargetUI : MonoBehaviour
 		component.Title.text = (string)jtoken["EventName"];
 	}
 
-	// Token: 0x04001E5A RID: 7770
+	// Token: 0x040019D0 RID: 6608
 	public static SeaTargetUI Inst;
 
-	// Token: 0x04001E5B RID: 7771
+	// Token: 0x040019D1 RID: 6609
 	public SeaTargetUICell eventuiBase;
 
-	// Token: 0x04001E5C RID: 7772
+	// Token: 0x040019D2 RID: 6610
 	public GameObject uigroup;
 
-	// Token: 0x04001E5D RID: 7773
+	// Token: 0x040019D3 RID: 6611
 	public GameObject DanfunPlan;
 }

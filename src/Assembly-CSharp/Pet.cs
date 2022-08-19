@@ -1,10 +1,10 @@
 ﻿using System;
 using KBEngine;
 
-// Token: 0x02000551 RID: 1361
+// Token: 0x020003BE RID: 958
 public class Pet : PetBase
 {
-	// Token: 0x060022D0 RID: 8912 RVA: 0x0011EE44 File Offset: 0x0011D044
+	// Token: 0x06001F44 RID: 8004 RVA: 0x000DBF5C File Offset: 0x000DA15C
 	public override void recvDamage(int attackerID, int skillID, int damageType, int damage)
 	{
 		Entity entity = KBEngineApp.app.findEntity(attackerID);
@@ -18,13 +18,13 @@ public class Pet : PetBase
 		});
 	}
 
-	// Token: 0x060022D1 RID: 8913 RVA: 0x0001C722 File Offset: 0x0001A922
+	// Token: 0x06001F45 RID: 8005 RVA: 0x000DBFA9 File Offset: 0x000DA1A9
 	public override void recvSkill(int arg1, int arg2)
 	{
 		throw new NotImplementedException();
 	}
 
-	// Token: 0x060022D2 RID: 8914 RVA: 0x0011EE94 File Offset: 0x0011D094
+	// Token: 0x06001F46 RID: 8006 RVA: 0x000DBFB0 File Offset: 0x000DA1B0
 	public override object getDefinedProperty(string name)
 	{
 		uint num = <PrivateImplementationDetails>.ComputeStringHash(name);

@@ -4,11 +4,11 @@ using MoonSharp.Interpreter.Execution.VM;
 
 namespace MoonSharp.Interpreter.Tree.Expressions
 {
-	// Token: 0x020010C5 RID: 4293
+	// Token: 0x02000CE8 RID: 3304
 	internal class LiteralExpression : Expression
 	{
-		// Token: 0x1700094A RID: 2378
-		// (get) Token: 0x0600679F RID: 26527 RVA: 0x000473E6 File Offset: 0x000455E6
+		// Token: 0x170006EF RID: 1775
+		// (get) Token: 0x06005C89 RID: 23689 RVA: 0x0026066C File Offset: 0x0025E86C
 		public DynValue Value
 		{
 			get
@@ -17,13 +17,13 @@ namespace MoonSharp.Interpreter.Tree.Expressions
 			}
 		}
 
-		// Token: 0x060067A0 RID: 26528 RVA: 0x000473EE File Offset: 0x000455EE
+		// Token: 0x06005C8A RID: 23690 RVA: 0x00260674 File Offset: 0x0025E874
 		public LiteralExpression(ScriptLoadingContext lcontext, DynValue value) : base(lcontext)
 		{
 			this.m_Value = value;
 		}
 
-		// Token: 0x060067A1 RID: 26529 RVA: 0x00289ABC File Offset: 0x00287CBC
+		// Token: 0x06005C8B RID: 23691 RVA: 0x00260684 File Offset: 0x0025E884
 		public LiteralExpression(ScriptLoadingContext lcontext, Token t) : base(lcontext)
 		{
 			TokenType type = t.Type;
@@ -70,19 +70,19 @@ namespace MoonSharp.Interpreter.Tree.Expressions
 			lcontext.Lexer.Next();
 		}
 
-		// Token: 0x060067A2 RID: 26530 RVA: 0x000473FE File Offset: 0x000455FE
+		// Token: 0x06005C8C RID: 23692 RVA: 0x00260753 File Offset: 0x0025E953
 		public override void Compile(ByteCode bc)
 		{
 			bc.Emit_Literal(this.m_Value);
 		}
 
-		// Token: 0x060067A3 RID: 26531 RVA: 0x000473E6 File Offset: 0x000455E6
+		// Token: 0x06005C8D RID: 23693 RVA: 0x0026066C File Offset: 0x0025E86C
 		public override DynValue Eval(ScriptExecutionContext context)
 		{
 			return this.m_Value;
 		}
 
-		// Token: 0x04005FB7 RID: 24503
+		// Token: 0x040053B3 RID: 21427
 		private DynValue m_Value;
 	}
 }

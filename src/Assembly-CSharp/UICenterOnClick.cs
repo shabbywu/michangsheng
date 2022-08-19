@@ -1,11 +1,11 @@
 ﻿using System;
 using UnityEngine;
 
-// Token: 0x02000079 RID: 121
+// Token: 0x0200005D RID: 93
 [AddComponentMenu("NGUI/Interaction/Center Scroll View on Click")]
 public class UICenterOnClick : MonoBehaviour
 {
-	// Token: 0x06000526 RID: 1318 RVA: 0x00071300 File Offset: 0x0006F500
+	// Token: 0x060004D4 RID: 1236 RVA: 0x0001A6C4 File Offset: 0x000188C4
 	private void OnClick()
 	{
 		UICenterOnChild uicenterOnChild = NGUITools.FindInParents<UICenterOnChild>(base.gameObject);

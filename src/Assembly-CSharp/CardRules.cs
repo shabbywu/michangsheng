@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 
-// Token: 0x02000675 RID: 1653
+// Token: 0x0200049A RID: 1178
 public class CardRules
 {
-	// Token: 0x06002949 RID: 10569 RVA: 0x00142054 File Offset: 0x00140254
+	// Token: 0x06002527 RID: 9511 RVA: 0x00102464 File Offset: 0x00100664
 	public static void SortCards(List<Card> cards, bool ascending)
 	{
 		cards.Sort(delegate(Card a, Card b)
@@ -17,19 +17,19 @@ public class CardRules
 		});
 	}
 
-	// Token: 0x0600294A RID: 10570 RVA: 0x000201C2 File Offset: 0x0001E3C2
+	// Token: 0x06002528 RID: 9512 RVA: 0x00102490 File Offset: 0x00100690
 	public static bool IsSingle(Card[] cards)
 	{
 		return cards.Length == 1;
 	}
 
-	// Token: 0x0600294B RID: 10571 RVA: 0x000201CD File Offset: 0x0001E3CD
+	// Token: 0x06002529 RID: 9513 RVA: 0x0010249B File Offset: 0x0010069B
 	public static bool IsDouble(Card[] cards)
 	{
 		return cards.Length == 2 && cards[0].GetCardWeight == cards[1].GetCardWeight;
 	}
 
-	// Token: 0x0600294C RID: 10572 RVA: 0x00142080 File Offset: 0x00140280
+	// Token: 0x0600252A RID: 9514 RVA: 0x001024B8 File Offset: 0x001006B8
 	public static bool IsStraight(Card[] cards)
 	{
 		if (cards.Length < 5 || cards.Length > 12)
@@ -51,7 +51,7 @@ public class CardRules
 		return true;
 	}
 
-	// Token: 0x0600294D RID: 10573 RVA: 0x001420DC File Offset: 0x001402DC
+	// Token: 0x0600252B RID: 9515 RVA: 0x00102514 File Offset: 0x00100714
 	public static bool IsDoubleStraight(Card[] cards)
 	{
 		if (cards.Length < 6 || cards.Length % 2 != 0)
@@ -79,7 +79,7 @@ public class CardRules
 		return true;
 	}
 
-	// Token: 0x0600294E RID: 10574 RVA: 0x0014215C File Offset: 0x0014035C
+	// Token: 0x0600252C RID: 9516 RVA: 0x00102594 File Offset: 0x00100794
 	public static bool IsTripleStraight(Card[] cards)
 	{
 		if (cards.Length < 6 || cards.Length % 3 != 0)
@@ -115,19 +115,19 @@ public class CardRules
 		return true;
 	}
 
-	// Token: 0x0600294F RID: 10575 RVA: 0x00142210 File Offset: 0x00140410
+	// Token: 0x0600252D RID: 9517 RVA: 0x00102648 File Offset: 0x00100848
 	public static bool IsOnlyThree(Card[] cards)
 	{
 		return cards.Length % 3 == 0 && cards[0].GetCardWeight == cards[1].GetCardWeight && cards[1].GetCardWeight == cards[2].GetCardWeight && cards[0].GetCardWeight == cards[2].GetCardWeight;
 	}
 
-	// Token: 0x06002950 RID: 10576 RVA: 0x00142264 File Offset: 0x00140464
+	// Token: 0x0600252E RID: 9518 RVA: 0x0010269C File Offset: 0x0010089C
 	public static bool IsThreeAndOne(Card[] cards)
 	{
 		return cards.Length == 4 && ((cards[0].GetCardWeight == cards[1].GetCardWeight && cards[1].GetCardWeight == cards[2].GetCardWeight) || (cards[1].GetCardWeight == cards[2].GetCardWeight && cards[2].GetCardWeight == cards[3].GetCardWeight));
 	}
 
-	// Token: 0x06002951 RID: 10577 RVA: 0x001422C8 File Offset: 0x001404C8
+	// Token: 0x0600252F RID: 9519 RVA: 0x00102700 File Offset: 0x00100900
 	public static bool IsThreeAndTwo(Card[] cards)
 	{
 		if (cards.Length != 5)
@@ -148,13 +148,13 @@ public class CardRules
 		return false;
 	}
 
-	// Token: 0x06002952 RID: 10578 RVA: 0x00142350 File Offset: 0x00140550
+	// Token: 0x06002530 RID: 9520 RVA: 0x00102788 File Offset: 0x00100988
 	public static bool IsBoom(Card[] cards)
 	{
 		return cards.Length == 4 && cards[0].GetCardWeight == cards[1].GetCardWeight && cards[1].GetCardWeight == cards[2].GetCardWeight && cards[2].GetCardWeight == cards[3].GetCardWeight;
 	}
 
-	// Token: 0x06002953 RID: 10579 RVA: 0x001423A4 File Offset: 0x001405A4
+	// Token: 0x06002531 RID: 9521 RVA: 0x001027DC File Offset: 0x001009DC
 	public static bool IsJokerBoom(Card[] cards)
 	{
 		if (cards.Length != 2)
@@ -168,7 +168,7 @@ public class CardRules
 		return cards[0].GetCardWeight == Weight.LJoker && cards[1].GetCardWeight == Weight.SJoker;
 	}
 
-	// Token: 0x06002954 RID: 10580 RVA: 0x001423F4 File Offset: 0x001405F4
+	// Token: 0x06002532 RID: 9522 RVA: 0x0010282C File Offset: 0x00100A2C
 	public static bool PopEnable(Card[] cards, out CardsType type)
 	{
 		type = CardsType.None;

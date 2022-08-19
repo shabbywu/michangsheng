@@ -6,12 +6,12 @@ using UnityEngine;
 
 namespace Facebook
 {
-	// Token: 0x02000E8B RID: 3723
+	// Token: 0x02000B1C RID: 2844
 	internal class EditorFacebook : AbstractFacebook, IFacebook
 	{
-		// Token: 0x1700084F RID: 2127
-		// (get) Token: 0x06005951 RID: 22865 RVA: 0x00004050 File Offset: 0x00002250
-		// (set) Token: 0x06005952 RID: 22866 RVA: 0x000042DD File Offset: 0x000024DD
+		// Token: 0x17000600 RID: 1536
+		// (get) Token: 0x06004F3F RID: 20287 RVA: 0x0000280F File Offset: 0x00000A0F
+		// (set) Token: 0x06004F40 RID: 20288 RVA: 0x00004095 File Offset: 0x00002295
 		public override int DialogMode
 		{
 			get
@@ -23,9 +23,9 @@ namespace Facebook
 			}
 		}
 
-		// Token: 0x17000850 RID: 2128
-		// (get) Token: 0x06005953 RID: 22867 RVA: 0x0003F64A File Offset: 0x0003D84A
-		// (set) Token: 0x06005954 RID: 22868 RVA: 0x0003F722 File Offset: 0x0003D922
+		// Token: 0x17000601 RID: 1537
+		// (get) Token: 0x06004F41 RID: 20289 RVA: 0x00218458 File Offset: 0x00216658
+		// (set) Token: 0x06004F42 RID: 20290 RVA: 0x00218E52 File Offset: 0x00217052
 		public override bool LimitEventUsage
 		{
 			get
@@ -38,19 +38,19 @@ namespace Facebook
 			}
 		}
 
-		// Token: 0x06005955 RID: 22869 RVA: 0x0003F72B File Offset: 0x0003D92B
+		// Token: 0x06004F43 RID: 20291 RVA: 0x00218E5B File Offset: 0x0021705B
 		protected override void OnAwake()
 		{
 			base.StartCoroutine(FB.RemoteFacebookLoader.LoadFacebookClass("CanvasFacebook", new FB.RemoteFacebookLoader.LoadedDllCallback(this.OnDllLoaded)));
 		}
 
-		// Token: 0x06005956 RID: 22870 RVA: 0x00248E10 File Offset: 0x00247010
+		// Token: 0x06004F44 RID: 20292 RVA: 0x00218E7C File Offset: 0x0021707C
 		public override void Init(InitDelegate onInitComplete, string appId, bool cookie = false, bool logging = true, bool status = true, bool xfbml = false, string channelUrl = "", string authResponse = null, bool frictionlessRequests = false, HideUnityDelegate hideUnityDelegate = null)
 		{
 			base.StartCoroutine(this.OnInit(onInitComplete, appId, cookie, logging, status, xfbml, channelUrl, authResponse, frictionlessRequests, hideUnityDelegate));
 		}
 
-		// Token: 0x06005957 RID: 22871 RVA: 0x00248E3C File Offset: 0x0024703C
+		// Token: 0x06004F45 RID: 20293 RVA: 0x00218EA8 File Offset: 0x002170A8
 		private IEnumerator OnInit(InitDelegate onInitComplete, string appId, bool cookie = false, bool logging = true, bool status = true, bool xfbml = false, string channelUrl = "", string authResponse = null, bool frictionlessRequests = false, HideUnityDelegate hideUnityDelegate = null)
 		{
 			while (this.fb == null)
@@ -65,20 +65,20 @@ namespace Facebook
 			yield break;
 		}
 
-		// Token: 0x06005958 RID: 22872 RVA: 0x0003F74A File Offset: 0x0003D94A
+		// Token: 0x06004F46 RID: 20294 RVA: 0x00218F0F File Offset: 0x0021710F
 		private void OnDllLoaded(IFacebook fb)
 		{
 			this.fb = (AbstractFacebook)fb;
 		}
 
-		// Token: 0x06005959 RID: 22873 RVA: 0x0003F758 File Offset: 0x0003D958
+		// Token: 0x06004F47 RID: 20295 RVA: 0x00218F1D File Offset: 0x0021711D
 		public override void Login(string scope = "", FacebookDelegate callback = null)
 		{
 			base.AddAuthDelegate(callback);
 			FBComponentFactory.GetComponent<EditorFacebookAccessToken>(0);
 		}
 
-		// Token: 0x0600595A RID: 22874 RVA: 0x0003F768 File Offset: 0x0003D968
+		// Token: 0x06004F48 RID: 20296 RVA: 0x00218F2D File Offset: 0x0021712D
 		public override void Logout()
 		{
 			this.isLoggedIn = false;
@@ -88,36 +88,36 @@ namespace Facebook
 			this.fb.AccessToken = "";
 		}
 
-		// Token: 0x0600595B RID: 22875 RVA: 0x00248EA4 File Offset: 0x002470A4
+		// Token: 0x06004F49 RID: 20297 RVA: 0x00218F6C File Offset: 0x0021716C
 		public override void AppRequest(string message, string[] to = null, string filters = "", string[] excludeIds = null, int? maxRecipients = null, string data = "", string title = "", FacebookDelegate callback = null)
 		{
 			this.fb.AppRequest(message, to, filters, excludeIds, maxRecipients, data, title, callback);
 		}
 
-		// Token: 0x0600595C RID: 22876 RVA: 0x00248ECC File Offset: 0x002470CC
+		// Token: 0x06004F4A RID: 20298 RVA: 0x00218F94 File Offset: 0x00217194
 		public override void FeedRequest(string toId = "", string link = "", string linkName = "", string linkCaption = "", string linkDescription = "", string picture = "", string mediaSource = "", string actionName = "", string actionLink = "", string reference = "", Dictionary<string, string[]> properties = null, FacebookDelegate callback = null)
 		{
 			this.fb.FeedRequest(toId, link, linkName, linkCaption, linkDescription, picture, mediaSource, actionName, actionLink, reference, properties, callback);
 		}
 
-		// Token: 0x0600595D RID: 22877 RVA: 0x0003F7A7 File Offset: 0x0003D9A7
+		// Token: 0x06004F4B RID: 20299 RVA: 0x00218FC1 File Offset: 0x002171C1
 		public override void Pay(string product, string action = "purchaseitem", int quantity = 1, int? quantityMin = null, int? quantityMax = null, string requestId = null, string pricepointId = null, string testCurrency = null, FacebookDelegate callback = null)
 		{
 			FbDebug.Info("Pay method only works with Facebook Canvas.  Does nothing in the Unity Editor, iOS or Android");
 		}
 
-		// Token: 0x0600595E RID: 22878 RVA: 0x0003F7B3 File Offset: 0x0003D9B3
+		// Token: 0x06004F4C RID: 20300 RVA: 0x00218FCD File Offset: 0x002171CD
 		public override void GetAuthResponse(FacebookDelegate callback = null)
 		{
 			this.fb.GetAuthResponse(callback);
 		}
 
-		// Token: 0x0600595F RID: 22879 RVA: 0x000042DD File Offset: 0x000024DD
+		// Token: 0x06004F4D RID: 20301 RVA: 0x00004095 File Offset: 0x00002295
 		public override void PublishInstall(string appId, FacebookDelegate callback = null)
 		{
 		}
 
-		// Token: 0x06005960 RID: 22880 RVA: 0x0003F7C1 File Offset: 0x0003D9C1
+		// Token: 0x06004F4E RID: 20302 RVA: 0x00218FDB File Offset: 0x002171DB
 		public override void GetDeepLink(FacebookDelegate callback)
 		{
 			FbDebug.Info("No Deep Linking in the Editor");
@@ -127,19 +127,19 @@ namespace Facebook
 			}
 		}
 
-		// Token: 0x06005961 RID: 22881 RVA: 0x0003F7E1 File Offset: 0x0003D9E1
+		// Token: 0x06004F4F RID: 20303 RVA: 0x00218FFB File Offset: 0x002171FB
 		public override void AppEventsLogEvent(string logEvent, float? valueToSum = null, Dictionary<string, object> parameters = null)
 		{
 			FbDebug.Log("Pew! Pretending to send this off.  Doesn't actually work in the editor");
 		}
 
-		// Token: 0x06005962 RID: 22882 RVA: 0x0003F7E1 File Offset: 0x0003D9E1
+		// Token: 0x06004F50 RID: 20304 RVA: 0x00218FFB File Offset: 0x002171FB
 		public override void AppEventsLogPurchase(float logPurchase, string currency = "USD", Dictionary<string, object> parameters = null)
 		{
 			FbDebug.Log("Pew! Pretending to send this off.  Doesn't actually work in the editor");
 		}
 
-		// Token: 0x06005963 RID: 22883 RVA: 0x00248EFC File Offset: 0x002470FC
+		// Token: 0x06004F51 RID: 20305 RVA: 0x00219008 File Offset: 0x00217208
 		public void MockLoginCallback(FBResult result)
 		{
 			Object.Destroy(FBComponentFactory.GetComponent<EditorFacebookAccessToken>(0));
@@ -184,13 +184,13 @@ namespace Facebook
 			}
 		}
 
-		// Token: 0x06005964 RID: 22884 RVA: 0x0003F7ED File Offset: 0x0003D9ED
+		// Token: 0x06004F52 RID: 20306 RVA: 0x002191A8 File Offset: 0x002173A8
 		public void MockCancelledLoginCallback()
 		{
 			base.OnAuthResponse(new FBResult("", null));
 		}
 
-		// Token: 0x06005965 RID: 22885 RVA: 0x0024909C File Offset: 0x0024729C
+		// Token: 0x06004F53 RID: 20307 RVA: 0x002191BC File Offset: 0x002173BC
 		private void BadAccessToken(string error)
 		{
 			FbDebug.Error(error);
@@ -201,10 +201,10 @@ namespace Facebook
 			FBComponentFactory.GetComponent<EditorFacebookAccessToken>(0);
 		}
 
-		// Token: 0x040058C4 RID: 22724
+		// Token: 0x04004E67 RID: 20071
 		private AbstractFacebook fb;
 
-		// Token: 0x040058C5 RID: 22725
+		// Token: 0x04004E68 RID: 20072
 		private FacebookDelegate loginCallback;
 	}
 }

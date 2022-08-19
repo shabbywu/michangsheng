@@ -6,16 +6,16 @@ using KBEngine;
 using Newtonsoft.Json.Linq;
 using UnityEngine;
 
-// Token: 0x0200054F RID: 1359
+// Token: 0x020003BC RID: 956
 public class SeaNodeMag
 {
-	// Token: 0x060022B5 RID: 8885 RVA: 0x0001C626 File Offset: 0x0001A826
+	// Token: 0x06001F29 RID: 7977 RVA: 0x000DACAE File Offset: 0x000D8EAE
 	public SeaNodeMag(Avatar _avatar)
 	{
 		this.avatar = _avatar;
 	}
 
-	// Token: 0x060022B6 RID: 8886 RVA: 0x0011DC98 File Offset: 0x0011BE98
+	// Token: 0x06001F2A RID: 7978 RVA: 0x000DACC0 File Offset: 0x000D8EC0
 	public void INITSEA()
 	{
 		this.CreatSeaIsland();
@@ -27,7 +27,7 @@ public class SeaNodeMag
 		}
 	}
 
-	// Token: 0x060022B7 RID: 8887 RVA: 0x0011DCE8 File Offset: 0x0011BEE8
+	// Token: 0x06001F2B RID: 7979 RVA: 0x000DAD10 File Offset: 0x000D8F10
 	public JToken FindSeaMonsetar(string monstaruuid, int seaID)
 	{
 		foreach (JToken jtoken in this.avatar.EndlessSeaRandomNode[seaID.ToString()]["Monstar"])
@@ -40,7 +40,7 @@ public class SeaNodeMag
 		return null;
 	}
 
-	// Token: 0x060022B8 RID: 8888 RVA: 0x0011DD68 File Offset: 0x0011BF68
+	// Token: 0x06001F2C RID: 7980 RVA: 0x000DAD90 File Offset: 0x000D8F90
 	public void RemoveSeaMonstar(string monstaruuid, int seaID)
 	{
 		JToken jtoken = this.avatar.EndlessSeaRandomNode[seaID.ToString()]["Monstar"];
@@ -51,7 +51,7 @@ public class SeaNodeMag
 		}
 	}
 
-	// Token: 0x060022B9 RID: 8889 RVA: 0x0011DDB0 File Offset: 0x0011BFB0
+	// Token: 0x06001F2D RID: 7981 RVA: 0x000DADD8 File Offset: 0x000D8FD8
 	public void RemoveSeaMonstar(string monstaruuid)
 	{
 		foreach (KeyValuePair<string, JToken> keyValuePair in this.avatar.EndlessSeaRandomNode)
@@ -67,7 +67,7 @@ public class SeaNodeMag
 		}
 	}
 
-	// Token: 0x060022BA RID: 8890 RVA: 0x0011DE74 File Offset: 0x0011C074
+	// Token: 0x06001F2E RID: 7982 RVA: 0x000DAE9C File Offset: 0x000D909C
 	public void SetSeaMonstarIndex(string monstaruuid, int seaID, int index)
 	{
 		JToken jtoken = this.FindSeaMonsetar(monstaruuid, seaID);
@@ -77,13 +77,13 @@ public class SeaNodeMag
 		}
 	}
 
-	// Token: 0x060022BB RID: 8891 RVA: 0x0001C635 File Offset: 0x0001A835
+	// Token: 0x06001F2F RID: 7983 RVA: 0x000DAEC6 File Offset: 0x000D90C6
 	public int GetSeaIslandIndex(int seaid)
 	{
 		return (int)this.avatar.EndlessSea["AllIaLand"][seaid - 1];
 	}
 
-	// Token: 0x060022BC RID: 8892 RVA: 0x0011DEA0 File Offset: 0x0011C0A0
+	// Token: 0x06001F30 RID: 7984 RVA: 0x000DAEF0 File Offset: 0x000D90F0
 	public void CreatSeaIsland()
 	{
 		if (!this.avatar.EndlessSea.ContainsKey("AllIaLand"))
@@ -132,7 +132,7 @@ public class SeaNodeMag
 		}
 	}
 
-	// Token: 0x060022BD RID: 8893 RVA: 0x0011E0D0 File Offset: 0x0011C2D0
+	// Token: 0x06001F31 RID: 7985 RVA: 0x000DB120 File Offset: 0x000D9320
 	private void CreateLuanLiuID()
 	{
 		if (!this.avatar.EndlessSea.ContainsKey("LuanLiuId"))
@@ -155,7 +155,7 @@ public class SeaNodeMag
 		}
 	}
 
-	// Token: 0x060022BE RID: 8894 RVA: 0x0011E208 File Offset: 0x0011C408
+	// Token: 0x06001F32 RID: 7986 RVA: 0x000DB258 File Offset: 0x000D9458
 	public void SetLuanLiuLv()
 	{
 		DateTime nowTime = this.avatar.worldTimeMag.getNowTime();
@@ -191,13 +191,13 @@ public class SeaNodeMag
 		this.avatar.EndlessSea["LuanLiuResetTime"] = this.avatar.worldTimeMag.nowTime;
 	}
 
-	// Token: 0x060022BF RID: 8895 RVA: 0x0001C65E File Offset: 0x0001A85E
+	// Token: 0x06001F33 RID: 7987 RVA: 0x000DB408 File Offset: 0x000D9608
 	public int GetSeaIDLV(int seaID)
 	{
 		return (int)this.avatar.EndlessSea["SafeLv"][seaID - 1];
 	}
 
-	// Token: 0x060022C0 RID: 8896 RVA: 0x0011E3B8 File Offset: 0x0011C5B8
+	// Token: 0x06001F34 RID: 7988 RVA: 0x000DB434 File Offset: 0x000D9634
 	public JToken GetFengBaoIndexList(int _seaid)
 	{
 		int num = (int)((JArray)this.avatar.EndlessSea["SafeLv"])[_seaid - 1];
@@ -206,7 +206,7 @@ public class SeaNodeMag
 		return jtoken[num2];
 	}
 
-	// Token: 0x060022C1 RID: 8897 RVA: 0x0011E444 File Offset: 0x0011C644
+	// Token: 0x06001F35 RID: 7989 RVA: 0x000DB4C0 File Offset: 0x000D96C0
 	public int GetIndexFengBaoLv(int AllMapIndex, int wide)
 	{
 		int inSeaID = this.GetInSeaID(AllMapIndex, wide);
@@ -218,7 +218,7 @@ public class SeaNodeMag
 		return (int)jtoken[num2][num4][num3];
 	}
 
-	// Token: 0x060022C2 RID: 8898 RVA: 0x0011E50C File Offset: 0x0011C70C
+	// Token: 0x06001F36 RID: 7990 RVA: 0x000DB588 File Offset: 0x000D9788
 	public int GetInSeaID(int AllMapIndex, int wide)
 	{
 		int indexX = FuBenMap.getIndexX(AllMapIndex, wide);
@@ -226,7 +226,7 @@ public class SeaNodeMag
 		return FuBenMap.getIndex(indexX / 7, indexY / 7, wide / 7);
 	}
 
-	// Token: 0x060022C3 RID: 8899 RVA: 0x0011E538 File Offset: 0x0011C738
+	// Token: 0x06001F37 RID: 7991 RVA: 0x000DB5B4 File Offset: 0x000D97B4
 	public void CreateLuanLiuMap()
 	{
 		JObject jobject = new JObject();
@@ -316,7 +316,7 @@ public class SeaNodeMag
 		File.WriteAllText("C:\\michangsheng1res\\Res\\Effect\\json\\LuanLiuRMap.json", jobject3.ToString());
 	}
 
-	// Token: 0x060022C4 RID: 8900 RVA: 0x0011EA10 File Offset: 0x0011CC10
+	// Token: 0x06001F38 RID: 7992 RVA: 0x000DBA8C File Offset: 0x000D9C8C
 	public void MoveNodePostion(FuBenMap baseMap, FuBenMap BaseMapIndex)
 	{
 		for (int i = 0; i < 7; i++)
@@ -357,7 +357,7 @@ public class SeaNodeMag
 		}
 	}
 
-	// Token: 0x060022C5 RID: 8901 RVA: 0x0011EB38 File Offset: 0x0011CD38
+	// Token: 0x06001F39 RID: 7993 RVA: 0x000DBBB4 File Offset: 0x000D9DB4
 	public bool RelizedMoveNode(FuBenMap baseMap, int startX, int startY, int endX, int endY, FuBenMap BaseMapIndex)
 	{
 		if (baseMap.map[endX, endY] == 0)
@@ -371,19 +371,19 @@ public class SeaNodeMag
 		return false;
 	}
 
-	// Token: 0x060022C6 RID: 8902 RVA: 0x0001C687 File Offset: 0x0001A887
+	// Token: 0x06001F3A RID: 7994 RVA: 0x000DBC2C File Offset: 0x000D9E2C
 	public int getWide(int type)
 	{
 		return (int)jsonData.instance.EndlessSeaLuanLIuXinZhuang[type.ToString()]["wide"];
 	}
 
-	// Token: 0x060022C7 RID: 8903 RVA: 0x0001C6AE File Offset: 0x0001A8AE
+	// Token: 0x06001F3B RID: 7995 RVA: 0x000DBC53 File Offset: 0x000D9E53
 	public int getHigh(int type)
 	{
 		return (int)jsonData.instance.EndlessSeaLuanLIuXinZhuang[type.ToString()]["high"];
 	}
 
-	// Token: 0x060022C8 RID: 8904 RVA: 0x0011EBB0 File Offset: 0x0011CDB0
+	// Token: 0x06001F3C RID: 7996 RVA: 0x000DBC7C File Offset: 0x000D9E7C
 	public void SaveNodePostion(FuBenMap baseMap, JArray lvJson, FuBenMap baseMapIndex)
 	{
 		JArray jarray = new JArray();
@@ -404,7 +404,7 @@ public class SeaNodeMag
 		lvJson.Add(jarray);
 	}
 
-	// Token: 0x060022C9 RID: 8905 RVA: 0x0011EC5C File Offset: 0x0011CE5C
+	// Token: 0x06001F3D RID: 7997 RVA: 0x000DBD28 File Offset: 0x000D9F28
 	public void CreatMapLuanLiuNode(FuBenMap baseMap, int Lv, int num, FuBenMap baseMapIndex, ref int index)
 	{
 		for (int i = 0; i < num; i++)
@@ -426,7 +426,7 @@ public class SeaNodeMag
 		}
 	}
 
-	// Token: 0x060022CA RID: 8906 RVA: 0x0011ECE8 File Offset: 0x0011CEE8
+	// Token: 0x06001F3E RID: 7998 RVA: 0x000DBDB4 File Offset: 0x000D9FB4
 	public void SetHaiYuAnQuAnDengJi()
 	{
 		if (this.avatar.EndlessSea.ContainsKey("SafeResetTime"))
@@ -449,6 +449,6 @@ public class SeaNodeMag
 		this.avatar.EndlessSea["SafeResetTime"] = this.avatar.worldTimeMag.nowTime;
 	}
 
-	// Token: 0x04001DE4 RID: 7652
+	// Token: 0x0400195E RID: 6494
 	private Avatar avatar;
 }

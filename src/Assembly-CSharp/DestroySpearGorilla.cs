@@ -1,15 +1,15 @@
 ﻿using System;
 using UnityEngine;
 
-// Token: 0x02000688 RID: 1672
+// Token: 0x020004A8 RID: 1192
 public class DestroySpearGorilla : MonoBehaviour
 {
-	// Token: 0x060029D0 RID: 10704 RVA: 0x000207A5 File Offset: 0x0001E9A5
+	// Token: 0x06002594 RID: 9620 RVA: 0x0010437F File Offset: 0x0010257F
 	public void DestroyGorilla()
 	{
 		this.gorilla.GetComponent<KillTheBaboon>().DestoyEnemy();
 	}
 
-	// Token: 0x04002370 RID: 9072
+	// Token: 0x04001E4A RID: 7754
 	public Transform gorilla;
 }

@@ -3,7 +3,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{3737EE06-1491-4BDA-BA3A-8470EB9F5B1E}</ProjectGuid>
+    <ProjectGuid>{C0B751D4-2730-44EA-B5E3-76D571F48E9D}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Assembly-CSharp</RootNamespace>
@@ -34,7 +34,9 @@
     <Reference Include="ArabicSupport" />
     <Reference Include="Assembly-CSharp-firstpass" />
     <Reference Include="BehaviorDesignerRuntime" />
+    <Reference Include="Boo.Lang" />
     <Reference Include="DOTween" />
+    <Reference Include="Febucci.TextAnimator.Runtime" />
     <Reference Include="Google.Protobuf" />
     <Reference Include="IFacebook" />
     <Reference Include="Newtonsoft.Json" />
@@ -68,6 +70,7 @@
     <Reference Include="UnityEngine.UI" />
     <Reference Include="UnityEngine.UIModule" />
     <Reference Include="UnityEngine.UnityWebRequestModule" />
+    <Reference Include="UnityEngine.UnityWebRequestTextureModule" />
     <Reference Include="UnityEngine.UnityWebRequestWWWModule" />
     <Reference Include="UnityEngine.VideoModule" />
     <Reference Include="XCharts.Runtime" />
@@ -121,6 +124,7 @@
     <Compile Include="BabunAnimationEvents.cs" />
     <Compile Include="BabunDogadjaji.cs" />
     <Compile Include="BabunDogadjaji_new.cs" />
+    <Compile Include="BackGroundImage.cs" />
     <Compile Include="BagItemSelect.cs" />
     <Compile Include="Bag\ActiveSkill.cs" />
     <Compile Include="Bag\ActiveSkillSlot.cs" />
@@ -781,6 +785,7 @@
     <Compile Include="clientApp.cs" />
     <Compile Include="CloseInventory.cs" />
     <Compile Include="CloseUIScene.cs" />
+    <Compile Include="CloudSaveFileData.cs" />
     <Compile Include="CmdAddFavor.cs" />
     <Compile Include="CmdAddFavorByVar.cs" />
     <Compile Include="CmdAddHuaShenStartXianXing.cs" />
@@ -859,6 +864,8 @@
     <Compile Include="CmdSetHideIsland.cs" />
     <Compile Include="CmdSetHuaShenLingYuSkill.cs" />
     <Compile Include="CmdSetJiaoHuNPC.cs" />
+    <Compile Include="CmdSetNPCCanGuanDuJie.cs" />
+    <Compile Include="CmdSetNPCExQingJiao.cs" />
     <Compile Include="CmdSetNPCJson.cs" />
     <Compile Include="CmdSetNPCMoney.cs" />
     <Compile Include="CmdSetNpcStatus.cs" />
@@ -872,9 +879,11 @@
     <Compile Include="CmdSwitchDFMode.cs" />
     <Compile Include="CmdTianJieJiaSu.cs" />
     <Compile Include="CmdTuJianHyperlink.cs" />
+    <Compile Include="CmdWarpNPCCanGuanDuJie.cs" />
     <Compile Include="CmdWarpNPCToFuBen.cs" />
     <Compile Include="CmdWarpNPCToMap.cs" />
     <Compile Include="CmdWarpNPCToScene.cs" />
+    <Compile Include="CmdWarpToNPCJiaoHuTalk.cs" />
     <Compile Include="CmdWarpToThreeSceneTalk.cs" />
     <Compile Include="CmdWeiXieNPC.cs" />
     <Compile Include="CoinMagnet.cs" />
@@ -973,6 +982,7 @@
     <Compile Include="EdgeDetectEffect.cs" />
     <Compile Include="EditorFacebookAccessToken.cs" />
     <Compile Include="EditorMiscTest.cs" />
+    <Compile Include="EditorSteamSetting.cs" />
     <Compile Include="EffectDelay\Delay.cs" />
     <Compile Include="EffectFlying.cs" />
     <Compile Include="EGA_EffectSound.cs" />
@@ -1032,6 +1042,7 @@
     <Compile Include="FB.cs" />
     <Compile Include="FBScreen.cs" />
     <Compile Include="FBSettings.cs" />
+    <Compile Include="Febucci\UI\Examples\TAnimSoundWriter.cs" />
     <Compile Include="FightFlashBlack.cs" />
     <Compile Include="FightPrepare.cs" />
     <Compile Include="FightScreenShake.cs" />
@@ -1052,6 +1063,7 @@
     <Compile Include="Floating3D.cs" />
     <Compile Include="FloatingText.cs" />
     <Compile Include="FlowmapAnimator.cs" />
+    <Compile Include="FolderPicker.cs" />
     <Compile Include="FollwChatTool.cs" />
     <Compile Include="FpBtn.cs" />
     <Compile Include="FpUIMag.cs" />
@@ -1078,6 +1090,7 @@
     <Compile Include="Fungus\AddLingGuang.cs" />
     <Compile Include="Fungus\AddMoney.cs" />
     <Compile Include="Fungus\AddNpcField.cs" />
+    <Compile Include="Fungus\AddNpcNextToPoLv.cs" />
     <Compile Include="Fungus\AddShaQi.cs" />
     <Compile Include="Fungus\AddShenShi.cs" />
     <Compile Include="Fungus\AddShowYuan.cs" />
@@ -1265,6 +1278,7 @@
     <Compile Include="Fungus\GetWuDaoLv.cs" />
     <Compile Include="Fungus\GetXinJin.cs" />
     <Compile Include="Fungus\GlobalVariables.cs" />
+    <Compile Include="Fungus\HasSetTalk.cs" />
     <Compile Include="Fungus\HideNPC.cs" />
     <Compile Include="Fungus\IDialogInputListener.cs" />
     <Compile Include="Fungus\IExecuteHandlerConfigurator.cs" />
@@ -1282,6 +1296,8 @@
     <Compile Include="Fungus\InvokeMethodParameter.cs" />
     <Compile Include="Fungus\InvokeType.cs" />
     <Compile Include="Fungus\IsCyFriend.cs" />
+    <Compile Include="Fungus\IsEatDanYao.cs" />
+    <Compile Include="Fungus\IsEnd.cs" />
     <Compile Include="Fungus\IsNTaskCanFinish.cs" />
     <Compile Include="Fungus\IsNTaskFinish.cs" />
     <Compile Include="Fungus\IsNTaskStart.cs" />
@@ -1360,15 +1376,19 @@
     <Compile Include="Fungus\OpenCaiJi.cs" />
     <Compile Include="Fungus\OpenDuiHuan.cs" />
     <Compile Include="Fungus\OpenEventOption.cs" />
+    <Compile Include="Fungus\OpenExchangeUI.cs" />
     <Compile Include="Fungus\OpenJiaoYi.cs" />
     <Compile Include="Fungus\OpenKeFang.cs" />
     <Compile Include="Fungus\OpenLianQiSubmit.cs" />
     <Compile Include="Fungus\OpenLianQiTiJiao.cs" />
     <Compile Include="Fungus\OpenLunDao.cs" />
     <Compile Include="Fungus\OpenPaiMai.cs" />
+    <Compile Include="Fungus\OpenSetFace.cs" />
+    <Compile Include="Fungus\OpenSleep.cs" />
     <Compile Include="Fungus\OpenTargetLunDao.cs" />
     <Compile Include="Fungus\OpenTieJianHongDian.cs" />
     <Compile Include="Fungus\OpenURL.cs" />
+    <Compile Include="Fungus\OpenZhangLaoTask.cs" />
     <Compile Include="Fungus\OpenZuLi.cs" />
     <Compile Include="Fungus\OutFuBen.cs" />
     <Compile Include="Fungus\PaiMaiSay.cs" />
@@ -1443,6 +1463,7 @@
     <Compile Include="Fungus\SetClickable2D.cs" />
     <Compile Include="Fungus\SetCollider.cs" />
     <Compile Include="Fungus\SetDraggable2D.cs" />
+    <Compile Include="Fungus\SetEndlessEvent.cs" />
     <Compile Include="Fungus\SetInteractable.cs" />
     <Compile Include="Fungus\SetLanguage.cs" />
     <Compile Include="Fungus\SetLinGen.cs" />
@@ -1783,6 +1804,7 @@
     <Compile Include="IJSONClass.cs" />
     <Compile Include="ImageEffectBase.cs" />
     <Compile Include="ImageEffects.cs" />
+    <Compile Include="InitAvatar.cs" />
     <Compile Include="InitCustomAttributes.cs" />
     <Compile Include="InitLinWu.cs" />
     <Compile Include="InitScene.cs" />
@@ -1943,6 +1965,7 @@
     <Compile Include="JSONClass\BuffSeidJsonData214.cs" />
     <Compile Include="JSONClass\BuffSeidJsonData215.cs" />
     <Compile Include="JSONClass\BuffSeidJsonData216.cs" />
+    <Compile Include="JSONClass\BuffSeidJsonData219.cs" />
     <Compile Include="JSONClass\BuffSeidJsonData22.cs" />
     <Compile Include="JSONClass\BuffSeidJsonData24.cs" />
     <Compile Include="JSONClass\BuffSeidJsonData25.cs" />
@@ -2024,6 +2047,7 @@
     <Compile Include="JSONClass\CaiYaoShoYi.cs" />
     <Compile Include="JSONClass\CheckInJsonData.cs" />
     <Compile Include="JSONClass\ChengHaoJsonData.cs" />
+    <Compile Include="JSONClass\ChuanWenTypeData.cs" />
     <Compile Include="JSONClass\ChuanYingFuBiao.cs" />
     <Compile Include="JSONClass\CrateAvatarSeidJsonData1.cs" />
     <Compile Include="JSONClass\CrateAvatarSeidJsonData10.cs" />
@@ -2062,11 +2086,16 @@
     <Compile Include="JSONClass\DFBuKeZhongZhi.cs" />
     <Compile Include="JSONClass\DFLingYanLevel.cs" />
     <Compile Include="JSONClass\DFZhenYanLevel.cs" />
+    <Compile Include="JSONClass\DisableExchangeData.cs" />
     <Compile Include="JSONClass\DiYuShengWangData.cs" />
+    <Compile Include="JSONClass\DongTaiChuanWenBaio.cs" />
     <Compile Include="JSONClass\drawCardJsonData.cs" />
     <Compile Include="JSONClass\DrawCardToLevelJsonData.cs" />
     <Compile Include="JSONClass\DropInfoJsonData.cs" />
     <Compile Include="JSONClass\DropTextJsonData.cs" />
+    <Compile Include="JSONClass\ElderTaskDisableItem.cs" />
+    <Compile Include="JSONClass\ElderTaskItemCost.cs" />
+    <Compile Include="JSONClass\ElderTaskItemType.cs" />
     <Compile Include="JSONClass\EquipSeidJsonData1.cs" />
     <Compile Include="JSONClass\EquipSeidJsonData2.cs" />
     <Compile Include="JSONClass\EquipSeidJsonData3.cs" />
@@ -2079,12 +2108,14 @@
     <Compile Include="JSONClass\FuBenInfoJsonData.cs" />
     <Compile Include="JSONClass\GaoShi.cs" />
     <Compile Include="JSONClass\GaoShiLeiXing.cs" />
+    <Compile Include="JSONClass\GuDingExchangeData.cs" />
     <Compile Include="JSONClass\HairRandomColorJsonData.cs" />
     <Compile Include="JSONClass\helpJsonData.cs" />
     <Compile Include="JSONClass\helpTextJsonData.cs" />
     <Compile Include="JSONClass\heroFaceJsonData.cs" />
     <Compile Include="JSONClass\heroJsonData.cs" />
     <Compile Include="JSONClass\HuaShenData.cs" />
+    <Compile Include="JSONClass\ItemFlagData.cs" />
     <Compile Include="JSONClass\ItemGoodSeid1JsonData.cs" />
     <Compile Include="JSONClass\ItemsSeidJsonData1.cs" />
     <Compile Include="JSONClass\ItemsSeidJsonData10.cs" />
@@ -2114,6 +2145,7 @@
     <Compile Include="JSONClass\ItemsSeidJsonData7.cs" />
     <Compile Include="JSONClass\ItemsSeidJsonData8.cs" />
     <Compile Include="JSONClass\ItemsSeidJsonData9.cs" />
+    <Compile Include="JSONClass\ItemTypeExchangeData.cs" />
     <Compile Include="JSONClass\JianLingQingJiao.cs" />
     <Compile Include="JSONClass\JianLingXianSuo.cs" />
     <Compile Include="JSONClass\JianLingZhenXiang.cs" />
@@ -2213,6 +2245,7 @@
     <Compile Include="JSONClass\PaiMaiZhuChiBiao.cs" />
     <Compile Include="JSONClass\PlayerGoodsSJsonData.cs" />
     <Compile Include="JSONClass\QieCuoJsonData.cs" />
+    <Compile Include="JSONClass\RandomExchangeData.cs" />
     <Compile Include="JSONClass\RenWuDaLeiYouXianJi.cs" />
     <Compile Include="JSONClass\RunawayJsonData.cs" />
     <Compile Include="JSONClass\SaiHonRandomColorJsonData.cs" />
@@ -2251,7 +2284,13 @@
     <Compile Include="JSONClass\SkillSeidJsonData116.cs" />
     <Compile Include="JSONClass\SkillSeidJsonData117.cs" />
     <Compile Include="JSONClass\SkillSeidJsonData118.cs" />
+    <Compile Include="JSONClass\SkillSeidJsonData119.cs" />
     <Compile Include="JSONClass\SkillSeidJsonData12.cs" />
+    <Compile Include="JSONClass\SkillSeidJsonData120.cs" />
+    <Compile Include="JSONClass\SkillSeidJsonData121.cs" />
+    <Compile Include="JSONClass\SkillSeidJsonData122.cs" />
+    <Compile Include="JSONClass\SkillSeidJsonData123.cs" />
+    <Compile Include="JSONClass\SkillSeidJsonData124.cs" />
     <Compile Include="JSONClass\SkillSeidJsonData13.cs" />
     <Compile Include="JSONClass\SkillSeidJsonData14.cs" />
     <Compile Include="JSONClass\SkillSeidJsonData140.cs" />
@@ -2276,7 +2315,10 @@
     <Compile Include="JSONClass\SkillSeidJsonData162.cs" />
     <Compile Include="JSONClass\SkillSeidJsonData163.cs" />
     <Compile Include="JSONClass\SkillSeidJsonData164.cs" />
+    <Compile Include="JSONClass\SkillSeidJsonData165.cs" />
     <Compile Include="JSONClass\SkillSeidJsonData17.cs" />
+    <Compile Include="JSONClass\SkillSeidJsonData170.cs" />
+    <Compile Include="JSONClass\SkillSeidJsonData174.cs" />
     <Compile Include="JSONClass\SkillSeidJsonData2.cs" />
     <Compile Include="JSONClass\SkillSeidJsonData21.cs" />
     <Compile Include="JSONClass\SkillSeidJsonData23.cs" />
@@ -2372,7 +2414,11 @@
     <Compile Include="JSONClass\TianJiDaBi.cs" />
     <Compile Include="JSONClass\TianJiDaBiGongFangKeZhi.cs" />
     <Compile Include="JSONClass\TianJiDaBiReward.cs" />
+    <Compile Include="JSONClass\TianJieLeiJieShangHai.cs" />
+    <Compile Include="JSONClass\TianJieLeiJieType.cs" />
     <Compile Include="JSONClass\TianJieMiShuData.cs" />
+    <Compile Include="JSONClass\TipsExchangeData.cs" />
+    <Compile Include="JSONClass\TouXiangPianYi.cs" />
     <Compile Include="JSONClass\TuJianChunWenBen.cs" />
     <Compile Include="JSONClass\VersionJsonData4.cs" />
     <Compile Include="JSONClass\WenShenRandomColorJsonData.cs" />
@@ -2409,6 +2455,7 @@
     <Compile Include="JSONClass\_skillJsonData.cs" />
     <Compile Include="jsonData.cs" />
     <Compile Include="JSONObject.cs" />
+    <Compile Include="JSONObjectEx.cs" />
     <Compile Include="JSONTemplates.cs" />
     <Compile Include="JueSuanAnimation.cs" />
     <Compile Include="KameraMovement.cs" />
@@ -2826,6 +2873,7 @@
     <Compile Include="LoadingManager.cs" />
     <Compile Include="LoadingScreen.cs" />
     <Compile Include="LoadingScreen2.cs" />
+    <Compile Include="LoadingScreenImages.cs" />
     <Compile Include="loadingTips.2.cs" />
     <Compile Include="LoadingTips.cs" />
     <Compile Include="LoadLevelOnClick.cs" />
@@ -3264,6 +3312,7 @@
     <Compile Include="NPCDeath.cs" />
     <Compile Include="NpcDrop.cs" />
     <Compile Include="NPCEx.cs" />
+    <Compile Include="NPCExQingJiaoType.cs" />
     <Compile Include="NPCFactory.cs" />
     <Compile Include="NpCFight.cs" />
     <Compile Include="NPCFuYe.cs" />
@@ -3303,6 +3352,7 @@
     <Compile Include="OnQingJiaoShiBaiSW.cs" />
     <Compile Include="OnSuoQuFinished.cs" />
     <Compile Include="OnTanChaFail.cs" />
+    <Compile Include="OnWarpNPCTalk.cs" />
     <Compile Include="OnWeiXieFinished.cs" />
     <Compile Include="OnZengLiFinished.cs" />
     <Compile Include="openDanlu.cs" />
@@ -3390,6 +3440,7 @@
     <Compile Include="qipaixianshi.cs" />
     <Compile Include="QiYu\QiYuOption.cs" />
     <Compile Include="QiYu\QiYuUIMag.cs" />
+    <Compile Include="QuanZhongItem.cs" />
     <Compile Include="RacunanjeVremena.cs" />
     <Compile Include="RadarImage.cs" />
     <Compile Include="RandomChestLootSystem.cs" />
@@ -3407,6 +3458,7 @@
     <Compile Include="ReceiveFriend.cs" />
     <Compile Include="ReceiveJoineam.cs" />
     <Compile Include="ReloadSceneOnKeyDown.cs" />
+    <Compile Include="ReplaceDuJieAnimSprite.cs" />
     <Compile Include="ResManager.cs" />
     <Compile Include="ResRefHolder.cs" />
     <Compile Include="Restart.cs" />
@@ -3421,13 +3473,82 @@
     <Compile Include="SaveLoadFactory.cs" />
     <Compile Include="SaveManager.cs" />
     <Compile Include="SavePoint.cs" />
+    <Compile Include="SaveSlotData.cs" />
     <Compile Include="SaveSlotIdentifier.cs" />
     <Compile Include="ScenaReklama.cs" />
     <Compile Include="SceneBtnMag.cs" />
     <Compile Include="SceneEx.cs" />
     <Compile Include="SceneSpecificLoading.cs" />
     <Compile Include="ScriptableSingleton.cs" />
+    <Compile Include="script\AuToSaveDanLoad\INoSaveDanLoad.cs" />
+    <Compile Include="script\EventMsg\EventData.cs" />
+    <Compile Include="script\EventMsg\EventMag.cs" />
+    <Compile Include="script\ExchangeMeeting\Logic\ExchangeDataFactory.cs" />
+    <Compile Include="script\ExchangeMeeting\Logic\ExchangeIO.cs" />
+    <Compile Include="script\ExchangeMeeting\Logic\ExchangeMag.cs" />
+    <Compile Include="script\ExchangeMeeting\Logic\ExchangeSource.cs" />
+    <Compile Include="script\ExchangeMeeting\Logic\Interface\IExchangeData.cs" />
+    <Compile Include="script\ExchangeMeeting\Logic\Interface\IExchangeDataFactory.cs" />
+    <Compile Include="script\ExchangeMeeting\Logic\Interface\IExchangeIO.cs" />
+    <Compile Include="script\ExchangeMeeting\Logic\Interface\IExchangeMag.cs" />
+    <Compile Include="script\ExchangeMeeting\Logic\Interface\IExchangeSource.cs" />
+    <Compile Include="script\ExchangeMeeting\Logic\Interface\IUpdateExchange.cs" />
+    <Compile Include="script\ExchangeMeeting\Logic\Interface\PlayerExchangeData.cs" />
+    <Compile Include="script\ExchangeMeeting\Logic\SysExchangeData.cs" />
+    <Compile Include="script\ExchangeMeeting\Logic\UpdateExchange.cs" />
+    <Compile Include="script\ExchangeMeeting\UI\Base\BasePanelB.cs" />
+    <Compile Include="script\ExchangeMeeting\UI\Base\ExchangeBag.cs" />
+    <Compile Include="script\ExchangeMeeting\UI\Base\ExchangeBagB.cs" />
+    <Compile Include="script\ExchangeMeeting\UI\Base\ExchangeFilterTop.cs" />
+    <Compile Include="script\ExchangeMeeting\UI\Base\ExchangeSlot.cs" />
+    <Compile Include="script\ExchangeMeeting\UI\Base\ExchangeSlotB.cs" />
+    <Compile Include="script\ExchangeMeeting\UI\Base\ExchangeSlotC.cs" />
+    <Compile Include="script\ExchangeMeeting\UI\Ctr\ExchangeCtr.cs" />
+    <Compile Include="script\ExchangeMeeting\UI\Ctr\PublishCtr.cs" />
+    <Compile Include="script\ExchangeMeeting\UI\ExchangeUIMag.cs" />
+    <Compile Include="script\ExchangeMeeting\UI\Factory\IExchangeFactory.cs" />
+    <Compile Include="script\ExchangeMeeting\UI\Factory\PlayerExchangeFactory.cs" />
+    <Compile Include="script\ExchangeMeeting\UI\Factory\ViewExchangeFactory.cs" />
+    <Compile Include="script\ExchangeMeeting\UI\Interface\IExchangeCtr.cs" />
+    <Compile Include="script\ExchangeMeeting\UI\Interface\IExchangeDataUI.cs" />
+    <Compile Include="script\ExchangeMeeting\UI\Interface\IExchangeUI.cs" />
+    <Compile Include="script\ExchangeMeeting\UI\Interface\IExchangeUIMag.cs" />
+    <Compile Include="script\ExchangeMeeting\UI\Interface\IPublishCtr.cs" />
+    <Compile Include="script\ExchangeMeeting\UI\Interface\IPublishDataUI.cs" />
+    <Compile Include="script\ExchangeMeeting\UI\Interface\IPublishUI.cs" />
+    <Compile Include="script\ExchangeMeeting\UI\UI\ExchangeUI.cs" />
+    <Compile Include="script\ExchangeMeeting\UI\UI\PlayerExchangeDataUI.cs" />
+    <Compile Include="script\ExchangeMeeting\UI\UI\PublishDataUI.cs" />
+    <Compile Include="script\ExchangeMeeting\UI\UI\PublishingDataUI.cs" />
+    <Compile Include="script\ExchangeMeeting\UI\UI\PublishUI.cs" />
+    <Compile Include="script\ExchangeMeeting\UI\UI\SysExchangeDataUI.cs" />
+    <Compile Include="script\ItemSource\Interface\ABItemSource.cs" />
+    <Compile Include="script\ItemSource\Interface\ABItemSourceData.cs" />
+    <Compile Include="script\ItemSource\Interface\ABItemSourceIO.cs" />
+    <Compile Include="script\ItemSource\Interface\ABItemSourceMag.cs" />
+    <Compile Include="script\ItemSource\Interface\ABItemSourceUpdate.cs" />
+    <Compile Include="script\ItemSource\ItemSource.cs" />
+    <Compile Include="script\ItemSource\ItemSourceData.cs" />
+    <Compile Include="script\ItemSource\ItemSourceIO.cs" />
+    <Compile Include="script\ItemSource\ItemSourceMag.cs" />
+    <Compile Include="script\ItemSource\ItemSourceUpdate.cs" />
+    <Compile Include="script\MenPaiTask\AllotTask.cs" />
+    <Compile Include="script\MenPaiTask\BaseElderTask.cs" />
+    <Compile Include="script\MenPaiTask\CompleteElderTask.cs" />
+    <Compile Include="script\MenPaiTask\ElderTask.cs" />
+    <Compile Include="script\MenPaiTask\ElderTaskMag.cs" />
+    <Compile Include="script\MenPaiTask\ExecutingElderTask.cs" />
     <Compile Include="script\MenPaiTask\MenPaiTaskMag.cs" />
+    <Compile Include="script\MenPaiTask\WaitAcceptElderTask.cs" />
+    <Compile Include="script\MenPaiTask\ZhangLao\ElderTaskSys\UpdateTaskProcess.cs" />
+    <Compile Include="script\MenPaiTask\ZhangLao\UI\Base\ElderTaskBag.cs" />
+    <Compile Include="script\MenPaiTask\ZhangLao\UI\Base\ElderTaskFilterTop.cs" />
+    <Compile Include="script\MenPaiTask\ZhangLao\UI\Base\ElderTaskSlot.cs" />
+    <Compile Include="script\MenPaiTask\ZhangLao\UI\Ctr\CreateElderTaskCtr.cs" />
+    <Compile Include="script\MenPaiTask\ZhangLao\UI\Ctr\ElderTaskCtr.cs" />
+    <Compile Include="script\MenPaiTask\ZhangLao\UI\ElderTaskUIMag.cs" />
+    <Compile Include="script\MenPaiTask\ZhangLao\UI\UI\CreateElderTaskUI.cs" />
+    <Compile Include="script\MenPaiTask\ZhangLao\UI\UI\ElderTaskUI.cs" />
     <Compile Include="script\NewLianDan\Base\BasePanel.cs" />
     <Compile Include="script\NewLianDan\DanFang\BigDanFang.cs" />
     <Compile Include="script\NewLianDan\DanFang\DanFangBase.cs" />
@@ -3441,14 +3562,46 @@
     <Compile Include="script\NewLianDan\LianDan\LianDanSelect.cs" />
     <Compile Include="script\NewLianDan\PutDanLu\PutDanLuPanel.cs" />
     <Compile Include="script\NewLianDan\Result\LianDanResult.cs" />
+    <Compile Include="script\NewNpcJiaoHu\NpcJieSuanData.cs" />
     <Compile Include="script\newUI\MainUI\MainPanel\MainDropdown.cs" />
+    <Compile Include="script\NpcAction\Action\ActionUseItem.cs" />
+    <Compile Include="script\NpcAction\Action\ActionXiuLian.cs" />
     <Compile Include="script\NpcAction\GroupPool.cs" />
     <Compile Include="script\NpcAction\NpcActionMag.cs" />
     <Compile Include="script\NpcAction\NpcData.cs" />
     <Compile Include="script\NpcAction\NpcDataGroup.cs" />
+    <Compile Include="script\SetFace\MainUISetFaceB.cs" />
+    <Compile Include="script\SetFace\SetColor.cs" />
+    <Compile Include="script\Sleep\ISleepMag.cs" />
+    <Compile Include="script\Sleep\SleepMag.cs" />
+    <Compile Include="script\Steam\Ctr\ModMagCtr.cs" />
+    <Compile Include="script\Steam\Ctr\ModUIPoolCtr.cs" />
+    <Compile Include="script\Steam\Ctr\UploadCtr.cs" />
+    <Compile Include="script\Steam\Ctr\WorkShopCtr.cs" />
+    <Compile Include="script\Steam\ModInfo.cs" />
+    <Compile Include="script\Steam\UI\Base\ModUI.cs" />
+    <Compile Include="script\Steam\UI\DependencyUI.cs" />
+    <Compile Include="script\Steam\UI\ModMagUI.cs" />
+    <Compile Include="script\Steam\UI\ModPoolUI.cs" />
+    <Compile Include="script\Steam\UI\MoreModInfoUI.cs" />
+    <Compile Include="script\Steam\UI\UploadModUI.cs" />
+    <Compile Include="script\Steam\UI\WorkShopUI.cs" />
+    <Compile Include="script\Steam\Utils\DllOpenFileDialog.cs" />
+    <Compile Include="script\Steam\Utils\DownUtils.cs" />
+    <Compile Include="script\Steam\Utils\FileUtils.cs" />
+    <Compile Include="script\Steam\Utils\OpenDialogDir.cs" />
+    <Compile Include="script\Steam\Utils\OpenDialogFile.cs" />
+    <Compile Include="script\Steam\Utils\TextUtils.cs" />
+    <Compile Include="script\Steam\Utils\UIToggleA.cs" />
+    <Compile Include="script\Steam\Utils\UIToggleGroup.cs" />
+    <Compile Include="script\Steam\Utils\UploadModProgress.cs" />
+    <Compile Include="script\Steam\WorkShopItem.cs" />
+    <Compile Include="script\Steam\WorkShopMag.cs" />
+    <Compile Include="script\Steam\WorkShopVisibility.cs" />
     <Compile Include="script\Submit\SubmitOpenMag.cs" />
     <Compile Include="script\Submit\SubmitSlot.cs" />
     <Compile Include="script\Submit\SubmitUIMag.cs" />
+    <Compile Include="script\world_script\SkillCheck.cs" />
     <Compile Include="script\YarnEditor\Command\AddCommand.cs" />
     <Compile Include="script\YarnEditor\Command\GetCommand.cs" />
     <Compile Include="script\YarnEditor\Command\SetCommand.cs" />
@@ -3502,6 +3655,7 @@
     <Compile Include="SetColorOnSelection.cs" />
     <Compile Include="setDoFaAvatarcell.cs" />
     <Compile Include="setDouFaBaoCun.cs" />
+    <Compile Include="SetFaceUI.cs" />
     <Compile Include="setImageSprite.cs" />
     <Compile Include="SetRandomStarsManager.cs" />
     <Compile Include="SetSkillBan.cs" />
@@ -3705,7 +3859,6 @@
     <Compile Include="Tab\TabFangAn.cs" />
     <Compile Include="Tab\TabFangAnPanel.cs" />
     <Compile Include="Tab\TabGongFaPanel.cs" />
-    <Compile Include="Tab\TabListener.cs" />
     <Compile Include="Tab\TabLoadPanel.cs" />
     <Compile Include="Tab\TabSavePanel.cs" />
     <Compile Include="Tab\TabSelectCell.cs" />
@@ -3721,6 +3874,7 @@
     <Compile Include="Tab\TabWuDaoPanel.cs" />
     <Compile Include="Tab\TabWuDaoToggle.cs" />
     <Compile Include="Tab\TabWuPingPanel.cs" />
+    <Compile Include="Tab\UIListener.cs" />
     <Compile Include="Tab\WuDaoSlot.cs" />
     <Compile Include="Tab\WuDaoTooltip.cs" />
     <Compile Include="talkCompont.cs" />
@@ -3758,6 +3912,7 @@
     <Compile Include="ThreeSceneMagFab.cs" />
     <Compile Include="ThrowBombSkill.cs" />
     <Compile Include="TianFuCell.cs" />
+    <Compile Include="TianJieEffectManager.cs" />
     <Compile Include="TianJieManager.cs" />
     <Compile Include="TianJieMiShuLingWuFightEventProcessor.cs" />
     <Compile Include="TiKuData.cs" />
@@ -3805,6 +3960,7 @@
     <Compile Include="TwirlEffect.cs" />
     <Compile Include="TypewriterEffect.cs" />
     <Compile Include="TySelect.cs" />
+    <Compile Include="UBigCheckBox.cs" />
     <Compile Include="UbrzanjeTest.cs" />
     <Compile Include="UCheckBox.cs" />
     <Compile Include="UGUIToggleGameobject.cs" />
@@ -3835,6 +3991,8 @@
     <Compile Include="UICanvasManager.cs" />
     <Compile Include="UICenterOnChild.cs" />
     <Compile Include="UICenterOnClick.cs" />
+    <Compile Include="UICloudSavePanel.cs" />
+    <Compile Include="UICloudSaveSlot.cs" />
     <Compile Include="UIController.cs" />
     <Compile Include="UICursor.cs" />
     <Compile Include="UIDataTip.cs" />
@@ -4274,6 +4432,7 @@
     <Compile Include="WindowAutoYaw.cs" />
     <Compile Include="WindowDragTilt.cs" />
     <Compile Include="WorkingStation.cs" />
+    <Compile Include="WorkshopTool.cs" />
     <Compile Include="World.cs" />
     <Compile Include="WuDaoCellTooltip.cs" />
     <Compile Include="WuDaoContentCell.cs" />
@@ -4363,6 +4522,7 @@
     <Compile Include="YSGame\FightBtnGroup.cs" />
     <Compile Include="YSGame\FightClickMag.cs" />
     <Compile Include="YSGame\FightStaticDrawCard.cs" />
+    <Compile Include="YSGame\Fight\FightFaBaoOffset.cs" />
     <Compile Include="YSGame\Fight\FightFaBaoShow.cs" />
     <Compile Include="YSGame\Fight\LingQiCacheType.cs" />
     <Compile Include="YSGame\Fight\LingQiType.cs" />
@@ -4449,12 +4609,15 @@
     <Compile Include="YSGame\YSSaveGame.cs" />
     <Compile Include="YSImageRandomInfo.cs" />
     <Compile Include="YSJSONHelper.cs" />
+    <Compile Include="YSNewSaveSystem.cs" />
     <Compile Include="YsPlayerSprite.cs" />
     <Compile Include="YSSpineAnimBehaviour.cs" />
+    <Compile Include="YSZip.cs" />
     <Compile Include="ZengLiArg.cs" />
     <Compile Include="ZhongLingLiManager.cs" />
     <Compile Include="ZhuJiManager.cs" />
     <Compile Include="ZoomInOut.cs" />
+    <Compile Include="游戏难度.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

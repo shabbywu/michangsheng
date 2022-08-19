@@ -3,19 +3,19 @@ using UnityEngine;
 
 namespace Fungus
 {
-	// Token: 0x0200137A RID: 4986
+	// Token: 0x02000ED9 RID: 3801
 	[VariableInfo("Other", "Color", 0)]
 	[AddComponentMenu("")]
 	[Serializable]
 	public class ColorVariable : VariableBase<Color>
 	{
-		// Token: 0x060078CD RID: 30925 RVA: 0x000521A6 File Offset: 0x000503A6
+		// Token: 0x06006B2E RID: 27438 RVA: 0x00295CA1 File Offset: 0x00293EA1
 		protected static bool ColorsEqual(Color a, Color b)
 		{
 			return ColorUtility.ToHtmlStringRGBA(a) == ColorUtility.ToHtmlStringRGBA(b);
 		}
 
-		// Token: 0x060078CE RID: 30926 RVA: 0x002B7D40 File Offset: 0x002B5F40
+		// Token: 0x06006B2F RID: 27439 RVA: 0x00295CB4 File Offset: 0x00293EB4
 		public virtual bool Evaluate(CompareOperator compareOperator, Color value)
 		{
 			bool result = false;
@@ -37,7 +37,7 @@ namespace Fungus
 			return result;
 		}
 
-		// Token: 0x060078CF RID: 30927 RVA: 0x002B7D9C File Offset: 0x002B5F9C
+		// Token: 0x06006B30 RID: 27440 RVA: 0x00295D10 File Offset: 0x00293F10
 		public override void Apply(SetOperator setOperator, Color value)
 		{
 			switch (setOperator)
@@ -58,14 +58,14 @@ namespace Fungus
 			Debug.LogError("The " + setOperator.ToString() + " set operator is not valid.");
 		}
 
-		// Token: 0x040068D9 RID: 26841
+		// Token: 0x04005A70 RID: 23152
 		public static readonly CompareOperator[] compareOperators = new CompareOperator[]
 		{
 			CompareOperator.Equals,
 			CompareOperator.NotEquals
 		};
 
-		// Token: 0x040068DA RID: 26842
+		// Token: 0x04005A71 RID: 23153
 		public static readonly SetOperator[] setOperators = new SetOperator[]
 		{
 			SetOperator.Assign,

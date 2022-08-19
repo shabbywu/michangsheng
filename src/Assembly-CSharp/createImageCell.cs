@@ -3,15 +3,15 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-// Token: 0x0200058F RID: 1423
+// Token: 0x020003EE RID: 1006
 public class createImageCell : MonoBehaviour
 {
-	// Token: 0x06002411 RID: 9233 RVA: 0x000042DD File Offset: 0x000024DD
+	// Token: 0x0600207E RID: 8318 RVA: 0x00004095 File Offset: 0x00002295
 	private void Start()
 	{
 	}
 
-	// Token: 0x06002412 RID: 9234 RVA: 0x00127134 File Offset: 0x00125334
+	// Token: 0x0600207F RID: 8319 RVA: 0x000E4E28 File Offset: 0x000E3028
 	public void resetAvatarFace()
 	{
 		CreateAvatarMag component = GameObject.Find("CreatAvatar").GetComponent<CreateAvatarMag>();
@@ -20,7 +20,7 @@ public class createImageCell : MonoBehaviour
 		component.player.randomAvatar(1);
 	}
 
-	// Token: 0x06002413 RID: 9235 RVA: 0x001271BC File Offset: 0x001253BC
+	// Token: 0x06002080 RID: 8320 RVA: 0x000E4EB0 File Offset: 0x000E30B0
 	public void SetImage(Sprite sprite1 = null, Sprite sprite2 = null, Sprite sprite3 = null)
 	{
 		if (sprite1 == null)
@@ -47,36 +47,36 @@ public class createImageCell : MonoBehaviour
 		this.image3.sprite = sprite3;
 	}
 
-	// Token: 0x06002414 RID: 9236 RVA: 0x0001D1B1 File Offset: 0x0001B3B1
+	// Token: 0x06002081 RID: 8321 RVA: 0x000E4F25 File Offset: 0x000E3125
 	public void SetColor(Color color)
 	{
 		this.image1.color = color;
 	}
 
-	// Token: 0x06002415 RID: 9237 RVA: 0x0001D1BF File Offset: 0x0001B3BF
+	// Token: 0x06002082 RID: 8322 RVA: 0x000E4F33 File Offset: 0x000E3133
 	public Color GetColor()
 	{
 		return this.image1.color;
 	}
 
-	// Token: 0x04001F12 RID: 7954
+	// Token: 0x04001A6A RID: 6762
 	public int SkinIndex;
 
-	// Token: 0x04001F13 RID: 7955
+	// Token: 0x04001A6B RID: 6763
 	public string SkinType;
 
-	// Token: 0x04001F14 RID: 7956
+	// Token: 0x04001A6C RID: 6764
 	[SerializeField]
 	private Image image1;
 
-	// Token: 0x04001F15 RID: 7957
+	// Token: 0x04001A6D RID: 6765
 	[SerializeField]
 	private Image image2;
 
-	// Token: 0x04001F16 RID: 7958
+	// Token: 0x04001A6E RID: 6766
 	[SerializeField]
 	private Image image3;
 
-	// Token: 0x04001F17 RID: 7959
+	// Token: 0x04001A6F RID: 6767
 	public Toggle toggle;
 }

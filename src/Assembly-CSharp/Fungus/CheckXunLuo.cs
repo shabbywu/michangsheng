@@ -4,12 +4,12 @@ using UnityEngine;
 
 namespace Fungus
 {
-	// Token: 0x02001436 RID: 5174
+	// Token: 0x02000F7F RID: 3967
 	[CommandInfo("YSTools", "CheckXunLuo", "检查是否巡逻到玩家", 0)]
 	[AddComponentMenu("")]
 	public class CheckXunLuo : Command
 	{
-		// Token: 0x06007D22 RID: 32034 RVA: 0x002C6400 File Offset: 0x002C4600
+		// Token: 0x06006F32 RID: 28466 RVA: 0x002A68E4 File Offset: 0x002A4AE4
 		public override void OnEnter()
 		{
 			if (NpcJieSuanManager.inst.isCanJieSuan)
@@ -31,18 +31,18 @@ namespace Fungus
 			this.Continue();
 		}
 
-		// Token: 0x06007D23 RID: 32035 RVA: 0x000113CF File Offset: 0x0000F5CF
+		// Token: 0x06006F33 RID: 28467 RVA: 0x0005E228 File Offset: 0x0005C428
 		public override Color GetButtonColor()
 		{
 			return new Color32(184, 210, 235, byte.MaxValue);
 		}
 
-		// Token: 0x06007D24 RID: 32036 RVA: 0x000042DD File Offset: 0x000024DD
+		// Token: 0x06006F34 RID: 28468 RVA: 0x00004095 File Offset: 0x00002295
 		public override void OnReset()
 		{
 		}
 
-		// Token: 0x04006ACA RID: 27338
+		// Token: 0x04005BF6 RID: 23542
 		[Tooltip("npcId")]
 		[VariableProperty(new Type[]
 		{

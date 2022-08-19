@@ -4,10 +4,10 @@ using UnityEngine;
 
 namespace SuperScrollView
 {
-	// Token: 0x020009F8 RID: 2552
+	// Token: 0x020006CB RID: 1739
 	public class ItemPool
 	{
-		// Token: 0x0600416E RID: 16750 RVA: 0x001C1C30 File Offset: 0x001BFE30
+		// Token: 0x0600374E RID: 14158 RVA: 0x00179838 File Offset: 0x00177A38
 		public void Init(GameObject prefabObj, float padding, float startPosOffset, int createCount, RectTransform parent)
 		{
 			this.mPrefabObj = prefabObj;
@@ -24,7 +24,7 @@ namespace SuperScrollView
 			}
 		}
 
-		// Token: 0x0600416F RID: 16751 RVA: 0x001C1CA0 File Offset: 0x001BFEA0
+		// Token: 0x0600374F RID: 14159 RVA: 0x001798A8 File Offset: 0x00177AA8
 		public LoopListViewItem2 GetItem()
 		{
 			ItemPool.mCurItemIdCount++;
@@ -55,7 +55,7 @@ namespace SuperScrollView
 			return loopListViewItem;
 		}
 
-		// Token: 0x06004170 RID: 16752 RVA: 0x001C1D5C File Offset: 0x001BFF5C
+		// Token: 0x06003750 RID: 14160 RVA: 0x00179964 File Offset: 0x00177B64
 		public void DestroyAllItem()
 		{
 			this.ClearTmpRecycledItem();
@@ -67,7 +67,7 @@ namespace SuperScrollView
 			this.mPooledItemList.Clear();
 		}
 
-		// Token: 0x06004171 RID: 16753 RVA: 0x001C1DA8 File Offset: 0x001BFFA8
+		// Token: 0x06003751 RID: 14161 RVA: 0x001799B0 File Offset: 0x00177BB0
 		public LoopListViewItem2 CreateItem()
 		{
 			GameObject gameObject = Object.Instantiate<GameObject>(this.mPrefabObj, Vector3.zero, Quaternion.identity, this.mItemParent);
@@ -82,20 +82,20 @@ namespace SuperScrollView
 			return component2;
 		}
 
-		// Token: 0x06004172 RID: 16754 RVA: 0x0002EE5F File Offset: 0x0002D05F
+		// Token: 0x06003752 RID: 14162 RVA: 0x00179A22 File Offset: 0x00177C22
 		private void RecycleItemReal(LoopListViewItem2 item)
 		{
 			item.gameObject.SetActive(false);
 			this.mPooledItemList.Add(item);
 		}
 
-		// Token: 0x06004173 RID: 16755 RVA: 0x0002EE79 File Offset: 0x0002D079
+		// Token: 0x06003753 RID: 14163 RVA: 0x00179A3C File Offset: 0x00177C3C
 		public void RecycleItem(LoopListViewItem2 item)
 		{
 			this.mTmpPooledItemList.Add(item);
 		}
 
-		// Token: 0x06004174 RID: 16756 RVA: 0x001C1E1C File Offset: 0x001C001C
+		// Token: 0x06003754 RID: 14164 RVA: 0x00179A4C File Offset: 0x00177C4C
 		public void ClearTmpRecycledItem()
 		{
 			int count = this.mTmpPooledItemList.Count;
@@ -110,31 +110,31 @@ namespace SuperScrollView
 			this.mTmpPooledItemList.Clear();
 		}
 
-		// Token: 0x04003A23 RID: 14883
+		// Token: 0x04003013 RID: 12307
 		private GameObject mPrefabObj;
 
-		// Token: 0x04003A24 RID: 14884
+		// Token: 0x04003014 RID: 12308
 		private string mPrefabName;
 
-		// Token: 0x04003A25 RID: 14885
+		// Token: 0x04003015 RID: 12309
 		private int mInitCreateCount = 1;
 
-		// Token: 0x04003A26 RID: 14886
+		// Token: 0x04003016 RID: 12310
 		private float mPadding;
 
-		// Token: 0x04003A27 RID: 14887
+		// Token: 0x04003017 RID: 12311
 		private float mStartPosOffset;
 
-		// Token: 0x04003A28 RID: 14888
+		// Token: 0x04003018 RID: 12312
 		private List<LoopListViewItem2> mTmpPooledItemList = new List<LoopListViewItem2>();
 
-		// Token: 0x04003A29 RID: 14889
+		// Token: 0x04003019 RID: 12313
 		private List<LoopListViewItem2> mPooledItemList = new List<LoopListViewItem2>();
 
-		// Token: 0x04003A2A RID: 14890
+		// Token: 0x0400301A RID: 12314
 		private static int mCurItemIdCount;
 
-		// Token: 0x04003A2B RID: 14891
+		// Token: 0x0400301B RID: 12315
 		private RectTransform mItemParent;
 	}
 }

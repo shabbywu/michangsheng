@@ -5,12 +5,12 @@ using KBEngine;
 using UnityEngine;
 using UnityEngine.UI;
 
-// Token: 0x02000326 RID: 806
+// Token: 0x0200020E RID: 526
 public class UILingTianPanel : MonoBehaviour, IESCClose
 {
-	// Token: 0x17000281 RID: 641
-	// (get) Token: 0x060017BE RID: 6078 RVA: 0x00014F41 File Offset: 0x00013141
-	// (set) Token: 0x060017BF RID: 6079 RVA: 0x00014F49 File Offset: 0x00013149
+	// Token: 0x17000239 RID: 569
+	// (get) Token: 0x0600150D RID: 5389 RVA: 0x000869AB File Offset: 0x00084BAB
+	// (set) Token: 0x0600150E RID: 5390 RVA: 0x000869B3 File Offset: 0x00084BB3
 	[HideInInspector]
 	public bool IsShouGe
 	{
@@ -30,13 +30,13 @@ public class UILingTianPanel : MonoBehaviour, IESCClose
 		}
 	}
 
-	// Token: 0x060017C0 RID: 6080 RVA: 0x00014F78 File Offset: 0x00013178
+	// Token: 0x0600150F RID: 5391 RVA: 0x000869E2 File Offset: 0x00084BE2
 	private void Awake()
 	{
 		UILingTianPanel.Inst = this;
 	}
 
-	// Token: 0x060017C1 RID: 6081 RVA: 0x000CF114 File Offset: 0x000CD314
+	// Token: 0x06001510 RID: 5392 RVA: 0x000869EC File Offset: 0x00084BEC
 	public void RefreshUI()
 	{
 		this.IsShouGe = false;
@@ -84,7 +84,7 @@ public class UILingTianPanel : MonoBehaviour, IESCClose
 		}
 	}
 
-	// Token: 0x060017C2 RID: 6082 RVA: 0x000CF354 File Offset: 0x000CD554
+	// Token: 0x06001511 RID: 5393 RVA: 0x00086C2C File Offset: 0x00084E2C
 	public void CalcSpeed(int exLingShi = 0)
 	{
 		Avatar player = PlayerEx.Player;
@@ -112,7 +112,7 @@ public class UILingTianPanel : MonoBehaviour, IESCClose
 		this.CuiShengLingShi50Year = 600 * lingtiancuishengsudu;
 	}
 
-	// Token: 0x060017C3 RID: 6083 RVA: 0x000CF4A8 File Offset: 0x000CD6A8
+	// Token: 0x06001512 RID: 5394 RVA: 0x00086D80 File Offset: 0x00084F80
 	public void OnShouGeBtnClick()
 	{
 		this.IsShouGe = !this.IsShouGe;
@@ -126,20 +126,20 @@ public class UILingTianPanel : MonoBehaviour, IESCClose
 		this.ShouGeBtn2.SetActive(false);
 	}
 
-	// Token: 0x060017C4 RID: 6084 RVA: 0x00014F80 File Offset: 0x00013180
+	// Token: 0x06001513 RID: 5395 RVA: 0x00086DD5 File Offset: 0x00084FD5
 	public bool HasLvPing()
 	{
 		return PlayerEx.Player.hasItem(10046);
 	}
 
-	// Token: 0x060017C5 RID: 6085 RVA: 0x00014F91 File Offset: 0x00013191
+	// Token: 0x06001514 RID: 5396 RVA: 0x00086DE6 File Offset: 0x00084FE6
 	public void OnLiKaiBtnClick()
 	{
 		this.IsShouGe = false;
 		UIDongFu.Inst.HideLingTianPanel();
 	}
 
-	// Token: 0x060017C6 RID: 6086 RVA: 0x00014FA4 File Offset: 0x000131A4
+	// Token: 0x06001515 RID: 5397 RVA: 0x00086DF9 File Offset: 0x00084FF9
 	public void OnLvPingBtnClick()
 	{
 		if (PlayerEx.Player.money > 0UL)
@@ -150,59 +150,59 @@ public class UILingTianPanel : MonoBehaviour, IESCClose
 		UIPopTip.Inst.Pop("没有灵石无法使用", PopTipIconType.叹号);
 	}
 
-	// Token: 0x060017C7 RID: 6087 RVA: 0x00014FCA File Offset: 0x000131CA
+	// Token: 0x06001516 RID: 5398 RVA: 0x00086E1F File Offset: 0x0008501F
 	public bool TryEscClose()
 	{
 		this.OnLiKaiBtnClick();
 		return true;
 	}
 
-	// Token: 0x0400131E RID: 4894
+	// Token: 0x04000FCE RID: 4046
 	public static UILingTianPanel Inst;
 
-	// Token: 0x0400131F RID: 4895
+	// Token: 0x04000FCF RID: 4047
 	public List<UILingTianCell> LingTianList;
 
-	// Token: 0x04001320 RID: 4896
+	// Token: 0x04000FD0 RID: 4048
 	public Text LingLiSpeedText;
 
-	// Token: 0x04001321 RID: 4897
+	// Token: 0x04000FD1 RID: 4049
 	public UIInventory PlayerInventory;
 
-	// Token: 0x04001322 RID: 4898
+	// Token: 0x04000FD2 RID: 4050
 	public GameObject ShouGeBtn1;
 
-	// Token: 0x04001323 RID: 4899
+	// Token: 0x04000FD3 RID: 4051
 	public GameObject ShouGeBtn2;
 
-	// Token: 0x04001324 RID: 4900
+	// Token: 0x04000FD4 RID: 4052
 	public Texture2D ShouGeCur;
 
-	// Token: 0x04001325 RID: 4901
+	// Token: 0x04000FD5 RID: 4053
 	public GameObject LvPingBtn1;
 
-	// Token: 0x04001326 RID: 4902
+	// Token: 0x04000FD6 RID: 4054
 	public GameObject LvPingbtn2;
 
-	// Token: 0x04001327 RID: 4903
+	// Token: 0x04000FD7 RID: 4055
 	public Text LvPingShengYuTime;
 
-	// Token: 0x04001328 RID: 4904
+	// Token: 0x04000FD8 RID: 4056
 	[HideInInspector]
 	public float BaseSpeedPer;
 
-	// Token: 0x04001329 RID: 4905
+	// Token: 0x04000FD9 RID: 4057
 	[HideInInspector]
 	public float CuiShengSpeedPer;
 
-	// Token: 0x0400132A RID: 4906
+	// Token: 0x04000FDA RID: 4058
 	[HideInInspector]
 	public int CuiShengTime;
 
-	// Token: 0x0400132B RID: 4907
+	// Token: 0x04000FDB RID: 4059
 	[HideInInspector]
 	public int CuiShengLingShi50Year;
 
-	// Token: 0x0400132C RID: 4908
+	// Token: 0x04000FDC RID: 4060
 	private bool isShouGe;
 }

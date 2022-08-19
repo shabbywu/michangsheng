@@ -4,10 +4,10 @@ using GUIPackage;
 using KBEngine;
 using UnityEngine;
 
-// Token: 0x020005F3 RID: 1523
+// Token: 0x0200043C RID: 1084
 public class TuPoGongFa : MonoBehaviour
 {
-	// Token: 0x06002637 RID: 9783 RVA: 0x0001E7DB File Offset: 0x0001C9DB
+	// Token: 0x06002278 RID: 8824 RVA: 0x000ED167 File Offset: 0x000EB367
 	private void Start()
 	{
 		this.keyCell = base.GetComponent<KeyCell>();
@@ -15,7 +15,7 @@ public class TuPoGongFa : MonoBehaviour
 		this.skilldatabase = SkillStaticDatebase.instence.dicSkills;
 	}
 
-	// Token: 0x06002638 RID: 9784 RVA: 0x0001E809 File Offset: 0x0001CA09
+	// Token: 0x06002279 RID: 8825 RVA: 0x000ED195 File Offset: 0x000EB395
 	public void setFirstCell()
 	{
 		if (this.skill_UIST.skill[0].skill_ID != -1)
@@ -25,7 +25,7 @@ public class TuPoGongFa : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06002639 RID: 9785 RVA: 0x0012E0A0 File Offset: 0x0012C2A0
+	// Token: 0x0600227A RID: 8826 RVA: 0x000ED1D4 File Offset: 0x000EB3D4
 	public void clearCell()
 	{
 		this.Name.text = "";
@@ -42,55 +42,55 @@ public class TuPoGongFa : MonoBehaviour
 		}
 	}
 
-	// Token: 0x0600263A RID: 9786 RVA: 0x0001E847 File Offset: 0x0001CA47
+	// Token: 0x0600227B RID: 8827 RVA: 0x000ED2C4 File Offset: 0x000EB4C4
 	private void setFlagSwitchTrue()
 	{
 		this.flagSwitch = true;
 	}
 
-	// Token: 0x0600263B RID: 9787 RVA: 0x000042DD File Offset: 0x000024DD
+	// Token: 0x0600227C RID: 8828 RVA: 0x00004095 File Offset: 0x00002295
 	public void TuPo()
 	{
 	}
 
-	// Token: 0x0600263C RID: 9788 RVA: 0x0001E850 File Offset: 0x0001CA50
+	// Token: 0x0600227D RID: 8829 RVA: 0x000ED2CD File Offset: 0x000EB4CD
 	public void resetNowIndex()
 	{
 		this.keyCell.keySkill = this.skill_UIST.skill[this.NowIndex];
 	}
 
-	// Token: 0x0600263D RID: 9789 RVA: 0x000042DD File Offset: 0x000024DD
+	// Token: 0x0600227E RID: 8830 RVA: 0x00004095 File Offset: 0x00002295
 	private void Update()
 	{
 	}
 
-	// Token: 0x040020A7 RID: 8359
+	// Token: 0x04001BDB RID: 7131
 	public UILabel Name;
 
-	// Token: 0x040020A8 RID: 8360
+	// Token: 0x04001BDC RID: 7132
 	public GameObject desc;
 
-	// Token: 0x040020A9 RID: 8361
+	// Token: 0x04001BDD RID: 7133
 	public UILabel Time;
 
-	// Token: 0x040020AA RID: 8362
+	// Token: 0x04001BDE RID: 7134
 	public GameObject grid;
 
-	// Token: 0x040020AB RID: 8363
+	// Token: 0x04001BDF RID: 7135
 	public int NowIndex;
 
-	// Token: 0x040020AC RID: 8364
+	// Token: 0x04001BE0 RID: 7136
 	public Skill_UIST skill_UIST;
 
-	// Token: 0x040020AD RID: 8365
+	// Token: 0x04001BE1 RID: 7137
 	private KeyCell keyCell;
 
-	// Token: 0x040020AE RID: 8366
+	// Token: 0x04001BE2 RID: 7138
 	private Avatar avatar;
 
-	// Token: 0x040020AF RID: 8367
+	// Token: 0x04001BE3 RID: 7139
 	private Dictionary<int, GUIPackage.Skill> skilldatabase;
 
-	// Token: 0x040020B0 RID: 8368
+	// Token: 0x04001BE4 RID: 7140
 	private bool flagSwitch = true;
 }

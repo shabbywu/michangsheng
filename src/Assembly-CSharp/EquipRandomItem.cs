@@ -2,11 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-// Token: 0x02000045 RID: 69
+// Token: 0x02000032 RID: 50
 [AddComponentMenu("NGUI/Examples/Equip Random Item")]
 public class EquipRandomItem : MonoBehaviour
 {
-	// Token: 0x0600044C RID: 1100 RVA: 0x0006DF1C File Offset: 0x0006C11C
+	// Token: 0x06000404 RID: 1028 RVA: 0x000166F4 File Offset: 0x000148F4
 	private void OnClick()
 	{
 		if (this.equipment == null)
@@ -27,6 +27,6 @@ public class EquipRandomItem : MonoBehaviour
 		this.equipment.Equip(invGameItem);
 	}
 
-	// Token: 0x04000277 RID: 631
+	// Token: 0x04000231 RID: 561
 	public InvEquipment equipment;
 }

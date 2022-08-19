@@ -5,11 +5,11 @@ using YSGame;
 
 namespace Tab
 {
-	// Token: 0x02000A49 RID: 2633
+	// Token: 0x020006FE RID: 1790
 	[Serializable]
 	public class SysSelectCell : UIBase
 	{
-		// Token: 0x060043F3 RID: 17395 RVA: 0x001D0E24 File Offset: 0x001CF024
+		// Token: 0x06003976 RID: 14710 RVA: 0x001896B4 File Offset: 0x001878B4
 		public SysSelectCell(GameObject go, ISysPanelBase panel)
 		{
 			this._go = go;
@@ -22,14 +22,14 @@ namespace Tab
 			this._panel = panel;
 		}
 
-		// Token: 0x060043F4 RID: 17396 RVA: 0x000309A3 File Offset: 0x0002EBA3
+		// Token: 0x06003977 RID: 14711 RVA: 0x00189753 File Offset: 0x00187953
 		public void SetIsSelect(bool flag)
 		{
 			this._isActive = flag;
 			this.UpdateUI();
 		}
 
-		// Token: 0x060043F5 RID: 17397 RVA: 0x001D0EC4 File Offset: 0x001CF0C4
+		// Token: 0x06003978 RID: 14712 RVA: 0x00189764 File Offset: 0x00187964
 		private void UpdateUI()
 		{
 			if (this._isActive)
@@ -44,7 +44,7 @@ namespace Tab
 			this._panel.Hide();
 		}
 
-		// Token: 0x060043F6 RID: 17398 RVA: 0x000309B2 File Offset: 0x0002EBB2
+		// Token: 0x06003979 RID: 14713 RVA: 0x001897C0 File Offset: 0x001879C0
 		public void Click()
 		{
 			if (!this._isActive)
@@ -54,16 +54,16 @@ namespace Tab
 			}
 		}
 
-		// Token: 0x04003C09 RID: 15369
+		// Token: 0x04003191 RID: 12689
 		private bool _isActive;
 
-		// Token: 0x04003C0A RID: 15370
+		// Token: 0x04003192 RID: 12690
 		private GameObject _unSelect;
 
-		// Token: 0x04003C0B RID: 15371
+		// Token: 0x04003193 RID: 12691
 		private GameObject _select;
 
-		// Token: 0x04003C0C RID: 15372
+		// Token: 0x04003194 RID: 12692
 		private ISysPanelBase _panel;
 	}
 }

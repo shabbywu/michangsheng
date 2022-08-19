@@ -3,10 +3,10 @@ using UnityEngine;
 
 namespace YSGame.Fight
 {
-	// Token: 0x02000E07 RID: 3591
+	// Token: 0x02000AC9 RID: 2761
 	public class UIFightSelectLingQi : MonoBehaviour
 	{
-		// Token: 0x060056B9 RID: 22201 RVA: 0x00241AC0 File Offset: 0x0023FCC0
+		// Token: 0x06004D6A RID: 19818 RVA: 0x00211790 File Offset: 0x0020F990
 		private void Awake()
 		{
 			this.Jin.mouseUpEvent.AddListener(delegate()
@@ -31,13 +31,13 @@ namespace YSGame.Fight
 			});
 		}
 
-		// Token: 0x060056BA RID: 22202 RVA: 0x0003DFE6 File Offset: 0x0003C1E6
+		// Token: 0x06004D6B RID: 19819 RVA: 0x00211829 File Offset: 0x0020FA29
 		public void SetSelectAction(Action<LingQiType> callback)
 		{
 			this.onSelectLingQi = callback;
 		}
 
-		// Token: 0x060056BB RID: 22203 RVA: 0x0003DFEF File Offset: 0x0003C1EF
+		// Token: 0x06004D6C RID: 19820 RVA: 0x00211832 File Offset: 0x0020FA32
 		private void OnSelectLingQi(LingQiType lingQiType)
 		{
 			base.gameObject.SetActive(false);
@@ -47,22 +47,22 @@ namespace YSGame.Fight
 			}
 		}
 
-		// Token: 0x04005664 RID: 22116
+		// Token: 0x04004C8A RID: 19594
 		public FpBtn Jin;
 
-		// Token: 0x04005665 RID: 22117
+		// Token: 0x04004C8B RID: 19595
 		public FpBtn Mu;
 
-		// Token: 0x04005666 RID: 22118
+		// Token: 0x04004C8C RID: 19596
 		public FpBtn Shui;
 
-		// Token: 0x04005667 RID: 22119
+		// Token: 0x04004C8D RID: 19597
 		public FpBtn Huo;
 
-		// Token: 0x04005668 RID: 22120
+		// Token: 0x04004C8E RID: 19598
 		public FpBtn Tu;
 
-		// Token: 0x04005669 RID: 22121
+		// Token: 0x04004C8F RID: 19599
 		private Action<LingQiType> onSelectLingQi;
 	}
 }

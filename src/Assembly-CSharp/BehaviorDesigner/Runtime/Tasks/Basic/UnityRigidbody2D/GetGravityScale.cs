@@ -3,12 +3,12 @@ using UnityEngine;
 
 namespace BehaviorDesigner.Runtime.Tasks.Basic.UnityRigidbody2D
 {
-	// Token: 0x02001533 RID: 5427
+	// Token: 0x02001079 RID: 4217
 	[TaskCategory("Basic/Rigidbody2D")]
 	[TaskDescription("Stores the gravity scale of the Rigidbody2D. Returns Success.")]
 	public class GetGravityScale : Action
 	{
-		// Token: 0x060080CA RID: 32970 RVA: 0x002CB7A4 File Offset: 0x002C99A4
+		// Token: 0x060072D0 RID: 29392 RVA: 0x002AE9D0 File Offset: 0x002ACBD0
 		public override void OnStart()
 		{
 			GameObject defaultGameObject = base.GetDefaultGameObject(this.targetGameObject.Value);
@@ -19,7 +19,7 @@ namespace BehaviorDesigner.Runtime.Tasks.Basic.UnityRigidbody2D
 			}
 		}
 
-		// Token: 0x060080CB RID: 32971 RVA: 0x00057BB2 File Offset: 0x00055DB2
+		// Token: 0x060072D1 RID: 29393 RVA: 0x002AEA10 File Offset: 0x002ACC10
 		public override TaskStatus OnUpdate()
 		{
 			if (this.rigidbody2D == null)
@@ -31,26 +31,26 @@ namespace BehaviorDesigner.Runtime.Tasks.Basic.UnityRigidbody2D
 			return 2;
 		}
 
-		// Token: 0x060080CC RID: 32972 RVA: 0x00057BE5 File Offset: 0x00055DE5
+		// Token: 0x060072D2 RID: 29394 RVA: 0x002AEA43 File Offset: 0x002ACC43
 		public override void OnReset()
 		{
 			this.targetGameObject = null;
 			this.storeValue = 0f;
 		}
 
-		// Token: 0x04006D80 RID: 28032
+		// Token: 0x04005E80 RID: 24192
 		[Tooltip("The GameObject that the task operates on. If null the task GameObject is used.")]
 		public SharedGameObject targetGameObject;
 
-		// Token: 0x04006D81 RID: 28033
+		// Token: 0x04005E81 RID: 24193
 		[Tooltip("The gravity scale of the Rigidbody2D")]
 		[RequiredField]
 		public SharedFloat storeValue;
 
-		// Token: 0x04006D82 RID: 28034
+		// Token: 0x04005E82 RID: 24194
 		private Rigidbody2D rigidbody2D;
 
-		// Token: 0x04006D83 RID: 28035
+		// Token: 0x04005E83 RID: 24195
 		private GameObject prevGameObject;
 	}
 }

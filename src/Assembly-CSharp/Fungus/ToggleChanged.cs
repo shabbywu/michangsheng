@@ -5,12 +5,12 @@ using UnityEngine.UI;
 
 namespace Fungus
 {
-	// Token: 0x0200133A RID: 4922
+	// Token: 0x02000EB1 RID: 3761
 	[EventHandlerInfo("UI", "Toggle Changed", "The block will execute when the state of the target UI toggle object changes. The state of the toggle is stored in the Toggle State boolean variable.")]
 	[AddComponentMenu("")]
 	public class ToggleChanged : EventHandler
 	{
-		// Token: 0x06007790 RID: 30608 RVA: 0x000518AE File Offset: 0x0004FAAE
+		// Token: 0x06006A53 RID: 27219 RVA: 0x00292E1D File Offset: 0x0029101D
 		public virtual void Start()
 		{
 			if (this.targetToggle != null)
@@ -19,7 +19,7 @@ namespace Fungus
 			}
 		}
 
-		// Token: 0x06007791 RID: 30609 RVA: 0x000518DB File Offset: 0x0004FADB
+		// Token: 0x06006A54 RID: 27220 RVA: 0x00292E4A File Offset: 0x0029104A
 		protected virtual void OnToggleChanged(bool state)
 		{
 			if (this.toggleState != null)
@@ -29,7 +29,7 @@ namespace Fungus
 			this.ExecuteBlock();
 		}
 
-		// Token: 0x06007792 RID: 30610 RVA: 0x000518FE File Offset: 0x0004FAFE
+		// Token: 0x06006A55 RID: 27221 RVA: 0x00292E6D File Offset: 0x0029106D
 		public override string GetSummary()
 		{
 			if (this.targetToggle != null)
@@ -39,12 +39,12 @@ namespace Fungus
 			return "None";
 		}
 
-		// Token: 0x0400682E RID: 26670
+		// Token: 0x040059E7 RID: 23015
 		[Tooltip("The block will execute when the state of the target UI toggle object changes.")]
 		[SerializeField]
 		protected Toggle targetToggle;
 
-		// Token: 0x0400682F RID: 26671
+		// Token: 0x040059E8 RID: 23016
 		[Tooltip("The new state of the UI toggle object is stored in this boolean variable.")]
 		[VariableProperty(new Type[]
 		{

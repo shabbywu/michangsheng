@@ -4,25 +4,25 @@ using MoonSharp.Interpreter.Tree.Statements;
 
 namespace MoonSharp.Interpreter.Execution.Scopes
 {
-	// Token: 0x0200116D RID: 4461
+	// Token: 0x02000D59 RID: 3417
 	internal class BuildTimeScopeBlock
 	{
-		// Token: 0x170009EA RID: 2538
-		// (get) Token: 0x06006C91 RID: 27793 RVA: 0x00049FFF File Offset: 0x000481FF
-		// (set) Token: 0x06006C92 RID: 27794 RVA: 0x0004A007 File Offset: 0x00048207
+		// Token: 0x1700078D RID: 1933
+		// (get) Token: 0x0600609F RID: 24735 RVA: 0x00271EEA File Offset: 0x002700EA
+		// (set) Token: 0x060060A0 RID: 24736 RVA: 0x00271EF2 File Offset: 0x002700F2
 		internal BuildTimeScopeBlock Parent { get; private set; }
 
-		// Token: 0x170009EB RID: 2539
-		// (get) Token: 0x06006C93 RID: 27795 RVA: 0x0004A010 File Offset: 0x00048210
-		// (set) Token: 0x06006C94 RID: 27796 RVA: 0x0004A018 File Offset: 0x00048218
+		// Token: 0x1700078E RID: 1934
+		// (get) Token: 0x060060A1 RID: 24737 RVA: 0x00271EFB File Offset: 0x002700FB
+		// (set) Token: 0x060060A2 RID: 24738 RVA: 0x00271F03 File Offset: 0x00270103
 		internal List<BuildTimeScopeBlock> ChildNodes { get; private set; }
 
-		// Token: 0x170009EC RID: 2540
-		// (get) Token: 0x06006C95 RID: 27797 RVA: 0x0004A021 File Offset: 0x00048221
-		// (set) Token: 0x06006C96 RID: 27798 RVA: 0x0004A029 File Offset: 0x00048229
+		// Token: 0x1700078F RID: 1935
+		// (get) Token: 0x060060A3 RID: 24739 RVA: 0x00271F0C File Offset: 0x0027010C
+		// (set) Token: 0x060060A4 RID: 24740 RVA: 0x00271F14 File Offset: 0x00270114
 		internal RuntimeScopeBlock ScopeBlock { get; private set; }
 
-		// Token: 0x06006C97 RID: 27799 RVA: 0x002990D8 File Offset: 0x002972D8
+		// Token: 0x060060A5 RID: 24741 RVA: 0x00271F20 File Offset: 0x00270120
 		internal void Rename(string name)
 		{
 			SymbolRef value = this.m_DefinedNames[name];
@@ -30,7 +30,7 @@ namespace MoonSharp.Interpreter.Execution.Scopes
 			this.m_DefinedNames.Add(string.Format("@{0}_{1}", name, Guid.NewGuid().ToString("N")), value);
 		}
 
-		// Token: 0x06006C98 RID: 27800 RVA: 0x0004A032 File Offset: 0x00048232
+		// Token: 0x060060A6 RID: 24742 RVA: 0x00271F70 File Offset: 0x00270170
 		internal BuildTimeScopeBlock(BuildTimeScopeBlock parent)
 		{
 			this.Parent = parent;
@@ -38,7 +38,7 @@ namespace MoonSharp.Interpreter.Execution.Scopes
 			this.ScopeBlock = new RuntimeScopeBlock();
 		}
 
-		// Token: 0x06006C99 RID: 27801 RVA: 0x00299128 File Offset: 0x00297328
+		// Token: 0x060060A7 RID: 24743 RVA: 0x00271FA0 File Offset: 0x002701A0
 		internal BuildTimeScopeBlock AddChild()
 		{
 			BuildTimeScopeBlock buildTimeScopeBlock = new BuildTimeScopeBlock(this);
@@ -46,13 +46,13 @@ namespace MoonSharp.Interpreter.Execution.Scopes
 			return buildTimeScopeBlock;
 		}
 
-		// Token: 0x06006C9A RID: 27802 RVA: 0x0004A062 File Offset: 0x00048262
+		// Token: 0x060060A8 RID: 24744 RVA: 0x00271FC1 File Offset: 0x002701C1
 		internal SymbolRef Find(string name)
 		{
 			return this.m_DefinedNames.GetOrDefault(name);
 		}
 
-		// Token: 0x06006C9B RID: 27803 RVA: 0x0029914C File Offset: 0x0029734C
+		// Token: 0x060060A9 RID: 24745 RVA: 0x00271FD0 File Offset: 0x002701D0
 		internal SymbolRef Define(string name)
 		{
 			SymbolRef symbolRef = SymbolRef.Local(name, -1);
@@ -61,7 +61,7 @@ namespace MoonSharp.Interpreter.Execution.Scopes
 			return symbolRef;
 		}
 
-		// Token: 0x06006C9C RID: 27804 RVA: 0x00299178 File Offset: 0x00297378
+		// Token: 0x060060AA RID: 24746 RVA: 0x00271FFC File Offset: 0x002701FC
 		internal int ResolveLRefs(BuildTimeScopeFrame buildTimeScopeFrame)
 		{
 			int num = -1;
@@ -95,7 +95,7 @@ namespace MoonSharp.Interpreter.Execution.Scopes
 			return this.ScopeBlock.ToInclusive;
 		}
 
-		// Token: 0x06006C9D RID: 27805 RVA: 0x002992DC File Offset: 0x002974DC
+		// Token: 0x060060AB RID: 24747 RVA: 0x00272160 File Offset: 0x00270360
 		internal void DefineLabel(LabelStatement label)
 		{
 			if (this.m_LocalLabels == null)
@@ -114,7 +114,7 @@ namespace MoonSharp.Interpreter.Execution.Scopes
 			label.SetDefinedVars(this.m_DefinedNames.Count, this.m_LastDefinedName);
 		}
 
-		// Token: 0x06006C9E RID: 27806 RVA: 0x0004A070 File Offset: 0x00048270
+		// Token: 0x060060AC RID: 24748 RVA: 0x002721FF File Offset: 0x002703FF
 		internal void RegisterGoto(GotoStatement gotostat)
 		{
 			if (this.m_PendingGotos == null)
@@ -125,7 +125,7 @@ namespace MoonSharp.Interpreter.Execution.Scopes
 			gotostat.SetDefinedVars(this.m_DefinedNames.Count, this.m_LastDefinedName);
 		}
 
-		// Token: 0x06006C9F RID: 27807 RVA: 0x0029937C File Offset: 0x0029757C
+		// Token: 0x060060AD RID: 24749 RVA: 0x00272238 File Offset: 0x00270438
 		internal void ResolveGotos()
 		{
 			if (this.m_PendingGotos == null)
@@ -164,16 +164,16 @@ namespace MoonSharp.Interpreter.Execution.Scopes
 			this.m_PendingGotos.Clear();
 		}
 
-		// Token: 0x040061C0 RID: 25024
+		// Token: 0x04005536 RID: 21814
 		private Dictionary<string, SymbolRef> m_DefinedNames = new Dictionary<string, SymbolRef>();
 
-		// Token: 0x040061C1 RID: 25025
+		// Token: 0x04005537 RID: 21815
 		private List<GotoStatement> m_PendingGotos;
 
-		// Token: 0x040061C2 RID: 25026
+		// Token: 0x04005538 RID: 21816
 		private Dictionary<string, LabelStatement> m_LocalLabels;
 
-		// Token: 0x040061C3 RID: 25027
+		// Token: 0x04005539 RID: 21817
 		private string m_LastDefinedName;
 	}
 }

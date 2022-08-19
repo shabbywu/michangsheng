@@ -2,27 +2,27 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-// Token: 0x02000389 RID: 905
+// Token: 0x02000271 RID: 625
 public class UINPCInfoPanel : MonoBehaviour, IESCClose
 {
-	// Token: 0x06001952 RID: 6482 RVA: 0x000042DD File Offset: 0x000024DD
+	// Token: 0x060016A0 RID: 5792 RVA: 0x00004095 File Offset: 0x00002295
 	private void Start()
 	{
 	}
 
-	// Token: 0x06001953 RID: 6483 RVA: 0x00015AF7 File Offset: 0x00013CF7
+	// Token: 0x060016A1 RID: 5793 RVA: 0x0009A3CB File Offset: 0x000985CB
 	private void Update()
 	{
 		this.AutoHide();
 	}
 
-	// Token: 0x06001954 RID: 6484 RVA: 0x000E2284 File Offset: 0x000E0484
+	// Token: 0x060016A2 RID: 5794 RVA: 0x0009A3D4 File Offset: 0x000985D4
 	public bool CanShow()
 	{
 		return !UINPCJiaoHu.AllShouldHide && (!(PanelMamager.inst != null) || !(PanelMamager.inst.UISceneGameObject == null)) && (!(PanelMamager.inst != null) || PanelMamager.inst.nowPanel == PanelMamager.PanelType.空);
 	}
 
-	// Token: 0x06001955 RID: 6485 RVA: 0x00015AFF File Offset: 0x00013CFF
+	// Token: 0x060016A3 RID: 5795 RVA: 0x0009A428 File Offset: 0x00098628
 	private void AutoHide()
 	{
 		if (!this.CanShow())
@@ -31,7 +31,7 @@ public class UINPCInfoPanel : MonoBehaviour, IESCClose
 		}
 	}
 
-	// Token: 0x06001956 RID: 6486 RVA: 0x000E22D8 File Offset: 0x000E04D8
+	// Token: 0x060016A4 RID: 5796 RVA: 0x0009A43C File Offset: 0x0009863C
 	public void RefreshUI(UINPCData data = null)
 	{
 		if (data == null)
@@ -55,7 +55,7 @@ public class UINPCInfoPanel : MonoBehaviour, IESCClose
 		this.TabGroup.SetFirstTab();
 	}
 
-	// Token: 0x06001957 RID: 6487 RVA: 0x000E2354 File Offset: 0x000E0554
+	// Token: 0x060016A5 RID: 5797 RVA: 0x0009A4B8 File Offset: 0x000986B8
 	public void SetNPCInfo()
 	{
 		this.ShuXing.SetActive(true);
@@ -79,7 +79,7 @@ public class UINPCInfoPanel : MonoBehaviour, IESCClose
 		this.ShenShi.text = this.npc.ShenShi.ToString();
 	}
 
-	// Token: 0x06001958 RID: 6488 RVA: 0x000E24D8 File Offset: 0x000E06D8
+	// Token: 0x060016A6 RID: 5798 RVA: 0x0009A63C File Offset: 0x0009883C
 	public void SetFightInfo()
 	{
 		this.ShuXing.SetActive(false);
@@ -90,71 +90,71 @@ public class UINPCInfoPanel : MonoBehaviour, IESCClose
 		this.FightShenShi.text = this.npc.ShenShi.ToString();
 	}
 
-	// Token: 0x06001959 RID: 6489 RVA: 0x00015B13 File Offset: 0x00013D13
+	// Token: 0x060016A7 RID: 5799 RVA: 0x0009A6C8 File Offset: 0x000988C8
 	public bool TryEscClose()
 	{
 		UINPCJiaoHu.Inst.HideNPCInfoPanel();
 		return true;
 	}
 
-	// Token: 0x04001467 RID: 5223
+	// Token: 0x04001117 RID: 4375
 	[HideInInspector]
 	public UINPCData npc;
 
-	// Token: 0x04001468 RID: 5224
+	// Token: 0x04001118 RID: 4376
 	public PlayerSetRandomFace Face;
 
-	// Token: 0x04001469 RID: 5225
+	// Token: 0x04001119 RID: 4377
 	public TabGroup TabGroup;
 
-	// Token: 0x0400146A RID: 5226
+	// Token: 0x0400111A RID: 4378
 	public GameObject ShuXing;
 
-	// Token: 0x0400146B RID: 5227
+	// Token: 0x0400111B RID: 4379
 	public Text NPCName;
 
-	// Token: 0x0400146C RID: 5228
+	// Token: 0x0400111C RID: 4380
 	public Text Age;
 
-	// Token: 0x0400146D RID: 5229
+	// Token: 0x0400111D RID: 4381
 	public Text HP;
 
-	// Token: 0x0400146E RID: 5230
+	// Token: 0x0400111E RID: 4382
 	public Text QingFen;
 
-	// Token: 0x0400146F RID: 5231
+	// Token: 0x0400111F RID: 4383
 	public Text XiuWei;
 
-	// Token: 0x04001470 RID: 5232
+	// Token: 0x04001120 RID: 4384
 	public Text ZhuangTai;
 
-	// Token: 0x04001471 RID: 5233
+	// Token: 0x04001121 RID: 4385
 	public Text ShouYuan;
 
-	// Token: 0x04001472 RID: 5234
+	// Token: 0x04001122 RID: 4386
 	public Text ZiZhi;
 
-	// Token: 0x04001473 RID: 5235
+	// Token: 0x04001123 RID: 4387
 	public Text WuXing;
 
-	// Token: 0x04001474 RID: 5236
+	// Token: 0x04001124 RID: 4388
 	public Text DunSu;
 
-	// Token: 0x04001475 RID: 5237
+	// Token: 0x04001125 RID: 4389
 	public Text ShenShi;
 
-	// Token: 0x04001476 RID: 5238
+	// Token: 0x04001126 RID: 4390
 	public GameObject FightShuXing;
 
-	// Token: 0x04001477 RID: 5239
+	// Token: 0x04001127 RID: 4391
 	public Text FightHP;
 
-	// Token: 0x04001478 RID: 5240
+	// Token: 0x04001128 RID: 4392
 	public Text FightXiuWei;
 
-	// Token: 0x04001479 RID: 5241
+	// Token: 0x04001129 RID: 4393
 	public Text FightDunSu;
 
-	// Token: 0x0400147A RID: 5242
+	// Token: 0x0400112A RID: 4394
 	public Text FightShenShi;
 }

@@ -1,17 +1,17 @@
 ﻿using System;
 
-// Token: 0x0200053E RID: 1342
+// Token: 0x020003B3 RID: 947
 public class PreloadTask
 {
-	// Token: 0x04001DA0 RID: 7584
+	// Token: 0x0400192C RID: 6444
 	public string Name;
 
-	// Token: 0x04001DA1 RID: 7585
+	// Token: 0x0400192D RID: 6445
 	public bool IsDone;
 
-	// Token: 0x04001DA2 RID: 7586
+	// Token: 0x0400192E RID: 6446
 	public bool IsStart;
 
-	// Token: 0x04001DA3 RID: 7587
+	// Token: 0x0400192F RID: 6447
 	public Action<int> Start;
 }

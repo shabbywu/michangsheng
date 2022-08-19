@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
-// Token: 0x02000495 RID: 1173
+// Token: 0x0200032C RID: 812
 public class MainUISetFace : MonoBehaviour
 {
-	// Token: 0x06001F44 RID: 8004 RVA: 0x0010DC18 File Offset: 0x0010BE18
+	// Token: 0x06001BFA RID: 7162 RVA: 0x000C8620 File Offset: 0x000C6820
 	public void Init()
 	{
 		if (!this.isInit)
@@ -18,7 +18,7 @@ public class MainUISetFace : MonoBehaviour
 		base.gameObject.SetActive(true);
 	}
 
-	// Token: 0x06001F45 RID: 8005 RVA: 0x0010DC7C File Offset: 0x0010BE7C
+	// Token: 0x06001BFB RID: 7163 RVA: 0x000C8684 File Offset: 0x000C6884
 	private void SelectBigType(faceInfoList face)
 	{
 		Tools.ClearObj(this.setType.transform);
@@ -53,7 +53,7 @@ public class MainUISetFace : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001F46 RID: 8006 RVA: 0x0010DD80 File Offset: 0x0010BF80
+	// Token: 0x06001BFC RID: 7164 RVA: 0x000C8788 File Offset: 0x000C6988
 	private void SelectSmallType(faceInfoDataBaseList face)
 	{
 		Tools.ClearObj(this.faceImage.transform);
@@ -94,7 +94,7 @@ public class MainUISetFace : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001F47 RID: 8007 RVA: 0x0010DF14 File Offset: 0x0010C114
+	// Token: 0x06001BFD RID: 7165 RVA: 0x000C891C File Offset: 0x000C6B1C
 	public void setFace(string skinType, int skinIndex)
 	{
 		List<int> suijiList = jsonData.instance.getSuijiList(skinType, "AvatarSex" + AvatarFaceDatabase.inst.ListType);
@@ -102,7 +102,7 @@ public class MainUISetFace : MonoBehaviour
 		MainUIPlayerInfo.inst.playerFace.randomAvatar(1);
 	}
 
-	// Token: 0x06001F48 RID: 8008 RVA: 0x0010DF78 File Offset: 0x0010C178
+	// Token: 0x06001BFE RID: 7166 RVA: 0x000C8980 File Offset: 0x000C6B80
 	public void RestInit()
 	{
 		int num = 0;
@@ -134,7 +134,7 @@ public class MainUISetFace : MonoBehaviour
 		this.isInit = true;
 	}
 
-	// Token: 0x06001F49 RID: 8009 RVA: 0x00019CFA File Offset: 0x00017EFA
+	// Token: 0x06001BFF RID: 7167 RVA: 0x000C8A74 File Offset: 0x000C6C74
 	public void ReturnMethod()
 	{
 		base.gameObject.SetActive(false);
@@ -142,7 +142,7 @@ public class MainUISetFace : MonoBehaviour
 		MainUIMag.inst.createAvatarPanel.setNamePanel.Init();
 	}
 
-	// Token: 0x06001F4A RID: 8010 RVA: 0x0010E06C File Offset: 0x0010C26C
+	// Token: 0x06001C00 RID: 7168 RVA: 0x000C8AAC File Offset: 0x000C6CAC
 	public void RandomFace()
 	{
 		jsonData.instance.AvatarRandomJsonData = new JSONObject(JSONObject.Type.OBJECT);
@@ -154,7 +154,7 @@ public class MainUISetFace : MonoBehaviour
 		this.RestInit();
 	}
 
-	// Token: 0x06001F4B RID: 8011 RVA: 0x00019D31 File Offset: 0x00017F31
+	// Token: 0x06001C01 RID: 7169 RVA: 0x000C8B62 File Offset: 0x000C6D62
 	public void SelectMan()
 	{
 		if (this.manToggle.isOn)
@@ -165,7 +165,7 @@ public class MainUISetFace : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001F4C RID: 8012 RVA: 0x00019D5C File Offset: 0x00017F5C
+	// Token: 0x06001C02 RID: 7170 RVA: 0x000C8B8D File Offset: 0x000C6D8D
 	public void SelectWomen()
 	{
 		if (this.womenToggle.isOn)
@@ -176,43 +176,43 @@ public class MainUISetFace : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001F4D RID: 8013 RVA: 0x00019D87 File Offset: 0x00017F87
+	// Token: 0x06001C03 RID: 7171 RVA: 0x000C8BB8 File Offset: 0x000C6DB8
 	public void NextMethod()
 	{
 		base.gameObject.SetActive(false);
 		MainUIMag.inst.createAvatarPanel.setTianFu.Init();
 	}
 
-	// Token: 0x04001AC4 RID: 6852
+	// Token: 0x04001698 RID: 5784
 	private bool isInit;
 
-	// Token: 0x04001AC5 RID: 6853
+	// Token: 0x04001699 RID: 5785
 	[SerializeField]
 	private Transform setTypeList;
 
-	// Token: 0x04001AC6 RID: 6854
+	// Token: 0x0400169A RID: 5786
 	[SerializeField]
 	private GameObject setType;
 
-	// Token: 0x04001AC7 RID: 6855
+	// Token: 0x0400169B RID: 5787
 	[SerializeField]
 	private GameObject faceImage;
 
-	// Token: 0x04001AC8 RID: 6856
+	// Token: 0x0400169C RID: 5788
 	[SerializeField]
 	private Transform faceImageList;
 
-	// Token: 0x04001AC9 RID: 6857
+	// Token: 0x0400169D RID: 5789
 	[SerializeField]
 	private MainUIToggle manToggle;
 
-	// Token: 0x04001ACA RID: 6858
+	// Token: 0x0400169E RID: 5790
 	[SerializeField]
 	private MainUIToggle womenToggle;
 
-	// Token: 0x04001ACB RID: 6859
+	// Token: 0x0400169F RID: 5791
 	public List<MainUIToggle> bigTypeList;
 
-	// Token: 0x04001ACC RID: 6860
+	// Token: 0x040016A0 RID: 5792
 	public MainUISetColor setColor;
 }

@@ -3,12 +3,12 @@ using UnityEngine;
 
 namespace Fungus
 {
-	// Token: 0x020013F9 RID: 5113
+	// Token: 0x02000F43 RID: 3907
 	[CommandInfo("YSNew/Get", "GetImportantNpcId", "根据固定NpcId获取绑定该Id的NpcId", 0)]
 	[AddComponentMenu("")]
 	public class GetImportantNpcId : Command
 	{
-		// Token: 0x06007C38 RID: 31800 RVA: 0x002C4974 File Offset: 0x002C2B74
+		// Token: 0x06006E4D RID: 28237 RVA: 0x002A49DC File Offset: 0x002A2BDC
 		public override void OnEnter()
 		{
 			if (NpcJieSuanManager.inst.ImportantNpcBangDingDictionary.ContainsKey(this.NpcBingDingId.Value))
@@ -22,18 +22,18 @@ namespace Fungus
 			this.Continue();
 		}
 
-		// Token: 0x06007C39 RID: 31801 RVA: 0x000113CF File Offset: 0x0000F5CF
+		// Token: 0x06006E4E RID: 28238 RVA: 0x0005E228 File Offset: 0x0005C428
 		public override Color GetButtonColor()
 		{
 			return new Color32(184, 210, 235, byte.MaxValue);
 		}
 
-		// Token: 0x06007C3A RID: 31802 RVA: 0x000042DD File Offset: 0x000024DD
+		// Token: 0x06006E4F RID: 28239 RVA: 0x00004095 File Offset: 0x00002295
 		public override void OnReset()
 		{
 		}
 
-		// Token: 0x04006A66 RID: 27238
+		// Token: 0x04005B94 RID: 23444
 		[Tooltip("Npc绑定Id")]
 		[VariableProperty(new Type[]
 		{
@@ -42,7 +42,7 @@ namespace Fungus
 		[SerializeField]
 		protected IntegerVariable NpcBingDingId;
 
-		// Token: 0x04006A67 RID: 27239
+		// Token: 0x04005B95 RID: 23445
 		[Tooltip("NpcId存放位置")]
 		[VariableProperty(new Type[]
 		{

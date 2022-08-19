@@ -3,10 +3,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-// Token: 0x02000178 RID: 376
+// Token: 0x020000FC RID: 252
 public class UIController : MonoBehaviour
 {
-	// Token: 0x06000CA8 RID: 3240 RVA: 0x0000E75D File Offset: 0x0000C95D
+	// Token: 0x06000BA9 RID: 2985 RVA: 0x0004717D File Offset: 0x0004537D
 	private IEnumerator Start()
 	{
 		this.fader = Object.FindObjectOfType<Fader>();
@@ -14,7 +14,7 @@ public class UIController : MonoBehaviour
 		yield break;
 	}
 
-	// Token: 0x06000CA9 RID: 3241 RVA: 0x0000E76C File Offset: 0x0000C96C
+	// Token: 0x06000BAA RID: 2986 RVA: 0x0004718C File Offset: 0x0004538C
 	private void Update()
 	{
 		if (!this.saveMenu.active && this.canOpen() && Input.GetKeyDown(27))
@@ -28,7 +28,7 @@ public class UIController : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000CAA RID: 3242 RVA: 0x00098C14 File Offset: 0x00096E14
+	// Token: 0x06000BAB RID: 2987 RVA: 0x000471C4 File Offset: 0x000453C4
 	public void openPauseMenu()
 	{
 		this.allUI = Object.FindObjectsOfType<Canvas>();
@@ -52,7 +52,7 @@ public class UIController : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000CAB RID: 3243 RVA: 0x00098CE8 File Offset: 0x00096EE8
+	// Token: 0x06000BAC RID: 2988 RVA: 0x00047298 File Offset: 0x00045498
 	public void closePauseMenu()
 	{
 		for (int i = 0; i < this.allUI.Length; i++)
@@ -69,14 +69,14 @@ public class UIController : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000CAC RID: 3244 RVA: 0x0000E7A1 File Offset: 0x0000C9A1
+	// Token: 0x06000BAD RID: 2989 RVA: 0x00047324 File Offset: 0x00045524
 	public void hideMenus()
 	{
 		this.saveMenu.SetActive(false);
 		this.pauseMenu.SetActive(false);
 	}
 
-	// Token: 0x06000CAD RID: 3245 RVA: 0x0000E7BB File Offset: 0x0000C9BB
+	// Token: 0x06000BAE RID: 2990 RVA: 0x0004733E File Offset: 0x0004553E
 	public void goToMainMenu()
 	{
 		Object.Destroy(GameObject.FindGameObjectWithTag("Player"));
@@ -86,20 +86,20 @@ public class UIController : MonoBehaviour
 		this.fader.FadeIntoLevel("LoadingScreen");
 	}
 
-	// Token: 0x06000CAE RID: 3246 RVA: 0x0000E7FB File Offset: 0x0000C9FB
+	// Token: 0x06000BAF RID: 2991 RVA: 0x0004737E File Offset: 0x0004557E
 	public void openLoadGame()
 	{
 		base.GetComponent<Animator>().Play("loadGameOpen");
 		this.initLoadGameMenu();
 	}
 
-	// Token: 0x06000CAF RID: 3247 RVA: 0x0000E813 File Offset: 0x0000CA13
+	// Token: 0x06000BB0 RID: 2992 RVA: 0x00047396 File Offset: 0x00045596
 	public void closeLoadGame()
 	{
 		base.GetComponent<Animator>().Play("loadGameClose");
 	}
 
-	// Token: 0x06000CB0 RID: 3248 RVA: 0x00098D74 File Offset: 0x00096F74
+	// Token: 0x06000BB1 RID: 2993 RVA: 0x000473A8 File Offset: 0x000455A8
 	private void initLoadGameMenu()
 	{
 		if (this.loadSlots.Count > 0)
@@ -111,37 +111,37 @@ public class UIController : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000CB1 RID: 3249 RVA: 0x0000E825 File Offset: 0x0000CA25
+	// Token: 0x06000BB2 RID: 2994 RVA: 0x00047408 File Offset: 0x00045608
 	public bool canOpen()
 	{
 		return this.openPMenu;
 	}
 
-	// Token: 0x040009D9 RID: 2521
+	// Token: 0x040007F0 RID: 2032
 	[Tooltip("Usee Blur in Pause Menu?")]
 	public bool useBlur;
 
-	// Token: 0x040009DA RID: 2522
+	// Token: 0x040007F1 RID: 2033
 	[Header("Both UI Panels")]
 	public GameObject saveMenu;
 
-	// Token: 0x040009DB RID: 2523
+	// Token: 0x040007F2 RID: 2034
 	public GameObject pauseMenu;
 
-	// Token: 0x040009DC RID: 2524
+	// Token: 0x040007F3 RID: 2035
 	private Fader fader;
 
-	// Token: 0x040009DD RID: 2525
+	// Token: 0x040007F4 RID: 2036
 	[HideInInspector]
 	public bool isOpen;
 
-	// Token: 0x040009DE RID: 2526
+	// Token: 0x040007F5 RID: 2037
 	private Canvas[] allUI;
 
-	// Token: 0x040009DF RID: 2527
+	// Token: 0x040007F6 RID: 2038
 	public List<LoadSlotIdentifier> loadSlots;
 
-	// Token: 0x040009E0 RID: 2528
+	// Token: 0x040007F7 RID: 2039
 	[HideInInspector]
 	public bool openPMenu = true;
 }

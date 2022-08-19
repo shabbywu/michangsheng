@@ -1,10 +1,10 @@
 ﻿using System;
 using UnityEngine;
 
-// Token: 0x0200060D RID: 1549
+// Token: 0x02000454 RID: 1108
 public class csAnimationPlay : MonoBehaviour
 {
-	// Token: 0x0600269C RID: 9884 RVA: 0x000042DD File Offset: 0x000024DD
+	// Token: 0x060022E5 RID: 8933 RVA: 0x00004095 File Offset: 0x00002295
 	private void Update()
 	{
 	}

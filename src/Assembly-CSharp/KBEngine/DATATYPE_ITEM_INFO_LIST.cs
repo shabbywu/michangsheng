@@ -3,10 +3,10 @@ using System.Collections.Generic;
 
 namespace KBEngine
 {
-	// Token: 0x02000EC1 RID: 3777
+	// Token: 0x02000B46 RID: 2886
 	public class DATATYPE_ITEM_INFO_LIST : DATATYPE_BASE
 	{
-		// Token: 0x06005B19 RID: 23321 RVA: 0x00040481 File Offset: 0x0003E681
+		// Token: 0x060050E3 RID: 20707 RVA: 0x0022103E File Offset: 0x0021F23E
 		public ITEM_INFO_LIST createFromStreamEx(MemoryStream stream)
 		{
 			return new ITEM_INFO_LIST
@@ -15,19 +15,19 @@ namespace KBEngine
 			};
 		}
 
-		// Token: 0x06005B1A RID: 23322 RVA: 0x0004049A File Offset: 0x0003E69A
+		// Token: 0x060050E4 RID: 20708 RVA: 0x00221057 File Offset: 0x0021F257
 		public void addToStreamEx(Bundle stream, ITEM_INFO_LIST v)
 		{
 			this.values_DataType.addToStreamEx(stream, v.values);
 		}
 
-		// Token: 0x04005A08 RID: 23048
+		// Token: 0x04004F7F RID: 20351
 		private DATATYPE_ITEM_INFO_LIST.DATATYPE__ITEM_INFO_LIST_values_ArrayType_ChildArray values_DataType = new DATATYPE_ITEM_INFO_LIST.DATATYPE__ITEM_INFO_LIST_values_ArrayType_ChildArray();
 
-		// Token: 0x02000EC2 RID: 3778
+		// Token: 0x020015F1 RID: 5617
 		public class DATATYPE__ITEM_INFO_LIST_values_ArrayType_ChildArray : DATATYPE_BASE
 		{
-			// Token: 0x06005B1C RID: 23324 RVA: 0x002507DC File Offset: 0x0024E9DC
+			// Token: 0x0600859C RID: 34204 RVA: 0x002E4A10 File Offset: 0x002E2C10
 			public List<ITEM_INFO> createFromStreamEx(MemoryStream stream)
 			{
 				uint num = stream.readUint32();
@@ -40,7 +40,7 @@ namespace KBEngine
 				return list;
 			}
 
-			// Token: 0x06005B1D RID: 23325 RVA: 0x00250814 File Offset: 0x0024EA14
+			// Token: 0x0600859D RID: 34205 RVA: 0x002E4A48 File Offset: 0x002E2C48
 			public void addToStreamEx(Bundle stream, List<ITEM_INFO> v)
 			{
 				stream.writeUint32((uint)v.Count);
@@ -50,7 +50,7 @@ namespace KBEngine
 				}
 			}
 
-			// Token: 0x04005A09 RID: 23049
+			// Token: 0x040070E0 RID: 28896
 			private DATATYPE_ITEM_INFO itemType = new DATATYPE_ITEM_INFO();
 		}
 	}

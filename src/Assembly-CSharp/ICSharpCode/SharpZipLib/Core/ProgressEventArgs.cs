@@ -2,10 +2,10 @@
 
 namespace ICSharpCode.SharpZipLib.Core
 {
-	// Token: 0x02000822 RID: 2082
+	// Token: 0x02000579 RID: 1401
 	public class ProgressEventArgs : EventArgs
 	{
-		// Token: 0x0600369F RID: 13983 RVA: 0x00027CCA File Offset: 0x00025ECA
+		// Token: 0x06002E29 RID: 11817 RVA: 0x0015117E File Offset: 0x0014F37E
 		public ProgressEventArgs(string name, long processed, long target)
 		{
 			this.name_ = name;
@@ -13,8 +13,8 @@ namespace ICSharpCode.SharpZipLib.Core
 			this.target_ = target;
 		}
 
-		// Token: 0x1700056E RID: 1390
-		// (get) Token: 0x060036A0 RID: 13984 RVA: 0x00027CEE File Offset: 0x00025EEE
+		// Token: 0x170003B7 RID: 951
+		// (get) Token: 0x06002E2A RID: 11818 RVA: 0x001511A2 File Offset: 0x0014F3A2
 		public string Name
 		{
 			get
@@ -23,9 +23,9 @@ namespace ICSharpCode.SharpZipLib.Core
 			}
 		}
 
-		// Token: 0x1700056F RID: 1391
-		// (get) Token: 0x060036A1 RID: 13985 RVA: 0x00027CF6 File Offset: 0x00025EF6
-		// (set) Token: 0x060036A2 RID: 13986 RVA: 0x00027CFE File Offset: 0x00025EFE
+		// Token: 0x170003B8 RID: 952
+		// (get) Token: 0x06002E2B RID: 11819 RVA: 0x001511AA File Offset: 0x0014F3AA
+		// (set) Token: 0x06002E2C RID: 11820 RVA: 0x001511B2 File Offset: 0x0014F3B2
 		public bool ContinueRunning
 		{
 			get
@@ -38,8 +38,8 @@ namespace ICSharpCode.SharpZipLib.Core
 			}
 		}
 
-		// Token: 0x17000570 RID: 1392
-		// (get) Token: 0x060036A3 RID: 13987 RVA: 0x0019C12C File Offset: 0x0019A32C
+		// Token: 0x170003B9 RID: 953
+		// (get) Token: 0x06002E2D RID: 11821 RVA: 0x001511BC File Offset: 0x0014F3BC
 		public float PercentComplete
 		{
 			get
@@ -57,8 +57,8 @@ namespace ICSharpCode.SharpZipLib.Core
 			}
 		}
 
-		// Token: 0x17000571 RID: 1393
-		// (get) Token: 0x060036A4 RID: 13988 RVA: 0x00027D07 File Offset: 0x00025F07
+		// Token: 0x170003BA RID: 954
+		// (get) Token: 0x06002E2E RID: 11822 RVA: 0x001511F2 File Offset: 0x0014F3F2
 		public long Processed
 		{
 			get
@@ -67,8 +67,8 @@ namespace ICSharpCode.SharpZipLib.Core
 			}
 		}
 
-		// Token: 0x17000572 RID: 1394
-		// (get) Token: 0x060036A5 RID: 13989 RVA: 0x00027D0F File Offset: 0x00025F0F
+		// Token: 0x170003BB RID: 955
+		// (get) Token: 0x06002E2F RID: 11823 RVA: 0x001511FA File Offset: 0x0014F3FA
 		public long Target
 		{
 			get
@@ -77,16 +77,16 @@ namespace ICSharpCode.SharpZipLib.Core
 			}
 		}
 
-		// Token: 0x0400310F RID: 12559
+		// Token: 0x040028D0 RID: 10448
 		private string name_;
 
-		// Token: 0x04003110 RID: 12560
+		// Token: 0x040028D1 RID: 10449
 		private long processed_;
 
-		// Token: 0x04003111 RID: 12561
+		// Token: 0x040028D2 RID: 10450
 		private long target_;
 
-		// Token: 0x04003112 RID: 12562
+		// Token: 0x040028D3 RID: 10451
 		private bool continueRunning_ = true;
 	}
 }

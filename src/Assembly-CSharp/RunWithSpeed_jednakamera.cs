@@ -2,10 +2,10 @@
 using System.Collections;
 using UnityEngine;
 
-// Token: 0x0200074D RID: 1869
+// Token: 0x020004D9 RID: 1241
 public class RunWithSpeed_jednakamera : MonoBehaviour
 {
-	// Token: 0x06002F91 RID: 12177 RVA: 0x0017CE20 File Offset: 0x0017B020
+	// Token: 0x06002834 RID: 10292 RVA: 0x00130604 File Offset: 0x0012E804
 	private void Awake()
 	{
 		this.player = GameObject.FindGameObjectWithTag("Monkey");
@@ -17,12 +17,12 @@ public class RunWithSpeed_jednakamera : MonoBehaviour
 		this.startSpeed = this.speed;
 	}
 
-	// Token: 0x06002F92 RID: 12178 RVA: 0x000042DD File Offset: 0x000024DD
+	// Token: 0x06002835 RID: 10293 RVA: 0x00004095 File Offset: 0x00002295
 	private void Start()
 	{
 	}
 
-	// Token: 0x06002F93 RID: 12179 RVA: 0x0017CED0 File Offset: 0x0017B0D0
+	// Token: 0x06002836 RID: 10294 RVA: 0x001306B4 File Offset: 0x0012E8B4
 	private void Update()
 	{
 		if (this.desnaGranica != null)
@@ -65,7 +65,7 @@ public class RunWithSpeed_jednakamera : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06002F94 RID: 12180 RVA: 0x00023439 File Offset: 0x00021639
+	// Token: 0x06002837 RID: 10295 RVA: 0x00130925 File Offset: 0x0012EB25
 	private IEnumerator SmoothMovePlan()
 	{
 		float targetPos = base.transform.position.x - 5f;
@@ -77,58 +77,58 @@ public class RunWithSpeed_jednakamera : MonoBehaviour
 		yield break;
 	}
 
-	// Token: 0x06002F95 RID: 12181 RVA: 0x00023448 File Offset: 0x00021648
+	// Token: 0x06002838 RID: 10296 RVA: 0x00130934 File Offset: 0x0012EB34
 	private void izracunajOffset()
 	{
 		this.offset = base.transform.position.y - Camera.main.transform.position.y;
 		this.startSpeed = this.speed;
 	}
 
-	// Token: 0x06002F96 RID: 12182 RVA: 0x00023481 File Offset: 0x00021681
+	// Token: 0x06002839 RID: 10297 RVA: 0x0013096D File Offset: 0x0012EB6D
 	private void startSpeedDaj()
 	{
 		this.dovoljno = true;
 	}
 
-	// Token: 0x04002AC4 RID: 10948
+	// Token: 0x0400233F RID: 9023
 	public float speed = 5f;
 
-	// Token: 0x04002AC5 RID: 10949
+	// Token: 0x04002340 RID: 9024
 	public bool continueMoving;
 
-	// Token: 0x04002AC6 RID: 10950
+	// Token: 0x04002341 RID: 9025
 	private MonkeyController2D playerController;
 
-	// Token: 0x04002AC7 RID: 10951
+	// Token: 0x04002342 RID: 9026
 	private GameObject player;
 
-	// Token: 0x04002AC8 RID: 10952
+	// Token: 0x04002343 RID: 9027
 	private float offset;
 
-	// Token: 0x04002AC9 RID: 10953
+	// Token: 0x04002344 RID: 9028
 	public bool FollowCameraHeight;
 
-	// Token: 0x04002ACA RID: 10954
+	// Token: 0x04002345 RID: 9029
 	public bool IskljuciKadIzadjeIzKadra;
 
-	// Token: 0x04002ACB RID: 10955
+	// Token: 0x04002346 RID: 9030
 	public bool smooth;
 
-	// Token: 0x04002ACC RID: 10956
+	// Token: 0x04002347 RID: 9031
 	private bool smoothMove;
 
-	// Token: 0x04002ACD RID: 10957
+	// Token: 0x04002348 RID: 9032
 	private float startSpeed;
 
-	// Token: 0x04002ACE RID: 10958
+	// Token: 0x04002349 RID: 9033
 	public Transform desnaGranica;
 
-	// Token: 0x04002ACF RID: 10959
+	// Token: 0x0400234A RID: 9034
 	private Camera bgCamera;
 
-	// Token: 0x04002AD0 RID: 10960
+	// Token: 0x0400234B RID: 9035
 	private float bgCameraX;
 
-	// Token: 0x04002AD1 RID: 10961
+	// Token: 0x0400234C RID: 9036
 	private bool dovoljno;
 }

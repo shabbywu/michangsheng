@@ -3,12 +3,12 @@ using UnityEngine;
 
 namespace BehaviorDesigner.Runtime.Tasks.Basic.UnityBehaviour
 {
-	// Token: 0x02001623 RID: 5667
+	// Token: 0x02001164 RID: 4452
 	[TaskCategory("Basic/Behaviour")]
 	[TaskDescription("Enables/Disables the object. Returns Success.")]
 	public class SetIsEnabled : Action
 	{
-		// Token: 0x0600841F RID: 33823 RVA: 0x002CF484 File Offset: 0x002CD684
+		// Token: 0x06007625 RID: 30245 RVA: 0x002B5E58 File Offset: 0x002B4058
 		public override TaskStatus OnUpdate()
 		{
 			if (this.specifiedObject == null && !(this.specifiedObject.Value is Behaviour))
@@ -20,7 +20,7 @@ namespace BehaviorDesigner.Runtime.Tasks.Basic.UnityBehaviour
 			return 2;
 		}
 
-		// Token: 0x06008420 RID: 33824 RVA: 0x0005B306 File Offset: 0x00059506
+		// Token: 0x06007626 RID: 30246 RVA: 0x002B5EAC File Offset: 0x002B40AC
 		public override void OnReset()
 		{
 			if (this.specifiedObject != null)
@@ -30,11 +30,11 @@ namespace BehaviorDesigner.Runtime.Tasks.Basic.UnityBehaviour
 			this.enabled = false;
 		}
 
-		// Token: 0x040070CB RID: 28875
+		// Token: 0x040061A8 RID: 25000
 		[Tooltip("The Object to use")]
 		public SharedObject specifiedObject;
 
-		// Token: 0x040070CC RID: 28876
+		// Token: 0x040061A9 RID: 25001
 		[Tooltip("The enabled/disabled state")]
 		public SharedBool enabled;
 	}

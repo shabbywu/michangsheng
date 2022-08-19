@@ -5,10 +5,10 @@ using System.Threading;
 
 namespace KBEngine
 {
-	// Token: 0x02000F13 RID: 3859
+	// Token: 0x02000B95 RID: 2965
 	public class Event
 	{
-		// Token: 0x06005C79 RID: 23673 RVA: 0x00041427 File Offset: 0x0003F627
+		// Token: 0x0600523D RID: 21053 RVA: 0x0022EF12 File Offset: 0x0022D112
 		public static void clear()
 		{
 			Event.events_out.Clear();
@@ -16,7 +16,7 @@ namespace KBEngine
 			Event.clearFiredEvents();
 		}
 
-		// Token: 0x06005C7A RID: 23674 RVA: 0x0025D610 File Offset: 0x0025B810
+		// Token: 0x0600523E RID: 21054 RVA: 0x0022EF30 File Offset: 0x0022D130
 		public static void clearFiredEvents()
 		{
 			Event.monitor_Enter(Event.events_out);
@@ -30,26 +30,26 @@ namespace KBEngine
 			Event._isPauseOut = false;
 		}
 
-		// Token: 0x06005C7B RID: 23675 RVA: 0x00041442 File Offset: 0x0003F642
+		// Token: 0x0600523F RID: 21055 RVA: 0x0022EF93 File Offset: 0x0022D193
 		public static void pause()
 		{
 			Event._isPauseOut = true;
 		}
 
-		// Token: 0x06005C7C RID: 23676 RVA: 0x0004144A File Offset: 0x0003F64A
+		// Token: 0x06005240 RID: 21056 RVA: 0x0022EF9B File Offset: 0x0022D19B
 		public static void resume()
 		{
 			Event._isPauseOut = false;
 			Event.processOutEvents();
 		}
 
-		// Token: 0x06005C7D RID: 23677 RVA: 0x00041457 File Offset: 0x0003F657
+		// Token: 0x06005241 RID: 21057 RVA: 0x0022EFA8 File Offset: 0x0022D1A8
 		public static bool isPause()
 		{
 			return Event._isPauseOut;
 		}
 
-		// Token: 0x06005C7E RID: 23678 RVA: 0x0004145E File Offset: 0x0003F65E
+		// Token: 0x06005242 RID: 21058 RVA: 0x0022EFAF File Offset: 0x0022D1AF
 		public static void monitor_Enter(object obj)
 		{
 			if (KBEngineApp.app == null)
@@ -59,7 +59,7 @@ namespace KBEngine
 			Monitor.Enter(obj);
 		}
 
-		// Token: 0x06005C7F RID: 23679 RVA: 0x0004146E File Offset: 0x0003F66E
+		// Token: 0x06005243 RID: 21059 RVA: 0x0022EFBF File Offset: 0x0022D1BF
 		public static void monitor_Exit(object obj)
 		{
 			if (KBEngineApp.app == null)
@@ -69,19 +69,19 @@ namespace KBEngine
 			Monitor.Exit(obj);
 		}
 
-		// Token: 0x06005C80 RID: 23680 RVA: 0x0004147E File Offset: 0x0003F67E
+		// Token: 0x06005244 RID: 21060 RVA: 0x0022EFCF File Offset: 0x0022D1CF
 		public static bool hasRegisterOut(string eventname)
 		{
 			return Event._hasRegister(Event.events_out, eventname);
 		}
 
-		// Token: 0x06005C81 RID: 23681 RVA: 0x0004148B File Offset: 0x0003F68B
+		// Token: 0x06005245 RID: 21061 RVA: 0x0022EFDC File Offset: 0x0022D1DC
 		public static bool hasRegisterIn(string eventname)
 		{
 			return Event._hasRegister(Event.events_in, eventname);
 		}
 
-		// Token: 0x06005C82 RID: 23682 RVA: 0x00041498 File Offset: 0x0003F698
+		// Token: 0x06005246 RID: 21062 RVA: 0x0022EFE9 File Offset: 0x0022D1E9
 		private static bool _hasRegister(Dictionary<string, List<Event.Pair>> events, string eventname)
 		{
 			Event.monitor_Enter(events);
@@ -90,79 +90,79 @@ namespace KBEngine
 			return result;
 		}
 
-		// Token: 0x06005C83 RID: 23683 RVA: 0x000414AD File Offset: 0x0003F6AD
+		// Token: 0x06005247 RID: 21063 RVA: 0x0022EFFE File Offset: 0x0022D1FE
 		public static bool registerOut(string eventname, object obj, string funcname)
 		{
 			return Event.register(Event.events_out, eventname, obj, funcname);
 		}
 
-		// Token: 0x06005C84 RID: 23684 RVA: 0x000414BC File Offset: 0x0003F6BC
+		// Token: 0x06005248 RID: 21064 RVA: 0x0022F00D File Offset: 0x0022D20D
 		public static bool registerOut(string eventname, Action handler)
 		{
 			return Event.registerOut(eventname, handler.Target, handler.Method.Name);
 		}
 
-		// Token: 0x06005C85 RID: 23685 RVA: 0x000414BC File Offset: 0x0003F6BC
+		// Token: 0x06005249 RID: 21065 RVA: 0x0022F00D File Offset: 0x0022D20D
 		public static bool registerOut<T1>(string eventname, Action<T1> handler)
 		{
 			return Event.registerOut(eventname, handler.Target, handler.Method.Name);
 		}
 
-		// Token: 0x06005C86 RID: 23686 RVA: 0x000414BC File Offset: 0x0003F6BC
+		// Token: 0x0600524A RID: 21066 RVA: 0x0022F00D File Offset: 0x0022D20D
 		public static bool registerOut<T1, T2>(string eventname, Action<T1, T2> handler)
 		{
 			return Event.registerOut(eventname, handler.Target, handler.Method.Name);
 		}
 
-		// Token: 0x06005C87 RID: 23687 RVA: 0x000414BC File Offset: 0x0003F6BC
+		// Token: 0x0600524B RID: 21067 RVA: 0x0022F00D File Offset: 0x0022D20D
 		public static bool registerOut<T1, T2, T3>(string eventname, Action<T1, T2, T3> handler)
 		{
 			return Event.registerOut(eventname, handler.Target, handler.Method.Name);
 		}
 
-		// Token: 0x06005C88 RID: 23688 RVA: 0x000414BC File Offset: 0x0003F6BC
+		// Token: 0x0600524C RID: 21068 RVA: 0x0022F00D File Offset: 0x0022D20D
 		public static bool registerOut<T1, T2, T3, T4>(string eventname, Action<T1, T2, T3, T4> handler)
 		{
 			return Event.registerOut(eventname, handler.Target, handler.Method.Name);
 		}
 
-		// Token: 0x06005C89 RID: 23689 RVA: 0x000414D5 File Offset: 0x0003F6D5
+		// Token: 0x0600524D RID: 21069 RVA: 0x0022F026 File Offset: 0x0022D226
 		public static bool registerIn(string eventname, object obj, string funcname)
 		{
 			return Event.register(Event.events_in, eventname, obj, funcname);
 		}
 
-		// Token: 0x06005C8A RID: 23690 RVA: 0x000414E4 File Offset: 0x0003F6E4
+		// Token: 0x0600524E RID: 21070 RVA: 0x0022F035 File Offset: 0x0022D235
 		public static bool registerIn(string eventname, Action handler)
 		{
 			return Event.registerIn(eventname, handler.Target, handler.Method.Name);
 		}
 
-		// Token: 0x06005C8B RID: 23691 RVA: 0x000414E4 File Offset: 0x0003F6E4
+		// Token: 0x0600524F RID: 21071 RVA: 0x0022F035 File Offset: 0x0022D235
 		public static bool registerIn<T1>(string eventname, Action<T1> handler)
 		{
 			return Event.registerIn(eventname, handler.Target, handler.Method.Name);
 		}
 
-		// Token: 0x06005C8C RID: 23692 RVA: 0x000414E4 File Offset: 0x0003F6E4
+		// Token: 0x06005250 RID: 21072 RVA: 0x0022F035 File Offset: 0x0022D235
 		public static bool registerIn<T1, T2>(string eventname, Action<T1, T2> handler)
 		{
 			return Event.registerIn(eventname, handler.Target, handler.Method.Name);
 		}
 
-		// Token: 0x06005C8D RID: 23693 RVA: 0x000414E4 File Offset: 0x0003F6E4
+		// Token: 0x06005251 RID: 21073 RVA: 0x0022F035 File Offset: 0x0022D235
 		public static bool registerIn<T1, T2, T3>(string eventname, Action<T1, T2, T3> handler)
 		{
 			return Event.registerIn(eventname, handler.Target, handler.Method.Name);
 		}
 
-		// Token: 0x06005C8E RID: 23694 RVA: 0x000414E4 File Offset: 0x0003F6E4
+		// Token: 0x06005252 RID: 21074 RVA: 0x0022F035 File Offset: 0x0022D235
 		public static bool registerIn<T1, T2, T3, T4>(string eventname, Action<T1, T2, T3, T4> handler)
 		{
 			return Event.registerIn(eventname, handler.Target, handler.Method.Name);
 		}
 
-		// Token: 0x06005C8F RID: 23695 RVA: 0x0025D674 File Offset: 0x0025B874
+		// Token: 0x06005253 RID: 21075 RVA: 0x0022F050 File Offset: 0x0022D250
 		private static bool register(Dictionary<string, List<Event.Pair>> events, string eventname, object obj, string funcname)
 		{
 			Event.deregister(events, eventname, obj, funcname);
@@ -199,33 +199,33 @@ namespace KBEngine
 			return true;
 		}
 
-		// Token: 0x06005C90 RID: 23696 RVA: 0x000414FD File Offset: 0x0003F6FD
+		// Token: 0x06005254 RID: 21076 RVA: 0x0022F110 File Offset: 0x0022D310
 		public static bool deregisterOut(string eventname, object obj, string funcname)
 		{
 			Event.removeFiredEventOut(obj, eventname, funcname);
 			return Event.deregister(Event.events_out, eventname, obj, funcname);
 		}
 
-		// Token: 0x06005C91 RID: 23697 RVA: 0x00041514 File Offset: 0x0003F714
+		// Token: 0x06005255 RID: 21077 RVA: 0x0022F127 File Offset: 0x0022D327
 		public static bool deregisterOut(string eventname, Action handler)
 		{
 			return Event.deregisterOut(eventname, handler.Target, handler.Method.Name);
 		}
 
-		// Token: 0x06005C92 RID: 23698 RVA: 0x0004152D File Offset: 0x0003F72D
+		// Token: 0x06005256 RID: 21078 RVA: 0x0022F140 File Offset: 0x0022D340
 		public static bool deregisterIn(string eventname, object obj, string funcname)
 		{
 			Event.removeFiredEventIn(obj, eventname, funcname);
 			return Event.deregister(Event.events_in, eventname, obj, funcname);
 		}
 
-		// Token: 0x06005C93 RID: 23699 RVA: 0x00041544 File Offset: 0x0003F744
+		// Token: 0x06005257 RID: 21079 RVA: 0x0022F157 File Offset: 0x0022D357
 		public static bool deregisterIn(string eventname, Action handler)
 		{
 			return Event.deregisterIn(eventname, handler.Target, handler.Method.Name);
 		}
 
-		// Token: 0x06005C94 RID: 23700 RVA: 0x0025D734 File Offset: 0x0025B934
+		// Token: 0x06005258 RID: 21080 RVA: 0x0022F170 File Offset: 0x0022D370
 		private static bool deregister(Dictionary<string, List<Event.Pair>> events, string eventname, object obj, string funcname)
 		{
 			Event.monitor_Enter(events);
@@ -248,21 +248,21 @@ namespace KBEngine
 			return false;
 		}
 
-		// Token: 0x06005C95 RID: 23701 RVA: 0x0004155D File Offset: 0x0003F75D
+		// Token: 0x06005259 RID: 21081 RVA: 0x0022F1E2 File Offset: 0x0022D3E2
 		public static bool deregisterOut(object obj)
 		{
 			Event.removeAllFiredEventOut(obj);
 			return Event.deregister(Event.events_out, obj);
 		}
 
-		// Token: 0x06005C96 RID: 23702 RVA: 0x00041570 File Offset: 0x0003F770
+		// Token: 0x0600525A RID: 21082 RVA: 0x0022F1F5 File Offset: 0x0022D3F5
 		public static bool deregisterIn(object obj)
 		{
 			Event.removeAllFiredEventIn(obj);
 			return Event.deregister(Event.events_in, obj);
 		}
 
-		// Token: 0x06005C97 RID: 23703 RVA: 0x0025D7A8 File Offset: 0x0025B9A8
+		// Token: 0x0600525B RID: 21083 RVA: 0x0022F208 File Offset: 0x0022D408
 		private static bool deregister(Dictionary<string, List<Event.Pair>> events, object obj)
 		{
 			Event.monitor_Enter(events);
@@ -281,7 +281,7 @@ namespace KBEngine
 			return true;
 		}
 
-		// Token: 0x06005C98 RID: 23704 RVA: 0x00041583 File Offset: 0x0003F783
+		// Token: 0x0600525C RID: 21084 RVA: 0x0022F26D File Offset: 0x0022D46D
 		public static void fireOut(string eventname, params object[] args)
 		{
 			if (RoundManager.instance != null && RoundManager.instance.IsVirtual)
@@ -291,20 +291,20 @@ namespace KBEngine
 			Event.fire_(Event.events_out, Event.firedEvents_out, eventname, args, Event.outEventsImmediately);
 		}
 
-		// Token: 0x06005C99 RID: 23705 RVA: 0x000415B5 File Offset: 0x0003F7B5
+		// Token: 0x0600525D RID: 21085 RVA: 0x0022F29F File Offset: 0x0022D49F
 		public static void fireIn(string eventname, params object[] args)
 		{
 			Event.fire_(Event.events_in, Event.firedEvents_in, eventname, args, false);
 		}
 
-		// Token: 0x06005C9A RID: 23706 RVA: 0x000415C9 File Offset: 0x0003F7C9
+		// Token: 0x0600525E RID: 21086 RVA: 0x0022F2B3 File Offset: 0x0022D4B3
 		public static void fireAll(string eventname, params object[] args)
 		{
 			Event.fire_(Event.events_in, Event.firedEvents_in, eventname, args, false);
 			Event.fire_(Event.events_out, Event.firedEvents_out, eventname, args, false);
 		}
 
-		// Token: 0x06005C9B RID: 23707 RVA: 0x0025D810 File Offset: 0x0025BA10
+		// Token: 0x0600525F RID: 21087 RVA: 0x0022F2DC File Offset: 0x0022D4DC
 		private static void fire_(Dictionary<string, List<Event.Pair>> events, LinkedList<Event.EventObj> firedEvents, string eventname, object[] args, bool eventsImmediately)
 		{
 			Event.monitor_Enter(events);
@@ -352,7 +352,7 @@ namespace KBEngine
 			Event.monitor_Exit(events);
 		}
 
-		// Token: 0x06005C9C RID: 23708 RVA: 0x0025D924 File Offset: 0x0025BB24
+		// Token: 0x06005260 RID: 21088 RVA: 0x0022F3F0 File Offset: 0x0022D5F0
 		public static void processOutEvents()
 		{
 			Event.monitor_Enter(Event.events_out);
@@ -391,7 +391,7 @@ namespace KBEngine
 			}
 		}
 
-		// Token: 0x06005C9D RID: 23709 RVA: 0x0025DA58 File Offset: 0x0025BC58
+		// Token: 0x06005261 RID: 21089 RVA: 0x0022F524 File Offset: 0x0022D724
 		public static void processInEvents()
 		{
 			Event.monitor_Enter(Event.events_in);
@@ -430,31 +430,31 @@ namespace KBEngine
 			}
 		}
 
-		// Token: 0x06005C9E RID: 23710 RVA: 0x000415EF File Offset: 0x0003F7EF
+		// Token: 0x06005262 RID: 21090 RVA: 0x0022F650 File Offset: 0x0022D850
 		public static void removeAllFiredEventIn(object obj)
 		{
 			Event.removeFiredEvent(Event.firedEvents_in, obj, "", "");
 		}
 
-		// Token: 0x06005C9F RID: 23711 RVA: 0x00041606 File Offset: 0x0003F806
+		// Token: 0x06005263 RID: 21091 RVA: 0x0022F667 File Offset: 0x0022D867
 		public static void removeAllFiredEventOut(object obj)
 		{
 			Event.removeFiredEvent(Event.firedEvents_out, obj, "", "");
 		}
 
-		// Token: 0x06005CA0 RID: 23712 RVA: 0x0004161D File Offset: 0x0003F81D
+		// Token: 0x06005264 RID: 21092 RVA: 0x0022F67E File Offset: 0x0022D87E
 		public static void removeFiredEventIn(object obj, string eventname, string funcname)
 		{
 			Event.removeFiredEvent(Event.firedEvents_in, obj, eventname, funcname);
 		}
 
-		// Token: 0x06005CA1 RID: 23713 RVA: 0x0004162C File Offset: 0x0003F82C
+		// Token: 0x06005265 RID: 21093 RVA: 0x0022F68D File Offset: 0x0022D88D
 		public static void removeFiredEventOut(object obj, string eventname, string funcname)
 		{
 			Event.removeFiredEvent(Event.firedEvents_out, obj, eventname, funcname);
 		}
 
-		// Token: 0x06005CA2 RID: 23714 RVA: 0x0025DB84 File Offset: 0x0025BD84
+		// Token: 0x06005266 RID: 21094 RVA: 0x0022F69C File Offset: 0x0022D89C
 		public static void removeFiredEvent(LinkedList<Event.EventObj> firedEvents, object obj, string eventname = "", string funcname = "")
 		{
 			Event.monitor_Enter(firedEvents);
@@ -476,53 +476,53 @@ namespace KBEngine
 			Event.monitor_Exit(firedEvents);
 		}
 
-		// Token: 0x04005A67 RID: 23143
+		// Token: 0x04004FD9 RID: 20441
 		private static Dictionary<string, List<Event.Pair>> events_out = new Dictionary<string, List<Event.Pair>>();
 
-		// Token: 0x04005A68 RID: 23144
+		// Token: 0x04004FDA RID: 20442
 		public static bool outEventsImmediately = true;
 
-		// Token: 0x04005A69 RID: 23145
+		// Token: 0x04004FDB RID: 20443
 		private static LinkedList<Event.EventObj> firedEvents_out = new LinkedList<Event.EventObj>();
 
-		// Token: 0x04005A6A RID: 23146
+		// Token: 0x04004FDC RID: 20444
 		private static LinkedList<Event.EventObj> doingEvents_out = new LinkedList<Event.EventObj>();
 
-		// Token: 0x04005A6B RID: 23147
+		// Token: 0x04004FDD RID: 20445
 		private static Dictionary<string, List<Event.Pair>> events_in = new Dictionary<string, List<Event.Pair>>();
 
-		// Token: 0x04005A6C RID: 23148
+		// Token: 0x04004FDE RID: 20446
 		private static LinkedList<Event.EventObj> firedEvents_in = new LinkedList<Event.EventObj>();
 
-		// Token: 0x04005A6D RID: 23149
+		// Token: 0x04004FDF RID: 20447
 		private static LinkedList<Event.EventObj> doingEvents_in = new LinkedList<Event.EventObj>();
 
-		// Token: 0x04005A6E RID: 23150
+		// Token: 0x04004FE0 RID: 20448
 		private static bool _isPauseOut = false;
 
-		// Token: 0x02000F14 RID: 3860
+		// Token: 0x020015F4 RID: 5620
 		public struct Pair
 		{
-			// Token: 0x04005A6F RID: 23151
+			// Token: 0x040070E5 RID: 28901
 			public object obj;
 
-			// Token: 0x04005A70 RID: 23152
+			// Token: 0x040070E6 RID: 28902
 			public string funcname;
 
-			// Token: 0x04005A71 RID: 23153
+			// Token: 0x040070E7 RID: 28903
 			public MethodInfo method;
 		}
 
-		// Token: 0x02000F15 RID: 3861
+		// Token: 0x020015F5 RID: 5621
 		public struct EventObj
 		{
-			// Token: 0x04005A72 RID: 23154
+			// Token: 0x040070E8 RID: 28904
 			public Event.Pair info;
 
-			// Token: 0x04005A73 RID: 23155
+			// Token: 0x040070E9 RID: 28905
 			public string eventname;
 
-			// Token: 0x04005A74 RID: 23156
+			// Token: 0x040070EA RID: 28906
 			public object[] args;
 		}
 	}

@@ -3,10 +3,10 @@ using System.Collections.Generic;
 
 namespace WXB
 {
-	// Token: 0x020009AE RID: 2478
+	// Token: 0x0200069A RID: 1690
 	internal class PoolData<T> where T : new()
 	{
-		// Token: 0x06003F2A RID: 16170 RVA: 0x0002D620 File Offset: 0x0002B820
+		// Token: 0x0600356C RID: 13676 RVA: 0x00170BA7 File Offset: 0x0016EDA7
 		public static T Get()
 		{
 			if (PoolData<T>.bufs.Count == 0)
@@ -18,13 +18,13 @@ namespace WXB
 			return result;
 		}
 
-		// Token: 0x06003F2B RID: 16171 RVA: 0x0002D660 File Offset: 0x0002B860
+		// Token: 0x0600356D RID: 13677 RVA: 0x00170BE7 File Offset: 0x0016EDE7
 		public static void Free(T t)
 		{
 			PoolData<T>.bufs.Add(t);
 		}
 
-		// Token: 0x06003F2C RID: 16172 RVA: 0x001B8CBC File Offset: 0x001B6EBC
+		// Token: 0x0600356E RID: 13678 RVA: 0x00170BF4 File Offset: 0x0016EDF4
 		public static void FreeList(List<T> list, Action<T> fun)
 		{
 			for (int i = 0; i < list.Count; i++)
@@ -35,7 +35,7 @@ namespace WXB
 			list.Clear();
 		}
 
-		// Token: 0x040038BC RID: 14524
+		// Token: 0x04002F03 RID: 12035
 		public static List<T> bufs = new List<T>();
 	}
 }

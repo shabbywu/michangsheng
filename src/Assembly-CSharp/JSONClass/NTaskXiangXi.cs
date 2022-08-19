@@ -3,10 +3,10 @@ using System.Collections.Generic;
 
 namespace JSONClass
 {
-	// Token: 0x02000C49 RID: 3145
+	// Token: 0x020008BB RID: 2235
 	public class NTaskXiangXi : IJSONClass
 	{
-		// Token: 0x06004C8D RID: 19597 RVA: 0x00205AF8 File Offset: 0x00203CF8
+		// Token: 0x060040FF RID: 16639 RVA: 0x001BCF94 File Offset: 0x001BB194
 		public static void InitDataDict()
 		{
 			foreach (JSONObject jsonobject in jsonData.instance.NTaskXiangXi.list)
@@ -53,66 +53,66 @@ namespace JSONClass
 			}
 		}
 
-		// Token: 0x06004C8E RID: 19598 RVA: 0x000042DD File Offset: 0x000024DD
+		// Token: 0x06004100 RID: 16640 RVA: 0x00004095 File Offset: 0x00002295
 		private static void OnInitFinish()
 		{
 		}
 
-		// Token: 0x04004B1C RID: 19228
+		// Token: 0x04003FC8 RID: 16328
 		public static Dictionary<int, NTaskXiangXi> DataDict = new Dictionary<int, NTaskXiangXi>();
 
-		// Token: 0x04004B1D RID: 19229
+		// Token: 0x04003FC9 RID: 16329
 		public static List<NTaskXiangXi> DataList = new List<NTaskXiangXi>();
 
-		// Token: 0x04004B1E RID: 19230
+		// Token: 0x04003FCA RID: 16330
 		public static Action OnInitFinishAction = new Action(NTaskXiangXi.OnInitFinish);
 
-		// Token: 0x04004B1F RID: 19231
+		// Token: 0x04003FCB RID: 16331
 		public int id;
 
-		// Token: 0x04004B20 RID: 19232
+		// Token: 0x04003FCC RID: 16332
 		public int JiaoFuType;
 
-		// Token: 0x04004B21 RID: 19233
+		// Token: 0x04003FCD RID: 16333
 		public int Type;
 
-		// Token: 0x04004B22 RID: 19234
+		// Token: 0x04003FCE RID: 16334
 		public int percent;
 
-		// Token: 0x04004B23 RID: 19235
+		// Token: 0x04003FCF RID: 16335
 		public int shiXian;
 
-		// Token: 0x04004B24 RID: 19236
+		// Token: 0x04003FD0 RID: 16336
 		public int ShiLIAdd;
 
-		// Token: 0x04004B25 RID: 19237
+		// Token: 0x04003FD1 RID: 16337
 		public int GeRenAdd;
 
-		// Token: 0x04004B26 RID: 19238
+		// Token: 0x04003FD2 RID: 16338
 		public int ShiLIReduce;
 
-		// Token: 0x04004B27 RID: 19239
+		// Token: 0x04003FD3 RID: 16339
 		public int GeRenReduce;
 
-		// Token: 0x04004B28 RID: 19240
+		// Token: 0x04003FD4 RID: 16340
 		public int shouYiLu;
 
-		// Token: 0x04004B29 RID: 19241
+		// Token: 0x04003FD5 RID: 16341
 		public string name;
 
-		// Token: 0x04004B2A RID: 19242
+		// Token: 0x04003FD6 RID: 16342
 		public string SayMiaoShu;
 
-		// Token: 0x04004B2B RID: 19243
+		// Token: 0x04003FD7 RID: 16343
 		public string zongmiaoshu;
 
-		// Token: 0x04004B2C RID: 19244
+		// Token: 0x04003FD8 RID: 16344
 		public string TaskZiXiang;
 
-		// Token: 0x04004B2D RID: 19245
+		// Token: 0x04003FD9 RID: 16345
 		public List<int> Level = new List<int>();
 
-		// Token: 0x04004B2E RID: 19246
+		// Token: 0x04003FDA RID: 16346
 		public List<int> menpaihaogan = new List<int>();
 	}
 }

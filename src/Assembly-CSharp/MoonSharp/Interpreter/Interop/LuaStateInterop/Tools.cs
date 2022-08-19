@@ -6,16 +6,16 @@ using System.Text.RegularExpressions;
 
 namespace MoonSharp.Interpreter.Interop.LuaStateInterop
 {
-	// Token: 0x02001140 RID: 4416
+	// Token: 0x02000D38 RID: 3384
 	internal static class Tools
 	{
-		// Token: 0x06006B2C RID: 27436 RVA: 0x002916D4 File Offset: 0x0028F8D4
+		// Token: 0x06005F5A RID: 24410 RVA: 0x002697D4 File Offset: 0x002679D4
 		public static bool IsNumericType(object o)
 		{
 			return o is byte || o is sbyte || o is short || o is ushort || o is int || o is uint || o is long || o is ulong || o is float || o is double || o is decimal;
 		}
 
-		// Token: 0x06006B2D RID: 27437 RVA: 0x0029173C File Offset: 0x0028F93C
+		// Token: 0x06005F5B RID: 24411 RVA: 0x0026983C File Offset: 0x00267A3C
 		public static bool IsPositive(object Value, bool ZeroIsPositive)
 		{
 			Type type = Value.GetType();
@@ -104,7 +104,7 @@ namespace MoonSharp.Interpreter.Interop.LuaStateInterop
 			}
 		}
 
-		// Token: 0x06006B2E RID: 27438 RVA: 0x00291950 File Offset: 0x0028FB50
+		// Token: 0x06005F5C RID: 24412 RVA: 0x00269A50 File Offset: 0x00267C50
 		public static object ToUnsigned(object Value)
 		{
 			Type type = Value.GetType();
@@ -155,7 +155,7 @@ namespace MoonSharp.Interpreter.Interop.LuaStateInterop
 			return null;
 		}
 
-		// Token: 0x06006B2F RID: 27439 RVA: 0x00291A90 File Offset: 0x0028FC90
+		// Token: 0x06005F5D RID: 24413 RVA: 0x00269B90 File Offset: 0x00267D90
 		public static object ToInteger(object Value, bool Round)
 		{
 			Type type = Value.GetType();
@@ -206,7 +206,7 @@ namespace MoonSharp.Interpreter.Interop.LuaStateInterop
 			return null;
 		}
 
-		// Token: 0x06006B30 RID: 27440 RVA: 0x00291BD4 File Offset: 0x0028FDD4
+		// Token: 0x06005F5E RID: 24414 RVA: 0x00269CD4 File Offset: 0x00267ED4
 		public static long UnboxToLong(object Value, bool Round)
 		{
 			Type type = Value.GetType();
@@ -272,13 +272,13 @@ namespace MoonSharp.Interpreter.Interop.LuaStateInterop
 			}
 		}
 
-		// Token: 0x06006B31 RID: 27441 RVA: 0x00049154 File Offset: 0x00047354
+		// Token: 0x06005F5F RID: 24415 RVA: 0x00269E3F File Offset: 0x0026803F
 		public static string ReplaceMetaChars(string input)
 		{
 			return Regex.Replace(input, "(\\\\)(\\d{3}|[^\\d])?", new MatchEvaluator(Tools.ReplaceMetaCharsMatch));
 		}
 
-		// Token: 0x06006B32 RID: 27442 RVA: 0x00291D40 File Offset: 0x0028FF40
+		// Token: 0x06005F60 RID: 24416 RVA: 0x00269E58 File Offset: 0x00268058
 		private static string ReplaceMetaCharsMatch(Match m)
 		{
 			if (m.Groups[2].Length == 3)
@@ -355,13 +355,13 @@ namespace MoonSharp.Interpreter.Interop.LuaStateInterop
 			return m.Groups[2].Value;
 		}
 
-		// Token: 0x06006B33 RID: 27443 RVA: 0x0004916D File Offset: 0x0004736D
+		// Token: 0x06005F61 RID: 24417 RVA: 0x00269FEB File Offset: 0x002681EB
 		public static void fprintf(TextWriter Destination, string Format, params object[] Parameters)
 		{
 			Destination.Write(Tools.sprintf(Format, Parameters));
 		}
 
-		// Token: 0x06006B34 RID: 27444 RVA: 0x00291ED4 File Offset: 0x002900D4
+		// Token: 0x06005F62 RID: 24418 RVA: 0x00269FFC File Offset: 0x002681FC
 		public static string sprintf(string Format, params object[] Parameters)
 		{
 			StringBuilder stringBuilder = new StringBuilder();
@@ -611,7 +611,7 @@ namespace MoonSharp.Interpreter.Interop.LuaStateInterop
 			return stringBuilder.ToString();
 		}
 
-		// Token: 0x06006B35 RID: 27445 RVA: 0x00292640 File Offset: 0x00290840
+		// Token: 0x06005F63 RID: 24419 RVA: 0x0026A768 File Offset: 0x00268968
 		private static string FormatOct(string NativeFormat, bool Alternate, int FieldLength, int FieldPrecision, bool Left2Right, char Padding, object Value)
 		{
 			string text = string.Empty;
@@ -642,7 +642,7 @@ namespace MoonSharp.Interpreter.Interop.LuaStateInterop
 			return text;
 		}
 
-		// Token: 0x06006B36 RID: 27446 RVA: 0x00292724 File Offset: 0x00290924
+		// Token: 0x06005F64 RID: 24420 RVA: 0x0026A84C File Offset: 0x00268A4C
 		private static string FormatHex(string NativeFormat, bool Alternate, int FieldLength, int FieldPrecision, bool Left2Right, char Padding, object Value)
 		{
 			string text = string.Empty;
@@ -674,7 +674,7 @@ namespace MoonSharp.Interpreter.Interop.LuaStateInterop
 			return text;
 		}
 
-		// Token: 0x06006B37 RID: 27447 RVA: 0x00292828 File Offset: 0x00290A28
+		// Token: 0x06005F65 RID: 24421 RVA: 0x0026A950 File Offset: 0x00268B50
 		private static string FormatNumber(string NativeFormat, bool Alternate, int FieldLength, int FieldPrecision, bool Left2Right, bool PositiveSign, bool PositiveSpace, char Padding, object Value)
 		{
 			string text = string.Empty;
@@ -721,7 +721,7 @@ namespace MoonSharp.Interpreter.Interop.LuaStateInterop
 			return text;
 		}
 
-		// Token: 0x040060DC RID: 24796
+		// Token: 0x0400547A RID: 21626
 		internal static Regex r = new Regex("\\%(\\d*\\$)?([\\'\\#\\-\\+ ]*)(\\d*)(?:\\.(\\d+))?([hl])?([dioxXucsfeEgGpn%])");
 	}
 }

@@ -6,13 +6,13 @@ using UnityEngine.Events;
 using UnityEngine.UI;
 using UnityEngine.Video;
 
-// Token: 0x02000308 RID: 776
+// Token: 0x020001F4 RID: 500
 [RequireComponent(typeof(RawImage))]
 [RequireComponent(typeof(VideoPlayer))]
 public class VideoImage : MonoBehaviour
 {
-	// Token: 0x17000278 RID: 632
-	// (get) Token: 0x06001732 RID: 5938 RVA: 0x000147B4 File Offset: 0x000129B4
+	// Token: 0x17000230 RID: 560
+	// (get) Token: 0x06001488 RID: 5256 RVA: 0x000839C0 File Offset: 0x00081BC0
 	public string TargetDirPath
 	{
 		get
@@ -28,8 +28,8 @@ public class VideoImage : MonoBehaviour
 		}
 	}
 
-	// Token: 0x17000279 RID: 633
-	// (get) Token: 0x06001733 RID: 5939 RVA: 0x000147EB File Offset: 0x000129EB
+	// Token: 0x17000231 RID: 561
+	// (get) Token: 0x06001489 RID: 5257 RVA: 0x000839F7 File Offset: 0x00081BF7
 	public string TargetVideoFilePath
 	{
 		get
@@ -38,8 +38,8 @@ public class VideoImage : MonoBehaviour
 		}
 	}
 
-	// Token: 0x1700027A RID: 634
-	// (get) Token: 0x06001734 RID: 5940 RVA: 0x00014808 File Offset: 0x00012A08
+	// Token: 0x17000232 RID: 562
+	// (get) Token: 0x0600148A RID: 5258 RVA: 0x00083A14 File Offset: 0x00081C14
 	public string TargetVideoUrl
 	{
 		get
@@ -48,8 +48,8 @@ public class VideoImage : MonoBehaviour
 		}
 	}
 
-	// Token: 0x1700027B RID: 635
-	// (get) Token: 0x06001735 RID: 5941 RVA: 0x0001481A File Offset: 0x00012A1A
+	// Token: 0x17000233 RID: 563
+	// (get) Token: 0x0600148B RID: 5259 RVA: 0x00083A26 File Offset: 0x00081C26
 	public VideoPlayer VideoPlayer
 	{
 		get
@@ -62,8 +62,8 @@ public class VideoImage : MonoBehaviour
 		}
 	}
 
-	// Token: 0x1700027C RID: 636
-	// (get) Token: 0x06001736 RID: 5942 RVA: 0x0001483C File Offset: 0x00012A3C
+	// Token: 0x17000234 RID: 564
+	// (get) Token: 0x0600148C RID: 5260 RVA: 0x00083A48 File Offset: 0x00081C48
 	public RawImage Display
 	{
 		get
@@ -76,8 +76,8 @@ public class VideoImage : MonoBehaviour
 		}
 	}
 
-	// Token: 0x1700027D RID: 637
-	// (get) Token: 0x06001737 RID: 5943 RVA: 0x0001485E File Offset: 0x00012A5E
+	// Token: 0x17000235 RID: 565
+	// (get) Token: 0x0600148D RID: 5261 RVA: 0x00083A6A File Offset: 0x00081C6A
 	private bool IsPlaying
 	{
 		get
@@ -90,8 +90,8 @@ public class VideoImage : MonoBehaviour
 		}
 	}
 
-	// Token: 0x1700027E RID: 638
-	// (get) Token: 0x06001738 RID: 5944 RVA: 0x000CC78C File Offset: 0x000CA98C
+	// Token: 0x17000236 RID: 566
+	// (get) Token: 0x0600148E RID: 5262 RVA: 0x00083A88 File Offset: 0x00081C88
 	public float PlayProcess
 	{
 		get
@@ -118,18 +118,18 @@ public class VideoImage : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001739 RID: 5945 RVA: 0x0001487B File Offset: 0x00012A7B
+	// Token: 0x0600148F RID: 5263 RVA: 0x00083B76 File Offset: 0x00081D76
 	private void Awake()
 	{
 		this.InitComponent();
 	}
 
-	// Token: 0x0600173A RID: 5946 RVA: 0x000042DD File Offset: 0x000024DD
+	// Token: 0x06001490 RID: 5264 RVA: 0x00004095 File Offset: 0x00002295
 	private void Start()
 	{
 	}
 
-	// Token: 0x0600173B RID: 5947 RVA: 0x000CC87C File Offset: 0x000CAA7C
+	// Token: 0x06001491 RID: 5265 RVA: 0x00083B80 File Offset: 0x00081D80
 	private void Update()
 	{
 		if (this.IsPlaying && this.mode != VideoImageMode.Video)
@@ -167,7 +167,7 @@ public class VideoImage : MonoBehaviour
 		}
 	}
 
-	// Token: 0x0600173C RID: 5948 RVA: 0x000CC96C File Offset: 0x000CAB6C
+	// Token: 0x06001492 RID: 5266 RVA: 0x00083C70 File Offset: 0x00081E70
 	private void InitComponent()
 	{
 		if (this.RenderTexture == null)
@@ -183,7 +183,7 @@ public class VideoImage : MonoBehaviour
 		this.VideoPlayer.loopPointReached += new VideoPlayer.EventHandler(this.EndPlay);
 	}
 
-	// Token: 0x0600173D RID: 5949 RVA: 0x000CC9EC File Offset: 0x000CABEC
+	// Token: 0x06001493 RID: 5267 RVA: 0x00083CF0 File Offset: 0x00081EF0
 	private void InitDisplayData()
 	{
 		this.mode = VideoImageMode.Fallback;
@@ -235,7 +235,7 @@ public class VideoImage : MonoBehaviour
 		}
 	}
 
-	// Token: 0x0600173E RID: 5950 RVA: 0x000CCB18 File Offset: 0x000CAD18
+	// Token: 0x06001494 RID: 5268 RVA: 0x00083E1C File Offset: 0x0008201C
 	public void Play()
 	{
 		this.InitDisplayData();
@@ -255,7 +255,7 @@ public class VideoImage : MonoBehaviour
 		}
 	}
 
-	// Token: 0x0600173F RID: 5951 RVA: 0x00014883 File Offset: 0x00012A83
+	// Token: 0x06001495 RID: 5269 RVA: 0x00083E71 File Offset: 0x00082071
 	public void EndPlay(VideoPlayer player)
 	{
 		player.Stop();
@@ -266,50 +266,50 @@ public class VideoImage : MonoBehaviour
 		}
 	}
 
-	// Token: 0x04001284 RID: 4740
+	// Token: 0x04000F42 RID: 3906
 	[Header("视频渲染材质")]
 	public RenderTexture RenderTexture;
 
-	// Token: 0x04001285 RID: 4741
+	// Token: 0x04000F43 RID: 3907
 	[Header("后备图片")]
 	public List<Sprite> FallbackSprites;
 
-	// Token: 0x04001286 RID: 4742
+	// Token: 0x04000F44 RID: 3908
 	[Header("分组")]
 	public string GroupName;
 
-	// Token: 0x04001287 RID: 4743
+	// Token: 0x04000F45 RID: 3909
 	[Header("目标文件名")]
 	public string TargetFileName;
 
-	// Token: 0x04001288 RID: 4744
+	// Token: 0x04000F46 RID: 3910
 	[Header("图片间隔时间")]
 	public float SpriteSpaceTime = 1f;
 
-	// Token: 0x04001289 RID: 4745
+	// Token: 0x04000F47 RID: 3911
 	public UnityEvent OnPlayBegin;
 
-	// Token: 0x0400128A RID: 4746
+	// Token: 0x04000F48 RID: 3912
 	public UnityEvent OnPlayFinshed;
 
-	// Token: 0x0400128B RID: 4747
+	// Token: 0x04000F49 RID: 3913
 	private VideoPlayer videoPlayer;
 
-	// Token: 0x0400128C RID: 4748
+	// Token: 0x04000F4A RID: 3914
 	private RawImage display;
 
-	// Token: 0x0400128D RID: 4749
+	// Token: 0x04000F4B RID: 3915
 	private List<Texture2D> TargetTexture2Ds = new List<Texture2D>();
 
-	// Token: 0x0400128E RID: 4750
+	// Token: 0x04000F4C RID: 3916
 	private VideoImageMode mode;
 
-	// Token: 0x0400128F RID: 4751
+	// Token: 0x04000F4D RID: 3917
 	private bool isPlaying;
 
-	// Token: 0x04001290 RID: 4752
+	// Token: 0x04000F4E RID: 3918
 	private int imagePlayIndex;
 
-	// Token: 0x04001291 RID: 4753
+	// Token: 0x04000F4F RID: 3919
 	private float imagePlayCD;
 }

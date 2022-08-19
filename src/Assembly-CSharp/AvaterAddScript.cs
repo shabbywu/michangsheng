@@ -4,10 +4,10 @@ using KBEngine;
 using UnityEngine;
 using UnityEngine.AI;
 
-// Token: 0x02000607 RID: 1543
+// Token: 0x0200044E RID: 1102
 public class AvaterAddScript : BaseAddScript
 {
-	// Token: 0x06002686 RID: 9862 RVA: 0x0012E928 File Offset: 0x0012CB28
+	// Token: 0x060022CF RID: 8911 RVA: 0x000EE068 File Offset: 0x000EC268
 	private void Awake()
 	{
 		base.gameObject.AddComponent<GameEntity>();
@@ -23,7 +23,7 @@ public class AvaterAddScript : BaseAddScript
 		base.gameObject.GetComponent<AvatarShowSkill>().DamageTemp = damageTemp;
 	}
 
-	// Token: 0x06002687 RID: 9863 RVA: 0x0012E9D8 File Offset: 0x0012CBD8
+	// Token: 0x060022D0 RID: 8912 RVA: 0x000EE118 File Offset: 0x000EC318
 	public override void setBuff()
 	{
 		foreach (ushort buffid in ((Avatar)this.entity).buffs)
@@ -32,26 +32,26 @@ public class AvaterAddScript : BaseAddScript
 		}
 	}
 
-	// Token: 0x06002688 RID: 9864 RVA: 0x0001EBBE File Offset: 0x0001CDBE
+	// Token: 0x060022D1 RID: 8913 RVA: 0x000EE178 File Offset: 0x000EC378
 	public void Update()
 	{
 		((Avatar)this.entity).spell.AutoRemoveBuff();
 	}
 
-	// Token: 0x06002689 RID: 9865 RVA: 0x0001EBD5 File Offset: 0x0001CDD5
+	// Token: 0x060022D2 RID: 8914 RVA: 0x000EE18F File Offset: 0x000EC38F
 	private new void Start()
 	{
 		base.Start();
 		base.InvokeRepeating("avatarThink", 1f, 1f);
 	}
 
-	// Token: 0x0600268A RID: 9866 RVA: 0x0001EBF2 File Offset: 0x0001CDF2
+	// Token: 0x060022D3 RID: 8915 RVA: 0x000EE1AC File Offset: 0x000EC3AC
 	public void avatarThink()
 	{
 		((Avatar)this.entity).ai.think();
 	}
 
-	// Token: 0x0600268B RID: 9867 RVA: 0x0001EC09 File Offset: 0x0001CE09
+	// Token: 0x060022D4 RID: 8916 RVA: 0x000EE1C3 File Offset: 0x000EC3C3
 	public void addNavMesh()
 	{
 		base.gameObject.AddComponent<NavMeshAgent>();

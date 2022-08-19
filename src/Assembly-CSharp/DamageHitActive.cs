@@ -1,10 +1,10 @@
 ﻿using System;
 using UnityEngine;
 
-// Token: 0x02000169 RID: 361
+// Token: 0x020000F1 RID: 241
 public class DamageHitActive : MonoBehaviour
 {
-	// Token: 0x06000C77 RID: 3191 RVA: 0x000980D0 File Offset: 0x000962D0
+	// Token: 0x06000B88 RID: 2952 RVA: 0x0004667C File Offset: 0x0004487C
 	private void OnTriggerEnter(Collider other)
 	{
 		if (other.tag == this.TagDamage)
@@ -18,9 +18,9 @@ public class DamageHitActive : MonoBehaviour
 		}
 	}
 
-	// Token: 0x0400099B RID: 2459
+	// Token: 0x040007BD RID: 1981
 	public GameObject explosiveObject;
 
-	// Token: 0x0400099C RID: 2460
+	// Token: 0x040007BE RID: 1982
 	public string TagDamage;
 }

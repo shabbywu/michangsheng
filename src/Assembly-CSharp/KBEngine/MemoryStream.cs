@@ -5,10 +5,10 @@ using UnityEngine;
 
 namespace KBEngine
 {
-	// Token: 0x02000F5D RID: 3933
+	// Token: 0x02000BDA RID: 3034
 	public class MemoryStream : ObjectPool<MemoryStream>
 	{
-		// Token: 0x06005E7A RID: 24186 RVA: 0x000422FE File Offset: 0x000404FE
+		// Token: 0x0600543C RID: 21564 RVA: 0x002349F2 File Offset: 0x00232BF2
 		public byte[] setBuffer(byte[] buffer)
 		{
 			byte[] result = this.datas_;
@@ -16,7 +16,7 @@ namespace KBEngine
 			return result;
 		}
 
-		// Token: 0x06005E7B RID: 24187 RVA: 0x00262280 File Offset: 0x00260480
+		// Token: 0x0600543D RID: 21565 RVA: 0x00234A04 File Offset: 0x00232C04
 		public void swap(MemoryStream stream)
 		{
 			int num = this.rpos;
@@ -28,26 +28,26 @@ namespace KBEngine
 			this.datas_ = stream.setBuffer(this.datas_);
 		}
 
-		// Token: 0x06005E7C RID: 24188 RVA: 0x0004230D File Offset: 0x0004050D
+		// Token: 0x0600543E RID: 21566 RVA: 0x00234A57 File Offset: 0x00232C57
 		public void reclaimObject()
 		{
 			this.clear();
 			ObjectPool<MemoryStream>.reclaimObject(this);
 		}
 
-		// Token: 0x06005E7D RID: 24189 RVA: 0x0004231B File Offset: 0x0004051B
+		// Token: 0x0600543F RID: 21567 RVA: 0x00234A65 File Offset: 0x00232C65
 		public byte[] data()
 		{
 			return this.datas_;
 		}
 
-		// Token: 0x06005E7E RID: 24190 RVA: 0x00042323 File Offset: 0x00040523
+		// Token: 0x06005440 RID: 21568 RVA: 0x00234A6D File Offset: 0x00232C6D
 		public void setData(byte[] data)
 		{
 			this.datas_ = data;
 		}
 
-		// Token: 0x06005E7F RID: 24191 RVA: 0x002622D4 File Offset: 0x002604D4
+		// Token: 0x06005441 RID: 21569 RVA: 0x00234A78 File Offset: 0x00232C78
 		public sbyte readInt8()
 		{
 			byte[] array = this.datas_;
@@ -56,28 +56,28 @@ namespace KBEngine
 			return array[num];
 		}
 
-		// Token: 0x06005E80 RID: 24192 RVA: 0x0004232C File Offset: 0x0004052C
+		// Token: 0x06005442 RID: 21570 RVA: 0x00234A9E File Offset: 0x00232C9E
 		public short readInt16()
 		{
 			this.rpos += 2;
 			return BitConverter.ToInt16(this.datas_, this.rpos - 2);
 		}
 
-		// Token: 0x06005E81 RID: 24193 RVA: 0x0004234F File Offset: 0x0004054F
+		// Token: 0x06005443 RID: 21571 RVA: 0x00234AC1 File Offset: 0x00232CC1
 		public int readInt32()
 		{
 			this.rpos += 4;
 			return BitConverter.ToInt32(this.datas_, this.rpos - 4);
 		}
 
-		// Token: 0x06005E82 RID: 24194 RVA: 0x00042372 File Offset: 0x00040572
+		// Token: 0x06005444 RID: 21572 RVA: 0x00234AE4 File Offset: 0x00232CE4
 		public long readInt64()
 		{
 			this.rpos += 8;
 			return BitConverter.ToInt64(this.datas_, this.rpos - 8);
 		}
 
-		// Token: 0x06005E83 RID: 24195 RVA: 0x002622FC File Offset: 0x002604FC
+		// Token: 0x06005445 RID: 21573 RVA: 0x00234B08 File Offset: 0x00232D08
 		public byte readUint8()
 		{
 			byte[] array = this.datas_;
@@ -86,42 +86,42 @@ namespace KBEngine
 			return array[num];
 		}
 
-		// Token: 0x06005E84 RID: 24196 RVA: 0x00042395 File Offset: 0x00040595
+		// Token: 0x06005446 RID: 21574 RVA: 0x00234B2D File Offset: 0x00232D2D
 		public ushort readUint16()
 		{
 			this.rpos += 2;
 			return BitConverter.ToUInt16(this.datas_, this.rpos - 2);
 		}
 
-		// Token: 0x06005E85 RID: 24197 RVA: 0x000423B8 File Offset: 0x000405B8
+		// Token: 0x06005447 RID: 21575 RVA: 0x00234B50 File Offset: 0x00232D50
 		public uint readUint32()
 		{
 			this.rpos += 4;
 			return BitConverter.ToUInt32(this.datas_, this.rpos - 4);
 		}
 
-		// Token: 0x06005E86 RID: 24198 RVA: 0x000423DB File Offset: 0x000405DB
+		// Token: 0x06005448 RID: 21576 RVA: 0x00234B73 File Offset: 0x00232D73
 		public ulong readUint64()
 		{
 			this.rpos += 8;
 			return BitConverter.ToUInt64(this.datas_, this.rpos - 8);
 		}
 
-		// Token: 0x06005E87 RID: 24199 RVA: 0x000423FE File Offset: 0x000405FE
+		// Token: 0x06005449 RID: 21577 RVA: 0x00234B96 File Offset: 0x00232D96
 		public float readFloat()
 		{
 			this.rpos += 4;
 			return BitConverter.ToSingle(this.datas_, this.rpos - 4);
 		}
 
-		// Token: 0x06005E88 RID: 24200 RVA: 0x00042421 File Offset: 0x00040621
+		// Token: 0x0600544A RID: 21578 RVA: 0x00234BB9 File Offset: 0x00232DB9
 		public double readDouble()
 		{
 			this.rpos += 8;
 			return BitConverter.ToDouble(this.datas_, this.rpos - 8);
 		}
 
-		// Token: 0x06005E89 RID: 24201 RVA: 0x00262324 File Offset: 0x00260524
+		// Token: 0x0600544B RID: 21579 RVA: 0x00234BDC File Offset: 0x00232DDC
 		public string readString()
 		{
 			int num = this.rpos;
@@ -137,13 +137,13 @@ namespace KBEngine
 			return MemoryStream._converter.GetString(this.datas_, num, this.rpos - num - 1);
 		}
 
-		// Token: 0x06005E8A RID: 24202 RVA: 0x00042444 File Offset: 0x00040644
+		// Token: 0x0600544C RID: 21580 RVA: 0x00234C25 File Offset: 0x00232E25
 		public string readUnicode()
 		{
 			return Encoding.UTF8.GetString(this.readBlob());
 		}
 
-		// Token: 0x06005E8B RID: 24203 RVA: 0x00262370 File Offset: 0x00260570
+		// Token: 0x0600544D RID: 21581 RVA: 0x00234C38 File Offset: 0x00232E38
 		public byte[] readBlob()
 		{
 			uint num = this.readUint32();
@@ -153,7 +153,7 @@ namespace KBEngine
 			return array;
 		}
 
-		// Token: 0x06005E8C RID: 24204 RVA: 0x00042456 File Offset: 0x00040656
+		// Token: 0x0600544E RID: 21582 RVA: 0x00234C79 File Offset: 0x00232E79
 		public byte[] readEntitycall()
 		{
 			this.readUint64();
@@ -163,7 +163,7 @@ namespace KBEngine
 			return new byte[0];
 		}
 
-		// Token: 0x06005E8D RID: 24205 RVA: 0x002623B4 File Offset: 0x002605B4
+		// Token: 0x0600544F RID: 21583 RVA: 0x00234CA0 File Offset: 0x00232EA0
 		public Vector2 readVector2()
 		{
 			float num = this.readFloat();
@@ -171,7 +171,7 @@ namespace KBEngine
 			return new Vector2(num, num2);
 		}
 
-		// Token: 0x06005E8E RID: 24206 RVA: 0x002623D4 File Offset: 0x002605D4
+		// Token: 0x06005450 RID: 21584 RVA: 0x00234CC0 File Offset: 0x00232EC0
 		public Vector3 readVector3()
 		{
 			float num = this.readFloat();
@@ -180,7 +180,7 @@ namespace KBEngine
 			return new Vector3(num, num2, num3);
 		}
 
-		// Token: 0x06005E8F RID: 24207 RVA: 0x002623FC File Offset: 0x002605FC
+		// Token: 0x06005451 RID: 21585 RVA: 0x00234CE8 File Offset: 0x00232EE8
 		public Vector4 readVector4()
 		{
 			float num = this.readFloat();
@@ -190,13 +190,13 @@ namespace KBEngine
 			return new Vector4(num, num2, num3, num4);
 		}
 
-		// Token: 0x06005E90 RID: 24208 RVA: 0x0004247A File Offset: 0x0004067A
+		// Token: 0x06005452 RID: 21586 RVA: 0x00234D18 File Offset: 0x00232F18
 		public byte[] readPython()
 		{
 			return this.readBlob();
 		}
 
-		// Token: 0x06005E91 RID: 24209 RVA: 0x0026242C File Offset: 0x0026062C
+		// Token: 0x06005453 RID: 21587 RVA: 0x00234D20 File Offset: 0x00232F20
 		public Vector2 readPackXZ()
 		{
 			MemoryStream.PackFloatXType packFloatXType;
@@ -221,7 +221,7 @@ namespace KBEngine
 			return new Vector2(packFloatXType.fv, packFloatXType2.fv);
 		}
 
-		// Token: 0x06005E92 RID: 24210 RVA: 0x00262524 File Offset: 0x00260724
+		// Token: 0x06005454 RID: 21588 RVA: 0x00234E18 File Offset: 0x00233018
 		public float readPackY()
 		{
 			MemoryStream.PackFloatXType packFloatXType;
@@ -234,7 +234,7 @@ namespace KBEngine
 			return packFloatXType.fv;
 		}
 
-		// Token: 0x06005E93 RID: 24211 RVA: 0x00262590 File Offset: 0x00260790
+		// Token: 0x06005455 RID: 21589 RVA: 0x00234E84 File Offset: 0x00233084
 		public void writeInt8(sbyte v)
 		{
 			byte[] array = this.datas_;
@@ -243,14 +243,14 @@ namespace KBEngine
 			array[num] = (byte)v;
 		}
 
-		// Token: 0x06005E94 RID: 24212 RVA: 0x00042482 File Offset: 0x00040682
+		// Token: 0x06005456 RID: 21590 RVA: 0x00234EAB File Offset: 0x002330AB
 		public void writeInt16(short v)
 		{
 			this.writeInt8((sbyte)(v & 255));
 			this.writeInt8((sbyte)(v >> 8 & 255));
 		}
 
-		// Token: 0x06005E95 RID: 24213 RVA: 0x002625B8 File Offset: 0x002607B8
+		// Token: 0x06005457 RID: 21591 RVA: 0x00234ECC File Offset: 0x002330CC
 		public void writeInt32(int v)
 		{
 			for (int i = 0; i < 4; i++)
@@ -259,7 +259,7 @@ namespace KBEngine
 			}
 		}
 
-		// Token: 0x06005E96 RID: 24214 RVA: 0x002625E8 File Offset: 0x002607E8
+		// Token: 0x06005458 RID: 21592 RVA: 0x00234EFC File Offset: 0x002330FC
 		public void writeInt64(long v)
 		{
 			byte[] bytes = BitConverter.GetBytes(v);
@@ -272,7 +272,7 @@ namespace KBEngine
 			}
 		}
 
-		// Token: 0x06005E97 RID: 24215 RVA: 0x00262628 File Offset: 0x00260828
+		// Token: 0x06005459 RID: 21593 RVA: 0x00234F3C File Offset: 0x0023313C
 		public void writeUint8(byte v)
 		{
 			byte[] array = this.datas_;
@@ -281,14 +281,14 @@ namespace KBEngine
 			array[num] = v;
 		}
 
-		// Token: 0x06005E98 RID: 24216 RVA: 0x000424A2 File Offset: 0x000406A2
+		// Token: 0x0600545A RID: 21594 RVA: 0x00234F62 File Offset: 0x00233162
 		public void writeUint16(ushort v)
 		{
 			this.writeUint8((byte)(v & 255));
 			this.writeUint8((byte)(v >> 8 & 255));
 		}
 
-		// Token: 0x06005E99 RID: 24217 RVA: 0x00262650 File Offset: 0x00260850
+		// Token: 0x0600545B RID: 21595 RVA: 0x00234F84 File Offset: 0x00233184
 		public void writeUint32(uint v)
 		{
 			for (int i = 0; i < 4; i++)
@@ -297,7 +297,7 @@ namespace KBEngine
 			}
 		}
 
-		// Token: 0x06005E9A RID: 24218 RVA: 0x00262680 File Offset: 0x00260880
+		// Token: 0x0600545C RID: 21596 RVA: 0x00234FB4 File Offset: 0x002331B4
 		public void writeUint64(ulong v)
 		{
 			byte[] bytes = BitConverter.GetBytes(v);
@@ -310,7 +310,7 @@ namespace KBEngine
 			}
 		}
 
-		// Token: 0x06005E9B RID: 24219 RVA: 0x002626C0 File Offset: 0x002608C0
+		// Token: 0x0600545D RID: 21597 RVA: 0x00234FF4 File Offset: 0x002331F4
 		public void writeFloat(float v)
 		{
 			byte[] bytes = BitConverter.GetBytes(v);
@@ -323,7 +323,7 @@ namespace KBEngine
 			}
 		}
 
-		// Token: 0x06005E9C RID: 24220 RVA: 0x00262700 File Offset: 0x00260900
+		// Token: 0x0600545E RID: 21598 RVA: 0x00235034 File Offset: 0x00233234
 		public void writeDouble(double v)
 		{
 			byte[] bytes = BitConverter.GetBytes(v);
@@ -336,7 +336,7 @@ namespace KBEngine
 			}
 		}
 
-		// Token: 0x06005E9D RID: 24221 RVA: 0x00262740 File Offset: 0x00260940
+		// Token: 0x0600545F RID: 21599 RVA: 0x00235074 File Offset: 0x00233274
 		public void writeBlob(byte[] v)
 		{
 			uint num = (uint)v.Length;
@@ -355,7 +355,7 @@ namespace KBEngine
 			}
 		}
 
-		// Token: 0x06005E9E RID: 24222 RVA: 0x00262798 File Offset: 0x00260998
+		// Token: 0x06005460 RID: 21600 RVA: 0x002350CC File Offset: 0x002332CC
 		public void writeString(string v)
 		{
 			if ((long)v.Length > (long)((ulong)this.space()))
@@ -378,14 +378,14 @@ namespace KBEngine
 			array2[num] = 0;
 		}
 
-		// Token: 0x06005E9F RID: 24223 RVA: 0x000424C2 File Offset: 0x000406C2
+		// Token: 0x06005461 RID: 21601 RVA: 0x00235142 File Offset: 0x00233342
 		public void writeVector2(Vector2 v)
 		{
 			this.writeFloat(v.x);
 			this.writeFloat(v.y);
 		}
 
-		// Token: 0x06005EA0 RID: 24224 RVA: 0x000424DC File Offset: 0x000406DC
+		// Token: 0x06005462 RID: 21602 RVA: 0x0023515C File Offset: 0x0023335C
 		public void writeVector3(Vector3 v)
 		{
 			this.writeFloat(v.x);
@@ -393,7 +393,7 @@ namespace KBEngine
 			this.writeFloat(v.z);
 		}
 
-		// Token: 0x06005EA1 RID: 24225 RVA: 0x00042502 File Offset: 0x00040702
+		// Token: 0x06005463 RID: 21603 RVA: 0x00235182 File Offset: 0x00233382
 		public void writeVector4(Vector4 v)
 		{
 			this.writeFloat(v.x);
@@ -402,7 +402,7 @@ namespace KBEngine
 			this.writeFloat(v.w);
 		}
 
-		// Token: 0x06005EA2 RID: 24226 RVA: 0x00262810 File Offset: 0x00260A10
+		// Token: 0x06005464 RID: 21604 RVA: 0x002351B4 File Offset: 0x002333B4
 		public void writeEntitycall(byte[] v)
 		{
 			ulong v2 = 0UL;
@@ -415,7 +415,7 @@ namespace KBEngine
 			this.writeUint16(v5);
 		}
 
-		// Token: 0x06005EA3 RID: 24227 RVA: 0x00262844 File Offset: 0x00260A44
+		// Token: 0x06005465 RID: 21605 RVA: 0x002351E8 File Offset: 0x002333E8
 		public void append(byte[] datas, uint offset, uint size)
 		{
 			if (this.space() < size)
@@ -428,37 +428,37 @@ namespace KBEngine
 			this.wpos += (int)size;
 		}
 
-		// Token: 0x06005EA4 RID: 24228 RVA: 0x00042534 File Offset: 0x00040734
+		// Token: 0x06005466 RID: 21606 RVA: 0x00235253 File Offset: 0x00233453
 		public void readSkip(uint v)
 		{
 			this.rpos += (int)v;
 		}
 
-		// Token: 0x06005EA5 RID: 24229 RVA: 0x00042544 File Offset: 0x00040744
+		// Token: 0x06005467 RID: 21607 RVA: 0x00235263 File Offset: 0x00233463
 		public uint space()
 		{
 			return (uint)(this.data().Length - this.wpos);
 		}
 
-		// Token: 0x06005EA6 RID: 24230 RVA: 0x00042555 File Offset: 0x00040755
+		// Token: 0x06005468 RID: 21608 RVA: 0x00235274 File Offset: 0x00233474
 		public uint length()
 		{
 			return (uint)(this.wpos - this.rpos);
 		}
 
-		// Token: 0x06005EA7 RID: 24231 RVA: 0x00042564 File Offset: 0x00040764
+		// Token: 0x06005469 RID: 21609 RVA: 0x00235283 File Offset: 0x00233483
 		public bool readEOF()
 		{
 			return 5840 - this.rpos <= 0;
 		}
 
-		// Token: 0x06005EA8 RID: 24232 RVA: 0x00042578 File Offset: 0x00040778
+		// Token: 0x0600546A RID: 21610 RVA: 0x00235297 File Offset: 0x00233497
 		public void done()
 		{
 			this.rpos = this.wpos;
 		}
 
-		// Token: 0x06005EA9 RID: 24233 RVA: 0x002628B0 File Offset: 0x00260AB0
+		// Token: 0x0600546B RID: 21611 RVA: 0x002352A8 File Offset: 0x002334A8
 		public void clear()
 		{
 			this.rpos = (this.wpos = 0);
@@ -468,7 +468,7 @@ namespace KBEngine
 			}
 		}
 
-		// Token: 0x06005EAA RID: 24234 RVA: 0x002628EC File Offset: 0x00260AEC
+		// Token: 0x0600546C RID: 21612 RVA: 0x002352E4 File Offset: 0x002334E4
 		public byte[] getbuffer()
 		{
 			byte[] array = new byte[this.length()];
@@ -476,7 +476,7 @@ namespace KBEngine
 			return array;
 		}
 
-		// Token: 0x06005EAB RID: 24235 RVA: 0x00262924 File Offset: 0x00260B24
+		// Token: 0x0600546D RID: 21613 RVA: 0x0023531C File Offset: 0x0023351C
 		public string toString()
 		{
 			string text = "";
@@ -496,34 +496,34 @@ namespace KBEngine
 			return text;
 		}
 
-		// Token: 0x04005B1E RID: 23326
+		// Token: 0x0400507D RID: 20605
 		public const int BUFFER_MAX = 5840;
 
-		// Token: 0x04005B1F RID: 23327
+		// Token: 0x0400507E RID: 20606
 		public int rpos;
 
-		// Token: 0x04005B20 RID: 23328
+		// Token: 0x0400507F RID: 20607
 		public int wpos;
 
-		// Token: 0x04005B21 RID: 23329
+		// Token: 0x04005080 RID: 20608
 		private byte[] datas_ = new byte[5840];
 
-		// Token: 0x04005B22 RID: 23330
+		// Token: 0x04005081 RID: 20609
 		private static ASCIIEncoding _converter = new ASCIIEncoding();
 
-		// Token: 0x02000F5E RID: 3934
+		// Token: 0x020015F9 RID: 5625
 		[StructLayout(LayoutKind.Explicit, Size = 4)]
 		private struct PackFloatXType
 		{
-			// Token: 0x04005B23 RID: 23331
+			// Token: 0x040070F8 RID: 28920
 			[FieldOffset(0)]
 			public float fv;
 
-			// Token: 0x04005B24 RID: 23332
+			// Token: 0x040070F9 RID: 28921
 			[FieldOffset(0)]
 			public uint uv;
 
-			// Token: 0x04005B25 RID: 23333
+			// Token: 0x040070FA RID: 28922
 			[FieldOffset(0)]
 			public int iv;
 		}

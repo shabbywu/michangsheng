@@ -3,20 +3,20 @@ using BehaviorDesigner.Runtime.Tasks;
 
 namespace BehaviorDesigner.Runtime.ObjectDrawers
 {
-	// Token: 0x02001483 RID: 5251
+	// Token: 0x02000FCB RID: 4043
 	public class FloatSliderAttribute : ObjectDrawerAttribute
 	{
-		// Token: 0x06007E23 RID: 32291 RVA: 0x00055470 File Offset: 0x00053670
+		// Token: 0x06007029 RID: 28713 RVA: 0x002A8DF1 File Offset: 0x002A6FF1
 		public FloatSliderAttribute(float min, float max)
 		{
 			this.min = min;
 			this.max = max;
 		}
 
-		// Token: 0x04006B68 RID: 27496
+		// Token: 0x04005C70 RID: 23664
 		public float min;
 
-		// Token: 0x04006B69 RID: 27497
+		// Token: 0x04005C71 RID: 23665
 		public float max;
 	}
 }

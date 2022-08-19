@@ -3,13 +3,13 @@ using System.Collections.Generic;
 
 namespace BehaviorDesigner.Runtime.Tasks
 {
-	// Token: 0x0200149C RID: 5276
+	// Token: 0x02000FE4 RID: 4068
 	[TaskDescription("The utility selector task evaluates the child tasks using Utility Theory AI. The child task can override the GetUtility method and return the utility value at that particular time. The task with the highest utility value will be selected and the existing running task will be aborted. The utility selector task reevaluates its children every tick.")]
 	[HelpURL("http://www.opsive.com/assets/BehaviorDesigner/documentation.php?id=134")]
 	[TaskIcon("{SkinColor}UtilitySelectorIcon.png")]
 	public class UtilitySelector : Composite
 	{
-		// Token: 0x06007EA5 RID: 32421 RVA: 0x002C9074 File Offset: 0x002C7274
+		// Token: 0x060070AB RID: 28843 RVA: 0x002AA2B8 File Offset: 0x002A84B8
 		public override void OnStart()
 		{
 			this.highestUtility = float.MinValue;
@@ -26,25 +26,25 @@ namespace BehaviorDesigner.Runtime.Tasks
 			}
 		}
 
-		// Token: 0x06007EA6 RID: 32422 RVA: 0x00055BDF File Offset: 0x00053DDF
+		// Token: 0x060070AC RID: 28844 RVA: 0x002AA326 File Offset: 0x002A8526
 		public override int CurrentChildIndex()
 		{
 			return this.currentChildIndex;
 		}
 
-		// Token: 0x06007EA7 RID: 32423 RVA: 0x00055BE7 File Offset: 0x00053DE7
+		// Token: 0x060070AD RID: 28845 RVA: 0x002AA32E File Offset: 0x002A852E
 		public override void OnChildStarted(int childIndex)
 		{
 			this.executionStatus = 3;
 		}
 
-		// Token: 0x06007EA8 RID: 32424 RVA: 0x00055BF0 File Offset: 0x00053DF0
+		// Token: 0x060070AE RID: 28846 RVA: 0x002AA337 File Offset: 0x002A8537
 		public override bool CanExecute()
 		{
 			return this.executionStatus != 2 && this.executionStatus != 3 && !this.reevaluating && this.availableChildren.Count > 0;
 		}
 
-		// Token: 0x06007EA9 RID: 32425 RVA: 0x002C90E4 File Offset: 0x002C72E4
+		// Token: 0x060070AF RID: 28847 RVA: 0x002AA364 File Offset: 0x002A8564
 		public override void OnChildExecuted(int childIndex, TaskStatus childStatus)
 		{
 			if (childStatus != null && childStatus != 3)
@@ -67,39 +67,39 @@ namespace BehaviorDesigner.Runtime.Tasks
 			}
 		}
 
-		// Token: 0x06007EAA RID: 32426 RVA: 0x00055C1C File Offset: 0x00053E1C
+		// Token: 0x060070B0 RID: 28848 RVA: 0x002AA3F8 File Offset: 0x002A85F8
 		public override void OnConditionalAbort(int childIndex)
 		{
 			this.currentChildIndex = childIndex;
 			this.executionStatus = 0;
 		}
 
-		// Token: 0x06007EAB RID: 32427 RVA: 0x00055C2C File Offset: 0x00053E2C
+		// Token: 0x060070B1 RID: 28849 RVA: 0x002AA408 File Offset: 0x002A8608
 		public override void OnEnd()
 		{
 			this.executionStatus = 0;
 			this.currentChildIndex = 0;
 		}
 
-		// Token: 0x06007EAC RID: 32428 RVA: 0x00055C3C File Offset: 0x00053E3C
+		// Token: 0x060070B2 RID: 28850 RVA: 0x002AA418 File Offset: 0x002A8618
 		public override TaskStatus OverrideStatus(TaskStatus status)
 		{
 			return this.executionStatus;
 		}
 
-		// Token: 0x06007EAD RID: 32429 RVA: 0x0000A093 File Offset: 0x00008293
+		// Token: 0x060070B3 RID: 28851 RVA: 0x00024C5F File Offset: 0x00022E5F
 		public override bool CanRunParallelChildren()
 		{
 			return true;
 		}
 
-		// Token: 0x06007EAE RID: 32430 RVA: 0x0000A093 File Offset: 0x00008293
+		// Token: 0x060070B4 RID: 28852 RVA: 0x00024C5F File Offset: 0x00022E5F
 		public override bool CanReevaluate()
 		{
 			return true;
 		}
 
-		// Token: 0x06007EAF RID: 32431 RVA: 0x00055C44 File Offset: 0x00053E44
+		// Token: 0x060070B5 RID: 28853 RVA: 0x002AA420 File Offset: 0x002A8620
 		public override bool OnReevaluationStarted()
 		{
 			if (this.executionStatus == null)
@@ -110,7 +110,7 @@ namespace BehaviorDesigner.Runtime.Tasks
 			return true;
 		}
 
-		// Token: 0x06007EB0 RID: 32432 RVA: 0x002C9178 File Offset: 0x002C7378
+		// Token: 0x060070B6 RID: 28854 RVA: 0x002AA434 File Offset: 0x002A8634
 		public override void OnReevaluationEnded(TaskStatus status)
 		{
 			this.reevaluating = false;
@@ -132,19 +132,19 @@ namespace BehaviorDesigner.Runtime.Tasks
 			}
 		}
 
-		// Token: 0x04006BBE RID: 27582
+		// Token: 0x04005CC6 RID: 23750
 		private int currentChildIndex;
 
-		// Token: 0x04006BBF RID: 27583
+		// Token: 0x04005CC7 RID: 23751
 		private float highestUtility;
 
-		// Token: 0x04006BC0 RID: 27584
+		// Token: 0x04005CC8 RID: 23752
 		private TaskStatus executionStatus;
 
-		// Token: 0x04006BC1 RID: 27585
+		// Token: 0x04005CC9 RID: 23753
 		private bool reevaluating;
 
-		// Token: 0x04006BC2 RID: 27586
+		// Token: 0x04005CCA RID: 23754
 		private List<int> availableChildren = new List<int>();
 	}
 }

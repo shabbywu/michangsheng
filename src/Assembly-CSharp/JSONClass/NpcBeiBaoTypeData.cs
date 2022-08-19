@@ -3,10 +3,10 @@ using System.Collections.Generic;
 
 namespace JSONClass
 {
-	// Token: 0x02000C24 RID: 3108
+	// Token: 0x02000896 RID: 2198
 	public class NpcBeiBaoTypeData : IJSONClass
 	{
-		// Token: 0x06004BF9 RID: 19449 RVA: 0x00201198 File Offset: 0x001FF398
+		// Token: 0x0600406B RID: 16491 RVA: 0x001B7E04 File Offset: 0x001B6004
 		public static void InitDataDict()
 		{
 			foreach (JSONObject jsonobject in jsonData.instance.NpcBeiBaoTypeData.list)
@@ -42,33 +42,33 @@ namespace JSONClass
 			}
 		}
 
-		// Token: 0x06004BFA RID: 19450 RVA: 0x000042DD File Offset: 0x000024DD
+		// Token: 0x0600406C RID: 16492 RVA: 0x00004095 File Offset: 0x00002295
 		private static void OnInitFinish()
 		{
 		}
 
-		// Token: 0x04004936 RID: 18742
+		// Token: 0x04003DDD RID: 15837
 		public static Dictionary<int, NpcBeiBaoTypeData> DataDict = new Dictionary<int, NpcBeiBaoTypeData>();
 
-		// Token: 0x04004937 RID: 18743
+		// Token: 0x04003DDE RID: 15838
 		public static List<NpcBeiBaoTypeData> DataList = new List<NpcBeiBaoTypeData>();
 
-		// Token: 0x04004938 RID: 18744
+		// Token: 0x04003DDF RID: 15839
 		public static Action OnInitFinishAction = new Action(NpcBeiBaoTypeData.OnInitFinish);
 
-		// Token: 0x04004939 RID: 18745
+		// Token: 0x04003DE0 RID: 15840
 		public int id;
 
-		// Token: 0x0400493A RID: 18746
+		// Token: 0x04003DE1 RID: 15841
 		public int BagTpye;
 
-		// Token: 0x0400493B RID: 18747
+		// Token: 0x04003DE2 RID: 15842
 		public int JinJie;
 
-		// Token: 0x0400493C RID: 18748
+		// Token: 0x04003DE3 RID: 15843
 		public List<int> ShopType = new List<int>();
 
-		// Token: 0x0400493D RID: 18749
+		// Token: 0x04003DE4 RID: 15844
 		public List<int> quality = new List<int>();
 	}
 }

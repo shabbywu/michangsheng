@@ -4,10 +4,10 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
 
-// Token: 0x0200033F RID: 831
+// Token: 0x02000223 RID: 547
 public class UIShuangXiuResultPanel : MonoBehaviour
 {
-	// Token: 0x06001871 RID: 6257 RVA: 0x000D9F28 File Offset: 0x000D8128
+	// Token: 0x060015B9 RID: 5561 RVA: 0x00091460 File Offset: 0x0008F660
 	private void Awake()
 	{
 		base.transform.SetParent(NewUICanvas.Inst.gameObject.transform);
@@ -20,7 +20,7 @@ public class UIShuangXiuResultPanel : MonoBehaviour
 		ShortcutExtensions.DOScale(this.panel, Vector3.one, 0.5f);
 	}
 
-	// Token: 0x06001872 RID: 6258 RVA: 0x00015382 File Offset: 0x00013582
+	// Token: 0x060015BA RID: 5562 RVA: 0x000914F3 File Offset: 0x0008F6F3
 	private void Update()
 	{
 		if (Input.GetKeyUp(27))
@@ -29,7 +29,7 @@ public class UIShuangXiuResultPanel : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001873 RID: 6259 RVA: 0x00015393 File Offset: 0x00013593
+	// Token: 0x060015BB RID: 5563 RVA: 0x00091504 File Offset: 0x0008F704
 	public void Close()
 	{
 		Object.Destroy(base.gameObject);
@@ -41,7 +41,7 @@ public class UIShuangXiuResultPanel : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001874 RID: 6260 RVA: 0x000D9FBC File Offset: 0x000D81BC
+	// Token: 0x060015BC RID: 5564 RVA: 0x00091530 File Offset: 0x0008F730
 	public void Show(string str, UnityAction onOk = null)
 	{
 		this.ShowText.text = str;
@@ -50,15 +50,15 @@ public class UIShuangXiuResultPanel : MonoBehaviour
 		this.OKBtn.mouseUpEvent.AddListener(new UnityAction(this.Close));
 	}
 
-	// Token: 0x04001394 RID: 5012
+	// Token: 0x0400103C RID: 4156
 	public Text ShowText;
 
-	// Token: 0x04001395 RID: 5013
+	// Token: 0x0400103D RID: 4157
 	public FpBtn OKBtn;
 
-	// Token: 0x04001396 RID: 5014
+	// Token: 0x0400103E RID: 4158
 	private UnityAction OkAction;
 
-	// Token: 0x04001397 RID: 5015
+	// Token: 0x0400103F RID: 4159
 	public Transform panel;
 }

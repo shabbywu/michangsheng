@@ -7,10 +7,10 @@ using MoonSharp.Interpreter.Platforms;
 
 namespace MoonSharp.Interpreter
 {
-	// Token: 0x02001091 RID: 4241
+	// Token: 0x02000CBD RID: 3261
 	public static class ModuleRegister
 	{
-		// Token: 0x06006663 RID: 26211 RVA: 0x00283C18 File Offset: 0x00281E18
+		// Token: 0x06005B64 RID: 23396 RVA: 0x00259F08 File Offset: 0x00258108
 		public static Table RegisterCoreModules(this Table table, CoreModules modules)
 		{
 			modules = Script.GlobalOptions.Platform.FilterSupportedCoreModules(modules);
@@ -89,7 +89,7 @@ namespace MoonSharp.Interpreter
 			return table;
 		}
 
-		// Token: 0x06006664 RID: 26212 RVA: 0x00283D84 File Offset: 0x00281F84
+		// Token: 0x06005B65 RID: 23397 RVA: 0x0025A074 File Offset: 0x00258274
 		public static Table RegisterConstants(this Table table)
 		{
 			DynValue dynValue = DynValue.NewTable(table.OwnerScript);
@@ -109,7 +109,7 @@ namespace MoonSharp.Interpreter
 			return table;
 		}
 
-		// Token: 0x06006665 RID: 26213 RVA: 0x00283EB4 File Offset: 0x002820B4
+		// Token: 0x06005B66 RID: 23398 RVA: 0x0025A1A4 File Offset: 0x002583A4
 		public static Table RegisterModuleType(this Table gtable, Type t)
 		{
 			Table table = ModuleRegister.CreateModuleNamespace(gtable, t);
@@ -157,7 +157,7 @@ namespace MoonSharp.Interpreter
 			return gtable;
 		}
 
-		// Token: 0x06006666 RID: 26214 RVA: 0x00284158 File Offset: 0x00282358
+		// Token: 0x06005B67 RID: 23399 RVA: 0x0025A448 File Offset: 0x00258648
 		private static void RegisterScriptFieldAsConst(FieldInfo fi, object o, Table table, Type t, string name)
 		{
 			if (fi.FieldType == typeof(string))
@@ -175,7 +175,7 @@ namespace MoonSharp.Interpreter
 			throw new ArgumentException(string.Format("Field {0} does not have the right type - it must be string or double.", name));
 		}
 
-		// Token: 0x06006667 RID: 26215 RVA: 0x002841DC File Offset: 0x002823DC
+		// Token: 0x06005B68 RID: 23400 RVA: 0x0025A4CC File Offset: 0x002586CC
 		private static void RegisterScriptField(FieldInfo fi, object o, Table table, Type t, string name)
 		{
 			if (fi.FieldType != typeof(string))
@@ -187,7 +187,7 @@ namespace MoonSharp.Interpreter
 			table.Set(name, value);
 		}
 
-		// Token: 0x06006668 RID: 26216 RVA: 0x00284238 File Offset: 0x00282438
+		// Token: 0x06005B69 RID: 23401 RVA: 0x0025A528 File Offset: 0x00258728
 		private static Table CreateModuleNamespace(Table gtable, Type t)
 		{
 			MoonSharpModuleAttribute moonSharpModuleAttribute = (MoonSharpModuleAttribute)Framework.Do.GetCustomAttributes(t, typeof(MoonSharpModuleAttribute), false).First<Attribute>();
@@ -220,7 +220,7 @@ namespace MoonSharp.Interpreter
 			return table;
 		}
 
-		// Token: 0x06006669 RID: 26217 RVA: 0x00046A41 File Offset: 0x00044C41
+		// Token: 0x06005B6A RID: 23402 RVA: 0x0025A62B File Offset: 0x0025882B
 		public static Table RegisterModuleType<T>(this Table table)
 		{
 			return table.RegisterModuleType(typeof(T));

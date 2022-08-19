@@ -4,110 +4,110 @@ using UnityEngine;
 
 namespace KBEngine
 {
-	// Token: 0x02000EE5 RID: 3813
+	// Token: 0x02000B68 RID: 2920
 	public abstract class DroppedItemBase : Entity
 	{
-		// Token: 0x06005BB5 RID: 23477 RVA: 0x000042DD File Offset: 0x000024DD
+		// Token: 0x06005179 RID: 20857 RVA: 0x00004095 File Offset: 0x00002295
 		public virtual void onDialogIDChanged(uint oldValue)
 		{
 		}
 
-		// Token: 0x06005BB6 RID: 23478 RVA: 0x000042DD File Offset: 0x000024DD
+		// Token: 0x0600517A RID: 20858 RVA: 0x00004095 File Offset: 0x00002295
 		public virtual void onEntityNOChanged(uint oldValue)
 		{
 		}
 
-		// Token: 0x06005BB7 RID: 23479 RVA: 0x000042DD File Offset: 0x000024DD
+		// Token: 0x0600517B RID: 20859 RVA: 0x00004095 File Offset: 0x00002295
 		public virtual void onItemCountChanged(uint oldValue)
 		{
 		}
 
-		// Token: 0x06005BB8 RID: 23480 RVA: 0x000042DD File Offset: 0x000024DD
+		// Token: 0x0600517C RID: 20860 RVA: 0x00004095 File Offset: 0x00002295
 		public virtual void onItemIdChanged(int oldValue)
 		{
 		}
 
-		// Token: 0x06005BB9 RID: 23481 RVA: 0x000042DD File Offset: 0x000024DD
+		// Token: 0x0600517D RID: 20861 RVA: 0x00004095 File Offset: 0x00002295
 		public virtual void onModelIDChanged(uint oldValue)
 		{
 		}
 
-		// Token: 0x06005BBA RID: 23482 RVA: 0x000042DD File Offset: 0x000024DD
+		// Token: 0x0600517E RID: 20862 RVA: 0x00004095 File Offset: 0x00002295
 		public virtual void onModelScaleChanged(byte oldValue)
 		{
 		}
 
-		// Token: 0x06005BBB RID: 23483 RVA: 0x000042DD File Offset: 0x000024DD
+		// Token: 0x0600517F RID: 20863 RVA: 0x00004095 File Offset: 0x00002295
 		public virtual void onNameChanged(string oldValue)
 		{
 		}
 
-		// Token: 0x06005BBC RID: 23484 RVA: 0x000042DD File Offset: 0x000024DD
+		// Token: 0x06005180 RID: 20864 RVA: 0x00004095 File Offset: 0x00002295
 		public virtual void onUidChanged(uint oldValue)
 		{
 		}
 
-		// Token: 0x06005BBD RID: 23485 RVA: 0x000042DD File Offset: 0x000024DD
+		// Token: 0x06005181 RID: 20865 RVA: 0x00004095 File Offset: 0x00002295
 		public virtual void onUtypeChanged(uint oldValue)
 		{
 		}
 
-		// Token: 0x06005BBE RID: 23486 RVA: 0x00040901 File Offset: 0x0003EB01
+		// Token: 0x06005182 RID: 20866 RVA: 0x0022209A File Offset: 0x0022029A
 		public DroppedItemBase()
 		{
 		}
 
-		// Token: 0x06005BBF RID: 23487 RVA: 0x000042DD File Offset: 0x000024DD
+		// Token: 0x06005183 RID: 20867 RVA: 0x00004095 File Offset: 0x00002295
 		public override void onComponentsEnterworld()
 		{
 		}
 
-		// Token: 0x06005BC0 RID: 23488 RVA: 0x000042DD File Offset: 0x000024DD
+		// Token: 0x06005184 RID: 20868 RVA: 0x00004095 File Offset: 0x00002295
 		public override void onComponentsLeaveworld()
 		{
 		}
 
-		// Token: 0x06005BC1 RID: 23489 RVA: 0x0004091C File Offset: 0x0003EB1C
+		// Token: 0x06005185 RID: 20869 RVA: 0x002220B5 File Offset: 0x002202B5
 		public override void onGetBase()
 		{
 			this.baseEntityCall = new EntityBaseEntityCall_DroppedItemBase(this.id, this.className);
 		}
 
-		// Token: 0x06005BC2 RID: 23490 RVA: 0x00040935 File Offset: 0x0003EB35
+		// Token: 0x06005186 RID: 20870 RVA: 0x002220CE File Offset: 0x002202CE
 		public override void onGetCell()
 		{
 			this.cellEntityCall = new EntityCellEntityCall_DroppedItemBase(this.id, this.className);
 		}
 
-		// Token: 0x06005BC3 RID: 23491 RVA: 0x0004094E File Offset: 0x0003EB4E
+		// Token: 0x06005187 RID: 20871 RVA: 0x002220E7 File Offset: 0x002202E7
 		public override void onLoseCell()
 		{
 			this.cellEntityCall = null;
 		}
 
-		// Token: 0x06005BC4 RID: 23492 RVA: 0x00040957 File Offset: 0x0003EB57
+		// Token: 0x06005188 RID: 20872 RVA: 0x002220F0 File Offset: 0x002202F0
 		public override EntityCall getBaseEntityCall()
 		{
 			return this.baseEntityCall;
 		}
 
-		// Token: 0x06005BC5 RID: 23493 RVA: 0x0004095F File Offset: 0x0003EB5F
+		// Token: 0x06005189 RID: 20873 RVA: 0x002220F8 File Offset: 0x002202F8
 		public override EntityCall getCellEntityCall()
 		{
 			return this.cellEntityCall;
 		}
 
-		// Token: 0x06005BC6 RID: 23494 RVA: 0x000042DD File Offset: 0x000024DD
+		// Token: 0x0600518A RID: 20874 RVA: 0x00004095 File Offset: 0x00002295
 		public override void attachComponents()
 		{
 		}
 
-		// Token: 0x06005BC7 RID: 23495 RVA: 0x000042DD File Offset: 0x000024DD
+		// Token: 0x0600518B RID: 20875 RVA: 0x00004095 File Offset: 0x00002295
 		public override void detachComponents()
 		{
 		}
 
-		// Token: 0x06005BC8 RID: 23496 RVA: 0x002512E8 File Offset: 0x0024F4E8
+		// Token: 0x0600518C RID: 20876 RVA: 0x00222100 File Offset: 0x00220300
 		public override void onRemoteMethodCall(MemoryStream stream)
 		{
 			ScriptModule scriptModule = EntityDef.moduledefs["DroppedItem"];
@@ -138,7 +138,7 @@ namespace KBEngine
 			ushort properUtype = scriptModule.idpropertys[num].properUtype;
 		}
 
-		// Token: 0x06005BC9 RID: 23497 RVA: 0x00251368 File Offset: 0x0024F568
+		// Token: 0x0600518D RID: 20877 RVA: 0x00222180 File Offset: 0x00220380
 		public override void onUpdatePropertys(MemoryStream stream)
 		{
 			ScriptModule scriptModule = EntityDef.moduledefs["DroppedItem"];
@@ -375,7 +375,7 @@ namespace KBEngine
 			}
 		}
 
-		// Token: 0x06005BCA RID: 23498 RVA: 0x002517A0 File Offset: 0x0024F9A0
+		// Token: 0x0600518E RID: 20878 RVA: 0x002225B8 File Offset: 0x002207B8
 		public override void callPropertysSetMethods()
 		{
 			Dictionary<ushort, Property> idpropertys = EntityDef.moduledefs["DroppedItem"].idpropertys;
@@ -525,37 +525,37 @@ namespace KBEngine
 			}
 		}
 
-		// Token: 0x04005A16 RID: 23062
+		// Token: 0x04004F8B RID: 20363
 		public EntityBaseEntityCall_DroppedItemBase baseEntityCall;
 
-		// Token: 0x04005A17 RID: 23063
+		// Token: 0x04004F8C RID: 20364
 		public EntityCellEntityCall_DroppedItemBase cellEntityCall;
 
-		// Token: 0x04005A18 RID: 23064
+		// Token: 0x04004F8D RID: 20365
 		public uint dialogID;
 
-		// Token: 0x04005A19 RID: 23065
+		// Token: 0x04004F8E RID: 20366
 		public uint entityNO;
 
-		// Token: 0x04005A1A RID: 23066
+		// Token: 0x04004F8F RID: 20367
 		public uint itemCount;
 
-		// Token: 0x04005A1B RID: 23067
+		// Token: 0x04004F90 RID: 20368
 		public int itemId;
 
-		// Token: 0x04005A1C RID: 23068
+		// Token: 0x04004F91 RID: 20369
 		public uint modelID;
 
-		// Token: 0x04005A1D RID: 23069
+		// Token: 0x04004F92 RID: 20370
 		public byte modelScale = 30;
 
-		// Token: 0x04005A1E RID: 23070
+		// Token: 0x04004F93 RID: 20371
 		public string name = "";
 
-		// Token: 0x04005A1F RID: 23071
+		// Token: 0x04004F94 RID: 20372
 		public uint uid;
 
-		// Token: 0x04005A20 RID: 23072
+		// Token: 0x04004F95 RID: 20373
 		public uint utype;
 	}
 }

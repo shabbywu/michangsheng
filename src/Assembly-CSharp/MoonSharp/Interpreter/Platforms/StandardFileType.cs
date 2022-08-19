@@ -2,14 +2,14 @@
 
 namespace MoonSharp.Interpreter.Platforms
 {
-	// Token: 0x020010D7 RID: 4311
+	// Token: 0x02000CF9 RID: 3321
 	public enum StandardFileType
 	{
-		// Token: 0x04005FD3 RID: 24531
+		// Token: 0x040053CC RID: 21452
 		StdIn,
-		// Token: 0x04005FD4 RID: 24532
+		// Token: 0x040053CD RID: 21453
 		StdOut,
-		// Token: 0x04005FD5 RID: 24533
+		// Token: 0x040053CE RID: 21454
 		StdErr
 	}
 }

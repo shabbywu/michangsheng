@@ -1,15 +1,15 @@
 ﻿using System;
 using UnityEngine;
 
-// Token: 0x0200017F RID: 383
+// Token: 0x02000101 RID: 257
 public class Fader : MonoBehaviour
 {
-	// Token: 0x06000CDE RID: 3294 RVA: 0x000042DD File Offset: 0x000024DD
+	// Token: 0x06000BD3 RID: 3027 RVA: 0x00004095 File Offset: 0x00002295
 	private void Start()
 	{
 	}
 
-	// Token: 0x06000CDF RID: 3295 RVA: 0x0000EA3E File Offset: 0x0000CC3E
+	// Token: 0x06000BD4 RID: 3028 RVA: 0x00047BB3 File Offset: 0x00045DB3
 	public void FadeIntoLevel(string sceneName)
 	{
 		this.sceneToLoad = sceneName;
@@ -17,24 +17,24 @@ public class Fader : MonoBehaviour
 		this.load();
 	}
 
-	// Token: 0x06000CE0 RID: 3296 RVA: 0x0000EA5D File Offset: 0x0000CC5D
+	// Token: 0x06000BD5 RID: 3029 RVA: 0x00047BD2 File Offset: 0x00045DD2
 	public void setCanClick()
 	{
 		Tools.canClickFlag = true;
 	}
 
-	// Token: 0x06000CE1 RID: 3297 RVA: 0x0000EA65 File Offset: 0x0000CC65
+	// Token: 0x06000BD6 RID: 3030 RVA: 0x00047BDA File Offset: 0x00045DDA
 	public void setCanNotClick()
 	{
 		Tools.canClickFlag = false;
 	}
 
-	// Token: 0x06000CE2 RID: 3298 RVA: 0x0000EA6D File Offset: 0x0000CC6D
+	// Token: 0x06000BD7 RID: 3031 RVA: 0x00047BE2 File Offset: 0x00045DE2
 	private void load()
 	{
 		Tools.instance.loadOtherScenes(this.sceneToLoad);
 	}
 
-	// Token: 0x04000A0A RID: 2570
+	// Token: 0x0400081B RID: 2075
 	private string sceneToLoad;
 }

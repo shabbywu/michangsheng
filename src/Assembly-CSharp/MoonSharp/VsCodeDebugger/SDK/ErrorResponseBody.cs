@@ -2,15 +2,15 @@
 
 namespace MoonSharp.VsCodeDebugger.SDK
 {
-	// Token: 0x020011CE RID: 4558
+	// Token: 0x02000DA2 RID: 3490
 	public class ErrorResponseBody : ResponseBody
 	{
-		// Token: 0x17000A40 RID: 2624
-		// (get) Token: 0x06006F86 RID: 28550 RVA: 0x0004BCA9 File Offset: 0x00049EA9
-		// (set) Token: 0x06006F87 RID: 28551 RVA: 0x0004BCB1 File Offset: 0x00049EB1
+		// Token: 0x170007DF RID: 2015
+		// (get) Token: 0x06006340 RID: 25408 RVA: 0x0027A7E3 File Offset: 0x002789E3
+		// (set) Token: 0x06006341 RID: 25409 RVA: 0x0027A7EB File Offset: 0x002789EB
 		public Message error { get; private set; }
 
-		// Token: 0x06006F88 RID: 28552 RVA: 0x0004BCBA File Offset: 0x00049EBA
+		// Token: 0x06006342 RID: 25410 RVA: 0x0027A7F4 File Offset: 0x002789F4
 		public ErrorResponseBody(Message error)
 		{
 			this.error = error;

@@ -1,15 +1,15 @@
 ﻿using System;
 using GUIPackage;
 
-// Token: 0x020005EF RID: 1519
+// Token: 0x02000438 RID: 1080
 public class ItemCellLinWu : ItemCell
 {
-	// Token: 0x06002620 RID: 9760 RVA: 0x000042DD File Offset: 0x000024DD
+	// Token: 0x06002261 RID: 8801 RVA: 0x00004095 File Offset: 0x00002295
 	private void Start()
 	{
 	}
 
-	// Token: 0x06002621 RID: 9761 RVA: 0x0001E6F9 File Offset: 0x0001C8F9
+	// Token: 0x06002262 RID: 8802 RVA: 0x000ECB41 File Offset: 0x000EAD41
 	private void OnPress()
 	{
 		if (this.Item.itemID == -1)
@@ -19,12 +19,12 @@ public class ItemCellLinWu : ItemCell
 		this.keyCell.keyItem = this.Item;
 	}
 
-	// Token: 0x06002622 RID: 9762 RVA: 0x00004050 File Offset: 0x00002250
+	// Token: 0x06002263 RID: 8803 RVA: 0x0000280F File Offset: 0x00000A0F
 	public override int getItemPrice()
 	{
 		return 0;
 	}
 
-	// Token: 0x0400209C RID: 8348
+	// Token: 0x04001BD0 RID: 7120
 	public KeyCell keyCell;
 }

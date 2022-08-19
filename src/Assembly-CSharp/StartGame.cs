@@ -5,15 +5,15 @@ using KBEngine;
 using UnityEngine;
 using YSGame;
 
-// Token: 0x02000555 RID: 1365
+// Token: 0x020003C3 RID: 963
 public class StartGame : MonoBehaviour
 {
-	// Token: 0x060022DA RID: 8922 RVA: 0x000042DD File Offset: 0x000024DD
+	// Token: 0x06001F57 RID: 8023 RVA: 0x00004095 File Offset: 0x00002295
 	private void Start()
 	{
 	}
 
-	// Token: 0x060022DB RID: 8923 RVA: 0x0011F418 File Offset: 0x0011D618
+	// Token: 0x06001F58 RID: 8024 RVA: 0x000DC710 File Offset: 0x000DA910
 	public void startGame(int id, int index, int DFIndex = -1)
 	{
 		Tools.instance.IsCanLoadSetTalk = false;
@@ -44,7 +44,7 @@ public class StartGame : MonoBehaviour
 		}
 		else
 		{
-			FactoryManager.inst.loadPlayerDateFactory.LoadPlayerDate(id, index);
+			FactoryManager.inst.loadPlayerDateFactory.LoadPlayerData(id, index);
 			Tools.instance.ResetEquipSeid();
 		}
 		if (fader == null)
@@ -55,7 +55,7 @@ public class StartGame : MonoBehaviour
 		fader.FadeIntoLevel("LoadingScreen");
 	}
 
-	// Token: 0x060022DC RID: 8924 RVA: 0x0011F594 File Offset: 0x0011D794
+	// Token: 0x06001F59 RID: 8025 RVA: 0x000DC88C File Offset: 0x000DAA8C
 	public void firstAddAvatar(int id, int index, string firstName, string lastName)
 	{
 		this.creatAvatar(10, 51, 100, new Vector3(-5f, 0f, 0f), new Vector3(0f, 0f, 80f), 1);
@@ -65,7 +65,7 @@ public class StartGame : MonoBehaviour
 		FactoryManager.inst.createNewPlayerFactory.createPlayer(id, index, firstName, lastName, avatar);
 	}
 
-	// Token: 0x060022DD RID: 8925 RVA: 0x0011F610 File Offset: 0x0011D810
+	// Token: 0x06001F5A RID: 8026 RVA: 0x000DC908 File Offset: 0x000DAB08
 	public void setTianfuInfo(Avatar avatar)
 	{
 		avatar.ZiZhi = CreateAvatarMag.inst.tianfuUI.ZiZhi;
@@ -149,7 +149,7 @@ public class StartGame : MonoBehaviour
 		});
 	}
 
-	// Token: 0x060022DE RID: 8926 RVA: 0x0011F850 File Offset: 0x0011DA50
+	// Token: 0x06001F5B RID: 8027 RVA: 0x000DCB48 File Offset: 0x000DAD48
 	public void addAvatar(int id, int index)
 	{
 		this.creatAvatar(10, 51, 40, new Vector3(-5f, -1.7f, -1f), new Vector3(0f, 0f, 80f), 1);
@@ -165,7 +165,7 @@ public class StartGame : MonoBehaviour
 		avatar.seaNodeMag.INITSEA();
 	}
 
-	// Token: 0x060022DF RID: 8927 RVA: 0x0011F904 File Offset: 0x0011DB04
+	// Token: 0x06001F5C RID: 8028 RVA: 0x000DCBFC File Offset: 0x000DADFC
 	public void AddDouFaPlayerInfo(int index)
 	{
 		int num = index + 100;
@@ -183,17 +183,17 @@ public class StartGame : MonoBehaviour
 		YSSaveGame.save("PlayerAvatarName" + num, avatar.name, "-1");
 		foreach (KeyValuePair<string, JSONObject> keyValuePair in jsonData.instance.skillJsonData)
 		{
-			if ((int)keyValuePair.Value["DF"].n == 1)
+			if (keyValuePair.Value["DF"].I == 1)
 			{
-				avatar.addHasSkillList((int)keyValuePair.Value["Skill_ID"].n);
+				avatar.addHasSkillList(keyValuePair.Value["Skill_ID"].I);
 			}
 		}
 		foreach (JSONObject jsonobject in jsonData.instance.StaticSkillJsonData.list)
 		{
-			if ((int)jsonobject["DF"].n == 1)
+			if (jsonobject["DF"].I == 1)
 			{
-				int level = (int)jsonData.instance.StaticLVToLevelJsonData[avatar.getLevelType().ToString()]["Max" + (int)jsonobject["Skill_LV"].n].n;
-				avatar.addHasStaticSkillList((int)jsonobject["Skill_ID"].n, level);
+				int i = jsonData.instance.StaticLVToLevelJsonData[avatar.getLevelType().ToString()]["Max" + jsonobject["Skill_LV"].I].I;
+				avatar.addHasStaticSkillList(jsonobject["Skill_ID"].I, i);
 			}
 		}
 		avatar.lastScence = "S" + (index + 10000);
@@ -201,7 +201,7 @@ public class StartGame : MonoBehaviour
 		Tools.instance.Save(num, 0, avatar);
 	}
 
-	// Token: 0x060022E0 RID: 8928 RVA: 0x0010FA44 File Offset: 0x0010DC44
+	// Token: 0x06001F5D RID: 8029 RVA: 0x000DCEC0 File Offset: 0x000DB0C0
 	public void initSkill()
 	{
 		Avatar avatar = (Avatar)KBEngineApp.app.player();
@@ -209,7 +209,7 @@ public class StartGame : MonoBehaviour
 		avatar.equipStaticSkillList = avatar.configEquipStaticSkill[avatar.nowConfigEquipStaticSkill];
 	}
 
-	// Token: 0x060022E1 RID: 8929 RVA: 0x0011FBCC File Offset: 0x0011DDCC
+	// Token: 0x06001F5E RID: 8030 RVA: 0x000DCF04 File Offset: 0x000DB104
 	public void setAvatar(int avaterID, int roleType, int HP_Max, Vector3 position, Vector3 direction, Avatar avatar, int AvatarID = 1)
 	{
 		avatar.position = position;
@@ -257,7 +257,7 @@ public class StartGame : MonoBehaviour
 		});
 	}
 
-	// Token: 0x060022E2 RID: 8930 RVA: 0x0011FF4C File Offset: 0x0011E14C
+	// Token: 0x06001F5F RID: 8031 RVA: 0x000DD284 File Offset: 0x000DB484
 	public void creatAvatar(int avaterID, int roleType, int HP_Max, Vector3 position, Vector3 direction, int AvatarID = 1)
 	{
 		KBEngineApp.app.Client_onCreatedProxies((ulong)((long)avaterID), avaterID, "Avatar");

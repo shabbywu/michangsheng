@@ -4,10 +4,10 @@ using UnityEngine.Events;
 
 namespace Spine.Unity.Examples
 {
-	// Token: 0x02000E35 RID: 3637
+	// Token: 0x02000AE7 RID: 2791
 	public class HeroEffectsHandlerExample : MonoBehaviour
 	{
-		// Token: 0x06005784 RID: 22404 RVA: 0x0024525C File Offset: 0x0024345C
+		// Token: 0x06004E08 RID: 19976 RVA: 0x00215180 File Offset: 0x00213380
 		public void Awake()
 		{
 			if (this.eventSource == null)
@@ -19,16 +19,16 @@ namespace Spine.Unity.Examples
 			this.eventSource.OnHardLand += new UnityAction(this.OnHardLand.Invoke);
 		}
 
-		// Token: 0x04005772 RID: 22386
+		// Token: 0x04004D66 RID: 19814
 		public BasicPlatformerController eventSource;
 
-		// Token: 0x04005773 RID: 22387
+		// Token: 0x04004D67 RID: 19815
 		public UnityEvent OnJump;
 
-		// Token: 0x04005774 RID: 22388
+		// Token: 0x04004D68 RID: 19816
 		public UnityEvent OnLand;
 
-		// Token: 0x04005775 RID: 22389
+		// Token: 0x04004D69 RID: 19817
 		public UnityEvent OnHardLand;
 	}
 }

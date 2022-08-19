@@ -2,12 +2,12 @@
 using Fungus;
 using UnityEngine;
 
-// Token: 0x02000353 RID: 851
+// Token: 0x02000237 RID: 567
 [CommandInfo("YSNPCJiaoHu", "获取NPC形象Json数据", "获取NPC形象Json数据，Int值会赋值到TmpValue，文本会赋值到TmpStrValue，布尔值会赋值到TmpBoolValue", 0)]
 [AddComponentMenu("")]
 public class CmdGetNPCFaceJson : Command
 {
-	// Token: 0x060018CC RID: 6348 RVA: 0x000DDDA0 File Offset: 0x000DBFA0
+	// Token: 0x06001614 RID: 5652 RVA: 0x00095788 File Offset: 0x00093988
 	public override void OnEnter()
 	{
 		Flowchart flowchart = this.GetFlowchart();
@@ -49,7 +49,7 @@ public class CmdGetNPCFaceJson : Command
 		this.Continue();
 	}
 
-	// Token: 0x040013BE RID: 5054
+	// Token: 0x04001066 RID: 4198
 	[SerializeField]
 	[VariableProperty(new Type[]
 	{
@@ -57,11 +57,11 @@ public class CmdGetNPCFaceJson : Command
 	})]
 	protected IntegerVariable VarNPCID;
 
-	// Token: 0x040013BF RID: 5055
+	// Token: 0x04001067 RID: 4199
 	[SerializeField]
 	protected string valueName;
 
-	// Token: 0x040013C0 RID: 5056
+	// Token: 0x04001068 RID: 4200
 	[SerializeField]
 	protected SetValueType valueType;
 }

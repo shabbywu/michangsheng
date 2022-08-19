@@ -2,16 +2,16 @@
 
 namespace SuperScrollView
 {
-	// Token: 0x020009E9 RID: 2537
+	// Token: 0x020006BE RID: 1726
 	public enum ListItemArrangeType
 	{
-		// Token: 0x040039A7 RID: 14759
+		// Token: 0x04002FA2 RID: 12194
 		TopToBottom,
-		// Token: 0x040039A8 RID: 14760
+		// Token: 0x04002FA3 RID: 12195
 		BottomToTop,
-		// Token: 0x040039A9 RID: 14761
+		// Token: 0x04002FA4 RID: 12196
 		LeftToRight,
-		// Token: 0x040039AA RID: 14762
+		// Token: 0x04002FA5 RID: 12197
 		RightToLeft
 	}
 }

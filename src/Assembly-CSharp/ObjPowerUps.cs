@@ -1,10 +1,10 @@
 ﻿using System;
 using UnityEngine;
 
-// Token: 0x0200075A RID: 1882
+// Token: 0x020004E4 RID: 1252
 public class ObjPowerUps : MonoBehaviour
 {
-	// Token: 0x06002FDE RID: 12254 RVA: 0x000238E8 File Offset: 0x00021AE8
+	// Token: 0x06002875 RID: 10357 RVA: 0x0013256B File Offset: 0x0013076B
 	private void Awake()
 	{
 		ObjPowerUps.PowerUps = false;
@@ -16,7 +16,7 @@ public class ObjPowerUps : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06002FDF RID: 12255 RVA: 0x0017EAB0 File Offset: 0x0017CCB0
+	// Token: 0x06002876 RID: 10358 RVA: 0x001325AC File Offset: 0x001307AC
 	private void Start()
 	{
 		this.xDist = this.maxXPos - this.minXPos;
@@ -37,7 +37,7 @@ public class ObjPowerUps : MonoBehaviour
 		this.rememberYPos = this.obj[0].position.y;
 	}
 
-	// Token: 0x06002FE0 RID: 12256 RVA: 0x0017EBD8 File Offset: 0x0017CDD8
+	// Token: 0x06002877 RID: 10359 RVA: 0x001326D4 File Offset: 0x001308D4
 	private void Update()
 	{
 		if (ObjPowerUps.PowerUps)
@@ -49,33 +49,33 @@ public class ObjPowerUps : MonoBehaviour
 		}
 	}
 
-	// Token: 0x04002B41 RID: 11073
+	// Token: 0x040023B3 RID: 9139
 	public static bool PowerUps;
 
-	// Token: 0x04002B42 RID: 11074
+	// Token: 0x040023B4 RID: 9140
 	public SwipeControlPowerUps swipeCtrl;
 
-	// Token: 0x04002B43 RID: 11075
+	// Token: 0x040023B5 RID: 9141
 	public Transform[] obj = new Transform[0];
 
-	// Token: 0x04002B44 RID: 11076
+	// Token: 0x040023B6 RID: 9142
 	public float minXPos;
 
-	// Token: 0x04002B45 RID: 11077
+	// Token: 0x040023B7 RID: 9143
 	public float maxXPos = 115f;
 
-	// Token: 0x04002B46 RID: 11078
+	// Token: 0x040023B8 RID: 9144
 	private float xDist;
 
-	// Token: 0x04002B47 RID: 11079
+	// Token: 0x040023B9 RID: 9145
 	private float xDistFactor;
 
-	// Token: 0x04002B48 RID: 11080
+	// Token: 0x040023BA RID: 9146
 	private float swipeSmoothFactor = 1f;
 
-	// Token: 0x04002B49 RID: 11081
+	// Token: 0x040023BB RID: 9147
 	public float xPosReal = -11f;
 
-	// Token: 0x04002B4A RID: 11082
+	// Token: 0x040023BC RID: 9148
 	private float rememberYPos;
 }

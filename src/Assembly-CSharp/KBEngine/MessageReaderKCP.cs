@@ -2,7 +2,7 @@
 
 namespace KBEngine
 {
-	// Token: 0x02000F60 RID: 3936
+	// Token: 0x02000BDC RID: 3036
 	public class MessageReaderKCP : MessageReaderTCP
 	{
 	}

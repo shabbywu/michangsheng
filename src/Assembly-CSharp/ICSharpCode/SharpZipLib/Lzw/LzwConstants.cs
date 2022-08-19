@@ -2,36 +2,36 @@
 
 namespace ICSharpCode.SharpZipLib.Lzw
 {
-	// Token: 0x02000811 RID: 2065
+	// Token: 0x02000569 RID: 1385
 	public sealed class LzwConstants
 	{
-		// Token: 0x0600363A RID: 13882 RVA: 0x0000403D File Offset: 0x0000223D
+		// Token: 0x06002DC4 RID: 11716 RVA: 0x000027FC File Offset: 0x000009FC
 		private LzwConstants()
 		{
 		}
 
-		// Token: 0x040030C1 RID: 12481
+		// Token: 0x04002887 RID: 10375
 		public const int MAGIC = 8093;
 
-		// Token: 0x040030C2 RID: 12482
+		// Token: 0x04002888 RID: 10376
 		public const int MAX_BITS = 16;
 
-		// Token: 0x040030C3 RID: 12483
+		// Token: 0x04002889 RID: 10377
 		public const int BIT_MASK = 31;
 
-		// Token: 0x040030C4 RID: 12484
+		// Token: 0x0400288A RID: 10378
 		public const int EXTENDED_MASK = 32;
 
-		// Token: 0x040030C5 RID: 12485
+		// Token: 0x0400288B RID: 10379
 		public const int RESERVED_MASK = 96;
 
-		// Token: 0x040030C6 RID: 12486
+		// Token: 0x0400288C RID: 10380
 		public const int BLOCK_MODE_MASK = 128;
 
-		// Token: 0x040030C7 RID: 12487
+		// Token: 0x0400288D RID: 10381
 		public const int HDR_SIZE = 3;
 
-		// Token: 0x040030C8 RID: 12488
+		// Token: 0x0400288E RID: 10382
 		public const int INIT_BITS = 9;
 	}
 }

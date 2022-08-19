@@ -4,10 +4,10 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
 
-// Token: 0x02000508 RID: 1288
+// Token: 0x02000385 RID: 901
 public class SumSelectManager : MonoBehaviour
 {
-	// Token: 0x0600213D RID: 8509 RVA: 0x00115DB4 File Offset: 0x00113FB4
+	// Token: 0x06001DC4 RID: 7620 RVA: 0x000D1FA4 File Offset: 0x000D01A4
 	private void Awake()
 	{
 		this.slider.onValueChanged.AddListener(new UnityAction<float>(this.moveSlider));
@@ -16,7 +16,7 @@ public class SumSelectManager : MonoBehaviour
 		base.gameObject.SetActive(false);
 	}
 
-	// Token: 0x0600213E RID: 8510 RVA: 0x00115E24 File Offset: 0x00114024
+	// Token: 0x06001DC5 RID: 7621 RVA: 0x000D2014 File Offset: 0x000D0214
 	public void showSelect(string desc, int itemID, float maxSum, UnityAction OK, UnityAction Cancel, SumSelectManager.SpecialType specialType = SumSelectManager.SpecialType.空)
 	{
 		this.type = specialType;
@@ -71,13 +71,13 @@ public class SumSelectManager : MonoBehaviour
 		}));
 	}
 
-	// Token: 0x0600213F RID: 8511 RVA: 0x000111B3 File Offset: 0x0000F3B3
+	// Token: 0x06001DC6 RID: 7622 RVA: 0x0005C928 File Offset: 0x0005AB28
 	private void close()
 	{
 		Object.Destroy(base.gameObject);
 	}
 
-	// Token: 0x06002140 RID: 8512 RVA: 0x00116060 File Offset: 0x00114260
+	// Token: 0x06001DC7 RID: 7623 RVA: 0x000D2250 File Offset: 0x000D0450
 	public void moveSlider(float arg0)
 	{
 		float num = this.Max * arg0;
@@ -104,7 +104,7 @@ public class SumSelectManager : MonoBehaviour
 		}));
 	}
 
-	// Token: 0x06002141 RID: 8513 RVA: 0x0011612C File Offset: 0x0011432C
+	// Token: 0x06001DC8 RID: 7624 RVA: 0x000D231C File Offset: 0x000D051C
 	private void addSum()
 	{
 		this.itemSum += 1f;
@@ -115,7 +115,7 @@ public class SumSelectManager : MonoBehaviour
 		this.slider.value = this.itemSum / this.Max;
 	}
 
-	// Token: 0x06002142 RID: 8514 RVA: 0x00116180 File Offset: 0x00114380
+	// Token: 0x06001DC9 RID: 7625 RVA: 0x000D2370 File Offset: 0x000D0570
 	private void reduiceSum()
 	{
 		this.itemSum -= 1f;
@@ -126,67 +126,67 @@ public class SumSelectManager : MonoBehaviour
 		this.slider.value = this.itemSum / this.Max;
 	}
 
-	// Token: 0x04001CBD RID: 7357
+	// Token: 0x04001862 RID: 6242
 	private string Desc;
 
-	// Token: 0x04001CBE RID: 7358
+	// Token: 0x04001863 RID: 6243
 	private string Name;
 
-	// Token: 0x04001CBF RID: 7359
+	// Token: 0x04001864 RID: 6244
 	[SerializeField]
 	private Text DescText;
 
-	// Token: 0x04001CC0 RID: 7360
+	// Token: 0x04001865 RID: 6245
 	[SerializeField]
 	private Text LianDanDescText;
 
-	// Token: 0x04001CC1 RID: 7361
+	// Token: 0x04001866 RID: 6246
 	[HideInInspector]
 	public float itemSum;
 
-	// Token: 0x04001CC2 RID: 7362
+	// Token: 0x04001867 RID: 6247
 	private float Max;
 
-	// Token: 0x04001CC3 RID: 7363
+	// Token: 0x04001868 RID: 6248
 	[SerializeField]
 	private Slider slider;
 
-	// Token: 0x04001CC4 RID: 7364
+	// Token: 0x04001869 RID: 6249
 	[SerializeField]
 	private Button Btn_Add;
 
-	// Token: 0x04001CC5 RID: 7365
+	// Token: 0x0400186A RID: 6250
 	[SerializeField]
 	private Button Btn_Reduce;
 
-	// Token: 0x04001CC6 RID: 7366
+	// Token: 0x0400186B RID: 6251
 	[SerializeField]
 	private Button Btn_Cancel;
 
-	// Token: 0x04001CC7 RID: 7367
+	// Token: 0x0400186C RID: 6252
 	[SerializeField]
 	private Button Btn_OK;
 
-	// Token: 0x04001CC8 RID: 7368
+	// Token: 0x0400186D RID: 6253
 	[SerializeField]
 	private GameObject mask;
 
-	// Token: 0x04001CC9 RID: 7369
+	// Token: 0x0400186E RID: 6254
 	public bool isShowMask = true;
 
-	// Token: 0x04001CCA RID: 7370
+	// Token: 0x0400186F RID: 6255
 	[SerializeField]
 	public item Item;
 
-	// Token: 0x04001CCB RID: 7371
+	// Token: 0x04001870 RID: 6256
 	private SumSelectManager.SpecialType type;
 
-	// Token: 0x02000509 RID: 1289
+	// Token: 0x0200135D RID: 4957
 	public enum SpecialType
 	{
-		// Token: 0x04001CCD RID: 7373
+		// Token: 0x04006833 RID: 26675
 		空,
-		// Token: 0x04001CCE RID: 7374
+		// Token: 0x04006834 RID: 26676
 		炼丹
 	}
 }

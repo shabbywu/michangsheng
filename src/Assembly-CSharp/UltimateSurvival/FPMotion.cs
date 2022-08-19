@@ -3,11 +3,11 @@ using UnityEngine;
 
 namespace UltimateSurvival
 {
-	// Token: 0x020008C4 RID: 2244
+	// Token: 0x020005F0 RID: 1520
 	[RequireComponent(typeof(FPObject))]
 	public class FPMotion : PlayerBehaviour
 	{
-		// Token: 0x060039BC RID: 14780 RVA: 0x001A695C File Offset: 0x001A4B5C
+		// Token: 0x060030DE RID: 12510 RVA: 0x0015D324 File Offset: 0x0015B524
 		private void Awake()
 		{
 			this.m_Object = base.GetComponent<FPObject>();
@@ -19,7 +19,7 @@ namespace UltimateSurvival
 			this.m_CurrentOffset = this.m_IdleOffset;
 		}
 
-		// Token: 0x060039BD RID: 14781 RVA: 0x00029E80 File Offset: 0x00028080
+		// Token: 0x060030DF RID: 12511 RVA: 0x0015D3B4 File Offset: 0x0015B5B4
 		private void On_Draw()
 		{
 			this.m_IdleOffset.Reset();
@@ -27,13 +27,13 @@ namespace UltimateSurvival
 			this.m_HolsterActive = false;
 		}
 
-		// Token: 0x060039BE RID: 14782 RVA: 0x00029EA0 File Offset: 0x000280A0
+		// Token: 0x060030E0 RID: 12512 RVA: 0x0015D3D4 File Offset: 0x0015B5D4
 		private void On_Holster()
 		{
 			this.m_HolsterActive = true;
 		}
 
-		// Token: 0x060039BF RID: 14783 RVA: 0x00029EA9 File Offset: 0x000280A9
+		// Token: 0x060030E1 RID: 12513 RVA: 0x0015D3DD File Offset: 0x0015B5DD
 		private void On_Land(float landSpeed)
 		{
 			if (this.m_Object.IsEnabled && base.gameObject.activeInHierarchy)
@@ -42,7 +42,7 @@ namespace UltimateSurvival
 			}
 		}
 
-		// Token: 0x060039C0 RID: 14784 RVA: 0x001A69EC File Offset: 0x001A4BEC
+		// Token: 0x060030E2 RID: 12514 RVA: 0x0015D414 File Offset: 0x0015B614
 		private void SetupTransforms()
 		{
 			Transform transform = new GameObject("Root").transform;
@@ -53,7 +53,7 @@ namespace UltimateSurvival
 			this.m_Model.SetParent(this.m_Pivot, true);
 		}
 
-		// Token: 0x060039C1 RID: 14785 RVA: 0x001A6A5C File Offset: 0x001A4C5C
+		// Token: 0x060030E3 RID: 12515 RVA: 0x0015D484 File Offset: 0x0015B684
 		private void Update()
 		{
 			Vector2 vector;
@@ -133,7 +133,7 @@ namespace UltimateSurvival
 			this.m_Pivot.localRotation *= quaternion;
 		}
 
-		// Token: 0x060039C2 RID: 14786 RVA: 0x00029EDF File Offset: 0x000280DF
+		// Token: 0x060030E4 RID: 12516 RVA: 0x0015D7E1 File Offset: 0x0015B9E1
 		private void TryChangeOffset(TransformOffset newOffset)
 		{
 			if (this.m_CurrentOffset != newOffset)
@@ -143,84 +143,84 @@ namespace UltimateSurvival
 			}
 		}
 
-		// Token: 0x040033E3 RID: 13283
+		// Token: 0x04002B0D RID: 11021
 		[Header("Setup")]
 		[SerializeField]
 		private Transform m_Model;
 
-		// Token: 0x040033E4 RID: 13284
+		// Token: 0x04002B0E RID: 11022
 		[SerializeField]
 		private Transform m_Pivot;
 
-		// Token: 0x040033E5 RID: 13285
+		// Token: 0x04002B0F RID: 11023
 		[Header("Sway")]
 		[SerializeField]
 		private Sway m_MovementSway;
 
-		// Token: 0x040033E6 RID: 13286
+		// Token: 0x04002B10 RID: 11024
 		[SerializeField]
 		private Sway m_RotationSway;
 
-		// Token: 0x040033E7 RID: 13287
+		// Token: 0x04002B11 RID: 11025
 		[Header("Bob")]
 		[SerializeField]
 		private TrigonometricBob m_WalkBob;
 
-		// Token: 0x040033E8 RID: 13288
+		// Token: 0x04002B12 RID: 11026
 		[SerializeField]
 		private TrigonometricBob m_AimBob;
 
-		// Token: 0x040033E9 RID: 13289
+		// Token: 0x04002B13 RID: 11027
 		[SerializeField]
 		private TrigonometricBob m_RunBob;
 
-		// Token: 0x040033EA RID: 13290
+		// Token: 0x04002B14 RID: 11028
 		[SerializeField]
 		private LerpControlledBob m_LandBob;
 
-		// Token: 0x040033EB RID: 13291
+		// Token: 0x04002B15 RID: 11029
 		[SerializeField]
 		private float m_MaxLandSpeed = 12f;
 
-		// Token: 0x040033EC RID: 13292
+		// Token: 0x04002B16 RID: 11030
 		[Header("Offset")]
 		[SerializeField]
 		private TransformOffset m_IdleOffset;
 
-		// Token: 0x040033ED RID: 13293
+		// Token: 0x04002B17 RID: 11031
 		[SerializeField]
 		private TransformOffset m_RunOffset;
 
-		// Token: 0x040033EE RID: 13294
+		// Token: 0x04002B18 RID: 11032
 		[SerializeField]
 		private TransformOffset m_AimOffset;
 
-		// Token: 0x040033EF RID: 13295
+		// Token: 0x04002B19 RID: 11033
 		[SerializeField]
 		private TransformOffset m_OnLadderOffset;
 
-		// Token: 0x040033F0 RID: 13296
+		// Token: 0x04002B1A RID: 11034
 		[SerializeField]
 		private TransformOffset m_JumpOffset;
 
-		// Token: 0x040033F1 RID: 13297
+		// Token: 0x04002B1B RID: 11035
 		[SerializeField]
 		[Tooltip("The object position and rotation offset, when the character is too close to an object. NOTE: Will not be taken into consideration if the object can be used when near other objects (see the 'CanUseWhileNearObjects' setting).")]
 		private TransformOffset m_TooCloseOffset;
 
-		// Token: 0x040033F2 RID: 13298
+		// Token: 0x04002B1C RID: 11036
 		private Transform m_Root;
 
-		// Token: 0x040033F3 RID: 13299
+		// Token: 0x04002B1D RID: 11037
 		private FPObject m_Object;
 
-		// Token: 0x040033F4 RID: 13300
+		// Token: 0x04002B1E RID: 11038
 		private FPWeaponBase m_Weapon;
 
-		// Token: 0x040033F5 RID: 13301
+		// Token: 0x04002B1F RID: 11039
 		private TransformOffset m_CurrentOffset;
 
-		// Token: 0x040033F6 RID: 13302
+		// Token: 0x04002B20 RID: 11040
 		private bool m_HolsterActive;
 	}
 }

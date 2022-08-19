@@ -4,15 +4,15 @@ using UnityEngine.UI;
 
 namespace PaiMai
 {
-	// Token: 0x02000A65 RID: 2661
+	// Token: 0x02000715 RID: 1813
 	public class PaiMaiItem : MonoBehaviour
 	{
-		// Token: 0x170007D3 RID: 2003
-		// (get) Token: 0x0600448F RID: 17551 RVA: 0x00031076 File Offset: 0x0002F276
-		// (set) Token: 0x06004490 RID: 17552 RVA: 0x0003107E File Offset: 0x0002F27E
+		// Token: 0x170005A1 RID: 1441
+		// (get) Token: 0x06003A03 RID: 14851 RVA: 0x0018D7B1 File Offset: 0x0018B9B1
+		// (set) Token: 0x06003A04 RID: 14852 RVA: 0x0018D7B9 File Offset: 0x0018B9B9
 		public PaiMaiAvatar Owner { get; private set; }
 
-		// Token: 0x06004491 RID: 17553 RVA: 0x001D4E90 File Offset: 0x001D3090
+		// Token: 0x06003A05 RID: 14853 RVA: 0x0018D7C4 File Offset: 0x0018B9C4
 		public void UpdateItem()
 		{
 			if (SingletonMono<PaiMaiUiMag>.Instance.CurShop == null)
@@ -40,7 +40,7 @@ namespace PaiMai
 			this.Owner = null;
 		}
 
-		// Token: 0x06004492 RID: 17554 RVA: 0x001D4FBC File Offset: 0x001D31BC
+		// Token: 0x06003A06 RID: 14854 RVA: 0x0018D8F0 File Offset: 0x0018BAF0
 		public void UpdateUI()
 		{
 			this.Owner = SingletonMono<PaiMaiUiMag>.Instance.CurAvatar;
@@ -53,19 +53,19 @@ namespace PaiMai
 			this._curAvatarName.text = "";
 		}
 
-		// Token: 0x04003C93 RID: 15507
+		// Token: 0x0400320C RID: 12812
 		[SerializeField]
 		private UIIconShow _curItem;
 
-		// Token: 0x04003C94 RID: 15508
+		// Token: 0x0400320D RID: 12813
 		[SerializeField]
 		private Text _curPrice;
 
-		// Token: 0x04003C95 RID: 15509
+		// Token: 0x0400320E RID: 12814
 		[SerializeField]
 		private Text _curAvatarName;
 
-		// Token: 0x04003C96 RID: 15510
+		// Token: 0x0400320F RID: 12815
 		[SerializeField]
 		private Text _mayPrice;
 	}

@@ -4,15 +4,15 @@ using System.Linq;
 
 namespace MoonSharp.VsCodeDebugger.SDK
 {
-	// Token: 0x020011D0 RID: 4560
+	// Token: 0x02000DA4 RID: 3492
 	public class ScopesResponseBody : ResponseBody
 	{
-		// Token: 0x17000A42 RID: 2626
-		// (get) Token: 0x06006F8C RID: 28556 RVA: 0x0004BCFE File Offset: 0x00049EFE
-		// (set) Token: 0x06006F8D RID: 28557 RVA: 0x0004BD06 File Offset: 0x00049F06
+		// Token: 0x170007E1 RID: 2017
+		// (get) Token: 0x06006346 RID: 25414 RVA: 0x0027A838 File Offset: 0x00278A38
+		// (set) Token: 0x06006347 RID: 25415 RVA: 0x0027A840 File Offset: 0x00278A40
 		public Scope[] scopes { get; private set; }
 
-		// Token: 0x06006F8E RID: 28558 RVA: 0x0004BD0F File Offset: 0x00049F0F
+		// Token: 0x06006348 RID: 25416 RVA: 0x0027A849 File Offset: 0x00278A49
 		public ScopesResponseBody(List<Scope> scps = null)
 		{
 			if (scps == null)

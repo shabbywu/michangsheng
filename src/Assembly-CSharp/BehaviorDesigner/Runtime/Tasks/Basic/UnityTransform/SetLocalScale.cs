@@ -3,12 +3,12 @@ using UnityEngine;
 
 namespace BehaviorDesigner.Runtime.Tasks.Basic.UnityTransform
 {
-	// Token: 0x020014F0 RID: 5360
+	// Token: 0x02001036 RID: 4150
 	[TaskCategory("Basic/Transform")]
 	[TaskDescription("Sets the local scale of the Transform. Returns Success.")]
 	public class SetLocalScale : Action
 	{
-		// Token: 0x06007FED RID: 32749 RVA: 0x002CAB14 File Offset: 0x002C8D14
+		// Token: 0x060071F3 RID: 29171 RVA: 0x002ACFB8 File Offset: 0x002AB1B8
 		public override void OnStart()
 		{
 			GameObject defaultGameObject = base.GetDefaultGameObject(this.targetGameObject.Value);
@@ -19,7 +19,7 @@ namespace BehaviorDesigner.Runtime.Tasks.Basic.UnityTransform
 			}
 		}
 
-		// Token: 0x06007FEE RID: 32750 RVA: 0x00056E36 File Offset: 0x00055036
+		// Token: 0x060071F4 RID: 29172 RVA: 0x002ACFF8 File Offset: 0x002AB1F8
 		public override TaskStatus OnUpdate()
 		{
 			if (this.targetTransform == null)
@@ -31,25 +31,25 @@ namespace BehaviorDesigner.Runtime.Tasks.Basic.UnityTransform
 			return 2;
 		}
 
-		// Token: 0x06007FEF RID: 32751 RVA: 0x00056E69 File Offset: 0x00055069
+		// Token: 0x060071F5 RID: 29173 RVA: 0x002AD02B File Offset: 0x002AB22B
 		public override void OnReset()
 		{
 			this.targetGameObject = null;
 			this.localScale = Vector3.zero;
 		}
 
-		// Token: 0x04006CD4 RID: 27860
+		// Token: 0x04005DD4 RID: 24020
 		[Tooltip("The GameObject that the task operates on. If null the task GameObject is used.")]
 		public SharedGameObject targetGameObject;
 
-		// Token: 0x04006CD5 RID: 27861
+		// Token: 0x04005DD5 RID: 24021
 		[Tooltip("The local scale of the Transform")]
 		public SharedVector3 localScale;
 
-		// Token: 0x04006CD6 RID: 27862
+		// Token: 0x04005DD6 RID: 24022
 		private Transform targetTransform;
 
-		// Token: 0x04006CD7 RID: 27863
+		// Token: 0x04005DD7 RID: 24023
 		private GameObject prevGameObject;
 	}
 }

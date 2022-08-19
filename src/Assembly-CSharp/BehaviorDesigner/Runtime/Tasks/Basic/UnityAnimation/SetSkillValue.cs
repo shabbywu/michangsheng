@@ -3,24 +3,24 @@ using KBEngine;
 
 namespace BehaviorDesigner.Runtime.Tasks.Basic.UnityAnimation
 {
-	// Token: 0x02001682 RID: 5762
+	// Token: 0x020011C0 RID: 4544
 	[TaskCategory("YS")]
 	[TaskDescription("设置技能最优值")]
 	public class SetSkillValue : Action
 	{
-		// Token: 0x060085B3 RID: 34227 RVA: 0x000042DD File Offset: 0x000024DD
+		// Token: 0x060077A8 RID: 30632 RVA: 0x00004095 File Offset: 0x00002295
 		public override void OnAwake()
 		{
 		}
 
-		// Token: 0x060085B4 RID: 34228 RVA: 0x0005CB64 File Offset: 0x0005AD64
+		// Token: 0x060077A9 RID: 30633 RVA: 0x002B9498 File Offset: 0x002B7698
 		public override void OnStart()
 		{
 			this.avatar = (Avatar)this.gameObject.GetComponent<AvaterAddScript>().entity;
 			this.selfBehavior = this.gameObject.GetComponent<Behavior>();
 		}
 
-		// Token: 0x060085B5 RID: 34229 RVA: 0x002D1310 File Offset: 0x002CF510
+		// Token: 0x060077AA RID: 30634 RVA: 0x002B94C8 File Offset: 0x002B76C8
 		public override TaskStatus OnUpdate()
 		{
 			SharedVariable<int> sharedVariable = this.selfBehavior.GetVariable("optimalSkillID") as SharedInt;
@@ -32,22 +32,22 @@ namespace BehaviorDesigner.Runtime.Tasks.Basic.UnityAnimation
 			return 2;
 		}
 
-		// Token: 0x060085B6 RID: 34230 RVA: 0x000042DD File Offset: 0x000024DD
+		// Token: 0x060077AB RID: 30635 RVA: 0x00004095 File Offset: 0x00002295
 		public override void OnReset()
 		{
 		}
 
-		// Token: 0x04007253 RID: 29267
+		// Token: 0x04006324 RID: 25380
 		[Tooltip("The name of the animation")]
 		public AI.skillWeight skillweith;
 
-		// Token: 0x04007254 RID: 29268
+		// Token: 0x04006325 RID: 25381
 		private Avatar avatar;
 
-		// Token: 0x04007255 RID: 29269
+		// Token: 0x04006326 RID: 25382
 		private Behavior selfBehavior;
 
-		// Token: 0x04007256 RID: 29270
+		// Token: 0x04006327 RID: 25383
 		private SharedInt tempWeith;
 	}
 }

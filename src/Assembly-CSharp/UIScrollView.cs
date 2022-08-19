@@ -1,14 +1,14 @@
 ﻿using System;
 using UnityEngine;
 
-// Token: 0x0200009E RID: 158
+// Token: 0x02000073 RID: 115
 [ExecuteInEditMode]
 [RequireComponent(typeof(UIPanel))]
 [AddComponentMenu("NGUI/Interaction/Scroll View")]
 public class UIScrollView : MonoBehaviour
 {
-	// Token: 0x170000AE RID: 174
-	// (get) Token: 0x06000621 RID: 1569 RVA: 0x00009819 File Offset: 0x00007A19
+	// Token: 0x1700009E RID: 158
+	// (get) Token: 0x060005BD RID: 1469 RVA: 0x0001FBBF File Offset: 0x0001DDBF
 	public UIPanel panel
 	{
 		get
@@ -17,8 +17,8 @@ public class UIScrollView : MonoBehaviour
 		}
 	}
 
-	// Token: 0x170000AF RID: 175
-	// (get) Token: 0x06000622 RID: 1570 RVA: 0x00009821 File Offset: 0x00007A21
+	// Token: 0x1700009F RID: 159
+	// (get) Token: 0x060005BE RID: 1470 RVA: 0x0001FBC7 File Offset: 0x0001DDC7
 	public bool isDragging
 	{
 		get
@@ -27,8 +27,8 @@ public class UIScrollView : MonoBehaviour
 		}
 	}
 
-	// Token: 0x170000B0 RID: 176
-	// (get) Token: 0x06000623 RID: 1571 RVA: 0x00009833 File Offset: 0x00007A33
+	// Token: 0x170000A0 RID: 160
+	// (get) Token: 0x060005BF RID: 1471 RVA: 0x0001FBD9 File Offset: 0x0001DDD9
 	public virtual Bounds bounds
 	{
 		get
@@ -43,8 +43,8 @@ public class UIScrollView : MonoBehaviour
 		}
 	}
 
-	// Token: 0x170000B1 RID: 177
-	// (get) Token: 0x06000624 RID: 1572 RVA: 0x0000986D File Offset: 0x00007A6D
+	// Token: 0x170000A1 RID: 161
+	// (get) Token: 0x060005C0 RID: 1472 RVA: 0x0001FC13 File Offset: 0x0001DE13
 	public bool canMoveHorizontally
 	{
 		get
@@ -53,8 +53,8 @@ public class UIScrollView : MonoBehaviour
 		}
 	}
 
-	// Token: 0x170000B2 RID: 178
-	// (get) Token: 0x06000625 RID: 1573 RVA: 0x000098A2 File Offset: 0x00007AA2
+	// Token: 0x170000A2 RID: 162
+	// (get) Token: 0x060005C1 RID: 1473 RVA: 0x0001FC48 File Offset: 0x0001DE48
 	public bool canMoveVertically
 	{
 		get
@@ -63,8 +63,8 @@ public class UIScrollView : MonoBehaviour
 		}
 	}
 
-	// Token: 0x170000B3 RID: 179
-	// (get) Token: 0x06000626 RID: 1574 RVA: 0x000759E8 File Offset: 0x00073BE8
+	// Token: 0x170000A3 RID: 163
+	// (get) Token: 0x060005C2 RID: 1474 RVA: 0x0001FC80 File Offset: 0x0001DE80
 	public virtual bool shouldMoveHorizontally
 	{
 		get
@@ -78,8 +78,8 @@ public class UIScrollView : MonoBehaviour
 		}
 	}
 
-	// Token: 0x170000B4 RID: 180
-	// (get) Token: 0x06000627 RID: 1575 RVA: 0x00075A48 File Offset: 0x00073C48
+	// Token: 0x170000A4 RID: 164
+	// (get) Token: 0x060005C3 RID: 1475 RVA: 0x0001FCE0 File Offset: 0x0001DEE0
 	public virtual bool shouldMoveVertically
 	{
 		get
@@ -93,8 +93,8 @@ public class UIScrollView : MonoBehaviour
 		}
 	}
 
-	// Token: 0x170000B5 RID: 181
-	// (get) Token: 0x06000628 RID: 1576 RVA: 0x00075AA8 File Offset: 0x00073CA8
+	// Token: 0x170000A5 RID: 165
+	// (get) Token: 0x060005C4 RID: 1476 RVA: 0x0001FD40 File Offset: 0x0001DF40
 	protected virtual bool shouldMove
 	{
 		get
@@ -137,9 +137,9 @@ public class UIScrollView : MonoBehaviour
 		}
 	}
 
-	// Token: 0x170000B6 RID: 182
-	// (get) Token: 0x06000629 RID: 1577 RVA: 0x000098D8 File Offset: 0x00007AD8
-	// (set) Token: 0x0600062A RID: 1578 RVA: 0x000098E0 File Offset: 0x00007AE0
+	// Token: 0x170000A6 RID: 166
+	// (get) Token: 0x060005C5 RID: 1477 RVA: 0x0001FE39 File Offset: 0x0001E039
+	// (set) Token: 0x060005C6 RID: 1478 RVA: 0x0001FE41 File Offset: 0x0001E041
 	public Vector3 currentMomentum
 	{
 		get
@@ -153,7 +153,7 @@ public class UIScrollView : MonoBehaviour
 		}
 	}
 
-	// Token: 0x0600062B RID: 1579 RVA: 0x00075BA4 File Offset: 0x00073DA4
+	// Token: 0x060005C7 RID: 1479 RVA: 0x0001FE54 File Offset: 0x0001E054
 	private void Awake()
 	{
 		this.mTrans = base.transform;
@@ -191,19 +191,19 @@ public class UIScrollView : MonoBehaviour
 		}
 	}
 
-	// Token: 0x0600062C RID: 1580 RVA: 0x000098F0 File Offset: 0x00007AF0
+	// Token: 0x060005C8 RID: 1480 RVA: 0x0001FFCC File Offset: 0x0001E1CC
 	private void OnEnable()
 	{
 		UIScrollView.list.Add(this);
 	}
 
-	// Token: 0x0600062D RID: 1581 RVA: 0x000098FD File Offset: 0x00007AFD
+	// Token: 0x060005C9 RID: 1481 RVA: 0x0001FFD9 File Offset: 0x0001E1D9
 	private void OnDisable()
 	{
 		UIScrollView.list.Remove(this);
 	}
 
-	// Token: 0x0600062E RID: 1582 RVA: 0x00075D1C File Offset: 0x00073F1C
+	// Token: 0x060005CA RID: 1482 RVA: 0x0001FFE8 File Offset: 0x0001E1E8
 	protected virtual void Start()
 	{
 		if (Application.isPlaying)
@@ -221,13 +221,13 @@ public class UIScrollView : MonoBehaviour
 		}
 	}
 
-	// Token: 0x0600062F RID: 1583 RVA: 0x0000990B File Offset: 0x00007B0B
+	// Token: 0x060005CB RID: 1483 RVA: 0x000200A3 File Offset: 0x0001E2A3
 	public bool RestrictWithinBounds(bool instant)
 	{
 		return this.RestrictWithinBounds(instant, true, true);
 	}
 
-	// Token: 0x06000630 RID: 1584 RVA: 0x00075DD8 File Offset: 0x00073FD8
+	// Token: 0x060005CC RID: 1484 RVA: 0x000200B0 File Offset: 0x0001E2B0
 	public bool RestrictWithinBounds(bool instant, bool horizontal, bool vertical)
 	{
 		Bounds bounds = this.bounds;
@@ -271,7 +271,7 @@ public class UIScrollView : MonoBehaviour
 		return false;
 	}
 
-	// Token: 0x06000631 RID: 1585 RVA: 0x00075F20 File Offset: 0x00074120
+	// Token: 0x060005CD RID: 1485 RVA: 0x000201F8 File Offset: 0x0001E3F8
 	public void DisableSpring()
 	{
 		SpringPanel component = base.GetComponent<SpringPanel>();
@@ -281,13 +281,13 @@ public class UIScrollView : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000632 RID: 1586 RVA: 0x00009916 File Offset: 0x00007B16
+	// Token: 0x060005CE RID: 1486 RVA: 0x0002021C File Offset: 0x0001E41C
 	public void UpdateScrollbars()
 	{
 		this.UpdateScrollbars(true);
 	}
 
-	// Token: 0x06000633 RID: 1587 RVA: 0x00075F44 File Offset: 0x00074144
+	// Token: 0x060005CF RID: 1487 RVA: 0x00020228 File Offset: 0x0001E428
 	public virtual void UpdateScrollbars(bool recalculateBounds)
 	{
 		if (this.mPanel == null)
@@ -360,7 +360,7 @@ public class UIScrollView : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000634 RID: 1588 RVA: 0x00076178 File Offset: 0x00074378
+	// Token: 0x060005D0 RID: 1488 RVA: 0x0002045C File Offset: 0x0001E65C
 	protected void UpdateScrollbars(UIProgressBar slider, float contentMin, float contentMax, float contentSize, float viewSize, bool inverted)
 	{
 		if (slider == null)
@@ -397,7 +397,7 @@ public class UIScrollView : MonoBehaviour
 		this.mIgnoreCallbacks = false;
 	}
 
-	// Token: 0x06000635 RID: 1589 RVA: 0x00076288 File Offset: 0x00074488
+	// Token: 0x060005D1 RID: 1489 RVA: 0x0002056C File Offset: 0x0001E76C
 	public virtual void SetDragAmount(float x, float y, bool updateScrollbars)
 	{
 		if (this.mPanel == null)
@@ -455,13 +455,13 @@ public class UIScrollView : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000636 RID: 1590 RVA: 0x0000991F File Offset: 0x00007B1F
+	// Token: 0x060005D2 RID: 1490 RVA: 0x00020778 File Offset: 0x0001E978
 	public void InvalidateBounds()
 	{
 		this.mCalculatedBounds = false;
 	}
 
-	// Token: 0x06000637 RID: 1591 RVA: 0x00076494 File Offset: 0x00074694
+	// Token: 0x060005D3 RID: 1491 RVA: 0x00020784 File Offset: 0x0001E984
 	[ContextMenu("Reset Clipping Position")]
 	public void ResetPosition()
 	{
@@ -474,7 +474,7 @@ public class UIScrollView : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000638 RID: 1592 RVA: 0x000764F0 File Offset: 0x000746F0
+	// Token: 0x060005D4 RID: 1492 RVA: 0x000207E0 File Offset: 0x0001E9E0
 	public void UpdatePosition()
 	{
 		if (!this.mIgnoreCallbacks && (this.horizontalScrollBar != null || this.verticalScrollBar != null))
@@ -490,7 +490,7 @@ public class UIScrollView : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000639 RID: 1593 RVA: 0x000765A0 File Offset: 0x000747A0
+	// Token: 0x060005D5 RID: 1493 RVA: 0x00020890 File Offset: 0x0001EA90
 	public void OnScrollBar()
 	{
 		if (!this.mIgnoreCallbacks)
@@ -503,7 +503,7 @@ public class UIScrollView : MonoBehaviour
 		}
 	}
 
-	// Token: 0x0600063A RID: 1594 RVA: 0x00076610 File Offset: 0x00074810
+	// Token: 0x060005D6 RID: 1494 RVA: 0x00020900 File Offset: 0x0001EB00
 	public virtual void MoveRelative(Vector3 relative)
 	{
 		this.mTrans.localPosition += relative;
@@ -514,7 +514,7 @@ public class UIScrollView : MonoBehaviour
 		this.UpdateScrollbars(false);
 	}
 
-	// Token: 0x0600063B RID: 1595 RVA: 0x00076678 File Offset: 0x00074878
+	// Token: 0x060005D7 RID: 1495 RVA: 0x00020968 File Offset: 0x0001EB68
 	public void MoveAbsolute(Vector3 absolute)
 	{
 		Vector3 vector = this.mTrans.InverseTransformPoint(absolute);
@@ -522,7 +522,7 @@ public class UIScrollView : MonoBehaviour
 		this.MoveRelative(vector - vector2);
 	}
 
-	// Token: 0x0600063C RID: 1596 RVA: 0x000766B0 File Offset: 0x000748B0
+	// Token: 0x060005D8 RID: 1496 RVA: 0x000209A0 File Offset: 0x0001EBA0
 	public void Press(bool pressed)
 	{
 		if (this.smoothDragStart && pressed)
@@ -575,7 +575,7 @@ public class UIScrollView : MonoBehaviour
 		}
 	}
 
-	// Token: 0x0600063D RID: 1597 RVA: 0x0007685C File Offset: 0x00074A5C
+	// Token: 0x060005D9 RID: 1497 RVA: 0x00020B4C File Offset: 0x0001ED4C
 	public void Drag()
 	{
 		if (base.enabled && NGUITools.GetActive(base.gameObject) && this.mShouldMove)
@@ -653,7 +653,7 @@ public class UIScrollView : MonoBehaviour
 		}
 	}
 
-	// Token: 0x0600063E RID: 1598 RVA: 0x00076B20 File Offset: 0x00074D20
+	// Token: 0x060005DA RID: 1498 RVA: 0x00020E10 File Offset: 0x0001F010
 	public void Scroll(float delta)
 	{
 		if (base.enabled && NGUITools.GetActive(base.gameObject) && this.scrollWheelFactor != 0f)
@@ -668,7 +668,7 @@ public class UIScrollView : MonoBehaviour
 		}
 	}
 
-	// Token: 0x0600063F RID: 1599 RVA: 0x00076B94 File Offset: 0x00074D94
+	// Token: 0x060005DB RID: 1499 RVA: 0x00020E84 File Offset: 0x0001F084
 	private void LateUpdate()
 	{
 		if (!Application.isPlaying)
@@ -767,148 +767,148 @@ public class UIScrollView : MonoBehaviour
 		}
 	}
 
-	// Token: 0x0400047E RID: 1150
+	// Token: 0x040003C8 RID: 968
 	public static BetterList<UIScrollView> list = new BetterList<UIScrollView>();
 
-	// Token: 0x0400047F RID: 1151
+	// Token: 0x040003C9 RID: 969
 	public UIScrollView.Movement movement;
 
-	// Token: 0x04000480 RID: 1152
+	// Token: 0x040003CA RID: 970
 	public UIScrollView.DragEffect dragEffect = UIScrollView.DragEffect.MomentumAndSpring;
 
-	// Token: 0x04000481 RID: 1153
+	// Token: 0x040003CB RID: 971
 	public bool restrictWithinPanel = true;
 
-	// Token: 0x04000482 RID: 1154
+	// Token: 0x040003CC RID: 972
 	public bool disableDragIfFits;
 
-	// Token: 0x04000483 RID: 1155
+	// Token: 0x040003CD RID: 973
 	public bool smoothDragStart = true;
 
-	// Token: 0x04000484 RID: 1156
+	// Token: 0x040003CE RID: 974
 	public bool iOSDragEmulation = true;
 
-	// Token: 0x04000485 RID: 1157
+	// Token: 0x040003CF RID: 975
 	public float scrollWheelFactor = 0.25f;
 
-	// Token: 0x04000486 RID: 1158
+	// Token: 0x040003D0 RID: 976
 	public float momentumAmount = 35f;
 
-	// Token: 0x04000487 RID: 1159
+	// Token: 0x040003D1 RID: 977
 	public UIProgressBar horizontalScrollBar;
 
-	// Token: 0x04000488 RID: 1160
+	// Token: 0x040003D2 RID: 978
 	public UIProgressBar verticalScrollBar;
 
-	// Token: 0x04000489 RID: 1161
+	// Token: 0x040003D3 RID: 979
 	public UIScrollView.ShowCondition showScrollBars = UIScrollView.ShowCondition.OnlyIfNeeded;
 
-	// Token: 0x0400048A RID: 1162
+	// Token: 0x040003D4 RID: 980
 	public Vector2 customMovement = new Vector2(1f, 0f);
 
-	// Token: 0x0400048B RID: 1163
+	// Token: 0x040003D5 RID: 981
 	public UIWidget.Pivot contentPivot;
 
-	// Token: 0x0400048C RID: 1164
+	// Token: 0x040003D6 RID: 982
 	public UIScrollView.OnDragNotification onDragStarted;
 
-	// Token: 0x0400048D RID: 1165
+	// Token: 0x040003D7 RID: 983
 	public UIScrollView.OnDragNotification onDragFinished;
 
-	// Token: 0x0400048E RID: 1166
+	// Token: 0x040003D8 RID: 984
 	public UIScrollView.OnDragNotification onMomentumMove;
 
-	// Token: 0x0400048F RID: 1167
+	// Token: 0x040003D9 RID: 985
 	public UIScrollView.OnDragNotification onStoppedMoving;
 
-	// Token: 0x04000490 RID: 1168
+	// Token: 0x040003DA RID: 986
 	[HideInInspector]
 	[SerializeField]
 	private Vector3 scale = new Vector3(1f, 0f, 0f);
 
-	// Token: 0x04000491 RID: 1169
+	// Token: 0x040003DB RID: 987
 	[SerializeField]
 	[HideInInspector]
 	private Vector2 relativePositionOnReset = Vector2.zero;
 
-	// Token: 0x04000492 RID: 1170
+	// Token: 0x040003DC RID: 988
 	protected Transform mTrans;
 
-	// Token: 0x04000493 RID: 1171
+	// Token: 0x040003DD RID: 989
 	protected UIPanel mPanel;
 
-	// Token: 0x04000494 RID: 1172
+	// Token: 0x040003DE RID: 990
 	protected Plane mPlane;
 
-	// Token: 0x04000495 RID: 1173
+	// Token: 0x040003DF RID: 991
 	protected Vector3 mLastPos;
 
-	// Token: 0x04000496 RID: 1174
+	// Token: 0x040003E0 RID: 992
 	protected bool mPressed;
 
-	// Token: 0x04000497 RID: 1175
+	// Token: 0x040003E1 RID: 993
 	protected Vector3 mMomentum = Vector3.zero;
 
-	// Token: 0x04000498 RID: 1176
+	// Token: 0x040003E2 RID: 994
 	protected float mScroll;
 
-	// Token: 0x04000499 RID: 1177
+	// Token: 0x040003E3 RID: 995
 	protected Bounds mBounds;
 
-	// Token: 0x0400049A RID: 1178
+	// Token: 0x040003E4 RID: 996
 	protected bool mCalculatedBounds;
 
-	// Token: 0x0400049B RID: 1179
+	// Token: 0x040003E5 RID: 997
 	protected bool mShouldMove;
 
-	// Token: 0x0400049C RID: 1180
+	// Token: 0x040003E6 RID: 998
 	protected bool mIgnoreCallbacks;
 
-	// Token: 0x0400049D RID: 1181
+	// Token: 0x040003E7 RID: 999
 	protected int mDragID = -10;
 
-	// Token: 0x0400049E RID: 1182
+	// Token: 0x040003E8 RID: 1000
 	protected Vector2 mDragStartOffset = Vector2.zero;
 
-	// Token: 0x0400049F RID: 1183
+	// Token: 0x040003E9 RID: 1001
 	protected bool mDragStarted;
 
-	// Token: 0x0200009F RID: 159
+	// Token: 0x020011EF RID: 4591
 	public enum Movement
 	{
-		// Token: 0x040004A1 RID: 1185
+		// Token: 0x04006406 RID: 25606
 		Horizontal,
-		// Token: 0x040004A2 RID: 1186
+		// Token: 0x04006407 RID: 25607
 		Vertical,
-		// Token: 0x040004A3 RID: 1187
+		// Token: 0x04006408 RID: 25608
 		Unrestricted,
-		// Token: 0x040004A4 RID: 1188
+		// Token: 0x04006409 RID: 25609
 		Custom
 	}
 
-	// Token: 0x020000A0 RID: 160
+	// Token: 0x020011F0 RID: 4592
 	public enum DragEffect
 	{
-		// Token: 0x040004A6 RID: 1190
+		// Token: 0x0400640B RID: 25611
 		None,
-		// Token: 0x040004A7 RID: 1191
+		// Token: 0x0400640C RID: 25612
 		Momentum,
-		// Token: 0x040004A8 RID: 1192
+		// Token: 0x0400640D RID: 25613
 		MomentumAndSpring
 	}
 
-	// Token: 0x020000A1 RID: 161
+	// Token: 0x020011F1 RID: 4593
 	public enum ShowCondition
 	{
-		// Token: 0x040004AA RID: 1194
+		// Token: 0x0400640F RID: 25615
 		Always,
-		// Token: 0x040004AB RID: 1195
+		// Token: 0x04006410 RID: 25616
 		OnlyIfNeeded,
-		// Token: 0x040004AC RID: 1196
+		// Token: 0x04006411 RID: 25617
 		WhenDragging
 	}
 
-	// Token: 0x020000A2 RID: 162
-	// (Invoke) Token: 0x06000643 RID: 1603
+	// Token: 0x020011F2 RID: 4594
+	// (Invoke) Token: 0x0600781B RID: 30747
 	public delegate void OnDragNotification();
 }

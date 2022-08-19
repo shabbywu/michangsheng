@@ -5,16 +5,16 @@ using UnityEngine.SceneManagement;
 
 namespace Fungus
 {
-	// Token: 0x020012F4 RID: 4852
+	// Token: 0x02000E84 RID: 3716
 	public class SceneLoader : MonoBehaviour
 	{
-		// Token: 0x06007655 RID: 30293 RVA: 0x000508CE File Offset: 0x0004EACE
+		// Token: 0x0600695C RID: 26972 RVA: 0x00290DC5 File Offset: 0x0028EFC5
 		protected virtual void Start()
 		{
 			base.StartCoroutine(this.DoLoadBlock());
 		}
 
-		// Token: 0x06007656 RID: 30294 RVA: 0x000508DD File Offset: 0x0004EADD
+		// Token: 0x0600695D RID: 26973 RVA: 0x00290DD4 File Offset: 0x0028EFD4
 		protected virtual IEnumerator DoLoadBlock()
 		{
 			while (this.loadingTexture != null && !this.displayedImage)
@@ -34,7 +34,7 @@ namespace Fungus
 			yield break;
 		}
 
-		// Token: 0x06007657 RID: 30295 RVA: 0x002B31D0 File Offset: 0x002B13D0
+		// Token: 0x0600695E RID: 26974 RVA: 0x00290DE4 File Offset: 0x0028EFE4
 		protected virtual void OnGUI()
 		{
 			if (this.loadingTexture == null)
@@ -53,7 +53,7 @@ namespace Fungus
 			}
 		}
 
-		// Token: 0x06007658 RID: 30296 RVA: 0x000508EC File Offset: 0x0004EAEC
+		// Token: 0x0600695F RID: 26975 RVA: 0x00290E6C File Offset: 0x0028F06C
 		public static void LoadScene(string _sceneToLoad, Texture2D _loadingTexture)
 		{
 			GameObject gameObject = new GameObject("SceneLoader");
@@ -63,13 +63,13 @@ namespace Fungus
 			sceneLoader.loadingTexture = _loadingTexture;
 		}
 
-		// Token: 0x04006732 RID: 26418
+		// Token: 0x04005954 RID: 22868
 		protected Texture2D loadingTexture;
 
-		// Token: 0x04006733 RID: 26419
+		// Token: 0x04005955 RID: 22869
 		protected string sceneToLoad;
 
-		// Token: 0x04006734 RID: 26420
+		// Token: 0x04005956 RID: 22870
 		protected bool displayedImage;
 	}
 }

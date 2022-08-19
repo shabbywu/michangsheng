@@ -5,10 +5,10 @@ using UnityEngine;
 
 namespace CaiJi
 {
-	// Token: 0x02000AA0 RID: 2720
+	// Token: 0x02000738 RID: 1848
 	public static class LingHeCaiJiManager
 	{
-		// Token: 0x060045BF RID: 17855 RVA: 0x001DCFFC File Offset: 0x001DB1FC
+		// Token: 0x06003AF0 RID: 15088 RVA: 0x001954BC File Offset: 0x001936BC
 		public static void TryOpenCaiJi(int mapIndex)
 		{
 			if (UINPCJiaoHu.Inst.NPCIDList.Count > 0)
@@ -24,7 +24,7 @@ namespace CaiJi
 			LingHeCaiJiUIMag.inst.OpenCaiJi(mapIndex);
 		}
 
-		// Token: 0x060045C0 RID: 17856 RVA: 0x001DD084 File Offset: 0x001DB284
+		// Token: 0x06003AF1 RID: 15089 RVA: 0x00195544 File Offset: 0x00193744
 		public static LingHeCaiJiResult DoCaiJi(int mapIndex, int costTime)
 		{
 			LingHeCaiJiResult lingHeCaiJiResult = new LingHeCaiJiResult();
@@ -67,10 +67,10 @@ namespace CaiJi
 			return lingHeCaiJiResult;
 		}
 
-		// Token: 0x04003DE7 RID: 15847
+		// Token: 0x04003316 RID: 13078
 		public static bool IsOnTiaoZhan;
 
-		// Token: 0x04003DE8 RID: 15848
+		// Token: 0x04003317 RID: 13079
 		public static LingHeTiaoZhanArg LingHeTiaoZhanArg;
 	}
 }

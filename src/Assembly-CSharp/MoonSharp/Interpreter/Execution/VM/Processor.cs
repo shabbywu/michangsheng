@@ -12,10 +12,10 @@ using MoonSharp.Interpreter.IO;
 
 namespace MoonSharp.Interpreter.Execution.VM
 {
-	// Token: 0x02001169 RID: 4457
+	// Token: 0x02000D58 RID: 3416
 	internal sealed class Processor
 	{
-		// Token: 0x06006C2A RID: 27690 RVA: 0x002953C0 File Offset: 0x002935C0
+		// Token: 0x0600603E RID: 24638 RVA: 0x0026E018 File Offset: 0x0026C218
 		public Processor(Script script, Table globalContext, ByteCode byteCode)
 		{
 			this.m_CoroutinesStack = new List<Processor>();
@@ -27,7 +27,7 @@ namespace MoonSharp.Interpreter.Execution.VM
 			DynValue.NewCoroutine(new Coroutine(this));
 		}
 
-		// Token: 0x06006C2B RID: 27691 RVA: 0x00295448 File Offset: 0x00293648
+		// Token: 0x0600603F RID: 24639 RVA: 0x0026E0A0 File Offset: 0x0026C2A0
 		private Processor(Processor parentProcessor)
 		{
 			this.m_Debug = parentProcessor.m_Debug;
@@ -38,7 +38,7 @@ namespace MoonSharp.Interpreter.Execution.VM
 			this.m_State = CoroutineState.NotStarted;
 		}
 
-		// Token: 0x06006C2C RID: 27692 RVA: 0x002954D0 File Offset: 0x002936D0
+		// Token: 0x06006040 RID: 24640 RVA: 0x0026E128 File Offset: 0x0026C328
 		public DynValue Call(DynValue function, DynValue[] args)
 		{
 			List<Processor> list = (this.m_Parent != null) ? this.m_Parent.m_CoroutinesStack : this.m_CoroutinesStack;
@@ -73,7 +73,7 @@ namespace MoonSharp.Interpreter.Execution.VM
 			return result;
 		}
 
-		// Token: 0x06006C2D RID: 27693 RVA: 0x00295594 File Offset: 0x00293794
+		// Token: 0x06006041 RID: 24641 RVA: 0x0026E1EC File Offset: 0x0026C3EC
 		private int PushClrToScriptStackFrame(CallStackItemFlags flags, DynValue function, DynValue[] args)
 		{
 			if (function == null)
@@ -102,7 +102,7 @@ namespace MoonSharp.Interpreter.Execution.VM
 			return function.Function.EntryPointByteCodeLocation;
 		}
 
-		// Token: 0x06006C2E RID: 27694 RVA: 0x00295664 File Offset: 0x00293864
+		// Token: 0x06006042 RID: 24642 RVA: 0x0026E2BC File Offset: 0x0026C4BC
 		private void LeaveProcessor()
 		{
 			this.m_ExecutionNesting--;
@@ -117,13 +117,13 @@ namespace MoonSharp.Interpreter.Execution.VM
 			}
 		}
 
-		// Token: 0x06006C2F RID: 27695 RVA: 0x00049DB5 File Offset: 0x00047FB5
+		// Token: 0x06006043 RID: 24643 RVA: 0x0026E342 File Offset: 0x0026C542
 		private int GetThreadId()
 		{
 			return Thread.CurrentThread.ManagedThreadId;
 		}
 
-		// Token: 0x06006C30 RID: 27696 RVA: 0x002956EC File Offset: 0x002938EC
+		// Token: 0x06006044 RID: 24644 RVA: 0x0026E350 File Offset: 0x0026C550
 		private void EnterProcessor()
 		{
 			int threadId = this.GetThreadId();
@@ -139,13 +139,13 @@ namespace MoonSharp.Interpreter.Execution.VM
 			}
 		}
 
-		// Token: 0x06006C31 RID: 27697 RVA: 0x00049DC1 File Offset: 0x00047FC1
+		// Token: 0x06006045 RID: 24645 RVA: 0x0026E3D7 File Offset: 0x0026C5D7
 		internal SourceRef GetCoroutineSuspendedLocation()
 		{
 			return this.GetCurrentSourceRef(this.m_SavedInstructionPtr);
 		}
 
-		// Token: 0x06006C32 RID: 27698 RVA: 0x00295774 File Offset: 0x00293974
+		// Token: 0x06006046 RID: 24646 RVA: 0x0026E3E8 File Offset: 0x0026C5E8
 		internal static bool IsDumpStream(Stream stream)
 		{
 			if (stream.Length >= 8L)
@@ -161,7 +161,7 @@ namespace MoonSharp.Interpreter.Execution.VM
 			return false;
 		}
 
-		// Token: 0x06006C33 RID: 27699 RVA: 0x002957D4 File Offset: 0x002939D4
+		// Token: 0x06006047 RID: 24647 RVA: 0x0026E448 File Offset: 0x0026C648
 		internal int Dump(Stream stream, int baseAddress, bool hasUpvalues)
 		{
 			int j;
@@ -226,7 +226,7 @@ namespace MoonSharp.Interpreter.Execution.VM
 			return j;
 		}
 
-		// Token: 0x06006C34 RID: 27700 RVA: 0x00049DCF File Offset: 0x00047FCF
+		// Token: 0x06006048 RID: 24648 RVA: 0x0026E66C File Offset: 0x0026C86C
 		private void AddSymbolToMap(Dictionary<SymbolRef, int> symbolMap, SymbolRef s)
 		{
 			if (!symbolMap.ContainsKey(s))
@@ -235,7 +235,7 @@ namespace MoonSharp.Interpreter.Execution.VM
 			}
 		}
 
-		// Token: 0x06006C35 RID: 27701 RVA: 0x002959F8 File Offset: 0x00293BF8
+		// Token: 0x06006049 RID: 24649 RVA: 0x0026E684 File Offset: 0x0026C884
 		internal int Undump(Stream stream, int sourceID, Table envTable, out bool hasUpvalues)
 		{
 			int count = this.m_RootChunk.Code.Count;
@@ -273,7 +273,7 @@ namespace MoonSharp.Interpreter.Execution.VM
 			return result;
 		}
 
-		// Token: 0x06006C36 RID: 27702 RVA: 0x00049DE7 File Offset: 0x00047FE7
+		// Token: 0x0600604A RID: 24650 RVA: 0x0026E79C File Offset: 0x0026C99C
 		public DynValue Coroutine_Create(Closure closure)
 		{
 			Processor processor = new Processor(this);
@@ -281,8 +281,8 @@ namespace MoonSharp.Interpreter.Execution.VM
 			return DynValue.NewCoroutine(new Coroutine(processor));
 		}
 
-		// Token: 0x170009E7 RID: 2535
-		// (get) Token: 0x06006C37 RID: 27703 RVA: 0x00049E0B File Offset: 0x0004800B
+		// Token: 0x1700078A RID: 1930
+		// (get) Token: 0x0600604B RID: 24651 RVA: 0x0026E7C0 File Offset: 0x0026C9C0
 		public CoroutineState State
 		{
 			get
@@ -291,12 +291,12 @@ namespace MoonSharp.Interpreter.Execution.VM
 			}
 		}
 
-		// Token: 0x170009E8 RID: 2536
-		// (get) Token: 0x06006C38 RID: 27704 RVA: 0x00049E13 File Offset: 0x00048013
-		// (set) Token: 0x06006C39 RID: 27705 RVA: 0x00049E1B File Offset: 0x0004801B
+		// Token: 0x1700078B RID: 1931
+		// (get) Token: 0x0600604C RID: 24652 RVA: 0x0026E7C8 File Offset: 0x0026C9C8
+		// (set) Token: 0x0600604D RID: 24653 RVA: 0x0026E7D0 File Offset: 0x0026C9D0
 		public Coroutine AssociatedCoroutine { get; set; }
 
-		// Token: 0x06006C3A RID: 27706 RVA: 0x00295B10 File Offset: 0x00293D10
+		// Token: 0x0600604E RID: 24654 RVA: 0x0026E7DC File Offset: 0x0026C9DC
 		public DynValue Coroutine_Resume(DynValue[] args)
 		{
 			this.EnterProcessor();
@@ -358,7 +358,7 @@ namespace MoonSharp.Interpreter.Execution.VM
 			return result;
 		}
 
-		// Token: 0x06006C3B RID: 27707 RVA: 0x00295C2C File Offset: 0x00293E2C
+		// Token: 0x0600604F RID: 24655 RVA: 0x0026E8F8 File Offset: 0x0026CAF8
 		internal Instruction FindMeta(ref int baseAddress)
 		{
 			Instruction instruction = this.m_RootChunk.Code[baseAddress];
@@ -374,7 +374,7 @@ namespace MoonSharp.Interpreter.Execution.VM
 			return instruction;
 		}
 
-		// Token: 0x06006C3C RID: 27708 RVA: 0x00049E24 File Offset: 0x00048024
+		// Token: 0x06006050 RID: 24656 RVA: 0x0026E948 File Offset: 0x0026CB48
 		internal void AttachDebugger(IDebugger debugger)
 		{
 			this.m_Debug.DebuggerAttached = debugger;
@@ -382,9 +382,9 @@ namespace MoonSharp.Interpreter.Execution.VM
 			debugger.SetDebugService(new DebugService(this.m_Script, this));
 		}
 
-		// Token: 0x170009E9 RID: 2537
-		// (get) Token: 0x06006C3D RID: 27709 RVA: 0x00049E5A File Offset: 0x0004805A
-		// (set) Token: 0x06006C3E RID: 27710 RVA: 0x00049E67 File Offset: 0x00048067
+		// Token: 0x1700078C RID: 1932
+		// (get) Token: 0x06006051 RID: 24657 RVA: 0x0026E97E File Offset: 0x0026CB7E
+		// (set) Token: 0x06006052 RID: 24658 RVA: 0x0026E98B File Offset: 0x0026CB8B
 		internal bool DebuggerEnabled
 		{
 			get
@@ -397,7 +397,7 @@ namespace MoonSharp.Interpreter.Execution.VM
 			}
 		}
 
-		// Token: 0x06006C3F RID: 27711 RVA: 0x00295C7C File Offset: 0x00293E7C
+		// Token: 0x06006053 RID: 24659 RVA: 0x0026E99C File Offset: 0x0026CB9C
 		private void ListenDebugger(Instruction instr, int instructionPtr)
 		{
 			bool flag = false;
@@ -516,14 +516,14 @@ namespace MoonSharp.Interpreter.Execution.VM
 			this.m_Debug.DebuggerCurrentActionTarget = -1;
 		}
 
-		// Token: 0x06006C40 RID: 27712 RVA: 0x00295FC8 File Offset: 0x002941C8
+		// Token: 0x06006054 RID: 24660 RVA: 0x0026ECE8 File Offset: 0x0026CEE8
 		private void ResetBreakPoints(DebuggerAction action)
 		{
 			SourceCode sourceCode = this.m_Script.GetSourceCode(action.SourceID);
 			this.ResetBreakPoints(sourceCode, new HashSet<int>(action.Lines));
 		}
 
-		// Token: 0x06006C41 RID: 27713 RVA: 0x00295FFC File Offset: 0x002941FC
+		// Token: 0x06006055 RID: 24661 RVA: 0x0026ED1C File Offset: 0x0026CF1C
 		internal HashSet<int> ResetBreakPoints(SourceCode src, HashSet<int> lines)
 		{
 			HashSet<int> hashSet = new HashSet<int>();
@@ -541,7 +541,7 @@ namespace MoonSharp.Interpreter.Execution.VM
 			return hashSet;
 		}
 
-		// Token: 0x06006C42 RID: 27714 RVA: 0x00296080 File Offset: 0x00294280
+		// Token: 0x06006056 RID: 24662 RVA: 0x0026EDA0 File Offset: 0x0026CFA0
 		private bool ToggleBreakPoint(DebuggerAction action, bool? state)
 		{
 			SourceCode sourceCode = this.m_Script.GetSourceCode(action.SourceID);
@@ -610,7 +610,7 @@ namespace MoonSharp.Interpreter.Execution.VM
 			return false;
 		}
 
-		// Token: 0x06006C43 RID: 27715 RVA: 0x00296240 File Offset: 0x00294440
+		// Token: 0x06006057 RID: 24663 RVA: 0x0026EF60 File Offset: 0x0026D160
 		private void RefreshDebugger(bool hard, int instructionPtr)
 		{
 			SourceRef currentSourceRef = this.GetCurrentSourceRef(instructionPtr);
@@ -632,7 +632,7 @@ namespace MoonSharp.Interpreter.Execution.VM
 			}
 		}
 
-		// Token: 0x06006C44 RID: 27716 RVA: 0x00296318 File Offset: 0x00294518
+		// Token: 0x06006058 RID: 24664 RVA: 0x0026F038 File Offset: 0x0026D238
 		private List<WatchItem> Debugger_RefreshThreads(ScriptExecutionContext context)
 		{
 			return (from c in (this.m_Parent != null) ? this.m_Parent.m_CoroutinesStack : this.m_CoroutinesStack
@@ -643,7 +643,7 @@ namespace MoonSharp.Interpreter.Execution.VM
 			}).ToList<WatchItem>();
 		}
 
-		// Token: 0x06006C45 RID: 27717 RVA: 0x0029636C File Offset: 0x0029456C
+		// Token: 0x06006059 RID: 24665 RVA: 0x0026F08C File Offset: 0x0026D28C
 		private List<WatchItem> Debugger_RefreshVStack()
 		{
 			List<WatchItem> list = new List<WatchItem>();
@@ -658,14 +658,14 @@ namespace MoonSharp.Interpreter.Execution.VM
 			return list;
 		}
 
-		// Token: 0x06006C46 RID: 27718 RVA: 0x002963C4 File Offset: 0x002945C4
+		// Token: 0x0600605A RID: 24666 RVA: 0x0026F0E4 File Offset: 0x0026D2E4
 		private List<WatchItem> Debugger_RefreshWatches(ScriptExecutionContext context, List<DynamicExpression> watchList)
 		{
 			return (from w in watchList
 			select this.Debugger_RefreshWatch(context, w)).ToList<WatchItem>();
 		}
 
-		// Token: 0x06006C47 RID: 27719 RVA: 0x002963FC File Offset: 0x002945FC
+		// Token: 0x0600605B RID: 24667 RVA: 0x0026F11C File Offset: 0x0026D31C
 		private List<WatchItem> Debugger_RefreshLocals(ScriptExecutionContext context)
 		{
 			List<WatchItem> list = new List<WatchItem>();
@@ -687,7 +687,7 @@ namespace MoonSharp.Interpreter.Execution.VM
 			return list;
 		}
 
-		// Token: 0x06006C48 RID: 27720 RVA: 0x00296494 File Offset: 0x00294694
+		// Token: 0x0600605C RID: 24668 RVA: 0x0026F1B4 File Offset: 0x0026D3B4
 		private WatchItem Debugger_RefreshWatch(ScriptExecutionContext context, DynamicExpression dynExpr)
 		{
 			WatchItem result;
@@ -715,7 +715,7 @@ namespace MoonSharp.Interpreter.Execution.VM
 			return result;
 		}
 
-		// Token: 0x06006C49 RID: 27721 RVA: 0x00296520 File Offset: 0x00294720
+		// Token: 0x0600605D RID: 24669 RVA: 0x0026F240 File Offset: 0x0026D440
 		internal List<WatchItem> Debugger_GetCallStack(SourceRef startingRef)
 		{
 			List<WatchItem> list = new List<WatchItem>();
@@ -759,7 +759,7 @@ namespace MoonSharp.Interpreter.Execution.VM
 			return list;
 		}
 
-		// Token: 0x06006C4A RID: 27722 RVA: 0x00049E75 File Offset: 0x00048075
+		// Token: 0x0600605E RID: 24670 RVA: 0x0026F365 File Offset: 0x0026D565
 		private SourceRef GetCurrentSourceRef(int instructionPtr)
 		{
 			if (instructionPtr >= 0 && instructionPtr < this.m_RootChunk.Code.Count)
@@ -769,7 +769,7 @@ namespace MoonSharp.Interpreter.Execution.VM
 			return null;
 		}
 
-		// Token: 0x06006C4B RID: 27723 RVA: 0x00296648 File Offset: 0x00294848
+		// Token: 0x0600605F RID: 24671 RVA: 0x0026F398 File Offset: 0x0026D598
 		private void FillDebugData(InterpreterException ex, int ip)
 		{
 			if (ip == -99)
@@ -786,7 +786,7 @@ namespace MoonSharp.Interpreter.Execution.VM
 			ex.CallStack = this.Debugger_GetCallStack(currentSourceRef);
 		}
 
-		// Token: 0x06006C4C RID: 27724 RVA: 0x00049EA6 File Offset: 0x000480A6
+		// Token: 0x06006060 RID: 24672 RVA: 0x0026F3E3 File Offset: 0x0026D5E3
 		internal Table GetMetatable(DynValue value)
 		{
 			if (value.Type == DataType.Table)
@@ -800,7 +800,7 @@ namespace MoonSharp.Interpreter.Execution.VM
 			return null;
 		}
 
-		// Token: 0x06006C4D RID: 27725 RVA: 0x00296694 File Offset: 0x00294894
+		// Token: 0x06006061 RID: 24673 RVA: 0x0026F41C File Offset: 0x0026D61C
 		internal DynValue GetBinaryMetamethod(DynValue op1, DynValue op2, string eventName)
 		{
 			Table metatable = this.GetMetatable(op1);
@@ -840,7 +840,7 @@ namespace MoonSharp.Interpreter.Execution.VM
 			return null;
 		}
 
-		// Token: 0x06006C4E RID: 27726 RVA: 0x0029674C File Offset: 0x0029494C
+		// Token: 0x06006062 RID: 24674 RVA: 0x0026F4D4 File Offset: 0x0026D6D4
 		internal DynValue GetMetamethod(DynValue value, string metamethod)
 		{
 			if (value.Type == DataType.UserData)
@@ -854,7 +854,7 @@ namespace MoonSharp.Interpreter.Execution.VM
 			return this.GetMetamethodRaw(value, metamethod);
 		}
 
-		// Token: 0x06006C4F RID: 27727 RVA: 0x00296794 File Offset: 0x00294994
+		// Token: 0x06006063 RID: 24675 RVA: 0x0026F51C File Offset: 0x0026D71C
 		internal DynValue GetMetamethodRaw(DynValue value, string metamethod)
 		{
 			Table metatable = this.GetMetatable(value);
@@ -870,13 +870,13 @@ namespace MoonSharp.Interpreter.Execution.VM
 			return dynValue;
 		}
 
-		// Token: 0x06006C50 RID: 27728 RVA: 0x00049EDD File Offset: 0x000480DD
+		// Token: 0x06006064 RID: 24676 RVA: 0x0026F54C File Offset: 0x0026D74C
 		internal Script GetScript()
 		{
 			return this.m_Script;
 		}
 
-		// Token: 0x06006C51 RID: 27729 RVA: 0x002967C4 File Offset: 0x002949C4
+		// Token: 0x06006065 RID: 24677 RVA: 0x0026F554 File Offset: 0x0026D754
 		private DynValue Processing_Loop(int instructionPtr)
 		{
 			long num = 0L;
@@ -1253,7 +1253,7 @@ namespace MoonSharp.Interpreter.Execution.VM
 			return this.m_ValueStack.Pop();
 		}
 
-		// Token: 0x06006C52 RID: 27730 RVA: 0x00296F8C File Offset: 0x0029518C
+		// Token: 0x06006066 RID: 24678 RVA: 0x0026FD1C File Offset: 0x0026DF1C
 		internal string PerformMessageDecorationBeforeUnwind(DynValue messageHandler, string decoratedMessage, SourceRef sourceRef)
 		{
 			try
@@ -1289,7 +1289,7 @@ namespace MoonSharp.Interpreter.Execution.VM
 			return decoratedMessage;
 		}
 
-		// Token: 0x06006C53 RID: 27731 RVA: 0x00297034 File Offset: 0x00295234
+		// Token: 0x06006067 RID: 24679 RVA: 0x0026FDC4 File Offset: 0x0026DFC4
 		private void AssignLocal(SymbolRef symref, DynValue value)
 		{
 			CallStackItem callStackItem = this.m_ExecutionStack.Peek(0);
@@ -1301,7 +1301,7 @@ namespace MoonSharp.Interpreter.Execution.VM
 			dynValue.Assign(value);
 		}
 
-		// Token: 0x06006C54 RID: 27732 RVA: 0x0029707C File Offset: 0x0029527C
+		// Token: 0x06006068 RID: 24680 RVA: 0x0026FE0C File Offset: 0x0026E00C
 		private void ExecStoreLcl(Instruction i)
 		{
 			DynValue storeValue = this.GetStoreValue(i);
@@ -1309,7 +1309,7 @@ namespace MoonSharp.Interpreter.Execution.VM
 			this.AssignLocal(symbol, storeValue);
 		}
 
-		// Token: 0x06006C55 RID: 27733 RVA: 0x002970A0 File Offset: 0x002952A0
+		// Token: 0x06006069 RID: 24681 RVA: 0x0026FE30 File Offset: 0x0026E030
 		private void ExecStoreUpv(Instruction i)
 		{
 			DynValue storeValue = this.GetStoreValue(i);
@@ -1323,7 +1323,7 @@ namespace MoonSharp.Interpreter.Execution.VM
 			dynValue.Assign(storeValue);
 		}
 
-		// Token: 0x06006C56 RID: 27734 RVA: 0x00297100 File Offset: 0x00295300
+		// Token: 0x0600606A RID: 24682 RVA: 0x0026FE90 File Offset: 0x0026E090
 		private void ExecSwap(Instruction i)
 		{
 			DynValue item = this.m_ValueStack.Peek(i.NumVal);
@@ -1332,7 +1332,7 @@ namespace MoonSharp.Interpreter.Execution.VM
 			this.m_ValueStack.Set(i.NumVal2, item);
 		}
 
-		// Token: 0x06006C57 RID: 27735 RVA: 0x00297158 File Offset: 0x00295358
+		// Token: 0x0600606B RID: 24683 RVA: 0x0026FEE8 File Offset: 0x0026E0E8
 		private DynValue GetStoreValue(Instruction i)
 		{
 			int numVal = i.NumVal;
@@ -1356,7 +1356,7 @@ namespace MoonSharp.Interpreter.Execution.VM
 			}
 		}
 
-		// Token: 0x06006C58 RID: 27736 RVA: 0x002971B0 File Offset: 0x002953B0
+		// Token: 0x0600606C RID: 24684 RVA: 0x0026FF40 File Offset: 0x0026E140
 		private void ExecClosure(Instruction i)
 		{
 			Closure function = new Closure(this.m_Script, i.NumVal, i.SymbolList, (from s in i.SymbolList
@@ -1364,7 +1364,7 @@ namespace MoonSharp.Interpreter.Execution.VM
 			this.m_ValueStack.Push(DynValue.NewClosure(function));
 		}
 
-		// Token: 0x06006C59 RID: 27737 RVA: 0x00297204 File Offset: 0x00295404
+		// Token: 0x0600606D RID: 24685 RVA: 0x0026FF94 File Offset: 0x0026E194
 		private DynValue GetUpvalueSymbol(SymbolRef s)
 		{
 			if (s.Type == SymbolRefType.Local)
@@ -1378,7 +1378,7 @@ namespace MoonSharp.Interpreter.Execution.VM
 			throw new Exception("unsupported symbol type");
 		}
 
-		// Token: 0x06006C5A RID: 27738 RVA: 0x00297264 File Offset: 0x00295464
+		// Token: 0x0600606E RID: 24686 RVA: 0x0026FFF4 File Offset: 0x0026E1F4
 		private void ExecMkTuple(Instruction i)
 		{
 			Slice<DynValue> values = new Slice<DynValue>(this.m_ValueStack, this.m_ValueStack.Count - i.NumVal, i.NumVal, false);
@@ -1387,7 +1387,7 @@ namespace MoonSharp.Interpreter.Execution.VM
 			this.m_ValueStack.Push(DynValue.NewTuple(values2));
 		}
 
-		// Token: 0x06006C5B RID: 27739 RVA: 0x002972C4 File Offset: 0x002954C4
+		// Token: 0x0600606F RID: 24687 RVA: 0x00270054 File Offset: 0x0026E254
 		private void ExecToNum(Instruction i)
 		{
 			double? num = this.m_ValueStack.Pop().ToScalar().CastToNumber();
@@ -1399,14 +1399,14 @@ namespace MoonSharp.Interpreter.Execution.VM
 			throw ScriptRuntimeException.ConvertToNumberFailed(i.NumVal);
 		}
 
-		// Token: 0x06006C5C RID: 27740 RVA: 0x00297314 File Offset: 0x00295514
+		// Token: 0x06006070 RID: 24688 RVA: 0x002700A4 File Offset: 0x0026E2A4
 		private void ExecIterUpd(Instruction i)
 		{
 			DynValue dynValue = this.m_ValueStack.Peek(0);
 			this.m_ValueStack.Peek(1).Tuple[2] = dynValue;
 		}
 
-		// Token: 0x06006C5D RID: 27741 RVA: 0x00297344 File Offset: 0x00295544
+		// Token: 0x06006071 RID: 24689 RVA: 0x002700D4 File Offset: 0x0026E2D4
 		private void ExecExpTuple(Instruction i)
 		{
 			DynValue dynValue = this.m_ValueStack.Peek(i.NumVal);
@@ -1421,7 +1421,7 @@ namespace MoonSharp.Interpreter.Execution.VM
 			this.m_ValueStack.Push(dynValue);
 		}
 
-		// Token: 0x06006C5E RID: 27742 RVA: 0x002973A4 File Offset: 0x002955A4
+		// Token: 0x06006072 RID: 24690 RVA: 0x00270134 File Offset: 0x0026E334
 		private void ExecIterPrep(Instruction i)
 		{
 			DynValue dynValue = this.m_ValueStack.Pop();
@@ -1482,7 +1482,7 @@ namespace MoonSharp.Interpreter.Execution.VM
 			}));
 		}
 
-		// Token: 0x06006C5F RID: 27743 RVA: 0x00297574 File Offset: 0x00295774
+		// Token: 0x06006073 RID: 24691 RVA: 0x00270304 File Offset: 0x0026E504
 		private int ExecJFor(Instruction i, int instructionPtr)
 		{
 			double number = this.m_ValueStack.Peek(0).Number;
@@ -1495,7 +1495,7 @@ namespace MoonSharp.Interpreter.Execution.VM
 			return instructionPtr;
 		}
 
-		// Token: 0x06006C60 RID: 27744 RVA: 0x002975DC File Offset: 0x002957DC
+		// Token: 0x06006074 RID: 24692 RVA: 0x0027036C File Offset: 0x0026E56C
 		private void ExecIncr(Instruction i)
 		{
 			DynValue dynValue = this.m_ValueStack.Peek(0);
@@ -1512,7 +1512,7 @@ namespace MoonSharp.Interpreter.Execution.VM
 			dynValue.AssignNumber(dynValue.Number + dynValue2.Number);
 		}
 
-		// Token: 0x06006C61 RID: 27745 RVA: 0x0029764C File Offset: 0x0029584C
+		// Token: 0x06006075 RID: 24693 RVA: 0x002703DC File Offset: 0x0026E5DC
 		private void ExecCNot(Instruction i)
 		{
 			DynValue dynValue = this.m_ValueStack.Pop().ToScalar();
@@ -1529,14 +1529,14 @@ namespace MoonSharp.Interpreter.Execution.VM
 			this.m_ValueStack.Push(DynValue.NewBoolean(dynValue.CastToBool()));
 		}
 
-		// Token: 0x06006C62 RID: 27746 RVA: 0x002976C8 File Offset: 0x002958C8
+		// Token: 0x06006076 RID: 24694 RVA: 0x00270458 File Offset: 0x0026E658
 		private void ExecNot(Instruction i)
 		{
 			DynValue dynValue = this.m_ValueStack.Pop().ToScalar();
 			this.m_ValueStack.Push(DynValue.NewBoolean(!dynValue.CastToBool()));
 		}
 
-		// Token: 0x06006C63 RID: 27747 RVA: 0x00049EE5 File Offset: 0x000480E5
+		// Token: 0x06006077 RID: 24695 RVA: 0x00270490 File Offset: 0x0026E690
 		private void ExecBeginFn(Instruction i)
 		{
 			CallStackItem callStackItem = this.m_ExecutionStack.Peek(0);
@@ -1545,7 +1545,7 @@ namespace MoonSharp.Interpreter.Execution.VM
 			this.ClearBlockData(i);
 		}
 
-		// Token: 0x06006C64 RID: 27748 RVA: 0x00297700 File Offset: 0x00295900
+		// Token: 0x06006078 RID: 24696 RVA: 0x002704C4 File Offset: 0x0026E6C4
 		private CallStackItem PopToBasePointer()
 		{
 			CallStackItem callStackItem = this.m_ExecutionStack.Pop();
@@ -1556,7 +1556,7 @@ namespace MoonSharp.Interpreter.Execution.VM
 			return callStackItem;
 		}
 
-		// Token: 0x06006C65 RID: 27749 RVA: 0x00297734 File Offset: 0x00295934
+		// Token: 0x06006079 RID: 24697 RVA: 0x002704F8 File Offset: 0x0026E6F8
 		private int PopExecStackAndCheckVStack(int vstackguard)
 		{
 			CallStackItem callStackItem = this.m_ExecutionStack.Pop();
@@ -1567,7 +1567,7 @@ namespace MoonSharp.Interpreter.Execution.VM
 			return callStackItem.ReturnAddress;
 		}
 
-		// Token: 0x06006C66 RID: 27750 RVA: 0x00297768 File Offset: 0x00295968
+		// Token: 0x0600607A RID: 24698 RVA: 0x0027052C File Offset: 0x0026E72C
 		private IList<DynValue> CreateArgsListForFunctionCall(int numargs, int offsFromTop)
 		{
 			if (numargs == 0)
@@ -1591,7 +1591,7 @@ namespace MoonSharp.Interpreter.Execution.VM
 			return new Slice<DynValue>(this.m_ValueStack, this.m_ValueStack.Count - numargs - offsFromTop, numargs, false);
 		}
 
-		// Token: 0x06006C67 RID: 27751 RVA: 0x0029780C File Offset: 0x00295A0C
+		// Token: 0x0600607B RID: 24699 RVA: 0x002705D0 File Offset: 0x0026E7D0
 		private void ExecArgs(Instruction I)
 		{
 			int numargs = (int)this.m_ValueStack.Peek(0).Number;
@@ -1622,7 +1622,7 @@ namespace MoonSharp.Interpreter.Execution.VM
 			}
 		}
 
-		// Token: 0x06006C68 RID: 27752 RVA: 0x00297918 File Offset: 0x00295B18
+		// Token: 0x0600607C RID: 24700 RVA: 0x002706DC File Offset: 0x0026E8DC
 		private int Internal_ExecCall(int argsCount, int instructionPtr, CallbackFunction handler = null, CallbackFunction continuation = null, bool thisCall = false, string debugText = null, DynValue unwindHandler = null)
 		{
 			DynValue dynValue = this.m_ValueStack.Peek(argsCount);
@@ -1696,7 +1696,7 @@ namespace MoonSharp.Interpreter.Execution.VM
 			throw ScriptRuntimeException.AttemptToCallNonFunc(dynValue.Type, debugText);
 		}
 
-		// Token: 0x06006C69 RID: 27753 RVA: 0x00297C18 File Offset: 0x00295E18
+		// Token: 0x0600607D RID: 24701 RVA: 0x002709DC File Offset: 0x0026EBDC
 		private int PerformTCO(int instructionPtr, int argsCount)
 		{
 			DynValue[] array = new DynValue[argsCount + 1];
@@ -1714,7 +1714,7 @@ namespace MoonSharp.Interpreter.Execution.VM
 			return returnAddress;
 		}
 
-		// Token: 0x06006C6A RID: 27754 RVA: 0x00297C98 File Offset: 0x00295E98
+		// Token: 0x0600607E RID: 24702 RVA: 0x00270A5C File Offset: 0x0026EC5C
 		private int ExecRet(Instruction i)
 		{
 			CallStackItem callStackItem;
@@ -1751,7 +1751,7 @@ namespace MoonSharp.Interpreter.Execution.VM
 			return num;
 		}
 
-		// Token: 0x06006C6B RID: 27755 RVA: 0x00297DA0 File Offset: 0x00295FA0
+		// Token: 0x0600607F RID: 24703 RVA: 0x00270B64 File Offset: 0x0026ED64
 		private int Internal_CheckForTailRequests(Instruction i, int instructionPtr)
 		{
 			DynValue dynValue = this.m_ValueStack.Peek(0);
@@ -1774,7 +1774,7 @@ namespace MoonSharp.Interpreter.Execution.VM
 			return instructionPtr;
 		}
 
-		// Token: 0x06006C6C RID: 27756 RVA: 0x00049F16 File Offset: 0x00048116
+		// Token: 0x06006080 RID: 24704 RVA: 0x00270C0D File Offset: 0x0026EE0D
 		private int JumpBool(Instruction i, bool expectedValueForJump, int instructionPtr)
 		{
 			if (this.m_ValueStack.Pop().ToScalar().CastToBool() == expectedValueForJump)
@@ -1784,7 +1784,7 @@ namespace MoonSharp.Interpreter.Execution.VM
 			return instructionPtr;
 		}
 
-		// Token: 0x06006C6D RID: 27757 RVA: 0x00297E4C File Offset: 0x0029604C
+		// Token: 0x06006081 RID: 24705 RVA: 0x00270C30 File Offset: 0x0026EE30
 		private int ExecShortCircuitingOperator(Instruction i, int instructionPtr)
 		{
 			bool flag = i.OpCode == OpCode.JtOrPop;
@@ -1796,7 +1796,7 @@ namespace MoonSharp.Interpreter.Execution.VM
 			return instructionPtr;
 		}
 
-		// Token: 0x06006C6E RID: 27758 RVA: 0x00297E94 File Offset: 0x00296094
+		// Token: 0x06006082 RID: 24706 RVA: 0x00270C78 File Offset: 0x0026EE78
 		private int ExecAdd(Instruction i, int instructionPtr)
 		{
 			DynValue dynValue = this.m_ValueStack.Pop().ToScalar();
@@ -1816,7 +1816,7 @@ namespace MoonSharp.Interpreter.Execution.VM
 			throw ScriptRuntimeException.ArithmeticOnNonNumber(dynValue2, dynValue);
 		}
 
-		// Token: 0x06006C6F RID: 27759 RVA: 0x00297F28 File Offset: 0x00296128
+		// Token: 0x06006083 RID: 24707 RVA: 0x00270D0C File Offset: 0x0026EF0C
 		private int ExecSub(Instruction i, int instructionPtr)
 		{
 			DynValue dynValue = this.m_ValueStack.Pop().ToScalar();
@@ -1836,7 +1836,7 @@ namespace MoonSharp.Interpreter.Execution.VM
 			throw ScriptRuntimeException.ArithmeticOnNonNumber(dynValue2, dynValue);
 		}
 
-		// Token: 0x06006C70 RID: 27760 RVA: 0x00297FBC File Offset: 0x002961BC
+		// Token: 0x06006084 RID: 24708 RVA: 0x00270DA0 File Offset: 0x0026EFA0
 		private int ExecMul(Instruction i, int instructionPtr)
 		{
 			DynValue dynValue = this.m_ValueStack.Pop().ToScalar();
@@ -1856,7 +1856,7 @@ namespace MoonSharp.Interpreter.Execution.VM
 			throw ScriptRuntimeException.ArithmeticOnNonNumber(dynValue2, dynValue);
 		}
 
-		// Token: 0x06006C71 RID: 27761 RVA: 0x00298050 File Offset: 0x00296250
+		// Token: 0x06006085 RID: 24709 RVA: 0x00270E34 File Offset: 0x0026F034
 		private int ExecMod(Instruction i, int instructionPtr)
 		{
 			DynValue dynValue = this.m_ValueStack.Pop().ToScalar();
@@ -1881,7 +1881,7 @@ namespace MoonSharp.Interpreter.Execution.VM
 			throw ScriptRuntimeException.ArithmeticOnNonNumber(dynValue2, dynValue);
 		}
 
-		// Token: 0x06006C72 RID: 27762 RVA: 0x00298104 File Offset: 0x00296304
+		// Token: 0x06006086 RID: 24710 RVA: 0x00270EE8 File Offset: 0x0026F0E8
 		private int ExecDiv(Instruction i, int instructionPtr)
 		{
 			DynValue dynValue = this.m_ValueStack.Pop().ToScalar();
@@ -1901,7 +1901,7 @@ namespace MoonSharp.Interpreter.Execution.VM
 			throw ScriptRuntimeException.ArithmeticOnNonNumber(dynValue2, dynValue);
 		}
 
-		// Token: 0x06006C73 RID: 27763 RVA: 0x00298198 File Offset: 0x00296398
+		// Token: 0x06006087 RID: 24711 RVA: 0x00270F7C File Offset: 0x0026F17C
 		private int ExecPower(Instruction i, int instructionPtr)
 		{
 			DynValue dynValue = this.m_ValueStack.Pop().ToScalar();
@@ -1921,7 +1921,7 @@ namespace MoonSharp.Interpreter.Execution.VM
 			throw ScriptRuntimeException.ArithmeticOnNonNumber(dynValue2, dynValue);
 		}
 
-		// Token: 0x06006C74 RID: 27764 RVA: 0x00298230 File Offset: 0x00296430
+		// Token: 0x06006088 RID: 24712 RVA: 0x00271014 File Offset: 0x0026F214
 		private int ExecNeg(Instruction i, int instructionPtr)
 		{
 			DynValue dynValue = this.m_ValueStack.Pop().ToScalar();
@@ -1939,7 +1939,7 @@ namespace MoonSharp.Interpreter.Execution.VM
 			throw ScriptRuntimeException.ArithmeticOnNonNumber(dynValue, null);
 		}
 
-		// Token: 0x06006C75 RID: 27765 RVA: 0x00298294 File Offset: 0x00296494
+		// Token: 0x06006089 RID: 24713 RVA: 0x00271078 File Offset: 0x0026F278
 		private int ExecEq(Instruction i, int instructionPtr)
 		{
 			DynValue dynValue = this.m_ValueStack.Pop().ToScalar();
@@ -1981,7 +1981,7 @@ namespace MoonSharp.Interpreter.Execution.VM
 			return instructionPtr;
 		}
 
-		// Token: 0x06006C76 RID: 27766 RVA: 0x002983AC File Offset: 0x002965AC
+		// Token: 0x0600608A RID: 24714 RVA: 0x00271190 File Offset: 0x0026F390
 		private int ExecLess(Instruction i, int instructionPtr)
 		{
 			DynValue dynValue = this.m_ValueStack.Pop().ToScalar();
@@ -2006,7 +2006,7 @@ namespace MoonSharp.Interpreter.Execution.VM
 			return instructionPtr;
 		}
 
-		// Token: 0x06006C77 RID: 27767 RVA: 0x00298468 File Offset: 0x00296668
+		// Token: 0x0600608B RID: 24715 RVA: 0x0027124C File Offset: 0x0026F44C
 		private int ExecLessEq(Instruction i, int instructionPtr)
 		{
 			DynValue dynValue = this.m_ValueStack.Pop().ToScalar();
@@ -2038,7 +2038,7 @@ namespace MoonSharp.Interpreter.Execution.VM
 			return instructionPtr;
 		}
 
-		// Token: 0x06006C78 RID: 27768 RVA: 0x0029856C File Offset: 0x0029676C
+		// Token: 0x0600608C RID: 24716 RVA: 0x00271350 File Offset: 0x0026F550
 		private int ExecLen(Instruction i, int instructionPtr)
 		{
 			DynValue dynValue = this.m_ValueStack.Pop().ToScalar();
@@ -2062,7 +2062,7 @@ namespace MoonSharp.Interpreter.Execution.VM
 			return instructionPtr;
 		}
 
-		// Token: 0x06006C79 RID: 27769 RVA: 0x002985F8 File Offset: 0x002967F8
+		// Token: 0x0600608D RID: 24717 RVA: 0x002713DC File Offset: 0x0026F5DC
 		private int ExecConcat(Instruction i, int instructionPtr)
 		{
 			DynValue dynValue = this.m_ValueStack.Pop().ToScalar();
@@ -2082,7 +2082,7 @@ namespace MoonSharp.Interpreter.Execution.VM
 			throw ScriptRuntimeException.ConcatOnNonString(dynValue2, dynValue);
 		}
 
-		// Token: 0x06006C7A RID: 27770 RVA: 0x00298678 File Offset: 0x00296878
+		// Token: 0x0600608E RID: 24718 RVA: 0x0027145C File Offset: 0x0026F65C
 		private void ExecTblInitI(Instruction i)
 		{
 			DynValue val = this.m_ValueStack.Pop();
@@ -2097,7 +2097,7 @@ namespace MoonSharp.Interpreter.Execution.VM
 			dynValue.Table.InitNextArrayKeys(val, i.NumVal != 0);
 		}
 
-		// Token: 0x06006C7B RID: 27771 RVA: 0x002986D4 File Offset: 0x002968D4
+		// Token: 0x0600608F RID: 24719 RVA: 0x002714B8 File Offset: 0x0026F6B8
 		private void ExecTblInitN(Instruction i)
 		{
 			DynValue dynValue = this.m_ValueStack.Pop();
@@ -2113,7 +2113,7 @@ namespace MoonSharp.Interpreter.Execution.VM
 			dynValue2.Table.Set(key, dynValue.ToScalar());
 		}
 
-		// Token: 0x06006C7C RID: 27772 RVA: 0x00298738 File Offset: 0x00296938
+		// Token: 0x06006090 RID: 24720 RVA: 0x0027151C File Offset: 0x0026F71C
 		private int ExecIndexSet(Instruction i, int instructionPtr)
 		{
 			int j = 100;
@@ -2183,7 +2183,7 @@ namespace MoonSharp.Interpreter.Execution.VM
 			throw ScriptRuntimeException.LoopInNewIndex();
 		}
 
-		// Token: 0x06006C7D RID: 27773 RVA: 0x00298910 File Offset: 0x00296B10
+		// Token: 0x06006091 RID: 24721 RVA: 0x002716F4 File Offset: 0x0026F8F4
 		private int ExecIndex(Instruction i, int instructionPtr)
 		{
 			int j = 100;
@@ -2256,7 +2256,7 @@ namespace MoonSharp.Interpreter.Execution.VM
 			throw ScriptRuntimeException.LoopInIndex();
 		}
 
-		// Token: 0x06006C7E RID: 27774 RVA: 0x00298AE4 File Offset: 0x00296CE4
+		// Token: 0x06006092 RID: 24722 RVA: 0x002718C8 File Offset: 0x0026FAC8
 		private void ClearBlockData(Instruction I)
 		{
 			int numVal = I.NumVal;
@@ -2268,7 +2268,7 @@ namespace MoonSharp.Interpreter.Execution.VM
 			}
 		}
 
-		// Token: 0x06006C7F RID: 27775 RVA: 0x00298B2C File Offset: 0x00296D2C
+		// Token: 0x06006093 RID: 24723 RVA: 0x00271910 File Offset: 0x0026FB10
 		public DynValue GetGenericSymbol(SymbolRef symref)
 		{
 			switch (symref.i_Type)
@@ -2290,7 +2290,7 @@ namespace MoonSharp.Interpreter.Execution.VM
 			}
 		}
 
-		// Token: 0x06006C80 RID: 27776 RVA: 0x00049F38 File Offset: 0x00048138
+		// Token: 0x06006094 RID: 24724 RVA: 0x002719B7 File Offset: 0x0026FBB7
 		private DynValue GetGlobalSymbol(DynValue dynValue, string name)
 		{
 			if (dynValue.Type != DataType.Table)
@@ -2300,7 +2300,7 @@ namespace MoonSharp.Interpreter.Execution.VM
 			return dynValue.Table.Get(name);
 		}
 
-		// Token: 0x06006C81 RID: 27777 RVA: 0x00049F6A File Offset: 0x0004816A
+		// Token: 0x06006095 RID: 24725 RVA: 0x002719E9 File Offset: 0x0026FBE9
 		private void SetGlobalSymbol(DynValue dynValue, string name, DynValue value)
 		{
 			if (dynValue.Type != DataType.Table)
@@ -2310,7 +2310,7 @@ namespace MoonSharp.Interpreter.Execution.VM
 			dynValue.Table.Set(name, value ?? DynValue.Nil);
 		}
 
-		// Token: 0x06006C82 RID: 27778 RVA: 0x00298BD4 File Offset: 0x00296DD4
+		// Token: 0x06006096 RID: 24726 RVA: 0x00271A28 File Offset: 0x0026FC28
 		public void AssignGenericSymbol(SymbolRef symref, DynValue value)
 		{
 			switch (symref.i_Type)
@@ -2351,7 +2351,7 @@ namespace MoonSharp.Interpreter.Execution.VM
 			}
 		}
 
-		// Token: 0x06006C83 RID: 27779 RVA: 0x00298CC4 File Offset: 0x00296EC4
+		// Token: 0x06006097 RID: 24727 RVA: 0x00271B18 File Offset: 0x0026FD18
 		private CallStackItem GetTopNonClrFunction()
 		{
 			CallStackItem callStackItem = null;
@@ -2366,7 +2366,7 @@ namespace MoonSharp.Interpreter.Execution.VM
 			return callStackItem;
 		}
 
-		// Token: 0x06006C84 RID: 27780 RVA: 0x00298D00 File Offset: 0x00296F00
+		// Token: 0x06006098 RID: 24728 RVA: 0x00271B54 File Offset: 0x0026FD54
 		public SymbolRef FindSymbolByName(string name)
 		{
 			if (this.m_ExecutionStack.Count > 0)
@@ -2406,7 +2406,7 @@ namespace MoonSharp.Interpreter.Execution.VM
 			return SymbolRef.DefaultEnv;
 		}
 
-		// Token: 0x06006C85 RID: 27781 RVA: 0x00298DCC File Offset: 0x00296FCC
+		// Token: 0x06006099 RID: 24729 RVA: 0x00271C20 File Offset: 0x0026FE20
 		private DynValue[] Internal_AdjustTuple(IList<DynValue> values)
 		{
 			if (values == null || values.Count == 0)
@@ -2438,7 +2438,7 @@ namespace MoonSharp.Interpreter.Execution.VM
 			return array2;
 		}
 
-		// Token: 0x06006C86 RID: 27782 RVA: 0x00298ED8 File Offset: 0x002970D8
+		// Token: 0x0600609A RID: 24730 RVA: 0x00271D2C File Offset: 0x0026FF2C
 		private int Internal_InvokeUnaryMetaMethod(DynValue op1, string eventName, int instructionPtr)
 		{
 			DynValue dynValue = null;
@@ -2467,7 +2467,7 @@ namespace MoonSharp.Interpreter.Execution.VM
 			return -1;
 		}
 
-		// Token: 0x06006C87 RID: 27783 RVA: 0x00298F64 File Offset: 0x00297164
+		// Token: 0x0600609B RID: 24731 RVA: 0x00271DB8 File Offset: 0x0026FFB8
 		private int Internal_InvokeBinaryMetaMethod(DynValue l, DynValue r, string eventName, int instructionPtr, DynValue extraPush = null)
 		{
 			DynValue binaryMetamethod = this.GetBinaryMetamethod(l, r, eventName);
@@ -2485,7 +2485,7 @@ namespace MoonSharp.Interpreter.Execution.VM
 			return -1;
 		}
 
-		// Token: 0x06006C88 RID: 27784 RVA: 0x00298FC8 File Offset: 0x002971C8
+		// Token: 0x0600609C RID: 24732 RVA: 0x00271E1C File Offset: 0x0027001C
 		private DynValue[] StackTopToArray(int items, bool pop)
 		{
 			DynValue[] array = new DynValue[items];
@@ -2506,7 +2506,7 @@ namespace MoonSharp.Interpreter.Execution.VM
 			return array;
 		}
 
-		// Token: 0x06006C89 RID: 27785 RVA: 0x00299028 File Offset: 0x00297228
+		// Token: 0x0600609D RID: 24733 RVA: 0x00271E7C File Offset: 0x0027007C
 		private DynValue[] StackTopToArrayReverse(int items, bool pop)
 		{
 			DynValue[] array = new DynValue[items];
@@ -2527,82 +2527,82 @@ namespace MoonSharp.Interpreter.Execution.VM
 			return array;
 		}
 
-		// Token: 0x0400619F RID: 24991
+		// Token: 0x04005521 RID: 21793
 		private ByteCode m_RootChunk;
 
-		// Token: 0x040061A0 RID: 24992
+		// Token: 0x04005522 RID: 21794
 		private FastStack<DynValue> m_ValueStack = new FastStack<DynValue>(131072);
 
-		// Token: 0x040061A1 RID: 24993
+		// Token: 0x04005523 RID: 21795
 		private FastStack<CallStackItem> m_ExecutionStack = new FastStack<CallStackItem>(131072);
 
-		// Token: 0x040061A2 RID: 24994
+		// Token: 0x04005524 RID: 21796
 		private List<Processor> m_CoroutinesStack;
 
-		// Token: 0x040061A3 RID: 24995
+		// Token: 0x04005525 RID: 21797
 		private Table m_GlobalTable;
 
-		// Token: 0x040061A4 RID: 24996
+		// Token: 0x04005526 RID: 21798
 		private Script m_Script;
 
-		// Token: 0x040061A5 RID: 24997
+		// Token: 0x04005527 RID: 21799
 		private Processor m_Parent;
 
-		// Token: 0x040061A6 RID: 24998
+		// Token: 0x04005528 RID: 21800
 		private CoroutineState m_State;
 
-		// Token: 0x040061A7 RID: 24999
+		// Token: 0x04005529 RID: 21801
 		private bool m_CanYield = true;
 
-		// Token: 0x040061A8 RID: 25000
+		// Token: 0x0400552A RID: 21802
 		private int m_SavedInstructionPtr = -1;
 
-		// Token: 0x040061A9 RID: 25001
+		// Token: 0x0400552B RID: 21803
 		private Processor.DebugContext m_Debug;
 
-		// Token: 0x040061AA RID: 25002
+		// Token: 0x0400552C RID: 21804
 		private int m_OwningThreadID = -1;
 
-		// Token: 0x040061AB RID: 25003
+		// Token: 0x0400552D RID: 21805
 		private int m_ExecutionNesting;
 
-		// Token: 0x040061AC RID: 25004
+		// Token: 0x0400552E RID: 21806
 		private const ulong DUMP_CHUNK_MAGIC = 1877195438928383261UL;
 
-		// Token: 0x040061AD RID: 25005
+		// Token: 0x0400552F RID: 21807
 		private const int DUMP_CHUNK_VERSION = 336;
 
-		// Token: 0x040061AF RID: 25007
+		// Token: 0x04005531 RID: 21809
 		private const int YIELD_SPECIAL_TRAP = -99;
 
-		// Token: 0x040061B0 RID: 25008
+		// Token: 0x04005532 RID: 21810
 		internal long AutoYieldCounter;
 
-		// Token: 0x0200116A RID: 4458
+		// Token: 0x02001686 RID: 5766
 		private class DebugContext
 		{
-			// Token: 0x040061B1 RID: 25009
+			// Token: 0x040072DB RID: 29403
 			public bool DebuggerEnabled = true;
 
-			// Token: 0x040061B2 RID: 25010
+			// Token: 0x040072DC RID: 29404
 			public IDebugger DebuggerAttached;
 
-			// Token: 0x040061B3 RID: 25011
+			// Token: 0x040072DD RID: 29405
 			public DebuggerAction.ActionType DebuggerCurrentAction = DebuggerAction.ActionType.None;
 
-			// Token: 0x040061B4 RID: 25012
+			// Token: 0x040072DE RID: 29406
 			public int DebuggerCurrentActionTarget = -1;
 
-			// Token: 0x040061B5 RID: 25013
+			// Token: 0x040072DF RID: 29407
 			public SourceRef LastHlRef;
 
-			// Token: 0x040061B6 RID: 25014
+			// Token: 0x040072E0 RID: 29408
 			public int ExStackDepthAtStep = -1;
 
-			// Token: 0x040061B7 RID: 25015
+			// Token: 0x040072E1 RID: 29409
 			public List<SourceRef> BreakPoints = new List<SourceRef>();
 
-			// Token: 0x040061B8 RID: 25016
+			// Token: 0x040072E2 RID: 29410
 			public bool LineBasedBreakPoints;
 		}
 	}

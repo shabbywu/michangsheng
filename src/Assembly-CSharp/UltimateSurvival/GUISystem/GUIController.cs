@@ -3,16 +3,16 @@ using UnityEngine;
 
 namespace UltimateSurvival.GUISystem
 {
-	// Token: 0x02000929 RID: 2345
+	// Token: 0x02000637 RID: 1591
 	public class GUIController : MonoSingleton<GUIController>
 	{
-		// Token: 0x17000666 RID: 1638
-		// (get) Token: 0x06003BB8 RID: 15288 RVA: 0x0002B2E9 File Offset: 0x000294E9
-		// (set) Token: 0x06003BB9 RID: 15289 RVA: 0x0002B2F1 File Offset: 0x000294F1
+		// Token: 0x17000466 RID: 1126
+		// (get) Token: 0x0600327E RID: 12926 RVA: 0x001659DE File Offset: 0x00163BDE
+		// (set) Token: 0x0600327F RID: 12927 RVA: 0x001659E6 File Offset: 0x00163BE6
 		public PlayerEventHandler Player { get; private set; }
 
-		// Token: 0x17000667 RID: 1639
-		// (get) Token: 0x06003BBA RID: 15290 RVA: 0x0002B2FA File Offset: 0x000294FA
+		// Token: 0x17000467 RID: 1127
+		// (get) Token: 0x06003280 RID: 12928 RVA: 0x001659EF File Offset: 0x00163BEF
 		public Canvas Canvas
 		{
 			get
@@ -21,13 +21,13 @@ namespace UltimateSurvival.GUISystem
 			}
 		}
 
-		// Token: 0x17000668 RID: 1640
-		// (get) Token: 0x06003BBB RID: 15291 RVA: 0x0002B302 File Offset: 0x00029502
-		// (set) Token: 0x06003BBC RID: 15292 RVA: 0x0002B30A File Offset: 0x0002950A
+		// Token: 0x17000468 RID: 1128
+		// (get) Token: 0x06003281 RID: 12929 RVA: 0x001659F7 File Offset: 0x00163BF7
+		// (set) Token: 0x06003282 RID: 12930 RVA: 0x001659FF File Offset: 0x00163BFF
 		public ItemContainer[] Containers { get; private set; }
 
-		// Token: 0x17000669 RID: 1641
-		// (get) Token: 0x06003BBD RID: 15293 RVA: 0x0002B313 File Offset: 0x00029513
+		// Token: 0x17000469 RID: 1129
+		// (get) Token: 0x06003283 RID: 12931 RVA: 0x00165A08 File Offset: 0x00163C08
 		public Font Font
 		{
 			get
@@ -36,7 +36,7 @@ namespace UltimateSurvival.GUISystem
 			}
 		}
 
-		// Token: 0x06003BBE RID: 15294 RVA: 0x001AEED8 File Offset: 0x001AD0D8
+		// Token: 0x06003284 RID: 12932 RVA: 0x00165A10 File Offset: 0x00163C10
 		public ItemContainer GetContainer(string name)
 		{
 			for (int i = 0; i < this.Containers.Length; i++)
@@ -50,7 +50,7 @@ namespace UltimateSurvival.GUISystem
 			return null;
 		}
 
-		// Token: 0x06003BBF RID: 15295 RVA: 0x001AEF2C File Offset: 0x001AD12C
+		// Token: 0x06003285 RID: 12933 RVA: 0x00165A64 File Offset: 0x00163C64
 		public bool MouseOverSelectionKeeper()
 		{
 			for (int i = 0; i < this.m_SelectionBlockers.Count; i++)
@@ -63,7 +63,7 @@ namespace UltimateSurvival.GUISystem
 			return false;
 		}
 
-		// Token: 0x06003BC0 RID: 15296 RVA: 0x001AEF90 File Offset: 0x001AD190
+		// Token: 0x06003286 RID: 12934 RVA: 0x00165AC8 File Offset: 0x00163CC8
 		public void ApplyForAllCollections()
 		{
 			ItemContainer[] componentsInChildren = base.GetComponentsInChildren<ItemContainer>(true);
@@ -73,20 +73,20 @@ namespace UltimateSurvival.GUISystem
 			}
 		}
 
-		// Token: 0x06003BC1 RID: 15297 RVA: 0x0002B31B File Offset: 0x0002951B
+		// Token: 0x06003287 RID: 12935 RVA: 0x00165AF3 File Offset: 0x00163CF3
 		private void Awake()
 		{
 			this.Containers = base.GetComponentsInChildren<ItemContainer>(true);
 			this.Player = GameController.LocalPlayer;
 		}
 
-		// Token: 0x06003BC2 RID: 15298 RVA: 0x0002B335 File Offset: 0x00029535
+		// Token: 0x06003288 RID: 12936 RVA: 0x00165B0D File Offset: 0x00163D0D
 		private void Start()
 		{
 			MonoSingleton<InventoryController>.Instance.State.AddChangeListener(new Action(this.OnChanged_InventoryState));
 		}
 
-		// Token: 0x06003BC3 RID: 15299 RVA: 0x0002B352 File Offset: 0x00029552
+		// Token: 0x06003289 RID: 12937 RVA: 0x00165B2A File Offset: 0x00163D2A
 		private void OnChanged_InventoryState()
 		{
 			if (!MonoSingleton<InventoryController>.Instance.IsClosed)
@@ -97,31 +97,31 @@ namespace UltimateSurvival.GUISystem
 			GameController.Audio.Play2D(this.m_InventoryCloseClip, 0.6f);
 		}
 
-		// Token: 0x04003648 RID: 13896
+		// Token: 0x04002CF7 RID: 11511
 		[Header("Setup")]
 		[SerializeField]
 		private Canvas m_Canvas;
 
-		// Token: 0x04003649 RID: 13897
+		// Token: 0x04002CF8 RID: 11512
 		[SerializeField]
 		private Camera m_GUICamera;
 
-		// Token: 0x0400364A RID: 13898
+		// Token: 0x04002CF9 RID: 11513
 		[SerializeField]
 		private Font m_Font;
 
-		// Token: 0x0400364B RID: 13899
+		// Token: 0x04002CFA RID: 11514
 		[SerializeField]
 		[Reorderable]
 		[Tooltip("If the player clicks while on those rects, the current selection will not be lost.")]
 		private ReorderableRectTransformList m_SelectionBlockers;
 
-		// Token: 0x0400364C RID: 13900
+		// Token: 0x04002CFB RID: 11515
 		[Header("Audio")]
 		[SerializeField]
 		private AudioClip m_InventoryOpenClip;
 
-		// Token: 0x0400364D RID: 13901
+		// Token: 0x04002CFC RID: 11516
 		[SerializeField]
 		private AudioClip m_InventoryCloseClip;
 	}

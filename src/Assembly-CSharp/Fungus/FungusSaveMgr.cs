@@ -5,11 +5,11 @@ using UnityEngine.SceneManagement;
 
 namespace Fungus
 {
-	// Token: 0x02001461 RID: 5217
+	// Token: 0x02000FAB RID: 4011
 	[Serializable]
 	public class FungusSaveMgr
 	{
-		// Token: 0x06007DC4 RID: 32196 RVA: 0x00055035 File Offset: 0x00053235
+		// Token: 0x06006FD6 RID: 28630 RVA: 0x002A8130 File Offset: 0x002A6330
 		public void SetCommand(Command command)
 		{
 			if (!this.IsCanSet(command))
@@ -19,7 +19,7 @@ namespace Fungus
 			this.CurCommand = command;
 		}
 
-		// Token: 0x06007DC5 RID: 32197 RVA: 0x00055048 File Offset: 0x00053248
+		// Token: 0x06006FD7 RID: 28631 RVA: 0x002A8143 File Offset: 0x002A6343
 		public void ClearCommand()
 		{
 			if (this.CurCommand is Menu)
@@ -29,25 +29,25 @@ namespace Fungus
 			this.CurCommand = null;
 		}
 
-		// Token: 0x06007DC6 RID: 32198 RVA: 0x0005505F File Offset: 0x0005325F
+		// Token: 0x06006FD8 RID: 28632 RVA: 0x002A815A File Offset: 0x002A635A
 		public void ClearMenu()
 		{
 			this.CurCommand = null;
 		}
 
-		// Token: 0x06007DC7 RID: 32199 RVA: 0x00055068 File Offset: 0x00053268
+		// Token: 0x06006FD9 RID: 28633 RVA: 0x002A8163 File Offset: 0x002A6363
 		public bool IsCanSet(Command command)
 		{
 			return !(command is INoCommand) && (this.CurCommand == null || !(this.CurCommand is Menu));
 		}
 
-		// Token: 0x06007DC8 RID: 32200 RVA: 0x00055094 File Offset: 0x00053294
+		// Token: 0x06006FDA RID: 28634 RVA: 0x002A818F File Offset: 0x002A638F
 		public bool IsEnd()
 		{
 			return this.CurCommand == null;
 		}
 
-		// Token: 0x06007DC9 RID: 32201 RVA: 0x002C79BC File Offset: 0x002C5BBC
+		// Token: 0x06006FDB RID: 28635 RVA: 0x002A81A4 File Offset: 0x002A63A4
 		public void SaveData()
 		{
 			this.SaveFungusData = new FungusData();
@@ -66,7 +66,7 @@ namespace Fungus
 			this.SaveFungusData.Save();
 		}
 
-		// Token: 0x06007DCA RID: 32202 RVA: 0x002C7AA4 File Offset: 0x002C5CA4
+		// Token: 0x06006FDC RID: 28636 RVA: 0x002A828C File Offset: 0x002A648C
 		public void Load()
 		{
 			if (this.SaveFungusData != null && this.SaveFungusData.IsNeedLoad)
@@ -154,7 +154,7 @@ namespace Fungus
 			}
 		}
 
-		// Token: 0x06007DCB RID: 32203 RVA: 0x000550A7 File Offset: 0x000532A7
+		// Token: 0x06006FDD RID: 28637 RVA: 0x002A8694 File Offset: 0x002A6894
 		public void LoadTalk()
 		{
 			if (Tools.instance.IsInDF)
@@ -165,7 +165,7 @@ namespace Fungus
 			PanelMamager.inst.StartCoroutine(this.CheckCanLoad());
 		}
 
-		// Token: 0x06007DCC RID: 32204 RVA: 0x000550CE File Offset: 0x000532CE
+		// Token: 0x06006FDE RID: 28638 RVA: 0x002A86BB File Offset: 0x002A68BB
 		public IEnumerator CheckCanLoad()
 		{
 			while (!SceneManager.GetActiveScene().name.Equals(Tools.jumpToName, StringComparison.CurrentCultureIgnoreCase))
@@ -177,24 +177,28 @@ namespace Fungus
 			yield break;
 		}
 
-		// Token: 0x06007DCD RID: 32205 RVA: 0x000550DD File Offset: 0x000532DD
+		// Token: 0x06006FDF RID: 28639 RVA: 0x002A86CA File Offset: 0x002A68CA
 		public IEnumerator Later()
 		{
 			yield return new WaitForSeconds(1f);
 			yield break;
 		}
 
-		// Token: 0x04006B45 RID: 27461
+		// Token: 0x04005C51 RID: 23633
 		[NonSerialized]
 		public Command CurCommand;
 
-		// Token: 0x04006B46 RID: 27462
+		// Token: 0x04005C52 RID: 23634
 		public bool IsNeedStop;
 
-		// Token: 0x04006B47 RID: 27463
+		// Token: 0x04005C53 RID: 23635
 		public FungusData SaveFungusData = new FungusData();
 
-		// Token: 0x04006B48 RID: 27464
+		// Token: 0x04005C54 RID: 23636
+		[NonSerialized]
+		public bool LastIsEnd = true;
+
+		// Token: 0x04005C55 RID: 23637
 		[NonSerialized]
 		public string StopTalkName;
 	}

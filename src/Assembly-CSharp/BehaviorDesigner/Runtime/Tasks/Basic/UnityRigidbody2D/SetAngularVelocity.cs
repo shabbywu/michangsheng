@@ -3,12 +3,12 @@ using UnityEngine;
 
 namespace BehaviorDesigner.Runtime.Tasks.Basic.UnityRigidbody2D
 {
-	// Token: 0x0200153E RID: 5438
+	// Token: 0x02001084 RID: 4228
 	[TaskCategory("Basic/Rigidbody2D")]
 	[TaskDescription("Sets the angular velocity of the Rigidbody2D. Returns Success.")]
 	public class SetAngularVelocity : Action
 	{
-		// Token: 0x060080F6 RID: 33014 RVA: 0x002CBA64 File Offset: 0x002C9C64
+		// Token: 0x060072FC RID: 29436 RVA: 0x002AEFA8 File Offset: 0x002AD1A8
 		public override void OnStart()
 		{
 			GameObject defaultGameObject = base.GetDefaultGameObject(this.targetGameObject.Value);
@@ -19,7 +19,7 @@ namespace BehaviorDesigner.Runtime.Tasks.Basic.UnityRigidbody2D
 			}
 		}
 
-		// Token: 0x060080F7 RID: 33015 RVA: 0x00057EC4 File Offset: 0x000560C4
+		// Token: 0x060072FD RID: 29437 RVA: 0x002AEFE8 File Offset: 0x002AD1E8
 		public override TaskStatus OnUpdate()
 		{
 			if (this.rigidbody2D == null)
@@ -31,25 +31,25 @@ namespace BehaviorDesigner.Runtime.Tasks.Basic.UnityRigidbody2D
 			return 2;
 		}
 
-		// Token: 0x060080F8 RID: 33016 RVA: 0x00057EF7 File Offset: 0x000560F7
+		// Token: 0x060072FE RID: 29438 RVA: 0x002AF01B File Offset: 0x002AD21B
 		public override void OnReset()
 		{
 			this.targetGameObject = null;
 			this.angularVelocity = 0f;
 		}
 
-		// Token: 0x04006DAA RID: 28074
+		// Token: 0x04005EAA RID: 24234
 		[Tooltip("The GameObject that the task operates on. If null the task GameObject is used.")]
 		public SharedGameObject targetGameObject;
 
-		// Token: 0x04006DAB RID: 28075
+		// Token: 0x04005EAB RID: 24235
 		[Tooltip("The angular velocity of the Rigidbody2D")]
 		public SharedFloat angularVelocity;
 
-		// Token: 0x04006DAC RID: 28076
+		// Token: 0x04005EAC RID: 24236
 		private Rigidbody2D rigidbody2D;
 
-		// Token: 0x04006DAD RID: 28077
+		// Token: 0x04005EAD RID: 24237
 		private GameObject prevGameObject;
 	}
 }

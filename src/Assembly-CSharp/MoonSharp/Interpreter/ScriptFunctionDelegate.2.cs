@@ -2,7 +2,7 @@
 
 namespace MoonSharp.Interpreter
 {
-	// Token: 0x0200106F RID: 4207
-	// (Invoke) Token: 0x0600655D RID: 25949
+	// Token: 0x02000CA2 RID: 3234
+	// (Invoke) Token: 0x06005A73 RID: 23155
 	public delegate T ScriptFunctionDelegate<T>(params object[] args);
 }

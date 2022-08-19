@@ -2,7 +2,7 @@
 
 namespace MoonSharp.Interpreter.Interop
 {
-	// Token: 0x020010F1 RID: 4337
+	// Token: 0x02000D0D RID: 3341
 	public class AnonWrapper
 	{
 	}

@@ -5,10 +5,10 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
 
-// Token: 0x02000490 RID: 1168
+// Token: 0x0200032A RID: 810
 public class MainUISelectTianFu : MonoBehaviour
 {
-	// Token: 0x06001F2B RID: 7979 RVA: 0x0010CB88 File Offset: 0x0010AD88
+	// Token: 0x06001BE9 RID: 7145 RVA: 0x000C7A68 File Offset: 0x000C5C68
 	public void Init()
 	{
 		if (!this.isInit)
@@ -137,12 +137,12 @@ public class MainUISelectTianFu : MonoBehaviour
 		base.gameObject.SetActive(true);
 	}
 
-	// Token: 0x06001F2C RID: 7980 RVA: 0x000042DD File Offset: 0x000024DD
+	// Token: 0x06001BEA RID: 7146 RVA: 0x00004095 File Offset: 0x00002295
 	public void ClickCell(bool isOn)
 	{
 	}
 
-	// Token: 0x06001F2D RID: 7981 RVA: 0x0010CD48 File Offset: 0x0010AF48
+	// Token: 0x06001BEB RID: 7147 RVA: 0x000C7C28 File Offset: 0x000C5E28
 	private void CostSort()
 	{
 		foreach (int num in this.tianFuPageList.Keys)
@@ -154,7 +154,7 @@ public class MainUISelectTianFu : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001F2E RID: 7982 RVA: 0x0010CDD0 File Offset: 0x0010AFD0
+	// Token: 0x06001BEC RID: 7148 RVA: 0x000C7CB0 File Offset: 0x000C5EB0
 	public void ShowCurPageList()
 	{
 		this.UpdateDesc();
@@ -165,7 +165,7 @@ public class MainUISelectTianFu : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001F2F RID: 7983 RVA: 0x0010CE44 File Offset: 0x0010B044
+	// Token: 0x06001BED RID: 7149 RVA: 0x000C7D24 File Offset: 0x000C5F24
 	public void NextPage()
 	{
 		if (!this.CheckCurHasSelect())
@@ -211,7 +211,7 @@ public class MainUISelectTianFu : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001F30 RID: 7984 RVA: 0x0010CF34 File Offset: 0x0010B134
+	// Token: 0x06001BEE RID: 7150 RVA: 0x000C7E14 File Offset: 0x000C6014
 	public void LastPage()
 	{
 		if (this.curPage == 9)
@@ -243,7 +243,7 @@ public class MainUISelectTianFu : MonoBehaviour
 		this.ShowCurPageList();
 	}
 
-	// Token: 0x06001F31 RID: 7985 RVA: 0x0010D000 File Offset: 0x0010B200
+	// Token: 0x06001BEF RID: 7151 RVA: 0x000C7EE0 File Offset: 0x000C60E0
 	public void HideCurPage()
 	{
 		if (this.tianFuPageList.ContainsKey(this.curPage))
@@ -255,7 +255,7 @@ public class MainUISelectTianFu : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001F32 RID: 7986 RVA: 0x0010D074 File Offset: 0x0010B274
+	// Token: 0x06001BF0 RID: 7152 RVA: 0x000C7F54 File Offset: 0x000C6154
 	public bool CheckCurHasSelect()
 	{
 		if (this.tianFuPageList.ContainsKey(this.curPage))
@@ -276,7 +276,7 @@ public class MainUISelectTianFu : MonoBehaviour
 		return true;
 	}
 
-	// Token: 0x06001F33 RID: 7987 RVA: 0x0010D0F4 File Offset: 0x0010B2F4
+	// Token: 0x06001BF1 RID: 7153 RVA: 0x000C7FD4 File Offset: 0x000C61D4
 	public void UpdateDesc()
 	{
 		this.title.text = CreateAvatarMiaoShu.DataDict[this.curPage].title;
@@ -297,14 +297,14 @@ public class MainUISelectTianFu : MonoBehaviour
 		text2.text = text2.text + CreateAvatarMiaoShu.DataDict[this.curPage].Info + "\n";
 	}
 
-	// Token: 0x06001F34 RID: 7988 RVA: 0x00019C6D File Offset: 0x00017E6D
+	// Token: 0x06001BF2 RID: 7154 RVA: 0x000C8100 File Offset: 0x000C6300
 	public void AddTianFuDian(int num)
 	{
 		this.tianfuDian += num;
 		this.tianfuNum.text = this.tianfuDian.ToString();
 	}
 
-	// Token: 0x06001F35 RID: 7989 RVA: 0x0010D220 File Offset: 0x0010B420
+	// Token: 0x06001BF3 RID: 7155 RVA: 0x000C8128 File Offset: 0x000C6328
 	private void ShowFinallyPage()
 	{
 		this.title.text = "经历";
@@ -331,69 +331,69 @@ public class MainUISelectTianFu : MonoBehaviour
 		this.finallyPage.SetActive(true);
 	}
 
-	// Token: 0x04001AA7 RID: 6823
+	// Token: 0x04001682 RID: 5762
 	public Dictionary<int, List<int>> hasSelectSeidList = new Dictionary<int, List<int>>();
 
-	// Token: 0x04001AA8 RID: 6824
+	// Token: 0x04001683 RID: 5763
 	public Dictionary<int, MainUITianFuCell> hasSelectList = new Dictionary<int, MainUITianFuCell>();
 
-	// Token: 0x04001AA9 RID: 6825
+	// Token: 0x04001684 RID: 5764
 	public Dictionary<int, List<MainUITianFuCell>> tianFuPageList = new Dictionary<int, List<MainUITianFuCell>>();
 
-	// Token: 0x04001AAA RID: 6826
+	// Token: 0x04001685 RID: 5765
 	[SerializeField]
 	private GameObject tianFuCell;
 
-	// Token: 0x04001AAB RID: 6827
+	// Token: 0x04001686 RID: 5766
 	[SerializeField]
 	private MainUISetLinGen setLingGen;
 
-	// Token: 0x04001AAC RID: 6828
+	// Token: 0x04001687 RID: 5767
 	[SerializeField]
 	private GameObject shenYuNum;
 
-	// Token: 0x04001AAD RID: 6829
+	// Token: 0x04001688 RID: 5768
 	[SerializeField]
 	private GameObject finallyPage;
 
-	// Token: 0x04001AAE RID: 6830
+	// Token: 0x04001689 RID: 5769
 	[SerializeField]
 	private Transform tianFuList;
 
-	// Token: 0x04001AAF RID: 6831
+	// Token: 0x0400168A RID: 5770
 	[SerializeField]
 	private GameObject man;
 
-	// Token: 0x04001AB0 RID: 6832
+	// Token: 0x0400168B RID: 5771
 	[SerializeField]
 	private GameObject woman;
 
-	// Token: 0x04001AB1 RID: 6833
+	// Token: 0x0400168C RID: 5772
 	[SerializeField]
 	private Text tianfuNum;
 
-	// Token: 0x04001AB2 RID: 6834
+	// Token: 0x0400168D RID: 5773
 	[SerializeField]
 	private Text title;
 
-	// Token: 0x04001AB3 RID: 6835
+	// Token: 0x0400168E RID: 5774
 	[SerializeField]
 	private Text desc;
 
-	// Token: 0x04001AB4 RID: 6836
+	// Token: 0x0400168F RID: 5775
 	[SerializeField]
 	private Text finallyDesc;
 
-	// Token: 0x04001AB5 RID: 6837
+	// Token: 0x04001690 RID: 5776
 	[SerializeField]
 	private GameObject nextBtn;
 
-	// Token: 0x04001AB6 RID: 6838
+	// Token: 0x04001691 RID: 5777
 	private bool isInit;
 
-	// Token: 0x04001AB7 RID: 6839
+	// Token: 0x04001692 RID: 5778
 	public int tianfuDian;
 
-	// Token: 0x04001AB8 RID: 6840
+	// Token: 0x04001693 RID: 5779
 	public int curPage = 1;
 }

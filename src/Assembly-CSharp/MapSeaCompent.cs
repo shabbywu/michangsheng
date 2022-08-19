@@ -10,11 +10,11 @@ using Spine.Unity;
 using UnityEngine;
 using UnityEngine.UI;
 
-// Token: 0x0200028B RID: 651
+// Token: 0x02000198 RID: 408
 public class MapSeaCompent : MapInstComport
 {
-	// Token: 0x17000257 RID: 599
-	// (get) Token: 0x060013E8 RID: 5096 RVA: 0x000128DE File Offset: 0x00010ADE
+	// Token: 0x17000215 RID: 533
+	// (get) Token: 0x0600115A RID: 4442 RVA: 0x000688F0 File Offset: 0x00066AF0
 	public int X
 	{
 		get
@@ -23,8 +23,8 @@ public class MapSeaCompent : MapInstComport
 		}
 	}
 
-	// Token: 0x17000258 RID: 600
-	// (get) Token: 0x060013E9 RID: 5097 RVA: 0x000128F0 File Offset: 0x00010AF0
+	// Token: 0x17000216 RID: 534
+	// (get) Token: 0x0600115B RID: 4443 RVA: 0x00068902 File Offset: 0x00066B02
 	public int Y
 	{
 		get
@@ -33,7 +33,7 @@ public class MapSeaCompent : MapInstComport
 		}
 	}
 
-	// Token: 0x060013EA RID: 5098 RVA: 0x00012902 File Offset: 0x00010B02
+	// Token: 0x0600115C RID: 4444 RVA: 0x00068914 File Offset: 0x00066B14
 	protected override void Awake()
 	{
 		this.NodeIndex = int.Parse(base.name);
@@ -42,7 +42,7 @@ public class MapSeaCompent : MapInstComport
 		this.AutoSetPositon();
 	}
 
-	// Token: 0x060013EB RID: 5099 RVA: 0x0001293B File Offset: 0x00010B3B
+	// Token: 0x0600115D RID: 4445 RVA: 0x0006894D File Offset: 0x00066B4D
 	protected override void Start()
 	{
 		this.ResetTime = (float)(jsonData.GetRandom() % 20) + 0.2f * (float)(jsonData.GetRandom() % 6);
@@ -51,7 +51,7 @@ public class MapSeaCompent : MapInstComport
 		this.WhetherHasJiZhi = this.HasBoss();
 	}
 
-	// Token: 0x060013EC RID: 5100 RVA: 0x00012979 File Offset: 0x00010B79
+	// Token: 0x0600115E RID: 4446 RVA: 0x0006898B File Offset: 0x00066B8B
 	public override void Update()
 	{
 		if (WASDMove.Inst != null)
@@ -68,7 +68,7 @@ public class MapSeaCompent : MapInstComport
 		}
 	}
 
-	// Token: 0x060013ED RID: 5101 RVA: 0x000B6E30 File Offset: 0x000B5030
+	// Token: 0x0600115F RID: 4447 RVA: 0x000689B4 File Offset: 0x00066BB4
 	public void AddLangHua()
 	{
 		if (Vector3.Distance(AllMapManage.instance.MapPlayerController.transform.position, base.transform.position) <= 18f && this.LaseSetLangHuangTime > this.ResetTime)
@@ -85,7 +85,7 @@ public class MapSeaCompent : MapInstComport
 		this.LaseSetLangHuangTime += 0.2f;
 	}
 
-	// Token: 0x060013EE RID: 5102 RVA: 0x000129A1 File Offset: 0x00010BA1
+	// Token: 0x06001160 RID: 4448 RVA: 0x00068AEA File Offset: 0x00066CEA
 	public void SetParent(MapSeaCompent parent, int g)
 	{
 		this.SeaParent = parent;
@@ -93,13 +93,13 @@ public class MapSeaCompent : MapInstComport
 		this.F = this.G + this.H;
 	}
 
-	// Token: 0x060013EF RID: 5103 RVA: 0x000129C4 File Offset: 0x00010BC4
+	// Token: 0x06001161 RID: 4449 RVA: 0x00068B0D File Offset: 0x00066D0D
 	public bool NodeHasIsLand()
 	{
 		return this.WhetherHasIsLand || this.IsStatic;
 	}
 
-	// Token: 0x060013F0 RID: 5104 RVA: 0x000B6F68 File Offset: 0x000B5168
+	// Token: 0x06001162 RID: 4450 RVA: 0x00068B20 File Offset: 0x00066D20
 	public void Refresh()
 	{
 		Avatar player = Tools.instance.getPlayer();
@@ -116,6 +116,22 @@ public class MapSeaCompent : MapInstComport
 					return;
 				}
 				this.IsLand.gameObject.SetActive(true);
+				if (!this.IsInitYun)
+				{
+					if (this.YunObject != null)
+					{
+						int id = this.GerLandId();
+						if (this.IsNeedYun(id))
+						{
+							this.YunObject.SetActive(true);
+						}
+						else
+						{
+							this.YunObject.SetActive(false);
+						}
+					}
+					this.IsInitYun = true;
+				}
 				if (!this.HideButton)
 				{
 					if (avatarNowMapIndex != this.NodeIndex)
@@ -153,7 +169,7 @@ public class MapSeaCompent : MapInstComport
 		}
 	}
 
-	// Token: 0x060013F1 RID: 5105 RVA: 0x000B70D0 File Offset: 0x000B52D0
+	// Token: 0x06001163 RID: 4451 RVA: 0x00068CD0 File Offset: 0x00066ED0
 	public void DengDaoBtn()
 	{
 		if (!Tools.instance.canClick(false, true))
@@ -165,7 +181,19 @@ public class MapSeaCompent : MapInstComport
 		player.randomFuBenMag.GetInRandomFuBen(inSeaID, -1);
 	}
 
-	// Token: 0x060013F2 RID: 5106 RVA: 0x000B711C File Offset: 0x000B531C
+	// Token: 0x06001164 RID: 4452 RVA: 0x00068D19 File Offset: 0x00066F19
+	public int GerLandId()
+	{
+		return PlayerEx.Player.seaNodeMag.GetInSeaID(this.NodeIndex, EndlessSeaMag.MapWide);
+	}
+
+	// Token: 0x06001165 RID: 4453 RVA: 0x00068D38 File Offset: 0x00066F38
+	private bool IsNeedYun(int id)
+	{
+		return !PlayerEx.Player.RandomFuBenList.ContainsKey(id.ToString()) || (bool)PlayerEx.Player.RandomFuBenList[id.ToString()]["ShouldReset"] || PlayerEx.Player.RandomFuBenList[id.ToString()]["type"] == null;
+	}
+
+	// Token: 0x06001166 RID: 4454 RVA: 0x00068DB0 File Offset: 0x00066FB0
 	public void StaticBtn()
 	{
 		if (!Tools.instance.canClick(false, true))
@@ -179,7 +207,7 @@ public class MapSeaCompent : MapInstComport
 		}
 	}
 
-	// Token: 0x060013F3 RID: 5107 RVA: 0x000B7164 File Offset: 0x000B5364
+	// Token: 0x06001167 RID: 4455 RVA: 0x00068DF8 File Offset: 0x00066FF8
 	public void BiGuanBtn()
 	{
 		if (!Tools.instance.canClick(false, true))
@@ -193,7 +221,7 @@ public class MapSeaCompent : MapInstComport
 		}
 	}
 
-	// Token: 0x060013F4 RID: 5108 RVA: 0x000B71AC File Offset: 0x000B53AC
+	// Token: 0x06001168 RID: 4456 RVA: 0x00068E40 File Offset: 0x00067040
 	public bool HasIsLand()
 	{
 		Avatar player = Tools.instance.getPlayer();
@@ -212,7 +240,7 @@ public class MapSeaCompent : MapInstComport
 		return FuBenMap.getIndex(this.X % 7, this.Y % 7, 7) == num;
 	}
 
-	// Token: 0x060013F5 RID: 5109 RVA: 0x000B7270 File Offset: 0x000B5470
+	// Token: 0x06001169 RID: 4457 RVA: 0x00068F04 File Offset: 0x00067104
 	public bool HasBoss()
 	{
 		Avatar player = PlayerEx.Player;
@@ -299,7 +327,7 @@ public class MapSeaCompent : MapInstComport
 		return false;
 	}
 
-	// Token: 0x060013F6 RID: 5110 RVA: 0x000B75D8 File Offset: 0x000B57D8
+	// Token: 0x0600116A RID: 4458 RVA: 0x0006926C File Offset: 0x0006746C
 	public void AutoSetPositon()
 	{
 		FubenGrid component = base.transform.parent.GetComponent<FubenGrid>();
@@ -326,7 +354,7 @@ public class MapSeaCompent : MapInstComport
 		}
 	}
 
-	// Token: 0x060013F7 RID: 5111 RVA: 0x000B7658 File Offset: 0x000B5858
+	// Token: 0x0600116B RID: 4459 RVA: 0x000692EC File Offset: 0x000674EC
 	public override void AvatarMoveToThis()
 	{
 		if (AllMapManage.instance != null)
@@ -358,7 +386,7 @@ public class MapSeaCompent : MapInstComport
 		}
 	}
 
-	// Token: 0x060013F8 RID: 5112 RVA: 0x000B7790 File Offset: 0x000B5990
+	// Token: 0x0600116C RID: 4460 RVA: 0x00069424 File Offset: 0x00067624
 	public void AutoMoveToThis()
 	{
 		List<int> list = new List<int>();
@@ -369,7 +397,7 @@ public class MapSeaCompent : MapInstComport
 		}
 	}
 
-	// Token: 0x060013F9 RID: 5113 RVA: 0x000B77D4 File Offset: 0x000B59D4
+	// Token: 0x0600116D RID: 4461 RVA: 0x00069468 File Offset: 0x00067668
 	public void GetIndexList(List<int> NodeIndexList)
 	{
 		int avatarNowMapIndex = this.getAvatarNowMapIndex();
@@ -377,13 +405,13 @@ public class MapSeaCompent : MapInstComport
 		this.dieDaiAddIndex(NodeIndexList, avatarNowMapIndex);
 	}
 
-	// Token: 0x060013FA RID: 5114 RVA: 0x0000A093 File Offset: 0x00008293
+	// Token: 0x0600116E RID: 4462 RVA: 0x00024C5F File Offset: 0x00022E5F
 	public bool CheckCanGetIn(int index)
 	{
 		return true;
 	}
 
-	// Token: 0x060013FB RID: 5115 RVA: 0x000B77F8 File Offset: 0x000B59F8
+	// Token: 0x0600116F RID: 4463 RVA: 0x0006948C File Offset: 0x0006768C
 	public void dieDaiAddIndex(List<int> NodeIndexList, int index)
 	{
 		MapSeaCompent mapSeaCompent = (MapSeaCompent)AllMapManage.instance.mapIndex[index];
@@ -413,7 +441,7 @@ public class MapSeaCompent : MapInstComport
 		}
 	}
 
-	// Token: 0x060013FC RID: 5116 RVA: 0x000B78F0 File Offset: 0x000B5AF0
+	// Token: 0x06001170 RID: 4464 RVA: 0x00069584 File Offset: 0x00067784
 	public void RestNodeLuXianIndex()
 	{
 		if (this.MoveFlagUI != null)
@@ -422,12 +450,12 @@ public class MapSeaCompent : MapInstComport
 		}
 	}
 
-	// Token: 0x060013FD RID: 5117 RVA: 0x000042DD File Offset: 0x000024DD
+	// Token: 0x06001171 RID: 4465 RVA: 0x00004095 File Offset: 0x00002295
 	public void NodeOnClick()
 	{
 	}
 
-	// Token: 0x060013FE RID: 5118 RVA: 0x000129D6 File Offset: 0x00010BD6
+	// Token: 0x06001172 RID: 4466 RVA: 0x000695DD File Offset: 0x000677DD
 	private void OnMouseUpAsButton()
 	{
 		if (Tools.instance.canClick(false, true))
@@ -436,7 +464,7 @@ public class MapSeaCompent : MapInstComport
 		}
 	}
 
-	// Token: 0x060013FF RID: 5119 RVA: 0x000129EC File Offset: 0x00010BEC
+	// Token: 0x06001173 RID: 4467 RVA: 0x000695F3 File Offset: 0x000677F3
 	public override void EventRandom()
 	{
 		if (WASDMove.Inst != null)
@@ -447,7 +475,7 @@ public class MapSeaCompent : MapInstComport
 		EndlessSeaMag.Inst.StartMove();
 	}
 
-	// Token: 0x06001400 RID: 5120 RVA: 0x000B794C File Offset: 0x000B5B4C
+	// Token: 0x06001174 RID: 4468 RVA: 0x00069628 File Offset: 0x00067828
 	public int GetAddTimeNum()
 	{
 		Avatar player = Tools.instance.getPlayer();
@@ -474,13 +502,13 @@ public class MapSeaCompent : MapInstComport
 		return result;
 	}
 
-	// Token: 0x06001401 RID: 5121 RVA: 0x00012A20 File Offset: 0x00010C20
+	// Token: 0x06001175 RID: 4469 RVA: 0x000696C8 File Offset: 0x000678C8
 	public override void BaseAddTime()
 	{
 		this.ComAvatar.AddTime(this.GetAddTimeNum(), 0, 0);
 	}
 
-	// Token: 0x06001402 RID: 5122 RVA: 0x000B79EC File Offset: 0x000B5BEC
+	// Token: 0x06001176 RID: 4470 RVA: 0x000696E0 File Offset: 0x000678E0
 	public bool SatrtMove()
 	{
 		if (!base.CanClick())
@@ -521,7 +549,7 @@ public class MapSeaCompent : MapInstComport
 		return true;
 	}
 
-	// Token: 0x06001403 RID: 5123 RVA: 0x00012A35 File Offset: 0x00010C35
+	// Token: 0x06001177 RID: 4471 RVA: 0x000697FC File Offset: 0x000679FC
 	private IEnumerator StopMove()
 	{
 		yield return new WaitForSeconds(this.waitTime);
@@ -529,12 +557,12 @@ public class MapSeaCompent : MapInstComport
 		yield break;
 	}
 
-	// Token: 0x06001404 RID: 5124 RVA: 0x000042DD File Offset: 0x000024DD
+	// Token: 0x06001178 RID: 4472 RVA: 0x00004095 File Offset: 0x00002295
 	public void MonsterMoveIn(Avatar target)
 	{
 	}
 
-	// Token: 0x06001405 RID: 5125 RVA: 0x000B7B08 File Offset: 0x000B5D08
+	// Token: 0x06001179 RID: 4473 RVA: 0x0006980C File Offset: 0x00067A0C
 	public SeaAvatarObjBase.Directon GetDirecton(int Lastindex, int nowIndex)
 	{
 		int indexX = FuBenMap.getIndexX(Lastindex, EndlessSeaMag.MapWide);
@@ -556,7 +584,7 @@ public class MapSeaCompent : MapInstComport
 		return SeaAvatarObjBase.Directon.Left;
 	}
 
-	// Token: 0x06001406 RID: 5126 RVA: 0x000B7B58 File Offset: 0x000B5D58
+	// Token: 0x0600117A RID: 4474 RVA: 0x0006985C File Offset: 0x00067A5C
 	public void MonstarMoveToThis(SeaAvatarObjBase target)
 	{
 		if (AllMapManage.instance != null)
@@ -594,14 +622,14 @@ public class MapSeaCompent : MapInstComport
 		}
 	}
 
-	// Token: 0x06001407 RID: 5127 RVA: 0x00012A44 File Offset: 0x00010C44
+	// Token: 0x0600117B RID: 4475 RVA: 0x000699F6 File Offset: 0x00067BF6
 	public void setMonstarNowMapIndex(SeaAvatarObjBase target)
 	{
 		target.NowMapIndex = this.NodeIndex;
 		Tools.instance.getPlayer().seaNodeMag.SetSeaMonstarIndex(target.UUID, target.SeaId, this.NodeIndex);
 	}
 
-	// Token: 0x06001408 RID: 5128 RVA: 0x000B7CF4 File Offset: 0x000B5EF4
+	// Token: 0x0600117C RID: 4476 RVA: 0x00069A2C File Offset: 0x00067C2C
 	public void CastSeaCastHP()
 	{
 		Avatar player = Tools.instance.getPlayer();
@@ -621,7 +649,7 @@ public class MapSeaCompent : MapInstComport
 		}
 	}
 
-	// Token: 0x06001409 RID: 5129 RVA: 0x00012A78 File Offset: 0x00010C78
+	// Token: 0x0600117D RID: 4477 RVA: 0x00069AE7 File Offset: 0x00067CE7
 	public IEnumerator ReduceHP(int realHp)
 	{
 		yield return new WaitForSeconds(this.waitTime);
@@ -629,68 +657,74 @@ public class MapSeaCompent : MapInstComport
 		yield break;
 	}
 
-	// Token: 0x04000F83 RID: 3971
+	// Token: 0x04000C7C RID: 3196
 	public float waitTime = 1f;
 
-	// Token: 0x04000F84 RID: 3972
+	// Token: 0x04000C7D RID: 3197
 	public GameObject MoveFlagUI;
 
-	// Token: 0x04000F85 RID: 3973
+	// Token: 0x04000C7E RID: 3198
 	public int G;
 
-	// Token: 0x04000F86 RID: 3974
+	// Token: 0x04000C7F RID: 3199
 	public int H;
 
-	// Token: 0x04000F87 RID: 3975
+	// Token: 0x04000C80 RID: 3200
 	public int F;
 
-	// Token: 0x04000F88 RID: 3976
+	// Token: 0x04000C81 RID: 3201
+	public bool IsInitYun;
+
+	// Token: 0x04000C82 RID: 3202
+	public GameObject YunObject;
+
+	// Token: 0x04000C83 RID: 3203
 	public MapSeaCompent SeaParent;
 
-	// Token: 0x04000F89 RID: 3977
+	// Token: 0x04000C84 RID: 3204
 	public Text Ftext;
 
-	// Token: 0x04000F8A RID: 3978
+	// Token: 0x04000C85 RID: 3205
 	public Text Htext;
 
-	// Token: 0x04000F8B RID: 3979
+	// Token: 0x04000C86 RID: 3206
 	public Text Gtext;
 
-	// Token: 0x04000F8C RID: 3980
+	// Token: 0x04000C87 RID: 3207
 	public GameObject IsLand;
 
-	// Token: 0x04000F8D RID: 3981
+	// Token: 0x04000C88 RID: 3208
 	public GameObject InIsLandBtn;
 
-	// Token: 0x04000F8E RID: 3982
+	// Token: 0x04000C89 RID: 3209
 	public GameObject BiGuanBtnObj;
 
-	// Token: 0x04000F8F RID: 3983
+	// Token: 0x04000C8A RID: 3210
 	[Header("是否显示按钮")]
 	public bool HideButton;
 
-	// Token: 0x04000F90 RID: 3984
+	// Token: 0x04000C8B RID: 3211
 	private bool WhetherHasIsLand;
 
-	// Token: 0x04000F91 RID: 3985
+	// Token: 0x04000C8C RID: 3212
 	[HideInInspector]
 	public bool WhetherHasJiZhi;
 
-	// Token: 0x04000F92 RID: 3986
+	// Token: 0x04000C8D RID: 3213
 	private float LaseSetLangHuangTime;
 
-	// Token: 0x04000F93 RID: 3987
+	// Token: 0x04000C8E RID: 3214
 	private float ResetTime = 5f;
 
-	// Token: 0x04000F94 RID: 3988
+	// Token: 0x04000C8F RID: 3215
 	[HideInInspector]
 	public int jiZhiType;
 
-	// Token: 0x04000F95 RID: 3989
+	// Token: 0x04000C90 RID: 3216
 	[HideInInspector]
 	public int jiZhiTalkID;
 
-	// Token: 0x04000F96 RID: 3990
+	// Token: 0x04000C91 RID: 3217
 	[HideInInspector]
 	public int jiZhiChuFaID;
 }

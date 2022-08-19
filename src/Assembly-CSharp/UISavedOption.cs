@@ -1,12 +1,12 @@
 ﻿using System;
 using UnityEngine;
 
-// Token: 0x0200009B RID: 155
+// Token: 0x02000071 RID: 113
 [AddComponentMenu("NGUI/Interaction/Saved Option")]
 public class UISavedOption : MonoBehaviour
 {
-	// Token: 0x170000AB RID: 171
-	// (get) Token: 0x06000611 RID: 1553 RVA: 0x00009772 File Offset: 0x00007972
+	// Token: 0x1700009B RID: 155
+	// (get) Token: 0x060005AD RID: 1453 RVA: 0x0001F556 File Offset: 0x0001D756
 	private string key
 	{
 		get
@@ -19,14 +19,14 @@ public class UISavedOption : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000612 RID: 1554 RVA: 0x00009798 File Offset: 0x00007998
+	// Token: 0x060005AE RID: 1454 RVA: 0x0001F57C File Offset: 0x0001D77C
 	private void Awake()
 	{
 		this.mList = base.GetComponent<UIPopupList>();
 		this.mCheck = base.GetComponent<UIToggle>();
 	}
 
-	// Token: 0x06000613 RID: 1555 RVA: 0x00075424 File Offset: 0x00073624
+	// Token: 0x060005AF RID: 1455 RVA: 0x0001F598 File Offset: 0x0001D798
 	private void OnEnable()
 	{
 		if (this.mList != null)
@@ -63,7 +63,7 @@ public class UISavedOption : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000614 RID: 1556 RVA: 0x0007551C File Offset: 0x0007371C
+	// Token: 0x060005B0 RID: 1456 RVA: 0x0001F690 File Offset: 0x0001D890
 	private void OnDisable()
 	{
 		if (this.mCheck != null)
@@ -92,24 +92,24 @@ public class UISavedOption : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000615 RID: 1557 RVA: 0x000097B2 File Offset: 0x000079B2
+	// Token: 0x060005B1 RID: 1457 RVA: 0x0001F745 File Offset: 0x0001D945
 	public void SaveSelection()
 	{
 		PlayerPrefs.SetString(this.key, UIPopupList.current.value);
 	}
 
-	// Token: 0x06000616 RID: 1558 RVA: 0x000097C9 File Offset: 0x000079C9
+	// Token: 0x060005B2 RID: 1458 RVA: 0x0001F75C File Offset: 0x0001D95C
 	public void SaveState()
 	{
 		PlayerPrefs.SetInt(this.key, UIToggle.current.value ? 1 : 0);
 	}
 
-	// Token: 0x04000474 RID: 1140
+	// Token: 0x040003C2 RID: 962
 	public string keyName;
 
-	// Token: 0x04000475 RID: 1141
+	// Token: 0x040003C3 RID: 963
 	private UIPopupList mList;
 
-	// Token: 0x04000476 RID: 1142
+	// Token: 0x040003C4 RID: 964
 	private UIToggle mCheck;
 }

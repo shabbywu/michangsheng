@@ -3,15 +3,15 @@ using System.Collections.Generic;
 
 namespace KBEngine
 {
-	// Token: 0x02000FA8 RID: 4008
+	// Token: 0x02000C23 RID: 3107
 	public class Message_Client_onCreatedProxies : Message
 	{
-		// Token: 0x06005F3D RID: 24381 RVA: 0x00042600 File Offset: 0x00040800
+		// Token: 0x060054FF RID: 21759 RVA: 0x002357A6 File Offset: 0x002339A6
 		public Message_Client_onCreatedProxies(ushort msgid, string msgname, short length, sbyte argstype, List<byte> msgargtypes) : base(msgid, msgname, length, argstype, msgargtypes)
 		{
 		}
 
-		// Token: 0x06005F3E RID: 24382 RVA: 0x00262E68 File Offset: 0x00261068
+		// Token: 0x06005500 RID: 21760 RVA: 0x00235BF4 File Offset: 0x00233DF4
 		public override void handleMessage(MemoryStream msgstream)
 		{
 			ulong rndUUID = msgstream.readUint64();

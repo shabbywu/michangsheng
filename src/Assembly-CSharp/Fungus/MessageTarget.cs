@@ -2,12 +2,12 @@
 
 namespace Fungus
 {
-	// Token: 0x0200127D RID: 4733
+	// Token: 0x02000E2C RID: 3628
 	public enum MessageTarget
 	{
-		// Token: 0x040064F0 RID: 25840
+		// Token: 0x040057AC RID: 22444
 		SameFlowchart,
-		// Token: 0x040064F1 RID: 25841
+		// Token: 0x040057AD RID: 22445
 		AllFlowcharts
 	}
 }

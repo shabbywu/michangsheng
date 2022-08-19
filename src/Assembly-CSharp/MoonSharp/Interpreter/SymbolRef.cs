@@ -4,11 +4,11 @@ using System.IO;
 
 namespace MoonSharp.Interpreter
 {
-	// Token: 0x02001070 RID: 4208
+	// Token: 0x02000CA3 RID: 3235
 	public class SymbolRef
 	{
-		// Token: 0x170008F4 RID: 2292
-		// (get) Token: 0x06006560 RID: 25952 RVA: 0x00045BC4 File Offset: 0x00043DC4
+		// Token: 0x17000699 RID: 1689
+		// (get) Token: 0x06005A76 RID: 23158 RVA: 0x002583AF File Offset: 0x002565AF
 		public SymbolRefType Type
 		{
 			get
@@ -17,8 +17,8 @@ namespace MoonSharp.Interpreter
 			}
 		}
 
-		// Token: 0x170008F5 RID: 2293
-		// (get) Token: 0x06006561 RID: 25953 RVA: 0x00045BCC File Offset: 0x00043DCC
+		// Token: 0x1700069A RID: 1690
+		// (get) Token: 0x06005A77 RID: 23159 RVA: 0x002583B7 File Offset: 0x002565B7
 		public int Index
 		{
 			get
@@ -27,8 +27,8 @@ namespace MoonSharp.Interpreter
 			}
 		}
 
-		// Token: 0x170008F6 RID: 2294
-		// (get) Token: 0x06006562 RID: 25954 RVA: 0x00045BD4 File Offset: 0x00043DD4
+		// Token: 0x1700069B RID: 1691
+		// (get) Token: 0x06005A78 RID: 23160 RVA: 0x002583BF File Offset: 0x002565BF
 		public string Name
 		{
 			get
@@ -37,8 +37,8 @@ namespace MoonSharp.Interpreter
 			}
 		}
 
-		// Token: 0x170008F7 RID: 2295
-		// (get) Token: 0x06006563 RID: 25955 RVA: 0x00045BDC File Offset: 0x00043DDC
+		// Token: 0x1700069C RID: 1692
+		// (get) Token: 0x06005A79 RID: 23161 RVA: 0x002583C7 File Offset: 0x002565C7
 		public SymbolRef Environment
 		{
 			get
@@ -47,8 +47,8 @@ namespace MoonSharp.Interpreter
 			}
 		}
 
-		// Token: 0x170008F8 RID: 2296
-		// (get) Token: 0x06006564 RID: 25956 RVA: 0x00045BE4 File Offset: 0x00043DE4
+		// Token: 0x1700069D RID: 1693
+		// (get) Token: 0x06005A7A RID: 23162 RVA: 0x002583CF File Offset: 0x002565CF
 		public static SymbolRef DefaultEnv
 		{
 			get
@@ -57,7 +57,7 @@ namespace MoonSharp.Interpreter
 			}
 		}
 
-		// Token: 0x06006565 RID: 25957 RVA: 0x00045BEB File Offset: 0x00043DEB
+		// Token: 0x06005A7B RID: 23163 RVA: 0x002583D6 File Offset: 0x002565D6
 		public static SymbolRef Global(string name, SymbolRef envSymbol)
 		{
 			return new SymbolRef
@@ -69,7 +69,7 @@ namespace MoonSharp.Interpreter
 			};
 		}
 
-		// Token: 0x06006566 RID: 25958 RVA: 0x00045C0E File Offset: 0x00043E0E
+		// Token: 0x06005A7C RID: 23164 RVA: 0x002583F9 File Offset: 0x002565F9
 		internal static SymbolRef Local(string name, int index)
 		{
 			return new SymbolRef
@@ -80,7 +80,7 @@ namespace MoonSharp.Interpreter
 			};
 		}
 
-		// Token: 0x06006567 RID: 25959 RVA: 0x00045C2A File Offset: 0x00043E2A
+		// Token: 0x06005A7D RID: 23165 RVA: 0x00258415 File Offset: 0x00256615
 		internal static SymbolRef Upvalue(string name, int index)
 		{
 			return new SymbolRef
@@ -91,7 +91,7 @@ namespace MoonSharp.Interpreter
 			};
 		}
 
-		// Token: 0x06006568 RID: 25960 RVA: 0x00282E98 File Offset: 0x00281098
+		// Token: 0x06005A7E RID: 23166 RVA: 0x00258434 File Offset: 0x00256634
 		public override string ToString()
 		{
 			if (this.i_Type == SymbolRefType.DefaultEnv)
@@ -105,7 +105,7 @@ namespace MoonSharp.Interpreter
 			return string.Format("{2} : {0}[{1}]", this.i_Type, this.i_Index, this.i_Name);
 		}
 
-		// Token: 0x06006569 RID: 25961 RVA: 0x00045C46 File Offset: 0x00043E46
+		// Token: 0x06005A7F RID: 23167 RVA: 0x002584A1 File Offset: 0x002566A1
 		internal void WriteBinary(BinaryWriter bw)
 		{
 			bw.Write((byte)this.i_Type);
@@ -113,7 +113,7 @@ namespace MoonSharp.Interpreter
 			bw.Write(this.i_Name);
 		}
 
-		// Token: 0x0600656A RID: 25962 RVA: 0x00045C6D File Offset: 0x00043E6D
+		// Token: 0x06005A80 RID: 23168 RVA: 0x002584C8 File Offset: 0x002566C8
 		internal static SymbolRef ReadBinary(BinaryReader br)
 		{
 			return new SymbolRef
@@ -124,7 +124,7 @@ namespace MoonSharp.Interpreter
 			};
 		}
 
-		// Token: 0x0600656B RID: 25963 RVA: 0x00045C98 File Offset: 0x00043E98
+		// Token: 0x06005A81 RID: 23169 RVA: 0x002584F3 File Offset: 0x002566F3
 		internal void WriteBinaryEnv(BinaryWriter bw, Dictionary<SymbolRef, int> symbolMap)
 		{
 			if (this.i_Env != null)
@@ -135,7 +135,7 @@ namespace MoonSharp.Interpreter
 			bw.Write(-1);
 		}
 
-		// Token: 0x0600656C RID: 25964 RVA: 0x00282F08 File Offset: 0x00281108
+		// Token: 0x06005A82 RID: 23170 RVA: 0x00258518 File Offset: 0x00256718
 		internal void ReadBinaryEnv(BinaryReader br, SymbolRef[] symbolRefs)
 		{
 			int num = br.ReadInt32();
@@ -145,22 +145,22 @@ namespace MoonSharp.Interpreter
 			}
 		}
 
-		// Token: 0x04005E4F RID: 24143
+		// Token: 0x04005280 RID: 21120
 		private static SymbolRef s_DefaultEnv = new SymbolRef
 		{
 			i_Type = SymbolRefType.DefaultEnv
 		};
 
-		// Token: 0x04005E50 RID: 24144
+		// Token: 0x04005281 RID: 21121
 		internal SymbolRefType i_Type;
 
-		// Token: 0x04005E51 RID: 24145
+		// Token: 0x04005282 RID: 21122
 		internal SymbolRef i_Env;
 
-		// Token: 0x04005E52 RID: 24146
+		// Token: 0x04005283 RID: 21123
 		internal int i_Index;
 
-		// Token: 0x04005E53 RID: 24147
+		// Token: 0x04005284 RID: 21124
 		internal string i_Name;
 	}
 }

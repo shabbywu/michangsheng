@@ -4,10 +4,10 @@ using UnityEngine;
 
 namespace EIU
 {
-	// Token: 0x02000E9B RID: 3739
+	// Token: 0x02000B27 RID: 2855
 	public class EasyInputUtility : MonoBehaviour
 	{
-		// Token: 0x060059B8 RID: 22968 RVA: 0x00249CD0 File Offset: 0x00247ED0
+		// Token: 0x06004F99 RID: 20377 RVA: 0x00219F18 File Offset: 0x00218118
 		private void Awake()
 		{
 			this.menu = Object.FindObjectOfType<EIU_ControlsMenu>();
@@ -28,7 +28,7 @@ namespace EIU
 			this.LoadAllAxes();
 		}
 
-		// Token: 0x060059B9 RID: 22969 RVA: 0x00249D44 File Offset: 0x00247F44
+		// Token: 0x06004F9A RID: 20378 RVA: 0x00219F8C File Offset: 0x0021818C
 		private void FixedUpdate()
 		{
 			for (int i = 0; i < this.Axes.Count; i++)
@@ -41,7 +41,7 @@ namespace EIU
 			}
 		}
 
-		// Token: 0x060059BA RID: 22970 RVA: 0x00249DDC File Offset: 0x00247FDC
+		// Token: 0x06004F9B RID: 20379 RVA: 0x0021A024 File Offset: 0x00218224
 		public float GetAxis(string name)
 		{
 			float result = 0f;
@@ -55,7 +55,7 @@ namespace EIU
 			return result;
 		}
 
-		// Token: 0x060059BB RID: 22971 RVA: 0x00249E34 File Offset: 0x00248034
+		// Token: 0x06004F9C RID: 20380 RVA: 0x0021A07C File Offset: 0x0021827C
 		public bool GetButton(string name)
 		{
 			bool result = false;
@@ -70,7 +70,7 @@ namespace EIU
 			return result;
 		}
 
-		// Token: 0x060059BC RID: 22972 RVA: 0x00249E9C File Offset: 0x0024809C
+		// Token: 0x06004F9D RID: 20381 RVA: 0x0021A0E4 File Offset: 0x002182E4
 		public bool GetButtonDown(string name)
 		{
 			bool result = false;
@@ -84,7 +84,7 @@ namespace EIU
 			return result;
 		}
 
-		// Token: 0x060059BD RID: 22973 RVA: 0x00249EF4 File Offset: 0x002480F4
+		// Token: 0x06004F9E RID: 20382 RVA: 0x0021A13C File Offset: 0x0021833C
 		private void LoadAllAxes()
 		{
 			for (int i = 0; i < this.Axes.Count; i++)
@@ -97,13 +97,13 @@ namespace EIU
 			}
 		}
 
-		// Token: 0x0400590C RID: 22796
+		// Token: 0x04004E95 RID: 20117
 		public static EasyInputUtility instance;
 
-		// Token: 0x0400590D RID: 22797
+		// Token: 0x04004E96 RID: 20118
 		private EIU_ControlsMenu menu;
 
-		// Token: 0x0400590E RID: 22798
+		// Token: 0x04004E97 RID: 20119
 		[Header("Define All Axes and Buttons Here")]
 		[Space(5f)]
 		public List<EIU_AxisBase> Axes = new List<EIU_AxisBase>();

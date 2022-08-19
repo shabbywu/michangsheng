@@ -5,11 +5,11 @@ using UnityEngine;
 
 namespace PaiMai
 {
-	// Token: 0x02000A6A RID: 2666
+	// Token: 0x02000718 RID: 1816
 	[Serializable]
 	public class PaiMaiAvatar
 	{
-		// Token: 0x060044B5 RID: 17589 RVA: 0x001D6944 File Offset: 0x001D4B44
+		// Token: 0x06003A26 RID: 14886 RVA: 0x0018F3AC File Offset: 0x0018D5AC
 		public PaiMaiAvatar(int id)
 		{
 			this.NpcId = id;
@@ -69,14 +69,14 @@ namespace PaiMai
 			this.ItemLevel = (this.Level - 1) / 3 + 1;
 		}
 
-		// Token: 0x060044B6 RID: 17590 RVA: 0x00031204 File Offset: 0x0002F404
+		// Token: 0x06003A27 RID: 14887 RVA: 0x0018F670 File Offset: 0x0018D870
 		public PaiMaiAvatar(string name)
 		{
 			this.Name = name;
 			this.IsPlayer = true;
 		}
 
-		// Token: 0x060044B7 RID: 17591 RVA: 0x001D6C08 File Offset: 0x001D4E08
+		// Token: 0x06003A28 RID: 14888 RVA: 0x0018F688 File Offset: 0x0018D888
 		public void ThinKCurShop()
 		{
 			int num = 0;
@@ -191,13 +191,13 @@ namespace PaiMai
 			}
 		}
 
-		// Token: 0x060044B8 RID: 17592 RVA: 0x0003121A File Offset: 0x0002F41A
+		// Token: 0x06003A29 RID: 14889 RVA: 0x0018FB48 File Offset: 0x0018DD48
 		private bool IsLikeItem()
 		{
 			return jsonData.instance.GetMonstarInterestingItem(this.NpcId, SingletonMono<PaiMaiUiMag>.Instance.CurShop.ShopId, null) > 0;
 		}
 
-		// Token: 0x060044B9 RID: 17593 RVA: 0x001D70C8 File Offset: 0x001D52C8
+		// Token: 0x06003A2A RID: 14890 RVA: 0x0018FB70 File Offset: 0x0018DD70
 		private bool IsNeedItem()
 		{
 			foreach (int item in SingletonMono<PaiMaiUiMag>.Instance.CurShop.TagList)
@@ -210,7 +210,7 @@ namespace PaiMai
 			return false;
 		}
 
-		// Token: 0x060044BA RID: 17594 RVA: 0x001D7134 File Offset: 0x001D5334
+		// Token: 0x06003A2B RID: 14891 RVA: 0x0018FBDC File Offset: 0x0018DDDC
 		private bool IsSuitableEquip()
 		{
 			foreach (int item in SingletonMono<PaiMaiUiMag>.Instance.CurShop.TagList)
@@ -223,13 +223,13 @@ namespace PaiMai
 			return false;
 		}
 
-		// Token: 0x060044BB RID: 17595 RVA: 0x00031242 File Offset: 0x0002F442
+		// Token: 0x06003A2C RID: 14892 RVA: 0x0018FC48 File Offset: 0x0018DE48
 		public void Select()
 		{
 			SingletonMono<PaiMaiUiMag>.Instance.SelectAvatarCallBack(this);
 		}
 
-		// Token: 0x060044BC RID: 17596 RVA: 0x001D71A0 File Offset: 0x001D53A0
+		// Token: 0x06003A2D RID: 14893 RVA: 0x0018FC58 File Offset: 0x0018DE58
 		public void AddMaxMoney(float precent)
 		{
 			int num = (int)((float)this.MaxPrice * precent);
@@ -255,60 +255,60 @@ namespace PaiMai
 			}
 		}
 
-		// Token: 0x04003CC3 RID: 15555
+		// Token: 0x04003238 RID: 12856
 		public int NpcId;
 
-		// Token: 0x04003CC4 RID: 15556
+		// Token: 0x04003239 RID: 12857
 		public string Name;
 
-		// Token: 0x04003CC5 RID: 15557
+		// Token: 0x0400323A RID: 12858
 		public string Title;
 
-		// Token: 0x04003CC6 RID: 15558
+		// Token: 0x0400323B RID: 12859
 		public int Money;
 
-		// Token: 0x04003CC7 RID: 15559
+		// Token: 0x0400323C RID: 12860
 		public int Level;
 
-		// Token: 0x04003CC8 RID: 15560
+		// Token: 0x0400323D RID: 12861
 		public int ItemLevel;
 
-		// Token: 0x04003CC9 RID: 15561
+		// Token: 0x0400323E RID: 12862
 		public int MaxPrice;
 
-		// Token: 0x04003CCA RID: 15562
+		// Token: 0x0400323F RID: 12863
 		public int ShenShi;
 
-		// Token: 0x04003CCB RID: 15563
+		// Token: 0x04003240 RID: 12864
 		public PaiMaiAvatar.StateType State;
 
-		// Token: 0x04003CCC RID: 15564
+		// Token: 0x04003241 RID: 12865
 		public List<int> NeedItemTagList;
 
-		// Token: 0x04003CCD RID: 15565
+		// Token: 0x04003242 RID: 12866
 		public List<int> SuitableEquipIdList;
 
-		// Token: 0x04003CCE RID: 15566
+		// Token: 0x04003243 RID: 12867
 		public bool IsPlayer;
 
-		// Token: 0x04003CCF RID: 15567
+		// Token: 0x04003244 RID: 12868
 		public AvatarUI UiCtr;
 
-		// Token: 0x04003CD0 RID: 15568
+		// Token: 0x04003245 RID: 12869
 		public bool CanSelect;
 
-		// Token: 0x02000A6B RID: 2667
+		// Token: 0x02001534 RID: 5428
 		public enum StateType
 		{
-			// Token: 0x04003CD2 RID: 15570
+			// Token: 0x04006EBF RID: 28351
 			放弃 = 1,
-			// Token: 0x04003CD3 RID: 15571
+			// Token: 0x04006EC0 RID: 28352
 			略感兴趣,
-			// Token: 0x04003CD4 RID: 15572
+			// Token: 0x04006EC1 RID: 28353
 			跃跃欲试,
-			// Token: 0x04003CD5 RID: 15573
+			// Token: 0x04006EC2 RID: 28354
 			势在必得,
-			// Token: 0x04003CD6 RID: 15574
+			// Token: 0x04006EC3 RID: 28355
 			所有状态
 		}
 	}

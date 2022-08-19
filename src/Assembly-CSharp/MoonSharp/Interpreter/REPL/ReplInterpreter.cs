@@ -2,27 +2,27 @@
 
 namespace MoonSharp.Interpreter.REPL
 {
-	// Token: 0x020010CF RID: 4303
+	// Token: 0x02000CF2 RID: 3314
 	public class ReplInterpreter
 	{
-		// Token: 0x060067CC RID: 26572 RVA: 0x000475F2 File Offset: 0x000457F2
+		// Token: 0x06005CB6 RID: 23734 RVA: 0x002618EC File Offset: 0x0025FAEC
 		public ReplInterpreter(Script script)
 		{
 			this.m_Script = script;
 		}
 
-		// Token: 0x1700094B RID: 2379
-		// (get) Token: 0x060067CD RID: 26573 RVA: 0x0004760C File Offset: 0x0004580C
-		// (set) Token: 0x060067CE RID: 26574 RVA: 0x00047614 File Offset: 0x00045814
+		// Token: 0x170006F0 RID: 1776
+		// (get) Token: 0x06005CB7 RID: 23735 RVA: 0x00261906 File Offset: 0x0025FB06
+		// (set) Token: 0x06005CB8 RID: 23736 RVA: 0x0026190E File Offset: 0x0025FB0E
 		public bool HandleDynamicExprs { get; set; }
 
-		// Token: 0x1700094C RID: 2380
-		// (get) Token: 0x060067CF RID: 26575 RVA: 0x0004761D File Offset: 0x0004581D
-		// (set) Token: 0x060067D0 RID: 26576 RVA: 0x00047625 File Offset: 0x00045825
+		// Token: 0x170006F1 RID: 1777
+		// (get) Token: 0x06005CB9 RID: 23737 RVA: 0x00261917 File Offset: 0x0025FB17
+		// (set) Token: 0x06005CBA RID: 23738 RVA: 0x0026191F File Offset: 0x0025FB1F
 		public bool HandleClassicExprsSyntax { get; set; }
 
-		// Token: 0x1700094D RID: 2381
-		// (get) Token: 0x060067D1 RID: 26577 RVA: 0x0004762E File Offset: 0x0004582E
+		// Token: 0x170006F2 RID: 1778
+		// (get) Token: 0x06005CBB RID: 23739 RVA: 0x00261928 File Offset: 0x0025FB28
 		public virtual bool HasPendingCommand
 		{
 			get
@@ -31,8 +31,8 @@ namespace MoonSharp.Interpreter.REPL
 			}
 		}
 
-		// Token: 0x1700094E RID: 2382
-		// (get) Token: 0x060067D2 RID: 26578 RVA: 0x0004763E File Offset: 0x0004583E
+		// Token: 0x170006F3 RID: 1779
+		// (get) Token: 0x06005CBC RID: 23740 RVA: 0x00261938 File Offset: 0x0025FB38
 		public virtual string CurrentPendingCommand
 		{
 			get
@@ -41,8 +41,8 @@ namespace MoonSharp.Interpreter.REPL
 			}
 		}
 
-		// Token: 0x1700094F RID: 2383
-		// (get) Token: 0x060067D3 RID: 26579 RVA: 0x00047646 File Offset: 0x00045846
+		// Token: 0x170006F4 RID: 1780
+		// (get) Token: 0x06005CBD RID: 23741 RVA: 0x00261940 File Offset: 0x0025FB40
 		public virtual string ClassicPrompt
 		{
 			get
@@ -55,7 +55,7 @@ namespace MoonSharp.Interpreter.REPL
 			}
 		}
 
-		// Token: 0x060067D4 RID: 26580 RVA: 0x0028AB2C File Offset: 0x00288D2C
+		// Token: 0x06005CBE RID: 23742 RVA: 0x00261958 File Offset: 0x0025FB58
 		public virtual DynValue Evaluate(string input)
 		{
 			bool flag = !this.HasPendingCommand;
@@ -111,10 +111,10 @@ namespace MoonSharp.Interpreter.REPL
 			return result;
 		}
 
-		// Token: 0x04005FC3 RID: 24515
+		// Token: 0x040053BF RID: 21439
 		private Script m_Script;
 
-		// Token: 0x04005FC4 RID: 24516
+		// Token: 0x040053C0 RID: 21440
 		private string m_CurrentCommand = string.Empty;
 	}
 }

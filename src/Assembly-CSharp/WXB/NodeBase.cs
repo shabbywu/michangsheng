@@ -4,10 +4,10 @@ using UnityEngine;
 
 namespace WXB
 {
-	// Token: 0x020009CD RID: 2509
+	// Token: 0x020006AC RID: 1708
 	public abstract class NodeBase
 	{
-		// Token: 0x06003FD5 RID: 16341 RVA: 0x0002DD77 File Offset: 0x0002BF77
+		// Token: 0x060035DF RID: 13791 RVA: 0x0017252A File Offset: 0x0017072A
 		public virtual void Reset(Owner o, Anchor hf)
 		{
 			this.d_bNewLine = false;
@@ -15,7 +15,7 @@ namespace WXB
 			this.formatting = hf;
 		}
 
-		// Token: 0x06003FD6 RID: 16342 RVA: 0x001BAC00 File Offset: 0x001B8E00
+		// Token: 0x060035E0 RID: 13792 RVA: 0x00172544 File Offset: 0x00170744
 		protected static float AlignedFormatting(Owner owner, Anchor formatting, float maxWidth, float curWidth)
 		{
 			if (formatting == Anchor.Null)
@@ -39,33 +39,33 @@ namespace WXB
 			return result;
 		}
 
-		// Token: 0x06003FD7 RID: 16343
+		// Token: 0x060035E1 RID: 13793
 		public abstract float getHeight();
 
-		// Token: 0x06003FD8 RID: 16344
+		// Token: 0x060035E2 RID: 13794
 		public abstract float getWidth();
 
-		// Token: 0x06003FD9 RID: 16345 RVA: 0x0002DD8E File Offset: 0x0002BF8E
+		// Token: 0x060035E3 RID: 13795 RVA: 0x001725A1 File Offset: 0x001707A1
 		public void setNewLine(bool line)
 		{
 			this.d_bNewLine = line;
 		}
 
-		// Token: 0x06003FDA RID: 16346 RVA: 0x0002DD97 File Offset: 0x0002BF97
+		// Token: 0x060035E4 RID: 13796 RVA: 0x001725AA File Offset: 0x001707AA
 		public bool isNewLine()
 		{
 			return this.d_bNewLine;
 		}
 
-		// Token: 0x06003FDB RID: 16347
+		// Token: 0x060035E5 RID: 13797
 		public abstract void render(float maxWidth, RenderCache cache, ref float x, ref uint yline, List<Line> lines, float offsetX, float offsetY);
 
-		// Token: 0x06003FDC RID: 16348 RVA: 0x000042DD File Offset: 0x000024DD
+		// Token: 0x060035E6 RID: 13798 RVA: 0x00004095 File Offset: 0x00002295
 		protected virtual void AlterX(ref float x, float maxWidth)
 		{
 		}
 
-		// Token: 0x06003FDD RID: 16349 RVA: 0x001BAC60 File Offset: 0x001B8E60
+		// Token: 0x060035E7 RID: 13799 RVA: 0x001725B4 File Offset: 0x001707B4
 		public virtual void fill(ref Vector2 currentpos, List<Line> lines, float maxWidth, float pixelsPerUnit)
 		{
 			List<NodeBase.Element> list;
@@ -110,7 +110,7 @@ namespace WXB
 			}
 		}
 
-		// Token: 0x06003FDE RID: 16350 RVA: 0x0002DD9F File Offset: 0x0002BF9F
+		// Token: 0x060035E8 RID: 13800 RVA: 0x001726F0 File Offset: 0x001708F0
 		protected virtual void UpdateWidthList(out List<NodeBase.Element> widths, float pixelsPerUnit)
 		{
 			NodeBase.TempElementList.Clear();
@@ -118,23 +118,23 @@ namespace WXB
 			widths = NodeBase.TempElementList;
 		}
 
-		// Token: 0x06003FDF RID: 16351 RVA: 0x000042DD File Offset: 0x000024DD
+		// Token: 0x060035E9 RID: 13801 RVA: 0x00004095 File Offset: 0x00002295
 		public virtual void onMouseEnter()
 		{
 		}
 
-		// Token: 0x06003FE0 RID: 16352 RVA: 0x000042DD File Offset: 0x000024DD
+		// Token: 0x060035EA RID: 13802 RVA: 0x00004095 File Offset: 0x00002295
 		public virtual void onMouseLeave()
 		{
 		}
 
-		// Token: 0x17000721 RID: 1825
-		// (get) Token: 0x06003FE1 RID: 16353 RVA: 0x0002DDC7 File Offset: 0x0002BFC7
-		// (set) Token: 0x06003FE2 RID: 16354 RVA: 0x0002DDCF File Offset: 0x0002BFCF
+		// Token: 0x170004F9 RID: 1273
+		// (get) Token: 0x060035EB RID: 13803 RVA: 0x00172718 File Offset: 0x00170918
+		// (set) Token: 0x060035EC RID: 13804 RVA: 0x00172720 File Offset: 0x00170920
 		public object userdata { get; set; }
 
-		// Token: 0x17000722 RID: 1826
-		// (get) Token: 0x06003FE3 RID: 16355 RVA: 0x001BAD9C File Offset: 0x001B8F9C
+		// Token: 0x170004FA RID: 1274
+		// (get) Token: 0x060035ED RID: 13805 RVA: 0x0017272C File Offset: 0x0017092C
 		public long keyPrefix
 		{
 			get
@@ -156,7 +156,7 @@ namespace WXB
 			}
 		}
 
-		// Token: 0x06003FE4 RID: 16356 RVA: 0x001BAE1C File Offset: 0x001B901C
+		// Token: 0x060035EE RID: 13806 RVA: 0x001727AC File Offset: 0x001709AC
 		public virtual void SetConfig(TextParser.Config c)
 		{
 			this.d_bBlink = c.isBlink;
@@ -171,7 +171,7 @@ namespace WXB
 			this.d_rectOffset.Set(0f, 0f, 0f, 0f);
 		}
 
-		// Token: 0x06003FE5 RID: 16357 RVA: 0x001BAE90 File Offset: 0x001B9090
+		// Token: 0x060035EF RID: 13807 RVA: 0x00172820 File Offset: 0x00170A20
 		public virtual void Release()
 		{
 			this.d_color = Color.white;
@@ -184,37 +184,37 @@ namespace WXB
 			this.userdata = null;
 		}
 
-		// Token: 0x0400390D RID: 14605
+		// Token: 0x04002F32 RID: 12082
 		public Owner owner;
 
-		// Token: 0x0400390E RID: 14606
+		// Token: 0x04002F33 RID: 12083
 		public Anchor formatting = Anchor.Null;
 
-		// Token: 0x0400390F RID: 14607
+		// Token: 0x04002F34 RID: 12084
 		protected static List<NodeBase.Element> TempElementList = new List<NodeBase.Element>();
 
-		// Token: 0x04003910 RID: 14608
+		// Token: 0x04002F35 RID: 12085
 		protected bool d_bNewLine;
 
-		// Token: 0x04003911 RID: 14609
+		// Token: 0x04002F36 RID: 12086
 		public bool d_bBlink;
 
-		// Token: 0x04003912 RID: 14610
+		// Token: 0x04002F37 RID: 12087
 		public bool d_bOffset;
 
-		// Token: 0x04003913 RID: 14611
+		// Token: 0x04002F38 RID: 12088
 		public Rect d_rectOffset;
 
-		// Token: 0x04003914 RID: 14612
+		// Token: 0x04002F39 RID: 12089
 		public Color d_color;
 
-		// Token: 0x04003915 RID: 14613
+		// Token: 0x04002F3A RID: 12090
 		public LineAlignment lineAlignment = LineAlignment.Default;
 
-		// Token: 0x020009CE RID: 2510
+		// Token: 0x02001507 RID: 5383
 		public struct Element
 		{
-			// Token: 0x06003FE8 RID: 16360 RVA: 0x001BAEF4 File Offset: 0x001B90F4
+			// Token: 0x060082CB RID: 33483 RVA: 0x002DC500 File Offset: 0x002DA700
 			public Element(List<float> ws)
 			{
 				this.widthList = ws;
@@ -225,15 +225,15 @@ namespace WXB
 				}
 			}
 
-			// Token: 0x06003FE9 RID: 16361 RVA: 0x0002DDFB File Offset: 0x0002BFFB
+			// Token: 0x060082CC RID: 33484 RVA: 0x002DC549 File Offset: 0x002DA749
 			public Element(float width)
 			{
 				this.totalWidth = width;
 				this.widthList = null;
 			}
 
-			// Token: 0x17000723 RID: 1827
-			// (get) Token: 0x06003FEA RID: 16362 RVA: 0x0002DE0B File Offset: 0x0002C00B
+			// Token: 0x17000B2F RID: 2863
+			// (get) Token: 0x060082CD RID: 33485 RVA: 0x002DC559 File Offset: 0x002DA759
 			public float totalwidth
 			{
 				get
@@ -242,8 +242,8 @@ namespace WXB
 				}
 			}
 
-			// Token: 0x17000724 RID: 1828
-			// (get) Token: 0x06003FEB RID: 16363 RVA: 0x0002DE13 File Offset: 0x0002C013
+			// Token: 0x17000B30 RID: 2864
+			// (get) Token: 0x060082CE RID: 33486 RVA: 0x002DC561 File Offset: 0x002DA761
 			public List<float> widths
 			{
 				get
@@ -252,8 +252,8 @@ namespace WXB
 				}
 			}
 
-			// Token: 0x17000725 RID: 1829
-			// (get) Token: 0x06003FEC RID: 16364 RVA: 0x0002DE1B File Offset: 0x0002C01B
+			// Token: 0x17000B31 RID: 2865
+			// (get) Token: 0x060082CF RID: 33487 RVA: 0x002DC569 File Offset: 0x002DA769
 			public int count
 			{
 				get
@@ -266,7 +266,7 @@ namespace WXB
 				}
 			}
 
-			// Token: 0x06003FED RID: 16365 RVA: 0x001BAF40 File Offset: 0x001B9140
+			// Token: 0x060082D0 RID: 33488 RVA: 0x002DC580 File Offset: 0x002DA780
 			public Vector2 Next(NodeBase n, Vector2 currentPos, List<Line> lines, float maxWidth, float height, Around round, float tw, ref bool currentLineContain)
 			{
 				if (currentPos.x != 0f)
@@ -311,7 +311,7 @@ namespace WXB
 				return currentPos;
 			}
 
-			// Token: 0x06003FEE RID: 16366 RVA: 0x001BB094 File Offset: 0x001B9294
+			// Token: 0x060082D1 RID: 33489 RVA: 0x002DC6D4 File Offset: 0x002DA8D4
 			private Vector2 Add(NodeBase n, Vector2 currentPos, float width, float maxWidth, List<Line> lines, float height, ref bool currentLineContain)
 			{
 				if (currentPos.x + width > maxWidth)
@@ -334,10 +334,10 @@ namespace WXB
 				return currentPos;
 			}
 
-			// Token: 0x04003917 RID: 14615
+			// Token: 0x04006E17 RID: 28183
 			private List<float> widthList;
 
-			// Token: 0x04003918 RID: 14616
+			// Token: 0x04006E18 RID: 28184
 			private float totalWidth;
 		}
 	}

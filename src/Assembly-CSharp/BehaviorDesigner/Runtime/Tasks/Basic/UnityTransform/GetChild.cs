@@ -3,12 +3,12 @@ using UnityEngine;
 
 namespace BehaviorDesigner.Runtime.Tasks.Basic.UnityTransform
 {
-	// Token: 0x020014DA RID: 5338
+	// Token: 0x02001020 RID: 4128
 	[TaskCategory("Basic/Transform")]
 	[TaskDescription("Stores the transform child at the specified index. Returns Success.")]
 	public class GetChild : Action
 	{
-		// Token: 0x06007F95 RID: 32661 RVA: 0x002CA4CC File Offset: 0x002C86CC
+		// Token: 0x0600719B RID: 29083 RVA: 0x002AC2FC File Offset: 0x002AA4FC
 		public override void OnStart()
 		{
 			GameObject defaultGameObject = base.GetDefaultGameObject(this.targetGameObject.Value);
@@ -19,7 +19,7 @@ namespace BehaviorDesigner.Runtime.Tasks.Basic.UnityTransform
 			}
 		}
 
-		// Token: 0x06007F96 RID: 32662 RVA: 0x000567CA File Offset: 0x000549CA
+		// Token: 0x0600719C RID: 29084 RVA: 0x002AC33C File Offset: 0x002AA53C
 		public override TaskStatus OnUpdate()
 		{
 			if (this.targetTransform == null)
@@ -31,7 +31,7 @@ namespace BehaviorDesigner.Runtime.Tasks.Basic.UnityTransform
 			return 2;
 		}
 
-		// Token: 0x06007F97 RID: 32663 RVA: 0x00056808 File Offset: 0x00054A08
+		// Token: 0x0600719D RID: 29085 RVA: 0x002AC37A File Offset: 0x002AA57A
 		public override void OnReset()
 		{
 			this.targetGameObject = null;
@@ -39,23 +39,23 @@ namespace BehaviorDesigner.Runtime.Tasks.Basic.UnityTransform
 			this.storeValue = null;
 		}
 
-		// Token: 0x04006C76 RID: 27766
+		// Token: 0x04005D76 RID: 23926
 		[Tooltip("The GameObject that the task operates on. If null the task GameObject is used.")]
 		public SharedGameObject targetGameObject;
 
-		// Token: 0x04006C77 RID: 27767
+		// Token: 0x04005D77 RID: 23927
 		[Tooltip("The index of the child")]
 		public SharedInt index;
 
-		// Token: 0x04006C78 RID: 27768
+		// Token: 0x04005D78 RID: 23928
 		[Tooltip("The child of the Transform")]
 		[RequiredField]
 		public SharedTransform storeValue;
 
-		// Token: 0x04006C79 RID: 27769
+		// Token: 0x04005D79 RID: 23929
 		private Transform targetTransform;
 
-		// Token: 0x04006C7A RID: 27770
+		// Token: 0x04005D7A RID: 23930
 		private GameObject prevGameObject;
 	}
 }

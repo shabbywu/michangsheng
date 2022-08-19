@@ -4,16 +4,16 @@ using UnityEngine;
 
 namespace UltimateSurvival
 {
-	// Token: 0x02000843 RID: 2115
+	// Token: 0x02000598 RID: 1432
 	public class CannibalSpawner : MonoBehaviour
 	{
-		// Token: 0x0600378F RID: 14223 RVA: 0x0002856D File Offset: 0x0002676D
+		// Token: 0x06002F13 RID: 12051 RVA: 0x001561C0 File Offset: 0x001543C0
 		private void Start()
 		{
 			this.m_SpawnPoints = GameObject.FindGameObjectsWithTag("Spawn Point");
 		}
 
-		// Token: 0x06003790 RID: 14224 RVA: 0x001A0A00 File Offset: 0x0019EC00
+		// Token: 0x06002F14 RID: 12052 RVA: 0x001561D4 File Offset: 0x001543D4
 		private void OnGUI()
 		{
 			if (!this.m_ShowGUI)
@@ -48,7 +48,7 @@ namespace UltimateSurvival
 			}
 		}
 
-		// Token: 0x06003791 RID: 14225 RVA: 0x001A0B98 File Offset: 0x0019ED98
+		// Token: 0x06002F15 RID: 12053 RVA: 0x0015636C File Offset: 0x0015456C
 		private void Update()
 		{
 			if (this.m_EnableSpawning && Time.time > this.m_LastUpdateTime && this.m_AliveCannibals.Count < this.m_MaxCount)
@@ -65,7 +65,7 @@ namespace UltimateSurvival
 			}
 		}
 
-		// Token: 0x06003792 RID: 14226 RVA: 0x001A0C38 File Offset: 0x0019EE38
+		// Token: 0x06002F16 RID: 12054 RVA: 0x0015640C File Offset: 0x0015460C
 		private void Spawn()
 		{
 			Transform transform = this.m_SpawnPoints[Random.Range(0, this.m_SpawnPoints.Length)].transform;
@@ -81,56 +81,56 @@ namespace UltimateSurvival
 			}
 		}
 
-		// Token: 0x06003793 RID: 14227 RVA: 0x0002857F File Offset: 0x0002677F
+		// Token: 0x06002F17 RID: 12055 RVA: 0x001564C7 File Offset: 0x001546C7
 		private void On_CannibalDeath(EntityEventHandler cannibal)
 		{
 			this.m_AliveCannibals.Remove(cannibal);
 		}
 
-		// Token: 0x040031A5 RID: 12709
+		// Token: 0x0400295E RID: 10590
 		[SerializeField]
 		private bool m_ShowGUI = true;
 
-		// Token: 0x040031A6 RID: 12710
+		// Token: 0x0400295F RID: 10591
 		[SerializeField]
 		private bool m_EnableSpawning = true;
 
-		// Token: 0x040031A7 RID: 12711
+		// Token: 0x04002960 RID: 10592
 		[SerializeField]
 		[Space]
 		[Clamp(0f, 99f)]
 		private int m_MaxCount = 20;
 
-		// Token: 0x040031A8 RID: 12712
+		// Token: 0x04002961 RID: 10593
 		[SerializeField]
 		private CannibalSpawner.SpawnMode m_SpawnMode;
 
-		// Token: 0x040031A9 RID: 12713
+		// Token: 0x04002962 RID: 10594
 		[SerializeField]
 		[Clamp(3f, 120f)]
 		private float m_SpawnInterval = 30f;
 
-		// Token: 0x040031AA RID: 12714
+		// Token: 0x04002963 RID: 10595
 		[SerializeField]
 		private GameObject[] m_Prefabs;
 
-		// Token: 0x040031AB RID: 12715
+		// Token: 0x04002964 RID: 10596
 		private float m_LastUpdateTime;
 
-		// Token: 0x040031AC RID: 12716
+		// Token: 0x04002965 RID: 10597
 		private GameObject[] m_SpawnPoints;
 
-		// Token: 0x040031AD RID: 12717
+		// Token: 0x04002966 RID: 10598
 		private List<EntityEventHandler> m_AliveCannibals = new List<EntityEventHandler>();
 
-		// Token: 0x02000844 RID: 2116
+		// Token: 0x02001495 RID: 5269
 		public enum SpawnMode
 		{
-			// Token: 0x040031AF RID: 12719
+			// Token: 0x04006C8A RID: 27786
 			AtNight,
-			// Token: 0x040031B0 RID: 12720
+			// Token: 0x04006C8B RID: 27787
 			AtDaytime,
-			// Token: 0x040031B1 RID: 12721
+			// Token: 0x04006C8C RID: 27788
 			AllDay
 		}
 	}

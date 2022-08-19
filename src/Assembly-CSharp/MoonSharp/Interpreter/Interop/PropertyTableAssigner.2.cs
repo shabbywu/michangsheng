@@ -7,10 +7,10 @@ using MoonSharp.Interpreter.Interop.Converters;
 
 namespace MoonSharp.Interpreter.Interop
 {
-	// Token: 0x020010F5 RID: 4341
+	// Token: 0x02000D11 RID: 3345
 	public class PropertyTableAssigner : IPropertyTableAssigner
 	{
-		// Token: 0x060068CC RID: 26828 RVA: 0x0028BDCC File Offset: 0x00289FCC
+		// Token: 0x06005D9D RID: 23965 RVA: 0x00263170 File Offset: 0x00261370
 		public PropertyTableAssigner(Type type, params string[] expectedMissingProperties)
 		{
 			this.m_Type = type;
@@ -36,13 +36,13 @@ namespace MoonSharp.Interpreter.Interop
 			}
 		}
 
-		// Token: 0x060068CD RID: 26829 RVA: 0x00047DB8 File Offset: 0x00045FB8
+		// Token: 0x06005D9E RID: 23966 RVA: 0x0026329C File Offset: 0x0026149C
 		public void AddExpectedMissingProperty(string name)
 		{
 			this.m_PropertyMap.Add(name, null);
 		}
 
-		// Token: 0x060068CE RID: 26830 RVA: 0x0028BEF8 File Offset: 0x0028A0F8
+		// Token: 0x06005D9F RID: 23967 RVA: 0x002632AC File Offset: 0x002614AC
 		private bool TryAssignProperty(object obj, string name, DynValue value)
 		{
 			if (this.m_PropertyMap.ContainsKey(name))
@@ -71,7 +71,7 @@ namespace MoonSharp.Interpreter.Interop
 			return false;
 		}
 
-		// Token: 0x060068CF RID: 26831 RVA: 0x0028BFA4 File Offset: 0x0028A1A4
+		// Token: 0x06005DA0 RID: 23968 RVA: 0x00263358 File Offset: 0x00261558
 		private void AssignProperty(object obj, string name, DynValue value)
 		{
 			if (this.TryAssignProperty(obj, name, value))
@@ -96,7 +96,7 @@ namespace MoonSharp.Interpreter.Interop
 			});
 		}
 
-		// Token: 0x060068D0 RID: 26832 RVA: 0x0028C00C File Offset: 0x0028A20C
+		// Token: 0x06005DA1 RID: 23969 RVA: 0x002633C0 File Offset: 0x002615C0
 		public void AssignObject(object obj, Table data)
 		{
 			if (obj == null)
@@ -120,7 +120,7 @@ namespace MoonSharp.Interpreter.Interop
 			}
 		}
 
-		// Token: 0x060068D1 RID: 26833 RVA: 0x0028C0E8 File Offset: 0x0028A2E8
+		// Token: 0x06005DA2 RID: 23970 RVA: 0x0026349C File Offset: 0x0026169C
 		public void SetSubassignerForType(Type propertyType, IPropertyTableAssigner assigner)
 		{
 			if (Framework.Do.IsAbstract(propertyType) || Framework.Do.IsGenericType(propertyType) || Framework.Do.IsInterface(propertyType) || Framework.Do.IsValueType(propertyType))
@@ -130,19 +130,19 @@ namespace MoonSharp.Interpreter.Interop
 			this.m_SubAssigners[propertyType] = assigner;
 		}
 
-		// Token: 0x060068D2 RID: 26834 RVA: 0x00047DC7 File Offset: 0x00045FC7
+		// Token: 0x06005DA3 RID: 23971 RVA: 0x002634F5 File Offset: 0x002616F5
 		void IPropertyTableAssigner.AssignObjectUnchecked(object obj, Table data)
 		{
 			this.AssignObject(obj, data);
 		}
 
-		// Token: 0x04005FFA RID: 24570
+		// Token: 0x040053E3 RID: 21475
 		private Type m_Type;
 
-		// Token: 0x04005FFB RID: 24571
+		// Token: 0x040053E4 RID: 21476
 		private Dictionary<string, PropertyInfo> m_PropertyMap = new Dictionary<string, PropertyInfo>();
 
-		// Token: 0x04005FFC RID: 24572
+		// Token: 0x040053E5 RID: 21477
 		private Dictionary<Type, IPropertyTableAssigner> m_SubAssigners = new Dictionary<Type, IPropertyTableAssigner>();
 	}
 }

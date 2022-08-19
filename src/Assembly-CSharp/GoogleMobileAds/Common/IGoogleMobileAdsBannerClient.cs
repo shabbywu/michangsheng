@@ -3,22 +3,22 @@ using GoogleMobileAds.Api;
 
 namespace GoogleMobileAds.Common
 {
-	// Token: 0x02000E78 RID: 3704
+	// Token: 0x02000B0C RID: 2828
 	internal interface IGoogleMobileAdsBannerClient
 	{
-		// Token: 0x060058BF RID: 22719
+		// Token: 0x06004ECB RID: 20171
 		void CreateBannerView(string adUnitId, AdSize adSize, AdPosition position);
 
-		// Token: 0x060058C0 RID: 22720
+		// Token: 0x06004ECC RID: 20172
 		void LoadAd(AdRequest request);
 
-		// Token: 0x060058C1 RID: 22721
+		// Token: 0x06004ECD RID: 20173
 		void ShowBannerView();
 
-		// Token: 0x060058C2 RID: 22722
+		// Token: 0x06004ECE RID: 20174
 		void HideBannerView();
 
-		// Token: 0x060058C3 RID: 22723
+		// Token: 0x06004ECF RID: 20175
 		void DestroyBannerView();
 	}
 }

@@ -2,10 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-// Token: 0x020002B8 RID: 696
+// Token: 0x020001BA RID: 442
 public static class ColorEx
 {
-	// Token: 0x06001515 RID: 5397 RVA: 0x000BE158 File Offset: 0x000BC358
+	// Token: 0x0600126A RID: 4714 RVA: 0x00070798 File Offset: 0x0006E998
 	public static string ColorToString(this Color color)
 	{
 		string str = ((int)(color.r * 255f)).ToString("X");
@@ -15,7 +15,7 @@ public static class ColorEx
 		return str + str2 + str3 + str4;
 	}
 
-	// Token: 0x04001030 RID: 4144
+	// Token: 0x04000D08 RID: 3336
 	public static List<Color> ItemQualityColor = new List<Color>
 	{
 		new Color(0.84705883f, 0.84705883f, 0.7921569f),

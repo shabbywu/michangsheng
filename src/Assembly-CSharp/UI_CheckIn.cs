@@ -3,36 +3,36 @@ using KBEngine;
 using UnityEngine;
 using UnityEngine.UI;
 
-// Token: 0x020005B4 RID: 1460
+// Token: 0x02000404 RID: 1028
 public class UI_CheckIn : ScrollList
 {
-	// Token: 0x060024D9 RID: 9433 RVA: 0x0001D991 File Offset: 0x0001BB91
+	// Token: 0x06002127 RID: 8487 RVA: 0x000E7E4C File Offset: 0x000E604C
 	private void Start()
 	{
 		this.close();
 		Event.registerOut("getCheckInList", this, "getCheckInList");
 	}
 
-	// Token: 0x060024DA RID: 9434 RVA: 0x0001429C File Offset: 0x0001249C
+	// Token: 0x06002128 RID: 8488 RVA: 0x000826BE File Offset: 0x000808BE
 	private void OnDestroy()
 	{
 		Event.deregisterOut(this);
 	}
 
-	// Token: 0x060024DB RID: 9435 RVA: 0x0001D9AA File Offset: 0x0001BBAA
+	// Token: 0x06002129 RID: 8489 RVA: 0x000E7E65 File Offset: 0x000E6065
 	public void open()
 	{
 		this.chcekinUI.SetActive(true);
 		this.getCheckInList(1);
 	}
 
-	// Token: 0x060024DC RID: 9436 RVA: 0x0001D9BF File Offset: 0x0001BBBF
+	// Token: 0x0600212A RID: 8490 RVA: 0x000E7E7A File Offset: 0x000E607A
 	public void close()
 	{
 		this.chcekinUI.SetActive(false);
 	}
 
-	// Token: 0x060024DD RID: 9437 RVA: 0x0001D9CD File Offset: 0x0001BBCD
+	// Token: 0x0600212B RID: 8491 RVA: 0x000E7E88 File Offset: 0x000E6088
 	public void Checkbutton()
 	{
 		if (this.chcekinUI.activeInHierarchy)
@@ -43,13 +43,13 @@ public class UI_CheckIn : ScrollList
 		this.open();
 	}
 
-	// Token: 0x060024DE RID: 9438 RVA: 0x0001D9E9 File Offset: 0x0001BBE9
+	// Token: 0x0600212C RID: 8492 RVA: 0x000E7EA4 File Offset: 0x000E60A4
 	public void setCheckInList(ITEM_INFO_LIST infos)
 	{
 		base.setList<UI_CheckinBtn>(infos);
 	}
 
-	// Token: 0x060024DF RID: 9439 RVA: 0x00129B48 File Offset: 0x00127D48
+	// Token: 0x0600212D RID: 8493 RVA: 0x000E7EB0 File Offset: 0x000E60B0
 	public void CheckIn()
 	{
 		Account account = (Account)KBEngineApp.app.player();
@@ -60,7 +60,7 @@ public class UI_CheckIn : ScrollList
 		}
 	}
 
-	// Token: 0x060024E0 RID: 9440 RVA: 0x00129B88 File Offset: 0x00127D88
+	// Token: 0x0600212E RID: 8494 RVA: 0x000E7EF0 File Offset: 0x000E60F0
 	public override void setItemButton(GameObject button, int index)
 	{
 		base.setItemButton(button, index);
@@ -77,7 +77,7 @@ public class UI_CheckIn : ScrollList
 		}
 	}
 
-	// Token: 0x060024E1 RID: 9441 RVA: 0x00129C24 File Offset: 0x00127E24
+	// Token: 0x0600212F RID: 8495 RVA: 0x000E7F8C File Offset: 0x000E618C
 	public void getCheckInList(int type)
 	{
 		ITEM_INFO_LIST item_INFO_LIST = new ITEM_INFO_LIST();
@@ -89,7 +89,7 @@ public class UI_CheckIn : ScrollList
 			{
 				ITEM_INFO item_INFO = new ITEM_INFO();
 				item_INFO.UUID = (ulong)jsonobject["id"].n;
-				item_INFO.itemId = (int)jsonobject["checkinId"].n;
+				item_INFO.itemId = jsonobject["checkinId"].I;
 				item_INFO.itemCount = (uint)jsonobject["checkincount"].n;
 				item_INFO.itemIndex = 0;
 				item_INFO_LIST.values.Add(item_INFO);
@@ -99,7 +99,7 @@ public class UI_CheckIn : ScrollList
 		this.nowType = type;
 	}
 
-	// Token: 0x060024E2 RID: 9442 RVA: 0x00129CF4 File Offset: 0x00127EF4
+	// Token: 0x06002130 RID: 8496 RVA: 0x000E8058 File Offset: 0x000E6258
 	public override void clenrNowBtn()
 	{
 		foreach (object obj in this.UIList.transform)
@@ -112,18 +112,18 @@ public class UI_CheckIn : ScrollList
 		}
 	}
 
-	// Token: 0x060024E3 RID: 9443 RVA: 0x0001D9F2 File Offset: 0x0001BBF2
+	// Token: 0x06002131 RID: 8497 RVA: 0x000E80C8 File Offset: 0x000E62C8
 	public void closeItmeUI()
 	{
 		UI_HOMESCENE.instense.ItemCheckIn.SetActive(false);
 	}
 
-	// Token: 0x04001F91 RID: 8081
+	// Token: 0x04001AD5 RID: 6869
 	public GameObject chcekinUI;
 
-	// Token: 0x04001F92 RID: 8082
+	// Token: 0x04001AD6 RID: 6870
 	public int nowType = 1;
 
-	// Token: 0x04001F93 RID: 8083
+	// Token: 0x04001AD7 RID: 6871
 	public GameObject Item_CheckIn;
 }

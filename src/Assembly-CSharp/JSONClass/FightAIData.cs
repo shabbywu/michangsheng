@@ -3,10 +3,10 @@ using System.Collections.Generic;
 
 namespace JSONClass
 {
-	// Token: 0x02000BD0 RID: 3024
+	// Token: 0x0200083F RID: 2111
 	public class FightAIData : IJSONClass
 	{
-		// Token: 0x06004AA8 RID: 19112 RVA: 0x001F953C File Offset: 0x001F773C
+		// Token: 0x06003F0E RID: 16142 RVA: 0x001AECC4 File Offset: 0x001ACEC4
 		public static void InitDataDict()
 		{
 			foreach (JSONObject jsonobject in jsonData.instance.FightAIData.list)
@@ -39,24 +39,24 @@ namespace JSONClass
 			}
 		}
 
-		// Token: 0x06004AA9 RID: 19113 RVA: 0x000042DD File Offset: 0x000024DD
+		// Token: 0x06003F0F RID: 16143 RVA: 0x00004095 File Offset: 0x00002295
 		private static void OnInitFinish()
 		{
 		}
 
-		// Token: 0x04004660 RID: 18016
+		// Token: 0x04003AF2 RID: 15090
 		public static Dictionary<int, FightAIData> DataDict = new Dictionary<int, FightAIData>();
 
-		// Token: 0x04004661 RID: 18017
+		// Token: 0x04003AF3 RID: 15091
 		public static List<FightAIData> DataList = new List<FightAIData>();
 
-		// Token: 0x04004662 RID: 18018
+		// Token: 0x04003AF4 RID: 15092
 		public static Action OnInitFinishAction = new Action(FightAIData.OnInitFinish);
 
-		// Token: 0x04004663 RID: 18019
+		// Token: 0x04003AF5 RID: 15093
 		public int id;
 
-		// Token: 0x04004664 RID: 18020
+		// Token: 0x04003AF6 RID: 15094
 		public List<int> ShunXu = new List<int>();
 	}
 }

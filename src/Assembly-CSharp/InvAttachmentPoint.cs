@@ -1,11 +1,11 @@
 ﻿using System;
 using UnityEngine;
 
-// Token: 0x0200004B RID: 75
+// Token: 0x02000038 RID: 56
 [AddComponentMenu("NGUI/Examples/Item Attachment Point")]
 public class InvAttachmentPoint : MonoBehaviour
 {
-	// Token: 0x06000469 RID: 1129 RVA: 0x0006E610 File Offset: 0x0006C810
+	// Token: 0x06000421 RID: 1057 RVA: 0x0001703C File Offset: 0x0001523C
 	public GameObject Attach(GameObject prefab)
 	{
 		if (this.mPrefab != prefab)
@@ -29,12 +29,12 @@ public class InvAttachmentPoint : MonoBehaviour
 		return this.mChild;
 	}
 
-	// Token: 0x04000293 RID: 659
+	// Token: 0x0400024D RID: 589
 	public InvBaseItem.Slot slot;
 
-	// Token: 0x04000294 RID: 660
+	// Token: 0x0400024E RID: 590
 	private GameObject mPrefab;
 
-	// Token: 0x04000295 RID: 661
+	// Token: 0x0400024F RID: 591
 	private GameObject mChild;
 }

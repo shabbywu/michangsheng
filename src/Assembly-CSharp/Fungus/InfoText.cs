@@ -3,16 +3,16 @@ using UnityEngine;
 
 namespace Fungus
 {
-	// Token: 0x02001399 RID: 5017
+	// Token: 0x02000EF7 RID: 3831
 	public class InfoText : MonoBehaviour
 	{
-		// Token: 0x06007985 RID: 31109 RVA: 0x00052F83 File Offset: 0x00051183
+		// Token: 0x06006BE0 RID: 27616 RVA: 0x0029733B File Offset: 0x0029553B
 		protected virtual void OnGUI()
 		{
 			GUI.Label(new Rect(0f, 0f, (float)(Screen.width / 2), (float)Screen.height), this.info);
 		}
 
-		// Token: 0x04006938 RID: 26936
+		// Token: 0x04005ACC RID: 23244
 		[Tooltip("The information text to display")]
 		[TextArea(20, 20)]
 		[SerializeField]

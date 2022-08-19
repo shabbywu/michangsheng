@@ -3,12 +3,12 @@ using UnityEngine;
 
 namespace Fungus
 {
-	// Token: 0x02001242 RID: 4674
+	// Token: 0x02000DFA RID: 3578
 	[CommandInfo("Math", "MinMax", "Command to store the min or max of 2 values", 0)]
 	[AddComponentMenu("")]
 	public class MinMax : Command
 	{
-		// Token: 0x060071C2 RID: 29122 RVA: 0x002A6A78 File Offset: 0x002A4C78
+		// Token: 0x06006534 RID: 25908 RVA: 0x002824AC File Offset: 0x002806AC
 		public override void OnEnter()
 		{
 			MinMax.Function function = this.function;
@@ -26,7 +26,7 @@ namespace Fungus
 			this.Continue();
 		}
 
-		// Token: 0x060071C3 RID: 29123 RVA: 0x002A6AEC File Offset: 0x002A4CEC
+		// Token: 0x06006535 RID: 25909 RVA: 0x00282520 File Offset: 0x00280720
 		public override string GetSummary()
 		{
 			return string.Concat(new string[]
@@ -42,41 +42,41 @@ namespace Fungus
 			});
 		}
 
-		// Token: 0x060071C4 RID: 29124 RVA: 0x0004D54C File Offset: 0x0004B74C
+		// Token: 0x06006536 RID: 25910 RVA: 0x002825D3 File Offset: 0x002807D3
 		public override bool HasReference(Variable variable)
 		{
 			return this.inLHSValue.floatRef == variable || this.inRHSValue.floatRef == variable || this.outValue.floatRef == variable;
 		}
 
-		// Token: 0x060071C5 RID: 29125 RVA: 0x0004C5E0 File Offset: 0x0004A7E0
+		// Token: 0x06006537 RID: 25911 RVA: 0x0027D3DB File Offset: 0x0027B5DB
 		public override Color GetButtonColor()
 		{
 			return new Color32(235, 191, 217, byte.MaxValue);
 		}
 
-		// Token: 0x04006421 RID: 25633
+		// Token: 0x04005703 RID: 22275
 		[Tooltip("Min Or Max")]
 		[SerializeField]
 		protected MinMax.Function function;
 
-		// Token: 0x04006422 RID: 25634
+		// Token: 0x04005704 RID: 22276
 		[SerializeField]
 		protected FloatData inLHSValue;
 
-		// Token: 0x04006423 RID: 25635
+		// Token: 0x04005705 RID: 22277
 		[SerializeField]
 		protected FloatData inRHSValue;
 
-		// Token: 0x04006424 RID: 25636
+		// Token: 0x04005706 RID: 22278
 		[SerializeField]
 		protected FloatData outValue;
 
-		// Token: 0x02001243 RID: 4675
+		// Token: 0x020016BC RID: 5820
 		public enum Function
 		{
-			// Token: 0x04006426 RID: 25638
+			// Token: 0x0400737A RID: 29562
 			Min,
-			// Token: 0x04006427 RID: 25639
+			// Token: 0x0400737B RID: 29563
 			Max
 		}
 	}

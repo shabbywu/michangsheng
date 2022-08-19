@@ -4,12 +4,12 @@ using Fungus;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-// Token: 0x02000352 RID: 850
+// Token: 0x02000236 RID: 566
 [CommandInfo("YSNPCJiaoHu", "获取当前地图类型", "获取当前地图类型，赋值到TmpValue", 0)]
 [AddComponentMenu("")]
 public class CmdGetMapType : Command
 {
-	// Token: 0x060018C8 RID: 6344 RVA: 0x000DDC9C File Offset: 0x000DBE9C
+	// Token: 0x06001610 RID: 5648 RVA: 0x00095678 File Offset: 0x00093878
 	private static void Init()
 	{
 		if (!CmdGetMapType.isInited)
@@ -22,7 +22,7 @@ public class CmdGetMapType : Command
 		}
 	}
 
-	// Token: 0x060018C9 RID: 6345 RVA: 0x000DDD28 File Offset: 0x000DBF28
+	// Token: 0x06001611 RID: 5649 RVA: 0x00095704 File Offset: 0x00093904
 	public override void OnEnter()
 	{
 		CmdGetMapType.Init();
@@ -39,9 +39,9 @@ public class CmdGetMapType : Command
 		this.Continue();
 	}
 
-	// Token: 0x040013BC RID: 5052
+	// Token: 0x04001064 RID: 4196
 	private static bool isInited;
 
-	// Token: 0x040013BD RID: 5053
+	// Token: 0x04001065 RID: 4197
 	private static Dictionary<string, int> MapTypeDict = new Dictionary<string, int>();
 }

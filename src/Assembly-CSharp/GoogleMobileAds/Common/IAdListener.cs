@@ -2,25 +2,25 @@
 
 namespace GoogleMobileAds.Common
 {
-	// Token: 0x02000E77 RID: 3703
+	// Token: 0x02000B0B RID: 2827
 	internal interface IAdListener
 	{
-		// Token: 0x060058B9 RID: 22713
+		// Token: 0x06004EC5 RID: 20165
 		void FireAdLoaded();
 
-		// Token: 0x060058BA RID: 22714
+		// Token: 0x06004EC6 RID: 20166
 		void FireAdFailedToLoad(string message);
 
-		// Token: 0x060058BB RID: 22715
+		// Token: 0x06004EC7 RID: 20167
 		void FireAdOpened();
 
-		// Token: 0x060058BC RID: 22716
+		// Token: 0x06004EC8 RID: 20168
 		void FireAdClosing();
 
-		// Token: 0x060058BD RID: 22717
+		// Token: 0x06004EC9 RID: 20169
 		void FireAdClosed();
 
-		// Token: 0x060058BE RID: 22718
+		// Token: 0x06004ECA RID: 20170
 		void FireAdLeftApplication();
 	}
 }

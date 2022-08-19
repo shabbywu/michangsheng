@@ -7,10 +7,10 @@ using UnityEngine.UI;
 
 namespace YSGame.Fight
 {
-	// Token: 0x02000DFD RID: 3581
+	// Token: 0x02000ABF RID: 2751
 	public class UIFightCenterTip : MonoBehaviour
 	{
-		// Token: 0x06005664 RID: 22116 RVA: 0x00240634 File Offset: 0x0023E834
+		// Token: 0x06004D15 RID: 19733 RVA: 0x0020FE64 File Offset: 0x0020E064
 		public void ShowYiSan(int count)
 		{
 			this.YiSanCountText.text = count.ToString();
@@ -28,7 +28,7 @@ namespace YSGame.Fight
 			}
 		}
 
-		// Token: 0x06005665 RID: 22117 RVA: 0x0003DBD6 File Offset: 0x0003BDD6
+		// Token: 0x06004D16 RID: 19734 RVA: 0x0020FEC4 File Offset: 0x0020E0C4
 		public void ShowNormalTip(string tip)
 		{
 			this.NormalTipText.text = tip;
@@ -41,7 +41,7 @@ namespace YSGame.Fight
 			this.ShowTip();
 		}
 
-		// Token: 0x06005666 RID: 22118 RVA: 0x0003DC16 File Offset: 0x0003BE16
+		// Token: 0x06004D17 RID: 19735 RVA: 0x0020FF04 File Offset: 0x0020E104
 		private void ShowTip()
 		{
 			this.isShow = true;
@@ -49,7 +49,7 @@ namespace YSGame.Fight
 			TweenSettingsExtensions.SetEase<TweenerCore<Vector2, Vector2, VectorOptions>>(DOTweenModuleUI.DOAnchorPos(this.Move, Vector2.zero, 0.5f, false), 18);
 		}
 
-		// Token: 0x06005667 RID: 22119 RVA: 0x0003DC53 File Offset: 0x0003BE53
+		// Token: 0x06004D18 RID: 19736 RVA: 0x0020FF41 File Offset: 0x0020E141
 		public void HideTip()
 		{
 			if (this.isShow)
@@ -59,28 +59,28 @@ namespace YSGame.Fight
 			}
 		}
 
-		// Token: 0x04005609 RID: 22025
+		// Token: 0x04004C2F RID: 19503
 		public RectTransform Move;
 
-		// Token: 0x0400560A RID: 22026
+		// Token: 0x04004C30 RID: 19504
 		public RectTransform StartPoint;
 
-		// Token: 0x0400560B RID: 22027
+		// Token: 0x04004C31 RID: 19505
 		public RectTransform EndPoint;
 
-		// Token: 0x0400560C RID: 22028
+		// Token: 0x04004C32 RID: 19506
 		public GameObject YiSanObj;
 
-		// Token: 0x0400560D RID: 22029
+		// Token: 0x04004C33 RID: 19507
 		public Text YiSanCountText;
 
-		// Token: 0x0400560E RID: 22030
+		// Token: 0x04004C34 RID: 19508
 		public Text NormalTipText;
 
-		// Token: 0x0400560F RID: 22031
+		// Token: 0x04004C35 RID: 19509
 		private bool isYiSan;
 
-		// Token: 0x04005610 RID: 22032
+		// Token: 0x04004C36 RID: 19510
 		private bool isShow;
 	}
 }

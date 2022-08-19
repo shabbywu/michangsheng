@@ -6,27 +6,27 @@ using UnityEngine.Events;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-// Token: 0x0200038F RID: 911
+// Token: 0x02000276 RID: 630
 public class UINPCQingJiao : MonoBehaviour, IESCClose
 {
-	// Token: 0x060019AD RID: 6573 RVA: 0x000042DD File Offset: 0x000024DD
+	// Token: 0x060016FB RID: 5883 RVA: 0x00004095 File Offset: 0x00002295
 	private void Start()
 	{
 	}
 
-	// Token: 0x060019AE RID: 6574 RVA: 0x000161D8 File Offset: 0x000143D8
+	// Token: 0x060016FC RID: 5884 RVA: 0x0009C52B File Offset: 0x0009A72B
 	private void Update()
 	{
 		this.AutoHide();
 	}
 
-	// Token: 0x060019AF RID: 6575 RVA: 0x000E2284 File Offset: 0x000E0484
+	// Token: 0x060016FD RID: 5885 RVA: 0x0009C534 File Offset: 0x0009A734
 	public bool CanShow()
 	{
 		return !UINPCJiaoHu.AllShouldHide && (!(PanelMamager.inst != null) || !(PanelMamager.inst.UISceneGameObject == null)) && (!(PanelMamager.inst != null) || PanelMamager.inst.nowPanel == PanelMamager.PanelType.空);
 	}
 
-	// Token: 0x060019B0 RID: 6576 RVA: 0x000161E0 File Offset: 0x000143E0
+	// Token: 0x060016FE RID: 5886 RVA: 0x0009C588 File Offset: 0x0009A788
 	private void AutoHide()
 	{
 		if (!this.CanShow())
@@ -35,7 +35,7 @@ public class UINPCQingJiao : MonoBehaviour, IESCClose
 		}
 	}
 
-	// Token: 0x060019B1 RID: 6577 RVA: 0x000E3B88 File Offset: 0x000E1D88
+	// Token: 0x060016FF RID: 5887 RVA: 0x0009C59C File Offset: 0x0009A79C
 	public void RefreshUI()
 	{
 		UINPCQingJiao.<>c__DisplayClass36_0 CS$<>8__locals1 = new UINPCQingJiao.<>c__DisplayClass36_0();
@@ -128,6 +128,13 @@ public class UINPCQingJiao : MonoBehaviour, IESCClose
 						}
 					}
 				}
+				foreach (UINPCQingJiaoSkillData.SData sdata in this.npc.ExQingJiaoStaticSkills)
+				{
+					if (!list2.Contains(sdata) && sdata.Quality == CS$<>8__locals2.level)
+					{
+						list2.Add(sdata);
+					}
+				}
 				using (List<UINPCQingJiaoSkillData.SData>.Enumerator enumerator3 = list2.GetEnumerator())
 				{
 					while (enumerator3.MoveNext())
@@ -215,15 +222,15 @@ public class UINPCQingJiao : MonoBehaviour, IESCClose
 							USelectBox.Show("是否确定请教此功法？", action, null);
 						}));
 					}
-					goto IL_8B1;
+					goto IL_965;
 				}
-				goto IL_5D0;
+				goto IL_62A;
 			}
-			goto IL_5D0;
-			IL_8B1:
+			goto IL_62A;
+			IL_965:
 			i++;
 			continue;
-			IL_5D0:
+			IL_62A:
 			List<UINPCQingJiaoSkillData.SData> list3 = new List<UINPCQingJiaoSkillData.SData>();
 			foreach (UINPCQingJiaoSkillData uinpcqingJiaoSkillData2 in list)
 			{
@@ -245,6 +252,13 @@ public class UINPCQingJiao : MonoBehaviour, IESCClose
 							list3.Add(d);
 						}
 					}
+				}
+			}
+			foreach (UINPCQingJiaoSkillData.SData sdata2 in this.npc.ExQingJiaoSkills)
+			{
+				if (!list3.Contains(sdata2) && sdata2.Quality == CS$<>8__locals2.level)
+				{
+					list3.Add(sdata2);
 				}
 			}
 			using (List<UINPCQingJiaoSkillData.SData>.Enumerator enumerator3 = list3.GetEnumerator())
@@ -335,11 +349,11 @@ public class UINPCQingJiao : MonoBehaviour, IESCClose
 					}));
 				}
 			}
-			goto IL_8B1;
+			goto IL_965;
 		}
 	}
 
-	// Token: 0x060019B2 RID: 6578 RVA: 0x000E4500 File Offset: 0x000E2700
+	// Token: 0x06001700 RID: 5888 RVA: 0x0009CFF8 File Offset: 0x0009B1F8
 	private void Init()
 	{
 		if (!this.inited)
@@ -363,7 +377,7 @@ public class UINPCQingJiao : MonoBehaviour, IESCClose
 		}
 	}
 
-	// Token: 0x060019B3 RID: 6579 RVA: 0x000E4614 File Offset: 0x000E2814
+	// Token: 0x06001701 RID: 5889 RVA: 0x0009D10C File Offset: 0x0009B30C
 	public void OnShenTongBtnClick()
 	{
 		if (this.nowType != 1)
@@ -379,7 +393,7 @@ public class UINPCQingJiao : MonoBehaviour, IESCClose
 		}
 	}
 
-	// Token: 0x060019B4 RID: 6580 RVA: 0x000E46A0 File Offset: 0x000E28A0
+	// Token: 0x06001702 RID: 5890 RVA: 0x0009D198 File Offset: 0x0009B398
 	public void OnGongFaBtnClick()
 	{
 		if (this.nowType != 0)
@@ -395,7 +409,7 @@ public class UINPCQingJiao : MonoBehaviour, IESCClose
 		}
 	}
 
-	// Token: 0x060019B5 RID: 6581 RVA: 0x000E4728 File Offset: 0x000E2928
+	// Token: 0x06001703 RID: 5891 RVA: 0x0009D220 File Offset: 0x0009B420
 	public void ClearChild(RectTransform t)
 	{
 		List<GameObject> list = new List<GameObject>();
@@ -413,107 +427,107 @@ public class UINPCQingJiao : MonoBehaviour, IESCClose
 		}
 	}
 
-	// Token: 0x060019B6 RID: 6582 RVA: 0x000161F4 File Offset: 0x000143F4
+	// Token: 0x06001704 RID: 5892 RVA: 0x0009D2A8 File Offset: 0x0009B4A8
 	public bool TryEscClose()
 	{
 		UINPCJiaoHu.Inst.HideNPCQingJiaoPanel();
 		return true;
 	}
 
-	// Token: 0x040014DA RID: 5338
+	// Token: 0x04001189 RID: 4489
 	private UINPCData npc;
 
-	// Token: 0x040014DB RID: 5339
+	// Token: 0x0400118A RID: 4490
 	private bool inited;
 
-	// Token: 0x040014DC RID: 5340
+	// Token: 0x0400118B RID: 4491
 	public List<RectTransform> RTList = new List<RectTransform>();
 
-	// Token: 0x040014DD RID: 5341
+	// Token: 0x0400118C RID: 4492
 	public Image ShenTongBtnImage;
 
-	// Token: 0x040014DE RID: 5342
+	// Token: 0x0400118D RID: 4493
 	public Image GongFaBtnImage;
 
-	// Token: 0x040014DF RID: 5343
+	// Token: 0x0400118E RID: 4494
 	public Image ShenTongBtnIconImage;
 
-	// Token: 0x040014E0 RID: 5344
+	// Token: 0x0400118F RID: 4495
 	public Image GongFaBtnIconImage;
 
-	// Token: 0x040014E1 RID: 5345
+	// Token: 0x04001190 RID: 4496
 	public Text ShenTongBtnText;
 
-	// Token: 0x040014E2 RID: 5346
+	// Token: 0x04001191 RID: 4497
 	public Text GongFaBtnText;
 
-	// Token: 0x040014E3 RID: 5347
+	// Token: 0x04001192 RID: 4498
 	public Sprite ShenTongTabSprite;
 
-	// Token: 0x040014E4 RID: 5348
+	// Token: 0x04001193 RID: 4499
 	public Sprite ShenTongLoseSprite;
 
-	// Token: 0x040014E5 RID: 5349
+	// Token: 0x04001194 RID: 4500
 	public Sprite GongFaTabSprite;
 
-	// Token: 0x040014E6 RID: 5350
+	// Token: 0x04001195 RID: 4501
 	public Sprite GongFaLoseSprite;
 
-	// Token: 0x040014E7 RID: 5351
+	// Token: 0x04001196 RID: 4502
 	public Sprite TabBGSprite;
 
-	// Token: 0x040014E8 RID: 5352
+	// Token: 0x04001197 RID: 4503
 	public Sprite TabBGLoseSprite;
 
-	// Token: 0x040014E9 RID: 5353
+	// Token: 0x04001198 RID: 4504
 	public Text ShuXiText;
 
-	// Token: 0x040014EA RID: 5354
+	// Token: 0x04001199 RID: 4505
 	public Text YouShanText;
 
-	// Token: 0x040014EB RID: 5355
+	// Token: 0x0400119A RID: 4506
 	public Text QinMiText;
 
-	// Token: 0x040014EC RID: 5356
+	// Token: 0x0400119B RID: 4507
 	public Text QingFenText;
 
-	// Token: 0x040014ED RID: 5357
+	// Token: 0x0400119C RID: 4508
 	public Image ShuXiLockImage;
 
-	// Token: 0x040014EE RID: 5358
+	// Token: 0x0400119D RID: 4509
 	public Image YouShanLockImage;
 
-	// Token: 0x040014EF RID: 5359
+	// Token: 0x0400119E RID: 4510
 	public Image QinMiLockImage;
 
-	// Token: 0x040014F0 RID: 5360
+	// Token: 0x0400119F RID: 4511
 	private Color TabColor = new Color(0.972549f, 0.84705883f, 0.6392157f);
 
-	// Token: 0x040014F1 RID: 5361
+	// Token: 0x040011A0 RID: 4512
 	private Color TabLoseColor = new Color(0.28235295f, 0.58431375f, 0.5686275f);
 
-	// Token: 0x040014F2 RID: 5362
+	// Token: 0x040011A1 RID: 4513
 	private Color TextColor1 = new Color(0.49411765f, 0.88235295f, 0.8509804f);
 
-	// Token: 0x040014F3 RID: 5363
+	// Token: 0x040011A2 RID: 4514
 	private Color TextColor2 = new Color(0.47843137f, 0.39215687f, 0.2901961f);
 
-	// Token: 0x040014F4 RID: 5364
+	// Token: 0x040011A3 RID: 4515
 	public GameObject FavorShuXi;
 
-	// Token: 0x040014F5 RID: 5365
+	// Token: 0x040011A4 RID: 4516
 	public GameObject FavorYouShan;
 
-	// Token: 0x040014F6 RID: 5366
+	// Token: 0x040011A5 RID: 4517
 	public GameObject FavorQinMi;
 
-	// Token: 0x040014F7 RID: 5367
+	// Token: 0x040011A6 RID: 4518
 	public GameObject IconPrefab;
 
-	// Token: 0x040014F8 RID: 5368
+	// Token: 0x040011A7 RID: 4519
 	private int nowType;
 
-	// Token: 0x040014F9 RID: 5369
+	// Token: 0x040011A8 RID: 4520
 	private static Dictionary<int, int> FavorDict = new Dictionary<int, int>
 	{
 		{
@@ -530,9 +544,9 @@ public class UINPCQingJiao : MonoBehaviour, IESCClose
 		}
 	};
 
-	// Token: 0x040014FA RID: 5370
+	// Token: 0x040011A9 RID: 4521
 	private static List<UINPCQingJiaoSkillData> SkillDataList = new List<UINPCQingJiaoSkillData>();
 
-	// Token: 0x040014FB RID: 5371
+	// Token: 0x040011AA RID: 4522
 	private static Dictionary<int, Dictionary<int, UINPCQingJiaoSkillData>> QJSkillDict = new Dictionary<int, Dictionary<int, UINPCQingJiaoSkillData>>();
 }

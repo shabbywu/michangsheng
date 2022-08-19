@@ -4,22 +4,22 @@ using UnityEngine;
 
 namespace EpicToonFX
 {
-	// Token: 0x02000E94 RID: 3732
+	// Token: 0x02000B22 RID: 2850
 	public class ETFXLoopScript : MonoBehaviour
 	{
-		// Token: 0x060059A2 RID: 22946 RVA: 0x0003FA0C File Offset: 0x0003DC0C
+		// Token: 0x06004F89 RID: 20361 RVA: 0x00219AC2 File Offset: 0x00217CC2
 		private void Start()
 		{
 			this.PlayEffect();
 		}
 
-		// Token: 0x060059A3 RID: 22947 RVA: 0x0003FA14 File Offset: 0x0003DC14
+		// Token: 0x06004F8A RID: 20362 RVA: 0x00219ACA File Offset: 0x00217CCA
 		public void PlayEffect()
 		{
 			base.StartCoroutine("EffectLoop");
 		}
 
-		// Token: 0x060059A4 RID: 22948 RVA: 0x0003FA22 File Offset: 0x0003DC22
+		// Token: 0x06004F8B RID: 20363 RVA: 0x00219AD8 File Offset: 0x00217CD8
 		private IEnumerator EffectLoop()
 		{
 			GameObject effectPlayer = Object.Instantiate<GameObject>(this.chosenEffect, base.transform.position, base.transform.rotation);
@@ -37,17 +37,17 @@ namespace EpicToonFX
 			yield break;
 		}
 
-		// Token: 0x040058ED RID: 22765
+		// Token: 0x04004E7D RID: 20093
 		public GameObject chosenEffect;
 
-		// Token: 0x040058EE RID: 22766
+		// Token: 0x04004E7E RID: 20094
 		public float loopTimeLimit = 2f;
 
-		// Token: 0x040058EF RID: 22767
+		// Token: 0x04004E7F RID: 20095
 		[Header("Spawn without")]
 		public bool spawnWithoutLight = true;
 
-		// Token: 0x040058F0 RID: 22768
+		// Token: 0x04004E80 RID: 20096
 		public bool spawnWithoutSound = true;
 	}
 }

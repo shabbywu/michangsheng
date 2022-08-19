@@ -2,10 +2,10 @@
 using UnityEngine;
 using UnityEngine.Events;
 
-// Token: 0x020004EC RID: 1260
+// Token: 0x02000370 RID: 880
 public class AtrCallBack : MonoBehaviour
 {
-	// Token: 0x060020D9 RID: 8409 RVA: 0x0001B15C File Offset: 0x0001935C
+	// Token: 0x06001D78 RID: 7544 RVA: 0x000D046D File Offset: 0x000CE66D
 	private void OnEnable()
 	{
 		if (!this._isInit)
@@ -22,15 +22,15 @@ public class AtrCallBack : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060020DA RID: 8410 RVA: 0x0001B196 File Offset: 0x00019396
+	// Token: 0x06001D79 RID: 7545 RVA: 0x000D04A7 File Offset: 0x000CE6A7
 	public void SetAction(UnityAction action)
 	{
 		this._action = action;
 	}
 
-	// Token: 0x04001C58 RID: 7256
+	// Token: 0x0400180D RID: 6157
 	private bool _isInit;
 
-	// Token: 0x04001C59 RID: 7257
+	// Token: 0x0400180E RID: 6158
 	private UnityAction _action;
 }

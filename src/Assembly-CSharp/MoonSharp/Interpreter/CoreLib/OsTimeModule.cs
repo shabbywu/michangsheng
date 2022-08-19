@@ -4,11 +4,11 @@ using System.Text;
 
 namespace MoonSharp.Interpreter.CoreLib
 {
-	// Token: 0x0200119B RID: 4507
+	// Token: 0x02000D7F RID: 3455
 	[MoonSharpModule(Namespace = "os")]
 	public class OsTimeModule
 	{
-		// Token: 0x06006E3B RID: 28219 RVA: 0x0029C7D0 File Offset: 0x0029A9D0
+		// Token: 0x06006218 RID: 25112 RVA: 0x00276614 File Offset: 0x00274814
 		private static DynValue GetUnixTime(DateTime dateTime, DateTime? epoch = null)
 		{
 			double totalSeconds = (dateTime - (epoch ?? OsTimeModule.Epoch)).TotalSeconds;
@@ -19,21 +19,21 @@ namespace MoonSharp.Interpreter.CoreLib
 			return DynValue.NewNumber(totalSeconds);
 		}
 
-		// Token: 0x06006E3C RID: 28220 RVA: 0x0029C820 File Offset: 0x0029AA20
+		// Token: 0x06006219 RID: 25113 RVA: 0x00276664 File Offset: 0x00274864
 		private static DateTime FromUnixTime(double unixtime)
 		{
 			TimeSpan t = TimeSpan.FromSeconds(unixtime);
 			return OsTimeModule.Epoch + t;
 		}
 
-		// Token: 0x06006E3D RID: 28221 RVA: 0x0004B2AD File Offset: 0x000494AD
+		// Token: 0x0600621A RID: 25114 RVA: 0x00276683 File Offset: 0x00274883
 		[MoonSharpModuleMethod]
 		public static DynValue clock(ScriptExecutionContext executionContext, CallbackArguments args)
 		{
 			return OsTimeModule.GetUnixTime(DateTime.UtcNow, new DateTime?(OsTimeModule.Time0));
 		}
 
-		// Token: 0x06006E3E RID: 28222 RVA: 0x0029C840 File Offset: 0x0029AA40
+		// Token: 0x0600621B RID: 25115 RVA: 0x0027669C File Offset: 0x0027489C
 		[MoonSharpModuleMethod]
 		public static DynValue difftime(ScriptExecutionContext executionContext, CallbackArguments args)
 		{
@@ -46,7 +46,7 @@ namespace MoonSharp.Interpreter.CoreLib
 			return DynValue.NewNumber(dynValue.Number - dynValue2.Number);
 		}
 
-		// Token: 0x06006E3F RID: 28223 RVA: 0x0029C894 File Offset: 0x0029AA94
+		// Token: 0x0600621C RID: 25116 RVA: 0x002766F0 File Offset: 0x002748F0
 		[MoonSharpModuleMethod]
 		public static DynValue time(ScriptExecutionContext executionContext, CallbackArguments args)
 		{
@@ -62,7 +62,7 @@ namespace MoonSharp.Interpreter.CoreLib
 			return OsTimeModule.GetUnixTime(dateTime, null);
 		}
 
-		// Token: 0x06006E40 RID: 28224 RVA: 0x0029C8E4 File Offset: 0x0029AAE4
+		// Token: 0x0600621D RID: 25117 RVA: 0x00276740 File Offset: 0x00274940
 		private static DateTime ParseTimeTable(Table t)
 		{
 			int second = OsTimeModule.GetTimeTableField(t, "sec") ?? 0;
@@ -86,7 +86,7 @@ namespace MoonSharp.Interpreter.CoreLib
 			return new DateTime(timeTableField3.Value, timeTableField2.Value, timeTableField.Value, hour, minute, second);
 		}
 
-		// Token: 0x06006E41 RID: 28225 RVA: 0x0029C9D4 File Offset: 0x0029ABD4
+		// Token: 0x0600621E RID: 25118 RVA: 0x00276830 File Offset: 0x00274A30
 		private static int? GetTimeTableField(Table t, string key)
 		{
 			double? num = t.Get(key).CastToNumber();
@@ -97,7 +97,7 @@ namespace MoonSharp.Interpreter.CoreLib
 			return null;
 		}
 
-		// Token: 0x06006E42 RID: 28226 RVA: 0x0029CA10 File Offset: 0x0029AC10
+		// Token: 0x0600621F RID: 25119 RVA: 0x0027686C File Offset: 0x00274A6C
 		[MoonSharpModuleMethod]
 		public static DynValue date(ScriptExecutionContext executionContext, CallbackArguments args)
 		{
@@ -142,7 +142,7 @@ namespace MoonSharp.Interpreter.CoreLib
 			return DynValue.NewString(OsTimeModule.StrFTime(text, dateTime));
 		}
 
-		// Token: 0x06006E43 RID: 28227 RVA: 0x0029CBB4 File Offset: 0x0029ADB4
+		// Token: 0x06006220 RID: 25120 RVA: 0x00276A10 File Offset: 0x00274C10
 		private static string StrFTime(string format, DateTime d)
 		{
 			Dictionary<char, string> dictionary = new Dictionary<char, string>
@@ -342,10 +342,10 @@ namespace MoonSharp.Interpreter.CoreLib
 			return stringBuilder.ToString();
 		}
 
-		// Token: 0x04006254 RID: 25172
+		// Token: 0x04005591 RID: 21905
 		private static DateTime Time0 = DateTime.UtcNow;
 
-		// Token: 0x04006255 RID: 25173
+		// Token: 0x04005592 RID: 21906
 		private static DateTime Epoch = new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc);
 	}
 }

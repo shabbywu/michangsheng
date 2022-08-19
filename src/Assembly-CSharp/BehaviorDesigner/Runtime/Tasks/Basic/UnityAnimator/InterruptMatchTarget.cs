@@ -3,12 +3,12 @@ using UnityEngine;
 
 namespace BehaviorDesigner.Runtime.Tasks.Basic.UnityAnimator
 {
-	// Token: 0x02001652 RID: 5714
+	// Token: 0x02001193 RID: 4499
 	[TaskCategory("Basic/Animator")]
 	[TaskDescription("Interrupts the automatic target matching. Returns Success.")]
 	public class InterruptMatchTarget : Action
 	{
-		// Token: 0x060084D9 RID: 34009 RVA: 0x002D00C0 File Offset: 0x002CE2C0
+		// Token: 0x060076DF RID: 30431 RVA: 0x002B7870 File Offset: 0x002B5A70
 		public override void OnStart()
 		{
 			GameObject defaultGameObject = base.GetDefaultGameObject(this.targetGameObject.Value);
@@ -19,7 +19,7 @@ namespace BehaviorDesigner.Runtime.Tasks.Basic.UnityAnimator
 			}
 		}
 
-		// Token: 0x060084DA RID: 34010 RVA: 0x0005C0BC File Offset: 0x0005A2BC
+		// Token: 0x060076E0 RID: 30432 RVA: 0x002B78B0 File Offset: 0x002B5AB0
 		public override TaskStatus OnUpdate()
 		{
 			if (this.animator == null)
@@ -31,25 +31,25 @@ namespace BehaviorDesigner.Runtime.Tasks.Basic.UnityAnimator
 			return 2;
 		}
 
-		// Token: 0x060084DB RID: 34011 RVA: 0x0005C0EA File Offset: 0x0005A2EA
+		// Token: 0x060076E1 RID: 30433 RVA: 0x002B78DE File Offset: 0x002B5ADE
 		public override void OnReset()
 		{
 			this.targetGameObject = null;
 			this.completeMatch = true;
 		}
 
-		// Token: 0x04007187 RID: 29063
+		// Token: 0x04006264 RID: 25188
 		[Tooltip("The GameObject that the task operates on. If null the task GameObject is used.")]
 		public SharedGameObject targetGameObject;
 
-		// Token: 0x04007188 RID: 29064
+		// Token: 0x04006265 RID: 25189
 		[Tooltip("CompleteMatch will make the gameobject match the target completely at the next frame")]
 		public bool completeMatch = true;
 
-		// Token: 0x04007189 RID: 29065
+		// Token: 0x04006266 RID: 25190
 		private Animator animator;
 
-		// Token: 0x0400718A RID: 29066
+		// Token: 0x04006267 RID: 25191
 		private GameObject prevGameObject;
 	}
 }

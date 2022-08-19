@@ -3,10 +3,10 @@ using UnityEngine;
 
 namespace UltimateSurvival
 {
-	// Token: 0x020008B6 RID: 2230
+	// Token: 0x020005E6 RID: 1510
 	public class FPBow : FPWeaponBase
 	{
-		// Token: 0x06003968 RID: 14696 RVA: 0x001A547C File Offset: 0x001A367C
+		// Token: 0x06003096 RID: 12438 RVA: 0x0015BB58 File Offset: 0x00159D58
 		public override bool TryAttackOnce(Camera camera)
 		{
 			if (!base.Player.Aim.Active || Time.time < this.m_NextTimeCanShoot)
@@ -21,14 +21,14 @@ namespace UltimateSurvival
 			return true;
 		}
 
-		// Token: 0x06003969 RID: 14697 RVA: 0x00029A50 File Offset: 0x00027C50
+		// Token: 0x06003097 RID: 12439 RVA: 0x0015BBD2 File Offset: 0x00159DD2
 		protected override void Awake()
 		{
 			base.Awake();
 			base.Player.Aim.AddStartTryer(new TryerDelegate(this.OnTryStart_Aim));
 		}
 
-		// Token: 0x0600396A RID: 14698 RVA: 0x00029A74 File Offset: 0x00027C74
+		// Token: 0x06003098 RID: 12440 RVA: 0x0015BBF6 File Offset: 0x00159DF6
 		private bool OnTryStart_Aim()
 		{
 			bool flag = Time.time > this.m_NextTimeCanShoot || !base.IsEnabled;
@@ -39,7 +39,7 @@ namespace UltimateSurvival
 			return flag;
 		}
 
-		// Token: 0x0600396B RID: 14699 RVA: 0x001A54F8 File Offset: 0x001A36F8
+		// Token: 0x06003099 RID: 12441 RVA: 0x0015BC34 File Offset: 0x00159E34
 		private void SpawnArrow(Camera camera)
 		{
 			if (!this.m_ArrowPrefab)
@@ -76,43 +76,43 @@ namespace UltimateSurvival
 			}
 		}
 
-		// Token: 0x0400337D RID: 13181
+		// Token: 0x04002AB6 RID: 10934
 		[Header("Bow Setup")]
 		[SerializeField]
 		private LayerMask m_Mask;
 
-		// Token: 0x0400337E RID: 13182
+		// Token: 0x04002AB7 RID: 10935
 		[SerializeField]
 		private float m_MaxDistance = 50f;
 
-		// Token: 0x0400337F RID: 13183
+		// Token: 0x04002AB8 RID: 10936
 		[Header("Bow Settings")]
 		[SerializeField]
 		private float m_MinTimeBetweenShots = 1f;
 
-		// Token: 0x04003380 RID: 13184
+		// Token: 0x04002AB9 RID: 10937
 		[Header("Arrow")]
 		[SerializeField]
 		private ShaftedProjectile m_ArrowPrefab;
 
-		// Token: 0x04003381 RID: 13185
+		// Token: 0x04002ABA RID: 10938
 		[SerializeField]
 		private Vector3 m_SpawnOffset;
 
-		// Token: 0x04003382 RID: 13186
+		// Token: 0x04002ABB RID: 10939
 		[Header("Audio")]
 		[SerializeField]
 		private AudioSource m_AudioSource;
 
-		// Token: 0x04003383 RID: 13187
+		// Token: 0x04002ABC RID: 10940
 		[SerializeField]
 		private SoundPlayer m_ReleaseAudio;
 
-		// Token: 0x04003384 RID: 13188
+		// Token: 0x04002ABD RID: 10941
 		[SerializeField]
 		private SoundPlayer m_StretchAudio;
 
-		// Token: 0x04003385 RID: 13189
+		// Token: 0x04002ABE RID: 10942
 		private float m_NextTimeCanShoot;
 	}
 }

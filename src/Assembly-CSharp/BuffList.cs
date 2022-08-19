@@ -1,15 +1,15 @@
 ﻿using System;
 using UnityEngine;
 
-// Token: 0x02000609 RID: 1545
+// Token: 0x02000450 RID: 1104
 public class BuffList : MonoBehaviour
 {
-	// Token: 0x06002694 RID: 9876 RVA: 0x000042DD File Offset: 0x000024DD
+	// Token: 0x060022DD RID: 8925 RVA: 0x00004095 File Offset: 0x00002295
 	private void Start()
 	{
 	}
 
-	// Token: 0x06002695 RID: 9877 RVA: 0x000042DD File Offset: 0x000024DD
+	// Token: 0x060022DE RID: 8926 RVA: 0x00004095 File Offset: 0x00002295
 	private void Update()
 	{
 	}

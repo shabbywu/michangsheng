@@ -3,10 +3,10 @@ using System.Collections.Generic;
 
 namespace JSONClass
 {
-	// Token: 0x02000C47 RID: 3143
+	// Token: 0x020008B9 RID: 2233
 	public class NTaskAllType : IJSONClass
 	{
-		// Token: 0x06004C85 RID: 19589 RVA: 0x00205708 File Offset: 0x00203908
+		// Token: 0x060040F7 RID: 16631 RVA: 0x001BCB14 File Offset: 0x001BAD14
 		public static void InitDataDict()
 		{
 			foreach (JSONObject jsonobject in jsonData.instance.NTaskAllType.list)
@@ -49,54 +49,54 @@ namespace JSONClass
 			}
 		}
 
-		// Token: 0x06004C86 RID: 19590 RVA: 0x000042DD File Offset: 0x000024DD
+		// Token: 0x060040F8 RID: 16632 RVA: 0x00004095 File Offset: 0x00002295
 		private static void OnInitFinish()
 		{
 		}
 
-		// Token: 0x04004B01 RID: 19201
+		// Token: 0x04003FAD RID: 16301
 		public static Dictionary<int, NTaskAllType> DataDict = new Dictionary<int, NTaskAllType>();
 
-		// Token: 0x04004B02 RID: 19202
+		// Token: 0x04003FAE RID: 16302
 		public static List<NTaskAllType> DataList = new List<NTaskAllType>();
 
-		// Token: 0x04004B03 RID: 19203
+		// Token: 0x04003FAF RID: 16303
 		public static Action OnInitFinishAction = new Action(NTaskAllType.OnInitFinish);
 
-		// Token: 0x04004B04 RID: 19204
+		// Token: 0x04003FB0 RID: 16304
 		public int Id;
 
-		// Token: 0x04004B05 RID: 19205
+		// Token: 0x04003FB1 RID: 16305
 		public int CD;
 
-		// Token: 0x04004B06 RID: 19206
+		// Token: 0x04003FB2 RID: 16306
 		public int shili;
 
-		// Token: 0x04004B07 RID: 19207
+		// Token: 0x04003FB3 RID: 16307
 		public int GeRen;
 
-		// Token: 0x04004B08 RID: 19208
+		// Token: 0x04003FB4 RID: 16308
 		public int menpaihuobi;
 
-		// Token: 0x04004B09 RID: 19209
+		// Token: 0x04003FB5 RID: 16309
 		public int Type;
 
-		// Token: 0x04004B0A RID: 19210
+		// Token: 0x04003FB6 RID: 16310
 		public string name;
 
-		// Token: 0x04004B0B RID: 19211
+		// Token: 0x04003FB7 RID: 16311
 		public string ZongMiaoShu;
 
-		// Token: 0x04004B0C RID: 19212
+		// Token: 0x04003FB8 RID: 16312
 		public string jiaofurenwu;
 
-		// Token: 0x04004B0D RID: 19213
+		// Token: 0x04003FB9 RID: 16313
 		public string jiaofudidian;
 
-		// Token: 0x04004B0E RID: 19214
+		// Token: 0x04003FBA RID: 16314
 		public List<int> XiangXiID = new List<int>();
 
-		// Token: 0x04004B0F RID: 19215
+		// Token: 0x04003FBB RID: 16315
 		public List<int> seid = new List<int>();
 	}
 }

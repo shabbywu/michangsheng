@@ -4,10 +4,10 @@ using UnityEngine;
 
 namespace Bag
 {
-	// Token: 0x02000D38 RID: 3384
+	// Token: 0x020009B0 RID: 2480
 	public class SlotList : MonoBehaviour
 	{
-		// Token: 0x0600505C RID: 20572 RVA: 0x00219800 File Offset: 0x00217A00
+		// Token: 0x060044F9 RID: 17657 RVA: 0x001D5248 File Offset: 0x001D3448
 		public void Init()
 		{
 			this.mItemList = new List<ISlot>();
@@ -17,7 +17,7 @@ namespace Bag
 			}
 		}
 
-		// Token: 0x040051BE RID: 20926
+		// Token: 0x040046BC RID: 18108
 		public List<ISlot> mItemList;
 	}
 }

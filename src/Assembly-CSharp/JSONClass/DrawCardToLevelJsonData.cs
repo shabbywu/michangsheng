@@ -3,10 +3,10 @@ using System.Collections.Generic;
 
 namespace JSONClass
 {
-	// Token: 0x02000BC6 RID: 3014
+	// Token: 0x02000832 RID: 2098
 	public class DrawCardToLevelJsonData : IJSONClass
 	{
-		// Token: 0x06004A80 RID: 19072 RVA: 0x001F87D0 File Offset: 0x001F69D0
+		// Token: 0x06003EDA RID: 16090 RVA: 0x001AD990 File Offset: 0x001ABB90
 		public static void InitDataDict()
 		{
 			foreach (JSONObject jsonobject in jsonData.instance.DrawCardToLevelJsonData.list)
@@ -42,33 +42,33 @@ namespace JSONClass
 			}
 		}
 
-		// Token: 0x06004A81 RID: 19073 RVA: 0x000042DD File Offset: 0x000024DD
+		// Token: 0x06003EDB RID: 16091 RVA: 0x00004095 File Offset: 0x00002295
 		private static void OnInitFinish()
 		{
 		}
 
-		// Token: 0x04004616 RID: 17942
+		// Token: 0x04003A99 RID: 15001
 		public static Dictionary<int, DrawCardToLevelJsonData> DataDict = new Dictionary<int, DrawCardToLevelJsonData>();
 
-		// Token: 0x04004617 RID: 17943
+		// Token: 0x04003A9A RID: 15002
 		public static List<DrawCardToLevelJsonData> DataList = new List<DrawCardToLevelJsonData>();
 
-		// Token: 0x04004618 RID: 17944
+		// Token: 0x04003A9B RID: 15003
 		public static Action OnInitFinishAction = new Action(DrawCardToLevelJsonData.OnInitFinish);
 
-		// Token: 0x04004619 RID: 17945
+		// Token: 0x04003A9C RID: 15004
 		public int id;
 
-		// Token: 0x0400461A RID: 17946
+		// Token: 0x04003A9D RID: 15005
 		public int StartCard;
 
-		// Token: 0x0400461B RID: 17947
+		// Token: 0x04003A9E RID: 15006
 		public int MaxDraw;
 
-		// Token: 0x0400461C RID: 17948
+		// Token: 0x04003A9F RID: 15007
 		public int rundDraw;
 
-		// Token: 0x0400461D RID: 17949
+		// Token: 0x04003AA0 RID: 15008
 		public string Name;
 	}
 }

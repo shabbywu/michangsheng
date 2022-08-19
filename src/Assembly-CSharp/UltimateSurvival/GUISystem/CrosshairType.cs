@@ -2,12 +2,12 @@
 
 namespace UltimateSurvival.GUISystem
 {
-	// Token: 0x0200094C RID: 2380
+	// Token: 0x0200064D RID: 1613
 	public enum CrosshairType
 	{
-		// Token: 0x04003714 RID: 14100
+		// Token: 0x04002D9D RID: 11677
 		Simple,
-		// Token: 0x04003715 RID: 14101
+		// Token: 0x04002D9E RID: 11678
 		Dynamic
 	}
 }

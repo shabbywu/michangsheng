@@ -3,12 +3,12 @@ using UnityEngine;
 
 namespace BehaviorDesigner.Runtime.Tasks.Basic.UnityCapsuleCollider
 {
-	// Token: 0x0200161A RID: 5658
+	// Token: 0x0200115B RID: 4443
 	[TaskCategory("Basic/CapsuleCollider")]
 	[TaskDescription("Sets the radius of the CapsuleCollider. Returns Success.")]
 	public class SetRadius : Action
 	{
-		// Token: 0x060083FD RID: 33789 RVA: 0x002CF220 File Offset: 0x002CD420
+		// Token: 0x06007603 RID: 30211 RVA: 0x002B59A8 File Offset: 0x002B3BA8
 		public override void OnStart()
 		{
 			GameObject defaultGameObject = base.GetDefaultGameObject(this.targetGameObject.Value);
@@ -19,7 +19,7 @@ namespace BehaviorDesigner.Runtime.Tasks.Basic.UnityCapsuleCollider
 			}
 		}
 
-		// Token: 0x060083FE RID: 33790 RVA: 0x0005B0BA File Offset: 0x000592BA
+		// Token: 0x06007604 RID: 30212 RVA: 0x002B59E8 File Offset: 0x002B3BE8
 		public override TaskStatus OnUpdate()
 		{
 			if (this.capsuleCollider == null)
@@ -31,25 +31,25 @@ namespace BehaviorDesigner.Runtime.Tasks.Basic.UnityCapsuleCollider
 			return 2;
 		}
 
-		// Token: 0x060083FF RID: 33791 RVA: 0x0005B0ED File Offset: 0x000592ED
+		// Token: 0x06007605 RID: 30213 RVA: 0x002B5A1B File Offset: 0x002B3C1B
 		public override void OnReset()
 		{
 			this.targetGameObject = null;
 			this.radius = 0f;
 		}
 
-		// Token: 0x040070AC RID: 28844
+		// Token: 0x04006189 RID: 24969
 		[Tooltip("The GameObject that the task operates on. If null the task GameObject is used.")]
 		public SharedGameObject targetGameObject;
 
-		// Token: 0x040070AD RID: 28845
+		// Token: 0x0400618A RID: 24970
 		[Tooltip("The radius of the CapsuleCollider")]
 		public SharedFloat radius;
 
-		// Token: 0x040070AE RID: 28846
+		// Token: 0x0400618B RID: 24971
 		private CapsuleCollider capsuleCollider;
 
-		// Token: 0x040070AF RID: 28847
+		// Token: 0x0400618C RID: 24972
 		private GameObject prevGameObject;
 	}
 }

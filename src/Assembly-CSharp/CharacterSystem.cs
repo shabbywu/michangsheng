@@ -1,14 +1,14 @@
 ﻿using System;
 using UnityEngine;
 
-// Token: 0x02000150 RID: 336
+// Token: 0x020000D9 RID: 217
 [RequireComponent(typeof(CharacterMotor))]
 [RequireComponent(typeof(CharacterStatus))]
 [RequireComponent(typeof(CharacterAttack))]
 [RequireComponent(typeof(CharacterInventory))]
 public class CharacterSystem : MonoBehaviour
 {
-	// Token: 0x06000C28 RID: 3112 RVA: 0x0000E2E9 File Offset: 0x0000C4E9
+	// Token: 0x06000B39 RID: 2873 RVA: 0x00044713 File Offset: 0x00042913
 	private void Start()
 	{
 		this.motor = base.gameObject.GetComponent<CharacterMotor>();
@@ -16,7 +16,7 @@ public class CharacterSystem : MonoBehaviour
 		this.attacking = false;
 	}
 
-	// Token: 0x06000C29 RID: 3113 RVA: 0x000964C0 File Offset: 0x000946C0
+	// Token: 0x06000B3A RID: 2874 RVA: 0x00044744 File Offset: 0x00042944
 	private void Update()
 	{
 		if (this.ComboAttackLists.Length == 0)
@@ -81,7 +81,7 @@ public class CharacterSystem : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000C2A RID: 3114 RVA: 0x00096698 File Offset: 0x00094898
+	// Token: 0x06000B3B RID: 2875 RVA: 0x0004491C File Offset: 0x00042B1C
 	public void GotHit(float time)
 	{
 		if (!this.IsHero)
@@ -95,14 +95,14 @@ public class CharacterSystem : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000C2B RID: 3115 RVA: 0x0000E319 File Offset: 0x0000C519
+	// Token: 0x06000B3C RID: 2876 RVA: 0x00044975 File Offset: 0x00042B75
 	private void resetCombo()
 	{
 		this.attackStep = 0;
 		this.attackStack = 0;
 	}
 
-	// Token: 0x06000C2C RID: 3116 RVA: 0x000966F4 File Offset: 0x000948F4
+	// Token: 0x06000B3D RID: 2877 RVA: 0x00044988 File Offset: 0x00042B88
 	private void fightAnimation()
 	{
 		this.attacking = false;
@@ -121,7 +121,7 @@ public class CharacterSystem : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000C2D RID: 3117 RVA: 0x0000E329 File Offset: 0x0000C529
+	// Token: 0x06000B3E RID: 2878 RVA: 0x00044A03 File Offset: 0x00042C03
 	public void Attack()
 	{
 		if (this.frozetime <= 0f)
@@ -132,7 +132,7 @@ public class CharacterSystem : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000C2E RID: 3118 RVA: 0x0000E357 File Offset: 0x0000C557
+	// Token: 0x06000B3F RID: 2879 RVA: 0x00044A31 File Offset: 0x00042C31
 	public void Move(Vector3 dir)
 	{
 		if (!this.attacking)
@@ -143,9 +143,9 @@ public class CharacterSystem : MonoBehaviour
 		this.moveDirection = dir / 2f;
 	}
 
-	// Token: 0x170001ED RID: 493
-	// (get) Token: 0x06000C2F RID: 3119 RVA: 0x0000E37A File Offset: 0x0000C57A
-	// (set) Token: 0x06000C30 RID: 3120 RVA: 0x00096770 File Offset: 0x00094970
+	// Token: 0x170001D2 RID: 466
+	// (get) Token: 0x06000B40 RID: 2880 RVA: 0x00044A54 File Offset: 0x00042C54
+	// (set) Token: 0x06000B41 RID: 2881 RVA: 0x00044A5C File Offset: 0x00042C5C
 	private Vector3 moveDirection
 	{
 		get
@@ -182,7 +182,7 @@ public class CharacterSystem : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000C31 RID: 3121 RVA: 0x000968A4 File Offset: 0x00094AA4
+	// Token: 0x06000B42 RID: 2882 RVA: 0x00044B90 File Offset: 0x00042D90
 	private void OnControllerColliderHit(ControllerColliderHit hit)
 	{
 		Rigidbody attachedRigidbody = hit.collider.attachedRigidbody;
@@ -198,69 +198,69 @@ public class CharacterSystem : MonoBehaviour
 		attachedRigidbody.velocity = vector * this.pushPower;
 	}
 
-	// Token: 0x04000938 RID: 2360
+	// Token: 0x0400075D RID: 1885
 	public float Speed = 2f;
 
-	// Token: 0x04000939 RID: 2361
+	// Token: 0x0400075E RID: 1886
 	public float SpeedAttack = 1.5f;
 
-	// Token: 0x0400093A RID: 2362
+	// Token: 0x0400075F RID: 1887
 	public float TurnSpeed = 5f;
 
-	// Token: 0x0400093B RID: 2363
+	// Token: 0x04000760 RID: 1888
 	public float[] PoseAttackTime;
 
-	// Token: 0x0400093C RID: 2364
+	// Token: 0x04000761 RID: 1889
 	public string[] PoseAttackNames;
 
-	// Token: 0x0400093D RID: 2365
+	// Token: 0x04000762 RID: 1890
 	public string[] ComboAttackLists;
 
-	// Token: 0x0400093E RID: 2366
+	// Token: 0x04000763 RID: 1891
 	public string[] PoseHitNames;
 
-	// Token: 0x0400093F RID: 2367
+	// Token: 0x04000764 RID: 1892
 	public int WeaponType;
 
-	// Token: 0x04000940 RID: 2368
+	// Token: 0x04000765 RID: 1893
 	public string PoseIdle = "Idle";
 
-	// Token: 0x04000941 RID: 2369
+	// Token: 0x04000766 RID: 1894
 	public string PoseRun = "Run";
 
-	// Token: 0x04000942 RID: 2370
+	// Token: 0x04000767 RID: 1895
 	public bool IsHero;
 
-	// Token: 0x04000943 RID: 2371
+	// Token: 0x04000768 RID: 1896
 	private bool diddamaged;
 
-	// Token: 0x04000944 RID: 2372
+	// Token: 0x04000769 RID: 1897
 	private int attackStep;
 
-	// Token: 0x04000945 RID: 2373
+	// Token: 0x0400076A RID: 1898
 	private string[] comboList;
 
-	// Token: 0x04000946 RID: 2374
+	// Token: 0x0400076B RID: 1899
 	private int attackStack;
 
-	// Token: 0x04000947 RID: 2375
+	// Token: 0x0400076C RID: 1900
 	private float attackStackTimeTemp;
 
-	// Token: 0x04000948 RID: 2376
+	// Token: 0x0400076D RID: 1901
 	private float frozetime;
 
-	// Token: 0x04000949 RID: 2377
+	// Token: 0x0400076E RID: 1902
 	private bool hited;
 
-	// Token: 0x0400094A RID: 2378
+	// Token: 0x0400076F RID: 1903
 	private bool attacking;
 
-	// Token: 0x0400094B RID: 2379
+	// Token: 0x04000770 RID: 1904
 	private CharacterMotor motor;
 
-	// Token: 0x0400094C RID: 2380
+	// Token: 0x04000771 RID: 1905
 	private Vector3 direction;
 
-	// Token: 0x0400094D RID: 2381
+	// Token: 0x04000772 RID: 1906
 	private float pushPower = 2f;
 }

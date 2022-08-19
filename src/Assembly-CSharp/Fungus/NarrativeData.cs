@@ -4,17 +4,17 @@ using UnityEngine;
 
 namespace Fungus
 {
-	// Token: 0x020012E1 RID: 4833
+	// Token: 0x02000E77 RID: 3703
 	[Serializable]
 	public class NarrativeData
 	{
-		// Token: 0x060075AB RID: 30123 RVA: 0x000502D8 File Offset: 0x0004E4D8
+		// Token: 0x060068C8 RID: 26824 RVA: 0x0028E483 File Offset: 0x0028C683
 		public NarrativeData()
 		{
 			this.lines = new List<Line>();
 		}
 
-		// Token: 0x040066C1 RID: 26305
+		// Token: 0x040058F9 RID: 22777
 		[SerializeField]
 		public List<Line> lines;
 	}

@@ -2,15 +2,15 @@
 
 namespace Fungus
 {
-	// Token: 0x02001340 RID: 4928
+	// Token: 0x02000EB7 RID: 3767
 	public static class BlockSignals
 	{
 		// Token: 0x1400005D RID: 93
-		// (add) Token: 0x060077A8 RID: 30632 RVA: 0x002B526C File Offset: 0x002B346C
-		// (remove) Token: 0x060077A9 RID: 30633 RVA: 0x002B52A0 File Offset: 0x002B34A0
+		// (add) Token: 0x06006A6B RID: 27243 RVA: 0x00292E90 File Offset: 0x00291090
+		// (remove) Token: 0x06006A6C RID: 27244 RVA: 0x00292EC4 File Offset: 0x002910C4
 		public static event BlockSignals.BlockStartHandler OnBlockStart;
 
-		// Token: 0x060077AA RID: 30634 RVA: 0x0005191F File Offset: 0x0004FB1F
+		// Token: 0x06006A6D RID: 27245 RVA: 0x00292EF7 File Offset: 0x002910F7
 		public static void DoBlockStart(Block block)
 		{
 			if (BlockSignals.OnBlockStart != null)
@@ -20,11 +20,11 @@ namespace Fungus
 		}
 
 		// Token: 0x1400005E RID: 94
-		// (add) Token: 0x060077AB RID: 30635 RVA: 0x002B52D4 File Offset: 0x002B34D4
-		// (remove) Token: 0x060077AC RID: 30636 RVA: 0x002B5308 File Offset: 0x002B3508
+		// (add) Token: 0x06006A6E RID: 27246 RVA: 0x00292F0C File Offset: 0x0029110C
+		// (remove) Token: 0x06006A6F RID: 27247 RVA: 0x00292F40 File Offset: 0x00291140
 		public static event BlockSignals.BlockEndHandler OnBlockEnd;
 
-		// Token: 0x060077AD RID: 30637 RVA: 0x00051933 File Offset: 0x0004FB33
+		// Token: 0x06006A70 RID: 27248 RVA: 0x00292F73 File Offset: 0x00291173
 		public static void DoBlockEnd(Block block)
 		{
 			if (BlockSignals.OnBlockEnd != null)
@@ -34,11 +34,11 @@ namespace Fungus
 		}
 
 		// Token: 0x1400005F RID: 95
-		// (add) Token: 0x060077AE RID: 30638 RVA: 0x002B533C File Offset: 0x002B353C
-		// (remove) Token: 0x060077AF RID: 30639 RVA: 0x002B5370 File Offset: 0x002B3570
+		// (add) Token: 0x06006A71 RID: 27249 RVA: 0x00292F88 File Offset: 0x00291188
+		// (remove) Token: 0x06006A72 RID: 27250 RVA: 0x00292FBC File Offset: 0x002911BC
 		public static event BlockSignals.CommandExecuteHandler OnCommandExecute;
 
-		// Token: 0x060077B0 RID: 30640 RVA: 0x00051947 File Offset: 0x0004FB47
+		// Token: 0x06006A73 RID: 27251 RVA: 0x00292FEF File Offset: 0x002911EF
 		public static void DoCommandExecute(Block block, Command command, int commandIndex, int maxCommandIndex)
 		{
 			if (BlockSignals.OnCommandExecute != null)
@@ -47,16 +47,16 @@ namespace Fungus
 			}
 		}
 
-		// Token: 0x02001341 RID: 4929
-		// (Invoke) Token: 0x060077B2 RID: 30642
+		// Token: 0x020016FD RID: 5885
+		// (Invoke) Token: 0x060088A8 RID: 34984
 		public delegate void BlockStartHandler(Block block);
 
-		// Token: 0x02001342 RID: 4930
-		// (Invoke) Token: 0x060077B6 RID: 30646
+		// Token: 0x020016FE RID: 5886
+		// (Invoke) Token: 0x060088AC RID: 34988
 		public delegate void BlockEndHandler(Block block);
 
-		// Token: 0x02001343 RID: 4931
-		// (Invoke) Token: 0x060077BA RID: 30650
+		// Token: 0x020016FF RID: 5887
+		// (Invoke) Token: 0x060088B0 RID: 34992
 		public delegate void CommandExecuteHandler(Block block, Command command, int commandIndex, int maxCommandIndex);
 	}
 }

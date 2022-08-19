@@ -3,10 +3,10 @@ using System.Collections.Generic;
 
 namespace JSONClass
 {
-	// Token: 0x02000C1D RID: 3101
+	// Token: 0x0200088F RID: 2191
 	public class MianWenYanSeRandomColorJsonData : IJSONClass
 	{
-		// Token: 0x06004BDD RID: 19421 RVA: 0x00200670 File Offset: 0x001FE870
+		// Token: 0x0600404F RID: 16463 RVA: 0x001B7174 File Offset: 0x001B5374
 		public static void InitDataDict()
 		{
 			foreach (JSONObject jsonobject in jsonData.instance.MianWenYanSeRandomColorJsonData.list)
@@ -42,33 +42,33 @@ namespace JSONClass
 			}
 		}
 
-		// Token: 0x06004BDE RID: 19422 RVA: 0x000042DD File Offset: 0x000024DD
+		// Token: 0x06004050 RID: 16464 RVA: 0x00004095 File Offset: 0x00002295
 		private static void OnInitFinish()
 		{
 		}
 
-		// Token: 0x040048F5 RID: 18677
+		// Token: 0x04003D9C RID: 15772
 		public static Dictionary<int, MianWenYanSeRandomColorJsonData> DataDict = new Dictionary<int, MianWenYanSeRandomColorJsonData>();
 
-		// Token: 0x040048F6 RID: 18678
+		// Token: 0x04003D9D RID: 15773
 		public static List<MianWenYanSeRandomColorJsonData> DataList = new List<MianWenYanSeRandomColorJsonData>();
 
-		// Token: 0x040048F7 RID: 18679
+		// Token: 0x04003D9E RID: 15774
 		public static Action OnInitFinishAction = new Action(MianWenYanSeRandomColorJsonData.OnInitFinish);
 
-		// Token: 0x040048F8 RID: 18680
+		// Token: 0x04003D9F RID: 15775
 		public int id;
 
-		// Token: 0x040048F9 RID: 18681
+		// Token: 0x04003DA0 RID: 15776
 		public int R;
 
-		// Token: 0x040048FA RID: 18682
+		// Token: 0x04003DA1 RID: 15777
 		public int G;
 
-		// Token: 0x040048FB RID: 18683
+		// Token: 0x04003DA2 RID: 15778
 		public int B;
 
-		// Token: 0x040048FC RID: 18684
+		// Token: 0x04003DA3 RID: 15779
 		public string beizhu;
 	}
 }

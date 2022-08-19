@@ -2,20 +2,20 @@
 using Fungus;
 using UnityEngine;
 
-// Token: 0x020002A4 RID: 676
+// Token: 0x020001A7 RID: 423
 public class talkCompont : MonoBehaviour
 {
-	// Token: 0x06001498 RID: 5272 RVA: 0x000042DD File Offset: 0x000024DD
+	// Token: 0x060011F1 RID: 4593 RVA: 0x00004095 File Offset: 0x00002295
 	private void Start()
 	{
 	}
 
-	// Token: 0x06001499 RID: 5273 RVA: 0x00012FAA File Offset: 0x000111AA
+	// Token: 0x060011F2 RID: 4594 RVA: 0x0006C0D9 File Offset: 0x0006A2D9
 	public void StartFight()
 	{
 		Tools.instance.startFight(this.flowchat.GetIntegerVariable("MonsterID"));
 	}
 
-	// Token: 0x04000FE6 RID: 4070
+	// Token: 0x04000CBE RID: 3262
 	public Flowchart flowchat;
 }

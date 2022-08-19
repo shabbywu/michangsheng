@@ -2,10 +2,10 @@
 
 namespace Fungus
 {
-	// Token: 0x0200133D RID: 4925
+	// Token: 0x02000EB4 RID: 3764
 	internal interface IUpdateable
 	{
-		// Token: 0x06007799 RID: 30617
+		// Token: 0x06006A5C RID: 27228
 		void UpdateToVersion(int oldVersion, int newVersion);
 	}
 }

@@ -3,16 +3,16 @@ using JSONClass;
 using KBEngine;
 using UnityEngine;
 
-// Token: 0x02000544 RID: 1348
+// Token: 0x020003B8 RID: 952
 public class chenghaoMag
 {
-	// Token: 0x06002267 RID: 8807 RVA: 0x0001C347 File Offset: 0x0001A547
+	// Token: 0x06001EE9 RID: 7913 RVA: 0x000D8731 File Offset: 0x000D6931
 	public chenghaoMag(Avatar _avatar)
 	{
 		this.avatar = _avatar;
 	}
 
-	// Token: 0x06002268 RID: 8808 RVA: 0x0011B7BC File Offset: 0x001199BC
+	// Token: 0x06001EEA RID: 7914 RVA: 0x000D8740 File Offset: 0x000D6940
 	public void TimeAddMoney(int year)
 	{
 		if (this.avatar.menPai == 0)
@@ -26,7 +26,7 @@ public class chenghaoMag
 		}
 	}
 
-	// Token: 0x06002269 RID: 8809 RVA: 0x0011B7EC File Offset: 0x001199EC
+	// Token: 0x06001EEB RID: 7915 RVA: 0x000D8770 File Offset: 0x000D6970
 	public int GetOneYearAddMoney()
 	{
 		if (this.avatar.menPai <= 0)
@@ -38,7 +38,7 @@ public class chenghaoMag
 		{
 			int shengWangNum = (!this.avatar.MenPaiHaoGanDu.HasField(this.avatar.menPai.ToString())) ? 0 : this.avatar.MenPaiHaoGanDu[this.avatar.menPai.ToString()].I;
 			int shengWangType = this.GetShengWangType(shengWangNum);
-			MenPaiFengLuBiao menPaiFengLuBiao = MenPaiFengLuBiao.DataDict[this.avatar.chengHao - 1];
+			MenPaiFengLuBiao menPaiFengLuBiao = MenPaiFengLuBiao.DataDict[this.avatar.chengHao];
 			result = menPaiFengLuBiao.money + ((shengWangType == -1 && menPaiFengLuBiao.addMoney.Count > shengWangType) ? 0 : menPaiFengLuBiao.addMoney[shengWangType]);
 		}
 		catch (Exception ex)
@@ -48,13 +48,13 @@ public class chenghaoMag
 		return result;
 	}
 
-	// Token: 0x0600226A RID: 8810 RVA: 0x0001C356 File Offset: 0x0001A556
+	// Token: 0x06001EEC RID: 7916 RVA: 0x000D883C File Offset: 0x000D6A3C
 	public void AddFengLu(int money)
 	{
 		this.avatar.AvatarFengLu.Add(money);
 	}
 
-	// Token: 0x0600226B RID: 8811 RVA: 0x0011B8BC File Offset: 0x00119ABC
+	// Token: 0x06001EED RID: 7917 RVA: 0x000D8850 File Offset: 0x000D6A50
 	public void GiveMoney()
 	{
 		int allFengLuMoney = this.GetAllFengLuMoney();
@@ -62,7 +62,7 @@ public class chenghaoMag
 		this.avatar.AvatarFengLu = new JSONObject(JSONObject.Type.ARRAY);
 	}
 
-	// Token: 0x0600226C RID: 8812 RVA: 0x0011B8F0 File Offset: 0x00119AF0
+	// Token: 0x06001EEE RID: 7918 RVA: 0x000D8884 File Offset: 0x000D6A84
 	public int GetAllFengLuMoney()
 	{
 		int num = 0;
@@ -73,7 +73,7 @@ public class chenghaoMag
 		return num;
 	}
 
-	// Token: 0x0600226D RID: 8813 RVA: 0x0011B954 File Offset: 0x00119B54
+	// Token: 0x06001EEF RID: 7919 RVA: 0x000D88E8 File Offset: 0x000D6AE8
 	public int GetShengWangType(int ShengWangNum)
 	{
 		int result = -1;
@@ -90,6 +90,6 @@ public class chenghaoMag
 		return result;
 	}
 
-	// Token: 0x04001DB8 RID: 7608
+	// Token: 0x0400194B RID: 6475
 	private Avatar avatar;
 }

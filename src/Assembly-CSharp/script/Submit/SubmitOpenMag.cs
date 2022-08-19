@@ -6,10 +6,10 @@ using UnityEngine;
 
 namespace script.Submit
 {
-	// Token: 0x02000AB9 RID: 2745
+	// Token: 0x020009D1 RID: 2513
 	public class SubmitOpenMag
 	{
-		// Token: 0x06004630 RID: 17968 RVA: 0x001DEEBC File Offset: 0x001DD0BC
+		// Token: 0x060045D2 RID: 17874 RVA: 0x001D91A8 File Offset: 0x001D73A8
 		public static void OpenLianQiSub(int taskId)
 		{
 			int i = Tools.instance.getPlayer().NomelTaskJson[taskId.ToString()]["TaskChild"][0].I;

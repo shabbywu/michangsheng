@@ -4,22 +4,22 @@ using JSONClass;
 using KBEngine;
 using UnityEngine;
 
-// Token: 0x0200031E RID: 798
+// Token: 0x02000209 RID: 521
 public class DongFuScene : MonoBehaviour
 {
-	// Token: 0x0600177F RID: 6015 RVA: 0x00014C81 File Offset: 0x00012E81
+	// Token: 0x060014D5 RID: 5333 RVA: 0x00085AF7 File Offset: 0x00083CF7
 	private void Awake()
 	{
 		DongFuScene.Inst = this;
 	}
 
-	// Token: 0x06001780 RID: 6016 RVA: 0x00014C89 File Offset: 0x00012E89
+	// Token: 0x060014D6 RID: 5334 RVA: 0x00085AFF File Offset: 0x00083CFF
 	private void Start()
 	{
 		this.RefreshShow();
 	}
 
-	// Token: 0x06001781 RID: 6017 RVA: 0x00014C91 File Offset: 0x00012E91
+	// Token: 0x060014D7 RID: 5335 RVA: 0x00085B07 File Offset: 0x00083D07
 	private void Update()
 	{
 		if (UILingTianPanel.Inst != null && UILingTianPanel.Inst.IsShouGe && Input.GetMouseButtonDown(1))
@@ -28,7 +28,7 @@ public class DongFuScene : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001782 RID: 6018 RVA: 0x000CE360 File Offset: 0x000CC560
+	// Token: 0x060014D8 RID: 5336 RVA: 0x00085B38 File Offset: 0x00083D38
 	public void RefreshShow()
 	{
 		this.DongFu = new DongFuData(DongFuManager.NowDongFuID);
@@ -97,14 +97,14 @@ public class DongFuScene : MonoBehaviour
 		this.SetLingTianShow(lingTianType);
 	}
 
-	// Token: 0x06001783 RID: 6019 RVA: 0x00014CBF File Offset: 0x00012EBF
+	// Token: 0x060014D9 RID: 5337 RVA: 0x00085D43 File Offset: 0x00083F43
 	public void SetLingTianShow(LingTianType type)
 	{
 		this.LingTianShow.SpritePath = this.LingTianShowSprites[(int)type];
 		this.LingTianShow.Refresh();
 	}
 
-	// Token: 0x06001784 RID: 6020 RVA: 0x000CE56C File Offset: 0x000CC76C
+	// Token: 0x060014DA RID: 5338 RVA: 0x00085D68 File Offset: 0x00083F68
 	private void BuyArea(int id, string areaName)
 	{
 		USelectBox.Show("是否花费10000灵石布置" + areaName + "?", delegate
@@ -123,144 +123,144 @@ public class DongFuScene : MonoBehaviour
 		}, null);
 	}
 
-	// Token: 0x06001785 RID: 6021 RVA: 0x00014CE3 File Offset: 0x00012EE3
+	// Token: 0x060014DB RID: 5339 RVA: 0x00085DAB File Offset: 0x00083FAB
 	public void OnLingYanFuncClick()
 	{
 		UIDongFu.Inst.ShowJuLingZhenPanel();
 	}
 
-	// Token: 0x06001786 RID: 6022 RVA: 0x00014CEF File Offset: 0x00012EEF
+	// Token: 0x060014DC RID: 5340 RVA: 0x00085DB7 File Offset: 0x00083FB7
 	public void OnBiGuanFuncClick()
 	{
 		UIBiGuanPanel.Inst.OpenBiGuan(1);
 	}
 
-	// Token: 0x06001787 RID: 6023 RVA: 0x00014CFC File Offset: 0x00012EFC
+	// Token: 0x060014DD RID: 5341 RVA: 0x00085DC4 File Offset: 0x00083FC4
 	public void OnLianQiBreakFuncClick()
 	{
 		this.BuyArea(0, "炼器室");
 	}
 
-	// Token: 0x06001788 RID: 6024 RVA: 0x00014D0A File Offset: 0x00012F0A
+	// Token: 0x060014DE RID: 5342 RVA: 0x00085DD2 File Offset: 0x00083FD2
 	public void OnLianQiBuildFuncClick()
 	{
 		PanelMamager.inst.OpenPanel(PanelMamager.PanelType.炼器, 0);
 	}
 
-	// Token: 0x06001789 RID: 6025 RVA: 0x00014D18 File Offset: 0x00012F18
+	// Token: 0x060014DF RID: 5343 RVA: 0x00085DE0 File Offset: 0x00083FE0
 	public void OnLianDanBreakFuncClick()
 	{
 		this.BuyArea(1, "炼丹室");
 	}
 
-	// Token: 0x0600178A RID: 6026 RVA: 0x00014D26 File Offset: 0x00012F26
+	// Token: 0x060014E0 RID: 5344 RVA: 0x00085DEE File Offset: 0x00083FEE
 	public void OnLianDanBuildFuncClick()
 	{
 		PanelMamager.inst.OpenPanel(PanelMamager.PanelType.炼丹, 0);
 	}
 
-	// Token: 0x0600178B RID: 6027 RVA: 0x00014D34 File Offset: 0x00012F34
+	// Token: 0x060014E1 RID: 5345 RVA: 0x00085DFC File Offset: 0x00083FFC
 	public void OnLingTianBreakFuncClick()
 	{
 		this.BuyArea(2, "灵田");
 	}
 
-	// Token: 0x0600178C RID: 6028 RVA: 0x000114FD File Offset: 0x0000F6FD
+	// Token: 0x060014E2 RID: 5346 RVA: 0x0005E658 File Offset: 0x0005C858
 	public void OnLingTianBuildFuncClick()
 	{
 		UIDongFu.Inst.ShowLingTianPanel();
 	}
 
-	// Token: 0x0600178D RID: 6029 RVA: 0x00014D42 File Offset: 0x00012F42
+	// Token: 0x060014E3 RID: 5347 RVA: 0x00085E0A File Offset: 0x0008400A
 	public void OnLingYanDecorateClick()
 	{
 		UIPopTip.Inst.Pop("Todo", PopTipIconType.叹号);
 	}
 
-	// Token: 0x0600178E RID: 6030 RVA: 0x00014D42 File Offset: 0x00012F42
+	// Token: 0x060014E4 RID: 5348 RVA: 0x00085E0A File Offset: 0x0008400A
 	public void OnBiGuanDecorateClick()
 	{
 		UIPopTip.Inst.Pop("Todo", PopTipIconType.叹号);
 	}
 
-	// Token: 0x0600178F RID: 6031 RVA: 0x00014CFC File Offset: 0x00012EFC
+	// Token: 0x060014E5 RID: 5349 RVA: 0x00085DC4 File Offset: 0x00083FC4
 	public void OnLianQiBreakDecorateClick()
 	{
 		this.BuyArea(0, "炼器室");
 	}
 
-	// Token: 0x06001790 RID: 6032 RVA: 0x00014D42 File Offset: 0x00012F42
+	// Token: 0x060014E6 RID: 5350 RVA: 0x00085E0A File Offset: 0x0008400A
 	public void OnLianQiBuildDecorateClick()
 	{
 		UIPopTip.Inst.Pop("Todo", PopTipIconType.叹号);
 	}
 
-	// Token: 0x06001791 RID: 6033 RVA: 0x00014D18 File Offset: 0x00012F18
+	// Token: 0x060014E7 RID: 5351 RVA: 0x00085DE0 File Offset: 0x00083FE0
 	public void OnLianDanBreakDecorateClick()
 	{
 		this.BuyArea(1, "炼丹室");
 	}
 
-	// Token: 0x06001792 RID: 6034 RVA: 0x00014D42 File Offset: 0x00012F42
+	// Token: 0x060014E8 RID: 5352 RVA: 0x00085E0A File Offset: 0x0008400A
 	public void OnLianDanBuildDecorateClick()
 	{
 		UIPopTip.Inst.Pop("Todo", PopTipIconType.叹号);
 	}
 
-	// Token: 0x06001793 RID: 6035 RVA: 0x00014D34 File Offset: 0x00012F34
+	// Token: 0x060014E9 RID: 5353 RVA: 0x00085DFC File Offset: 0x00083FFC
 	public void OnLingTianBreakDecorateClick()
 	{
 		this.BuyArea(2, "灵田");
 	}
 
-	// Token: 0x06001794 RID: 6036 RVA: 0x00014D42 File Offset: 0x00012F42
+	// Token: 0x060014EA RID: 5354 RVA: 0x00085E0A File Offset: 0x0008400A
 	public void OnLingTianBuildDecorateClick()
 	{
 		UIPopTip.Inst.Pop("Todo", PopTipIconType.叹号);
 	}
 
-	// Token: 0x040012D9 RID: 4825
+	// Token: 0x04000F93 RID: 3987
 	public static DongFuScene Inst;
 
-	// Token: 0x040012DA RID: 4826
+	// Token: 0x04000F94 RID: 3988
 	public ModSpriteRenderer LingYanShow;
 
-	// Token: 0x040012DB RID: 4827
+	// Token: 0x04000F95 RID: 3989
 	public List<string> LingYanShowSprites;
 
-	// Token: 0x040012DC RID: 4828
+	// Token: 0x04000F96 RID: 3990
 	public ModSpriteRenderer JuLingZhenShow;
 
-	// Token: 0x040012DD RID: 4829
+	// Token: 0x04000F97 RID: 3991
 	public List<string> JuLingZhenShowSprites;
 
-	// Token: 0x040012DE RID: 4830
+	// Token: 0x04000F98 RID: 3992
 	public GameObject LianQiBuild;
 
-	// Token: 0x040012DF RID: 4831
+	// Token: 0x04000F99 RID: 3993
 	public GameObject LianQiBreak;
 
-	// Token: 0x040012E0 RID: 4832
+	// Token: 0x04000F9A RID: 3994
 	public GameObject LianDanBuild;
 
-	// Token: 0x040012E1 RID: 4833
+	// Token: 0x04000F9B RID: 3995
 	public GameObject LianDanBreak;
 
-	// Token: 0x040012E2 RID: 4834
+	// Token: 0x04000F9C RID: 3996
 	public GameObject LingTianBuild;
 
-	// Token: 0x040012E3 RID: 4835
+	// Token: 0x04000F9D RID: 3997
 	public GameObject LingTianBreak;
 
-	// Token: 0x040012E4 RID: 4836
+	// Token: 0x04000F9E RID: 3998
 	public ModSpriteRenderer LingTianShow;
 
-	// Token: 0x040012E5 RID: 4837
+	// Token: 0x04000F9F RID: 3999
 	public List<string> LingTianShowSprites;
 
-	// Token: 0x040012E6 RID: 4838
+	// Token: 0x04000FA0 RID: 4000
 	public DFInteractiveMode InteractiveMode;
 
-	// Token: 0x040012E7 RID: 4839
+	// Token: 0x04000FA1 RID: 4001
 	private DongFuData DongFu;
 }

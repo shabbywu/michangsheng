@@ -4,15 +4,15 @@ using System.Security.Cryptography;
 using UnityEngine;
 using UnityEngine.UI;
 
-// Token: 0x02000255 RID: 597
+// Token: 0x02000178 RID: 376
 public class TestTemp : MonoBehaviour
 {
-	// Token: 0x06001217 RID: 4631 RVA: 0x000042DD File Offset: 0x000024DD
+	// Token: 0x06000FB7 RID: 4023 RVA: 0x00004095 File Offset: 0x00002295
 	private void Start()
 	{
 	}
 
-	// Token: 0x06001218 RID: 4632 RVA: 0x000ADDE8 File Offset: 0x000ABFE8
+	// Token: 0x06000FB8 RID: 4024 RVA: 0x0005E3B8 File Offset: 0x0005C5B8
 	public int getSum(Dictionary<int, int> a)
 	{
 		int num = 0;
@@ -23,7 +23,7 @@ public class TestTemp : MonoBehaviour
 		return num;
 	}
 
-	// Token: 0x06001219 RID: 4633 RVA: 0x000ADE3C File Offset: 0x000AC03C
+	// Token: 0x06000FB9 RID: 4025 RVA: 0x0005E40C File Offset: 0x0005C60C
 	public void click()
 	{
 		byte[] array = new byte[8];
@@ -51,14 +51,14 @@ public class TestTemp : MonoBehaviour
 		this.Text.text = "随机到的值为" + num2;
 	}
 
-	// Token: 0x0600121A RID: 4634 RVA: 0x000042DD File Offset: 0x000024DD
+	// Token: 0x06000FBA RID: 4026 RVA: 0x00004095 File Offset: 0x00002295
 	private void Update()
 	{
 	}
 
-	// Token: 0x04000E93 RID: 3731
+	// Token: 0x04000BC2 RID: 3010
 	public List<int> random = new List<int>();
 
-	// Token: 0x04000E94 RID: 3732
+	// Token: 0x04000BC3 RID: 3011
 	public Text Text;
 }

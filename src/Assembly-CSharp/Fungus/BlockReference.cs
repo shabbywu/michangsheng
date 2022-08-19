@@ -2,11 +2,11 @@
 
 namespace Fungus
 {
-	// Token: 0x02001354 RID: 4948
+	// Token: 0x02000EBC RID: 3772
 	[Serializable]
 	public struct BlockReference
 	{
-		// Token: 0x06007812 RID: 30738 RVA: 0x00051A55 File Offset: 0x0004FC55
+		// Token: 0x06006A99 RID: 27289 RVA: 0x0029367F File Offset: 0x0029187F
 		public void Execute()
 		{
 			if (this.block != null)
@@ -15,7 +15,7 @@ namespace Fungus
 			}
 		}
 
-		// Token: 0x04006840 RID: 26688
+		// Token: 0x040059F9 RID: 23033
 		public Block block;
 	}
 }

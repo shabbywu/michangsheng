@@ -4,10 +4,10 @@ using UnityEngine;
 
 namespace UltimateSurvival.GUISystem
 {
-	// Token: 0x0200094F RID: 2383
+	// Token: 0x02000650 RID: 1616
 	public class CrosshairManager : GUIBehaviour
 	{
-		// Token: 0x06003CE3 RID: 15587 RVA: 0x001B233C File Offset: 0x001B053C
+		// Token: 0x0600336D RID: 13165 RVA: 0x001693B4 File Offset: 0x001675B4
 		private void Start()
 		{
 			base.Player.EquippedItem.AddChangeListener(new Action(this.OnChanged_EquippedItem));
@@ -21,7 +21,7 @@ namespace UltimateSurvival.GUISystem
 			}
 		}
 
-		// Token: 0x06003CE4 RID: 15588 RVA: 0x0002BE06 File Offset: 0x0002A006
+		// Token: 0x0600336E RID: 13166 RVA: 0x00169469 File Offset: 0x00167669
 		private void Update()
 		{
 			if (this.m_CurrentCrosshair)
@@ -30,7 +30,7 @@ namespace UltimateSurvival.GUISystem
 			}
 		}
 
-		// Token: 0x06003CE5 RID: 15589 RVA: 0x001B23F4 File Offset: 0x001B05F4
+		// Token: 0x0600336F RID: 13167 RVA: 0x0016948C File Offset: 0x0016768C
 		private void OnChanged_InventoryState()
 		{
 			bool isClosed = MonoSingleton<InventoryController>.Instance.IsClosed;
@@ -45,7 +45,7 @@ namespace UltimateSurvival.GUISystem
 			}
 		}
 
-		// Token: 0x06003CE6 RID: 15590 RVA: 0x001B2440 File Offset: 0x001B0640
+		// Token: 0x06003370 RID: 13168 RVA: 0x001694D8 File Offset: 0x001676D8
 		private void OnChanged_EquippedItem()
 		{
 			if (!MonoSingleton<InventoryController>.Instance.IsClosed)
@@ -74,7 +74,7 @@ namespace UltimateSurvival.GUISystem
 			this.m_CurrentCrosshair.SetActive(true);
 		}
 
-		// Token: 0x06003CE7 RID: 15591 RVA: 0x0002BE26 File Offset: 0x0002A026
+		// Token: 0x06003371 RID: 13169 RVA: 0x0016958B File Offset: 0x0016778B
 		private void OnStart_Aim()
 		{
 			if (this.m_CurrentCrosshair != null && this.m_CurrentCrosshair.HideWhenAiming)
@@ -83,7 +83,7 @@ namespace UltimateSurvival.GUISystem
 			}
 		}
 
-		// Token: 0x06003CE8 RID: 15592 RVA: 0x0002BE49 File Offset: 0x0002A049
+		// Token: 0x06003372 RID: 13170 RVA: 0x001695AE File Offset: 0x001677AE
 		private void OnStop_Aim()
 		{
 			if (this.m_CurrentCrosshair != null && MonoSingleton<InventoryController>.Instance.IsClosed)
@@ -92,7 +92,7 @@ namespace UltimateSurvival.GUISystem
 			}
 		}
 
-		// Token: 0x06003CE9 RID: 15593 RVA: 0x001B24F4 File Offset: 0x001B06F4
+		// Token: 0x06003373 RID: 13171 RVA: 0x001695D0 File Offset: 0x001677D0
 		private void OnChanged_RaycastObject()
 		{
 			if (!MonoSingleton<InventoryController>.Instance.IsClosed)
@@ -151,28 +151,28 @@ namespace UltimateSurvival.GUISystem
 			}
 		}
 
-		// Token: 0x04003726 RID: 14118
+		// Token: 0x04002DAF RID: 11695
 		[Header("Messages")]
 		[SerializeField]
 		private GameObject m_OpenMessage;
 
-		// Token: 0x04003727 RID: 14119
+		// Token: 0x04002DB0 RID: 11696
 		[SerializeField]
 		private MessageForPlayer m_GrabMessage;
 
-		// Token: 0x04003728 RID: 14120
+		// Token: 0x04002DB1 RID: 11697
 		[Header("Crosshairs")]
 		[SerializeField]
 		private CrosshairData m_DefaultCrosshair;
 
-		// Token: 0x04003729 RID: 14121
+		// Token: 0x04002DB2 RID: 11698
 		[SerializeField]
 		private CrosshairData[] m_CustomCrosshairs;
 
-		// Token: 0x0400372A RID: 14122
+		// Token: 0x04002DB3 RID: 11699
 		private CrosshairData m_CurrentCrosshair;
 
-		// Token: 0x0400372B RID: 14123
+		// Token: 0x04002DB4 RID: 11700
 		private float m_OpenGraphicHideTime;
 	}
 }

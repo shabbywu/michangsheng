@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 
-// Token: 0x020002CE RID: 718
+// Token: 0x020001C7 RID: 455
 public class PermutationAndCombination<T>
 {
-	// Token: 0x060015A6 RID: 5542 RVA: 0x000C43CC File Offset: 0x000C25CC
+	// Token: 0x060012F1 RID: 4849 RVA: 0x0007703C File Offset: 0x0007523C
 	public static void Swap(ref T a, ref T b)
 	{
 		T t = a;
@@ -12,7 +12,7 @@ public class PermutationAndCombination<T>
 		b = t;
 	}
 
-	// Token: 0x060015A7 RID: 5543 RVA: 0x000C43F4 File Offset: 0x000C25F4
+	// Token: 0x060012F2 RID: 4850 RVA: 0x00077064 File Offset: 0x00075264
 	private static void GetCombination(ref List<T[]> list, T[] t, int n, int m, int[] b, int M)
 	{
 		for (int i = n; i >= m; i--)
@@ -38,7 +38,7 @@ public class PermutationAndCombination<T>
 		}
 	}
 
-	// Token: 0x060015A8 RID: 5544 RVA: 0x000C4468 File Offset: 0x000C2668
+	// Token: 0x060012F3 RID: 4851 RVA: 0x000770D8 File Offset: 0x000752D8
 	private static void GetPermutation(ref List<T[]> list, T[] t, int startIndex, int endIndex)
 	{
 		if (startIndex == endIndex)
@@ -60,7 +60,7 @@ public class PermutationAndCombination<T>
 		}
 	}
 
-	// Token: 0x060015A9 RID: 5545 RVA: 0x000C44DC File Offset: 0x000C26DC
+	// Token: 0x060012F4 RID: 4852 RVA: 0x0007714C File Offset: 0x0007534C
 	public static List<T[]> GetPermutation(T[] t, int startIndex, int endIndex)
 	{
 		if (startIndex < 0 || endIndex > t.Length - 1)
@@ -72,13 +72,13 @@ public class PermutationAndCombination<T>
 		return result;
 	}
 
-	// Token: 0x060015AA RID: 5546 RVA: 0x00013843 File Offset: 0x00011A43
+	// Token: 0x060012F5 RID: 4853 RVA: 0x00077178 File Offset: 0x00075378
 	public static List<T[]> GetPermutation(T[] t)
 	{
 		return PermutationAndCombination<T>.GetPermutation(t, 0, t.Length - 1);
 	}
 
-	// Token: 0x060015AB RID: 5547 RVA: 0x000C4508 File Offset: 0x000C2708
+	// Token: 0x060012F6 RID: 4854 RVA: 0x00077188 File Offset: 0x00075388
 	public static List<T[]> GetPermutation(T[] t, int n)
 	{
 		if (n > t.Length)
@@ -96,7 +96,7 @@ public class PermutationAndCombination<T>
 		return list;
 	}
 
-	// Token: 0x060015AC RID: 5548 RVA: 0x000C455C File Offset: 0x000C275C
+	// Token: 0x060012F7 RID: 4855 RVA: 0x000771DC File Offset: 0x000753DC
 	public static List<T[]> GetCombination(T[] t, int n)
 	{
 		if (t.Length < n)

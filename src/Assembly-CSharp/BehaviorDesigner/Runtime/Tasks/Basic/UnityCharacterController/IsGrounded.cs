@@ -3,12 +3,12 @@ using UnityEngine;
 
 namespace BehaviorDesigner.Runtime.Tasks.Basic.UnityCharacterController
 {
-	// Token: 0x0200160B RID: 5643
+	// Token: 0x0200114C RID: 4428
 	[TaskCategory("Basic/CharacterController")]
 	[TaskDescription("Returns Success if the character is grounded, otherwise Failure.")]
 	public class IsGrounded : Conditional
 	{
-		// Token: 0x060083C1 RID: 33729 RVA: 0x002CEE60 File Offset: 0x002CD060
+		// Token: 0x060075C7 RID: 30151 RVA: 0x002B5188 File Offset: 0x002B3388
 		public override void OnStart()
 		{
 			GameObject defaultGameObject = base.GetDefaultGameObject(this.targetGameObject.Value);
@@ -19,7 +19,7 @@ namespace BehaviorDesigner.Runtime.Tasks.Basic.UnityCharacterController
 			}
 		}
 
-		// Token: 0x060083C2 RID: 33730 RVA: 0x0005AC63 File Offset: 0x00058E63
+		// Token: 0x060075C8 RID: 30152 RVA: 0x002B51C8 File Offset: 0x002B33C8
 		public override TaskStatus OnUpdate()
 		{
 			if (this.characterController == null)
@@ -34,20 +34,20 @@ namespace BehaviorDesigner.Runtime.Tasks.Basic.UnityCharacterController
 			return 2;
 		}
 
-		// Token: 0x060083C3 RID: 33731 RVA: 0x0005AC8F File Offset: 0x00058E8F
+		// Token: 0x060075C9 RID: 30153 RVA: 0x002B51F4 File Offset: 0x002B33F4
 		public override void OnReset()
 		{
 			this.targetGameObject = null;
 		}
 
-		// Token: 0x04007071 RID: 28785
+		// Token: 0x0400614E RID: 24910
 		[Tooltip("The GameObject that the task operates on. If null the task GameObject is used.")]
 		public SharedGameObject targetGameObject;
 
-		// Token: 0x04007072 RID: 28786
+		// Token: 0x0400614F RID: 24911
 		private CharacterController characterController;
 
-		// Token: 0x04007073 RID: 28787
+		// Token: 0x04006150 RID: 24912
 		private GameObject prevGameObject;
 	}
 }

@@ -5,11 +5,11 @@ using UnityEngine.UI;
 
 namespace UltimateSurvival.GUISystem
 {
-	// Token: 0x02000939 RID: 2361
+	// Token: 0x0200063F RID: 1599
 	public class BuildingPiece : MonoBehaviour
 	{
-		// Token: 0x17000685 RID: 1669
-		// (get) Token: 0x06003C68 RID: 15464 RVA: 0x0002B95C File Offset: 0x00029B5C
+		// Token: 0x1700047D RID: 1149
+		// (get) Token: 0x0600330C RID: 13068 RVA: 0x001677AF File Offset: 0x001659AF
 		public string PieceName
 		{
 			get
@@ -18,8 +18,8 @@ namespace UltimateSurvival.GUISystem
 			}
 		}
 
-		// Token: 0x17000686 RID: 1670
-		// (get) Token: 0x06003C69 RID: 15465 RVA: 0x0002B964 File Offset: 0x00029B64
+		// Token: 0x1700047E RID: 1150
+		// (get) Token: 0x0600330D RID: 13069 RVA: 0x001677B7 File Offset: 0x001659B7
 		public Sprite Icon
 		{
 			get
@@ -28,8 +28,8 @@ namespace UltimateSurvival.GUISystem
 			}
 		}
 
-		// Token: 0x17000687 RID: 1671
-		// (get) Token: 0x06003C6A RID: 15466 RVA: 0x0002B971 File Offset: 0x00029B71
+		// Token: 0x1700047F RID: 1151
+		// (get) Token: 0x0600330E RID: 13070 RVA: 0x001677C4 File Offset: 0x001659C4
 		public Vector2 DesiredOffset
 		{
 			get
@@ -38,8 +38,8 @@ namespace UltimateSurvival.GUISystem
 			}
 		}
 
-		// Token: 0x17000688 RID: 1672
-		// (get) Token: 0x06003C6B RID: 15467 RVA: 0x0002B979 File Offset: 0x00029B79
+		// Token: 0x17000480 RID: 1152
+		// (get) Token: 0x0600330F RID: 13071 RVA: 0x001677CC File Offset: 0x001659CC
 		public BuildingPiece BuildableObject
 		{
 			get
@@ -48,41 +48,41 @@ namespace UltimateSurvival.GUISystem
 			}
 		}
 
-		// Token: 0x06003C6C RID: 15468 RVA: 0x0002B981 File Offset: 0x00029B81
+		// Token: 0x06003310 RID: 13072 RVA: 0x001677D4 File Offset: 0x001659D4
 		public void SetCustomColor(Color color)
 		{
 			this.m_Image.color = color;
 		}
 
-		// Token: 0x06003C6D RID: 15469 RVA: 0x0002B98F File Offset: 0x00029B8F
+		// Token: 0x06003311 RID: 13073 RVA: 0x001677E2 File Offset: 0x001659E2
 		public void SetDefaultColor()
 		{
 			this.m_Image.color = this.m_DefaultColor;
 		}
 
-		// Token: 0x06003C6E RID: 15470 RVA: 0x0002B9A2 File Offset: 0x00029BA2
+		// Token: 0x06003312 RID: 13074 RVA: 0x001677F5 File Offset: 0x001659F5
 		private void Awake()
 		{
 			this.m_Image = base.GetComponent<Image>();
 			this.m_DefaultColor = this.m_Image.color;
 		}
 
-		// Token: 0x040036A6 RID: 13990
+		// Token: 0x04002D3D RID: 11581
 		[SerializeField]
 		private string m_PieceName;
 
-		// Token: 0x040036A7 RID: 13991
+		// Token: 0x04002D3E RID: 11582
 		[SerializeField]
 		private Vector2 m_DesiredOffset;
 
-		// Token: 0x040036A8 RID: 13992
+		// Token: 0x04002D3F RID: 11583
 		[SerializeField]
 		private BuildingPiece m_BuildableObject;
 
-		// Token: 0x040036A9 RID: 13993
+		// Token: 0x04002D40 RID: 11584
 		private Image m_Image;
 
-		// Token: 0x040036AA RID: 13994
+		// Token: 0x04002D41 RID: 11585
 		private Color m_DefaultColor;
 	}
 }

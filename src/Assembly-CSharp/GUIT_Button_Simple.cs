@@ -1,18 +1,18 @@
 ﻿using System;
 using UnityEngine;
 
-// Token: 0x02000224 RID: 548
+// Token: 0x0200014E RID: 334
 [RequireComponent(typeof(GUITexture))]
 public class GUIT_Button_Simple : MonoBehaviour
 {
-	// Token: 0x06001100 RID: 4352 RVA: 0x0001092B File Offset: 0x0000EB2B
+	// Token: 0x06000EDA RID: 3802 RVA: 0x0005A5F7 File Offset: 0x000587F7
 	private void Awake()
 	{
 		base.GetComponentInChildren<GUIText>().material.color = this.labelColor;
 		this.UpdateImage();
 	}
 
-	// Token: 0x06001101 RID: 4353 RVA: 0x000AA864 File Offset: 0x000A8A64
+	// Token: 0x06000EDB RID: 3803 RVA: 0x0005A618 File Offset: 0x00058818
 	private void Update()
 	{
 		if (base.GetComponent<GUITexture>().GetScreenRect().Contains(Input.mousePosition))
@@ -33,27 +33,27 @@ public class GUIT_Button_Simple : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001102 RID: 4354 RVA: 0x00010949 File Offset: 0x0000EB49
+	// Token: 0x06000EDC RID: 3804 RVA: 0x0005A66A File Offset: 0x0005886A
 	private void OnClick()
 	{
 		this.callbackObject.SendMessage(this.callback);
 	}
 
-	// Token: 0x06001103 RID: 4355 RVA: 0x0001095C File Offset: 0x0000EB5C
+	// Token: 0x06000EDD RID: 3805 RVA: 0x0005A67D File Offset: 0x0005887D
 	private void OnOver()
 	{
 		this.over = true;
 		this.UpdateImage();
 	}
 
-	// Token: 0x06001104 RID: 4356 RVA: 0x0001096B File Offset: 0x0000EB6B
+	// Token: 0x06000EDE RID: 3806 RVA: 0x0005A68C File Offset: 0x0005888C
 	private void OnOut()
 	{
 		this.over = false;
 		this.UpdateImage();
 	}
 
-	// Token: 0x06001105 RID: 4357 RVA: 0x0001097A File Offset: 0x0000EB7A
+	// Token: 0x06000EDF RID: 3807 RVA: 0x0005A69B File Offset: 0x0005889B
 	private void UpdateImage()
 	{
 		if (this.over)
@@ -64,21 +64,21 @@ public class GUIT_Button_Simple : MonoBehaviour
 		base.GetComponent<GUITexture>().texture = this.text;
 	}
 
-	// Token: 0x04000DAC RID: 3500
+	// Token: 0x04000B0E RID: 2830
 	public Color labelColor;
 
-	// Token: 0x04000DAD RID: 3501
+	// Token: 0x04000B0F RID: 2831
 	public Texture text;
 
-	// Token: 0x04000DAE RID: 3502
+	// Token: 0x04000B10 RID: 2832
 	public Texture text_over;
 
-	// Token: 0x04000DAF RID: 3503
+	// Token: 0x04000B11 RID: 2833
 	public GameObject callbackObject;
 
-	// Token: 0x04000DB0 RID: 3504
+	// Token: 0x04000B12 RID: 2834
 	public string callback;
 
-	// Token: 0x04000DB1 RID: 3505
+	// Token: 0x04000B13 RID: 2835
 	private bool over;
 }

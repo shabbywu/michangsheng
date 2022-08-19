@@ -3,17 +3,17 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-// Token: 0x0200017B RID: 379
+// Token: 0x020000FE RID: 254
 public class SaveGameTrigger : MonoBehaviour
 {
-	// Token: 0x06000CBF RID: 3263 RVA: 0x0000E8B9 File Offset: 0x0000CAB9
+	// Token: 0x06000BBA RID: 3002 RVA: 0x0004751A File Offset: 0x0004571A
 	private void Start()
 	{
 		this.saveUI = Object.FindObjectOfType<SaveGameUI>().gameObject;
 		this.anim = this.saveUI.GetComponent<Animator>();
 	}
 
-	// Token: 0x06000CC0 RID: 3264 RVA: 0x00098EC0 File Offset: 0x000970C0
+	// Token: 0x06000BBB RID: 3003 RVA: 0x00047540 File Offset: 0x00045740
 	private void OnTriggerStay(Collider col)
 	{
 		if (col.tag == "Player" && Input.GetKeyDown(this.saveUI.GetComponent<SaveGameUI>().SaveKey))
@@ -32,7 +32,7 @@ public class SaveGameTrigger : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000CC1 RID: 3265 RVA: 0x00098F84 File Offset: 0x00097184
+	// Token: 0x06000BBC RID: 3004 RVA: 0x00047604 File Offset: 0x00045804
 	private void sendCurrentSavePointData()
 	{
 		this.saveUI.GetComponent<SaveGameUI>().saveName = this.saveName;
@@ -41,7 +41,7 @@ public class SaveGameTrigger : MonoBehaviour
 		this.saveUI.GetComponent<SaveGameUI>().sceneName = this.sceneName;
 	}
 
-	// Token: 0x06000CC2 RID: 3266 RVA: 0x0000E8DC File Offset: 0x0000CADC
+	// Token: 0x06000BBD RID: 3005 RVA: 0x00047669 File Offset: 0x00045869
 	private void Update()
 	{
 		if (this.debugSpawn)
@@ -51,49 +51,49 @@ public class SaveGameTrigger : MonoBehaviour
 		}
 	}
 
-	// Token: 0x040009E9 RID: 2537
+	// Token: 0x040007FD RID: 2045
 	private Animator anim;
 
-	// Token: 0x040009EA RID: 2538
+	// Token: 0x040007FE RID: 2046
 	[Header("All other UI")]
 	[Tooltip("No Need to Assign")]
 	public Canvas[] allUI;
 
-	// Token: 0x040009EB RID: 2539
+	// Token: 0x040007FF RID: 2047
 	[Header("References to UI")]
 	[Tooltip("No Need to Assign")]
 	public GameObject saveUI;
 
-	// Token: 0x040009EC RID: 2540
+	// Token: 0x04000800 RID: 2048
 	[Tooltip("No Need to Assign")]
 	public Text saveName_Txt;
 
-	// Token: 0x040009ED RID: 2541
+	// Token: 0x04000801 RID: 2049
 	[Tooltip("No Need to Assign")]
 	public Text savePercentage_Txt;
 
-	// Token: 0x040009EE RID: 2542
+	// Token: 0x04000802 RID: 2050
 	[Header("Edit these in Inspector According to your level")]
 	[Tooltip("Save Name which will be displayed in respective Save Slots")]
 	public string saveName;
 
-	// Token: 0x040009EF RID: 2543
+	// Token: 0x04000803 RID: 2051
 	[Tooltip("Game Completion percentage displayed in respective Save Slots")]
 	public float savePercentage;
 
-	// Token: 0x040009F0 RID: 2544
+	// Token: 0x04000804 RID: 2052
 	[Tooltip("Scene to Load")]
 	public string sceneName;
 
-	// Token: 0x040009F1 RID: 2545
+	// Token: 0x04000805 RID: 2053
 	[Tooltip("Player will spawn from this point when level loads")]
 	public Transform spawnPoint;
 
-	// Token: 0x040009F2 RID: 2546
+	// Token: 0x04000806 RID: 2054
 	[Tooltip("Unique trigger ID to see is this the last save point")]
 	public int saveTriggerId;
 
-	// Token: 0x040009F3 RID: 2547
+	// Token: 0x04000807 RID: 2055
 	[Tooltip("Debug to spawn player at this Trigger's spawnPoint")]
 	public bool debugSpawn;
 }

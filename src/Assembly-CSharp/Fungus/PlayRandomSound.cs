@@ -3,18 +3,18 @@ using UnityEngine;
 
 namespace Fungus
 {
-	// Token: 0x0200125B RID: 4699
+	// Token: 0x02000E0E RID: 3598
 	[CommandInfo("Audio", "Play Random Sound", "Plays a once-off sound effect from a list of available sound effects. Multiple sound effects can be played at the same time.", 0)]
 	[AddComponentMenu("")]
 	public class PlayRandomSound : Command
 	{
-		// Token: 0x0600721F RID: 29215 RVA: 0x00011424 File Offset: 0x0000F624
+		// Token: 0x06006591 RID: 26001 RVA: 0x0005E3AF File Offset: 0x0005C5AF
 		protected virtual void DoWait()
 		{
 			this.Continue();
 		}
 
-		// Token: 0x06007220 RID: 29216 RVA: 0x002A7878 File Offset: 0x002A5A78
+		// Token: 0x06006592 RID: 26002 RVA: 0x002837F8 File Offset: 0x002819F8
 		public override void OnEnter()
 		{
 			int num = Random.Range(0, this.soundClip.Length);
@@ -32,7 +32,7 @@ namespace Fungus
 			this.Continue();
 		}
 
-		// Token: 0x06007221 RID: 29217 RVA: 0x002A78E8 File Offset: 0x002A5AE8
+		// Token: 0x06006593 RID: 26003 RVA: 0x00283868 File Offset: 0x00281A68
 		public override string GetSummary()
 		{
 			if (this.soundClip == null)
@@ -56,24 +56,24 @@ namespace Fungus
 			return "Random sounds " + text;
 		}
 
-		// Token: 0x06007222 RID: 29218 RVA: 0x0004C749 File Offset: 0x0004A949
+		// Token: 0x06006594 RID: 26004 RVA: 0x0027DDC5 File Offset: 0x0027BFC5
 		public override Color GetButtonColor()
 		{
 			return new Color32(242, 209, 176, byte.MaxValue);
 		}
 
-		// Token: 0x04006471 RID: 25713
+		// Token: 0x0400573C RID: 22332
 		[Tooltip("Sound effect clip to play")]
 		[SerializeField]
 		protected AudioClip[] soundClip;
 
-		// Token: 0x04006472 RID: 25714
+		// Token: 0x0400573D RID: 22333
 		[Range(0f, 1f)]
 		[Tooltip("Volume level of the sound effect")]
 		[SerializeField]
 		protected float volume = 1f;
 
-		// Token: 0x04006473 RID: 25715
+		// Token: 0x0400573E RID: 22334
 		[Tooltip("Wait until the sound has finished playing before continuing execution.")]
 		[SerializeField]
 		protected bool waitUntilFinished;

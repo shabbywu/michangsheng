@@ -5,11 +5,11 @@ using UnityEngine;
 
 namespace UltimateSurvival
 {
-	// Token: 0x02000858 RID: 2136
+	// Token: 0x0200059C RID: 1436
 	[Serializable]
 	public class ReorderableGenericList<T> : IEnumerable<T>, IEnumerable
 	{
-		// Token: 0x17000599 RID: 1433
+		// Token: 0x170003E0 RID: 992
 		public T this[int key]
 		{
 			get
@@ -22,8 +22,8 @@ namespace UltimateSurvival
 			}
 		}
 
-		// Token: 0x1700059A RID: 1434
-		// (get) Token: 0x060037AC RID: 14252 RVA: 0x000286AB File Offset: 0x000268AB
+		// Token: 0x170003E1 RID: 993
+		// (get) Token: 0x06002F2E RID: 12078 RVA: 0x00156637 File Offset: 0x00154837
 		public int Count
 		{
 			get
@@ -32,8 +32,8 @@ namespace UltimateSurvival
 			}
 		}
 
-		// Token: 0x1700059B RID: 1435
-		// (get) Token: 0x060037AD RID: 14253 RVA: 0x000286B8 File Offset: 0x000268B8
+		// Token: 0x170003E2 RID: 994
+		// (get) Token: 0x06002F2F RID: 12079 RVA: 0x00156644 File Offset: 0x00154844
 		public List<T> List
 		{
 			get
@@ -42,19 +42,19 @@ namespace UltimateSurvival
 			}
 		}
 
-		// Token: 0x060037AE RID: 14254 RVA: 0x000286C0 File Offset: 0x000268C0
+		// Token: 0x06002F30 RID: 12080 RVA: 0x0015664C File Offset: 0x0015484C
 		public IEnumerator<T> GetEnumerator()
 		{
 			return this.m_List.GetEnumerator();
 		}
 
-		// Token: 0x060037AF RID: 14255 RVA: 0x000286D2 File Offset: 0x000268D2
+		// Token: 0x06002F31 RID: 12081 RVA: 0x0015665E File Offset: 0x0015485E
 		IEnumerator IEnumerable.GetEnumerator()
 		{
 			return this.GetEnumerator();
 		}
 
-		// Token: 0x040031F3 RID: 12787
+		// Token: 0x04002972 RID: 10610
 		[SerializeField]
 		private List<T> m_List;
 	}

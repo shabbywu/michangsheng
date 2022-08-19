@@ -2,7 +2,7 @@
 
 namespace MoonSharp.Interpreter.CodeAnalysis
 {
-	// Token: 0x020011B5 RID: 4533
+	// Token: 0x02000D92 RID: 3474
 	internal class AstNode
 	{
 	}

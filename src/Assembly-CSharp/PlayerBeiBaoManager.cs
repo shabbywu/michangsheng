@@ -4,10 +4,10 @@ using GUIPackage;
 using KBEngine;
 using UnityEngine;
 
-// Token: 0x020004F0 RID: 1264
+// Token: 0x02000373 RID: 883
 public class PlayerBeiBaoManager : MonoBehaviour
 {
-	// Token: 0x060020E4 RID: 8420 RVA: 0x00114634 File Offset: 0x00112834
+	// Token: 0x06001D7F RID: 7551 RVA: 0x000D055C File Offset: 0x000CE75C
 	public void updateEquipd()
 	{
 		Avatar player = Tools.instance.getPlayer();
@@ -23,19 +23,19 @@ public class PlayerBeiBaoManager : MonoBehaviour
 		Equips.resetEquipSeid(player);
 	}
 
-	// Token: 0x060020E5 RID: 8421 RVA: 0x0001B1F8 File Offset: 0x000193F8
+	// Token: 0x06001D80 RID: 7552 RVA: 0x000D061E File Offset: 0x000CE81E
 	private void Awake()
 	{
 		PlayerBeiBaoManager.inst = this;
 	}
 
-	// Token: 0x060020E6 RID: 8422 RVA: 0x0001B1F8 File Offset: 0x000193F8
+	// Token: 0x06001D81 RID: 7553 RVA: 0x000D061E File Offset: 0x000CE81E
 	private void Start()
 	{
 		PlayerBeiBaoManager.inst = this;
 	}
 
-	// Token: 0x060020E7 RID: 8423 RVA: 0x0001B200 File Offset: 0x00019400
+	// Token: 0x06001D82 RID: 7554 RVA: 0x000D0626 File Offset: 0x000CE826
 	public void openBackpack()
 	{
 		if (this.uIToggle.value)
@@ -44,7 +44,7 @@ public class PlayerBeiBaoManager : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060020E8 RID: 8424 RVA: 0x001146F8 File Offset: 0x001128F8
+	// Token: 0x06001D83 RID: 7555 RVA: 0x000D063C File Offset: 0x000CE83C
 	public static int GetEquipIndex(string name)
 	{
 		int result;
@@ -87,7 +87,7 @@ public class PlayerBeiBaoManager : MonoBehaviour
 		return result;
 	}
 
-	// Token: 0x060020E9 RID: 8425 RVA: 0x00114764 File Offset: 0x00112964
+	// Token: 0x06001D84 RID: 7556 RVA: 0x000D06A8 File Offset: 0x000CE8A8
 	private void updateEquipCellSum()
 	{
 		if (Tools.instance.getPlayer().checkHasStudyWuDaoSkillByID(2231))
@@ -105,7 +105,7 @@ public class PlayerBeiBaoManager : MonoBehaviour
 		this.Weapon2.SetActive(false);
 	}
 
-	// Token: 0x060020EA RID: 8426 RVA: 0x001148A0 File Offset: 0x00112AA0
+	// Token: 0x06001D85 RID: 7557 RVA: 0x000D07E4 File Offset: 0x000CE9E4
 	public void restartEquips()
 	{
 		Avatar player = Tools.instance.getPlayer();
@@ -133,7 +133,7 @@ public class PlayerBeiBaoManager : MonoBehaviour
 		Equips.resetEquipSeid(player);
 	}
 
-	// Token: 0x060020EB RID: 8427 RVA: 0x001149B0 File Offset: 0x00112BB0
+	// Token: 0x06001D86 RID: 7558 RVA: 0x000D08F4 File Offset: 0x000CEAF4
 	public void addEquip(int id, string uuid, JSONObject Seid)
 	{
 		int i = jsonData.instance.ItemJsonData[id.ToString()]["type"].I;
@@ -186,7 +186,7 @@ public class PlayerBeiBaoManager : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060020EC RID: 8428 RVA: 0x00114BA0 File Offset: 0x00112DA0
+	// Token: 0x06001D87 RID: 7559 RVA: 0x000D0AE4 File Offset: 0x000CECE4
 	public int getEquipIndexByType(int type)
 	{
 		int result = -1;
@@ -223,36 +223,36 @@ public class PlayerBeiBaoManager : MonoBehaviour
 		return result;
 	}
 
-	// Token: 0x04001C5F RID: 7263
+	// Token: 0x04001812 RID: 6162
 	public Inventory2 inventory2;
 
-	// Token: 0x04001C60 RID: 7264
+	// Token: 0x04001813 RID: 6163
 	[SerializeField]
 	private UIToggle uIToggle;
 
-	// Token: 0x04001C61 RID: 7265
+	// Token: 0x04001814 RID: 6164
 	[SerializeField]
 	private GameObject Weapon;
 
-	// Token: 0x04001C62 RID: 7266
+	// Token: 0x04001815 RID: 6165
 	[SerializeField]
 	private GameObject Weapon2;
 
-	// Token: 0x04001C63 RID: 7267
+	// Token: 0x04001816 RID: 6166
 	[SerializeField]
 	private GameObject Clothing;
 
-	// Token: 0x04001C64 RID: 7268
+	// Token: 0x04001817 RID: 6167
 	[SerializeField]
 	private GameObject Ring;
 
-	// Token: 0x04001C65 RID: 7269
+	// Token: 0x04001818 RID: 6168
 	[SerializeField]
 	private GameObject LinZhou;
 
-	// Token: 0x04001C66 RID: 7270
+	// Token: 0x04001819 RID: 6169
 	public static PlayerBeiBaoManager inst;
 
-	// Token: 0x04001C67 RID: 7271
+	// Token: 0x0400181A RID: 6170
 	public List<EquipCell> equiplist;
 }

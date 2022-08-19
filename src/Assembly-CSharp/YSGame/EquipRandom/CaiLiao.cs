@@ -3,22 +3,22 @@ using System.Collections.Generic;
 
 namespace YSGame.EquipRandom
 {
-	// Token: 0x02000DB8 RID: 3512
+	// Token: 0x02000A86 RID: 2694
 	public class CaiLiao
 	{
-		// Token: 0x060054BF RID: 21695 RVA: 0x0003C9E5 File Offset: 0x0003ABE5
+		// Token: 0x06004BA3 RID: 19363 RVA: 0x00203525 File Offset: 0x00201725
 		public int ShuXingID(int EquipType)
 		{
 			return RandomEquip.FindShuXingIDByEquipTypeAndShuXingType(this.ShuXingType, EquipType);
 		}
 
-		// Token: 0x060054C0 RID: 21696 RVA: 0x0003C9F3 File Offset: 0x0003ABF3
+		// Token: 0x06004BA4 RID: 19364 RVA: 0x00203533 File Offset: 0x00201733
 		public int AttackType(int EquipType)
 		{
 			return jsonData.instance.LianQiShuXinLeiBie[this.ShuXingType.ToString()]["AttackType"].I;
 		}
 
-		// Token: 0x060054C1 RID: 21697 RVA: 0x00234AE0 File Offset: 0x00232CE0
+		// Token: 0x06004BA5 RID: 19365 RVA: 0x00203560 File Offset: 0x00201760
 		public CaiLiao(JSONObject item)
 		{
 			this.Data = item;
@@ -37,7 +37,7 @@ namespace YSGame.EquipRandom
 			this.TotalWuWei = this.QinHe + this.CaoKong + this.LingXing + this.JianGu + this.RenXing;
 		}
 
-		// Token: 0x060054C2 RID: 21698 RVA: 0x00234C74 File Offset: 0x00232E74
+		// Token: 0x06004BA6 RID: 19366 RVA: 0x002036F4 File Offset: 0x002018F4
 		public override string ToString()
 		{
 			return string.Format("{0}品{1} 类型{2} 属性类型{3} 灵力{4} 五维类型{5} 亲和{6} 操控{7} 灵性{8} 坚固{9} 韧性{10} 总五维{11}", new object[]
@@ -57,7 +57,7 @@ namespace YSGame.EquipRandom
 			});
 		}
 
-		// Token: 0x0400546C RID: 21612
+		// Token: 0x04004AAE RID: 19118
 		private static Dictionary<int, int> CaiLiaoLingLiDict = new Dictionary<int, int>
 		{
 			{
@@ -86,43 +86,43 @@ namespace YSGame.EquipRandom
 			}
 		};
 
-		// Token: 0x0400546D RID: 21613
+		// Token: 0x04004AAF RID: 19119
 		public JSONObject Data;
 
-		// Token: 0x0400546E RID: 21614
+		// Token: 0x04004AB0 RID: 19120
 		public string Name;
 
-		// Token: 0x0400546F RID: 21615
+		// Token: 0x04004AB1 RID: 19121
 		public int Quality;
 
-		// Token: 0x04005470 RID: 21616
+		// Token: 0x04004AB2 RID: 19122
 		public int Type;
 
-		// Token: 0x04005471 RID: 21617
+		// Token: 0x04004AB3 RID: 19123
 		public int ShuXingType;
 
-		// Token: 0x04005472 RID: 21618
+		// Token: 0x04004AB4 RID: 19124
 		public int LingLi;
 
-		// Token: 0x04005473 RID: 21619
+		// Token: 0x04004AB5 RID: 19125
 		public int WuWeiType;
 
-		// Token: 0x04005474 RID: 21620
+		// Token: 0x04004AB6 RID: 19126
 		public int QinHe;
 
-		// Token: 0x04005475 RID: 21621
+		// Token: 0x04004AB7 RID: 19127
 		public int CaoKong;
 
-		// Token: 0x04005476 RID: 21622
+		// Token: 0x04004AB8 RID: 19128
 		public int LingXing;
 
-		// Token: 0x04005477 RID: 21623
+		// Token: 0x04004AB9 RID: 19129
 		public int JianGu;
 
-		// Token: 0x04005478 RID: 21624
+		// Token: 0x04004ABA RID: 19130
 		public int RenXing;
 
-		// Token: 0x04005479 RID: 21625
+		// Token: 0x04004ABB RID: 19131
 		public int TotalWuWei;
 	}
 }

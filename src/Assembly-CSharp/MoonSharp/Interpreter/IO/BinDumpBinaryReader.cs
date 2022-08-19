@@ -5,20 +5,20 @@ using System.Text;
 
 namespace MoonSharp.Interpreter.IO
 {
-	// Token: 0x020010E1 RID: 4321
+	// Token: 0x02000D02 RID: 3330
 	public class BinDumpBinaryReader : BinaryReader
 	{
-		// Token: 0x0600684E RID: 26702 RVA: 0x0004797C File Offset: 0x00045B7C
+		// Token: 0x06005D30 RID: 23856 RVA: 0x00262443 File Offset: 0x00260643
 		public BinDumpBinaryReader(Stream s) : base(s)
 		{
 		}
 
-		// Token: 0x0600684F RID: 26703 RVA: 0x00047990 File Offset: 0x00045B90
+		// Token: 0x06005D31 RID: 23857 RVA: 0x00262457 File Offset: 0x00260657
 		public BinDumpBinaryReader(Stream s, Encoding e) : base(s, e)
 		{
 		}
 
-		// Token: 0x06006850 RID: 26704 RVA: 0x0028B338 File Offset: 0x00289538
+		// Token: 0x06005D32 RID: 23858 RVA: 0x0026246C File Offset: 0x0026066C
 		public override int ReadInt32()
 		{
 			sbyte b = base.ReadSByte();
@@ -33,7 +33,7 @@ namespace MoonSharp.Interpreter.IO
 			return (int)b;
 		}
 
-		// Token: 0x06006851 RID: 26705 RVA: 0x0028B368 File Offset: 0x00289568
+		// Token: 0x06005D33 RID: 23859 RVA: 0x0026249C File Offset: 0x0026069C
 		public override uint ReadUInt32()
 		{
 			byte b = base.ReadByte();
@@ -48,7 +48,7 @@ namespace MoonSharp.Interpreter.IO
 			return (uint)b;
 		}
 
-		// Token: 0x06006852 RID: 26706 RVA: 0x0028B398 File Offset: 0x00289598
+		// Token: 0x06005D34 RID: 23860 RVA: 0x002624CC File Offset: 0x002606CC
 		public override string ReadString()
 		{
 			int num = this.ReadInt32();
@@ -65,7 +65,7 @@ namespace MoonSharp.Interpreter.IO
 			throw new IOException("string map failure");
 		}
 
-		// Token: 0x04005FE1 RID: 24545
+		// Token: 0x040053D7 RID: 21463
 		private List<string> m_Strings = new List<string>();
 	}
 }

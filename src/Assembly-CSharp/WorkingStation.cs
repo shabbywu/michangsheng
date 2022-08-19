@@ -2,10 +2,10 @@
 using KBEngine;
 using UnityEngine;
 
-// Token: 0x02000201 RID: 513
+// Token: 0x02000130 RID: 304
 public class WorkingStation : MonoBehaviour
 {
-	// Token: 0x0600103F RID: 4159 RVA: 0x000103FB File Offset: 0x0000E5FB
+	// Token: 0x06000E31 RID: 3633 RVA: 0x00054549 File Offset: 0x00052749
 	private void Start()
 	{
 		if (this.craftSystem != null)
@@ -15,7 +15,7 @@ public class WorkingStation : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001040 RID: 4160 RVA: 0x000A4BDC File Offset: 0x000A2DDC
+	// Token: 0x06000E32 RID: 3634 RVA: 0x0005457C File Offset: 0x0005277C
 	private void Update()
 	{
 		float num = Vector3.Distance(base.gameObject.transform.position, ((GameObject)KBEngineApp.app.player().renderObj).transform.position);
@@ -39,21 +39,21 @@ public class WorkingStation : MonoBehaviour
 		}
 	}
 
-	// Token: 0x04000CD0 RID: 3280
+	// Token: 0x04000A38 RID: 2616
 	public KeyCode openInventory;
 
-	// Token: 0x04000CD1 RID: 3281
+	// Token: 0x04000A39 RID: 2617
 	public GameObject craftSystem;
 
-	// Token: 0x04000CD2 RID: 3282
+	// Token: 0x04000A3A RID: 2618
 	public int distanceToOpenWorkingStation = 3;
 
-	// Token: 0x04000CD3 RID: 3283
+	// Token: 0x04000A3B RID: 2619
 	private bool showCraftSystem;
 
-	// Token: 0x04000CD4 RID: 3284
+	// Token: 0x04000A3C RID: 2620
 	private Inventory craftInventory;
 
-	// Token: 0x04000CD5 RID: 3285
+	// Token: 0x04000A3D RID: 2621
 	private CraftSystem cS;
 }

@@ -4,10 +4,10 @@ using ICSharpCode.SharpZipLib.Core;
 
 namespace ICSharpCode.SharpZipLib.Zip
 {
-	// Token: 0x020007E8 RID: 2024
+	// Token: 0x02000546 RID: 1350
 	public class DiskArchiveStorage : BaseArchiveStorage
 	{
-		// Token: 0x060033E4 RID: 13284 RVA: 0x00025D0C File Offset: 0x00023F0C
+		// Token: 0x06002B8D RID: 11149 RVA: 0x00145FE4 File Offset: 0x001441E4
 		public DiskArchiveStorage(ZipFile file, FileUpdateMode updateMode) : base(updateMode)
 		{
 			if (file.Name == null)
@@ -17,12 +17,12 @@ namespace ICSharpCode.SharpZipLib.Zip
 			this.fileName_ = file.Name;
 		}
 
-		// Token: 0x060033E5 RID: 13285 RVA: 0x00025D34 File Offset: 0x00023F34
+		// Token: 0x06002B8E RID: 11150 RVA: 0x0014600C File Offset: 0x0014420C
 		public DiskArchiveStorage(ZipFile file) : this(file, FileUpdateMode.Safe)
 		{
 		}
 
-		// Token: 0x060033E6 RID: 13286 RVA: 0x00025D3E File Offset: 0x00023F3E
+		// Token: 0x06002B8F RID: 11151 RVA: 0x00146016 File Offset: 0x00144216
 		public override Stream GetTemporaryOutput()
 		{
 			this.temporaryName_ = PathUtils.GetTempFileName(this.temporaryName_);
@@ -30,7 +30,7 @@ namespace ICSharpCode.SharpZipLib.Zip
 			return this.temporaryStream_;
 		}
 
-		// Token: 0x060033E7 RID: 13287 RVA: 0x00192314 File Offset: 0x00190514
+		// Token: 0x06002B90 RID: 11152 RVA: 0x00146044 File Offset: 0x00144244
 		public override Stream ConvertTemporaryToFinal()
 		{
 			if (this.temporaryStream_ == null)
@@ -62,7 +62,7 @@ namespace ICSharpCode.SharpZipLib.Zip
 			return result;
 		}
 
-		// Token: 0x060033E8 RID: 13288 RVA: 0x001923B8 File Offset: 0x001905B8
+		// Token: 0x06002B91 RID: 11153 RVA: 0x001460E8 File Offset: 0x001442E8
 		public override Stream MakeTemporaryCopy(Stream stream)
 		{
 			stream.Dispose();
@@ -72,7 +72,7 @@ namespace ICSharpCode.SharpZipLib.Zip
 			return this.temporaryStream_;
 		}
 
-		// Token: 0x060033E9 RID: 13289 RVA: 0x00192408 File Offset: 0x00190608
+		// Token: 0x06002B92 RID: 11154 RVA: 0x00146138 File Offset: 0x00144338
 		public override Stream OpenForDirectUpdate(Stream stream)
 		{
 			Stream result;
@@ -91,7 +91,7 @@ namespace ICSharpCode.SharpZipLib.Zip
 			return result;
 		}
 
-		// Token: 0x060033EA RID: 13290 RVA: 0x00025D6B File Offset: 0x00023F6B
+		// Token: 0x06002B93 RID: 11155 RVA: 0x0014616C File Offset: 0x0014436C
 		public override void Dispose()
 		{
 			if (this.temporaryStream_ != null)
@@ -100,13 +100,13 @@ namespace ICSharpCode.SharpZipLib.Zip
 			}
 		}
 
-		// Token: 0x04002F4F RID: 12111
+		// Token: 0x0400272D RID: 10029
 		private Stream temporaryStream_;
 
-		// Token: 0x04002F50 RID: 12112
+		// Token: 0x0400272E RID: 10030
 		private readonly string fileName_;
 
-		// Token: 0x04002F51 RID: 12113
+		// Token: 0x0400272F RID: 10031
 		private string temporaryName_;
 	}
 }

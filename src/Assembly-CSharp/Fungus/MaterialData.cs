@@ -3,26 +3,26 @@ using UnityEngine;
 
 namespace Fungus
 {
-	// Token: 0x02001383 RID: 4995
+	// Token: 0x02000EE2 RID: 3810
 	[Serializable]
 	public struct MaterialData
 	{
-		// Token: 0x060078F6 RID: 30966 RVA: 0x00052516 File Offset: 0x00050716
+		// Token: 0x06006B57 RID: 27479 RVA: 0x0029641A File Offset: 0x0029461A
 		public MaterialData(Material v)
 		{
 			this.materialVal = v;
 			this.materialRef = null;
 		}
 
-		// Token: 0x060078F7 RID: 30967 RVA: 0x00052526 File Offset: 0x00050726
+		// Token: 0x06006B58 RID: 27480 RVA: 0x0029642A File Offset: 0x0029462A
 		public static implicit operator Material(MaterialData materialData)
 		{
 			return materialData.Value;
 		}
 
-		// Token: 0x17000B5C RID: 2908
-		// (get) Token: 0x060078F8 RID: 30968 RVA: 0x0005252F File Offset: 0x0005072F
-		// (set) Token: 0x060078F9 RID: 30969 RVA: 0x00052551 File Offset: 0x00050751
+		// Token: 0x170008BF RID: 2239
+		// (get) Token: 0x06006B59 RID: 27481 RVA: 0x00296433 File Offset: 0x00294633
+		// (set) Token: 0x06006B5A RID: 27482 RVA: 0x00296455 File Offset: 0x00294655
 		public Material Value
 		{
 			get
@@ -44,7 +44,7 @@ namespace Fungus
 			}
 		}
 
-		// Token: 0x060078FA RID: 30970 RVA: 0x00052575 File Offset: 0x00050775
+		// Token: 0x06006B5B RID: 27483 RVA: 0x00296479 File Offset: 0x00294679
 		public string GetDescription()
 		{
 			if (this.materialRef == null)
@@ -54,7 +54,7 @@ namespace Fungus
 			return this.materialRef.Key;
 		}
 
-		// Token: 0x040068EB RID: 26859
+		// Token: 0x04005A82 RID: 23170
 		[SerializeField]
 		[VariableProperty("<Value>", new Type[]
 		{
@@ -62,7 +62,7 @@ namespace Fungus
 		})]
 		public MaterialVariable materialRef;
 
-		// Token: 0x040068EC RID: 26860
+		// Token: 0x04005A83 RID: 23171
 		[SerializeField]
 		public Material materialVal;
 	}

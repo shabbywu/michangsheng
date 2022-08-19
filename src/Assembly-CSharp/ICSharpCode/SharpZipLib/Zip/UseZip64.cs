@@ -2,14 +2,14 @@
 
 namespace ICSharpCode.SharpZipLib.Zip
 {
-	// Token: 0x020007BF RID: 1983
+	// Token: 0x02000529 RID: 1321
 	public enum UseZip64
 	{
-		// Token: 0x04002E61 RID: 11873
+		// Token: 0x0400266D RID: 9837
 		Off,
-		// Token: 0x04002E62 RID: 11874
+		// Token: 0x0400266E RID: 9838
 		On,
-		// Token: 0x04002E63 RID: 11875
+		// Token: 0x0400266F RID: 9839
 		Dynamic
 	}
 }

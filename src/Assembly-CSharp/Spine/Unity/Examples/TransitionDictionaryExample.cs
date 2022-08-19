@@ -4,10 +4,10 @@ using UnityEngine;
 
 namespace Spine.Unity.Examples
 {
-	// Token: 0x02000E31 RID: 3633
+	// Token: 0x02000AE4 RID: 2788
 	public sealed class TransitionDictionaryExample : MonoBehaviour
 	{
-		// Token: 0x06005778 RID: 22392 RVA: 0x00245038 File Offset: 0x00243238
+		// Token: 0x06004DFC RID: 19964 RVA: 0x00214E64 File Offset: 0x00213064
 		private void Start()
 		{
 			this.dictionary.Clear();
@@ -17,7 +17,7 @@ namespace Spine.Unity.Examples
 			}
 		}
 
-		// Token: 0x06005779 RID: 22393 RVA: 0x002450C0 File Offset: 0x002432C0
+		// Token: 0x06004DFD RID: 19965 RVA: 0x00214EEC File Offset: 0x002130EC
 		public Animation GetTransition(Animation from, Animation to)
 		{
 			Animation result;
@@ -25,24 +25,24 @@ namespace Spine.Unity.Examples
 			return result;
 		}
 
-		// Token: 0x04005761 RID: 22369
+		// Token: 0x04004D58 RID: 19800
 		[SerializeField]
 		private List<TransitionDictionaryExample.SerializedEntry> transitions = new List<TransitionDictionaryExample.SerializedEntry>();
 
-		// Token: 0x04005762 RID: 22370
+		// Token: 0x04004D59 RID: 19801
 		private readonly Dictionary<AnimationStateData.AnimationPair, Animation> dictionary = new Dictionary<AnimationStateData.AnimationPair, Animation>();
 
-		// Token: 0x02000E32 RID: 3634
+		// Token: 0x020015C3 RID: 5571
 		[Serializable]
 		public struct SerializedEntry
 		{
-			// Token: 0x04005763 RID: 22371
+			// Token: 0x04007060 RID: 28768
 			public AnimationReferenceAsset from;
 
-			// Token: 0x04005764 RID: 22372
+			// Token: 0x04007061 RID: 28769
 			public AnimationReferenceAsset to;
 
-			// Token: 0x04005765 RID: 22373
+			// Token: 0x04007062 RID: 28770
 			public AnimationReferenceAsset transition;
 		}
 	}

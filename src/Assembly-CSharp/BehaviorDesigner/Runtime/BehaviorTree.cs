@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace BehaviorDesigner.Runtime
 {
-	// Token: 0x0200146F RID: 5231
+	// Token: 0x02000FB7 RID: 4023
 	[AddComponentMenu("Behavior Designer/Behavior Tree")]
 	public class BehaviorTree : Behavior
 	{

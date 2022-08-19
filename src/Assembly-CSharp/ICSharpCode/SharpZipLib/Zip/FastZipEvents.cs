@@ -3,15 +3,15 @@ using ICSharpCode.SharpZipLib.Core;
 
 namespace ICSharpCode.SharpZipLib.Zip
 {
-	// Token: 0x020007B9 RID: 1977
+	// Token: 0x02000525 RID: 1317
 	public class FastZipEvents
 	{
 		// Token: 0x14000038 RID: 56
-		// (add) Token: 0x0600322A RID: 12842 RVA: 0x0018D46C File Offset: 0x0018B66C
-		// (remove) Token: 0x0600322B RID: 12843 RVA: 0x0018D4A4 File Offset: 0x0018B6A4
+		// (add) Token: 0x06002A17 RID: 10775 RVA: 0x0014039C File Offset: 0x0013E59C
+		// (remove) Token: 0x06002A18 RID: 10776 RVA: 0x001403D4 File Offset: 0x0013E5D4
 		public event EventHandler<DirectoryEventArgs> ProcessDirectory;
 
-		// Token: 0x0600322C RID: 12844 RVA: 0x0018D4DC File Offset: 0x0018B6DC
+		// Token: 0x06002A19 RID: 10777 RVA: 0x0014040C File Offset: 0x0013E60C
 		public bool OnDirectoryFailure(string directory, Exception e)
 		{
 			bool result = false;
@@ -25,7 +25,7 @@ namespace ICSharpCode.SharpZipLib.Zip
 			return result;
 		}
 
-		// Token: 0x0600322D RID: 12845 RVA: 0x0018D510 File Offset: 0x0018B710
+		// Token: 0x06002A1A RID: 10778 RVA: 0x00140440 File Offset: 0x0013E640
 		public bool OnFileFailure(string file, Exception e)
 		{
 			FileFailureHandler fileFailure = this.FileFailure;
@@ -39,7 +39,7 @@ namespace ICSharpCode.SharpZipLib.Zip
 			return flag;
 		}
 
-		// Token: 0x0600322E RID: 12846 RVA: 0x0018D544 File Offset: 0x0018B744
+		// Token: 0x06002A1B RID: 10779 RVA: 0x00140474 File Offset: 0x0013E674
 		public bool OnProcessFile(string file)
 		{
 			bool result = true;
@@ -53,7 +53,7 @@ namespace ICSharpCode.SharpZipLib.Zip
 			return result;
 		}
 
-		// Token: 0x0600322F RID: 12847 RVA: 0x0018D574 File Offset: 0x0018B774
+		// Token: 0x06002A1C RID: 10780 RVA: 0x001404A4 File Offset: 0x0013E6A4
 		public bool OnCompletedFile(string file)
 		{
 			bool result = true;
@@ -67,7 +67,7 @@ namespace ICSharpCode.SharpZipLib.Zip
 			return result;
 		}
 
-		// Token: 0x06003230 RID: 12848 RVA: 0x0018D5A4 File Offset: 0x0018B7A4
+		// Token: 0x06002A1D RID: 10781 RVA: 0x001404D4 File Offset: 0x0013E6D4
 		public bool OnProcessDirectory(string directory, bool hasMatchingFiles)
 		{
 			bool result = true;
@@ -81,9 +81,9 @@ namespace ICSharpCode.SharpZipLib.Zip
 			return result;
 		}
 
-		// Token: 0x1700045E RID: 1118
-		// (get) Token: 0x06003231 RID: 12849 RVA: 0x00024957 File Offset: 0x00022B57
-		// (set) Token: 0x06003232 RID: 12850 RVA: 0x0002495F File Offset: 0x00022B5F
+		// Token: 0x170002BF RID: 703
+		// (get) Token: 0x06002A1E RID: 10782 RVA: 0x00140505 File Offset: 0x0013E705
+		// (set) Token: 0x06002A1F RID: 10783 RVA: 0x0014050D File Offset: 0x0013E70D
 		public TimeSpan ProgressInterval
 		{
 			get
@@ -96,22 +96,22 @@ namespace ICSharpCode.SharpZipLib.Zip
 			}
 		}
 
-		// Token: 0x04002E3D RID: 11837
+		// Token: 0x0400264D RID: 9805
 		public ProcessFileHandler ProcessFile;
 
-		// Token: 0x04002E3E RID: 11838
+		// Token: 0x0400264E RID: 9806
 		public ProgressHandler Progress;
 
-		// Token: 0x04002E3F RID: 11839
+		// Token: 0x0400264F RID: 9807
 		public CompletedFileHandler CompletedFile;
 
-		// Token: 0x04002E40 RID: 11840
+		// Token: 0x04002650 RID: 9808
 		public DirectoryFailureHandler DirectoryFailure;
 
-		// Token: 0x04002E41 RID: 11841
+		// Token: 0x04002651 RID: 9809
 		public FileFailureHandler FileFailure;
 
-		// Token: 0x04002E42 RID: 11842
+		// Token: 0x04002652 RID: 9810
 		private TimeSpan progressInterval_ = TimeSpan.FromSeconds(3.0);
 	}
 }

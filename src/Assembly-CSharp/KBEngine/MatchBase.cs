@@ -4,65 +4,65 @@ using UnityEngine;
 
 namespace KBEngine
 {
-	// Token: 0x02000F5B RID: 3931
+	// Token: 0x02000BD8 RID: 3032
 	public abstract class MatchBase : Entity
 	{
-		// Token: 0x06005E68 RID: 24168 RVA: 0x00040112 File Offset: 0x0003E312
+		// Token: 0x0600542A RID: 21546 RVA: 0x00220682 File Offset: 0x0021E882
 		public MatchBase()
 		{
 		}
 
-		// Token: 0x06005E69 RID: 24169 RVA: 0x000042DD File Offset: 0x000024DD
+		// Token: 0x0600542B RID: 21547 RVA: 0x00004095 File Offset: 0x00002295
 		public override void onComponentsEnterworld()
 		{
 		}
 
-		// Token: 0x06005E6A RID: 24170 RVA: 0x000042DD File Offset: 0x000024DD
+		// Token: 0x0600542C RID: 21548 RVA: 0x00004095 File Offset: 0x00002295
 		public override void onComponentsLeaveworld()
 		{
 		}
 
-		// Token: 0x06005E6B RID: 24171 RVA: 0x000422A7 File Offset: 0x000404A7
+		// Token: 0x0600542D RID: 21549 RVA: 0x0023465C File Offset: 0x0023285C
 		public override void onGetBase()
 		{
 			this.baseEntityCall = new EntityBaseEntityCall_MatchBase(this.id, this.className);
 		}
 
-		// Token: 0x06005E6C RID: 24172 RVA: 0x000422C0 File Offset: 0x000404C0
+		// Token: 0x0600542E RID: 21550 RVA: 0x00234675 File Offset: 0x00232875
 		public override void onGetCell()
 		{
 			this.cellEntityCall = new EntityCellEntityCall_MatchBase(this.id, this.className);
 		}
 
-		// Token: 0x06005E6D RID: 24173 RVA: 0x000422D9 File Offset: 0x000404D9
+		// Token: 0x0600542F RID: 21551 RVA: 0x0023468E File Offset: 0x0023288E
 		public override void onLoseCell()
 		{
 			this.cellEntityCall = null;
 		}
 
-		// Token: 0x06005E6E RID: 24174 RVA: 0x000422E2 File Offset: 0x000404E2
+		// Token: 0x06005430 RID: 21552 RVA: 0x00234697 File Offset: 0x00232897
 		public override EntityCall getBaseEntityCall()
 		{
 			return this.baseEntityCall;
 		}
 
-		// Token: 0x06005E6F RID: 24175 RVA: 0x000422EA File Offset: 0x000404EA
+		// Token: 0x06005431 RID: 21553 RVA: 0x0023469F File Offset: 0x0023289F
 		public override EntityCall getCellEntityCall()
 		{
 			return this.cellEntityCall;
 		}
 
-		// Token: 0x06005E70 RID: 24176 RVA: 0x000042DD File Offset: 0x000024DD
+		// Token: 0x06005432 RID: 21554 RVA: 0x00004095 File Offset: 0x00002295
 		public override void attachComponents()
 		{
 		}
 
-		// Token: 0x06005E71 RID: 24177 RVA: 0x000042DD File Offset: 0x000024DD
+		// Token: 0x06005433 RID: 21555 RVA: 0x00004095 File Offset: 0x00002295
 		public override void detachComponents()
 		{
 		}
 
-		// Token: 0x06005E72 RID: 24178 RVA: 0x00261F40 File Offset: 0x00260140
+		// Token: 0x06005434 RID: 21556 RVA: 0x002346A8 File Offset: 0x002328A8
 		public override void onRemoteMethodCall(MemoryStream stream)
 		{
 			ScriptModule scriptModule = EntityDef.moduledefs["Match"];
@@ -93,7 +93,7 @@ namespace KBEngine
 			ushort properUtype = scriptModule.idpropertys[num].properUtype;
 		}
 
-		// Token: 0x06005E73 RID: 24179 RVA: 0x00261FC0 File Offset: 0x002601C0
+		// Token: 0x06005435 RID: 21557 RVA: 0x00234728 File Offset: 0x00232928
 		public override void onUpdatePropertys(MemoryStream stream)
 		{
 			ScriptModule scriptModule = EntityDef.moduledefs["Match"];
@@ -161,7 +161,7 @@ namespace KBEngine
 			}
 		}
 
-		// Token: 0x06005E74 RID: 24180 RVA: 0x002620F0 File Offset: 0x002602F0
+		// Token: 0x06005436 RID: 21558 RVA: 0x00234858 File Offset: 0x00232A58
 		public override void callPropertysSetMethods()
 		{
 			Dictionary<ushort, Property> idpropertys = EntityDef.moduledefs["Match"].idpropertys;
@@ -194,10 +194,10 @@ namespace KBEngine
 			}
 		}
 
-		// Token: 0x04005B1B RID: 23323
+		// Token: 0x0400507A RID: 20602
 		public EntityBaseEntityCall_MatchBase baseEntityCall;
 
-		// Token: 0x04005B1C RID: 23324
+		// Token: 0x0400507B RID: 20603
 		public EntityCellEntityCall_MatchBase cellEntityCall;
 	}
 }

@@ -4,17 +4,17 @@ using KBEngine;
 using UnityEngine;
 using UnityEngine.Events;
 
-// Token: 0x02000470 RID: 1136
+// Token: 0x0200030F RID: 783
 public class LunDaoCardMag
 {
-	// Token: 0x06001E74 RID: 7796 RVA: 0x00019452 File Offset: 0x00017652
+	// Token: 0x06001B43 RID: 6979 RVA: 0x000C24DB File Offset: 0x000C06DB
 	public LunDaoCardMag()
 	{
 		this.random = new Random();
 		this.player = Tools.instance.getPlayer();
 	}
 
-	// Token: 0x06001E75 RID: 7797 RVA: 0x00107B40 File Offset: 0x00105D40
+	// Token: 0x06001B44 RID: 6980 RVA: 0x000C2500 File Offset: 0x000C0700
 	public void CreatePaiKu(List<int> lunTiList, int npcId)
 	{
 		JSONObject jsonobject = jsonData.instance.AvatarJsonData[npcId.ToString()]["wuDaoJson"];
@@ -35,7 +35,7 @@ public class LunDaoCardMag
 		}
 	}
 
-	// Token: 0x06001E76 RID: 7798 RVA: 0x00107C58 File Offset: 0x00105E58
+	// Token: 0x06001B45 RID: 6981 RVA: 0x000C2618 File Offset: 0x000C0818
 	public void NpcDrawCard(List<LunDaoCard> cards)
 	{
 		if (this.npcCards.Count < 5)
@@ -58,7 +58,7 @@ public class LunDaoCardMag
 		}
 	}
 
-	// Token: 0x06001E77 RID: 7799 RVA: 0x00107CE4 File Offset: 0x00105EE4
+	// Token: 0x06001B46 RID: 6982 RVA: 0x000C26A4 File Offset: 0x000C08A4
 	public void PlayerDrawCard(List<LunDaoPlayerCard> cards)
 	{
 		for (int i = 0; i < 5; i++)
@@ -77,21 +77,21 @@ public class LunDaoCardMag
 		}
 	}
 
-	// Token: 0x06001E78 RID: 7800 RVA: 0x00019475 File Offset: 0x00017675
+	// Token: 0x06001B47 RID: 6983 RVA: 0x000C27A5 File Offset: 0x000C09A5
 	public int getRandom(int min, int max)
 	{
-		return this.random.Next(min, max - 1);
+		return this.random.Next(min, max + 1);
 	}
 
-	// Token: 0x040019CF RID: 6607
+	// Token: 0x040015B9 RID: 5561
 	public List<LunDaoCard> playerCards;
 
-	// Token: 0x040019D0 RID: 6608
+	// Token: 0x040015BA RID: 5562
 	public List<LunDaoCard> npcCards;
 
-	// Token: 0x040019D1 RID: 6609
+	// Token: 0x040015BB RID: 5563
 	public Avatar player;
 
-	// Token: 0x040019D2 RID: 6610
+	// Token: 0x040015BC RID: 5564
 	public Random random;
 }

@@ -5,10 +5,10 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
 
-// Token: 0x020003DB RID: 987
+// Token: 0x020002A2 RID: 674
 public class CyFriendCell : MonoBehaviour
 {
-	// Token: 0x06001AFC RID: 6908 RVA: 0x000EED5C File Offset: 0x000ECF5C
+	// Token: 0x0600180A RID: 6154 RVA: 0x000A7B20 File Offset: 0x000A5D20
 	public void Init(int npcId)
 	{
 		this.isSelect = false;
@@ -76,7 +76,7 @@ public class CyFriendCell : MonoBehaviour
 		base.gameObject.SetActive(true);
 	}
 
-	// Token: 0x06001AFD RID: 6909 RVA: 0x000EEFF4 File Offset: 0x000ED1F4
+	// Token: 0x0600180B RID: 6155 RVA: 0x000A7DB8 File Offset: 0x000A5FB8
 	public void Click()
 	{
 		if (!this.isSelect)
@@ -96,7 +96,7 @@ public class CyFriendCell : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001AFE RID: 6910 RVA: 0x000EF088 File Offset: 0x000ED288
+	// Token: 0x0600180C RID: 6156 RVA: 0x000A7E4C File Offset: 0x000A604C
 	public void updateState()
 	{
 		if (this.isSelect)
@@ -134,7 +134,7 @@ public class CyFriendCell : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001AFF RID: 6911 RVA: 0x000EF1BC File Offset: 0x000ED3BC
+	// Token: 0x0600180D RID: 6157 RVA: 0x000A7F80 File Offset: 0x000A6180
 	public void ClickTag()
 	{
 		if (NpcJieSuanManager.inst.IsDeath(this.npcId))
@@ -161,48 +161,48 @@ public class CyFriendCell : MonoBehaviour
 		this.bg.sprite = CyUIMag.inst.npcList.npcCellSpriteList[3];
 	}
 
-	// Token: 0x040016A3 RID: 5795
+	// Token: 0x04001307 RID: 4871
 	public Image bg;
 
-	// Token: 0x040016A4 RID: 5796
+	// Token: 0x04001308 RID: 4872
 	public Image tagImage;
 
-	// Token: 0x040016A5 RID: 5797
+	// Token: 0x04001309 RID: 4873
 	public Text npcName;
 
-	// Token: 0x040016A6 RID: 5798
+	// Token: 0x0400130A RID: 4874
 	public Text chengHao;
 
-	// Token: 0x040016A7 RID: 5799
+	// Token: 0x0400130B RID: 4875
 	public Image deathImage;
 
-	// Token: 0x040016A8 RID: 5800
+	// Token: 0x0400130C RID: 4876
 	public BtnCell tagBtnCell;
 
-	// Token: 0x040016A9 RID: 5801
+	// Token: 0x0400130D RID: 4877
 	public BtnCell btnCell;
 
-	// Token: 0x040016AA RID: 5802
+	// Token: 0x0400130E RID: 4878
 	public UINPCHeadFavor favor;
 
-	// Token: 0x040016AB RID: 5803
+	// Token: 0x0400130F RID: 4879
 	public int npcId = -1;
 
-	// Token: 0x040016AC RID: 5804
+	// Token: 0x04001310 RID: 4880
 	public bool isTag;
 
-	// Token: 0x040016AD RID: 5805
+	// Token: 0x04001311 RID: 4881
 	public bool isSelect;
 
-	// Token: 0x040016AE RID: 5806
+	// Token: 0x04001312 RID: 4882
 	public bool isDeath;
 
-	// Token: 0x040016AF RID: 5807
+	// Token: 0x04001313 RID: 4883
 	public bool IsFly;
 
-	// Token: 0x040016B0 RID: 5808
+	// Token: 0x04001314 RID: 4884
 	public UINPCData npcData;
 
-	// Token: 0x040016B1 RID: 5809
+	// Token: 0x04001315 RID: 4885
 	public GameObject redDian;
 }

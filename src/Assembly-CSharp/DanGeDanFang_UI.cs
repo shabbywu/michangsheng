@@ -5,15 +5,15 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-// Token: 0x02000614 RID: 1556
+// Token: 0x0200045B RID: 1115
 public class DanGeDanFang_UI : MonoBehaviour, IPointerEnterHandler, IEventSystemHandler, IPointerExitHandler
 {
-	// Token: 0x060026B1 RID: 9905 RVA: 0x000042DD File Offset: 0x000024DD
+	// Token: 0x06002300 RID: 8960 RVA: 0x00004095 File Offset: 0x00002295
 	private void Start()
 	{
 	}
 
-	// Token: 0x060026B2 RID: 9906 RVA: 0x0001ED8E File Offset: 0x0001CF8E
+	// Token: 0x06002301 RID: 8961 RVA: 0x000EEF46 File Offset: 0x000ED146
 	public void delet()
 	{
 		selectBox._instence.setChoice("确认删除该丹方？", new EventDelegate(delegate()
@@ -21,7 +21,7 @@ public class DanGeDanFang_UI : MonoBehaviour, IPointerEnterHandler, IEventSystem
 			int danyaoID = base.transform.parent.parent.GetComponent<DanFang_UI>().ItemID;
 			Tools.instance.getPlayer().DanFang.list.Find(delegate(JSONObject aa)
 			{
-				if (danyaoID == (int)aa["ID"].n)
+				if (danyaoID == aa["ID"].I)
 				{
 					bool flag = true;
 					for (int i = 0; i < aa["Type"].list.Count; i++)
@@ -46,13 +46,13 @@ public class DanGeDanFang_UI : MonoBehaviour, IPointerEnterHandler, IEventSystem
 		}), null);
 	}
 
-	// Token: 0x060026B3 RID: 9907 RVA: 0x00012FEF File Offset: 0x000111EF
+	// Token: 0x06002302 RID: 8962 RVA: 0x0006D41C File Offset: 0x0006B61C
 	public void Top()
 	{
 		base.transform.SetSiblingIndex(0);
 	}
 
-	// Token: 0x060026B4 RID: 9908 RVA: 0x0012F484 File Offset: 0x0012D684
+	// Token: 0x06002303 RID: 8963 RVA: 0x000EEF6C File Offset: 0x000ED16C
 	public bool CanAdd()
 	{
 		bool result = true;
@@ -87,7 +87,7 @@ public class DanGeDanFang_UI : MonoBehaviour, IPointerEnterHandler, IEventSystem
 		return result;
 	}
 
-	// Token: 0x060026B5 RID: 9909 RVA: 0x0012F5C8 File Offset: 0x0012D7C8
+	// Token: 0x06002304 RID: 8964 RVA: 0x000EF0B0 File Offset: 0x000ED2B0
 	public void SetLianDanThis()
 	{
 		if (this.shouldUpDate)
@@ -176,7 +176,7 @@ public class DanGeDanFang_UI : MonoBehaviour, IPointerEnterHandler, IEventSystem
 		}
 	}
 
-	// Token: 0x060026B6 RID: 9910 RVA: 0x0012F9D8 File Offset: 0x0012DBD8
+	// Token: 0x06002305 RID: 8965 RVA: 0x000EF4C0 File Offset: 0x000ED6C0
 	public void init()
 	{
 		this.yaoyin.text = "药引：";
@@ -251,7 +251,7 @@ public class DanGeDanFang_UI : MonoBehaviour, IPointerEnterHandler, IEventSystem
 		}
 	}
 
-	// Token: 0x060026B7 RID: 9911 RVA: 0x0012FCAC File Offset: 0x0012DEAC
+	// Token: 0x06002306 RID: 8966 RVA: 0x000EF794 File Offset: 0x000ED994
 	private void Update()
 	{
 		if (this.shouldUpDate)
@@ -265,7 +265,7 @@ public class DanGeDanFang_UI : MonoBehaviour, IPointerEnterHandler, IEventSystem
 		}
 	}
 
-	// Token: 0x060026B8 RID: 9912 RVA: 0x0001EDB1 File Offset: 0x0001CFB1
+	// Token: 0x06002307 RID: 8967 RVA: 0x000EF7E0 File Offset: 0x000ED9E0
 	public void OnPointerEnter(PointerEventData eventData)
 	{
 		if (this.removebtn != null)
@@ -278,7 +278,7 @@ public class DanGeDanFang_UI : MonoBehaviour, IPointerEnterHandler, IEventSystem
 		}
 	}
 
-	// Token: 0x060026B9 RID: 9913 RVA: 0x0001EDE7 File Offset: 0x0001CFE7
+	// Token: 0x06002308 RID: 8968 RVA: 0x000EF816 File Offset: 0x000EDA16
 	public void OnPointerExit(PointerEventData eventData)
 	{
 		if (this.removebtn != null)
@@ -291,36 +291,36 @@ public class DanGeDanFang_UI : MonoBehaviour, IPointerEnterHandler, IEventSystem
 		}
 	}
 
-	// Token: 0x04002103 RID: 8451
+	// Token: 0x04001C35 RID: 7221
 	public Text zhuyao;
 
-	// Token: 0x04002104 RID: 8452
+	// Token: 0x04001C36 RID: 7222
 	public Text fuyao;
 
-	// Token: 0x04002105 RID: 8453
+	// Token: 0x04001C37 RID: 7223
 	public Text yaoyin;
 
-	// Token: 0x04002106 RID: 8454
+	// Token: 0x04001C38 RID: 7224
 	public GameObject removebtn;
 
-	// Token: 0x04002107 RID: 8455
+	// Token: 0x04001C39 RID: 7225
 	public GameObject zhidingbtn;
 
-	// Token: 0x04002108 RID: 8456
+	// Token: 0x04001C3A RID: 7226
 	public Image icon;
 
-	// Token: 0x04002109 RID: 8457
+	// Token: 0x04001C3B RID: 7227
 	public List<Sprite> iconsprite;
 
-	// Token: 0x0400210A RID: 8458
+	// Token: 0x04001C3C RID: 7228
 	public List<int> danyao = new List<int>();
 
-	// Token: 0x0400210B RID: 8459
+	// Token: 0x04001C3D RID: 7229
 	public List<int> num = new List<int>();
 
-	// Token: 0x0400210C RID: 8460
+	// Token: 0x04001C3E RID: 7230
 	public bool shouldUpDate = true;
 
-	// Token: 0x0400210D RID: 8461
+	// Token: 0x04001C3F RID: 7231
 	public GameObject TuJianPlan;
 }

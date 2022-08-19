@@ -2,10 +2,10 @@
 using System.Collections;
 using UnityEngine;
 
-// Token: 0x0200016D RID: 365
+// Token: 0x020000F5 RID: 245
 public class ThrowBombSkill : MonoBehaviour
 {
-	// Token: 0x06000C81 RID: 3201 RVA: 0x00098564 File Offset: 0x00096764
+	// Token: 0x06000B92 RID: 2962 RVA: 0x00046B5C File Offset: 0x00044D5C
 	private void Start()
 	{
 		if (base.GetComponent<Rigidbody>())
@@ -16,7 +16,7 @@ public class ThrowBombSkill : MonoBehaviour
 		base.StartCoroutine(this.countdown());
 	}
 
-	// Token: 0x06000C82 RID: 3202 RVA: 0x0000E689 File Offset: 0x0000C889
+	// Token: 0x06000B93 RID: 2963 RVA: 0x00046BD9 File Offset: 0x00044DD9
 	private IEnumerator countdown()
 	{
 		for (;;)
@@ -28,12 +28,12 @@ public class ThrowBombSkill : MonoBehaviour
 		yield break;
 	}
 
-	// Token: 0x040009B4 RID: 2484
+	// Token: 0x040007D6 RID: 2006
 	public float Dulation = 3f;
 
-	// Token: 0x040009B5 RID: 2485
+	// Token: 0x040007D7 RID: 2007
 	public GameObject DamageSkill;
 
-	// Token: 0x040009B6 RID: 2486
+	// Token: 0x040007D8 RID: 2008
 	public float Force = 300f;
 }

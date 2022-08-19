@@ -3,10 +3,10 @@ using System.Collections.Generic;
 
 namespace JSONClass
 {
-	// Token: 0x02000AD9 RID: 2777
+	// Token: 0x02000741 RID: 1857
 	public class _FaBaoFirstNameJsonData : IJSONClass
 	{
-		// Token: 0x060046CE RID: 18126 RVA: 0x001E4B2C File Offset: 0x001E2D2C
+		// Token: 0x06003B18 RID: 15128 RVA: 0x00196674 File Offset: 0x00194874
 		public static void InitDataDict()
 		{
 			foreach (JSONObject jsonobject in jsonData.instance._FaBaoFirstNameJsonData.list)
@@ -15,6 +15,7 @@ namespace JSONClass
 				{
 					_FaBaoFirstNameJsonData faBaoFirstNameJsonData = new _FaBaoFirstNameJsonData();
 					faBaoFirstNameJsonData.id = jsonobject["id"].I;
+					faBaoFirstNameJsonData.PosReverse = jsonobject["PosReverse"].I;
 					faBaoFirstNameJsonData.FirstName = jsonobject["FirstName"].Str;
 					faBaoFirstNameJsonData.Type = jsonobject["Type"].ToList();
 					faBaoFirstNameJsonData.quality = jsonobject["quality"].ToList();
@@ -41,30 +42,33 @@ namespace JSONClass
 			}
 		}
 
-		// Token: 0x060046CF RID: 18127 RVA: 0x000042DD File Offset: 0x000024DD
+		// Token: 0x06003B19 RID: 15129 RVA: 0x00004095 File Offset: 0x00002295
 		private static void OnInitFinish()
 		{
 		}
 
-		// Token: 0x04003EF6 RID: 16118
+		// Token: 0x0400335A RID: 13146
 		public static Dictionary<int, _FaBaoFirstNameJsonData> DataDict = new Dictionary<int, _FaBaoFirstNameJsonData>();
 
-		// Token: 0x04003EF7 RID: 16119
+		// Token: 0x0400335B RID: 13147
 		public static List<_FaBaoFirstNameJsonData> DataList = new List<_FaBaoFirstNameJsonData>();
 
-		// Token: 0x04003EF8 RID: 16120
+		// Token: 0x0400335C RID: 13148
 		public static Action OnInitFinishAction = new Action(_FaBaoFirstNameJsonData.OnInitFinish);
 
-		// Token: 0x04003EF9 RID: 16121
+		// Token: 0x0400335D RID: 13149
 		public int id;
 
-		// Token: 0x04003EFA RID: 16122
+		// Token: 0x0400335E RID: 13150
+		public int PosReverse;
+
+		// Token: 0x0400335F RID: 13151
 		public string FirstName;
 
-		// Token: 0x04003EFB RID: 16123
+		// Token: 0x04003360 RID: 13152
 		public List<int> Type = new List<int>();
 
-		// Token: 0x04003EFC RID: 16124
+		// Token: 0x04003361 RID: 13153
 		public List<int> quality = new List<int>();
 	}
 }

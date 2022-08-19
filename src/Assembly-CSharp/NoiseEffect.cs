@@ -1,13 +1,13 @@
 ﻿using System;
 using UnityEngine;
 
-// Token: 0x02000137 RID: 311
+// Token: 0x020000C7 RID: 199
 [ExecuteInEditMode]
 [RequireComponent(typeof(Camera))]
 [AddComponentMenu("Image Effects/Noise")]
 public class NoiseEffect : MonoBehaviour
 {
-	// Token: 0x06000BBB RID: 3003 RVA: 0x00093644 File Offset: 0x00091844
+	// Token: 0x06000AD8 RID: 2776 RVA: 0x00041640 File Offset: 0x0003F840
 	protected void Start()
 	{
 		if (!SystemInfo.supportsImageEffects)
@@ -32,8 +32,8 @@ public class NoiseEffect : MonoBehaviour
 		}
 	}
 
-	// Token: 0x170001EA RID: 490
-	// (get) Token: 0x06000BBC RID: 3004 RVA: 0x000936B8 File Offset: 0x000918B8
+	// Token: 0x170001D1 RID: 465
+	// (get) Token: 0x06000AD9 RID: 2777 RVA: 0x000416B4 File Offset: 0x0003F8B4
 	protected Material material
 	{
 		get
@@ -56,7 +56,7 @@ public class NoiseEffect : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000BBD RID: 3005 RVA: 0x0000DD73 File Offset: 0x0000BF73
+	// Token: 0x06000ADA RID: 2778 RVA: 0x0004173E File Offset: 0x0003F93E
 	protected void OnDisable()
 	{
 		if (this.m_MaterialRGB)
@@ -69,7 +69,7 @@ public class NoiseEffect : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000BBE RID: 3006 RVA: 0x00093744 File Offset: 0x00091944
+	// Token: 0x06000ADB RID: 2779 RVA: 0x00041770 File Offset: 0x0003F970
 	private void SanitizeParameters()
 	{
 		this.grainIntensityMin = Mathf.Clamp(this.grainIntensityMin, 0f, 5f);
@@ -81,7 +81,7 @@ public class NoiseEffect : MonoBehaviour
 		this.grainSize = Mathf.Clamp(this.grainSize, 0.1f, 50f);
 	}
 
-	// Token: 0x06000BBF RID: 3007 RVA: 0x00093810 File Offset: 0x00091A10
+	// Token: 0x06000ADC RID: 2780 RVA: 0x0004183C File Offset: 0x0003FA3C
 	private void OnRenderImage(RenderTexture source, RenderTexture destination)
 	{
 		this.SanitizeParameters();
@@ -102,57 +102,57 @@ public class NoiseEffect : MonoBehaviour
 		Graphics.Blit(source, destination, material);
 	}
 
-	// Token: 0x0400087D RID: 2173
+	// Token: 0x040006D6 RID: 1750
 	public bool monochrome = true;
 
-	// Token: 0x0400087E RID: 2174
+	// Token: 0x040006D7 RID: 1751
 	private bool rgbFallback;
 
-	// Token: 0x0400087F RID: 2175
+	// Token: 0x040006D8 RID: 1752
 	public float grainIntensityMin = 0.1f;
 
-	// Token: 0x04000880 RID: 2176
+	// Token: 0x040006D9 RID: 1753
 	public float grainIntensityMax = 0.2f;
 
-	// Token: 0x04000881 RID: 2177
+	// Token: 0x040006DA RID: 1754
 	public float grainSize = 2f;
 
-	// Token: 0x04000882 RID: 2178
+	// Token: 0x040006DB RID: 1755
 	public float scratchIntensityMin = 0.05f;
 
-	// Token: 0x04000883 RID: 2179
+	// Token: 0x040006DC RID: 1756
 	public float scratchIntensityMax = 0.25f;
 
-	// Token: 0x04000884 RID: 2180
+	// Token: 0x040006DD RID: 1757
 	public float scratchFPS = 10f;
 
-	// Token: 0x04000885 RID: 2181
+	// Token: 0x040006DE RID: 1758
 	public float scratchJitter = 0.01f;
 
-	// Token: 0x04000886 RID: 2182
+	// Token: 0x040006DF RID: 1759
 	public Texture grainTexture;
 
-	// Token: 0x04000887 RID: 2183
+	// Token: 0x040006E0 RID: 1760
 	public Texture scratchTexture;
 
-	// Token: 0x04000888 RID: 2184
+	// Token: 0x040006E1 RID: 1761
 	public Shader shaderRGB;
 
-	// Token: 0x04000889 RID: 2185
+	// Token: 0x040006E2 RID: 1762
 	public Shader shaderYUV;
 
-	// Token: 0x0400088A RID: 2186
+	// Token: 0x040006E3 RID: 1763
 	private Material m_MaterialRGB;
 
-	// Token: 0x0400088B RID: 2187
+	// Token: 0x040006E4 RID: 1764
 	private Material m_MaterialYUV;
 
-	// Token: 0x0400088C RID: 2188
+	// Token: 0x040006E5 RID: 1765
 	private float scratchTimeLeft;
 
-	// Token: 0x0400088D RID: 2189
+	// Token: 0x040006E6 RID: 1766
 	private float scratchX;
 
-	// Token: 0x0400088E RID: 2190
+	// Token: 0x040006E7 RID: 1767
 	private float scratchY;
 }

@@ -1,18 +1,18 @@
 ﻿using System;
 using UnityEngine;
 
-// Token: 0x02000166 RID: 358
+// Token: 0x020000EF RID: 239
 [RequireComponent(typeof(CharacterSystem))]
 public class PlayerCharacterController : MonoBehaviour
 {
-	// Token: 0x06000C6D RID: 3181 RVA: 0x0000E5DC File Offset: 0x0000C7DC
+	// Token: 0x06000B7E RID: 2942 RVA: 0x00045DED File Offset: 0x00043FED
 	private void Start()
 	{
 		this.character = base.gameObject.GetComponent<CharacterSystem>();
 		Screen.lockCursor = true;
 	}
 
-	// Token: 0x06000C6E RID: 3182 RVA: 0x000978A8 File Offset: 0x00095AA8
+	// Token: 0x06000B7F RID: 2943 RVA: 0x00045E08 File Offset: 0x00044008
 	private void Update()
 	{
 		Vector3 vector = Vector3.zero;
@@ -64,6 +64,6 @@ public class PlayerCharacterController : MonoBehaviour
 		this.character.Move(vector);
 	}
 
-	// Token: 0x04000992 RID: 2450
+	// Token: 0x040007B7 RID: 1975
 	private CharacterSystem character;
 }

@@ -3,12 +3,12 @@ using UnityEngine;
 
 namespace BehaviorDesigner.Runtime.Tasks.Basic.UnityAnimator
 {
-	// Token: 0x02001648 RID: 5704
+	// Token: 0x02001189 RID: 4489
 	[TaskCategory("Basic/Animator")]
 	[TaskDescription("Stores if root motion is applied. Returns Success.")]
 	public class GetApplyRootMotion : Action
 	{
-		// Token: 0x060084B2 RID: 33970 RVA: 0x002CFE80 File Offset: 0x002CE080
+		// Token: 0x060076B8 RID: 30392 RVA: 0x002B72E4 File Offset: 0x002B54E4
 		public override void OnStart()
 		{
 			GameObject defaultGameObject = base.GetDefaultGameObject(this.targetGameObject.Value);
@@ -19,7 +19,7 @@ namespace BehaviorDesigner.Runtime.Tasks.Basic.UnityAnimator
 			}
 		}
 
-		// Token: 0x060084B3 RID: 33971 RVA: 0x0005BD77 File Offset: 0x00059F77
+		// Token: 0x060076B9 RID: 30393 RVA: 0x002B7324 File Offset: 0x002B5524
 		public override TaskStatus OnUpdate()
 		{
 			if (this.animator == null)
@@ -31,26 +31,26 @@ namespace BehaviorDesigner.Runtime.Tasks.Basic.UnityAnimator
 			return 2;
 		}
 
-		// Token: 0x060084B4 RID: 33972 RVA: 0x0005BDAA File Offset: 0x00059FAA
+		// Token: 0x060076BA RID: 30394 RVA: 0x002B7357 File Offset: 0x002B5557
 		public override void OnReset()
 		{
 			this.targetGameObject = null;
 			this.storeValue = false;
 		}
 
-		// Token: 0x0400715D RID: 29021
+		// Token: 0x0400623A RID: 25146
 		[Tooltip("The GameObject that the task operates on. If null the task GameObject is used.")]
 		public SharedGameObject targetGameObject;
 
-		// Token: 0x0400715E RID: 29022
+		// Token: 0x0400623B RID: 25147
 		[Tooltip("Is root motion applied?")]
 		[RequiredField]
 		public SharedBool storeValue;
 
-		// Token: 0x0400715F RID: 29023
+		// Token: 0x0400623C RID: 25148
 		private Animator animator;
 
-		// Token: 0x04007160 RID: 29024
+		// Token: 0x0400623D RID: 25149
 		private GameObject prevGameObject;
 	}
 }

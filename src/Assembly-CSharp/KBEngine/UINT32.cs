@@ -2,29 +2,29 @@
 
 namespace KBEngine
 {
-	// Token: 0x02000F20 RID: 3872
+	// Token: 0x02000B9D RID: 2973
 	public struct UINT32
 	{
-		// Token: 0x06005D61 RID: 23905 RVA: 0x00041AC4 File Offset: 0x0003FCC4
+		// Token: 0x06005323 RID: 21283 RVA: 0x00233963 File Offset: 0x00231B63
 		private UINT32(uint value)
 		{
 			this.value = value;
 		}
 
-		// Token: 0x06005D62 RID: 23906 RVA: 0x00041ACD File Offset: 0x0003FCCD
+		// Token: 0x06005324 RID: 21284 RVA: 0x0023396C File Offset: 0x00231B6C
 		public static implicit operator uint(UINT32 value)
 		{
 			return value.value;
 		}
 
-		// Token: 0x06005D63 RID: 23907 RVA: 0x00041AD5 File Offset: 0x0003FCD5
+		// Token: 0x06005325 RID: 21285 RVA: 0x00233974 File Offset: 0x00231B74
 		public static implicit operator UINT32(uint value)
 		{
 			return new UINT32(value);
 		}
 
-		// Token: 0x1700085F RID: 2143
-		// (get) Token: 0x06005D64 RID: 23908 RVA: 0x00041ADD File Offset: 0x0003FCDD
+		// Token: 0x1700060C RID: 1548
+		// (get) Token: 0x06005326 RID: 21286 RVA: 0x0023397C File Offset: 0x00231B7C
 		public static uint MaxValue
 		{
 			get
@@ -33,8 +33,8 @@ namespace KBEngine
 			}
 		}
 
-		// Token: 0x17000860 RID: 2144
-		// (get) Token: 0x06005D65 RID: 23909 RVA: 0x00004050 File Offset: 0x00002250
+		// Token: 0x1700060D RID: 1549
+		// (get) Token: 0x06005327 RID: 21287 RVA: 0x0000280F File Offset: 0x00000A0F
 		public static uint MinValue
 		{
 			get
@@ -43,7 +43,7 @@ namespace KBEngine
 			}
 		}
 
-		// Token: 0x04005ACA RID: 23242
+		// Token: 0x04005029 RID: 20521
 		private uint value;
 	}
 }

@@ -3,35 +3,35 @@ using System.Collections.Generic;
 
 namespace GUIPackage
 {
-	// Token: 0x02000D75 RID: 3445
+	// Token: 0x02000A55 RID: 2645
 	public class ShopExchenge_UI : Shop_UI
 	{
-		// Token: 0x060052C4 RID: 21188 RVA: 0x0003B463 File Offset: 0x00039663
+		// Token: 0x060049D9 RID: 18905 RVA: 0x001F531F File Offset: 0x001F351F
 		private void Start()
 		{
 			base.InitExChengShopItems(0);
 		}
 
-		// Token: 0x060052C5 RID: 21189 RVA: 0x0003B46C File Offset: 0x0003966C
+		// Token: 0x060049DA RID: 18906 RVA: 0x001F5328 File Offset: 0x001F3528
 		public void init(int shopID)
 		{
 			this.ShopID = shopID;
 			base.InitExChengMethod(0);
 		}
 
-		// Token: 0x060052C6 RID: 21190 RVA: 0x0003B47C File Offset: 0x0003967C
+		// Token: 0x060049DB RID: 18907 RVA: 0x001F5338 File Offset: 0x001F3538
 		public override int getExShopID(int type)
 		{
 			return this.ShopID;
 		}
 
-		// Token: 0x060052C7 RID: 21191 RVA: 0x00004050 File Offset: 0x00002250
+		// Token: 0x060049DC RID: 18908 RVA: 0x0000280F File Offset: 0x00000A0F
 		public override int getShopType(int type)
 		{
 			return 0;
 		}
 
-		// Token: 0x060052C8 RID: 21192 RVA: 0x00227DE0 File Offset: 0x00225FE0
+		// Token: 0x060049DD RID: 18909 RVA: 0x001F5340 File Offset: 0x001F3540
 		public override void updateItem()
 		{
 			int num = 0;
@@ -42,25 +42,25 @@ namespace GUIPackage
 			}
 		}
 
-		// Token: 0x060052C9 RID: 21193 RVA: 0x00017C2D File Offset: 0x00015E2D
+		// Token: 0x060049DE RID: 18910 RVA: 0x000B5E62 File Offset: 0x000B4062
 		public new void closeShop()
 		{
 			base.gameObject.SetActive(false);
 		}
 
-		// Token: 0x060052CA RID: 21194 RVA: 0x00004050 File Offset: 0x00002250
+		// Token: 0x060049DF RID: 18911 RVA: 0x0000280F File Offset: 0x00000A0F
 		public override bool ShouldSetLevel(int Type = 0)
 		{
 			return false;
 		}
 
-		// Token: 0x040052D1 RID: 21201
+		// Token: 0x0400494C RID: 18764
 		public int ShopID = -1;
 
-		// Token: 0x040052D2 RID: 21202
+		// Token: 0x0400494D RID: 18765
 		public bool IsCangJinGe;
 
-		// Token: 0x040052D3 RID: 21203
+		// Token: 0x0400494E RID: 18766
 		public List<int> CangJinGeShop = new List<int>();
 	}
 }

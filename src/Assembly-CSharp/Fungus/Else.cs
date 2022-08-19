@@ -3,12 +3,12 @@ using UnityEngine;
 
 namespace Fungus
 {
-	// Token: 0x02001203 RID: 4611
+	// Token: 0x02000DC9 RID: 3529
 	[CommandInfo("Flow", "Else", "Marks the start of a command block to be executed when the preceding If statement is False.", 0)]
 	[AddComponentMenu("")]
 	public class Else : Command, INoCommand
 	{
-		// Token: 0x060070D7 RID: 28887 RVA: 0x002A3514 File Offset: 0x002A1714
+		// Token: 0x06006458 RID: 25688 RVA: 0x0027E534 File Offset: 0x0027C734
 		public override void OnEnter()
 		{
 			if (this.ParentBlock == null)
@@ -33,19 +33,19 @@ namespace Fungus
 			this.StopParentBlock();
 		}
 
-		// Token: 0x060070D8 RID: 28888 RVA: 0x0000A093 File Offset: 0x00008293
+		// Token: 0x06006459 RID: 25689 RVA: 0x00024C5F File Offset: 0x00022E5F
 		public override bool OpenBlock()
 		{
 			return true;
 		}
 
-		// Token: 0x060070D9 RID: 28889 RVA: 0x0000A093 File Offset: 0x00008293
+		// Token: 0x0600645A RID: 25690 RVA: 0x00024C5F File Offset: 0x00022E5F
 		public override bool CloseBlock()
 		{
 			return true;
 		}
 
-		// Token: 0x060070DA RID: 28890 RVA: 0x0004C5A3 File Offset: 0x0004A7A3
+		// Token: 0x0600645B RID: 25691 RVA: 0x0027D1B6 File Offset: 0x0027B3B6
 		public override Color GetButtonColor()
 		{
 			return new Color32(253, 253, 150, byte.MaxValue);

@@ -1,16 +1,16 @@
 ﻿using System;
 using UnityEngine;
 
-// Token: 0x0200075B RID: 1883
+// Token: 0x020004E5 RID: 1253
 public class ObjSettingsTabs : MonoBehaviour
 {
-	// Token: 0x06002FE2 RID: 12258 RVA: 0x0002395C File Offset: 0x00021B5C
+	// Token: 0x06002879 RID: 10361 RVA: 0x00132797 File Offset: 0x00130997
 	private void Awake()
 	{
 		ObjSettingsTabs.SettingsTabs = false;
 	}
 
-	// Token: 0x06002FE3 RID: 12259 RVA: 0x0017EC68 File Offset: 0x0017CE68
+	// Token: 0x0600287A RID: 10362 RVA: 0x001327A0 File Offset: 0x001309A0
 	private void Start()
 	{
 		this.xDist = this.maxXPos - this.minXPos;
@@ -31,7 +31,7 @@ public class ObjSettingsTabs : MonoBehaviour
 		this.rememberYPos = this.obj[0].position.y;
 	}
 
-	// Token: 0x06002FE4 RID: 12260 RVA: 0x0017ED90 File Offset: 0x0017CF90
+	// Token: 0x0600287B RID: 10363 RVA: 0x001328C8 File Offset: 0x00130AC8
 	private void Update()
 	{
 		if (ObjSettingsTabs.SettingsTabs)
@@ -43,30 +43,30 @@ public class ObjSettingsTabs : MonoBehaviour
 		}
 	}
 
-	// Token: 0x04002B4B RID: 11083
+	// Token: 0x040023BD RID: 9149
 	public static bool SettingsTabs;
 
-	// Token: 0x04002B4C RID: 11084
+	// Token: 0x040023BE RID: 9150
 	public SwipeControlSettingsTabs swipeCtrl;
 
-	// Token: 0x04002B4D RID: 11085
+	// Token: 0x040023BF RID: 9151
 	public Transform[] obj = new Transform[0];
 
-	// Token: 0x04002B4E RID: 11086
+	// Token: 0x040023C0 RID: 9152
 	public float minXPos;
 
-	// Token: 0x04002B4F RID: 11087
+	// Token: 0x040023C1 RID: 9153
 	public float maxXPos = 40f;
 
-	// Token: 0x04002B50 RID: 11088
+	// Token: 0x040023C2 RID: 9154
 	private float xDist;
 
-	// Token: 0x04002B51 RID: 11089
+	// Token: 0x040023C3 RID: 9155
 	private float xDistFactor;
 
-	// Token: 0x04002B52 RID: 11090
+	// Token: 0x040023C4 RID: 9156
 	private float swipeSmoothFactor = 1f;
 
-	// Token: 0x04002B53 RID: 11091
+	// Token: 0x040023C5 RID: 9157
 	private float rememberYPos;
 }

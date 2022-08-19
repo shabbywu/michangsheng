@@ -5,23 +5,23 @@ using KBEngine;
 
 namespace BehaviorDesigner.Samples
 {
-	// Token: 0x0200146C RID: 5228
+	// Token: 0x02000FB4 RID: 4020
 	[TaskCategory("YS")]
 	[TaskDescription("检测是否拥有最优技能")]
 	public class HasUseSkill : Conditional
 	{
-		// Token: 0x06007DF1 RID: 32241 RVA: 0x000042DD File Offset: 0x000024DD
+		// Token: 0x06006FF7 RID: 28663 RVA: 0x00004095 File Offset: 0x00002295
 		public override void OnAwake()
 		{
 		}
 
-		// Token: 0x06007DF2 RID: 32242 RVA: 0x0005526D File Offset: 0x0005346D
+		// Token: 0x06006FF8 RID: 28664 RVA: 0x002A8B11 File Offset: 0x002A6D11
 		public override void OnStart()
 		{
 			this.avatar = (Avatar)this.gameObject.GetComponent<AvaterAddScript>().entity;
 		}
 
-		// Token: 0x06007DF3 RID: 32243 RVA: 0x002C8248 File Offset: 0x002C6448
+		// Token: 0x06006FF9 RID: 28665 RVA: 0x002A8B30 File Offset: 0x002A6D30
 		public override TaskStatus OnUpdate()
 		{
 			if ((base.Owner.GetVariable("optimalSkillWeight") as SharedInt).Value == 20)
@@ -43,11 +43,11 @@ namespace BehaviorDesigner.Samples
 			}
 		}
 
-		// Token: 0x04006B63 RID: 27491
+		// Token: 0x04005C6B RID: 23659
 		[Tooltip("当前技能id")]
 		public SharedInt currentSkillID;
 
-		// Token: 0x04006B64 RID: 27492
+		// Token: 0x04005C6C RID: 23660
 		private Avatar avatar;
 	}
 }

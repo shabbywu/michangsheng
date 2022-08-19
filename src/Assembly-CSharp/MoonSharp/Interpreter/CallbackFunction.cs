@@ -5,27 +5,27 @@ using MoonSharp.Interpreter.Interop;
 
 namespace MoonSharp.Interpreter
 {
-	// Token: 0x0200105D RID: 4189
+	// Token: 0x02000C97 RID: 3223
 	public sealed class CallbackFunction : RefIdObject
 	{
-		// Token: 0x170008CD RID: 2253
-		// (get) Token: 0x060064A4 RID: 25764 RVA: 0x000452A9 File Offset: 0x000434A9
-		// (set) Token: 0x060064A5 RID: 25765 RVA: 0x000452B1 File Offset: 0x000434B1
+		// Token: 0x1700067A RID: 1658
+		// (get) Token: 0x060059E2 RID: 23010 RVA: 0x00256E83 File Offset: 0x00255083
+		// (set) Token: 0x060059E3 RID: 23011 RVA: 0x00256E8B File Offset: 0x0025508B
 		public string Name { get; private set; }
 
-		// Token: 0x170008CE RID: 2254
-		// (get) Token: 0x060064A6 RID: 25766 RVA: 0x000452BA File Offset: 0x000434BA
-		// (set) Token: 0x060064A7 RID: 25767 RVA: 0x000452C2 File Offset: 0x000434C2
+		// Token: 0x1700067B RID: 1659
+		// (get) Token: 0x060059E4 RID: 23012 RVA: 0x00256E94 File Offset: 0x00255094
+		// (set) Token: 0x060059E5 RID: 23013 RVA: 0x00256E9C File Offset: 0x0025509C
 		public Func<ScriptExecutionContext, CallbackArguments, DynValue> ClrCallback { get; private set; }
 
-		// Token: 0x060064A8 RID: 25768 RVA: 0x000452CB File Offset: 0x000434CB
+		// Token: 0x060059E6 RID: 23014 RVA: 0x00256EA5 File Offset: 0x002550A5
 		public CallbackFunction(Func<ScriptExecutionContext, CallbackArguments, DynValue> callBack, string name = null)
 		{
 			this.ClrCallback = callBack;
 			this.Name = name;
 		}
 
-		// Token: 0x060064A9 RID: 25769 RVA: 0x00281D80 File Offset: 0x0027FF80
+		// Token: 0x060059E7 RID: 23015 RVA: 0x00256EBC File Offset: 0x002550BC
 		public DynValue Invoke(ScriptExecutionContext executionContext, IList<DynValue> args, bool isMethodCall = false)
 		{
 			if (isMethodCall)
@@ -43,9 +43,9 @@ namespace MoonSharp.Interpreter
 			return this.ClrCallback(executionContext, new CallbackArguments(args, isMethodCall));
 		}
 
-		// Token: 0x170008CF RID: 2255
-		// (get) Token: 0x060064AA RID: 25770 RVA: 0x000452E1 File Offset: 0x000434E1
-		// (set) Token: 0x060064AB RID: 25771 RVA: 0x000452E8 File Offset: 0x000434E8
+		// Token: 0x1700067C RID: 1660
+		// (get) Token: 0x060059E8 RID: 23016 RVA: 0x00256F1A File Offset: 0x0025511A
+		// (set) Token: 0x060059E9 RID: 23017 RVA: 0x00256F21 File Offset: 0x00255121
 		public static InteropAccessMode DefaultAccessMode
 		{
 			get
@@ -62,7 +62,7 @@ namespace MoonSharp.Interpreter
 			}
 		}
 
-		// Token: 0x060064AC RID: 25772 RVA: 0x00045307 File Offset: 0x00043507
+		// Token: 0x060059EA RID: 23018 RVA: 0x00256F40 File Offset: 0x00255140
 		public static CallbackFunction FromDelegate(Script script, Delegate del, InteropAccessMode accessMode = InteropAccessMode.Default)
 		{
 			if (accessMode == InteropAccessMode.Default)
@@ -72,7 +72,7 @@ namespace MoonSharp.Interpreter
 			return new MethodMemberDescriptor(del.Method, accessMode).GetCallbackFunction(script, del.Target);
 		}
 
-		// Token: 0x060064AD RID: 25773 RVA: 0x0004532C File Offset: 0x0004352C
+		// Token: 0x060059EB RID: 23019 RVA: 0x00256F65 File Offset: 0x00255165
 		public static CallbackFunction FromMethodInfo(Script script, MethodInfo mi, object obj = null, InteropAccessMode accessMode = InteropAccessMode.Default)
 		{
 			if (accessMode == InteropAccessMode.Default)
@@ -82,19 +82,19 @@ namespace MoonSharp.Interpreter
 			return new MethodMemberDescriptor(mi, accessMode).GetCallbackFunction(script, obj);
 		}
 
-		// Token: 0x170008D0 RID: 2256
-		// (get) Token: 0x060064AE RID: 25774 RVA: 0x00045347 File Offset: 0x00043547
-		// (set) Token: 0x060064AF RID: 25775 RVA: 0x0004534F File Offset: 0x0004354F
+		// Token: 0x1700067D RID: 1661
+		// (get) Token: 0x060059EC RID: 23020 RVA: 0x00256F80 File Offset: 0x00255180
+		// (set) Token: 0x060059ED RID: 23021 RVA: 0x00256F88 File Offset: 0x00255188
 		public object AdditionalData { get; set; }
 
-		// Token: 0x060064B0 RID: 25776 RVA: 0x00281DE0 File Offset: 0x0027FFE0
+		// Token: 0x060059EE RID: 23022 RVA: 0x00256F94 File Offset: 0x00255194
 		public static bool CheckCallbackSignature(MethodInfo mi, bool requirePublicVisibility)
 		{
 			ParameterInfo[] parameters = mi.GetParameters();
 			return parameters.Length == 2 && parameters[0].ParameterType == typeof(ScriptExecutionContext) && parameters[1].ParameterType == typeof(CallbackArguments) && mi.ReturnType == typeof(DynValue) && (requirePublicVisibility || mi.IsPublic);
 		}
 
-		// Token: 0x04005DFF RID: 24063
+		// Token: 0x04005250 RID: 21072
 		private static InteropAccessMode m_DefaultAccessMode = InteropAccessMode.LazyOptimized;
 	}
 }

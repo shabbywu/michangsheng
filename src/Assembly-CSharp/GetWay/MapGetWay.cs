@@ -4,11 +4,11 @@ using UnityEngine;
 
 namespace GetWay
 {
-	// Token: 0x02000AD5 RID: 2773
+	// Token: 0x0200073D RID: 1853
 	public class MapGetWay : IGetWay
 	{
-		// Token: 0x170007D8 RID: 2008
-		// (get) Token: 0x060046BC RID: 18108 RVA: 0x0003270D File Offset: 0x0003090D
+		// Token: 0x170005A5 RID: 1445
+		// (get) Token: 0x06003B06 RID: 15110 RVA: 0x00195E53 File Offset: 0x00194053
 		public static MapGetWay Inst
 		{
 			get
@@ -21,7 +21,7 @@ namespace GetWay
 			}
 		}
 
-		// Token: 0x060046BD RID: 18109 RVA: 0x001E4440 File Offset: 0x001E2640
+		// Token: 0x06003B07 RID: 15111 RVA: 0x00195E6C File Offset: 0x0019406C
 		private bool Init()
 		{
 			if (MapNodeManager.inst == null)
@@ -39,7 +39,7 @@ namespace GetWay
 			return true;
 		}
 
-		// Token: 0x060046BE RID: 18110 RVA: 0x001E4508 File Offset: 0x001E2708
+		// Token: 0x06003B08 RID: 15112 RVA: 0x00195F34 File Offset: 0x00194134
 		public List<int> GetBestList(int startIndex, int tagetIndex)
 		{
 			if (!this._isInit && !this.Init())
@@ -74,7 +74,7 @@ namespace GetWay
 			return list2;
 		}
 
-		// Token: 0x060046BF RID: 18111 RVA: 0x001E45F4 File Offset: 0x001E27F4
+		// Token: 0x06003B09 RID: 15113 RVA: 0x00196020 File Offset: 0x00194220
 		public List<int> GetNearlyBest(int baseIndex, int startIndex, int tagetIndex)
 		{
 			MapNode mapNode = this.NodeDict[startIndex];
@@ -120,7 +120,7 @@ namespace GetWay
 			return list;
 		}
 
-		// Token: 0x060046C0 RID: 18112 RVA: 0x001E4760 File Offset: 0x001E2960
+		// Token: 0x06003B0A RID: 15114 RVA: 0x0019618C File Offset: 0x0019438C
 		public void GetFindNearlyNode(int id, int endId)
 		{
 			MapNode mapNode = this.NodeDict[id];
@@ -137,7 +137,7 @@ namespace GetWay
 			}
 		}
 
-		// Token: 0x060046C1 RID: 18113 RVA: 0x00032725 File Offset: 0x00030925
+		// Token: 0x06003B0B RID: 15115 RVA: 0x0019624C File Offset: 0x0019444C
 		public void StopAuToMove()
 		{
 			Debug.Log("终止寻路");
@@ -145,7 +145,7 @@ namespace GetWay
 			MapMoveTips.Hide();
 		}
 
-		// Token: 0x060046C2 RID: 18114 RVA: 0x00032741 File Offset: 0x00030941
+		// Token: 0x06003B0C RID: 15116 RVA: 0x00196268 File Offset: 0x00194468
 		public bool IsNearly(int index1, int index2)
 		{
 			if (!this._isInit && !this.Init())
@@ -156,7 +156,7 @@ namespace GetWay
 			return this.Dict[index1].Contains(index2);
 		}
 
-		// Token: 0x060046C3 RID: 18115 RVA: 0x00032771 File Offset: 0x00030971
+		// Token: 0x06003B0D RID: 15117 RVA: 0x00196298 File Offset: 0x00194498
 		private int SortOpenList(MapNode a, MapNode b)
 		{
 			if (a.F >= b.F)
@@ -166,28 +166,28 @@ namespace GetWay
 			return -1;
 		}
 
-		// Token: 0x04003ED3 RID: 16083
+		// Token: 0x04003337 RID: 13111
 		private static MapGetWay _inst;
 
-		// Token: 0x04003ED4 RID: 16084
+		// Token: 0x04003338 RID: 13112
 		public List<MapNode> OpenList;
 
-		// Token: 0x04003ED5 RID: 16085
+		// Token: 0x04003339 RID: 13113
 		public List<MapNode> CloseList;
 
-		// Token: 0x04003ED6 RID: 16086
+		// Token: 0x0400333A RID: 13114
 		public int CurTalk;
 
-		// Token: 0x04003ED7 RID: 16087
+		// Token: 0x0400333B RID: 13115
 		public bool IsStop;
 
-		// Token: 0x04003ED8 RID: 16088
+		// Token: 0x0400333C RID: 13116
 		public Dictionary<int, List<int>> Dict = new Dictionary<int, List<int>>();
 
-		// Token: 0x04003ED9 RID: 16089
+		// Token: 0x0400333D RID: 13117
 		public Dictionary<int, MapNode> NodeDict = new Dictionary<int, MapNode>();
 
-		// Token: 0x04003EDA RID: 16090
+		// Token: 0x0400333E RID: 13118
 		private bool _isInit;
 	}
 }

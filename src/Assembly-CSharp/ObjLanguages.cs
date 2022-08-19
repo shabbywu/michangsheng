@@ -1,16 +1,16 @@
 ﻿using System;
 using UnityEngine;
 
-// Token: 0x02000758 RID: 1880
+// Token: 0x020004E2 RID: 1250
 public class ObjLanguages : MonoBehaviour
 {
-	// Token: 0x06002FD6 RID: 12246 RVA: 0x00023884 File Offset: 0x00021A84
+	// Token: 0x0600286D RID: 10349 RVA: 0x001321A7 File Offset: 0x001303A7
 	private void Awake()
 	{
 		ObjLanguages.Languages = false;
 	}
 
-	// Token: 0x06002FD7 RID: 12247 RVA: 0x0017E74C File Offset: 0x0017C94C
+	// Token: 0x0600286E RID: 10350 RVA: 0x001321B0 File Offset: 0x001303B0
 	private void Start()
 	{
 		this.xDist = this.maxXPos - this.minXPos;
@@ -31,7 +31,7 @@ public class ObjLanguages : MonoBehaviour
 		this.rememberYPos = this.obj[0].position.y;
 	}
 
-	// Token: 0x06002FD8 RID: 12248 RVA: 0x0017E874 File Offset: 0x0017CA74
+	// Token: 0x0600286F RID: 10351 RVA: 0x001322D8 File Offset: 0x001304D8
 	private void Update()
 	{
 		if (ObjLanguages.Languages)
@@ -43,30 +43,30 @@ public class ObjLanguages : MonoBehaviour
 		}
 	}
 
-	// Token: 0x04002B2F RID: 11055
+	// Token: 0x040023A1 RID: 9121
 	public static bool Languages;
 
-	// Token: 0x04002B30 RID: 11056
+	// Token: 0x040023A2 RID: 9122
 	public SwipeControlLanguages swipeCtrl;
 
-	// Token: 0x04002B31 RID: 11057
+	// Token: 0x040023A3 RID: 9123
 	public Transform[] obj = new Transform[0];
 
-	// Token: 0x04002B32 RID: 11058
+	// Token: 0x040023A4 RID: 9124
 	public float minXPos;
 
-	// Token: 0x04002B33 RID: 11059
+	// Token: 0x040023A5 RID: 9125
 	public float maxXPos = 115f;
 
-	// Token: 0x04002B34 RID: 11060
+	// Token: 0x040023A6 RID: 9126
 	private float xDist;
 
-	// Token: 0x04002B35 RID: 11061
+	// Token: 0x040023A7 RID: 9127
 	private float xDistFactor;
 
-	// Token: 0x04002B36 RID: 11062
+	// Token: 0x040023A8 RID: 9128
 	private float swipeSmoothFactor = 1f;
 
-	// Token: 0x04002B37 RID: 11063
+	// Token: 0x040023A9 RID: 9129
 	private float rememberYPos;
 }

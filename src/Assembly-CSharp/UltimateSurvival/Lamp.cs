@@ -3,11 +3,11 @@ using UnityEngine;
 
 namespace UltimateSurvival
 {
-	// Token: 0x020008DC RID: 2268
+	// Token: 0x02000600 RID: 1536
 	public class Lamp : InteractableObject
 	{
-		// Token: 0x17000631 RID: 1585
-		// (get) Token: 0x06003A4C RID: 14924 RVA: 0x0002A5AC File Offset: 0x000287AC
+		// Token: 0x17000444 RID: 1092
+		// (get) Token: 0x06003149 RID: 12617 RVA: 0x0015E871 File Offset: 0x0015CA71
 		public bool State
 		{
 			get
@@ -16,7 +16,7 @@ namespace UltimateSurvival
 			}
 		}
 
-		// Token: 0x06003A4D RID: 14925 RVA: 0x001A7D80 File Offset: 0x001A5F80
+		// Token: 0x0600314A RID: 12618 RVA: 0x0015E890 File Offset: 0x0015CA90
 		public override void OnInteract(PlayerEventHandler player)
 		{
 			if (this.m_Light != null)
@@ -28,7 +28,7 @@ namespace UltimateSurvival
 			Debug.LogError("No Light component assigned to this Lamp!", this);
 		}
 
-		// Token: 0x06003A4E RID: 14926 RVA: 0x0002A5C8 File Offset: 0x000287C8
+		// Token: 0x0600314B RID: 12619 RVA: 0x0015E8E7 File Offset: 0x0015CAE7
 		private void Start()
 		{
 			if (this.m_Mode == Lamp.Mode.Both || this.m_Mode == Lamp.Mode.TimeOfDay_Dependent)
@@ -38,7 +38,7 @@ namespace UltimateSurvival
 			this.OnChanged_TimeOfDay_State();
 		}
 
-		// Token: 0x06003A4F RID: 14927 RVA: 0x001A7DD8 File Offset: 0x001A5FD8
+		// Token: 0x0600314C RID: 12620 RVA: 0x0015E91C File Offset: 0x0015CB1C
 		private void OnChanged_TimeOfDay_State()
 		{
 			if (this.m_Light != null)
@@ -50,7 +50,7 @@ namespace UltimateSurvival
 			Debug.LogError("No Light component assigned to this Lamp!", this);
 		}
 
-		// Token: 0x06003A50 RID: 14928 RVA: 0x0002A5FD File Offset: 0x000287FD
+		// Token: 0x0600314D RID: 12621 RVA: 0x0015E975 File Offset: 0x0015CB75
 		private void OnDestroy()
 		{
 			if ((this.m_Mode == Lamp.Mode.Both || this.m_Mode == Lamp.Mode.TimeOfDay_Dependent) && MonoSingleton<TimeOfDay>.Instance != null)
@@ -59,31 +59,31 @@ namespace UltimateSurvival
 			}
 		}
 
-		// Token: 0x0400345F RID: 13407
+		// Token: 0x04002B6A RID: 11114
 		[SerializeField]
 		private Lamp.Mode m_Mode;
 
-		// Token: 0x04003460 RID: 13408
+		// Token: 0x04002B6B RID: 11115
 		[SerializeField]
 		private Light m_Light;
 
-		// Token: 0x04003461 RID: 13409
+		// Token: 0x04002B6C RID: 11116
 		[Header("Audio")]
 		[SerializeField]
 		private AudioSource m_AudioSource;
 
-		// Token: 0x04003462 RID: 13410
+		// Token: 0x04002B6D RID: 11117
 		[SerializeField]
 		private SoundPlayer m_ToggleAudio;
 
-		// Token: 0x020008DD RID: 2269
+		// Token: 0x020014C6 RID: 5318
 		public enum Mode
 		{
-			// Token: 0x04003464 RID: 13412
+			// Token: 0x04006D38 RID: 27960
 			TimeOfDay_Dependent,
-			// Token: 0x04003465 RID: 13413
+			// Token: 0x04006D39 RID: 27961
 			Manual = 5,
-			// Token: 0x04003466 RID: 13414
+			// Token: 0x04006D3A RID: 27962
 			Both = 10
 		}
 	}

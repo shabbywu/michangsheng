@@ -2,7 +2,7 @@
 
 namespace DentedPixel
 {
-	// Token: 0x0200105A RID: 4186
+	// Token: 0x02000C94 RID: 3220
 	public class LeanDummy
 	{
 	}

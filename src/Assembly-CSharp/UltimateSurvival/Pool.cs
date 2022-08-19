@@ -4,12 +4,12 @@ using UnityEngine;
 
 namespace UltimateSurvival
 {
-	// Token: 0x020008AF RID: 2223
+	// Token: 0x020005E1 RID: 1505
 	[Serializable]
 	public class Pool
 	{
-		// Token: 0x170005FE RID: 1534
-		// (get) Token: 0x0600393E RID: 14654 RVA: 0x00029884 File Offset: 0x00027A84
+		// Token: 0x17000424 RID: 1060
+		// (get) Token: 0x06003072 RID: 12402 RVA: 0x0015B488 File Offset: 0x00159688
 		public string PoolName
 		{
 			get
@@ -18,8 +18,8 @@ namespace UltimateSurvival
 			}
 		}
 
-		// Token: 0x170005FF RID: 1535
-		// (get) Token: 0x0600393F RID: 14655 RVA: 0x0002988C File Offset: 0x00027A8C
+		// Token: 0x17000425 RID: 1061
+		// (get) Token: 0x06003073 RID: 12403 RVA: 0x0015B490 File Offset: 0x00159690
 		public GameObject Prefab
 		{
 			get
@@ -28,8 +28,8 @@ namespace UltimateSurvival
 			}
 		}
 
-		// Token: 0x17000600 RID: 1536
-		// (get) Token: 0x06003940 RID: 14656 RVA: 0x00029894 File Offset: 0x00027A94
+		// Token: 0x17000426 RID: 1062
+		// (get) Token: 0x06003074 RID: 12404 RVA: 0x0015B498 File Offset: 0x00159698
 		public int Amount
 		{
 			get
@@ -38,8 +38,8 @@ namespace UltimateSurvival
 			}
 		}
 
-		// Token: 0x17000601 RID: 1537
-		// (get) Token: 0x06003941 RID: 14657 RVA: 0x0002989C File Offset: 0x00027A9C
+		// Token: 0x17000427 RID: 1063
+		// (get) Token: 0x06003075 RID: 12405 RVA: 0x0015B4A0 File Offset: 0x001596A0
 		public List<GameObject> PooledObjects
 		{
 			get
@@ -48,7 +48,7 @@ namespace UltimateSurvival
 			}
 		}
 
-		// Token: 0x06003942 RID: 14658 RVA: 0x001A4F18 File Offset: 0x001A3118
+		// Token: 0x06003076 RID: 12406 RVA: 0x0015B4A8 File Offset: 0x001596A8
 		private GameObject FindFirstActiveObject()
 		{
 			GameObject gameObject = null;
@@ -66,7 +66,7 @@ namespace UltimateSurvival
 			return gameObject;
 		}
 
-		// Token: 0x06003943 RID: 14659 RVA: 0x001A4F84 File Offset: 0x001A3184
+		// Token: 0x06003077 RID: 12407 RVA: 0x0015B514 File Offset: 0x00159714
 		private GameObject FindFirstInactiveObject()
 		{
 			GameObject gameObject = null;
@@ -84,7 +84,7 @@ namespace UltimateSurvival
 			return gameObject;
 		}
 
-		// Token: 0x06003944 RID: 14660 RVA: 0x000298A4 File Offset: 0x00027AA4
+		// Token: 0x06003078 RID: 12408 RVA: 0x0015B57D File Offset: 0x0015977D
 		public void Spawn(Vector3 position, Quaternion rotation)
 		{
 			GameObject gameObject = this.FindFirstInactiveObject();
@@ -95,7 +95,7 @@ namespace UltimateSurvival
 			gameObject.GetComponent<PoolableObject>().OnSpawn();
 		}
 
-		// Token: 0x06003945 RID: 14661 RVA: 0x001A4FF0 File Offset: 0x001A31F0
+		// Token: 0x06003079 RID: 12409 RVA: 0x0015B5AC File Offset: 0x001597AC
 		public void SpawnAll(Vector3[] positions, Quaternion[] rotations)
 		{
 			for (int i = 0; i < this.m_PooledObjects.Count; i++)
@@ -104,7 +104,7 @@ namespace UltimateSurvival
 			}
 		}
 
-		// Token: 0x06003946 RID: 14662 RVA: 0x000298D0 File Offset: 0x00027AD0
+		// Token: 0x0600307A RID: 12410 RVA: 0x0015B5E3 File Offset: 0x001597E3
 		public void DespawnSpecificObject(GameObject toDespawn)
 		{
 			if (this.m_PooledObjects.Contains(toDespawn))
@@ -115,7 +115,7 @@ namespace UltimateSurvival
 			Debug.LogError("Object that entered the trigger is not part of the " + this.m_PoolName + " pool");
 		}
 
-		// Token: 0x06003947 RID: 14663 RVA: 0x00029902 File Offset: 0x00027B02
+		// Token: 0x0600307B RID: 12411 RVA: 0x0015B615 File Offset: 0x00159815
 		public void Despawn()
 		{
 			GameObject gameObject = this.FindFirstActiveObject();
@@ -123,7 +123,7 @@ namespace UltimateSurvival
 			gameObject.SetActive(false);
 		}
 
-		// Token: 0x06003948 RID: 14664 RVA: 0x001A5028 File Offset: 0x001A3228
+		// Token: 0x0600307C RID: 12412 RVA: 0x0015B630 File Offset: 0x00159830
 		public void DestroyObjects(bool activeOnes)
 		{
 			for (int i = 0; i < this.m_PooledObjects.Count; i++)
@@ -136,7 +136,7 @@ namespace UltimateSurvival
 			}
 		}
 
-		// Token: 0x06003949 RID: 14665 RVA: 0x001A5088 File Offset: 0x001A3288
+		// Token: 0x0600307D RID: 12413 RVA: 0x0015B690 File Offset: 0x00159890
 		public void DestroyAll()
 		{
 			for (int i = 0; i < this.m_PooledObjects.Count; i++)
@@ -146,7 +146,7 @@ namespace UltimateSurvival
 			}
 		}
 
-		// Token: 0x0600394A RID: 14666 RVA: 0x001A50D4 File Offset: 0x001A32D4
+		// Token: 0x0600307E RID: 12414 RVA: 0x0015B6DC File Offset: 0x001598DC
 		public void DespawnAll()
 		{
 			for (int i = 0; i < this.m_PooledObjects.Count; i++)
@@ -156,19 +156,19 @@ namespace UltimateSurvival
 			}
 		}
 
-		// Token: 0x04003365 RID: 13157
+		// Token: 0x04002AA7 RID: 10919
 		[SerializeField]
 		private string m_PoolName;
 
-		// Token: 0x04003366 RID: 13158
+		// Token: 0x04002AA8 RID: 10920
 		[SerializeField]
 		private GameObject m_Prefab;
 
-		// Token: 0x04003367 RID: 13159
+		// Token: 0x04002AA9 RID: 10921
 		[SerializeField]
 		private int m_Amount;
 
-		// Token: 0x04003368 RID: 13160
+		// Token: 0x04002AAA RID: 10922
 		private List<GameObject> m_PooledObjects = new List<GameObject>();
 	}
 }

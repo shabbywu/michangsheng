@@ -3,13 +3,13 @@ using UnityEngine;
 
 namespace Fungus
 {
-	// Token: 0x02001378 RID: 4984
+	// Token: 0x02000ED7 RID: 3799
 	[VariableInfo("", "Boolean", 0)]
 	[AddComponentMenu("")]
 	[Serializable]
 	public class BooleanVariable : VariableBase<bool>
 	{
-		// Token: 0x060078C4 RID: 30916 RVA: 0x002B7CEC File Offset: 0x002B5EEC
+		// Token: 0x06006B25 RID: 27429 RVA: 0x00295B60 File Offset: 0x00293D60
 		public virtual bool Evaluate(CompareOperator compareOperator, bool booleanValue)
 		{
 			bool result = false;
@@ -32,7 +32,7 @@ namespace Fungus
 			return result;
 		}
 
-		// Token: 0x060078C5 RID: 30917 RVA: 0x000520B9 File Offset: 0x000502B9
+		// Token: 0x06006B26 RID: 27430 RVA: 0x00295BB4 File Offset: 0x00293DB4
 		public override void Apply(SetOperator setOperator, bool value)
 		{
 			if (setOperator == SetOperator.Assign)
@@ -48,14 +48,14 @@ namespace Fungus
 			this.Value = !value;
 		}
 
-		// Token: 0x040068D5 RID: 26837
+		// Token: 0x04005A6C RID: 23148
 		public static readonly CompareOperator[] compareOperators = new CompareOperator[]
 		{
 			CompareOperator.Equals,
 			CompareOperator.NotEquals
 		};
 
-		// Token: 0x040068D6 RID: 26838
+		// Token: 0x04005A6D RID: 23149
 		public static readonly SetOperator[] setOperators = new SetOperator[]
 		{
 			SetOperator.Assign,

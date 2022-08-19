@@ -1,30 +1,30 @@
 ﻿using System;
 
-// Token: 0x020002E8 RID: 744
+// Token: 0x020001D4 RID: 468
 public enum WuDaoType
 {
-	// Token: 0x0400121F RID: 4639
+	// Token: 0x04000ECC RID: 3788
 	金 = 1,
-	// Token: 0x04001220 RID: 4640
+	// Token: 0x04000ECD RID: 3789
 	木,
-	// Token: 0x04001221 RID: 4641
+	// Token: 0x04000ECE RID: 3790
 	水,
-	// Token: 0x04001222 RID: 4642
+	// Token: 0x04000ECF RID: 3791
 	火,
-	// Token: 0x04001223 RID: 4643
+	// Token: 0x04000ED0 RID: 3792
 	土,
-	// Token: 0x04001224 RID: 4644
+	// Token: 0x04000ED1 RID: 3793
 	神,
-	// Token: 0x04001225 RID: 4645
+	// Token: 0x04000ED2 RID: 3794
 	体,
-	// Token: 0x04001226 RID: 4646
+	// Token: 0x04000ED3 RID: 3795
 	剑,
-	// Token: 0x04001227 RID: 4647
+	// Token: 0x04000ED4 RID: 3796
 	气,
-	// Token: 0x04001228 RID: 4648
+	// Token: 0x04000ED5 RID: 3797
 	阵,
-	// Token: 0x04001229 RID: 4649
+	// Token: 0x04000ED6 RID: 3798
 	丹 = 21,
-	// Token: 0x0400122A RID: 4650
+	// Token: 0x04000ED7 RID: 3799
 	器
 }

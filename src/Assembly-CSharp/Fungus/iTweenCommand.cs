@@ -4,11 +4,11 @@ using UnityEngine.Serialization;
 
 namespace Fungus
 {
-	// Token: 0x02001222 RID: 4642
+	// Token: 0x02000DE1 RID: 3553
 	[ExecuteInEditMode]
 	public abstract class iTweenCommand : Command
 	{
-		// Token: 0x06007150 RID: 29008 RVA: 0x002A551C File Offset: 0x002A371C
+		// Token: 0x060064C4 RID: 25796 RVA: 0x002809B8 File Offset: 0x0027EBB8
 		protected virtual void OniTweenComplete(object param)
 		{
 			Command command = param as Command;
@@ -18,7 +18,7 @@ namespace Fungus
 			}
 		}
 
-		// Token: 0x06007151 RID: 29009 RVA: 0x002A5550 File Offset: 0x002A3750
+		// Token: 0x060064C5 RID: 25797 RVA: 0x002809EC File Offset: 0x0027EBEC
 		public override void OnEnter()
 		{
 			if (this._targetObject.Value == null)
@@ -41,12 +41,12 @@ namespace Fungus
 			}
 		}
 
-		// Token: 0x06007152 RID: 29010 RVA: 0x000042DD File Offset: 0x000024DD
+		// Token: 0x060064C6 RID: 25798 RVA: 0x00004095 File Offset: 0x00002295
 		public virtual void DoTween()
 		{
 		}
 
-		// Token: 0x06007153 RID: 29011 RVA: 0x002A55CC File Offset: 0x002A37CC
+		// Token: 0x060064C7 RID: 25799 RVA: 0x00280A68 File Offset: 0x0027EC68
 		public override string GetSummary()
 		{
 			if (this._targetObject.Value == null)
@@ -62,19 +62,19 @@ namespace Fungus
 			});
 		}
 
-		// Token: 0x06007154 RID: 29012 RVA: 0x0004CF7D File Offset: 0x0004B17D
+		// Token: 0x060064C8 RID: 25800 RVA: 0x00280ACF File Offset: 0x0027ECCF
 		public override Color GetButtonColor()
 		{
 			return new Color32(233, 163, 180, byte.MaxValue);
 		}
 
-		// Token: 0x06007155 RID: 29013 RVA: 0x0004CF9D File Offset: 0x0004B19D
+		// Token: 0x060064C9 RID: 25801 RVA: 0x00280AEF File Offset: 0x0027ECEF
 		public override bool HasReference(Variable variable)
 		{
 			return this._targetObject.gameObjectRef == variable || this._tweenName.stringRef == variable || base.HasReference(variable);
 		}
 
-		// Token: 0x06007156 RID: 29014 RVA: 0x002A5634 File Offset: 0x002A3834
+		// Token: 0x060064CA RID: 25802 RVA: 0x00280B20 File Offset: 0x0027ED20
 		protected virtual void OnEnable()
 		{
 			if (this.targetObjectOLD != null)
@@ -94,53 +94,53 @@ namespace Fungus
 			}
 		}
 
-		// Token: 0x040063BB RID: 25531
+		// Token: 0x040056B4 RID: 22196
 		[Tooltip("Target game object to apply the Tween to")]
 		[SerializeField]
 		protected GameObjectData _targetObject;
 
-		// Token: 0x040063BC RID: 25532
+		// Token: 0x040056B5 RID: 22197
 		[Tooltip("An individual name useful for stopping iTweens by name")]
 		[SerializeField]
 		protected StringData _tweenName;
 
-		// Token: 0x040063BD RID: 25533
+		// Token: 0x040056B6 RID: 22198
 		[Tooltip("The time in seconds the animation will take to complete")]
 		[SerializeField]
 		protected FloatData _duration = new FloatData(1f);
 
-		// Token: 0x040063BE RID: 25534
+		// Token: 0x040056B7 RID: 22199
 		[Tooltip("The shape of the easing curve applied to the animation")]
 		[SerializeField]
 		protected iTween.EaseType easeType = iTween.EaseType.easeInOutQuad;
 
-		// Token: 0x040063BF RID: 25535
+		// Token: 0x040056B8 RID: 22200
 		[Tooltip("The type of loop to apply once the animation has completed")]
 		[SerializeField]
 		protected iTween.LoopType loopType;
 
-		// Token: 0x040063C0 RID: 25536
+		// Token: 0x040056B9 RID: 22201
 		[Tooltip("Stop any previously added iTweens on this object before adding this iTween")]
 		[SerializeField]
 		protected bool stopPreviousTweens;
 
-		// Token: 0x040063C1 RID: 25537
+		// Token: 0x040056BA RID: 22202
 		[Tooltip("Wait until the tween has finished before executing the next command")]
 		[SerializeField]
 		protected bool waitUntilFinished = true;
 
-		// Token: 0x040063C2 RID: 25538
+		// Token: 0x040056BB RID: 22203
 		[HideInInspector]
 		[FormerlySerializedAs("target")]
 		[FormerlySerializedAs("targetObject")]
 		public GameObject targetObjectOLD;
 
-		// Token: 0x040063C3 RID: 25539
+		// Token: 0x040056BC RID: 22204
 		[HideInInspector]
 		[FormerlySerializedAs("tweenName")]
 		public string tweenNameOLD = "";
 
-		// Token: 0x040063C4 RID: 25540
+		// Token: 0x040056BD RID: 22205
 		[HideInInspector]
 		[FormerlySerializedAs("duration")]
 		public float durationOLD;

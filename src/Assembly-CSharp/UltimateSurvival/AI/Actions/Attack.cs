@@ -3,10 +3,10 @@ using UnityEngine;
 
 namespace UltimateSurvival.AI.Actions
 {
-	// Token: 0x02000984 RID: 2436
+	// Token: 0x02000677 RID: 1655
 	public class Attack : Action
 	{
-		// Token: 0x06003E42 RID: 15938 RVA: 0x001B6970 File Offset: 0x001B4B70
+		// Token: 0x06003492 RID: 13458 RVA: 0x0016E278 File Offset: 0x0016C478
 		public override void OnStart(AIBrain brain)
 		{
 			this.m_Priority = 10;
@@ -16,19 +16,19 @@ namespace UltimateSurvival.AI.Actions
 			base.Effects.Add("Is Player Dead", true);
 		}
 
-		// Token: 0x06003E43 RID: 15939 RVA: 0x0002CD65 File Offset: 0x0002AF65
+		// Token: 0x06003493 RID: 13459 RVA: 0x0016E2C7 File Offset: 0x0016C4C7
 		public override bool CanActivate(AIBrain brain)
 		{
 			return brain.Settings.Detection.HasTarget();
 		}
 
-		// Token: 0x06003E44 RID: 15940 RVA: 0x0002CD77 File Offset: 0x0002AF77
+		// Token: 0x06003494 RID: 13460 RVA: 0x0016E2D9 File Offset: 0x0016C4D9
 		public override void Activate(AIBrain brain)
 		{
 			this.m_Target = brain.Settings.Detection.LastChasedTarget;
 		}
 
-		// Token: 0x06003E45 RID: 15941 RVA: 0x001B69C0 File Offset: 0x001B4BC0
+		// Token: 0x06003495 RID: 13461 RVA: 0x0016E2F4 File Offset: 0x0016C4F4
 		public override void OnUpdate(AIBrain brain)
 		{
 			if (Time.time > this.m_NextTimeCanAttack)
@@ -39,7 +39,7 @@ namespace UltimateSurvival.AI.Actions
 			this.RotateTowards(brain.transform, this.m_Target.transform, 5f);
 		}
 
-		// Token: 0x06003E46 RID: 15942 RVA: 0x001B6A20 File Offset: 0x001B4C20
+		// Token: 0x06003496 RID: 13462 RVA: 0x0016E354 File Offset: 0x0016C554
 		public override bool StillValid(AIBrain brain)
 		{
 			bool flag = Vector3.Distance(this.m_Target.transform.position, brain.transform.position) < this.m_MinAttackDistance;
@@ -47,13 +47,13 @@ namespace UltimateSurvival.AI.Actions
 			return (brain.Settings.Detection.HasTarget() && flag) || !flag2;
 		}
 
-		// Token: 0x06003E47 RID: 15943 RVA: 0x0002CD8F File Offset: 0x0002AF8F
+		// Token: 0x06003497 RID: 13463 RVA: 0x0016E3B2 File Offset: 0x0016C5B2
 		public override bool IsDone(AIBrain brain)
 		{
 			return this.m_HasKilledPlayer && Time.time > this.m_NextTimeCanAttack;
 		}
 
-		// Token: 0x06003E48 RID: 15944 RVA: 0x001B6A80 File Offset: 0x001B4C80
+		// Token: 0x06003498 RID: 13464 RVA: 0x0016E3CC File Offset: 0x0016C5CC
 		private void RotateTowards(Transform transform, Transform target, float rotationSpeed)
 		{
 			Vector3 normalized = (target.position - transform.position).normalized;
@@ -61,21 +61,21 @@ namespace UltimateSurvival.AI.Actions
 			transform.rotation = Quaternion.Slerp(transform.rotation, quaternion, Time.deltaTime * rotationSpeed);
 		}
 
-		// Token: 0x04003841 RID: 14401
+		// Token: 0x04002E9B RID: 11931
 		[SerializeField]
 		private float m_MinAttackDistance = 1.5f;
 
-		// Token: 0x04003842 RID: 14402
+		// Token: 0x04002E9C RID: 11932
 		[SerializeField]
 		private float m_AttackInterval = 0.8f;
 
-		// Token: 0x04003843 RID: 14403
+		// Token: 0x04002E9D RID: 11933
 		private bool m_HasKilledPlayer;
 
-		// Token: 0x04003844 RID: 14404
+		// Token: 0x04002E9E RID: 11934
 		private GameObject m_Target;
 
-		// Token: 0x04003845 RID: 14405
+		// Token: 0x04002E9F RID: 11935
 		private float m_NextTimeCanAttack;
 	}
 }

@@ -3,10 +3,10 @@ using System.Collections.Generic;
 
 namespace JSONClass
 {
-	// Token: 0x02000C12 RID: 3090
+	// Token: 0x02000884 RID: 2180
 	public class LiShiChuanWen : IJSONClass
 	{
-		// Token: 0x06004BB1 RID: 19377 RVA: 0x001FF434 File Offset: 0x001FD634
+		// Token: 0x06004023 RID: 16419 RVA: 0x001B5D24 File Offset: 0x001B3F24
 		public static void InitDataDict()
 		{
 			foreach (JSONObject jsonobject in jsonData.instance.LiShiChuanWen.list)
@@ -47,48 +47,48 @@ namespace JSONClass
 			}
 		}
 
-		// Token: 0x06004BB2 RID: 19378 RVA: 0x000042DD File Offset: 0x000024DD
+		// Token: 0x06004024 RID: 16420 RVA: 0x00004095 File Offset: 0x00002295
 		private static void OnInitFinish()
 		{
 		}
 
-		// Token: 0x04004884 RID: 18564
+		// Token: 0x04003D2B RID: 15659
 		public static Dictionary<int, LiShiChuanWen> DataDict = new Dictionary<int, LiShiChuanWen>();
 
-		// Token: 0x04004885 RID: 18565
+		// Token: 0x04003D2C RID: 15660
 		public static List<LiShiChuanWen> DataList = new List<LiShiChuanWen>();
 
-		// Token: 0x04004886 RID: 18566
+		// Token: 0x04003D2D RID: 15661
 		public static Action OnInitFinishAction = new Action(LiShiChuanWen.OnInitFinish);
 
-		// Token: 0x04004887 RID: 18567
+		// Token: 0x04003D2E RID: 15662
 		public int id;
 
-		// Token: 0x04004888 RID: 18568
+		// Token: 0x04003D2F RID: 15663
 		public int TypeID;
 
-		// Token: 0x04004889 RID: 18569
+		// Token: 0x04003D30 RID: 15664
 		public int StartTime;
 
-		// Token: 0x0400488A RID: 18570
+		// Token: 0x04003D31 RID: 15665
 		public int getChuanWen;
 
-		// Token: 0x0400488B RID: 18571
+		// Token: 0x04003D32 RID: 15666
 		public int cunZaiShiJian;
 
-		// Token: 0x0400488C RID: 18572
+		// Token: 0x04003D33 RID: 15667
 		public int NTaskID;
 
-		// Token: 0x0400488D RID: 18573
+		// Token: 0x04003D34 RID: 15668
 		public string EventName;
 
-		// Token: 0x0400488E RID: 18574
+		// Token: 0x04003D35 RID: 15669
 		public string text;
 
-		// Token: 0x0400488F RID: 18575
+		// Token: 0x04003D36 RID: 15670
 		public string fuhao;
 
-		// Token: 0x04004890 RID: 18576
+		// Token: 0x04003D37 RID: 15671
 		public List<int> EventLv = new List<int>();
 	}
 }

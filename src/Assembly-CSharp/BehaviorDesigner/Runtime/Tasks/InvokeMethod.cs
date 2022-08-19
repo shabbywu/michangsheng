@@ -5,14 +5,14 @@ using UnityEngine;
 
 namespace BehaviorDesigner.Runtime.Tasks
 {
-	// Token: 0x0200148B RID: 5259
+	// Token: 0x02000FD3 RID: 4051
 	[TaskDescription("Invokes the specified method with the specified parameters. Can optionally store the return value. Returns success if the method was invoked.")]
 	[HelpURL("http://www.opsive.com/assets/BehaviorDesigner/documentation.php?id=145")]
 	[TaskCategory("Reflection")]
 	[TaskIcon("{SkinColor}ReflectionIcon.png")]
 	public class InvokeMethod : Action
 	{
-		// Token: 0x06007E34 RID: 32308 RVA: 0x002C84C8 File Offset: 0x002C66C8
+		// Token: 0x0600703A RID: 28730 RVA: 0x002A9064 File Offset: 0x002A7264
 		public override TaskStatus OnUpdate()
 		{
 			Type typeWithinAssembly = TaskUtility.GetTypeWithinAssembly(this.componentName.Value);
@@ -51,7 +51,7 @@ namespace BehaviorDesigner.Runtime.Tasks
 			return 2;
 		}
 
-		// Token: 0x06007E35 RID: 32309 RVA: 0x00055543 File Offset: 0x00053743
+		// Token: 0x0600703B RID: 28731 RVA: 0x002A91C4 File Offset: 0x002A73C4
 		public override void OnReset()
 		{
 			this.targetGameObject = null;
@@ -64,35 +64,35 @@ namespace BehaviorDesigner.Runtime.Tasks
 			this.storeResult = null;
 		}
 
-		// Token: 0x04006B78 RID: 27512
+		// Token: 0x04005C80 RID: 23680
 		[Tooltip("The GameObject to invoke the method on")]
 		public SharedGameObject targetGameObject;
 
-		// Token: 0x04006B79 RID: 27513
+		// Token: 0x04005C81 RID: 23681
 		[Tooltip("The component to invoke the method on")]
 		public SharedString componentName;
 
-		// Token: 0x04006B7A RID: 27514
+		// Token: 0x04005C82 RID: 23682
 		[Tooltip("The name of the method")]
 		public SharedString methodName;
 
-		// Token: 0x04006B7B RID: 27515
+		// Token: 0x04005C83 RID: 23683
 		[Tooltip("The first parameter of the method")]
 		public SharedVariable parameter1;
 
-		// Token: 0x04006B7C RID: 27516
+		// Token: 0x04005C84 RID: 23684
 		[Tooltip("The second parameter of the method")]
 		public SharedVariable parameter2;
 
-		// Token: 0x04006B7D RID: 27517
+		// Token: 0x04005C85 RID: 23685
 		[Tooltip("The third parameter of the method")]
 		public SharedVariable parameter3;
 
-		// Token: 0x04006B7E RID: 27518
+		// Token: 0x04005C86 RID: 23686
 		[Tooltip("The fourth parameter of the method")]
 		public SharedVariable parameter4;
 
-		// Token: 0x04006B7F RID: 27519
+		// Token: 0x04005C87 RID: 23687
 		[Tooltip("Store the result of the invoke call")]
 		public SharedVariable storeResult;
 	}

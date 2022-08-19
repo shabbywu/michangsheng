@@ -3,12 +3,12 @@ using UnityEngine;
 
 namespace BehaviorDesigner.Runtime.Tasks.Basic.UnityAnimation
 {
-	// Token: 0x0200166F RID: 5743
+	// Token: 0x020011AD RID: 4525
 	[TaskCategory("Basic/Animation")]
 	[TaskDescription("Rewinds an animation. Rewinds all animations if animationName is blank. Returns Success.")]
 	public class Rewind : Action
 	{
-		// Token: 0x06008558 RID: 34136 RVA: 0x002D0CE4 File Offset: 0x002CEEE4
+		// Token: 0x0600774C RID: 30540 RVA: 0x002B8AF0 File Offset: 0x002B6CF0
 		public override void OnStart()
 		{
 			GameObject defaultGameObject = base.GetDefaultGameObject(this.targetGameObject.Value);
@@ -19,7 +19,7 @@ namespace BehaviorDesigner.Runtime.Tasks.Basic.UnityAnimation
 			}
 		}
 
-		// Token: 0x06008559 RID: 34137 RVA: 0x002D0D24 File Offset: 0x002CEF24
+		// Token: 0x0600774D RID: 30541 RVA: 0x002B8B30 File Offset: 0x002B6D30
 		public override TaskStatus OnUpdate()
 		{
 			if (this.animation == null)
@@ -38,25 +38,25 @@ namespace BehaviorDesigner.Runtime.Tasks.Basic.UnityAnimation
 			return 2;
 		}
 
-		// Token: 0x0600855A RID: 34138 RVA: 0x0005C858 File Offset: 0x0005AA58
+		// Token: 0x0600774E RID: 30542 RVA: 0x002B8B8D File Offset: 0x002B6D8D
 		public override void OnReset()
 		{
 			this.targetGameObject = null;
 			this.animationName.Value = "";
 		}
 
-		// Token: 0x0400721B RID: 29211
+		// Token: 0x040062EC RID: 25324
 		[Tooltip("The GameObject that the task operates on. If null the task GameObject is used.")]
 		public SharedGameObject targetGameObject;
 
-		// Token: 0x0400721C RID: 29212
+		// Token: 0x040062ED RID: 25325
 		[Tooltip("The name of the animation")]
 		public SharedString animationName;
 
-		// Token: 0x0400721D RID: 29213
+		// Token: 0x040062EE RID: 25326
 		private Animation animation;
 
-		// Token: 0x0400721E RID: 29214
+		// Token: 0x040062EF RID: 25327
 		private GameObject prevGameObject;
 	}
 }

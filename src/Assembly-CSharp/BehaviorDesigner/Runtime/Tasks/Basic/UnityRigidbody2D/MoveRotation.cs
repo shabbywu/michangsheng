@@ -3,12 +3,12 @@ using UnityEngine;
 
 namespace BehaviorDesigner.Runtime.Tasks.Basic.UnityRigidbody2D
 {
-	// Token: 0x0200153C RID: 5436
+	// Token: 0x02001082 RID: 4226
 	[TaskCategory("Basic/Rigidbody2D")]
 	[TaskDescription("Rotates the Rigidbody2D to the specified rotation. Returns Success.")]
 	public class MoveRotation : Action
 	{
-		// Token: 0x060080EE RID: 33006 RVA: 0x002CB9E4 File Offset: 0x002C9BE4
+		// Token: 0x060072F4 RID: 29428 RVA: 0x002AEE90 File Offset: 0x002AD090
 		public override void OnStart()
 		{
 			GameObject defaultGameObject = base.GetDefaultGameObject(this.targetGameObject.Value);
@@ -19,7 +19,7 @@ namespace BehaviorDesigner.Runtime.Tasks.Basic.UnityRigidbody2D
 			}
 		}
 
-		// Token: 0x060080EF RID: 33007 RVA: 0x00057E2C File Offset: 0x0005602C
+		// Token: 0x060072F5 RID: 29429 RVA: 0x002AEED0 File Offset: 0x002AD0D0
 		public override TaskStatus OnUpdate()
 		{
 			if (this.rigidbody2D == null)
@@ -31,25 +31,25 @@ namespace BehaviorDesigner.Runtime.Tasks.Basic.UnityRigidbody2D
 			return 2;
 		}
 
-		// Token: 0x060080F0 RID: 33008 RVA: 0x00057E5F File Offset: 0x0005605F
+		// Token: 0x060072F6 RID: 29430 RVA: 0x002AEF03 File Offset: 0x002AD103
 		public override void OnReset()
 		{
 			this.targetGameObject = null;
 			this.rotation = 0f;
 		}
 
-		// Token: 0x04006DA2 RID: 28066
+		// Token: 0x04005EA2 RID: 24226
 		[Tooltip("The GameObject that the task operates on. If null the task GameObject is used.")]
 		public SharedGameObject targetGameObject;
 
-		// Token: 0x04006DA3 RID: 28067
+		// Token: 0x04005EA3 RID: 24227
 		[Tooltip("The new rotation of the Rigidbody")]
 		public SharedFloat rotation;
 
-		// Token: 0x04006DA4 RID: 28068
+		// Token: 0x04005EA4 RID: 24228
 		private Rigidbody2D rigidbody2D;
 
-		// Token: 0x04006DA5 RID: 28069
+		// Token: 0x04005EA5 RID: 24229
 		private GameObject prevGameObject;
 	}
 }

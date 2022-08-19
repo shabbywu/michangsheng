@@ -7,10 +7,10 @@ using MoonSharp.Interpreter.Serialization.Json;
 
 namespace MoonSharp.VsCodeDebugger.SDK
 {
-	// Token: 0x020011DB RID: 4571
+	// Token: 0x02000DAF RID: 3503
 	public abstract class ProtocolServer
 	{
-		// Token: 0x06006FD1 RID: 28625 RVA: 0x0004BFFD File Offset: 0x0004A1FD
+		// Token: 0x0600638B RID: 25483 RVA: 0x0027B0AF File Offset: 0x002792AF
 		public ProtocolServer()
 		{
 			this._sequenceNumber = 1;
@@ -18,7 +18,7 @@ namespace MoonSharp.VsCodeDebugger.SDK
 			this._rawData = new ByteBuffer();
 		}
 
-		// Token: 0x06006FD2 RID: 28626 RVA: 0x002A070C File Offset: 0x0029E90C
+		// Token: 0x0600638C RID: 25484 RVA: 0x0027B0D0 File Offset: 0x002792D0
 		public void ProcessLoop(Stream inputStream, Stream outputStream)
 		{
 			this._outputStream = outputStream;
@@ -39,22 +39,22 @@ namespace MoonSharp.VsCodeDebugger.SDK
 			}
 		}
 
-		// Token: 0x06006FD3 RID: 28627 RVA: 0x0004C01E File Offset: 0x0004A21E
+		// Token: 0x0600638D RID: 25485 RVA: 0x0027B126 File Offset: 0x00279326
 		public void Stop()
 		{
 			this._stopRequested = true;
 		}
 
-		// Token: 0x06006FD4 RID: 28628 RVA: 0x0004C027 File Offset: 0x0004A227
+		// Token: 0x0600638E RID: 25486 RVA: 0x0027B12F File Offset: 0x0027932F
 		public void SendEvent(Event e)
 		{
 			this.SendMessage(e);
 		}
 
-		// Token: 0x06006FD5 RID: 28629
+		// Token: 0x0600638F RID: 25487
 		protected abstract void DispatchRequest(string command, Table args, Response response);
 
-		// Token: 0x06006FD6 RID: 28630 RVA: 0x002A0764 File Offset: 0x0029E964
+		// Token: 0x06006390 RID: 25488 RVA: 0x0027B138 File Offset: 0x00279338
 		private void ProcessData()
 		{
 			for (;;)
@@ -88,7 +88,7 @@ namespace MoonSharp.VsCodeDebugger.SDK
 			}
 		}
 
-		// Token: 0x06006FD7 RID: 28631 RVA: 0x002A0838 File Offset: 0x0029EA38
+		// Token: 0x06006391 RID: 25489 RVA: 0x0027B20C File Offset: 0x0027940C
 		private void Dispatch(string req)
 		{
 			try
@@ -110,7 +110,7 @@ namespace MoonSharp.VsCodeDebugger.SDK
 			}
 		}
 
-		// Token: 0x06006FD8 RID: 28632 RVA: 0x002A08E0 File Offset: 0x0029EAE0
+		// Token: 0x06006392 RID: 25490 RVA: 0x0027B2B4 File Offset: 0x002794B4
 		protected void SendMessage(ProtocolMessage message)
 		{
 			int sequenceNumber = this._sequenceNumber;
@@ -136,7 +136,7 @@ namespace MoonSharp.VsCodeDebugger.SDK
 			}
 		}
 
-		// Token: 0x06006FD9 RID: 28633 RVA: 0x002A09B8 File Offset: 0x0029EBB8
+		// Token: 0x06006393 RID: 25491 RVA: 0x0027B38C File Offset: 0x0027958C
 		private static byte[] ConvertToBytes(ProtocolMessage request)
 		{
 			string s = JsonTableConverter.ObjectToJson(request);
@@ -149,37 +149,37 @@ namespace MoonSharp.VsCodeDebugger.SDK
 			return array;
 		}
 
-		// Token: 0x040062CA RID: 25290
+		// Token: 0x040055E3 RID: 21987
 		public bool TRACE;
 
-		// Token: 0x040062CB RID: 25291
+		// Token: 0x040055E4 RID: 21988
 		public bool TRACE_RESPONSE;
 
-		// Token: 0x040062CC RID: 25292
+		// Token: 0x040055E5 RID: 21989
 		protected const int BUFFER_SIZE = 4096;
 
-		// Token: 0x040062CD RID: 25293
+		// Token: 0x040055E6 RID: 21990
 		protected const string TWO_CRLF = "\r\n\r\n";
 
-		// Token: 0x040062CE RID: 25294
+		// Token: 0x040055E7 RID: 21991
 		protected static readonly Regex CONTENT_LENGTH_MATCHER = new Regex("Content-Length: (\\d+)");
 
-		// Token: 0x040062CF RID: 25295
+		// Token: 0x040055E8 RID: 21992
 		protected static readonly Encoding Encoding = Encoding.UTF8;
 
-		// Token: 0x040062D0 RID: 25296
+		// Token: 0x040055E9 RID: 21993
 		private int _sequenceNumber;
 
-		// Token: 0x040062D1 RID: 25297
+		// Token: 0x040055EA RID: 21994
 		private Stream _outputStream;
 
-		// Token: 0x040062D2 RID: 25298
+		// Token: 0x040055EB RID: 21995
 		private ByteBuffer _rawData;
 
-		// Token: 0x040062D3 RID: 25299
+		// Token: 0x040055EC RID: 21996
 		private int _bodyLength;
 
-		// Token: 0x040062D4 RID: 25300
+		// Token: 0x040055ED RID: 21997
 		private bool _stopRequested;
 	}
 }

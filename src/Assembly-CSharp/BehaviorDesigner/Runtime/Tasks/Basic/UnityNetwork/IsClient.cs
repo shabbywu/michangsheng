@@ -3,10 +3,10 @@ using UnityEngine.Networking;
 
 namespace BehaviorDesigner.Runtime.Tasks.Basic.UnityNetwork
 {
-	// Token: 0x020015A4 RID: 5540
+	// Token: 0x020010EA RID: 4330
 	public class IsClient : Conditional
 	{
-		// Token: 0x06008271 RID: 33393 RVA: 0x000595D6 File Offset: 0x000577D6
+		// Token: 0x06007477 RID: 29815 RVA: 0x002B2675 File Offset: 0x002B0875
 		public override TaskStatus OnUpdate()
 		{
 			if (!NetworkClient.active)

@@ -3,10 +3,10 @@ using UnityEngine;
 
 namespace YSGame.Test
 {
-	// Token: 0x02000E0D RID: 3597
+	// Token: 0x02000ACE RID: 2766
 	public class FightTestCode
 	{
-		// Token: 0x060056EA RID: 22250 RVA: 0x00243000 File Offset: 0x00241200
+		// Token: 0x06004D99 RID: 19865 RVA: 0x00212F20 File Offset: 0x00211120
 		public void RefreshData()
 		{
 			if (RoundManager.instance == null)
@@ -20,10 +20,10 @@ namespace YSGame.Test
 			this.DiRenStatus.RefreshData();
 		}
 
-		// Token: 0x04005697 RID: 22167
+		// Token: 0x04004CBC RID: 19644
 		public AvatarFightStatus PlayerStatus;
 
-		// Token: 0x04005698 RID: 22168
+		// Token: 0x04004CBD RID: 19645
 		public AvatarFightStatus DiRenStatus;
 	}
 }

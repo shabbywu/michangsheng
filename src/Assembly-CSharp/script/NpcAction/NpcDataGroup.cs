@@ -3,18 +3,33 @@ using System.Collections.Generic;
 
 namespace script.NpcAction
 {
-	// Token: 0x02000AC0 RID: 2752
+	// Token: 0x020009F3 RID: 2547
 	public class NpcDataGroup
 	{
-		// Token: 0x0600464E RID: 17998 RVA: 0x000042DD File Offset: 0x000024DD
-		public void GroupAction(int times)
+		// Token: 0x060046A0 RID: 18080 RVA: 0x001DDEB6 File Offset: 0x001DC0B6
+		public void Start(bool isNeedSavePlace = false)
 		{
+			this.IsNeedSavePlace = isNeedSavePlace;
 		}
 
-		// Token: 0x04003E73 RID: 15987
+		// Token: 0x060046A1 RID: 18081 RVA: 0x001DDEBF File Offset: 0x001DC0BF
+		public void Clear()
+		{
+			this.NpcDict = new Dictionary<int, NpcData>();
+			this.IsFree = true;
+			this.IsNeedSavePlace = false;
+		}
+
+		// Token: 0x04004801 RID: 18433
 		public Dictionary<int, NpcData> NpcDict = new Dictionary<int, NpcData>();
 
-		// Token: 0x04003E74 RID: 15988
+		// Token: 0x04004802 RID: 18434
 		public bool IsFree = true;
+
+		// Token: 0x04004803 RID: 18435
+		public string Error;
+
+		// Token: 0x04004804 RID: 18436
+		public bool IsNeedSavePlace;
 	}
 }

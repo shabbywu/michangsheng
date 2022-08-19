@@ -4,12 +4,12 @@ using UnityEngine;
 
 namespace Fungus
 {
-	// Token: 0x02001402 RID: 5122
+	// Token: 0x02000F4C RID: 3916
 	[CommandInfo("YSNew/Get", "GetNpcId", "根据流派和境界获取NpcId", 0)]
 	[AddComponentMenu("")]
 	public class GetNpcId : Command
 	{
-		// Token: 0x06007C61 RID: 31841 RVA: 0x002C4C78 File Offset: 0x002C2E78
+		// Token: 0x06006E76 RID: 28278 RVA: 0x002A4D18 File Offset: 0x002A2F18
 		public override void OnEnter()
 		{
 			JSONObject avatarJsonData = jsonData.instance.AvatarJsonData;
@@ -22,12 +22,12 @@ namespace Fungus
 				{
 					if (this.SetType == SexType.随机)
 					{
-						if (!this.IsNoFriend || !Tools.instance.getPlayer().emailDateMag.IsFriend(avatarJsonData[text]["id"].I))
+						if ((!this.IsNoFriend || !Tools.instance.getPlayer().emailDateMag.IsFriend(avatarJsonData[text]["id"].I)) && (!this.IsNoImportantNpcId || !NpcJieSuanManager.inst.ImportantNpcBangDingDictionary.ContainsValue(avatarJsonData[text]["id"].I)))
 						{
 							list.Add(avatarJsonData[text]["id"].I);
 						}
 					}
-					else if (this.SetType == (SexType)avatarJsonData[text]["SexType"].I && (!this.IsNoFriend || !Tools.instance.getPlayer().emailDateMag.IsFriend(avatarJsonData[text]["id"].I)))
+					else if (this.SetType == (SexType)avatarJsonData[text]["SexType"].I && (!this.IsNoFriend || !Tools.instance.getPlayer().emailDateMag.IsFriend(avatarJsonData[text]["id"].I)) && (!this.IsNoImportantNpcId || !NpcJieSuanManager.inst.ImportantNpcBangDingDictionary.ContainsValue(avatarJsonData[text]["id"].I)))
 					{
 						list.Add(avatarJsonData[text]["id"].I);
 					}
@@ -44,18 +44,18 @@ namespace Fungus
 			this.Continue();
 		}
 
-		// Token: 0x06007C62 RID: 31842 RVA: 0x000113CF File Offset: 0x0000F5CF
+		// Token: 0x06006E77 RID: 28279 RVA: 0x0005E228 File Offset: 0x0005C428
 		public override Color GetButtonColor()
 		{
 			return new Color32(184, 210, 235, byte.MaxValue);
 		}
 
-		// Token: 0x06007C63 RID: 31843 RVA: 0x000042DD File Offset: 0x000024DD
+		// Token: 0x06006E78 RID: 28280 RVA: 0x00004095 File Offset: 0x00002295
 		public override void OnReset()
 		{
 		}
 
-		// Token: 0x04006A71 RID: 27249
+		// Token: 0x04005B9F RID: 23455
 		[Tooltip("Npc流派")]
 		[VariableProperty(new Type[]
 		{
@@ -64,7 +64,7 @@ namespace Fungus
 		[SerializeField]
 		protected IntegerVariable NpcLiuPai;
 
-		// Token: 0x04006A72 RID: 27250
+		// Token: 0x04005BA0 RID: 23456
 		[Tooltip("Npc境界")]
 		[VariableProperty(new Type[]
 		{
@@ -73,7 +73,7 @@ namespace Fungus
 		[SerializeField]
 		protected IntegerVariable NpcLevel;
 
-		// Token: 0x04006A73 RID: 27251
+		// Token: 0x04005BA1 RID: 23457
 		[Tooltip("NpcId存放位置")]
 		[VariableProperty(new Type[]
 		{
@@ -82,11 +82,15 @@ namespace Fungus
 		[SerializeField]
 		protected IntegerVariable NpcId;
 
-		// Token: 0x04006A74 RID: 27252
+		// Token: 0x04005BA2 RID: 23458
 		[SerializeField]
 		protected bool IsNoFriend;
 
-		// Token: 0x04006A75 RID: 27253
+		// Token: 0x04005BA3 RID: 23459
+		[SerializeField]
+		protected bool IsNoImportantNpcId;
+
+		// Token: 0x04005BA4 RID: 23460
 		[SerializeField]
 		protected SexType SetType;
 	}

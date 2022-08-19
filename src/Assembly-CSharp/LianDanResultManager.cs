@@ -5,10 +5,10 @@ using KBEngine;
 using UnityEngine;
 using UnityEngine.UI;
 
-// Token: 0x0200043A RID: 1082
+// Token: 0x020002E4 RID: 740
 public class LianDanResultManager : MonoBehaviour
 {
-	// Token: 0x06001CD3 RID: 7379 RVA: 0x000FD794 File Offset: 0x000FB994
+	// Token: 0x060019B6 RID: 6582 RVA: 0x000B7B9C File Offset: 0x000B5D9C
 	public void lianDanJieSuan()
 	{
 		List<LianDanResultManager.DanyaoItem> DanYaoItemList = new List<LianDanResultManager.DanyaoItem>();
@@ -206,7 +206,7 @@ public class LianDanResultManager : MonoBehaviour
 						return;
 					}
 					this.FinishAddItem(0, component, maxpingzhi + 5900, lianzhicishu);
-					avatar.addItem(maxpingzhi + 5900, lianzhicishu, Tools.CreateItemSeid((int)danFangItemID["ItemID"].n), false);
+					avatar.addItem(maxpingzhi + 5900, lianzhicishu, Tools.CreateItemSeid(danFangItemID["ItemID"].I), false);
 					this.failLianDan(15, lianzhicishu);
 					return;
 				}
@@ -305,7 +305,7 @@ public class LianDanResultManager : MonoBehaviour
 									jsonobject5.Add(num15);
 								}
 							}
-							jsonobject3.AddField("ID", (int)danFangItemID["ItemID"].n);
+							jsonobject3.AddField("ID", danFangItemID["ItemID"].I);
 							jsonobject3.AddField("Type", jsonobject4);
 							jsonobject3.AddField("Num", jsonobject5);
 							LianDanSystemManager.inst.DanFangPageManager.addDanFang(jsonobject3);
@@ -315,7 +315,7 @@ public class LianDanResultManager : MonoBehaviour
 						{
 							lianzhicishu *= 2;
 						}
-						this.FinishAddItem(num16, component, (int)danFangItemID["ItemID"].n, lianzhicishu);
+						this.FinishAddItem(num16, component, danFangItemID["ItemID"].I, lianzhicishu);
 						num16++;
 						foreach (KeyValuePair<int, int> keyValuePair4 in dictionary)
 						{
@@ -355,7 +355,7 @@ public class LianDanResultManager : MonoBehaviour
 		UIPopTip.Inst.Pop("数据异常", PopTipIconType.叹号);
 	}
 
-	// Token: 0x06001CD4 RID: 7380 RVA: 0x000FD980 File Offset: 0x000FBB80
+	// Token: 0x060019B7 RID: 6583 RVA: 0x000B7D88 File Offset: 0x000B5F88
 	public void AddWuDaoLianDan(int ItemId, int Num)
 	{
 		JSONObject jsonobject = jsonData.instance.ItemJsonData[ItemId.ToString()];
@@ -380,7 +380,7 @@ public class LianDanResultManager : MonoBehaviour
 		player.wuDaoMag.addWuDaoEx(21, (int)((float)i2 / (float)list[i - 1] * (float)Num * itemPercent));
 	}
 
-	// Token: 0x06001CD5 RID: 7381 RVA: 0x000FDA70 File Offset: 0x000FBC70
+	// Token: 0x060019B8 RID: 6584 RVA: 0x000B7E78 File Offset: 0x000B6078
 	public float getItemPercent(int itemQuality)
 	{
 		int wuDaoLevelByType = Tools.instance.getPlayer().wuDaoMag.getWuDaoLevelByType(21);
@@ -400,7 +400,7 @@ public class LianDanResultManager : MonoBehaviour
 		return result;
 	}
 
-	// Token: 0x06001CD6 RID: 7382 RVA: 0x000FDABC File Offset: 0x000FBCBC
+	// Token: 0x060019B9 RID: 6585 RVA: 0x000B7EC4 File Offset: 0x000B60C4
 	public void GetDanFang(out int maxNum, out int maxpingzhi, out JSONObject danFangItemID, List<JSONObject> DanFans, List<int> indexToLeixin, List<LianDanResultManager.DanyaoItem> DanYaoItemList, Dictionary<int, int> fuyaoList, Dictionary<int, int> zhuyaoList)
 	{
 		maxpingzhi = 0;
@@ -408,22 +408,22 @@ public class LianDanResultManager : MonoBehaviour
 		danFangItemID = null;
 		foreach (JSONObject jsonobject in DanFans)
 		{
-			int num = (int)jsonData.instance.ItemJsonData[((int)jsonobject["ItemID"].n).ToString()]["quality"].n;
-			Debug.Log("丹方ID" + (int)jsonobject["ItemID"].n);
-			if (num > maxpingzhi)
+			int i = jsonData.instance.ItemJsonData[jsonobject["ItemID"].I.ToString()]["quality"].I;
+			Debug.Log("丹方ID" + jsonobject["ItemID"].I);
+			if (i > maxpingzhi)
 			{
 				maxNum = 0;
-				maxpingzhi = num;
+				maxpingzhi = i;
 				danFangItemID = jsonobject;
 			}
-			if (num == maxpingzhi)
+			if (i == maxpingzhi)
 			{
 				maxNum++;
 			}
 		}
 	}
 
-	// Token: 0x06001CD7 RID: 7383 RVA: 0x000FDB88 File Offset: 0x000FBD88
+	// Token: 0x060019BA RID: 6586 RVA: 0x000B7F8C File Offset: 0x000B618C
 	public void GetYaoLeiList(List<int> indexToLeixin, List<LianDanResultManager.DanyaoItem> DanYaoItemList, Dictionary<int, int> fuyaoList, Dictionary<int, int> zhuyaoList, bool unlockYaoXing = false)
 	{
 		int num = 0;
@@ -464,7 +464,7 @@ public class LianDanResultManager : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001CD8 RID: 7384 RVA: 0x000FDCF4 File Offset: 0x000FBEF4
+	// Token: 0x060019BB RID: 6587 RVA: 0x000B80F8 File Offset: 0x000B62F8
 	public void GetDanfangList(List<JSONObject> DanFans, List<int> indexToLeixin, List<LianDanResultManager.DanyaoItem> DanYaoItemList, Dictionary<int, int> fuyaoList, Dictionary<int, int> zhuyaoList)
 	{
 		foreach (JSONObject jsonobject in jsonData.instance.LianDanDanFangBiao.list)
@@ -512,7 +512,7 @@ public class LianDanResultManager : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001CD9 RID: 7385 RVA: 0x000FDF54 File Offset: 0x000FC154
+	// Token: 0x060019BC RID: 6588 RVA: 0x000B8358 File Offset: 0x000B6558
 	public string getCostTime(int count)
 	{
 		List<LianDanResultManager.DanyaoItem> danYaoItemList = new List<LianDanResultManager.DanyaoItem>();
@@ -572,7 +572,7 @@ public class LianDanResultManager : MonoBehaviour
 		return text;
 	}
 
-	// Token: 0x06001CDA RID: 7386 RVA: 0x000FE0D4 File Offset: 0x000FC2D4
+	// Token: 0x060019BD RID: 6589 RVA: 0x000B84D8 File Offset: 0x000B66D8
 	public void costItem(int lianzhicishu)
 	{
 		List<PutLianDanCell> putLianDanCellList = LianDanSystemManager.inst.lianDanPageManager.putLianDanCellList;
@@ -586,7 +586,7 @@ public class LianDanResultManager : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001CDB RID: 7387 RVA: 0x000FE158 File Offset: 0x000FC358
+	// Token: 0x060019BE RID: 6590 RVA: 0x000B855C File Offset: 0x000B675C
 	private void successLianDan(int index, int num)
 	{
 		this.desc.text = Tools.Code64("  " + jsonData.instance.LianDanSuccessItemLeiXin[index.ToString()]["desc"].str).Replace("{Num}", num.ToString());
@@ -599,7 +599,7 @@ public class LianDanResultManager : MonoBehaviour
 		});
 	}
 
-	// Token: 0x06001CDC RID: 7388 RVA: 0x000FE1F0 File Offset: 0x000FC3F0
+	// Token: 0x060019BF RID: 6591 RVA: 0x000B85F4 File Offset: 0x000B67F4
 	private void failLianDan(int index, int num)
 	{
 		this.desc.text = Tools.Code64("  " + jsonData.instance.LianDanSuccessItemLeiXin[index.ToString()]["desc"].str).Replace("{Num}", num.ToString());
@@ -612,7 +612,7 @@ public class LianDanResultManager : MonoBehaviour
 		});
 	}
 
-	// Token: 0x06001CDD RID: 7389 RVA: 0x000FE288 File Offset: 0x000FC488
+	// Token: 0x060019C0 RID: 6592 RVA: 0x000B868C File Offset: 0x000B688C
 	public void FinishAddItem(int index, ItemDatebase datebase, int id, int lianzhicishu)
 	{
 		LianDanSystemManager.inst.inventory.inventory[index + 31] = datebase.items[id].Clone();
@@ -620,7 +620,7 @@ public class LianDanResultManager : MonoBehaviour
 		this.LianDanResultCellList[index].updateItem();
 	}
 
-	// Token: 0x06001CDE RID: 7390 RVA: 0x000FE2F0 File Offset: 0x000FC4F0
+	// Token: 0x060019C1 RID: 6593 RVA: 0x000B86F4 File Offset: 0x000B68F4
 	public void resetAllResultItem()
 	{
 		for (int i = 0; i < this.LianDanResultCellList.Count; i++)
@@ -629,7 +629,7 @@ public class LianDanResultManager : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001CDF RID: 7391 RVA: 0x000FE324 File Offset: 0x000FC524
+	// Token: 0x060019C2 RID: 6594 RVA: 0x000B8728 File Offset: 0x000B6928
 	private void zhaLuLianDan()
 	{
 		LianDanSystemManager.inst.inventory.inventory[30] = new item();
@@ -647,30 +647,30 @@ public class LianDanResultManager : MonoBehaviour
 		LianDanSystemManager.inst.putDanLuManager.backPutDanLuPanel();
 	}
 
-	// Token: 0x040018C7 RID: 6343
+	// Token: 0x040014D9 RID: 5337
 	public List<int> YaoZhi;
 
-	// Token: 0x040018C8 RID: 6344
+	// Token: 0x040014DA RID: 5338
 	public List<int> ReduceNaijiu;
 
-	// Token: 0x040018C9 RID: 6345
+	// Token: 0x040014DB RID: 5339
 	public List<LianDanResultCell> LianDanResultCellList;
 
-	// Token: 0x040018CA RID: 6346
+	// Token: 0x040014DC RID: 5340
 	public List<int> MaxCaoYao;
 
-	// Token: 0x040018CB RID: 6347
+	// Token: 0x040014DD RID: 5341
 	[SerializeField]
 	private Button Btn_QueDing;
 
-	// Token: 0x040018CC RID: 6348
+	// Token: 0x040014DE RID: 5342
 	[SerializeField]
 	private Text desc;
 
-	// Token: 0x0200043B RID: 1083
+	// Token: 0x0200132C RID: 4908
 	public class DanyaoItem
 	{
-		// Token: 0x06001CE4 RID: 7396 RVA: 0x000FE41C File Offset: 0x000FC61C
+		// Token: 0x06007B52 RID: 31570 RVA: 0x002C096C File Offset: 0x002BEB6C
 		public override string ToString()
 		{
 			return string.Format("{0} {1} {2} {3}", new object[]
@@ -682,16 +682,16 @@ public class LianDanResultManager : MonoBehaviour
 			});
 		}
 
-		// Token: 0x040018CD RID: 6349
+		// Token: 0x040067B0 RID: 26544
 		public int ItemID = -1;
 
-		// Token: 0x040018CE RID: 6350
+		// Token: 0x040067B1 RID: 26545
 		public int ItemNum;
 
-		// Token: 0x040018CF RID: 6351
+		// Token: 0x040067B2 RID: 26546
 		public int YaoZhi;
 
-		// Token: 0x040018D0 RID: 6352
+		// Token: 0x040067B3 RID: 26547
 		public int YaoZhiType;
 	}
 }

@@ -1,17 +1,17 @@
 ﻿using System;
 using UnityEngine;
 
-// Token: 0x02000167 RID: 359
+// Token: 0x020000F0 RID: 240
 public class PlayerCharacterUI : MonoBehaviour
 {
-	// Token: 0x06000C70 RID: 3184 RVA: 0x0000E5F5 File Offset: 0x0000C7F5
+	// Token: 0x06000B81 RID: 2945 RVA: 0x00045FA2 File Offset: 0x000441A2
 	private void Start()
 	{
 		this.character = base.gameObject.GetComponent<CharacterInventory>();
 		this.skill = base.gameObject.GetComponent<CharacterSkillDeployer>();
 	}
 
-	// Token: 0x06000C71 RID: 3185 RVA: 0x0000E619 File Offset: 0x0000C819
+	// Token: 0x06000B82 RID: 2946 RVA: 0x00045FC6 File Offset: 0x000441C6
 	private void Update()
 	{
 		if (Screen.lockCursor && Input.GetKey(101))
@@ -21,7 +21,7 @@ public class PlayerCharacterUI : MonoBehaviour
 		Screen.lockCursor = (this.uiState == PlayerCharacterUI.UIState.None);
 	}
 
-	// Token: 0x06000C72 RID: 3186 RVA: 0x00097A44 File Offset: 0x00095C44
+	// Token: 0x06000B83 RID: 2947 RVA: 0x00045FF0 File Offset: 0x000441F0
 	private void OnGUI()
 	{
 		if (this.skin)
@@ -77,7 +77,7 @@ public class PlayerCharacterUI : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000C73 RID: 3187 RVA: 0x00097D24 File Offset: 0x00095F24
+	// Token: 0x06000B84 RID: 2948 RVA: 0x000462D0 File Offset: 0x000444D0
 	private void DrawSkill(int index, Vector2 position)
 	{
 		if (this.skill.indexSkill == index)
@@ -92,7 +92,7 @@ public class PlayerCharacterUI : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000C74 RID: 3188 RVA: 0x00097DD8 File Offset: 0x00095FD8
+	// Token: 0x06000B85 RID: 2949 RVA: 0x00046384 File Offset: 0x00044584
 	private void DrawItemBox(ItemSlot itemslot, Vector2 position)
 	{
 		if (itemslot != null)
@@ -106,7 +106,7 @@ public class PlayerCharacterUI : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000C75 RID: 3189 RVA: 0x00097EC4 File Offset: 0x000960C4
+	// Token: 0x06000B86 RID: 2950 RVA: 0x00046470 File Offset: 0x00044670
 	private void DrawItemBoxDetail(ItemSlot itemslot, Vector2 position)
 	{
 		if (itemslot != null)
@@ -147,27 +147,27 @@ public class PlayerCharacterUI : MonoBehaviour
 		}
 	}
 
-	// Token: 0x04000993 RID: 2451
+	// Token: 0x040007B8 RID: 1976
 	public GUISkin skin;
 
-	// Token: 0x04000994 RID: 2452
+	// Token: 0x040007B9 RID: 1977
 	private CharacterInventory character;
 
-	// Token: 0x04000995 RID: 2453
+	// Token: 0x040007BA RID: 1978
 	private CharacterSkillDeployer skill;
 
-	// Token: 0x04000996 RID: 2454
+	// Token: 0x040007BB RID: 1979
 	private Vector2 scrollPosition;
 
-	// Token: 0x04000997 RID: 2455
+	// Token: 0x040007BC RID: 1980
 	private PlayerCharacterUI.UIState uiState;
 
-	// Token: 0x02000168 RID: 360
+	// Token: 0x0200123B RID: 4667
 	private enum UIState
 	{
-		// Token: 0x04000999 RID: 2457
+		// Token: 0x0400652B RID: 25899
 		None,
-		// Token: 0x0400099A RID: 2458
+		// Token: 0x0400652C RID: 25900
 		Item
 	}
 }

@@ -5,13 +5,13 @@ using UnityEngine.Serialization;
 
 namespace Fungus
 {
-	// Token: 0x02001299 RID: 4761
+	// Token: 0x02000E48 RID: 3656
 	[CommandInfo("iTween", "Shake Rotation", "Randomly shakes a GameObject's rotation by a diminishing amount over time.", 0)]
 	[AddComponentMenu("")]
 	[ExecuteInEditMode]
 	public class ShakeRotation : iTweenCommand
 	{
-		// Token: 0x06007368 RID: 29544 RVA: 0x002AAE28 File Offset: 0x002A9028
+		// Token: 0x060066DA RID: 26330 RVA: 0x00287EF0 File Offset: 0x002860F0
 		public override void DoTween()
 		{
 			Hashtable hashtable = new Hashtable();
@@ -27,13 +27,13 @@ namespace Fungus
 			iTween.ShakeRotation(this._targetObject.Value, hashtable);
 		}
 
-		// Token: 0x06007369 RID: 29545 RVA: 0x0004EBD0 File Offset: 0x0004CDD0
+		// Token: 0x060066DB RID: 26331 RVA: 0x00287FCF File Offset: 0x002861CF
 		public override bool HasReference(Variable variable)
 		{
 			return this._amount.vector3Ref == variable || base.HasReference(variable);
 		}
 
-		// Token: 0x0600736A RID: 29546 RVA: 0x002AAF08 File Offset: 0x002A9108
+		// Token: 0x060066DC RID: 26332 RVA: 0x00287FF0 File Offset: 0x002861F0
 		protected override void OnEnable()
 		{
 			base.OnEnable();
@@ -44,17 +44,17 @@ namespace Fungus
 			}
 		}
 
-		// Token: 0x0400654F RID: 25935
+		// Token: 0x0400580B RID: 22539
 		[Tooltip("A rotation offset in space the GameObject will animate to")]
 		[SerializeField]
 		protected Vector3Data _amount;
 
-		// Token: 0x04006550 RID: 25936
+		// Token: 0x0400580C RID: 22540
 		[Tooltip("Apply the transformation in either the world coordinate or local cordinate system")]
 		[SerializeField]
 		protected Space space = 1;
 
-		// Token: 0x04006551 RID: 25937
+		// Token: 0x0400580D RID: 22541
 		[HideInInspector]
 		[FormerlySerializedAs("amount")]
 		public Vector3 amountOLD;

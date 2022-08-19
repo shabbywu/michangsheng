@@ -3,13 +3,13 @@ using UnityEngine;
 
 namespace UltimateSurvival.StandardAssets
 {
-	// Token: 0x0200091B RID: 2331
+	// Token: 0x0200062D RID: 1581
 	[ExecuteInEditMode]
 	[RequireComponent(typeof(Camera))]
 	[AddComponentMenu("Ultimate Survival/Add/Image Effects/DOF")]
 	public class DOF : ImageEffectBase
 	{
-		// Token: 0x06003B58 RID: 15192 RVA: 0x001AD25C File Offset: 0x001AB45C
+		// Token: 0x0600321E RID: 12830 RVA: 0x001639B0 File Offset: 0x00161BB0
 		private void CreateMaterials()
 		{
 			this.dofBlurMaterial = base.CheckShaderAndCreateMaterial(this.dofBlurShader, this.dofBlurMaterial);
@@ -21,7 +21,7 @@ namespace UltimateSurvival.StandardAssets
 			}
 		}
 
-		// Token: 0x06003B59 RID: 15193 RVA: 0x001AD2E0 File Offset: 0x001AB4E0
+		// Token: 0x0600321F RID: 12831 RVA: 0x00163A34 File Offset: 0x00161C34
 		public override bool CheckResources()
 		{
 			base.CheckSupport(true);
@@ -39,26 +39,26 @@ namespace UltimateSurvival.StandardAssets
 			return this.isSupported;
 		}
 
-		// Token: 0x06003B5A RID: 15194 RVA: 0x0002AF3B File Offset: 0x0002913B
+		// Token: 0x06003220 RID: 12832 RVA: 0x00163AD3 File Offset: 0x00161CD3
 		private void OnDisable()
 		{
 			MyQuads.Cleanup();
 		}
 
-		// Token: 0x06003B5B RID: 15195 RVA: 0x0002AF42 File Offset: 0x00029142
+		// Token: 0x06003221 RID: 12833 RVA: 0x00163ADA File Offset: 0x00161CDA
 		private void OnEnable()
 		{
 			this._camera = base.GetComponent<Camera>();
 			this._camera.depthTextureMode |= 1;
 		}
 
-		// Token: 0x06003B5C RID: 15196 RVA: 0x001AD380 File Offset: 0x001AB580
+		// Token: 0x06003222 RID: 12834 RVA: 0x00163AFC File Offset: 0x00161CFC
 		private float FocalDistance01(float worldDist)
 		{
 			return this._camera.WorldToViewportPoint((worldDist - this._camera.nearClipPlane) * this._camera.transform.forward + this._camera.transform.position).z / (this._camera.farClipPlane - this._camera.nearClipPlane);
 		}
 
-		// Token: 0x06003B5D RID: 15197 RVA: 0x001AD3EC File Offset: 0x001AB5EC
+		// Token: 0x06003223 RID: 12835 RVA: 0x00163B68 File Offset: 0x00161D68
 		private int GetDividerBasedOnQuality()
 		{
 			int result = 1;
@@ -73,7 +73,7 @@ namespace UltimateSurvival.StandardAssets
 			return result;
 		}
 
-		// Token: 0x06003B5E RID: 15198 RVA: 0x001AD414 File Offset: 0x001AB614
+		// Token: 0x06003224 RID: 12836 RVA: 0x00163B90 File Offset: 0x00161D90
 		private int GetLowResolutionDividerBasedOnQuality(int baseDivider)
 		{
 			int num = baseDivider;
@@ -88,7 +88,7 @@ namespace UltimateSurvival.StandardAssets
 			return num;
 		}
 
-		// Token: 0x06003B5F RID: 15199 RVA: 0x001AD440 File Offset: 0x001AB640
+		// Token: 0x06003225 RID: 12837 RVA: 0x00163BBC File Offset: 0x00161DBC
 		private void OnRenderImage(RenderTexture source, RenderTexture destination)
 		{
 			if (!this.CheckResources())
@@ -187,7 +187,7 @@ namespace UltimateSurvival.StandardAssets
 			this.ReleaseTextures();
 		}
 
-		// Token: 0x06003B60 RID: 15200 RVA: 0x001ADA00 File Offset: 0x001ABC00
+		// Token: 0x06003226 RID: 12838 RVA: 0x0016417C File Offset: 0x0016237C
 		private void Blur(RenderTexture from, RenderTexture to, DOF.DofBlurriness iterations, int blurPass, float spread)
 		{
 			RenderTexture temporary = RenderTexture.GetTemporary(to.width, to.height);
@@ -212,7 +212,7 @@ namespace UltimateSurvival.StandardAssets
 			RenderTexture.ReleaseTemporary(temporary);
 		}
 
-		// Token: 0x06003B61 RID: 15201 RVA: 0x001ADB40 File Offset: 0x001ABD40
+		// Token: 0x06003227 RID: 12839 RVA: 0x001642BC File Offset: 0x001624BC
 		private void BlurFg(RenderTexture from, RenderTexture to, DOF.DofBlurriness iterations, int blurPass, float spread)
 		{
 			this.dofBlurMaterial.SetTexture("_TapHigh", from);
@@ -238,7 +238,7 @@ namespace UltimateSurvival.StandardAssets
 			RenderTexture.ReleaseTemporary(temporary);
 		}
 
-		// Token: 0x06003B62 RID: 15202 RVA: 0x001ADC94 File Offset: 0x001ABE94
+		// Token: 0x06003228 RID: 12840 RVA: 0x00164410 File Offset: 0x00162610
 		private void BlurHex(RenderTexture from, RenderTexture to, int blurPass, float spread, RenderTexture tmp)
 		{
 			this.dofBlurMaterial.SetVector("offsets", new Vector4(0f, spread * this.oneOverBaseSize, 0f, 0f));
@@ -251,14 +251,14 @@ namespace UltimateSurvival.StandardAssets
 			Graphics.Blit(tmp, to, this.dofBlurMaterial, blurPass);
 		}
 
-		// Token: 0x06003B63 RID: 15203 RVA: 0x001ADDB0 File Offset: 0x001ABFB0
+		// Token: 0x06003229 RID: 12841 RVA: 0x0016452C File Offset: 0x0016272C
 		private void Downsample(RenderTexture from, RenderTexture to)
 		{
 			this.dofMaterial.SetVector("_InvRenderTargetSize", new Vector4(1f / (1f * (float)to.width), 1f / (1f * (float)to.height), 0f, 0f));
 			Graphics.Blit(from, to, this.dofMaterial, DOF.SMOOTH_DOWNSAMPLE_PASS);
 		}
 
-		// Token: 0x06003B64 RID: 15204 RVA: 0x001ADE14 File Offset: 0x001AC014
+		// Token: 0x0600322A RID: 12842 RVA: 0x00164590 File Offset: 0x00162790
 		private void AddBokeh(RenderTexture bokehInfo, RenderTexture tempTex, RenderTexture finalTarget)
 		{
 			if (this.bokehMaterial)
@@ -290,7 +290,7 @@ namespace UltimateSurvival.StandardAssets
 			}
 		}
 
-		// Token: 0x06003B65 RID: 15205 RVA: 0x001ADF78 File Offset: 0x001AC178
+		// Token: 0x0600322B RID: 12843 RVA: 0x001646F4 File Offset: 0x001628F4
 		private void ReleaseTextures()
 		{
 			if (this.foregroundTexture)
@@ -319,7 +319,7 @@ namespace UltimateSurvival.StandardAssets
 			}
 		}
 
-		// Token: 0x06003B66 RID: 15206 RVA: 0x001AE018 File Offset: 0x001AC218
+		// Token: 0x0600322C RID: 12844 RVA: 0x00164794 File Offset: 0x00162994
 		private void AllocateTextures(bool blurForeground, RenderTexture source, int divider, int lowTexDivider)
 		{
 			this.foregroundTexture = null;
@@ -351,174 +351,174 @@ namespace UltimateSurvival.StandardAssets
 			}
 		}
 
-		// Token: 0x040035ED RID: 13805
+		// Token: 0x04002CAB RID: 11435
 		private static int SMOOTH_DOWNSAMPLE_PASS = 6;
 
-		// Token: 0x040035EE RID: 13806
+		// Token: 0x04002CAC RID: 11436
 		private static float BOKEH_EXTRA_BLUR = 2f;
 
-		// Token: 0x040035EF RID: 13807
+		// Token: 0x04002CAD RID: 11437
 		public DOF.Dof34QualitySetting quality = DOF.Dof34QualitySetting.OnlyBackground;
 
-		// Token: 0x040035F0 RID: 13808
+		// Token: 0x04002CAE RID: 11438
 		public DOF.DofResolution resolution = DOF.DofResolution.Low;
 
-		// Token: 0x040035F1 RID: 13809
+		// Token: 0x04002CAF RID: 11439
 		public bool simpleTweakMode = true;
 
-		// Token: 0x040035F2 RID: 13810
+		// Token: 0x04002CB0 RID: 11440
 		public float focalPoint = 1f;
 
-		// Token: 0x040035F3 RID: 13811
+		// Token: 0x04002CB1 RID: 11441
 		public float smoothness = 0.5f;
 
-		// Token: 0x040035F4 RID: 13812
+		// Token: 0x04002CB2 RID: 11442
 		public float focalZDistance;
 
-		// Token: 0x040035F5 RID: 13813
+		// Token: 0x04002CB3 RID: 11443
 		public float focalZStartCurve = 1f;
 
-		// Token: 0x040035F6 RID: 13814
+		// Token: 0x04002CB4 RID: 11444
 		public float focalZEndCurve = 1f;
 
-		// Token: 0x040035F7 RID: 13815
+		// Token: 0x04002CB5 RID: 11445
 		private float focalStartCurve = 2f;
 
-		// Token: 0x040035F8 RID: 13816
+		// Token: 0x04002CB6 RID: 11446
 		private float focalEndCurve = 2f;
 
-		// Token: 0x040035F9 RID: 13817
+		// Token: 0x04002CB7 RID: 11447
 		private float focalDistance01 = 0.1f;
 
-		// Token: 0x040035FA RID: 13818
+		// Token: 0x04002CB8 RID: 11448
 		public Transform objectFocus;
 
-		// Token: 0x040035FB RID: 13819
+		// Token: 0x04002CB9 RID: 11449
 		public float focalSize;
 
-		// Token: 0x040035FC RID: 13820
+		// Token: 0x04002CBA RID: 11450
 		public DOF.DofBlurriness bluriness = DOF.DofBlurriness.High;
 
-		// Token: 0x040035FD RID: 13821
+		// Token: 0x04002CBB RID: 11451
 		public float maxBlurSpread = 1.75f;
 
-		// Token: 0x040035FE RID: 13822
+		// Token: 0x04002CBC RID: 11452
 		public float foregroundBlurExtrude = 1.15f;
 
-		// Token: 0x040035FF RID: 13823
+		// Token: 0x04002CBD RID: 11453
 		public Shader dofBlurShader;
 
-		// Token: 0x04003600 RID: 13824
+		// Token: 0x04002CBE RID: 11454
 		private Material dofBlurMaterial;
 
-		// Token: 0x04003601 RID: 13825
+		// Token: 0x04002CBF RID: 11455
 		public Shader dofShader;
 
-		// Token: 0x04003602 RID: 13826
+		// Token: 0x04002CC0 RID: 11456
 		private Material dofMaterial;
 
-		// Token: 0x04003603 RID: 13827
+		// Token: 0x04002CC1 RID: 11457
 		public bool visualize;
 
-		// Token: 0x04003604 RID: 13828
+		// Token: 0x04002CC2 RID: 11458
 		public DOF.BokehDestination bokehDestination = DOF.BokehDestination.Background;
 
-		// Token: 0x04003605 RID: 13829
+		// Token: 0x04002CC3 RID: 11459
 		private float widthOverHeight = 1.25f;
 
-		// Token: 0x04003606 RID: 13830
+		// Token: 0x04002CC4 RID: 11460
 		private float oneOverBaseSize = 0.001953125f;
 
-		// Token: 0x04003607 RID: 13831
+		// Token: 0x04002CC5 RID: 11461
 		public bool bokeh;
 
-		// Token: 0x04003608 RID: 13832
+		// Token: 0x04002CC6 RID: 11462
 		public bool bokehSupport = true;
 
-		// Token: 0x04003609 RID: 13833
+		// Token: 0x04002CC7 RID: 11463
 		public Shader bokehShader;
 
-		// Token: 0x0400360A RID: 13834
+		// Token: 0x04002CC8 RID: 11464
 		public Texture2D bokehTexture;
 
-		// Token: 0x0400360B RID: 13835
+		// Token: 0x04002CC9 RID: 11465
 		public float bokehScale = 2.4f;
 
-		// Token: 0x0400360C RID: 13836
+		// Token: 0x04002CCA RID: 11466
 		public float bokehIntensity = 0.15f;
 
-		// Token: 0x0400360D RID: 13837
+		// Token: 0x04002CCB RID: 11467
 		public float bokehThresholdContrast = 0.1f;
 
-		// Token: 0x0400360E RID: 13838
+		// Token: 0x04002CCC RID: 11468
 		public float bokehThresholdLuminance = 0.55f;
 
-		// Token: 0x0400360F RID: 13839
+		// Token: 0x04002CCD RID: 11469
 		public int bokehDownsample = 1;
 
-		// Token: 0x04003610 RID: 13840
+		// Token: 0x04002CCE RID: 11470
 		private Material bokehMaterial;
 
-		// Token: 0x04003611 RID: 13841
+		// Token: 0x04002CCF RID: 11471
 		private Camera _camera;
 
-		// Token: 0x04003612 RID: 13842
+		// Token: 0x04002CD0 RID: 11472
 		private RenderTexture foregroundTexture;
 
-		// Token: 0x04003613 RID: 13843
+		// Token: 0x04002CD1 RID: 11473
 		private RenderTexture mediumRezWorkTexture;
 
-		// Token: 0x04003614 RID: 13844
+		// Token: 0x04002CD2 RID: 11474
 		private RenderTexture finalDefocus;
 
-		// Token: 0x04003615 RID: 13845
+		// Token: 0x04002CD3 RID: 11475
 		private RenderTexture lowRezWorkTexture;
 
-		// Token: 0x04003616 RID: 13846
+		// Token: 0x04002CD4 RID: 11476
 		private RenderTexture bokehSource;
 
-		// Token: 0x04003617 RID: 13847
+		// Token: 0x04002CD5 RID: 11477
 		private RenderTexture bokehSource2;
 
-		// Token: 0x0200091C RID: 2332
+		// Token: 0x020014D8 RID: 5336
 		public enum Dof34QualitySetting
 		{
-			// Token: 0x04003619 RID: 13849
+			// Token: 0x04006D85 RID: 28037
 			OnlyBackground = 1,
-			// Token: 0x0400361A RID: 13850
+			// Token: 0x04006D86 RID: 28038
 			BackgroundAndForeground
 		}
 
-		// Token: 0x0200091D RID: 2333
+		// Token: 0x020014D9 RID: 5337
 		public enum DofResolution
 		{
-			// Token: 0x0400361C RID: 13852
+			// Token: 0x04006D88 RID: 28040
 			High = 2,
-			// Token: 0x0400361D RID: 13853
+			// Token: 0x04006D89 RID: 28041
 			Medium,
-			// Token: 0x0400361E RID: 13854
+			// Token: 0x04006D8A RID: 28042
 			Low
 		}
 
-		// Token: 0x0200091E RID: 2334
+		// Token: 0x020014DA RID: 5338
 		public enum DofBlurriness
 		{
-			// Token: 0x04003620 RID: 13856
+			// Token: 0x04006D8C RID: 28044
 			Low = 1,
-			// Token: 0x04003621 RID: 13857
+			// Token: 0x04006D8D RID: 28045
 			High,
-			// Token: 0x04003622 RID: 13858
+			// Token: 0x04006D8E RID: 28046
 			VeryHigh = 4
 		}
 
-		// Token: 0x0200091F RID: 2335
+		// Token: 0x020014DB RID: 5339
 		public enum BokehDestination
 		{
-			// Token: 0x04003624 RID: 13860
+			// Token: 0x04006D90 RID: 28048
 			Background = 1,
-			// Token: 0x04003625 RID: 13861
+			// Token: 0x04006D91 RID: 28049
 			Foreground,
-			// Token: 0x04003626 RID: 13862
+			// Token: 0x04006D92 RID: 28050
 			BackgroundAndForeground
 		}
 	}

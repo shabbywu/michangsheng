@@ -3,10 +3,10 @@ using MoonSharp.Interpreter.Compatibility;
 
 namespace MoonSharp.Interpreter.Interop.Converters
 {
-	// Token: 0x02001144 RID: 4420
+	// Token: 0x02000D3C RID: 3388
 	internal static class ScriptToClrConversions
 	{
-		// Token: 0x06006B40 RID: 27456 RVA: 0x00292F6C File Offset: 0x0029116C
+		// Token: 0x06005F6E RID: 24430 RVA: 0x0026B0A4 File Offset: 0x002692A4
 		internal static object DynValueToObject(DynValue value)
 		{
 			Func<DynValue, object> scriptToClrCustomConversion = Script.GlobalOptions.CustomConverters.GetScriptToClrCustomConversion(value.Type, typeof(object));
@@ -51,7 +51,7 @@ namespace MoonSharp.Interpreter.Interop.Converters
 			throw ScriptRuntimeException.ConvertObjectFailed(value.Type);
 		}
 
-		// Token: 0x06006B41 RID: 27457 RVA: 0x00293068 File Offset: 0x00291268
+		// Token: 0x06005F6F RID: 24431 RVA: 0x0026B1A0 File Offset: 0x002693A0
 		internal static object DynValueToObjectOfType(DynValue value, Type desiredType, object defaultValue, bool isOptional)
 		{
 			if (desiredType.IsByRef)
@@ -196,7 +196,7 @@ namespace MoonSharp.Interpreter.Interop.Converters
 			throw ScriptRuntimeException.ConvertObjectFailed(value.Type, desiredType);
 		}
 
-		// Token: 0x06006B42 RID: 27458 RVA: 0x00293340 File Offset: 0x00291540
+		// Token: 0x06005F70 RID: 24432 RVA: 0x0026B478 File Offset: 0x00269678
 		internal static int DynValueToObjectOfTypeWeight(DynValue value, Type desiredType, bool isOptional)
 		{
 			if (desiredType.IsByRef)
@@ -335,7 +335,7 @@ namespace MoonSharp.Interpreter.Interop.Converters
 			return 0;
 		}
 
-		// Token: 0x06006B43 RID: 27459 RVA: 0x0004918D File Offset: 0x0004738D
+		// Token: 0x06005F71 RID: 24433 RVA: 0x0026B6AB File Offset: 0x002698AB
 		private static int GetNumericTypeWeight(Type desiredType)
 		{
 			if (desiredType == typeof(double) || desiredType == typeof(decimal))
@@ -345,70 +345,70 @@ namespace MoonSharp.Interpreter.Interop.Converters
 			return 99;
 		}
 
-		// Token: 0x040060DF RID: 24799
+		// Token: 0x0400547D RID: 21629
 		internal const int WEIGHT_MAX_VALUE = 100;
 
-		// Token: 0x040060E0 RID: 24800
+		// Token: 0x0400547E RID: 21630
 		internal const int WEIGHT_CUSTOM_CONVERTER_MATCH = 100;
 
-		// Token: 0x040060E1 RID: 24801
+		// Token: 0x0400547F RID: 21631
 		internal const int WEIGHT_EXACT_MATCH = 100;
 
-		// Token: 0x040060E2 RID: 24802
+		// Token: 0x04005480 RID: 21632
 		internal const int WEIGHT_STRING_TO_STRINGBUILDER = 99;
 
-		// Token: 0x040060E3 RID: 24803
+		// Token: 0x04005481 RID: 21633
 		internal const int WEIGHT_STRING_TO_CHAR = 98;
 
-		// Token: 0x040060E4 RID: 24804
+		// Token: 0x04005482 RID: 21634
 		internal const int WEIGHT_NIL_TO_NULLABLE = 100;
 
-		// Token: 0x040060E5 RID: 24805
+		// Token: 0x04005483 RID: 21635
 		internal const int WEIGHT_NIL_TO_REFTYPE = 100;
 
-		// Token: 0x040060E6 RID: 24806
+		// Token: 0x04005484 RID: 21636
 		internal const int WEIGHT_VOID_WITH_DEFAULT = 50;
 
-		// Token: 0x040060E7 RID: 24807
+		// Token: 0x04005485 RID: 21637
 		internal const int WEIGHT_VOID_WITHOUT_DEFAULT = 25;
 
-		// Token: 0x040060E8 RID: 24808
+		// Token: 0x04005486 RID: 21638
 		internal const int WEIGHT_NIL_WITH_DEFAULT = 25;
 
-		// Token: 0x040060E9 RID: 24809
+		// Token: 0x04005487 RID: 21639
 		internal const int WEIGHT_BOOL_TO_STRING = 5;
 
-		// Token: 0x040060EA RID: 24810
+		// Token: 0x04005488 RID: 21640
 		internal const int WEIGHT_NUMBER_TO_STRING = 50;
 
-		// Token: 0x040060EB RID: 24811
+		// Token: 0x04005489 RID: 21641
 		internal const int WEIGHT_NUMBER_TO_ENUM = 90;
 
-		// Token: 0x040060EC RID: 24812
+		// Token: 0x0400548A RID: 21642
 		internal const int WEIGHT_USERDATA_TO_STRING = 5;
 
-		// Token: 0x040060ED RID: 24813
+		// Token: 0x0400548B RID: 21643
 		internal const int WEIGHT_TABLE_CONVERSION = 90;
 
-		// Token: 0x040060EE RID: 24814
+		// Token: 0x0400548C RID: 21644
 		internal const int WEIGHT_NUMBER_DOWNCAST = 99;
 
-		// Token: 0x040060EF RID: 24815
+		// Token: 0x0400548D RID: 21645
 		internal const int WEIGHT_NO_MATCH = 0;
 
-		// Token: 0x040060F0 RID: 24816
+		// Token: 0x0400548E RID: 21646
 		internal const int WEIGHT_NO_EXTRA_PARAMS_BONUS = 100;
 
-		// Token: 0x040060F1 RID: 24817
+		// Token: 0x0400548F RID: 21647
 		internal const int WEIGHT_EXTRA_PARAMS_MALUS = 2;
 
-		// Token: 0x040060F2 RID: 24818
+		// Token: 0x04005490 RID: 21648
 		internal const int WEIGHT_BYREF_BONUSMALUS = -10;
 
-		// Token: 0x040060F3 RID: 24819
+		// Token: 0x04005491 RID: 21649
 		internal const int WEIGHT_VARARGS_MALUS = 1;
 
-		// Token: 0x040060F4 RID: 24820
+		// Token: 0x04005492 RID: 21650
 		internal const int WEIGHT_VARARGS_EMPTY = 40;
 	}
 }

@@ -7,10 +7,10 @@ using KBEngine;
 using UnityEngine;
 using UnityEngine.UI;
 
-// Token: 0x0200051D RID: 1309
+// Token: 0x02000395 RID: 917
 public class UIHuaShenRuDaoSelect : MonoBehaviour, IESCClose
 {
-	// Token: 0x060021A7 RID: 8615 RVA: 0x00118894 File Offset: 0x00116A94
+	// Token: 0x06001E28 RID: 7720 RVA: 0x000D4DAC File Offset: 0x000D2FAC
 	private void Awake()
 	{
 		UIHuaShenRuDaoSelect.Inst = this;
@@ -31,7 +31,7 @@ public class UIHuaShenRuDaoSelect : MonoBehaviour, IESCClose
 		}
 	}
 
-	// Token: 0x060021A8 RID: 8616 RVA: 0x00118948 File Offset: 0x00116B48
+	// Token: 0x06001E29 RID: 7721 RVA: 0x000D4E60 File Offset: 0x000D3060
 	public void Show()
 	{
 		this.HideObj.SetActive(false);
@@ -45,7 +45,7 @@ public class UIHuaShenRuDaoSelect : MonoBehaviour, IESCClose
 		this.IsShow = true;
 	}
 
-	// Token: 0x060021A9 RID: 8617 RVA: 0x0001BAC5 File Offset: 0x00019CC5
+	// Token: 0x06001E2A RID: 7722 RVA: 0x000D4ED4 File Offset: 0x000D30D4
 	public void Close()
 	{
 		GlobalValue.SetTalk(1, 0, "UIHuaShenRuDaoSelect.Close");
@@ -54,7 +54,7 @@ public class UIHuaShenRuDaoSelect : MonoBehaviour, IESCClose
 		this.IsShow = false;
 	}
 
-	// Token: 0x060021AA RID: 8618 RVA: 0x001189BC File Offset: 0x00116BBC
+	// Token: 0x06001E2B RID: 7723 RVA: 0x000D4F00 File Offset: 0x000D3100
 	public void RefreshBtnState()
 	{
 		Avatar player = PlayerEx.Player;
@@ -76,7 +76,7 @@ public class UIHuaShenRuDaoSelect : MonoBehaviour, IESCClose
 		}
 	}
 
-	// Token: 0x060021AB RID: 8619 RVA: 0x00118A3C File Offset: 0x00116C3C
+	// Token: 0x06001E2C RID: 7724 RVA: 0x000D4F80 File Offset: 0x000D3180
 	public void SetBtnShow(int btnIndex, int btnState)
 	{
 		if (btnState == -1)
@@ -102,7 +102,7 @@ public class UIHuaShenRuDaoSelect : MonoBehaviour, IESCClose
 		}
 	}
 
-	// Token: 0x060021AC RID: 8620 RVA: 0x00118B4C File Offset: 0x00116D4C
+	// Token: 0x06001E2D RID: 7725 RVA: 0x000D5090 File Offset: 0x000D3290
 	public void OnDaDaoClick(int daDaoID)
 	{
 		this.nowSelectDaDao = daDaoID;
@@ -116,7 +116,7 @@ public class UIHuaShenRuDaoSelect : MonoBehaviour, IESCClose
 		this.HideObj.SetActive(true);
 	}
 
-	// Token: 0x060021AD RID: 8621 RVA: 0x00118BF4 File Offset: 0x00116DF4
+	// Token: 0x06001E2E RID: 7726 RVA: 0x000D5138 File Offset: 0x000D3338
 	public void OnOkClick()
 	{
 		if (this.nowSelectDaDao == 0)
@@ -159,53 +159,54 @@ public class UIHuaShenRuDaoSelect : MonoBehaviour, IESCClose
 		});
 		player.HuaShenLingYuSkill = new JSONObject(huaShenData.Skill);
 		player.HuaShenWuDao = new JSONObject(this.nowSelectDaDao);
+		Tools.instance.monstarMag.HeroAddBuff.Clear();
 		StartFight.Do(10101, 1, StartFight.MonstarType.Normal, StartFight.FightEnumType.HuaShen, 0, 0, 0, 0, "战斗3", false, "", new List<StarttFightAddBuff>(), list);
 	}
 
-	// Token: 0x060021AE RID: 8622 RVA: 0x0001BAF1 File Offset: 0x00019CF1
+	// Token: 0x06001E2F RID: 7727 RVA: 0x000D529E File Offset: 0x000D349E
 	public bool TryEscClose()
 	{
 		this.Close();
 		return true;
 	}
 
-	// Token: 0x04001D29 RID: 7465
+	// Token: 0x040018C2 RID: 6338
 	public static UIHuaShenRuDaoSelect Inst;
 
-	// Token: 0x04001D2A RID: 7466
+	// Token: 0x040018C3 RID: 6339
 	public GameObject ScaleObj;
 
-	// Token: 0x04001D2B RID: 7467
+	// Token: 0x040018C4 RID: 6340
 	public Transform ButtomListTransform;
 
-	// Token: 0x04001D2C RID: 7468
+	// Token: 0x040018C5 RID: 6341
 	public GameObject HideObj;
 
-	// Token: 0x04001D2D RID: 7469
+	// Token: 0x040018C6 RID: 6342
 	public Text Title;
 
-	// Token: 0x04001D2E RID: 7470
+	// Token: 0x040018C7 RID: 6343
 	public Text Desc1;
 
-	// Token: 0x04001D2F RID: 7471
+	// Token: 0x040018C8 RID: 6344
 	public Text Desc2;
 
-	// Token: 0x04001D30 RID: 7472
+	// Token: 0x040018C9 RID: 6345
 	private List<FpBtn> btnList = new List<FpBtn>();
 
-	// Token: 0x04001D31 RID: 7473
+	// Token: 0x040018CA RID: 6346
 	private List<Transform> lightList = new List<Transform>();
 
-	// Token: 0x04001D32 RID: 7474
+	// Token: 0x040018CB RID: 6347
 	private List<Transform> darkList = new List<Transform>();
 
-	// Token: 0x04001D33 RID: 7475
+	// Token: 0x040018CC RID: 6348
 	[HideInInspector]
 	public bool IsShow;
 
-	// Token: 0x04001D34 RID: 7476
+	// Token: 0x040018CD RID: 6349
 	private List<int> btnState;
 
-	// Token: 0x04001D35 RID: 7477
+	// Token: 0x040018CE RID: 6350
 	private int nowSelectDaDao;
 }

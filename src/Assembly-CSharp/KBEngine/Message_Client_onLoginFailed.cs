@@ -3,15 +3,15 @@ using System.Collections.Generic;
 
 namespace KBEngine
 {
-	// Token: 0x02000FA7 RID: 4007
+	// Token: 0x02000C22 RID: 3106
 	public class Message_Client_onLoginFailed : Message
 	{
-		// Token: 0x06005F3B RID: 24379 RVA: 0x00042600 File Offset: 0x00040800
+		// Token: 0x060054FD RID: 21757 RVA: 0x002357A6 File Offset: 0x002339A6
 		public Message_Client_onLoginFailed(ushort msgid, string msgname, short length, sbyte argstype, List<byte> msgargtypes) : base(msgid, msgname, length, argstype, msgargtypes)
 		{
 		}
 
-		// Token: 0x06005F3C RID: 24380 RVA: 0x0004290D File Offset: 0x00040B0D
+		// Token: 0x060054FE RID: 21758 RVA: 0x00235BE6 File Offset: 0x00233DE6
 		public override void handleMessage(MemoryStream msgstream)
 		{
 			KBEngineApp.app.Client_onLoginFailed(msgstream);

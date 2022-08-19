@@ -4,21 +4,21 @@ using System.Text;
 
 namespace ICSharpCode.SharpZipLib.Tar
 {
-	// Token: 0x02000810 RID: 2064
+	// Token: 0x02000568 RID: 1384
 	public class TarOutputStream : Stream
 	{
-		// Token: 0x0600361F RID: 13855 RVA: 0x0002782B File Offset: 0x00025A2B
+		// Token: 0x06002DA9 RID: 11689 RVA: 0x0014F276 File Offset: 0x0014D476
 		[Obsolete("No Encoding for Name field is specified, any non-ASCII bytes will be discarded")]
 		public TarOutputStream(Stream outputStream) : this(outputStream, 20)
 		{
 		}
 
-		// Token: 0x06003620 RID: 13856 RVA: 0x00027836 File Offset: 0x00025A36
+		// Token: 0x06002DAA RID: 11690 RVA: 0x0014F281 File Offset: 0x0014D481
 		public TarOutputStream(Stream outputStream, Encoding nameEncoding) : this(outputStream, 20, nameEncoding)
 		{
 		}
 
-		// Token: 0x06003621 RID: 13857 RVA: 0x0019A6C8 File Offset: 0x001988C8
+		// Token: 0x06002DAB RID: 11691 RVA: 0x0014F290 File Offset: 0x0014D490
 		[Obsolete("No Encoding for Name field is specified, any non-ASCII bytes will be discarded")]
 		public TarOutputStream(Stream outputStream, int blockFactor)
 		{
@@ -32,7 +32,7 @@ namespace ICSharpCode.SharpZipLib.Tar
 			this.blockBuffer = new byte[512];
 		}
 
-		// Token: 0x06003622 RID: 13858 RVA: 0x0019A720 File Offset: 0x00198920
+		// Token: 0x06002DAC RID: 11692 RVA: 0x0014F2E8 File Offset: 0x0014D4E8
 		public TarOutputStream(Stream outputStream, int blockFactor, Encoding nameEncoding)
 		{
 			if (outputStream == null)
@@ -46,9 +46,9 @@ namespace ICSharpCode.SharpZipLib.Tar
 			this.nameEncoding = nameEncoding;
 		}
 
-		// Token: 0x1700054C RID: 1356
-		// (get) Token: 0x06003623 RID: 13859 RVA: 0x00027842 File Offset: 0x00025A42
-		// (set) Token: 0x06003624 RID: 13860 RVA: 0x0002784F File Offset: 0x00025A4F
+		// Token: 0x17000395 RID: 917
+		// (get) Token: 0x06002DAD RID: 11693 RVA: 0x0014F344 File Offset: 0x0014D544
+		// (set) Token: 0x06002DAE RID: 11694 RVA: 0x0014F351 File Offset: 0x0014D551
 		public bool IsStreamOwner
 		{
 			get
@@ -61,8 +61,8 @@ namespace ICSharpCode.SharpZipLib.Tar
 			}
 		}
 
-		// Token: 0x1700054D RID: 1357
-		// (get) Token: 0x06003625 RID: 13861 RVA: 0x0002785D File Offset: 0x00025A5D
+		// Token: 0x17000396 RID: 918
+		// (get) Token: 0x06002DAF RID: 11695 RVA: 0x0014F35F File Offset: 0x0014D55F
 		public override bool CanRead
 		{
 			get
@@ -71,8 +71,8 @@ namespace ICSharpCode.SharpZipLib.Tar
 			}
 		}
 
-		// Token: 0x1700054E RID: 1358
-		// (get) Token: 0x06003626 RID: 13862 RVA: 0x0002786A File Offset: 0x00025A6A
+		// Token: 0x17000397 RID: 919
+		// (get) Token: 0x06002DB0 RID: 11696 RVA: 0x0014F36C File Offset: 0x0014D56C
 		public override bool CanSeek
 		{
 			get
@@ -81,8 +81,8 @@ namespace ICSharpCode.SharpZipLib.Tar
 			}
 		}
 
-		// Token: 0x1700054F RID: 1359
-		// (get) Token: 0x06003627 RID: 13863 RVA: 0x00027877 File Offset: 0x00025A77
+		// Token: 0x17000398 RID: 920
+		// (get) Token: 0x06002DB1 RID: 11697 RVA: 0x0014F379 File Offset: 0x0014D579
 		public override bool CanWrite
 		{
 			get
@@ -91,8 +91,8 @@ namespace ICSharpCode.SharpZipLib.Tar
 			}
 		}
 
-		// Token: 0x17000550 RID: 1360
-		// (get) Token: 0x06003628 RID: 13864 RVA: 0x00027884 File Offset: 0x00025A84
+		// Token: 0x17000399 RID: 921
+		// (get) Token: 0x06002DB2 RID: 11698 RVA: 0x0014F386 File Offset: 0x0014D586
 		public override long Length
 		{
 			get
@@ -101,9 +101,9 @@ namespace ICSharpCode.SharpZipLib.Tar
 			}
 		}
 
-		// Token: 0x17000551 RID: 1361
-		// (get) Token: 0x06003629 RID: 13865 RVA: 0x00027891 File Offset: 0x00025A91
-		// (set) Token: 0x0600362A RID: 13866 RVA: 0x0002789E File Offset: 0x00025A9E
+		// Token: 0x1700039A RID: 922
+		// (get) Token: 0x06002DB3 RID: 11699 RVA: 0x0014F393 File Offset: 0x0014D593
+		// (set) Token: 0x06002DB4 RID: 11700 RVA: 0x0014F3A0 File Offset: 0x0014D5A0
 		public override long Position
 		{
 			get
@@ -116,37 +116,37 @@ namespace ICSharpCode.SharpZipLib.Tar
 			}
 		}
 
-		// Token: 0x0600362B RID: 13867 RVA: 0x000278AC File Offset: 0x00025AAC
+		// Token: 0x06002DB5 RID: 11701 RVA: 0x0014F3AE File Offset: 0x0014D5AE
 		public override long Seek(long offset, SeekOrigin origin)
 		{
 			return this.outputStream.Seek(offset, origin);
 		}
 
-		// Token: 0x0600362C RID: 13868 RVA: 0x000278BB File Offset: 0x00025ABB
+		// Token: 0x06002DB6 RID: 11702 RVA: 0x0014F3BD File Offset: 0x0014D5BD
 		public override void SetLength(long value)
 		{
 			this.outputStream.SetLength(value);
 		}
 
-		// Token: 0x0600362D RID: 13869 RVA: 0x000278C9 File Offset: 0x00025AC9
+		// Token: 0x06002DB7 RID: 11703 RVA: 0x0014F3CB File Offset: 0x0014D5CB
 		public override int ReadByte()
 		{
 			return this.outputStream.ReadByte();
 		}
 
-		// Token: 0x0600362E RID: 13870 RVA: 0x000278D6 File Offset: 0x00025AD6
+		// Token: 0x06002DB8 RID: 11704 RVA: 0x0014F3D8 File Offset: 0x0014D5D8
 		public override int Read(byte[] buffer, int offset, int count)
 		{
 			return this.outputStream.Read(buffer, offset, count);
 		}
 
-		// Token: 0x0600362F RID: 13871 RVA: 0x000278E6 File Offset: 0x00025AE6
+		// Token: 0x06002DB9 RID: 11705 RVA: 0x0014F3E8 File Offset: 0x0014D5E8
 		public override void Flush()
 		{
 			this.outputStream.Flush();
 		}
 
-		// Token: 0x06003630 RID: 13872 RVA: 0x000278F3 File Offset: 0x00025AF3
+		// Token: 0x06002DBA RID: 11706 RVA: 0x0014F3F5 File Offset: 0x0014D5F5
 		public void Finish()
 		{
 			if (this.IsEntryOpen)
@@ -156,7 +156,7 @@ namespace ICSharpCode.SharpZipLib.Tar
 			this.WriteEofBlock();
 		}
 
-		// Token: 0x06003631 RID: 13873 RVA: 0x00027909 File Offset: 0x00025B09
+		// Token: 0x06002DBB RID: 11707 RVA: 0x0014F40B File Offset: 0x0014D60B
 		protected override void Dispose(bool disposing)
 		{
 			if (!this.isClosed)
@@ -167,8 +167,8 @@ namespace ICSharpCode.SharpZipLib.Tar
 			}
 		}
 
-		// Token: 0x17000552 RID: 1362
-		// (get) Token: 0x06003632 RID: 13874 RVA: 0x0002792B File Offset: 0x00025B2B
+		// Token: 0x1700039B RID: 923
+		// (get) Token: 0x06002DBC RID: 11708 RVA: 0x0014F42D File Offset: 0x0014D62D
 		public int RecordSize
 		{
 			get
@@ -177,15 +177,15 @@ namespace ICSharpCode.SharpZipLib.Tar
 			}
 		}
 
-		// Token: 0x06003633 RID: 13875 RVA: 0x0002792B File Offset: 0x00025B2B
+		// Token: 0x06002DBD RID: 11709 RVA: 0x0014F42D File Offset: 0x0014D62D
 		[Obsolete("Use RecordSize property instead")]
 		public int GetRecordSize()
 		{
 			return this.buffer.RecordSize;
 		}
 
-		// Token: 0x17000553 RID: 1363
-		// (get) Token: 0x06003634 RID: 13876 RVA: 0x00027938 File Offset: 0x00025B38
+		// Token: 0x1700039C RID: 924
+		// (get) Token: 0x06002DBE RID: 11710 RVA: 0x0014F43A File Offset: 0x0014D63A
 		private bool IsEntryOpen
 		{
 			get
@@ -194,7 +194,7 @@ namespace ICSharpCode.SharpZipLib.Tar
 			}
 		}
 
-		// Token: 0x06003635 RID: 13877 RVA: 0x0019A77C File Offset: 0x0019897C
+		// Token: 0x06002DBF RID: 11711 RVA: 0x0014F44C File Offset: 0x0014D64C
 		public void PutNextEntry(TarEntry entry)
 		{
 			if (entry == null)
@@ -231,7 +231,7 @@ namespace ICSharpCode.SharpZipLib.Tar
 			this.currSize = (entry.IsDirectory ? 0L : entry.Size);
 		}
 
-		// Token: 0x06003636 RID: 13878 RVA: 0x0019A904 File Offset: 0x00198B04
+		// Token: 0x06002DC0 RID: 11712 RVA: 0x0014F5D4 File Offset: 0x0014D7D4
 		public void CloseEntry()
 		{
 			if (this.assemblyBufferLength > 0)
@@ -247,7 +247,7 @@ namespace ICSharpCode.SharpZipLib.Tar
 			}
 		}
 
-		// Token: 0x06003637 RID: 13879 RVA: 0x00027948 File Offset: 0x00025B48
+		// Token: 0x06002DC1 RID: 11713 RVA: 0x0014F66A File Offset: 0x0014D86A
 		public override void WriteByte(byte value)
 		{
 			this.Write(new byte[]
@@ -256,7 +256,7 @@ namespace ICSharpCode.SharpZipLib.Tar
 			}, 0, 1);
 		}
 
-		// Token: 0x06003638 RID: 13880 RVA: 0x0019A99C File Offset: 0x00198B9C
+		// Token: 0x06002DC2 RID: 11714 RVA: 0x0014F680 File Offset: 0x0014D880
 		public override void Write(byte[] buffer, int offset, int count)
 		{
 			if (buffer == null)
@@ -317,7 +317,7 @@ namespace ICSharpCode.SharpZipLib.Tar
 			}
 		}
 
-		// Token: 0x06003639 RID: 13881 RVA: 0x0002795C File Offset: 0x00025B5C
+		// Token: 0x06002DC3 RID: 11715 RVA: 0x0014F836 File Offset: 0x0014DA36
 		private void WriteEofBlock()
 		{
 			Array.Clear(this.blockBuffer, 0, this.blockBuffer.Length);
@@ -325,31 +325,31 @@ namespace ICSharpCode.SharpZipLib.Tar
 			this.buffer.WriteBlock(this.blockBuffer);
 		}
 
-		// Token: 0x040030B8 RID: 12472
+		// Token: 0x0400287E RID: 10366
 		private long currBytes;
 
-		// Token: 0x040030B9 RID: 12473
+		// Token: 0x0400287F RID: 10367
 		private int assemblyBufferLength;
 
-		// Token: 0x040030BA RID: 12474
+		// Token: 0x04002880 RID: 10368
 		private bool isClosed;
 
-		// Token: 0x040030BB RID: 12475
+		// Token: 0x04002881 RID: 10369
 		protected long currSize;
 
-		// Token: 0x040030BC RID: 12476
+		// Token: 0x04002882 RID: 10370
 		protected byte[] blockBuffer;
 
-		// Token: 0x040030BD RID: 12477
+		// Token: 0x04002883 RID: 10371
 		protected byte[] assemblyBuffer;
 
-		// Token: 0x040030BE RID: 12478
+		// Token: 0x04002884 RID: 10372
 		protected TarBuffer buffer;
 
-		// Token: 0x040030BF RID: 12479
+		// Token: 0x04002885 RID: 10373
 		protected Stream outputStream;
 
-		// Token: 0x040030C0 RID: 12480
+		// Token: 0x04002886 RID: 10374
 		protected Encoding nameEncoding;
 	}
 }

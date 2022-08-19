@@ -6,10 +6,10 @@ using UnityEngine.UI;
 
 namespace TuPo
 {
-	// Token: 0x02000A85 RID: 2693
+	// Token: 0x0200072C RID: 1836
 	public class TuPoUIMag : MonoBehaviour, IESCClose
 	{
-		// Token: 0x0600452C RID: 17708 RVA: 0x001D9808 File Offset: 0x001D7A08
+		// Token: 0x06003A80 RID: 14976 RVA: 0x0019200C File Offset: 0x0019020C
 		public void ShowTuPo(int level, int oldHp, int curHp, int oldShenShi, int curShenShi, int oldShouYuan, int curShouYuan, int oldDunSu, int curDunSu, bool isBigTuPo, string desc)
 		{
 			if (BindData.ContainsKey("FightBeforeHpMax"))
@@ -41,7 +41,7 @@ namespace TuPo
 			}
 		}
 
-		// Token: 0x0600452D RID: 17709 RVA: 0x000317CD File Offset: 0x0002F9CD
+		// Token: 0x06003A81 RID: 14977 RVA: 0x001921A8 File Offset: 0x001903A8
 		public void Close()
 		{
 			if (this.loadTalk4031OnClose)
@@ -53,62 +53,62 @@ namespace TuPo
 			ESCCloseManager.Inst.UnRegisterClose(this);
 		}
 
-		// Token: 0x0600452E RID: 17710 RVA: 0x00031804 File Offset: 0x0002FA04
+		// Token: 0x06003A82 RID: 14978 RVA: 0x001921DF File Offset: 0x001903DF
 		public bool TryEscClose()
 		{
 			this.Close();
 			return true;
 		}
 
-		// Token: 0x04003D5D RID: 15709
+		// Token: 0x040032BA RID: 12986
 		[SerializeField]
 		private List<Sprite> SpritesList;
 
-		// Token: 0x04003D5E RID: 15710
+		// Token: 0x040032BB RID: 12987
 		[SerializeField]
 		private Image LevelImage;
 
-		// Token: 0x04003D5F RID: 15711
+		// Token: 0x040032BC RID: 12988
 		[SerializeField]
 		private Text OldHP;
 
-		// Token: 0x04003D60 RID: 15712
+		// Token: 0x040032BD RID: 12989
 		[SerializeField]
 		private Text CurHP;
 
-		// Token: 0x04003D61 RID: 15713
+		// Token: 0x040032BE RID: 12990
 		[SerializeField]
 		private Text OldShenShi;
 
-		// Token: 0x04003D62 RID: 15714
+		// Token: 0x040032BF RID: 12991
 		[SerializeField]
 		private Text CurShenShi;
 
-		// Token: 0x04003D63 RID: 15715
+		// Token: 0x040032C0 RID: 12992
 		[SerializeField]
 		private Text OldShouYuan;
 
-		// Token: 0x04003D64 RID: 15716
+		// Token: 0x040032C1 RID: 12993
 		[SerializeField]
 		private Text CurShouYuan;
 
-		// Token: 0x04003D65 RID: 15717
+		// Token: 0x040032C2 RID: 12994
 		[SerializeField]
 		private Text OldDunSu;
 
-		// Token: 0x04003D66 RID: 15718
+		// Token: 0x040032C3 RID: 12995
 		[SerializeField]
 		private Text CurDunSu;
 
-		// Token: 0x04003D67 RID: 15719
+		// Token: 0x040032C4 RID: 12996
 		[SerializeField]
 		private Text Desc;
 
-		// Token: 0x04003D68 RID: 15720
+		// Token: 0x040032C5 RID: 12997
 		[SerializeField]
 		private Transform Panel;
 
-		// Token: 0x04003D69 RID: 15721
+		// Token: 0x040032C6 RID: 12998
 		private bool loadTalk4031OnClose;
 	}
 }

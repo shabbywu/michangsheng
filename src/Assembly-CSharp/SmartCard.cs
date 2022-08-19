@@ -3,17 +3,17 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-// Token: 0x0200077B RID: 1915
+// Token: 0x020004F4 RID: 1268
 public abstract class SmartCard : MonoBehaviour
 {
-	// Token: 0x060030D8 RID: 12504 RVA: 0x00023E4F File Offset: 0x0002204F
+	// Token: 0x06002909 RID: 10505 RVA: 0x00137732 File Offset: 0x00135932
 	private void Start()
 	{
 		this.computerNotice = base.transform.Find("ComputerNotice").gameObject;
 		OrderController.Instance.smartCard += this.AutoDiscardCard;
 	}
 
-	// Token: 0x060030D9 RID: 12505 RVA: 0x0018418C File Offset: 0x0018238C
+	// Token: 0x0600290A RID: 10506 RVA: 0x00137898 File Offset: 0x00135A98
 	protected void AutoDiscardCard(bool isNone)
 	{
 		HandCards component = base.gameObject.GetComponent<HandCards>();
@@ -23,10 +23,10 @@ public abstract class SmartCard : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060030DA RID: 12506
+	// Token: 0x0600290B RID: 10507
 	public abstract List<Card> FirstCard();
 
-	// Token: 0x060030DB RID: 12507 RVA: 0x00023EA3 File Offset: 0x000220A3
+	// Token: 0x0600290C RID: 10508 RVA: 0x001378D1 File Offset: 0x00135AD1
 	public virtual IEnumerator DelayDiscardCard(bool isNone)
 	{
 		yield return new WaitForSeconds(1f);
@@ -214,7 +214,7 @@ public abstract class SmartCard : MonoBehaviour
 		yield break;
 	}
 
-	// Token: 0x060030DC RID: 12508 RVA: 0x001841C8 File Offset: 0x001823C8
+	// Token: 0x0600290D RID: 10509 RVA: 0x001378E8 File Offset: 0x00135AE8
 	protected void DiscardCards(List<Card> selectedCardsList, List<CardSprite> selectedSpriteList)
 	{
 		CardsType rule;
@@ -243,7 +243,7 @@ public abstract class SmartCard : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060030DD RID: 12509 RVA: 0x001842CC File Offset: 0x001824CC
+	// Token: 0x0600290E RID: 10510 RVA: 0x001379EC File Offset: 0x00135BEC
 	protected List<Card> GetAllCards(List<Card> exclude = null)
 	{
 		List<Card> list = new List<Card>();
@@ -271,7 +271,7 @@ public abstract class SmartCard : MonoBehaviour
 		return list;
 	}
 
-	// Token: 0x060030DE RID: 12510 RVA: 0x00184348 File Offset: 0x00182548
+	// Token: 0x0600290F RID: 10511 RVA: 0x00137A68 File Offset: 0x00135C68
 	protected List<CardSprite> GetSprite(List<Card> cards)
 	{
 		CardSprite[] componentsInChildren = GameObject.Find(base.gameObject.GetComponent<HandCards>().cType.ToString()).GetComponentsInChildren<CardSprite>();
@@ -290,7 +290,7 @@ public abstract class SmartCard : MonoBehaviour
 		return list;
 	}
 
-	// Token: 0x060030DF RID: 12511 RVA: 0x001843C0 File Offset: 0x001825C0
+	// Token: 0x06002910 RID: 10512 RVA: 0x00137AE0 File Offset: 0x00135CE0
 	protected void RemoveCards(List<Card> cards)
 	{
 		HandCards component = base.gameObject.GetComponent<HandCards>();
@@ -307,7 +307,7 @@ public abstract class SmartCard : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060030E0 RID: 12512 RVA: 0x0018441C File Offset: 0x0018261C
+	// Token: 0x06002911 RID: 10513 RVA: 0x00137B3C File Offset: 0x00135D3C
 	protected List<Card> FindBoom(List<Card> allCards, int weight, bool equal)
 	{
 		List<Card> list = new List<Card>();
@@ -351,7 +351,7 @@ public abstract class SmartCard : MonoBehaviour
 		return list;
 	}
 
-	// Token: 0x060030E1 RID: 12513 RVA: 0x001845D4 File Offset: 0x001827D4
+	// Token: 0x06002912 RID: 10514 RVA: 0x00137CF4 File Offset: 0x00135EF4
 	protected List<Card> FindDouble(List<Card> allCards, int weight, bool equal)
 	{
 		List<Card> list = new List<Card>();
@@ -380,7 +380,7 @@ public abstract class SmartCard : MonoBehaviour
 		return list;
 	}
 
-	// Token: 0x060030E2 RID: 12514 RVA: 0x0018468C File Offset: 0x0018288C
+	// Token: 0x06002913 RID: 10515 RVA: 0x00137DAC File Offset: 0x00135FAC
 	protected List<Card> FindSingle(List<Card> allCards, int weight, bool equal)
 	{
 		List<Card> list = new List<Card>();
@@ -403,7 +403,7 @@ public abstract class SmartCard : MonoBehaviour
 		return list;
 	}
 
-	// Token: 0x060030E3 RID: 12515 RVA: 0x001846F0 File Offset: 0x001828F0
+	// Token: 0x06002914 RID: 10516 RVA: 0x00137E10 File Offset: 0x00136010
 	protected List<Card> FindOnlyThree(List<Card> allCards, int weight, bool equal)
 	{
 		List<Card> list = new List<Card>();
@@ -434,7 +434,7 @@ public abstract class SmartCard : MonoBehaviour
 		return list;
 	}
 
-	// Token: 0x060030E4 RID: 12516 RVA: 0x001847F8 File Offset: 0x001829F8
+	// Token: 0x06002915 RID: 10517 RVA: 0x00137F18 File Offset: 0x00136118
 	protected List<Card> FindStraight(List<Card> allCards, int minWeight, int length, bool equal)
 	{
 		List<Card> list = new List<Card>();
@@ -505,7 +505,7 @@ public abstract class SmartCard : MonoBehaviour
 		return list;
 	}
 
-	// Token: 0x060030E5 RID: 12517 RVA: 0x00184940 File Offset: 0x00182B40
+	// Token: 0x06002916 RID: 10518 RVA: 0x00138060 File Offset: 0x00136260
 	protected List<Card> FindDoubleStraight(List<Card> allCards, int minWeight, int length)
 	{
 		List<Card> list = new List<Card>();
@@ -557,7 +557,7 @@ public abstract class SmartCard : MonoBehaviour
 		return list;
 	}
 
-	// Token: 0x060030E6 RID: 12518 RVA: 0x00184A38 File Offset: 0x00182C38
+	// Token: 0x06002917 RID: 10519 RVA: 0x00138158 File Offset: 0x00136358
 	protected List<Card> FindThreeAndTwo(List<Card> allCards, int weight, bool equal)
 	{
 		List<Card> list = this.FindOnlyThree(allCards, weight, equal);
@@ -574,7 +574,7 @@ public abstract class SmartCard : MonoBehaviour
 		return list;
 	}
 
-	// Token: 0x060030E7 RID: 12519 RVA: 0x00184A7C File Offset: 0x00182C7C
+	// Token: 0x06002918 RID: 10520 RVA: 0x0013819C File Offset: 0x0013639C
 	protected List<Card> FindThreeAndOne(List<Card> allCards, int weight, bool equal)
 	{
 		List<Card> list = this.FindOnlyThree(allCards, weight, equal);
@@ -591,7 +591,7 @@ public abstract class SmartCard : MonoBehaviour
 		return list;
 	}
 
-	// Token: 0x060030E8 RID: 12520 RVA: 0x00184AC0 File Offset: 0x00182CC0
+	// Token: 0x06002919 RID: 10521 RVA: 0x001381E0 File Offset: 0x001363E0
 	protected void ShowNotice()
 	{
 		this.computerNotice.SetActive(true);
@@ -600,7 +600,7 @@ public abstract class SmartCard : MonoBehaviour
 		base.StartCoroutine(this.DisActiveNotice(this.computerNotice));
 	}
 
-	// Token: 0x060030E9 RID: 12521 RVA: 0x00023EB9 File Offset: 0x000220B9
+	// Token: 0x0600291A RID: 10522 RVA: 0x0013822C File Offset: 0x0013642C
 	protected IEnumerator DisActiveNotice(GameObject notice)
 	{
 		yield return new WaitForSeconds(2f);
@@ -608,6 +608,6 @@ public abstract class SmartCard : MonoBehaviour
 		yield break;
 	}
 
-	// Token: 0x04002CCA RID: 11466
+	// Token: 0x0400250B RID: 9483
 	protected GameObject computerNotice;
 }

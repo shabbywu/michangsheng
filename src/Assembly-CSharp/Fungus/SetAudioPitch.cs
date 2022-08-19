@@ -3,12 +3,12 @@ using UnityEngine;
 
 namespace Fungus
 {
-	// Token: 0x02001284 RID: 4740
+	// Token: 0x02000E33 RID: 3635
 	[CommandInfo("Audio", "Set Audio Pitch", "Sets the global pitch level for audio played with Play Music and Play Sound commands.", 0)]
 	[AddComponentMenu("")]
 	public class SetAudioPitch : Command
 	{
-		// Token: 0x060072EF RID: 29423 RVA: 0x002A99F0 File Offset: 0x002A7BF0
+		// Token: 0x06006661 RID: 26209 RVA: 0x00286384 File Offset: 0x00284584
 		public override void OnEnter()
 		{
 			Action onComplete = delegate()
@@ -25,7 +25,7 @@ namespace Fungus
 			}
 		}
 
-		// Token: 0x060072F0 RID: 29424 RVA: 0x002A9A34 File Offset: 0x002A7C34
+		// Token: 0x06006662 RID: 26210 RVA: 0x002863C8 File Offset: 0x002845C8
 		public override string GetSummary()
 		{
 			return string.Concat(new object[]
@@ -38,25 +38,25 @@ namespace Fungus
 			});
 		}
 
-		// Token: 0x060072F1 RID: 29425 RVA: 0x0004C749 File Offset: 0x0004A949
+		// Token: 0x06006663 RID: 26211 RVA: 0x0027DDC5 File Offset: 0x0027BFC5
 		public override Color GetButtonColor()
 		{
 			return new Color32(242, 209, 176, byte.MaxValue);
 		}
 
-		// Token: 0x0400650B RID: 25867
+		// Token: 0x040057C7 RID: 22471
 		[Range(0f, 1f)]
 		[Tooltip("Global pitch level for audio played using the Play Music and Play Sound commands")]
 		[SerializeField]
 		protected float pitch = 1f;
 
-		// Token: 0x0400650C RID: 25868
+		// Token: 0x040057C8 RID: 22472
 		[Range(0f, 30f)]
 		[Tooltip("Time to fade between current pitch level and target pitch level.")]
 		[SerializeField]
 		protected float fadeDuration;
 
-		// Token: 0x0400650D RID: 25869
+		// Token: 0x040057C9 RID: 22473
 		[Tooltip("Wait until the pitch change has finished before executing next command")]
 		[SerializeField]
 		protected bool waitUntilFinished = true;

@@ -5,13 +5,13 @@ using UnityEngine.Serialization;
 
 namespace Fungus
 {
-	// Token: 0x02001254 RID: 4692
+	// Token: 0x02000E07 RID: 3591
 	[CommandInfo("iTween", "Move From", "Moves a game object from a specified position back to its starting position over time. The position can be defined by a transform in another object (using To Transform) or by setting an absolute position (using To Position, if To Transform is set to None).", 0)]
 	[AddComponentMenu("")]
 	[ExecuteInEditMode]
 	public class MoveFrom : iTweenCommand
 	{
-		// Token: 0x060071FB RID: 29179 RVA: 0x002A7380 File Offset: 0x002A5580
+		// Token: 0x0600656D RID: 25965 RVA: 0x002830DC File Offset: 0x002812DC
 		public override void DoTween()
 		{
 			Hashtable hashtable = new Hashtable();
@@ -34,13 +34,13 @@ namespace Fungus
 			iTween.MoveFrom(this._targetObject.Value, hashtable);
 		}
 
-		// Token: 0x060071FC RID: 29180 RVA: 0x0004D873 File Offset: 0x0004BA73
+		// Token: 0x0600656E RID: 25966 RVA: 0x002831E6 File Offset: 0x002813E6
 		public override bool HasReference(Variable variable)
 		{
 			return this._fromTransform.transformRef == variable || this._fromPosition.vector3Ref == variable || base.HasReference(variable);
 		}
 
-		// Token: 0x060071FD RID: 29181 RVA: 0x002A748C File Offset: 0x002A568C
+		// Token: 0x0600656F RID: 25967 RVA: 0x00283218 File Offset: 0x00281418
 		protected override void OnEnable()
 		{
 			base.OnEnable();
@@ -56,27 +56,27 @@ namespace Fungus
 			}
 		}
 
-		// Token: 0x04006457 RID: 25687
+		// Token: 0x04005722 RID: 22306
 		[Tooltip("Target transform that the GameObject will move from")]
 		[SerializeField]
 		protected TransformData _fromTransform;
 
-		// Token: 0x04006458 RID: 25688
+		// Token: 0x04005723 RID: 22307
 		[Tooltip("Target world position that the GameObject will move from, if no From Transform is set")]
 		[SerializeField]
 		protected Vector3Data _fromPosition;
 
-		// Token: 0x04006459 RID: 25689
+		// Token: 0x04005724 RID: 22308
 		[Tooltip("Whether to animate in world space or relative to the parent. False by default.")]
 		[SerializeField]
 		protected bool isLocal;
 
-		// Token: 0x0400645A RID: 25690
+		// Token: 0x04005725 RID: 22309
 		[HideInInspector]
 		[FormerlySerializedAs("fromTransform")]
 		public Transform fromTransformOLD;
 
-		// Token: 0x0400645B RID: 25691
+		// Token: 0x04005726 RID: 22310
 		[HideInInspector]
 		[FormerlySerializedAs("fromPosition")]
 		public Vector3 fromPositionOLD;

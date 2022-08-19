@@ -2,11 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-// Token: 0x02000590 RID: 1424
+// Token: 0x020003EF RID: 1007
 public class createTianfu : MonoBehaviour
 {
-	// Token: 0x170002BF RID: 703
-	// (get) Token: 0x06002417 RID: 9239 RVA: 0x00127234 File Offset: 0x00125434
+	// Token: 0x17000275 RID: 629
+	// (get) Token: 0x06002084 RID: 8324 RVA: 0x000E4F40 File Offset: 0x000E3140
 	public List<createAvatarChoice> getSelectChoice
 	{
 		get
@@ -24,9 +24,9 @@ public class createTianfu : MonoBehaviour
 		}
 	}
 
-	// Token: 0x170002C0 RID: 704
-	// (get) Token: 0x06002418 RID: 9240 RVA: 0x001272AC File Offset: 0x001254AC
-	// (set) Token: 0x06002419 RID: 9241 RVA: 0x0001D1CC File Offset: 0x0001B3CC
+	// Token: 0x17000276 RID: 630
+	// (get) Token: 0x06002085 RID: 8325 RVA: 0x000E4FB8 File Offset: 0x000E31B8
+	// (set) Token: 0x06002086 RID: 8326 RVA: 0x000E5034 File Offset: 0x000E3234
 	public int TianFuDian
 	{
 		get
@@ -49,8 +49,8 @@ public class createTianfu : MonoBehaviour
 		}
 	}
 
-	// Token: 0x170002C1 RID: 705
-	// (get) Token: 0x0600241A RID: 9242 RVA: 0x00127328 File Offset: 0x00125528
+	// Token: 0x17000277 RID: 631
+	// (get) Token: 0x06002087 RID: 8327 RVA: 0x000E5040 File Offset: 0x000E3240
 	public int ZiZhi
 	{
 		get
@@ -64,8 +64,8 @@ public class createTianfu : MonoBehaviour
 		}
 	}
 
-	// Token: 0x170002C2 RID: 706
-	// (get) Token: 0x0600241B RID: 9243 RVA: 0x00127384 File Offset: 0x00125584
+	// Token: 0x17000278 RID: 632
+	// (get) Token: 0x06002088 RID: 8328 RVA: 0x000E509C File Offset: 0x000E329C
 	public int Money
 	{
 		get
@@ -79,8 +79,8 @@ public class createTianfu : MonoBehaviour
 		}
 	}
 
-	// Token: 0x170002C3 RID: 707
-	// (get) Token: 0x0600241C RID: 9244 RVA: 0x001273E0 File Offset: 0x001255E0
+	// Token: 0x17000279 RID: 633
+	// (get) Token: 0x06002089 RID: 8329 RVA: 0x000E50F8 File Offset: 0x000E32F8
 	public int LinGengZiZhi
 	{
 		get
@@ -90,7 +90,7 @@ public class createTianfu : MonoBehaviour
 			{
 				if (this.ZiZhi >= (int)jsonobject["qujian"].n)
 				{
-					result = (int)jsonobject["id"].n;
+					result = jsonobject["id"].I;
 					break;
 				}
 			}
@@ -98,8 +98,8 @@ public class createTianfu : MonoBehaviour
 		}
 	}
 
-	// Token: 0x170002C4 RID: 708
-	// (get) Token: 0x0600241D RID: 9245 RVA: 0x00127468 File Offset: 0x00125668
+	// Token: 0x1700027A RID: 634
+	// (get) Token: 0x0600208A RID: 8330 RVA: 0x000E517C File Offset: 0x000E337C
 	public int DunSu
 	{
 		get
@@ -113,8 +113,8 @@ public class createTianfu : MonoBehaviour
 		}
 	}
 
-	// Token: 0x170002C5 RID: 709
-	// (get) Token: 0x0600241E RID: 9246 RVA: 0x001274C4 File Offset: 0x001256C4
+	// Token: 0x1700027B RID: 635
+	// (get) Token: 0x0600208B RID: 8331 RVA: 0x000E51D8 File Offset: 0x000E33D8
 	public int HP_Max
 	{
 		get
@@ -128,8 +128,8 @@ public class createTianfu : MonoBehaviour
 		}
 	}
 
-	// Token: 0x170002C6 RID: 710
-	// (get) Token: 0x0600241F RID: 9247 RVA: 0x00127520 File Offset: 0x00125720
+	// Token: 0x1700027C RID: 636
+	// (get) Token: 0x0600208C RID: 8332 RVA: 0x000E5234 File Offset: 0x000E3434
 	public int XinJin
 	{
 		get
@@ -143,8 +143,8 @@ public class createTianfu : MonoBehaviour
 		}
 	}
 
-	// Token: 0x170002C7 RID: 711
-	// (get) Token: 0x06002420 RID: 9248 RVA: 0x00127558 File Offset: 0x00125758
+	// Token: 0x1700027D RID: 637
+	// (get) Token: 0x0600208D RID: 8333 RVA: 0x000E526C File Offset: 0x000E346C
 	public int WuXin
 	{
 		get
@@ -158,8 +158,8 @@ public class createTianfu : MonoBehaviour
 		}
 	}
 
-	// Token: 0x170002C8 RID: 712
-	// (get) Token: 0x06002421 RID: 9249 RVA: 0x001275B4 File Offset: 0x001257B4
+	// Token: 0x1700027E RID: 638
+	// (get) Token: 0x0600208E RID: 8334 RVA: 0x000E52C8 File Offset: 0x000E34C8
 	public int ShowYuan
 	{
 		get
@@ -173,8 +173,8 @@ public class createTianfu : MonoBehaviour
 		}
 	}
 
-	// Token: 0x170002C9 RID: 713
-	// (get) Token: 0x06002422 RID: 9250 RVA: 0x00127610 File Offset: 0x00125810
+	// Token: 0x1700027F RID: 639
+	// (get) Token: 0x0600208F RID: 8335 RVA: 0x000E5324 File Offset: 0x000E3524
 	public int ShenShi
 	{
 		get
@@ -188,8 +188,8 @@ public class createTianfu : MonoBehaviour
 		}
 	}
 
-	// Token: 0x170002CA RID: 714
-	// (get) Token: 0x06002423 RID: 9251 RVA: 0x0012766C File Offset: 0x0012586C
+	// Token: 0x17000280 RID: 640
+	// (get) Token: 0x06002090 RID: 8336 RVA: 0x000E5380 File Offset: 0x000E3580
 	public List<int> Items
 	{
 		get
@@ -217,8 +217,8 @@ public class createTianfu : MonoBehaviour
 		}
 	}
 
-	// Token: 0x170002CB RID: 715
-	// (get) Token: 0x06002424 RID: 9252 RVA: 0x001276A8 File Offset: 0x001258A8
+	// Token: 0x17000281 RID: 641
+	// (get) Token: 0x06002091 RID: 8337 RVA: 0x000E53BC File Offset: 0x000E35BC
 	public List<int> StaticSkill
 	{
 		get
@@ -246,7 +246,7 @@ public class createTianfu : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06002425 RID: 9253 RVA: 0x001276E4 File Offset: 0x001258E4
+	// Token: 0x06002092 RID: 8338 RVA: 0x000E53F8 File Offset: 0x000E35F8
 	private void Awake()
 	{
 		this.LingGengBiaoGe.SetActive(false);
@@ -270,7 +270,7 @@ public class createTianfu : MonoBehaviour
 			componentInChildren.desc = Tools.instance.Code64ToString(jsonobject["Desc"].str);
 			componentInChildren.descInfo = Tools.instance.Code64ToString(jsonobject["Info"].str);
 			componentInChildren.cast = (int)jsonobject["feiYong"].n;
-			componentInChildren.id = (int)jsonobject["id"].n;
+			componentInChildren.id = jsonobject["id"].I;
 			foreach (JSONObject jsonobject2 in jsonobject["seid"].list)
 			{
 				componentInChildren.seid.Add((int)jsonobject2.n);
@@ -297,7 +297,7 @@ public class createTianfu : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06002426 RID: 9254 RVA: 0x00127A5C File Offset: 0x00125C5C
+	// Token: 0x06002093 RID: 8339 RVA: 0x000E576C File Offset: 0x000E396C
 	public void setText(int PageIndex)
 	{
 		JSONObject jsonobject = jsonData.instance.CreateAvatarMiaoShu[PageIndex.ToString()];
@@ -316,7 +316,7 @@ public class createTianfu : MonoBehaviour
 		this.MiaoShu.text = text;
 	}
 
-	// Token: 0x06002427 RID: 9255 RVA: 0x00127BCC File Offset: 0x00125DCC
+	// Token: 0x06002094 RID: 8340 RVA: 0x000E58DC File Offset: 0x000E3ADC
 	public void showPage(int PageIndex)
 	{
 		List<JSONObject> list = jsonData.instance.CreateAvatarJsonData.list.FindAll((JSONObject aa) => (int)aa["fenLeiGuanLian"].n == PageIndex);
@@ -350,7 +350,7 @@ public class createTianfu : MonoBehaviour
 		{
 			Transform transform2 = (Transform)obj2;
 			createAvatarChoice choice = transform2.GetComponentInChildren<createAvatarChoice>();
-			if (list.Find((JSONObject aa) => (int)aa["id"].n == choice.id))
+			if (list.Find((JSONObject aa) => aa["id"].I == choice.id))
 			{
 				transform2.gameObject.SetActive(true);
 			}
@@ -361,7 +361,7 @@ public class createTianfu : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06002428 RID: 9256 RVA: 0x0001D1D5 File Offset: 0x0001B3D5
+	// Token: 0x06002095 RID: 8341 RVA: 0x000E5AA8 File Offset: 0x000E3CA8
 	public void resteBar()
 	{
 		UIScrollView component = this.scrolw.GetComponent<UIScrollView>();
@@ -372,67 +372,67 @@ public class createTianfu : MonoBehaviour
 		component.UpdatePosition();
 	}
 
-	// Token: 0x06002429 RID: 9257 RVA: 0x000042DD File Offset: 0x000024DD
+	// Token: 0x06002096 RID: 8342 RVA: 0x00004095 File Offset: 0x00002295
 	private void Start()
 	{
 	}
 
-	// Token: 0x0600242A RID: 9258 RVA: 0x000042DD File Offset: 0x000024DD
+	// Token: 0x06002097 RID: 8343 RVA: 0x00004095 File Offset: 0x00002295
 	public void createNode()
 	{
 	}
 
-	// Token: 0x0600242B RID: 9259 RVA: 0x0001D214 File Offset: 0x0001B414
+	// Token: 0x06002098 RID: 8344 RVA: 0x000E5AE7 File Offset: 0x000E3CE7
 	private void Update()
 	{
 		this.tianfudian.text = string.Concat(this.TianFuDian);
 	}
 
-	// Token: 0x04001F18 RID: 7960
+	// Token: 0x04001A70 RID: 6768
 	public UILabel tianfudian;
 
-	// Token: 0x04001F19 RID: 7961
+	// Token: 0x04001A71 RID: 6769
 	public GameObject TempObj;
 
-	// Token: 0x04001F1A RID: 7962
+	// Token: 0x04001A72 RID: 6770
 	public GameObject grid;
 
-	// Token: 0x04001F1B RID: 7963
+	// Token: 0x04001A73 RID: 6771
 	public int nowPage = 1;
 
-	// Token: 0x04001F1C RID: 7964
+	// Token: 0x04001A74 RID: 6772
 	public int MaxPage = 8;
 
-	// Token: 0x04001F1D RID: 7965
+	// Token: 0x04001A75 RID: 6773
 	public GameObject LingGengBiaoGe;
 
-	// Token: 0x04001F1E RID: 7966
+	// Token: 0x04001A76 RID: 6774
 	public GameObject scrolw;
 
-	// Token: 0x04001F1F RID: 7967
+	// Token: 0x04001A77 RID: 6775
 	public Texture nowPageTexture;
 
-	// Token: 0x04001F20 RID: 7968
+	// Token: 0x04001A78 RID: 6776
 	public Texture EndPageTexture;
 
-	// Token: 0x04001F21 RID: 7969
+	// Token: 0x04001A79 RID: 6777
 	public GameObject lightGrid;
 
-	// Token: 0x04001F22 RID: 7970
+	// Token: 0x04001A7A RID: 6778
 	public GameObject shenyutianfu;
 
-	// Token: 0x04001F23 RID: 7971
+	// Token: 0x04001A7B RID: 6779
 	public UIScrollBar uIScrollBar;
 
-	// Token: 0x04001F24 RID: 7972
+	// Token: 0x04001A7C RID: 6780
 	public UILabel MiaoShu;
 
-	// Token: 0x04001F25 RID: 7973
+	// Token: 0x04001A7D RID: 6781
 	public UILabel Title;
 
-	// Token: 0x04001F26 RID: 7974
+	// Token: 0x04001A7E RID: 6782
 	private int _TianFuDian;
 
-	// Token: 0x04001F27 RID: 7975
+	// Token: 0x04001A7F RID: 6783
 	private Dictionary<int, GameObject> NanduDict = new Dictionary<int, GameObject>();
 }

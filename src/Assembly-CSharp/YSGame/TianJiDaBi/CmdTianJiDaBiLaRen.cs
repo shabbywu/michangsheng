@@ -5,12 +5,12 @@ using UnityEngine.SceneManagement;
 
 namespace YSGame.TianJiDaBi
 {
-	// Token: 0x02000DBC RID: 3516
+	// Token: 0x02000A8A RID: 2698
 	[CommandInfo("天机大比", "把参赛选手都拉到当前场景", "把参赛选手都拉到当前场景并设置状态为正常", 0)]
 	[AddComponentMenu("")]
 	public class CmdTianJiDaBiLaRen : Command
 	{
-		// Token: 0x060054CA RID: 21706 RVA: 0x00234DBC File Offset: 0x00232FBC
+		// Token: 0x06004BAE RID: 19374 RVA: 0x00203884 File Offset: 0x00201A84
 		public override void OnEnter()
 		{
 			Match nowMatch = TianJiDaBiManager.GetNowMatch();

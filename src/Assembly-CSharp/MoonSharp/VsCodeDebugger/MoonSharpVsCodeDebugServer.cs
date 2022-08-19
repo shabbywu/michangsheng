@@ -11,16 +11,16 @@ using MoonSharp.VsCodeDebugger.SDK;
 
 namespace MoonSharp.VsCodeDebugger
 {
-	// Token: 0x020011B6 RID: 4534
+	// Token: 0x02000D93 RID: 3475
 	public class MoonSharpVsCodeDebugServer : IDisposable
 	{
-		// Token: 0x06006F1E RID: 28446 RVA: 0x0004B851 File Offset: 0x00049A51
+		// Token: 0x060062ED RID: 25325 RVA: 0x00279D17 File Offset: 0x00277F17
 		public MoonSharpVsCodeDebugServer(int port = 41912)
 		{
 			this.m_Port = port;
 		}
 
-		// Token: 0x06006F1F RID: 28447 RVA: 0x0029F9C0 File Offset: 0x0029DBC0
+		// Token: 0x060062EE RID: 25326 RVA: 0x00279D48 File Offset: 0x00277F48
 		[Obsolete("Use the constructor taking only a port, and the 'Attach' method instead.")]
 		public MoonSharpVsCodeDebugServer(Script script, int port, Func<SourceCode, string> sourceFinder = null)
 		{
@@ -34,7 +34,7 @@ namespace MoonSharp.VsCodeDebugger
 			this.m_DebuggerList.Add(this.m_Current);
 		}
 
-		// Token: 0x06006F20 RID: 28448 RVA: 0x0029FA44 File Offset: 0x0029DC44
+		// Token: 0x060062EF RID: 25327 RVA: 0x00279DCC File Offset: 0x00277FCC
 		public void AttachToScript(Script script, string name, Func<SourceCode, string> sourceFinder = null)
 		{
 			object @lock = this.m_Lock;
@@ -60,7 +60,7 @@ namespace MoonSharp.VsCodeDebugger
 			}
 		}
 
-		// Token: 0x06006F21 RID: 28449 RVA: 0x0029FB08 File Offset: 0x0029DD08
+		// Token: 0x060062F0 RID: 25328 RVA: 0x00279E90 File Offset: 0x00278090
 		public IEnumerable<KeyValuePair<int, string>> GetAttachedDebuggersByIdAndName()
 		{
 			object @lock = this.m_Lock;
@@ -74,9 +74,9 @@ namespace MoonSharp.VsCodeDebugger
 			return result;
 		}
 
-		// Token: 0x17000A24 RID: 2596
-		// (get) Token: 0x06006F22 RID: 28450 RVA: 0x0029FB98 File Offset: 0x0029DD98
-		// (set) Token: 0x06006F23 RID: 28451 RVA: 0x0029FBF8 File Offset: 0x0029DDF8
+		// Token: 0x170007C3 RID: 1987
+		// (get) Token: 0x060062F1 RID: 25329 RVA: 0x00279F20 File Offset: 0x00278120
+		// (set) Token: 0x060062F2 RID: 25330 RVA: 0x00279F80 File Offset: 0x00278180
 		public int? CurrentId
 		{
 			get
@@ -126,9 +126,9 @@ namespace MoonSharp.VsCodeDebugger
 			}
 		}
 
-		// Token: 0x17000A25 RID: 2597
-		// (get) Token: 0x06006F24 RID: 28452 RVA: 0x0029FC84 File Offset: 0x0029DE84
-		// (set) Token: 0x06006F25 RID: 28453 RVA: 0x0029FCD8 File Offset: 0x0029DED8
+		// Token: 0x170007C4 RID: 1988
+		// (get) Token: 0x060062F3 RID: 25331 RVA: 0x0027A00C File Offset: 0x0027820C
+		// (set) Token: 0x060062F4 RID: 25332 RVA: 0x0027A060 File Offset: 0x00278260
 		public Script Current
 		{
 			get
@@ -163,7 +163,7 @@ namespace MoonSharp.VsCodeDebugger
 			}
 		}
 
-		// Token: 0x06006F26 RID: 28454 RVA: 0x0029FD60 File Offset: 0x0029DF60
+		// Token: 0x060062F5 RID: 25333 RVA: 0x0027A0E8 File Offset: 0x002782E8
 		public void Detach(Script script)
 		{
 			object @lock = this.m_Lock;
@@ -190,12 +190,12 @@ namespace MoonSharp.VsCodeDebugger
 			}
 		}
 
-		// Token: 0x17000A26 RID: 2598
-		// (get) Token: 0x06006F27 RID: 28455 RVA: 0x0004B882 File Offset: 0x00049A82
-		// (set) Token: 0x06006F28 RID: 28456 RVA: 0x0004B88A File Offset: 0x00049A8A
+		// Token: 0x170007C5 RID: 1989
+		// (get) Token: 0x060062F6 RID: 25334 RVA: 0x0027A1A8 File Offset: 0x002783A8
+		// (set) Token: 0x060062F7 RID: 25335 RVA: 0x0027A1B0 File Offset: 0x002783B0
 		public Action<string> Logger { get; set; }
 
-		// Token: 0x06006F29 RID: 28457 RVA: 0x0029FE20 File Offset: 0x0029E020
+		// Token: 0x060062F8 RID: 25336 RVA: 0x0027A1BC File Offset: 0x002783BC
 		[Obsolete("Use the Attach method instead.")]
 		public IDebugger GetDebugger()
 		{
@@ -208,13 +208,13 @@ namespace MoonSharp.VsCodeDebugger
 			return current;
 		}
 
-		// Token: 0x06006F2A RID: 28458 RVA: 0x0004B893 File Offset: 0x00049A93
+		// Token: 0x060062F9 RID: 25337 RVA: 0x0027A200 File Offset: 0x00278400
 		public void Dispose()
 		{
 			this.m_StopEvent.Set();
 		}
 
-		// Token: 0x06006F2B RID: 28459 RVA: 0x0029FE64 File Offset: 0x0029E064
+		// Token: 0x060062FA RID: 25338 RVA: 0x0027A210 File Offset: 0x00278410
 		public MoonSharpVsCodeDebugServer Start()
 		{
 			object @lock = this.m_Lock;
@@ -246,7 +246,7 @@ namespace MoonSharp.VsCodeDebugger
 			return this;
 		}
 
-		// Token: 0x06006F2C RID: 28460 RVA: 0x0029FF28 File Offset: 0x0029E128
+		// Token: 0x060062FB RID: 25339 RVA: 0x0027A2D4 File Offset: 0x002784D4
 		private void ListenThread(TcpListener serverSocket)
 		{
 			try
@@ -303,7 +303,7 @@ namespace MoonSharp.VsCodeDebugger
 			}
 		}
 
-		// Token: 0x06006F2D RID: 28461 RVA: 0x002A0024 File Offset: 0x0029E224
+		// Token: 0x060062FC RID: 25340 RVA: 0x0027A3D0 File Offset: 0x002785D0
 		private void RunSession(string sessionId, NetworkStream stream)
 		{
 			DebugSession debugSession = null;
@@ -322,7 +322,7 @@ namespace MoonSharp.VsCodeDebugger
 			debugSession.ProcessLoop(stream, stream);
 		}
 
-		// Token: 0x06006F2E RID: 28462 RVA: 0x002A0088 File Offset: 0x0029E288
+		// Token: 0x060062FD RID: 25341 RVA: 0x0027A434 File Offset: 0x00278634
 		private void Log(string format, params object[] args)
 		{
 			Action<string> logger = this.Logger;
@@ -333,7 +333,7 @@ namespace MoonSharp.VsCodeDebugger
 			}
 		}
 
-		// Token: 0x06006F2F RID: 28463 RVA: 0x0004B8A1 File Offset: 0x00049AA1
+		// Token: 0x060062FE RID: 25342 RVA: 0x0027A45A File Offset: 0x0027865A
 		private static void SpawnThread(string name, Action threadProc)
 		{
 			new System.Threading.Thread(delegate()
@@ -346,22 +346,22 @@ namespace MoonSharp.VsCodeDebugger
 			}.Start();
 		}
 
-		// Token: 0x0400627D RID: 25213
+		// Token: 0x040055A6 RID: 21926
 		private object m_Lock = new object();
 
-		// Token: 0x0400627E RID: 25214
+		// Token: 0x040055A7 RID: 21927
 		private List<AsyncDebugger> m_DebuggerList = new List<AsyncDebugger>();
 
-		// Token: 0x0400627F RID: 25215
+		// Token: 0x040055A8 RID: 21928
 		private AsyncDebugger m_Current;
 
-		// Token: 0x04006280 RID: 25216
+		// Token: 0x040055A9 RID: 21929
 		private ManualResetEvent m_StopEvent = new ManualResetEvent(false);
 
-		// Token: 0x04006281 RID: 25217
+		// Token: 0x040055AA RID: 21930
 		private bool m_Started;
 
-		// Token: 0x04006282 RID: 25218
+		// Token: 0x040055AB RID: 21931
 		private int m_Port;
 	}
 }

@@ -2,10 +2,10 @@
 
 namespace MoonSharp.Interpreter
 {
-	// Token: 0x0200106C RID: 4204
+	// Token: 0x02000C9F RID: 3231
 	internal static class ScriptPrivateResource_Extension
 	{
-		// Token: 0x06006550 RID: 25936 RVA: 0x00282DF8 File Offset: 0x00280FF8
+		// Token: 0x06005A66 RID: 23142 RVA: 0x002582B4 File Offset: 0x002564B4
 		public static void CheckScriptOwnership(this IScriptPrivateResource containingResource, DynValue[] values)
 		{
 			foreach (DynValue value in values)
@@ -14,7 +14,7 @@ namespace MoonSharp.Interpreter
 			}
 		}
 
-		// Token: 0x06006551 RID: 25937 RVA: 0x00282E20 File Offset: 0x00281020
+		// Token: 0x06005A67 RID: 23143 RVA: 0x002582DC File Offset: 0x002564DC
 		public static void CheckScriptOwnership(this IScriptPrivateResource containingResource, DynValue value)
 		{
 			if (value != null)
@@ -27,7 +27,7 @@ namespace MoonSharp.Interpreter
 			}
 		}
 
-		// Token: 0x06006552 RID: 25938 RVA: 0x00045B68 File Offset: 0x00043D68
+		// Token: 0x06005A68 RID: 23144 RVA: 0x002582FD File Offset: 0x002564FD
 		public static void CheckScriptOwnership(this IScriptPrivateResource resource, Script script)
 		{
 			if (resource.OwnerScript != null && resource.OwnerScript != script && script != null)
@@ -36,7 +36,7 @@ namespace MoonSharp.Interpreter
 			}
 		}
 
-		// Token: 0x06006553 RID: 25939 RVA: 0x00282E44 File Offset: 0x00281044
+		// Token: 0x06005A69 RID: 23145 RVA: 0x00258320 File Offset: 0x00256520
 		public static void CheckScriptOwnership(this IScriptPrivateResource containingResource, IScriptPrivateResource itemResource)
 		{
 			if (itemResource != null)

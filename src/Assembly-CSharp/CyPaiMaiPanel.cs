@@ -3,10 +3,10 @@ using JSONClass;
 using UnityEngine;
 using UnityEngine.UI;
 
-// Token: 0x020003C0 RID: 960
+// Token: 0x02000291 RID: 657
 public class CyPaiMaiPanel : MonoBehaviour, IESCClose
 {
-	// Token: 0x06001A87 RID: 6791 RVA: 0x000EA63C File Offset: 0x000E883C
+	// Token: 0x060017AA RID: 6058 RVA: 0x000A3408 File Offset: 0x000A1608
 	public void Show(CyPaiMaiInfo paiMaiInfo)
 	{
 		base.gameObject.SetActive(true);
@@ -27,33 +27,33 @@ public class CyPaiMaiPanel : MonoBehaviour, IESCClose
 		this._time.text = string.Format("{0}年{1}月{2}日", paiMaiInfo.StartTime.Year, paiMaiInfo.StartTime.Month, paiMaiInfo.StartTime.Day) + string.Format("至{0}月{1}日", paiMaiInfo.EndTime.Month, paiMaiInfo.EndTime.Day);
 	}
 
-	// Token: 0x06001A88 RID: 6792 RVA: 0x0001694F File Offset: 0x00014B4F
+	// Token: 0x060017AB RID: 6059 RVA: 0x000A3540 File Offset: 0x000A1740
 	public void Close()
 	{
 		base.gameObject.SetActive(false);
 		ESCCloseManager.Inst.UnRegisterClose(this);
 	}
 
-	// Token: 0x06001A89 RID: 6793 RVA: 0x00016968 File Offset: 0x00014B68
+	// Token: 0x060017AC RID: 6060 RVA: 0x000A3559 File Offset: 0x000A1759
 	public bool TryEscClose()
 	{
 		this.Close();
 		return true;
 	}
 
-	// Token: 0x040015F7 RID: 5623
+	// Token: 0x04001271 RID: 4721
 	[SerializeField]
 	private Text _title;
 
-	// Token: 0x040015F8 RID: 5624
+	// Token: 0x04001272 RID: 4722
 	[SerializeField]
 	private Text _time;
 
-	// Token: 0x040015F9 RID: 5625
+	// Token: 0x04001273 RID: 4723
 	[SerializeField]
 	private Transform _itemList;
 
-	// Token: 0x040015FA RID: 5626
+	// Token: 0x04001274 RID: 4724
 	[SerializeField]
 	private GameObject _item;
 }

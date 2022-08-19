@@ -3,13 +3,13 @@ using UnityEngine;
 
 namespace UltimateSurvival.StandardAssets
 {
-	// Token: 0x02000912 RID: 2322
+	// Token: 0x0200062A RID: 1578
 	[ExecuteInEditMode]
 	[RequireComponent(typeof(Camera))]
 	[AddComponentMenu("Ultimate Survival/Add/Image Effects/Antialiasing")]
 	public class AA : ImageEffectBase
 	{
-		// Token: 0x06003B45 RID: 15173 RVA: 0x001ABD6C File Offset: 0x001A9F6C
+		// Token: 0x0600320B RID: 12811 RVA: 0x00162430 File Offset: 0x00160630
 		public Material CurrentAAMaterial()
 		{
 			Material result;
@@ -43,7 +43,7 @@ namespace UltimateSurvival.StandardAssets
 			return result;
 		}
 
-		// Token: 0x06003B46 RID: 15174 RVA: 0x001ABDE8 File Offset: 0x001A9FE8
+		// Token: 0x0600320C RID: 12812 RVA: 0x001624AC File Offset: 0x001606AC
 		public override bool CheckResources()
 		{
 			base.CheckSupport(false);
@@ -62,7 +62,7 @@ namespace UltimateSurvival.StandardAssets
 			return this.isSupported;
 		}
 
-		// Token: 0x06003B47 RID: 15175 RVA: 0x001ABEC4 File Offset: 0x001AA0C4
+		// Token: 0x0600320D RID: 12813 RVA: 0x00162588 File Offset: 0x00160788
 		public void OnRenderImage(RenderTexture source, RenderTexture destination)
 		{
 			if (!this.CheckResources())
@@ -120,70 +120,70 @@ namespace UltimateSurvival.StandardAssets
 			Graphics.Blit(source, destination);
 		}
 
-		// Token: 0x0400358D RID: 13709
+		// Token: 0x04002C5F RID: 11359
 		public AAMode mode = AAMode.FXAA3Console;
 
-		// Token: 0x0400358E RID: 13710
+		// Token: 0x04002C60 RID: 11360
 		public bool showGeneratedNormals;
 
-		// Token: 0x0400358F RID: 13711
+		// Token: 0x04002C61 RID: 11361
 		public float offsetScale = 0.2f;
 
-		// Token: 0x04003590 RID: 13712
+		// Token: 0x04002C62 RID: 11362
 		public float blurRadius = 18f;
 
-		// Token: 0x04003591 RID: 13713
+		// Token: 0x04002C63 RID: 11363
 		public float edgeThresholdMin = 0.05f;
 
-		// Token: 0x04003592 RID: 13714
+		// Token: 0x04002C64 RID: 11364
 		public float edgeThreshold = 0.2f;
 
-		// Token: 0x04003593 RID: 13715
+		// Token: 0x04002C65 RID: 11365
 		public float edgeSharpness = 4f;
 
-		// Token: 0x04003594 RID: 13716
+		// Token: 0x04002C66 RID: 11366
 		public bool dlaaSharp;
 
-		// Token: 0x04003595 RID: 13717
+		// Token: 0x04002C67 RID: 11367
 		public Shader ssaaShader;
 
-		// Token: 0x04003596 RID: 13718
+		// Token: 0x04002C68 RID: 11368
 		private Material ssaa;
 
-		// Token: 0x04003597 RID: 13719
+		// Token: 0x04002C69 RID: 11369
 		public Shader dlaaShader;
 
-		// Token: 0x04003598 RID: 13720
+		// Token: 0x04002C6A RID: 11370
 		private Material dlaa;
 
-		// Token: 0x04003599 RID: 13721
+		// Token: 0x04002C6B RID: 11371
 		public Shader nfaaShader;
 
-		// Token: 0x0400359A RID: 13722
+		// Token: 0x04002C6C RID: 11372
 		private Material nfaa;
 
-		// Token: 0x0400359B RID: 13723
+		// Token: 0x04002C6D RID: 11373
 		public Shader shaderFXAAPreset2;
 
-		// Token: 0x0400359C RID: 13724
+		// Token: 0x04002C6E RID: 11374
 		private Material materialFXAAPreset2;
 
-		// Token: 0x0400359D RID: 13725
+		// Token: 0x04002C6F RID: 11375
 		public Shader shaderFXAAPreset3;
 
-		// Token: 0x0400359E RID: 13726
+		// Token: 0x04002C70 RID: 11376
 		private Material materialFXAAPreset3;
 
-		// Token: 0x0400359F RID: 13727
+		// Token: 0x04002C71 RID: 11377
 		public Shader shaderFXAAII;
 
-		// Token: 0x040035A0 RID: 13728
+		// Token: 0x04002C72 RID: 11378
 		private Material materialFXAAII;
 
-		// Token: 0x040035A1 RID: 13729
+		// Token: 0x04002C73 RID: 11379
 		public Shader shaderFXAAIII;
 
-		// Token: 0x040035A2 RID: 13730
+		// Token: 0x04002C74 RID: 11380
 		private Material materialFXAAIII;
 	}
 }

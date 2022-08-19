@@ -4,12 +4,12 @@ using UnityEngine;
 
 namespace Fungus
 {
-	// Token: 0x02001457 RID: 5207
+	// Token: 0x02000FA5 RID: 4005
 	[CommandInfo("YSTools", "TryinitFungaus", "初始化Fungaus", 0)]
 	[AddComponentMenu("")]
 	public class TryinitFungaus : Command, INoCommand
 	{
-		// Token: 0x06007D9D RID: 32157 RVA: 0x0001CA4F File Offset: 0x0001AC4F
+		// Token: 0x06006FBD RID: 28605 RVA: 0x000E111A File Offset: 0x000DF31A
 		public void setHasVariable(string name, int num, Flowchart flowchart)
 		{
 			if (flowchart.HasVariable(name))
@@ -18,7 +18,7 @@ namespace Fungus
 			}
 		}
 
-		// Token: 0x06007D9E RID: 32158 RVA: 0x002C6E18 File Offset: 0x002C5018
+		// Token: 0x06006FBE RID: 28606 RVA: 0x002A7978 File Offset: 0x002A5B78
 		public override void OnEnter()
 		{
 			Avatar player = Tools.instance.getPlayer();
@@ -35,18 +35,18 @@ namespace Fungus
 			this.Continue();
 		}
 
-		// Token: 0x06007D9F RID: 32159 RVA: 0x000113CF File Offset: 0x0000F5CF
+		// Token: 0x06006FBF RID: 28607 RVA: 0x0005E228 File Offset: 0x0005C428
 		public override Color GetButtonColor()
 		{
 			return new Color32(184, 210, 235, byte.MaxValue);
 		}
 
-		// Token: 0x06007DA0 RID: 32160 RVA: 0x000042DD File Offset: 0x000024DD
+		// Token: 0x06006FC0 RID: 28608 RVA: 0x00004095 File Offset: 0x00002295
 		public override void OnReset()
 		{
 		}
 
-		// Token: 0x04006B1F RID: 27423
+		// Token: 0x04005C35 RID: 23605
 		[Tooltip("说明")]
 		[SerializeField]
 		protected string init = "初始化";

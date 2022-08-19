@@ -3,30 +3,30 @@ using KBEngine;
 using UnityEngine;
 using UnityEngine.UI;
 
-// Token: 0x020005B2 RID: 1458
+// Token: 0x02000402 RID: 1026
 public class UI_CDK : MonoBehaviour
 {
-	// Token: 0x060024CC RID: 9420 RVA: 0x0001D939 File Offset: 0x0001BB39
+	// Token: 0x0600211A RID: 8474 RVA: 0x000E7C6F File Offset: 0x000E5E6F
 	private void Awake()
 	{
 		this.backgroud.SetActive(false);
 	}
 
-	// Token: 0x060024CD RID: 9421 RVA: 0x0001D947 File Offset: 0x0001BB47
+	// Token: 0x0600211B RID: 8475 RVA: 0x000E7C7D File Offset: 0x000E5E7D
 	public void open()
 	{
 		this.backtype = 1;
 		this.backgroud.SetActive(true);
 	}
 
-	// Token: 0x060024CE RID: 9422 RVA: 0x0001D95C File Offset: 0x0001BB5C
+	// Token: 0x0600211C RID: 8476 RVA: 0x000E7C92 File Offset: 0x000E5E92
 	public void close()
 	{
 		this.backtype = 0;
 		this.backgroud.SetActive(false);
 	}
 
-	// Token: 0x060024CF RID: 9423 RVA: 0x001299C4 File Offset: 0x00127BC4
+	// Token: 0x0600211D RID: 8477 RVA: 0x000E7CA8 File Offset: 0x000E5EA8
 	public void useCDK()
 	{
 		string text = this.CDK.text;
@@ -39,13 +39,13 @@ public class UI_CDK : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060024D0 RID: 9424 RVA: 0x0001D971 File Offset: 0x0001BB71
+	// Token: 0x0600211E RID: 8478 RVA: 0x000E7CFA File Offset: 0x000E5EFA
 	public void resetTime()
 	{
 		this.stopTime = 0;
 	}
 
-	// Token: 0x060024D1 RID: 9425 RVA: 0x0001D97A File Offset: 0x0001BB7A
+	// Token: 0x0600211F RID: 8479 RVA: 0x000E7D03 File Offset: 0x000E5F03
 	public void buttondwon()
 	{
 		if (this.backtype == 0)
@@ -56,15 +56,15 @@ public class UI_CDK : MonoBehaviour
 		this.close();
 	}
 
-	// Token: 0x04001F8B RID: 8075
+	// Token: 0x04001ACF RID: 6863
 	public GameObject backgroud;
 
-	// Token: 0x04001F8C RID: 8076
+	// Token: 0x04001AD0 RID: 6864
 	public InputField CDK;
 
-	// Token: 0x04001F8D RID: 8077
+	// Token: 0x04001AD1 RID: 6865
 	private int stopTime;
 
-	// Token: 0x04001F8E RID: 8078
+	// Token: 0x04001AD2 RID: 6866
 	private int backtype;
 }

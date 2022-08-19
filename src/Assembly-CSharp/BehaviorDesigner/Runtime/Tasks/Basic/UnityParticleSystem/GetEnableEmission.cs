@@ -3,12 +3,12 @@ using UnityEngine;
 
 namespace BehaviorDesigner.Runtime.Tasks.Basic.UnityParticleSystem
 {
-	// Token: 0x0200158A RID: 5514
+	// Token: 0x020010D0 RID: 4304
 	[TaskCategory("Basic/ParticleSystem")]
 	[TaskDescription("Stores if the Particle System is emitting particles.")]
 	public class GetEnableEmission : Action
 	{
-		// Token: 0x06008209 RID: 33289 RVA: 0x002CCF64 File Offset: 0x002CB164
+		// Token: 0x0600740F RID: 29711 RVA: 0x002B17AC File Offset: 0x002AF9AC
 		public override void OnStart()
 		{
 			GameObject defaultGameObject = base.GetDefaultGameObject(this.targetGameObject.Value);
@@ -19,7 +19,7 @@ namespace BehaviorDesigner.Runtime.Tasks.Basic.UnityParticleSystem
 			}
 		}
 
-		// Token: 0x0600820A RID: 33290 RVA: 0x002CCFA4 File Offset: 0x002CB1A4
+		// Token: 0x06007410 RID: 29712 RVA: 0x002B17EC File Offset: 0x002AF9EC
 		public override TaskStatus OnUpdate()
 		{
 			if (this.particleSystem == null)
@@ -31,26 +31,26 @@ namespace BehaviorDesigner.Runtime.Tasks.Basic.UnityParticleSystem
 			return 2;
 		}
 
-		// Token: 0x0600820B RID: 33291 RVA: 0x0005919C File Offset: 0x0005739C
+		// Token: 0x06007411 RID: 29713 RVA: 0x002B1832 File Offset: 0x002AFA32
 		public override void OnReset()
 		{
 			this.targetGameObject = null;
 			this.storeResult = false;
 		}
 
-		// Token: 0x04006ED0 RID: 28368
+		// Token: 0x04005FD0 RID: 24528
 		[Tooltip("The GameObject that the task operates on. If null the task GameObject is used.")]
 		public SharedGameObject targetGameObject;
 
-		// Token: 0x04006ED1 RID: 28369
+		// Token: 0x04005FD1 RID: 24529
 		[Tooltip("Is the Particle System emitting particles?")]
 		[RequiredField]
 		public SharedBool storeResult;
 
-		// Token: 0x04006ED2 RID: 28370
+		// Token: 0x04005FD2 RID: 24530
 		private ParticleSystem particleSystem;
 
-		// Token: 0x04006ED3 RID: 28371
+		// Token: 0x04005FD3 RID: 24531
 		private GameObject prevGameObject;
 	}
 }

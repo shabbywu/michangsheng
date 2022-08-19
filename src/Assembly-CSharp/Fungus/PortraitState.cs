@@ -4,28 +4,28 @@ using UnityEngine.UI;
 
 namespace Fungus
 {
-	// Token: 0x02001365 RID: 4965
+	// Token: 0x02000EC7 RID: 3783
 	public class PortraitState
 	{
-		// Token: 0x04006888 RID: 26760
+		// Token: 0x04005A29 RID: 23081
 		public bool onScreen;
 
-		// Token: 0x04006889 RID: 26761
+		// Token: 0x04005A2A RID: 23082
 		public bool dimmed;
 
-		// Token: 0x0400688A RID: 26762
+		// Token: 0x04005A2B RID: 23083
 		public DisplayType display;
 
-		// Token: 0x0400688B RID: 26763
+		// Token: 0x04005A2C RID: 23084
 		public Sprite portrait;
 
-		// Token: 0x0400688C RID: 26764
+		// Token: 0x04005A2D RID: 23085
 		public RectTransform position;
 
-		// Token: 0x0400688D RID: 26765
+		// Token: 0x04005A2E RID: 23086
 		public FacingDirection facing;
 
-		// Token: 0x0400688E RID: 26766
+		// Token: 0x04005A2F RID: 23087
 		public Image portraitImage;
 	}
 }

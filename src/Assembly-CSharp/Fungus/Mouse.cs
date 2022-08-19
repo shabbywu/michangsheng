@@ -3,54 +3,54 @@ using UnityEngine;
 
 namespace Fungus
 {
-	// Token: 0x02001329 RID: 4905
+	// Token: 0x02000EA7 RID: 3751
 	[EventHandlerInfo("MonoBehaviour", "Mouse", "The block will execute when the desired OnMouse* message for the monobehaviour is received")]
 	[AddComponentMenu("")]
 	public class Mouse : EventHandler
 	{
-		// Token: 0x06007759 RID: 30553 RVA: 0x000515A7 File Offset: 0x0004F7A7
+		// Token: 0x06006A23 RID: 27171 RVA: 0x00292ACF File Offset: 0x00290CCF
 		private void OnMouseDown()
 		{
 			this.HandleTriggering(Mouse.MouseMessageFlags.OnMouseDown);
 		}
 
-		// Token: 0x0600775A RID: 30554 RVA: 0x000515B0 File Offset: 0x0004F7B0
+		// Token: 0x06006A24 RID: 27172 RVA: 0x00292AD8 File Offset: 0x00290CD8
 		private void OnMouseDrag()
 		{
 			this.HandleTriggering(Mouse.MouseMessageFlags.OnMouseDrag);
 		}
 
-		// Token: 0x0600775B RID: 30555 RVA: 0x000515B9 File Offset: 0x0004F7B9
+		// Token: 0x06006A25 RID: 27173 RVA: 0x00292AE1 File Offset: 0x00290CE1
 		private void OnMouseEnter()
 		{
 			this.HandleTriggering(Mouse.MouseMessageFlags.OnMouseEnter);
 		}
 
-		// Token: 0x0600775C RID: 30556 RVA: 0x000515C2 File Offset: 0x0004F7C2
+		// Token: 0x06006A26 RID: 27174 RVA: 0x00292AEA File Offset: 0x00290CEA
 		private void OnMouseExit()
 		{
 			this.HandleTriggering(Mouse.MouseMessageFlags.OnMouseExit);
 		}
 
-		// Token: 0x0600775D RID: 30557 RVA: 0x000515CB File Offset: 0x0004F7CB
+		// Token: 0x06006A27 RID: 27175 RVA: 0x00292AF3 File Offset: 0x00290CF3
 		private void OnMouseOver()
 		{
 			this.HandleTriggering(Mouse.MouseMessageFlags.OnMouseOver);
 		}
 
-		// Token: 0x0600775E RID: 30558 RVA: 0x000515D5 File Offset: 0x0004F7D5
+		// Token: 0x06006A28 RID: 27176 RVA: 0x00292AFD File Offset: 0x00290CFD
 		private void OnMouseUp()
 		{
 			this.HandleTriggering(Mouse.MouseMessageFlags.OnMouseUp);
 		}
 
-		// Token: 0x0600775F RID: 30559 RVA: 0x000515DF File Offset: 0x0004F7DF
+		// Token: 0x06006A29 RID: 27177 RVA: 0x00292B07 File Offset: 0x00290D07
 		private void OnMouseUpAsButton()
 		{
 			this.HandleTriggering(Mouse.MouseMessageFlags.OnMouseUpAsButton);
 		}
 
-		// Token: 0x06007760 RID: 30560 RVA: 0x000515E9 File Offset: 0x0004F7E9
+		// Token: 0x06006A2A RID: 27178 RVA: 0x00292B11 File Offset: 0x00290D11
 		private void HandleTriggering(Mouse.MouseMessageFlags from)
 		{
 			if ((from & this.FireOn) != (Mouse.MouseMessageFlags)0)
@@ -59,29 +59,29 @@ namespace Fungus
 			}
 		}
 
-		// Token: 0x04006804 RID: 26628
+		// Token: 0x040059DD RID: 23005
 		[Tooltip("Which of the Mouse messages to trigger on.")]
 		[SerializeField]
 		[EnumFlag]
 		protected Mouse.MouseMessageFlags FireOn = Mouse.MouseMessageFlags.OnMouseUpAsButton;
 
-		// Token: 0x0200132A RID: 4906
+		// Token: 0x020016F6 RID: 5878
 		[Flags]
 		public enum MouseMessageFlags
 		{
-			// Token: 0x04006806 RID: 26630
+			// Token: 0x04007483 RID: 29827
 			OnMouseDown = 1,
-			// Token: 0x04006807 RID: 26631
+			// Token: 0x04007484 RID: 29828
 			OnMouseDrag = 2,
-			// Token: 0x04006808 RID: 26632
+			// Token: 0x04007485 RID: 29829
 			OnMouseEnter = 4,
-			// Token: 0x04006809 RID: 26633
+			// Token: 0x04007486 RID: 29830
 			OnMouseExit = 8,
-			// Token: 0x0400680A RID: 26634
+			// Token: 0x04007487 RID: 29831
 			OnMouseOver = 16,
-			// Token: 0x0400680B RID: 26635
+			// Token: 0x04007488 RID: 29832
 			OnMouseUp = 32,
-			// Token: 0x0400680C RID: 26636
+			// Token: 0x04007489 RID: 29833
 			OnMouseUpAsButton = 64
 		}
 	}

@@ -1,10 +1,10 @@
 ﻿using System;
 using UnityEngine;
 
-// Token: 0x02000554 RID: 1364
+// Token: 0x020003C2 RID: 962
 public class SmoothFollow : MonoBehaviour
 {
-	// Token: 0x060022D6 RID: 8918 RVA: 0x0011F038 File Offset: 0x0011D238
+	// Token: 0x06001F53 RID: 8019 RVA: 0x000DC2FC File Offset: 0x000DA4FC
 	public void ResetView()
 	{
 		if (!this.target)
@@ -22,7 +22,7 @@ public class SmoothFollow : MonoBehaviour
 		base.transform.LookAt(this.target);
 	}
 
-	// Token: 0x060022D7 RID: 8919 RVA: 0x0011F138 File Offset: 0x0011D338
+	// Token: 0x06001F54 RID: 8020 RVA: 0x000DC3FC File Offset: 0x000DA5FC
 	public void FollowUpdate()
 	{
 		if (!this.target)
@@ -59,7 +59,7 @@ public class SmoothFollow : MonoBehaviour
 		base.transform.LookAt(this.target);
 	}
 
-	// Token: 0x060022D8 RID: 8920 RVA: 0x0011F2A4 File Offset: 0x0011D4A4
+	// Token: 0x06001F55 RID: 8021 RVA: 0x000DC568 File Offset: 0x000DA768
 	public void rotateCamerX(float rotatex)
 	{
 		if (!this.target)
@@ -96,21 +96,21 @@ public class SmoothFollow : MonoBehaviour
 		base.transform.LookAt(this.target);
 	}
 
-	// Token: 0x04001DE8 RID: 7656
+	// Token: 0x04001967 RID: 6503
 	public Transform target;
 
-	// Token: 0x04001DE9 RID: 7657
+	// Token: 0x04001968 RID: 6504
 	public float distance = 10f;
 
-	// Token: 0x04001DEA RID: 7658
+	// Token: 0x04001969 RID: 6505
 	public float height = 5f;
 
-	// Token: 0x04001DEB RID: 7659
+	// Token: 0x0400196A RID: 6506
 	public float heightDamping = 2f;
 
-	// Token: 0x04001DEC RID: 7660
+	// Token: 0x0400196B RID: 6507
 	public float rotationDamping = 0.3f;
 
-	// Token: 0x04001DED RID: 7661
+	// Token: 0x0400196C RID: 6508
 	public float rotate;
 }

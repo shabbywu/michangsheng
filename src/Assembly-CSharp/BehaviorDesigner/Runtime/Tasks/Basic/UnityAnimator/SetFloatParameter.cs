@@ -4,12 +4,12 @@ using UnityEngine;
 
 namespace BehaviorDesigner.Runtime.Tasks.Basic.UnityAnimator
 {
-	// Token: 0x0200165B RID: 5723
+	// Token: 0x0200119B RID: 4507
 	[TaskCategory("Basic/Animator")]
 	[TaskDescription("Sets the float parameter on an animator. Returns Success.")]
 	public class SetFloatParameter : Action
 	{
-		// Token: 0x06008500 RID: 34048 RVA: 0x002D04CC File Offset: 0x002CE6CC
+		// Token: 0x06007700 RID: 30464 RVA: 0x002B7E4C File Offset: 0x002B604C
 		public override void OnStart()
 		{
 			GameObject defaultGameObject = base.GetDefaultGameObject(this.targetGameObject.Value);
@@ -20,7 +20,7 @@ namespace BehaviorDesigner.Runtime.Tasks.Basic.UnityAnimator
 			}
 		}
 
-		// Token: 0x06008501 RID: 34049 RVA: 0x002D050C File Offset: 0x002CE70C
+		// Token: 0x06007701 RID: 30465 RVA: 0x002B7E8C File Offset: 0x002B608C
 		public override TaskStatus OnUpdate()
 		{
 			if (this.animator == null)
@@ -38,7 +38,7 @@ namespace BehaviorDesigner.Runtime.Tasks.Basic.UnityAnimator
 			return 2;
 		}
 
-		// Token: 0x06008502 RID: 34050 RVA: 0x0005C2FB File Offset: 0x0005A4FB
+		// Token: 0x06007702 RID: 30466 RVA: 0x002B7F0E File Offset: 0x002B610E
 		public IEnumerator ResetValue(float origVale)
 		{
 			yield return null;
@@ -46,7 +46,7 @@ namespace BehaviorDesigner.Runtime.Tasks.Basic.UnityAnimator
 			yield break;
 		}
 
-		// Token: 0x06008503 RID: 34051 RVA: 0x0005C311 File Offset: 0x0005A511
+		// Token: 0x06007703 RID: 30467 RVA: 0x002B7F24 File Offset: 0x002B6124
 		public override void OnReset()
 		{
 			this.targetGameObject = null;
@@ -54,29 +54,29 @@ namespace BehaviorDesigner.Runtime.Tasks.Basic.UnityAnimator
 			this.floatValue = 0f;
 		}
 
-		// Token: 0x040071B7 RID: 29111
+		// Token: 0x04006290 RID: 25232
 		[Tooltip("The GameObject that the task operates on. If null the task GameObject is used.")]
 		public SharedGameObject targetGameObject;
 
-		// Token: 0x040071B8 RID: 29112
+		// Token: 0x04006291 RID: 25233
 		[Tooltip("The name of the parameter")]
 		public SharedString paramaterName;
 
-		// Token: 0x040071B9 RID: 29113
+		// Token: 0x04006292 RID: 25234
 		[Tooltip("The value of the float parameter")]
 		public SharedFloat floatValue;
 
-		// Token: 0x040071BA RID: 29114
+		// Token: 0x04006293 RID: 25235
 		[Tooltip("Should the value be reverted back to its original value after it has been set?")]
 		public bool setOnce;
 
-		// Token: 0x040071BB RID: 29115
+		// Token: 0x04006294 RID: 25236
 		private int hashID;
 
-		// Token: 0x040071BC RID: 29116
+		// Token: 0x04006295 RID: 25237
 		private Animator animator;
 
-		// Token: 0x040071BD RID: 29117
+		// Token: 0x04006296 RID: 25238
 		private GameObject prevGameObject;
 	}
 }

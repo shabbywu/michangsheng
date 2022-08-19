@@ -3,12 +3,12 @@ using UnityEngine;
 
 namespace BehaviorDesigner.Runtime.Tasks.Basic.UnityTransform
 {
-	// Token: 0x020014EA RID: 5354
+	// Token: 0x02001030 RID: 4144
 	[TaskCategory("Basic/Transform")]
 	[TaskDescription("Applies a rotation. Returns Success.")]
 	public class RotateAround : Action
 	{
-		// Token: 0x06007FD5 RID: 32725 RVA: 0x002CA940 File Offset: 0x002C8B40
+		// Token: 0x060071DB RID: 29147 RVA: 0x002ACC2C File Offset: 0x002AAE2C
 		public override void OnStart()
 		{
 			GameObject defaultGameObject = base.GetDefaultGameObject(this.targetGameObject.Value);
@@ -19,7 +19,7 @@ namespace BehaviorDesigner.Runtime.Tasks.Basic.UnityTransform
 			}
 		}
 
-		// Token: 0x06007FD6 RID: 32726 RVA: 0x002CA980 File Offset: 0x002C8B80
+		// Token: 0x060071DC RID: 29148 RVA: 0x002ACC6C File Offset: 0x002AAE6C
 		public override TaskStatus OnUpdate()
 		{
 			if (this.targetTransform == null)
@@ -31,7 +31,7 @@ namespace BehaviorDesigner.Runtime.Tasks.Basic.UnityTransform
 			return 2;
 		}
 
-		// Token: 0x06007FD7 RID: 32727 RVA: 0x00056C81 File Offset: 0x00054E81
+		// Token: 0x060071DD RID: 29149 RVA: 0x002ACCC0 File Offset: 0x002AAEC0
 		public override void OnReset()
 		{
 			this.targetGameObject = null;
@@ -40,26 +40,26 @@ namespace BehaviorDesigner.Runtime.Tasks.Basic.UnityTransform
 			this.angle = 0f;
 		}
 
-		// Token: 0x04006CBA RID: 27834
+		// Token: 0x04005DBA RID: 23994
 		[Tooltip("The GameObject that the task operates on. If null the task GameObject is used.")]
 		public SharedGameObject targetGameObject;
 
-		// Token: 0x04006CBB RID: 27835
+		// Token: 0x04005DBB RID: 23995
 		[Tooltip("Point to rotate around")]
 		public SharedVector3 point;
 
-		// Token: 0x04006CBC RID: 27836
+		// Token: 0x04005DBC RID: 23996
 		[Tooltip("Axis to rotate around")]
 		public SharedVector3 axis;
 
-		// Token: 0x04006CBD RID: 27837
+		// Token: 0x04005DBD RID: 23997
 		[Tooltip("Amount to rotate")]
 		public SharedFloat angle;
 
-		// Token: 0x04006CBE RID: 27838
+		// Token: 0x04005DBE RID: 23998
 		private Transform targetTransform;
 
-		// Token: 0x04006CBF RID: 27839
+		// Token: 0x04005DBF RID: 23999
 		private GameObject prevGameObject;
 	}
 }

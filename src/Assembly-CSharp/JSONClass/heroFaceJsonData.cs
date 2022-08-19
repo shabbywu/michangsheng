@@ -3,10 +3,10 @@ using System.Collections.Generic;
 
 namespace JSONClass
 {
-	// Token: 0x02000BD8 RID: 3032
+	// Token: 0x02000848 RID: 2120
 	public class heroFaceJsonData : IJSONClass
 	{
-		// Token: 0x06004AC8 RID: 19144 RVA: 0x001FA148 File Offset: 0x001F8348
+		// Token: 0x06003F32 RID: 16178 RVA: 0x001AFC6C File Offset: 0x001ADE6C
 		public static void InitDataDict()
 		{
 			foreach (JSONObject jsonobject in jsonData.instance.heroFaceJsonData.list)
@@ -41,30 +41,30 @@ namespace JSONClass
 			}
 		}
 
-		// Token: 0x06004AC9 RID: 19145 RVA: 0x000042DD File Offset: 0x000024DD
+		// Token: 0x06003F33 RID: 16179 RVA: 0x00004095 File Offset: 0x00002295
 		private static void OnInitFinish()
 		{
 		}
 
-		// Token: 0x040046A4 RID: 18084
+		// Token: 0x04003B41 RID: 15169
 		public static Dictionary<int, heroFaceJsonData> DataDict = new Dictionary<int, heroFaceJsonData>();
 
-		// Token: 0x040046A5 RID: 18085
+		// Token: 0x04003B42 RID: 15170
 		public static List<heroFaceJsonData> DataList = new List<heroFaceJsonData>();
 
-		// Token: 0x040046A6 RID: 18086
+		// Token: 0x04003B43 RID: 15171
 		public static Action OnInitFinishAction = new Action(heroFaceJsonData.OnInitFinish);
 
-		// Token: 0x040046A7 RID: 18087
+		// Token: 0x04003B44 RID: 15172
 		public int id;
 
-		// Token: 0x040046A8 RID: 18088
+		// Token: 0x04003B45 RID: 15173
 		public int HeroId;
 
-		// Token: 0x040046A9 RID: 18089
+		// Token: 0x04003B46 RID: 15174
 		public List<int> surfaceId = new List<int>();
 
-		// Token: 0x040046AA RID: 18090
+		// Token: 0x04003B47 RID: 15175
 		public List<int> faceMode = new List<int>();
 	}
 }

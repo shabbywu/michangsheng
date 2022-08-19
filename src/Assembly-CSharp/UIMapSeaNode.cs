@@ -3,10 +3,10 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-// Token: 0x020004BA RID: 1210
+// Token: 0x02000346 RID: 838
 public class UIMapSeaNode : MonoBehaviour, IPointerEnterHandler, IEventSystemHandler, IPointerExitHandler, IPointerClickHandler
 {
-	// Token: 0x06001FFA RID: 8186 RVA: 0x00111CB8 File Offset: 0x0010FEB8
+	// Token: 0x06001CA8 RID: 7336 RVA: 0x000CD2A4 File Offset: 0x000CB4A4
 	public void Init()
 	{
 		this.iconImage = base.transform.GetChild(0).GetComponent<Image>();
@@ -15,14 +15,14 @@ public class UIMapSeaNode : MonoBehaviour, IPointerEnterHandler, IEventSystemHan
 		this.textOriColor = this.nodeNameText.color;
 	}
 
-	// Token: 0x06001FFB RID: 8187 RVA: 0x0001A43F File Offset: 0x0001863F
+	// Token: 0x06001CA9 RID: 7337 RVA: 0x000CD306 File Offset: 0x000CB506
 	public void SetCanJiaoHu(bool can)
 	{
 		this.iconImage.transform.localScale = this.imageOriScale;
 		this.iconImage.raycastTarget = can;
 	}
 
-	// Token: 0x06001FFC RID: 8188 RVA: 0x00111D1C File Offset: 0x0010FF1C
+	// Token: 0x06001CAA RID: 7338 RVA: 0x000CD32C File Offset: 0x000CB52C
 	public void SetNodeAlpha(bool alpha)
 	{
 		if (alpha)
@@ -35,7 +35,7 @@ public class UIMapSeaNode : MonoBehaviour, IPointerEnterHandler, IEventSystemHan
 		this.nodeNameText.color = this.textOriColor;
 	}
 
-	// Token: 0x06001FFD RID: 8189 RVA: 0x00111D84 File Offset: 0x0010FF84
+	// Token: 0x06001CAB RID: 7339 RVA: 0x000CD394 File Offset: 0x000CB594
 	public void RefreshUI()
 	{
 		if (this.AlwaysShow)
@@ -58,7 +58,7 @@ public class UIMapSeaNode : MonoBehaviour, IPointerEnterHandler, IEventSystemHan
 		this.nodeNameText.text = "???";
 	}
 
-	// Token: 0x06001FFE RID: 8190 RVA: 0x0001A463 File Offset: 0x00018663
+	// Token: 0x06001CAC RID: 7340 RVA: 0x000CD405 File Offset: 0x000CB605
 	void IPointerClickHandler.OnPointerClick(PointerEventData eventData)
 	{
 		if (this.IsAccessed)
@@ -67,7 +67,7 @@ public class UIMapSeaNode : MonoBehaviour, IPointerEnterHandler, IEventSystemHan
 		}
 	}
 
-	// Token: 0x06001FFF RID: 8191 RVA: 0x0001A47D File Offset: 0x0001867D
+	// Token: 0x06001CAD RID: 7341 RVA: 0x000CD41F File Offset: 0x000CB61F
 	void IPointerEnterHandler.OnPointerEnter(PointerEventData eventData)
 	{
 		if (this.IsAccessed)
@@ -76,7 +76,7 @@ public class UIMapSeaNode : MonoBehaviour, IPointerEnterHandler, IEventSystemHan
 		}
 	}
 
-	// Token: 0x06002000 RID: 8192 RVA: 0x0001A4A7 File Offset: 0x000186A7
+	// Token: 0x06001CAE RID: 7342 RVA: 0x000CD449 File Offset: 0x000CB649
 	void IPointerExitHandler.OnPointerExit(PointerEventData eventData)
 	{
 		if (this.IsAccessed)
@@ -85,36 +85,36 @@ public class UIMapSeaNode : MonoBehaviour, IPointerEnterHandler, IEventSystemHan
 		}
 	}
 
-	// Token: 0x04001B6A RID: 7018
+	// Token: 0x04001729 RID: 5929
 	public string WarpSceneName;
 
-	// Token: 0x04001B6B RID: 7019
+	// Token: 0x0400172A RID: 5930
 	public string NodeName;
 
-	// Token: 0x04001B6C RID: 7020
+	// Token: 0x0400172B RID: 5931
 	public int NodeIndex;
 
-	// Token: 0x04001B6D RID: 7021
+	// Token: 0x0400172C RID: 5932
 	public int AccessStaticValueID;
 
-	// Token: 0x04001B6E RID: 7022
+	// Token: 0x0400172D RID: 5933
 	public bool AlwaysShow;
 
-	// Token: 0x04001B6F RID: 7023
+	// Token: 0x0400172E RID: 5934
 	private Image iconImage;
 
-	// Token: 0x04001B70 RID: 7024
+	// Token: 0x0400172F RID: 5935
 	private Text nodeNameText;
 
-	// Token: 0x04001B71 RID: 7025
+	// Token: 0x04001730 RID: 5936
 	private Vector3 imageOriScale;
 
-	// Token: 0x04001B72 RID: 7026
+	// Token: 0x04001731 RID: 5937
 	private Color textOriColor;
 
-	// Token: 0x04001B73 RID: 7027
+	// Token: 0x04001732 RID: 5938
 	private Color textAnColor = new Color(0.76862746f, 0.75686276f, 0.59607846f);
 
-	// Token: 0x04001B74 RID: 7028
+	// Token: 0x04001733 RID: 5939
 	public bool IsAccessed;
 }

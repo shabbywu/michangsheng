@@ -1,13 +1,13 @@
 ﻿using System;
 using UnityEngine;
 
-// Token: 0x02000139 RID: 313
+// Token: 0x020000C9 RID: 201
 [ExecuteInEditMode]
 [RequireComponent(typeof(Camera))]
 [AddComponentMenu("Image Effects/Screen Space Ambient Occlusion")]
 public class SSAOEffectDepthCutoff : MonoBehaviour
 {
-	// Token: 0x06000BC3 RID: 3011 RVA: 0x0000DDB4 File Offset: 0x0000BFB4
+	// Token: 0x06000AE0 RID: 2784 RVA: 0x00041A2E File Offset: 0x0003FC2E
 	private static Material CreateMaterial(Shader shader)
 	{
 		if (!shader)
@@ -20,7 +20,7 @@ public class SSAOEffectDepthCutoff : MonoBehaviour
 		};
 	}
 
-	// Token: 0x06000BC4 RID: 3012 RVA: 0x0000DDCE File Offset: 0x0000BFCE
+	// Token: 0x06000AE1 RID: 2785 RVA: 0x00041A48 File Offset: 0x0003FC48
 	private static void DestroyMaterial(Material mat)
 	{
 		if (mat)
@@ -30,13 +30,13 @@ public class SSAOEffectDepthCutoff : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000BC5 RID: 3013 RVA: 0x0000DDE1 File Offset: 0x0000BFE1
+	// Token: 0x06000AE2 RID: 2786 RVA: 0x00041A5B File Offset: 0x0003FC5B
 	private void OnDisable()
 	{
 		SSAOEffectDepthCutoff.DestroyMaterial(this.m_SSAOMaterial);
 	}
 
-	// Token: 0x06000BC6 RID: 3014 RVA: 0x000939F4 File Offset: 0x00091BF4
+	// Token: 0x06000AE3 RID: 2787 RVA: 0x00041A68 File Offset: 0x0003FC68
 	private void Start()
 	{
 		if (!SystemInfo.supportsImageEffects || !SystemInfo.SupportsRenderTextureFormat(1))
@@ -55,13 +55,13 @@ public class SSAOEffectDepthCutoff : MonoBehaviour
 		this.m_Supported = true;
 	}
 
-	// Token: 0x06000BC7 RID: 3015 RVA: 0x0000DDEE File Offset: 0x0000BFEE
+	// Token: 0x06000AE4 RID: 2788 RVA: 0x00041ACA File Offset: 0x0003FCCA
 	private void OnEnable()
 	{
 		base.GetComponent<Camera>().depthTextureMode |= 2;
 	}
 
-	// Token: 0x06000BC8 RID: 3016 RVA: 0x00093A58 File Offset: 0x00091C58
+	// Token: 0x06000AE5 RID: 2789 RVA: 0x00041AE0 File Offset: 0x0003FCE0
 	private void CreateMaterials()
 	{
 		if (!this.m_SSAOMaterial && this.m_SSAOShader.isSupported)
@@ -71,7 +71,7 @@ public class SSAOEffectDepthCutoff : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000BC9 RID: 3017 RVA: 0x00093AA8 File Offset: 0x00091CA8
+	// Token: 0x06000AE6 RID: 2790 RVA: 0x00041B30 File Offset: 0x0003FD30
 	private void OnRenderImage(RenderTexture source, RenderTexture destination)
 	{
 		if (!this.m_Supported || !this.m_SSAOShader.isSupported)
@@ -128,50 +128,50 @@ public class SSAOEffectDepthCutoff : MonoBehaviour
 		RenderTexture.ReleaseTemporary(renderTexture);
 	}
 
-	// Token: 0x0400088F RID: 2191
+	// Token: 0x040006E8 RID: 1768
 	public float m_Radius = 0.4f;
 
-	// Token: 0x04000890 RID: 2192
+	// Token: 0x040006E9 RID: 1769
 	public SSAOEffectDepthCutoff.SSAOSamples m_SampleCount = SSAOEffectDepthCutoff.SSAOSamples.Medium;
 
-	// Token: 0x04000891 RID: 2193
+	// Token: 0x040006EA RID: 1770
 	public float m_OcclusionIntensity = 1.5f;
 
-	// Token: 0x04000892 RID: 2194
+	// Token: 0x040006EB RID: 1771
 	public int m_Blur = 2;
 
-	// Token: 0x04000893 RID: 2195
+	// Token: 0x040006EC RID: 1772
 	public int m_Downsampling = 2;
 
-	// Token: 0x04000894 RID: 2196
+	// Token: 0x040006ED RID: 1773
 	public float m_OcclusionAttenuation = 1f;
 
-	// Token: 0x04000895 RID: 2197
+	// Token: 0x040006EE RID: 1774
 	public float m_MinZ = 0.01f;
 
-	// Token: 0x04000896 RID: 2198
+	// Token: 0x040006EF RID: 1775
 	public float m_DepthCutoff = 50f;
 
-	// Token: 0x04000897 RID: 2199
+	// Token: 0x040006F0 RID: 1776
 	public Shader m_SSAOShader;
 
-	// Token: 0x04000898 RID: 2200
+	// Token: 0x040006F1 RID: 1777
 	private Material m_SSAOMaterial;
 
-	// Token: 0x04000899 RID: 2201
+	// Token: 0x040006F2 RID: 1778
 	public Texture2D m_RandomTexture;
 
-	// Token: 0x0400089A RID: 2202
+	// Token: 0x040006F3 RID: 1779
 	private bool m_Supported;
 
-	// Token: 0x0200013A RID: 314
+	// Token: 0x02001234 RID: 4660
 	public enum SSAOSamples
 	{
-		// Token: 0x0400089C RID: 2204
+		// Token: 0x040064F7 RID: 25847
 		Low,
-		// Token: 0x0400089D RID: 2205
+		// Token: 0x040064F8 RID: 25848
 		Medium,
-		// Token: 0x0400089E RID: 2206
+		// Token: 0x040064F9 RID: 25849
 		High
 	}
 }

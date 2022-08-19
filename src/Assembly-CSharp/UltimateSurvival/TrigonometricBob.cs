@@ -3,12 +3,12 @@ using UnityEngine;
 
 namespace UltimateSurvival
 {
-	// Token: 0x0200090A RID: 2314
+	// Token: 0x02000623 RID: 1571
 	[Serializable]
 	public class TrigonometricBob
 	{
-		// Token: 0x17000655 RID: 1621
-		// (get) Token: 0x06003B29 RID: 15145 RVA: 0x0002ADE7 File Offset: 0x00028FE7
+		// Token: 0x17000457 RID: 1111
+		// (get) Token: 0x060031F5 RID: 12789 RVA: 0x00161E03 File Offset: 0x00160003
 		public float Time
 		{
 			get
@@ -17,13 +17,13 @@ namespace UltimateSurvival
 			}
 		}
 
-		// Token: 0x06003B2A RID: 15146 RVA: 0x0002ADEF File Offset: 0x00028FEF
+		// Token: 0x060031F6 RID: 12790 RVA: 0x00161E0B File Offset: 0x0016000B
 		public TrigonometricBob GetClone()
 		{
 			return (TrigonometricBob)base.MemberwiseClone();
 		}
 
-		// Token: 0x06003B2B RID: 15147 RVA: 0x001AB698 File Offset: 0x001A9898
+		// Token: 0x060031F7 RID: 12791 RVA: 0x00161E18 File Offset: 0x00160018
 		public Vector3 CalculateBob(float moveSpeed, float deltaTime)
 		{
 			if (!this.m_Enabled)
@@ -39,7 +39,7 @@ namespace UltimateSurvival
 			return this.m_Vector;
 		}
 
-		// Token: 0x06003B2C RID: 15148 RVA: 0x001AB758 File Offset: 0x001A9958
+		// Token: 0x060031F8 RID: 12792 RVA: 0x00161ED8 File Offset: 0x001600D8
 		public Vector3 Cooldown(float deltaTime)
 		{
 			if (!this.m_Enabled)
@@ -54,7 +54,7 @@ namespace UltimateSurvival
 			return this.m_Vector;
 		}
 
-		// Token: 0x06003B2D RID: 15149 RVA: 0x001AB808 File Offset: 0x001A9A08
+		// Token: 0x060031F9 RID: 12793 RVA: 0x00161F88 File Offset: 0x00160188
 		private float GetBestCooldownValue(float time)
 		{
 			float result = 0f;
@@ -73,39 +73,39 @@ namespace UltimateSurvival
 			return result;
 		}
 
-		// Token: 0x04003569 RID: 13673
+		// Token: 0x04002C42 RID: 11330
 		private const float HORIZONTAL_SPEED = 1f;
 
-		// Token: 0x0400356A RID: 13674
+		// Token: 0x04002C43 RID: 11331
 		private const float VERTICAL_SPEED = 2f;
 
-		// Token: 0x0400356B RID: 13675
+		// Token: 0x04002C44 RID: 11332
 		[SerializeField]
 		private bool m_Enabled = true;
 
-		// Token: 0x0400356C RID: 13676
+		// Token: 0x04002C45 RID: 11333
 		[SerializeField]
 		[Range(0.1f, 20f)]
 		[Tooltip("How fast is the animation overall.")]
 		private float m_Speed = 0.18f;
 
-		// Token: 0x0400356D RID: 13677
+		// Token: 0x04002C46 RID: 11334
 		[SerializeField]
 		[Range(0.1f, 20f)]
 		[Tooltip("How fast it blends out, when it's no longer used (so the transition between walk and run bobs are smooth for example).")]
 		private float m_CooldownSpeed = 5f;
 
-		// Token: 0x0400356E RID: 13678
+		// Token: 0x04002C47 RID: 11335
 		[SerializeField]
 		[Range(0f, 100f)]
 		private float m_AmountX = 0.2f;
 
-		// Token: 0x0400356F RID: 13679
+		// Token: 0x04002C48 RID: 11336
 		[SerializeField]
 		[Range(0f, 100f)]
 		private float m_AmountY = 0.2f;
 
-		// Token: 0x04003570 RID: 13680
+		// Token: 0x04002C49 RID: 11337
 		[SerializeField]
 		[Tooltip("You can control how fast the animation plays at different time intervals (time = 0 is the beginning, time = 1 is the end).")]
 		private AnimationCurve m_Curve = new AnimationCurve(new Keyframe[]
@@ -114,10 +114,10 @@ namespace UltimateSurvival
 			new Keyframe(1f, 1f)
 		});
 
-		// Token: 0x04003571 RID: 13681
+		// Token: 0x04002C4A RID: 11338
 		private float m_Time;
 
-		// Token: 0x04003572 RID: 13682
+		// Token: 0x04002C4B RID: 11339
 		private Vector3 m_Vector;
 	}
 }

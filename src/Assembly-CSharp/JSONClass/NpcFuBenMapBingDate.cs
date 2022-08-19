@@ -3,10 +3,10 @@ using System.Collections.Generic;
 
 namespace JSONClass
 {
-	// Token: 0x02000C2C RID: 3116
+	// Token: 0x0200089E RID: 2206
 	public class NpcFuBenMapBingDate : IJSONClass
 	{
-		// Token: 0x06004C19 RID: 19481 RVA: 0x00201F74 File Offset: 0x00200174
+		// Token: 0x0600408B RID: 16523 RVA: 0x001B8D9C File Offset: 0x001B6F9C
 		public static void InitDataDict()
 		{
 			foreach (JSONObject jsonobject in jsonData.instance.NpcFuBenMapBingDate.list)
@@ -51,60 +51,60 @@ namespace JSONClass
 			}
 		}
 
-		// Token: 0x06004C1A RID: 19482 RVA: 0x000042DD File Offset: 0x000024DD
+		// Token: 0x0600408C RID: 16524 RVA: 0x00004095 File Offset: 0x00002295
 		private static void OnInitFinish()
 		{
 		}
 
-		// Token: 0x04004989 RID: 18825
+		// Token: 0x04003E30 RID: 15920
 		public static Dictionary<int, NpcFuBenMapBingDate> DataDict = new Dictionary<int, NpcFuBenMapBingDate>();
 
-		// Token: 0x0400498A RID: 18826
+		// Token: 0x04003E31 RID: 15921
 		public static List<NpcFuBenMapBingDate> DataList = new List<NpcFuBenMapBingDate>();
 
-		// Token: 0x0400498B RID: 18827
+		// Token: 0x04003E32 RID: 15922
 		public static Action OnInitFinishAction = new Action(NpcFuBenMapBingDate.OnInitFinish);
 
-		// Token: 0x0400498C RID: 18828
+		// Token: 0x04003E33 RID: 15923
 		public int id;
 
-		// Token: 0x0400498D RID: 18829
+		// Token: 0x04003E34 RID: 15924
 		public int CaiJi;
 
-		// Token: 0x0400498E RID: 18830
+		// Token: 0x04003E35 RID: 15925
 		public int CaiKuang;
 
-		// Token: 0x0400498F RID: 18831
+		// Token: 0x04003E36 RID: 15926
 		public int XunLuo;
 
-		// Token: 0x04004990 RID: 18832
+		// Token: 0x04003E37 RID: 15927
 		public int LingHe;
 
-		// Token: 0x04004991 RID: 18833
+		// Token: 0x04003E38 RID: 15928
 		public List<int> CaiJiDian = new List<int>();
 
-		// Token: 0x04004992 RID: 18834
+		// Token: 0x04003E39 RID: 15929
 		public List<int> CaiKuangDian = new List<int>();
 
-		// Token: 0x04004993 RID: 18835
+		// Token: 0x04003E3A RID: 15930
 		public List<int> XunLuoDian = new List<int>();
 
-		// Token: 0x04004994 RID: 18836
+		// Token: 0x04003E3B RID: 15931
 		public List<int> LingHeDian1 = new List<int>();
 
-		// Token: 0x04004995 RID: 18837
+		// Token: 0x04003E3C RID: 15932
 		public List<int> LingHeDian2 = new List<int>();
 
-		// Token: 0x04004996 RID: 18838
+		// Token: 0x04003E3D RID: 15933
 		public List<int> LingHeDian3 = new List<int>();
 
-		// Token: 0x04004997 RID: 18839
+		// Token: 0x04003E3E RID: 15934
 		public List<int> LingHeDian4 = new List<int>();
 
-		// Token: 0x04004998 RID: 18840
+		// Token: 0x04003E3F RID: 15935
 		public List<int> LingHeDian5 = new List<int>();
 
-		// Token: 0x04004999 RID: 18841
+		// Token: 0x04003E40 RID: 15936
 		public List<int> LingHeDian6 = new List<int>();
 	}
 }

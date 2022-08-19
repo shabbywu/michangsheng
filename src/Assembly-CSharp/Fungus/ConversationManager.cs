@@ -7,30 +7,30 @@ using UnityEngine;
 
 namespace Fungus
 {
-	// Token: 0x02001355 RID: 4949
+	// Token: 0x02000EBD RID: 3773
 	public class ConversationManager
 	{
-		// Token: 0x17000B2F RID: 2863
-		// (get) Token: 0x06007813 RID: 30739 RVA: 0x00051A70 File Offset: 0x0004FC70
-		// (set) Token: 0x06007814 RID: 30740 RVA: 0x00051A78 File Offset: 0x0004FC78
+		// Token: 0x1700089E RID: 2206
+		// (get) Token: 0x06006A9A RID: 27290 RVA: 0x0029369A File Offset: 0x0029189A
+		// (set) Token: 0x06006A9B RID: 27291 RVA: 0x002936A2 File Offset: 0x002918A2
 		public bool ClearPrev { get; set; }
 
-		// Token: 0x17000B30 RID: 2864
-		// (get) Token: 0x06007815 RID: 30741 RVA: 0x00051A81 File Offset: 0x0004FC81
-		// (set) Token: 0x06007816 RID: 30742 RVA: 0x00051A89 File Offset: 0x0004FC89
+		// Token: 0x1700089F RID: 2207
+		// (get) Token: 0x06006A9C RID: 27292 RVA: 0x002936AB File Offset: 0x002918AB
+		// (set) Token: 0x06006A9D RID: 27293 RVA: 0x002936B3 File Offset: 0x002918B3
 		public bool WaitForInput { get; set; }
 
-		// Token: 0x17000B31 RID: 2865
-		// (get) Token: 0x06007817 RID: 30743 RVA: 0x00051A92 File Offset: 0x0004FC92
-		// (set) Token: 0x06007818 RID: 30744 RVA: 0x00051A9A File Offset: 0x0004FC9A
+		// Token: 0x170008A0 RID: 2208
+		// (get) Token: 0x06006A9E RID: 27294 RVA: 0x002936BC File Offset: 0x002918BC
+		// (set) Token: 0x06006A9F RID: 27295 RVA: 0x002936C4 File Offset: 0x002918C4
 		public bool FadeDone { get; set; }
 
-		// Token: 0x17000B32 RID: 2866
-		// (get) Token: 0x06007819 RID: 30745 RVA: 0x00051AA3 File Offset: 0x0004FCA3
-		// (set) Token: 0x0600781A RID: 30746 RVA: 0x00051AAB File Offset: 0x0004FCAB
+		// Token: 0x170008A1 RID: 2209
+		// (get) Token: 0x06006AA0 RID: 27296 RVA: 0x002936CD File Offset: 0x002918CD
+		// (set) Token: 0x06006AA1 RID: 27297 RVA: 0x002936D5 File Offset: 0x002918D5
 		public FloatData WaitForSeconds { get; internal set; }
 
-		// Token: 0x0600781B RID: 30747 RVA: 0x00051AB4 File Offset: 0x0004FCB4
+		// Token: 0x06006AA2 RID: 27298 RVA: 0x002936DE File Offset: 0x002918DE
 		public ConversationManager()
 		{
 			this.ClearPrev = true;
@@ -38,7 +38,7 @@ namespace Fungus
 			this.WaitForInput = true;
 		}
 
-		// Token: 0x0600781C RID: 30748 RVA: 0x002B5924 File Offset: 0x002B3B24
+		// Token: 0x06006AA3 RID: 27299 RVA: 0x002936FC File Offset: 0x002918FC
 		protected static string[] Split(string stringToSplit)
 		{
 			List<string> list = new List<string>();
@@ -78,7 +78,7 @@ namespace Fungus
 			return list.ToArray();
 		}
 
-		// Token: 0x0600781D RID: 30749 RVA: 0x002B59E4 File Offset: 0x002B3BE4
+		// Token: 0x06006AA4 RID: 27300 RVA: 0x002937BC File Offset: 0x002919BC
 		protected virtual SayDialog GetSayDialog(Character character)
 		{
 			SayDialog sayDialog = null;
@@ -95,7 +95,7 @@ namespace Fungus
 			return sayDialog;
 		}
 
-		// Token: 0x0600781E RID: 30750 RVA: 0x002B5A30 File Offset: 0x002B3C30
+		// Token: 0x06006AA5 RID: 27301 RVA: 0x00293808 File Offset: 0x00291A08
 		public static void PreParse(string conv, Action<ConversationManager.RawConversationItem> itemAction)
 		{
 			MatchCollection matchCollection = new Regex("((?<sayParams>[\\w \"><.'-_]*?):)?(?<text>.*)\\r*(\\n|$)").Matches(conv);
@@ -124,7 +124,7 @@ namespace Fungus
 			}
 		}
 
-		// Token: 0x0600781F RID: 30751 RVA: 0x002B5B04 File Offset: 0x002B3D04
+		// Token: 0x06006AA6 RID: 27302 RVA: 0x002938DC File Offset: 0x00291ADC
 		public static List<ConversationManager.RawConversationItem> PreParse(string conv)
 		{
 			List<ConversationManager.RawConversationItem> retval = new List<ConversationManager.RawConversationItem>();
@@ -135,7 +135,7 @@ namespace Fungus
 			return retval;
 		}
 
-		// Token: 0x06007820 RID: 30752 RVA: 0x002B5B3C File Offset: 0x002B3D3C
+		// Token: 0x06006AA7 RID: 27303 RVA: 0x00293914 File Offset: 0x00291B14
 		protected virtual List<ConversationManager.ConversationItem> Parse(string conv)
 		{
 			List<ConversationManager.ConversationItem> items = new List<ConversationManager.ConversationItem>();
@@ -149,7 +149,7 @@ namespace Fungus
 			return items;
 		}
 
-		// Token: 0x06007821 RID: 30753 RVA: 0x002B5B80 File Offset: 0x002B3D80
+		// Token: 0x06006AA8 RID: 27304 RVA: 0x00293958 File Offset: 0x00291B58
 		protected virtual ConversationManager.ConversationItem CreateConversationItem(string[] sayParams, string text, Character currentCharacter)
 		{
 			ConversationManager.ConversationItem result = default(ConversationManager.ConversationItem);
@@ -285,13 +285,13 @@ namespace Fungus
 			return result;
 		}
 
-		// Token: 0x06007822 RID: 30754 RVA: 0x00051AD1 File Offset: 0x0004FCD1
+		// Token: 0x06006AA9 RID: 27305 RVA: 0x00293CD1 File Offset: 0x00291ED1
 		public virtual void PopulateCharacterCache()
 		{
 			this.characters = Object.FindObjectsOfType<Character>();
 		}
 
-		// Token: 0x06007823 RID: 30755 RVA: 0x00051ADE File Offset: 0x0004FCDE
+		// Token: 0x06006AAA RID: 27306 RVA: 0x00293CDE File Offset: 0x00291EDE
 		public virtual IEnumerator DoConversation(string conv)
 		{
 			if (string.IsNullOrEmpty(conv))
@@ -377,76 +377,76 @@ namespace Fungus
 			yield break;
 		}
 
-		// Token: 0x04006841 RID: 26689
+		// Token: 0x040059FA RID: 23034
 		private const string ConversationTextBodyRegex = "((?<sayParams>[\\w \"><.'-_]*?):)?(?<text>.*)\\r*(\\n|$)";
 
-		// Token: 0x04006842 RID: 26690
+		// Token: 0x040059FB RID: 23035
 		protected Character[] characters;
 
-		// Token: 0x04006843 RID: 26691
+		// Token: 0x040059FC RID: 23036
 		protected bool exitSayWait;
 
-		// Token: 0x02001356 RID: 4950
+		// Token: 0x0200170C RID: 5900
 		public struct RawConversationItem
 		{
-			// Token: 0x04006848 RID: 26696
+			// Token: 0x040074A2 RID: 29858
 			public string[] sayParams;
 
-			// Token: 0x04006849 RID: 26697
+			// Token: 0x040074A3 RID: 29859
 			public string text;
 		}
 
-		// Token: 0x02001357 RID: 4951
+		// Token: 0x0200170D RID: 5901
 		protected struct ConversationItem
 		{
-			// Token: 0x17000B33 RID: 2867
-			// (get) Token: 0x06007825 RID: 30757 RVA: 0x00051AFD File Offset: 0x0004FCFD
-			// (set) Token: 0x06007826 RID: 30758 RVA: 0x00051B05 File Offset: 0x0004FD05
+			// Token: 0x17000BB3 RID: 2995
+			// (get) Token: 0x060088E3 RID: 35043 RVA: 0x002E9ACC File Offset: 0x002E7CCC
+			// (set) Token: 0x060088E4 RID: 35044 RVA: 0x002E9AD4 File Offset: 0x002E7CD4
 			public string Text { get; set; }
 
-			// Token: 0x17000B34 RID: 2868
-			// (get) Token: 0x06007827 RID: 30759 RVA: 0x00051B0E File Offset: 0x0004FD0E
-			// (set) Token: 0x06007828 RID: 30760 RVA: 0x00051B16 File Offset: 0x0004FD16
+			// Token: 0x17000BB4 RID: 2996
+			// (get) Token: 0x060088E5 RID: 35045 RVA: 0x002E9ADD File Offset: 0x002E7CDD
+			// (set) Token: 0x060088E6 RID: 35046 RVA: 0x002E9AE5 File Offset: 0x002E7CE5
 			public Character Character { get; set; }
 
-			// Token: 0x17000B35 RID: 2869
-			// (get) Token: 0x06007829 RID: 30761 RVA: 0x00051B1F File Offset: 0x0004FD1F
-			// (set) Token: 0x0600782A RID: 30762 RVA: 0x00051B27 File Offset: 0x0004FD27
+			// Token: 0x17000BB5 RID: 2997
+			// (get) Token: 0x060088E7 RID: 35047 RVA: 0x002E9AEE File Offset: 0x002E7CEE
+			// (set) Token: 0x060088E8 RID: 35048 RVA: 0x002E9AF6 File Offset: 0x002E7CF6
 			public Sprite Portrait { get; set; }
 
-			// Token: 0x17000B36 RID: 2870
-			// (get) Token: 0x0600782B RID: 30763 RVA: 0x00051B30 File Offset: 0x0004FD30
-			// (set) Token: 0x0600782C RID: 30764 RVA: 0x00051B38 File Offset: 0x0004FD38
+			// Token: 0x17000BB6 RID: 2998
+			// (get) Token: 0x060088E9 RID: 35049 RVA: 0x002E9AFF File Offset: 0x002E7CFF
+			// (set) Token: 0x060088EA RID: 35050 RVA: 0x002E9B07 File Offset: 0x002E7D07
 			public RectTransform Position { get; set; }
 
-			// Token: 0x17000B37 RID: 2871
-			// (get) Token: 0x0600782D RID: 30765 RVA: 0x00051B41 File Offset: 0x0004FD41
-			// (set) Token: 0x0600782E RID: 30766 RVA: 0x00051B49 File Offset: 0x0004FD49
+			// Token: 0x17000BB7 RID: 2999
+			// (get) Token: 0x060088EB RID: 35051 RVA: 0x002E9B10 File Offset: 0x002E7D10
+			// (set) Token: 0x060088EC RID: 35052 RVA: 0x002E9B18 File Offset: 0x002E7D18
 			public bool Hide { get; set; }
 
-			// Token: 0x17000B38 RID: 2872
-			// (get) Token: 0x0600782F RID: 30767 RVA: 0x00051B52 File Offset: 0x0004FD52
-			// (set) Token: 0x06007830 RID: 30768 RVA: 0x00051B5A File Offset: 0x0004FD5A
+			// Token: 0x17000BB8 RID: 3000
+			// (get) Token: 0x060088ED RID: 35053 RVA: 0x002E9B21 File Offset: 0x002E7D21
+			// (set) Token: 0x060088EE RID: 35054 RVA: 0x002E9B29 File Offset: 0x002E7D29
 			public FacingDirection FacingDirection { get; set; }
 
-			// Token: 0x17000B39 RID: 2873
-			// (get) Token: 0x06007831 RID: 30769 RVA: 0x00051B63 File Offset: 0x0004FD63
-			// (set) Token: 0x06007832 RID: 30770 RVA: 0x00051B6B File Offset: 0x0004FD6B
+			// Token: 0x17000BB9 RID: 3001
+			// (get) Token: 0x060088EF RID: 35055 RVA: 0x002E9B32 File Offset: 0x002E7D32
+			// (set) Token: 0x060088F0 RID: 35056 RVA: 0x002E9B3A File Offset: 0x002E7D3A
 			public bool Flip { get; set; }
 
-			// Token: 0x17000B3A RID: 2874
-			// (get) Token: 0x06007833 RID: 30771 RVA: 0x00051B74 File Offset: 0x0004FD74
-			// (set) Token: 0x06007834 RID: 30772 RVA: 0x00051B7C File Offset: 0x0004FD7C
+			// Token: 0x17000BBA RID: 3002
+			// (get) Token: 0x060088F1 RID: 35057 RVA: 0x002E9B43 File Offset: 0x002E7D43
+			// (set) Token: 0x060088F2 RID: 35058 RVA: 0x002E9B4B File Offset: 0x002E7D4B
 			public bool ClearPrev { get; set; }
 
-			// Token: 0x17000B3B RID: 2875
-			// (get) Token: 0x06007835 RID: 30773 RVA: 0x00051B85 File Offset: 0x0004FD85
-			// (set) Token: 0x06007836 RID: 30774 RVA: 0x00051B8D File Offset: 0x0004FD8D
+			// Token: 0x17000BBB RID: 3003
+			// (get) Token: 0x060088F3 RID: 35059 RVA: 0x002E9B54 File Offset: 0x002E7D54
+			// (set) Token: 0x060088F4 RID: 35060 RVA: 0x002E9B5C File Offset: 0x002E7D5C
 			public bool WaitForInput { get; set; }
 
-			// Token: 0x17000B3C RID: 2876
-			// (get) Token: 0x06007837 RID: 30775 RVA: 0x00051B96 File Offset: 0x0004FD96
-			// (set) Token: 0x06007838 RID: 30776 RVA: 0x00051B9E File Offset: 0x0004FD9E
+			// Token: 0x17000BBC RID: 3004
+			// (get) Token: 0x060088F5 RID: 35061 RVA: 0x002E9B65 File Offset: 0x002E7D65
+			// (set) Token: 0x060088F6 RID: 35062 RVA: 0x002E9B6D File Offset: 0x002E7D6D
 			public bool FadeDone { get; set; }
 		}
 	}

@@ -2,12 +2,12 @@
 using Fungus;
 using UnityEngine;
 
-// Token: 0x02000634 RID: 1588
+// Token: 0x02000476 RID: 1142
 [CommandInfo("YSSea", "检查海域机制", "检查海域机制", 0)]
 [AddComponentMenu("")]
 public class CmdCheckSeaJiZhi : Command
 {
-	// Token: 0x06002778 RID: 10104 RVA: 0x00134844 File Offset: 0x00132A44
+	// Token: 0x060023BB RID: 9147 RVA: 0x000F4928 File Offset: 0x000F2B28
 	public override void OnEnter()
 	{
 		MapSeaCompent component = this.GetFlowchart().transform.parent.GetComponent<MapSeaCompent>();

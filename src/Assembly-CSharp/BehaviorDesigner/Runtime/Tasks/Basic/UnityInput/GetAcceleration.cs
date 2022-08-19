@@ -3,25 +3,25 @@ using UnityEngine;
 
 namespace BehaviorDesigner.Runtime.Tasks.Basic.UnityInput
 {
-	// Token: 0x020015E2 RID: 5602
+	// Token: 0x02001123 RID: 4387
 	[TaskCategory("Basic/Input")]
 	[TaskDescription("Stores the acceleration value.")]
 	public class GetAcceleration : Action
 	{
-		// Token: 0x0600833A RID: 33594 RVA: 0x0005A33E File Offset: 0x0005853E
+		// Token: 0x06007540 RID: 30016 RVA: 0x002B42E5 File Offset: 0x002B24E5
 		public override TaskStatus OnUpdate()
 		{
 			this.storeResult.Value = Input.acceleration;
 			return 2;
 		}
 
-		// Token: 0x0600833B RID: 33595 RVA: 0x0005A351 File Offset: 0x00058551
+		// Token: 0x06007541 RID: 30017 RVA: 0x002B42F8 File Offset: 0x002B24F8
 		public override void OnReset()
 		{
 			this.storeResult = Vector3.zero;
 		}
 
-		// Token: 0x0400700B RID: 28683
+		// Token: 0x040060E8 RID: 24808
 		[RequiredField]
 		[Tooltip("The stored result")]
 		public SharedVector3 storeResult;

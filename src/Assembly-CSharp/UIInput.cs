@@ -3,13 +3,13 @@ using System.Collections.Generic;
 using System.Text;
 using UnityEngine;
 
-// Token: 0x02000108 RID: 264
+// Token: 0x020000A8 RID: 168
 [AddComponentMenu("NGUI/UI/Input Field")]
 public class UIInput : MonoBehaviour
 {
-	// Token: 0x17000178 RID: 376
-	// (get) Token: 0x06000A13 RID: 2579 RVA: 0x0000C5FB File Offset: 0x0000A7FB
-	// (set) Token: 0x06000A14 RID: 2580 RVA: 0x0000C603 File Offset: 0x0000A803
+	// Token: 0x17000161 RID: 353
+	// (get) Token: 0x06000943 RID: 2371 RVA: 0x00037E02 File Offset: 0x00036002
+	// (set) Token: 0x06000944 RID: 2372 RVA: 0x00037E0A File Offset: 0x0003600A
 	public string defaultText
 	{
 		get
@@ -27,8 +27,8 @@ public class UIInput : MonoBehaviour
 		}
 	}
 
-	// Token: 0x17000179 RID: 377
-	// (get) Token: 0x06000A15 RID: 2581 RVA: 0x0000C620 File Offset: 0x0000A820
+	// Token: 0x17000162 RID: 354
+	// (get) Token: 0x06000945 RID: 2373 RVA: 0x00037E27 File Offset: 0x00036027
 	public bool inputShouldBeHidden
 	{
 		get
@@ -37,9 +37,9 @@ public class UIInput : MonoBehaviour
 		}
 	}
 
-	// Token: 0x1700017A RID: 378
-	// (get) Token: 0x06000A16 RID: 2582 RVA: 0x0000C653 File Offset: 0x0000A853
-	// (set) Token: 0x06000A17 RID: 2583 RVA: 0x0000C65B File Offset: 0x0000A85B
+	// Token: 0x17000163 RID: 355
+	// (get) Token: 0x06000946 RID: 2374 RVA: 0x00037E5A File Offset: 0x0003605A
+	// (set) Token: 0x06000947 RID: 2375 RVA: 0x00037E62 File Offset: 0x00036062
 	[Obsolete("Use UIInput.value instead")]
 	public string text
 	{
@@ -53,9 +53,9 @@ public class UIInput : MonoBehaviour
 		}
 	}
 
-	// Token: 0x1700017B RID: 379
-	// (get) Token: 0x06000A18 RID: 2584 RVA: 0x0000C664 File Offset: 0x0000A864
-	// (set) Token: 0x06000A19 RID: 2585 RVA: 0x0008B3DC File Offset: 0x000895DC
+	// Token: 0x17000164 RID: 356
+	// (get) Token: 0x06000948 RID: 2376 RVA: 0x00037E6B File Offset: 0x0003606B
+	// (set) Token: 0x06000949 RID: 2377 RVA: 0x00037E84 File Offset: 0x00036084
 	public string value
 	{
 		get
@@ -105,9 +105,9 @@ public class UIInput : MonoBehaviour
 		}
 	}
 
-	// Token: 0x1700017C RID: 380
-	// (get) Token: 0x06000A1A RID: 2586 RVA: 0x0000C67A File Offset: 0x0000A87A
-	// (set) Token: 0x06000A1B RID: 2587 RVA: 0x0000C682 File Offset: 0x0000A882
+	// Token: 0x17000165 RID: 357
+	// (get) Token: 0x0600094A RID: 2378 RVA: 0x00037F32 File Offset: 0x00036132
+	// (set) Token: 0x0600094B RID: 2379 RVA: 0x00037F3A File Offset: 0x0003613A
 	[Obsolete("Use UIInput.isSelected instead")]
 	public bool selected
 	{
@@ -121,9 +121,9 @@ public class UIInput : MonoBehaviour
 		}
 	}
 
-	// Token: 0x1700017D RID: 381
-	// (get) Token: 0x06000A1C RID: 2588 RVA: 0x0000C68B File Offset: 0x0000A88B
-	// (set) Token: 0x06000A1D RID: 2589 RVA: 0x0000C698 File Offset: 0x0000A898
+	// Token: 0x17000166 RID: 358
+	// (get) Token: 0x0600094C RID: 2380 RVA: 0x00037F43 File Offset: 0x00036143
+	// (set) Token: 0x0600094D RID: 2381 RVA: 0x00037F50 File Offset: 0x00036150
 	public bool isSelected
 	{
 		get
@@ -147,9 +147,9 @@ public class UIInput : MonoBehaviour
 		}
 	}
 
-	// Token: 0x1700017E RID: 382
-	// (get) Token: 0x06000A1E RID: 2590 RVA: 0x0000C6B7 File Offset: 0x0000A8B7
-	// (set) Token: 0x06000A1F RID: 2591 RVA: 0x0000C6D3 File Offset: 0x0000A8D3
+	// Token: 0x17000167 RID: 359
+	// (get) Token: 0x0600094E RID: 2382 RVA: 0x00037F6F File Offset: 0x0003616F
+	// (set) Token: 0x0600094F RID: 2383 RVA: 0x00037F8B File Offset: 0x0003618B
 	public int cursorPosition
 	{
 		get
@@ -170,9 +170,9 @@ public class UIInput : MonoBehaviour
 		}
 	}
 
-	// Token: 0x1700017F RID: 383
-	// (get) Token: 0x06000A20 RID: 2592 RVA: 0x0000C6EA File Offset: 0x0000A8EA
-	// (set) Token: 0x06000A21 RID: 2593 RVA: 0x0000C706 File Offset: 0x0000A906
+	// Token: 0x17000168 RID: 360
+	// (get) Token: 0x06000950 RID: 2384 RVA: 0x00037FA2 File Offset: 0x000361A2
+	// (set) Token: 0x06000951 RID: 2385 RVA: 0x00037FBE File Offset: 0x000361BE
 	public int selectionStart
 	{
 		get
@@ -193,9 +193,9 @@ public class UIInput : MonoBehaviour
 		}
 	}
 
-	// Token: 0x17000180 RID: 384
-	// (get) Token: 0x06000A22 RID: 2594 RVA: 0x0000C6B7 File Offset: 0x0000A8B7
-	// (set) Token: 0x06000A23 RID: 2595 RVA: 0x0000C6D3 File Offset: 0x0000A8D3
+	// Token: 0x17000169 RID: 361
+	// (get) Token: 0x06000952 RID: 2386 RVA: 0x00037F6F File Offset: 0x0003616F
+	// (set) Token: 0x06000953 RID: 2387 RVA: 0x00037F8B File Offset: 0x0003618B
 	public int selectionEnd
 	{
 		get
@@ -216,8 +216,8 @@ public class UIInput : MonoBehaviour
 		}
 	}
 
-	// Token: 0x17000181 RID: 385
-	// (get) Token: 0x06000A24 RID: 2596 RVA: 0x0000C71D File Offset: 0x0000A91D
+	// Token: 0x1700016A RID: 362
+	// (get) Token: 0x06000954 RID: 2388 RVA: 0x00037FD5 File Offset: 0x000361D5
 	public UITexture caret
 	{
 		get
@@ -226,7 +226,7 @@ public class UIInput : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000A25 RID: 2597 RVA: 0x0008B48C File Offset: 0x0008968C
+	// Token: 0x06000955 RID: 2389 RVA: 0x00037FE0 File Offset: 0x000361E0
 	public string Validate(string val)
 	{
 		if (string.IsNullOrEmpty(val))
@@ -256,7 +256,7 @@ public class UIInput : MonoBehaviour
 		return stringBuilder.ToString();
 	}
 
-	// Token: 0x06000A26 RID: 2598 RVA: 0x0000C725 File Offset: 0x0000A925
+	// Token: 0x06000956 RID: 2390 RVA: 0x00038095 File Offset: 0x00036295
 	private void Start()
 	{
 		if (this.mLoadSavedValue && !string.IsNullOrEmpty(this.savedAs))
@@ -267,7 +267,7 @@ public class UIInput : MonoBehaviour
 		this.value = this.mValue.Replace("\\n", "\n");
 	}
 
-	// Token: 0x06000A27 RID: 2599 RVA: 0x0008B544 File Offset: 0x00089744
+	// Token: 0x06000957 RID: 2391 RVA: 0x000380D0 File Offset: 0x000362D0
 	protected void Init()
 	{
 		if (this.mDoInit && this.label != null)
@@ -287,7 +287,7 @@ public class UIInput : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000A28 RID: 2600 RVA: 0x0000C75E File Offset: 0x0000A95E
+	// Token: 0x06000958 RID: 2392 RVA: 0x00038185 File Offset: 0x00036385
 	protected void SaveToPlayerPrefs(string val)
 	{
 		if (!string.IsNullOrEmpty(this.savedAs))
@@ -301,7 +301,7 @@ public class UIInput : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000A29 RID: 2601 RVA: 0x0000C78D File Offset: 0x0000A98D
+	// Token: 0x06000959 RID: 2393 RVA: 0x000381B4 File Offset: 0x000363B4
 	protected virtual void OnSelect(bool isSelected)
 	{
 		if (isSelected)
@@ -312,7 +312,7 @@ public class UIInput : MonoBehaviour
 		this.OnDeselectEvent();
 	}
 
-	// Token: 0x06000A2A RID: 2602 RVA: 0x0000C79F File Offset: 0x0000A99F
+	// Token: 0x0600095A RID: 2394 RVA: 0x000381C6 File Offset: 0x000363C6
 	protected void OnSelectEvent()
 	{
 		UIInput.selection = this;
@@ -326,7 +326,7 @@ public class UIInput : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000A2B RID: 2603 RVA: 0x0008B5FC File Offset: 0x000897FC
+	// Token: 0x0600095B RID: 2395 RVA: 0x00038200 File Offset: 0x00036400
 	protected void OnDeselectEvent()
 	{
 		if (this.mDoInit)
@@ -352,7 +352,7 @@ public class UIInput : MonoBehaviour
 		this.UpdateLabel();
 	}
 
-	// Token: 0x06000A2C RID: 2604 RVA: 0x0008B694 File Offset: 0x00089894
+	// Token: 0x0600095C RID: 2396 RVA: 0x00038298 File Offset: 0x00036498
 	private void Update()
 	{
 		if (this.isSelected)
@@ -410,7 +410,7 @@ public class UIInput : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000A2D RID: 2605 RVA: 0x0000C7D6 File Offset: 0x0000A9D6
+	// Token: 0x0600095D RID: 2397 RVA: 0x000384E0 File Offset: 0x000366E0
 	private void OnGUI()
 	{
 		if (this.isSelected && Event.current.rawType == 4)
@@ -419,7 +419,7 @@ public class UIInput : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000A2E RID: 2606 RVA: 0x0000C7F9 File Offset: 0x0000A9F9
+	// Token: 0x0600095E RID: 2398 RVA: 0x00038503 File Offset: 0x00036703
 	protected void DoBackspace()
 	{
 		if (!string.IsNullOrEmpty(this.mValue))
@@ -436,7 +436,7 @@ public class UIInput : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000A2F RID: 2607 RVA: 0x0008B8DC File Offset: 0x00089ADC
+	// Token: 0x0600095F RID: 2399 RVA: 0x00038544 File Offset: 0x00036744
 	protected virtual bool ProcessEvent(Event ev)
 	{
 		if (this.label == null)
@@ -677,7 +677,7 @@ public class UIInput : MonoBehaviour
 		return true;
 	}
 
-	// Token: 0x06000A30 RID: 2608 RVA: 0x0008BDA4 File Offset: 0x00089FA4
+	// Token: 0x06000960 RID: 2400 RVA: 0x00038A0C File Offset: 0x00036C0C
 	protected virtual void Insert(string text)
 	{
 		string leftText = this.GetLeftText();
@@ -741,7 +741,7 @@ public class UIInput : MonoBehaviour
 		this.ExecuteOnChange();
 	}
 
-	// Token: 0x06000A31 RID: 2609 RVA: 0x0008BF2C File Offset: 0x0008A12C
+	// Token: 0x06000961 RID: 2401 RVA: 0x00038B94 File Offset: 0x00036D94
 	protected string GetLeftText()
 	{
 		int num = Mathf.Min(this.mSelectionStart, this.mSelectionEnd);
@@ -752,7 +752,7 @@ public class UIInput : MonoBehaviour
 		return "";
 	}
 
-	// Token: 0x06000A32 RID: 2610 RVA: 0x0008BF70 File Offset: 0x0008A170
+	// Token: 0x06000962 RID: 2402 RVA: 0x00038BD8 File Offset: 0x00036DD8
 	protected string GetRightText()
 	{
 		int num = Mathf.Max(this.mSelectionStart, this.mSelectionEnd);
@@ -763,7 +763,7 @@ public class UIInput : MonoBehaviour
 		return "";
 	}
 
-	// Token: 0x06000A33 RID: 2611 RVA: 0x0008BFBC File Offset: 0x0008A1BC
+	// Token: 0x06000963 RID: 2403 RVA: 0x00038C24 File Offset: 0x00036E24
 	protected string GetSelection()
 	{
 		if (string.IsNullOrEmpty(this.mValue) || this.mSelectionStart == this.mSelectionEnd)
@@ -775,7 +775,7 @@ public class UIInput : MonoBehaviour
 		return this.mValue.Substring(num, num2 - num);
 	}
 
-	// Token: 0x06000A34 RID: 2612 RVA: 0x0008C020 File Offset: 0x0008A220
+	// Token: 0x06000964 RID: 2404 RVA: 0x00038C88 File Offset: 0x00036E88
 	protected int GetCharUnderMouse()
 	{
 		Vector3[] worldCorners = this.label.worldCorners;
@@ -790,7 +790,7 @@ public class UIInput : MonoBehaviour
 		return UIInput.mDrawStart + this.label.GetCharacterIndexAtPosition(currentRay.GetPoint(num));
 	}
 
-	// Token: 0x06000A35 RID: 2613 RVA: 0x0008C084 File Offset: 0x0008A284
+	// Token: 0x06000965 RID: 2405 RVA: 0x00038CEC File Offset: 0x00036EEC
 	protected virtual void OnPress(bool isPressed)
 	{
 		if (isPressed && this.isSelected && this.label != null && (UICamera.currentScheme == UICamera.ControlScheme.Mouse || UICamera.currentScheme == UICamera.ControlScheme.Touch))
@@ -803,7 +803,7 @@ public class UIInput : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000A36 RID: 2614 RVA: 0x0000C839 File Offset: 0x0000AA39
+	// Token: 0x06000966 RID: 2406 RVA: 0x00038D51 File Offset: 0x00036F51
 	protected virtual void OnDrag(Vector2 delta)
 	{
 		if (this.label != null && (UICamera.currentScheme == UICamera.ControlScheme.Mouse || UICamera.currentScheme == UICamera.ControlScheme.Touch))
@@ -812,13 +812,13 @@ public class UIInput : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000A37 RID: 2615 RVA: 0x0000C864 File Offset: 0x0000AA64
+	// Token: 0x06000967 RID: 2407 RVA: 0x00038D7C File Offset: 0x00036F7C
 	private void OnDisable()
 	{
 		this.Cleanup();
 	}
 
-	// Token: 0x06000A38 RID: 2616 RVA: 0x0008C0EC File Offset: 0x0008A2EC
+	// Token: 0x06000968 RID: 2408 RVA: 0x00038D84 File Offset: 0x00036F84
 	protected virtual void Cleanup()
 	{
 		if (this.mHighlight)
@@ -836,7 +836,7 @@ public class UIInput : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000A39 RID: 2617 RVA: 0x0008C14C File Offset: 0x0008A34C
+	// Token: 0x06000969 RID: 2409 RVA: 0x00038DE4 File Offset: 0x00036FE4
 	public void Submit()
 	{
 		if (NGUITools.GetActive(this))
@@ -852,7 +852,7 @@ public class UIInput : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000A3A RID: 2618 RVA: 0x0008C1A0 File Offset: 0x0008A3A0
+	// Token: 0x0600096A RID: 2410 RVA: 0x00038E38 File Offset: 0x00037038
 	public void UpdateLabel()
 	{
 		if (this.label != null)
@@ -1011,7 +1011,7 @@ public class UIInput : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000A3B RID: 2619 RVA: 0x0008C69C File Offset: 0x0008A89C
+	// Token: 0x0600096B RID: 2411 RVA: 0x00039334 File Offset: 0x00037534
 	protected void SetPivotToLeft()
 	{
 		Vector2 pivotOffset = NGUIMath.GetPivotOffset(this.mPivot);
@@ -1019,7 +1019,7 @@ public class UIInput : MonoBehaviour
 		this.label.pivot = NGUIMath.GetPivot(pivotOffset);
 	}
 
-	// Token: 0x06000A3C RID: 2620 RVA: 0x0008C6D4 File Offset: 0x0008A8D4
+	// Token: 0x0600096C RID: 2412 RVA: 0x0003936C File Offset: 0x0003756C
 	protected void SetPivotToRight()
 	{
 		Vector2 pivotOffset = NGUIMath.GetPivotOffset(this.mPivot);
@@ -1027,7 +1027,7 @@ public class UIInput : MonoBehaviour
 		this.label.pivot = NGUIMath.GetPivot(pivotOffset);
 	}
 
-	// Token: 0x06000A3D RID: 2621 RVA: 0x0000C86C File Offset: 0x0000AA6C
+	// Token: 0x0600096D RID: 2413 RVA: 0x000393A2 File Offset: 0x000375A2
 	protected void RestoreLabelPivot()
 	{
 		if (this.label != null && this.label.pivot != this.mPivot)
@@ -1036,7 +1036,7 @@ public class UIInput : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000A3E RID: 2622 RVA: 0x0008C70C File Offset: 0x0008A90C
+	// Token: 0x0600096E RID: 2414 RVA: 0x000393D8 File Offset: 0x000375D8
 	protected char Validate(string text, int pos, char ch)
 	{
 		if (this.validation == UIInput.Validation.None || !base.enabled)
@@ -1134,7 +1134,7 @@ public class UIInput : MonoBehaviour
 		return '\0';
 	}
 
-	// Token: 0x06000A3F RID: 2623 RVA: 0x0000C8A0 File Offset: 0x0000AAA0
+	// Token: 0x0600096F RID: 2415 RVA: 0x000395AB File Offset: 0x000377AB
 	protected void ExecuteOnChange()
 	{
 		if (UIInput.current == null && EventDelegate.IsValid(this.onChange))
@@ -1145,19 +1145,19 @@ public class UIInput : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000A40 RID: 2624 RVA: 0x0000C8D3 File Offset: 0x0000AAD3
+	// Token: 0x06000970 RID: 2416 RVA: 0x000395DE File Offset: 0x000377DE
 	public void RemoveFocus()
 	{
 		this.isSelected = false;
 	}
 
-	// Token: 0x06000A41 RID: 2625 RVA: 0x0000C8DC File Offset: 0x0000AADC
+	// Token: 0x06000971 RID: 2417 RVA: 0x000395E7 File Offset: 0x000377E7
 	public void SaveValue()
 	{
 		this.SaveToPlayerPrefs(this.mValue);
 	}
 
-	// Token: 0x06000A42 RID: 2626 RVA: 0x0008C8E0 File Offset: 0x0008AAE0
+	// Token: 0x06000972 RID: 2418 RVA: 0x000395F8 File Offset: 0x000377F8
 	public void LoadValue()
 	{
 		if (!string.IsNullOrEmpty(this.savedAs))
@@ -1168,189 +1168,189 @@ public class UIInput : MonoBehaviour
 		}
 	}
 
-	// Token: 0x0400072B RID: 1835
+	// Token: 0x040005C1 RID: 1473
 	public static UIInput current;
 
-	// Token: 0x0400072C RID: 1836
+	// Token: 0x040005C2 RID: 1474
 	public static UIInput selection;
 
-	// Token: 0x0400072D RID: 1837
+	// Token: 0x040005C3 RID: 1475
 	public UILabel label;
 
-	// Token: 0x0400072E RID: 1838
+	// Token: 0x040005C4 RID: 1476
 	public UIInput.InputType inputType;
 
-	// Token: 0x0400072F RID: 1839
+	// Token: 0x040005C5 RID: 1477
 	public UIInput.OnReturnKey onReturnKey;
 
-	// Token: 0x04000730 RID: 1840
+	// Token: 0x040005C6 RID: 1478
 	public UIInput.KeyboardType keyboardType;
 
-	// Token: 0x04000731 RID: 1841
+	// Token: 0x040005C7 RID: 1479
 	public bool hideInput;
 
-	// Token: 0x04000732 RID: 1842
+	// Token: 0x040005C8 RID: 1480
 	public UIInput.Validation validation;
 
-	// Token: 0x04000733 RID: 1843
+	// Token: 0x040005C9 RID: 1481
 	public int characterLimit;
 
-	// Token: 0x04000734 RID: 1844
+	// Token: 0x040005CA RID: 1482
 	public string savedAs;
 
-	// Token: 0x04000735 RID: 1845
+	// Token: 0x040005CB RID: 1483
 	public GameObject selectOnTab;
 
-	// Token: 0x04000736 RID: 1846
+	// Token: 0x040005CC RID: 1484
 	public Color activeTextColor = Color.white;
 
-	// Token: 0x04000737 RID: 1847
+	// Token: 0x040005CD RID: 1485
 	public Color caretColor = new Color(1f, 1f, 1f, 0.8f);
 
-	// Token: 0x04000738 RID: 1848
+	// Token: 0x040005CE RID: 1486
 	public Color selectionColor = new Color(1f, 0.8745098f, 0.5529412f, 0.5f);
 
-	// Token: 0x04000739 RID: 1849
+	// Token: 0x040005CF RID: 1487
 	public List<EventDelegate> onSubmit = new List<EventDelegate>();
 
-	// Token: 0x0400073A RID: 1850
+	// Token: 0x040005D0 RID: 1488
 	public List<EventDelegate> onChange = new List<EventDelegate>();
 
-	// Token: 0x0400073B RID: 1851
+	// Token: 0x040005D1 RID: 1489
 	public UIInput.OnValidate onValidate;
 
-	// Token: 0x0400073C RID: 1852
+	// Token: 0x040005D2 RID: 1490
 	[SerializeField]
 	[HideInInspector]
 	protected string mValue;
 
-	// Token: 0x0400073D RID: 1853
+	// Token: 0x040005D3 RID: 1491
 	[NonSerialized]
 	protected string mDefaultText = "";
 
-	// Token: 0x0400073E RID: 1854
+	// Token: 0x040005D4 RID: 1492
 	[NonSerialized]
 	protected Color mDefaultColor = Color.white;
 
-	// Token: 0x0400073F RID: 1855
+	// Token: 0x040005D5 RID: 1493
 	[NonSerialized]
 	protected float mPosition;
 
-	// Token: 0x04000740 RID: 1856
+	// Token: 0x040005D6 RID: 1494
 	[NonSerialized]
 	protected bool mDoInit = true;
 
-	// Token: 0x04000741 RID: 1857
+	// Token: 0x040005D7 RID: 1495
 	[NonSerialized]
 	protected UIWidget.Pivot mPivot;
 
-	// Token: 0x04000742 RID: 1858
+	// Token: 0x040005D8 RID: 1496
 	[NonSerialized]
 	protected bool mLoadSavedValue = true;
 
-	// Token: 0x04000743 RID: 1859
+	// Token: 0x040005D9 RID: 1497
 	protected static int mDrawStart = 0;
 
-	// Token: 0x04000744 RID: 1860
+	// Token: 0x040005DA RID: 1498
 	protected static string mLastIME = "";
 
-	// Token: 0x04000745 RID: 1861
+	// Token: 0x040005DB RID: 1499
 	[NonSerialized]
 	protected int mSelectionStart;
 
-	// Token: 0x04000746 RID: 1862
+	// Token: 0x040005DC RID: 1500
 	[NonSerialized]
 	protected int mSelectionEnd;
 
-	// Token: 0x04000747 RID: 1863
+	// Token: 0x040005DD RID: 1501
 	[NonSerialized]
 	protected UITexture mHighlight;
 
-	// Token: 0x04000748 RID: 1864
+	// Token: 0x040005DE RID: 1502
 	[NonSerialized]
 	protected UITexture mCaret;
 
-	// Token: 0x04000749 RID: 1865
+	// Token: 0x040005DF RID: 1503
 	[NonSerialized]
 	protected Texture2D mBlankTex;
 
-	// Token: 0x0400074A RID: 1866
+	// Token: 0x040005E0 RID: 1504
 	[NonSerialized]
 	protected float mNextBlink;
 
-	// Token: 0x0400074B RID: 1867
+	// Token: 0x040005E1 RID: 1505
 	[NonSerialized]
 	protected float mLastAlpha;
 
-	// Token: 0x0400074C RID: 1868
+	// Token: 0x040005E2 RID: 1506
 	[NonSerialized]
 	protected string mCached = "";
 
-	// Token: 0x0400074D RID: 1869
+	// Token: 0x040005E3 RID: 1507
 	[NonSerialized]
 	protected int mSelectMe = -1;
 
-	// Token: 0x02000109 RID: 265
+	// Token: 0x02001224 RID: 4644
 	public enum InputType
 	{
-		// Token: 0x0400074F RID: 1871
+		// Token: 0x040064BA RID: 25786
 		Standard,
-		// Token: 0x04000750 RID: 1872
+		// Token: 0x040064BB RID: 25787
 		AutoCorrect,
-		// Token: 0x04000751 RID: 1873
+		// Token: 0x040064BC RID: 25788
 		Password
 	}
 
-	// Token: 0x0200010A RID: 266
+	// Token: 0x02001225 RID: 4645
 	public enum Validation
 	{
-		// Token: 0x04000753 RID: 1875
+		// Token: 0x040064BE RID: 25790
 		None,
-		// Token: 0x04000754 RID: 1876
+		// Token: 0x040064BF RID: 25791
 		Integer,
-		// Token: 0x04000755 RID: 1877
+		// Token: 0x040064C0 RID: 25792
 		Float,
-		// Token: 0x04000756 RID: 1878
+		// Token: 0x040064C1 RID: 25793
 		Alphanumeric,
-		// Token: 0x04000757 RID: 1879
+		// Token: 0x040064C2 RID: 25794
 		Username,
-		// Token: 0x04000758 RID: 1880
+		// Token: 0x040064C3 RID: 25795
 		Name
 	}
 
-	// Token: 0x0200010B RID: 267
+	// Token: 0x02001226 RID: 4646
 	public enum KeyboardType
 	{
-		// Token: 0x0400075A RID: 1882
+		// Token: 0x040064C5 RID: 25797
 		Default,
-		// Token: 0x0400075B RID: 1883
+		// Token: 0x040064C6 RID: 25798
 		ASCIICapable,
-		// Token: 0x0400075C RID: 1884
+		// Token: 0x040064C7 RID: 25799
 		NumbersAndPunctuation,
-		// Token: 0x0400075D RID: 1885
+		// Token: 0x040064C8 RID: 25800
 		URL,
-		// Token: 0x0400075E RID: 1886
+		// Token: 0x040064C9 RID: 25801
 		NumberPad,
-		// Token: 0x0400075F RID: 1887
+		// Token: 0x040064CA RID: 25802
 		PhonePad,
-		// Token: 0x04000760 RID: 1888
+		// Token: 0x040064CB RID: 25803
 		NamePhonePad,
-		// Token: 0x04000761 RID: 1889
+		// Token: 0x040064CC RID: 25804
 		EmailAddress
 	}
 
-	// Token: 0x0200010C RID: 268
+	// Token: 0x02001227 RID: 4647
 	public enum OnReturnKey
 	{
-		// Token: 0x04000763 RID: 1891
+		// Token: 0x040064CE RID: 25806
 		Default,
-		// Token: 0x04000764 RID: 1892
+		// Token: 0x040064CF RID: 25807
 		Submit,
-		// Token: 0x04000765 RID: 1893
+		// Token: 0x040064D0 RID: 25808
 		NewLine
 	}
 
-	// Token: 0x0200010D RID: 269
-	// (Invoke) Token: 0x06000A46 RID: 2630
+	// Token: 0x02001228 RID: 4648
+	// (Invoke) Token: 0x06007887 RID: 30855
 	public delegate char OnValidate(string text, int charIndex, char addedChar);
 }

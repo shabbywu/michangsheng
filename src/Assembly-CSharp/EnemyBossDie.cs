@@ -1,10 +1,10 @@
 ﻿using System;
 using UnityEngine;
 
-// Token: 0x02000157 RID: 343
+// Token: 0x020000E0 RID: 224
 public class EnemyBossDie : MonoBehaviour
 {
-	// Token: 0x06000C46 RID: 3142 RVA: 0x00096CBC File Offset: 0x00094EBC
+	// Token: 0x06000B57 RID: 2903 RVA: 0x0004510C File Offset: 0x0004330C
 	private void OnDestroy()
 	{
 		if (!this.isShuttingDown)
@@ -18,13 +18,13 @@ public class EnemyBossDie : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000C47 RID: 3143 RVA: 0x0000E4E6 File Offset: 0x0000C6E6
+	// Token: 0x06000B58 RID: 2904 RVA: 0x00045157 File Offset: 0x00043357
 	private void OnApplicationQuit()
 	{
 		this.isShuttingDown = true;
 	}
 
-	// Token: 0x06000C48 RID: 3144 RVA: 0x00096D08 File Offset: 0x00094F08
+	// Token: 0x06000B59 RID: 2905 RVA: 0x00045160 File Offset: 0x00043360
 	private void DropItem()
 	{
 		if (this.ItemDropAfterDead.Length != 0)
@@ -43,12 +43,12 @@ public class EnemyBossDie : MonoBehaviour
 		}
 	}
 
-	// Token: 0x04000962 RID: 2402
+	// Token: 0x04000787 RID: 1927
 	public GameObject[] ItemDropAfterDead;
 
-	// Token: 0x04000963 RID: 2403
+	// Token: 0x04000788 RID: 1928
 	public int score = 1;
 
-	// Token: 0x04000964 RID: 2404
+	// Token: 0x04000789 RID: 1929
 	private bool isShuttingDown;
 }

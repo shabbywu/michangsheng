@@ -7,16 +7,16 @@ using UnityEngine;
 
 namespace KBEngine
 {
-	// Token: 0x0200100F RID: 4111
+	// Token: 0x02000C70 RID: 3184
 	public class AI
 	{
-		// Token: 0x0600623B RID: 25147 RVA: 0x000441B8 File Offset: 0x000423B8
+		// Token: 0x060057C3 RID: 22467 RVA: 0x0024746A File Offset: 0x0024566A
 		public AI(Entity avater)
 		{
 			this.entity = avater;
 		}
 
-		// Token: 0x0600623C RID: 25148 RVA: 0x00273638 File Offset: 0x00271838
+		// Token: 0x060057C4 RID: 22468 RVA: 0x0024747C File Offset: 0x0024567C
 		public virtual void think()
 		{
 			if (!((Avatar)this.entity).fightTemp.useAI)
@@ -30,7 +30,7 @@ namespace KBEngine
 			}
 		}
 
-		// Token: 0x0600623D RID: 25149 RVA: 0x0027368C File Offset: 0x0027188C
+		// Token: 0x060057C5 RID: 22469 RVA: 0x002474D0 File Offset: 0x002456D0
 		public int getSkillWeight(int skillId)
 		{
 			JSONObject jsonobject = jsonData.instance.skillJsonData[string.Concat(skillId)];
@@ -59,13 +59,13 @@ namespace KBEngine
 			return list[0];
 		}
 
-		// Token: 0x0600623E RID: 25150 RVA: 0x000441C7 File Offset: 0x000423C7
+		// Token: 0x060057C6 RID: 22470 RVA: 0x002475EC File Offset: 0x002457EC
 		public JSONObject getAIRealizID(int seid, int skillId)
 		{
 			return jsonData.instance.AIJsonDate[seid][skillId.ToString()];
 		}
 
-		// Token: 0x0600623F RID: 25151 RVA: 0x000441E5 File Offset: 0x000423E5
+		// Token: 0x060057C7 RID: 22471 RVA: 0x0024760A File Offset: 0x0024580A
 		public void setFlag(List<int> flag, int num)
 		{
 			if (num != 0)
@@ -74,7 +74,7 @@ namespace KBEngine
 			}
 		}
 
-		// Token: 0x06006240 RID: 25152 RVA: 0x002737A8 File Offset: 0x002719A8
+		// Token: 0x060057C8 RID: 22472 RVA: 0x00247618 File Offset: 0x00245818
 		public Avatar getAvatarByStr(JSONObject AIinfo)
 		{
 			Avatar result = null;
@@ -93,7 +93,7 @@ namespace KBEngine
 			return result;
 		}
 
-		// Token: 0x06006241 RID: 25153 RVA: 0x0027383C File Offset: 0x00271A3C
+		// Token: 0x060057C9 RID: 22473 RVA: 0x002476AC File Offset: 0x002458AC
 		public void setFlagByPanduan2(JSONObject AIinfo, int LeftNum, int rightNum, List<int> flag)
 		{
 			if (AIinfo["panduan2"].str == ">")
@@ -123,7 +123,7 @@ namespace KBEngine
 			}
 		}
 
-		// Token: 0x06006242 RID: 25154 RVA: 0x0027391C File Offset: 0x00271B1C
+		// Token: 0x060057CA RID: 22474 RVA: 0x0024778C File Offset: 0x0024598C
 		public void realizeAIType(int seid, int skillId, List<int> flag)
 		{
 			int i = 0;
@@ -151,7 +151,7 @@ namespace KBEngine
 			}
 		}
 
-		// Token: 0x06006243 RID: 25155 RVA: 0x00273988 File Offset: 0x00271B88
+		// Token: 0x060057CB RID: 22475 RVA: 0x002477F8 File Offset: 0x002459F8
 		public void AIRealize1(int seid, int skillId, List<int> flag)
 		{
 			JSONObject airealizID = this.getAIRealizID(seid, skillId);
@@ -164,7 +164,7 @@ namespace KBEngine
 			this.setFlagByPanduan2(airealizID, num, (int)airealizID["value2"].n, flag);
 		}
 
-		// Token: 0x06006244 RID: 25156 RVA: 0x00273A20 File Offset: 0x00271C20
+		// Token: 0x060057CC RID: 22476 RVA: 0x00247890 File Offset: 0x00245A90
 		public void AIRealize2(int seid, int skillId, List<int> flag)
 		{
 			JSONObject airealizID = this.getAIRealizID(seid, skillId);
@@ -172,7 +172,7 @@ namespace KBEngine
 			this.setFlagByPanduan2(airealizID, hp, (int)airealizID["value1"].n, flag);
 		}
 
-		// Token: 0x06006245 RID: 25157 RVA: 0x00273A60 File Offset: 0x00271C60
+		// Token: 0x060057CD RID: 22477 RVA: 0x002478D0 File Offset: 0x00245AD0
 		public void AIRealize3(int seid, int skillId, List<int> flag)
 		{
 			JSONObject airealizID = this.getAIRealizID(seid, skillId);
@@ -201,7 +201,7 @@ namespace KBEngine
 			this.setFlag(flag, (int)airealizID["No"].n);
 		}
 
-		// Token: 0x06006246 RID: 25158 RVA: 0x00273B74 File Offset: 0x00271D74
+		// Token: 0x060057CE RID: 22478 RVA: 0x002479E4 File Offset: 0x00245BE4
 		public void AIRealize4(int seid, int skillId, List<int> flag)
 		{
 			JSONObject airealizID = this.getAIRealizID(seid, skillId);
@@ -209,7 +209,7 @@ namespace KBEngine
 			this.setFlagByPanduan2(airealizID, cardNum, (int)airealizID["value1"].n, flag);
 		}
 
-		// Token: 0x06006247 RID: 25159 RVA: 0x00273BB8 File Offset: 0x00271DB8
+		// Token: 0x060057CF RID: 22479 RVA: 0x00247A28 File Offset: 0x00245C28
 		public void AIRealize5(int seid, int skillId, List<int> flag)
 		{
 			JSONObject airealizID = this.getAIRealizID(seid, skillId);
@@ -222,7 +222,7 @@ namespace KBEngine
 			this.setFlag(flag, (int)airealizID["No"].n);
 		}
 
-		// Token: 0x06006248 RID: 25160 RVA: 0x00273C18 File Offset: 0x00271E18
+		// Token: 0x060057D0 RID: 22480 RVA: 0x00247A88 File Offset: 0x00245C88
 		public void AIRealize6(int seid, int skillId, List<int> flag)
 		{
 			JSONObject airealizID = this.getAIRealizID(seid, skillId);
@@ -230,7 +230,7 @@ namespace KBEngine
 			this.setFlagByPanduan2(airealizID, avatar.shengShi, avatar.OtherAvatar.shengShi, flag);
 		}
 
-		// Token: 0x06006249 RID: 25161 RVA: 0x00273C54 File Offset: 0x00271E54
+		// Token: 0x060057D1 RID: 22481 RVA: 0x00247AC4 File Offset: 0x00245CC4
 		public void AIRealize7(int seid, int skillId, List<int> flag)
 		{
 			JSONObject airealizID = this.getAIRealizID(seid, skillId);
@@ -239,7 +239,7 @@ namespace KBEngine
 			this.setFlagByPanduan2(airealizID, leftNum, (int)airealizID["value1"].n, flag);
 		}
 
-		// Token: 0x0600624A RID: 25162 RVA: 0x00273CA0 File Offset: 0x00271EA0
+		// Token: 0x060057D2 RID: 22482 RVA: 0x00247B10 File Offset: 0x00245D10
 		public void AIRealize8(int seid, int skillId, List<int> flag)
 		{
 			JSONObject airealizID = this.getAIRealizID(seid, skillId);
@@ -247,7 +247,7 @@ namespace KBEngine
 			this.setFlagByPanduan2(airealizID, leftNum, (int)airealizID["value2"].n, flag);
 		}
 
-		// Token: 0x0600624B RID: 25163 RVA: 0x00273CF8 File Offset: 0x00271EF8
+		// Token: 0x060057D3 RID: 22483 RVA: 0x00247B68 File Offset: 0x00245D68
 		public void AIRealize9(int seid, int skillId, List<int> flag)
 		{
 			JSONObject airealizID = this.getAIRealizID(seid, skillId);
@@ -255,7 +255,7 @@ namespace KBEngine
 			this.setFlagByPanduan2(airealizID, leftNum, (int)airealizID["value2"].n, flag);
 		}
 
-		// Token: 0x0600624C RID: 25164 RVA: 0x00273D50 File Offset: 0x00271F50
+		// Token: 0x060057D4 RID: 22484 RVA: 0x00247BC0 File Offset: 0x00245DC0
 		public void AIRealize10(int seid, int skillId, List<int> flag)
 		{
 			JSONObject airealizID = this.getAIRealizID(seid, skillId);
@@ -268,7 +268,7 @@ namespace KBEngine
 			this.setFlag(flag, (int)airealizID["No"].n);
 		}
 
-		// Token: 0x0600624D RID: 25165 RVA: 0x00273DB8 File Offset: 0x00271FB8
+		// Token: 0x060057D5 RID: 22485 RVA: 0x00247C28 File Offset: 0x00245E28
 		public void AIRealize11(int seid, int skillId, List<int> flag)
 		{
 			JSONObject airealizID = this.getAIRealizID(seid, skillId);
@@ -284,7 +284,7 @@ namespace KBEngine
 			this.setFlagByPanduan2(airealizID, num, (int)airealizID["value2"].n, flag);
 		}
 
-		// Token: 0x0600624E RID: 25166 RVA: 0x00273E78 File Offset: 0x00272078
+		// Token: 0x060057D6 RID: 22486 RVA: 0x00247CE8 File Offset: 0x00245EE8
 		public void AIRealize12(int seid, int skillId, List<int> flag)
 		{
 			JSONObject airealizID = this.getAIRealizID(seid, skillId);
@@ -292,7 +292,7 @@ namespace KBEngine
 			this.setFlagByPanduan2(airealizID, leftNum, (int)airealizID["value1"].n, flag);
 		}
 
-		// Token: 0x0600624F RID: 25167 RVA: 0x00273EC0 File Offset: 0x002720C0
+		// Token: 0x060057D7 RID: 22487 RVA: 0x00247D30 File Offset: 0x00245F30
 		public void AIRealize13(int seid, int skillId, List<int> flag)
 		{
 			JSONObject airealizID = this.getAIRealizID(seid, skillId);
@@ -300,7 +300,7 @@ namespace KBEngine
 			this.setFlagByPanduan2(airealizID, leftNum, (int)airealizID["value2"].n, flag);
 		}
 
-		// Token: 0x06006250 RID: 25168 RVA: 0x00273F1C File Offset: 0x0027211C
+		// Token: 0x060057D8 RID: 22488 RVA: 0x00247D8C File Offset: 0x00245F8C
 		public void AIRealize14(int seid, int skillId, List<int> flag)
 		{
 			JSONObject airealizID = this.getAIRealizID(seid, skillId);
@@ -310,7 +310,7 @@ namespace KBEngine
 			this.setFlagByPanduan2(airealizID, buffSum, buffSum2, flag);
 		}
 
-		// Token: 0x06006251 RID: 25169 RVA: 0x00273F7C File Offset: 0x0027217C
+		// Token: 0x060057D9 RID: 22489 RVA: 0x00247DEC File Offset: 0x00245FEC
 		public void AIRealize15(int seid, int skillId, List<int> flag)
 		{
 			JSONObject airealizID = this.getAIRealizID(seid, skillId);
@@ -324,7 +324,7 @@ namespace KBEngine
 			this.setFlagByPanduan2(airealizID, num, i, flag);
 		}
 
-		// Token: 0x06006252 RID: 25170 RVA: 0x00273FDC File Offset: 0x002721DC
+		// Token: 0x060057DA RID: 22490 RVA: 0x00247E4C File Offset: 0x0024604C
 		public void AIRealize16(int seid, int skillId, List<int> flag)
 		{
 			JSONObject airealizID = this.getAIRealizID(seid, skillId);
@@ -333,7 +333,7 @@ namespace KBEngine
 			this.setFlagByPanduan2(airealizID, count, i, flag);
 		}
 
-		// Token: 0x06006253 RID: 25171 RVA: 0x00274028 File Offset: 0x00272228
+		// Token: 0x060057DB RID: 22491 RVA: 0x00247E98 File Offset: 0x00246098
 		public void AIRealize17(int seid, int skillId, List<int> flag)
 		{
 			JSONObject airealizID = this.getAIRealizID(seid, skillId);
@@ -347,7 +347,7 @@ namespace KBEngine
 			this.setFlag(flag, (int)airealizID["No"].n);
 		}
 
-		// Token: 0x06006254 RID: 25172 RVA: 0x002740A4 File Offset: 0x002722A4
+		// Token: 0x060057DC RID: 22492 RVA: 0x00247F14 File Offset: 0x00246114
 		public void AIRealize30(int seid, int skillId, List<int> flag)
 		{
 			JSONObject airealizID = this.getAIRealizID(seid, skillId);
@@ -356,7 +356,7 @@ namespace KBEngine
 			this.setFlagByPanduan2(airealizID, buffSum, i, flag);
 		}
 
-		// Token: 0x06006255 RID: 25173 RVA: 0x002740F8 File Offset: 0x002722F8
+		// Token: 0x060057DD RID: 22493 RVA: 0x00247F68 File Offset: 0x00246168
 		public void AIRealize31(int seid, int skillId, List<int> flag)
 		{
 			JSONObject airealizID = this.getAIRealizID(seid, skillId);
@@ -374,7 +374,7 @@ namespace KBEngine
 			this.setFlag(flag, (int)airealizID["No"].n);
 		}
 
-		// Token: 0x06006256 RID: 25174 RVA: 0x002740A4 File Offset: 0x002722A4
+		// Token: 0x060057DE RID: 22494 RVA: 0x00247FFC File Offset: 0x002461FC
 		public void AIRealize32(int seid, int skillId, List<int> flag)
 		{
 			JSONObject airealizID = this.getAIRealizID(seid, skillId);
@@ -383,40 +383,40 @@ namespace KBEngine
 			this.setFlagByPanduan2(airealizID, buffSum, i, flag);
 		}
 
-		// Token: 0x04005CD0 RID: 23760
+		// Token: 0x040051F2 RID: 20978
 		public Entity entity;
 
-		// Token: 0x02001010 RID: 4112
+		// Token: 0x02001615 RID: 5653
 		public enum entityState
 		{
-			// Token: 0x04005CD2 RID: 23762
+			// Token: 0x0400713B RID: 28987
 			Dead = 1,
-			// Token: 0x04005CD3 RID: 23763
+			// Token: 0x0400713C RID: 28988
 			RoundEnd,
-			// Token: 0x04005CD4 RID: 23764
+			// Token: 0x0400713D RID: 28989
 			RoundStart,
-			// Token: 0x04005CD5 RID: 23765
+			// Token: 0x0400713E RID: 28990
 			GameStart,
-			// Token: 0x04005CD6 RID: 23766
+			// Token: 0x0400713F RID: 28991
 			WaitDoNext
 		}
 
-		// Token: 0x02001011 RID: 4113
+		// Token: 0x02001616 RID: 5654
 		public enum skillWeight
 		{
-			// Token: 0x04005CD8 RID: 23768
+			// Token: 0x04007141 RID: 28993
 			Circle = 1,
-			// Token: 0x04005CD9 RID: 23769
+			// Token: 0x04007142 RID: 28994
 			Draw,
-			// Token: 0x04005CDA RID: 23770
+			// Token: 0x04007143 RID: 28995
 			Buff,
-			// Token: 0x04005CDB RID: 23771
+			// Token: 0x04007144 RID: 28996
 			Attack,
-			// Token: 0x04005CDC RID: 23772
+			// Token: 0x04007145 RID: 28997
 			Defense,
-			// Token: 0x04005CDD RID: 23773
+			// Token: 0x04007146 RID: 28998
 			Other,
-			// Token: 0x04005CDE RID: 23774
+			// Token: 0x04007147 RID: 28999
 			Final = 20
 		}
 	}

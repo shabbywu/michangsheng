@@ -4,10 +4,10 @@ using Deps;
 
 namespace KBEngine
 {
-	// Token: 0x02000FE0 RID: 4064
+	// Token: 0x02000C57 RID: 3159
 	public class PacketReceiverKCP : PacketReceiverBase
 	{
-		// Token: 0x06006021 RID: 24609 RVA: 0x00042D87 File Offset: 0x00040F87
+		// Token: 0x060055D6 RID: 21974 RVA: 0x0023A406 File Offset: 0x00238606
 		public PacketReceiverKCP(NetworkInterfaceBase networkInterface) : base(networkInterface)
 		{
 			this._buffer = new byte[65583];
@@ -15,14 +15,14 @@ namespace KBEngine
 			this.kcp_ = ((NetworkInterfaceKCP)networkInterface).kcp();
 		}
 
-		// Token: 0x06006022 RID: 24610 RVA: 0x002671FC File Offset: 0x002653FC
+		// Token: 0x060055D7 RID: 21975 RVA: 0x0023A43C File Offset: 0x0023863C
 		~PacketReceiverKCP()
 		{
 			this.kcp_ = null;
 			Dbg.DEBUG_MSG("PacketReceiverKCP::~PacketReceiverKCP(), destroyed!");
 		}
 
-		// Token: 0x06006023 RID: 24611 RVA: 0x00267234 File Offset: 0x00265434
+		// Token: 0x060055D8 RID: 21976 RVA: 0x0023A474 File Offset: 0x00238674
 		public override void process()
 		{
 			Socket socket = this._networkInterface.sock();
@@ -72,20 +72,20 @@ namespace KBEngine
 			}
 		}
 
-		// Token: 0x06006024 RID: 24612 RVA: 0x000042DD File Offset: 0x000024DD
+		// Token: 0x060055D9 RID: 21977 RVA: 0x00004095 File Offset: 0x00002295
 		public override void startRecv()
 		{
 		}
 
-		// Token: 0x06006025 RID: 24613 RVA: 0x000042DD File Offset: 0x000024DD
+		// Token: 0x060055DA RID: 21978 RVA: 0x00004095 File Offset: 0x00002295
 		protected override void _asyncReceive()
 		{
 		}
 
-		// Token: 0x04005B7A RID: 23418
+		// Token: 0x040050CA RID: 20682
 		private byte[] _buffer;
 
-		// Token: 0x04005B7B RID: 23419
+		// Token: 0x040050CB RID: 20683
 		private KCP kcp_;
 	}
 }

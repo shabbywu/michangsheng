@@ -4,12 +4,12 @@ using UnityEngine.Events;
 
 namespace Fungus
 {
-	// Token: 0x02001217 RID: 4631
+	// Token: 0x02000DDB RID: 3547
 	[CommandInfo("Scripting", "Invoke Event", "Calls a list of component methods via the Unity Event System (as used in the Unity UI). This command is more efficient than the Invoke Method command but can only pass a single parameter and doesn't support return values.", 0)]
 	[AddComponentMenu("")]
 	public class InvokeEvent : Command
 	{
-		// Token: 0x06007131 RID: 28977 RVA: 0x002A4780 File Offset: 0x002A2980
+		// Token: 0x060064AF RID: 25775 RVA: 0x0027FBF0 File Offset: 0x0027DDF0
 		protected virtual void DoInvoke()
 		{
 			switch (this.invokeType)
@@ -32,7 +32,7 @@ namespace Fungus
 			}
 		}
 
-		// Token: 0x06007132 RID: 28978 RVA: 0x0004CEA6 File Offset: 0x0004B0A6
+		// Token: 0x060064B0 RID: 25776 RVA: 0x0027FC85 File Offset: 0x0027DE85
 		public override void OnEnter()
 		{
 			if (Mathf.Approximately(this.delay, 0f))
@@ -46,7 +46,7 @@ namespace Fungus
 			this.Continue();
 		}
 
-		// Token: 0x06007133 RID: 28979 RVA: 0x002A4818 File Offset: 0x002A2A18
+		// Token: 0x060064B1 RID: 25777 RVA: 0x0027FCB8 File Offset: 0x0027DEB8
 		public override string GetSummary()
 		{
 			if (!string.IsNullOrEmpty(this.description))
@@ -75,97 +75,97 @@ namespace Fungus
 			return text + " methods";
 		}
 
-		// Token: 0x06007134 RID: 28980 RVA: 0x0004C5E0 File Offset: 0x0004A7E0
+		// Token: 0x060064B2 RID: 25778 RVA: 0x0027D3DB File Offset: 0x0027B5DB
 		public override Color GetButtonColor()
 		{
 			return new Color32(235, 191, 217, byte.MaxValue);
 		}
 
-		// Token: 0x06007135 RID: 28981 RVA: 0x002A48FC File Offset: 0x002A2AFC
+		// Token: 0x060064B3 RID: 25779 RVA: 0x0027FD9C File Offset: 0x0027DF9C
 		public override bool HasReference(Variable variable)
 		{
 			return this.booleanParameter.booleanRef == variable || this.integerParameter.integerRef == variable || this.floatParameter.floatRef == variable || this.stringParameter.stringRef == variable || base.HasReference(variable);
 		}
 
-		// Token: 0x04006385 RID: 25477
+		// Token: 0x04005681 RID: 22145
 		[Tooltip("A description of what this command does. Appears in the command summary.")]
 		[SerializeField]
 		protected string description = "";
 
-		// Token: 0x04006386 RID: 25478
+		// Token: 0x04005682 RID: 22146
 		[Tooltip("Delay (in seconds) before the methods will be called")]
 		[SerializeField]
 		protected float delay;
 
-		// Token: 0x04006387 RID: 25479
+		// Token: 0x04005683 RID: 22147
 		[Tooltip("Selects type of method parameter to pass")]
 		[SerializeField]
 		protected InvokeType invokeType;
 
-		// Token: 0x04006388 RID: 25480
+		// Token: 0x04005684 RID: 22148
 		[Tooltip("List of methods to call. Supports methods with no parameters or exactly one string, int, float or object parameter.")]
 		[SerializeField]
 		protected UnityEvent staticEvent = new UnityEvent();
 
-		// Token: 0x04006389 RID: 25481
+		// Token: 0x04005685 RID: 22149
 		[Tooltip("Boolean parameter to pass to the invoked methods.")]
 		[SerializeField]
 		protected BooleanData booleanParameter;
 
-		// Token: 0x0400638A RID: 25482
+		// Token: 0x04005686 RID: 22150
 		[Tooltip("List of methods to call. Supports methods with one boolean parameter.")]
 		[SerializeField]
 		protected InvokeEvent.BooleanEvent booleanEvent = new InvokeEvent.BooleanEvent();
 
-		// Token: 0x0400638B RID: 25483
+		// Token: 0x04005687 RID: 22151
 		[Tooltip("Integer parameter to pass to the invoked methods.")]
 		[SerializeField]
 		protected IntegerData integerParameter;
 
-		// Token: 0x0400638C RID: 25484
+		// Token: 0x04005688 RID: 22152
 		[Tooltip("List of methods to call. Supports methods with one integer parameter.")]
 		[SerializeField]
 		protected InvokeEvent.IntegerEvent integerEvent = new InvokeEvent.IntegerEvent();
 
-		// Token: 0x0400638D RID: 25485
+		// Token: 0x04005689 RID: 22153
 		[Tooltip("Float parameter to pass to the invoked methods.")]
 		[SerializeField]
 		protected FloatData floatParameter;
 
-		// Token: 0x0400638E RID: 25486
+		// Token: 0x0400568A RID: 22154
 		[Tooltip("List of methods to call. Supports methods with one float parameter.")]
 		[SerializeField]
 		protected InvokeEvent.FloatEvent floatEvent = new InvokeEvent.FloatEvent();
 
-		// Token: 0x0400638F RID: 25487
+		// Token: 0x0400568B RID: 22155
 		[Tooltip("String parameter to pass to the invoked methods.")]
 		[SerializeField]
 		protected StringDataMulti stringParameter;
 
-		// Token: 0x04006390 RID: 25488
+		// Token: 0x0400568C RID: 22156
 		[Tooltip("List of methods to call. Supports methods with one string parameter.")]
 		[SerializeField]
 		protected InvokeEvent.StringEvent stringEvent = new InvokeEvent.StringEvent();
 
-		// Token: 0x02001218 RID: 4632
+		// Token: 0x020016B0 RID: 5808
 		[Serializable]
 		public class BooleanEvent : UnityEvent<bool>
 		{
 		}
 
-		// Token: 0x02001219 RID: 4633
+		// Token: 0x020016B1 RID: 5809
 		[Serializable]
 		public class IntegerEvent : UnityEvent<int>
 		{
 		}
 
-		// Token: 0x0200121A RID: 4634
+		// Token: 0x020016B2 RID: 5810
 		[Serializable]
 		public class FloatEvent : UnityEvent<float>
 		{
 		}
 
-		// Token: 0x0200121B RID: 4635
+		// Token: 0x020016B3 RID: 5811
 		[Serializable]
 		public class StringEvent : UnityEvent<string>
 		{

@@ -4,10 +4,10 @@ using UnityEngine.EventSystems;
 
 namespace script.Submit
 {
-	// Token: 0x02000ABB RID: 2747
+	// Token: 0x020009D2 RID: 2514
 	public class SubmitSlot : SlotBase
 	{
-		// Token: 0x06004635 RID: 17973 RVA: 0x001DF02C File Offset: 0x001DD22C
+		// Token: 0x060045D4 RID: 17876 RVA: 0x001D92A8 File Offset: 0x001D74A8
 		public override void OnPointerEnter(PointerEventData eventData)
 		{
 			if (DragMag.Inst.IsDraging)
@@ -30,7 +30,7 @@ namespace script.Submit
 			this._selectPanel.SetActive(true);
 		}
 
-		// Token: 0x06004636 RID: 17974 RVA: 0x001DF0B0 File Offset: 0x001DD2B0
+		// Token: 0x060045D5 RID: 17877 RVA: 0x001D932C File Offset: 0x001D752C
 		public override void OnPointerUp(PointerEventData eventData)
 		{
 			if (eventData.dragging)
@@ -59,16 +59,16 @@ namespace script.Submit
 			this._selectPanel.SetActive(false);
 		}
 
-		// Token: 0x06004637 RID: 17975 RVA: 0x00030EE2 File Offset: 0x0002F0E2
+		// Token: 0x060045D6 RID: 17878 RVA: 0x0018C39D File Offset: 0x0018A59D
 		public override bool CanDrag()
 		{
 			return !base.IsNull() && this.Item.CanSale && base.CanDrag();
 		}
 
-		// Token: 0x04003E57 RID: 15959
+		// Token: 0x04004741 RID: 18241
 		public bool IsPlayer;
 
-		// Token: 0x04003E58 RID: 15960
+		// Token: 0x04004742 RID: 18242
 		public bool IsInBag;
 	}
 }

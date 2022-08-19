@@ -2,16 +2,16 @@
 
 namespace ICSharpCode.SharpZipLib.Zip
 {
-	// Token: 0x020007C4 RID: 1988
+	// Token: 0x0200052E RID: 1326
 	public enum ZipEncryptionMethod
 	{
-		// Token: 0x04002EB1 RID: 11953
+		// Token: 0x040026BD RID: 9917
 		None,
-		// Token: 0x04002EB2 RID: 11954
+		// Token: 0x040026BE RID: 9918
 		ZipCrypto,
-		// Token: 0x04002EB3 RID: 11955
+		// Token: 0x040026BF RID: 9919
 		AES128,
-		// Token: 0x04002EB4 RID: 11956
+		// Token: 0x040026C0 RID: 9920
 		AES256
 	}
 }

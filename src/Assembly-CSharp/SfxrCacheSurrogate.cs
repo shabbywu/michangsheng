@@ -2,17 +2,17 @@
 using System.Collections;
 using UnityEngine;
 
-// Token: 0x0200002D RID: 45
+// Token: 0x02000025 RID: 37
 [AddComponentMenu("")]
 public class SfxrCacheSurrogate : MonoBehaviour
 {
-	// Token: 0x06000305 RID: 773 RVA: 0x00006DA9 File Offset: 0x00004FA9
+	// Token: 0x060002F3 RID: 755 RVA: 0x0000F261 File Offset: 0x0000D461
 	public void CacheSound(SfxrSynth __synth, Action __callback)
 	{
 		base.StartCoroutine(this.CacheSoundAsynchronously(__synth, __callback));
 	}
 
-	// Token: 0x06000306 RID: 774 RVA: 0x00006DBA File Offset: 0x00004FBA
+	// Token: 0x060002F4 RID: 756 RVA: 0x0000F272 File Offset: 0x0000D472
 	private IEnumerator CacheSoundAsynchronously(SfxrSynth __synth, Action __callback)
 	{
 		yield return null;
@@ -22,13 +22,13 @@ public class SfxrCacheSurrogate : MonoBehaviour
 		yield break;
 	}
 
-	// Token: 0x06000307 RID: 775 RVA: 0x00006DD7 File Offset: 0x00004FD7
+	// Token: 0x060002F5 RID: 757 RVA: 0x0000F28F File Offset: 0x0000D48F
 	public void CacheMutations(SfxrSynth __synth, uint __mutationsNum, float __mutationAmount, Action __callback)
 	{
 		base.StartCoroutine(this.CacheMutationsAsynchronously(__synth, __mutationsNum, __mutationAmount, __callback));
 	}
 
-	// Token: 0x06000308 RID: 776 RVA: 0x00006DEB File Offset: 0x00004FEB
+	// Token: 0x060002F6 RID: 758 RVA: 0x0000F2A3 File Offset: 0x0000D4A3
 	private IEnumerator CacheMutationsAsynchronously(SfxrSynth __synth, uint __mutationsNum, float __mutationAmount, Action __callback)
 	{
 		yield return null;

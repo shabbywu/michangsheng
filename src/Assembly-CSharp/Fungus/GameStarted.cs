@@ -8,12 +8,12 @@ using UnityEngine.SceneManagement;
 
 namespace Fungus
 {
-	// Token: 0x0200131B RID: 4891
+	// Token: 0x02000E9D RID: 3741
 	[EventHandlerInfo("", "Game Started", "The block will execute when the game starts playing.")]
 	[AddComponentMenu("")]
 	public class GameStarted : EventHandler
 	{
-		// Token: 0x06007736 RID: 30518 RVA: 0x002B4FA0 File Offset: 0x002B31A0
+		// Token: 0x06006A06 RID: 27142 RVA: 0x0029277C File Offset: 0x0029097C
 		protected virtual void Start()
 		{
 			if (StoryManager.Inst.CheckTrigger(SceneManager.GetActiveScene().name))
@@ -24,7 +24,7 @@ namespace Fungus
 			this.CheckLater();
 		}
 
-		// Token: 0x06007737 RID: 30519 RVA: 0x002B4FE4 File Offset: 0x002B31E4
+		// Token: 0x06006A07 RID: 27143 RVA: 0x002927C0 File Offset: 0x002909C0
 		public void CheckLater()
 		{
 			Avatar player = Tools.instance.getPlayer();
@@ -45,11 +45,12 @@ namespace Fungus
 					return;
 				}
 			}
+			player.StreamData.FungusSaveMgr.LastIsEnd = player.StreamData.FungusSaveMgr.IsEnd();
 			player.StreamData.FungusSaveMgr.CurCommand = null;
 			base.StartCoroutine(this.GameStartCoroutine());
 		}
 
-		// Token: 0x06007738 RID: 30520 RVA: 0x000513B8 File Offset: 0x0004F5B8
+		// Token: 0x06006A08 RID: 27144 RVA: 0x0029288F File Offset: 0x00290A8F
 		protected virtual IEnumerator GameStartCoroutine()
 		{
 			int num;
@@ -62,7 +63,7 @@ namespace Fungus
 			yield break;
 		}
 
-		// Token: 0x040067E7 RID: 26599
+		// Token: 0x040059D1 RID: 22993
 		[Tooltip("Wait for a number of frames after startup before executing the Block. Can help fix startup order issues.")]
 		[SerializeField]
 		protected int waitForFrames = 1;

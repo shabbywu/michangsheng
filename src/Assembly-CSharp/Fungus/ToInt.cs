@@ -3,12 +3,12 @@ using UnityEngine;
 
 namespace Fungus
 {
-	// Token: 0x0200124A RID: 4682
+	// Token: 0x02000E00 RID: 3584
 	[CommandInfo("Math", "ToInt", "Command to execute and store the result of a float to int conversion", 0)]
 	[AddComponentMenu("")]
 	public class ToInt : Command
 	{
-		// Token: 0x060071D5 RID: 29141 RVA: 0x002A6CA4 File Offset: 0x002A4EA4
+		// Token: 0x06006547 RID: 25927 RVA: 0x00282804 File Offset: 0x00280A04
 		public override void OnEnter()
 		{
 			switch (this.function)
@@ -26,7 +26,7 @@ namespace Fungus
 			this.Continue();
 		}
 
-		// Token: 0x060071D6 RID: 29142 RVA: 0x002A6D28 File Offset: 0x002A4F28
+		// Token: 0x06006548 RID: 25928 RVA: 0x00282888 File Offset: 0x00280A88
 		public override string GetSummary()
 		{
 			return string.Concat(new string[]
@@ -39,41 +39,41 @@ namespace Fungus
 			});
 		}
 
-		// Token: 0x060071D7 RID: 29143 RVA: 0x0004C5E0 File Offset: 0x0004A7E0
+		// Token: 0x06006549 RID: 25929 RVA: 0x0027D3DB File Offset: 0x0027B5DB
 		public override Color GetButtonColor()
 		{
 			return new Color32(235, 191, 217, byte.MaxValue);
 		}
 
-		// Token: 0x060071D8 RID: 29144 RVA: 0x0004D678 File Offset: 0x0004B878
+		// Token: 0x0600654A RID: 25930 RVA: 0x0028293A File Offset: 0x00280B3A
 		public override bool HasReference(Variable variable)
 		{
 			return variable == this.inValue.floatRef || variable == this.outValue.integerRef;
 		}
 
-		// Token: 0x04006430 RID: 25648
+		// Token: 0x0400570B RID: 22283
 		[Tooltip("To integer mode; round, floor or ceil.")]
 		[SerializeField]
 		protected ToInt.Mode function;
 
-		// Token: 0x04006431 RID: 25649
+		// Token: 0x0400570C RID: 22284
 		[Tooltip("Value to be passed in to the function.")]
 		[SerializeField]
 		protected FloatData inValue;
 
-		// Token: 0x04006432 RID: 25650
+		// Token: 0x0400570D RID: 22285
 		[Tooltip("Where the result of the function is stored.")]
 		[SerializeField]
 		protected IntegerData outValue;
 
-		// Token: 0x0200124B RID: 4683
+		// Token: 0x020016BE RID: 5822
 		public enum Mode
 		{
-			// Token: 0x04006434 RID: 25652
+			// Token: 0x04007381 RID: 29569
 			RoundToInt,
-			// Token: 0x04006435 RID: 25653
+			// Token: 0x04007382 RID: 29570
 			FloorToInt,
-			// Token: 0x04006436 RID: 25654
+			// Token: 0x04007383 RID: 29571
 			CeilToInt
 		}
 	}

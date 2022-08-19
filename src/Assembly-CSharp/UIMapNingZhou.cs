@@ -4,10 +4,10 @@ using Fungus;
 using KBEngine;
 using UnityEngine;
 
-// Token: 0x020004AF RID: 1199
+// Token: 0x0200033E RID: 830
 public class UIMapNingZhou : MonoBehaviour
 {
-	// Token: 0x06001FC0 RID: 8128 RVA: 0x00110660 File Offset: 0x0010E860
+	// Token: 0x06001C75 RID: 7285 RVA: 0x000CBB94 File Offset: 0x000C9D94
 	public void Init()
 	{
 		for (int i = 0; i < this.HighlightBlockRoot.childCount; i++)
@@ -33,7 +33,7 @@ public class UIMapNingZhou : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001FC1 RID: 8129 RVA: 0x0011070C File Offset: 0x0010E90C
+	// Token: 0x06001C76 RID: 7286 RVA: 0x000CBC40 File Offset: 0x000C9E40
 	public void Show()
 	{
 		this.HighlightBlockRoot.gameObject.SetActive(true);
@@ -94,14 +94,14 @@ public class UIMapNingZhou : MonoBehaviour
 		this.RefreshDongFuNode();
 	}
 
-	// Token: 0x06001FC2 RID: 8130 RVA: 0x0001A23F File Offset: 0x0001843F
+	// Token: 0x06001C77 RID: 7287 RVA: 0x000CBE64 File Offset: 0x000CA064
 	public void Hide()
 	{
 		this.HighlightBlockRoot.gameObject.SetActive(false);
 		this.NodesRoot.gameObject.SetActive(false);
 	}
 
-	// Token: 0x06001FC3 RID: 8131 RVA: 0x00110930 File Offset: 0x0010EB30
+	// Token: 0x06001C78 RID: 7288 RVA: 0x000CBE88 File Offset: 0x000CA088
 	public void CloseAllHighlight()
 	{
 		foreach (UIMapHighlight uimapHighlight in this.highLights.Values)
@@ -110,7 +110,7 @@ public class UIMapNingZhou : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001FC4 RID: 8132 RVA: 0x00110988 File Offset: 0x0010EB88
+	// Token: 0x06001C79 RID: 7289 RVA: 0x000CBEE0 File Offset: 0x000CA0E0
 	public void RefreshDongFuNode()
 	{
 		if (PlayerEx.Player != null && DongFuManager.PlayerHasDongFu(1))
@@ -122,7 +122,7 @@ public class UIMapNingZhou : MonoBehaviour
 		this.DongFuNode.gameObject.SetActive(false);
 	}
 
-	// Token: 0x06001FC5 RID: 8133 RVA: 0x001109D8 File Offset: 0x0010EBD8
+	// Token: 0x06001C7A RID: 7290 RVA: 0x000CBF30 File Offset: 0x000CA130
 	public void OnNodeClick(UIMapNingZhouNode node)
 	{
 		if (UIMapPanel.Inst.NowState == UIMapState.Warp)
@@ -143,7 +143,7 @@ public class UIMapNingZhou : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001FC6 RID: 8134 RVA: 0x00110A2C File Offset: 0x0010EC2C
+	// Token: 0x06001C7B RID: 7291 RVA: 0x000CBF84 File Offset: 0x000CA184
 	public void OnMouseEnterHighlightBlock(UIMapHighlight highLight)
 	{
 		switch (UIMapPanel.Inst.NowState)
@@ -159,7 +159,7 @@ public class UIMapNingZhou : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001FC7 RID: 8135 RVA: 0x00110A60 File Offset: 0x0010EC60
+	// Token: 0x06001C7C RID: 7292 RVA: 0x000CBFB8 File Offset: 0x000CA1B8
 	public void OnMouseExitHighlightBlock(UIMapHighlight highLight)
 	{
 		switch (UIMapPanel.Inst.NowState)
@@ -175,27 +175,27 @@ public class UIMapNingZhou : MonoBehaviour
 		}
 	}
 
-	// Token: 0x04001B28 RID: 6952
+	// Token: 0x040016ED RID: 5869
 	public RectTransform HighlightBlockRoot;
 
-	// Token: 0x04001B29 RID: 6953
+	// Token: 0x040016EE RID: 5870
 	public RectTransform NodesRoot;
 
-	// Token: 0x04001B2A RID: 6954
+	// Token: 0x040016EF RID: 5871
 	public UIMapNingZhouNode DongFuNode;
 
-	// Token: 0x04001B2B RID: 6955
+	// Token: 0x040016F0 RID: 5872
 	public Sprite BGSprite;
 
-	// Token: 0x04001B2C RID: 6956
+	// Token: 0x040016F1 RID: 5873
 	public string FungusNowScene;
 
-	// Token: 0x04001B2D RID: 6957
+	// Token: 0x040016F2 RID: 5874
 	private Dictionary<int, UIMapHighlight> highLights = new Dictionary<int, UIMapHighlight>();
 
-	// Token: 0x04001B2E RID: 6958
+	// Token: 0x040016F3 RID: 5875
 	private List<UIMapNingZhouNode> nodes = new List<UIMapNingZhouNode>();
 
-	// Token: 0x04001B2F RID: 6959
+	// Token: 0x040016F4 RID: 5876
 	private List<UIMapNingZhouNode> warpNodes = new List<UIMapNingZhouNode>();
 }

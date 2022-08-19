@@ -2,22 +2,22 @@
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-// Token: 0x020004EB RID: 1259
+// Token: 0x0200036D RID: 877
 public class UTooltipTrigger : MonoBehaviour, IPointerEnterHandler, IEventSystemHandler, IPointerExitHandler
 {
-	// Token: 0x060020D3 RID: 8403 RVA: 0x0001B0BF File Offset: 0x000192BF
+	// Token: 0x06001D64 RID: 7524 RVA: 0x000D0005 File Offset: 0x000CE205
 	private void Awake()
 	{
 		MessageMag.Instance.Register(MessageName.MSG_APP_OnFocusChanged, new Action<MessageData>(this.OnFocusChanged));
 	}
 
-	// Token: 0x060020D4 RID: 8404 RVA: 0x0001B0DC File Offset: 0x000192DC
+	// Token: 0x06001D65 RID: 7525 RVA: 0x000D0022 File Offset: 0x000CE222
 	private void OnDestroy()
 	{
 		MessageMag.Instance.Remove(MessageName.MSG_APP_OnFocusChanged, new Action<MessageData>(this.OnFocusChanged));
 	}
 
-	// Token: 0x060020D5 RID: 8405 RVA: 0x0001B0F9 File Offset: 0x000192F9
+	// Token: 0x06001D66 RID: 7526 RVA: 0x000D003F File Offset: 0x000CE23F
 	public void OnFocusChanged(MessageData data)
 	{
 		if (this.isShow)
@@ -27,7 +27,7 @@ public class UTooltipTrigger : MonoBehaviour, IPointerEnterHandler, IEventSystem
 		}
 	}
 
-	// Token: 0x060020D6 RID: 8406 RVA: 0x0001B10F File Offset: 0x0001930F
+	// Token: 0x06001D67 RID: 7527 RVA: 0x000D0055 File Offset: 0x000CE255
 	public void OnPointerEnter(PointerEventData eventData)
 	{
 		if (this.UseCustomWidth)
@@ -41,23 +41,23 @@ public class UTooltipTrigger : MonoBehaviour, IPointerEnterHandler, IEventSystem
 		this.isShow = true;
 	}
 
-	// Token: 0x060020D7 RID: 8407 RVA: 0x0001B14E File Offset: 0x0001934E
+	// Token: 0x06001D68 RID: 7528 RVA: 0x000D0094 File Offset: 0x000CE294
 	public void OnPointerExit(PointerEventData eventData)
 	{
 		this.isShow = false;
 		UToolTip.Close();
 	}
 
-	// Token: 0x04001C54 RID: 7252
+	// Token: 0x040017FE RID: 6142
 	[Multiline]
 	public string Tooltip;
 
-	// Token: 0x04001C55 RID: 7253
+	// Token: 0x040017FF RID: 6143
 	private bool isShow;
 
-	// Token: 0x04001C56 RID: 7254
+	// Token: 0x04001800 RID: 6144
 	public bool UseCustomWidth;
 
-	// Token: 0x04001C57 RID: 7255
+	// Token: 0x04001801 RID: 6145
 	public int CustomWidth;
 }

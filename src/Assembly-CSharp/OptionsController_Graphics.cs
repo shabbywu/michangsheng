@@ -2,16 +2,16 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-// Token: 0x0200018E RID: 398
+// Token: 0x0200010A RID: 266
 public class OptionsController_Graphics : MonoBehaviour
 {
-	// Token: 0x06000D4A RID: 3402 RVA: 0x0000F0BF File Offset: 0x0000D2BF
+	// Token: 0x06000C29 RID: 3113 RVA: 0x00049672 File Offset: 0x00047872
 	private void Start()
 	{
 		this.gfx_setDefaults();
 	}
 
-	// Token: 0x06000D4B RID: 3403 RVA: 0x0009AFA4 File Offset: 0x000991A4
+	// Token: 0x06000C2A RID: 3114 RVA: 0x0004967C File Offset: 0x0004787C
 	public void gfx_fullScreen()
 	{
 		if (this.toggleFullscreen == 0)
@@ -28,13 +28,13 @@ public class OptionsController_Graphics : MonoBehaviour
 		EasyAudioUtility.instance.Play("Hover");
 	}
 
-	// Token: 0x06000D4C RID: 3404 RVA: 0x0000F0C7 File Offset: 0x0000D2C7
+	// Token: 0x06000C2B RID: 3115 RVA: 0x000496E0 File Offset: 0x000478E0
 	private void gfx_setFullScreen()
 	{
 		this.toggleFullscreen_text.text = ((this.toggleFullscreen == 1) ? "Yes" : "No");
 	}
 
-	// Token: 0x06000D4D RID: 3405 RVA: 0x0009B008 File Offset: 0x00099208
+	// Token: 0x06000C2C RID: 3116 RVA: 0x00049704 File Offset: 0x00047904
 	public void gfx_AnisoFiltering()
 	{
 		if (this.toggleAnisoFilt == 0)
@@ -52,14 +52,14 @@ public class OptionsController_Graphics : MonoBehaviour
 		EasyAudioUtility.instance.Play("Hover");
 	}
 
-	// Token: 0x06000D4E RID: 3406 RVA: 0x0000F0E9 File Offset: 0x0000D2E9
+	// Token: 0x06000C2D RID: 3117 RVA: 0x0004977A File Offset: 0x0004797A
 	private void gfx_setAnisoFiltering()
 	{
 		QualitySettings.anisotropicFiltering = ((this.toggleAnisoFilt == 1) ? 1 : 0);
 		this.AnisoFiltering_text.text = ((this.toggleAnisoFilt == 1) ? "On" : "Off");
 	}
 
-	// Token: 0x06000D4F RID: 3407 RVA: 0x0009B080 File Offset: 0x00099280
+	// Token: 0x06000C2E RID: 3118 RVA: 0x000497B0 File Offset: 0x000479B0
 	public void gfx_AntiAlias()
 	{
 		if (this.toggleAntiAlias == 0)
@@ -90,7 +90,7 @@ public class OptionsController_Graphics : MonoBehaviour
 		EasyAudioUtility.instance.Play("Hover");
 	}
 
-	// Token: 0x06000D50 RID: 3408 RVA: 0x0009B14C File Offset: 0x0009934C
+	// Token: 0x06000C2F RID: 3119 RVA: 0x0004987C File Offset: 0x00047A7C
 	private void gfx_setAntiAlias()
 	{
 		if (this.toggleAntiAlias == 0)
@@ -118,7 +118,7 @@ public class OptionsController_Graphics : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000D51 RID: 3409 RVA: 0x0009B1D8 File Offset: 0x000993D8
+	// Token: 0x06000C30 RID: 3120 RVA: 0x00049908 File Offset: 0x00047B08
 	public void gfx_Vsync()
 	{
 		if (this.toggleVsync == 0)
@@ -137,14 +137,14 @@ public class OptionsController_Graphics : MonoBehaviour
 		EasyAudioUtility.instance.Play("Hover");
 	}
 
-	// Token: 0x06000D52 RID: 3410 RVA: 0x0000F11D File Offset: 0x0000D31D
+	// Token: 0x06000C31 RID: 3121 RVA: 0x00049978 File Offset: 0x00047B78
 	private void gfx_setVsync()
 	{
 		QualitySettings.vSyncCount = ((this.toggleVsync == 1) ? 1 : 0);
 		this.toggleVsync_text.text = ((this.toggleVsync == 1) ? "On" : "Off");
 	}
 
-	// Token: 0x06000D53 RID: 3411 RVA: 0x0009B248 File Offset: 0x00099448
+	// Token: 0x06000C32 RID: 3122 RVA: 0x000499AC File Offset: 0x00047BAC
 	public void gfx_shadows()
 	{
 		if (this.toggleShadows == 0)
@@ -169,7 +169,7 @@ public class OptionsController_Graphics : MonoBehaviour
 		EasyAudioUtility.instance.Play("Hover");
 	}
 
-	// Token: 0x06000D54 RID: 3412 RVA: 0x0009B2EC File Offset: 0x000994EC
+	// Token: 0x06000C33 RID: 3123 RVA: 0x00049A50 File Offset: 0x00047C50
 	private void gfx_setShadows()
 	{
 		if (this.toggleShadows == 0)
@@ -191,7 +191,7 @@ public class OptionsController_Graphics : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000D55 RID: 3413 RVA: 0x0009B358 File Offset: 0x00099558
+	// Token: 0x06000C34 RID: 3124 RVA: 0x00049ABC File Offset: 0x00047CBC
 	public void gfx_textureQuality()
 	{
 		if (this.toggleTextureQuality == 0)
@@ -216,7 +216,7 @@ public class OptionsController_Graphics : MonoBehaviour
 		EasyAudioUtility.instance.Play("Hover");
 	}
 
-	// Token: 0x06000D56 RID: 3414 RVA: 0x0009B3FC File Offset: 0x000995FC
+	// Token: 0x06000C35 RID: 3125 RVA: 0x00049B60 File Offset: 0x00047D60
 	private void gfx_setTextureQuality()
 	{
 		if (this.toggleTextureQuality == 0)
@@ -238,7 +238,7 @@ public class OptionsController_Graphics : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000D57 RID: 3415 RVA: 0x0009B468 File Offset: 0x00099668
+	// Token: 0x06000C36 RID: 3126 RVA: 0x00049BCC File Offset: 0x00047DCC
 	public void gfx_ScreenResolution()
 	{
 		if (this.currentScreenResolutionCount < this.allScreenResolutions.Length)
@@ -253,7 +253,7 @@ public class OptionsController_Graphics : MonoBehaviour
 		PlayerPrefs.SetInt("currentScreenResolutionCount", this.currentScreenResolutionCount);
 	}
 
-	// Token: 0x06000D58 RID: 3416 RVA: 0x0009B4E8 File Offset: 0x000996E8
+	// Token: 0x06000C37 RID: 3127 RVA: 0x00049C4C File Offset: 0x00047E4C
 	private void gfx_setScreenResolution()
 	{
 		this.allScreenResolutions = Screen.resolutions;
@@ -264,7 +264,7 @@ public class OptionsController_Graphics : MonoBehaviour
 		this.currentScreenResolution_text.text = Screen.currentResolution.width + " x " + Screen.currentResolution.height;
 	}
 
-	// Token: 0x06000D59 RID: 3417 RVA: 0x0009B590 File Offset: 0x00099790
+	// Token: 0x06000C38 RID: 3128 RVA: 0x00049CF4 File Offset: 0x00047EF4
 	private void gfx_setDefaults()
 	{
 		this.toggleFullscreen = PlayerPrefs.GetInt("toggleFullscreen", 1);
@@ -283,63 +283,63 @@ public class OptionsController_Graphics : MonoBehaviour
 		this.gfx_setScreenResolution();
 	}
 
-	// Token: 0x04000A75 RID: 2677
+	// Token: 0x04000879 RID: 2169
 	[Header("_Graphics Options_")]
 	[Space(5f)]
 	public Text toggleFullscreen_text;
 
-	// Token: 0x04000A76 RID: 2678
+	// Token: 0x0400087A RID: 2170
 	[HideInInspector]
 	public int toggleFullscreen;
 
-	// Token: 0x04000A77 RID: 2679
+	// Token: 0x0400087B RID: 2171
 	[Space(10f)]
 	[HideInInspector]
 	public int toggleAnisoFilt;
 
-	// Token: 0x04000A78 RID: 2680
+	// Token: 0x0400087C RID: 2172
 	public Text AnisoFiltering_text;
 
-	// Token: 0x04000A79 RID: 2681
+	// Token: 0x0400087D RID: 2173
 	[Space(10f)]
 	[HideInInspector]
 	public int toggleAntiAlias;
 
-	// Token: 0x04000A7A RID: 2682
+	// Token: 0x0400087E RID: 2174
 	public Text AntiAlias_text;
 
-	// Token: 0x04000A7B RID: 2683
+	// Token: 0x0400087F RID: 2175
 	[Space(10f)]
 	[HideInInspector]
 	public int toggleVsync;
 
-	// Token: 0x04000A7C RID: 2684
+	// Token: 0x04000880 RID: 2176
 	public Text toggleVsync_text;
 
-	// Token: 0x04000A7D RID: 2685
+	// Token: 0x04000881 RID: 2177
 	[Space(10f)]
 	[HideInInspector]
 	public int toggleShadows;
 
-	// Token: 0x04000A7E RID: 2686
+	// Token: 0x04000882 RID: 2178
 	public Text toggleShadows_text;
 
-	// Token: 0x04000A7F RID: 2687
+	// Token: 0x04000883 RID: 2179
 	[Space(10f)]
 	[HideInInspector]
 	public int toggleTextureQuality;
 
-	// Token: 0x04000A80 RID: 2688
+	// Token: 0x04000884 RID: 2180
 	public Text toggleTextureQuality_text;
 
-	// Token: 0x04000A81 RID: 2689
+	// Token: 0x04000885 RID: 2181
 	[Space(10f)]
 	[HideInInspector]
 	public int currentScreenResolutionCount;
 
-	// Token: 0x04000A82 RID: 2690
+	// Token: 0x04000886 RID: 2182
 	public Text currentScreenResolution_text;
 
-	// Token: 0x04000A83 RID: 2691
+	// Token: 0x04000887 RID: 2183
 	private Resolution[] allScreenResolutions;
 }

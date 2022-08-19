@@ -1,10 +1,10 @@
 ﻿using System;
 using UnityEngine;
 
-// Token: 0x02000405 RID: 1029
+// Token: 0x020002C4 RID: 708
 public class UIDataTip : MonoBehaviour
 {
-	// Token: 0x06001BCE RID: 7118 RVA: 0x000F882C File Offset: 0x000F6A2C
+	// Token: 0x060018D5 RID: 6357 RVA: 0x000B26DC File Offset: 0x000B08DC
 	private void Awake()
 	{
 		UIDataTip.Inst = this;
@@ -14,28 +14,28 @@ public class UIDataTip : MonoBehaviour
 		this.exRightPos = base.transform.Find("ExPanelRightPos");
 	}
 
-	// Token: 0x06001BCF RID: 7119 RVA: 0x000042DD File Offset: 0x000024DD
+	// Token: 0x060018D6 RID: 6358 RVA: 0x00004095 File Offset: 0x00002295
 	private void Start()
 	{
 	}
 
-	// Token: 0x06001BD0 RID: 7120 RVA: 0x000042DD File Offset: 0x000024DD
+	// Token: 0x060018D7 RID: 6359 RVA: 0x00004095 File Offset: 0x00002295
 	private void Update()
 	{
 	}
 
-	// Token: 0x0400179F RID: 6047
+	// Token: 0x040013F1 RID: 5105
 	public static UIDataTip Inst;
 
-	// Token: 0x040017A0 RID: 6048
+	// Token: 0x040013F2 RID: 5106
 	private Transform mainLeftPos;
 
-	// Token: 0x040017A1 RID: 6049
+	// Token: 0x040013F3 RID: 5107
 	private Transform exLeftPos;
 
-	// Token: 0x040017A2 RID: 6050
+	// Token: 0x040013F4 RID: 5108
 	private Transform mainRightPos;
 
-	// Token: 0x040017A3 RID: 6051
+	// Token: 0x040013F5 RID: 5109
 	private Transform exRightPos;
 }

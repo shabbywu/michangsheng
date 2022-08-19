@@ -3,17 +3,17 @@ using UnityEngine;
 
 namespace Fungus
 {
-	// Token: 0x0200139A RID: 5018
+	// Token: 0x02000EF8 RID: 3832
 	[Serializable]
 	public class BoundObject
 	{
-		// Token: 0x04006939 RID: 26937
+		// Token: 0x04005ACD RID: 23245
 		public string key;
 
-		// Token: 0x0400693A RID: 26938
+		// Token: 0x04005ACE RID: 23246
 		public Object obj;
 
-		// Token: 0x0400693B RID: 26939
+		// Token: 0x04005ACF RID: 23247
 		public Component component;
 	}
 }

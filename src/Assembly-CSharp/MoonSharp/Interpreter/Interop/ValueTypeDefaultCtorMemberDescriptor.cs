@@ -5,11 +5,11 @@ using MoonSharp.Interpreter.Interop.Converters;
 
 namespace MoonSharp.Interpreter.Interop
 {
-	// Token: 0x02001122 RID: 4386
+	// Token: 0x02000D23 RID: 3363
 	public class ValueTypeDefaultCtorMemberDescriptor : IOverloadableMemberDescriptor, IMemberDescriptor, IWireableDescriptor
 	{
-		// Token: 0x170009A1 RID: 2465
-		// (get) Token: 0x060069F3 RID: 27123 RVA: 0x0000A093 File Offset: 0x00008293
+		// Token: 0x17000744 RID: 1860
+		// (get) Token: 0x06005E57 RID: 24151 RVA: 0x00024C5F File Offset: 0x00022E5F
 		public bool IsStatic
 		{
 			get
@@ -18,23 +18,23 @@ namespace MoonSharp.Interpreter.Interop
 			}
 		}
 
-		// Token: 0x170009A2 RID: 2466
-		// (get) Token: 0x060069F4 RID: 27124 RVA: 0x00048559 File Offset: 0x00046759
-		// (set) Token: 0x060069F5 RID: 27125 RVA: 0x00048561 File Offset: 0x00046761
+		// Token: 0x17000745 RID: 1861
+		// (get) Token: 0x06005E58 RID: 24152 RVA: 0x002669FC File Offset: 0x00264BFC
+		// (set) Token: 0x06005E59 RID: 24153 RVA: 0x00266A04 File Offset: 0x00264C04
 		public string Name { get; private set; }
 
-		// Token: 0x170009A3 RID: 2467
-		// (get) Token: 0x060069F6 RID: 27126 RVA: 0x0004856A File Offset: 0x0004676A
-		// (set) Token: 0x060069F7 RID: 27127 RVA: 0x00048572 File Offset: 0x00046772
+		// Token: 0x17000746 RID: 1862
+		// (get) Token: 0x06005E5A RID: 24154 RVA: 0x00266A0D File Offset: 0x00264C0D
+		// (set) Token: 0x06005E5B RID: 24155 RVA: 0x00266A15 File Offset: 0x00264C15
 		public Type ValueTypeDefaultCtor { get; private set; }
 
-		// Token: 0x170009A4 RID: 2468
-		// (get) Token: 0x060069F8 RID: 27128 RVA: 0x0004857B File Offset: 0x0004677B
-		// (set) Token: 0x060069F9 RID: 27129 RVA: 0x00048583 File Offset: 0x00046783
+		// Token: 0x17000747 RID: 1863
+		// (get) Token: 0x06005E5C RID: 24156 RVA: 0x00266A1E File Offset: 0x00264C1E
+		// (set) Token: 0x06005E5D RID: 24157 RVA: 0x00266A26 File Offset: 0x00264C26
 		public ParameterDescriptor[] Parameters { get; private set; }
 
-		// Token: 0x170009A5 RID: 2469
-		// (get) Token: 0x060069FA RID: 27130 RVA: 0x0000B171 File Offset: 0x00009371
+		// Token: 0x17000748 RID: 1864
+		// (get) Token: 0x06005E5E RID: 24158 RVA: 0x000306E7 File Offset: 0x0002E8E7
 		public Type ExtensionMethodType
 		{
 			get
@@ -43,8 +43,8 @@ namespace MoonSharp.Interpreter.Interop
 			}
 		}
 
-		// Token: 0x170009A6 RID: 2470
-		// (get) Token: 0x060069FB RID: 27131 RVA: 0x0000B171 File Offset: 0x00009371
+		// Token: 0x17000749 RID: 1865
+		// (get) Token: 0x06005E5F RID: 24159 RVA: 0x000306E7 File Offset: 0x0002E8E7
 		public Type VarArgsArrayType
 		{
 			get
@@ -53,8 +53,8 @@ namespace MoonSharp.Interpreter.Interop
 			}
 		}
 
-		// Token: 0x170009A7 RID: 2471
-		// (get) Token: 0x060069FC RID: 27132 RVA: 0x0000B171 File Offset: 0x00009371
+		// Token: 0x1700074A RID: 1866
+		// (get) Token: 0x06005E60 RID: 24160 RVA: 0x000306E7 File Offset: 0x0002E8E7
 		public Type VarArgsElementType
 		{
 			get
@@ -63,7 +63,7 @@ namespace MoonSharp.Interpreter.Interop
 			}
 		}
 
-		// Token: 0x060069FD RID: 27133 RVA: 0x0004858C File Offset: 0x0004678C
+		// Token: 0x06005E61 RID: 24161 RVA: 0x00266A2F File Offset: 0x00264C2F
 		public ValueTypeDefaultCtorMemberDescriptor(Type valueType)
 		{
 			if (!Framework.Do.IsValueType(valueType))
@@ -75,7 +75,7 @@ namespace MoonSharp.Interpreter.Interop
 			this.ValueTypeDefaultCtor = valueType;
 		}
 
-		// Token: 0x060069FE RID: 27134 RVA: 0x0028F350 File Offset: 0x0028D550
+		// Token: 0x06005E62 RID: 24162 RVA: 0x00266A70 File Offset: 0x00264C70
 		public DynValue Execute(Script script, object obj, ScriptExecutionContext context, CallbackArguments args)
 		{
 			this.CheckAccess(MemberDescriptorAccess.CanRead, obj);
@@ -83,8 +83,8 @@ namespace MoonSharp.Interpreter.Interop
 			return ClrToScriptConversions.ObjectToDynValue(script, obj2);
 		}
 
-		// Token: 0x170009A8 RID: 2472
-		// (get) Token: 0x060069FF RID: 27135 RVA: 0x000485CA File Offset: 0x000467CA
+		// Token: 0x1700074B RID: 1867
+		// (get) Token: 0x06005E63 RID: 24163 RVA: 0x00266A98 File Offset: 0x00264C98
 		public string SortDiscriminant
 		{
 			get
@@ -93,8 +93,8 @@ namespace MoonSharp.Interpreter.Interop
 			}
 		}
 
-		// Token: 0x170009A9 RID: 2473
-		// (get) Token: 0x06006A00 RID: 27136 RVA: 0x0002D0EC File Offset: 0x0002B2EC
+		// Token: 0x1700074C RID: 1868
+		// (get) Token: 0x06005E64 RID: 24164 RVA: 0x0016F21F File Offset: 0x0016D41F
 		public MemberDescriptorAccess MemberAccess
 		{
 			get
@@ -103,7 +103,7 @@ namespace MoonSharp.Interpreter.Interop
 			}
 		}
 
-		// Token: 0x06006A01 RID: 27137 RVA: 0x0028F350 File Offset: 0x0028D550
+		// Token: 0x06005E65 RID: 24165 RVA: 0x00266AA0 File Offset: 0x00264CA0
 		public DynValue GetValue(Script script, object obj)
 		{
 			this.CheckAccess(MemberDescriptorAccess.CanRead, obj);
@@ -111,13 +111,13 @@ namespace MoonSharp.Interpreter.Interop
 			return ClrToScriptConversions.ObjectToDynValue(script, obj2);
 		}
 
-		// Token: 0x06006A02 RID: 27138 RVA: 0x00048074 File Offset: 0x00046274
+		// Token: 0x06005E66 RID: 24166 RVA: 0x002645B4 File Offset: 0x002627B4
 		public void SetValue(Script script, object obj, DynValue value)
 		{
 			this.CheckAccess(MemberDescriptorAccess.CanWrite, obj);
 		}
 
-		// Token: 0x06006A03 RID: 27139 RVA: 0x0028F378 File Offset: 0x0028D578
+		// Token: 0x06005E67 RID: 24167 RVA: 0x00266AC8 File Offset: 0x00264CC8
 		public void PrepareForWiring(Table t)
 		{
 			t.Set("class", DynValue.NewString(base.GetType().FullName));

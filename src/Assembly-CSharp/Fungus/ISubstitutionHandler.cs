@@ -3,10 +3,10 @@ using System.Text;
 
 namespace Fungus
 {
-	// Token: 0x020013A8 RID: 5032
+	// Token: 0x02000F03 RID: 3843
 	public interface ISubstitutionHandler
 	{
-		// Token: 0x060079E4 RID: 31204
+		// Token: 0x06006C30 RID: 27696
 		bool SubstituteStrings(StringBuilder input);
 	}
 }

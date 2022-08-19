@@ -4,10 +4,10 @@ using UnityEngine;
 
 namespace Fungus
 {
-	// Token: 0x020013AF RID: 5039
+	// Token: 0x02000F09 RID: 3849
 	internal class TaskManager : MonoBehaviour
 	{
-		// Token: 0x06007A0F RID: 31247 RVA: 0x00053464 File Offset: 0x00051664
+		// Token: 0x06006C57 RID: 27735 RVA: 0x002988FE File Offset: 0x00296AFE
 		public static TaskManager.TaskState CreateTask(IEnumerator coroutine)
 		{
 			if (TaskManager.singleton == null)
@@ -17,14 +17,14 @@ namespace Fungus
 			return new TaskManager.TaskState(coroutine);
 		}
 
-		// Token: 0x04006972 RID: 26994
+		// Token: 0x04005AF9 RID: 23289
 		private static TaskManager singleton;
 
-		// Token: 0x020013B0 RID: 5040
+		// Token: 0x02001719 RID: 5913
 		public class TaskState
 		{
-			// Token: 0x17000B8E RID: 2958
-			// (get) Token: 0x06007A11 RID: 31249 RVA: 0x0005348D File Offset: 0x0005168D
+			// Token: 0x17000BC5 RID: 3013
+			// (get) Token: 0x06008922 RID: 35106 RVA: 0x002EA22A File Offset: 0x002E842A
 			public bool Running
 			{
 				get
@@ -33,8 +33,8 @@ namespace Fungus
 				}
 			}
 
-			// Token: 0x17000B8F RID: 2959
-			// (get) Token: 0x06007A12 RID: 31250 RVA: 0x00053495 File Offset: 0x00051695
+			// Token: 0x17000BC6 RID: 3014
+			// (get) Token: 0x06008923 RID: 35107 RVA: 0x002EA232 File Offset: 0x002E8432
 			public bool Paused
 			{
 				get
@@ -44,43 +44,43 @@ namespace Fungus
 			}
 
 			// Token: 0x1400006E RID: 110
-			// (add) Token: 0x06007A13 RID: 31251 RVA: 0x002B98F8 File Offset: 0x002B7AF8
-			// (remove) Token: 0x06007A14 RID: 31252 RVA: 0x002B9930 File Offset: 0x002B7B30
+			// (add) Token: 0x06008924 RID: 35108 RVA: 0x002EA23C File Offset: 0x002E843C
+			// (remove) Token: 0x06008925 RID: 35109 RVA: 0x002EA274 File Offset: 0x002E8474
 			public event TaskManager.TaskState.FinishedHandler Finished;
 
-			// Token: 0x06007A15 RID: 31253 RVA: 0x0005349D File Offset: 0x0005169D
+			// Token: 0x06008926 RID: 35110 RVA: 0x002EA2A9 File Offset: 0x002E84A9
 			public TaskState(IEnumerator c)
 			{
 				this.coroutine = c;
 			}
 
-			// Token: 0x06007A16 RID: 31254 RVA: 0x000534AC File Offset: 0x000516AC
+			// Token: 0x06008927 RID: 35111 RVA: 0x002EA2B8 File Offset: 0x002E84B8
 			public void Pause()
 			{
 				this.paused = true;
 			}
 
-			// Token: 0x06007A17 RID: 31255 RVA: 0x000534B5 File Offset: 0x000516B5
+			// Token: 0x06008928 RID: 35112 RVA: 0x002EA2C1 File Offset: 0x002E84C1
 			public void Unpause()
 			{
 				this.paused = false;
 			}
 
-			// Token: 0x06007A18 RID: 31256 RVA: 0x000534BE File Offset: 0x000516BE
+			// Token: 0x06008929 RID: 35113 RVA: 0x002EA2CA File Offset: 0x002E84CA
 			public void Start()
 			{
 				this.running = true;
 				TaskManager.singleton.StartCoroutine(this.CallWrapper());
 			}
 
-			// Token: 0x06007A19 RID: 31257 RVA: 0x000534D8 File Offset: 0x000516D8
+			// Token: 0x0600892A RID: 35114 RVA: 0x002EA2E4 File Offset: 0x002E84E4
 			public void Stop()
 			{
 				this.stopped = true;
 				this.running = false;
 			}
 
-			// Token: 0x06007A1A RID: 31258 RVA: 0x000534E8 File Offset: 0x000516E8
+			// Token: 0x0600892B RID: 35115 RVA: 0x002EA2F4 File Offset: 0x002E84F4
 			private IEnumerator CallWrapper()
 			{
 				yield return null;
@@ -108,20 +108,20 @@ namespace Fungus
 				yield break;
 			}
 
-			// Token: 0x04006974 RID: 26996
+			// Token: 0x040074D0 RID: 29904
 			private IEnumerator coroutine;
 
-			// Token: 0x04006975 RID: 26997
+			// Token: 0x040074D1 RID: 29905
 			private bool running;
 
-			// Token: 0x04006976 RID: 26998
+			// Token: 0x040074D2 RID: 29906
 			private bool paused;
 
-			// Token: 0x04006977 RID: 26999
+			// Token: 0x040074D3 RID: 29907
 			private bool stopped;
 
-			// Token: 0x020013B1 RID: 5041
-			// (Invoke) Token: 0x06007A1C RID: 31260
+			// Token: 0x02001761 RID: 5985
+			// (Invoke) Token: 0x0600899D RID: 35229
 			public delegate void FinishedHandler(bool manual);
 		}
 	}

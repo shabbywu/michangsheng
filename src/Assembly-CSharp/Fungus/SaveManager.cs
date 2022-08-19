@@ -6,11 +6,11 @@ using UnityEngine.SceneManagement;
 
 namespace Fungus
 {
-	// Token: 0x020012EE RID: 4846
+	// Token: 0x02000E81 RID: 3713
 	public class SaveManager : MonoBehaviour
 	{
-		// Token: 0x17000AEF RID: 2799
-		// (get) Token: 0x060075FB RID: 30203 RVA: 0x00050570 File Offset: 0x0004E770
+		// Token: 0x17000874 RID: 2164
+		// (get) Token: 0x0600690C RID: 26892 RVA: 0x0028FB2D File Offset: 0x0028DD2D
 		public static string STORAGE_DIRECTORY
 		{
 			get
@@ -19,13 +19,13 @@ namespace Fungus
 			}
 		}
 
-		// Token: 0x060075FC RID: 30204 RVA: 0x00050581 File Offset: 0x0004E781
+		// Token: 0x0600690D RID: 26893 RVA: 0x0028FB3E File Offset: 0x0028DD3E
 		private static string GetFullFilePath(string saveDataKey)
 		{
 			return SaveManager.STORAGE_DIRECTORY + saveDataKey + ".json";
 		}
 
-		// Token: 0x060075FD RID: 30205 RVA: 0x002B20C4 File Offset: 0x002B02C4
+		// Token: 0x0600690E RID: 26894 RVA: 0x0028FB50 File Offset: 0x0028DD50
 		protected virtual bool ReadSaveHistory(string saveDataKey)
 		{
 			string text = string.Empty;
@@ -46,7 +46,7 @@ namespace Fungus
 			return false;
 		}
 
-		// Token: 0x060075FE RID: 30206 RVA: 0x002B2108 File Offset: 0x002B0308
+		// Token: 0x0600690F RID: 26895 RVA: 0x0028FB94 File Offset: 0x0028DD94
 		protected virtual bool WriteSaveHistory(string saveDataKey)
 		{
 			string text = JsonUtility.ToJson(SaveManager.saveHistory, true);
@@ -60,7 +60,7 @@ namespace Fungus
 			return false;
 		}
 
-		// Token: 0x060075FF RID: 30207 RVA: 0x002B2148 File Offset: 0x002B0348
+		// Token: 0x06006910 RID: 26896 RVA: 0x0028FBD4 File Offset: 0x0028DDD4
 		protected virtual void ExecuteBlocks(string savePointKey)
 		{
 			SavePointLoaded.NotifyEventHandlers(savePointKey);
@@ -76,7 +76,7 @@ namespace Fungus
 			}
 		}
 
-		// Token: 0x06007600 RID: 30208 RVA: 0x002B21AC File Offset: 0x002B03AC
+		// Token: 0x06006911 RID: 26897 RVA: 0x0028FC38 File Offset: 0x0028DE38
 		protected virtual void ExecuteStartBlock()
 		{
 			foreach (SavePoint savePoint in Object.FindObjectsOfType<SavePoint>())
@@ -89,7 +89,7 @@ namespace Fungus
 			}
 		}
 
-		// Token: 0x06007601 RID: 30209 RVA: 0x00050593 File Offset: 0x0004E793
+		// Token: 0x06006912 RID: 26898 RVA: 0x0028FC7F File Offset: 0x0028DE7F
 		protected virtual void LoadSavedGame(string saveDataKey)
 		{
 			if (this.ReadSaveHistory(saveDataKey))
@@ -99,21 +99,21 @@ namespace Fungus
 			}
 		}
 
-		// Token: 0x06007602 RID: 30210 RVA: 0x000505B2 File Offset: 0x0004E7B2
+		// Token: 0x06006913 RID: 26899 RVA: 0x0028FC9E File Offset: 0x0028DE9E
 		protected virtual void OnEnable()
 		{
 			SaveManagerSignals.OnSavePointLoaded += this.OnSavePointLoaded;
 			SceneManager.sceneLoaded += new UnityAction<Scene, LoadSceneMode>(this.OnSceneLoaded);
 		}
 
-		// Token: 0x06007603 RID: 30211 RVA: 0x000505D8 File Offset: 0x0004E7D8
+		// Token: 0x06006914 RID: 26900 RVA: 0x0028FCC4 File Offset: 0x0028DEC4
 		protected virtual void OnDisable()
 		{
 			SaveManagerSignals.OnSavePointLoaded -= this.OnSavePointLoaded;
 			SceneManager.sceneLoaded -= new UnityAction<Scene, LoadSceneMode>(this.OnSceneLoaded);
 		}
 
-		// Token: 0x06007604 RID: 30212 RVA: 0x002B21F4 File Offset: 0x002B03F4
+		// Token: 0x06006915 RID: 26901 RVA: 0x0028FCEC File Offset: 0x0028DEEC
 		protected virtual void OnSavePointLoaded(string savePointKey)
 		{
 			this.loadAction = delegate()
@@ -122,7 +122,7 @@ namespace Fungus
 			};
 		}
 
-		// Token: 0x06007605 RID: 30213 RVA: 0x000505FE File Offset: 0x0004E7FE
+		// Token: 0x06006916 RID: 26902 RVA: 0x0028FD1F File Offset: 0x0028DF1F
 		protected virtual void OnSceneLoaded(Scene scene, LoadSceneMode mode)
 		{
 			if (mode == 1)
@@ -135,7 +135,7 @@ namespace Fungus
 			}
 		}
 
-		// Token: 0x06007606 RID: 30214 RVA: 0x00050620 File Offset: 0x0004E820
+		// Token: 0x06006917 RID: 26903 RVA: 0x0028FD41 File Offset: 0x0028DF41
 		protected virtual void Start()
 		{
 			if (this.loadAction == null)
@@ -144,7 +144,7 @@ namespace Fungus
 			}
 		}
 
-		// Token: 0x06007607 RID: 30215 RVA: 0x0005063D File Offset: 0x0004E83D
+		// Token: 0x06006918 RID: 26904 RVA: 0x0028FD5E File Offset: 0x0028DF5E
 		protected virtual void Update()
 		{
 			if (this.loadAction != null)
@@ -154,13 +154,13 @@ namespace Fungus
 			}
 		}
 
-		// Token: 0x17000AF0 RID: 2800
-		// (get) Token: 0x06007608 RID: 30216 RVA: 0x00050659 File Offset: 0x0004E859
-		// (set) Token: 0x06007609 RID: 30217 RVA: 0x00050661 File Offset: 0x0004E861
+		// Token: 0x17000875 RID: 2165
+		// (get) Token: 0x06006919 RID: 26905 RVA: 0x0028FD7A File Offset: 0x0028DF7A
+		// (set) Token: 0x0600691A RID: 26906 RVA: 0x0028FD82 File Offset: 0x0028DF82
 		public string StartScene { get; set; }
 
-		// Token: 0x17000AF1 RID: 2801
-		// (get) Token: 0x0600760A RID: 30218 RVA: 0x0005066A File Offset: 0x0004E86A
+		// Token: 0x17000876 RID: 2166
+		// (get) Token: 0x0600691B RID: 26907 RVA: 0x0028FD8B File Offset: 0x0028DF8B
 		public virtual int NumSavePoints
 		{
 			get
@@ -169,8 +169,8 @@ namespace Fungus
 			}
 		}
 
-		// Token: 0x17000AF2 RID: 2802
-		// (get) Token: 0x0600760B RID: 30219 RVA: 0x00050676 File Offset: 0x0004E876
+		// Token: 0x17000877 RID: 2167
+		// (get) Token: 0x0600691C RID: 26908 RVA: 0x0028FD97 File Offset: 0x0028DF97
 		public virtual int NumRewoundSavePoints
 		{
 			get
@@ -179,13 +179,13 @@ namespace Fungus
 			}
 		}
 
-		// Token: 0x0600760C RID: 30220 RVA: 0x00050682 File Offset: 0x0004E882
+		// Token: 0x0600691D RID: 26909 RVA: 0x0028FDA3 File Offset: 0x0028DFA3
 		public virtual void Save(string saveDataKey)
 		{
 			this.WriteSaveHistory(saveDataKey);
 		}
 
-		// Token: 0x0600760D RID: 30221 RVA: 0x002B2228 File Offset: 0x002B0428
+		// Token: 0x0600691E RID: 26910 RVA: 0x0028FDB0 File Offset: 0x0028DFB0
 		public void Load(string saveDataKey)
 		{
 			this.loadAction = delegate()
@@ -194,7 +194,7 @@ namespace Fungus
 			};
 		}
 
-		// Token: 0x0600760E RID: 30222 RVA: 0x002B225C File Offset: 0x002B045C
+		// Token: 0x0600691F RID: 26911 RVA: 0x0028FDE4 File Offset: 0x0028DFE4
 		public void Delete(string saveDataKey)
 		{
 			string fullFilePath = SaveManager.GetFullFilePath(saveDataKey);
@@ -204,20 +204,20 @@ namespace Fungus
 			}
 		}
 
-		// Token: 0x0600760F RID: 30223 RVA: 0x0005068C File Offset: 0x0004E88C
+		// Token: 0x06006920 RID: 26912 RVA: 0x0028FE06 File Offset: 0x0028E006
 		public bool SaveDataExists(string saveDataKey)
 		{
 			return File.Exists(SaveManager.GetFullFilePath(saveDataKey));
 		}
 
-		// Token: 0x06007610 RID: 30224 RVA: 0x00050699 File Offset: 0x0004E899
+		// Token: 0x06006921 RID: 26913 RVA: 0x0028FE13 File Offset: 0x0028E013
 		public virtual void AddSavePoint(string savePointKey, string savePointDescription)
 		{
 			SaveManager.saveHistory.AddSavePoint(savePointKey, savePointDescription);
 			SaveManagerSignals.DoSavePointAdded(savePointKey, savePointDescription);
 		}
 
-		// Token: 0x06007611 RID: 30225 RVA: 0x000506AE File Offset: 0x0004E8AE
+		// Token: 0x06006922 RID: 26914 RVA: 0x0028FE28 File Offset: 0x0028E028
 		public virtual void Rewind()
 		{
 			if (SaveManager.saveHistory.NumSavePoints > 0)
@@ -230,7 +230,7 @@ namespace Fungus
 			}
 		}
 
-		// Token: 0x06007612 RID: 30226 RVA: 0x000506DE File Offset: 0x0004E8DE
+		// Token: 0x06006923 RID: 26915 RVA: 0x0028FE58 File Offset: 0x0028E058
 		public virtual void FastForward()
 		{
 			if (SaveManager.saveHistory.NumRewoundSavePoints > 0)
@@ -240,22 +240,22 @@ namespace Fungus
 			}
 		}
 
-		// Token: 0x06007613 RID: 30227 RVA: 0x00050701 File Offset: 0x0004E901
+		// Token: 0x06006924 RID: 26916 RVA: 0x0028FE7B File Offset: 0x0028E07B
 		public virtual void ClearHistory()
 		{
 			SaveManager.saveHistory.Clear();
 		}
 
-		// Token: 0x06007614 RID: 30228 RVA: 0x0005070D File Offset: 0x0004E90D
+		// Token: 0x06006925 RID: 26917 RVA: 0x0028FE87 File Offset: 0x0028E087
 		public virtual string GetDebugInfo()
 		{
 			return SaveManager.saveHistory.GetDebugInfo();
 		}
 
-		// Token: 0x040066EF RID: 26351
+		// Token: 0x04005921 RID: 22817
 		protected static SaveHistory saveHistory = new SaveHistory();
 
-		// Token: 0x040066F0 RID: 26352
+		// Token: 0x04005922 RID: 22818
 		protected Action loadAction;
 	}
 }

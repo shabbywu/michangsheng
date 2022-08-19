@@ -3,10 +3,10 @@ using UnityEngine;
 
 namespace Spine.Unity.Examples
 {
-	// Token: 0x02000E34 RID: 3636
+	// Token: 0x02000AE6 RID: 2790
 	public class HandleEventWithAudioExample : MonoBehaviour
 	{
-		// Token: 0x0600577F RID: 22399 RVA: 0x0003E8A6 File Offset: 0x0003CAA6
+		// Token: 0x06004E03 RID: 19971 RVA: 0x0021502B File Offset: 0x0021322B
 		private void OnValidate()
 		{
 			if (this.skeletonAnimation == null)
@@ -19,7 +19,7 @@ namespace Spine.Unity.Examples
 			}
 		}
 
-		// Token: 0x06005780 RID: 22400 RVA: 0x00245188 File Offset: 0x00243388
+		// Token: 0x06004E04 RID: 19972 RVA: 0x00215058 File Offset: 0x00213258
 		private void Start()
 		{
 			if (this.audioSource == null)
@@ -39,7 +39,7 @@ namespace Spine.Unity.Examples
 			this.skeletonAnimation.AnimationState.Event += new AnimationState.TrackEntryEventDelegate(this.HandleAnimationStateEvent);
 		}
 
-		// Token: 0x06005781 RID: 22401 RVA: 0x0003E8D2 File Offset: 0x0003CAD2
+		// Token: 0x06004E05 RID: 19973 RVA: 0x002150DA File Offset: 0x002132DA
 		private void HandleAnimationStateEvent(TrackEntry trackEntry, Event e)
 		{
 			if (this.logDebugMessage)
@@ -52,7 +52,7 @@ namespace Spine.Unity.Examples
 			}
 		}
 
-		// Token: 0x06005782 RID: 22402 RVA: 0x0024520C File Offset: 0x0024340C
+		// Token: 0x06004E06 RID: 19974 RVA: 0x00215114 File Offset: 0x00213314
 		public void Play()
 		{
 			this.audioSource.pitch = this.basePitch + Random.Range(-this.randomPitchOffset, this.randomPitchOffset);
@@ -60,31 +60,31 @@ namespace Spine.Unity.Examples
 			this.audioSource.Play();
 		}
 
-		// Token: 0x0400576A RID: 22378
+		// Token: 0x04004D5E RID: 19806
 		public SkeletonAnimation skeletonAnimation;
 
-		// Token: 0x0400576B RID: 22379
+		// Token: 0x04004D5F RID: 19807
 		[SpineEvent("", "skeletonAnimation", true, true, false)]
 		public string eventName;
 
-		// Token: 0x0400576C RID: 22380
+		// Token: 0x04004D60 RID: 19808
 		[Space]
 		public AudioSource audioSource;
 
-		// Token: 0x0400576D RID: 22381
+		// Token: 0x04004D61 RID: 19809
 		public AudioClip audioClip;
 
-		// Token: 0x0400576E RID: 22382
+		// Token: 0x04004D62 RID: 19810
 		public float basePitch = 1f;
 
-		// Token: 0x0400576F RID: 22383
+		// Token: 0x04004D63 RID: 19811
 		public float randomPitchOffset = 0.1f;
 
-		// Token: 0x04005770 RID: 22384
+		// Token: 0x04004D64 RID: 19812
 		[Space]
 		public bool logDebugMessage;
 
-		// Token: 0x04005771 RID: 22385
+		// Token: 0x04004D65 RID: 19813
 		private EventData eventData;
 	}
 }

@@ -5,11 +5,11 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-// Token: 0x0200038A RID: 906
+// Token: 0x02000272 RID: 626
 public class UINPCJiaoHu : MonoBehaviour
 {
-	// Token: 0x17000282 RID: 642
-	// (get) Token: 0x0600195B RID: 6491 RVA: 0x000E2564 File Offset: 0x000E0764
+	// Token: 0x1700023A RID: 570
+	// (get) Token: 0x060016A9 RID: 5801 RVA: 0x0009A6D8 File Offset: 0x000988D8
 	[HideInInspector]
 	public bool NowIsJiaoHu
 	{
@@ -19,8 +19,8 @@ public class UINPCJiaoHu : MonoBehaviour
 		}
 	}
 
-	// Token: 0x17000283 RID: 643
-	// (get) Token: 0x0600195C RID: 6492 RVA: 0x000E2620 File Offset: 0x000E0820
+	// Token: 0x1700023B RID: 571
+	// (get) Token: 0x060016AA RID: 5802 RVA: 0x0009A794 File Offset: 0x00098994
 	public bool NowIsJiaoHu2
 	{
 		get
@@ -29,7 +29,7 @@ public class UINPCJiaoHu : MonoBehaviour
 		}
 	}
 
-	// Token: 0x0600195D RID: 6493 RVA: 0x00015B20 File Offset: 0x00013D20
+	// Token: 0x060016AB RID: 5803 RVA: 0x0009A82E File Offset: 0x00098A2E
 	private void Awake()
 	{
 		UINPCJiaoHu.Inst = this;
@@ -40,7 +40,7 @@ public class UINPCJiaoHu : MonoBehaviour
 		Object.Instantiate<GameObject>(this.NPCTalkPrefab, base.transform);
 	}
 
-	// Token: 0x0600195E RID: 6494 RVA: 0x000E26BC File Offset: 0x000E08BC
+	// Token: 0x060016AC RID: 5804 RVA: 0x0009A86C File Offset: 0x00098A6C
 	private void Update()
 	{
 		if (NpcJieSuanManager.inst == null)
@@ -67,7 +67,7 @@ public class UINPCJiaoHu : MonoBehaviour
 		this.AutoShowNPCList();
 	}
 
-	// Token: 0x0600195F RID: 6495 RVA: 0x000E2754 File Offset: 0x000E0954
+	// Token: 0x060016AD RID: 5805 RVA: 0x0009A904 File Offset: 0x00098B04
 	public void RefreshNowMapNPC()
 	{
 		string name = SceneManager.GetActiveScene().name;
@@ -184,13 +184,13 @@ public class UINPCJiaoHu : MonoBehaviour
 		NpcJieSuanManager.inst.isUpDateNpcList = false;
 	}
 
-	// Token: 0x06001960 RID: 6496 RVA: 0x00015B5E File Offset: 0x00013D5E
+	// Token: 0x060016AE RID: 5806 RVA: 0x0009AD68 File Offset: 0x00098F68
 	public void ShowNowJiaoHuJSON()
 	{
 		this.NowNPCJson = this.NowJiaoHuNPC.json.ToString();
 	}
 
-	// Token: 0x06001961 RID: 6497 RVA: 0x00015B76 File Offset: 0x00013D76
+	// Token: 0x060016AF RID: 5807 RVA: 0x0009AD80 File Offset: 0x00098F80
 	private void AutoShowNPCList()
 	{
 		if (!this.NPCList.gameObject.activeInHierarchy && this.NPCList.CanShow())
@@ -200,19 +200,19 @@ public class UINPCJiaoHu : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001962 RID: 6498 RVA: 0x00015BB4 File Offset: 0x00013DB4
+	// Token: 0x060016B0 RID: 5808 RVA: 0x0009ADBE File Offset: 0x00098FBE
 	public void ShowNPCList()
 	{
 		this.NPCList.gameObject.SetActive(true);
 	}
 
-	// Token: 0x06001963 RID: 6499 RVA: 0x00015BC7 File Offset: 0x00013DC7
+	// Token: 0x060016B1 RID: 5809 RVA: 0x0009ADD1 File Offset: 0x00098FD1
 	public void HideNPCList()
 	{
 		this.NPCList.gameObject.SetActive(false);
 	}
 
-	// Token: 0x06001964 RID: 6500 RVA: 0x000E2BB8 File Offset: 0x000E0DB8
+	// Token: 0x060016B2 RID: 5810 RVA: 0x0009ADE4 File Offset: 0x00098FE4
 	public void ShowJiaoHuPop()
 	{
 		if (FpUIMag.inst != null)
@@ -230,7 +230,7 @@ public class UINPCJiaoHu : MonoBehaviour
 		ESCCloseManager.Inst.RegisterClose(this.JiaoHuPop);
 	}
 
-	// Token: 0x06001965 RID: 6501 RVA: 0x000E2C3C File Offset: 0x000E0E3C
+	// Token: 0x060016B3 RID: 5811 RVA: 0x0009AE68 File Offset: 0x00099068
 	public void HideJiaoHuPop()
 	{
 		this.JiaoHuPop.gameObject.SetActive(false);
@@ -242,7 +242,7 @@ public class UINPCJiaoHu : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001966 RID: 6502 RVA: 0x00015BDA File Offset: 0x00013DDA
+	// Token: 0x060016B4 RID: 5812 RVA: 0x0009AEC2 File Offset: 0x000990C2
 	public void ShowNPCInfoPanel(UINPCData npc = null)
 	{
 		this.InfoPanel.gameObject.SetActive(true);
@@ -251,7 +251,7 @@ public class UINPCJiaoHu : MonoBehaviour
 		ESCCloseManager.Inst.RegisterClose(this.InfoPanel);
 	}
 
-	// Token: 0x06001967 RID: 6503 RVA: 0x000E2C98 File Offset: 0x000E0E98
+	// Token: 0x060016B5 RID: 5813 RVA: 0x0009AF04 File Offset: 0x00099104
 	public void HideNPCInfoPanel()
 	{
 		this.InfoPanel.TabGroup.UnHideTab();
@@ -260,7 +260,7 @@ public class UINPCJiaoHu : MonoBehaviour
 		ESCCloseManager.Inst.UnRegisterClose(this.InfoPanel);
 	}
 
-	// Token: 0x06001968 RID: 6504 RVA: 0x00015C1A File Offset: 0x00013E1A
+	// Token: 0x060016B6 RID: 5814 RVA: 0x0009AF53 File Offset: 0x00099153
 	public void ShowNPCTanChaPanel()
 	{
 		this.TanCha.gameObject.SetActive(true);
@@ -268,14 +268,14 @@ public class UINPCJiaoHu : MonoBehaviour
 		this.TanCha.RefreshUI();
 	}
 
-	// Token: 0x06001969 RID: 6505 RVA: 0x00015C49 File Offset: 0x00013E49
+	// Token: 0x060016B7 RID: 5815 RVA: 0x0009AF82 File Offset: 0x00099182
 	public void HideNPCTanChaPanel()
 	{
 		this.TanCha.gameObject.SetActive(false);
 		this.CommonMask.gameObject.SetActive(false);
 	}
 
-	// Token: 0x0600196A RID: 6506 RVA: 0x00015C6D File Offset: 0x00013E6D
+	// Token: 0x060016B8 RID: 5816 RVA: 0x0009AFA6 File Offset: 0x000991A6
 	public void ShowNPCQingJiaoPanel()
 	{
 		this.QingJiao.gameObject.SetActive(true);
@@ -284,7 +284,7 @@ public class UINPCJiaoHu : MonoBehaviour
 		ESCCloseManager.Inst.RegisterClose(this.QingJiao);
 	}
 
-	// Token: 0x0600196B RID: 6507 RVA: 0x00015CA7 File Offset: 0x00013EA7
+	// Token: 0x060016B9 RID: 5817 RVA: 0x0009AFE0 File Offset: 0x000991E0
 	public void HideNPCQingJiaoPanel()
 	{
 		this.QingJiao.gameObject.SetActive(false);
@@ -292,7 +292,7 @@ public class UINPCJiaoHu : MonoBehaviour
 		ESCCloseManager.Inst.UnRegisterClose(this.QingJiao);
 	}
 
-	// Token: 0x0600196C RID: 6508 RVA: 0x00015CD6 File Offset: 0x00013ED6
+	// Token: 0x060016BA RID: 5818 RVA: 0x0009B00F File Offset: 0x0009920F
 	public void ShowNPCZengLi()
 	{
 		this.ZengLi.gameObject.SetActive(true);
@@ -301,7 +301,7 @@ public class UINPCJiaoHu : MonoBehaviour
 		ESCCloseManager.Inst.RegisterClose(this.ZengLi);
 	}
 
-	// Token: 0x0600196D RID: 6509 RVA: 0x00015D10 File Offset: 0x00013F10
+	// Token: 0x060016BB RID: 5819 RVA: 0x0009B049 File Offset: 0x00099249
 	public void HideNPCZengLi()
 	{
 		this.ZengLi.gameObject.SetActive(false);
@@ -309,7 +309,7 @@ public class UINPCJiaoHu : MonoBehaviour
 		ESCCloseManager.Inst.UnRegisterClose(this.ZengLi);
 	}
 
-	// Token: 0x0600196E RID: 6510 RVA: 0x00015D3F File Offset: 0x00013F3F
+	// Token: 0x060016BC RID: 5820 RVA: 0x0009B078 File Offset: 0x00099278
 	public void ShowNPCSuoQu()
 	{
 		this.SuoQu.gameObject.SetActive(true);
@@ -318,7 +318,7 @@ public class UINPCJiaoHu : MonoBehaviour
 		ESCCloseManager.Inst.RegisterClose(this.SuoQu);
 	}
 
-	// Token: 0x0600196F RID: 6511 RVA: 0x00015D79 File Offset: 0x00013F79
+	// Token: 0x060016BD RID: 5821 RVA: 0x0009B0B2 File Offset: 0x000992B2
 	public void HideNPCSuoQu()
 	{
 		this.SuoQu.gameObject.SetActive(false);
@@ -326,7 +326,7 @@ public class UINPCJiaoHu : MonoBehaviour
 		ESCCloseManager.Inst.UnRegisterClose(this.SuoQu);
 	}
 
-	// Token: 0x06001970 RID: 6512 RVA: 0x00015DA8 File Offset: 0x00013FA8
+	// Token: 0x060016BE RID: 5822 RVA: 0x0009B0E1 File Offset: 0x000992E1
 	public void ShowNPCShuangXiuSelect()
 	{
 		this.HideJiaoHuPop();
@@ -336,7 +336,7 @@ public class UINPCJiaoHu : MonoBehaviour
 		ESCCloseManager.Inst.RegisterClose(this.ShuangXiuSelect);
 	}
 
-	// Token: 0x06001971 RID: 6513 RVA: 0x00015DE8 File Offset: 0x00013FE8
+	// Token: 0x060016BF RID: 5823 RVA: 0x0009B121 File Offset: 0x00099321
 	public void HideNPCShuangXiuSelect()
 	{
 		this.ShuangXiuSelect.gameObject.SetActive(false);
@@ -344,7 +344,7 @@ public class UINPCJiaoHu : MonoBehaviour
 		ESCCloseManager.Inst.UnRegisterClose(this.ShuangXiuSelect);
 	}
 
-	// Token: 0x06001972 RID: 6514 RVA: 0x000E2CE8 File Offset: 0x000E0EE8
+	// Token: 0x060016C0 RID: 5824 RVA: 0x0009B150 File Offset: 0x00099350
 	public void ShuangXiuTest()
 	{
 		for (int i = 2; i <= 6; i++)
@@ -353,7 +353,7 @@ public class UINPCJiaoHu : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001973 RID: 6515 RVA: 0x00015E17 File Offset: 0x00014017
+	// Token: 0x060016C1 RID: 5825 RVA: 0x0009B16F File Offset: 0x0009936F
 	public void ShowNPCShuangXiuAnim()
 	{
 		this.ShuangXiuAnim.gameObject.SetActive(true);
@@ -361,14 +361,14 @@ public class UINPCJiaoHu : MonoBehaviour
 		this.ShuangXiuAnim.RefreshUI();
 	}
 
-	// Token: 0x06001974 RID: 6516 RVA: 0x00015E41 File Offset: 0x00014041
+	// Token: 0x060016C2 RID: 5826 RVA: 0x0009B199 File Offset: 0x00099399
 	public void HideNPCShuangXiuAnim()
 	{
 		this.ShuangXiuAnim.gameObject.SetActive(false);
 		this.CommonMask.SetActive(false);
 	}
 
-	// Token: 0x06001975 RID: 6517 RVA: 0x000E2D08 File Offset: 0x000E0F08
+	// Token: 0x060016C3 RID: 5827 RVA: 0x0009B1B8 File Offset: 0x000993B8
 	public void SetBtnNormalColor(Transform btnTransform)
 	{
 		Image[] componentsInChildren = btnTransform.GetComponentsInChildren<Image>();
@@ -383,7 +383,7 @@ public class UINPCJiaoHu : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001976 RID: 6518 RVA: 0x000E2D58 File Offset: 0x000E0F58
+	// Token: 0x060016C4 RID: 5828 RVA: 0x0009B208 File Offset: 0x00099408
 	public void SetBtnDangerColor(Transform btnTransform)
 	{
 		Image[] componentsInChildren = btnTransform.GetComponentsInChildren<Image>();
@@ -398,7 +398,7 @@ public class UINPCJiaoHu : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001977 RID: 6519 RVA: 0x000E2DA8 File Offset: 0x000E0FA8
+	// Token: 0x060016C5 RID: 5829 RVA: 0x0009B258 File Offset: 0x00099458
 	public void SetBtnGreyColor(Transform btnTransform)
 	{
 		Image[] componentsInChildren = btnTransform.GetComponentsInChildren<Image>();
@@ -413,150 +413,153 @@ public class UINPCJiaoHu : MonoBehaviour
 		}
 	}
 
-	// Token: 0x0400147B RID: 5243
+	// Token: 0x0400112B RID: 4395
 	private NPCMap TestNPCMap;
 
-	// Token: 0x0400147C RID: 5244
+	// Token: 0x0400112C RID: 4396
 	private List<JSONObject> npcjsonlist = new List<JSONObject>();
 
-	// Token: 0x0400147D RID: 5245
+	// Token: 0x0400112D RID: 4397
 	private List<SeaAvatarObjBase> seaList = new List<SeaAvatarObjBase>();
 
-	// Token: 0x0400147E RID: 5246
+	// Token: 0x0400112E RID: 4398
 	public static bool isDebugMode = false;
 
-	// Token: 0x0400147F RID: 5247
+	// Token: 0x0400112F RID: 4399
 	public static UINPCJiaoHu Inst;
 
-	// Token: 0x04001480 RID: 5248
+	// Token: 0x04001130 RID: 4400
 	public static bool AllShouldHide;
 
-	// Token: 0x04001481 RID: 5249
+	// Token: 0x04001131 RID: 4401
 	public GameObject NPCTalkPrefab;
 
-	// Token: 0x04001482 RID: 5250
+	// Token: 0x04001132 RID: 4402
 	public UINPCLeftList NPCList;
 
-	// Token: 0x04001483 RID: 5251
+	// Token: 0x04001133 RID: 4403
 	public UINPCJiaoHuPop JiaoHuPop;
 
-	// Token: 0x04001484 RID: 5252
+	// Token: 0x04001134 RID: 4404
 	public UINPCLiaoTian LiaoTian;
 
-	// Token: 0x04001485 RID: 5253
+	// Token: 0x04001135 RID: 4405
 	public UINPCQingJiao QingJiao;
 
-	// Token: 0x04001486 RID: 5254
+	// Token: 0x04001136 RID: 4406
 	public UINPCTanCha TanCha;
 
-	// Token: 0x04001487 RID: 5255
+	// Token: 0x04001137 RID: 4407
 	public UINPCInfoPanel InfoPanel;
 
-	// Token: 0x04001488 RID: 5256
+	// Token: 0x04001138 RID: 4408
 	public UINPCZengLi ZengLi;
 
-	// Token: 0x04001489 RID: 5257
+	// Token: 0x04001139 RID: 4409
 	public UINPCSuoQu SuoQu;
 
-	// Token: 0x0400148A RID: 5258
+	// Token: 0x0400113A RID: 4410
 	public UINPCShuangXiuSelect ShuangXiuSelect;
 
-	// Token: 0x0400148B RID: 5259
+	// Token: 0x0400113B RID: 4411
 	public UINPCShuangXiuAnim ShuangXiuAnim;
 
-	// Token: 0x0400148C RID: 5260
+	// Token: 0x0400113C RID: 4412
 	public GameObject CommonMask;
 
-	// Token: 0x0400148D RID: 5261
+	// Token: 0x0400113D RID: 4413
 	public List<int> TNPCIDList = new List<int>();
 
-	// Token: 0x0400148E RID: 5262
+	// Token: 0x0400113E RID: 4414
 	public List<int> NPCIDList = new List<int>();
 
-	// Token: 0x0400148F RID: 5263
+	// Token: 0x0400113F RID: 4415
 	public List<int> SeaNPCIDList = new List<int>();
 
-	// Token: 0x04001490 RID: 5264
+	// Token: 0x04001140 RID: 4416
 	public List<string> SeaNPCUUIDList = new List<string>();
 
-	// Token: 0x04001491 RID: 5265
+	// Token: 0x04001141 RID: 4417
 	public List<int> SeaNPCEventIDList = new List<int>();
 
-	// Token: 0x04001492 RID: 5266
+	// Token: 0x04001142 RID: 4418
 	private DateTime nowTime;
 
-	// Token: 0x04001493 RID: 5267
+	// Token: 0x04001143 RID: 4419
 	private DateTime lastTime;
 
-	// Token: 0x04001494 RID: 5268
+	// Token: 0x04001144 RID: 4420
 	public UINPCData NowJiaoHuNPC;
 
-	// Token: 0x04001495 RID: 5269
+	// Token: 0x04001145 RID: 4421
 	public UINPCData NowJiaoHuEnemy;
 
-	// Token: 0x04001496 RID: 5270
+	// Token: 0x04001146 RID: 4422
 	public Material GreyMat;
 
-	// Token: 0x04001497 RID: 5271
+	// Token: 0x04001147 RID: 4423
 	public bool IsLiaoTianClicked;
 
-	// Token: 0x04001498 RID: 5272
+	// Token: 0x04001148 RID: 4424
 	public bool IsQieCuoClicked;
 
-	// Token: 0x04001499 RID: 5273
+	// Token: 0x04001149 RID: 4425
 	public bool IsTanChaShiBaiOrFaXian;
 
-	// Token: 0x0400149A RID: 5274
+	// Token: 0x0400114A RID: 4426
 	public bool IsGuDingNPCClicked;
 
-	// Token: 0x0400149B RID: 5275
+	// Token: 0x0400114B RID: 4427
 	public bool IsJiaoYiClicked;
 
-	// Token: 0x0400149C RID: 5276
+	// Token: 0x0400114C RID: 4428
 	public bool IsJieShaClicked;
 
-	// Token: 0x0400149D RID: 5277
+	// Token: 0x0400114D RID: 4429
 	public bool IsQingJiaoChengGong;
 
-	// Token: 0x0400149E RID: 5278
+	// Token: 0x0400114E RID: 4430
 	public bool IsQingJiaoShiBaiQF;
 
-	// Token: 0x0400149F RID: 5279
+	// Token: 0x0400114F RID: 4431
 	public bool IsQingJiaoShiBaiSW;
 
-	// Token: 0x040014A0 RID: 5280
+	// Token: 0x04001150 RID: 4432
 	public bool IsLunDaoClicked;
 
-	// Token: 0x040014A1 RID: 5281
+	// Token: 0x04001151 RID: 4433
 	public bool IsZengLiFinished;
 
-	// Token: 0x040014A2 RID: 5282
+	// Token: 0x04001152 RID: 4434
 	public bool IsSuoQuFinished;
 
-	// Token: 0x040014A3 RID: 5283
+	// Token: 0x04001153 RID: 4435
 	public bool IsWeiXieFinished;
 
-	// Token: 0x040014A4 RID: 5284
+	// Token: 0x04001154 RID: 4436
+	public bool IsNeedWarpToNPCTalk;
+
+	// Token: 0x04001155 RID: 4437
 	public ZengLiArg ZengLiArg;
 
-	// Token: 0x040014A5 RID: 5285
+	// Token: 0x04001156 RID: 4438
 	public WeiXieArg WeiXieArg;
 
-	// Token: 0x040014A6 RID: 5286
+	// Token: 0x04001157 RID: 4439
 	public string QingJiaoName;
 
-	// Token: 0x040014A7 RID: 5287
+	// Token: 0x04001158 RID: 4440
 	public int JiaoHuItemID;
 
-	// Token: 0x040014A8 RID: 5288
+	// Token: 0x04001159 RID: 4441
 	public string NowNPCJson = "";
 
-	// Token: 0x040014A9 RID: 5289
+	// Token: 0x0400115A RID: 4442
 	public static Color NormalColor = new Color(0.5254902f, 0.83137256f, 0.73333335f);
 
-	// Token: 0x040014AA RID: 5290
+	// Token: 0x0400115B RID: 4443
 	public static Color DangerColor = new Color(0.827451f, 0.62352943f, 0.5372549f);
 
-	// Token: 0x040014AB RID: 5291
+	// Token: 0x0400115C RID: 4444
 	public static Color GreyColor = new Color(0.6509804f, 0.6509804f, 0.6509804f);
 }

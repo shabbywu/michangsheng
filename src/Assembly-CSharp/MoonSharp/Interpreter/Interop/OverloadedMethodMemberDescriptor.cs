@@ -7,59 +7,59 @@ using MoonSharp.Interpreter.Interop.Converters;
 
 namespace MoonSharp.Interpreter.Interop
 {
-	// Token: 0x0200111C RID: 4380
+	// Token: 0x02000D21 RID: 3361
 	public class OverloadedMethodMemberDescriptor : IOptimizableDescriptor, IMemberDescriptor, IWireableDescriptor
 	{
-		// Token: 0x17000994 RID: 2452
-		// (get) Token: 0x060069BD RID: 27069 RVA: 0x00048323 File Offset: 0x00046523
-		// (set) Token: 0x060069BE RID: 27070 RVA: 0x0004832B File Offset: 0x0004652B
+		// Token: 0x17000737 RID: 1847
+		// (get) Token: 0x06005E29 RID: 24105 RVA: 0x00265982 File Offset: 0x00263B82
+		// (set) Token: 0x06005E2A RID: 24106 RVA: 0x0026598A File Offset: 0x00263B8A
 		public bool IgnoreExtensionMethods { get; set; }
 
-		// Token: 0x060069BF RID: 27071 RVA: 0x00048334 File Offset: 0x00046534
+		// Token: 0x06005E2B RID: 24107 RVA: 0x00265993 File Offset: 0x00263B93
 		public OverloadedMethodMemberDescriptor(string name, Type declaringType)
 		{
 			this.Name = name;
 			this.DeclaringType = declaringType;
 		}
 
-		// Token: 0x060069C0 RID: 27072 RVA: 0x00048373 File Offset: 0x00046573
+		// Token: 0x06005E2C RID: 24108 RVA: 0x002659D2 File Offset: 0x00263BD2
 		public OverloadedMethodMemberDescriptor(string name, Type declaringType, IOverloadableMemberDescriptor descriptor) : this(name, declaringType)
 		{
 			this.m_Overloads.Add(descriptor);
 		}
 
-		// Token: 0x060069C1 RID: 27073 RVA: 0x00048389 File Offset: 0x00046589
+		// Token: 0x06005E2D RID: 24109 RVA: 0x002659E8 File Offset: 0x00263BE8
 		public OverloadedMethodMemberDescriptor(string name, Type declaringType, IEnumerable<IOverloadableMemberDescriptor> descriptors) : this(name, declaringType)
 		{
 			this.m_Overloads.AddRange(descriptors);
 		}
 
-		// Token: 0x060069C2 RID: 27074 RVA: 0x0004839F File Offset: 0x0004659F
+		// Token: 0x06005E2E RID: 24110 RVA: 0x002659FE File Offset: 0x00263BFE
 		internal void SetExtensionMethodsSnapshot(int version, List<IOverloadableMemberDescriptor> extMethods)
 		{
 			this.m_ExtOverloads = extMethods;
 			this.m_ExtensionMethodVersion = version;
 		}
 
-		// Token: 0x17000995 RID: 2453
-		// (get) Token: 0x060069C3 RID: 27075 RVA: 0x000483AF File Offset: 0x000465AF
-		// (set) Token: 0x060069C4 RID: 27076 RVA: 0x000483B7 File Offset: 0x000465B7
+		// Token: 0x17000738 RID: 1848
+		// (get) Token: 0x06005E2F RID: 24111 RVA: 0x00265A0E File Offset: 0x00263C0E
+		// (set) Token: 0x06005E30 RID: 24112 RVA: 0x00265A16 File Offset: 0x00263C16
 		public string Name { get; private set; }
 
-		// Token: 0x17000996 RID: 2454
-		// (get) Token: 0x060069C5 RID: 27077 RVA: 0x000483C0 File Offset: 0x000465C0
-		// (set) Token: 0x060069C6 RID: 27078 RVA: 0x000483C8 File Offset: 0x000465C8
+		// Token: 0x17000739 RID: 1849
+		// (get) Token: 0x06005E31 RID: 24113 RVA: 0x00265A1F File Offset: 0x00263C1F
+		// (set) Token: 0x06005E32 RID: 24114 RVA: 0x00265A27 File Offset: 0x00263C27
 		public Type DeclaringType { get; private set; }
 
-		// Token: 0x060069C7 RID: 27079 RVA: 0x000483D1 File Offset: 0x000465D1
+		// Token: 0x06005E33 RID: 24115 RVA: 0x00265A30 File Offset: 0x00263C30
 		public void AddOverload(IOverloadableMemberDescriptor overload)
 		{
 			this.m_Overloads.Add(overload);
 			this.m_Unsorted = true;
 		}
 
-		// Token: 0x17000997 RID: 2455
-		// (get) Token: 0x060069C8 RID: 27080 RVA: 0x000483E6 File Offset: 0x000465E6
+		// Token: 0x1700073A RID: 1850
+		// (get) Token: 0x06005E34 RID: 24116 RVA: 0x00265A45 File Offset: 0x00263C45
 		public int OverloadCount
 		{
 			get
@@ -68,7 +68,7 @@ namespace MoonSharp.Interpreter.Interop
 			}
 		}
 
-		// Token: 0x060069C9 RID: 27081 RVA: 0x0028E4D0 File Offset: 0x0028C6D0
+		// Token: 0x06005E35 RID: 24117 RVA: 0x00265A54 File Offset: 0x00263C54
 		private DynValue PerformOverloadedCall(Script script, object obj, ScriptExecutionContext context, CallbackArguments args)
 		{
 			bool flag = this.IgnoreExtensionMethods || obj == null || this.m_ExtensionMethodVersion == UserData.GetExtensionMethodsChangeVersion();
@@ -130,7 +130,7 @@ namespace MoonSharp.Interpreter.Interop
 			throw new ScriptRuntimeException("function call doesn't match any overload");
 		}
 
-		// Token: 0x060069CA RID: 27082 RVA: 0x0028E6A4 File Offset: 0x0028C8A4
+		// Token: 0x06005E36 RID: 24118 RVA: 0x00265C28 File Offset: 0x00263E28
 		private void Cache(bool hasObject, CallbackArguments args, IOverloadableMemberDescriptor bestOverload)
 		{
 			int num = int.MaxValue;
@@ -185,7 +185,7 @@ namespace MoonSharp.Interpreter.Interop
 			}
 		}
 
-		// Token: 0x060069CB RID: 27083 RVA: 0x0028E7FC File Offset: 0x0028C9FC
+		// Token: 0x06005E37 RID: 24119 RVA: 0x00265D80 File Offset: 0x00263F80
 		private bool CheckMatch(bool hasObject, CallbackArguments args, OverloadedMethodMemberDescriptor.OverloadCacheItem overloadCacheItem)
 		{
 			if (overloadCacheItem.HasObject && !hasObject)
@@ -213,7 +213,7 @@ namespace MoonSharp.Interpreter.Interop
 			return true;
 		}
 
-		// Token: 0x060069CC RID: 27084 RVA: 0x0028E8AC File Offset: 0x0028CAAC
+		// Token: 0x06005E38 RID: 24120 RVA: 0x00265E30 File Offset: 0x00264030
 		private int CalcScoreForOverload(ScriptExecutionContext context, CallbackArguments args, IOverloadableMemberDescriptor method, bool isExtMethod)
 		{
 			int num = 100;
@@ -293,7 +293,7 @@ namespace MoonSharp.Interpreter.Interop
 			return num;
 		}
 
-		// Token: 0x060069CD RID: 27085 RVA: 0x0028EAC0 File Offset: 0x0028CCC0
+		// Token: 0x06005E39 RID: 24121 RVA: 0x00266044 File Offset: 0x00264244
 		private static int CalcScoreForSingleArgument(ParameterDescriptor desc, Type parameterType, DynValue arg, bool isOptional)
 		{
 			int num = ScriptToClrConversions.DynValueToObjectOfTypeWeight(arg, parameterType, isOptional);
@@ -304,13 +304,13 @@ namespace MoonSharp.Interpreter.Interop
 			return num;
 		}
 
-		// Token: 0x060069CE RID: 27086 RVA: 0x000483F3 File Offset: 0x000465F3
+		// Token: 0x06005E3A RID: 24122 RVA: 0x0026607E File Offset: 0x0026427E
 		public Func<ScriptExecutionContext, CallbackArguments, DynValue> GetCallback(Script script, object obj)
 		{
 			return (ScriptExecutionContext context, CallbackArguments args) => this.PerformOverloadedCall(script, obj, context, args);
 		}
 
-		// Token: 0x060069CF RID: 27087 RVA: 0x0028EAFC File Offset: 0x0028CCFC
+		// Token: 0x06005E3B RID: 24123 RVA: 0x002660A8 File Offset: 0x002642A8
 		void IOptimizableDescriptor.Optimize()
 		{
 			foreach (IOptimizableDescriptor optimizableDescriptor in this.m_Overloads.OfType<IOptimizableDescriptor>())
@@ -319,14 +319,14 @@ namespace MoonSharp.Interpreter.Interop
 			}
 		}
 
-		// Token: 0x060069D0 RID: 27088 RVA: 0x0004841A File Offset: 0x0004661A
+		// Token: 0x06005E3C RID: 24124 RVA: 0x002660F8 File Offset: 0x002642F8
 		public CallbackFunction GetCallbackFunction(Script script, object obj = null)
 		{
 			return new CallbackFunction(this.GetCallback(script, obj), this.Name);
 		}
 
-		// Token: 0x17000998 RID: 2456
-		// (get) Token: 0x060069D1 RID: 27089 RVA: 0x0004842F File Offset: 0x0004662F
+		// Token: 0x1700073B RID: 1851
+		// (get) Token: 0x06005E3D RID: 24125 RVA: 0x0026610D File Offset: 0x0026430D
 		public bool IsStatic
 		{
 			get
@@ -335,8 +335,8 @@ namespace MoonSharp.Interpreter.Interop
 			}
 		}
 
-		// Token: 0x17000999 RID: 2457
-		// (get) Token: 0x060069D2 RID: 27090 RVA: 0x0002D0EC File Offset: 0x0002B2EC
+		// Token: 0x1700073C RID: 1852
+		// (get) Token: 0x06005E3E RID: 24126 RVA: 0x0016F21F File Offset: 0x0016D41F
 		public MemberDescriptorAccess MemberAccess
 		{
 			get
@@ -345,19 +345,19 @@ namespace MoonSharp.Interpreter.Interop
 			}
 		}
 
-		// Token: 0x060069D3 RID: 27091 RVA: 0x0004845B File Offset: 0x0004665B
+		// Token: 0x06005E3F RID: 24127 RVA: 0x00266139 File Offset: 0x00264339
 		public DynValue GetValue(Script script, object obj)
 		{
 			return DynValue.NewCallback(this.GetCallbackFunction(script, obj));
 		}
 
-		// Token: 0x060069D4 RID: 27092 RVA: 0x00048074 File Offset: 0x00046274
+		// Token: 0x06005E40 RID: 24128 RVA: 0x002645B4 File Offset: 0x002627B4
 		public void SetValue(Script script, object obj, DynValue value)
 		{
 			this.CheckAccess(MemberDescriptorAccess.CanWrite, obj);
 		}
 
-		// Token: 0x060069D5 RID: 27093 RVA: 0x0028EB4C File Offset: 0x0028CD4C
+		// Token: 0x06005E41 RID: 24129 RVA: 0x00266148 File Offset: 0x00264348
 		public void PrepareForWiring(Table t)
 		{
 			t.Set("class", DynValue.NewString(base.GetType().FullName));
@@ -382,53 +382,53 @@ namespace MoonSharp.Interpreter.Interop
 			}
 		}
 
-		// Token: 0x04006056 RID: 24662
+		// Token: 0x04005430 RID: 21552
 		private const int CACHE_SIZE = 5;
 
-		// Token: 0x04006057 RID: 24663
+		// Token: 0x04005431 RID: 21553
 		private List<IOverloadableMemberDescriptor> m_Overloads = new List<IOverloadableMemberDescriptor>();
 
-		// Token: 0x04006058 RID: 24664
+		// Token: 0x04005432 RID: 21554
 		private List<IOverloadableMemberDescriptor> m_ExtOverloads = new List<IOverloadableMemberDescriptor>();
 
-		// Token: 0x04006059 RID: 24665
+		// Token: 0x04005433 RID: 21555
 		private bool m_Unsorted = true;
 
-		// Token: 0x0400605A RID: 24666
+		// Token: 0x04005434 RID: 21556
 		private OverloadedMethodMemberDescriptor.OverloadCacheItem[] m_Cache = new OverloadedMethodMemberDescriptor.OverloadCacheItem[5];
 
-		// Token: 0x0400605B RID: 24667
+		// Token: 0x04005435 RID: 21557
 		private int m_CacheHits;
 
-		// Token: 0x0400605C RID: 24668
+		// Token: 0x04005436 RID: 21558
 		private int m_ExtensionMethodVersion;
 
-		// Token: 0x0200111D RID: 4381
+		// Token: 0x02001670 RID: 5744
 		private class OverloadableMemberDescriptorComparer : IComparer<IOverloadableMemberDescriptor>
 		{
-			// Token: 0x060069D6 RID: 27094 RVA: 0x0004846A File Offset: 0x0004666A
+			// Token: 0x060086FF RID: 34559 RVA: 0x002E6B3D File Offset: 0x002E4D3D
 			public int Compare(IOverloadableMemberDescriptor x, IOverloadableMemberDescriptor y)
 			{
 				return x.SortDiscriminant.CompareTo(y.SortDiscriminant);
 			}
 		}
 
-		// Token: 0x0200111E RID: 4382
+		// Token: 0x02001671 RID: 5745
 		private class OverloadCacheItem
 		{
-			// Token: 0x04006060 RID: 24672
+			// Token: 0x04007283 RID: 29315
 			public bool HasObject;
 
-			// Token: 0x04006061 RID: 24673
+			// Token: 0x04007284 RID: 29316
 			public IOverloadableMemberDescriptor Method;
 
-			// Token: 0x04006062 RID: 24674
+			// Token: 0x04007285 RID: 29317
 			public List<DataType> ArgsDataType;
 
-			// Token: 0x04006063 RID: 24675
+			// Token: 0x04007286 RID: 29318
 			public List<Type> ArgsUserDataType;
 
-			// Token: 0x04006064 RID: 24676
+			// Token: 0x04007287 RID: 29319
 			public int HitIndexAtLastHit;
 		}
 	}

@@ -2,15 +2,15 @@
 
 namespace ICSharpCode.SharpZipLib.BZip2
 {
-	// Token: 0x0200083A RID: 2106
+	// Token: 0x02000591 RID: 1425
 	internal sealed class BZip2Constants
 	{
-		// Token: 0x06003720 RID: 14112 RVA: 0x0000403D File Offset: 0x0000223D
+		// Token: 0x06002EAA RID: 11946 RVA: 0x000027FC File Offset: 0x000009FC
 		private BZip2Constants()
 		{
 		}
 
-		// Token: 0x04003133 RID: 12595
+		// Token: 0x040028F4 RID: 10484
 		public static readonly int[] RandomNumbers = new int[]
 		{
 			619,
@@ -527,34 +527,34 @@ namespace ICSharpCode.SharpZipLib.BZip2
 			638
 		};
 
-		// Token: 0x04003134 RID: 12596
+		// Token: 0x040028F5 RID: 10485
 		public const int BaseBlockSize = 100000;
 
-		// Token: 0x04003135 RID: 12597
+		// Token: 0x040028F6 RID: 10486
 		public const int MaximumAlphaSize = 258;
 
-		// Token: 0x04003136 RID: 12598
+		// Token: 0x040028F7 RID: 10487
 		public const int MaximumCodeLength = 23;
 
-		// Token: 0x04003137 RID: 12599
+		// Token: 0x040028F8 RID: 10488
 		public const int RunA = 0;
 
-		// Token: 0x04003138 RID: 12600
+		// Token: 0x040028F9 RID: 10489
 		public const int RunB = 1;
 
-		// Token: 0x04003139 RID: 12601
+		// Token: 0x040028FA RID: 10490
 		public const int GroupCount = 6;
 
-		// Token: 0x0400313A RID: 12602
+		// Token: 0x040028FB RID: 10491
 		public const int GroupSize = 50;
 
-		// Token: 0x0400313B RID: 12603
+		// Token: 0x040028FC RID: 10492
 		public const int NumberOfIterations = 4;
 
-		// Token: 0x0400313C RID: 12604
+		// Token: 0x040028FD RID: 10493
 		public const int MaximumSelectors = 18002;
 
-		// Token: 0x0400313D RID: 12605
+		// Token: 0x040028FE RID: 10494
 		public const int OvershootBytes = 20;
 	}
 }

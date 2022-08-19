@@ -7,16 +7,16 @@ using UnityEngine;
 
 namespace YSGame.TianJiDaBi
 {
-	// Token: 0x02000DC4 RID: 3524
+	// Token: 0x02000A92 RID: 2706
 	public static class TianJiDaBiManager
 	{
-		// Token: 0x060054E5 RID: 21733 RVA: 0x0003CABA File Offset: 0x0003ACBA
+		// Token: 0x06004BC9 RID: 19401 RVA: 0x002044B9 File Offset: 0x002026B9
 		public static Match GetNowMatch()
 		{
 			return PlayerEx.Player.StreamData.TianJiDaBiSaveData.NowMatch;
 		}
 
-		// Token: 0x060054E6 RID: 21734 RVA: 0x00235920 File Offset: 0x00233B20
+		// Token: 0x06004BCA RID: 19402 RVA: 0x002044D0 File Offset: 0x002026D0
 		public static void OnAddTime()
 		{
 			TianJiDaBiSaveData tianJiDaBiSaveData = PlayerEx.Player.StreamData.TianJiDaBiSaveData;
@@ -47,7 +47,7 @@ namespace YSGame.TianJiDaBi
 			}
 		}
 
-		// Token: 0x060054E7 RID: 21735 RVA: 0x002359FC File Offset: 0x00233BFC
+		// Token: 0x06004BCB RID: 19403 RVA: 0x002045AC File Offset: 0x002027AC
 		public static void CmdTianJiDaBiStart(bool playerJoin, List<int> jiaSaiNPCList = null)
 		{
 			Avatar player = PlayerEx.Player;
@@ -94,6 +94,7 @@ namespace YSGame.TianJiDaBi
 				daBiPlayer.AtkType = -1;
 				daBiPlayer.DefType = -1;
 				daBiPlayer.DunSu = player.dunSu;
+				daBiPlayer.HP = player.HP_Max;
 				daBiPlayer.MaxAtk = -1;
 				daBiPlayer.MinAtk = -1;
 				match.PlayerList.Add(daBiPlayer);
@@ -104,7 +105,7 @@ namespace YSGame.TianJiDaBi
 			player.StreamData.TianJiDaBiSaveData.NowMatch = match;
 		}
 
-		// Token: 0x060054E8 RID: 21736 RVA: 0x00235BCC File Offset: 0x00233DCC
+		// Token: 0x06004BCC RID: 19404 RVA: 0x00204788 File Offset: 0x00202988
 		public static void OnTimeSimDaBi()
 		{
 			TianJiDaBiManager.IsOnSim = true;
@@ -139,7 +140,7 @@ namespace YSGame.TianJiDaBi
 			TianJiDaBiManager.IsOnSim = false;
 		}
 
-		// Token: 0x060054E9 RID: 21737 RVA: 0x0003CAD0 File Offset: 0x0003ACD0
+		// Token: 0x06004BCD RID: 19405 RVA: 0x002048BC File Offset: 0x00202ABC
 		public static void AddLastMatchData(Match match)
 		{
 			TianJiDaBiSaveData tianJiDaBiSaveData = PlayerEx.Player.StreamData.TianJiDaBiSaveData;
@@ -149,7 +150,7 @@ namespace YSGame.TianJiDaBi
 			tianJiDaBiSaveData.HistotyMatchList.Add(match);
 		}
 
-		// Token: 0x060054EA RID: 21738 RVA: 0x00235D00 File Offset: 0x00233F00
+		// Token: 0x06004BCE RID: 19406 RVA: 0x002048F8 File Offset: 0x00202AF8
 		public static void AddMatchPlayerEvent(Match match, bool isNowTime = false)
 		{
 			int playerCount = match.PlayerCount;
@@ -167,12 +168,19 @@ namespace YSGame.TianJiDaBi
 					{
 						time = string.Format("{0}/12/31 0:00:00", match.MatchYear);
 					}
-					NpcJieSuanManager.inst.npcNoteBook.NoteTianJiDaBi(daBiPlayer.ID, i + 1, time);
+					if (match.MatchYear == 1950)
+					{
+						Debug.LogError(string.Format("检测到大比1950，请注意检查附近代码，此次不计入NPC重要事件，ID:{0},Name:{1}", daBiPlayer.ID, daBiPlayer.Name));
+					}
+					else
+					{
+						NpcJieSuanManager.inst.npcNoteBook.NoteTianJiDaBi(daBiPlayer.ID, i + 1, time);
+					}
 				}
 			}
 		}
 
-		// Token: 0x060054EB RID: 21739 RVA: 0x00235D7C File Offset: 0x00233F7C
+		// Token: 0x06004BCF RID: 19407 RVA: 0x002049A8 File Offset: 0x00202BA8
 		public static void SendRewardToNPC(Match match)
 		{
 			int playerCount = match.PlayerCount;
@@ -182,16 +190,23 @@ namespace YSGame.TianJiDaBi
 				DaBiPlayer daBiPlayer = match.PlayerList[num];
 				if (!daBiPlayer.IsWanJia)
 				{
-					foreach (int itemID in TianJiDaBiReward.GetReward(daBiPlayer.LiuPai, num + 1))
+					try
 					{
-						NpcJieSuanManager.inst.AddItemToNpcBackpack(daBiPlayer.ID, itemID, 1, null, false);
+						foreach (int itemID in TianJiDaBiReward.GetReward(daBiPlayer.LiuPai, num + 1))
+						{
+							NpcJieSuanManager.inst.AddItemToNpcBackpack(daBiPlayer.ID, itemID, 1, null, false);
+						}
+					}
+					catch (Exception arg)
+					{
+						Debug.LogError(string.Format("为NPC添加奖励出现错误，NPCID:{0} 流派:{1}，错误信息:{2}", daBiPlayer.ID, daBiPlayer.LiuPai, arg));
 					}
 				}
 				num++;
 			}
 		}
 
-		// Token: 0x060054EC RID: 21740 RVA: 0x00235E14 File Offset: 0x00234014
+		// Token: 0x06004BD0 RID: 19408 RVA: 0x00204A84 File Offset: 0x00202C84
 		public static List<int> RollDaBiPlayer(int rollCount)
 		{
 			Stopwatch stopwatch = new Stopwatch();
@@ -342,7 +357,7 @@ namespace YSGame.TianJiDaBi
 			return list;
 		}
 
-		// Token: 0x060054ED RID: 21741 RVA: 0x00236318 File Offset: 0x00234518
+		// Token: 0x06004BD1 RID: 19409 RVA: 0x00204F88 File Offset: 0x00203188
 		private static List<int> SearchLiuPaiNPC(Dictionary<int, List<Vector2Int>> dict, int liuPai, int jingJie)
 		{
 			List<int> list = new List<int>();
@@ -356,10 +371,10 @@ namespace YSGame.TianJiDaBi
 			return list;
 		}
 
-		// Token: 0x0400549C RID: 21660
+		// Token: 0x04004ADF RID: 19167
 		public static Random Random = new Random();
 
-		// Token: 0x0400549D RID: 21661
+		// Token: 0x04004AE0 RID: 19168
 		public static bool IsOnSim;
 	}
 }

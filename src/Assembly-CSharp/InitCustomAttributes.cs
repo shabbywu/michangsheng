@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Reflection;
 
-// Token: 0x020005F8 RID: 1528
+// Token: 0x02000441 RID: 1089
 public class InitCustomAttributes
 {
-	// Token: 0x06002655 RID: 9813 RVA: 0x0012E428 File Offset: 0x0012C628
+	// Token: 0x06002296 RID: 8854 RVA: 0x000ED5E8 File Offset: 0x000EB7E8
 	public static void Init()
 	{
 		foreach (Type type in Assembly.GetAssembly(typeof(BindPrefab)).GetExportedTypes())

@@ -1,11 +1,11 @@
 ﻿using System;
 using UnityEngine;
 
-// Token: 0x02000075 RID: 117
+// Token: 0x0200005A RID: 90
 [AddComponentMenu("NGUI/Interaction/Button Rotation")]
 public class UIButtonRotation : MonoBehaviour
 {
-	// Token: 0x0600050B RID: 1291 RVA: 0x00008783 File Offset: 0x00006983
+	// Token: 0x060004BD RID: 1213 RVA: 0x00019E1E File Offset: 0x0001801E
 	private void Start()
 	{
 		if (!this.mStarted)
@@ -19,7 +19,7 @@ public class UIButtonRotation : MonoBehaviour
 		}
 	}
 
-	// Token: 0x0600050C RID: 1292 RVA: 0x000087BF File Offset: 0x000069BF
+	// Token: 0x060004BE RID: 1214 RVA: 0x00019E5A File Offset: 0x0001805A
 	private void OnEnable()
 	{
 		if (this.mStarted)
@@ -28,7 +28,7 @@ public class UIButtonRotation : MonoBehaviour
 		}
 	}
 
-	// Token: 0x0600050D RID: 1293 RVA: 0x00070C08 File Offset: 0x0006EE08
+	// Token: 0x060004BF RID: 1215 RVA: 0x00019E78 File Offset: 0x00018078
 	private void OnDisable()
 	{
 		if (this.mStarted && this.tweenTarget != null)
@@ -42,7 +42,7 @@ public class UIButtonRotation : MonoBehaviour
 		}
 	}
 
-	// Token: 0x0600050E RID: 1294 RVA: 0x00070C54 File Offset: 0x0006EE54
+	// Token: 0x060004C0 RID: 1216 RVA: 0x00019EC4 File Offset: 0x000180C4
 	private void OnPress(bool isPressed)
 	{
 		if (base.enabled)
@@ -55,7 +55,7 @@ public class UIButtonRotation : MonoBehaviour
 		}
 	}
 
-	// Token: 0x0600050F RID: 1295 RVA: 0x00070CDC File Offset: 0x0006EEDC
+	// Token: 0x060004C1 RID: 1217 RVA: 0x00019F4C File Offset: 0x0001814C
 	private void OnHover(bool isOver)
 	{
 		if (base.enabled)
@@ -68,7 +68,7 @@ public class UIButtonRotation : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000510 RID: 1296 RVA: 0x000087DA File Offset: 0x000069DA
+	// Token: 0x060004C2 RID: 1218 RVA: 0x00019FAC File Offset: 0x000181AC
 	private void OnSelect(bool isSelected)
 	{
 		if (base.enabled && (!isSelected || UICamera.currentScheme == UICamera.ControlScheme.Controller))
@@ -77,21 +77,21 @@ public class UIButtonRotation : MonoBehaviour
 		}
 	}
 
-	// Token: 0x0400035F RID: 863
+	// Token: 0x040002E0 RID: 736
 	public Transform tweenTarget;
 
-	// Token: 0x04000360 RID: 864
+	// Token: 0x040002E1 RID: 737
 	public Vector3 hover = Vector3.zero;
 
-	// Token: 0x04000361 RID: 865
+	// Token: 0x040002E2 RID: 738
 	public Vector3 pressed = Vector3.zero;
 
-	// Token: 0x04000362 RID: 866
+	// Token: 0x040002E3 RID: 739
 	public float duration = 0.2f;
 
-	// Token: 0x04000363 RID: 867
+	// Token: 0x040002E4 RID: 740
 	private Quaternion mRot;
 
-	// Token: 0x04000364 RID: 868
+	// Token: 0x040002E5 RID: 741
 	private bool mStarted;
 }

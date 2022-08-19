@@ -3,12 +3,12 @@ using UnityEngine;
 
 namespace BehaviorDesigner.Runtime.Tasks.Basic.UnityParticleSystem
 {
-	// Token: 0x0200158C RID: 5516
+	// Token: 0x020010D2 RID: 4306
 	[TaskCategory("Basic/ParticleSystem")]
 	[TaskDescription("Stores the max particles of the Particle System.")]
 	public class GetMaxParticles : Action
 	{
-		// Token: 0x06008211 RID: 33297 RVA: 0x002CD074 File Offset: 0x002CB274
+		// Token: 0x06007417 RID: 29719 RVA: 0x002B18E4 File Offset: 0x002AFAE4
 		public override void OnStart()
 		{
 			GameObject defaultGameObject = base.GetDefaultGameObject(this.targetGameObject.Value);
@@ -19,7 +19,7 @@ namespace BehaviorDesigner.Runtime.Tasks.Basic.UnityParticleSystem
 			}
 		}
 
-		// Token: 0x06008212 RID: 33298 RVA: 0x002CD0B4 File Offset: 0x002CB2B4
+		// Token: 0x06007418 RID: 29720 RVA: 0x002B1924 File Offset: 0x002AFB24
 		public override TaskStatus OnUpdate()
 		{
 			if (this.particleSystem == null)
@@ -31,26 +31,26 @@ namespace BehaviorDesigner.Runtime.Tasks.Basic.UnityParticleSystem
 			return 2;
 		}
 
-		// Token: 0x06008213 RID: 33299 RVA: 0x000591C6 File Offset: 0x000573C6
+		// Token: 0x06007419 RID: 29721 RVA: 0x002B196B File Offset: 0x002AFB6B
 		public override void OnReset()
 		{
 			this.targetGameObject = null;
 			this.storeResult = 0f;
 		}
 
-		// Token: 0x04006ED8 RID: 28376
+		// Token: 0x04005FD8 RID: 24536
 		[Tooltip("The GameObject that the task operates on. If null the task GameObject is used.")]
 		public SharedGameObject targetGameObject;
 
-		// Token: 0x04006ED9 RID: 28377
+		// Token: 0x04005FD9 RID: 24537
 		[Tooltip("The max particles of the ParticleSystem")]
 		[RequiredField]
 		public SharedFloat storeResult;
 
-		// Token: 0x04006EDA RID: 28378
+		// Token: 0x04005FDA RID: 24538
 		private ParticleSystem particleSystem;
 
-		// Token: 0x04006EDB RID: 28379
+		// Token: 0x04005FDB RID: 24539
 		private GameObject prevGameObject;
 	}
 }

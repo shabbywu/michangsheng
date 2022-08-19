@@ -1,7 +1,7 @@
 ﻿using System;
 using UnityEngine;
 
-// Token: 0x02000565 RID: 1381
+// Token: 0x020003CE RID: 974
 public class SeaPlayerContor : MonoBehaviour
 {
 }

@@ -1,18 +1,18 @@
 ﻿using System;
 
-// Token: 0x0200046F RID: 1135
+// Token: 0x0200030E RID: 782
 public class LunDaoCard
 {
-	// Token: 0x06001E73 RID: 7795 RVA: 0x0001943C File Offset: 0x0001763C
+	// Token: 0x06001B42 RID: 6978 RVA: 0x000C24C5 File Offset: 0x000C06C5
 	public LunDaoCard(int wudaoId, int level)
 	{
 		this.level = level;
 		this.wudaoId = wudaoId;
 	}
 
-	// Token: 0x040019CD RID: 6605
+	// Token: 0x040015B7 RID: 5559
 	public int wudaoId;
 
-	// Token: 0x040019CE RID: 6606
+	// Token: 0x040015B8 RID: 5560
 	public int level;
 }

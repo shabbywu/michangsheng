@@ -5,10 +5,10 @@ using UnityEngine;
 
 namespace Spine.Unity.Examples
 {
-	// Token: 0x02000E4F RID: 3663
+	// Token: 0x02000AF6 RID: 2806
 	public class CombinedSkin : MonoBehaviour
 	{
-		// Token: 0x060057EB RID: 22507 RVA: 0x002461F0 File Offset: 0x002443F0
+		// Token: 0x06004E4A RID: 20042 RVA: 0x002161B4 File Offset: 0x002143B4
 		private void Start()
 		{
 			ISkeletonComponent component = base.GetComponent<ISkeletonComponent>();
@@ -40,11 +40,11 @@ namespace Spine.Unity.Examples
 			}
 		}
 
-		// Token: 0x040057EE RID: 22510
+		// Token: 0x04004DC2 RID: 19906
 		[SpineSkin("", "", true, false, false)]
 		public List<string> skinsToCombine;
 
-		// Token: 0x040057EF RID: 22511
+		// Token: 0x04004DC3 RID: 19907
 		private Skin combinedSkin;
 	}
 }

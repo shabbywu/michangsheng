@@ -2,12 +2,12 @@
 
 namespace BehaviorDesigner.Runtime.Tasks.Basic.UnityString
 {
-	// Token: 0x02001501 RID: 5377
+	// Token: 0x02001047 RID: 4167
 	[TaskCategory("Basic/String")]
 	[TaskDescription("Stores a substring of the target string")]
 	public class GetSubstring : Action
 	{
-		// Token: 0x06008028 RID: 32808 RVA: 0x002CAD98 File Offset: 0x002C8F98
+		// Token: 0x0600722E RID: 29230 RVA: 0x002AD630 File Offset: 0x002AB830
 		public override TaskStatus OnUpdate()
 		{
 			if (this.length.Value != -1)
@@ -21,7 +21,7 @@ namespace BehaviorDesigner.Runtime.Tasks.Basic.UnityString
 			return 2;
 		}
 
-		// Token: 0x06008029 RID: 32809 RVA: 0x00057226 File Offset: 0x00055426
+		// Token: 0x0600722F RID: 29231 RVA: 0x002AD6A5 File Offset: 0x002AB8A5
 		public override void OnReset()
 		{
 			this.targetString = "";
@@ -30,19 +30,19 @@ namespace BehaviorDesigner.Runtime.Tasks.Basic.UnityString
 			this.storeResult = "";
 		}
 
-		// Token: 0x04006D03 RID: 27907
+		// Token: 0x04005E03 RID: 24067
 		[Tooltip("The target string")]
 		public SharedString targetString;
 
-		// Token: 0x04006D04 RID: 27908
+		// Token: 0x04005E04 RID: 24068
 		[Tooltip("The start substring index")]
 		public SharedInt startIndex = 0;
 
-		// Token: 0x04006D05 RID: 27909
+		// Token: 0x04005E05 RID: 24069
 		[Tooltip("The length of the substring. Don't use if -1")]
 		public SharedInt length = -1;
 
-		// Token: 0x04006D06 RID: 27910
+		// Token: 0x04005E06 RID: 24070
 		[Tooltip("The stored result")]
 		[RequiredField]
 		public SharedString storeResult;

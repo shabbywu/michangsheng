@@ -4,11 +4,11 @@ using UnityEngine;
 
 namespace BehaviorDesigner.Runtime
 {
-	// Token: 0x0200147F RID: 5247
+	// Token: 0x02000FC7 RID: 4039
 	[Serializable]
 	public class SharedTransformList : SharedVariable<List<Transform>>
 	{
-		// Token: 0x06007E1B RID: 32283 RVA: 0x00055418 File Offset: 0x00053618
+		// Token: 0x06007021 RID: 28705 RVA: 0x002A8D99 File Offset: 0x002A6F99
 		public static implicit operator SharedTransformList(List<Transform> value)
 		{
 			return new SharedTransformList

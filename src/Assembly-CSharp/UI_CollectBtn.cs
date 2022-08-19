@@ -4,22 +4,22 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
 
-// Token: 0x020005B8 RID: 1464
+// Token: 0x02000408 RID: 1032
 public class UI_CollectBtn : ScrollBtn
 {
-	// Token: 0x060024F3 RID: 9459 RVA: 0x0001DAD0 File Offset: 0x0001BCD0
+	// Token: 0x06002141 RID: 8513 RVA: 0x000E823E File Offset: 0x000E643E
 	private void Start()
 	{
 		base.GetComponent<Button>().onClick.AddListener(new UnityAction(this.OnDeselect));
 	}
 
-	// Token: 0x060024F4 RID: 9460 RVA: 0x0001DAEE File Offset: 0x0001BCEE
+	// Token: 0x06002142 RID: 8514 RVA: 0x000E825C File Offset: 0x000E645C
 	protected override GameObject getItemUI()
 	{
 		return UI_HOMESCENE.instense.ItemCollect;
 	}
 
-	// Token: 0x060024F5 RID: 9461 RVA: 0x00129DFC File Offset: 0x00127FFC
+	// Token: 0x06002143 RID: 8515 RVA: 0x000E8268 File Offset: 0x000E6468
 	public void OnDeselect()
 	{
 		ItemData itemData = this.getItemData();

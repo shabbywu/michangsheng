@@ -5,10 +5,10 @@ using MoonSharp.Interpreter.Compatibility;
 
 namespace MoonSharp.VsCodeDebugger.SDK
 {
-	// Token: 0x020011DD RID: 4573
+	// Token: 0x02000DB1 RID: 3505
 	internal class Utilities
 	{
-		// Token: 0x06006FE0 RID: 28640 RVA: 0x002A0AC8 File Offset: 0x0029ECC8
+		// Token: 0x0600639A RID: 25498 RVA: 0x0027B4E4 File Offset: 0x002796E4
 		public static string ExpandVariables(string format, object variables, bool underscoredOnly = true)
 		{
 			if (variables == null)
@@ -35,7 +35,7 @@ namespace MoonSharp.VsCodeDebugger.SDK
 			});
 		}
 
-		// Token: 0x06006FE1 RID: 28641 RVA: 0x0004C077 File Offset: 0x0004A277
+		// Token: 0x0600639B RID: 25499 RVA: 0x0027B540 File Offset: 0x00279740
 		public static string MakeRelativePath(string dirPath, string absPath)
 		{
 			if (!dirPath.EndsWith("/"))
@@ -49,7 +49,7 @@ namespace MoonSharp.VsCodeDebugger.SDK
 			return absPath;
 		}
 
-		// Token: 0x040062D6 RID: 25302
+		// Token: 0x040055EF RID: 21999
 		private static readonly Regex VARIABLE = new Regex("\\{(\\w+)\\}");
 	}
 }

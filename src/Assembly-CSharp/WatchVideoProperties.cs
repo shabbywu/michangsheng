@@ -1,9 +1,9 @@
 ﻿using System;
 using UnityEngine;
 
-// Token: 0x020007A7 RID: 1959
+// Token: 0x02000513 RID: 1299
 public class WatchVideoProperties : MonoBehaviour
 {
-	// Token: 0x04002E16 RID: 11798
+	// Token: 0x04002626 RID: 9766
 	public static bool odgledanVideo;
 }

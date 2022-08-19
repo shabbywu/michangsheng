@@ -3,24 +3,24 @@ using UnityEngine;
 
 namespace SoftMasking
 {
-	// Token: 0x02000A07 RID: 2567
+	// Token: 0x020006D9 RID: 1753
 	public interface ISoftMask
 	{
-		// Token: 0x170007AA RID: 1962
-		// (get) Token: 0x06004282 RID: 17026
+		// Token: 0x1700057F RID: 1407
+		// (get) Token: 0x06003860 RID: 14432
 		bool isAlive { get; }
 
-		// Token: 0x170007AB RID: 1963
-		// (get) Token: 0x06004283 RID: 17027
+		// Token: 0x17000580 RID: 1408
+		// (get) Token: 0x06003861 RID: 14433
 		bool isMaskingEnabled { get; }
 
-		// Token: 0x06004284 RID: 17028
+		// Token: 0x06003862 RID: 14434
 		Material GetReplacement(Material original);
 
-		// Token: 0x06004285 RID: 17029
+		// Token: 0x06003863 RID: 14435
 		void ReleaseReplacement(Material replacement);
 
-		// Token: 0x06004286 RID: 17030
+		// Token: 0x06003864 RID: 14436
 		void UpdateTransformChildren(Transform transform);
 	}
 }

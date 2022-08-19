@@ -5,12 +5,12 @@ using UnityEngine.UI;
 
 namespace Fungus
 {
-	// Token: 0x02001210 RID: 4624
+	// Token: 0x02000DD5 RID: 3541
 	[CommandInfo("UI", "Get Text", "Gets the text property from a UI Text object and stores it in a string variable.", 0)]
 	[AddComponentMenu("")]
 	public class GetText : Command
 	{
-		// Token: 0x06007117 RID: 28951 RVA: 0x002A4478 File Offset: 0x002A2678
+		// Token: 0x06006495 RID: 25749 RVA: 0x0027F770 File Offset: 0x0027D970
 		public override void OnEnter()
 		{
 			if (this.stringVariable == null)
@@ -27,7 +27,7 @@ namespace Fungus
 			this.Continue();
 		}
 
-		// Token: 0x06007118 RID: 28952 RVA: 0x002A44CC File Offset: 0x002A26CC
+		// Token: 0x06006496 RID: 25750 RVA: 0x0027F7C4 File Offset: 0x0027D9C4
 		public override string GetSummary()
 		{
 			if (this.targetTextObject == null)
@@ -41,19 +41,19 @@ namespace Fungus
 			return this.targetTextObject.name + " : " + this.stringVariable.name;
 		}
 
-		// Token: 0x06007119 RID: 28953 RVA: 0x0004C5E0 File Offset: 0x0004A7E0
+		// Token: 0x06006497 RID: 25751 RVA: 0x0027D3DB File Offset: 0x0027B5DB
 		public override Color GetButtonColor()
 		{
 			return new Color32(235, 191, 217, byte.MaxValue);
 		}
 
-		// Token: 0x0600711A RID: 28954 RVA: 0x0004CD2B File Offset: 0x0004AF2B
+		// Token: 0x06006498 RID: 25752 RVA: 0x0027F819 File Offset: 0x0027DA19
 		public override bool HasReference(Variable variable)
 		{
 			return this.stringVariable == variable || base.HasReference(variable);
 		}
 
-		// Token: 0x0600711B RID: 28955 RVA: 0x0004CD44 File Offset: 0x0004AF44
+		// Token: 0x06006499 RID: 25753 RVA: 0x0027F832 File Offset: 0x0027DA32
 		protected virtual void OnEnable()
 		{
 			if (this._textObjectObsolete != null)
@@ -62,12 +62,12 @@ namespace Fungus
 			}
 		}
 
-		// Token: 0x0400636D RID: 25453
+		// Token: 0x0400566D RID: 22125
 		[Tooltip("Text object to get text value from")]
 		[SerializeField]
 		protected GameObject targetTextObject;
 
-		// Token: 0x0400636E RID: 25454
+		// Token: 0x0400566E RID: 22126
 		[Tooltip("String variable to store the text value in")]
 		[VariableProperty(new Type[]
 		{
@@ -76,7 +76,7 @@ namespace Fungus
 		[SerializeField]
 		protected StringVariable stringVariable;
 
-		// Token: 0x0400636F RID: 25455
+		// Token: 0x0400566F RID: 22127
 		[HideInInspector]
 		[FormerlySerializedAs("textObject")]
 		public Text _textObjectObsolete;

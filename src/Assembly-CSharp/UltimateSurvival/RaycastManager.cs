@@ -4,10 +4,10 @@ using UnityEngine;
 
 namespace UltimateSurvival
 {
-	// Token: 0x020008D7 RID: 2263
+	// Token: 0x020005FD RID: 1533
 	public class RaycastManager : PlayerBehaviour
 	{
-		// Token: 0x06003A37 RID: 14903 RVA: 0x0002A44A File Offset: 0x0002864A
+		// Token: 0x0600313A RID: 12602 RVA: 0x0015E40D File Offset: 0x0015C60D
 		private void Start()
 		{
 			base.Player.InteractOnce.SetTryer(new TryerDelegate(this.Try_InteractOnce));
@@ -17,7 +17,7 @@ namespace UltimateSurvival
 			});
 		}
 
-		// Token: 0x06003A38 RID: 14904 RVA: 0x001A7964 File Offset: 0x001A5B64
+		// Token: 0x0600313B RID: 12603 RVA: 0x0015E448 File Offset: 0x0015C648
 		private bool Try_InteractOnce()
 		{
 			RaycastData raycastData = base.Player.RaycastData.Get();
@@ -28,7 +28,7 @@ namespace UltimateSurvival
 			return true;
 		}
 
-		// Token: 0x06003A39 RID: 14905 RVA: 0x001A79A4 File Offset: 0x001A5BA4
+		// Token: 0x0600313C RID: 12604 RVA: 0x0015E488 File Offset: 0x0015C688
 		private void Update()
 		{
 			if (KBEngineApp.app.player() == null || (KBEngineApp.app != null && KBEngineApp.app.player().renderObj == null))
@@ -68,21 +68,21 @@ namespace UltimateSurvival
 			base.Player.IsCloseToAnObject.Set(value);
 		}
 
-		// Token: 0x04003446 RID: 13382
+		// Token: 0x04002B59 RID: 11097
 		[SerializeField]
 		private Camera m_WorldCamera;
 
-		// Token: 0x04003447 RID: 13383
+		// Token: 0x04002B5A RID: 11098
 		[SerializeField]
 		[Tooltip("The maximum distance at which you can interact with objects.")]
 		private float m_RayLength = 1.5f;
 
-		// Token: 0x04003448 RID: 13384
+		// Token: 0x04002B5B RID: 11099
 		[SerializeField]
 		[Tooltip("The distance at which an object is considered 'too close'.")]
 		private float m_TooCloseThreeshold = 1f;
 
-		// Token: 0x04003449 RID: 13385
+		// Token: 0x04002B5C RID: 11100
 		[SerializeField]
 		private LayerMask m_LayerMask;
 	}

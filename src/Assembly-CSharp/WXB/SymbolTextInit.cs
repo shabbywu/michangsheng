@@ -4,10 +4,10 @@ using UnityEngine;
 
 namespace WXB
 {
-	// Token: 0x020009DE RID: 2526
+	// Token: 0x020006B7 RID: 1719
 	public class SymbolTextInit : MonoBehaviour
 	{
-		// Token: 0x06004059 RID: 16473 RVA: 0x001BC6BC File Offset: 0x001BA8BC
+		// Token: 0x06003651 RID: 13905 RVA: 0x00173E44 File Offset: 0x00172044
 		private void init()
 		{
 			if (SymbolTextInit.Fonts == null)
@@ -57,13 +57,13 @@ namespace WXB
 			}
 		}
 
-		// Token: 0x0600405A RID: 16474 RVA: 0x0002E40C File Offset: 0x0002C60C
+		// Token: 0x06003652 RID: 13906 RVA: 0x00173F56 File Offset: 0x00172156
 		private static void Init()
 		{
 			Resources.Load<SymbolTextInit>("SymbolTextInit").init();
 		}
 
-		// Token: 0x0600405B RID: 16475 RVA: 0x001BC7D0 File Offset: 0x001BA9D0
+		// Token: 0x06003653 RID: 13907 RVA: 0x00173F68 File Offset: 0x00172168
 		public static Font GetFont(string name)
 		{
 			if (SymbolTextInit.Fonts == null)
@@ -78,7 +78,7 @@ namespace WXB
 			return null;
 		}
 
-		// Token: 0x0600405C RID: 16476 RVA: 0x001BC7FC File Offset: 0x001BA9FC
+		// Token: 0x06003654 RID: 13908 RVA: 0x00173F94 File Offset: 0x00172194
 		public static Sprite GetSprite(string name)
 		{
 			if (SymbolTextInit.Sprites == null)
@@ -93,7 +93,7 @@ namespace WXB
 			return null;
 		}
 
-		// Token: 0x0600405D RID: 16477 RVA: 0x001BC828 File Offset: 0x001BAA28
+		// Token: 0x06003655 RID: 13909 RVA: 0x00173FC0 File Offset: 0x001721C0
 		public static Cartoon GetCartoon(string name)
 		{
 			if (SymbolTextInit.Cartoons == null)
@@ -108,7 +108,7 @@ namespace WXB
 			return null;
 		}
 
-		// Token: 0x0600405E RID: 16478 RVA: 0x001BC854 File Offset: 0x001BAA54
+		// Token: 0x06003656 RID: 13910 RVA: 0x00173FEC File Offset: 0x001721EC
 		public static void GetCartoons(List<Cartoon> cartoons)
 		{
 			if (SymbolTextInit.Cartoons == null)
@@ -121,24 +121,24 @@ namespace WXB
 			}
 		}
 
-		// Token: 0x04003961 RID: 14689
+		// Token: 0x04002F6F RID: 12143
 		private static Dictionary<string, Font> Fonts;
 
-		// Token: 0x04003962 RID: 14690
+		// Token: 0x04002F70 RID: 12144
 		private static Dictionary<string, Sprite> Sprites;
 
-		// Token: 0x04003963 RID: 14691
+		// Token: 0x04002F71 RID: 12145
 		private static Dictionary<string, Cartoon> Cartoons;
 
-		// Token: 0x04003964 RID: 14692
+		// Token: 0x04002F72 RID: 12146
 		[SerializeField]
 		private Font[] fonts;
 
-		// Token: 0x04003965 RID: 14693
+		// Token: 0x04002F73 RID: 12147
 		[SerializeField]
 		private Sprite[] sprites;
 
-		// Token: 0x04003966 RID: 14694
+		// Token: 0x04002F74 RID: 12148
 		[SerializeField]
 		private Cartoon[] cartoons;
 	}

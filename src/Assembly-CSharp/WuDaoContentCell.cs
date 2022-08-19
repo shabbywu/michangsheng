@@ -2,21 +2,21 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-// Token: 0x02000529 RID: 1321
+// Token: 0x020003A0 RID: 928
 public class WuDaoContentCell : MonoBehaviour
 {
-	// Token: 0x060021D3 RID: 8659 RVA: 0x0001BC7F File Offset: 0x00019E7F
+	// Token: 0x06001E52 RID: 7762 RVA: 0x000D598F File Offset: 0x000D3B8F
 	public void setContent(string name, string descr)
 	{
 		this.Name.text = Tools.Code64(name);
 		this.Descr.text = Tools.Code64(descr);
 	}
 
-	// Token: 0x04001D45 RID: 7493
+	// Token: 0x040018DC RID: 6364
 	[SerializeField]
 	private Text Name;
 
-	// Token: 0x04001D46 RID: 7494
+	// Token: 0x040018DD RID: 6365
 	[SerializeField]
 	private Text Descr;
 }

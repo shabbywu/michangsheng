@@ -4,29 +4,29 @@ using System.Net.Sockets;
 
 namespace KBEngine
 {
-	// Token: 0x02000FE4 RID: 4068
+	// Token: 0x02000C5A RID: 3162
 	public class PacketSenderKCP : PacketSenderBase
 	{
-		// Token: 0x06006036 RID: 24630 RVA: 0x00042E53 File Offset: 0x00041053
+		// Token: 0x060055E7 RID: 21991 RVA: 0x0023A971 File Offset: 0x00238B71
 		public PacketSenderKCP(NetworkInterfaceBase networkInterface) : base(networkInterface)
 		{
 			this.socket_ = this._networkInterface.sock();
 			this.remoteEndPint_ = ((NetworkInterfaceKCP)this._networkInterface).remoteEndPint;
 		}
 
-		// Token: 0x06006037 RID: 24631 RVA: 0x00267670 File Offset: 0x00265870
+		// Token: 0x060055E8 RID: 21992 RVA: 0x0023A9A4 File Offset: 0x00238BA4
 		~PacketSenderKCP()
 		{
 			Dbg.DEBUG_MSG("PacketSenderKCP::~PacketSenderKCP(), destroyed!");
 		}
 
-		// Token: 0x06006038 RID: 24632 RVA: 0x0000A093 File Offset: 0x00008293
+		// Token: 0x060055E9 RID: 21993 RVA: 0x00024C5F File Offset: 0x00022E5F
 		public override bool send(MemoryStream stream)
 		{
 			return true;
 		}
 
-		// Token: 0x06006039 RID: 24633 RVA: 0x002676A0 File Offset: 0x002658A0
+		// Token: 0x060055EA RID: 21994 RVA: 0x0023A9D4 File Offset: 0x00238BD4
 		public bool sendto(byte[] packet, int size)
 		{
 			try
@@ -45,15 +45,15 @@ namespace KBEngine
 			return true;
 		}
 
-		// Token: 0x0600603A RID: 24634 RVA: 0x000042DD File Offset: 0x000024DD
+		// Token: 0x060055EB RID: 21995 RVA: 0x00004095 File Offset: 0x00002295
 		protected override void _asyncSend()
 		{
 		}
 
-		// Token: 0x04005B82 RID: 23426
+		// Token: 0x040050D2 RID: 20690
 		private Socket socket_;
 
-		// Token: 0x04005B83 RID: 23427
+		// Token: 0x040050D3 RID: 20691
 		private EndPoint remoteEndPint_;
 	}
 }

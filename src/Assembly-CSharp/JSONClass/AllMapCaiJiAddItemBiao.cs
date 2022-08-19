@@ -3,10 +3,10 @@ using System.Collections.Generic;
 
 namespace JSONClass
 {
-	// Token: 0x02000AE0 RID: 2784
+	// Token: 0x02000748 RID: 1864
 	public class AllMapCaiJiAddItemBiao : IJSONClass
 	{
-		// Token: 0x060046EA RID: 18154 RVA: 0x001E58A0 File Offset: 0x001E3AA0
+		// Token: 0x06003B34 RID: 15156 RVA: 0x001975EC File Offset: 0x001957EC
 		public static void InitDataDict()
 		{
 			foreach (JSONObject jsonobject in jsonData.instance.AllMapCaiJiAddItemBiao.list)
@@ -40,27 +40,27 @@ namespace JSONClass
 			}
 		}
 
-		// Token: 0x060046EB RID: 18155 RVA: 0x000042DD File Offset: 0x000024DD
+		// Token: 0x06003B35 RID: 15157 RVA: 0x00004095 File Offset: 0x00002295
 		private static void OnInitFinish()
 		{
 		}
 
-		// Token: 0x04003F52 RID: 16210
+		// Token: 0x040033B9 RID: 13241
 		public static Dictionary<int, AllMapCaiJiAddItemBiao> DataDict = new Dictionary<int, AllMapCaiJiAddItemBiao>();
 
-		// Token: 0x04003F53 RID: 16211
+		// Token: 0x040033BA RID: 13242
 		public static List<AllMapCaiJiAddItemBiao> DataList = new List<AllMapCaiJiAddItemBiao>();
 
-		// Token: 0x04003F54 RID: 16212
+		// Token: 0x040033BB RID: 13243
 		public static Action OnInitFinishAction = new Action(AllMapCaiJiAddItemBiao.OnInitFinish);
 
-		// Token: 0x04003F55 RID: 16213
+		// Token: 0x040033BC RID: 13244
 		public int ID;
 
-		// Token: 0x04003F56 RID: 16214
+		// Token: 0x040033BD RID: 13245
 		public int percent;
 
-		// Token: 0x04003F57 RID: 16215
+		// Token: 0x040033BE RID: 13246
 		public int time;
 	}
 }

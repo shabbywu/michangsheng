@@ -2,10 +2,10 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-// Token: 0x02000476 RID: 1142
+// Token: 0x02000314 RID: 788
 public class LunDaoQiu : MonoBehaviour
 {
-	// Token: 0x06001E9B RID: 7835 RVA: 0x0001959F File Offset: 0x0001779F
+	// Token: 0x06001B6A RID: 7018 RVA: 0x000C386C File Offset: 0x000C1A6C
 	public void SetNull()
 	{
 		this.lunDaoQiuImage.gameObject.SetActive(false);
@@ -14,7 +14,7 @@ public class LunDaoQiu : MonoBehaviour
 		this.level = 0;
 	}
 
-	// Token: 0x06001E9C RID: 7836 RVA: 0x00108D84 File Offset: 0x00106F84
+	// Token: 0x06001B6B RID: 7019 RVA: 0x000C3894 File Offset: 0x000C1A94
 	public void SetData(int id, int curLevel)
 	{
 		this.isNull = false;
@@ -25,7 +25,7 @@ public class LunDaoQiu : MonoBehaviour
 		this.lunDaoQiuImage.gameObject.SetActive(true);
 	}
 
-	// Token: 0x06001E9D RID: 7837 RVA: 0x000195C7 File Offset: 0x000177C7
+	// Token: 0x06001B6C RID: 7020 RVA: 0x000C38F9 File Offset: 0x000C1AF9
 	public LunDaoQiu LevelUp()
 	{
 		this.level++;
@@ -33,19 +33,19 @@ public class LunDaoQiu : MonoBehaviour
 		return this;
 	}
 
-	// Token: 0x04001A02 RID: 6658
+	// Token: 0x040015E8 RID: 5608
 	public Image lunDaoQiuImage;
 
-	// Token: 0x04001A03 RID: 6659
+	// Token: 0x040015E9 RID: 5609
 	[SerializeField]
 	public Text curLevel;
 
-	// Token: 0x04001A04 RID: 6660
+	// Token: 0x040015EA RID: 5610
 	public int wudaoId;
 
-	// Token: 0x04001A05 RID: 6661
+	// Token: 0x040015EB RID: 5611
 	public int level;
 
-	// Token: 0x04001A06 RID: 6662
+	// Token: 0x040015EC RID: 5612
 	public bool isNull;
 }

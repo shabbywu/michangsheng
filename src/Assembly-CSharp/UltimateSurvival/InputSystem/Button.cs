@@ -3,13 +3,13 @@ using UnityEngine;
 
 namespace UltimateSurvival.InputSystem
 {
-	// Token: 0x02000924 RID: 2340
+	// Token: 0x02000632 RID: 1586
 	[Serializable]
 	public class Button
 	{
-		// Token: 0x1700065F RID: 1631
-		// (get) Token: 0x06003B8D RID: 15245 RVA: 0x0002B117 File Offset: 0x00029317
-		// (set) Token: 0x06003B8E RID: 15246 RVA: 0x0002B11F File Offset: 0x0002931F
+		// Token: 0x1700045F RID: 1119
+		// (get) Token: 0x06003253 RID: 12883 RVA: 0x001653C0 File Offset: 0x001635C0
+		// (set) Token: 0x06003254 RID: 12884 RVA: 0x001653C8 File Offset: 0x001635C8
 		public string Name
 		{
 			get
@@ -22,8 +22,8 @@ namespace UltimateSurvival.InputSystem
 			}
 		}
 
-		// Token: 0x17000660 RID: 1632
-		// (get) Token: 0x06003B8F RID: 15247 RVA: 0x0002B128 File Offset: 0x00029328
+		// Token: 0x17000460 RID: 1120
+		// (get) Token: 0x06003255 RID: 12885 RVA: 0x001653D1 File Offset: 0x001635D1
 		public KeyCode Key
 		{
 			get
@@ -32,30 +32,30 @@ namespace UltimateSurvival.InputSystem
 			}
 		}
 
-		// Token: 0x06003B90 RID: 15248 RVA: 0x0002B130 File Offset: 0x00029330
+		// Token: 0x06003256 RID: 12886 RVA: 0x001653D9 File Offset: 0x001635D9
 		public Button(string name)
 		{
 			this.m_ButtonName = name;
 		}
 
-		// Token: 0x06003B91 RID: 15249 RVA: 0x0002B13F File Offset: 0x0002933F
+		// Token: 0x06003257 RID: 12887 RVA: 0x001653E8 File Offset: 0x001635E8
 		public Button(string name, KeyCode key)
 		{
 			this.m_ButtonName = name;
 			this.m_Key = key;
 		}
 
-		// Token: 0x06003B92 RID: 15250 RVA: 0x0002B130 File Offset: 0x00029330
+		// Token: 0x06003258 RID: 12888 RVA: 0x001653D9 File Offset: 0x001635D9
 		public Button(string name, ButtonHandler handler)
 		{
 			this.m_ButtonName = name;
 		}
 
-		// Token: 0x04003639 RID: 13881
+		// Token: 0x04002CE8 RID: 11496
 		[SerializeField]
 		private string m_ButtonName;
 
-		// Token: 0x0400363A RID: 13882
+		// Token: 0x04002CE9 RID: 11497
 		[SerializeField]
 		private KeyCode m_Key;
 	}

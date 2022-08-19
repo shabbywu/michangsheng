@@ -1,10 +1,10 @@
 ﻿using System;
 using UnityEngine;
 
-// Token: 0x02000670 RID: 1648
+// Token: 0x02000496 RID: 1174
 public class ButtonsScript : MonoBehaviour
 {
-	// Token: 0x0600292D RID: 10541 RVA: 0x00141608 File Offset: 0x0013F808
+	// Token: 0x06002511 RID: 9489 RVA: 0x001019D8 File Offset: 0x000FFBD8
 	private void AnimateButton(GameObject btn, int Onoff)
 	{
 		if (btn.name != "PlayerName")
@@ -24,7 +24,7 @@ public class ButtonsScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x0600292E RID: 10542 RVA: 0x00141710 File Offset: 0x0013F910
+	// Token: 0x06002512 RID: 9490 RVA: 0x00101AE0 File Offset: 0x000FFCE0
 	private string RaycastFunct(Vector3 v)
 	{
 		RaycastHit raycastHit;
@@ -35,12 +35,12 @@ public class ButtonsScript : MonoBehaviour
 		return "";
 	}
 
-	// Token: 0x0600292F RID: 10543 RVA: 0x000042DD File Offset: 0x000024DD
+	// Token: 0x06002513 RID: 9491 RVA: 0x00004095 File Offset: 0x00002295
 	private void Start()
 	{
 	}
 
-	// Token: 0x06002930 RID: 10544 RVA: 0x00141768 File Offset: 0x0013F968
+	// Token: 0x06002514 RID: 9492 RVA: 0x00101B38 File Offset: 0x000FFD38
 	private void Update()
 	{
 		if (Input.GetMouseButtonDown(0))
@@ -65,15 +65,15 @@ public class ButtonsScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x040022F0 RID: 8944
+	// Token: 0x04001DDE RID: 7646
 	private string clickedOn = "";
 
-	// Token: 0x040022F1 RID: 8945
+	// Token: 0x04001DDF RID: 7647
 	private Material save;
 
-	// Token: 0x040022F2 RID: 8946
+	// Token: 0x04001DE0 RID: 7648
 	private Vector3 scaleSave;
 
-	// Token: 0x040022F3 RID: 8947
+	// Token: 0x04001DE1 RID: 7649
 	public GameObject test;
 }

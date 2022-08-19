@@ -4,24 +4,24 @@ using System.Text.RegularExpressions;
 using KBEngine;
 using UnityEngine;
 
-// Token: 0x0200045C RID: 1116
+// Token: 0x020002FF RID: 767
 public class ShowXiaoGuoManager : MonoBehaviour
 {
-	// Token: 0x06001DE3 RID: 7651 RVA: 0x00018D9C File Offset: 0x00016F9C
+	// Token: 0x06001ABD RID: 6845 RVA: 0x000BE807 File Offset: 0x000BCA07
 	public void init()
 	{
 		Tools.ClearObj(this.xiaoGuoCell.transform);
 		this.xiaoGuoScrollRect.setContentChild(0);
 	}
 
-	// Token: 0x06001DE4 RID: 7652 RVA: 0x00018DBA File Offset: 0x00016FBA
+	// Token: 0x06001ABE RID: 6846 RVA: 0x000BE825 File Offset: 0x000BCA25
 	public bool checkHasOneChiTiao()
 	{
 		this.updateEquipCiTiao();
 		return this.entryDictionary.Keys.Count > 0;
 	}
 
-	// Token: 0x06001DE5 RID: 7653 RVA: 0x00104628 File Offset: 0x00102828
+	// Token: 0x06001ABF RID: 6847 RVA: 0x000BE840 File Offset: 0x000BCA40
 	public void updateEquipCiTiao()
 	{
 		Tools.ClearObj(this.xiaoGuoCell.transform);
@@ -52,11 +52,12 @@ public class ShowXiaoGuoManager : MonoBehaviour
 		this.xiaoGuoScrollRect.setContentChild(num);
 	}
 
-	// Token: 0x06001DE6 RID: 7654 RVA: 0x0010476C File Offset: 0x0010296C
+	// Token: 0x06001AC0 RID: 6848 RVA: 0x000BE984 File Offset: 0x000BCB84
 	public void getTotalCiTiao()
 	{
 		List<PutMaterialCell> caiLiaoCells = LianQiTotalManager.inst.putMaterialPageManager.lianQiPageManager.putCaiLiaoCell.caiLiaoCells;
 		this.entryDictionary = new Dictionary<int, int>();
+		Dictionary<int, int> dictionary = new Dictionary<int, int>();
 		for (int i = 0; i < caiLiaoCells.Count; i++)
 		{
 			if (caiLiaoCells[i].shuXingTypeID != 0)
@@ -65,35 +66,45 @@ public class ShowXiaoGuoManager : MonoBehaviour
 				{
 					if (this.entryDictionary.ContainsKey(49))
 					{
-						Dictionary<int, int> dictionary = this.entryDictionary;
-						dictionary[49] = dictionary[49] + caiLiaoCells[i].lingLi;
+						Dictionary<int, int> dictionary2 = this.entryDictionary;
+						dictionary2[49] = dictionary2[49] + caiLiaoCells[i].lingLi;
+						dictionary2 = dictionary;
+						dictionary2[49] = dictionary2[49] + 1;
 					}
 					else
 					{
 						this.entryDictionary.Add(49, caiLiaoCells[i].lingLi);
+						dictionary.Add(49, 1);
 					}
 				}
 				else if (caiLiaoCells[i].shuXingTypeID >= 1 && caiLiaoCells[i].shuXingTypeID <= 8)
 				{
 					if (this.entryDictionary.ContainsKey(1))
 					{
-						Dictionary<int, int> dictionary = this.entryDictionary;
-						dictionary[1] = dictionary[1] + caiLiaoCells[i].lingLi;
+						Dictionary<int, int> dictionary2 = this.entryDictionary;
+						dictionary2[1] = dictionary2[1] + caiLiaoCells[i].lingLi;
+						dictionary2 = dictionary;
+						dictionary2[1] = dictionary2[1] + 1;
 					}
 					else
 					{
 						this.entryDictionary.Add(1, caiLiaoCells[i].lingLi);
+						dictionary.Add(1, 1);
 					}
 				}
 				else if (this.entryDictionary.ContainsKey(caiLiaoCells[i].shuXingTypeID))
 				{
-					Dictionary<int, int> dictionary = this.entryDictionary;
+					Dictionary<int, int> dictionary2 = this.entryDictionary;
 					int shuXingTypeID = caiLiaoCells[i].shuXingTypeID;
-					dictionary[shuXingTypeID] += caiLiaoCells[i].lingLi;
+					dictionary2[shuXingTypeID] += caiLiaoCells[i].lingLi;
+					dictionary2 = dictionary;
+					shuXingTypeID = caiLiaoCells[i].shuXingTypeID;
+					dictionary2[shuXingTypeID]++;
 				}
 				else
 				{
 					this.entryDictionary.Add(caiLiaoCells[i].shuXingTypeID, caiLiaoCells[i].lingLi);
+					dictionary.Add(caiLiaoCells[i].shuXingTypeID, 1);
 				}
 			}
 		}
@@ -117,7 +128,7 @@ public class ShowXiaoGuoManager : MonoBehaviour
 			num2 = jsonData.instance.LianQiLingWenBiao[selectLingWenID.ToString()]["value4"].n;
 		}
 		JSONObject lianQiHeCheng = jsonData.instance.LianQiHeCheng;
-		Dictionary<int, int> dictionary2 = new Dictionary<int, int>();
+		Dictionary<int, int> dictionary3 = new Dictionary<int, int>();
 		foreach (int num3 in this.entryDictionary.Keys)
 		{
 			int num4 = this.entryDictionary[num3];
@@ -126,7 +137,7 @@ public class ShowXiaoGuoManager : MonoBehaviour
 			{
 				if (num4 >= jsonData.instance.LianQiDuoDuanShangHaiBiao["1"]["cast"].I)
 				{
-					dictionary2.Add(num3, num4);
+					dictionary3.Add(num3, num4);
 				}
 			}
 			else
@@ -134,46 +145,52 @@ public class ShowXiaoGuoManager : MonoBehaviour
 				int i2 = lianQiHeCheng[num3.ToString()]["cast"].I;
 				if (num4 >= i2)
 				{
-					dictionary2.Add(num3, num4);
+					dictionary3.Add(num3, num4);
 				}
 			}
 		}
-		if (dictionary2.Keys.Count == 0)
+		if (dictionary3.Keys.Count == 0)
 		{
-			this.entryDictionary = dictionary2;
+			this.entryDictionary = dictionary3;
 			return;
 		}
-		Dictionary<int, int> dictionary3 = new Dictionary<int, int>();
+		Dictionary<int, int> dictionary4 = new Dictionary<int, int>();
+		int num5 = 0;
+		foreach (int key in dictionary3.Keys)
+		{
+			num5 += dictionary[key];
+		}
 		if (selectLingWenID > 0 && num == 2)
 		{
-			num2 /= (float)dictionary2.Keys.Count;
+			num2 /= (float)num5;
 		}
-		foreach (int key in dictionary2.Keys)
+		foreach (int key2 in dictionary3.Keys)
 		{
-			int num5 = dictionary2[key];
+			int num6 = dictionary3[key2];
 			if (selectLingWenID > 0)
 			{
 				if (num == 1)
 				{
-					num5 = (int)((float)num5 * num2);
+					num6 = (int)((float)num6 * num2);
 				}
 				else
 				{
-					num5 = (int)((float)num5 + num2);
+					int num7 = (int)num2 * dictionary[key2];
+					num6 += num7;
 				}
 			}
 			if (flag)
 			{
-				num5 = (int)((float)num5 * 1.5f);
+				num6 = (int)((float)num6 * 1.5f);
 			}
-			int i3 = lianQiHeCheng[key.ToString()]["cast"].I;
-			int value = num5 / i3;
-			dictionary3.Add(key, value);
+			int i3 = lianQiHeCheng[key2.ToString()]["cast"].I;
+			int value = num6 / i3;
+			dictionary4.Add(key2, value);
 		}
-		this.entryDictionary = dictionary3;
+		this.entryDictionary = dictionary4;
 	}
 
-	// Token: 0x06001DE7 RID: 7655 RVA: 0x00104BB0 File Offset: 0x00102DB0
+	// Token: 0x06001AC1 RID: 6849 RVA: 0x000BEEA4 File Offset: 0x000BD0A4
 	public string getDescBy(int id)
 	{
 		string text = "";
@@ -211,7 +228,7 @@ public class ShowXiaoGuoManager : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001DE8 RID: 7656 RVA: 0x00104D20 File Offset: 0x00102F20
+	// Token: 0x06001AC2 RID: 6850 RVA: 0x000BF014 File Offset: 0x000BD214
 	public string getLingWenDesc()
 	{
 		string result = "";
@@ -231,7 +248,7 @@ public class ShowXiaoGuoManager : MonoBehaviour
 		return result;
 	}
 
-	// Token: 0x06001DE9 RID: 7657 RVA: 0x00104DE0 File Offset: 0x00102FE0
+	// Token: 0x06001AC3 RID: 6851 RVA: 0x000BF0D4 File Offset: 0x000BD2D4
 	public int getDuoDuanIDByLingLi(int sum)
 	{
 		int result = 0;
@@ -245,14 +262,14 @@ public class ShowXiaoGuoManager : MonoBehaviour
 		return result;
 	}
 
-	// Token: 0x0400198B RID: 6539
+	// Token: 0x0400157E RID: 5502
 	[SerializeField]
 	private GameObject xiaoGuoCell;
 
-	// Token: 0x0400198C RID: 6540
+	// Token: 0x0400157F RID: 5503
 	[SerializeField]
 	private MyScrollRect xiaoGuoScrollRect;
 
-	// Token: 0x0400198D RID: 6541
+	// Token: 0x04001580 RID: 5504
 	public Dictionary<int, int> entryDictionary;
 }

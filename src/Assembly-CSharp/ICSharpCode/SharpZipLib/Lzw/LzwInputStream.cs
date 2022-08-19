@@ -3,21 +3,21 @@ using System.IO;
 
 namespace ICSharpCode.SharpZipLib.Lzw
 {
-	// Token: 0x02000813 RID: 2067
+	// Token: 0x0200056B RID: 1387
 	public class LzwInputStream : Stream
 	{
-		// Token: 0x17000554 RID: 1364
-		// (get) Token: 0x0600363F RID: 13887 RVA: 0x00027994 File Offset: 0x00025B94
-		// (set) Token: 0x06003640 RID: 13888 RVA: 0x0002799C File Offset: 0x00025B9C
+		// Token: 0x1700039D RID: 925
+		// (get) Token: 0x06002DC9 RID: 11721 RVA: 0x0014F86E File Offset: 0x0014DA6E
+		// (set) Token: 0x06002DCA RID: 11722 RVA: 0x0014F876 File Offset: 0x0014DA76
 		public bool IsStreamOwner { get; set; } = true;
 
-		// Token: 0x06003641 RID: 13889 RVA: 0x0019AB54 File Offset: 0x00198D54
+		// Token: 0x06002DCB RID: 11723 RVA: 0x0014F880 File Offset: 0x0014DA80
 		public LzwInputStream(Stream baseInputStream)
 		{
 			this.baseInputStream = baseInputStream;
 		}
 
-		// Token: 0x06003642 RID: 13890 RVA: 0x000279A5 File Offset: 0x00025BA5
+		// Token: 0x06002DCC RID: 11724 RVA: 0x0014F8CD File Offset: 0x0014DACD
 		public override int ReadByte()
 		{
 			if (this.Read(this.one, 0, 1) == 1)
@@ -27,7 +27,7 @@ namespace ICSharpCode.SharpZipLib.Lzw
 			return -1;
 		}
 
-		// Token: 0x06003643 RID: 13891 RVA: 0x0019ABA4 File Offset: 0x00198DA4
+		// Token: 0x06002DCD RID: 11725 RVA: 0x0014F8F0 File Offset: 0x0014DAF0
 		public override int Read(byte[] buffer, int offset, int count)
 		{
 			if (!this.headerParsed)
@@ -206,7 +206,7 @@ namespace ICSharpCode.SharpZipLib.Lzw
 			return offset - num;
 		}
 
-		// Token: 0x06003644 RID: 13892 RVA: 0x0019AFE4 File Offset: 0x001991E4
+		// Token: 0x06002DCE RID: 11726 RVA: 0x0014FD30 File Offset: 0x0014DF30
 		private int ResetBuf(int bitPosition)
 		{
 			int num = bitPosition >> 3;
@@ -215,7 +215,7 @@ namespace ICSharpCode.SharpZipLib.Lzw
 			return 0;
 		}
 
-		// Token: 0x06003645 RID: 13893 RVA: 0x0019B020 File Offset: 0x00199220
+		// Token: 0x06002DCF RID: 11727 RVA: 0x0014FD6C File Offset: 0x0014DF6C
 		private void Fill()
 		{
 			this.got = this.baseInputStream.Read(this.data, this.end, this.data.Length - 1 - this.end);
@@ -225,7 +225,7 @@ namespace ICSharpCode.SharpZipLib.Lzw
 			}
 		}
 
-		// Token: 0x06003646 RID: 13894 RVA: 0x0019B078 File Offset: 0x00199278
+		// Token: 0x06002DD0 RID: 11728 RVA: 0x0014FDC4 File Offset: 0x0014DFC4
 		private void ParseHeader()
 		{
 			this.headerParsed = true;
@@ -272,8 +272,8 @@ namespace ICSharpCode.SharpZipLib.Lzw
 			}
 		}
 
-		// Token: 0x17000555 RID: 1365
-		// (get) Token: 0x06003647 RID: 13895 RVA: 0x000279C8 File Offset: 0x00025BC8
+		// Token: 0x1700039E RID: 926
+		// (get) Token: 0x06002DD1 RID: 11729 RVA: 0x0014FF75 File Offset: 0x0014E175
 		public override bool CanRead
 		{
 			get
@@ -282,8 +282,8 @@ namespace ICSharpCode.SharpZipLib.Lzw
 			}
 		}
 
-		// Token: 0x17000556 RID: 1366
-		// (get) Token: 0x06003648 RID: 13896 RVA: 0x00004050 File Offset: 0x00002250
+		// Token: 0x1700039F RID: 927
+		// (get) Token: 0x06002DD2 RID: 11730 RVA: 0x0000280F File Offset: 0x00000A0F
 		public override bool CanSeek
 		{
 			get
@@ -292,8 +292,8 @@ namespace ICSharpCode.SharpZipLib.Lzw
 			}
 		}
 
-		// Token: 0x17000557 RID: 1367
-		// (get) Token: 0x06003649 RID: 13897 RVA: 0x00004050 File Offset: 0x00002250
+		// Token: 0x170003A0 RID: 928
+		// (get) Token: 0x06002DD3 RID: 11731 RVA: 0x0000280F File Offset: 0x00000A0F
 		public override bool CanWrite
 		{
 			get
@@ -302,8 +302,8 @@ namespace ICSharpCode.SharpZipLib.Lzw
 			}
 		}
 
-		// Token: 0x17000558 RID: 1368
-		// (get) Token: 0x0600364A RID: 13898 RVA: 0x000279D5 File Offset: 0x00025BD5
+		// Token: 0x170003A1 RID: 929
+		// (get) Token: 0x06002DD4 RID: 11732 RVA: 0x0014FF82 File Offset: 0x0014E182
 		public override long Length
 		{
 			get
@@ -312,9 +312,9 @@ namespace ICSharpCode.SharpZipLib.Lzw
 			}
 		}
 
-		// Token: 0x17000559 RID: 1369
-		// (get) Token: 0x0600364B RID: 13899 RVA: 0x000279DE File Offset: 0x00025BDE
-		// (set) Token: 0x0600364C RID: 13900 RVA: 0x00026C53 File Offset: 0x00024E53
+		// Token: 0x170003A2 RID: 930
+		// (get) Token: 0x06002DD5 RID: 11733 RVA: 0x0014FF8B File Offset: 0x0014E18B
+		// (set) Token: 0x06002DD6 RID: 11734 RVA: 0x0014C0FA File Offset: 0x0014A2FA
 		public override long Position
 		{
 			get
@@ -327,37 +327,37 @@ namespace ICSharpCode.SharpZipLib.Lzw
 			}
 		}
 
-		// Token: 0x0600364D RID: 13901 RVA: 0x000279EB File Offset: 0x00025BEB
+		// Token: 0x06002DD7 RID: 11735 RVA: 0x0014FF98 File Offset: 0x0014E198
 		public override void Flush()
 		{
 			this.baseInputStream.Flush();
 		}
 
-		// Token: 0x0600364E RID: 13902 RVA: 0x00026C6C File Offset: 0x00024E6C
+		// Token: 0x06002DD8 RID: 11736 RVA: 0x0014C113 File Offset: 0x0014A313
 		public override long Seek(long offset, SeekOrigin origin)
 		{
 			throw new NotSupportedException("Seek not supported");
 		}
 
-		// Token: 0x0600364F RID: 13903 RVA: 0x00026C78 File Offset: 0x00024E78
+		// Token: 0x06002DD9 RID: 11737 RVA: 0x0014C11F File Offset: 0x0014A31F
 		public override void SetLength(long value)
 		{
 			throw new NotSupportedException("InflaterInputStream SetLength not supported");
 		}
 
-		// Token: 0x06003650 RID: 13904 RVA: 0x00026C84 File Offset: 0x00024E84
+		// Token: 0x06002DDA RID: 11738 RVA: 0x0014C12B File Offset: 0x0014A32B
 		public override void Write(byte[] buffer, int offset, int count)
 		{
 			throw new NotSupportedException("InflaterInputStream Write not supported");
 		}
 
-		// Token: 0x06003651 RID: 13905 RVA: 0x00026C90 File Offset: 0x00024E90
+		// Token: 0x06002DDB RID: 11739 RVA: 0x0014C137 File Offset: 0x0014A337
 		public override void WriteByte(byte value)
 		{
 			throw new NotSupportedException("InflaterInputStream WriteByte not supported");
 		}
 
-		// Token: 0x06003652 RID: 13906 RVA: 0x000279F8 File Offset: 0x00025BF8
+		// Token: 0x06002DDC RID: 11740 RVA: 0x0014FFA5 File Offset: 0x0014E1A5
 		protected override void Dispose(bool disposing)
 		{
 			if (!this.isClosed)
@@ -370,82 +370,82 @@ namespace ICSharpCode.SharpZipLib.Lzw
 			}
 		}
 
-		// Token: 0x040030CA RID: 12490
+		// Token: 0x04002890 RID: 10384
 		private Stream baseInputStream;
 
-		// Token: 0x040030CB RID: 12491
+		// Token: 0x04002891 RID: 10385
 		private bool isClosed;
 
-		// Token: 0x040030CC RID: 12492
+		// Token: 0x04002892 RID: 10386
 		private readonly byte[] one = new byte[1];
 
-		// Token: 0x040030CD RID: 12493
+		// Token: 0x04002893 RID: 10387
 		private bool headerParsed;
 
-		// Token: 0x040030CE RID: 12494
+		// Token: 0x04002894 RID: 10388
 		private const int TBL_CLEAR = 256;
 
-		// Token: 0x040030CF RID: 12495
+		// Token: 0x04002895 RID: 10389
 		private const int TBL_FIRST = 257;
 
-		// Token: 0x040030D0 RID: 12496
+		// Token: 0x04002896 RID: 10390
 		private int[] tabPrefix;
 
-		// Token: 0x040030D1 RID: 12497
+		// Token: 0x04002897 RID: 10391
 		private byte[] tabSuffix;
 
-		// Token: 0x040030D2 RID: 12498
+		// Token: 0x04002898 RID: 10392
 		private readonly int[] zeros = new int[256];
 
-		// Token: 0x040030D3 RID: 12499
+		// Token: 0x04002899 RID: 10393
 		private byte[] stack;
 
-		// Token: 0x040030D4 RID: 12500
+		// Token: 0x0400289A RID: 10394
 		private bool blockMode;
 
-		// Token: 0x040030D5 RID: 12501
+		// Token: 0x0400289B RID: 10395
 		private int nBits;
 
-		// Token: 0x040030D6 RID: 12502
+		// Token: 0x0400289C RID: 10396
 		private int maxBits;
 
-		// Token: 0x040030D7 RID: 12503
+		// Token: 0x0400289D RID: 10397
 		private int maxMaxCode;
 
-		// Token: 0x040030D8 RID: 12504
+		// Token: 0x0400289E RID: 10398
 		private int maxCode;
 
-		// Token: 0x040030D9 RID: 12505
+		// Token: 0x0400289F RID: 10399
 		private int bitMask;
 
-		// Token: 0x040030DA RID: 12506
+		// Token: 0x040028A0 RID: 10400
 		private int oldCode;
 
-		// Token: 0x040030DB RID: 12507
+		// Token: 0x040028A1 RID: 10401
 		private byte finChar;
 
-		// Token: 0x040030DC RID: 12508
+		// Token: 0x040028A2 RID: 10402
 		private int stackP;
 
-		// Token: 0x040030DD RID: 12509
+		// Token: 0x040028A3 RID: 10403
 		private int freeEnt;
 
-		// Token: 0x040030DE RID: 12510
+		// Token: 0x040028A4 RID: 10404
 		private readonly byte[] data = new byte[8192];
 
-		// Token: 0x040030DF RID: 12511
+		// Token: 0x040028A5 RID: 10405
 		private int bitPos;
 
-		// Token: 0x040030E0 RID: 12512
+		// Token: 0x040028A6 RID: 10406
 		private int end;
 
-		// Token: 0x040030E1 RID: 12513
+		// Token: 0x040028A7 RID: 10407
 		private int got;
 
-		// Token: 0x040030E2 RID: 12514
+		// Token: 0x040028A8 RID: 10408
 		private bool eof;
 
-		// Token: 0x040030E3 RID: 12515
+		// Token: 0x040028A9 RID: 10409
 		private const int EXTRA = 64;
 	}
 }

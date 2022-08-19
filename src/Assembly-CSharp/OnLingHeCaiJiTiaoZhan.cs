@@ -3,12 +3,12 @@ using CaiJi;
 using Fungus;
 using UnityEngine;
 
-// Token: 0x020003BC RID: 956
+// Token: 0x0200028E RID: 654
 [EventHandlerInfo("NPCJiaoHu", "采集灵核遇到挑战", "采集灵核遇到挑战")]
 [AddComponentMenu("")]
 public class OnLingHeCaiJiTiaoZhan : Fungus.EventHandler
 {
-	// Token: 0x06001A78 RID: 6776 RVA: 0x000E9E30 File Offset: 0x000E8030
+	// Token: 0x0600179B RID: 6043 RVA: 0x000A2A38 File Offset: 0x000A0C38
 	private void Update()
 	{
 		if (LingHeCaiJiManager.IsOnTiaoZhan)

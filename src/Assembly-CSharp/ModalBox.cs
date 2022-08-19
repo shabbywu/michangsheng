@@ -2,10 +2,10 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-// Token: 0x0200023C RID: 572
+// Token: 0x02000161 RID: 353
 public abstract class ModalBox : MonoBehaviour
 {
-	// Token: 0x060011B8 RID: 4536 RVA: 0x000AC474 File Offset: 0x000AA674
+	// Token: 0x06000F5E RID: 3934 RVA: 0x0005C7C0 File Offset: 0x0005A9C0
 	private int stringHeight(string str)
 	{
 		int num = 0;
@@ -23,7 +23,7 @@ public abstract class ModalBox : MonoBehaviour
 		return num * 17 + 15;
 	}
 
-	// Token: 0x060011B9 RID: 4537 RVA: 0x000AC4BC File Offset: 0x000AA6BC
+	// Token: 0x06000F5F RID: 3935 RVA: 0x0005C808 File Offset: 0x0005AA08
 	private void FixedUpdate()
 	{
 		if (!this.isSetup)
@@ -60,13 +60,13 @@ public abstract class ModalBox : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060011BA RID: 4538 RVA: 0x000111B3 File Offset: 0x0000F3B3
+	// Token: 0x06000F60 RID: 3936 RVA: 0x0005C928 File Offset: 0x0005AB28
 	public virtual void Close()
 	{
 		Object.Destroy(base.gameObject);
 	}
 
-	// Token: 0x060011BB RID: 4539 RVA: 0x000AC5DC File Offset: 0x000AA7DC
+	// Token: 0x06000F61 RID: 3937 RVA: 0x0005C938 File Offset: 0x0005AB38
 	protected void SetText(string message, string title)
 	{
 		if (this.Button != null)
@@ -97,25 +97,25 @@ public abstract class ModalBox : MonoBehaviour
 		}
 	}
 
-	// Token: 0x04000E44 RID: 3652
+	// Token: 0x04000B77 RID: 2935
 	[Tooltip("The title text object that will be used to show the title of the dialog.")]
 	public Text Title;
 
-	// Token: 0x04000E45 RID: 3653
+	// Token: 0x04000B78 RID: 2936
 	[Tooltip("The message text object that will be used to show the message of the dialog.")]
 	public Text Message;
 
-	// Token: 0x04000E46 RID: 3654
+	// Token: 0x04000B79 RID: 2937
 	[Tooltip("The botton object that will be used to interact with the dialog. This will be cloned to produce additional options.")]
 	public Button Button;
 
-	// Token: 0x04000E47 RID: 3655
+	// Token: 0x04000B7A RID: 2938
 	[Tooltip("The RectTransform of the panel that contains the frame of the dialog window. This is needed so that it can be centered correctly after it's size is adjusted to the dialogs contents.")]
 	public RectTransform Panel;
 
-	// Token: 0x04000E48 RID: 3656
+	// Token: 0x04000B7B RID: 2939
 	private Transform buttonParent;
 
-	// Token: 0x04000E49 RID: 3657
+	// Token: 0x04000B7C RID: 2940
 	private bool isSetup;
 }

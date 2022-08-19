@@ -1,9 +1,9 @@
 ﻿using System;
 using UnityEngine;
 
-// Token: 0x0200015E RID: 350
+// Token: 0x020000E7 RID: 231
 public class ItemEmbedSlot : MonoBehaviour
 {
-	// Token: 0x0400097A RID: 2426
+	// Token: 0x0400079F RID: 1951
 	public GameObject Item;
 }

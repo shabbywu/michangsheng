@@ -1,10 +1,10 @@
 ﻿using System;
 using UnityEngine;
 
-// Token: 0x020004EF RID: 1263
+// Token: 0x02000372 RID: 882
 public class LoadPaiMai : MonoBehaviour
 {
-	// Token: 0x060020E2 RID: 8418 RVA: 0x0001B1E0 File Offset: 0x000193E0
+	// Token: 0x06001D7D RID: 7549 RVA: 0x000D0543 File Offset: 0x000CE743
 	private void Awake()
 	{
 		ResManager.inst.LoadPrefab("PaiMai/PaiMaiPanel").Inst(null);

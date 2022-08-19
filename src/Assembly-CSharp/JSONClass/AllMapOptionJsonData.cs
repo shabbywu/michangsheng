@@ -3,10 +3,10 @@ using System.Collections.Generic;
 
 namespace JSONClass
 {
-	// Token: 0x02000AE5 RID: 2789
+	// Token: 0x0200074D RID: 1869
 	public class AllMapOptionJsonData : IJSONClass
 	{
-		// Token: 0x060046FE RID: 18174 RVA: 0x001E5FD4 File Offset: 0x001E41D4
+		// Token: 0x06003B48 RID: 15176 RVA: 0x00197E08 File Offset: 0x00196008
 		public static void InitDataDict()
 		{
 			foreach (JSONObject jsonobject in jsonData.instance.AllMapOptionJsonData.list)
@@ -50,57 +50,57 @@ namespace JSONClass
 			}
 		}
 
-		// Token: 0x060046FF RID: 18175 RVA: 0x000042DD File Offset: 0x000024DD
+		// Token: 0x06003B49 RID: 15177 RVA: 0x00004095 File Offset: 0x00002295
 		private static void OnInitFinish()
 		{
 		}
 
-		// Token: 0x04003F7A RID: 16250
+		// Token: 0x040033E1 RID: 13281
 		public static Dictionary<int, AllMapOptionJsonData> DataDict = new Dictionary<int, AllMapOptionJsonData>();
 
-		// Token: 0x04003F7B RID: 16251
+		// Token: 0x040033E2 RID: 13282
 		public static List<AllMapOptionJsonData> DataList = new List<AllMapOptionJsonData>();
 
-		// Token: 0x04003F7C RID: 16252
+		// Token: 0x040033E3 RID: 13283
 		public static Action OnInitFinishAction = new Action(AllMapOptionJsonData.OnInitFinish);
 
-		// Token: 0x04003F7D RID: 16253
+		// Token: 0x040033E4 RID: 13284
 		public int id;
 
-		// Token: 0x04003F7E RID: 16254
+		// Token: 0x040033E5 RID: 13285
 		public int value1;
 
-		// Token: 0x04003F7F RID: 16255
+		// Token: 0x040033E6 RID: 13286
 		public int value2;
 
-		// Token: 0x04003F80 RID: 16256
+		// Token: 0x040033E7 RID: 13287
 		public int value3;
 
-		// Token: 0x04003F81 RID: 16257
+		// Token: 0x040033E8 RID: 13288
 		public int value4;
 
-		// Token: 0x04003F82 RID: 16258
+		// Token: 0x040033E9 RID: 13289
 		public int value5;
 
-		// Token: 0x04003F83 RID: 16259
+		// Token: 0x040033EA RID: 13290
 		public int value8;
 
-		// Token: 0x04003F84 RID: 16260
+		// Token: 0x040033EB RID: 13291
 		public int value9;
 
-		// Token: 0x04003F85 RID: 16261
+		// Token: 0x040033EC RID: 13292
 		public int value10;
 
-		// Token: 0x04003F86 RID: 16262
+		// Token: 0x040033ED RID: 13293
 		public string EventName;
 
-		// Token: 0x04003F87 RID: 16263
+		// Token: 0x040033EE RID: 13294
 		public string desc;
 
-		// Token: 0x04003F88 RID: 16264
+		// Token: 0x040033EF RID: 13295
 		public List<int> value6 = new List<int>();
 
-		// Token: 0x04003F89 RID: 16265
+		// Token: 0x040033F0 RID: 13296
 		public List<int> value7 = new List<int>();
 	}
 }

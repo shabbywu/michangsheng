@@ -4,16 +4,16 @@ using UnityEngine;
 
 namespace UltimateSurvival.GUISystem
 {
-	// Token: 0x0200092C RID: 2348
+	// Token: 0x02000639 RID: 1593
 	[RequireComponent(typeof(Animator))]
 	public class Window : MonoBehaviour
 	{
-		// Token: 0x1700066C RID: 1644
-		// (get) Token: 0x06003BCF RID: 15311 RVA: 0x0002B3F7 File Offset: 0x000295F7
-		// (set) Token: 0x06003BD0 RID: 15312 RVA: 0x0002B3FF File Offset: 0x000295FF
+		// Token: 0x1700046A RID: 1130
+		// (get) Token: 0x0600328F RID: 12943 RVA: 0x00165C7A File Offset: 0x00163E7A
+		// (set) Token: 0x06003290 RID: 12944 RVA: 0x00165C82 File Offset: 0x00163E82
 		public bool IsOpen { get; private set; }
 
-		// Token: 0x06003BD1 RID: 15313 RVA: 0x001AF150 File Offset: 0x001AD350
+		// Token: 0x06003291 RID: 12945 RVA: 0x00165C8C File Offset: 0x00163E8C
 		public virtual void Open()
 		{
 			if (this.IsOpen)
@@ -29,7 +29,7 @@ namespace UltimateSurvival.GUISystem
 			this.IsOpen = true;
 		}
 
-		// Token: 0x06003BD2 RID: 15314 RVA: 0x001AF1B4 File Offset: 0x001AD3B4
+		// Token: 0x06003292 RID: 12946 RVA: 0x00165CF0 File Offset: 0x00163EF0
 		public virtual void Close(bool instant = false)
 		{
 			if (!this.IsOpen)
@@ -50,13 +50,13 @@ namespace UltimateSurvival.GUISystem
 			this.IsOpen = false;
 		}
 
-		// Token: 0x06003BD3 RID: 15315 RVA: 0x0002B408 File Offset: 0x00029608
+		// Token: 0x06003293 RID: 12947 RVA: 0x00165D51 File Offset: 0x00163F51
 		public void Refresh()
 		{
 			this.m_Animator.SetTrigger("Refresh");
 		}
 
-		// Token: 0x06003BD4 RID: 15316 RVA: 0x0002B41A File Offset: 0x0002961A
+		// Token: 0x06003294 RID: 12948 RVA: 0x00165D63 File Offset: 0x00163F63
 		protected virtual void Start()
 		{
 			this.IsOpen = true;
@@ -66,7 +66,7 @@ namespace UltimateSurvival.GUISystem
 			this.Close(true);
 		}
 
-		// Token: 0x06003BD5 RID: 15317 RVA: 0x001AF218 File Offset: 0x001AD418
+		// Token: 0x06003295 RID: 12949 RVA: 0x00165DA0 File Offset: 0x00163FA0
 		private void OnChanged_InventoryState()
 		{
 			bool flag = false;
@@ -82,7 +82,7 @@ namespace UltimateSurvival.GUISystem
 			this.Close(false);
 		}
 
-		// Token: 0x06003BD6 RID: 15318 RVA: 0x0002B457 File Offset: 0x00029657
+		// Token: 0x06003296 RID: 12950 RVA: 0x00165DFB File Offset: 0x00163FFB
 		private IEnumerator C_DisableWithDelay()
 		{
 			yield return new WaitForSeconds(0.5f);
@@ -90,20 +90,20 @@ namespace UltimateSurvival.GUISystem
 			yield break;
 		}
 
-		// Token: 0x06003BD7 RID: 15319 RVA: 0x0002B466 File Offset: 0x00029666
+		// Token: 0x06003297 RID: 12951 RVA: 0x00165E0A File Offset: 0x0016400A
 		private void Disable()
 		{
 			base.GetComponent<CanvasGroup>().interactable = false;
 			base.GetComponent<CanvasGroup>().blocksRaycasts = false;
 		}
 
-		// Token: 0x06003BD8 RID: 15320 RVA: 0x0002B480 File Offset: 0x00029680
+		// Token: 0x06003298 RID: 12952 RVA: 0x00165E24 File Offset: 0x00164024
 		private void OnValidate()
 		{
 			this.UpdateAnimatorParams();
 		}
 
-		// Token: 0x06003BD9 RID: 15321 RVA: 0x001AF274 File Offset: 0x001AD474
+		// Token: 0x06003299 RID: 12953 RVA: 0x00165E2C File Offset: 0x0016402C
 		private void UpdateAnimatorParams()
 		{
 			if (!this.m_Animator)
@@ -115,40 +115,40 @@ namespace UltimateSurvival.GUISystem
 			this.m_Animator.SetFloat("Refresh Speed", this.m_RefreshSpeed);
 		}
 
-		// Token: 0x04003657 RID: 13911
+		// Token: 0x04002D02 RID: 11522
 		[Header("Animation Speed")]
 		[SerializeField]
 		private float m_HideSpeed = 1.3f;
 
-		// Token: 0x04003658 RID: 13912
+		// Token: 0x04002D03 RID: 11523
 		[SerializeField]
 		private float m_ShowSpeed = 1.3f;
 
-		// Token: 0x04003659 RID: 13913
+		// Token: 0x04002D04 RID: 11524
 		[SerializeField]
 		private float m_RefreshSpeed = 1.3f;
 
-		// Token: 0x0400365A RID: 13914
+		// Token: 0x04002D05 RID: 11525
 		[Header("How Is Opened")]
 		[SerializeField]
 		[Tooltip("Inventory Opened - will open when the inventory is opened. \nSpecific State - will open when the inventory opens in a specific state (e.g. Furnace-mode, Campfire-mode). \nManual - will have to be manually opened from another script.")]
 		private Window.OpenTrigger m_OpenTrigger;
 
-		// Token: 0x0400365B RID: 13915
+		// Token: 0x04002D06 RID: 11526
 		[SerializeField]
 		private ET.InventoryState m_StateTrigger = ET.InventoryState.Normal;
 
-		// Token: 0x0400365C RID: 13916
+		// Token: 0x04002D07 RID: 11527
 		private Animator m_Animator;
 
-		// Token: 0x0200092D RID: 2349
+		// Token: 0x020014DD RID: 5341
 		public enum OpenTrigger
 		{
-			// Token: 0x0400365E RID: 13918
+			// Token: 0x04006D98 RID: 28056
 			InventoryOpened,
-			// Token: 0x0400365F RID: 13919
+			// Token: 0x04006D99 RID: 28057
 			SpecificState,
-			// Token: 0x04003660 RID: 13920
+			// Token: 0x04006D9A RID: 28058
 			Manual
 		}
 	}

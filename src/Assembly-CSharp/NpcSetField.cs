@@ -1,12 +1,12 @@
 ﻿using System;
 
-// Token: 0x02000330 RID: 816
+// Token: 0x02000216 RID: 534
 public class NpcSetField
 {
-	// Token: 0x06001835 RID: 6197 RVA: 0x000D7B74 File Offset: 0x000D5D74
+	// Token: 0x06001581 RID: 5505 RVA: 0x0008EF58 File Offset: 0x0008D158
 	public void AddNpcExp(int npcId, int addNum)
 	{
-		JSONObject npcData = NpcJieSuanManager.inst.getNpcData(npcId);
+		JSONObject npcData = NpcJieSuanManager.inst.GetNpcData(npcId);
 		int num = npcData["exp"].I + addNum;
 		if (num >= 144411000)
 		{
@@ -33,32 +33,32 @@ public class NpcSetField
 		}
 	}
 
-	// Token: 0x06001836 RID: 6198 RVA: 0x000D7D3C File Offset: 0x000D5F3C
+	// Token: 0x06001582 RID: 5506 RVA: 0x0008F120 File Offset: 0x0008D320
 	public void AddNpcLevel(int npcId, int addNum)
 	{
-		int val = NpcJieSuanManager.inst.getNpcData(npcId)["Level"].I + addNum;
-		NpcJieSuanManager.inst.getNpcData(npcId).SetField("Level", val);
+		int val = NpcJieSuanManager.inst.GetNpcData(npcId)["Level"].I + addNum;
+		NpcJieSuanManager.inst.GetNpcData(npcId).SetField("Level", val);
 	}
 
-	// Token: 0x06001837 RID: 6199 RVA: 0x000D7D7C File Offset: 0x000D5F7C
+	// Token: 0x06001583 RID: 5507 RVA: 0x0008F160 File Offset: 0x0008D360
 	public void AddNpcShenShi(int npcId, int addNum)
 	{
-		int val = NpcJieSuanManager.inst.getNpcData(npcId)["shengShi"].I + addNum;
-		NpcJieSuanManager.inst.getNpcData(npcId).SetField("shengShi", val);
+		int val = NpcJieSuanManager.inst.GetNpcData(npcId)["shengShi"].I + addNum;
+		NpcJieSuanManager.inst.GetNpcData(npcId).SetField("shengShi", val);
 	}
 
-	// Token: 0x06001838 RID: 6200 RVA: 0x000D7DBC File Offset: 0x000D5FBC
+	// Token: 0x06001584 RID: 5508 RVA: 0x0008F1A0 File Offset: 0x0008D3A0
 	public void AddNpcHp(int npcId, int addNum)
 	{
-		int val = NpcJieSuanManager.inst.getNpcData(npcId)["HP"].I + addNum;
-		NpcJieSuanManager.inst.getNpcData(npcId).SetField("HP", val);
+		int val = NpcJieSuanManager.inst.GetNpcData(npcId)["HP"].I + addNum;
+		NpcJieSuanManager.inst.GetNpcData(npcId).SetField("HP", val);
 	}
 
-	// Token: 0x06001839 RID: 6201 RVA: 0x000D7DFC File Offset: 0x000D5FFC
+	// Token: 0x06001585 RID: 5509 RVA: 0x0008F1E0 File Offset: 0x0008D3E0
 	public bool AddNpcAge(int npcId, int addNum)
 	{
-		int val = NpcJieSuanManager.inst.getNpcData(npcId)["age"].I + addNum;
-		NpcJieSuanManager.inst.getNpcData(npcId).SetField("age", val);
+		int val = NpcJieSuanManager.inst.GetNpcData(npcId)["age"].I + addNum;
+		NpcJieSuanManager.inst.GetNpcData(npcId).SetField("age", val);
 		if (NpcJieSuanManager.inst.GetNpcShengYuTime(npcId) <= 0)
 		{
 			NpcJieSuanManager.inst.npcDeath.SetNpcDeath(1, npcId, 0, false);
@@ -67,43 +67,43 @@ public class NpcSetField
 		return true;
 	}
 
-	// Token: 0x0600183A RID: 6202 RVA: 0x000D7E60 File Offset: 0x000D6060
+	// Token: 0x06001586 RID: 5510 RVA: 0x0008F244 File Offset: 0x0008D444
 	public void AddNpcShouYuan(int npcId, int addNum)
 	{
-		int val = NpcJieSuanManager.inst.getNpcData(npcId)["shouYuan"].I + addNum;
-		NpcJieSuanManager.inst.getNpcData(npcId).SetField("shouYuan", val);
+		int val = NpcJieSuanManager.inst.GetNpcData(npcId)["shouYuan"].I + addNum;
+		NpcJieSuanManager.inst.GetNpcData(npcId).SetField("shouYuan", val);
 	}
 
-	// Token: 0x0600183B RID: 6203 RVA: 0x000D7EA0 File Offset: 0x000D60A0
+	// Token: 0x06001587 RID: 5511 RVA: 0x0008F284 File Offset: 0x0008D484
 	public void AddNpcZhiZi(int npcId, int addNum)
 	{
-		int num = NpcJieSuanManager.inst.getNpcData(npcId)["ziZhi"].I + addNum;
+		int num = NpcJieSuanManager.inst.GetNpcData(npcId)["ziZhi"].I + addNum;
 		if (num > 200)
 		{
 			num = 200;
 		}
-		NpcJieSuanManager.inst.getNpcData(npcId).SetField("ziZhi", num);
+		NpcJieSuanManager.inst.GetNpcData(npcId).SetField("ziZhi", num);
 	}
 
-	// Token: 0x0600183C RID: 6204 RVA: 0x000D7EF0 File Offset: 0x000D60F0
+	// Token: 0x06001588 RID: 5512 RVA: 0x0008F2D4 File Offset: 0x0008D4D4
 	public void AddNpcWuXing(int npcId, int addNum)
 	{
-		int num = NpcJieSuanManager.inst.getNpcData(npcId)["wuXin"].I + addNum;
+		int num = NpcJieSuanManager.inst.GetNpcData(npcId)["wuXin"].I + addNum;
 		if (num > 200)
 		{
 			num = 200;
 		}
-		NpcJieSuanManager.inst.getNpcData(npcId).SetField("wuXin", num);
+		NpcJieSuanManager.inst.GetNpcData(npcId).SetField("wuXin", num);
 	}
 
-	// Token: 0x0600183D RID: 6205 RVA: 0x000D7F40 File Offset: 0x000D6140
+	// Token: 0x06001589 RID: 5513 RVA: 0x0008F324 File Offset: 0x0008D524
 	public void AddNpcDunSu(int npcId, int addNum)
 	{
-		int val = NpcJieSuanManager.inst.getNpcData(npcId)["dunSu"].I + addNum;
-		NpcJieSuanManager.inst.getNpcData(npcId).SetField("dunSu", val);
+		int val = NpcJieSuanManager.inst.GetNpcData(npcId)["dunSu"].I + addNum;
+		NpcJieSuanManager.inst.GetNpcData(npcId).SetField("dunSu", val);
 	}
 
-	// Token: 0x0600183E RID: 6206 RVA: 0x000D7F80 File Offset: 0x000D6180
+	// Token: 0x0600158A RID: 5514 RVA: 0x0008F364 File Offset: 0x0008D564
 	public void AddNpcMoney(int npcId, int money)
 	{
 		int num = jsonData.instance.AvatarBackpackJsonData[npcId.ToString()]["money"].I + money;
@@ -114,7 +114,7 @@ public class NpcSetField
 		jsonData.instance.AvatarBackpackJsonData[npcId.ToString()].SetField("money", num);
 	}
 
-	// Token: 0x0600183F RID: 6207 RVA: 0x000D7FDC File Offset: 0x000D61DC
+	// Token: 0x0600158B RID: 5515 RVA: 0x0008F3C0 File Offset: 0x0008D5C0
 	public void NpcAddGongXian(int npcId, int addNum)
 	{
 		int i = jsonData.instance.AvatarJsonData[npcId.ToString()]["GongXian"].I;
@@ -126,7 +126,7 @@ public class NpcSetField
 		}
 	}
 
-	// Token: 0x06001840 RID: 6208 RVA: 0x000D805C File Offset: 0x000D625C
+	// Token: 0x0600158C RID: 5516 RVA: 0x0008F440 File Offset: 0x0008D640
 	public void AddNpcWuDaoExp(int npcId, int wudaoId, int addExp)
 	{
 		int num = jsonData.instance.AvatarJsonData[npcId.ToString()]["wuDaoJson"][wudaoId.ToString()]["level"].I;
@@ -141,10 +141,10 @@ public class NpcSetField
 		jsonData.instance.AvatarJsonData[npcId.ToString()]["wuDaoJson"][wudaoId.ToString()].SetField("exp", num2);
 	}
 
-	// Token: 0x06001841 RID: 6209 RVA: 0x000D8184 File Offset: 0x000D6384
+	// Token: 0x0600158D RID: 5517 RVA: 0x0008F568 File Offset: 0x0008D768
 	public void AddNpcWuDaoZhi(int npcId, int value)
 	{
-		JSONObject npcData = NpcJieSuanManager.inst.getNpcData(npcId);
+		JSONObject npcData = NpcJieSuanManager.inst.GetNpcData(npcId);
 		int i = npcData["WuDaoValue"].I;
 		int i2 = npcData["EWWuDaoDian"].I;
 		npcData.SetField("WuDaoValue", i + value);
@@ -164,17 +164,17 @@ public class NpcSetField
 		}
 	}
 
-	// Token: 0x06001842 RID: 6210 RVA: 0x000D8248 File Offset: 0x000D6448
+	// Token: 0x0600158E RID: 5518 RVA: 0x0008F62C File Offset: 0x0008D82C
 	public void AddNpcWuDaoDian(int npcId, int num)
 	{
-		JSONObject npcData = NpcJieSuanManager.inst.getNpcData(npcId);
+		JSONObject npcData = NpcJieSuanManager.inst.GetNpcData(npcId);
 		int i = npcData["EWWuDaoDian"].I;
 		npcData.SetField("EWWuDaoDian", i + num);
 	}
 
-	// Token: 0x06001843 RID: 6211 RVA: 0x00015205 File Offset: 0x00013405
+	// Token: 0x0600158F RID: 5519 RVA: 0x0008F662 File Offset: 0x0008D862
 	public void SetTag(int npcId, bool tag)
 	{
-		NpcJieSuanManager.inst.getNpcData(npcId).SetField("IsTag", tag);
+		NpcJieSuanManager.inst.GetNpcData(npcId).SetField("IsTag", tag);
 	}
 }

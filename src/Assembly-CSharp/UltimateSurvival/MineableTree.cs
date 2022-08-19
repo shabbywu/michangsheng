@@ -2,7 +2,7 @@
 
 namespace UltimateSurvival
 {
-	// Token: 0x020008E4 RID: 2276
+	// Token: 0x02000606 RID: 1542
 	public class MineableTree : MineableObject
 	{
 	}

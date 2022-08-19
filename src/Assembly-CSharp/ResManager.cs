@@ -3,19 +3,20 @@ using System.Collections.Generic;
 using System.IO;
 using System.Runtime.Serialization;
 using System.Runtime.Serialization.Formatters.Binary;
+using Spine.Unity;
 using UnityEngine;
 using UnityEngine.U2D;
 
-// Token: 0x02000540 RID: 1344
+// Token: 0x020003B5 RID: 949
 public class ResManager : MonoBehaviour
 {
-	// Token: 0x06002245 RID: 8773 RVA: 0x0001C179 File Offset: 0x0001A379
+	// Token: 0x06001EC2 RID: 7874 RVA: 0x000D7E06 File Offset: 0x000D6006
 	private void Awake()
 	{
 		ResManager.inst = this;
 	}
 
-	// Token: 0x06002246 RID: 8774 RVA: 0x0001C181 File Offset: 0x0001A381
+	// Token: 0x06001EC3 RID: 7875 RVA: 0x000D7E0E File Offset: 0x000D600E
 	public void Preload(int taskID)
 	{
 		Loom.RunAsync(delegate
@@ -24,7 +25,7 @@ public class ResManager : MonoBehaviour
 		});
 	}
 
-	// Token: 0x06002247 RID: 8775 RVA: 0x0011B20C File Offset: 0x0011940C
+	// Token: 0x06001EC4 RID: 7876 RVA: 0x000D7E34 File Offset: 0x000D6034
 	public void LoadAsync(int taskID)
 	{
 		try
@@ -36,10 +37,11 @@ public class ResManager : MonoBehaviour
 		{
 			PreloadManager.IsException = true;
 			PreloadManager.ExceptionData += string.Format("{0}\n", arg);
+			PreloadManager.Inst.TaskDone(taskID);
 		}
 	}
 
-	// Token: 0x06002248 RID: 8776 RVA: 0x0001C1A7 File Offset: 0x0001A3A7
+	// Token: 0x06001EC5 RID: 7877 RVA: 0x000D7EA8 File Offset: 0x000D60A8
 	public Object[] LoadSprites(string path)
 	{
 		if (!this.spritesDictionary.ContainsKey(path))
@@ -49,7 +51,7 @@ public class ResManager : MonoBehaviour
 		return this.spritesDictionary[path];
 	}
 
-	// Token: 0x06002249 RID: 8777 RVA: 0x0011B274 File Offset: 0x00119474
+	// Token: 0x06001EC6 RID: 7878 RVA: 0x000D7ED8 File Offset: 0x000D60D8
 	public Dictionary<string, Sprite> LoadSpriteAtlas(string path)
 	{
 		if (!this.spriteAtlasDictionary.ContainsKey(path))
@@ -73,7 +75,29 @@ public class ResManager : MonoBehaviour
 		return this.spriteAtlasDictionary[path];
 	}
 
-	// Token: 0x0600224A RID: 8778 RVA: 0x0011B328 File Offset: 0x00119528
+	// Token: 0x06001EC7 RID: 7879 RVA: 0x000D7F8C File Offset: 0x000D618C
+	public SkeletonDataAsset LoadABSkeletonDataAsset(int sexType, string path)
+	{
+		if (this.man == null || this.woman == null)
+		{
+			this.man = AssetBundle.LoadFromFile(ResManager.RootPath + "/man");
+			this.woman = AssetBundle.LoadFromFile(ResManager.RootPath + "/woman");
+		}
+		if (!this.abSkeletonDataAssetDict.ContainsKey(path))
+		{
+			if (sexType == 1)
+			{
+				this.abSkeletonDataAssetDict.Add(path, this.man.LoadAsset<SkeletonDataAsset>(path));
+			}
+			else
+			{
+				this.abSkeletonDataAssetDict.Add(path, this.woman.LoadAsset<SkeletonDataAsset>(path));
+			}
+		}
+		return this.abSkeletonDataAssetDict[path];
+	}
+
+	// Token: 0x06001EC8 RID: 7880 RVA: 0x000D803C File Offset: 0x000D623C
 	public Sprite LoadSprite(string path)
 	{
 		if (this.spriteDictionary.Count >= 20)
@@ -87,7 +111,7 @@ public class ResManager : MonoBehaviour
 		return this.spriteDictionary[path];
 	}
 
-	// Token: 0x0600224B RID: 8779 RVA: 0x0011B37C File Offset: 0x0011957C
+	// Token: 0x06001EC9 RID: 7881 RVA: 0x000D8090 File Offset: 0x000D6290
 	public Texture2D LoadTexture2D(string path)
 	{
 		if (this.texture2Dictionary.Count >= 20)
@@ -101,14 +125,19 @@ public class ResManager : MonoBehaviour
 		return this.texture2Dictionary[path];
 	}
 
-	// Token: 0x0600224C RID: 8780 RVA: 0x0011B3D0 File Offset: 0x001195D0
+	// Token: 0x06001ECA RID: 7882 RVA: 0x000D80E4 File Offset: 0x000D62E4
 	public Object LoadSkillEffect(string path)
 	{
 		Object result;
 		try
 		{
 			path = path.Replace(".0", "");
-			result = this.skillEffectBundle.LoadAsset<GameObject>(path);
+			Object @object = this.skillEffectBundle.LoadAsset<GameObject>(path);
+			if (RoundManager.instance != null)
+			{
+				RoundManager.instance.SkillList.Add(path);
+			}
+			result = @object;
 		}
 		catch (Exception ex)
 		{
@@ -126,7 +155,7 @@ public class ResManager : MonoBehaviour
 		return result;
 	}
 
-	// Token: 0x0600224D RID: 8781 RVA: 0x0011B454 File Offset: 0x00119654
+	// Token: 0x06001ECB RID: 7883 RVA: 0x000D8184 File Offset: 0x000D6384
 	public bool CheckHasSkillEffect(string path)
 	{
 		if (RoundManager.instance != null && RoundManager.instance.IsVirtual)
@@ -145,7 +174,7 @@ public class ResManager : MonoBehaviour
 		return !(gameObject == null);
 	}
 
-	// Token: 0x0600224E RID: 8782 RVA: 0x0011B4C0 File Offset: 0x001196C0
+	// Token: 0x06001ECC RID: 7884 RVA: 0x000D81F0 File Offset: 0x000D63F0
 	public Object LoadBuffEffect(string path)
 	{
 		if (RoundManager.instance != null && RoundManager.instance.IsVirtual)
@@ -166,7 +195,7 @@ public class ResManager : MonoBehaviour
 		return this.buffEffectDictionary[path];
 	}
 
-	// Token: 0x0600224F RID: 8783 RVA: 0x0001C1D5 File Offset: 0x0001A3D5
+	// Token: 0x06001ECD RID: 7885 RVA: 0x000D8287 File Offset: 0x000D6487
 	public bool CheckHasBuffEffect(string path)
 	{
 		path = path.Replace(".0", "");
@@ -174,7 +203,7 @@ public class ResManager : MonoBehaviour
 		return !(Resources.Load<GameObject>(path) == null);
 	}
 
-	// Token: 0x06002250 RID: 8784 RVA: 0x0011B558 File Offset: 0x00119758
+	// Token: 0x06001ECE RID: 7886 RVA: 0x000D82C0 File Offset: 0x000D64C0
 	public GameObject LoadPrefab(string path)
 	{
 		path = "Prefab/" + path;
@@ -190,7 +219,7 @@ public class ResManager : MonoBehaviour
 		return this.PrefabDictionary[path];
 	}
 
-	// Token: 0x06002251 RID: 8785 RVA: 0x0011B5BC File Offset: 0x001197BC
+	// Token: 0x06001ECF RID: 7887 RVA: 0x000D8324 File Offset: 0x000D6524
 	public GameObject LoadTalk(string path)
 	{
 		path = "talkPrefab/" + path;
@@ -202,7 +231,7 @@ public class ResManager : MonoBehaviour
 		return this.PrefabDictionary[path];
 	}
 
-	// Token: 0x06002252 RID: 8786 RVA: 0x0011B608 File Offset: 0x00119808
+	// Token: 0x06001ED0 RID: 7888 RVA: 0x000D8370 File Offset: 0x000D6570
 	public object LoadObject(string path)
 	{
 		IFormatter formatter = new BinaryFormatter();
@@ -212,7 +241,7 @@ public class ResManager : MonoBehaviour
 		return result;
 	}
 
-	// Token: 0x06002253 RID: 8787 RVA: 0x0011B63C File Offset: 0x0011983C
+	// Token: 0x06001ED1 RID: 7889 RVA: 0x000D83A4 File Offset: 0x000D65A4
 	public void SaveStream(string path, object obj)
 	{
 		IFormatter formatter = new BinaryFormatter();
@@ -221,8 +250,8 @@ public class ResManager : MonoBehaviour
 		stream.Close();
 	}
 
-	// Token: 0x170002B0 RID: 688
-	// (get) Token: 0x06002254 RID: 8788 RVA: 0x0011B670 File Offset: 0x00119870
+	// Token: 0x1700025E RID: 606
+	// (get) Token: 0x06001ED2 RID: 7890 RVA: 0x000D83D8 File Offset: 0x000D65D8
 	private static string RootPath
 	{
 		get
@@ -239,30 +268,39 @@ public class ResManager : MonoBehaviour
 		}
 	}
 
-	// Token: 0x04001DA4 RID: 7588
+	// Token: 0x04001930 RID: 6448
 	public static ResManager inst;
 
-	// Token: 0x04001DA5 RID: 7589
+	// Token: 0x04001931 RID: 6449
 	public Dictionary<string, string> pathDictionary = new Dictionary<string, string>();
 
-	// Token: 0x04001DA6 RID: 7590
+	// Token: 0x04001932 RID: 6450
 	private Dictionary<string, Object[]> spritesDictionary = new Dictionary<string, Object[]>();
 
-	// Token: 0x04001DA7 RID: 7591
+	// Token: 0x04001933 RID: 6451
 	private Dictionary<string, Sprite> spriteDictionary = new Dictionary<string, Sprite>();
 
-	// Token: 0x04001DA8 RID: 7592
+	// Token: 0x04001934 RID: 6452
 	private Dictionary<string, Dictionary<string, Sprite>> spriteAtlasDictionary = new Dictionary<string, Dictionary<string, Sprite>>();
 
-	// Token: 0x04001DA9 RID: 7593
+	// Token: 0x04001935 RID: 6453
 	private Dictionary<string, Texture2D> texture2Dictionary = new Dictionary<string, Texture2D>();
 
-	// Token: 0x04001DAA RID: 7594
+	// Token: 0x04001936 RID: 6454
 	private Dictionary<string, Object> buffEffectDictionary = new Dictionary<string, Object>();
 
-	// Token: 0x04001DAB RID: 7595
+	// Token: 0x04001937 RID: 6455
 	private Dictionary<string, GameObject> PrefabDictionary = new Dictionary<string, GameObject>();
 
-	// Token: 0x04001DAC RID: 7596
+	// Token: 0x04001938 RID: 6456
+	private Dictionary<string, SkeletonDataAsset> abSkeletonDataAssetDict = new Dictionary<string, SkeletonDataAsset>();
+
+	// Token: 0x04001939 RID: 6457
+	private AssetBundle man;
+
+	// Token: 0x0400193A RID: 6458
+	private AssetBundle woman;
+
+	// Token: 0x0400193B RID: 6459
 	private AssetBundle skillEffectBundle;
 }

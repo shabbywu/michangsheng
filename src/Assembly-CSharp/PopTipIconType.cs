@@ -1,22 +1,22 @@
 ﻿using System;
 
-// Token: 0x020004E1 RID: 1249
+// Token: 0x02000364 RID: 868
 public enum PopTipIconType
 {
-	// Token: 0x04001C0D RID: 7181
+	// Token: 0x040017BB RID: 6075
 	叹号,
-	// Token: 0x04001C0E RID: 7182
+	// Token: 0x040017BC RID: 6076
 	上箭头,
-	// Token: 0x04001C0F RID: 7183
+	// Token: 0x040017BD RID: 6077
 	下箭头,
-	// Token: 0x04001C10 RID: 7184
+	// Token: 0x040017BE RID: 6078
 	包裹,
-	// Token: 0x04001C11 RID: 7185
+	// Token: 0x040017BF RID: 6079
 	任务进度,
-	// Token: 0x04001C12 RID: 7186
+	// Token: 0x040017C0 RID: 6080
 	任务完成,
-	// Token: 0x04001C13 RID: 7187
+	// Token: 0x040017C1 RID: 6081
 	感悟,
-	// Token: 0x04001C14 RID: 7188
+	// Token: 0x040017C2 RID: 6082
 	传音符
 }

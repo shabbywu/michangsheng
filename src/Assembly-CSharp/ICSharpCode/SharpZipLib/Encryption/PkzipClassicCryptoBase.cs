@@ -3,17 +3,17 @@ using ICSharpCode.SharpZipLib.Checksum;
 
 namespace ICSharpCode.SharpZipLib.Encryption
 {
-	// Token: 0x0200081B RID: 2075
+	// Token: 0x02000572 RID: 1394
 	internal class PkzipClassicCryptoBase
 	{
-		// Token: 0x0600366A RID: 13930 RVA: 0x00027AE9 File Offset: 0x00025CE9
+		// Token: 0x06002DF4 RID: 11764 RVA: 0x0015092A File Offset: 0x0014EB2A
 		protected byte TransformByte()
 		{
 			uint num = (this.keys[2] & 65535U) | 2U;
 			return (byte)(num * (num ^ 1U) >> 8);
 		}
 
-		// Token: 0x0600366B RID: 13931 RVA: 0x0019BABC File Offset: 0x00199CBC
+		// Token: 0x06002DF5 RID: 11765 RVA: 0x00150944 File Offset: 0x0014EB44
 		protected void SetKeys(byte[] keyData)
 		{
 			if (keyData == null)
@@ -30,7 +30,7 @@ namespace ICSharpCode.SharpZipLib.Encryption
 			this.keys[2] = (uint)((int)keyData[11] << 24 | (int)keyData[10] << 16 | (int)keyData[9] << 8 | (int)keyData[8]);
 		}
 
-		// Token: 0x0600366C RID: 13932 RVA: 0x0019BB58 File Offset: 0x00199D58
+		// Token: 0x06002DF6 RID: 11766 RVA: 0x001509E0 File Offset: 0x0014EBE0
 		protected void UpdateKeys(byte ch)
 		{
 			this.keys[0] = Crc32.ComputeCrc32(this.keys[0], ch);
@@ -39,7 +39,7 @@ namespace ICSharpCode.SharpZipLib.Encryption
 			this.keys[2] = Crc32.ComputeCrc32(this.keys[2], (byte)(this.keys[1] >> 24));
 		}
 
-		// Token: 0x0600366D RID: 13933 RVA: 0x00027B02 File Offset: 0x00025D02
+		// Token: 0x06002DF7 RID: 11767 RVA: 0x00150A56 File Offset: 0x0014EC56
 		protected void Reset()
 		{
 			this.keys[0] = 0U;
@@ -47,7 +47,7 @@ namespace ICSharpCode.SharpZipLib.Encryption
 			this.keys[2] = 0U;
 		}
 
-		// Token: 0x040030F4 RID: 12532
+		// Token: 0x040028B5 RID: 10421
 		private uint[] keys;
 	}
 }

@@ -3,17 +3,17 @@ using System.Text;
 
 namespace MoonSharp.VsCodeDebugger.SDK
 {
-	// Token: 0x020011DC RID: 4572
+	// Token: 0x02000DB0 RID: 3504
 	internal class ByteBuffer
 	{
-		// Token: 0x06006FDB RID: 28635 RVA: 0x0004C04B File Offset: 0x0004A24B
+		// Token: 0x06006395 RID: 25493 RVA: 0x0027B417 File Offset: 0x00279617
 		public ByteBuffer()
 		{
 			this._buffer = new byte[0];
 		}
 
-		// Token: 0x17000A51 RID: 2641
-		// (get) Token: 0x06006FDC RID: 28636 RVA: 0x0004C05F File Offset: 0x0004A25F
+		// Token: 0x170007F0 RID: 2032
+		// (get) Token: 0x06006396 RID: 25494 RVA: 0x0027B42B File Offset: 0x0027962B
 		public int Length
 		{
 			get
@@ -22,13 +22,13 @@ namespace MoonSharp.VsCodeDebugger.SDK
 			}
 		}
 
-		// Token: 0x06006FDD RID: 28637 RVA: 0x0004C069 File Offset: 0x0004A269
+		// Token: 0x06006397 RID: 25495 RVA: 0x0027B435 File Offset: 0x00279635
 		public string GetString(Encoding enc)
 		{
 			return enc.GetString(this._buffer);
 		}
 
-		// Token: 0x06006FDE RID: 28638 RVA: 0x002A0A28 File Offset: 0x0029EC28
+		// Token: 0x06006398 RID: 25496 RVA: 0x0027B444 File Offset: 0x00279644
 		public void Append(byte[] b, int length)
 		{
 			byte[] array = new byte[this._buffer.Length + length];
@@ -37,7 +37,7 @@ namespace MoonSharp.VsCodeDebugger.SDK
 			this._buffer = array;
 		}
 
-		// Token: 0x06006FDF RID: 28639 RVA: 0x002A0A74 File Offset: 0x0029EC74
+		// Token: 0x06006399 RID: 25497 RVA: 0x0027B490 File Offset: 0x00279690
 		public byte[] RemoveFirst(int n)
 		{
 			byte[] array = new byte[n];
@@ -48,7 +48,7 @@ namespace MoonSharp.VsCodeDebugger.SDK
 			return array;
 		}
 
-		// Token: 0x040062D5 RID: 25301
+		// Token: 0x040055EE RID: 21998
 		private byte[] _buffer;
 	}
 }

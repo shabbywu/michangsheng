@@ -5,21 +5,25 @@ using KBEngine;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-// Token: 0x02000517 RID: 1303
+// Token: 0x02000392 RID: 914
 public class TpEatDanYao : MonoBehaviour
 {
-	// Token: 0x06002191 RID: 8593 RVA: 0x001184EC File Offset: 0x001166EC
+	// Token: 0x06001E16 RID: 7702 RVA: 0x000D48E8 File Offset: 0x000D2AE8
 	public void Init()
 	{
 		if (!this.isInit)
 		{
 			this.isInit = true;
-			Avatar player = Tools.instance.getPlayer();
-			foreach (int num in jsonData.instance.NPCTuPuoDate[player.level.ToString()]["ShouJiItem"].ToList())
+			int num = (int)Tools.instance.getPlayer().level;
+			if (num >= 13)
+			{
+				num = 15;
+			}
+			foreach (int num2 in jsonData.instance.NPCTuPuoDate[num.ToString()]["ShouJiItem"].ToList())
 			{
 				GameObject gameObject = Tools.InstantiateGameObject(this.danYaoCell, this.danYaoList);
 				UIIconShow cell = gameObject.GetComponent<UIIconShow>();
-				cell.SetItem(num);
+				cell.SetItem(num2);
 				cell.OnClick = delegate(PointerEventData b)
 				{
 					if (b.button == 1)
@@ -27,11 +31,11 @@ public class TpEatDanYao : MonoBehaviour
 						this.UserItem(cell);
 					}
 				};
-				if (this.IsNaiYao(num))
+				if (this.IsNaiYao(num2))
 				{
 					cell.NowJiaoBiao = UIIconShow.JiaoBiaoType.Nai;
 				}
-				cell.SetCount(this.GetPlayerItemNum(num));
+				cell.SetCount(this.GetPlayerItemNum(num2));
 				cell.CanDrag = false;
 				gameObject.SetActive(true);
 			}
@@ -39,14 +43,14 @@ public class TpEatDanYao : MonoBehaviour
 		base.gameObject.SetActive(true);
 	}
 
-	// Token: 0x06002192 RID: 8594 RVA: 0x0001B963 File Offset: 0x00019B63
+	// Token: 0x06001E17 RID: 7703 RVA: 0x000D4A1C File Offset: 0x000D2C1C
 	public void Close()
 	{
 		base.gameObject.SetActive(false);
 		TpUIMag.inst.ShowTuPoPanel();
 	}
 
-	// Token: 0x06002193 RID: 8595 RVA: 0x00118618 File Offset: 0x00116818
+	// Token: 0x06001E18 RID: 7704 RVA: 0x000D4A34 File Offset: 0x000D2C34
 	public int GetPlayerItemNum(int itemId)
 	{
 		List<ITEM_INFO> values = Tools.instance.getPlayer().itemList.values;
@@ -62,7 +66,7 @@ public class TpEatDanYao : MonoBehaviour
 		return num;
 	}
 
-	// Token: 0x06002194 RID: 8596 RVA: 0x00118694 File Offset: 0x00116894
+	// Token: 0x06001E19 RID: 7705 RVA: 0x000D4AB0 File Offset: 0x000D2CB0
 	public void UserItem(UIIconShow item)
 	{
 		int curCount = item.GetCount();
@@ -85,21 +89,21 @@ public class TpEatDanYao : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06002195 RID: 8597 RVA: 0x0011871C File Offset: 0x0011691C
+	// Token: 0x06001E1A RID: 7706 RVA: 0x000D4B38 File Offset: 0x000D2D38
 	private bool IsNaiYao(int itemID)
 	{
 		int itemCanUseNum = item.GetItemCanUseNum(itemID);
 		return Tools.getJsonobject(Tools.instance.getPlayer().NaiYaoXin, string.Concat(itemID)) >= itemCanUseNum;
 	}
 
-	// Token: 0x04001D15 RID: 7445
+	// Token: 0x040018B5 RID: 6325
 	[SerializeField]
 	private GameObject danYaoCell;
 
-	// Token: 0x04001D16 RID: 7446
+	// Token: 0x040018B6 RID: 6326
 	[SerializeField]
 	private Transform danYaoList;
 
-	// Token: 0x04001D17 RID: 7447
+	// Token: 0x040018B7 RID: 6327
 	private bool isInit;
 }

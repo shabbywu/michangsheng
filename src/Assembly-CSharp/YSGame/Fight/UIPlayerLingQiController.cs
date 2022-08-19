@@ -4,15 +4,15 @@ using UnityEngine;
 
 namespace YSGame.Fight
 {
-	// Token: 0x02000E0C RID: 3596
+	// Token: 0x02000ACD RID: 2765
 	public class UIPlayerLingQiController : MonoBehaviour
 	{
-		// Token: 0x060056E4 RID: 22244 RVA: 0x000042DD File Offset: 0x000024DD
+		// Token: 0x06004D93 RID: 19859 RVA: 0x00004095 File Offset: 0x00002295
 		private void Update()
 		{
 		}
 
-		// Token: 0x060056E5 RID: 22245 RVA: 0x00242E5C File Offset: 0x0024105C
+		// Token: 0x06004D94 RID: 19860 RVA: 0x00212D70 File Offset: 0x00210F70
 		public void ResetPlayerLingQiCount()
 		{
 			for (int i = 0; i < 6; i++)
@@ -25,7 +25,7 @@ namespace YSGame.Fight
 			}
 		}
 
-		// Token: 0x060056E6 RID: 22246 RVA: 0x00242EAC File Offset: 0x002410AC
+		// Token: 0x06004D95 RID: 19861 RVA: 0x00212DC0 File Offset: 0x00210FC0
 		public int GetPlayerLingQiSum()
 		{
 			this.ResetPlayerLingQiCount();
@@ -37,13 +37,13 @@ namespace YSGame.Fight
 			return num;
 		}
 
-		// Token: 0x060056E7 RID: 22247 RVA: 0x0003E206 File Offset: 0x0003C406
+		// Token: 0x06004D96 RID: 19862 RVA: 0x00212DF5 File Offset: 0x00210FF5
 		public UIFightLingQiPlayerSlot GetTargetLingQiSlot(LingQiType lingQiType)
 		{
 			return this.SlotList[(int)lingQiType];
 		}
 
-		// Token: 0x060056E8 RID: 22248 RVA: 0x00242EE4 File Offset: 0x002410E4
+		// Token: 0x06004D97 RID: 19863 RVA: 0x00212E04 File Offset: 0x00211004
 		public void RefreshLingQiCount(bool show)
 		{
 			this.refreshCD = 1f;
@@ -83,19 +83,19 @@ namespace YSGame.Fight
 			}
 		}
 
-		// Token: 0x04005692 RID: 22162
+		// Token: 0x04004CB7 RID: 19639
 		public List<UIFightLingQiPlayerSlot> SlotList;
 
-		// Token: 0x04005693 RID: 22163
+		// Token: 0x04004CB8 RID: 19640
 		public Sprite CountBGSmall;
 
-		// Token: 0x04005694 RID: 22164
+		// Token: 0x04004CB9 RID: 19641
 		public Sprite CountBGBig;
 
-		// Token: 0x04005695 RID: 22165
+		// Token: 0x04004CBA RID: 19642
 		public GameObject MoBG;
 
-		// Token: 0x04005696 RID: 22166
+		// Token: 0x04004CBB RID: 19643
 		private float refreshCD;
 	}
 }

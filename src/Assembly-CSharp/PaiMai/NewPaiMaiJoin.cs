@@ -10,15 +10,15 @@ using UnityEngine.UI;
 
 namespace PaiMai
 {
-	// Token: 0x02000A57 RID: 2647
+	// Token: 0x02000709 RID: 1801
 	public class NewPaiMaiJoin : MonoBehaviour, IESCClose
 	{
-		// Token: 0x170007D2 RID: 2002
-		// (get) Token: 0x06004449 RID: 17481 RVA: 0x00030E38 File Offset: 0x0002F038
-		// (set) Token: 0x0600444A RID: 17482 RVA: 0x00030E40 File Offset: 0x0002F040
+		// Token: 0x170005A0 RID: 1440
+		// (get) Token: 0x060039C1 RID: 14785 RVA: 0x0018B6A5 File Offset: 0x001898A5
+		// (set) Token: 0x060039C2 RID: 14786 RVA: 0x0018B6AD File Offset: 0x001898AD
 		public bool CanClick { get; private set; }
 
-		// Token: 0x0600444B RID: 17483 RVA: 0x00030E49 File Offset: 0x0002F049
+		// Token: 0x060039C3 RID: 14787 RVA: 0x0018B6B6 File Offset: 0x001898B6
 		private void Awake()
 		{
 			NewPaiMaiJoin.Inst = this;
@@ -26,7 +26,7 @@ namespace PaiMai
 			ESCCloseManager.Inst.RegisterClose(this);
 		}
 
-		// Token: 0x0600444C RID: 17484 RVA: 0x001D2D88 File Offset: 0x001D0F88
+		// Token: 0x060039C4 RID: 14788 RVA: 0x0018B6D0 File Offset: 0x001898D0
 		public void Init(int paiId, int npcId)
 		{
 			this.InitPlayerData();
@@ -44,7 +44,7 @@ namespace PaiMai
 			PanelMamager.CanOpenOrClose = false;
 		}
 
-		// Token: 0x0600444D RID: 17485 RVA: 0x00030E63 File Offset: 0x0002F063
+		// Token: 0x060039C5 RID: 14789 RVA: 0x0018B784 File Offset: 0x00189984
 		private void InitPlayerData()
 		{
 			this.PlayerName.SetText(Tools.GetPlayerName());
@@ -53,7 +53,7 @@ namespace PaiMai
 			this.PlayerBag.UpdateMoney();
 		}
 
-		// Token: 0x0600444E RID: 17486 RVA: 0x001D2E3C File Offset: 0x001D103C
+		// Token: 0x060039C6 RID: 14790 RVA: 0x0018B7C4 File Offset: 0x001899C4
 		private void RefreshShop()
 		{
 			this.BaseShopList = new List<BaseItem>();
@@ -75,7 +75,7 @@ namespace PaiMai
 			}
 		}
 
-		// Token: 0x0600444F RID: 17487 RVA: 0x001D2F6C File Offset: 0x001D116C
+		// Token: 0x060039C7 RID: 14791 RVA: 0x0018B8F4 File Offset: 0x00189AF4
 		public void PutItem(PaiMaiSlot dragSlot, PaiMaiSlot toSlot = null)
 		{
 			if (!dragSlot.Item.CanSale)
@@ -163,7 +163,7 @@ namespace PaiMai
 			this.Select.Init(dragSlot.Item.GetName(), dragSlot.Item.Count, unityAction, null);
 		}
 
-		// Token: 0x06004450 RID: 17488 RVA: 0x001D310C File Offset: 0x001D130C
+		// Token: 0x060039C8 RID: 14792 RVA: 0x0018BA94 File Offset: 0x00189C94
 		public void BackItem(PaiMaiSlot dragSlot, PaiMaiSlot toSlot = null)
 		{
 			if (!dragSlot.Item.CanSale)
@@ -238,7 +238,7 @@ namespace PaiMai
 			this.Select.Init(dragSlot.Item.GetName(), dragSlot.Item.Count, unityAction, null);
 		}
 
-		// Token: 0x06004451 RID: 17489 RVA: 0x001D32A8 File Offset: 0x001D14A8
+		// Token: 0x060039C9 RID: 14793 RVA: 0x0018BC30 File Offset: 0x00189E30
 		public PaiMaiSlot GetNullPaiMaiSlot(BaseItem baseItem)
 		{
 			PaiMaiSlot paiMaiSlot = null;
@@ -259,7 +259,7 @@ namespace PaiMai
 			return paiMaiSlot;
 		}
 
-		// Token: 0x06004452 RID: 17490 RVA: 0x001D3330 File Offset: 0x001D1530
+		// Token: 0x060039CA RID: 14794 RVA: 0x0018BCB8 File Offset: 0x00189EB8
 		private void InitSlotList()
 		{
 			this.PaiMaiSlotList = new List<PaiMaiSlot>();
@@ -282,7 +282,7 @@ namespace PaiMai
 			}
 		}
 
-		// Token: 0x06004453 RID: 17491 RVA: 0x00030EA2 File Offset: 0x0002F0A2
+		// Token: 0x060039CB RID: 14795 RVA: 0x0018BD87 File Offset: 0x00189F87
 		private void OnDestroy()
 		{
 			Tools.canClickFlag = true;
@@ -291,7 +291,7 @@ namespace PaiMai
 			NewPaiMaiJoin.Inst = null;
 		}
 
-		// Token: 0x06004454 RID: 17492 RVA: 0x00030EC1 File Offset: 0x0002F0C1
+		// Token: 0x060039CC RID: 14796 RVA: 0x0018BDA6 File Offset: 0x00189FA6
 		public void CanCel()
 		{
 			if (this.CanClick)
@@ -300,7 +300,7 @@ namespace PaiMai
 			}
 		}
 
-		// Token: 0x06004455 RID: 17493 RVA: 0x001D3400 File Offset: 0x001D1600
+		// Token: 0x060039CD RID: 14797 RVA: 0x0018BDB8 File Offset: 0x00189FB8
 		public void Join()
 		{
 			if (!this.IsCanJoin())
@@ -366,20 +366,20 @@ namespace PaiMai
 			}), this);
 		}
 
-		// Token: 0x06004456 RID: 17494 RVA: 0x000111B3 File Offset: 0x0000F3B3
+		// Token: 0x060039CE RID: 14798 RVA: 0x0005C928 File Offset: 0x0005AB28
 		private void Close()
 		{
 			Object.Destroy(base.gameObject);
 		}
 
-		// Token: 0x06004457 RID: 17495 RVA: 0x00030ED1 File Offset: 0x0002F0D1
+		// Token: 0x060039CF RID: 14799 RVA: 0x0018C018 File Offset: 0x0018A218
 		public bool TryEscClose()
 		{
 			this.CanCel();
 			return true;
 		}
 
-		// Token: 0x06004458 RID: 17496 RVA: 0x001D3660 File Offset: 0x001D1860
+		// Token: 0x060039D0 RID: 14800 RVA: 0x0018C024 File Offset: 0x0018A224
 		private bool IsCanJoin()
 		{
 			PaiMaiBiao paiMaiBiao = PaiMaiBiao.DataDict[this.PaiMaiId];
@@ -432,70 +432,70 @@ namespace PaiMai
 			return false;
 		}
 
-		// Token: 0x04003C57 RID: 15447
+		// Token: 0x040031D8 RID: 12760
 		[SerializeField]
 		private Text PlayerName;
 
-		// Token: 0x04003C58 RID: 15448
+		// Token: 0x040031D9 RID: 12761
 		[SerializeField]
 		private Text PlayerTitle;
 
-		// Token: 0x04003C59 RID: 15449
+		// Token: 0x040031DA RID: 12762
 		public PaiMaiBag PlayerBag;
 
-		// Token: 0x04003C5A RID: 15450
+		// Token: 0x040031DB RID: 12763
 		public BagItemSelect Select;
 
-		// Token: 0x04003C5B RID: 15451
+		// Token: 0x040031DC RID: 12764
 		[SerializeField]
 		private NpcUI Npc;
 
-		// Token: 0x04003C5C RID: 15452
+		// Token: 0x040031DD RID: 12765
 		[SerializeField]
 		private Image SlotBg;
 
-		// Token: 0x04003C5D RID: 15453
+		// Token: 0x040031DE RID: 12766
 		[SerializeField]
 		private GameObject ShopCell;
 
-		// Token: 0x04003C5E RID: 15454
+		// Token: 0x040031DF RID: 12767
 		[SerializeField]
 		private Transform ShopPanel;
 
-		// Token: 0x04003C5F RID: 15455
+		// Token: 0x040031E0 RID: 12768
 		[SerializeField]
 		private List<Sprite> SlotSprites;
 
-		// Token: 0x04003C60 RID: 15456
+		// Token: 0x040031E1 RID: 12769
 		[SerializeField]
 		private GameObject PaiMaiSlotCell;
 
-		// Token: 0x04003C61 RID: 15457
+		// Token: 0x040031E2 RID: 12770
 		[SerializeField]
 		private List<PaiMaiSlot> PaiMaiSlotList;
 
-		// Token: 0x04003C62 RID: 15458
+		// Token: 0x040031E3 RID: 12771
 		[SerializeField]
 		private Transform PaiMaiSlotParent;
 
-		// Token: 0x04003C63 RID: 15459
+		// Token: 0x040031E4 RID: 12772
 		[SerializeField]
 		private PaiMaiSay Say;
 
-		// Token: 0x04003C64 RID: 15460
+		// Token: 0x040031E5 RID: 12773
 		[SerializeField]
 		private List<BaseItem> BaseShopList;
 
-		// Token: 0x04003C66 RID: 15462
+		// Token: 0x040031E7 RID: 12775
 		public int NpcId;
 
-		// Token: 0x04003C67 RID: 15463
+		// Token: 0x040031E8 RID: 12776
 		public int PaiMaiId;
 
-		// Token: 0x04003C68 RID: 15464
+		// Token: 0x040031E9 RID: 12777
 		public int PutMax;
 
-		// Token: 0x04003C69 RID: 15465
+		// Token: 0x040031EA RID: 12778
 		public static NewPaiMaiJoin Inst;
 	}
 }

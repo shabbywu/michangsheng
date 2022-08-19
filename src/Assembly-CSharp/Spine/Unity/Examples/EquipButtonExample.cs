@@ -4,16 +4,16 @@ using UnityEngine.UI;
 
 namespace Spine.Unity.Examples
 {
-	// Token: 0x02000E40 RID: 3648
+	// Token: 0x02000AEE RID: 2798
 	public class EquipButtonExample : MonoBehaviour
 	{
-		// Token: 0x060057AC RID: 22444 RVA: 0x0003EAE6 File Offset: 0x0003CCE6
+		// Token: 0x06004E26 RID: 20006 RVA: 0x002157F0 File Offset: 0x002139F0
 		private void OnValidate()
 		{
 			this.MatchImage();
 		}
 
-		// Token: 0x060057AD RID: 22445 RVA: 0x0003EAEE File Offset: 0x0003CCEE
+		// Token: 0x06004E27 RID: 20007 RVA: 0x002157F8 File Offset: 0x002139F8
 		private void MatchImage()
 		{
 			if (this.inventoryImage != null)
@@ -22,7 +22,7 @@ namespace Spine.Unity.Examples
 			}
 		}
 
-		// Token: 0x060057AE RID: 22446 RVA: 0x0003EB14 File Offset: 0x0003CD14
+		// Token: 0x06004E28 RID: 20008 RVA: 0x0021581E File Offset: 0x00213A1E
 		private void Start()
 		{
 			this.MatchImage();
@@ -32,13 +32,13 @@ namespace Spine.Unity.Examples
 			});
 		}
 
-		// Token: 0x040057A2 RID: 22434
+		// Token: 0x04004D8B RID: 19851
 		public EquipAssetExample asset;
 
-		// Token: 0x040057A3 RID: 22435
+		// Token: 0x04004D8C RID: 19852
 		public EquipSystemExample equipSystem;
 
-		// Token: 0x040057A4 RID: 22436
+		// Token: 0x04004D8D RID: 19853
 		public Image inventoryImage;
 	}
 }

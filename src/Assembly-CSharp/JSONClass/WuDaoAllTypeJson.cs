@@ -3,10 +3,10 @@ using System.Collections.Generic;
 
 namespace JSONClass
 {
-	// Token: 0x02000CFE RID: 3326
+	// Token: 0x0200097E RID: 2430
 	public class WuDaoAllTypeJson : IJSONClass
 	{
-		// Token: 0x06004F62 RID: 20322 RVA: 0x00214E08 File Offset: 0x00213008
+		// Token: 0x0600440C RID: 17420 RVA: 0x001CFC54 File Offset: 0x001CDE54
 		public static void InitDataDict()
 		{
 			foreach (JSONObject jsonobject in jsonData.instance.WuDaoAllTypeJson.list)
@@ -40,27 +40,27 @@ namespace JSONClass
 			}
 		}
 
-		// Token: 0x06004F63 RID: 20323 RVA: 0x000042DD File Offset: 0x000024DD
+		// Token: 0x0600440D RID: 17421 RVA: 0x00004095 File Offset: 0x00002295
 		private static void OnInitFinish()
 		{
 		}
 
-		// Token: 0x0400506F RID: 20591
+		// Token: 0x0400457B RID: 17787
 		public static Dictionary<int, WuDaoAllTypeJson> DataDict = new Dictionary<int, WuDaoAllTypeJson>();
 
-		// Token: 0x04005070 RID: 20592
+		// Token: 0x0400457C RID: 17788
 		public static List<WuDaoAllTypeJson> DataList = new List<WuDaoAllTypeJson>();
 
-		// Token: 0x04005071 RID: 20593
+		// Token: 0x0400457D RID: 17789
 		public static Action OnInitFinishAction = new Action(WuDaoAllTypeJson.OnInitFinish);
 
-		// Token: 0x04005072 RID: 20594
+		// Token: 0x0400457E RID: 17790
 		public int id;
 
-		// Token: 0x04005073 RID: 20595
+		// Token: 0x0400457F RID: 17791
 		public string name;
 
-		// Token: 0x04005074 RID: 20596
+		// Token: 0x04004580 RID: 17792
 		public string name1;
 	}
 }

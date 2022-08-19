@@ -4,11 +4,11 @@ using UnityEngine;
 
 namespace UltimateSurvival.Building
 {
-	// Token: 0x02000968 RID: 2408
+	// Token: 0x02000663 RID: 1635
 	public class BuildingPiece : MonoBehaviour
 	{
-		// Token: 0x170006AF RID: 1711
-		// (get) Token: 0x06003D73 RID: 15731 RVA: 0x0002C4B4 File Offset: 0x0002A6B4
+		// Token: 0x17000497 RID: 1175
+		// (get) Token: 0x060033E0 RID: 13280 RVA: 0x0016B9B6 File Offset: 0x00169BB6
 		public PieceState State
 		{
 			get
@@ -17,18 +17,18 @@ namespace UltimateSurvival.Building
 			}
 		}
 
-		// Token: 0x170006B0 RID: 1712
-		// (get) Token: 0x06003D74 RID: 15732 RVA: 0x0002C4BC File Offset: 0x0002A6BC
-		// (set) Token: 0x06003D75 RID: 15733 RVA: 0x0002C4C4 File Offset: 0x0002A6C4
+		// Token: 0x17000498 RID: 1176
+		// (get) Token: 0x060033E1 RID: 13281 RVA: 0x0016B9BE File Offset: 0x00169BBE
+		// (set) Token: 0x060033E2 RID: 13282 RVA: 0x0016B9C6 File Offset: 0x00169BC6
 		public BuildingHolder Building { get; set; }
 
-		// Token: 0x170006B1 RID: 1713
-		// (get) Token: 0x06003D76 RID: 15734 RVA: 0x0002C4CD File Offset: 0x0002A6CD
-		// (set) Token: 0x06003D77 RID: 15735 RVA: 0x0002C4D5 File Offset: 0x0002A6D5
+		// Token: 0x17000499 RID: 1177
+		// (get) Token: 0x060033E3 RID: 13283 RVA: 0x0016B9CF File Offset: 0x00169BCF
+		// (set) Token: 0x060033E4 RID: 13284 RVA: 0x0016B9D7 File Offset: 0x00169BD7
 		public BuildingPiece AttachedOn { get; set; }
 
-		// Token: 0x170006B2 RID: 1714
-		// (get) Token: 0x06003D78 RID: 15736 RVA: 0x0002C4DE File Offset: 0x0002A6DE
+		// Token: 0x1700049A RID: 1178
+		// (get) Token: 0x060033E5 RID: 13285 RVA: 0x0016B9E0 File Offset: 0x00169BE0
 		public string Name
 		{
 			get
@@ -37,8 +37,8 @@ namespace UltimateSurvival.Building
 			}
 		}
 
-		// Token: 0x170006B3 RID: 1715
-		// (get) Token: 0x06003D79 RID: 15737 RVA: 0x0002C4E6 File Offset: 0x0002A6E6
+		// Token: 0x1700049B RID: 1179
+		// (get) Token: 0x060033E6 RID: 13286 RVA: 0x0016B9E8 File Offset: 0x00169BE8
 		public RequiredItem[] RequiredItems
 		{
 			get
@@ -47,8 +47,8 @@ namespace UltimateSurvival.Building
 			}
 		}
 
-		// Token: 0x170006B4 RID: 1716
-		// (get) Token: 0x06003D7A RID: 15738 RVA: 0x0002C4EE File Offset: 0x0002A6EE
+		// Token: 0x1700049C RID: 1180
+		// (get) Token: 0x060033E7 RID: 13287 RVA: 0x0016B9F0 File Offset: 0x00169BF0
 		public Vector3 RotationAxis
 		{
 			get
@@ -57,8 +57,8 @@ namespace UltimateSurvival.Building
 			}
 		}
 
-		// Token: 0x170006B5 RID: 1717
-		// (get) Token: 0x06003D7B RID: 15739 RVA: 0x0002C4F6 File Offset: 0x0002A6F6
+		// Token: 0x1700049D RID: 1181
+		// (get) Token: 0x060033E8 RID: 13288 RVA: 0x0016B9F8 File Offset: 0x00169BF8
 		public BuildingSpace NeededSpace
 		{
 			get
@@ -67,8 +67,8 @@ namespace UltimateSurvival.Building
 			}
 		}
 
-		// Token: 0x170006B6 RID: 1718
-		// (get) Token: 0x06003D7C RID: 15740 RVA: 0x0002C4FE File Offset: 0x0002A6FE
+		// Token: 0x1700049E RID: 1182
+		// (get) Token: 0x060033E9 RID: 13289 RVA: 0x0016BA00 File Offset: 0x00169C00
 		public BuildingSpace[] SpacesToOccupy
 		{
 			get
@@ -77,8 +77,8 @@ namespace UltimateSurvival.Building
 			}
 		}
 
-		// Token: 0x170006B7 RID: 1719
-		// (get) Token: 0x06003D7D RID: 15741 RVA: 0x0002C506 File Offset: 0x0002A706
+		// Token: 0x1700049F RID: 1183
+		// (get) Token: 0x060033EA RID: 13290 RVA: 0x0016BA08 File Offset: 0x00169C08
 		public float OutOfGroundHeight
 		{
 			get
@@ -87,8 +87,8 @@ namespace UltimateSurvival.Building
 			}
 		}
 
-		// Token: 0x170006B8 RID: 1720
-		// (get) Token: 0x06003D7E RID: 15742 RVA: 0x0002C50E File Offset: 0x0002A70E
+		// Token: 0x170004A0 RID: 1184
+		// (get) Token: 0x060033EB RID: 13291 RVA: 0x0016BA10 File Offset: 0x00169C10
 		public bool AllowUnderTerrainMovement
 		{
 			get
@@ -97,8 +97,8 @@ namespace UltimateSurvival.Building
 			}
 		}
 
-		// Token: 0x170006B9 RID: 1721
-		// (get) Token: 0x06003D7F RID: 15743 RVA: 0x0002C516 File Offset: 0x0002A716
+		// Token: 0x170004A1 RID: 1185
+		// (get) Token: 0x060033EC RID: 13292 RVA: 0x0016BA18 File Offset: 0x00169C18
 		public bool RequiresSockets
 		{
 			get
@@ -107,8 +107,8 @@ namespace UltimateSurvival.Building
 			}
 		}
 
-		// Token: 0x170006BA RID: 1722
-		// (get) Token: 0x06003D80 RID: 15744 RVA: 0x0002C51E File Offset: 0x0002A71E
+		// Token: 0x170004A2 RID: 1186
+		// (get) Token: 0x060033ED RID: 13293 RVA: 0x0016BA20 File Offset: 0x00169C20
 		public SoundPlayer BuildAudio
 		{
 			get
@@ -117,8 +117,8 @@ namespace UltimateSurvival.Building
 			}
 		}
 
-		// Token: 0x170006BB RID: 1723
-		// (get) Token: 0x06003D81 RID: 15745 RVA: 0x0002C526 File Offset: 0x0002A726
+		// Token: 0x170004A3 RID: 1187
+		// (get) Token: 0x060033EE RID: 13294 RVA: 0x0016BA28 File Offset: 0x00169C28
 		public GameObject PlacementFX
 		{
 			get
@@ -127,8 +127,8 @@ namespace UltimateSurvival.Building
 			}
 		}
 
-		// Token: 0x170006BC RID: 1724
-		// (get) Token: 0x06003D82 RID: 15746 RVA: 0x0002C52E File Offset: 0x0002A72E
+		// Token: 0x170004A4 RID: 1188
+		// (get) Token: 0x060033EF RID: 13295 RVA: 0x0016BA30 File Offset: 0x00169C30
 		public Bounds Bounds
 		{
 			get
@@ -137,8 +137,8 @@ namespace UltimateSurvival.Building
 			}
 		}
 
-		// Token: 0x170006BD RID: 1725
-		// (get) Token: 0x06003D83 RID: 15747 RVA: 0x0002C566 File Offset: 0x0002A766
+		// Token: 0x170004A5 RID: 1189
+		// (get) Token: 0x060033F0 RID: 13296 RVA: 0x0016BA68 File Offset: 0x00169C68
 		public List<Renderer> Renderers
 		{
 			get
@@ -147,8 +147,8 @@ namespace UltimateSurvival.Building
 			}
 		}
 
-		// Token: 0x170006BE RID: 1726
-		// (get) Token: 0x06003D84 RID: 15748 RVA: 0x0002C56E File Offset: 0x0002A76E
+		// Token: 0x170004A6 RID: 1190
+		// (get) Token: 0x060033F1 RID: 13297 RVA: 0x0016BA70 File Offset: 0x00169C70
 		public MeshFilter MainMesh
 		{
 			get
@@ -157,8 +157,8 @@ namespace UltimateSurvival.Building
 			}
 		}
 
-		// Token: 0x170006BF RID: 1727
-		// (get) Token: 0x06003D85 RID: 15749 RVA: 0x0002C576 File Offset: 0x0002A776
+		// Token: 0x170004A7 RID: 1191
+		// (get) Token: 0x060033F2 RID: 13298 RVA: 0x0016BA78 File Offset: 0x00169C78
 		public Socket[] Sockets
 		{
 			get
@@ -167,7 +167,7 @@ namespace UltimateSurvival.Building
 			}
 		}
 
-		// Token: 0x06003D86 RID: 15750 RVA: 0x001B4798 File Offset: 0x001B2998
+		// Token: 0x060033F3 RID: 13299 RVA: 0x0016BA80 File Offset: 0x00169C80
 		private void Awake()
 		{
 			if (this.m_MainMesh == null)
@@ -196,7 +196,7 @@ namespace UltimateSurvival.Building
 			this.m_Initialized = true;
 		}
 
-		// Token: 0x06003D87 RID: 15751 RVA: 0x001B48C0 File Offset: 0x001B2AC0
+		// Token: 0x060033F4 RID: 13300 RVA: 0x0016BBA8 File Offset: 0x00169DA8
 		private void Update()
 		{
 			Collider[] array;
@@ -206,7 +206,7 @@ namespace UltimateSurvival.Building
 			}
 		}
 
-		// Token: 0x06003D88 RID: 15752 RVA: 0x001B48F0 File Offset: 0x001B2AF0
+		// Token: 0x060033F5 RID: 13301 RVA: 0x0016BBD8 File Offset: 0x00169DD8
 		public void SetState(PieceState state)
 		{
 			if (!this.m_Initialized)
@@ -257,7 +257,7 @@ namespace UltimateSurvival.Building
 			this.m_State = state;
 		}
 
-		// Token: 0x06003D89 RID: 15753 RVA: 0x001B4A60 File Offset: 0x001B2C60
+		// Token: 0x060033F6 RID: 13302 RVA: 0x0016BD48 File Offset: 0x00169F48
 		private void On_SocketDeath()
 		{
 			if (base.gameObject != null)
@@ -266,7 +266,7 @@ namespace UltimateSurvival.Building
 			}
 		}
 
-		// Token: 0x06003D8A RID: 15754 RVA: 0x0002C57E File Offset: 0x0002A77E
+		// Token: 0x060033F7 RID: 13303 RVA: 0x0016BD96 File Offset: 0x00169F96
 		private void OnDestroy()
 		{
 			if (this.AttachedOn != null)
@@ -275,7 +275,7 @@ namespace UltimateSurvival.Building
 			}
 		}
 
-		// Token: 0x06003D8B RID: 15755 RVA: 0x001B4AB0 File Offset: 0x001B2CB0
+		// Token: 0x060033F8 RID: 13304 RVA: 0x0016BDC8 File Offset: 0x00169FC8
 		private void SetMaterials(Material material)
 		{
 			for (int i = 0; i < this.m_Renderers.Count; i++)
@@ -289,7 +289,7 @@ namespace UltimateSurvival.Building
 			}
 		}
 
-		// Token: 0x06003D8C RID: 15756 RVA: 0x001B4B0C File Offset: 0x001B2D0C
+		// Token: 0x060033F9 RID: 13305 RVA: 0x0016BE24 File Offset: 0x0016A024
 		private void SetMaterials(Dictionary<Renderer, Material[]> materials)
 		{
 			for (int i = 0; i < this.m_Renderers.Count; i++)
@@ -303,7 +303,7 @@ namespace UltimateSurvival.Building
 			}
 		}
 
-		// Token: 0x06003D8D RID: 15757 RVA: 0x001B4B78 File Offset: 0x001B2D78
+		// Token: 0x060033FA RID: 13306 RVA: 0x0016BE90 File Offset: 0x0016A090
 		public bool IsBlockedByTerrain()
 		{
 			if (!this.m_EnableTP)
@@ -321,7 +321,7 @@ namespace UltimateSurvival.Building
 			return false;
 		}
 
-		// Token: 0x06003D8E RID: 15758 RVA: 0x001B4BF4 File Offset: 0x001B2DF4
+		// Token: 0x060033FB RID: 13307 RVA: 0x0016BF0C File Offset: 0x0016A10C
 		public bool HasCollider(Collider col)
 		{
 			for (int i = 0; i < this.m_Colliders.Count; i++)
@@ -334,7 +334,7 @@ namespace UltimateSurvival.Building
 			return false;
 		}
 
-		// Token: 0x06003D8F RID: 15759 RVA: 0x001B4C30 File Offset: 0x001B2E30
+		// Token: 0x060033FC RID: 13308 RVA: 0x0016BF48 File Offset: 0x0016A148
 		public bool HasSupport(out Collider[] colliders)
 		{
 			bool result = true;
@@ -359,7 +359,7 @@ namespace UltimateSurvival.Building
 			return result;
 		}
 
-		// Token: 0x06003D90 RID: 15760 RVA: 0x001B4CF8 File Offset: 0x001B2EF8
+		// Token: 0x060033FD RID: 13309 RVA: 0x0016C010 File Offset: 0x0016A210
 		private void OnDrawGizmosSelected()
 		{
 			Matrix4x4 matrix = Gizmos.matrix;
@@ -388,122 +388,122 @@ namespace UltimateSurvival.Building
 			Gizmos.matrix = matrix;
 		}
 
-		// Token: 0x040037AA RID: 14250
+		// Token: 0x04002E21 RID: 11809
 		[SerializeField]
 		private string m_PieceName;
 
-		// Token: 0x040037AB RID: 14251
+		// Token: 0x04002E22 RID: 11810
 		[SerializeField]
 		private RequiredItem[] m_RequiredItems;
 
-		// Token: 0x040037AC RID: 14252
+		// Token: 0x04002E23 RID: 11811
 		[SerializeField]
 		private Vector3 m_RotationAxis = Vector3.forward;
 
-		// Token: 0x040037AD RID: 14253
+		// Token: 0x04002E24 RID: 11812
 		[Header("Setup")]
 		[SerializeField]
 		private bool m_ShowBounds;
 
-		// Token: 0x040037AE RID: 14254
+		// Token: 0x04002E25 RID: 11813
 		[SerializeField]
 		private Bounds m_Bounds;
 
-		// Token: 0x040037AF RID: 14255
+		// Token: 0x04002E26 RID: 11814
 		[SerializeField]
 		[Tooltip("If left empty, it will automatically get populated with the first MeshFilter found.")]
 		private MeshFilter m_MainMesh;
 
-		// Token: 0x040037B0 RID: 14256
+		// Token: 0x04002E27 RID: 11815
 		[SerializeField]
 		private List<Renderer> m_IgnoredRenderers;
 
-		// Token: 0x040037B1 RID: 14257
+		// Token: 0x04002E28 RID: 11816
 		[SerializeField]
 		private List<Collider> m_IgnoredColliders;
 
-		// Token: 0x040037B2 RID: 14258
+		// Token: 0x04002E29 RID: 11817
 		[Header("Placing")]
 		[SerializeField]
 		private BuildingSpace m_NeededSpace;
 
-		// Token: 0x040037B3 RID: 14259
+		// Token: 0x04002E2A RID: 11818
 		[SerializeField]
 		private BuildingSpace[] m_SpacesToOccupy;
 
-		// Token: 0x040037B4 RID: 14260
+		// Token: 0x04002E2B RID: 11819
 		[SerializeField]
 		private bool m_RequiresSockets;
 
-		// Token: 0x040037B5 RID: 14261
+		// Token: 0x04002E2C RID: 11820
 		[SerializeField]
 		private float m_OutOfGroundHeight;
 
-		// Token: 0x040037B6 RID: 14262
+		// Token: 0x04002E2D RID: 11821
 		[SerializeField]
 		private bool m_AllowUnderTerrainMovement;
 
-		// Token: 0x040037B7 RID: 14263
+		// Token: 0x04002E2E RID: 11822
 		[Header("Stability")]
 		[SerializeField]
 		private bool m_CheckStability = true;
 
-		// Token: 0x040037B8 RID: 14264
+		// Token: 0x04002E2F RID: 11823
 		[Space]
 		[SerializeField]
 		private LayerMask m_StabilityCheckMask;
 
-		// Token: 0x040037B9 RID: 14265
+		// Token: 0x04002E30 RID: 11824
 		[SerializeField]
 		private bool m_ShowStabilityBox;
 
-		// Token: 0x040037BA RID: 14266
+		// Token: 0x04002E31 RID: 11825
 		[SerializeField]
 		private Bounds[] m_StabilityBoxes;
 
-		// Token: 0x040037BB RID: 14267
+		// Token: 0x04002E32 RID: 11826
 		[Header("Terrain Protection")]
 		[SerializeField]
 		private bool m_EnableTP;
 
-		// Token: 0x040037BC RID: 14268
+		// Token: 0x04002E33 RID: 11827
 		[SerializeField]
 		private bool m_ShowTP;
 
-		// Token: 0x040037BD RID: 14269
+		// Token: 0x04002E34 RID: 11828
 		[SerializeField]
 		private Bounds m_TPBox;
 
-		// Token: 0x040037BE RID: 14270
+		// Token: 0x04002E35 RID: 11829
 		[Header("Sound And Effects")]
 		[SerializeField]
 		private SoundPlayer m_BuildAudio;
 
-		// Token: 0x040037BF RID: 14271
+		// Token: 0x04002E36 RID: 11830
 		[SerializeField]
 		private GameObject m_PlacementFX;
 
-		// Token: 0x040037C0 RID: 14272
+		// Token: 0x04002E37 RID: 11831
 		[Header("Preview")]
 		[SerializeField]
 		private Material m_PreviewMat;
 
-		// Token: 0x040037C1 RID: 14273
+		// Token: 0x04002E38 RID: 11832
 		private Dictionary<Renderer, Material[]> m_InitialMaterials = new Dictionary<Renderer, Material[]>();
 
-		// Token: 0x040037C2 RID: 14274
+		// Token: 0x04002E39 RID: 11833
 		private Socket[] m_Sockets = new Socket[0];
 
-		// Token: 0x040037C3 RID: 14275
+		// Token: 0x04002E3A RID: 11834
 		private PieceState m_State;
 
-		// Token: 0x040037C4 RID: 14276
+		// Token: 0x04002E3B RID: 11835
 		private List<Collider> m_Colliders = new List<Collider>();
 
-		// Token: 0x040037C5 RID: 14277
+		// Token: 0x04002E3C RID: 11836
 		private List<Renderer> m_Renderers = new List<Renderer>();
 
-		// Token: 0x040037C6 RID: 14278
+		// Token: 0x04002E3D RID: 11837
 		private bool m_Initialized;
 	}
 }

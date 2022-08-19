@@ -1,22 +1,22 @@
 ﻿using System;
 using UnityEngine;
 
-// Token: 0x02000568 RID: 1384
+// Token: 0x020003D1 RID: 977
 public class SeaToOherScene : MonoBehaviour
 {
-	// Token: 0x0600233F RID: 9023 RVA: 0x000042DD File Offset: 0x000024DD
+	// Token: 0x06001FC6 RID: 8134 RVA: 0x00004095 File Offset: 0x00002295
 	private void Start()
 	{
 	}
 
-	// Token: 0x06002340 RID: 9024 RVA: 0x000042DD File Offset: 0x000024DD
+	// Token: 0x06001FC7 RID: 8135 RVA: 0x00004095 File Offset: 0x00002295
 	private void Update()
 	{
 	}
 
-	// Token: 0x04001E61 RID: 7777
+	// Token: 0x040019D7 RID: 6615
 	public string ToSceneName;
 
-	// Token: 0x04001E62 RID: 7778
+	// Token: 0x040019D8 RID: 6616
 	public string fungusName;
 }

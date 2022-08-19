@@ -4,17 +4,17 @@ using UnityEngine;
 
 namespace YSGame
 {
-	// Token: 0x02000DA2 RID: 3490
+	// Token: 0x02000A73 RID: 2675
 	public class BuffEffectprefab : MonoBehaviour
 	{
-		// Token: 0x06005447 RID: 21575 RVA: 0x0003C57C File Offset: 0x0003A77C
+		// Token: 0x06004B33 RID: 19251 RVA: 0x001FF94C File Offset: 0x001FDB4C
 		private void Start()
 		{
 			BuffEffectprefab.inst = this;
 			Object.DontDestroyOnLoad(base.gameObject);
 		}
 
-		// Token: 0x06005448 RID: 21576 RVA: 0x002314E0 File Offset: 0x0022F6E0
+		// Token: 0x06004B34 RID: 19252 RVA: 0x001FF960 File Offset: 0x001FDB60
 		public GameObject getBuffObj(string Name)
 		{
 			skillEffctType skillEffctType = default(skillEffctType);
@@ -35,11 +35,11 @@ namespace YSGame
 			return null;
 		}
 
-		// Token: 0x04005402 RID: 21506
+		// Token: 0x04004A5D RID: 19037
 		[SerializeField]
 		public List<skillEffctType> EffectsList = new List<skillEffctType>();
 
-		// Token: 0x04005403 RID: 21507
+		// Token: 0x04004A5E RID: 19038
 		public static BuffEffectprefab inst;
 	}
 }

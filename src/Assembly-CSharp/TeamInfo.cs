@@ -3,10 +3,10 @@ using KBEngine;
 using UnityEngine;
 using UnityEngine.UI;
 
-// Token: 0x020005AD RID: 1453
+// Token: 0x020003FD RID: 1021
 public class TeamInfo : MonoBehaviour
 {
-	// Token: 0x0600249F RID: 9375 RVA: 0x0001D6CB File Offset: 0x0001B8CB
+	// Token: 0x060020ED RID: 8429 RVA: 0x000E729C File Offset: 0x000E549C
 	private void Awake()
 	{
 		Event.registerOut("setTeamMember", this, "setTeamMember");
@@ -14,7 +14,7 @@ public class TeamInfo : MonoBehaviour
 		Event.registerOut("receiveaddTeam", this, "receiveaddTeam");
 	}
 
-	// Token: 0x060024A0 RID: 9376 RVA: 0x00129264 File Offset: 0x00127464
+	// Token: 0x060020EE RID: 8430 RVA: 0x000E72D4 File Offset: 0x000E54D4
 	private void Start()
 	{
 		this.mainUI = UI_HOMESCENE.instense;
@@ -25,7 +25,7 @@ public class TeamInfo : MonoBehaviour
 		this.teamTemplate.SetActive(false);
 	}
 
-	// Token: 0x060024A1 RID: 9377 RVA: 0x00129304 File Offset: 0x00127504
+	// Token: 0x060020EF RID: 8431 RVA: 0x000E7374 File Offset: 0x000E5574
 	public void setTeamMember(string name, uint LV)
 	{
 		this.mainUI.TeamUI.SetActive(true);
@@ -36,7 +36,7 @@ public class TeamInfo : MonoBehaviour
 		gameObject.transform.Find("LV").GetComponent<Text>().text = "等级:" + (int)LV;
 	}
 
-	// Token: 0x060024A2 RID: 9378 RVA: 0x00129398 File Offset: 0x00127598
+	// Token: 0x060020F0 RID: 8432 RVA: 0x000E7408 File Offset: 0x000E5608
 	public void setAllTeamMember(string jsoninfo, ulong teamuuid)
 	{
 		foreach (object obj in this.teamCraftingList.gameObject.transform)
@@ -56,7 +56,7 @@ public class TeamInfo : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060024A3 RID: 9379 RVA: 0x00129480 File Offset: 0x00127680
+	// Token: 0x060020F1 RID: 8433 RVA: 0x000E74F0 File Offset: 0x000E56F0
 	public void receiveaddTeam(string friendname, ulong teamuuid, ulong frienddbid)
 	{
 		GameObject gameObject = Object.Instantiate<GameObject>(this.ChoiceUI.gameObject);
@@ -71,7 +71,7 @@ public class TeamInfo : MonoBehaviour
 		gameObject.transform.localPosition = new Vector3(0f, 0f, 0f);
 	}
 
-	// Token: 0x060024A4 RID: 9380 RVA: 0x00129530 File Offset: 0x00127730
+	// Token: 0x060020F2 RID: 8434 RVA: 0x000E75A0 File Offset: 0x000E57A0
 	public void creatTeam(ulong friendDbid)
 	{
 		Account account = (Account)KBEngineApp.app.player();
@@ -81,13 +81,13 @@ public class TeamInfo : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060024A5 RID: 9381 RVA: 0x0001429C File Offset: 0x0001249C
+	// Token: 0x060020F3 RID: 8435 RVA: 0x000826BE File Offset: 0x000808BE
 	private void OnDestroy()
 	{
 		Event.deregisterOut(this);
 	}
 
-	// Token: 0x060024A6 RID: 9382 RVA: 0x00129558 File Offset: 0x00127758
+	// Token: 0x060020F4 RID: 8436 RVA: 0x000E75C8 File Offset: 0x000E57C8
 	public void requestJoinTeam(ulong friendDbid)
 	{
 		Account account = (Account)KBEngineApp.app.player();
@@ -97,21 +97,21 @@ public class TeamInfo : MonoBehaviour
 		}
 	}
 
-	// Token: 0x04001F72 RID: 8050
+	// Token: 0x04001AB6 RID: 6838
 	public ulong teamuuid;
 
-	// Token: 0x04001F73 RID: 8051
+	// Token: 0x04001AB7 RID: 6839
 	public UI_HOMESCENE mainUI;
 
-	// Token: 0x04001F74 RID: 8052
+	// Token: 0x04001AB8 RID: 6840
 	private GameObject teamUI;
 
-	// Token: 0x04001F75 RID: 8053
+	// Token: 0x04001AB9 RID: 6841
 	private GameObject teamTemplate;
 
-	// Token: 0x04001F76 RID: 8054
+	// Token: 0x04001ABA RID: 6842
 	private GameObject teamCraftingList;
 
-	// Token: 0x04001F77 RID: 8055
+	// Token: 0x04001ABB RID: 6843
 	private GameObject ChoiceUI;
 }

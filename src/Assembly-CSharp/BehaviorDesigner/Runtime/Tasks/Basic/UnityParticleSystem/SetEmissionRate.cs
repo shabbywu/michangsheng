@@ -3,12 +3,12 @@ using UnityEngine;
 
 namespace BehaviorDesigner.Runtime.Tasks.Basic.UnityParticleSystem
 {
-	// Token: 0x02001596 RID: 5526
+	// Token: 0x020010DC RID: 4316
 	[TaskCategory("Basic/ParticleSystem")]
 	[TaskDescription("Sets the emission rate of the Particle System.")]
 	public class SetEmissionRate : Action
 	{
-		// Token: 0x06008239 RID: 33337 RVA: 0x002CD384 File Offset: 0x002CB584
+		// Token: 0x0600743F RID: 29759 RVA: 0x002B1E08 File Offset: 0x002B0008
 		public override void OnStart()
 		{
 			GameObject defaultGameObject = base.GetDefaultGameObject(this.targetGameObject.Value);
@@ -19,7 +19,7 @@ namespace BehaviorDesigner.Runtime.Tasks.Basic.UnityParticleSystem
 			}
 		}
 
-		// Token: 0x0600823A RID: 33338 RVA: 0x000593C7 File Offset: 0x000575C7
+		// Token: 0x06007440 RID: 29760 RVA: 0x002B1E48 File Offset: 0x002B0048
 		public override TaskStatus OnUpdate()
 		{
 			if (this.particleSystem == null)
@@ -31,25 +31,25 @@ namespace BehaviorDesigner.Runtime.Tasks.Basic.UnityParticleSystem
 			return 2;
 		}
 
-		// Token: 0x0600823B RID: 33339 RVA: 0x000593EE File Offset: 0x000575EE
+		// Token: 0x06007441 RID: 29761 RVA: 0x002B1E6F File Offset: 0x002B006F
 		public override void OnReset()
 		{
 			this.targetGameObject = null;
 			this.emissionRate = 0f;
 		}
 
-		// Token: 0x04006EFA RID: 28410
+		// Token: 0x04005FFA RID: 24570
 		[Tooltip("The GameObject that the task operates on. If null the task GameObject is used.")]
 		public SharedGameObject targetGameObject;
 
-		// Token: 0x04006EFB RID: 28411
+		// Token: 0x04005FFB RID: 24571
 		[Tooltip("The emission rate of the ParticleSystem")]
 		public SharedFloat emissionRate;
 
-		// Token: 0x04006EFC RID: 28412
+		// Token: 0x04005FFC RID: 24572
 		private ParticleSystem particleSystem;
 
-		// Token: 0x04006EFD RID: 28413
+		// Token: 0x04005FFD RID: 24573
 		private GameObject prevGameObject;
 	}
 }

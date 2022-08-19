@@ -1,10 +1,10 @@
 ﻿using System;
 using UnityEngine;
 
-// Token: 0x02000066 RID: 102
+// Token: 0x0200004E RID: 78
 public class Tutorial5 : MonoBehaviour
 {
-	// Token: 0x060004BE RID: 1214 RVA: 0x0006F9F0 File Offset: 0x0006DBF0
+	// Token: 0x06000470 RID: 1136 RVA: 0x000186F8 File Offset: 0x000168F8
 	public void SetDurationToCurrentProgress()
 	{
 		UITweener[] componentsInChildren = base.GetComponentsInChildren<UITweener>();

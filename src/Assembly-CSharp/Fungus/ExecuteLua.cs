@@ -4,17 +4,17 @@ using UnityEngine;
 
 namespace Fungus
 {
-	// Token: 0x02001206 RID: 4614
+	// Token: 0x02000DCC RID: 3532
 	[CommandInfo("Scripting", "Execute Lua", "Executes a Lua code chunk using a Lua Environment.", 0)]
 	public class ExecuteLua : Command
 	{
-		// Token: 0x060070E7 RID: 28903 RVA: 0x0004CA25 File Offset: 0x0004AC25
+		// Token: 0x06006468 RID: 25704 RVA: 0x0027E669 File Offset: 0x0027C869
 		protected virtual void Start()
 		{
 			this.InitExecuteLua();
 		}
 
-		// Token: 0x060070E8 RID: 28904 RVA: 0x002A3634 File Offset: 0x002A1834
+		// Token: 0x06006469 RID: 25705 RVA: 0x0027E674 File Offset: 0x0027C874
 		protected virtual void InitExecuteLua()
 		{
 			if (this.initialised)
@@ -54,7 +54,7 @@ namespace Fungus
 			}
 		}
 
-		// Token: 0x060070E9 RID: 28905 RVA: 0x0004CA2D File Offset: 0x0004AC2D
+		// Token: 0x0600646A RID: 25706 RVA: 0x0027E779 File Offset: 0x0027C979
 		protected virtual string GetLuaString()
 		{
 			if (this.luaFile == null)
@@ -64,7 +64,7 @@ namespace Fungus
 			return this.luaFile.text + "\n" + this.luaScript;
 		}
 
-		// Token: 0x060070EA RID: 28906 RVA: 0x002A373C File Offset: 0x002A193C
+		// Token: 0x0600646B RID: 25707 RVA: 0x0027E7AC File Offset: 0x0027C9AC
 		protected virtual void StoreReturnVariable(DynValue returnValue)
 		{
 			if (this.returnVariable == null || returnValue == null)
@@ -135,7 +135,7 @@ namespace Fungus
 			Debug.LogError("Failed to convert " + returnValue.Type.ToLuaTypeString() + " return type to " + type.ToString());
 		}
 
-		// Token: 0x060070EB RID: 28907 RVA: 0x002A3A20 File Offset: 0x002A1C20
+		// Token: 0x0600646C RID: 25708 RVA: 0x0027EA90 File Offset: 0x0027CC90
 		public override void OnEnter()
 		{
 			this.InitExecuteLua();
@@ -157,51 +157,51 @@ namespace Fungus
 			}
 		}
 
-		// Token: 0x060070EC RID: 28908 RVA: 0x0004CA5F File Offset: 0x0004AC5F
+		// Token: 0x0600646D RID: 25709 RVA: 0x0027EAE2 File Offset: 0x0027CCE2
 		public override string GetSummary()
 		{
 			return this.luaScript;
 		}
 
-		// Token: 0x060070ED RID: 28909 RVA: 0x0004C5E0 File Offset: 0x0004A7E0
+		// Token: 0x0600646E RID: 25710 RVA: 0x0027D3DB File Offset: 0x0027B5DB
 		public override Color GetButtonColor()
 		{
 			return new Color32(235, 191, 217, byte.MaxValue);
 		}
 
-		// Token: 0x060070EE RID: 28910 RVA: 0x0004CA67 File Offset: 0x0004AC67
+		// Token: 0x0600646F RID: 25711 RVA: 0x0027EAEA File Offset: 0x0027CCEA
 		public override bool HasReference(Variable variable)
 		{
 			return this.returnVariable == variable || base.HasReference(variable);
 		}
 
-		// Token: 0x04006344 RID: 25412
+		// Token: 0x04005645 RID: 22085
 		[Tooltip("Lua Environment to use to execute this Lua script")]
 		[SerializeField]
 		protected LuaEnvironment luaEnvironment;
 
-		// Token: 0x04006345 RID: 25413
+		// Token: 0x04005646 RID: 22086
 		[Tooltip("A text file containing Lua script to execute.")]
 		[SerializeField]
 		protected TextAsset luaFile;
 
-		// Token: 0x04006346 RID: 25414
+		// Token: 0x04005647 RID: 22087
 		[TextArea(10, 100)]
 		[Tooltip("Lua script to execute. This text is appended to the contents of Lua file (if one is specified).")]
 		[SerializeField]
 		protected string luaScript;
 
-		// Token: 0x04006347 RID: 25415
+		// Token: 0x04005648 RID: 22088
 		[Tooltip("Execute this Lua script as a Lua coroutine")]
 		[SerializeField]
 		protected bool runAsCoroutine = true;
 
-		// Token: 0x04006348 RID: 25416
+		// Token: 0x04005649 RID: 22089
 		[Tooltip("Pause command execution until the Lua script has finished execution")]
 		[SerializeField]
 		protected bool waitUntilFinished = true;
 
-		// Token: 0x04006349 RID: 25417
+		// Token: 0x0400564A RID: 22090
 		[Tooltip("A Flowchart variable to store the returned value in.")]
 		[VariableProperty(new Type[]
 		{
@@ -210,13 +210,13 @@ namespace Fungus
 		[SerializeField]
 		protected Variable returnVariable;
 
-		// Token: 0x0400634A RID: 25418
+		// Token: 0x0400564B RID: 22091
 		protected string friendlyName = "";
 
-		// Token: 0x0400634B RID: 25419
+		// Token: 0x0400564C RID: 22092
 		protected bool initialised;
 
-		// Token: 0x0400634C RID: 25420
+		// Token: 0x0400564D RID: 22093
 		protected Closure luaFunction;
 	}
 }

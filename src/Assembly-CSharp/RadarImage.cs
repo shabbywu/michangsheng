@@ -1,7 +1,7 @@
 ﻿using System;
 using UnityEngine;
 
-// Token: 0x02000461 RID: 1121
+// Token: 0x02000304 RID: 772
 public class RadarImage : MonoBehaviour
 {
 }

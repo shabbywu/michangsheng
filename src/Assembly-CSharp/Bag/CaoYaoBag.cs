@@ -10,10 +10,10 @@ using UnityEngine.UI;
 
 namespace Bag
 {
-	// Token: 0x02000D45 RID: 3397
+	// Token: 0x020009BD RID: 2493
 	public class CaoYaoBag : BaseBag2, IESCClose
 	{
-		// Token: 0x060050B6 RID: 20662 RVA: 0x0003A18F File Offset: 0x0003838F
+		// Token: 0x06004553 RID: 17747 RVA: 0x001D6798 File Offset: 0x001D4998
 		public void Open()
 		{
 			if (!this._init)
@@ -22,10 +22,10 @@ namespace Bag
 			}
 			ESCCloseManager.Inst.RegisterClose(this);
 			base.gameObject.SetActive(true);
-			base.UpdateItem(true);
+			this.UpdateItem(true);
 		}
 
-		// Token: 0x060050B7 RID: 20663 RVA: 0x0021A860 File Offset: 0x00218A60
+		// Token: 0x06004554 RID: 17748 RVA: 0x001D67C8 File Offset: 0x001D49C8
 		public override void Init(int npcId, bool isPlayer = false)
 		{
 			this._player = Tools.instance.getPlayer();
@@ -56,7 +56,7 @@ namespace Bag
 				}
 				this.AllYaoXinDict.Add(lianDanItemLeiXin.id, lianDanItemLeiXin.name);
 			}
-			base.CreateTempList();
+			this.CreateTempList();
 			this.CreateQualityFilter();
 			this.CreateWeiZhiFilter();
 			this.WeiZhiFilterList[0].Click();
@@ -64,7 +64,7 @@ namespace Bag
 			this._init = true;
 		}
 
-		// Token: 0x060050B8 RID: 20664 RVA: 0x0021AA30 File Offset: 0x00218C30
+		// Token: 0x06004555 RID: 17749 RVA: 0x001D6998 File Offset: 0x001D4B98
 		private void CreateWeiZhiFilter()
 		{
 			this.WeiZhi = 1;
@@ -80,7 +80,7 @@ namespace Bag
 			}
 		}
 
-		// Token: 0x060050B9 RID: 20665 RVA: 0x0021AB10 File Offset: 0x00218D10
+		// Token: 0x06004556 RID: 17750 RVA: 0x001D6A78 File Offset: 0x001D4C78
 		private void CreateYaoXinFilter()
 		{
 			Tools.ClearObj(this.TempYaoXinFilter.transform);
@@ -100,7 +100,7 @@ namespace Bag
 			this.YaoXinFilterList[0].Click();
 		}
 
-		// Token: 0x060050BA RID: 20666 RVA: 0x0021AC40 File Offset: 0x00218E40
+		// Token: 0x06004557 RID: 17751 RVA: 0x001D6BA8 File Offset: 0x001D4DA8
 		private void CreateQualityFilter()
 		{
 			this.ItemQuality = ItemQuality.全部;
@@ -117,19 +117,19 @@ namespace Bag
 			}
 		}
 
-		// Token: 0x060050BB RID: 20667 RVA: 0x0003A1BF File Offset: 0x000383BF
+		// Token: 0x06004558 RID: 17752 RVA: 0x001D6C2C File Offset: 0x001D4E2C
 		public void ShowQualityFilter()
 		{
 			this.QualityPanel.SetActive(true);
 		}
 
-		// Token: 0x060050BC RID: 20668 RVA: 0x0003A1CD File Offset: 0x000383CD
+		// Token: 0x06004559 RID: 17753 RVA: 0x001D6C3A File Offset: 0x001D4E3A
 		public void CloseQualityFilter()
 		{
 			this.QualityPanel.SetActive(false);
 		}
 
-		// Token: 0x060050BD RID: 20669 RVA: 0x0021ACC4 File Offset: 0x00218EC4
+		// Token: 0x0600455A RID: 17754 RVA: 0x001D6C48 File Offset: 0x001D4E48
 		public void SelectWeiZhi(int value)
 		{
 			this.WeiZhi = value;
@@ -147,7 +147,7 @@ namespace Bag
 			this.CreateYaoXinFilter();
 		}
 
-		// Token: 0x060050BE RID: 20670 RVA: 0x0021AD3C File Offset: 0x00218F3C
+		// Token: 0x0600455B RID: 17755 RVA: 0x001D6CC0 File Offset: 0x001D4EC0
 		private void SelectWeiZhi(LianDanFilter filter)
 		{
 			foreach (LianDanFilter lianDanFilter in this.WeiZhiFilterList)
@@ -159,7 +159,7 @@ namespace Bag
 			this.CreateYaoXinFilter();
 		}
 
-		// Token: 0x060050BF RID: 20671 RVA: 0x0021ADA8 File Offset: 0x00218FA8
+		// Token: 0x0600455C RID: 17756 RVA: 0x001D6D2C File Offset: 0x001D4F2C
 		private void SelectYaoXin(LianDanFilter filter)
 		{
 			foreach (LianDanFilter lianDanFilter in this.YaoXinFilterList)
@@ -168,19 +168,19 @@ namespace Bag
 			}
 			filter.SetState(true);
 			this.YaoXin = filter.Value;
-			base.UpdateItem(true);
+			this.UpdateItem(true);
 		}
 
-		// Token: 0x060050C0 RID: 20672 RVA: 0x0003A1DB File Offset: 0x000383DB
+		// Token: 0x0600455D RID: 17757 RVA: 0x001D6D98 File Offset: 0x001D4F98
 		private void SelectQuality(int value)
 		{
 			this.ItemQuality = (ItemQuality)value;
 			this.CurQuality.SetText(this.ItemQuality.ToString());
-			base.UpdateItem(true);
+			this.UpdateItem(true);
 			this.CloseQualityFilter();
 		}
 
-		// Token: 0x060050C1 RID: 20673 RVA: 0x0003A20D File Offset: 0x0003840D
+		// Token: 0x0600455E RID: 17758 RVA: 0x001D6DCA File Offset: 0x001D4FCA
 		private Dictionary<int, string> GetWeiZhiData()
 		{
 			return new Dictionary<int, string>
@@ -200,7 +200,7 @@ namespace Bag
 			};
 		}
 
-		// Token: 0x060050C2 RID: 20674 RVA: 0x0003A238 File Offset: 0x00038438
+		// Token: 0x0600455F RID: 17759 RVA: 0x001D6DF5 File Offset: 0x001D4FF5
 		private Dictionary<int, string> GetYaoXinData()
 		{
 			if (this.WeiZhi == 1)
@@ -214,7 +214,7 @@ namespace Bag
 			return this.YaoYinDict;
 		}
 
-		// Token: 0x060050C3 RID: 20675 RVA: 0x0021AE14 File Offset: 0x00219014
+		// Token: 0x06004560 RID: 17760 RVA: 0x001D6E20 File Offset: 0x001D5020
 		protected override bool FiddlerItem(BaseItem baseItem)
 		{
 			if (this.ItemQuality != ItemQuality.全部 && baseItem.GetImgQuality() != (int)this.ItemQuality)
@@ -244,21 +244,21 @@ namespace Bag
 			return true;
 		}
 
-		// Token: 0x060050C4 RID: 20676 RVA: 0x0001BCA3 File Offset: 0x00019EA3
+		// Token: 0x06004561 RID: 17761 RVA: 0x000D5AD3 File Offset: 0x000D3CD3
 		public void Close()
 		{
 			ESCCloseManager.Inst.UnRegisterClose(this);
 			base.gameObject.SetActive(false);
 		}
 
-		// Token: 0x060050C5 RID: 20677 RVA: 0x0003A260 File Offset: 0x00038460
+		// Token: 0x06004562 RID: 17762 RVA: 0x001D6EAB File Offset: 0x001D50AB
 		public bool TryEscClose()
 		{
 			this.Close();
 			return true;
 		}
 
-		// Token: 0x060050C6 RID: 20678 RVA: 0x0021AEA0 File Offset: 0x002190A0
+		// Token: 0x06004563 RID: 17763 RVA: 0x001D6EB4 File Offset: 0x001D50B4
 		public BaseItem GetTempItemById(int id)
 		{
 			if (this.TempBagList.Count < 1)
@@ -276,50 +276,50 @@ namespace Bag
 			return null;
 		}
 
-		// Token: 0x040051EA RID: 20970
+		// Token: 0x040046E8 RID: 18152
 		private bool _init;
 
-		// Token: 0x040051EB RID: 20971
+		// Token: 0x040046E9 RID: 18153
 		[SerializeField]
 		private GameObject TempWeiZhiFilter;
 
-		// Token: 0x040051EC RID: 20972
+		// Token: 0x040046EA RID: 18154
 		[SerializeField]
 		private GameObject TempYaoXinFilter;
 
-		// Token: 0x040051ED RID: 20973
+		// Token: 0x040046EB RID: 18155
 		[SerializeField]
 		private Text CurQuality;
 
-		// Token: 0x040051EE RID: 20974
+		// Token: 0x040046EC RID: 18156
 		[SerializeField]
 		private GameObject QualityPanel;
 
-		// Token: 0x040051EF RID: 20975
+		// Token: 0x040046ED RID: 18157
 		public List<LianDanFilter> FilterList = new List<LianDanFilter>();
 
-		// Token: 0x040051F0 RID: 20976
+		// Token: 0x040046EE RID: 18158
 		public List<LianDanFilter> WeiZhiFilterList = new List<LianDanFilter>();
 
-		// Token: 0x040051F1 RID: 20977
+		// Token: 0x040046EF RID: 18159
 		public List<LianDanFilter> YaoXinFilterList = new List<LianDanFilter>();
 
-		// Token: 0x040051F2 RID: 20978
+		// Token: 0x040046F0 RID: 18160
 		public List<FpBtn> QualityFilterList;
 
-		// Token: 0x040051F3 RID: 20979
+		// Token: 0x040046F1 RID: 18161
 		public Dictionary<int, string> AllYaoXinDict = new Dictionary<int, string>();
 
-		// Token: 0x040051F4 RID: 20980
+		// Token: 0x040046F2 RID: 18162
 		public Dictionary<int, string> ZhuYaoDict = new Dictionary<int, string>();
 
-		// Token: 0x040051F5 RID: 20981
+		// Token: 0x040046F3 RID: 18163
 		public Dictionary<int, string> FuYaoDict = new Dictionary<int, string>();
 
-		// Token: 0x040051F6 RID: 20982
+		// Token: 0x040046F4 RID: 18164
 		public Dictionary<int, string> YaoYinDict = new Dictionary<int, string>();
 
-		// Token: 0x040051F7 RID: 20983
+		// Token: 0x040046F5 RID: 18165
 		public Dictionary<int, string> QualityDict = new Dictionary<int, string>
 		{
 			{
@@ -352,13 +352,13 @@ namespace Bag
 			}
 		};
 
-		// Token: 0x040051F8 RID: 20984
+		// Token: 0x040046F6 RID: 18166
 		public int WeiZhi = 1;
 
-		// Token: 0x040051F9 RID: 20985
+		// Token: 0x040046F7 RID: 18167
 		public int YaoXin;
 
-		// Token: 0x040051FA RID: 20986
+		// Token: 0x040046F8 RID: 18168
 		public LianDanSlot ToSlot;
 	}
 }

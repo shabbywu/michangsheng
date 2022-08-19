@@ -2,7 +2,7 @@
 
 namespace UltimateSurvival
 {
-	// Token: 0x0200087C RID: 2172
+	// Token: 0x020005BE RID: 1470
 	public class PieceVitals : GenericVitals
 	{
 	}

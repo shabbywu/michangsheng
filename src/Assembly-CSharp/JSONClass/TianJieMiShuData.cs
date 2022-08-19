@@ -3,10 +3,10 @@ using System.Collections.Generic;
 
 namespace JSONClass
 {
-	// Token: 0x02000CFA RID: 3322
+	// Token: 0x02000978 RID: 2424
 	public class TianJieMiShuData : IJSONClass
 	{
-		// Token: 0x06004F52 RID: 20306 RVA: 0x00214770 File Offset: 0x00212970
+		// Token: 0x060043F4 RID: 17396 RVA: 0x001CF220 File Offset: 0x001CD420
 		public static void InitDataDict()
 		{
 			foreach (JSONObject jsonobject in jsonData.instance.TianJieMiShuData.list)
@@ -50,57 +50,57 @@ namespace JSONClass
 			}
 		}
 
-		// Token: 0x06004F53 RID: 20307 RVA: 0x000042DD File Offset: 0x000024DD
+		// Token: 0x060043F5 RID: 17397 RVA: 0x00004095 File Offset: 0x00002295
 		private static void OnInitFinish()
 		{
 		}
 
-		// Token: 0x04005046 RID: 20550
+		// Token: 0x04004545 RID: 17733
 		public static Dictionary<string, TianJieMiShuData> DataDict = new Dictionary<string, TianJieMiShuData>();
 
-		// Token: 0x04005047 RID: 20551
+		// Token: 0x04004546 RID: 17734
 		public static List<TianJieMiShuData> DataList = new List<TianJieMiShuData>();
 
-		// Token: 0x04005048 RID: 20552
+		// Token: 0x04004547 RID: 17735
 		public static Action OnInitFinishAction = new Action(TianJieMiShuData.OnInitFinish);
 
-		// Token: 0x04005049 RID: 20553
+		// Token: 0x04004548 RID: 17736
 		public int Skill_ID;
 
-		// Token: 0x0400504A RID: 20554
+		// Token: 0x04004549 RID: 17737
 		public int Type;
 
-		// Token: 0x0400504B RID: 20555
+		// Token: 0x0400454A RID: 17738
 		public int RoundLimit;
 
-		// Token: 0x0400504C RID: 20556
+		// Token: 0x0400454B RID: 17739
 		public int StaticValueID;
 
-		// Token: 0x0400504D RID: 20557
+		// Token: 0x0400454C RID: 17740
 		public int StuTime;
 
-		// Token: 0x0400504E RID: 20558
+		// Token: 0x0400454D RID: 17741
 		public int GongBi;
 
-		// Token: 0x0400504F RID: 20559
+		// Token: 0x0400454E RID: 17742
 		public int DiYiXiang;
 
-		// Token: 0x04005050 RID: 20560
+		// Token: 0x0400454F RID: 17743
 		public int XiuZhengZhi;
 
-		// Token: 0x04005051 RID: 20561
+		// Token: 0x04004550 RID: 17744
 		public string id;
 
-		// Token: 0x04005052 RID: 20562
+		// Token: 0x04004551 RID: 17745
 		public string StartFightAction;
 
-		// Token: 0x04005053 RID: 20563
+		// Token: 0x04004552 RID: 17746
 		public string PanDing;
 
-		// Token: 0x04005054 RID: 20564
+		// Token: 0x04004553 RID: 17747
 		public string desc;
 
-		// Token: 0x04005055 RID: 20565
+		// Token: 0x04004554 RID: 17748
 		public string ShuoMing;
 	}
 }

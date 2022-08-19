@@ -3,16 +3,16 @@ using System.Collections.Generic;
 using UnityEngine;
 using YSGame;
 
-// Token: 0x020002AF RID: 687
+// Token: 0x020001B1 RID: 433
 public class SetAutoFace : MonoBehaviour
 {
-	// Token: 0x060014DD RID: 5341 RVA: 0x0001326C File Offset: 0x0001146C
+	// Token: 0x06001232 RID: 4658 RVA: 0x0006E7CE File Offset: 0x0006C9CE
 	private void Awake()
 	{
 		this.StaticRandomInfo = SetAvatarFaceRandomInfo.inst.StaticRandomInfo;
 	}
 
-	// Token: 0x060014DE RID: 5342 RVA: 0x000BC4BC File Offset: 0x000BA6BC
+	// Token: 0x06001233 RID: 4659 RVA: 0x0006E7E0 File Offset: 0x0006C9E0
 	public void SetStaticRandomInfo()
 	{
 		StaticFaceInfo staticFaceInfo = new StaticFaceInfo();
@@ -32,7 +32,7 @@ public class SetAutoFace : MonoBehaviour
 		this.StaticRandomInfo.Add(staticFaceInfo);
 	}
 
-	// Token: 0x060014DF RID: 5343 RVA: 0x000BC574 File Offset: 0x000BA774
+	// Token: 0x06001234 RID: 4660 RVA: 0x0006E898 File Offset: 0x0006CA98
 	public void showCurAvatarByAvatarID()
 	{
 		for (int i = 0; i < this.StaticRandomInfo.Count; i++)
@@ -51,19 +51,19 @@ public class SetAutoFace : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060014E0 RID: 5344 RVA: 0x0001327E File Offset: 0x0001147E
+	// Token: 0x06001235 RID: 4661 RVA: 0x0006E9D4 File Offset: 0x0006CBD4
 	public void DaoChuDate()
 	{
 		ResManager.inst.SaveStream("Data/StaticRandomInfo.bin", this.StaticRandomInfo);
 	}
 
-	// Token: 0x060014E1 RID: 5345 RVA: 0x0001326C File Offset: 0x0001146C
+	// Token: 0x06001236 RID: 4662 RVA: 0x0006E7CE File Offset: 0x0006C9CE
 	public void getOldDate()
 	{
 		this.StaticRandomInfo = SetAvatarFaceRandomInfo.inst.StaticRandomInfo;
 	}
 
-	// Token: 0x060014E2 RID: 5346 RVA: 0x000BC6B0 File Offset: 0x000BA8B0
+	// Token: 0x06001237 RID: 4663 RVA: 0x0006E9EC File Offset: 0x0006CBEC
 	private List<StaticFaceRandomInfo> getCurDate()
 	{
 		List<StaticFaceRandomInfo> list = new List<StaticFaceRandomInfo>();
@@ -87,17 +87,17 @@ public class SetAutoFace : MonoBehaviour
 		return list;
 	}
 
-	// Token: 0x04001009 RID: 4105
+	// Token: 0x04000CDE RID: 3294
 	[Header("角色名称")]
 	public string AvatarName;
 
-	// Token: 0x0400100A RID: 4106
+	// Token: 0x04000CDF RID: 3295
 	[Header("角色ID")]
 	public int AvatarID;
 
-	// Token: 0x0400100B RID: 4107
+	// Token: 0x04000CE0 RID: 3296
 	public List<StaticFaceInfo> StaticRandomInfo = new List<StaticFaceInfo>();
 
-	// Token: 0x0400100C RID: 4108
+	// Token: 0x04000CE1 RID: 3297
 	public List<AvatarFaceInfo> RandomInfo = new List<AvatarFaceInfo>();
 }

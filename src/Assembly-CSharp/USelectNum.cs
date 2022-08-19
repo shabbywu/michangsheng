@@ -3,10 +3,10 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
 
-// Token: 0x020004E6 RID: 1254
+// Token: 0x02000369 RID: 873
 public class USelectNum : MonoBehaviour
 {
-	// Token: 0x060020AA RID: 8362 RVA: 0x00113B44 File Offset: 0x00111D44
+	// Token: 0x06001D40 RID: 7488 RVA: 0x000CF324 File Offset: 0x000CD524
 	private void Awake()
 	{
 		if (USelectNum.inst != null)
@@ -18,7 +18,7 @@ public class USelectNum : MonoBehaviour
 		Object.DontDestroyOnLoad(base.transform.parent.gameObject);
 	}
 
-	// Token: 0x060020AB RID: 8363 RVA: 0x00113BA0 File Offset: 0x00111DA0
+	// Token: 0x06001D41 RID: 7489 RVA: 0x000CF380 File Offset: 0x000CD580
 	private void Update()
 	{
 		if (USelectNum.needShow)
@@ -73,7 +73,7 @@ public class USelectNum : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060020AC RID: 8364 RVA: 0x0001AE12 File Offset: 0x00019012
+	// Token: 0x06001D42 RID: 7490 RVA: 0x000CF543 File Offset: 0x000CD743
 	public static void Close()
 	{
 		USelectNum.IsShow = false;
@@ -83,14 +83,14 @@ public class USelectNum : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060020AD RID: 8365 RVA: 0x0001AE3D File Offset: 0x0001903D
+	// Token: 0x06001D43 RID: 7491 RVA: 0x000CF56E File Offset: 0x000CD76E
 	private void RefreshText(float v)
 	{
 		this.NowNum = (int)v;
 		this.DescText.text = USelectNum.Decs.Replace("{num}", this.NowNum.ToString());
 	}
 
-	// Token: 0x060020AE RID: 8366 RVA: 0x00113D64 File Offset: 0x00111F64
+	// Token: 0x06001D44 RID: 7492 RVA: 0x000CF5A0 File Offset: 0x000CD7A0
 	public static void Show(string desc, int minNum, int maxNum, UnityAction<int> OK = null, UnityAction Cancel = null)
 	{
 		if (USelectNum.inst == null)
@@ -105,54 +105,54 @@ public class USelectNum : MonoBehaviour
 		USelectNum.needShow = true;
 	}
 
-	// Token: 0x04001C2B RID: 7211
+	// Token: 0x040017D9 RID: 6105
 	private static USelectNum inst;
 
-	// Token: 0x04001C2C RID: 7212
+	// Token: 0x040017DA RID: 6106
 	private static string prefabPath = "USelectNum";
 
-	// Token: 0x04001C2D RID: 7213
+	// Token: 0x040017DB RID: 6107
 	private static RectTransform myRT;
 
-	// Token: 0x04001C2E RID: 7214
+	// Token: 0x040017DC RID: 6108
 	private static bool needShow;
 
-	// Token: 0x04001C2F RID: 7215
+	// Token: 0x040017DD RID: 6109
 	private static string Decs;
 
-	// Token: 0x04001C30 RID: 7216
+	// Token: 0x040017DE RID: 6110
 	private static int MinNum;
 
-	// Token: 0x04001C31 RID: 7217
+	// Token: 0x040017DF RID: 6111
 	private static int MaxNum;
 
-	// Token: 0x04001C32 RID: 7218
+	// Token: 0x040017E0 RID: 6112
 	private static UnityAction<int> OKAction;
 
-	// Token: 0x04001C33 RID: 7219
+	// Token: 0x040017E1 RID: 6113
 	private static UnityAction CancelAction;
 
-	// Token: 0x04001C34 RID: 7220
+	// Token: 0x040017E2 RID: 6114
 	public static bool IsShow;
 
-	// Token: 0x04001C35 RID: 7221
+	// Token: 0x040017E3 RID: 6115
 	public Text DescText;
 
-	// Token: 0x04001C36 RID: 7222
+	// Token: 0x040017E4 RID: 6116
 	public Slider NumSlider;
 
-	// Token: 0x04001C37 RID: 7223
+	// Token: 0x040017E5 RID: 6117
 	public Button SubBtn;
 
-	// Token: 0x04001C38 RID: 7224
+	// Token: 0x040017E6 RID: 6118
 	public Button AddBtn;
 
-	// Token: 0x04001C39 RID: 7225
+	// Token: 0x040017E7 RID: 6119
 	public Button OkBtn;
 
-	// Token: 0x04001C3A RID: 7226
+	// Token: 0x040017E8 RID: 6120
 	public Button CancelBtn;
 
-	// Token: 0x04001C3B RID: 7227
+	// Token: 0x040017E9 RID: 6121
 	private int NowNum;
 }

@@ -4,20 +4,20 @@ using KBEngine;
 using UnityEngine;
 using UnityEngine.UI;
 
-// Token: 0x0200039F RID: 927
+// Token: 0x02000279 RID: 633
 public class UINPCShuangXiuSelect : MonoBehaviour, IESCClose
 {
-	// Token: 0x060019DD RID: 6621 RVA: 0x000042DD File Offset: 0x000024DD
+	// Token: 0x0600170F RID: 5903 RVA: 0x00004095 File Offset: 0x00002295
 	private void Start()
 	{
 	}
 
-	// Token: 0x060019DE RID: 6622 RVA: 0x000042DD File Offset: 0x000024DD
+	// Token: 0x06001710 RID: 5904 RVA: 0x00004095 File Offset: 0x00002295
 	private void Update()
 	{
 	}
 
-	// Token: 0x060019DF RID: 6623 RVA: 0x000E52DC File Offset: 0x000E34DC
+	// Token: 0x06001711 RID: 5905 RVA: 0x0009D9B4 File Offset: 0x0009BBB4
 	public void RefreshUI()
 	{
 		this.npc = UINPCJiaoHu.Inst.NowJiaoHuNPC;
@@ -36,7 +36,7 @@ public class UINPCShuangXiuSelect : MonoBehaviour, IESCClose
 		}
 	}
 
-	// Token: 0x060019E0 RID: 6624 RVA: 0x000E53B0 File Offset: 0x000E35B0
+	// Token: 0x06001712 RID: 5906 RVA: 0x0009DA88 File Offset: 0x0009BC88
 	public void AddSkillItem(ShuangXiuMiShu skill)
 	{
 		GameObject gameObject = Object.Instantiate<GameObject>(this.ShuangXiuSkillPrefab, this.ContentRT);
@@ -49,7 +49,7 @@ public class UINPCShuangXiuSelect : MonoBehaviour, IESCClose
 		});
 	}
 
-	// Token: 0x060019E1 RID: 6625 RVA: 0x000E5450 File Offset: 0x000E3650
+	// Token: 0x06001713 RID: 5907 RVA: 0x0009DB28 File Offset: 0x0009BD28
 	public void OnOkBtnClick()
 	{
 		if (this.selectedSkillID < 1)
@@ -63,25 +63,25 @@ public class UINPCShuangXiuSelect : MonoBehaviour, IESCClose
 		UINPCJiaoHu.Inst.ShowNPCShuangXiuAnim();
 	}
 
-	// Token: 0x060019E2 RID: 6626 RVA: 0x0001641B File Offset: 0x0001461B
+	// Token: 0x06001714 RID: 5908 RVA: 0x0009DB98 File Offset: 0x0009BD98
 	public bool TryEscClose()
 	{
 		UINPCJiaoHu.Inst.HideNPCShuangXiuSelect();
 		return true;
 	}
 
-	// Token: 0x0400152C RID: 5420
+	// Token: 0x040011BB RID: 4539
 	private UINPCData npc;
 
-	// Token: 0x0400152D RID: 5421
+	// Token: 0x040011BC RID: 4540
 	public RectTransform ContentRT;
 
-	// Token: 0x0400152E RID: 5422
+	// Token: 0x040011BD RID: 4541
 	public Text MiShuDescText;
 
-	// Token: 0x0400152F RID: 5423
+	// Token: 0x040011BE RID: 4542
 	public GameObject ShuangXiuSkillPrefab;
 
-	// Token: 0x04001530 RID: 5424
+	// Token: 0x040011BF RID: 4543
 	private int selectedSkillID;
 }

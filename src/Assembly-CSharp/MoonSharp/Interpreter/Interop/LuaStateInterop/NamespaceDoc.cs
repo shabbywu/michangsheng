@@ -2,7 +2,7 @@
 
 namespace MoonSharp.Interpreter.Interop.LuaStateInterop
 {
-	// Token: 0x02001141 RID: 4417
+	// Token: 0x02000D39 RID: 3385
 	internal static class NamespaceDoc
 	{
 	}

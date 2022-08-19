@@ -6,11 +6,11 @@ using YSGame.TuJian;
 
 namespace YSGame.Fight
 {
-	// Token: 0x02000E03 RID: 3587
+	// Token: 0x02000AC5 RID: 2757
 	public class UIFightPanel : MonoBehaviour
 	{
-		// Token: 0x17000809 RID: 2057
-		// (get) Token: 0x060056A5 RID: 22181 RVA: 0x002415CC File Offset: 0x0023F7CC
+		// Token: 0x170005E0 RID: 1504
+		// (get) Token: 0x06004D56 RID: 19798 RVA: 0x0021115C File Offset: 0x0020F35C
 		public int NeedYiSanCount
 		{
 			get
@@ -24,20 +24,20 @@ namespace YSGame.Fight
 			}
 		}
 
-		// Token: 0x060056A6 RID: 22182 RVA: 0x0003DEB9 File Offset: 0x0003C0B9
+		// Token: 0x06004D57 RID: 19799 RVA: 0x00211196 File Offset: 0x0020F396
 		private void Awake()
 		{
 			UIFightPanel.Inst = this;
 			this.JiLuBtn.mouseUpEvent.AddListener(new UnityAction(this.FightJiLu.ToggleOpen));
 		}
 
-		// Token: 0x060056A7 RID: 22183 RVA: 0x0003DEE2 File Offset: 0x0003C0E2
+		// Token: 0x06004D58 RID: 19800 RVA: 0x002111BF File Offset: 0x0020F3BF
 		private void Start()
 		{
 			this.TaoPaoBtn.mouseUpEvent.AddListener(new UnityAction(RoundManager.instance.PlayRunAway));
 		}
 
-		// Token: 0x060056A8 RID: 22184 RVA: 0x00241608 File Offset: 0x0023F808
+		// Token: 0x06004D59 RID: 19801 RVA: 0x002111E4 File Offset: 0x0020F3E4
 		private void Update()
 		{
 			bool nowDoingLingQiAnim = this.NowDoingLingQiAnim;
@@ -73,33 +73,33 @@ namespace YSGame.Fight
 			}
 		}
 
-		// Token: 0x060056A9 RID: 22185 RVA: 0x0003DF04 File Offset: 0x0003C104
+		// Token: 0x06004D5A RID: 19802 RVA: 0x002112AC File Offset: 0x0020F4AC
 		public void RefreshLingQiCount(bool show)
 		{
 			this.CacheLingQiController.RefreshLingQiCountShow(show);
 			this.PlayerLingQiController.RefreshLingQiCount(show);
 		}
 
-		// Token: 0x060056AA RID: 22186 RVA: 0x0003D75E File Offset: 0x0003B95E
+		// Token: 0x06004D5B RID: 19803 RVA: 0x002112C6 File Offset: 0x0020F4C6
 		public void Help()
 		{
 			TuJianManager.Inst.OnHyperlink("2_502_0");
 		}
 
-		// Token: 0x060056AB RID: 22187 RVA: 0x0003DF1E File Offset: 0x0003C11E
+		// Token: 0x06004D5C RID: 19804 RVA: 0x002112D7 File Offset: 0x0020F4D7
 		public void Close()
 		{
 			this.ScaleObj.SetActive(false);
 		}
 
-		// Token: 0x060056AC RID: 22188 RVA: 0x0003DF2C File Offset: 0x0003C12C
+		// Token: 0x06004D5D RID: 19805 RVA: 0x002112E5 File Offset: 0x0020F4E5
 		public void Clear()
 		{
 			this.HuaShenLingYuBtn.transform.parent.gameObject.SetActive(false);
 			this.FightJiLu.JiLuText.text = "";
 		}
 
-		// Token: 0x060056AD RID: 22189 RVA: 0x002416D0 File Offset: 0x0023F8D0
+		// Token: 0x06004D5E RID: 19806 RVA: 0x00211318 File Offset: 0x0020F518
 		public UIFightMoveLingQi GetMoveLingQi()
 		{
 			for (int i = 0; i < this.MoveLingQiList.Count; i++)
@@ -114,7 +114,7 @@ namespace YSGame.Fight
 			return component;
 		}
 
-		// Token: 0x060056AE RID: 22190 RVA: 0x00241738 File Offset: 0x0023F938
+		// Token: 0x06004D5F RID: 19807 RVA: 0x00211380 File Offset: 0x0020F580
 		public void CancelSkillHighlight()
 		{
 			foreach (UIFightSkillItem uifightSkillItem in this.FightSkills)
@@ -123,7 +123,7 @@ namespace YSGame.Fight
 			}
 		}
 
-		// Token: 0x060056AF RID: 22191 RVA: 0x0024178C File Offset: 0x0023F98C
+		// Token: 0x06004D60 RID: 19808 RVA: 0x002113D4 File Offset: 0x0020F5D4
 		public void RefreshCD()
 		{
 			foreach (UIFightSkillItem uifightSkillItem in this.FightSkills)
@@ -136,96 +136,96 @@ namespace YSGame.Fight
 			}
 		}
 
-		// Token: 0x060056B0 RID: 22192 RVA: 0x0024181C File Offset: 0x0023FA1C
+		// Token: 0x06004D61 RID: 19809 RVA: 0x00211464 File Offset: 0x0020F664
 		public void PlayLingQiSound()
 		{
 			int index = 18 + Random.Range(0, 5);
 			MusicMag.instance.PlayEffectMusic(index, 1f);
 		}
 
-		// Token: 0x0400562F RID: 22063
+		// Token: 0x04004C55 RID: 19541
 		public static UIFightPanel Inst;
 
-		// Token: 0x04005630 RID: 22064
+		// Token: 0x04004C56 RID: 19542
 		public List<Sprite> LingQiSprites;
 
-		// Token: 0x04005631 RID: 22065
+		// Token: 0x04004C57 RID: 19543
 		public GameObject MoveLingQiPrefab;
 
-		// Token: 0x04005632 RID: 22066
+		// Token: 0x04004C58 RID: 19544
 		public Transform MoveLingQiRoot;
 
-		// Token: 0x04005633 RID: 22067
+		// Token: 0x04004C59 RID: 19545
 		[HideInInspector]
 		public List<UIFightMoveLingQi> MoveLingQiList = new List<UIFightMoveLingQi>();
 
-		// Token: 0x04005634 RID: 22068
+		// Token: 0x04004C5A RID: 19546
 		public UICacheLingQiController CacheLingQiController;
 
-		// Token: 0x04005635 RID: 22069
+		// Token: 0x04004C5B RID: 19547
 		public UIPlayerLingQiController PlayerLingQiController;
 
-		// Token: 0x04005636 RID: 22070
+		// Token: 0x04004C5C RID: 19548
 		public UIFightCenterButtonController FightCenterButtonController;
 
-		// Token: 0x04005637 RID: 22071
+		// Token: 0x04004C5D RID: 19549
 		public UIFightCenterTip FightCenterTip;
 
-		// Token: 0x04005638 RID: 22072
+		// Token: 0x04004C5E RID: 19550
 		public UIFightAvatarStatus PlayerStatus;
 
-		// Token: 0x04005639 RID: 22073
+		// Token: 0x04004C5F RID: 19551
 		public UIFightAvatarStatus DiRenStatus;
 
-		// Token: 0x0400563A RID: 22074
+		// Token: 0x04004C60 RID: 19552
 		public UIFightJiLu FightJiLu;
 
-		// Token: 0x0400563B RID: 22075
+		// Token: 0x04004C61 RID: 19553
 		public UIFightSelectLingQi FightSelectLingQi;
 
-		// Token: 0x0400563C RID: 22076
+		// Token: 0x04004C62 RID: 19554
 		public List<UIFightSkillItem> FightSkills;
 
-		// Token: 0x0400563D RID: 22077
+		// Token: 0x04004C63 RID: 19555
 		public List<UIFightWeaponItem> FightWeapon;
 
-		// Token: 0x0400563E RID: 22078
+		// Token: 0x04004C64 RID: 19556
 		public FpBtn HuaShenLingYuBtn;
 
-		// Token: 0x0400563F RID: 22079
+		// Token: 0x04004C65 RID: 19557
 		public FpBtn HelpBtn;
 
-		// Token: 0x04005640 RID: 22080
+		// Token: 0x04004C66 RID: 19558
 		public FpBtn JiLuBtn;
 
-		// Token: 0x04005641 RID: 22081
+		// Token: 0x04004C67 RID: 19559
 		public FpBtn TaoPaoBtn;
 
-		// Token: 0x04005642 RID: 22082
+		// Token: 0x04004C68 RID: 19560
 		public GameObject ScaleObj;
 
-		// Token: 0x04005643 RID: 22083
+		// Token: 0x04004C69 RID: 19561
 		public UIFightSkillTip FightSkillTip;
 
-		// Token: 0x04005644 RID: 22084
+		// Token: 0x04004C6A RID: 19562
 		public UIFightRoundCount FightRoundCount;
 
-		// Token: 0x04005645 RID: 22085
+		// Token: 0x04004C6B RID: 19563
 		public List<UILingQiImageData> LingQiImageDatas;
 
-		// Token: 0x04005646 RID: 22086
+		// Token: 0x04004C6C RID: 19564
 		public UIFightState UIFightState;
 
-		// Token: 0x04005647 RID: 22087
+		// Token: 0x04004C6D RID: 19565
 		public bool NowDoingLingQiAnim;
 
-		// Token: 0x04005648 RID: 22088
+		// Token: 0x04004C6E RID: 19566
 		public bool BanSkillAndWeapon;
 
-		// Token: 0x04005649 RID: 22089
+		// Token: 0x04004C6F RID: 19567
 		private float refreshCD;
 
-		// Token: 0x0400564A RID: 22090
+		// Token: 0x04004C70 RID: 19568
 		public bool NeedPlayLingQiSound;
 	}
 }

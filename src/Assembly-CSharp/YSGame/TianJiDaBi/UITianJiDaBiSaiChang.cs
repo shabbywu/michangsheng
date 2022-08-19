@@ -10,16 +10,16 @@ using UnityEngine.UI;
 
 namespace YSGame.TianJiDaBi
 {
-	// Token: 0x02000DCC RID: 3532
+	// Token: 0x02000A98 RID: 2712
 	public class UITianJiDaBiSaiChang : MonoBehaviour, IESCClose
 	{
-		// Token: 0x06005514 RID: 21780 RVA: 0x0003CD1E File Offset: 0x0003AF1E
+		// Token: 0x06004BEB RID: 19435 RVA: 0x00205976 File Offset: 0x00203B76
 		private void Awake()
 		{
 			UITianJiDaBiSaiChang.Inst = this;
 		}
 
-		// Token: 0x06005515 RID: 21781 RVA: 0x00236C90 File Offset: 0x00234E90
+		// Token: 0x06004BEC RID: 19436 RVA: 0x00205980 File Offset: 0x00203B80
 		public void Init()
 		{
 			if (!this.inited)
@@ -35,7 +35,7 @@ namespace YSGame.TianJiDaBi
 			}
 		}
 
-		// Token: 0x06005516 RID: 21782 RVA: 0x00236CF0 File Offset: 0x00234EF0
+		// Token: 0x06004BED RID: 19437 RVA: 0x002059E0 File Offset: 0x00203BE0
 		public static void ShowNormal()
 		{
 			UITianJiDaBiSaiChang saiChang = UITianJiDaBiSaiChang.LoadUI();
@@ -94,7 +94,7 @@ namespace YSGame.TianJiDaBi
 			});
 		}
 
-		// Token: 0x06005517 RID: 21783 RVA: 0x00236E5C File Offset: 0x0023505C
+		// Token: 0x06004BEE RID: 19438 RVA: 0x00205B4C File Offset: 0x00203D4C
 		public static void ShowOneRoundSim(Command cmd)
 		{
 			Match match = TianJiDaBiManager.GetNowMatch();
@@ -150,7 +150,7 @@ namespace YSGame.TianJiDaBi
 			};
 		}
 
-		// Token: 0x06005518 RID: 21784 RVA: 0x002370B8 File Offset: 0x002352B8
+		// Token: 0x06004BEF RID: 19439 RVA: 0x00205DA8 File Offset: 0x00203FA8
 		public static void ShowAllRoundSim(Command cmd)
 		{
 			UITianJiDaBiSaiChang uitianJiDaBiSaiChang = UITianJiDaBiSaiChang.LoadUI();
@@ -179,7 +179,7 @@ namespace YSGame.TianJiDaBi
 			uitianJiDaBiSaiChang.RoundText.text = "第" + nowMatch.RoundIndex.ToCNNumber() + "轮";
 		}
 
-		// Token: 0x06005519 RID: 21785 RVA: 0x0003CD26 File Offset: 0x0003AF26
+		// Token: 0x06004BF0 RID: 19440 RVA: 0x00205EA2 File Offset: 0x002040A2
 		public IEnumerator ShowAllRoundC()
 		{
 			Match match = TianJiDaBiManager.GetNowMatch();
@@ -225,7 +225,7 @@ namespace YSGame.TianJiDaBi
 			yield break;
 		}
 
-		// Token: 0x0600551A RID: 21786 RVA: 0x002371B4 File Offset: 0x002353B4
+		// Token: 0x06004BF1 RID: 19441 RVA: 0x00205EB4 File Offset: 0x002040B4
 		private static UITianJiDaBiSaiChang LoadUI()
 		{
 			UITianJiDaBiSaiChang component = Object.Instantiate<GameObject>(Resources.Load<GameObject>("NewUI/TianJiDaBi/UITianJiDaBiSaiChang"), NewUICanvas.Inst.Canvas.transform).GetComponent<UITianJiDaBiSaiChang>();
@@ -235,7 +235,7 @@ namespace YSGame.TianJiDaBi
 			return component;
 		}
 
-		// Token: 0x0600551B RID: 21787 RVA: 0x0003CD35 File Offset: 0x0003AF35
+		// Token: 0x06004BF2 RID: 19442 RVA: 0x00205F13 File Offset: 0x00204113
 		public void Close()
 		{
 			if (!this.CanClose)
@@ -251,7 +251,7 @@ namespace YSGame.TianJiDaBi
 			Object.Destroy(base.gameObject);
 		}
 
-		// Token: 0x0600551C RID: 21788 RVA: 0x0003CD6F File Offset: 0x0003AF6F
+		// Token: 0x06004BF3 RID: 19443 RVA: 0x00205F4D File Offset: 0x0020414D
 		bool IESCClose.TryEscClose()
 		{
 			if (this.CanClose)
@@ -262,41 +262,41 @@ namespace YSGame.TianJiDaBi
 			return false;
 		}
 
-		// Token: 0x040054CD RID: 21709
+		// Token: 0x04004B08 RID: 19208
 		public static UITianJiDaBiSaiChang Inst;
 
-		// Token: 0x040054CE RID: 21710
+		// Token: 0x04004B09 RID: 19209
 		public RectTransform PlayersRT;
 
-		// Token: 0x040054CF RID: 21711
+		// Token: 0x04004B0A RID: 19210
 		public RectTransform BottomBtnsRT;
 
-		// Token: 0x040054D0 RID: 21712
+		// Token: 0x04004B0B RID: 19211
 		public FpBtn BtnBiShi;
 
-		// Token: 0x040054D1 RID: 21713
+		// Token: 0x04004B0C RID: 19212
 		public FpBtn BtnQiQuan;
 
-		// Token: 0x040054D2 RID: 21714
+		// Token: 0x04004B0D RID: 19213
 		public FpBtn BtnClose;
 
-		// Token: 0x040054D3 RID: 21715
+		// Token: 0x04004B0E RID: 19214
 		public GameObject FightingText;
 
-		// Token: 0x040054D4 RID: 21716
+		// Token: 0x04004B0F RID: 19215
 		public Text RoundText;
 
-		// Token: 0x040054D5 RID: 21717
+		// Token: 0x04004B10 RID: 19216
 		private bool inited;
 
-		// Token: 0x040054D6 RID: 21718
+		// Token: 0x04004B11 RID: 19217
 		[HideInInspector]
 		public List<UITianJiDaBi2Player> TianJiDaBi2Players;
 
-		// Token: 0x040054D7 RID: 21719
+		// Token: 0x04004B12 RID: 19218
 		private Action CloseAction;
 
-		// Token: 0x040054D8 RID: 21720
+		// Token: 0x04004B13 RID: 19219
 		[HideInInspector]
 		public bool CanClose = true;
 	}

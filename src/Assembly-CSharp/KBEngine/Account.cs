@@ -4,10 +4,10 @@ using UltimateSurvival;
 
 namespace KBEngine
 {
-	// Token: 0x02000FF3 RID: 4083
+	// Token: 0x02000C68 RID: 3176
 	public class Account : AccountBase
 	{
-		// Token: 0x060060D0 RID: 24784 RVA: 0x0026B450 File Offset: 0x00269650
+		// Token: 0x06005681 RID: 22145 RVA: 0x0023EAF4 File Offset: 0x0023CCF4
 		public override object getDefinedProperty(string name)
 		{
 			Property property = null;
@@ -18,7 +18,7 @@ namespace KBEngine
 			return this.defpropertys_[name].defaultVal;
 		}
 
-		// Token: 0x060060D1 RID: 24785 RVA: 0x0026B484 File Offset: 0x00269684
+		// Token: 0x06005682 RID: 22146 RVA: 0x0023EB28 File Offset: 0x0023CD28
 		public override void __init__()
 		{
 			Event.fireOut("onLoginSuccessfully", new object[]
@@ -30,7 +30,7 @@ namespace KBEngine
 			base.baseCall("reqPlayerInfo", Array.Empty<object>());
 		}
 
-		// Token: 0x060060D2 RID: 24786 RVA: 0x000431D1 File Offset: 0x000413D1
+		// Token: 0x06005683 RID: 22147 RVA: 0x0023EB79 File Offset: 0x0023CD79
 		public void reqCreateAvatar(string name, byte roleType)
 		{
 			base.baseCall("reqCreateAvatar", new object[]
@@ -40,13 +40,13 @@ namespace KBEngine
 			});
 		}
 
-		// Token: 0x060060D3 RID: 24787 RVA: 0x000431F1 File Offset: 0x000413F1
+		// Token: 0x06005684 RID: 22148 RVA: 0x0023EB99 File Offset: 0x0023CD99
 		public override void MatchSuccess()
 		{
 			Event.fireOut("MatchSuccess", Array.Empty<object>());
 		}
 
-		// Token: 0x060060D4 RID: 24788 RVA: 0x00043202 File Offset: 0x00041402
+		// Token: 0x06005685 RID: 22149 RVA: 0x0023EBAA File Offset: 0x0023CDAA
 		public void reqRemoveAvatar(string name)
 		{
 			Dbg.DEBUG_MSG("Account::reqRemoveAvatar: name=" + name);
@@ -56,7 +56,7 @@ namespace KBEngine
 			});
 		}
 
-		// Token: 0x060060D5 RID: 24789 RVA: 0x00043229 File Offset: 0x00041429
+		// Token: 0x06005686 RID: 22150 RVA: 0x0023EBD1 File Offset: 0x0023CDD1
 		public override void onReqAvatarList(ITEM_INFO_LIST infos)
 		{
 			Event.fireOut("onReqAvatarList", new object[]
@@ -65,7 +65,7 @@ namespace KBEngine
 			});
 		}
 
-		// Token: 0x060060D6 RID: 24790 RVA: 0x0026B4D8 File Offset: 0x002696D8
+		// Token: 0x06005687 RID: 22151 RVA: 0x0023EBE8 File Offset: 0x0023CDE8
 		public override void onCreateAvatarResult(byte retcode, AVATAR_INFO info)
 		{
 			if (retcode == 0)
@@ -89,7 +89,7 @@ namespace KBEngine
 			});
 		}
 
-		// Token: 0x060060D7 RID: 24791 RVA: 0x0026B55C File Offset: 0x0026975C
+		// Token: 0x06005688 RID: 22152 RVA: 0x0023EC6C File Offset: 0x0023CE6C
 		public override void onRemoveAvatar(ulong dbid)
 		{
 			Dbg.DEBUG_MSG("Account::onRemoveAvatar: dbid=" + dbid);
@@ -101,7 +101,7 @@ namespace KBEngine
 			});
 		}
 
-		// Token: 0x060060D8 RID: 24792 RVA: 0x0004323F File Offset: 0x0004143F
+		// Token: 0x06005689 RID: 22153 RVA: 0x0023ECBD File Offset: 0x0023CEBD
 		public void selectAvatarGame(ulong AvaterType, ulong AvaterSurface)
 		{
 			Dbg.DEBUG_MSG("Account::selectAvatarGame: dbid=" + AvaterType);
@@ -112,13 +112,13 @@ namespace KBEngine
 			});
 		}
 
-		// Token: 0x060060D9 RID: 24793 RVA: 0x00043279 File Offset: 0x00041479
+		// Token: 0x0600568A RID: 22154 RVA: 0x0023ECF7 File Offset: 0x0023CEF7
 		public void startMatch()
 		{
 			base.baseCall("startMatch", Array.Empty<object>());
 		}
 
-		// Token: 0x060060DA RID: 24794 RVA: 0x0004328B File Offset: 0x0004148B
+		// Token: 0x0600568B RID: 22155 RVA: 0x0023ED09 File Offset: 0x0023CF09
 		public void TeamStartMatch(ulong teamuuid)
 		{
 			base.baseCall("TeamStartMatch", new object[]
@@ -127,13 +127,13 @@ namespace KBEngine
 			});
 		}
 
-		// Token: 0x060060DB RID: 24795 RVA: 0x000432A7 File Offset: 0x000414A7
+		// Token: 0x0600568C RID: 22156 RVA: 0x0023ED25 File Offset: 0x0023CF25
 		public void cancelMatch()
 		{
 			base.baseCall("cancelMatch", Array.Empty<object>());
 		}
 
-		// Token: 0x060060DC RID: 24796 RVA: 0x0026B5B0 File Offset: 0x002697B0
+		// Token: 0x0600568D RID: 22157 RVA: 0x0023ED38 File Offset: 0x0023CF38
 		public override void goToHome(PLAYER_INFO _plyaerInfo)
 		{
 			this.plyaerInfo["name"] = _plyaerInfo.name;
@@ -143,13 +143,13 @@ namespace KBEngine
 			Event.fireOut("goToHome", Array.Empty<object>());
 		}
 
-		// Token: 0x060060DD RID: 24797 RVA: 0x000432B9 File Offset: 0x000414B9
+		// Token: 0x0600568E RID: 22158 RVA: 0x0023EDBB File Offset: 0x0023CFBB
 		public override void goToCreatePlayer()
 		{
 			Event.fireOut("goToCreatePlayer", Array.Empty<object>());
 		}
 
-		// Token: 0x060060DE RID: 24798 RVA: 0x000432CA File Offset: 0x000414CA
+		// Token: 0x0600568F RID: 22159 RVA: 0x0023EDCC File Offset: 0x0023CFCC
 		public void reqCreatePlayer(string name)
 		{
 			base.baseCall("reqCreatePlayer", new object[]
@@ -158,19 +158,19 @@ namespace KBEngine
 			});
 		}
 
-		// Token: 0x060060DF RID: 24799 RVA: 0x000432E1 File Offset: 0x000414E1
+		// Token: 0x06005690 RID: 22160 RVA: 0x0023EDE3 File Offset: 0x0023CFE3
 		public override void goToSpace()
 		{
 			Event.fireOut("goToSpace", Array.Empty<object>());
 		}
 
-		// Token: 0x060060E0 RID: 24800 RVA: 0x000432F2 File Offset: 0x000414F2
+		// Token: 0x06005691 RID: 22161 RVA: 0x0023EDF4 File Offset: 0x0023CFF4
 		public void rejoinSpace()
 		{
 			base.baseCall("rejoinSpace", Array.Empty<object>());
 		}
 
-		// Token: 0x060060E1 RID: 24801 RVA: 0x00043304 File Offset: 0x00041504
+		// Token: 0x06005692 RID: 22162 RVA: 0x0023EE06 File Offset: 0x0023D006
 		public void buyShopItem(ulong itemUUID)
 		{
 			base.baseCall("buyShopItem", new object[]
@@ -179,7 +179,7 @@ namespace KBEngine
 			});
 		}
 
-		// Token: 0x060060E2 RID: 24802 RVA: 0x00043320 File Offset: 0x00041520
+		// Token: 0x06005693 RID: 22163 RVA: 0x0023EE22 File Offset: 0x0023D022
 		public void getShopList(uint listID)
 		{
 			base.baseCall("getShopList", new object[]
@@ -188,7 +188,7 @@ namespace KBEngine
 			});
 		}
 
-		// Token: 0x060060E3 RID: 24803 RVA: 0x0004333C File Offset: 0x0004153C
+		// Token: 0x06005694 RID: 22164 RVA: 0x0023EE3E File Offset: 0x0023D03E
 		public override void onReqShopList(ITEM_INFO_LIST infos, string shopPrice)
 		{
 			Event.fireOut("onReqShopList", new object[]
@@ -198,7 +198,7 @@ namespace KBEngine
 			});
 		}
 
-		// Token: 0x060060E4 RID: 24804 RVA: 0x00043356 File Offset: 0x00041556
+		// Token: 0x06005695 RID: 22165 RVA: 0x0023EE58 File Offset: 0x0023D058
 		public override void buySuccess(ITEM_INFO_LIST infos)
 		{
 			this.itemList = infos;
@@ -208,7 +208,7 @@ namespace KBEngine
 			});
 		}
 
-		// Token: 0x060060E5 RID: 24805 RVA: 0x00043377 File Offset: 0x00041577
+		// Token: 0x06005696 RID: 22166 RVA: 0x0023EE79 File Offset: 0x0023D079
 		public override void HomeErrorMessage(string msg)
 		{
 			Event.fireOut("HomeErrorMessage", new object[]
@@ -217,7 +217,7 @@ namespace KBEngine
 			});
 		}
 
-		// Token: 0x060060E6 RID: 24806 RVA: 0x0004338D File Offset: 0x0004158D
+		// Token: 0x06005697 RID: 22167 RVA: 0x0023EE8F File Offset: 0x0023D08F
 		public void UseItem(ulong itemUUID)
 		{
 			base.baseCall("UseItem", new object[]
@@ -226,7 +226,7 @@ namespace KBEngine
 			});
 		}
 
-		// Token: 0x060060E7 RID: 24807 RVA: 0x000433A9 File Offset: 0x000415A9
+		// Token: 0x06005698 RID: 22168 RVA: 0x0023EEAB File Offset: 0x0023D0AB
 		public override void createOder(string info)
 		{
 			Event.fireOut("createOder", new object[]
@@ -235,13 +235,13 @@ namespace KBEngine
 			});
 		}
 
-		// Token: 0x060060E8 RID: 24808 RVA: 0x000433BF File Offset: 0x000415BF
+		// Token: 0x06005699 RID: 22169 RVA: 0x0023EEC1 File Offset: 0x0023D0C1
 		public void onPayEnd()
 		{
 			base.baseCall("onPayEnd", Array.Empty<object>());
 		}
 
-		// Token: 0x060060E9 RID: 24809 RVA: 0x000433D1 File Offset: 0x000415D1
+		// Token: 0x0600569A RID: 22170 RVA: 0x0023EED3 File Offset: 0x0023D0D3
 		public override void requestOnlineFriend(FRIEND_INFO_LIST infos)
 		{
 			Event.fireOut("requestOnlineFriend", new object[]
@@ -250,7 +250,7 @@ namespace KBEngine
 			});
 		}
 
-		// Token: 0x060060EA RID: 24810 RVA: 0x000433E7 File Offset: 0x000415E7
+		// Token: 0x0600569B RID: 22171 RVA: 0x0023EEE9 File Offset: 0x0023D0E9
 		public override void getTalkingMsg(FRIEND_INFO Info, string msg)
 		{
 			Event.fireOut("getTalkingMsg", new object[]
@@ -260,7 +260,7 @@ namespace KBEngine
 			});
 		}
 
-		// Token: 0x060060EB RID: 24811 RVA: 0x00043401 File Offset: 0x00041601
+		// Token: 0x0600569C RID: 22172 RVA: 0x0023EF03 File Offset: 0x0023D103
 		public void sendMsg(ulong playerDBid, string msg)
 		{
 			base.baseCall("sendMsg", new object[]
@@ -270,13 +270,13 @@ namespace KBEngine
 			});
 		}
 
-		// Token: 0x060060EC RID: 24812 RVA: 0x00043421 File Offset: 0x00041621
+		// Token: 0x0600569D RID: 22173 RVA: 0x0023EF23 File Offset: 0x0023D123
 		public void getOnlineFriend()
 		{
 			base.baseCall("getOnlineFriend", Array.Empty<object>());
 		}
 
-		// Token: 0x060060ED RID: 24813 RVA: 0x00043433 File Offset: 0x00041633
+		// Token: 0x0600569E RID: 22174 RVA: 0x0023EF35 File Offset: 0x0023D135
 		public void addFriend(string friendname)
 		{
 			base.baseCall("addFriend", new object[]
@@ -285,7 +285,7 @@ namespace KBEngine
 			});
 		}
 
-		// Token: 0x060060EE RID: 24814 RVA: 0x0004344A File Offset: 0x0004164A
+		// Token: 0x0600569F RID: 22175 RVA: 0x0023EF4C File Offset: 0x0023D14C
 		public override void addFriendSuccess(FRIEND_INFO Info)
 		{
 			Event.fireOut("HomeErrorMessage", new object[]
@@ -295,7 +295,7 @@ namespace KBEngine
 			Event.fireOut("OpenFriendUI", Array.Empty<object>());
 		}
 
-		// Token: 0x060060EF RID: 24815 RVA: 0x00043473 File Offset: 0x00041673
+		// Token: 0x060056A0 RID: 22176 RVA: 0x0023EF75 File Offset: 0x0023D175
 		public override void receiveaddfriend(string friendname, ulong frienddbid)
 		{
 			Event.fireOut("receiveaddfriend", new object[]
@@ -305,7 +305,7 @@ namespace KBEngine
 			});
 		}
 
-		// Token: 0x060060F0 RID: 24816 RVA: 0x00043492 File Offset: 0x00041692
+		// Token: 0x060056A1 RID: 22177 RVA: 0x0023EF94 File Offset: 0x0023D194
 		public void requestReceive(ushort choice, ulong frienddbid)
 		{
 			base.baseCall("requestReceive", new object[]
@@ -315,7 +315,7 @@ namespace KBEngine
 			});
 		}
 
-		// Token: 0x060060F1 RID: 24817 RVA: 0x000434B7 File Offset: 0x000416B7
+		// Token: 0x060056A2 RID: 22178 RVA: 0x0023EFB9 File Offset: 0x0023D1B9
 		public void createTeam(ulong friendDbid)
 		{
 			base.baseCall("createTeam", new object[]
@@ -324,7 +324,7 @@ namespace KBEngine
 			});
 		}
 
-		// Token: 0x060060F2 RID: 24818 RVA: 0x000434D3 File Offset: 0x000416D3
+		// Token: 0x060056A3 RID: 22179 RVA: 0x0023EFD5 File Offset: 0x0023D1D5
 		public override void setTeamMember(string name, uint LV)
 		{
 			Event.fireOut("setTeamMember", new object[]
@@ -334,7 +334,7 @@ namespace KBEngine
 			});
 		}
 
-		// Token: 0x060060F3 RID: 24819 RVA: 0x000434F2 File Offset: 0x000416F2
+		// Token: 0x060056A4 RID: 22180 RVA: 0x0023EFF4 File Offset: 0x0023D1F4
 		public override void setAllTeamMember(string jsonInfo, ulong teamuuid)
 		{
 			Event.fireOut("setAllTeamMember", new object[]
@@ -344,13 +344,13 @@ namespace KBEngine
 			});
 		}
 
-		// Token: 0x060060F4 RID: 24820 RVA: 0x00043511 File Offset: 0x00041711
+		// Token: 0x060056A5 RID: 22181 RVA: 0x0023F013 File Offset: 0x0023D213
 		public void requestLeaveTeam()
 		{
 			base.baseCall("requestLeaveTeam", Array.Empty<object>());
 		}
 
-		// Token: 0x060060F5 RID: 24821 RVA: 0x00043523 File Offset: 0x00041723
+		// Token: 0x060056A6 RID: 22182 RVA: 0x0023F025 File Offset: 0x0023D225
 		public override void receiveaddTeam(string friendname, ulong teamuuid, ulong frienddbid)
 		{
 			Event.fireOut("receiveaddTeam", new object[]
@@ -361,7 +361,7 @@ namespace KBEngine
 			});
 		}
 
-		// Token: 0x060060F6 RID: 24822 RVA: 0x0004354B File Offset: 0x0004174B
+		// Token: 0x060056A7 RID: 22183 RVA: 0x0023F04D File Offset: 0x0023D24D
 		public void requestReceiveTeam(ushort choice, ulong frienddbid)
 		{
 			base.baseCall("requestReceiveTeam", new object[]
@@ -371,7 +371,7 @@ namespace KBEngine
 			});
 		}
 
-		// Token: 0x060060F7 RID: 24823 RVA: 0x00043570 File Offset: 0x00041770
+		// Token: 0x060056A8 RID: 22184 RVA: 0x0023F072 File Offset: 0x0023D272
 		public void requestJoinTeam(ulong teamuuid, ulong frienddbid)
 		{
 			base.baseCall("requestJoinTeam", new object[]
@@ -381,7 +381,7 @@ namespace KBEngine
 			});
 		}
 
-		// Token: 0x060060F8 RID: 24824 RVA: 0x0026B634 File Offset: 0x00269834
+		// Token: 0x060056A9 RID: 22185 RVA: 0x0023F098 File Offset: 0x0023D298
 		public override void addItem(ulong itemuuid, uint itemCount)
 		{
 			ITEM_INFO_LIST itemList = this.itemList;
@@ -398,14 +398,14 @@ namespace KBEngine
 			Event.fireOut("openCollect", Array.Empty<object>());
 		}
 
-		// Token: 0x060060F9 RID: 24825 RVA: 0x00043595 File Offset: 0x00041795
+		// Token: 0x060056AA RID: 22186 RVA: 0x0023F0F9 File Offset: 0x0023D2F9
 		public override void createItem(ITEM_INFO info)
 		{
 			this.itemList.values.Add(info);
 			Event.fireOut("openCollect", Array.Empty<object>());
 		}
 
-		// Token: 0x060060FA RID: 24826 RVA: 0x0026B698 File Offset: 0x00269898
+		// Token: 0x060056AB RID: 22187 RVA: 0x0023F11C File Offset: 0x0023D31C
 		public override void removeItem(ulong itemuuid, uint itemCount)
 		{
 			ITEM_INFO_LIST itemList = this.itemList;
@@ -430,7 +430,7 @@ namespace KBEngine
 			Event.fireOut("openCollect", Array.Empty<object>());
 		}
 
-		// Token: 0x060060FB RID: 24827 RVA: 0x0026B728 File Offset: 0x00269928
+		// Token: 0x060056AC RID: 22188 RVA: 0x0023F1AC File Offset: 0x0023D3AC
 		public override void boxAddItem(ulong goodid, uint goodnum)
 		{
 			ItemData itemData;
@@ -448,7 +448,7 @@ namespace KBEngine
 			});
 		}
 
-		// Token: 0x060060FC RID: 24828 RVA: 0x000435B7 File Offset: 0x000417B7
+		// Token: 0x060056AD RID: 22189 RVA: 0x0023F20F File Offset: 0x0023D40F
 		public void useCDK(string cdk)
 		{
 			base.baseCall("useCDK", new object[]
@@ -457,7 +457,7 @@ namespace KBEngine
 			});
 		}
 
-		// Token: 0x060060FD RID: 24829 RVA: 0x000435CE File Offset: 0x000417CE
+		// Token: 0x060056AE RID: 22190 RVA: 0x0023F226 File Offset: 0x0023D426
 		public void CheckIn(ushort UUID)
 		{
 			base.baseCall("CheckIn", new object[]
@@ -466,7 +466,7 @@ namespace KBEngine
 			});
 		}
 
-		// Token: 0x060060FE RID: 24830 RVA: 0x0026B78C File Offset: 0x0026998C
+		// Token: 0x060056AF RID: 22191 RVA: 0x0023F244 File Offset: 0x0023D444
 		public override void CheckInSuccess(uint arg1)
 		{
 			long num = Convert.ToInt64((DateTime.UtcNow - new DateTime(1970, 1, 1, 0, 0, 0, 0)).TotalSeconds);
@@ -495,43 +495,43 @@ namespace KBEngine
 			});
 		}
 
-		// Token: 0x060060FF RID: 24831 RVA: 0x0001C722 File Offset: 0x0001A922
+		// Token: 0x060056B0 RID: 22192 RVA: 0x000DBFA9 File Offset: 0x000DA1A9
 		public override void leaveTeam()
 		{
 			throw new NotImplementedException();
 		}
 
-		// Token: 0x06006100 RID: 24832 RVA: 0x0001C722 File Offset: 0x0001A922
+		// Token: 0x060056B1 RID: 22193 RVA: 0x000DBFA9 File Offset: 0x000DA1A9
 		public override void onHelloTestBacke()
 		{
 			throw new NotImplementedException();
 		}
 
-		// Token: 0x06006101 RID: 24833 RVA: 0x0001C722 File Offset: 0x0001A922
+		// Token: 0x060056B2 RID: 22194 RVA: 0x000DBFA9 File Offset: 0x000DA1A9
 		public override void onStartGame()
 		{
 			throw new NotImplementedException();
 		}
 
-		// Token: 0x04005BE2 RID: 23522
+		// Token: 0x04005128 RID: 20776
 		public Dictionary<ulong, AVATAR_INFO> avatars = new Dictionary<ulong, AVATAR_INFO>();
 
-		// Token: 0x04005BE3 RID: 23523
+		// Token: 0x04005129 RID: 20777
 		public string name = "";
 
-		// Token: 0x04005BE4 RID: 23524
+		// Token: 0x0400512A RID: 20778
 		public int gold;
 
-		// Token: 0x04005BE5 RID: 23525
+		// Token: 0x0400512B RID: 20779
 		public int soul;
 
-		// Token: 0x04005BE6 RID: 23526
+		// Token: 0x0400512C RID: 20780
 		public Dictionary<string, object> plyaerInfo = new Dictionary<string, object>();
 
-		// Token: 0x04005BE7 RID: 23527
+		// Token: 0x0400512D RID: 20781
 		public Dictionary<string, ulong> dic_name_to_dbid = new Dictionary<string, ulong>();
 
-		// Token: 0x04005BE8 RID: 23528
+		// Token: 0x0400512E RID: 20782
 		private Dictionary<string, Property> defpropertys_ = new Dictionary<string, Property>();
 	}
 }

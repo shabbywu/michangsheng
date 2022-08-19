@@ -2,11 +2,11 @@
 
 namespace MoonSharp.Interpreter.CoreLib
 {
-	// Token: 0x02001199 RID: 4505
+	// Token: 0x02000D7D RID: 3453
 	[MoonSharpModule]
 	public class MetaTableModule
 	{
-		// Token: 0x06006E2C RID: 28204 RVA: 0x0029C348 File Offset: 0x0029A548
+		// Token: 0x06006209 RID: 25097 RVA: 0x00276168 File Offset: 0x00274368
 		[MoonSharpModuleMethod]
 		public static DynValue setmetatable(ScriptExecutionContext executionContext, CallbackArguments args)
 		{
@@ -20,7 +20,7 @@ namespace MoonSharp.Interpreter.CoreLib
 			return dynValue;
 		}
 
-		// Token: 0x06006E2D RID: 28205 RVA: 0x0029C3A0 File Offset: 0x0029A5A0
+		// Token: 0x0600620A RID: 25098 RVA: 0x002761C0 File Offset: 0x002743C0
 		[MoonSharpModuleMethod]
 		public static DynValue getmetatable(ScriptExecutionContext executionContext, CallbackArguments args)
 		{
@@ -45,7 +45,7 @@ namespace MoonSharp.Interpreter.CoreLib
 			return DynValue.NewTable(table);
 		}
 
-		// Token: 0x06006E2E RID: 28206 RVA: 0x0029C414 File Offset: 0x0029A614
+		// Token: 0x0600620B RID: 25099 RVA: 0x00276234 File Offset: 0x00274434
 		[MoonSharpModuleMethod]
 		public static DynValue rawget(ScriptExecutionContext executionContext, CallbackArguments args)
 		{
@@ -54,7 +54,7 @@ namespace MoonSharp.Interpreter.CoreLib
 			return dynValue.Table.Get(key);
 		}
 
-		// Token: 0x06006E2F RID: 28207 RVA: 0x0029C444 File Offset: 0x0029A644
+		// Token: 0x0600620C RID: 25100 RVA: 0x00276264 File Offset: 0x00274464
 		[MoonSharpModuleMethod]
 		public static DynValue rawset(ScriptExecutionContext executionContext, CallbackArguments args)
 		{
@@ -64,7 +64,7 @@ namespace MoonSharp.Interpreter.CoreLib
 			return dynValue;
 		}
 
-		// Token: 0x06006E30 RID: 28208 RVA: 0x0029C47C File Offset: 0x0029A67C
+		// Token: 0x0600620D RID: 25101 RVA: 0x0027629C File Offset: 0x0027449C
 		[MoonSharpModuleMethod]
 		public static DynValue rawequal(ScriptExecutionContext executionContext, CallbackArguments args)
 		{
@@ -73,7 +73,7 @@ namespace MoonSharp.Interpreter.CoreLib
 			return DynValue.NewBoolean(obj.Equals(obj2));
 		}
 
-		// Token: 0x06006E31 RID: 28209 RVA: 0x0029C4A4 File Offset: 0x0029A6A4
+		// Token: 0x0600620E RID: 25102 RVA: 0x002762C4 File Offset: 0x002744C4
 		[MoonSharpModuleMethod]
 		public static DynValue rawlen(ScriptExecutionContext executionContext, CallbackArguments args)
 		{

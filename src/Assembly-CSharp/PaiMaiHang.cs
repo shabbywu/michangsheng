@@ -4,17 +4,17 @@ using GUIPackage;
 using KBEngine;
 using UnityEngine;
 
-// Token: 0x02000290 RID: 656
+// Token: 0x0200019A RID: 410
 public class PaiMaiHang : ExchangePlan
 {
-	// Token: 0x06001421 RID: 5153 RVA: 0x00012B44 File Offset: 0x00010D44
+	// Token: 0x06001186 RID: 4486 RVA: 0x00069C4C File Offset: 0x00067E4C
 	private void Awake()
 	{
 		base.init();
 		PaiMaiHang.inst = this;
 	}
 
-	// Token: 0x06001422 RID: 5154 RVA: 0x000B7FC0 File Offset: 0x000B61C0
+	// Token: 0x06001187 RID: 4487 RVA: 0x00069C5C File Offset: 0x00067E5C
 	public bool IsCanJoin()
 	{
 		Avatar player = Tools.instance.getPlayer();
@@ -25,7 +25,7 @@ public class PaiMaiHang : ExchangePlan
 		return PaiMaiHang.IsCanJoin(player.worldTimeMag.getNowTime().Year / num, this.PaiMaiHangID, "paiMai");
 	}
 
-	// Token: 0x06001423 RID: 5155 RVA: 0x000B8054 File Offset: 0x000B6254
+	// Token: 0x06001188 RID: 4488 RVA: 0x00069CF0 File Offset: 0x00067EF0
 	public static bool IsCanJoin(int DijiJIe, int paimaihangID, string JsonName)
 	{
 		Avatar player = Tools.instance.getPlayer();
@@ -46,7 +46,7 @@ public class PaiMaiHang : ExchangePlan
 		return true;
 	}
 
-	// Token: 0x06001424 RID: 5156 RVA: 0x000B80EC File Offset: 0x000B62EC
+	// Token: 0x06001189 RID: 4489 RVA: 0x00069D88 File Offset: 0x00067F88
 	public void JiMai()
 	{
 		JSONObject jsonobject = jsonData.instance.PaiMaiBiao[this.PaiMaiHangID.ToString()];
@@ -187,7 +187,7 @@ public class PaiMaiHang : ExchangePlan
 		base.MonstarterSay("我们这入场需要" + (ulong)jsonobject["RuChangFei"].n + "灵石。");
 	}
 
-	// Token: 0x06001425 RID: 5157 RVA: 0x000B87D4 File Offset: 0x000B69D4
+	// Token: 0x0600118A RID: 4490 RVA: 0x0006A470 File Offset: 0x00068670
 	public override void initPlan()
 	{
 		List<JSONObject> monsatrBackpack = jsonData.instance.GetMonsatrBackpack(this.MonstarID);
@@ -231,13 +231,13 @@ public class PaiMaiHang : ExchangePlan
 		this.MonstarFace.randomAvatar(this.ShowPaiMaiAvatar);
 	}
 
-	// Token: 0x06001426 RID: 5158 RVA: 0x000111B3 File Offset: 0x0000F3B3
+	// Token: 0x0600118B RID: 4491 RVA: 0x0005C928 File Offset: 0x0005AB28
 	public override void close()
 	{
 		Object.Destroy(base.gameObject);
 	}
 
-	// Token: 0x06001427 RID: 5159 RVA: 0x000B8A8C File Offset: 0x000B6C8C
+	// Token: 0x0600118C RID: 4492 RVA: 0x0006A728 File Offset: 0x00068928
 	public void setPaiMaiGoods(int monstarID, int Time)
 	{
 		new List<int>();
@@ -260,7 +260,7 @@ public class PaiMaiHang : ExchangePlan
 		}
 	}
 
-	// Token: 0x06001428 RID: 5160 RVA: 0x000B8B34 File Offset: 0x000B6D34
+	// Token: 0x0600118D RID: 4493 RVA: 0x0006A7D0 File Offset: 0x000689D0
 	public static JSONObject getTimePaiMaiJson(int _PaiMaiID)
 	{
 		List<JSONObject> staticNumJsonobj = Tools.GetStaticNumJsonobj(jsonData.instance.PaiMaiCanYuAvatar, "PaiMaiID", _PaiMaiID);
@@ -283,12 +283,12 @@ public class PaiMaiHang : ExchangePlan
 		return staticNumJsonobj.Find((JSONObject aa) => aa["EndTime"].str == "" && aa["StarTime"].str == "");
 	}
 
-	// Token: 0x04000FA6 RID: 4006
+	// Token: 0x04000C98 RID: 3224
 	public int PaiMaiHangID;
 
-	// Token: 0x04000FA7 RID: 4007
+	// Token: 0x04000C99 RID: 3225
 	public int ShowPaiMaiAvatar;
 
-	// Token: 0x04000FA8 RID: 4008
+	// Token: 0x04000C9A RID: 3226
 	public static PaiMaiHang inst;
 }

@@ -4,12 +4,12 @@ using UnityEngine;
 
 namespace UltimateSurvival.AI
 {
-	// Token: 0x02000977 RID: 2423
+	// Token: 0x0200066C RID: 1644
 	[Serializable]
 	public class EntityDetection
 	{
-		// Token: 0x170006D8 RID: 1752
-		// (get) Token: 0x06003DF3 RID: 15859 RVA: 0x0002C9E2 File Offset: 0x0002ABE2
+		// Token: 0x170004B8 RID: 1208
+		// (get) Token: 0x06003447 RID: 13383 RVA: 0x0016D946 File Offset: 0x0016BB46
 		public int ViewRadius
 		{
 			get
@@ -18,8 +18,8 @@ namespace UltimateSurvival.AI
 			}
 		}
 
-		// Token: 0x170006D9 RID: 1753
-		// (get) Token: 0x06003DF4 RID: 15860 RVA: 0x0002C9EA File Offset: 0x0002ABEA
+		// Token: 0x170004B9 RID: 1209
+		// (get) Token: 0x06003448 RID: 13384 RVA: 0x0016D94E File Offset: 0x0016BB4E
 		public int ViewAngle
 		{
 			get
@@ -28,8 +28,8 @@ namespace UltimateSurvival.AI
 			}
 		}
 
-		// Token: 0x170006DA RID: 1754
-		// (get) Token: 0x06003DF5 RID: 15861 RVA: 0x0002C9F2 File Offset: 0x0002ABF2
+		// Token: 0x170004BA RID: 1210
+		// (get) Token: 0x06003449 RID: 13385 RVA: 0x0016D956 File Offset: 0x0016BB56
 		public int HearRange
 		{
 			get
@@ -38,13 +38,13 @@ namespace UltimateSurvival.AI
 			}
 		}
 
-		// Token: 0x170006DB RID: 1755
-		// (get) Token: 0x06003DF6 RID: 15862 RVA: 0x0002C9FA File Offset: 0x0002ABFA
-		// (set) Token: 0x06003DF7 RID: 15863 RVA: 0x0002CA02 File Offset: 0x0002AC02
+		// Token: 0x170004BB RID: 1211
+		// (get) Token: 0x0600344A RID: 13386 RVA: 0x0016D95E File Offset: 0x0016BB5E
+		// (set) Token: 0x0600344B RID: 13387 RVA: 0x0016D966 File Offset: 0x0016BB66
 		public GameObject LastChasedTarget { get; set; }
 
-		// Token: 0x170006DC RID: 1756
-		// (get) Token: 0x06003DF8 RID: 15864 RVA: 0x0002CA0B File Offset: 0x0002AC0B
+		// Token: 0x170004BC RID: 1212
+		// (get) Token: 0x0600344C RID: 13388 RVA: 0x0016D96F File Offset: 0x0016BB6F
 		public List<GameObject> VisibleTargets
 		{
 			get
@@ -53,8 +53,8 @@ namespace UltimateSurvival.AI
 			}
 		}
 
-		// Token: 0x170006DD RID: 1757
-		// (get) Token: 0x06003DF9 RID: 15865 RVA: 0x0002CA13 File Offset: 0x0002AC13
+		// Token: 0x170004BD RID: 1213
+		// (get) Token: 0x0600344D RID: 13389 RVA: 0x0016D977 File Offset: 0x0016BB77
 		public List<GameObject> StillInRangeTargets
 		{
 			get
@@ -63,13 +63,13 @@ namespace UltimateSurvival.AI
 			}
 		}
 
-		// Token: 0x06003DFA RID: 15866 RVA: 0x0002CA1B File Offset: 0x0002AC1B
+		// Token: 0x0600344E RID: 13390 RVA: 0x0016D97F File Offset: 0x0016BB7F
 		public void Initialize(Transform transform)
 		{
 			this.m_Transform = transform;
 		}
 
-		// Token: 0x06003DFB RID: 15867 RVA: 0x001B63BC File Offset: 0x001B45BC
+		// Token: 0x0600344F RID: 13391 RVA: 0x0016D988 File Offset: 0x0016BB88
 		public void Update(AIBrain brain)
 		{
 			if (this.m_TargetSearchDelay == 0f)
@@ -85,25 +85,25 @@ namespace UltimateSurvival.AI
 			}
 		}
 
-		// Token: 0x06003DFC RID: 15868 RVA: 0x0002CA24 File Offset: 0x0002AC24
+		// Token: 0x06003450 RID: 13392 RVA: 0x0016D9EF File Offset: 0x0016BBEF
 		public bool HasTarget()
 		{
 			return this.m_StillInRangeTargets.Count > 0;
 		}
 
-		// Token: 0x06003DFD RID: 15869 RVA: 0x0002CA34 File Offset: 0x0002AC34
+		// Token: 0x06003451 RID: 13393 RVA: 0x0016D9FF File Offset: 0x0016BBFF
 		public bool HasVisibleTarget()
 		{
 			return this.m_VisibleTargets.Count > 0;
 		}
 
-		// Token: 0x06003DFE RID: 15870 RVA: 0x0002CA44 File Offset: 0x0002AC44
+		// Token: 0x06003452 RID: 13394 RVA: 0x0016DA0F File Offset: 0x0016BC0F
 		public Transform GetRandomTarget()
 		{
 			return this.m_StillInRangeTargets[Random.Range(0, this.m_StillInRangeTargets.Count)].transform;
 		}
 
-		// Token: 0x06003DFF RID: 15871 RVA: 0x001B6424 File Offset: 0x001B4624
+		// Token: 0x06003453 RID: 13395 RVA: 0x0016DA34 File Offset: 0x0016BC34
 		private void GetTargetsStillInRange()
 		{
 			Collider[] collidersInRange = this.GetCollidersInRange();
@@ -131,7 +131,7 @@ namespace UltimateSurvival.AI
 			}
 		}
 
-		// Token: 0x06003E00 RID: 15872 RVA: 0x001B64E8 File Offset: 0x001B46E8
+		// Token: 0x06003454 RID: 13396 RVA: 0x0016DAF8 File Offset: 0x0016BCF8
 		private List<GameObject> GetVisibleTargets()
 		{
 			List<GameObject> list = new List<GameObject>();
@@ -156,57 +156,57 @@ namespace UltimateSurvival.AI
 			return list;
 		}
 
-		// Token: 0x06003E01 RID: 15873 RVA: 0x0002CA67 File Offset: 0x0002AC67
+		// Token: 0x06003455 RID: 13397 RVA: 0x0016DBD0 File Offset: 0x0016BDD0
 		private Collider[] GetCollidersInRange()
 		{
 			return Physics.OverlapSphere(this.m_Transform.position, (float)this.m_ViewRadius, this.m_SpotMask);
 		}
 
-		// Token: 0x04003818 RID: 14360
+		// Token: 0x04002E7D RID: 11901
 		[SerializeField]
 		[Tooltip("Time it takes to look for targets again.")]
 		private float m_TargetSearchDelay;
 
-		// Token: 0x04003819 RID: 14361
+		// Token: 0x04002E7E RID: 11902
 		[SerializeField]
 		private Transform m_Eyes;
 
-		// Token: 0x0400381A RID: 14362
+		// Token: 0x04002E7F RID: 11903
 		[SerializeField]
 		[Range(0f, 360f)]
 		[Tooltip("Angle at which it can spot a player.")]
 		private int m_ViewAngle = 120;
 
-		// Token: 0x0400381B RID: 14363
+		// Token: 0x04002E80 RID: 11904
 		[SerializeField]
 		[Tooltip("Radius around the AI at which it can spot a player")]
 		private int m_ViewRadius = 3;
 
-		// Token: 0x0400381C RID: 14364
+		// Token: 0x04002E81 RID: 11905
 		[SerializeField]
 		[Clamp(0f, 300f)]
 		private int m_HearRange = 50;
 
-		// Token: 0x0400381D RID: 14365
+		// Token: 0x04002E82 RID: 11906
 		[SerializeField]
 		[Tooltip("Used for finding only specific types of targets.")]
 		private LayerMask m_SpotMask;
 
-		// Token: 0x0400381E RID: 14366
+		// Token: 0x04002E83 RID: 11907
 		[SerializeField]
 		[Tooltip("Used to know what objects can be blocking our view from the AI.")]
 		private LayerMask m_ObstacleMask;
 
-		// Token: 0x0400381F RID: 14367
+		// Token: 0x04002E84 RID: 11908
 		private List<GameObject> m_VisibleTargets = new List<GameObject>();
 
-		// Token: 0x04003820 RID: 14368
+		// Token: 0x04002E85 RID: 11909
 		private List<GameObject> m_StillInRangeTargets = new List<GameObject>();
 
-		// Token: 0x04003821 RID: 14369
+		// Token: 0x04002E86 RID: 11910
 		private Transform m_Transform;
 
-		// Token: 0x04003822 RID: 14370
+		// Token: 0x04002E87 RID: 11911
 		private float m_LastTargetFindTime;
 	}
 }

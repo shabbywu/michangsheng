@@ -1,11 +1,11 @@
 ﻿using System;
 using UnityEngine;
 
-// Token: 0x0200002B RID: 43
+// Token: 0x02000023 RID: 35
 public class LTSeq
 {
-	// Token: 0x1700003B RID: 59
-	// (get) Token: 0x060002EE RID: 750 RVA: 0x00006B87 File Offset: 0x00004D87
+	// Token: 0x17000039 RID: 57
+	// (get) Token: 0x060002DC RID: 732 RVA: 0x0000EE96 File Offset: 0x0000D096
 	public int id
 	{
 		get
@@ -14,7 +14,7 @@ public class LTSeq
 		}
 	}
 
-	// Token: 0x060002EF RID: 751 RVA: 0x00006B99 File Offset: 0x00004D99
+	// Token: 0x060002DD RID: 733 RVA: 0x0000EEA8 File Offset: 0x0000D0A8
 	public void reset()
 	{
 		this.previous = null;
@@ -22,7 +22,7 @@ public class LTSeq
 		this.totalDelay = 0f;
 	}
 
-	// Token: 0x060002F0 RID: 752 RVA: 0x00006BB4 File Offset: 0x00004DB4
+	// Token: 0x060002DE RID: 734 RVA: 0x0000EEC3 File Offset: 0x0000D0C3
 	public void init(uint id, uint global_counter)
 	{
 		this.reset();
@@ -31,7 +31,7 @@ public class LTSeq
 		this.current = this;
 	}
 
-	// Token: 0x060002F1 RID: 753 RVA: 0x00066C44 File Offset: 0x00064E44
+	// Token: 0x060002DF RID: 735 RVA: 0x0000EEE0 File Offset: 0x0000D0E0
 	private LTSeq addOn()
 	{
 		this.current.toggle = true;
@@ -51,7 +51,7 @@ public class LTSeq
 		return this.current;
 	}
 
-	// Token: 0x060002F2 RID: 754 RVA: 0x00066CF0 File Offset: 0x00064EF0
+	// Token: 0x060002E0 RID: 736 RVA: 0x0000EF8C File Offset: 0x0000D18C
 	private float addPreviousDelays()
 	{
 		LTSeq ltseq = this.current.previous;
@@ -62,14 +62,14 @@ public class LTSeq
 		return this.current.totalDelay;
 	}
 
-	// Token: 0x060002F3 RID: 755 RVA: 0x00006BD1 File Offset: 0x00004DD1
+	// Token: 0x060002E1 RID: 737 RVA: 0x0000EFD3 File Offset: 0x0000D1D3
 	public LTSeq append(float delay)
 	{
 		this.current.totalDelay += delay;
 		return this.current;
 	}
 
-	// Token: 0x060002F4 RID: 756 RVA: 0x00066D38 File Offset: 0x00064F38
+	// Token: 0x060002E2 RID: 738 RVA: 0x0000EFF0 File Offset: 0x0000D1F0
 	public LTSeq append(Action callback)
 	{
 		LTDescr ltdescr = LeanTween.delayedCall(0f, callback);
@@ -77,28 +77,28 @@ public class LTSeq
 		return this.addOn();
 	}
 
-	// Token: 0x060002F5 RID: 757 RVA: 0x00006BEC File Offset: 0x00004DEC
+	// Token: 0x060002E3 RID: 739 RVA: 0x0000F017 File Offset: 0x0000D217
 	public LTSeq append(Action<object> callback, object obj)
 	{
 		this.append(LeanTween.delayedCall(0f, callback).setOnCompleteParam(obj));
 		return this.addOn();
 	}
 
-	// Token: 0x060002F6 RID: 758 RVA: 0x00006C0C File Offset: 0x00004E0C
+	// Token: 0x060002E4 RID: 740 RVA: 0x0000F037 File Offset: 0x0000D237
 	public LTSeq append(GameObject gameObject, Action callback)
 	{
 		this.append(LeanTween.delayedCall(gameObject, 0f, callback));
 		return this.addOn();
 	}
 
-	// Token: 0x060002F7 RID: 759 RVA: 0x00006C27 File Offset: 0x00004E27
+	// Token: 0x060002E5 RID: 741 RVA: 0x0000F052 File Offset: 0x0000D252
 	public LTSeq append(GameObject gameObject, Action<object> callback, object obj)
 	{
 		this.append(LeanTween.delayedCall(gameObject, 0f, callback).setOnCompleteParam(obj));
 		return this.addOn();
 	}
 
-	// Token: 0x060002F8 RID: 760 RVA: 0x00006C48 File Offset: 0x00004E48
+	// Token: 0x060002E6 RID: 742 RVA: 0x0000F073 File Offset: 0x0000D273
 	public LTSeq append(LTDescr tween)
 	{
 		this.current.tween = tween;
@@ -107,7 +107,7 @@ public class LTSeq
 		return this.addOn();
 	}
 
-	// Token: 0x060002F9 RID: 761 RVA: 0x00006C7F File Offset: 0x00004E7F
+	// Token: 0x060002E7 RID: 743 RVA: 0x0000F0AA File Offset: 0x0000D2AA
 	public LTSeq insert(LTDescr tween)
 	{
 		this.current.tween = tween;
@@ -115,14 +115,14 @@ public class LTSeq
 		return this.addOn();
 	}
 
-	// Token: 0x060002FA RID: 762 RVA: 0x00006CA0 File Offset: 0x00004EA0
+	// Token: 0x060002E8 RID: 744 RVA: 0x0000F0CB File Offset: 0x0000D2CB
 	public LTSeq setScale(float timeScale)
 	{
 		this.setScaleRecursive(this.current, timeScale, 500);
 		return this.addOn();
 	}
 
-	// Token: 0x060002FB RID: 763 RVA: 0x00066D60 File Offset: 0x00064F60
+	// Token: 0x060002E9 RID: 745 RVA: 0x0000F0E8 File Offset: 0x0000D2E8
 	private void setScaleRecursive(LTSeq seq, float timeScale, int count)
 	{
 		if (count > 0)
@@ -144,36 +144,36 @@ public class LTSeq
 		}
 	}
 
-	// Token: 0x060002FC RID: 764 RVA: 0x00006CBA File Offset: 0x00004EBA
+	// Token: 0x060002EA RID: 746 RVA: 0x0000F172 File Offset: 0x0000D372
 	public LTSeq reverse()
 	{
 		return this.addOn();
 	}
 
-	// Token: 0x0400017E RID: 382
+	// Token: 0x04000169 RID: 361
 	public LTSeq previous;
 
-	// Token: 0x0400017F RID: 383
+	// Token: 0x0400016A RID: 362
 	public LTSeq current;
 
-	// Token: 0x04000180 RID: 384
+	// Token: 0x0400016B RID: 363
 	public LTDescr tween;
 
-	// Token: 0x04000181 RID: 385
+	// Token: 0x0400016C RID: 364
 	public float totalDelay;
 
-	// Token: 0x04000182 RID: 386
+	// Token: 0x0400016D RID: 365
 	public float timeScale;
 
-	// Token: 0x04000183 RID: 387
+	// Token: 0x0400016E RID: 366
 	private int debugIter;
 
-	// Token: 0x04000184 RID: 388
+	// Token: 0x0400016F RID: 367
 	public uint counter;
 
-	// Token: 0x04000185 RID: 389
+	// Token: 0x04000170 RID: 368
 	public bool toggle;
 
-	// Token: 0x04000186 RID: 390
+	// Token: 0x04000171 RID: 369
 	private uint _id;
 }

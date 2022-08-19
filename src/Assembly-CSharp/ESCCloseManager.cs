@@ -4,11 +4,11 @@ using GetWay;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-// Token: 0x020004CD RID: 1229
+// Token: 0x02000351 RID: 849
 public class ESCCloseManager : MonoBehaviour
 {
-	// Token: 0x1700029F RID: 671
-	// (get) Token: 0x0600203C RID: 8252 RVA: 0x00112F68 File Offset: 0x00111168
+	// Token: 0x17000253 RID: 595
+	// (get) Token: 0x06001CD5 RID: 7381 RVA: 0x000CDFD0 File Offset: 0x000CC1D0
 	public static ESCCloseManager Inst
 	{
 		get
@@ -27,8 +27,8 @@ public class ESCCloseManager : MonoBehaviour
 		}
 	}
 
-	// Token: 0x170002A0 RID: 672
-	// (get) Token: 0x0600203D RID: 8253 RVA: 0x0001A71A File Offset: 0x0001891A
+	// Token: 0x17000254 RID: 596
+	// (get) Token: 0x06001CD6 RID: 7382 RVA: 0x000CE02D File Offset: 0x000CC22D
 	public bool ReadyESC
 	{
 		get
@@ -37,14 +37,14 @@ public class ESCCloseManager : MonoBehaviour
 		}
 	}
 
-	// Token: 0x0600203E RID: 8254 RVA: 0x0001A72C File Offset: 0x0001892C
+	// Token: 0x06001CD7 RID: 7383 RVA: 0x000CE03F File Offset: 0x000CC23F
 	public void RegisterClose(IESCClose close)
 	{
 		this.tmpClose = close;
 		base.Invoke("InsideRegisterClose", 0.1f);
 	}
 
-	// Token: 0x0600203F RID: 8255 RVA: 0x00112FC8 File Offset: 0x001111C8
+	// Token: 0x06001CD8 RID: 7384 RVA: 0x000CE058 File Offset: 0x000CC258
 	public void CloseAll()
 	{
 		for (int i = this.closeList.Count - 1; i >= 0; i--)
@@ -58,7 +58,7 @@ public class ESCCloseManager : MonoBehaviour
 		UToolTip.Close();
 	}
 
-	// Token: 0x06002040 RID: 8256 RVA: 0x0001A745 File Offset: 0x00018945
+	// Token: 0x06001CD9 RID: 7385 RVA: 0x000CE0A5 File Offset: 0x000CC2A5
 	public void UnRegisterClose(IESCClose close)
 	{
 		if (this.closeList.Contains(close))
@@ -67,7 +67,7 @@ public class ESCCloseManager : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06002041 RID: 8257 RVA: 0x00113018 File Offset: 0x00111218
+	// Token: 0x06001CDA RID: 7386 RVA: 0x000CE0C4 File Offset: 0x000CC2C4
 	private void InsideRegisterClose()
 	{
 		if (this.tmpClose != null)
@@ -82,7 +82,7 @@ public class ESCCloseManager : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06002042 RID: 8258 RVA: 0x00113078 File Offset: 0x00111278
+	// Token: 0x06001CDB RID: 7387 RVA: 0x000CE124 File Offset: 0x000CC324
 	private void Update()
 	{
 		if (this.cd > 0f)
@@ -108,15 +108,15 @@ public class ESCCloseManager : MonoBehaviour
 		}
 	}
 
-	// Token: 0x04001BBD RID: 7101
+	// Token: 0x04001767 RID: 5991
 	private static ESCCloseManager inst;
 
-	// Token: 0x04001BBE RID: 7102
+	// Token: 0x04001768 RID: 5992
 	private List<IESCClose> closeList = new List<IESCClose>();
 
-	// Token: 0x04001BBF RID: 7103
+	// Token: 0x04001769 RID: 5993
 	private IESCClose tmpClose;
 
-	// Token: 0x04001BC0 RID: 7104
+	// Token: 0x0400176A RID: 5994
 	private float cd;
 }

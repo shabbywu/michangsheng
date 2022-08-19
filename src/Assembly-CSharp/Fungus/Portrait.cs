@@ -3,13 +3,13 @@ using UnityEngine;
 
 namespace Fungus
 {
-	// Token: 0x0200125E RID: 4702
+	// Token: 0x02000E11 RID: 3601
 	[CommandInfo("Narrative", "Portrait", "Controls a character portrait.", 0)]
 	public class Portrait : ControlWithDisplay<DisplayType>
 	{
-		// Token: 0x17000A6E RID: 2670
-		// (get) Token: 0x06007232 RID: 29234 RVA: 0x0004DBB1 File Offset: 0x0004BDB1
-		// (set) Token: 0x06007233 RID: 29235 RVA: 0x0004DBB9 File Offset: 0x0004BDB9
+		// Token: 0x17000807 RID: 2055
+		// (get) Token: 0x060065A4 RID: 26020 RVA: 0x00283B3E File Offset: 0x00281D3E
+		// (set) Token: 0x060065A5 RID: 26021 RVA: 0x00283B46 File Offset: 0x00281D46
 		public virtual Stage _Stage
 		{
 			get
@@ -22,9 +22,9 @@ namespace Fungus
 			}
 		}
 
-		// Token: 0x17000A6F RID: 2671
-		// (get) Token: 0x06007234 RID: 29236 RVA: 0x0004DBC2 File Offset: 0x0004BDC2
-		// (set) Token: 0x06007235 RID: 29237 RVA: 0x0004DBCA File Offset: 0x0004BDCA
+		// Token: 0x17000808 RID: 2056
+		// (get) Token: 0x060065A6 RID: 26022 RVA: 0x00283B4F File Offset: 0x00281D4F
+		// (set) Token: 0x060065A7 RID: 26023 RVA: 0x00283B57 File Offset: 0x00281D57
 		public virtual Character _Character
 		{
 			get
@@ -37,9 +37,9 @@ namespace Fungus
 			}
 		}
 
-		// Token: 0x17000A70 RID: 2672
-		// (get) Token: 0x06007236 RID: 29238 RVA: 0x0004DBD3 File Offset: 0x0004BDD3
-		// (set) Token: 0x06007237 RID: 29239 RVA: 0x0004DBDB File Offset: 0x0004BDDB
+		// Token: 0x17000809 RID: 2057
+		// (get) Token: 0x060065A8 RID: 26024 RVA: 0x00283B60 File Offset: 0x00281D60
+		// (set) Token: 0x060065A9 RID: 26025 RVA: 0x00283B68 File Offset: 0x00281D68
 		public virtual Sprite _Portrait
 		{
 			get
@@ -52,9 +52,9 @@ namespace Fungus
 			}
 		}
 
-		// Token: 0x17000A71 RID: 2673
-		// (get) Token: 0x06007238 RID: 29240 RVA: 0x0004DBE4 File Offset: 0x0004BDE4
-		// (set) Token: 0x06007239 RID: 29241 RVA: 0x0004DBEC File Offset: 0x0004BDEC
+		// Token: 0x1700080A RID: 2058
+		// (get) Token: 0x060065AA RID: 26026 RVA: 0x00283B71 File Offset: 0x00281D71
+		// (set) Token: 0x060065AB RID: 26027 RVA: 0x00283B79 File Offset: 0x00281D79
 		public virtual PositionOffset Offset
 		{
 			get
@@ -67,9 +67,9 @@ namespace Fungus
 			}
 		}
 
-		// Token: 0x17000A72 RID: 2674
-		// (get) Token: 0x0600723A RID: 29242 RVA: 0x0004DBF5 File Offset: 0x0004BDF5
-		// (set) Token: 0x0600723B RID: 29243 RVA: 0x0004DBFD File Offset: 0x0004BDFD
+		// Token: 0x1700080B RID: 2059
+		// (get) Token: 0x060065AC RID: 26028 RVA: 0x00283B82 File Offset: 0x00281D82
+		// (set) Token: 0x060065AD RID: 26029 RVA: 0x00283B8A File Offset: 0x00281D8A
 		public virtual RectTransform FromPosition
 		{
 			get
@@ -82,9 +82,9 @@ namespace Fungus
 			}
 		}
 
-		// Token: 0x17000A73 RID: 2675
-		// (get) Token: 0x0600723C RID: 29244 RVA: 0x0004DC06 File Offset: 0x0004BE06
-		// (set) Token: 0x0600723D RID: 29245 RVA: 0x0004DC0E File Offset: 0x0004BE0E
+		// Token: 0x1700080C RID: 2060
+		// (get) Token: 0x060065AE RID: 26030 RVA: 0x00283B93 File Offset: 0x00281D93
+		// (set) Token: 0x060065AF RID: 26031 RVA: 0x00283B9B File Offset: 0x00281D9B
 		public virtual RectTransform ToPosition
 		{
 			get
@@ -97,9 +97,9 @@ namespace Fungus
 			}
 		}
 
-		// Token: 0x17000A74 RID: 2676
-		// (get) Token: 0x0600723E RID: 29246 RVA: 0x0004DC17 File Offset: 0x0004BE17
-		// (set) Token: 0x0600723F RID: 29247 RVA: 0x0004DC1F File Offset: 0x0004BE1F
+		// Token: 0x1700080D RID: 2061
+		// (get) Token: 0x060065B0 RID: 26032 RVA: 0x00283BA4 File Offset: 0x00281DA4
+		// (set) Token: 0x060065B1 RID: 26033 RVA: 0x00283BAC File Offset: 0x00281DAC
 		public virtual FacingDirection Facing
 		{
 			get
@@ -112,9 +112,9 @@ namespace Fungus
 			}
 		}
 
-		// Token: 0x17000A75 RID: 2677
-		// (get) Token: 0x06007240 RID: 29248 RVA: 0x0004DC28 File Offset: 0x0004BE28
-		// (set) Token: 0x06007241 RID: 29249 RVA: 0x0004DC30 File Offset: 0x0004BE30
+		// Token: 0x1700080E RID: 2062
+		// (get) Token: 0x060065B2 RID: 26034 RVA: 0x00283BB5 File Offset: 0x00281DB5
+		// (set) Token: 0x060065B3 RID: 26035 RVA: 0x00283BBD File Offset: 0x00281DBD
 		public virtual bool UseDefaultSettings
 		{
 			get
@@ -127,9 +127,9 @@ namespace Fungus
 			}
 		}
 
-		// Token: 0x17000A76 RID: 2678
-		// (get) Token: 0x06007242 RID: 29250 RVA: 0x0004DC39 File Offset: 0x0004BE39
-		// (set) Token: 0x06007243 RID: 29251 RVA: 0x0004DC41 File Offset: 0x0004BE41
+		// Token: 0x1700080F RID: 2063
+		// (get) Token: 0x060065B4 RID: 26036 RVA: 0x00283BC6 File Offset: 0x00281DC6
+		// (set) Token: 0x060065B5 RID: 26037 RVA: 0x00283BCE File Offset: 0x00281DCE
 		public virtual bool Move
 		{
 			get
@@ -142,9 +142,9 @@ namespace Fungus
 			}
 		}
 
-		// Token: 0x17000A77 RID: 2679
-		// (get) Token: 0x06007244 RID: 29252 RVA: 0x0004DC4A File Offset: 0x0004BE4A
-		// (set) Token: 0x06007245 RID: 29253 RVA: 0x0004DC52 File Offset: 0x0004BE52
+		// Token: 0x17000810 RID: 2064
+		// (get) Token: 0x060065B6 RID: 26038 RVA: 0x00283BD7 File Offset: 0x00281DD7
+		// (set) Token: 0x060065B7 RID: 26039 RVA: 0x00283BDF File Offset: 0x00281DDF
 		public virtual bool ShiftIntoPlace
 		{
 			get
@@ -157,7 +157,7 @@ namespace Fungus
 			}
 		}
 
-		// Token: 0x06007246 RID: 29254 RVA: 0x002A7AA8 File Offset: 0x002A5CA8
+		// Token: 0x060065B8 RID: 26040 RVA: 0x00283BE8 File Offset: 0x00281DE8
 		public override void OnEnter()
 		{
 			if (this.stage == null)
@@ -193,7 +193,7 @@ namespace Fungus
 			this.stage.RunPortraitCommand(portraitOptions, new Action(this.Continue));
 		}
 
-		// Token: 0x06007247 RID: 29255 RVA: 0x002A7BCC File Offset: 0x002A5DCC
+		// Token: 0x060065B9 RID: 26041 RVA: 0x00283D0C File Offset: 0x00281F0C
 		public override string GetSummary()
 		{
 			if (this.display == DisplayType.None && this.character == null)
@@ -278,89 +278,89 @@ namespace Fungus
 			});
 		}
 
-		// Token: 0x06007248 RID: 29256 RVA: 0x0004C87D File Offset: 0x0004AA7D
+		// Token: 0x060065BA RID: 26042 RVA: 0x0027E190 File Offset: 0x0027C390
 		public override Color GetButtonColor()
 		{
 			return new Color32(230, 200, 250, byte.MaxValue);
 		}
 
-		// Token: 0x06007249 RID: 29257 RVA: 0x0004DC5B File Offset: 0x0004BE5B
+		// Token: 0x060065BB RID: 26043 RVA: 0x00283F47 File Offset: 0x00282147
 		public override void OnCommandAdded(Block parentBlock)
 		{
 			this.display = DisplayType.Show;
 		}
 
-		// Token: 0x0400647C RID: 25724
+		// Token: 0x04005747 RID: 22343
 		[Tooltip("Stage to display portrait on")]
 		[SerializeField]
 		protected Stage stage;
 
-		// Token: 0x0400647D RID: 25725
+		// Token: 0x04005748 RID: 22344
 		[Tooltip("Character to display")]
 		[SerializeField]
 		protected Character character;
 
-		// Token: 0x0400647E RID: 25726
+		// Token: 0x04005749 RID: 22345
 		[Tooltip("Character to swap with")]
 		[SerializeField]
 		protected Character replacedCharacter;
 
-		// Token: 0x0400647F RID: 25727
+		// Token: 0x0400574A RID: 22346
 		[Tooltip("Portrait to display")]
 		[SerializeField]
 		protected Sprite portrait;
 
-		// Token: 0x04006480 RID: 25728
+		// Token: 0x0400574B RID: 22347
 		[Tooltip("Move the portrait from/to this offset position")]
 		[SerializeField]
 		protected PositionOffset offset;
 
-		// Token: 0x04006481 RID: 25729
+		// Token: 0x0400574C RID: 22348
 		[Tooltip("Move the portrait from this position")]
 		[SerializeField]
 		protected RectTransform fromPosition;
 
-		// Token: 0x04006482 RID: 25730
+		// Token: 0x0400574D RID: 22349
 		[Tooltip("Move the portrait to this position")]
 		[SerializeField]
 		protected RectTransform toPosition;
 
-		// Token: 0x04006483 RID: 25731
+		// Token: 0x0400574E RID: 22350
 		[Tooltip("Direction character is facing")]
 		[SerializeField]
 		protected FacingDirection facing;
 
-		// Token: 0x04006484 RID: 25732
+		// Token: 0x0400574F RID: 22351
 		[Tooltip("Use Default Settings")]
 		[SerializeField]
 		protected bool useDefaultSettings = true;
 
-		// Token: 0x04006485 RID: 25733
+		// Token: 0x04005750 RID: 22352
 		[Tooltip("Fade Duration")]
 		[SerializeField]
 		protected float fadeDuration = 0.5f;
 
-		// Token: 0x04006486 RID: 25734
+		// Token: 0x04005751 RID: 22353
 		[Tooltip("Movement Duration")]
 		[SerializeField]
 		protected float moveDuration = 1f;
 
-		// Token: 0x04006487 RID: 25735
+		// Token: 0x04005752 RID: 22354
 		[Tooltip("Shift Offset")]
 		[SerializeField]
 		protected Vector2 shiftOffset;
 
-		// Token: 0x04006488 RID: 25736
+		// Token: 0x04005753 RID: 22355
 		[Tooltip("Move portrait into new position")]
 		[SerializeField]
 		protected bool move;
 
-		// Token: 0x04006489 RID: 25737
+		// Token: 0x04005754 RID: 22356
 		[Tooltip("Start from offset position")]
 		[SerializeField]
 		protected bool shiftIntoPlace;
 
-		// Token: 0x0400648A RID: 25738
+		// Token: 0x04005755 RID: 22357
 		[Tooltip("Wait until the tween has finished before executing the next command")]
 		[SerializeField]
 		protected bool waitUntilFinished;

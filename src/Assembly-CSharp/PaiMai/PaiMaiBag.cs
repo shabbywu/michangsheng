@@ -3,7 +3,7 @@ using Bag;
 
 namespace PaiMai
 {
-	// Token: 0x02000A5A RID: 2650
+	// Token: 0x0200070A RID: 1802
 	public class PaiMaiBag : BaseBag2
 	{
 	}

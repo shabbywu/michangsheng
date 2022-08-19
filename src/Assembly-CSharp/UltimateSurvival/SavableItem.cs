@@ -4,22 +4,22 @@ using UnityEngine;
 
 namespace UltimateSurvival
 {
-	// Token: 0x0200089B RID: 2203
+	// Token: 0x020005D6 RID: 1494
 	[Serializable]
 	public class SavableItem
 	{
-		// Token: 0x170005D1 RID: 1489
-		// (get) Token: 0x060038B5 RID: 14517 RVA: 0x00029470 File Offset: 0x00027670
-		// (set) Token: 0x060038B6 RID: 14518 RVA: 0x00029478 File Offset: 0x00027678
+		// Token: 0x17000414 RID: 1044
+		// (get) Token: 0x06003019 RID: 12313 RVA: 0x00159997 File Offset: 0x00157B97
+		// (set) Token: 0x0600301A RID: 12314 RVA: 0x0015999F File Offset: 0x00157B9F
 		public bool Initialized { get; private set; }
 
-		// Token: 0x170005D2 RID: 1490
-		// (get) Token: 0x060038B7 RID: 14519 RVA: 0x00029481 File Offset: 0x00027681
-		// (set) Token: 0x060038B8 RID: 14520 RVA: 0x00029489 File Offset: 0x00027689
+		// Token: 0x17000415 RID: 1045
+		// (get) Token: 0x0600301B RID: 12315 RVA: 0x001599A8 File Offset: 0x00157BA8
+		// (set) Token: 0x0600301C RID: 12316 RVA: 0x001599B0 File Offset: 0x00157BB0
 		public ItemData ItemData { get; private set; }
 
-		// Token: 0x170005D3 RID: 1491
-		// (get) Token: 0x060038B9 RID: 14521 RVA: 0x00029492 File Offset: 0x00027692
+		// Token: 0x17000416 RID: 1046
+		// (get) Token: 0x0600301D RID: 12317 RVA: 0x001599B9 File Offset: 0x00157BB9
 		public int Id
 		{
 			get
@@ -28,8 +28,8 @@ namespace UltimateSurvival
 			}
 		}
 
-		// Token: 0x170005D4 RID: 1492
-		// (get) Token: 0x060038BA RID: 14522 RVA: 0x0002949F File Offset: 0x0002769F
+		// Token: 0x17000417 RID: 1047
+		// (get) Token: 0x0600301E RID: 12318 RVA: 0x001599C6 File Offset: 0x00157BC6
 		public string Name
 		{
 			get
@@ -38,9 +38,9 @@ namespace UltimateSurvival
 			}
 		}
 
-		// Token: 0x170005D5 RID: 1493
-		// (get) Token: 0x060038BB RID: 14523 RVA: 0x000294AC File Offset: 0x000276AC
-		// (set) Token: 0x060038BC RID: 14524 RVA: 0x000294B4 File Offset: 0x000276B4
+		// Token: 0x17000418 RID: 1048
+		// (get) Token: 0x0600301F RID: 12319 RVA: 0x001599D3 File Offset: 0x00157BD3
+		// (set) Token: 0x06003020 RID: 12320 RVA: 0x001599DB File Offset: 0x00157BDB
 		public int CurrentInStack
 		{
 			get
@@ -54,8 +54,8 @@ namespace UltimateSurvival
 			}
 		}
 
-		// Token: 0x170005D6 RID: 1494
-		// (get) Token: 0x060038BD RID: 14525 RVA: 0x000294C8 File Offset: 0x000276C8
+		// Token: 0x17000419 RID: 1049
+		// (get) Token: 0x06003021 RID: 12321 RVA: 0x001599EF File Offset: 0x00157BEF
 		public List<ItemProperty.Value> CurrentPropertyValues
 		{
 			get
@@ -64,13 +64,13 @@ namespace UltimateSurvival
 			}
 		}
 
-		// Token: 0x060038BE RID: 14526 RVA: 0x000079B2 File Offset: 0x00005BB2
+		// Token: 0x06003022 RID: 12322 RVA: 0x00014667 File Offset: 0x00012867
 		public static implicit operator bool(SavableItem item)
 		{
 			return item != null;
 		}
 
-		// Token: 0x060038BF RID: 14527 RVA: 0x001A3460 File Offset: 0x001A1660
+		// Token: 0x06003023 RID: 12323 RVA: 0x001599F8 File Offset: 0x00157BF8
 		public SavableItem(ItemData data, int currentInStack = 1, List<ItemProperty.Value> customPropertyValues = null)
 		{
 			this.CurrentInStack = Mathf.Clamp(currentInStack, 1, data.StackSize);
@@ -90,7 +90,7 @@ namespace UltimateSurvival
 			}
 		}
 
-		// Token: 0x060038C0 RID: 14528 RVA: 0x001A3508 File Offset: 0x001A1708
+		// Token: 0x06003024 RID: 12324 RVA: 0x00159AA0 File Offset: 0x00157CA0
 		public void OnLoad(ItemDatabase itemDatabase)
 		{
 			if (!itemDatabase)
@@ -115,7 +115,7 @@ namespace UltimateSurvival
 			});
 		}
 
-		// Token: 0x060038C1 RID: 14529 RVA: 0x001A3598 File Offset: 0x001A1798
+		// Token: 0x06003025 RID: 12325 RVA: 0x00159B30 File Offset: 0x00157D30
 		public string GetDescription(int index)
 		{
 			string result = string.Empty;
@@ -135,7 +135,7 @@ namespace UltimateSurvival
 			return result;
 		}
 
-		// Token: 0x060038C2 RID: 14530 RVA: 0x001A360C File Offset: 0x001A180C
+		// Token: 0x06003026 RID: 12326 RVA: 0x00159BA4 File Offset: 0x00157DA4
 		public bool HasProperty(string name)
 		{
 			if (!this.Initialized)
@@ -153,7 +153,7 @@ namespace UltimateSurvival
 			return false;
 		}
 
-		// Token: 0x060038C3 RID: 14531 RVA: 0x001A3660 File Offset: 0x001A1860
+		// Token: 0x06003027 RID: 12327 RVA: 0x00159BF8 File Offset: 0x00157DF8
 		public ItemProperty.Value GetPropertyValue(string name)
 		{
 			ItemProperty.Value result = null;
@@ -173,7 +173,7 @@ namespace UltimateSurvival
 			return result;
 		}
 
-		// Token: 0x060038C4 RID: 14532 RVA: 0x001A36C4 File Offset: 0x001A18C4
+		// Token: 0x06003028 RID: 12328 RVA: 0x00159C5C File Offset: 0x00157E5C
 		public bool FindPropertyValue(string name, out ItemProperty.Value propertyValue)
 		{
 			propertyValue = null;
@@ -193,7 +193,7 @@ namespace UltimateSurvival
 			return false;
 		}
 
-		// Token: 0x060038C5 RID: 14533 RVA: 0x001A3728 File Offset: 0x001A1928
+		// Token: 0x06003029 RID: 12329 RVA: 0x00159CC0 File Offset: 0x00157EC0
 		private List<ItemProperty.Value> CloneProperties(List<ItemProperty.Value> properties)
 		{
 			List<ItemProperty.Value> list = new List<ItemProperty.Value>();
@@ -204,26 +204,26 @@ namespace UltimateSurvival
 			return list;
 		}
 
-		// Token: 0x060038C6 RID: 14534 RVA: 0x000294D0 File Offset: 0x000276D0
+		// Token: 0x0600302A RID: 12330 RVA: 0x00159CF7 File Offset: 0x00157EF7
 		private void On_PropertyChanged(ItemProperty.Value propertyValue)
 		{
 			this.PropertyChanged.Send(propertyValue);
 		}
 
-		// Token: 0x0400330B RID: 13067
+		// Token: 0x04002A75 RID: 10869
 		public Message<ItemProperty.Value> PropertyChanged = new Message<ItemProperty.Value>();
 
-		// Token: 0x0400330C RID: 13068
+		// Token: 0x04002A76 RID: 10870
 		public Message StackChanged = new Message();
 
-		// Token: 0x0400330F RID: 13071
+		// Token: 0x04002A79 RID: 10873
 		public Item m_Item;
 
-		// Token: 0x04003310 RID: 13072
+		// Token: 0x04002A7A RID: 10874
 		[SerializeField]
 		private int m_CurrentInStack;
 
-		// Token: 0x04003311 RID: 13073
+		// Token: 0x04002A7B RID: 10875
 		[SerializeField]
 		private List<ItemProperty.Value> m_CurrentPropertyValues;
 	}

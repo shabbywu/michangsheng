@@ -1,10 +1,10 @@
 ﻿using System;
 using UnityEngine;
 
-// Token: 0x020005D8 RID: 1496
+// Token: 0x02000424 RID: 1060
 public class setDouFaBaoCun : MonoBehaviour
 {
-	// Token: 0x060025A7 RID: 9639 RVA: 0x0001E28D File Offset: 0x0001C48D
+	// Token: 0x060021ED RID: 8685 RVA: 0x000E9E8E File Offset: 0x000E808E
 	private void Start()
 	{
 		if (PlayerPrefs.GetInt("NowPlayerFileAvatar") >= 100)
@@ -13,7 +13,7 @@ public class setDouFaBaoCun : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060025A8 RID: 9640 RVA: 0x000042DD File Offset: 0x000024DD
+	// Token: 0x060021EE RID: 8686 RVA: 0x00004095 File Offset: 0x00002295
 	private void Update()
 	{
 	}

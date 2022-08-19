@@ -4,11 +4,11 @@ using UnityEngine.UI;
 
 namespace Fungus
 {
-	// Token: 0x02001294 RID: 4756
+	// Token: 0x02000E43 RID: 3651
 	[CommandInfo("UI", "Set Toggle State", "Sets the state of a toggle UI object", 0)]
 	public class SetToggleState : Command
 	{
-		// Token: 0x0600734C RID: 29516 RVA: 0x0004EAA5 File Offset: 0x0004CCA5
+		// Token: 0x060066BE RID: 26302 RVA: 0x00286FC1 File Offset: 0x002851C1
 		public override void OnEnter()
 		{
 			if (this.toggle != null)
@@ -18,13 +18,13 @@ namespace Fungus
 			this.Continue();
 		}
 
-		// Token: 0x0600734D RID: 29517 RVA: 0x0004C5E0 File Offset: 0x0004A7E0
+		// Token: 0x060066BF RID: 26303 RVA: 0x0027D3DB File Offset: 0x0027B5DB
 		public override Color GetButtonColor()
 		{
 			return new Color32(235, 191, 217, byte.MaxValue);
 		}
 
-		// Token: 0x0600734E RID: 29518 RVA: 0x0004EAD1 File Offset: 0x0004CCD1
+		// Token: 0x060066C0 RID: 26304 RVA: 0x00286FED File Offset: 0x002851ED
 		public override string GetSummary()
 		{
 			if (this.toggle == null)
@@ -34,18 +34,18 @@ namespace Fungus
 			return this.toggle.name + " = " + this.value.GetDescription();
 		}
 
-		// Token: 0x0600734F RID: 29519 RVA: 0x0004EB07 File Offset: 0x0004CD07
+		// Token: 0x060066C1 RID: 26305 RVA: 0x00287023 File Offset: 0x00285223
 		public override bool HasReference(Variable variable)
 		{
 			return this.value.booleanRef == variable || base.HasReference(variable);
 		}
 
-		// Token: 0x04006531 RID: 25905
+		// Token: 0x040057ED RID: 22509
 		[Tooltip("Target toggle object to set the state on")]
 		[SerializeField]
 		protected Toggle toggle;
 
-		// Token: 0x04006532 RID: 25906
+		// Token: 0x040057EE RID: 22510
 		[Tooltip("Boolean value to set the toggle state to.")]
 		[SerializeField]
 		protected BooleanData value;

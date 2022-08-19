@@ -6,28 +6,28 @@ using UnityEngine.UI;
 
 namespace Tab
 {
-	// Token: 0x02000A51 RID: 2641
+	// Token: 0x02000704 RID: 1796
 	[Serializable]
 	public class TabWuDaoPanel : ITabPanelBase
 	{
-		// Token: 0x170007D0 RID: 2000
-		// (get) Token: 0x0600441F RID: 17439 RVA: 0x00030CD8 File Offset: 0x0002EED8
-		// (set) Token: 0x06004420 RID: 17440 RVA: 0x00030CE0 File Offset: 0x0002EEE0
+		// Token: 0x1700059E RID: 1438
+		// (get) Token: 0x0600399B RID: 14747 RVA: 0x0018A4CE File Offset: 0x001886CE
+		// (set) Token: 0x0600399C RID: 14748 RVA: 0x0018A4D6 File Offset: 0x001886D6
 		public Dictionary<int, GameObject> WudaoSkillListDict { get; private set; }
 
-		// Token: 0x170007D1 RID: 2001
-		// (get) Token: 0x06004421 RID: 17441 RVA: 0x00030CE9 File Offset: 0x0002EEE9
-		// (set) Token: 0x06004422 RID: 17442 RVA: 0x00030CF1 File Offset: 0x0002EEF1
+		// Token: 0x1700059F RID: 1439
+		// (get) Token: 0x0600399D RID: 14749 RVA: 0x0018A4DF File Offset: 0x001886DF
+		// (set) Token: 0x0600399E RID: 14750 RVA: 0x0018A4E7 File Offset: 0x001886E7
 		public Dictionary<string, Sprite> WudaoBgImgDict { get; private set; }
 
-		// Token: 0x06004423 RID: 17443 RVA: 0x00030CFA File Offset: 0x0002EEFA
+		// Token: 0x0600399F RID: 14751 RVA: 0x0018A4F0 File Offset: 0x001886F0
 		public TabWuDaoPanel(GameObject gameObject)
 		{
 			this._go = gameObject;
 			this._isInit = false;
 		}
 
-		// Token: 0x06004424 RID: 17444 RVA: 0x001D1CCC File Offset: 0x001CFECC
+		// Token: 0x060039A0 RID: 14752 RVA: 0x0018A508 File Offset: 0x00188708
 		private void Init()
 		{
 			this._wudaoImgDict = ResManager.inst.LoadSpriteAtlas("NewTab/WuDaoType");
@@ -50,7 +50,7 @@ namespace Tab
 			this.SelectTypeCallBack(this._wudaoSelectList[0]);
 		}
 
-		// Token: 0x06004425 RID: 17445 RVA: 0x001D1E28 File Offset: 0x001D0028
+		// Token: 0x060039A1 RID: 14753 RVA: 0x0018A664 File Offset: 0x00188864
 		public void SelectTypeCallBack(TabWuDaoToggle toggle)
 		{
 			if (this._curSelectType != null)
@@ -71,13 +71,13 @@ namespace Tab
 			this._wuDaoLevel.UpdateUI(this._curSelectType.Id);
 		}
 
-		// Token: 0x06004426 RID: 17446 RVA: 0x001D1EE0 File Offset: 0x001D00E0
+		// Token: 0x060039A2 RID: 14754 RVA: 0x0018A71C File Offset: 0x0018891C
 		public void UpdateWuDaoDian()
 		{
 			this._curWuDaoDian.text = Tools.instance.getPlayer().wuDaoMag.GetNowWuDaoDian().ToString();
 		}
 
-		// Token: 0x06004427 RID: 17447 RVA: 0x001D1F14 File Offset: 0x001D0114
+		// Token: 0x060039A3 RID: 14755 RVA: 0x0018A750 File Offset: 0x00188950
 		public void UpdateUI()
 		{
 			this.UpdateWuDaoDian();
@@ -88,7 +88,7 @@ namespace Tab
 			}
 		}
 
-		// Token: 0x06004428 RID: 17448 RVA: 0x00030D10 File Offset: 0x0002EF10
+		// Token: 0x060039A4 RID: 14756 RVA: 0x0018A7A8 File Offset: 0x001889A8
 		public override void Show()
 		{
 			if (!this._isInit)
@@ -100,28 +100,28 @@ namespace Tab
 			this._go.SetActive(true);
 		}
 
-		// Token: 0x04003C31 RID: 15409
+		// Token: 0x040031B5 RID: 12725
 		private bool _isInit;
 
-		// Token: 0x04003C32 RID: 15410
+		// Token: 0x040031B6 RID: 12726
 		private List<TabWuDaoToggle> _wudaoSelectList;
 
-		// Token: 0x04003C33 RID: 15411
+		// Token: 0x040031B7 RID: 12727
 		private TabWuDaoToggle _curSelectType;
 
-		// Token: 0x04003C34 RID: 15412
+		// Token: 0x040031B8 RID: 12728
 		public WuDaoTooltip WuDaoTooltip;
 
-		// Token: 0x04003C35 RID: 15413
+		// Token: 0x040031B9 RID: 12729
 		private Dictionary<string, Sprite> _wudaoImgDict;
 
-		// Token: 0x04003C38 RID: 15416
+		// Token: 0x040031BC RID: 12732
 		private TabWuDaoLevel _wuDaoLevel;
 
-		// Token: 0x04003C39 RID: 15417
+		// Token: 0x040031BD RID: 12733
 		private Text _curWuDaoDian;
 
-		// Token: 0x04003C3A RID: 15418
+		// Token: 0x040031BE RID: 12734
 		private Text _curSiXuNum;
 	}
 }

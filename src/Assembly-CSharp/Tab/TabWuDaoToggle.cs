@@ -7,11 +7,11 @@ using YSGame;
 
 namespace Tab
 {
-	// Token: 0x02000A34 RID: 2612
+	// Token: 0x020006F3 RID: 1779
 	[Serializable]
 	public class TabWuDaoToggle : UIBase
 	{
-		// Token: 0x06004395 RID: 17301 RVA: 0x001CE100 File Offset: 0x001CC300
+		// Token: 0x0600392A RID: 14634 RVA: 0x00186790 File Offset: 0x00184990
 		public TabWuDaoToggle(GameObject go, int wudaoId, Sprite sprite)
 		{
 			this._go = go;
@@ -20,10 +20,10 @@ namespace Tab
 			this._active = base.Get("Active", true);
 			this._noActive = base.Get("NoActive", true);
 			WuDaoAllTypeJson wuDaoAllTypeJson = WuDaoAllTypeJson.DataDict[wudaoId];
-			TabListener tabListener = go.AddComponent<TabListener>();
-			tabListener.mouseEnterEvent.AddListener(new UnityAction(this.Enter));
-			tabListener.mouseOutEvent.AddListener(new UnityAction(this.Out));
-			tabListener.mouseUpEvent.AddListener(new UnityAction(this.Click));
+			UIListener uilistener = go.AddComponent<UIListener>();
+			uilistener.mouseEnterEvent.AddListener(new UnityAction(this.Enter));
+			uilistener.mouseOutEvent.AddListener(new UnityAction(this.Out));
+			uilistener.mouseUpEvent.AddListener(new UnityAction(this.Click));
 			base.Get<Image>("Active/Icon").sprite = sprite;
 			base.Get<Image>("NoActive/Icon").sprite = sprite;
 			base.Get<Text>("Active/Name").text = wuDaoAllTypeJson.name;
@@ -31,7 +31,7 @@ namespace Tab
 			this._go.SetActive(true);
 		}
 
-		// Token: 0x06004396 RID: 17302 RVA: 0x000304F9 File Offset: 0x0002E6F9
+		// Token: 0x0600392B RID: 14635 RVA: 0x0018688C File Offset: 0x00184A8C
 		private void Click()
 		{
 			if (!this._isActive)
@@ -41,13 +41,13 @@ namespace Tab
 			}
 		}
 
-		// Token: 0x06004397 RID: 17303 RVA: 0x00030523 File Offset: 0x0002E723
+		// Token: 0x0600392C RID: 14636 RVA: 0x001868B6 File Offset: 0x00184AB6
 		public void SetIsActive(bool flag)
 		{
 			this._isActive = flag;
 		}
 
-		// Token: 0x06004398 RID: 17304 RVA: 0x0003052C File Offset: 0x0002E72C
+		// Token: 0x0600392D RID: 14637 RVA: 0x001868BF File Offset: 0x00184ABF
 		public void UpdateUI()
 		{
 			if (this._isActive)
@@ -60,7 +60,7 @@ namespace Tab
 			this._active.SetActive(false);
 		}
 
-		// Token: 0x06004399 RID: 17305 RVA: 0x00030567 File Offset: 0x0002E767
+		// Token: 0x0600392E RID: 14638 RVA: 0x001868FA File Offset: 0x00184AFA
 		private void Enter()
 		{
 			if (!this._isActive)
@@ -70,22 +70,22 @@ namespace Tab
 			}
 		}
 
-		// Token: 0x0600439A RID: 17306 RVA: 0x00030589 File Offset: 0x0002E789
+		// Token: 0x0600392F RID: 14639 RVA: 0x0018691C File Offset: 0x00184B1C
 		private void Out()
 		{
 			this.UpdateUI();
 		}
 
-		// Token: 0x04003B99 RID: 15257
+		// Token: 0x04003134 RID: 12596
 		private bool _isActive;
 
-		// Token: 0x04003B9A RID: 15258
+		// Token: 0x04003135 RID: 12597
 		private GameObject _active;
 
-		// Token: 0x04003B9B RID: 15259
+		// Token: 0x04003136 RID: 12598
 		private GameObject _noActive;
 
-		// Token: 0x04003B9C RID: 15260
+		// Token: 0x04003137 RID: 12599
 		public int Id;
 	}
 }

@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
-// Token: 0x02000239 RID: 569
+// Token: 0x02000160 RID: 352
 public class MessageBoxExample : MonoBehaviour
 {
-	// Token: 0x06001182 RID: 4482 RVA: 0x000ABE78 File Offset: 0x000AA078
+	// Token: 0x06000F50 RID: 3920 RVA: 0x0005C074 File Offset: 0x0005A274
 	private void Start()
 	{
 		GameObject gameObject = GameObject.Find("Message Box");
@@ -21,19 +21,19 @@ public class MessageBoxExample : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001183 RID: 4483 RVA: 0x00010F25 File Offset: 0x0000F125
+	// Token: 0x06000F51 RID: 3921 RVA: 0x0005C0B5 File Offset: 0x0005A2B5
 	public void Test()
 	{
 		MessageBox.Show("Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.", null, null, MessageBoxButtons.OK);
 	}
 
-	// Token: 0x06001184 RID: 4484 RVA: 0x00010F35 File Offset: 0x0000F135
+	// Token: 0x06000F52 RID: 3922 RVA: 0x0005C0C5 File Offset: 0x0005A2C5
 	public void TestWithTitle()
 	{
 		MessageBox.Show("This is a message with a title.", "Message Box Title", null, MessageBoxButtons.OK);
 	}
 
-	// Token: 0x06001185 RID: 4485 RVA: 0x00010F49 File Offset: 0x0000F149
+	// Token: 0x06000F53 RID: 3923 RVA: 0x0005C0D9 File Offset: 0x0005A2D9
 	public void TestWithCallback()
 	{
 		MessageBox.Show("This is a message with a callback.", "Message Box Callback Example", delegate(DialogResult result)
@@ -42,7 +42,7 @@ public class MessageBoxExample : MonoBehaviour
 		}, MessageBoxButtons.OK);
 	}
 
-	// Token: 0x06001186 RID: 4486 RVA: 0x00010F7B File Offset: 0x0000F17B
+	// Token: 0x06000F54 RID: 3924 RVA: 0x0005C10B File Offset: 0x0005A30B
 	public void TestOKCancelButtons()
 	{
 		MessageBox.Show("Are you sure you wish to delete your save game?", "Delete Save", delegate(DialogResult result)
@@ -51,7 +51,7 @@ public class MessageBoxExample : MonoBehaviour
 		}, MessageBoxButtons.OKCancel);
 	}
 
-	// Token: 0x06001187 RID: 4487 RVA: 0x00010FAD File Offset: 0x0000F1AD
+	// Token: 0x06000F55 RID: 3925 RVA: 0x0005C13D File Offset: 0x0005A33D
 	public void TestRetryCancelButtons()
 	{
 		MessageBox.Show("This is a message with a set of buttons selected.", "Message Box Buttons Example", delegate(DialogResult result)
@@ -60,7 +60,7 @@ public class MessageBoxExample : MonoBehaviour
 		}, MessageBoxButtons.RetryCancel);
 	}
 
-	// Token: 0x06001188 RID: 4488 RVA: 0x00010FDF File Offset: 0x0000F1DF
+	// Token: 0x06000F56 RID: 3926 RVA: 0x0005C16F File Offset: 0x0005A36F
 	public void TestYesNoButtons()
 	{
 		MessageBox.Show("Give us five stars?", "Review Game", delegate(DialogResult result)
@@ -69,7 +69,7 @@ public class MessageBoxExample : MonoBehaviour
 		}, MessageBoxButtons.YesNo);
 	}
 
-	// Token: 0x06001189 RID: 4489 RVA: 0x00011011 File Offset: 0x0000F211
+	// Token: 0x06000F57 RID: 3927 RVA: 0x0005C1A1 File Offset: 0x0005A3A1
 	public void TestYesNoCancelButtons()
 	{
 		MessageBox.Show("This is a message with a set of buttons selected.", "Message Box Buttons Example", delegate(DialogResult result)
@@ -78,7 +78,7 @@ public class MessageBoxExample : MonoBehaviour
 		}, MessageBoxButtons.YesNoCancel);
 	}
 
-	// Token: 0x0600118A RID: 4490 RVA: 0x00011043 File Offset: 0x0000F243
+	// Token: 0x06000F58 RID: 3928 RVA: 0x0005C1D3 File Offset: 0x0005A3D3
 	public void TestAbortRetryIgnoreButtons()
 	{
 		MessageBox.Show("Not ready reading drive A", "Message Box Buttons Example", delegate(DialogResult result)
@@ -87,7 +87,7 @@ public class MessageBoxExample : MonoBehaviour
 		}, MessageBoxButtons.AbortRetryIgnore);
 	}
 
-	// Token: 0x0600118B RID: 4491 RVA: 0x000ABEBC File Offset: 0x000AA0BC
+	// Token: 0x06000F59 RID: 3929 RVA: 0x0005C208 File Offset: 0x0005A408
 	public void TestMenu5()
 	{
 		IEnumerable<string> options = new string[]
@@ -122,7 +122,7 @@ public class MessageBoxExample : MonoBehaviour
 		MenuBox.Show(options, array, "");
 	}
 
-	// Token: 0x0600118C RID: 4492 RVA: 0x000ABFB4 File Offset: 0x000AA1B4
+	// Token: 0x06000F5A RID: 3930 RVA: 0x0005C300 File Offset: 0x0005A500
 	public void TestMenu10()
 	{
 		IEnumerable<string> options = new string[]
@@ -179,7 +179,7 @@ public class MessageBoxExample : MonoBehaviour
 		MenuBox.Show(options, array, "Ten Item Test Menu");
 	}
 
-	// Token: 0x0600118D RID: 4493 RVA: 0x000AC170 File Offset: 0x000AA370
+	// Token: 0x06000F5B RID: 3931 RVA: 0x0005C4BC File Offset: 0x0005A6BC
 	public void TestMenu15()
 	{
 		IEnumerable<string> options = new string[]
@@ -264,7 +264,7 @@ public class MessageBoxExample : MonoBehaviour
 		MenuBox.Show(options, array, "Fifteen Item Test Menu");
 	}
 
-	// Token: 0x0600118E RID: 4494 RVA: 0x000AC418 File Offset: 0x000AA618
+	// Token: 0x06000F5C RID: 3932 RVA: 0x0005C764 File Offset: 0x0005A964
 	public void TestLocalization()
 	{
 		Func<string, string> originalLocalizeFunction = MessageBox.Localize;

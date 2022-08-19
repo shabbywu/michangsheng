@@ -1,11 +1,11 @@
 ﻿using System;
 
-// Token: 0x0200011C RID: 284
+// Token: 0x020000B0 RID: 176
 [Serializable]
 public class UISpriteData
 {
-	// Token: 0x170001D1 RID: 465
-	// (get) Token: 0x06000B37 RID: 2871 RVA: 0x0000D3B4 File Offset: 0x0000B5B4
+	// Token: 0x170001BA RID: 442
+	// (get) Token: 0x06000A5B RID: 2651 RVA: 0x0003E961 File Offset: 0x0003CB61
 	public bool hasBorder
 	{
 		get
@@ -14,8 +14,8 @@ public class UISpriteData
 		}
 	}
 
-	// Token: 0x170001D2 RID: 466
-	// (get) Token: 0x06000B38 RID: 2872 RVA: 0x0000D3D4 File Offset: 0x0000B5D4
+	// Token: 0x170001BB RID: 443
+	// (get) Token: 0x06000A5C RID: 2652 RVA: 0x0003E981 File Offset: 0x0003CB81
 	public bool hasPadding
 	{
 		get
@@ -24,7 +24,7 @@ public class UISpriteData
 		}
 	}
 
-	// Token: 0x06000B39 RID: 2873 RVA: 0x0000D3F4 File Offset: 0x0000B5F4
+	// Token: 0x06000A5D RID: 2653 RVA: 0x0003E9A1 File Offset: 0x0003CBA1
 	public void SetRect(int x, int y, int width, int height)
 	{
 		this.x = x;
@@ -33,7 +33,7 @@ public class UISpriteData
 		this.height = height;
 	}
 
-	// Token: 0x06000B3A RID: 2874 RVA: 0x0000D413 File Offset: 0x0000B613
+	// Token: 0x06000A5E RID: 2654 RVA: 0x0003E9C0 File Offset: 0x0003CBC0
 	public void SetPadding(int left, int bottom, int right, int top)
 	{
 		this.paddingLeft = left;
@@ -42,7 +42,7 @@ public class UISpriteData
 		this.paddingTop = top;
 	}
 
-	// Token: 0x06000B3B RID: 2875 RVA: 0x0000D432 File Offset: 0x0000B632
+	// Token: 0x06000A5F RID: 2655 RVA: 0x0003E9DF File Offset: 0x0003CBDF
 	public void SetBorder(int left, int bottom, int right, int top)
 	{
 		this.borderLeft = left;
@@ -51,7 +51,7 @@ public class UISpriteData
 		this.borderTop = top;
 	}
 
-	// Token: 0x06000B3C RID: 2876 RVA: 0x0009117C File Offset: 0x0008F37C
+	// Token: 0x06000A60 RID: 2656 RVA: 0x0003EA00 File Offset: 0x0003CC00
 	public void CopyFrom(UISpriteData sd)
 	{
 		this.name = sd.name;
@@ -69,7 +69,7 @@ public class UISpriteData
 		this.paddingBottom = sd.paddingBottom;
 	}
 
-	// Token: 0x06000B3D RID: 2877 RVA: 0x0000D451 File Offset: 0x0000B651
+	// Token: 0x06000A61 RID: 2657 RVA: 0x0003EAA9 File Offset: 0x0003CCA9
 	public void CopyBorderFrom(UISpriteData sd)
 	{
 		this.borderLeft = sd.borderLeft;
@@ -78,42 +78,42 @@ public class UISpriteData
 		this.borderBottom = sd.borderBottom;
 	}
 
-	// Token: 0x040007E4 RID: 2020
+	// Token: 0x0400064D RID: 1613
 	public string name = "Sprite";
 
-	// Token: 0x040007E5 RID: 2021
+	// Token: 0x0400064E RID: 1614
 	public int x;
 
-	// Token: 0x040007E6 RID: 2022
+	// Token: 0x0400064F RID: 1615
 	public int y;
 
-	// Token: 0x040007E7 RID: 2023
+	// Token: 0x04000650 RID: 1616
 	public int width;
 
-	// Token: 0x040007E8 RID: 2024
+	// Token: 0x04000651 RID: 1617
 	public int height;
 
-	// Token: 0x040007E9 RID: 2025
+	// Token: 0x04000652 RID: 1618
 	public int borderLeft;
 
-	// Token: 0x040007EA RID: 2026
+	// Token: 0x04000653 RID: 1619
 	public int borderRight;
 
-	// Token: 0x040007EB RID: 2027
+	// Token: 0x04000654 RID: 1620
 	public int borderTop;
 
-	// Token: 0x040007EC RID: 2028
+	// Token: 0x04000655 RID: 1621
 	public int borderBottom;
 
-	// Token: 0x040007ED RID: 2029
+	// Token: 0x04000656 RID: 1622
 	public int paddingLeft;
 
-	// Token: 0x040007EE RID: 2030
+	// Token: 0x04000657 RID: 1623
 	public int paddingRight;
 
-	// Token: 0x040007EF RID: 2031
+	// Token: 0x04000658 RID: 1624
 	public int paddingTop;
 
-	// Token: 0x040007F0 RID: 2032
+	// Token: 0x04000659 RID: 1625
 	public int paddingBottom;
 }

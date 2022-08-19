@@ -5,10 +5,10 @@ using MoonSharp.VsCodeDebugger.SDK;
 
 namespace MoonSharp.VsCodeDebugger.DebuggerLogic
 {
-	// Token: 0x020011E4 RID: 4580
+	// Token: 0x02000DB6 RID: 3510
 	internal static class VariableInspector
 	{
-		// Token: 0x06007044 RID: 28740 RVA: 0x002A1EA4 File Offset: 0x002A00A4
+		// Token: 0x060063FA RID: 25594 RVA: 0x0027CC1C File Offset: 0x0027AE1C
 		internal static void InspectVariable(DynValue v, List<Variable> variables)
 		{
 			variables.Add(new Variable("(value)", v.ToPrintString(), 0));

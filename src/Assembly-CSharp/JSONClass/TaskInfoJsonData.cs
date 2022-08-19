@@ -3,10 +3,10 @@ using System.Collections.Generic;
 
 namespace JSONClass
 {
-	// Token: 0x02000CF3 RID: 3315
+	// Token: 0x0200096F RID: 2415
 	public class TaskInfoJsonData : IJSONClass
 	{
-		// Token: 0x06004F34 RID: 20276 RVA: 0x00213910 File Offset: 0x00211B10
+		// Token: 0x060043CE RID: 17358 RVA: 0x001CDF08 File Offset: 0x001CC108
 		public static void InitDataDict()
 		{
 			foreach (JSONObject jsonobject in jsonData.instance.TaskInfoJsonData.list)
@@ -43,36 +43,36 @@ namespace JSONClass
 			}
 		}
 
-		// Token: 0x06004F35 RID: 20277 RVA: 0x000042DD File Offset: 0x000024DD
+		// Token: 0x060043CF RID: 17359 RVA: 0x00004095 File Offset: 0x00002295
 		private static void OnInitFinish()
 		{
 		}
 
-		// Token: 0x04004FF5 RID: 20469
+		// Token: 0x040044E5 RID: 17637
 		public static Dictionary<int, TaskInfoJsonData> DataDict = new Dictionary<int, TaskInfoJsonData>();
 
-		// Token: 0x04004FF6 RID: 20470
+		// Token: 0x040044E6 RID: 17638
 		public static List<TaskInfoJsonData> DataList = new List<TaskInfoJsonData>();
 
-		// Token: 0x04004FF7 RID: 20471
+		// Token: 0x040044E7 RID: 17639
 		public static Action OnInitFinishAction = new Action(TaskInfoJsonData.OnInitFinish);
 
-		// Token: 0x04004FF8 RID: 20472
+		// Token: 0x040044E8 RID: 17640
 		public int id;
 
-		// Token: 0x04004FF9 RID: 20473
+		// Token: 0x040044E9 RID: 17641
 		public int TaskID;
 
-		// Token: 0x04004FFA RID: 20474
+		// Token: 0x040044EA RID: 17642
 		public int TaskIndex;
 
-		// Token: 0x04004FFB RID: 20475
+		// Token: 0x040044EB RID: 17643
 		public int mapIndex;
 
-		// Token: 0x04004FFC RID: 20476
+		// Token: 0x040044EC RID: 17644
 		public int IsFinal;
 
-		// Token: 0x04004FFD RID: 20477
+		// Token: 0x040044ED RID: 17645
 		public string Desc;
 	}
 }

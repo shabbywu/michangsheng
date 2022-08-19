@@ -2,29 +2,29 @@
 
 namespace KBEngine
 {
-	// Token: 0x02000F28 RID: 3880
+	// Token: 0x02000BA5 RID: 2981
 	public struct DOUBLE
 	{
-		// Token: 0x06005D85 RID: 23941 RVA: 0x00041BD8 File Offset: 0x0003FDD8
+		// Token: 0x06005347 RID: 21319 RVA: 0x00233A77 File Offset: 0x00231C77
 		private DOUBLE(double value)
 		{
 			this.value = value;
 		}
 
-		// Token: 0x06005D86 RID: 23942 RVA: 0x00041BE1 File Offset: 0x0003FDE1
+		// Token: 0x06005348 RID: 21320 RVA: 0x00233A80 File Offset: 0x00231C80
 		public static implicit operator double(DOUBLE value)
 		{
 			return value.value;
 		}
 
-		// Token: 0x06005D87 RID: 23943 RVA: 0x00041BE9 File Offset: 0x0003FDE9
+		// Token: 0x06005349 RID: 21321 RVA: 0x00233A88 File Offset: 0x00231C88
 		public static implicit operator DOUBLE(double value)
 		{
 			return new DOUBLE(value);
 		}
 
-		// Token: 0x1700086B RID: 2155
-		// (get) Token: 0x06005D88 RID: 23944 RVA: 0x00041BF2 File Offset: 0x0003FDF2
+		// Token: 0x17000618 RID: 1560
+		// (get) Token: 0x0600534A RID: 21322 RVA: 0x00233A91 File Offset: 0x00231C91
 		public static double MaxValue
 		{
 			get
@@ -33,8 +33,8 @@ namespace KBEngine
 			}
 		}
 
-		// Token: 0x1700086C RID: 2156
-		// (get) Token: 0x06005D89 RID: 23945 RVA: 0x00041BFD File Offset: 0x0003FDFD
+		// Token: 0x17000619 RID: 1561
+		// (get) Token: 0x0600534B RID: 21323 RVA: 0x00233A9C File Offset: 0x00231C9C
 		public static double MinValue
 		{
 			get
@@ -43,7 +43,7 @@ namespace KBEngine
 			}
 		}
 
-		// Token: 0x04005AD2 RID: 23250
+		// Token: 0x04005031 RID: 20529
 		private double value;
 	}
 }

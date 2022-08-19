@@ -6,16 +6,16 @@ using UnityEngine.Events;
 using UnityEngine.UI;
 using YSGame;
 
-// Token: 0x02000184 RID: 388
+// Token: 0x02000104 RID: 260
 public class LevelSelectItem : MonoBehaviour
 {
-	// Token: 0x06000CFD RID: 3325 RVA: 0x0000EB9B File Offset: 0x0000CD9B
+	// Token: 0x06000BE6 RID: 3046 RVA: 0x00047F81 File Offset: 0x00046181
 	private void Start()
 	{
 		this.levelSelectManager = GameObject.Find("Main Menu/MainMenuCanvas").GetComponent<LevelSelectManager>();
 	}
 
-	// Token: 0x06000CFE RID: 3326 RVA: 0x00099D30 File Offset: 0x00097F30
+	// Token: 0x06000BE7 RID: 3047 RVA: 0x00047F98 File Offset: 0x00046198
 	public void setLevelItem(Sprite levelImg, int levelC, string levelNm, bool hasSubName, string levelSubName, string levelToLoad, bool locked, bool hasavatar, int _index)
 	{
 		base.gameObject.SetActive(true);
@@ -118,7 +118,7 @@ public class LevelSelectItem : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000CFF RID: 3327 RVA: 0x0000EBB2 File Offset: 0x0000CDB2
+	// Token: 0x06000BE8 RID: 3048 RVA: 0x0004847F File Offset: 0x0004667F
 	public void NewSetName()
 	{
 		if (!this.hasAvatar)
@@ -127,7 +127,7 @@ public class LevelSelectItem : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000D00 RID: 3328 RVA: 0x0000EBC2 File Offset: 0x0000CDC2
+	// Token: 0x06000BE9 RID: 3049 RVA: 0x0004848F File Offset: 0x0004668F
 	public void openSetName()
 	{
 		if (!this.hasAvatar)
@@ -138,7 +138,7 @@ public class LevelSelectItem : MonoBehaviour
 		selectBox.instence.setChoice("是否将该角色打入轮回", new EventDelegate(new EventDelegate.Callback(this.clickRemoveOk)), null);
 	}
 
-	// Token: 0x06000D01 RID: 3329 RVA: 0x0009A218 File Offset: 0x00098418
+	// Token: 0x06000BEA RID: 3050 RVA: 0x000484C4 File Offset: 0x000466C4
 	public void openLoad()
 	{
 		if (!this.hasAvatar)
@@ -152,7 +152,7 @@ public class LevelSelectItem : MonoBehaviour
 		componentInChildren.showLoad();
 	}
 
-	// Token: 0x06000D02 RID: 3330 RVA: 0x0009A268 File Offset: 0x00098468
+	// Token: 0x06000BEB RID: 3051 RVA: 0x00048514 File Offset: 0x00046714
 	public void LoadDF()
 	{
 		if (!this.hasAvatar)
@@ -186,9 +186,9 @@ public class LevelSelectItem : MonoBehaviour
 			while (enumerator2.MoveNext())
 			{
 				KeyValuePair<string, JSONObject> skill = enumerator2.Current;
-				if ((int)skill.Value["DF"].n == 1 && player.hasSkillList.Find((SkillItem aa) => aa.itemId == (int)skill.Value["Skill_ID"].n) == null)
+				if ((int)skill.Value["DF"].n == 1 && player.hasSkillList.Find((SkillItem aa) => aa.itemId == skill.Value["Skill_ID"].I) == null)
 				{
-					player.addHasSkillList((int)skill.Value["Skill_ID"].n);
+					player.addHasSkillList(skill.Value["Skill_ID"].I);
 				}
 			}
 		}
@@ -197,16 +197,16 @@ public class LevelSelectItem : MonoBehaviour
 			while (enumerator.MoveNext())
 			{
 				JSONObject skill = enumerator.Current;
-				if ((int)skill["DF"].n == 1 && player.hasStaticSkillList.Find((SkillItem aa) => aa.itemId == (int)skill["Skill_ID"].n) == null)
+				if ((int)skill["DF"].n == 1 && player.hasStaticSkillList.Find((SkillItem aa) => aa.itemId == skill["Skill_ID"].I) == null)
 				{
 					int level = (int)jsonData.instance.StaticLVToLevelJsonData[player.getLevelType().ToString()]["Max" + (int)skill["Skill_LV"].n].n;
-					player.addHasStaticSkillList((int)skill["Skill_ID"].n, level);
+					player.addHasStaticSkillList(skill["Skill_ID"].I, level);
 				}
 			}
 		}
 	}
 
-	// Token: 0x06000D03 RID: 3331 RVA: 0x0009A584 File Offset: 0x00098784
+	// Token: 0x06000BEC RID: 3052 RVA: 0x00048830 File Offset: 0x00046A30
 	public void clickRemoveOk()
 	{
 		this.levelSelectManager.closeRemoveAvatar();
@@ -234,7 +234,7 @@ public class LevelSelectItem : MonoBehaviour
 		this.showSetPlayerName();
 	}
 
-	// Token: 0x06000D04 RID: 3332 RVA: 0x0009A6C0 File Offset: 0x000988C0
+	// Token: 0x06000BED RID: 3053 RVA: 0x0004896C File Offset: 0x00046B6C
 	public void showSetPlayerName()
 	{
 		GameObject setPlayerName = this.levelSelectManager.setPlayerName;
@@ -245,13 +245,13 @@ public class LevelSelectItem : MonoBehaviour
 		component.onClick.AddListener(new UnityAction(this.clickOk));
 	}
 
-	// Token: 0x06000D05 RID: 3333 RVA: 0x0000EBF4 File Offset: 0x0000CDF4
+	// Token: 0x06000BEE RID: 3054 RVA: 0x000489D0 File Offset: 0x00046BD0
 	public void clickOk()
 	{
 		CreateAvatarMag.inst.startGameClick(new CreateAvatarMag.createAvatardelegate(this.loadThisLevel));
 	}
 
-	// Token: 0x06000D06 RID: 3334 RVA: 0x0000EC0C File Offset: 0x0000CE0C
+	// Token: 0x06000BEF RID: 3055 RVA: 0x000489E8 File Offset: 0x00046BE8
 	public void loadThisLevel()
 	{
 		if (!this.isLocked)
@@ -261,7 +261,7 @@ public class LevelSelectItem : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000D07 RID: 3335 RVA: 0x0000EC2C File Offset: 0x0000CE2C
+	// Token: 0x06000BF0 RID: 3056 RVA: 0x00048A08 File Offset: 0x00046C08
 	public void loadScreen()
 	{
 		Tools.instance.isNewAvatar = true;
@@ -269,72 +269,72 @@ public class LevelSelectItem : MonoBehaviour
 		this.FirstsetPlayerInfo();
 	}
 
-	// Token: 0x06000D08 RID: 3336 RVA: 0x0009A724 File Offset: 0x00098924
+	// Token: 0x06000BF1 RID: 3057 RVA: 0x00048A28 File Offset: 0x00046C28
 	public void firesetSetDFInfo()
 	{
 		YSSaveGame.save("FirstSetAvatarRandomJsonData" + Tools.instance.getSaveID(this.index, 0), 0, "-1");
 		GameObject.Find("Main Menu").GetComponent<StartGame>().AddDouFaPlayerInfo(this.index - 100);
 	}
 
-	// Token: 0x06000D09 RID: 3337 RVA: 0x0009A774 File Offset: 0x00098974
+	// Token: 0x06000BF2 RID: 3058 RVA: 0x00048A78 File Offset: 0x00046C78
 	public void FirstsetPlayerInfo()
 	{
 		YSSaveGame.save("FirstSetAvatarRandomJsonData" + Tools.instance.getSaveID(this.index, 0), 0, "-1");
 		GameObject.Find("Main Menu").GetComponent<StartGame>().firstAddAvatar(this.index, 0, this.levelSelectManager.getFirstName(), this.levelSelectManager.getLastName());
 	}
 
-	// Token: 0x04000A2E RID: 2606
+	// Token: 0x04000839 RID: 2105
 	[Header("UI References")]
 	public Image LevelImage;
 
-	// Token: 0x04000A2F RID: 2607
+	// Token: 0x0400083A RID: 2106
 	public Text levelCount;
 
-	// Token: 0x04000A30 RID: 2608
+	// Token: 0x0400083B RID: 2107
 	public Text levelName;
 
-	// Token: 0x04000A31 RID: 2609
+	// Token: 0x0400083C RID: 2108
 	public Text levelSubName;
 
-	// Token: 0x04000A32 RID: 2610
+	// Token: 0x0400083D RID: 2109
 	public Text LevelLv;
 
-	// Token: 0x04000A33 RID: 2611
+	// Token: 0x0400083E RID: 2110
 	public GameObject lockIcon;
 
-	// Token: 0x04000A34 RID: 2612
+	// Token: 0x0400083F RID: 2111
 	public bool isLocked;
 
-	// Token: 0x04000A35 RID: 2613
+	// Token: 0x04000840 RID: 2112
 	public string levelToLoad;
 
-	// Token: 0x04000A36 RID: 2614
+	// Token: 0x04000841 RID: 2113
 	public bool hasAvatar;
 
-	// Token: 0x04000A37 RID: 2615
+	// Token: 0x04000842 RID: 2114
 	public int index;
 
-	// Token: 0x04000A38 RID: 2616
+	// Token: 0x04000843 RID: 2115
 	public int SelectType;
 
-	// Token: 0x04000A39 RID: 2617
+	// Token: 0x04000844 RID: 2116
 	public PlayerSetRandomFace playerSetRandomFace;
 
-	// Token: 0x04000A3A RID: 2618
+	// Token: 0x04000845 RID: 2117
 	public bool isDF;
 
-	// Token: 0x04000A3B RID: 2619
+	// Token: 0x04000846 RID: 2118
 	public Image Level_Image;
 
-	// Token: 0x04000A3C RID: 2620
+	// Token: 0x04000847 RID: 2119
 	public GameObject HasAvatarItem;
 
-	// Token: 0x04000A3D RID: 2621
+	// Token: 0x04000848 RID: 2120
 	public GameObject NoAvatarItem;
 
-	// Token: 0x04000A3E RID: 2622
+	// Token: 0x04000849 RID: 2121
 	public Text Level_Text;
 
-	// Token: 0x04000A3F RID: 2623
+	// Token: 0x0400084A RID: 2122
 	private LevelSelectManager levelSelectManager;
 }

@@ -3,15 +3,15 @@ using System.Threading;
 
 namespace KBEngine
 {
-	// Token: 0x02000F1A RID: 3866
+	// Token: 0x02000B98 RID: 2968
 	public class KBEngineAppThread : KBEngineApp
 	{
-		// Token: 0x06005D42 RID: 23874 RVA: 0x000419BD File Offset: 0x0003FBBD
+		// Token: 0x06005306 RID: 21254 RVA: 0x002336D7 File Offset: 0x002318D7
 		public KBEngineAppThread(KBEngineArgs args) : base(args)
 		{
 		}
 
-		// Token: 0x06005D43 RID: 23875 RVA: 0x00261840 File Offset: 0x0025FA40
+		// Token: 0x06005307 RID: 21255 RVA: 0x002336EC File Offset: 0x002318EC
 		public override bool initialize(KBEngineArgs args)
 		{
 			base.initialize(args);
@@ -23,7 +23,7 @@ namespace KBEngine
 			return true;
 		}
 
-		// Token: 0x06005D44 RID: 23876 RVA: 0x000419D1 File Offset: 0x0003FBD1
+		// Token: 0x06005308 RID: 21256 RVA: 0x00233751 File Offset: 0x00231951
 		public override void reset()
 		{
 			this._isbreak = false;
@@ -31,19 +31,19 @@ namespace KBEngine
 			base.reset();
 		}
 
-		// Token: 0x06005D45 RID: 23877 RVA: 0x000419EB File Offset: 0x0003FBEB
+		// Token: 0x06005309 RID: 21257 RVA: 0x0023376B File Offset: 0x0023196B
 		public void breakProcess()
 		{
 			this._isbreak = true;
 		}
 
-		// Token: 0x06005D46 RID: 23878 RVA: 0x000419F4 File Offset: 0x0003FBF4
+		// Token: 0x0600530A RID: 21258 RVA: 0x00233774 File Offset: 0x00231974
 		public bool isbreak()
 		{
 			return this._isbreak;
 		}
 
-		// Token: 0x06005D47 RID: 23879 RVA: 0x000419FC File Offset: 0x0003FBFC
+		// Token: 0x0600530B RID: 21259 RVA: 0x0023377C File Offset: 0x0023197C
 		public override void process()
 		{
 			while (!this.isbreak())
@@ -54,7 +54,7 @@ namespace KBEngine
 			Dbg.WARNING_MSG("KBEngineAppThread::process(): break!");
 		}
 
-		// Token: 0x06005D48 RID: 23880 RVA: 0x002618A8 File Offset: 0x0025FAA8
+		// Token: 0x0600530C RID: 21260 RVA: 0x002337A0 File Offset: 0x002319A0
 		private void _thread_wait()
 		{
 			TimeSpan timeSpan = DateTime.Now - this._lasttime;
@@ -67,7 +67,7 @@ namespace KBEngine
 			this._lasttime = DateTime.Now;
 		}
 
-		// Token: 0x06005D49 RID: 23881 RVA: 0x002618F0 File Offset: 0x0025FAF0
+		// Token: 0x0600530D RID: 21261 RVA: 0x002337E8 File Offset: 0x002319E8
 		public override void destroy()
 		{
 			Dbg.WARNING_MSG("KBEngineAppThread::destroy()");
@@ -86,34 +86,34 @@ namespace KBEngine
 			base.destroy();
 		}
 
-		// Token: 0x04005AB0 RID: 23216
+		// Token: 0x04005011 RID: 20497
 		private Thread _t;
 
-		// Token: 0x04005AB1 RID: 23217
+		// Token: 0x04005012 RID: 20498
 		public KBEngineAppThread.KBEThread kbethread;
 
-		// Token: 0x04005AB2 RID: 23218
+		// Token: 0x04005013 RID: 20499
 		public static int threadUpdateHZ = 10;
 
-		// Token: 0x04005AB3 RID: 23219
+		// Token: 0x04005014 RID: 20500
 		private static float threadUpdatePeriod = 1000f / (float)KBEngineAppThread.threadUpdateHZ;
 
-		// Token: 0x04005AB4 RID: 23220
+		// Token: 0x04005015 RID: 20501
 		private bool _isbreak;
 
-		// Token: 0x04005AB5 RID: 23221
+		// Token: 0x04005016 RID: 20502
 		private DateTime _lasttime = DateTime.Now;
 
-		// Token: 0x02000F1B RID: 3867
+		// Token: 0x020015F8 RID: 5624
 		public class KBEThread
 		{
-			// Token: 0x06005D4B RID: 23883 RVA: 0x00041A38 File Offset: 0x0003FC38
+			// Token: 0x060085A2 RID: 34210 RVA: 0x002E4B20 File Offset: 0x002E2D20
 			public KBEThread(KBEngineApp app)
 			{
 				this.app_ = app;
 			}
 
-			// Token: 0x06005D4C RID: 23884 RVA: 0x00261950 File Offset: 0x0025FB50
+			// Token: 0x060085A3 RID: 34211 RVA: 0x002E4B30 File Offset: 0x002E2D30
 			public void run()
 			{
 				Dbg.INFO_MSG("KBEThread::run()");
@@ -130,10 +130,10 @@ namespace KBEngine
 				Dbg.INFO_MSG("KBEThread::end()");
 			}
 
-			// Token: 0x04005AB6 RID: 23222
+			// Token: 0x040070F6 RID: 28918
 			private KBEngineApp app_;
 
-			// Token: 0x04005AB7 RID: 23223
+			// Token: 0x040070F7 RID: 28919
 			public bool over;
 		}
 	}

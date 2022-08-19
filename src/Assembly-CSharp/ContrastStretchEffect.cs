@@ -1,13 +1,13 @@
 ﻿using System;
 using UnityEngine;
 
-// Token: 0x02000130 RID: 304
+// Token: 0x020000C0 RID: 192
 [ExecuteInEditMode]
 [AddComponentMenu("Image Effects/Contrast Stretch")]
 public class ContrastStretchEffect : MonoBehaviour
 {
-	// Token: 0x170001E2 RID: 482
-	// (get) Token: 0x06000B97 RID: 2967 RVA: 0x0000DA4F File Offset: 0x0000BC4F
+	// Token: 0x170001C9 RID: 457
+	// (get) Token: 0x06000AB4 RID: 2740 RVA: 0x00040B90 File Offset: 0x0003ED90
 	protected Material materialLum
 	{
 		get
@@ -21,8 +21,8 @@ public class ContrastStretchEffect : MonoBehaviour
 		}
 	}
 
-	// Token: 0x170001E3 RID: 483
-	// (get) Token: 0x06000B98 RID: 2968 RVA: 0x0000DA83 File Offset: 0x0000BC83
+	// Token: 0x170001CA RID: 458
+	// (get) Token: 0x06000AB5 RID: 2741 RVA: 0x00040BC4 File Offset: 0x0003EDC4
 	protected Material materialReduce
 	{
 		get
@@ -36,8 +36,8 @@ public class ContrastStretchEffect : MonoBehaviour
 		}
 	}
 
-	// Token: 0x170001E4 RID: 484
-	// (get) Token: 0x06000B99 RID: 2969 RVA: 0x0000DAB7 File Offset: 0x0000BCB7
+	// Token: 0x170001CB RID: 459
+	// (get) Token: 0x06000AB6 RID: 2742 RVA: 0x00040BF8 File Offset: 0x0003EDF8
 	protected Material materialAdapt
 	{
 		get
@@ -51,8 +51,8 @@ public class ContrastStretchEffect : MonoBehaviour
 		}
 	}
 
-	// Token: 0x170001E5 RID: 485
-	// (get) Token: 0x06000B9A RID: 2970 RVA: 0x0000DAEB File Offset: 0x0000BCEB
+	// Token: 0x170001CC RID: 460
+	// (get) Token: 0x06000AB7 RID: 2743 RVA: 0x00040C2C File Offset: 0x0003EE2C
 	protected Material materialApply
 	{
 		get
@@ -66,7 +66,7 @@ public class ContrastStretchEffect : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000B9B RID: 2971 RVA: 0x00092EB8 File Offset: 0x000910B8
+	// Token: 0x06000AB8 RID: 2744 RVA: 0x00040C60 File Offset: 0x0003EE60
 	private void Start()
 	{
 		if (!SystemInfo.supportsImageEffects)
@@ -81,7 +81,7 @@ public class ContrastStretchEffect : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000B9C RID: 2972 RVA: 0x00092F10 File Offset: 0x00091110
+	// Token: 0x06000AB9 RID: 2745 RVA: 0x00040CB8 File Offset: 0x0003EEB8
 	private void OnEnable()
 	{
 		for (int i = 0; i < 2; i++)
@@ -94,7 +94,7 @@ public class ContrastStretchEffect : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000B9D RID: 2973 RVA: 0x00092F58 File Offset: 0x00091158
+	// Token: 0x06000ABA RID: 2746 RVA: 0x00040D00 File Offset: 0x0003EF00
 	private void OnDisable()
 	{
 		for (int i = 0; i < 2; i++)
@@ -120,7 +120,7 @@ public class ContrastStretchEffect : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000B9E RID: 2974 RVA: 0x00092FE8 File Offset: 0x000911E8
+	// Token: 0x06000ABB RID: 2747 RVA: 0x00040D90 File Offset: 0x0003EF90
 	private void OnRenderImage(RenderTexture source, RenderTexture destination)
 	{
 		RenderTexture renderTexture = RenderTexture.GetTemporary(source.width / 1, source.height / 1);
@@ -148,7 +148,7 @@ public class ContrastStretchEffect : MonoBehaviour
 		RenderTexture.ReleaseTemporary(renderTexture);
 	}
 
-	// Token: 0x06000B9F RID: 2975 RVA: 0x000930A0 File Offset: 0x000912A0
+	// Token: 0x06000ABC RID: 2748 RVA: 0x00040E48 File Offset: 0x0003F048
 	private void CalculateAdaptation(Texture curTexture)
 	{
 		int num = this.curAdaptIndex;
@@ -160,42 +160,42 @@ public class ContrastStretchEffect : MonoBehaviour
 		Graphics.Blit(this.adaptRenderTex[num], this.adaptRenderTex[this.curAdaptIndex], this.materialAdapt);
 	}
 
-	// Token: 0x0400085E RID: 2142
+	// Token: 0x040006B7 RID: 1719
 	public float adaptationSpeed = 0.02f;
 
-	// Token: 0x0400085F RID: 2143
+	// Token: 0x040006B8 RID: 1720
 	public float limitMinimum = 0.2f;
 
-	// Token: 0x04000860 RID: 2144
+	// Token: 0x040006B9 RID: 1721
 	public float limitMaximum = 0.6f;
 
-	// Token: 0x04000861 RID: 2145
+	// Token: 0x040006BA RID: 1722
 	private RenderTexture[] adaptRenderTex = new RenderTexture[2];
 
-	// Token: 0x04000862 RID: 2146
+	// Token: 0x040006BB RID: 1723
 	private int curAdaptIndex;
 
-	// Token: 0x04000863 RID: 2147
+	// Token: 0x040006BC RID: 1724
 	public Shader shaderLum;
 
-	// Token: 0x04000864 RID: 2148
+	// Token: 0x040006BD RID: 1725
 	private Material m_materialLum;
 
-	// Token: 0x04000865 RID: 2149
+	// Token: 0x040006BE RID: 1726
 	public Shader shaderReduce;
 
-	// Token: 0x04000866 RID: 2150
+	// Token: 0x040006BF RID: 1727
 	private Material m_materialReduce;
 
-	// Token: 0x04000867 RID: 2151
+	// Token: 0x040006C0 RID: 1728
 	public Shader shaderAdapt;
 
-	// Token: 0x04000868 RID: 2152
+	// Token: 0x040006C1 RID: 1729
 	private Material m_materialAdapt;
 
-	// Token: 0x04000869 RID: 2153
+	// Token: 0x040006C2 RID: 1730
 	public Shader shaderApply;
 
-	// Token: 0x0400086A RID: 2154
+	// Token: 0x040006C3 RID: 1731
 	private Material m_materialApply;
 }

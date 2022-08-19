@@ -2,10 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-// Token: 0x02000474 RID: 1140
+// Token: 0x02000312 RID: 786
 public class LunDaoPanel : MonoBehaviour
 {
-	// Token: 0x06001E8C RID: 7820 RVA: 0x00108460 File Offset: 0x00106660
+	// Token: 0x06001B5B RID: 7003 RVA: 0x000C2F18 File Offset: 0x000C1118
 	public void Init()
 	{
 		this.targetLunTiDictionary = LunDaoManager.inst.lunTiMag.targetLunTiDictionary;
@@ -45,19 +45,19 @@ public class LunDaoPanel : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001E8D RID: 7821 RVA: 0x00011B82 File Offset: 0x0000FD82
+	// Token: 0x06001B5C RID: 7004 RVA: 0x0005FDE2 File Offset: 0x0005DFE2
 	public void Show()
 	{
 		base.gameObject.SetActive(true);
 	}
 
-	// Token: 0x06001E8E RID: 7822 RVA: 0x00019570 File Offset: 0x00017770
+	// Token: 0x06001B5D RID: 7005 RVA: 0x000C311C File Offset: 0x000C131C
 	public void CloseMoreLunTiPanel()
 	{
 		this.moreLunTiPanel.SetActive(false);
 	}
 
-	// Token: 0x06001E8F RID: 7823 RVA: 0x00108664 File Offset: 0x00106864
+	// Token: 0x06001B5E RID: 7006 RVA: 0x000C312C File Offset: 0x000C132C
 	public void AddNullSlot()
 	{
 		LunDaoQiu component = Object.Instantiate<GameObject>(this.lunDaoQiuSlot, this.lunDaoQiuSlot.transform.parent).GetComponent<LunDaoQiu>();
@@ -66,45 +66,45 @@ public class LunDaoPanel : MonoBehaviour
 		LunDaoManager.inst.lunTiMag.curLunDianList.Add(component);
 	}
 
-	// Token: 0x040019F5 RID: 6645
+	// Token: 0x040015DB RID: 5595
 	[SerializeField]
 	private List<Sprite> lunTiNameSpriteList;
 
-	// Token: 0x040019F6 RID: 6646
+	// Token: 0x040015DC RID: 5596
 	[SerializeField]
 	public List<Sprite> wuDaoQiuSpriteList;
 
-	// Token: 0x040019F7 RID: 6647
+	// Token: 0x040015DD RID: 5597
 	[SerializeField]
 	private GameObject startLunTiDaoCell;
 
-	// Token: 0x040019F8 RID: 6648
+	// Token: 0x040015DE RID: 5598
 	[SerializeField]
 	private GameObject wuDaoQiuCell;
 
-	// Token: 0x040019F9 RID: 6649
+	// Token: 0x040015DF RID: 5599
 	[SerializeField]
 	private GameObject moreLunTiDaoCell;
 
-	// Token: 0x040019FA RID: 6650
+	// Token: 0x040015E0 RID: 5600
 	[SerializeField]
 	private GameObject moreWuDaoQiuCell;
 
-	// Token: 0x040019FB RID: 6651
+	// Token: 0x040015E1 RID: 5601
 	[SerializeField]
 	private GameObject moreLunTiPanel;
 
-	// Token: 0x040019FC RID: 6652
+	// Token: 0x040015E2 RID: 5602
 	[SerializeField]
 	private GameObject lunDaoQiuSlot;
 
-	// Token: 0x040019FD RID: 6653
+	// Token: 0x040015E3 RID: 5603
 	[SerializeField]
 	private BtnCell moreWuDaoBtn;
 
-	// Token: 0x040019FE RID: 6654
+	// Token: 0x040015E4 RID: 5604
 	private Dictionary<int, List<int>> targetLunTiDictionary;
 
-	// Token: 0x040019FF RID: 6655
+	// Token: 0x040015E5 RID: 5605
 	public Dictionary<int, StartLunTiCell> lunTiCtrDictionary;
 }

@@ -4,16 +4,16 @@ using UnityEngine;
 
 namespace UltimateSurvival
 {
-	// Token: 0x020008F8 RID: 2296
+	// Token: 0x02000614 RID: 1556
 	public class PlayerSleepHandler : PlayerBehaviour
 	{
-		// Token: 0x06003AD8 RID: 15064 RVA: 0x0002AB6A File Offset: 0x00028D6A
+		// Token: 0x060031B5 RID: 12725 RVA: 0x00160DE4 File Offset: 0x0015EFE4
 		private void Awake()
 		{
 			base.Player.StartSleeping.SetTryer(new Attempt<SleepingBag>.GenericTryerDelegate(this.Try_StartSleeping));
 		}
 
-		// Token: 0x06003AD9 RID: 15065 RVA: 0x0002AB88 File Offset: 0x00028D88
+		// Token: 0x060031B6 RID: 12726 RVA: 0x00160E02 File Offset: 0x0015F002
 		private bool Try_StartSleeping(SleepingBag bag)
 		{
 			if (base.Player.Sleep.Active)
@@ -24,7 +24,7 @@ namespace UltimateSurvival
 			return true;
 		}
 
-		// Token: 0x06003ADA RID: 15066 RVA: 0x0002ABAD File Offset: 0x00028DAD
+		// Token: 0x060031B7 RID: 12727 RVA: 0x00160E27 File Offset: 0x0015F027
 		private IEnumerator C_Sleep(SleepingBag bag)
 		{
 			this.m_BeforeSleepPosition = base.transform.position;
@@ -67,7 +67,7 @@ namespace UltimateSurvival
 			yield break;
 		}
 
-		// Token: 0x06003ADB RID: 15067 RVA: 0x001AA50C File Offset: 0x001A870C
+		// Token: 0x060031B8 RID: 12728 RVA: 0x00160E40 File Offset: 0x0015F040
 		private void EnableStuff(bool enable)
 		{
 			GameObject[] objectsToDisable = this.m_ObjectsToDisable;
@@ -87,37 +87,37 @@ namespace UltimateSurvival
 			}
 		}
 
-		// Token: 0x04003521 RID: 13601
+		// Token: 0x04002C0A RID: 11274
 		[SerializeField]
 		private float m_SleepSpeed = 0.33f;
 
-		// Token: 0x04003522 RID: 13602
+		// Token: 0x04002C0B RID: 11275
 		[SerializeField]
 		[Tooltip("How much time to wait after the sleep is done, before getting up.")]
 		private float m_SleepFinishPause = 2f;
 
-		// Token: 0x04003523 RID: 13603
+		// Token: 0x04002C0C RID: 11276
 		[SerializeField]
 		[Range(4f, 12f)]
 		private int m_GetUpHour = 8;
 
-		// Token: 0x04003524 RID: 13604
+		// Token: 0x04002C0D RID: 11277
 		[Header("Stuff To Disable When Sleeping")]
 		[SerializeField]
 		private Collider[] m_CollidersToDisable;
 
-		// Token: 0x04003525 RID: 13605
+		// Token: 0x04002C0E RID: 11278
 		[SerializeField]
 		private GameObject[] m_ObjectsToDisable;
 
-		// Token: 0x04003526 RID: 13606
+		// Token: 0x04002C0F RID: 11279
 		[SerializeField]
 		private Behaviour[] m_BehavioursToDisable;
 
-		// Token: 0x04003527 RID: 13607
+		// Token: 0x04002C10 RID: 11280
 		private Vector3 m_BeforeSleepPosition;
 
-		// Token: 0x04003528 RID: 13608
+		// Token: 0x04002C11 RID: 11281
 		private Quaternion m_BeforeSleepRotation;
 	}
 }

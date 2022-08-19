@@ -3,10 +3,10 @@ using System.Collections.Generic;
 
 namespace JSONClass
 {
-	// Token: 0x02000C5C RID: 3164
+	// Token: 0x020008CF RID: 2255
 	public class RunawayJsonData : IJSONClass
 	{
-		// Token: 0x06004CD9 RID: 19673 RVA: 0x00207938 File Offset: 0x00205B38
+		// Token: 0x0600414F RID: 16719 RVA: 0x001BF3C0 File Offset: 0x001BD5C0
 		public static void InitDataDict()
 		{
 			foreach (JSONObject jsonobject in jsonData.instance.RunawayJsonData.list)
@@ -42,33 +42,33 @@ namespace JSONClass
 			}
 		}
 
-		// Token: 0x06004CDA RID: 19674 RVA: 0x000042DD File Offset: 0x000024DD
+		// Token: 0x06004150 RID: 16720 RVA: 0x00004095 File Offset: 0x00002295
 		private static void OnInitFinish()
 		{
 		}
 
-		// Token: 0x04004BCC RID: 19404
+		// Token: 0x04004082 RID: 16514
 		public static Dictionary<int, RunawayJsonData> DataDict = new Dictionary<int, RunawayJsonData>();
 
-		// Token: 0x04004BCD RID: 19405
+		// Token: 0x04004083 RID: 16515
 		public static List<RunawayJsonData> DataList = new List<RunawayJsonData>();
 
-		// Token: 0x04004BCE RID: 19406
+		// Token: 0x04004084 RID: 16516
 		public static Action OnInitFinishAction = new Action(RunawayJsonData.OnInitFinish);
 
-		// Token: 0x04004BCF RID: 19407
+		// Token: 0x04004085 RID: 16517
 		public int id;
 
-		// Token: 0x04004BD0 RID: 19408
+		// Token: 0x04004086 RID: 16518
 		public int RunCha;
 
-		// Token: 0x04004BD1 RID: 19409
+		// Token: 0x04004087 RID: 16519
 		public int RunTime;
 
-		// Token: 0x04004BD2 RID: 19410
+		// Token: 0x04004088 RID: 16520
 		public int RunDistance;
 
-		// Token: 0x04004BD3 RID: 19411
+		// Token: 0x04004089 RID: 16521
 		public string Text;
 	}
 }

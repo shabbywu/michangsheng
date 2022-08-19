@@ -3,27 +3,27 @@ using ICSharpCode.SharpZipLib.Core;
 
 namespace ICSharpCode.SharpZipLib.Zip
 {
-	// Token: 0x020007BD RID: 1981
+	// Token: 0x02000527 RID: 1319
 	public interface IEntryFactory
 	{
-		// Token: 0x0600325E RID: 12894
+		// Token: 0x06002A47 RID: 10823
 		ZipEntry MakeFileEntry(string fileName);
 
-		// Token: 0x0600325F RID: 12895
+		// Token: 0x06002A48 RID: 10824
 		ZipEntry MakeFileEntry(string fileName, bool useFileSystem);
 
-		// Token: 0x06003260 RID: 12896
+		// Token: 0x06002A49 RID: 10825
 		ZipEntry MakeFileEntry(string fileName, string entryName, bool useFileSystem);
 
-		// Token: 0x06003261 RID: 12897
+		// Token: 0x06002A4A RID: 10826
 		ZipEntry MakeDirectoryEntry(string directoryName);
 
-		// Token: 0x06003262 RID: 12898
+		// Token: 0x06002A4B RID: 10827
 		ZipEntry MakeDirectoryEntry(string directoryName, bool useFileSystem);
 
-		// Token: 0x17000468 RID: 1128
-		// (get) Token: 0x06003263 RID: 12899
-		// (set) Token: 0x06003264 RID: 12900
+		// Token: 0x170002C9 RID: 713
+		// (get) Token: 0x06002A4C RID: 10828
+		// (set) Token: 0x06002A4D RID: 10829
 		INameTransform NameTransform { get; set; }
 	}
 }

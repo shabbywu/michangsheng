@@ -7,21 +7,21 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-// Token: 0x020005B1 RID: 1457
+// Token: 0x02000401 RID: 1025
 public class UI_Buff : MonoBehaviour, IPointerEnterHandler, IEventSystemHandler, IPointerExitHandler, IPointerDownHandler, IPointerUpHandler
 {
-	// Token: 0x060024BF RID: 9407 RVA: 0x0001D8D0 File Offset: 0x0001BAD0
+	// Token: 0x0600210D RID: 8461 RVA: 0x000E7947 File Offset: 0x000E5B47
 	private void Start()
 	{
 		base.gameObject.GetComponent<Button>();
 	}
 
-	// Token: 0x060024C0 RID: 9408 RVA: 0x000042DD File Offset: 0x000024DD
+	// Token: 0x0600210E RID: 8462 RVA: 0x00004095 File Offset: 0x00002295
 	private void OnDestroy()
 	{
 	}
 
-	// Token: 0x060024C1 RID: 9409 RVA: 0x00129708 File Offset: 0x00127908
+	// Token: 0x0600210F RID: 8463 RVA: 0x000E7958 File Offset: 0x000E5B58
 	public void OnPointerEnter(PointerEventData eventData)
 	{
 		if (this.buffID == 0)
@@ -66,7 +66,7 @@ public class UI_Buff : MonoBehaviour, IPointerEnterHandler, IEventSystemHandler,
 		Singleton.inventory.showTooltip = true;
 	}
 
-	// Token: 0x060024C2 RID: 9410 RVA: 0x0012990C File Offset: 0x00127B0C
+	// Token: 0x06002110 RID: 8464 RVA: 0x000E7B5C File Offset: 0x000E5D5C
 	public string getWuDaoText()
 	{
 		string text = "[ff8300]悟道天赋[-]\n";
@@ -89,57 +89,57 @@ public class UI_Buff : MonoBehaviour, IPointerEnterHandler, IEventSystemHandler,
 		return text;
 	}
 
-	// Token: 0x060024C3 RID: 9411 RVA: 0x0001D8DE File Offset: 0x0001BADE
+	// Token: 0x06002111 RID: 8465 RVA: 0x000E7C14 File Offset: 0x000E5E14
 	public Avatar getBuffAvatar()
 	{
 		return base.transform.GetComponentInParent<UI_Target>().avatar;
 	}
 
-	// Token: 0x060024C4 RID: 9412 RVA: 0x0001D8F0 File Offset: 0x0001BAF0
+	// Token: 0x06002112 RID: 8466 RVA: 0x000E7C26 File Offset: 0x000E5E26
 	public void OnPointerExit(PointerEventData eventData)
 	{
 		Singleton.inventory.showTooltip = false;
 	}
 
-	// Token: 0x060024C5 RID: 9413 RVA: 0x0001D8F0 File Offset: 0x0001BAF0
+	// Token: 0x06002113 RID: 8467 RVA: 0x000E7C26 File Offset: 0x000E5E26
 	public void CloseTips()
 	{
 		Singleton.inventory.showTooltip = false;
 	}
 
-	// Token: 0x060024C6 RID: 9414 RVA: 0x0001D8FD File Offset: 0x0001BAFD
+	// Token: 0x06002114 RID: 8468 RVA: 0x000E7C33 File Offset: 0x000E5E33
 	public void showBuffTool()
 	{
 		Debug.Log("buffID = " + this.buffID);
 	}
 
-	// Token: 0x060024C7 RID: 9415 RVA: 0x000042DD File Offset: 0x000024DD
+	// Token: 0x06002115 RID: 8469 RVA: 0x00004095 File Offset: 0x00002295
 	private void Update()
 	{
 	}
 
-	// Token: 0x060024C8 RID: 9416 RVA: 0x0001D919 File Offset: 0x0001BB19
+	// Token: 0x06002116 RID: 8470 RVA: 0x000E7C4F File Offset: 0x000E5E4F
 	public bool IsCursorOnUI(int inputID = -1)
 	{
 		return EventSystem.current.IsPointerOverGameObject(inputID);
 	}
 
-	// Token: 0x060024C9 RID: 9417 RVA: 0x000042DD File Offset: 0x000024DD
+	// Token: 0x06002117 RID: 8471 RVA: 0x00004095 File Offset: 0x00002295
 	public void OnPointerDown(PointerEventData eventData)
 	{
 	}
 
-	// Token: 0x060024CA RID: 9418 RVA: 0x000042DD File Offset: 0x000024DD
+	// Token: 0x06002118 RID: 8472 RVA: 0x00004095 File Offset: 0x00002295
 	public void OnPointerUp(PointerEventData eventData)
 	{
 	}
 
-	// Token: 0x04001F88 RID: 8072
+	// Token: 0x04001ACC RID: 6860
 	public int buffID;
 
-	// Token: 0x04001F89 RID: 8073
+	// Token: 0x04001ACD RID: 6861
 	public int buffRound;
 
-	// Token: 0x04001F8A RID: 8074
+	// Token: 0x04001ACE RID: 6862
 	public List<int> avatarBuff = new List<int>();
 }

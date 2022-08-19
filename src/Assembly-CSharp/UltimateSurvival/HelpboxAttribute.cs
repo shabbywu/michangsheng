@@ -3,16 +3,16 @@ using UnityEngine;
 
 namespace UltimateSurvival
 {
-	// Token: 0x02000865 RID: 2149
+	// Token: 0x020005A9 RID: 1449
 	public class HelpboxAttribute : PropertyAttribute
 	{
-		// Token: 0x060037BD RID: 14269 RVA: 0x0002873F File Offset: 0x0002693F
+		// Token: 0x06002F3F RID: 12095 RVA: 0x001566CB File Offset: 0x001548CB
 		public HelpboxAttribute(string message)
 		{
 			this.Message = message;
 		}
 
-		// Token: 0x040031F8 RID: 12792
+		// Token: 0x04002977 RID: 10615
 		public readonly string Message;
 	}
 }

@@ -2,13 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-// Token: 0x0200004E RID: 78
+// Token: 0x0200003A RID: 58
 [ExecuteInEditMode]
 [AddComponentMenu("NGUI/Examples/Item Database")]
 public class InvDatabase : MonoBehaviour
 {
-	// Token: 0x17000080 RID: 128
-	// (get) Token: 0x0600046C RID: 1132 RVA: 0x00007F20 File Offset: 0x00006120
+	// Token: 0x17000074 RID: 116
+	// (get) Token: 0x06000424 RID: 1060 RVA: 0x0001711C File Offset: 0x0001531C
 	public static InvDatabase[] list
 	{
 		get
@@ -22,19 +22,19 @@ public class InvDatabase : MonoBehaviour
 		}
 	}
 
-	// Token: 0x0600046D RID: 1133 RVA: 0x00007F3E File Offset: 0x0000613E
+	// Token: 0x06000425 RID: 1061 RVA: 0x0001713A File Offset: 0x0001533A
 	private void OnEnable()
 	{
 		InvDatabase.mIsDirty = true;
 	}
 
-	// Token: 0x0600046E RID: 1134 RVA: 0x00007F3E File Offset: 0x0000613E
+	// Token: 0x06000426 RID: 1062 RVA: 0x0001713A File Offset: 0x0001533A
 	private void OnDisable()
 	{
 		InvDatabase.mIsDirty = true;
 	}
 
-	// Token: 0x0600046F RID: 1135 RVA: 0x0006E6B8 File Offset: 0x0006C8B8
+	// Token: 0x06000427 RID: 1063 RVA: 0x00017144 File Offset: 0x00015344
 	private InvBaseItem GetItem(int id16)
 	{
 		int i = 0;
@@ -51,7 +51,7 @@ public class InvDatabase : MonoBehaviour
 		return null;
 	}
 
-	// Token: 0x06000470 RID: 1136 RVA: 0x0006E6F8 File Offset: 0x0006C8F8
+	// Token: 0x06000428 RID: 1064 RVA: 0x00017184 File Offset: 0x00015384
 	private static InvDatabase GetDatabase(int dbID)
 	{
 		int i = 0;
@@ -68,7 +68,7 @@ public class InvDatabase : MonoBehaviour
 		return null;
 	}
 
-	// Token: 0x06000471 RID: 1137 RVA: 0x0006E730 File Offset: 0x0006C930
+	// Token: 0x06000429 RID: 1065 RVA: 0x000171BC File Offset: 0x000153BC
 	public static InvBaseItem FindByID(int id32)
 	{
 		InvDatabase database = InvDatabase.GetDatabase(id32 >> 16);
@@ -79,7 +79,7 @@ public class InvDatabase : MonoBehaviour
 		return database.GetItem(id32 & 65535);
 	}
 
-	// Token: 0x06000472 RID: 1138 RVA: 0x0006E760 File Offset: 0x0006C960
+	// Token: 0x0600042A RID: 1066 RVA: 0x000171EC File Offset: 0x000153EC
 	public static InvBaseItem FindByName(string exact)
 	{
 		int i = 0;
@@ -103,7 +103,7 @@ public class InvDatabase : MonoBehaviour
 		return null;
 	}
 
-	// Token: 0x06000473 RID: 1139 RVA: 0x0006E7C4 File Offset: 0x0006C9C4
+	// Token: 0x0600042B RID: 1067 RVA: 0x00017250 File Offset: 0x00015450
 	public static int FindItemID(InvBaseItem item)
 	{
 		int i = 0;
@@ -120,18 +120,18 @@ public class InvDatabase : MonoBehaviour
 		return -1;
 	}
 
-	// Token: 0x040002AB RID: 683
+	// Token: 0x0400025B RID: 603
 	private static InvDatabase[] mList;
 
-	// Token: 0x040002AC RID: 684
+	// Token: 0x0400025C RID: 604
 	private static bool mIsDirty = true;
 
-	// Token: 0x040002AD RID: 685
+	// Token: 0x0400025D RID: 605
 	public int databaseID;
 
-	// Token: 0x040002AE RID: 686
+	// Token: 0x0400025E RID: 606
 	public List<InvBaseItem> items = new List<InvBaseItem>();
 
-	// Token: 0x040002AF RID: 687
+	// Token: 0x0400025F RID: 607
 	public UIAtlas iconAtlas;
 }

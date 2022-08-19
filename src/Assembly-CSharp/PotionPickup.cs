@@ -1,10 +1,10 @@
 ﻿using System;
 using UnityEngine;
 
-// Token: 0x02000164 RID: 356
+// Token: 0x020000ED RID: 237
 public class PotionPickup : MonoBehaviour
 {
-	// Token: 0x06000C68 RID: 3176 RVA: 0x000976E0 File Offset: 0x000958E0
+	// Token: 0x06000B79 RID: 2937 RVA: 0x00045C00 File Offset: 0x00043E00
 	private void OnTriggerEnter(Collider other)
 	{
 		if (other.tag == "Player" && other.gameObject.GetComponent<CharacterStatus>())
@@ -22,9 +22,9 @@ public class PotionPickup : MonoBehaviour
 		}
 	}
 
-	// Token: 0x0400098B RID: 2443
+	// Token: 0x040007B0 RID: 1968
 	public GameObject ParticlePotion;
 
-	// Token: 0x0400098C RID: 2444
+	// Token: 0x040007B1 RID: 1969
 	public AudioClip SoundPickup;
 }

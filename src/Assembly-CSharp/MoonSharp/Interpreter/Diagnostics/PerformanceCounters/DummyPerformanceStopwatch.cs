@@ -2,10 +2,10 @@
 
 namespace MoonSharp.Interpreter.Diagnostics.PerformanceCounters
 {
-	// Token: 0x02001174 RID: 4468
+	// Token: 0x02000D60 RID: 3424
 	internal class DummyPerformanceStopwatch : IPerformanceStopwatch, IDisposable
 	{
-		// Token: 0x06006CC3 RID: 27843 RVA: 0x0004A2A2 File Offset: 0x000484A2
+		// Token: 0x060060D1 RID: 24785 RVA: 0x0027274E File Offset: 0x0027094E
 		private DummyPerformanceStopwatch()
 		{
 			this.m_Result = new PerformanceResult
@@ -18,27 +18,27 @@ namespace MoonSharp.Interpreter.Diagnostics.PerformanceCounters
 			};
 		}
 
-		// Token: 0x06006CC4 RID: 27844 RVA: 0x0002FB09 File Offset: 0x0002DD09
+		// Token: 0x060060D2 RID: 24786 RVA: 0x00183D24 File Offset: 0x00181F24
 		public IDisposable Start()
 		{
 			return this;
 		}
 
-		// Token: 0x06006CC5 RID: 27845 RVA: 0x0004A2DD File Offset: 0x000484DD
+		// Token: 0x060060D3 RID: 24787 RVA: 0x00272789 File Offset: 0x00270989
 		public PerformanceResult GetResult()
 		{
 			return this.m_Result;
 		}
 
-		// Token: 0x06006CC6 RID: 27846 RVA: 0x000042DD File Offset: 0x000024DD
+		// Token: 0x060060D4 RID: 24788 RVA: 0x00004095 File Offset: 0x00002295
 		public void Dispose()
 		{
 		}
 
-		// Token: 0x040061D9 RID: 25049
+		// Token: 0x0400554F RID: 21839
 		public static DummyPerformanceStopwatch Instance = new DummyPerformanceStopwatch();
 
-		// Token: 0x040061DA RID: 25050
+		// Token: 0x04005550 RID: 21840
 		private PerformanceResult m_Result;
 	}
 }

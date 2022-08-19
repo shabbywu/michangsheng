@@ -4,15 +4,15 @@ using UnityEngine.Events;
 
 namespace PaiMai
 {
-	// Token: 0x02000A6E RID: 2670
+	// Token: 0x0200071B RID: 1819
 	public class PlayerCommand : MonoBehaviour
 	{
-		// Token: 0x170007D5 RID: 2005
-		// (get) Token: 0x060044BE RID: 17598 RVA: 0x0003124F File Offset: 0x0002F44F
-		// (set) Token: 0x060044BF RID: 17599 RVA: 0x00031257 File Offset: 0x0002F457
+		// Token: 0x170005A3 RID: 1443
+		// (get) Token: 0x06003A2F RID: 14895 RVA: 0x0018FCB9 File Offset: 0x0018DEB9
+		// (set) Token: 0x06003A30 RID: 14896 RVA: 0x0018FCC1 File Offset: 0x0018DEC1
 		public bool CanClick { get; private set; }
 
-		// Token: 0x060044C0 RID: 17600 RVA: 0x001D7204 File Offset: 0x001D5404
+		// Token: 0x06003A31 RID: 14897 RVA: 0x0018FCCC File Offset: 0x0018DECC
 		public void AddClickAction(UnityAction action)
 		{
 			if (this._btn == null)
@@ -26,7 +26,7 @@ namespace PaiMai
 			}
 		}
 
-		// Token: 0x060044C1 RID: 17601 RVA: 0x00031260 File Offset: 0x0002F460
+		// Token: 0x06003A32 RID: 14898 RVA: 0x0018FD1E File Offset: 0x0018DF1E
 		public void AddMouseEnterListener(UnityAction action)
 		{
 			if (this._btn == null)
@@ -36,7 +36,7 @@ namespace PaiMai
 			this._btn.mouseEnterEvent.AddListener(action);
 		}
 
-		// Token: 0x060044C2 RID: 17602 RVA: 0x0003128D File Offset: 0x0002F48D
+		// Token: 0x06003A33 RID: 14899 RVA: 0x0018FD4B File Offset: 0x0018DF4B
 		public void AddMouseOutsListener(UnityAction action)
 		{
 			if (this._btn == null)
@@ -46,7 +46,7 @@ namespace PaiMai
 			this._btn.mouseOutEvent.AddListener(action);
 		}
 
-		// Token: 0x060044C3 RID: 17603 RVA: 0x000312BA File Offset: 0x0002F4BA
+		// Token: 0x06003A34 RID: 14900 RVA: 0x0018FD78 File Offset: 0x0018DF78
 		public void PlayToBack()
 		{
 			this._btn.SetCanClick(false);
@@ -54,32 +54,32 @@ namespace PaiMai
 			this._animator.Play("ToBack");
 		}
 
-		// Token: 0x060044C4 RID: 17604 RVA: 0x000312DF File Offset: 0x0002F4DF
+		// Token: 0x06003A35 RID: 14901 RVA: 0x0018FD9D File Offset: 0x0018DF9D
 		public void PlayBackTo()
 		{
 			this._animator.Play("BackTo");
 		}
 
-		// Token: 0x060044C5 RID: 17605 RVA: 0x000312F1 File Offset: 0x0002F4F1
+		// Token: 0x06003A36 RID: 14902 RVA: 0x0018FDAF File Offset: 0x0018DFAF
 		public void BackTo()
 		{
 			this.CanClick = true;
 			this._btn.SetCanClick(true);
 		}
 
-		// Token: 0x04003CE0 RID: 15584
+		// Token: 0x0400324F RID: 12879
 		private FpBtn _btn;
 
-		// Token: 0x04003CE1 RID: 15585
+		// Token: 0x04003250 RID: 12880
 		private Animator _animator;
 
-		// Token: 0x04003CE2 RID: 15586
+		// Token: 0x04003251 RID: 12881
 		public CommandType CommandType;
 
-		// Token: 0x04003CE3 RID: 15587
+		// Token: 0x04003252 RID: 12882
 		public CeLueType CeLueType;
 
-		// Token: 0x04003CE4 RID: 15588
+		// Token: 0x04003253 RID: 12883
 		private UnityAction _toBack;
 	}
 }

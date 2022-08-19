@@ -1,12 +1,12 @@
 ﻿using System;
 
-// Token: 0x0200064E RID: 1614
+// Token: 0x02000483 RID: 1155
 public enum UseLingQiType
 {
-	// Token: 0x040021F2 RID: 8690
+	// Token: 0x04001D01 RID: 7425
 	None,
-	// Token: 0x040021F3 RID: 8691
+	// Token: 0x04001D02 RID: 7426
 	释放技能消耗,
-	// Token: 0x040021F4 RID: 8692
+	// Token: 0x04001D03 RID: 7427
 	释放技能后消耗
 }

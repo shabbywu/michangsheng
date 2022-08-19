@@ -2,29 +2,29 @@
 
 namespace KBEngine
 {
-	// Token: 0x02000F47 RID: 3911
+	// Token: 0x02000BC4 RID: 3012
 	public struct MP
 	{
-		// Token: 0x06005E34 RID: 24116 RVA: 0x0004211E File Offset: 0x0004031E
+		// Token: 0x060053F6 RID: 21494 RVA: 0x00233FBD File Offset: 0x002321BD
 		private MP(int value)
 		{
 			this.value = value;
 		}
 
-		// Token: 0x06005E35 RID: 24117 RVA: 0x00042127 File Offset: 0x00040327
+		// Token: 0x060053F7 RID: 21495 RVA: 0x00233FC6 File Offset: 0x002321C6
 		public static implicit operator int(MP value)
 		{
 			return value.value;
 		}
 
-		// Token: 0x06005E36 RID: 24118 RVA: 0x0004212F File Offset: 0x0004032F
+		// Token: 0x060053F8 RID: 21496 RVA: 0x00233FCE File Offset: 0x002321CE
 		public static implicit operator MP(int value)
 		{
 			return new MP(value);
 		}
 
-		// Token: 0x170008A7 RID: 2215
-		// (get) Token: 0x06005E37 RID: 24119 RVA: 0x00041B41 File Offset: 0x0003FD41
+		// Token: 0x17000654 RID: 1620
+		// (get) Token: 0x060053F9 RID: 21497 RVA: 0x002339E0 File Offset: 0x00231BE0
 		public static int MaxValue
 		{
 			get
@@ -33,8 +33,8 @@ namespace KBEngine
 			}
 		}
 
-		// Token: 0x170008A8 RID: 2216
-		// (get) Token: 0x06005E38 RID: 24120 RVA: 0x00041B48 File Offset: 0x0003FD48
+		// Token: 0x17000655 RID: 1621
+		// (get) Token: 0x060053FA RID: 21498 RVA: 0x002339E7 File Offset: 0x00231BE7
 		public static int MinValue
 		{
 			get
@@ -43,7 +43,7 @@ namespace KBEngine
 			}
 		}
 
-		// Token: 0x04005AF1 RID: 23281
+		// Token: 0x04005050 RID: 20560
 		private int value;
 	}
 }

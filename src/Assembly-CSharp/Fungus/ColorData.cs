@@ -3,26 +3,26 @@ using UnityEngine;
 
 namespace Fungus
 {
-	// Token: 0x0200137B RID: 4987
+	// Token: 0x02000EDA RID: 3802
 	[Serializable]
 	public struct ColorData
 	{
-		// Token: 0x060078D2 RID: 30930 RVA: 0x000521E8 File Offset: 0x000503E8
+		// Token: 0x06006B33 RID: 27443 RVA: 0x00295DCA File Offset: 0x00293FCA
 		public ColorData(Color v)
 		{
 			this.colorVal = v;
 			this.colorRef = null;
 		}
 
-		// Token: 0x060078D3 RID: 30931 RVA: 0x000521F8 File Offset: 0x000503F8
+		// Token: 0x06006B34 RID: 27444 RVA: 0x00295DDA File Offset: 0x00293FDA
 		public static implicit operator Color(ColorData colorData)
 		{
 			return colorData.Value;
 		}
 
-		// Token: 0x17000B58 RID: 2904
-		// (get) Token: 0x060078D4 RID: 30932 RVA: 0x00052201 File Offset: 0x00050401
-		// (set) Token: 0x060078D5 RID: 30933 RVA: 0x00052223 File Offset: 0x00050423
+		// Token: 0x170008BB RID: 2235
+		// (get) Token: 0x06006B35 RID: 27445 RVA: 0x00295DE3 File Offset: 0x00293FE3
+		// (set) Token: 0x06006B36 RID: 27446 RVA: 0x00295E05 File Offset: 0x00294005
 		public Color Value
 		{
 			get
@@ -44,7 +44,7 @@ namespace Fungus
 			}
 		}
 
-		// Token: 0x060078D6 RID: 30934 RVA: 0x00052247 File Offset: 0x00050447
+		// Token: 0x06006B37 RID: 27447 RVA: 0x00295E29 File Offset: 0x00294029
 		public string GetDescription()
 		{
 			if (this.colorRef == null)
@@ -54,7 +54,7 @@ namespace Fungus
 			return this.colorRef.Key;
 		}
 
-		// Token: 0x040068DB RID: 26843
+		// Token: 0x04005A72 RID: 23154
 		[SerializeField]
 		[VariableProperty("<Value>", new Type[]
 		{
@@ -62,7 +62,7 @@ namespace Fungus
 		})]
 		public ColorVariable colorRef;
 
-		// Token: 0x040068DC RID: 26844
+		// Token: 0x04005A73 RID: 23155
 		[SerializeField]
 		public Color colorVal;
 	}

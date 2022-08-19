@@ -4,22 +4,22 @@ using System.IO;
 using System.Text;
 using UnityEngine;
 
-// Token: 0x020000B7 RID: 183
+// Token: 0x02000081 RID: 129
 public class ByteReader
 {
-	// Token: 0x060006CA RID: 1738 RVA: 0x00009DCA File Offset: 0x00007FCA
+	// Token: 0x06000650 RID: 1616 RVA: 0x000239F4 File Offset: 0x00021BF4
 	public ByteReader(byte[] bytes)
 	{
 		this.mBuffer = bytes;
 	}
 
-	// Token: 0x060006CB RID: 1739 RVA: 0x00009DD9 File Offset: 0x00007FD9
+	// Token: 0x06000651 RID: 1617 RVA: 0x00023A03 File Offset: 0x00021C03
 	public ByteReader(TextAsset asset)
 	{
 		this.mBuffer = asset.bytes;
 	}
 
-	// Token: 0x060006CC RID: 1740 RVA: 0x0007930C File Offset: 0x0007750C
+	// Token: 0x06000652 RID: 1618 RVA: 0x00023A18 File Offset: 0x00021C18
 	public static ByteReader Open(string path)
 	{
 		FileStream fileStream = File.OpenRead(path);
@@ -35,8 +35,8 @@ public class ByteReader
 		return null;
 	}
 
-	// Token: 0x170000D1 RID: 209
-	// (get) Token: 0x060006CD RID: 1741 RVA: 0x00009DED File Offset: 0x00007FED
+	// Token: 0x170000BF RID: 191
+	// (get) Token: 0x06000653 RID: 1619 RVA: 0x00023A6A File Offset: 0x00021C6A
 	public bool canRead
 	{
 		get
@@ -45,19 +45,19 @@ public class ByteReader
 		}
 	}
 
-	// Token: 0x060006CE RID: 1742 RVA: 0x00009E09 File Offset: 0x00008009
+	// Token: 0x06000654 RID: 1620 RVA: 0x00023A86 File Offset: 0x00021C86
 	private static string ReadLine(byte[] buffer, int start, int count)
 	{
 		return Encoding.UTF8.GetString(buffer, start, count);
 	}
 
-	// Token: 0x060006CF RID: 1743 RVA: 0x00009E18 File Offset: 0x00008018
+	// Token: 0x06000655 RID: 1621 RVA: 0x00023A95 File Offset: 0x00021C95
 	public string ReadLine()
 	{
 		return this.ReadLine(true);
 	}
 
-	// Token: 0x060006D0 RID: 1744 RVA: 0x00079360 File Offset: 0x00077560
+	// Token: 0x06000656 RID: 1622 RVA: 0x00023AA0 File Offset: 0x00021CA0
 	public string ReadLine(bool skipEmptyLines)
 	{
 		int num = this.mBuffer.Length;
@@ -89,7 +89,7 @@ public class ByteReader
 		return null;
 	}
 
-	// Token: 0x060006D1 RID: 1745 RVA: 0x000793FC File Offset: 0x000775FC
+	// Token: 0x06000657 RID: 1623 RVA: 0x00023B3C File Offset: 0x00021D3C
 	public Dictionary<string, string> ReadDictionary()
 	{
 		Dictionary<string, string> dictionary = new Dictionary<string, string>();
@@ -118,7 +118,7 @@ public class ByteReader
 		return dictionary;
 	}
 
-	// Token: 0x060006D2 RID: 1746 RVA: 0x0007947C File Offset: 0x0007767C
+	// Token: 0x06000658 RID: 1624 RVA: 0x00023BBC File Offset: 0x00021DBC
 	public BetterList<string> ReadCSV()
 	{
 		ByteReader.mTemp.Clear();
@@ -206,12 +206,12 @@ public class ByteReader
 		return null;
 	}
 
-	// Token: 0x04000518 RID: 1304
+	// Token: 0x04000444 RID: 1092
 	private byte[] mBuffer;
 
-	// Token: 0x04000519 RID: 1305
+	// Token: 0x04000445 RID: 1093
 	private int mOffset;
 
-	// Token: 0x0400051A RID: 1306
+	// Token: 0x04000446 RID: 1094
 	private static BetterList<string> mTemp = new BetterList<string>();
 }

@@ -2,12 +2,12 @@
 using Fungus;
 using UnityEngine;
 
-// Token: 0x020005F9 RID: 1529
+// Token: 0x02000442 RID: 1090
 [CommandInfo("YSTool", "销毁自身", "销毁自身", 0)]
 [AddComponentMenu("")]
 public class CmdDestoryMe : Command
 {
-	// Token: 0x06002657 RID: 9815 RVA: 0x0012E498 File Offset: 0x0012C698
+	// Token: 0x06002298 RID: 8856 RVA: 0x000ED658 File Offset: 0x000EB858
 	public override void OnEnter()
 	{
 		Flowchart flowchart = this.GetFlowchart();

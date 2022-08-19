@@ -6,41 +6,41 @@ using JSONClass;
 
 namespace KBEngine
 {
-	// Token: 0x0200100D RID: 4109
+	// Token: 0x02000C6E RID: 3182
 	public class FightTempValue
 	{
-		// Token: 0x0600622D RID: 25133 RVA: 0x000440BF File Offset: 0x000422BF
+		// Token: 0x060057B5 RID: 22453 RVA: 0x00246FC0 File Offset: 0x002451C0
 		public void realizedNextSeid()
 		{
 			this.WaitSkill.triggerStartSeid(this.WaitSeid, this.WaitDamage, this.WaitAttacker, this.WaitReceiver, 0);
 		}
 
-		// Token: 0x0600622F RID: 25135 RVA: 0x000440E5 File Offset: 0x000422E5
+		// Token: 0x060057B7 RID: 22455 RVA: 0x002470BA File Offset: 0x002452BA
 		public void SetRoundReceiveDamage(Avatar avatar, int damage, int SkillID)
 		{
 			this.RoundReceiveDamage[0] += damage;
 		}
 
-		// Token: 0x06006230 RID: 25136 RVA: 0x000440F8 File Offset: 0x000422F8
+		// Token: 0x060057B8 RID: 22456 RVA: 0x002470CD File Offset: 0x002452CD
 		public void SetRoundLossHP(int loss)
 		{
 			this.RoundLossHP[0] += loss;
 			this.TotalLossHP += loss;
 		}
 
-		// Token: 0x06006231 RID: 25137 RVA: 0x00044119 File Offset: 0x00042319
+		// Token: 0x060057B9 RID: 22457 RVA: 0x002470EE File Offset: 0x002452EE
 		public void SetHealHP(int hp)
 		{
 			this.TotalHealHP += hp;
 		}
 
-		// Token: 0x06006232 RID: 25138 RVA: 0x00044129 File Offset: 0x00042329
+		// Token: 0x060057BA RID: 22458 RVA: 0x002470FE File Offset: 0x002452FE
 		public void SetAddLingQi(int lingQiType, int LingQiCount)
 		{
 			this.TotalAddLingQi += LingQiCount;
 		}
 
-		// Token: 0x06006233 RID: 25139 RVA: 0x00273360 File Offset: 0x00271560
+		// Token: 0x060057BB RID: 22459 RVA: 0x00247110 File Offset: 0x00245310
 		public void SetRoundDamage(Avatar avatar, int damage, int SkillID)
 		{
 			if (damage >= 0)
@@ -64,7 +64,7 @@ namespace KBEngine
 			}
 		}
 
-		// Token: 0x06006234 RID: 25140 RVA: 0x00044139 File Offset: 0x00042339
+		// Token: 0x060057BC RID: 22460 RVA: 0x002471DC File Offset: 0x002453DC
 		private void SetAttackTypeRoundDamage(int attackType, int damage)
 		{
 			if (!this.lastRoundDamageDict.ContainsKey(attackType))
@@ -74,7 +74,7 @@ namespace KBEngine
 			this.lastRoundDamageDict[attackType][0] += damage;
 		}
 
-		// Token: 0x06006235 RID: 25141 RVA: 0x00044172 File Offset: 0x00042372
+		// Token: 0x060057BD RID: 22461 RVA: 0x00247215 File Offset: 0x00245415
 		public int GetAttackTypeRoundDamage(int attackType)
 		{
 			if (this.lastRoundDamageDict.ContainsKey(attackType))
@@ -84,7 +84,7 @@ namespace KBEngine
 			return 0;
 		}
 
-		// Token: 0x06006236 RID: 25142 RVA: 0x0027342C File Offset: 0x0027162C
+		// Token: 0x060057BE RID: 22462 RVA: 0x00247238 File Offset: 0x00245438
 		public void ResetRound(Avatar avatar)
 		{
 			this.lastRoundDamage[1] = this.lastRoundDamage[0];
@@ -111,7 +111,7 @@ namespace KBEngine
 			this.RoundHasBuff.Add(list);
 		}
 
-		// Token: 0x06006237 RID: 25143 RVA: 0x00273590 File Offset: 0x00271790
+		// Token: 0x060057BF RID: 22463 RVA: 0x0024739C File Offset: 0x0024559C
 		public void UseSkill(int id)
 		{
 			this.NowRoundUsedSkills.Add(id);
@@ -134,7 +134,7 @@ namespace KBEngine
 			skillUseCountDictWithSkillID[num] = num2 + 1;
 		}
 
-		// Token: 0x06006238 RID: 25144 RVA: 0x00044192 File Offset: 0x00042392
+		// Token: 0x060057C0 RID: 22464 RVA: 0x00247444 File Offset: 0x00245644
 		public int GetSkillUseCount(int skillID)
 		{
 			if (this.SkillUseCountDictWithSkillID.ContainsKey(skillID))
@@ -144,97 +144,97 @@ namespace KBEngine
 			return 0;
 		}
 
-		// Token: 0x04005CB1 RID: 23729
+		// Token: 0x040051D3 RID: 20947
 		public Dictionary<int, int> tempShenShi = new Dictionary<int, int>();
 
-		// Token: 0x04005CB2 RID: 23730
+		// Token: 0x040051D4 RID: 20948
 		public Dictionary<int, int> tempDunSu = new Dictionary<int, int>();
 
-		// Token: 0x04005CB3 RID: 23731
+		// Token: 0x040051D5 RID: 20949
 		public Dictionary<int, int> TempHP_Max = new Dictionary<int, int>();
 
-		// Token: 0x04005CB4 RID: 23732
+		// Token: 0x040051D6 RID: 20950
 		public int showNowHp;
 
-		// Token: 0x04005CB5 RID: 23733
+		// Token: 0x040051D7 RID: 20951
 		public int MonstarID;
 
-		// Token: 0x04005CB6 RID: 23734
+		// Token: 0x040051D8 RID: 20952
 		public int tempNowCard;
 
-		// Token: 0x04005CB7 RID: 23735
+		// Token: 0x040051D9 RID: 20953
 		public bool useAI;
 
-		// Token: 0x04005CB8 RID: 23736
+		// Token: 0x040051DA RID: 20954
 		public List<int> NowRoundUsedCard = new List<int>();
 
-		// Token: 0x04005CB9 RID: 23737
+		// Token: 0x040051DB RID: 20955
 		public List<int> NowRoundUsedSkills = new List<int>();
 
-		// Token: 0x04005CBA RID: 23738
+		// Token: 0x040051DC RID: 20956
 		public List<int> NowRoundDamageSkills = new List<int>();
 
-		// Token: 0x04005CBB RID: 23739
+		// Token: 0x040051DD RID: 20957
 		public List<List<int>> RoundHasBuff = new List<List<int>>();
 
-		// Token: 0x04005CBC RID: 23740
+		// Token: 0x040051DE RID: 20958
 		public List<int> UsedSkills = new List<int>();
 
-		// Token: 0x04005CBD RID: 23741
+		// Token: 0x040051DF RID: 20959
 		public Dictionary<int, int> SkillUseCountDict = new Dictionary<int, int>();
 
-		// Token: 0x04005CBE RID: 23742
+		// Token: 0x040051E0 RID: 20960
 		public Dictionary<int, int> SkillUseCountDictWithSkillID = new Dictionary<int, int>();
 
-		// Token: 0x04005CBF RID: 23743
+		// Token: 0x040051E1 RID: 20961
 		public int[] lastRoundDamage = new int[2];
 
-		// Token: 0x04005CC0 RID: 23744
+		// Token: 0x040051E2 RID: 20962
 		public int[] lastRoundDamageCount = new int[2];
 
-		// Token: 0x04005CC1 RID: 23745
+		// Token: 0x040051E3 RID: 20963
 		public Dictionary<int, int[]> lastRoundDamageDict = new Dictionary<int, int[]>();
 
-		// Token: 0x04005CC2 RID: 23746
+		// Token: 0x040051E4 RID: 20964
 		public int[] RoundReceiveDamage = new int[2];
 
-		// Token: 0x04005CC3 RID: 23747
+		// Token: 0x040051E5 RID: 20965
 		public int[] RoundLossHP = new int[2];
 
-		// Token: 0x04005CC4 RID: 23748
+		// Token: 0x040051E6 RID: 20966
 		public int AllDamage;
 
-		// Token: 0x04005CC5 RID: 23749
+		// Token: 0x040051E7 RID: 20967
 		public int TotalAddLingQi;
 
-		// Token: 0x04005CC6 RID: 23750
+		// Token: 0x040051E8 RID: 20968
 		public int TotalHealHP;
 
-		// Token: 0x04005CC7 RID: 23751
+		// Token: 0x040051E9 RID: 20969
 		public int TotalLossHP;
 
-		// Token: 0x04005CC8 RID: 23752
+		// Token: 0x040051EA RID: 20970
 		public Dictionary<int, JSONObject> LianQiBuffEquipDictionary = new Dictionary<int, JSONObject>();
 
-		// Token: 0x04005CC9 RID: 23753
+		// Token: 0x040051EB RID: 20971
 		public Dictionary<int, JSONObject> LianQiEquipDictionary = new Dictionary<int, JSONObject>();
 
-		// Token: 0x04005CCA RID: 23754
+		// Token: 0x040051EC RID: 20972
 		public bool IsSkillWait;
 
-		// Token: 0x04005CCB RID: 23755
+		// Token: 0x040051ED RID: 20973
 		public Avatar WaitAttacker;
 
-		// Token: 0x04005CCC RID: 23756
+		// Token: 0x040051EE RID: 20974
 		public Avatar WaitReceiver;
 
-		// Token: 0x04005CCD RID: 23757
+		// Token: 0x040051EF RID: 20975
 		public List<int> WaitDamage;
 
-		// Token: 0x04005CCE RID: 23758
+		// Token: 0x040051F0 RID: 20976
 		public List<int> WaitSeid;
 
-		// Token: 0x04005CCF RID: 23759
+		// Token: 0x040051F1 RID: 20977
 		public Skill WaitSkill;
 	}
 }

@@ -6,56 +6,56 @@ using UnityEngine.UI;
 
 namespace UltimateSurvival.GUISystem
 {
-	// Token: 0x02000933 RID: 2355
+	// Token: 0x0200063D RID: 1597
 	public class Slot : Selectable, IBeginDragHandler, IEventSystemHandler, IDragHandler, IEndDragHandler
 	{
 		// Token: 0x14000043 RID: 67
-		// (add) Token: 0x06003C1C RID: 15388 RVA: 0x001AFF00 File Offset: 0x001AE100
-		// (remove) Token: 0x06003C1D RID: 15389 RVA: 0x001AFF38 File Offset: 0x001AE138
+		// (add) Token: 0x060032D4 RID: 13012 RVA: 0x00166C7C File Offset: 0x00164E7C
+		// (remove) Token: 0x060032D5 RID: 13013 RVA: 0x00166CB4 File Offset: 0x00164EB4
 		public event Slot.BaseAction E_Select;
 
 		// Token: 0x14000044 RID: 68
-		// (add) Token: 0x06003C1E RID: 15390 RVA: 0x001AFF70 File Offset: 0x001AE170
-		// (remove) Token: 0x06003C1F RID: 15391 RVA: 0x001AFFA8 File Offset: 0x001AE1A8
+		// (add) Token: 0x060032D6 RID: 13014 RVA: 0x00166CEC File Offset: 0x00164EEC
+		// (remove) Token: 0x060032D7 RID: 13015 RVA: 0x00166D24 File Offset: 0x00164F24
 		public event Slot.BaseAction E_Deselect;
 
 		// Token: 0x14000045 RID: 69
-		// (add) Token: 0x06003C20 RID: 15392 RVA: 0x001AFFE0 File Offset: 0x001AE1E0
-		// (remove) Token: 0x06003C21 RID: 15393 RVA: 0x001B0018 File Offset: 0x001AE218
+		// (add) Token: 0x060032D8 RID: 13016 RVA: 0x00166D5C File Offset: 0x00164F5C
+		// (remove) Token: 0x060032D9 RID: 13017 RVA: 0x00166D94 File Offset: 0x00164F94
 		public event Slot.PointerAction PointerDown;
 
 		// Token: 0x14000046 RID: 70
-		// (add) Token: 0x06003C22 RID: 15394 RVA: 0x001B0050 File Offset: 0x001AE250
-		// (remove) Token: 0x06003C23 RID: 15395 RVA: 0x001B0088 File Offset: 0x001AE288
+		// (add) Token: 0x060032DA RID: 13018 RVA: 0x00166DCC File Offset: 0x00164FCC
+		// (remove) Token: 0x060032DB RID: 13019 RVA: 0x00166E04 File Offset: 0x00165004
 		public event Slot.PointerAction PointerUp;
 
 		// Token: 0x14000047 RID: 71
-		// (add) Token: 0x06003C24 RID: 15396 RVA: 0x001B00C0 File Offset: 0x001AE2C0
-		// (remove) Token: 0x06003C25 RID: 15397 RVA: 0x001B00F8 File Offset: 0x001AE2F8
+		// (add) Token: 0x060032DC RID: 13020 RVA: 0x00166E3C File Offset: 0x0016503C
+		// (remove) Token: 0x060032DD RID: 13021 RVA: 0x00166E74 File Offset: 0x00165074
 		public event Slot.PointerAction BeginDrag;
 
 		// Token: 0x14000048 RID: 72
-		// (add) Token: 0x06003C26 RID: 15398 RVA: 0x001B0130 File Offset: 0x001AE330
-		// (remove) Token: 0x06003C27 RID: 15399 RVA: 0x001B0168 File Offset: 0x001AE368
+		// (add) Token: 0x060032DE RID: 13022 RVA: 0x00166EAC File Offset: 0x001650AC
+		// (remove) Token: 0x060032DF RID: 13023 RVA: 0x00166EE4 File Offset: 0x001650E4
 		public event Slot.PointerAction Drag;
 
 		// Token: 0x14000049 RID: 73
-		// (add) Token: 0x06003C28 RID: 15400 RVA: 0x001B01A0 File Offset: 0x001AE3A0
-		// (remove) Token: 0x06003C29 RID: 15401 RVA: 0x001B01D8 File Offset: 0x001AE3D8
+		// (add) Token: 0x060032E0 RID: 13024 RVA: 0x00166F1C File Offset: 0x0016511C
+		// (remove) Token: 0x060032E1 RID: 13025 RVA: 0x00166F54 File Offset: 0x00165154
 		public event Slot.PointerAction EndDrag;
 
-		// Token: 0x17000675 RID: 1653
-		// (get) Token: 0x06003C2A RID: 15402 RVA: 0x0002B6CB File Offset: 0x000298CB
-		// (set) Token: 0x06003C2B RID: 15403 RVA: 0x0002B6D3 File Offset: 0x000298D3
+		// Token: 0x17000471 RID: 1137
+		// (get) Token: 0x060032E2 RID: 13026 RVA: 0x00166F89 File Offset: 0x00165189
+		// (set) Token: 0x060032E3 RID: 13027 RVA: 0x00166F91 File Offset: 0x00165191
 		public ItemHolder ItemHolder { get; private set; }
 
-		// Token: 0x17000676 RID: 1654
-		// (get) Token: 0x06003C2C RID: 15404 RVA: 0x0002B6DC File Offset: 0x000298DC
-		// (set) Token: 0x06003C2D RID: 15405 RVA: 0x0002B6E4 File Offset: 0x000298E4
+		// Token: 0x17000472 RID: 1138
+		// (get) Token: 0x060032E4 RID: 13028 RVA: 0x00166F9A File Offset: 0x0016519A
+		// (set) Token: 0x060032E5 RID: 13029 RVA: 0x00166FA2 File Offset: 0x001651A2
 		public ItemContainer Parent { get; private set; }
 
-		// Token: 0x17000677 RID: 1655
-		// (get) Token: 0x06003C2E RID: 15406 RVA: 0x0002B6ED File Offset: 0x000298ED
+		// Token: 0x17000473 RID: 1139
+		// (get) Token: 0x060032E6 RID: 13030 RVA: 0x00166FAB File Offset: 0x001651AB
 		public bool HasItem
 		{
 			get
@@ -64,8 +64,8 @@ namespace UltimateSurvival.GUISystem
 			}
 		}
 
-		// Token: 0x17000678 RID: 1656
-		// (get) Token: 0x06003C2F RID: 15407 RVA: 0x0002B709 File Offset: 0x00029909
+		// Token: 0x17000474 RID: 1140
+		// (get) Token: 0x060032E7 RID: 13031 RVA: 0x00166FC7 File Offset: 0x001651C7
 		public SavableItem CurrentItem
 		{
 			get
@@ -78,9 +78,9 @@ namespace UltimateSurvival.GUISystem
 			}
 		}
 
-		// Token: 0x17000679 RID: 1657
-		// (get) Token: 0x06003C30 RID: 15408 RVA: 0x0002B725 File Offset: 0x00029925
-		// (set) Token: 0x06003C31 RID: 15409 RVA: 0x0002B72D File Offset: 0x0002992D
+		// Token: 0x17000475 RID: 1141
+		// (get) Token: 0x060032E8 RID: 13032 RVA: 0x00166FE3 File Offset: 0x001651E3
+		// (set) Token: 0x060032E9 RID: 13033 RVA: 0x00166FEB File Offset: 0x001651EB
 		public ReorderableStringList RequiredCategories
 		{
 			get
@@ -93,9 +93,9 @@ namespace UltimateSurvival.GUISystem
 			}
 		}
 
-		// Token: 0x1700067A RID: 1658
-		// (get) Token: 0x06003C32 RID: 15410 RVA: 0x0002B736 File Offset: 0x00029936
-		// (set) Token: 0x06003C33 RID: 15411 RVA: 0x0002B73E File Offset: 0x0002993E
+		// Token: 0x17000476 RID: 1142
+		// (get) Token: 0x060032EA RID: 13034 RVA: 0x00166FF4 File Offset: 0x001651F4
+		// (set) Token: 0x060032EB RID: 13035 RVA: 0x00166FFC File Offset: 0x001651FC
 		public ReorderableStringList RequiredProperties
 		{
 			get
@@ -108,7 +108,7 @@ namespace UltimateSurvival.GUISystem
 			}
 		}
 
-		// Token: 0x06003C34 RID: 15412 RVA: 0x001B0210 File Offset: 0x001AE410
+		// Token: 0x060032EC RID: 13036 RVA: 0x00167008 File Offset: 0x00165208
 		private void Start()
 		{
 			GameObject gameObject = GameObject.Find("8-Item Inspector");
@@ -118,7 +118,7 @@ namespace UltimateSurvival.GUISystem
 			}
 		}
 
-		// Token: 0x06003C35 RID: 15413 RVA: 0x001B0240 File Offset: 0x001AE440
+		// Token: 0x060032ED RID: 13037 RVA: 0x00167038 File Offset: 0x00165238
 		public bool AllowsItem(SavableItem item)
 		{
 			bool flag = false;
@@ -152,7 +152,7 @@ namespace UltimateSurvival.GUISystem
 			return flag && flag2;
 		}
 
-		// Token: 0x06003C36 RID: 15414 RVA: 0x001B02DC File Offset: 0x001AE4DC
+		// Token: 0x060032EE RID: 13038 RVA: 0x001670D4 File Offset: 0x001652D4
 		public void LinkWithHolder(ItemHolder holder)
 		{
 			if (this.ItemHolder)
@@ -164,7 +164,7 @@ namespace UltimateSurvival.GUISystem
 			this.ItemHolder.Updated.AddListener(new Action<ItemHolder>(this.On_ItemHolder_Updated));
 		}
 
-		// Token: 0x06003C37 RID: 15415 RVA: 0x001B033C File Offset: 0x001AE53C
+		// Token: 0x060032EF RID: 13039 RVA: 0x00167134 File Offset: 0x00165334
 		public void Refresh()
 		{
 			this.m_ItemIcon.enabled = this.HasItem;
@@ -185,7 +185,7 @@ namespace UltimateSurvival.GUISystem
 			this.Refreshed.Send(this);
 		}
 
-		// Token: 0x06003C38 RID: 15416 RVA: 0x001B0440 File Offset: 0x001AE640
+		// Token: 0x060032F0 RID: 13040 RVA: 0x00167238 File Offset: 0x00165438
 		public RectTransform GetDragTemplate(SavableItem forItem, float alpha)
 		{
 			Slot slot = Object.Instantiate<Slot>(this);
@@ -204,7 +204,7 @@ namespace UltimateSurvival.GUISystem
 			return slot.GetComponent<RectTransform>();
 		}
 
-		// Token: 0x06003C39 RID: 15417 RVA: 0x0002B747 File Offset: 0x00029947
+		// Token: 0x060032F1 RID: 13041 RVA: 0x001672EF File Offset: 0x001654EF
 		public void SetScale(Vector3 localScale, float duration)
 		{
 			if (base.IsDestroyed())
@@ -218,7 +218,7 @@ namespace UltimateSurvival.GUISystem
 			this.m_ScaleSetter = base.StartCoroutine(this.C_SetScale(localScale, duration));
 		}
 
-		// Token: 0x06003C3A RID: 15418 RVA: 0x0002B77A File Offset: 0x0002997A
+		// Token: 0x060032F2 RID: 13042 RVA: 0x00167322 File Offset: 0x00165522
 		public override void OnSelect(BaseEventData data)
 		{
 			base.OnSelect(data);
@@ -228,7 +228,7 @@ namespace UltimateSurvival.GUISystem
 			}
 		}
 
-		// Token: 0x06003C3B RID: 15419 RVA: 0x001B04F8 File Offset: 0x001AE6F8
+		// Token: 0x060032F3 RID: 13043 RVA: 0x00167340 File Offset: 0x00165540
 		public override void OnDeselect(BaseEventData data)
 		{
 			if (this.HasItem && !MonoSingleton<InventoryController>.Instance.IsClosed && MonoSingleton<GUIController>.Instance.MouseOverSelectionKeeper())
@@ -243,7 +243,7 @@ namespace UltimateSurvival.GUISystem
 			base.OnDeselect(data);
 		}
 
-		// Token: 0x06003C3C RID: 15420 RVA: 0x001B0550 File Offset: 0x001AE750
+		// Token: 0x060032F4 RID: 13044 RVA: 0x00167398 File Offset: 0x00165598
 		public override void OnPointerDown(PointerEventData data)
 		{
 			base.OnPointerDown(data);
@@ -274,7 +274,7 @@ namespace UltimateSurvival.GUISystem
 			}
 		}
 
-		// Token: 0x06003C3D RID: 15421 RVA: 0x0002B798 File Offset: 0x00029998
+		// Token: 0x060032F5 RID: 13045 RVA: 0x0016745D File Offset: 0x0016565D
 		public override void OnPointerUp(PointerEventData data)
 		{
 			base.OnPointerUp(data);
@@ -284,7 +284,7 @@ namespace UltimateSurvival.GUISystem
 			}
 		}
 
-		// Token: 0x06003C3E RID: 15422 RVA: 0x0002B7B6 File Offset: 0x000299B6
+		// Token: 0x060032F6 RID: 13046 RVA: 0x0016747B File Offset: 0x0016567B
 		public void OnBeginDrag(PointerEventData data)
 		{
 			if (this.BeginDrag != null)
@@ -293,7 +293,7 @@ namespace UltimateSurvival.GUISystem
 			}
 		}
 
-		// Token: 0x06003C3F RID: 15423 RVA: 0x0002B7CD File Offset: 0x000299CD
+		// Token: 0x060032F7 RID: 13047 RVA: 0x00167492 File Offset: 0x00165692
 		public void OnDrag(PointerEventData data)
 		{
 			if (this.Drag != null)
@@ -302,14 +302,14 @@ namespace UltimateSurvival.GUISystem
 			}
 		}
 
-		// Token: 0x06003C40 RID: 15424 RVA: 0x0002B7E4 File Offset: 0x000299E4
+		// Token: 0x060032F8 RID: 13048 RVA: 0x001674A9 File Offset: 0x001656A9
 		public void exchengeSlotItem(Slot chengeSlot)
 		{
 			ItemOnObject component = base.gameObject.GetComponent<ItemOnObject>();
 			component.item = component.gameObject.GetComponent<ItemOnObject>().item;
 		}
 
-		// Token: 0x06003C41 RID: 15425 RVA: 0x001B0618 File Offset: 0x001AE818
+		// Token: 0x060032F9 RID: 13049 RVA: 0x001674CC File Offset: 0x001656CC
 		public void OnEndDrag(PointerEventData data)
 		{
 			if (this.EndDrag != null)
@@ -323,7 +323,7 @@ namespace UltimateSurvival.GUISystem
 			}
 		}
 
-		// Token: 0x06003C42 RID: 15426 RVA: 0x0002B806 File Offset: 0x00029A06
+		// Token: 0x060032FA RID: 13050 RVA: 0x00167527 File Offset: 0x00165727
 		protected override void Awake()
 		{
 			base.Awake();
@@ -337,7 +337,7 @@ namespace UltimateSurvival.GUISystem
 			this.m_DurabilityBar.SetActive(false);
 		}
 
-		// Token: 0x06003C43 RID: 15427 RVA: 0x001B0674 File Offset: 0x001AE874
+		// Token: 0x060032FB RID: 13051 RVA: 0x00167568 File Offset: 0x00165768
 		private void On_ItemHolder_Updated(ItemHolder holder)
 		{
 			this.Refresh();
@@ -347,7 +347,7 @@ namespace UltimateSurvival.GUISystem
 			component.item.itemIndex = holder.index;
 		}
 
-		// Token: 0x06003C44 RID: 15428 RVA: 0x0002B846 File Offset: 0x00029A46
+		// Token: 0x060032FC RID: 13052 RVA: 0x001675B8 File Offset: 0x001657B8
 		private IEnumerator C_SetScale(Vector3 localScale, float duration)
 		{
 			float finishTime = Time.time + duration;
@@ -360,7 +360,7 @@ namespace UltimateSurvival.GUISystem
 			yield break;
 		}
 
-		// Token: 0x06003C45 RID: 15429 RVA: 0x0002B863 File Offset: 0x00029A63
+		// Token: 0x060032FD RID: 13053 RVA: 0x001675D5 File Offset: 0x001657D5
 		private IEnumerator C_WaitAndSelect(int waitFrameCount)
 		{
 			int num;
@@ -373,48 +373,48 @@ namespace UltimateSurvival.GUISystem
 			yield break;
 		}
 
-		// Token: 0x0400367D RID: 13949
+		// Token: 0x04002D20 RID: 11552
 		public Tooltip tooltip;
 
-		// Token: 0x0400367E RID: 13950
+		// Token: 0x04002D21 RID: 11553
 		public Item item;
 
-		// Token: 0x0400367F RID: 13951
+		// Token: 0x04002D22 RID: 11554
 		public Message<Slot> Refreshed = new Message<Slot>();
 
-		// Token: 0x04003689 RID: 13961
+		// Token: 0x04002D2C RID: 11564
 		[Header("Setup")]
 		[SerializeField]
 		private Image m_ItemIcon;
 
-		// Token: 0x0400368A RID: 13962
+		// Token: 0x04002D2D RID: 11565
 		[SerializeField]
 		private Text m_StackDisplayer;
 
-		// Token: 0x0400368B RID: 13963
+		// Token: 0x04002D2E RID: 11566
 		[SerializeField]
 		private DurabilityBar m_DurabilityBar;
 
-		// Token: 0x0400368C RID: 13964
+		// Token: 0x04002D2F RID: 11567
 		[Header("Required Stuff")]
 		[SerializeField]
 		[Reorderable]
 		private ReorderableStringList m_RequiredCategories;
 
-		// Token: 0x0400368D RID: 13965
+		// Token: 0x04002D30 RID: 11568
 		[SerializeField]
 		[Reorderable]
 		private ReorderableStringList m_RequiredProperties;
 
-		// Token: 0x0400368E RID: 13966
+		// Token: 0x04002D31 RID: 11569
 		private Coroutine m_ScaleSetter;
 
-		// Token: 0x02000934 RID: 2356
-		// (Invoke) Token: 0x06003C48 RID: 15432
+		// Token: 0x020014E0 RID: 5344
+		// (Invoke) Token: 0x06008225 RID: 33317
 		public delegate void BaseAction(BaseEventData data, Slot wrapper);
 
-		// Token: 0x02000935 RID: 2357
-		// (Invoke) Token: 0x06003C4C RID: 15436
+		// Token: 0x020014E1 RID: 5345
+		// (Invoke) Token: 0x06008229 RID: 33321
 		public delegate void PointerAction(PointerEventData data, Slot wrapper);
 	}
 }

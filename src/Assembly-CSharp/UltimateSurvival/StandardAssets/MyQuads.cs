@@ -3,10 +3,10 @@ using UnityEngine;
 
 namespace UltimateSurvival.StandardAssets
 {
-	// Token: 0x02000922 RID: 2338
+	// Token: 0x02000630 RID: 1584
 	internal class MyQuads
 	{
-		// Token: 0x06003B7C RID: 15228 RVA: 0x001AE790 File Offset: 0x001AC990
+		// Token: 0x06003242 RID: 12866 RVA: 0x0016502C File Offset: 0x0016322C
 		private static bool HasMeshes()
 		{
 			if (MyQuads.meshes == null)
@@ -23,7 +23,7 @@ namespace UltimateSurvival.StandardAssets
 			return true;
 		}
 
-		// Token: 0x06003B7D RID: 15229 RVA: 0x001AE7CC File Offset: 0x001AC9CC
+		// Token: 0x06003243 RID: 12867 RVA: 0x00165068 File Offset: 0x00163268
 		public static void Cleanup()
 		{
 			if (MyQuads.meshes == null)
@@ -41,7 +41,7 @@ namespace UltimateSurvival.StandardAssets
 			MyQuads.meshes = null;
 		}
 
-		// Token: 0x06003B7E RID: 15230 RVA: 0x001AE81C File Offset: 0x001ACA1C
+		// Token: 0x06003244 RID: 12868 RVA: 0x001650B8 File Offset: 0x001632B8
 		public static Mesh[] GetMeshes(int totalWidth, int totalHeight)
 		{
 			if (MyQuads.HasMeshes() && MyQuads.currentQuads == totalWidth * totalHeight)
@@ -62,7 +62,7 @@ namespace UltimateSurvival.StandardAssets
 			return MyQuads.meshes;
 		}
 
-		// Token: 0x06003B7F RID: 15231 RVA: 0x001AE8AC File Offset: 0x001ACAAC
+		// Token: 0x06003245 RID: 12869 RVA: 0x00165148 File Offset: 0x00163348
 		private static Mesh GetMesh(int triCount, int triOffset, int totalWidth, int totalHeight)
 		{
 			Mesh mesh = new Mesh();
@@ -106,10 +106,10 @@ namespace UltimateSurvival.StandardAssets
 			return mesh;
 		}
 
-		// Token: 0x04003631 RID: 13873
+		// Token: 0x04002CE0 RID: 11488
 		private static Mesh[] meshes;
 
-		// Token: 0x04003632 RID: 13874
+		// Token: 0x04002CE1 RID: 11489
 		private static int currentQuads;
 	}
 }

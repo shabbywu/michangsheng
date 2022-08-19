@@ -4,10 +4,10 @@ using KBEngine;
 using UnityEngine;
 using UnityEngine.UI;
 
-// Token: 0x02000572 RID: 1394
+// Token: 0x020003D7 RID: 983
 public class CollectList : ScrollList
 {
-	// Token: 0x0600236A RID: 9066 RVA: 0x00123DE8 File Offset: 0x00121FE8
+	// Token: 0x06001FEA RID: 8170 RVA: 0x000E1320 File Offset: 0x000DF520
 	private void Awake()
 	{
 		Event.registerOut("openCollect", this, "openCollect");
@@ -16,12 +16,12 @@ public class CollectList : ScrollList
 		this.ItemTemple = base.transform.GetChild(0).gameObject;
 	}
 
-	// Token: 0x0600236B RID: 9067 RVA: 0x000042DD File Offset: 0x000024DD
+	// Token: 0x06001FEB RID: 8171 RVA: 0x00004095 File Offset: 0x00002295
 	private void Start()
 	{
 	}
 
-	// Token: 0x0600236C RID: 9068 RVA: 0x00123E40 File Offset: 0x00122040
+	// Token: 0x06001FEC RID: 8172 RVA: 0x000E1378 File Offset: 0x000DF578
 	public bool getItemByID(int itemID)
 	{
 		List<ITEM_INFO> values = ((Account)KBEngineApp.app.player()).itemList.values;
@@ -36,13 +36,13 @@ public class CollectList : ScrollList
 		return result;
 	}
 
-	// Token: 0x0600236D RID: 9069 RVA: 0x0001429C File Offset: 0x0001249C
+	// Token: 0x06001FED RID: 8173 RVA: 0x000826BE File Offset: 0x000808BE
 	private void OnDestroy()
 	{
 		Event.deregisterOut(this);
 	}
 
-	// Token: 0x0600236E RID: 9070 RVA: 0x00123E8C File Offset: 0x0012208C
+	// Token: 0x06001FEE RID: 8174 RVA: 0x000E13C4 File Offset: 0x000DF5C4
 	public void showCollect(ITEM_INFO_LIST infos, ushort day, ushort exp)
 	{
 		UI_Game.instence.tran_relive.gameObject.SetActive(true);
@@ -60,7 +60,7 @@ public class CollectList : ScrollList
 		}
 	}
 
-	// Token: 0x0600236F RID: 9071 RVA: 0x00123F7C File Offset: 0x0012217C
+	// Token: 0x06001FEF RID: 8175 RVA: 0x000E14B4 File Offset: 0x000DF6B4
 	public void openCollect()
 	{
 		this.clenrNowBtn();

@@ -3,12 +3,12 @@ using UnityEngine;
 
 namespace BehaviorDesigner.Runtime.Tasks.Basic.UnityRigidbody
 {
-	// Token: 0x0200154B RID: 5451
+	// Token: 0x02001091 RID: 4241
 	[TaskCategory("Basic/Rigidbody")]
 	[TaskDescription("Applies a torque to the rigidbody. Returns Success.")]
 	public class AddTorque : Action
 	{
-		// Token: 0x0600812A RID: 33066 RVA: 0x002CBEAC File Offset: 0x002CA0AC
+		// Token: 0x06007330 RID: 29488 RVA: 0x002AF74C File Offset: 0x002AD94C
 		public override void OnStart()
 		{
 			GameObject defaultGameObject = base.GetDefaultGameObject(this.targetGameObject.Value);
@@ -19,7 +19,7 @@ namespace BehaviorDesigner.Runtime.Tasks.Basic.UnityRigidbody
 			}
 		}
 
-		// Token: 0x0600812B RID: 33067 RVA: 0x00058213 File Offset: 0x00056413
+		// Token: 0x06007331 RID: 29489 RVA: 0x002AF78C File Offset: 0x002AD98C
 		public override TaskStatus OnUpdate()
 		{
 			if (this.rigidbody == null)
@@ -31,7 +31,7 @@ namespace BehaviorDesigner.Runtime.Tasks.Basic.UnityRigidbody
 			return 2;
 		}
 
-		// Token: 0x0600812C RID: 33068 RVA: 0x0005824C File Offset: 0x0005644C
+		// Token: 0x06007332 RID: 29490 RVA: 0x002AF7C5 File Offset: 0x002AD9C5
 		public override void OnReset()
 		{
 			this.targetGameObject = null;
@@ -39,22 +39,22 @@ namespace BehaviorDesigner.Runtime.Tasks.Basic.UnityRigidbody
 			this.forceMode = 0;
 		}
 
-		// Token: 0x04006DE5 RID: 28133
+		// Token: 0x04005EE5 RID: 24293
 		[Tooltip("The GameObject that the task operates on. If null the task GameObject is used.")]
 		public SharedGameObject targetGameObject;
 
-		// Token: 0x04006DE6 RID: 28134
+		// Token: 0x04005EE6 RID: 24294
 		[Tooltip("The amount of torque to apply")]
 		public SharedVector3 torque;
 
-		// Token: 0x04006DE7 RID: 28135
+		// Token: 0x04005EE7 RID: 24295
 		[Tooltip("The type of torque")]
 		public ForceMode forceMode;
 
-		// Token: 0x04006DE8 RID: 28136
+		// Token: 0x04005EE8 RID: 24296
 		private Rigidbody rigidbody;
 
-		// Token: 0x04006DE9 RID: 28137
+		// Token: 0x04005EE9 RID: 24297
 		private GameObject prevGameObject;
 	}
 }

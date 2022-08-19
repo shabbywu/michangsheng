@@ -2,10 +2,10 @@
 using GUIPackage;
 using UnityEngine;
 
-// Token: 0x02000465 RID: 1125
+// Token: 0x02000308 RID: 776
 public class CaiLiaoItemEXCell : ItemCellEX
 {
-	// Token: 0x06001E36 RID: 7734 RVA: 0x0001916C File Offset: 0x0001736C
+	// Token: 0x06001B10 RID: 6928 RVA: 0x000C15F3 File Offset: 0x000BF7F3
 	public override void PCOnPress()
 	{
 		if (this.isCanClick())
@@ -14,18 +14,18 @@ public class CaiLiaoItemEXCell : ItemCellEX
 		}
 	}
 
-	// Token: 0x06001E37 RID: 7735 RVA: 0x000042DD File Offset: 0x000024DD
+	// Token: 0x06001B11 RID: 6929 RVA: 0x00004095 File Offset: 0x00002295
 	private void putCaiLiao()
 	{
 	}
 
-	// Token: 0x06001E38 RID: 7736 RVA: 0x0001841D File Offset: 0x0001661D
+	// Token: 0x06001B12 RID: 6930 RVA: 0x000BA023 File Offset: 0x000B8223
 	private bool isCanClick()
 	{
 		return (Input.GetMouseButtonDown(1) || Input.GetMouseButtonDown(0)) && this.Item.itemName != null;
 	}
 
-	// Token: 0x06001E39 RID: 7737 RVA: 0x0010081C File Offset: 0x000FEA1C
+	// Token: 0x06001B13 RID: 6931 RVA: 0x000C1604 File Offset: 0x000BF804
 	private new void Update()
 	{
 		base.Update();
@@ -39,7 +39,7 @@ public class CaiLiaoItemEXCell : ItemCellEX
 		this.KeyObject.SetActive(false);
 	}
 
-	// Token: 0x06001E3A RID: 7738 RVA: 0x00106ED8 File Offset: 0x001050D8
+	// Token: 0x06001B14 RID: 6932 RVA: 0x000C1680 File Offset: 0x000BF880
 	private void EXCaiLiao(ref item Item1, ref item Item2)
 	{
 		item item = Item1.Clone();
@@ -55,7 +55,7 @@ public class CaiLiaoItemEXCell : ItemCellEX
 		Item1.itemNum = num;
 	}
 
-	// Token: 0x06001E3B RID: 7739 RVA: 0x0001843F File Offset: 0x0001663F
+	// Token: 0x06001B15 RID: 6933 RVA: 0x000BA0C2 File Offset: 0x000B82C2
 	public override void PCOnHover(bool isOver)
 	{
 		base.PCOnHover(isOver);

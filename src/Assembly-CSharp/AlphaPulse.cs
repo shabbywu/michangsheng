@@ -1,10 +1,10 @@
 ﻿using System;
 using UnityEngine;
 
-// Token: 0x020007B1 RID: 1969
+// Token: 0x0200051D RID: 1309
 public class AlphaPulse
 {
-	// Token: 0x0600320A RID: 12810 RVA: 0x0002482B File Offset: 0x00022A2B
+	// Token: 0x060029F7 RID: 10743 RVA: 0x001400E3 File Offset: 0x0013E2E3
 	public AlphaPulse(Color tP, float min, float max)
 	{
 		this.m_ToPulse = tP;
@@ -12,7 +12,7 @@ public class AlphaPulse
 		this.m_PulseMax = max;
 	}
 
-	// Token: 0x0600320B RID: 12811 RVA: 0x0018D2DC File Offset: 0x0018B4DC
+	// Token: 0x060029F8 RID: 10744 RVA: 0x00140100 File Offset: 0x0013E300
 	public void StartPulse(float lerpDuration)
 	{
 		if (this.m_StartTime == 0f && !this.m_IsLerping)
@@ -32,7 +32,7 @@ public class AlphaPulse
 		}
 	}
 
-	// Token: 0x0600320C RID: 12812 RVA: 0x0018D34C File Offset: 0x0018B54C
+	// Token: 0x060029F9 RID: 10745 RVA: 0x00140170 File Offset: 0x0013E370
 	public float UpdatePulse()
 	{
 		if (!this.m_IsLerping)
@@ -49,31 +49,31 @@ public class AlphaPulse
 		return this.m_ToPulse.a;
 	}
 
-	// Token: 0x0600320D RID: 12813 RVA: 0x00024848 File Offset: 0x00022A48
+	// Token: 0x060029FA RID: 10746 RVA: 0x001401F2 File Offset: 0x0013E3F2
 	private void StopPulse()
 	{
 		this.m_StartTime = 0f;
 		this.m_IsLerping = false;
 	}
 
-	// Token: 0x04002E31 RID: 11825
+	// Token: 0x04002641 RID: 9793
 	private bool m_IsLerping;
 
-	// Token: 0x04002E32 RID: 11826
+	// Token: 0x04002642 RID: 9794
 	private bool m_PulsingAtMax;
 
-	// Token: 0x04002E33 RID: 11827
+	// Token: 0x04002643 RID: 9795
 	private float m_PulseMin;
 
-	// Token: 0x04002E34 RID: 11828
+	// Token: 0x04002644 RID: 9796
 	private float m_PulseMax;
 
-	// Token: 0x04002E35 RID: 11829
+	// Token: 0x04002645 RID: 9797
 	private float m_LerpDuration;
 
-	// Token: 0x04002E36 RID: 11830
+	// Token: 0x04002646 RID: 9798
 	private float m_StartTime;
 
-	// Token: 0x04002E37 RID: 11831
+	// Token: 0x04002647 RID: 9799
 	private Color m_ToPulse;
 }

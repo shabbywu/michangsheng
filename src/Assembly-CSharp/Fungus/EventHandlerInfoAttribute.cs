@@ -2,10 +2,10 @@
 
 namespace Fungus
 {
-	// Token: 0x020012CB RID: 4811
+	// Token: 0x02000E6E RID: 3694
 	public class EventHandlerInfoAttribute : Attribute
 	{
-		// Token: 0x060074C1 RID: 29889 RVA: 0x0004FB90 File Offset: 0x0004DD90
+		// Token: 0x0600680F RID: 26639 RVA: 0x0028BB88 File Offset: 0x00289D88
 		public EventHandlerInfoAttribute(string category, string eventHandlerName, string helpText)
 		{
 			this.Category = category;
@@ -13,19 +13,19 @@ namespace Fungus
 			this.HelpText = helpText;
 		}
 
-		// Token: 0x17000AB8 RID: 2744
-		// (get) Token: 0x060074C2 RID: 29890 RVA: 0x0004FBAD File Offset: 0x0004DDAD
-		// (set) Token: 0x060074C3 RID: 29891 RVA: 0x0004FBB5 File Offset: 0x0004DDB5
+		// Token: 0x17000847 RID: 2119
+		// (get) Token: 0x06006810 RID: 26640 RVA: 0x0028BBA5 File Offset: 0x00289DA5
+		// (set) Token: 0x06006811 RID: 26641 RVA: 0x0028BBAD File Offset: 0x00289DAD
 		public string Category { get; set; }
 
-		// Token: 0x17000AB9 RID: 2745
-		// (get) Token: 0x060074C4 RID: 29892 RVA: 0x0004FBBE File Offset: 0x0004DDBE
-		// (set) Token: 0x060074C5 RID: 29893 RVA: 0x0004FBC6 File Offset: 0x0004DDC6
+		// Token: 0x17000848 RID: 2120
+		// (get) Token: 0x06006812 RID: 26642 RVA: 0x0028BBB6 File Offset: 0x00289DB6
+		// (set) Token: 0x06006813 RID: 26643 RVA: 0x0028BBBE File Offset: 0x00289DBE
 		public string EventHandlerName { get; set; }
 
-		// Token: 0x17000ABA RID: 2746
-		// (get) Token: 0x060074C6 RID: 29894 RVA: 0x0004FBCF File Offset: 0x0004DDCF
-		// (set) Token: 0x060074C7 RID: 29895 RVA: 0x0004FBD7 File Offset: 0x0004DDD7
+		// Token: 0x17000849 RID: 2121
+		// (get) Token: 0x06006814 RID: 26644 RVA: 0x0028BBC7 File Offset: 0x00289DC7
+		// (set) Token: 0x06006815 RID: 26645 RVA: 0x0028BBCF File Offset: 0x00289DCF
 		public string HelpText { get; set; }
 	}
 }

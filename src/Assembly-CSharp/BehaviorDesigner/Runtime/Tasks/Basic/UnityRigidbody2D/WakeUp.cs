@@ -3,12 +3,12 @@ using UnityEngine;
 
 namespace BehaviorDesigner.Runtime.Tasks.Basic.UnityRigidbody2D
 {
-	// Token: 0x02001545 RID: 5445
+	// Token: 0x0200108B RID: 4235
 	[TaskCategory("Basic/Rigidbody2D")]
 	[TaskDescription("Forces the Rigidbody2D to wake up. Returns Success.")]
 	public class WakeUp : Conditional
 	{
-		// Token: 0x06008112 RID: 33042 RVA: 0x002CBC24 File Offset: 0x002C9E24
+		// Token: 0x06007318 RID: 29464 RVA: 0x002AF360 File Offset: 0x002AD560
 		public override void OnStart()
 		{
 			GameObject defaultGameObject = base.GetDefaultGameObject(this.targetGameObject.Value);
@@ -19,7 +19,7 @@ namespace BehaviorDesigner.Runtime.Tasks.Basic.UnityRigidbody2D
 			}
 		}
 
-		// Token: 0x06008113 RID: 33043 RVA: 0x000580B9 File Offset: 0x000562B9
+		// Token: 0x06007319 RID: 29465 RVA: 0x002AF3A0 File Offset: 0x002AD5A0
 		public override TaskStatus OnUpdate()
 		{
 			if (this.rigidbody2D == null)
@@ -31,20 +31,20 @@ namespace BehaviorDesigner.Runtime.Tasks.Basic.UnityRigidbody2D
 			return 2;
 		}
 
-		// Token: 0x06008114 RID: 33044 RVA: 0x000580E1 File Offset: 0x000562E1
+		// Token: 0x0600731A RID: 29466 RVA: 0x002AF3C8 File Offset: 0x002AD5C8
 		public override void OnReset()
 		{
 			this.targetGameObject = null;
 		}
 
-		// Token: 0x04006DC5 RID: 28101
+		// Token: 0x04005EC5 RID: 24261
 		[Tooltip("The GameObject that the task operates on. If null the task GameObject is used.")]
 		public SharedGameObject targetGameObject;
 
-		// Token: 0x04006DC6 RID: 28102
+		// Token: 0x04005EC6 RID: 24262
 		private Rigidbody2D rigidbody2D;
 
-		// Token: 0x04006DC7 RID: 28103
+		// Token: 0x04005EC7 RID: 24263
 		private GameObject prevGameObject;
 	}
 }

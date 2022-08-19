@@ -3,10 +3,10 @@ using System.Collections.Generic;
 
 namespace JSONClass
 {
-	// Token: 0x02000D11 RID: 3345
+	// Token: 0x02000991 RID: 2449
 	public class XuanShangMiaoShuData : IJSONClass
 	{
-		// Token: 0x06004FAE RID: 20398 RVA: 0x00216700 File Offset: 0x00214900
+		// Token: 0x06004458 RID: 17496 RVA: 0x001D18E8 File Offset: 0x001CFAE8
 		public static void InitDataDict()
 		{
 			foreach (JSONObject jsonobject in jsonData.instance.XuanShangMiaoShuData.list)
@@ -39,24 +39,24 @@ namespace JSONClass
 			}
 		}
 
-		// Token: 0x06004FAF RID: 20399 RVA: 0x000042DD File Offset: 0x000024DD
+		// Token: 0x06004459 RID: 17497 RVA: 0x00004095 File Offset: 0x00002295
 		private static void OnInitFinish()
 		{
 		}
 
-		// Token: 0x040050F6 RID: 20726
+		// Token: 0x04004602 RID: 17922
 		public static Dictionary<int, XuanShangMiaoShuData> DataDict = new Dictionary<int, XuanShangMiaoShuData>();
 
-		// Token: 0x040050F7 RID: 20727
+		// Token: 0x04004603 RID: 17923
 		public static List<XuanShangMiaoShuData> DataList = new List<XuanShangMiaoShuData>();
 
-		// Token: 0x040050F8 RID: 20728
+		// Token: 0x04004604 RID: 17924
 		public static Action OnInitFinishAction = new Action(XuanShangMiaoShuData.OnInitFinish);
 
-		// Token: 0x040050F9 RID: 20729
+		// Token: 0x04004605 RID: 17925
 		public int id;
 
-		// Token: 0x040050FA RID: 20730
+		// Token: 0x04004606 RID: 17926
 		public string Info;
 	}
 }

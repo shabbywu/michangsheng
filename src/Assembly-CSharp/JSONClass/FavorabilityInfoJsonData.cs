@@ -3,10 +3,10 @@ using System.Collections.Generic;
 
 namespace JSONClass
 {
-	// Token: 0x02000BCF RID: 3023
+	// Token: 0x0200083E RID: 2110
 	public class FavorabilityInfoJsonData : IJSONClass
 	{
-		// Token: 0x06004AA4 RID: 19108 RVA: 0x001F9364 File Offset: 0x001F7564
+		// Token: 0x06003F0A RID: 16138 RVA: 0x001AEAC4 File Offset: 0x001ACCC4
 		public static void InitDataDict()
 		{
 			foreach (JSONObject jsonobject in jsonData.instance.FavorabilityInfoJsonData.list)
@@ -46,45 +46,45 @@ namespace JSONClass
 			}
 		}
 
-		// Token: 0x06004AA5 RID: 19109 RVA: 0x000042DD File Offset: 0x000024DD
+		// Token: 0x06003F0B RID: 16139 RVA: 0x00004095 File Offset: 0x00002295
 		private static void OnInitFinish()
 		{
 		}
 
-		// Token: 0x04004654 RID: 18004
+		// Token: 0x04003AE6 RID: 15078
 		public static Dictionary<int, FavorabilityInfoJsonData> DataDict = new Dictionary<int, FavorabilityInfoJsonData>();
 
-		// Token: 0x04004655 RID: 18005
+		// Token: 0x04003AE7 RID: 15079
 		public static List<FavorabilityInfoJsonData> DataList = new List<FavorabilityInfoJsonData>();
 
-		// Token: 0x04004656 RID: 18006
+		// Token: 0x04003AE8 RID: 15080
 		public static Action OnInitFinishAction = new Action(FavorabilityInfoJsonData.OnInitFinish);
 
-		// Token: 0x04004657 RID: 18007
+		// Token: 0x04003AE9 RID: 15081
 		public int id;
 
-		// Token: 0x04004658 RID: 18008
+		// Token: 0x04003AEA RID: 15082
 		public int AvatarID;
 
-		// Token: 0x04004659 RID: 18009
+		// Token: 0x04003AEB RID: 15083
 		public int JinDu;
 
-		// Token: 0x0400465A RID: 18010
+		// Token: 0x04003AEC RID: 15084
 		public int ItemID;
 
-		// Token: 0x0400465B RID: 18011
+		// Token: 0x04003AED RID: 15085
 		public int HaoGanDu;
 
-		// Token: 0x0400465C RID: 18012
+		// Token: 0x04003AEE RID: 15086
 		public int Time;
 
-		// Token: 0x0400465D RID: 18013
+		// Token: 0x04003AEF RID: 15087
 		public int AvatarLevel;
 
-		// Token: 0x0400465E RID: 18014
+		// Token: 0x04003AF0 RID: 15088
 		public string yes;
 
-		// Token: 0x0400465F RID: 18015
+		// Token: 0x04003AF1 RID: 15089
 		public string no;
 	}
 }

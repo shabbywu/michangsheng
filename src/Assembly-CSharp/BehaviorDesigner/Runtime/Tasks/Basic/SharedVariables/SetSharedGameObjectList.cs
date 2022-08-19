@@ -2,30 +2,30 @@
 
 namespace BehaviorDesigner.Runtime.Tasks.Basic.SharedVariables
 {
-	// Token: 0x0200151D RID: 5405
+	// Token: 0x02001063 RID: 4195
 	[TaskCategory("Basic/SharedVariable")]
 	[TaskDescription("Sets the SharedGameObjectList variable to the specified object. Returns Success.")]
 	public class SetSharedGameObjectList : Action
 	{
-		// Token: 0x06008080 RID: 32896 RVA: 0x000576AA File Offset: 0x000558AA
+		// Token: 0x06007286 RID: 29318 RVA: 0x002AE24C File Offset: 0x002AC44C
 		public override TaskStatus OnUpdate()
 		{
 			this.targetVariable.Value = this.targetValue.Value;
 			return 2;
 		}
 
-		// Token: 0x06008081 RID: 32897 RVA: 0x000576C3 File Offset: 0x000558C3
+		// Token: 0x06007287 RID: 29319 RVA: 0x002AE265 File Offset: 0x002AC465
 		public override void OnReset()
 		{
 			this.targetValue = null;
 			this.targetVariable = null;
 		}
 
-		// Token: 0x04006D47 RID: 27975
+		// Token: 0x04005E47 RID: 24135
 		[Tooltip("The value to set the SharedGameObjectList to.")]
 		public SharedGameObjectList targetValue;
 
-		// Token: 0x04006D48 RID: 27976
+		// Token: 0x04005E48 RID: 24136
 		[RequiredField]
 		[Tooltip("The SharedGameObjectList to set")]
 		public SharedGameObjectList targetVariable;

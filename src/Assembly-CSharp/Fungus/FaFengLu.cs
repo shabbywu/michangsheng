@@ -4,12 +4,12 @@ using UnityEngine;
 
 namespace Fungus
 {
-	// Token: 0x02001438 RID: 5176
+	// Token: 0x02000F81 RID: 3969
 	[CommandInfo("YSTools", "FaFengLu", "发放俸禄", 0)]
 	[AddComponentMenu("")]
 	public class FaFengLu : Command
 	{
-		// Token: 0x06007D29 RID: 32041 RVA: 0x002C6498 File Offset: 0x002C4698
+		// Token: 0x06006F39 RID: 28473 RVA: 0x002A69A4 File Offset: 0x002A4BA4
 		public override void OnEnter()
 		{
 			Avatar player = Tools.instance.getPlayer();
@@ -22,23 +22,23 @@ namespace Fungus
 			this.Continue();
 		}
 
-		// Token: 0x06007D2A RID: 32042 RVA: 0x000113CF File Offset: 0x0000F5CF
+		// Token: 0x06006F3A RID: 28474 RVA: 0x0005E228 File Offset: 0x0005C428
 		public override Color GetButtonColor()
 		{
 			return new Color32(184, 210, 235, byte.MaxValue);
 		}
 
-		// Token: 0x06007D2B RID: 32043 RVA: 0x000042DD File Offset: 0x000024DD
+		// Token: 0x06006F3B RID: 28475 RVA: 0x00004095 File Offset: 0x00002295
 		public override void OnReset()
 		{
 		}
 
-		// Token: 0x04006ACC RID: 27340
+		// Token: 0x04005BF8 RID: 23544
 		[Tooltip("说明")]
 		[SerializeField]
 		protected string init = "发放俸禄，发放后的总钱数保存到Money的值当中";
 
-		// Token: 0x04006ACD RID: 27341
+		// Token: 0x04005BF9 RID: 23545
 		[Tooltip("存放总俸禄钱数")]
 		[VariableProperty(new Type[]
 		{

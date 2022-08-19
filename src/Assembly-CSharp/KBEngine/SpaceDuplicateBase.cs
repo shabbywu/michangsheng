@@ -4,90 +4,90 @@ using UnityEngine;
 
 namespace KBEngine
 {
-	// Token: 0x02000FEF RID: 4079
+	// Token: 0x02000C64 RID: 3172
 	public abstract class SpaceDuplicateBase : Entity
 	{
-		// Token: 0x06006092 RID: 24722 RVA: 0x000042DD File Offset: 0x000024DD
+		// Token: 0x06005643 RID: 22083 RVA: 0x00004095 File Offset: 0x00002295
 		public virtual void onModelIDChanged(uint oldValue)
 		{
 		}
 
-		// Token: 0x06006093 RID: 24723 RVA: 0x000042DD File Offset: 0x000024DD
+		// Token: 0x06005644 RID: 22084 RVA: 0x00004095 File Offset: 0x00002295
 		public virtual void onModelScaleChanged(byte oldValue)
 		{
 		}
 
-		// Token: 0x06006094 RID: 24724 RVA: 0x000042DD File Offset: 0x000024DD
+		// Token: 0x06005645 RID: 22085 RVA: 0x00004095 File Offset: 0x00002295
 		public virtual void onNameChanged(string oldValue)
 		{
 		}
 
-		// Token: 0x06006095 RID: 24725 RVA: 0x000042DD File Offset: 0x000024DD
+		// Token: 0x06005646 RID: 22086 RVA: 0x00004095 File Offset: 0x00002295
 		public virtual void onUidChanged(uint oldValue)
 		{
 		}
 
-		// Token: 0x06006096 RID: 24726 RVA: 0x000042DD File Offset: 0x000024DD
+		// Token: 0x06005647 RID: 22087 RVA: 0x00004095 File Offset: 0x00002295
 		public virtual void onUtypeChanged(uint oldValue)
 		{
 		}
 
-		// Token: 0x06006097 RID: 24727 RVA: 0x0004305D File Offset: 0x0004125D
+		// Token: 0x06005648 RID: 22088 RVA: 0x0023D342 File Offset: 0x0023B542
 		public SpaceDuplicateBase()
 		{
 		}
 
-		// Token: 0x06006098 RID: 24728 RVA: 0x000042DD File Offset: 0x000024DD
+		// Token: 0x06005649 RID: 22089 RVA: 0x00004095 File Offset: 0x00002295
 		public override void onComponentsEnterworld()
 		{
 		}
 
-		// Token: 0x06006099 RID: 24729 RVA: 0x000042DD File Offset: 0x000024DD
+		// Token: 0x0600564A RID: 22090 RVA: 0x00004095 File Offset: 0x00002295
 		public override void onComponentsLeaveworld()
 		{
 		}
 
-		// Token: 0x0600609A RID: 24730 RVA: 0x00043078 File Offset: 0x00041278
+		// Token: 0x0600564B RID: 22091 RVA: 0x0023D35D File Offset: 0x0023B55D
 		public override void onGetBase()
 		{
 			this.baseEntityCall = new EntityBaseEntityCall_SpaceDuplicateBase(this.id, this.className);
 		}
 
-		// Token: 0x0600609B RID: 24731 RVA: 0x00043091 File Offset: 0x00041291
+		// Token: 0x0600564C RID: 22092 RVA: 0x0023D376 File Offset: 0x0023B576
 		public override void onGetCell()
 		{
 			this.cellEntityCall = new EntityCellEntityCall_SpaceDuplicateBase(this.id, this.className);
 		}
 
-		// Token: 0x0600609C RID: 24732 RVA: 0x000430AA File Offset: 0x000412AA
+		// Token: 0x0600564D RID: 22093 RVA: 0x0023D38F File Offset: 0x0023B58F
 		public override void onLoseCell()
 		{
 			this.cellEntityCall = null;
 		}
 
-		// Token: 0x0600609D RID: 24733 RVA: 0x000430B3 File Offset: 0x000412B3
+		// Token: 0x0600564E RID: 22094 RVA: 0x0023D398 File Offset: 0x0023B598
 		public override EntityCall getBaseEntityCall()
 		{
 			return this.baseEntityCall;
 		}
 
-		// Token: 0x0600609E RID: 24734 RVA: 0x000430BB File Offset: 0x000412BB
+		// Token: 0x0600564F RID: 22095 RVA: 0x0023D3A0 File Offset: 0x0023B5A0
 		public override EntityCall getCellEntityCall()
 		{
 			return this.cellEntityCall;
 		}
 
-		// Token: 0x0600609F RID: 24735 RVA: 0x000042DD File Offset: 0x000024DD
+		// Token: 0x06005650 RID: 22096 RVA: 0x00004095 File Offset: 0x00002295
 		public override void attachComponents()
 		{
 		}
 
-		// Token: 0x060060A0 RID: 24736 RVA: 0x000042DD File Offset: 0x000024DD
+		// Token: 0x06005651 RID: 22097 RVA: 0x00004095 File Offset: 0x00002295
 		public override void detachComponents()
 		{
 		}
 
-		// Token: 0x060060A1 RID: 24737 RVA: 0x00269E0C File Offset: 0x0026800C
+		// Token: 0x06005652 RID: 22098 RVA: 0x0023D3A8 File Offset: 0x0023B5A8
 		public override void onRemoteMethodCall(MemoryStream stream)
 		{
 			ScriptModule scriptModule = EntityDef.moduledefs["SpaceDuplicate"];
@@ -118,7 +118,7 @@ namespace KBEngine
 			ushort properUtype = scriptModule.idpropertys[num].properUtype;
 		}
 
-		// Token: 0x060060A2 RID: 24738 RVA: 0x00269E8C File Offset: 0x0026808C
+		// Token: 0x06005653 RID: 22099 RVA: 0x0023D428 File Offset: 0x0023B628
 		public override void onUpdatePropertys(MemoryStream stream)
 		{
 			ScriptModule scriptModule = EntityDef.moduledefs["SpaceDuplicate"];
@@ -277,7 +277,7 @@ namespace KBEngine
 			}
 		}
 
-		// Token: 0x060060A3 RID: 24739 RVA: 0x0026A160 File Offset: 0x00268360
+		// Token: 0x06005654 RID: 22100 RVA: 0x0023D6FC File Offset: 0x0023B8FC
 		public override void callPropertysSetMethods()
 		{
 			Dictionary<ushort, Property> idpropertys = EntityDef.moduledefs["SpaceDuplicate"].idpropertys;
@@ -375,25 +375,25 @@ namespace KBEngine
 			}
 		}
 
-		// Token: 0x04005BCB RID: 23499
+		// Token: 0x04005111 RID: 20753
 		public EntityBaseEntityCall_SpaceDuplicateBase baseEntityCall;
 
-		// Token: 0x04005BCC RID: 23500
+		// Token: 0x04005112 RID: 20754
 		public EntityCellEntityCall_SpaceDuplicateBase cellEntityCall;
 
-		// Token: 0x04005BCD RID: 23501
+		// Token: 0x04005113 RID: 20755
 		public uint modelID;
 
-		// Token: 0x04005BCE RID: 23502
+		// Token: 0x04005114 RID: 20756
 		public byte modelScale = 30;
 
-		// Token: 0x04005BCF RID: 23503
+		// Token: 0x04005115 RID: 20757
 		public string name = "";
 
-		// Token: 0x04005BD0 RID: 23504
+		// Token: 0x04005116 RID: 20758
 		public uint uid;
 
-		// Token: 0x04005BD1 RID: 23505
+		// Token: 0x04005117 RID: 20759
 		public uint utype;
 	}
 }

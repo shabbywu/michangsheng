@@ -3,17 +3,17 @@ using System.IO;
 using UnityEngine;
 using UnityEngine.UI;
 
-// Token: 0x020004A8 RID: 1192
+// Token: 0x02000337 RID: 823
 public class MainUIAvatarCell : MonoBehaviour
 {
-	// Token: 0x06001FA9 RID: 8105 RVA: 0x0010FF50 File Offset: 0x0010E150
-	public void Init(int index, bool isHasAvatar, string name = "", int level = 0, int saveIndex = 0)
+	// Token: 0x06001C5B RID: 7259 RVA: 0x000CB1E4 File Offset: 0x000C93E4
+	public void Init(int index, bool isHasAvatar, string name = "", int level = 0, int saveIndex = 0, JSONObject face = null)
 	{
 		this.index = index;
 		this.isHasAvatar = isHasAvatar;
 		if (isHasAvatar)
 		{
-			this.playerFace.SetSelectFace(index, saveIndex);
+			this.playerFace.NewSetSelectFace(index, saveIndex, face);
 			this.avatarName.text = name;
 			this.avatarLevel.text = jsonData.instance.LevelUpDataJsonData[level.ToString()]["Name"].Str;
 			this.avatarLevelImage.sprite = ResManager.inst.LoadSprite(string.Format("NewUI/Fight/LevelIcon/icon_{0}", level));
@@ -25,7 +25,7 @@ public class MainUIAvatarCell : MonoBehaviour
 		this.hasAvatar.SetActive(false);
 	}
 
-	// Token: 0x06001FAA RID: 8106 RVA: 0x00110014 File Offset: 0x0010E214
+	// Token: 0x06001C5C RID: 7260 RVA: 0x000CB2A8 File Offset: 0x000C94A8
 	public void Click()
 	{
 		if (this.isHasAvatar)
@@ -35,9 +35,12 @@ public class MainUIAvatarCell : MonoBehaviour
 		}
 		MainUIMag.inst.createAvatarPanel.curIndex = this.index;
 		MainUIMag.inst.selectAvatarPanel.OpenCreateAvatarPanel();
+		YSNewSaveSystem.NowUsingAvatarIndex = this.index;
+		YSNewSaveSystem.NowUsingSlot = 0;
+		YSNewSaveSystem.NowAvatarPathPre = (YSNewSaveSystem.GetAvatarSavePathPre(this.index, 0) ?? "");
 	}
 
-	// Token: 0x06001FAB RID: 8107 RVA: 0x0001A17B File Offset: 0x0001837B
+	// Token: 0x06001C5D RID: 7261 RVA: 0x000CB327 File Offset: 0x000C9527
 	public void Delete()
 	{
 		if (this.isHasAvatar)
@@ -49,98 +52,111 @@ public class MainUIAvatarCell : MonoBehaviour
 					this.isHasAvatar = false;
 					this.noAvatar.SetActive(true);
 					this.hasAvatar.SetActive(false);
-					for (int i = 0; i < 6; i++)
-					{
-						foreach (string text in MainUIAvatarCell.saveFileNames)
-						{
-							if (File.Exists(string.Concat(new string[]
-							{
-								Paths.GetSavePath(),
-								"/",
-								text,
-								Tools.instance.getSaveID(this.index, i),
-								".sav"
-							})))
-							{
-								File.Delete(string.Concat(new string[]
-								{
-									Paths.GetSavePath(),
-									"/",
-									text,
-									Tools.instance.getSaveID(this.index, i),
-									".sav"
-								}));
-							}
-						}
-					}
-					if (File.Exists(string.Concat(new object[]
-					{
-						Paths.GetSavePath(),
-						"/PlayerAvatarName",
-						this.index,
-						".sav"
-					})))
-					{
-						File.Delete(string.Concat(new object[]
-						{
-							Paths.GetSavePath(),
-							"/PlayerAvatarName",
-							this.index,
-							".sav"
-						}));
-					}
-					if (File.Exists(string.Concat(new object[]
-					{
-						Paths.GetSavePath(),
-						"/SaveAvatar",
-						this.index,
-						".sav"
-					})))
-					{
-						File.Delete(string.Concat(new object[]
-						{
-							Paths.GetSavePath(),
-							"/SaveAvatar",
-							this.index,
-							".sav"
-						}));
-					}
+					this.DeleteOldSave();
+					this.DeleteNewSave();
 				}
 				catch (Exception ex)
 				{
-					string text2 = string.Format("删除存档{0}异常：\n{1}", this.index, ex.Message);
-					Debug.LogError(text2);
-					UCheckBox.Show(text2, null);
+					string text = string.Format("删除存档{0}异常：\n{1}", this.index, ex.Message);
+					Debug.LogError(text);
+					UCheckBox.Show(text, null);
 				}
 			}, null, true);
 		}
 	}
 
-	// Token: 0x04001B0F RID: 6927
+	// Token: 0x06001C5E RID: 7262 RVA: 0x000CB350 File Offset: 0x000C9550
+	private void DeleteOldSave()
+	{
+		for (int i = 0; i < 6; i++)
+		{
+			foreach (string text in MainUIAvatarCell.saveFileNames)
+			{
+				if (File.Exists(string.Concat(new string[]
+				{
+					Paths.GetSavePath(),
+					"/",
+					text,
+					Tools.instance.getSaveID(this.index, i),
+					".sav"
+				})))
+				{
+					File.Delete(string.Concat(new string[]
+					{
+						Paths.GetSavePath(),
+						"/",
+						text,
+						Tools.instance.getSaveID(this.index, i),
+						".sav"
+					}));
+				}
+			}
+		}
+		if (File.Exists(string.Concat(new object[]
+		{
+			Paths.GetSavePath(),
+			"/PlayerAvatarName",
+			this.index,
+			".sav"
+		})))
+		{
+			File.Delete(string.Concat(new object[]
+			{
+				Paths.GetSavePath(),
+				"/PlayerAvatarName",
+				this.index,
+				".sav"
+			}));
+		}
+		if (File.Exists(string.Concat(new object[]
+		{
+			Paths.GetSavePath(),
+			"/SaveAvatar",
+			this.index,
+			".sav"
+		})))
+		{
+			File.Delete(string.Concat(new object[]
+			{
+				Paths.GetSavePath(),
+				"/SaveAvatar",
+				this.index,
+				".sav"
+			}));
+		}
+	}
+
+	// Token: 0x06001C5F RID: 7263 RVA: 0x000CB4EB File Offset: 0x000C96EB
+	private void DeleteNewSave()
+	{
+		YSNewSaveSystem.DeleteSave(this.index);
+	}
+
+	// Token: 0x040016D3 RID: 5843
 	public Text avatarName;
 
-	// Token: 0x04001B10 RID: 6928
+	// Token: 0x040016D4 RID: 5844
 	public PlayerSetRandomFace playerFace;
 
-	// Token: 0x04001B11 RID: 6929
+	// Token: 0x040016D5 RID: 5845
 	public Text avatarLevel;
 
-	// Token: 0x04001B12 RID: 6930
+	// Token: 0x040016D6 RID: 5846
 	public Image avatarLevelImage;
 
-	// Token: 0x04001B13 RID: 6931
+	// Token: 0x040016D7 RID: 5847
 	public GameObject hasAvatar;
 
-	// Token: 0x04001B14 RID: 6932
+	// Token: 0x040016D8 RID: 5848
 	public GameObject noAvatar;
 
-	// Token: 0x04001B15 RID: 6933
+	// Token: 0x040016D9 RID: 5849
 	public int index;
 
-	// Token: 0x04001B16 RID: 6934
+	// Token: 0x040016DA RID: 5850
 	public bool isHasAvatar;
 
-	// Token: 0x04001B17 RID: 6935
+	// Token: 0x040016DB RID: 5851
 	public static string[] saveFileNames = new string[]
 	{
 		"Avatar",

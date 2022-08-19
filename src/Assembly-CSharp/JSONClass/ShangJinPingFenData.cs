@@ -3,10 +3,10 @@ using System.Collections.Generic;
 
 namespace JSONClass
 {
-	// Token: 0x02000C65 RID: 3173
+	// Token: 0x020008D8 RID: 2264
 	public class ShangJinPingFenData : IJSONClass
 	{
-		// Token: 0x06004CFD RID: 19709 RVA: 0x00208624 File Offset: 0x00206824
+		// Token: 0x06004173 RID: 16755 RVA: 0x001C0270 File Offset: 0x001BE470
 		public static void InitDataDict()
 		{
 			foreach (JSONObject jsonobject in jsonData.instance.ShangJinPingFenData.list)
@@ -41,30 +41,30 @@ namespace JSONClass
 			}
 		}
 
-		// Token: 0x06004CFE RID: 19710 RVA: 0x000042DD File Offset: 0x000024DD
+		// Token: 0x06004174 RID: 16756 RVA: 0x00004095 File Offset: 0x00002295
 		private static void OnInitFinish()
 		{
 		}
 
-		// Token: 0x04004C12 RID: 19474
+		// Token: 0x040040C8 RID: 16584
 		public static Dictionary<int, ShangJinPingFenData> DataDict = new Dictionary<int, ShangJinPingFenData>();
 
-		// Token: 0x04004C13 RID: 19475
+		// Token: 0x040040C9 RID: 16585
 		public static List<ShangJinPingFenData> DataList = new List<ShangJinPingFenData>();
 
-		// Token: 0x04004C14 RID: 19476
+		// Token: 0x040040CA RID: 16586
 		public static Action OnInitFinishAction = new Action(ShangJinPingFenData.OnInitFinish);
 
-		// Token: 0x04004C15 RID: 19477
+		// Token: 0x040040CB RID: 16587
 		public int id;
 
-		// Token: 0x04004C16 RID: 19478
+		// Token: 0x040040CC RID: 16588
 		public int PingFen;
 
-		// Token: 0x04004C17 RID: 19479
+		// Token: 0x040040CD RID: 16589
 		public int EWaiPingFen;
 
-		// Token: 0x04004C18 RID: 19480
+		// Token: 0x040040CE RID: 16590
 		public int ShaShouLv;
 	}
 }

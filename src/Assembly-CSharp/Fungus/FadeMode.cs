@@ -2,12 +2,12 @@
 
 namespace Fungus
 {
-	// Token: 0x0200120A RID: 4618
+	// Token: 0x02000DD0 RID: 3536
 	public enum FadeMode
 	{
-		// Token: 0x04006360 RID: 25440
+		// Token: 0x04005661 RID: 22113
 		Alpha,
-		// Token: 0x04006361 RID: 25441
+		// Token: 0x04005662 RID: 22114
 		Color
 	}
 }

@@ -8,10 +8,10 @@ using UnityEngine.UI;
 
 namespace script.NewLianDan.DanFang
 {
-	// Token: 0x02000AD0 RID: 2768
+	// Token: 0x02000A01 RID: 2561
 	public class SmallDanFang : UIBase
 	{
-		// Token: 0x060046A8 RID: 18088 RVA: 0x001E3B8C File Offset: 0x001E1D8C
+		// Token: 0x060046F8 RID: 18168 RVA: 0x001E1704 File Offset: 0x001DF904
 		public SmallDanFang(GameObject go, DanFangBase data, BigDanFang bigDanFang)
 		{
 			this.Parent = bigDanFang;
@@ -68,7 +68,7 @@ namespace script.NewLianDan.DanFang
 			}
 		}
 
-		// Token: 0x060046A9 RID: 18089 RVA: 0x001E3F18 File Offset: 0x001E2118
+		// Token: 0x060046F9 RID: 18169 RVA: 0x001E1A90 File Offset: 0x001DFC90
 		public void Click()
 		{
 			if (!this.IsSelect)
@@ -94,7 +94,7 @@ namespace script.NewLianDan.DanFang
 			LianDanUIMag.Instance.DanFangPanel.PutCaoYaoByDanFang();
 		}
 
-		// Token: 0x060046AA RID: 18090 RVA: 0x001E3FA8 File Offset: 0x001E21A8
+		// Token: 0x060046FA RID: 18170 RVA: 0x001E1B20 File Offset: 0x001DFD20
 		public bool CanPut()
 		{
 			List<LianDanSlot> caoYaoList = LianDanUIMag.Instance.LianDanPanel.CaoYaoList;
@@ -141,48 +141,48 @@ namespace script.NewLianDan.DanFang
 			return num4 >= num3;
 		}
 
-		// Token: 0x060046AB RID: 18091 RVA: 0x0003269A File Offset: 0x0003089A
+		// Token: 0x060046FB RID: 18171 RVA: 0x001E1C10 File Offset: 0x001DFE10
 		public void CancelSelect()
 		{
 			this.IsSelect = false;
 			this._selectImg.SetActive(false);
 		}
 
-		// Token: 0x060046AC RID: 18092 RVA: 0x000326AF File Offset: 0x000308AF
+		// Token: 0x060046FC RID: 18172 RVA: 0x001E1C25 File Offset: 0x001DFE25
 		public void HideLine()
 		{
 			this._line.SetActive(false);
 		}
 
-		// Token: 0x060046AD RID: 18093 RVA: 0x000326BD File Offset: 0x000308BD
+		// Token: 0x060046FD RID: 18173 RVA: 0x001E1C33 File Offset: 0x001DFE33
 		public void Destroy()
 		{
 			this.IsDestroy = true;
 			Object.Destroy(this._go);
 		}
 
-		// Token: 0x04003EC1 RID: 16065
+		// Token: 0x04004842 RID: 18498
 		public DanFangBase DanFangData;
 
-		// Token: 0x04003EC2 RID: 16066
+		// Token: 0x04004843 RID: 18499
 		public GameObject SmallDanLu;
 
-		// Token: 0x04003EC3 RID: 16067
+		// Token: 0x04004844 RID: 18500
 		private GameObject _line;
 
-		// Token: 0x04003EC4 RID: 16068
+		// Token: 0x04004845 RID: 18501
 		private GameObject _selectImg;
 
-		// Token: 0x04003EC5 RID: 16069
+		// Token: 0x04004846 RID: 18502
 		public BigDanFang Parent;
 
-		// Token: 0x04003EC6 RID: 16070
+		// Token: 0x04004847 RID: 18503
 		public bool CanMade;
 
-		// Token: 0x04003EC7 RID: 16071
+		// Token: 0x04004848 RID: 18504
 		public bool IsSelect;
 
-		// Token: 0x04003EC8 RID: 16072
+		// Token: 0x04004849 RID: 18505
 		public bool IsDestroy;
 	}
 }

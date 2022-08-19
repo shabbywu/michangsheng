@@ -5,10 +5,10 @@ using UnityEngine.EventSystems;
 
 namespace Fungus
 {
-	// Token: 0x020012C3 RID: 4803
+	// Token: 0x02000E66 RID: 3686
 	public class Clickable2D : MonoBehaviour, IPointerClickHandler, IEventSystemHandler, IPointerEnterHandler, IPointerExitHandler
 	{
-		// Token: 0x06007459 RID: 29785 RVA: 0x0004F6B8 File Offset: 0x0004D8B8
+		// Token: 0x060067A7 RID: 26535 RVA: 0x0028AF2E File Offset: 0x0028912E
 		protected virtual void ChangeCursor(Texture2D cursorTexture)
 		{
 			if (!this.clickEnabled)
@@ -18,7 +18,7 @@ namespace Fungus
 			Cursor.SetCursor(cursorTexture, Vector2.zero, 0);
 		}
 
-		// Token: 0x0600745A RID: 29786 RVA: 0x0004F6CF File Offset: 0x0004D8CF
+		// Token: 0x060067A8 RID: 26536 RVA: 0x0028AF45 File Offset: 0x00289145
 		protected virtual void DoPointerClick()
 		{
 			if (!this.clickEnabled)
@@ -32,7 +32,7 @@ namespace Fungus
 			FungusManager.Instance.EventDispatcher.Raise<ObjectClicked.ObjectClickedEvent>(new ObjectClicked.ObjectClickedEvent(this));
 		}
 
-		// Token: 0x0600745B RID: 29787 RVA: 0x002ADD84 File Offset: 0x002ABF84
+		// Token: 0x060067A9 RID: 26537 RVA: 0x0028AF74 File Offset: 0x00289174
 		protected virtual void DoPointerEnter()
 		{
 			MapComponent component = base.GetComponent<MapComponent>();
@@ -53,7 +53,7 @@ namespace Fungus
 			}
 		}
 
-		// Token: 0x0600745C RID: 29788 RVA: 0x002ADE18 File Offset: 0x002AC018
+		// Token: 0x060067AA RID: 26538 RVA: 0x0028B008 File Offset: 0x00289208
 		protected virtual void DoPointerExit()
 		{
 			MapComponent component = base.GetComponent<MapComponent>();
@@ -73,7 +73,7 @@ namespace Fungus
 			}
 		}
 
-		// Token: 0x0600745D RID: 29789 RVA: 0x0004F6FE File Offset: 0x0004D8FE
+		// Token: 0x060067AB RID: 26539 RVA: 0x0028B07F File Offset: 0x0028927F
 		private void OnMouseDown()
 		{
 			if (!this.useEventSystem)
@@ -82,7 +82,7 @@ namespace Fungus
 			}
 		}
 
-		// Token: 0x0600745E RID: 29790 RVA: 0x0004F70F File Offset: 0x0004D90F
+		// Token: 0x060067AC RID: 26540 RVA: 0x0028B090 File Offset: 0x00289290
 		protected virtual void OnMouseUp()
 		{
 			if (!this.useEventSystem && this.isCanDo)
@@ -91,7 +91,7 @@ namespace Fungus
 			}
 		}
 
-		// Token: 0x0600745F RID: 29791 RVA: 0x0004F727 File Offset: 0x0004D927
+		// Token: 0x060067AD RID: 26541 RVA: 0x0028B0A8 File Offset: 0x002892A8
 		protected virtual void OnMouseEnter()
 		{
 			if (!this.useEventSystem)
@@ -100,7 +100,7 @@ namespace Fungus
 			}
 		}
 
-		// Token: 0x06007460 RID: 29792 RVA: 0x0004F737 File Offset: 0x0004D937
+		// Token: 0x060067AE RID: 26542 RVA: 0x0028B0B8 File Offset: 0x002892B8
 		protected virtual void OnMouseExit()
 		{
 			if (!this.useEventSystem)
@@ -110,8 +110,8 @@ namespace Fungus
 			}
 		}
 
-		// Token: 0x17000AA7 RID: 2727
-		// (set) Token: 0x06007461 RID: 29793 RVA: 0x0004F74E File Offset: 0x0004D94E
+		// Token: 0x17000836 RID: 2102
+		// (set) Token: 0x060067AF RID: 26543 RVA: 0x0028B0CF File Offset: 0x002892CF
 		public bool ClickEnabled
 		{
 			set
@@ -120,7 +120,7 @@ namespace Fungus
 			}
 		}
 
-		// Token: 0x06007462 RID: 29794 RVA: 0x0004F757 File Offset: 0x0004D957
+		// Token: 0x060067B0 RID: 26544 RVA: 0x0028B0D8 File Offset: 0x002892D8
 		public void OnPointerClick(PointerEventData eventData)
 		{
 			if (this.useEventSystem)
@@ -129,7 +129,7 @@ namespace Fungus
 			}
 		}
 
-		// Token: 0x06007463 RID: 29795 RVA: 0x0004F767 File Offset: 0x0004D967
+		// Token: 0x060067B1 RID: 26545 RVA: 0x0028B0E8 File Offset: 0x002892E8
 		public void OnPointerEnter(PointerEventData eventData)
 		{
 			if (this.useEventSystem)
@@ -138,7 +138,7 @@ namespace Fungus
 			}
 		}
 
-		// Token: 0x06007464 RID: 29796 RVA: 0x0004F777 File Offset: 0x0004D977
+		// Token: 0x060067B2 RID: 26546 RVA: 0x0028B0F8 File Offset: 0x002892F8
 		public void OnPointerExit(PointerEventData eventData)
 		{
 			if (this.useEventSystem)
@@ -147,25 +147,25 @@ namespace Fungus
 			}
 		}
 
-		// Token: 0x04006627 RID: 26151
+		// Token: 0x0400588F RID: 22671
 		[Tooltip("Is object clicking enabled")]
 		[SerializeField]
 		protected bool clickEnabled = true;
 
-		// Token: 0x04006628 RID: 26152
+		// Token: 0x04005890 RID: 22672
 		[Tooltip("Mouse texture to use when hovering mouse over object")]
 		[SerializeField]
 		protected Texture2D hoverCursor;
 
-		// Token: 0x04006629 RID: 26153
+		// Token: 0x04005891 RID: 22673
 		[Tooltip("Use the UI Event System to check for clicks. Clicks that hit an overlapping UI object will be ignored. Camera must have a PhysicsRaycaster component, or a Physics2DRaycaster for 2D colliders.")]
 		[SerializeField]
 		protected bool useEventSystem;
 
-		// Token: 0x0400662A RID: 26154
+		// Token: 0x04005892 RID: 22674
 		public bool ShouldScale = true;
 
-		// Token: 0x0400662B RID: 26155
+		// Token: 0x04005893 RID: 22675
 		private List<string> btnName = new List<string>
 		{
 			"likai",
@@ -184,13 +184,13 @@ namespace Fungus
 			"liexi"
 		};
 
-		// Token: 0x0400662C RID: 26156
+		// Token: 0x04005894 RID: 22676
 		private bool isIn;
 
-		// Token: 0x0400662D RID: 26157
+		// Token: 0x04005895 RID: 22677
 		private bool isCanDo = true;
 
-		// Token: 0x0400662E RID: 26158
+		// Token: 0x04005896 RID: 22678
 		private Vector3 oriScale;
 	}
 }

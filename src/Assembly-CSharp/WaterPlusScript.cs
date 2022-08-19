@@ -2,17 +2,17 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-// Token: 0x02000142 RID: 322
+// Token: 0x020000D1 RID: 209
 public class WaterPlusScript : MonoBehaviour
 {
-	// Token: 0x06000BDA RID: 3034 RVA: 0x0000DF30 File Offset: 0x0000C130
+	// Token: 0x06000AF7 RID: 2807 RVA: 0x00042195 File Offset: 0x00040395
 	private void Reset()
 	{
 		this.speed = 3f;
 		this.velocity = new Vector2(0.7f, 0f);
 	}
 
-	// Token: 0x06000BDB RID: 3035 RVA: 0x00093FE0 File Offset: 0x000921E0
+	// Token: 0x06000AF8 RID: 2808 RVA: 0x000421B8 File Offset: 0x000403B8
 	private Light FindTheBrightestDirectionalLight()
 	{
 		Light light = null;
@@ -40,7 +40,7 @@ public class WaterPlusScript : MonoBehaviour
 		return light;
 	}
 
-	// Token: 0x06000BDC RID: 3036 RVA: 0x00094094 File Offset: 0x00092294
+	// Token: 0x06000AF9 RID: 2809 RVA: 0x0004226C File Offset: 0x0004046C
 	private void Start()
 	{
 		this.waterCenter = base.GetComponent<Renderer>().bounds.center;
@@ -100,14 +100,14 @@ public class WaterPlusScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000BDD RID: 3037 RVA: 0x0000DF52 File Offset: 0x0000C152
+	// Token: 0x06000AFA RID: 2810 RVA: 0x000424D4 File Offset: 0x000406D4
 	private void OnDestroy()
 	{
 		Shader.DisableKeyword("WATER_EDGEBLEND_ON");
 		Shader.EnableKeyword("WATER_EDGEBLEND_OFF");
 	}
 
-	// Token: 0x06000BDE RID: 3038 RVA: 0x000942FC File Offset: 0x000924FC
+	// Token: 0x06000AFB RID: 2811 RVA: 0x000424EC File Offset: 0x000406EC
 	private void Update()
 	{
 		switch (this.movementType)
@@ -192,51 +192,51 @@ public class WaterPlusScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x040008BB RID: 2235
+	// Token: 0x04000710 RID: 1808
 	public WaterMovementType movementType;
 
-	// Token: 0x040008BC RID: 2236
+	// Token: 0x04000711 RID: 1809
 	public Vector2 velocity;
 
-	// Token: 0x040008BD RID: 2237
+	// Token: 0x04000712 RID: 1810
 	public float speed;
 
-	// Token: 0x040008BE RID: 2238
+	// Token: 0x04000713 RID: 1811
 	public Transform target;
 
-	// Token: 0x040008BF RID: 2239
+	// Token: 0x04000714 RID: 1812
 	public bool animatedNormalmaps = true;
 
-	// Token: 0x040008C0 RID: 2240
+	// Token: 0x04000715 RID: 1813
 	private Texture2D[] normalmapAnimation;
 
-	// Token: 0x040008C1 RID: 2241
+	// Token: 0x04000716 RID: 1814
 	private Texture2D[] dudvfoamAnimation;
 
-	// Token: 0x040008C2 RID: 2242
+	// Token: 0x04000717 RID: 1815
 	private float animationValue;
 
-	// Token: 0x040008C3 RID: 2243
+	// Token: 0x04000718 RID: 1816
 	private Vector3 waterCenter;
 
-	// Token: 0x040008C4 RID: 2244
+	// Token: 0x04000719 RID: 1817
 	private Material waterMaterial;
 
-	// Token: 0x040008C5 RID: 2245
+	// Token: 0x0400071A RID: 1818
 	private Vector3 projectedLightDir;
 
-	// Token: 0x040008C6 RID: 2246
+	// Token: 0x0400071B RID: 1819
 	private Vector2 anisoDirAnimationOffset;
 
-	// Token: 0x040008C7 RID: 2247
+	// Token: 0x0400071C RID: 1820
 	private int causticsAnimationFrame;
 
-	// Token: 0x040008C8 RID: 2248
+	// Token: 0x0400071D RID: 1821
 	private float causticsAnimationTime;
 
-	// Token: 0x040008C9 RID: 2249
+	// Token: 0x0400071E RID: 1822
 	private int normalmapAnimationFrame;
 
-	// Token: 0x040008CA RID: 2250
+	// Token: 0x0400071F RID: 1823
 	private float normalmapAnimationTime;
 }

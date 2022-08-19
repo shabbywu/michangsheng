@@ -1,21 +1,21 @@
 ﻿using System;
 using UnityEngine;
 
-// Token: 0x0200015A RID: 346
+// Token: 0x020000E3 RID: 227
 public class GameManager : MonoBehaviour
 {
-	// Token: 0x06000C51 RID: 3153 RVA: 0x0000E53E File Offset: 0x0000C73E
+	// Token: 0x06000B62 RID: 2914 RVA: 0x00045498 File Offset: 0x00043698
 	private void Start()
 	{
 		this.Playing = true;
 	}
 
-	// Token: 0x06000C52 RID: 3154 RVA: 0x000042DD File Offset: 0x000024DD
+	// Token: 0x06000B63 RID: 2915 RVA: 0x00004095 File Offset: 0x00002295
 	private void Update()
 	{
 	}
 
-	// Token: 0x06000C53 RID: 3155 RVA: 0x0000E547 File Offset: 0x0000C747
+	// Token: 0x06000B64 RID: 2916 RVA: 0x000454A1 File Offset: 0x000436A1
 	public void GameEvent(string message)
 	{
 		if (message == "endgame")
@@ -25,7 +25,7 @@ public class GameManager : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000C54 RID: 3156 RVA: 0x00096FF4 File Offset: 0x000951F4
+	// Token: 0x06000B65 RID: 2917 RVA: 0x000454C4 File Offset: 0x000436C4
 	private void OnGUI()
 	{
 		if (this.Skin != null)
@@ -52,17 +52,17 @@ public class GameManager : MonoBehaviour
 		GUI.Label(new Rect(0f, (float)(Screen.height / 2 - 100), (float)Screen.width, 30f), "Game Over");
 	}
 
-	// Token: 0x0400096D RID: 2413
+	// Token: 0x04000792 RID: 1938
 	public GUISkin Skin;
 
-	// Token: 0x0400096E RID: 2414
+	// Token: 0x04000793 RID: 1939
 	public Texture2D IconZombie;
 
-	// Token: 0x0400096F RID: 2415
+	// Token: 0x04000794 RID: 1940
 	[NonSerialized]
 	public int Score;
 
-	// Token: 0x04000970 RID: 2416
+	// Token: 0x04000795 RID: 1941
 	[NonSerialized]
 	public bool Playing;
 }

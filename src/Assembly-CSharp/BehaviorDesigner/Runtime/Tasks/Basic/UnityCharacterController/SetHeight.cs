@@ -3,12 +3,12 @@ using UnityEngine;
 
 namespace BehaviorDesigner.Runtime.Tasks.Basic.UnityCharacterController
 {
-	// Token: 0x0200160E RID: 5646
+	// Token: 0x0200114F RID: 4431
 	[TaskCategory("Basic/CharacterController")]
 	[TaskDescription("Sets the height of the CharacterController. Returns Success.")]
 	public class SetHeight : Action
 	{
-		// Token: 0x060083CD RID: 33741 RVA: 0x002CEF20 File Offset: 0x002CD120
+		// Token: 0x060075D3 RID: 30163 RVA: 0x002B531C File Offset: 0x002B351C
 		public override void OnStart()
 		{
 			GameObject defaultGameObject = base.GetDefaultGameObject(this.targetGameObject.Value);
@@ -19,7 +19,7 @@ namespace BehaviorDesigner.Runtime.Tasks.Basic.UnityCharacterController
 			}
 		}
 
-		// Token: 0x060083CE RID: 33742 RVA: 0x0005AD31 File Offset: 0x00058F31
+		// Token: 0x060075D4 RID: 30164 RVA: 0x002B535C File Offset: 0x002B355C
 		public override TaskStatus OnUpdate()
 		{
 			if (this.characterController == null)
@@ -31,25 +31,25 @@ namespace BehaviorDesigner.Runtime.Tasks.Basic.UnityCharacterController
 			return 2;
 		}
 
-		// Token: 0x060083CF RID: 33743 RVA: 0x0005AD64 File Offset: 0x00058F64
+		// Token: 0x060075D5 RID: 30165 RVA: 0x002B538F File Offset: 0x002B358F
 		public override void OnReset()
 		{
 			this.targetGameObject = null;
 			this.height = 0f;
 		}
 
-		// Token: 0x0400707C RID: 28796
+		// Token: 0x04006159 RID: 24921
 		[Tooltip("The GameObject that the task operates on. If null the task GameObject is used.")]
 		public SharedGameObject targetGameObject;
 
-		// Token: 0x0400707D RID: 28797
+		// Token: 0x0400615A RID: 24922
 		[Tooltip("The height of the CharacterController")]
 		public SharedFloat height;
 
-		// Token: 0x0400707E RID: 28798
+		// Token: 0x0400615B RID: 24923
 		private CharacterController characterController;
 
-		// Token: 0x0400707F RID: 28799
+		// Token: 0x0400615C RID: 24924
 		private GameObject prevGameObject;
 	}
 }

@@ -3,17 +3,17 @@ using KBEngine;
 
 namespace BehaviorDesigner.Runtime.Tasks.Basic.UnityAnimation
 {
-	// Token: 0x02001680 RID: 5760
+	// Token: 0x020011BE RID: 4542
 	[TaskCategory("YS")]
 	[TaskDescription("无禁之海自动移动到目标点")]
 	public class SeaAutoMoveToPositon : Action
 	{
-		// Token: 0x060085A9 RID: 34217 RVA: 0x000042DD File Offset: 0x000024DD
+		// Token: 0x0600779E RID: 30622 RVA: 0x00004095 File Offset: 0x00002295
 		public override void OnAwake()
 		{
 		}
 
-		// Token: 0x060085AA RID: 34218 RVA: 0x002D11CC File Offset: 0x002CF3CC
+		// Token: 0x0600779F RID: 30623 RVA: 0x002B9348 File Offset: 0x002B7548
 		public override void OnStart()
 		{
 			this.avatar = (Avatar)this.gameObject.GetComponent<AvaterAddScript>().entity;
@@ -21,7 +21,7 @@ namespace BehaviorDesigner.Runtime.Tasks.Basic.UnityAnimation
 			this.endPositon = (base.Owner.GetVariable("endPositon") as SharedInt);
 		}
 
-		// Token: 0x060085AB RID: 34219 RVA: 0x002D122C File Offset: 0x002CF42C
+		// Token: 0x060077A0 RID: 30624 RVA: 0x002B93A8 File Offset: 0x002B75A8
 		public override TaskStatus OnUpdate()
 		{
 			int nowMapIndex = this.avatar.NowMapIndex;
@@ -34,18 +34,18 @@ namespace BehaviorDesigner.Runtime.Tasks.Basic.UnityAnimation
 			return 1;
 		}
 
-		// Token: 0x060085AC RID: 34220 RVA: 0x000042DD File Offset: 0x000024DD
+		// Token: 0x060077A1 RID: 30625 RVA: 0x00004095 File Offset: 0x00002295
 		public override void OnReset()
 		{
 		}
 
-		// Token: 0x0400724C RID: 29260
+		// Token: 0x0400631D RID: 25373
 		private Avatar avatar;
 
-		// Token: 0x0400724D RID: 29261
+		// Token: 0x0400631E RID: 25374
 		private SharedInt nowPositon;
 
-		// Token: 0x0400724E RID: 29262
+		// Token: 0x0400631F RID: 25375
 		private SharedInt endPositon;
 	}
 }

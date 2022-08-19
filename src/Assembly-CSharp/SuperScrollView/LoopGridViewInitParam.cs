@@ -2,22 +2,22 @@
 
 namespace SuperScrollView
 {
-	// Token: 0x020009F2 RID: 2546
+	// Token: 0x020006C7 RID: 1735
 	public class LoopGridViewInitParam
 	{
-		// Token: 0x060040F0 RID: 16624 RVA: 0x0002EA82 File Offset: 0x0002CC82
+		// Token: 0x060036D3 RID: 14035 RVA: 0x00176B8E File Offset: 0x00174D8E
 		public static LoopGridViewInitParam CopyDefaultInitParam()
 		{
 			return new LoopGridViewInitParam();
 		}
 
-		// Token: 0x040039D2 RID: 14802
+		// Token: 0x04002FCD RID: 12237
 		public float mSmoothDumpRate = 0.3f;
 
-		// Token: 0x040039D3 RID: 14803
+		// Token: 0x04002FCE RID: 12238
 		public float mSnapFinishThreshold = 0.01f;
 
-		// Token: 0x040039D4 RID: 14804
+		// Token: 0x04002FCF RID: 12239
 		public float mSnapVecThreshold = 145f;
 	}
 }

@@ -4,11 +4,11 @@ using UnityEngine;
 
 namespace Fungus
 {
-	// Token: 0x0200121F RID: 4639
+	// Token: 0x02000DDE RID: 3550
 	[Serializable]
 	public class ObjectValue
 	{
-		// Token: 0x0600714C RID: 29004 RVA: 0x002A52EC File Offset: 0x002A34EC
+		// Token: 0x060064C0 RID: 25792 RVA: 0x00280744 File Offset: 0x0027E944
 		public object GetValue()
 		{
 			string text = this.typeFullname;
@@ -111,46 +111,46 @@ namespace Fungus
 			return null;
 		}
 
-		// Token: 0x040063A7 RID: 25511
+		// Token: 0x040056A0 RID: 22176
 		public string typeAssemblyname;
 
-		// Token: 0x040063A8 RID: 25512
+		// Token: 0x040056A1 RID: 22177
 		public string typeFullname;
 
-		// Token: 0x040063A9 RID: 25513
+		// Token: 0x040056A2 RID: 22178
 		public int intValue;
 
-		// Token: 0x040063AA RID: 25514
+		// Token: 0x040056A3 RID: 22179
 		public bool boolValue;
 
-		// Token: 0x040063AB RID: 25515
+		// Token: 0x040056A4 RID: 22180
 		public float floatValue;
 
-		// Token: 0x040063AC RID: 25516
+		// Token: 0x040056A5 RID: 22181
 		public string stringValue;
 
-		// Token: 0x040063AD RID: 25517
+		// Token: 0x040056A6 RID: 22182
 		public Color colorValue;
 
-		// Token: 0x040063AE RID: 25518
+		// Token: 0x040056A7 RID: 22183
 		public GameObject gameObjectValue;
 
-		// Token: 0x040063AF RID: 25519
+		// Token: 0x040056A8 RID: 22184
 		public Material materialValue;
 
-		// Token: 0x040063B0 RID: 25520
+		// Token: 0x040056A9 RID: 22185
 		public Object objectValue;
 
-		// Token: 0x040063B1 RID: 25521
+		// Token: 0x040056AA RID: 22186
 		public Sprite spriteValue;
 
-		// Token: 0x040063B2 RID: 25522
+		// Token: 0x040056AB RID: 22187
 		public Texture textureValue;
 
-		// Token: 0x040063B3 RID: 25523
+		// Token: 0x040056AC RID: 22188
 		public Vector2 vector2Value;
 
-		// Token: 0x040063B4 RID: 25524
+		// Token: 0x040056AD RID: 22189
 		public Vector3 vector3Value;
 	}
 }

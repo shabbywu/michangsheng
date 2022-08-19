@@ -1,10 +1,10 @@
 ﻿using System;
 
-// Token: 0x02000794 RID: 1940
+// Token: 0x02000503 RID: 1283
 public enum Identity
 {
-	// Token: 0x04002DAA RID: 11690
+	// Token: 0x040025C2 RID: 9666
 	Farmer,
-	// Token: 0x04002DAB RID: 11691
+	// Token: 0x040025C3 RID: 9667
 	Landlord
 }

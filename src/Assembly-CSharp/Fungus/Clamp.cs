@@ -3,12 +3,12 @@ using UnityEngine;
 
 namespace Fungus
 {
-	// Token: 0x02001237 RID: 4663
+	// Token: 0x02000DF2 RID: 3570
 	[CommandInfo("Math", "Clamp", "Command to contain a value between a lower and upper bound, with optional wrapping modes", 0)]
 	[AddComponentMenu("")]
 	public class Clamp : Command
 	{
-		// Token: 0x060071A5 RID: 29093 RVA: 0x002A6358 File Offset: 0x002A4558
+		// Token: 0x06006517 RID: 25879 RVA: 0x00281CB4 File Offset: 0x0027FEB4
 		public override void OnEnter()
 		{
 			float num = this.lower.Value;
@@ -29,7 +29,7 @@ namespace Fungus
 			this.Continue();
 		}
 
-		// Token: 0x060071A6 RID: 29094 RVA: 0x002A6410 File Offset: 0x002A4610
+		// Token: 0x06006518 RID: 25880 RVA: 0x00281D6C File Offset: 0x0027FF6C
 		public override string GetSummary()
 		{
 			if (this.outValue.floatRef == null)
@@ -39,47 +39,47 @@ namespace Fungus
 			return this.outValue.floatRef.Key + " = " + Clamp.Mode.Clamp.ToString() + ((this.mode != Clamp.Mode.Clamp) ? (" & " + this.mode.ToString()) : "");
 		}
 
-		// Token: 0x060071A7 RID: 29095 RVA: 0x002A648C File Offset: 0x002A468C
+		// Token: 0x06006519 RID: 25881 RVA: 0x00281DE8 File Offset: 0x0027FFE8
 		public override bool HasReference(Variable variable)
 		{
 			return this.lower.floatRef == variable || this.upper.floatRef == variable || this.value.floatRef == variable || this.outValue.floatRef == variable;
 		}
 
-		// Token: 0x060071A8 RID: 29096 RVA: 0x0004C5E0 File Offset: 0x0004A7E0
+		// Token: 0x0600651A RID: 25882 RVA: 0x0027D3DB File Offset: 0x0027B5DB
 		public override Color GetButtonColor()
 		{
 			return new Color32(235, 191, 217, byte.MaxValue);
 		}
 
-		// Token: 0x040063FF RID: 25599
+		// Token: 0x040056EC RID: 22252
 		[SerializeField]
 		protected Clamp.Mode mode;
 
-		// Token: 0x04006400 RID: 25600
+		// Token: 0x040056ED RID: 22253
 		[SerializeField]
 		protected FloatData lower;
 
-		// Token: 0x04006401 RID: 25601
+		// Token: 0x040056EE RID: 22254
 		[SerializeField]
 		protected FloatData upper;
 
-		// Token: 0x04006402 RID: 25602
+		// Token: 0x040056EF RID: 22255
 		[SerializeField]
 		protected FloatData value;
 
-		// Token: 0x04006403 RID: 25603
+		// Token: 0x040056F0 RID: 22256
 		[Tooltip("Result put here, if using pingpong don't use the same var for value as outValue.")]
 		[SerializeField]
 		protected FloatData outValue;
 
-		// Token: 0x02001238 RID: 4664
+		// Token: 0x020016B9 RID: 5817
 		public enum Mode
 		{
-			// Token: 0x04006405 RID: 25605
+			// Token: 0x0400736F RID: 29551
 			Clamp,
-			// Token: 0x04006406 RID: 25606
+			// Token: 0x04007370 RID: 29552
 			Repeat,
-			// Token: 0x04006407 RID: 25607
+			// Token: 0x04007371 RID: 29553
 			PingPong
 		}
 	}

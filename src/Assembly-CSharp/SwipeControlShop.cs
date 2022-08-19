@@ -2,10 +2,10 @@
 using System.Collections;
 using UnityEngine;
 
-// Token: 0x0200076F RID: 1903
+// Token: 0x020004F0 RID: 1264
 public class SwipeControlShop : MonoBehaviour
 {
-	// Token: 0x06003083 RID: 12419 RVA: 0x00023CC5 File Offset: 0x00021EC5
+	// Token: 0x060028E4 RID: 10468 RVA: 0x00135F95 File Offset: 0x00134195
 	private IEnumerator Start()
 	{
 		if (this.clickEdgeToSwitch && !this.allowInput)
@@ -20,7 +20,7 @@ public class SwipeControlShop : MonoBehaviour
 		yield break;
 	}
 
-	// Token: 0x06003084 RID: 12420 RVA: 0x00182390 File Offset: 0x00180590
+	// Token: 0x060028E5 RID: 10469 RVA: 0x00135FA4 File Offset: 0x001341A4
 	public void Setup()
 	{
 		this.partFactor = 1f / this.partWidth;
@@ -40,19 +40,19 @@ public class SwipeControlShop : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06003085 RID: 12421 RVA: 0x00023CD4 File Offset: 0x00021ED4
+	// Token: 0x060028E6 RID: 10470 RVA: 0x0013605F File Offset: 0x0013425F
 	public void SetMouseRect(Rect myRect)
 	{
 		this.mouseRect = myRect;
 	}
 
-	// Token: 0x06003086 RID: 12422 RVA: 0x00023CDD File Offset: 0x00021EDD
+	// Token: 0x060028E7 RID: 10471 RVA: 0x00136068 File Offset: 0x00134268
 	public void CalculateEdgeRectsFromMouseRect()
 	{
 		this.CalculateEdgeRectsFromMouseRect(this.mouseRect);
 	}
 
-	// Token: 0x06003087 RID: 12423 RVA: 0x0018244C File Offset: 0x0018064C
+	// Token: 0x060028E8 RID: 10472 RVA: 0x00136078 File Offset: 0x00134278
 	public void CalculateEdgeRectsFromMouseRect(Rect myRect)
 	{
 		this.leftEdgeRectForClickSwitch.x = myRect.x;
@@ -65,14 +65,14 @@ public class SwipeControlShop : MonoBehaviour
 		this.rightEdgeRectForClickSwitch.height = myRect.height;
 	}
 
-	// Token: 0x06003088 RID: 12424 RVA: 0x00023CEB File Offset: 0x00021EEB
+	// Token: 0x060028E9 RID: 10473 RVA: 0x0013612F File Offset: 0x0013432F
 	public void SetEdgeRects(Rect leftRect, Rect rightRect)
 	{
 		this.leftEdgeRectForClickSwitch = leftRect;
 		this.rightEdgeRectForClickSwitch = rightRect;
 	}
 
-	// Token: 0x06003089 RID: 12425 RVA: 0x0017F14C File Offset: 0x0017D34C
+	// Token: 0x060028EA RID: 10474 RVA: 0x00136140 File Offset: 0x00134340
 	private float GetAvgValue(float[] arr)
 	{
 		float num = 0f;
@@ -83,7 +83,7 @@ public class SwipeControlShop : MonoBehaviour
 		return num / (float)arr.Length;
 	}
 
-	// Token: 0x0600308A RID: 12426 RVA: 0x0017F17C File Offset: 0x0017D37C
+	// Token: 0x060028EB RID: 10475 RVA: 0x00136170 File Offset: 0x00134370
 	private void FillArrayWithValue(float[] arr, float val)
 	{
 		for (int i = 0; i < arr.Length; i++)
@@ -92,7 +92,7 @@ public class SwipeControlShop : MonoBehaviour
 		}
 	}
 
-	// Token: 0x0600308B RID: 12427 RVA: 0x00182504 File Offset: 0x00180704
+	// Token: 0x060028EC RID: 10476 RVA: 0x00136190 File Offset: 0x00134390
 	private void Update()
 	{
 		if (SwipeControlShop.controlEnabled)
@@ -178,87 +178,87 @@ public class SwipeControlShop : MonoBehaviour
 		}
 	}
 
-	// Token: 0x04002C75 RID: 11381
+	// Token: 0x040024CC RID: 9420
 	public static bool controlEnabled;
 
-	// Token: 0x04002C76 RID: 11382
+	// Token: 0x040024CD RID: 9421
 	public bool skipAutoSetup;
 
-	// Token: 0x04002C77 RID: 11383
+	// Token: 0x040024CE RID: 9422
 	public bool allowInput = true;
 
-	// Token: 0x04002C78 RID: 11384
+	// Token: 0x040024CF RID: 9423
 	public bool clickEdgeToSwitch = true;
 
-	// Token: 0x04002C79 RID: 11385
+	// Token: 0x040024D0 RID: 9424
 	public float partWidth;
 
-	// Token: 0x04002C7A RID: 11386
+	// Token: 0x040024D1 RID: 9425
 	private float partFactor = 1f;
 
-	// Token: 0x04002C7B RID: 11387
+	// Token: 0x040024D2 RID: 9426
 	public int startValue;
 
-	// Token: 0x04002C7C RID: 11388
+	// Token: 0x040024D3 RID: 9427
 	public int currentValue;
 
-	// Token: 0x04002C7D RID: 11389
+	// Token: 0x040024D4 RID: 9428
 	public int maxValue;
 
-	// Token: 0x04002C7E RID: 11390
+	// Token: 0x040024D5 RID: 9429
 	public Rect mouseRect;
 
-	// Token: 0x04002C7F RID: 11391
+	// Token: 0x040024D6 RID: 9430
 	public Rect leftEdgeRectForClickSwitch;
 
-	// Token: 0x04002C80 RID: 11392
+	// Token: 0x040024D7 RID: 9431
 	public Rect rightEdgeRectForClickSwitch;
 
-	// Token: 0x04002C81 RID: 11393
+	// Token: 0x040024D8 RID: 9432
 	public Matrix4x4 matrix = Matrix4x4.identity;
 
-	// Token: 0x04002C82 RID: 11394
+	// Token: 0x040024D9 RID: 9433
 	private bool touched;
 
-	// Token: 0x04002C83 RID: 11395
+	// Token: 0x040024DA RID: 9434
 	private int[] fingerStartArea = new int[5];
 
-	// Token: 0x04002C84 RID: 11396
+	// Token: 0x040024DB RID: 9435
 	private int mouseStartArea;
 
-	// Token: 0x04002C85 RID: 11397
+	// Token: 0x040024DC RID: 9436
 	public float smoothValue;
 
-	// Token: 0x04002C86 RID: 11398
+	// Token: 0x040024DD RID: 9437
 	private float smoothStartPos;
 
-	// Token: 0x04002C87 RID: 11399
+	// Token: 0x040024DE RID: 9438
 	private float smoothDragOffset = 0.2f;
 
-	// Token: 0x04002C88 RID: 11400
+	// Token: 0x040024DF RID: 9439
 	private float lastSmoothValue;
 
-	// Token: 0x04002C89 RID: 11401
+	// Token: 0x040024E0 RID: 9440
 	private float[] prevSmoothValue = new float[5];
 
-	// Token: 0x04002C8A RID: 11402
+	// Token: 0x040024E1 RID: 9441
 	private float realtimeStamp;
 
-	// Token: 0x04002C8B RID: 11403
+	// Token: 0x040024E2 RID: 9442
 	private float xVelocity;
 
-	// Token: 0x04002C8C RID: 11404
+	// Token: 0x040024E3 RID: 9443
 	public float maxSpeed = 20f;
 
-	// Token: 0x04002C8D RID: 11405
+	// Token: 0x040024E4 RID: 9444
 	private Vector2 mStartPos;
 
-	// Token: 0x04002C8E RID: 11406
+	// Token: 0x040024E5 RID: 9445
 	private Vector3 pos;
 
-	// Token: 0x04002C8F RID: 11407
+	// Token: 0x040024E6 RID: 9446
 	private Vector2 tPos;
 
-	// Token: 0x04002C90 RID: 11408
+	// Token: 0x040024E7 RID: 9447
 	public bool debug;
 }

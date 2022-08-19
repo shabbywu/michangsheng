@@ -6,27 +6,27 @@ using UnityEngine.UI;
 
 namespace YSGame.TuJian
 {
-	// Token: 0x02000DDB RID: 3547
+	// Token: 0x02000A9F RID: 2719
 	public class TuJianManager : MonoBehaviour, IESCClose
 	{
-		// Token: 0x170007FC RID: 2044
-		// (get) Token: 0x0600556A RID: 21866 RVA: 0x0003D0CA File Offset: 0x0003B2CA
-		// (set) Token: 0x0600556B RID: 21867 RVA: 0x0003D0D2 File Offset: 0x0003B2D2
+		// Token: 0x170005D5 RID: 1493
+		// (get) Token: 0x06004C23 RID: 19491 RVA: 0x002083E6 File Offset: 0x002065E6
+		// (set) Token: 0x06004C24 RID: 19492 RVA: 0x002083EE File Offset: 0x002065EE
 		public string LastHyperlink { get; set; }
 
-		// Token: 0x170007FD RID: 2045
-		// (get) Token: 0x0600556C RID: 21868 RVA: 0x0003D0DB File Offset: 0x0003B2DB
-		// (set) Token: 0x0600556D RID: 21869 RVA: 0x0003D0E3 File Offset: 0x0003B2E3
+		// Token: 0x170005D6 RID: 1494
+		// (get) Token: 0x06004C25 RID: 19493 RVA: 0x002083F7 File Offset: 0x002065F7
+		// (set) Token: 0x06004C26 RID: 19494 RVA: 0x002083FF File Offset: 0x002065FF
 		public string NowHyperlink { get; set; }
 
-		// Token: 0x170007FE RID: 2046
-		// (get) Token: 0x0600556E RID: 21870 RVA: 0x0003D0EC File Offset: 0x0003B2EC
-		// (set) Token: 0x0600556F RID: 21871 RVA: 0x0003D0F4 File Offset: 0x0003B2F4
+		// Token: 0x170005D7 RID: 1495
+		// (get) Token: 0x06004C27 RID: 19495 RVA: 0x00208408 File Offset: 0x00206608
+		// (set) Token: 0x06004C28 RID: 19496 RVA: 0x00208410 File Offset: 0x00206610
 		public string NowPageHyperlink { get; set; }
 
-		// Token: 0x170007FF RID: 2047
-		// (get) Token: 0x06005570 RID: 21872 RVA: 0x0003D0FD File Offset: 0x0003B2FD
-		// (set) Token: 0x06005571 RID: 21873 RVA: 0x0003D105 File Offset: 0x0003B305
+		// Token: 0x170005D8 RID: 1496
+		// (get) Token: 0x06004C29 RID: 19497 RVA: 0x00208419 File Offset: 0x00206619
+		// (set) Token: 0x06004C2A RID: 19498 RVA: 0x00208421 File Offset: 0x00206621
 		public TuJianTabType NowTuJianTab
 		{
 			get
@@ -40,7 +40,7 @@ namespace YSGame.TuJian
 			}
 		}
 
-		// Token: 0x06005572 RID: 21874 RVA: 0x002398D4 File Offset: 0x00237AD4
+		// Token: 0x06004C2B RID: 19499 RVA: 0x00208438 File Offset: 0x00206638
 		private void Awake()
 		{
 			if (TuJianManager.Inst == null)
@@ -63,7 +63,7 @@ namespace YSGame.TuJian
 			Object.Destroy(base.gameObject);
 		}
 
-		// Token: 0x06005573 RID: 21875 RVA: 0x0003D11A File Offset: 0x0003B31A
+		// Token: 0x06004C2C RID: 19500 RVA: 0x002084F0 File Offset: 0x002066F0
 		private IEnumerator InitTab()
 		{
 			this.ChangeTuJianTab(TuJianTabType.Item);
@@ -77,7 +77,7 @@ namespace YSGame.TuJian
 			yield break;
 		}
 
-		// Token: 0x06005574 RID: 21876 RVA: 0x0023998C File Offset: 0x00237B8C
+		// Token: 0x06004C2D RID: 19501 RVA: 0x00208500 File Offset: 0x00206700
 		private void Update()
 		{
 			if (!this._IsInited)
@@ -92,7 +92,7 @@ namespace YSGame.TuJian
 			this.scaler.referenceResolution = new Vector2(1080f / num, 1080f);
 		}
 
-		// Token: 0x06005575 RID: 21877 RVA: 0x002399E0 File Offset: 0x00237BE0
+		// Token: 0x06004C2E RID: 19502 RVA: 0x00208554 File Offset: 0x00206754
 		public void OnHyperlink(string link)
 		{
 			try
@@ -124,7 +124,7 @@ namespace YSGame.TuJian
 			}
 		}
 
-		// Token: 0x06005576 RID: 21878 RVA: 0x0003D129 File Offset: 0x0003B329
+		// Token: 0x06004C2F RID: 19503 RVA: 0x00208624 File Offset: 0x00206824
 		public void ReturnHyperlink()
 		{
 			if (!string.IsNullOrEmpty(this.LastHyperlink))
@@ -133,13 +133,13 @@ namespace YSGame.TuJian
 			}
 		}
 
-		// Token: 0x06005577 RID: 21879 RVA: 0x0003D144 File Offset: 0x0003B344
+		// Token: 0x06004C30 RID: 19504 RVA: 0x0020863F File Offset: 0x0020683F
 		public bool CanReturn()
 		{
 			return !string.IsNullOrEmpty(this.LastHyperlink) && this.LastHyperlink.Length >= 5;
 		}
 
-		// Token: 0x06005578 RID: 21880 RVA: 0x00239AB0 File Offset: 0x00237CB0
+		// Token: 0x06004C31 RID: 19505 RVA: 0x00208660 File Offset: 0x00206860
 		private void ChangeTuJianTab(TuJianTabType tabType)
 		{
 			foreach (TuJianTab tuJianTab in TuJianManager.TabDict.Values)
@@ -155,13 +155,13 @@ namespace YSGame.TuJian
 			}
 		}
 
-		// Token: 0x06005579 RID: 21881 RVA: 0x0003D164 File Offset: 0x0003B364
+		// Token: 0x06004C32 RID: 19506 RVA: 0x002086C8 File Offset: 0x002068C8
 		public void OnButtonClick()
 		{
 			TuJianManager.TabDict[this.NowTuJianTab].OnButtonClick();
 		}
 
-		// Token: 0x0600557A RID: 21882 RVA: 0x00239B18 File Offset: 0x00237D18
+		// Token: 0x06004C33 RID: 19507 RVA: 0x002086E0 File Offset: 0x002068E0
 		public void OpenTuJian()
 		{
 			if (!this._Canvas.enabled)
@@ -183,7 +183,7 @@ namespace YSGame.TuJian
 			ESCCloseManager.Inst.RegisterClose(this);
 		}
 
-		// Token: 0x0600557B RID: 21883 RVA: 0x00239BBC File Offset: 0x00237DBC
+		// Token: 0x06004C34 RID: 19508 RVA: 0x00208784 File Offset: 0x00206984
 		public void CloseTuJian()
 		{
 			base.transform.position = new Vector3(10000f, 10000f, 10000f);
@@ -193,7 +193,7 @@ namespace YSGame.TuJian
 			ESCCloseManager.Inst.UnRegisterClose(this);
 		}
 
-		// Token: 0x0600557C RID: 21884 RVA: 0x0003D17B File Offset: 0x0003B37B
+		// Token: 0x06004C35 RID: 19509 RVA: 0x002087D8 File Offset: 0x002069D8
 		public void ClearSearch()
 		{
 			this.Searcher.input.text = "";
@@ -201,13 +201,13 @@ namespace YSGame.TuJian
 			TuJianItemTab.Inst.ShuXingDropdown.value = 0;
 		}
 
-		// Token: 0x0600557D RID: 21885 RVA: 0x0003D1B2 File Offset: 0x0003B3B2
+		// Token: 0x06004C36 RID: 19510 RVA: 0x0020880F File Offset: 0x00206A0F
 		public void Save()
 		{
 			YSSaveGame.save("TuJianSave", this.TuJianSave, "-1");
 		}
 
-		// Token: 0x0600557E RID: 21886 RVA: 0x00239C10 File Offset: 0x00237E10
+		// Token: 0x06004C37 RID: 19511 RVA: 0x00208828 File Offset: 0x00206A28
 		private bool CheckStringSave(string saveName, string str)
 		{
 			if (this.TuJianSave.HasField(saveName))
@@ -227,7 +227,7 @@ namespace YSGame.TuJian
 			return false;
 		}
 
-		// Token: 0x0600557F RID: 21887 RVA: 0x0003D1C9 File Offset: 0x0003B3C9
+		// Token: 0x06004C38 RID: 19512 RVA: 0x002088A0 File Offset: 0x00206AA0
 		private void WriteStringSave(string saveName, string str)
 		{
 			if (!this.TuJianSave.HasField(saveName))
@@ -237,7 +237,7 @@ namespace YSGame.TuJian
 			this.TuJianSave[saveName].Add(str);
 		}
 
-		// Token: 0x06005580 RID: 21888 RVA: 0x00239C88 File Offset: 0x00237E88
+		// Token: 0x06004C39 RID: 19513 RVA: 0x002088D4 File Offset: 0x00206AD4
 		private bool CheckIntSave(string saveName, int i)
 		{
 			if (this.TuJianSave.HasField(saveName))
@@ -257,7 +257,7 @@ namespace YSGame.TuJian
 			return false;
 		}
 
-		// Token: 0x06005581 RID: 21889 RVA: 0x0003D1FD File Offset: 0x0003B3FD
+		// Token: 0x06004C3A RID: 19514 RVA: 0x00208948 File Offset: 0x00206B48
 		private void WriteIntSave(string saveName, int i)
 		{
 			if (!this.TuJianSave.HasField(saveName))
@@ -267,7 +267,7 @@ namespace YSGame.TuJian
 			this.TuJianSave[saveName].Add(i);
 		}
 
-		// Token: 0x06005582 RID: 21890 RVA: 0x0003D231 File Offset: 0x0003B431
+		// Token: 0x06004C3B RID: 19515 RVA: 0x0020897C File Offset: 0x00206B7C
 		public void UnlockMap(string mapName)
 		{
 			if (!this.IsUnlockedMap(mapName))
@@ -276,7 +276,7 @@ namespace YSGame.TuJian
 			}
 		}
 
-		// Token: 0x06005583 RID: 21891 RVA: 0x0003D248 File Offset: 0x0003B448
+		// Token: 0x06004C3C RID: 19516 RVA: 0x00208993 File Offset: 0x00206B93
 		public void UnlockItem(int id)
 		{
 			if (!this.IsUnlockedItem(id))
@@ -285,7 +285,7 @@ namespace YSGame.TuJian
 			}
 		}
 
-		// Token: 0x06005584 RID: 21892 RVA: 0x0003D25F File Offset: 0x0003B45F
+		// Token: 0x06004C3D RID: 19517 RVA: 0x002089AA File Offset: 0x00206BAA
 		public void UnlockZhuYao(int id)
 		{
 			PlayTutorial.CheckCaoYao2();
@@ -295,7 +295,7 @@ namespace YSGame.TuJian
 			}
 		}
 
-		// Token: 0x06005585 RID: 21893 RVA: 0x0003D27B File Offset: 0x0003B47B
+		// Token: 0x06004C3E RID: 19518 RVA: 0x002089C6 File Offset: 0x00206BC6
 		public void UnlockFuYao(int id)
 		{
 			PlayTutorial.CheckCaoYao2();
@@ -305,7 +305,7 @@ namespace YSGame.TuJian
 			}
 		}
 
-		// Token: 0x06005586 RID: 21894 RVA: 0x0003D297 File Offset: 0x0003B497
+		// Token: 0x06004C3F RID: 19519 RVA: 0x002089E2 File Offset: 0x00206BE2
 		public void UnlockYaoYin(int id)
 		{
 			PlayTutorial.CheckCaoYao2();
@@ -315,7 +315,7 @@ namespace YSGame.TuJian
 			}
 		}
 
-		// Token: 0x06005587 RID: 21895 RVA: 0x0003D2B3 File Offset: 0x0003B4B3
+		// Token: 0x06004C40 RID: 19520 RVA: 0x002089FE File Offset: 0x00206BFE
 		public void UnlockSkill(int id)
 		{
 			if (!this.IsUnlockedSkill(id))
@@ -324,7 +324,7 @@ namespace YSGame.TuJian
 			}
 		}
 
-		// Token: 0x06005588 RID: 21896 RVA: 0x0003D2CA File Offset: 0x0003B4CA
+		// Token: 0x06004C41 RID: 19521 RVA: 0x00208A15 File Offset: 0x00206C15
 		public void UnlockGongFa(int id)
 		{
 			if (!this.IsUnlockedGongFa(id))
@@ -333,7 +333,7 @@ namespace YSGame.TuJian
 			}
 		}
 
-		// Token: 0x06005589 RID: 21897 RVA: 0x0003D2E1 File Offset: 0x0003B4E1
+		// Token: 0x06004C42 RID: 19522 RVA: 0x00208A2C File Offset: 0x00206C2C
 		public void UnlockHongDian(int id)
 		{
 			if (!this.IsUnlockedHongDian(id))
@@ -342,7 +342,7 @@ namespace YSGame.TuJian
 			}
 		}
 
-		// Token: 0x0600558A RID: 21898 RVA: 0x0003D2F8 File Offset: 0x0003B4F8
+		// Token: 0x06004C43 RID: 19523 RVA: 0x00208A43 File Offset: 0x00206C43
 		public void UnlockDeath(int id)
 		{
 			if (!this.IsUnlockedDeath(id))
@@ -351,61 +351,61 @@ namespace YSGame.TuJian
 			}
 		}
 
-		// Token: 0x0600558B RID: 21899 RVA: 0x0003D30F File Offset: 0x0003B50F
+		// Token: 0x06004C44 RID: 19524 RVA: 0x00208A5A File Offset: 0x00206C5A
 		public bool IsUnlockedMap(string mapName)
 		{
 			return this.CheckStringSave("UnlockedMap", mapName);
 		}
 
-		// Token: 0x0600558C RID: 21900 RVA: 0x0003D31D File Offset: 0x0003B51D
+		// Token: 0x06004C45 RID: 19525 RVA: 0x00208A68 File Offset: 0x00206C68
 		public bool IsUnlockedItem(int id)
 		{
 			return this.CheckIntSave("UnlockedItem", id);
 		}
 
-		// Token: 0x0600558D RID: 21901 RVA: 0x0003D32B File Offset: 0x0003B52B
+		// Token: 0x06004C46 RID: 19526 RVA: 0x00208A76 File Offset: 0x00206C76
 		public bool IsUnlockedZhuYao(int id)
 		{
 			return this.CheckIntSave("UnlockedCaoYaoZhuYao", id);
 		}
 
-		// Token: 0x0600558E RID: 21902 RVA: 0x0003D339 File Offset: 0x0003B539
+		// Token: 0x06004C47 RID: 19527 RVA: 0x00208A84 File Offset: 0x00206C84
 		public bool IsUnlockedFuYao(int id)
 		{
 			return this.CheckIntSave("UnlockedCaoYaoFuYao", id);
 		}
 
-		// Token: 0x0600558F RID: 21903 RVA: 0x0003D347 File Offset: 0x0003B547
+		// Token: 0x06004C48 RID: 19528 RVA: 0x00208A92 File Offset: 0x00206C92
 		public bool IsUnlockedYaoYin(int id)
 		{
 			return this.CheckIntSave("UnlockedCaoYaoYaoYin", id);
 		}
 
-		// Token: 0x06005590 RID: 21904 RVA: 0x0003D355 File Offset: 0x0003B555
+		// Token: 0x06004C49 RID: 19529 RVA: 0x00208AA0 File Offset: 0x00206CA0
 		public bool IsUnlockedSkill(int id)
 		{
 			return this.CheckIntSave("UnlockedSkill", id);
 		}
 
-		// Token: 0x06005591 RID: 21905 RVA: 0x0003D363 File Offset: 0x0003B563
+		// Token: 0x06004C4A RID: 19530 RVA: 0x00208AAE File Offset: 0x00206CAE
 		public bool IsUnlockedGongFa(int id)
 		{
 			return this.CheckIntSave("UnlockedGongFa", id);
 		}
 
-		// Token: 0x06005592 RID: 21906 RVA: 0x0003D371 File Offset: 0x0003B571
+		// Token: 0x06004C4B RID: 19531 RVA: 0x00208ABC File Offset: 0x00206CBC
 		public bool IsUnlockedHongDian(int id)
 		{
 			return this.CheckIntSave("UnlockedHongDian", id);
 		}
 
-		// Token: 0x06005593 RID: 21907 RVA: 0x0003D37F File Offset: 0x0003B57F
+		// Token: 0x06004C4C RID: 19532 RVA: 0x00208ACA File Offset: 0x00206CCA
 		public bool IsUnlockedDeath(int id)
 		{
 			return this.CheckIntSave("UnlockedDeath", id);
 		}
 
-		// Token: 0x06005594 RID: 21908 RVA: 0x0003D38D File Offset: 0x0003B58D
+		// Token: 0x06004C4D RID: 19533 RVA: 0x00208AD8 File Offset: 0x00206CD8
 		public bool TryEscClose()
 		{
 			if (this._Canvas.enabled)
@@ -416,40 +416,40 @@ namespace YSGame.TuJian
 			return false;
 		}
 
-		// Token: 0x04005547 RID: 21831
+		// Token: 0x04004B6C RID: 19308
 		[HideInInspector]
 		public static TuJianManager Inst;
 
-		// Token: 0x04005548 RID: 21832
+		// Token: 0x04004B6D RID: 19309
 		[HideInInspector]
 		public static Dictionary<TuJianTabType, TuJianTab> TabDict = new Dictionary<TuJianTabType, TuJianTab>();
 
-		// Token: 0x04005549 RID: 21833
+		// Token: 0x04004B6E RID: 19310
 		[HideInInspector]
 		public static bool IsDebugMode = false;
 
-		// Token: 0x0400554D RID: 21837
+		// Token: 0x04004B72 RID: 19314
 		[HideInInspector]
 		public Canvas _Canvas;
 
-		// Token: 0x0400554E RID: 21838
+		// Token: 0x04004B73 RID: 19315
 		private TuJianTabType _NowTuJianTab;
 
-		// Token: 0x0400554F RID: 21839
+		// Token: 0x04004B74 RID: 19316
 		private bool _IsInited;
 
-		// Token: 0x04005550 RID: 21840
+		// Token: 0x04004B75 RID: 19317
 		[HideInInspector]
 		public TuJianSearcher Searcher;
 
-		// Token: 0x04005551 RID: 21841
+		// Token: 0x04004B76 RID: 19318
 		[HideInInspector]
 		public bool NeedRefreshDataList;
 
-		// Token: 0x04005552 RID: 21842
+		// Token: 0x04004B77 RID: 19319
 		private CanvasScaler scaler;
 
-		// Token: 0x04005553 RID: 21843
+		// Token: 0x04004B78 RID: 19320
 		public JSONObject TuJianSave;
 	}
 }

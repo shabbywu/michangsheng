@@ -6,11 +6,11 @@ using YSGame.TuJian;
 
 namespace WXB
 {
-	// Token: 0x020009B8 RID: 2488
+	// Token: 0x020006A3 RID: 1699
 	public static class Tools
 	{
-		// Token: 0x17000713 RID: 1811
-		// (get) Token: 0x06003F54 RID: 16212 RVA: 0x0002D7DF File Offset: 0x0002B9DF
+		// Token: 0x170004F3 RID: 1267
+		// (get) Token: 0x06003593 RID: 13715 RVA: 0x001711FB File Offset: 0x0016F3FB
 		public static VertexHelper vertexHelper
 		{
 			get
@@ -19,19 +19,19 @@ namespace WXB
 			}
 		}
 
-		// Token: 0x06003F55 RID: 16213 RVA: 0x0002D7E6 File Offset: 0x0002B9E6
+		// Token: 0x06003594 RID: 13716 RVA: 0x00171202 File Offset: 0x0016F402
 		public static void LB2LT(ref Vector2 pos, float height)
 		{
 			pos.y = height - pos.y;
 		}
 
-		// Token: 0x06003F56 RID: 16214 RVA: 0x0002D7F6 File Offset: 0x0002B9F6
+		// Token: 0x06003595 RID: 13717 RVA: 0x00171212 File Offset: 0x0016F412
 		public static void LT2LB(ref Vector2 pos, float height)
 		{
 			pos.y += height;
 		}
 
-		// Token: 0x06003F57 RID: 16215 RVA: 0x0002D803 File Offset: 0x0002BA03
+		// Token: 0x06003596 RID: 13718 RVA: 0x0017121F File Offset: 0x0016F41F
 		public static Font GetFont(string name)
 		{
 			if (Tools.s_get_font == null && SymbolTextInit.GetFont(name) == null)
@@ -41,7 +41,7 @@ namespace WXB
 			return Tools.s_get_font(name);
 		}
 
-		// Token: 0x06003F58 RID: 16216 RVA: 0x0002D82B File Offset: 0x0002BA2B
+		// Token: 0x06003597 RID: 13719 RVA: 0x00171247 File Offset: 0x0016F447
 		public static Font GetDefaultFont()
 		{
 			if (Tools.DefaultFont == null)
@@ -51,7 +51,7 @@ namespace WXB
 			return Tools.DefaultFont;
 		}
 
-		// Token: 0x06003F59 RID: 16217 RVA: 0x0002D849 File Offset: 0x0002BA49
+		// Token: 0x06003598 RID: 13720 RVA: 0x00171265 File Offset: 0x0016F465
 		public static Sprite GetSprite(string name)
 		{
 			if (Tools.s_get_sprite == null)
@@ -61,7 +61,7 @@ namespace WXB
 			return Tools.s_get_sprite(name);
 		}
 
-		// Token: 0x06003F5A RID: 16218 RVA: 0x0002D864 File Offset: 0x0002BA64
+		// Token: 0x06003599 RID: 13721 RVA: 0x00171280 File Offset: 0x0016F480
 		public static Cartoon GetCartoon(string name)
 		{
 			if (Tools.s_get_cartoon == null)
@@ -71,7 +71,7 @@ namespace WXB
 			return Tools.s_get_cartoon(name);
 		}
 
-		// Token: 0x06003F5B RID: 16219 RVA: 0x0002D87F File Offset: 0x0002BA7F
+		// Token: 0x0600359A RID: 13722 RVA: 0x0017129B File Offset: 0x0016F49B
 		public static void GetAllCartoons(List<Cartoon> cartoons)
 		{
 			if (Tools.s_get_cartoons == null)
@@ -82,7 +82,7 @@ namespace WXB
 			Tools.s_get_cartoons(cartoons);
 		}
 
-		// Token: 0x06003F5C RID: 16220 RVA: 0x001B9160 File Offset: 0x001B7360
+		// Token: 0x0600359B RID: 13723 RVA: 0x001712B8 File Offset: 0x0016F4B8
 		public static void AddLine(VertexHelper vh, Vector2 leftPos, Vector2 uv, float width, float height, Color color)
 		{
 			Vector2 vector;
@@ -96,13 +96,13 @@ namespace WXB
 			vh.AddTriangle(currentVertCount + 2, currentVertCount + 3, currentVertCount);
 		}
 
-		// Token: 0x06003F5D RID: 16221 RVA: 0x0002D89A File Offset: 0x0002BA9A
+		// Token: 0x0600359C RID: 13724 RVA: 0x00171383 File Offset: 0x0016F583
 		public static bool IsHexadecimal(char c)
 		{
 			return (c >= '0' && c <= '9') || (c >= 'a' && c <= 'f') || (c >= 'A' && c <= 'F');
 		}
 
-		// Token: 0x06003F5E RID: 16222 RVA: 0x001B922C File Offset: 0x001B742C
+		// Token: 0x0600359D RID: 13725 RVA: 0x001713A8 File Offset: 0x0016F5A8
 		public static float stringToFloat(string str, float df)
 		{
 			float result = 0f;
@@ -113,7 +113,7 @@ namespace WXB
 			return result;
 		}
 
-		// Token: 0x06003F5F RID: 16223 RVA: 0x001B924C File Offset: 0x001B744C
+		// Token: 0x0600359E RID: 13726 RVA: 0x001713C8 File Offset: 0x0016F5C8
 		public static int stringToInt(string str, int df)
 		{
 			int result = 0;
@@ -124,7 +124,7 @@ namespace WXB
 			return result;
 		}
 
-		// Token: 0x06003F60 RID: 16224 RVA: 0x001B9268 File Offset: 0x001B7468
+		// Token: 0x0600359F RID: 13727 RVA: 0x001713E4 File Offset: 0x0016F5E4
 		public static Font ParserFontName(string text, ref int startpos)
 		{
 			int length = text.Length;
@@ -143,7 +143,7 @@ namespace WXB
 			return result;
 		}
 
-		// Token: 0x06003F61 RID: 16225 RVA: 0x001B92E4 File Offset: 0x001B74E4
+		// Token: 0x060035A0 RID: 13728 RVA: 0x00171460 File Offset: 0x0016F660
 		public static bool ScreenPointToWorldPointInRectangle(RectTransform rectTrans, Vector2 screenPoint, Camera cam, out Vector2 worldPoint)
 		{
 			worldPoint = Vector2.zero;
@@ -159,7 +159,7 @@ namespace WXB
 			return true;
 		}
 
-		// Token: 0x06003F62 RID: 16226 RVA: 0x001B937C File Offset: 0x001B757C
+		// Token: 0x060035A1 RID: 13729 RVA: 0x001714F8 File Offset: 0x0016F6F8
 		public static Color ParseColor(string text, int offset, Color defc)
 		{
 			Color result;
@@ -170,7 +170,7 @@ namespace WXB
 			return defc;
 		}
 
-		// Token: 0x06003F63 RID: 16227 RVA: 0x001B9398 File Offset: 0x001B7598
+		// Token: 0x060035A2 RID: 13730 RVA: 0x00171514 File Offset: 0x0016F714
 		public static bool ParseColor(string text, int offset, out Color color)
 		{
 			color = Color.white;
@@ -188,7 +188,7 @@ namespace WXB
 			return false;
 		}
 
-		// Token: 0x06003F64 RID: 16228 RVA: 0x001B93E0 File Offset: 0x001B75E0
+		// Token: 0x060035A3 RID: 13731 RVA: 0x0017155C File Offset: 0x0016F75C
 		public static Color ParseColor24(string text, int offset)
 		{
 			if (text[offset] == '#')
@@ -202,7 +202,7 @@ namespace WXB
 			return new Color(num4 * (float)num, num4 * (float)num2, num4 * (float)num3);
 		}
 
-		// Token: 0x06003F65 RID: 16229 RVA: 0x001B9474 File Offset: 0x001B7674
+		// Token: 0x060035A4 RID: 13732 RVA: 0x001715F0 File Offset: 0x0016F7F0
 		public static Color ParseColor32(string text, int offset)
 		{
 			if (text[offset] == '#')
@@ -217,7 +217,7 @@ namespace WXB
 			return new Color(num5 * (float)num, num5 * (float)num2, num5 * (float)num3, num5 * (float)num4);
 		}
 
-		// Token: 0x06003F66 RID: 16230 RVA: 0x0007A59C File Offset: 0x0007879C
+		// Token: 0x060035A5 RID: 13733 RVA: 0x001716AC File Offset: 0x0016F8AC
 		public static int HexToDecimal(char ch)
 		{
 			switch (ch)
@@ -285,14 +285,14 @@ namespace WXB
 			return 10;
 		}
 
-		// Token: 0x06003F67 RID: 16231 RVA: 0x001B9530 File Offset: 0x001B7730
+		// Token: 0x060035A6 RID: 13734 RVA: 0x0017176C File Offset: 0x0016F96C
 		public static Color ParserColorName(string text, Color dc)
 		{
 			int num = 0;
 			return Tools.ParserColorName(text, ref num, dc);
 		}
 
-		// Token: 0x06003F68 RID: 16232 RVA: 0x001B9548 File Offset: 0x001B7748
+		// Token: 0x060035A7 RID: 13735 RVA: 0x00171784 File Offset: 0x0016F984
 		public static Color ParserColorName(string text, ref int startpos, Color dc)
 		{
 			if (startpos >= text.Length - 1)
@@ -333,7 +333,7 @@ namespace WXB
 			}
 		}
 
-		// Token: 0x06003F69 RID: 16233 RVA: 0x001B9600 File Offset: 0x001B7800
+		// Token: 0x060035A8 RID: 13736 RVA: 0x0017183C File Offset: 0x0016FA3C
 		public static T AddChild<T>(this GameObject go) where T : MonoBehaviour
 		{
 			GameObject gameObject = new GameObject();
@@ -341,7 +341,7 @@ namespace WXB
 			return gameObject.AddComponent<T>();
 		}
 
-		// Token: 0x06003F6A RID: 16234 RVA: 0x0002D8BD File Offset: 0x0002BABD
+		// Token: 0x060035A9 RID: 13737 RVA: 0x0017185C File Offset: 0x0016FA5C
 		public static void AddChild(this GameObject go, GameObject child)
 		{
 			Transform transform = child.transform;
@@ -352,7 +352,7 @@ namespace WXB
 			child.layer = go.layer;
 		}
 
-		// Token: 0x06003F6B RID: 16235 RVA: 0x001B9620 File Offset: 0x001B7820
+		// Token: 0x060035AA RID: 13738 RVA: 0x0017189C File Offset: 0x0016FA9C
 		public static void Destroy(Object obj)
 		{
 			if (obj)
@@ -391,7 +391,7 @@ namespace WXB
 			}
 		}
 
-		// Token: 0x06003F6C RID: 16236 RVA: 0x001B9698 File Offset: 0x001B7898
+		// Token: 0x060035AB RID: 13739 RVA: 0x00171914 File Offset: 0x0016FB14
 		public static void UpdateRect(RectTransform child, Vector2 offset)
 		{
 			RectTransform rectTransform = child.parent as RectTransform;
@@ -409,28 +409,28 @@ namespace WXB
 			child.localEulerAngles = Vector3.zero;
 		}
 
-		// Token: 0x040038C8 RID: 14536
+		// Token: 0x04002F0D RID: 12045
 		public const int s_dyn_default_speed = 320;
 
-		// Token: 0x040038C9 RID: 14537
+		// Token: 0x04002F0E RID: 12046
 		public const int s_offset_default_speed = 320;
 
-		// Token: 0x040038CA RID: 14538
+		// Token: 0x04002F0F RID: 12047
 		private static readonly VertexHelper s_VertexHelper = new VertexHelper();
 
-		// Token: 0x040038CB RID: 14539
+		// Token: 0x04002F10 RID: 12048
 		private static Font DefaultFont;
 
-		// Token: 0x040038CC RID: 14540
+		// Token: 0x04002F11 RID: 12049
 		public static Func<string, Sprite> s_get_sprite = null;
 
-		// Token: 0x040038CD RID: 14541
+		// Token: 0x04002F12 RID: 12050
 		public static Func<string, Font> s_get_font = null;
 
-		// Token: 0x040038CE RID: 14542
+		// Token: 0x04002F13 RID: 12051
 		public static Func<string, Cartoon> s_get_cartoon = null;
 
-		// Token: 0x040038CF RID: 14543
+		// Token: 0x04002F14 RID: 12052
 		public static Action<List<Cartoon>> s_get_cartoons = null;
 	}
 }

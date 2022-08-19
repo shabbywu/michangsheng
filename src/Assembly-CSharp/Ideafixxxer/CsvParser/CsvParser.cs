@@ -5,10 +5,10 @@ using System.Text.RegularExpressions;
 
 namespace Ideafixxxer.CsvParser
 {
-	// Token: 0x020011E5 RID: 4581
+	// Token: 0x02000DB7 RID: 3511
 	public class CsvParser
 	{
-		// Token: 0x06007045 RID: 28741 RVA: 0x002A22C8 File Offset: 0x002A04C8
+		// Token: 0x060063FB RID: 25595 RVA: 0x0027D040 File Offset: 0x0027B240
 		public string[][] Parse(string csvData)
 		{
 			CsvParser.ParserContext parserContext = new CsvParser.ParserContext();
@@ -42,67 +42,67 @@ namespace Ideafixxxer.CsvParser
 			return parserContext.GetAllLines().ToArray();
 		}
 
-		// Token: 0x040062F2 RID: 25330
+		// Token: 0x04005607 RID: 22023
 		private const char CommaCharacter = ',';
 
-		// Token: 0x040062F3 RID: 25331
+		// Token: 0x04005608 RID: 22024
 		private const char QuoteCharacter = '"';
 
-		// Token: 0x020011E6 RID: 4582
+		// Token: 0x020016A2 RID: 5794
 		private abstract class ParserState
 		{
-			// Token: 0x06007047 RID: 28743
+			// Token: 0x060087B4 RID: 34740
 			public abstract CsvParser.ParserState AnyChar(char ch, CsvParser.ParserContext context);
 
-			// Token: 0x06007048 RID: 28744
+			// Token: 0x060087B5 RID: 34741
 			public abstract CsvParser.ParserState Comma(CsvParser.ParserContext context);
 
-			// Token: 0x06007049 RID: 28745
+			// Token: 0x060087B6 RID: 34742
 			public abstract CsvParser.ParserState Quote(CsvParser.ParserContext context);
 
-			// Token: 0x0600704A RID: 28746
+			// Token: 0x060087B7 RID: 34743
 			public abstract CsvParser.ParserState EndOfLine(CsvParser.ParserContext context);
 
-			// Token: 0x040062F4 RID: 25332
+			// Token: 0x04007346 RID: 29510
 			public static readonly CsvParser.LineStartState LineStartState = new CsvParser.LineStartState();
 
-			// Token: 0x040062F5 RID: 25333
+			// Token: 0x04007347 RID: 29511
 			public static readonly CsvParser.ValueStartState ValueStartState = new CsvParser.ValueStartState();
 
-			// Token: 0x040062F6 RID: 25334
+			// Token: 0x04007348 RID: 29512
 			public static readonly CsvParser.ValueState ValueState = new CsvParser.ValueState();
 
-			// Token: 0x040062F7 RID: 25335
+			// Token: 0x04007349 RID: 29513
 			public static readonly CsvParser.QuotedValueState QuotedValueState = new CsvParser.QuotedValueState();
 
-			// Token: 0x040062F8 RID: 25336
+			// Token: 0x0400734A RID: 29514
 			public static readonly CsvParser.QuoteState QuoteState = new CsvParser.QuoteState();
 		}
 
-		// Token: 0x020011E7 RID: 4583
+		// Token: 0x020016A3 RID: 5795
 		private class LineStartState : CsvParser.ParserState
 		{
-			// Token: 0x0600704D RID: 28749 RVA: 0x0004C43D File Offset: 0x0004A63D
+			// Token: 0x060087BA RID: 34746 RVA: 0x002E7461 File Offset: 0x002E5661
 			public override CsvParser.ParserState AnyChar(char ch, CsvParser.ParserContext context)
 			{
 				context.AddChar(ch);
 				return CsvParser.ParserState.ValueState;
 			}
 
-			// Token: 0x0600704E RID: 28750 RVA: 0x0004C44B File Offset: 0x0004A64B
+			// Token: 0x060087BB RID: 34747 RVA: 0x002E746F File Offset: 0x002E566F
 			public override CsvParser.ParserState Comma(CsvParser.ParserContext context)
 			{
 				context.AddValue();
 				return CsvParser.ParserState.ValueStartState;
 			}
 
-			// Token: 0x0600704F RID: 28751 RVA: 0x0004C458 File Offset: 0x0004A658
+			// Token: 0x060087BC RID: 34748 RVA: 0x002E747C File Offset: 0x002E567C
 			public override CsvParser.ParserState Quote(CsvParser.ParserContext context)
 			{
 				return CsvParser.ParserState.QuotedValueState;
 			}
 
-			// Token: 0x06007050 RID: 28752 RVA: 0x0004C45F File Offset: 0x0004A65F
+			// Token: 0x060087BD RID: 34749 RVA: 0x002E7483 File Offset: 0x002E5683
 			public override CsvParser.ParserState EndOfLine(CsvParser.ParserContext context)
 			{
 				context.AddLine();
@@ -110,10 +110,10 @@ namespace Ideafixxxer.CsvParser
 			}
 		}
 
-		// Token: 0x020011E8 RID: 4584
+		// Token: 0x020016A4 RID: 5796
 		private class ValueStartState : CsvParser.LineStartState
 		{
-			// Token: 0x06007052 RID: 28754 RVA: 0x0004C474 File Offset: 0x0004A674
+			// Token: 0x060087BF RID: 34751 RVA: 0x002E7498 File Offset: 0x002E5698
 			public override CsvParser.ParserState EndOfLine(CsvParser.ParserContext context)
 			{
 				context.AddValue();
@@ -122,31 +122,31 @@ namespace Ideafixxxer.CsvParser
 			}
 		}
 
-		// Token: 0x020011E9 RID: 4585
+		// Token: 0x020016A5 RID: 5797
 		private class ValueState : CsvParser.ParserState
 		{
-			// Token: 0x06007054 RID: 28756 RVA: 0x0004C43D File Offset: 0x0004A63D
+			// Token: 0x060087C1 RID: 34753 RVA: 0x002E7461 File Offset: 0x002E5661
 			public override CsvParser.ParserState AnyChar(char ch, CsvParser.ParserContext context)
 			{
 				context.AddChar(ch);
 				return CsvParser.ParserState.ValueState;
 			}
 
-			// Token: 0x06007055 RID: 28757 RVA: 0x0004C44B File Offset: 0x0004A64B
+			// Token: 0x060087C2 RID: 34754 RVA: 0x002E746F File Offset: 0x002E566F
 			public override CsvParser.ParserState Comma(CsvParser.ParserContext context)
 			{
 				context.AddValue();
 				return CsvParser.ParserState.ValueStartState;
 			}
 
-			// Token: 0x06007056 RID: 28758 RVA: 0x0004C48F File Offset: 0x0004A68F
+			// Token: 0x060087C3 RID: 34755 RVA: 0x002E74B3 File Offset: 0x002E56B3
 			public override CsvParser.ParserState Quote(CsvParser.ParserContext context)
 			{
 				context.AddChar('"');
 				return CsvParser.ParserState.ValueState;
 			}
 
-			// Token: 0x06007057 RID: 28759 RVA: 0x0004C474 File Offset: 0x0004A674
+			// Token: 0x060087C4 RID: 34756 RVA: 0x002E7498 File Offset: 0x002E5698
 			public override CsvParser.ParserState EndOfLine(CsvParser.ParserContext context)
 			{
 				context.AddValue();
@@ -155,30 +155,30 @@ namespace Ideafixxxer.CsvParser
 			}
 		}
 
-		// Token: 0x020011EA RID: 4586
+		// Token: 0x020016A6 RID: 5798
 		private class QuotedValueState : CsvParser.ParserState
 		{
-			// Token: 0x06007059 RID: 28761 RVA: 0x0004C49E File Offset: 0x0004A69E
+			// Token: 0x060087C6 RID: 34758 RVA: 0x002E74C2 File Offset: 0x002E56C2
 			public override CsvParser.ParserState AnyChar(char ch, CsvParser.ParserContext context)
 			{
 				context.AddChar(ch);
 				return CsvParser.ParserState.QuotedValueState;
 			}
 
-			// Token: 0x0600705A RID: 28762 RVA: 0x0004C4AC File Offset: 0x0004A6AC
+			// Token: 0x060087C7 RID: 34759 RVA: 0x002E74D0 File Offset: 0x002E56D0
 			public override CsvParser.ParserState Comma(CsvParser.ParserContext context)
 			{
 				context.AddChar(',');
 				return CsvParser.ParserState.QuotedValueState;
 			}
 
-			// Token: 0x0600705B RID: 28763 RVA: 0x0004C4BB File Offset: 0x0004A6BB
+			// Token: 0x060087C8 RID: 34760 RVA: 0x002E74DF File Offset: 0x002E56DF
 			public override CsvParser.ParserState Quote(CsvParser.ParserContext context)
 			{
 				return CsvParser.ParserState.QuoteState;
 			}
 
-			// Token: 0x0600705C RID: 28764 RVA: 0x0004C4C2 File Offset: 0x0004A6C2
+			// Token: 0x060087C9 RID: 34761 RVA: 0x002E74E6 File Offset: 0x002E56E6
 			public override CsvParser.ParserState EndOfLine(CsvParser.ParserContext context)
 			{
 				context.AddChar('\r');
@@ -187,31 +187,31 @@ namespace Ideafixxxer.CsvParser
 			}
 		}
 
-		// Token: 0x020011EB RID: 4587
+		// Token: 0x020016A7 RID: 5799
 		private class QuoteState : CsvParser.ParserState
 		{
-			// Token: 0x0600705E RID: 28766 RVA: 0x0004C49E File Offset: 0x0004A69E
+			// Token: 0x060087CB RID: 34763 RVA: 0x002E74C2 File Offset: 0x002E56C2
 			public override CsvParser.ParserState AnyChar(char ch, CsvParser.ParserContext context)
 			{
 				context.AddChar(ch);
 				return CsvParser.ParserState.QuotedValueState;
 			}
 
-			// Token: 0x0600705F RID: 28767 RVA: 0x0004C44B File Offset: 0x0004A64B
+			// Token: 0x060087CC RID: 34764 RVA: 0x002E746F File Offset: 0x002E566F
 			public override CsvParser.ParserState Comma(CsvParser.ParserContext context)
 			{
 				context.AddValue();
 				return CsvParser.ParserState.ValueStartState;
 			}
 
-			// Token: 0x06007060 RID: 28768 RVA: 0x0004C4D9 File Offset: 0x0004A6D9
+			// Token: 0x060087CD RID: 34765 RVA: 0x002E74FD File Offset: 0x002E56FD
 			public override CsvParser.ParserState Quote(CsvParser.ParserContext context)
 			{
 				context.AddChar('"');
 				return CsvParser.ParserState.QuotedValueState;
 			}
 
-			// Token: 0x06007061 RID: 28769 RVA: 0x0004C474 File Offset: 0x0004A674
+			// Token: 0x060087CE RID: 34766 RVA: 0x002E7498 File Offset: 0x002E5698
 			public override CsvParser.ParserState EndOfLine(CsvParser.ParserContext context)
 			{
 				context.AddValue();
@@ -220,30 +220,30 @@ namespace Ideafixxxer.CsvParser
 			}
 		}
 
-		// Token: 0x020011EC RID: 4588
+		// Token: 0x020016A8 RID: 5800
 		private class ParserContext
 		{
-			// Token: 0x06007063 RID: 28771 RVA: 0x0004C4E8 File Offset: 0x0004A6E8
+			// Token: 0x060087D0 RID: 34768 RVA: 0x002E750C File Offset: 0x002E570C
 			public void AddChar(char ch)
 			{
 				this._currentValue.Append(ch);
 			}
 
-			// Token: 0x06007064 RID: 28772 RVA: 0x0004C4F7 File Offset: 0x0004A6F7
+			// Token: 0x060087D1 RID: 34769 RVA: 0x002E751B File Offset: 0x002E571B
 			public void AddValue()
 			{
 				this._currentLine.Add(this._currentValue.ToString());
 				this._currentValue.Remove(0, this._currentValue.Length);
 			}
 
-			// Token: 0x06007065 RID: 28773 RVA: 0x0004C527 File Offset: 0x0004A727
+			// Token: 0x060087D2 RID: 34770 RVA: 0x002E754B File Offset: 0x002E574B
 			public void AddLine()
 			{
 				this._lines.Add(this._currentLine.ToArray());
 				this._currentLine.Clear();
 			}
 
-			// Token: 0x06007066 RID: 28774 RVA: 0x0004C54A File Offset: 0x0004A74A
+			// Token: 0x060087D3 RID: 34771 RVA: 0x002E756E File Offset: 0x002E576E
 			public List<string[]> GetAllLines()
 			{
 				if (this._currentValue.Length > 0)
@@ -257,13 +257,13 @@ namespace Ideafixxxer.CsvParser
 				return this._lines;
 			}
 
-			// Token: 0x040062F9 RID: 25337
+			// Token: 0x0400734B RID: 29515
 			private readonly StringBuilder _currentValue = new StringBuilder();
 
-			// Token: 0x040062FA RID: 25338
+			// Token: 0x0400734C RID: 29516
 			private readonly List<string[]> _lines = new List<string[]>();
 
-			// Token: 0x040062FB RID: 25339
+			// Token: 0x0400734D RID: 29517
 			private readonly List<string> _currentLine = new List<string>();
 		}
 	}

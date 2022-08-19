@@ -4,13 +4,13 @@ using UnityEngine.Serialization;
 
 namespace Fungus
 {
-	// Token: 0x02001281 RID: 4737
+	// Token: 0x02000E30 RID: 3632
 	[CommandInfo("Animation", "Set Anim Float", "Sets a float parameter on an Animator component to control a Unity animation", 0)]
 	[AddComponentMenu("")]
 	[ExecuteInEditMode]
 	public class SetAnimFloat : Command
 	{
-		// Token: 0x060072DD RID: 29405 RVA: 0x002A969C File Offset: 0x002A789C
+		// Token: 0x0600664F RID: 26191 RVA: 0x00285F94 File Offset: 0x00284194
 		public override void OnEnter()
 		{
 			if (this._animator.Value != null)
@@ -20,7 +20,7 @@ namespace Fungus
 			this.Continue();
 		}
 
-		// Token: 0x060072DE RID: 29406 RVA: 0x002A96E8 File Offset: 0x002A78E8
+		// Token: 0x06006650 RID: 26192 RVA: 0x00285FE0 File Offset: 0x002841E0
 		public override string GetSummary()
 		{
 			if (this._animator.Value == null)
@@ -30,19 +30,19 @@ namespace Fungus
 			return this._animator.Value.name + " (" + this._parameterName.Value + ")";
 		}
 
-		// Token: 0x060072DF RID: 29407 RVA: 0x0004DA1A File Offset: 0x0004BC1A
+		// Token: 0x06006651 RID: 26193 RVA: 0x002836B8 File Offset: 0x002818B8
 		public override Color GetButtonColor()
 		{
 			return new Color32(170, 204, 169, byte.MaxValue);
 		}
 
-		// Token: 0x060072E0 RID: 29408 RVA: 0x002A9738 File Offset: 0x002A7938
+		// Token: 0x06006652 RID: 26194 RVA: 0x00286030 File Offset: 0x00284230
 		public override bool HasReference(Variable variable)
 		{
 			return this._animator.animatorRef == variable || this._parameterName.stringRef == variable || this.value.floatRef == variable || base.HasReference(variable);
 		}
 
-		// Token: 0x060072E1 RID: 29409 RVA: 0x002A9788 File Offset: 0x002A7988
+		// Token: 0x06006653 RID: 26195 RVA: 0x00286080 File Offset: 0x00284280
 		protected virtual void OnEnable()
 		{
 			if (this.animatorOLD != null)
@@ -57,27 +57,27 @@ namespace Fungus
 			}
 		}
 
-		// Token: 0x040064FD RID: 25853
+		// Token: 0x040057B9 RID: 22457
 		[Tooltip("Reference to an Animator component in a game object")]
 		[SerializeField]
 		protected AnimatorData _animator;
 
-		// Token: 0x040064FE RID: 25854
+		// Token: 0x040057BA RID: 22458
 		[Tooltip("Name of the float Animator parameter that will have its value changed")]
 		[SerializeField]
 		protected StringData _parameterName;
 
-		// Token: 0x040064FF RID: 25855
+		// Token: 0x040057BB RID: 22459
 		[Tooltip("The float value to set the parameter to")]
 		[SerializeField]
 		protected FloatData value;
 
-		// Token: 0x04006500 RID: 25856
+		// Token: 0x040057BC RID: 22460
 		[HideInInspector]
 		[FormerlySerializedAs("animator")]
 		public Animator animatorOLD;
 
-		// Token: 0x04006501 RID: 25857
+		// Token: 0x040057BD RID: 22461
 		[HideInInspector]
 		[FormerlySerializedAs("parameterName")]
 		public string parameterNameOLD = "";

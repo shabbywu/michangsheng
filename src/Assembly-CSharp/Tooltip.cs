@@ -3,10 +3,10 @@ using KBEngine;
 using UnityEngine;
 using UnityEngine.UI;
 
-// Token: 0x02000220 RID: 544
+// Token: 0x0200014B RID: 331
 public class Tooltip : MonoBehaviour
 {
-	// Token: 0x060010E3 RID: 4323 RVA: 0x000AA328 File Offset: 0x000A8528
+	// Token: 0x06000EC3 RID: 3779 RVA: 0x0005A07C File Offset: 0x0005827C
 	private void Start()
 	{
 		this.setVariables();
@@ -21,12 +21,12 @@ public class Tooltip : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060010E4 RID: 4324 RVA: 0x000042DD File Offset: 0x000024DD
+	// Token: 0x06000EC4 RID: 3780 RVA: 0x00004095 File Offset: 0x00002295
 	public void setVariables()
 	{
 	}
 
-	// Token: 0x060010E5 RID: 4325 RVA: 0x000AA3DC File Offset: 0x000A85DC
+	// Token: 0x06000EC5 RID: 3781 RVA: 0x0005A130 File Offset: 0x00058330
 	public void activateTooltip()
 	{
 		base.transform.gameObject.SetActive(true);
@@ -49,7 +49,7 @@ public class Tooltip : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060010E6 RID: 4326 RVA: 0x000AA4E4 File Offset: 0x000A86E4
+	// Token: 0x06000EC6 RID: 3782 RVA: 0x0005A238 File Offset: 0x00058438
 	private void setOperateByType(TooltipType ttype)
 	{
 		this.btn_equip.SetActive(false);
@@ -77,18 +77,18 @@ public class Tooltip : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060010E7 RID: 4327 RVA: 0x0001085A File Offset: 0x0000EA5A
+	// Token: 0x06000EC7 RID: 3783 RVA: 0x0005A2DF File Offset: 0x000584DF
 	public void deactivateTooltip()
 	{
 		base.transform.gameObject.SetActive(false);
 	}
 
-	// Token: 0x060010E8 RID: 4328 RVA: 0x000042DD File Offset: 0x000024DD
+	// Token: 0x06000EC8 RID: 3784 RVA: 0x00004095 File Offset: 0x00002295
 	public void equipTooltip()
 	{
 	}
 
-	// Token: 0x060010E9 RID: 4329 RVA: 0x000AA58C File Offset: 0x000A878C
+	// Token: 0x06000EC9 RID: 3785 RVA: 0x0005A2F4 File Offset: 0x000584F4
 	public void dropItem()
 	{
 		Avatar avatar = (Avatar)KBEngineApp.app.player();
@@ -99,7 +99,7 @@ public class Tooltip : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060010EA RID: 4330 RVA: 0x000AA5C4 File Offset: 0x000A87C4
+	// Token: 0x06000ECA RID: 3786 RVA: 0x0005A32C File Offset: 0x0005852C
 	public void equipItem()
 	{
 		if (this.eS == null)
@@ -130,7 +130,7 @@ public class Tooltip : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060010EB RID: 4331 RVA: 0x000AA688 File Offset: 0x000A8888
+	// Token: 0x06000ECB RID: 3787 RVA: 0x0005A3F0 File Offset: 0x000585F0
 	public void unEquipItem()
 	{
 		if (this.inventory == null)
@@ -148,7 +148,7 @@ public class Tooltip : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060010EC RID: 4332 RVA: 0x000AA704 File Offset: 0x000A8904
+	// Token: 0x06000ECC RID: 3788 RVA: 0x0005A46C File Offset: 0x0005866C
 	public void useItem()
 	{
 		Avatar avatar = (Avatar)KBEngineApp.app.player();
@@ -159,51 +159,51 @@ public class Tooltip : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060010ED RID: 4333 RVA: 0x0001086D File Offset: 0x0000EA6D
+	// Token: 0x06000ECD RID: 3789 RVA: 0x0005A4A4 File Offset: 0x000586A4
 	public void hotBarItem()
 	{
 		HotBarProcess._instance.upItem(this.item.itemID);
 	}
 
-	// Token: 0x04000D91 RID: 3473
+	// Token: 0x04000AF6 RID: 2806
 	public Item item;
 
-	// Token: 0x04000D92 RID: 3474
+	// Token: 0x04000AF7 RID: 2807
 	private EquipmentSystem eS;
 
-	// Token: 0x04000D93 RID: 3475
+	// Token: 0x04000AF8 RID: 2808
 	private Inventory inventory;
 
-	// Token: 0x04000D94 RID: 3476
+	// Token: 0x04000AF9 RID: 2809
 	public TooltipType tooltipType;
 
-	// Token: 0x04000D95 RID: 3477
+	// Token: 0x04000AFA RID: 2810
 	public GameObject btn_equip;
 
-	// Token: 0x04000D96 RID: 3478
+	// Token: 0x04000AFB RID: 2811
 	public GameObject btn_unEquip;
 
-	// Token: 0x04000D97 RID: 3479
+	// Token: 0x04000AFC RID: 2812
 	public GameObject btn_use;
 
-	// Token: 0x04000D98 RID: 3480
+	// Token: 0x04000AFD RID: 2813
 	public GameObject btn_drop;
 
-	// Token: 0x04000D99 RID: 3481
+	// Token: 0x04000AFE RID: 2814
 	public GameObject btn_hotBar;
 
-	// Token: 0x04000D9A RID: 3482
+	// Token: 0x04000AFF RID: 2815
 	public float tooltipHeight;
 
-	// Token: 0x04000D9B RID: 3483
+	// Token: 0x04000B00 RID: 2816
 	private Image tooltipImageIcon;
 
-	// Token: 0x04000D9C RID: 3484
+	// Token: 0x04000B01 RID: 2817
 	private Text tooltipNameText;
 
-	// Token: 0x04000D9D RID: 3485
+	// Token: 0x04000B02 RID: 2818
 	private Text tooltipDescText;
 
-	// Token: 0x04000D9E RID: 3486
+	// Token: 0x04000B03 RID: 2819
 	private Text tooltipAttrText;
 }

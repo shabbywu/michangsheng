@@ -3,10 +3,10 @@ using System.Text;
 
 namespace MoonSharp.Interpreter.Tree
 {
-	// Token: 0x0200109E RID: 4254
+	// Token: 0x02000CC8 RID: 3272
 	internal class Lexer
 	{
-		// Token: 0x060066D6 RID: 26326 RVA: 0x00285198 File Offset: 0x00283398
+		// Token: 0x06005BCD RID: 23501 RVA: 0x0025B724 File Offset: 0x00259924
 		public Lexer(int sourceID, string scriptContent, bool autoSkipComments)
 		{
 			this.m_Code = scriptContent;
@@ -18,8 +18,8 @@ namespace MoonSharp.Interpreter.Tree
 			this.m_AutoSkipComments = autoSkipComments;
 		}
 
-		// Token: 0x1700093A RID: 2362
-		// (get) Token: 0x060066D7 RID: 26327 RVA: 0x00046D67 File Offset: 0x00044F67
+		// Token: 0x170006DF RID: 1759
+		// (get) Token: 0x06005BCE RID: 23502 RVA: 0x0025B78D File Offset: 0x0025998D
 		public Token Current
 		{
 			get
@@ -32,7 +32,7 @@ namespace MoonSharp.Interpreter.Tree
 			}
 		}
 
-		// Token: 0x060066D8 RID: 26328 RVA: 0x00285204 File Offset: 0x00283404
+		// Token: 0x06005BCF RID: 23503 RVA: 0x0025B7A4 File Offset: 0x002599A4
 		private Token FetchNewToken()
 		{
 			Token token;
@@ -44,13 +44,13 @@ namespace MoonSharp.Interpreter.Tree
 			return token;
 		}
 
-		// Token: 0x060066D9 RID: 26329 RVA: 0x00046D7D File Offset: 0x00044F7D
+		// Token: 0x06005BD0 RID: 23504 RVA: 0x0025B7D4 File Offset: 0x002599D4
 		public void Next()
 		{
 			this.m_Current = this.FetchNewToken();
 		}
 
-		// Token: 0x060066DA RID: 26330 RVA: 0x00285234 File Offset: 0x00283434
+		// Token: 0x06005BD1 RID: 23505 RVA: 0x0025B7E4 File Offset: 0x002599E4
 		public Token PeekNext()
 		{
 			int cursor = this.m_Cursor;
@@ -66,7 +66,7 @@ namespace MoonSharp.Interpreter.Tree
 			return result;
 		}
 
-		// Token: 0x060066DB RID: 26331 RVA: 0x00285288 File Offset: 0x00283488
+		// Token: 0x06005BD2 RID: 23506 RVA: 0x0025B838 File Offset: 0x00259A38
 		private void CursorNext()
 		{
 			if (this.CursorNotEof())
@@ -84,7 +84,7 @@ namespace MoonSharp.Interpreter.Tree
 			}
 		}
 
-		// Token: 0x060066DC RID: 26332 RVA: 0x00046D8B File Offset: 0x00044F8B
+		// Token: 0x06005BD3 RID: 23507 RVA: 0x0025B88A File Offset: 0x00259A8A
 		private char CursorChar()
 		{
 			if (this.m_Cursor < this.m_Code.Length)
@@ -94,14 +94,14 @@ namespace MoonSharp.Interpreter.Tree
 			return '\0';
 		}
 
-		// Token: 0x060066DD RID: 26333 RVA: 0x00046DB3 File Offset: 0x00044FB3
+		// Token: 0x06005BD4 RID: 23508 RVA: 0x0025B8B2 File Offset: 0x00259AB2
 		private char CursorCharNext()
 		{
 			this.CursorNext();
 			return this.CursorChar();
 		}
 
-		// Token: 0x060066DE RID: 26334 RVA: 0x002852DC File Offset: 0x002834DC
+		// Token: 0x06005BD5 RID: 23509 RVA: 0x0025B8C0 File Offset: 0x00259AC0
 		private bool CursorMatches(string pattern)
 		{
 			for (int i = 0; i < pattern.Length; i++)
@@ -119,19 +119,19 @@ namespace MoonSharp.Interpreter.Tree
 			return true;
 		}
 
-		// Token: 0x060066DF RID: 26335 RVA: 0x00046DC1 File Offset: 0x00044FC1
+		// Token: 0x06005BD6 RID: 23510 RVA: 0x0025B90F File Offset: 0x00259B0F
 		private bool CursorNotEof()
 		{
 			return this.m_Cursor < this.m_Code.Length;
 		}
 
-		// Token: 0x060066E0 RID: 26336 RVA: 0x00046DD6 File Offset: 0x00044FD6
+		// Token: 0x06005BD7 RID: 23511 RVA: 0x0025B924 File Offset: 0x00259B24
 		private bool IsWhiteSpace(char c)
 		{
 			return char.IsWhiteSpace(c);
 		}
 
-		// Token: 0x060066E1 RID: 26337 RVA: 0x00046DDE File Offset: 0x00044FDE
+		// Token: 0x06005BD8 RID: 23512 RVA: 0x0025B92C File Offset: 0x00259B2C
 		private void SkipWhiteSpace()
 		{
 			while (this.CursorNotEof() && this.IsWhiteSpace(this.CursorChar()))
@@ -140,7 +140,7 @@ namespace MoonSharp.Interpreter.Tree
 			}
 		}
 
-		// Token: 0x060066E2 RID: 26338 RVA: 0x0028532C File Offset: 0x0028352C
+		// Token: 0x06005BD9 RID: 23513 RVA: 0x0025B94C File Offset: 0x00259B4C
 		private Token ReadToken()
 		{
 			this.SkipWhiteSpace();
@@ -301,7 +301,7 @@ namespace MoonSharp.Interpreter.Tree
 			});
 		}
 
-		// Token: 0x060066E3 RID: 26339 RVA: 0x002856E0 File Offset: 0x002838E0
+		// Token: 0x06005BDA RID: 23514 RVA: 0x0025BD00 File Offset: 0x00259F00
 		private string ReadLongString(int fromLine, int fromCol, string startpattern, string subtypeforerrors)
 		{
 			StringBuilder stringBuilder = new StringBuilder(1024);
@@ -376,7 +376,7 @@ namespace MoonSharp.Interpreter.Tree
 			return LexerUtils.AdjustLuaLongString(stringBuilder.ToString());
 		}
 
-		// Token: 0x060066E4 RID: 26340 RVA: 0x00285840 File Offset: 0x00283A40
+		// Token: 0x06005BDB RID: 23515 RVA: 0x0025BE60 File Offset: 0x0025A060
 		private Token ReadNumberToken(int fromLine, int fromCol, bool leadingDot)
 		{
 			StringBuilder stringBuilder = new StringBuilder(32);
@@ -446,7 +446,7 @@ namespace MoonSharp.Interpreter.Tree
 			return this.CreateToken(tokenType, fromLine, fromCol, text);
 		}
 
-		// Token: 0x060066E5 RID: 26341 RVA: 0x0028598C File Offset: 0x00283B8C
+		// Token: 0x06005BDC RID: 23516 RVA: 0x0025BFAC File Offset: 0x0025A1AC
 		private Token CreateSingleCharToken(TokenType tokenType, int fromLine, int fromCol)
 		{
 			char c = this.CursorChar();
@@ -454,7 +454,7 @@ namespace MoonSharp.Interpreter.Tree
 			return this.CreateToken(tokenType, fromLine, fromCol, c.ToString());
 		}
 
-		// Token: 0x060066E6 RID: 26342 RVA: 0x002859B8 File Offset: 0x00283BB8
+		// Token: 0x06005BDD RID: 23517 RVA: 0x0025BFD8 File Offset: 0x0025A1D8
 		private Token ReadHashBang(int fromLine, int fromCol)
 		{
 			StringBuilder stringBuilder = new StringBuilder(32);
@@ -475,7 +475,7 @@ namespace MoonSharp.Interpreter.Tree
 			return this.CreateToken(TokenType.HashBang, fromLine, fromCol, stringBuilder.ToString());
 		}
 
-		// Token: 0x060066E7 RID: 26343 RVA: 0x00285A20 File Offset: 0x00283C20
+		// Token: 0x06005BDE RID: 23518 RVA: 0x0025C040 File Offset: 0x0025A240
 		private Token ReadComment(int fromLine, int fromCol)
 		{
 			StringBuilder stringBuilder = new StringBuilder(32);
@@ -507,7 +507,7 @@ namespace MoonSharp.Interpreter.Tree
 			return this.CreateToken(TokenType.Comment, fromLine, fromCol, stringBuilder.ToString());
 		}
 
-		// Token: 0x060066E8 RID: 26344 RVA: 0x00285AD4 File Offset: 0x00283CD4
+		// Token: 0x06005BDF RID: 23519 RVA: 0x0025C0F4 File Offset: 0x0025A2F4
 		private Token ReadSimpleStringToken(int fromLine, int fromCol)
 		{
 			StringBuilder stringBuilder = new StringBuilder(32);
@@ -570,7 +570,7 @@ namespace MoonSharp.Interpreter.Tree
 			};
 		}
 
-		// Token: 0x060066E9 RID: 26345 RVA: 0x00285BF8 File Offset: 0x00283DF8
+		// Token: 0x06005BE0 RID: 23520 RVA: 0x0025C218 File Offset: 0x0025A418
 		private Token PotentiallyDoubleCharOperator(char expectedSecondChar, TokenType singleCharToken, TokenType doubleCharToken, int fromLine, int fromCol)
 		{
 			string text = this.CursorChar().ToString();
@@ -583,7 +583,7 @@ namespace MoonSharp.Interpreter.Tree
 			return this.CreateToken(singleCharToken, fromLine, fromCol, text);
 		}
 
-		// Token: 0x060066EA RID: 26346 RVA: 0x00285C50 File Offset: 0x00283E50
+		// Token: 0x06005BE1 RID: 23521 RVA: 0x0025C270 File Offset: 0x0025A470
 		private Token CreateNameToken(string name, int fromLine, int fromCol)
 		{
 			TokenType? reservedTokenType = Token.GetReservedTokenType(name);
@@ -594,7 +594,7 @@ namespace MoonSharp.Interpreter.Tree
 			return this.CreateToken(TokenType.Name, fromLine, fromCol, name);
 		}
 
-		// Token: 0x060066EB RID: 26347 RVA: 0x00285C88 File Offset: 0x00283E88
+		// Token: 0x06005BE2 RID: 23522 RVA: 0x0025C2A8 File Offset: 0x0025A4A8
 		private Token CreateToken(TokenType tokenType, int fromLine, int fromCol, string text = null)
 		{
 			Token token = new Token(tokenType, this.m_SourceId, fromLine, fromCol, this.m_Line, this.m_Col, this.m_PrevLineTo, this.m_PrevColTo);
@@ -604,7 +604,7 @@ namespace MoonSharp.Interpreter.Tree
 			return token;
 		}
 
-		// Token: 0x060066EC RID: 26348 RVA: 0x00285CDC File Offset: 0x00283EDC
+		// Token: 0x06005BE3 RID: 23523 RVA: 0x0025C2FC File Offset: 0x0025A4FC
 		private string ReadNameToken()
 		{
 			StringBuilder stringBuilder = new StringBuilder(32);
@@ -617,31 +617,31 @@ namespace MoonSharp.Interpreter.Tree
 			return stringBuilder.ToString();
 		}
 
-		// Token: 0x04005EDF RID: 24287
+		// Token: 0x040052FC RID: 21244
 		private Token m_Current;
 
-		// Token: 0x04005EE0 RID: 24288
+		// Token: 0x040052FD RID: 21245
 		private string m_Code;
 
-		// Token: 0x04005EE1 RID: 24289
+		// Token: 0x040052FE RID: 21246
 		private int m_PrevLineTo;
 
-		// Token: 0x04005EE2 RID: 24290
+		// Token: 0x040052FF RID: 21247
 		private int m_PrevColTo = 1;
 
-		// Token: 0x04005EE3 RID: 24291
+		// Token: 0x04005300 RID: 21248
 		private int m_Cursor;
 
-		// Token: 0x04005EE4 RID: 24292
+		// Token: 0x04005301 RID: 21249
 		private int m_Line = 1;
 
-		// Token: 0x04005EE5 RID: 24293
+		// Token: 0x04005302 RID: 21250
 		private int m_Col;
 
-		// Token: 0x04005EE6 RID: 24294
+		// Token: 0x04005303 RID: 21251
 		private int m_SourceId;
 
-		// Token: 0x04005EE7 RID: 24295
+		// Token: 0x04005304 RID: 21252
 		private bool m_AutoSkipComments;
 	}
 }

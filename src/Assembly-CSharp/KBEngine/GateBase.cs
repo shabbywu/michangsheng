@@ -4,100 +4,100 @@ using UnityEngine;
 
 namespace KBEngine
 {
-	// Token: 0x02000F16 RID: 3862
+	// Token: 0x02000B96 RID: 2966
 	public abstract class GateBase : Entity
 	{
-		// Token: 0x06005CA4 RID: 23716 RVA: 0x000042DD File Offset: 0x000024DD
+		// Token: 0x06005268 RID: 21096 RVA: 0x00004095 File Offset: 0x00002295
 		public virtual void onDialogIDChanged(uint oldValue)
 		{
 		}
 
-		// Token: 0x06005CA5 RID: 23717 RVA: 0x000042DD File Offset: 0x000024DD
+		// Token: 0x06005269 RID: 21097 RVA: 0x00004095 File Offset: 0x00002295
 		public virtual void onEntityNOChanged(uint oldValue)
 		{
 		}
 
-		// Token: 0x06005CA6 RID: 23718 RVA: 0x000042DD File Offset: 0x000024DD
+		// Token: 0x0600526A RID: 21098 RVA: 0x00004095 File Offset: 0x00002295
 		public virtual void onModelIDChanged(uint oldValue)
 		{
 		}
 
-		// Token: 0x06005CA7 RID: 23719 RVA: 0x000042DD File Offset: 0x000024DD
+		// Token: 0x0600526B RID: 21099 RVA: 0x00004095 File Offset: 0x00002295
 		public virtual void onModelScaleChanged(byte oldValue)
 		{
 		}
 
-		// Token: 0x06005CA8 RID: 23720 RVA: 0x000042DD File Offset: 0x000024DD
+		// Token: 0x0600526C RID: 21100 RVA: 0x00004095 File Offset: 0x00002295
 		public virtual void onNameChanged(string oldValue)
 		{
 		}
 
-		// Token: 0x06005CA9 RID: 23721 RVA: 0x000042DD File Offset: 0x000024DD
+		// Token: 0x0600526D RID: 21101 RVA: 0x00004095 File Offset: 0x00002295
 		public virtual void onUidChanged(uint oldValue)
 		{
 		}
 
-		// Token: 0x06005CAA RID: 23722 RVA: 0x000042DD File Offset: 0x000024DD
+		// Token: 0x0600526E RID: 21102 RVA: 0x00004095 File Offset: 0x00002295
 		public virtual void onUtypeChanged(uint oldValue)
 		{
 		}
 
-		// Token: 0x06005CAB RID: 23723 RVA: 0x0004163B File Offset: 0x0003F83B
+		// Token: 0x0600526F RID: 21103 RVA: 0x0022F7A1 File Offset: 0x0022D9A1
 		public GateBase()
 		{
 		}
 
-		// Token: 0x06005CAC RID: 23724 RVA: 0x000042DD File Offset: 0x000024DD
+		// Token: 0x06005270 RID: 21104 RVA: 0x00004095 File Offset: 0x00002295
 		public override void onComponentsEnterworld()
 		{
 		}
 
-		// Token: 0x06005CAD RID: 23725 RVA: 0x000042DD File Offset: 0x000024DD
+		// Token: 0x06005271 RID: 21105 RVA: 0x00004095 File Offset: 0x00002295
 		public override void onComponentsLeaveworld()
 		{
 		}
 
-		// Token: 0x06005CAE RID: 23726 RVA: 0x00041656 File Offset: 0x0003F856
+		// Token: 0x06005272 RID: 21106 RVA: 0x0022F7BC File Offset: 0x0022D9BC
 		public override void onGetBase()
 		{
 			this.baseEntityCall = new EntityBaseEntityCall_GateBase(this.id, this.className);
 		}
 
-		// Token: 0x06005CAF RID: 23727 RVA: 0x0004166F File Offset: 0x0003F86F
+		// Token: 0x06005273 RID: 21107 RVA: 0x0022F7D5 File Offset: 0x0022D9D5
 		public override void onGetCell()
 		{
 			this.cellEntityCall = new EntityCellEntityCall_GateBase(this.id, this.className);
 		}
 
-		// Token: 0x06005CB0 RID: 23728 RVA: 0x00041688 File Offset: 0x0003F888
+		// Token: 0x06005274 RID: 21108 RVA: 0x0022F7EE File Offset: 0x0022D9EE
 		public override void onLoseCell()
 		{
 			this.cellEntityCall = null;
 		}
 
-		// Token: 0x06005CB1 RID: 23729 RVA: 0x00041691 File Offset: 0x0003F891
+		// Token: 0x06005275 RID: 21109 RVA: 0x0022F7F7 File Offset: 0x0022D9F7
 		public override EntityCall getBaseEntityCall()
 		{
 			return this.baseEntityCall;
 		}
 
-		// Token: 0x06005CB2 RID: 23730 RVA: 0x00041699 File Offset: 0x0003F899
+		// Token: 0x06005276 RID: 21110 RVA: 0x0022F7FF File Offset: 0x0022D9FF
 		public override EntityCall getCellEntityCall()
 		{
 			return this.cellEntityCall;
 		}
 
-		// Token: 0x06005CB3 RID: 23731 RVA: 0x000042DD File Offset: 0x000024DD
+		// Token: 0x06005277 RID: 21111 RVA: 0x00004095 File Offset: 0x00002295
 		public override void attachComponents()
 		{
 		}
 
-		// Token: 0x06005CB4 RID: 23732 RVA: 0x000042DD File Offset: 0x000024DD
+		// Token: 0x06005278 RID: 21112 RVA: 0x00004095 File Offset: 0x00002295
 		public override void detachComponents()
 		{
 		}
 
-		// Token: 0x06005CB5 RID: 23733 RVA: 0x0025DC8C File Offset: 0x0025BE8C
+		// Token: 0x06005279 RID: 21113 RVA: 0x0022F808 File Offset: 0x0022DA08
 		public override void onRemoteMethodCall(MemoryStream stream)
 		{
 			ScriptModule scriptModule = EntityDef.moduledefs["Gate"];
@@ -128,7 +128,7 @@ namespace KBEngine
 			ushort properUtype = scriptModule.idpropertys[num].properUtype;
 		}
 
-		// Token: 0x06005CB6 RID: 23734 RVA: 0x0025DD0C File Offset: 0x0025BF0C
+		// Token: 0x0600527A RID: 21114 RVA: 0x0022F888 File Offset: 0x0022DA88
 		public override void onUpdatePropertys(MemoryStream stream)
 		{
 			ScriptModule scriptModule = EntityDef.moduledefs["Gate"];
@@ -328,7 +328,7 @@ namespace KBEngine
 			}
 		}
 
-		// Token: 0x06005CB7 RID: 23735 RVA: 0x0025E09C File Offset: 0x0025C29C
+		// Token: 0x0600527B RID: 21115 RVA: 0x0022FC18 File Offset: 0x0022DE18
 		public override void callPropertysSetMethods()
 		{
 			Dictionary<ushort, Property> idpropertys = EntityDef.moduledefs["Gate"].idpropertys;
@@ -452,31 +452,31 @@ namespace KBEngine
 			}
 		}
 
-		// Token: 0x04005A75 RID: 23157
+		// Token: 0x04004FE1 RID: 20449
 		public EntityBaseEntityCall_GateBase baseEntityCall;
 
-		// Token: 0x04005A76 RID: 23158
+		// Token: 0x04004FE2 RID: 20450
 		public EntityCellEntityCall_GateBase cellEntityCall;
 
-		// Token: 0x04005A77 RID: 23159
+		// Token: 0x04004FE3 RID: 20451
 		public uint dialogID;
 
-		// Token: 0x04005A78 RID: 23160
+		// Token: 0x04004FE4 RID: 20452
 		public uint entityNO;
 
-		// Token: 0x04005A79 RID: 23161
+		// Token: 0x04004FE5 RID: 20453
 		public uint modelID;
 
-		// Token: 0x04005A7A RID: 23162
+		// Token: 0x04004FE6 RID: 20454
 		public byte modelScale = 30;
 
-		// Token: 0x04005A7B RID: 23163
+		// Token: 0x04004FE7 RID: 20455
 		public string name = "";
 
-		// Token: 0x04005A7C RID: 23164
+		// Token: 0x04004FE8 RID: 20456
 		public uint uid;
 
-		// Token: 0x04005A7D RID: 23165
+		// Token: 0x04004FE9 RID: 20457
 		public uint utype;
 	}
 }

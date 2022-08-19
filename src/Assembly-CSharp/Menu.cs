@@ -1,10 +1,10 @@
 ﻿using System;
 using UnityEngine;
 
-// Token: 0x0200079A RID: 1946
+// Token: 0x02000509 RID: 1289
 public class Menu : MonoBehaviour
 {
-	// Token: 0x0600317F RID: 12671 RVA: 0x0018A6BC File Offset: 0x001888BC
+	// Token: 0x0600297A RID: 10618 RVA: 0x0013D33C File Offset: 0x0013B53C
 	private void Start()
 	{
 		base.transform.Find("Easy").gameObject.GetComponent<UIButton>().onClick.Add(new EventDelegate(new EventDelegate.Callback(this.StartEasyGame)));
@@ -12,7 +12,7 @@ public class Menu : MonoBehaviour
 		this.controller = GameObject.Find("GameController").GetComponent<GameController>();
 	}
 
-	// Token: 0x06003180 RID: 12672 RVA: 0x000243AB File Offset: 0x000225AB
+	// Token: 0x0600297B RID: 10619 RVA: 0x0013D3C8 File Offset: 0x0013B5C8
 	private void StartEasyGame()
 	{
 		this.controller.InitInteraction();
@@ -20,7 +20,7 @@ public class Menu : MonoBehaviour
 		Object.Destroy(base.gameObject);
 	}
 
-	// Token: 0x06003181 RID: 12673 RVA: 0x000243CE File Offset: 0x000225CE
+	// Token: 0x0600297C RID: 10620 RVA: 0x0013D3EB File Offset: 0x0013B5EB
 	private void StartNormalGame()
 	{
 		this.controller.Multiples = 2;
@@ -29,6 +29,6 @@ public class Menu : MonoBehaviour
 		Object.Destroy(base.gameObject);
 	}
 
-	// Token: 0x04002DC7 RID: 11719
+	// Token: 0x040025DF RID: 9695
 	private GameController controller;
 }

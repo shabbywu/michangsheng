@@ -3,30 +3,30 @@ using UnityEngine;
 
 namespace BehaviorDesigner.Runtime.Tasks.Basic.UnityString
 {
-	// Token: 0x02001500 RID: 5376
+	// Token: 0x02001046 RID: 4166
 	[TaskCategory("Basic/String")]
 	[TaskDescription("Randomly selects a string from the array of strings.")]
 	public class GetRandomString : Action
 	{
-		// Token: 0x06008025 RID: 32805 RVA: 0x000571EE File Offset: 0x000553EE
+		// Token: 0x0600722B RID: 29227 RVA: 0x002AD5F8 File Offset: 0x002AB7F8
 		public override TaskStatus OnUpdate()
 		{
 			this.storeResult.Value = this.source[Random.Range(0, this.source.Length)].Value;
 			return 2;
 		}
 
-		// Token: 0x06008026 RID: 32806 RVA: 0x00057216 File Offset: 0x00055416
+		// Token: 0x0600722C RID: 29228 RVA: 0x002AD620 File Offset: 0x002AB820
 		public override void OnReset()
 		{
 			this.source = null;
 			this.storeResult = null;
 		}
 
-		// Token: 0x04006D01 RID: 27905
+		// Token: 0x04005E01 RID: 24065
 		[Tooltip("The array of strings")]
 		public SharedString[] source;
 
-		// Token: 0x04006D02 RID: 27906
+		// Token: 0x04005E02 RID: 24066
 		[Tooltip("The stored result")]
 		[RequiredField]
 		public SharedString storeResult;

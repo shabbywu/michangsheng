@@ -1,10 +1,10 @@
 ﻿using System;
 
-// Token: 0x020003E6 RID: 998
+// Token: 0x020002AE RID: 686
 public enum UIDuJieZhunBeiState
 {
-	// Token: 0x040016F7 RID: 5879
+	// Token: 0x0400135A RID: 4954
 	感悟,
-	// Token: 0x040016F8 RID: 5880
+	// Token: 0x0400135B RID: 4955
 	调整
 }

@@ -3,12 +3,12 @@ using UnityEngine;
 
 namespace BehaviorDesigner.Runtime.Tasks.Basic.UnityRigidbody2D
 {
-	// Token: 0x0200152F RID: 5423
+	// Token: 0x02001075 RID: 4213
 	[TaskCategory("Basic/Rigidbody2D")]
 	[TaskDescription("Applies a torque to the Rigidbody2D. Returns Success.")]
 	public class AddTorque : Action
 	{
-		// Token: 0x060080BA RID: 32954 RVA: 0x002CB6A4 File Offset: 0x002C98A4
+		// Token: 0x060072C0 RID: 29376 RVA: 0x002AE7A0 File Offset: 0x002AC9A0
 		public override void OnStart()
 		{
 			GameObject defaultGameObject = base.GetDefaultGameObject(this.targetGameObject.Value);
@@ -19,7 +19,7 @@ namespace BehaviorDesigner.Runtime.Tasks.Basic.UnityRigidbody2D
 			}
 		}
 
-		// Token: 0x060080BB RID: 32955 RVA: 0x00057A82 File Offset: 0x00055C82
+		// Token: 0x060072C1 RID: 29377 RVA: 0x002AE7E0 File Offset: 0x002AC9E0
 		public override TaskStatus OnUpdate()
 		{
 			if (this.rigidbody2D == null)
@@ -31,25 +31,25 @@ namespace BehaviorDesigner.Runtime.Tasks.Basic.UnityRigidbody2D
 			return 2;
 		}
 
-		// Token: 0x060080BC RID: 32956 RVA: 0x00057AB5 File Offset: 0x00055CB5
+		// Token: 0x060072C2 RID: 29378 RVA: 0x002AE813 File Offset: 0x002ACA13
 		public override void OnReset()
 		{
 			this.targetGameObject = null;
 			this.torque = 0f;
 		}
 
-		// Token: 0x04006D70 RID: 28016
+		// Token: 0x04005E70 RID: 24176
 		[Tooltip("The GameObject that the task operates on. If null the task GameObject is used.")]
 		public SharedGameObject targetGameObject;
 
-		// Token: 0x04006D71 RID: 28017
+		// Token: 0x04005E71 RID: 24177
 		[Tooltip("The amount of torque to apply")]
 		public SharedFloat torque;
 
-		// Token: 0x04006D72 RID: 28018
+		// Token: 0x04005E72 RID: 24178
 		private Rigidbody2D rigidbody2D;
 
-		// Token: 0x04006D73 RID: 28019
+		// Token: 0x04005E73 RID: 24179
 		private GameObject prevGameObject;
 	}
 }

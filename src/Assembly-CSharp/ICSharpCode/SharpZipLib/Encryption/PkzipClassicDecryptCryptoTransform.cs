@@ -3,16 +3,16 @@ using System.Security.Cryptography;
 
 namespace ICSharpCode.SharpZipLib.Encryption
 {
-	// Token: 0x0200081D RID: 2077
+	// Token: 0x02000574 RID: 1396
 	internal class PkzipClassicDecryptCryptoTransform : PkzipClassicCryptoBase, ICryptoTransform, IDisposable
 	{
-		// Token: 0x06003677 RID: 13943 RVA: 0x00027B1F File Offset: 0x00025D1F
+		// Token: 0x06002E01 RID: 11777 RVA: 0x00150A73 File Offset: 0x0014EC73
 		internal PkzipClassicDecryptCryptoTransform(byte[] keyBlock)
 		{
 			base.SetKeys(keyBlock);
 		}
 
-		// Token: 0x06003678 RID: 13944 RVA: 0x0019BC30 File Offset: 0x00199E30
+		// Token: 0x06002E02 RID: 11778 RVA: 0x00150AEC File Offset: 0x0014ECEC
 		public byte[] TransformFinalBlock(byte[] inputBuffer, int inputOffset, int inputCount)
 		{
 			byte[] array = new byte[inputCount];
@@ -20,7 +20,7 @@ namespace ICSharpCode.SharpZipLib.Encryption
 			return array;
 		}
 
-		// Token: 0x06003679 RID: 13945 RVA: 0x0019BC54 File Offset: 0x00199E54
+		// Token: 0x06002E03 RID: 11779 RVA: 0x00150B10 File Offset: 0x0014ED10
 		public int TransformBlock(byte[] inputBuffer, int inputOffset, int inputCount, byte[] outputBuffer, int outputOffset)
 		{
 			for (int i = inputOffset; i < inputOffset + inputCount; i++)
@@ -32,8 +32,8 @@ namespace ICSharpCode.SharpZipLib.Encryption
 			return inputCount;
 		}
 
-		// Token: 0x1700055E RID: 1374
-		// (get) Token: 0x0600367A RID: 13946 RVA: 0x0000A093 File Offset: 0x00008293
+		// Token: 0x170003A7 RID: 935
+		// (get) Token: 0x06002E04 RID: 11780 RVA: 0x00024C5F File Offset: 0x00022E5F
 		public bool CanReuseTransform
 		{
 			get
@@ -42,8 +42,8 @@ namespace ICSharpCode.SharpZipLib.Encryption
 			}
 		}
 
-		// Token: 0x1700055F RID: 1375
-		// (get) Token: 0x0600367B RID: 13947 RVA: 0x0000A093 File Offset: 0x00008293
+		// Token: 0x170003A8 RID: 936
+		// (get) Token: 0x06002E05 RID: 11781 RVA: 0x00024C5F File Offset: 0x00022E5F
 		public int InputBlockSize
 		{
 			get
@@ -52,8 +52,8 @@ namespace ICSharpCode.SharpZipLib.Encryption
 			}
 		}
 
-		// Token: 0x17000560 RID: 1376
-		// (get) Token: 0x0600367C RID: 13948 RVA: 0x0000A093 File Offset: 0x00008293
+		// Token: 0x170003A9 RID: 937
+		// (get) Token: 0x06002E06 RID: 11782 RVA: 0x00024C5F File Offset: 0x00022E5F
 		public int OutputBlockSize
 		{
 			get
@@ -62,8 +62,8 @@ namespace ICSharpCode.SharpZipLib.Encryption
 			}
 		}
 
-		// Token: 0x17000561 RID: 1377
-		// (get) Token: 0x0600367D RID: 13949 RVA: 0x0000A093 File Offset: 0x00008293
+		// Token: 0x170003AA RID: 938
+		// (get) Token: 0x06002E07 RID: 11783 RVA: 0x00024C5F File Offset: 0x00022E5F
 		public bool CanTransformMultipleBlocks
 		{
 			get
@@ -72,7 +72,7 @@ namespace ICSharpCode.SharpZipLib.Encryption
 			}
 		}
 
-		// Token: 0x0600367E RID: 13950 RVA: 0x00027B2E File Offset: 0x00025D2E
+		// Token: 0x06002E08 RID: 11784 RVA: 0x00150AE4 File Offset: 0x0014ECE4
 		public void Dispose()
 		{
 			base.Reset();

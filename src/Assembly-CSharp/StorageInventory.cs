@@ -5,10 +5,10 @@ using KBEngine;
 using UnityEngine;
 using UnityEngine.UI;
 
-// Token: 0x0200020D RID: 525
+// Token: 0x0200013A RID: 314
 public class StorageInventory : MonoBehaviour
 {
-	// Token: 0x060010A2 RID: 4258 RVA: 0x000A742C File Offset: 0x000A562C
+	// Token: 0x06000E8C RID: 3724 RVA: 0x000570B4 File Offset: 0x000552B4
 	public void addItemToStorage(int id, int value)
 	{
 		Item itemByID = this.itemDatabase.getItemByID(id);
@@ -16,7 +16,7 @@ public class StorageInventory : MonoBehaviour
 		this.storageItems.Add(itemByID);
 	}
 
-	// Token: 0x060010A3 RID: 4259 RVA: 0x000A745C File Offset: 0x000A565C
+	// Token: 0x06000E8D RID: 3725 RVA: 0x000570E4 File Offset: 0x000552E4
 	private void Start()
 	{
 		if (this.inputManagerDatabase == null)
@@ -52,7 +52,7 @@ public class StorageInventory : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060010A4 RID: 4260 RVA: 0x00010693 File Offset: 0x0000E893
+	// Token: 0x06000E8E RID: 3726 RVA: 0x00057245 File Offset: 0x00055445
 	public void setImportantVariables()
 	{
 		if (this.itemDatabase == null)
@@ -61,7 +61,7 @@ public class StorageInventory : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060010A5 RID: 4261 RVA: 0x000A75C0 File Offset: 0x000A57C0
+	// Token: 0x06000E8F RID: 3727 RVA: 0x0005726C File Offset: 0x0005546C
 	private void Update()
 	{
 		float num = Vector3.Distance(base.gameObject.transform.position, this.player.transform.position);
@@ -93,7 +93,7 @@ public class StorageInventory : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060010A6 RID: 4262 RVA: 0x000106B8 File Offset: 0x0000E8B8
+	// Token: 0x06000E90 RID: 3728 RVA: 0x0005738E File Offset: 0x0005558E
 	private IEnumerator OpenInventoryWithTimer()
 	{
 		if (this.showStorage)
@@ -124,14 +124,14 @@ public class StorageInventory : MonoBehaviour
 		yield break;
 	}
 
-	// Token: 0x060010A7 RID: 4263 RVA: 0x000A76E4 File Offset: 0x000A58E4
+	// Token: 0x06000E91 RID: 3729 RVA: 0x000573A0 File Offset: 0x000555A0
 	private void setListofStorage()
 	{
 		Inventory component = this.inventory.GetComponent<Inventory>();
 		this.storageItems = component.getItemList();
 	}
 
-	// Token: 0x060010A8 RID: 4264 RVA: 0x000A770C File Offset: 0x000A590C
+	// Token: 0x06000E92 RID: 3730 RVA: 0x000573C8 File Offset: 0x000555C8
 	private void addItemsToInventory()
 	{
 		Inventory component = this.inventory.GetComponent<Inventory>();
@@ -142,58 +142,58 @@ public class StorageInventory : MonoBehaviour
 		component.stackableSettings();
 	}
 
-	// Token: 0x04000D23 RID: 3363
+	// Token: 0x04000A8B RID: 2699
 	[SerializeField]
 	public GameObject inventory;
 
-	// Token: 0x04000D24 RID: 3364
+	// Token: 0x04000A8C RID: 2700
 	[SerializeField]
 	public List<Item> storageItems = new List<Item>();
 
-	// Token: 0x04000D25 RID: 3365
+	// Token: 0x04000A8D RID: 2701
 	[SerializeField]
 	private ItemDataBaseList itemDatabase;
 
-	// Token: 0x04000D26 RID: 3366
+	// Token: 0x04000A8E RID: 2702
 	[SerializeField]
 	public int distanceToOpenStorage;
 
-	// Token: 0x04000D27 RID: 3367
+	// Token: 0x04000A8F RID: 2703
 	public float timeToOpenStorage;
 
-	// Token: 0x04000D28 RID: 3368
+	// Token: 0x04000A90 RID: 2704
 	private InputManager inputManagerDatabase;
 
-	// Token: 0x04000D29 RID: 3369
+	// Token: 0x04000A91 RID: 2705
 	private float startTimer;
 
-	// Token: 0x04000D2A RID: 3370
+	// Token: 0x04000A92 RID: 2706
 	private float endTimer;
 
-	// Token: 0x04000D2B RID: 3371
+	// Token: 0x04000A93 RID: 2707
 	private bool showTimer;
 
-	// Token: 0x04000D2C RID: 3372
+	// Token: 0x04000A94 RID: 2708
 	public int itemAmount;
 
-	// Token: 0x04000D2D RID: 3373
+	// Token: 0x04000A95 RID: 2709
 	private Tooltip tooltip;
 
-	// Token: 0x04000D2E RID: 3374
+	// Token: 0x04000A96 RID: 2710
 	private Inventory inv;
 
-	// Token: 0x04000D2F RID: 3375
+	// Token: 0x04000A97 RID: 2711
 	private GameObject player;
 
-	// Token: 0x04000D30 RID: 3376
+	// Token: 0x04000A98 RID: 2712
 	private static Image timerImage;
 
-	// Token: 0x04000D31 RID: 3377
+	// Token: 0x04000A99 RID: 2713
 	private static GameObject timer;
 
-	// Token: 0x04000D32 RID: 3378
+	// Token: 0x04000A9A RID: 2714
 	private bool closeInv;
 
-	// Token: 0x04000D33 RID: 3379
+	// Token: 0x04000A9B RID: 2715
 	private bool showStorage;
 }

@@ -1,11 +1,11 @@
 ﻿using System;
 using UnityEngine;
 
-// Token: 0x0200023D RID: 573
+// Token: 0x02000162 RID: 354
 [RequireComponent(typeof(ParticleSystem))]
 public class particleAttractorLinear : MonoBehaviour
 {
-	// Token: 0x060011BD RID: 4541 RVA: 0x000111C0 File Offset: 0x0000F3C0
+	// Token: 0x06000F63 RID: 3939 RVA: 0x0005C9F2 File Offset: 0x0005ABF2
 	private void Start()
 	{
 		this.ps = base.GetComponent<ParticleSystem>();
@@ -15,7 +15,7 @@ public class particleAttractorLinear : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060011BE RID: 4542 RVA: 0x000AC698 File Offset: 0x000AA898
+	// Token: 0x06000F64 RID: 3940 RVA: 0x0005CA14 File Offset: 0x0005AC14
 	private void Update()
 	{
 		if (this.ps.isPlaying)
@@ -31,18 +31,18 @@ public class particleAttractorLinear : MonoBehaviour
 		}
 	}
 
-	// Token: 0x04000E4A RID: 3658
+	// Token: 0x04000B7D RID: 2941
 	private ParticleSystem ps;
 
-	// Token: 0x04000E4B RID: 3659
+	// Token: 0x04000B7E RID: 2942
 	private ParticleSystem.Particle[] m_Particles;
 
-	// Token: 0x04000E4C RID: 3660
+	// Token: 0x04000B7F RID: 2943
 	public Transform target;
 
-	// Token: 0x04000E4D RID: 3661
+	// Token: 0x04000B80 RID: 2944
 	public float speed = 5f;
 
-	// Token: 0x04000E4E RID: 3662
+	// Token: 0x04000B81 RID: 2945
 	private int numParticlesAlive;
 }

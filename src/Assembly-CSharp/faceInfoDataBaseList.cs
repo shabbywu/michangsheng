@@ -1,16 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
 
-// Token: 0x02000581 RID: 1409
+// Token: 0x020003E6 RID: 998
 [Serializable]
 public class faceInfoDataBaseList
 {
-	// Token: 0x04001EB8 RID: 7864
+	// Token: 0x04001A26 RID: 6694
 	public string Name;
 
-	// Token: 0x04001EB9 RID: 7865
+	// Token: 0x04001A27 RID: 6695
 	public string JsonInfoName;
 
-	// Token: 0x04001EBA RID: 7866
+	// Token: 0x04001A28 RID: 6696
 	public List<faceInfoDataBase> faceList = new List<faceInfoDataBase>();
 }

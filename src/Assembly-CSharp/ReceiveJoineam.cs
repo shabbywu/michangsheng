@@ -4,31 +4,31 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
 
-// Token: 0x020005A7 RID: 1447
+// Token: 0x020003F7 RID: 1015
 public class ReceiveJoineam : MonoBehaviour
 {
-	// Token: 0x06002470 RID: 9328 RVA: 0x00128850 File Offset: 0x00126A50
+	// Token: 0x060020BE RID: 8382 RVA: 0x000E6714 File Offset: 0x000E4914
 	private void Start()
 	{
 		base.transform.Find("consent").GetComponent<Button>().onClick.AddListener(new UnityAction(this.choiceconsent));
 		base.transform.Find("reject").GetComponent<Button>().onClick.AddListener(new UnityAction(this.choicereject));
 	}
 
-	// Token: 0x06002471 RID: 9329 RVA: 0x0001D555 File Offset: 0x0001B755
+	// Token: 0x060020BF RID: 8383 RVA: 0x000E6777 File Offset: 0x000E4977
 	public void choiceconsent()
 	{
 		this.requestReceive(1);
 		Object.Destroy(base.gameObject);
 	}
 
-	// Token: 0x06002472 RID: 9330 RVA: 0x0001D569 File Offset: 0x0001B769
+	// Token: 0x060020C0 RID: 8384 RVA: 0x000E678B File Offset: 0x000E498B
 	public void choicereject()
 	{
 		this.requestReceive(0);
 		Object.Destroy(base.gameObject);
 	}
 
-	// Token: 0x06002473 RID: 9331 RVA: 0x001288B4 File Offset: 0x00126AB4
+	// Token: 0x060020C1 RID: 8385 RVA: 0x000E67A0 File Offset: 0x000E49A0
 	public void requestReceive(int choice)
 	{
 		Account account = (Account)KBEngineApp.app.player();
@@ -38,12 +38,12 @@ public class ReceiveJoineam : MonoBehaviour
 		}
 	}
 
-	// Token: 0x04001F5F RID: 8031
+	// Token: 0x04001AA3 RID: 6819
 	public ulong teamUUID;
 
-	// Token: 0x04001F60 RID: 8032
+	// Token: 0x04001AA4 RID: 6820
 	public ulong friendDBid;
 
-	// Token: 0x04001F61 RID: 8033
+	// Token: 0x04001AA5 RID: 6821
 	public string friendName;
 }

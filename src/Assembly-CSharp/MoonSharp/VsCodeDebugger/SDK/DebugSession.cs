@@ -3,17 +3,17 @@ using MoonSharp.Interpreter;
 
 namespace MoonSharp.VsCodeDebugger.SDK
 {
-	// Token: 0x020011D5 RID: 4565
+	// Token: 0x02000DA9 RID: 3497
 	public abstract class DebugSession : ProtocolServer
 	{
-		// Token: 0x06006F9F RID: 28575 RVA: 0x0004BE1B File Offset: 0x0004A01B
+		// Token: 0x06006359 RID: 25433 RVA: 0x0027A955 File Offset: 0x00278B55
 		public DebugSession(bool debuggerLinesStartAt1, bool debuggerPathsAreURI = false)
 		{
 			this._debuggerLinesStartAt1 = debuggerLinesStartAt1;
 			this._debuggerPathsAreURI = debuggerPathsAreURI;
 		}
 
-		// Token: 0x06006FA0 RID: 28576 RVA: 0x0004BE3F File Offset: 0x0004A03F
+		// Token: 0x0600635A RID: 25434 RVA: 0x0027A979 File Offset: 0x00278B79
 		public void SendResponse(Response response, ResponseBody body = null)
 		{
 			if (body != null)
@@ -23,7 +23,7 @@ namespace MoonSharp.VsCodeDebugger.SDK
 			base.SendMessage(response);
 		}
 
-		// Token: 0x06006FA1 RID: 28577 RVA: 0x002A0194 File Offset: 0x0029E394
+		// Token: 0x0600635B RID: 25435 RVA: 0x0027A98C File Offset: 0x00278B8C
 		public void SendErrorResponse(Response response, int id, string format, object arguments = null, bool user = true, bool telemetry = false)
 		{
 			Message message = new Message(id, format, arguments, user, telemetry);
@@ -32,7 +32,7 @@ namespace MoonSharp.VsCodeDebugger.SDK
 			base.SendMessage(response);
 		}
 
-		// Token: 0x06006FA2 RID: 28578 RVA: 0x002A01D8 File Offset: 0x0029E3D8
+		// Token: 0x0600635C RID: 25436 RVA: 0x0027A9D0 File Offset: 0x00278BD0
 		protected override void DispatchRequest(string command, Table args, Response response)
 		{
 			if (args == null)
@@ -251,68 +251,68 @@ namespace MoonSharp.VsCodeDebugger.SDK
 			}
 		}
 
-		// Token: 0x06006FA3 RID: 28579
+		// Token: 0x0600635D RID: 25437
 		public abstract void Initialize(Response response, Table args);
 
-		// Token: 0x06006FA4 RID: 28580
+		// Token: 0x0600635E RID: 25438
 		public abstract void Launch(Response response, Table arguments);
 
-		// Token: 0x06006FA5 RID: 28581
+		// Token: 0x0600635F RID: 25439
 		public abstract void Attach(Response response, Table arguments);
 
-		// Token: 0x06006FA6 RID: 28582
+		// Token: 0x06006360 RID: 25440
 		public abstract void Disconnect(Response response, Table arguments);
 
-		// Token: 0x06006FA7 RID: 28583 RVA: 0x000042DD File Offset: 0x000024DD
+		// Token: 0x06006361 RID: 25441 RVA: 0x00004095 File Offset: 0x00002295
 		public virtual void SetFunctionBreakpoints(Response response, Table arguments)
 		{
 		}
 
-		// Token: 0x06006FA8 RID: 28584 RVA: 0x000042DD File Offset: 0x000024DD
+		// Token: 0x06006362 RID: 25442 RVA: 0x00004095 File Offset: 0x00002295
 		public virtual void SetExceptionBreakpoints(Response response, Table arguments)
 		{
 		}
 
-		// Token: 0x06006FA9 RID: 28585
+		// Token: 0x06006363 RID: 25443
 		public abstract void SetBreakpoints(Response response, Table arguments);
 
-		// Token: 0x06006FAA RID: 28586
+		// Token: 0x06006364 RID: 25444
 		public abstract void Continue(Response response, Table arguments);
 
-		// Token: 0x06006FAB RID: 28587
+		// Token: 0x06006365 RID: 25445
 		public abstract void Next(Response response, Table arguments);
 
-		// Token: 0x06006FAC RID: 28588
+		// Token: 0x06006366 RID: 25446
 		public abstract void StepIn(Response response, Table arguments);
 
-		// Token: 0x06006FAD RID: 28589
+		// Token: 0x06006367 RID: 25447
 		public abstract void StepOut(Response response, Table arguments);
 
-		// Token: 0x06006FAE RID: 28590
+		// Token: 0x06006368 RID: 25448
 		public abstract void Pause(Response response, Table arguments);
 
-		// Token: 0x06006FAF RID: 28591
+		// Token: 0x06006369 RID: 25449
 		public abstract void StackTrace(Response response, Table arguments);
 
-		// Token: 0x06006FB0 RID: 28592
+		// Token: 0x0600636A RID: 25450
 		public abstract void Scopes(Response response, Table arguments);
 
-		// Token: 0x06006FB1 RID: 28593
+		// Token: 0x0600636B RID: 25451
 		public abstract void Variables(Response response, Table arguments);
 
-		// Token: 0x06006FB2 RID: 28594 RVA: 0x0004BE52 File Offset: 0x0004A052
+		// Token: 0x0600636C RID: 25452 RVA: 0x0027AE48 File Offset: 0x00279048
 		public virtual void Source(Response response, Table arguments)
 		{
 			this.SendErrorResponse(response, 1020, "Source not supported", null, true, false);
 		}
 
-		// Token: 0x06006FB3 RID: 28595
+		// Token: 0x0600636D RID: 25453
 		public abstract void Threads(Response response, Table arguments);
 
-		// Token: 0x06006FB4 RID: 28596
+		// Token: 0x0600636E RID: 25454
 		public abstract void Evaluate(Response response, Table arguments);
 
-		// Token: 0x06006FB5 RID: 28597 RVA: 0x0004BE68 File Offset: 0x0004A068
+		// Token: 0x0600636F RID: 25455 RVA: 0x0027AE5E File Offset: 0x0027905E
 		protected int ConvertDebuggerLineToClient(int line)
 		{
 			if (this._debuggerLinesStartAt1)
@@ -333,7 +333,7 @@ namespace MoonSharp.VsCodeDebugger.SDK
 			}
 		}
 
-		// Token: 0x06006FB6 RID: 28598 RVA: 0x0004BE8D File Offset: 0x0004A08D
+		// Token: 0x06006370 RID: 25456 RVA: 0x0027AE83 File Offset: 0x00279083
 		protected int ConvertClientLineToDebugger(int line)
 		{
 			if (this._debuggerLinesStartAt1)
@@ -354,7 +354,7 @@ namespace MoonSharp.VsCodeDebugger.SDK
 			}
 		}
 
-		// Token: 0x06006FB7 RID: 28599 RVA: 0x002A0650 File Offset: 0x0029E850
+		// Token: 0x06006371 RID: 25457 RVA: 0x0027AEA8 File Offset: 0x002790A8
 		protected string ConvertDebuggerPathToClient(string path)
 		{
 			if (!this._debuggerPathsAreURI)
@@ -380,7 +380,7 @@ namespace MoonSharp.VsCodeDebugger.SDK
 			return new Uri(path).LocalPath;
 		}
 
-		// Token: 0x06006FB8 RID: 28600 RVA: 0x002A06AC File Offset: 0x0029E8AC
+		// Token: 0x06006372 RID: 25458 RVA: 0x0027AF04 File Offset: 0x00279104
 		protected string ConvertClientPathToDebugger(string clientPath)
 		{
 			if (clientPath == null)
@@ -410,16 +410,16 @@ namespace MoonSharp.VsCodeDebugger.SDK
 			}
 		}
 
-		// Token: 0x040062BB RID: 25275
+		// Token: 0x040055D4 RID: 21972
 		private bool _debuggerLinesStartAt1;
 
-		// Token: 0x040062BC RID: 25276
+		// Token: 0x040055D5 RID: 21973
 		private bool _debuggerPathsAreURI;
 
-		// Token: 0x040062BD RID: 25277
+		// Token: 0x040055D6 RID: 21974
 		private bool _clientLinesStartAt1 = true;
 
-		// Token: 0x040062BE RID: 25278
+		// Token: 0x040055D7 RID: 21975
 		private bool _clientPathsAreURI = true;
 	}
 }

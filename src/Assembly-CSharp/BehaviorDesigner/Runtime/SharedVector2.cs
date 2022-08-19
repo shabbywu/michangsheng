@@ -3,11 +3,11 @@ using UnityEngine;
 
 namespace BehaviorDesigner.Runtime
 {
-	// Token: 0x02001480 RID: 5248
+	// Token: 0x02000FC8 RID: 4040
 	[Serializable]
 	public class SharedVector2 : SharedVariable<Vector2>
 	{
-		// Token: 0x06007E1D RID: 32285 RVA: 0x0005542E File Offset: 0x0005362E
+		// Token: 0x06007023 RID: 28707 RVA: 0x002A8DAF File Offset: 0x002A6FAF
 		public static implicit operator SharedVector2(Vector2 value)
 		{
 			return new SharedVector2

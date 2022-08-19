@@ -4,10 +4,10 @@ using UnityEngine;
 
 namespace UltimateSurvival
 {
-	// Token: 0x0200090E RID: 2318
+	// Token: 0x02000626 RID: 1574
 	public class ProbabilityUtils : MonoBehaviour
 	{
-		// Token: 0x06003B3B RID: 15163 RVA: 0x001ABA4C File Offset: 0x001A9C4C
+		// Token: 0x06003201 RID: 12801 RVA: 0x001620E0 File Offset: 0x001602E0
 		public static int RandomChoiceFollowingDistribution(List<float> probabilities)
 		{
 			float[] array = new float[probabilities.Count];

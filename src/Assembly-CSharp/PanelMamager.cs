@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using YSGame.TuJian;
 
-// Token: 0x02000533 RID: 1331
+// Token: 0x020003A9 RID: 937
 public class PanelMamager : MonoBehaviour
 {
-	// Token: 0x060021FE RID: 8702 RVA: 0x00119D50 File Offset: 0x00117F50
+	// Token: 0x06001E7B RID: 7803 RVA: 0x000D65F4 File Offset: 0x000D47F4
 	private void Awake()
 	{
 		PanelMamager.inst = this;
@@ -18,7 +18,7 @@ public class PanelMamager : MonoBehaviour
 		this.canOpenPanel = true;
 	}
 
-	// Token: 0x060021FF RID: 8703 RVA: 0x00119DC0 File Offset: 0x00117FC0
+	// Token: 0x06001E7C RID: 7804 RVA: 0x000D6664 File Offset: 0x000D4864
 	public void OpenPanel(PanelMamager.PanelType panelType, int type = 0)
 	{
 		if (!PanelMamager.CanOpenOrClose)
@@ -81,14 +81,14 @@ public class PanelMamager : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06002200 RID: 8704 RVA: 0x00119F0C File Offset: 0x0011810C
+	// Token: 0x06001E7D RID: 7805 RVA: 0x000D67B0 File Offset: 0x000D49B0
 	public bool checkIsOpenPanel(PanelMamager.PanelType panelType)
 	{
 		string key = this.panelNameDictionary[(int)panelType];
 		return this.PanelDictionary.ContainsKey(key) && this.PanelDictionary[key] != null;
 	}
 
-	// Token: 0x06002201 RID: 8705 RVA: 0x0001BE35 File Offset: 0x0001A035
+	// Token: 0x06001E7E RID: 7806 RVA: 0x000D67EF File Offset: 0x000D49EF
 	public void destoryUIGameObjet()
 	{
 		if (this.UISceneGameObject != null)
@@ -98,7 +98,7 @@ public class PanelMamager : MonoBehaviour
 		this.UISceneGameObject = null;
 	}
 
-	// Token: 0x06002202 RID: 8706 RVA: 0x00119F4C File Offset: 0x0011814C
+	// Token: 0x06001E7F RID: 7807 RVA: 0x000D6814 File Offset: 0x000D4A14
 	public void closePanel(PanelMamager.PanelType panelType, int type = 0)
 	{
 		if (!PanelMamager.CanOpenOrClose)
@@ -122,47 +122,47 @@ public class PanelMamager : MonoBehaviour
 		Object.FindObjectOfType<LianQiTotalManager>();
 	}
 
-	// Token: 0x04001D69 RID: 7529
+	// Token: 0x040018FC RID: 6396
 	private Dictionary<int, string> panelNameDictionary = new Dictionary<int, string>();
 
-	// Token: 0x04001D6A RID: 7530
+	// Token: 0x040018FD RID: 6397
 	[HideInInspector]
 	public GameObject UISceneGameObject;
 
-	// Token: 0x04001D6B RID: 7531
+	// Token: 0x040018FE RID: 6398
 	[HideInInspector]
 	public GameObject UIBlackMaskGameObject;
 
-	// Token: 0x04001D6C RID: 7532
+	// Token: 0x040018FF RID: 6399
 	public static bool CanOpenOrClose = true;
 
-	// Token: 0x04001D6D RID: 7533
+	// Token: 0x04001900 RID: 6400
 	public bool canOpenPanel;
 
-	// Token: 0x04001D6E RID: 7534
+	// Token: 0x04001901 RID: 6401
 	[HideInInspector]
 	public PanelMamager.PanelType nowPanel = PanelMamager.PanelType.空;
 
-	// Token: 0x04001D6F RID: 7535
+	// Token: 0x04001902 RID: 6402
 	public static PanelMamager inst;
 
-	// Token: 0x04001D70 RID: 7536
+	// Token: 0x04001903 RID: 6403
 	private Dictionary<string, GameObject> PanelDictionary = new Dictionary<string, GameObject>();
 
-	// Token: 0x02000534 RID: 1332
+	// Token: 0x02001364 RID: 4964
 	public enum PanelType
 	{
-		// Token: 0x04001D72 RID: 7538
+		// Token: 0x04006845 RID: 26693
 		炼丹,
-		// Token: 0x04001D73 RID: 7539
+		// Token: 0x04006846 RID: 26694
 		传音符,
-		// Token: 0x04001D74 RID: 7540
+		// Token: 0x04006847 RID: 26695
 		图鉴,
-		// Token: 0x04001D75 RID: 7541
+		// Token: 0x04006848 RID: 26696
 		任务,
-		// Token: 0x04001D76 RID: 7542
+		// Token: 0x04006849 RID: 26697
 		炼器,
-		// Token: 0x04001D77 RID: 7543
+		// Token: 0x0400684A RID: 26698
 		空
 	}
 }

@@ -3,10 +3,10 @@ using System.Collections;
 using Spine.Unity;
 using UnityEngine;
 
-// Token: 0x020004FB RID: 1275
+// Token: 0x0200037B RID: 891
 public class LangHuaItem : MonoBehaviour
 {
-	// Token: 0x06002113 RID: 8467 RVA: 0x00115550 File Offset: 0x00113750
+	// Token: 0x06001DA4 RID: 7588 RVA: 0x000D1594 File Offset: 0x000CF794
 	public void Show()
 	{
 		this.r = base.GetComponent<MeshRenderer>();
@@ -16,7 +16,7 @@ public class LangHuaItem : MonoBehaviour
 		base.StartCoroutine("ChangeOrder");
 	}
 
-	// Token: 0x06002114 RID: 8468 RVA: 0x0001B419 File Offset: 0x00019619
+	// Token: 0x06001DA5 RID: 7589 RVA: 0x000D15E6 File Offset: 0x000CF7E6
 	private IEnumerator ChangeOrder()
 	{
 		yield return new WaitForEndOfFrame();
@@ -24,12 +24,12 @@ public class LangHuaItem : MonoBehaviour
 		yield break;
 	}
 
-	// Token: 0x04001C84 RID: 7300
+	// Token: 0x0400182F RID: 6191
 	public SkeletonAnimation SpineAnim;
 
-	// Token: 0x04001C85 RID: 7301
+	// Token: 0x04001830 RID: 6192
 	private MeshRenderer r;
 
-	// Token: 0x04001C86 RID: 7302
+	// Token: 0x04001831 RID: 6193
 	private int order;
 }

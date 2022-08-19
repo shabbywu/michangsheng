@@ -6,20 +6,20 @@ using ICSharpCode.SharpZipLib.Zip.Compression.Streams;
 
 namespace ICSharpCode.SharpZipLib.GZip
 {
-	// Token: 0x02000818 RID: 2072
+	// Token: 0x02000570 RID: 1392
 	public class GZipOutputStream : DeflaterOutputStream
 	{
-		// Token: 0x0600365F RID: 13919 RVA: 0x00027A3A File Offset: 0x00025C3A
+		// Token: 0x06002DE9 RID: 11753 RVA: 0x001505BF File Offset: 0x0014E7BF
 		public GZipOutputStream(Stream baseOutputStream) : this(baseOutputStream, 4096)
 		{
 		}
 
-		// Token: 0x06003660 RID: 13920 RVA: 0x00027A48 File Offset: 0x00025C48
+		// Token: 0x06002DEA RID: 11754 RVA: 0x001505CD File Offset: 0x0014E7CD
 		public GZipOutputStream(Stream baseOutputStream, int size) : base(baseOutputStream, new Deflater(-1, true), size)
 		{
 		}
 
-		// Token: 0x06003661 RID: 13921 RVA: 0x00027A64 File Offset: 0x00025C64
+		// Token: 0x06002DEB RID: 11755 RVA: 0x001505E9 File Offset: 0x0014E7E9
 		public void SetLevel(int level)
 		{
 			if (level < 0 || level > 9)
@@ -29,13 +29,13 @@ namespace ICSharpCode.SharpZipLib.GZip
 			this.deflater_.SetLevel(level);
 		}
 
-		// Token: 0x06003662 RID: 13922 RVA: 0x00026237 File Offset: 0x00024437
+		// Token: 0x06002DEC RID: 11756 RVA: 0x001478FD File Offset: 0x00145AFD
 		public int GetLevel()
 		{
 			return this.deflater_.GetLevel();
 		}
 
-		// Token: 0x06003663 RID: 13923 RVA: 0x00027A8B File Offset: 0x00025C8B
+		// Token: 0x06002DED RID: 11757 RVA: 0x00150610 File Offset: 0x0014E810
 		public override void Write(byte[] buffer, int offset, int count)
 		{
 			if (this.state_ == GZipOutputStream.OutputState.Header)
@@ -50,7 +50,7 @@ namespace ICSharpCode.SharpZipLib.GZip
 			base.Write(buffer, offset, count);
 		}
 
-		// Token: 0x06003664 RID: 13924 RVA: 0x0019B800 File Offset: 0x00199A00
+		// Token: 0x06002DEE RID: 11758 RVA: 0x00150650 File Offset: 0x0014E850
 		protected override void Dispose(bool disposing)
 		{
 			try
@@ -70,7 +70,7 @@ namespace ICSharpCode.SharpZipLib.GZip
 			}
 		}
 
-		// Token: 0x06003665 RID: 13925 RVA: 0x00027ACB File Offset: 0x00025CCB
+		// Token: 0x06002DEF RID: 11759 RVA: 0x0015069C File Offset: 0x0014E89C
 		public override void Flush()
 		{
 			if (this.state_ == GZipOutputStream.OutputState.Header)
@@ -80,7 +80,7 @@ namespace ICSharpCode.SharpZipLib.GZip
 			base.Flush();
 		}
 
-		// Token: 0x06003666 RID: 13926 RVA: 0x0019B84C File Offset: 0x00199A4C
+		// Token: 0x06002DF0 RID: 11760 RVA: 0x001506B4 File Offset: 0x0014E8B4
 		public override void Finish()
 		{
 			if (this.state_ == GZipOutputStream.OutputState.Header)
@@ -108,7 +108,7 @@ namespace ICSharpCode.SharpZipLib.GZip
 			}
 		}
 
-		// Token: 0x06003667 RID: 13927 RVA: 0x0019B8EC File Offset: 0x00199AEC
+		// Token: 0x06002DF1 RID: 11761 RVA: 0x00150754 File Offset: 0x0014E954
 		private void WriteHeader()
 		{
 			if (this.state_ == GZipOutputStream.OutputState.Header)
@@ -137,22 +137,22 @@ namespace ICSharpCode.SharpZipLib.GZip
 			}
 		}
 
-		// Token: 0x040030ED RID: 12525
+		// Token: 0x040028B3 RID: 10419
 		protected Crc32 crc = new Crc32();
 
-		// Token: 0x040030EE RID: 12526
+		// Token: 0x040028B4 RID: 10420
 		private GZipOutputStream.OutputState state_;
 
-		// Token: 0x02000819 RID: 2073
+		// Token: 0x02001492 RID: 5266
 		private enum OutputState
 		{
-			// Token: 0x040030F0 RID: 12528
+			// Token: 0x04006C7D RID: 27773
 			Header,
-			// Token: 0x040030F1 RID: 12529
+			// Token: 0x04006C7E RID: 27774
 			Footer,
-			// Token: 0x040030F2 RID: 12530
+			// Token: 0x04006C7F RID: 27775
 			Finished,
-			// Token: 0x040030F3 RID: 12531
+			// Token: 0x04006C80 RID: 27776
 			Closed
 		}
 	}

@@ -4,18 +4,18 @@ using MoonSharp.Interpreter.Compatibility;
 
 namespace MoonSharp.Interpreter.Interop
 {
-	// Token: 0x020010FC RID: 4348
+	// Token: 0x02000D18 RID: 3352
 	public class CompositeUserDataDescriptor : IUserDataDescriptor
 	{
-		// Token: 0x060068E3 RID: 26851 RVA: 0x00047E52 File Offset: 0x00046052
+		// Token: 0x06005DB4 RID: 23988 RVA: 0x00263BC3 File Offset: 0x00261DC3
 		public CompositeUserDataDescriptor(List<IUserDataDescriptor> descriptors, Type type)
 		{
 			this.m_Descriptors = descriptors;
 			this.m_Type = type;
 		}
 
-		// Token: 0x17000974 RID: 2420
-		// (get) Token: 0x060068E4 RID: 26852 RVA: 0x00047E68 File Offset: 0x00046068
+		// Token: 0x17000717 RID: 1815
+		// (get) Token: 0x06005DB5 RID: 23989 RVA: 0x00263BD9 File Offset: 0x00261DD9
 		public IList<IUserDataDescriptor> Descriptors
 		{
 			get
@@ -24,8 +24,8 @@ namespace MoonSharp.Interpreter.Interop
 			}
 		}
 
-		// Token: 0x17000975 RID: 2421
-		// (get) Token: 0x060068E5 RID: 26853 RVA: 0x00047E70 File Offset: 0x00046070
+		// Token: 0x17000718 RID: 1816
+		// (get) Token: 0x06005DB6 RID: 23990 RVA: 0x00263BE1 File Offset: 0x00261DE1
 		public string Name
 		{
 			get
@@ -34,8 +34,8 @@ namespace MoonSharp.Interpreter.Interop
 			}
 		}
 
-		// Token: 0x17000976 RID: 2422
-		// (get) Token: 0x060068E6 RID: 26854 RVA: 0x00047E87 File Offset: 0x00046087
+		// Token: 0x17000719 RID: 1817
+		// (get) Token: 0x06005DB7 RID: 23991 RVA: 0x00263BF8 File Offset: 0x00261DF8
 		public Type Type
 		{
 			get
@@ -44,7 +44,7 @@ namespace MoonSharp.Interpreter.Interop
 			}
 		}
 
-		// Token: 0x060068E7 RID: 26855 RVA: 0x0028C788 File Offset: 0x0028A988
+		// Token: 0x06005DB8 RID: 23992 RVA: 0x00263C00 File Offset: 0x00261E00
 		public DynValue Index(Script script, object obj, DynValue index, bool isNameIndex)
 		{
 			foreach (IUserDataDescriptor userDataDescriptor in this.m_Descriptors)
@@ -58,7 +58,7 @@ namespace MoonSharp.Interpreter.Interop
 			return null;
 		}
 
-		// Token: 0x060068E8 RID: 26856 RVA: 0x0028C7E8 File Offset: 0x0028A9E8
+		// Token: 0x06005DB9 RID: 23993 RVA: 0x00263C60 File Offset: 0x00261E60
 		public bool SetIndex(Script script, object obj, DynValue index, DynValue value, bool isNameIndex)
 		{
 			using (List<IUserDataDescriptor>.Enumerator enumerator = this.m_Descriptors.GetEnumerator())
@@ -74,7 +74,7 @@ namespace MoonSharp.Interpreter.Interop
 			return false;
 		}
 
-		// Token: 0x060068E9 RID: 26857 RVA: 0x00047E8F File Offset: 0x0004608F
+		// Token: 0x06005DBA RID: 23994 RVA: 0x00263CC0 File Offset: 0x00261EC0
 		public string AsString(object obj)
 		{
 			if (obj == null)
@@ -84,7 +84,7 @@ namespace MoonSharp.Interpreter.Interop
 			return obj.ToString();
 		}
 
-		// Token: 0x060068EA RID: 26858 RVA: 0x0028C848 File Offset: 0x0028AA48
+		// Token: 0x06005DBB RID: 23995 RVA: 0x00263CD0 File Offset: 0x00261ED0
 		public DynValue MetaIndex(Script script, object obj, string metaname)
 		{
 			foreach (IUserDataDescriptor userDataDescriptor in this.m_Descriptors)
@@ -98,16 +98,16 @@ namespace MoonSharp.Interpreter.Interop
 			return null;
 		}
 
-		// Token: 0x060068EB RID: 26859 RVA: 0x00046989 File Offset: 0x00044B89
+		// Token: 0x06005DBC RID: 23996 RVA: 0x00259E25 File Offset: 0x00258025
 		public bool IsTypeCompatible(Type type, object obj)
 		{
 			return Framework.Do.IsInstanceOfType(type, obj);
 		}
 
-		// Token: 0x0400601F RID: 24607
+		// Token: 0x04005408 RID: 21512
 		private List<IUserDataDescriptor> m_Descriptors;
 
-		// Token: 0x04006020 RID: 24608
+		// Token: 0x04005409 RID: 21513
 		private Type m_Type;
 	}
 }

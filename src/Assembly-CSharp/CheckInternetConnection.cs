@@ -2,11 +2,11 @@
 using System.Collections;
 using UnityEngine;
 
-// Token: 0x0200067C RID: 1660
+// Token: 0x020004A0 RID: 1184
 public class CheckInternetConnection : MonoBehaviour
 {
-	// Token: 0x17000300 RID: 768
-	// (get) Token: 0x06002981 RID: 10625 RVA: 0x000203DE File Offset: 0x0001E5DE
+	// Token: 0x170002A1 RID: 673
+	// (get) Token: 0x0600255D RID: 9565 RVA: 0x00102F71 File Offset: 0x00101171
 	public static CheckInternetConnection Instance
 	{
 		get
@@ -19,7 +19,7 @@ public class CheckInternetConnection : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06002982 RID: 10626 RVA: 0x001429BC File Offset: 0x00140BBC
+	// Token: 0x0600255E RID: 9566 RVA: 0x00102FA0 File Offset: 0x001011A0
 	private void Awake()
 	{
 		CheckInternetConnection.instance = this;
@@ -31,13 +31,13 @@ public class CheckInternetConnection : MonoBehaviour
 		this.loadingHolder = base.transform.Find("AnimationHolderGlavni/Loading Buffer HOLDER");
 	}
 
-	// Token: 0x06002983 RID: 10627 RVA: 0x0002040B File Offset: 0x0001E60B
+	// Token: 0x0600255F RID: 9567 RVA: 0x0010304B File Offset: 0x0010124B
 	private void Start()
 	{
 		this.refreshText();
 	}
 
-	// Token: 0x06002984 RID: 10628 RVA: 0x00020413 File Offset: 0x0001E613
+	// Token: 0x06002560 RID: 9568 RVA: 0x00103053 File Offset: 0x00101253
 	public IEnumerator checkInternetConnectionAndOpenPopup()
 	{
 		WWW www = new WWW(this.url);
@@ -73,7 +73,7 @@ public class CheckInternetConnection : MonoBehaviour
 		yield break;
 	}
 
-	// Token: 0x06002985 RID: 10629 RVA: 0x00020422 File Offset: 0x0001E622
+	// Token: 0x06002561 RID: 9569 RVA: 0x00103062 File Offset: 0x00101262
 	public IEnumerator checkInternetConnection()
 	{
 		WWW www = new WWW(this.url);
@@ -91,7 +91,7 @@ public class CheckInternetConnection : MonoBehaviour
 		yield break;
 	}
 
-	// Token: 0x06002986 RID: 10630 RVA: 0x00020431 File Offset: 0x0001E631
+	// Token: 0x06002562 RID: 9570 RVA: 0x00103071 File Offset: 0x00101271
 	public void openPopup()
 	{
 		if (!this.otvorenPopup)
@@ -102,7 +102,7 @@ public class CheckInternetConnection : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06002987 RID: 10631 RVA: 0x00142A68 File Offset: 0x00140C68
+	// Token: 0x06002563 RID: 9571 RVA: 0x001030A4 File Offset: 0x001012A4
 	public void NoVideosAvailable_OpenPopup()
 	{
 		if (!this.otvorenPopup)
@@ -116,12 +116,12 @@ public class CheckInternetConnection : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06002988 RID: 10632 RVA: 0x00020463 File Offset: 0x0001E663
+	// Token: 0x06002564 RID: 9572 RVA: 0x00103121 File Offset: 0x00101321
 	private void OnApplicationPause(bool pauseStatus)
 	{
 	}
 
-	// Token: 0x06002989 RID: 10633 RVA: 0x00142AE8 File Offset: 0x00140CE8
+	// Token: 0x06002565 RID: 9573 RVA: 0x00103128 File Offset: 0x00101328
 	public void refreshText()
 	{
 		this.noInternet.text = LanguageManager.NoInternet;
@@ -132,13 +132,13 @@ public class CheckInternetConnection : MonoBehaviour
 		this.checkOK.GetComponent<TextMeshEffects>().RefreshTextOutline(true, true, true);
 	}
 
-	// Token: 0x0600298A RID: 10634 RVA: 0x00020467 File Offset: 0x0001E667
+	// Token: 0x06002566 RID: 9574 RVA: 0x0010319E File Offset: 0x0010139E
 	public void closePopupAndCheck()
 	{
 		base.StartCoroutine(this.checkInternetConnection());
 	}
 
-	// Token: 0x0600298B RID: 10635 RVA: 0x00020476 File Offset: 0x0001E676
+	// Token: 0x06002567 RID: 9575 RVA: 0x001031AD File Offset: 0x001013AD
 	public IEnumerator ClosePopup()
 	{
 		this.loadingHolder.gameObject.SetActive(false);
@@ -152,38 +152,38 @@ public class CheckInternetConnection : MonoBehaviour
 		yield break;
 	}
 
-	// Token: 0x0400232F RID: 9007
+	// Token: 0x04001E18 RID: 7704
 	private static CheckInternetConnection instance;
 
-	// Token: 0x04002330 RID: 9008
+	// Token: 0x04001E19 RID: 7705
 	private TextMesh noInternet;
 
-	// Token: 0x04002331 RID: 9009
+	// Token: 0x04001E1A RID: 7706
 	private TextMesh checkConnection;
 
-	// Token: 0x04002332 RID: 9010
+	// Token: 0x04001E1B RID: 7707
 	private TextMesh checkOK;
 
-	// Token: 0x04002333 RID: 9011
+	// Token: 0x04001E1C RID: 7708
 	private Animator loading;
 
-	// Token: 0x04002334 RID: 9012
+	// Token: 0x04001E1D RID: 7709
 	private Transform loadingHolder;
 
-	// Token: 0x04002335 RID: 9013
+	// Token: 0x04001E1E RID: 7710
 	private Transform pomCollider;
 
-	// Token: 0x04002336 RID: 9014
+	// Token: 0x04001E1F RID: 7711
 	private bool otvorenPopup;
 
-	// Token: 0x04002337 RID: 9015
+	// Token: 0x04001E20 RID: 7712
 	private string url = "https://www.google.com";
 
-	// Token: 0x04002338 RID: 9016
+	// Token: 0x04001E21 RID: 7713
 	[HideInInspector]
 	public bool internetOK = true;
 
-	// Token: 0x04002339 RID: 9017
+	// Token: 0x04001E22 RID: 7714
 	[HideInInspector]
 	public bool checkDone;
 }

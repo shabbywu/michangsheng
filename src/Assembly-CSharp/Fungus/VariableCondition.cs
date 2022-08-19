@@ -4,10 +4,10 @@ using UnityEngine;
 
 namespace Fungus
 {
-	// Token: 0x020012AB RID: 4779
+	// Token: 0x02000E58 RID: 3672
 	public abstract class VariableCondition : Condition, INoCommand
 	{
-		// Token: 0x060073B3 RID: 29619 RVA: 0x002ABA70 File Offset: 0x002A9C70
+		// Token: 0x06006725 RID: 26405 RVA: 0x00288EEC File Offset: 0x002870EC
 		protected override bool EvaluateCondition()
 		{
 			if (this.variable == null)
@@ -83,14 +83,14 @@ namespace Fungus
 			return result;
 		}
 
-		// Token: 0x060073B4 RID: 29620 RVA: 0x0004EF81 File Offset: 0x0004D181
+		// Token: 0x06006726 RID: 26406 RVA: 0x0028929D File Offset: 0x0028749D
 		protected override bool HasNeededProperties()
 		{
 			return this.variable != null;
 		}
 
-		// Token: 0x17000A86 RID: 2694
-		// (get) Token: 0x060073B5 RID: 29621 RVA: 0x0004EF8F File Offset: 0x0004D18F
+		// Token: 0x1700081F RID: 2079
+		// (get) Token: 0x06006727 RID: 26407 RVA: 0x002892AB File Offset: 0x002874AB
 		public virtual CompareOperator _CompareOperator
 		{
 			get
@@ -99,7 +99,7 @@ namespace Fungus
 			}
 		}
 
-		// Token: 0x060073B6 RID: 29622 RVA: 0x002ABE24 File Offset: 0x002AA024
+		// Token: 0x06006728 RID: 26408 RVA: 0x002892B4 File Offset: 0x002874B4
 		public override string GetSummary()
 		{
 			if (this.variable == null)
@@ -176,7 +176,7 @@ namespace Fungus
 			return text;
 		}
 
-		// Token: 0x060073B7 RID: 29623 RVA: 0x002AC104 File Offset: 0x002AA304
+		// Token: 0x06006729 RID: 26409 RVA: 0x00289594 File Offset: 0x00287794
 		public override bool HasReference(Variable variable)
 		{
 			bool flag = variable == this.variable || base.HasReference(variable);
@@ -248,18 +248,18 @@ namespace Fungus
 			return flag;
 		}
 
-		// Token: 0x060073B8 RID: 29624 RVA: 0x0004C5A3 File Offset: 0x0004A7A3
+		// Token: 0x0600672A RID: 26410 RVA: 0x0027D1B6 File Offset: 0x0027B3B6
 		public override Color GetButtonColor()
 		{
 			return new Color32(253, 253, 150, byte.MaxValue);
 		}
 
-		// Token: 0x0400658A RID: 25994
+		// Token: 0x04005833 RID: 22579
 		[Tooltip("The type of comparison to be performed")]
 		[SerializeField]
 		protected CompareOperator compareOperator;
 
-		// Token: 0x0400658B RID: 25995
+		// Token: 0x04005834 RID: 22580
 		[Tooltip("Variable to use in expression")]
 		[VariableProperty(new Type[]
 		{
@@ -283,87 +283,87 @@ namespace Fungus
 		[SerializeField]
 		protected Variable variable;
 
-		// Token: 0x0400658C RID: 25996
+		// Token: 0x04005835 RID: 22581
 		[Tooltip("Boolean value to compare against")]
 		[SerializeField]
 		protected BooleanData booleanData;
 
-		// Token: 0x0400658D RID: 25997
+		// Token: 0x04005836 RID: 22582
 		[Tooltip("Integer value to compare against")]
 		[SerializeField]
 		protected IntegerData integerData;
 
-		// Token: 0x0400658E RID: 25998
+		// Token: 0x04005837 RID: 22583
 		[Tooltip("Float value to compare against")]
 		[SerializeField]
 		protected FloatData floatData;
 
-		// Token: 0x0400658F RID: 25999
+		// Token: 0x04005838 RID: 22584
 		[Tooltip("String value to compare against")]
 		[SerializeField]
 		protected StringDataMulti stringData;
 
-		// Token: 0x04006590 RID: 26000
+		// Token: 0x04005839 RID: 22585
 		[Tooltip("Animator value to compare against")]
 		[SerializeField]
 		protected AnimatorData animatorData;
 
-		// Token: 0x04006591 RID: 26001
+		// Token: 0x0400583A RID: 22586
 		[Tooltip("AudioSource value to compare against")]
 		[SerializeField]
 		protected AudioSourceData audioSourceData;
 
-		// Token: 0x04006592 RID: 26002
+		// Token: 0x0400583B RID: 22587
 		[Tooltip("Color value to compare against")]
 		[SerializeField]
 		protected ColorData colorData;
 
-		// Token: 0x04006593 RID: 26003
+		// Token: 0x0400583C RID: 22588
 		[Tooltip("GameObject value to compare against")]
 		[SerializeField]
 		protected GameObjectData gameObjectData;
 
-		// Token: 0x04006594 RID: 26004
+		// Token: 0x0400583D RID: 22589
 		[Tooltip("Material value to compare against")]
 		[SerializeField]
 		protected MaterialData materialData;
 
-		// Token: 0x04006595 RID: 26005
+		// Token: 0x0400583E RID: 22590
 		[Tooltip("Object value to compare against")]
 		[SerializeField]
 		protected ObjectData objectData;
 
-		// Token: 0x04006596 RID: 26006
+		// Token: 0x0400583F RID: 22591
 		[Tooltip("Rigidbody2D value to compare against")]
 		[SerializeField]
 		protected Rigidbody2DData rigidbody2DData;
 
-		// Token: 0x04006597 RID: 26007
+		// Token: 0x04005840 RID: 22592
 		[Tooltip("Sprite value to compare against")]
 		[SerializeField]
 		protected SpriteData spriteData;
 
-		// Token: 0x04006598 RID: 26008
+		// Token: 0x04005841 RID: 22593
 		[Tooltip("Texture value to compare against")]
 		[SerializeField]
 		protected TextureData textureData;
 
-		// Token: 0x04006599 RID: 26009
+		// Token: 0x04005842 RID: 22594
 		[Tooltip("Transform value to compare against")]
 		[SerializeField]
 		protected TransformData transformData;
 
-		// Token: 0x0400659A RID: 26010
+		// Token: 0x04005843 RID: 22595
 		[Tooltip("Vector2 value to compare against")]
 		[SerializeField]
 		protected Vector2Data vector2Data;
 
-		// Token: 0x0400659B RID: 26011
+		// Token: 0x04005844 RID: 22596
 		[Tooltip("Vector3 value to compare against")]
 		[SerializeField]
 		protected Vector3Data vector3Data;
 
-		// Token: 0x0400659C RID: 26012
+		// Token: 0x04005845 RID: 22597
 		public static readonly Dictionary<Type, CompareOperator[]> operatorsByVariableType = new Dictionary<Type, CompareOperator[]>
 		{
 			{

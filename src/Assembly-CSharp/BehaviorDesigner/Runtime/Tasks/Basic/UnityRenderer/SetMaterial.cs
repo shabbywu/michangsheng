@@ -3,12 +3,12 @@ using UnityEngine;
 
 namespace BehaviorDesigner.Runtime.Tasks.Basic.UnityRenderer
 {
-	// Token: 0x0200156B RID: 5483
+	// Token: 0x020010B1 RID: 4273
 	[TaskCategory("Basic/Renderer")]
 	[TaskDescription("Sets the material on the Renderer.")]
 	public class SetMaterial : Action
 	{
-		// Token: 0x060081AA RID: 33194 RVA: 0x002CC6AC File Offset: 0x002CA8AC
+		// Token: 0x060073B0 RID: 29616 RVA: 0x002B0838 File Offset: 0x002AEA38
 		public override void OnStart()
 		{
 			GameObject defaultGameObject = base.GetDefaultGameObject(this.targetGameObject.Value);
@@ -19,7 +19,7 @@ namespace BehaviorDesigner.Runtime.Tasks.Basic.UnityRenderer
 			}
 		}
 
-		// Token: 0x060081AB RID: 33195 RVA: 0x00058AE8 File Offset: 0x00056CE8
+		// Token: 0x060073B1 RID: 29617 RVA: 0x002B0878 File Offset: 0x002AEA78
 		public override TaskStatus OnUpdate()
 		{
 			if (this.renderer == null)
@@ -31,25 +31,25 @@ namespace BehaviorDesigner.Runtime.Tasks.Basic.UnityRenderer
 			return 2;
 		}
 
-		// Token: 0x060081AC RID: 33196 RVA: 0x00058B1B File Offset: 0x00056D1B
+		// Token: 0x060073B2 RID: 29618 RVA: 0x002B08AB File Offset: 0x002AEAAB
 		public override void OnReset()
 		{
 			this.targetGameObject = null;
 			this.material = null;
 		}
 
-		// Token: 0x04006E60 RID: 28256
+		// Token: 0x04005F60 RID: 24416
 		[Tooltip("The GameObject that the task operates on. If null the task GameObject is used.")]
 		public SharedGameObject targetGameObject;
 
-		// Token: 0x04006E61 RID: 28257
+		// Token: 0x04005F61 RID: 24417
 		[Tooltip("The material to set")]
 		public SharedMaterial material;
 
-		// Token: 0x04006E62 RID: 28258
+		// Token: 0x04005F62 RID: 24418
 		private Renderer renderer;
 
-		// Token: 0x04006E63 RID: 28259
+		// Token: 0x04005F63 RID: 24419
 		private GameObject prevGameObject;
 	}
 }

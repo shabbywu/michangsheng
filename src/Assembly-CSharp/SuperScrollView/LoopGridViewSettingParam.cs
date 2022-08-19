@@ -2,22 +2,22 @@
 
 namespace SuperScrollView
 {
-	// Token: 0x020009F3 RID: 2547
+	// Token: 0x020006C8 RID: 1736
 	public class LoopGridViewSettingParam
 	{
-		// Token: 0x040039D5 RID: 14805
+		// Token: 0x04002FD0 RID: 12240
 		public object mItemSize;
 
-		// Token: 0x040039D6 RID: 14806
+		// Token: 0x04002FD1 RID: 12241
 		public object mPadding;
 
-		// Token: 0x040039D7 RID: 14807
+		// Token: 0x04002FD2 RID: 12242
 		public object mItemPadding;
 
-		// Token: 0x040039D8 RID: 14808
+		// Token: 0x04002FD3 RID: 12243
 		public object mGridFixedType;
 
-		// Token: 0x040039D9 RID: 14809
+		// Token: 0x04002FD4 RID: 12244
 		public object mFixedRowOrColumnCount;
 	}
 }

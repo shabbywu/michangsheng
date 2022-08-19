@@ -4,10 +4,10 @@ using UnityEngine;
 
 namespace GUIPackage
 {
-	// Token: 0x02000D8C RID: 3468
+	// Token: 0x02000A62 RID: 2658
 	public class KeyCellMapPassSkill : MonoBehaviour
 	{
-		// Token: 0x060053A5 RID: 21413 RVA: 0x0022DF30 File Offset: 0x0022C130
+		// Token: 0x06004AA0 RID: 19104 RVA: 0x001FBBC8 File Offset: 0x001F9DC8
 		private void Start()
 		{
 			this.Icon = base.transform.Find("Icon").gameObject;
@@ -16,12 +16,12 @@ namespace GUIPackage
 			base.Invoke("loadKey", 0.5f);
 		}
 
-		// Token: 0x060053A6 RID: 21414 RVA: 0x000042DD File Offset: 0x000024DD
+		// Token: 0x06004AA1 RID: 19105 RVA: 0x00004095 File Offset: 0x00002295
 		public void loadKey()
 		{
 		}
 
-		// Token: 0x060053A7 RID: 21415 RVA: 0x0022DF8C File Offset: 0x0022C18C
+		// Token: 0x06004AA2 RID: 19106 RVA: 0x001FBC24 File Offset: 0x001F9E24
 		private void Update()
 		{
 			this.Show_Date();
@@ -39,7 +39,7 @@ namespace GUIPackage
 			this.KeyName.SetActive(false);
 		}
 
-		// Token: 0x060053A8 RID: 21416 RVA: 0x0022E018 File Offset: 0x0022C218
+		// Token: 0x06004AA3 RID: 19107 RVA: 0x001FBCB0 File Offset: 0x001F9EB0
 		private void Icon_CoolDown()
 		{
 			if (this.keySkill.skill_ID == -1)
@@ -55,12 +55,12 @@ namespace GUIPackage
 			this.Icon.GetComponentInChildren<UISprite>().fillAmount = 0f;
 		}
 
-		// Token: 0x060053A9 RID: 21417 RVA: 0x000042DD File Offset: 0x000024DD
+		// Token: 0x06004AA4 RID: 19108 RVA: 0x00004095 File Offset: 0x00002295
 		private void UesKey()
 		{
 		}
 
-		// Token: 0x060053AA RID: 21418 RVA: 0x0022E098 File Offset: 0x0022C298
+		// Token: 0x06004AA5 RID: 19109 RVA: 0x001FBD30 File Offset: 0x001F9F30
 		private void Show_Date()
 		{
 			if (this.keyItem.itemIcon != null)
@@ -87,13 +87,13 @@ namespace GUIPackage
 			this.Num.GetComponent<UILabel>().text = null;
 		}
 
-		// Token: 0x060053AB RID: 21419 RVA: 0x0003BCB6 File Offset: 0x00039EB6
+		// Token: 0x06004AA6 RID: 19110 RVA: 0x001FBE16 File Offset: 0x001FA016
 		private void OnHover(bool isOver)
 		{
 			this.PCOnHover(isOver);
 		}
 
-		// Token: 0x060053AC RID: 21420 RVA: 0x0022E180 File Offset: 0x0022C380
+		// Token: 0x06004AA7 RID: 19111 RVA: 0x001FBE20 File Offset: 0x001FA020
 		public void PCOnHover(bool isOver)
 		{
 			if (this.keySkill.skill_ID != -1)
@@ -114,7 +114,7 @@ namespace GUIPackage
 			}
 		}
 
-		// Token: 0x060053AD RID: 21421 RVA: 0x0003BCBF File Offset: 0x00039EBF
+		// Token: 0x06004AA8 RID: 19112 RVA: 0x001FBE8C File Offset: 0x001FA08C
 		private void OnDrop(GameObject obj)
 		{
 			if (Input.GetMouseButtonUp(0) && this.CanClick && Singleton.skillUI2.draggingSkill)
@@ -123,7 +123,7 @@ namespace GUIPackage
 			}
 		}
 
-		// Token: 0x060053AE RID: 21422 RVA: 0x0022E1EC File Offset: 0x0022C3EC
+		// Token: 0x06004AA9 RID: 19113 RVA: 0x001FBEB0 File Offset: 0x001FA0B0
 		private void chengeSkill()
 		{
 			if (Singleton.skillUI2.draggingSkill)
@@ -171,7 +171,7 @@ namespace GUIPackage
 			}
 		}
 
-		// Token: 0x060053AF RID: 21423 RVA: 0x0003BCE3 File Offset: 0x00039EE3
+		// Token: 0x06004AAA RID: 19114 RVA: 0x001FC0B6 File Offset: 0x001FA2B6
 		private void OnPress()
 		{
 			if (!this.CanClick)
@@ -181,7 +181,7 @@ namespace GUIPackage
 			this.PCOnPress();
 		}
 
-		// Token: 0x060053B0 RID: 21424 RVA: 0x0003BCF4 File Offset: 0x00039EF4
+		// Token: 0x06004AAB RID: 19115 RVA: 0x001FC0C7 File Offset: 0x001FA2C7
 		public void MobilePress()
 		{
 			this.PCOnHover(true);
@@ -194,7 +194,7 @@ namespace GUIPackage
 			toolTipsBackGround.use.gameObject.SetActive(false);
 		}
 
-		// Token: 0x060053B1 RID: 21425 RVA: 0x0003BD2E File Offset: 0x00039F2E
+		// Token: 0x06004AAC RID: 19116 RVA: 0x001FC101 File Offset: 0x001FA301
 		public void PCOnPress()
 		{
 			if (Input.GetMouseButton(0))
@@ -203,37 +203,37 @@ namespace GUIPackage
 			}
 		}
 
-		// Token: 0x0400535C RID: 21340
+		// Token: 0x040049C9 RID: 18889
 		public GameObject Icon;
 
-		// Token: 0x0400535D RID: 21341
+		// Token: 0x040049CA RID: 18890
 		public GameObject Num;
 
-		// Token: 0x0400535E RID: 21342
+		// Token: 0x040049CB RID: 18891
 		public item keyItem;
 
-		// Token: 0x0400535F RID: 21343
+		// Token: 0x040049CC RID: 18892
 		public Skill keySkill;
 
-		// Token: 0x04005360 RID: 21344
+		// Token: 0x040049CD RID: 18893
 		public GameObject PingZhi;
 
-		// Token: 0x04005361 RID: 21345
+		// Token: 0x040049CE RID: 18894
 		public int KeyItemID;
 
-		// Token: 0x04005362 RID: 21346
+		// Token: 0x040049CF RID: 18895
 		public GameObject KeyName;
 
-		// Token: 0x04005363 RID: 21347
+		// Token: 0x040049D0 RID: 18896
 		public UILabel NameLabel;
 
-		// Token: 0x04005364 RID: 21348
+		// Token: 0x040049D1 RID: 18897
 		public bool CanClick = true;
 
-		// Token: 0x04005365 RID: 21349
+		// Token: 0x040049D2 RID: 18898
 		public bool IsDunsu;
 
-		// Token: 0x04005366 RID: 21350
+		// Token: 0x040049D3 RID: 18899
 		public bool showName;
 	}
 }

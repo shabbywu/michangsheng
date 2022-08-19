@@ -3,10 +3,10 @@ using System.Collections.Generic;
 
 namespace JSONClass
 {
-	// Token: 0x02000C22 RID: 3106
+	// Token: 0x02000894 RID: 2196
 	public class NPCActionDate : IJSONClass
 	{
-		// Token: 0x06004BF1 RID: 19441 RVA: 0x00200DEC File Offset: 0x001FEFEC
+		// Token: 0x06004063 RID: 16483 RVA: 0x001B79E0 File Offset: 0x001B5BE0
 		public static void InitDataDict()
 		{
 			foreach (JSONObject jsonobject in jsonData.instance.NPCActionDate.list)
@@ -45,42 +45,42 @@ namespace JSONClass
 			}
 		}
 
-		// Token: 0x06004BF2 RID: 19442 RVA: 0x000042DD File Offset: 0x000024DD
+		// Token: 0x06004064 RID: 16484 RVA: 0x00004095 File Offset: 0x00002295
 		private static void OnInitFinish()
 		{
 		}
 
-		// Token: 0x0400491E RID: 18718
+		// Token: 0x04003DC5 RID: 15813
 		public static Dictionary<int, NPCActionDate> DataDict = new Dictionary<int, NPCActionDate>();
 
-		// Token: 0x0400491F RID: 18719
+		// Token: 0x04003DC6 RID: 15814
 		public static List<NPCActionDate> DataList = new List<NPCActionDate>();
 
-		// Token: 0x04004920 RID: 18720
+		// Token: 0x04003DC7 RID: 15815
 		public static Action OnInitFinishAction = new Action(NPCActionDate.OnInitFinish);
 
-		// Token: 0x04004921 RID: 18721
+		// Token: 0x04003DC8 RID: 15816
 		public int id;
 
-		// Token: 0x04004922 RID: 18722
+		// Token: 0x04003DC9 RID: 15817
 		public int QuanZhong;
 
-		// Token: 0x04004923 RID: 18723
+		// Token: 0x04003DCA RID: 15818
 		public int PanDing;
 
-		// Token: 0x04004924 RID: 18724
+		// Token: 0x04003DCB RID: 15819
 		public int AllMap;
 
-		// Token: 0x04004925 RID: 18725
+		// Token: 0x04003DCC RID: 15820
 		public int FuBen;
 
-		// Token: 0x04004926 RID: 18726
+		// Token: 0x04003DCD RID: 15821
 		public int IsTask;
 
-		// Token: 0x04004927 RID: 18727
+		// Token: 0x04003DCE RID: 15822
 		public string ThreeSence;
 
-		// Token: 0x04004928 RID: 18728
+		// Token: 0x04003DCF RID: 15823
 		public string GuanLianTalk;
 	}
 }

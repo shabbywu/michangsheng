@@ -1,10 +1,10 @@
 ﻿using System;
 using UnityEngine;
 
-// Token: 0x02000024 RID: 36
+// Token: 0x02000020 RID: 32
 public class LTGUI
 {
-	// Token: 0x06000170 RID: 368 RVA: 0x00005234 File Offset: 0x00003434
+	// Token: 0x0600016A RID: 362 RVA: 0x000088CE File Offset: 0x00006ACE
 	public static void init()
 	{
 		if (LTGUI.levels == null)
@@ -14,7 +14,7 @@ public class LTGUI
 		}
 	}
 
-	// Token: 0x06000171 RID: 369 RVA: 0x00062098 File Offset: 0x00060298
+	// Token: 0x0600016B RID: 363 RVA: 0x000088FC File Offset: 0x00006AFC
 	public static void initRectCheck()
 	{
 		if (LTGUI.buttons == null)
@@ -29,7 +29,7 @@ public class LTGUI
 		}
 	}
 
-	// Token: 0x06000172 RID: 370 RVA: 0x000620F4 File Offset: 0x000602F4
+	// Token: 0x0600016C RID: 364 RVA: 0x00008958 File Offset: 0x00006B58
 	public static void reset()
 	{
 		if (LTGUI.isGUIEnabled)
@@ -46,7 +46,7 @@ public class LTGUI
 		}
 	}
 
-	// Token: 0x06000173 RID: 371 RVA: 0x00062144 File Offset: 0x00060344
+	// Token: 0x0600016D RID: 365 RVA: 0x000089A8 File Offset: 0x00006BA8
 	public static void update(int updateLevel)
 	{
 		if (LTGUI.isGUIEnabled)
@@ -104,7 +104,7 @@ public class LTGUI
 		}
 	}
 
-	// Token: 0x06000174 RID: 372 RVA: 0x00062554 File Offset: 0x00060754
+	// Token: 0x0600016E RID: 366 RVA: 0x00008DB8 File Offset: 0x00006FB8
 	public static bool checkOnScreen(Rect rect)
 	{
 		bool flag = rect.x + rect.width < 0f;
@@ -114,7 +114,7 @@ public class LTGUI
 		return !flag && !flag2 && !flag3 && !flag4;
 	}
 
-	// Token: 0x06000175 RID: 373 RVA: 0x000625B8 File Offset: 0x000607B8
+	// Token: 0x0600016F RID: 367 RVA: 0x00008E1C File Offset: 0x0000701C
 	public static void destroy(int id)
 	{
 		int num = id & 65535;
@@ -125,7 +125,7 @@ public class LTGUI
 		}
 	}
 
-	// Token: 0x06000176 RID: 374 RVA: 0x00062604 File Offset: 0x00060804
+	// Token: 0x06000170 RID: 368 RVA: 0x00008E68 File Offset: 0x00007068
 	public static void destroyAll(int depth)
 	{
 		int num = depth * LTGUI.RECTS_PER_LEVEL + LTGUI.RECTS_PER_LEVEL;
@@ -137,13 +137,13 @@ public class LTGUI
 		}
 	}
 
-	// Token: 0x06000177 RID: 375 RVA: 0x00005261 File Offset: 0x00003461
+	// Token: 0x06000171 RID: 369 RVA: 0x00008EA4 File Offset: 0x000070A4
 	public static LTRect label(Rect rect, string label, int depth)
 	{
 		return LTGUI.label(new LTRect(rect), label, depth);
 	}
 
-	// Token: 0x06000178 RID: 376 RVA: 0x00005270 File Offset: 0x00003470
+	// Token: 0x06000172 RID: 370 RVA: 0x00008EB3 File Offset: 0x000070B3
 	public static LTRect label(LTRect rect, string label, int depth)
 	{
 		rect.type = LTGUI.Element_Type.Label;
@@ -151,13 +151,13 @@ public class LTGUI
 		return LTGUI.element(rect, depth);
 	}
 
-	// Token: 0x06000179 RID: 377 RVA: 0x00005287 File Offset: 0x00003487
+	// Token: 0x06000173 RID: 371 RVA: 0x00008ECA File Offset: 0x000070CA
 	public static LTRect texture(Rect rect, Texture texture, int depth)
 	{
 		return LTGUI.texture(new LTRect(rect), texture, depth);
 	}
 
-	// Token: 0x0600017A RID: 378 RVA: 0x00005296 File Offset: 0x00003496
+	// Token: 0x06000174 RID: 372 RVA: 0x00008ED9 File Offset: 0x000070D9
 	public static LTRect texture(LTRect rect, Texture texture, int depth)
 	{
 		rect.type = LTGUI.Element_Type.Texture;
@@ -165,7 +165,7 @@ public class LTGUI
 		return LTGUI.element(rect, depth);
 	}
 
-	// Token: 0x0600017B RID: 379 RVA: 0x00062640 File Offset: 0x00060840
+	// Token: 0x06000175 RID: 373 RVA: 0x00008EF0 File Offset: 0x000070F0
 	public static LTRect element(LTRect rect, int depth)
 	{
 		LTGUI.isGUIEnabled = true;
@@ -207,7 +207,7 @@ public class LTGUI
 		return null;
 	}
 
-	// Token: 0x0600017C RID: 380 RVA: 0x00062774 File Offset: 0x00060974
+	// Token: 0x06000176 RID: 374 RVA: 0x00009024 File Offset: 0x00007224
 	public static bool hasNoOverlap(Rect rect, int depth)
 	{
 		LTGUI.initRectCheck();
@@ -237,7 +237,7 @@ public class LTGUI
 		return result;
 	}
 
-	// Token: 0x0600017D RID: 381 RVA: 0x00062810 File Offset: 0x00060A10
+	// Token: 0x06000177 RID: 375 RVA: 0x000090C0 File Offset: 0x000072C0
 	public static bool pressedWithinRect(Rect rect)
 	{
 		Vector2 vector = LTGUI.firstTouch();
@@ -249,14 +249,14 @@ public class LTGUI
 		return vector.x > rect.x && vector.x < rect.x + rect.width && num > rect.y && num < rect.y + rect.height;
 	}
 
-	// Token: 0x0600017E RID: 382 RVA: 0x00062884 File Offset: 0x00060A84
+	// Token: 0x06000178 RID: 376 RVA: 0x00009134 File Offset: 0x00007334
 	public static bool checkWithinRect(Vector2 vec2, Rect rect)
 	{
 		vec2.y = (float)Screen.height - vec2.y;
 		return vec2.x > rect.x && vec2.x < rect.x + rect.width && vec2.y > rect.y && vec2.y < rect.y + rect.height;
 	}
 
-	// Token: 0x0600017F RID: 383 RVA: 0x000052AD File Offset: 0x000034AD
+	// Token: 0x06000179 RID: 377 RVA: 0x000091A3 File Offset: 0x000073A3
 	public static Vector2 firstTouch()
 	{
 		if (Input.touchCount > 0)
@@ -270,48 +270,48 @@ public class LTGUI
 		return new Vector2(float.NegativeInfinity, float.NegativeInfinity);
 	}
 
-	// Token: 0x04000125 RID: 293
+	// Token: 0x04000116 RID: 278
 	public static int RECT_LEVELS = 5;
 
-	// Token: 0x04000126 RID: 294
+	// Token: 0x04000117 RID: 279
 	public static int RECTS_PER_LEVEL = 10;
 
-	// Token: 0x04000127 RID: 295
+	// Token: 0x04000118 RID: 280
 	public static int BUTTONS_MAX = 24;
 
-	// Token: 0x04000128 RID: 296
+	// Token: 0x04000119 RID: 281
 	private static LTRect[] levels;
 
-	// Token: 0x04000129 RID: 297
+	// Token: 0x0400011A RID: 282
 	private static int[] levelDepths;
 
-	// Token: 0x0400012A RID: 298
+	// Token: 0x0400011B RID: 283
 	private static Rect[] buttons;
 
-	// Token: 0x0400012B RID: 299
+	// Token: 0x0400011C RID: 284
 	private static int[] buttonLevels;
 
-	// Token: 0x0400012C RID: 300
+	// Token: 0x0400011D RID: 285
 	private static int[] buttonLastFrame;
 
-	// Token: 0x0400012D RID: 301
+	// Token: 0x0400011E RID: 286
 	private static LTRect r;
 
-	// Token: 0x0400012E RID: 302
+	// Token: 0x0400011F RID: 287
 	private static Color color = Color.white;
 
-	// Token: 0x0400012F RID: 303
+	// Token: 0x04000120 RID: 288
 	private static bool isGUIEnabled = false;
 
-	// Token: 0x04000130 RID: 304
+	// Token: 0x04000121 RID: 289
 	private static int global_counter = 0;
 
-	// Token: 0x02000025 RID: 37
+	// Token: 0x020011C8 RID: 4552
 	public enum Element_Type
 	{
-		// Token: 0x04000132 RID: 306
+		// Token: 0x0400635F RID: 25439
 		Texture,
-		// Token: 0x04000133 RID: 307
+		// Token: 0x04006360 RID: 25440
 		Label
 	}
 }

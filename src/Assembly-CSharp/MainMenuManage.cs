@@ -2,10 +2,10 @@
 using System.Collections;
 using UnityEngine;
 
-// Token: 0x020006BF RID: 1727
+// Token: 0x020004BD RID: 1213
 public class MainMenuManage : MonoBehaviour
 {
-	// Token: 0x06002B2A RID: 11050 RVA: 0x0014E8E0 File Offset: 0x0014CAE0
+	// Token: 0x06002658 RID: 9816 RVA: 0x0010A55C File Offset: 0x0010875C
 	private void Awake()
 	{
 		this.holderLogo = GameObject.Find("HolderLogoGlavni");
@@ -27,7 +27,7 @@ public class MainMenuManage : MonoBehaviour
 		this.dock_goreLevo.position = new Vector3(Camera.main.ViewportToWorldPoint(Vector3.zero).x, Camera.main.ViewportToWorldPoint(Vector3.one).y, this.holderLogo.transform.position.z);
 	}
 
-	// Token: 0x06002B2B RID: 11051 RVA: 0x0014EB40 File Offset: 0x0014CD40
+	// Token: 0x06002659 RID: 9817 RVA: 0x0010A7BC File Offset: 0x001089BC
 	private void Start()
 	{
 		if (PlaySounds.musicOn)
@@ -62,7 +62,7 @@ public class MainMenuManage : MonoBehaviour
 		ShopManager.RescaleShop();
 	}
 
-	// Token: 0x06002B2C RID: 11052 RVA: 0x0014EC24 File Offset: 0x0014CE24
+	// Token: 0x0600265A RID: 9818 RVA: 0x0010A8A0 File Offset: 0x00108AA0
 	private void Update()
 	{
 		if (Input.GetKeyUp(27))
@@ -181,7 +181,7 @@ public class MainMenuManage : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06002B2D RID: 11053 RVA: 0x00021506 File Offset: 0x0001F706
+	// Token: 0x0600265B RID: 9819 RVA: 0x0010AC29 File Offset: 0x00108E29
 	private IEnumerator otvoriSledeciNivo()
 	{
 		yield return new WaitForSeconds(0.25f);
@@ -189,7 +189,7 @@ public class MainMenuManage : MonoBehaviour
 		yield break;
 	}
 
-	// Token: 0x06002B2E RID: 11054 RVA: 0x00149A14 File Offset: 0x00147C14
+	// Token: 0x0600265C RID: 9820 RVA: 0x0010AC34 File Offset: 0x00108E34
 	private string RaycastFunction(Vector3 vector)
 	{
 		RaycastHit raycastHit;
@@ -200,69 +200,69 @@ public class MainMenuManage : MonoBehaviour
 		return "";
 	}
 
-	// Token: 0x0400254D RID: 9549
+	// Token: 0x04001F96 RID: 8086
 	private Sprite dugmeMuzikaSprite;
 
-	// Token: 0x0400254E RID: 9550
+	// Token: 0x04001F97 RID: 8087
 	private Sprite dugmeSoundSprite;
 
-	// Token: 0x0400254F RID: 9551
+	// Token: 0x04001F98 RID: 8088
 	private Sprite dugmeMuzikaOffSprite;
 
-	// Token: 0x04002550 RID: 9552
+	// Token: 0x04001F99 RID: 8089
 	private Sprite dugmeSoundOffSprite;
 
-	// Token: 0x04002551 RID: 9553
+	// Token: 0x04001F9A RID: 8090
 	private GameObject dugmeMuzika;
 
-	// Token: 0x04002552 RID: 9554
+	// Token: 0x04001F9B RID: 8091
 	private GameObject dugmeSound;
 
-	// Token: 0x04002553 RID: 9555
+	// Token: 0x04001F9C RID: 8092
 	private GameObject dugmePlay;
 
-	// Token: 0x04002554 RID: 9556
+	// Token: 0x04001F9D RID: 8093
 	private GameObject holderLogo;
 
-	// Token: 0x04002555 RID: 9557
+	// Token: 0x04001F9E RID: 8094
 	private GameObject majmunLogo;
 
-	// Token: 0x04002556 RID: 9558
+	// Token: 0x04001F9F RID: 8095
 	private ParticleSystem bananaRasipuje;
 
-	// Token: 0x04002557 RID: 9559
+	// Token: 0x04001FA0 RID: 8096
 	private bool muzikaOff;
 
-	// Token: 0x04002558 RID: 9560
+	// Token: 0x04001FA1 RID: 8097
 	private bool soundOff;
 
-	// Token: 0x04002559 RID: 9561
+	// Token: 0x04001FA2 RID: 8098
 	private AudioSource MusicOn_Button;
 
-	// Token: 0x0400255A RID: 9562
+	// Token: 0x04001FA3 RID: 8099
 	private AudioSource SoundOn_Button;
 
-	// Token: 0x0400255B RID: 9563
+	// Token: 0x04001FA4 RID: 8100
 	private AudioSource Play_Button;
 
-	// Token: 0x0400255C RID: 9564
+	// Token: 0x04001FA5 RID: 8101
 	private string clickedItem;
 
-	// Token: 0x0400255D RID: 9565
+	// Token: 0x04001FA6 RID: 8102
 	private string releasedItem;
 
-	// Token: 0x0400255E RID: 9566
+	// Token: 0x04001FA7 RID: 8103
 	private Vector3 originalScale;
 
-	// Token: 0x0400255F RID: 9567
+	// Token: 0x04001FA8 RID: 8104
 	private Transform dock_goreDesno;
 
-	// Token: 0x04002560 RID: 9568
+	// Token: 0x04001FA9 RID: 8105
 	private Transform dock_doleDesno;
 
-	// Token: 0x04002561 RID: 9569
+	// Token: 0x04001FAA RID: 8106
 	private Transform dock_goreLevo;
 
-	// Token: 0x04002562 RID: 9570
+	// Token: 0x04001FAB RID: 8107
 	private Transform dock_doleLevo;
 }

@@ -8,15 +8,15 @@ using UnityEngine.UI;
 
 namespace UltimateSurvival.GUISystem
 {
-	// Token: 0x02000956 RID: 2390
+	// Token: 0x02000655 RID: 1621
 	public class ItemInspector : GUIBehaviour
 	{
-		// Token: 0x170006A2 RID: 1698
-		// (get) Token: 0x06003D12 RID: 15634 RVA: 0x0002C025 File Offset: 0x0002A225
-		// (set) Token: 0x06003D13 RID: 15635 RVA: 0x0002C02D File Offset: 0x0002A22D
+		// Token: 0x17000490 RID: 1168
+		// (get) Token: 0x06003390 RID: 13200 RVA: 0x0016A031 File Offset: 0x00168231
+		// (set) Token: 0x06003391 RID: 13201 RVA: 0x0016A039 File Offset: 0x00168239
 		public Slot InspectedSlot { get; private set; }
 
-		// Token: 0x06003D14 RID: 15636 RVA: 0x001B30F4 File Offset: 0x001B12F4
+		// Token: 0x06003392 RID: 13202 RVA: 0x0016A044 File Offset: 0x00168244
 		private void Awake()
 		{
 			this.m_DismantleButton.onClick.AddListener(new UnityAction(this.On_DismantleClicked));
@@ -24,7 +24,7 @@ namespace UltimateSurvival.GUISystem
 			this.m_ConsumeButton.onClick.AddListener(new UnityAction(this.On_ConsumeClicked));
 		}
 
-		// Token: 0x06003D15 RID: 15637 RVA: 0x001B3158 File Offset: 0x001B1358
+		// Token: 0x06003393 RID: 13203 RVA: 0x0016A0A8 File Offset: 0x001682A8
 		private void Start()
 		{
 			this.m_InspectableContainers = base.Controller.Containers;
@@ -36,7 +36,7 @@ namespace UltimateSurvival.GUISystem
 			this.m_InventoryContainer = base.Controller.GetContainer("Inventory");
 		}
 
-		// Token: 0x06003D16 RID: 15638 RVA: 0x001B31B8 File Offset: 0x001B13B8
+		// Token: 0x06003394 RID: 13204 RVA: 0x0016A108 File Offset: 0x00168308
 		private void On_Slot_PointerUp(BaseEventData data, Slot slot)
 		{
 			if (!MonoSingleton<InventoryController>.Instance.IsClosed && slot.HasItem && EventSystem.current.currentSelectedGameObject == slot.gameObject)
@@ -58,7 +58,7 @@ namespace UltimateSurvival.GUISystem
 			base.StartCoroutine(this.C_WaitAndSelect());
 		}
 
-		// Token: 0x06003D17 RID: 15639 RVA: 0x001B326C File Offset: 0x001B146C
+		// Token: 0x06003395 RID: 13205 RVA: 0x0016A1BC File Offset: 0x001683BC
 		private void ShowInfo(SavableItem item)
 		{
 			this.m_ItemName.text = ((item.ItemData.DisplayName == string.Empty) ? item.ItemData.Name : item.ItemData.DisplayName);
@@ -105,7 +105,7 @@ namespace UltimateSurvival.GUISystem
 			this.m_DismantleButton.gameObject.SetActive(item.HasProperty("Can Dismantle"));
 		}
 
-		// Token: 0x06003D18 RID: 15640 RVA: 0x001B3414 File Offset: 0x001B1614
+		// Token: 0x06003396 RID: 13206 RVA: 0x0016A364 File Offset: 0x00168564
 		private void On_InspectedHolderUpdated(ItemHolder holder)
 		{
 			if (!holder.HasItem)
@@ -122,7 +122,7 @@ namespace UltimateSurvival.GUISystem
 			}
 		}
 
-		// Token: 0x06003D19 RID: 15641 RVA: 0x001B3474 File Offset: 0x001B1674
+		// Token: 0x06003397 RID: 13207 RVA: 0x0016A3C4 File Offset: 0x001685C4
 		private void On_DismantleClicked()
 		{
 			SavableItem currentItem = this.InspectedSlot.CurrentItem;
@@ -137,7 +137,7 @@ namespace UltimateSurvival.GUISystem
 			this.m_DismantleAudio.Play2D(ItemSelectionMethod.RandomlyButExcludeLast);
 		}
 
-		// Token: 0x06003D1A RID: 15642 RVA: 0x001B3538 File Offset: 0x001B1738
+		// Token: 0x06003398 RID: 13208 RVA: 0x0016A488 File Offset: 0x00168688
 		private void On_DropClicked()
 		{
 			SavableItem savableItem = base.Controller.Player.EquippedItem.Get();
@@ -154,7 +154,7 @@ namespace UltimateSurvival.GUISystem
 			}
 		}
 
-		// Token: 0x06003D1B RID: 15643 RVA: 0x001B35B4 File Offset: 0x001B17B4
+		// Token: 0x06003399 RID: 13209 RVA: 0x0016A504 File Offset: 0x00168704
 		private void On_ConsumeClicked()
 		{
 			SavableItem currentItem = this.InspectedSlot.CurrentItem;
@@ -174,7 +174,7 @@ namespace UltimateSurvival.GUISystem
 			}
 		}
 
-		// Token: 0x06003D1C RID: 15644 RVA: 0x0002C036 File Offset: 0x0002A236
+		// Token: 0x0600339A RID: 13210 RVA: 0x0016A5A5 File Offset: 0x001687A5
 		private IEnumerator C_WaitAndSelect()
 		{
 			yield return null;
@@ -195,73 +195,73 @@ namespace UltimateSurvival.GUISystem
 			yield break;
 		}
 
-		// Token: 0x04003752 RID: 14162
+		// Token: 0x04002DD4 RID: 11732
 		[Header("Setup")]
 		[SerializeField]
 		private Camera m_GUICamera;
 
-		// Token: 0x04003753 RID: 14163
+		// Token: 0x04002DD5 RID: 11733
 		[SerializeField]
 		private Window m_Window;
 
-		// Token: 0x04003754 RID: 14164
+		// Token: 0x04002DD6 RID: 11734
 		[Header("Item Info")]
 		[SerializeField]
 		private Text m_ItemName;
 
-		// Token: 0x04003755 RID: 14165
+		// Token: 0x04002DD7 RID: 11735
 		[SerializeField]
 		private Text m_MainDescription;
 
-		// Token: 0x04003756 RID: 14166
+		// Token: 0x04002DD8 RID: 11736
 		[SerializeField]
 		private Text m_SecondaryDescription;
 
-		// Token: 0x04003757 RID: 14167
+		// Token: 0x04002DD9 RID: 11737
 		[SerializeField]
 		private Image m_Icon;
 
-		// Token: 0x04003758 RID: 14168
+		// Token: 0x04002DDA RID: 11738
 		[SerializeField]
 		private DurabilityBar m_DurabilityBar;
 
-		// Token: 0x04003759 RID: 14169
+		// Token: 0x04002DDB RID: 11739
 		[SerializeField]
 		private Text m_Magazine;
 
-		// Token: 0x0400375A RID: 14170
+		// Token: 0x04002DDC RID: 11740
 		[Header("Actions")]
 		[SerializeField]
 		private Button m_DropButton;
 
-		// Token: 0x0400375B RID: 14171
+		// Token: 0x04002DDD RID: 11741
 		[SerializeField]
 		private Button m_ConsumeButton;
 
-		// Token: 0x0400375C RID: 14172
+		// Token: 0x04002DDE RID: 11742
 		[SerializeField]
 		private Button m_DismantleButton;
 
-		// Token: 0x0400375D RID: 14173
+		// Token: 0x04002DDF RID: 11743
 		[Header("Audio")]
 		[SerializeField]
 		private SoundPlayer m_ItemDropAudio;
 
-		// Token: 0x0400375E RID: 14174
+		// Token: 0x04002DE0 RID: 11744
 		[SerializeField]
 		private SoundPlayer m_DismantleAudio;
 
-		// Token: 0x0400375F RID: 14175
+		// Token: 0x04002DE1 RID: 11745
 		[SerializeField]
 		private float m_ConsumeVolume = 0.6f;
 
-		// Token: 0x04003760 RID: 14176
+		// Token: 0x04002DE2 RID: 11746
 		private ItemContainer[] m_InspectableContainers;
 
-		// Token: 0x04003761 RID: 14177
+		// Token: 0x04002DE3 RID: 11747
 		private ItemContainer m_InventoryContainer;
 
-		// Token: 0x04003762 RID: 14178
+		// Token: 0x04002DE4 RID: 11748
 		private float m_LastConsumeTime;
 	}
 }

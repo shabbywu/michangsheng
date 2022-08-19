@@ -3,21 +3,21 @@ using UnityEngine;
 
 namespace KBEngine
 {
-	// Token: 0x02000EE7 RID: 3815
+	// Token: 0x02000B6A RID: 2922
 	internal class BlowfishFilter : EncryptionFilter
 	{
-		// Token: 0x06005BD2 RID: 23506 RVA: 0x0024EF70 File Offset: 0x0024D170
+		// Token: 0x06005196 RID: 20886 RVA: 0x002229B0 File Offset: 0x00220BB0
 		~BlowfishFilter()
 		{
 		}
 
-		// Token: 0x06005BD3 RID: 23507 RVA: 0x0004099E File Offset: 0x0003EB9E
+		// Token: 0x06005197 RID: 20887 RVA: 0x002229D8 File Offset: 0x00220BD8
 		public byte[] key()
 		{
 			return this._blowfish.key();
 		}
 
-		// Token: 0x06005BD4 RID: 23508 RVA: 0x00251B60 File Offset: 0x0024FD60
+		// Token: 0x06005198 RID: 20888 RVA: 0x002229E8 File Offset: 0x00220BE8
 		public override void encrypt(MemoryStream stream)
 		{
 			int num = 0;
@@ -46,19 +46,19 @@ namespace KBEngine
 			this._enctyptStrem.clear();
 		}
 
-		// Token: 0x06005BD5 RID: 23509 RVA: 0x000409AB File Offset: 0x0003EBAB
+		// Token: 0x06005199 RID: 20889 RVA: 0x00222AE2 File Offset: 0x00220CE2
 		public override void decrypt(MemoryStream stream)
 		{
 			this._blowfish.decipher(stream.data(), stream.rpos, (int)stream.length());
 		}
 
-		// Token: 0x06005BD6 RID: 23510 RVA: 0x000409CA File Offset: 0x0003EBCA
+		// Token: 0x0600519A RID: 20890 RVA: 0x00222B01 File Offset: 0x00220D01
 		public override void decrypt(byte[] buffer, int startIndex, int length)
 		{
 			this._blowfish.decipher(buffer, startIndex, length);
 		}
 
-		// Token: 0x06005BD7 RID: 23511 RVA: 0x000409DA File Offset: 0x0003EBDA
+		// Token: 0x0600519B RID: 20891 RVA: 0x00222B11 File Offset: 0x00220D11
 		public override bool send(PacketSenderBase sender, MemoryStream stream)
 		{
 			if (!this._blowfish.isGood())
@@ -70,7 +70,7 @@ namespace KBEngine
 			return sender.send(stream);
 		}
 
-		// Token: 0x06005BD8 RID: 23512 RVA: 0x00251C5C File Offset: 0x0024FE5C
+		// Token: 0x0600519C RID: 20892 RVA: 0x00222B3C File Offset: 0x00220D3C
 		public override bool recv(MessageReaderBase reader, byte[] buffer, uint rpos, uint len)
 		{
 			if (!this._blowfish.isGood())
@@ -146,25 +146,25 @@ namespace KBEngine
 			return true;
 		}
 
-		// Token: 0x04005A21 RID: 23073
+		// Token: 0x04004F96 RID: 20374
 		private Blowfish _blowfish = new Blowfish(16);
 
-		// Token: 0x04005A22 RID: 23074
+		// Token: 0x04004F97 RID: 20375
 		private MemoryStream _packet = new MemoryStream();
 
-		// Token: 0x04005A23 RID: 23075
+		// Token: 0x04004F98 RID: 20376
 		private MemoryStream _enctyptStrem = new MemoryStream();
 
-		// Token: 0x04005A24 RID: 23076
+		// Token: 0x04004F99 RID: 20377
 		private UINT8 _padSize = 0;
 
-		// Token: 0x04005A25 RID: 23077
+		// Token: 0x04004F9A RID: 20378
 		private ushort _packLen;
 
-		// Token: 0x04005A26 RID: 23078
+		// Token: 0x04004F9B RID: 20379
 		private const uint BLOCK_SIZE = 8U;
 
-		// Token: 0x04005A27 RID: 23079
+		// Token: 0x04004F9C RID: 20380
 		private const uint MIN_PACKET_SIZE = 11U;
 	}
 }

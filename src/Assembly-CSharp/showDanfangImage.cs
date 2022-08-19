@@ -2,15 +2,15 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-// Token: 0x02000627 RID: 1575
+// Token: 0x0200046B RID: 1131
 public class showDanfangImage : MonoBehaviour
 {
-	// Token: 0x06002723 RID: 10019 RVA: 0x000042DD File Offset: 0x000024DD
+	// Token: 0x0600236D RID: 9069 RVA: 0x00004095 File Offset: 0x00002295
 	private void Start()
 	{
 	}
 
-	// Token: 0x06002724 RID: 10020 RVA: 0x00132734 File Offset: 0x00130934
+	// Token: 0x0600236E RID: 9070 RVA: 0x000F25C8 File Offset: 0x000F07C8
 	public void click()
 	{
 		List<Transform> child = this.getChild();
@@ -34,7 +34,7 @@ public class showDanfangImage : MonoBehaviour
 		this.uIselect.right.onClick.Add(new EventDelegate(new EventDelegate.Callback(this.setNowPage)));
 	}
 
-	// Token: 0x06002725 RID: 10021 RVA: 0x001328C0 File Offset: 0x00130AC0
+	// Token: 0x0600236F RID: 9071 RVA: 0x000F2754 File Offset: 0x000F0954
 	public void setNowPage()
 	{
 		List<Transform> child = this.getChild();
@@ -44,7 +44,7 @@ public class showDanfangImage : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06002726 RID: 10022 RVA: 0x001328F8 File Offset: 0x00130AF8
+	// Token: 0x06002370 RID: 9072 RVA: 0x000F278C File Offset: 0x000F098C
 	public List<Transform> getChild()
 	{
 		List<Transform> list = new List<Transform>();
@@ -59,9 +59,9 @@ public class showDanfangImage : MonoBehaviour
 		return list;
 	}
 
-	// Token: 0x04002142 RID: 8514
+	// Token: 0x04001C6D RID: 7277
 	public GameObject content;
 
-	// Token: 0x04002143 RID: 8515
+	// Token: 0x04001C6E RID: 7278
 	public UIselect uIselect;
 }

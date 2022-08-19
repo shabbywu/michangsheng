@@ -4,16 +4,16 @@ using Fungus;
 using GUIPackage;
 using UnityEngine;
 
-// Token: 0x020005DD RID: 1501
+// Token: 0x02000428 RID: 1064
 public class ThreeSceernUI : MonoBehaviour
 {
-	// Token: 0x060025B6 RID: 9654 RVA: 0x0001E304 File Offset: 0x0001C504
+	// Token: 0x060021FC RID: 8700 RVA: 0x000EA151 File Offset: 0x000E8351
 	private void Awake()
 	{
 		ThreeSceernUI.inst = this;
 	}
 
-	// Token: 0x060025B7 RID: 9655 RVA: 0x0001E30C File Offset: 0x0001C50C
+	// Token: 0x060021FD RID: 8701 RVA: 0x000EA159 File Offset: 0x000E8359
 	public void init()
 	{
 		if (SceneBtnMag.inst == null)
@@ -22,13 +22,13 @@ public class ThreeSceernUI : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060025B8 RID: 9656 RVA: 0x0001E330 File Offset: 0x0001C530
+	// Token: 0x060021FE RID: 8702 RVA: 0x000EA17D File Offset: 0x000E837D
 	private void Start()
 	{
 		this.init();
 	}
 
-	// Token: 0x060025B9 RID: 9657 RVA: 0x0012B52C File Offset: 0x0012972C
+	// Token: 0x060021FF RID: 8703 RVA: 0x000EA188 File Offset: 0x000E8388
 	public void openShop()
 	{
 		GameObject gameObject = Object.Instantiate<GameObject>(ResManager.inst.LoadPrefab("Shop"), UI_Manager.inst.gameObject.transform);
@@ -36,7 +36,7 @@ public class ThreeSceernUI : MonoBehaviour
 		gameObject.transform.localScale = new Vector3(0.75f, 0.75f, 0f);
 	}
 
-	// Token: 0x060025BA RID: 9658 RVA: 0x0012B58C File Offset: 0x0012978C
+	// Token: 0x06002200 RID: 8704 RVA: 0x000EA1E8 File Offset: 0x000E83E8
 	public void addBtn()
 	{
 		Transform transform = base.transform.Find("grid");
@@ -65,7 +65,7 @@ public class ThreeSceernUI : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060025BB RID: 9659 RVA: 0x0012B684 File Offset: 0x00129884
+	// Token: 0x06002201 RID: 8705 RVA: 0x000EA2E0 File Offset: 0x000E84E0
 	public void setPostion(Transform chilidf)
 	{
 		chilidf.gameObject.transform.localPosition = new Vector3(300f, (float)(137 * this.showBtnNum), 0f);
@@ -85,7 +85,7 @@ public class ThreeSceernUI : MonoBehaviour
 		this.showBtnNum++;
 	}
 
-	// Token: 0x060025BC RID: 9660 RVA: 0x0012B758 File Offset: 0x00129958
+	// Token: 0x06002202 RID: 8706 RVA: 0x000EA3B4 File Offset: 0x000E85B4
 	public void setPos()
 	{
 		Transform transform = base.transform.Find("grid");
@@ -107,7 +107,7 @@ public class ThreeSceernUI : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060025BD RID: 9661 RVA: 0x0001E338 File Offset: 0x0001C538
+	// Token: 0x06002203 RID: 8707 RVA: 0x000EA480 File Offset: 0x000E8680
 	private void OnDestroy()
 	{
 		ThreeSceernUI.inst = null;
@@ -117,12 +117,12 @@ public class ThreeSceernUI : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060025BE RID: 9662 RVA: 0x000042DD File Offset: 0x000024DD
+	// Token: 0x06002204 RID: 8708 RVA: 0x00004095 File Offset: 0x00002295
 	private void Update()
 	{
 	}
 
-	// Token: 0x04002030 RID: 8240
+	// Token: 0x04001B67 RID: 7015
 	private List<string> btnName = new List<string>
 	{
 		"likai",
@@ -141,19 +141,19 @@ public class ThreeSceernUI : MonoBehaviour
 		"liexi"
 	};
 
-	// Token: 0x04002031 RID: 8241
+	// Token: 0x04001B68 RID: 7016
 	public int showBtnNum;
 
-	// Token: 0x04002032 RID: 8242
+	// Token: 0x04001B69 RID: 7017
 	public static ThreeSceernUI inst;
 
-	// Token: 0x04002033 RID: 8243
+	// Token: 0x04001B6A RID: 7018
 	public List<GameObject> btnlist;
 
-	// Token: 0x04002034 RID: 8244
+	// Token: 0x04001B6B RID: 7019
 	public int startIndex;
 
-	// Token: 0x04002035 RID: 8245
+	// Token: 0x04001B6C RID: 7020
 	[SerializeField]
 	private UIWidget uIWidget;
 }

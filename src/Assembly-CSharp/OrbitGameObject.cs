@@ -1,17 +1,17 @@
 ﻿using System;
 using UnityEngine;
 
-// Token: 0x02000155 RID: 341
+// Token: 0x020000DE RID: 222
 public class OrbitGameObject : Orbit
 {
-	// Token: 0x06000C40 RID: 3136 RVA: 0x0000E45F File Offset: 0x0000C65F
+	// Token: 0x06000B51 RID: 2897 RVA: 0x00044FFA File Offset: 0x000431FA
 	private void Start()
 	{
 		this.Data.Zenith = -0.3f;
 		this.Data.Length = -6f;
 	}
 
-	// Token: 0x06000C41 RID: 3137 RVA: 0x00096C34 File Offset: 0x00094E34
+	// Token: 0x06000B52 RID: 2898 RVA: 0x0004501C File Offset: 0x0004321C
 	protected override void Update()
 	{
 		Time.timeScale += (1f - Time.timeScale) / 10f;
@@ -25,9 +25,9 @@ public class OrbitGameObject : Orbit
 		base.gameObject.transform.LookAt(vector);
 	}
 
-	// Token: 0x0400095F RID: 2399
+	// Token: 0x04000784 RID: 1924
 	public GameObject Target;
 
-	// Token: 0x04000960 RID: 2400
+	// Token: 0x04000785 RID: 1925
 	public Vector3 ArmOffset = Vector3.zero;
 }

@@ -4,10 +4,10 @@ using UnityEngine.Events;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-// Token: 0x02000487 RID: 1159
+// Token: 0x02000322 RID: 802
 public class MainUILinGenCell : MonoBehaviour, IPointerEnterHandler, IEventSystemHandler, IPointerExitHandler, IPointerDownHandler, IPointerUpHandler
 {
-	// Token: 0x06001EFA RID: 7930 RVA: 0x00019ABE File Offset: 0x00017CBE
+	// Token: 0x06001BBA RID: 7098 RVA: 0x000C5836 File Offset: 0x000C3A36
 	public void OnPointerDown(PointerEventData eventData)
 	{
 		if (this.isOn)
@@ -18,7 +18,7 @@ public class MainUILinGenCell : MonoBehaviour, IPointerEnterHandler, IEventSyste
 		this.targetImage.sprite = this.clickSprite;
 	}
 
-	// Token: 0x06001EFB RID: 7931 RVA: 0x00019AEB File Offset: 0x00017CEB
+	// Token: 0x06001BBB RID: 7099 RVA: 0x000C5863 File Offset: 0x000C3A63
 	public void OnPointerEnter(PointerEventData eventData)
 	{
 		if (this.isOn)
@@ -29,7 +29,7 @@ public class MainUILinGenCell : MonoBehaviour, IPointerEnterHandler, IEventSyste
 		this.targetImage.sprite = this.enterSprite;
 	}
 
-	// Token: 0x06001EFC RID: 7932 RVA: 0x00019B18 File Offset: 0x00017D18
+	// Token: 0x06001BBC RID: 7100 RVA: 0x000C5890 File Offset: 0x000C3A90
 	public void OnPointerExit(PointerEventData eventData)
 	{
 		if (this.isOn)
@@ -40,14 +40,14 @@ public class MainUILinGenCell : MonoBehaviour, IPointerEnterHandler, IEventSyste
 		this.targetImage.sprite = this.nomalSprite;
 	}
 
-	// Token: 0x06001EFD RID: 7933 RVA: 0x00019B45 File Offset: 0x00017D45
+	// Token: 0x06001BBD RID: 7101 RVA: 0x000C58BD File Offset: 0x000C3ABD
 	public void OnPointerUp(PointerEventData eventData)
 	{
 		this.isOn = !this.isOn;
 		this.OnvalueChange();
 	}
 
-	// Token: 0x06001EFE RID: 7934 RVA: 0x0010AA08 File Offset: 0x00108C08
+	// Token: 0x06001BBE RID: 7102 RVA: 0x000C58D4 File Offset: 0x000C3AD4
 	public void OnvalueChange()
 	{
 		if (this.clickEvent != null)
@@ -62,43 +62,43 @@ public class MainUILinGenCell : MonoBehaviour, IPointerEnterHandler, IEventSyste
 		this.targetImage.sprite = this.nomalSprite;
 	}
 
-	// Token: 0x04001A61 RID: 6753
+	// Token: 0x0400163C RID: 5692
 	[SerializeField]
 	private Image targetImage;
 
-	// Token: 0x04001A62 RID: 6754
+	// Token: 0x0400163D RID: 5693
 	[SerializeField]
 	private Sprite nomalSprite;
 
-	// Token: 0x04001A63 RID: 6755
+	// Token: 0x0400163E RID: 5694
 	[SerializeField]
 	private Sprite enterSprite;
 
-	// Token: 0x04001A64 RID: 6756
+	// Token: 0x0400163F RID: 5695
 	[SerializeField]
 	private Sprite clickSprite;
 
-	// Token: 0x04001A65 RID: 6757
+	// Token: 0x04001640 RID: 5696
 	[SerializeField]
 	private Sprite isOn_nomalSprite;
 
-	// Token: 0x04001A66 RID: 6758
+	// Token: 0x04001641 RID: 5697
 	[SerializeField]
 	private Sprite isOn_enterSprite;
 
-	// Token: 0x04001A67 RID: 6759
+	// Token: 0x04001642 RID: 5698
 	[SerializeField]
 	private Sprite isOn_clickSprite;
 
-	// Token: 0x04001A68 RID: 6760
+	// Token: 0x04001643 RID: 5699
 	public bool isOn;
 
-	// Token: 0x04001A69 RID: 6761
+	// Token: 0x04001644 RID: 5700
 	public Text precent;
 
-	// Token: 0x04001A6A RID: 6762
+	// Token: 0x04001645 RID: 5701
 	public int index;
 
-	// Token: 0x04001A6B RID: 6763
+	// Token: 0x04001646 RID: 5702
 	public UnityAction<int> clickEvent;
 }

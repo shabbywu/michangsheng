@@ -1,11 +1,11 @@
 ﻿using System;
 
-// Token: 0x020004E0 RID: 1248
+// Token: 0x02000363 RID: 867
 public class PopTipData
 {
-	// Token: 0x04001C0A RID: 7178
+	// Token: 0x040017B8 RID: 6072
 	public PopTipIconType IconType;
 
-	// Token: 0x04001C0B RID: 7179
+	// Token: 0x040017B9 RID: 6073
 	public string Msg;
 }

@@ -5,16 +5,16 @@ using UnityEngine;
 
 namespace Fungus
 {
-	// Token: 0x020013A3 RID: 5027
+	// Token: 0x02000EFE RID: 3838
 	public class LuaStore : LuaBindingsBase
 	{
-		// Token: 0x060079BA RID: 31162 RVA: 0x00053196 File Offset: 0x00051396
+		// Token: 0x06006C06 RID: 27654 RVA: 0x00297B27 File Offset: 0x00295D27
 		protected virtual void Start()
 		{
 			this.Init();
 		}
 
-		// Token: 0x060079BB RID: 31163 RVA: 0x002B8DF4 File Offset: 0x002B6FF4
+		// Token: 0x06006C07 RID: 27655 RVA: 0x00297B30 File Offset: 0x00295D30
 		protected virtual bool Init()
 		{
 			if (this.initialized)
@@ -37,8 +37,8 @@ namespace Fungus
 			return true;
 		}
 
-		// Token: 0x17000B7F RID: 2943
-		// (get) Token: 0x060079BC RID: 31164 RVA: 0x0005319F File Offset: 0x0005139F
+		// Token: 0x170008DC RID: 2268
+		// (get) Token: 0x06006C08 RID: 27656 RVA: 0x00297BA0 File Offset: 0x00295DA0
 		public virtual Table PrimeTable
 		{
 			get
@@ -47,7 +47,7 @@ namespace Fungus
 			}
 		}
 
-		// Token: 0x060079BD RID: 31165 RVA: 0x002B8E64 File Offset: 0x002B7064
+		// Token: 0x06006C09 RID: 27657 RVA: 0x00297BA8 File Offset: 0x00295DA8
 		public override void AddBindings(LuaEnvironment luaEnv)
 		{
 			if (!this.Init())
@@ -69,8 +69,8 @@ namespace Fungus
 			globals["store"] = this.primeTable;
 		}
 
-		// Token: 0x17000B80 RID: 2944
-		// (get) Token: 0x060079BE RID: 31166 RVA: 0x0000B171 File Offset: 0x00009371
+		// Token: 0x170008DD RID: 2269
+		// (get) Token: 0x06006C0A RID: 27658 RVA: 0x000306E7 File Offset: 0x0002E8E7
 		public override List<BoundObject> BoundObjects
 		{
 			get
@@ -79,13 +79,13 @@ namespace Fungus
 			}
 		}
 
-		// Token: 0x0400695C RID: 26972
+		// Token: 0x04005AE3 RID: 23267
 		protected Table primeTable;
 
-		// Token: 0x0400695D RID: 26973
+		// Token: 0x04005AE4 RID: 23268
 		protected bool initialized;
 
-		// Token: 0x0400695E RID: 26974
+		// Token: 0x04005AE5 RID: 23269
 		protected static LuaStore instance;
 	}
 }

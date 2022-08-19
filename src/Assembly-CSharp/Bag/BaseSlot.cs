@@ -3,10 +3,10 @@ using UnityEngine.EventSystems;
 
 namespace Bag
 {
-	// Token: 0x02000D3F RID: 3391
+	// Token: 0x020009B7 RID: 2487
 	public class BaseSlot : SlotBase
 	{
-		// Token: 0x06005089 RID: 20617 RVA: 0x001DF02C File Offset: 0x001DD22C
+		// Token: 0x06004526 RID: 17702 RVA: 0x001D5BC4 File Offset: 0x001D3DC4
 		public override void OnPointerEnter(PointerEventData eventData)
 		{
 			if (DragMag.Inst.IsDraging)
@@ -29,13 +29,13 @@ namespace Bag
 			this._selectPanel.SetActive(true);
 		}
 
-		// Token: 0x0600508A RID: 20618 RVA: 0x00039FE6 File Offset: 0x000381E6
+		// Token: 0x06004527 RID: 17703 RVA: 0x001D5C48 File Offset: 0x001D3E48
 		public override void OnPointerUp(PointerEventData eventData)
 		{
 			this._selectPanel.SetActive(false);
 		}
 
-		// Token: 0x0600508B RID: 20619 RVA: 0x00030EE2 File Offset: 0x0002F0E2
+		// Token: 0x06004528 RID: 17704 RVA: 0x0018C39D File Offset: 0x0018A59D
 		public override bool CanDrag()
 		{
 			return !base.IsNull() && this.Item.CanSale && base.CanDrag();

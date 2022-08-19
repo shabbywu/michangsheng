@@ -6,10 +6,10 @@ using UltimateSurvival.AI.Goals;
 
 namespace UltimateSurvival.AI
 {
-	// Token: 0x0200097A RID: 2426
+	// Token: 0x0200066F RID: 1647
 	public class Planner
 	{
-		// Token: 0x06003E12 RID: 15890 RVA: 0x001B670C File Offset: 0x001B490C
+		// Token: 0x06003466 RID: 13414 RVA: 0x0016DE38 File Offset: 0x0016C038
 		public bool Plan(List<Goal> availableGoals, List<UltimateSurvival.AI.Actions.Action> availableActions, AIBrain brain, out Queue<UltimateSurvival.AI.Actions.Action> plan, out Goal selected)
 		{
 			bool result = false;
@@ -44,7 +44,7 @@ namespace UltimateSurvival.AI
 			return result;
 		}
 
-		// Token: 0x06003E13 RID: 15891 RVA: 0x001B67EC File Offset: 0x001B49EC
+		// Token: 0x06003467 RID: 13415 RVA: 0x0016DF18 File Offset: 0x0016C118
 		private void FindActionThatMatchesState(StateData goalState, List<UltimateSurvival.AI.Actions.Action> actions, List<UltimateSurvival.AI.Actions.Action> related)
 		{
 			for (int i = 0; i < actions.Count; i++)

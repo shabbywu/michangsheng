@@ -6,11 +6,11 @@ using UnityEngine;
 
 namespace Tab
 {
-	// Token: 0x02000A40 RID: 2624
+	// Token: 0x020006F8 RID: 1784
 	[Serializable]
 	public class TabGongFaPanel : ITabPanelBase
 	{
-		// Token: 0x060043CB RID: 17355 RVA: 0x000307F3 File Offset: 0x0002E9F3
+		// Token: 0x06003952 RID: 14674 RVA: 0x00187EC3 File Offset: 0x001860C3
 		public TabGongFaPanel(GameObject gameObject)
 		{
 			this._go = gameObject;
@@ -18,7 +18,7 @@ namespace Tab
 			this.player = Tools.instance.getPlayer();
 		}
 
-		// Token: 0x060043CC RID: 17356 RVA: 0x001CF7BC File Offset: 0x001CD9BC
+		// Token: 0x06003953 RID: 14675 RVA: 0x00187EF4 File Offset: 0x001860F4
 		private void Init()
 		{
 			Transform transform = base.Get("SkillList", true).transform;
@@ -29,7 +29,7 @@ namespace Tab
 			}
 		}
 
-		// Token: 0x060043CD RID: 17357 RVA: 0x001CF810 File Offset: 0x001CDA10
+		// Token: 0x06003954 RID: 14676 RVA: 0x00187F48 File Offset: 0x00186148
 		public override void Show()
 		{
 			if (!this._isInit)
@@ -50,7 +50,7 @@ namespace Tab
 			this._go.SetActive(true);
 		}
 
-		// Token: 0x060043CE RID: 17358 RVA: 0x001CF894 File Offset: 0x001CDA94
+		// Token: 0x06003955 RID: 14677 RVA: 0x00187FCC File Offset: 0x001861CC
 		public void LoadSkillData()
 		{
 			this.RemoveAll();
@@ -62,7 +62,7 @@ namespace Tab
 			}
 		}
 
-		// Token: 0x060043CF RID: 17359 RVA: 0x001CF920 File Offset: 0x001CDB20
+		// Token: 0x06003956 RID: 14678 RVA: 0x00188058 File Offset: 0x00186258
 		public int GetGongFaLevel(int skillId)
 		{
 			int result = 1;
@@ -77,7 +77,7 @@ namespace Tab
 			return result;
 		}
 
-		// Token: 0x060043D0 RID: 17360 RVA: 0x001CF988 File Offset: 0x001CDB88
+		// Token: 0x06003957 RID: 14679 RVA: 0x001880C0 File Offset: 0x001862C0
 		public bool CanAddSkill(BaseSkill baseSkill)
 		{
 			foreach (SkillItem skillItem in this.player.equipStaticSkillList)
@@ -90,7 +90,7 @@ namespace Tab
 			return true;
 		}
 
-		// Token: 0x060043D1 RID: 17361 RVA: 0x001CF9F0 File Offset: 0x001CDBF0
+		// Token: 0x06003958 RID: 14680 RVA: 0x00188128 File Offset: 0x00186328
 		public int GetSameSkillIndex(BaseSkill baseSkill)
 		{
 			foreach (int num in this.PasstiveSkillDict.Keys)
@@ -103,7 +103,7 @@ namespace Tab
 			return -1;
 		}
 
-		// Token: 0x060043D2 RID: 17362 RVA: 0x001CFA7C File Offset: 0x001CDC7C
+		// Token: 0x06003959 RID: 14681 RVA: 0x001881B4 File Offset: 0x001863B4
 		public void AddSkill(GongFaSlotType slotType, BaseSkill baseSkill, int index2 = -1)
 		{
 			if (this.PasstiveSkillDict.ContainsKey((int)slotType))
@@ -122,7 +122,7 @@ namespace Tab
 			}
 		}
 
-		// Token: 0x060043D3 RID: 17363 RVA: 0x001CFAEC File Offset: 0x001CDCEC
+		// Token: 0x0600395A RID: 14682 RVA: 0x00188224 File Offset: 0x00186424
 		public void ExSkill(GongFaSlotType slotType1, GongFaSlotType slotType2)
 		{
 			if (this.PasstiveSkillDict[(int)slotType2].IsNull())
@@ -143,7 +143,7 @@ namespace Tab
 			this.player.equipStaticSkill(this.PasstiveSkillDict[(int)slotType2].Skill.SkillId, (int)slotType2);
 		}
 
-		// Token: 0x060043D4 RID: 17364 RVA: 0x001CFBE8 File Offset: 0x001CDDE8
+		// Token: 0x0600395B RID: 14683 RVA: 0x00188320 File Offset: 0x00186520
 		public void RemoveSkill(GongFaSlotType slotType)
 		{
 			if (this.PasstiveSkillDict.ContainsKey((int)slotType))
@@ -155,7 +155,7 @@ namespace Tab
 			Debug.LogError(string.Format("不存在当前Key{0}", (int)slotType));
 		}
 
-		// Token: 0x060043D5 RID: 17365 RVA: 0x001CFC50 File Offset: 0x001CDE50
+		// Token: 0x0600395C RID: 14684 RVA: 0x00188388 File Offset: 0x00186588
 		public void RemoveAll()
 		{
 			foreach (int key in this.PasstiveSkillDict.Keys)
@@ -164,7 +164,7 @@ namespace Tab
 			}
 		}
 
-		// Token: 0x060043D6 RID: 17366 RVA: 0x001CFCB4 File Offset: 0x001CDEB4
+		// Token: 0x0600395D RID: 14685 RVA: 0x001883EC File Offset: 0x001865EC
 		public SlotBase GetNullSlot()
 		{
 			foreach (int key in this.PasstiveSkillDict.Keys)
@@ -177,13 +177,13 @@ namespace Tab
 			return null;
 		}
 
-		// Token: 0x04003BD4 RID: 15316
+		// Token: 0x04003161 RID: 12641
 		private bool _isInit;
 
-		// Token: 0x04003BD5 RID: 15317
+		// Token: 0x04003162 RID: 12642
 		public Dictionary<int, PasstiveSkillSlot> PasstiveSkillDict = new Dictionary<int, PasstiveSkillSlot>();
 
-		// Token: 0x04003BD6 RID: 15318
+		// Token: 0x04003163 RID: 12643
 		private Avatar player;
 	}
 }

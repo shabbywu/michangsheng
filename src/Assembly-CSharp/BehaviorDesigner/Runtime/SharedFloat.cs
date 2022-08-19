@@ -2,11 +2,11 @@
 
 namespace BehaviorDesigner.Runtime
 {
-	// Token: 0x02001474 RID: 5236
+	// Token: 0x02000FBC RID: 4028
 	[Serializable]
 	public class SharedFloat : SharedVariable<float>
 	{
-		// Token: 0x06007E05 RID: 32261 RVA: 0x00055326 File Offset: 0x00053526
+		// Token: 0x0600700B RID: 28683 RVA: 0x002A8CA7 File Offset: 0x002A6EA7
 		public static implicit operator SharedFloat(float value)
 		{
 			return new SharedFloat

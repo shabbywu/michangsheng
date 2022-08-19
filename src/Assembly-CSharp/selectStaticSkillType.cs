@@ -1,22 +1,22 @@
 ﻿using System;
 using GUIPackage;
 
-// Token: 0x020002A3 RID: 675
+// Token: 0x020001A6 RID: 422
 public class selectStaticSkillType : selectSkillConfig
 {
-	// Token: 0x06001493 RID: 5267 RVA: 0x00012F42 File Offset: 0x00011142
+	// Token: 0x060011EC RID: 4588 RVA: 0x0006BCF8 File Offset: 0x00069EF8
 	private void Awake()
 	{
 		this.mList = base.GetComponent<UIPopupList>();
 	}
 
-	// Token: 0x06001494 RID: 5268 RVA: 0x00012F8B File Offset: 0x0001118B
+	// Token: 0x060011ED RID: 4589 RVA: 0x0006C020 File Offset: 0x0006A220
 	private void Start()
 	{
 		EventDelegate.Add(this.mList.onChange, new EventDelegate.Callback(this.OnChange));
 	}
 
-	// Token: 0x06001495 RID: 5269 RVA: 0x000B9E60 File Offset: 0x000B8060
+	// Token: 0x060011EE RID: 4590 RVA: 0x0006C040 File Offset: 0x0006A240
 	public int getInputID1(string name)
 	{
 		int num = 0;
@@ -31,7 +31,7 @@ public class selectStaticSkillType : selectSkillConfig
 		return num;
 	}
 
-	// Token: 0x06001496 RID: 5270 RVA: 0x000BA018 File Offset: 0x000B8218
+	// Token: 0x060011EF RID: 4591 RVA: 0x0006C0A4 File Offset: 0x0006A2A4
 	private void OnChange()
 	{
 		Tools.instance.getPlayer();

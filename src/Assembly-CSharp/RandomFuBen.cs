@@ -3,16 +3,16 @@ using System.Collections.Generic;
 using Newtonsoft.Json.Linq;
 using UnityEngine;
 
-// Token: 0x02000561 RID: 1377
+// Token: 0x020003CC RID: 972
 public class RandomFuBen : MonoBehaviour
 {
-	// Token: 0x06002325 RID: 8997 RVA: 0x0001C94B File Offset: 0x0001AB4B
+	// Token: 0x06001FAE RID: 8110 RVA: 0x000DF586 File Offset: 0x000DD786
 	private void OnDestroy()
 	{
 		RandomFuBen.IsInRandomFuBen = false;
 	}
 
-	// Token: 0x06002326 RID: 8998 RVA: 0x00122008 File Offset: 0x00120208
+	// Token: 0x06001FAF RID: 8111 RVA: 0x000DF590 File Offset: 0x000DD790
 	private void Awake()
 	{
 		RandomFuBen.IsInRandomFuBen = true;
@@ -23,7 +23,7 @@ public class RandomFuBen : MonoBehaviour
 		this.InitNode(this.FuBenID);
 	}
 
-	// Token: 0x06002327 RID: 8999 RVA: 0x00122060 File Offset: 0x00120260
+	// Token: 0x06001FB0 RID: 8112 RVA: 0x000DF5E8 File Offset: 0x000DD7E8
 	public void InitNode(int RandomId)
 	{
 		JToken jtoken = Tools.instance.getPlayer().RandomFuBenList[this.FuBenID.ToString()];
@@ -58,7 +58,7 @@ public class RandomFuBen : MonoBehaviour
 		this.SetNodePosition();
 	}
 
-	// Token: 0x06002328 RID: 9000 RVA: 0x001221FC File Offset: 0x001203FC
+	// Token: 0x06001FB1 RID: 8113 RVA: 0x000DF784 File Offset: 0x000DD984
 	public void SetNodePosition()
 	{
 		int num = 0;
@@ -72,7 +72,7 @@ public class RandomFuBen : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06002329 RID: 9001 RVA: 0x001222B0 File Offset: 0x001204B0
+	// Token: 0x06001FB2 RID: 8114 RVA: 0x000DF838 File Offset: 0x000DDA38
 	public void SetMapNodeRoad(FuBenMap map)
 	{
 		for (int i = 0; i < this.High; i++)
@@ -92,12 +92,12 @@ public class RandomFuBen : MonoBehaviour
 		}
 	}
 
-	// Token: 0x0600232A RID: 9002 RVA: 0x000042DD File Offset: 0x000024DD
+	// Token: 0x06001FB3 RID: 8115 RVA: 0x00004095 File Offset: 0x00002295
 	public void SetAwakeRoad(FuBenMap map)
 	{
 	}
 
-	// Token: 0x0600232B RID: 9003 RVA: 0x00122368 File Offset: 0x00120568
+	// Token: 0x06001FB4 RID: 8116 RVA: 0x000DF8F0 File Offset: 0x000DDAF0
 	private void Update()
 	{
 		foreach (object obj in base.transform)
@@ -106,47 +106,47 @@ public class RandomFuBen : MonoBehaviour
 		}
 	}
 
-	// Token: 0x04001E40 RID: 7744
+	// Token: 0x040019BF RID: 6591
 	public static bool IsInRandomFuBen;
 
-	// Token: 0x04001E41 RID: 7745
+	// Token: 0x040019C0 RID: 6592
 	public static int NowRanDomFuBenID;
 
-	// Token: 0x04001E42 RID: 7746
+	// Token: 0x040019C1 RID: 6593
 	[Tooltip("列间距")]
 	public float intervalX;
 
-	// Token: 0x04001E43 RID: 7747
+	// Token: 0x040019C2 RID: 6594
 	[Tooltip("行间距")]
 	public float intervalY;
 
-	// Token: 0x04001E44 RID: 7748
+	// Token: 0x040019C3 RID: 6595
 	[Tooltip("每行的数量")]
 	public int num;
 
-	// Token: 0x04001E45 RID: 7749
+	// Token: 0x040019C4 RID: 6596
 	[Tooltip("自动创建的子节点的基类")]
 	public GameObject NodeTemp;
 
-	// Token: 0x04001E46 RID: 7750
+	// Token: 0x040019C5 RID: 6597
 	[Tooltip("创建的子节点个数")]
 	public int creatNum;
 
-	// Token: 0x04001E47 RID: 7751
+	// Token: 0x040019C6 RID: 6598
 	public int High;
 
-	// Token: 0x04001E48 RID: 7752
+	// Token: 0x040019C7 RID: 6599
 	public int Wide;
 
-	// Token: 0x04001E49 RID: 7753
+	// Token: 0x040019C8 RID: 6600
 	public int FuBenType;
 
-	// Token: 0x04001E4A RID: 7754
+	// Token: 0x040019C9 RID: 6601
 	public int FuBenID;
 
-	// Token: 0x04001E4B RID: 7755
+	// Token: 0x040019CA RID: 6602
 	public FuBenMap mapMag;
 
-	// Token: 0x04001E4C RID: 7756
+	// Token: 0x040019CB RID: 6603
 	public GameObject dian2;
 }

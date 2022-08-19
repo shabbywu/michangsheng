@@ -3,12 +3,12 @@ using UnityEngine;
 
 namespace Fungus
 {
-	// Token: 0x02001214 RID: 4628
+	// Token: 0x02000DD9 RID: 3545
 	[CommandInfo("Input", "GetKey", "Store Input.GetKey in a variable. Supports an optional Negative key input. A negative value will be overridden by a positive one, they do not add.", 0)]
 	[AddComponentMenu("")]
 	public class GetKey : Command
 	{
-		// Token: 0x06007129 RID: 28969 RVA: 0x002A4578 File Offset: 0x002A2778
+		// Token: 0x060064A7 RID: 25767 RVA: 0x0027F980 File Offset: 0x0027DB80
 		public override void OnEnter()
 		{
 			this.FillOutValue(0);
@@ -31,7 +31,7 @@ namespace Fungus
 			this.Continue();
 		}
 
-		// Token: 0x0600712A RID: 28970 RVA: 0x002A4608 File Offset: 0x002A2808
+		// Token: 0x060064A8 RID: 25768 RVA: 0x0027FA10 File Offset: 0x0027DC10
 		private void DoKeyCode(KeyCode key, int trueVal)
 		{
 			switch (this.keyQueryType)
@@ -61,7 +61,7 @@ namespace Fungus
 			}
 		}
 
-		// Token: 0x0600712B RID: 28971 RVA: 0x002A4660 File Offset: 0x002A2860
+		// Token: 0x060064A9 RID: 25769 RVA: 0x0027FA68 File Offset: 0x0027DC68
 		private void DoKeyName(string key, int trueVal)
 		{
 			switch (this.keyQueryType)
@@ -91,7 +91,7 @@ namespace Fungus
 			}
 		}
 
-		// Token: 0x0600712C RID: 28972 RVA: 0x002A46B8 File Offset: 0x002A28B8
+		// Token: 0x060064AA RID: 25770 RVA: 0x0027FAC0 File Offset: 0x0027DCC0
 		private void FillOutValue(int v)
 		{
 			FloatVariable floatVariable = this.outValue as FloatVariable;
@@ -114,7 +114,7 @@ namespace Fungus
 			}
 		}
 
-		// Token: 0x0600712D RID: 28973 RVA: 0x002A4724 File Offset: 0x002A2924
+		// Token: 0x060064AB RID: 25771 RVA: 0x0027FB2C File Offset: 0x0027DD2C
 		public override string GetSummary()
 		{
 			if (this.outValue == null)
@@ -124,43 +124,43 @@ namespace Fungus
 			return ((this.keyCode != null) ? this.keyCode.ToString() : this.keyCodeName) + " in " + this.outValue.Key;
 		}
 
-		// Token: 0x0600712E RID: 28974 RVA: 0x0004C5E0 File Offset: 0x0004A7E0
+		// Token: 0x060064AC RID: 25772 RVA: 0x0027D3DB File Offset: 0x0027B5DB
 		public override Color GetButtonColor()
 		{
 			return new Color32(235, 191, 217, byte.MaxValue);
 		}
 
-		// Token: 0x0600712F RID: 28975 RVA: 0x0004CE3E File Offset: 0x0004B03E
+		// Token: 0x060064AD RID: 25773 RVA: 0x0027FB88 File Offset: 0x0027DD88
 		public override bool HasReference(Variable variable)
 		{
 			return this.keyCodeName.stringRef == variable || this.outValue == variable || this.keyCodeNameNegative.stringRef == variable;
 		}
 
-		// Token: 0x04006375 RID: 25461
+		// Token: 0x04005675 RID: 22133
 		[SerializeField]
 		protected KeyCode keyCode;
 
-		// Token: 0x04006376 RID: 25462
+		// Token: 0x04005676 RID: 22134
 		[Tooltip("Optional, secondary or negative keycode. For booleans will also set to true, for int and float will set to -1.")]
 		[SerializeField]
 		protected KeyCode keyCodeNegative;
 
-		// Token: 0x04006377 RID: 25463
+		// Token: 0x04005677 RID: 22135
 		[SerializeField]
 		[Tooltip("Only used if KeyCode is KeyCode.None, expects a name of the key to use.")]
 		protected StringData keyCodeName = new StringData(string.Empty);
 
-		// Token: 0x04006378 RID: 25464
+		// Token: 0x04005678 RID: 22136
 		[SerializeField]
 		[Tooltip("Optional, secondary or negative keycode. For booleans will also set to true, for int and float will set to -1.Only used if KeyCode is KeyCode.None, expects a name of the key to use.")]
 		protected StringData keyCodeNameNegative = new StringData(string.Empty);
 
-		// Token: 0x04006379 RID: 25465
+		// Token: 0x04005679 RID: 22137
 		[Tooltip("Do we want an Input.GetKeyDown, GetKeyUp or GetKey")]
 		[SerializeField]
 		protected GetKey.InputKeyQueryType keyQueryType = GetKey.InputKeyQueryType.State;
 
-		// Token: 0x0400637A RID: 25466
+		// Token: 0x0400567A RID: 22138
 		[Tooltip("Will store true or false or 0 or 1 depending on type. Sets true or -1 for negative key values.")]
 		[SerializeField]
 		[VariableProperty(new Type[]
@@ -171,14 +171,14 @@ namespace Fungus
 		})]
 		protected Variable outValue;
 
-		// Token: 0x02001215 RID: 4629
+		// Token: 0x020016AF RID: 5807
 		public enum InputKeyQueryType
 		{
-			// Token: 0x0400637C RID: 25468
+			// Token: 0x0400735C RID: 29532
 			Down,
-			// Token: 0x0400637D RID: 25469
+			// Token: 0x0400735D RID: 29533
 			Up,
-			// Token: 0x0400637E RID: 25470
+			// Token: 0x0400735E RID: 29534
 			State
 		}
 	}

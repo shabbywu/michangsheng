@@ -3,26 +3,26 @@ using System.Runtime.Serialization;
 
 namespace ICSharpCode.SharpZipLib.Core
 {
-	// Token: 0x0200082C RID: 2092
+	// Token: 0x02000583 RID: 1411
 	[Serializable]
 	public class InvalidNameException : SharpZipBaseException
 	{
-		// Token: 0x060036D0 RID: 14032 RVA: 0x00027DD7 File Offset: 0x00025FD7
+		// Token: 0x06002E5A RID: 11866 RVA: 0x00151578 File Offset: 0x0014F778
 		public InvalidNameException() : base("An invalid name was specified")
 		{
 		}
 
-		// Token: 0x060036D1 RID: 14033 RVA: 0x0002488E File Offset: 0x00022A8E
+		// Token: 0x06002E5B RID: 11867 RVA: 0x001402D3 File Offset: 0x0013E4D3
 		public InvalidNameException(string message) : base(message)
 		{
 		}
 
-		// Token: 0x060036D2 RID: 14034 RVA: 0x00024897 File Offset: 0x00022A97
+		// Token: 0x06002E5C RID: 11868 RVA: 0x001402DC File Offset: 0x0013E4DC
 		public InvalidNameException(string message, Exception innerException) : base(message, innerException)
 		{
 		}
 
-		// Token: 0x060036D3 RID: 14035 RVA: 0x000248A1 File Offset: 0x00022AA1
+		// Token: 0x06002E5D RID: 11869 RVA: 0x001402E6 File Offset: 0x0013E4E6
 		protected InvalidNameException(SerializationInfo info, StreamingContext context) : base(info, context)
 		{
 		}

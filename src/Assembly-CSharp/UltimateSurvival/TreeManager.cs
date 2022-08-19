@@ -4,11 +4,11 @@ using UnityEngine;
 
 namespace UltimateSurvival
 {
-	// Token: 0x020008ED RID: 2285
+	// Token: 0x0200060C RID: 1548
 	[RequireComponent(typeof(Terrain))]
 	public class TreeManager : MonoBehaviour
 	{
-		// Token: 0x06003A9B RID: 15003 RVA: 0x001A8E10 File Offset: 0x001A7010
+		// Token: 0x06003184 RID: 12676 RVA: 0x0015F844 File Offset: 0x0015DA44
 		private void Awake()
 		{
 			this.m_Terrain = base.GetComponent<Terrain>();
@@ -24,7 +24,7 @@ namespace UltimateSurvival
 			}
 		}
 
-		// Token: 0x06003A9C RID: 15004 RVA: 0x001A8E94 File Offset: 0x001A7094
+		// Token: 0x06003185 RID: 12677 RVA: 0x0015F8C8 File Offset: 0x0015DAC8
 		private TreeCreator GetTreeCreator(int prototypeIndex)
 		{
 			for (int i = 0; i < this.m_TreeCreators.Length; i++)
@@ -37,23 +37,23 @@ namespace UltimateSurvival
 			return null;
 		}
 
-		// Token: 0x06003A9D RID: 15005 RVA: 0x0002A95E File Offset: 0x00028B5E
+		// Token: 0x06003186 RID: 12678 RVA: 0x0015F902 File Offset: 0x0015DB02
 		private void OnApplicationQuit()
 		{
 			this.m_Terrain.terrainData.treeInstances = this.m_InitialTrees;
 		}
 
-		// Token: 0x040034C5 RID: 13509
+		// Token: 0x04002BB9 RID: 11193
 		[SerializeField]
 		private TreeCreator[] m_TreeCreators;
 
-		// Token: 0x040034C6 RID: 13510
+		// Token: 0x04002BBA RID: 11194
 		private Terrain m_Terrain;
 
-		// Token: 0x040034C7 RID: 13511
+		// Token: 0x04002BBB RID: 11195
 		private List<MineableObject> m_Trees = new List<MineableObject>();
 
-		// Token: 0x040034C8 RID: 13512
+		// Token: 0x04002BBC RID: 11196
 		private TreeInstance[] m_InitialTrees;
 	}
 }

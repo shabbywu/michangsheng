@@ -4,16 +4,16 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-// Token: 0x020003C6 RID: 966
+// Token: 0x02000296 RID: 662
 public class ChuanYingItem : MonoBehaviour, IPointerEnterHandler, IEventSystemHandler, IPointerExitHandler, IPointerClickHandler
 {
-	// Token: 0x06001AB2 RID: 6834 RVA: 0x00016AB8 File Offset: 0x00014CB8
+	// Token: 0x060017D2 RID: 6098 RVA: 0x000A5080 File Offset: 0x000A3280
 	public void init()
 	{
 		this.updateItem();
 	}
 
-	// Token: 0x06001AB3 RID: 6835 RVA: 0x000EC0BC File Offset: 0x000EA2BC
+	// Token: 0x060017D3 RID: 6099 RVA: 0x000A5088 File Offset: 0x000A3288
 	public void updateItem()
 	{
 		if (this.Item.itemID == -1)
@@ -43,7 +43,7 @@ public class ChuanYingItem : MonoBehaviour, IPointerEnterHandler, IEventSystemHa
 		this.HasGetImage.gameObject.SetActive(false);
 	}
 
-	// Token: 0x06001AB4 RID: 6836 RVA: 0x000EC278 File Offset: 0x000EA478
+	// Token: 0x060017D4 RID: 6100 RVA: 0x000A5244 File Offset: 0x000A3444
 	public void OnPointerEnter(PointerEventData eventData)
 	{
 		if (this.Item.itemName != null && this.Item.itemID != -1)
@@ -55,19 +55,19 @@ public class ChuanYingItem : MonoBehaviour, IPointerEnterHandler, IEventSystemHa
 		this.inventory.showTooltip = false;
 	}
 
-	// Token: 0x06001AB5 RID: 6837 RVA: 0x00016AC0 File Offset: 0x00014CC0
+	// Token: 0x060017D5 RID: 6101 RVA: 0x000A529D File Offset: 0x000A349D
 	public virtual int getItemPrice()
 	{
 		return (int)((float)((int)jsonData.instance.ItemJsonData[this.Item.itemID.ToString()]["price"].n) * 0.5f);
 	}
 
-	// Token: 0x06001AB6 RID: 6838 RVA: 0x00016AF9 File Offset: 0x00014CF9
+	// Token: 0x060017D6 RID: 6102 RVA: 0x000A52D6 File Offset: 0x000A34D6
 	public void OnPointerExit(PointerEventData eventData)
 	{
 		this.inventory.showTooltip = false;
 	}
 
-	// Token: 0x06001AB7 RID: 6839 RVA: 0x00016B07 File Offset: 0x00014D07
+	// Token: 0x060017D7 RID: 6103 RVA: 0x000A52E4 File Offset: 0x000A34E4
 	public void OnPointerClick(PointerEventData eventData)
 	{
 		if (eventData.button == null)
@@ -76,42 +76,42 @@ public class ChuanYingItem : MonoBehaviour, IPointerEnterHandler, IEventSystemHa
 		}
 	}
 
-	// Token: 0x06001AB8 RID: 6840 RVA: 0x00016B18 File Offset: 0x00014D18
+	// Token: 0x060017D8 RID: 6104 RVA: 0x000A52F5 File Offset: 0x000A34F5
 	private bool CanClickLeft()
 	{
 		return this.hasItem;
 	}
 
-	// Token: 0x04001610 RID: 5648
+	// Token: 0x04001287 RID: 4743
 	[SerializeField]
 	private Image itemIcon;
 
-	// Token: 0x04001611 RID: 5649
+	// Token: 0x04001288 RID: 4744
 	[SerializeField]
 	private GameObject NameBG;
 
-	// Token: 0x04001612 RID: 5650
+	// Token: 0x04001289 RID: 4745
 	[SerializeField]
 	private Text itemName;
 
-	// Token: 0x04001613 RID: 5651
+	// Token: 0x0400128A RID: 4746
 	[SerializeField]
 	private Image PingZhi;
 
-	// Token: 0x04001614 RID: 5652
+	// Token: 0x0400128B RID: 4747
 	[SerializeField]
 	private Image HasGetImage;
 
-	// Token: 0x04001615 RID: 5653
+	// Token: 0x0400128C RID: 4748
 	private Inventory2 inventory;
 
-	// Token: 0x04001616 RID: 5654
+	// Token: 0x0400128D RID: 4749
 	[HideInInspector]
 	public item Item = new item();
 
-	// Token: 0x04001617 RID: 5655
+	// Token: 0x0400128E RID: 4750
 	public bool hasItem;
 
-	// Token: 0x04001618 RID: 5656
+	// Token: 0x0400128F RID: 4751
 	private Button button;
 }

@@ -2,31 +2,31 @@
 
 namespace KBEngine
 {
-	// Token: 0x02000F56 RID: 3926
+	// Token: 0x02000BD3 RID: 3027
 	public class ITEM_INFO
 	{
-		// Token: 0x06005E53 RID: 24147 RVA: 0x00261A2C File Offset: 0x0025FC2C
+		// Token: 0x06005415 RID: 21525 RVA: 0x002340B8 File Offset: 0x002322B8
 		public override string ToString()
 		{
 			return "" + string.Format("UUID:{0}\n", this.UUID) + "uuid:" + this.uuid + "\n" + string.Format("itemId:{0}\n", this.itemId) + string.Format("itemCount:{0}\n", this.itemCount) + string.Format("itemIndex:{0}\n", this.itemIndex) + string.Format("Seid:{0}\n", this.Seid);
 		}
 
-		// Token: 0x04005B0B RID: 23307
+		// Token: 0x0400506A RID: 20586
 		public ulong UUID;
 
-		// Token: 0x04005B0C RID: 23308
+		// Token: 0x0400506B RID: 20587
 		public string uuid = "";
 
-		// Token: 0x04005B0D RID: 23309
+		// Token: 0x0400506C RID: 20588
 		public int itemId;
 
-		// Token: 0x04005B0E RID: 23310
+		// Token: 0x0400506D RID: 20589
 		public uint itemCount;
 
-		// Token: 0x04005B0F RID: 23311
+		// Token: 0x0400506E RID: 20590
 		public int itemIndex;
 
-		// Token: 0x04005B10 RID: 23312
+		// Token: 0x0400506F RID: 20591
 		public JSONObject Seid = new JSONObject(JSONObject.Type.OBJECT);
 	}
 }

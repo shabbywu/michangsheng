@@ -6,19 +6,19 @@ using UnityEngine.Serialization;
 
 namespace Fungus
 {
-	// Token: 0x020012B9 RID: 4793
+	// Token: 0x02000E63 RID: 3683
 	[ExecuteInEditMode]
 	[RequireComponent(typeof(Flowchart))]
 	[AddComponentMenu("")]
 	public class Block : Node
 	{
-		// Token: 0x060073F2 RID: 29682 RVA: 0x0004F24D File Offset: 0x0004D44D
+		// Token: 0x0600675E RID: 26462 RVA: 0x0028A221 File Offset: 0x00288421
 		protected virtual void Awake()
 		{
 			this.SetExecutionInfo();
 		}
 
-		// Token: 0x060073F3 RID: 29683 RVA: 0x002ACB74 File Offset: 0x002AAD74
+		// Token: 0x0600675F RID: 26463 RVA: 0x0028A22C File Offset: 0x0028842C
 		protected virtual void SetExecutionInfo()
 		{
 			int num = 0;
@@ -35,23 +35,23 @@ namespace Fungus
 			this.executionInfoSet = true;
 		}
 
-		// Token: 0x17000A89 RID: 2697
-		// (get) Token: 0x060073F4 RID: 29684 RVA: 0x0004F255 File Offset: 0x0004D455
-		// (set) Token: 0x060073F5 RID: 29685 RVA: 0x0004F25D File Offset: 0x0004D45D
+		// Token: 0x17000820 RID: 2080
+		// (get) Token: 0x06006760 RID: 26464 RVA: 0x0028A286 File Offset: 0x00288486
+		// (set) Token: 0x06006761 RID: 26465 RVA: 0x0028A28E File Offset: 0x0028848E
 		public bool IsSelected { get; set; }
 
-		// Token: 0x17000A8A RID: 2698
-		// (get) Token: 0x060073F6 RID: 29686 RVA: 0x0004F266 File Offset: 0x0004D466
-		// (set) Token: 0x060073F7 RID: 29687 RVA: 0x0004F26E File Offset: 0x0004D46E
+		// Token: 0x17000821 RID: 2081
+		// (get) Token: 0x06006762 RID: 26466 RVA: 0x0028A297 File Offset: 0x00288497
+		// (set) Token: 0x06006763 RID: 26467 RVA: 0x0028A29F File Offset: 0x0028849F
 		public bool IsFiltered { get; set; }
 
-		// Token: 0x17000A8B RID: 2699
-		// (get) Token: 0x060073F8 RID: 29688 RVA: 0x0004F277 File Offset: 0x0004D477
-		// (set) Token: 0x060073F9 RID: 29689 RVA: 0x0004F27F File Offset: 0x0004D47F
+		// Token: 0x17000822 RID: 2082
+		// (get) Token: 0x06006764 RID: 26468 RVA: 0x0028A2A8 File Offset: 0x002884A8
+		// (set) Token: 0x06006765 RID: 26469 RVA: 0x0028A2B0 File Offset: 0x002884B0
 		public bool IsControlSelected { get; set; }
 
-		// Token: 0x17000A8C RID: 2700
-		// (get) Token: 0x060073FA RID: 29690 RVA: 0x0004F288 File Offset: 0x0004D488
+		// Token: 0x17000823 RID: 2083
+		// (get) Token: 0x06006766 RID: 26470 RVA: 0x0028A2B9 File Offset: 0x002884B9
 		public virtual ExecutionState State
 		{
 			get
@@ -60,9 +60,9 @@ namespace Fungus
 			}
 		}
 
-		// Token: 0x17000A8D RID: 2701
-		// (get) Token: 0x060073FB RID: 29691 RVA: 0x0004F290 File Offset: 0x0004D490
-		// (set) Token: 0x060073FC RID: 29692 RVA: 0x0004F298 File Offset: 0x0004D498
+		// Token: 0x17000824 RID: 2084
+		// (get) Token: 0x06006767 RID: 26471 RVA: 0x0028A2C1 File Offset: 0x002884C1
+		// (set) Token: 0x06006768 RID: 26472 RVA: 0x0028A2C9 File Offset: 0x002884C9
 		public virtual int ItemId
 		{
 			get
@@ -75,9 +75,9 @@ namespace Fungus
 			}
 		}
 
-		// Token: 0x17000A8E RID: 2702
-		// (get) Token: 0x060073FD RID: 29693 RVA: 0x0004F2A1 File Offset: 0x0004D4A1
-		// (set) Token: 0x060073FE RID: 29694 RVA: 0x0004F2A9 File Offset: 0x0004D4A9
+		// Token: 0x17000825 RID: 2085
+		// (get) Token: 0x06006769 RID: 26473 RVA: 0x0028A2D2 File Offset: 0x002884D2
+		// (set) Token: 0x0600676A RID: 26474 RVA: 0x0028A2DA File Offset: 0x002884DA
 		public virtual string BlockName
 		{
 			get
@@ -90,8 +90,8 @@ namespace Fungus
 			}
 		}
 
-		// Token: 0x17000A8F RID: 2703
-		// (get) Token: 0x060073FF RID: 29695 RVA: 0x0004F2B2 File Offset: 0x0004D4B2
+		// Token: 0x17000826 RID: 2086
+		// (get) Token: 0x0600676B RID: 26475 RVA: 0x0028A2E3 File Offset: 0x002884E3
 		public virtual string Description
 		{
 			get
@@ -100,9 +100,9 @@ namespace Fungus
 			}
 		}
 
-		// Token: 0x17000A90 RID: 2704
-		// (get) Token: 0x06007400 RID: 29696 RVA: 0x0004F2BA File Offset: 0x0004D4BA
-		// (set) Token: 0x06007401 RID: 29697 RVA: 0x0004F2C2 File Offset: 0x0004D4C2
+		// Token: 0x17000827 RID: 2087
+		// (get) Token: 0x0600676C RID: 26476 RVA: 0x0028A2EB File Offset: 0x002884EB
+		// (set) Token: 0x0600676D RID: 26477 RVA: 0x0028A2F3 File Offset: 0x002884F3
 		public virtual EventHandler _EventHandler
 		{
 			get
@@ -115,8 +115,8 @@ namespace Fungus
 			}
 		}
 
-		// Token: 0x17000A91 RID: 2705
-		// (get) Token: 0x06007402 RID: 29698 RVA: 0x0004F2CB File Offset: 0x0004D4CB
+		// Token: 0x17000828 RID: 2088
+		// (get) Token: 0x0600676E RID: 26478 RVA: 0x0028A2FC File Offset: 0x002884FC
 		public virtual Command ActiveCommand
 		{
 			get
@@ -125,13 +125,13 @@ namespace Fungus
 			}
 		}
 
-		// Token: 0x17000A92 RID: 2706
-		// (get) Token: 0x06007403 RID: 29699 RVA: 0x0004F2D3 File Offset: 0x0004D4D3
-		// (set) Token: 0x06007404 RID: 29700 RVA: 0x0004F2DB File Offset: 0x0004D4DB
+		// Token: 0x17000829 RID: 2089
+		// (get) Token: 0x0600676F RID: 26479 RVA: 0x0028A304 File Offset: 0x00288504
+		// (set) Token: 0x06006770 RID: 26480 RVA: 0x0028A30C File Offset: 0x0028850C
 		public virtual float ExecutingIconTimer { get; set; }
 
-		// Token: 0x17000A93 RID: 2707
-		// (get) Token: 0x06007405 RID: 29701 RVA: 0x0004F2E4 File Offset: 0x0004D4E4
+		// Token: 0x1700082A RID: 2090
+		// (get) Token: 0x06006771 RID: 26481 RVA: 0x0028A315 File Offset: 0x00288515
 		public virtual List<Command> CommandList
 		{
 			get
@@ -140,8 +140,8 @@ namespace Fungus
 			}
 		}
 
-		// Token: 0x17000A94 RID: 2708
-		// (set) Token: 0x06007406 RID: 29702 RVA: 0x0004F2EC File Offset: 0x0004D4EC
+		// Token: 0x1700082B RID: 2091
+		// (set) Token: 0x06006772 RID: 26482 RVA: 0x0028A31D File Offset: 0x0028851D
 		public virtual int JumpToCommandIndex
 		{
 			set
@@ -150,31 +150,31 @@ namespace Fungus
 			}
 		}
 
-		// Token: 0x06007407 RID: 29703 RVA: 0x0004F2F5 File Offset: 0x0004D4F5
+		// Token: 0x06006773 RID: 26483 RVA: 0x0028A326 File Offset: 0x00288526
 		public virtual Flowchart GetFlowchart()
 		{
 			return base.GetComponent<Flowchart>();
 		}
 
-		// Token: 0x06007408 RID: 29704 RVA: 0x0004F2FD File Offset: 0x0004D4FD
+		// Token: 0x06006774 RID: 26484 RVA: 0x0028A32E File Offset: 0x0028852E
 		public virtual bool IsExecuting()
 		{
 			return this.executionState == ExecutionState.Executing;
 		}
 
-		// Token: 0x06007409 RID: 29705 RVA: 0x0004F308 File Offset: 0x0004D508
+		// Token: 0x06006775 RID: 26485 RVA: 0x0028A339 File Offset: 0x00288539
 		public virtual int GetExecutionCount()
 		{
 			return this.executionCount;
 		}
 
-		// Token: 0x0600740A RID: 29706 RVA: 0x0004F310 File Offset: 0x0004D510
+		// Token: 0x06006776 RID: 26486 RVA: 0x0028A341 File Offset: 0x00288541
 		public virtual void StartExecution()
 		{
 			base.StartCoroutine(this.Execute(0, null));
 		}
 
-		// Token: 0x0600740B RID: 29707 RVA: 0x0004F321 File Offset: 0x0004D521
+		// Token: 0x06006777 RID: 26487 RVA: 0x0028A352 File Offset: 0x00288552
 		public virtual IEnumerator Execute(int commandIndex = 0, Action onComplete = null)
 		{
 			new List<Command>();
@@ -286,7 +286,7 @@ namespace Fungus
 			yield break;
 		}
 
-		// Token: 0x0600740C RID: 29708 RVA: 0x0004F33E File Offset: 0x0004D53E
+		// Token: 0x06006778 RID: 26488 RVA: 0x0028A36F File Offset: 0x0028856F
 		private void ReturnToIdle()
 		{
 			this.executionState = ExecutionState.Idle;
@@ -299,7 +299,7 @@ namespace Fungus
 			this.lastOnCompleteAction = null;
 		}
 
-		// Token: 0x0600740D RID: 29709 RVA: 0x0004F36E File Offset: 0x0004D56E
+		// Token: 0x06006779 RID: 26489 RVA: 0x0028A39F File Offset: 0x0028859F
 		public virtual void Stop()
 		{
 			if (this.activeCommand != null)
@@ -311,7 +311,7 @@ namespace Fungus
 			this.ReturnToIdle();
 		}
 
-		// Token: 0x0600740E RID: 29710 RVA: 0x002ACBD0 File Offset: 0x002AADD0
+		// Token: 0x0600677A RID: 26490 RVA: 0x0028A3D8 File Offset: 0x002885D8
 		public virtual List<Block> GetConnectedBlocks()
 		{
 			List<Block> result = new List<Block>();
@@ -326,7 +326,7 @@ namespace Fungus
 			return result;
 		}
 
-		// Token: 0x0600740F RID: 29711 RVA: 0x0004F3A6 File Offset: 0x0004D5A6
+		// Token: 0x0600677B RID: 26491 RVA: 0x0028A420 File Offset: 0x00288620
 		public virtual Type GetPreviousActiveCommandType()
 		{
 			if (this.previousActiveCommandIndex >= 0 && this.previousActiveCommandIndex < this.commandList.Count)
@@ -336,7 +336,7 @@ namespace Fungus
 			return null;
 		}
 
-		// Token: 0x06007410 RID: 29712 RVA: 0x0004F3DC File Offset: 0x0004D5DC
+		// Token: 0x0600677C RID: 26492 RVA: 0x0028A456 File Offset: 0x00288656
 		public virtual int GetPreviousActiveCommandIndent()
 		{
 			if (this.previousActiveCommandIndex >= 0 && this.previousActiveCommandIndex < this.commandList.Count)
@@ -346,7 +346,7 @@ namespace Fungus
 			return -1;
 		}
 
-		// Token: 0x06007411 RID: 29713 RVA: 0x002ACC18 File Offset: 0x002AAE18
+		// Token: 0x0600677D RID: 26493 RVA: 0x0028A48C File Offset: 0x0028868C
 		public virtual void UpdateIndentLevels()
 		{
 			int num = 0;
@@ -369,7 +369,7 @@ namespace Fungus
 			}
 		}
 
-		// Token: 0x06007412 RID: 29714 RVA: 0x002ACC7C File Offset: 0x002AAE7C
+		// Token: 0x0600677E RID: 26494 RVA: 0x0028A4F0 File Offset: 0x002886F0
 		public virtual int GetLabelIndex(string labelKey)
 		{
 			if (labelKey.Length == 0)
@@ -387,50 +387,50 @@ namespace Fungus
 			return -1;
 		}
 
-		// Token: 0x040065C9 RID: 26057
+		// Token: 0x04005866 RID: 22630
 		[SerializeField]
 		protected int itemId = -1;
 
-		// Token: 0x040065CA RID: 26058
+		// Token: 0x04005867 RID: 22631
 		[FormerlySerializedAs("sequenceName")]
 		[Tooltip("The name of the block node as displayed in the Flowchart window")]
 		[SerializeField]
 		public string blockName = "New Block";
 
-		// Token: 0x040065CB RID: 26059
+		// Token: 0x04005868 RID: 22632
 		[TextArea(2, 5)]
 		[Tooltip("Description text to display under the block node")]
 		[SerializeField]
 		protected string description = "";
 
-		// Token: 0x040065CC RID: 26060
+		// Token: 0x04005869 RID: 22633
 		[Tooltip("An optional Event Handler which can execute the block when an event occurs")]
 		[SerializeField]
 		protected EventHandler eventHandler;
 
-		// Token: 0x040065CD RID: 26061
+		// Token: 0x0400586A RID: 22634
 		[SerializeField]
 		public List<Command> commandList = new List<Command>();
 
-		// Token: 0x040065CE RID: 26062
+		// Token: 0x0400586B RID: 22635
 		protected ExecutionState executionState;
 
-		// Token: 0x040065CF RID: 26063
+		// Token: 0x0400586C RID: 22636
 		protected Command activeCommand;
 
-		// Token: 0x040065D0 RID: 26064
+		// Token: 0x0400586D RID: 22637
 		protected Action lastOnCompleteAction;
 
-		// Token: 0x040065D1 RID: 26065
+		// Token: 0x0400586E RID: 22638
 		protected int previousActiveCommandIndex = -1;
 
-		// Token: 0x040065D2 RID: 26066
+		// Token: 0x0400586F RID: 22639
 		protected int jumpToCommandIndex = -1;
 
-		// Token: 0x040065D3 RID: 26067
+		// Token: 0x04005870 RID: 22640
 		protected int executionCount;
 
-		// Token: 0x040065D4 RID: 26068
+		// Token: 0x04005871 RID: 22641
 		protected bool executionInfoSet;
 	}
 }

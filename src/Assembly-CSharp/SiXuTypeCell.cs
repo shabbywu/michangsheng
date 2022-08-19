@@ -2,21 +2,21 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-// Token: 0x02000528 RID: 1320
+// Token: 0x0200039F RID: 927
 public class SiXuTypeCell : MonoBehaviour
 {
-	// Token: 0x060021D1 RID: 8657 RVA: 0x0001BC65 File Offset: 0x00019E65
+	// Token: 0x06001E50 RID: 7760 RVA: 0x000D5975 File Offset: 0x000D3B75
 	public void setContent(string content, string outTime)
 	{
 		this.SiXuContent.text = content;
 		this.OutTime.text = outTime;
 	}
 
-	// Token: 0x04001D43 RID: 7491
+	// Token: 0x040018DA RID: 6362
 	[SerializeField]
 	private Text SiXuContent;
 
-	// Token: 0x04001D44 RID: 7492
+	// Token: 0x040018DB RID: 6363
 	[SerializeField]
 	private Text OutTime;
 }

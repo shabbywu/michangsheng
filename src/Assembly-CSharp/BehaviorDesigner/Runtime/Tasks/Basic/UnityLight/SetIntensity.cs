@@ -3,12 +3,12 @@ using UnityEngine;
 
 namespace BehaviorDesigner.Runtime.Tasks.Basic.UnityLight
 {
-	// Token: 0x020015D9 RID: 5593
+	// Token: 0x0200111A RID: 4378
 	[TaskCategory("Basic/Light")]
 	[TaskDescription("Sets the intensity of the light.")]
 	public class SetIntensity : Action
 	{
-		// Token: 0x06008318 RID: 33560 RVA: 0x002CE6EC File Offset: 0x002CC8EC
+		// Token: 0x0600751E RID: 29982 RVA: 0x002B3E90 File Offset: 0x002B2090
 		public override void OnStart()
 		{
 			GameObject defaultGameObject = base.GetDefaultGameObject(this.targetGameObject.Value);
@@ -19,7 +19,7 @@ namespace BehaviorDesigner.Runtime.Tasks.Basic.UnityLight
 			}
 		}
 
-		// Token: 0x06008319 RID: 33561 RVA: 0x0005A0E1 File Offset: 0x000582E1
+		// Token: 0x0600751F RID: 29983 RVA: 0x002B3ED0 File Offset: 0x002B20D0
 		public override TaskStatus OnUpdate()
 		{
 			if (this.light == null)
@@ -31,25 +31,25 @@ namespace BehaviorDesigner.Runtime.Tasks.Basic.UnityLight
 			return 2;
 		}
 
-		// Token: 0x0600831A RID: 33562 RVA: 0x0005A114 File Offset: 0x00058314
+		// Token: 0x06007520 RID: 29984 RVA: 0x002B3F03 File Offset: 0x002B2103
 		public override void OnReset()
 		{
 			this.targetGameObject = null;
 			this.intensity = 0f;
 		}
 
-		// Token: 0x04006FEB RID: 28651
+		// Token: 0x040060C8 RID: 24776
 		[Tooltip("The GameObject that the task operates on. If null the task GameObject is used.")]
 		public SharedGameObject targetGameObject;
 
-		// Token: 0x04006FEC RID: 28652
+		// Token: 0x040060C9 RID: 24777
 		[Tooltip("The intensity to set")]
 		public SharedFloat intensity;
 
-		// Token: 0x04006FED RID: 28653
+		// Token: 0x040060CA RID: 24778
 		private Light light;
 
-		// Token: 0x04006FEE RID: 28654
+		// Token: 0x040060CB RID: 24779
 		private GameObject prevGameObject;
 	}
 }

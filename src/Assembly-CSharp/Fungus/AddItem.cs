@@ -4,12 +4,12 @@ using UnityEngine;
 
 namespace Fungus
 {
-	// Token: 0x020013E2 RID: 5090
+	// Token: 0x02000F2C RID: 3884
 	[CommandInfo("YSNew/Add", "AddItem", "增加物品", 0)]
 	[AddComponentMenu("")]
 	public class AddItem : Command
 	{
-		// Token: 0x06007BE3 RID: 31715 RVA: 0x002C426C File Offset: 0x002C246C
+		// Token: 0x06006DF8 RID: 28152 RVA: 0x002A40D4 File Offset: 0x002A22D4
 		public override void OnEnter()
 		{
 			Avatar player = Tools.instance.getPlayer();
@@ -24,28 +24,28 @@ namespace Fungus
 			this.Continue();
 		}
 
-		// Token: 0x06007BE4 RID: 31716 RVA: 0x000113CF File Offset: 0x0000F5CF
+		// Token: 0x06006DF9 RID: 28153 RVA: 0x0005E228 File Offset: 0x0005C428
 		public override Color GetButtonColor()
 		{
 			return new Color32(184, 210, 235, byte.MaxValue);
 		}
 
-		// Token: 0x06007BE5 RID: 31717 RVA: 0x000042DD File Offset: 0x000024DD
+		// Token: 0x06006DFA RID: 28154 RVA: 0x00004095 File Offset: 0x00002295
 		public override void OnReset()
 		{
 		}
 
-		// Token: 0x04006A3B RID: 27195
+		// Token: 0x04005B69 RID: 23401
 		[Tooltip("增加物品的ID")]
 		[SerializeField]
 		public int ItemID;
 
-		// Token: 0x04006A3C RID: 27196
+		// Token: 0x04005B6A RID: 23402
 		[Tooltip("增加物品的数量")]
 		[SerializeField]
 		public int ItemNum;
 
-		// Token: 0x04006A3D RID: 27197
+		// Token: 0x04005B6B RID: 23403
 		[Tooltip("是否显示增加物品弹框")]
 		[SerializeField]
 		public bool showText = true;

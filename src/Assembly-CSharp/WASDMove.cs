@@ -4,16 +4,16 @@ using Fungus;
 using KBEngine;
 using UnityEngine;
 
-// Token: 0x02000570 RID: 1392
+// Token: 0x020003D5 RID: 981
 public class WASDMove : MonoBehaviour
 {
-	// Token: 0x0600235F RID: 9055 RVA: 0x0001CA1F File Offset: 0x0001AC1F
+	// Token: 0x06001FDF RID: 8159 RVA: 0x000E0F96 File Offset: 0x000DF196
 	private void Start()
 	{
 		WASDMove.Inst = this;
 	}
 
-	// Token: 0x06002360 RID: 9056 RVA: 0x00123AC4 File Offset: 0x00121CC4
+	// Token: 0x06001FE0 RID: 8160 RVA: 0x000E0FA0 File Offset: 0x000DF1A0
 	private void Update()
 	{
 		if (this.moveCD < 0f)
@@ -57,7 +57,7 @@ public class WASDMove : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06002361 RID: 9057 RVA: 0x0001CA27 File Offset: 0x0001AC27
+	// Token: 0x06001FE1 RID: 8161 RVA: 0x000E1059 File Offset: 0x000DF259
 	private void LateUpdate()
 	{
 		if (this.IsMoved)
@@ -72,7 +72,7 @@ public class WASDMove : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06002362 RID: 9058 RVA: 0x00123B80 File Offset: 0x00121D80
+	// Token: 0x06001FE2 RID: 8162 RVA: 0x000E1084 File Offset: 0x000DF284
 	public static void DelMoreComponent(GameObject obj)
 	{
 		WASDMove[] components = obj.GetComponents<WASDMove>();
@@ -86,7 +86,7 @@ public class WASDMove : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06002363 RID: 9059 RVA: 0x00123BB4 File Offset: 0x00121DB4
+	// Token: 0x06001FE3 RID: 8163 RVA: 0x000E10B8 File Offset: 0x000DF2B8
 	public void Move()
 	{
 		Dictionary<MoveDir, int> moveIndexs = this.GetMoveIndexs();
@@ -102,7 +102,7 @@ public class WASDMove : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06002364 RID: 9060 RVA: 0x0001CA4F File Offset: 0x0001AC4F
+	// Token: 0x06001FE4 RID: 8164 RVA: 0x000E111A File Offset: 0x000DF31A
 	private void SetHasVariable(string name, int num, Flowchart flowchart)
 	{
 		if (flowchart.HasVariable(name))
@@ -111,7 +111,7 @@ public class WASDMove : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06002365 RID: 9061 RVA: 0x00123C18 File Offset: 0x00121E18
+	// Token: 0x06001FE5 RID: 8165 RVA: 0x000E1130 File Offset: 0x000DF330
 	private void InitFungus(Flowchart flowchart)
 	{
 		Avatar player = Tools.instance.getPlayer();
@@ -126,13 +126,13 @@ public class WASDMove : MonoBehaviour
 		this.SetHasVariable("Sex", player.Sex, flowchart);
 	}
 
-	// Token: 0x06002366 RID: 9062 RVA: 0x00011F27 File Offset: 0x00010127
+	// Token: 0x06001FE6 RID: 8166 RVA: 0x00062BA5 File Offset: 0x00060DA5
 	public int GetNowIndex()
 	{
 		return Tools.instance.getPlayer().fubenContorl[Tools.getScreenName()].NowIndex;
 	}
 
-	// Token: 0x06002367 RID: 9063 RVA: 0x00123CD4 File Offset: 0x00121ED4
+	// Token: 0x06001FE7 RID: 8167 RVA: 0x000E11EC File Offset: 0x000DF3EC
 	public Dictionary<MoveDir, int> GetMoveIndexs()
 	{
 		Dictionary<MoveDir, int> dictionary = new Dictionary<MoveDir, int>();
@@ -164,32 +164,32 @@ public class WASDMove : MonoBehaviour
 		return dictionary;
 	}
 
-	// Token: 0x06002368 RID: 9064 RVA: 0x0001CA62 File Offset: 0x0001AC62
+	// Token: 0x06001FE8 RID: 8168 RVA: 0x000E1300 File Offset: 0x000DF500
 	public bool CanMove()
 	{
 		return Tools.instance.canClick(false, true);
 	}
 
-	// Token: 0x04001E7C RID: 7804
+	// Token: 0x040019EA RID: 6634
 	public static WASDMove Inst;
 
-	// Token: 0x04001E7D RID: 7805
+	// Token: 0x040019EB RID: 6635
 	[HideInInspector]
 	public MoveDir MoveDir;
 
-	// Token: 0x04001E7E RID: 7806
+	// Token: 0x040019EC RID: 6636
 	[HideInInspector]
 	public bool IsMoved = true;
 
-	// Token: 0x04001E7F RID: 7807
+	// Token: 0x040019ED RID: 6637
 	private bool moveFlag;
 
-	// Token: 0x04001E80 RID: 7808
+	// Token: 0x040019EE RID: 6638
 	private float moveCD;
 
-	// Token: 0x04001E81 RID: 7809
+	// Token: 0x040019EF RID: 6639
 	public static float waitTime;
 
-	// Token: 0x04001E82 RID: 7810
+	// Token: 0x040019F0 RID: 6640
 	public static bool needWait;
 }

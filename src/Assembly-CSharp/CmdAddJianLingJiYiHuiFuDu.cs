@@ -2,19 +2,19 @@
 using Fungus;
 using UnityEngine;
 
-// Token: 0x0200041A RID: 1050
+// Token: 0x020002CE RID: 718
 [CommandInfo("剑灵", "增加剑灵记忆恢复度", "增加剑灵记忆恢复度", 0)]
 [AddComponentMenu("")]
 public class CmdAddJianLingJiYiHuiFuDu : Command
 {
-	// Token: 0x06001C36 RID: 7222 RVA: 0x00017992 File Offset: 0x00015B92
+	// Token: 0x0600192E RID: 6446 RVA: 0x000B4E41 File Offset: 0x000B3041
 	public override void OnEnter()
 	{
 		PlayerEx.Player.jianLingManager.AddExJiYiHuiFuDu(this.HuiFuDu);
 		this.Continue();
 	}
 
-	// Token: 0x0400183D RID: 6205
+	// Token: 0x0400146F RID: 5231
 	[Tooltip("恢复度")]
 	protected int HuiFuDu;
 }

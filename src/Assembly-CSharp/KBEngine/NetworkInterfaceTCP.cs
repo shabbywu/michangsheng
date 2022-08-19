@@ -3,16 +3,16 @@ using System.Net.Sockets;
 
 namespace KBEngine
 {
-	// Token: 0x02000FDA RID: 4058
+	// Token: 0x02000C52 RID: 3154
 	public class NetworkInterfaceTCP : NetworkInterfaceBase
 	{
-		// Token: 0x06005FEA RID: 24554 RVA: 0x00042ABB File Offset: 0x00040CBB
+		// Token: 0x060055A3 RID: 21923 RVA: 0x00238EB2 File Offset: 0x002370B2
 		public override bool valid()
 		{
 			return this._socket != null && this._socket.Connected;
 		}
 
-		// Token: 0x06005FEB RID: 24555 RVA: 0x00266654 File Offset: 0x00264854
+		// Token: 0x060055A4 RID: 21924 RVA: 0x00239710 File Offset: 0x00237910
 		protected override Socket createSocket()
 		{
 			Socket socket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
@@ -22,19 +22,19 @@ namespace KBEngine
 			return socket;
 		}
 
-		// Token: 0x06005FEC RID: 24556 RVA: 0x00042C61 File Offset: 0x00040E61
+		// Token: 0x060055A5 RID: 21925 RVA: 0x0023976E File Offset: 0x0023796E
 		protected override PacketReceiverBase createPacketReceiver()
 		{
 			return new PacketReceiverTCP(this);
 		}
 
-		// Token: 0x06005FED RID: 24557 RVA: 0x00042C69 File Offset: 0x00040E69
+		// Token: 0x060055A6 RID: 21926 RVA: 0x00239776 File Offset: 0x00237976
 		protected override PacketSenderBase createPacketSender()
 		{
 			return new PacketSenderTCP(this);
 		}
 
-		// Token: 0x06005FEE RID: 24558 RVA: 0x002666B4 File Offset: 0x002648B4
+		// Token: 0x060055A7 RID: 21927 RVA: 0x00239780 File Offset: 0x00237980
 		protected override void onAsyncConnect(NetworkInterfaceBase.ConnectState state)
 		{
 			try

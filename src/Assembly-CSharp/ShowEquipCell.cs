@@ -3,30 +3,30 @@ using Newtonsoft.Json.Linq;
 using UnityEngine;
 using UnityEngine.UI;
 
-// Token: 0x02000456 RID: 1110
+// Token: 0x020002F9 RID: 761
 public class ShowEquipCell : MonoBehaviour
 {
-	// Token: 0x06001DB4 RID: 7604 RVA: 0x00018B70 File Offset: 0x00016D70
+	// Token: 0x06001A8E RID: 6798 RVA: 0x000BD173 File Offset: 0x000BB373
 	public void init()
 	{
 		this.equipImage.gameObject.SetActive(false);
 		this.equipPingJie.text = "";
 	}
 
-	// Token: 0x06001DB5 RID: 7605 RVA: 0x00018B93 File Offset: 0x00016D93
+	// Token: 0x06001A8F RID: 6799 RVA: 0x000BD196 File Offset: 0x000BB396
 	public void setEquipImage(Sprite sprite)
 	{
 		this.equipImage.gameObject.SetActive(true);
 		this.equipImage.sprite = sprite;
 	}
 
-	// Token: 0x06001DB6 RID: 7606 RVA: 0x00018BB2 File Offset: 0x00016DB2
+	// Token: 0x06001A90 RID: 6800 RVA: 0x000BD1B5 File Offset: 0x000BB3B5
 	public Sprite getEquipImage()
 	{
 		return this.equipImage.sprite;
 	}
 
-	// Token: 0x06001DB7 RID: 7607 RVA: 0x001031C0 File Offset: 0x001013C0
+	// Token: 0x06001A91 RID: 6801 RVA: 0x000BD1C4 File Offset: 0x000BB3C4
 	public void updateEquipPingJie()
 	{
 		JToken jtoken = LianQiTotalManager.inst.getcurEquipQualityDate();
@@ -51,7 +51,7 @@ public class ShowEquipCell : MonoBehaviour
 		this.equipPingJie.text = "";
 	}
 
-	// Token: 0x06001DB8 RID: 7608 RVA: 0x00103248 File Offset: 0x00101448
+	// Token: 0x06001A92 RID: 6802 RVA: 0x000BD24C File Offset: 0x000BB44C
 	public void setEquipPingJie(string pinjie, int color = 1)
 	{
 		switch (color)
@@ -76,7 +76,7 @@ public class ShowEquipCell : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001DB9 RID: 7609 RVA: 0x00103300 File Offset: 0x00101500
+	// Token: 0x06001A93 RID: 6803 RVA: 0x000BD304 File Offset: 0x000BB504
 	public string getEquipDesc()
 	{
 		string result = "";
@@ -115,11 +115,11 @@ public class ShowEquipCell : MonoBehaviour
 		return result;
 	}
 
-	// Token: 0x04001963 RID: 6499
+	// Token: 0x04001556 RID: 5462
 	[SerializeField]
 	private Image equipImage;
 
-	// Token: 0x04001964 RID: 6500
+	// Token: 0x04001557 RID: 5463
 	[SerializeField]
 	private Text equipPingJie;
 }

@@ -5,10 +5,10 @@ using KBEngine;
 using UnityEngine;
 using UnityEngine.UI;
 
-// Token: 0x02000472 RID: 1138
+// Token: 0x02000311 RID: 785
 public class LunDaoManager : MonoBehaviour
 {
-	// Token: 0x06001E7B RID: 7803 RVA: 0x00107F0C File Offset: 0x0010610C
+	// Token: 0x06001B4A RID: 6986 RVA: 0x000C28DC File Offset: 0x000C0ADC
 	private void Awake()
 	{
 		LunDaoManager.inst = this;
@@ -22,7 +22,7 @@ public class LunDaoManager : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001E7C RID: 7804 RVA: 0x00019486 File Offset: 0x00017686
+	// Token: 0x06001B4B RID: 6987 RVA: 0x000C2994 File Offset: 0x000C0B94
 	private void Start()
 	{
 		this.player = Tools.instance.getPlayer();
@@ -31,7 +31,7 @@ public class LunDaoManager : MonoBehaviour
 		this.InitLunDao();
 	}
 
-	// Token: 0x06001E7D RID: 7805 RVA: 0x00107FC4 File Offset: 0x001061C4
+	// Token: 0x06001B4C RID: 6988 RVA: 0x000C29C4 File Offset: 0x000C0BC4
 	private void InitLunDao()
 	{
 		if (!Tools.instance.IsSuiJiLunTi && (Tools.instance.LunTiList == null || Tools.instance.LunTiList.Count < 1))
@@ -46,7 +46,7 @@ public class LunDaoManager : MonoBehaviour
 		this.npcController.Init();
 	}
 
-	// Token: 0x06001E7E RID: 7806 RVA: 0x000194B4 File Offset: 0x000176B4
+	// Token: 0x06001B4D RID: 6989 RVA: 0x000C2A24 File Offset: 0x000C0C24
 	public void StartGame()
 	{
 		this.lunDaoAmrMag.PlayStartLunDao().PlayingAction(delegate
@@ -82,7 +82,7 @@ public class LunDaoManager : MonoBehaviour
 		}).Run();
 	}
 
-	// Token: 0x06001E7F RID: 7807 RVA: 0x000194E8 File Offset: 0x000176E8
+	// Token: 0x06001B4E RID: 6990 RVA: 0x000C2A58 File Offset: 0x000C0C58
 	public void EndRoundCallBack()
 	{
 		if (this.gameState == LunDaoManager.GameState.玩家回合)
@@ -101,7 +101,7 @@ public class LunDaoManager : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001E80 RID: 7808 RVA: 0x00108024 File Offset: 0x00106224
+	// Token: 0x06001B4F RID: 6991 RVA: 0x000C2A94 File Offset: 0x000C0C94
 	public void GameOver()
 	{
 		if (this.isOver)
@@ -117,7 +117,7 @@ public class LunDaoManager : MonoBehaviour
 		base.Invoke("LunDaoFail", 1f);
 	}
 
-	// Token: 0x06001E81 RID: 7809 RVA: 0x00108070 File Offset: 0x00106270
+	// Token: 0x06001B50 RID: 6992 RVA: 0x000C2AE0 File Offset: 0x000C0CE0
 	public void ChuPaiCallBack()
 	{
 		this.lunTiMag.CompleteLunTi();
@@ -130,13 +130,13 @@ public class LunDaoManager : MonoBehaviour
 		this.playerController.tips.SetActive(false);
 	}
 
-	// Token: 0x06001E82 RID: 7810 RVA: 0x00019523 File Offset: 0x00017723
+	// Token: 0x06001B51 RID: 6993 RVA: 0x000C2B41 File Offset: 0x000C0D41
 	public void LunDaoSuccess()
 	{
 		this.lunDaoSuccessPanel.Init();
 	}
 
-	// Token: 0x06001E83 RID: 7811 RVA: 0x001080D4 File Offset: 0x001062D4
+	// Token: 0x06001B52 RID: 6994 RVA: 0x000C2B50 File Offset: 0x000C0D50
 	public void LunDaoFail()
 	{
 		if (NpcJieSuanManager.inst.lunDaoNpcList.Contains(this.npcId))
@@ -147,7 +147,7 @@ public class LunDaoManager : MonoBehaviour
 		this.LunDaoFailPanel.SetActive(true);
 	}
 
-	// Token: 0x06001E84 RID: 7812 RVA: 0x0010813C File Offset: 0x0010633C
+	// Token: 0x06001B53 RID: 6995 RVA: 0x000C2BB8 File Offset: 0x000C0DB8
 	public void Close()
 	{
 		Tools.instance.TargetLunTiNum = this.hasCompleteLunTi.Count;
@@ -156,7 +156,7 @@ public class LunDaoManager : MonoBehaviour
 		Tools.instance.loadMapScenes(Tools.instance.FinalScene, true);
 	}
 
-	// Token: 0x06001E85 RID: 7813 RVA: 0x00108190 File Offset: 0x00106390
+	// Token: 0x06001B54 RID: 6996 RVA: 0x000C2C0C File Offset: 0x000C0E0C
 	public void AddWuDaoZhi(int wudaoId, int addNum)
 	{
 		int i = jsonData.instance.AvatarJsonData[this.npcId.ToString()]["wuDaoJson"][wudaoId.ToString()]["level"].I;
@@ -169,7 +169,7 @@ public class LunDaoManager : MonoBehaviour
 		this.wuDaoZhi.text = this.getWuDaoZhi.ToString();
 	}
 
-	// Token: 0x06001E86 RID: 7814 RVA: 0x00108234 File Offset: 0x00106434
+	// Token: 0x06001B55 RID: 6997 RVA: 0x000C2CB0 File Offset: 0x000C0EB0
 	public void AddWuDaoExp(int wuDaoId)
 	{
 		foreach (int item in this.lunTiMag.targetLunTiDictionary[wuDaoId])
@@ -188,7 +188,7 @@ public class LunDaoManager : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001E87 RID: 7815 RVA: 0x001082C8 File Offset: 0x001064C8
+	// Token: 0x06001B56 RID: 6998 RVA: 0x000C2D44 File Offset: 0x000C0F44
 	public List<int> GetSuiJiLuntTi(int num)
 	{
 		List<int> list = new List<int>
@@ -214,90 +214,90 @@ public class LunDaoManager : MonoBehaviour
 		return list2;
 	}
 
-	// Token: 0x040019D8 RID: 6616
+	// Token: 0x040015C2 RID: 5570
 	public static LunDaoManager inst;
 
-	// Token: 0x040019D9 RID: 6617
+	// Token: 0x040015C3 RID: 5571
 	public LunDaoAmrMag lunDaoAmrMag;
 
-	// Token: 0x040019DA RID: 6618
+	// Token: 0x040015C4 RID: 5572
 	public SelectLunTi selectLunTi;
 
-	// Token: 0x040019DB RID: 6619
+	// Token: 0x040015C5 RID: 5573
 	public PlayerController playerController;
 
-	// Token: 0x040019DC RID: 6620
+	// Token: 0x040015C6 RID: 5574
 	public NpcController npcController;
 
-	// Token: 0x040019DD RID: 6621
+	// Token: 0x040015C7 RID: 5575
 	public LunDaoCardMag lunDaoCardMag;
 
-	// Token: 0x040019DE RID: 6622
+	// Token: 0x040015C8 RID: 5576
 	public LunTiMag lunTiMag;
 
-	// Token: 0x040019DF RID: 6623
+	// Token: 0x040015C9 RID: 5577
 	public LunDaoPanel lunDaoPanel;
 
-	// Token: 0x040019E0 RID: 6624
+	// Token: 0x040015CA RID: 5578
 	public LunDaoSuccess lunDaoSuccessPanel;
 
-	// Token: 0x040019E1 RID: 6625
+	// Token: 0x040015CB RID: 5579
 	public Dictionary<int, string> lunDaoStateNameDictionary;
 
-	// Token: 0x040019E2 RID: 6626
+	// Token: 0x040015CC RID: 5580
 	public List<int> selectLunTiList;
 
-	// Token: 0x040019E3 RID: 6627
+	// Token: 0x040015CD RID: 5581
 	public int npcId;
 
-	// Token: 0x040019E4 RID: 6628
+	// Token: 0x040015CE RID: 5582
 	public LunDaoManager.GameState gameState;
 
-	// Token: 0x040019E5 RID: 6629
+	// Token: 0x040015CF RID: 5583
 	public Avatar player;
 
-	// Token: 0x040019E6 RID: 6630
+	// Token: 0x040015D0 RID: 5584
 	public List<int> hasCompleteLunTi;
 
-	// Token: 0x040019E7 RID: 6631
+	// Token: 0x040015D1 RID: 5585
 	public Transform AnimatorPanel;
 
-	// Token: 0x040019E8 RID: 6632
+	// Token: 0x040015D2 RID: 5586
 	public List<Sprite> cardSprites;
 
-	// Token: 0x040019E9 RID: 6633
+	// Token: 0x040015D3 RID: 5587
 	public List<AudioClip> musicEffectList;
 
-	// Token: 0x040019EA RID: 6634
+	// Token: 0x040015D4 RID: 5588
 	public Dictionary<int, List<int>> getWuDaoExp = new Dictionary<int, List<int>>();
 
-	// Token: 0x040019EB RID: 6635
+	// Token: 0x040015D5 RID: 5589
 	[SerializeField]
 	private Text wuDaoZhi;
 
-	// Token: 0x040019EC RID: 6636
+	// Token: 0x040015D6 RID: 5590
 	public int getWuDaoZhi;
 
-	// Token: 0x040019ED RID: 6637
+	// Token: 0x040015D7 RID: 5591
 	public List<Sprite> cardSpriteList;
 
-	// Token: 0x040019EE RID: 6638
+	// Token: 0x040015D8 RID: 5592
 	public GameObject playerCardTemp;
 
-	// Token: 0x040019EF RID: 6639
+	// Token: 0x040015D9 RID: 5593
 	public GameObject LunDaoFailPanel;
 
-	// Token: 0x040019F0 RID: 6640
+	// Token: 0x040015DA RID: 5594
 	public bool isOver;
 
-	// Token: 0x02000473 RID: 1139
+	// Token: 0x02001337 RID: 4919
 	public enum GameState
 	{
-		// Token: 0x040019F2 RID: 6642
+		// Token: 0x040067D9 RID: 26585
 		玩家回合 = 1,
-		// Token: 0x040019F3 RID: 6643
+		// Token: 0x040067DA RID: 26586
 		Npc回合,
-		// Token: 0x040019F4 RID: 6644
+		// Token: 0x040067DB RID: 26587
 		论道结束
 	}
 }

@@ -2,16 +2,16 @@
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-// Token: 0x02000204 RID: 516
+// Token: 0x02000133 RID: 307
 public class CloseInventory : MonoBehaviour, IPointerDownHandler, IEventSystemHandler
 {
-	// Token: 0x0600104B RID: 4171 RVA: 0x00010478 File Offset: 0x0000E678
+	// Token: 0x06000E3D RID: 3645 RVA: 0x00054A0D File Offset: 0x00052C0D
 	private void Start()
 	{
 		this.inv = base.transform.parent.GetComponent<Inventory>();
 	}
 
-	// Token: 0x0600104C RID: 4172 RVA: 0x00010490 File Offset: 0x0000E690
+	// Token: 0x06000E3E RID: 3646 RVA: 0x00054A25 File Offset: 0x00052C25
 	public void OnPointerDown(PointerEventData eventData)
 	{
 		if (eventData.button == null)
@@ -20,6 +20,6 @@ public class CloseInventory : MonoBehaviour, IPointerDownHandler, IEventSystemHa
 		}
 	}
 
-	// Token: 0x04000CDE RID: 3294
+	// Token: 0x04000A46 RID: 2630
 	private Inventory inv;
 }

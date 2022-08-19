@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using Bag;
+using JSONClass;
 using KBEngine;
 using SuperScrollView;
 using UnityEngine;
@@ -10,11 +11,11 @@ using UnityEngine.UI;
 
 namespace Tab
 {
-	// Token: 0x02000A36 RID: 2614
+	// Token: 0x020006F5 RID: 1781
 	[Serializable]
 	public class TabBag : UIBase
 	{
-		// Token: 0x060043A0 RID: 17312 RVA: 0x001CE440 File Offset: 0x001CC640
+		// Token: 0x06003935 RID: 14645 RVA: 0x00186BB8 File Offset: 0x00184DB8
 		public TabBag(GameObject go)
 		{
 			this._go = go;
@@ -28,7 +29,7 @@ namespace Tab
 			this.CanSort = true;
 		}
 
-		// Token: 0x060043A1 RID: 17313 RVA: 0x001CE4EC File Offset: 0x001CC6EC
+		// Token: 0x06003936 RID: 14646 RVA: 0x00186C64 File Offset: 0x00184E64
 		private void Init()
 		{
 			this._isInit = true;
@@ -38,7 +39,7 @@ namespace Tab
 			this.mLoopListView.InitListView(this.GetCount(this.mItemTotalCount), new Func<LoopListView2, int, LoopListViewItem2>(this.OnGetItemByIndex), null);
 		}
 
-		// Token: 0x060043A2 RID: 17314 RVA: 0x001CE558 File Offset: 0x001CC758
+		// Token: 0x06003937 RID: 14647 RVA: 0x00186CD0 File Offset: 0x00184ED0
 		public void OpenBag(BagType bagType)
 		{
 			this.ItemType = Bag.ItemType.全部;
@@ -236,7 +237,7 @@ namespace Tab
 			SingletonMono<TabUIMag>.Instance.TabFangAnPanel.Show();
 		}
 
-		// Token: 0x060043A3 RID: 17315 RVA: 0x001CE7BC File Offset: 0x001CC9BC
+		// Token: 0x06003938 RID: 14648 RVA: 0x00186F34 File Offset: 0x00185134
 		public void UpdateMoney()
 		{
 			if (this._bagType == BagType.背包)
@@ -248,14 +249,14 @@ namespace Tab
 			this.UtilsPanel.gameObject.SetActive(false);
 		}
 
-		// Token: 0x060043A4 RID: 17316 RVA: 0x000305E1 File Offset: 0x0002E7E1
+		// Token: 0x06003939 RID: 14649 RVA: 0x00186F8C File Offset: 0x0018518C
 		public void Close()
 		{
 			this.BagFilter.ResetData();
 			this._go.SetActive(false);
 		}
 
-		// Token: 0x060043A5 RID: 17317 RVA: 0x001CE814 File Offset: 0x001CCA14
+		// Token: 0x0600393A RID: 14650 RVA: 0x00186FA8 File Offset: 0x001851A8
 		private LoopListViewItem2 OnGetItemByIndex(LoopListView2 listView, int rowIndex)
 		{
 			if (rowIndex < 0)
@@ -326,7 +327,7 @@ namespace Tab
 			return loopListViewItem;
 		}
 
-		// Token: 0x060043A6 RID: 17318 RVA: 0x001CEA58 File Offset: 0x001CCC58
+		// Token: 0x0600393B RID: 14651 RVA: 0x001871EC File Offset: 0x001853EC
 		public int GetCount(int itemCout)
 		{
 			int num = itemCout / 5;
@@ -337,7 +338,7 @@ namespace Tab
 			return num + 1;
 		}
 
-		// Token: 0x060043A7 RID: 17319 RVA: 0x001CEA78 File Offset: 0x001CCC78
+		// Token: 0x0600393C RID: 14652 RVA: 0x0018720C File Offset: 0x0018540C
 		public bool FiddlerItem(BaseItem baseItem)
 		{
 			if (this.ItemQuality != ItemQuality.全部 && baseItem.GetImgQuality() != (int)this.ItemQuality)
@@ -363,19 +364,19 @@ namespace Tab
 			return true;
 		}
 
-		// Token: 0x060043A8 RID: 17320 RVA: 0x000305FA File Offset: 0x0002E7FA
+		// Token: 0x0600393D RID: 14653 RVA: 0x0018728A File Offset: 0x0018548A
 		public bool FiddlerSkill(BaseSkill baseSkill)
 		{
 			return (this.SkillQuality == SkillQuality.全部 || baseSkill.GetImgQuality() == (int)this.SkillQuality) && (this.SkIllType == SkIllType.全部 || baseSkill.SkillTypeIsEqual((int)this.SkIllType));
 		}
 
-		// Token: 0x060043A9 RID: 17321 RVA: 0x0003062E File Offset: 0x0002E82E
+		// Token: 0x0600393E RID: 14654 RVA: 0x001872BE File Offset: 0x001854BE
 		public bool FiddlerStaticSkill(BaseSkill baseSkill)
 		{
 			return (this.SkillQuality == SkillQuality.全部 || baseSkill.GetImgQuality() == (int)this.SkillQuality) && (this.StaticSkIllType == StaticSkIllType.全部 || baseSkill.SkillTypeIsEqual((int)this.StaticSkIllType));
 		}
 
-		// Token: 0x060043AA RID: 17322 RVA: 0x001CEAF8 File Offset: 0x001CCCF8
+		// Token: 0x0600393F RID: 14655 RVA: 0x001872F4 File Offset: 0x001854F4
 		public void UpdateItem()
 		{
 			if (this._bagType == BagType.背包)
@@ -383,10 +384,13 @@ namespace Tab
 				this.ItemList = new List<ITEM_INFO>();
 				foreach (ITEM_INFO item_INFO in this._player.itemList.values)
 				{
-					BaseItem baseItem = BaseItem.Create(item_INFO.itemId, (int)item_INFO.itemCount, item_INFO.uuid, item_INFO.Seid);
-					if (this.FiddlerItem(baseItem))
+					if (_ItemJsonData.DataDict.ContainsKey(item_INFO.itemId))
 					{
-						this.ItemList.Add(item_INFO);
+						BaseItem baseItem = BaseItem.Create(item_INFO.itemId, (int)item_INFO.itemCount, item_INFO.uuid, item_INFO.Seid);
+						if (this.FiddlerItem(baseItem))
+						{
+							this.ItemList.Add(item_INFO);
+						}
 					}
 				}
 				this.mItemTotalCount = this.ItemList.Count;
@@ -424,13 +428,13 @@ namespace Tab
 			this.UpdateMoney();
 		}
 
-		// Token: 0x060043AB RID: 17323 RVA: 0x00030662 File Offset: 0x0002E862
+		// Token: 0x06003940 RID: 14656 RVA: 0x0018752C File Offset: 0x0018572C
 		public BagType GetCurBagType()
 		{
 			return this._bagType;
 		}
 
-		// Token: 0x060043AC RID: 17324 RVA: 0x001CED1C File Offset: 0x001CCF1C
+		// Token: 0x06003941 RID: 14657 RVA: 0x00187534 File Offset: 0x00185734
 		public void UpDateSlotList()
 		{
 			if (this._bagType == BagType.背包)
@@ -478,7 +482,7 @@ namespace Tab
 			this.mLoopListView.RefreshAllShownItem();
 		}
 
-		// Token: 0x060043AD RID: 17325 RVA: 0x001CEF34 File Offset: 0x001CD134
+		// Token: 0x06003942 RID: 14658 RVA: 0x0018774C File Offset: 0x0018594C
 		public SlotBase GetNullSlot()
 		{
 			foreach (ISlot slot in this.SlotList)
@@ -492,76 +496,76 @@ namespace Tab
 			return null;
 		}
 
-		// Token: 0x060043AE RID: 17326 RVA: 0x0003066A File Offset: 0x0002E86A
+		// Token: 0x06003943 RID: 14659 RVA: 0x001877C8 File Offset: 0x001859C8
 		public void UseItemCallBack(MessageData messageData)
 		{
 			this.UpDateSlotList();
 		}
 
-		// Token: 0x04003BA8 RID: 15272
+		// Token: 0x04003143 RID: 12611
 		private Avatar _player;
 
-		// Token: 0x04003BA9 RID: 15273
+		// Token: 0x04003144 RID: 12612
 		private BagType _bagType;
 
-		// Token: 0x04003BAA RID: 15274
+		// Token: 0x04003145 RID: 12613
 		public Bag.ItemType ItemType;
 
-		// Token: 0x04003BAB RID: 15275
+		// Token: 0x04003146 RID: 12614
 		public ItemQuality ItemQuality;
 
-		// Token: 0x04003BAC RID: 15276
+		// Token: 0x04003147 RID: 12615
 		public LianQiCaiLiaoYinYang LianQiCaiLiaoYinYang;
 
-		// Token: 0x04003BAD RID: 15277
+		// Token: 0x04003148 RID: 12616
 		public LianQiCaiLiaoType LianQiCaiLiaoType;
 
-		// Token: 0x04003BAE RID: 15278
+		// Token: 0x04003149 RID: 12617
 		public SkIllType SkIllType = SkIllType.全部;
 
-		// Token: 0x04003BAF RID: 15279
+		// Token: 0x0400314A RID: 12618
 		public SkillQuality SkillQuality;
 
-		// Token: 0x04003BB0 RID: 15280
+		// Token: 0x0400314B RID: 12619
 		public StaticSkIllType StaticSkIllType = StaticSkIllType.全部;
 
-		// Token: 0x04003BB1 RID: 15281
+		// Token: 0x0400314C RID: 12620
 		public BagFilter BagFilter;
 
-		// Token: 0x04003BB2 RID: 15282
+		// Token: 0x0400314D RID: 12621
 		public Text MoneyText;
 
-		// Token: 0x04003BB3 RID: 15283
+		// Token: 0x0400314E RID: 12622
 		public Image MoneyIcon;
 
-		// Token: 0x04003BB4 RID: 15284
+		// Token: 0x0400314F RID: 12623
 		public GameObject UtilsPanel;
 
-		// Token: 0x04003BB5 RID: 15285
+		// Token: 0x04003150 RID: 12624
 		public List<ITEM_INFO> ItemList = new List<ITEM_INFO>();
 
-		// Token: 0x04003BB6 RID: 15286
+		// Token: 0x04003151 RID: 12625
 		public List<SkillItem> ActiveSkillList = new List<SkillItem>();
 
-		// Token: 0x04003BB7 RID: 15287
+		// Token: 0x04003152 RID: 12626
 		public List<SkillItem> PassiveSkillList = new List<SkillItem>();
 
-		// Token: 0x04003BB8 RID: 15288
+		// Token: 0x04003153 RID: 12627
 		public bool CanSort;
 
-		// Token: 0x04003BB9 RID: 15289
+		// Token: 0x04003154 RID: 12628
 		public LoopListView2 mLoopListView;
 
-		// Token: 0x04003BBA RID: 15290
+		// Token: 0x04003155 RID: 12629
 		public List<ISlot> SlotList = new List<ISlot>();
 
-		// Token: 0x04003BBB RID: 15291
+		// Token: 0x04003156 RID: 12630
 		private bool _isInit;
 
-		// Token: 0x04003BBC RID: 15292
+		// Token: 0x04003157 RID: 12631
 		private const int mItemCountPerRow = 5;
 
-		// Token: 0x04003BBD RID: 15293
+		// Token: 0x04003158 RID: 12632
 		private int mItemTotalCount;
 	}
 }

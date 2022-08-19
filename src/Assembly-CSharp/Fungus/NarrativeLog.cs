@@ -3,15 +3,15 @@ using UnityEngine;
 
 namespace Fungus
 {
-	// Token: 0x020012E2 RID: 4834
+	// Token: 0x02000E78 RID: 3704
 	public class NarrativeLog : MonoBehaviour
 	{
 		// Token: 0x1400005C RID: 92
-		// (add) Token: 0x060075AC RID: 30124 RVA: 0x002B0BE0 File Offset: 0x002AEDE0
-		// (remove) Token: 0x060075AD RID: 30125 RVA: 0x002B0C14 File Offset: 0x002AEE14
+		// (add) Token: 0x060068C9 RID: 26825 RVA: 0x0028E498 File Offset: 0x0028C698
+		// (remove) Token: 0x060068CA RID: 26826 RVA: 0x0028E4CC File Offset: 0x0028C6CC
 		public static event NarrativeLog.NarrativeAddedHandler OnNarrativeAdded;
 
-		// Token: 0x060075AE RID: 30126 RVA: 0x000502EB File Offset: 0x0004E4EB
+		// Token: 0x060068CB RID: 26827 RVA: 0x0028E4FF File Offset: 0x0028C6FF
 		public static void DoNarrativeAdded()
 		{
 			if (NarrativeLog.OnNarrativeAdded != null)
@@ -20,25 +20,25 @@ namespace Fungus
 			}
 		}
 
-		// Token: 0x060075AF RID: 30127 RVA: 0x000502FE File Offset: 0x0004E4FE
+		// Token: 0x060068CC RID: 26828 RVA: 0x0028E512 File Offset: 0x0028C712
 		protected virtual void Awake()
 		{
 			this.history = new NarrativeData();
 		}
 
-		// Token: 0x060075B0 RID: 30128 RVA: 0x0005030B File Offset: 0x0004E50B
+		// Token: 0x060068CD RID: 26829 RVA: 0x0028E51F File Offset: 0x0028C71F
 		protected virtual void OnEnable()
 		{
 			WriterSignals.OnWriterState += this.OnWriterState;
 		}
 
-		// Token: 0x060075B1 RID: 30129 RVA: 0x0005031F File Offset: 0x0004E51F
+		// Token: 0x060068CE RID: 26830 RVA: 0x0028E533 File Offset: 0x0028C733
 		protected virtual void OnDisable()
 		{
 			WriterSignals.OnWriterState -= this.OnWriterState;
 		}
 
-		// Token: 0x060075B2 RID: 30130 RVA: 0x002B0C48 File Offset: 0x002AEE48
+		// Token: 0x060068CF RID: 26831 RVA: 0x0028E548 File Offset: 0x0028C748
 		protected virtual void OnWriterState(Writer writer, WriterState writerState)
 		{
 			if (writerState == WriterState.End)
@@ -50,7 +50,7 @@ namespace Fungus
 			}
 		}
 
-		// Token: 0x060075B3 RID: 30131 RVA: 0x002B0C74 File Offset: 0x002AEE74
+		// Token: 0x060068D0 RID: 26832 RVA: 0x0028E574 File Offset: 0x0028C774
 		public void AddLine(string name, string text)
 		{
 			Line line = new Line();
@@ -60,19 +60,19 @@ namespace Fungus
 			NarrativeLog.DoNarrativeAdded();
 		}
 
-		// Token: 0x060075B4 RID: 30132 RVA: 0x00050333 File Offset: 0x0004E533
+		// Token: 0x060068D1 RID: 26833 RVA: 0x0028E5AB File Offset: 0x0028C7AB
 		public void Clear()
 		{
 			this.history.lines.Clear();
 		}
 
-		// Token: 0x060075B5 RID: 30133 RVA: 0x00050345 File Offset: 0x0004E545
+		// Token: 0x060068D2 RID: 26834 RVA: 0x0028E5BD File Offset: 0x0028C7BD
 		public string GetJsonHistory()
 		{
 			return JsonUtility.ToJson(this.history, true);
 		}
 
-		// Token: 0x060075B6 RID: 30134 RVA: 0x002B0CAC File Offset: 0x002AEEAC
+		// Token: 0x060068D3 RID: 26835 RVA: 0x0028E5CC File Offset: 0x0028C7CC
 		public string GetPrettyHistory(bool previousOnly = false)
 		{
 			string text = "\n ";
@@ -85,7 +85,7 @@ namespace Fungus
 			return text;
 		}
 
-		// Token: 0x060075B7 RID: 30135 RVA: 0x00050353 File Offset: 0x0004E553
+		// Token: 0x060068D4 RID: 26836 RVA: 0x0028E65D File Offset: 0x0028C85D
 		public void LoadHistory(string narrativeData)
 		{
 			if (narrativeData == null)
@@ -96,11 +96,11 @@ namespace Fungus
 			this.history = JsonUtility.FromJson<NarrativeData>(narrativeData);
 		}
 
-		// Token: 0x040066C3 RID: 26307
+		// Token: 0x040058FB RID: 22779
 		private NarrativeData history;
 
-		// Token: 0x020012E3 RID: 4835
-		// (Invoke) Token: 0x060075BA RID: 30138
+		// Token: 0x020016DE RID: 5854
+		// (Invoke) Token: 0x0600884E RID: 34894
 		public delegate void NarrativeAddedHandler();
 	}
 }

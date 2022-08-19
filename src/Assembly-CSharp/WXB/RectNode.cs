@@ -4,22 +4,22 @@ using UnityEngine;
 
 namespace WXB
 {
-	// Token: 0x020009BF RID: 2495
+	// Token: 0x020006A8 RID: 1704
 	public abstract class RectNode : NodeBase
 	{
-		// Token: 0x06003F87 RID: 16263 RVA: 0x0002DA8B File Offset: 0x0002BC8B
+		// Token: 0x060035C6 RID: 13766 RVA: 0x00171EAB File Offset: 0x001700AB
 		public override float getHeight()
 		{
 			return this.height;
 		}
 
-		// Token: 0x06003F88 RID: 16264 RVA: 0x0002DA93 File Offset: 0x0002BC93
+		// Token: 0x060035C7 RID: 13767 RVA: 0x00171EB3 File Offset: 0x001700B3
 		public override float getWidth()
 		{
 			return this.width;
 		}
 
-		// Token: 0x06003F89 RID: 16265 RVA: 0x0002DA9B File Offset: 0x0002BC9B
+		// Token: 0x060035C8 RID: 13768 RVA: 0x00171EBB File Offset: 0x001700BB
 		public override void Release()
 		{
 			base.Release();
@@ -27,10 +27,10 @@ namespace WXB
 			this.height = 0f;
 		}
 
-		// Token: 0x06003F8A RID: 16266
+		// Token: 0x060035C9 RID: 13769
 		protected abstract void OnRectRender(RenderCache cache, Line line, Rect rect);
 
-		// Token: 0x06003F8B RID: 16267 RVA: 0x001B9A1C File Offset: 0x001B7C1C
+		// Token: 0x060035CA RID: 13770 RVA: 0x00171EDC File Offset: 0x001700DC
 		public override void render(float maxWidth, RenderCache cache, ref float x, ref uint yline, List<Line> lines, float offsetX, float offsetY)
 		{
 			float num = this.getWidth();
@@ -72,10 +72,10 @@ namespace WXB
 			}
 		}
 
-		// Token: 0x040038EA RID: 14570
+		// Token: 0x04002F24 RID: 12068
 		public float width;
 
-		// Token: 0x040038EB RID: 14571
+		// Token: 0x04002F25 RID: 12069
 		public float height;
 	}
 }

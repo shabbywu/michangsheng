@@ -4,12 +4,12 @@ using UnityEngine;
 
 namespace Fungus
 {
-	// Token: 0x020013CF RID: 5071
+	// Token: 0x02000F1B RID: 3867
 	[CommandInfo("YS", "CheckMoney", "检测金钱数量", 0)]
 	[AddComponentMenu("")]
 	public class CheckMoney : Command
 	{
-		// Token: 0x06007B9C RID: 31644 RVA: 0x002C3F88 File Offset: 0x002C2188
+		// Token: 0x06006DB1 RID: 28081 RVA: 0x002A3C34 File Offset: 0x002A1E34
 		public override void OnEnter()
 		{
 			Avatar player = Tools.instance.getPlayer();
@@ -17,18 +17,18 @@ namespace Fungus
 			this.Continue();
 		}
 
-		// Token: 0x06007B9D RID: 31645 RVA: 0x000113CF File Offset: 0x0000F5CF
+		// Token: 0x06006DB2 RID: 28082 RVA: 0x0005E228 File Offset: 0x0005C428
 		public override Color GetButtonColor()
 		{
 			return new Color32(184, 210, 235, byte.MaxValue);
 		}
 
-		// Token: 0x06007B9E RID: 31646 RVA: 0x000042DD File Offset: 0x000024DD
+		// Token: 0x06006DB3 RID: 28083 RVA: 0x00004095 File Offset: 0x00002295
 		public override void OnReset()
 		{
 		}
 
-		// Token: 0x04006A15 RID: 27157
+		// Token: 0x04005B4B RID: 23371
 		[Tooltip("获取到的金钱存放位置")]
 		[VariableProperty(new Type[]
 		{

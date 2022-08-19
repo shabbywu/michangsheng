@@ -5,10 +5,10 @@ using UnityEngine.AI;
 
 namespace UltimateSurvival.AI
 {
-	// Token: 0x02000970 RID: 2416
+	// Token: 0x02000668 RID: 1640
 	public class AIGroup : MonoBehaviour
 	{
-		// Token: 0x06003DCA RID: 15818 RVA: 0x001B59FC File Offset: 0x001B3BFC
+		// Token: 0x06003423 RID: 13347 RVA: 0x0016CE04 File Offset: 0x0016B004
 		private void Start()
 		{
 			for (int i = 0; i < this.m_MaxCount; i++)
@@ -25,7 +25,7 @@ namespace UltimateSurvival.AI
 			this.m_Player = GameController.LocalPlayer.transform;
 		}
 
-		// Token: 0x06003DCB RID: 15819 RVA: 0x001B5A90 File Offset: 0x001B3C90
+		// Token: 0x06003424 RID: 13348 RVA: 0x0016CE98 File Offset: 0x0016B098
 		private void Update()
 		{
 			if (this.m_EnableSpawning && Time.time > this.m_LastUpdateTime && this.m_AliveAgents.Count < this.m_MaxCount && Vector3.Dot(this.m_Player.forward, base.transform.position - this.m_Player.position) < 0f)
@@ -34,7 +34,7 @@ namespace UltimateSurvival.AI
 			}
 		}
 
-		// Token: 0x06003DCC RID: 15820 RVA: 0x001B5B04 File Offset: 0x001B3D04
+		// Token: 0x06003425 RID: 13349 RVA: 0x0016CF0C File Offset: 0x0016B10C
 		private void TrySpawn()
 		{
 			bool flag = this.m_SpawnMode == AIGroup.SpawnMode.AllDay;
@@ -62,13 +62,13 @@ namespace UltimateSurvival.AI
 			}
 		}
 
-		// Token: 0x06003DCD RID: 15821 RVA: 0x0002C83A File Offset: 0x0002AA3A
+		// Token: 0x06003426 RID: 13350 RVA: 0x0016D040 File Offset: 0x0016B240
 		private void On_AgentDeath(EntityEventHandler agent)
 		{
 			this.m_AliveAgents.Remove(agent);
 		}
 
-		// Token: 0x06003DCE RID: 15822 RVA: 0x0002C849 File Offset: 0x0002AA49
+		// Token: 0x06003427 RID: 13351 RVA: 0x0016D04F File Offset: 0x0016B24F
 		private void OnDrawGizmosSelected()
 		{
 			Color color = Gizmos.color;
@@ -77,64 +77,64 @@ namespace UltimateSurvival.AI
 			Gizmos.color = color;
 		}
 
-		// Token: 0x040037EC RID: 14316
+		// Token: 0x04002E59 RID: 11865
 		[SerializeField]
 		private Color m_GroupColor;
 
-		// Token: 0x040037ED RID: 14317
+		// Token: 0x04002E5A RID: 11866
 		[SerializeField]
 		[Space]
 		private bool m_EnableSpawning = true;
 
-		// Token: 0x040037EE RID: 14318
+		// Token: 0x04002E5B RID: 11867
 		[SerializeField]
 		private bool m_MakeAgentsChildren = true;
 
-		// Token: 0x040037EF RID: 14319
+		// Token: 0x04002E5C RID: 11868
 		[SerializeField]
 		private GameObject[] m_Prefabs;
 
-		// Token: 0x040037F0 RID: 14320
+		// Token: 0x04002E5D RID: 11869
 		[SerializeField]
 		[Space]
 		[Clamp(0f, 30f)]
 		private float m_GroupRadius = 10f;
 
-		// Token: 0x040037F1 RID: 14321
+		// Token: 0x04002E5E RID: 11870
 		[SerializeField]
 		[Clamp(0f, 5f)]
 		private int m_MaxCount = 3;
 
-		// Token: 0x040037F2 RID: 14322
+		// Token: 0x04002E5F RID: 11871
 		[SerializeField]
 		[Space]
 		private AIGroup.SpawnMode m_SpawnMode;
 
-		// Token: 0x040037F3 RID: 14323
+		// Token: 0x04002E60 RID: 11872
 		[SerializeField]
 		[Clamp(3f, 120f)]
 		private float m_SpawnInterval = 30f;
 
-		// Token: 0x040037F4 RID: 14324
+		// Token: 0x04002E61 RID: 11873
 		private float m_LastUpdateTime;
 
-		// Token: 0x040037F5 RID: 14325
+		// Token: 0x04002E62 RID: 11874
 		private List<Vector3> m_SpawnPoints = new List<Vector3>();
 
-		// Token: 0x040037F6 RID: 14326
+		// Token: 0x04002E63 RID: 11875
 		private List<EntityEventHandler> m_AliveAgents = new List<EntityEventHandler>();
 
-		// Token: 0x040037F7 RID: 14327
+		// Token: 0x04002E64 RID: 11876
 		private Transform m_Player;
 
-		// Token: 0x02000971 RID: 2417
+		// Token: 0x020014F2 RID: 5362
 		public enum SpawnMode
 		{
-			// Token: 0x040037F9 RID: 14329
+			// Token: 0x04006DD6 RID: 28118
 			AtNight,
-			// Token: 0x040037FA RID: 14330
+			// Token: 0x04006DD7 RID: 28119
 			AtDaytime,
-			// Token: 0x040037FB RID: 14331
+			// Token: 0x04006DD8 RID: 28120
 			AllDay
 		}
 	}

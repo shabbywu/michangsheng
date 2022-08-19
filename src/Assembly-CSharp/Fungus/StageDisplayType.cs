@@ -2,22 +2,22 @@
 
 namespace Fungus
 {
-	// Token: 0x020011F9 RID: 4601
+	// Token: 0x02000DC1 RID: 3521
 	public enum StageDisplayType
 	{
-		// Token: 0x04006321 RID: 25377
+		// Token: 0x04005627 RID: 22055
 		None,
-		// Token: 0x04006322 RID: 25378
+		// Token: 0x04005628 RID: 22056
 		Show,
-		// Token: 0x04006323 RID: 25379
+		// Token: 0x04005629 RID: 22057
 		Hide,
-		// Token: 0x04006324 RID: 25380
+		// Token: 0x0400562A RID: 22058
 		Swap,
-		// Token: 0x04006325 RID: 25381
+		// Token: 0x0400562B RID: 22059
 		MoveToFront,
-		// Token: 0x04006326 RID: 25382
+		// Token: 0x0400562C RID: 22060
 		UndimAllPortraits,
-		// Token: 0x04006327 RID: 25383
+		// Token: 0x0400562D RID: 22061
 		DimNonSpeakingPortraits
 	}
 }

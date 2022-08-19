@@ -2,155 +2,155 @@
 
 namespace UltimateSurvival
 {
-	// Token: 0x02000846 RID: 2118
+	// Token: 0x02000599 RID: 1433
 	public class ET
 	{
-		// Token: 0x02000847 RID: 2119
+		// Token: 0x02001497 RID: 5271
 		public enum ActionRepeatType
 		{
-			// Token: 0x040031B5 RID: 12725
+			// Token: 0x04006C90 RID: 27792
 			Single,
-			// Token: 0x040031B6 RID: 12726
+			// Token: 0x04006C91 RID: 27793
 			Repetitive
 		}
 
-		// Token: 0x02000848 RID: 2120
+		// Token: 0x02001498 RID: 5272
 		public enum PointOrder
 		{
-			// Token: 0x040031B8 RID: 12728
+			// Token: 0x04006C93 RID: 27795
 			Sequenced,
-			// Token: 0x040031B9 RID: 12729
+			// Token: 0x04006C94 RID: 27796
 			Random
 		}
 
-		// Token: 0x02000849 RID: 2121
+		// Token: 0x02001499 RID: 5273
 		public enum AIMovementState
 		{
-			// Token: 0x040031BB RID: 12731
+			// Token: 0x04006C96 RID: 27798
 			Idle,
-			// Token: 0x040031BC RID: 12732
+			// Token: 0x04006C97 RID: 27799
 			Walking,
-			// Token: 0x040031BD RID: 12733
+			// Token: 0x04006C98 RID: 27800
 			Running
 		}
 
-		// Token: 0x0200084A RID: 2122
+		// Token: 0x0200149A RID: 5274
 		public enum BuildableType
 		{
-			// Token: 0x040031BF RID: 12735
+			// Token: 0x04006C9A RID: 27802
 			Foundation,
-			// Token: 0x040031C0 RID: 12736
+			// Token: 0x04006C9B RID: 27803
 			Wall,
-			// Token: 0x040031C1 RID: 12737
+			// Token: 0x04006C9C RID: 27804
 			Floor
 		}
 
-		// Token: 0x0200084B RID: 2123
+		// Token: 0x0200149B RID: 5275
 		public enum MaterialType
 		{
-			// Token: 0x040031C3 RID: 12739
+			// Token: 0x04006C9E RID: 27806
 			Wood,
-			// Token: 0x040031C4 RID: 12740
+			// Token: 0x04006C9F RID: 27807
 			Stone,
-			// Token: 0x040031C5 RID: 12741
+			// Token: 0x04006CA0 RID: 27808
 			Metal
 		}
 
-		// Token: 0x0200084C RID: 2124
+		// Token: 0x0200149C RID: 5276
 		public enum InputType
 		{
-			// Token: 0x040031C7 RID: 12743
+			// Token: 0x04006CA2 RID: 27810
 			Standalone,
-			// Token: 0x040031C8 RID: 12744
+			// Token: 0x04006CA3 RID: 27811
 			Mobile
 		}
 
-		// Token: 0x0200084D RID: 2125
+		// Token: 0x0200149D RID: 5277
 		public enum InputMode
 		{
-			// Token: 0x040031CA RID: 12746
+			// Token: 0x04006CA5 RID: 27813
 			Buttons,
-			// Token: 0x040031CB RID: 12747
+			// Token: 0x04006CA6 RID: 27814
 			Axes
 		}
 
-		// Token: 0x0200084E RID: 2126
+		// Token: 0x0200149E RID: 5278
 		public enum StandaloneAxisType
 		{
-			// Token: 0x040031CD RID: 12749
+			// Token: 0x04006CA8 RID: 27816
 			Unity,
-			// Token: 0x040031CE RID: 12750
+			// Token: 0x04006CA9 RID: 27817
 			Custom
 		}
 
-		// Token: 0x0200084F RID: 2127
+		// Token: 0x0200149F RID: 5279
 		public enum MobileAxisType
 		{
-			// Token: 0x040031D0 RID: 12752
+			// Token: 0x04006CAB RID: 27819
 			Custom
 		}
 
-		// Token: 0x02000850 RID: 2128
+		// Token: 0x020014A0 RID: 5280
 		public enum ButtonState
 		{
-			// Token: 0x040031D2 RID: 12754
+			// Token: 0x04006CAD RID: 27821
 			Down,
-			// Token: 0x040031D3 RID: 12755
+			// Token: 0x04006CAE RID: 27822
 			Up
 		}
 
-		// Token: 0x02000851 RID: 2129
+		// Token: 0x020014A1 RID: 5281
 		public enum CharacterType
 		{
-			// Token: 0x040031D5 RID: 12757
+			// Token: 0x04006CB0 RID: 27824
 			Player
 		}
 
-		// Token: 0x02000852 RID: 2130
+		// Token: 0x020014A2 RID: 5282
 		public enum FireMode
 		{
-			// Token: 0x040031D7 RID: 12759
+			// Token: 0x04006CB2 RID: 27826
 			SemiAuto,
-			// Token: 0x040031D8 RID: 12760
+			// Token: 0x04006CB3 RID: 27827
 			Burst,
-			// Token: 0x040031D9 RID: 12761
+			// Token: 0x04006CB4 RID: 27828
 			FullAuto
 		}
 
-		// Token: 0x02000853 RID: 2131
+		// Token: 0x020014A3 RID: 5283
 		public enum FileCreatorMode
 		{
-			// Token: 0x040031DB RID: 12763
+			// Token: 0x04006CB6 RID: 27830
 			ScriptableObject,
-			// Token: 0x040031DC RID: 12764
+			// Token: 0x04006CB7 RID: 27831
 			ScriptFile,
-			// Token: 0x040031DD RID: 12765
+			// Token: 0x04006CB8 RID: 27832
 			Both
 		}
 
-		// Token: 0x02000854 RID: 2132
+		// Token: 0x020014A4 RID: 5284
 		public enum TimeOfDay
 		{
-			// Token: 0x040031DF RID: 12767
+			// Token: 0x04006CBA RID: 27834
 			Day,
-			// Token: 0x040031E0 RID: 12768
+			// Token: 0x04006CBB RID: 27835
 			Night
 		}
 
-		// Token: 0x02000855 RID: 2133
+		// Token: 0x020014A5 RID: 5285
 		public enum InventoryState
 		{
-			// Token: 0x040031E2 RID: 12770
+			// Token: 0x04006CBD RID: 27837
 			Closed,
-			// Token: 0x040031E3 RID: 12771
+			// Token: 0x04006CBE RID: 27838
 			Normal,
-			// Token: 0x040031E4 RID: 12772
+			// Token: 0x04006CBF RID: 27839
 			Loot,
-			// Token: 0x040031E5 RID: 12773
+			// Token: 0x04006CC0 RID: 27840
 			Furnace,
-			// Token: 0x040031E6 RID: 12774
+			// Token: 0x04006CC1 RID: 27841
 			Anvil,
-			// Token: 0x040031E7 RID: 12775
+			// Token: 0x04006CC2 RID: 27842
 			Campfire = 6
 		}
 	}

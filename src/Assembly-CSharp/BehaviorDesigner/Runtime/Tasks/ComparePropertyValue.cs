@@ -3,14 +3,14 @@ using UnityEngine;
 
 namespace BehaviorDesigner.Runtime.Tasks
 {
-	// Token: 0x020014A8 RID: 5288
+	// Token: 0x02000FF0 RID: 4080
 	[TaskDescription("Compares the property value to the value specified. Returns success if the values are the same.")]
 	[HelpURL("http://www.opsive.com/assets/BehaviorDesigner/documentation.php?id=152")]
 	[TaskCategory("Reflection")]
 	[TaskIcon("{SkinColor}ReflectionIcon.png")]
 	public class ComparePropertyValue : Conditional
 	{
-		// Token: 0x06007EEB RID: 32491 RVA: 0x002C9858 File Offset: 0x002C7A58
+		// Token: 0x060070F1 RID: 28913 RVA: 0x002AAE6C File Offset: 0x002A906C
 		public override TaskStatus OnUpdate()
 		{
 			if (this.compareValue == null)
@@ -42,7 +42,7 @@ namespace BehaviorDesigner.Runtime.Tasks
 			return 2;
 		}
 
-		// Token: 0x06007EEC RID: 32492 RVA: 0x00055FAB File Offset: 0x000541AB
+		// Token: 0x060070F2 RID: 28914 RVA: 0x002AAF36 File Offset: 0x002A9136
 		public override void OnReset()
 		{
 			this.targetGameObject = null;
@@ -51,19 +51,19 @@ namespace BehaviorDesigner.Runtime.Tasks
 			this.compareValue = null;
 		}
 
-		// Token: 0x04006BE9 RID: 27625
+		// Token: 0x04005CF1 RID: 23793
 		[Tooltip("The GameObject to compare the property of")]
 		public SharedGameObject targetGameObject;
 
-		// Token: 0x04006BEA RID: 27626
+		// Token: 0x04005CF2 RID: 23794
 		[Tooltip("The component to compare the property of")]
 		public SharedString componentName;
 
-		// Token: 0x04006BEB RID: 27627
+		// Token: 0x04005CF3 RID: 23795
 		[Tooltip("The name of the property")]
 		public SharedString propertyName;
 
-		// Token: 0x04006BEC RID: 27628
+		// Token: 0x04005CF4 RID: 23796
 		[Tooltip("The value to compare to")]
 		public SharedVariable compareValue;
 	}

@@ -1,11 +1,11 @@
 ﻿using System;
 
-// Token: 0x02000751 RID: 1873
+// Token: 0x020004DB RID: 1243
 public class Set
 {
-	// Token: 0x1700041A RID: 1050
-	// (get) Token: 0x06002FAA RID: 12202 RVA: 0x000234F8 File Offset: 0x000216F8
-	// (set) Token: 0x06002FAB RID: 12203 RVA: 0x00023500 File Offset: 0x00021700
+	// Token: 0x170002B3 RID: 691
+	// (get) Token: 0x06002841 RID: 10305 RVA: 0x00130BBF File Offset: 0x0012EDBF
+	// (set) Token: 0x06002842 RID: 10306 RVA: 0x00130BC7 File Offset: 0x0012EDC7
 	public int TotalStarsInStage
 	{
 		get
@@ -18,9 +18,9 @@ public class Set
 		}
 	}
 
-	// Token: 0x1700041B RID: 1051
-	// (get) Token: 0x06002FAC RID: 12204 RVA: 0x00023509 File Offset: 0x00021709
-	// (set) Token: 0x06002FAD RID: 12205 RVA: 0x00023511 File Offset: 0x00021711
+	// Token: 0x170002B4 RID: 692
+	// (get) Token: 0x06002843 RID: 10307 RVA: 0x00130BD0 File Offset: 0x0012EDD0
+	// (set) Token: 0x06002844 RID: 10308 RVA: 0x00130BD8 File Offset: 0x0012EDD8
 	public int CurrentStarsInStage
 	{
 		get
@@ -33,9 +33,9 @@ public class Set
 		}
 	}
 
-	// Token: 0x1700041C RID: 1052
-	// (get) Token: 0x06002FAE RID: 12206 RVA: 0x0002351A File Offset: 0x0002171A
-	// (set) Token: 0x06002FAF RID: 12207 RVA: 0x00023522 File Offset: 0x00021722
+	// Token: 0x170002B5 RID: 693
+	// (get) Token: 0x06002845 RID: 10309 RVA: 0x00130BE1 File Offset: 0x0012EDE1
+	// (set) Token: 0x06002846 RID: 10310 RVA: 0x00130BE9 File Offset: 0x0012EDE9
 	public int CurrentStarsInStageNEW
 	{
 		get
@@ -48,9 +48,9 @@ public class Set
 		}
 	}
 
-	// Token: 0x1700041D RID: 1053
-	// (get) Token: 0x06002FB0 RID: 12208 RVA: 0x0002352B File Offset: 0x0002172B
-	// (set) Token: 0x06002FB1 RID: 12209 RVA: 0x00023533 File Offset: 0x00021733
+	// Token: 0x170002B6 RID: 694
+	// (get) Token: 0x06002847 RID: 10311 RVA: 0x00130BF2 File Offset: 0x0012EDF2
+	// (set) Token: 0x06002848 RID: 10312 RVA: 0x00130BFA File Offset: 0x0012EDFA
 	public int StarRequirement
 	{
 		get
@@ -63,9 +63,9 @@ public class Set
 		}
 	}
 
-	// Token: 0x1700041E RID: 1054
-	// (get) Token: 0x06002FB2 RID: 12210 RVA: 0x0002353C File Offset: 0x0002173C
-	// (set) Token: 0x06002FB3 RID: 12211 RVA: 0x00023544 File Offset: 0x00021744
+	// Token: 0x170002B7 RID: 695
+	// (get) Token: 0x06002849 RID: 10313 RVA: 0x00130C03 File Offset: 0x0012EE03
+	// (set) Token: 0x0600284A RID: 10314 RVA: 0x00130C0B File Offset: 0x0012EE0B
 	public string SetID
 	{
 		get
@@ -78,9 +78,9 @@ public class Set
 		}
 	}
 
-	// Token: 0x1700041F RID: 1055
-	// (get) Token: 0x06002FB4 RID: 12212 RVA: 0x0002354D File Offset: 0x0002174D
-	// (set) Token: 0x06002FB5 RID: 12213 RVA: 0x00023555 File Offset: 0x00021755
+	// Token: 0x170002B8 RID: 696
+	// (get) Token: 0x0600284B RID: 10315 RVA: 0x00130C14 File Offset: 0x0012EE14
+	// (set) Token: 0x0600284C RID: 10316 RVA: 0x00130C1C File Offset: 0x0012EE1C
 	public int StagesOnSet
 	{
 		get
@@ -93,7 +93,7 @@ public class Set
 		}
 	}
 
-	// Token: 0x06002FB6 RID: 12214 RVA: 0x0002355E File Offset: 0x0002175E
+	// Token: 0x0600284D RID: 10317 RVA: 0x00130C25 File Offset: 0x0012EE25
 	public int GetStarOnStage(int lvl)
 	{
 		if (lvl < this.stagesOnSet && this.starsPerStage != null)
@@ -103,7 +103,7 @@ public class Set
 		return -42;
 	}
 
-	// Token: 0x06002FB7 RID: 12215 RVA: 0x0002357C File Offset: 0x0002177C
+	// Token: 0x0600284E RID: 10318 RVA: 0x00130C43 File Offset: 0x0012EE43
 	public bool IsLvlUnlocked(int lvl)
 	{
 		if (lvl >= this.stagesOnSet)
@@ -117,7 +117,7 @@ public class Set
 		throw new Exception("ERROR!");
 	}
 
-	// Token: 0x06002FB8 RID: 12216 RVA: 0x0017D4EC File Offset: 0x0017B6EC
+	// Token: 0x0600284F RID: 10319 RVA: 0x00130C7C File Offset: 0x0012EE7C
 	public void SetStarOnStage(int lvl, int starN)
 	{
 		if (lvl < this.stagesOnSet)
@@ -146,12 +146,12 @@ public class Set
 		}
 	}
 
-	// Token: 0x06002FB9 RID: 12217 RVA: 0x000235B3 File Offset: 0x000217B3
+	// Token: 0x06002850 RID: 10320 RVA: 0x00130D59 File Offset: 0x0012EF59
 	public Set()
 	{
 	}
 
-	// Token: 0x06002FBA RID: 12218 RVA: 0x0017D5CC File Offset: 0x0017B7CC
+	// Token: 0x06002851 RID: 10321 RVA: 0x00130D6C File Offset: 0x0012EF6C
 	public Set(int numberOfStages)
 	{
 		this.starsPerStage = new int[numberOfStages];
@@ -162,24 +162,24 @@ public class Set
 		}
 	}
 
-	// Token: 0x04002AE1 RID: 10977
+	// Token: 0x04002353 RID: 9043
 	private int totalStarsInStage;
 
-	// Token: 0x04002AE2 RID: 10978
+	// Token: 0x04002354 RID: 9044
 	private int currentStarsInStage;
 
-	// Token: 0x04002AE3 RID: 10979
+	// Token: 0x04002355 RID: 9045
 	private int currentStarsInStageNEW;
 
-	// Token: 0x04002AE4 RID: 10980
+	// Token: 0x04002356 RID: 9046
 	private int starRequirement;
 
-	// Token: 0x04002AE5 RID: 10981
+	// Token: 0x04002357 RID: 9047
 	private string setID = "NoTNamed";
 
-	// Token: 0x04002AE6 RID: 10982
+	// Token: 0x04002358 RID: 9048
 	private int stagesOnSet;
 
-	// Token: 0x04002AE7 RID: 10983
+	// Token: 0x04002359 RID: 9049
 	public int[] starsPerStage;
 }

@@ -3,25 +3,25 @@ using UnityEngine;
 
 namespace UltimateSurvival
 {
-	// Token: 0x020008C2 RID: 2242
+	// Token: 0x020005EE RID: 1518
 	public class FPMeleeEventHandler : MonoBehaviour
 	{
-		// Token: 0x060039B1 RID: 14769 RVA: 0x00029DEE File Offset: 0x00027FEE
+		// Token: 0x060030D3 RID: 12499 RVA: 0x0015D1B3 File Offset: 0x0015B3B3
 		public void On_Hit()
 		{
 			this.Hit.Send();
 		}
 
-		// Token: 0x060039B2 RID: 14770 RVA: 0x00029DFB File Offset: 0x00027FFB
+		// Token: 0x060030D4 RID: 12500 RVA: 0x0015D1C0 File Offset: 0x0015B3C0
 		public void On_Woosh()
 		{
 			this.Woosh.Send();
 		}
 
-		// Token: 0x040033DC RID: 13276
+		// Token: 0x04002B06 RID: 11014
 		public Message Hit = new Message();
 
-		// Token: 0x040033DD RID: 13277
+		// Token: 0x04002B07 RID: 11015
 		public Message Woosh = new Message();
 	}
 }

@@ -2,10 +2,10 @@
 using System.Collections;
 using UnityEngine;
 
-// Token: 0x020006D6 RID: 1750
+// Token: 0x020004C1 RID: 1217
 public class ManageFull : MonoBehaviour
 {
-	// Token: 0x06002BD1 RID: 11217 RVA: 0x001551DC File Offset: 0x001533DC
+	// Token: 0x06002692 RID: 9874 RVA: 0x00110188 File Offset: 0x0010E388
 	private void Awake()
 	{
 		this.cameraFollow = Camera.main.transform.parent.GetComponent<CameraFollow2D_new>();
@@ -121,7 +121,7 @@ public class ManageFull : MonoBehaviour
 		this.powerCard_Shield.GetChild(3).GetChild(1).GetComponent<TextMesh>().text = this.brojShieldova.ToString();
 	}
 
-	// Token: 0x06002BD2 RID: 11218 RVA: 0x00155B68 File Offset: 0x00153D68
+	// Token: 0x06002693 RID: 9875 RVA: 0x00110B14 File Offset: 0x0010ED14
 	private void Update()
 	{
 		if (Input.GetKeyDown(32) && this.goScreen.activeSelf)
@@ -424,7 +424,7 @@ public class ManageFull : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06002BD3 RID: 11219 RVA: 0x00021912 File Offset: 0x0001FB12
+	// Token: 0x06002694 RID: 9876 RVA: 0x00111819 File Offset: 0x0010FA19
 	private IEnumerator OpenShopCard()
 	{
 		this.shopHeaderOff.SetActive(false);
@@ -438,7 +438,7 @@ public class ManageFull : MonoBehaviour
 		yield break;
 	}
 
-	// Token: 0x06002BD4 RID: 11220 RVA: 0x00021921 File Offset: 0x0001FB21
+	// Token: 0x06002695 RID: 9877 RVA: 0x00111828 File Offset: 0x0010FA28
 	private IEnumerator OpenFreeCoinsCard()
 	{
 		this.shopHeaderOn.SetActive(false);
@@ -452,7 +452,7 @@ public class ManageFull : MonoBehaviour
 		yield break;
 	}
 
-	// Token: 0x06002BD5 RID: 11221 RVA: 0x00021930 File Offset: 0x0001FB30
+	// Token: 0x06002696 RID: 9878 RVA: 0x00111837 File Offset: 0x0010FA37
 	private IEnumerator closeShop()
 	{
 		yield return new WaitForSeconds(0.85f);
@@ -462,7 +462,7 @@ public class ManageFull : MonoBehaviour
 		yield break;
 	}
 
-	// Token: 0x06002BD6 RID: 11222 RVA: 0x0002193F File Offset: 0x0001FB3F
+	// Token: 0x06002697 RID: 9879 RVA: 0x00111846 File Offset: 0x0010FA46
 	private IEnumerator DoAfterAnimation(GameObject obj, string animationName)
 	{
 		while (obj.GetComponent<Animation>().IsPlaying(animationName))
@@ -473,7 +473,7 @@ public class ManageFull : MonoBehaviour
 		yield break;
 	}
 
-	// Token: 0x06002BD7 RID: 11223 RVA: 0x0002195C File Offset: 0x0001FB5C
+	// Token: 0x06002698 RID: 9880 RVA: 0x00111863 File Offset: 0x0010FA63
 	private IEnumerator showPauseScreen()
 	{
 		base.StartCoroutine(this.pauseButton.transform.GetChild(0).GetComponent<Animation>().Play("FinishButtonsClick", false, delegate(bool what)
@@ -492,7 +492,7 @@ public class ManageFull : MonoBehaviour
 		yield break;
 	}
 
-	// Token: 0x06002BD8 RID: 11224 RVA: 0x0002196B File Offset: 0x0001FB6B
+	// Token: 0x06002699 RID: 9881 RVA: 0x00111872 File Offset: 0x0010FA72
 	private IEnumerator dropPauseScreen()
 	{
 		base.StartCoroutine(this.pauseButton.transform.GetChild(0).GetComponent<Animation>().Play("FinishButtonsClick", false, delegate(bool what)
@@ -513,13 +513,13 @@ public class ManageFull : MonoBehaviour
 		yield break;
 	}
 
-	// Token: 0x06002BD9 RID: 11225 RVA: 0x0002197A File Offset: 0x0001FB7A
+	// Token: 0x0600269A RID: 9882 RVA: 0x00111881 File Offset: 0x0010FA81
 	private void HidePauseScreen()
 	{
 		this.pauseScreenHolder.SetActive(false);
 	}
 
-	// Token: 0x06002BDA RID: 11226 RVA: 0x00021988 File Offset: 0x0001FB88
+	// Token: 0x0600269B RID: 9883 RVA: 0x0011188F File Offset: 0x0010FA8F
 	private IEnumerator backToMenu()
 	{
 		base.StartCoroutine(GameObject.Find("ButtonMain_Pause").GetComponent<Animation>().Play("FinishButtonsClick", false, delegate(bool what)
@@ -540,7 +540,7 @@ public class ManageFull : MonoBehaviour
 		yield break;
 	}
 
-	// Token: 0x06002BDB RID: 11227 RVA: 0x00021997 File Offset: 0x0001FB97
+	// Token: 0x0600269C RID: 9884 RVA: 0x0011189E File Offset: 0x0010FA9E
 	private IEnumerator restartLevel()
 	{
 		base.StartCoroutine(GameObject.Find("ButtonRestart_Pause").GetComponent<Animation>().Play("FinishButtonsClick", false, delegate(bool what)
@@ -561,7 +561,7 @@ public class ManageFull : MonoBehaviour
 		yield break;
 	}
 
-	// Token: 0x06002BDC RID: 11228 RVA: 0x000219A6 File Offset: 0x0001FBA6
+	// Token: 0x0600269D RID: 9885 RVA: 0x001118AD File Offset: 0x0010FAAD
 	private IEnumerator unPause()
 	{
 		base.StartCoroutine(GameObject.Find("ButtonPlay_Pause").GetComponent<Animation>().Play("FinishButtonsClick", false, delegate(bool what)
@@ -577,7 +577,7 @@ public class ManageFull : MonoBehaviour
 		yield break;
 	}
 
-	// Token: 0x06002BDD RID: 11229 RVA: 0x00156870 File Offset: 0x00154A70
+	// Token: 0x0600269E RID: 9886 RVA: 0x001118BC File Offset: 0x0010FABC
 	private void showFailedScreen()
 	{
 		this.FailedScreenHolder.transform.position = new Vector3(Camera.main.transform.position.x, Camera.main.transform.position.y, this.FailedScreenHolder.transform.position.z);
@@ -585,7 +585,7 @@ public class ManageFull : MonoBehaviour
 		this.FailedScreenHolder.transform.GetChild(0).GetComponent<Animation>().Play("FailedShow");
 	}
 
-	// Token: 0x06002BDE RID: 11230 RVA: 0x001568FC File Offset: 0x00154AFC
+	// Token: 0x0600269F RID: 9887 RVA: 0x00111948 File Offset: 0x0010FB48
 	private void ShowWinScreen()
 	{
 		this.textKeyPrice1.text = (this.textKeyPrice2.text = ((3 - this.keysCollected) * 800).ToString());
@@ -601,7 +601,7 @@ public class ManageFull : MonoBehaviour
 		base.StartCoroutine(this.CheckKeys());
 	}
 
-	// Token: 0x06002BDF RID: 11231 RVA: 0x000219B5 File Offset: 0x0001FBB5
+	// Token: 0x060026A0 RID: 9888 RVA: 0x00111A7E File Offset: 0x0010FC7E
 	private IEnumerator CheckKeys()
 	{
 		if (this.keysCollected == 1)
@@ -657,7 +657,7 @@ public class ManageFull : MonoBehaviour
 		yield break;
 	}
 
-	// Token: 0x06002BE0 RID: 11232 RVA: 0x000219C4 File Offset: 0x0001FBC4
+	// Token: 0x060026A1 RID: 9889 RVA: 0x00111A8D File Offset: 0x0010FC8D
 	private IEnumerator waitForStars()
 	{
 		this.Win_ShineHolder.SetActive(true);
@@ -692,7 +692,7 @@ public class ManageFull : MonoBehaviour
 		yield break;
 	}
 
-	// Token: 0x06002BE1 RID: 11233 RVA: 0x000219D3 File Offset: 0x0001FBD3
+	// Token: 0x060026A2 RID: 9890 RVA: 0x00111A9C File Offset: 0x0010FC9C
 	private void CoinAdded()
 	{
 		if (this.PowerUp_doubleCoins)
@@ -706,7 +706,7 @@ public class ManageFull : MonoBehaviour
 		this.coinsCollectedText.text = this.coinsCollected.ToString();
 	}
 
-	// Token: 0x06002BE2 RID: 11234 RVA: 0x00149A14 File Offset: 0x00147C14
+	// Token: 0x060026A3 RID: 9891 RVA: 0x00111ADC File Offset: 0x0010FCDC
 	private string RaycastFunction(Vector3 vector)
 	{
 		RaycastHit raycastHit;
@@ -717,7 +717,7 @@ public class ManageFull : MonoBehaviour
 		return "";
 	}
 
-	// Token: 0x06002BE3 RID: 11235 RVA: 0x00156A34 File Offset: 0x00154C34
+	// Token: 0x060026A4 RID: 9892 RVA: 0x00111B10 File Offset: 0x0010FD10
 	private void ApplyPowerUp(int x)
 	{
 		if (x == 1)
@@ -745,7 +745,7 @@ public class ManageFull : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06002BE4 RID: 11236 RVA: 0x00156AA4 File Offset: 0x00154CA4
+	// Token: 0x060026A5 RID: 9893 RVA: 0x00111B80 File Offset: 0x0010FD80
 	private void KeyCollected()
 	{
 		this.keysCollected++;
@@ -765,7 +765,7 @@ public class ManageFull : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06002BE5 RID: 11237 RVA: 0x00156B1C File Offset: 0x00154D1C
+	// Token: 0x060026A6 RID: 9894 RVA: 0x00111BF8 File Offset: 0x0010FDF8
 	public void AddPoints(int value)
 	{
 		this.collectedPoints += value;
@@ -782,7 +782,7 @@ public class ManageFull : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06002BE6 RID: 11238 RVA: 0x00021A11 File Offset: 0x0001FC11
+	// Token: 0x060026A7 RID: 9895 RVA: 0x00111CD5 File Offset: 0x0010FED5
 	private IEnumerator graduallyFillScale(float value)
 	{
 		Debug.Log("ulaazkak scale");
@@ -823,7 +823,7 @@ public class ManageFull : MonoBehaviour
 		yield break;
 	}
 
-	// Token: 0x06002BE7 RID: 11239 RVA: 0x00021A27 File Offset: 0x0001FC27
+	// Token: 0x060026A8 RID: 9896 RVA: 0x00111CEB File Offset: 0x0010FEEB
 	private IEnumerator graduallyFillTile(float value)
 	{
 		Debug.Log("ulaazkak tile");
@@ -839,7 +839,7 @@ public class ManageFull : MonoBehaviour
 		yield break;
 	}
 
-	// Token: 0x06002BE8 RID: 11240 RVA: 0x00021A3D File Offset: 0x0001FC3D
+	// Token: 0x060026A9 RID: 9897 RVA: 0x00111D01 File Offset: 0x0010FF01
 	private IEnumerator BuyKeys()
 	{
 		this.buttonBuyKeys.GetComponent<Collider>().enabled = false;
@@ -882,7 +882,7 @@ public class ManageFull : MonoBehaviour
 		yield break;
 	}
 
-	// Token: 0x06002BE9 RID: 11241 RVA: 0x00021A4C File Offset: 0x0001FC4C
+	// Token: 0x060026AA RID: 9898 RVA: 0x00111D10 File Offset: 0x0010FF10
 	private IEnumerator showPickPowers()
 	{
 		this.PickPowers.gameObject.SetActive(true);
@@ -894,7 +894,7 @@ public class ManageFull : MonoBehaviour
 		yield break;
 	}
 
-	// Token: 0x06002BEA RID: 11242 RVA: 0x00156BFC File Offset: 0x00154DFC
+	// Token: 0x060026AB RID: 9899 RVA: 0x00111D20 File Offset: 0x0010FF20
 	private void DisappearPickPowers()
 	{
 		if (!this.kupljenMagnet)
@@ -914,236 +914,236 @@ public class ManageFull : MonoBehaviour
 		}
 	}
 
-	// Token: 0x04002611 RID: 9745
+	// Token: 0x04002019 RID: 8217
 	[HideInInspector]
 	public int coinsCollected;
 
-	// Token: 0x04002612 RID: 9746
+	// Token: 0x0400201A RID: 8218
 	[HideInInspector]
 	public int starsGained;
 
-	// Token: 0x04002613 RID: 9747
+	// Token: 0x0400201B RID: 8219
 	[HideInInspector]
 	public int keysCollected;
 
-	// Token: 0x04002614 RID: 9748
+	// Token: 0x0400201C RID: 8220
 	[HideInInspector]
 	public int collectedPoints;
 
-	// Token: 0x04002615 RID: 9749
+	// Token: 0x0400201D RID: 8221
 	[HideInInspector]
 	public int baboonSmashed;
 
-	// Token: 0x04002616 RID: 9750
+	// Token: 0x0400201E RID: 8222
 	private int brojDoubleCoins = 1;
 
-	// Token: 0x04002617 RID: 9751
+	// Token: 0x0400201F RID: 8223
 	private int brojMagneta = 1;
 
-	// Token: 0x04002618 RID: 9752
+	// Token: 0x04002020 RID: 8224
 	private int brojShieldova = 1;
 
-	// Token: 0x04002619 RID: 9753
+	// Token: 0x04002021 RID: 8225
 	private bool playerDead;
 
-	// Token: 0x0400261A RID: 9754
+	// Token: 0x04002022 RID: 8226
 	public GameObject goScreen;
 
-	// Token: 0x0400261B RID: 9755
+	// Token: 0x04002023 RID: 8227
 	public GameObject goScreen2;
 
-	// Token: 0x0400261C RID: 9756
+	// Token: 0x04002024 RID: 8228
 	private GameObject player;
 
-	// Token: 0x0400261D RID: 9757
+	// Token: 0x04002025 RID: 8229
 	private MonkeyController2D playerController;
 
-	// Token: 0x0400261E RID: 9758
+	// Token: 0x04002026 RID: 8230
 	private float camera_z;
 
-	// Token: 0x0400261F RID: 9759
+	// Token: 0x04002027 RID: 8231
 	private CameraFollow2D_new cameraFollow;
 
-	// Token: 0x04002620 RID: 9760
+	// Token: 0x04002028 RID: 8232
 	private Transform pauseButton;
 
-	// Token: 0x04002621 RID: 9761
+	// Token: 0x04002029 RID: 8233
 	private Transform coinsHolder;
 
-	// Token: 0x04002622 RID: 9762
+	// Token: 0x0400202A RID: 8234
 	private TextMesh coinsCollectedText;
 
-	// Token: 0x04002623 RID: 9763
+	// Token: 0x0400202B RID: 8235
 	private GameObject pauseScreenHolder;
 
-	// Token: 0x04002624 RID: 9764
+	// Token: 0x0400202C RID: 8236
 	private GameObject Win_CompletedScreenHolder;
 
-	// Token: 0x04002625 RID: 9765
+	// Token: 0x0400202D RID: 8237
 	private GameObject FailedScreenHolder;
 
-	// Token: 0x04002626 RID: 9766
+	// Token: 0x0400202E RID: 8238
 	private GameObject Win_ShineHolder;
 
-	// Token: 0x04002627 RID: 9767
+	// Token: 0x0400202F RID: 8239
 	private GameObject star1;
 
-	// Token: 0x04002628 RID: 9768
+	// Token: 0x04002030 RID: 8240
 	private GameObject star2;
 
-	// Token: 0x04002629 RID: 9769
+	// Token: 0x04002031 RID: 8241
 	private GameObject star3;
 
-	// Token: 0x0400262A RID: 9770
+	// Token: 0x04002032 RID: 8242
 	private Transform holderKeys;
 
-	// Token: 0x0400262B RID: 9771
+	// Token: 0x04002033 RID: 8243
 	private GameObject newHighScore;
 
-	// Token: 0x0400262C RID: 9772
+	// Token: 0x04002034 RID: 8244
 	private GameObject holderFinishPts;
 
-	// Token: 0x0400262D RID: 9773
+	// Token: 0x04002035 RID: 8245
 	private GameObject holderFinishKeys;
 
-	// Token: 0x0400262E RID: 9774
+	// Token: 0x04002036 RID: 8246
 	private GameObject buttonFacebookShare;
 
-	// Token: 0x0400262F RID: 9775
+	// Token: 0x04002037 RID: 8247
 	private GameObject buttonBuyKeys;
 
-	// Token: 0x04002630 RID: 9776
+	// Token: 0x04002038 RID: 8248
 	private GameObject buttonPlay_Finish;
 
-	// Token: 0x04002631 RID: 9777
+	// Token: 0x04002039 RID: 8249
 	private GameObject holderFinishInfo;
 
-	// Token: 0x04002632 RID: 9778
+	// Token: 0x0400203A RID: 8250
 	private GameObject holderTextCompleted;
 
-	// Token: 0x04002633 RID: 9779
+	// Token: 0x0400203B RID: 8251
 	private GameObject holderKeepPlaying;
 
-	// Token: 0x04002634 RID: 9780
+	// Token: 0x0400203C RID: 8252
 	private GameObject keyHole1;
 
-	// Token: 0x04002635 RID: 9781
+	// Token: 0x0400203D RID: 8253
 	private GameObject keyHole2;
 
-	// Token: 0x04002636 RID: 9782
+	// Token: 0x0400203E RID: 8254
 	private GameObject keyHole3;
 
-	// Token: 0x04002637 RID: 9783
+	// Token: 0x0400203F RID: 8255
 	[HideInInspector]
 	public Transform progressBarScale;
 
-	// Token: 0x04002638 RID: 9784
+	// Token: 0x04002040 RID: 8256
 	private Transform wonStar1;
 
-	// Token: 0x04002639 RID: 9785
+	// Token: 0x04002041 RID: 8257
 	private Transform wonStar2;
 
-	// Token: 0x0400263A RID: 9786
+	// Token: 0x04002042 RID: 8258
 	private Transform wonStar3;
 
-	// Token: 0x0400263B RID: 9787
+	// Token: 0x04002043 RID: 8259
 	private TextMesh textKeyPrice1;
 
-	// Token: 0x0400263C RID: 9788
+	// Token: 0x04002044 RID: 8260
 	private TextMesh textKeyPrice2;
 
-	// Token: 0x0400263D RID: 9789
+	// Token: 0x04002045 RID: 8261
 	private Transform shopHolder;
 
-	// Token: 0x0400263E RID: 9790
+	// Token: 0x04002046 RID: 8262
 	private Transform shopLevaIvica;
 
-	// Token: 0x0400263F RID: 9791
+	// Token: 0x04002047 RID: 8263
 	private Transform shopDesnaIvica;
 
-	// Token: 0x04002640 RID: 9792
+	// Token: 0x04002048 RID: 8264
 	private GameObject shopHeaderOn;
 
-	// Token: 0x04002641 RID: 9793
+	// Token: 0x04002049 RID: 8265
 	private GameObject shopHeaderOff;
 
-	// Token: 0x04002642 RID: 9794
+	// Token: 0x0400204A RID: 8266
 	private GameObject freeCoinsHeaderOn;
 
-	// Token: 0x04002643 RID: 9795
+	// Token: 0x0400204B RID: 8267
 	private GameObject freeCoinsHeaderOff;
 
-	// Token: 0x04002644 RID: 9796
+	// Token: 0x0400204C RID: 8268
 	private GameObject holderShopCard;
 
-	// Token: 0x04002645 RID: 9797
+	// Token: 0x0400204D RID: 8269
 	private GameObject holderFreeCoinsCard;
 
-	// Token: 0x04002646 RID: 9798
+	// Token: 0x0400204E RID: 8270
 	private Transform buttonShopBack;
 
-	// Token: 0x04002647 RID: 9799
+	// Token: 0x0400204F RID: 8271
 	private Transform PickPowers;
 
-	// Token: 0x04002648 RID: 9800
+	// Token: 0x04002050 RID: 8272
 	private Transform powerCard_CoinX2;
 
-	// Token: 0x04002649 RID: 9801
+	// Token: 0x04002051 RID: 8273
 	private Transform powerCard_Magnet;
 
-	// Token: 0x0400264A RID: 9802
+	// Token: 0x04002052 RID: 8274
 	private Transform powerCard_Shield;
 
-	// Token: 0x0400264B RID: 9803
+	// Token: 0x04002053 RID: 8275
 	private bool kupljenShield;
 
-	// Token: 0x0400264C RID: 9804
+	// Token: 0x04002054 RID: 8276
 	private bool kupljenDoubleCoins;
 
-	// Token: 0x0400264D RID: 9805
+	// Token: 0x04002055 RID: 8277
 	private bool kupljenMagnet;
 
-	// Token: 0x0400264E RID: 9806
+	// Token: 0x04002056 RID: 8278
 	public AnimationClip showPauseAnimation;
 
-	// Token: 0x0400264F RID: 9807
+	// Token: 0x04002057 RID: 8279
 	public AnimationClip dropPauseAnimation;
 
-	// Token: 0x04002650 RID: 9808
+	// Token: 0x04002058 RID: 8280
 	private bool helpBool;
 
-	// Token: 0x04002651 RID: 9809
+	// Token: 0x04002059 RID: 8281
 	private bool playerStopiran;
 
-	// Token: 0x04002652 RID: 9810
+	// Token: 0x0400205A RID: 8282
 	private Action command;
 
-	// Token: 0x04002653 RID: 9811
+	// Token: 0x0400205B RID: 8283
 	private string releasedItem;
 
-	// Token: 0x04002654 RID: 9812
+	// Token: 0x0400205C RID: 8284
 	private SetRandomStarsManager starManager;
 
-	// Token: 0x04002655 RID: 9813
+	// Token: 0x0400205D RID: 8285
 	private bool PowerUp_magnet;
 
-	// Token: 0x04002656 RID: 9814
+	// Token: 0x0400205E RID: 8286
 	[HideInInspector]
 	public bool PowerUp_doubleCoins;
 
-	// Token: 0x04002657 RID: 9815
+	// Token: 0x0400205F RID: 8287
 	[HideInInspector]
 	public bool PowerUp_shield;
 
-	// Token: 0x04002658 RID: 9816
+	// Token: 0x04002060 RID: 8288
 	private GameObject coinMagnet;
 
-	// Token: 0x04002659 RID: 9817
+	// Token: 0x04002061 RID: 8289
 	private GameObject shield;
 
-	// Token: 0x0400265A RID: 9818
+	// Token: 0x04002062 RID: 8290
 	private TextMesh textPtsGameplay;
 
-	// Token: 0x0400265B RID: 9819
+	// Token: 0x04002063 RID: 8291
 	private TextMesh textPtsFinish;
 }

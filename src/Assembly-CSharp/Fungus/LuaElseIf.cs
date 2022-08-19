@@ -3,13 +3,13 @@ using UnityEngine;
 
 namespace Fungus
 {
-	// Token: 0x02001233 RID: 4659
+	// Token: 0x02000DEE RID: 3566
 	[CommandInfo("Flow", "Lua Else If", "Marks the start of a command block to be executed when the preceding If statement is False and the test expression is true.", 0)]
 	[AddComponentMenu("")]
 	public class LuaElseIf : LuaCondition
 	{
-		// Token: 0x17000A6B RID: 2667
-		// (get) Token: 0x06007198 RID: 29080 RVA: 0x0000A093 File Offset: 0x00008293
+		// Token: 0x17000804 RID: 2052
+		// (get) Token: 0x0600650A RID: 25866 RVA: 0x00024C5F File Offset: 0x00022E5F
 		protected override bool IsElseIf
 		{
 			get
@@ -18,19 +18,19 @@ namespace Fungus
 			}
 		}
 
-		// Token: 0x06007199 RID: 29081 RVA: 0x0000A093 File Offset: 0x00008293
+		// Token: 0x0600650B RID: 25867 RVA: 0x00024C5F File Offset: 0x00022E5F
 		public override bool OpenBlock()
 		{
 			return true;
 		}
 
-		// Token: 0x0600719A RID: 29082 RVA: 0x0000A093 File Offset: 0x00008293
+		// Token: 0x0600650C RID: 25868 RVA: 0x00024C5F File Offset: 0x00022E5F
 		public override bool CloseBlock()
 		{
 			return true;
 		}
 
-		// Token: 0x0600719B RID: 29083 RVA: 0x0004C5A3 File Offset: 0x0004A7A3
+		// Token: 0x0600650D RID: 25869 RVA: 0x0027D1B6 File Offset: 0x0027B3B6
 		public override Color GetButtonColor()
 		{
 			return new Color32(253, 253, 150, byte.MaxValue);

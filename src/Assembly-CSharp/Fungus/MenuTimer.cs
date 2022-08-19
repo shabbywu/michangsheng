@@ -5,13 +5,13 @@ using UnityEngine.Serialization;
 
 namespace Fungus
 {
-	// Token: 0x02001252 RID: 4690
+	// Token: 0x02000E05 RID: 3589
 	[CommandInfo("Narrative", "Menu Timer", "Displays a timer bar and executes a target block if the player fails to select a menu option in time.", 0)]
 	[AddComponentMenu("")]
 	[ExecuteInEditMode]
 	public class MenuTimer : Command
 	{
-		// Token: 0x060071F0 RID: 29168 RVA: 0x002A7210 File Offset: 0x002A5410
+		// Token: 0x06006562 RID: 25954 RVA: 0x00282E9C File Offset: 0x0028109C
 		public override void OnEnter()
 		{
 			MenuDialog menuDialog = MenuDialog.GetMenuDialog();
@@ -22,7 +22,7 @@ namespace Fungus
 			this.Continue();
 		}
 
-		// Token: 0x060071F1 RID: 29169 RVA: 0x0004D7A7 File Offset: 0x0004B9A7
+		// Token: 0x06006563 RID: 25955 RVA: 0x00282EE3 File Offset: 0x002810E3
 		public override void GetConnectedBlocks(ref List<Block> connectedBlocks)
 		{
 			if (this.targetBlock != null)
@@ -31,7 +31,7 @@ namespace Fungus
 			}
 		}
 
-		// Token: 0x060071F2 RID: 29170 RVA: 0x0004D7C4 File Offset: 0x0004B9C4
+		// Token: 0x06006564 RID: 25956 RVA: 0x00282F00 File Offset: 0x00281100
 		public override string GetSummary()
 		{
 			if (this.targetBlock == null)
@@ -41,19 +41,19 @@ namespace Fungus
 			return this.targetBlock.BlockName;
 		}
 
-		// Token: 0x060071F3 RID: 29171 RVA: 0x000113CF File Offset: 0x0000F5CF
+		// Token: 0x06006565 RID: 25957 RVA: 0x0005E228 File Offset: 0x0005C428
 		public override Color GetButtonColor()
 		{
 			return new Color32(184, 210, 235, byte.MaxValue);
 		}
 
-		// Token: 0x060071F4 RID: 29172 RVA: 0x0004D7E5 File Offset: 0x0004B9E5
+		// Token: 0x06006566 RID: 25958 RVA: 0x00282F21 File Offset: 0x00281121
 		public override bool HasReference(Variable variable)
 		{
 			return this._duration.floatRef == variable || base.HasReference(variable);
 		}
 
-		// Token: 0x060071F5 RID: 29173 RVA: 0x0004D803 File Offset: 0x0004BA03
+		// Token: 0x06006567 RID: 25959 RVA: 0x00282F3F File Offset: 0x0028113F
 		protected virtual void OnEnable()
 		{
 			if (this.durationOLD != 0f)
@@ -63,18 +63,18 @@ namespace Fungus
 			}
 		}
 
-		// Token: 0x04006451 RID: 25681
+		// Token: 0x0400571C RID: 22300
 		[Tooltip("Length of time to display the timer for")]
 		[SerializeField]
 		protected FloatData _duration = new FloatData(1f);
 
-		// Token: 0x04006452 RID: 25682
+		// Token: 0x0400571D RID: 22301
 		[FormerlySerializedAs("targetSequence")]
 		[Tooltip("Block to execute when the timer expires")]
 		[SerializeField]
 		protected Block targetBlock;
 
-		// Token: 0x04006453 RID: 25683
+		// Token: 0x0400571E RID: 22302
 		[HideInInspector]
 		[FormerlySerializedAs("duration")]
 		public float durationOLD;

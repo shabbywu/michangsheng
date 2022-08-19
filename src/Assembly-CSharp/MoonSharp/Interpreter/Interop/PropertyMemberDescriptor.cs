@@ -9,31 +9,31 @@ using MoonSharp.Interpreter.Interop.Converters;
 
 namespace MoonSharp.Interpreter.Interop
 {
-	// Token: 0x02001121 RID: 4385
+	// Token: 0x02000D22 RID: 3362
 	public class PropertyMemberDescriptor : IMemberDescriptor, IOptimizableDescriptor, IWireableDescriptor
 	{
-		// Token: 0x1700099A RID: 2458
-		// (get) Token: 0x060069DE RID: 27102 RVA: 0x000484AC File Offset: 0x000466AC
-		// (set) Token: 0x060069DF RID: 27103 RVA: 0x000484B4 File Offset: 0x000466B4
+		// Token: 0x1700073D RID: 1853
+		// (get) Token: 0x06005E42 RID: 24130 RVA: 0x00266254 File Offset: 0x00264454
+		// (set) Token: 0x06005E43 RID: 24131 RVA: 0x0026625C File Offset: 0x0026445C
 		public PropertyInfo PropertyInfo { get; private set; }
 
-		// Token: 0x1700099B RID: 2459
-		// (get) Token: 0x060069E0 RID: 27104 RVA: 0x000484BD File Offset: 0x000466BD
-		// (set) Token: 0x060069E1 RID: 27105 RVA: 0x000484C5 File Offset: 0x000466C5
+		// Token: 0x1700073E RID: 1854
+		// (get) Token: 0x06005E44 RID: 24132 RVA: 0x00266265 File Offset: 0x00264465
+		// (set) Token: 0x06005E45 RID: 24133 RVA: 0x0026626D File Offset: 0x0026446D
 		public InteropAccessMode AccessMode { get; private set; }
 
-		// Token: 0x1700099C RID: 2460
-		// (get) Token: 0x060069E2 RID: 27106 RVA: 0x000484CE File Offset: 0x000466CE
-		// (set) Token: 0x060069E3 RID: 27107 RVA: 0x000484D6 File Offset: 0x000466D6
+		// Token: 0x1700073F RID: 1855
+		// (get) Token: 0x06005E46 RID: 24134 RVA: 0x00266276 File Offset: 0x00264476
+		// (set) Token: 0x06005E47 RID: 24135 RVA: 0x0026627E File Offset: 0x0026447E
 		public bool IsStatic { get; private set; }
 
-		// Token: 0x1700099D RID: 2461
-		// (get) Token: 0x060069E4 RID: 27108 RVA: 0x000484DF File Offset: 0x000466DF
-		// (set) Token: 0x060069E5 RID: 27109 RVA: 0x000484E7 File Offset: 0x000466E7
+		// Token: 0x17000740 RID: 1856
+		// (get) Token: 0x06005E48 RID: 24136 RVA: 0x00266287 File Offset: 0x00264487
+		// (set) Token: 0x06005E49 RID: 24137 RVA: 0x0026628F File Offset: 0x0026448F
 		public string Name { get; private set; }
 
-		// Token: 0x1700099E RID: 2462
-		// (get) Token: 0x060069E6 RID: 27110 RVA: 0x000484F0 File Offset: 0x000466F0
+		// Token: 0x17000741 RID: 1857
+		// (get) Token: 0x06005E4A RID: 24138 RVA: 0x00266298 File Offset: 0x00264498
 		public bool CanRead
 		{
 			get
@@ -42,8 +42,8 @@ namespace MoonSharp.Interpreter.Interop
 			}
 		}
 
-		// Token: 0x1700099F RID: 2463
-		// (get) Token: 0x060069E7 RID: 27111 RVA: 0x000484FE File Offset: 0x000466FE
+		// Token: 0x17000742 RID: 1858
+		// (get) Token: 0x06005E4B RID: 24139 RVA: 0x002662A6 File Offset: 0x002644A6
 		public bool CanWrite
 		{
 			get
@@ -52,7 +52,7 @@ namespace MoonSharp.Interpreter.Interop
 			}
 		}
 
-		// Token: 0x060069E8 RID: 27112 RVA: 0x0028EC58 File Offset: 0x0028CE58
+		// Token: 0x06005E4C RID: 24140 RVA: 0x002662B4 File Offset: 0x002644B4
 		public static PropertyMemberDescriptor TryCreateIfVisible(PropertyInfo pi, InteropAccessMode accessMode)
 		{
 			MethodInfo getMethod = Framework.Do.GetGetMethod(pi);
@@ -67,7 +67,7 @@ namespace MoonSharp.Interpreter.Interop
 			return PropertyMemberDescriptor.TryCreate(pi, accessMode, (visibilityFromAttributes2 ?? getMethod.IsPublic) ? getMethod : null, (visibilityFromAttributes3 ?? setMethod.IsPublic) ? setMethod : null);
 		}
 
-		// Token: 0x060069E9 RID: 27113 RVA: 0x0004850C File Offset: 0x0004670C
+		// Token: 0x06005E4D RID: 24141 RVA: 0x0026638F File Offset: 0x0026458F
 		private static PropertyMemberDescriptor TryCreate(PropertyInfo pi, InteropAccessMode accessMode, MethodInfo getter, MethodInfo setter)
 		{
 			if (getter == null && setter == null)
@@ -77,12 +77,12 @@ namespace MoonSharp.Interpreter.Interop
 			return new PropertyMemberDescriptor(pi, accessMode, getter, setter);
 		}
 
-		// Token: 0x060069EA RID: 27114 RVA: 0x0004852B File Offset: 0x0004672B
+		// Token: 0x06005E4E RID: 24142 RVA: 0x002663AE File Offset: 0x002645AE
 		public PropertyMemberDescriptor(PropertyInfo pi, InteropAccessMode accessMode) : this(pi, accessMode, Framework.Do.GetGetMethod(pi), Framework.Do.GetSetMethod(pi))
 		{
 		}
 
-		// Token: 0x060069EB RID: 27115 RVA: 0x0028ED34 File Offset: 0x0028CF34
+		// Token: 0x06005E4F RID: 24143 RVA: 0x002663D0 File Offset: 0x002645D0
 		public PropertyMemberDescriptor(PropertyInfo pi, InteropAccessMode accessMode, MethodInfo getter, MethodInfo setter)
 		{
 			if (getter == null && setter == null)
@@ -106,7 +106,7 @@ namespace MoonSharp.Interpreter.Interop
 			}
 		}
 
-		// Token: 0x060069EC RID: 27116 RVA: 0x0028EDD4 File Offset: 0x0028CFD4
+		// Token: 0x06005E50 RID: 24144 RVA: 0x00266470 File Offset: 0x00264670
 		public DynValue GetValue(Script script, object obj)
 		{
 			this.CheckAccess(MemberDescriptorAccess.CanRead, obj);
@@ -134,7 +134,7 @@ namespace MoonSharp.Interpreter.Interop
 			return ClrToScriptConversions.ObjectToDynValue(script, obj2);
 		}
 
-		// Token: 0x060069ED RID: 27117 RVA: 0x0028EE74 File Offset: 0x0028D074
+		// Token: 0x06005E51 RID: 24145 RVA: 0x00266510 File Offset: 0x00264710
 		internal void OptimizeGetter()
 		{
 			using (PerformanceStatistics.StartGlobalStopwatch(PerformanceCounter.AdaptersCompilation))
@@ -163,7 +163,7 @@ namespace MoonSharp.Interpreter.Interop
 			}
 		}
 
-		// Token: 0x060069EE RID: 27118 RVA: 0x0028EF78 File Offset: 0x0028D178
+		// Token: 0x06005E52 RID: 24146 RVA: 0x00266614 File Offset: 0x00264814
 		internal void OptimizeSetter()
 		{
 			using (PerformanceStatistics.StartGlobalStopwatch(PerformanceCounter.AdaptersCompilation))
@@ -203,7 +203,7 @@ namespace MoonSharp.Interpreter.Interop
 			}
 		}
 
-		// Token: 0x060069EF RID: 27119 RVA: 0x0028F0F8 File Offset: 0x0028D2F8
+		// Token: 0x06005E53 RID: 24147 RVA: 0x00266794 File Offset: 0x00264994
 		public void SetValue(Script script, object obj, DynValue v)
 		{
 			this.CheckAccess(MemberDescriptorAccess.CanWrite, obj);
@@ -248,8 +248,8 @@ namespace MoonSharp.Interpreter.Interop
 			}
 		}
 
-		// Token: 0x170009A0 RID: 2464
-		// (get) Token: 0x060069F0 RID: 27120 RVA: 0x0028F21C File Offset: 0x0028D41C
+		// Token: 0x17000743 RID: 1859
+		// (get) Token: 0x06005E54 RID: 24148 RVA: 0x002668B8 File Offset: 0x00264AB8
 		public MemberDescriptorAccess MemberAccess
 		{
 			get
@@ -267,14 +267,14 @@ namespace MoonSharp.Interpreter.Interop
 			}
 		}
 
-		// Token: 0x060069F1 RID: 27121 RVA: 0x0004854B File Offset: 0x0004674B
+		// Token: 0x06005E55 RID: 24149 RVA: 0x002668EC File Offset: 0x00264AEC
 		void IOptimizableDescriptor.Optimize()
 		{
 			this.OptimizeGetter();
 			this.OptimizeSetter();
 		}
 
-		// Token: 0x060069F2 RID: 27122 RVA: 0x0028F250 File Offset: 0x0028D450
+		// Token: 0x06005E56 RID: 24150 RVA: 0x002668FC File Offset: 0x00264AFC
 		public void PrepareForWiring(Table t)
 		{
 			t.Set("class", DynValue.NewString(base.GetType().FullName));
@@ -288,16 +288,16 @@ namespace MoonSharp.Interpreter.Interop
 			t.Set("type", DynValue.NewString(this.PropertyInfo.PropertyType.FullName));
 		}
 
-		// Token: 0x0400606E RID: 24686
+		// Token: 0x0400543E RID: 21566
 		private MethodInfo m_Getter;
 
-		// Token: 0x0400606F RID: 24687
+		// Token: 0x0400543F RID: 21567
 		private MethodInfo m_Setter;
 
-		// Token: 0x04006070 RID: 24688
+		// Token: 0x04005440 RID: 21568
 		private Func<object, object> m_OptimizedGetter;
 
-		// Token: 0x04006071 RID: 24689
+		// Token: 0x04005441 RID: 21569
 		private Action<object, object> m_OptimizedSetter;
 	}
 }

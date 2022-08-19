@@ -3,10 +3,10 @@ using System.Collections.Generic;
 
 namespace JSONClass
 {
-	// Token: 0x02000C60 RID: 3168
+	// Token: 0x020008D3 RID: 2259
 	public class SeaCastTimeJsonData : IJSONClass
 	{
-		// Token: 0x06004CE9 RID: 19689 RVA: 0x00207F08 File Offset: 0x00206108
+		// Token: 0x0600415F RID: 16735 RVA: 0x001BFA50 File Offset: 0x001BDC50
 		public static void InitDataDict()
 		{
 			foreach (JSONObject jsonobject in jsonData.instance.SeaCastTimeJsonData.list)
@@ -40,27 +40,27 @@ namespace JSONClass
 			}
 		}
 
-		// Token: 0x06004CEA RID: 19690 RVA: 0x000042DD File Offset: 0x000024DD
+		// Token: 0x06004160 RID: 16736 RVA: 0x00004095 File Offset: 0x00002295
 		private static void OnInitFinish()
 		{
 		}
 
-		// Token: 0x04004BEB RID: 19435
+		// Token: 0x040040A1 RID: 16545
 		public static Dictionary<int, SeaCastTimeJsonData> DataDict = new Dictionary<int, SeaCastTimeJsonData>();
 
-		// Token: 0x04004BEC RID: 19436
+		// Token: 0x040040A2 RID: 16546
 		public static List<SeaCastTimeJsonData> DataList = new List<SeaCastTimeJsonData>();
 
-		// Token: 0x04004BED RID: 19437
+		// Token: 0x040040A3 RID: 16547
 		public static Action OnInitFinishAction = new Action(SeaCastTimeJsonData.OnInitFinish);
 
-		// Token: 0x04004BEE RID: 19438
+		// Token: 0x040040A4 RID: 16548
 		public int id;
 
-		// Token: 0x04004BEF RID: 19439
+		// Token: 0x040040A5 RID: 16549
 		public int dunSu;
 
-		// Token: 0x04004BF0 RID: 19440
+		// Token: 0x040040A6 RID: 16550
 		public int XiaoHao;
 	}
 }

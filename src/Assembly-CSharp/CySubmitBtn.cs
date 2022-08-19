@@ -3,10 +3,10 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
 
-// Token: 0x020003D7 RID: 983
+// Token: 0x0200029E RID: 670
 public class CySubmitBtn : MonoBehaviour
 {
-	// Token: 0x06001AEF RID: 6895 RVA: 0x000EE9EC File Offset: 0x000ECBEC
+	// Token: 0x060017FD RID: 6141 RVA: 0x000A775C File Offset: 0x000A595C
 	public void Init(Sprite sprite, string name, UnityAction unityAction)
 	{
 		this.bg.sprite = sprite;
@@ -22,12 +22,12 @@ public class CySubmitBtn : MonoBehaviour
 		base.gameObject.SetActive(true);
 	}
 
-	// Token: 0x0400167F RID: 5759
+	// Token: 0x040012E3 RID: 4835
 	public Image bg;
 
-	// Token: 0x04001680 RID: 5760
+	// Token: 0x040012E4 RID: 4836
 	public Text text;
 
-	// Token: 0x04001681 RID: 5761
+	// Token: 0x040012E5 RID: 4837
 	public BtnCell btnCell;
 }

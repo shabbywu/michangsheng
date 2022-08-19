@@ -4,12 +4,12 @@ using Fungus;
 using KBEngine;
 using UnityEngine;
 
-// Token: 0x0200035F RID: 863
+// Token: 0x02000243 RID: 579
 [CommandInfo("YSNPCJiaoHu", "获取关于突破关联文本", "获取关于突破关联文本，赋值到TmpTalkString", 0)]
 [AddComponentMenu("")]
 public class CmdGetTuPoTalk : Command
 {
-	// Token: 0x060018E8 RID: 6376 RVA: 0x000DE904 File Offset: 0x000DCB04
+	// Token: 0x06001630 RID: 5680 RVA: 0x00096394 File Offset: 0x00094594
 	private static void Init()
 	{
 		if (!CmdGetTuPoTalk.isInited)
@@ -26,7 +26,7 @@ public class CmdGetTuPoTalk : Command
 		}
 	}
 
-	// Token: 0x060018E9 RID: 6377 RVA: 0x000DE9EC File Offset: 0x000DCBEC
+	// Token: 0x06001631 RID: 5681 RVA: 0x0009647C File Offset: 0x0009467C
 	public override void OnEnter()
 	{
 		CmdGetTuPoTalk.Init();
@@ -77,18 +77,18 @@ public class CmdGetTuPoTalk : Command
 		this.Continue();
 	}
 
-	// Token: 0x040013D7 RID: 5079
+	// Token: 0x0400107F RID: 4223
 	private static bool isInited;
 
-	// Token: 0x040013D8 RID: 5080
+	// Token: 0x04001080 RID: 4224
 	private static Dictionary<int, int> _JingJieDict = new Dictionary<int, int>();
 
-	// Token: 0x040013D9 RID: 5081
+	// Token: 0x04001081 RID: 4225
 	private static Dictionary<int, int> _XingGeDict = new Dictionary<int, int>();
 
-	// Token: 0x040013DA RID: 5082
+	// Token: 0x04001082 RID: 4226
 	private static Dictionary<int, int> _PlayerJingJieDict = new Dictionary<int, int>();
 
-	// Token: 0x040013DB RID: 5083
+	// Token: 0x04001083 RID: 4227
 	private static Dictionary<int, string> _TalkDict = new Dictionary<int, string>();
 }

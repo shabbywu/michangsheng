@@ -4,16 +4,16 @@ using UnityEngine;
 
 namespace GUIPackage
 {
-	// Token: 0x02000D79 RID: 3449
+	// Token: 0x02000A59 RID: 2649
 	public class EquipCell : MonoBehaviour
 	{
-		// Token: 0x060052E0 RID: 21216 RVA: 0x0003B539 File Offset: 0x00039739
+		// Token: 0x060049F5 RID: 18933 RVA: 0x001F59FF File Offset: 0x001F3BFF
 		private void Start()
 		{
 			this.setItem();
 		}
 
-		// Token: 0x060052E1 RID: 21217 RVA: 0x0003B541 File Offset: 0x00039741
+		// Token: 0x060049F6 RID: 18934 RVA: 0x001F5A07 File Offset: 0x001F3C07
 		public void setItem()
 		{
 			if (this.IsPlayer)
@@ -24,18 +24,18 @@ namespace GUIPackage
 			this.MonstarSetEquipe();
 		}
 
-		// Token: 0x060052E2 RID: 21218 RVA: 0x0003B558 File Offset: 0x00039758
+		// Token: 0x060049F7 RID: 18935 RVA: 0x001F5A1E File Offset: 0x001F3C1E
 		public void PlayerSetEquipe()
 		{
 			this.Item = Singleton.equip.Equip[PlayerBeiBaoManager.GetEquipIndex(base.name)];
 		}
 
-		// Token: 0x060052E3 RID: 21219 RVA: 0x000042DD File Offset: 0x000024DD
+		// Token: 0x060049F8 RID: 18936 RVA: 0x00004095 File Offset: 0x00002295
 		public void MonstarSetEquipe()
 		{
 		}
 
-		// Token: 0x060052E4 RID: 21220 RVA: 0x002283E8 File Offset: 0x002265E8
+		// Token: 0x060049F9 RID: 18937 RVA: 0x001F5A40 File Offset: 0x001F3C40
 		private void Update()
 		{
 			UITexture component;
@@ -104,7 +104,7 @@ namespace GUIPackage
 			this.ShowName();
 		}
 
-		// Token: 0x060052E5 RID: 21221 RVA: 0x0022865C File Offset: 0x0022685C
+		// Token: 0x060049FA RID: 18938 RVA: 0x001F5CB4 File Offset: 0x001F3EB4
 		public void ShowName()
 		{
 			if (this.Item.itemID != -1 && this.KeyName != null && this.KeyObject != null)
@@ -127,7 +127,7 @@ namespace GUIPackage
 			}
 		}
 
-		// Token: 0x060052E6 RID: 21222 RVA: 0x00228768 File Offset: 0x00226968
+		// Token: 0x060049FB RID: 18939 RVA: 0x001F5DC0 File Offset: 0x001F3FC0
 		private void chengeItem()
 		{
 			if (Singleton.inventory.dragedItem.itemType.ToString() == base.name || Singleton.inventory.dragedItem.itemType.ToString() + "2" == base.name || !Singleton.inventory.draggingItem)
@@ -163,13 +163,13 @@ namespace GUIPackage
 			}
 		}
 
-		// Token: 0x060052E7 RID: 21223 RVA: 0x0003B57A File Offset: 0x0003977A
+		// Token: 0x060049FC RID: 18940 RVA: 0x001F5FA9 File Offset: 0x001F41A9
 		private void OnPress()
 		{
 			this.PCOnPress();
 		}
 
-		// Token: 0x060052E8 RID: 21224 RVA: 0x00228954 File Offset: 0x00226B54
+		// Token: 0x060049FD RID: 18941 RVA: 0x001F5FB4 File Offset: 0x001F41B4
 		public virtual void MobilePress()
 		{
 			if (this.Item.itemID == -1)
@@ -189,7 +189,7 @@ namespace GUIPackage
 			};
 		}
 
-		// Token: 0x060052E9 RID: 21225 RVA: 0x002289AC File Offset: 0x00226BAC
+		// Token: 0x060049FE RID: 18942 RVA: 0x001F600C File Offset: 0x001F420C
 		public void PCOnPress()
 		{
 			if (!this.CanClick)
@@ -203,7 +203,7 @@ namespace GUIPackage
 			}
 		}
 
-		// Token: 0x060052EA RID: 21226 RVA: 0x002289FC File Offset: 0x00226BFC
+		// Token: 0x060049FF RID: 18943 RVA: 0x001F605C File Offset: 0x001F425C
 		public void ClickMouseBtn1()
 		{
 			if (!this.CanClick)
@@ -227,7 +227,7 @@ namespace GUIPackage
 			}
 		}
 
-		// Token: 0x060052EB RID: 21227 RVA: 0x0003B582 File Offset: 0x00039782
+		// Token: 0x06004A00 RID: 18944 RVA: 0x001F6115 File Offset: 0x001F4315
 		private void OnDrop(GameObject obj)
 		{
 			if (Input.GetMouseButtonUp(0) && this.CanClick && Singleton.inventory.draggingItem)
@@ -236,7 +236,7 @@ namespace GUIPackage
 			}
 		}
 
-		// Token: 0x060052EC RID: 21228 RVA: 0x00228AB8 File Offset: 0x00226CB8
+		// Token: 0x06004A01 RID: 18945 RVA: 0x001F613C File Offset: 0x001F433C
 		public void PCOnHover(bool isOver)
 		{
 			if (this.IsPlayer)
@@ -270,49 +270,49 @@ namespace GUIPackage
 			}
 		}
 
-		// Token: 0x060052ED RID: 21229 RVA: 0x0003B5A6 File Offset: 0x000397A6
+		// Token: 0x06004A02 RID: 18946 RVA: 0x001F6209 File Offset: 0x001F4409
 		private void OnHover(bool isOver)
 		{
 			this.PCOnHover(isOver);
 		}
 
-		// Token: 0x040052E1 RID: 21217
+		// Token: 0x0400495C RID: 18780
 		public GameObject Icon;
 
-		// Token: 0x040052E2 RID: 21218
+		// Token: 0x0400495D RID: 18781
 		public GameObject Num;
 
-		// Token: 0x040052E3 RID: 21219
+		// Token: 0x0400495E RID: 18782
 		public GameObject PingZhi;
 
-		// Token: 0x040052E4 RID: 21220
+		// Token: 0x0400495F RID: 18783
 		public item Item = new item();
 
-		// Token: 0x040052E5 RID: 21221
+		// Token: 0x04004960 RID: 18784
 		public GameObject BackGroud;
 
-		// Token: 0x040052E6 RID: 21222
+		// Token: 0x04004961 RID: 18785
 		public GameObject PingZhiUI;
 
-		// Token: 0x040052E7 RID: 21223
+		// Token: 0x04004962 RID: 18786
 		public ItemDatebase itemDatebase;
 
-		// Token: 0x040052E8 RID: 21224
+		// Token: 0x04004963 RID: 18787
 		public bool CanClick = true;
 
-		// Token: 0x040052E9 RID: 21225
+		// Token: 0x04004964 RID: 18788
 		public bool IsPlayer = true;
 
-		// Token: 0x040052EA RID: 21226
+		// Token: 0x04004965 RID: 18789
 		public int equipBuWei;
 
-		// Token: 0x040052EB RID: 21227
+		// Token: 0x04004966 RID: 18790
 		public string EquipCellName;
 
-		// Token: 0x040052EC RID: 21228
+		// Token: 0x04004967 RID: 18791
 		public UILabel KeyName;
 
-		// Token: 0x040052ED RID: 21229
+		// Token: 0x04004968 RID: 18792
 		public GameObject KeyObject;
 	}
 }

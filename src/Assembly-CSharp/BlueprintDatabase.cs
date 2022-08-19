@@ -2,10 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-// Token: 0x020001F7 RID: 503
+// Token: 0x02000126 RID: 294
 public class BlueprintDatabase : ScriptableObject
 {
-	// Token: 0x04000C86 RID: 3206
+	// Token: 0x040009EE RID: 2542
 	[SerializeField]
 	public List<Blueprint> blueprints = new List<Blueprint>();
 }

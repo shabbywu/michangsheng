@@ -5,10 +5,10 @@ using System.Linq;
 using System.Xml.Linq;
 using UnityEngine;
 
-// Token: 0x020006F5 RID: 1781
+// Token: 0x020004C5 RID: 1221
 public class ShopManagerFull : MonoBehaviour
 {
-	// Token: 0x06002CDC RID: 11484 RVA: 0x00160EA8 File Offset: 0x0015F0A8
+	// Token: 0x060026FA RID: 9978 RVA: 0x0011A074 File Offset: 0x00118274
 	private void Awake()
 	{
 		ShopManagerFull.ShopObject = this;
@@ -83,7 +83,7 @@ public class ShopManagerFull : MonoBehaviour
 		this.PreviewShopButton = GameObject.Find("Preview Button");
 	}
 
-	// Token: 0x06002CDD RID: 11485 RVA: 0x001612BC File Offset: 0x0015F4BC
+	// Token: 0x060026FB RID: 9979 RVA: 0x0011A488 File Offset: 0x00118688
 	private void Start()
 	{
 		if ((double)Camera.main.aspect < 1.51)
@@ -152,7 +152,7 @@ public class ShopManagerFull : MonoBehaviour
 		base.StartCoroutine(this.PokreniInicijalizacijuShopa());
 	}
 
-	// Token: 0x06002CDE RID: 11486 RVA: 0x00161660 File Offset: 0x0015F860
+	// Token: 0x060026FC RID: 9980 RVA: 0x0011A82C File Offset: 0x00118A2C
 	private void Update()
 	{
 		if (Input.GetMouseButtonDown(0))
@@ -204,7 +204,7 @@ public class ShopManagerFull : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06002CDF RID: 11487 RVA: 0x00149A14 File Offset: 0x00147C14
+	// Token: 0x060026FD RID: 9981 RVA: 0x0011A9B8 File Offset: 0x00118BB8
 	private string RaycastFunction(Vector3 vector)
 	{
 		RaycastHit raycastHit;
@@ -215,7 +215,7 @@ public class ShopManagerFull : MonoBehaviour
 		return "";
 	}
 
-	// Token: 0x06002CE0 RID: 11488 RVA: 0x001617EC File Offset: 0x0015F9EC
+	// Token: 0x060026FE RID: 9982 RVA: 0x0011A9EC File Offset: 0x00118BEC
 	private int CountItemsInShop(Transform Shop)
 	{
 		int num = 0;
@@ -227,13 +227,13 @@ public class ShopManagerFull : MonoBehaviour
 		return num;
 	}
 
-	// Token: 0x06002CE1 RID: 11489 RVA: 0x00021F51 File Offset: 0x00020151
+	// Token: 0x060026FF RID: 9983 RVA: 0x0011AA40 File Offset: 0x00118C40
 	public void RefresujImenaItema()
 	{
 		base.StartCoroutine(this.ParsirajImenaItemaIzRadnje());
 	}
 
-	// Token: 0x06002CE2 RID: 11490 RVA: 0x00021F60 File Offset: 0x00020160
+	// Token: 0x06002700 RID: 9984 RVA: 0x0011AA4F File Offset: 0x00118C4F
 	public void PobrisiSveOtkljucanoIzShopa()
 	{
 		this.ZakljucaniHats.Clear();
@@ -241,7 +241,7 @@ public class ShopManagerFull : MonoBehaviour
 		this.ZakljucaniBackPacks.Clear();
 	}
 
-	// Token: 0x06002CE3 RID: 11491 RVA: 0x00021F83 File Offset: 0x00020183
+	// Token: 0x06002701 RID: 9985 RVA: 0x0011AA72 File Offset: 0x00118C72
 	private IEnumerator ParsirajImenaItemaIzRadnje()
 	{
 		yield return null;
@@ -687,7 +687,7 @@ public class ShopManagerFull : MonoBehaviour
 		yield break;
 	}
 
-	// Token: 0x06002CE4 RID: 11492 RVA: 0x00161840 File Offset: 0x0015FA40
+	// Token: 0x06002702 RID: 9986 RVA: 0x0011AA84 File Offset: 0x00118C84
 	public void SviItemiInvetory()
 	{
 		ShopManagerFull.SveStvariZaOblacenjeHats.Clear();
@@ -769,7 +769,7 @@ public class ShopManagerFull : MonoBehaviour
 		this.BackPacks = null;
 	}
 
-	// Token: 0x06002CE5 RID: 11493 RVA: 0x00021F92 File Offset: 0x00020192
+	// Token: 0x06002703 RID: 9987 RVA: 0x0011ACCB File Offset: 0x00118ECB
 	private IEnumerator PokreniInicijalizacijuShopa()
 	{
 		if (FacebookManager.KorisnikoviPodaciSpremni)
@@ -803,7 +803,7 @@ public class ShopManagerFull : MonoBehaviour
 		yield break;
 	}
 
-	// Token: 0x06002CE6 RID: 11494 RVA: 0x00021FA1 File Offset: 0x000201A1
+	// Token: 0x06002704 RID: 9988 RVA: 0x0011ACDA File Offset: 0x00118EDA
 	public void PokreniShop()
 	{
 		if (!ShopManagerFull.ShopInicijalizovan)
@@ -812,7 +812,7 @@ public class ShopManagerFull : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06002CE7 RID: 11495 RVA: 0x00161A88 File Offset: 0x0015FC88
+	// Token: 0x06002705 RID: 9989 RVA: 0x0011ACF0 File Offset: 0x00118EF0
 	public void SkloniShop()
 	{
 		if (Application.loadedLevel == 1)
@@ -912,7 +912,7 @@ public class ShopManagerFull : MonoBehaviour
 		ShopManagerFull.AktivanItemRanac = 998;
 	}
 
-	// Token: 0x06002CE8 RID: 11496 RVA: 0x00161E84 File Offset: 0x00160084
+	// Token: 0x06002706 RID: 9990 RVA: 0x0011B0EC File Offset: 0x001192EC
 	public void PozoviTab(int RedniBrojTaba)
 	{
 		if (this.mozeDaOtvoriSledeciTab && this.kliknuoJednomNaTab)
@@ -1047,21 +1047,21 @@ public class ShopManagerFull : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06002CE9 RID: 11497 RVA: 0x00021FB7 File Offset: 0x000201B7
+	// Token: 0x06002707 RID: 9991 RVA: 0x0011B7C6 File Offset: 0x001199C6
 	private void MozeDaKliknePonovoNaTab()
 	{
 		this.mozeDaOtvoriSledeciTab = true;
 		this.kliknuoJednomNaTab = true;
 	}
 
-	// Token: 0x06002CEA RID: 11498 RVA: 0x00021FC7 File Offset: 0x000201C7
+	// Token: 0x06002708 RID: 9992 RVA: 0x0011B7D6 File Offset: 0x001199D6
 	public void PozoviCustomizationTab(int RedniBrojCustomizationTaba)
 	{
 		base.StopCoroutine("CustomizationTab");
 		base.StartCoroutine("CustomizationTab", RedniBrojCustomizationTaba);
 	}
 
-	// Token: 0x06002CEB RID: 11499 RVA: 0x00021FE6 File Offset: 0x000201E6
+	// Token: 0x06002709 RID: 9993 RVA: 0x0011B7F5 File Offset: 0x001199F5
 	public IEnumerator CustomizationTab(int RedniBrojCustomizationTaba1)
 	{
 		if (ShopManagerFull.AktivanCustomizationTab != RedniBrojCustomizationTaba1)
@@ -1157,7 +1157,7 @@ public class ShopManagerFull : MonoBehaviour
 		yield break;
 	}
 
-	// Token: 0x06002CEC RID: 11500 RVA: 0x00162560 File Offset: 0x00160760
+	// Token: 0x0600270A RID: 9994 RVA: 0x0011B80C File Offset: 0x00119A0C
 	public void AktivirajCustomization()
 	{
 		if (ShopManagerFull.AktivanCustomizationTab == 1)
@@ -1190,7 +1190,7 @@ public class ShopManagerFull : MonoBehaviour
 		this.MajmunBobo.transform.position = this.ShopCustomizationPozicija;
 	}
 
-	// Token: 0x06002CED RID: 11501 RVA: 0x00021FFC File Offset: 0x000201FC
+	// Token: 0x0600270B RID: 9995 RVA: 0x0011B8B7 File Offset: 0x00119AB7
 	public void DeaktivirajCustomization()
 	{
 		if (ShopManagerFull.AktivanCustomizationTab == 1)
@@ -1212,35 +1212,35 @@ public class ShopManagerFull : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06002CEE RID: 11502 RVA: 0x0002203C File Offset: 0x0002023C
+	// Token: 0x0600270C RID: 9996 RVA: 0x0011B8F7 File Offset: 0x00119AF7
 	public void AktivirajFreeCoins()
 	{
 		ObjFreeCoins.FreeCoins = true;
 		SwipeControlFreeCoins.controlEnabled = true;
 	}
 
-	// Token: 0x06002CEF RID: 11503 RVA: 0x0002204A File Offset: 0x0002024A
+	// Token: 0x0600270D RID: 9997 RVA: 0x0011B905 File Offset: 0x00119B05
 	public void DeaktivirajFreeCoins()
 	{
 		ObjFreeCoins.FreeCoins = false;
 		SwipeControlFreeCoins.controlEnabled = false;
 	}
 
-	// Token: 0x06002CF0 RID: 11504 RVA: 0x00022058 File Offset: 0x00020258
+	// Token: 0x0600270E RID: 9998 RVA: 0x0011B913 File Offset: 0x00119B13
 	public void AktivirajPowerUps()
 	{
 		ObjPowerUps.PowerUps = true;
 		SwipeControlPowerUps.controlEnabled = true;
 	}
 
-	// Token: 0x06002CF1 RID: 11505 RVA: 0x00022066 File Offset: 0x00020266
+	// Token: 0x0600270F RID: 9999 RVA: 0x0011B921 File Offset: 0x00119B21
 	public void DeaktivirajPowerUps()
 	{
 		ObjPowerUps.PowerUps = false;
 		SwipeControlPowerUps.controlEnabled = false;
 	}
 
-	// Token: 0x06002CF2 RID: 11506 RVA: 0x00022074 File Offset: 0x00020274
+	// Token: 0x06002710 RID: 10000 RVA: 0x0011B92F File Offset: 0x00119B2F
 	public void AktivirajShopTab()
 	{
 		Debug.Log("Aktiviraj Shop pozvan");
@@ -1248,7 +1248,7 @@ public class ShopManagerFull : MonoBehaviour
 		SwipeControlShop.controlEnabled = true;
 	}
 
-	// Token: 0x06002CF3 RID: 11507 RVA: 0x0002208C File Offset: 0x0002028C
+	// Token: 0x06002711 RID: 10001 RVA: 0x0011B947 File Offset: 0x00119B47
 	public void DeaktivirajShopTab()
 	{
 		Debug.Log("Deaktiviraj Shop pozvan");
@@ -1256,7 +1256,7 @@ public class ShopManagerFull : MonoBehaviour
 		SwipeControlShop.controlEnabled = false;
 	}
 
-	// Token: 0x06002CF4 RID: 11508 RVA: 0x000220A4 File Offset: 0x000202A4
+	// Token: 0x06002712 RID: 10002 RVA: 0x0011B95F File Offset: 0x00119B5F
 	public void ProveraTrenutnogItema(int TrenutniItem)
 	{
 		if (ShopManagerFull.AktivanCustomizationTab == 1)
@@ -1275,7 +1275,7 @@ public class ShopManagerFull : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06002CF5 RID: 11509 RVA: 0x0016260C File Offset: 0x0016080C
+	// Token: 0x06002713 RID: 10003 RVA: 0x0011B990 File Offset: 0x00119B90
 	public void ProveriStanjeSesira(int TrenutniItem)
 	{
 		if (TrenutniItem != this.TrenutniSelektovanSesir)
@@ -1325,7 +1325,7 @@ public class ShopManagerFull : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06002CF6 RID: 11510 RVA: 0x0016278C File Offset: 0x0016098C
+	// Token: 0x06002714 RID: 10004 RVA: 0x0011BB10 File Offset: 0x00119D10
 	public void ProveriStanjeMajica(int TrenutniItem)
 	{
 		if (TrenutniItem != this.TrenutnoSelektovanaMajica)
@@ -1375,7 +1375,7 @@ public class ShopManagerFull : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06002CF7 RID: 11511 RVA: 0x00162908 File Offset: 0x00160B08
+	// Token: 0x06002715 RID: 10005 RVA: 0x0011BC8C File Offset: 0x00119E8C
 	public void ProveriStanjeRanca(int TrenutniItem)
 	{
 		if (TrenutniItem != this.TrenutnoSelektovanRanac)
@@ -1425,7 +1425,7 @@ public class ShopManagerFull : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06002CF8 RID: 11512 RVA: 0x00162A84 File Offset: 0x00160C84
+	// Token: 0x06002716 RID: 10006 RVA: 0x0011BE08 File Offset: 0x0011A008
 	public void ProveriStanjeCelogShopa()
 	{
 		for (int i = 0; i < this.BrojItemaShopHats; i++)
@@ -1648,7 +1648,7 @@ public class ShopManagerFull : MonoBehaviour
 		this.Custumization.transform.Find("Znak Uzvika telo").gameObject.SetActive(false);
 	}
 
-	// Token: 0x06002CF9 RID: 11513 RVA: 0x0016382C File Offset: 0x00161A2C
+	// Token: 0x06002717 RID: 10007 RVA: 0x0011CBB0 File Offset: 0x0011ADB0
 	public void KupiItem()
 	{
 		if (ShopManagerFull.BuyButtonState == 0)
@@ -1851,7 +1851,7 @@ public class ShopManagerFull : MonoBehaviour
 		int buyButtonState = ShopManagerFull.BuyButtonState;
 	}
 
-	// Token: 0x06002CFA RID: 11514 RVA: 0x0016428C File Offset: 0x0016248C
+	// Token: 0x06002718 RID: 10008 RVA: 0x0011D610 File Offset: 0x0011B810
 	public void PreviewItem()
 	{
 		if (ShopManagerFull.AktivanCustomizationTab == 1)
@@ -1922,7 +1922,7 @@ public class ShopManagerFull : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06002CFB RID: 11515 RVA: 0x00164654 File Offset: 0x00162854
+	// Token: 0x06002719 RID: 10009 RVA: 0x0011D9D8 File Offset: 0x0011BBD8
 	public void KupiDoubleCoins()
 	{
 		if (StagesParser.currentMoney < int.Parse(this.CoinsPowerUps[0]))
@@ -1950,7 +1950,7 @@ public class ShopManagerFull : MonoBehaviour
 		StagesParser.ServerUpdate = 1;
 	}
 
-	// Token: 0x06002CFC RID: 11516 RVA: 0x001647B8 File Offset: 0x001629B8
+	// Token: 0x0600271A RID: 10010 RVA: 0x0011DB3C File Offset: 0x0011BD3C
 	public void KupiMagnet()
 	{
 		if (StagesParser.currentMoney < int.Parse(this.CoinsPowerUps[1]))
@@ -1978,7 +1978,7 @@ public class ShopManagerFull : MonoBehaviour
 		StagesParser.ServerUpdate = 1;
 	}
 
-	// Token: 0x06002CFD RID: 11517 RVA: 0x0016491C File Offset: 0x00162B1C
+	// Token: 0x0600271B RID: 10011 RVA: 0x0011DCA0 File Offset: 0x0011BEA0
 	public void KupiShield()
 	{
 		if (StagesParser.currentMoney < int.Parse(this.CoinsPowerUps[2]))
@@ -2006,7 +2006,7 @@ public class ShopManagerFull : MonoBehaviour
 		StagesParser.ServerUpdate = 1;
 	}
 
-	// Token: 0x06002CFE RID: 11518 RVA: 0x00164A80 File Offset: 0x00162C80
+	// Token: 0x0600271C RID: 10012 RVA: 0x0011DE04 File Offset: 0x0011C004
 	public void KupiBananu()
 	{
 		if (StagesParser.currentMoney < StagesParser.bananaCost)
@@ -2027,7 +2027,7 @@ public class ShopManagerFull : MonoBehaviour
 		StagesParser.ServerUpdate = 1;
 	}
 
-	// Token: 0x06002CFF RID: 11519 RVA: 0x00164B90 File Offset: 0x00162D90
+	// Token: 0x0600271D RID: 10013 RVA: 0x0011DF14 File Offset: 0x0011C114
 	public void OcistiPreview()
 	{
 		if (this.PreviewSesir != -1)
@@ -2110,7 +2110,7 @@ public class ShopManagerFull : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06002D00 RID: 11520 RVA: 0x00164F44 File Offset: 0x00163144
+	// Token: 0x0600271E RID: 10014 RVA: 0x0011E2C8 File Offset: 0x0011C4C8
 	public void OcistiMajmuna()
 	{
 		ShopManagerFull.ImaUsi = true;
@@ -2174,7 +2174,7 @@ public class ShopManagerFull : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06002D01 RID: 11521 RVA: 0x001651B0 File Offset: 0x001633B0
+	// Token: 0x0600271F RID: 10015 RVA: 0x0011E534 File Offset: 0x0011C734
 	public void ObuciMajmunaNaStartu()
 	{
 		if (PlayerPrefs.HasKey("AktivniItemi"))
@@ -2271,7 +2271,7 @@ public class ShopManagerFull : MonoBehaviour
 		StagesParser.ledja = -1;
 	}
 
-	// Token: 0x06002D02 RID: 11522 RVA: 0x00165598 File Offset: 0x00163798
+	// Token: 0x06002720 RID: 10016 RVA: 0x0011E91C File Offset: 0x0011CB1C
 	private void OnApplicationQuit()
 	{
 		this.StariBrojOtkljucanihItema = string.Concat(new object[]
@@ -2286,300 +2286,300 @@ public class ShopManagerFull : MonoBehaviour
 		PlayerPrefs.Save();
 	}
 
-	// Token: 0x0400271D RID: 10013
+	// Token: 0x040020C8 RID: 8392
 	public bool EarsAndHairCustomization;
 
-	// Token: 0x0400271E RID: 10014
+	// Token: 0x040020C9 RID: 8393
 	public Transform[] HatsObjects = new Transform[0];
 
-	// Token: 0x0400271F RID: 10015
+	// Token: 0x040020CA RID: 8394
 	public Transform[] ShirtsObjects = new Transform[0];
 
-	// Token: 0x04002720 RID: 10016
+	// Token: 0x040020CB RID: 8395
 	public Transform[] BackPacksObjects = new Transform[0];
 
-	// Token: 0x04002721 RID: 10017
+	// Token: 0x040020CC RID: 8396
 	public Transform[] PowerUpsObjects = new Transform[0];
 
-	// Token: 0x04002722 RID: 10018
+	// Token: 0x040020CD RID: 8397
 	public static int BuyButtonState;
 
-	// Token: 0x04002723 RID: 10019
+	// Token: 0x040020CE RID: 8398
 	public static bool PreviewState = false;
 
-	// Token: 0x04002724 RID: 10020
+	// Token: 0x040020CF RID: 8399
 	private GameObject ZidFooter;
 
-	// Token: 0x04002725 RID: 10021
+	// Token: 0x040020D0 RID: 8400
 	private GameObject Custumization;
 
-	// Token: 0x04002726 RID: 10022
+	// Token: 0x040020D1 RID: 8401
 	private bool ImaNovihMajica;
 
-	// Token: 0x04002727 RID: 10023
+	// Token: 0x040020D2 RID: 8402
 	private bool ImaNovihKapa;
 
-	// Token: 0x04002728 RID: 10024
+	// Token: 0x040020D3 RID: 8403
 	private bool ImaNovihRanceva;
 
-	// Token: 0x04002729 RID: 10025
+	// Token: 0x040020D4 RID: 8404
 	private GameObject ButtonShop;
 
-	// Token: 0x0400272A RID: 10026
+	// Token: 0x040020D5 RID: 8405
 	private GameObject ButtonShopSprite;
 
-	// Token: 0x0400272B RID: 10027
+	// Token: 0x040020D6 RID: 8406
 	private GameObject PreviewShopButton;
 
-	// Token: 0x0400272C RID: 10028
+	// Token: 0x040020D7 RID: 8407
 	private GameObject ShopBanana;
 
-	// Token: 0x0400272D RID: 10029
+	// Token: 0x040020D8 RID: 8408
 	public static int AktivanSesir;
 
-	// Token: 0x0400272E RID: 10030
+	// Token: 0x040020D9 RID: 8409
 	public static int AktivnaMajica;
 
-	// Token: 0x0400272F RID: 10031
+	// Token: 0x040020DA RID: 8410
 	public static int AktivanRanac;
 
-	// Token: 0x04002730 RID: 10032
+	// Token: 0x040020DB RID: 8411
 	private int PreviewSesir;
 
-	// Token: 0x04002731 RID: 10033
+	// Token: 0x040020DC RID: 8412
 	private int PreviewMajica;
 
-	// Token: 0x04002732 RID: 10034
+	// Token: 0x040020DD RID: 8413
 	private int PreviewRanac;
 
-	// Token: 0x04002733 RID: 10035
+	// Token: 0x040020DE RID: 8414
 	public static bool otvorenShop = false;
 
-	// Token: 0x04002734 RID: 10036
+	// Token: 0x040020DF RID: 8415
 	public static int AktivanTab;
 
-	// Token: 0x04002735 RID: 10037
+	// Token: 0x040020E0 RID: 8416
 	public static int AktivanCustomizationTab;
 
-	// Token: 0x04002736 RID: 10038
+	// Token: 0x040020E1 RID: 8417
 	public static int AktivanItemSesir;
 
-	// Token: 0x04002737 RID: 10039
+	// Token: 0x040020E2 RID: 8418
 	public static int AktivanItemMajica;
 
-	// Token: 0x04002738 RID: 10040
+	// Token: 0x040020E3 RID: 8419
 	public static int AktivanItemRanac;
 
-	// Token: 0x04002739 RID: 10041
+	// Token: 0x040020E4 RID: 8420
 	private int TrenutniSelektovanSesir = 999;
 
-	// Token: 0x0400273A RID: 10042
+	// Token: 0x040020E5 RID: 8421
 	private int TrenutnoSelektovanaMajica = 999;
 
-	// Token: 0x0400273B RID: 10043
+	// Token: 0x040020E6 RID: 8422
 	private int TrenutnoSelektovanRanac = 999;
 
-	// Token: 0x0400273C RID: 10044
+	// Token: 0x040020E7 RID: 8423
 	private string[] Hats;
 
-	// Token: 0x0400273D RID: 10045
+	// Token: 0x040020E8 RID: 8424
 	private string[] Shirts;
 
-	// Token: 0x0400273E RID: 10046
+	// Token: 0x040020E9 RID: 8425
 	private string[] BackPacks;
 
-	// Token: 0x0400273F RID: 10047
+	// Token: 0x040020EA RID: 8426
 	private string[] AktivniItemi;
 
-	// Token: 0x04002740 RID: 10048
+	// Token: 0x040020EB RID: 8427
 	private string AktivniItemString;
 
-	// Token: 0x04002741 RID: 10049
+	// Token: 0x040020EC RID: 8428
 	private GameObject MajmunBobo;
 
-	// Token: 0x04002742 RID: 10050
+	// Token: 0x040020ED RID: 8429
 	private Vector3 MainScenaPozicija;
 
-	// Token: 0x04002743 RID: 10051
+	// Token: 0x040020EE RID: 8430
 	private Vector3 ShopCustomizationPozicija;
 
-	// Token: 0x04002744 RID: 10052
+	// Token: 0x040020EF RID: 8431
 	public static bool ImaUsi;
 
-	// Token: 0x04002745 RID: 10053
+	// Token: 0x040020F0 RID: 8432
 	public static bool ImaKosu;
 
-	// Token: 0x04002746 RID: 10054
+	// Token: 0x040020F1 RID: 8433
 	public static ShopManagerFull ShopObject;
 
-	// Token: 0x04002747 RID: 10055
+	// Token: 0x040020F2 RID: 8434
 	private string releasedItem;
 
-	// Token: 0x04002748 RID: 10056
+	// Token: 0x040020F3 RID: 8435
 	private string clickedItem;
 
-	// Token: 0x04002749 RID: 10057
+	// Token: 0x040020F4 RID: 8436
 	private Vector3 originalScale;
 
-	// Token: 0x0400274A RID: 10058
+	// Token: 0x040020F5 RID: 8437
 	private static Color KakiBoja = new Color(0.97255f, 0.79216f, 0.40784f);
 
-	// Token: 0x0400274B RID: 10059
+	// Token: 0x040020F6 RID: 8438
 	private static Color PopustBoja = new Color(0.11373f, 0.82353f, 0.38039f);
 
-	// Token: 0x0400274C RID: 10060
+	// Token: 0x040020F7 RID: 8439
 	private static float gornjaGranica;
 
-	// Token: 0x0400274D RID: 10061
+	// Token: 0x040020F8 RID: 8440
 	private static float donjaGranica;
 
-	// Token: 0x0400274E RID: 10062
+	// Token: 0x040020F9 RID: 8441
 	private TextAsset aset2;
 
-	// Token: 0x0400274F RID: 10063
+	// Token: 0x040020FA RID: 8442
 	private string aset;
 
-	// Token: 0x04002750 RID: 10064
+	// Token: 0x040020FB RID: 8443
 	public static bool ShopInicijalizovan = false;
 
-	// Token: 0x04002751 RID: 10065
+	// Token: 0x040020FC RID: 8444
 	private int BrojItemaShopHats;
 
-	// Token: 0x04002752 RID: 10066
+	// Token: 0x040020FD RID: 8445
 	private int BrojItemaShopShirts;
 
-	// Token: 0x04002753 RID: 10067
+	// Token: 0x040020FE RID: 8446
 	private int BrojItemaShopBackPack;
 
-	// Token: 0x04002754 RID: 10068
+	// Token: 0x040020FF RID: 8447
 	private int BrojItemaShop;
 
-	// Token: 0x04002755 RID: 10069
+	// Token: 0x04002100 RID: 8448
 	public static List<int> SveStvariZaOblacenjeHats = new List<int>();
 
-	// Token: 0x04002756 RID: 10070
+	// Token: 0x04002101 RID: 8449
 	public static List<int> SveStvariZaOblacenjeShirts = new List<int>();
 
-	// Token: 0x04002757 RID: 10071
+	// Token: 0x04002102 RID: 8450
 	public static List<int> SveStvariZaOblacenjeBackPack = new List<int>();
 
-	// Token: 0x04002758 RID: 10072
+	// Token: 0x04002103 RID: 8451
 	private List<string> ImenaHats;
 
-	// Token: 0x04002759 RID: 10073
+	// Token: 0x04002104 RID: 8452
 	private List<string> ImenaShirts;
 
-	// Token: 0x0400275A RID: 10074
+	// Token: 0x04002105 RID: 8453
 	private List<string> ImenaBackPacks;
 
-	// Token: 0x0400275B RID: 10075
+	// Token: 0x04002106 RID: 8454
 	private List<string> ImenaPowerUps;
 
-	// Token: 0x0400275C RID: 10076
+	// Token: 0x04002107 RID: 8455
 	private string ImeBanana;
 
-	// Token: 0x0400275D RID: 10077
+	// Token: 0x04002108 RID: 8456
 	public List<string> CoinsHats;
 
-	// Token: 0x0400275E RID: 10078
+	// Token: 0x04002109 RID: 8457
 	private List<string> CoinsShirts;
 
-	// Token: 0x0400275F RID: 10079
+	// Token: 0x0400210A RID: 8458
 	private List<string> CoinsBackPacks;
 
-	// Token: 0x04002760 RID: 10080
+	// Token: 0x0400210B RID: 8459
 	private List<string> CoinsPowerUps;
 
-	// Token: 0x04002761 RID: 10081
+	// Token: 0x0400210C RID: 8460
 	private string cenaBanana;
 
-	// Token: 0x04002762 RID: 10082
+	// Token: 0x0400210D RID: 8461
 	private List<string> BananaHats = new List<string>();
 
-	// Token: 0x04002763 RID: 10083
+	// Token: 0x0400210E RID: 8462
 	private List<string> BananaShirts = new List<string>();
 
-	// Token: 0x04002764 RID: 10084
+	// Token: 0x0400210F RID: 8463
 	private List<string> BananaBackPacks = new List<string>();
 
-	// Token: 0x04002765 RID: 10085
+	// Token: 0x04002110 RID: 8464
 	private List<string> PopustHats = new List<string>();
 
-	// Token: 0x04002766 RID: 10086
+	// Token: 0x04002111 RID: 8465
 	private List<string> PopustShirts = new List<string>();
 
-	// Token: 0x04002767 RID: 10087
+	// Token: 0x04002112 RID: 8466
 	private List<string> PopustBackPacks = new List<string>();
 
-	// Token: 0x04002768 RID: 10088
+	// Token: 0x04002113 RID: 8467
 	private List<string> PopustPowerUps = new List<string>();
 
-	// Token: 0x04002769 RID: 10089
+	// Token: 0x04002114 RID: 8468
 	private string PopustBanana;
 
-	// Token: 0x0400276A RID: 10090
+	// Token: 0x04002115 RID: 8469
 	private List<string> UsiHats = new List<string>();
 
-	// Token: 0x0400276B RID: 10091
+	// Token: 0x04002116 RID: 8470
 	private List<string> KosaHats = new List<string>();
 
-	// Token: 0x0400276C RID: 10092
+	// Token: 0x04002117 RID: 8471
 	private float ProcenatOtkljucan;
 
-	// Token: 0x0400276D RID: 10093
+	// Token: 0x04002118 RID: 8472
 	private string StariBrojOtkljucanihItema;
 
-	// Token: 0x0400276E RID: 10094
+	// Token: 0x04002119 RID: 8473
 	private string[] StariBrojOtkljucanihItemaNiz;
 
-	// Token: 0x0400276F RID: 10095
+	// Token: 0x0400211A RID: 8474
 	public static int BrojOtkljucanihMajici;
 
-	// Token: 0x04002770 RID: 10096
+	// Token: 0x0400211B RID: 8475
 	public static int BrojOtkljucanihRanceva;
 
-	// Token: 0x04002771 RID: 10097
+	// Token: 0x0400211C RID: 8476
 	public static int BrojOtkljucanihKapa;
 
-	// Token: 0x04002772 RID: 10098
+	// Token: 0x0400211D RID: 8477
 	public static int StariBrojOtkljucanihMajici;
 
-	// Token: 0x04002773 RID: 10099
+	// Token: 0x0400211E RID: 8478
 	public static int StariBrojOtkljucanihRanceva;
 
-	// Token: 0x04002774 RID: 10100
+	// Token: 0x0400211F RID: 8479
 	public static int StariBrojOtkljucanihKapa;
 
-	// Token: 0x04002775 RID: 10101
+	// Token: 0x04002120 RID: 8480
 	private List<int> ZakljucaniHats = new List<int>();
 
-	// Token: 0x04002776 RID: 10102
+	// Token: 0x04002121 RID: 8481
 	private List<int> ZakljucaniShirts = new List<int>();
 
-	// Token: 0x04002777 RID: 10103
+	// Token: 0x04002122 RID: 8482
 	private List<int> ZakljucaniBackPacks = new List<int>();
 
-	// Token: 0x04002778 RID: 10104
+	// Token: 0x04002123 RID: 8483
 	private GameObject CustomizationHats;
 
-	// Token: 0x04002779 RID: 10105
+	// Token: 0x04002124 RID: 8484
 	private GameObject CustomizationShirts;
 
-	// Token: 0x0400277A RID: 10106
+	// Token: 0x04002125 RID: 8485
 	private GameObject CustomizationBackPack;
 
-	// Token: 0x0400277B RID: 10107
+	// Token: 0x04002126 RID: 8486
 	private GameObject CoinsNumber;
 
-	// Token: 0x0400277C RID: 10108
+	// Token: 0x04002127 RID: 8487
 	private GameObject temp;
 
-	// Token: 0x0400277D RID: 10109
+	// Token: 0x04002128 RID: 8488
 	private bool mozeDaOtvoriSledeciTab = true;
 
-	// Token: 0x0400277E RID: 10110
+	// Token: 0x04002129 RID: 8489
 	private bool kliknuoJednomNaTab = true;
 
-	// Token: 0x0400277F RID: 10111
+	// Token: 0x0400212A RID: 8490
 	public Color[] TShirtColors;
 }

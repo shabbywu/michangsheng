@@ -5,10 +5,10 @@ using UnityEngine.UI;
 
 namespace YSGame.TianJiDaBi
 {
-	// Token: 0x02000DC6 RID: 3526
+	// Token: 0x02000A94 RID: 2708
 	public class UITianJiDaBi2Player : MonoBehaviour
 	{
-		// Token: 0x060054F0 RID: 21744 RVA: 0x00236384 File Offset: 0x00234584
+		// Token: 0x06004BD4 RID: 19412 RVA: 0x00205014 File Offset: 0x00203214
 		public void InitData(DaBiPlayer left, DaBiPlayer right, Match match)
 		{
 			this.LeftName.text = left.Name;
@@ -74,7 +74,7 @@ namespace YSGame.TianJiDaBi
 			});
 		}
 
-		// Token: 0x060054F1 RID: 21745 RVA: 0x002365E8 File Offset: 0x002347E8
+		// Token: 0x06004BD5 RID: 19413 RVA: 0x00205278 File Offset: 0x00203478
 		public void SetWinFail(DaBiPlayer left, DaBiPlayer right)
 		{
 			FightRecord fightRecord = left.FightRecords[left.FightRecords.Count - 1];
@@ -84,7 +84,7 @@ namespace YSGame.TianJiDaBi
 			this.JianAnimCtl.Play("UITianJiDaBiJianEndAnim");
 		}
 
-		// Token: 0x060054F2 RID: 21746 RVA: 0x00236664 File Offset: 0x00234864
+		// Token: 0x06004BD6 RID: 19414 RVA: 0x002052F4 File Offset: 0x002034F4
 		public void SetLeftWinFail(bool win, bool showText = true)
 		{
 			if (win)
@@ -102,7 +102,7 @@ namespace YSGame.TianJiDaBi
 			this.LeftWinFail.gameObject.SetActive(showText);
 		}
 
-		// Token: 0x060054F3 RID: 21747 RVA: 0x002366E0 File Offset: 0x002348E0
+		// Token: 0x06004BD7 RID: 19415 RVA: 0x00205370 File Offset: 0x00203570
 		public void SetRightWinFail(bool win, bool showText = true)
 		{
 			if (win)
@@ -120,13 +120,13 @@ namespace YSGame.TianJiDaBi
 			this.RightWinFail.gameObject.SetActive(showText);
 		}
 
-		// Token: 0x060054F4 RID: 21748 RVA: 0x0003CB2A File Offset: 0x0003AD2A
+		// Token: 0x06004BD8 RID: 19416 RVA: 0x002053EB File Offset: 0x002035EB
 		public void PlayFightAnim(Action onAnimEnd)
 		{
 			base.StartCoroutine(this.FightAnimC(onAnimEnd));
 		}
 
-		// Token: 0x060054F5 RID: 21749 RVA: 0x0003CB3A File Offset: 0x0003AD3A
+		// Token: 0x06004BD9 RID: 19417 RVA: 0x002053FB File Offset: 0x002035FB
 		private IEnumerator FightAnimC(Action onAnimEnd)
 		{
 			this.canClickName = false;
@@ -144,46 +144,46 @@ namespace YSGame.TianJiDaBi
 			yield break;
 		}
 
-		// Token: 0x040054A3 RID: 21667
+		// Token: 0x04004AE6 RID: 19174
 		public UITianJiDaBiFire LeftFire;
 
-		// Token: 0x040054A4 RID: 21668
+		// Token: 0x04004AE7 RID: 19175
 		public UITianJiDaBiFire RightFire;
 
-		// Token: 0x040054A5 RID: 21669
+		// Token: 0x04004AE8 RID: 19176
 		public GameObject LeftNameHighlight;
 
-		// Token: 0x040054A6 RID: 21670
+		// Token: 0x04004AE9 RID: 19177
 		public GameObject RightNameHiglight;
 
-		// Token: 0x040054A7 RID: 21671
+		// Token: 0x04004AEA RID: 19178
 		public FpBtn LeftNameBtn;
 
-		// Token: 0x040054A8 RID: 21672
+		// Token: 0x04004AEB RID: 19179
 		public FpBtn RightNameBtn;
 
-		// Token: 0x040054A9 RID: 21673
+		// Token: 0x04004AEC RID: 19180
 		public Text LeftName;
 
-		// Token: 0x040054AA RID: 21674
+		// Token: 0x04004AED RID: 19181
 		public Text RightName;
 
-		// Token: 0x040054AB RID: 21675
+		// Token: 0x04004AEE RID: 19182
 		public Text LeftWinFail;
 
-		// Token: 0x040054AC RID: 21676
+		// Token: 0x04004AEF RID: 19183
 		public Text RightWinFail;
 
-		// Token: 0x040054AD RID: 21677
+		// Token: 0x04004AF0 RID: 19184
 		public Animator JianAnimCtl;
 
-		// Token: 0x040054AE RID: 21678
+		// Token: 0x04004AF1 RID: 19185
 		private Color winColor = new Color(0.73333335f, 0.38431373f, 0.19607843f);
 
-		// Token: 0x040054AF RID: 21679
+		// Token: 0x04004AF2 RID: 19186
 		private Color failColor = new Color(0.30588236f, 0.39607844f, 0.49803922f);
 
-		// Token: 0x040054B0 RID: 21680
+		// Token: 0x04004AF3 RID: 19187
 		private bool canClickName = true;
 	}
 }

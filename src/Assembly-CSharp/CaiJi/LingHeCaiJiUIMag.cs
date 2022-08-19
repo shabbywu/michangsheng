@@ -10,10 +10,10 @@ using UnityEngine.UI;
 
 namespace CaiJi
 {
-	// Token: 0x02000AA3 RID: 2723
+	// Token: 0x0200073B RID: 1851
 	public class LingHeCaiJiUIMag : MonoBehaviour, IESCClose
 	{
-		// Token: 0x060045C3 RID: 17859 RVA: 0x00031E61 File Offset: 0x00030061
+		// Token: 0x06003AF4 RID: 15092 RVA: 0x00195696 File Offset: 0x00193896
 		private void Awake()
 		{
 			LingHeCaiJiUIMag.inst = this;
@@ -22,7 +22,7 @@ namespace CaiJi
 			this.MayGetItemDict = new Dictionary<int, UIIconShow>();
 		}
 
-		// Token: 0x060045C4 RID: 17860 RVA: 0x001DD1D8 File Offset: 0x001DB3D8
+		// Token: 0x06003AF5 RID: 15093 RVA: 0x001956C4 File Offset: 0x001938C4
 		public void OpenCaiJi(int mapIndex)
 		{
 			this.Init();
@@ -61,7 +61,7 @@ namespace CaiJi
 			this.TimeSlider.Init(true);
 		}
 
-		// Token: 0x060045C5 RID: 17861 RVA: 0x001DD388 File Offset: 0x001DB588
+		// Token: 0x06003AF6 RID: 15094 RVA: 0x00195874 File Offset: 0x00193A74
 		public void UpdateItemShow()
 		{
 			foreach (int key in this.MayGetItemDict.Keys)
@@ -70,7 +70,7 @@ namespace CaiJi
 			}
 		}
 
-		// Token: 0x060045C6 RID: 17862 RVA: 0x001DD3F0 File Offset: 0x001DB5F0
+		// Token: 0x06003AF7 RID: 15095 RVA: 0x001958DC File Offset: 0x00193ADC
 		private void Init()
 		{
 			base.transform.SetParent(NewUICanvas.Inst.gameObject.transform);
@@ -81,7 +81,7 @@ namespace CaiJi
 			PanelMamager.CanOpenOrClose = false;
 		}
 
-		// Token: 0x060045C7 RID: 17863 RVA: 0x001DD450 File Offset: 0x001DB650
+		// Token: 0x06003AF8 RID: 15096 RVA: 0x0019593C File Offset: 0x00193B3C
 		public void StartCaiJi()
 		{
 			this.State = LingHeCaiJiUIMag.CaiJiState.采集中;
@@ -95,7 +95,7 @@ namespace CaiJi
 			this.GetItemList.gameObject.SetActive(true);
 		}
 
-		// Token: 0x060045C8 RID: 17864 RVA: 0x001DD4E0 File Offset: 0x001DB6E0
+		// Token: 0x06003AF9 RID: 15097 RVA: 0x001959CC File Offset: 0x00193BCC
 		private void PlayeCaiJiAn()
 		{
 			GameObject animation = null;
@@ -152,7 +152,7 @@ namespace CaiJi
 			});
 		}
 
-		// Token: 0x060045C9 RID: 17865 RVA: 0x001DD5D0 File Offset: 0x001DB7D0
+		// Token: 0x06003AFA RID: 15098 RVA: 0x00195ABC File Offset: 0x00193CBC
 		public void CaiJiComplete()
 		{
 			if (this.caiJiResult.LingShiCount > 0)
@@ -197,7 +197,7 @@ namespace CaiJi
 			}
 		}
 
-		// Token: 0x060045CA RID: 17866 RVA: 0x001DD7C4 File Offset: 0x001DB9C4
+		// Token: 0x06003AFB RID: 15099 RVA: 0x00195CB0 File Offset: 0x00193EB0
 		public void Restart()
 		{
 			GameObject animation = null;
@@ -239,14 +239,14 @@ namespace CaiJi
 			this.CompleteBtnPanel.SetActive(false);
 		}
 
-		// Token: 0x060045CB RID: 17867 RVA: 0x00031E8F File Offset: 0x0003008F
+		// Token: 0x06003AFC RID: 15100 RVA: 0x00195D55 File Offset: 0x00193F55
 		public void Close()
 		{
 			LingHeCaiJiUIMag.inst = null;
 			Object.Destroy(base.gameObject);
 		}
 
-		// Token: 0x060045CC RID: 17868 RVA: 0x00031EA2 File Offset: 0x000300A2
+		// Token: 0x06003AFD RID: 15101 RVA: 0x00195D68 File Offset: 0x00193F68
 		private void OnDestroy()
 		{
 			Tools.canClickFlag = true;
@@ -254,7 +254,7 @@ namespace CaiJi
 			ESCCloseManager.Inst.UnRegisterClose(this);
 		}
 
-		// Token: 0x060045CD RID: 17869 RVA: 0x00031EBB File Offset: 0x000300BB
+		// Token: 0x06003AFE RID: 15102 RVA: 0x00195D81 File Offset: 0x00193F81
 		public bool TryEscClose()
 		{
 			if (this.State == LingHeCaiJiUIMag.CaiJiState.采集中)
@@ -265,101 +265,101 @@ namespace CaiJi
 			return true;
 		}
 
-		// Token: 0x04003DEF RID: 15855
+		// Token: 0x0400331E RID: 13086
 		public Dictionary<int, UIIconShow> MayGetItemDict;
 
-		// Token: 0x04003DF0 RID: 15856
+		// Token: 0x0400331F RID: 13087
 		[SerializeField]
 		private Transform MayGetItemList;
 
-		// Token: 0x04003DF1 RID: 15857
+		// Token: 0x04003320 RID: 13088
 		[SerializeField]
 		private Transform GetItemList;
 
-		// Token: 0x04003DF2 RID: 15858
+		// Token: 0x04003321 RID: 13089
 		public CaiJiTimeSelect TimeSlider;
 
-		// Token: 0x04003DF3 RID: 15859
+		// Token: 0x04003322 RID: 13090
 		[SerializeField]
 		private Text Desc;
 
-		// Token: 0x04003DF4 RID: 15860
+		// Token: 0x04003323 RID: 13091
 		[SerializeField]
 		private Text BenDiLingQi;
 
-		// Token: 0x04003DF5 RID: 15861
+		// Token: 0x04003324 RID: 13092
 		[SerializeField]
 		private Text LingHeCount;
 
-		// Token: 0x04003DF6 RID: 15862
+		// Token: 0x04003325 RID: 13093
 		[SerializeField]
 		private Text TanChaNanDu;
 
-		// Token: 0x04003DF7 RID: 15863
+		// Token: 0x04003326 RID: 13094
 		[HideInInspector]
 		public int CostTime;
 
-		// Token: 0x04003DF8 RID: 15864
+		// Token: 0x04003327 RID: 13095
 		[HideInInspector]
 		public LingHeCaiJiUIMag.CaiJiState State;
 
-		// Token: 0x04003DF9 RID: 15865
+		// Token: 0x04003328 RID: 13096
 		[SerializeField]
 		private GameObject BtnPanel;
 
-		// Token: 0x04003DFA RID: 15866
+		// Token: 0x04003329 RID: 13097
 		[SerializeField]
 		private FpBtn CloseBtn;
 
-		// Token: 0x04003DFB RID: 15867
+		// Token: 0x0400332A RID: 13098
 		[SerializeField]
 		private FpBtn CaiJiBtn;
 
-		// Token: 0x04003DFC RID: 15868
+		// Token: 0x0400332B RID: 13099
 		[SerializeField]
 		private FpBtn ContinueBtn;
 
-		// Token: 0x04003DFD RID: 15869
+		// Token: 0x0400332C RID: 13100
 		[SerializeField]
 		private CaiJiZhong CaiJingZhongPanel;
 
-		// Token: 0x04003DFE RID: 15870
+		// Token: 0x0400332D RID: 13101
 		[SerializeField]
 		private GameObject CaiJiMask;
 
-		// Token: 0x04003DFF RID: 15871
+		// Token: 0x0400332E RID: 13102
 		[SerializeField]
 		private GameObject CaiJiMask2;
 
-		// Token: 0x04003E00 RID: 15872
+		// Token: 0x0400332F RID: 13103
 		[SerializeField]
 		private GameObject WaKuangMask;
 
-		// Token: 0x04003E01 RID: 15873
+		// Token: 0x04003330 RID: 13104
 		[SerializeField]
 		private GameObject CompleteBtnPanel;
 
-		// Token: 0x04003E02 RID: 15874
+		// Token: 0x04003331 RID: 13105
 		public static LingHeCaiJiUIMag inst;
 
-		// Token: 0x04003E03 RID: 15875
+		// Token: 0x04003332 RID: 13106
 		private Avatar player;
 
-		// Token: 0x04003E04 RID: 15876
+		// Token: 0x04003333 RID: 13107
 		[HideInInspector]
 		public int nowMapIndex;
 
-		// Token: 0x04003E05 RID: 15877
+		// Token: 0x04003334 RID: 13108
 		private LingHeCaiJiResult caiJiResult;
 
-		// Token: 0x02000AA4 RID: 2724
+		// Token: 0x0200154A RID: 5450
 		public enum CaiJiState
 		{
-			// Token: 0x04003E07 RID: 15879
+			// Token: 0x04006F05 RID: 28421
 			开始 = 1,
-			// Token: 0x04003E08 RID: 15880
+			// Token: 0x04006F06 RID: 28422
 			采集中,
-			// Token: 0x04003E09 RID: 15881
+			// Token: 0x04006F07 RID: 28423
 			采集结束
 		}
 	}

@@ -3,12 +3,12 @@ using System.Security.Cryptography;
 
 namespace ICSharpCode.SharpZipLib.Encryption
 {
-	// Token: 0x0200081E RID: 2078
+	// Token: 0x02000575 RID: 1397
 	public sealed class PkzipClassicManaged : PkzipClassic
 	{
-		// Token: 0x17000562 RID: 1378
-		// (get) Token: 0x0600367F RID: 13951 RVA: 0x00027B36 File Offset: 0x00025D36
-		// (set) Token: 0x06003680 RID: 13952 RVA: 0x00027B39 File Offset: 0x00025D39
+		// Token: 0x170003AB RID: 939
+		// (get) Token: 0x06002E09 RID: 11785 RVA: 0x00150B4A File Offset: 0x0014ED4A
+		// (set) Token: 0x06002E0A RID: 11786 RVA: 0x00150B4D File Offset: 0x0014ED4D
 		public override int BlockSize
 		{
 			get
@@ -24,8 +24,8 @@ namespace ICSharpCode.SharpZipLib.Encryption
 			}
 		}
 
-		// Token: 0x17000563 RID: 1379
-		// (get) Token: 0x06003681 RID: 13953 RVA: 0x00027B4A File Offset: 0x00025D4A
+		// Token: 0x170003AC RID: 940
+		// (get) Token: 0x06002E0B RID: 11787 RVA: 0x00150B5E File Offset: 0x0014ED5E
 		public override KeySizes[] LegalKeySizes
 		{
 			get
@@ -37,13 +37,13 @@ namespace ICSharpCode.SharpZipLib.Encryption
 			}
 		}
 
-		// Token: 0x06003682 RID: 13954 RVA: 0x000042DD File Offset: 0x000024DD
+		// Token: 0x06002E0C RID: 11788 RVA: 0x00004095 File Offset: 0x00002295
 		public override void GenerateIV()
 		{
 		}
 
-		// Token: 0x17000564 RID: 1380
-		// (get) Token: 0x06003683 RID: 13955 RVA: 0x00027B5F File Offset: 0x00025D5F
+		// Token: 0x170003AD RID: 941
+		// (get) Token: 0x06002E0D RID: 11789 RVA: 0x00150B73 File Offset: 0x0014ED73
 		public override KeySizes[] LegalBlockSizes
 		{
 			get
@@ -55,9 +55,9 @@ namespace ICSharpCode.SharpZipLib.Encryption
 			}
 		}
 
-		// Token: 0x17000565 RID: 1381
-		// (get) Token: 0x06003684 RID: 13956 RVA: 0x00027B72 File Offset: 0x00025D72
-		// (set) Token: 0x06003685 RID: 13957 RVA: 0x00027B92 File Offset: 0x00025D92
+		// Token: 0x170003AE RID: 942
+		// (get) Token: 0x06002E0E RID: 11790 RVA: 0x00150B86 File Offset: 0x0014ED86
+		// (set) Token: 0x06002E0F RID: 11791 RVA: 0x00150BA6 File Offset: 0x0014EDA6
 		public override byte[] Key
 		{
 			get
@@ -82,7 +82,7 @@ namespace ICSharpCode.SharpZipLib.Encryption
 			}
 		}
 
-		// Token: 0x06003686 RID: 13958 RVA: 0x0019BC90 File Offset: 0x00199E90
+		// Token: 0x06002E10 RID: 11792 RVA: 0x00150BDC File Offset: 0x0014EDDC
 		public override void GenerateKey()
 		{
 			this.key_ = new byte[12];
@@ -92,21 +92,21 @@ namespace ICSharpCode.SharpZipLib.Encryption
 			}
 		}
 
-		// Token: 0x06003687 RID: 13959 RVA: 0x00027BC5 File Offset: 0x00025DC5
+		// Token: 0x06002E11 RID: 11793 RVA: 0x00150C24 File Offset: 0x0014EE24
 		public override ICryptoTransform CreateEncryptor(byte[] rgbKey, byte[] rgbIV)
 		{
 			this.key_ = rgbKey;
 			return new PkzipClassicEncryptCryptoTransform(this.Key);
 		}
 
-		// Token: 0x06003688 RID: 13960 RVA: 0x00027BD9 File Offset: 0x00025DD9
+		// Token: 0x06002E12 RID: 11794 RVA: 0x00150C38 File Offset: 0x0014EE38
 		public override ICryptoTransform CreateDecryptor(byte[] rgbKey, byte[] rgbIV)
 		{
 			this.key_ = rgbKey;
 			return new PkzipClassicDecryptCryptoTransform(this.Key);
 		}
 
-		// Token: 0x040030F5 RID: 12533
+		// Token: 0x040028B6 RID: 10422
 		private byte[] key_;
 	}
 }

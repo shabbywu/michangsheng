@@ -3,16 +3,16 @@ using System.IO;
 
 namespace ICSharpCode.SharpZipLib.Zip
 {
-	// Token: 0x020007D1 RID: 2001
+	// Token: 0x02000538 RID: 1336
 	public sealed class ZipExtraData : IDisposable
 	{
-		// Token: 0x060032F8 RID: 13048 RVA: 0x00025281 File Offset: 0x00023481
+		// Token: 0x06002AE1 RID: 10977 RVA: 0x001427AF File Offset: 0x001409AF
 		public ZipExtraData()
 		{
 			this.Clear();
 		}
 
-		// Token: 0x060032F9 RID: 13049 RVA: 0x0002528F File Offset: 0x0002348F
+		// Token: 0x06002AE2 RID: 10978 RVA: 0x001427BD File Offset: 0x001409BD
 		public ZipExtraData(byte[] data)
 		{
 			if (data == null)
@@ -23,7 +23,7 @@ namespace ICSharpCode.SharpZipLib.Zip
 			this._data = data;
 		}
 
-		// Token: 0x060032FA RID: 13050 RVA: 0x000252AE File Offset: 0x000234AE
+		// Token: 0x06002AE3 RID: 10979 RVA: 0x001427DC File Offset: 0x001409DC
 		public byte[] GetEntryData()
 		{
 			if (this.Length > 65535)
@@ -33,7 +33,7 @@ namespace ICSharpCode.SharpZipLib.Zip
 			return (byte[])this._data.Clone();
 		}
 
-		// Token: 0x060032FB RID: 13051 RVA: 0x000252D8 File Offset: 0x000234D8
+		// Token: 0x06002AE4 RID: 10980 RVA: 0x00142806 File Offset: 0x00140A06
 		public void Clear()
 		{
 			if (this._data == null || this._data.Length != 0)
@@ -42,8 +42,8 @@ namespace ICSharpCode.SharpZipLib.Zip
 			}
 		}
 
-		// Token: 0x170004A0 RID: 1184
-		// (get) Token: 0x060032FC RID: 13052 RVA: 0x000252F7 File Offset: 0x000234F7
+		// Token: 0x17000301 RID: 769
+		// (get) Token: 0x06002AE5 RID: 10981 RVA: 0x00142825 File Offset: 0x00140A25
 		public int Length
 		{
 			get
@@ -52,7 +52,7 @@ namespace ICSharpCode.SharpZipLib.Zip
 			}
 		}
 
-		// Token: 0x060032FD RID: 13053 RVA: 0x0018EF4C File Offset: 0x0018D14C
+		// Token: 0x06002AE6 RID: 10982 RVA: 0x00142830 File Offset: 0x00140A30
 		public Stream GetStreamForTag(int tag)
 		{
 			Stream result = null;
@@ -63,7 +63,7 @@ namespace ICSharpCode.SharpZipLib.Zip
 			return result;
 		}
 
-		// Token: 0x060032FE RID: 13054 RVA: 0x0018EF80 File Offset: 0x0018D180
+		// Token: 0x06002AE7 RID: 10983 RVA: 0x00142864 File Offset: 0x00140A64
 		public T GetData<T>() where T : class, ITaggedData, new()
 		{
 			T t = Activator.CreateInstance<T>();
@@ -75,8 +75,8 @@ namespace ICSharpCode.SharpZipLib.Zip
 			return default(T);
 		}
 
-		// Token: 0x170004A1 RID: 1185
-		// (get) Token: 0x060032FF RID: 13055 RVA: 0x00025301 File Offset: 0x00023501
+		// Token: 0x17000302 RID: 770
+		// (get) Token: 0x06002AE8 RID: 10984 RVA: 0x001428B2 File Offset: 0x00140AB2
 		public int ValueLength
 		{
 			get
@@ -85,8 +85,8 @@ namespace ICSharpCode.SharpZipLib.Zip
 			}
 		}
 
-		// Token: 0x170004A2 RID: 1186
-		// (get) Token: 0x06003300 RID: 13056 RVA: 0x00025309 File Offset: 0x00023509
+		// Token: 0x17000303 RID: 771
+		// (get) Token: 0x06002AE9 RID: 10985 RVA: 0x001428BA File Offset: 0x00140ABA
 		public int CurrentReadIndex
 		{
 			get
@@ -95,8 +95,8 @@ namespace ICSharpCode.SharpZipLib.Zip
 			}
 		}
 
-		// Token: 0x170004A3 RID: 1187
-		// (get) Token: 0x06003301 RID: 13057 RVA: 0x00025311 File Offset: 0x00023511
+		// Token: 0x17000304 RID: 772
+		// (get) Token: 0x06002AEA RID: 10986 RVA: 0x001428C2 File Offset: 0x00140AC2
 		public int UnreadCount
 		{
 			get
@@ -109,7 +109,7 @@ namespace ICSharpCode.SharpZipLib.Zip
 			}
 		}
 
-		// Token: 0x06003302 RID: 13058 RVA: 0x0018EFD0 File Offset: 0x0018D1D0
+		// Token: 0x06002AEB RID: 10987 RVA: 0x001428FC File Offset: 0x00140AFC
 		public bool Find(int headerID)
 		{
 			this._readValueStart = this._data.Length;
@@ -135,7 +135,7 @@ namespace ICSharpCode.SharpZipLib.Zip
 			return flag;
 		}
 
-		// Token: 0x06003303 RID: 13059 RVA: 0x0002534B File Offset: 0x0002354B
+		// Token: 0x06002AEC RID: 10988 RVA: 0x0014299A File Offset: 0x00140B9A
 		public void AddEntry(ITaggedData taggedData)
 		{
 			if (taggedData == null)
@@ -145,7 +145,7 @@ namespace ICSharpCode.SharpZipLib.Zip
 			this.AddEntry((int)taggedData.TagID, taggedData.GetData());
 		}
 
-		// Token: 0x06003304 RID: 13060 RVA: 0x0018F070 File Offset: 0x0018D270
+		// Token: 0x06002AED RID: 10989 RVA: 0x001429BC File Offset: 0x00140BBC
 		public void AddEntry(int headerID, byte[] fieldData)
 		{
 			if (headerID > 65535 || headerID < 0)
@@ -179,13 +179,13 @@ namespace ICSharpCode.SharpZipLib.Zip
 			}
 		}
 
-		// Token: 0x06003305 RID: 13061 RVA: 0x0002536D File Offset: 0x0002356D
+		// Token: 0x06002AEE RID: 10990 RVA: 0x00142A7F File Offset: 0x00140C7F
 		public void StartNewEntry()
 		{
 			this._newEntry = new MemoryStream();
 		}
 
-		// Token: 0x06003306 RID: 13062 RVA: 0x0018F134 File Offset: 0x0018D334
+		// Token: 0x06002AEF RID: 10991 RVA: 0x00142A8C File Offset: 0x00140C8C
 		public void AddNewEntry(int headerID)
 		{
 			byte[] fieldData = this._newEntry.ToArray();
@@ -193,13 +193,13 @@ namespace ICSharpCode.SharpZipLib.Zip
 			this.AddEntry(headerID, fieldData);
 		}
 
-		// Token: 0x06003307 RID: 13063 RVA: 0x0002537A File Offset: 0x0002357A
+		// Token: 0x06002AF0 RID: 10992 RVA: 0x00142AB4 File Offset: 0x00140CB4
 		public void AddData(byte data)
 		{
 			this._newEntry.WriteByte(data);
 		}
 
-		// Token: 0x06003308 RID: 13064 RVA: 0x00025388 File Offset: 0x00023588
+		// Token: 0x06002AF1 RID: 10993 RVA: 0x00142AC2 File Offset: 0x00140CC2
 		public void AddData(byte[] data)
 		{
 			if (data == null)
@@ -209,28 +209,28 @@ namespace ICSharpCode.SharpZipLib.Zip
 			this._newEntry.Write(data, 0, data.Length);
 		}
 
-		// Token: 0x06003309 RID: 13065 RVA: 0x000253A8 File Offset: 0x000235A8
+		// Token: 0x06002AF2 RID: 10994 RVA: 0x00142AE2 File Offset: 0x00140CE2
 		public void AddLeShort(int toAdd)
 		{
 			this._newEntry.WriteByte((byte)toAdd);
 			this._newEntry.WriteByte((byte)(toAdd >> 8));
 		}
 
-		// Token: 0x0600330A RID: 13066 RVA: 0x000253C6 File Offset: 0x000235C6
+		// Token: 0x06002AF3 RID: 10995 RVA: 0x00142B00 File Offset: 0x00140D00
 		public void AddLeInt(int toAdd)
 		{
 			this.AddLeShort((int)((short)toAdd));
 			this.AddLeShort((int)((short)(toAdd >> 16)));
 		}
 
-		// Token: 0x0600330B RID: 13067 RVA: 0x000253DB File Offset: 0x000235DB
+		// Token: 0x06002AF4 RID: 10996 RVA: 0x00142B15 File Offset: 0x00140D15
 		public void AddLeLong(long toAdd)
 		{
 			this.AddLeInt((int)(toAdd & (long)((ulong)-1)));
 			this.AddLeInt((int)(toAdd >> 32));
 		}
 
-		// Token: 0x0600330C RID: 13068 RVA: 0x0018F15C File Offset: 0x0018D35C
+		// Token: 0x06002AF5 RID: 10997 RVA: 0x00142B30 File Offset: 0x00140D30
 		public bool Delete(int headerID)
 		{
 			bool result = false;
@@ -247,14 +247,14 @@ namespace ICSharpCode.SharpZipLib.Zip
 			return result;
 		}
 
-		// Token: 0x0600330D RID: 13069 RVA: 0x000253F3 File Offset: 0x000235F3
+		// Token: 0x06002AF6 RID: 10998 RVA: 0x00142BA4 File Offset: 0x00140DA4
 		public long ReadLong()
 		{
 			this.ReadCheck(8);
 			return ((long)this.ReadInt() & (long)((ulong)-1)) | (long)this.ReadInt() << 32;
 		}
 
-		// Token: 0x0600330E RID: 13070 RVA: 0x0018F1D0 File Offset: 0x0018D3D0
+		// Token: 0x06002AF7 RID: 10999 RVA: 0x00142BC4 File Offset: 0x00140DC4
 		public int ReadInt()
 		{
 			this.ReadCheck(4);
@@ -263,7 +263,7 @@ namespace ICSharpCode.SharpZipLib.Zip
 			return result;
 		}
 
-		// Token: 0x0600330F RID: 13071 RVA: 0x00025411 File Offset: 0x00023611
+		// Token: 0x06002AF8 RID: 11000 RVA: 0x00142C2B File Offset: 0x00140E2B
 		public int ReadShort()
 		{
 			this.ReadCheck(2);
@@ -272,7 +272,7 @@ namespace ICSharpCode.SharpZipLib.Zip
 			return result;
 		}
 
-		// Token: 0x06003310 RID: 13072 RVA: 0x0018F238 File Offset: 0x0018D438
+		// Token: 0x06002AF9 RID: 11001 RVA: 0x00142C64 File Offset: 0x00140E64
 		public int ReadByte()
 		{
 			int result = -1;
@@ -284,14 +284,14 @@ namespace ICSharpCode.SharpZipLib.Zip
 			return result;
 		}
 
-		// Token: 0x06003311 RID: 13073 RVA: 0x00025447 File Offset: 0x00023647
+		// Token: 0x06002AFA RID: 11002 RVA: 0x00142CB5 File Offset: 0x00140EB5
 		public void Skip(int amount)
 		{
 			this.ReadCheck(amount);
 			this._index += amount;
 		}
 
-		// Token: 0x06003312 RID: 13074 RVA: 0x0018F28C File Offset: 0x0018D48C
+		// Token: 0x06002AFB RID: 11003 RVA: 0x00142CCC File Offset: 0x00140ECC
 		private void ReadCheck(int length)
 		{
 			if (this._readValueStart > this._data.Length || this._readValueStart < 4)
@@ -308,7 +308,7 @@ namespace ICSharpCode.SharpZipLib.Zip
 			}
 		}
 
-		// Token: 0x06003313 RID: 13075 RVA: 0x0018F2F8 File Offset: 0x0018D4F8
+		// Token: 0x06002AFC RID: 11004 RVA: 0x00142D38 File Offset: 0x00140F38
 		private int ReadShortInternal()
 		{
 			if (this._index > this._data.Length - 2)
@@ -320,7 +320,7 @@ namespace ICSharpCode.SharpZipLib.Zip
 			return result;
 		}
 
-		// Token: 0x06003314 RID: 13076 RVA: 0x0002545E File Offset: 0x0002365E
+		// Token: 0x06002AFD RID: 11005 RVA: 0x00142D8F File Offset: 0x00140F8F
 		private void SetShort(ref int index, int source)
 		{
 			this._data[index] = (byte)source;
@@ -328,7 +328,7 @@ namespace ICSharpCode.SharpZipLib.Zip
 			index += 2;
 		}
 
-		// Token: 0x06003315 RID: 13077 RVA: 0x00025480 File Offset: 0x00023680
+		// Token: 0x06002AFE RID: 11006 RVA: 0x00142DB1 File Offset: 0x00140FB1
 		public void Dispose()
 		{
 			if (this._newEntry != null)
@@ -337,19 +337,19 @@ namespace ICSharpCode.SharpZipLib.Zip
 			}
 		}
 
-		// Token: 0x04002F00 RID: 12032
+		// Token: 0x040026F9 RID: 9977
 		private int _index;
 
-		// Token: 0x04002F01 RID: 12033
+		// Token: 0x040026FA RID: 9978
 		private int _readValueStart;
 
-		// Token: 0x04002F02 RID: 12034
+		// Token: 0x040026FB RID: 9979
 		private int _readValueLength;
 
-		// Token: 0x04002F03 RID: 12035
+		// Token: 0x040026FC RID: 9980
 		private MemoryStream _newEntry;
 
-		// Token: 0x04002F04 RID: 12036
+		// Token: 0x040026FD RID: 9981
 		private byte[] _data;
 	}
 }

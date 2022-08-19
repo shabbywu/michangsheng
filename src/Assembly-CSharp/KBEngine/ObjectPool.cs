@@ -3,10 +3,10 @@ using System.Collections.Generic;
 
 namespace KBEngine
 {
-	// Token: 0x02000FDC RID: 4060
+	// Token: 0x02000C54 RID: 3156
 	public class ObjectPool<T> where T : new()
 	{
-		// Token: 0x06006005 RID: 24581 RVA: 0x00266EE4 File Offset: 0x002650E4
+		// Token: 0x060055BE RID: 21950 RVA: 0x0023A020 File Offset: 0x00238220
 		public static T createObject()
 		{
 			Stack<T> objects = ObjectPool<T>._objects;
@@ -26,7 +26,7 @@ namespace KBEngine
 			return result;
 		}
 
-		// Token: 0x06006006 RID: 24582 RVA: 0x00266F48 File Offset: 0x00265148
+		// Token: 0x060055BF RID: 21951 RVA: 0x0023A084 File Offset: 0x00238284
 		public static void reclaimObject(T item)
 		{
 			Stack<T> objects = ObjectPool<T>._objects;
@@ -36,10 +36,10 @@ namespace KBEngine
 			}
 		}
 
-		// Token: 0x04005B74 RID: 23412
+		// Token: 0x040050C4 RID: 20676
 		private static Stack<T> _objects = new Stack<T>();
 
-		// Token: 0x04005B75 RID: 23413
+		// Token: 0x040050C5 RID: 20677
 		private static T v;
 	}
 }

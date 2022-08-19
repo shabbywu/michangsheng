@@ -3,10 +3,10 @@ using System.Collections.Generic;
 
 namespace GoogleMobileAds.Api
 {
-	// Token: 0x02000E7D RID: 3709
+	// Token: 0x02000B11 RID: 2833
 	public class AdRequest
 	{
-		// Token: 0x060058CF RID: 22735 RVA: 0x00247C30 File Offset: 0x00245E30
+		// Token: 0x06004EDB RID: 20187 RVA: 0x002179F8 File Offset: 0x00215BF8
 		private AdRequest(AdRequest.Builder builder)
 		{
 			this.testDevices = builder.TestDevices;
@@ -17,8 +17,8 @@ namespace GoogleMobileAds.Api
 			this.extras = builder.Extras;
 		}
 
-		// Token: 0x17000839 RID: 2105
-		// (get) Token: 0x060058D0 RID: 22736 RVA: 0x0003F3A3 File Offset: 0x0003D5A3
+		// Token: 0x170005F0 RID: 1520
+		// (get) Token: 0x06004EDC RID: 20188 RVA: 0x00217A53 File Offset: 0x00215C53
 		public List<string> TestDevices
 		{
 			get
@@ -27,8 +27,8 @@ namespace GoogleMobileAds.Api
 			}
 		}
 
-		// Token: 0x1700083A RID: 2106
-		// (get) Token: 0x060058D1 RID: 22737 RVA: 0x0003F3AB File Offset: 0x0003D5AB
+		// Token: 0x170005F1 RID: 1521
+		// (get) Token: 0x06004EDD RID: 20189 RVA: 0x00217A5B File Offset: 0x00215C5B
 		public HashSet<string> Keywords
 		{
 			get
@@ -37,8 +37,8 @@ namespace GoogleMobileAds.Api
 			}
 		}
 
-		// Token: 0x1700083B RID: 2107
-		// (get) Token: 0x060058D2 RID: 22738 RVA: 0x0003F3B3 File Offset: 0x0003D5B3
+		// Token: 0x170005F2 RID: 1522
+		// (get) Token: 0x06004EDE RID: 20190 RVA: 0x00217A63 File Offset: 0x00215C63
 		public DateTime? Birthday
 		{
 			get
@@ -47,8 +47,8 @@ namespace GoogleMobileAds.Api
 			}
 		}
 
-		// Token: 0x1700083C RID: 2108
-		// (get) Token: 0x060058D3 RID: 22739 RVA: 0x0003F3BB File Offset: 0x0003D5BB
+		// Token: 0x170005F3 RID: 1523
+		// (get) Token: 0x06004EDF RID: 20191 RVA: 0x00217A6B File Offset: 0x00215C6B
 		public Gender? Gender
 		{
 			get
@@ -57,8 +57,8 @@ namespace GoogleMobileAds.Api
 			}
 		}
 
-		// Token: 0x1700083D RID: 2109
-		// (get) Token: 0x060058D4 RID: 22740 RVA: 0x0003F3C3 File Offset: 0x0003D5C3
+		// Token: 0x170005F4 RID: 1524
+		// (get) Token: 0x06004EE0 RID: 20192 RVA: 0x00217A73 File Offset: 0x00215C73
 		public bool? TagForChildDirectedTreatment
 		{
 			get
@@ -67,8 +67,8 @@ namespace GoogleMobileAds.Api
 			}
 		}
 
-		// Token: 0x1700083E RID: 2110
-		// (get) Token: 0x060058D5 RID: 22741 RVA: 0x0003F3CB File Offset: 0x0003D5CB
+		// Token: 0x170005F5 RID: 1525
+		// (get) Token: 0x06004EE1 RID: 20193 RVA: 0x00217A7B File Offset: 0x00215C7B
 		public Dictionary<string, string> Extras
 		{
 			get
@@ -77,34 +77,34 @@ namespace GoogleMobileAds.Api
 			}
 		}
 
-		// Token: 0x04005884 RID: 22660
+		// Token: 0x04004E3B RID: 20027
 		public const string Version = "2.3.1";
 
-		// Token: 0x04005885 RID: 22661
+		// Token: 0x04004E3C RID: 20028
 		public const string TestDeviceSimulator = "SIMULATOR";
 
-		// Token: 0x04005886 RID: 22662
+		// Token: 0x04004E3D RID: 20029
 		private List<string> testDevices;
 
-		// Token: 0x04005887 RID: 22663
+		// Token: 0x04004E3E RID: 20030
 		private HashSet<string> keywords;
 
-		// Token: 0x04005888 RID: 22664
+		// Token: 0x04004E3F RID: 20031
 		private DateTime? birthday;
 
-		// Token: 0x04005889 RID: 22665
+		// Token: 0x04004E40 RID: 20032
 		private Gender? gender;
 
-		// Token: 0x0400588A RID: 22666
+		// Token: 0x04004E41 RID: 20033
 		private bool? tagForChildDirectedTreatment;
 
-		// Token: 0x0400588B RID: 22667
+		// Token: 0x04004E42 RID: 20034
 		private Dictionary<string, string> extras;
 
-		// Token: 0x02000E7E RID: 3710
+		// Token: 0x020015E2 RID: 5602
 		public class Builder
 		{
-			// Token: 0x060058D6 RID: 22742 RVA: 0x00247C8C File Offset: 0x00245E8C
+			// Token: 0x0600855A RID: 34138 RVA: 0x002E43B0 File Offset: 0x002E25B0
 			public Builder()
 			{
 				this.testDevices = new List<string>();
@@ -115,56 +115,56 @@ namespace GoogleMobileAds.Api
 				this.extras = new Dictionary<string, string>();
 			}
 
-			// Token: 0x060058D7 RID: 22743 RVA: 0x0003F3D3 File Offset: 0x0003D5D3
+			// Token: 0x0600855B RID: 34139 RVA: 0x002E4408 File Offset: 0x002E2608
 			public AdRequest.Builder AddKeyword(string keyword)
 			{
 				this.keywords.Add(keyword);
 				return this;
 			}
 
-			// Token: 0x060058D8 RID: 22744 RVA: 0x0003F3E3 File Offset: 0x0003D5E3
+			// Token: 0x0600855C RID: 34140 RVA: 0x002E4418 File Offset: 0x002E2618
 			public AdRequest.Builder AddTestDevice(string deviceId)
 			{
 				this.testDevices.Add(deviceId);
 				return this;
 			}
 
-			// Token: 0x060058D9 RID: 22745 RVA: 0x0003F3F2 File Offset: 0x0003D5F2
+			// Token: 0x0600855D RID: 34141 RVA: 0x002E4427 File Offset: 0x002E2627
 			public AdRequest Build()
 			{
 				return new AdRequest(this);
 			}
 
-			// Token: 0x060058DA RID: 22746 RVA: 0x0003F3FA File Offset: 0x0003D5FA
+			// Token: 0x0600855E RID: 34142 RVA: 0x002E442F File Offset: 0x002E262F
 			public AdRequest.Builder SetBirthday(DateTime birthday)
 			{
 				this.birthday = new DateTime?(birthday);
 				return this;
 			}
 
-			// Token: 0x060058DB RID: 22747 RVA: 0x0003F409 File Offset: 0x0003D609
+			// Token: 0x0600855F RID: 34143 RVA: 0x002E443E File Offset: 0x002E263E
 			public AdRequest.Builder SetGender(Gender gender)
 			{
 				this.gender = new Gender?(gender);
 				return this;
 			}
 
-			// Token: 0x060058DC RID: 22748 RVA: 0x0003F418 File Offset: 0x0003D618
+			// Token: 0x06008560 RID: 34144 RVA: 0x002E444D File Offset: 0x002E264D
 			public AdRequest.Builder TagForChildDirectedTreatment(bool tagForChildDirectedTreatment)
 			{
 				this.tagForChildDirectedTreatment = new bool?(tagForChildDirectedTreatment);
 				return this;
 			}
 
-			// Token: 0x060058DD RID: 22749 RVA: 0x0003F427 File Offset: 0x0003D627
+			// Token: 0x06008561 RID: 34145 RVA: 0x002E445C File Offset: 0x002E265C
 			public AdRequest.Builder AddExtra(string key, string value)
 			{
 				this.extras.Add(key, value);
 				return this;
 			}
 
-			// Token: 0x1700083F RID: 2111
-			// (get) Token: 0x060058DE RID: 22750 RVA: 0x0003F437 File Offset: 0x0003D637
+			// Token: 0x17000B69 RID: 2921
+			// (get) Token: 0x06008562 RID: 34146 RVA: 0x002E446C File Offset: 0x002E266C
 			internal List<string> TestDevices
 			{
 				get
@@ -173,8 +173,8 @@ namespace GoogleMobileAds.Api
 				}
 			}
 
-			// Token: 0x17000840 RID: 2112
-			// (get) Token: 0x060058DF RID: 22751 RVA: 0x0003F43F File Offset: 0x0003D63F
+			// Token: 0x17000B6A RID: 2922
+			// (get) Token: 0x06008563 RID: 34147 RVA: 0x002E4474 File Offset: 0x002E2674
 			internal HashSet<string> Keywords
 			{
 				get
@@ -183,8 +183,8 @@ namespace GoogleMobileAds.Api
 				}
 			}
 
-			// Token: 0x17000841 RID: 2113
-			// (get) Token: 0x060058E0 RID: 22752 RVA: 0x0003F447 File Offset: 0x0003D647
+			// Token: 0x17000B6B RID: 2923
+			// (get) Token: 0x06008564 RID: 34148 RVA: 0x002E447C File Offset: 0x002E267C
 			internal DateTime? Birthday
 			{
 				get
@@ -193,8 +193,8 @@ namespace GoogleMobileAds.Api
 				}
 			}
 
-			// Token: 0x17000842 RID: 2114
-			// (get) Token: 0x060058E1 RID: 22753 RVA: 0x0003F44F File Offset: 0x0003D64F
+			// Token: 0x17000B6C RID: 2924
+			// (get) Token: 0x06008565 RID: 34149 RVA: 0x002E4484 File Offset: 0x002E2684
 			internal Gender? Gender
 			{
 				get
@@ -203,8 +203,8 @@ namespace GoogleMobileAds.Api
 				}
 			}
 
-			// Token: 0x17000843 RID: 2115
-			// (get) Token: 0x060058E2 RID: 22754 RVA: 0x0003F457 File Offset: 0x0003D657
+			// Token: 0x17000B6D RID: 2925
+			// (get) Token: 0x06008566 RID: 34150 RVA: 0x002E448C File Offset: 0x002E268C
 			internal bool? ChildDirectedTreatmentTag
 			{
 				get
@@ -213,8 +213,8 @@ namespace GoogleMobileAds.Api
 				}
 			}
 
-			// Token: 0x17000844 RID: 2116
-			// (get) Token: 0x060058E3 RID: 22755 RVA: 0x0003F45F File Offset: 0x0003D65F
+			// Token: 0x17000B6E RID: 2926
+			// (get) Token: 0x06008567 RID: 34151 RVA: 0x002E4494 File Offset: 0x002E2694
 			internal Dictionary<string, string> Extras
 			{
 				get
@@ -223,22 +223,22 @@ namespace GoogleMobileAds.Api
 				}
 			}
 
-			// Token: 0x0400588C RID: 22668
+			// Token: 0x040070A0 RID: 28832
 			private List<string> testDevices;
 
-			// Token: 0x0400588D RID: 22669
+			// Token: 0x040070A1 RID: 28833
 			private HashSet<string> keywords;
 
-			// Token: 0x0400588E RID: 22670
+			// Token: 0x040070A2 RID: 28834
 			private DateTime? birthday;
 
-			// Token: 0x0400588F RID: 22671
+			// Token: 0x040070A3 RID: 28835
 			private Gender? gender;
 
-			// Token: 0x04005890 RID: 22672
+			// Token: 0x040070A4 RID: 28836
 			private bool? tagForChildDirectedTreatment;
 
-			// Token: 0x04005891 RID: 22673
+			// Token: 0x040070A5 RID: 28837
 			private Dictionary<string, string> extras;
 		}
 	}

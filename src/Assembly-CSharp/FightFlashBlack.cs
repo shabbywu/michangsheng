@@ -1,25 +1,25 @@
 ﻿using System;
 using UnityEngine;
 
-// Token: 0x020005FE RID: 1534
+// Token: 0x02000447 RID: 1095
 public class FightFlashBlack : MonoBehaviour
 {
-	// Token: 0x06002664 RID: 9828 RVA: 0x000042DD File Offset: 0x000024DD
+	// Token: 0x060022A7 RID: 8871 RVA: 0x00004095 File Offset: 0x00002295
 	private void Start()
 	{
 	}
 
-	// Token: 0x06002665 RID: 9829 RVA: 0x000042DD File Offset: 0x000024DD
+	// Token: 0x060022A8 RID: 8872 RVA: 0x00004095 File Offset: 0x00002295
 	public void Flash()
 	{
 	}
 
-	// Token: 0x06002666 RID: 9830 RVA: 0x0001E996 File Offset: 0x0001CB96
+	// Token: 0x060022A9 RID: 8873 RVA: 0x000ED82D File Offset: 0x000EBA2D
 	public void Hide()
 	{
 		this.SR.color = new Color(1f, 1f, 1f, 0f);
 	}
 
-	// Token: 0x040020C6 RID: 8390
+	// Token: 0x04001BFA RID: 7162
 	public SpriteRenderer SR;
 }

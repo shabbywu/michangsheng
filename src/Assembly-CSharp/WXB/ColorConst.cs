@@ -4,16 +4,16 @@ using UnityEngine;
 
 namespace WXB
 {
-	// Token: 0x02000992 RID: 2450
+	// Token: 0x02000684 RID: 1668
 	public static class ColorConst
 	{
-		// Token: 0x06003E99 RID: 16025 RVA: 0x0002D1B7 File Offset: 0x0002B3B7
+		// Token: 0x060034E7 RID: 13543 RVA: 0x0016F41C File Offset: 0x0016D61C
 		public static void Set(string name, Color c)
 		{
 			ColorConst.NameToColors[name] = c;
 		}
 
-		// Token: 0x06003E9A RID: 16026 RVA: 0x001B77A8 File Offset: 0x001B59A8
+		// Token: 0x060034E8 RID: 13544 RVA: 0x0016F42C File Offset: 0x0016D62C
 		public static bool Get(string name, out Color color)
 		{
 			if (ColorConst.NameToColors.TryGetValue(name, out color))
@@ -282,7 +282,7 @@ namespace WXB
 			return false;
 		}
 
-		// Token: 0x06003E9B RID: 16027 RVA: 0x001B7D5C File Offset: 0x001B5F5C
+		// Token: 0x060034E9 RID: 13545 RVA: 0x0016F9E0 File Offset: 0x0016DBE0
 		public static Color Get(string name, Color d)
 		{
 			Color result;
@@ -293,46 +293,46 @@ namespace WXB
 			return d;
 		}
 
-		// Token: 0x04003876 RID: 14454
+		// Token: 0x04002ECC RID: 11980
 		public static Color aqua = new Color(0f, 1f, 1f, 1f);
 
-		// Token: 0x04003877 RID: 14455
+		// Token: 0x04002ECD RID: 11981
 		public static Color brown = new Color(0.64705884f, 0.16470589f, 0.16470589f, 1f);
 
-		// Token: 0x04003878 RID: 14456
+		// Token: 0x04002ECE RID: 11982
 		public static Color darkblue = new Color(0f, 0f, 0.627451f, 1f);
 
-		// Token: 0x04003879 RID: 14457
+		// Token: 0x04002ECF RID: 11983
 		public static Color fuchsia = new Color(1f, 0f, 1f, 1f);
 
-		// Token: 0x0400387A RID: 14458
+		// Token: 0x04002ED0 RID: 11984
 		public static Color lightblue = new Color(0.6784314f, 0.84705883f, 0.9019608f, 1f);
 
-		// Token: 0x0400387B RID: 14459
+		// Token: 0x04002ED1 RID: 11985
 		public static Color lime = new Color(0f, 1f, 0f, 1f);
 
-		// Token: 0x0400387C RID: 14460
+		// Token: 0x04002ED2 RID: 11986
 		public static Color maroon = new Color(0.5019608f, 0f, 0f, 1f);
 
-		// Token: 0x0400387D RID: 14461
+		// Token: 0x04002ED3 RID: 11987
 		public static Color navy = new Color(0f, 0f, 0.5019608f, 1f);
 
-		// Token: 0x0400387E RID: 14462
+		// Token: 0x04002ED4 RID: 11988
 		public static Color olive = new Color(0.5019608f, 0.5019608f, 0f, 1f);
 
-		// Token: 0x0400387F RID: 14463
+		// Token: 0x04002ED5 RID: 11989
 		public static Color orange = new Color(1f, 0.64705884f, 0f, 1f);
 
-		// Token: 0x04003880 RID: 14464
+		// Token: 0x04002ED6 RID: 11990
 		public static Color purple = new Color(0.5019608f, 0f, 0.5019608f, 1f);
 
-		// Token: 0x04003881 RID: 14465
+		// Token: 0x04002ED7 RID: 11991
 		public static Color silver = new Color(0.7529412f, 0.7529412f, 0.7529412f, 1f);
 
-		// Token: 0x04003882 RID: 14466
+		// Token: 0x04002ED8 RID: 11992
 		public static Color teal = new Color(0f, 0.5019608f, 0.5019608f, 1f);
 
-		// Token: 0x04003883 RID: 14467
+		// Token: 0x04002ED9 RID: 11993
 		public static Dictionary<string, Color> NameToColors = new Dictionary<string, Color>();
 	}
 }

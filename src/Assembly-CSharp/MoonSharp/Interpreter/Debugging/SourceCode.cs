@@ -4,40 +4,40 @@ using System.Text;
 
 namespace MoonSharp.Interpreter.Debugging
 {
-	// Token: 0x0200117E RID: 4478
+	// Token: 0x02000D68 RID: 3432
 	public class SourceCode : IScriptPrivateResource
 	{
-		// Token: 0x170009FC RID: 2556
-		// (get) Token: 0x06006CF2 RID: 27890 RVA: 0x0004A493 File Offset: 0x00048693
-		// (set) Token: 0x06006CF3 RID: 27891 RVA: 0x0004A49B File Offset: 0x0004869B
+		// Token: 0x1700079F RID: 1951
+		// (get) Token: 0x060060FE RID: 24830 RVA: 0x00272A34 File Offset: 0x00270C34
+		// (set) Token: 0x060060FF RID: 24831 RVA: 0x00272A3C File Offset: 0x00270C3C
 		public string Name { get; private set; }
 
-		// Token: 0x170009FD RID: 2557
-		// (get) Token: 0x06006CF4 RID: 27892 RVA: 0x0004A4A4 File Offset: 0x000486A4
-		// (set) Token: 0x06006CF5 RID: 27893 RVA: 0x0004A4AC File Offset: 0x000486AC
+		// Token: 0x170007A0 RID: 1952
+		// (get) Token: 0x06006100 RID: 24832 RVA: 0x00272A45 File Offset: 0x00270C45
+		// (set) Token: 0x06006101 RID: 24833 RVA: 0x00272A4D File Offset: 0x00270C4D
 		public string Code { get; private set; }
 
-		// Token: 0x170009FE RID: 2558
-		// (get) Token: 0x06006CF6 RID: 27894 RVA: 0x0004A4B5 File Offset: 0x000486B5
-		// (set) Token: 0x06006CF7 RID: 27895 RVA: 0x0004A4BD File Offset: 0x000486BD
+		// Token: 0x170007A1 RID: 1953
+		// (get) Token: 0x06006102 RID: 24834 RVA: 0x00272A56 File Offset: 0x00270C56
+		// (set) Token: 0x06006103 RID: 24835 RVA: 0x00272A5E File Offset: 0x00270C5E
 		public string[] Lines { get; private set; }
 
-		// Token: 0x170009FF RID: 2559
-		// (get) Token: 0x06006CF8 RID: 27896 RVA: 0x0004A4C6 File Offset: 0x000486C6
-		// (set) Token: 0x06006CF9 RID: 27897 RVA: 0x0004A4CE File Offset: 0x000486CE
+		// Token: 0x170007A2 RID: 1954
+		// (get) Token: 0x06006104 RID: 24836 RVA: 0x00272A67 File Offset: 0x00270C67
+		// (set) Token: 0x06006105 RID: 24837 RVA: 0x00272A6F File Offset: 0x00270C6F
 		public Script OwnerScript { get; private set; }
 
-		// Token: 0x17000A00 RID: 2560
-		// (get) Token: 0x06006CFA RID: 27898 RVA: 0x0004A4D7 File Offset: 0x000486D7
-		// (set) Token: 0x06006CFB RID: 27899 RVA: 0x0004A4DF File Offset: 0x000486DF
+		// Token: 0x170007A3 RID: 1955
+		// (get) Token: 0x06006106 RID: 24838 RVA: 0x00272A78 File Offset: 0x00270C78
+		// (set) Token: 0x06006107 RID: 24839 RVA: 0x00272A80 File Offset: 0x00270C80
 		public int SourceID { get; private set; }
 
-		// Token: 0x17000A01 RID: 2561
-		// (get) Token: 0x06006CFC RID: 27900 RVA: 0x0004A4E8 File Offset: 0x000486E8
-		// (set) Token: 0x06006CFD RID: 27901 RVA: 0x0004A4F0 File Offset: 0x000486F0
+		// Token: 0x170007A4 RID: 1956
+		// (get) Token: 0x06006108 RID: 24840 RVA: 0x00272A89 File Offset: 0x00270C89
+		// (set) Token: 0x06006109 RID: 24841 RVA: 0x00272A91 File Offset: 0x00270C91
 		internal List<SourceRef> Refs { get; private set; }
 
-		// Token: 0x06006CFE RID: 27902 RVA: 0x002997C4 File Offset: 0x002979C4
+		// Token: 0x0600610A RID: 24842 RVA: 0x00272A9C File Offset: 0x00270C9C
 		internal SourceCode(string name, string code, int sourceID, Script ownerScript)
 		{
 			this.Refs = new List<SourceRef>();
@@ -54,7 +54,7 @@ namespace MoonSharp.Interpreter.Debugging
 			this.SourceID = sourceID;
 		}
 
-		// Token: 0x06006CFF RID: 27903 RVA: 0x00299840 File Offset: 0x00297A40
+		// Token: 0x0600610B RID: 24843 RVA: 0x00272B18 File Offset: 0x00270D18
 		public string GetCodeSnippet(SourceRef sourceCodeRef)
 		{
 			if (sourceCodeRef.FromLine == sourceCodeRef.ToLine)
@@ -84,7 +84,7 @@ namespace MoonSharp.Interpreter.Debugging
 			return stringBuilder.ToString();
 		}
 
-		// Token: 0x06006D00 RID: 27904 RVA: 0x0004A4F9 File Offset: 0x000486F9
+		// Token: 0x0600610C RID: 24844 RVA: 0x00272C26 File Offset: 0x00270E26
 		private int AdjustStrIndex(string str, int loc)
 		{
 			return Math.Max(Math.Min(str.Length, loc), 0);

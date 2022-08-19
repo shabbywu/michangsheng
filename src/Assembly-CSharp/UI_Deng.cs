@@ -2,15 +2,15 @@
 using KBEngine;
 using UnityEngine;
 
-// Token: 0x020005A2 RID: 1442
+// Token: 0x020003F3 RID: 1011
 public class UI_Deng : MonoBehaviour
 {
-	// Token: 0x06002457 RID: 9303 RVA: 0x000042DD File Offset: 0x000024DD
+	// Token: 0x060020A5 RID: 8357 RVA: 0x00004095 File Offset: 0x00002295
 	private void Start()
 	{
 	}
 
-	// Token: 0x06002458 RID: 9304 RVA: 0x001282F4 File Offset: 0x001264F4
+	// Token: 0x060020A6 RID: 8358 RVA: 0x000E603C File Offset: 0x000E423C
 	public void SetHPDeng()
 	{
 		Avatar avatar = (Avatar)KBEngineApp.app.player();
@@ -19,7 +19,7 @@ public class UI_Deng : MonoBehaviour
 		this.SetDengZhao(avatar.HP, avatar.HP_Max);
 	}
 
-	// Token: 0x06002459 RID: 9305 RVA: 0x00128360 File Offset: 0x00126560
+	// Token: 0x060020A7 RID: 8359 RVA: 0x000E60A8 File Offset: 0x000E42A8
 	public void SetEXPDeng()
 	{
 		Avatar avatar = (Avatar)KBEngineApp.app.player();
@@ -35,19 +35,19 @@ public class UI_Deng : MonoBehaviour
 		this.SetDengZhao((int)avatar.exp, (int)num);
 	}
 
-	// Token: 0x0600245A RID: 9306 RVA: 0x0001D3D9 File Offset: 0x0001B5D9
+	// Token: 0x060020A8 RID: 8360 RVA: 0x000E6168 File Offset: 0x000E4368
 	public void SetDengZhao(int num, int Max)
 	{
 		this.dengzhao.alpha = (float)num / (float)Max;
 	}
 
-	// Token: 0x0600245B RID: 9307 RVA: 0x0001D3EB File Offset: 0x0001B5EB
+	// Token: 0x060020A9 RID: 8361 RVA: 0x000E617A File Offset: 0x000E437A
 	public void SetHuo(int num, int Max)
 	{
 		this.huo.transform.localScale = Vector3.one * (0.5f + (float)num / (float)Max / 2f);
 	}
 
-	// Token: 0x0600245C RID: 9308 RVA: 0x0001D418 File Offset: 0x0001B618
+	// Token: 0x060020AA RID: 8362 RVA: 0x000E61A7 File Offset: 0x000E43A7
 	private void Update()
 	{
 		if (this.type == 1)
@@ -58,15 +58,15 @@ public class UI_Deng : MonoBehaviour
 		this.SetEXPDeng();
 	}
 
-	// Token: 0x04001F43 RID: 8003
+	// Token: 0x04001A8A RID: 6794
 	public int type = 1;
 
-	// Token: 0x04001F44 RID: 8004
+	// Token: 0x04001A8B RID: 6795
 	public UI2DSprite dengzhao;
 
-	// Token: 0x04001F45 RID: 8005
+	// Token: 0x04001A8C RID: 6796
 	public UI2DSprite huo;
 
-	// Token: 0x04001F46 RID: 8006
+	// Token: 0x04001A8D RID: 6797
 	public UILabel text;
 }

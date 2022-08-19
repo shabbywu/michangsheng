@@ -2,11 +2,11 @@
 using System.Collections;
 using UnityEngine;
 
-// Token: 0x0200066E RID: 1646
+// Token: 0x02000495 RID: 1173
 public class BossScript : MonoBehaviour
 {
-	// Token: 0x170002EE RID: 750
-	// (get) Token: 0x06002920 RID: 10528 RVA: 0x0001FF88 File Offset: 0x0001E188
+	// Token: 0x17000293 RID: 659
+	// (get) Token: 0x0600250A RID: 9482 RVA: 0x00101871 File Offset: 0x000FFA71
 	public static BossScript Instance
 	{
 		get
@@ -19,20 +19,20 @@ public class BossScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06002921 RID: 10529 RVA: 0x0001FFB5 File Offset: 0x0001E1B5
+	// Token: 0x0600250B RID: 9483 RVA: 0x0010189E File Offset: 0x000FFA9E
 	private void Awake()
 	{
 		BossScript.instance = this;
 		this.anim = base.transform.Find("Boss 1").GetComponent<Animator>();
 	}
 
-	// Token: 0x06002922 RID: 10530 RVA: 0x0001FFD8 File Offset: 0x0001E1D8
+	// Token: 0x0600250C RID: 9484 RVA: 0x001018C1 File Offset: 0x000FFAC1
 	public void comeIntoTheWorld()
 	{
 		base.StartCoroutine(this.ShowUp());
 	}
 
-	// Token: 0x06002923 RID: 10531 RVA: 0x0001FFE7 File Offset: 0x0001E1E7
+	// Token: 0x0600250D RID: 9485 RVA: 0x001018D0 File Offset: 0x000FFAD0
 	private IEnumerator ShowUp()
 	{
 		float t = 0.05f;
@@ -47,7 +47,7 @@ public class BossScript : MonoBehaviour
 		yield break;
 	}
 
-	// Token: 0x06002924 RID: 10532 RVA: 0x0001FFF6 File Offset: 0x0001E1F6
+	// Token: 0x0600250E RID: 9486 RVA: 0x001018DF File Offset: 0x000FFADF
 	private void goPlayer()
 	{
 		MonkeyController2D.Instance.state = MonkeyController2D.State.running;
@@ -56,7 +56,7 @@ public class BossScript : MonoBehaviour
 		this.run = true;
 	}
 
-	// Token: 0x06002925 RID: 10533 RVA: 0x00141460 File Offset: 0x0013F660
+	// Token: 0x0600250F RID: 9487 RVA: 0x0010191C File Offset: 0x000FFB1C
 	private void FixedUpdate()
 	{
 		if (this.run)
@@ -72,21 +72,21 @@ public class BossScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x040022E6 RID: 8934
+	// Token: 0x04001DD8 RID: 7640
 	private static BossScript instance;
 
-	// Token: 0x040022E7 RID: 8935
+	// Token: 0x04001DD9 RID: 7641
 	private Animator anim;
 
-	// Token: 0x040022E8 RID: 8936
+	// Token: 0x04001DDA RID: 7642
 	private bool run;
 
-	// Token: 0x040022E9 RID: 8937
+	// Token: 0x04001DDB RID: 7643
 	public float maxSpeedX = 16f;
 
-	// Token: 0x040022EA RID: 8938
+	// Token: 0x04001DDC RID: 7644
 	private float moveForce = 500f;
 
-	// Token: 0x040022EB RID: 8939
+	// Token: 0x04001DDD RID: 7645
 	private bool stop;
 }

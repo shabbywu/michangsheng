@@ -4,11 +4,11 @@ using JSONClass;
 
 namespace Bag
 {
-	// Token: 0x02000D25 RID: 3365
+	// Token: 0x020009A0 RID: 2464
 	[Serializable]
 	public class DanYaoItem : BaseItem
 	{
-		// Token: 0x0600501E RID: 20510 RVA: 0x002188D4 File Offset: 0x00216AD4
+		// Token: 0x060044C2 RID: 17602 RVA: 0x001D4040 File Offset: 0x001D2240
 		public override void SetItem(int id, int count)
 		{
 			base.SetItem(id, count);
@@ -20,7 +20,7 @@ namespace Bag
 			this.DanDu = _ItemJsonData.DataDict[id].DanDu;
 		}
 
-		// Token: 0x0600501F RID: 20511 RVA: 0x00039BFA File Offset: 0x00037DFA
+		// Token: 0x060044C3 RID: 17603 RVA: 0x001D40A5 File Offset: 0x001D22A5
 		public override JiaoBiaoType GetJiaoBiaoType()
 		{
 			if (Tools.getJsonobject(Tools.instance.getPlayer().NaiYaoXin, string.Concat(this.Id)) >= this.CanUse && this.Type == 5)
@@ -30,7 +30,7 @@ namespace Bag
 			return base.GetJiaoBiaoType();
 		}
 
-		// Token: 0x06005020 RID: 20512 RVA: 0x0021893C File Offset: 0x00216B3C
+		// Token: 0x060044C4 RID: 17604 RVA: 0x001D40E4 File Offset: 0x001D22E4
 		public int GetDanDu()
 		{
 			int num = _ItemJsonData.DataDict[this.Id].DanDu;
@@ -41,19 +41,19 @@ namespace Bag
 			return num;
 		}
 
-		// Token: 0x06005021 RID: 20513 RVA: 0x00039C39 File Offset: 0x00037E39
+		// Token: 0x060044C5 RID: 17605 RVA: 0x001D4164 File Offset: 0x001D2364
 		public int GetHasUse()
 		{
 			return Tools.getJsonobject(Tools.instance.getPlayer().NaiYaoXin, this.Id.ToString());
 		}
 
-		// Token: 0x06005022 RID: 20514 RVA: 0x00039C5A File Offset: 0x00037E5A
+		// Token: 0x060044C6 RID: 17606 RVA: 0x001D4185 File Offset: 0x001D2385
 		public int GetMaxUseNum()
 		{
 			return item.GetItemCanUseNum(this.Id);
 		}
 
-		// Token: 0x06005023 RID: 20515 RVA: 0x00039C67 File Offset: 0x00037E67
+		// Token: 0x060044C7 RID: 17607 RVA: 0x001D4192 File Offset: 0x001D2392
 		public override void Use()
 		{
 			new item(this.Id).gongneng(delegate
@@ -63,10 +63,10 @@ namespace Bag
 			}, false);
 		}
 
-		// Token: 0x0400515F RID: 20831
+		// Token: 0x04004661 RID: 18017
 		public int CanUse;
 
-		// Token: 0x04005160 RID: 20832
+		// Token: 0x04004662 RID: 18018
 		public int DanDu;
 	}
 }

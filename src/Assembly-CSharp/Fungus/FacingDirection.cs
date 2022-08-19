@@ -2,14 +2,14 @@
 
 namespace Fungus
 {
-	// Token: 0x020012E8 RID: 4840
+	// Token: 0x02000E7D RID: 3709
 	public enum FacingDirection
 	{
-		// Token: 0x040066DD RID: 26333
+		// Token: 0x04005915 RID: 22805
 		None,
-		// Token: 0x040066DE RID: 26334
+		// Token: 0x04005916 RID: 22806
 		Left,
-		// Token: 0x040066DF RID: 26335
+		// Token: 0x04005917 RID: 22807
 		Right
 	}
 }

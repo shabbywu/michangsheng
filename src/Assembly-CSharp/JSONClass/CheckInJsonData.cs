@@ -3,10 +3,10 @@ using System.Collections.Generic;
 
 namespace JSONClass
 {
-	// Token: 0x02000B9C RID: 2972
+	// Token: 0x02000805 RID: 2053
 	public class CheckInJsonData : IJSONClass
 	{
-		// Token: 0x060049D8 RID: 18904 RVA: 0x001F4B88 File Offset: 0x001F2D88
+		// Token: 0x06003E26 RID: 15910 RVA: 0x001A90D8 File Offset: 0x001A72D8
 		public static void InitDataDict()
 		{
 			foreach (JSONObject jsonobject in jsonData.instance.CheckInJsonData.list)
@@ -42,33 +42,33 @@ namespace JSONClass
 			}
 		}
 
-		// Token: 0x060049D9 RID: 18905 RVA: 0x000042DD File Offset: 0x000024DD
+		// Token: 0x06003E27 RID: 15911 RVA: 0x00004095 File Offset: 0x00002295
 		private static void OnInitFinish()
 		{
 		}
 
-		// Token: 0x040044BD RID: 17597
+		// Token: 0x0400392D RID: 14637
 		public static Dictionary<int, CheckInJsonData> DataDict = new Dictionary<int, CheckInJsonData>();
 
-		// Token: 0x040044BE RID: 17598
+		// Token: 0x0400392E RID: 14638
 		public static List<CheckInJsonData> DataList = new List<CheckInJsonData>();
 
-		// Token: 0x040044BF RID: 17599
+		// Token: 0x0400392F RID: 14639
 		public static Action OnInitFinishAction = new Action(CheckInJsonData.OnInitFinish);
 
-		// Token: 0x040044C0 RID: 17600
+		// Token: 0x04003930 RID: 14640
 		public int id;
 
-		// Token: 0x040044C1 RID: 17601
+		// Token: 0x04003931 RID: 14641
 		public int checkinType;
 
-		// Token: 0x040044C2 RID: 17602
+		// Token: 0x04003932 RID: 14642
 		public int checkinId;
 
-		// Token: 0x040044C3 RID: 17603
+		// Token: 0x04003933 RID: 14643
 		public int checkincount;
 
-		// Token: 0x040044C4 RID: 17604
+		// Token: 0x04003934 RID: 14644
 		public int day;
 	}
 }

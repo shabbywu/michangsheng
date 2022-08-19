@@ -5,16 +5,16 @@ using KBEngine;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-// Token: 0x0200026E RID: 622
+// Token: 0x02000188 RID: 392
 public class FightPrepare : MonoBehaviour
 {
-	// Token: 0x06001332 RID: 4914 RVA: 0x00012070 File Offset: 0x00010270
+	// Token: 0x060010CB RID: 4299 RVA: 0x00063B67 File Offset: 0x00061D67
 	private void Start()
 	{
 		this.slot = (Resources.Load("Slot") as GameObject);
 	}
 
-	// Token: 0x06001333 RID: 4915 RVA: 0x000B25C4 File Offset: 0x000B07C4
+	// Token: 0x060010CC RID: 4300 RVA: 0x00063B80 File Offset: 0x00061D80
 	public void initFightPrepare()
 	{
 		UINPCLeftList.ShoudHide = true;
@@ -28,7 +28,7 @@ public class FightPrepare : MonoBehaviour
 		this.initMonstarPlan();
 	}
 
-	// Token: 0x06001334 RID: 4916 RVA: 0x000B26C0 File Offset: 0x000B08C0
+	// Token: 0x060010CD RID: 4301 RVA: 0x00063C7C File Offset: 0x00061E7C
 	public void initMonstarPlan()
 	{
 		ItemDatebase component = jsonData.instance.transform.GetComponent<ItemDatebase>();
@@ -54,9 +54,9 @@ public class FightPrepare : MonoBehaviour
 			int num3 = 0;
 			foreach (JSONObject jsonobject4 in jsonData.instance._skillJsonData.list)
 			{
-				if ((int)jsonobject4["Skill_ID"].n == (int)jsonobject3.n && (num - 1) / 3 + 1 == (int)jsonobject4["Skill_Lv"].n)
+				if (jsonobject4["Skill_ID"].I == jsonobject3.I && (num - 1) / 3 + 1 == jsonobject4["Skill_Lv"].I)
 				{
-					num3 = (int)jsonobject4["id"].n;
+					num3 = jsonobject4["id"].I;
 				}
 			}
 			if (!dicSkills2.ContainsKey(num3))
@@ -91,7 +91,7 @@ public class FightPrepare : MonoBehaviour
 		component4.Item = new item();
 	}
 
-	// Token: 0x06001335 RID: 4917 RVA: 0x000B2A50 File Offset: 0x000B0C50
+	// Token: 0x060010CE RID: 4302 RVA: 0x00064008 File Offset: 0x00062208
 	public void initPlayerPlane()
 	{
 		Transform transform = base.transform.Find("PlayerPanel");
@@ -100,14 +100,14 @@ public class FightPrepare : MonoBehaviour
 		component.LoadMapPassKey();
 	}
 
-	// Token: 0x06001336 RID: 4918 RVA: 0x00012087 File Offset: 0x00010287
+	// Token: 0x060010CF RID: 4303 RVA: 0x0006406E File Offset: 0x0006226E
 	public void openMonstarPlane()
 	{
 		this.monstarPlane.transform.localPosition = new Vector3(0f, 0f, 0f);
 		this.monstarPlane.SetActive(true);
 	}
 
-	// Token: 0x06001337 RID: 4919 RVA: 0x000120B9 File Offset: 0x000102B9
+	// Token: 0x060010D0 RID: 4304 RVA: 0x000640A0 File Offset: 0x000622A0
 	public void openPlayerPlane()
 	{
 		this.initPlayerPlane();
@@ -115,7 +115,7 @@ public class FightPrepare : MonoBehaviour
 		this.avatarPlane.SetActive(true);
 	}
 
-	// Token: 0x06001338 RID: 4920 RVA: 0x000120F1 File Offset: 0x000102F1
+	// Token: 0x060010D1 RID: 4305 RVA: 0x000640D8 File Offset: 0x000622D8
 	public void openUseDanyaoPlan()
 	{
 		this.useDanyaoPlane.transform.localPosition = new Vector3(0f, 0f, 0f);
@@ -123,7 +123,7 @@ public class FightPrepare : MonoBehaviour
 		this.initPreperDanYao();
 	}
 
-	// Token: 0x06001339 RID: 4921 RVA: 0x000B2AB8 File Offset: 0x000B0CB8
+	// Token: 0x060010D2 RID: 4306 RVA: 0x00064110 File Offset: 0x00062310
 	public void initPreperDanYao()
 	{
 		Avatar player = Tools.instance.getPlayer();
@@ -151,7 +151,7 @@ public class FightPrepare : MonoBehaviour
 		}
 	}
 
-	// Token: 0x0600133A RID: 4922 RVA: 0x000B2C5C File Offset: 0x000B0E5C
+	// Token: 0x060010D3 RID: 4307 RVA: 0x000642B4 File Offset: 0x000624B4
 	public void resetDanyaoPlan()
 	{
 		this.useDanyaoPlane.transform.Find("Scroll View/UIGrid");
@@ -161,46 +161,46 @@ public class FightPrepare : MonoBehaviour
 		this.inventory.setItemLeiXin5();
 	}
 
-	// Token: 0x0600133B RID: 4923 RVA: 0x00012129 File Offset: 0x00010329
+	// Token: 0x060010D4 RID: 4308 RVA: 0x0006431D File Offset: 0x0006251D
 	public void closeMonstarPlane()
 	{
 		this.monstarPlane.transform.localPosition = new Vector3(0f, 10000f, 0f);
 	}
 
-	// Token: 0x0600133C RID: 4924 RVA: 0x0001214F File Offset: 0x0001034F
+	// Token: 0x060010D5 RID: 4309 RVA: 0x00064343 File Offset: 0x00062543
 	public void closePlayerPlane()
 	{
 		this.avatarPlane.transform.localPosition = new Vector3(0f, 10000f, 0f);
 	}
 
-	// Token: 0x0600133D RID: 4925 RVA: 0x00012175 File Offset: 0x00010375
+	// Token: 0x060010D6 RID: 4310 RVA: 0x00064369 File Offset: 0x00062569
 	public void closeUseDanyaoPlan()
 	{
 		this.useDanyaoPlane.transform.localPosition = new Vector3(0f, 10000f, 0f);
 	}
 
-	// Token: 0x0600133E RID: 4926 RVA: 0x000B2CC8 File Offset: 0x000B0EC8
+	// Token: 0x060010D7 RID: 4311 RVA: 0x00064390 File Offset: 0x00062590
 	public void startFight()
 	{
 		Tools.instance.FinalScene = SceneManager.GetActiveScene().name;
 		Tools.instance.loadOtherScenes("YSFight");
 	}
 
-	// Token: 0x04000EF5 RID: 3829
+	// Token: 0x04000C10 RID: 3088
 	public GameObject monstarPlane;
 
-	// Token: 0x04000EF6 RID: 3830
+	// Token: 0x04000C11 RID: 3089
 	public GameObject avatarPlane;
 
-	// Token: 0x04000EF7 RID: 3831
+	// Token: 0x04000C12 RID: 3090
 	public GameObject useDanyaoPlane;
 
-	// Token: 0x04000EF8 RID: 3832
+	// Token: 0x04000C13 RID: 3091
 	public Inventory2 inventory;
 
-	// Token: 0x04000EF9 RID: 3833
+	// Token: 0x04000C14 RID: 3092
 	private int MonstarID;
 
-	// Token: 0x04000EFA RID: 3834
+	// Token: 0x04000C15 RID: 3093
 	private GameObject slot;
 }

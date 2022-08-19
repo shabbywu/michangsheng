@@ -2,10 +2,10 @@
 using System.Globalization;
 using UnityEngine;
 
-// Token: 0x0200078E RID: 1934
+// Token: 0x020004FD RID: 1277
 public class RacunanjeVremena : MonoBehaviour
 {
-	// Token: 0x0600315A RID: 12634 RVA: 0x0018948C File Offset: 0x0018768C
+	// Token: 0x06002955 RID: 10581 RVA: 0x0013BF50 File Offset: 0x0013A150
 	private void Awake()
 	{
 		this.format = CultureInfo.CurrentCulture.DateTimeFormat;
@@ -58,7 +58,7 @@ public class RacunanjeVremena : MonoBehaviour
 		RacunanjeVremena.UkupnoSekundi = 0;
 	}
 
-	// Token: 0x0600315B RID: 12635 RVA: 0x001896A4 File Offset: 0x001878A4
+	// Token: 0x06002956 RID: 10582 RVA: 0x0013C168 File Offset: 0x0013A368
 	private void OnApplicationPause(bool pauseStatus)
 	{
 		if (pauseStatus)
@@ -125,7 +125,7 @@ public class RacunanjeVremena : MonoBehaviour
 		Debug.Log("Proveri vreme je 0");
 	}
 
-	// Token: 0x0600315C RID: 12636 RVA: 0x00189910 File Offset: 0x00187B10
+	// Token: 0x06002957 RID: 10583 RVA: 0x0013C3D4 File Offset: 0x0013A5D4
 	private void OnApplicationQuit()
 	{
 		this.VremeQuitString = DateTime.Now.ToString(this.format.FullDateTimePattern);
@@ -134,48 +134,48 @@ public class RacunanjeVremena : MonoBehaviour
 		PlayerPrefs.Save();
 	}
 
-	// Token: 0x04002D67 RID: 11623
+	// Token: 0x0400257F RID: 9599
 	private DateTime VremeQuitDateTime;
 
-	// Token: 0x04002D68 RID: 11624
+	// Token: 0x04002580 RID: 9600
 	private DateTime VremeResumeDateTime;
 
-	// Token: 0x04002D69 RID: 11625
+	// Token: 0x04002581 RID: 9601
 	private string VremeQuitString;
 
-	// Token: 0x04002D6A RID: 11626
+	// Token: 0x04002582 RID: 9602
 	private string VremeResumeString;
 
-	// Token: 0x04002D6B RID: 11627
+	// Token: 0x04002583 RID: 9603
 	public static string Vreme;
 
-	// Token: 0x04002D6C RID: 11628
+	// Token: 0x04002584 RID: 9604
 	private int ProveriVreme;
 
-	// Token: 0x04002D6D RID: 11629
+	// Token: 0x04002585 RID: 9605
 	private string sati;
 
-	// Token: 0x04002D6E RID: 11630
+	// Token: 0x04002586 RID: 9606
 	private string minuti;
 
-	// Token: 0x04002D6F RID: 11631
+	// Token: 0x04002587 RID: 9607
 	private string sekunde;
 
-	// Token: 0x04002D70 RID: 11632
+	// Token: 0x04002588 RID: 9608
 	private string UkupnoSek;
 
-	// Token: 0x04002D71 RID: 11633
+	// Token: 0x04002589 RID: 9609
 	private int satiInt;
 
-	// Token: 0x04002D72 RID: 11634
+	// Token: 0x0400258A RID: 9610
 	private int minutiInt;
 
-	// Token: 0x04002D73 RID: 11635
+	// Token: 0x0400258B RID: 9611
 	private int sekundeInt;
 
-	// Token: 0x04002D74 RID: 11636
+	// Token: 0x0400258C RID: 9612
 	public static int UkupnoSekundi;
 
-	// Token: 0x04002D75 RID: 11637
+	// Token: 0x0400258D RID: 9613
 	private DateTimeFormatInfo format;
 }

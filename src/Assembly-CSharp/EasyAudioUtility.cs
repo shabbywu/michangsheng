@@ -2,10 +2,10 @@
 using UnityEngine;
 using UnityEngine.Audio;
 
-// Token: 0x0200016F RID: 367
+// Token: 0x020000F6 RID: 246
 public class EasyAudioUtility : MonoBehaviour
 {
-	// Token: 0x06000C8A RID: 3210 RVA: 0x00098658 File Offset: 0x00096858
+	// Token: 0x06000B95 RID: 2965 RVA: 0x00046C08 File Offset: 0x00044E08
 	private void Awake()
 	{
 		if (EasyAudioUtility.instance != null)
@@ -40,23 +40,23 @@ public class EasyAudioUtility : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000C8B RID: 3211 RVA: 0x0009874C File Offset: 0x0009694C
+	// Token: 0x06000B96 RID: 2966 RVA: 0x00046CFC File Offset: 0x00044EFC
 	public void Play(string sound)
 	{
 	}
 
-	// Token: 0x06000C8C RID: 3212 RVA: 0x00098768 File Offset: 0x00096968
+	// Token: 0x06000B97 RID: 2967 RVA: 0x00046D18 File Offset: 0x00044F18
 	public void Stop(string sound)
 	{
 		Array.Find<EasyAudioUtility_Helper>(this.helper, (EasyAudioUtility_Helper item) => item.name == sound).source.Stop();
 	}
 
-	// Token: 0x040009BA RID: 2490
+	// Token: 0x040007D9 RID: 2009
 	public static EasyAudioUtility instance;
 
-	// Token: 0x040009BB RID: 2491
+	// Token: 0x040007DA RID: 2010
 	public AudioMixerGroup mixerGroup;
 
-	// Token: 0x040009BC RID: 2492
+	// Token: 0x040007DB RID: 2011
 	public EasyAudioUtility_Helper[] helper;
 }

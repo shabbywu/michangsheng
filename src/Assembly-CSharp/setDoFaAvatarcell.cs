@@ -1,15 +1,15 @@
 ﻿using System;
 using UnityEngine;
 
-// Token: 0x020005D7 RID: 1495
+// Token: 0x02000423 RID: 1059
 public class setDoFaAvatarcell : MonoBehaviour
 {
-	// Token: 0x060025A4 RID: 9636 RVA: 0x000042DD File Offset: 0x000024DD
+	// Token: 0x060021EA RID: 8682 RVA: 0x00004095 File Offset: 0x00002295
 	private void Start()
 	{
 	}
 
-	// Token: 0x060025A5 RID: 9637 RVA: 0x0001E28D File Offset: 0x0001C48D
+	// Token: 0x060021EB RID: 8683 RVA: 0x000E9E8E File Offset: 0x000E808E
 	private void Update()
 	{
 		if (PlayerPrefs.GetInt("NowPlayerFileAvatar") >= 100)

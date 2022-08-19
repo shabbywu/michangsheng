@@ -2,10 +2,10 @@
 
 namespace MoonSharp.VsCodeDebugger.SDK
 {
-	// Token: 0x020011CC RID: 4556
+	// Token: 0x02000DA0 RID: 3488
 	public class OutputEvent : Event
 	{
-		// Token: 0x06006F84 RID: 28548 RVA: 0x0004BC8D File Offset: 0x00049E8D
+		// Token: 0x0600633E RID: 25406 RVA: 0x0027A7C7 File Offset: 0x002789C7
 		public OutputEvent(string cat, string outpt) : base("output", new
 		{
 			category = cat,

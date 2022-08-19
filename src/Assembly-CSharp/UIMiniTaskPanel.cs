@@ -1,25 +1,26 @@
 ﻿using System;
+using System.Collections.Generic;
 using Fungus;
 using JSONClass;
 using KBEngine;
 using UnityEngine;
 using UnityEngine.UI;
 
-// Token: 0x02000403 RID: 1027
+// Token: 0x020002C3 RID: 707
 public class UIMiniTaskPanel : MonoBehaviour
 {
-	// Token: 0x06001BC5 RID: 7109 RVA: 0x000174DA File Offset: 0x000156DA
+	// Token: 0x060018CB RID: 6347 RVA: 0x000B1C5C File Offset: 0x000AFE5C
 	private void Awake()
 	{
 		UIMiniTaskPanel.Inst = this;
 	}
 
-	// Token: 0x06001BC6 RID: 7110 RVA: 0x000042DD File Offset: 0x000024DD
+	// Token: 0x060018CC RID: 6348 RVA: 0x00004095 File Offset: 0x00002295
 	private void Start()
 	{
 	}
 
-	// Token: 0x06001BC7 RID: 7111 RVA: 0x000174E2 File Offset: 0x000156E2
+	// Token: 0x060018CD RID: 6349 RVA: 0x000B1C64 File Offset: 0x000AFE64
 	private void Update()
 	{
 		if ((!(PanelMamager.inst != null) || !(PanelMamager.inst.UISceneGameObject != null)) && this.ScaleObj.activeInHierarchy)
@@ -28,9 +29,15 @@ public class UIMiniTaskPanel : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001BC8 RID: 7112 RVA: 0x000F80C0 File Offset: 0x000F62C0
+	// Token: 0x060018CE RID: 6350 RVA: 0x000B1CA0 File Offset: 0x000AFEA0
 	public void RefreshUI()
 	{
+		this.refreshCD -= Time.deltaTime;
+		if (this.refreshCD >= 0f)
+		{
+			return;
+		}
+		this.refreshCD = 1f;
 		Avatar player = Tools.instance.getPlayer();
 		if (player == null)
 		{
@@ -115,88 +122,149 @@ public class UIMiniTaskPanel : MonoBehaviour
 		}
 		this.PlaceText.rectTransform.sizeDelta = new Vector2(this.PlaceText.preferredWidth, this.PlaceText.rectTransform.sizeDelta.y);
 		this.PlaceImage.rectTransform.anchoredPosition = new Vector2(this.PlaceText.rectTransform.anchoredPosition.x - this.PlaceText.rectTransform.sizeDelta.x - 10f, this.PlaceImage.rectTransform.anchoredPosition.y);
+		this.RefreshTaskZhuiZong();
+	}
+
+	// Token: 0x060018CF RID: 6351 RVA: 0x000B1FE4 File Offset: 0x000B01E4
+	private void RefreshTaskZhuiZong()
+	{
+		Avatar player = PlayerEx.Player;
 		if (player.TaskZhuiZhong.HasField("curTask") && player.TaskZhuiZhong["CurTaskID"].I != -1)
 		{
 			if (player.TaskZhuiZhong["curType"].I == 1)
 			{
-				this.curTask = player.TaskZhuiZhong["curTask"];
-				if (TaskUIManager.checkIsGuoShi(this.curTask))
-				{
-					player.TaskZhuiZhong.SetField("CurTaskID", -1);
-					UIPopTip.Inst.Pop("追踪任务已过期", PopTipIconType.任务进度);
-					return;
-				}
-				this.TitleText.text = jsonData.instance.TaskJsonData[this.curTask["id"].n.ToString()]["Name"].Str;
-				this.taskID = (int)this.curTask["id"].n;
-				this.ShengYuTimeText.text = TaskDescManager.getShengYuShiJi(this.curTask);
+				this.RefreshTask();
 			}
 			else if (player.TaskZhuiZhong["curType"].I == 0)
 			{
-				if (player.TaskZhuiZhong["CurisChuanWen"].b)
-				{
-					this.taskID = player.TaskZhuiZhong["CurTaskID"].I;
-					this.curTask = player.TaskZhuiZhong["curTask"];
-					if (!player.nomelTaskMag.HasNTask(this.taskID) || TaskUIManager.CheckWeiTuoIsOut(this.curTask))
-					{
-						player.TaskZhuiZhong.SetField("CurTaskID", -1);
-						UIPopTip.Inst.Pop("追踪传闻已过期", PopTipIconType.任务进度);
-						return;
-					}
-					NTaskXiangXi ntaskXiangXiData = player.nomelTaskMag.GetNTaskXiangXiData(this.taskID);
-					this.TitleText.text = ntaskXiangXiData.name;
-					this.endTime = Tools.GetEndTime(player.NomelTaskJson[this.taskID.ToString()]["StartTime"].str, 0, ntaskXiangXiData.shiXian, 0);
-					try
-					{
-						this.ShengYuTimeText.text = Tools.TimeToShengYuTime(Tools.getShengYuShiJian(player.worldTimeMag.getNowTime(), this.endTime), "").ToCN();
-						goto IL_719;
-					}
-					catch (Exception)
-					{
-						player.TaskZhuiZhong.SetField("CurTaskID", -1);
-						UIPopTip.Inst.Pop("追踪传闻已过期", PopTipIconType.任务进度);
-						return;
-					}
-				}
-				this.curTask = player.TaskZhuiZhong["curTask"];
-				if (TaskUIManager.checkIsGuoShi(this.curTask))
-				{
-					player.TaskZhuiZhong.SetField("CurTaskID", -1);
-					UIPopTip.Inst.Pop("追踪传闻已过期", PopTipIconType.任务进度);
-					return;
-				}
-				this.taskID = this.curTask["id"].I;
-				this.ShengYuTimeText.text = TaskDescManager.getShengYuShiJi(this.curTask);
-				this.TitleText.text = TaskJsonData.DataDict[this.curTask["id"].I].Name;
+				this.RefreshChuanWen();
 			}
 			else
 			{
-				this.taskID = player.TaskZhuiZhong["CurTaskID"].I;
-				this.curTask = player.TaskZhuiZhong["curTask"];
-				if (!player.nomelTaskMag.HasNTask(this.taskID) || TaskUIManager.CheckWeiTuoIsOut(this.curTask))
-				{
-					player.TaskZhuiZhong.SetField("CurTaskID", -1);
-					UIPopTip.Inst.Pop("追踪委托已过期", PopTipIconType.任务进度);
-					return;
-				}
-				NTaskXiangXi ntaskXiangXiData2 = player.nomelTaskMag.GetNTaskXiangXiData(this.taskID);
-				this.endTime = Tools.GetEndTime(player.NomelTaskJson[this.taskID.ToString()]["StartTime"].str, 0, ntaskXiangXiData2.shiXian, 0);
-				this.ShengYuTimeText.text = Tools.TimeToShengYuTime(Tools.getShengYuShiJian(player.worldTimeMag.getNowTime(), this.endTime), "").ToCN();
-				this.TitleText.text = ntaskXiangXiData2.name;
+				this.RefreshWeiTuo();
 			}
-			IL_719:
 			if (!this.ZhuiZongObj.activeSelf)
 			{
 				this.ZhuiZongObj.SetActive(true);
-				return;
 			}
+			this.TaskTextBG.anchoredPosition = new Vector2(this.TaskTextBG.anchoredPosition.x, -this.TaskText.preferredHeight - 49f);
+			return;
 		}
-		else if (this.ZhuiZongObj.activeSelf)
+		if (this.ZhuiZongObj.activeSelf)
 		{
 			this.ZhuiZongObj.SetActive(false);
 		}
 	}
 
-	// Token: 0x06001BC9 RID: 7113 RVA: 0x0001751C File Offset: 0x0001571C
+	// Token: 0x060018D0 RID: 6352 RVA: 0x000B20D4 File Offset: 0x000B02D4
+	private void RefreshTask()
+	{
+		Avatar player = PlayerEx.Player;
+		this.curTask = player.TaskZhuiZhong["curTask"];
+		if (TaskUIManager.checkIsGuoShi(this.curTask))
+		{
+			player.TaskZhuiZhong.SetField("CurTaskID", -1);
+			UIPopTip.Inst.Pop("追踪任务已过期", PopTipIconType.任务进度);
+			return;
+		}
+		this.taskID = this.curTask["id"].I;
+		JSONObject jsonobject = jsonData.instance.TaskJsonData[this.taskID.ToString()];
+		this.TitleText.text = jsonobject["Name"].Str;
+		JSONObject jsonobject2 = player.taskMag._TaskData["Task"].list.Find((JSONObject j) => j["id"].I == this.taskID);
+		int nowZiXiangIndex = jsonobject2["NowIndex"].I;
+		JSONObject jsonobject3 = jsonData.instance.TaskInfoJsonData.list.Find((JSONObject j) => j["TaskID"].I == this.taskID && j["TaskIndex"].I == nowZiXiangIndex);
+		this.TaskText.text = jsonobject3["Desc"].Str.STVarReplace();
+		this.TaskIcon.sprite = this.TaskIconSprites[1];
+	}
+
+	// Token: 0x060018D1 RID: 6353 RVA: 0x000B2228 File Offset: 0x000B0428
+	private void RefreshChuanWen()
+	{
+		Avatar player = PlayerEx.Player;
+		if (player.TaskZhuiZhong["CurisChuanWen"].b)
+		{
+			this.taskID = player.TaskZhuiZhong["CurTaskID"].I;
+			this.curTask = player.TaskZhuiZhong["curTask"];
+			if (!player.nomelTaskMag.HasNTask(this.taskID) || TaskUIManager.CheckWeiTuoIsOut(this.curTask))
+			{
+				player.TaskZhuiZhong.SetField("CurTaskID", -1);
+				UIPopTip.Inst.Pop("追踪传闻已过期", PopTipIconType.任务进度);
+				return;
+			}
+			NTaskXiangXi ntaskXiangXiData = player.nomelTaskMag.GetNTaskXiangXiData(this.taskID);
+			this.TitleText.text = ntaskXiangXiData.name;
+			this.endTime = Tools.GetEndTime(player.NomelTaskJson[this.taskID.ToString()]["StartTime"].str, 0, ntaskXiangXiData.shiXian, 0);
+			try
+			{
+				this.TaskText.text = Tools.TimeToShengYuTime(Tools.getShengYuShiJian(player.worldTimeMag.getNowTime(), this.endTime), "剩余时间：").ToCN();
+				goto IL_225;
+			}
+			catch (Exception)
+			{
+				player.TaskZhuiZhong.SetField("CurTaskID", -1);
+				UIPopTip.Inst.Pop("追踪传闻已过期", PopTipIconType.任务进度);
+				return;
+			}
+		}
+		this.curTask = player.TaskZhuiZhong["curTask"];
+		if (TaskUIManager.checkIsGuoShi(this.curTask))
+		{
+			player.TaskZhuiZhong.SetField("CurTaskID", -1);
+			UIPopTip.Inst.Pop("追踪传闻已过期", PopTipIconType.任务进度);
+			return;
+		}
+		this.taskID = this.curTask["id"].I;
+		string shengYuShiJi = TaskDescManager.getShengYuShiJi(this.curTask);
+		if (shengYuShiJi.Contains("年"))
+		{
+			this.TaskText.text = "剩余时间：" + shengYuShiJi;
+		}
+		else
+		{
+			this.TaskText.text = shengYuShiJi.Replace(" ", "");
+		}
+		this.TitleText.text = TaskJsonData.DataDict[this.curTask["id"].I].Name;
+		IL_225:
+		this.TaskIcon.sprite = this.TaskIconSprites[0];
+	}
+
+	// Token: 0x060018D2 RID: 6354 RVA: 0x000B2484 File Offset: 0x000B0684
+	private void RefreshWeiTuo()
+	{
+		Avatar player = PlayerEx.Player;
+		this.taskID = player.TaskZhuiZhong["CurTaskID"].I;
+		this.curTask = player.TaskZhuiZhong["curTask"];
+		if (!player.nomelTaskMag.HasNTask(this.taskID) || TaskUIManager.CheckWeiTuoIsOut(this.curTask))
+		{
+			player.TaskZhuiZhong.SetField("CurTaskID", -1);
+			UIPopTip.Inst.Pop("追踪委托已过期", PopTipIconType.任务进度);
+			return;
+		}
+		NTaskXiangXi ntaskXiangXiData = player.nomelTaskMag.GetNTaskXiangXiData(this.taskID);
+		this.TitleText.text = ntaskXiangXiData.name;
+		this.TaskIcon.sprite = this.TaskIconSprites[2];
+		int num = 0;
+		foreach (JSONObject jsonobject in player.nomelTaskMag.GetNTaskXiangXiList(this.taskID))
+		{
+			if (!player.nomelTaskMag.XiangXiTaskIsEnd(jsonobject, this.taskID, num))
+			{
+				int i = player.NomelTaskJson[this.taskID.ToString()]["TaskChild"][num].I;
+				NTaskSuiJI ntaskSuiJI = NTaskSuiJI.DataDict[i];
+				string text = jsonobject["desc"].str.Replace(jsonobject["TaskID"].str, ntaskSuiJI.name);
+				if (jsonobject["Place"].str != "0" && text.Contains(jsonobject["Place"].str))
+				{
+					int whereChilidID = player.nomelTaskMag.getWhereChilidID(this.taskID, num);
+					text = text.Replace(jsonobject["Place"].str, NTaskSuiJI.DataDict[whereChilidID].name);
+				}
+				string text2 = text.STVarReplace().ToCN();
+				this.TaskText.text = text2;
+				break;
+			}
+			num++;
+		}
+	}
+
+	// Token: 0x060018D3 RID: 6355 RVA: 0x000B26C0 File Offset: 0x000B08C0
 	public void OnTaskBtnClick()
 	{
 		if (Tools.instance.canClick(false, true))
@@ -205,40 +273,52 @@ public class UIMiniTaskPanel : MonoBehaviour
 		}
 	}
 
-	// Token: 0x04001791 RID: 6033
+	// Token: 0x040013E1 RID: 5089
 	public static UIMiniTaskPanel Inst;
 
-	// Token: 0x04001792 RID: 6034
+	// Token: 0x040013E2 RID: 5090
 	public GameObject ScaleObj;
 
-	// Token: 0x04001793 RID: 6035
+	// Token: 0x040013E3 RID: 5091
 	public GameObject ZhuiZongObj;
 
-	// Token: 0x04001794 RID: 6036
+	// Token: 0x040013E4 RID: 5092
 	public Text WorldTimeText;
 
-	// Token: 0x04001795 RID: 6037
-	public Text ShengYuTimeText;
+	// Token: 0x040013E5 RID: 5093
+	public Text TaskText;
 
-	// Token: 0x04001796 RID: 6038
+	// Token: 0x040013E6 RID: 5094
 	public Text PlaceText;
 
-	// Token: 0x04001797 RID: 6039
+	// Token: 0x040013E7 RID: 5095
 	public Text TitleText;
 
-	// Token: 0x04001798 RID: 6040
+	// Token: 0x040013E8 RID: 5096
 	public Image PlaceImage;
 
-	// Token: 0x04001799 RID: 6041
+	// Token: 0x040013E9 RID: 5097
+	public Image TaskIcon;
+
+	// Token: 0x040013EA RID: 5098
+	public RectTransform TaskTextBG;
+
+	// Token: 0x040013EB RID: 5099
+	public List<Sprite> TaskIconSprites;
+
+	// Token: 0x040013EC RID: 5100
 	private JSONObject curTask;
 
-	// Token: 0x0400179A RID: 6042
+	// Token: 0x040013ED RID: 5101
 	private int taskID;
 
-	// Token: 0x0400179B RID: 6043
+	// Token: 0x040013EE RID: 5102
 	private DateTime endTime;
 
-	// Token: 0x0400179C RID: 6044
+	// Token: 0x040013EF RID: 5103
 	[HideInInspector]
 	public headMag oldHead;
+
+	// Token: 0x040013F0 RID: 5104
+	private float refreshCD;
 }

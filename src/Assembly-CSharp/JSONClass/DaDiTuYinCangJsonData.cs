@@ -3,10 +3,10 @@ using System.Collections.Generic;
 
 namespace JSONClass
 {
-	// Token: 0x02000BBF RID: 3007
+	// Token: 0x02000829 RID: 2089
 	public class DaDiTuYinCangJsonData : IJSONClass
 	{
-		// Token: 0x06004A64 RID: 19044 RVA: 0x001F7E28 File Offset: 0x001F6028
+		// Token: 0x06003EB6 RID: 16054 RVA: 0x001ACC0C File Offset: 0x001AAE0C
 		public static void InitDataDict()
 		{
 			foreach (JSONObject jsonobject in jsonData.instance.DaDiTuYinCangJsonData.list)
@@ -43,36 +43,36 @@ namespace JSONClass
 			}
 		}
 
-		// Token: 0x06004A65 RID: 19045 RVA: 0x000042DD File Offset: 0x000024DD
+		// Token: 0x06003EB7 RID: 16055 RVA: 0x00004095 File Offset: 0x00002295
 		private static void OnInitFinish()
 		{
 		}
 
-		// Token: 0x040045E3 RID: 17891
+		// Token: 0x04003A5B RID: 14939
 		public static Dictionary<int, DaDiTuYinCangJsonData> DataDict = new Dictionary<int, DaDiTuYinCangJsonData>();
 
-		// Token: 0x040045E4 RID: 17892
+		// Token: 0x04003A5C RID: 14940
 		public static List<DaDiTuYinCangJsonData> DataList = new List<DaDiTuYinCangJsonData>();
 
-		// Token: 0x040045E5 RID: 17893
+		// Token: 0x04003A5D RID: 14941
 		public static Action OnInitFinishAction = new Action(DaDiTuYinCangJsonData.OnInitFinish);
 
-		// Token: 0x040045E6 RID: 17894
+		// Token: 0x04003A5E RID: 14942
 		public int id;
 
-		// Token: 0x040045E7 RID: 17895
+		// Token: 0x04003A5F RID: 14943
 		public int Type;
 
-		// Token: 0x040045E8 RID: 17896
+		// Token: 0x04003A60 RID: 14944
 		public string fuhao;
 
-		// Token: 0x040045E9 RID: 17897
+		// Token: 0x04003A61 RID: 14945
 		public string StartTime;
 
-		// Token: 0x040045EA RID: 17898
+		// Token: 0x04003A62 RID: 14946
 		public string EndTime;
 
-		// Token: 0x040045EB RID: 17899
+		// Token: 0x04003A63 RID: 14947
 		public List<int> EventValue = new List<int>();
 	}
 }

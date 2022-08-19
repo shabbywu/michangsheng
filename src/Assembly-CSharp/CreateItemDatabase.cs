@@ -1,8 +1,8 @@
 ﻿using System;
 
-// Token: 0x02000212 RID: 530
+// Token: 0x0200013E RID: 318
 public class CreateItemDatabase
 {
-	// Token: 0x04000D3F RID: 3391
+	// Token: 0x04000AA4 RID: 2724
 	public static ItemDataBaseList asset;
 }

@@ -1,19 +1,19 @@
 ﻿using System;
 using UnityEngine;
 
-// Token: 0x02000069 RID: 105
+// Token: 0x02000050 RID: 80
 [RequireComponent(typeof(UIProgressBar))]
 [AddComponentMenu("NGUI/Examples/Slider Colors")]
 public class UISliderColors : MonoBehaviour
 {
-	// Token: 0x060004C6 RID: 1222 RVA: 0x000082D4 File Offset: 0x000064D4
+	// Token: 0x06000478 RID: 1144 RVA: 0x00018C9F File Offset: 0x00016E9F
 	private void Start()
 	{
 		this.mBar = base.GetComponent<UIProgressBar>();
 		this.Update();
 	}
 
-	// Token: 0x060004C7 RID: 1223 RVA: 0x0006FF40 File Offset: 0x0006E140
+	// Token: 0x06000479 RID: 1145 RVA: 0x00018CB4 File Offset: 0x00016EB4
 	private void Update()
 	{
 		if (this.sprite == null || this.colors.Length == 0)
@@ -44,10 +44,10 @@ public class UISliderColors : MonoBehaviour
 		this.sprite.color = color;
 	}
 
-	// Token: 0x0400031C RID: 796
+	// Token: 0x040002A9 RID: 681
 	public UISprite sprite;
 
-	// Token: 0x0400031D RID: 797
+	// Token: 0x040002AA RID: 682
 	public Color[] colors = new Color[]
 	{
 		Color.red,
@@ -55,6 +55,6 @@ public class UISliderColors : MonoBehaviour
 		Color.green
 	};
 
-	// Token: 0x0400031E RID: 798
+	// Token: 0x040002AB RID: 683
 	private UIProgressBar mBar;
 }

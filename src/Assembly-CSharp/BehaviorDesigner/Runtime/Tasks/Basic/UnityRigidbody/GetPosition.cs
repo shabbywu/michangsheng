@@ -3,12 +3,12 @@ using UnityEngine;
 
 namespace BehaviorDesigner.Runtime.Tasks.Basic.UnityRigidbody
 {
-	// Token: 0x02001553 RID: 5459
+	// Token: 0x02001099 RID: 4249
 	[TaskCategory("Basic/Rigidbody")]
 	[TaskDescription("Stores the position of the Rigidbody. Returns Success.")]
 	public class GetPosition : Action
 	{
-		// Token: 0x0600814A RID: 33098 RVA: 0x002CC0AC File Offset: 0x002CA2AC
+		// Token: 0x06007350 RID: 29520 RVA: 0x002AFBB4 File Offset: 0x002ADDB4
 		public override void OnStart()
 		{
 			GameObject defaultGameObject = base.GetDefaultGameObject(this.targetGameObject.Value);
@@ -19,7 +19,7 @@ namespace BehaviorDesigner.Runtime.Tasks.Basic.UnityRigidbody
 			}
 		}
 
-		// Token: 0x0600814B RID: 33099 RVA: 0x00058478 File Offset: 0x00056678
+		// Token: 0x06007351 RID: 29521 RVA: 0x002AFBF4 File Offset: 0x002ADDF4
 		public override TaskStatus OnUpdate()
 		{
 			if (this.rigidbody == null)
@@ -31,26 +31,26 @@ namespace BehaviorDesigner.Runtime.Tasks.Basic.UnityRigidbody
 			return 2;
 		}
 
-		// Token: 0x0600814C RID: 33100 RVA: 0x000584AB File Offset: 0x000566AB
+		// Token: 0x06007352 RID: 29522 RVA: 0x002AFC27 File Offset: 0x002ADE27
 		public override void OnReset()
 		{
 			this.targetGameObject = null;
 			this.storeValue = Vector3.zero;
 		}
 
-		// Token: 0x04006E06 RID: 28166
+		// Token: 0x04005F06 RID: 24326
 		[Tooltip("The GameObject that the task operates on. If null the task GameObject is used.")]
 		public SharedGameObject targetGameObject;
 
-		// Token: 0x04006E07 RID: 28167
+		// Token: 0x04005F07 RID: 24327
 		[Tooltip("The position of the Rigidbody")]
 		[RequiredField]
 		public SharedVector3 storeValue;
 
-		// Token: 0x04006E08 RID: 28168
+		// Token: 0x04005F08 RID: 24328
 		private Rigidbody rigidbody;
 
-		// Token: 0x04006E09 RID: 28169
+		// Token: 0x04005F09 RID: 24329
 		private GameObject prevGameObject;
 	}
 }

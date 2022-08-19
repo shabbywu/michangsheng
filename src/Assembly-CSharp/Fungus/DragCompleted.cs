@@ -3,12 +3,12 @@ using UnityEngine;
 
 namespace Fungus
 {
-	// Token: 0x02001311 RID: 4881
+	// Token: 0x02000E97 RID: 3735
 	[EventHandlerInfo("Sprite", "Drag Completed", "The block will execute when the player drags an object and successfully drops it on a target object.")]
 	[AddComponentMenu("")]
 	public class DragCompleted : EventHandler
 	{
-		// Token: 0x0600770D RID: 30477 RVA: 0x002B4D6C File Offset: 0x002B2F6C
+		// Token: 0x060069E1 RID: 27105 RVA: 0x00292288 File Offset: 0x00290488
 		protected virtual void OnEnable()
 		{
 			this.eventDispatcher = FungusManager.Instance.EventDispatcher;
@@ -21,7 +21,7 @@ namespace Fungus
 			}
 		}
 
-		// Token: 0x0600770E RID: 30478 RVA: 0x002B4DE8 File Offset: 0x002B2FE8
+		// Token: 0x060069E2 RID: 27106 RVA: 0x00292304 File Offset: 0x00290504
 		protected virtual void OnDisable()
 		{
 			this.eventDispatcher.RemoveListener<DragCompleted.DragCompletedEvent>(new EventDispatcher.TypedDelegate<DragCompleted.DragCompletedEvent>(this.OnDragCompletedEvent));
@@ -34,26 +34,26 @@ namespace Fungus
 			this.eventDispatcher = null;
 		}
 
-		// Token: 0x0600770F RID: 30479 RVA: 0x000510B7 File Offset: 0x0004F2B7
+		// Token: 0x060069E3 RID: 27107 RVA: 0x00292377 File Offset: 0x00290577
 		private void OnDragCompletedEvent(DragCompleted.DragCompletedEvent evt)
 		{
 			this.OnDragCompleted(evt.DraggableObject);
 		}
 
-		// Token: 0x06007710 RID: 30480 RVA: 0x000510C5 File Offset: 0x0004F2C5
+		// Token: 0x060069E4 RID: 27108 RVA: 0x00292385 File Offset: 0x00290585
 		private void OnDragEnteredEvent(DragEntered.DragEnteredEvent evt)
 		{
 			this.OnDragEntered(evt.DraggableObject, evt.TargetCollider);
 		}
 
-		// Token: 0x06007711 RID: 30481 RVA: 0x000510D9 File Offset: 0x0004F2D9
+		// Token: 0x060069E5 RID: 27109 RVA: 0x00292399 File Offset: 0x00290599
 		private void OnDragExitedEvent(DragExited.DragExitedEvent evt)
 		{
 			this.OnDragExited(evt.DraggableObject, evt.TargetCollider);
 		}
 
-		// Token: 0x17000B28 RID: 2856
-		// (get) Token: 0x06007712 RID: 30482 RVA: 0x000510ED File Offset: 0x0004F2ED
+		// Token: 0x1700089B RID: 2203
+		// (get) Token: 0x060069E6 RID: 27110 RVA: 0x002923AD File Offset: 0x002905AD
 		public virtual Draggable2D DraggableObject
 		{
 			get
@@ -62,13 +62,13 @@ namespace Fungus
 			}
 		}
 
-		// Token: 0x06007713 RID: 30483 RVA: 0x000510F5 File Offset: 0x0004F2F5
+		// Token: 0x060069E7 RID: 27111 RVA: 0x002923B5 File Offset: 0x002905B5
 		public virtual bool IsOverTarget()
 		{
 			return this.overTarget;
 		}
 
-		// Token: 0x06007714 RID: 30484 RVA: 0x000510FD File Offset: 0x0004F2FD
+		// Token: 0x060069E8 RID: 27112 RVA: 0x002923BD File Offset: 0x002905BD
 		public virtual void OnDragEntered(Draggable2D draggableObject, Collider2D targetObject)
 		{
 			if (this.targetObject != null && draggableObject == this.draggableObject && targetObject == this.targetObject)
@@ -77,7 +77,7 @@ namespace Fungus
 			}
 		}
 
-		// Token: 0x06007715 RID: 30485 RVA: 0x00051130 File Offset: 0x0004F330
+		// Token: 0x060069E9 RID: 27113 RVA: 0x002923F0 File Offset: 0x002905F0
 		public virtual void OnDragExited(Draggable2D draggableObject, Collider2D targetObject)
 		{
 			if (this.targetObject != null && draggableObject == this.draggableObject && targetObject == this.targetObject)
@@ -86,7 +86,7 @@ namespace Fungus
 			}
 		}
 
-		// Token: 0x06007716 RID: 30486 RVA: 0x00051163 File Offset: 0x0004F363
+		// Token: 0x060069EA RID: 27114 RVA: 0x00292423 File Offset: 0x00290623
 		public virtual void OnDragCompleted(Draggable2D draggableObject)
 		{
 			if (draggableObject == this.draggableObject && this.overTarget)
@@ -96,7 +96,7 @@ namespace Fungus
 			}
 		}
 
-		// Token: 0x06007717 RID: 30487 RVA: 0x002B4E5C File Offset: 0x002B305C
+		// Token: 0x060069EB RID: 27115 RVA: 0x0029244C File Offset: 0x0029064C
 		public override string GetSummary()
 		{
 			string text = "";
@@ -115,32 +115,32 @@ namespace Fungus
 			return text;
 		}
 
-		// Token: 0x040067D4 RID: 26580
+		// Token: 0x040059C4 RID: 22980
 		[Tooltip("Draggable object to listen for drag events on")]
 		[SerializeField]
 		protected Draggable2D draggableObject;
 
-		// Token: 0x040067D5 RID: 26581
+		// Token: 0x040059C5 RID: 22981
 		[Tooltip("Drag target object to listen for drag events on")]
 		[SerializeField]
 		protected Collider2D targetObject;
 
-		// Token: 0x040067D6 RID: 26582
+		// Token: 0x040059C6 RID: 22982
 		protected bool overTarget;
 
-		// Token: 0x040067D7 RID: 26583
+		// Token: 0x040059C7 RID: 22983
 		protected EventDispatcher eventDispatcher;
 
-		// Token: 0x02001312 RID: 4882
+		// Token: 0x020016EE RID: 5870
 		public class DragCompletedEvent
 		{
-			// Token: 0x06007719 RID: 30489 RVA: 0x00051189 File Offset: 0x0004F389
+			// Token: 0x06008896 RID: 34966 RVA: 0x002E9943 File Offset: 0x002E7B43
 			public DragCompletedEvent(Draggable2D draggableObject)
 			{
 				this.DraggableObject = draggableObject;
 			}
 
-			// Token: 0x040067D8 RID: 26584
+			// Token: 0x0400746B RID: 29803
 			public Draggable2D DraggableObject;
 		}
 	}

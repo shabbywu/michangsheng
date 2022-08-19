@@ -4,12 +4,12 @@ using Fungus;
 using KBEngine;
 using UnityEngine;
 
-// Token: 0x02000357 RID: 855
+// Token: 0x0200023B RID: 571
 [CommandInfo("YSNPCJiaoHu", "获取其他交互文本", "获取当前NPC的其他交互文本，赋值到TmpTalkString", 0)]
 [AddComponentMenu("")]
 public class CmdGetOtherJiaoHu : Command
 {
-	// Token: 0x060018D4 RID: 6356 RVA: 0x000DE1B0 File Offset: 0x000DC3B0
+	// Token: 0x0600161C RID: 5660 RVA: 0x00095B98 File Offset: 0x00093D98
 	private static void Init()
 	{
 		if (!CmdGetOtherJiaoHu.isInited)
@@ -32,7 +32,7 @@ public class CmdGetOtherJiaoHu : Command
 		}
 	}
 
-	// Token: 0x060018D5 RID: 6357 RVA: 0x000DE2DC File Offset: 0x000DC4DC
+	// Token: 0x0600161D RID: 5661 RVA: 0x00095CC4 File Offset: 0x00093EC4
 	public override void OnEnter()
 	{
 		CmdGetOtherJiaoHu.Init();
@@ -82,19 +82,19 @@ public class CmdGetOtherJiaoHu : Command
 		this.Continue();
 	}
 
-	// Token: 0x040013C8 RID: 5064
+	// Token: 0x04001070 RID: 4208
 	private static bool isInited;
 
-	// Token: 0x040013C9 RID: 5065
+	// Token: 0x04001071 RID: 4209
 	private static Dictionary<int, int> _JingJieDict = new Dictionary<int, int>();
 
-	// Token: 0x040013CA RID: 5066
+	// Token: 0x04001072 RID: 4210
 	private static Dictionary<int, int> _XingGeDict = new Dictionary<int, int>();
 
-	// Token: 0x040013CB RID: 5067
+	// Token: 0x04001073 RID: 4211
 	private static Dictionary<int, Dictionary<string, string>> _TalkDict = new Dictionary<int, Dictionary<string, string>>();
 
-	// Token: 0x040013CC RID: 5068
+	// Token: 0x04001074 RID: 4212
 	[Tooltip("以Talk开头的key，获取对应的文本")]
 	[SerializeField]
 	protected string textKey;

@@ -2,12 +2,12 @@
 using Fungus;
 using UnityEngine;
 
-// Token: 0x0200037E RID: 894
+// Token: 0x02000265 RID: 613
 [EventHandlerInfo("NPCJiaoHu", "当完成一次索取", "索取结果TmpValue\n0索取成功(正常)\n1索取成功(垃圾)(SuoQuLaJi)\n2索取失败(失败1)(SuoQuShiBai1)\n3索取失败(失败2)(SuoQuShiBai2)\n好友1ID TmpStr1\n好友2ID TmpStr2\n好友3ID TmpStr3\n好友数量 FriendCount")]
 [AddComponentMenu("")]
 public class OnSuoQuFinished : Fungus.EventHandler
 {
-	// Token: 0x0600192A RID: 6442 RVA: 0x000DF6E4 File Offset: 0x000DD8E4
+	// Token: 0x06001676 RID: 5750 RVA: 0x00097578 File Offset: 0x00095778
 	public virtual void Update()
 	{
 		if (UINPCJiaoHu.Inst != null && UINPCJiaoHu.Inst.IsSuoQuFinished)

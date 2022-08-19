@@ -3,10 +3,10 @@ using System.Collections.Generic;
 
 namespace JSONClass
 {
-	// Token: 0x02000AE9 RID: 2793
+	// Token: 0x02000751 RID: 1873
 	public class AvatarMoneyJsonData : IJSONClass
 	{
-		// Token: 0x0600470E RID: 18190 RVA: 0x001E69F0 File Offset: 0x001E4BF0
+		// Token: 0x06003B58 RID: 15192 RVA: 0x0019892C File Offset: 0x00196B2C
 		public static void InitDataDict()
 		{
 			foreach (JSONObject jsonobject in jsonData.instance.AvatarMoneyJsonData.list)
@@ -41,30 +41,30 @@ namespace JSONClass
 			}
 		}
 
-		// Token: 0x0600470F RID: 18191 RVA: 0x000042DD File Offset: 0x000024DD
+		// Token: 0x06003B59 RID: 15193 RVA: 0x00004095 File Offset: 0x00002295
 		private static void OnInitFinish()
 		{
 		}
 
-		// Token: 0x04003FCA RID: 16330
+		// Token: 0x04003431 RID: 13361
 		public static Dictionary<int, AvatarMoneyJsonData> DataDict = new Dictionary<int, AvatarMoneyJsonData>();
 
-		// Token: 0x04003FCB RID: 16331
+		// Token: 0x04003432 RID: 13362
 		public static List<AvatarMoneyJsonData> DataList = new List<AvatarMoneyJsonData>();
 
-		// Token: 0x04003FCC RID: 16332
+		// Token: 0x04003433 RID: 13363
 		public static Action OnInitFinishAction = new Action(AvatarMoneyJsonData.OnInitFinish);
 
-		// Token: 0x04003FCD RID: 16333
+		// Token: 0x04003434 RID: 13364
 		public int id;
 
-		// Token: 0x04003FCE RID: 16334
+		// Token: 0x04003435 RID: 13365
 		public int level;
 
-		// Token: 0x04003FCF RID: 16335
+		// Token: 0x04003436 RID: 13366
 		public int Min;
 
-		// Token: 0x04003FD0 RID: 16336
+		// Token: 0x04003437 RID: 13367
 		public int Max;
 	}
 }

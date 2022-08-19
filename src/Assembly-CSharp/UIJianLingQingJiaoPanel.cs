@@ -8,10 +8,10 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
 
-// Token: 0x02000423 RID: 1059
+// Token: 0x020002D7 RID: 727
 public class UIJianLingQingJiaoPanel : MonoBehaviour, IESCClose
 {
-	// Token: 0x06001C55 RID: 7253 RVA: 0x00017B12 File Offset: 0x00015D12
+	// Token: 0x0600194E RID: 6478 RVA: 0x000B53E7 File Offset: 0x000B35E7
 	private void Start()
 	{
 		UIJianLingQingJiaoPanel.Inst = this;
@@ -20,7 +20,7 @@ public class UIJianLingQingJiaoPanel : MonoBehaviour, IESCClose
 		this.Refresh();
 	}
 
-	// Token: 0x06001C56 RID: 7254 RVA: 0x000FB1C4 File Offset: 0x000F93C4
+	// Token: 0x0600194F RID: 6479 RVA: 0x000B541C File Offset: 0x000B361C
 	public void Refresh()
 	{
 		this.LaoYeYeTalkObj.SetActive(false);
@@ -126,7 +126,7 @@ public class UIJianLingQingJiaoPanel : MonoBehaviour, IESCClose
 			{
 				this.QingJiaoSkills[i].SetGrey(true);
 				this.QingJiaoSkills[i].HideTooltip = true;
-				this.QingJiaoSkills[i].SetName("？？？", Color.gray);
+				this.QingJiaoSkills[i].SetName(" ？？？", Color.white);
 			}
 			if (yiLingWu)
 			{
@@ -135,7 +135,7 @@ public class UIJianLingQingJiaoPanel : MonoBehaviour, IESCClose
 		}
 	}
 
-	// Token: 0x06001C57 RID: 7255 RVA: 0x000FB480 File Offset: 0x000F9680
+	// Token: 0x06001950 RID: 6480 RVA: 0x000B56D8 File Offset: 0x000B38D8
 	public void LaoYeYeSay(string msg)
 	{
 		string text = msg.ReplaceTalkWord();
@@ -143,7 +143,7 @@ public class UIJianLingQingJiaoPanel : MonoBehaviour, IESCClose
 		this.LaoYeYeTalkObj.SetActive(true);
 	}
 
-	// Token: 0x06001C58 RID: 7256 RVA: 0x000FB4AC File Offset: 0x000F96AC
+	// Token: 0x06001951 RID: 6481 RVA: 0x000B5704 File Offset: 0x000B3904
 	public void SetHuiFuDuSlider(int huiFuDu)
 	{
 		int num = 0;
@@ -178,14 +178,14 @@ public class UIJianLingQingJiaoPanel : MonoBehaviour, IESCClose
 		}
 	}
 
-	// Token: 0x06001C59 RID: 7257 RVA: 0x00017B47 File Offset: 0x00015D47
+	// Token: 0x06001952 RID: 6482 RVA: 0x000B57E4 File Offset: 0x000B39E4
 	bool IESCClose.TryEscClose()
 	{
 		this.Close();
 		return true;
 	}
 
-	// Token: 0x06001C5A RID: 7258 RVA: 0x00017B50 File Offset: 0x00015D50
+	// Token: 0x06001953 RID: 6483 RVA: 0x000B57ED File Offset: 0x000B39ED
 	public void Close()
 	{
 		ESCCloseManager.Inst.UnRegisterClose(this);
@@ -193,24 +193,24 @@ public class UIJianLingQingJiaoPanel : MonoBehaviour, IESCClose
 		UIJianLingPanel.OpenPanel();
 	}
 
-	// Token: 0x04001849 RID: 6217
+	// Token: 0x0400147C RID: 5244
 	public static UIJianLingQingJiaoPanel Inst;
 
-	// Token: 0x0400184A RID: 6218
+	// Token: 0x0400147D RID: 5245
 	public Text HuiFuDuText;
 
-	// Token: 0x0400184B RID: 6219
+	// Token: 0x0400147E RID: 5246
 	public List<Image> HuiFuDuSliders;
 
-	// Token: 0x0400184C RID: 6220
+	// Token: 0x0400147F RID: 5247
 	public List<SlotBase> QingJiaoSkills;
 
-	// Token: 0x0400184D RID: 6221
+	// Token: 0x04001480 RID: 5248
 	public FpBtn BackBtn;
 
-	// Token: 0x0400184E RID: 6222
+	// Token: 0x04001481 RID: 5249
 	public GameObject LaoYeYeTalkObj;
 
-	// Token: 0x0400184F RID: 6223
+	// Token: 0x04001482 RID: 5250
 	public Text LaoYeYeTalkText;
 }

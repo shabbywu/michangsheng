@@ -2,10 +2,10 @@
 using System.Collections;
 using UnityEngine;
 
-// Token: 0x02000661 RID: 1633
+// Token: 0x0200048F RID: 1167
 internal static class AnimationExtensions
 {
-	// Token: 0x060028C6 RID: 10438 RVA: 0x0001FCB5 File Offset: 0x0001DEB5
+	// Token: 0x060024DA RID: 9434 RVA: 0x000FFBA2 File Offset: 0x000FDDA2
 	public static IEnumerator Play(this Animation animation, string clipName, bool useTimeScale, Action<bool> onComplete)
 	{
 		if (!useTimeScale)
@@ -51,7 +51,7 @@ internal static class AnimationExtensions
 		yield break;
 	}
 
-	// Token: 0x060028C7 RID: 10439 RVA: 0x0001FCD9 File Offset: 0x0001DED9
+	// Token: 0x060024DB RID: 9435 RVA: 0x000FFBC6 File Offset: 0x000FDDC6
 	public static IEnumerator Reverse(this Animation animation, string clipName, bool useTimeScale, Action<bool> onComplete)
 	{
 		if (!useTimeScale)

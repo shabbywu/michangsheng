@@ -2,15 +2,15 @@
 using KBEngine;
 using UnityEngine;
 
-// Token: 0x020005EC RID: 1516
+// Token: 0x02000435 RID: 1077
 public class BiGuanXiuLian : MonoBehaviour
 {
-	// Token: 0x0600260F RID: 9743 RVA: 0x000042DD File Offset: 0x000024DD
+	// Token: 0x06002250 RID: 8784 RVA: 0x00004095 File Offset: 0x00002295
 	private void Start()
 	{
 	}
 
-	// Token: 0x06002610 RID: 9744 RVA: 0x0012D37C File Offset: 0x0012B57C
+	// Token: 0x06002251 RID: 8785 RVA: 0x000EC304 File Offset: 0x000EA504
 	private void Update()
 	{
 		Avatar player = Tools.instance.getPlayer();
@@ -23,6 +23,6 @@ public class BiGuanXiuLian : MonoBehaviour
 		this.uibiguan.InputOnChenge();
 	}
 
-	// Token: 0x04002091 RID: 8337
+	// Token: 0x04001BC5 RID: 7109
 	public UIBiGuan uibiguan;
 }

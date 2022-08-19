@@ -1,18 +1,18 @@
 ﻿using System;
 using UnityEngine;
 
-// Token: 0x0200012B RID: 299
+// Token: 0x020000BB RID: 187
 public class AnimationSpeed : MonoBehaviour
 {
-	// Token: 0x06000B87 RID: 2951 RVA: 0x0000D918 File Offset: 0x0000BB18
+	// Token: 0x06000AA4 RID: 2724 RVA: 0x00040880 File Offset: 0x0003EA80
 	private void Start()
 	{
 		base.GetComponent<Animation>()[this.AniamName].speed = this.speed;
 	}
 
-	// Token: 0x04000851 RID: 2129
+	// Token: 0x040006AA RID: 1706
 	public string AniamName;
 
-	// Token: 0x04000852 RID: 2130
+	// Token: 0x040006AB RID: 1707
 	public float speed = 1f;
 }

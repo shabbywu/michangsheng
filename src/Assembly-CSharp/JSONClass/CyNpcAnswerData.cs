@@ -3,10 +3,10 @@ using System.Collections.Generic;
 
 namespace JSONClass
 {
-	// Token: 0x02000BB6 RID: 2998
+	// Token: 0x02000820 RID: 2080
 	public class CyNpcAnswerData : IJSONClass
 	{
-		// Token: 0x06004A40 RID: 19008 RVA: 0x001F6D50 File Offset: 0x001F4F50
+		// Token: 0x06003E92 RID: 16018 RVA: 0x001AB990 File Offset: 0x001A9B90
 		public static void InitDataDict()
 		{
 			foreach (JSONObject jsonobject in jsonData.instance.CyNpcAnswerData.list)
@@ -43,36 +43,36 @@ namespace JSONClass
 			}
 		}
 
-		// Token: 0x06004A41 RID: 19009 RVA: 0x000042DD File Offset: 0x000024DD
+		// Token: 0x06003E93 RID: 16019 RVA: 0x00004095 File Offset: 0x00002295
 		private static void OnInitFinish()
 		{
 		}
 
-		// Token: 0x04004578 RID: 17784
+		// Token: 0x040039F0 RID: 14832
 		public static Dictionary<int, CyNpcAnswerData> DataDict = new Dictionary<int, CyNpcAnswerData>();
 
-		// Token: 0x04004579 RID: 17785
+		// Token: 0x040039F1 RID: 14833
 		public static List<CyNpcAnswerData> DataList = new List<CyNpcAnswerData>();
 
-		// Token: 0x0400457A RID: 17786
+		// Token: 0x040039F2 RID: 14834
 		public static Action OnInitFinishAction = new Action(CyNpcAnswerData.OnInitFinish);
 
-		// Token: 0x0400457B RID: 17787
+		// Token: 0x040039F3 RID: 14835
 		public int id;
 
-		// Token: 0x0400457C RID: 17788
+		// Token: 0x040039F4 RID: 14836
 		public int NPCActionID;
 
-		// Token: 0x0400457D RID: 17789
+		// Token: 0x040039F5 RID: 14837
 		public int AnswerType;
 
-		// Token: 0x0400457E RID: 17790
+		// Token: 0x040039F6 RID: 14838
 		public int IsPangBai;
 
-		// Token: 0x0400457F RID: 17791
+		// Token: 0x040039F7 RID: 14839
 		public int AnswerAction;
 
-		// Token: 0x04004580 RID: 17792
+		// Token: 0x040039F8 RID: 14840
 		public string DuiHua;
 	}
 }

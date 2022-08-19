@@ -1,10 +1,10 @@
 ﻿using System;
 using UnityEngine;
 
-// Token: 0x02000153 RID: 339
+// Token: 0x020000DC RID: 220
 public class FloatingText : MonoBehaviour
 {
-	// Token: 0x06000C3A RID: 3130 RVA: 0x00096A4C File Offset: 0x00094C4C
+	// Token: 0x06000B4B RID: 2891 RVA: 0x00044DA0 File Offset: 0x00042FA0
 	private void Start()
 	{
 		this.timeTemp = Time.time;
@@ -16,7 +16,7 @@ public class FloatingText : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000C3B RID: 3131 RVA: 0x00096AB4 File Offset: 0x00094CB4
+	// Token: 0x06000B4C RID: 2892 RVA: 0x00044E08 File Offset: 0x00043008
 	private void Update()
 	{
 		if (this.FadeEnd)
@@ -37,7 +37,7 @@ public class FloatingText : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000C3C RID: 3132 RVA: 0x00096B6C File Offset: 0x00094D6C
+	// Token: 0x06000B4D RID: 2893 RVA: 0x00044EC0 File Offset: 0x000430C0
 	private void OnGUI()
 	{
 		GUI.color = new Color(GUI.color.r, GUI.color.g, GUI.color.b, this.alpha);
@@ -51,30 +51,30 @@ public class FloatingText : MonoBehaviour
 		GUI.Label(rect, this.Text);
 	}
 
-	// Token: 0x04000955 RID: 2389
+	// Token: 0x0400077A RID: 1914
 	public GUISkin CustomSkin;
 
-	// Token: 0x04000956 RID: 2390
+	// Token: 0x0400077B RID: 1915
 	public string Text = "";
 
-	// Token: 0x04000957 RID: 2391
+	// Token: 0x0400077C RID: 1916
 	public float LifeTime = 1f;
 
-	// Token: 0x04000958 RID: 2392
+	// Token: 0x0400077D RID: 1917
 	public bool FadeEnd;
 
-	// Token: 0x04000959 RID: 2393
+	// Token: 0x0400077E RID: 1918
 	public Color TextColor = Color.white;
 
-	// Token: 0x0400095A RID: 2394
+	// Token: 0x0400077F RID: 1919
 	public bool Position3D;
 
-	// Token: 0x0400095B RID: 2395
+	// Token: 0x04000780 RID: 1920
 	public Vector2 Position;
 
-	// Token: 0x0400095C RID: 2396
+	// Token: 0x04000781 RID: 1921
 	private float alpha = 1f;
 
-	// Token: 0x0400095D RID: 2397
+	// Token: 0x04000782 RID: 1922
 	private float timeTemp;
 }

@@ -3,13 +3,13 @@ using UnityEngine;
 
 namespace Fungus
 {
-	// Token: 0x020012FE RID: 4862
+	// Token: 0x02000E8D RID: 3725
 	[RequireComponent(typeof(Flowchart))]
 	public abstract class Variable : MonoBehaviour
 	{
-		// Token: 0x17000B0E RID: 2830
-		// (get) Token: 0x06007688 RID: 30344 RVA: 0x00050AEA File Offset: 0x0004ECEA
-		// (set) Token: 0x06007689 RID: 30345 RVA: 0x00050AF2 File Offset: 0x0004ECF2
+		// Token: 0x1700088F RID: 2191
+		// (get) Token: 0x06006989 RID: 27017 RVA: 0x002912E7 File Offset: 0x0028F4E7
+		// (set) Token: 0x0600698A RID: 27018 RVA: 0x002912EF File Offset: 0x0028F4EF
 		public virtual VariableScope Scope
 		{
 			get
@@ -22,9 +22,9 @@ namespace Fungus
 			}
 		}
 
-		// Token: 0x17000B0F RID: 2831
-		// (get) Token: 0x0600768A RID: 30346 RVA: 0x00050AFB File Offset: 0x0004ECFB
-		// (set) Token: 0x0600768B RID: 30347 RVA: 0x00050B03 File Offset: 0x0004ED03
+		// Token: 0x17000890 RID: 2192
+		// (get) Token: 0x0600698B RID: 27019 RVA: 0x002912F8 File Offset: 0x0028F4F8
+		// (set) Token: 0x0600698C RID: 27020 RVA: 0x00291300 File Offset: 0x0028F500
 		public virtual string Key
 		{
 			get
@@ -37,14 +37,14 @@ namespace Fungus
 			}
 		}
 
-		// Token: 0x0600768C RID: 30348
+		// Token: 0x0600698D RID: 27021
 		public abstract void OnReset();
 
-		// Token: 0x04006764 RID: 26468
+		// Token: 0x04005983 RID: 22915
 		[SerializeField]
 		protected VariableScope scope;
 
-		// Token: 0x04006765 RID: 26469
+		// Token: 0x04005984 RID: 22916
 		[SerializeField]
 		protected string key = "";
 	}

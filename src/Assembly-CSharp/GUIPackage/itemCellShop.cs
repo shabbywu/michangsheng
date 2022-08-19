@@ -3,21 +3,21 @@ using KBEngine;
 
 namespace GUIPackage
 {
-	// Token: 0x02000D85 RID: 3461
+	// Token: 0x02000A5D RID: 2653
 	public class itemCellShop : ItemCell
 	{
-		// Token: 0x06005376 RID: 21366 RVA: 0x000042DD File Offset: 0x000024DD
+		// Token: 0x06004A76 RID: 19062 RVA: 0x00004095 File Offset: 0x00002295
 		private void Start()
 		{
 		}
 
-		// Token: 0x06005377 RID: 21367 RVA: 0x00004050 File Offset: 0x00002250
+		// Token: 0x06004A77 RID: 19063 RVA: 0x0000280F File Offset: 0x00000A0F
 		public override int getItemPrice()
 		{
 			return 0;
 		}
 
-		// Token: 0x06005378 RID: 21368 RVA: 0x0003BB91 File Offset: 0x00039D91
+		// Token: 0x06004A78 RID: 19064 RVA: 0x001FA247 File Offset: 0x001F8447
 		public override void MobilePress()
 		{
 			base.MobilePress();
@@ -29,7 +29,7 @@ namespace GUIPackage
 			toolTipsBackGround.SetBtnText("购买");
 		}
 
-		// Token: 0x06005379 RID: 21369 RVA: 0x0022C6C8 File Offset: 0x0022A8C8
+		// Token: 0x06004A79 RID: 19065 RVA: 0x001FA270 File Offset: 0x001F8470
 		public override void PCOnPress()
 		{
 			this.Item = this.inventory.inventory[int.Parse(base.name)];
@@ -49,7 +49,7 @@ namespace GUIPackage
 			}
 		}
 
-		// Token: 0x0600537A RID: 21370 RVA: 0x0022C728 File Offset: 0x0022A928
+		// Token: 0x06004A7A RID: 19066 RVA: 0x001FA2D0 File Offset: 0x001F84D0
 		private void Update()
 		{
 			this.Icon.GetComponent<UITexture>().mainTexture = this.inventory.inventory[int.Parse(base.name)].itemIcon;
@@ -68,13 +68,13 @@ namespace GUIPackage
 			base.showYiWu();
 		}
 
-		// Token: 0x0400533C RID: 21308
+		// Token: 0x040049AD RID: 18861
 		public UILabel ItemName;
 
-		// Token: 0x0400533D RID: 21309
+		// Token: 0x040049AE RID: 18862
 		public UILabel ItemMoney;
 
-		// Token: 0x0400533E RID: 21310
+		// Token: 0x040049AF RID: 18863
 		public int pricePercent;
 	}
 }

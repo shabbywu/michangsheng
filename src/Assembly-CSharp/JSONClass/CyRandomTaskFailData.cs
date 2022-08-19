@@ -3,10 +3,10 @@ using System.Collections.Generic;
 
 namespace JSONClass
 {
-	// Token: 0x02000BBB RID: 3003
+	// Token: 0x02000825 RID: 2085
 	public class CyRandomTaskFailData : IJSONClass
 	{
-		// Token: 0x06004A54 RID: 19028 RVA: 0x001F7954 File Offset: 0x001F5B54
+		// Token: 0x06003EA6 RID: 16038 RVA: 0x001AC698 File Offset: 0x001AA898
 		public static void InitDataDict()
 		{
 			foreach (JSONObject jsonobject in jsonData.instance.CyRandomTaskFailData.list)
@@ -41,30 +41,30 @@ namespace JSONClass
 			}
 		}
 
-		// Token: 0x06004A55 RID: 19029 RVA: 0x000042DD File Offset: 0x000024DD
+		// Token: 0x06003EA7 RID: 16039 RVA: 0x00004095 File Offset: 0x00002295
 		private static void OnInitFinish()
 		{
 		}
 
-		// Token: 0x040045CC RID: 17868
+		// Token: 0x04003A44 RID: 14916
 		public static Dictionary<int, CyRandomTaskFailData> DataDict = new Dictionary<int, CyRandomTaskFailData>();
 
-		// Token: 0x040045CD RID: 17869
+		// Token: 0x04003A45 RID: 14917
 		public static List<CyRandomTaskFailData> DataList = new List<CyRandomTaskFailData>();
 
-		// Token: 0x040045CE RID: 17870
+		// Token: 0x04003A46 RID: 14918
 		public static Action OnInitFinishAction = new Action(CyRandomTaskFailData.OnInitFinish);
 
-		// Token: 0x040045CF RID: 17871
+		// Token: 0x04003A47 RID: 14919
 		public int id;
 
-		// Token: 0x040045D0 RID: 17872
+		// Token: 0x04003A48 RID: 14920
 		public int ShiBaiInfo2;
 
-		// Token: 0x040045D1 RID: 17873
+		// Token: 0x04003A49 RID: 14921
 		public int ShiBaiInfo3;
 
-		// Token: 0x040045D2 RID: 17874
+		// Token: 0x04003A4A RID: 14922
 		public int ShiBaiInfo4;
 	}
 }

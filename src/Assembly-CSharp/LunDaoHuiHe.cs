@@ -2,10 +2,10 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-// Token: 0x0200047B RID: 1147
+// Token: 0x02000318 RID: 792
 public class LunDaoHuiHe : MonoBehaviour
 {
-	// Token: 0x06001EB2 RID: 7858 RVA: 0x000196BF File Offset: 0x000178BF
+	// Token: 0x06001B7F RID: 7039 RVA: 0x000C3ECA File Offset: 0x000C20CA
 	public void Init()
 	{
 		this.totalHui = 5;
@@ -14,7 +14,7 @@ public class LunDaoHuiHe : MonoBehaviour
 		this.upDateHuiHeText();
 	}
 
-	// Token: 0x06001EB3 RID: 7859 RVA: 0x000196E8 File Offset: 0x000178E8
+	// Token: 0x06001B80 RID: 7040 RVA: 0x000C3EF3 File Offset: 0x000C20F3
 	public void ReduceHuiHe()
 	{
 		this.shengYuHuiHe--;
@@ -27,27 +27,27 @@ public class LunDaoHuiHe : MonoBehaviour
 		this.upDateHuiHeText();
 	}
 
-	// Token: 0x06001EB4 RID: 7860 RVA: 0x00019726 File Offset: 0x00017926
+	// Token: 0x06001B81 RID: 7041 RVA: 0x000C3F31 File Offset: 0x000C2131
 	private void upDateHuiHeText()
 	{
 		this.curHuiText.text = this.curHui.ToCNNumber();
 		this.shengYuHuiHeText.text = "(剩余" + this.shengYuHuiHe.ToCNNumber() + "回合)";
 	}
 
-	// Token: 0x04001A17 RID: 6679
+	// Token: 0x040015FC RID: 5628
 	public int totalHui;
 
-	// Token: 0x04001A18 RID: 6680
+	// Token: 0x040015FD RID: 5629
 	public int curHui;
 
-	// Token: 0x04001A19 RID: 6681
+	// Token: 0x040015FE RID: 5630
 	public int shengYuHuiHe;
 
-	// Token: 0x04001A1A RID: 6682
+	// Token: 0x040015FF RID: 5631
 	[SerializeField]
 	private Text curHuiText;
 
-	// Token: 0x04001A1B RID: 6683
+	// Token: 0x04001600 RID: 5632
 	[SerializeField]
 	private Text shengYuHuiHeText;
 }

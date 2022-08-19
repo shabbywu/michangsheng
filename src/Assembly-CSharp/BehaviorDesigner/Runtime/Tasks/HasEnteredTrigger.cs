@@ -3,13 +3,13 @@ using UnityEngine;
 
 namespace BehaviorDesigner.Runtime.Tasks
 {
-	// Token: 0x020014A0 RID: 5280
+	// Token: 0x02000FE8 RID: 4072
 	[TaskDescription("Returns success when an object enters the trigger. This task will only receive the physics callback if it is being reevaluated (with a conditional abort or under a parallel task).")]
 	[TaskCategory("Physics")]
 	[HelpURL("http://www.opsive.com/assets/BehaviorDesigner/documentation.php?id=110")]
 	public class HasEnteredTrigger : Conditional
 	{
-		// Token: 0x06007EC6 RID: 32454 RVA: 0x00055D62 File Offset: 0x00053F62
+		// Token: 0x060070CC RID: 28876 RVA: 0x002AA959 File Offset: 0x002A8B59
 		public override TaskStatus OnUpdate()
 		{
 			if (!this.enteredTrigger)
@@ -19,13 +19,13 @@ namespace BehaviorDesigner.Runtime.Tasks
 			return 2;
 		}
 
-		// Token: 0x06007EC7 RID: 32455 RVA: 0x00055D6F File Offset: 0x00053F6F
+		// Token: 0x060070CD RID: 28877 RVA: 0x002AA966 File Offset: 0x002A8B66
 		public override void OnEnd()
 		{
 			this.enteredTrigger = false;
 		}
 
-		// Token: 0x06007EC8 RID: 32456 RVA: 0x002C9594 File Offset: 0x002C7794
+		// Token: 0x060070CE RID: 28878 RVA: 0x002AA970 File Offset: 0x002A8B70
 		public override void OnTriggerEnter(Collider other)
 		{
 			if (string.IsNullOrEmpty(this.tag.Value) || this.tag.Value.Equals(other.gameObject.tag))
@@ -35,22 +35,22 @@ namespace BehaviorDesigner.Runtime.Tasks
 			}
 		}
 
-		// Token: 0x06007EC9 RID: 32457 RVA: 0x00055D78 File Offset: 0x00053F78
+		// Token: 0x060070CF RID: 28879 RVA: 0x002AA9C4 File Offset: 0x002A8BC4
 		public override void OnReset()
 		{
 			this.tag = "";
 			this.otherGameObject = null;
 		}
 
-		// Token: 0x04006BCF RID: 27599
+		// Token: 0x04005CD7 RID: 23767
 		[Tooltip("The tag of the GameObject to check for a trigger against")]
 		public SharedString tag = "";
 
-		// Token: 0x04006BD0 RID: 27600
+		// Token: 0x04005CD8 RID: 23768
 		[Tooltip("The object that entered the trigger")]
 		public SharedGameObject otherGameObject;
 
-		// Token: 0x04006BD1 RID: 27601
+		// Token: 0x04005CD9 RID: 23769
 		private bool enteredTrigger;
 	}
 }

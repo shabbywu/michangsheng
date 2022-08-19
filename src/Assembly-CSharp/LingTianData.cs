@@ -1,11 +1,11 @@
 ﻿using System;
 
-// Token: 0x0200031A RID: 794
+// Token: 0x02000205 RID: 517
 public class LingTianData
 {
-	// Token: 0x040012CE RID: 4814
+	// Token: 0x04000F88 RID: 3976
 	public int ID;
 
-	// Token: 0x040012CF RID: 4815
+	// Token: 0x04000F89 RID: 3977
 	public int LingLi;
 }

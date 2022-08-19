@@ -4,11 +4,11 @@ using UnityEngine;
 
 namespace Fungus
 {
-	// Token: 0x020012C7 RID: 4807
+	// Token: 0x02000E6A RID: 3690
 	[ExecuteInEditMode]
 	public class CustomTag : MonoBehaviour
 	{
-		// Token: 0x0600749A RID: 29850 RVA: 0x0004F923 File Offset: 0x0004DB23
+		// Token: 0x060067E8 RID: 26600 RVA: 0x0028B5AA File Offset: 0x002897AA
 		protected virtual void OnEnable()
 		{
 			if (!CustomTag.activeCustomTags.Contains(this))
@@ -17,14 +17,14 @@ namespace Fungus
 			}
 		}
 
-		// Token: 0x0600749B RID: 29851 RVA: 0x0004F93D File Offset: 0x0004DB3D
+		// Token: 0x060067E9 RID: 26601 RVA: 0x0028B5C4 File Offset: 0x002897C4
 		protected virtual void OnDisable()
 		{
 			CustomTag.activeCustomTags.Remove(this);
 		}
 
-		// Token: 0x17000AB3 RID: 2739
-		// (get) Token: 0x0600749C RID: 29852 RVA: 0x0004F94B File Offset: 0x0004DB4B
+		// Token: 0x17000842 RID: 2114
+		// (get) Token: 0x060067EA RID: 26602 RVA: 0x0028B5D2 File Offset: 0x002897D2
 		public virtual string TagStartSymbol
 		{
 			get
@@ -33,8 +33,8 @@ namespace Fungus
 			}
 		}
 
-		// Token: 0x17000AB4 RID: 2740
-		// (get) Token: 0x0600749D RID: 29853 RVA: 0x0004F953 File Offset: 0x0004DB53
+		// Token: 0x17000843 RID: 2115
+		// (get) Token: 0x060067EB RID: 26603 RVA: 0x0028B5DA File Offset: 0x002897DA
 		public virtual string TagEndSymbol
 		{
 			get
@@ -43,8 +43,8 @@ namespace Fungus
 			}
 		}
 
-		// Token: 0x17000AB5 RID: 2741
-		// (get) Token: 0x0600749E RID: 29854 RVA: 0x0004F95B File Offset: 0x0004DB5B
+		// Token: 0x17000844 RID: 2116
+		// (get) Token: 0x060067EC RID: 26604 RVA: 0x0028B5E2 File Offset: 0x002897E2
 		public virtual string ReplaceTagStartWith
 		{
 			get
@@ -53,8 +53,8 @@ namespace Fungus
 			}
 		}
 
-		// Token: 0x17000AB6 RID: 2742
-		// (get) Token: 0x0600749F RID: 29855 RVA: 0x0004F963 File Offset: 0x0004DB63
+		// Token: 0x17000845 RID: 2117
+		// (get) Token: 0x060067ED RID: 26605 RVA: 0x0028B5EA File Offset: 0x002897EA
 		public virtual string ReplaceTagEndWith
 		{
 			get
@@ -63,27 +63,27 @@ namespace Fungus
 			}
 		}
 
-		// Token: 0x0400663B RID: 26171
+		// Token: 0x040058A3 RID: 22691
 		[Tooltip("String that defines the start of the tag.")]
 		[SerializeField]
 		protected string tagStartSymbol;
 
-		// Token: 0x0400663C RID: 26172
+		// Token: 0x040058A4 RID: 22692
 		[Tooltip("String that defines the end of the tag.")]
 		[SerializeField]
 		protected string tagEndSymbol;
 
-		// Token: 0x0400663D RID: 26173
+		// Token: 0x040058A5 RID: 22693
 		[Tooltip("String to replace the start tag with.")]
 		[SerializeField]
 		protected string replaceTagStartWith;
 
-		// Token: 0x0400663E RID: 26174
+		// Token: 0x040058A6 RID: 22694
 		[Tooltip("String to replace the end tag with.")]
 		[SerializeField]
 		protected string replaceTagEndWith;
 
-		// Token: 0x0400663F RID: 26175
+		// Token: 0x040058A7 RID: 22695
 		public static List<CustomTag> activeCustomTags = new List<CustomTag>();
 	}
 }

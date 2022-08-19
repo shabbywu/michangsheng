@@ -5,10 +5,10 @@ using UnityEngine;
 
 namespace Fungus
 {
-	// Token: 0x0200136D RID: 4973
+	// Token: 0x02000ECE RID: 3790
 	public static class TextTagParser
 	{
-		// Token: 0x060078A4 RID: 30884 RVA: 0x002B7444 File Offset: 0x002B5644
+		// Token: 0x06006B07 RID: 27399 RVA: 0x00295194 File Offset: 0x00293394
 		private static void AddWordsToken(List<TextTagToken> tokenList, string words)
 		{
 			tokenList.Add(new TextTagToken
@@ -22,7 +22,7 @@ namespace Fungus
 			});
 		}
 
-		// Token: 0x060078A5 RID: 30885 RVA: 0x002B747C File Offset: 0x002B567C
+		// Token: 0x06006B08 RID: 27400 RVA: 0x002951CC File Offset: 0x002933CC
 		private static void AddTagToken(List<TextTagToken> tokenList, string tagText)
 		{
 			if (tagText.Length < 3 || tagText.Substring(0, 1) != "{" || tagText.Substring(tagText.Length - 1, 1) != "}")
@@ -164,7 +164,7 @@ namespace Fungus
 			Debug.LogWarning("Invalid text tag " + text);
 		}
 
-		// Token: 0x060078A6 RID: 30886 RVA: 0x002B779C File Offset: 0x002B599C
+		// Token: 0x06006B09 RID: 27401 RVA: 0x002954EC File Offset: 0x002936EC
 		private static List<string> ExtractParameters(string input)
 		{
 			List<string> list = new List<string>();
@@ -183,13 +183,13 @@ namespace Fungus
 			return list;
 		}
 
-		// Token: 0x060078A7 RID: 30887 RVA: 0x00051ECC File Offset: 0x000500CC
+		// Token: 0x06006B0A RID: 27402 RVA: 0x00295549 File Offset: 0x00293749
 		public static string GetTagHelp()
 		{
 			return "\t{b} Bold Text {/b}\n\t{i} Italic Text {/i}\n\t{color=red} Color Text (color){/color}\n\t{size=30} Text size {/size}\n\n\t{s}, {s=60} Writing speed (chars per sec){/s}\n\t{w}, {w=0.5} Wait (seconds)\n\t{wi} Wait for input\n\t{wc} Wait for input and clear\n\t{wvo} Wait for voice over line to complete\n\t{wp}, {wp=0.5} Wait on punctuation (seconds){/wp}\n\t{c} Clear\n\t{x} Exit, advance to the next command without waiting for input\n\n\t{vpunch=10,0.5} Vertically punch screen (intensity,time)\n\t{hpunch=10,0.5} Horizontally punch screen (intensity,time)\n\t{punch=10,0.5} Punch screen (intensity,time)\n\t{flash=0.5} Flash screen (duration)\n\n\t{audio=AudioObjectName} Play Audio Once\n\t{audioloop=AudioObjectName} Play Audio Loop\n\t{audiopause=AudioObjectName} Pause Audio\n\t{audiostop=AudioObjectName} Stop Audio\n\n\t{m=MessageName} Broadcast message\n\t{$VarName} Substitute variable";
 		}
 
-		// Token: 0x060078A8 RID: 30888 RVA: 0x002B77FC File Offset: 0x002B59FC
+		// Token: 0x06006B0B RID: 27403 RVA: 0x00295550 File Offset: 0x00293750
 		public static List<TextTagToken> Tokenize(string storyText)
 		{
 			List<TextTagToken> list = new List<TextTagToken>();
@@ -234,7 +234,7 @@ namespace Fungus
 			return list;
 		}
 
-		// Token: 0x040068A2 RID: 26786
+		// Token: 0x04005A41 RID: 23105
 		private const string TextTokenRegexString = "\\{.*?\\}";
 	}
 }

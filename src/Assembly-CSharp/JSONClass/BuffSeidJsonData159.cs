@@ -3,10 +3,10 @@ using System.Collections.Generic;
 
 namespace JSONClass
 {
-	// Token: 0x02000B1B RID: 2843
+	// Token: 0x02000783 RID: 1923
 	public class BuffSeidJsonData159 : IJSONClass
 	{
-		// Token: 0x060047D5 RID: 18389 RVA: 0x001EAA58 File Offset: 0x001E8C58
+		// Token: 0x06003C1F RID: 15391 RVA: 0x0019D404 File Offset: 0x0019B604
 		public static void InitDataDict()
 		{
 			foreach (JSONObject jsonobject in jsonData.instance.BuffSeidJsonData[159].list)
@@ -42,36 +42,36 @@ namespace JSONClass
 			}
 		}
 
-		// Token: 0x060047D6 RID: 18390 RVA: 0x000042DD File Offset: 0x000024DD
+		// Token: 0x06003C20 RID: 15392 RVA: 0x00004095 File Offset: 0x00002295
 		private static void OnInitFinish()
 		{
 		}
 
-		// Token: 0x0400413E RID: 16702
+		// Token: 0x040035A5 RID: 13733
 		public static int SEIDID = 159;
 
-		// Token: 0x0400413F RID: 16703
+		// Token: 0x040035A6 RID: 13734
 		public static Dictionary<int, BuffSeidJsonData159> DataDict = new Dictionary<int, BuffSeidJsonData159>();
 
-		// Token: 0x04004140 RID: 16704
+		// Token: 0x040035A7 RID: 13735
 		public static List<BuffSeidJsonData159> DataList = new List<BuffSeidJsonData159>();
 
-		// Token: 0x04004141 RID: 16705
+		// Token: 0x040035A8 RID: 13736
 		public static Action OnInitFinishAction = new Action(BuffSeidJsonData159.OnInitFinish);
 
-		// Token: 0x04004142 RID: 16706
+		// Token: 0x040035A9 RID: 13737
 		public int id;
 
-		// Token: 0x04004143 RID: 16707
+		// Token: 0x040035AA RID: 13738
 		public int target;
 
-		// Token: 0x04004144 RID: 16708
+		// Token: 0x040035AB RID: 13739
 		public int value1;
 
-		// Token: 0x04004145 RID: 16709
+		// Token: 0x040035AC RID: 13740
 		public int value2;
 
-		// Token: 0x04004146 RID: 16710
+		// Token: 0x040035AD RID: 13741
 		public string panduan;
 	}
 }

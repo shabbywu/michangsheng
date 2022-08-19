@@ -4,10 +4,10 @@ using MoonSharp.Interpreter.Execution.VM;
 
 namespace MoonSharp.Interpreter.Tree.Statements
 {
-	// Token: 0x020010A8 RID: 4264
+	// Token: 0x02000CD2 RID: 3282
 	internal class ChunkStatement : Statement, IClosureBuilder
 	{
-		// Token: 0x0600671E RID: 26398 RVA: 0x0028708C File Offset: 0x0028528C
+		// Token: 0x06005C15 RID: 23573 RVA: 0x0025D8B0 File Offset: 0x0025BAB0
 		public ChunkStatement(ScriptLoadingContext lcontext) : base(lcontext)
 		{
 			lcontext.Scope.PushFunction(this, true);
@@ -24,7 +24,7 @@ namespace MoonSharp.Interpreter.Tree.Statements
 			this.m_StackFrame = lcontext.Scope.PopFunction();
 		}
 
-		// Token: 0x0600671F RID: 26399 RVA: 0x00287138 File Offset: 0x00285338
+		// Token: 0x06005C16 RID: 23574 RVA: 0x0025D95C File Offset: 0x0025BB5C
 		public override void Compile(ByteCode bc)
 		{
 			Instruction instruction = bc.Emit_Meta("<chunk-root>", OpCodeMetadataType.ChunkEntrypoint, null);
@@ -42,22 +42,22 @@ namespace MoonSharp.Interpreter.Tree.Statements
 			instruction.NumVal = bc.GetJumpPointForLastInstruction() - jumpPointForLastInstruction;
 		}
 
-		// Token: 0x06006720 RID: 26400 RVA: 0x0000B171 File Offset: 0x00009371
+		// Token: 0x06005C17 RID: 23575 RVA: 0x000306E7 File Offset: 0x0002E8E7
 		public SymbolRef CreateUpvalue(BuildTimeScope scope, SymbolRef symbol)
 		{
 			return null;
 		}
 
-		// Token: 0x04005F38 RID: 24376
+		// Token: 0x04005355 RID: 21333
 		private Statement m_Block;
 
-		// Token: 0x04005F39 RID: 24377
+		// Token: 0x04005356 RID: 21334
 		private RuntimeScopeFrame m_StackFrame;
 
-		// Token: 0x04005F3A RID: 24378
+		// Token: 0x04005357 RID: 21335
 		private SymbolRef m_Env;
 
-		// Token: 0x04005F3B RID: 24379
+		// Token: 0x04005358 RID: 21336
 		private SymbolRef m_VarArgs;
 	}
 }

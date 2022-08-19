@@ -9,40 +9,40 @@ using MoonSharp.Interpreter.Interop.Converters;
 
 namespace MoonSharp.Interpreter.Interop
 {
-	// Token: 0x02001119 RID: 4377
+	// Token: 0x02000D1F RID: 3359
 	public class FieldMemberDescriptor : IMemberDescriptor, IOptimizableDescriptor, IWireableDescriptor
 	{
-		// Token: 0x1700098A RID: 2442
-		// (get) Token: 0x06006998 RID: 27032 RVA: 0x00048237 File Offset: 0x00046437
-		// (set) Token: 0x06006999 RID: 27033 RVA: 0x0004823F File Offset: 0x0004643F
+		// Token: 0x1700072D RID: 1837
+		// (get) Token: 0x06005E09 RID: 24073 RVA: 0x00264D8D File Offset: 0x00262F8D
+		// (set) Token: 0x06005E0A RID: 24074 RVA: 0x00264D95 File Offset: 0x00262F95
 		public FieldInfo FieldInfo { get; private set; }
 
-		// Token: 0x1700098B RID: 2443
-		// (get) Token: 0x0600699A RID: 27034 RVA: 0x00048248 File Offset: 0x00046448
-		// (set) Token: 0x0600699B RID: 27035 RVA: 0x00048250 File Offset: 0x00046450
+		// Token: 0x1700072E RID: 1838
+		// (get) Token: 0x06005E0B RID: 24075 RVA: 0x00264D9E File Offset: 0x00262F9E
+		// (set) Token: 0x06005E0C RID: 24076 RVA: 0x00264DA6 File Offset: 0x00262FA6
 		public InteropAccessMode AccessMode { get; private set; }
 
-		// Token: 0x1700098C RID: 2444
-		// (get) Token: 0x0600699C RID: 27036 RVA: 0x00048259 File Offset: 0x00046459
-		// (set) Token: 0x0600699D RID: 27037 RVA: 0x00048261 File Offset: 0x00046461
+		// Token: 0x1700072F RID: 1839
+		// (get) Token: 0x06005E0D RID: 24077 RVA: 0x00264DAF File Offset: 0x00262FAF
+		// (set) Token: 0x06005E0E RID: 24078 RVA: 0x00264DB7 File Offset: 0x00262FB7
 		public bool IsStatic { get; private set; }
 
-		// Token: 0x1700098D RID: 2445
-		// (get) Token: 0x0600699E RID: 27038 RVA: 0x0004826A File Offset: 0x0004646A
-		// (set) Token: 0x0600699F RID: 27039 RVA: 0x00048272 File Offset: 0x00046472
+		// Token: 0x17000730 RID: 1840
+		// (get) Token: 0x06005E0F RID: 24079 RVA: 0x00264DC0 File Offset: 0x00262FC0
+		// (set) Token: 0x06005E10 RID: 24080 RVA: 0x00264DC8 File Offset: 0x00262FC8
 		public string Name { get; private set; }
 
-		// Token: 0x1700098E RID: 2446
-		// (get) Token: 0x060069A0 RID: 27040 RVA: 0x0004827B File Offset: 0x0004647B
-		// (set) Token: 0x060069A1 RID: 27041 RVA: 0x00048283 File Offset: 0x00046483
+		// Token: 0x17000731 RID: 1841
+		// (get) Token: 0x06005E11 RID: 24081 RVA: 0x00264DD1 File Offset: 0x00262FD1
+		// (set) Token: 0x06005E12 RID: 24082 RVA: 0x00264DD9 File Offset: 0x00262FD9
 		public bool IsConst { get; private set; }
 
-		// Token: 0x1700098F RID: 2447
-		// (get) Token: 0x060069A2 RID: 27042 RVA: 0x0004828C File Offset: 0x0004648C
-		// (set) Token: 0x060069A3 RID: 27043 RVA: 0x00048294 File Offset: 0x00046494
+		// Token: 0x17000732 RID: 1842
+		// (get) Token: 0x06005E13 RID: 24083 RVA: 0x00264DE2 File Offset: 0x00262FE2
+		// (set) Token: 0x06005E14 RID: 24084 RVA: 0x00264DEA File Offset: 0x00262FEA
 		public bool IsReadonly { get; private set; }
 
-		// Token: 0x060069A4 RID: 27044 RVA: 0x0028D998 File Offset: 0x0028BB98
+		// Token: 0x06005E15 RID: 24085 RVA: 0x00264DF4 File Offset: 0x00262FF4
 		public static FieldMemberDescriptor TryCreateIfVisible(FieldInfo fi, InteropAccessMode accessMode)
 		{
 			if (fi.GetVisibilityFromAttributes() ?? fi.IsPublic)
@@ -52,7 +52,7 @@ namespace MoonSharp.Interpreter.Interop
 			return null;
 		}
 
-		// Token: 0x060069A5 RID: 27045 RVA: 0x0028D9D0 File Offset: 0x0028BBD0
+		// Token: 0x06005E16 RID: 24086 RVA: 0x00264E2C File Offset: 0x0026302C
 		public FieldMemberDescriptor(FieldInfo fi, InteropAccessMode accessMode)
 		{
 			if (Script.GlobalOptions.Platform.IsRunningOnAOT())
@@ -78,7 +78,7 @@ namespace MoonSharp.Interpreter.Interop
 			}
 		}
 
-		// Token: 0x060069A6 RID: 27046 RVA: 0x0028DA6C File Offset: 0x0028BC6C
+		// Token: 0x06005E17 RID: 24087 RVA: 0x00264EC8 File Offset: 0x002630C8
 		public DynValue GetValue(Script script, object obj)
 		{
 			this.CheckAccess(MemberDescriptorAccess.CanRead, obj);
@@ -102,7 +102,7 @@ namespace MoonSharp.Interpreter.Interop
 			return ClrToScriptConversions.ObjectToDynValue(script, obj2);
 		}
 
-		// Token: 0x060069A7 RID: 27047 RVA: 0x0028DADC File Offset: 0x0028BCDC
+		// Token: 0x06005E18 RID: 24088 RVA: 0x00264F38 File Offset: 0x00263138
 		internal void OptimizeGetter()
 		{
 			if (this.IsConst)
@@ -132,7 +132,7 @@ namespace MoonSharp.Interpreter.Interop
 			}
 		}
 
-		// Token: 0x060069A8 RID: 27048 RVA: 0x0028DBD8 File Offset: 0x0028BDD8
+		// Token: 0x06005E19 RID: 24089 RVA: 0x00265034 File Offset: 0x00263234
 		public void SetValue(Script script, object obj, DynValue v)
 		{
 			this.CheckAccess(MemberDescriptorAccess.CanWrite, obj);
@@ -167,8 +167,8 @@ namespace MoonSharp.Interpreter.Interop
 			}
 		}
 
-		// Token: 0x17000990 RID: 2448
-		// (get) Token: 0x060069A9 RID: 27049 RVA: 0x0004829D File Offset: 0x0004649D
+		// Token: 0x17000733 RID: 1843
+		// (get) Token: 0x06005E1A RID: 24090 RVA: 0x00265134 File Offset: 0x00263334
 		public MemberDescriptorAccess MemberAccess
 		{
 			get
@@ -181,7 +181,7 @@ namespace MoonSharp.Interpreter.Interop
 			}
 		}
 
-		// Token: 0x060069AA RID: 27050 RVA: 0x000482B2 File Offset: 0x000464B2
+		// Token: 0x06005E1B RID: 24091 RVA: 0x00265149 File Offset: 0x00263349
 		void IOptimizableDescriptor.Optimize()
 		{
 			if (this.m_OptimizedGetter == null)
@@ -190,7 +190,7 @@ namespace MoonSharp.Interpreter.Interop
 			}
 		}
 
-		// Token: 0x060069AB RID: 27051 RVA: 0x0028DCD8 File Offset: 0x0028BED8
+		// Token: 0x06005E1C RID: 24092 RVA: 0x0026515C File Offset: 0x0026335C
 		public void PrepareForWiring(Table t)
 		{
 			t.Set("class", DynValue.NewString(base.GetType().FullName));
@@ -206,10 +206,10 @@ namespace MoonSharp.Interpreter.Interop
 			t.Set("write", DynValue.NewBoolean(!this.IsConst && !this.IsReadonly));
 		}
 
-		// Token: 0x04006049 RID: 24649
+		// Token: 0x04005427 RID: 21543
 		private object m_ConstValue;
 
-		// Token: 0x0400604A RID: 24650
+		// Token: 0x04005428 RID: 21544
 		private Func<object, object> m_OptimizedGetter;
 	}
 }

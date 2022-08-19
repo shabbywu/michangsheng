@@ -6,11 +6,11 @@ using System.Linq;
 using System.Xml.Linq;
 using UnityEngine;
 
-// Token: 0x020006E7 RID: 1767
+// Token: 0x020004C2 RID: 1218
 public class MissionManager : MonoBehaviour
 {
-	// Token: 0x1700037D RID: 893
-	// (get) Token: 0x06002C5B RID: 11355 RVA: 0x00021C06 File Offset: 0x0001FE06
+	// Token: 0x170002AE RID: 686
+	// (get) Token: 0x060026BB RID: 9915 RVA: 0x00111DDD File Offset: 0x0010FFDD
 	public static MissionManager Instance
 	{
 		get
@@ -23,7 +23,7 @@ public class MissionManager : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06002C5C RID: 11356 RVA: 0x00021C33 File Offset: 0x0001FE33
+	// Token: 0x060026BC RID: 9916 RVA: 0x00111E0A File Offset: 0x0011000A
 	private void Awake()
 	{
 		base.transform.name = "MissionManager";
@@ -32,7 +32,7 @@ public class MissionManager : MonoBehaviour
 		base.StartCoroutine(this.LoadMissions());
 	}
 
-	// Token: 0x06002C5D RID: 11357 RVA: 0x00021C63 File Offset: 0x0001FE63
+	// Token: 0x060026BD RID: 9917 RVA: 0x00111E3A File Offset: 0x0011003A
 	private IEnumerator LoadMissions()
 	{
 		string text = string.Empty;
@@ -99,12 +99,12 @@ public class MissionManager : MonoBehaviour
 		yield break;
 	}
 
-	// Token: 0x06002C5E RID: 11358 RVA: 0x000042DD File Offset: 0x000024DD
+	// Token: 0x060026BE RID: 9918 RVA: 0x00004095 File Offset: 0x00002295
 	public static void OdrediJezik()
 	{
 	}
 
-	// Token: 0x06002C5F RID: 11359 RVA: 0x00158120 File Offset: 0x00156320
+	// Token: 0x060026BF RID: 9919 RVA: 0x00111E4C File Offset: 0x0011004C
 	public static void OdrediMisiju(int level, bool mapa)
 	{
 		MissionManager.postavioFinish = false;
@@ -242,7 +242,7 @@ public class MissionManager : MonoBehaviour
 		MissionManager.OdrediIkonice(level);
 	}
 
-	// Token: 0x06002C60 RID: 11360 RVA: 0x001583A4 File Offset: 0x001565A4
+	// Token: 0x060026C0 RID: 9920 RVA: 0x001120D0 File Offset: 0x001102D0
 	public static void OdrediIkonice(int level)
 	{
 		Transform transform = GameObject.Find("_GameManager/Gameplay Scena Interface/_TopMissions").transform;
@@ -640,7 +640,7 @@ public class MissionManager : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06002C61 RID: 11361 RVA: 0x0015978C File Offset: 0x0015798C
+	// Token: 0x060026C1 RID: 9921 RVA: 0x001134B8 File Offset: 0x001116B8
 	public static void OdrediIkoniceNaMapi(int level)
 	{
 		Transform transform = GameObject.FindGameObjectWithTag("Mission").transform;
@@ -1331,7 +1331,7 @@ public class MissionManager : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06002C62 RID: 11362 RVA: 0x0015AD7C File Offset: 0x00158F7C
+	// Token: 0x060026C2 RID: 9922 RVA: 0x00114AA8 File Offset: 0x00112CA8
 	public void BaboonEvent(int currentBaboons)
 	{
 		if (MissionManager.missions[MissionManager.currentLevel].baboons > 0)
@@ -1350,7 +1350,7 @@ public class MissionManager : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06002C63 RID: 11363 RVA: 0x0015AE30 File Offset: 0x00159030
+	// Token: 0x060026C3 RID: 9923 RVA: 0x00114B5C File Offset: 0x00112D5C
 	public void Fly_BaboonEvent(int currentFly_Baboons)
 	{
 		if (MissionManager.missions[MissionManager.currentLevel].fly_baboons > 0)
@@ -1369,7 +1369,7 @@ public class MissionManager : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06002C64 RID: 11364 RVA: 0x0015AEE4 File Offset: 0x001590E4
+	// Token: 0x060026C4 RID: 9924 RVA: 0x00114C10 File Offset: 0x00112E10
 	public void Boomerang_BaboonEvent(int currentBoomerang_Baboons)
 	{
 		if (MissionManager.missions[MissionManager.currentLevel].boomerang_baboons > 0)
@@ -1388,7 +1388,7 @@ public class MissionManager : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06002C65 RID: 11365 RVA: 0x0015AF98 File Offset: 0x00159198
+	// Token: 0x060026C5 RID: 9925 RVA: 0x00114CC4 File Offset: 0x00112EC4
 	public void GorillaEvent(int currentGorillas)
 	{
 		if (MissionManager.missions[MissionManager.currentLevel].gorilla > 0)
@@ -1407,7 +1407,7 @@ public class MissionManager : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06002C66 RID: 11366 RVA: 0x0015B04C File Offset: 0x0015924C
+	// Token: 0x060026C6 RID: 9926 RVA: 0x00114D78 File Offset: 0x00112F78
 	public void Fly_GorillaEvent(int currentFly_Gorillas)
 	{
 		if (MissionManager.missions[MissionManager.currentLevel].fly_gorilla > 0)
@@ -1427,7 +1427,7 @@ public class MissionManager : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06002C67 RID: 11367 RVA: 0x0015B108 File Offset: 0x00159308
+	// Token: 0x060026C7 RID: 9927 RVA: 0x00114E34 File Offset: 0x00113034
 	public void Koplje_GorillaEvent(int currentKoplje_Gorillas)
 	{
 		if (MissionManager.missions[MissionManager.currentLevel].koplje_gorilla > 0)
@@ -1447,7 +1447,7 @@ public class MissionManager : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06002C68 RID: 11368 RVA: 0x0015B1C4 File Offset: 0x001593C4
+	// Token: 0x060026C8 RID: 9928 RVA: 0x00114EF0 File Offset: 0x001130F0
 	public void DiamondEvent(int currentDiamonds)
 	{
 		if (MissionManager.missions[MissionManager.currentLevel].diamonds > 0)
@@ -1466,7 +1466,7 @@ public class MissionManager : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06002C69 RID: 11369 RVA: 0x0015B278 File Offset: 0x00159478
+	// Token: 0x060026C9 RID: 9929 RVA: 0x00114FA4 File Offset: 0x001131A4
 	public void CoinEvent(int currentCoins)
 	{
 		if (MissionManager.missions[MissionManager.currentLevel].coins > 0)
@@ -1486,7 +1486,7 @@ public class MissionManager : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06002C6A RID: 11370 RVA: 0x0015B334 File Offset: 0x00159534
+	// Token: 0x060026CA RID: 9930 RVA: 0x00115060 File Offset: 0x00113260
 	public void DistanceEvent(float currentDistance)
 	{
 		MissionManager.distanceText.text = currentDistance.ToString();
@@ -1510,7 +1510,7 @@ public class MissionManager : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06002C6B RID: 11371 RVA: 0x0015B424 File Offset: 0x00159624
+	// Token: 0x060026CB RID: 9931 RVA: 0x00115150 File Offset: 0x00113350
 	public void BarrelEvent(int currentBarrels)
 	{
 		if (MissionManager.missions[MissionManager.currentLevel].barrels > 0)
@@ -1529,7 +1529,7 @@ public class MissionManager : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06002C6C RID: 11372 RVA: 0x0015B4D8 File Offset: 0x001596D8
+	// Token: 0x060026CC RID: 9932 RVA: 0x00115204 File Offset: 0x00113404
 	public void RedDiamondEvent(int currentRedDiamonds)
 	{
 		if (MissionManager.missions[MissionManager.currentLevel].red_diamonds > 0)
@@ -1549,7 +1549,7 @@ public class MissionManager : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06002C6D RID: 11373 RVA: 0x0015B594 File Offset: 0x00159794
+	// Token: 0x060026CD RID: 9933 RVA: 0x001152C0 File Offset: 0x001134C0
 	public void BlueDiamondEvent(int currentBlueDiamonds)
 	{
 		if (MissionManager.missions[MissionManager.currentLevel].blue_diamonds > 0)
@@ -1569,7 +1569,7 @@ public class MissionManager : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06002C6E RID: 11374 RVA: 0x0015B650 File Offset: 0x00159850
+	// Token: 0x060026CE RID: 9934 RVA: 0x0011537C File Offset: 0x0011357C
 	public void GreenDiamondEvent(int currentGreenDiamonds)
 	{
 		if (MissionManager.missions[MissionManager.currentLevel].green_diamonds > 0)
@@ -1589,7 +1589,7 @@ public class MissionManager : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06002C6F RID: 11375 RVA: 0x0015B70C File Offset: 0x0015990C
+	// Token: 0x060026CF RID: 9935 RVA: 0x00115438 File Offset: 0x00113638
 	private void MissionComplete()
 	{
 		if (!MissionManager.postavioFinish)
@@ -1605,168 +1605,168 @@ public class MissionManager : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06002C70 RID: 11376 RVA: 0x00021C72 File Offset: 0x0001FE72
+	// Token: 0x060026D0 RID: 9936 RVA: 0x00115496 File Offset: 0x00113696
 	private void NotifyFinish()
 	{
 		MonkeyController2D.Instance.Finish();
 	}
 
-	// Token: 0x04002697 RID: 9879
+	// Token: 0x04002064 RID: 8292
 	private string xmlName = "Missions.xml";
 
-	// Token: 0x04002698 RID: 9880
+	// Token: 0x04002065 RID: 8293
 	public static int totalMissions;
 
-	// Token: 0x04002699 RID: 9881
+	// Token: 0x04002066 RID: 8294
 	public static MissionTemplate[] missions;
 
-	// Token: 0x0400269A RID: 9882
+	// Token: 0x04002067 RID: 8295
 	public static bool activeBaboonsMission;
 
-	// Token: 0x0400269B RID: 9883
+	// Token: 0x04002068 RID: 8296
 	public static bool activeFly_BaboonsMission;
 
-	// Token: 0x0400269C RID: 9884
+	// Token: 0x04002069 RID: 8297
 	public static bool activeBoomerang_BaboonsMission;
 
-	// Token: 0x0400269D RID: 9885
+	// Token: 0x0400206A RID: 8298
 	public static bool activeGorillaMission;
 
-	// Token: 0x0400269E RID: 9886
+	// Token: 0x0400206B RID: 8299
 	public static bool activeFly_GorillaMission;
 
-	// Token: 0x0400269F RID: 9887
+	// Token: 0x0400206C RID: 8300
 	public static bool activeKoplje_GorillaMission;
 
-	// Token: 0x040026A0 RID: 9888
+	// Token: 0x0400206D RID: 8301
 	public static bool activeDiamondsMission;
 
-	// Token: 0x040026A1 RID: 9889
+	// Token: 0x0400206E RID: 8302
 	public static bool activeCoinsMission;
 
-	// Token: 0x040026A2 RID: 9890
+	// Token: 0x0400206F RID: 8303
 	public static bool activeDistanceMission;
 
-	// Token: 0x040026A3 RID: 9891
+	// Token: 0x04002070 RID: 8304
 	public static bool activeBarrelsMission;
 
-	// Token: 0x040026A4 RID: 9892
+	// Token: 0x04002071 RID: 8305
 	public static bool activeRedDiamondsMission;
 
-	// Token: 0x040026A5 RID: 9893
+	// Token: 0x04002072 RID: 8306
 	public static bool activeBlueDiamondsMission;
 
-	// Token: 0x040026A6 RID: 9894
+	// Token: 0x04002073 RID: 8307
 	public static bool activeGreenDiamondsMission;
 
-	// Token: 0x040026A7 RID: 9895
+	// Token: 0x04002074 RID: 8308
 	public static int NumberOfQuests;
 
-	// Token: 0x040026A8 RID: 9896
+	// Token: 0x04002075 RID: 8309
 	private TextMesh missionDescription;
 
-	// Token: 0x040026A9 RID: 9897
+	// Token: 0x04002076 RID: 8310
 	private static MissionManager instance;
 
-	// Token: 0x040026AA RID: 9898
+	// Token: 0x04002077 RID: 8311
 	private static int currentLevel;
 
-	// Token: 0x040026AB RID: 9899
+	// Token: 0x04002078 RID: 8312
 	private static TextMesh baboonsText;
 
-	// Token: 0x040026AC RID: 9900
+	// Token: 0x04002079 RID: 8313
 	private static TextMesh fly_baboonsText;
 
-	// Token: 0x040026AD RID: 9901
+	// Token: 0x0400207A RID: 8314
 	private static TextMesh boomerang_baboonsText;
 
-	// Token: 0x040026AE RID: 9902
+	// Token: 0x0400207B RID: 8315
 	private static TextMesh gorillaText;
 
-	// Token: 0x040026AF RID: 9903
+	// Token: 0x0400207C RID: 8316
 	private static TextMesh fly_gorillaText;
 
-	// Token: 0x040026B0 RID: 9904
+	// Token: 0x0400207D RID: 8317
 	private static TextMesh koplje_gorillaText;
 
-	// Token: 0x040026B1 RID: 9905
+	// Token: 0x0400207E RID: 8318
 	private static TextMesh diamondsText;
 
-	// Token: 0x040026B2 RID: 9906
+	// Token: 0x0400207F RID: 8319
 	private static TextMesh coinsText;
 
-	// Token: 0x040026B3 RID: 9907
+	// Token: 0x04002080 RID: 8320
 	private static TextMesh distanceText;
 
-	// Token: 0x040026B4 RID: 9908
+	// Token: 0x04002081 RID: 8321
 	private static TextMesh barrelsText;
 
-	// Token: 0x040026B5 RID: 9909
+	// Token: 0x04002082 RID: 8322
 	private static TextMesh redDiamondsText;
 
-	// Token: 0x040026B6 RID: 9910
+	// Token: 0x04002083 RID: 8323
 	private static TextMesh blueDiamondsText;
 
-	// Token: 0x040026B7 RID: 9911
+	// Token: 0x04002084 RID: 8324
 	private static TextMesh greenDiamondsText;
 
-	// Token: 0x040026B8 RID: 9912
+	// Token: 0x04002085 RID: 8325
 	private static TextMeshEffects baboonsTextEffects;
 
-	// Token: 0x040026B9 RID: 9913
+	// Token: 0x04002086 RID: 8326
 	private static TextMeshEffects fly_baboonsTextEffects;
 
-	// Token: 0x040026BA RID: 9914
+	// Token: 0x04002087 RID: 8327
 	private static TextMeshEffects boomerang_baboonsTextEffects;
 
-	// Token: 0x040026BB RID: 9915
+	// Token: 0x04002088 RID: 8328
 	private static TextMeshEffects gorillaTextEffects;
 
-	// Token: 0x040026BC RID: 9916
+	// Token: 0x04002089 RID: 8329
 	private static TextMeshEffects fly_gorillaTextEffects;
 
-	// Token: 0x040026BD RID: 9917
+	// Token: 0x0400208A RID: 8330
 	private static TextMeshEffects koplje_gorillaTextEffects;
 
-	// Token: 0x040026BE RID: 9918
+	// Token: 0x0400208B RID: 8331
 	private static TextMeshEffects diamondsTextEffects;
 
-	// Token: 0x040026BF RID: 9919
+	// Token: 0x0400208C RID: 8332
 	private static TextMeshEffects coinsTextEffects;
 
-	// Token: 0x040026C0 RID: 9920
+	// Token: 0x0400208D RID: 8333
 	private static TextMeshEffects distanceTextEffects;
 
-	// Token: 0x040026C1 RID: 9921
+	// Token: 0x0400208E RID: 8334
 	private static TextMeshEffects barrelsTextEffects;
 
-	// Token: 0x040026C2 RID: 9922
+	// Token: 0x0400208F RID: 8335
 	private static TextMeshEffects redDiamondsTextEffects;
 
-	// Token: 0x040026C3 RID: 9923
+	// Token: 0x04002090 RID: 8336
 	private static TextMeshEffects blueDiamondsTextEffects;
 
-	// Token: 0x040026C4 RID: 9924
+	// Token: 0x04002091 RID: 8337
 	private static TextMeshEffects greenDiamondsTextEffects;
 
-	// Token: 0x040026C5 RID: 9925
+	// Token: 0x04002092 RID: 8338
 	public static bool missionsComplete;
 
-	// Token: 0x040026C6 RID: 9926
+	// Token: 0x04002093 RID: 8339
 	private static bool postavioFinish;
 
-	// Token: 0x040026C7 RID: 9927
+	// Token: 0x04002094 RID: 8340
 	private static Renderer aktivnaIkonicaMisija1;
 
-	// Token: 0x040026C8 RID: 9928
+	// Token: 0x04002095 RID: 8341
 	private static Renderer aktivnaIkonicaMisija2;
 
-	// Token: 0x040026C9 RID: 9929
+	// Token: 0x04002096 RID: 8342
 	private static Renderer aktivnaIkonicaMisija3;
 
-	// Token: 0x040026CA RID: 9930
+	// Token: 0x04002097 RID: 8343
 	private static float previousDistance;
 
-	// Token: 0x040026CB RID: 9931
+	// Token: 0x04002098 RID: 8344
 	public static int points3Stars;
 }

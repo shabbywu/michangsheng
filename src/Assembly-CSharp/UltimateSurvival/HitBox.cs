@@ -3,13 +3,13 @@ using UnityEngine;
 
 namespace UltimateSurvival
 {
-	// Token: 0x0200087B RID: 2171
+	// Token: 0x020005BD RID: 1469
 	[RequireComponent(typeof(Collider))]
 	[RequireComponent(typeof(Rigidbody))]
 	public class HitBox : MonoBehaviour, IDamageable
 	{
-		// Token: 0x170005B8 RID: 1464
-		// (get) Token: 0x06003827 RID: 14375 RVA: 0x00028D07 File Offset: 0x00026F07
+		// Token: 0x170003FD RID: 1021
+		// (get) Token: 0x06002FA3 RID: 12195 RVA: 0x00158312 File Offset: 0x00156512
 		public Collider Collider
 		{
 			get
@@ -18,7 +18,7 @@ namespace UltimateSurvival
 			}
 		}
 
-		// Token: 0x06003828 RID: 14376 RVA: 0x001A2498 File Offset: 0x001A0698
+		// Token: 0x06002FA4 RID: 12196 RVA: 0x0015831C File Offset: 0x0015651C
 		public void ReceiveDamage(HealthEventData damageData)
 		{
 			if (base.enabled)
@@ -35,7 +35,7 @@ namespace UltimateSurvival
 			}
 		}
 
-		// Token: 0x06003829 RID: 14377 RVA: 0x001A2524 File Offset: 0x001A0724
+		// Token: 0x06002FA5 RID: 12197 RVA: 0x001583A8 File Offset: 0x001565A8
 		private void Awake()
 		{
 			this.m_ParentEntity = base.GetComponentInParent<EntityEventHandler>();
@@ -52,18 +52,18 @@ namespace UltimateSurvival
 			this.m_Rigidbody = base.GetComponent<Rigidbody>();
 		}
 
-		// Token: 0x04003277 RID: 12919
+		// Token: 0x040029ED RID: 10733
 		[SerializeField]
 		[Clamp(0f, float.PositiveInfinity)]
 		private float m_DamageMultiplier = 1f;
 
-		// Token: 0x04003278 RID: 12920
+		// Token: 0x040029EE RID: 10734
 		private Collider m_Collider;
 
-		// Token: 0x04003279 RID: 12921
+		// Token: 0x040029EF RID: 10735
 		private Rigidbody m_Rigidbody;
 
-		// Token: 0x0400327A RID: 12922
+		// Token: 0x040029F0 RID: 10736
 		private EntityEventHandler m_ParentEntity;
 	}
 }

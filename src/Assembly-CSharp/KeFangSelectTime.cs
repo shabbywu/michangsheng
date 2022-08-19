@@ -5,10 +5,10 @@ using UnityEngine.Events;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-// Token: 0x02000434 RID: 1076
+// Token: 0x020002E1 RID: 737
 public class KeFangSelectTime : MonoBehaviour, IESCClose
 {
-	// Token: 0x06001CB0 RID: 7344 RVA: 0x000FC880 File Offset: 0x000FAA80
+	// Token: 0x06001997 RID: 6551 RVA: 0x000B6B3C File Offset: 0x000B4D3C
 	private void Awake()
 	{
 		base.transform.SetParent(NewUICanvas.Inst.gameObject.transform);
@@ -21,7 +21,7 @@ public class KeFangSelectTime : MonoBehaviour, IESCClose
 		this.curMonth = 1;
 	}
 
-	// Token: 0x06001CB1 RID: 7345 RVA: 0x000FC920 File Offset: 0x000FAB20
+	// Token: 0x06001998 RID: 6552 RVA: 0x000B6BDC File Offset: 0x000B4DDC
 	public void Init()
 	{
 		if ((int)this.player.money / this.price < this.maxMonth)
@@ -34,7 +34,7 @@ public class KeFangSelectTime : MonoBehaviour, IESCClose
 		ESCCloseManager.Inst.RegisterClose(KeFangSelectTime.inst);
 	}
 
-	// Token: 0x06001CB2 RID: 7346 RVA: 0x00018041 File Offset: 0x00016241
+	// Token: 0x06001999 RID: 6553 RVA: 0x000B6C66 File Offset: 0x000B4E66
 	public void OnDragSlider(float data)
 	{
 		this.curMonth = (int)(data * (float)this.maxMonth);
@@ -45,7 +45,7 @@ public class KeFangSelectTime : MonoBehaviour, IESCClose
 		this.updateData();
 	}
 
-	// Token: 0x06001CB3 RID: 7347 RVA: 0x000FC9AC File Offset: 0x000FABAC
+	// Token: 0x0600199A RID: 6554 RVA: 0x000B6C90 File Offset: 0x000B4E90
 	private void updateData()
 	{
 		this.year.text = (this.curMonth / 12).ToString();
@@ -53,7 +53,7 @@ public class KeFangSelectTime : MonoBehaviour, IESCClose
 		this.needLingShi.text = (this.curMonth * this.price).ToString();
 	}
 
-	// Token: 0x06001CB4 RID: 7348 RVA: 0x000FCA14 File Offset: 0x000FAC14
+	// Token: 0x0600199B RID: 6555 RVA: 0x000B6CF8 File Offset: 0x000B4EF8
 	public void AddMonth()
 	{
 		this.curMonth++;
@@ -65,7 +65,7 @@ public class KeFangSelectTime : MonoBehaviour, IESCClose
 		this.updateData();
 	}
 
-	// Token: 0x06001CB5 RID: 7349 RVA: 0x00018069 File Offset: 0x00016269
+	// Token: 0x0600199C RID: 6556 RVA: 0x000B6D4D File Offset: 0x000B4F4D
 	public void ReduceMonth()
 	{
 		this.curMonth--;
@@ -77,7 +77,7 @@ public class KeFangSelectTime : MonoBehaviour, IESCClose
 		this.updateData();
 	}
 
-	// Token: 0x06001CB6 RID: 7350 RVA: 0x000180A9 File Offset: 0x000162A9
+	// Token: 0x0600199D RID: 6557 RVA: 0x000B6D8D File Offset: 0x000B4F8D
 	public void Close()
 	{
 		KeFangSelectTime.inst = null;
@@ -85,7 +85,7 @@ public class KeFangSelectTime : MonoBehaviour, IESCClose
 		Object.Destroy(base.gameObject);
 	}
 
-	// Token: 0x06001CB7 RID: 7351 RVA: 0x000FCA6C File Offset: 0x000FAC6C
+	// Token: 0x0600199E RID: 6558 RVA: 0x000B6DAC File Offset: 0x000B4FAC
 	public void QueDing()
 	{
 		this.player.zulinContorl.KZAddTime(this.screenName, 0, this.curMonth, 0);
@@ -97,44 +97,44 @@ public class KeFangSelectTime : MonoBehaviour, IESCClose
 		this.Close();
 	}
 
-	// Token: 0x06001CB8 RID: 7352 RVA: 0x000180C7 File Offset: 0x000162C7
+	// Token: 0x0600199F RID: 6559 RVA: 0x000B6E28 File Offset: 0x000B5028
 	public bool TryEscClose()
 	{
 		this.Close();
 		return true;
 	}
 
-	// Token: 0x040018A0 RID: 6304
+	// Token: 0x040014BD RID: 5309
 	public static KeFangSelectTime inst;
 
-	// Token: 0x040018A1 RID: 6305
+	// Token: 0x040014BE RID: 5310
 	[SerializeField]
 	private Text needLingShi;
 
-	// Token: 0x040018A2 RID: 6306
+	// Token: 0x040014BF RID: 5311
 	[SerializeField]
 	private Text year;
 
-	// Token: 0x040018A3 RID: 6307
+	// Token: 0x040014C0 RID: 5312
 	[SerializeField]
 	private Text month;
 
-	// Token: 0x040018A4 RID: 6308
+	// Token: 0x040014C1 RID: 5313
 	[SerializeField]
 	private Slider slider;
 
-	// Token: 0x040018A5 RID: 6309
+	// Token: 0x040014C2 RID: 5314
 	private int curMonth;
 
-	// Token: 0x040018A6 RID: 6310
+	// Token: 0x040014C3 RID: 5315
 	private int maxMonth = 360;
 
-	// Token: 0x040018A7 RID: 6311
+	// Token: 0x040014C4 RID: 5316
 	public int price = 10;
 
-	// Token: 0x040018A8 RID: 6312
+	// Token: 0x040014C5 RID: 5317
 	public string screenName = "";
 
-	// Token: 0x040018A9 RID: 6313
+	// Token: 0x040014C6 RID: 5318
 	public Avatar player;
 }

@@ -3,10 +3,10 @@ using System.Collections.Generic;
 
 namespace JSONClass
 {
-	// Token: 0x02000C33 RID: 3123
+	// Token: 0x020008A5 RID: 2213
 	public class NPCLeiXingDate : IJSONClass
 	{
-		// Token: 0x06004C35 RID: 19509 RVA: 0x00202BD4 File Offset: 0x00200DD4
+		// Token: 0x060040A7 RID: 16551 RVA: 0x001B9B78 File Offset: 0x001B7D78
 		public static void InitDataDict()
 		{
 			foreach (JSONObject jsonobject in jsonData.instance.NPCLeiXingDate.list)
@@ -61,90 +61,90 @@ namespace JSONClass
 			}
 		}
 
-		// Token: 0x06004C36 RID: 19510 RVA: 0x000042DD File Offset: 0x000024DD
+		// Token: 0x060040A8 RID: 16552 RVA: 0x00004095 File Offset: 0x00002295
 		private static void OnInitFinish()
 		{
 		}
 
-		// Token: 0x040049D5 RID: 18901
+		// Token: 0x04003E7C RID: 15996
 		public static Dictionary<int, NPCLeiXingDate> DataDict = new Dictionary<int, NPCLeiXingDate>();
 
-		// Token: 0x040049D6 RID: 18902
+		// Token: 0x04003E7D RID: 15997
 		public static List<NPCLeiXingDate> DataList = new List<NPCLeiXingDate>();
 
-		// Token: 0x040049D7 RID: 18903
+		// Token: 0x04003E7E RID: 15998
 		public static Action OnInitFinishAction = new Action(NPCLeiXingDate.OnInitFinish);
 
-		// Token: 0x040049D8 RID: 18904
+		// Token: 0x04003E7F RID: 15999
 		public int id;
 
-		// Token: 0x040049D9 RID: 18905
+		// Token: 0x04003E80 RID: 16000
 		public int Type;
 
-		// Token: 0x040049DA RID: 18906
+		// Token: 0x04003E81 RID: 16001
 		public int LiuPai;
 
-		// Token: 0x040049DB RID: 18907
+		// Token: 0x04003E82 RID: 16002
 		public int MengPai;
 
-		// Token: 0x040049DC RID: 18908
+		// Token: 0x04003E83 RID: 16003
 		public int Level;
 
-		// Token: 0x040049DD RID: 18909
+		// Token: 0x04003E84 RID: 16004
 		public int yuanying;
 
-		// Token: 0x040049DE RID: 18910
+		// Token: 0x04003E85 RID: 16005
 		public int HuaShenLingYu;
 
-		// Token: 0x040049DF RID: 18911
+		// Token: 0x04003E86 RID: 16006
 		public int wudaoType;
 
-		// Token: 0x040049E0 RID: 18912
+		// Token: 0x04003E87 RID: 16007
 		public int canjiaPaiMai;
 
-		// Token: 0x040049E1 RID: 18913
+		// Token: 0x04003E88 RID: 16008
 		public int AvatarType;
 
-		// Token: 0x040049E2 RID: 18914
+		// Token: 0x04003E89 RID: 16009
 		public int XinQuType;
 
-		// Token: 0x040049E3 RID: 18915
+		// Token: 0x04003E8A RID: 16010
 		public int AttackType;
 
-		// Token: 0x040049E4 RID: 18916
+		// Token: 0x04003E8B RID: 16011
 		public int DefenseType;
 
-		// Token: 0x040049E5 RID: 18917
+		// Token: 0x04003E8C RID: 16012
 		public string FirstName;
 
-		// Token: 0x040049E6 RID: 18918
+		// Token: 0x04003E8D RID: 16013
 		public List<int> skills = new List<int>();
 
-		// Token: 0x040049E7 RID: 18919
+		// Token: 0x04003E8E RID: 16014
 		public List<int> staticSkills = new List<int>();
 
-		// Token: 0x040049E8 RID: 18920
+		// Token: 0x04003E8F RID: 16015
 		public List<int> LingGen = new List<int>();
 
-		// Token: 0x040049E9 RID: 18921
+		// Token: 0x04003E90 RID: 16016
 		public List<int> NPCTag = new List<int>();
 
-		// Token: 0x040049EA RID: 18922
+		// Token: 0x04003E91 RID: 16017
 		public List<int> paimaifenzu = new List<int>();
 
-		// Token: 0x040049EB RID: 18923
+		// Token: 0x04003E92 RID: 16018
 		public List<int> equipWeapon = new List<int>();
 
-		// Token: 0x040049EC RID: 18924
+		// Token: 0x04003E93 RID: 16019
 		public List<int> equipClothing = new List<int>();
 
-		// Token: 0x040049ED RID: 18925
+		// Token: 0x04003E94 RID: 16020
 		public List<int> equipRing = new List<int>();
 
-		// Token: 0x040049EE RID: 18926
+		// Token: 0x04003E95 RID: 16021
 		public List<int> JinDanType = new List<int>();
 
-		// Token: 0x040049EF RID: 18927
+		// Token: 0x04003E96 RID: 16022
 		public List<int> ShiLi = new List<int>();
 	}
 }

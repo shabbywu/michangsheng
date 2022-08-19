@@ -3,17 +3,17 @@ using System.Collections.Generic;
 
 namespace UltimateSurvival
 {
-	// Token: 0x020008FA RID: 2298
+	// Token: 0x02000615 RID: 1557
 	public class PlayerStats : PlayerBehaviour
 	{
-		// Token: 0x06003AE3 RID: 15075 RVA: 0x0002ABFF File Offset: 0x00028DFF
+		// Token: 0x060031BA RID: 12730 RVA: 0x00160ECC File Offset: 0x0015F0CC
 		private void Start()
 		{
 			MonoSingleton<InventoryController>.Instance.EquipmentChanged.AddListener(new Action<ItemHolder>(this.On_EquipmentChanged));
 			this.m_EquipmentHolders = MonoSingleton<InventoryController>.Instance.GetEquipmentHolders();
 		}
 
-		// Token: 0x06003AE4 RID: 15076 RVA: 0x001AA86C File Offset: 0x001A8A6C
+		// Token: 0x060031BB RID: 12731 RVA: 0x00160EFC File Offset: 0x0015F0FC
 		private void On_EquipmentChanged(ItemHolder holder)
 		{
 			int num = 0;
@@ -27,7 +27,7 @@ namespace UltimateSurvival
 			base.Player.Defense.Set(num);
 		}
 
-		// Token: 0x04003530 RID: 13616
+		// Token: 0x04002C12 RID: 11282
 		private List<ItemHolder> m_EquipmentHolders;
 	}
 }

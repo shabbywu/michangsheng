@@ -2,10 +2,10 @@
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-// Token: 0x02000503 RID: 1283
+// Token: 0x02000381 RID: 897
 public class UIShengWangItem : MonoBehaviour, IPointerEnterHandler, IEventSystemHandler, IPointerExitHandler
 {
-	// Token: 0x06002129 RID: 8489 RVA: 0x0001B4F0 File Offset: 0x000196F0
+	// Token: 0x06001DB2 RID: 7602 RVA: 0x000D187F File Offset: 0x000CFA7F
 	public void Set(bool active)
 	{
 		this.ActiveImage.SetActive(active);
@@ -14,7 +14,7 @@ public class UIShengWangItem : MonoBehaviour, IPointerEnterHandler, IEventSystem
 		this.NameText.SetActive(!active);
 	}
 
-	// Token: 0x0600212A RID: 8490 RVA: 0x0001B528 File Offset: 0x00019728
+	// Token: 0x06001DB3 RID: 7603 RVA: 0x000D18B7 File Offset: 0x000CFAB7
 	public void OnPointerEnter(PointerEventData eventData)
 	{
 		if (!string.IsNullOrWhiteSpace(this.TeQuanDesc))
@@ -24,24 +24,24 @@ public class UIShengWangItem : MonoBehaviour, IPointerEnterHandler, IEventSystem
 		}
 	}
 
-	// Token: 0x0600212B RID: 8491 RVA: 0x0001B557 File Offset: 0x00019757
+	// Token: 0x06001DB4 RID: 7604 RVA: 0x000D18E6 File Offset: 0x000CFAE6
 	public void OnPointerExit(PointerEventData eventData)
 	{
 		UToolTip.Close();
 	}
 
-	// Token: 0x04001C99 RID: 7321
+	// Token: 0x04001840 RID: 6208
 	public GameObject ActiveImage;
 
-	// Token: 0x04001C9A RID: 7322
+	// Token: 0x04001841 RID: 6209
 	public GameObject UnActiveImage;
 
-	// Token: 0x04001C9B RID: 7323
+	// Token: 0x04001842 RID: 6210
 	public GameObject NameImage;
 
-	// Token: 0x04001C9C RID: 7324
+	// Token: 0x04001843 RID: 6211
 	public GameObject NameText;
 
-	// Token: 0x04001C9D RID: 7325
+	// Token: 0x04001844 RID: 6212
 	public string TeQuanDesc;
 }

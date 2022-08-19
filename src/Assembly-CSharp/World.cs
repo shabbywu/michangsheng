@@ -9,12 +9,12 @@ using UnityEngine.Events;
 using UnityEngine.SceneManagement;
 using YSGame;
 
-// Token: 0x02000659 RID: 1625
+// Token: 0x0200048B RID: 1163
 public class World : MonoBehaviour
 {
-	// Token: 0x170002D9 RID: 729
-	// (get) Token: 0x0600286F RID: 10351 RVA: 0x0001FA67 File Offset: 0x0001DC67
-	// (set) Token: 0x06002870 RID: 10352 RVA: 0x0001FA8B File Offset: 0x0001DC8B
+	// Token: 0x17000292 RID: 658
+	// (get) Token: 0x0600249E RID: 9374 RVA: 0x000FCA1E File Offset: 0x000FAC1E
+	// (set) Token: 0x0600249F RID: 9375 RVA: 0x000FCA42 File Offset: 0x000FAC42
 	public static World instance
 	{
 		get
@@ -32,12 +32,12 @@ public class World : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06002872 RID: 10354 RVA: 0x000042DD File Offset: 0x000024DD
+	// Token: 0x060024A1 RID: 9377 RVA: 0x00004095 File Offset: 0x00002295
 	private void Awake()
 	{
 	}
 
-	// Token: 0x06002873 RID: 10355 RVA: 0x0013BED8 File Offset: 0x0013A0D8
+	// Token: 0x060024A2 RID: 9378 RVA: 0x000FCA4C File Offset: 0x000FAC4C
 	public void init()
 	{
 		World.inventoryItemList = (ItemDataBaseList)Resources.Load("ItemDatabase");
@@ -55,7 +55,7 @@ public class World : MonoBehaviour
 		World.instance.allGameEntity.Add("_Game Controller", (GameObject)Resources.Load("Effect/Prefab/gameUI/_Game Controller"));
 	}
 
-	// Token: 0x06002874 RID: 10356 RVA: 0x0013C014 File Offset: 0x0013A214
+	// Token: 0x060024A3 RID: 9379 RVA: 0x000FCB88 File Offset: 0x000FAD88
 	private void Start()
 	{
 		GameObject gameObject = GameObject.FindGameObjectWithTag("Target");
@@ -83,7 +83,7 @@ public class World : MonoBehaviour
 		Event.registerOut("goToHome", this, "goToHome");
 	}
 
-	// Token: 0x06002875 RID: 10357 RVA: 0x0013C174 File Offset: 0x0013A374
+	// Token: 0x060024A4 RID: 9380 RVA: 0x000FCCE8 File Offset: 0x000FAEE8
 	public void set_Buffs(Entity entity, List<ushort> oldValue, List<ushort> newValue)
 	{
 		if (oldValue.Count<ushort>() > newValue.Count<ushort>())
@@ -101,7 +101,7 @@ public class World : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06002876 RID: 10358 RVA: 0x0013C1F8 File Offset: 0x0013A3F8
+	// Token: 0x060024A5 RID: 9381 RVA: 0x000FCD6C File Offset: 0x000FAF6C
 	public void displayBuff(Entity entity, int buffid)
 	{
 		string str = jsonData.instance.BuffJsonData[string.Concat(buffid)]["skillEffect"].str;
@@ -112,7 +112,7 @@ public class World : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06002877 RID: 10359 RVA: 0x0001FA93 File Offset: 0x0001DC93
+	// Token: 0x060024A6 RID: 9382 RVA: 0x000FCE14 File Offset: 0x000FB014
 	public void goToHome()
 	{
 		SceneManager.LoadScene("Mainmenu");
@@ -120,19 +120,19 @@ public class World : MonoBehaviour
 		Object.Destroy(World.instance.gameObject);
 	}
 
-	// Token: 0x06002878 RID: 10360 RVA: 0x0001FABA File Offset: 0x0001DCBA
+	// Token: 0x060024A7 RID: 9383 RVA: 0x000FCE3B File Offset: 0x000FB03B
 	private void OnDestroy()
 	{
 		World.instance = null;
 		Event.deregisterOut(this);
 	}
 
-	// Token: 0x06002879 RID: 10361 RVA: 0x000042DD File Offset: 0x000024DD
+	// Token: 0x060024A8 RID: 9384 RVA: 0x00004095 File Offset: 0x00002295
 	private void Update()
 	{
 	}
 
-	// Token: 0x0600287A RID: 10362 RVA: 0x0013C2A0 File Offset: 0x0013A4A0
+	// Token: 0x060024A9 RID: 9385 RVA: 0x000FCE4C File Offset: 0x000FB04C
 	public void onAvatarEnterWorld(ulong rndUUID, int eid, Avatar avatar)
 	{
 		if (!avatar.isPlayer())
@@ -242,7 +242,7 @@ public class World : MonoBehaviour
 		gameObject4.transform.localPosition = new Vector3(0f, 0f, 0f);
 	}
 
-	// Token: 0x0600287B RID: 10363 RVA: 0x0013C56C File Offset: 0x0013A76C
+	// Token: 0x060024AA RID: 9386 RVA: 0x000FD118 File Offset: 0x000FB318
 	public void onEnterWorld(Entity entity)
 	{
 		float num = entity.position.y;
@@ -305,7 +305,7 @@ public class World : MonoBehaviour
 		}
 	}
 
-	// Token: 0x0600287C RID: 10364 RVA: 0x0013C7C0 File Offset: 0x0013A9C0
+	// Token: 0x060024AB RID: 9387 RVA: 0x000FD36C File Offset: 0x000FB56C
 	public void createMonster(Entity entity)
 	{
 		this.createInstantiate("Effect/Prefab/gameEntity/Monster/Monster", entity, "Monster");
@@ -317,14 +317,14 @@ public class World : MonoBehaviour
 		}
 	}
 
-	// Token: 0x0600287D RID: 10365 RVA: 0x0013C810 File Offset: 0x0013AA10
+	// Token: 0x060024AC RID: 9388 RVA: 0x000FD3BC File Offset: 0x000FB5BC
 	public void createNPC(Entity entity)
 	{
 		GameObject gameObject = (GameObject)Resources.Load("Effect/Prefab/gameEntity/NPC/NPC1/NPC1_1");
 		entity.renderObj = Object.Instantiate<GameObject>(gameObject, new Vector3(entity.position.x, entity.position.y, entity.position.z), Quaternion.Euler(new Vector3(entity.direction.y, entity.direction.z, entity.direction.x)));
 	}
 
-	// Token: 0x0600287E RID: 10366 RVA: 0x0013C88C File Offset: 0x0013AA8C
+	// Token: 0x060024AD RID: 9389 RVA: 0x000FD438 File Offset: 0x000FB638
 	public void creatAvater(Entity entity)
 	{
 		this.createInstantiate("Effect/Prefab/gameEntity/Avater/Avater", entity, "Avater");
@@ -332,7 +332,7 @@ public class World : MonoBehaviour
 		((GameObject)entity.renderObj).GetComponent<GameEntity>().scale = new Vector3(0.75f, 0.75f, 0.75f);
 	}
 
-	// Token: 0x0600287F RID: 10367 RVA: 0x0013C8DC File Offset: 0x0013AADC
+	// Token: 0x060024AE RID: 9390 RVA: 0x000FD488 File Offset: 0x000FB688
 	public void createRoleScript<T>(Entity entity) where T : BaseAddScript
 	{
 		object definedProperty = entity.getDefinedProperty("roleTypeCell");
@@ -348,7 +348,7 @@ public class World : MonoBehaviour
 		baseAddScript.entity = entity;
 	}
 
-	// Token: 0x06002880 RID: 10368 RVA: 0x0013C968 File Offset: 0x0013AB68
+	// Token: 0x060024AF RID: 9391 RVA: 0x000FD514 File Offset: 0x000FB714
 	public void createInstantiate(string patch, Entity entity, string entitytype)
 	{
 		float y = entity.position.y;
@@ -383,7 +383,7 @@ public class World : MonoBehaviour
 		gameObject2.transform.localPosition = new Vector3(0f, 0f, 0f);
 	}
 
-	// Token: 0x06002881 RID: 10369 RVA: 0x0013CAE8 File Offset: 0x0013ACE8
+	// Token: 0x060024B0 RID: 9392 RVA: 0x000FD694 File Offset: 0x000FB894
 	public void CreatBuild(Entity entity)
 	{
 		object definedProperty = entity.getDefinedProperty("BuildId");
@@ -395,7 +395,7 @@ public class World : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06002882 RID: 10370 RVA: 0x0013CB80 File Offset: 0x0013AD80
+	// Token: 0x060024B1 RID: 9393 RVA: 0x000FD72C File Offset: 0x000FB92C
 	public void onLeaveWorld(Entity entity)
 	{
 		if (entity.renderObj == null)
@@ -411,7 +411,7 @@ public class World : MonoBehaviour
 		entity.renderObj = null;
 	}
 
-	// Token: 0x06002883 RID: 10371 RVA: 0x0001FAC9 File Offset: 0x0001DCC9
+	// Token: 0x060024B2 RID: 9394 RVA: 0x000FD788 File Offset: 0x000FB988
 	public void set_entityName(Entity entity, object v)
 	{
 		if (entity.renderObj != null)
@@ -420,7 +420,7 @@ public class World : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06002884 RID: 10372 RVA: 0x0013CBDC File Offset: 0x0013ADDC
+	// Token: 0x060024B3 RID: 9395 RVA: 0x000FD7B0 File Offset: 0x000FB9B0
 	public void set_position(Entity entity)
 	{
 		if (entity.renderObj == null)
@@ -432,7 +432,7 @@ public class World : MonoBehaviour
 		((GameObject)entity.renderObj).GetComponent<GameEntity>().position = position;
 	}
 
-	// Token: 0x06002885 RID: 10373 RVA: 0x0013CC28 File Offset: 0x0013AE28
+	// Token: 0x060024B4 RID: 9396 RVA: 0x000FD7FC File Offset: 0x000FB9FC
 	public void set_direction(Entity entity)
 	{
 		if (entity.renderObj == null)
@@ -443,7 +443,7 @@ public class World : MonoBehaviour
 		((GameObject)entity.renderObj).GetComponent<GameEntity>().destDirection = new Vector3(entity.direction.y, entity.direction.z, entity.direction.x);
 	}
 
-	// Token: 0x06002886 RID: 10374 RVA: 0x0013CC88 File Offset: 0x0013AE88
+	// Token: 0x060024B5 RID: 9397 RVA: 0x000FD85C File Offset: 0x000FBA5C
 	public UI_Target getUITarget()
 	{
 		if (this.ui_target == null)
@@ -457,18 +457,18 @@ public class World : MonoBehaviour
 		return this.ui_target;
 	}
 
-	// Token: 0x06002887 RID: 10375 RVA: 0x000042DD File Offset: 0x000024DD
+	// Token: 0x060024B6 RID: 9398 RVA: 0x00004095 File Offset: 0x00002295
 	public void set_HP(Entity entity, object v)
 	{
 	}
 
-	// Token: 0x06002888 RID: 10376 RVA: 0x000042DD File Offset: 0x000024DD
+	// Token: 0x060024B7 RID: 9399 RVA: 0x00004095 File Offset: 0x00002295
 	public void set_HP_Max(Entity entity, object v)
 	{
 	}
 
-	// Token: 0x06002889 RID: 10377 RVA: 0x0013CCC8 File Offset: 0x0013AEC8
-	public void GameOver()
+	// Token: 0x060024B8 RID: 9400 RVA: 0x000FD89C File Offset: 0x000FBA9C
+	public static void GameOver()
 	{
 		if (RoundManager.instance != null && RoundManager.instance.gameOverSwitch == 0)
 		{
@@ -483,7 +483,7 @@ public class World : MonoBehaviour
 		}
 	}
 
-	// Token: 0x0600288A RID: 10378 RVA: 0x0013CD40 File Offset: 0x0013AF40
+	// Token: 0x060024B9 RID: 9401 RVA: 0x000FD914 File Offset: 0x000FBB14
 	public void set_state(Entity entity, object v)
 	{
 		if (entity.renderObj != null)
@@ -495,7 +495,7 @@ public class World : MonoBehaviour
 				Queue<UnityAction> queue = new Queue<UnityAction>();
 				UnityAction item = delegate()
 				{
-					this.GameOver();
+					World.GameOver();
 					YSFuncList.Ints.Continue();
 				};
 				queue.Enqueue(item);
@@ -508,7 +508,7 @@ public class World : MonoBehaviour
 		}
 	}
 
-	// Token: 0x0600288B RID: 10379 RVA: 0x0013CE48 File Offset: 0x0013B048
+	// Token: 0x060024BA RID: 9402 RVA: 0x000FDA30 File Offset: 0x000FBC30
 	public void createPlayer()
 	{
 		if (this.player != null)
@@ -541,7 +541,7 @@ public class World : MonoBehaviour
 		((GameObject)avatar.renderObj).GetComponent<GameEntity>().isPlayer = true;
 	}
 
-	// Token: 0x0600288C RID: 10380 RVA: 0x0013CF4C File Offset: 0x0013B14C
+	// Token: 0x060024BB RID: 9403 RVA: 0x000FDB34 File Offset: 0x000FBD34
 	private void initPlayer(GameObject player)
 	{
 		if (player == null)
@@ -557,7 +557,7 @@ public class World : MonoBehaviour
 		avatar.reqItemList();
 	}
 
-	// Token: 0x0600288D RID: 10381 RVA: 0x0013CF88 File Offset: 0x0013B188
+	// Token: 0x060024BC RID: 9404 RVA: 0x000FDB70 File Offset: 0x000FBD70
 	public void addSpaceGeometryMapping(string respath)
 	{
 		Debug.Log("loading scene(" + respath + ")...");
@@ -571,7 +571,7 @@ public class World : MonoBehaviour
 		this.terrain == null;
 	}
 
-	// Token: 0x0600288E RID: 10382 RVA: 0x0001FAEE File Offset: 0x0001DCEE
+	// Token: 0x060024BD RID: 9405 RVA: 0x000FDBD5 File Offset: 0x000FBDD5
 	public void updatePosition(Entity entity)
 	{
 		if (entity.renderObj == null)
@@ -583,7 +583,7 @@ public class World : MonoBehaviour
 		component.isOnGround = entity.isOnGround;
 	}
 
-	// Token: 0x0600288F RID: 10383 RVA: 0x0013CFF0 File Offset: 0x0013B1F0
+	// Token: 0x060024BE RID: 9406 RVA: 0x000FDC08 File Offset: 0x000FBE08
 	public void recvDamage(Entity entity, Entity attacker, int skillID, int damageType, int damage)
 	{
 		if (RoundManager.instance != null && RoundManager.instance.IsVirtual)
@@ -597,7 +597,11 @@ public class World : MonoBehaviour
 		if (damage < 0)
 		{
 			GameObject gameObject = Object.Instantiate(ResManager.inst.LoadSkillEffect("huifu")) as GameObject;
-			if (entity == attacker)
+			if (SceneEx.NowSceneName == "YSNewTianJieFight")
+			{
+				gameObject.transform.localPosition = new Vector3(-2.42f, 3.37f, 1f);
+			}
+			else if (entity == attacker)
 			{
 				if (entity.isPlayer())
 				{
@@ -657,14 +661,21 @@ public class World : MonoBehaviour
 				}
 				YSFuncList.Ints.Continue();
 			};
-			UnityAction item4 = delegate()
-			{
-				entityEntity.GetComponentInChildren<AvatarShowHpDamage>().show(damage, 0);
-				this.Invoke("continuFunc", 0.1f);
-			};
 			queue.Enqueue(item2);
 			queue.Enqueue(item3);
-			queue.Enqueue(item4);
+			if (TianJieManager.Inst != null && entity.isPlayer())
+			{
+				entityEntity.GetComponentInChildren<AvatarShowHpDamage>().SpecialShow(damage, 0);
+			}
+			else
+			{
+				UnityAction item4 = delegate()
+				{
+					entityEntity.GetComponentInChildren<AvatarShowHpDamage>().show(damage, 0);
+					this.Invoke("continuFunc", 0.1f);
+				};
+				queue.Enqueue(item4);
+			}
 			if (attacker.isPlayer())
 			{
 				gameObject2.transform.LookAt(new Vector3(gameObject2.transform.position.x + vector.x, gameObject2.transform.position.y, gameObject2.transform.position.z + vector.z));
@@ -712,13 +723,13 @@ public class World : MonoBehaviour
 		YSFuncList.Ints.Start();
 	}
 
-	// Token: 0x06002890 RID: 10384 RVA: 0x000112BB File Offset: 0x0000F4BB
+	// Token: 0x060024BF RID: 9407 RVA: 0x000656B8 File Offset: 0x000638B8
 	public void continuFunc()
 	{
 		YSFuncList.Ints.Continue();
 	}
 
-	// Token: 0x06002891 RID: 10385 RVA: 0x0013D2FC File Offset: 0x0013B4FC
+	// Token: 0x060024C0 RID: 9408 RVA: 0x000FDF7C File Offset: 0x000FC17C
 	public void recvSkill(int attackerID, int skillID)
 	{
 		Entity entity = KBEngineApp.app.entities[attackerID];
@@ -732,7 +743,7 @@ public class World : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06002892 RID: 10386 RVA: 0x0013D378 File Offset: 0x0013B578
+	// Token: 0x060024C1 RID: 9409 RVA: 0x000FDFF8 File Offset: 0x000FC1F8
 	public void onReqItemList(Dictionary<ulong, ITEM_INFO> itemList, Dictionary<ulong, ITEM_INFO> equipItemDict)
 	{
 		GameObject gameObject = (GameObject)KBEngineApp.app.player().renderObj;
@@ -772,7 +783,7 @@ public class World : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06002893 RID: 10387 RVA: 0x0001FB20 File Offset: 0x0001DD20
+	// Token: 0x060024C2 RID: 9410 RVA: 0x000FE154 File Offset: 0x000FC354
 	public void set_equipWeapon(Entity dst, int itemId)
 	{
 		if (dst.renderObj == null)
@@ -787,51 +798,51 @@ public class World : MonoBehaviour
 		((GameObject)dst.renderObj).GetComponent<EquipWeapon>().equipWeapon(itemId);
 	}
 
-	// Token: 0x06002894 RID: 10388 RVA: 0x0001FB5B File Offset: 0x0001DD5B
+	// Token: 0x060024C3 RID: 9411 RVA: 0x000FE18F File Offset: 0x000FC38F
 	public void setSkillButton()
 	{
 		UI_MainUI.inst.setSkill();
 	}
 
-	// Token: 0x0400222A RID: 8746
+	// Token: 0x04001D4D RID: 7501
 	public static World _instance;
 
-	// Token: 0x0400222B RID: 8747
+	// Token: 0x04001D4E RID: 7502
 	private GameObject terrain;
 
-	// Token: 0x0400222C RID: 8748
+	// Token: 0x04001D4F RID: 7503
 	public GameObject terrainPerfab;
 
-	// Token: 0x0400222D RID: 8749
+	// Token: 0x04001D50 RID: 7504
 	private GameObject player;
 
-	// Token: 0x0400222E RID: 8750
+	// Token: 0x04001D51 RID: 7505
 	public GameObject otherPlayerPerfab;
 
-	// Token: 0x0400222F RID: 8751
+	// Token: 0x04001D52 RID: 7506
 	public GameObject gatePerfab;
 
-	// Token: 0x04002230 RID: 8752
+	// Token: 0x04001D53 RID: 7507
 	public GameObject avatarPerfab;
 
-	// Token: 0x04002231 RID: 8753
+	// Token: 0x04001D54 RID: 7508
 	public GameObject snowBallPerfab;
 
-	// Token: 0x04002232 RID: 8754
+	// Token: 0x04001D55 RID: 7509
 	public GameObject droppedItemPerfab;
 
-	// Token: 0x04002233 RID: 8755
+	// Token: 0x04001D56 RID: 7510
 	private Dictionary<string, GameObject> allGameEntity = new Dictionary<string, GameObject>();
 
-	// Token: 0x04002234 RID: 8756
+	// Token: 0x04001D57 RID: 7511
 	private bool isFirstPos = true;
 
-	// Token: 0x04002235 RID: 8757
+	// Token: 0x04001D58 RID: 7512
 	private UI_Target ui_target;
 
-	// Token: 0x04002236 RID: 8758
+	// Token: 0x04001D59 RID: 7513
 	private UI_Target ui_targetPlayer;
 
-	// Token: 0x04002237 RID: 8759
+	// Token: 0x04001D5A RID: 7514
 	public static ItemDataBaseList inventoryItemList;
 }

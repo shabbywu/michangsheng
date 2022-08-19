@@ -6,31 +6,32 @@ using ICSharpCode.SharpZipLib.Zip;
 using KBEngine;
 using UnityEngine;
 
-// Token: 0x020002B0 RID: 688
+// Token: 0x020001B2 RID: 434
 public class clientApp : KBEMain
 {
-	// Token: 0x060014E4 RID: 5348 RVA: 0x000BC778 File Offset: 0x000BA978
+	// Token: 0x06001239 RID: 4665 RVA: 0x0006EAD0 File Offset: 0x0006CCD0
 	protected override void Awake()
 	{
 		clientApp.InitVersion();
+		clientApp.dataPath = Application.dataPath;
+		clientApp.persistentDataPath = Application.persistentDataPath;
 		Debug.Log(string.Format("clientApp.Awake:{0}", DateTime.Now));
 		clientApp.Inst = this;
 		base.Awake();
-		File.WriteAllText(Paths.GetSavePath() + "/devlog.log", "");
 		Application.logMessageReceived += new Application.LogCallback(this.LogCallback);
 		Application.focusChanged += this.OnFocusChanged;
 		this.winRect = new Rect(((float)Screen.width - this.debugWidth) / 2f, ((float)Screen.height - this.debugHeight) / 2f, this.debugWidth, this.debugHeight);
-		clientApp.savePath = Paths.GetSavePath();
+		clientApp.savePath = Paths.GetNewSavePath();
 		clientApp.debugMode = true;
 	}
 
-	// Token: 0x060014E5 RID: 5349 RVA: 0x000132B3 File Offset: 0x000114B3
+	// Token: 0x0600123A RID: 4666 RVA: 0x0006EB8A File Offset: 0x0006CD8A
 	public void OnFocusChanged(bool value)
 	{
 		MessageMag.Instance.Send(MessageName.MSG_APP_OnFocusChanged, new MessageData(value));
 	}
 
-	// Token: 0x060014E6 RID: 5350 RVA: 0x000BC838 File Offset: 0x000BAA38
+	// Token: 0x0600123B RID: 4667 RVA: 0x0006EBA4 File Offset: 0x0006CDA4
 	private static void InitVersion()
 	{
 		clientApp.VersionStr = Application.version;
@@ -52,8 +53,8 @@ public class clientApp : KBEMain
 		}
 	}
 
-	// Token: 0x1700026B RID: 619
-	// (get) Token: 0x060014E7 RID: 5351 RVA: 0x000132CA File Offset: 0x000114CA
+	// Token: 0x17000223 RID: 547
+	// (get) Token: 0x0600123C RID: 4668 RVA: 0x0006EC50 File Offset: 0x0006CE50
 	private Avatar Player
 	{
 		get
@@ -62,13 +63,13 @@ public class clientApp : KBEMain
 		}
 	}
 
-	// Token: 0x060014E8 RID: 5352 RVA: 0x000132D6 File Offset: 0x000114D6
+	// Token: 0x0600123D RID: 4669 RVA: 0x0006EC5C File Offset: 0x0006CE5C
 	private void OnGUI()
 	{
 		this.DebugGUI();
 	}
 
-	// Token: 0x060014E9 RID: 5353 RVA: 0x000132DE File Offset: 0x000114DE
+	// Token: 0x0600123E RID: 4670 RVA: 0x0006EC64 File Offset: 0x0006CE64
 	private void Update()
 	{
 		if (!ModVar.Enable && ModVar.closeNpcNaiYao)
@@ -79,9 +80,18 @@ public class clientApp : KBEMain
 		{
 			Debug.Log(UToolTip.debugData);
 		}
+		if (Input.GetKey(306) && Input.GetKeyDown(101))
+		{
+			PlayerEx.DeleteErrorItem();
+		}
 	}
 
-	// Token: 0x060014EA RID: 5354 RVA: 0x000BC8E4 File Offset: 0x000BAAE4
+	// Token: 0x0600123F RID: 4671 RVA: 0x00004095 File Offset: 0x00002295
+	protected override void OnDestroy()
+	{
+	}
+
+	// Token: 0x06001240 RID: 4672 RVA: 0x0006ECC0 File Offset: 0x0006CEC0
 	private string GetVersionStr()
 	{
 		this.flagStr1 = (ModVar.Enable ? "M" : "");
@@ -89,13 +99,13 @@ public class clientApp : KBEMain
 		return this.flagStr1 + this.flagStr2 + " EA版本:" + clientApp.VersionStr;
 	}
 
-	// Token: 0x060014EB RID: 5355 RVA: 0x00013313 File Offset: 0x00011513
+	// Token: 0x06001241 RID: 4673 RVA: 0x0006ED1B File Offset: 0x0006CF1B
 	private void ShowVersion()
 	{
 		GUI.Label(new Rect(10f, (float)(Screen.height - 30), 200f, 50f), this.GetVersionStr());
 	}
 
-	// Token: 0x060014EC RID: 5356 RVA: 0x000BC940 File Offset: 0x000BAB40
+	// Token: 0x06001242 RID: 4674 RVA: 0x0006ED48 File Offset: 0x0006CF48
 	public void DebugGUI()
 	{
 		if (this.GUIcd < 0f)
@@ -120,7 +130,7 @@ public class clientApp : KBEMain
 		}
 	}
 
-	// Token: 0x060014ED RID: 5357 RVA: 0x000BCA1C File Offset: 0x000BAC1C
+	// Token: 0x06001243 RID: 4675 RVA: 0x0006EE24 File Offset: 0x0006D024
 	public bool IsDataError()
 	{
 		bool result = false;
@@ -138,7 +148,7 @@ public class clientApp : KBEMain
 		return result;
 	}
 
-	// Token: 0x060014EE RID: 5358 RVA: 0x000BCA5C File Offset: 0x000BAC5C
+	// Token: 0x06001244 RID: 4676 RVA: 0x0006EE64 File Offset: 0x0006D064
 	public void DebugWindow(int id)
 	{
 		GUILayout.Label(this.GetVersionStr() ?? "", Array.Empty<GUILayoutOption>());
@@ -204,18 +214,18 @@ public class clientApp : KBEMain
 		GUILayout.EndHorizontal();
 	}
 
-	// Token: 0x060014EF RID: 5359 RVA: 0x0001333D File Offset: 0x0001153D
+	// Token: 0x06001245 RID: 4677 RVA: 0x0005F6D7 File Offset: 0x0005D8D7
 	public void OpenSaveDir()
 	{
-		Process.Start(Paths.GetSavePath());
+		Process.Start(Paths.GetNewSavePath());
 	}
 
-	// Token: 0x060014F0 RID: 5360 RVA: 0x000BCC9C File Offset: 0x000BAE9C
+	// Token: 0x06001246 RID: 4678 RVA: 0x0006F0A4 File Offset: 0x0006D2A4
 	public void ZipSaveToDesktop()
 	{
 		try
 		{
-			clientApp.CreateZipFile(clientApp.savePath, clientApp.zipOutpath);
+			YSZip.ZipFile(clientApp.savePath, clientApp.zipOutpath);
 		}
 		catch
 		{
@@ -223,7 +233,7 @@ public class clientApp : KBEMain
 		clientApp.nowSaveing = false;
 	}
 
-	// Token: 0x060014F1 RID: 5361 RVA: 0x000BCCD4 File Offset: 0x000BAED4
+	// Token: 0x06001247 RID: 4679 RVA: 0x0006F0DC File Offset: 0x0006D2DC
 	public static void CreateZipFile(string filesPath, string zipFilePath)
 	{
 		if (!Directory.Exists(filesPath))
@@ -254,7 +264,7 @@ public class clientApp : KBEMain
 		zipOutputStream.Close();
 	}
 
-	// Token: 0x060014F2 RID: 5362 RVA: 0x000BCDA0 File Offset: 0x000BAFA0
+	// Token: 0x06001248 RID: 4680 RVA: 0x0006F1A8 File Offset: 0x0006D3A8
 	public void SaveLogToDesktop()
 	{
 		FileInfo fileInfo = new FileInfo(Paths.GetSavePath() + "/output_log.txt");
@@ -279,38 +289,28 @@ public class clientApp : KBEMain
 		this.cd = 3f;
 	}
 
-	// Token: 0x060014F3 RID: 5363 RVA: 0x000BCE58 File Offset: 0x000BB058
-	public void ClearSaveKuoHao()
-	{
-		FileInfo[] files = new DirectoryInfo(Paths.GetSavePath()).GetFiles("*(*");
-		for (int i = 0; i < files.Length; i++)
-		{
-			files[i].Delete();
-		}
-	}
-
-	// Token: 0x060014F4 RID: 5364 RVA: 0x000BCE90 File Offset: 0x000BB090
+	// Token: 0x06001249 RID: 4681 RVA: 0x0006F260 File Offset: 0x0006D460
 	private void LogCallback(string condition, string stackTrace, LogType type)
 	{
 		if (type == null || type == 4)
 		{
 			string contents = string.Format("[{0}]发起者:\n{1}内容:{2}\n\n", DateTime.Now, stackTrace, condition);
-			if (!File.Exists(Paths.GetSavePath() + "/errorlog.log"))
+			if (!File.Exists(Paths.GetNewSavePath() + "/errorlog.log"))
 			{
-				File.WriteAllText(Paths.GetSavePath() + "/errorlog.log", "");
+				File.WriteAllText(Paths.GetNewSavePath() + "/errorlog.log", "");
 			}
-			File.AppendAllText(Paths.GetSavePath() + "/errorlog.log", contents);
+			File.AppendAllText(Paths.GetNewSavePath() + "/errorlog.log", contents);
 		}
 	}
 
-	// Token: 0x060014F5 RID: 5365 RVA: 0x0001334A File Offset: 0x0001154A
+	// Token: 0x0600124A RID: 4682 RVA: 0x0006F2CF File Offset: 0x0006D4CF
 	public void DestoryTalk(GameObject obj)
 	{
 		this.waitToDestory.Enqueue(obj);
 		base.Invoke("FDestory", 1f);
 	}
 
-	// Token: 0x060014F6 RID: 5366 RVA: 0x000BCF00 File Offset: 0x000BB100
+	// Token: 0x0600124B RID: 4683 RVA: 0x0006F2F0 File Offset: 0x0006D4F0
 	private void FDestory()
 	{
 		if (this.waitToDestory.Count > 0)
@@ -323,54 +323,63 @@ public class clientApp : KBEMain
 		}
 	}
 
-	// Token: 0x0400100D RID: 4109
+	// Token: 0x04000CE2 RID: 3298
 	public static clientApp Inst;
 
-	// Token: 0x0400100E RID: 4110
+	// Token: 0x04000CE3 RID: 3299
 	public static string VersionStr;
 
-	// Token: 0x0400100F RID: 4111
+	// Token: 0x04000CE4 RID: 3300
 	public static bool IsTestVersion;
 
-	// Token: 0x04001010 RID: 4112
+	// Token: 0x04000CE5 RID: 3301
+	public static bool IsNewSaveVersion;
+
+	// Token: 0x04000CE6 RID: 3302
+	public static string dataPath;
+
+	// Token: 0x04000CE7 RID: 3303
+	public static string persistentDataPath;
+
+	// Token: 0x04000CE8 RID: 3304
 	public static bool debugMode;
 
-	// Token: 0x04001011 RID: 4113
+	// Token: 0x04000CE9 RID: 3305
 	private static string savePath;
 
-	// Token: 0x04001012 RID: 4114
+	// Token: 0x04000CEA RID: 3306
 	private static string zipOutpath;
 
-	// Token: 0x04001013 RID: 4115
+	// Token: 0x04000CEB RID: 3307
 	private static bool nowSaveing;
 
-	// Token: 0x04001014 RID: 4116
+	// Token: 0x04000CEC RID: 3308
 	private float debugWidth = 400f;
 
-	// Token: 0x04001015 RID: 4117
+	// Token: 0x04000CED RID: 3309
 	private float debugHeight = 120f;
 
-	// Token: 0x04001016 RID: 4118
+	// Token: 0x04000CEE RID: 3310
 	private Rect winRect;
 
-	// Token: 0x04001017 RID: 4119
+	// Token: 0x04000CEF RID: 3311
 	private string logFileShow = "";
 
-	// Token: 0x04001018 RID: 4120
+	// Token: 0x04000CF0 RID: 3312
 	private bool logFileExists = true;
 
-	// Token: 0x04001019 RID: 4121
+	// Token: 0x04000CF1 RID: 3313
 	private float cd;
 
-	// Token: 0x0400101A RID: 4122
+	// Token: 0x04000CF2 RID: 3314
 	private float GUIcd;
 
-	// Token: 0x0400101B RID: 4123
+	// Token: 0x04000CF3 RID: 3315
 	private string flagStr1;
 
-	// Token: 0x0400101C RID: 4124
+	// Token: 0x04000CF4 RID: 3316
 	private string flagStr2;
 
-	// Token: 0x0400101D RID: 4125
+	// Token: 0x04000CF5 RID: 3317
 	private Queue<GameObject> waitToDestory = new Queue<GameObject>();
 }

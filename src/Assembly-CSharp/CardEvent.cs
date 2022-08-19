@@ -1,5 +1,5 @@
 ﻿using System;
 
-// Token: 0x02000733 RID: 1843
-// (Invoke) Token: 0x06002EB8 RID: 11960
+// Token: 0x020004CD RID: 1229
+// (Invoke) Token: 0x060027AA RID: 10154
 public delegate void CardEvent(bool arg);

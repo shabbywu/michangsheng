@@ -7,16 +7,16 @@ using UnityEngine.Events;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-// Token: 0x020004BB RID: 1211
+// Token: 0x02000347 RID: 839
 public class UIDuiHuanShop : MonoBehaviour, IESCClose
 {
-	// Token: 0x06002002 RID: 8194 RVA: 0x0001A4E9 File Offset: 0x000186E9
+	// Token: 0x06001CB0 RID: 7344 RVA: 0x000CD48B File Offset: 0x000CB68B
 	private void Awake()
 	{
 		UIDuiHuanShop.Inst = this;
 	}
 
-	// Token: 0x06002003 RID: 8195 RVA: 0x0001A4F1 File Offset: 0x000186F1
+	// Token: 0x06001CB1 RID: 7345 RVA: 0x000CD493 File Offset: 0x000CB693
 	public void Show(int shopID)
 	{
 		this.ShopID = shopID;
@@ -24,7 +24,7 @@ public class UIDuiHuanShop : MonoBehaviour, IESCClose
 		ESCCloseManager.Inst.RegisterClose(this);
 	}
 
-	// Token: 0x06002004 RID: 8196 RVA: 0x00111DF8 File Offset: 0x0010FFF8
+	// Token: 0x06001CB2 RID: 7346 RVA: 0x000CD4B4 File Offset: 0x000CB6B4
 	public void RefreshUI()
 	{
 		string nowSceneName = SceneEx.NowSceneName;
@@ -133,38 +133,38 @@ public class UIDuiHuanShop : MonoBehaviour, IESCClose
 		this.MoneyText.text = PlayerEx.Player.getItemNum(num).ToString();
 	}
 
-	// Token: 0x06002005 RID: 8197 RVA: 0x0001A511 File Offset: 0x00018711
+	// Token: 0x06001CB3 RID: 7347 RVA: 0x000CD714 File Offset: 0x000CB914
 	public void Close()
 	{
 		this.ScaleObj.SetActive(false);
 		ESCCloseManager.Inst.UnRegisterClose(this);
 	}
 
-	// Token: 0x06002006 RID: 8198 RVA: 0x0001A52A File Offset: 0x0001872A
+	// Token: 0x06001CB4 RID: 7348 RVA: 0x000CD72D File Offset: 0x000CB92D
 	public bool TryEscClose()
 	{
 		this.Close();
 		return true;
 	}
 
-	// Token: 0x04001B75 RID: 7029
+	// Token: 0x04001734 RID: 5940
 	public static UIDuiHuanShop Inst;
 
-	// Token: 0x04001B76 RID: 7030
+	// Token: 0x04001735 RID: 5941
 	public GameObject UIMenPaiShopItemPrefab;
 
-	// Token: 0x04001B77 RID: 7031
+	// Token: 0x04001736 RID: 5942
 	public GameObject ScaleObj;
 
-	// Token: 0x04001B78 RID: 7032
+	// Token: 0x04001737 RID: 5943
 	public RectTransform ShopRT;
 
-	// Token: 0x04001B79 RID: 7033
+	// Token: 0x04001738 RID: 5944
 	public Image MoneyIcon;
 
-	// Token: 0x04001B7A RID: 7034
+	// Token: 0x04001739 RID: 5945
 	public Text MoneyText;
 
-	// Token: 0x04001B7B RID: 7035
+	// Token: 0x0400173A RID: 5946
 	private int ShopID;
 }

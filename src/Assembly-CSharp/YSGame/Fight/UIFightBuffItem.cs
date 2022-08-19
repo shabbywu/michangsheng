@@ -6,32 +6,32 @@ using UnityEngine.UI;
 
 namespace YSGame.Fight
 {
-	// Token: 0x02000DF9 RID: 3577
+	// Token: 0x02000ABC RID: 2748
 	public class UIFightBuffItem : MonoBehaviour
 	{
-		// Token: 0x040055F3 RID: 22003
+		// Token: 0x04004C1B RID: 19483
 		public Image BuffIconImage;
 
-		// Token: 0x040055F4 RID: 22004
+		// Token: 0x04004C1C RID: 19484
 		public Text BuffCountText;
 
-		// Token: 0x040055F5 RID: 22005
+		// Token: 0x04004C1D RID: 19485
 		[HideInInspector]
 		public int BuffID;
 
-		// Token: 0x040055F6 RID: 22006
+		// Token: 0x04004C1E RID: 19486
 		[HideInInspector]
 		public int BuffCount;
 
-		// Token: 0x040055F7 RID: 22007
+		// Token: 0x04004C1F RID: 19487
 		[HideInInspector]
 		public int BuffRound;
 
-		// Token: 0x040055F8 RID: 22008
+		// Token: 0x04004C20 RID: 19488
 		[HideInInspector]
 		public List<int> AvatarBuff;
 
-		// Token: 0x040055F9 RID: 22009
+		// Token: 0x04004C21 RID: 19489
 		[HideInInspector]
 		public Avatar Avatar;
 	}

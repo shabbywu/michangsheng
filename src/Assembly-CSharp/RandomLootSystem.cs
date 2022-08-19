@@ -1,10 +1,10 @@
 ﻿using System;
 using UnityEngine;
 
-// Token: 0x02000200 RID: 512
+// Token: 0x0200012F RID: 303
 public class RandomLootSystem : MonoBehaviour
 {
-	// Token: 0x0600103D RID: 4157 RVA: 0x000A4ABC File Offset: 0x000A2CBC
+	// Token: 0x06000E2F RID: 3631 RVA: 0x0005441C File Offset: 0x0005261C
 	private void Start()
 	{
 		RandomLootSystem.inventoryItemList = (ItemDataBaseList)Resources.Load("ItemDatabase");
@@ -28,12 +28,12 @@ public class RandomLootSystem : MonoBehaviour
 		}
 	}
 
-	// Token: 0x04000CCD RID: 3277
+	// Token: 0x04000A35 RID: 2613
 	public int amountOfLoot = 10;
 
-	// Token: 0x04000CCE RID: 3278
+	// Token: 0x04000A36 RID: 2614
 	private static ItemDataBaseList inventoryItemList;
 
-	// Token: 0x04000CCF RID: 3279
+	// Token: 0x04000A37 RID: 2615
 	private int counter;
 }

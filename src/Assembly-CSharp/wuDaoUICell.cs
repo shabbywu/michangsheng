@@ -4,21 +4,21 @@ using KBEngine;
 using UnityEngine;
 using UnityEngine.UI;
 
-// Token: 0x020007A1 RID: 1953
+// Token: 0x0200050F RID: 1295
 public class wuDaoUICell : MonoBehaviour
 {
-	// Token: 0x060031A6 RID: 12710 RVA: 0x000042DD File Offset: 0x000024DD
+	// Token: 0x0600299F RID: 10655 RVA: 0x00004095 File Offset: 0x00002295
 	private void Start()
 	{
 	}
 
-	// Token: 0x060031A7 RID: 12711 RVA: 0x0002457F File Offset: 0x0002277F
+	// Token: 0x060029A0 RID: 10656 RVA: 0x0013E26E File Offset: 0x0013C46E
 	private void FixedUpdate()
 	{
 		this.postion = base.transform.position;
 	}
 
-	// Token: 0x060031A8 RID: 12712 RVA: 0x00024592 File Offset: 0x00022792
+	// Token: 0x060029A1 RID: 10657 RVA: 0x0013E281 File Offset: 0x0013C481
 	public void Click()
 	{
 		WuDaoUIMag.inst.wuDaoCellTooltip.open(this.ID, this.icon);
@@ -41,7 +41,7 @@ public class wuDaoUICell : MonoBehaviour
 		};
 	}
 
-	// Token: 0x060031A9 RID: 12713 RVA: 0x0018B430 File Offset: 0x00189630
+	// Token: 0x060029A2 RID: 10658 RVA: 0x0013E2BC File Offset: 0x0013C4BC
 	public void studyWuDao()
 	{
 		Avatar player = Tools.instance.getPlayer();
@@ -52,7 +52,7 @@ public class wuDaoUICell : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060031AA RID: 12714 RVA: 0x0018B4BC File Offset: 0x001896BC
+	// Token: 0x060029A3 RID: 10659 RVA: 0x0013E348 File Offset: 0x0013C548
 	public bool CanStudyWuDao()
 	{
 		JSONObject wuDaoJson = this.WuDaoJson;
@@ -76,7 +76,7 @@ public class wuDaoUICell : MonoBehaviour
 		return !flag && this.CanWuDaoDian();
 	}
 
-	// Token: 0x060031AB RID: 12715 RVA: 0x0018B568 File Offset: 0x00189768
+	// Token: 0x060029A4 RID: 10660 RVA: 0x0013E3F4 File Offset: 0x0013C5F4
 	public bool IsStudy()
 	{
 		using (List<SkillItem>.Enumerator enumerator = Tools.instance.getPlayer().wuDaoMag.GetAllWuDaoSkills().GetEnumerator())
@@ -92,7 +92,7 @@ public class wuDaoUICell : MonoBehaviour
 		return false;
 	}
 
-	// Token: 0x060031AC RID: 12716 RVA: 0x0018B5D8 File Offset: 0x001897D8
+	// Token: 0x060029A5 RID: 10661 RVA: 0x0013E464 File Offset: 0x0013C664
 	public bool CanEx(int WuDaoType)
 	{
 		int wuDaoLevelByType = Tools.instance.getPlayer().wuDaoMag.getWuDaoLevelByType(WuDaoType);
@@ -100,7 +100,7 @@ public class wuDaoUICell : MonoBehaviour
 		return wuDaoLevelByType >= i;
 	}
 
-	// Token: 0x060031AD RID: 12717 RVA: 0x0018B618 File Offset: 0x00189818
+	// Token: 0x060029A6 RID: 10662 RVA: 0x0013E4A4 File Offset: 0x0013C6A4
 	public bool CanWuDaoDian()
 	{
 		Avatar player = Tools.instance.getPlayer();
@@ -108,7 +108,7 @@ public class wuDaoUICell : MonoBehaviour
 		return player.wuDaoMag.GetNowWuDaoDian() >= wuDaoJson["Cast"].I;
 	}
 
-	// Token: 0x060031AE RID: 12718 RVA: 0x0018B658 File Offset: 0x00189858
+	// Token: 0x060029A7 RID: 10663 RVA: 0x0013E4E4 File Offset: 0x0013C6E4
 	public bool CanLastWuDao(int wudaoType)
 	{
 		Avatar player = Tools.instance.getPlayer();
@@ -142,8 +142,8 @@ public class wuDaoUICell : MonoBehaviour
 		return true;
 	}
 
-	// Token: 0x17000457 RID: 1111
-	// (get) Token: 0x060031AF RID: 12719 RVA: 0x000245CA File Offset: 0x000227CA
+	// Token: 0x170002BC RID: 700
+	// (get) Token: 0x060029A8 RID: 10664 RVA: 0x0013E63C File Offset: 0x0013C83C
 	public JSONObject WuDaoJson
 	{
 		get
@@ -152,26 +152,26 @@ public class wuDaoUICell : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060031B0 RID: 12720 RVA: 0x000042DD File Offset: 0x000024DD
+	// Token: 0x060029A9 RID: 10665 RVA: 0x00004095 File Offset: 0x00002295
 	private void Update()
 	{
 	}
 
-	// Token: 0x04002DE2 RID: 11746
+	// Token: 0x040025F9 RID: 9721
 	public int ID;
 
-	// Token: 0x04002DE3 RID: 11747
+	// Token: 0x040025FA RID: 9722
 	public Image bg;
 
-	// Token: 0x04002DE4 RID: 11748
+	// Token: 0x040025FB RID: 9723
 	public Image icon;
 
-	// Token: 0x04002DE5 RID: 11749
+	// Token: 0x040025FC RID: 9724
 	public Text castNum;
 
-	// Token: 0x04002DE6 RID: 11750
+	// Token: 0x040025FD RID: 9725
 	public Text wuDaoName;
 
-	// Token: 0x04002DE7 RID: 11751
+	// Token: 0x040025FE RID: 9726
 	public Vector3 postion;
 }

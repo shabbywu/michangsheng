@@ -5,10 +5,10 @@ using System.Text;
 
 namespace MoonSharp.Interpreter.Serialization
 {
-	// Token: 0x020010CA RID: 4298
+	// Token: 0x02000CED RID: 3309
 	public static class SerializationExtensions
 	{
-		// Token: 0x060067B4 RID: 26548 RVA: 0x0028A1A0 File Offset: 0x002883A0
+		// Token: 0x06005C9E RID: 23710 RVA: 0x00260DF4 File Offset: 0x0025EFF4
 		public static string Serialize(this Table table, bool prefixReturn = false, int tabs = 0)
 		{
 			if (table.OwnerScript != null)
@@ -42,7 +42,7 @@ namespace MoonSharp.Interpreter.Serialization
 			return stringBuilder.ToString();
 		}
 
-		// Token: 0x060067B5 RID: 26549 RVA: 0x0028A2C8 File Offset: 0x002884C8
+		// Token: 0x06005C9F RID: 23711 RVA: 0x00260F1C File Offset: 0x0025F11C
 		private static bool IsStringIdentifierValid(DynValue dynValue)
 		{
 			if (dynValue.Type != DataType.String)
@@ -71,7 +71,7 @@ namespace MoonSharp.Interpreter.Serialization
 			return true;
 		}
 
-		// Token: 0x060067B6 RID: 26550 RVA: 0x0028A358 File Offset: 0x00288558
+		// Token: 0x06005CA0 RID: 23712 RVA: 0x00260FAC File Offset: 0x0025F1AC
 		public static string SerializeValue(this DynValue dynValue, int tabs = 0)
 		{
 			if (dynValue.Type == DataType.Nil || dynValue.Type == DataType.Void)
@@ -115,7 +115,7 @@ namespace MoonSharp.Interpreter.Serialization
 			}
 		}
 
-		// Token: 0x060067B7 RID: 26551 RVA: 0x0028A430 File Offset: 0x00288630
+		// Token: 0x06005CA1 RID: 23713 RVA: 0x00261084 File Offset: 0x0025F284
 		private static string EscapeString(string s)
 		{
 			s = s.Replace("\\", "\\\\");
@@ -131,7 +131,7 @@ namespace MoonSharp.Interpreter.Serialization
 			return "\"" + s + "\"";
 		}
 
-		// Token: 0x04005FBF RID: 24511
+		// Token: 0x040053BB RID: 21435
 		private static HashSet<string> LUAKEYWORDS = new HashSet<string>
 		{
 			"and",

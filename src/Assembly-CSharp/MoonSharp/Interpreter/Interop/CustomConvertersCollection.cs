@@ -3,10 +3,10 @@ using System.Collections.Generic;
 
 namespace MoonSharp.Interpreter.Interop
 {
-	// Token: 0x020010E5 RID: 4325
+	// Token: 0x02000D06 RID: 3334
 	public class CustomConvertersCollection
 	{
-		// Token: 0x06006877 RID: 26743 RVA: 0x0028B4E4 File Offset: 0x002896E4
+		// Token: 0x06005D59 RID: 23897 RVA: 0x002627D8 File Offset: 0x002609D8
 		internal CustomConvertersCollection()
 		{
 			for (int i = 0; i < this.m_Script2Clr.Length; i++)
@@ -15,7 +15,7 @@ namespace MoonSharp.Interpreter.Interop
 			}
 		}
 
-		// Token: 0x06006878 RID: 26744 RVA: 0x0028B530 File Offset: 0x00289730
+		// Token: 0x06005D5A RID: 23898 RVA: 0x00262824 File Offset: 0x00260A24
 		public void SetScriptToClrCustomConversion(DataType scriptDataType, Type clrDataType, Func<DynValue, object> converter = null)
 		{
 			if (scriptDataType > (DataType)this.m_Script2Clr.Length)
@@ -37,7 +37,7 @@ namespace MoonSharp.Interpreter.Interop
 			}
 		}
 
-		// Token: 0x06006879 RID: 26745 RVA: 0x00047B60 File Offset: 0x00045D60
+		// Token: 0x06005D5B RID: 23899 RVA: 0x0026286D File Offset: 0x00260A6D
 		public Func<DynValue, object> GetScriptToClrCustomConversion(DataType scriptDataType, Type clrDataType)
 		{
 			if (scriptDataType > (DataType)this.m_Script2Clr.Length)
@@ -47,7 +47,7 @@ namespace MoonSharp.Interpreter.Interop
 			return this.m_Script2Clr[(int)scriptDataType].GetOrDefault(clrDataType);
 		}
 
-		// Token: 0x0600687A RID: 26746 RVA: 0x00047B7D File Offset: 0x00045D7D
+		// Token: 0x06005D5C RID: 23900 RVA: 0x0026288A File Offset: 0x00260A8A
 		public void SetClrToScriptCustomConversion(Type clrDataType, Func<Script, object, DynValue> converter = null)
 		{
 			if (converter == null)
@@ -64,33 +64,33 @@ namespace MoonSharp.Interpreter.Interop
 			}
 		}
 
-		// Token: 0x0600687B RID: 26747 RVA: 0x0028B57C File Offset: 0x0028977C
+		// Token: 0x06005D5D RID: 23901 RVA: 0x002628B8 File Offset: 0x00260AB8
 		public void SetClrToScriptCustomConversion<T>(Func<Script, T, DynValue> converter = null)
 		{
 			this.SetClrToScriptCustomConversion(typeof(T), (Script s, object o) => converter(s, (T)((object)o)));
 		}
 
-		// Token: 0x0600687C RID: 26748 RVA: 0x00047BAB File Offset: 0x00045DAB
+		// Token: 0x06005D5E RID: 23902 RVA: 0x002628EE File Offset: 0x00260AEE
 		public Func<Script, object, DynValue> GetClrToScriptCustomConversion(Type clrDataType)
 		{
 			return this.m_Clr2Script.GetOrDefault(clrDataType);
 		}
 
-		// Token: 0x0600687D RID: 26749 RVA: 0x0028B5B4 File Offset: 0x002897B4
+		// Token: 0x06005D5F RID: 23903 RVA: 0x002628FC File Offset: 0x00260AFC
 		[Obsolete("This method is deprecated. Use the overloads accepting functions with a Script argument.")]
 		public void SetClrToScriptCustomConversion(Type clrDataType, Func<object, DynValue> converter = null)
 		{
 			this.SetClrToScriptCustomConversion(clrDataType, (Script s, object o) => converter(o));
 		}
 
-		// Token: 0x0600687E RID: 26750 RVA: 0x0028B5E4 File Offset: 0x002897E4
+		// Token: 0x06005D60 RID: 23904 RVA: 0x0026292C File Offset: 0x00260B2C
 		[Obsolete("This method is deprecated. Use the overloads accepting functions with a Script argument.")]
 		public void SetClrToScriptCustomConversion<T>(Func<T, DynValue> converter = null)
 		{
 			this.SetClrToScriptCustomConversion(typeof(T), (object o) => converter((T)((object)o)));
 		}
 
-		// Token: 0x0600687F RID: 26751 RVA: 0x0028B61C File Offset: 0x0028981C
+		// Token: 0x06005D61 RID: 23905 RVA: 0x00262964 File Offset: 0x00260B64
 		public void Clear()
 		{
 			this.m_Clr2Script.Clear();
@@ -100,10 +100,10 @@ namespace MoonSharp.Interpreter.Interop
 			}
 		}
 
-		// Token: 0x04005FE5 RID: 24549
+		// Token: 0x040053DB RID: 21467
 		private Dictionary<Type, Func<DynValue, object>>[] m_Script2Clr = new Dictionary<Type, Func<DynValue, object>>[11];
 
-		// Token: 0x04005FE6 RID: 24550
+		// Token: 0x040053DC RID: 21468
 		private Dictionary<Type, Func<Script, object, DynValue>> m_Clr2Script = new Dictionary<Type, Func<Script, object, DynValue>>();
 	}
 }

@@ -2,11 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-// Token: 0x020005EB RID: 1515
+// Token: 0x02000434 RID: 1076
 public class UIselect : MonoBehaviour
 {
-	// Token: 0x170002D2 RID: 722
-	// (get) Token: 0x06002606 RID: 9734 RVA: 0x0001E612 File Offset: 0x0001C812
+	// Token: 0x17000288 RID: 648
+	// (get) Token: 0x06002247 RID: 8775 RVA: 0x000EC142 File Offset: 0x000EA342
 	public int NowIndex
 	{
 		get
@@ -15,28 +15,28 @@ public class UIselect : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06002607 RID: 9735 RVA: 0x0001E61A File Offset: 0x0001C81A
+	// Token: 0x06002248 RID: 8776 RVA: 0x000EC14A File Offset: 0x000EA34A
 	private void Start()
 	{
 		this.left.onClick.Add(this.leftEvent);
 		this.right.onClick.Add(this.rightEvent);
 	}
 
-	// Token: 0x06002608 RID: 9736 RVA: 0x0001E648 File Offset: 0x0001C848
+	// Token: 0x06002249 RID: 8777 RVA: 0x000EC178 File Offset: 0x000EA378
 	public void setIndex(int index)
 	{
 		this.nowIndex = index;
 		this.label.text = this.list[index];
 	}
 
-	// Token: 0x06002609 RID: 9737 RVA: 0x0001E668 File Offset: 0x0001C868
+	// Token: 0x0600224A RID: 8778 RVA: 0x000EC198 File Offset: 0x000EA398
 	public void setVoiceLeft()
 	{
 		this.clickLeft();
 		this.setVoidSprite();
 	}
 
-	// Token: 0x0600260A RID: 9738 RVA: 0x0012D240 File Offset: 0x0012B440
+	// Token: 0x0600224B RID: 8779 RVA: 0x000EC1A8 File Offset: 0x000EA3A8
 	public void setVoidSprite()
 	{
 		Component component = base.transform.Find("percent");
@@ -56,14 +56,14 @@ public class UIselect : MonoBehaviour
 		}
 	}
 
-	// Token: 0x0600260B RID: 9739 RVA: 0x0001E676 File Offset: 0x0001C876
+	// Token: 0x0600224C RID: 8780 RVA: 0x000EC23C File Offset: 0x000EA43C
 	public void setVoiceRight()
 	{
 		this.clickRight();
 		this.setVoidSprite();
 	}
 
-	// Token: 0x0600260C RID: 9740 RVA: 0x0012D2D4 File Offset: 0x0012B4D4
+	// Token: 0x0600224D RID: 8781 RVA: 0x000EC24C File Offset: 0x000EA44C
 	public void clickLeft()
 	{
 		this.nowIndex--;
@@ -74,7 +74,7 @@ public class UIselect : MonoBehaviour
 		this.label.text = this.list[this.nowIndex];
 	}
 
-	// Token: 0x0600260D RID: 9741 RVA: 0x0012D328 File Offset: 0x0012B528
+	// Token: 0x0600224E RID: 8782 RVA: 0x000EC2A0 File Offset: 0x000EA4A0
 	public void clickRight()
 	{
 		this.nowIndex++;
@@ -85,24 +85,24 @@ public class UIselect : MonoBehaviour
 		this.label.text = this.list[this.nowIndex];
 	}
 
-	// Token: 0x0400208A RID: 8330
+	// Token: 0x04001BBE RID: 7102
 	public UIButton left;
 
-	// Token: 0x0400208B RID: 8331
+	// Token: 0x04001BBF RID: 7103
 	public UIButton right;
 
-	// Token: 0x0400208C RID: 8332
+	// Token: 0x04001BC0 RID: 7104
 	public EventDelegate leftEvent;
 
-	// Token: 0x0400208D RID: 8333
+	// Token: 0x04001BC1 RID: 7105
 	public EventDelegate rightEvent;
 
-	// Token: 0x0400208E RID: 8334
+	// Token: 0x04001BC2 RID: 7106
 	public List<string> list = new List<string>();
 
-	// Token: 0x0400208F RID: 8335
+	// Token: 0x04001BC3 RID: 7107
 	public UILabel label;
 
-	// Token: 0x04002090 RID: 8336
+	// Token: 0x04001BC4 RID: 7108
 	private int nowIndex;
 }

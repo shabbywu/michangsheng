@@ -5,12 +5,12 @@ using UnityEngine;
 
 namespace Fungus
 {
-	// Token: 0x020013C5 RID: 5061
+	// Token: 0x02000F12 RID: 3858
 	[CommandInfo("YSFuBen", "GetFuBenShuXin", "获取随机副本属性", 0)]
 	[AddComponentMenu("")]
 	public class GetFuBenShuXin : Command
 	{
-		// Token: 0x06007B62 RID: 31586 RVA: 0x002C3A20 File Offset: 0x002C1C20
+		// Token: 0x06006D79 RID: 28025 RVA: 0x002A34D8 File Offset: 0x002A16D8
 		public override void OnEnter()
 		{
 			Avatar player = Tools.instance.getPlayer();
@@ -27,7 +27,7 @@ namespace Fungus
 			this.Continue();
 		}
 
-		// Token: 0x06007B63 RID: 31587 RVA: 0x002C37E4 File Offset: 0x002C19E4
+		// Token: 0x06006D7A RID: 28026 RVA: 0x002A356C File Offset: 0x002A176C
 		public void removeWait()
 		{
 			CamaraFollow component = GameObject.Find("Main Camera").GetComponent<CamaraFollow>();
@@ -37,7 +37,7 @@ namespace Fungus
 			}
 		}
 
-		// Token: 0x06007B64 RID: 31588 RVA: 0x002C3814 File Offset: 0x002C1A14
+		// Token: 0x06006D7B RID: 28027 RVA: 0x002A359C File Offset: 0x002A179C
 		public void wait()
 		{
 			CamaraFollow component = GameObject.Find("Main Camera").GetComponent<CamaraFollow>();
@@ -47,18 +47,18 @@ namespace Fungus
 			}
 		}
 
-		// Token: 0x06007B65 RID: 31589 RVA: 0x000113CF File Offset: 0x0000F5CF
+		// Token: 0x06006D7C RID: 28028 RVA: 0x0005E228 File Offset: 0x0005C428
 		public override Color GetButtonColor()
 		{
 			return new Color32(184, 210, 235, byte.MaxValue);
 		}
 
-		// Token: 0x06007B66 RID: 31590 RVA: 0x000042DD File Offset: 0x000024DD
+		// Token: 0x06006D7D RID: 28029 RVA: 0x00004095 File Offset: 0x00002295
 		public override void OnReset()
 		{
 		}
 
-		// Token: 0x040069F4 RID: 27124
+		// Token: 0x04005B2D RID: 23341
 		[Tooltip("获取副本属性")]
 		[VariableProperty(new Type[]
 		{
@@ -67,7 +67,7 @@ namespace Fungus
 		[SerializeField]
 		public IntegerVariable ShuXin;
 
-		// Token: 0x040069F5 RID: 27125
+		// Token: 0x04005B2E RID: 23342
 		[Tooltip("获取副本类型")]
 		[VariableProperty(new Type[]
 		{

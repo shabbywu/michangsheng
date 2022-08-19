@@ -5,10 +5,10 @@ using UnityEngine;
 
 namespace GUIPackage
 {
-	// Token: 0x02000D9D RID: 3485
+	// Token: 0x02000A6F RID: 2671
 	public class Store : MonoBehaviour
 	{
-		// Token: 0x0600541E RID: 21534 RVA: 0x0003C2B2 File Offset: 0x0003A4B2
+		// Token: 0x06004B10 RID: 19216 RVA: 0x001FEEE5 File Offset: 0x001FD0E5
 		private void Start()
 		{
 			this.InitNumInput();
@@ -17,13 +17,13 @@ namespace GUIPackage
 			this.initStore();
 		}
 
-		// Token: 0x0600541F RID: 21535 RVA: 0x0003C2DB File Offset: 0x0003A4DB
+		// Token: 0x06004B11 RID: 19217 RVA: 0x001FEF0E File Offset: 0x001FD10E
 		private void Update()
 		{
 			this.SetMaxShop();
 		}
 
-		// Token: 0x06005420 RID: 21536 RVA: 0x00230CA4 File Offset: 0x0022EEA4
+		// Token: 0x06004B12 RID: 19218 RVA: 0x001FEF18 File Offset: 0x001FD118
 		private void InitNumInput()
 		{
 			this.Sure = base.transform.Find("Win/NumInput/Sure").gameObject;
@@ -32,7 +32,7 @@ namespace GUIPackage
 			UIEventListener.Get(this.Cancel).onClick = new UIEventListener.VoidDelegate(this.CancelClick);
 		}
 
-		// Token: 0x06005421 RID: 21537 RVA: 0x0003C2E3 File Offset: 0x0003A4E3
+		// Token: 0x06004B13 RID: 19219 RVA: 0x001FEF93 File Offset: 0x001FD193
 		private void SureClick(GameObject button)
 		{
 			if (this.NumInput.GetComponentInChildren<UIInput>().value != "" && this.num > 0)
@@ -42,7 +42,7 @@ namespace GUIPackage
 			}
 		}
 
-		// Token: 0x06005422 RID: 21538 RVA: 0x00230D20 File Offset: 0x0022EF20
+		// Token: 0x06004B14 RID: 19220 RVA: 0x001FEFCC File Offset: 0x001FD1CC
 		private void SetMaxShop()
 		{
 			if (this.NumInput.activeSelf && this.NumInput.GetComponentInChildren<UIInput>().value != "")
@@ -66,13 +66,13 @@ namespace GUIPackage
 			}
 		}
 
-		// Token: 0x06005423 RID: 21539 RVA: 0x0003C31C File Offset: 0x0003A51C
+		// Token: 0x06004B15 RID: 19221 RVA: 0x001FF0C6 File Offset: 0x001FD2C6
 		private void CancelClick(GameObject button)
 		{
 			this.HideNumInput();
 		}
 
-		// Token: 0x06005424 RID: 21540 RVA: 0x0003C324 File Offset: 0x0003A524
+		// Token: 0x06004B16 RID: 19222 RVA: 0x001FF0CE File Offset: 0x001FD2CE
 		private void initStore()
 		{
 			base.GetComponentInChildren<UIGrid>().repositionNow = true;
@@ -81,12 +81,12 @@ namespace GUIPackage
 			this.Notice.SetActive(false);
 		}
 
-		// Token: 0x06005425 RID: 21541 RVA: 0x000042DD File Offset: 0x000024DD
+		// Token: 0x06004B17 RID: 19223 RVA: 0x00004095 File Offset: 0x00002295
 		private void OnGUI()
 		{
 		}
 
-		// Token: 0x06005426 RID: 21542 RVA: 0x00230E1C File Offset: 0x0022F01C
+		// Token: 0x06004B18 RID: 19224 RVA: 0x001FF100 File Offset: 0x001FD300
 		private void Show()
 		{
 			this.Show_Store = !this.Show_Store;
@@ -102,7 +102,7 @@ namespace GUIPackage
 			Singleton.UI.UI_Top(this.StoreUI.transform.parent);
 		}
 
-		// Token: 0x06005427 RID: 21543 RVA: 0x0003C356 File Offset: 0x0003A556
+		// Token: 0x06004B19 RID: 19225 RVA: 0x001FF182 File Offset: 0x001FD382
 		public void ShowNumInput(int id)
 		{
 			this.NumInput.SetActive(true);
@@ -113,13 +113,13 @@ namespace GUIPackage
 			}
 		}
 
-		// Token: 0x06005428 RID: 21544 RVA: 0x0003C394 File Offset: 0x0003A594
+		// Token: 0x06004B1A RID: 19226 RVA: 0x001FF1C0 File Offset: 0x001FD3C0
 		public void HideNumInput()
 		{
 			this.NumInput.SetActive(false);
 		}
 
-		// Token: 0x06005429 RID: 21545 RVA: 0x00230EA0 File Offset: 0x0022F0A0
+		// Token: 0x06004B1B RID: 19227 RVA: 0x001FF1D0 File Offset: 0x001FD3D0
 		public void Shop_Item(int ID)
 		{
 			if (Singleton.inventory.is_Full(this.store[ID], this.num))
@@ -140,7 +140,7 @@ namespace GUIPackage
 			base.StartCoroutine(this.ShowNotice("金币不足,无法购买"));
 		}
 
-		// Token: 0x0600542A RID: 21546 RVA: 0x0003C3A2 File Offset: 0x0003A5A2
+		// Token: 0x06004B1C RID: 19228 RVA: 0x001FF2D7 File Offset: 0x001FD4D7
 		private IEnumerator ShowNotice(string s)
 		{
 			this.Notice.SetActive(true);
@@ -150,34 +150,34 @@ namespace GUIPackage
 			yield break;
 		}
 
-		// Token: 0x040053DA RID: 21466
+		// Token: 0x04004A39 RID: 19001
 		public List<item> store = new List<item>();
 
-		// Token: 0x040053DB RID: 21467
+		// Token: 0x04004A3A RID: 19002
 		public GameObject StoreUI;
 
-		// Token: 0x040053DC RID: 21468
+		// Token: 0x04004A3B RID: 19003
 		public GameObject NumInput;
 
-		// Token: 0x040053DD RID: 21469
+		// Token: 0x04004A3C RID: 19004
 		public GameObject Sure;
 
-		// Token: 0x040053DE RID: 21470
+		// Token: 0x04004A3D RID: 19005
 		public GameObject Cancel;
 
-		// Token: 0x040053DF RID: 21471
+		// Token: 0x04004A3E RID: 19006
 		public GameObject Notice;
 
-		// Token: 0x040053E0 RID: 21472
+		// Token: 0x04004A3F RID: 19007
 		private ItemDatebase datebase;
 
-		// Token: 0x040053E1 RID: 21473
+		// Token: 0x04004A40 RID: 19008
 		private bool Show_Store;
 
-		// Token: 0x040053E2 RID: 21474
+		// Token: 0x04004A41 RID: 19009
 		private int ShopID;
 
-		// Token: 0x040053E3 RID: 21475
+		// Token: 0x04004A42 RID: 19010
 		private int num = 1;
 	}
 }

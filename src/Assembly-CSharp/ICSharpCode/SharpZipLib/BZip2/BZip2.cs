@@ -4,10 +4,10 @@ using ICSharpCode.SharpZipLib.Core;
 
 namespace ICSharpCode.SharpZipLib.BZip2
 {
-	// Token: 0x02000839 RID: 2105
+	// Token: 0x02000590 RID: 1424
 	public static class BZip2
 	{
-		// Token: 0x0600371E RID: 14110 RVA: 0x0019CFFC File Offset: 0x0019B1FC
+		// Token: 0x06002EA8 RID: 11944 RVA: 0x00152558 File Offset: 0x00150758
 		public static void Decompress(Stream inStream, Stream outStream, bool isStreamOwner)
 		{
 			if (inStream == null)
@@ -35,7 +35,7 @@ namespace ICSharpCode.SharpZipLib.BZip2
 			}
 		}
 
-		// Token: 0x0600371F RID: 14111 RVA: 0x0019D078 File Offset: 0x0019B278
+		// Token: 0x06002EA9 RID: 11945 RVA: 0x001525D4 File Offset: 0x001507D4
 		public static void Compress(Stream inStream, Stream outStream, bool isStreamOwner, int level)
 		{
 			if (inStream == null)

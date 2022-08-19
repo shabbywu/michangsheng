@@ -3,12 +3,12 @@ using System.Collections.Generic;
 using AnimationOrTween;
 using UnityEngine;
 
-// Token: 0x02000093 RID: 147
+// Token: 0x0200006E RID: 110
 [ExecuteInEditMode]
 [AddComponentMenu("NGUI/Interaction/Play Tween")]
 public class UIPlayTween : MonoBehaviour
 {
-	// Token: 0x060005B9 RID: 1465 RVA: 0x000093C5 File Offset: 0x000075C5
+	// Token: 0x06000563 RID: 1379 RVA: 0x0001D486 File Offset: 0x0001B686
 	private void Awake()
 	{
 		if (this.eventReceiver != null && EventDelegate.IsValid(this.onFinished))
@@ -18,7 +18,7 @@ public class UIPlayTween : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060005BA RID: 1466 RVA: 0x000093F0 File Offset: 0x000075F0
+	// Token: 0x06000564 RID: 1380 RVA: 0x0001D4B1 File Offset: 0x0001B6B1
 	private void Start()
 	{
 		this.mStarted = true;
@@ -28,7 +28,7 @@ public class UIPlayTween : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060005BB RID: 1467 RVA: 0x00073640 File Offset: 0x00071840
+	// Token: 0x06000565 RID: 1381 RVA: 0x0001D4D4 File Offset: 0x0001B6D4
 	private void OnEnable()
 	{
 		if (this.mStarted)
@@ -53,7 +53,7 @@ public class UIPlayTween : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060005BC RID: 1468 RVA: 0x000736F0 File Offset: 0x000718F0
+	// Token: 0x06000566 RID: 1382 RVA: 0x0001D584 File Offset: 0x0001B784
 	private void OnDisable()
 	{
 		UIToggle component = base.GetComponent<UIToggle>();
@@ -63,7 +63,7 @@ public class UIPlayTween : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060005BD RID: 1469 RVA: 0x00073728 File Offset: 0x00071928
+	// Token: 0x06000567 RID: 1383 RVA: 0x0001D5BC File Offset: 0x0001B7BC
 	private void OnHover(bool isOver)
 	{
 		if (base.enabled && (this.trigger == Trigger.OnHover || (this.trigger == Trigger.OnHoverTrue && isOver) || (this.trigger == Trigger.OnHoverFalse && !isOver)))
@@ -73,7 +73,7 @@ public class UIPlayTween : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060005BE RID: 1470 RVA: 0x00009413 File Offset: 0x00007613
+	// Token: 0x06000568 RID: 1384 RVA: 0x0001D60F File Offset: 0x0001B80F
 	private void OnDragOut()
 	{
 		if (base.enabled && this.mActivated)
@@ -83,7 +83,7 @@ public class UIPlayTween : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060005BF RID: 1471 RVA: 0x0007377C File Offset: 0x0007197C
+	// Token: 0x06000569 RID: 1385 RVA: 0x0001D630 File Offset: 0x0001B830
 	private void OnPress(bool isPressed)
 	{
 		if (base.enabled && (this.trigger == Trigger.OnPress || (this.trigger == Trigger.OnPressTrue && isPressed) || (this.trigger == Trigger.OnPressFalse && !isPressed)))
@@ -93,7 +93,7 @@ public class UIPlayTween : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060005C0 RID: 1472 RVA: 0x00009433 File Offset: 0x00007633
+	// Token: 0x0600056A RID: 1386 RVA: 0x0001D683 File Offset: 0x0001B883
 	private void OnClick()
 	{
 		if (base.enabled && this.trigger == Trigger.OnClick)
@@ -102,7 +102,7 @@ public class UIPlayTween : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060005C1 RID: 1473 RVA: 0x0000944C File Offset: 0x0000764C
+	// Token: 0x0600056B RID: 1387 RVA: 0x0001D69C File Offset: 0x0001B89C
 	private void OnDoubleClick()
 	{
 		if (base.enabled && this.trigger == Trigger.OnDoubleClick)
@@ -111,7 +111,7 @@ public class UIPlayTween : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060005C2 RID: 1474 RVA: 0x000737D0 File Offset: 0x000719D0
+	// Token: 0x0600056C RID: 1388 RVA: 0x0001D6B8 File Offset: 0x0001B8B8
 	private void OnSelect(bool isSelected)
 	{
 		if (base.enabled && (this.trigger == Trigger.OnSelect || (this.trigger == Trigger.OnSelectTrue && isSelected) || (this.trigger == Trigger.OnSelectFalse && !isSelected)))
@@ -121,7 +121,7 @@ public class UIPlayTween : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060005C3 RID: 1475 RVA: 0x00073828 File Offset: 0x00071A28
+	// Token: 0x0600056D RID: 1389 RVA: 0x0001D710 File Offset: 0x0001B910
 	private void OnToggle()
 	{
 		if (!base.enabled || UIToggle.current == null)
@@ -134,7 +134,7 @@ public class UIPlayTween : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060005C4 RID: 1476 RVA: 0x00073890 File Offset: 0x00071A90
+	// Token: 0x0600056E RID: 1390 RVA: 0x0001D778 File Offset: 0x0001B978
 	private void Update()
 	{
 		if (this.disableWhenFinished != DisableCondition.DoNotDisable && this.mTweens != null)
@@ -171,7 +171,7 @@ public class UIPlayTween : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060005C5 RID: 1477 RVA: 0x00073918 File Offset: 0x00071B18
+	// Token: 0x0600056F RID: 1391 RVA: 0x0001D800 File Offset: 0x0001BA00
 	public void Play(bool forward)
 	{
 		this.mActive = 0;
@@ -233,7 +233,7 @@ public class UIPlayTween : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060005C6 RID: 1478 RVA: 0x00073A78 File Offset: 0x00071C78
+	// Token: 0x06000570 RID: 1392 RVA: 0x0001D960 File Offset: 0x0001BB60
 	private void OnFinished()
 	{
 		int num = this.mActive - 1;
@@ -251,58 +251,58 @@ public class UIPlayTween : MonoBehaviour
 		}
 	}
 
-	// Token: 0x04000426 RID: 1062
+	// Token: 0x04000381 RID: 897
 	public static UIPlayTween current;
 
-	// Token: 0x04000427 RID: 1063
+	// Token: 0x04000382 RID: 898
 	public GameObject tweenTarget;
 
-	// Token: 0x04000428 RID: 1064
+	// Token: 0x04000383 RID: 899
 	public int tweenGroup;
 
-	// Token: 0x04000429 RID: 1065
+	// Token: 0x04000384 RID: 900
 	public Trigger trigger;
 
-	// Token: 0x0400042A RID: 1066
+	// Token: 0x04000385 RID: 901
 	public Direction playDirection = Direction.Forward;
 
-	// Token: 0x0400042B RID: 1067
+	// Token: 0x04000386 RID: 902
 	public bool resetOnPlay;
 
-	// Token: 0x0400042C RID: 1068
+	// Token: 0x04000387 RID: 903
 	public bool resetIfDisabled;
 
-	// Token: 0x0400042D RID: 1069
+	// Token: 0x04000388 RID: 904
 	public EnableCondition ifDisabledOnPlay;
 
-	// Token: 0x0400042E RID: 1070
+	// Token: 0x04000389 RID: 905
 	public DisableCondition disableWhenFinished;
 
-	// Token: 0x0400042F RID: 1071
+	// Token: 0x0400038A RID: 906
 	public bool includeChildren;
 
-	// Token: 0x04000430 RID: 1072
+	// Token: 0x0400038B RID: 907
 	public List<EventDelegate> onFinished = new List<EventDelegate>();
 
-	// Token: 0x04000431 RID: 1073
+	// Token: 0x0400038C RID: 908
 	[HideInInspector]
 	[SerializeField]
 	private GameObject eventReceiver;
 
-	// Token: 0x04000432 RID: 1074
+	// Token: 0x0400038D RID: 909
 	[HideInInspector]
 	[SerializeField]
 	private string callWhenFinished;
 
-	// Token: 0x04000433 RID: 1075
+	// Token: 0x0400038E RID: 910
 	private UITweener[] mTweens;
 
-	// Token: 0x04000434 RID: 1076
+	// Token: 0x0400038F RID: 911
 	private bool mStarted;
 
-	// Token: 0x04000435 RID: 1077
+	// Token: 0x04000390 RID: 912
 	private int mActive;
 
-	// Token: 0x04000436 RID: 1078
+	// Token: 0x04000391 RID: 913
 	private bool mActivated;
 }

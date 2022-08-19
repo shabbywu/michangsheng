@@ -2,14 +2,14 @@
 
 namespace UltimateSurvival
 {
-	// Token: 0x020008FF RID: 2303
+	// Token: 0x02000619 RID: 1561
 	public enum ItemSelectionMethod
 	{
-		// Token: 0x0400354D RID: 13645
+		// Token: 0x04002C2C RID: 11308
 		Randomly,
-		// Token: 0x0400354E RID: 13646
+		// Token: 0x04002C2D RID: 11309
 		RandomlyButExcludeLast,
-		// Token: 0x0400354F RID: 13647
+		// Token: 0x04002C2E RID: 11310
 		InSequence
 	}
 }

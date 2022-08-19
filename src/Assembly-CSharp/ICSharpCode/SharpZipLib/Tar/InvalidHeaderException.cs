@@ -3,26 +3,26 @@ using System.Runtime.Serialization;
 
 namespace ICSharpCode.SharpZipLib.Tar
 {
-	// Token: 0x02000805 RID: 2053
+	// Token: 0x0200055F RID: 1375
 	[Serializable]
 	public class InvalidHeaderException : TarException
 	{
-		// Token: 0x0600353D RID: 13629 RVA: 0x00026D7C File Offset: 0x00024F7C
+		// Token: 0x06002CCF RID: 11471 RVA: 0x0014C89A File Offset: 0x0014AA9A
 		public InvalidHeaderException()
 		{
 		}
 
-		// Token: 0x0600353E RID: 13630 RVA: 0x00026D84 File Offset: 0x00024F84
+		// Token: 0x06002CD0 RID: 11472 RVA: 0x0014C8A2 File Offset: 0x0014AAA2
 		public InvalidHeaderException(string message) : base(message)
 		{
 		}
 
-		// Token: 0x0600353F RID: 13631 RVA: 0x00026D8D File Offset: 0x00024F8D
+		// Token: 0x06002CD1 RID: 11473 RVA: 0x0014C8AB File Offset: 0x0014AAAB
 		public InvalidHeaderException(string message, Exception exception) : base(message, exception)
 		{
 		}
 
-		// Token: 0x06003540 RID: 13632 RVA: 0x00026D97 File Offset: 0x00024F97
+		// Token: 0x06002CD2 RID: 11474 RVA: 0x0014C8B5 File Offset: 0x0014AAB5
 		protected InvalidHeaderException(SerializationInfo info, StreamingContext context) : base(info, context)
 		{
 		}

@@ -2,26 +2,26 @@
 
 namespace BehaviorDesigner.Runtime.Tasks
 {
-	// Token: 0x0200149A RID: 5274
+	// Token: 0x02000FE2 RID: 4066
 	[TaskDescription("The selector evaluator is a selector task which reevaluates its children every tick. It will run the lowest priority child which returns a task status of running. This is done each tick. If a higher priority child is running and the next frame a lower priority child wants to run it will interrupt the higher priority child. The selector evaluator will return success as soon as the first child returns success otherwise it will keep trying higher priority children. This task mimics the conditional abort functionality except the child tasks don't always have to be conditional tasks.")]
 	[HelpURL("http://www.opsive.com/assets/BehaviorDesigner/documentation.php?id=109")]
 	[TaskIcon("{SkinColor}SelectorEvaluatorIcon.png")]
 	public class SelectorEvaluator : Composite
 	{
-		// Token: 0x06007E93 RID: 32403 RVA: 0x00055AE4 File Offset: 0x00053CE4
+		// Token: 0x06007099 RID: 28825 RVA: 0x002AA101 File Offset: 0x002A8301
 		public override int CurrentChildIndex()
 		{
 			return this.currentChildIndex;
 		}
 
-		// Token: 0x06007E94 RID: 32404 RVA: 0x00055AEC File Offset: 0x00053CEC
+		// Token: 0x0600709A RID: 28826 RVA: 0x002AA109 File Offset: 0x002A8309
 		public override void OnChildStarted(int childIndex)
 		{
 			this.currentChildIndex++;
 			this.executionStatus = 3;
 		}
 
-		// Token: 0x06007E95 RID: 32405 RVA: 0x002C8FB8 File Offset: 0x002C71B8
+		// Token: 0x0600709B RID: 28827 RVA: 0x002AA120 File Offset: 0x002A8320
 		public override bool CanExecute()
 		{
 			if (this.executionStatus == 2 || this.executionStatus == 3)
@@ -35,7 +35,7 @@ namespace BehaviorDesigner.Runtime.Tasks
 			return this.currentChildIndex < this.children.Count;
 		}
 
-		// Token: 0x06007E96 RID: 32406 RVA: 0x00055B03 File Offset: 0x00053D03
+		// Token: 0x0600709C RID: 28828 RVA: 0x002AA16E File Offset: 0x002A836E
 		public override void OnChildExecuted(int childIndex, TaskStatus childStatus)
 		{
 			if (childStatus != null && childStatus != 3)
@@ -44,39 +44,39 @@ namespace BehaviorDesigner.Runtime.Tasks
 			}
 		}
 
-		// Token: 0x06007E97 RID: 32407 RVA: 0x00055B13 File Offset: 0x00053D13
+		// Token: 0x0600709D RID: 28829 RVA: 0x002AA17E File Offset: 0x002A837E
 		public override void OnConditionalAbort(int childIndex)
 		{
 			this.currentChildIndex = childIndex;
 			this.executionStatus = 0;
 		}
 
-		// Token: 0x06007E98 RID: 32408 RVA: 0x00055B23 File Offset: 0x00053D23
+		// Token: 0x0600709E RID: 28830 RVA: 0x002AA18E File Offset: 0x002A838E
 		public override void OnEnd()
 		{
 			this.executionStatus = 0;
 			this.currentChildIndex = 0;
 		}
 
-		// Token: 0x06007E99 RID: 32409 RVA: 0x00055B33 File Offset: 0x00053D33
+		// Token: 0x0600709F RID: 28831 RVA: 0x002AA19E File Offset: 0x002A839E
 		public override TaskStatus OverrideStatus(TaskStatus status)
 		{
 			return this.executionStatus;
 		}
 
-		// Token: 0x06007E9A RID: 32410 RVA: 0x0000A093 File Offset: 0x00008293
+		// Token: 0x060070A0 RID: 28832 RVA: 0x00024C5F File Offset: 0x00022E5F
 		public override bool CanRunParallelChildren()
 		{
 			return true;
 		}
 
-		// Token: 0x06007E9B RID: 32411 RVA: 0x0000A093 File Offset: 0x00008293
+		// Token: 0x060070A1 RID: 28833 RVA: 0x00024C5F File Offset: 0x00022E5F
 		public override bool CanReevaluate()
 		{
 			return true;
 		}
 
-		// Token: 0x06007E9C RID: 32412 RVA: 0x00055B3B File Offset: 0x00053D3B
+		// Token: 0x060070A2 RID: 28834 RVA: 0x002AA1A6 File Offset: 0x002A83A6
 		public override bool OnReevaluationStarted()
 		{
 			if (this.executionStatus == null)
@@ -90,7 +90,7 @@ namespace BehaviorDesigner.Runtime.Tasks
 			return true;
 		}
 
-		// Token: 0x06007E9D RID: 32413 RVA: 0x002C9008 File Offset: 0x002C7208
+		// Token: 0x060070A3 RID: 28835 RVA: 0x002AA1DC File Offset: 0x002A83DC
 		public override void OnReevaluationEnded(TaskStatus status)
 		{
 			if (this.executionStatus != 1 && this.executionStatus != null)
@@ -106,16 +106,16 @@ namespace BehaviorDesigner.Runtime.Tasks
 			this.storedExecutionStatus = 0;
 		}
 
-		// Token: 0x04006BB8 RID: 27576
+		// Token: 0x04005CC0 RID: 23744
 		private int currentChildIndex;
 
-		// Token: 0x04006BB9 RID: 27577
+		// Token: 0x04005CC1 RID: 23745
 		private TaskStatus executionStatus;
 
-		// Token: 0x04006BBA RID: 27578
+		// Token: 0x04005CC2 RID: 23746
 		private int storedCurrentChildIndex = -1;
 
-		// Token: 0x04006BBB RID: 27579
+		// Token: 0x04005CC3 RID: 23747
 		private TaskStatus storedExecutionStatus;
 	}
 }

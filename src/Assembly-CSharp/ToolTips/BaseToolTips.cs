@@ -3,19 +3,19 @@ using UnityEngine;
 
 namespace ToolTips
 {
-	// Token: 0x02000A25 RID: 2597
+	// Token: 0x020006E6 RID: 1766
 	public abstract class BaseToolTips : MonoBehaviour
 	{
-		// Token: 0x06004355 RID: 17237
+		// Token: 0x060038EE RID: 14574
 		public abstract void Show(object Data);
 
-		// Token: 0x06004356 RID: 17238 RVA: 0x00017C2D File Offset: 0x00015E2D
+		// Token: 0x060038EF RID: 14575 RVA: 0x000B5E62 File Offset: 0x000B4062
 		public void Hide()
 		{
 			base.gameObject.SetActive(false);
 		}
 
-		// Token: 0x06004357 RID: 17239 RVA: 0x001CC5B0 File Offset: 0x001CA7B0
+		// Token: 0x060038F0 RID: 14576 RVA: 0x00184A84 File Offset: 0x00182C84
 		public void PCSetPosition()
 		{
 			if (this._rectTransform == null)
@@ -38,13 +38,13 @@ namespace ToolTips
 			base.transform.position = NewUICanvas.Inst.Camera.ScreenToWorldPoint(vector);
 		}
 
-		// Token: 0x06004358 RID: 17240 RVA: 0x000301F9 File Offset: 0x0002E3F9
+		// Token: 0x060038F1 RID: 14577 RVA: 0x00184B7E File Offset: 0x00182D7E
 		private Vector3 GetMousePosition()
 		{
 			return Input.mousePosition;
 		}
 
-		// Token: 0x04003B5C RID: 15196
+		// Token: 0x040030FD RID: 12541
 		private RectTransform _rectTransform;
 	}
 }

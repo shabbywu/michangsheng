@@ -7,10 +7,10 @@ using UnityEngine.UI;
 
 namespace Tab
 {
-	// Token: 0x02000A2E RID: 2606
+	// Token: 0x020006ED RID: 1773
 	public class LevelTips : ITabTips
 	{
-		// Token: 0x0600437A RID: 17274 RVA: 0x001CD210 File Offset: 0x001CB410
+		// Token: 0x0600390F RID: 14607 RVA: 0x00185744 File Offset: 0x00183944
 		public LevelTips(GameObject go)
 		{
 			this._go = go;
@@ -21,7 +21,7 @@ namespace Tab
 			this._levelTipsMessage = base.Get<Text>("Bg/Content");
 		}
 
-		// Token: 0x0600437B RID: 17275 RVA: 0x001CD280 File Offset: 0x001CB480
+		// Token: 0x06003910 RID: 14608 RVA: 0x001857B4 File Offset: 0x001839B4
 		public void Show()
 		{
 			Avatar player = PlayerEx.Player;
@@ -81,13 +81,13 @@ namespace Tab
 			}
 		}
 
-		// Token: 0x0600437C RID: 17276 RVA: 0x00010DC9 File Offset: 0x0000EFC9
+		// Token: 0x06003911 RID: 14609 RVA: 0x001086F1 File Offset: 0x001068F1
 		protected override string Replace(string msg)
 		{
 			return msg;
 		}
 
-		// Token: 0x0600437D RID: 17277 RVA: 0x001CD500 File Offset: 0x001CB700
+		// Token: 0x06003912 RID: 14610 RVA: 0x00185A34 File Offset: 0x00183C34
 		private int getJinDanID()
 		{
 			int result = -1;
@@ -98,22 +98,22 @@ namespace Tab
 			return result;
 		}
 
-		// Token: 0x0600437E RID: 17278 RVA: 0x0003039D File Offset: 0x0002E59D
+		// Token: 0x06003913 RID: 14611 RVA: 0x00185A94 File Offset: 0x00183C94
 		private bool IsYuanYing()
 		{
 			return Tools.instance.getPlayer().level >= 10;
 		}
 
-		// Token: 0x0600437F RID: 17279 RVA: 0x000303B5 File Offset: 0x0002E5B5
+		// Token: 0x06003914 RID: 14612 RVA: 0x00185AAC File Offset: 0x00183CAC
 		private bool IsHuaShen()
 		{
 			return Tools.instance.getPlayer().level >= 13;
 		}
 
-		// Token: 0x04003B7D RID: 15229
+		// Token: 0x04003118 RID: 12568
 		private Text _levelTipsTitle;
 
-		// Token: 0x04003B7E RID: 15230
+		// Token: 0x04003119 RID: 12569
 		private Text _levelTipsMessage;
 	}
 }

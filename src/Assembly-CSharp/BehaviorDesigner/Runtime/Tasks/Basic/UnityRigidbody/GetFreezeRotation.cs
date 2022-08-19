@@ -3,12 +3,12 @@ using UnityEngine;
 
 namespace BehaviorDesigner.Runtime.Tasks.Basic.UnityRigidbody
 {
-	// Token: 0x02001550 RID: 5456
+	// Token: 0x02001096 RID: 4246
 	[TaskCategory("Basic/Rigidbody")]
 	[TaskDescription("Stores the freeze rotation value of the Rigidbody. Returns Success.")]
 	public class GetFreezeRotation : Action
 	{
-		// Token: 0x0600813E RID: 33086 RVA: 0x002CBFEC File Offset: 0x002CA1EC
+		// Token: 0x06007344 RID: 29508 RVA: 0x002AFA18 File Offset: 0x002ADC18
 		public override void OnStart()
 		{
 			GameObject defaultGameObject = base.GetDefaultGameObject(this.targetGameObject.Value);
@@ -19,7 +19,7 @@ namespace BehaviorDesigner.Runtime.Tasks.Basic.UnityRigidbody
 			}
 		}
 
-		// Token: 0x0600813F RID: 33087 RVA: 0x0005839C File Offset: 0x0005659C
+		// Token: 0x06007345 RID: 29509 RVA: 0x002AFA58 File Offset: 0x002ADC58
 		public override TaskStatus OnUpdate()
 		{
 			if (this.rigidbody == null)
@@ -31,26 +31,26 @@ namespace BehaviorDesigner.Runtime.Tasks.Basic.UnityRigidbody
 			return 2;
 		}
 
-		// Token: 0x06008140 RID: 33088 RVA: 0x000583CF File Offset: 0x000565CF
+		// Token: 0x06007346 RID: 29510 RVA: 0x002AFA8B File Offset: 0x002ADC8B
 		public override void OnReset()
 		{
 			this.targetGameObject = null;
 			this.storeValue = false;
 		}
 
-		// Token: 0x04006DFA RID: 28154
+		// Token: 0x04005EFA RID: 24314
 		[Tooltip("The GameObject that the task operates on. If null the task GameObject is used.")]
 		public SharedGameObject targetGameObject;
 
-		// Token: 0x04006DFB RID: 28155
+		// Token: 0x04005EFB RID: 24315
 		[Tooltip("The freeze rotation value of the Rigidbody")]
 		[RequiredField]
 		public SharedBool storeValue;
 
-		// Token: 0x04006DFC RID: 28156
+		// Token: 0x04005EFC RID: 24316
 		private Rigidbody rigidbody;
 
-		// Token: 0x04006DFD RID: 28157
+		// Token: 0x04005EFD RID: 24317
 		private GameObject prevGameObject;
 	}
 }

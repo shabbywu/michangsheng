@@ -3,22 +3,22 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-// Token: 0x02000504 RID: 1284
+// Token: 0x02000382 RID: 898
 public class UIShengWangManager : MonoBehaviour
 {
-	// Token: 0x0600212D RID: 8493 RVA: 0x0001B55E File Offset: 0x0001975E
+	// Token: 0x06001DB6 RID: 7606 RVA: 0x000D18ED File Offset: 0x000CFAED
 	private void Awake()
 	{
 		UIShengWangManager.Inst = this;
 	}
 
-	// Token: 0x0600212E RID: 8494 RVA: 0x0001B566 File Offset: 0x00019766
+	// Token: 0x06001DB7 RID: 7607 RVA: 0x000D18F5 File Offset: 0x000CFAF5
 	private void OnEnable()
 	{
 		this.RefreshUI();
 	}
 
-	// Token: 0x0600212F RID: 8495 RVA: 0x001157FC File Offset: 0x001139FC
+	// Token: 0x06001DB8 RID: 7608 RVA: 0x000D1900 File Offset: 0x000CFB00
 	public void RefreshUI()
 	{
 		int ningZhouShengWang = PlayerEx.GetNingZhouShengWang();
@@ -84,7 +84,7 @@ public class UIShengWangManager : MonoBehaviour
 		this.SetShiLiInfo(this.NowShowShiLiID, this.NowShowShiLiName);
 	}
 
-	// Token: 0x06002130 RID: 8496 RVA: 0x00115AAC File Offset: 0x00113CAC
+	// Token: 0x06001DB9 RID: 7609 RVA: 0x000D1BB0 File Offset: 0x000CFDB0
 	public void SetNingZhouXuanShang()
 	{
 		int ningZhouShengWang = PlayerEx.GetNingZhouShengWang();
@@ -97,7 +97,7 @@ public class UIShengWangManager : MonoBehaviour
 		this.NingZhouXuanShangDescText.text = text;
 	}
 
-	// Token: 0x06002131 RID: 8497 RVA: 0x00115B00 File Offset: 0x00113D00
+	// Token: 0x06001DBA RID: 7610 RVA: 0x000D1C04 File Offset: 0x000CFE04
 	public void SetSeaXuanShang()
 	{
 		int seaShengWang = PlayerEx.GetSeaShengWang();
@@ -110,7 +110,7 @@ public class UIShengWangManager : MonoBehaviour
 		this.SeaXuanShangDescText.text = text;
 	}
 
-	// Token: 0x06002132 RID: 8498 RVA: 0x00115B54 File Offset: 0x00113D54
+	// Token: 0x06001DBB RID: 7611 RVA: 0x000D1C58 File Offset: 0x000CFE58
 	public void SetShiLiInfo(int id, string ShiLiName)
 	{
 		int shengwang;
@@ -170,66 +170,66 @@ public class UIShengWangManager : MonoBehaviour
 		}
 	}
 
-	// Token: 0x04001C9E RID: 7326
+	// Token: 0x04001845 RID: 6213
 	public static UIShengWangManager Inst;
 
-	// Token: 0x04001C9F RID: 7327
+	// Token: 0x04001846 RID: 6214
 	public Text NingZhouShengWangtext;
 
-	// Token: 0x04001CA0 RID: 7328
+	// Token: 0x04001847 RID: 6215
 	public List<UIShengWangItem> NingZhouShengWangList = new List<UIShengWangItem>();
 
-	// Token: 0x04001CA1 RID: 7329
+	// Token: 0x04001848 RID: 6216
 	public Image NingZhouSliderLeft;
 
-	// Token: 0x04001CA2 RID: 7330
+	// Token: 0x04001849 RID: 6217
 	public Image NingZhouSliderRight;
 
-	// Token: 0x04001CA3 RID: 7331
+	// Token: 0x0400184A RID: 6218
 	public Text SeaShengWangtext;
 
-	// Token: 0x04001CA4 RID: 7332
+	// Token: 0x0400184B RID: 6219
 	public List<UIShengWangItem> SeaShengWangList = new List<UIShengWangItem>();
 
-	// Token: 0x04001CA5 RID: 7333
+	// Token: 0x0400184C RID: 6220
 	public Image SeaSliderLeft;
 
-	// Token: 0x04001CA6 RID: 7334
+	// Token: 0x0400184D RID: 6221
 	public Image SeaSliderRight;
 
-	// Token: 0x04001CA7 RID: 7335
+	// Token: 0x0400184E RID: 6222
 	public Text PanelShiLiText;
 
-	// Token: 0x04001CA8 RID: 7336
+	// Token: 0x0400184F RID: 6223
 	public Text PanelShengWangText;
 
-	// Token: 0x04001CA9 RID: 7337
+	// Token: 0x04001850 RID: 6224
 	public Text PanelShenFenText;
 
-	// Token: 0x04001CAA RID: 7338
+	// Token: 0x04001851 RID: 6225
 	public Text NingZhouShangJinText;
 
-	// Token: 0x04001CAB RID: 7339
+	// Token: 0x04001852 RID: 6226
 	public Text NingZhouXuanShangDescText;
 
-	// Token: 0x04001CAC RID: 7340
+	// Token: 0x04001853 RID: 6227
 	public Text SeaShangJinText;
 
-	// Token: 0x04001CAD RID: 7341
+	// Token: 0x04001854 RID: 6228
 	public Text SeaXuanShangDescText;
 
-	// Token: 0x04001CAE RID: 7342
+	// Token: 0x04001855 RID: 6229
 	public RectTransform ContentRT;
 
-	// Token: 0x04001CAF RID: 7343
+	// Token: 0x04001856 RID: 6230
 	public GameObject TeQuanItemPrefab;
 
-	// Token: 0x04001CB0 RID: 7344
+	// Token: 0x04001857 RID: 6231
 	private static bool firstEnable;
 
-	// Token: 0x04001CB1 RID: 7345
+	// Token: 0x04001858 RID: 6232
 	public int NowShowShiLiID;
 
-	// Token: 0x04001CB2 RID: 7346
+	// Token: 0x04001859 RID: 6233
 	public string NowShowShiLiName;
 }

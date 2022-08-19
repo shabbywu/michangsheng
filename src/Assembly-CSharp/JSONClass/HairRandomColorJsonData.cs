@@ -3,10 +3,10 @@ using System.Collections.Generic;
 
 namespace JSONClass
 {
-	// Token: 0x02000BD5 RID: 3029
+	// Token: 0x02000845 RID: 2117
 	public class HairRandomColorJsonData : IJSONClass
 	{
-		// Token: 0x06004ABC RID: 19132 RVA: 0x001F9D3C File Offset: 0x001F7F3C
+		// Token: 0x06003F26 RID: 16166 RVA: 0x001AF7E8 File Offset: 0x001AD9E8
 		public static void InitDataDict()
 		{
 			foreach (JSONObject jsonobject in jsonData.instance.HairRandomColorJsonData.list)
@@ -42,33 +42,33 @@ namespace JSONClass
 			}
 		}
 
-		// Token: 0x06004ABD RID: 19133 RVA: 0x000042DD File Offset: 0x000024DD
+		// Token: 0x06003F27 RID: 16167 RVA: 0x00004095 File Offset: 0x00002295
 		private static void OnInitFinish()
 		{
 		}
 
-		// Token: 0x0400468F RID: 18063
+		// Token: 0x04003B2C RID: 15148
 		public static Dictionary<int, HairRandomColorJsonData> DataDict = new Dictionary<int, HairRandomColorJsonData>();
 
-		// Token: 0x04004690 RID: 18064
+		// Token: 0x04003B2D RID: 15149
 		public static List<HairRandomColorJsonData> DataList = new List<HairRandomColorJsonData>();
 
-		// Token: 0x04004691 RID: 18065
+		// Token: 0x04003B2E RID: 15150
 		public static Action OnInitFinishAction = new Action(HairRandomColorJsonData.OnInitFinish);
 
-		// Token: 0x04004692 RID: 18066
+		// Token: 0x04003B2F RID: 15151
 		public int id;
 
-		// Token: 0x04004693 RID: 18067
+		// Token: 0x04003B30 RID: 15152
 		public int R;
 
-		// Token: 0x04004694 RID: 18068
+		// Token: 0x04003B31 RID: 15153
 		public int G;
 
-		// Token: 0x04004695 RID: 18069
+		// Token: 0x04003B32 RID: 15154
 		public int B;
 
-		// Token: 0x04004696 RID: 18070
+		// Token: 0x04003B33 RID: 15155
 		public string beizhu;
 	}
 }

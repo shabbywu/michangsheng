@@ -2,30 +2,30 @@
 
 namespace BehaviorDesigner.Runtime.Tasks.Basic.Math
 {
-	// Token: 0x020015CD RID: 5581
+	// Token: 0x0200110E RID: 4366
 	[TaskCategory("Basic/Math")]
 	[TaskDescription("Sets an int value")]
 	public class SetInt : Action
 	{
-		// Token: 0x060082E9 RID: 33513 RVA: 0x00059D7C File Offset: 0x00057F7C
+		// Token: 0x060074EF RID: 29935 RVA: 0x002B3869 File Offset: 0x002B1A69
 		public override TaskStatus OnUpdate()
 		{
 			this.storeResult.Value = this.intValue.Value;
 			return 2;
 		}
 
-		// Token: 0x060082EA RID: 33514 RVA: 0x00059D95 File Offset: 0x00057F95
+		// Token: 0x060074F0 RID: 29936 RVA: 0x002B3882 File Offset: 0x002B1A82
 		public override void OnReset()
 		{
 			this.intValue.Value = 0;
 			this.storeResult.Value = 0;
 		}
 
-		// Token: 0x04006FBD RID: 28605
+		// Token: 0x0400609A RID: 24730
 		[Tooltip("The int value to set")]
 		public SharedInt intValue;
 
-		// Token: 0x04006FBE RID: 28606
+		// Token: 0x0400609B RID: 24731
 		[Tooltip("The variable to store the result")]
 		public SharedInt storeResult;
 	}

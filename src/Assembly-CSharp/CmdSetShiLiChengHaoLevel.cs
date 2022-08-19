@@ -2,19 +2,19 @@
 using Fungus;
 using UnityEngine;
 
-// Token: 0x02000502 RID: 1282
+// Token: 0x02000380 RID: 896
 [CommandInfo("YSPlayer", "根据变量设置势力称号等级", "根据变量设置势力称号等级", 0)]
 [AddComponentMenu("")]
 public class CmdSetShiLiChengHaoLevel : Command
 {
-	// Token: 0x06002127 RID: 8487 RVA: 0x0001B4C3 File Offset: 0x000196C3
+	// Token: 0x06001DB0 RID: 7600 RVA: 0x000D1852 File Offset: 0x000CFA52
 	public override void OnEnter()
 	{
 		PlayerEx.SetShiLiChengHaoLevel((this.shiLiID as IntegerVariable).Value, (this.chengHaoLevel as IntegerVariable).Value);
 		this.Continue();
 	}
 
-	// Token: 0x04001C97 RID: 7319
+	// Token: 0x0400183E RID: 6206
 	[SerializeField]
 	[Tooltip("目标势力的ID")]
 	[VariableProperty(new Type[]
@@ -23,7 +23,7 @@ public class CmdSetShiLiChengHaoLevel : Command
 	})]
 	protected Variable shiLiID;
 
-	// Token: 0x04001C98 RID: 7320
+	// Token: 0x0400183F RID: 6207
 	[SerializeField]
 	[Tooltip("称号等级")]
 	[VariableProperty(new Type[]

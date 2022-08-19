@@ -6,11 +6,12 @@ using System.Text;
 using System.Text.RegularExpressions;
 using UnityEngine;
 
-// Token: 0x02000035 RID: 53
+// Token: 0x0200002A RID: 42
+[Serializable]
 public class JSONObject
 {
-	// Token: 0x17000061 RID: 97
-	// (get) Token: 0x06000384 RID: 900 RVA: 0x00007469 File Offset: 0x00005669
+	// Token: 0x1700005B RID: 91
+	// (get) Token: 0x06000366 RID: 870 RVA: 0x0001313D File Offset: 0x0001133D
 	public bool isContainer
 	{
 		get
@@ -19,8 +20,8 @@ public class JSONObject
 		}
 	}
 
-	// Token: 0x17000062 RID: 98
-	// (get) Token: 0x06000385 RID: 901 RVA: 0x0000747F File Offset: 0x0000567F
+	// Token: 0x1700005C RID: 92
+	// (get) Token: 0x06000367 RID: 871 RVA: 0x00013153 File Offset: 0x00011353
 	public int Count
 	{
 		get
@@ -33,8 +34,8 @@ public class JSONObject
 		}
 	}
 
-	// Token: 0x17000063 RID: 99
-	// (get) Token: 0x06000386 RID: 902 RVA: 0x00007496 File Offset: 0x00005696
+	// Token: 0x1700005D RID: 93
+	// (get) Token: 0x06000368 RID: 872 RVA: 0x0001316A File Offset: 0x0001136A
 	public string Str
 	{
 		get
@@ -47,18 +48,18 @@ public class JSONObject
 		}
 	}
 
-	// Token: 0x17000064 RID: 100
-	// (get) Token: 0x06000387 RID: 903 RVA: 0x000074B6 File Offset: 0x000056B6
+	// Token: 0x1700005E RID: 94
+	// (get) Token: 0x06000369 RID: 873 RVA: 0x0001318A File Offset: 0x0001138A
 	public int I
 	{
 		get
 		{
-			return (int)this.n;
+			return (int)this.i;
 		}
 	}
 
-	// Token: 0x17000065 RID: 101
-	// (get) Token: 0x06000388 RID: 904 RVA: 0x000074BF File Offset: 0x000056BF
+	// Token: 0x1700005F RID: 95
+	// (get) Token: 0x0600036A RID: 874 RVA: 0x00013193 File Offset: 0x00011393
 	public float f
 	{
 		get
@@ -67,8 +68,8 @@ public class JSONObject
 		}
 	}
 
-	// Token: 0x17000066 RID: 102
-	// (get) Token: 0x06000389 RID: 905 RVA: 0x000074C7 File Offset: 0x000056C7
+	// Token: 0x17000060 RID: 96
+	// (get) Token: 0x0600036B RID: 875 RVA: 0x0001319B File Offset: 0x0001139B
 	public static JSONObject nullJO
 	{
 		get
@@ -77,8 +78,8 @@ public class JSONObject
 		}
 	}
 
-	// Token: 0x17000067 RID: 103
-	// (get) Token: 0x0600038A RID: 906 RVA: 0x000074CF File Offset: 0x000056CF
+	// Token: 0x17000061 RID: 97
+	// (get) Token: 0x0600036C RID: 876 RVA: 0x000131A3 File Offset: 0x000113A3
 	public static JSONObject obj
 	{
 		get
@@ -87,8 +88,8 @@ public class JSONObject
 		}
 	}
 
-	// Token: 0x17000068 RID: 104
-	// (get) Token: 0x0600038B RID: 907 RVA: 0x000074D7 File Offset: 0x000056D7
+	// Token: 0x17000062 RID: 98
+	// (get) Token: 0x0600036D RID: 877 RVA: 0x000131AB File Offset: 0x000113AB
 	public static JSONObject arr
 	{
 		get
@@ -97,7 +98,7 @@ public class JSONObject
 		}
 	}
 
-	// Token: 0x0600038C RID: 908 RVA: 0x000074DF File Offset: 0x000056DF
+	// Token: 0x0600036E RID: 878 RVA: 0x000131B3 File Offset: 0x000113B3
 	public JSONObject(JSONObject.Type t)
 	{
 		this.type = t;
@@ -116,21 +117,22 @@ public class JSONObject
 		}
 	}
 
-	// Token: 0x0600038D RID: 909 RVA: 0x00007518 File Offset: 0x00005718
+	// Token: 0x0600036F RID: 879 RVA: 0x000131EC File Offset: 0x000113EC
 	public JSONObject(bool b)
 	{
 		this.type = JSONObject.Type.BOOL;
 		this.b = b;
 	}
 
-	// Token: 0x0600038E RID: 910 RVA: 0x0000752E File Offset: 0x0000572E
+	// Token: 0x06000370 RID: 880 RVA: 0x00013202 File Offset: 0x00011402
 	public JSONObject(float f)
 	{
 		this.type = JSONObject.Type.NUMBER;
 		this.n = f;
+		this.i = (long)this.n;
 	}
 
-	// Token: 0x0600038F RID: 911 RVA: 0x00007544 File Offset: 0x00005744
+	// Token: 0x06000371 RID: 881 RVA: 0x00013225 File Offset: 0x00011425
 	public JSONObject(int i)
 	{
 		this.type = JSONObject.Type.NUMBER;
@@ -139,7 +141,7 @@ public class JSONObject
 		this.n = (float)i;
 	}
 
-	// Token: 0x06000390 RID: 912 RVA: 0x0000756A File Offset: 0x0000576A
+	// Token: 0x06000372 RID: 882 RVA: 0x0001324B File Offset: 0x0001144B
 	public JSONObject(long l)
 	{
 		this.type = JSONObject.Type.NUMBER;
@@ -148,7 +150,7 @@ public class JSONObject
 		this.n = (float)l;
 	}
 
-	// Token: 0x06000391 RID: 913 RVA: 0x0006A718 File Offset: 0x00068918
+	// Token: 0x06000373 RID: 883 RVA: 0x00013270 File Offset: 0x00011470
 	public JSONObject(Dictionary<string, string> dic)
 	{
 		this.type = JSONObject.Type.OBJECT;
@@ -161,7 +163,7 @@ public class JSONObject
 		}
 	}
 
-	// Token: 0x06000392 RID: 914 RVA: 0x0006A7AC File Offset: 0x000689AC
+	// Token: 0x06000374 RID: 884 RVA: 0x00013304 File Offset: 0x00011504
 	public JSONObject(Dictionary<string, JSONObject> dic)
 	{
 		this.type = JSONObject.Type.OBJECT;
@@ -174,32 +176,32 @@ public class JSONObject
 		}
 	}
 
-	// Token: 0x06000393 RID: 915 RVA: 0x0000758F File Offset: 0x0000578F
+	// Token: 0x06000375 RID: 885 RVA: 0x00013394 File Offset: 0x00011594
 	public JSONObject(JSONObject.AddJSONContents content)
 	{
 		content(this);
 	}
 
-	// Token: 0x06000394 RID: 916 RVA: 0x0000759E File Offset: 0x0000579E
+	// Token: 0x06000376 RID: 886 RVA: 0x000133A3 File Offset: 0x000115A3
 	public JSONObject(JSONObject[] objs)
 	{
 		this.type = JSONObject.Type.ARRAY;
 		this.list = new List<JSONObject>(objs);
 	}
 
-	// Token: 0x06000395 RID: 917 RVA: 0x000075B9 File Offset: 0x000057B9
+	// Token: 0x06000377 RID: 887 RVA: 0x000133BE File Offset: 0x000115BE
 	public static JSONObject StringObject(string val)
 	{
 		return JSONObject.CreateStringObject(val);
 	}
 
-	// Token: 0x06000396 RID: 918 RVA: 0x000075C1 File Offset: 0x000057C1
+	// Token: 0x06000378 RID: 888 RVA: 0x000133C6 File Offset: 0x000115C6
 	public JSONObject Clone()
 	{
 		return base.MemberwiseClone() as JSONObject;
 	}
 
-	// Token: 0x06000397 RID: 919 RVA: 0x0006A83C File Offset: 0x00068A3C
+	// Token: 0x06000379 RID: 889 RVA: 0x000133D4 File Offset: 0x000115D4
 	public void Absorb(JSONObject obj)
 	{
 		this.list.AddRange(obj.list);
@@ -212,13 +214,13 @@ public class JSONObject
 		this.type = obj.type;
 	}
 
-	// Token: 0x06000398 RID: 920 RVA: 0x000075CE File Offset: 0x000057CE
+	// Token: 0x0600037A RID: 890 RVA: 0x0001344B File Offset: 0x0001164B
 	public static JSONObject Create()
 	{
 		return new JSONObject();
 	}
 
-	// Token: 0x06000399 RID: 921 RVA: 0x0006A8B4 File Offset: 0x00068AB4
+	// Token: 0x0600037B RID: 891 RVA: 0x00013454 File Offset: 0x00011654
 	public static JSONObject Create(JSONObject.Type t)
 	{
 		JSONObject jsonobject = JSONObject.Create();
@@ -238,7 +240,7 @@ public class JSONObject
 		return jsonobject;
 	}
 
-	// Token: 0x0600039A RID: 922 RVA: 0x000075D5 File Offset: 0x000057D5
+	// Token: 0x0600037C RID: 892 RVA: 0x0001349A File Offset: 0x0001169A
 	public static JSONObject Create(bool val)
 	{
 		JSONObject jsonobject = JSONObject.Create();
@@ -247,7 +249,7 @@ public class JSONObject
 		return jsonobject;
 	}
 
-	// Token: 0x0600039B RID: 923 RVA: 0x000075EA File Offset: 0x000057EA
+	// Token: 0x0600037D RID: 893 RVA: 0x000134AF File Offset: 0x000116AF
 	public static JSONObject Create(float val)
 	{
 		JSONObject jsonobject = JSONObject.Create();
@@ -256,7 +258,7 @@ public class JSONObject
 		return jsonobject;
 	}
 
-	// Token: 0x0600039C RID: 924 RVA: 0x000075FF File Offset: 0x000057FF
+	// Token: 0x0600037E RID: 894 RVA: 0x000134C4 File Offset: 0x000116C4
 	public static JSONObject Create(int val)
 	{
 		JSONObject jsonobject = JSONObject.Create();
@@ -267,7 +269,7 @@ public class JSONObject
 		return jsonobject;
 	}
 
-	// Token: 0x0600039D RID: 925 RVA: 0x00007624 File Offset: 0x00005824
+	// Token: 0x0600037F RID: 895 RVA: 0x000134E9 File Offset: 0x000116E9
 	public static JSONObject Create(long val)
 	{
 		JSONObject jsonobject = JSONObject.Create();
@@ -278,7 +280,7 @@ public class JSONObject
 		return jsonobject;
 	}
 
-	// Token: 0x0600039E RID: 926 RVA: 0x00007648 File Offset: 0x00005848
+	// Token: 0x06000380 RID: 896 RVA: 0x0001350D File Offset: 0x0001170D
 	public static JSONObject CreateStringObject(string val)
 	{
 		JSONObject jsonobject = JSONObject.Create();
@@ -287,7 +289,7 @@ public class JSONObject
 		return jsonobject;
 	}
 
-	// Token: 0x0600039F RID: 927 RVA: 0x0000765D File Offset: 0x0000585D
+	// Token: 0x06000381 RID: 897 RVA: 0x00013522 File Offset: 0x00011722
 	public static JSONObject CreateBakedObject(string val)
 	{
 		JSONObject jsonobject = JSONObject.Create();
@@ -296,7 +298,7 @@ public class JSONObject
 		return jsonobject;
 	}
 
-	// Token: 0x060003A0 RID: 928 RVA: 0x00007672 File Offset: 0x00005872
+	// Token: 0x06000382 RID: 898 RVA: 0x00013537 File Offset: 0x00011737
 	public static JSONObject Create(string val, int maxDepth = -2, bool storeExcessLevels = false, bool strict = false)
 	{
 		JSONObject jsonobject = JSONObject.Create();
@@ -304,7 +306,7 @@ public class JSONObject
 		return jsonobject;
 	}
 
-	// Token: 0x060003A1 RID: 929 RVA: 0x0006A8FC File Offset: 0x00068AFC
+	// Token: 0x06000383 RID: 899 RVA: 0x00013548 File Offset: 0x00011748
 	public static JSONObject Create(JSONObject.AddJSONContents content)
 	{
 		JSONObject jsonobject = JSONObject.Create();
@@ -312,7 +314,7 @@ public class JSONObject
 		return jsonobject;
 	}
 
-	// Token: 0x060003A2 RID: 930 RVA: 0x0006A918 File Offset: 0x00068B18
+	// Token: 0x06000384 RID: 900 RVA: 0x00013564 File Offset: 0x00011764
 	public static JSONObject Create(Dictionary<string, string> dic)
 	{
 		JSONObject jsonobject = JSONObject.Create();
@@ -327,18 +329,18 @@ public class JSONObject
 		return jsonobject;
 	}
 
-	// Token: 0x060003A3 RID: 931 RVA: 0x0000403D File Offset: 0x0000223D
+	// Token: 0x06000385 RID: 901 RVA: 0x000027FC File Offset: 0x000009FC
 	public JSONObject()
 	{
 	}
 
-	// Token: 0x060003A4 RID: 932 RVA: 0x00007683 File Offset: 0x00005883
+	// Token: 0x06000386 RID: 902 RVA: 0x000135F8 File Offset: 0x000117F8
 	public JSONObject(string str, int maxDepth = -2, bool storeExcessLevels = false, bool strict = false)
 	{
 		this.Parse(str, maxDepth, storeExcessLevels, strict);
 	}
 
-	// Token: 0x060003A5 RID: 933 RVA: 0x0006A9AC File Offset: 0x00068BAC
+	// Token: 0x06000387 RID: 903 RVA: 0x0001360C File Offset: 0x0001180C
 	private void Parse(string str, int maxDepth = -2, bool storeExcessLevels = false, bool strict = false)
 	{
 		if (string.IsNullOrEmpty(str))
@@ -408,6 +410,7 @@ public class JSONObject
 				try
 				{
 					this.n = Convert.ToSingle(str);
+					this.i = (long)this.n;
 					if (!str.Contains("."))
 					{
 						this.i = Convert.ToInt64(str);
@@ -505,8 +508,8 @@ public class JSONObject
 		}
 	}
 
-	// Token: 0x17000069 RID: 105
-	// (get) Token: 0x060003A6 RID: 934 RVA: 0x00007696 File Offset: 0x00005896
+	// Token: 0x17000063 RID: 99
+	// (get) Token: 0x06000388 RID: 904 RVA: 0x0001396C File Offset: 0x00011B6C
 	public bool IsNumber
 	{
 		get
@@ -515,8 +518,8 @@ public class JSONObject
 		}
 	}
 
-	// Token: 0x1700006A RID: 106
-	// (get) Token: 0x060003A7 RID: 935 RVA: 0x000076A1 File Offset: 0x000058A1
+	// Token: 0x17000064 RID: 100
+	// (get) Token: 0x06000389 RID: 905 RVA: 0x00013977 File Offset: 0x00011B77
 	public bool IsNull
 	{
 		get
@@ -525,8 +528,8 @@ public class JSONObject
 		}
 	}
 
-	// Token: 0x1700006B RID: 107
-	// (get) Token: 0x060003A8 RID: 936 RVA: 0x000076AC File Offset: 0x000058AC
+	// Token: 0x17000065 RID: 101
+	// (get) Token: 0x0600038A RID: 906 RVA: 0x00013982 File Offset: 0x00011B82
 	public bool IsString
 	{
 		get
@@ -535,8 +538,8 @@ public class JSONObject
 		}
 	}
 
-	// Token: 0x1700006C RID: 108
-	// (get) Token: 0x060003A9 RID: 937 RVA: 0x000076B7 File Offset: 0x000058B7
+	// Token: 0x17000066 RID: 102
+	// (get) Token: 0x0600038B RID: 907 RVA: 0x0001398D File Offset: 0x00011B8D
 	public bool IsBool
 	{
 		get
@@ -545,8 +548,8 @@ public class JSONObject
 		}
 	}
 
-	// Token: 0x1700006D RID: 109
-	// (get) Token: 0x060003AA RID: 938 RVA: 0x000076C2 File Offset: 0x000058C2
+	// Token: 0x17000067 RID: 103
+	// (get) Token: 0x0600038C RID: 908 RVA: 0x00013998 File Offset: 0x00011B98
 	public bool IsArray
 	{
 		get
@@ -555,8 +558,8 @@ public class JSONObject
 		}
 	}
 
-	// Token: 0x1700006E RID: 110
-	// (get) Token: 0x060003AB RID: 939 RVA: 0x000076CD File Offset: 0x000058CD
+	// Token: 0x17000068 RID: 104
+	// (get) Token: 0x0600038D RID: 909 RVA: 0x000139A3 File Offset: 0x00011BA3
 	public bool IsObject
 	{
 		get
@@ -565,37 +568,37 @@ public class JSONObject
 		}
 	}
 
-	// Token: 0x060003AC RID: 940 RVA: 0x000076E3 File Offset: 0x000058E3
+	// Token: 0x0600038E RID: 910 RVA: 0x000139B9 File Offset: 0x00011BB9
 	public void Add(bool val)
 	{
 		this.Add(JSONObject.Create(val));
 	}
 
-	// Token: 0x060003AD RID: 941 RVA: 0x000076F1 File Offset: 0x000058F1
+	// Token: 0x0600038F RID: 911 RVA: 0x000139C7 File Offset: 0x00011BC7
 	public void Add(float val)
 	{
 		this.Add(JSONObject.Create(val));
 	}
 
-	// Token: 0x060003AE RID: 942 RVA: 0x000076FF File Offset: 0x000058FF
+	// Token: 0x06000390 RID: 912 RVA: 0x000139D5 File Offset: 0x00011BD5
 	public void Add(int val)
 	{
 		this.Add(JSONObject.Create(val));
 	}
 
-	// Token: 0x060003AF RID: 943 RVA: 0x0000770D File Offset: 0x0000590D
+	// Token: 0x06000391 RID: 913 RVA: 0x000139E3 File Offset: 0x00011BE3
 	public void Add(string str)
 	{
 		this.Add(JSONObject.CreateStringObject(str));
 	}
 
-	// Token: 0x060003B0 RID: 944 RVA: 0x0000771B File Offset: 0x0000591B
+	// Token: 0x06000392 RID: 914 RVA: 0x000139F1 File Offset: 0x00011BF1
 	public void Add(JSONObject.AddJSONContents content)
 	{
 		this.Add(JSONObject.Create(content));
 	}
 
-	// Token: 0x060003B1 RID: 945 RVA: 0x00007729 File Offset: 0x00005929
+	// Token: 0x06000393 RID: 915 RVA: 0x000139FF File Offset: 0x00011BFF
 	public void Add(JSONObject obj)
 	{
 		if (obj)
@@ -612,43 +615,43 @@ public class JSONObject
 		}
 	}
 
-	// Token: 0x060003B2 RID: 946 RVA: 0x00007762 File Offset: 0x00005962
+	// Token: 0x06000394 RID: 916 RVA: 0x00013A38 File Offset: 0x00011C38
 	public void AddField(string name, bool val)
 	{
 		this.AddField(name, JSONObject.Create(val));
 	}
 
-	// Token: 0x060003B3 RID: 947 RVA: 0x00007771 File Offset: 0x00005971
+	// Token: 0x06000395 RID: 917 RVA: 0x00013A47 File Offset: 0x00011C47
 	public void AddField(string name, float val)
 	{
 		this.AddField(name, JSONObject.Create(val));
 	}
 
-	// Token: 0x060003B4 RID: 948 RVA: 0x00007780 File Offset: 0x00005980
+	// Token: 0x06000396 RID: 918 RVA: 0x00013A56 File Offset: 0x00011C56
 	public void AddField(string name, int val)
 	{
 		this.AddField(name, JSONObject.Create(val));
 	}
 
-	// Token: 0x060003B5 RID: 949 RVA: 0x0000778F File Offset: 0x0000598F
+	// Token: 0x06000397 RID: 919 RVA: 0x00013A65 File Offset: 0x00011C65
 	public void AddField(string name, long val)
 	{
 		this.AddField(name, JSONObject.Create(val));
 	}
 
-	// Token: 0x060003B6 RID: 950 RVA: 0x0000779E File Offset: 0x0000599E
+	// Token: 0x06000398 RID: 920 RVA: 0x00013A74 File Offset: 0x00011C74
 	public void AddField(string name, JSONObject.AddJSONContents content)
 	{
 		this.AddField(name, JSONObject.Create(content));
 	}
 
-	// Token: 0x060003B7 RID: 951 RVA: 0x000077AD File Offset: 0x000059AD
+	// Token: 0x06000399 RID: 921 RVA: 0x00013A83 File Offset: 0x00011C83
 	public void AddField(string name, string val)
 	{
 		this.AddField(name, JSONObject.CreateStringObject(val));
 	}
 
-	// Token: 0x060003B8 RID: 952 RVA: 0x0006AD00 File Offset: 0x00068F00
+	// Token: 0x0600039A RID: 922 RVA: 0x00013A94 File Offset: 0x00011C94
 	public void AddField(string name, JSONObject obj)
 	{
 		if (obj)
@@ -677,31 +680,31 @@ public class JSONObject
 		}
 	}
 
-	// Token: 0x060003B9 RID: 953 RVA: 0x000077BC File Offset: 0x000059BC
+	// Token: 0x0600039B RID: 923 RVA: 0x00013B31 File Offset: 0x00011D31
 	public void SetField(string name, string val)
 	{
 		this.SetField(name, JSONObject.CreateStringObject(val));
 	}
 
-	// Token: 0x060003BA RID: 954 RVA: 0x000077CB File Offset: 0x000059CB
+	// Token: 0x0600039C RID: 924 RVA: 0x00013B40 File Offset: 0x00011D40
 	public void SetField(string name, bool val)
 	{
 		this.SetField(name, JSONObject.Create(val));
 	}
 
-	// Token: 0x060003BB RID: 955 RVA: 0x000077DA File Offset: 0x000059DA
+	// Token: 0x0600039D RID: 925 RVA: 0x00013B4F File Offset: 0x00011D4F
 	public void SetField(string name, float val)
 	{
 		this.SetField(name, JSONObject.Create(val));
 	}
 
-	// Token: 0x060003BC RID: 956 RVA: 0x000077E9 File Offset: 0x000059E9
+	// Token: 0x0600039E RID: 926 RVA: 0x00013B5E File Offset: 0x00011D5E
 	public void SetField(string name, int val)
 	{
 		this.SetField(name, JSONObject.Create(val));
 	}
 
-	// Token: 0x060003BD RID: 957 RVA: 0x000077F8 File Offset: 0x000059F8
+	// Token: 0x0600039F RID: 927 RVA: 0x00013B6D File Offset: 0x00011D6D
 	public void SetField(string name, JSONObject obj)
 	{
 		if (this.HasField(name))
@@ -712,7 +715,7 @@ public class JSONObject
 		this.AddField(name, obj);
 	}
 
-	// Token: 0x060003BE RID: 958 RVA: 0x0000782B File Offset: 0x00005A2B
+	// Token: 0x060003A0 RID: 928 RVA: 0x00013BA0 File Offset: 0x00011DA0
 	public void RemoveField(string name)
 	{
 		if (this.keys.IndexOf(name) > -1)
@@ -722,14 +725,14 @@ public class JSONObject
 		}
 	}
 
-	// Token: 0x060003BF RID: 959 RVA: 0x00007860 File Offset: 0x00005A60
+	// Token: 0x060003A1 RID: 929 RVA: 0x00013BD5 File Offset: 0x00011DD5
 	public bool GetField(out bool field, string name, bool fallback)
 	{
 		field = fallback;
 		return this.GetField(ref field, name, null);
 	}
 
-	// Token: 0x060003C0 RID: 960 RVA: 0x0000786E File Offset: 0x00005A6E
+	// Token: 0x060003A2 RID: 930 RVA: 0x00013BE3 File Offset: 0x00011DE3
 	public JSONObject TryGetField(string name)
 	{
 		if (this.HasField(name))
@@ -739,7 +742,7 @@ public class JSONObject
 		return new JSONObject();
 	}
 
-	// Token: 0x060003C1 RID: 961 RVA: 0x0006ADA0 File Offset: 0x00068FA0
+	// Token: 0x060003A3 RID: 931 RVA: 0x00013BFC File Offset: 0x00011DFC
 	public bool GetField(ref bool field, string name, JSONObject.FieldNotFound fail = null)
 	{
 		if (this.type == JSONObject.Type.OBJECT)
@@ -758,14 +761,14 @@ public class JSONObject
 		return false;
 	}
 
-	// Token: 0x060003C2 RID: 962 RVA: 0x00007886 File Offset: 0x00005A86
+	// Token: 0x060003A4 RID: 932 RVA: 0x00013C43 File Offset: 0x00011E43
 	public bool GetField(out float field, string name, float fallback)
 	{
 		field = fallback;
 		return this.GetField(ref field, name, null);
 	}
 
-	// Token: 0x060003C3 RID: 963 RVA: 0x0006ADE8 File Offset: 0x00068FE8
+	// Token: 0x060003A5 RID: 933 RVA: 0x00013C54 File Offset: 0x00011E54
 	public bool GetField(ref float field, string name, JSONObject.FieldNotFound fail = null)
 	{
 		if (this.type == JSONObject.Type.OBJECT)
@@ -784,14 +787,14 @@ public class JSONObject
 		return false;
 	}
 
-	// Token: 0x060003C4 RID: 964 RVA: 0x00007894 File Offset: 0x00005A94
+	// Token: 0x060003A6 RID: 934 RVA: 0x00013C9B File Offset: 0x00011E9B
 	public bool GetField(out int field, string name, int fallback)
 	{
 		field = fallback;
 		return this.GetField(ref field, name, null);
 	}
 
-	// Token: 0x060003C5 RID: 965 RVA: 0x0006AE30 File Offset: 0x00069030
+	// Token: 0x060003A7 RID: 935 RVA: 0x00013CAC File Offset: 0x00011EAC
 	public bool GetField(ref int field, string name, JSONObject.FieldNotFound fail = null)
 	{
 		if (this.IsObject)
@@ -799,7 +802,14 @@ public class JSONObject
 			int num = this.keys.IndexOf(name);
 			if (num >= 0)
 			{
-				field = (int)this.list[num].n;
+				if (this.list[num].n > 1000000f)
+				{
+					field = (int)this.list[num].i;
+				}
+				else
+				{
+					field = (int)this.list[num].n;
+				}
 				return true;
 			}
 		}
@@ -810,14 +820,14 @@ public class JSONObject
 		return false;
 	}
 
-	// Token: 0x060003C6 RID: 966 RVA: 0x000078A2 File Offset: 0x00005AA2
+	// Token: 0x060003A8 RID: 936 RVA: 0x00013D21 File Offset: 0x00011F21
 	public bool GetField(out long field, string name, long fallback)
 	{
 		field = fallback;
 		return this.GetField(ref field, name, null);
 	}
 
-	// Token: 0x060003C7 RID: 967 RVA: 0x0006AE78 File Offset: 0x00069078
+	// Token: 0x060003A9 RID: 937 RVA: 0x00013D30 File Offset: 0x00011F30
 	public bool GetField(ref long field, string name, JSONObject.FieldNotFound fail = null)
 	{
 		if (this.IsObject)
@@ -836,14 +846,14 @@ public class JSONObject
 		return false;
 	}
 
-	// Token: 0x060003C8 RID: 968 RVA: 0x000078B0 File Offset: 0x00005AB0
+	// Token: 0x060003AA RID: 938 RVA: 0x00013D77 File Offset: 0x00011F77
 	public bool GetField(out uint field, string name, uint fallback)
 	{
 		field = fallback;
 		return this.GetField(ref field, name, null);
 	}
 
-	// Token: 0x060003C9 RID: 969 RVA: 0x0006AEC0 File Offset: 0x000690C0
+	// Token: 0x060003AB RID: 939 RVA: 0x00013D88 File Offset: 0x00011F88
 	public bool GetField(ref uint field, string name, JSONObject.FieldNotFound fail = null)
 	{
 		if (this.IsObject)
@@ -862,14 +872,14 @@ public class JSONObject
 		return false;
 	}
 
-	// Token: 0x060003CA RID: 970 RVA: 0x000078BE File Offset: 0x00005ABE
+	// Token: 0x060003AC RID: 940 RVA: 0x00013DCF File Offset: 0x00011FCF
 	public bool GetField(out string field, string name, string fallback)
 	{
 		field = fallback;
 		return this.GetField(ref field, name, null);
 	}
 
-	// Token: 0x060003CB RID: 971 RVA: 0x0006AF08 File Offset: 0x00069108
+	// Token: 0x060003AD RID: 941 RVA: 0x00013DE0 File Offset: 0x00011FE0
 	public bool GetField(ref string field, string name, JSONObject.FieldNotFound fail = null)
 	{
 		if (this.IsObject)
@@ -888,7 +898,7 @@ public class JSONObject
 		return false;
 	}
 
-	// Token: 0x060003CC RID: 972 RVA: 0x0006AF50 File Offset: 0x00069150
+	// Token: 0x060003AE RID: 942 RVA: 0x00013E28 File Offset: 0x00012028
 	public void GetField(string name, JSONObject.GetFieldResponse response, JSONObject.FieldNotFound fail = null)
 	{
 		if (response != null && this.IsObject)
@@ -906,7 +916,7 @@ public class JSONObject
 		}
 	}
 
-	// Token: 0x060003CD RID: 973 RVA: 0x0006AF98 File Offset: 0x00069198
+	// Token: 0x060003AF RID: 943 RVA: 0x00013E70 File Offset: 0x00012070
 	public JSONObject GetField(string name)
 	{
 		if (this.IsObject)
@@ -922,7 +932,7 @@ public class JSONObject
 		return null;
 	}
 
-	// Token: 0x060003CE RID: 974 RVA: 0x0006AFE8 File Offset: 0x000691E8
+	// Token: 0x060003B0 RID: 944 RVA: 0x00013EC0 File Offset: 0x000120C0
 	public bool HasFields(string[] names)
 	{
 		if (!this.IsObject)
@@ -939,7 +949,7 @@ public class JSONObject
 		return true;
 	}
 
-	// Token: 0x060003CF RID: 975 RVA: 0x0006B020 File Offset: 0x00069220
+	// Token: 0x060003B1 RID: 945 RVA: 0x00013EF8 File Offset: 0x000120F8
 	public bool HasField(string name)
 	{
 		if (!this.IsObject)
@@ -956,13 +966,13 @@ public class JSONObject
 		return false;
 	}
 
-	// Token: 0x060003D0 RID: 976 RVA: 0x0006B064 File Offset: 0x00069264
+	// Token: 0x060003B2 RID: 946 RVA: 0x00013F3C File Offset: 0x0001213C
 	public bool HasItem(int i)
 	{
-		return this.list.Find((JSONObject aa) => (int)aa.n == i) != null;
+		return this.list.Find((JSONObject aa) => (int)aa.i == i) != null;
 	}
 
-	// Token: 0x060003D1 RID: 977 RVA: 0x0006B098 File Offset: 0x00069298
+	// Token: 0x060003B3 RID: 947 RVA: 0x00013F70 File Offset: 0x00012170
 	public void Clear()
 	{
 		this.type = JSONObject.Type.NULL;
@@ -979,19 +989,19 @@ public class JSONObject
 		this.b = false;
 	}
 
-	// Token: 0x060003D2 RID: 978 RVA: 0x000078CC File Offset: 0x00005ACC
+	// Token: 0x060003B4 RID: 948 RVA: 0x00013FC7 File Offset: 0x000121C7
 	public JSONObject Copy()
 	{
 		return JSONObject.Create(this.Print(false), -2, false, false);
 	}
 
-	// Token: 0x060003D3 RID: 979 RVA: 0x000078DE File Offset: 0x00005ADE
+	// Token: 0x060003B5 RID: 949 RVA: 0x00013FD9 File Offset: 0x000121D9
 	public void Merge(JSONObject obj)
 	{
 		JSONObject.MergeRecur(this, obj);
 	}
 
-	// Token: 0x060003D4 RID: 980 RVA: 0x0006B0F0 File Offset: 0x000692F0
+	// Token: 0x060003B6 RID: 950 RVA: 0x00013FE4 File Offset: 0x000121E4
 	private static void MergeRecur(JSONObject left, JSONObject right)
 	{
 		if (left.type == JSONObject.Type.NULL)
@@ -1049,7 +1059,7 @@ public class JSONObject
 		}
 	}
 
-	// Token: 0x060003D5 RID: 981 RVA: 0x000078E7 File Offset: 0x00005AE7
+	// Token: 0x060003B7 RID: 951 RVA: 0x00014125 File Offset: 0x00012325
 	public void Bake()
 	{
 		if (this.type != JSONObject.Type.BAKED)
@@ -1059,7 +1069,7 @@ public class JSONObject
 		}
 	}
 
-	// Token: 0x060003D6 RID: 982 RVA: 0x00007906 File Offset: 0x00005B06
+	// Token: 0x060003B8 RID: 952 RVA: 0x00014144 File Offset: 0x00012344
 	public IEnumerable BakeAsync()
 	{
 		if (this.type != JSONObject.Type.BAKED)
@@ -1082,7 +1092,7 @@ public class JSONObject
 		yield break;
 	}
 
-	// Token: 0x060003D7 RID: 983 RVA: 0x0006B234 File Offset: 0x00069434
+	// Token: 0x060003B9 RID: 953 RVA: 0x00014154 File Offset: 0x00012354
 	public string Print(bool pretty = false)
 	{
 		StringBuilder stringBuilder = new StringBuilder();
@@ -1090,7 +1100,7 @@ public class JSONObject
 		return stringBuilder.ToString();
 	}
 
-	// Token: 0x060003D8 RID: 984 RVA: 0x00007916 File Offset: 0x00005B16
+	// Token: 0x060003BA RID: 954 RVA: 0x00014176 File Offset: 0x00012376
 	public IEnumerable<string> PrintAsync(bool pretty = false)
 	{
 		StringBuilder builder = new StringBuilder();
@@ -1107,7 +1117,7 @@ public class JSONObject
 		yield break;
 	}
 
-	// Token: 0x060003D9 RID: 985 RVA: 0x0000792D File Offset: 0x00005B2D
+	// Token: 0x060003BB RID: 955 RVA: 0x0001418D File Offset: 0x0001238D
 	private IEnumerable StringifyAsync(int depth, StringBuilder builder, bool pretty = false)
 	{
 		int num = depth;
@@ -1279,7 +1289,7 @@ public class JSONObject
 		yield break;
 	}
 
-	// Token: 0x060003DA RID: 986 RVA: 0x0006B258 File Offset: 0x00069458
+	// Token: 0x060003BC RID: 956 RVA: 0x000141B4 File Offset: 0x000123B4
 	private void Stringify(int depth, StringBuilder builder, bool pretty = false)
 	{
 		if (depth++ > 100)
@@ -1430,7 +1440,7 @@ public class JSONObject
 		}
 	}
 
-	// Token: 0x1700006F RID: 111
+	// Token: 0x17000069 RID: 105
 	public JSONObject this[int index]
 	{
 		get
@@ -1450,7 +1460,7 @@ public class JSONObject
 		}
 	}
 
-	// Token: 0x17000070 RID: 112
+	// Token: 0x1700006A RID: 106
 	public JSONObject this[string index]
 	{
 		get
@@ -1463,19 +1473,19 @@ public class JSONObject
 		}
 	}
 
-	// Token: 0x060003DF RID: 991 RVA: 0x000079A0 File Offset: 0x00005BA0
+	// Token: 0x060003C1 RID: 961 RVA: 0x00014549 File Offset: 0x00012749
 	public override string ToString()
 	{
 		return this.Print(false);
 	}
 
-	// Token: 0x060003E0 RID: 992 RVA: 0x000079A9 File Offset: 0x00005BA9
+	// Token: 0x060003C2 RID: 962 RVA: 0x00014552 File Offset: 0x00012752
 	public string ToString(bool pretty)
 	{
 		return this.Print(pretty);
 	}
 
-	// Token: 0x060003E1 RID: 993 RVA: 0x0006B5A0 File Offset: 0x000697A0
+	// Token: 0x060003C3 RID: 963 RVA: 0x0001455C File Offset: 0x0001275C
 	public Dictionary<string, string> ToDictionary()
 	{
 		if (this.type == JSONObject.Type.OBJECT)
@@ -1502,7 +1512,7 @@ public class JSONObject
 		return null;
 	}
 
-	// Token: 0x060003E2 RID: 994 RVA: 0x0006B674 File Offset: 0x00069874
+	// Token: 0x060003C4 RID: 964 RVA: 0x00014630 File Offset: 0x00012830
 	public List<int> ToList()
 	{
 		List<int> list = new List<int>();
@@ -1513,34 +1523,34 @@ public class JSONObject
 		return list;
 	}
 
-	// Token: 0x060003E3 RID: 995 RVA: 0x000079B2 File Offset: 0x00005BB2
+	// Token: 0x060003C5 RID: 965 RVA: 0x00014667 File Offset: 0x00012867
 	public static implicit operator bool(JSONObject o)
 	{
 		return o != null;
 	}
 
-	// Token: 0x060003E4 RID: 996 RVA: 0x000079B8 File Offset: 0x00005BB8
+	// Token: 0x060003C6 RID: 966 RVA: 0x0001466D File Offset: 0x0001286D
 	public void LogString()
 	{
 		Debug.Log(this.ToString());
 	}
 
-	// Token: 0x04000222 RID: 546
+	// Token: 0x040001FE RID: 510
 	private const int MAX_DEPTH = 100;
 
-	// Token: 0x04000223 RID: 547
+	// Token: 0x040001FF RID: 511
 	private const string INFINITY = "\"INFINITY\"";
 
-	// Token: 0x04000224 RID: 548
+	// Token: 0x04000200 RID: 512
 	private const string NEGINFINITY = "\"NEGINFINITY\"";
 
-	// Token: 0x04000225 RID: 549
+	// Token: 0x04000201 RID: 513
 	private const string NaN = "\"NaN\"";
 
-	// Token: 0x04000226 RID: 550
+	// Token: 0x04000202 RID: 514
 	private const string NEWLINE = "\r\n";
 
-	// Token: 0x04000227 RID: 551
+	// Token: 0x04000203 RID: 515
 	public static readonly char[] WHITESPACE = new char[]
 	{
 		' ',
@@ -1551,64 +1561,64 @@ public class JSONObject
 		'\t'
 	};
 
-	// Token: 0x04000228 RID: 552
+	// Token: 0x04000204 RID: 516
 	public JSONObject.Type type;
 
-	// Token: 0x04000229 RID: 553
+	// Token: 0x04000205 RID: 517
 	public List<JSONObject> list;
 
-	// Token: 0x0400022A RID: 554
+	// Token: 0x04000206 RID: 518
 	public List<string> keys;
 
-	// Token: 0x0400022B RID: 555
+	// Token: 0x04000207 RID: 519
 	public string str;
 
-	// Token: 0x0400022C RID: 556
+	// Token: 0x04000208 RID: 520
 	public float n;
 
-	// Token: 0x0400022D RID: 557
+	// Token: 0x04000209 RID: 521
 	public bool useInt;
 
-	// Token: 0x0400022E RID: 558
+	// Token: 0x0400020A RID: 522
 	public long i;
 
-	// Token: 0x0400022F RID: 559
+	// Token: 0x0400020B RID: 523
 	public bool b;
 
-	// Token: 0x04000230 RID: 560
+	// Token: 0x0400020C RID: 524
 	private const float maxFrameTime = 0.008f;
 
-	// Token: 0x04000231 RID: 561
+	// Token: 0x0400020D RID: 525
 	private static readonly Stopwatch printWatch = new Stopwatch();
 
-	// Token: 0x02000036 RID: 54
+	// Token: 0x020011CF RID: 4559
 	public enum Type
 	{
-		// Token: 0x04000233 RID: 563
+		// Token: 0x04006374 RID: 25460
 		NULL,
-		// Token: 0x04000234 RID: 564
+		// Token: 0x04006375 RID: 25461
 		STRING,
-		// Token: 0x04000235 RID: 565
+		// Token: 0x04006376 RID: 25462
 		NUMBER,
-		// Token: 0x04000236 RID: 566
+		// Token: 0x04006377 RID: 25463
 		OBJECT,
-		// Token: 0x04000237 RID: 567
+		// Token: 0x04006378 RID: 25464
 		ARRAY,
-		// Token: 0x04000238 RID: 568
+		// Token: 0x04006379 RID: 25465
 		BOOL,
-		// Token: 0x04000239 RID: 569
+		// Token: 0x0400637A RID: 25466
 		BAKED
 	}
 
-	// Token: 0x02000037 RID: 55
-	// (Invoke) Token: 0x060003E7 RID: 999
+	// Token: 0x020011D0 RID: 4560
+	// (Invoke) Token: 0x060077D5 RID: 30677
 	public delegate void AddJSONContents(JSONObject self);
 
-	// Token: 0x02000038 RID: 56
-	// (Invoke) Token: 0x060003EB RID: 1003
+	// Token: 0x020011D1 RID: 4561
+	// (Invoke) Token: 0x060077D9 RID: 30681
 	public delegate void FieldNotFound(string name);
 
-	// Token: 0x02000039 RID: 57
-	// (Invoke) Token: 0x060003EF RID: 1007
+	// Token: 0x020011D2 RID: 4562
+	// (Invoke) Token: 0x060077DD RID: 30685
 	public delegate void GetFieldResponse(JSONObject obj);
 }

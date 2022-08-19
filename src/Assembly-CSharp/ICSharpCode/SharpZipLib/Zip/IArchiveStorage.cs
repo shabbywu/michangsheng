@@ -3,26 +3,26 @@ using System.IO;
 
 namespace ICSharpCode.SharpZipLib.Zip
 {
-	// Token: 0x020007E6 RID: 2022
+	// Token: 0x02000544 RID: 1348
 	public interface IArchiveStorage
 	{
-		// Token: 0x170004D2 RID: 1234
-		// (get) Token: 0x060033D7 RID: 13271
+		// Token: 0x1700031D RID: 797
+		// (get) Token: 0x06002B80 RID: 11136
 		FileUpdateMode UpdateMode { get; }
 
-		// Token: 0x060033D8 RID: 13272
+		// Token: 0x06002B81 RID: 11137
 		Stream GetTemporaryOutput();
 
-		// Token: 0x060033D9 RID: 13273
+		// Token: 0x06002B82 RID: 11138
 		Stream ConvertTemporaryToFinal();
 
-		// Token: 0x060033DA RID: 13274
+		// Token: 0x06002B83 RID: 11139
 		Stream MakeTemporaryCopy(Stream stream);
 
-		// Token: 0x060033DB RID: 13275
+		// Token: 0x06002B84 RID: 11140
 		Stream OpenForDirectUpdate(Stream stream);
 
-		// Token: 0x060033DC RID: 13276
+		// Token: 0x06002B85 RID: 11141
 		void Dispose();
 	}
 }

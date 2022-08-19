@@ -6,12 +6,12 @@ using YSGame;
 
 namespace GUIPackage
 {
-	// Token: 0x02000D95 RID: 3477
+	// Token: 0x02000A69 RID: 2665
 	public class Skill_UIST : MonoBehaviour
 	{
-		// Token: 0x170007EE RID: 2030
-		// (get) Token: 0x060053EA RID: 21482 RVA: 0x0022F908 File Offset: 0x0022DB08
-		// (set) Token: 0x060053E9 RID: 21481 RVA: 0x0022F8B0 File Offset: 0x0022DAB0
+		// Token: 0x170005D1 RID: 1489
+		// (get) Token: 0x06004AE0 RID: 19168 RVA: 0x001FD870 File Offset: 0x001FBA70
+		// (set) Token: 0x06004ADF RID: 19167 RVA: 0x001FD818 File Offset: 0x001FBA18
 		public bool showTooltip
 		{
 			get
@@ -41,7 +41,7 @@ namespace GUIPackage
 			}
 		}
 
-		// Token: 0x060053EB RID: 21483 RVA: 0x0022F964 File Offset: 0x0022DB64
+		// Token: 0x06004AE1 RID: 19169 RVA: 0x001FD8CC File Offset: 0x001FBACC
 		private void Awake()
 		{
 			this.datebase = jsonData.instance.gameObject.GetComponent<SkillStaticDatebase>();
@@ -76,7 +76,7 @@ namespace GUIPackage
 			this.initSkill_UI();
 		}
 
-		// Token: 0x060053EC RID: 21484 RVA: 0x0022FAAC File Offset: 0x0022DCAC
+		// Token: 0x06004AE2 RID: 19170 RVA: 0x001FDA14 File Offset: 0x001FBC14
 		private void Update()
 		{
 			if (this.draggingSkill)
@@ -92,7 +92,7 @@ namespace GUIPackage
 			this.skillCD();
 		}
 
-		// Token: 0x060053ED RID: 21485 RVA: 0x0022FB1C File Offset: 0x0022DD1C
+		// Token: 0x06004AE3 RID: 19171 RVA: 0x001FDA84 File Offset: 0x001FBC84
 		private void skillCD()
 		{
 			for (int i = 0; i < this.skill.Count; i++)
@@ -108,7 +108,7 @@ namespace GUIPackage
 			}
 		}
 
-		// Token: 0x060053EE RID: 21486 RVA: 0x0022FBA4 File Offset: 0x0022DDA4
+		// Token: 0x06004AE4 RID: 19172 RVA: 0x001FDB0C File Offset: 0x001FBD0C
 		private void Show()
 		{
 			this.Show_Skill = !this.Show_Skill;
@@ -124,7 +124,7 @@ namespace GUIPackage
 			Singleton.UI.UI_Top(this.skillWin.transform.parent);
 		}
 
-		// Token: 0x060053EF RID: 21487 RVA: 0x0022FC28 File Offset: 0x0022DE28
+		// Token: 0x06004AE5 RID: 19173 RVA: 0x001FDB90 File Offset: 0x001FBD90
 		private void initSkill_UI()
 		{
 			Avatar avatar = (Avatar)KBEngineApp.app.player();
@@ -201,7 +201,7 @@ namespace GUIPackage
 			this.draggingSkill = false;
 		}
 
-		// Token: 0x060053F0 RID: 21488 RVA: 0x0003BFD4 File Offset: 0x0003A1D4
+		// Token: 0x06004AE6 RID: 19174 RVA: 0x001FDEBC File Offset: 0x001FC0BC
 		public void Clear_Draged()
 		{
 			this.dragedSkill = new Skill();
@@ -209,7 +209,7 @@ namespace GUIPackage
 			this.Temp.GetComponent<UITexture>().mainTexture = null;
 		}
 
-		// Token: 0x060053F1 RID: 21489 RVA: 0x0022FF54 File Offset: 0x0022E154
+		// Token: 0x06004AE7 RID: 19175 RVA: 0x001FDEE4 File Offset: 0x001FC0E4
 		public void SkillUP(int id)
 		{
 			this.UPSkillUI.SetActive(true);
@@ -218,13 +218,13 @@ namespace GUIPackage
 			this.UPSkillUI.GetComponent<UI_UPSkill>().initSkill(Tools.instance.getStaticSkillIDByKey(this.skill[id].skill_ID));
 		}
 
-		// Token: 0x060053F2 RID: 21490 RVA: 0x0003BF92 File Offset: 0x0003A192
+		// Token: 0x06004AE8 RID: 19176 RVA: 0x001FD240 File Offset: 0x001FB440
 		public void UseSkill(ref Skill S)
 		{
 			((Avatar)KBEngineApp.app.player()).spell.spellSkill(S.skill_ID, "");
 		}
 
-		// Token: 0x060053F3 RID: 21491 RVA: 0x0022FFC4 File Offset: 0x0022E1C4
+		// Token: 0x06004AE9 RID: 19177 RVA: 0x001FDF54 File Offset: 0x001FC154
 		public int GetSkillID(int id)
 		{
 			for (int i = 0; i < this.skill.Count; i++)
@@ -237,7 +237,7 @@ namespace GUIPackage
 			return -1;
 		}
 
-		// Token: 0x060053F4 RID: 21492 RVA: 0x00230008 File Offset: 0x0022E208
+		// Token: 0x06004AEA RID: 19178 RVA: 0x001FDF98 File Offset: 0x001FC198
 		public void Show_Tooltip(Skill _skill, int STSKillType = 0)
 		{
 			int skill_ID = _skill.skill_ID;
@@ -280,7 +280,7 @@ namespace GUIPackage
 				bool flag = false;
 				foreach (KeyValuePair<string, JSONObject> keyValuePair in jsonData.instance.ItemJsonData)
 				{
-					if ((int)keyValuePair.Value["type"].n == 4 && (int)jsonobject["Skill_ID"].n == (int)float.Parse(keyValuePair.Value["desc"].str))
+					if ((int)keyValuePair.Value["type"].n == 4 && jsonobject["Skill_ID"].I == (int)float.Parse(keyValuePair.Value["desc"].str))
 					{
 						component.Label2.text = "[E0DDB4]" + Tools.instance.Code64ToString(keyValuePair.Value["desc2"].str);
 						flag = true;
@@ -298,7 +298,7 @@ namespace GUIPackage
 			}
 		}
 
-		// Token: 0x060053F5 RID: 21493 RVA: 0x002303F4 File Offset: 0x0022E5F4
+		// Token: 0x06004AEB RID: 19179 RVA: 0x001FE384 File Offset: 0x001FC584
 		public void SaveSkill()
 		{
 			for (int i = 0; i < this.skill.Count; i++)
@@ -307,7 +307,7 @@ namespace GUIPackage
 			}
 		}
 
-		// Token: 0x060053F6 RID: 21494 RVA: 0x00230440 File Offset: 0x0022E640
+		// Token: 0x06004AEC RID: 19180 RVA: 0x001FE3D0 File Offset: 0x001FC5D0
 		public void LoadSkill()
 		{
 			for (int i = 0; i < this.skill.Count; i++)
@@ -316,58 +316,58 @@ namespace GUIPackage
 			}
 		}
 
-		// Token: 0x040053A4 RID: 21412
+		// Token: 0x04004A07 RID: 18951
 		public List<Skill> skill = new List<Skill>();
 
-		// Token: 0x040053A5 RID: 21413
+		// Token: 0x04004A08 RID: 18952
 		private SkillStaticDatebase datebase;
 
-		// Token: 0x040053A6 RID: 21414
+		// Token: 0x04004A09 RID: 18953
 		public GameObject skillWin;
 
-		// Token: 0x040053A7 RID: 21415
+		// Token: 0x04004A0A RID: 18954
 		public GameObject Tooltip;
 
-		// Token: 0x040053A8 RID: 21416
+		// Token: 0x04004A0B RID: 18955
 		public bool draggingSkill;
 
-		// Token: 0x040053A9 RID: 21417
+		// Token: 0x04004A0C RID: 18956
 		public Skill dragedSkill;
 
-		// Token: 0x040053AA RID: 21418
+		// Token: 0x04004A0D RID: 18957
 		private bool Show_Skill;
 
-		// Token: 0x040053AB RID: 21419
+		// Token: 0x04004A0E RID: 18958
 		public GameObject Temp;
 
-		// Token: 0x040053AC RID: 21420
+		// Token: 0x04004A0F RID: 18959
 		public GameObject UIGrid;
 
-		// Token: 0x040053AD RID: 21421
+		// Token: 0x04004A10 RID: 18960
 		public GameObject UPSkillUI;
 
-		// Token: 0x040053AE RID: 21422
+		// Token: 0x04004A11 RID: 18961
 		public GameObject SkillTemp;
 
-		// Token: 0x040053AF RID: 21423
+		// Token: 0x04004A12 RID: 18962
 		public int nowIndex;
 
-		// Token: 0x040053B0 RID: 21424
+		// Token: 0x04004A13 RID: 18963
 		public int ShowType;
 
-		// Token: 0x040053B1 RID: 21425
+		// Token: 0x04004A14 RID: 18964
 		public int OnePageNum;
 
-		// Token: 0x040053B2 RID: 21426
+		// Token: 0x04004A15 RID: 18965
 		public selectStaticSkill selectpage;
 
-		// Token: 0x040053B3 RID: 21427
+		// Token: 0x04004A16 RID: 18966
 		public bool showCellName;
 
-		// Token: 0x040053B4 RID: 21428
+		// Token: 0x04004A17 RID: 18967
 		public bool showDengjie;
 
-		// Token: 0x040053B5 RID: 21429
+		// Token: 0x04004A18 RID: 18968
 		public int showLeixing;
 	}
 }

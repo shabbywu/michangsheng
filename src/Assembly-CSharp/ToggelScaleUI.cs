@@ -2,15 +2,15 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-// Token: 0x020005A1 RID: 1441
+// Token: 0x020003F2 RID: 1010
 public class ToggelScaleUI : MonoBehaviour
 {
-	// Token: 0x06002453 RID: 9299 RVA: 0x000042DD File Offset: 0x000024DD
+	// Token: 0x060020A1 RID: 8353 RVA: 0x00004095 File Offset: 0x00002295
 	private void Start()
 	{
 	}
 
-	// Token: 0x06002454 RID: 9300 RVA: 0x001281D4 File Offset: 0x001263D4
+	// Token: 0x060020A2 RID: 8354 RVA: 0x000E5F00 File Offset: 0x000E4100
 	public void setison()
 	{
 		if (base.GetComponent<Toggle>().isOn)
@@ -45,14 +45,14 @@ public class ToggelScaleUI : MonoBehaviour
 		}));
 	}
 
-	// Token: 0x06002455 RID: 9301 RVA: 0x000042DD File Offset: 0x000024DD
+	// Token: 0x060020A3 RID: 8355 RVA: 0x00004095 File Offset: 0x00002295
 	private void Update()
 	{
 	}
 
-	// Token: 0x04001F41 RID: 8001
+	// Token: 0x04001A88 RID: 6792
 	public float nomel = 1f;
 
-	// Token: 0x04001F42 RID: 8002
+	// Token: 0x04001A89 RID: 6793
 	public float ison = 1f;
 }

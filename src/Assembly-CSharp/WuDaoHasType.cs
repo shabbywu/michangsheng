@@ -4,16 +4,16 @@ using KBEngine;
 using UnityEngine;
 using UnityEngine.UI;
 
-// Token: 0x0200052B RID: 1323
+// Token: 0x020003A2 RID: 930
 public class WuDaoHasType : MonoBehaviour
 {
-	// Token: 0x060021DA RID: 8666 RVA: 0x0001BCC5 File Offset: 0x00019EC5
+	// Token: 0x06001E59 RID: 7769 RVA: 0x000D5B83 File Offset: 0x000D3D83
 	public void setIcon(Sprite sprite)
 	{
 		this.icon.sprite = sprite;
 	}
 
-	// Token: 0x060021DB RID: 8667 RVA: 0x001193DC File Offset: 0x001175DC
+	// Token: 0x06001E5A RID: 7770 RVA: 0x000D5B94 File Offset: 0x000D3D94
 	public void init(int type, Avatar player, out float height)
 	{
 		this.clear();
@@ -38,7 +38,7 @@ public class WuDaoHasType : MonoBehaviour
 		height = 85f;
 	}
 
-	// Token: 0x060021DC RID: 8668 RVA: 0x00119510 File Offset: 0x00117710
+	// Token: 0x06001E5B RID: 7771 RVA: 0x000D5CC8 File Offset: 0x000D3EC8
 	public void clear()
 	{
 		foreach (object obj in this.Content.transform)
@@ -51,15 +51,15 @@ public class WuDaoHasType : MonoBehaviour
 		}
 	}
 
-	// Token: 0x04001D4B RID: 7499
+	// Token: 0x040018E2 RID: 6370
 	[SerializeField]
 	private Image icon;
 
-	// Token: 0x04001D4C RID: 7500
+	// Token: 0x040018E3 RID: 6371
 	[SerializeField]
 	private GameObject Content;
 
-	// Token: 0x04001D4D RID: 7501
+	// Token: 0x040018E4 RID: 6372
 	[SerializeField]
 	private Text NoContent;
 }

@@ -5,23 +5,23 @@ using YSGame.Fight;
 
 namespace BehaviorDesigner.Runtime.Tasks.Basic.UnityAnimation
 {
-	// Token: 0x02001674 RID: 5748
+	// Token: 0x020011B2 RID: 4530
 	[TaskCategory("YS")]
 	[TaskDescription("测试自动加载技能")]
 	public class DebugAddSkill : Action
 	{
-		// Token: 0x0600856C RID: 34156 RVA: 0x000042DD File Offset: 0x000024DD
+		// Token: 0x06007760 RID: 30560 RVA: 0x00004095 File Offset: 0x00002295
 		public override void OnAwake()
 		{
 		}
 
-		// Token: 0x0600856D RID: 34157 RVA: 0x0005C941 File Offset: 0x0005AB41
+		// Token: 0x06007761 RID: 30561 RVA: 0x002B8DDA File Offset: 0x002B6FDA
 		public override void OnStart()
 		{
 			this.avatar = (Avatar)this.gameObject.GetComponent<AvaterAddScript>().entity;
 		}
 
-		// Token: 0x0600856E RID: 34158 RVA: 0x002D0EE4 File Offset: 0x002CF0E4
+		// Token: 0x06007762 RID: 30562 RVA: 0x002B8DF8 File Offset: 0x002B6FF8
 		public override TaskStatus OnUpdate()
 		{
 			SharedInt sharedInt = this.skillID;
@@ -63,27 +63,27 @@ namespace BehaviorDesigner.Runtime.Tasks.Basic.UnityAnimation
 			return 2;
 		}
 
-		// Token: 0x0600856F RID: 34159 RVA: 0x000042DD File Offset: 0x000024DD
+		// Token: 0x06007763 RID: 30563 RVA: 0x00004095 File Offset: 0x00002295
 		public override void OnReset()
 		{
 		}
 
-		// Token: 0x0400722E RID: 29230
+		// Token: 0x040062FF RID: 25343
 		public SharedInt NowSkill;
 
-		// Token: 0x0400722F RID: 29231
+		// Token: 0x04006300 RID: 25344
 		public SharedInt skillID;
 
-		// Token: 0x04007230 RID: 29232
+		// Token: 0x04006301 RID: 25345
 		public SharedInt skillWeight;
 
-		// Token: 0x04007231 RID: 29233
+		// Token: 0x04006302 RID: 25346
 		private Avatar avatar;
 
-		// Token: 0x04007232 RID: 29234
+		// Token: 0x04006303 RID: 25347
 		private Behavior selfBehavior;
 
-		// Token: 0x04007233 RID: 29235
+		// Token: 0x04006304 RID: 25348
 		private SharedInt tempWeith;
 	}
 }

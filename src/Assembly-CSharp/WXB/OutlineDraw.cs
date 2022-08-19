@@ -4,12 +4,12 @@ using UnityEngine.UI;
 
 namespace WXB
 {
-	// Token: 0x020009AC RID: 2476
+	// Token: 0x02000698 RID: 1688
 	[ExecuteInEditMode]
 	public class OutlineDraw : EffectDrawObjec, ICanvasElement
 	{
-		// Token: 0x17000709 RID: 1801
-		// (get) Token: 0x06003F13 RID: 16147 RVA: 0x0002D5FA File Offset: 0x0002B7FA
+		// Token: 0x170004E9 RID: 1257
+		// (get) Token: 0x06003555 RID: 13653 RVA: 0x001709C1 File Offset: 0x0016EBC1
 		public override DrawType type
 		{
 			get
@@ -18,9 +18,9 @@ namespace WXB
 			}
 		}
 
-		// Token: 0x1700070A RID: 1802
-		// (get) Token: 0x06003F14 RID: 16148 RVA: 0x0002D100 File Offset: 0x0002B300
-		// (set) Token: 0x06003F15 RID: 16149 RVA: 0x0002D109 File Offset: 0x0002B309
+		// Token: 0x170004EA RID: 1258
+		// (get) Token: 0x06003556 RID: 13654 RVA: 0x0016F2BA File Offset: 0x0016D4BA
+		// (set) Token: 0x06003557 RID: 13655 RVA: 0x0016F2C3 File Offset: 0x0016D4C3
 		public bool isOpenAlpha
 		{
 			get
@@ -33,7 +33,7 @@ namespace WXB
 			}
 		}
 
-		// Token: 0x06003F16 RID: 16150 RVA: 0x001B8AFC File Offset: 0x001B6CFC
+		// Token: 0x06003558 RID: 13656 RVA: 0x001709C4 File Offset: 0x0016EBC4
 		public override void UpdateSelf(float deltaTime)
 		{
 			base.UpdateSelf(deltaTime);
@@ -65,7 +65,7 @@ namespace WXB
 			CanvasUpdateRegistry.RegisterCanvasElementForGraphicRebuild(this);
 		}
 
-		// Token: 0x06003F17 RID: 16151 RVA: 0x001B8BCC File Offset: 0x001B6DCC
+		// Token: 0x06003559 RID: 13657 RVA: 0x00170A94 File Offset: 0x0016EC94
 		public void AddLine(TextNode n, Vector2 left, float width, float height, Color color, Vector2 uv, int speed)
 		{
 			if (this.m_Data == null)
@@ -87,14 +87,14 @@ namespace WXB
 			});
 		}
 
-		// Token: 0x06003F18 RID: 16152 RVA: 0x0002D5FD File Offset: 0x0002B7FD
+		// Token: 0x0600355A RID: 13658 RVA: 0x00170B2D File Offset: 0x0016ED2D
 		public override void UpdateMaterial(Material mat)
 		{
 			base.UpdateMaterial(mat);
 			base.rectTransform.SetAsLastSibling();
 		}
 
-		// Token: 0x06003F19 RID: 16153 RVA: 0x001B8C68 File Offset: 0x001B6E68
+		// Token: 0x0600355B RID: 13659 RVA: 0x00170B44 File Offset: 0x0016ED44
 		public void Rebuild(CanvasUpdate executing)
 		{
 			if (this.m_Data == null)
@@ -114,42 +114,42 @@ namespace WXB
 			base.canvasRenderer.SetMesh(workerMesh);
 		}
 
-		// Token: 0x06003F1A RID: 16154 RVA: 0x0002D611 File Offset: 0x0002B811
+		// Token: 0x0600355C RID: 13660 RVA: 0x00170B98 File Offset: 0x0016ED98
 		public override void Release()
 		{
 			base.Release();
 			this.m_Data = null;
 		}
 
-		// Token: 0x06003F1B RID: 16155 RVA: 0x000042DD File Offset: 0x000024DD
+		// Token: 0x0600355D RID: 13661 RVA: 0x00004095 File Offset: 0x00002295
 		public void GraphicUpdateComplete()
 		{
 		}
 
-		// Token: 0x06003F1C RID: 16156 RVA: 0x0002D193 File Offset: 0x0002B393
+		// Token: 0x0600355E RID: 13662 RVA: 0x0016F3F8 File Offset: 0x0016D5F8
 		public bool IsDestroyed()
 		{
 			return this == null;
 		}
 
-		// Token: 0x06003F1D RID: 16157 RVA: 0x000042DD File Offset: 0x000024DD
+		// Token: 0x0600355F RID: 13663 RVA: 0x00004095 File Offset: 0x00002295
 		public void LayoutComplete()
 		{
 		}
 
-		// Token: 0x06003F1F RID: 16159 RVA: 0x0002D1AF File Offset: 0x0002B3AF
+		// Token: 0x06003561 RID: 13665 RVA: 0x0016F414 File Offset: 0x0016D614
 		Transform ICanvasElement.get_transform()
 		{
 			return base.transform;
 		}
 
-		// Token: 0x040038B9 RID: 14521
+		// Token: 0x04002F00 RID: 12032
 		private DrawLineStruct m_Data;
 
-		// Token: 0x040038BA RID: 14522
+		// Token: 0x04002F01 RID: 12033
 		private float currentWidth;
 
-		// Token: 0x040038BB RID: 14523
+		// Token: 0x04002F02 RID: 12034
 		private float maxWidth;
 	}
 }

@@ -2,29 +2,29 @@
 
 namespace KBEngine
 {
-	// Token: 0x02000F39 RID: 3897
+	// Token: 0x02000BB6 RID: 2998
 	public struct QUESTID
 	{
-		// Token: 0x06005DE6 RID: 24038 RVA: 0x00041F09 File Offset: 0x00040109
+		// Token: 0x060053A8 RID: 21416 RVA: 0x00233DA8 File Offset: 0x00231FA8
 		private QUESTID(int value)
 		{
 			this.value = value;
 		}
 
-		// Token: 0x06005DE7 RID: 24039 RVA: 0x00041F12 File Offset: 0x00040112
+		// Token: 0x060053A9 RID: 21417 RVA: 0x00233DB1 File Offset: 0x00231FB1
 		public static implicit operator int(QUESTID value)
 		{
 			return value.value;
 		}
 
-		// Token: 0x06005DE8 RID: 24040 RVA: 0x00041F1A File Offset: 0x0004011A
+		// Token: 0x060053AA RID: 21418 RVA: 0x00233DB9 File Offset: 0x00231FB9
 		public static implicit operator QUESTID(int value)
 		{
 			return new QUESTID(value);
 		}
 
-		// Token: 0x1700088A RID: 2186
-		// (get) Token: 0x06005DE9 RID: 24041 RVA: 0x00041B41 File Offset: 0x0003FD41
+		// Token: 0x17000637 RID: 1591
+		// (get) Token: 0x060053AB RID: 21419 RVA: 0x002339E0 File Offset: 0x00231BE0
 		public static int MaxValue
 		{
 			get
@@ -33,8 +33,8 @@ namespace KBEngine
 			}
 		}
 
-		// Token: 0x1700088B RID: 2187
-		// (get) Token: 0x06005DEA RID: 24042 RVA: 0x00041B48 File Offset: 0x0003FD48
+		// Token: 0x17000638 RID: 1592
+		// (get) Token: 0x060053AC RID: 21420 RVA: 0x002339E7 File Offset: 0x00231BE7
 		public static int MinValue
 		{
 			get
@@ -43,7 +43,7 @@ namespace KBEngine
 			}
 		}
 
-		// Token: 0x04005AE3 RID: 23267
+		// Token: 0x04005042 RID: 20546
 		private int value;
 	}
 }

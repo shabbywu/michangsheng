@@ -2,23 +2,23 @@
 
 namespace MoonSharp.Interpreter.CoreLib
 {
-	// Token: 0x0200118C RID: 4492
+	// Token: 0x02000D74 RID: 3444
 	[MoonSharpModule(Namespace = "bit32")]
 	public class Bit32Module
 	{
-		// Token: 0x06006D8D RID: 28045 RVA: 0x0004A9FC File Offset: 0x00048BFC
+		// Token: 0x0600618D RID: 24973 RVA: 0x00273D1A File Offset: 0x00271F1A
 		private static uint ToUInt32(DynValue v)
 		{
 			return (uint)Math.IEEERemainder(v.Number, Math.Pow(2.0, 32.0));
 		}
 
-		// Token: 0x06006D8E RID: 28046 RVA: 0x0004AA21 File Offset: 0x00048C21
+		// Token: 0x0600618E RID: 24974 RVA: 0x00273D3F File Offset: 0x00271F3F
 		private static int ToInt32(DynValue v)
 		{
 			return (int)Math.IEEERemainder(v.Number, Math.Pow(2.0, 32.0));
 		}
 
-		// Token: 0x06006D8F RID: 28047 RVA: 0x0004AA46 File Offset: 0x00048C46
+		// Token: 0x0600618F RID: 24975 RVA: 0x00273D64 File Offset: 0x00271F64
 		private static uint NBitMask(int bits)
 		{
 			if (bits <= 0)
@@ -32,7 +32,7 @@ namespace MoonSharp.Interpreter.CoreLib
 			return Bit32Module.MASKS[bits - 1];
 		}
 
-		// Token: 0x06006D90 RID: 28048 RVA: 0x0029A688 File Offset: 0x00298888
+		// Token: 0x06006190 RID: 24976 RVA: 0x00273D84 File Offset: 0x00271F84
 		public static uint Bitwise(string funcName, CallbackArguments args, Func<uint, uint, uint> accumFunc)
 		{
 			uint num = Bit32Module.ToUInt32(args.AsType(0, funcName, DataType.Number, false));
@@ -44,7 +44,7 @@ namespace MoonSharp.Interpreter.CoreLib
 			return num;
 		}
 
-		// Token: 0x06006D91 RID: 28049 RVA: 0x0029A6D0 File Offset: 0x002988D0
+		// Token: 0x06006191 RID: 24977 RVA: 0x00273DCC File Offset: 0x00271FCC
 		[MoonSharpModuleMethod]
 		public static DynValue extract(ScriptExecutionContext executionContext, CallbackArguments args)
 		{
@@ -57,7 +57,7 @@ namespace MoonSharp.Interpreter.CoreLib
 			return DynValue.NewNumber(num >> (num2 & 31) & Bit32Module.NBitMask(num3));
 		}
 
-		// Token: 0x06006D92 RID: 28050 RVA: 0x0029A748 File Offset: 0x00298948
+		// Token: 0x06006192 RID: 24978 RVA: 0x00273E44 File Offset: 0x00272044
 		[MoonSharpModuleMethod]
 		public static DynValue replace(ScriptExecutionContext executionContext, CallbackArguments args)
 		{
@@ -74,7 +74,7 @@ namespace MoonSharp.Interpreter.CoreLib
 			return DynValue.NewNumber(num6 | num2);
 		}
 
-		// Token: 0x06006D93 RID: 28051 RVA: 0x0029A7E0 File Offset: 0x002989E0
+		// Token: 0x06006193 RID: 24979 RVA: 0x00273EDC File Offset: 0x002720DC
 		private static void ValidatePosWidth(string func, int argPos, int pos, int width)
 		{
 			if (pos > 31 || pos + width > 31)
@@ -99,7 +99,7 @@ namespace MoonSharp.Interpreter.CoreLib
 			}
 		}
 
-		// Token: 0x06006D94 RID: 28052 RVA: 0x0029A84C File Offset: 0x00298A4C
+		// Token: 0x06006194 RID: 24980 RVA: 0x00273F48 File Offset: 0x00272148
 		[MoonSharpModuleMethod]
 		public static DynValue arshift(ScriptExecutionContext executionContext, CallbackArguments args)
 		{
@@ -116,7 +116,7 @@ namespace MoonSharp.Interpreter.CoreLib
 			return DynValue.NewNumber((double)num);
 		}
 
-		// Token: 0x06006D95 RID: 28053 RVA: 0x0029A8A0 File Offset: 0x00298AA0
+		// Token: 0x06006195 RID: 24981 RVA: 0x00273F9C File Offset: 0x0027219C
 		[MoonSharpModuleMethod]
 		public static DynValue rshift(ScriptExecutionContext executionContext, CallbackArguments args)
 		{
@@ -133,7 +133,7 @@ namespace MoonSharp.Interpreter.CoreLib
 			return DynValue.NewNumber(num);
 		}
 
-		// Token: 0x06006D96 RID: 28054 RVA: 0x0029A8F4 File Offset: 0x00298AF4
+		// Token: 0x06006196 RID: 24982 RVA: 0x00273FF0 File Offset: 0x002721F0
 		[MoonSharpModuleMethod]
 		public static DynValue lshift(ScriptExecutionContext executionContext, CallbackArguments args)
 		{
@@ -150,42 +150,42 @@ namespace MoonSharp.Interpreter.CoreLib
 			return DynValue.NewNumber(num);
 		}
 
-		// Token: 0x06006D97 RID: 28055 RVA: 0x0004AA65 File Offset: 0x00048C65
+		// Token: 0x06006197 RID: 24983 RVA: 0x00274043 File Offset: 0x00272243
 		[MoonSharpModuleMethod]
 		public static DynValue band(ScriptExecutionContext executionContext, CallbackArguments args)
 		{
 			return DynValue.NewNumber(Bit32Module.Bitwise("band", args, (uint x, uint y) => x & y));
 		}
 
-		// Token: 0x06006D98 RID: 28056 RVA: 0x0004AA98 File Offset: 0x00048C98
+		// Token: 0x06006198 RID: 24984 RVA: 0x00274076 File Offset: 0x00272276
 		[MoonSharpModuleMethod]
 		public static DynValue btest(ScriptExecutionContext executionContext, CallbackArguments args)
 		{
 			return DynValue.NewBoolean(Bit32Module.Bitwise("btest", args, (uint x, uint y) => x & y) > 0U);
 		}
 
-		// Token: 0x06006D99 RID: 28057 RVA: 0x0004AACC File Offset: 0x00048CCC
+		// Token: 0x06006199 RID: 24985 RVA: 0x002740AA File Offset: 0x002722AA
 		[MoonSharpModuleMethod]
 		public static DynValue bor(ScriptExecutionContext executionContext, CallbackArguments args)
 		{
 			return DynValue.NewNumber(Bit32Module.Bitwise("bor", args, (uint x, uint y) => x | y));
 		}
 
-		// Token: 0x06006D9A RID: 28058 RVA: 0x0004AAFF File Offset: 0x00048CFF
+		// Token: 0x0600619A RID: 24986 RVA: 0x002740DD File Offset: 0x002722DD
 		[MoonSharpModuleMethod]
 		public static DynValue bnot(ScriptExecutionContext executionContext, CallbackArguments args)
 		{
 			return DynValue.NewNumber(~Bit32Module.ToUInt32(args.AsType(0, "bnot", DataType.Number, false)));
 		}
 
-		// Token: 0x06006D9B RID: 28059 RVA: 0x0004AB1C File Offset: 0x00048D1C
+		// Token: 0x0600619B RID: 24987 RVA: 0x002740FA File Offset: 0x002722FA
 		[MoonSharpModuleMethod]
 		public static DynValue bxor(ScriptExecutionContext executionContext, CallbackArguments args)
 		{
 			return DynValue.NewNumber(Bit32Module.Bitwise("bxor", args, (uint x, uint y) => x ^ y));
 		}
 
-		// Token: 0x06006D9C RID: 28060 RVA: 0x0029A948 File Offset: 0x00298B48
+		// Token: 0x0600619C RID: 24988 RVA: 0x00274130 File Offset: 0x00272330
 		[MoonSharpModuleMethod]
 		public static DynValue lrotate(ScriptExecutionContext executionContext, CallbackArguments args)
 		{
@@ -202,7 +202,7 @@ namespace MoonSharp.Interpreter.CoreLib
 			return DynValue.NewNumber(num);
 		}
 
-		// Token: 0x06006D9D RID: 28061 RVA: 0x0029A9B4 File Offset: 0x00298BB4
+		// Token: 0x0600619D RID: 24989 RVA: 0x0027419C File Offset: 0x0027239C
 		[MoonSharpModuleMethod]
 		public static DynValue rrotate(ScriptExecutionContext executionContext, CallbackArguments args)
 		{
@@ -219,7 +219,7 @@ namespace MoonSharp.Interpreter.CoreLib
 			return DynValue.NewNumber(num);
 		}
 
-		// Token: 0x04006230 RID: 25136
+		// Token: 0x0400558D RID: 21901
 		private static readonly uint[] MASKS = new uint[]
 		{
 			1U,

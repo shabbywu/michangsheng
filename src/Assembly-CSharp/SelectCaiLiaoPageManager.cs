@@ -2,50 +2,50 @@
 using Bag;
 using UnityEngine;
 
-// Token: 0x02000468 RID: 1128
+// Token: 0x0200030B RID: 779
 public class SelectCaiLiaoPageManager : MonoBehaviour, IESCClose
 {
-	// Token: 0x06001E4D RID: 7757 RVA: 0x0001923D File Offset: 0x0001743D
+	// Token: 0x06001B27 RID: 6951 RVA: 0x000C1A2C File Offset: 0x000BFC2C
 	public void init()
 	{
 		this.bag.Init(1, true);
 	}
 
-	// Token: 0x06001E4E RID: 7758 RVA: 0x0001924C File Offset: 0x0001744C
+	// Token: 0x06001B28 RID: 6952 RVA: 0x000C1A3B File Offset: 0x000BFC3B
 	public void OpenBag()
 	{
 		this.bag.UpdateItem(false);
 		ESCCloseManager.Inst.RegisterClose(this);
 	}
 
-	// Token: 0x06001E4F RID: 7759 RVA: 0x00019265 File Offset: 0x00017465
+	// Token: 0x06001B29 RID: 6953 RVA: 0x000C1A54 File Offset: 0x000BFC54
 	public void CloseBag()
 	{
 		ESCCloseManager.Inst.UnRegisterClose(this);
 	}
 
-	// Token: 0x06001E50 RID: 7760 RVA: 0x00019272 File Offset: 0x00017472
+	// Token: 0x06001B2A RID: 6954 RVA: 0x000C1A61 File Offset: 0x000BFC61
 	public void setCurClickCaiLiaoItem(int index)
 	{
 		this.curClickCaiLiaoItem = index;
 	}
 
-	// Token: 0x06001E51 RID: 7761 RVA: 0x0001927B File Offset: 0x0001747B
+	// Token: 0x06001B2B RID: 6955 RVA: 0x000C1A6A File Offset: 0x000BFC6A
 	public int getCurClickCaiLiaoItem()
 	{
 		return this.curClickCaiLiaoItem;
 	}
 
-	// Token: 0x06001E52 RID: 7762 RVA: 0x00019283 File Offset: 0x00017483
+	// Token: 0x06001B2C RID: 6956 RVA: 0x000C1A72 File Offset: 0x000BFC72
 	public bool TryEscClose()
 	{
 		this.CloseBag();
 		return true;
 	}
 
-	// Token: 0x040019B6 RID: 6582
+	// Token: 0x040015A9 RID: 5545
 	public LianQiBag bag;
 
-	// Token: 0x040019B7 RID: 6583
+	// Token: 0x040015AA RID: 5546
 	private int curClickCaiLiaoItem;
 }

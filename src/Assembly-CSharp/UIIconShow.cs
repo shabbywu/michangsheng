@@ -8,11 +8,11 @@ using UnityEngine.Events;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-// Token: 0x02000406 RID: 1030
+// Token: 0x020002C5 RID: 709
 public class UIIconShow : MonoBehaviour, IPointerEnterHandler, IEventSystemHandler, IPointerExitHandler, IPointerClickHandler
 {
-	// Token: 0x17000289 RID: 649
-	// (get) Token: 0x06001BD2 RID: 7122 RVA: 0x00017544 File Offset: 0x00015744
+	// Token: 0x1700023F RID: 575
+	// (get) Token: 0x060018D9 RID: 6361 RVA: 0x000B2747 File Offset: 0x000B0947
 	public static GameObject Prefab
 	{
 		get
@@ -25,7 +25,7 @@ public class UIIconShow : MonoBehaviour, IPointerEnterHandler, IEventSystemHandl
 		}
 	}
 
-	// Token: 0x06001BD3 RID: 7123 RVA: 0x000F8898 File Offset: 0x000F6A98
+	// Token: 0x060018DA RID: 6362 RVA: 0x000B276C File Offset: 0x000B096C
 	private void Start()
 	{
 		if (this.DragAera != null)
@@ -37,7 +37,7 @@ public class UIIconShow : MonoBehaviour, IPointerEnterHandler, IEventSystemHandl
 		}
 	}
 
-	// Token: 0x06001BD4 RID: 7124 RVA: 0x000F890C File Offset: 0x000F6B0C
+	// Token: 0x060018DB RID: 6363 RVA: 0x000B27E0 File Offset: 0x000B09E0
 	private void Update()
 	{
 		if (this.isHover && this.OnClick == null && Input.GetMouseButtonDown(1))
@@ -69,9 +69,9 @@ public class UIIconShow : MonoBehaviour, IPointerEnterHandler, IEventSystemHandl
 		}
 	}
 
-	// Token: 0x1700028A RID: 650
-	// (get) Token: 0x06001BD5 RID: 7125 RVA: 0x00017567 File Offset: 0x00015767
-	// (set) Token: 0x06001BD6 RID: 7126 RVA: 0x0001756F File Offset: 0x0001576F
+	// Token: 0x17000240 RID: 576
+	// (get) Token: 0x060018DC RID: 6364 RVA: 0x000B2872 File Offset: 0x000B0A72
+	// (set) Token: 0x060018DD RID: 6365 RVA: 0x000B287A File Offset: 0x000B0A7A
 	[HideInInspector]
 	public bool IsDraggingObj
 	{
@@ -85,9 +85,9 @@ public class UIIconShow : MonoBehaviour, IPointerEnterHandler, IEventSystemHandl
 		}
 	}
 
-	// Token: 0x1700028B RID: 651
-	// (get) Token: 0x06001BD7 RID: 7127 RVA: 0x00017578 File Offset: 0x00015778
-	// (set) Token: 0x06001BD8 RID: 7128 RVA: 0x000F89A0 File Offset: 0x000F6BA0
+	// Token: 0x17000241 RID: 577
+	// (get) Token: 0x060018DE RID: 6366 RVA: 0x000B2883 File Offset: 0x000B0A83
+	// (set) Token: 0x060018DF RID: 6367 RVA: 0x000B288C File Offset: 0x000B0A8C
 	public UIIconShow.UIIconType NowType
 	{
 		get
@@ -125,9 +125,9 @@ public class UIIconShow : MonoBehaviour, IPointerEnterHandler, IEventSystemHandl
 		}
 	}
 
-	// Token: 0x1700028C RID: 652
-	// (get) Token: 0x06001BD9 RID: 7129 RVA: 0x00017580 File Offset: 0x00015780
-	// (set) Token: 0x06001BDA RID: 7130 RVA: 0x000F8A94 File Offset: 0x000F6C94
+	// Token: 0x17000242 RID: 578
+	// (get) Token: 0x060018E0 RID: 6368 RVA: 0x000B297F File Offset: 0x000B0B7F
+	// (set) Token: 0x060018E1 RID: 6369 RVA: 0x000B2988 File Offset: 0x000B0B88
 	public UIIconShow.JiaoBiaoType NowJiaoBiao
 	{
 		get
@@ -180,9 +180,9 @@ public class UIIconShow : MonoBehaviour, IPointerEnterHandler, IEventSystemHandl
 		}
 	}
 
-	// Token: 0x1700028D RID: 653
-	// (get) Token: 0x06001BDB RID: 7131 RVA: 0x00017588 File Offset: 0x00015788
-	// (set) Token: 0x06001BDC RID: 7132 RVA: 0x000F8BD4 File Offset: 0x000F6DD4
+	// Token: 0x17000243 RID: 579
+	// (get) Token: 0x060018E2 RID: 6370 RVA: 0x000B2AC7 File Offset: 0x000B0CC7
+	// (set) Token: 0x060018E3 RID: 6371 RVA: 0x000B2AD0 File Offset: 0x000B0CD0
 	public int Count
 	{
 		get
@@ -202,7 +202,7 @@ public class UIIconShow : MonoBehaviour, IPointerEnterHandler, IEventSystemHandl
 		}
 	}
 
-	// Token: 0x06001BDD RID: 7133 RVA: 0x00017590 File Offset: 0x00015790
+	// Token: 0x060018E4 RID: 6372 RVA: 0x000B2B26 File Offset: 0x000B0D26
 	public void SetCustomCountText(string text, Color color)
 	{
 		this.CountText.gameObject.SetActive(true);
@@ -210,20 +210,20 @@ public class UIIconShow : MonoBehaviour, IPointerEnterHandler, IEventSystemHandl
 		this.CountText.color = color;
 	}
 
-	// Token: 0x06001BDE RID: 7134 RVA: 0x000175BB File Offset: 0x000157BB
+	// Token: 0x060018E5 RID: 6373 RVA: 0x000B2B51 File Offset: 0x000B0D51
 	public void SetNull()
 	{
 		this.NowType = UIIconShow.UIIconType.None;
 	}
 
-	// Token: 0x06001BDF RID: 7135 RVA: 0x000F8C2C File Offset: 0x000F6E2C
+	// Token: 0x060018E6 RID: 6374 RVA: 0x000B2B5C File Offset: 0x000B0D5C
 	public void SetItem(int id)
 	{
 		item item = new item(id);
 		this.SetItem(item);
 	}
 
-	// Token: 0x06001BE0 RID: 7136 RVA: 0x000F8C48 File Offset: 0x000F6E48
+	// Token: 0x060018E7 RID: 6375 RVA: 0x000B2B78 File Offset: 0x000B0D78
 	public void SetItem(int id, JSONObject seid)
 	{
 		this.SetItem(new item(id)
@@ -232,7 +232,7 @@ public class UIIconShow : MonoBehaviour, IPointerEnterHandler, IEventSystemHandl
 		});
 	}
 
-	// Token: 0x06001BE1 RID: 7137 RVA: 0x000F8C6C File Offset: 0x000F6E6C
+	// Token: 0x060018E8 RID: 6376 RVA: 0x000B2B9C File Offset: 0x000B0D9C
 	public void SetItem(ITEM_INFO info)
 	{
 		this.SetItem(new item(info.itemId)
@@ -242,7 +242,7 @@ public class UIIconShow : MonoBehaviour, IPointerEnterHandler, IEventSystemHandl
 		});
 	}
 
-	// Token: 0x06001BE2 RID: 7138 RVA: 0x000F8CA4 File Offset: 0x000F6EA4
+	// Token: 0x060018E9 RID: 6377 RVA: 0x000B2BD4 File Offset: 0x000B0DD4
 	public void SetItem(JSONObject json)
 	{
 		this.SetItem(new item(json["ItemID"].I)
@@ -251,7 +251,7 @@ public class UIIconShow : MonoBehaviour, IPointerEnterHandler, IEventSystemHandl
 		});
 	}
 
-	// Token: 0x06001BE3 RID: 7139 RVA: 0x000F8CD8 File Offset: 0x000F6ED8
+	// Token: 0x060018EA RID: 6378 RVA: 0x000B2C08 File Offset: 0x000B0E08
 	public void SetItem(item item)
 	{
 		this.NowType = UIIconShow.UIIconType.Item;
@@ -270,7 +270,7 @@ public class UIIconShow : MonoBehaviour, IPointerEnterHandler, IEventSystemHandl
 		base.gameObject.name = item.itemName;
 	}
 
-	// Token: 0x06001BE4 RID: 7140 RVA: 0x000F8D8C File Offset: 0x000F6F8C
+	// Token: 0x060018EB RID: 6379 RVA: 0x000B2CBC File Offset: 0x000B0EBC
 	public void SetSkill(int id, bool showStudy = false, int level = 1)
 	{
 		this.isShowStudy = showStudy;
@@ -278,7 +278,7 @@ public class UIIconShow : MonoBehaviour, IPointerEnterHandler, IEventSystemHandl
 		this.SetSkill(skill);
 	}
 
-	// Token: 0x06001BE5 RID: 7141 RVA: 0x000F8DB0 File Offset: 0x000F6FB0
+	// Token: 0x060018EC RID: 6380 RVA: 0x000B2CE0 File Offset: 0x000B0EE0
 	public void SetSkill(GUIPackage.Skill skill)
 	{
 		this.NowType = UIIconShow.UIIconType.Skill;
@@ -296,7 +296,7 @@ public class UIIconShow : MonoBehaviour, IPointerEnterHandler, IEventSystemHandl
 		this.CalcFontSize();
 	}
 
-	// Token: 0x06001BE6 RID: 7142 RVA: 0x000F8E8C File Offset: 0x000F708C
+	// Token: 0x060018ED RID: 6381 RVA: 0x000B2DBC File Offset: 0x000B0FBC
 	public void SetStaticSkill(int id, bool showStudy = false)
 	{
 		this.isShowStudy = showStudy;
@@ -305,7 +305,7 @@ public class UIIconShow : MonoBehaviour, IPointerEnterHandler, IEventSystemHandl
 		base.gameObject.name = skill.skill_Name;
 	}
 
-	// Token: 0x06001BE7 RID: 7143 RVA: 0x000F8ECC File Offset: 0x000F70CC
+	// Token: 0x060018EE RID: 6382 RVA: 0x000B2DFC File Offset: 0x000B0FFC
 	public void SetStaticSkill(GUIPackage.Skill skill)
 	{
 		this.NowType = UIIconShow.UIIconType.StaticSkill;
@@ -324,7 +324,7 @@ public class UIIconShow : MonoBehaviour, IPointerEnterHandler, IEventSystemHandl
 		base.gameObject.name = skill.skill_Name;
 	}
 
-	// Token: 0x06001BE8 RID: 7144 RVA: 0x000175C4 File Offset: 0x000157C4
+	// Token: 0x060018EF RID: 6383 RVA: 0x000B2EEB File Offset: 0x000B10EB
 	public void CalcFontSize()
 	{
 		if (this.NameText.text.Length == 6)
@@ -335,26 +335,26 @@ public class UIIconShow : MonoBehaviour, IPointerEnterHandler, IEventSystemHandl
 		this.NameText.fontSize = 24;
 	}
 
-	// Token: 0x06001BE9 RID: 7145 RVA: 0x000175F4 File Offset: 0x000157F4
+	// Token: 0x060018F0 RID: 6384 RVA: 0x000B2F1B File Offset: 0x000B111B
 	public void SetBuChuan()
 	{
 		this.NowJiaoBiao = UIIconShow.JiaoBiaoType.MiChuan;
 	}
 
-	// Token: 0x06001BEA RID: 7146 RVA: 0x000175FD File Offset: 0x000157FD
+	// Token: 0x060018F1 RID: 6385 RVA: 0x000B2F24 File Offset: 0x000B1124
 	public void SetCount(int count)
 	{
 		this.CountText.text = count.ToString();
 		this.CountText.gameObject.SetActive(true);
 	}
 
-	// Token: 0x06001BEB RID: 7147 RVA: 0x00017622 File Offset: 0x00015822
+	// Token: 0x060018F2 RID: 6386 RVA: 0x000B2F49 File Offset: 0x000B1149
 	public int GetCount()
 	{
 		return int.Parse(this.CountText.text);
 	}
 
-	// Token: 0x06001BEC RID: 7148 RVA: 0x000F8FBC File Offset: 0x000F71BC
+	// Token: 0x060018F3 RID: 6387 RVA: 0x000B2F5C File Offset: 0x000B115C
 	public void OpenTooltip()
 	{
 		if (ToolTipsMag.Inst == null)
@@ -396,7 +396,7 @@ public class UIIconShow : MonoBehaviour, IPointerEnterHandler, IEventSystemHandl
 		UToolTip.BindObj = base.gameObject;
 	}
 
-	// Token: 0x06001BED RID: 7149 RVA: 0x00017634 File Offset: 0x00015834
+	// Token: 0x060018F4 RID: 6388 RVA: 0x000B3123 File Offset: 0x000B1323
 	public void CloseTooltip()
 	{
 		if (ToolTipsMag.Inst != null)
@@ -405,7 +405,7 @@ public class UIIconShow : MonoBehaviour, IPointerEnterHandler, IEventSystemHandl
 		}
 	}
 
-	// Token: 0x06001BEE RID: 7150 RVA: 0x0001764D File Offset: 0x0001584D
+	// Token: 0x060018F5 RID: 6389 RVA: 0x000B313C File Offset: 0x000B133C
 	public void OnPointerEnter(PointerEventData eventData)
 	{
 		if (this != UIIconShow.NowDraggingObj)
@@ -416,14 +416,14 @@ public class UIIconShow : MonoBehaviour, IPointerEnterHandler, IEventSystemHandl
 		this.isHover = true;
 	}
 
-	// Token: 0x06001BEF RID: 7151 RVA: 0x0001766F File Offset: 0x0001586F
+	// Token: 0x060018F6 RID: 6390 RVA: 0x000B315E File Offset: 0x000B135E
 	public void OnPointerExit(PointerEventData eventData)
 	{
 		this.CloseTooltip();
 		this.isHover = false;
 	}
 
-	// Token: 0x06001BF0 RID: 7152 RVA: 0x0001767E File Offset: 0x0001587E
+	// Token: 0x060018F7 RID: 6391 RVA: 0x000B316D File Offset: 0x000B136D
 	public void OnPointerClick(PointerEventData eventData)
 	{
 		if (this.OnClick != null)
@@ -432,7 +432,7 @@ public class UIIconShow : MonoBehaviour, IPointerEnterHandler, IEventSystemHandl
 		}
 	}
 
-	// Token: 0x06001BF1 RID: 7153 RVA: 0x000F9184 File Offset: 0x000F7384
+	// Token: 0x060018F8 RID: 6392 RVA: 0x000B3184 File Offset: 0x000B1384
 	public void OnBeginDrag(PointerEventData eventData)
 	{
 		if (UILingTianPanel.Inst != null && UILingTianPanel.Inst.IsShouGe)
@@ -447,7 +447,7 @@ public class UIIconShow : MonoBehaviour, IPointerEnterHandler, IEventSystemHandl
 		}
 	}
 
-	// Token: 0x06001BF2 RID: 7154 RVA: 0x000F91D8 File Offset: 0x000F73D8
+	// Token: 0x060018F9 RID: 6393 RVA: 0x000B31D8 File Offset: 0x000B13D8
 	public void OnDrag(PointerEventData eventData)
 	{
 		if (UIIconShow.NowDraggingObj != null)
@@ -458,7 +458,7 @@ public class UIIconShow : MonoBehaviour, IPointerEnterHandler, IEventSystemHandl
 		}
 	}
 
-	// Token: 0x06001BF3 RID: 7155 RVA: 0x000F923C File Offset: 0x000F743C
+	// Token: 0x060018FA RID: 6394 RVA: 0x000B323C File Offset: 0x000B143C
 	public void OnEndDrag(PointerEventData eventData)
 	{
 		if (UIIconShow.NowDraggingObj != null)
@@ -477,7 +477,7 @@ public class UIIconShow : MonoBehaviour, IPointerEnterHandler, IEventSystemHandl
 		}
 	}
 
-	// Token: 0x06001BF4 RID: 7156 RVA: 0x000F92C0 File Offset: 0x000F74C0
+	// Token: 0x060018FB RID: 6395 RVA: 0x000B32C0 File Offset: 0x000B14C0
 	public void CreateDragObj()
 	{
 		UIIconShow.NowDraggingObj = Object.Instantiate<GameObject>(base.gameObject, NewUICanvas.Inst.Canvas.transform).GetComponent<UIIconShow>();
@@ -490,7 +490,7 @@ public class UIIconShow : MonoBehaviour, IPointerEnterHandler, IEventSystemHandl
 		UIIconShow.NowDraggingObj.BottomBG.raycastTarget = false;
 	}
 
-	// Token: 0x06001BF5 RID: 7157 RVA: 0x000F9370 File Offset: 0x000F7570
+	// Token: 0x060018FC RID: 6396 RVA: 0x000B3370 File Offset: 0x000B1570
 	public void OnDragToThis(UIIconShow draggingObj)
 	{
 		if (!this.IsLingTian)
@@ -562,7 +562,7 @@ public class UIIconShow : MonoBehaviour, IPointerEnterHandler, IEventSystemHandl
 		UILingTianPanel.Inst.RefreshUI();
 	}
 
-	// Token: 0x06001BF6 RID: 7158 RVA: 0x000F94C0 File Offset: 0x000F76C0
+	// Token: 0x060018FD RID: 6397 RVA: 0x000B34C0 File Offset: 0x000B16C0
 	public void MoveToTarget()
 	{
 		if (this.Inventory != null && !(this.Inventory.dragTargetInventory != null) && this.Inventory.dragTargetSlot != null)
@@ -585,7 +585,7 @@ public class UIIconShow : MonoBehaviour, IPointerEnterHandler, IEventSystemHandl
 		}
 	}
 
-	// Token: 0x06001BF7 RID: 7159 RVA: 0x000F9548 File Offset: 0x000F7748
+	// Token: 0x060018FE RID: 6398 RVA: 0x000B3548 File Offset: 0x000B1748
 	public void AcceptObj(UIIconShow obj)
 	{
 		this.SlotRT.gameObject.SetActive(true);
@@ -610,114 +610,114 @@ public class UIIconShow : MonoBehaviour, IPointerEnterHandler, IEventSystemHandl
 		}
 	}
 
-	// Token: 0x040017A4 RID: 6052
+	// Token: 0x040013F6 RID: 5110
 	private static GameObject prefab;
 
-	// Token: 0x040017A5 RID: 6053
+	// Token: 0x040013F7 RID: 5111
 	public UIInventory Inventory;
 
-	// Token: 0x040017A6 RID: 6054
+	// Token: 0x040013F8 RID: 5112
 	public Image Quality;
 
-	// Token: 0x040017A7 RID: 6055
+	// Token: 0x040013F9 RID: 5113
 	public Image Icon;
 
-	// Token: 0x040017A8 RID: 6056
+	// Token: 0x040013FA RID: 5114
 	public Image QualityUp;
 
-	// Token: 0x040017A9 RID: 6057
+	// Token: 0x040013FB RID: 5115
 	public Image JiaoBiao;
 
-	// Token: 0x040017AA RID: 6058
+	// Token: 0x040013FC RID: 5116
 	public Image BottomBG;
 
-	// Token: 0x040017AB RID: 6059
+	// Token: 0x040013FD RID: 5117
 	public Text NameText;
 
-	// Token: 0x040017AC RID: 6060
+	// Token: 0x040013FE RID: 5118
 	public Text CountText;
 
-	// Token: 0x040017AD RID: 6061
+	// Token: 0x040013FF RID: 5119
 	public GameObject JiaoBiaoMask;
 
-	// Token: 0x040017AE RID: 6062
+	// Token: 0x04001400 RID: 5120
 	public GameObject NameMask;
 
-	// Token: 0x040017AF RID: 6063
+	// Token: 0x04001401 RID: 5121
 	public GameObject BGMask;
 
-	// Token: 0x040017B0 RID: 6064
+	// Token: 0x04001402 RID: 5122
 	public GameObject SelectedImage;
 
-	// Token: 0x040017B1 RID: 6065
+	// Token: 0x04001403 RID: 5123
 	public UnityAction<PointerEventData> OnClick;
 
-	// Token: 0x040017B2 RID: 6066
+	// Token: 0x04001404 RID: 5124
 	[HideInInspector]
 	public bool IsLingWu;
 
-	// Token: 0x040017B3 RID: 6067
+	// Token: 0x04001405 RID: 5125
 	public RectTransform RT;
 
-	// Token: 0x040017B4 RID: 6068
+	// Token: 0x04001406 RID: 5126
 	public RectTransform SlotRT;
 
-	// Token: 0x040017B5 RID: 6069
+	// Token: 0x04001407 RID: 5127
 	public bool isShowStudy;
 
-	// Token: 0x040017B6 RID: 6070
+	// Token: 0x04001408 RID: 5128
 	public bool IsCopyDrag;
 
-	// Token: 0x040017B7 RID: 6071
+	// Token: 0x04001409 RID: 5129
 	public bool IsDragSelcetNum;
 
-	// Token: 0x040017B8 RID: 6072
+	// Token: 0x0400140A RID: 5130
 	public UIIconShow.ShowPriceType ShowPrice;
 
-	// Token: 0x040017B9 RID: 6073
+	// Token: 0x0400140B RID: 5131
 	[HideInInspector]
 	public int NPCID;
 
-	// Token: 0x040017BA RID: 6074
+	// Token: 0x0400140C RID: 5132
 	[HideInInspector]
 	public bool isPlayer;
 
-	// Token: 0x040017BB RID: 6075
+	// Token: 0x0400140D RID: 5133
 	public int DragCountLimit;
 
-	// Token: 0x040017BC RID: 6076
+	// Token: 0x0400140E RID: 5134
 	public DragAera DragAera;
 
-	// Token: 0x040017BD RID: 6077
+	// Token: 0x0400140F RID: 5135
 	public bool IsLingTian;
 
-	// Token: 0x040017BE RID: 6078
+	// Token: 0x04001410 RID: 5136
 	[HideInInspector]
 	public UIInventoryGridData InventoryGridData;
 
-	// Token: 0x040017BF RID: 6079
+	// Token: 0x04001411 RID: 5137
 	[HideInInspector]
 	public bool IsDragging;
 
-	// Token: 0x040017C0 RID: 6080
+	// Token: 0x04001412 RID: 5138
 	private bool isDraggingObj;
 
-	// Token: 0x040017C1 RID: 6081
+	// Token: 0x04001413 RID: 5139
 	public bool CanDrag;
 
-	// Token: 0x040017C2 RID: 6082
+	// Token: 0x04001414 RID: 5140
 	public UIIconShow.UIIconType CanAcceptDragType;
 
-	// Token: 0x040017C3 RID: 6083
+	// Token: 0x04001415 RID: 5141
 	public static UIIconShow NowDraggingObj;
 
-	// Token: 0x040017C4 RID: 6084
+	// Token: 0x04001416 RID: 5142
 	public static UIIconShow NowMouseBottomObj;
 
-	// Token: 0x040017C5 RID: 6085
+	// Token: 0x04001417 RID: 5143
 	public static UIIconShow DragStarter;
 
-	// Token: 0x040017C6 RID: 6086
+	// Token: 0x04001418 RID: 5144
 	private static List<Color> _ItemQualityColor = new List<Color>
 	{
 		new Color(0.84705883f, 0.84705883f, 0.7921569f),
@@ -728,76 +728,76 @@ public class UIIconShow : MonoBehaviour, IPointerEnterHandler, IEventSystemHandl
 		new Color(1f, 0.69803923f, 0.54509807f)
 	};
 
-	// Token: 0x040017C7 RID: 6087
+	// Token: 0x04001419 RID: 5145
 	private UIIconShow.UIIconType nowType;
 
-	// Token: 0x040017C8 RID: 6088
+	// Token: 0x0400141A RID: 5146
 	private static Sprite _YiWuSprite;
 
-	// Token: 0x040017C9 RID: 6089
+	// Token: 0x0400141B RID: 5147
 	private static Sprite _NaiSprite;
 
-	// Token: 0x040017CA RID: 6090
+	// Token: 0x0400141C RID: 5148
 	private static Sprite _MiChuanSprite;
 
-	// Token: 0x040017CB RID: 6091
+	// Token: 0x0400141D RID: 5149
 	private static Sprite _MoSprite;
 
-	// Token: 0x040017CC RID: 6092
+	// Token: 0x0400141E RID: 5150
 	private UIIconShow.JiaoBiaoType nowJiaoBiao;
 
-	// Token: 0x040017CD RID: 6093
+	// Token: 0x0400141F RID: 5151
 	private int count;
 
-	// Token: 0x040017CE RID: 6094
+	// Token: 0x04001420 RID: 5152
 	private bool isHover;
 
-	// Token: 0x040017CF RID: 6095
+	// Token: 0x04001421 RID: 5153
 	[HideInInspector]
 	public item tmpItem;
 
-	// Token: 0x040017D0 RID: 6096
+	// Token: 0x04001422 RID: 5154
 	[HideInInspector]
 	public GUIPackage.Skill tmpSkill;
 
-	// Token: 0x02000407 RID: 1031
+	// Token: 0x02001317 RID: 4887
 	public enum UIIconType
 	{
-		// Token: 0x040017D2 RID: 6098
+		// Token: 0x04006770 RID: 26480
 		None,
-		// Token: 0x040017D3 RID: 6099
+		// Token: 0x04006771 RID: 26481
 		Item,
-		// Token: 0x040017D4 RID: 6100
+		// Token: 0x04006772 RID: 26482
 		Skill,
-		// Token: 0x040017D5 RID: 6101
+		// Token: 0x04006773 RID: 26483
 		StaticSkill
 	}
 
-	// Token: 0x02000408 RID: 1032
+	// Token: 0x02001318 RID: 4888
 	public enum JiaoBiaoType
 	{
-		// Token: 0x040017D7 RID: 6103
+		// Token: 0x04006775 RID: 26485
 		None,
-		// Token: 0x040017D8 RID: 6104
+		// Token: 0x04006776 RID: 26486
 		YiWu,
-		// Token: 0x040017D9 RID: 6105
+		// Token: 0x04006777 RID: 26487
 		Nai,
-		// Token: 0x040017DA RID: 6106
+		// Token: 0x04006778 RID: 26488
 		MiChuan,
-		// Token: 0x040017DB RID: 6107
+		// Token: 0x04006779 RID: 26489
 		Mo
 	}
 
-	// Token: 0x02000409 RID: 1033
+	// Token: 0x02001319 RID: 4889
 	public enum ShowPriceType
 	{
-		// Token: 0x040017DD RID: 6109
+		// Token: 0x0400677B RID: 26491
 		None,
-		// Token: 0x040017DE RID: 6110
+		// Token: 0x0400677C RID: 26492
 		Normal,
-		// Token: 0x040017DF RID: 6111
+		// Token: 0x0400677D RID: 26493
 		PlayerSell,
-		// Token: 0x040017E0 RID: 6112
+		// Token: 0x0400677E RID: 26494
 		NPCSell
 	}
 }

@@ -5,11 +5,11 @@ using UnityEngine.UI;
 
 namespace Fungus
 {
-	// Token: 0x0200120B RID: 4619
+	// Token: 0x02000DD1 RID: 3537
 	[CommandInfo("UI", "Fade UI", "Fades a UI object", 0)]
 	public class FadeUI : TweenUI
 	{
-		// Token: 0x06007106 RID: 28934 RVA: 0x002A3D08 File Offset: 0x002A1F08
+		// Token: 0x06006487 RID: 25735 RVA: 0x0027EF78 File Offset: 0x0027D178
 		protected override void ApplyTween(GameObject go)
 		{
 			foreach (Image image in go.GetComponentsInChildren<Image>())
@@ -197,7 +197,7 @@ namespace Fungus
 			}
 		}
 
-		// Token: 0x06007107 RID: 28935 RVA: 0x002A427C File Offset: 0x002A247C
+		// Token: 0x06006488 RID: 25736 RVA: 0x0027F4EC File Offset: 0x0027D6EC
 		protected override string GetSummaryValue()
 		{
 			if (this.fadeMode == FadeMode.Alpha)
@@ -211,27 +211,27 @@ namespace Fungus
 			return "";
 		}
 
-		// Token: 0x06007108 RID: 28936 RVA: 0x0004CC61 File Offset: 0x0004AE61
+		// Token: 0x06006489 RID: 25737 RVA: 0x0027F551 File Offset: 0x0027D751
 		public override bool IsPropertyVisible(string propertyName)
 		{
 			return (this.fadeMode != FadeMode.Alpha || !(propertyName == "targetColor")) && (this.fadeMode != FadeMode.Color || !(propertyName == "targetAlpha"));
 		}
 
-		// Token: 0x06007109 RID: 28937 RVA: 0x0004CC93 File Offset: 0x0004AE93
+		// Token: 0x0600648A RID: 25738 RVA: 0x0027F583 File Offset: 0x0027D783
 		public override bool HasReference(Variable variable)
 		{
 			return this.targetColor.colorRef == variable || this.targetAlpha.floatRef == variable || base.HasReference(variable);
 		}
 
-		// Token: 0x04006362 RID: 25442
+		// Token: 0x04005663 RID: 22115
 		[SerializeField]
 		protected FadeMode fadeMode;
 
-		// Token: 0x04006363 RID: 25443
+		// Token: 0x04005664 RID: 22116
 		[SerializeField]
 		protected ColorData targetColor = new ColorData(Color.white);
 
-		// Token: 0x04006364 RID: 25444
+		// Token: 0x04005665 RID: 22117
 		[SerializeField]
 		protected FloatData targetAlpha = new FloatData(1f);
 	}

@@ -6,11 +6,11 @@ using YSGame;
 
 namespace Tab
 {
-	// Token: 0x02000A54 RID: 2644
+	// Token: 0x02000707 RID: 1799
 	[Serializable]
 	public class TabSelectCell : UIBase
 	{
-		// Token: 0x06004436 RID: 17462 RVA: 0x001D26EC File Offset: 0x001D08EC
+		// Token: 0x060039B2 RID: 14770 RVA: 0x0018AF88 File Offset: 0x00189188
 		public TabSelectCell(GameObject go, ITabPanelBase panel)
 		{
 			this._go = go;
@@ -22,14 +22,14 @@ namespace Tab
 			this._panel = panel;
 		}
 
-		// Token: 0x06004437 RID: 17463 RVA: 0x00030D6C File Offset: 0x0002EF6C
+		// Token: 0x060039B3 RID: 14771 RVA: 0x0018B006 File Offset: 0x00189206
 		public void SetIsSelect(bool flag)
 		{
 			this._isActive = flag;
 			this.UpdateUI();
 		}
 
-		// Token: 0x06004438 RID: 17464 RVA: 0x001D276C File Offset: 0x001D096C
+		// Token: 0x060039B4 RID: 14772 RVA: 0x0018B018 File Offset: 0x00189218
 		private void UpdateUI()
 		{
 			if (!this._isActive)
@@ -50,7 +50,7 @@ namespace Tab
 			SingletonMono<TabUIMag>.Instance.HideBaseData();
 		}
 
-		// Token: 0x06004439 RID: 17465 RVA: 0x001D27EC File Offset: 0x001D09EC
+		// Token: 0x060039B5 RID: 14773 RVA: 0x0018B098 File Offset: 0x00189298
 		public void Click()
 		{
 			if (!this._isActive)
@@ -62,16 +62,16 @@ namespace Tab
 			}
 		}
 
-		// Token: 0x04003C3F RID: 15423
+		// Token: 0x040031C3 RID: 12739
 		private bool _isActive;
 
-		// Token: 0x04003C40 RID: 15424
+		// Token: 0x040031C4 RID: 12740
 		private GameObject _unSelect;
 
-		// Token: 0x04003C41 RID: 15425
+		// Token: 0x040031C5 RID: 12741
 		private GameObject _select;
 
-		// Token: 0x04003C42 RID: 15426
+		// Token: 0x040031C6 RID: 12742
 		private ITabPanelBase _panel;
 	}
 }

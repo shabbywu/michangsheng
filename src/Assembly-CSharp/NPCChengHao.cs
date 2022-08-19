@@ -1,11 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using script.EventMsg;
 using UnityEngine;
 
-// Token: 0x0200030E RID: 782
+// Token: 0x020001F9 RID: 505
 public class NPCChengHao
 {
-	// Token: 0x06001748 RID: 5960 RVA: 0x000CCDA0 File Offset: 0x000CAFA0
+	// Token: 0x0600149E RID: 5278 RVA: 0x00084138 File Offset: 0x00082338
 	public NPCChengHao()
 	{
 		this.npcChengHaoDictionary = new Dictionary<int, List<int>>();
@@ -29,10 +30,10 @@ public class NPCChengHao
 		}
 	}
 
-	// Token: 0x06001749 RID: 5961 RVA: 0x000CCE54 File Offset: 0x000CB054
+	// Token: 0x0600149F RID: 5279 RVA: 0x000841EC File Offset: 0x000823EC
 	public bool IsCanUpToChengHao(int npcId, ref int targetId)
 	{
-		JSONObject npcData = NpcJieSuanManager.inst.getNpcData(npcId);
+		JSONObject npcData = NpcJieSuanManager.inst.GetNpcData(npcId);
 		int i = npcData["ChengHaoID"].I;
 		if (jsonData.instance.NPCChengHaoData[i.ToString()]["MaxLevel"].I == 1)
 		{
@@ -64,7 +65,7 @@ public class NPCChengHao
 		return false;
 	}
 
-	// Token: 0x0600174A RID: 5962 RVA: 0x000CCFC8 File Offset: 0x000CB1C8
+	// Token: 0x060014A0 RID: 5280 RVA: 0x00084360 File Offset: 0x00082560
 	public void UpDateChengHao(int npcId, int id)
 	{
 		JSONObject jsonobject = jsonData.instance.AvatarJsonData[npcId.ToString()];
@@ -82,6 +83,14 @@ public class NPCChengHao
 			Debug.LogError(string.Format("唯一称号数据:{0}", this.npcOnlyChengHao));
 		}
 		jsonobject.SetField("Title", jsonData.instance.NPCChengHaoData[id.ToString()]["ChengHao"].str.ToCN());
+		if (jsonobject["Title"].Str.Contains("大长老"))
+		{
+			EventMag.Inst.SaveEvent(npcId, 21);
+		}
+		if (jsonobject["Title"].Str.Contains("掌门"))
+		{
+			EventMag.Inst.SaveEvent(npcId, 22);
+		}
 		jsonobject.SetField("ChengHaoID", id);
 		if (jsonData.instance.NPCChengHaoData[id.ToString()]["IsOnly"].I == 1)
 		{
@@ -89,13 +98,13 @@ public class NPCChengHao
 		}
 	}
 
-	// Token: 0x0600174B RID: 5963 RVA: 0x0001491A File Offset: 0x00012B1A
+	// Token: 0x060014A1 RID: 5281 RVA: 0x000844D8 File Offset: 0x000826D8
 	public void DeleteOnlyChengHao(int chengHaoId)
 	{
 		this.npcOnlyChengHao.SetField(chengHaoId.ToString(), 0);
 	}
 
-	// Token: 0x0600174C RID: 5964 RVA: 0x000CD0F0 File Offset: 0x000CB2F0
+	// Token: 0x060014A2 RID: 5282 RVA: 0x000844F0 File Offset: 0x000826F0
 	public List<int> GetHighLevelChengHaoId(int chengHaoId)
 	{
 		int i = jsonData.instance.NPCChengHaoData[chengHaoId.ToString()]["NPCType"].I;
@@ -110,9 +119,9 @@ public class NPCChengHao
 		return list;
 	}
 
-	// Token: 0x040012AF RID: 4783
+	// Token: 0x04000F69 RID: 3945
 	private Dictionary<int, List<int>> npcChengHaoDictionary;
 
-	// Token: 0x040012B0 RID: 4784
+	// Token: 0x04000F6A RID: 3946
 	public JSONObject npcOnlyChengHao;
 }

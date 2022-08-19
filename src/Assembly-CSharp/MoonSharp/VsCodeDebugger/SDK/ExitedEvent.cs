@@ -2,10 +2,10 @@
 
 namespace MoonSharp.VsCodeDebugger.SDK
 {
-	// Token: 0x020011C9 RID: 4553
+	// Token: 0x02000D9D RID: 3485
 	public class ExitedEvent : Event
 	{
-		// Token: 0x06006F81 RID: 28545 RVA: 0x0004BC58 File Offset: 0x00049E58
+		// Token: 0x0600633B RID: 25403 RVA: 0x0027A792 File Offset: 0x00278992
 		public ExitedEvent(int exCode) : base("exited", new
 		{
 			exitCode = exCode

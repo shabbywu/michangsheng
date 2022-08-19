@@ -3,10 +3,10 @@ using System.Collections.Generic;
 
 namespace JSONClass
 {
-	// Token: 0x02000C26 RID: 3110
+	// Token: 0x02000898 RID: 2200
 	public class NpcBiaoBaiTiWenData : IJSONClass
 	{
-		// Token: 0x06004C01 RID: 19457 RVA: 0x002014AC File Offset: 0x001FF6AC
+		// Token: 0x06004073 RID: 16499 RVA: 0x001B8188 File Offset: 0x001B6388
 		public static void InitDataDict()
 		{
 			foreach (JSONObject jsonobject in jsonData.instance.NpcBiaoBaiTiWenData.list)
@@ -44,39 +44,39 @@ namespace JSONClass
 			}
 		}
 
-		// Token: 0x06004C02 RID: 19458 RVA: 0x000042DD File Offset: 0x000024DD
+		// Token: 0x06004074 RID: 16500 RVA: 0x00004095 File Offset: 0x00002295
 		private static void OnInitFinish()
 		{
 		}
 
-		// Token: 0x04004947 RID: 18759
+		// Token: 0x04003DEE RID: 15854
 		public static Dictionary<int, NpcBiaoBaiTiWenData> DataDict = new Dictionary<int, NpcBiaoBaiTiWenData>();
 
-		// Token: 0x04004948 RID: 18760
+		// Token: 0x04003DEF RID: 15855
 		public static List<NpcBiaoBaiTiWenData> DataList = new List<NpcBiaoBaiTiWenData>();
 
-		// Token: 0x04004949 RID: 18761
+		// Token: 0x04003DF0 RID: 15856
 		public static Action OnInitFinishAction = new Action(NpcBiaoBaiTiWenData.OnInitFinish);
 
-		// Token: 0x0400494A RID: 18762
+		// Token: 0x04003DF1 RID: 15857
 		public int id;
 
-		// Token: 0x0400494B RID: 18763
+		// Token: 0x04003DF2 RID: 15858
 		public int TiWen;
 
-		// Token: 0x0400494C RID: 18764
+		// Token: 0x04003DF3 RID: 15859
 		public int XingGe;
 
-		// Token: 0x0400494D RID: 18765
+		// Token: 0x04003DF4 RID: 15860
 		public int BiaoQian;
 
-		// Token: 0x0400494E RID: 18766
+		// Token: 0x04003DF5 RID: 15861
 		public int optionDesc1;
 
-		// Token: 0x0400494F RID: 18767
+		// Token: 0x04003DF6 RID: 15862
 		public int optionDesc2;
 
-		// Token: 0x04004950 RID: 18768
+		// Token: 0x04003DF7 RID: 15863
 		public int optionDesc3;
 	}
 }

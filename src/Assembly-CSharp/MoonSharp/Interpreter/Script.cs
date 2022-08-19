@@ -13,10 +13,10 @@ using MoonSharp.Interpreter.Tree.Fast_Interface;
 
 namespace MoonSharp.Interpreter
 {
-	// Token: 0x02001098 RID: 4248
+	// Token: 0x02000CC3 RID: 3267
 	public class Script : IScriptPrivateResource
 	{
-		// Token: 0x06006678 RID: 26232 RVA: 0x0028433C File Offset: 0x0028253C
+		// Token: 0x06005B74 RID: 23412 RVA: 0x0025A670 File Offset: 0x00258870
 		static Script()
 		{
 			Script.DefaultOptions = new ScriptOptions
@@ -32,12 +32,12 @@ namespace MoonSharp.Interpreter
 			};
 		}
 
-		// Token: 0x06006679 RID: 26233 RVA: 0x00046AE6 File Offset: 0x00044CE6
+		// Token: 0x06005B75 RID: 23413 RVA: 0x0025A6DA File Offset: 0x002588DA
 		public Script() : this(CoreModules.Preset_Default)
 		{
 		}
 
-		// Token: 0x0600667A RID: 26234 RVA: 0x002843A8 File Offset: 0x002825A8
+		// Token: 0x06005B76 RID: 23414 RVA: 0x0025A6E8 File Offset: 0x002588E8
 		public Script(CoreModules coreModules)
 		{
 			this.Options = new ScriptOptions(Script.DefaultOptions);
@@ -48,28 +48,28 @@ namespace MoonSharp.Interpreter
 			this.m_GlobalTable = new Table(this).RegisterCoreModules(coreModules);
 		}
 
-		// Token: 0x17000924 RID: 2340
-		// (get) Token: 0x0600667B RID: 26235 RVA: 0x00046AF3 File Offset: 0x00044CF3
-		// (set) Token: 0x0600667C RID: 26236 RVA: 0x00046AFA File Offset: 0x00044CFA
+		// Token: 0x170006C9 RID: 1737
+		// (get) Token: 0x06005B77 RID: 23415 RVA: 0x0025A76F File Offset: 0x0025896F
+		// (set) Token: 0x06005B78 RID: 23416 RVA: 0x0025A776 File Offset: 0x00258976
 		public static ScriptOptions DefaultOptions { get; private set; }
 
-		// Token: 0x17000925 RID: 2341
-		// (get) Token: 0x0600667D RID: 26237 RVA: 0x00046B02 File Offset: 0x00044D02
-		// (set) Token: 0x0600667E RID: 26238 RVA: 0x00046B0A File Offset: 0x00044D0A
+		// Token: 0x170006CA RID: 1738
+		// (get) Token: 0x06005B79 RID: 23417 RVA: 0x0025A77E File Offset: 0x0025897E
+		// (set) Token: 0x06005B7A RID: 23418 RVA: 0x0025A786 File Offset: 0x00258986
 		public ScriptOptions Options { get; private set; }
 
-		// Token: 0x17000926 RID: 2342
-		// (get) Token: 0x0600667F RID: 26239 RVA: 0x00046B13 File Offset: 0x00044D13
-		// (set) Token: 0x06006680 RID: 26240 RVA: 0x00046B1A File Offset: 0x00044D1A
+		// Token: 0x170006CB RID: 1739
+		// (get) Token: 0x06005B7B RID: 23419 RVA: 0x0025A78F File Offset: 0x0025898F
+		// (set) Token: 0x06005B7C RID: 23420 RVA: 0x0025A796 File Offset: 0x00258996
 		public static ScriptGlobalOptions GlobalOptions { get; private set; } = new ScriptGlobalOptions();
 
-		// Token: 0x17000927 RID: 2343
-		// (get) Token: 0x06006681 RID: 26241 RVA: 0x00046B22 File Offset: 0x00044D22
-		// (set) Token: 0x06006682 RID: 26242 RVA: 0x00046B2A File Offset: 0x00044D2A
+		// Token: 0x170006CC RID: 1740
+		// (get) Token: 0x06005B7D RID: 23421 RVA: 0x0025A79E File Offset: 0x0025899E
+		// (set) Token: 0x06005B7E RID: 23422 RVA: 0x0025A7A6 File Offset: 0x002589A6
 		public PerformanceStatistics PerformanceStats { get; private set; }
 
-		// Token: 0x17000928 RID: 2344
-		// (get) Token: 0x06006683 RID: 26243 RVA: 0x00046B33 File Offset: 0x00044D33
+		// Token: 0x170006CD RID: 1741
+		// (get) Token: 0x06005B7F RID: 23423 RVA: 0x0025A7AF File Offset: 0x002589AF
 		public Table Globals
 		{
 			get
@@ -78,7 +78,7 @@ namespace MoonSharp.Interpreter
 			}
 		}
 
-		// Token: 0x06006684 RID: 26244 RVA: 0x00284430 File Offset: 0x00282630
+		// Token: 0x06005B80 RID: 23424 RVA: 0x0025A7B8 File Offset: 0x002589B8
 		public DynValue LoadFunction(string code, Table globalTable = null, string funcFriendlyName = null)
 		{
 			this.CheckScriptOwnership(globalTable);
@@ -90,7 +90,7 @@ namespace MoonSharp.Interpreter
 			return this.MakeClosure(address, globalTable ?? this.m_GlobalTable);
 		}
 
-		// Token: 0x06006685 RID: 26245 RVA: 0x002844C4 File Offset: 0x002826C4
+		// Token: 0x06005B81 RID: 23425 RVA: 0x0025A84C File Offset: 0x00258A4C
 		private void SignalByteCodeChange()
 		{
 			if (this.m_Debugger != null)
@@ -100,7 +100,7 @@ namespace MoonSharp.Interpreter
 			}
 		}
 
-		// Token: 0x06006686 RID: 26246 RVA: 0x00046B3B File Offset: 0x00044D3B
+		// Token: 0x06005B82 RID: 23426 RVA: 0x0025A8A0 File Offset: 0x00258AA0
 		private void SignalSourceCodeChange(SourceCode source)
 		{
 			if (this.m_Debugger != null)
@@ -109,7 +109,7 @@ namespace MoonSharp.Interpreter
 			}
 		}
 
-		// Token: 0x06006687 RID: 26247 RVA: 0x00284518 File Offset: 0x00282718
+		// Token: 0x06005B83 RID: 23427 RVA: 0x0025A8B8 File Offset: 0x00258AB8
 		public DynValue LoadString(string code, Table globalTable = null, string codeFriendlyName = null)
 		{
 			this.CheckScriptOwnership(globalTable);
@@ -130,7 +130,7 @@ namespace MoonSharp.Interpreter
 			return this.MakeClosure(address, globalTable ?? this.m_GlobalTable);
 		}
 
-		// Token: 0x06006688 RID: 26248 RVA: 0x00284604 File Offset: 0x00282804
+		// Token: 0x06005B84 RID: 23428 RVA: 0x0025A9A4 File Offset: 0x00258BA4
 		public DynValue LoadStream(Stream stream, Table globalTable = null, string codeFriendlyName = null)
 		{
 			this.CheckScriptOwnership(globalTable);
@@ -157,7 +157,7 @@ namespace MoonSharp.Interpreter
 			return this.MakeClosure(address, null);
 		}
 
-		// Token: 0x06006689 RID: 26249 RVA: 0x00284728 File Offset: 0x00282928
+		// Token: 0x06005B85 RID: 23429 RVA: 0x0025AAC8 File Offset: 0x00258CC8
 		public void Dump(DynValue function, Stream stream)
 		{
 			this.CheckScriptOwnership(function);
@@ -178,7 +178,7 @@ namespace MoonSharp.Interpreter
 			this.m_MainProcessor.Dump(stream2, function.Function.EntryPointByteCodeLocation, upvaluesType == Closure.UpvaluesType.Environment);
 		}
 
-		// Token: 0x0600668A RID: 26250 RVA: 0x002847A4 File Offset: 0x002829A4
+		// Token: 0x06005B86 RID: 23430 RVA: 0x0025AB44 File Offset: 0x00258D44
 		public DynValue LoadFile(string filename, Table globalContext = null, string friendlyFilename = null)
 		{
 			this.CheckScriptOwnership(globalContext);
@@ -213,40 +213,40 @@ namespace MoonSharp.Interpreter
 			throw new InvalidCastException(string.Format("Unsupported return type from IScriptLoader.LoadFile : {0}", obj.GetType()));
 		}
 
-		// Token: 0x0600668B RID: 26251 RVA: 0x002848AC File Offset: 0x00282AAC
+		// Token: 0x06005B87 RID: 23431 RVA: 0x0025AC4C File Offset: 0x00258E4C
 		public DynValue DoString(string code, Table globalContext = null, string codeFriendlyName = null)
 		{
 			DynValue function = this.LoadString(code, globalContext, codeFriendlyName);
 			return this.Call(function);
 		}
 
-		// Token: 0x0600668C RID: 26252 RVA: 0x002848CC File Offset: 0x00282ACC
+		// Token: 0x06005B88 RID: 23432 RVA: 0x0025AC6C File Offset: 0x00258E6C
 		public DynValue DoStream(Stream stream, Table globalContext = null, string codeFriendlyName = null)
 		{
 			DynValue function = this.LoadStream(stream, globalContext, codeFriendlyName);
 			return this.Call(function);
 		}
 
-		// Token: 0x0600668D RID: 26253 RVA: 0x002848EC File Offset: 0x00282AEC
+		// Token: 0x06005B89 RID: 23433 RVA: 0x0025AC8C File Offset: 0x00258E8C
 		public DynValue DoFile(string filename, Table globalContext = null, string codeFriendlyName = null)
 		{
 			DynValue function = this.LoadFile(filename, globalContext, codeFriendlyName);
 			return this.Call(function);
 		}
 
-		// Token: 0x0600668E RID: 26254 RVA: 0x00046B51 File Offset: 0x00044D51
+		// Token: 0x06005B8A RID: 23434 RVA: 0x0025ACAA File Offset: 0x00258EAA
 		public static DynValue RunFile(string filename)
 		{
 			return new Script().DoFile(filename, null, null);
 		}
 
-		// Token: 0x0600668F RID: 26255 RVA: 0x00046B60 File Offset: 0x00044D60
+		// Token: 0x06005B8B RID: 23435 RVA: 0x0025ACB9 File Offset: 0x00258EB9
 		public static DynValue RunString(string code)
 		{
 			return new Script().DoString(code, null, null);
 		}
 
-		// Token: 0x06006690 RID: 26256 RVA: 0x0028490C File Offset: 0x00282B0C
+		// Token: 0x06005B8C RID: 23436 RVA: 0x0025ACC8 File Offset: 0x00258EC8
 		private DynValue MakeClosure(int address, Table envTable = null)
 		{
 			this.CheckScriptOwnership(envTable);
@@ -290,13 +290,13 @@ namespace MoonSharp.Interpreter
 			return DynValue.NewClosure(function);
 		}
 
-		// Token: 0x06006691 RID: 26257 RVA: 0x00046B6F File Offset: 0x00044D6F
+		// Token: 0x06005B8D RID: 23437 RVA: 0x0025AD8A File Offset: 0x00258F8A
 		public DynValue Call(DynValue function)
 		{
 			return this.Call(function, new DynValue[0]);
 		}
 
-		// Token: 0x06006692 RID: 26258 RVA: 0x002849D0 File Offset: 0x00282BD0
+		// Token: 0x06005B8E RID: 23438 RVA: 0x0025AD9C File Offset: 0x00258F9C
 		public DynValue Call(DynValue function, params DynValue[] args)
 		{
 			this.CheckScriptOwnership(function);
@@ -324,7 +324,7 @@ namespace MoonSharp.Interpreter
 			return this.m_MainProcessor.Call(function, args);
 		}
 
-		// Token: 0x06006693 RID: 26259 RVA: 0x00284A88 File Offset: 0x00282C88
+		// Token: 0x06005B8F RID: 23439 RVA: 0x0025AE54 File Offset: 0x00259054
 		public DynValue Call(DynValue function, params object[] args)
 		{
 			DynValue[] array = new DynValue[args.Length];
@@ -335,19 +335,19 @@ namespace MoonSharp.Interpreter
 			return this.Call(function, array);
 		}
 
-		// Token: 0x06006694 RID: 26260 RVA: 0x00046B7E File Offset: 0x00044D7E
+		// Token: 0x06005B90 RID: 23440 RVA: 0x0025AE8C File Offset: 0x0025908C
 		public DynValue Call(object function)
 		{
 			return this.Call(DynValue.FromObject(this, function));
 		}
 
-		// Token: 0x06006695 RID: 26261 RVA: 0x00046B8D File Offset: 0x00044D8D
+		// Token: 0x06005B91 RID: 23441 RVA: 0x0025AE9B File Offset: 0x0025909B
 		public DynValue Call(object function, params object[] args)
 		{
 			return this.Call(DynValue.FromObject(this, function), args);
 		}
 
-		// Token: 0x06006696 RID: 26262 RVA: 0x00284AC0 File Offset: 0x00282CC0
+		// Token: 0x06005B92 RID: 23442 RVA: 0x0025AEAC File Offset: 0x002590AC
 		public DynValue CreateCoroutine(DynValue function)
 		{
 			this.CheckScriptOwnership(function);
@@ -362,15 +362,15 @@ namespace MoonSharp.Interpreter
 			throw new ArgumentException("function is not of DataType.Function or DataType.ClrFunction");
 		}
 
-		// Token: 0x06006697 RID: 26263 RVA: 0x00046B9D File Offset: 0x00044D9D
+		// Token: 0x06005B93 RID: 23443 RVA: 0x0025AF00 File Offset: 0x00259100
 		public DynValue CreateCoroutine(object function)
 		{
 			return this.CreateCoroutine(DynValue.FromObject(this, function));
 		}
 
-		// Token: 0x17000929 RID: 2345
-		// (get) Token: 0x06006698 RID: 26264 RVA: 0x00046BAC File Offset: 0x00044DAC
-		// (set) Token: 0x06006699 RID: 26265 RVA: 0x00046BB9 File Offset: 0x00044DB9
+		// Token: 0x170006CE RID: 1742
+		// (get) Token: 0x06005B94 RID: 23444 RVA: 0x0025AF0F File Offset: 0x0025910F
+		// (set) Token: 0x06005B95 RID: 23445 RVA: 0x0025AF1C File Offset: 0x0025911C
 		public bool DebuggerEnabled
 		{
 			get
@@ -383,7 +383,7 @@ namespace MoonSharp.Interpreter
 			}
 		}
 
-		// Token: 0x0600669A RID: 26266 RVA: 0x00284B14 File Offset: 0x00282D14
+		// Token: 0x06005B96 RID: 23446 RVA: 0x0025AF2C File Offset: 0x0025912C
 		public void AttachDebugger(IDebugger debugger)
 		{
 			this.DebuggerEnabled = true;
@@ -396,14 +396,14 @@ namespace MoonSharp.Interpreter
 			this.SignalByteCodeChange();
 		}
 
-		// Token: 0x0600669B RID: 26267 RVA: 0x00046BC7 File Offset: 0x00044DC7
+		// Token: 0x06005B97 RID: 23447 RVA: 0x0025AFA0 File Offset: 0x002591A0
 		public SourceCode GetSourceCode(int sourceCodeID)
 		{
 			return this.m_Sources[sourceCodeID];
 		}
 
-		// Token: 0x1700092A RID: 2346
-		// (get) Token: 0x0600669C RID: 26268 RVA: 0x00046BD5 File Offset: 0x00044DD5
+		// Token: 0x170006CF RID: 1743
+		// (get) Token: 0x06005B98 RID: 23448 RVA: 0x0025AFAE File Offset: 0x002591AE
 		public int SourceCodeCount
 		{
 			get
@@ -412,7 +412,7 @@ namespace MoonSharp.Interpreter
 			}
 		}
 
-		// Token: 0x0600669D RID: 26269 RVA: 0x00284B88 File Offset: 0x00282D88
+		// Token: 0x06005B99 RID: 23449 RVA: 0x0025AFBC File Offset: 0x002591BC
 		public DynValue RequireModule(string modname, Table globalContext = null)
 		{
 			this.CheckScriptOwnership(globalContext);
@@ -428,7 +428,7 @@ namespace MoonSharp.Interpreter
 			return this.LoadFile(text, globalContext, text);
 		}
 
-		// Token: 0x0600669E RID: 26270 RVA: 0x00284BDC File Offset: 0x00282DDC
+		// Token: 0x06005B9A RID: 23450 RVA: 0x0025B010 File Offset: 0x00259210
 		public Table GetTypeMetatable(DataType type)
 		{
 			if (type >= DataType.Nil && type < (DataType)this.m_TypeMetatables.Length)
@@ -438,7 +438,7 @@ namespace MoonSharp.Interpreter
 			return null;
 		}
 
-		// Token: 0x0600669F RID: 26271 RVA: 0x00284C04 File Offset: 0x00282E04
+		// Token: 0x06005B9B RID: 23451 RVA: 0x0025B038 File Offset: 0x00259238
 		public void SetTypeMetatable(DataType type, Table metatable)
 		{
 			this.CheckScriptOwnership(metatable);
@@ -451,38 +451,38 @@ namespace MoonSharp.Interpreter
 			throw new ArgumentException("Specified type not supported : " + type.ToString());
 		}
 
-		// Token: 0x060066A0 RID: 26272 RVA: 0x00046BE2 File Offset: 0x00044DE2
+		// Token: 0x06005B9C RID: 23452 RVA: 0x0025B083 File Offset: 0x00259283
 		public static void WarmUp()
 		{
 			new Script(CoreModules.Basic).LoadString("return 1;", null, null);
 		}
 
-		// Token: 0x060066A1 RID: 26273 RVA: 0x00284C50 File Offset: 0x00282E50
+		// Token: 0x06005B9D RID: 23453 RVA: 0x0025B09C File Offset: 0x0025929C
 		public DynamicExpression CreateDynamicExpression(string code)
 		{
 			DynamicExprExpression expr = Loader_Fast.LoadDynamicExpr(this, new SourceCode("__dynamic", code, -1, this));
 			return new DynamicExpression(this, code, expr);
 		}
 
-		// Token: 0x060066A2 RID: 26274 RVA: 0x00046BF8 File Offset: 0x00044DF8
+		// Token: 0x06005B9E RID: 23454 RVA: 0x0025B0C5 File Offset: 0x002592C5
 		public DynamicExpression CreateConstantDynamicExpression(string code, DynValue constant)
 		{
 			this.CheckScriptOwnership(constant);
 			return new DynamicExpression(this, code, constant);
 		}
 
-		// Token: 0x060066A3 RID: 26275 RVA: 0x00046C09 File Offset: 0x00044E09
+		// Token: 0x06005B9F RID: 23455 RVA: 0x0025B0D6 File Offset: 0x002592D6
 		internal ScriptExecutionContext CreateDynamicExecutionContext(CallbackFunction func = null)
 		{
 			return new ScriptExecutionContext(this.m_MainProcessor, func, null, true);
 		}
 
-		// Token: 0x1700092B RID: 2347
-		// (get) Token: 0x060066A4 RID: 26276 RVA: 0x00046C19 File Offset: 0x00044E19
-		// (set) Token: 0x060066A5 RID: 26277 RVA: 0x00046C21 File Offset: 0x00044E21
+		// Token: 0x170006D0 RID: 1744
+		// (get) Token: 0x06005BA0 RID: 23456 RVA: 0x0025B0E6 File Offset: 0x002592E6
+		// (set) Token: 0x06005BA1 RID: 23457 RVA: 0x0025B0EE File Offset: 0x002592EE
 		public Table Registry { get; private set; }
 
-		// Token: 0x060066A6 RID: 26278 RVA: 0x00284C7C File Offset: 0x00282E7C
+		// Token: 0x06005BA2 RID: 23458 RVA: 0x0025B0F8 File Offset: 0x002592F8
 		public static string GetBanner(string subproduct = null)
 		{
 			subproduct = ((subproduct != null) ? (subproduct + " ") : "");
@@ -493,8 +493,8 @@ namespace MoonSharp.Interpreter
 			return stringBuilder.ToString();
 		}
 
-		// Token: 0x1700092C RID: 2348
-		// (get) Token: 0x060066A7 RID: 26279 RVA: 0x0002FB09 File Offset: 0x0002DD09
+		// Token: 0x170006D1 RID: 1745
+		// (get) Token: 0x06005BA3 RID: 23459 RVA: 0x00183D24 File Offset: 0x00181F24
 		Script IScriptPrivateResource.OwnerScript
 		{
 			get
@@ -503,28 +503,28 @@ namespace MoonSharp.Interpreter
 			}
 		}
 
-		// Token: 0x04005EC3 RID: 24259
+		// Token: 0x040052E2 RID: 21218
 		public const string VERSION = "2.0.0.0";
 
-		// Token: 0x04005EC4 RID: 24260
+		// Token: 0x040052E3 RID: 21219
 		public const string LUA_VERSION = "5.2";
 
-		// Token: 0x04005EC5 RID: 24261
+		// Token: 0x040052E4 RID: 21220
 		private Processor m_MainProcessor;
 
-		// Token: 0x04005EC6 RID: 24262
+		// Token: 0x040052E5 RID: 21221
 		private ByteCode m_ByteCode;
 
-		// Token: 0x04005EC7 RID: 24263
+		// Token: 0x040052E6 RID: 21222
 		private List<SourceCode> m_Sources = new List<SourceCode>();
 
-		// Token: 0x04005EC8 RID: 24264
+		// Token: 0x040052E7 RID: 21223
 		private Table m_GlobalTable;
 
-		// Token: 0x04005EC9 RID: 24265
+		// Token: 0x040052E8 RID: 21224
 		private IDebugger m_Debugger;
 
-		// Token: 0x04005ECA RID: 24266
+		// Token: 0x040052E9 RID: 21225
 		private Table[] m_TypeMetatables = new Table[6];
 	}
 }

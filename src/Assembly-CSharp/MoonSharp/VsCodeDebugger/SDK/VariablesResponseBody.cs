@@ -4,15 +4,15 @@ using System.Linq;
 
 namespace MoonSharp.VsCodeDebugger.SDK
 {
-	// Token: 0x020011D1 RID: 4561
+	// Token: 0x02000DA5 RID: 3493
 	public class VariablesResponseBody : ResponseBody
 	{
-		// Token: 0x17000A43 RID: 2627
-		// (get) Token: 0x06006F8F RID: 28559 RVA: 0x0004BD33 File Offset: 0x00049F33
-		// (set) Token: 0x06006F90 RID: 28560 RVA: 0x0004BD3B File Offset: 0x00049F3B
+		// Token: 0x170007E2 RID: 2018
+		// (get) Token: 0x06006349 RID: 25417 RVA: 0x0027A86D File Offset: 0x00278A6D
+		// (set) Token: 0x0600634A RID: 25418 RVA: 0x0027A875 File Offset: 0x00278A75
 		public Variable[] variables { get; private set; }
 
-		// Token: 0x06006F91 RID: 28561 RVA: 0x0004BD44 File Offset: 0x00049F44
+		// Token: 0x0600634B RID: 25419 RVA: 0x0027A87E File Offset: 0x00278A7E
 		public VariablesResponseBody(List<Variable> vars = null)
 		{
 			if (vars == null)

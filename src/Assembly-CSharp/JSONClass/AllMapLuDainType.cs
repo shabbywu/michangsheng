@@ -3,10 +3,10 @@ using System.Collections.Generic;
 
 namespace JSONClass
 {
-	// Token: 0x02000AE4 RID: 2788
+	// Token: 0x0200074C RID: 1868
 	public class AllMapLuDainType : IJSONClass
 	{
-		// Token: 0x060046FA RID: 18170 RVA: 0x001E5E98 File Offset: 0x001E4098
+		// Token: 0x06003B44 RID: 15172 RVA: 0x00197CA4 File Offset: 0x00195EA4
 		public static void InitDataDict()
 		{
 			foreach (JSONObject jsonobject in jsonData.instance.AllMapLuDainType.list)
@@ -40,27 +40,27 @@ namespace JSONClass
 			}
 		}
 
-		// Token: 0x060046FB RID: 18171 RVA: 0x000042DD File Offset: 0x000024DD
+		// Token: 0x06003B45 RID: 15173 RVA: 0x00004095 File Offset: 0x00002295
 		private static void OnInitFinish()
 		{
 		}
 
-		// Token: 0x04003F74 RID: 16244
+		// Token: 0x040033DB RID: 13275
 		public static Dictionary<int, AllMapLuDainType> DataDict = new Dictionary<int, AllMapLuDainType>();
 
-		// Token: 0x04003F75 RID: 16245
+		// Token: 0x040033DC RID: 13276
 		public static List<AllMapLuDainType> DataList = new List<AllMapLuDainType>();
 
-		// Token: 0x04003F76 RID: 16246
+		// Token: 0x040033DD RID: 13277
 		public static Action OnInitFinishAction = new Action(AllMapLuDainType.OnInitFinish);
 
-		// Token: 0x04003F77 RID: 16247
+		// Token: 0x040033DE RID: 13278
 		public int id;
 
-		// Token: 0x04003F78 RID: 16248
+		// Token: 0x040033DF RID: 13279
 		public int MapType;
 
-		// Token: 0x04003F79 RID: 16249
+		// Token: 0x040033E0 RID: 13280
 		public string LuDianName;
 	}
 }

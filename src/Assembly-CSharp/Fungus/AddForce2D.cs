@@ -3,12 +3,12 @@ using UnityEngine;
 
 namespace Fungus
 {
-	// Token: 0x0200126C RID: 4716
+	// Token: 0x02000E1F RID: 3615
 	[CommandInfo("Rigidbody2D", "AddForce2D", "Add force to a Rigidbody2D", 0)]
 	[AddComponentMenu("")]
 	public class AddForce2D : Command
 	{
-		// Token: 0x0600727C RID: 29308 RVA: 0x002A826C File Offset: 0x002A646C
+		// Token: 0x060065EE RID: 26094 RVA: 0x002846C8 File Offset: 0x002828C8
 		public override void OnEnter()
 		{
 			switch (this.forceFunction)
@@ -26,59 +26,59 @@ namespace Fungus
 			this.Continue();
 		}
 
-		// Token: 0x0600727D RID: 29309 RVA: 0x0004DF73 File Offset: 0x0004C173
+		// Token: 0x060065EF RID: 26095 RVA: 0x0028479B File Offset: 0x0028299B
 		public override string GetSummary()
 		{
 			return this.forceMode.ToString() + ": " + this.force.ToString();
 		}
 
-		// Token: 0x0600727E RID: 29310 RVA: 0x0004C5E0 File Offset: 0x0004A7E0
+		// Token: 0x060065F0 RID: 26096 RVA: 0x0027D3DB File Offset: 0x0027B5DB
 		public override Color GetButtonColor()
 		{
 			return new Color32(235, 191, 217, byte.MaxValue);
 		}
 
-		// Token: 0x0600727F RID: 29311 RVA: 0x002A8340 File Offset: 0x002A6540
+		// Token: 0x060065F1 RID: 26097 RVA: 0x002847CC File Offset: 0x002829CC
 		public override bool HasReference(Variable variable)
 		{
 			return this.rb.rigidbody2DRef == variable || this.force.vector2Ref == variable || this.forceScaleFactor.floatRef == variable || this.atPosition.vector2Ref == variable;
 		}
 
-		// Token: 0x040064A2 RID: 25762
+		// Token: 0x0400576D RID: 22381
 		[SerializeField]
 		protected Rigidbody2DData rb;
 
-		// Token: 0x040064A3 RID: 25763
+		// Token: 0x0400576E RID: 22382
 		[SerializeField]
 		protected ForceMode2D forceMode;
 
-		// Token: 0x040064A4 RID: 25764
+		// Token: 0x0400576F RID: 22383
 		[SerializeField]
 		protected AddForce2D.ForceFunction forceFunction;
 
-		// Token: 0x040064A5 RID: 25765
+		// Token: 0x04005770 RID: 22384
 		[Tooltip("Vector of force to be added")]
 		[SerializeField]
 		protected Vector2Data force;
 
-		// Token: 0x040064A6 RID: 25766
+		// Token: 0x04005771 RID: 22385
 		[Tooltip("Scale factor to be applied to force as it is used.")]
 		[SerializeField]
 		protected FloatData forceScaleFactor = new FloatData(1f);
 
-		// Token: 0x040064A7 RID: 25767
+		// Token: 0x04005772 RID: 22386
 		[Tooltip("World position the force is being applied from. Used only in AddForceAtPosition")]
 		[SerializeField]
 		protected Vector2Data atPosition;
 
-		// Token: 0x0200126D RID: 4717
+		// Token: 0x020016C1 RID: 5825
 		public enum ForceFunction
 		{
-			// Token: 0x040064A9 RID: 25769
+			// Token: 0x04007391 RID: 29585
 			AddForce,
-			// Token: 0x040064AA RID: 25770
+			// Token: 0x04007392 RID: 29586
 			AddForceAtPosition,
-			// Token: 0x040064AB RID: 25771
+			// Token: 0x04007393 RID: 29587
 			AddRelativeForce
 		}
 	}

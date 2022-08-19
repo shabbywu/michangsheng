@@ -10,10 +10,10 @@ using UnityEngine;
 using UnityEngine.Events;
 using YSGame;
 
-// Token: 0x02000268 RID: 616
+// Token: 0x02000187 RID: 391
 public class EndlessSeaMag : MonoBehaviour
 {
-	// Token: 0x060012F6 RID: 4854 RVA: 0x000B095C File Offset: 0x000AEB5C
+	// Token: 0x0600109D RID: 4253 RVA: 0x00061E4C File Offset: 0x0006004C
 	private void Awake()
 	{
 		EndlessSeaMag.Inst = this;
@@ -49,13 +49,13 @@ public class EndlessSeaMag : MonoBehaviour
 		this.skeletonmonstar["RandomEvent_SkeletonData"] = (Resources.Load("MapPrefab/SeaAI/shijian/haishangqiyu_SkeletonData") as SkeletonDataAsset);
 	}
 
-	// Token: 0x060012F7 RID: 4855 RVA: 0x00011ED2 File Offset: 0x000100D2
+	// Token: 0x0600109E RID: 4254 RVA: 0x00062020 File Offset: 0x00060220
 	private void Start()
 	{
 		base.Invoke("autoCreatAllMonstar", 0.01f);
 	}
 
-	// Token: 0x060012F8 RID: 4856 RVA: 0x000B0B30 File Offset: 0x000AED30
+	// Token: 0x0600109F RID: 4255 RVA: 0x00062034 File Offset: 0x00060234
 	public int GetHaiYuLvIndex(int _seaid)
 	{
 		Avatar player = Tools.instance.getPlayer();
@@ -64,7 +64,7 @@ public class EndlessSeaMag : MonoBehaviour
 		return (int)player.EndlessSea["LuanLiuId"][_seaid - 1] % ((JArray)jtoken).Count;
 	}
 
-	// Token: 0x060012F9 RID: 4857 RVA: 0x000B0BB0 File Offset: 0x000AEDB0
+	// Token: 0x060010A0 RID: 4256 RVA: 0x000620B4 File Offset: 0x000602B4
 	public void autoCreatFengBao()
 	{
 		Avatar player = Tools.instance.getPlayer();
@@ -78,7 +78,7 @@ public class EndlessSeaMag : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060012FA RID: 4858 RVA: 0x000B0C64 File Offset: 0x000AEE64
+	// Token: 0x060010A1 RID: 4257 RVA: 0x00062168 File Offset: 0x00060368
 	public void CreateFengBao(JToken temp, int seaid)
 	{
 		int realIndex = EndlessSeaMag.GetRealIndex(seaid, (int)temp["index"]);
@@ -92,7 +92,7 @@ public class EndlessSeaMag : MonoBehaviour
 		endlessFengBao.Show();
 	}
 
-	// Token: 0x060012FB RID: 4859 RVA: 0x000B0D1C File Offset: 0x000AEF1C
+	// Token: 0x060010A2 RID: 4258 RVA: 0x00062220 File Offset: 0x00060420
 	public void autoResetFengBao()
 	{
 		Avatar player = Tools.instance.getPlayer();
@@ -108,7 +108,7 @@ public class EndlessSeaMag : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060012FC RID: 4860 RVA: 0x000B0DD4 File Offset: 0x000AEFD4
+	// Token: 0x060010A3 RID: 4259 RVA: 0x000622D8 File Offset: 0x000604D8
 	public void ResetFengBao(JToken temp, int seaid)
 	{
 		int realIndex = EndlessSeaMag.GetRealIndex(seaid, (int)temp["index"]);
@@ -123,13 +123,13 @@ public class EndlessSeaMag : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060012FD RID: 4861 RVA: 0x00011EE4 File Offset: 0x000100E4
+	// Token: 0x060010A4 RID: 4260 RVA: 0x000623C4 File Offset: 0x000605C4
 	public static bool IsOutMap(int x, int y)
 	{
 		return x < 0 || x > EndlessSeaMag.MapWide || y < 0 || y > 70;
 	}
 
-	// Token: 0x060012FE RID: 4862 RVA: 0x000B0EC0 File Offset: 0x000AF0C0
+	// Token: 0x060010A5 RID: 4261 RVA: 0x000623E0 File Offset: 0x000605E0
 	public static List<int> GetAroundIndexList(int avatarindex, int round, bool shizi = false)
 	{
 		List<int> list = new List<int>();
@@ -149,7 +149,7 @@ public class EndlessSeaMag : MonoBehaviour
 		return list;
 	}
 
-	// Token: 0x060012FF RID: 4863 RVA: 0x000B0F40 File Offset: 0x000AF140
+	// Token: 0x060010A6 RID: 4262 RVA: 0x00062460 File Offset: 0x00060660
 	public List<SeaAvatarObjBase> GetAroundEventList(int round, int eventType)
 	{
 		int nowIndex = Tools.instance.getPlayer().fubenContorl[Tools.getScreenName()].NowIndex;
@@ -177,7 +177,7 @@ public class EndlessSeaMag : MonoBehaviour
 		return list;
 	}
 
-	// Token: 0x06001300 RID: 4864 RVA: 0x000B1048 File Offset: 0x000AF248
+	// Token: 0x060010A7 RID: 4263 RVA: 0x00062568 File Offset: 0x00060768
 	public void autoCreatAllMonstar()
 	{
 		Avatar player = Tools.instance.getPlayer();
@@ -216,7 +216,7 @@ public class EndlessSeaMag : MonoBehaviour
 		this.SetCanSeeMonstar();
 	}
 
-	// Token: 0x06001301 RID: 4865 RVA: 0x000B11C4 File Offset: 0x000AF3C4
+	// Token: 0x060010A8 RID: 4264 RVA: 0x000626E4 File Offset: 0x000608E4
 	public void NTaskCreateMonstar()
 	{
 		Avatar player = Tools.instance.getPlayer();
@@ -247,7 +247,7 @@ public class EndlessSeaMag : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001302 RID: 4866 RVA: 0x000B136C File Offset: 0x000AF56C
+	// Token: 0x060010A9 RID: 4265 RVA: 0x0006288C File Offset: 0x00060A8C
 	public static int GetRealIndex(int seaID, int index)
 	{
 		int indexX = FuBenMap.getIndexX(seaID, EndlessSeaMag.MapWide / 7);
@@ -259,14 +259,14 @@ public class EndlessSeaMag : MonoBehaviour
 		return FuBenMap.getIndex(x, y, EndlessSeaMag.MapWide);
 	}
 
-	// Token: 0x06001303 RID: 4867 RVA: 0x00011EFE File Offset: 0x000100FE
+	// Token: 0x060010AA RID: 4266 RVA: 0x000628D9 File Offset: 0x00060AD9
 	public void AddLuXianDian(int index)
 	{
 		this.LuXian.Add(index);
 		this.ResetLuXianDian();
 	}
 
-	// Token: 0x06001304 RID: 4868 RVA: 0x000B13BC File Offset: 0x000AF5BC
+	// Token: 0x060010AB RID: 4267 RVA: 0x000628F0 File Offset: 0x00060AF0
 	public void SetCanSeeMonstar()
 	{
 		Avatar player = Tools.instance.getPlayer();
@@ -299,7 +299,7 @@ public class EndlessSeaMag : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001305 RID: 4869 RVA: 0x000B14C8 File Offset: 0x000AF6C8
+	// Token: 0x060010AC RID: 4268 RVA: 0x000629FC File Offset: 0x00060BFC
 	public static void AddSeeIsland(int sea)
 	{
 		JArray jarray = (JArray)Tools.instance.getPlayer().EndlessSeaAvatarSeeIsland["Island"];
@@ -309,7 +309,7 @@ public class EndlessSeaMag : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001306 RID: 4870 RVA: 0x000B150C File Offset: 0x000AF70C
+	// Token: 0x060010AD RID: 4269 RVA: 0x00062A40 File Offset: 0x00060C40
 	public List<int> GetInSeeIndex(int shenshi, int AvatarIndex)
 	{
 		JToken jtoken = Tools.FindJTokens(jsonData.instance.EndlessSeaShiYe, (JToken aa) => (int)aa["shenshi"] >= shenshi);
@@ -346,24 +346,24 @@ public class EndlessSeaMag : MonoBehaviour
 		return list3;
 	}
 
-	// Token: 0x06001307 RID: 4871 RVA: 0x00011F12 File Offset: 0x00010112
+	// Token: 0x060010AE RID: 4270 RVA: 0x00062B90 File Offset: 0x00060D90
 	public bool IsInSeeType(int shenshi, int AvatarIndex, int TargetIndex)
 	{
 		return this.GetInSeeIndex(shenshi, AvatarIndex).Contains(TargetIndex);
 	}
 
-	// Token: 0x06001308 RID: 4872 RVA: 0x000042DD File Offset: 0x000024DD
+	// Token: 0x060010AF RID: 4271 RVA: 0x00004095 File Offset: 0x00002295
 	public void MoveToSeaPositon(int start, int end)
 	{
 	}
 
-	// Token: 0x06001309 RID: 4873 RVA: 0x00011F27 File Offset: 0x00010127
+	// Token: 0x060010B0 RID: 4272 RVA: 0x00062BA5 File Offset: 0x00060DA5
 	public int getAvatarNowMapIndex()
 	{
 		return Tools.instance.getPlayer().fubenContorl[Tools.getScreenName()].NowIndex;
 	}
 
-	// Token: 0x0600130A RID: 4874 RVA: 0x000B165C File Offset: 0x000AF85C
+	// Token: 0x060010B1 RID: 4273 RVA: 0x00062BC8 File Offset: 0x00060DC8
 	public void ResetLuXianDian()
 	{
 		int num = 1;
@@ -378,7 +378,7 @@ public class EndlessSeaMag : MonoBehaviour
 		this.RestLuXianDianSprite();
 	}
 
-	// Token: 0x0600130B RID: 4875 RVA: 0x00011F47 File Offset: 0x00010147
+	// Token: 0x060010B2 RID: 4274 RVA: 0x00062C60 File Offset: 0x00060E60
 	public void RemoveAllLuXian()
 	{
 		this.LuXian.Clear();
@@ -387,7 +387,7 @@ public class EndlessSeaMag : MonoBehaviour
 		this.RestLuXianDianSprite();
 	}
 
-	// Token: 0x0600130C RID: 4876 RVA: 0x000B16F4 File Offset: 0x000AF8F4
+	// Token: 0x060010B3 RID: 4275 RVA: 0x00062C84 File Offset: 0x00060E84
 	public void RestLuXianDianSprite()
 	{
 		foreach (object obj in this.LineUIBase.transform)
@@ -421,7 +421,7 @@ public class EndlessSeaMag : MonoBehaviour
 		}
 	}
 
-	// Token: 0x0600130D RID: 4877 RVA: 0x00011F6B File Offset: 0x0001016B
+	// Token: 0x060010B4 RID: 4276 RVA: 0x00062E30 File Offset: 0x00061030
 	public string GetDirectonName(SeaAvatarObjBase.Directon direction)
 	{
 		switch (direction)
@@ -438,7 +438,7 @@ public class EndlessSeaMag : MonoBehaviour
 		}
 	}
 
-	// Token: 0x0600130E RID: 4878 RVA: 0x000B18A0 File Offset: 0x000AFAA0
+	// Token: 0x060010B5 RID: 4277 RVA: 0x00062E60 File Offset: 0x00061060
 	public void StartMove()
 	{
 		int num = 0;
@@ -453,7 +453,7 @@ public class EndlessSeaMag : MonoBehaviour
 		{
 			while (enumerator.MoveNext())
 			{
-				EndlessSeaMag.<>c__DisplayClass45_0 CS$<>8__locals1 = new EndlessSeaMag.<>c__DisplayClass45_0();
+				EndlessSeaMag.<>c__DisplayClass46_0 CS$<>8__locals1 = new EndlessSeaMag.<>c__DisplayClass46_0();
 				CS$<>8__locals1.<>4__this = this;
 				CS$<>8__locals1.temp = enumerator.Current;
 				int _tindex = num;
@@ -475,7 +475,7 @@ public class EndlessSeaMag : MonoBehaviour
 		YSFuncList.Ints.AddFunc(queue);
 	}
 
-	// Token: 0x0600130F RID: 4879 RVA: 0x000B1980 File Offset: 0x000AFB80
+	// Token: 0x060010B6 RID: 4278 RVA: 0x00062F40 File Offset: 0x00061140
 	public void CreateMonstar(int ID, int index, string uuid, int seaID, bool isNTaskMonstar = false)
 	{
 		JToken jtoken = jsonData.instance.EndlessSeaNPCData[ID.ToString()];
@@ -536,7 +536,7 @@ public class EndlessSeaMag : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001310 RID: 4880 RVA: 0x000B1BE8 File Offset: 0x000AFDE8
+	// Token: 0x060010B7 RID: 4279 RVA: 0x000631A8 File Offset: 0x000613A8
 	private void Move(int endPositon, int index)
 	{
 		int avatarNowMapIndex = this.getAvatarNowMapIndex();
@@ -556,7 +556,7 @@ public class EndlessSeaMag : MonoBehaviour
 		YSFuncList.Ints.Continue();
 	}
 
-	// Token: 0x06001311 RID: 4881 RVA: 0x00011F98 File Offset: 0x00010198
+	// Token: 0x060010B8 RID: 4280 RVA: 0x00063228 File Offset: 0x00061428
 	public IEnumerator DieDaiMove(int endPositon, int index)
 	{
 		yield return new WaitForSeconds(1f);
@@ -572,7 +572,7 @@ public class EndlessSeaMag : MonoBehaviour
 		yield break;
 	}
 
-	// Token: 0x06001312 RID: 4882 RVA: 0x000B1C68 File Offset: 0x000AFE68
+	// Token: 0x060010B9 RID: 4281 RVA: 0x00063248 File Offset: 0x00061448
 	public void StopAllContens()
 	{
 		foreach (SeaAvatarObjBase seaAvatarObjBase in this.MonstarList)
@@ -587,7 +587,7 @@ public class EndlessSeaMag : MonoBehaviour
 		YSFuncList.Ints.ClearQueue();
 	}
 
-	// Token: 0x06001313 RID: 4883 RVA: 0x000B1CE4 File Offset: 0x000AFEE4
+	// Token: 0x060010BA RID: 4282 RVA: 0x000632C4 File Offset: 0x000614C4
 	public void DrawLine(SpriteRenderer sprite, Vector3 StartPositon, Vector3 EndPosition)
 	{
 		sprite.transform.position = StartPositon;
@@ -602,7 +602,7 @@ public class EndlessSeaMag : MonoBehaviour
 		sprite.transform.localRotation = Quaternion.Euler(0f, 0f, num2);
 	}
 
-	// Token: 0x06001314 RID: 4884 RVA: 0x000B1D80 File Offset: 0x000AFF80
+	// Token: 0x060010BB RID: 4283 RVA: 0x00063360 File Offset: 0x00061560
 	public void RemoveLuXianDian(int index)
 	{
 		int index2 = this.LuXian.IndexOf(index);
@@ -611,7 +611,7 @@ public class EndlessSeaMag : MonoBehaviour
 		this.autoRestLuXianUIID();
 	}
 
-	// Token: 0x06001315 RID: 4885 RVA: 0x000B1DB4 File Offset: 0x000AFFB4
+	// Token: 0x060010BC RID: 4284 RVA: 0x00063394 File Offset: 0x00061594
 	public void autoRestLuXianUIID()
 	{
 		foreach (KeyValuePair<int, BaseMapCompont> keyValuePair in AllMapManage.instance.mapIndex)
@@ -628,7 +628,7 @@ public class EndlessSeaMag : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001316 RID: 4886 RVA: 0x000B1E98 File Offset: 0x000B0098
+	// Token: 0x060010BD RID: 4285 RVA: 0x00063478 File Offset: 0x00061678
 	public List<int> GetRoadXian(int startIndex, int endIndex)
 	{
 		List<int> list = new List<int>();
@@ -636,7 +636,7 @@ public class EndlessSeaMag : MonoBehaviour
 		return list;
 	}
 
-	// Token: 0x06001317 RID: 4887 RVA: 0x000B1EB8 File Offset: 0x000B00B8
+	// Token: 0x060010BE RID: 4286 RVA: 0x00063498 File Offset: 0x00061698
 	public void GetIndexList(int startIndex, int endIndex, List<int> NodeIndexList)
 	{
 		if (startIndex == endIndex)
@@ -649,7 +649,7 @@ public class EndlessSeaMag : MonoBehaviour
 		this.ShowPath(end, start, NodeIndexList);
 	}
 
-	// Token: 0x06001318 RID: 4888 RVA: 0x000B1F08 File Offset: 0x000B0108
+	// Token: 0x060010BF RID: 4287 RVA: 0x000634E8 File Offset: 0x000616E8
 	public void ShowPath(MapSeaCompent end, MapSeaCompent start, List<int> NodeIndexList)
 	{
 		List<MapSeaCompent> list = new List<MapSeaCompent>();
@@ -666,7 +666,7 @@ public class EndlessSeaMag : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001319 RID: 4889 RVA: 0x000B1F68 File Offset: 0x000B0168
+	// Token: 0x060010C0 RID: 4288 RVA: 0x00063548 File Offset: 0x00061748
 	public void dieDaiAddIndex(List<int> NodeIndexList, int startIndex, int endIndex, Dictionary<int, int> closeList, List<int> openList)
 	{
 		if (startIndex == endIndex)
@@ -720,18 +720,18 @@ public class EndlessSeaMag : MonoBehaviour
 		}
 	}
 
-	// Token: 0x0600131A RID: 4890 RVA: 0x00011FB5 File Offset: 0x000101B5
+	// Token: 0x060010C1 RID: 4289 RVA: 0x00063704 File Offset: 0x00061904
 	private void OnDestroy()
 	{
 		EndlessSeaMag.Inst = null;
 	}
 
-	// Token: 0x0600131B RID: 4891 RVA: 0x000042DD File Offset: 0x000024DD
+	// Token: 0x060010C2 RID: 4290 RVA: 0x00004095 File Offset: 0x00002295
 	public void RemoveIndex()
 	{
 	}
 
-	// Token: 0x0600131C RID: 4892 RVA: 0x000B2124 File Offset: 0x000B0324
+	// Token: 0x060010C3 RID: 4291 RVA: 0x0006370C File Offset: 0x0006190C
 	public void FindPath(int startIndex, int endIndex)
 	{
 		List<MapSeaCompent> list = new List<MapSeaCompent>();
@@ -780,7 +780,7 @@ public class EndlessSeaMag : MonoBehaviour
 		}
 	}
 
-	// Token: 0x0600131D RID: 4893 RVA: 0x000B22AC File Offset: 0x000B04AC
+	// Token: 0x060010C4 RID: 4292 RVA: 0x00063894 File Offset: 0x00061A94
 	public List<MapSeaCompent> GetSurroundPoint(int index)
 	{
 		List<MapSeaCompent> list = new List<MapSeaCompent>();
@@ -795,7 +795,7 @@ public class EndlessSeaMag : MonoBehaviour
 		return list;
 	}
 
-	// Token: 0x0600131E RID: 4894 RVA: 0x000B2360 File Offset: 0x000B0560
+	// Token: 0x060010C5 RID: 4293 RVA: 0x00063948 File Offset: 0x00061B48
 	public int GetQuanZhon(MapSeaCompent index)
 	{
 		int num = Tools.instance.getPlayer().seaNodeMag.GetIndexFengBaoLv(index.NodeIndex, EndlessSeaMag.MapWide);
@@ -815,7 +815,7 @@ public class EndlessSeaMag : MonoBehaviour
 		return num * 30;
 	}
 
-	// Token: 0x0600131F RID: 4895 RVA: 0x000B2408 File Offset: 0x000B0608
+	// Token: 0x060010C6 RID: 4294 RVA: 0x000639F0 File Offset: 0x00061BF0
 	public void GetF(MapSeaCompent point, MapSeaCompent end)
 	{
 		int num = 0;
@@ -831,7 +831,7 @@ public class EndlessSeaMag : MonoBehaviour
 		point.F = f;
 	}
 
-	// Token: 0x06001320 RID: 4896 RVA: 0x000B2484 File Offset: 0x000B0684
+	// Token: 0x060010C7 RID: 4295 RVA: 0x00063A6C File Offset: 0x00061C6C
 	public MapSeaCompent GetMinFOfList(List<MapSeaCompent> list)
 	{
 		int num = int.MaxValue;
@@ -847,71 +847,74 @@ public class EndlessSeaMag : MonoBehaviour
 		return result;
 	}
 
-	// Token: 0x04000ED4 RID: 3796
+	// Token: 0x04000BFA RID: 3066
 	public static EndlessSeaMag Inst;
 
-	// Token: 0x04000ED5 RID: 3797
+	// Token: 0x04000BFB RID: 3067
 	public static int MapWide = 133;
 
-	// Token: 0x04000ED6 RID: 3798
+	// Token: 0x04000BFC RID: 3068
 	public static bool StopMove = false;
 
-	// Token: 0x04000ED7 RID: 3799
+	// Token: 0x04000BFD RID: 3069
 	[HideInInspector]
 	public List<int> LuXian = new List<int>();
 
-	// Token: 0x04000ED8 RID: 3800
+	// Token: 0x04000BFE RID: 3070
 	private List<List<int>> LuXianDian = new List<List<int>>();
 
-	// Token: 0x04000ED9 RID: 3801
+	// Token: 0x04000BFF RID: 3071
 	public GameObject mapNodeUI;
 
-	// Token: 0x04000EDA RID: 3802
+	// Token: 0x04000C00 RID: 3072
 	public GameObject LuXianUI;
 
-	// Token: 0x04000EDB RID: 3803
+	// Token: 0x04000C01 RID: 3073
 	public GameObject LineUIBase;
 
-	// Token: 0x04000EDC RID: 3804
+	// Token: 0x04000C02 RID: 3074
 	public GameObject MonstarObject;
 
-	// Token: 0x04000EDD RID: 3805
+	// Token: 0x04000C03 RID: 3075
 	[HideInInspector]
 	public List<SeaAvatarObjBase> MonstarList = new List<SeaAvatarObjBase>();
 
-	// Token: 0x04000EDE RID: 3806
+	// Token: 0x04000C04 RID: 3076
 	public SeaGrid seaGrid;
 
-	// Token: 0x04000EDF RID: 3807
+	// Token: 0x04000C05 RID: 3077
 	[HideInInspector]
 	public List<SeaAvatarObjBase> RoundEventList = new List<SeaAvatarObjBase>();
 
-	// Token: 0x04000EE0 RID: 3808
+	// Token: 0x04000C06 RID: 3078
 	public bool flagMonstarTarget = true;
 
-	// Token: 0x04000EE1 RID: 3809
+	// Token: 0x04000C07 RID: 3079
+	public bool NeedRefresh;
+
+	// Token: 0x04000C08 RID: 3080
 	public Dictionary<int, ExternalBehaviorTree> externalBehaviorTrees;
 
-	// Token: 0x04000EE2 RID: 3810
+	// Token: 0x04000C09 RID: 3081
 	[HideInInspector]
 	public GameObject LangHua;
 
-	// Token: 0x04000EE3 RID: 3811
+	// Token: 0x04000C0A RID: 3082
 	[HideInInspector]
 	public EndlessFengBao fengBao;
 
-	// Token: 0x04000EE4 RID: 3812
+	// Token: 0x04000C0B RID: 3083
 	private GameObject FengBaoObjList;
 
-	// Token: 0x04000EE5 RID: 3813
+	// Token: 0x04000C0C RID: 3084
 	public Dictionary<int, int> oldFengBaoindex = new Dictionary<int, int>();
 
-	// Token: 0x04000EE6 RID: 3814
+	// Token: 0x04000C0D RID: 3085
 	private Dictionary<string, SkeletonDataAsset> skeletonmonstar = new Dictionary<string, SkeletonDataAsset>();
 
-	// Token: 0x04000EE7 RID: 3815
+	// Token: 0x04000C0E RID: 3086
 	private SeaTargetUI targetUI;
 
-	// Token: 0x04000EE8 RID: 3816
+	// Token: 0x04000C0F RID: 3087
 	public SeaAvatarObjBase.Directon PlayerDirecton = SeaAvatarObjBase.Directon.Left;
 }

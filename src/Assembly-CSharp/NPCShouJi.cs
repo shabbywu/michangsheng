@@ -3,17 +3,17 @@ using System.Collections.Generic;
 using JSONClass;
 using UnityEngine;
 
-// Token: 0x02000331 RID: 817
+// Token: 0x02000217 RID: 535
 public class NPCShouJi
 {
-	// Token: 0x06001845 RID: 6213 RVA: 0x0001521D File Offset: 0x0001341D
+	// Token: 0x06001591 RID: 5521 RVA: 0x0008F67A File Offset: 0x0008D87A
 	public NPCShouJi()
 	{
 		this.CaiJiMapList.Add("ThreeSence");
 		this.CaiJiMapList.Add("FuBen");
 	}
 
-	// Token: 0x06001846 RID: 6214 RVA: 0x000D8280 File Offset: 0x000D6480
+	// Token: 0x06001592 RID: 5522 RVA: 0x0008F6B0 File Offset: 0x0008D8B0
 	public void NpcCaiYao(int npcID)
 	{
 		int i = jsonData.instance.AvatarJsonData[npcID.ToString()]["Type"].I;
@@ -95,7 +95,7 @@ public class NPCShouJi
 		}
 	}
 
-	// Token: 0x06001847 RID: 6215 RVA: 0x000D86A0 File Offset: 0x000D68A0
+	// Token: 0x06001593 RID: 5523 RVA: 0x0008FAD0 File Offset: 0x0008DCD0
 	public void NpcCaiKuang(int npcID)
 	{
 		int i = jsonData.instance.AvatarJsonData[npcID.ToString()]["Type"].I;
@@ -183,7 +183,7 @@ public class NPCShouJi
 		}
 	}
 
-	// Token: 0x06001848 RID: 6216 RVA: 0x000D8AD8 File Offset: 0x000D6CD8
+	// Token: 0x06001594 RID: 5524 RVA: 0x0008FF08 File Offset: 0x0008E108
 	public void NpcBuyMiJi(int npcID)
 	{
 		int i = jsonData.instance.AvatarJsonData[npcID.ToString()]["Type"].I;
@@ -191,13 +191,13 @@ public class NPCShouJi
 		NpcJieSuanManager.inst.npcMap.AddNpcToThreeScene(npcID, i2);
 	}
 
-	// Token: 0x06001849 RID: 6217 RVA: 0x000D8B7C File Offset: 0x000D6D7C
+	// Token: 0x06001595 RID: 5525 RVA: 0x0008FFAC File Offset: 0x0008E1AC
 	public void NpcBuyDanYao(int npcId)
 	{
 		int i = jsonData.instance.AvatarJsonData[npcId.ToString()]["Type"].I;
 		int i2 = jsonData.instance.NpcThreeMapBingDate[i.ToString()]["YaoDian"][NpcJieSuanManager.inst.getRandomInt(0, jsonData.instance.NpcThreeMapBingDate[i.ToString()]["YaoDian"].Count - 1)].I;
 		NpcJieSuanManager.inst.npcMap.AddNpcToThreeScene(npcId, i2);
-		int npcBigLevel = NpcJieSuanManager.inst.getNpcBigLevel(npcId);
+		int npcBigLevel = NpcJieSuanManager.inst.GetNpcBigLevel(npcId);
 		for (int j = 0; j < 2; j++)
 		{
 			JSONObject randomItemByType = FactoryManager.inst.npcFactory.GetRandomItemByType(5, npcBigLevel);
@@ -205,7 +205,7 @@ public class NPCShouJi
 		}
 	}
 
-	// Token: 0x0600184A RID: 6218 RVA: 0x000D8C68 File Offset: 0x000D6E68
+	// Token: 0x06001596 RID: 5526 RVA: 0x00090098 File Offset: 0x0008E298
 	public void NpcBuyFaBao(int npcID)
 	{
 		JSONObject jsonobject = jsonData.instance.AvatarJsonData[npcID.ToString()];
@@ -220,13 +220,13 @@ public class NPCShouJi
 		NpcJieSuanManager.inst.AddNpcEquip(npcID, num, false);
 	}
 
-	// Token: 0x0600184B RID: 6219 RVA: 0x00015250 File Offset: 0x00013450
+	// Token: 0x06001597 RID: 5527 RVA: 0x00090158 File Offset: 0x0008E358
 	public void NpcShouJiTuPoItem(int npcId)
 	{
 		NpcJieSuanManager.inst.npcMap.AddNpcToBigMap(npcId, 1, true);
 	}
 
-	// Token: 0x0600184C RID: 6220 RVA: 0x000D8D28 File Offset: 0x000D6F28
+	// Token: 0x06001598 RID: 5528 RVA: 0x0009016C File Offset: 0x0008E36C
 	public void NextNpcShouJiTuPoItem(int npcId)
 	{
 		if (!NpcJieSuanManager.inst.npcStatus.IsInTargetStatus(npcId, 2))
@@ -255,17 +255,17 @@ public class NPCShouJi
 		NpcJieSuanManager.inst.npcSetField.AddNpcMoney(npcId, -num2);
 	}
 
-	// Token: 0x0600184D RID: 6221 RVA: 0x00015264 File Offset: 0x00013464
+	// Token: 0x06001599 RID: 5529 RVA: 0x00090274 File Offset: 0x0008E474
 	public void NpcSpeedDeath(int npcId)
 	{
 		NpcJieSuanManager.inst.npcMap.AddNpcToBigMap(npcId, 1, true);
 		NpcJieSuanManager.inst.npcUseItem.autoUseItem(npcId);
 	}
 
-	// Token: 0x0600184E RID: 6222 RVA: 0x000D8E30 File Offset: 0x000D7030
+	// Token: 0x0600159A RID: 5530 RVA: 0x00090298 File Offset: 0x0008E498
 	public void NpcToLingHe1(int npcId)
 	{
-		JSONObject npcData = NpcJieSuanManager.inst.getNpcData(npcId);
+		JSONObject npcData = NpcJieSuanManager.inst.GetNpcData(npcId);
 		int i = npcData["Type"].I;
 		int lingHe = NpcFuBenMapBingDate.DataDict[i].LingHe;
 		string key = "F" + lingHe;
@@ -297,10 +297,10 @@ public class NPCShouJi
 		NpcJieSuanManager.inst.npcSetField.AddNpcMoney(npcId, NpcLevelShouYiDate.DataDict[npcData["Level"].I].money);
 	}
 
-	// Token: 0x0600184F RID: 6223 RVA: 0x000D8F70 File Offset: 0x000D7170
+	// Token: 0x0600159B RID: 5531 RVA: 0x000903D8 File Offset: 0x0008E5D8
 	public void NpcToLingHe2(int npcId)
 	{
-		JSONObject npcData = NpcJieSuanManager.inst.getNpcData(npcId);
+		JSONObject npcData = NpcJieSuanManager.inst.GetNpcData(npcId);
 		int i = npcData["Type"].I;
 		int lingHe = NpcFuBenMapBingDate.DataDict[i].LingHe;
 		string key = "F" + lingHe;
@@ -332,10 +332,10 @@ public class NPCShouJi
 		NpcJieSuanManager.inst.npcSetField.AddNpcMoney(npcId, NpcLevelShouYiDate.DataDict[npcData["Level"].I].money);
 	}
 
-	// Token: 0x06001850 RID: 6224 RVA: 0x000D90B0 File Offset: 0x000D72B0
+	// Token: 0x0600159C RID: 5532 RVA: 0x00090518 File Offset: 0x0008E718
 	public void NpcToLingHe3(int npcId)
 	{
-		JSONObject npcData = NpcJieSuanManager.inst.getNpcData(npcId);
+		JSONObject npcData = NpcJieSuanManager.inst.GetNpcData(npcId);
 		int i = npcData["Type"].I;
 		int lingHe = NpcFuBenMapBingDate.DataDict[i].LingHe;
 		string key = "F" + lingHe;
@@ -367,10 +367,10 @@ public class NPCShouJi
 		NpcJieSuanManager.inst.npcSetField.AddNpcMoney(npcId, NpcLevelShouYiDate.DataDict[npcData["Level"].I].money);
 	}
 
-	// Token: 0x06001851 RID: 6225 RVA: 0x000D91F0 File Offset: 0x000D73F0
+	// Token: 0x0600159D RID: 5533 RVA: 0x00090658 File Offset: 0x0008E858
 	public void NpcToLingHe4(int npcId)
 	{
-		JSONObject npcData = NpcJieSuanManager.inst.getNpcData(npcId);
+		JSONObject npcData = NpcJieSuanManager.inst.GetNpcData(npcId);
 		int i = npcData["Type"].I;
 		int lingHe = NpcFuBenMapBingDate.DataDict[i].LingHe;
 		string key = "F" + lingHe;
@@ -402,10 +402,10 @@ public class NPCShouJi
 		NpcJieSuanManager.inst.npcSetField.AddNpcMoney(npcId, NpcLevelShouYiDate.DataDict[npcData["Level"].I].money);
 	}
 
-	// Token: 0x06001852 RID: 6226 RVA: 0x000D9330 File Offset: 0x000D7530
+	// Token: 0x0600159E RID: 5534 RVA: 0x00090798 File Offset: 0x0008E998
 	public void NpcToLingHe5(int npcId)
 	{
-		JSONObject npcData = NpcJieSuanManager.inst.getNpcData(npcId);
+		JSONObject npcData = NpcJieSuanManager.inst.GetNpcData(npcId);
 		int i = npcData["Type"].I;
 		int lingHe = NpcFuBenMapBingDate.DataDict[i].LingHe;
 		string key = "F" + lingHe;
@@ -437,10 +437,10 @@ public class NPCShouJi
 		NpcJieSuanManager.inst.npcSetField.AddNpcMoney(npcId, NpcLevelShouYiDate.DataDict[npcData["Level"].I].money);
 	}
 
-	// Token: 0x06001853 RID: 6227 RVA: 0x000D9470 File Offset: 0x000D7670
+	// Token: 0x0600159F RID: 5535 RVA: 0x000908D8 File Offset: 0x0008EAD8
 	public void NpcToLingHe6(int npcId)
 	{
-		JSONObject npcData = NpcJieSuanManager.inst.getNpcData(npcId);
+		JSONObject npcData = NpcJieSuanManager.inst.GetNpcData(npcId);
 		int i = npcData["Type"].I;
 		int lingHe = NpcFuBenMapBingDate.DataDict[i].LingHe;
 		string key = "F" + lingHe;
@@ -472,7 +472,7 @@ public class NPCShouJi
 		NpcJieSuanManager.inst.npcSetField.AddNpcMoney(npcId, NpcLevelShouYiDate.DataDict[npcData["Level"].I].money);
 	}
 
-	// Token: 0x06001854 RID: 6228 RVA: 0x000D95B0 File Offset: 0x000D77B0
+	// Token: 0x060015A0 RID: 5536 RVA: 0x00090A18 File Offset: 0x0008EC18
 	public List<JSONObject> GetRandomCaiLiao(int npcID, List<int> itemList)
 	{
 		int i = jsonData.instance.NpcLevelShouYiDate[jsonData.instance.AvatarJsonData[npcID.ToString()]["Level"].I.ToString()]["money"].I;
@@ -502,6 +502,6 @@ public class NPCShouJi
 		return list;
 	}
 
-	// Token: 0x04001367 RID: 4967
+	// Token: 0x04001011 RID: 4113
 	private List<string> CaiJiMapList = new List<string>();
 }

@@ -2,10 +2,10 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-// Token: 0x020003A6 RID: 934
+// Token: 0x0200027F RID: 639
 public class UINPCXingQu : MonoBehaviour
 {
-	// Token: 0x06001A03 RID: 6659 RVA: 0x000E5E40 File Offset: 0x000E4040
+	// Token: 0x06001733 RID: 5939 RVA: 0x0009E604 File Offset: 0x0009C804
 	public void RefreshUI()
 	{
 		if (this.npc == null)
@@ -44,16 +44,16 @@ public class UINPCXingQu : MonoBehaviour
 		this.TitleRT.anchoredPosition = new Vector2(this.TitleRT.anchoredPosition.x, this.BGImage.rectTransform.sizeDelta.y - 4f);
 	}
 
-	// Token: 0x04001557 RID: 5463
+	// Token: 0x040011E4 RID: 4580
 	[HideInInspector]
 	public UINPCData npc;
 
-	// Token: 0x04001558 RID: 5464
+	// Token: 0x040011E5 RID: 4581
 	public Text XingQuText;
 
-	// Token: 0x04001559 RID: 5465
+	// Token: 0x040011E6 RID: 4582
 	public Image BGImage;
 
-	// Token: 0x0400155A RID: 5466
+	// Token: 0x040011E7 RID: 4583
 	public RectTransform TitleRT;
 }

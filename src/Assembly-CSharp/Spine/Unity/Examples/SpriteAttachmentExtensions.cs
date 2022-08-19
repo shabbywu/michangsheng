@@ -4,24 +4,24 @@ using UnityEngine;
 
 namespace Spine.Unity.Examples
 {
-	// Token: 0x02000E51 RID: 3665
+	// Token: 0x02000AF8 RID: 2808
 	public static class SpriteAttachmentExtensions
 	{
-		// Token: 0x060057F4 RID: 22516 RVA: 0x0003EE4E File Offset: 0x0003D04E
+		// Token: 0x06004E53 RID: 20051 RVA: 0x00216482 File Offset: 0x00214682
 		[Obsolete]
 		public static RegionAttachment AttachUnitySprite(this Skeleton skeleton, string slotName, Sprite sprite, string shaderName = "Spine/Skeleton", bool applyPMA = true, float rotation = 0f)
 		{
 			return skeleton.AttachUnitySprite(slotName, sprite, Shader.Find(shaderName), applyPMA, rotation);
 		}
 
-		// Token: 0x060057F5 RID: 22517 RVA: 0x0003EE62 File Offset: 0x0003D062
+		// Token: 0x06004E54 RID: 20052 RVA: 0x00216496 File Offset: 0x00214696
 		[Obsolete]
 		public static RegionAttachment AddUnitySprite(this SkeletonData skeletonData, string slotName, Sprite sprite, string skinName = "", string shaderName = "Spine/Skeleton", bool applyPMA = true, float rotation = 0f)
 		{
 			return skeletonData.AddUnitySprite(slotName, sprite, skinName, Shader.Find(shaderName), applyPMA, rotation);
 		}
 
-		// Token: 0x060057F6 RID: 22518 RVA: 0x00246460 File Offset: 0x00244660
+		// Token: 0x06004E55 RID: 20053 RVA: 0x002164AC File Offset: 0x002146AC
 		[Obsolete]
 		public static RegionAttachment AttachUnitySprite(this Skeleton skeleton, string slotName, Sprite sprite, Shader shader, bool applyPMA, float rotation = 0f)
 		{
@@ -30,7 +30,7 @@ namespace Spine.Unity.Examples
 			return regionAttachment;
 		}
 
-		// Token: 0x060057F7 RID: 22519 RVA: 0x0024649C File Offset: 0x0024469C
+		// Token: 0x06004E56 RID: 20054 RVA: 0x002164E8 File Offset: 0x002146E8
 		[Obsolete]
 		public static RegionAttachment AddUnitySprite(this SkeletonData skeletonData, string slotName, Sprite sprite, string skinName, Shader shader, bool applyPMA, float rotation = 0f)
 		{

@@ -3,16 +3,16 @@ using UnityEngine;
 
 namespace Spine.Unity.Examples
 {
-	// Token: 0x02000E36 RID: 3638
+	// Token: 0x02000AE8 RID: 2792
 	public class MaterialPropertyBlockExample : MonoBehaviour
 	{
-		// Token: 0x06005786 RID: 22406 RVA: 0x0003E92A File Offset: 0x0003CB2A
+		// Token: 0x06004E0A RID: 19978 RVA: 0x002151F0 File Offset: 0x002133F0
 		private void Start()
 		{
 			this.mpb = new MaterialPropertyBlock();
 		}
 
-		// Token: 0x06005787 RID: 22407 RVA: 0x002452CC File Offset: 0x002434CC
+		// Token: 0x06004E0B RID: 19979 RVA: 0x00215200 File Offset: 0x00213400
 		private void Update()
 		{
 			if (this.timeToNextColor <= 0f)
@@ -25,19 +25,19 @@ namespace Spine.Unity.Examples
 			this.timeToNextColor -= Time.deltaTime;
 		}
 
-		// Token: 0x04005776 RID: 22390
+		// Token: 0x04004D6A RID: 19818
 		public float timeInterval = 1f;
 
-		// Token: 0x04005777 RID: 22391
+		// Token: 0x04004D6B RID: 19819
 		public Gradient randomColors = new Gradient();
 
-		// Token: 0x04005778 RID: 22392
+		// Token: 0x04004D6C RID: 19820
 		public string colorPropertyName = "_FillColor";
 
-		// Token: 0x04005779 RID: 22393
+		// Token: 0x04004D6D RID: 19821
 		private MaterialPropertyBlock mpb;
 
-		// Token: 0x0400577A RID: 22394
+		// Token: 0x04004D6E RID: 19822
 		private float timeToNextColor;
 	}
 }

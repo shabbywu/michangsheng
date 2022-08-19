@@ -3,58 +3,58 @@ using UnityEngine;
 
 namespace YSGame
 {
-	// Token: 0x02000DB2 RID: 3506
+	// Token: 0x02000A80 RID: 2688
 	public class SkillEffect : MonoBehaviour
 	{
-		// Token: 0x06005498 RID: 21656 RVA: 0x000042DD File Offset: 0x000024DD
+		// Token: 0x06004B78 RID: 19320 RVA: 0x00004095 File Offset: 0x00002295
 		private void Start()
 		{
 		}
 
-		// Token: 0x06005499 RID: 21657 RVA: 0x0003C8BB File Offset: 0x0003AABB
+		// Token: 0x06004B79 RID: 19321 RVA: 0x0020064E File Offset: 0x001FE84E
 		public void createSkillEffect()
 		{
 			Object.Instantiate<GameObject>(this.Prefabs[this.Prefab], this.FirePoint.transform.position, this.FirePoint.transform.rotation);
 		}
 
-		// Token: 0x04005446 RID: 21574
+		// Token: 0x04004A87 RID: 19079
 		public GameObject FirePoint;
 
-		// Token: 0x04005447 RID: 21575
+		// Token: 0x04004A88 RID: 19080
 		public Camera Cam;
 
-		// Token: 0x04005448 RID: 21576
+		// Token: 0x04004A89 RID: 19081
 		public float MaxLength;
 
-		// Token: 0x04005449 RID: 21577
+		// Token: 0x04004A8A RID: 19082
 		public GameObject[] Prefabs;
 
-		// Token: 0x0400544A RID: 21578
+		// Token: 0x04004A8B RID: 19083
 		private Ray RayMouse;
 
-		// Token: 0x0400544B RID: 21579
+		// Token: 0x04004A8C RID: 19084
 		private Vector3 direction;
 
-		// Token: 0x0400544C RID: 21580
+		// Token: 0x04004A8D RID: 19085
 		private Quaternion rotation;
 
-		// Token: 0x0400544D RID: 21581
+		// Token: 0x04004A8E RID: 19086
 		[Header("GUI")]
 		private float windowDpi;
 
-		// Token: 0x0400544E RID: 21582
+		// Token: 0x04004A8F RID: 19087
 		private int Prefab;
 
-		// Token: 0x0400544F RID: 21583
+		// Token: 0x04004A90 RID: 19088
 		private GameObject Instance;
 
-		// Token: 0x04005450 RID: 21584
+		// Token: 0x04004A91 RID: 19089
 		private float hSliderValue = 0.1f;
 
-		// Token: 0x04005451 RID: 21585
+		// Token: 0x04004A92 RID: 19090
 		private float fireCountdown;
 
-		// Token: 0x04005452 RID: 21586
+		// Token: 0x04004A93 RID: 19091
 		private float buttonSaver;
 	}
 }

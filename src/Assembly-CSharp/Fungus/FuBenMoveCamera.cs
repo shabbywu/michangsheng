@@ -6,12 +6,12 @@ using UnityEngine;
 
 namespace Fungus
 {
-	// Token: 0x020013C3 RID: 5059
+	// Token: 0x02000F10 RID: 3856
 	[CommandInfo("YSFuBen", "FuBenMoveCamera", "移动摄像机位置", 0)]
 	[AddComponentMenu("")]
 	public class FuBenMoveCamera : Command
 	{
-		// Token: 0x06007B54 RID: 31572 RVA: 0x0001CA4F File Offset: 0x0001AC4F
+		// Token: 0x06006D6B RID: 28011 RVA: 0x000E111A File Offset: 0x000DF31A
 		public void setHasVariable(string name, int num, Flowchart flowchart)
 		{
 			if (flowchart.HasVariable(name))
@@ -20,7 +20,7 @@ namespace Fungus
 			}
 		}
 
-		// Token: 0x06007B55 RID: 31573 RVA: 0x002C38EC File Offset: 0x002C1AEC
+		// Token: 0x06006D6C RID: 28012 RVA: 0x002A32DC File Offset: 0x002A14DC
 		public override void OnEnter()
 		{
 			Tools.instance.getPlayer();
@@ -37,7 +37,7 @@ namespace Fungus
 			this.Continue();
 		}
 
-		// Token: 0x06007B56 RID: 31574 RVA: 0x002C3814 File Offset: 0x002C1A14
+		// Token: 0x06006D6D RID: 28013 RVA: 0x002A3394 File Offset: 0x002A1594
 		public void wait()
 		{
 			CamaraFollow component = GameObject.Find("Main Camera").GetComponent<CamaraFollow>();
@@ -47,7 +47,7 @@ namespace Fungus
 			}
 		}
 
-		// Token: 0x06007B57 RID: 31575 RVA: 0x002C37E4 File Offset: 0x002C19E4
+		// Token: 0x06006D6E RID: 28014 RVA: 0x002A33C4 File Offset: 0x002A15C4
 		public void removeWait()
 		{
 			CamaraFollow component = GameObject.Find("Main Camera").GetComponent<CamaraFollow>();
@@ -57,23 +57,23 @@ namespace Fungus
 			}
 		}
 
-		// Token: 0x06007B58 RID: 31576 RVA: 0x000113CF File Offset: 0x0000F5CF
+		// Token: 0x06006D6F RID: 28015 RVA: 0x0005E228 File Offset: 0x0005C428
 		public override Color GetButtonColor()
 		{
 			return new Color32(184, 210, 235, byte.MaxValue);
 		}
 
-		// Token: 0x06007B59 RID: 31577 RVA: 0x000042DD File Offset: 0x000024DD
+		// Token: 0x06006D70 RID: 28016 RVA: 0x00004095 File Offset: 0x00002295
 		public override void OnReset()
 		{
 		}
 
-		// Token: 0x040069EF RID: 27119
+		// Token: 0x04005B28 RID: 23336
 		[Tooltip("场景名称")]
 		[SerializeField]
 		protected string ScenceName;
 
-		// Token: 0x040069F0 RID: 27120
+		// Token: 0x04005B29 RID: 23337
 		[Tooltip("摄像机移动地点的ID")]
 		[VariableProperty(new Type[]
 		{
@@ -82,7 +82,7 @@ namespace Fungus
 		[SerializeField]
 		protected IntegerVariable MapID;
 
-		// Token: 0x040069F1 RID: 27121
+		// Token: 0x04005B2A RID: 23338
 		[VariableProperty(new Type[]
 		{
 			typeof(FloatVariable)

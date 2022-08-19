@@ -3,11 +3,11 @@ using UnityEngine;
 
 namespace UltimateSurvival.GUISystem
 {
-	// Token: 0x02000938 RID: 2360
+	// Token: 0x0200063E RID: 1598
 	public class BuildingCategory : MonoBehaviour
 	{
-		// Token: 0x1700067F RID: 1663
-		// (get) Token: 0x06003C5B RID: 15451 RVA: 0x0002B8BA File Offset: 0x00029ABA
+		// Token: 0x17000477 RID: 1143
+		// (get) Token: 0x060032FF RID: 13055 RVA: 0x001675FE File Offset: 0x001657FE
 		public string CategoryName
 		{
 			get
@@ -16,8 +16,8 @@ namespace UltimateSurvival.GUISystem
 			}
 		}
 
-		// Token: 0x17000680 RID: 1664
-		// (get) Token: 0x06003C5C RID: 15452 RVA: 0x0002B8C2 File Offset: 0x00029AC2
+		// Token: 0x17000478 RID: 1144
+		// (get) Token: 0x06003300 RID: 13056 RVA: 0x00167606 File Offset: 0x00165806
 		public Vector2 DesiredOffset
 		{
 			get
@@ -26,9 +26,9 @@ namespace UltimateSurvival.GUISystem
 			}
 		}
 
-		// Token: 0x17000681 RID: 1665
-		// (get) Token: 0x06003C5D RID: 15453 RVA: 0x0002B8CA File Offset: 0x00029ACA
-		// (set) Token: 0x06003C5E RID: 15454 RVA: 0x001B07F4 File Offset: 0x001AE9F4
+		// Token: 0x17000479 RID: 1145
+		// (get) Token: 0x06003301 RID: 13057 RVA: 0x0016760E File Offset: 0x0016580E
+		// (set) Token: 0x06003302 RID: 13058 RVA: 0x00167618 File Offset: 0x00165818
 		public bool ShowPieces
 		{
 			get
@@ -46,8 +46,8 @@ namespace UltimateSurvival.GUISystem
 			}
 		}
 
-		// Token: 0x17000682 RID: 1666
-		// (get) Token: 0x06003C5F RID: 15455 RVA: 0x0002B8D2 File Offset: 0x00029AD2
+		// Token: 0x1700047A RID: 1146
+		// (get) Token: 0x06003303 RID: 13059 RVA: 0x0016764F File Offset: 0x0016584F
 		public float Distance
 		{
 			get
@@ -56,8 +56,8 @@ namespace UltimateSurvival.GUISystem
 			}
 		}
 
-		// Token: 0x17000683 RID: 1667
-		// (get) Token: 0x06003C60 RID: 15456 RVA: 0x0002B8DA File Offset: 0x00029ADA
+		// Token: 0x1700047B RID: 1147
+		// (get) Token: 0x06003304 RID: 13060 RVA: 0x00167657 File Offset: 0x00165857
 		public float Offset
 		{
 			get
@@ -66,8 +66,8 @@ namespace UltimateSurvival.GUISystem
 			}
 		}
 
-		// Token: 0x17000684 RID: 1668
-		// (get) Token: 0x06003C61 RID: 15457 RVA: 0x0002B8E2 File Offset: 0x00029AE2
+		// Token: 0x1700047C RID: 1148
+		// (get) Token: 0x06003305 RID: 13061 RVA: 0x0016765F File Offset: 0x0016585F
 		public float Spacing
 		{
 			get
@@ -76,7 +76,7 @@ namespace UltimateSurvival.GUISystem
 			}
 		}
 
-		// Token: 0x06003C62 RID: 15458 RVA: 0x0002B8EA File Offset: 0x00029AEA
+		// Token: 0x06003306 RID: 13062 RVA: 0x00167667 File Offset: 0x00165867
 		public BuildingPiece SelectFirst()
 		{
 			if (this.m_Pieces.Length != 0)
@@ -87,21 +87,21 @@ namespace UltimateSurvival.GUISystem
 			return null;
 		}
 
-		// Token: 0x06003C63 RID: 15459 RVA: 0x0002B904 File Offset: 0x00029B04
+		// Token: 0x06003307 RID: 13063 RVA: 0x00167681 File Offset: 0x00165881
 		public BuildingPiece SelectNext()
 		{
 			this.Select(this.m_CurrentIndex + 1);
 			return this.m_HighlightedPiece;
 		}
 
-		// Token: 0x06003C64 RID: 15460 RVA: 0x0002B91A File Offset: 0x00029B1A
+		// Token: 0x06003308 RID: 13064 RVA: 0x00167697 File Offset: 0x00165897
 		public BuildingPiece SelectPrevious()
 		{
 			this.Select(this.m_CurrentIndex - 1);
 			return this.m_HighlightedPiece;
 		}
 
-		// Token: 0x06003C65 RID: 15461 RVA: 0x001B082C File Offset: 0x001AEA2C
+		// Token: 0x06003309 RID: 13065 RVA: 0x001676B0 File Offset: 0x001658B0
 		private void Select(int index)
 		{
 			this.m_CurrentIndex = (int)Mathf.Repeat((float)index, (float)this.m_Pieces.Length);
@@ -121,53 +121,53 @@ namespace UltimateSurvival.GUISystem
 			}
 		}
 
-		// Token: 0x06003C66 RID: 15462 RVA: 0x0002B930 File Offset: 0x00029B30
+		// Token: 0x0600330A RID: 13066 RVA: 0x00167783 File Offset: 0x00165983
 		private void Awake()
 		{
 			this.m_Pieces = base.GetComponentsInChildren<BuildingPiece>();
 		}
 
-		// Token: 0x0400369B RID: 13979
+		// Token: 0x04002D32 RID: 11570
 		[SerializeField]
 		private string m_CategoryName;
 
-		// Token: 0x0400369C RID: 13980
+		// Token: 0x04002D33 RID: 11571
 		[SerializeField]
 		private Vector2 m_DesiredOffset;
 
-		// Token: 0x0400369D RID: 13981
+		// Token: 0x04002D34 RID: 11572
 		[SerializeField]
 		[Range(0.5f, 2f)]
 		private float m_SelectionScale = 1.1f;
 
-		// Token: 0x0400369E RID: 13982
+		// Token: 0x04002D35 RID: 11573
 		[Header("Layout")]
 		[SerializeField]
 		private float m_Distance = 211.7f;
 
-		// Token: 0x0400369F RID: 13983
+		// Token: 0x04002D36 RID: 11574
 		[SerializeField]
 		[Range(-90f, 90f)]
 		private float m_Offset;
 
-		// Token: 0x040036A0 RID: 13984
+		// Token: 0x04002D37 RID: 11575
 		[SerializeField]
 		[Range(-90f, 90f)]
 		private float m_Spacing;
 
-		// Token: 0x040036A1 RID: 13985
+		// Token: 0x04002D38 RID: 11576
 		private BuildingPiece[] m_Pieces;
 
-		// Token: 0x040036A2 RID: 13986
+		// Token: 0x04002D39 RID: 11577
 		private bool m_ShowPieces;
 
-		// Token: 0x040036A3 RID: 13987
+		// Token: 0x04002D3A RID: 11578
 		private BuildingPiece m_HighlightedPiece;
 
-		// Token: 0x040036A4 RID: 13988
+		// Token: 0x04002D3B RID: 11579
 		private float m_ClosestPieceAngle;
 
-		// Token: 0x040036A5 RID: 13989
+		// Token: 0x04002D3C RID: 11580
 		private int m_CurrentIndex;
 	}
 }

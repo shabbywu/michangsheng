@@ -3,12 +3,12 @@ using UnityEngine;
 
 namespace BehaviorDesigner.Runtime.Tasks.Basic.UnityTransform
 {
-	// Token: 0x020014D8 RID: 5336
+	// Token: 0x0200101E RID: 4126
 	[TaskCategory("Basic/Transform")]
 	[TaskDescription("Finds a transform by name. Returns Success.")]
 	public class Find : Action
 	{
-		// Token: 0x06007F8D RID: 32653 RVA: 0x002CA390 File Offset: 0x002C8590
+		// Token: 0x06007193 RID: 29075 RVA: 0x002AC118 File Offset: 0x002AA318
 		public override void OnStart()
 		{
 			GameObject defaultGameObject = base.GetDefaultGameObject(this.targetGameObject.Value);
@@ -19,7 +19,7 @@ namespace BehaviorDesigner.Runtime.Tasks.Basic.UnityTransform
 			}
 		}
 
-		// Token: 0x06007F8E RID: 32654 RVA: 0x00056725 File Offset: 0x00054925
+		// Token: 0x06007194 RID: 29076 RVA: 0x002AC158 File Offset: 0x002AA358
 		public override TaskStatus OnUpdate()
 		{
 			if (this.targetTransform == null)
@@ -31,7 +31,7 @@ namespace BehaviorDesigner.Runtime.Tasks.Basic.UnityTransform
 			return 2;
 		}
 
-		// Token: 0x06007F8F RID: 32655 RVA: 0x00056763 File Offset: 0x00054963
+		// Token: 0x06007195 RID: 29077 RVA: 0x002AC196 File Offset: 0x002AA396
 		public override void OnReset()
 		{
 			this.targetGameObject = null;
@@ -39,23 +39,23 @@ namespace BehaviorDesigner.Runtime.Tasks.Basic.UnityTransform
 			this.storeValue = null;
 		}
 
-		// Token: 0x04006C6A RID: 27754
+		// Token: 0x04005D6A RID: 23914
 		[Tooltip("The GameObject that the task operates on. If null the task GameObject is used.")]
 		public SharedGameObject targetGameObject;
 
-		// Token: 0x04006C6B RID: 27755
+		// Token: 0x04005D6B RID: 23915
 		[Tooltip("The transform name to find")]
 		public SharedString transformName;
 
-		// Token: 0x04006C6C RID: 27756
+		// Token: 0x04005D6C RID: 23916
 		[Tooltip("The object found by name")]
 		[RequiredField]
 		public SharedTransform storeValue;
 
-		// Token: 0x04006C6D RID: 27757
+		// Token: 0x04005D6D RID: 23917
 		private Transform targetTransform;
 
-		// Token: 0x04006C6E RID: 27758
+		// Token: 0x04005D6E RID: 23918
 		private GameObject prevGameObject;
 	}
 }

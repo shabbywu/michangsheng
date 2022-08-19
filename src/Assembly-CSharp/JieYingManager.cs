@@ -5,10 +5,10 @@ using UnityEngine;
 using UnityEngine.UI;
 using YSGame.Fight;
 
-// Token: 0x0200063E RID: 1598
+// Token: 0x0200047D RID: 1149
 public class JieYingManager : MonoBehaviour
 {
-	// Token: 0x060027A4 RID: 10148 RVA: 0x0001F50A File Offset: 0x0001D70A
+	// Token: 0x060023E0 RID: 9184 RVA: 0x000F52B0 File Offset: 0x000F34B0
 	private void Awake()
 	{
 		this.avatar = Tools.instance.getPlayer();
@@ -16,20 +16,20 @@ public class JieYingManager : MonoBehaviour
 		this.SuiDanStart();
 	}
 
-	// Token: 0x060027A5 RID: 10149 RVA: 0x0001F532 File Offset: 0x0001D732
+	// Token: 0x060023E1 RID: 9185 RVA: 0x000F52D8 File Offset: 0x000F34D8
 	private void SuiDanStart()
 	{
 		this.JinDanAnimator = this.JinDan.GetComponent<Animator>();
 		this.State = 1;
 	}
 
-	// Token: 0x060027A6 RID: 10150 RVA: 0x0001F54C File Offset: 0x0001D74C
+	// Token: 0x060023E2 RID: 9186 RVA: 0x000F52F2 File Offset: 0x000F34F2
 	public void JinDanAttacked()
 	{
 		this.JinDanAnimator.Play("hit");
 	}
 
-	// Token: 0x060027A7 RID: 10151 RVA: 0x0001F55E File Offset: 0x0001D75E
+	// Token: 0x060023E3 RID: 9187 RVA: 0x000F5304 File Offset: 0x000F3504
 	public void HuaYingCallBack()
 	{
 		this.JinDanAnimator.Play("break");
@@ -37,7 +37,7 @@ public class JieYingManager : MonoBehaviour
 		base.Invoke("HuaYingStart", 2.73f);
 	}
 
-	// Token: 0x060027A8 RID: 10152 RVA: 0x0001F58B File Offset: 0x0001D78B
+	// Token: 0x060023E4 RID: 9188 RVA: 0x000F5331 File Offset: 0x000F3531
 	private void HuaYingStart()
 	{
 		this.XinMoSpine.SetActive(true);
@@ -47,13 +47,13 @@ public class JieYingManager : MonoBehaviour
 		UIFightPanel.Inst.BanSkillAndWeapon = false;
 	}
 
-	// Token: 0x060027A9 RID: 10153 RVA: 0x0001F5C3 File Offset: 0x0001D7C3
+	// Token: 0x060023E5 RID: 9189 RVA: 0x000F5369 File Offset: 0x000F3569
 	private void HideZhuaJi()
 	{
 		this.yizhizhuaji.gameObject.SetActive(false);
 	}
 
-	// Token: 0x060027AA RID: 10154 RVA: 0x00135218 File Offset: 0x00133418
+	// Token: 0x060023E6 RID: 9190 RVA: 0x000F537C File Offset: 0x000F357C
 	public void XinMoAttack(int target = 0)
 	{
 		this.XinMoSpine.GetComponent<Animator>().Play("attank");
@@ -62,7 +62,7 @@ public class JieYingManager : MonoBehaviour
 		base.Invoke("HideZhuaJi", 1.167f);
 	}
 
-	// Token: 0x060027AB RID: 10155 RVA: 0x0013526C File Offset: 0x0013346C
+	// Token: 0x060023E7 RID: 9191 RVA: 0x000F53D0 File Offset: 0x000F35D0
 	public void showDamage(int num, int target = 0)
 	{
 		num = -num;
@@ -82,7 +82,7 @@ public class JieYingManager : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060027AC RID: 10156 RVA: 0x001352BC File Offset: 0x001334BC
+	// Token: 0x060023E8 RID: 9192 RVA: 0x000F5420 File Offset: 0x000F3620
 	private void getCurMoNian()
 	{
 		if (this.avatar.buffmag.getBuffBySeid(212).Count > 0)
@@ -95,7 +95,7 @@ public class JieYingManager : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060027AD RID: 10157 RVA: 0x001353BC File Offset: 0x001335BC
+	// Token: 0x060023E9 RID: 9193 RVA: 0x000F5520 File Offset: 0x000F3720
 	private void Update()
 	{
 		if (this.avatar != null)
@@ -121,72 +121,72 @@ public class JieYingManager : MonoBehaviour
 		}
 	}
 
-	// Token: 0x0400218A RID: 8586
+	// Token: 0x04001CA7 RID: 7335
 	private Avatar avatar;
 
-	// Token: 0x0400218B RID: 8587
+	// Token: 0x04001CA8 RID: 7336
 	public GameObject JinDan;
 
-	// Token: 0x0400218C RID: 8588
+	// Token: 0x04001CA9 RID: 7337
 	private Animator JinDanAnimator;
 
-	// Token: 0x0400218D RID: 8589
+	// Token: 0x04001CAA RID: 7338
 	public GameObject XinMoSpine;
 
-	// Token: 0x0400218E RID: 8590
+	// Token: 0x04001CAB RID: 7339
 	public GameObject HuaYingPanel;
 
-	// Token: 0x0400218F RID: 8591
+	// Token: 0x04001CAC RID: 7340
 	public Text CurYiZhi;
 
-	// Token: 0x04002190 RID: 8592
+	// Token: 0x04001CAD RID: 7341
 	public Text YiZhi_Max;
 
-	// Token: 0x04002191 RID: 8593
+	// Token: 0x04001CAE RID: 7342
 	public Text CurJingMai;
 
-	// Token: 0x04002192 RID: 8594
+	// Token: 0x04001CAF RID: 7343
 	public Text JingMai_Max;
 
-	// Token: 0x04002193 RID: 8595
+	// Token: 0x04001CB0 RID: 7344
 	public Text CurJingDanHp;
 
-	// Token: 0x04002194 RID: 8596
+	// Token: 0x04001CB1 RID: 7345
 	public Text JingDanHp_Max;
 
-	// Token: 0x04002195 RID: 8597
+	// Token: 0x04001CB2 RID: 7346
 	public Text CurHuaYingJinDu;
 
-	// Token: 0x04002196 RID: 8598
+	// Token: 0x04001CB3 RID: 7347
 	public Text HuaYingJinDu_Max;
 
-	// Token: 0x04002197 RID: 8599
+	// Token: 0x04001CB4 RID: 7348
 	public Text CurMoNian;
 
-	// Token: 0x04002198 RID: 8600
+	// Token: 0x04001CB5 RID: 7349
 	public Text CurMoNianDesc;
 
-	// Token: 0x04002199 RID: 8601
+	// Token: 0x04001CB6 RID: 7350
 	public Text NextMoNian;
 
-	// Token: 0x0400219A RID: 8602
+	// Token: 0x04001CB7 RID: 7351
 	public Text CurState;
 
-	// Token: 0x0400219B RID: 8603
+	// Token: 0x04001CB8 RID: 7352
 	public SkeletonAnimation yizhizhuaji;
 
-	// Token: 0x0400219C RID: 8604
+	// Token: 0x04001CB9 RID: 7353
 	public SkeletonAnimation jingmaizhuaji;
 
-	// Token: 0x0400219D RID: 8605
+	// Token: 0x04001CBA RID: 7354
 	public AvatarShowHpDamage JinDanDamage;
 
-	// Token: 0x0400219E RID: 8606
+	// Token: 0x04001CBB RID: 7355
 	public AvatarShowHpDamage YiZhiDamage;
 
-	// Token: 0x0400219F RID: 8607
+	// Token: 0x04001CBC RID: 7356
 	public AvatarShowHpDamage JingMaiDamage;
 
-	// Token: 0x040021A0 RID: 8608
+	// Token: 0x04001CBD RID: 7357
 	private int State;
 }

@@ -2,10 +2,10 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-// Token: 0x020003FF RID: 1023
+// Token: 0x020002BF RID: 703
 public class UIGaoShiRenWuItem : MonoBehaviour
 {
-	// Token: 0x06001BAA RID: 7082 RVA: 0x000F7CF8 File Offset: 0x000F5EF8
+	// Token: 0x060018AF RID: 6319 RVA: 0x000B1690 File Offset: 0x000AF890
 	public void SetYiLingQu(bool yiLingQu, JSONObject pos, bool anim = false)
 	{
 		if (yiLingQu)
@@ -18,27 +18,27 @@ public class UIGaoShiRenWuItem : MonoBehaviour
 		this.YinZhang.gameObject.SetActive(false);
 	}
 
-	// Token: 0x04001765 RID: 5989
+	// Token: 0x040013B5 RID: 5045
 	public Text Desc;
 
-	// Token: 0x04001766 RID: 5990
+	// Token: 0x040013B6 RID: 5046
 	public Text LingShiTitle;
 
-	// Token: 0x04001767 RID: 5991
+	// Token: 0x040013B7 RID: 5047
 	public Text LingShi;
 
-	// Token: 0x04001768 RID: 5992
+	// Token: 0x040013B8 RID: 5048
 	public Image LingShiIcon;
 
-	// Token: 0x04001769 RID: 5993
+	// Token: 0x040013B9 RID: 5049
 	public Text ShengWang;
 
-	// Token: 0x0400176A RID: 5994
+	// Token: 0x040013BA RID: 5050
 	public FpBtn TiJiaoBtn;
 
-	// Token: 0x0400176B RID: 5995
+	// Token: 0x040013BB RID: 5051
 	public RectMask2D YinZhangMask;
 
-	// Token: 0x0400176C RID: 5996
+	// Token: 0x040013BC RID: 5052
 	public RectTransform YinZhang;
 }

@@ -3,127 +3,127 @@ using System.Reflection;
 
 namespace MoonSharp.Interpreter.Compatibility.Frameworks
 {
-	// Token: 0x020011B2 RID: 4530
+	// Token: 0x02000D8F RID: 3471
 	internal abstract class FrameworkClrBase : FrameworkReflectionBase
 	{
-		// Token: 0x06006EF8 RID: 28408 RVA: 0x00010DC9 File Offset: 0x0000EFC9
+		// Token: 0x060062C7 RID: 25287 RVA: 0x001086F1 File Offset: 0x001068F1
 		public override Type GetTypeInfoFromType(Type t)
 		{
 			return t;
 		}
 
-		// Token: 0x06006EF9 RID: 28409 RVA: 0x0004B69B File Offset: 0x0004989B
+		// Token: 0x060062C8 RID: 25288 RVA: 0x00279B61 File Offset: 0x00277D61
 		public override MethodInfo GetAddMethod(EventInfo ei)
 		{
 			return ei.GetAddMethod(true);
 		}
 
-		// Token: 0x06006EFA RID: 28410 RVA: 0x0004B6A4 File Offset: 0x000498A4
+		// Token: 0x060062C9 RID: 25289 RVA: 0x00279B6A File Offset: 0x00277D6A
 		public override ConstructorInfo[] GetConstructors(Type type)
 		{
 			return type.GetConstructors(this.BINDINGFLAGS_MEMBER);
 		}
 
-		// Token: 0x06006EFB RID: 28411 RVA: 0x0004B6B2 File Offset: 0x000498B2
+		// Token: 0x060062CA RID: 25290 RVA: 0x00279B78 File Offset: 0x00277D78
 		public override EventInfo[] GetEvents(Type type)
 		{
 			return type.GetEvents(this.BINDINGFLAGS_MEMBER);
 		}
 
-		// Token: 0x06006EFC RID: 28412 RVA: 0x0004B6C0 File Offset: 0x000498C0
+		// Token: 0x060062CB RID: 25291 RVA: 0x00279B86 File Offset: 0x00277D86
 		public override FieldInfo[] GetFields(Type type)
 		{
 			return type.GetFields(this.BINDINGFLAGS_MEMBER);
 		}
 
-		// Token: 0x06006EFD RID: 28413 RVA: 0x0004B6CE File Offset: 0x000498CE
+		// Token: 0x060062CC RID: 25292 RVA: 0x00279B94 File Offset: 0x00277D94
 		public override Type[] GetGenericArguments(Type type)
 		{
 			return type.GetGenericArguments();
 		}
 
-		// Token: 0x06006EFE RID: 28414 RVA: 0x0004B6D6 File Offset: 0x000498D6
+		// Token: 0x060062CD RID: 25293 RVA: 0x00279B9C File Offset: 0x00277D9C
 		public override MethodInfo GetGetMethod(PropertyInfo pi)
 		{
 			return pi.GetGetMethod(true);
 		}
 
-		// Token: 0x06006EFF RID: 28415 RVA: 0x0004B6DF File Offset: 0x000498DF
+		// Token: 0x060062CE RID: 25294 RVA: 0x00279BA5 File Offset: 0x00277DA5
 		public override Type[] GetInterfaces(Type t)
 		{
 			return t.GetInterfaces();
 		}
 
-		// Token: 0x06006F00 RID: 28416 RVA: 0x0004B6E7 File Offset: 0x000498E7
+		// Token: 0x060062CF RID: 25295 RVA: 0x00279BAD File Offset: 0x00277DAD
 		public override MethodInfo GetMethod(Type type, string name)
 		{
 			return type.GetMethod(name);
 		}
 
-		// Token: 0x06006F01 RID: 28417 RVA: 0x0004B6F0 File Offset: 0x000498F0
+		// Token: 0x060062D0 RID: 25296 RVA: 0x00279BB6 File Offset: 0x00277DB6
 		public override MethodInfo[] GetMethods(Type type)
 		{
 			return type.GetMethods(this.BINDINGFLAGS_MEMBER);
 		}
 
-		// Token: 0x06006F02 RID: 28418 RVA: 0x0004B6FE File Offset: 0x000498FE
+		// Token: 0x060062D1 RID: 25297 RVA: 0x00279BC4 File Offset: 0x00277DC4
 		public override Type[] GetNestedTypes(Type type)
 		{
 			return type.GetNestedTypes(this.BINDINGFLAGS_INNERCLASS);
 		}
 
-		// Token: 0x06006F03 RID: 28419 RVA: 0x0004B70C File Offset: 0x0004990C
+		// Token: 0x060062D2 RID: 25298 RVA: 0x00279BD2 File Offset: 0x00277DD2
 		public override PropertyInfo[] GetProperties(Type type)
 		{
 			return type.GetProperties(this.BINDINGFLAGS_MEMBER);
 		}
 
-		// Token: 0x06006F04 RID: 28420 RVA: 0x0004B71A File Offset: 0x0004991A
+		// Token: 0x060062D3 RID: 25299 RVA: 0x00279BE0 File Offset: 0x00277DE0
 		public override PropertyInfo GetProperty(Type type, string name)
 		{
 			return type.GetProperty(name);
 		}
 
-		// Token: 0x06006F05 RID: 28421 RVA: 0x0004B723 File Offset: 0x00049923
+		// Token: 0x060062D4 RID: 25300 RVA: 0x00279BE9 File Offset: 0x00277DE9
 		public override MethodInfo GetRemoveMethod(EventInfo ei)
 		{
 			return ei.GetRemoveMethod(true);
 		}
 
-		// Token: 0x06006F06 RID: 28422 RVA: 0x0004B72C File Offset: 0x0004992C
+		// Token: 0x060062D5 RID: 25301 RVA: 0x00279BF2 File Offset: 0x00277DF2
 		public override MethodInfo GetSetMethod(PropertyInfo pi)
 		{
 			return pi.GetSetMethod(true);
 		}
 
-		// Token: 0x06006F07 RID: 28423 RVA: 0x0004B735 File Offset: 0x00049935
+		// Token: 0x060062D6 RID: 25302 RVA: 0x00279BFB File Offset: 0x00277DFB
 		public override bool IsAssignableFrom(Type current, Type toCompare)
 		{
 			return current.IsAssignableFrom(toCompare);
 		}
 
-		// Token: 0x06006F08 RID: 28424 RVA: 0x0004B73E File Offset: 0x0004993E
+		// Token: 0x060062D7 RID: 25303 RVA: 0x00279C04 File Offset: 0x00277E04
 		public override bool IsInstanceOfType(Type t, object o)
 		{
 			return t.IsInstanceOfType(o);
 		}
 
-		// Token: 0x06006F09 RID: 28425 RVA: 0x0004B747 File Offset: 0x00049947
+		// Token: 0x060062D8 RID: 25304 RVA: 0x00279C0D File Offset: 0x00277E0D
 		public override MethodInfo GetMethod(Type resourcesType, string name, Type[] types)
 		{
 			return resourcesType.GetMethod(name, types);
 		}
 
-		// Token: 0x06006F0A RID: 28426 RVA: 0x0004B751 File Offset: 0x00049951
+		// Token: 0x060062D9 RID: 25305 RVA: 0x00279C17 File Offset: 0x00277E17
 		public override Type[] GetAssemblyTypes(Assembly asm)
 		{
 			return asm.GetTypes();
 		}
 
-		// Token: 0x0400627B RID: 25211
+		// Token: 0x040055A4 RID: 21924
 		private BindingFlags BINDINGFLAGS_MEMBER = BindingFlags.Instance | BindingFlags.Static | BindingFlags.Public | BindingFlags.NonPublic;
 
-		// Token: 0x0400627C RID: 25212
+		// Token: 0x040055A5 RID: 21925
 		private BindingFlags BINDINGFLAGS_INNERCLASS = BindingFlags.Public | BindingFlags.NonPublic;
 	}
 }

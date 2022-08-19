@@ -3,19 +3,19 @@ using UnityEngine;
 
 namespace Fungus
 {
-	// Token: 0x02001411 RID: 5137
+	// Token: 0x02000F5B RID: 3931
 	[CommandInfo("YSNew/Set", "将传闻置灰", "将传闻置灰", 0)]
 	[AddComponentMenu("")]
 	public class SetChuanWenBlack : Command
 	{
-		// Token: 0x06007C9F RID: 31903 RVA: 0x000547A1 File Offset: 0x000529A1
+		// Token: 0x06006EAF RID: 28335 RVA: 0x002A543B File Offset: 0x002A363B
 		public override void OnEnter()
 		{
 			Tools.instance.getPlayer().taskMag.SetChuanWenBlack(this.TaskID.Value);
 			this.Continue();
 		}
 
-		// Token: 0x04006A90 RID: 27280
+		// Token: 0x04005BBE RID: 23486
 		[Tooltip("需要置灰的任务的ID")]
 		[VariableProperty(new Type[]
 		{

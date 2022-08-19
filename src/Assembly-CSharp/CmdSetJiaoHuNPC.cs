@@ -2,12 +2,12 @@
 using Fungus;
 using UnityEngine;
 
-// Token: 0x02000367 RID: 871
+// Token: 0x0200024B RID: 587
 [CommandInfo("YSNPCJiaoHu", "设置当前交互的NPC", "设置当前交互的NPC", 0)]
 [AddComponentMenu("")]
 public class CmdSetJiaoHuNPC : Command
 {
-	// Token: 0x060018FD RID: 6397 RVA: 0x000DEEE8 File Offset: 0x000DD0E8
+	// Token: 0x06001645 RID: 5701 RVA: 0x00096A14 File Offset: 0x00094C14
 	public override void OnEnter()
 	{
 		if (this.NPCID.Value == 0)
@@ -24,7 +24,7 @@ public class CmdSetJiaoHuNPC : Command
 		this.Continue();
 	}
 
-	// Token: 0x040013E2 RID: 5090
+	// Token: 0x0400108A RID: 4234
 	[Tooltip("NPC的ID")]
 	[SerializeField]
 	[VariableProperty(new Type[]
@@ -33,7 +33,7 @@ public class CmdSetJiaoHuNPC : Command
 	})]
 	protected IntegerVariable NPCID;
 
-	// Token: 0x040013E3 RID: 5091
+	// Token: 0x0400108B RID: 4235
 	[Tooltip("战斗模式(影响战前探查)")]
 	[SerializeField]
 	protected bool IsFight = true;

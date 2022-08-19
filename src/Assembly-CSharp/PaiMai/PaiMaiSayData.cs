@@ -2,16 +2,16 @@
 
 namespace PaiMai
 {
-	// Token: 0x02000A6D RID: 2669
+	// Token: 0x0200071A RID: 1818
 	public class PaiMaiSayData
 	{
-		// Token: 0x04003CDD RID: 15581
+		// Token: 0x0400324C RID: 12876
 		public int Id;
 
-		// Token: 0x04003CDE RID: 15582
+		// Token: 0x0400324D RID: 12877
 		public string Msg;
 
-		// Token: 0x04003CDF RID: 15583
+		// Token: 0x0400324E RID: 12878
 		public Action Action;
 	}
 }

@@ -9,10 +9,10 @@ using UnityEngine.UI;
 
 namespace script.NewLianDan.DanFang
 {
-	// Token: 0x02000ACF RID: 2767
+	// Token: 0x02000A00 RID: 2560
 	public class DanFangPanel : UIBase
 	{
-		// Token: 0x0600469A RID: 18074 RVA: 0x001E2D00 File Offset: 0x001E0F00
+		// Token: 0x060046EA RID: 18154 RVA: 0x001E06E4 File Offset: 0x001DE8E4
 		public DanFangPanel(GameObject go)
 		{
 			this._go = go;
@@ -25,7 +25,7 @@ namespace script.NewLianDan.DanFang
 			base.Get<FpBtn>("删除丹方").mouseUpEvent.AddListener(new UnityAction(this.Delete));
 		}
 
-		// Token: 0x0600469B RID: 18075 RVA: 0x000325FF File Offset: 0x000307FF
+		// Token: 0x060046EB RID: 18155 RVA: 0x001E07AD File Offset: 0x001DE9AD
 		public void UpdateFilter(int quality)
 		{
 			this.DanFangFilter.Hide();
@@ -34,7 +34,7 @@ namespace script.NewLianDan.DanFang
 			this.UpdateDanFangList();
 		}
 
-		// Token: 0x0600469C RID: 18076 RVA: 0x001E2DCC File Offset: 0x001E0FCC
+		// Token: 0x060046EC RID: 18156 RVA: 0x001E07E0 File Offset: 0x001DE9E0
 		public void UpdateDanFangList()
 		{
 			this.Clear();
@@ -92,7 +92,7 @@ namespace script.NewLianDan.DanFang
 			this.UpdatePosition();
 		}
 
-		// Token: 0x0600469D RID: 18077 RVA: 0x001E31D8 File Offset: 0x001E13D8
+		// Token: 0x060046ED RID: 18157 RVA: 0x001E0BEC File Offset: 0x001DEDEC
 		public void UpdatePosition()
 		{
 			if (this.DanFangList == null || this.DanFangList.Count < 1)
@@ -116,7 +116,7 @@ namespace script.NewLianDan.DanFang
 			this.DanFangTemp.transform.parent.GetComponent<RectTransform>().sizeDelta = new Vector2(464f, -num);
 		}
 
-		// Token: 0x0600469E RID: 18078 RVA: 0x001E32C0 File Offset: 0x001E14C0
+		// Token: 0x060046EE RID: 18158 RVA: 0x001E0CD4 File Offset: 0x001DEED4
 		public void Clear()
 		{
 			if (this.DanFangList == null)
@@ -129,7 +129,7 @@ namespace script.NewLianDan.DanFang
 			}
 		}
 
-		// Token: 0x0600469F RID: 18079 RVA: 0x001E331C File Offset: 0x001E151C
+		// Token: 0x060046EF RID: 18159 RVA: 0x001E0D30 File Offset: 0x001DEF30
 		private Dictionary<int, string> GetFilterData()
 		{
 			return new Dictionary<int, string>
@@ -165,7 +165,7 @@ namespace script.NewLianDan.DanFang
 			};
 		}
 
-		// Token: 0x060046A0 RID: 18080 RVA: 0x00032630 File Offset: 0x00030830
+		// Token: 0x060046F0 RID: 18160 RVA: 0x001E0D96 File Offset: 0x001DEF96
 		public void SetBigDanFangCallBack(BigDanFang bigDanFang)
 		{
 			this.CurBigDanFang = bigDanFang;
@@ -176,7 +176,7 @@ namespace script.NewLianDan.DanFang
 			this.UpdatePosition();
 		}
 
-		// Token: 0x060046A1 RID: 18081 RVA: 0x0003265F File Offset: 0x0003085F
+		// Token: 0x060046F1 RID: 18161 RVA: 0x001E0DC5 File Offset: 0x001DEFC5
 		public void SetSmallDanFangCallBack(SmallDanFang smallDanFang)
 		{
 			if (this.CurSmallDanFang != null && smallDanFang != this.CurSmallDanFang)
@@ -193,7 +193,7 @@ namespace script.NewLianDan.DanFang
 			this.CurSmallDanFang = smallDanFang;
 		}
 
-		// Token: 0x060046A2 RID: 18082 RVA: 0x001E3384 File Offset: 0x001E1584
+		// Token: 0x060046F2 RID: 18162 RVA: 0x001E0E00 File Offset: 0x001DF000
 		public void PutCaoYaoByDanFang()
 		{
 			LianDanUIMag.Instance.LianDanPanel.BackAllCaoYao();
@@ -221,7 +221,7 @@ namespace script.NewLianDan.DanFang
 			LianDanUIMag.Instance.LianDanPanel.CheckCanMade();
 		}
 
-		// Token: 0x060046A3 RID: 18083 RVA: 0x001E359C File Offset: 0x001E179C
+		// Token: 0x060046F3 RID: 18163 RVA: 0x001E1018 File Offset: 0x001DF218
 		public void SetTop()
 		{
 			if (this.CurBigDanFang == null || this.CurBigDanFang.IsNull() || this.DanFangList == null || this.DanFangList.Count < 2)
@@ -236,7 +236,7 @@ namespace script.NewLianDan.DanFang
 			this.UpdatePosition();
 		}
 
-		// Token: 0x060046A4 RID: 18084 RVA: 0x001E362C File Offset: 0x001E182C
+		// Token: 0x060046F4 RID: 18164 RVA: 0x001E10A8 File Offset: 0x001DF2A8
 		public void Delete()
 		{
 			if (this.CurSmallDanFang == null || this.CurSmallDanFang.IsNull() || this.CurSmallDanFang.Parent == null || this.CurSmallDanFang.Parent.IsNull())
@@ -272,7 +272,7 @@ namespace script.NewLianDan.DanFang
 			}, null);
 		}
 
-		// Token: 0x060046A5 RID: 18085 RVA: 0x000FCE8C File Offset: 0x000FB08C
+		// Token: 0x060046F5 RID: 18165 RVA: 0x001E1130 File Offset: 0x001DF330
 		public void IsSame(JSONObject obj, ref int index)
 		{
 			List<JSONObject> list = Tools.instance.getPlayer().DanFang.list;
@@ -300,7 +300,7 @@ namespace script.NewLianDan.DanFang
 			index = -1;
 		}
 
-		// Token: 0x060046A6 RID: 18086 RVA: 0x001E36B4 File Offset: 0x001E18B4
+		// Token: 0x060046F6 RID: 18166 RVA: 0x001E122C File Offset: 0x001DF42C
 		public void AddDanFang(JSONObject json)
 		{
 			int num = -1;
@@ -372,28 +372,28 @@ namespace script.NewLianDan.DanFang
 			}
 		}
 
-		// Token: 0x04003EB9 RID: 16057
+		// Token: 0x0400483A RID: 18490
 		public DanFangFilter DanFangFilter;
 
-		// Token: 0x04003EBA RID: 16058
+		// Token: 0x0400483B RID: 18491
 		public Dictionary<int, string> FilterDataDict;
 
-		// Token: 0x04003EBB RID: 16059
+		// Token: 0x0400483C RID: 18492
 		public List<BigDanFang> DanFangList;
 
-		// Token: 0x04003EBC RID: 16060
+		// Token: 0x0400483D RID: 18493
 		public GameObject DanFangTemp;
 
-		// Token: 0x04003EBD RID: 16061
+		// Token: 0x0400483E RID: 18494
 		public int CurQuality;
 
-		// Token: 0x04003EBE RID: 16062
+		// Token: 0x0400483F RID: 18495
 		public SmallDanFang CurSmallDanFang;
 
-		// Token: 0x04003EBF RID: 16063
+		// Token: 0x04004840 RID: 18496
 		public BigDanFang CurBigDanFang;
 
-		// Token: 0x04003EC0 RID: 16064
+		// Token: 0x04004841 RID: 18497
 		private Text _curQuality;
 	}
 }

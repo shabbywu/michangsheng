@@ -3,10 +3,10 @@ using System.Collections.Generic;
 
 namespace JSONClass
 {
-	// Token: 0x02000C2F RID: 3119
+	// Token: 0x020008A1 RID: 2209
 	public class NPCImportantDate : IJSONClass
 	{
-		// Token: 0x06004C25 RID: 19493 RVA: 0x002024BC File Offset: 0x002006BC
+		// Token: 0x06004097 RID: 16535 RVA: 0x001B9370 File Offset: 0x001B7570
 		public static void InitDataDict()
 		{
 			foreach (JSONObject jsonobject in jsonData.instance.NPCImportantDate.list)
@@ -54,69 +54,69 @@ namespace JSONClass
 			}
 		}
 
-		// Token: 0x06004C26 RID: 19494 RVA: 0x000042DD File Offset: 0x000024DD
+		// Token: 0x06004098 RID: 16536 RVA: 0x00004095 File Offset: 0x00002295
 		private static void OnInitFinish()
 		{
 		}
 
-		// Token: 0x040049A7 RID: 18855
+		// Token: 0x04003E4E RID: 15950
 		public static Dictionary<int, NPCImportantDate> DataDict = new Dictionary<int, NPCImportantDate>();
 
-		// Token: 0x040049A8 RID: 18856
+		// Token: 0x04003E4F RID: 15951
 		public static List<NPCImportantDate> DataList = new List<NPCImportantDate>();
 
-		// Token: 0x040049A9 RID: 18857
+		// Token: 0x04003E50 RID: 15952
 		public static Action OnInitFinishAction = new Action(NPCImportantDate.OnInitFinish);
 
-		// Token: 0x040049AA RID: 18858
+		// Token: 0x04003E51 RID: 15953
 		public int id;
 
-		// Token: 0x040049AB RID: 18859
+		// Token: 0x04003E52 RID: 15954
 		public int LiuPai;
 
-		// Token: 0x040049AC RID: 18860
+		// Token: 0x04003E53 RID: 15955
 		public int level;
 
-		// Token: 0x040049AD RID: 18861
+		// Token: 0x04003E54 RID: 15956
 		public int sex;
 
-		// Token: 0x040049AE RID: 18862
+		// Token: 0x04003E55 RID: 15957
 		public int zizhi;
 
-		// Token: 0x040049AF RID: 18863
+		// Token: 0x04003E56 RID: 15958
 		public int wuxing;
 
-		// Token: 0x040049B0 RID: 18864
+		// Token: 0x04003E57 RID: 15959
 		public int nianling;
 
-		// Token: 0x040049B1 RID: 18865
+		// Token: 0x04003E58 RID: 15960
 		public int XingGe;
 
-		// Token: 0x040049B2 RID: 18866
+		// Token: 0x04003E59 RID: 15961
 		public int ChengHao;
 
-		// Token: 0x040049B3 RID: 18867
+		// Token: 0x04003E5A RID: 15962
 		public int NPCTag;
 
-		// Token: 0x040049B4 RID: 18868
+		// Token: 0x04003E5B RID: 15963
 		public int DaShiXiong;
 
-		// Token: 0x040049B5 RID: 18869
+		// Token: 0x04003E5C RID: 15964
 		public int ZhangMeng;
 
-		// Token: 0x040049B6 RID: 18870
+		// Token: 0x04003E5D RID: 15965
 		public int ZhangLao;
 
-		// Token: 0x040049B7 RID: 18871
+		// Token: 0x04003E5E RID: 15966
 		public string ZhuJiTime;
 
-		// Token: 0x040049B8 RID: 18872
+		// Token: 0x04003E5F RID: 15967
 		public string JinDanTime;
 
-		// Token: 0x040049B9 RID: 18873
+		// Token: 0x04003E60 RID: 15968
 		public string YuanYingTime;
 
-		// Token: 0x040049BA RID: 18874
+		// Token: 0x04003E61 RID: 15969
 		public string HuaShengTime;
 	}
 }

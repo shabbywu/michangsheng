@@ -3,10 +3,10 @@ using System.Collections.Generic;
 
 namespace JSONClass
 {
-	// Token: 0x02000C5A RID: 3162
+	// Token: 0x020008CC RID: 2252
 	public class QieCuoJsonData : IJSONClass
 	{
-		// Token: 0x06004CD1 RID: 19665 RVA: 0x00207668 File Offset: 0x00205868
+		// Token: 0x06004143 RID: 16707 RVA: 0x001BEE84 File Offset: 0x001BD084
 		public static void InitDataDict()
 		{
 			foreach (JSONObject jsonobject in jsonData.instance.QieCuoJsonData.list)
@@ -44,39 +44,39 @@ namespace JSONClass
 			}
 		}
 
-		// Token: 0x06004CD2 RID: 19666 RVA: 0x000042DD File Offset: 0x000024DD
+		// Token: 0x06004144 RID: 16708 RVA: 0x00004095 File Offset: 0x00002295
 		private static void OnInitFinish()
 		{
 		}
 
-		// Token: 0x04004BBD RID: 19389
+		// Token: 0x04004069 RID: 16489
 		public static Dictionary<int, QieCuoJsonData> DataDict = new Dictionary<int, QieCuoJsonData>();
 
-		// Token: 0x04004BBE RID: 19390
+		// Token: 0x0400406A RID: 16490
 		public static List<QieCuoJsonData> DataList = new List<QieCuoJsonData>();
 
-		// Token: 0x04004BBF RID: 19391
+		// Token: 0x0400406B RID: 16491
 		public static Action OnInitFinishAction = new Action(QieCuoJsonData.OnInitFinish);
 
-		// Token: 0x04004BC0 RID: 19392
+		// Token: 0x0400406C RID: 16492
 		public int id;
 
-		// Token: 0x04004BC1 RID: 19393
+		// Token: 0x0400406D RID: 16493
 		public int AvatarID;
 
-		// Token: 0x04004BC2 RID: 19394
+		// Token: 0x0400406E RID: 16494
 		public int tisheng;
 
-		// Token: 0x04004BC3 RID: 19395
+		// Token: 0x0400406F RID: 16495
 		public string name;
 
-		// Token: 0x04004BC4 RID: 19396
+		// Token: 0x04004070 RID: 16496
 		public string lose;
 
-		// Token: 0x04004BC5 RID: 19397
+		// Token: 0x04004071 RID: 16497
 		public string win;
 
-		// Token: 0x04004BC6 RID: 19398
+		// Token: 0x04004072 RID: 16498
 		public string jieshou;
 	}
 }

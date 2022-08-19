@@ -3,10 +3,10 @@ using System.Collections.Generic;
 
 namespace JSONClass
 {
-	// Token: 0x02000AE6 RID: 2790
+	// Token: 0x0200074E RID: 1870
 	public class AllMapReset : IJSONClass
 	{
-		// Token: 0x06004702 RID: 18178 RVA: 0x001E6204 File Offset: 0x001E4404
+		// Token: 0x06003B4C RID: 15180 RVA: 0x00198080 File Offset: 0x00196280
 		public static void InitDataDict()
 		{
 			foreach (JSONObject jsonobject in jsonData.instance.AllMapReset.list)
@@ -47,48 +47,48 @@ namespace JSONClass
 			}
 		}
 
-		// Token: 0x06004703 RID: 18179 RVA: 0x000042DD File Offset: 0x000024DD
+		// Token: 0x06003B4D RID: 15181 RVA: 0x00004095 File Offset: 0x00002295
 		private static void OnInitFinish()
 		{
 		}
 
-		// Token: 0x04003F8A RID: 16266
+		// Token: 0x040033F1 RID: 13297
 		public static Dictionary<int, AllMapReset> DataDict = new Dictionary<int, AllMapReset>();
 
-		// Token: 0x04003F8B RID: 16267
+		// Token: 0x040033F2 RID: 13298
 		public static List<AllMapReset> DataList = new List<AllMapReset>();
 
-		// Token: 0x04003F8C RID: 16268
+		// Token: 0x040033F3 RID: 13299
 		public static Action OnInitFinishAction = new Action(AllMapReset.OnInitFinish);
 
-		// Token: 0x04003F8D RID: 16269
+		// Token: 0x040033F4 RID: 13300
 		public int id;
 
-		// Token: 0x04003F8E RID: 16270
+		// Token: 0x040033F5 RID: 13301
 		public int Type;
 
-		// Token: 0x04003F8F RID: 16271
+		// Token: 0x040033F6 RID: 13302
 		public int resetTiem;
 
-		// Token: 0x04003F90 RID: 16272
+		// Token: 0x040033F7 RID: 13303
 		public int CanSame;
 
-		// Token: 0x04003F91 RID: 16273
+		// Token: 0x040033F8 RID: 13304
 		public int percent;
 
-		// Token: 0x04003F92 RID: 16274
+		// Token: 0x040033F9 RID: 13305
 		public int max;
 
-		// Token: 0x04003F93 RID: 16275
+		// Token: 0x040033FA RID: 13306
 		public string name;
 
-		// Token: 0x04003F94 RID: 16276
+		// Token: 0x040033FB RID: 13307
 		public string Icon;
 
-		// Token: 0x04003F95 RID: 16277
+		// Token: 0x040033FC RID: 13308
 		public string Act;
 
-		// Token: 0x04003F96 RID: 16278
+		// Token: 0x040033FD RID: 13309
 		public List<int> qujian = new List<int>();
 	}
 }

@@ -3,12 +3,12 @@ using UnityEngine;
 
 namespace BehaviorDesigner.Runtime.Tasks.Basic.UnityAnimator
 {
-	// Token: 0x02001653 RID: 5715
+	// Token: 0x02001194 RID: 4500
 	[TaskCategory("Basic/Animator")]
 	[TaskDescription("Returns success if the specified AnimatorController layer in a transition.")]
 	public class IsInTransition : Conditional
 	{
-		// Token: 0x060084DD RID: 34013 RVA: 0x002D0100 File Offset: 0x002CE300
+		// Token: 0x060076E3 RID: 30435 RVA: 0x002B7900 File Offset: 0x002B5B00
 		public override void OnStart()
 		{
 			GameObject defaultGameObject = base.GetDefaultGameObject(this.targetGameObject.Value);
@@ -19,7 +19,7 @@ namespace BehaviorDesigner.Runtime.Tasks.Basic.UnityAnimator
 			}
 		}
 
-		// Token: 0x060084DE RID: 34014 RVA: 0x0005C109 File Offset: 0x0005A309
+		// Token: 0x060076E4 RID: 30436 RVA: 0x002B7940 File Offset: 0x002B5B40
 		public override TaskStatus OnUpdate()
 		{
 			if (this.animator == null)
@@ -34,25 +34,25 @@ namespace BehaviorDesigner.Runtime.Tasks.Basic.UnityAnimator
 			return 2;
 		}
 
-		// Token: 0x060084DF RID: 34015 RVA: 0x0005C140 File Offset: 0x0005A340
+		// Token: 0x060076E5 RID: 30437 RVA: 0x002B7977 File Offset: 0x002B5B77
 		public override void OnReset()
 		{
 			this.targetGameObject = null;
 			this.index = 0;
 		}
 
-		// Token: 0x0400718B RID: 29067
+		// Token: 0x04006268 RID: 25192
 		[Tooltip("The GameObject that the task operates on. If null the task GameObject is used.")]
 		public SharedGameObject targetGameObject;
 
-		// Token: 0x0400718C RID: 29068
+		// Token: 0x04006269 RID: 25193
 		[Tooltip("The layer's index")]
 		public SharedInt index;
 
-		// Token: 0x0400718D RID: 29069
+		// Token: 0x0400626A RID: 25194
 		private Animator animator;
 
-		// Token: 0x0400718E RID: 29070
+		// Token: 0x0400626B RID: 25195
 		private GameObject prevGameObject;
 	}
 }

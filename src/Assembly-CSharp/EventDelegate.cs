@@ -3,13 +3,13 @@ using System.Collections.Generic;
 using System.Reflection;
 using UnityEngine;
 
-// Token: 0x020000B8 RID: 184
+// Token: 0x02000082 RID: 130
 [Serializable]
 public class EventDelegate
 {
-	// Token: 0x170000D2 RID: 210
-	// (get) Token: 0x060006D4 RID: 1748 RVA: 0x00009E2D File Offset: 0x0000802D
-	// (set) Token: 0x060006D5 RID: 1749 RVA: 0x00009E35 File Offset: 0x00008035
+	// Token: 0x170000C0 RID: 192
+	// (get) Token: 0x0600065A RID: 1626 RVA: 0x00023D6C File Offset: 0x00021F6C
+	// (set) Token: 0x0600065B RID: 1627 RVA: 0x00023D74 File Offset: 0x00021F74
 	public MonoBehaviour target
 	{
 		get
@@ -27,9 +27,9 @@ public class EventDelegate
 		}
 	}
 
-	// Token: 0x170000D3 RID: 211
-	// (get) Token: 0x060006D6 RID: 1750 RVA: 0x00009E61 File Offset: 0x00008061
-	// (set) Token: 0x060006D7 RID: 1751 RVA: 0x00009E69 File Offset: 0x00008069
+	// Token: 0x170000C1 RID: 193
+	// (get) Token: 0x0600065C RID: 1628 RVA: 0x00023DA0 File Offset: 0x00021FA0
+	// (set) Token: 0x0600065D RID: 1629 RVA: 0x00023DA8 File Offset: 0x00021FA8
 	public string methodName
 	{
 		get
@@ -47,8 +47,8 @@ public class EventDelegate
 		}
 	}
 
-	// Token: 0x170000D4 RID: 212
-	// (get) Token: 0x060006D8 RID: 1752 RVA: 0x00009E95 File Offset: 0x00008095
+	// Token: 0x170000C2 RID: 194
+	// (get) Token: 0x0600065E RID: 1630 RVA: 0x00023DD4 File Offset: 0x00021FD4
 	public EventDelegate.Parameter[] parameters
 	{
 		get
@@ -61,8 +61,8 @@ public class EventDelegate
 		}
 	}
 
-	// Token: 0x170000D5 RID: 213
-	// (get) Token: 0x060006D9 RID: 1753 RVA: 0x00009EAB File Offset: 0x000080AB
+	// Token: 0x170000C3 RID: 195
+	// (get) Token: 0x0600065F RID: 1631 RVA: 0x00023DEA File Offset: 0x00021FEA
 	public bool isValid
 	{
 		get
@@ -75,8 +75,8 @@ public class EventDelegate
 		}
 	}
 
-	// Token: 0x170000D6 RID: 214
-	// (get) Token: 0x060006DA RID: 1754 RVA: 0x00079620 File Offset: 0x00077820
+	// Token: 0x170000C4 RID: 196
+	// (get) Token: 0x06000660 RID: 1632 RVA: 0x00023E2C File Offset: 0x0002202C
 	public bool isEnabled
 	{
 		get
@@ -98,36 +98,36 @@ public class EventDelegate
 		}
 	}
 
-	// Token: 0x060006DB RID: 1755 RVA: 0x0000403D File Offset: 0x0000223D
+	// Token: 0x06000661 RID: 1633 RVA: 0x000027FC File Offset: 0x000009FC
 	public EventDelegate()
 	{
 	}
 
-	// Token: 0x060006DC RID: 1756 RVA: 0x00009EEB File Offset: 0x000080EB
+	// Token: 0x06000662 RID: 1634 RVA: 0x00023E81 File Offset: 0x00022081
 	public EventDelegate(EventDelegate.Callback call)
 	{
 		this.Set(call);
 	}
 
-	// Token: 0x060006DD RID: 1757 RVA: 0x00009EFA File Offset: 0x000080FA
+	// Token: 0x06000663 RID: 1635 RVA: 0x00023E90 File Offset: 0x00022090
 	public EventDelegate(MonoBehaviour target, string methodName)
 	{
 		this.Set(target, methodName);
 	}
 
-	// Token: 0x060006DE RID: 1758 RVA: 0x00009F0A File Offset: 0x0000810A
+	// Token: 0x06000664 RID: 1636 RVA: 0x00023EA0 File Offset: 0x000220A0
 	private static string GetMethodName(EventDelegate.Callback callback)
 	{
 		return callback.Method.Name;
 	}
 
-	// Token: 0x060006DF RID: 1759 RVA: 0x00009F17 File Offset: 0x00008117
+	// Token: 0x06000665 RID: 1637 RVA: 0x00023EAD File Offset: 0x000220AD
 	private static bool IsValid(EventDelegate.Callback callback)
 	{
 		return callback != null && callback.Method != null;
 	}
 
-	// Token: 0x060006E0 RID: 1760 RVA: 0x00079678 File Offset: 0x00077878
+	// Token: 0x06000666 RID: 1638 RVA: 0x00023EC0 File Offset: 0x000220C0
 	public override bool Equals(object obj)
 	{
 		if (obj == null)
@@ -155,13 +155,13 @@ public class EventDelegate
 		}
 	}
 
-	// Token: 0x060006E1 RID: 1761 RVA: 0x00009F2A File Offset: 0x0000812A
+	// Token: 0x06000667 RID: 1639 RVA: 0x00023F5E File Offset: 0x0002215E
 	public override int GetHashCode()
 	{
 		return EventDelegate.s_Hash;
 	}
 
-	// Token: 0x060006E2 RID: 1762 RVA: 0x00079718 File Offset: 0x00077918
+	// Token: 0x06000668 RID: 1640 RVA: 0x00023F68 File Offset: 0x00022168
 	private void Set(EventDelegate.Callback call)
 	{
 		this.Clear();
@@ -180,7 +180,7 @@ public class EventDelegate
 		}
 	}
 
-	// Token: 0x060006E3 RID: 1763 RVA: 0x00009F31 File Offset: 0x00008131
+	// Token: 0x06000669 RID: 1641 RVA: 0x00023FCE File Offset: 0x000221CE
 	public void Set(MonoBehaviour target, string methodName)
 	{
 		this.Clear();
@@ -188,7 +188,7 @@ public class EventDelegate
 		this.mMethodName = methodName;
 	}
 
-	// Token: 0x060006E4 RID: 1764 RVA: 0x00079780 File Offset: 0x00077980
+	// Token: 0x0600066A RID: 1642 RVA: 0x00023FE4 File Offset: 0x000221E4
 	private void Cache()
 	{
 		this.mCached = true;
@@ -267,7 +267,7 @@ public class EventDelegate
 		}
 	}
 
-	// Token: 0x060006E5 RID: 1765 RVA: 0x000799C8 File Offset: 0x00077BC8
+	// Token: 0x0600066B RID: 1643 RVA: 0x0002422C File Offset: 0x0002242C
 	public bool Execute()
 	{
 		if (!this.mCached)
@@ -363,7 +363,7 @@ public class EventDelegate
 		return false;
 	}
 
-	// Token: 0x060006E6 RID: 1766 RVA: 0x00009F47 File Offset: 0x00008147
+	// Token: 0x0600066C RID: 1644 RVA: 0x000244A0 File Offset: 0x000226A0
 	public void Clear()
 	{
 		this.mTarget = null;
@@ -376,7 +376,7 @@ public class EventDelegate
 		this.mArgs = null;
 	}
 
-	// Token: 0x060006E7 RID: 1767 RVA: 0x00079C3C File Offset: 0x00077E3C
+	// Token: 0x0600066D RID: 1645 RVA: 0x000244DC File Offset: 0x000226DC
 	public override string ToString()
 	{
 		if (this.mTarget != null)
@@ -403,7 +403,7 @@ public class EventDelegate
 		}
 	}
 
-	// Token: 0x060006E8 RID: 1768 RVA: 0x00079CBC File Offset: 0x00077EBC
+	// Token: 0x0600066E RID: 1646 RVA: 0x0002455C File Offset: 0x0002275C
 	public static void Execute(List<EventDelegate> list)
 	{
 		if (list != null)
@@ -432,7 +432,7 @@ public class EventDelegate
 		}
 	}
 
-	// Token: 0x060006E9 RID: 1769 RVA: 0x00079D14 File Offset: 0x00077F14
+	// Token: 0x0600066F RID: 1647 RVA: 0x000245B4 File Offset: 0x000227B4
 	public static bool IsValid(List<EventDelegate> list)
 	{
 		if (list != null)
@@ -452,7 +452,7 @@ public class EventDelegate
 		return false;
 	}
 
-	// Token: 0x060006EA RID: 1770 RVA: 0x00079D50 File Offset: 0x00077F50
+	// Token: 0x06000670 RID: 1648 RVA: 0x000245F0 File Offset: 0x000227F0
 	public static EventDelegate Set(List<EventDelegate> list, EventDelegate.Callback callback)
 	{
 		if (list != null)
@@ -465,7 +465,7 @@ public class EventDelegate
 		return null;
 	}
 
-	// Token: 0x060006EB RID: 1771 RVA: 0x00009F81 File Offset: 0x00008181
+	// Token: 0x06000671 RID: 1649 RVA: 0x00024617 File Offset: 0x00022817
 	public static void Set(List<EventDelegate> list, EventDelegate del)
 	{
 		if (list != null)
@@ -475,13 +475,13 @@ public class EventDelegate
 		}
 	}
 
-	// Token: 0x060006EC RID: 1772 RVA: 0x00009F93 File Offset: 0x00008193
+	// Token: 0x06000672 RID: 1650 RVA: 0x00024629 File Offset: 0x00022829
 	public static EventDelegate Add(List<EventDelegate> list, EventDelegate.Callback callback)
 	{
 		return EventDelegate.Add(list, callback, false);
 	}
 
-	// Token: 0x060006ED RID: 1773 RVA: 0x00079D78 File Offset: 0x00077F78
+	// Token: 0x06000673 RID: 1651 RVA: 0x00024634 File Offset: 0x00022834
 	public static EventDelegate Add(List<EventDelegate> list, EventDelegate.Callback callback, bool oneShot)
 	{
 		if (list != null)
@@ -506,13 +506,13 @@ public class EventDelegate
 		return null;
 	}
 
-	// Token: 0x060006EE RID: 1774 RVA: 0x00009F9D File Offset: 0x0000819D
+	// Token: 0x06000674 RID: 1652 RVA: 0x0002468F File Offset: 0x0002288F
 	public static void Add(List<EventDelegate> list, EventDelegate ev)
 	{
 		EventDelegate.Add(list, ev, ev.oneShot);
 	}
 
-	// Token: 0x060006EF RID: 1775 RVA: 0x00079DD4 File Offset: 0x00077FD4
+	// Token: 0x06000675 RID: 1653 RVA: 0x000246A0 File Offset: 0x000228A0
 	public static void Add(List<EventDelegate> list, EventDelegate ev, bool oneShot)
 	{
 		if (ev.mRawDelegate || ev.target == null || string.IsNullOrEmpty(ev.methodName))
@@ -549,7 +549,7 @@ public class EventDelegate
 		Debug.LogWarning("Attempting to add a callback to a list that's null");
 	}
 
-	// Token: 0x060006F0 RID: 1776 RVA: 0x00079EBC File Offset: 0x000780BC
+	// Token: 0x06000676 RID: 1654 RVA: 0x00024788 File Offset: 0x00022988
 	public static bool Remove(List<EventDelegate> list, EventDelegate.Callback callback)
 	{
 		if (list != null)
@@ -570,7 +570,7 @@ public class EventDelegate
 		return false;
 	}
 
-	// Token: 0x060006F1 RID: 1777 RVA: 0x00079EBC File Offset: 0x000780BC
+	// Token: 0x06000677 RID: 1655 RVA: 0x000247CC File Offset: 0x000229CC
 	public static bool Remove(List<EventDelegate> list, EventDelegate ev)
 	{
 		if (list != null)
@@ -591,62 +591,62 @@ public class EventDelegate
 		return false;
 	}
 
-	// Token: 0x0400051B RID: 1307
+	// Token: 0x04000447 RID: 1095
 	[SerializeField]
 	private MonoBehaviour mTarget;
 
-	// Token: 0x0400051C RID: 1308
+	// Token: 0x04000448 RID: 1096
 	[SerializeField]
 	private string mMethodName;
 
-	// Token: 0x0400051D RID: 1309
+	// Token: 0x04000449 RID: 1097
 	[SerializeField]
 	private EventDelegate.Parameter[] mParameters;
 
-	// Token: 0x0400051E RID: 1310
+	// Token: 0x0400044A RID: 1098
 	public bool oneShot;
 
-	// Token: 0x0400051F RID: 1311
+	// Token: 0x0400044B RID: 1099
 	[NonSerialized]
 	private EventDelegate.Callback mCachedCallback;
 
-	// Token: 0x04000520 RID: 1312
+	// Token: 0x0400044C RID: 1100
 	[NonSerialized]
 	private bool mRawDelegate;
 
-	// Token: 0x04000521 RID: 1313
+	// Token: 0x0400044D RID: 1101
 	[NonSerialized]
 	private bool mCached;
 
-	// Token: 0x04000522 RID: 1314
+	// Token: 0x0400044E RID: 1102
 	[NonSerialized]
 	private MethodInfo mMethod;
 
-	// Token: 0x04000523 RID: 1315
+	// Token: 0x0400044F RID: 1103
 	[NonSerialized]
 	private object[] mArgs;
 
-	// Token: 0x04000524 RID: 1316
+	// Token: 0x04000450 RID: 1104
 	private static int s_Hash = "EventDelegate".GetHashCode();
 
-	// Token: 0x020000B9 RID: 185
+	// Token: 0x020011FA RID: 4602
 	[Serializable]
 	public class Parameter
 	{
-		// Token: 0x060006F3 RID: 1779 RVA: 0x00009FBD File Offset: 0x000081BD
+		// Token: 0x06007830 RID: 30768 RVA: 0x002BA587 File Offset: 0x002B8787
 		public Parameter()
 		{
 		}
 
-		// Token: 0x060006F4 RID: 1780 RVA: 0x00009FD5 File Offset: 0x000081D5
+		// Token: 0x06007831 RID: 30769 RVA: 0x002BA59F File Offset: 0x002B879F
 		public Parameter(Object obj, string field)
 		{
 			this.obj = obj;
 			this.field = field;
 		}
 
-		// Token: 0x170000D7 RID: 215
-		// (get) Token: 0x060006F5 RID: 1781 RVA: 0x00079F00 File Offset: 0x00078100
+		// Token: 0x17000907 RID: 2311
+		// (get) Token: 0x06007832 RID: 30770 RVA: 0x002BA5C8 File Offset: 0x002B87C8
 		public object value
 		{
 			get
@@ -678,8 +678,8 @@ public class EventDelegate
 			}
 		}
 
-		// Token: 0x170000D8 RID: 216
-		// (get) Token: 0x060006F6 RID: 1782 RVA: 0x00009FFB File Offset: 0x000081FB
+		// Token: 0x17000908 RID: 2312
+		// (get) Token: 0x06007833 RID: 30771 RVA: 0x002BA692 File Offset: 0x002B8892
 		public Type type
 		{
 			get
@@ -692,30 +692,30 @@ public class EventDelegate
 			}
 		}
 
-		// Token: 0x04000525 RID: 1317
+		// Token: 0x04006423 RID: 25635
 		public Object obj;
 
-		// Token: 0x04000526 RID: 1318
+		// Token: 0x04006424 RID: 25636
 		public string field;
 
-		// Token: 0x04000527 RID: 1319
+		// Token: 0x04006425 RID: 25637
 		[NonSerialized]
 		public Type expectedType = typeof(void);
 
-		// Token: 0x04000528 RID: 1320
+		// Token: 0x04006426 RID: 25638
 		[NonSerialized]
 		public bool cached;
 
-		// Token: 0x04000529 RID: 1321
+		// Token: 0x04006427 RID: 25639
 		[NonSerialized]
 		public PropertyInfo propInfo;
 
-		// Token: 0x0400052A RID: 1322
+		// Token: 0x04006428 RID: 25640
 		[NonSerialized]
 		public FieldInfo fieldInfo;
 	}
 
-	// Token: 0x020000BA RID: 186
-	// (Invoke) Token: 0x060006F8 RID: 1784
+	// Token: 0x020011FB RID: 4603
+	// (Invoke) Token: 0x06007835 RID: 30773
 	public delegate void Callback();
 }

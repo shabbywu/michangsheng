@@ -2,12 +2,12 @@
 using Fungus;
 using UnityEngine;
 
-// Token: 0x02000381 RID: 897
+// Token: 0x02000269 RID: 617
 [EventHandlerInfo("NPCJiaoHu", "当完成一次赠礼", "当完成一次赠礼")]
 [AddComponentMenu("")]
 public class OnZengLiFinished : Fungus.EventHandler
 {
-	// Token: 0x06001930 RID: 6448 RVA: 0x000DF980 File Offset: 0x000DDB80
+	// Token: 0x0600167E RID: 5758 RVA: 0x0009786C File Offset: 0x00095A6C
 	public virtual void Update()
 	{
 		if (UINPCJiaoHu.Inst != null && UINPCJiaoHu.Inst.IsZengLiFinished)

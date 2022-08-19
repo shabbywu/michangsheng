@@ -10,7 +10,7 @@ using UnityEngine.UI;
 
 namespace SoftMasking
 {
-	// Token: 0x02000A11 RID: 2577
+	// Token: 0x020006E0 RID: 1760
 	[ExecuteInEditMode]
 	[DisallowMultipleComponent]
 	[AddComponentMenu("UI/Soft Mask", 14)]
@@ -18,7 +18,7 @@ namespace SoftMasking
 	[HelpURL("https://docs.google.com/document/d/1xFZQGn_odhTCokMFR0LyCPXWtqWXN-bBGVS9GETglx8")]
 	public class SoftMask : UIBehaviour, ISoftMask, ICanvasRaycastFilter
 	{
-		// Token: 0x060042AB RID: 17067 RVA: 0x001CB12C File Offset: 0x001C932C
+		// Token: 0x06003878 RID: 14456 RVA: 0x00183844 File Offset: 0x00181A44
 		public SoftMask()
 		{
 			MaterialReplacerChain replacer = new MaterialReplacerChain(MaterialReplacer.globalReplacers, new SoftMask.MaterialReplacerImpl(this));
@@ -29,9 +29,9 @@ namespace SoftMasking
 			this._warningReporter = new SoftMask.WarningReporter(this);
 		}
 
-		// Token: 0x170007B1 RID: 1969
-		// (get) Token: 0x060042AC RID: 17068 RVA: 0x0002F821 File Offset: 0x0002DA21
-		// (set) Token: 0x060042AD RID: 17069 RVA: 0x0002F829 File Offset: 0x0002DA29
+		// Token: 0x17000584 RID: 1412
+		// (get) Token: 0x06003879 RID: 14457 RVA: 0x001838AD File Offset: 0x00181AAD
+		// (set) Token: 0x0600387A RID: 14458 RVA: 0x001838B5 File Offset: 0x00181AB5
 		public Shader defaultShader
 		{
 			get
@@ -44,9 +44,9 @@ namespace SoftMasking
 			}
 		}
 
-		// Token: 0x170007B2 RID: 1970
-		// (get) Token: 0x060042AE RID: 17070 RVA: 0x0002F839 File Offset: 0x0002DA39
-		// (set) Token: 0x060042AF RID: 17071 RVA: 0x0002F841 File Offset: 0x0002DA41
+		// Token: 0x17000585 RID: 1413
+		// (get) Token: 0x0600387B RID: 14459 RVA: 0x001838C5 File Offset: 0x00181AC5
+		// (set) Token: 0x0600387C RID: 14460 RVA: 0x001838CD File Offset: 0x00181ACD
 		public Shader defaultETC1Shader
 		{
 			get
@@ -59,9 +59,9 @@ namespace SoftMasking
 			}
 		}
 
-		// Token: 0x170007B3 RID: 1971
-		// (get) Token: 0x060042B0 RID: 17072 RVA: 0x0002F851 File Offset: 0x0002DA51
-		// (set) Token: 0x060042B1 RID: 17073 RVA: 0x0002F859 File Offset: 0x0002DA59
+		// Token: 0x17000586 RID: 1414
+		// (get) Token: 0x0600387D RID: 14461 RVA: 0x001838DD File Offset: 0x00181ADD
+		// (set) Token: 0x0600387E RID: 14462 RVA: 0x001838E5 File Offset: 0x00181AE5
 		public SoftMask.MaskSource source
 		{
 			get
@@ -77,9 +77,9 @@ namespace SoftMasking
 			}
 		}
 
-		// Token: 0x170007B4 RID: 1972
-		// (get) Token: 0x060042B2 RID: 17074 RVA: 0x0002F871 File Offset: 0x0002DA71
-		// (set) Token: 0x060042B3 RID: 17075 RVA: 0x0002F879 File Offset: 0x0002DA79
+		// Token: 0x17000587 RID: 1415
+		// (get) Token: 0x0600387F RID: 14463 RVA: 0x001838FD File Offset: 0x00181AFD
+		// (set) Token: 0x06003880 RID: 14464 RVA: 0x00183905 File Offset: 0x00181B05
 		public RectTransform separateMask
 		{
 			get
@@ -97,9 +97,9 @@ namespace SoftMasking
 			}
 		}
 
-		// Token: 0x170007B5 RID: 1973
-		// (get) Token: 0x060042B4 RID: 17076 RVA: 0x0002F8A4 File Offset: 0x0002DAA4
-		// (set) Token: 0x060042B5 RID: 17077 RVA: 0x0002F8AC File Offset: 0x0002DAAC
+		// Token: 0x17000588 RID: 1416
+		// (get) Token: 0x06003881 RID: 14465 RVA: 0x00183930 File Offset: 0x00181B30
+		// (set) Token: 0x06003882 RID: 14466 RVA: 0x00183938 File Offset: 0x00181B38
 		public Sprite sprite
 		{
 			get
@@ -115,9 +115,9 @@ namespace SoftMasking
 			}
 		}
 
-		// Token: 0x170007B6 RID: 1974
-		// (get) Token: 0x060042B6 RID: 17078 RVA: 0x0002F8C9 File Offset: 0x0002DAC9
-		// (set) Token: 0x060042B7 RID: 17079 RVA: 0x0002F8D1 File Offset: 0x0002DAD1
+		// Token: 0x17000589 RID: 1417
+		// (get) Token: 0x06003883 RID: 14467 RVA: 0x00183955 File Offset: 0x00181B55
+		// (set) Token: 0x06003884 RID: 14468 RVA: 0x0018395D File Offset: 0x00181B5D
 		public SoftMask.BorderMode spriteBorderMode
 		{
 			get
@@ -133,9 +133,9 @@ namespace SoftMasking
 			}
 		}
 
-		// Token: 0x170007B7 RID: 1975
-		// (get) Token: 0x060042B8 RID: 17080 RVA: 0x0002F8E9 File Offset: 0x0002DAE9
-		// (set) Token: 0x060042B9 RID: 17081 RVA: 0x0002F8F1 File Offset: 0x0002DAF1
+		// Token: 0x1700058A RID: 1418
+		// (get) Token: 0x06003885 RID: 14469 RVA: 0x00183975 File Offset: 0x00181B75
+		// (set) Token: 0x06003886 RID: 14470 RVA: 0x0018397D File Offset: 0x00181B7D
 		public float spritePixelsPerUnitMultiplier
 		{
 			get
@@ -151,9 +151,9 @@ namespace SoftMasking
 			}
 		}
 
-		// Token: 0x170007B8 RID: 1976
-		// (get) Token: 0x060042BA RID: 17082 RVA: 0x0002F90E File Offset: 0x0002DB0E
-		// (set) Token: 0x060042BB RID: 17083 RVA: 0x0002F91B File Offset: 0x0002DB1B
+		// Token: 0x1700058B RID: 1419
+		// (get) Token: 0x06003887 RID: 14471 RVA: 0x0018399A File Offset: 0x00181B9A
+		// (set) Token: 0x06003888 RID: 14472 RVA: 0x001839A7 File Offset: 0x00181BA7
 		public Texture2D texture
 		{
 			get
@@ -169,9 +169,9 @@ namespace SoftMasking
 			}
 		}
 
-		// Token: 0x170007B9 RID: 1977
-		// (get) Token: 0x060042BC RID: 17084 RVA: 0x0002F938 File Offset: 0x0002DB38
-		// (set) Token: 0x060042BD RID: 17085 RVA: 0x0002F91B File Offset: 0x0002DB1B
+		// Token: 0x1700058C RID: 1420
+		// (get) Token: 0x06003889 RID: 14473 RVA: 0x001839C4 File Offset: 0x00181BC4
+		// (set) Token: 0x0600388A RID: 14474 RVA: 0x001839A7 File Offset: 0x00181BA7
 		public RenderTexture renderTexture
 		{
 			get
@@ -187,9 +187,9 @@ namespace SoftMasking
 			}
 		}
 
-		// Token: 0x170007BA RID: 1978
-		// (get) Token: 0x060042BE RID: 17086 RVA: 0x0002F945 File Offset: 0x0002DB45
-		// (set) Token: 0x060042BF RID: 17087 RVA: 0x0002F94D File Offset: 0x0002DB4D
+		// Token: 0x1700058D RID: 1421
+		// (get) Token: 0x0600388B RID: 14475 RVA: 0x001839D1 File Offset: 0x00181BD1
+		// (set) Token: 0x0600388C RID: 14476 RVA: 0x001839D9 File Offset: 0x00181BD9
 		public Rect textureUVRect
 		{
 			get
@@ -205,9 +205,9 @@ namespace SoftMasking
 			}
 		}
 
-		// Token: 0x170007BB RID: 1979
-		// (get) Token: 0x060042C0 RID: 17088 RVA: 0x0002F96A File Offset: 0x0002DB6A
-		// (set) Token: 0x060042C1 RID: 17089 RVA: 0x0002F972 File Offset: 0x0002DB72
+		// Token: 0x1700058E RID: 1422
+		// (get) Token: 0x0600388D RID: 14477 RVA: 0x001839F6 File Offset: 0x00181BF6
+		// (set) Token: 0x0600388E RID: 14478 RVA: 0x001839FE File Offset: 0x00181BFE
 		public Color channelWeights
 		{
 			get
@@ -223,9 +223,9 @@ namespace SoftMasking
 			}
 		}
 
-		// Token: 0x170007BC RID: 1980
-		// (get) Token: 0x060042C2 RID: 17090 RVA: 0x0002F98F File Offset: 0x0002DB8F
-		// (set) Token: 0x060042C3 RID: 17091 RVA: 0x0002F997 File Offset: 0x0002DB97
+		// Token: 0x1700058F RID: 1423
+		// (get) Token: 0x0600388F RID: 14479 RVA: 0x00183A1B File Offset: 0x00181C1B
+		// (set) Token: 0x06003890 RID: 14480 RVA: 0x00183A23 File Offset: 0x00181C23
 		public float raycastThreshold
 		{
 			get
@@ -238,9 +238,9 @@ namespace SoftMasking
 			}
 		}
 
-		// Token: 0x170007BD RID: 1981
-		// (get) Token: 0x060042C4 RID: 17092 RVA: 0x0002F9A0 File Offset: 0x0002DBA0
-		// (set) Token: 0x060042C5 RID: 17093 RVA: 0x0002F9A8 File Offset: 0x0002DBA8
+		// Token: 0x17000590 RID: 1424
+		// (get) Token: 0x06003891 RID: 14481 RVA: 0x00183A2C File Offset: 0x00181C2C
+		// (set) Token: 0x06003892 RID: 14482 RVA: 0x00183A34 File Offset: 0x00181C34
 		public bool invertMask
 		{
 			get
@@ -256,9 +256,9 @@ namespace SoftMasking
 			}
 		}
 
-		// Token: 0x170007BE RID: 1982
-		// (get) Token: 0x060042C6 RID: 17094 RVA: 0x0002F9C0 File Offset: 0x0002DBC0
-		// (set) Token: 0x060042C7 RID: 17095 RVA: 0x0002F9C8 File Offset: 0x0002DBC8
+		// Token: 0x17000591 RID: 1425
+		// (get) Token: 0x06003893 RID: 14483 RVA: 0x00183A4C File Offset: 0x00181C4C
+		// (set) Token: 0x06003894 RID: 14484 RVA: 0x00183A54 File Offset: 0x00181C54
 		public bool invertOutsides
 		{
 			get
@@ -274,8 +274,8 @@ namespace SoftMasking
 			}
 		}
 
-		// Token: 0x170007BF RID: 1983
-		// (get) Token: 0x060042C8 RID: 17096 RVA: 0x0002F9E0 File Offset: 0x0002DBE0
+		// Token: 0x17000592 RID: 1426
+		// (get) Token: 0x06003895 RID: 14485 RVA: 0x00183A6C File Offset: 0x00181C6C
 		public bool isUsingRaycastFiltering
 		{
 			get
@@ -284,8 +284,8 @@ namespace SoftMasking
 			}
 		}
 
-		// Token: 0x170007C0 RID: 1984
-		// (get) Token: 0x060042C9 RID: 17097 RVA: 0x0002F9EF File Offset: 0x0002DBEF
+		// Token: 0x17000593 RID: 1427
+		// (get) Token: 0x06003896 RID: 14486 RVA: 0x00183A7B File Offset: 0x00181C7B
 		public bool isMaskingEnabled
 		{
 			get
@@ -294,13 +294,13 @@ namespace SoftMasking
 			}
 		}
 
-		// Token: 0x060042CA RID: 17098 RVA: 0x001CB198 File Offset: 0x001C9398
+		// Token: 0x06003897 RID: 14487 RVA: 0x00183A94 File Offset: 0x00181C94
 		public SoftMask.Errors PollErrors()
 		{
 			return new SoftMask.Diagnostics(this).PollErrors();
 		}
 
-		// Token: 0x060042CB RID: 17099 RVA: 0x001CB1B4 File Offset: 0x001C93B4
+		// Token: 0x06003898 RID: 14488 RVA: 0x00183AB0 File Offset: 0x00181CB0
 		public bool IsRaycastLocationValid(Vector2 sp, Camera cam)
 		{
 			Vector2 vector;
@@ -334,14 +334,14 @@ namespace SoftMasking
 			return num >= this._raycastThreshold;
 		}
 
-		// Token: 0x060042CC RID: 17100 RVA: 0x0002FA06 File Offset: 0x0002DC06
+		// Token: 0x06003899 RID: 14489 RVA: 0x00183B4F File Offset: 0x00181D4F
 		protected override void Start()
 		{
 			base.Start();
 			this.WarnIfDefaultShaderIsNotSet();
 		}
 
-		// Token: 0x060042CD RID: 17101 RVA: 0x0002FA14 File Offset: 0x0002DC14
+		// Token: 0x0600389A RID: 14490 RVA: 0x00183B5D File Offset: 0x00181D5D
 		protected override void OnEnable()
 		{
 			base.OnEnable();
@@ -355,7 +355,7 @@ namespace SoftMasking
 			this.NotifyChildrenThatMaskMightChanged();
 		}
 
-		// Token: 0x060042CE RID: 17102 RVA: 0x001CB254 File Offset: 0x001C9454
+		// Token: 0x0600389B RID: 14491 RVA: 0x00183B94 File Offset: 0x00181D94
 		protected override void OnDisable()
 		{
 			base.OnDisable();
@@ -370,7 +370,7 @@ namespace SoftMasking
 			this.DestroyMaterials();
 		}
 
-		// Token: 0x060042CF RID: 17103 RVA: 0x0002FA48 File Offset: 0x0002DC48
+		// Token: 0x0600389C RID: 14492 RVA: 0x00183BFB File Offset: 0x00181DFB
 		protected override void OnDestroy()
 		{
 			base.OnDestroy();
@@ -378,7 +378,7 @@ namespace SoftMasking
 			this.NotifyChildrenThatMaskMightChanged();
 		}
 
-		// Token: 0x060042D0 RID: 17104 RVA: 0x001CB2BC File Offset: 0x001C94BC
+		// Token: 0x0600389D RID: 14493 RVA: 0x00183C10 File Offset: 0x00181E10
 		protected virtual void LateUpdate()
 		{
 			bool isMaskingEnabled = this.isMaskingEnabled;
@@ -398,27 +398,27 @@ namespace SoftMasking
 			this._maskingWasEnabled = isMaskingEnabled;
 		}
 
-		// Token: 0x060042D1 RID: 17105 RVA: 0x0002FA5D File Offset: 0x0002DC5D
+		// Token: 0x0600389E RID: 14494 RVA: 0x00183C78 File Offset: 0x00181E78
 		protected override void OnRectTransformDimensionsChange()
 		{
 			base.OnRectTransformDimensionsChange();
 			this._dirty = true;
 		}
 
-		// Token: 0x060042D2 RID: 17106 RVA: 0x0002FA6C File Offset: 0x0002DC6C
+		// Token: 0x0600389F RID: 14495 RVA: 0x00183C87 File Offset: 0x00181E87
 		protected override void OnDidApplyAnimationProperties()
 		{
 			base.OnDidApplyAnimationProperties();
 			this._dirty = true;
 		}
 
-		// Token: 0x060042D3 RID: 17107 RVA: 0x0002FA7B File Offset: 0x0002DC7B
+		// Token: 0x060038A0 RID: 14496 RVA: 0x00183C96 File Offset: 0x00181E96
 		private static float ClampPixelsPerUnitMultiplier(float value)
 		{
 			return Mathf.Max(value, 0.01f);
 		}
 
-		// Token: 0x060042D4 RID: 17108 RVA: 0x0002FA88 File Offset: 0x0002DC88
+		// Token: 0x060038A1 RID: 14497 RVA: 0x00183CA3 File Offset: 0x00181EA3
 		protected override void OnTransformParentChanged()
 		{
 			base.OnTransformParentChanged();
@@ -426,7 +426,7 @@ namespace SoftMasking
 			this._dirty = true;
 		}
 
-		// Token: 0x060042D5 RID: 17109 RVA: 0x0002FA9E File Offset: 0x0002DC9E
+		// Token: 0x060038A2 RID: 14498 RVA: 0x00183CB9 File Offset: 0x00181EB9
 		protected override void OnCanvasHierarchyChanged()
 		{
 			base.OnCanvasHierarchyChanged();
@@ -435,26 +435,26 @@ namespace SoftMasking
 			this.NotifyChildrenThatMaskMightChanged();
 		}
 
-		// Token: 0x060042D6 RID: 17110 RVA: 0x0002FABA File Offset: 0x0002DCBA
+		// Token: 0x060038A3 RID: 14499 RVA: 0x00183CD5 File Offset: 0x00181ED5
 		private void OnTransformChildrenChanged()
 		{
 			this.SpawnMaskablesInChildren(base.transform);
 		}
 
-		// Token: 0x060042D7 RID: 17111 RVA: 0x0002FAC8 File Offset: 0x0002DCC8
+		// Token: 0x060038A4 RID: 14500 RVA: 0x00183CE3 File Offset: 0x00181EE3
 		private void SubscribeOnWillRenderCanvases()
 		{
 			SoftMask.Touch<CanvasUpdateRegistry>(CanvasUpdateRegistry.instance);
 			Canvas.willRenderCanvases += new Canvas.WillRenderCanvases(this.OnWillRenderCanvases);
 		}
 
-		// Token: 0x060042D8 RID: 17112 RVA: 0x0002FAE6 File Offset: 0x0002DCE6
+		// Token: 0x060038A5 RID: 14501 RVA: 0x00183D01 File Offset: 0x00181F01
 		private void UnsubscribeFromWillRenderCanvases()
 		{
 			Canvas.willRenderCanvases -= new Canvas.WillRenderCanvases(this.OnWillRenderCanvases);
 		}
 
-		// Token: 0x060042D9 RID: 17113 RVA: 0x0002FAF9 File Offset: 0x0002DCF9
+		// Token: 0x060038A6 RID: 14502 RVA: 0x00183D14 File Offset: 0x00181F14
 		private void OnWillRenderCanvases()
 		{
 			if (this.isMaskingEnabled)
@@ -463,14 +463,14 @@ namespace SoftMasking
 			}
 		}
 
-		// Token: 0x060042DA RID: 17114 RVA: 0x0002FB09 File Offset: 0x0002DD09
+		// Token: 0x060038A7 RID: 14503 RVA: 0x00183D24 File Offset: 0x00181F24
 		private static T Touch<T>(T obj)
 		{
 			return obj;
 		}
 
-		// Token: 0x170007C1 RID: 1985
-		// (get) Token: 0x060042DB RID: 17115 RVA: 0x001CB324 File Offset: 0x001C9524
+		// Token: 0x17000594 RID: 1428
+		// (get) Token: 0x060038A8 RID: 14504 RVA: 0x00183D28 File Offset: 0x00181F28
 		private RectTransform maskTransform
 		{
 			get
@@ -483,8 +483,8 @@ namespace SoftMasking
 			}
 		}
 
-		// Token: 0x170007C2 RID: 1986
-		// (get) Token: 0x060042DC RID: 17116 RVA: 0x001CB36C File Offset: 0x001C956C
+		// Token: 0x17000595 RID: 1429
+		// (get) Token: 0x060038A9 RID: 14505 RVA: 0x00183D70 File Offset: 0x00181F70
 		private Canvas canvas
 		{
 			get
@@ -497,8 +497,8 @@ namespace SoftMasking
 			}
 		}
 
-		// Token: 0x170007C3 RID: 1987
-		// (get) Token: 0x060042DD RID: 17117 RVA: 0x0002FB0C File Offset: 0x0002DD0C
+		// Token: 0x17000596 RID: 1430
+		// (get) Token: 0x060038AA RID: 14506 RVA: 0x00183DA0 File Offset: 0x00181FA0
 		private bool isBasedOnGraphic
 		{
 			get
@@ -507,8 +507,8 @@ namespace SoftMasking
 			}
 		}
 
-		// Token: 0x170007C4 RID: 1988
-		// (get) Token: 0x060042DE RID: 17118 RVA: 0x0002FB17 File Offset: 0x0002DD17
+		// Token: 0x17000597 RID: 1431
+		// (get) Token: 0x060038AB RID: 14507 RVA: 0x00183DAB File Offset: 0x00181FAB
 		bool ISoftMask.isAlive
 		{
 			get
@@ -517,25 +517,25 @@ namespace SoftMasking
 			}
 		}
 
-		// Token: 0x060042DF RID: 17119 RVA: 0x0002FB2C File Offset: 0x0002DD2C
+		// Token: 0x060038AC RID: 14508 RVA: 0x00183DC0 File Offset: 0x00181FC0
 		Material ISoftMask.GetReplacement(Material original)
 		{
 			return this._materials.Get(original);
 		}
 
-		// Token: 0x060042E0 RID: 17120 RVA: 0x0002FB3A File Offset: 0x0002DD3A
+		// Token: 0x060038AD RID: 14509 RVA: 0x00183DCE File Offset: 0x00181FCE
 		void ISoftMask.ReleaseReplacement(Material replacement)
 		{
 			this._materials.Release(replacement);
 		}
 
-		// Token: 0x060042E1 RID: 17121 RVA: 0x0002FB48 File Offset: 0x0002DD48
+		// Token: 0x060038AE RID: 14510 RVA: 0x00183DDC File Offset: 0x00181FDC
 		void ISoftMask.UpdateTransformChildren(Transform transform)
 		{
 			this.SpawnMaskablesInChildren(transform);
 		}
 
-		// Token: 0x060042E2 RID: 17122 RVA: 0x0002FB51 File Offset: 0x0002DD51
+		// Token: 0x060038AF RID: 14511 RVA: 0x00183DE5 File Offset: 0x00181FE5
 		private void OnGraphicDirty()
 		{
 			if (this.isBasedOnGraphic)
@@ -544,7 +544,7 @@ namespace SoftMasking
 			}
 		}
 
-		// Token: 0x060042E3 RID: 17123 RVA: 0x001CB39C File Offset: 0x001C959C
+		// Token: 0x060038B0 RID: 14512 RVA: 0x00183DF8 File Offset: 0x00181FF8
 		private void FindGraphic()
 		{
 			if (!this._graphic && this.isBasedOnGraphic)
@@ -558,7 +558,7 @@ namespace SoftMasking
 			}
 		}
 
-		// Token: 0x060042E4 RID: 17124 RVA: 0x001CB40C File Offset: 0x001C960C
+		// Token: 0x060038B1 RID: 14513 RVA: 0x00183E68 File Offset: 0x00182068
 		private Canvas NearestEnabledCanvas()
 		{
 			Canvas[] componentsInParent = base.GetComponentsInParent<Canvas>(false);
@@ -572,7 +572,7 @@ namespace SoftMasking
 			return null;
 		}
 
-		// Token: 0x060042E5 RID: 17125 RVA: 0x001CB440 File Offset: 0x001C9640
+		// Token: 0x060038B2 RID: 14514 RVA: 0x00183E9C File Offset: 0x0018209C
 		private void UpdateMaskParameters()
 		{
 			if (this._dirty || this.maskTransform.hasChanged)
@@ -585,7 +585,7 @@ namespace SoftMasking
 			this._materials.ApplyAll();
 		}
 
-		// Token: 0x060042E6 RID: 17126 RVA: 0x001CB498 File Offset: 0x001C9698
+		// Token: 0x060038B3 RID: 14515 RVA: 0x00183EF4 File Offset: 0x001820F4
 		private void SpawnMaskablesInChildren(Transform root)
 		{
 			using (new ClearListAtExit<SoftMaskable>(SoftMask.s_maskables))
@@ -602,7 +602,7 @@ namespace SoftMasking
 			}
 		}
 
-		// Token: 0x060042E7 RID: 17127 RVA: 0x0002FB62 File Offset: 0x0002DD62
+		// Token: 0x060038B4 RID: 14516 RVA: 0x00183F6C File Offset: 0x0018216C
 		private void InvalidateChildren()
 		{
 			this.ForEachChildMaskable(delegate(SoftMaskable x)
@@ -611,7 +611,7 @@ namespace SoftMasking
 			});
 		}
 
-		// Token: 0x060042E8 RID: 17128 RVA: 0x0002FB89 File Offset: 0x0002DD89
+		// Token: 0x060038B5 RID: 14517 RVA: 0x00183F93 File Offset: 0x00182193
 		private void NotifyChildrenThatMaskMightChanged()
 		{
 			this.ForEachChildMaskable(delegate(SoftMaskable x)
@@ -620,7 +620,7 @@ namespace SoftMasking
 			});
 		}
 
-		// Token: 0x060042E9 RID: 17129 RVA: 0x001CB510 File Offset: 0x001C9710
+		// Token: 0x060038B6 RID: 14518 RVA: 0x00183FBC File Offset: 0x001821BC
 		private void ForEachChildMaskable(Action<SoftMaskable> f)
 		{
 			base.transform.GetComponentsInChildren<SoftMaskable>(SoftMask.s_maskables);
@@ -637,13 +637,13 @@ namespace SoftMasking
 			}
 		}
 
-		// Token: 0x060042EA RID: 17130 RVA: 0x0002FBB0 File Offset: 0x0002DDB0
+		// Token: 0x060038B7 RID: 14519 RVA: 0x00184048 File Offset: 0x00182248
 		private void DestroyMaterials()
 		{
 			this._materials.DestroyAllAndClear();
 		}
 
-		// Token: 0x060042EB RID: 17131 RVA: 0x001CB59C File Offset: 0x001C979C
+		// Token: 0x060038B8 RID: 14520 RVA: 0x00184058 File Offset: 0x00182258
 		private SoftMask.SourceParameters DeduceSourceParameters()
 		{
 			SoftMask.SourceParameters result = default(SoftMask.SourceParameters);
@@ -695,7 +695,7 @@ namespace SoftMasking
 			return result;
 		}
 
-		// Token: 0x060042EC RID: 17132 RVA: 0x0002FBBD File Offset: 0x0002DDBD
+		// Token: 0x060038B9 RID: 14521 RVA: 0x001841BD File Offset: 0x001823BD
 		public static SoftMask.BorderMode ImageTypeToBorderMode(Image.Type type)
 		{
 			switch (type)
@@ -711,13 +711,13 @@ namespace SoftMasking
 			}
 		}
 
-		// Token: 0x060042ED RID: 17133 RVA: 0x0002FBDA File Offset: 0x0002DDDA
+		// Token: 0x060038BA RID: 14522 RVA: 0x001841DA File Offset: 0x001823DA
 		public static bool IsImageTypeSupported(Image.Type type)
 		{
 			return type == null || type == 1 || type == 2;
 		}
 
-		// Token: 0x060042EE RID: 17134 RVA: 0x001CB704 File Offset: 0x001C9904
+		// Token: 0x060038BB RID: 14523 RVA: 0x001841EC File Offset: 0x001823EC
 		private void CalculateMaskParameters()
 		{
 			SoftMask.SourceParameters sourceParameters = this.DeduceSourceParameters();
@@ -746,7 +746,7 @@ namespace SoftMasking
 			}
 		}
 
-		// Token: 0x060042EF RID: 17135 RVA: 0x001CB7A0 File Offset: 0x001C99A0
+		// Token: 0x060038BC RID: 14524 RVA: 0x00184288 File Offset: 0x00182488
 		private void CalculateSpriteBased(Sprite sprite, SoftMask.BorderMode borderMode, float spritePixelsPerUnit)
 		{
 			this.FillCommonParameters();
@@ -776,7 +776,7 @@ namespace SoftMasking
 			}
 		}
 
-		// Token: 0x060042F0 RID: 17136 RVA: 0x001CB8B0 File Offset: 0x001C9AB0
+		// Token: 0x060038BD RID: 14525 RVA: 0x00184398 File Offset: 0x00182598
 		private static Vector4 AdjustBorders(Vector4 border, Vector4 rect)
 		{
 			Vector2 vector = SoftMask.Mathr.Size(rect);
@@ -797,7 +797,7 @@ namespace SoftMasking
 			return border;
 		}
 
-		// Token: 0x060042F1 RID: 17137 RVA: 0x001CB93C File Offset: 0x001C9B3C
+		// Token: 0x060038BE RID: 14526 RVA: 0x00184424 File Offset: 0x00182624
 		private void CalculateTextureBased(Texture texture, Rect uvRect)
 		{
 			this.FillCommonParameters();
@@ -807,13 +807,13 @@ namespace SoftMasking
 			this._parameters.borderMode = SoftMask.BorderMode.Simple;
 		}
 
-		// Token: 0x060042F2 RID: 17138 RVA: 0x0002FBE9 File Offset: 0x0002DDE9
+		// Token: 0x060038BF RID: 14527 RVA: 0x00184476 File Offset: 0x00182676
 		private void CalculateSolidFill()
 		{
 			this.CalculateTextureBased(null, SoftMask.DefaultUVRect);
 		}
 
-		// Token: 0x060042F3 RID: 17139 RVA: 0x001CB990 File Offset: 0x001C9B90
+		// Token: 0x060038C0 RID: 14528 RVA: 0x00184484 File Offset: 0x00182684
 		private void FillCommonParameters()
 		{
 			this._parameters.worldToMask = this.WorldToMask();
@@ -822,32 +822,32 @@ namespace SoftMasking
 			this._parameters.invertOutsides = this._invertOutsides;
 		}
 
-		// Token: 0x060042F4 RID: 17140 RVA: 0x0002FBF7 File Offset: 0x0002DDF7
+		// Token: 0x060038C1 RID: 14529 RVA: 0x001844D5 File Offset: 0x001826D5
 		private float SpriteToCanvasScale(float spritePixelsPerUnit)
 		{
 			return (this.canvas ? this.canvas.referencePixelsPerUnit : 100f) / spritePixelsPerUnit;
 		}
 
-		// Token: 0x060042F5 RID: 17141 RVA: 0x0002FC1A File Offset: 0x0002DE1A
+		// Token: 0x060038C2 RID: 14530 RVA: 0x001844F8 File Offset: 0x001826F8
 		private Matrix4x4 WorldToMask()
 		{
 			return this.maskTransform.worldToLocalMatrix * this.canvas.rootCanvas.transform.localToWorldMatrix;
 		}
 
-		// Token: 0x060042F6 RID: 17142 RVA: 0x0002FC41 File Offset: 0x0002DE41
+		// Token: 0x060038C3 RID: 14531 RVA: 0x0018451F File Offset: 0x0018271F
 		private Vector4 LocalMaskRect(Vector4 border)
 		{
 			return SoftMask.Mathr.ApplyBorder(SoftMask.Mathr.ToVector(this.maskTransform.rect), border);
 		}
 
-		// Token: 0x060042F7 RID: 17143 RVA: 0x001CB9E4 File Offset: 0x001C9BE4
+		// Token: 0x060038C4 RID: 14532 RVA: 0x00184538 File Offset: 0x00182738
 		private Vector2 MaskRepeat(Sprite sprite, float spritePixelsPerUnit, Vector4 centralPart)
 		{
 			Vector4 r = SoftMask.Mathr.ApplyBorder(SoftMask.Mathr.ToVector(sprite.rect), sprite.border);
 			return SoftMask.Mathr.Div(SoftMask.Mathr.Size(centralPart) * this.SpriteToCanvasScale(spritePixelsPerUnit), SoftMask.Mathr.Size(r));
 		}
 
-		// Token: 0x060042F8 RID: 17144 RVA: 0x0002FC59 File Offset: 0x0002DE59
+		// Token: 0x060038C5 RID: 14533 RVA: 0x00184579 File Offset: 0x00182779
 		private void WarnIfDefaultShaderIsNotSet()
 		{
 			if (!this._defaultShader)
@@ -856,14 +856,14 @@ namespace SoftMasking
 			}
 		}
 
-		// Token: 0x060042F9 RID: 17145 RVA: 0x0002FC73 File Offset: 0x0002DE73
+		// Token: 0x060038C6 RID: 14534 RVA: 0x00184593 File Offset: 0x00182793
 		private void Set<T>(ref T field, T value)
 		{
 			field = value;
 			this._dirty = true;
 		}
 
-		// Token: 0x060042FA RID: 17146 RVA: 0x0002FC83 File Offset: 0x0002DE83
+		// Token: 0x060038C7 RID: 14535 RVA: 0x001845A3 File Offset: 0x001827A3
 		private void SetShader(ref Shader field, Shader value, bool warnIfNotSet = true)
 		{
 			if (field != value)
@@ -878,180 +878,180 @@ namespace SoftMasking
 			}
 		}
 
-		// Token: 0x04003AFB RID: 15099
+		// Token: 0x040030D8 RID: 12504
 		[SerializeField]
 		private Shader _defaultShader;
 
-		// Token: 0x04003AFC RID: 15100
+		// Token: 0x040030D9 RID: 12505
 		[SerializeField]
 		private Shader _defaultETC1Shader;
 
-		// Token: 0x04003AFD RID: 15101
+		// Token: 0x040030DA RID: 12506
 		[SerializeField]
 		private SoftMask.MaskSource _source;
 
-		// Token: 0x04003AFE RID: 15102
+		// Token: 0x040030DB RID: 12507
 		[SerializeField]
 		private RectTransform _separateMask;
 
-		// Token: 0x04003AFF RID: 15103
+		// Token: 0x040030DC RID: 12508
 		[SerializeField]
 		private Sprite _sprite;
 
-		// Token: 0x04003B00 RID: 15104
+		// Token: 0x040030DD RID: 12509
 		[SerializeField]
 		private SoftMask.BorderMode _spriteBorderMode;
 
-		// Token: 0x04003B01 RID: 15105
+		// Token: 0x040030DE RID: 12510
 		[SerializeField]
 		private float _spritePixelsPerUnitMultiplier = 1f;
 
-		// Token: 0x04003B02 RID: 15106
+		// Token: 0x040030DF RID: 12511
 		[SerializeField]
 		private Texture _texture;
 
-		// Token: 0x04003B03 RID: 15107
+		// Token: 0x040030E0 RID: 12512
 		[SerializeField]
 		private Rect _textureUVRect = SoftMask.DefaultUVRect;
 
-		// Token: 0x04003B04 RID: 15108
+		// Token: 0x040030E1 RID: 12513
 		[SerializeField]
 		private Color _channelWeights = MaskChannel.alpha;
 
-		// Token: 0x04003B05 RID: 15109
+		// Token: 0x040030E2 RID: 12514
 		[SerializeField]
 		private float _raycastThreshold;
 
-		// Token: 0x04003B06 RID: 15110
+		// Token: 0x040030E3 RID: 12515
 		[SerializeField]
 		private bool _invertMask;
 
-		// Token: 0x04003B07 RID: 15111
+		// Token: 0x040030E4 RID: 12516
 		[SerializeField]
 		private bool _invertOutsides;
 
-		// Token: 0x04003B08 RID: 15112
+		// Token: 0x040030E5 RID: 12517
 		private MaterialReplacements _materials;
 
-		// Token: 0x04003B09 RID: 15113
+		// Token: 0x040030E6 RID: 12518
 		private SoftMask.MaterialParameters _parameters;
 
-		// Token: 0x04003B0A RID: 15114
+		// Token: 0x040030E7 RID: 12519
 		private SoftMask.WarningReporter _warningReporter;
 
-		// Token: 0x04003B0B RID: 15115
+		// Token: 0x040030E8 RID: 12520
 		private Rect _lastMaskRect;
 
-		// Token: 0x04003B0C RID: 15116
+		// Token: 0x040030E9 RID: 12521
 		private bool _maskingWasEnabled;
 
-		// Token: 0x04003B0D RID: 15117
+		// Token: 0x040030EA RID: 12522
 		private bool _destroyed;
 
-		// Token: 0x04003B0E RID: 15118
+		// Token: 0x040030EB RID: 12523
 		private bool _dirty;
 
-		// Token: 0x04003B0F RID: 15119
+		// Token: 0x040030EC RID: 12524
 		private RectTransform _maskTransform;
 
-		// Token: 0x04003B10 RID: 15120
+		// Token: 0x040030ED RID: 12525
 		private Graphic _graphic;
 
-		// Token: 0x04003B11 RID: 15121
+		// Token: 0x040030EE RID: 12526
 		private Canvas _canvas;
 
-		// Token: 0x04003B12 RID: 15122
+		// Token: 0x040030EF RID: 12527
 		private static readonly Rect DefaultUVRect = new Rect(0f, 0f, 1f, 1f);
 
-		// Token: 0x04003B13 RID: 15123
+		// Token: 0x040030F0 RID: 12528
 		private const float DefaultPixelsPerUnit = 100f;
 
-		// Token: 0x04003B14 RID: 15124
+		// Token: 0x040030F1 RID: 12529
 		private static readonly List<SoftMask> s_masks = new List<SoftMask>();
 
-		// Token: 0x04003B15 RID: 15125
+		// Token: 0x040030F2 RID: 12530
 		private static readonly List<SoftMaskable> s_maskables = new List<SoftMaskable>();
 
-		// Token: 0x02000A12 RID: 2578
+		// Token: 0x02001517 RID: 5399
 		[Serializable]
 		public enum MaskSource
 		{
-			// Token: 0x04003B17 RID: 15127
+			// Token: 0x04006E67 RID: 28263
 			Graphic,
-			// Token: 0x04003B18 RID: 15128
+			// Token: 0x04006E68 RID: 28264
 			Sprite,
-			// Token: 0x04003B19 RID: 15129
+			// Token: 0x04006E69 RID: 28265
 			Texture
 		}
 
-		// Token: 0x02000A13 RID: 2579
+		// Token: 0x02001518 RID: 5400
 		[Serializable]
 		public enum BorderMode
 		{
-			// Token: 0x04003B1B RID: 15131
+			// Token: 0x04006E6B RID: 28267
 			Simple,
-			// Token: 0x04003B1C RID: 15132
+			// Token: 0x04006E6C RID: 28268
 			Sliced,
-			// Token: 0x04003B1D RID: 15133
+			// Token: 0x04006E6D RID: 28269
 			Tiled
 		}
 
-		// Token: 0x02000A14 RID: 2580
+		// Token: 0x02001519 RID: 5401
 		[Flags]
 		[Serializable]
 		public enum Errors
 		{
-			// Token: 0x04003B1F RID: 15135
+			// Token: 0x04006E6F RID: 28271
 			NoError = 0,
-			// Token: 0x04003B20 RID: 15136
+			// Token: 0x04006E70 RID: 28272
 			UnsupportedShaders = 1,
-			// Token: 0x04003B21 RID: 15137
+			// Token: 0x04006E71 RID: 28273
 			NestedMasks = 2,
-			// Token: 0x04003B22 RID: 15138
+			// Token: 0x04006E72 RID: 28274
 			TightPackedSprite = 4,
-			// Token: 0x04003B23 RID: 15139
+			// Token: 0x04006E73 RID: 28275
 			AlphaSplitSprite = 8,
-			// Token: 0x04003B24 RID: 15140
+			// Token: 0x04006E74 RID: 28276
 			UnsupportedImageType = 16,
-			// Token: 0x04003B25 RID: 15141
+			// Token: 0x04006E75 RID: 28277
 			UnreadableTexture = 32,
-			// Token: 0x04003B26 RID: 15142
+			// Token: 0x04006E76 RID: 28278
 			UnreadableRenderTexture = 64
 		}
 
-		// Token: 0x02000A15 RID: 2581
+		// Token: 0x0200151A RID: 5402
 		private struct SourceParameters
 		{
-			// Token: 0x04003B27 RID: 15143
+			// Token: 0x04006E77 RID: 28279
 			public Image image;
 
-			// Token: 0x04003B28 RID: 15144
+			// Token: 0x04006E78 RID: 28280
 			public Sprite sprite;
 
-			// Token: 0x04003B29 RID: 15145
+			// Token: 0x04006E79 RID: 28281
 			public SoftMask.BorderMode spriteBorderMode;
 
-			// Token: 0x04003B2A RID: 15146
+			// Token: 0x04006E7A RID: 28282
 			public float spritePixelsPerUnit;
 
-			// Token: 0x04003B2B RID: 15147
+			// Token: 0x04006E7B RID: 28283
 			public Texture texture;
 
-			// Token: 0x04003B2C RID: 15148
+			// Token: 0x04006E7C RID: 28284
 			public Rect textureUVRect;
 		}
 
-		// Token: 0x02000A16 RID: 2582
+		// Token: 0x0200151B RID: 5403
 		private class MaterialReplacerImpl : IMaterialReplacer
 		{
-			// Token: 0x060042FD RID: 17149 RVA: 0x0002FCE9 File Offset: 0x0002DEE9
+			// Token: 0x06008307 RID: 33543 RVA: 0x002DD56D File Offset: 0x002DB76D
 			public MaterialReplacerImpl(SoftMask owner)
 			{
 				this._owner = owner;
 			}
 
-			// Token: 0x170007C5 RID: 1989
-			// (get) Token: 0x060042FE RID: 17150 RVA: 0x00004050 File Offset: 0x00002250
+			// Token: 0x17000B34 RID: 2868
+			// (get) Token: 0x06008308 RID: 33544 RVA: 0x0000280F File Offset: 0x00000A0F
 			public int order
 			{
 				get
@@ -1060,7 +1060,7 @@ namespace SoftMasking
 				}
 			}
 
-			// Token: 0x060042FF RID: 17151 RVA: 0x001CBA28 File Offset: 0x001C9C28
+			// Token: 0x06008309 RID: 33545 RVA: 0x002DD57C File Offset: 0x002DB77C
 			public Material Replace(Material original)
 			{
 				if (original == null || original.HasDefaultUIShader())
@@ -1078,7 +1078,7 @@ namespace SoftMasking
 				return null;
 			}
 
-			// Token: 0x06004300 RID: 17152 RVA: 0x001CBA84 File Offset: 0x001C9C84
+			// Token: 0x0600830A RID: 33546 RVA: 0x002DD5D8 File Offset: 0x002DB7D8
 			private static Material Replace(Material original, Shader defaultReplacementShader)
 			{
 				Material material = defaultReplacementShader ? new Material(defaultReplacementShader) : null;
@@ -1089,74 +1089,74 @@ namespace SoftMasking
 				return material;
 			}
 
-			// Token: 0x04003B2D RID: 15149
+			// Token: 0x04006E7D RID: 28285
 			private readonly SoftMask _owner;
 		}
 
-		// Token: 0x02000A17 RID: 2583
+		// Token: 0x0200151C RID: 5404
 		private static class Mathr
 		{
-			// Token: 0x06004301 RID: 17153 RVA: 0x0002FCF8 File Offset: 0x0002DEF8
+			// Token: 0x0600830B RID: 33547 RVA: 0x002DD60F File Offset: 0x002DB80F
 			public static Vector4 ToVector(Rect r)
 			{
 				return new Vector4(r.xMin, r.yMin, r.xMax, r.yMax);
 			}
 
-			// Token: 0x06004302 RID: 17154 RVA: 0x0002FD1B File Offset: 0x0002DF1B
+			// Token: 0x0600830C RID: 33548 RVA: 0x002DD632 File Offset: 0x002DB832
 			public static Vector4 Div(Vector4 v, Vector2 s)
 			{
 				return new Vector4(v.x / s.x, v.y / s.y, v.z / s.x, v.w / s.y);
 			}
 
-			// Token: 0x06004303 RID: 17155 RVA: 0x0002FD56 File Offset: 0x0002DF56
+			// Token: 0x0600830D RID: 33549 RVA: 0x002DD66D File Offset: 0x002DB86D
 			public static Vector2 Div(Vector2 v, Vector2 s)
 			{
 				return new Vector2(v.x / s.x, v.y / s.y);
 			}
 
-			// Token: 0x06004304 RID: 17156 RVA: 0x0002FD77 File Offset: 0x0002DF77
+			// Token: 0x0600830E RID: 33550 RVA: 0x002DD68E File Offset: 0x002DB88E
 			public static Vector4 Mul(Vector4 v, Vector2 s)
 			{
 				return new Vector4(v.x * s.x, v.y * s.y, v.z * s.x, v.w * s.y);
 			}
 
-			// Token: 0x06004305 RID: 17157 RVA: 0x0002FDB2 File Offset: 0x0002DFB2
+			// Token: 0x0600830F RID: 33551 RVA: 0x002DD6C9 File Offset: 0x002DB8C9
 			public static Vector2 Size(Vector4 r)
 			{
 				return new Vector2(r.z - r.x, r.w - r.y);
 			}
 
-			// Token: 0x06004306 RID: 17158 RVA: 0x0002FDD3 File Offset: 0x0002DFD3
+			// Token: 0x06008310 RID: 33552 RVA: 0x002DD6EA File Offset: 0x002DB8EA
 			public static Vector4 Move(Vector4 v, Vector2 o)
 			{
 				return new Vector4(v.x + o.x, v.y + o.y, v.z + o.x, v.w + o.y);
 			}
 
-			// Token: 0x06004307 RID: 17159 RVA: 0x0002FE0E File Offset: 0x0002E00E
+			// Token: 0x06008311 RID: 33553 RVA: 0x002DD725 File Offset: 0x002DB925
 			public static Vector4 BorderOf(Vector4 outer, Vector4 inner)
 			{
 				return new Vector4(inner.x - outer.x, inner.y - outer.y, outer.z - inner.z, outer.w - inner.w);
 			}
 
-			// Token: 0x06004308 RID: 17160 RVA: 0x0002FE49 File Offset: 0x0002E049
+			// Token: 0x06008312 RID: 33554 RVA: 0x002DD760 File Offset: 0x002DB960
 			public static Vector4 ApplyBorder(Vector4 v, Vector4 b)
 			{
 				return new Vector4(v.x + b.x, v.y + b.y, v.z - b.z, v.w - b.w);
 			}
 
-			// Token: 0x06004309 RID: 17161 RVA: 0x0002FE84 File Offset: 0x0002E084
+			// Token: 0x06008313 RID: 33555 RVA: 0x002DD79B File Offset: 0x002DB99B
 			public static Vector2 Min(Vector4 r)
 			{
 				return new Vector2(r.x, r.y);
 			}
 
-			// Token: 0x0600430A RID: 17162 RVA: 0x0002FE97 File Offset: 0x0002E097
+			// Token: 0x06008314 RID: 33556 RVA: 0x002DD7AE File Offset: 0x002DB9AE
 			public static Vector2 Max(Vector4 r)
 			{
 				return new Vector2(r.z, r.w);
 			}
 
-			// Token: 0x0600430B RID: 17163 RVA: 0x001CBABC File Offset: 0x001C9CBC
+			// Token: 0x06008315 RID: 33557 RVA: 0x002DD7C4 File Offset: 0x002DB9C4
 			public static Vector2 Remap(Vector2 c, Vector4 from, Vector4 to)
 			{
 				Vector2 s = SoftMask.Mathr.Max(from) - SoftMask.Mathr.Min(from);
@@ -1164,18 +1164,18 @@ namespace SoftMasking
 				return Vector2.Scale(SoftMask.Mathr.Div(c - SoftMask.Mathr.Min(from), s), vector) + SoftMask.Mathr.Min(to);
 			}
 
-			// Token: 0x0600430C RID: 17164 RVA: 0x0002FEAA File Offset: 0x0002E0AA
+			// Token: 0x06008316 RID: 33558 RVA: 0x002DD818 File Offset: 0x002DBA18
 			public static bool Inside(Vector2 v, Vector4 r)
 			{
 				return v.x >= r.x && v.y >= r.y && v.x <= r.z && v.y <= r.w;
 			}
 		}
 
-		// Token: 0x02000A18 RID: 2584
+		// Token: 0x0200151D RID: 5405
 		private struct MaterialParameters
 		{
-			// Token: 0x170007C6 RID: 1990
-			// (get) Token: 0x0600430D RID: 17165 RVA: 0x0002FEE9 File Offset: 0x0002E0E9
+			// Token: 0x17000B35 RID: 2869
+			// (get) Token: 0x06008317 RID: 33559 RVA: 0x002DD857 File Offset: 0x002DBA57
 			public Texture activeTexture
 			{
 				get
@@ -1188,7 +1188,7 @@ namespace SoftMasking
 				}
 			}
 
-			// Token: 0x0600430E RID: 17166 RVA: 0x001CBB10 File Offset: 0x001C9D10
+			// Token: 0x06008318 RID: 33560 RVA: 0x002DD874 File Offset: 0x002DBA74
 			public SoftMask.MaterialParameters.SampleMaskResult SampleMask(Vector2 localPos, out float mask)
 			{
 				mask = 0f;
@@ -1211,7 +1211,7 @@ namespace SoftMasking
 				return result;
 			}
 
-			// Token: 0x0600430F RID: 17167 RVA: 0x001CBB78 File Offset: 0x001C9D78
+			// Token: 0x06008319 RID: 33561 RVA: 0x002DD8DC File Offset: 0x002DBADC
 			public void Apply(Material mat)
 			{
 				mat.SetTexture(SoftMask.MaterialParameters.Ids.SoftMask, this.activeTexture);
@@ -1235,7 +1235,7 @@ namespace SoftMasking
 				}
 			}
 
-			// Token: 0x06004310 RID: 17168 RVA: 0x001CBC90 File Offset: 0x001C9E90
+			// Token: 0x0600831A RID: 33562 RVA: 0x002DD9F4 File Offset: 0x002DBBF4
 			private Vector2 XY2UV(Vector2 localPos)
 			{
 				switch (this.borderMode)
@@ -1251,26 +1251,26 @@ namespace SoftMasking
 				}
 			}
 
-			// Token: 0x06004311 RID: 17169 RVA: 0x0002FF04 File Offset: 0x0002E104
+			// Token: 0x0600831B RID: 33563 RVA: 0x002DDA3D File Offset: 0x002DBC3D
 			private Vector2 MapSimple(Vector2 localPos)
 			{
 				return SoftMask.Mathr.Remap(localPos, this.maskRect, this.maskRectUV);
 			}
 
-			// Token: 0x06004312 RID: 17170 RVA: 0x001CBCDC File Offset: 0x001C9EDC
+			// Token: 0x0600831C RID: 33564 RVA: 0x002DDA54 File Offset: 0x002DBC54
 			private Vector2 MapBorder(Vector2 localPos, bool repeat)
 			{
 				return new Vector2(this.Inset(localPos.x, this.maskRect.x, this.maskBorder.x, this.maskBorder.z, this.maskRect.z, this.maskRectUV.x, this.maskBorderUV.x, this.maskBorderUV.z, this.maskRectUV.z, repeat ? this.tileRepeat.x : 1f), this.Inset(localPos.y, this.maskRect.y, this.maskBorder.y, this.maskBorder.w, this.maskRect.w, this.maskRectUV.y, this.maskBorderUV.y, this.maskBorderUV.w, this.maskRectUV.w, repeat ? this.tileRepeat.y : 1f));
 			}
 
-			// Token: 0x06004313 RID: 17171 RVA: 0x001CBDE0 File Offset: 0x001C9FE0
+			// Token: 0x0600831D RID: 33565 RVA: 0x002DDB58 File Offset: 0x002DBD58
 			private float Inset(float v, float x1, float x2, float u1, float u2, float repeat = 1f)
 			{
 				float num = x2 - x1;
 				return Mathf.Lerp(u1, u2, (num != 0f) ? this.Frac((v - x1) / num * repeat) : 0f);
 			}
 
-			// Token: 0x06004314 RID: 17172 RVA: 0x001CBE18 File Offset: 0x001CA018
+			// Token: 0x0600831E RID: 33566 RVA: 0x002DDB90 File Offset: 0x002DBD90
 			private float Inset(float v, float x1, float x2, float x3, float x4, float u1, float u2, float u3, float u4, float repeat = 1f)
 			{
 				if (v < x2)
@@ -1284,108 +1284,108 @@ namespace SoftMasking
 				return this.Inset(v, x3, x4, u3, u4, 1f);
 			}
 
-			// Token: 0x06004315 RID: 17173 RVA: 0x0002FF18 File Offset: 0x0002E118
+			// Token: 0x0600831F RID: 33567 RVA: 0x002DDBDE File Offset: 0x002DBDDE
 			private float Frac(float v)
 			{
 				return v - Mathf.Floor(v);
 			}
 
-			// Token: 0x06004316 RID: 17174 RVA: 0x001CBE68 File Offset: 0x001CA068
+			// Token: 0x06008320 RID: 33568 RVA: 0x002DDBE8 File Offset: 0x002DBDE8
 			private float MaskValue(Color mask)
 			{
 				Color color = mask * this.maskChannelWeights;
 				return color.a + color.r + color.g + color.b;
 			}
 
-			// Token: 0x04003B2E RID: 15150
+			// Token: 0x04006E7E RID: 28286
 			public Vector4 maskRect;
 
-			// Token: 0x04003B2F RID: 15151
+			// Token: 0x04006E7F RID: 28287
 			public Vector4 maskBorder;
 
-			// Token: 0x04003B30 RID: 15152
+			// Token: 0x04006E80 RID: 28288
 			public Vector4 maskRectUV;
 
-			// Token: 0x04003B31 RID: 15153
+			// Token: 0x04006E81 RID: 28289
 			public Vector4 maskBorderUV;
 
-			// Token: 0x04003B32 RID: 15154
+			// Token: 0x04006E82 RID: 28290
 			public Vector2 tileRepeat;
 
-			// Token: 0x04003B33 RID: 15155
+			// Token: 0x04006E83 RID: 28291
 			public Color maskChannelWeights;
 
-			// Token: 0x04003B34 RID: 15156
+			// Token: 0x04006E84 RID: 28292
 			public Matrix4x4 worldToMask;
 
-			// Token: 0x04003B35 RID: 15157
+			// Token: 0x04006E85 RID: 28293
 			public Texture texture;
 
-			// Token: 0x04003B36 RID: 15158
+			// Token: 0x04006E86 RID: 28294
 			public SoftMask.BorderMode borderMode;
 
-			// Token: 0x04003B37 RID: 15159
+			// Token: 0x04006E87 RID: 28295
 			public bool invertMask;
 
-			// Token: 0x04003B38 RID: 15160
+			// Token: 0x04006E88 RID: 28296
 			public bool invertOutsides;
 
-			// Token: 0x02000A19 RID: 2585
+			// Token: 0x0200175B RID: 5979
 			public enum SampleMaskResult
 			{
-				// Token: 0x04003B3A RID: 15162
+				// Token: 0x0400759D RID: 30109
 				Success,
-				// Token: 0x04003B3B RID: 15163
+				// Token: 0x0400759E RID: 30110
 				NonReadable,
-				// Token: 0x04003B3C RID: 15164
+				// Token: 0x0400759F RID: 30111
 				NonTexture2D
 			}
 
-			// Token: 0x02000A1A RID: 2586
+			// Token: 0x0200175C RID: 5980
 			private static class Ids
 			{
-				// Token: 0x04003B3D RID: 15165
+				// Token: 0x040075A0 RID: 30112
 				public static readonly int SoftMask = Shader.PropertyToID("_SoftMask");
 
-				// Token: 0x04003B3E RID: 15166
+				// Token: 0x040075A1 RID: 30113
 				public static readonly int SoftMask_Rect = Shader.PropertyToID("_SoftMask_Rect");
 
-				// Token: 0x04003B3F RID: 15167
+				// Token: 0x040075A2 RID: 30114
 				public static readonly int SoftMask_UVRect = Shader.PropertyToID("_SoftMask_UVRect");
 
-				// Token: 0x04003B40 RID: 15168
+				// Token: 0x040075A3 RID: 30115
 				public static readonly int SoftMask_ChannelWeights = Shader.PropertyToID("_SoftMask_ChannelWeights");
 
-				// Token: 0x04003B41 RID: 15169
+				// Token: 0x040075A4 RID: 30116
 				public static readonly int SoftMask_WorldToMask = Shader.PropertyToID("_SoftMask_WorldToMask");
 
-				// Token: 0x04003B42 RID: 15170
+				// Token: 0x040075A5 RID: 30117
 				public static readonly int SoftMask_BorderRect = Shader.PropertyToID("_SoftMask_BorderRect");
 
-				// Token: 0x04003B43 RID: 15171
+				// Token: 0x040075A6 RID: 30118
 				public static readonly int SoftMask_UVBorderRect = Shader.PropertyToID("_SoftMask_UVBorderRect");
 
-				// Token: 0x04003B44 RID: 15172
+				// Token: 0x040075A7 RID: 30119
 				public static readonly int SoftMask_TileRepeat = Shader.PropertyToID("_SoftMask_TileRepeat");
 
-				// Token: 0x04003B45 RID: 15173
+				// Token: 0x040075A8 RID: 30120
 				public static readonly int SoftMask_InvertMask = Shader.PropertyToID("_SoftMask_InvertMask");
 
-				// Token: 0x04003B46 RID: 15174
+				// Token: 0x040075A9 RID: 30121
 				public static readonly int SoftMask_InvertOutsides = Shader.PropertyToID("_SoftMask_InvertOutsides");
 			}
 		}
 
-		// Token: 0x02000A1B RID: 2587
+		// Token: 0x0200151E RID: 5406
 		private struct Diagnostics
 		{
-			// Token: 0x06004318 RID: 17176 RVA: 0x0002FF22 File Offset: 0x0002E122
+			// Token: 0x06008321 RID: 33569 RVA: 0x002DDC1D File Offset: 0x002DBE1D
 			public Diagnostics(SoftMask softMask)
 			{
 				this._softMask = softMask;
 			}
 
-			// Token: 0x06004319 RID: 17177 RVA: 0x001CBF44 File Offset: 0x001CA144
+			// Token: 0x06008322 RID: 33570 RVA: 0x002DDC28 File Offset: 0x002DBE28
 			public SoftMask.Errors PollErrors()
 			{
 				SoftMask softMask = this._softMask;
@@ -1408,7 +1408,7 @@ namespace SoftMasking
 				return errors;
 			}
 
-			// Token: 0x0600431A RID: 17178 RVA: 0x001CBFEC File Offset: 0x001CA1EC
+			// Token: 0x06008323 RID: 33571 RVA: 0x002DDCD0 File Offset: 0x002DBED0
 			public static SoftMask.Errors CheckSprite(Sprite sprite)
 			{
 				SoftMask.Errors errors = SoftMask.Errors.NoError;
@@ -1427,8 +1427,8 @@ namespace SoftMasking
 				return errors;
 			}
 
-			// Token: 0x170007C7 RID: 1991
-			// (get) Token: 0x0600431B RID: 17179 RVA: 0x0002FF2B File Offset: 0x0002E12B
+			// Token: 0x17000B36 RID: 2870
+			// (get) Token: 0x06008324 RID: 33572 RVA: 0x002DDD0F File Offset: 0x002DBF0F
 			private Image image
 			{
 				get
@@ -1437,8 +1437,8 @@ namespace SoftMasking
 				}
 			}
 
-			// Token: 0x170007C8 RID: 1992
-			// (get) Token: 0x0600431C RID: 17180 RVA: 0x0002FF3D File Offset: 0x0002E13D
+			// Token: 0x17000B37 RID: 2871
+			// (get) Token: 0x06008325 RID: 33573 RVA: 0x002DDD21 File Offset: 0x002DBF21
 			private Sprite sprite
 			{
 				get
@@ -1447,8 +1447,8 @@ namespace SoftMasking
 				}
 			}
 
-			// Token: 0x170007C9 RID: 1993
-			// (get) Token: 0x0600431D RID: 17181 RVA: 0x0002FF4F File Offset: 0x0002E14F
+			// Token: 0x17000B38 RID: 2872
+			// (get) Token: 0x06008326 RID: 33574 RVA: 0x002DDD33 File Offset: 0x002DBF33
 			private Texture texture
 			{
 				get
@@ -1457,7 +1457,7 @@ namespace SoftMasking
 				}
 			}
 
-			// Token: 0x0600431E RID: 17182 RVA: 0x001CC02C File Offset: 0x001CA22C
+			// Token: 0x06008327 RID: 33575 RVA: 0x002DDD48 File Offset: 0x002DBF48
 			private bool ThereAreNestedMasks()
 			{
 				SoftMask softMask = this._softMask;
@@ -1472,7 +1472,7 @@ namespace SoftMasking
 				return flag;
 			}
 
-			// Token: 0x0600431F RID: 17183 RVA: 0x001CC0D0 File Offset: 0x001CA2D0
+			// Token: 0x06008328 RID: 33576 RVA: 0x002DDDEC File Offset: 0x002DBFEC
 			private SoftMask.Errors CheckImage()
 			{
 				SoftMask.Errors errors = SoftMask.Errors.NoError;
@@ -1487,7 +1487,7 @@ namespace SoftMasking
 				return errors;
 			}
 
-			// Token: 0x06004320 RID: 17184 RVA: 0x001CC114 File Offset: 0x001CA314
+			// Token: 0x06008329 RID: 33577 RVA: 0x002DDE30 File Offset: 0x002DC030
 			private SoftMask.Errors CheckTexture()
 			{
 				SoftMask.Errors errors = SoftMask.Errors.NoError;
@@ -1506,13 +1506,13 @@ namespace SoftMasking
 				return errors;
 			}
 
-			// Token: 0x06004321 RID: 17185 RVA: 0x001CC168 File Offset: 0x001CA368
+			// Token: 0x0600832A RID: 33578 RVA: 0x002DDE84 File Offset: 0x002DC084
 			private static bool AreCompeting(SoftMask softMask, SoftMask other)
 			{
 				return softMask.isMaskingEnabled && softMask != other && other.isMaskingEnabled && softMask.canvas.rootCanvas == other.canvas.rootCanvas && !SoftMask.Diagnostics.SelectChild<SoftMask>(softMask, other).canvas.overrideSorting;
 			}
 
-			// Token: 0x06004322 RID: 17186 RVA: 0x0002FF61 File Offset: 0x0002E161
+			// Token: 0x0600832B RID: 33579 RVA: 0x002DDEDD File Offset: 0x002DC0DD
 			private static T SelectChild<T>(T first, T second) where T : Component
 			{
 				if (!first.transform.IsChildOf(second.transform))
@@ -1522,7 +1522,7 @@ namespace SoftMasking
 				return first;
 			}
 
-			// Token: 0x06004323 RID: 17187 RVA: 0x001CC1C4 File Offset: 0x001CA3C4
+			// Token: 0x0600832C RID: 33580 RVA: 0x002DDF00 File Offset: 0x002DC100
 			private static bool IsReadable(Texture2D texture)
 			{
 				bool result;
@@ -1538,14 +1538,14 @@ namespace SoftMasking
 				return result;
 			}
 
-			// Token: 0x04003B47 RID: 15175
+			// Token: 0x04006E89 RID: 28297
 			private SoftMask _softMask;
 		}
 
-		// Token: 0x02000A1E RID: 2590
+		// Token: 0x0200151F RID: 5407
 		private struct WarningReporter
 		{
-			// Token: 0x06004329 RID: 17193 RVA: 0x0002FFA9 File Offset: 0x0002E1A9
+			// Token: 0x0600832D RID: 33581 RVA: 0x002DDF30 File Offset: 0x002DC130
 			public WarningReporter(Object owner)
 			{
 				this._owner = owner;
@@ -1555,7 +1555,7 @@ namespace SoftMasking
 				this._lastUsedImageType = 0;
 			}
 
-			// Token: 0x0600432A RID: 17194 RVA: 0x001CC1F4 File Offset: 0x001CA3F4
+			// Token: 0x0600832E RID: 33582 RVA: 0x002DDF58 File Offset: 0x002DC158
 			public void TextureRead(Texture texture, SoftMask.MaterialParameters.SampleMaskResult sampleResult)
 			{
 				if (this._lastReadTexture == texture)
@@ -1581,7 +1581,7 @@ namespace SoftMasking
 				});
 			}
 
-			// Token: 0x0600432B RID: 17195 RVA: 0x001CC260 File Offset: 0x001CA460
+			// Token: 0x0600832F RID: 33583 RVA: 0x002DDFC4 File Offset: 0x002DC1C4
 			public void SpriteUsed(Sprite sprite, SoftMask.Errors errors)
 			{
 				if (this._lastUsedSprite == sprite)
@@ -1599,7 +1599,7 @@ namespace SoftMasking
 				}
 			}
 
-			// Token: 0x0600432C RID: 17196 RVA: 0x001CC2B0 File Offset: 0x001CA4B0
+			// Token: 0x06008330 RID: 33584 RVA: 0x002DE014 File Offset: 0x002DC214
 			public void ImageUsed(Image image)
 			{
 				if (!image)
@@ -1628,19 +1628,19 @@ namespace SoftMasking
 				});
 			}
 
-			// Token: 0x04003B4A RID: 15178
+			// Token: 0x04006E8A RID: 28298
 			private Object _owner;
 
-			// Token: 0x04003B4B RID: 15179
+			// Token: 0x04006E8B RID: 28299
 			private Texture _lastReadTexture;
 
-			// Token: 0x04003B4C RID: 15180
+			// Token: 0x04006E8C RID: 28300
 			private Sprite _lastUsedSprite;
 
-			// Token: 0x04003B4D RID: 15181
+			// Token: 0x04006E8D RID: 28301
 			private Sprite _lastUsedImageSprite;
 
-			// Token: 0x04003B4E RID: 15182
+			// Token: 0x04006E8E RID: 28302
 			private Image.Type _lastUsedImageType;
 		}
 	}

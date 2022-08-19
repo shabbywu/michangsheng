@@ -3,10 +3,10 @@ using ICSharpCode.SharpZipLib.Core;
 
 namespace ICSharpCode.SharpZipLib.Zip
 {
-	// Token: 0x020007F0 RID: 2032
+	// Token: 0x0200054D RID: 1357
 	public class PathTransformer : INameTransform
 	{
-		// Token: 0x06003441 RID: 13377 RVA: 0x000261DA File Offset: 0x000243DA
+		// Token: 0x06002BE6 RID: 11238 RVA: 0x0014771B File Offset: 0x0014591B
 		public string TransformDirectory(string name)
 		{
 			name = this.TransformFile(name);
@@ -21,7 +21,7 @@ namespace ICSharpCode.SharpZipLib.Zip
 			throw new ZipException("Cannot have an empty directory name");
 		}
 
-		// Token: 0x06003442 RID: 13378 RVA: 0x00193578 File Offset: 0x00191778
+		// Token: 0x06002BE7 RID: 11239 RVA: 0x00147758 File Offset: 0x00145958
 		public string TransformFile(string name)
 		{
 			if (name != null)

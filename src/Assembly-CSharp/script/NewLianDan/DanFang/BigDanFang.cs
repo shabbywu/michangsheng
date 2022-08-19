@@ -7,11 +7,11 @@ using UnityEngine.UI;
 
 namespace script.NewLianDan.DanFang
 {
-	// Token: 0x02000ACC RID: 2764
+	// Token: 0x020009FD RID: 2557
 	public class BigDanFang : UIBase
 	{
-		// Token: 0x170007D7 RID: 2007
-		// (get) Token: 0x0600468B RID: 18059 RVA: 0x0003250F File Offset: 0x0003070F
+		// Token: 0x170005B3 RID: 1459
+		// (get) Token: 0x060046DB RID: 18139 RVA: 0x001DFFB0 File Offset: 0x001DE1B0
 		public bool IsSelect
 		{
 			get
@@ -20,7 +20,7 @@ namespace script.NewLianDan.DanFang
 			}
 		}
 
-		// Token: 0x0600468C RID: 18060 RVA: 0x001E26BC File Offset: 0x001E08BC
+		// Token: 0x060046DC RID: 18140 RVA: 0x001DFFB8 File Offset: 0x001DE1B8
 		public BigDanFang(GameObject go, DanFangData data, BaseItem baseItem)
 		{
 			this._go = go;
@@ -46,7 +46,7 @@ namespace script.NewLianDan.DanFang
 			this.UpdateState();
 		}
 
-		// Token: 0x0600468D RID: 18061 RVA: 0x001E286C File Offset: 0x001E0A6C
+		// Token: 0x060046DD RID: 18141 RVA: 0x001E0168 File Offset: 0x001DE368
 		public void CreateChild()
 		{
 			this.Clear();
@@ -67,13 +67,13 @@ namespace script.NewLianDan.DanFang
 			}
 		}
 
-		// Token: 0x0600468E RID: 18062 RVA: 0x00032517 File Offset: 0x00030717
+		// Token: 0x060046DE RID: 18142 RVA: 0x001E024B File Offset: 0x001DE44B
 		public float GetHeight()
 		{
 			return Math.Abs(this.ChildList[this.ChildList.Count - 1].GetTransform().localPosition.y) + 107f;
 		}
 
-		// Token: 0x0600468F RID: 18063 RVA: 0x001E2950 File Offset: 0x001E0B50
+		// Token: 0x060046DF RID: 18143 RVA: 0x001E0280 File Offset: 0x001DE480
 		private void Select()
 		{
 			this._isSelect = true;
@@ -96,7 +96,7 @@ namespace script.NewLianDan.DanFang
 			LianDanUIMag.Instance.DanFangPanel.SetBigDanFangCallBack(this);
 		}
 
-		// Token: 0x06004690 RID: 18064 RVA: 0x001E2A10 File Offset: 0x001E0C10
+		// Token: 0x060046E0 RID: 18144 RVA: 0x001E0340 File Offset: 0x001DE540
 		public void Enter()
 		{
 			if (ToolTipsMag.Inst == null)
@@ -106,13 +106,13 @@ namespace script.NewLianDan.DanFang
 			ToolTipsMag.Inst.Show(this.BaseItem, new Vector2(LianDanUIMag.Instance.Vector2.position.x, ToolTipsMag.Inst.GetMouseY()));
 		}
 
-		// Token: 0x06004691 RID: 18065 RVA: 0x0003254B File Offset: 0x0003074B
+		// Token: 0x060046E1 RID: 18145 RVA: 0x001E03AC File Offset: 0x001DE5AC
 		public void Out()
 		{
 			ToolTipsMag.Inst.Close();
 		}
 
-		// Token: 0x06004692 RID: 18066 RVA: 0x00032557 File Offset: 0x00030757
+		// Token: 0x060046E2 RID: 18146 RVA: 0x001E03B8 File Offset: 0x001DE5B8
 		private void UnSelect()
 		{
 			this._isSelect = false;
@@ -121,7 +121,7 @@ namespace script.NewLianDan.DanFang
 			LianDanUIMag.Instance.DanFangPanel.UpdatePosition();
 		}
 
-		// Token: 0x06004693 RID: 18067 RVA: 0x001E2A7C File Offset: 0x001E0C7C
+		// Token: 0x060046E3 RID: 18147 RVA: 0x001E03E8 File Offset: 0x001DE5E8
 		public void UpdateState()
 		{
 			DanFangBase danFangData = this.ChildList[0].DanFangData;
@@ -169,7 +169,7 @@ namespace script.NewLianDan.DanFang
 			this._canMade2.SetActive(false);
 		}
 
-		// Token: 0x06004694 RID: 18068 RVA: 0x001E2BF4 File Offset: 0x001E0DF4
+		// Token: 0x060046E4 RID: 18148 RVA: 0x001E0560 File Offset: 0x001DE760
 		public bool CheckCanMade()
 		{
 			if (this.ChildList.Count == 0)
@@ -194,7 +194,7 @@ namespace script.NewLianDan.DanFang
 			return result;
 		}
 
-		// Token: 0x06004695 RID: 18069 RVA: 0x001E2C94 File Offset: 0x001E0E94
+		// Token: 0x060046E5 RID: 18149 RVA: 0x001E0600 File Offset: 0x001DE800
 		private void Clear()
 		{
 			if (this.ChildList.Count > 0)
@@ -207,7 +207,7 @@ namespace script.NewLianDan.DanFang
 			this.ChildList = new List<SmallDanFang>();
 		}
 
-		// Token: 0x06004696 RID: 18070 RVA: 0x00032587 File Offset: 0x00030787
+		// Token: 0x060046E6 RID: 18150 RVA: 0x001E066C File Offset: 0x001DE86C
 		public void RemoveChild(SmallDanFang smallDanFang)
 		{
 			this.ChildList.Remove(smallDanFang);
@@ -215,40 +215,40 @@ namespace script.NewLianDan.DanFang
 			smallDanFang.Destroy();
 		}
 
-		// Token: 0x06004697 RID: 18071 RVA: 0x000325B3 File Offset: 0x000307B3
+		// Token: 0x060046E7 RID: 18151 RVA: 0x001E0698 File Offset: 0x001DE898
 		public void Destroy()
 		{
 			Object.Destroy(this._go);
 		}
 
-		// Token: 0x04003EA2 RID: 16034
+		// Token: 0x04004823 RID: 18467
 		private bool _isSelect;
 
-		// Token: 0x04003EA3 RID: 16035
+		// Token: 0x04004824 RID: 18468
 		public DanFangData Data;
 
-		// Token: 0x04003EA4 RID: 16036
+		// Token: 0x04004825 RID: 18469
 		public BaseItem BaseItem;
 
-		// Token: 0x04003EA5 RID: 16037
+		// Token: 0x04004826 RID: 18470
 		private GameObject _unSelect;
 
-		// Token: 0x04003EA6 RID: 16038
+		// Token: 0x04004827 RID: 18471
 		private GameObject _canMade1;
 
-		// Token: 0x04003EA7 RID: 16039
+		// Token: 0x04004828 RID: 18472
 		private GameObject _select;
 
-		// Token: 0x04003EA8 RID: 16040
+		// Token: 0x04004829 RID: 18473
 		private GameObject _canMade2;
 
-		// Token: 0x04003EA9 RID: 16041
+		// Token: 0x0400482A RID: 18474
 		private Text _zhuYao1;
 
-		// Token: 0x04003EAA RID: 16042
+		// Token: 0x0400482B RID: 18475
 		private Text _fuYao1;
 
-		// Token: 0x04003EAB RID: 16043
+		// Token: 0x0400482C RID: 18476
 		public List<SmallDanFang> ChildList = new List<SmallDanFang>();
 	}
 }

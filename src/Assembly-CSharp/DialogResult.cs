@@ -1,20 +1,20 @@
 ﻿using System;
 
-// Token: 0x02000232 RID: 562
+// Token: 0x0200015B RID: 347
 public enum DialogResult
 {
-	// Token: 0x04000E02 RID: 3586
+	// Token: 0x04000B5D RID: 2909
 	Yes,
-	// Token: 0x04000E03 RID: 3587
+	// Token: 0x04000B5E RID: 2910
 	No,
-	// Token: 0x04000E04 RID: 3588
+	// Token: 0x04000B5F RID: 2911
 	OK,
-	// Token: 0x04000E05 RID: 3589
+	// Token: 0x04000B60 RID: 2912
 	Cancel,
-	// Token: 0x04000E06 RID: 3590
+	// Token: 0x04000B61 RID: 2913
 	Abort,
-	// Token: 0x04000E07 RID: 3591
+	// Token: 0x04000B62 RID: 2914
 	Retry,
-	// Token: 0x04000E08 RID: 3592
+	// Token: 0x04000B63 RID: 2915
 	Ignore
 }

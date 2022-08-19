@@ -4,10 +4,10 @@ using YSGame;
 
 namespace KBEngine
 {
-	// Token: 0x02001049 RID: 4169
+	// Token: 0x02000C86 RID: 3206
 	public class Skill
 	{
-		// Token: 0x0600642C RID: 25644 RVA: 0x00280E94 File Offset: 0x0027F094
+		// Token: 0x0600596F RID: 22895 RVA: 0x00255BA8 File Offset: 0x00253DA8
 		public int validCast(Entity caster, SCObject target)
 		{
 			if (Vector3.Distance(target.getPosition(), caster.position) > this.canUseDistMax)
@@ -34,7 +34,7 @@ namespace KBEngine
 			return 0;
 		}
 
-		// Token: 0x0600642D RID: 25645 RVA: 0x00044EB0 File Offset: 0x000430B0
+		// Token: 0x06005970 RID: 22896 RVA: 0x00255C89 File Offset: 0x00253E89
 		public int validCast(Entity caster)
 		{
 			if (this.restCoolTimer < this.coolTime)
@@ -48,13 +48,13 @@ namespace KBEngine
 			return 0;
 		}
 
-		// Token: 0x0600642E RID: 25646 RVA: 0x00044ED8 File Offset: 0x000430D8
+		// Token: 0x06005971 RID: 22897 RVA: 0x00255CB1 File Offset: 0x00253EB1
 		public void updateTimer(float second)
 		{
 			this.restCoolTimer += second;
 		}
 
-		// Token: 0x0600642F RID: 25647 RVA: 0x00280F78 File Offset: 0x0027F178
+		// Token: 0x06005972 RID: 22898 RVA: 0x00255CC4 File Offset: 0x00253EC4
 		public void use(Entity caster, SCObject target)
 		{
 			if (this.Skill_Type == Skill_Type.Directional_skill)
@@ -69,7 +69,7 @@ namespace KBEngine
 			this.restCoolTimer = 0f;
 		}
 
-		// Token: 0x06006430 RID: 25648 RVA: 0x00280FDC File Offset: 0x0027F1DC
+		// Token: 0x06005973 RID: 22899 RVA: 0x00255D28 File Offset: 0x00253F28
 		public void use(Entity caster)
 		{
 			if (jsonData.instance.skillJsonData[string.Concat(this.id)]["script"].str == "SkillSelf")
@@ -90,7 +90,7 @@ namespace KBEngine
 			this.restCoolTimer = 0f;
 		}
 
-		// Token: 0x06006431 RID: 25649 RVA: 0x00281080 File Offset: 0x0027F280
+		// Token: 0x06005974 RID: 22900 RVA: 0x00255DCC File Offset: 0x00253FCC
 		public void displaySkill(Entity caster, Entity target)
 		{
 			if (!ResManager.inst.CheckHasSkillEffect(this.skillEffect))
@@ -118,7 +118,7 @@ namespace KBEngine
 			}
 		}
 
-		// Token: 0x06006432 RID: 25650 RVA: 0x0028116C File Offset: 0x0027F36C
+		// Token: 0x06005975 RID: 22901 RVA: 0x00255EB8 File Offset: 0x002540B8
 		public void displaySkill(Entity caster)
 		{
 			if (this.displayType == Skill_DisplayType.SkillDisplay_Event_Bullet)
@@ -142,39 +142,39 @@ namespace KBEngine
 			}
 		}
 
-		// Token: 0x06006433 RID: 25651 RVA: 0x000042DD File Offset: 0x000024DD
+		// Token: 0x06005976 RID: 22902 RVA: 0x00004095 File Offset: 0x00002295
 		public void cast(object renderObj, float distance)
 		{
 		}
 
-		// Token: 0x04005DC7 RID: 24007
+		// Token: 0x0400521B RID: 21019
 		public string name;
 
-		// Token: 0x04005DC8 RID: 24008
+		// Token: 0x0400521C RID: 21020
 		public string descr;
 
-		// Token: 0x04005DC9 RID: 24009
+		// Token: 0x0400521D RID: 21021
 		public int id;
 
-		// Token: 0x04005DCA RID: 24010
+		// Token: 0x0400521E RID: 21022
 		public float canUseDistMin;
 
-		// Token: 0x04005DCB RID: 24011
+		// Token: 0x0400521F RID: 21023
 		public float canUseDistMax = 3f;
 
-		// Token: 0x04005DCC RID: 24012
+		// Token: 0x04005220 RID: 21024
 		public float coolTime = 0.5f;
 
-		// Token: 0x04005DCD RID: 24013
+		// Token: 0x04005221 RID: 21025
 		public Skill_Type Skill_Type;
 
-		// Token: 0x04005DCE RID: 24014
+		// Token: 0x04005222 RID: 21026
 		public Skill_DisplayType displayType = Skill_DisplayType.SkillDisplay_Event_Bullet;
 
-		// Token: 0x04005DCF RID: 24015
+		// Token: 0x04005223 RID: 21027
 		public string skillEffect;
 
-		// Token: 0x04005DD0 RID: 24016
+		// Token: 0x04005224 RID: 21028
 		public float restCoolTimer;
 	}
 }

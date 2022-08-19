@@ -5,10 +5,10 @@ using KBEngine;
 using UnityEngine;
 using UnityEngine.UI;
 
-// Token: 0x02000270 RID: 624
+// Token: 0x0200018A RID: 394
 public class headMag : MonoBehaviour
 {
-	// Token: 0x06001349 RID: 4937 RVA: 0x000B2F48 File Offset: 0x000B1148
+	// Token: 0x060010E2 RID: 4322 RVA: 0x000646C0 File Offset: 0x000628C0
 	private void Start()
 	{
 		if (UIHeadPanel.Inst != null)
@@ -24,13 +24,13 @@ public class headMag : MonoBehaviour
 		this.OldStart();
 	}
 
-	// Token: 0x0600134A RID: 4938 RVA: 0x0001224A File Offset: 0x0001044A
+	// Token: 0x060010E3 RID: 4323 RVA: 0x00064723 File Offset: 0x00062923
 	public void OldStart()
 	{
 		this.avatar = Tools.instance.getPlayer();
 	}
 
-	// Token: 0x0600134B RID: 4939 RVA: 0x000B2FAC File Offset: 0x000B11AC
+	// Token: 0x060010E4 RID: 4324 RVA: 0x00064738 File Offset: 0x00062938
 	public void setHead()
 	{
 		try
@@ -63,7 +63,7 @@ public class headMag : MonoBehaviour
 		}
 	}
 
-	// Token: 0x0600134C RID: 4940 RVA: 0x0001225C File Offset: 0x0001045C
+	// Token: 0x060010E5 RID: 4325 RVA: 0x00064800 File Offset: 0x00062A00
 	private void Update()
 	{
 		if (UIHeadPanel.Inst != null)
@@ -77,7 +77,7 @@ public class headMag : MonoBehaviour
 		this.OldUpdate();
 	}
 
-	// Token: 0x0600134D RID: 4941 RVA: 0x000B3074 File Offset: 0x000B1274
+	// Token: 0x060010E6 RID: 4326 RVA: 0x00064838 File Offset: 0x00062A38
 	public void OldUpdate()
 	{
 		try
@@ -89,45 +89,45 @@ public class headMag : MonoBehaviour
 		}
 	}
 
-	// Token: 0x04000EFD RID: 3837
+	// Token: 0x04000C18 RID: 3096
 	public GameObject headUI;
 
-	// Token: 0x04000EFE RID: 3838
+	// Token: 0x04000C19 RID: 3097
 	public UILabel time;
 
-	// Token: 0x04000EFF RID: 3839
+	// Token: 0x04000C1A RID: 3098
 	[SerializeField]
 	private List<Sprite> LevelSprites = new List<Sprite>();
 
-	// Token: 0x04000F00 RID: 3840
+	// Token: 0x04000C1B RID: 3099
 	[SerializeField]
 	private UI2DSprite LevelIcon;
 
-	// Token: 0x04000F01 RID: 3841
+	// Token: 0x04000C1C RID: 3100
 	private Avatar avatar;
 
-	// Token: 0x04000F02 RID: 3842
+	// Token: 0x04000C1D RID: 3101
 	[HideInInspector]
 	public bool isOut;
 
-	// Token: 0x04000F03 RID: 3843
+	// Token: 0x04000C1E RID: 3102
 	[HideInInspector]
 	public bool isOut2;
 
-	// Token: 0x04000F04 RID: 3844
+	// Token: 0x04000C1F RID: 3103
 	[SerializeField]
 	public Button BtnChuanYingFu;
 
-	// Token: 0x04000F05 RID: 3845
+	// Token: 0x04000C20 RID: 3104
 	public GameObject ChuanYingHongDian;
 
-	// Token: 0x04000F06 RID: 3846
+	// Token: 0x04000C21 RID: 3105
 	public GameObject TuJianHongDian;
 
-	// Token: 0x04000F07 RID: 3847
+	// Token: 0x04000C22 RID: 3106
 	public GameObject TieJianHongDian;
 
-	// Token: 0x04000F08 RID: 3848
+	// Token: 0x04000C23 RID: 3107
 	[SerializeField]
 	public Button BtnTuJian;
 }

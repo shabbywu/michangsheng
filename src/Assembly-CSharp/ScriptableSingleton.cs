@@ -1,11 +1,11 @@
 ﻿using System;
 using UnityEngine;
 
-// Token: 0x020007AB RID: 1963
+// Token: 0x02000517 RID: 1303
 public class ScriptableSingleton<T> : ScriptableObject where T : ScriptableObject
 {
-	// Token: 0x1700045C RID: 1116
-	// (get) Token: 0x060031F8 RID: 12792 RVA: 0x0018D0C8 File Offset: 0x0018B2C8
+	// Token: 0x170002BD RID: 701
+	// (get) Token: 0x060029E5 RID: 10725 RVA: 0x0013FE28 File Offset: 0x0013E028
 	public static T Instance
 	{
 		get
@@ -29,6 +29,6 @@ public class ScriptableSingleton<T> : ScriptableObject where T : ScriptableObjec
 		}
 	}
 
-	// Token: 0x04002E28 RID: 11816
+	// Token: 0x04002638 RID: 9784
 	private static T m_Instance;
 }

@@ -4,12 +4,12 @@ using UnityEngine;
 
 namespace UltimateSurvival
 {
-	// Token: 0x02000887 RID: 2183
+	// Token: 0x020005C5 RID: 1477
 	public class TimeOfDay : MonoSingleton<TimeOfDay>
 	{
-		// Token: 0x170005BC RID: 1468
-		// (get) Token: 0x0600384F RID: 14415 RVA: 0x00028EB4 File Offset: 0x000270B4
-		// (set) Token: 0x06003850 RID: 14416 RVA: 0x00028EBC File Offset: 0x000270BC
+		// Token: 0x170003FF RID: 1023
+		// (get) Token: 0x06002FBF RID: 12223 RVA: 0x001589CC File Offset: 0x00156BCC
+		// (set) Token: 0x06002FC0 RID: 12224 RVA: 0x001589D4 File Offset: 0x00156BD4
 		public float NormalizedTime
 		{
 			get
@@ -23,9 +23,9 @@ namespace UltimateSurvival
 			}
 		}
 
-		// Token: 0x170005BD RID: 1469
-		// (get) Token: 0x06003851 RID: 14417 RVA: 0x00028EFB File Offset: 0x000270FB
-		// (set) Token: 0x06003852 RID: 14418 RVA: 0x00028F03 File Offset: 0x00027103
+		// Token: 0x17000400 RID: 1024
+		// (get) Token: 0x06002FC1 RID: 12225 RVA: 0x00158A13 File Offset: 0x00156C13
+		// (set) Token: 0x06002FC2 RID: 12226 RVA: 0x00158A1B File Offset: 0x00156C1B
 		public int CurrentHour
 		{
 			get
@@ -38,8 +38,8 @@ namespace UltimateSurvival
 			}
 		}
 
-		// Token: 0x170005BE RID: 1470
-		// (get) Token: 0x06003853 RID: 14419 RVA: 0x00028F0C File Offset: 0x0002710C
+		// Token: 0x17000401 RID: 1025
+		// (get) Token: 0x06002FC3 RID: 12227 RVA: 0x00158A24 File Offset: 0x00156C24
 		public int DayDuration
 		{
 			get
@@ -48,7 +48,7 @@ namespace UltimateSurvival
 			}
 		}
 
-		// Token: 0x06003854 RID: 14420 RVA: 0x001A2A54 File Offset: 0x001A0C54
+		// Token: 0x06002FC4 RID: 12228 RVA: 0x00158A2C File Offset: 0x00156C2C
 		private void Awake()
 		{
 			if (!this.m_Sun || !this.m_Moon)
@@ -65,7 +65,7 @@ namespace UltimateSurvival
 			base.InvokeRepeating("DayZombie", 2f, 3f);
 		}
 
-		// Token: 0x06003855 RID: 14421 RVA: 0x001A2B00 File Offset: 0x001A0D00
+		// Token: 0x06002FC5 RID: 12229 RVA: 0x00158AD8 File Offset: 0x00156CD8
 		public void DayZombie()
 		{
 			if (this.m_InternalState == ET.TimeOfDay.Day)
@@ -94,7 +94,7 @@ namespace UltimateSurvival
 			this.useResteRole(51);
 		}
 
-		// Token: 0x06003856 RID: 14422 RVA: 0x001A2BCC File Offset: 0x001A0DCC
+		// Token: 0x06002FC6 RID: 12230 RVA: 0x00158BA4 File Offset: 0x00156DA4
 		private void OnGUI()
 		{
 			if (this.m_ShowGUI)
@@ -132,7 +132,7 @@ namespace UltimateSurvival
 			}
 		}
 
-		// Token: 0x06003857 RID: 14423 RVA: 0x001A2D50 File Offset: 0x001A0F50
+		// Token: 0x06002FC7 RID: 12231 RVA: 0x00158D28 File Offset: 0x00156F28
 		private void Update()
 		{
 			if (!this.m_StopTime)
@@ -165,7 +165,7 @@ namespace UltimateSurvival
 			GameController.NormalizedTime = this.NormalizedTime;
 		}
 
-		// Token: 0x06003858 RID: 14424 RVA: 0x001A2F60 File Offset: 0x001A1160
+		// Token: 0x06002FC8 RID: 12232 RVA: 0x00158F38 File Offset: 0x00157138
 		public void useResteRole(int itemid)
 		{
 			try
@@ -197,7 +197,7 @@ namespace UltimateSurvival
 			}
 		}
 
-		// Token: 0x06003859 RID: 14425 RVA: 0x00028F14 File Offset: 0x00027114
+		// Token: 0x06002FC9 RID: 12233 RVA: 0x0015900C File Offset: 0x0015720C
 		private void OnValidate()
 		{
 			this.AccommodateEditorChanges();
@@ -206,7 +206,7 @@ namespace UltimateSurvival
 			this.Update();
 		}
 
-		// Token: 0x0600385A RID: 14426 RVA: 0x00028F44 File Offset: 0x00027144
+		// Token: 0x06002FCA RID: 12234 RVA: 0x0015903C File Offset: 0x0015723C
 		private void AccommodateEditorChanges()
 		{
 			this.m_TimeIncrement = 1f / (float)this.m_DayDuration;
@@ -214,102 +214,102 @@ namespace UltimateSurvival
 			RenderSettings.fogMode = this.m_FogMode;
 		}
 
-		// Token: 0x040032A5 RID: 12965
+		// Token: 0x04002A0F RID: 10767
 		public Value<ET.TimeOfDay> State = new Value<ET.TimeOfDay>(ET.TimeOfDay.Day);
 
-		// Token: 0x040032A6 RID: 12966
+		// Token: 0x04002A10 RID: 10768
 		[Header("Setup")]
 		[SerializeField]
 		private Light m_Sun;
 
-		// Token: 0x040032A7 RID: 12967
+		// Token: 0x04002A11 RID: 10769
 		[SerializeField]
 		private Light m_Moon;
 
-		// Token: 0x040032A8 RID: 12968
+		// Token: 0x04002A12 RID: 10770
 		[Header("General")]
 		[SerializeField]
 		private bool m_StopTime;
 
-		// Token: 0x040032A9 RID: 12969
+		// Token: 0x04002A13 RID: 10771
 		[SerializeField]
 		private bool m_ShowGUI;
 
-		// Token: 0x040032AA RID: 12970
+		// Token: 0x04002A14 RID: 10772
 		[SerializeField]
 		[Range(0f, 24f)]
 		[Tooltip("The current hour (00:00 AM to 12:00 PM to 24:00 PM)")]
 		private int m_CurrentHour = 6;
 
-		// Token: 0x040032AB RID: 12971
+		// Token: 0x04002A15 RID: 10773
 		[SerializeField]
 		[Tooltip("How many seconds are in a day.")]
 		private int m_DayDuration = 900;
 
-		// Token: 0x040032AC RID: 12972
+		// Token: 0x04002A16 RID: 10774
 		[SerializeField]
 		[Tooltip("On which axis should the moon and sun rotate?")]
 		private Vector3 m_RotationAxis = Vector2.right;
 
-		// Token: 0x040032AD RID: 12973
+		// Token: 0x04002A17 RID: 10775
 		[Header("Fog")]
 		[SerializeField]
 		private FogMode m_FogMode = 3;
 
-		// Token: 0x040032AE RID: 12974
+		// Token: 0x04002A18 RID: 10776
 		[SerializeField]
 		[Tooltip("Fog intensity variation over the whole day & night cycle.")]
 		private AnimationCurve m_FogIntensity;
 
-		// Token: 0x040032AF RID: 12975
+		// Token: 0x04002A19 RID: 10777
 		[SerializeField]
 		[Tooltip("Fog color variation over the whole day & night cycle.")]
 		private Gradient m_FogColor;
 
-		// Token: 0x040032B0 RID: 12976
+		// Token: 0x04002A1A RID: 10778
 		[Header("Sun")]
 		[SerializeField]
 		[Tooltip("Sun intensity variation over the whole day & night cycle.")]
 		private AnimationCurve m_SunIntensity;
 
-		// Token: 0x040032B1 RID: 12977
+		// Token: 0x04002A1B RID: 10779
 		[SerializeField]
 		[Tooltip("Sun color variation over the whole day & night cycle.")]
 		private Gradient m_SunColor;
 
-		// Token: 0x040032B2 RID: 12978
+		// Token: 0x04002A1C RID: 10780
 		[Header("Moon")]
 		[SerializeField]
 		[Tooltip("Moon intensity variation over the whole day & night cycle.")]
 		private AnimationCurve m_MoonIntensity;
 
-		// Token: 0x040032B3 RID: 12979
+		// Token: 0x04002A1D RID: 10781
 		[SerializeField]
 		[Tooltip("Moon color variation over the whole day & night cycle.")]
 		private Gradient m_MoonColor;
 
-		// Token: 0x040032B4 RID: 12980
+		// Token: 0x04002A1E RID: 10782
 		[Header("Skybox")]
 		[SerializeField]
 		private Material m_Skybox;
 
-		// Token: 0x040032B5 RID: 12981
+		// Token: 0x04002A1F RID: 10783
 		[SerializeField]
 		private AnimationCurve m_SkyboxBlend;
 
-		// Token: 0x040032B6 RID: 12982
+		// Token: 0x04002A20 RID: 10784
 		private ET.TimeOfDay m_InternalState;
 
-		// Token: 0x040032B7 RID: 12983
+		// Token: 0x04002A21 RID: 10785
 		private Transform m_SunTransform;
 
-		// Token: 0x040032B8 RID: 12984
+		// Token: 0x04002A22 RID: 10786
 		private Transform m_MoonTransform;
 
-		// Token: 0x040032B9 RID: 12985
+		// Token: 0x04002A23 RID: 10787
 		private float m_NormalizedTime;
 
-		// Token: 0x040032BA RID: 12986
+		// Token: 0x04002A24 RID: 10788
 		private float m_TimeIncrement;
 	}
 }

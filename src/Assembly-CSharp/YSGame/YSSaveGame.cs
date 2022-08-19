@@ -7,10 +7,10 @@ using UnityEngine;
 
 namespace YSGame
 {
-	// Token: 0x02000DA6 RID: 3494
+	// Token: 0x02000A77 RID: 2679
 	public class YSSaveGame
 	{
-		// Token: 0x06005455 RID: 21589 RVA: 0x002315C4 File Offset: 0x0022F7C4
+		// Token: 0x06004B41 RID: 19265 RVA: 0x001FFB08 File Offset: 0x001FDD08
 		public static void Reset()
 		{
 			YSSaveGame.saveInt = new Dictionary<string, int>();
@@ -22,7 +22,7 @@ namespace YSGame
 			jsonData.instance.AvatarBackpackJsonData = null;
 		}
 
-		// Token: 0x06005456 RID: 21590 RVA: 0x0023161C File Offset: 0x0022F81C
+		// Token: 0x06004B42 RID: 19266 RVA: 0x001FFB60 File Offset: 0x001FDD60
 		public static void save(string name, JSONObject json, string gamePath = "-1")
 		{
 			JSONObject value = new JSONObject(json.ToString(), -2, false, false);
@@ -30,7 +30,7 @@ namespace YSGame
 			YSSaveGame.WriteIntoTxt(name, YSSaveGame.saveJSONObject[name].ToString(), gamePath);
 		}
 
-		// Token: 0x06005457 RID: 21591 RVA: 0x0023165C File Offset: 0x0022F85C
+		// Token: 0x06004B43 RID: 19267 RVA: 0x001FFBA0 File Offset: 0x001FDDA0
 		public static void save(string name, JObject json)
 		{
 			JObject value = new JObject(json.ToString());
@@ -38,48 +38,48 @@ namespace YSGame
 			YSSaveGame.WriteIntoTxt(name, YSSaveGame.saveJObject[name].ToString(), "-1");
 		}
 
-		// Token: 0x06005458 RID: 21592 RVA: 0x0003C654 File Offset: 0x0003A854
+		// Token: 0x06004B44 RID: 19268 RVA: 0x001FFBE0 File Offset: 0x001FDDE0
 		public static void save(string name, string json, string gamePath = "-1")
 		{
 			YSSaveGame.saveString[name] = json;
 			YSSaveGame.WriteIntoTxt(name, YSSaveGame.saveString[name], gamePath);
 		}
 
-		// Token: 0x06005459 RID: 21593 RVA: 0x0023169C File Offset: 0x0022F89C
+		// Token: 0x06004B45 RID: 19269 RVA: 0x001FFC00 File Offset: 0x001FDE00
 		public static void save(string name, int json, string gamePath = "-1")
 		{
 			YSSaveGame.saveInt[name] = json;
 			YSSaveGame.WriteIntoTxt(name, YSSaveGame.saveInt[name].ToString(), gamePath);
 		}
 
-		// Token: 0x0600545A RID: 21594 RVA: 0x0003C674 File Offset: 0x0003A874
+		// Token: 0x06004B46 RID: 19270 RVA: 0x00075181 File Offset: 0x00073381
 		public static string GetString(JSONObject json, string name, string ret = "")
 		{
 			json.GetField(ref ret, name, null);
 			return ret;
 		}
 
-		// Token: 0x0600545B RID: 21595 RVA: 0x0003C682 File Offset: 0x0003A882
+		// Token: 0x06004B47 RID: 19271 RVA: 0x00075165 File Offset: 0x00073365
 		public static int GetInt(JSONObject json, string name, int ret = 0)
 		{
 			json.GetField(ref ret, name, null);
 			return ret;
 		}
 
-		// Token: 0x0600545C RID: 21596 RVA: 0x0003C690 File Offset: 0x0003A890
+		// Token: 0x06004B48 RID: 19272 RVA: 0x00075173 File Offset: 0x00073373
 		public static float GetFloat(JSONObject json, string name, float ret = 0f)
 		{
 			json.GetField(ref ret, name, null);
 			return ret;
 		}
 
-		// Token: 0x0600545D RID: 21597 RVA: 0x0003C69E File Offset: 0x0003A89E
+		// Token: 0x06004B49 RID: 19273 RVA: 0x001FFC33 File Offset: 0x001FDE33
 		public static JSONObject GetJsonObject(JSONObject json, string name, JSONObject ret = null)
 		{
 			return json.GetField(name);
 		}
 
-		// Token: 0x0600545E RID: 21598 RVA: 0x002316D0 File Offset: 0x0022F8D0
+		// Token: 0x06004B4A RID: 19274 RVA: 0x001FFC3C File Offset: 0x001FDE3C
 		public static string GetString(string name, string ret = "")
 		{
 			string result;
@@ -94,7 +94,7 @@ namespace YSGame
 			return result;
 		}
 
-		// Token: 0x0600545F RID: 21599 RVA: 0x00231704 File Offset: 0x0022F904
+		// Token: 0x06004B4B RID: 19275 RVA: 0x001FFC70 File Offset: 0x001FDE70
 		public static JSONObject GetJsonObject(string name, JSONObject json = null)
 		{
 			JSONObject result;
@@ -109,7 +109,7 @@ namespace YSGame
 			return result;
 		}
 
-		// Token: 0x06005460 RID: 21600 RVA: 0x00231740 File Offset: 0x0022F940
+		// Token: 0x06004B4C RID: 19276 RVA: 0x001FFCAC File Offset: 0x001FDEAC
 		public static JObject GetJObject(string name, JObject json = null)
 		{
 			JObject result;
@@ -124,7 +124,7 @@ namespace YSGame
 			return result;
 		}
 
-		// Token: 0x06005461 RID: 21601 RVA: 0x00231778 File Offset: 0x0022F978
+		// Token: 0x06004B4D RID: 19277 RVA: 0x001FFCE4 File Offset: 0x001FDEE4
 		public static int GetInt(string name, int ret = 0)
 		{
 			int result = ret;
@@ -152,19 +152,19 @@ namespace YSGame
 			return result;
 		}
 
-		// Token: 0x06005462 RID: 21602 RVA: 0x0003C6A7 File Offset: 0x0003A8A7
+		// Token: 0x06004B4E RID: 19278 RVA: 0x001FFD90 File Offset: 0x001FDF90
 		public static bool HasKey(string str)
 		{
 			return new FileInfo(Application.dataPath + "/" + str + ".sav").Exists;
 		}
 
-		// Token: 0x06005463 RID: 21603 RVA: 0x0003C6CD File Offset: 0x0003A8CD
+		// Token: 0x06004B4F RID: 19279 RVA: 0x001FFDB6 File Offset: 0x001FDFB6
 		public static bool HasFile(string path, string str)
 		{
 			return new FileInfo(path + "/" + str + ".sav").Exists;
 		}
 
-		// Token: 0x06005464 RID: 21604 RVA: 0x00231824 File Offset: 0x0022FA24
+		// Token: 0x06004B50 RID: 19280 RVA: 0x001FFDD8 File Offset: 0x001FDFD8
 		public static void WriteIntoTxt(string TextName, string message, string persistentDataPath = "-1")
 		{
 			string value = message.Replace('\n', YSSaveGame.huanHangChar);
@@ -191,7 +191,7 @@ namespace YSGame
 			YSSaveGame.writer.Close();
 		}
 
-		// Token: 0x06005465 RID: 21605 RVA: 0x002318CC File Offset: 0x0022FACC
+		// Token: 0x06004B51 RID: 19281 RVA: 0x001FFE80 File Offset: 0x001FE080
 		public static void ReadOutTxt(string TextName)
 		{
 			YSSaveGame.readerText = "";
@@ -213,20 +213,20 @@ namespace YSGame
 			}
 		}
 
-		// Token: 0x06005466 RID: 21606 RVA: 0x0003C6EF File Offset: 0x0003A8EF
+		// Token: 0x06004B52 RID: 19282 RVA: 0x001FFF34 File Offset: 0x001FE134
 		public static string GetTextNameData(string TextName)
 		{
 			YSSaveGame.ReadOutTxt(TextName);
 			return YSSaveGame.readerText;
 		}
 
-		// Token: 0x06005467 RID: 21607 RVA: 0x0003C6FC File Offset: 0x0003A8FC
+		// Token: 0x06004B53 RID: 19283 RVA: 0x001FFF41 File Offset: 0x001FE141
 		public static void InitYSSaveGame()
 		{
 			YSSaveGame.SaveJsonData = new JSONObject("", -2, false, false);
 		}
 
-		// Token: 0x06005468 RID: 21608 RVA: 0x00231980 File Offset: 0x0022FB80
+		// Token: 0x06004B54 RID: 19284 RVA: 0x001FFF58 File Offset: 0x001FE158
 		public static void CheckAndDelOldSave()
 		{
 			DirectoryInfo directoryInfo = new DirectoryInfo(Paths.GetSavePath());
@@ -242,37 +242,37 @@ namespace YSGame
 			}
 		}
 
-		// Token: 0x0400540B RID: 21515
+		// Token: 0x04004A66 RID: 19046
 		public static Dictionary<string, int> saveInt = new Dictionary<string, int>();
 
-		// Token: 0x0400540C RID: 21516
+		// Token: 0x04004A67 RID: 19047
 		private static Dictionary<string, float> saveFloat = new Dictionary<string, float>();
 
-		// Token: 0x0400540D RID: 21517
+		// Token: 0x04004A68 RID: 19048
 		public static Dictionary<string, string> saveString = new Dictionary<string, string>();
 
-		// Token: 0x0400540E RID: 21518
+		// Token: 0x04004A69 RID: 19049
 		public static Dictionary<string, JSONObject> saveJSONObject = new Dictionary<string, JSONObject>();
 
-		// Token: 0x0400540F RID: 21519
+		// Token: 0x04004A6A RID: 19050
 		public static Dictionary<string, JObject> saveJObject = new Dictionary<string, JObject>();
 
-		// Token: 0x04005410 RID: 21520
+		// Token: 0x04004A6B RID: 19051
 		public static JSONObject SaveJsonData = new JSONObject(JSONObject.Type.OBJECT);
 
-		// Token: 0x04005411 RID: 21521
+		// Token: 0x04004A6C RID: 19052
 		public static int curSaveIndex = -1;
 
-		// Token: 0x04005412 RID: 21522
+		// Token: 0x04004A6D RID: 19053
 		private static StreamWriter writer;
 
-		// Token: 0x04005413 RID: 21523
+		// Token: 0x04004A6E RID: 19054
 		private static StreamReader reader;
 
-		// Token: 0x04005414 RID: 21524
+		// Token: 0x04004A6F RID: 19055
 		private static string readerText = "";
 
-		// Token: 0x04005415 RID: 21525
+		// Token: 0x04004A70 RID: 19056
 		public static char huanHangChar = 'þ';
 	}
 }

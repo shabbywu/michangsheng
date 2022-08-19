@@ -1,14 +1,14 @@
 ﻿using System;
 
-// Token: 0x0200042D RID: 1069
+// Token: 0x020002DB RID: 731
 public enum JiaoYiSkillType
 {
-	// Token: 0x04001878 RID: 6264
+	// Token: 0x04001498 RID: 5272
 	全部,
-	// Token: 0x04001879 RID: 6265
+	// Token: 0x04001499 RID: 5273
 	神通,
-	// Token: 0x0400187A RID: 6266
+	// Token: 0x0400149A RID: 5274
 	功法,
-	// Token: 0x0400187B RID: 6267
+	// Token: 0x0400149B RID: 5275
 	其他
 }

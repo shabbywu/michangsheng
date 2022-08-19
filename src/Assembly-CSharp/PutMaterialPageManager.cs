@@ -5,10 +5,10 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
 
-// Token: 0x0200045B RID: 1115
+// Token: 0x020002FE RID: 766
 public class PutMaterialPageManager : MonoBehaviour
 {
-	// Token: 0x06001DDA RID: 7642 RVA: 0x00104184 File Offset: 0x00102384
+	// Token: 0x06001AB4 RID: 6836 RVA: 0x000BE330 File Offset: 0x000BC530
 	public void init()
 	{
 		base.gameObject.SetActive(false);
@@ -20,7 +20,7 @@ public class PutMaterialPageManager : MonoBehaviour
 		this.zhongLingLiManager.init();
 	}
 
-	// Token: 0x06001DDB RID: 7643 RVA: 0x001041E0 File Offset: 0x001023E0
+	// Token: 0x06001AB5 RID: 6837 RVA: 0x000BE38C File Offset: 0x000BC58C
 	public void openPutMaterialPage()
 	{
 		base.gameObject.SetActive(true);
@@ -30,14 +30,14 @@ public class PutMaterialPageManager : MonoBehaviour
 		LianQiTotalManager.inst.putMaterialPageManager.lianQiPageManager.putCaiLiaoCell.UpdateCell();
 	}
 
-	// Token: 0x06001DDC RID: 7644 RVA: 0x00018D6B File Offset: 0x00016F6B
+	// Token: 0x06001AB6 RID: 6838 RVA: 0x000BE3E4 File Offset: 0x000BC5E4
 	private void updateShuJu()
 	{
 		this.wuWeiManager.updateWuWei();
 		LianQiTotalManager.inst.putCaiLiaoCallBack();
 	}
 
-	// Token: 0x06001DDD RID: 7645 RVA: 0x00104238 File Offset: 0x00102438
+	// Token: 0x06001AB7 RID: 6839 RVA: 0x000BE3FC File Offset: 0x000BC5FC
 	private bool CheckXiangKe()
 	{
 		Avatar player = Tools.instance.getPlayer();
@@ -62,7 +62,7 @@ public class PutMaterialPageManager : MonoBehaviour
 		return (text.Contains("金") && text.Contains("木")) || (text.Contains("水") && text.Contains("火")) || (text.Contains("木") && text.Contains("土")) || (text.Contains("土") && text.Contains("水")) || (text.Contains("火") && text.Contains("金"));
 	}
 
-	// Token: 0x06001DDE RID: 7646 RVA: 0x00018D82 File Offset: 0x00016F82
+	// Token: 0x06001AB8 RID: 6840 RVA: 0x000BE528 File Offset: 0x000BC728
 	public void updateWuXingXiangKeTips()
 	{
 		if (this.CheckXiangKe())
@@ -71,7 +71,7 @@ public class PutMaterialPageManager : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001DDF RID: 7647 RVA: 0x00104364 File Offset: 0x00102564
+	// Token: 0x06001AB9 RID: 6841 RVA: 0x000BE544 File Offset: 0x000BC744
 	public void updateCaiLiaoSum()
 	{
 		if (this.lianQiPageManager.GetHasItemSlot().Count < 10)
@@ -86,7 +86,7 @@ public class PutMaterialPageManager : MonoBehaviour
 		this.lianQiBtntext.sprite = this.lianQiBtnSprites[2];
 	}
 
-	// Token: 0x06001DE0 RID: 7648 RVA: 0x00104404 File Offset: 0x00102604
+	// Token: 0x06001ABA RID: 6842 RVA: 0x000BE5E4 File Offset: 0x000BC7E4
 	public void lianQiBtnOnclick()
 	{
 		if (this.lianQiPageManager.GetHasItemSlot().Count < 10)
@@ -131,40 +131,40 @@ public class PutMaterialPageManager : MonoBehaviour
 		USelectBox.Show("你能感受到这个器胚之中，灵力相互兼容浑然一体，" + text + ",是否确定要炼器?", new UnityAction(LianQiTotalManager.inst.lianQiSuccess), new UnityAction(LianQiTotalManager.inst.CloseBlack));
 	}
 
-	// Token: 0x06001DE1 RID: 7649 RVA: 0x001045E4 File Offset: 0x001027E4
+	// Token: 0x06001ABB RID: 6843 RVA: 0x000BE7C4 File Offset: 0x000BC9C4
 	public bool checkWuDaoLevel()
 	{
 		int wuDaoLevelByType = Tools.instance.getPlayer().wuDaoMag.getWuDaoLevelByType(22);
 		return (int)LianQiTotalManager.inst.getcurEquipQualityDate()["quality"] <= wuDaoLevelByType;
 	}
 
-	// Token: 0x04001982 RID: 6530
+	// Token: 0x04001575 RID: 5493
 	public WuWeiManager wuWeiManager;
 
-	// Token: 0x04001983 RID: 6531
+	// Token: 0x04001576 RID: 5494
 	public ChuShiLingLiManager chuShiLingLiManager;
 
-	// Token: 0x04001984 RID: 6532
+	// Token: 0x04001577 RID: 5495
 	public ZhongLingLiManager zhongLingLiManager;
 
-	// Token: 0x04001985 RID: 6533
+	// Token: 0x04001578 RID: 5496
 	public LingWenManager lingWenManager;
 
-	// Token: 0x04001986 RID: 6534
+	// Token: 0x04001579 RID: 5497
 	public ShowXiaoGuoManager showXiaoGuoManager;
 
-	// Token: 0x04001987 RID: 6535
+	// Token: 0x0400157A RID: 5498
 	public LianQiPageManager lianQiPageManager;
 
-	// Token: 0x04001988 RID: 6536
+	// Token: 0x0400157B RID: 5499
 	[SerializeField]
 	private Button lianQiBtn;
 
-	// Token: 0x04001989 RID: 6537
+	// Token: 0x0400157C RID: 5500
 	[SerializeField]
 	private List<Sprite> lianQiBtnSprites;
 
-	// Token: 0x0400198A RID: 6538
+	// Token: 0x0400157D RID: 5501
 	[SerializeField]
 	private Image lianQiBtntext;
 }

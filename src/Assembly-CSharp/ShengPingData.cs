@@ -2,15 +2,15 @@
 using System.Collections.Generic;
 using JSONClass;
 
-// Token: 0x020002DB RID: 731
+// Token: 0x020001D0 RID: 464
 public class ShengPingData : IComparable
 {
-	// Token: 0x06001604 RID: 5636 RVA: 0x0000403D File Offset: 0x0000223D
+	// Token: 0x06001348 RID: 4936 RVA: 0x000027FC File Offset: 0x000009FC
 	public ShengPingData()
 	{
 	}
 
-	// Token: 0x06001605 RID: 5637 RVA: 0x000C61E0 File Offset: 0x000C43E0
+	// Token: 0x06001349 RID: 4937 RVA: 0x0007948C File Offset: 0x0007768C
 	public ShengPingData(JSONObject json)
 	{
 		this.time = DateTime.Parse(json["time"].str);
@@ -25,7 +25,7 @@ public class ShengPingData : IComparable
 		}
 	}
 
-	// Token: 0x06001606 RID: 5638 RVA: 0x000C628C File Offset: 0x000C448C
+	// Token: 0x0600134A RID: 4938 RVA: 0x00079538 File Offset: 0x00077738
 	public JSONObject ToJson()
 	{
 		JSONObject jsonobject = new JSONObject(JSONObject.Type.OBJECT);
@@ -42,7 +42,7 @@ public class ShengPingData : IComparable
 		return jsonobject;
 	}
 
-	// Token: 0x06001607 RID: 5639 RVA: 0x000C6334 File Offset: 0x000C4534
+	// Token: 0x0600134B RID: 4939 RVA: 0x000795E0 File Offset: 0x000777E0
 	public int CompareTo(object obj)
 	{
 		ShengPingData shengPingData = obj as ShengPingData;
@@ -53,7 +53,7 @@ public class ShengPingData : IComparable
 		return this.time.CompareTo(shengPingData.time);
 	}
 
-	// Token: 0x06001608 RID: 5640 RVA: 0x000C6380 File Offset: 0x000C4580
+	// Token: 0x0600134C RID: 4940 RVA: 0x0007962C File Offset: 0x0007782C
 	public override string ToString()
 	{
 		string text = "null";
@@ -91,15 +91,15 @@ public class ShengPingData : IComparable
 		return string.Format("时间:{0} 参数:{1}", this.time, text);
 	}
 
-	// Token: 0x040011DB RID: 4571
+	// Token: 0x04000E9C RID: 3740
 	public string ID;
 
-	// Token: 0x040011DC RID: 4572
+	// Token: 0x04000E9D RID: 3741
 	public int priority;
 
-	// Token: 0x040011DD RID: 4573
+	// Token: 0x04000E9E RID: 3742
 	public DateTime time;
 
-	// Token: 0x040011DE RID: 4574
+	// Token: 0x04000E9F RID: 3743
 	public Dictionary<string, string> args;
 }

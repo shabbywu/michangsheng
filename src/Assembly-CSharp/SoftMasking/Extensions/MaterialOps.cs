@@ -3,28 +3,28 @@ using UnityEngine;
 
 namespace SoftMasking.Extensions
 {
-	// Token: 0x02000A22 RID: 2594
+	// Token: 0x020006E3 RID: 1763
 	public static class MaterialOps
 	{
-		// Token: 0x0600434F RID: 17231 RVA: 0x000301AA File Offset: 0x0002E3AA
+		// Token: 0x060038E8 RID: 14568 RVA: 0x00184A33 File Offset: 0x00182C33
 		public static bool SupportsSoftMask(this Material mat)
 		{
 			return mat.HasProperty("_SoftMask");
 		}
 
-		// Token: 0x06004350 RID: 17232 RVA: 0x000301B7 File Offset: 0x0002E3B7
+		// Token: 0x060038E9 RID: 14569 RVA: 0x00184A40 File Offset: 0x00182C40
 		public static bool HasDefaultUIShader(this Material mat)
 		{
 			return mat.shader == Canvas.GetDefaultCanvasMaterial().shader;
 		}
 
-		// Token: 0x06004351 RID: 17233 RVA: 0x000301CE File Offset: 0x0002E3CE
+		// Token: 0x060038EA RID: 14570 RVA: 0x00184A57 File Offset: 0x00182C57
 		public static bool HasDefaultETC1UIShader(this Material mat)
 		{
 			return mat.shader == Canvas.GetETC1SupportedCanvasMaterial().shader;
 		}
 
-		// Token: 0x06004352 RID: 17234 RVA: 0x000301E5 File Offset: 0x0002E3E5
+		// Token: 0x060038EB RID: 14571 RVA: 0x00184A6E File Offset: 0x00182C6E
 		public static void EnableKeyword(this Material mat, string keyword, bool enabled)
 		{
 			if (enabled)

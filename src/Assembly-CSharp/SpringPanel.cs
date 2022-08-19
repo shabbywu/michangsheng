@@ -1,12 +1,12 @@
 ﻿using System;
 using UnityEngine;
 
-// Token: 0x020000C8 RID: 200
+// Token: 0x0200008B RID: 139
 [RequireComponent(typeof(UIPanel))]
 [AddComponentMenu("NGUI/Internal/Spring Panel")]
 public class SpringPanel : MonoBehaviour
 {
-	// Token: 0x060007DD RID: 2013 RVA: 0x0000A8E7 File Offset: 0x00008AE7
+	// Token: 0x0600075A RID: 1882 RVA: 0x0002B6FD File Offset: 0x000298FD
 	private void Start()
 	{
 		this.mPanel = base.GetComponent<UIPanel>();
@@ -14,13 +14,13 @@ public class SpringPanel : MonoBehaviour
 		this.mTrans = base.transform;
 	}
 
-	// Token: 0x060007DE RID: 2014 RVA: 0x0000A90D File Offset: 0x00008B0D
+	// Token: 0x0600075B RID: 1883 RVA: 0x0002B723 File Offset: 0x00029923
 	private void Update()
 	{
 		this.AdvanceTowardsPosition();
 	}
 
-	// Token: 0x060007DF RID: 2015 RVA: 0x000805EC File Offset: 0x0007E7EC
+	// Token: 0x0600075C RID: 1884 RVA: 0x0002B72C File Offset: 0x0002992C
 	protected virtual void AdvanceTowardsPosition()
 	{
 		float deltaTime = RealTime.deltaTime;
@@ -51,7 +51,7 @@ public class SpringPanel : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060007E0 RID: 2016 RVA: 0x000806E8 File Offset: 0x0007E8E8
+	// Token: 0x0600075D RID: 1885 RVA: 0x0002B828 File Offset: 0x00029A28
 	public static SpringPanel Begin(GameObject go, Vector3 pos, float strength)
 	{
 		SpringPanel springPanel = go.GetComponent<SpringPanel>();
@@ -66,28 +66,28 @@ public class SpringPanel : MonoBehaviour
 		return springPanel;
 	}
 
-	// Token: 0x0400057E RID: 1406
+	// Token: 0x0400048A RID: 1162
 	public static SpringPanel current;
 
-	// Token: 0x0400057F RID: 1407
+	// Token: 0x0400048B RID: 1163
 	public Vector3 target = Vector3.zero;
 
-	// Token: 0x04000580 RID: 1408
+	// Token: 0x0400048C RID: 1164
 	public float strength = 10f;
 
-	// Token: 0x04000581 RID: 1409
+	// Token: 0x0400048D RID: 1165
 	public SpringPanel.OnFinished onFinished;
 
-	// Token: 0x04000582 RID: 1410
+	// Token: 0x0400048E RID: 1166
 	private UIPanel mPanel;
 
-	// Token: 0x04000583 RID: 1411
+	// Token: 0x0400048F RID: 1167
 	private Transform mTrans;
 
-	// Token: 0x04000584 RID: 1412
+	// Token: 0x04000490 RID: 1168
 	private UIScrollView mDrag;
 
-	// Token: 0x020000C9 RID: 201
-	// (Invoke) Token: 0x060007E3 RID: 2019
+	// Token: 0x02001201 RID: 4609
+	// (Invoke) Token: 0x0600783A RID: 30778
 	public delegate void OnFinished();
 }

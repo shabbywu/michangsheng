@@ -2,13 +2,13 @@
 
 namespace BehaviorDesigner.Runtime.Tasks
 {
-	// Token: 0x0200148E RID: 5262
+	// Token: 0x02000FD6 RID: 4054
 	[TaskDescription("Restarts a behavior tree, returns success after it has been restarted.")]
 	[HelpURL("http://www.opsive.com/assets/BehaviorDesigner/documentation.php?id=66")]
 	[TaskIcon("{SkinColor}RestartBehaviorTreeIcon.png")]
 	public class RestartBehaviorTree : Action
 	{
-		// Token: 0x06007E3D RID: 32317 RVA: 0x002C8784 File Offset: 0x002C6984
+		// Token: 0x06007043 RID: 28739 RVA: 0x002A9398 File Offset: 0x002A7598
 		public override void OnAwake()
 		{
 			Behavior[] components = base.GetDefaultGameObject(this.behaviorGameObject.Value).GetComponents<Behavior>();
@@ -34,7 +34,7 @@ namespace BehaviorDesigner.Runtime.Tasks
 			}
 		}
 
-		// Token: 0x06007E3E RID: 32318 RVA: 0x000555B9 File Offset: 0x000537B9
+		// Token: 0x06007044 RID: 28740 RVA: 0x002A9417 File Offset: 0x002A7617
 		public override TaskStatus OnUpdate()
 		{
 			if (this.behavior == null)
@@ -46,21 +46,21 @@ namespace BehaviorDesigner.Runtime.Tasks
 			return 2;
 		}
 
-		// Token: 0x06007E3F RID: 32319 RVA: 0x000555E2 File Offset: 0x000537E2
+		// Token: 0x06007045 RID: 28741 RVA: 0x002A9440 File Offset: 0x002A7640
 		public override void OnReset()
 		{
 			this.behavior = null;
 		}
 
-		// Token: 0x04006B88 RID: 27528
+		// Token: 0x04005C90 RID: 23696
 		[Tooltip("The GameObject of the behavior tree that should be restarted. If null use the current behavior")]
 		public SharedGameObject behaviorGameObject;
 
-		// Token: 0x04006B89 RID: 27529
+		// Token: 0x04005C91 RID: 23697
 		[Tooltip("The group of the behavior tree that should be restarted")]
 		public SharedInt group;
 
-		// Token: 0x04006B8A RID: 27530
+		// Token: 0x04005C92 RID: 23698
 		private Behavior behavior;
 	}
 }

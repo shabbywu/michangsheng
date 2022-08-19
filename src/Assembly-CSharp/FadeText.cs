@@ -2,17 +2,17 @@
 using System.Collections;
 using UnityEngine;
 
-// Token: 0x0200069F RID: 1695
+// Token: 0x020004AD RID: 1197
 [RequireComponent(typeof(TextMesh))]
 public class FadeText : MonoBehaviour
 {
-	// Token: 0x06002A5E RID: 10846 RVA: 0x00020F0D File Offset: 0x0001F10D
+	// Token: 0x060025EC RID: 9708 RVA: 0x00106C11 File Offset: 0x00104E11
 	private void Start()
 	{
 		this.tm = base.GetComponent<TextMesh>();
 	}
 
-	// Token: 0x06002A5F RID: 10847 RVA: 0x00020F1B File Offset: 0x0001F11B
+	// Token: 0x060025ED RID: 9709 RVA: 0x00106C1F File Offset: 0x00104E1F
 	private void Update()
 	{
 		if (Input.GetKeyUp(113))
@@ -21,7 +21,7 @@ public class FadeText : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06002A60 RID: 10848 RVA: 0x00020F38 File Offset: 0x0001F138
+	// Token: 0x060025EE RID: 9710 RVA: 0x00106C3C File Offset: 0x00104E3C
 	private IEnumerator FadeOut(float step)
 	{
 		float t = 0f;
@@ -34,6 +34,6 @@ public class FadeText : MonoBehaviour
 		yield break;
 	}
 
-	// Token: 0x04002426 RID: 9254
+	// Token: 0x04001EBC RID: 7868
 	private TextMesh tm;
 }

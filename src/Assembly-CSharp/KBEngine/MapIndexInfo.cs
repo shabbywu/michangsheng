@@ -3,18 +3,18 @@ using System.Collections.Generic;
 
 namespace KBEngine
 {
-	// Token: 0x02001051 RID: 4177
+	// Token: 0x02000C8E RID: 3214
 	public class MapIndexInfo
 	{
-		// Token: 0x06006449 RID: 25673 RVA: 0x00044F8A File Offset: 0x0004318A
+		// Token: 0x0600598D RID: 22925 RVA: 0x002561AC File Offset: 0x002543AC
 		public MapIndexInfo(FubenContrl aa)
 		{
 			this.parent = aa;
 		}
 
-		// Token: 0x170008C5 RID: 2245
-		// (get) Token: 0x0600644A RID: 25674 RVA: 0x00044FA4 File Offset: 0x000431A4
-		// (set) Token: 0x0600644B RID: 25675 RVA: 0x00281384 File Offset: 0x0027F584
+		// Token: 0x17000672 RID: 1650
+		// (get) Token: 0x0600598E RID: 22926 RVA: 0x002561C6 File Offset: 0x002543C6
+		// (set) Token: 0x0600598F RID: 22927 RVA: 0x002561F4 File Offset: 0x002543F4
 		public int NowIndex
 		{
 			get
@@ -32,8 +32,8 @@ namespace KBEngine
 			}
 		}
 
-		// Token: 0x170008C6 RID: 2246
-		// (get) Token: 0x0600644C RID: 25676 RVA: 0x0028140C File Offset: 0x0027F60C
+		// Token: 0x17000673 RID: 1651
+		// (get) Token: 0x06005990 RID: 22928 RVA: 0x0025627C File Offset: 0x0025447C
 		public List<int> ExploredNode
 		{
 			get
@@ -47,7 +47,7 @@ namespace KBEngine
 			}
 		}
 
-		// Token: 0x0600644D RID: 25677 RVA: 0x0028146C File Offset: 0x0027F66C
+		// Token: 0x06005991 RID: 22929 RVA: 0x002562DC File Offset: 0x002544DC
 		public void addExploredNode(int index)
 		{
 			if (!this.parent.entity.FuBen[this.SenceName].HasField("ExploredNode"))
@@ -60,7 +60,7 @@ namespace KBEngine
 			}
 		}
 
-		// Token: 0x0600644E RID: 25678 RVA: 0x00281524 File Offset: 0x0027F724
+		// Token: 0x06005992 RID: 22930 RVA: 0x00256394 File Offset: 0x00254594
 		public void AddNodeRoad(int index, int ToIndex)
 		{
 			if (!this.parent.entity.FuBen[this.SenceName].HasField("RoadNode"))
@@ -77,8 +77,8 @@ namespace KBEngine
 			}
 		}
 
-		// Token: 0x170008C7 RID: 2247
-		// (get) Token: 0x0600644F RID: 25679 RVA: 0x00044FD1 File Offset: 0x000431D1
+		// Token: 0x17000674 RID: 1652
+		// (get) Token: 0x06005993 RID: 22931 RVA: 0x002564D5 File Offset: 0x002546D5
 		public DateTime StartTime
 		{
 			get
@@ -87,8 +87,8 @@ namespace KBEngine
 			}
 		}
 
-		// Token: 0x170008C8 RID: 2248
-		// (get) Token: 0x06006450 RID: 25680 RVA: 0x00281668 File Offset: 0x0027F868
+		// Token: 0x17000675 RID: 1653
+		// (get) Token: 0x06005994 RID: 22932 RVA: 0x00256508 File Offset: 0x00254708
 		public int ResidueTimeDay
 		{
 			get
@@ -100,23 +100,23 @@ namespace KBEngine
 			}
 		}
 
-		// Token: 0x06006451 RID: 25681 RVA: 0x00045002 File Offset: 0x00043202
+		// Token: 0x06005995 RID: 22933 RVA: 0x00256595 File Offset: 0x00254795
 		public void setStartTime()
 		{
 			this.parent.entity.FuBen[this.SenceName].SetField("StartTime", Tools.instance.getPlayer().worldTimeMag.nowTime);
 		}
 
-		// Token: 0x06006452 RID: 25682 RVA: 0x0004503D File Offset: 0x0004323D
+		// Token: 0x06005996 RID: 22934 RVA: 0x002565D0 File Offset: 0x002547D0
 		public void setFirstIndex(int index)
 		{
 			this.NowIndex = index;
 			this.setStartTime();
 		}
 
-		// Token: 0x04005DD5 RID: 24021
+		// Token: 0x04005229 RID: 21033
 		public string SenceName = "";
 
-		// Token: 0x04005DD6 RID: 24022
+		// Token: 0x0400522A RID: 21034
 		private FubenContrl parent;
 	}
 }

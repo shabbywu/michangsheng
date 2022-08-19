@@ -1,10 +1,10 @@
 ﻿using System;
 using UnityEngine;
 
-// Token: 0x02000280 RID: 640
+// Token: 0x02000190 RID: 400
 public class MapMoveNode : MonoBehaviour
 {
-	// Token: 0x060013AD RID: 5037 RVA: 0x000B5B54 File Offset: 0x000B3D54
+	// Token: 0x0600112A RID: 4394 RVA: 0x00067530 File Offset: 0x00065730
 	private void Start()
 	{
 		string name = base.transform.parent.name;
@@ -15,14 +15,14 @@ public class MapMoveNode : MonoBehaviour
 		int.TryParse(s2, out this.EndNode);
 	}
 
-	// Token: 0x060013AE RID: 5038 RVA: 0x000042DD File Offset: 0x000024DD
+	// Token: 0x0600112B RID: 4395 RVA: 0x00004095 File Offset: 0x00002295
 	private void Update()
 	{
 	}
 
-	// Token: 0x04000F47 RID: 3911
+	// Token: 0x04000C47 RID: 3143
 	public int StartNode;
 
-	// Token: 0x04000F48 RID: 3912
+	// Token: 0x04000C48 RID: 3144
 	public int EndNode;
 }

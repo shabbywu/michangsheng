@@ -1,15 +1,15 @@
 ﻿using System;
 using UnityEngine;
 
-// Token: 0x02000622 RID: 1570
+// Token: 0x02000466 RID: 1126
 public class qipaixianshi : MonoBehaviour
 {
-	// Token: 0x0600270C RID: 9996 RVA: 0x000042DD File Offset: 0x000024DD
+	// Token: 0x06002356 RID: 9046 RVA: 0x00004095 File Offset: 0x00002295
 	private void Start()
 	{
 	}
 
-	// Token: 0x0600270D RID: 9997 RVA: 0x0001F061 File Offset: 0x0001D261
+	// Token: 0x06002357 RID: 9047 RVA: 0x000F1EBA File Offset: 0x000F00BA
 	private void Update()
 	{
 		if (base.GetComponent<UILabel>().text.Contains("弃置"))
@@ -20,6 +20,6 @@ public class qipaixianshi : MonoBehaviour
 		this.num.gameObject.SetActive(false);
 	}
 
-	// Token: 0x0400213C RID: 8508
+	// Token: 0x04001C67 RID: 7271
 	public UILabel num;
 }

@@ -6,11 +6,11 @@ using UnityEngine.UI;
 
 namespace Spine.Unity.Examples
 {
-	// Token: 0x02000E19 RID: 3609
+	// Token: 0x02000AD5 RID: 2773
 	public class SpineAnimationTesterTool : MonoBehaviour, IHasSkeletonDataAsset, IHasSkeletonComponent
 	{
-		// Token: 0x17000811 RID: 2065
-		// (get) Token: 0x06005714 RID: 22292 RVA: 0x0003E3F5 File Offset: 0x0003C5F5
+		// Token: 0x170005E8 RID: 1512
+		// (get) Token: 0x06004DBD RID: 19901 RVA: 0x00213BD2 File Offset: 0x00211DD2
 		public SkeletonDataAsset SkeletonDataAsset
 		{
 			get
@@ -19,8 +19,8 @@ namespace Spine.Unity.Examples
 			}
 		}
 
-		// Token: 0x17000812 RID: 2066
-		// (get) Token: 0x06005715 RID: 22293 RVA: 0x0003E402 File Offset: 0x0003C602
+		// Token: 0x170005E9 RID: 1513
+		// (get) Token: 0x06004DBE RID: 19902 RVA: 0x00213BDF File Offset: 0x00211DDF
 		public ISkeletonComponent SkeletonComponent
 		{
 			get
@@ -29,7 +29,7 @@ namespace Spine.Unity.Examples
 			}
 		}
 
-		// Token: 0x06005716 RID: 22294 RVA: 0x00243B0C File Offset: 0x00241D0C
+		// Token: 0x06004DBF RID: 19903 RVA: 0x00213BE8 File Offset: 0x00211DE8
 		private void OnValidate()
 		{
 			if (this.skeletonNameText != null && this.skeletonAnimation != null && this.skeletonAnimation.skeletonDataAsset != null)
@@ -61,7 +61,7 @@ namespace Spine.Unity.Examples
 			}
 		}
 
-		// Token: 0x06005717 RID: 22295 RVA: 0x0003E40A File Offset: 0x0003C60A
+		// Token: 0x06004DC0 RID: 19904 RVA: 0x00213D38 File Offset: 0x00211F38
 		private void Start()
 		{
 			if (this.useOverrideMixDuration)
@@ -70,7 +70,7 @@ namespace Spine.Unity.Examples
 			}
 		}
 
-		// Token: 0x06005718 RID: 22296 RVA: 0x00243C5C File Offset: 0x00241E5C
+		// Token: 0x06004DC1 RID: 19905 RVA: 0x00213D60 File Offset: 0x00211F60
 		private void Update()
 		{
 			AnimationState animationState = this.skeletonAnimation.AnimationState;
@@ -113,67 +113,67 @@ namespace Spine.Unity.Examples
 			}
 		}
 
-		// Token: 0x040056C4 RID: 22212
+		// Token: 0x04004CDF RID: 19679
 		public SkeletonAnimation skeletonAnimation;
 
-		// Token: 0x040056C5 RID: 22213
+		// Token: 0x04004CE0 RID: 19680
 		public bool useOverrideMixDuration;
 
-		// Token: 0x040056C6 RID: 22214
+		// Token: 0x04004CE1 RID: 19681
 		public float overrideMixDuration = 0.2f;
 
-		// Token: 0x040056C7 RID: 22215
+		// Token: 0x04004CE2 RID: 19682
 		public bool useOverrideAttachmentThreshold = true;
 
-		// Token: 0x040056C8 RID: 22216
+		// Token: 0x04004CE3 RID: 19683
 		[Range(0f, 1f)]
 		public float attachmentThreshold = 0.5f;
 
-		// Token: 0x040056C9 RID: 22217
+		// Token: 0x04004CE4 RID: 19684
 		public bool useOverrideDrawOrderThreshold;
 
-		// Token: 0x040056CA RID: 22218
+		// Token: 0x04004CE5 RID: 19685
 		[Range(0f, 1f)]
 		public float drawOrderThreshold = 0.5f;
 
-		// Token: 0x040056CB RID: 22219
+		// Token: 0x04004CE6 RID: 19686
 		[Space]
 		public List<SpineAnimationTesterTool.ControlledTrack> trackControls = new List<SpineAnimationTesterTool.ControlledTrack>();
 
-		// Token: 0x040056CC RID: 22220
+		// Token: 0x04004CE7 RID: 19687
 		[Header("UI")]
 		public Text boundAnimationsText;
 
-		// Token: 0x040056CD RID: 22221
+		// Token: 0x04004CE8 RID: 19688
 		public Text skeletonNameText;
 
-		// Token: 0x02000E1A RID: 3610
+		// Token: 0x020015BA RID: 5562
 		[Serializable]
 		public struct AnimationControl
 		{
-			// Token: 0x040056CE RID: 22222
+			// Token: 0x0400703C RID: 28732
 			[SpineAnimation("", "", true, false)]
 			public string animationName;
 
-			// Token: 0x040056CF RID: 22223
+			// Token: 0x0400703D RID: 28733
 			public bool loop;
 
-			// Token: 0x040056D0 RID: 22224
+			// Token: 0x0400703E RID: 28734
 			public KeyCode key;
 
-			// Token: 0x040056D1 RID: 22225
+			// Token: 0x0400703F RID: 28735
 			[Space]
 			public bool useCustomMixDuration;
 
-			// Token: 0x040056D2 RID: 22226
+			// Token: 0x04007040 RID: 28736
 			public float mixDuration;
 		}
 
-		// Token: 0x02000E1B RID: 3611
+		// Token: 0x020015BB RID: 5563
 		[Serializable]
 		public class ControlledTrack
 		{
-			// Token: 0x040056D3 RID: 22227
+			// Token: 0x04007041 RID: 28737
 			public List<SpineAnimationTesterTool.AnimationControl> controls = new List<SpineAnimationTesterTool.AnimationControl>();
 		}
 	}

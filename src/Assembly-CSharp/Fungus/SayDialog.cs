@@ -6,12 +6,12 @@ using UnityEngine.UI;
 
 namespace Fungus
 {
-	// Token: 0x020012F2 RID: 4850
+	// Token: 0x02000E83 RID: 3715
 	public class SayDialog : MonoBehaviour
 	{
-		// Token: 0x17000AF4 RID: 2804
-		// (get) Token: 0x0600762F RID: 30255 RVA: 0x000507E2 File Offset: 0x0004E9E2
-		// (set) Token: 0x06007630 RID: 30256 RVA: 0x000507EF File Offset: 0x0004E9EF
+		// Token: 0x17000879 RID: 2169
+		// (get) Token: 0x0600693C RID: 26940 RVA: 0x002903AC File Offset: 0x0028E5AC
+		// (set) Token: 0x0600693D RID: 26941 RVA: 0x002903B9 File Offset: 0x0028E5B9
 		public virtual string NameText
 		{
 			get
@@ -24,9 +24,9 @@ namespace Fungus
 			}
 		}
 
-		// Token: 0x17000AF5 RID: 2805
-		// (get) Token: 0x06007631 RID: 30257 RVA: 0x000507FD File Offset: 0x0004E9FD
-		// (set) Token: 0x06007632 RID: 30258 RVA: 0x0005080A File Offset: 0x0004EA0A
+		// Token: 0x1700087A RID: 2170
+		// (get) Token: 0x0600693E RID: 26942 RVA: 0x002903C7 File Offset: 0x0028E5C7
+		// (set) Token: 0x0600693F RID: 26943 RVA: 0x002903D4 File Offset: 0x0028E5D4
 		public virtual string StoryText
 		{
 			get
@@ -39,8 +39,8 @@ namespace Fungus
 			}
 		}
 
-		// Token: 0x17000AF6 RID: 2806
-		// (get) Token: 0x06007633 RID: 30259 RVA: 0x00050818 File Offset: 0x0004EA18
+		// Token: 0x1700087B RID: 2171
+		// (get) Token: 0x06006940 RID: 26944 RVA: 0x002903E2 File Offset: 0x0028E5E2
 		public virtual RectTransform StoryTextRectTrans
 		{
 			get
@@ -53,8 +53,8 @@ namespace Fungus
 			}
 		}
 
-		// Token: 0x17000AF7 RID: 2807
-		// (get) Token: 0x06007634 RID: 30260 RVA: 0x0005083F File Offset: 0x0004EA3F
+		// Token: 0x1700087C RID: 2172
+		// (get) Token: 0x06006941 RID: 26945 RVA: 0x00290409 File Offset: 0x0028E609
 		public virtual Image CharacterImage
 		{
 			get
@@ -63,7 +63,7 @@ namespace Fungus
 			}
 		}
 
-		// Token: 0x06007635 RID: 30261 RVA: 0x002B26F8 File Offset: 0x002B08F8
+		// Token: 0x06006942 RID: 26946 RVA: 0x00290414 File Offset: 0x0028E614
 		protected virtual void Awake()
 		{
 			if (!SayDialog.activeSayDialogs.Contains(this))
@@ -79,13 +79,13 @@ namespace Fungus
 			CanClickManager.Inst.SayDialogCache.Add(this);
 		}
 
-		// Token: 0x06007636 RID: 30262 RVA: 0x00050847 File Offset: 0x0004EA47
+		// Token: 0x06006943 RID: 26947 RVA: 0x002904B9 File Offset: 0x0028E6B9
 		protected virtual void OnDestroy()
 		{
 			SayDialog.activeSayDialogs.Remove(this);
 		}
 
-		// Token: 0x06007637 RID: 30263 RVA: 0x002B27A0 File Offset: 0x002B09A0
+		// Token: 0x06006944 RID: 26948 RVA: 0x002904C8 File Offset: 0x0028E6C8
 		protected virtual Writer GetWriter()
 		{
 			if (this.writer != null)
@@ -100,7 +100,7 @@ namespace Fungus
 			return this.writer;
 		}
 
-		// Token: 0x06007638 RID: 30264 RVA: 0x002B27F4 File Offset: 0x002B09F4
+		// Token: 0x06006945 RID: 26949 RVA: 0x0029051C File Offset: 0x0028E71C
 		protected virtual CanvasGroup GetCanvasGroup()
 		{
 			if (this.canvasGroup != null)
@@ -115,7 +115,7 @@ namespace Fungus
 			return this.canvasGroup;
 		}
 
-		// Token: 0x06007639 RID: 30265 RVA: 0x002B2848 File Offset: 0x002B0A48
+		// Token: 0x06006946 RID: 26950 RVA: 0x00290570 File Offset: 0x0028E770
 		protected virtual WriterAudio GetWriterAudio()
 		{
 			if (this.writerAudio != null)
@@ -130,7 +130,7 @@ namespace Fungus
 			return this.writerAudio;
 		}
 
-		// Token: 0x0600763A RID: 30266 RVA: 0x002B289C File Offset: 0x002B0A9C
+		// Token: 0x06006947 RID: 26951 RVA: 0x002905C4 File Offset: 0x0028E7C4
 		protected virtual void Start()
 		{
 			this.GetCanvasGroup().alpha = 0f;
@@ -144,7 +144,7 @@ namespace Fungus
 			}
 		}
 
-		// Token: 0x0600763B RID: 30267 RVA: 0x002B28F8 File Offset: 0x002B0AF8
+		// Token: 0x06006948 RID: 26952 RVA: 0x00290620 File Offset: 0x0028E820
 		protected virtual void LateUpdate()
 		{
 			this.UpdateAlpha();
@@ -163,7 +163,7 @@ namespace Fungus
 			}
 		}
 
-		// Token: 0x0600763C RID: 30268 RVA: 0x002B2968 File Offset: 0x002B0B68
+		// Token: 0x06006949 RID: 26953 RVA: 0x00290690 File Offset: 0x0028E890
 		protected virtual void UpdateAlpha()
 		{
 			if (this.GetWriter().IsWriting)
@@ -194,14 +194,14 @@ namespace Fungus
 			}
 		}
 
-		// Token: 0x0600763D RID: 30269 RVA: 0x00050855 File Offset: 0x0004EA55
+		// Token: 0x0600694A RID: 26954 RVA: 0x00290767 File Offset: 0x0028E967
 		protected virtual void ClearStoryText()
 		{
 			this.StoryText = "";
 		}
 
-		// Token: 0x17000AF8 RID: 2808
-		// (get) Token: 0x0600763E RID: 30270 RVA: 0x00050862 File Offset: 0x0004EA62
+		// Token: 0x1700087D RID: 2173
+		// (get) Token: 0x0600694B RID: 26955 RVA: 0x00290774 File Offset: 0x0028E974
 		public Character SpeakingCharacter
 		{
 			get
@@ -210,12 +210,12 @@ namespace Fungus
 			}
 		}
 
-		// Token: 0x17000AF9 RID: 2809
-		// (get) Token: 0x0600763F RID: 30271 RVA: 0x00050869 File Offset: 0x0004EA69
-		// (set) Token: 0x06007640 RID: 30272 RVA: 0x00050870 File Offset: 0x0004EA70
+		// Token: 0x1700087E RID: 2174
+		// (get) Token: 0x0600694C RID: 26956 RVA: 0x0029077B File Offset: 0x0028E97B
+		// (set) Token: 0x0600694D RID: 26957 RVA: 0x00290782 File Offset: 0x0028E982
 		public static SayDialog ActiveSayDialog { get; set; }
 
-		// Token: 0x06007641 RID: 30273 RVA: 0x002B2A40 File Offset: 0x002B0C40
+		// Token: 0x0600694E RID: 26958 RVA: 0x0029078C File Offset: 0x0028E98C
 		public static SayDialog GetSayDialog()
 		{
 			if (SayDialog.ActiveSayDialog == null)
@@ -245,7 +245,7 @@ namespace Fungus
 			return SayDialog.ActiveSayDialog;
 		}
 
-		// Token: 0x06007642 RID: 30274 RVA: 0x002B2AD4 File Offset: 0x002B0CD4
+		// Token: 0x0600694F RID: 26959 RVA: 0x00290820 File Offset: 0x0028EA20
 		public static void StopPortraitTweens()
 		{
 			List<Character> activeCharacters = Character.ActiveCharacters;
@@ -268,13 +268,13 @@ namespace Fungus
 			}
 		}
 
-		// Token: 0x06007643 RID: 30275 RVA: 0x000500DC File Offset: 0x0004E2DC
+		// Token: 0x06006950 RID: 26960 RVA: 0x0028DCB8 File Offset: 0x0028BEB8
 		public virtual void SetActive(bool state)
 		{
 			base.gameObject.SetActive(state);
 		}
 
-		// Token: 0x06007644 RID: 30276 RVA: 0x002B2BBC File Offset: 0x002B0DBC
+		// Token: 0x06006951 RID: 26961 RVA: 0x00290908 File Offset: 0x0028EB08
 		public virtual void SetCharacter(Character character, int characterID = 0)
 		{
 			this.nameText.color = new Color(1f, 0.9843137f, 0.87058824f);
@@ -342,7 +342,7 @@ namespace Fungus
 			this.SetCharacterName(objectName, character.NameColor);
 		}
 
-		// Token: 0x06007645 RID: 30277 RVA: 0x002B2DF4 File Offset: 0x002B0FF4
+		// Token: 0x06006952 RID: 26962 RVA: 0x00290B40 File Offset: 0x0028ED40
 		public virtual void SetCharacterImage(Sprite image, int characterID = 0)
 		{
 			if (this.characterImage == null)
@@ -374,7 +374,7 @@ namespace Fungus
 			this.FaceImage.SetActive(false);
 		}
 
-		// Token: 0x06007646 RID: 30278 RVA: 0x002B2F28 File Offset: 0x002B1128
+		// Token: 0x06006953 RID: 26963 RVA: 0x00290C74 File Offset: 0x0028EE74
 		public virtual void SetCharacterName(string name, Color color)
 		{
 			if (this.NameText != null)
@@ -385,13 +385,13 @@ namespace Fungus
 			}
 		}
 
-		// Token: 0x06007647 RID: 30279 RVA: 0x002B2F60 File Offset: 0x002B1160
+		// Token: 0x06006954 RID: 26964 RVA: 0x00290CAC File Offset: 0x0028EEAC
 		public virtual void Say(string text, bool clearPrevious, bool waitForInput, bool fadeWhenDone, bool stopVoiceover, bool waitForVO, AudioClip voiceOverClip, Action onComplete)
 		{
 			base.StartCoroutine(this.DoSay(text, clearPrevious, waitForInput, fadeWhenDone, stopVoiceover, waitForVO, voiceOverClip, onComplete));
 		}
 
-		// Token: 0x06007648 RID: 30280 RVA: 0x002B2F88 File Offset: 0x002B1188
+		// Token: 0x06006955 RID: 26965 RVA: 0x00290CD4 File Offset: 0x0028EED4
 		public virtual IEnumerator DoSay(string text, bool clearPrevious, bool waitForInput, bool fadeWhenDone, bool stopVoiceover, bool waitForVO, AudioClip voiceOverClip, Action onComplete)
 		{
 			Writer writer = this.GetWriter();
@@ -430,9 +430,9 @@ namespace Fungus
 			yield break;
 		}
 
-		// Token: 0x17000AFA RID: 2810
-		// (get) Token: 0x06007649 RID: 30281 RVA: 0x00050878 File Offset: 0x0004EA78
-		// (set) Token: 0x0600764A RID: 30282 RVA: 0x00050880 File Offset: 0x0004EA80
+		// Token: 0x1700087F RID: 2175
+		// (get) Token: 0x06006956 RID: 26966 RVA: 0x00290D2B File Offset: 0x0028EF2B
+		// (set) Token: 0x06006957 RID: 26967 RVA: 0x00290D33 File Offset: 0x0028EF33
 		public virtual bool FadeWhenDone
 		{
 			get
@@ -445,134 +445,134 @@ namespace Fungus
 			}
 		}
 
-		// Token: 0x0600764B RID: 30283 RVA: 0x00050889 File Offset: 0x0004EA89
+		// Token: 0x06006958 RID: 26968 RVA: 0x00290D3C File Offset: 0x0028EF3C
 		public virtual void Stop()
 		{
 			this.fadeWhenDone = true;
 			this.GetWriter().Stop();
 		}
 
-		// Token: 0x0600764C RID: 30284 RVA: 0x0005089D File Offset: 0x0004EA9D
+		// Token: 0x06006959 RID: 26969 RVA: 0x00290D50 File Offset: 0x0028EF50
 		public virtual void Clear()
 		{
 			this.ClearStoryText();
 			base.StopAllCoroutines();
 		}
 
-		// Token: 0x04006707 RID: 26375
+		// Token: 0x04005935 RID: 22837
 		[Tooltip("Duration to fade dialogue in/out")]
 		[SerializeField]
 		protected float fadeDuration = 0.25f;
 
-		// Token: 0x04006708 RID: 26376
+		// Token: 0x04005936 RID: 22838
 		[Tooltip("The continue button UI object")]
 		[SerializeField]
 		protected Button continueButton;
 
-		// Token: 0x04006709 RID: 26377
+		// Token: 0x04005937 RID: 22839
 		[Tooltip("The canvas UI object")]
 		[SerializeField]
 		protected Canvas dialogCanvas;
 
-		// Token: 0x0400670A RID: 26378
+		// Token: 0x04005938 RID: 22840
 		[Tooltip("The name text UI object")]
 		[SerializeField]
 		protected Text nameText;
 
-		// Token: 0x0400670B RID: 26379
+		// Token: 0x04005939 RID: 22841
 		[Tooltip("TextAdapter will search for appropriate output on this GameObject if nameText is null")]
 		[SerializeField]
 		protected GameObject nameTextGO;
 
-		// Token: 0x0400670C RID: 26380
+		// Token: 0x0400593A RID: 22842
 		protected TextAdapter nameTextAdapter = new TextAdapter();
 
-		// Token: 0x0400670D RID: 26381
+		// Token: 0x0400593B RID: 22843
 		[Tooltip("The story text UI object")]
 		[SerializeField]
 		protected Text storyText;
 
-		// Token: 0x0400670E RID: 26382
+		// Token: 0x0400593C RID: 22844
 		[Tooltip("TextAdapter will search for appropriate output on this GameObject if storyText is null")]
 		[SerializeField]
 		protected GameObject storyTextGO;
 
-		// Token: 0x0400670F RID: 26383
+		// Token: 0x0400593D RID: 22845
 		protected TextAdapter storyTextAdapter = new TextAdapter();
 
-		// Token: 0x04006710 RID: 26384
+		// Token: 0x0400593E RID: 22846
 		public List<Sprite> bgKuang = new List<Sprite>();
 
-		// Token: 0x04006711 RID: 26385
+		// Token: 0x0400593F RID: 22847
 		public Image panle;
 
-		// Token: 0x04006712 RID: 26386
+		// Token: 0x04005940 RID: 22848
 		[Tooltip("The character UI object")]
 		[SerializeField]
 		protected Image characterImage;
 
-		// Token: 0x04006713 RID: 26387
+		// Token: 0x04005941 RID: 22849
 		[Tooltip("The Face0Image UI object")]
 		[SerializeField]
 		protected GameObject FaceImage;
 
-		// Token: 0x04006714 RID: 26388
+		// Token: 0x04005942 RID: 22850
 		[Tooltip("The Face0Image UI object")]
 		[SerializeField]
 		protected GameObject FaceNolmeImage;
 
-		// Token: 0x04006715 RID: 26389
+		// Token: 0x04005943 RID: 22851
 		[Tooltip("The character UI object")]
 		[SerializeField]
 		protected Text chengHao;
 
-		// Token: 0x04006716 RID: 26390
+		// Token: 0x04005944 RID: 22852
 		[Tooltip("Adjust width of story text when Character Image is displayed (to avoid overlapping)")]
 		[SerializeField]
 		protected bool fitTextWithImage = true;
 
-		// Token: 0x04006717 RID: 26391
+		// Token: 0x04005945 RID: 22853
 		[Tooltip("Close any other open Say Dialogs when this one is active")]
 		[SerializeField]
 		protected bool closeOtherDialogs;
 
-		// Token: 0x04006718 RID: 26392
+		// Token: 0x04005946 RID: 22854
 		protected float startStoryTextHight;
 
-		// Token: 0x04006719 RID: 26393
+		// Token: 0x04005947 RID: 22855
 		protected float startStoryTextWidth;
 
-		// Token: 0x0400671A RID: 26394
+		// Token: 0x04005948 RID: 22856
 		protected float startStoryTextInset;
 
-		// Token: 0x0400671B RID: 26395
+		// Token: 0x04005949 RID: 22857
 		protected WriterAudio writerAudio;
 
-		// Token: 0x0400671C RID: 26396
+		// Token: 0x0400594A RID: 22858
 		protected Writer writer;
 
-		// Token: 0x0400671D RID: 26397
+		// Token: 0x0400594B RID: 22859
 		protected CanvasGroup canvasGroup;
 
-		// Token: 0x0400671E RID: 26398
+		// Token: 0x0400594C RID: 22860
 		protected bool fadeWhenDone = true;
 
-		// Token: 0x0400671F RID: 26399
+		// Token: 0x0400594D RID: 22861
 		protected float targetAlpha;
 
-		// Token: 0x04006720 RID: 26400
+		// Token: 0x0400594E RID: 22862
 		protected float fadeCoolDownTimer;
 
-		// Token: 0x04006721 RID: 26401
+		// Token: 0x0400594F RID: 22863
 		protected Sprite currentCharacterImage;
 
-		// Token: 0x04006722 RID: 26402
+		// Token: 0x04005950 RID: 22864
 		protected static Character speakingCharacter;
 
-		// Token: 0x04006723 RID: 26403
+		// Token: 0x04005951 RID: 22865
 		protected StringSubstituter stringSubstituter = new StringSubstituter(5);
 
-		// Token: 0x04006724 RID: 26404
+		// Token: 0x04005952 RID: 22866
 		protected static List<SayDialog> activeSayDialogs = new List<SayDialog>();
 	}
 }

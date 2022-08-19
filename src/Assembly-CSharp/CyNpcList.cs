@@ -5,20 +5,20 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
 
-// Token: 0x020003DC RID: 988
+// Token: 0x020002A3 RID: 675
 public class CyNpcList : MonoBehaviour
 {
-	// Token: 0x06001B01 RID: 6913 RVA: 0x000EF2EC File Offset: 0x000ED4EC
+	// Token: 0x0600180F RID: 6159 RVA: 0x000A80C0 File Offset: 0x000A62C0
 	public void Init()
 	{
 		this.friendList = Tools.instance.getPlayer().emailDateMag.cyNpcList;
 		this.npcNum.text = this.friendList.Count.ToString();
 		this.curSelect.text = "全部";
-		this.tagBtn.mouseUp.AddListener(new UnityAction(this.ShowMoreSelect));
+		this.tagBtn.mouseUpEvent.AddListener(new UnityAction(this.ShowMoreSelect));
 		this.InitNpcList(-2);
 	}
 
-	// Token: 0x06001B02 RID: 6914 RVA: 0x000EF368 File Offset: 0x000ED568
+	// Token: 0x06001810 RID: 6160 RVA: 0x000A813C File Offset: 0x000A633C
 	private void InitNpcList(int type)
 	{
 		Tools.ClearObj(this.cyNpcCell.transform);
@@ -28,7 +28,7 @@ public class CyNpcList : MonoBehaviour
 		List<int> list = new List<int>();
 		foreach (string text in keys)
 		{
-			if ((type != -1 || jsonData.instance.AvatarJsonData[text].TryGetField("IsTag").b) && (type != -3 || (CyTeShuNpc.DataDict.ContainsKey(int.Parse(text)) && CyTeShuNpc.DataDict[int.Parse(text)].Type == 1)) && (type < 0 || jsonData.instance.AvatarJsonData[text]["MenPai"].I == type))
+			if ((type != -1 || jsonData.instance.AvatarJsonData[text].TryGetField("IsTag").b) && (type != -4 || PlayerEx.IsDaoLv(int.Parse(text))) && (type != -3 || (CyTeShuNpc.DataDict.ContainsKey(int.Parse(text)) && CyTeShuNpc.DataDict[int.Parse(text)].Type == 1)) && (type < 0 || jsonData.instance.AvatarJsonData[text]["MenPai"].I == type))
 			{
 				CyFriendCell component = Tools.InstantiateGameObject(this.cyNpcCell, this.npcCellParent.transform).GetComponent<CyFriendCell>();
 				component.Init(int.Parse(text));
@@ -40,29 +40,29 @@ public class CyNpcList : MonoBehaviour
 		for (int i = 0; i < this.friendList.Count; i++)
 		{
 			int num = this.friendList[i];
-			if (!list.Contains(this.friendList[i]) && this.friendList[i] != 0 && (type != -3 || (CyTeShuNpc.DataDict.ContainsKey(num) && CyTeShuNpc.DataDict[num].Type == 1)))
+			if (!list.Contains(this.friendList[i]) && this.friendList[i] != 0 && (type != -4 || PlayerEx.IsDaoLv(num)) && (type != -3 || (CyTeShuNpc.DataDict.ContainsKey(num) && CyTeShuNpc.DataDict[num].Type == 1)))
 			{
 				if (type == -1)
 				{
 					if (NpcJieSuanManager.inst.IsDeath(num))
 					{
-						goto IL_2B2;
+						goto IL_2D7;
 					}
 					jsonData.instance.AvatarJsonData[this.friendList[i].ToString()].TryGetField("IsTag");
 					if (!jsonData.instance.AvatarJsonData[this.friendList[i].ToString()].TryGetField("IsTag").b)
 					{
-						goto IL_2B2;
+						goto IL_2D7;
 					}
 				}
 				else if (type >= 0 && (NpcJieSuanManager.inst.IsDeath(num) || jsonData.instance.AvatarJsonData[this.friendList[i].ToString()].TryGetField("MenPai").I != type))
 				{
-					goto IL_2B2;
+					goto IL_2D7;
 				}
 				CyFriendCell component2 = Tools.InstantiateGameObject(this.cyNpcCell, this.npcCellParent.transform).GetComponent<CyFriendCell>();
 				component2.Init(this.friendList[i]);
 				this.friendCells.Add(component2);
 			}
-			IL_2B2:;
+			IL_2D7:;
 		}
 		this.isShowSelectTag = false;
 		this.sanJiao.transform.localRotation.Set(0f, 0f, 180f, 0f);
@@ -71,7 +71,7 @@ public class CyNpcList : MonoBehaviour
 		this.curSelectFriend = null;
 	}
 
-	// Token: 0x06001B03 RID: 6915 RVA: 0x000EF6B0 File Offset: 0x000ED8B0
+	// Token: 0x06001811 RID: 6161 RVA: 0x000A84B4 File Offset: 0x000A66B4
 	public void ShowMoreSelect()
 	{
 		this.isShowSelectTag = !this.isShowSelectTag;
@@ -97,6 +97,12 @@ public class CyNpcList : MonoBehaviour
 					this.curSelect.text = "标记";
 					this.InitNpcList(-1);
 				});
+				Tools.InstantiateGameObject(this.cySelectCell, this.selectPanel.transform).GetComponent<CySelectCell>().Init("道侣", delegate
+				{
+					this.selectPanel.SetActive(false);
+					this.curSelect.text = "道侣";
+					this.InitNpcList(-4);
+				});
 				using (List<JSONObject>.Enumerator enumerator = jsonData.instance.CyShiLiNameData.list.GetEnumerator())
 				{
 					while (enumerator.MoveNext())
@@ -120,7 +126,7 @@ public class CyNpcList : MonoBehaviour
 		this.sanJiao.transform.localRotation.Set(0f, 0f, 180f, 0f);
 	}
 
-	// Token: 0x06001B04 RID: 6916 RVA: 0x00016D91 File Offset: 0x00014F91
+	// Token: 0x06001812 RID: 6162 RVA: 0x000A86C8 File Offset: 0x000A68C8
 	public void ClickCallBack()
 	{
 		if (this.curSelectFriend != null)
@@ -130,45 +136,45 @@ public class CyNpcList : MonoBehaviour
 		}
 	}
 
-	// Token: 0x040016B2 RID: 5810
+	// Token: 0x04001316 RID: 4886
 	public List<Sprite> npcCellSpriteList;
 
-	// Token: 0x040016B3 RID: 5811
+	// Token: 0x04001317 RID: 4887
 	public List<Sprite> tagSpriteList;
 
-	// Token: 0x040016B4 RID: 5812
+	// Token: 0x04001318 RID: 4888
 	public List<int> friendList;
 
-	// Token: 0x040016B5 RID: 5813
-	public BtnCell tagBtn;
+	// Token: 0x04001319 RID: 4889
+	public FpBtn tagBtn;
 
-	// Token: 0x040016B6 RID: 5814
+	// Token: 0x0400131A RID: 4890
 	public GameObject cyNpcCell;
 
-	// Token: 0x040016B7 RID: 5815
+	// Token: 0x0400131B RID: 4891
 	public GameObject cySelectCell;
 
-	// Token: 0x040016B8 RID: 5816
+	// Token: 0x0400131C RID: 4892
 	public GameObject selectPanel;
 
-	// Token: 0x040016B9 RID: 5817
+	// Token: 0x0400131D RID: 4893
 	public GameObject npcCellParent;
 
-	// Token: 0x040016BA RID: 5818
+	// Token: 0x0400131E RID: 4894
 	public Text npcNum;
 
-	// Token: 0x040016BB RID: 5819
+	// Token: 0x0400131F RID: 4895
 	public Text curSelect;
 
-	// Token: 0x040016BC RID: 5820
+	// Token: 0x04001320 RID: 4896
 	public Image sanJiao;
 
-	// Token: 0x040016BD RID: 5821
+	// Token: 0x04001321 RID: 4897
 	public List<CyFriendCell> friendCells;
 
-	// Token: 0x040016BE RID: 5822
+	// Token: 0x04001322 RID: 4898
 	public CyFriendCell curSelectFriend;
 
-	// Token: 0x040016BF RID: 5823
+	// Token: 0x04001323 RID: 4899
 	public bool isShowSelectTag;
 }

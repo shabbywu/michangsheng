@@ -6,10 +6,10 @@ using UnityEngine.UI;
 
 namespace Fungus
 {
-	// Token: 0x0200136C RID: 4972
+	// Token: 0x02000ECD RID: 3789
 	public class TextAdapter : IWriterTextDestination
 	{
-		// Token: 0x0600789A RID: 30874 RVA: 0x002B6EF0 File Offset: 0x002B50F0
+		// Token: 0x06006AFD RID: 27389 RVA: 0x00294C24 File Offset: 0x00292E24
 		public void InitFromGameObject(GameObject go, bool includeChildren = false)
 		{
 			if (go == null)
@@ -55,7 +55,7 @@ namespace Fungus
 			}
 		}
 
-		// Token: 0x0600789B RID: 30875 RVA: 0x002B700C File Offset: 0x002B520C
+		// Token: 0x06006AFE RID: 27390 RVA: 0x00294D40 File Offset: 0x00292F40
 		public void ForceRichText()
 		{
 			if (this.textUI != null)
@@ -76,7 +76,7 @@ namespace Fungus
 			}
 		}
 
-		// Token: 0x0600789C RID: 30876 RVA: 0x002B707C File Offset: 0x002B527C
+		// Token: 0x06006AFF RID: 27391 RVA: 0x00294DB0 File Offset: 0x00292FB0
 		public void SetTextColor(Color textColor)
 		{
 			if (this.textUI != null)
@@ -111,7 +111,7 @@ namespace Fungus
 			}
 		}
 
-		// Token: 0x0600789D RID: 30877 RVA: 0x002B7124 File Offset: 0x002B5324
+		// Token: 0x06006B00 RID: 27392 RVA: 0x00294E58 File Offset: 0x00293058
 		public void SetTextAlpha(float textAlpha)
 		{
 			if (this.textUI != null)
@@ -152,7 +152,7 @@ namespace Fungus
 			}
 		}
 
-		// Token: 0x0600789E RID: 30878 RVA: 0x00051EB0 File Offset: 0x000500B0
+		// Token: 0x06006B01 RID: 27393 RVA: 0x00294F41 File Offset: 0x00293141
 		public void SetTextSize(int size)
 		{
 			if (this.textUI != null)
@@ -161,13 +161,13 @@ namespace Fungus
 			}
 		}
 
-		// Token: 0x0600789F RID: 30879 RVA: 0x002B7210 File Offset: 0x002B5410
+		// Token: 0x06006B02 RID: 27394 RVA: 0x00294F60 File Offset: 0x00293160
 		public bool HasTextObject()
 		{
 			return this.textUI != null || this.inputField != null || this.textMesh != null || this.textComponent != null || this.tmpro != null || this.writerTextDestination != null;
 		}
 
-		// Token: 0x060078A0 RID: 30880 RVA: 0x002B7270 File Offset: 0x002B5470
+		// Token: 0x06006B03 RID: 27395 RVA: 0x00294FC0 File Offset: 0x002931C0
 		public bool SupportsRichText()
 		{
 			if (this.textUI != null)
@@ -185,9 +185,9 @@ namespace Fungus
 			return this.tmpro != null || (this.writerTextDestination != null && this.writerTextDestination.SupportsRichText());
 		}
 
-		// Token: 0x17000B54 RID: 2900
-		// (get) Token: 0x060078A1 RID: 30881 RVA: 0x002B72E8 File Offset: 0x002B54E8
-		// (set) Token: 0x060078A2 RID: 30882 RVA: 0x002B7398 File Offset: 0x002B5598
+		// Token: 0x170008B7 RID: 2231
+		// (get) Token: 0x06006B04 RID: 27396 RVA: 0x00295038 File Offset: 0x00293238
+		// (set) Token: 0x06006B05 RID: 27397 RVA: 0x002950E8 File Offset: 0x002932E8
 		public virtual string Text
 		{
 			get
@@ -252,25 +252,25 @@ namespace Fungus
 			}
 		}
 
-		// Token: 0x0400689B RID: 26779
+		// Token: 0x04005A3A RID: 23098
 		protected Text textUI;
 
-		// Token: 0x0400689C RID: 26780
+		// Token: 0x04005A3B RID: 23099
 		protected InputField inputField;
 
-		// Token: 0x0400689D RID: 26781
+		// Token: 0x04005A3C RID: 23100
 		protected TextMesh textMesh;
 
-		// Token: 0x0400689E RID: 26782
+		// Token: 0x04005A3D RID: 23101
 		protected TMP_Text tmpro;
 
-		// Token: 0x0400689F RID: 26783
+		// Token: 0x04005A3E RID: 23102
 		protected Component textComponent;
 
-		// Token: 0x040068A0 RID: 26784
+		// Token: 0x04005A3F RID: 23103
 		protected PropertyInfo textProperty;
 
-		// Token: 0x040068A1 RID: 26785
+		// Token: 0x04005A40 RID: 23104
 		protected IWriterTextDestination writerTextDestination;
 	}
 }

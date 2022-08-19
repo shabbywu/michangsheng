@@ -6,10 +6,10 @@ using UnityEngine.UI;
 
 namespace UltimateSurvival.GUISystem
 {
-	// Token: 0x02000942 RID: 2370
+	// Token: 0x02000648 RID: 1608
 	public class QueueElement : MonoBehaviour
 	{
-		// Token: 0x06003C97 RID: 15511 RVA: 0x001B13EC File Offset: 0x001AF5EC
+		// Token: 0x0600333B RID: 13115 RVA: 0x00168510 File Offset: 0x00166710
 		public void Initialize(CraftData craftData, ItemContainer inventory)
 		{
 			if (this.m_Initialized)
@@ -29,7 +29,7 @@ namespace UltimateSurvival.GUISystem
 			this.m_Initialized = true;
 		}
 
-		// Token: 0x06003C98 RID: 15512 RVA: 0x0002BBD7 File Offset: 0x00029DD7
+		// Token: 0x0600333C RID: 13116 RVA: 0x001685D1 File Offset: 0x001667D1
 		public void StartCrafting()
 		{
 			if (!this.m_Initialized)
@@ -39,7 +39,7 @@ namespace UltimateSurvival.GUISystem
 			base.StartCoroutine(this.C_Update(this.m_CraftData, this.m_Inventory));
 		}
 
-		// Token: 0x06003C99 RID: 15513 RVA: 0x001B14B0 File Offset: 0x001AF6B0
+		// Token: 0x0600333D RID: 13117 RVA: 0x001685F8 File Offset: 0x001667F8
 		public void CancelCrafting()
 		{
 			if (this.m_AmountToCraftRemained > 0)
@@ -54,7 +54,7 @@ namespace UltimateSurvival.GUISystem
 			Object.Destroy(base.gameObject);
 		}
 
-		// Token: 0x06003C9A RID: 15514 RVA: 0x0002BBFB File Offset: 0x00029DFB
+		// Token: 0x0600333E RID: 13118 RVA: 0x00168665 File Offset: 0x00166865
 		private IEnumerator C_Update(CraftData craftData, ItemContainer inventory)
 		{
 			int oldm_AmountToCraftRemained = this.m_AmountToCraftRemained;
@@ -82,37 +82,37 @@ namespace UltimateSurvival.GUISystem
 			yield break;
 		}
 
-		// Token: 0x040036D8 RID: 14040
+		// Token: 0x04002D6F RID: 11631
 		public Message<QueueElement> Cancel = new Message<QueueElement>();
 
-		// Token: 0x040036D9 RID: 14041
+		// Token: 0x04002D70 RID: 11632
 		public Message Complete = new Message();
 
-		// Token: 0x040036DA RID: 14042
+		// Token: 0x04002D71 RID: 11633
 		[SerializeField]
 		private Image m_Icon;
 
-		// Token: 0x040036DB RID: 14043
+		// Token: 0x04002D72 RID: 11634
 		[SerializeField]
 		private Text m_RemainedTime;
 
-		// Token: 0x040036DC RID: 14044
+		// Token: 0x04002D73 RID: 11635
 		[SerializeField]
 		private Image m_ProgressBar;
 
-		// Token: 0x040036DD RID: 14045
+		// Token: 0x04002D74 RID: 11636
 		private CraftData m_CraftData;
 
-		// Token: 0x040036DE RID: 14046
+		// Token: 0x04002D75 RID: 11637
 		private ItemData m_Result;
 
-		// Token: 0x040036DF RID: 14047
+		// Token: 0x04002D76 RID: 11638
 		private ItemContainer m_Inventory;
 
-		// Token: 0x040036E0 RID: 14048
+		// Token: 0x04002D77 RID: 11639
 		private int m_AmountToCraftRemained;
 
-		// Token: 0x040036E1 RID: 14049
+		// Token: 0x04002D78 RID: 11640
 		private bool m_Initialized;
 	}
 }

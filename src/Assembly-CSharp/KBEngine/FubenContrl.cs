@@ -2,16 +2,16 @@
 
 namespace KBEngine
 {
-	// Token: 0x02001053 RID: 4179
+	// Token: 0x02000C8F RID: 3215
 	public class FubenContrl
 	{
-		// Token: 0x06006455 RID: 25685 RVA: 0x00045060 File Offset: 0x00043260
+		// Token: 0x06005997 RID: 22935 RVA: 0x002565DF File Offset: 0x002547DF
 		public FubenContrl(Entity avater)
 		{
 			this.entity = (Avatar)avater;
 		}
 
-		// Token: 0x06006456 RID: 25686 RVA: 0x00045074 File Offset: 0x00043274
+		// Token: 0x06005998 RID: 22936 RVA: 0x002565F3 File Offset: 0x002547F3
 		public void outFuBen(bool ToLast = true)
 		{
 			if (ToLast)
@@ -22,18 +22,18 @@ namespace KBEngine
 			this.entity.NowFuBen = "";
 		}
 
-		// Token: 0x06006457 RID: 25687 RVA: 0x000450B3 File Offset: 0x000432B3
+		// Token: 0x06005999 RID: 22937 RVA: 0x00256632 File Offset: 0x00254832
 		public bool isInFuBen()
 		{
 			return this.entity.NowFuBen != "";
 		}
 
-		// Token: 0x06006458 RID: 25688 RVA: 0x000042DD File Offset: 0x000024DD
+		// Token: 0x0600599A RID: 22938 RVA: 0x00004095 File Offset: 0x00002295
 		public void CreatRandomFuBen()
 		{
 		}
 
-		// Token: 0x170008C9 RID: 2249
+		// Token: 0x17000676 RID: 1654
 		public MapIndexInfo this[string name]
 		{
 			get
@@ -49,7 +49,7 @@ namespace KBEngine
 			}
 		}
 
-		// Token: 0x04005DD8 RID: 24024
+		// Token: 0x0400522B RID: 21035
 		public Avatar entity;
 	}
 }

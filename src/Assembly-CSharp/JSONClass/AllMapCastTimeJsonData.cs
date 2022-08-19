@@ -3,10 +3,10 @@ using System.Collections.Generic;
 
 namespace JSONClass
 {
-	// Token: 0x02000AE3 RID: 2787
+	// Token: 0x0200074B RID: 1867
 	public class AllMapCastTimeJsonData : IJSONClass
 	{
-		// Token: 0x060046F6 RID: 18166 RVA: 0x001E5D5C File Offset: 0x001E3F5C
+		// Token: 0x06003B40 RID: 15168 RVA: 0x00197B40 File Offset: 0x00195D40
 		public static void InitDataDict()
 		{
 			foreach (JSONObject jsonobject in jsonData.instance.AllMapCastTimeJsonData.list)
@@ -40,27 +40,27 @@ namespace JSONClass
 			}
 		}
 
-		// Token: 0x060046F7 RID: 18167 RVA: 0x000042DD File Offset: 0x000024DD
+		// Token: 0x06003B41 RID: 15169 RVA: 0x00004095 File Offset: 0x00002295
 		private static void OnInitFinish()
 		{
 		}
 
-		// Token: 0x04003F6E RID: 16238
+		// Token: 0x040033D5 RID: 13269
 		public static Dictionary<int, AllMapCastTimeJsonData> DataDict = new Dictionary<int, AllMapCastTimeJsonData>();
 
-		// Token: 0x04003F6F RID: 16239
+		// Token: 0x040033D6 RID: 13270
 		public static List<AllMapCastTimeJsonData> DataList = new List<AllMapCastTimeJsonData>();
 
-		// Token: 0x04003F70 RID: 16240
+		// Token: 0x040033D7 RID: 13271
 		public static Action OnInitFinishAction = new Action(AllMapCastTimeJsonData.OnInitFinish);
 
-		// Token: 0x04003F71 RID: 16241
+		// Token: 0x040033D8 RID: 13272
 		public int id;
 
-		// Token: 0x04003F72 RID: 16242
+		// Token: 0x040033D9 RID: 13273
 		public int dunSu;
 
-		// Token: 0x04003F73 RID: 16243
+		// Token: 0x040033DA RID: 13274
 		public int XiaoHao;
 	}
 }

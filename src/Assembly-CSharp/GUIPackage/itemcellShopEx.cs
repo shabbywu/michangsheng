@@ -3,16 +3,16 @@ using KBEngine;
 
 namespace GUIPackage
 {
-	// Token: 0x02000D86 RID: 3462
+	// Token: 0x02000A5E RID: 2654
 	public class itemcellShopEx : itemCellShop
 	{
-		// Token: 0x0600537E RID: 21374 RVA: 0x0003BBBA File Offset: 0x00039DBA
+		// Token: 0x06004A7E RID: 19070 RVA: 0x001FA4AD File Offset: 0x001F86AD
 		public override void MobilePress()
 		{
 			base.MobilePress();
 		}
 
-		// Token: 0x0600537F RID: 21375 RVA: 0x0022C908 File Offset: 0x0022AB08
+		// Token: 0x06004A7F RID: 19071 RVA: 0x001FA4B8 File Offset: 0x001F86B8
 		public override void PCOnPress()
 		{
 			this.inventory.showTooltip = false;
@@ -47,7 +47,7 @@ namespace GUIPackage
 			}
 		}
 
-		// Token: 0x06005380 RID: 21376 RVA: 0x0022C978 File Offset: 0x0022AB78
+		// Token: 0x06004A80 RID: 19072 RVA: 0x001FA528 File Offset: 0x001F8728
 		public void EXsetUI_chifen()
 		{
 			selectNum.instence.gameObject.GetComponent<UI_chaifen>().Item = this.inventory.inventory[int.Parse(base.name)].Clone();
@@ -55,7 +55,7 @@ namespace GUIPackage
 			selectNum.instence.gameObject.GetComponent<UI_chaifen>().inputNum.value = string.Concat(1);
 		}
 
-		// Token: 0x06005381 RID: 21377 RVA: 0x0022C9FC File Offset: 0x0022ABFC
+		// Token: 0x06004A81 RID: 19073 RVA: 0x001FA5AC File Offset: 0x001F87AC
 		private void Update()
 		{
 			this.Icon.GetComponent<UITexture>().mainTexture = this.inventory.inventory[int.Parse(base.name)].itemIcon;
@@ -75,7 +75,7 @@ namespace GUIPackage
 			base.showYiWu();
 		}
 
-		// Token: 0x0400533F RID: 21311
+		// Token: 0x040049B0 RID: 18864
 		public UITexture EXGoodsIcon;
 	}
 }

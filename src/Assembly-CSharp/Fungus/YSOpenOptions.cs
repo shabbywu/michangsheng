@@ -6,12 +6,12 @@ using UnityEngine.UI;
 
 namespace Fungus
 {
-	// Token: 0x02001458 RID: 5208
+	// Token: 0x02000FA6 RID: 4006
 	[CommandInfo("YSTools", "YSOpenOptions", "打开选项界面", 0)]
 	[AddComponentMenu("")]
 	public class YSOpenOptions : Command
 	{
-		// Token: 0x06007DA2 RID: 32162 RVA: 0x002C6EE0 File Offset: 0x002C50E0
+		// Token: 0x06006FC2 RID: 28610 RVA: 0x002A7A54 File Offset: 0x002A5C54
 		public override void OnEnter()
 		{
 			Tools.canClickFlag = false;
@@ -76,23 +76,23 @@ namespace Fungus
 			this.Continue();
 		}
 
-		// Token: 0x06007DA3 RID: 32163 RVA: 0x000113CF File Offset: 0x0000F5CF
+		// Token: 0x06006FC3 RID: 28611 RVA: 0x0005E228 File Offset: 0x0005C428
 		public override Color GetButtonColor()
 		{
 			return new Color32(184, 210, 235, byte.MaxValue);
 		}
 
-		// Token: 0x04006B20 RID: 27424
+		// Token: 0x04005C36 RID: 23606
 		[Tooltip("标题")]
 		[SerializeField]
 		public string Title = "";
 
-		// Token: 0x04006B21 RID: 27425
+		// Token: 0x04005C37 RID: 23607
 		[Tooltip("描述")]
 		[SerializeField]
 		public string Desc = "";
 
-		// Token: 0x04006B22 RID: 27426
+		// Token: 0x04005C38 RID: 23608
 		[Tooltip("选项描述")]
 		[SerializeField]
 		public string[] Optin = new string[]
@@ -102,12 +102,12 @@ namespace Fungus
 			""
 		};
 
-		// Token: 0x04006B23 RID: 27427
+		// Token: 0x04005C39 RID: 23609
 		[Tooltip("选项跳转")]
 		[SerializeField]
 		public int[] OptinJump = new int[3];
 
-		// Token: 0x04006B24 RID: 27428
+		// Token: 0x04005C3A RID: 23610
 		[Tooltip("选项prefab")]
 		[SerializeField]
 		public GameObject OptionObject;

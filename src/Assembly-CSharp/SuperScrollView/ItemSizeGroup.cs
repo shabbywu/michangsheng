@@ -2,10 +2,10 @@
 
 namespace SuperScrollView
 {
-	// Token: 0x020009ED RID: 2541
+	// Token: 0x020006C2 RID: 1730
 	public class ItemSizeGroup
 	{
-		// Token: 0x060040C8 RID: 16584 RVA: 0x0002E951 File Offset: 0x0002CB51
+		// Token: 0x060036AB RID: 13995 RVA: 0x00175F07 File Offset: 0x00174107
 		public ItemSizeGroup(int index, float itemDefaultSize)
 		{
 			this.mGroupIndex = index;
@@ -13,7 +13,7 @@ namespace SuperScrollView
 			this.Init();
 		}
 
-		// Token: 0x060040C9 RID: 16585 RVA: 0x001BE7F0 File Offset: 0x001BC9F0
+		// Token: 0x060036AC RID: 13996 RVA: 0x00175F2C File Offset: 0x0017412C
 		public void Init()
 		{
 			this.mItemSizeArray = new float[100];
@@ -36,14 +36,14 @@ namespace SuperScrollView
 			this.mDirtyBeginIndex = 100;
 		}
 
-		// Token: 0x060040CA RID: 16586 RVA: 0x0002E975 File Offset: 0x0002CB75
+		// Token: 0x060036AD RID: 13997 RVA: 0x00175FC9 File Offset: 0x001741C9
 		public float GetItemStartPos(int index)
 		{
 			return this.mGroupStartPos + this.mItemStartPosArray[index];
 		}
 
-		// Token: 0x17000737 RID: 1847
-		// (get) Token: 0x060040CB RID: 16587 RVA: 0x0002E986 File Offset: 0x0002CB86
+		// Token: 0x1700050C RID: 1292
+		// (get) Token: 0x060036AE RID: 13998 RVA: 0x00175FDA File Offset: 0x001741DA
 		public bool IsDirty
 		{
 			get
@@ -52,7 +52,7 @@ namespace SuperScrollView
 			}
 		}
 
-		// Token: 0x060040CC RID: 16588 RVA: 0x001BE890 File Offset: 0x001BCA90
+		// Token: 0x060036AF RID: 13999 RVA: 0x00175FEC File Offset: 0x001741EC
 		public float SetItemSize(int index, float size)
 		{
 			if (index > this.mMaxNoZeroIndex && size > 0f)
@@ -74,7 +74,7 @@ namespace SuperScrollView
 			return num2;
 		}
 
-		// Token: 0x060040CD RID: 16589 RVA: 0x0002E996 File Offset: 0x0002CB96
+		// Token: 0x060036B0 RID: 14000 RVA: 0x00176050 File Offset: 0x00174250
 		public void SetItemCount(int count)
 		{
 			if (count < this.mMaxNoZeroIndex)
@@ -89,7 +89,7 @@ namespace SuperScrollView
 			this.RecalcGroupSize();
 		}
 
-		// Token: 0x060040CE RID: 16590 RVA: 0x001BE8F4 File Offset: 0x001BCAF4
+		// Token: 0x060036B1 RID: 14001 RVA: 0x0017607C File Offset: 0x0017427C
 		public void RecalcGroupSize()
 		{
 			this.mGroupSize = 0f;
@@ -99,7 +99,7 @@ namespace SuperScrollView
 			}
 		}
 
-		// Token: 0x060040CF RID: 16591 RVA: 0x001BE934 File Offset: 0x001BCB34
+		// Token: 0x060036B2 RID: 14002 RVA: 0x001760BC File Offset: 0x001742BC
 		public int GetItemIndexByPos(float pos)
 		{
 			if (this.mItemCount == 0)
@@ -137,7 +137,7 @@ namespace SuperScrollView
 			return -1;
 		}
 
-		// Token: 0x060040D0 RID: 16592 RVA: 0x001BE9B4 File Offset: 0x001BCBB4
+		// Token: 0x060036B3 RID: 14003 RVA: 0x0017613C File Offset: 0x0017433C
 		public void UpdateAllItemStartPos()
 		{
 			if (this.mDirtyBeginIndex >= this.mItemCount)
@@ -151,7 +151,7 @@ namespace SuperScrollView
 			this.mDirtyBeginIndex = this.mItemCount;
 		}
 
-		// Token: 0x060040D1 RID: 16593 RVA: 0x001BEA1C File Offset: 0x001BCC1C
+		// Token: 0x060036B4 RID: 14004 RVA: 0x001761A4 File Offset: 0x001743A4
 		public void ClearOldData()
 		{
 			for (int i = this.mItemCount; i < 100; i++)
@@ -160,34 +160,34 @@ namespace SuperScrollView
 			}
 		}
 
-		// Token: 0x040039B5 RID: 14773
+		// Token: 0x04002FB0 RID: 12208
 		public float[] mItemSizeArray;
 
-		// Token: 0x040039B6 RID: 14774
+		// Token: 0x04002FB1 RID: 12209
 		public float[] mItemStartPosArray;
 
-		// Token: 0x040039B7 RID: 14775
+		// Token: 0x04002FB2 RID: 12210
 		public int mItemCount;
 
-		// Token: 0x040039B8 RID: 14776
+		// Token: 0x04002FB3 RID: 12211
 		private int mDirtyBeginIndex = 100;
 
-		// Token: 0x040039B9 RID: 14777
+		// Token: 0x04002FB4 RID: 12212
 		public float mGroupSize;
 
-		// Token: 0x040039BA RID: 14778
+		// Token: 0x04002FB5 RID: 12213
 		public float mGroupStartPos;
 
-		// Token: 0x040039BB RID: 14779
+		// Token: 0x04002FB6 RID: 12214
 		public float mGroupEndPos;
 
-		// Token: 0x040039BC RID: 14780
+		// Token: 0x04002FB7 RID: 12215
 		public int mGroupIndex;
 
-		// Token: 0x040039BD RID: 14781
+		// Token: 0x04002FB8 RID: 12216
 		private float mItemDefaultSize;
 
-		// Token: 0x040039BE RID: 14782
+		// Token: 0x04002FB9 RID: 12217
 		private int mMaxNoZeroIndex;
 	}
 }

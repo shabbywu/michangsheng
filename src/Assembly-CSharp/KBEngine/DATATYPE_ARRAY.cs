@@ -3,10 +3,10 @@ using System.Collections.Generic;
 
 namespace KBEngine
 {
-	// Token: 0x02000EE1 RID: 3809
+	// Token: 0x02000B64 RID: 2916
 	public class DATATYPE_ARRAY : DATATYPE_BASE
 	{
-		// Token: 0x06005BA0 RID: 23456 RVA: 0x00250EC4 File Offset: 0x0024F0C4
+		// Token: 0x06005164 RID: 20836 RVA: 0x00221BF0 File Offset: 0x0021FDF0
 		public override void bind()
 		{
 			if (this.vtype.GetType().BaseType.ToString() == "KBEngine.DATATYPE_BASE")
@@ -20,7 +20,7 @@ namespace KBEngine
 			}
 		}
 
-		// Token: 0x06005BA1 RID: 23457 RVA: 0x00250F38 File Offset: 0x0024F138
+		// Token: 0x06005165 RID: 20837 RVA: 0x00221C64 File Offset: 0x0021FE64
 		public override object createFromStream(MemoryStream stream)
 		{
 			uint num = stream.readUint32();
@@ -32,7 +32,7 @@ namespace KBEngine
 			return result;
 		}
 
-		// Token: 0x06005BA2 RID: 23458 RVA: 0x00250F60 File Offset: 0x0024F160
+		// Token: 0x06005166 RID: 20838 RVA: 0x00221C8C File Offset: 0x0021FE8C
 		public override void addToStream(Bundle stream, object v)
 		{
 			stream.writeUint32((uint)((List<object>)v).Count);
@@ -41,13 +41,13 @@ namespace KBEngine
 			}
 		}
 
-		// Token: 0x06005BA3 RID: 23459 RVA: 0x0004082D File Offset: 0x0003EA2D
+		// Token: 0x06005167 RID: 20839 RVA: 0x00221B9F File Offset: 0x0021FD9F
 		public override object parseDefaultValStr(string v)
 		{
 			return new byte[0];
 		}
 
-		// Token: 0x06005BA4 RID: 23460 RVA: 0x00250F94 File Offset: 0x0024F194
+		// Token: 0x06005168 RID: 20840 RVA: 0x00221CC0 File Offset: 0x0021FEC0
 		public override bool isSameType(object v)
 		{
 			if (this.vtype.GetType().BaseType.ToString() != "KBEngine.DATATYPE_BASE")
@@ -69,7 +69,7 @@ namespace KBEngine
 			return true;
 		}
 
-		// Token: 0x04005A0C RID: 23052
+		// Token: 0x04004F81 RID: 20353
 		public object vtype;
 	}
 }

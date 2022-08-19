@@ -2,15 +2,15 @@
 using GUIPackage;
 using UnityEngine;
 
-// Token: 0x020002BE RID: 702
+// Token: 0x020001BF RID: 447
 public class jieyingNextBuff : MonoBehaviour
 {
-	// Token: 0x0600152A RID: 5418 RVA: 0x000042DD File Offset: 0x000024DD
+	// Token: 0x0600127B RID: 4731 RVA: 0x00004095 File Offset: 0x00002295
 	private void Start()
 	{
 	}
 
-	// Token: 0x0600152B RID: 5419 RVA: 0x000BE5D8 File Offset: 0x000BC7D8
+	// Token: 0x0600127C RID: 4732 RVA: 0x00070C48 File Offset: 0x0006EE48
 	private void OnHover(bool isOver)
 	{
 		if (isOver)
@@ -25,7 +25,7 @@ public class jieyingNextBuff : MonoBehaviour
 		Singleton.inventory.showTooltip = false;
 	}
 
-	// Token: 0x0600152C RID: 5420 RVA: 0x000042DD File Offset: 0x000024DD
+	// Token: 0x0600127D RID: 4733 RVA: 0x00004095 File Offset: 0x00002295
 	private void Update()
 	{
 	}

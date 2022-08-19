@@ -2,7 +2,7 @@
 
 namespace ICSharpCode.SharpZipLib.Core
 {
-	// Token: 0x02000828 RID: 2088
-	// (Invoke) Token: 0x060036BA RID: 14010
+	// Token: 0x0200057F RID: 1407
+	// (Invoke) Token: 0x06002E44 RID: 11844
 	public delegate void DirectoryFailureHandler(object sender, ScanFailureEventArgs e);
 }

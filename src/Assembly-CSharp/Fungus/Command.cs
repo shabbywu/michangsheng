@@ -5,12 +5,12 @@ using UnityEngine.Serialization;
 
 namespace Fungus
 {
-	// Token: 0x020012C5 RID: 4805
+	// Token: 0x02000E68 RID: 3688
 	public abstract class Command : MonoBehaviour
 	{
-		// Token: 0x17000AAC RID: 2732
-		// (get) Token: 0x0600746F RID: 29807 RVA: 0x0004F7F0 File Offset: 0x0004D9F0
-		// (set) Token: 0x06007470 RID: 29808 RVA: 0x0004F7F8 File Offset: 0x0004D9F8
+		// Token: 0x1700083B RID: 2107
+		// (get) Token: 0x060067BD RID: 26557 RVA: 0x0028B23E File Offset: 0x0028943E
+		// (set) Token: 0x060067BE RID: 26558 RVA: 0x0028B246 File Offset: 0x00289446
 		public virtual int ItemId
 		{
 			get
@@ -23,8 +23,8 @@ namespace Fungus
 			}
 		}
 
-		// Token: 0x17000AAD RID: 2733
-		// (get) Token: 0x06007471 RID: 29809 RVA: 0x0004F801 File Offset: 0x0004DA01
+		// Token: 0x1700083C RID: 2108
+		// (get) Token: 0x060067BF RID: 26559 RVA: 0x0028B24F File Offset: 0x0028944F
 		public virtual string ErrorMessage
 		{
 			get
@@ -33,9 +33,9 @@ namespace Fungus
 			}
 		}
 
-		// Token: 0x17000AAE RID: 2734
-		// (get) Token: 0x06007472 RID: 29810 RVA: 0x0004F809 File Offset: 0x0004DA09
-		// (set) Token: 0x06007473 RID: 29811 RVA: 0x0004F811 File Offset: 0x0004DA11
+		// Token: 0x1700083D RID: 2109
+		// (get) Token: 0x060067C0 RID: 26560 RVA: 0x0028B257 File Offset: 0x00289457
+		// (set) Token: 0x060067C1 RID: 26561 RVA: 0x0028B25F File Offset: 0x0028945F
 		public virtual int IndentLevel
 		{
 			get
@@ -48,27 +48,27 @@ namespace Fungus
 			}
 		}
 
-		// Token: 0x17000AAF RID: 2735
-		// (get) Token: 0x06007474 RID: 29812 RVA: 0x0004F81A File Offset: 0x0004DA1A
-		// (set) Token: 0x06007475 RID: 29813 RVA: 0x0004F822 File Offset: 0x0004DA22
+		// Token: 0x1700083E RID: 2110
+		// (get) Token: 0x060067C2 RID: 26562 RVA: 0x0028B268 File Offset: 0x00289468
+		// (set) Token: 0x060067C3 RID: 26563 RVA: 0x0028B270 File Offset: 0x00289470
 		public virtual int CommandIndex { get; set; }
 
-		// Token: 0x17000AB0 RID: 2736
-		// (get) Token: 0x06007476 RID: 29814 RVA: 0x0004F82B File Offset: 0x0004DA2B
-		// (set) Token: 0x06007477 RID: 29815 RVA: 0x0004F833 File Offset: 0x0004DA33
+		// Token: 0x1700083F RID: 2111
+		// (get) Token: 0x060067C4 RID: 26564 RVA: 0x0028B279 File Offset: 0x00289479
+		// (set) Token: 0x060067C5 RID: 26565 RVA: 0x0028B281 File Offset: 0x00289481
 		public virtual bool IsExecuting { get; set; }
 
-		// Token: 0x17000AB1 RID: 2737
-		// (get) Token: 0x06007478 RID: 29816 RVA: 0x0004F83C File Offset: 0x0004DA3C
-		// (set) Token: 0x06007479 RID: 29817 RVA: 0x0004F844 File Offset: 0x0004DA44
+		// Token: 0x17000840 RID: 2112
+		// (get) Token: 0x060067C6 RID: 26566 RVA: 0x0028B28A File Offset: 0x0028948A
+		// (set) Token: 0x060067C7 RID: 26567 RVA: 0x0028B292 File Offset: 0x00289492
 		public virtual float ExecutingIconTimer { get; set; }
 
-		// Token: 0x17000AB2 RID: 2738
-		// (get) Token: 0x0600747A RID: 29818 RVA: 0x0004F84D File Offset: 0x0004DA4D
-		// (set) Token: 0x0600747B RID: 29819 RVA: 0x0004F855 File Offset: 0x0004DA55
+		// Token: 0x17000841 RID: 2113
+		// (get) Token: 0x060067C8 RID: 26568 RVA: 0x0028B29B File Offset: 0x0028949B
+		// (set) Token: 0x060067C9 RID: 26569 RVA: 0x0028B2A3 File Offset: 0x002894A3
 		public virtual Block ParentBlock { get; set; }
 
-		// Token: 0x0600747C RID: 29820 RVA: 0x002ADF60 File Offset: 0x002AC160
+		// Token: 0x060067CA RID: 26570 RVA: 0x0028B2AC File Offset: 0x002894AC
 		public virtual Flowchart GetFlowchart()
 		{
 			Flowchart component = base.GetComponent<Flowchart>();
@@ -79,7 +79,7 @@ namespace Fungus
 			return component;
 		}
 
-		// Token: 0x0600747D RID: 29821 RVA: 0x002ADFA4 File Offset: 0x002AC1A4
+		// Token: 0x060067CB RID: 26571 RVA: 0x0028B2F0 File Offset: 0x002894F0
 		public virtual void Execute()
 		{
 			try
@@ -102,7 +102,7 @@ namespace Fungus
 			}
 		}
 
-		// Token: 0x0600747E RID: 29822 RVA: 0x0004F85E File Offset: 0x0004DA5E
+		// Token: 0x060067CC RID: 26572 RVA: 0x0028B38C File Offset: 0x0028958C
 		public virtual void Continue()
 		{
 			if (this.IsExecuting)
@@ -111,7 +111,7 @@ namespace Fungus
 			}
 		}
 
-		// Token: 0x0600747F RID: 29823 RVA: 0x0004F876 File Offset: 0x0004DA76
+		// Token: 0x060067CD RID: 26573 RVA: 0x0028B3A4 File Offset: 0x002895A4
 		public virtual void Continue(int nextCommandIndex)
 		{
 			this.OnExit();
@@ -122,7 +122,7 @@ namespace Fungus
 			Tools.instance.getPlayer().StreamData.FungusSaveMgr.ClearCommand();
 		}
 
-		// Token: 0x06007480 RID: 29824 RVA: 0x0004F8B1 File Offset: 0x0004DAB1
+		// Token: 0x060067CE RID: 26574 RVA: 0x0028B3DF File Offset: 0x002895DF
 		public virtual void StopParentBlock()
 		{
 			this.OnExit();
@@ -132,95 +132,95 @@ namespace Fungus
 			}
 		}
 
-		// Token: 0x06007481 RID: 29825 RVA: 0x000042DD File Offset: 0x000024DD
+		// Token: 0x060067CF RID: 26575 RVA: 0x00004095 File Offset: 0x00002295
 		public virtual void OnStopExecuting()
 		{
 		}
 
-		// Token: 0x06007482 RID: 29826 RVA: 0x000042DD File Offset: 0x000024DD
+		// Token: 0x060067D0 RID: 26576 RVA: 0x00004095 File Offset: 0x00002295
 		public virtual void OnCommandAdded(Block parentBlock)
 		{
 		}
 
-		// Token: 0x06007483 RID: 29827 RVA: 0x000042DD File Offset: 0x000024DD
+		// Token: 0x060067D1 RID: 26577 RVA: 0x00004095 File Offset: 0x00002295
 		public virtual void OnCommandRemoved(Block parentBlock)
 		{
 		}
 
-		// Token: 0x06007484 RID: 29828 RVA: 0x000042DD File Offset: 0x000024DD
+		// Token: 0x060067D2 RID: 26578 RVA: 0x00004095 File Offset: 0x00002295
 		public virtual void OnEnter()
 		{
 		}
 
-		// Token: 0x06007485 RID: 29829 RVA: 0x000042DD File Offset: 0x000024DD
+		// Token: 0x060067D3 RID: 26579 RVA: 0x00004095 File Offset: 0x00002295
 		public virtual void OnExit()
 		{
 		}
 
-		// Token: 0x06007486 RID: 29830 RVA: 0x000042DD File Offset: 0x000024DD
+		// Token: 0x060067D4 RID: 26580 RVA: 0x00004095 File Offset: 0x00002295
 		public virtual void OnReset()
 		{
 		}
 
-		// Token: 0x06007487 RID: 29831 RVA: 0x000042DD File Offset: 0x000024DD
+		// Token: 0x060067D5 RID: 26581 RVA: 0x00004095 File Offset: 0x00002295
 		public virtual void GetConnectedBlocks(ref List<Block> connectedBlocks)
 		{
 		}
 
-		// Token: 0x06007488 RID: 29832 RVA: 0x00004050 File Offset: 0x00002250
+		// Token: 0x060067D6 RID: 26582 RVA: 0x0000280F File Offset: 0x00000A0F
 		public virtual bool HasReference(Variable variable)
 		{
 			return false;
 		}
 
-		// Token: 0x06007489 RID: 29833 RVA: 0x000042DD File Offset: 0x000024DD
+		// Token: 0x060067D7 RID: 26583 RVA: 0x00004095 File Offset: 0x00002295
 		public virtual void OnValidate()
 		{
 		}
 
-		// Token: 0x0600748A RID: 29834 RVA: 0x00032110 File Offset: 0x00030310
+		// Token: 0x060067D8 RID: 26584 RVA: 0x001D84A0 File Offset: 0x001D66A0
 		public virtual string GetSummary()
 		{
 			return "";
 		}
 
-		// Token: 0x0600748B RID: 29835 RVA: 0x00032110 File Offset: 0x00030310
+		// Token: 0x060067D9 RID: 26585 RVA: 0x001D84A0 File Offset: 0x001D66A0
 		public virtual string GetHelpText()
 		{
 			return "";
 		}
 
-		// Token: 0x0600748C RID: 29836 RVA: 0x00004050 File Offset: 0x00002250
+		// Token: 0x060067DA RID: 26586 RVA: 0x0000280F File Offset: 0x00000A0F
 		public virtual bool OpenBlock()
 		{
 			return false;
 		}
 
-		// Token: 0x0600748D RID: 29837 RVA: 0x00004050 File Offset: 0x00002250
+		// Token: 0x060067DB RID: 26587 RVA: 0x0000280F File Offset: 0x00000A0F
 		public virtual bool CloseBlock()
 		{
 			return false;
 		}
 
-		// Token: 0x0600748E RID: 29838 RVA: 0x0004F8D2 File Offset: 0x0004DAD2
+		// Token: 0x060067DC RID: 26588 RVA: 0x0028B400 File Offset: 0x00289600
 		public virtual Color GetButtonColor()
 		{
 			return Color.white;
 		}
 
-		// Token: 0x0600748F RID: 29839 RVA: 0x0000A093 File Offset: 0x00008293
+		// Token: 0x060067DD RID: 26589 RVA: 0x00024C5F File Offset: 0x00022E5F
 		public virtual bool IsPropertyVisible(string propertyName)
 		{
 			return true;
 		}
 
-		// Token: 0x06007490 RID: 29840 RVA: 0x00004050 File Offset: 0x00002250
+		// Token: 0x060067DE RID: 26590 RVA: 0x0000280F File Offset: 0x00000A0F
 		public virtual bool IsReorderableArray(string propertyName)
 		{
 			return false;
 		}
 
-		// Token: 0x06007491 RID: 29841 RVA: 0x002AE040 File Offset: 0x002AC240
+		// Token: 0x060067DF RID: 26591 RVA: 0x0028B408 File Offset: 0x00289608
 		public virtual string GetFlowchartLocalizationId()
 		{
 			Flowchart flowchart = this.GetFlowchart();
@@ -236,7 +236,7 @@ namespace Fungus
 			return text;
 		}
 
-		// Token: 0x06007492 RID: 29842 RVA: 0x002AE080 File Offset: 0x002AC280
+		// Token: 0x060067E0 RID: 26592 RVA: 0x0028B448 File Offset: 0x00289648
 		public string GetCommandSourceDesc()
 		{
 			string result;
@@ -258,18 +258,18 @@ namespace Fungus
 			return result;
 		}
 
-		// Token: 0x04006633 RID: 26163
+		// Token: 0x0400589B RID: 22683
 		[FormerlySerializedAs("commandId")]
 		[HideInInspector]
 		[SerializeField]
 		protected int itemId = -1;
 
-		// Token: 0x04006634 RID: 26164
+		// Token: 0x0400589C RID: 22684
 		[HideInInspector]
 		[SerializeField]
 		protected int indentLevel;
 
-		// Token: 0x04006635 RID: 26165
+		// Token: 0x0400589D RID: 22685
 		protected string errorMessage = "";
 	}
 }

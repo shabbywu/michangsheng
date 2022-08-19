@@ -3,10 +3,10 @@ using UnityEngine;
 
 namespace Fungus.Examples
 {
-	// Token: 0x02001469 RID: 5225
+	// Token: 0x02000FB1 RID: 4017
 	public class SimpleMouseLook : MonoBehaviour
 	{
-		// Token: 0x06007DE8 RID: 32232 RVA: 0x002C8144 File Offset: 0x002C6344
+		// Token: 0x06006FEE RID: 28654 RVA: 0x002A895C File Offset: 0x002A6B5C
 		private void Update()
 		{
 			Vector3 eulerAngles = this.target.localRotation.eulerAngles;
@@ -17,19 +17,19 @@ namespace Fungus.Examples
 			this.target.localRotation = Quaternion.Euler(eulerAngles);
 		}
 
-		// Token: 0x04006B5A RID: 27482
+		// Token: 0x04005C62 RID: 23650
 		public float xsen = 1f;
 
-		// Token: 0x04006B5B RID: 27483
+		// Token: 0x04005C63 RID: 23651
 		public float ysen = 1f;
 
-		// Token: 0x04006B5C RID: 27484
+		// Token: 0x04005C64 RID: 23652
 		public float maxPitch = 60f;
 
-		// Token: 0x04006B5D RID: 27485
+		// Token: 0x04005C65 RID: 23653
 		public Transform target;
 
-		// Token: 0x04006B5E RID: 27486
+		// Token: 0x04005C66 RID: 23654
 		private float pitch;
 	}
 }

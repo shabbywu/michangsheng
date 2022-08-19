@@ -3,10 +3,10 @@ using System.Collections.Generic;
 
 namespace JSONClass
 {
-	// Token: 0x02000BD6 RID: 3030
+	// Token: 0x02000846 RID: 2118
 	public class helpJsonData : IJSONClass
 	{
-		// Token: 0x06004AC0 RID: 19136 RVA: 0x001F9EBC File Offset: 0x001F80BC
+		// Token: 0x06003F2A RID: 16170 RVA: 0x001AF990 File Offset: 0x001ADB90
 		public static void InitDataDict()
 		{
 			foreach (JSONObject jsonobject in jsonData.instance.helpJsonData.list)
@@ -40,27 +40,27 @@ namespace JSONClass
 			}
 		}
 
-		// Token: 0x06004AC1 RID: 19137 RVA: 0x000042DD File Offset: 0x000024DD
+		// Token: 0x06003F2B RID: 16171 RVA: 0x00004095 File Offset: 0x00002295
 		private static void OnInitFinish()
 		{
 		}
 
-		// Token: 0x04004697 RID: 18071
+		// Token: 0x04003B34 RID: 15156
 		public static Dictionary<int, helpJsonData> DataDict = new Dictionary<int, helpJsonData>();
 
-		// Token: 0x04004698 RID: 18072
+		// Token: 0x04003B35 RID: 15157
 		public static List<helpJsonData> DataList = new List<helpJsonData>();
 
-		// Token: 0x04004699 RID: 18073
+		// Token: 0x04003B36 RID: 15158
 		public static Action OnInitFinishAction = new Action(helpJsonData.OnInitFinish);
 
-		// Token: 0x0400469A RID: 18074
+		// Token: 0x04003B37 RID: 15159
 		public int id;
 
-		// Token: 0x0400469B RID: 18075
+		// Token: 0x04003B38 RID: 15160
 		public int Image;
 
-		// Token: 0x0400469C RID: 18076
+		// Token: 0x04003B39 RID: 15161
 		public string Titile;
 	}
 }

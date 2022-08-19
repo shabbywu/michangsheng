@@ -3,10 +3,10 @@ using System.Collections.Generic;
 
 namespace KBEngine
 {
-	// Token: 0x02000FD2 RID: 4050
+	// Token: 0x02000C4D RID: 3149
 	public class Messages
 	{
-		// Token: 0x06005F91 RID: 24465 RVA: 0x0004299C File Offset: 0x00040B9C
+		// Token: 0x06005553 RID: 21843 RVA: 0x00235DBB File Offset: 0x00233FBB
 		public static void clear()
 		{
 			Messages.loginappMessages = new Dictionary<ushort, Message>();
@@ -16,7 +16,7 @@ namespace KBEngine
 			Messages.init();
 		}
 
-		// Token: 0x06005F92 RID: 24466 RVA: 0x00262FB0 File Offset: 0x002611B0
+		// Token: 0x06005554 RID: 21844 RVA: 0x00235DEC File Offset: 0x00233FEC
 		public static bool init()
 		{
 			List<byte> list = new List<byte>();
@@ -308,16 +308,16 @@ namespace KBEngine
 			return true;
 		}
 
-		// Token: 0x04005B35 RID: 23349
+		// Token: 0x0400508C RID: 20620
 		public static Dictionary<ushort, Message> loginappMessages = new Dictionary<ushort, Message>();
 
-		// Token: 0x04005B36 RID: 23350
+		// Token: 0x0400508D RID: 20621
 		public static Dictionary<ushort, Message> baseappMessages = new Dictionary<ushort, Message>();
 
-		// Token: 0x04005B37 RID: 23351
+		// Token: 0x0400508E RID: 20622
 		public static Dictionary<ushort, Message> clientMessages = new Dictionary<ushort, Message>();
 
-		// Token: 0x04005B38 RID: 23352
+		// Token: 0x0400508F RID: 20623
 		public static Dictionary<string, Message> messages = new Dictionary<string, Message>();
 	}
 }

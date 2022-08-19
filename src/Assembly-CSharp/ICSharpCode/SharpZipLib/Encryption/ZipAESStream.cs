@@ -5,10 +5,10 @@ using ICSharpCode.SharpZipLib.Core;
 
 namespace ICSharpCode.SharpZipLib.Encryption
 {
-	// Token: 0x0200081F RID: 2079
+	// Token: 0x02000576 RID: 1398
 	internal class ZipAESStream : CryptoStream
 	{
-		// Token: 0x0600368A RID: 13962 RVA: 0x00027BF5 File Offset: 0x00025DF5
+		// Token: 0x06002E14 RID: 11796 RVA: 0x00150C54 File Offset: 0x0014EE54
 		public ZipAESStream(Stream stream, ZipAESTransform transform, CryptoStreamMode mode) : base(stream, transform, mode)
 		{
 			this._stream = stream;
@@ -20,8 +20,8 @@ namespace ICSharpCode.SharpZipLib.Encryption
 			}
 		}
 
-		// Token: 0x17000566 RID: 1382
-		// (get) Token: 0x0600368B RID: 13963 RVA: 0x00027C2C File Offset: 0x00025E2C
+		// Token: 0x170003AF RID: 943
+		// (get) Token: 0x06002E15 RID: 11797 RVA: 0x00150C8B File Offset: 0x0014EE8B
 		private bool HasBufferedData
 		{
 			get
@@ -30,7 +30,7 @@ namespace ICSharpCode.SharpZipLib.Encryption
 			}
 		}
 
-		// Token: 0x0600368C RID: 13964 RVA: 0x0019BCD8 File Offset: 0x00199ED8
+		// Token: 0x06002E16 RID: 11798 RVA: 0x00150CA8 File Offset: 0x0014EEA8
 		public override int Read(byte[] buffer, int offset, int count)
 		{
 			if (count == 0)
@@ -55,7 +55,7 @@ namespace ICSharpCode.SharpZipLib.Encryption
 			return num;
 		}
 
-		// Token: 0x0600368D RID: 13965 RVA: 0x0019BD24 File Offset: 0x00199F24
+		// Token: 0x06002E17 RID: 11799 RVA: 0x00150CF4 File Offset: 0x0014EEF4
 		private int ReadAndTransform(byte[] buffer, int offset, int count)
 		{
 			int i = 0;
@@ -109,7 +109,7 @@ namespace ICSharpCode.SharpZipLib.Encryption
 			return i;
 		}
 
-		// Token: 0x0600368E RID: 13966 RVA: 0x0019BE84 File Offset: 0x0019A084
+		// Token: 0x06002E18 RID: 11800 RVA: 0x00150E54 File Offset: 0x0014F054
 		private int ReadBufferedData(byte[] buffer, int offset, int count)
 		{
 			int num = Math.Min(count, this._transformBufferFreePos - this._transformBufferStartPos);
@@ -118,7 +118,7 @@ namespace ICSharpCode.SharpZipLib.Encryption
 			return num;
 		}
 
-		// Token: 0x0600368F RID: 13967 RVA: 0x0019BEC8 File Offset: 0x0019A0C8
+		// Token: 0x06002E19 RID: 11801 RVA: 0x00150E98 File Offset: 0x0014F098
 		private int TransformAndBufferBlock(byte[] buffer, int offset, int count, int blockSize)
 		{
 			bool flag = blockSize > count;
@@ -140,43 +140,43 @@ namespace ICSharpCode.SharpZipLib.Encryption
 			return count;
 		}
 
-		// Token: 0x06003690 RID: 13968 RVA: 0x0001C722 File Offset: 0x0001A922
+		// Token: 0x06002E1A RID: 11802 RVA: 0x000DBFA9 File Offset: 0x000DA1A9
 		public override void Write(byte[] buffer, int offset, int count)
 		{
 			throw new NotImplementedException();
 		}
 
-		// Token: 0x040030F6 RID: 12534
+		// Token: 0x040028B7 RID: 10423
 		private const int AUTH_CODE_LENGTH = 10;
 
-		// Token: 0x040030F7 RID: 12535
+		// Token: 0x040028B8 RID: 10424
 		private const int CRYPTO_BLOCK_SIZE = 16;
 
-		// Token: 0x040030F8 RID: 12536
+		// Token: 0x040028B9 RID: 10425
 		private const int BLOCK_AND_AUTH = 26;
 
-		// Token: 0x040030F9 RID: 12537
+		// Token: 0x040028BA RID: 10426
 		private Stream _stream;
 
-		// Token: 0x040030FA RID: 12538
+		// Token: 0x040028BB RID: 10427
 		private ZipAESTransform _transform;
 
-		// Token: 0x040030FB RID: 12539
+		// Token: 0x040028BC RID: 10428
 		private byte[] _slideBuffer;
 
-		// Token: 0x040030FC RID: 12540
+		// Token: 0x040028BD RID: 10429
 		private int _slideBufStartPos;
 
-		// Token: 0x040030FD RID: 12541
+		// Token: 0x040028BE RID: 10430
 		private int _slideBufFreePos;
 
-		// Token: 0x040030FE RID: 12542
+		// Token: 0x040028BF RID: 10431
 		private byte[] _transformBuffer;
 
-		// Token: 0x040030FF RID: 12543
+		// Token: 0x040028C0 RID: 10432
 		private int _transformBufferFreePos;
 
-		// Token: 0x04003100 RID: 12544
+		// Token: 0x040028C1 RID: 10433
 		private int _transformBufferStartPos;
 	}
 }

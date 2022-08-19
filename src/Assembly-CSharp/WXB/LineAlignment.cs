@@ -2,16 +2,16 @@
 
 namespace WXB
 {
-	// Token: 0x020009D5 RID: 2517
+	// Token: 0x020006B1 RID: 1713
 	public enum LineAlignment
 	{
-		// Token: 0x04003940 RID: 14656
+		// Token: 0x04002F52 RID: 12114
 		Top,
-		// Token: 0x04003941 RID: 14657
+		// Token: 0x04002F53 RID: 12115
 		Center,
-		// Token: 0x04003942 RID: 14658
+		// Token: 0x04002F54 RID: 12116
 		Bottom,
-		// Token: 0x04003943 RID: 14659
+		// Token: 0x04002F55 RID: 12117
 		Default
 	}
 }

@@ -4,12 +4,12 @@ using UnityEngine;
 
 namespace YSGame.TianJiDaBi
 {
-	// Token: 0x02000DBA RID: 3514
+	// Token: 0x02000A88 RID: 2696
 	[CommandInfo("天机大比", "获取玩家名次", "获取玩家名次", 0)]
 	[AddComponentMenu("")]
 	public class CmdTianJiDaBiGetPlayerRank : Command
 	{
-		// Token: 0x060054C6 RID: 21702 RVA: 0x00234D6C File Offset: 0x00232F6C
+		// Token: 0x06004BAA RID: 19370 RVA: 0x0020382C File Offset: 0x00201A2C
 		public override void OnEnter()
 		{
 			Match nowMatch = TianJiDaBiManager.GetNowMatch();
@@ -24,7 +24,7 @@ namespace YSGame.TianJiDaBi
 			this.Continue();
 		}
 
-		// Token: 0x0400547B RID: 21627
+		// Token: 0x04004ABD RID: 19133
 		[Tooltip("名次")]
 		[SerializeField]
 		[VariableProperty(new Type[]

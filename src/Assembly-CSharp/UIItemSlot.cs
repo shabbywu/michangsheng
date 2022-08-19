@@ -2,17 +2,17 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-// Token: 0x02000048 RID: 72
+// Token: 0x02000035 RID: 53
 public abstract class UIItemSlot : MonoBehaviour
 {
-	// Token: 0x1700007D RID: 125
-	// (get) Token: 0x06000458 RID: 1112
+	// Token: 0x17000071 RID: 113
+	// (get) Token: 0x06000410 RID: 1040
 	protected abstract InvGameItem observedItem { get; }
 
-	// Token: 0x06000459 RID: 1113
+	// Token: 0x06000411 RID: 1041
 	protected abstract InvGameItem Replace(InvGameItem item);
 
-	// Token: 0x0600045A RID: 1114 RVA: 0x0006E1B8 File Offset: 0x0006C3B8
+	// Token: 0x06000412 RID: 1042 RVA: 0x00016A2C File Offset: 0x00014C2C
 	private void OnTooltip(bool show)
 	{
 		InvGameItem invGameItem = show ? this.mItem : null;
@@ -73,7 +73,7 @@ public abstract class UIItemSlot : MonoBehaviour
 		UITooltip.ShowText(null);
 	}
 
-	// Token: 0x0600045B RID: 1115 RVA: 0x00007D30 File Offset: 0x00005F30
+	// Token: 0x06000413 RID: 1043 RVA: 0x00016BAB File Offset: 0x00014DAB
 	private void OnClick()
 	{
 		if (UIItemSlot.mDraggedItem != null)
@@ -92,7 +92,7 @@ public abstract class UIItemSlot : MonoBehaviour
 		}
 	}
 
-	// Token: 0x0600045C RID: 1116 RVA: 0x00007D6E File Offset: 0x00005F6E
+	// Token: 0x06000414 RID: 1044 RVA: 0x00016BE9 File Offset: 0x00014DE9
 	private void OnDrag(Vector2 delta)
 	{
 		if (UIItemSlot.mDraggedItem == null && this.mItem != null)
@@ -104,7 +104,7 @@ public abstract class UIItemSlot : MonoBehaviour
 		}
 	}
 
-	// Token: 0x0600045D RID: 1117 RVA: 0x0006E338 File Offset: 0x0006C538
+	// Token: 0x06000415 RID: 1045 RVA: 0x00016C24 File Offset: 0x00014E24
 	private void OnDrop(GameObject go)
 	{
 		InvGameItem invGameItem = this.Replace(UIItemSlot.mDraggedItem);
@@ -124,7 +124,7 @@ public abstract class UIItemSlot : MonoBehaviour
 		this.UpdateCursor();
 	}
 
-	// Token: 0x0600045E RID: 1118 RVA: 0x00007DA8 File Offset: 0x00005FA8
+	// Token: 0x06000416 RID: 1046 RVA: 0x00016C7C File Offset: 0x00014E7C
 	private void UpdateCursor()
 	{
 		if (UIItemSlot.mDraggedItem != null && UIItemSlot.mDraggedItem.baseItem != null)
@@ -135,7 +135,7 @@ public abstract class UIItemSlot : MonoBehaviour
 		UICursor.Clear();
 	}
 
-	// Token: 0x0600045F RID: 1119 RVA: 0x0006E390 File Offset: 0x0006C590
+	// Token: 0x06000417 RID: 1047 RVA: 0x00016CBC File Offset: 0x00014EBC
 	private void Update()
 	{
 		InvGameItem observedItem = this.observedItem;
@@ -173,30 +173,30 @@ public abstract class UIItemSlot : MonoBehaviour
 		}
 	}
 
-	// Token: 0x04000280 RID: 640
+	// Token: 0x0400023A RID: 570
 	public UISprite icon;
 
-	// Token: 0x04000281 RID: 641
+	// Token: 0x0400023B RID: 571
 	public UIWidget background;
 
-	// Token: 0x04000282 RID: 642
+	// Token: 0x0400023C RID: 572
 	public UILabel label;
 
-	// Token: 0x04000283 RID: 643
+	// Token: 0x0400023D RID: 573
 	public AudioClip grabSound;
 
-	// Token: 0x04000284 RID: 644
+	// Token: 0x0400023E RID: 574
 	public AudioClip placeSound;
 
-	// Token: 0x04000285 RID: 645
+	// Token: 0x0400023F RID: 575
 	public AudioClip errorSound;
 
-	// Token: 0x04000286 RID: 646
+	// Token: 0x04000240 RID: 576
 	private InvGameItem mItem;
 
-	// Token: 0x04000287 RID: 647
+	// Token: 0x04000241 RID: 577
 	private string mText = "";
 
-	// Token: 0x04000288 RID: 648
+	// Token: 0x04000242 RID: 578
 	private static InvGameItem mDraggedItem;
 }

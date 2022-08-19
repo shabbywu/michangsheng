@@ -2,10 +2,10 @@
 
 namespace KBEngine
 {
-	// Token: 0x02000EC0 RID: 3776
+	// Token: 0x02000B45 RID: 2885
 	public class DATATYPE_ITEM_INFO : DATATYPE_BASE
 	{
-		// Token: 0x06005B16 RID: 23318 RVA: 0x00040418 File Offset: 0x0003E618
+		// Token: 0x060050E0 RID: 20704 RVA: 0x00220FD5 File Offset: 0x0021F1D5
 		public ITEM_INFO createFromStreamEx(MemoryStream stream)
 		{
 			return new ITEM_INFO
@@ -17,7 +17,7 @@ namespace KBEngine
 			};
 		}
 
-		// Token: 0x06005B17 RID: 23319 RVA: 0x0004044F File Offset: 0x0003E64F
+		// Token: 0x060050E1 RID: 20705 RVA: 0x0022100C File Offset: 0x0021F20C
 		public void addToStreamEx(Bundle stream, ITEM_INFO v)
 		{
 			stream.writeUint64(v.UUID);

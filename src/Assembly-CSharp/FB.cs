@@ -4,11 +4,11 @@ using System.Collections.Generic;
 using Facebook;
 using UnityEngine;
 
-// Token: 0x020001E5 RID: 485
+// Token: 0x02000121 RID: 289
 public sealed class FB : ScriptableObject
 {
-	// Token: 0x1700021D RID: 541
-	// (get) Token: 0x06000FAD RID: 4013 RVA: 0x0000FDDC File Offset: 0x0000DFDC
+	// Token: 0x170001F0 RID: 496
+	// (get) Token: 0x06000DC8 RID: 3528 RVA: 0x00052696 File Offset: 0x00050896
 	private static IFacebook FacebookImpl
 	{
 		get
@@ -21,8 +21,8 @@ public sealed class FB : ScriptableObject
 		}
 	}
 
-	// Token: 0x1700021E RID: 542
-	// (get) Token: 0x06000FAE RID: 4014 RVA: 0x0000FDF5 File Offset: 0x0000DFF5
+	// Token: 0x170001F1 RID: 497
+	// (get) Token: 0x06000DC9 RID: 3529 RVA: 0x000526AF File Offset: 0x000508AF
 	public static string AppId
 	{
 		get
@@ -31,8 +31,8 @@ public sealed class FB : ScriptableObject
 		}
 	}
 
-	// Token: 0x1700021F RID: 543
-	// (get) Token: 0x06000FAF RID: 4015 RVA: 0x0000FDFC File Offset: 0x0000DFFC
+	// Token: 0x170001F2 RID: 498
+	// (get) Token: 0x06000DCA RID: 3530 RVA: 0x000526B6 File Offset: 0x000508B6
 	public static string UserId
 	{
 		get
@@ -45,8 +45,8 @@ public sealed class FB : ScriptableObject
 		}
 	}
 
-	// Token: 0x17000220 RID: 544
-	// (get) Token: 0x06000FB0 RID: 4016 RVA: 0x0000FE15 File Offset: 0x0000E015
+	// Token: 0x170001F3 RID: 499
+	// (get) Token: 0x06000DCB RID: 3531 RVA: 0x000526CF File Offset: 0x000508CF
 	public static string AccessToken
 	{
 		get
@@ -59,8 +59,8 @@ public sealed class FB : ScriptableObject
 		}
 	}
 
-	// Token: 0x17000221 RID: 545
-	// (get) Token: 0x06000FB1 RID: 4017 RVA: 0x0000FE2E File Offset: 0x0000E02E
+	// Token: 0x170001F4 RID: 500
+	// (get) Token: 0x06000DCC RID: 3532 RVA: 0x000526E8 File Offset: 0x000508E8
 	public static DateTime AccessTokenExpiresAt
 	{
 		get
@@ -73,8 +73,8 @@ public sealed class FB : ScriptableObject
 		}
 	}
 
-	// Token: 0x17000222 RID: 546
-	// (get) Token: 0x06000FB2 RID: 4018 RVA: 0x0000FE47 File Offset: 0x0000E047
+	// Token: 0x170001F5 RID: 501
+	// (get) Token: 0x06000DCD RID: 3533 RVA: 0x00052701 File Offset: 0x00050901
 	public static bool IsLoggedIn
 	{
 		get
@@ -83,13 +83,13 @@ public sealed class FB : ScriptableObject
 		}
 	}
 
-	// Token: 0x06000FB3 RID: 4019 RVA: 0x000A30B4 File Offset: 0x000A12B4
+	// Token: 0x06000DCE RID: 3534 RVA: 0x00052718 File Offset: 0x00050918
 	public static void Init(InitDelegate onInitComplete, HideUnityDelegate onHideUnity = null, string authResponse = null)
 	{
 		FB.Init(onInitComplete, FBSettings.AppId, FBSettings.Cookie, FBSettings.Logging, FBSettings.Status, FBSettings.Xfbml, FBSettings.FrictionlessRequests, onHideUnity, authResponse);
 	}
 
-	// Token: 0x06000FB4 RID: 4020 RVA: 0x000A30E8 File Offset: 0x000A12E8
+	// Token: 0x06000DCF RID: 3535 RVA: 0x0005274C File Offset: 0x0005094C
 	public static void Init(InitDelegate onInitComplete, string appId, bool cookie = true, bool logging = true, bool status = true, bool xfbml = false, bool frictionlessRequests = true, HideUnityDelegate onHideUnity = null, string authResponse = null)
 	{
 		FB.appId = appId;
@@ -121,7 +121,7 @@ public sealed class FB : ScriptableObject
 		}
 	}
 
-	// Token: 0x06000FB5 RID: 4021 RVA: 0x000A3194 File Offset: 0x000A1394
+	// Token: 0x06000DD0 RID: 3536 RVA: 0x000527F8 File Offset: 0x000509F8
 	private static void OnDllLoaded()
 	{
 		FBBuildVersionAttribute versionAttributeOfType = FBBuildVersionAttribute.GetVersionAttributeOfType(FB.FacebookImpl.GetType());
@@ -136,93 +136,93 @@ public sealed class FB : ScriptableObject
 		FB.FacebookImpl.Init(FB.OnInitComplete, FB.appId, FB.cookie, FB.logging, FB.status, FB.xfbml, FBSettings.ChannelUrl, FB.authResponse, FB.frictionlessRequests, FB.OnHideUnity);
 	}
 
-	// Token: 0x06000FB6 RID: 4022 RVA: 0x0000FE5C File Offset: 0x0000E05C
+	// Token: 0x06000DD1 RID: 3537 RVA: 0x0005287B File Offset: 0x00050A7B
 	public static void Login(string scope = "", FacebookDelegate callback = null)
 	{
 		FB.FacebookImpl.Login(scope, callback);
 	}
 
-	// Token: 0x06000FB7 RID: 4023 RVA: 0x0000FE6A File Offset: 0x0000E06A
+	// Token: 0x06000DD2 RID: 3538 RVA: 0x00052889 File Offset: 0x00050A89
 	public static void Logout()
 	{
 		FB.FacebookImpl.Logout();
 	}
 
-	// Token: 0x06000FB8 RID: 4024 RVA: 0x000A3218 File Offset: 0x000A1418
+	// Token: 0x06000DD3 RID: 3539 RVA: 0x00052898 File Offset: 0x00050A98
 	public static void AppRequest(string message, string[] to = null, string filters = "", string[] excludeIds = null, int? maxRecipients = null, string data = "", string title = "", FacebookDelegate callback = null)
 	{
 		FB.FacebookImpl.AppRequest(message, to, filters, excludeIds, maxRecipients, data, title, callback);
 	}
 
-	// Token: 0x06000FB9 RID: 4025 RVA: 0x000A323C File Offset: 0x000A143C
+	// Token: 0x06000DD4 RID: 3540 RVA: 0x000528BC File Offset: 0x00050ABC
 	public static void Feed(string toId = "", string link = "", string linkName = "", string linkCaption = "", string linkDescription = "", string picture = "", string mediaSource = "", string actionName = "", string actionLink = "", string reference = "", Dictionary<string, string[]> properties = null, FacebookDelegate callback = null)
 	{
 		FB.FacebookImpl.FeedRequest(toId, link, linkName, linkCaption, linkDescription, picture, mediaSource, actionName, actionLink, reference, properties, callback);
 	}
 
-	// Token: 0x06000FBA RID: 4026 RVA: 0x0000FE76 File Offset: 0x0000E076
+	// Token: 0x06000DD5 RID: 3541 RVA: 0x000528E7 File Offset: 0x00050AE7
 	public static void API(string query, HttpMethod method, FacebookDelegate callback = null, Dictionary<string, string> formData = null)
 	{
 		FB.FacebookImpl.API(query, method, formData, callback);
 	}
 
-	// Token: 0x06000FBB RID: 4027 RVA: 0x0000FE86 File Offset: 0x0000E086
+	// Token: 0x06000DD6 RID: 3542 RVA: 0x000528F7 File Offset: 0x00050AF7
 	public static void API(string query, HttpMethod method, FacebookDelegate callback, WWWForm formData)
 	{
 		FB.FacebookImpl.API(query, method, formData, callback);
 	}
 
-	// Token: 0x06000FBC RID: 4028 RVA: 0x0000FE96 File Offset: 0x0000E096
+	// Token: 0x06000DD7 RID: 3543 RVA: 0x00052907 File Offset: 0x00050B07
 	public static void PublishInstall(FacebookDelegate callback = null)
 	{
 		FB.FacebookImpl.PublishInstall(FB.AppId, callback);
 	}
 
-	// Token: 0x06000FBD RID: 4029 RVA: 0x0000FEA8 File Offset: 0x0000E0A8
+	// Token: 0x06000DD8 RID: 3544 RVA: 0x00052919 File Offset: 0x00050B19
 	public static void GetDeepLink(FacebookDelegate callback)
 	{
 		FB.FacebookImpl.GetDeepLink(callback);
 	}
 
-	// Token: 0x04000C5A RID: 3162
+	// Token: 0x040009D0 RID: 2512
 	public static InitDelegate OnInitComplete;
 
-	// Token: 0x04000C5B RID: 3163
+	// Token: 0x040009D1 RID: 2513
 	public static HideUnityDelegate OnHideUnity;
 
-	// Token: 0x04000C5C RID: 3164
+	// Token: 0x040009D2 RID: 2514
 	private static IFacebook facebook;
 
-	// Token: 0x04000C5D RID: 3165
+	// Token: 0x040009D3 RID: 2515
 	private static string authResponse;
 
-	// Token: 0x04000C5E RID: 3166
+	// Token: 0x040009D4 RID: 2516
 	private static bool isInitCalled;
 
-	// Token: 0x04000C5F RID: 3167
+	// Token: 0x040009D5 RID: 2517
 	private static string appId;
 
-	// Token: 0x04000C60 RID: 3168
+	// Token: 0x040009D6 RID: 2518
 	private static bool cookie;
 
-	// Token: 0x04000C61 RID: 3169
+	// Token: 0x040009D7 RID: 2519
 	private static bool logging;
 
-	// Token: 0x04000C62 RID: 3170
+	// Token: 0x040009D8 RID: 2520
 	private static bool status;
 
-	// Token: 0x04000C63 RID: 3171
+	// Token: 0x040009D9 RID: 2521
 	private static bool xfbml;
 
-	// Token: 0x04000C64 RID: 3172
+	// Token: 0x040009DA RID: 2522
 	private static bool frictionlessRequests;
 
-	// Token: 0x020001E6 RID: 486
+	// Token: 0x02001288 RID: 4744
 	public sealed class AppEvents
 	{
-		// Token: 0x17000223 RID: 547
-		// (get) Token: 0x06000FC0 RID: 4032 RVA: 0x0000FEBD File Offset: 0x0000E0BD
-		// (set) Token: 0x06000FC1 RID: 4033 RVA: 0x0000FED2 File Offset: 0x0000E0D2
+		// Token: 0x17000922 RID: 2338
+		// (get) Token: 0x0600799B RID: 31131 RVA: 0x002BBAA2 File Offset: 0x002B9CA2
+		// (set) Token: 0x0600799C RID: 31132 RVA: 0x002BBAB7 File Offset: 0x002B9CB7
 		public static bool LimitEventUsage
 		{
 			get
@@ -235,46 +235,46 @@ public sealed class FB : ScriptableObject
 			}
 		}
 
-		// Token: 0x06000FC2 RID: 4034 RVA: 0x0000FEDF File Offset: 0x0000E0DF
+		// Token: 0x0600799D RID: 31133 RVA: 0x002BBAC4 File Offset: 0x002B9CC4
 		public static void LogEvent(string logEvent, float? valueToSum = null, Dictionary<string, object> parameters = null)
 		{
 			FB.FacebookImpl.AppEventsLogEvent(logEvent, valueToSum, parameters);
 		}
 
-		// Token: 0x06000FC3 RID: 4035 RVA: 0x0000FEEE File Offset: 0x0000E0EE
+		// Token: 0x0600799E RID: 31134 RVA: 0x002BBAD3 File Offset: 0x002B9CD3
 		public static void LogPurchase(float logPurchase, string currency = "USD", Dictionary<string, object> parameters = null)
 		{
 			FB.FacebookImpl.AppEventsLogPurchase(logPurchase, currency, parameters);
 		}
 	}
 
-	// Token: 0x020001E7 RID: 487
+	// Token: 0x02001289 RID: 4745
 	public sealed class Canvas
 	{
-		// Token: 0x06000FC5 RID: 4037 RVA: 0x000A3268 File Offset: 0x000A1468
+		// Token: 0x060079A0 RID: 31136 RVA: 0x002BBAE4 File Offset: 0x002B9CE4
 		public static void Pay(string product, string action = "purchaseitem", int quantity = 1, int? quantityMin = null, int? quantityMax = null, string requestId = null, string pricepointId = null, string testCurrency = null, FacebookDelegate callback = null)
 		{
 			FB.FacebookImpl.Pay(product, action, quantity, quantityMin, quantityMax, requestId, pricepointId, testCurrency, callback);
 		}
 
-		// Token: 0x06000FC6 RID: 4038 RVA: 0x0000FEFD File Offset: 0x0000E0FD
+		// Token: 0x060079A1 RID: 31137 RVA: 0x002BBB09 File Offset: 0x002B9D09
 		public static void SetResolution(int width, int height, bool fullscreen, int preferredRefreshRate = 0, params FBScreen.Layout[] layoutParams)
 		{
 			FBScreen.SetResolution(width, height, fullscreen, preferredRefreshRate, layoutParams);
 		}
 
-		// Token: 0x06000FC7 RID: 4039 RVA: 0x0000FF0A File Offset: 0x0000E10A
+		// Token: 0x060079A2 RID: 31138 RVA: 0x002BBB16 File Offset: 0x002B9D16
 		public static void SetAspectRatio(int width, int height, params FBScreen.Layout[] layoutParams)
 		{
 			FBScreen.SetAspectRatio(width, height, layoutParams);
 		}
 	}
 
-	// Token: 0x020001E8 RID: 488
+	// Token: 0x0200128A RID: 4746
 	public sealed class Android
 	{
-		// Token: 0x17000224 RID: 548
-		// (get) Token: 0x06000FC9 RID: 4041 RVA: 0x000A3290 File Offset: 0x000A1490
+		// Token: 0x17000923 RID: 2339
+		// (get) Token: 0x060079A4 RID: 31140 RVA: 0x002BBB20 File Offset: 0x002B9D20
 		public static string KeyHash
 		{
 			get
@@ -289,10 +289,10 @@ public sealed class FB : ScriptableObject
 		}
 	}
 
-	// Token: 0x020001E9 RID: 489
+	// Token: 0x0200128B RID: 4747
 	public abstract class RemoteFacebookLoader : MonoBehaviour
 	{
-		// Token: 0x06000FCB RID: 4043 RVA: 0x0000FF14 File Offset: 0x0000E114
+		// Token: 0x060079A6 RID: 31142 RVA: 0x002BBB4D File Offset: 0x002B9D4D
 		public static IEnumerator LoadFacebookClass(string className, FB.RemoteFacebookLoader.LoadedDllCallback callback)
 		{
 			string url = string.Format(IntegratedPluginCanvasLocation.DllUrl, className);
@@ -319,11 +319,11 @@ public sealed class FB : ScriptableObject
 			yield break;
 		}
 
-		// Token: 0x17000225 RID: 549
-		// (get) Token: 0x06000FCC RID: 4044
+		// Token: 0x17000924 RID: 2340
+		// (get) Token: 0x060079A7 RID: 31143
 		protected abstract string className { get; }
 
-		// Token: 0x06000FCD RID: 4045 RVA: 0x0000FF23 File Offset: 0x0000E123
+		// Token: 0x060079A8 RID: 31144 RVA: 0x002BBB5C File Offset: 0x002B9D5C
 		private IEnumerator Start()
 		{
 			IEnumerator loader = FB.RemoteFacebookLoader.LoadFacebookClass(this.className, new FB.RemoteFacebookLoader.LoadedDllCallback(this.OnDllLoaded));
@@ -336,35 +336,35 @@ public sealed class FB : ScriptableObject
 			yield break;
 		}
 
-		// Token: 0x06000FCE RID: 4046 RVA: 0x0000FF32 File Offset: 0x0000E132
+		// Token: 0x060079A9 RID: 31145 RVA: 0x002BBB6B File Offset: 0x002B9D6B
 		private void OnDllLoaded(IFacebook fb)
 		{
 			FB.facebook = fb;
 			FB.OnDllLoaded();
 		}
 
-		// Token: 0x04000C65 RID: 3173
+		// Token: 0x040065D9 RID: 26073
 		private const string facebookNamespace = "Facebook.";
 
-		// Token: 0x04000C66 RID: 3174
+		// Token: 0x040065DA RID: 26074
 		private const int maxRetryLoadCount = 3;
 
-		// Token: 0x04000C67 RID: 3175
+		// Token: 0x040065DB RID: 26075
 		private static int retryLoadCount;
 
-		// Token: 0x020001EA RID: 490
-		// (Invoke) Token: 0x06000FD2 RID: 4050
+		// Token: 0x0200174E RID: 5966
+		// (Invoke) Token: 0x06008977 RID: 35191
 		public delegate void LoadedDllCallback(IFacebook fb);
 	}
 
-	// Token: 0x020001ED RID: 493
+	// Token: 0x0200128C RID: 4748
 	public abstract class CompiledFacebookLoader : MonoBehaviour
 	{
-		// Token: 0x1700022A RID: 554
-		// (get) Token: 0x06000FE1 RID: 4065
+		// Token: 0x17000925 RID: 2341
+		// (get) Token: 0x060079AC RID: 31148
 		protected abstract IFacebook fb { get; }
 
-		// Token: 0x06000FE2 RID: 4066 RVA: 0x0000FF6D File Offset: 0x0000E16D
+		// Token: 0x060079AD RID: 31149 RVA: 0x002BBB78 File Offset: 0x002B9D78
 		private void Start()
 		{
 			FB.facebook = this.fb;

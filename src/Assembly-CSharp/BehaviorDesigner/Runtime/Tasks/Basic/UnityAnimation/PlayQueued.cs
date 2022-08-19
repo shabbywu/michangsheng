@@ -3,12 +3,12 @@ using UnityEngine;
 
 namespace BehaviorDesigner.Runtime.Tasks.Basic.UnityAnimation
 {
-	// Token: 0x0200166E RID: 5742
+	// Token: 0x020011AC RID: 4524
 	[TaskCategory("Basic/Animation")]
 	[TaskDescription("Plays an animation after previous animations has finished playing. Returns Success.")]
 	public class PlayQueued : Action
 	{
-		// Token: 0x06008554 RID: 34132 RVA: 0x002D0CA4 File Offset: 0x002CEEA4
+		// Token: 0x06007748 RID: 30536 RVA: 0x002B8A48 File Offset: 0x002B6C48
 		public override void OnStart()
 		{
 			GameObject defaultGameObject = base.GetDefaultGameObject(this.targetGameObject.Value);
@@ -19,7 +19,7 @@ namespace BehaviorDesigner.Runtime.Tasks.Basic.UnityAnimation
 			}
 		}
 
-		// Token: 0x06008555 RID: 34133 RVA: 0x0005C7F1 File Offset: 0x0005A9F1
+		// Token: 0x06007749 RID: 30537 RVA: 0x002B8A88 File Offset: 0x002B6C88
 		public override TaskStatus OnUpdate()
 		{
 			if (this.animation == null)
@@ -31,7 +31,7 @@ namespace BehaviorDesigner.Runtime.Tasks.Basic.UnityAnimation
 			return 2;
 		}
 
-		// Token: 0x06008556 RID: 34134 RVA: 0x0005C831 File Offset: 0x0005AA31
+		// Token: 0x0600774A RID: 30538 RVA: 0x002B8AC8 File Offset: 0x002B6CC8
 		public override void OnReset()
 		{
 			this.targetGameObject = null;
@@ -40,26 +40,26 @@ namespace BehaviorDesigner.Runtime.Tasks.Basic.UnityAnimation
 			this.playMode = 0;
 		}
 
-		// Token: 0x04007215 RID: 29205
+		// Token: 0x040062E6 RID: 25318
 		[Tooltip("The GameObject that the task operates on. If null the task GameObject is used.")]
 		public SharedGameObject targetGameObject;
 
-		// Token: 0x04007216 RID: 29206
+		// Token: 0x040062E7 RID: 25319
 		[Tooltip("The name of the animation")]
 		public SharedString animationName;
 
-		// Token: 0x04007217 RID: 29207
+		// Token: 0x040062E8 RID: 25320
 		[Tooltip("Specifies when the animation should start playing")]
 		public QueueMode queue;
 
-		// Token: 0x04007218 RID: 29208
+		// Token: 0x040062E9 RID: 25321
 		[Tooltip("The play mode of the animation")]
 		public PlayMode playMode;
 
-		// Token: 0x04007219 RID: 29209
+		// Token: 0x040062EA RID: 25322
 		private Animation animation;
 
-		// Token: 0x0400721A RID: 29210
+		// Token: 0x040062EB RID: 25323
 		private GameObject prevGameObject;
 	}
 }

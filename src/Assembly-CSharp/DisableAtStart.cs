@@ -1,10 +1,10 @@
 ﻿using System;
 using UnityEngine;
 
-// Token: 0x020007B2 RID: 1970
+// Token: 0x0200051E RID: 1310
 public class DisableAtStart : MonoBehaviour
 {
-	// Token: 0x0600320E RID: 12814 RVA: 0x0018D3D0 File Offset: 0x0018B5D0
+	// Token: 0x060029FB RID: 10747 RVA: 0x00140208 File Offset: 0x0013E408
 	private void Start()
 	{
 		GameObject[] objects = this.m_Objects;
@@ -14,7 +14,7 @@ public class DisableAtStart : MonoBehaviour
 		}
 	}
 
-	// Token: 0x04002E38 RID: 11832
+	// Token: 0x04002648 RID: 9800
 	[SerializeField]
 	private GameObject[] m_Objects;
 }

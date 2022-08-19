@@ -2,11 +2,11 @@
 
 namespace UltimateSurvival
 {
-	// Token: 0x02000888 RID: 2184
+	// Token: 0x020005C6 RID: 1478
 	public class AIBehaviour : EntityBehaviour
 	{
-		// Token: 0x170005BF RID: 1471
-		// (get) Token: 0x0600385C RID: 14428 RVA: 0x00028FB4 File Offset: 0x000271B4
+		// Token: 0x17000402 RID: 1026
+		// (get) Token: 0x06002FCC RID: 12236 RVA: 0x001590AC File Offset: 0x001572AC
 		public AIEventHandler AI
 		{
 			get
@@ -19,7 +19,7 @@ namespace UltimateSurvival
 			}
 		}
 
-		// Token: 0x040032BB RID: 12987
+		// Token: 0x04002A25 RID: 10789
 		private AIEventHandler m_AI;
 	}
 }

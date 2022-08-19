@@ -3,17 +3,17 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
 
-// Token: 0x02000450 RID: 1104
+// Token: 0x020002F3 RID: 755
 public class MyDropdown : MonoBehaviour
 {
-	// Token: 0x06001D8F RID: 7567 RVA: 0x00018931 File Offset: 0x00016B31
+	// Token: 0x06001A69 RID: 6761 RVA: 0x000BC524 File Offset: 0x000BA724
 	private void Start()
 	{
 		this.startBtn.onClick.AddListener(new UnityAction(this.Open));
 		this.bigBtn.onClick.AddListener(new UnityAction(this.Close));
 	}
 
-	// Token: 0x06001D90 RID: 7568 RVA: 0x0001896B File Offset: 0x00016B6B
+	// Token: 0x06001A6A RID: 6762 RVA: 0x000BC55E File Offset: 0x000BA75E
 	private void Open()
 	{
 		this.content.SetActive(true);
@@ -21,7 +21,7 @@ public class MyDropdown : MonoBehaviour
 		this.bigBtn.gameObject.SetActive(true);
 	}
 
-	// Token: 0x06001D91 RID: 7569 RVA: 0x0001899B File Offset: 0x00016B9B
+	// Token: 0x06001A6B RID: 6763 RVA: 0x000BC58E File Offset: 0x000BA78E
 	public void Close()
 	{
 		this.startBtn.gameObject.SetActive(true);
@@ -29,15 +29,15 @@ public class MyDropdown : MonoBehaviour
 		this.bigBtn.gameObject.SetActive(false);
 	}
 
-	// Token: 0x04001949 RID: 6473
+	// Token: 0x0400153C RID: 5436
 	[SerializeField]
 	private GameObject content;
 
-	// Token: 0x0400194A RID: 6474
+	// Token: 0x0400153D RID: 5437
 	[SerializeField]
 	private Button startBtn;
 
-	// Token: 0x0400194B RID: 6475
+	// Token: 0x0400153E RID: 5438
 	[SerializeField]
 	private Button bigBtn;
 }

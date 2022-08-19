@@ -7,16 +7,16 @@ using Spine.Unity;
 using UnityEngine;
 using UnityEngine.UI;
 
-// Token: 0x02000287 RID: 647
+// Token: 0x02000196 RID: 406
 public class MapPlayerSeaShow : MonoBehaviour
 {
-	// Token: 0x060013CD RID: 5069 RVA: 0x00012806 File Offset: 0x00010A06
+	// Token: 0x06001144 RID: 4420 RVA: 0x00067D5B File Offset: 0x00065F5B
 	public void Init(MapPlayerController controller)
 	{
 		this.controller = controller;
 	}
 
-	// Token: 0x060013CE RID: 5070 RVA: 0x0001280F File Offset: 0x00010A0F
+	// Token: 0x06001145 RID: 4421 RVA: 0x00067D64 File Offset: 0x00065F64
 	private void Update()
 	{
 		if (this.controller.IsOnSea && this.controller.ShowType == MapPlayerShowType.灵舟)
@@ -25,7 +25,7 @@ public class MapPlayerSeaShow : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060013CF RID: 5071 RVA: 0x000B62F8 File Offset: 0x000B44F8
+	// Token: 0x06001146 RID: 4422 RVA: 0x00067D88 File Offset: 0x00065F88
 	public void SetDir(SeaAvatarObjBase.Directon directon)
 	{
 		this.Anim.SetInteger("direction", (int)directon);
@@ -37,7 +37,7 @@ public class MapPlayerSeaShow : MonoBehaviour
 		this.ChuanSpine.transform.localScale = Vector3.one;
 	}
 
-	// Token: 0x060013D0 RID: 5072 RVA: 0x000B6348 File Offset: 0x000B4548
+	// Token: 0x06001147 RID: 4423 RVA: 0x00067DD8 File Offset: 0x00065FD8
 	public void Refresh()
 	{
 		if (this.meshRenderer == null)
@@ -81,7 +81,7 @@ public class MapPlayerSeaShow : MonoBehaviour
 		this.ChuanObj.SetActive(false);
 	}
 
-	// Token: 0x060013D1 RID: 5073 RVA: 0x000B64C4 File Offset: 0x000B46C4
+	// Token: 0x06001148 RID: 4424 RVA: 0x00067F54 File Offset: 0x00066154
 	private void RefreshLingZhouHP()
 	{
 		BaseItem lingZhou = PlayerEx.Player.GetLingZhou();
@@ -98,7 +98,7 @@ public class MapPlayerSeaShow : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060013D2 RID: 5074 RVA: 0x000B65D4 File Offset: 0x000B47D4
+	// Token: 0x06001149 RID: 4425 RVA: 0x00068064 File Offset: 0x00066264
 	private void SetItemBuff()
 	{
 		Avatar player = PlayerEx.Player;
@@ -125,7 +125,7 @@ public class MapPlayerSeaShow : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060013D3 RID: 5075 RVA: 0x000B669C File Offset: 0x000B489C
+	// Token: 0x0600114A RID: 4426 RVA: 0x0006812C File Offset: 0x0006632C
 	private void SetShiYe()
 	{
 		this.SeaZheZhao.gameObject.SetActive(true);
@@ -143,7 +143,7 @@ public class MapPlayerSeaShow : MonoBehaviour
 		this.SeaZheZhao.sprite = sprite;
 	}
 
-	// Token: 0x060013D4 RID: 5076 RVA: 0x000B6738 File Offset: 0x000B4938
+	// Token: 0x0600114B RID: 4427 RVA: 0x000681C8 File Offset: 0x000663C8
 	private void SetSpine(SkeletonDataAsset spine, string skinName)
 	{
 		if (this.ChuanSpine.skeletonDataAsset != spine)
@@ -160,48 +160,48 @@ public class MapPlayerSeaShow : MonoBehaviour
 		}
 	}
 
-	// Token: 0x04000F70 RID: 3952
+	// Token: 0x04000C6C RID: 3180
 	public GameObject ChuanObj;
 
-	// Token: 0x04000F71 RID: 3953
+	// Token: 0x04000C6D RID: 3181
 	public SkeletonAnimation ChuanSpine;
 
-	// Token: 0x04000F72 RID: 3954
+	// Token: 0x04000C6E RID: 3182
 	public SkeletonDataAsset ChuanGuGe;
 
-	// Token: 0x04000F73 RID: 3955
+	// Token: 0x04000C6F RID: 3183
 	public SkeletonDataAsset YouYongGuGe;
 
-	// Token: 0x04000F74 RID: 3956
+	// Token: 0x04000C70 RID: 3184
 	public Animator Anim;
 
-	// Token: 0x04000F75 RID: 3957
+	// Token: 0x04000C71 RID: 3185
 	public SpriteRenderer SeaZheZhao;
 
-	// Token: 0x04000F76 RID: 3958
+	// Token: 0x04000C72 RID: 3186
 	public List<Sprite> ShenShiZheZhaoList;
 
-	// Token: 0x04000F77 RID: 3959
+	// Token: 0x04000C73 RID: 3187
 	public GameObject HPObj;
 
-	// Token: 0x04000F78 RID: 3960
+	// Token: 0x04000C74 RID: 3188
 	public Slider HPSlider;
 
-	// Token: 0x04000F79 RID: 3961
+	// Token: 0x04000C75 RID: 3189
 	public Image YouYaoYe;
 
-	// Token: 0x04000F7A RID: 3962
+	// Token: 0x04000C76 RID: 3190
 	public Image QuYaoYe;
 
-	// Token: 0x04000F7B RID: 3963
+	// Token: 0x04000C77 RID: 3191
 	public Text Percent;
 
-	// Token: 0x04000F7C RID: 3964
+	// Token: 0x04000C78 RID: 3192
 	private MapPlayerController controller;
 
-	// Token: 0x04000F7D RID: 3965
+	// Token: 0x04000C79 RID: 3193
 	private MeshRenderer meshRenderer;
 
-	// Token: 0x04000F7E RID: 3966
+	// Token: 0x04000C7A RID: 3194
 	private static Vector3 fanXiang = new Vector3(-1f, 1f, 1f);
 }

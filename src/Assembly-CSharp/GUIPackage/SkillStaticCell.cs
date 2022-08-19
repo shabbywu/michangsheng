@@ -5,16 +5,16 @@ using UnityEngine;
 
 namespace GUIPackage
 {
-	// Token: 0x02000D9A RID: 3482
+	// Token: 0x02000A6D RID: 2669
 	public class SkillStaticCell : MonoBehaviour
 	{
-		// Token: 0x0600540A RID: 21514 RVA: 0x0003C138 File Offset: 0x0003A338
+		// Token: 0x06004AFE RID: 19198 RVA: 0x001FE939 File Offset: 0x001FCB39
 		private void Start()
 		{
 			this.avatar = Tools.instance.getPlayer();
 		}
 
-		// Token: 0x0600540B RID: 21515 RVA: 0x0003C14A File Offset: 0x0003A34A
+		// Token: 0x06004AFF RID: 19199 RVA: 0x001FE94B File Offset: 0x001FCB4B
 		private void Update()
 		{
 			if (this.refreshCD < 0f)
@@ -26,7 +26,7 @@ namespace GUIPackage
 			this.refreshCD -= Time.deltaTime;
 		}
 
-		// Token: 0x0600540C RID: 21516 RVA: 0x00230870 File Offset: 0x0022EA70
+		// Token: 0x06004B00 RID: 19200 RVA: 0x001FE980 File Offset: 0x001FCB80
 		public void UpdateRefresh()
 		{
 			if (this.skillID == -1)
@@ -67,7 +67,7 @@ namespace GUIPackage
 			this.Dengji.SetActive(false);
 		}
 
-		// Token: 0x0600540D RID: 21517 RVA: 0x00230A70 File Offset: 0x0022EC70
+		// Token: 0x06004B01 RID: 19201 RVA: 0x001FEB80 File Offset: 0x001FCD80
 		public int getSkillLevel(int SkillID)
 		{
 			int staticSkillIDByKey = Tools.instance.getStaticSkillIDByKey(SkillID);
@@ -81,7 +81,7 @@ namespace GUIPackage
 			return 0;
 		}
 
-		// Token: 0x0600540E RID: 21518 RVA: 0x0003C17D File Offset: 0x0003A37D
+		// Token: 0x06004B02 RID: 19202 RVA: 0x001FEBF4 File Offset: 0x001FCDF4
 		protected virtual void OnPress()
 		{
 			if (this.skillID == -1)
@@ -91,7 +91,7 @@ namespace GUIPackage
 			this.PCOnPress();
 		}
 
-		// Token: 0x0600540F RID: 21519 RVA: 0x0003C18F File Offset: 0x0003A38F
+		// Token: 0x06004B03 RID: 19203 RVA: 0x001FEC06 File Offset: 0x001FCE06
 		public void MobilePress()
 		{
 			this.PCOnHover(true);
@@ -104,7 +104,7 @@ namespace GUIPackage
 			toolTipsBackGround.use.gameObject.SetActive(false);
 		}
 
-		// Token: 0x06005410 RID: 21520 RVA: 0x00230AE4 File Offset: 0x0022ECE4
+		// Token: 0x06004B04 RID: 19204 RVA: 0x001FEC40 File Offset: 0x001FCE40
 		public void PCOnPress()
 		{
 			this.skill_UIST.showTooltip = false;
@@ -115,19 +115,19 @@ namespace GUIPackage
 			}
 		}
 
-		// Token: 0x06005411 RID: 21521 RVA: 0x0003C1C9 File Offset: 0x0003A3C9
+		// Token: 0x06004B05 RID: 19205 RVA: 0x001FECC8 File Offset: 0x001FCEC8
 		public virtual void SetShow_Tooltip()
 		{
 			this.skill_UIST.Show_Tooltip(this.skill_UIST.skill[this.skillID], 0);
 		}
 
-		// Token: 0x06005412 RID: 21522 RVA: 0x0003C1ED File Offset: 0x0003A3ED
+		// Token: 0x06004B06 RID: 19206 RVA: 0x001FECEC File Offset: 0x001FCEEC
 		private void OnHover(bool isOver)
 		{
 			this.PCOnHover(isOver);
 		}
 
-		// Token: 0x06005413 RID: 21523 RVA: 0x0003C1F6 File Offset: 0x0003A3F6
+		// Token: 0x06004B07 RID: 19207 RVA: 0x001FECF5 File Offset: 0x001FCEF5
 		public void PCOnHover(bool isOver)
 		{
 			if (this.skillID == -1)
@@ -143,55 +143,55 @@ namespace GUIPackage
 			this.skill_UIST.showTooltip = false;
 		}
 
-		// Token: 0x06005414 RID: 21524 RVA: 0x0003C224 File Offset: 0x0003A424
+		// Token: 0x06004B08 RID: 19208 RVA: 0x001FED23 File Offset: 0x001FCF23
 		public void skillUPCell()
 		{
 			this.skill_UIST.SkillUP(this.skillID);
 		}
 
-		// Token: 0x040053C5 RID: 21445
+		// Token: 0x04004A26 RID: 18982
 		public GameObject Icon;
 
-		// Token: 0x040053C6 RID: 21446
+		// Token: 0x04004A27 RID: 18983
 		public GameObject Level;
 
-		// Token: 0x040053C7 RID: 21447
+		// Token: 0x04004A28 RID: 18984
 		public GameObject Name;
 
-		// Token: 0x040053C8 RID: 21448
+		// Token: 0x04004A29 RID: 18985
 		public GameObject PingZhi;
 
-		// Token: 0x040053C9 RID: 21449
+		// Token: 0x04004A2A RID: 18986
 		public int skillID;
 
-		// Token: 0x040053CA RID: 21450
+		// Token: 0x04004A2B RID: 18987
 		public Skill_UIST skill_UIST;
 
-		// Token: 0x040053CB RID: 21451
+		// Token: 0x04004A2C RID: 18988
 		public GameObject KeyName;
 
-		// Token: 0x040053CC RID: 21452
+		// Token: 0x04004A2D RID: 18989
 		public UILabel NameLabel;
 
-		// Token: 0x040053CD RID: 21453
+		// Token: 0x04004A2E RID: 18990
 		public bool showName;
 
-		// Token: 0x040053CE RID: 21454
+		// Token: 0x04004A2F RID: 18991
 		private Avatar avatar;
 
-		// Token: 0x040053CF RID: 21455
+		// Token: 0x04004A30 RID: 18992
 		public GameObject Dengji;
 
-		// Token: 0x040053D0 RID: 21456
+		// Token: 0x04004A31 RID: 18993
 		public UITexture uITexture;
 
-		// Token: 0x040053D1 RID: 21457
+		// Token: 0x04004A32 RID: 18994
 		public List<Texture> sprites;
 
-		// Token: 0x040053D2 RID: 21458
+		// Token: 0x04004A33 RID: 18995
 		public bool showDengji;
 
-		// Token: 0x040053D3 RID: 21459
+		// Token: 0x04004A34 RID: 18996
 		private float refreshCD;
 	}
 }

@@ -5,10 +5,10 @@ using System.Text.RegularExpressions;
 
 namespace ICSharpCode.SharpZipLib.Core
 {
-	// Token: 0x0200082E RID: 2094
+	// Token: 0x02000585 RID: 1413
 	public class NameFilter : IScanFilter
 	{
-		// Token: 0x060036D5 RID: 14037 RVA: 0x00027DE4 File Offset: 0x00025FE4
+		// Token: 0x06002E5F RID: 11871 RVA: 0x00151585 File Offset: 0x0014F785
 		public NameFilter(string filter)
 		{
 			this.filter_ = filter;
@@ -17,7 +17,7 @@ namespace ICSharpCode.SharpZipLib.Core
 			this.Compile();
 		}
 
-		// Token: 0x060036D6 RID: 14038 RVA: 0x0019C418 File Offset: 0x0019A618
+		// Token: 0x06002E60 RID: 11872 RVA: 0x001515B0 File Offset: 0x0014F7B0
 		public static bool IsValidExpression(string expression)
 		{
 			bool result = true;
@@ -32,7 +32,7 @@ namespace ICSharpCode.SharpZipLib.Core
 			return result;
 		}
 
-		// Token: 0x060036D7 RID: 14039 RVA: 0x0019C448 File Offset: 0x0019A648
+		// Token: 0x06002E61 RID: 11873 RVA: 0x001515E0 File Offset: 0x0014F7E0
 		public static bool IsValidFilterExpression(string toTest)
 		{
 			bool result = true;
@@ -70,7 +70,7 @@ namespace ICSharpCode.SharpZipLib.Core
 			return result;
 		}
 
-		// Token: 0x060036D8 RID: 14040 RVA: 0x0019C4EC File Offset: 0x0019A6EC
+		// Token: 0x06002E62 RID: 11874 RVA: 0x00151684 File Offset: 0x0014F884
 		public static string[] SplitQuoted(string original)
 		{
 			char c = '\\';
@@ -117,13 +117,13 @@ namespace ICSharpCode.SharpZipLib.Core
 			return list.ToArray();
 		}
 
-		// Token: 0x060036D9 RID: 14041 RVA: 0x00027E0F File Offset: 0x0002600F
+		// Token: 0x06002E63 RID: 11875 RVA: 0x00151777 File Offset: 0x0014F977
 		public override string ToString()
 		{
 			return this.filter_;
 		}
 
-		// Token: 0x060036DA RID: 14042 RVA: 0x0019C5E0 File Offset: 0x0019A7E0
+		// Token: 0x06002E64 RID: 11876 RVA: 0x00151780 File Offset: 0x0014F980
 		public bool IsIncluded(string name)
 		{
 			bool result = false;
@@ -148,7 +148,7 @@ namespace ICSharpCode.SharpZipLib.Core
 			return result;
 		}
 
-		// Token: 0x060036DB RID: 14043 RVA: 0x0019C64C File Offset: 0x0019A84C
+		// Token: 0x06002E65 RID: 11877 RVA: 0x001517EC File Offset: 0x0014F9EC
 		public bool IsExcluded(string name)
 		{
 			bool result = false;
@@ -166,13 +166,13 @@ namespace ICSharpCode.SharpZipLib.Core
 			return result;
 		}
 
-		// Token: 0x060036DC RID: 14044 RVA: 0x00027E17 File Offset: 0x00026017
+		// Token: 0x06002E66 RID: 11878 RVA: 0x00151848 File Offset: 0x0014FA48
 		public bool IsMatch(string name)
 		{
 			return this.IsIncluded(name) && !this.IsExcluded(name);
 		}
 
-		// Token: 0x060036DD RID: 14045 RVA: 0x0019C6A8 File Offset: 0x0019A8A8
+		// Token: 0x06002E67 RID: 11879 RVA: 0x00151860 File Offset: 0x0014FA60
 		private void Compile()
 		{
 			if (this.filter_ == null)
@@ -210,13 +210,13 @@ namespace ICSharpCode.SharpZipLib.Core
 			}
 		}
 
-		// Token: 0x0400311F RID: 12575
+		// Token: 0x040028E0 RID: 10464
 		private string filter_;
 
-		// Token: 0x04003120 RID: 12576
+		// Token: 0x040028E1 RID: 10465
 		private List<Regex> inclusions_;
 
-		// Token: 0x04003121 RID: 12577
+		// Token: 0x040028E2 RID: 10466
 		private List<Regex> exclusions_;
 	}
 }

@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using UnityEngine;
 
-// Token: 0x020000B1 RID: 177
+// Token: 0x0200007D RID: 125
 public class BetterList<T>
 {
-	// Token: 0x0600068F RID: 1679 RVA: 0x00009C2D File Offset: 0x00007E2D
+	// Token: 0x0600061F RID: 1567 RVA: 0x0002305A File Offset: 0x0002125A
 	public IEnumerator<T> GetEnumerator()
 	{
 		if (this.buffer != null)
@@ -21,7 +21,7 @@ public class BetterList<T>
 		yield break;
 	}
 
-	// Token: 0x170000BF RID: 191
+	// Token: 0x170000AF RID: 175
 	[DebuggerHidden]
 	public T this[int i]
 	{
@@ -35,7 +35,7 @@ public class BetterList<T>
 		}
 	}
 
-	// Token: 0x06000692 RID: 1682 RVA: 0x00078A6C File Offset: 0x00076C6C
+	// Token: 0x06000622 RID: 1570 RVA: 0x00023088 File Offset: 0x00021288
 	private void AllocateMore()
 	{
 		T[] array = (this.buffer != null) ? new T[Mathf.Max(this.buffer.Length << 1, 32)] : new T[32];
@@ -46,7 +46,7 @@ public class BetterList<T>
 		this.buffer = array;
 	}
 
-	// Token: 0x06000693 RID: 1683 RVA: 0x00078AC8 File Offset: 0x00076CC8
+	// Token: 0x06000623 RID: 1571 RVA: 0x000230E4 File Offset: 0x000212E4
 	private void Trim()
 	{
 		if (this.size > 0)
@@ -68,20 +68,20 @@ public class BetterList<T>
 		}
 	}
 
-	// Token: 0x06000694 RID: 1684 RVA: 0x00009C59 File Offset: 0x00007E59
+	// Token: 0x06000624 RID: 1572 RVA: 0x00023149 File Offset: 0x00021349
 	public void Clear()
 	{
 		this.size = 0;
 	}
 
-	// Token: 0x06000695 RID: 1685 RVA: 0x00009C62 File Offset: 0x00007E62
+	// Token: 0x06000625 RID: 1573 RVA: 0x00023152 File Offset: 0x00021352
 	public void Release()
 	{
 		this.size = 0;
 		this.buffer = null;
 	}
 
-	// Token: 0x06000696 RID: 1686 RVA: 0x00078B30 File Offset: 0x00076D30
+	// Token: 0x06000626 RID: 1574 RVA: 0x00023164 File Offset: 0x00021364
 	public void Add(T item)
 	{
 		if (this.buffer == null || this.size == this.buffer.Length)
@@ -94,7 +94,7 @@ public class BetterList<T>
 		array[num] = item;
 	}
 
-	// Token: 0x06000697 RID: 1687 RVA: 0x00078B78 File Offset: 0x00076D78
+	// Token: 0x06000627 RID: 1575 RVA: 0x000231AC File Offset: 0x000213AC
 	public void Insert(int index, T item)
 	{
 		if (this.buffer == null || this.size == this.buffer.Length)
@@ -114,7 +114,7 @@ public class BetterList<T>
 		this.Add(item);
 	}
 
-	// Token: 0x06000698 RID: 1688 RVA: 0x00078C00 File Offset: 0x00076E00
+	// Token: 0x06000628 RID: 1576 RVA: 0x00023234 File Offset: 0x00021434
 	public bool Contains(T item)
 	{
 		if (this.buffer == null)
@@ -131,7 +131,7 @@ public class BetterList<T>
 		return false;
 	}
 
-	// Token: 0x06000699 RID: 1689 RVA: 0x00078C4C File Offset: 0x00076E4C
+	// Token: 0x06000629 RID: 1577 RVA: 0x00023280 File Offset: 0x00021480
 	public int IndexOf(T item)
 	{
 		if (this.buffer == null)
@@ -148,7 +148,7 @@ public class BetterList<T>
 		return -1;
 	}
 
-	// Token: 0x0600069A RID: 1690 RVA: 0x00078C98 File Offset: 0x00076E98
+	// Token: 0x0600062A RID: 1578 RVA: 0x000232CC File Offset: 0x000214CC
 	public bool Remove(T item)
 	{
 		if (this.buffer != null)
@@ -172,7 +172,7 @@ public class BetterList<T>
 		return false;
 	}
 
-	// Token: 0x0600069B RID: 1691 RVA: 0x00078D50 File Offset: 0x00076F50
+	// Token: 0x0600062B RID: 1579 RVA: 0x00023384 File Offset: 0x00021584
 	public void RemoveAt(int index)
 	{
 		if (this.buffer != null && index > -1 && index < this.size)
@@ -187,7 +187,7 @@ public class BetterList<T>
 		}
 	}
 
-	// Token: 0x0600069C RID: 1692 RVA: 0x00078DDC File Offset: 0x00076FDC
+	// Token: 0x0600062C RID: 1580 RVA: 0x00023410 File Offset: 0x00021610
 	public T Pop()
 	{
 		if (this.buffer != null && this.size != 0)
@@ -202,14 +202,14 @@ public class BetterList<T>
 		return default(T);
 	}
 
-	// Token: 0x0600069D RID: 1693 RVA: 0x00009C72 File Offset: 0x00007E72
+	// Token: 0x0600062D RID: 1581 RVA: 0x0002346D File Offset: 0x0002166D
 	public T[] ToArray()
 	{
 		this.Trim();
 		return this.buffer;
 	}
 
-	// Token: 0x0600069E RID: 1694 RVA: 0x00078E3C File Offset: 0x0007703C
+	// Token: 0x0600062E RID: 1582 RVA: 0x0002347C File Offset: 0x0002167C
 	[DebuggerHidden]
 	[DebuggerStepThrough]
 	public void Sort(BetterList<T>.CompareFunc comparer)
@@ -237,13 +237,13 @@ public class BetterList<T>
 		}
 	}
 
-	// Token: 0x040004F6 RID: 1270
+	// Token: 0x04000426 RID: 1062
 	public T[] buffer;
 
-	// Token: 0x040004F7 RID: 1271
+	// Token: 0x04000427 RID: 1063
 	public int size;
 
-	// Token: 0x020000B2 RID: 178
-	// (Invoke) Token: 0x060006A1 RID: 1697
+	// Token: 0x020011F8 RID: 4600
+	// (Invoke) Token: 0x06007827 RID: 30759
 	public delegate int CompareFunc(T left, T right);
 }

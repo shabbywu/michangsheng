@@ -2,16 +2,16 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-// Token: 0x0200052C RID: 1324
+// Token: 0x020003A3 RID: 931
 public class WuDaoToggle : MonoBehaviour
 {
-	// Token: 0x060021DE RID: 8670 RVA: 0x0001BCD3 File Offset: 0x00019ED3
+	// Token: 0x06001E5D RID: 7773 RVA: 0x000D5D38 File Offset: 0x000D3F38
 	private void Start()
 	{
 		this.toggle = base.GetComponent<Toggle>();
 	}
 
-	// Token: 0x060021DF RID: 8671 RVA: 0x00119580 File Offset: 0x00117780
+	// Token: 0x06001E5E RID: 7774 RVA: 0x000D5D48 File Offset: 0x000D3F48
 	public void OnClick()
 	{
 		if (this.toggle.isOn)
@@ -24,7 +24,7 @@ public class WuDaoToggle : MonoBehaviour
 		this.iconType.color = new Color(189f, 101f, 33f);
 	}
 
-	// Token: 0x060021E0 RID: 8672 RVA: 0x00119618 File Offset: 0x00117818
+	// Token: 0x06001E5F RID: 7775 RVA: 0x000D5DE0 File Offset: 0x000D3FE0
 	private void Update()
 	{
 		if (this.toggle != null)
@@ -40,12 +40,12 @@ public class WuDaoToggle : MonoBehaviour
 		}
 	}
 
-	// Token: 0x04001D4E RID: 7502
+	// Token: 0x040018E5 RID: 6373
 	private Toggle toggle;
 
-	// Token: 0x04001D4F RID: 7503
+	// Token: 0x040018E6 RID: 6374
 	public Text wuDaoname;
 
-	// Token: 0x04001D50 RID: 7504
+	// Token: 0x040018E7 RID: 6375
 	public Image iconType;
 }

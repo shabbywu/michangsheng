@@ -7,11 +7,11 @@ using UnityEngine;
 
 namespace Tab
 {
-	// Token: 0x02000A52 RID: 2642
+	// Token: 0x02000705 RID: 1797
 	[Serializable]
 	public class TabWuPingPanel : ITabPanelBase
 	{
-		// Token: 0x06004429 RID: 17449 RVA: 0x001D1F6C File Offset: 0x001D016C
+		// Token: 0x060039A5 RID: 14757 RVA: 0x0018A7D4 File Offset: 0x001889D4
 		public TabWuPingPanel(GameObject gameObject)
 		{
 			this.HasHp = true;
@@ -19,7 +19,7 @@ namespace Tab
 			this._isInit = false;
 		}
 
-		// Token: 0x0600442A RID: 17450 RVA: 0x001D1FBC File Offset: 0x001D01BC
+		// Token: 0x060039A6 RID: 14758 RVA: 0x0018A824 File Offset: 0x00188A24
 		private void Init()
 		{
 			Transform transform = base.Get("EquipList", true).transform;
@@ -37,7 +37,7 @@ namespace Tab
 			this.EquipDict.Remove(3);
 		}
 
-		// Token: 0x0600442B RID: 17451 RVA: 0x001D205C File Offset: 0x001D025C
+		// Token: 0x060039A7 RID: 14759 RVA: 0x0018A8C4 File Offset: 0x00188AC4
 		public override void Show()
 		{
 			if (!this._isInit)
@@ -51,7 +51,7 @@ namespace Tab
 			this._go.SetActive(true);
 		}
 
-		// Token: 0x0600442C RID: 17452 RVA: 0x001D20AC File Offset: 0x001D02AC
+		// Token: 0x060039A8 RID: 14760 RVA: 0x0018A914 File Offset: 0x00188B14
 		public void LoadEquipData()
 		{
 			Dictionary<int, BaseItem> curEquipDict = this.FangAnData.GetCurEquipDict();
@@ -69,7 +69,7 @@ namespace Tab
 			this.ResetEquipSeid();
 		}
 
-		// Token: 0x0600442D RID: 17453 RVA: 0x001D2144 File Offset: 0x001D0344
+		// Token: 0x060039A9 RID: 14761 RVA: 0x0018A9AC File Offset: 0x00188BAC
 		public void AddEquip(int index, EquipItem equipItem)
 		{
 			if (this.EquipDict[index].IsNull())
@@ -91,7 +91,7 @@ namespace Tab
 			SingletonMono<TabUIMag>.Instance.TabBag.UpDateSlotList();
 		}
 
-		// Token: 0x0600442E RID: 17454 RVA: 0x001D2280 File Offset: 0x001D0480
+		// Token: 0x060039AA RID: 14762 RVA: 0x0018AAE8 File Offset: 0x00188CE8
 		public void AddEquip(EquipItem equipItem)
 		{
 			foreach (int num in this.EquipDict.Keys)
@@ -105,7 +105,7 @@ namespace Tab
 			DragMag.Inst.Clear();
 		}
 
-		// Token: 0x0600442F RID: 17455 RVA: 0x001D2300 File Offset: 0x001D0500
+		// Token: 0x060039AB RID: 14763 RVA: 0x0018AB68 File Offset: 0x00188D68
 		public void RmoveEquip(EquipSlotType slotType)
 		{
 			BaseItem item = this.EquipDict[(int)slotType].Item;
@@ -116,7 +116,7 @@ namespace Tab
 			this.ResetEquipSeid();
 		}
 
-		// Token: 0x06004430 RID: 17456 RVA: 0x001D237C File Offset: 0x001D057C
+		// Token: 0x060039AC RID: 14764 RVA: 0x0018ABE4 File Offset: 0x00188DE4
 		public void ExEquip(EquipSlotType slotType1, EquipSlotType slotType2)
 		{
 			if (this.EquipDict[(int)slotType2].IsNull())
@@ -138,7 +138,7 @@ namespace Tab
 			Tools.instance.ResetEquipSeid();
 		}
 
-		// Token: 0x06004431 RID: 17457 RVA: 0x001D249C File Offset: 0x001D069C
+		// Token: 0x060039AD RID: 14765 RVA: 0x0018AD04 File Offset: 0x00188F04
 		public void ResetEquipSeid()
 		{
 			Avatar player = Tools.instance.getPlayer();
@@ -167,13 +167,13 @@ namespace Tab
 			player.equipItemList.values = player.StreamData.FangAnData.CurEquipDictToOldList();
 		}
 
-		// Token: 0x04003C3B RID: 15419
+		// Token: 0x040031BF RID: 12735
 		private bool _isInit;
 
-		// Token: 0x04003C3C RID: 15420
+		// Token: 0x040031C0 RID: 12736
 		public Dictionary<int, EquipSlot> EquipDict = new Dictionary<int, EquipSlot>();
 
-		// Token: 0x04003C3D RID: 15421
+		// Token: 0x040031C1 RID: 12737
 		private FangAnData FangAnData = Tools.instance.getPlayer().StreamData.FangAnData;
 	}
 }

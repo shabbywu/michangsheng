@@ -4,12 +4,12 @@ using UnityEngine;
 
 namespace Fungus
 {
-	// Token: 0x02001287 RID: 4743
+	// Token: 0x02000E36 RID: 3638
 	[CommandInfo("Sprite", "Set Collider", "Sets all collider (2d or 3d) components on the target objects to be active / inactive", 0)]
 	[AddComponentMenu("")]
 	public class SetCollider : Command
 	{
-		// Token: 0x060072FE RID: 29438 RVA: 0x002A9ACC File Offset: 0x002A7CCC
+		// Token: 0x06006670 RID: 26224 RVA: 0x0028656C File Offset: 0x0028476C
 		protected virtual void SetColliderActive(GameObject go)
 		{
 			if (go != null)
@@ -27,7 +27,7 @@ namespace Fungus
 			}
 		}
 
-		// Token: 0x060072FF RID: 29439 RVA: 0x002A9B34 File Offset: 0x002A7D34
+		// Token: 0x06006671 RID: 26225 RVA: 0x002865D4 File Offset: 0x002847D4
 		public override void OnEnter()
 		{
 			for (int i = 0; i < this.targetObjects.Count; i++)
@@ -53,7 +53,7 @@ namespace Fungus
 			this.Continue();
 		}
 
-		// Token: 0x06007300 RID: 29440 RVA: 0x002A9BB4 File Offset: 0x002A7DB4
+		// Token: 0x06006672 RID: 26226 RVA: 0x00286654 File Offset: 0x00284854
 		public override string GetSummary()
 		{
 			int count = this.targetObjects.Count;
@@ -64,35 +64,35 @@ namespace Fungus
 			return "Disable " + count + " collider objects.";
 		}
 
-		// Token: 0x06007301 RID: 29441 RVA: 0x0004C5E0 File Offset: 0x0004A7E0
+		// Token: 0x06006673 RID: 26227 RVA: 0x0027D3DB File Offset: 0x0027B5DB
 		public override Color GetButtonColor()
 		{
 			return new Color32(235, 191, 217, byte.MaxValue);
 		}
 
-		// Token: 0x06007302 RID: 29442 RVA: 0x0004E5AF File Offset: 0x0004C7AF
+		// Token: 0x06006674 RID: 26228 RVA: 0x002866A5 File Offset: 0x002848A5
 		public override bool IsReorderableArray(string propertyName)
 		{
 			return propertyName == "targetObjects";
 		}
 
-		// Token: 0x06007303 RID: 29443 RVA: 0x0004E5BC File Offset: 0x0004C7BC
+		// Token: 0x06006675 RID: 26229 RVA: 0x002866B2 File Offset: 0x002848B2
 		public override bool HasReference(Variable variable)
 		{
 			return this.activeState.booleanRef == variable || base.HasReference(variable);
 		}
 
-		// Token: 0x04006513 RID: 25875
+		// Token: 0x040057CF RID: 22479
 		[Tooltip("A list of gameobjects containing collider components to be set active / inactive")]
 		[SerializeField]
 		protected List<GameObject> targetObjects = new List<GameObject>();
 
-		// Token: 0x04006514 RID: 25876
+		// Token: 0x040057D0 RID: 22480
 		[Tooltip("All objects with this tag will have their collider set active / inactive")]
 		[SerializeField]
 		protected string targetTag = "";
 
-		// Token: 0x04006515 RID: 25877
+		// Token: 0x040057D1 RID: 22481
 		[Tooltip("Set to true to enable the collider components")]
 		[SerializeField]
 		protected BooleanData activeState;

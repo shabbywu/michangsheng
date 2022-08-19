@@ -2,16 +2,16 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-// Token: 0x02000010 RID: 16
+// Token: 0x0200000F RID: 15
 public class ParticleCollisionInstance : MonoBehaviour
 {
-	// Token: 0x06000047 RID: 71 RVA: 0x00004209 File Offset: 0x00002409
+	// Token: 0x06000047 RID: 71 RVA: 0x0000332A File Offset: 0x0000152A
 	private void Start()
 	{
 		this.part = base.GetComponent<ParticleSystem>();
 	}
 
-	// Token: 0x06000048 RID: 72 RVA: 0x0005DB20 File Offset: 0x0005BD20
+	// Token: 0x06000048 RID: 72 RVA: 0x00003338 File Offset: 0x00001538
 	private void OnParticleCollision(GameObject other)
 	{
 		int num = ParticlePhysicsExtensions.GetCollisionEvents(this.part, other, this.collisionEvents);
@@ -47,36 +47,36 @@ public class ParticleCollisionInstance : MonoBehaviour
 		}
 	}
 
-	// Token: 0x04000038 RID: 56
+	// Token: 0x04000035 RID: 53
 	public GameObject[] EffectsOnCollision;
 
-	// Token: 0x04000039 RID: 57
+	// Token: 0x04000036 RID: 54
 	public float DestroyTimeDelay = 5f;
 
-	// Token: 0x0400003A RID: 58
+	// Token: 0x04000037 RID: 55
 	public bool UseWorldSpacePosition;
 
-	// Token: 0x0400003B RID: 59
+	// Token: 0x04000038 RID: 56
 	public float Offset;
 
-	// Token: 0x0400003C RID: 60
+	// Token: 0x04000039 RID: 57
 	public Vector3 rotationOffset = new Vector3(0f, 0f, 0f);
 
-	// Token: 0x0400003D RID: 61
+	// Token: 0x0400003A RID: 58
 	public bool useOnlyRotationOffset = true;
 
-	// Token: 0x0400003E RID: 62
+	// Token: 0x0400003B RID: 59
 	public bool UseFirePointRotation;
 
-	// Token: 0x0400003F RID: 63
+	// Token: 0x0400003C RID: 60
 	public bool DestoyMainEffect = true;
 
-	// Token: 0x04000040 RID: 64
+	// Token: 0x0400003D RID: 61
 	private ParticleSystem part;
 
-	// Token: 0x04000041 RID: 65
+	// Token: 0x0400003E RID: 62
 	private List<ParticleCollisionEvent> collisionEvents = new List<ParticleCollisionEvent>();
 
-	// Token: 0x04000042 RID: 66
+	// Token: 0x0400003F RID: 63
 	private ParticleSystem ps;
 }

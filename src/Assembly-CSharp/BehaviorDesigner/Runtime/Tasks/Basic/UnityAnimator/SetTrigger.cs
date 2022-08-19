@@ -3,12 +3,12 @@ using UnityEngine;
 
 namespace BehaviorDesigner.Runtime.Tasks.Basic.UnityAnimator
 {
-	// Token: 0x02001663 RID: 5731
+	// Token: 0x020011A1 RID: 4513
 	[TaskCategory("Basic/Animator")]
 	[TaskDescription("Sets a trigger parameter to active or inactive. Returns Success.")]
 	public class SetTrigger : Action
 	{
-		// Token: 0x06008528 RID: 34088 RVA: 0x002D08C0 File Offset: 0x002CEAC0
+		// Token: 0x0600771C RID: 30492 RVA: 0x002B836C File Offset: 0x002B656C
 		public override void OnStart()
 		{
 			GameObject defaultGameObject = base.GetDefaultGameObject(this.targetGameObject.Value);
@@ -19,7 +19,7 @@ namespace BehaviorDesigner.Runtime.Tasks.Basic.UnityAnimator
 			}
 		}
 
-		// Token: 0x06008529 RID: 34089 RVA: 0x0005C505 File Offset: 0x0005A705
+		// Token: 0x0600771D RID: 30493 RVA: 0x002B83AC File Offset: 0x002B65AC
 		public override TaskStatus OnUpdate()
 		{
 			if (this.animator == null)
@@ -31,25 +31,25 @@ namespace BehaviorDesigner.Runtime.Tasks.Basic.UnityAnimator
 			return 2;
 		}
 
-		// Token: 0x0600852A RID: 34090 RVA: 0x0005C538 File Offset: 0x0005A738
+		// Token: 0x0600771E RID: 30494 RVA: 0x002B83DF File Offset: 0x002B65DF
 		public override void OnReset()
 		{
 			this.targetGameObject = null;
 			this.paramaterName.Value = "";
 		}
 
-		// Token: 0x040071E4 RID: 29156
+		// Token: 0x040062B5 RID: 25269
 		[Tooltip("The GameObject that the task operates on. If null the task GameObject is used.")]
 		public SharedGameObject targetGameObject;
 
-		// Token: 0x040071E5 RID: 29157
+		// Token: 0x040062B6 RID: 25270
 		[Tooltip("The name of the parameter")]
 		public SharedString paramaterName;
 
-		// Token: 0x040071E6 RID: 29158
+		// Token: 0x040062B7 RID: 25271
 		private Animator animator;
 
-		// Token: 0x040071E7 RID: 29159
+		// Token: 0x040062B8 RID: 25272
 		private GameObject prevGameObject;
 	}
 }

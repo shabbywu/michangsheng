@@ -9,27 +9,27 @@ using UnityEngine;
 
 namespace Fungus
 {
-	// Token: 0x020013A5 RID: 5029
+	// Token: 0x02000F00 RID: 3840
 	public class LuaUtils : LuaEnvironmentInitializer, ISubstitutionHandler
 	{
-		// Token: 0x17000B81 RID: 2945
-		// (get) Token: 0x060079C0 RID: 31168 RVA: 0x000531AF File Offset: 0x000513AF
-		// (set) Token: 0x060079C1 RID: 31169 RVA: 0x000531B7 File Offset: 0x000513B7
+		// Token: 0x170008DE RID: 2270
+		// (get) Token: 0x06006C0C RID: 27660 RVA: 0x00297C17 File Offset: 0x00295E17
+		// (set) Token: 0x06006C0D RID: 27661 RVA: 0x00297C1F File Offset: 0x00295E1F
 		protected LuaEnvironment luaEnvironment { get; set; }
 
-		// Token: 0x060079C2 RID: 31170 RVA: 0x000531C0 File Offset: 0x000513C0
+		// Token: 0x06006C0E RID: 27662 RVA: 0x00297C28 File Offset: 0x00295E28
 		protected virtual void OnEnable()
 		{
 			StringSubstituter.RegisterHandler(this);
 		}
 
-		// Token: 0x060079C3 RID: 31171 RVA: 0x000531C8 File Offset: 0x000513C8
+		// Token: 0x06006C0F RID: 27663 RVA: 0x00297C30 File Offset: 0x00295E30
 		protected virtual void OnDisable()
 		{
 			StringSubstituter.UnregisterHandler(this);
 		}
 
-		// Token: 0x060079C4 RID: 31172 RVA: 0x002B8ECC File Offset: 0x002B70CC
+		// Token: 0x06006C10 RID: 27664 RVA: 0x00297C38 File Offset: 0x00295E38
 		protected virtual void InitTypes()
 		{
 			LuaEnvironment.RegisterType("Fungus.PODTypeFactory", false);
@@ -80,7 +80,7 @@ namespace Fungus
 			}
 		}
 
-		// Token: 0x060079C5 RID: 31173 RVA: 0x002B90B0 File Offset: 0x002B72B0
+		// Token: 0x06006C11 RID: 27665 RVA: 0x00297E1C File Offset: 0x0029601C
 		protected virtual void InitBindings()
 		{
 			LuaBindingsBase[] array = Object.FindObjectsOfType<LuaBindingsBase>();
@@ -90,7 +90,7 @@ namespace Fungus
 			}
 		}
 
-		// Token: 0x060079C6 RID: 31174 RVA: 0x002B90E0 File Offset: 0x002B72E0
+		// Token: 0x06006C12 RID: 27666 RVA: 0x00297E4C File Offset: 0x0029604C
 		protected virtual void InitFungusModule()
 		{
 			if (this.fungusModule == FungusModuleOptions.NoFungusModule)
@@ -183,9 +183,9 @@ namespace Fungus
 			}
 		}
 
-		// Token: 0x17000B82 RID: 2946
-		// (get) Token: 0x060079C7 RID: 31175 RVA: 0x000531D0 File Offset: 0x000513D0
-		// (set) Token: 0x060079C8 RID: 31176 RVA: 0x000531D8 File Offset: 0x000513D8
+		// Token: 0x170008DF RID: 2271
+		// (get) Token: 0x06006C13 RID: 27667 RVA: 0x00298224 File Offset: 0x00296424
+		// (set) Token: 0x06006C14 RID: 27668 RVA: 0x0029822C File Offset: 0x0029642C
 		public virtual string ActiveLanguage
 		{
 			get
@@ -198,7 +198,7 @@ namespace Fungus
 			}
 		}
 
-		// Token: 0x060079C9 RID: 31177 RVA: 0x002B94B8 File Offset: 0x002B76B8
+		// Token: 0x06006C15 RID: 27669 RVA: 0x00298238 File Offset: 0x00296438
 		public virtual string GetString(string key)
 		{
 			if (this.stringTable != null)
@@ -216,7 +216,7 @@ namespace Fungus
 			return "";
 		}
 
-		// Token: 0x060079CA RID: 31178 RVA: 0x002B950C File Offset: 0x002B770C
+		// Token: 0x06006C16 RID: 27670 RVA: 0x0029828C File Offset: 0x0029648C
 		[MoonSharpHidden]
 		public virtual bool SubstituteStrings(StringBuilder input)
 		{
@@ -271,43 +271,43 @@ namespace Fungus
 			return result;
 		}
 
-		// Token: 0x060079CB RID: 31179 RVA: 0x000531E1 File Offset: 0x000513E1
+		// Token: 0x06006C17 RID: 27671 RVA: 0x0029841C File Offset: 0x0029661C
 		public virtual string Substitute(string input)
 		{
 			return this.stringSubstituter.SubstituteStrings(input);
 		}
 
-		// Token: 0x060079CC RID: 31180 RVA: 0x000531EF File Offset: 0x000513EF
+		// Token: 0x06006C18 RID: 27672 RVA: 0x0029842A File Offset: 0x0029662A
 		public virtual GameObject Find(string name)
 		{
 			return GameObject.Find(name);
 		}
 
-		// Token: 0x060079CD RID: 31181 RVA: 0x000531F7 File Offset: 0x000513F7
+		// Token: 0x06006C19 RID: 27673 RVA: 0x00298432 File Offset: 0x00296632
 		public virtual GameObject FindWithTag(string tag)
 		{
 			return GameObject.FindGameObjectWithTag(tag);
 		}
 
-		// Token: 0x060079CE RID: 31182 RVA: 0x000531FF File Offset: 0x000513FF
+		// Token: 0x06006C1A RID: 27674 RVA: 0x0029843A File Offset: 0x0029663A
 		public virtual GameObject[] FindGameObjectsWithTag(string tag)
 		{
 			return GameObject.FindGameObjectsWithTag(tag);
 		}
 
-		// Token: 0x060079CF RID: 31183 RVA: 0x00053207 File Offset: 0x00051407
+		// Token: 0x06006C1B RID: 27675 RVA: 0x00298442 File Offset: 0x00296642
 		public virtual GameObject Instantiate(GameObject go)
 		{
 			return Object.Instantiate<GameObject>(go);
 		}
 
-		// Token: 0x060079D0 RID: 31184 RVA: 0x0005320F File Offset: 0x0005140F
+		// Token: 0x06006C1C RID: 27676 RVA: 0x0029844A File Offset: 0x0029664A
 		public virtual void Destroy(GameObject go)
 		{
 			Object.Destroy(go);
 		}
 
-		// Token: 0x060079D1 RID: 31185 RVA: 0x002B969C File Offset: 0x002B789C
+		// Token: 0x06006C1D RID: 27677 RVA: 0x00298454 File Offset: 0x00296654
 		public virtual GameObject Spawn(string resourceName)
 		{
 			GameObject gameObject = Resources.Load<GameObject>(resourceName);
@@ -320,37 +320,37 @@ namespace Fungus
 			return null;
 		}
 
-		// Token: 0x060079D2 RID: 31186 RVA: 0x00053217 File Offset: 0x00051417
+		// Token: 0x06006C1E RID: 27678 RVA: 0x00298490 File Offset: 0x00296690
 		public virtual IEnumerator DoConversation(string conv)
 		{
 			return this.conversationManager.DoConversation(conv);
 		}
 
-		// Token: 0x060079D3 RID: 31187 RVA: 0x00053225 File Offset: 0x00051425
+		// Token: 0x06006C1F RID: 27679 RVA: 0x0029849E File Offset: 0x0029669E
 		public virtual void SetSayDialog(SayDialog sayDialog)
 		{
 			SayDialog.ActiveSayDialog = sayDialog;
 		}
 
-		// Token: 0x060079D4 RID: 31188 RVA: 0x0005322D File Offset: 0x0005142D
+		// Token: 0x06006C20 RID: 27680 RVA: 0x002984A6 File Offset: 0x002966A6
 		public virtual SayDialog GetSayDialog()
 		{
 			return SayDialog.GetSayDialog();
 		}
 
-		// Token: 0x060079D5 RID: 31189 RVA: 0x00053234 File Offset: 0x00051434
+		// Token: 0x06006C21 RID: 27681 RVA: 0x002984AD File Offset: 0x002966AD
 		public virtual void SetMenuDialog(MenuDialog menuDialog)
 		{
 			MenuDialog.ActiveMenuDialog = menuDialog;
 		}
 
-		// Token: 0x060079D6 RID: 31190 RVA: 0x0005323C File Offset: 0x0005143C
+		// Token: 0x06006C22 RID: 27682 RVA: 0x002984B5 File Offset: 0x002966B5
 		public virtual MenuDialog GetMenuDialog()
 		{
 			return MenuDialog.GetMenuDialog();
 		}
 
-		// Token: 0x060079D7 RID: 31191 RVA: 0x002B96D8 File Offset: 0x002B78D8
+		// Token: 0x06006C23 RID: 27683 RVA: 0x002984BC File Offset: 0x002966BC
 		public override void Initialize()
 		{
 			this.luaEnvironment = base.GetComponent<LuaEnvironment>();
@@ -369,44 +369,44 @@ namespace Fungus
 			this.InitBindings();
 		}
 
-		// Token: 0x060079D8 RID: 31192 RVA: 0x00010DC9 File Offset: 0x0000EFC9
+		// Token: 0x06006C24 RID: 27684 RVA: 0x001086F1 File Offset: 0x001068F1
 		public override string PreprocessScript(string input)
 		{
 			return input;
 		}
 
-		// Token: 0x04006963 RID: 26979
+		// Token: 0x04005AEA RID: 23274
 		[Tooltip("Controls if the fungus utilities are accessed from globals (e.g. say) or via a fungus variable (e.g. fungus.say). You can also choose to disable loading the fungus module if it's not required by your script.")]
 		[SerializeField]
 		protected FungusModuleOptions fungusModule;
 
-		// Token: 0x04006964 RID: 26980
+		// Token: 0x04005AEB RID: 23275
 		[Tooltip("The currently selected language in the string table. Affects variable substitution.")]
 		[SerializeField]
 		protected string activeLanguage = "en";
 
-		// Token: 0x04006965 RID: 26981
+		// Token: 0x04005AEC RID: 23276
 		[HideInInspector]
 		[Tooltip("List of JSON text files which contain localized strings. These strings are added to the 'stringTable' table in the Lua environment at startup.")]
 		[SerializeField]
 		protected List<TextAsset> stringTables = new List<TextAsset>();
 
-		// Token: 0x04006966 RID: 26982
+		// Token: 0x04005AED RID: 23277
 		[HideInInspector]
 		[Tooltip("JSON text files listing the c# types that can be accessed from Lua.")]
 		[SerializeField]
 		protected List<TextAsset> registerTypes = new List<TextAsset>();
 
-		// Token: 0x04006967 RID: 26983
+		// Token: 0x04005AEE RID: 23278
 		protected bool initialised;
 
-		// Token: 0x04006968 RID: 26984
+		// Token: 0x04005AEF RID: 23279
 		protected Table stringTable;
 
-		// Token: 0x0400696A RID: 26986
+		// Token: 0x04005AF1 RID: 23281
 		protected StringSubstituter stringSubstituter;
 
-		// Token: 0x0400696B RID: 26987
+		// Token: 0x04005AF2 RID: 23282
 		protected ConversationManager conversationManager;
 	}
 }

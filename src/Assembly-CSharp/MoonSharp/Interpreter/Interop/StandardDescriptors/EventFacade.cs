@@ -2,10 +2,10 @@
 
 namespace MoonSharp.Interpreter.Interop.StandardDescriptors
 {
-	// Token: 0x02001133 RID: 4403
+	// Token: 0x02000D2B RID: 3371
 	internal class EventFacade : IUserDataType
 	{
-		// Token: 0x06006A84 RID: 27268 RVA: 0x000489F7 File Offset: 0x00046BF7
+		// Token: 0x06005EB2 RID: 24242 RVA: 0x0026889F File Offset: 0x00266A9F
 		public EventFacade(EventMemberDescriptor parent, object obj)
 		{
 			this.m_Object = obj;
@@ -13,7 +13,7 @@ namespace MoonSharp.Interpreter.Interop.StandardDescriptors
 			this.m_RemoveCallback = new Func<object, ScriptExecutionContext, CallbackArguments, DynValue>(parent.RemoveCallback);
 		}
 
-		// Token: 0x06006A85 RID: 27269 RVA: 0x00048A2A File Offset: 0x00046C2A
+		// Token: 0x06005EB3 RID: 24243 RVA: 0x002688D2 File Offset: 0x00266AD2
 		public EventFacade(Func<object, ScriptExecutionContext, CallbackArguments, DynValue> addCallback, Func<object, ScriptExecutionContext, CallbackArguments, DynValue> removeCallback, object obj)
 		{
 			this.m_Object = obj;
@@ -21,7 +21,7 @@ namespace MoonSharp.Interpreter.Interop.StandardDescriptors
 			this.m_RemoveCallback = removeCallback;
 		}
 
-		// Token: 0x06006A86 RID: 27270 RVA: 0x00290F10 File Offset: 0x0028F110
+		// Token: 0x06005EB4 RID: 24244 RVA: 0x002688F0 File Offset: 0x00266AF0
 		public DynValue Index(Script script, DynValue index, bool isDirectIndexing)
 		{
 			if (index.Type == DataType.String)
@@ -38,25 +38,25 @@ namespace MoonSharp.Interpreter.Interop.StandardDescriptors
 			throw new ScriptRuntimeException("Events only support add and remove methods");
 		}
 
-		// Token: 0x06006A87 RID: 27271 RVA: 0x00048A47 File Offset: 0x00046C47
+		// Token: 0x06005EB5 RID: 24245 RVA: 0x0026895A File Offset: 0x00266B5A
 		public bool SetIndex(Script script, DynValue index, DynValue value, bool isDirectIndexing)
 		{
 			throw new ScriptRuntimeException("Events do not have settable fields");
 		}
 
-		// Token: 0x06006A88 RID: 27272 RVA: 0x0000B171 File Offset: 0x00009371
+		// Token: 0x06005EB6 RID: 24246 RVA: 0x000306E7 File Offset: 0x0002E8E7
 		public DynValue MetaIndex(Script script, string metaname)
 		{
 			return null;
 		}
 
-		// Token: 0x040060C1 RID: 24769
+		// Token: 0x0400545F RID: 21599
 		private Func<object, ScriptExecutionContext, CallbackArguments, DynValue> m_AddCallback;
 
-		// Token: 0x040060C2 RID: 24770
+		// Token: 0x04005460 RID: 21600
 		private Func<object, ScriptExecutionContext, CallbackArguments, DynValue> m_RemoveCallback;
 
-		// Token: 0x040060C3 RID: 24771
+		// Token: 0x04005461 RID: 21601
 		private object m_Object;
 	}
 }

@@ -2,12 +2,12 @@
 
 namespace BehaviorDesigner.Runtime.Tasks.Basic.Math
 {
-	// Token: 0x020015C0 RID: 5568
+	// Token: 0x02001103 RID: 4355
 	[TaskCategory("Basic/Math")]
 	[TaskDescription("Performs comparison between two integers: less than, less than or equal to, equal to, not equal to, greater than or equal to, or greater than.")]
 	public class IntComparison : Conditional
 	{
-		// Token: 0x060082C8 RID: 33480 RVA: 0x002CE0C0 File Offset: 0x002CC2C0
+		// Token: 0x060074CE RID: 29902 RVA: 0x002B3300 File Offset: 0x002B1500
 		public override TaskStatus OnUpdate()
 		{
 			switch (this.operation)
@@ -53,7 +53,7 @@ namespace BehaviorDesigner.Runtime.Tasks.Basic.Math
 			}
 		}
 
-		// Token: 0x060082C9 RID: 33481 RVA: 0x00059B80 File Offset: 0x00057D80
+		// Token: 0x060074CF RID: 29903 RVA: 0x002B33E0 File Offset: 0x002B15E0
 		public override void OnReset()
 		{
 			this.operation = IntComparison.Operation.LessThan;
@@ -61,32 +61,32 @@ namespace BehaviorDesigner.Runtime.Tasks.Basic.Math
 			this.integer2.Value = 0;
 		}
 
-		// Token: 0x04006F90 RID: 28560
+		// Token: 0x0400607C RID: 24700
 		[Tooltip("The operation to perform")]
 		public IntComparison.Operation operation;
 
-		// Token: 0x04006F91 RID: 28561
+		// Token: 0x0400607D RID: 24701
 		[Tooltip("The first integer")]
 		public SharedInt integer1;
 
-		// Token: 0x04006F92 RID: 28562
+		// Token: 0x0400607E RID: 24702
 		[Tooltip("The second integer")]
 		public SharedInt integer2;
 
-		// Token: 0x020015C1 RID: 5569
+		// Token: 0x02001736 RID: 5942
 		public enum Operation
 		{
-			// Token: 0x04006F94 RID: 28564
+			// Token: 0x0400756C RID: 30060
 			LessThan,
-			// Token: 0x04006F95 RID: 28565
+			// Token: 0x0400756D RID: 30061
 			LessThanOrEqualTo,
-			// Token: 0x04006F96 RID: 28566
+			// Token: 0x0400756E RID: 30062
 			EqualTo,
-			// Token: 0x04006F97 RID: 28567
+			// Token: 0x0400756F RID: 30063
 			NotEqualTo,
-			// Token: 0x04006F98 RID: 28568
+			// Token: 0x04007570 RID: 30064
 			GreaterThanOrEqualTo,
-			// Token: 0x04006F99 RID: 28569
+			// Token: 0x04007571 RID: 30065
 			GreaterThan
 		}
 	}

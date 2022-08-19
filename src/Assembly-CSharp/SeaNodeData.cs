@@ -2,10 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-// Token: 0x020002DA RID: 730
+// Token: 0x020001CF RID: 463
 public class SeaNodeData
 {
-	// Token: 0x06001603 RID: 5635 RVA: 0x000C6124 File Offset: 0x000C4324
+	// Token: 0x06001347 RID: 4935 RVA: 0x000793D0 File Offset: 0x000775D0
 	public SeaNodeData(int nodeIndex)
 	{
 		this.NodeIndex = nodeIndex;
@@ -23,21 +23,21 @@ public class SeaNodeData
 		}
 	}
 
-	// Token: 0x040011D5 RID: 4565
+	// Token: 0x04000E96 RID: 3734
 	public int NodeIndex;
 
-	// Token: 0x040011D6 RID: 4566
+	// Token: 0x04000E97 RID: 3735
 	public Vector2Int NodePos;
 
-	// Token: 0x040011D7 RID: 4567
+	// Token: 0x04000E98 RID: 3736
 	public int SmallSeaID;
 
-	// Token: 0x040011D8 RID: 4568
+	// Token: 0x04000E99 RID: 3737
 	public int BigSeaID;
 
-	// Token: 0x040011D9 RID: 4569
+	// Token: 0x04000E9A RID: 3738
 	public Vector2Int SmallSeaPos;
 
-	// Token: 0x040011DA RID: 4570
+	// Token: 0x04000E9B RID: 3739
 	public int SmallSeaDangerLevel;
 }

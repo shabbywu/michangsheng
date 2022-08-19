@@ -3,10 +3,10 @@ using System.Collections.Generic;
 
 namespace JSONClass
 {
-	// Token: 0x02000C04 RID: 3076
+	// Token: 0x02000876 RID: 2166
 	public class LianQiEquipIconBiao : IJSONClass
 	{
-		// Token: 0x06004B79 RID: 19321 RVA: 0x001FDD90 File Offset: 0x001FBF90
+		// Token: 0x06003FEB RID: 16363 RVA: 0x001B4440 File Offset: 0x001B2640
 		public static void InitDataDict()
 		{
 			foreach (JSONObject jsonobject in jsonData.instance.LianQiEquipIconBiao.list)
@@ -42,33 +42,33 @@ namespace JSONClass
 			}
 		}
 
-		// Token: 0x06004B7A RID: 19322 RVA: 0x000042DD File Offset: 0x000024DD
+		// Token: 0x06003FEC RID: 16364 RVA: 0x00004095 File Offset: 0x00002295
 		private static void OnInitFinish()
 		{
 		}
 
-		// Token: 0x04004800 RID: 18432
+		// Token: 0x04003CA7 RID: 15527
 		public static Dictionary<int, LianQiEquipIconBiao> DataDict = new Dictionary<int, LianQiEquipIconBiao>();
 
-		// Token: 0x04004801 RID: 18433
+		// Token: 0x04003CA8 RID: 15528
 		public static List<LianQiEquipIconBiao> DataList = new List<LianQiEquipIconBiao>();
 
-		// Token: 0x04004802 RID: 18434
+		// Token: 0x04003CA9 RID: 15529
 		public static Action OnInitFinishAction = new Action(LianQiEquipIconBiao.OnInitFinish);
 
-		// Token: 0x04004803 RID: 18435
+		// Token: 0x04003CAA RID: 15530
 		public int id;
 
-		// Token: 0x04004804 RID: 18436
+		// Token: 0x04003CAB RID: 15531
 		public int zhonglei;
 
-		// Token: 0x04004805 RID: 18437
+		// Token: 0x04003CAC RID: 15532
 		public int quality;
 
-		// Token: 0x04004806 RID: 18438
+		// Token: 0x04003CAD RID: 15533
 		public int pingjie;
 
-		// Token: 0x04004807 RID: 18439
+		// Token: 0x04003CAE RID: 15534
 		public string desc;
 	}
 }

@@ -3,10 +3,10 @@ using UnityEngine;
 
 namespace UltimateSurvival.AI.Actions
 {
-	// Token: 0x02000986 RID: 2438
+	// Token: 0x02000679 RID: 1657
 	public class Eat : Action
 	{
-		// Token: 0x06003E53 RID: 15955 RVA: 0x001B6DA0 File Offset: 0x001B4FA0
+		// Token: 0x060034A3 RID: 13475 RVA: 0x0016E790 File Offset: 0x0016C990
 		public override void OnStart(AIBrain brain)
 		{
 			this.m_Priority = 8;
@@ -16,7 +16,7 @@ namespace UltimateSurvival.AI.Actions
 			base.Effects.Add("Is Hungry", false);
 		}
 
-		// Token: 0x06003E54 RID: 15956 RVA: 0x0002CDEC File Offset: 0x0002AFEC
+		// Token: 0x060034A4 RID: 13476 RVA: 0x0016E7DE File Offset: 0x0016C9DE
 		public override void Activate(AIBrain brain)
 		{
 			this.ResetValues();
@@ -24,7 +24,7 @@ namespace UltimateSurvival.AI.Actions
 			this.m_EatStartTime = Time.time;
 		}
 
-		// Token: 0x06003E55 RID: 15957 RVA: 0x001B6DF0 File Offset: 0x001B4FF0
+		// Token: 0x060034A5 RID: 13477 RVA: 0x0016E808 File Offset: 0x0016CA08
 		public override void OnUpdate(AIBrain brain)
 		{
 			if (Time.time - this.m_EatStartTime > this.m_EatTime)
@@ -36,34 +36,34 @@ namespace UltimateSurvival.AI.Actions
 			}
 		}
 
-		// Token: 0x06003E56 RID: 15958 RVA: 0x0002CE15 File Offset: 0x0002B015
+		// Token: 0x060034A6 RID: 13478 RVA: 0x0016E86C File Offset: 0x0016CA6C
 		public override void OnDeactivation(AIBrain brain)
 		{
 			brain.Settings.Animation.ToggleBool("Eat", false);
 		}
 
-		// Token: 0x06003E57 RID: 15959 RVA: 0x0002CE2D File Offset: 0x0002B02D
+		// Token: 0x060034A7 RID: 13479 RVA: 0x0016E884 File Offset: 0x0016CA84
 		public override bool IsDone(AIBrain brain)
 		{
 			return this.m_IsDoneEating;
 		}
 
-		// Token: 0x06003E58 RID: 15960 RVA: 0x0002CE35 File Offset: 0x0002B035
+		// Token: 0x060034A8 RID: 13480 RVA: 0x0016E88C File Offset: 0x0016CA8C
 		public override void ResetValues()
 		{
 			this.m_IsDoneEating = false;
 			this.m_EatStartTime = 0f;
 		}
 
-		// Token: 0x0400384B RID: 14411
+		// Token: 0x04002EA5 RID: 11941
 		[SerializeField]
 		[Tooltip("Determines the time it will take for the AI to eat.")]
 		private float m_EatTime;
 
-		// Token: 0x0400384C RID: 14412
+		// Token: 0x04002EA6 RID: 11942
 		private bool m_IsDoneEating;
 
-		// Token: 0x0400384D RID: 14413
+		// Token: 0x04002EA7 RID: 11943
 		private float m_EatStartTime;
 	}
 }

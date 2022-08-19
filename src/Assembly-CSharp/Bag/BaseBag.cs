@@ -8,16 +8,16 @@ using UnityEngine;
 
 namespace Bag
 {
-	// Token: 0x02000D18 RID: 3352
+	// Token: 0x02000997 RID: 2455
 	public class BaseBag : MonoBehaviour, IBaseBag
 	{
-		// Token: 0x06004FD7 RID: 20439 RVA: 0x00039770 File Offset: 0x00037970
+		// Token: 0x0600447F RID: 17535 RVA: 0x001D2CEB File Offset: 0x001D0EEB
 		public virtual void Init()
 		{
 			this.MLoopListView.InitListView(this.GetCount(this.MItemTotalCount), new Func<LoopListView2, int, LoopListViewItem2>(this.OnGetItemByIndex), null);
 		}
 
-		// Token: 0x06004FD8 RID: 20440 RVA: 0x002178F0 File Offset: 0x00215AF0
+		// Token: 0x06004480 RID: 17536 RVA: 0x001D2D14 File Offset: 0x001D0F14
 		public virtual void OpenBag(List<ITEM_INFO> itemList)
 		{
 			this.ItemType = ItemType.全部;
@@ -113,7 +113,7 @@ namespace Bag
 			this.UpdateItem();
 		}
 
-		// Token: 0x06004FD9 RID: 20441 RVA: 0x002179C4 File Offset: 0x00215BC4
+		// Token: 0x06004481 RID: 17537 RVA: 0x001D2DE8 File Offset: 0x001D0FE8
 		public virtual void UpdateItem()
 		{
 			this.ItemList = new List<ITEM_INFO>();
@@ -128,7 +128,7 @@ namespace Bag
 			this.MItemTotalCount = this.ItemList.Count;
 		}
 
-		// Token: 0x06004FDA RID: 20442 RVA: 0x00217A60 File Offset: 0x00215C60
+		// Token: 0x06004482 RID: 17538 RVA: 0x001D2E84 File Offset: 0x001D1084
 		public bool FiddlerItem(BaseItem baseItem)
 		{
 			if (this.ItemQuality != ItemQuality.全部 && baseItem.GetImgQuality() != (int)this.ItemQuality)
@@ -154,7 +154,7 @@ namespace Bag
 			return true;
 		}
 
-		// Token: 0x06004FDB RID: 20443 RVA: 0x00217AE0 File Offset: 0x00215CE0
+		// Token: 0x06004483 RID: 17539 RVA: 0x001D2F04 File Offset: 0x001D1104
 		public int GetCount(int itemCout)
 		{
 			int num = itemCout / this.mItemCountPerRow;
@@ -165,7 +165,7 @@ namespace Bag
 			return num + 1;
 		}
 
-		// Token: 0x06004FDC RID: 20444 RVA: 0x00217B0C File Offset: 0x00215D0C
+		// Token: 0x06004484 RID: 17540 RVA: 0x001D2F30 File Offset: 0x001D1130
 		private LoopListViewItem2 OnGetItemByIndex(LoopListView2 listView, int rowIndex)
 		{
 			if (rowIndex < 0)
@@ -204,46 +204,46 @@ namespace Bag
 			return loopListViewItem;
 		}
 
-		// Token: 0x0400512A RID: 20778
+		// Token: 0x04004634 RID: 17972
 		public int MItemTotalCount;
 
-		// Token: 0x0400512B RID: 20779
+		// Token: 0x04004635 RID: 17973
 		public bool IsInit;
 
-		// Token: 0x0400512C RID: 20780
+		// Token: 0x04004636 RID: 17974
 		public List<ITEM_INFO> ItemList = new List<ITEM_INFO>();
 
-		// Token: 0x0400512D RID: 20781
+		// Token: 0x04004637 RID: 17975
 		public BagFilter BagFilter;
 
-		// Token: 0x0400512E RID: 20782
+		// Token: 0x04004638 RID: 17976
 		public ItemType ItemType;
 
-		// Token: 0x0400512F RID: 20783
+		// Token: 0x04004639 RID: 17977
 		public ItemQuality ItemQuality;
 
-		// Token: 0x04005130 RID: 20784
+		// Token: 0x0400463A RID: 17978
 		public LianQiCaiLiaoYinYang LianQiCaiLiaoYinYang;
 
-		// Token: 0x04005131 RID: 20785
+		// Token: 0x0400463B RID: 17979
 		public LianQiCaiLiaoType LianQiCaiLiaoType;
 
-		// Token: 0x04005132 RID: 20786
+		// Token: 0x0400463C RID: 17980
 		public SkIllType SkIllType = SkIllType.全部;
 
-		// Token: 0x04005133 RID: 20787
+		// Token: 0x0400463D RID: 17981
 		public SkillQuality SkillQuality;
 
-		// Token: 0x04005134 RID: 20788
+		// Token: 0x0400463E RID: 17982
 		public StaticSkIllType StaticSkIllType = StaticSkIllType.全部;
 
-		// Token: 0x04005135 RID: 20789
+		// Token: 0x0400463F RID: 17983
 		public LoopListView2 MLoopListView;
 
-		// Token: 0x04005136 RID: 20790
+		// Token: 0x04004640 RID: 17984
 		public int mItemCountPerRow = 5;
 
-		// Token: 0x04005137 RID: 20791
+		// Token: 0x04004641 RID: 17985
 		public List<ISlot> SlotList = new List<ISlot>();
 	}
 }

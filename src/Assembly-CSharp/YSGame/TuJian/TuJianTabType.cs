@@ -2,14 +2,14 @@
 
 namespace YSGame.TuJian
 {
-	// Token: 0x02000DDD RID: 3549
+	// Token: 0x02000AA0 RID: 2720
 	public enum TuJianTabType
 	{
-		// Token: 0x04005558 RID: 21848
+		// Token: 0x04004B7A RID: 19322
 		Item,
-		// Token: 0x04005559 RID: 21849
+		// Token: 0x04004B7B RID: 19323
 		Rule,
-		// Token: 0x0400555A RID: 21850
+		// Token: 0x04004B7C RID: 19324
 		Map
 	}
 }

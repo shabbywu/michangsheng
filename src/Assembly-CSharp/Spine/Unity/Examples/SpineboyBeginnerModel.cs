@@ -4,22 +4,22 @@ using UnityEngine;
 
 namespace Spine.Unity.Examples
 {
-	// Token: 0x02000E2C RID: 3628
+	// Token: 0x02000AE0 RID: 2784
 	[SelectionBase]
 	public class SpineboyBeginnerModel : MonoBehaviour
 	{
 		// Token: 0x1400004F RID: 79
-		// (add) Token: 0x0600575D RID: 22365 RVA: 0x00244B8C File Offset: 0x00242D8C
-		// (remove) Token: 0x0600575E RID: 22366 RVA: 0x00244BC4 File Offset: 0x00242DC4
+		// (add) Token: 0x06004DE7 RID: 19943 RVA: 0x002149F8 File Offset: 0x00212BF8
+		// (remove) Token: 0x06004DE8 RID: 19944 RVA: 0x00214A30 File Offset: 0x00212C30
 		public event Action ShootEvent;
 
-		// Token: 0x0600575F RID: 22367 RVA: 0x0003E6FA File Offset: 0x0003C8FA
+		// Token: 0x06004DE9 RID: 19945 RVA: 0x00214A65 File Offset: 0x00212C65
 		public void TryJump()
 		{
 			base.StartCoroutine(this.JumpRoutine());
 		}
 
-		// Token: 0x06005760 RID: 22368 RVA: 0x00244BFC File Offset: 0x00242DFC
+		// Token: 0x06004DEA RID: 19946 RVA: 0x00214A74 File Offset: 0x00212C74
 		public void TryShoot()
 		{
 			float time = Time.time;
@@ -33,7 +33,7 @@ namespace Spine.Unity.Examples
 			}
 		}
 
-		// Token: 0x06005761 RID: 22369 RVA: 0x00244C3C File Offset: 0x00242E3C
+		// Token: 0x06004DEB RID: 19947 RVA: 0x00214AB4 File Offset: 0x00212CB4
 		public void TryMove(float speed)
 		{
 			this.currentSpeed = speed;
@@ -48,7 +48,7 @@ namespace Spine.Unity.Examples
 			}
 		}
 
-		// Token: 0x06005762 RID: 22370 RVA: 0x0003E709 File Offset: 0x0003C909
+		// Token: 0x06004DEC RID: 19948 RVA: 0x00214AFB File Offset: 0x00212CFB
 		private IEnumerator JumpRoutine()
 		{
 			if (this.state == SpineBeginnerBodyState.Jumping)
@@ -75,22 +75,22 @@ namespace Spine.Unity.Examples
 			yield break;
 		}
 
-		// Token: 0x04005740 RID: 22336
+		// Token: 0x04004D3C RID: 19772
 		[Header("Current State")]
 		public SpineBeginnerBodyState state;
 
-		// Token: 0x04005741 RID: 22337
+		// Token: 0x04004D3D RID: 19773
 		public bool facingLeft;
 
-		// Token: 0x04005742 RID: 22338
+		// Token: 0x04004D3E RID: 19774
 		[Range(-1f, 1f)]
 		public float currentSpeed;
 
-		// Token: 0x04005743 RID: 22339
+		// Token: 0x04004D3F RID: 19775
 		[Header("Balance")]
 		public float shootInterval = 0.12f;
 
-		// Token: 0x04005744 RID: 22340
+		// Token: 0x04004D40 RID: 19776
 		private float lastShootTime;
 	}
 }

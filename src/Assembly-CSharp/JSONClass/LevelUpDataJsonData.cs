@@ -3,10 +3,10 @@ using System.Collections.Generic;
 
 namespace JSONClass
 {
-	// Token: 0x02000BFF RID: 3071
+	// Token: 0x02000871 RID: 2161
 	public class LevelUpDataJsonData : IJSONClass
 	{
-		// Token: 0x06004B65 RID: 19301 RVA: 0x001FD550 File Offset: 0x001FB750
+		// Token: 0x06003FD7 RID: 16343 RVA: 0x001B3B38 File Offset: 0x001B1D38
 		public static void InitDataDict()
 		{
 			foreach (JSONObject jsonobject in jsonData.instance.LevelUpDataJsonData.list)
@@ -46,45 +46,45 @@ namespace JSONClass
 			}
 		}
 
-		// Token: 0x06004B66 RID: 19302 RVA: 0x000042DD File Offset: 0x000024DD
+		// Token: 0x06003FD8 RID: 16344 RVA: 0x00004095 File Offset: 0x00002295
 		private static void OnInitFinish()
 		{
 		}
 
-		// Token: 0x040047CD RID: 18381
+		// Token: 0x04003C74 RID: 15476
 		public static Dictionary<int, LevelUpDataJsonData> DataDict = new Dictionary<int, LevelUpDataJsonData>();
 
-		// Token: 0x040047CE RID: 18382
+		// Token: 0x04003C75 RID: 15477
 		public static List<LevelUpDataJsonData> DataList = new List<LevelUpDataJsonData>();
 
-		// Token: 0x040047CF RID: 18383
+		// Token: 0x04003C76 RID: 15478
 		public static Action OnInitFinishAction = new Action(LevelUpDataJsonData.OnInitFinish);
 
-		// Token: 0x040047D0 RID: 18384
+		// Token: 0x04003C77 RID: 15479
 		public int id;
 
-		// Token: 0x040047D1 RID: 18385
+		// Token: 0x04003C78 RID: 15480
 		public int level;
 
-		// Token: 0x040047D2 RID: 18386
+		// Token: 0x04003C79 RID: 15481
 		public int AddHp;
 
-		// Token: 0x040047D3 RID: 18387
+		// Token: 0x04003C7A RID: 15482
 		public int AddShenShi;
 
-		// Token: 0x040047D4 RID: 18388
+		// Token: 0x04003C7B RID: 15483
 		public int AddDunSu;
 
-		// Token: 0x040047D5 RID: 18389
+		// Token: 0x04003C7C RID: 15484
 		public int AddShouYuan;
 
-		// Token: 0x040047D6 RID: 18390
+		// Token: 0x04003C7D RID: 15485
 		public int MaxExp;
 
-		// Token: 0x040047D7 RID: 18391
+		// Token: 0x04003C7E RID: 15486
 		public int wudaodian;
 
-		// Token: 0x040047D8 RID: 18392
+		// Token: 0x04003C7F RID: 15487
 		public string Name;
 	}
 }

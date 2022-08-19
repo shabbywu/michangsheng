@@ -2,22 +2,22 @@
 
 namespace Bag
 {
-	// Token: 0x02000D2C RID: 3372
+	// Token: 0x020009A6 RID: 2470
 	public enum ItemQuality
 	{
-		// Token: 0x0400517B RID: 20859
+		// Token: 0x0400467B RID: 18043
 		全部,
-		// Token: 0x0400517C RID: 20860
+		// Token: 0x0400467C RID: 18044
 		一品,
-		// Token: 0x0400517D RID: 20861
+		// Token: 0x0400467D RID: 18045
 		二品,
-		// Token: 0x0400517E RID: 20862
+		// Token: 0x0400467E RID: 18046
 		三品,
-		// Token: 0x0400517F RID: 20863
+		// Token: 0x0400467F RID: 18047
 		四品,
-		// Token: 0x04005180 RID: 20864
+		// Token: 0x04004680 RID: 18048
 		五品,
-		// Token: 0x04005181 RID: 20865
+		// Token: 0x04004681 RID: 18049
 		六品
 	}
 }

@@ -3,23 +3,23 @@ using KBEngine;
 using UnityEngine;
 using UnityEngine.UI;
 
-// Token: 0x02000638 RID: 1592
+// Token: 0x0200047A RID: 1146
 public class HuaShenManager : MonoBehaviour
 {
-	// Token: 0x06002784 RID: 10116 RVA: 0x0001F498 File Offset: 0x0001D698
+	// Token: 0x060023C7 RID: 9159 RVA: 0x000F4C25 File Offset: 0x000F2E25
 	private void Awake()
 	{
 		HuaShenManager.Inst = this;
 		this.player = PlayerEx.Player;
 	}
 
-	// Token: 0x06002785 RID: 10117 RVA: 0x0001F4AB File Offset: 0x0001D6AB
+	// Token: 0x060023C8 RID: 9160 RVA: 0x000F4C38 File Offset: 0x000F2E38
 	private void Update()
 	{
 		this.RefreshUI();
 	}
 
-	// Token: 0x06002786 RID: 10118 RVA: 0x00134AFC File Offset: 0x00132CFC
+	// Token: 0x060023C9 RID: 9161 RVA: 0x000F4C40 File Offset: 0x000F2E40
 	public void RefreshUI()
 	{
 		this.FanXingShow.SetNumber(this.player.buffmag.GetBuffSum(3132));
@@ -42,7 +42,7 @@ public class HuaShenManager : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06002787 RID: 10119 RVA: 0x00134BD8 File Offset: 0x00132DD8
+	// Token: 0x060023CA RID: 9162 RVA: 0x000F4D1C File Offset: 0x000F2F1C
 	public void StartFanTiAnim()
 	{
 		Debug.Log("切换到凡体");
@@ -55,7 +55,7 @@ public class HuaShenManager : MonoBehaviour
 		this.animChangeCount++;
 	}
 
-	// Token: 0x06002788 RID: 10120 RVA: 0x00134C30 File Offset: 0x00132E30
+	// Token: 0x060023CB RID: 9163 RVA: 0x000F4D74 File Offset: 0x000F2F74
 	public void StartXianTaiAnim()
 	{
 		Debug.Log("切换到仙胎");
@@ -65,39 +65,39 @@ public class HuaShenManager : MonoBehaviour
 		this.animChangeCount++;
 	}
 
-	// Token: 0x06002789 RID: 10121 RVA: 0x0001F4B3 File Offset: 0x0001D6B3
+	// Token: 0x060023CC RID: 9164 RVA: 0x000F4DC0 File Offset: 0x000F2FC0
 	private void OnDestroy()
 	{
 		HuaShenManager.Inst = null;
 	}
 
-	// Token: 0x04002174 RID: 8564
+	// Token: 0x04001C99 RID: 7321
 	public static HuaShenManager Inst;
 
-	// Token: 0x04002175 RID: 8565
+	// Token: 0x04001C9A RID: 7322
 	public UIHuaShenBuffShow FanXingShow;
 
-	// Token: 0x04002176 RID: 8566
+	// Token: 0x04001C9B RID: 7323
 	public UIHuaShenBuffShow XianXingShow;
 
-	// Token: 0x04002177 RID: 8567
+	// Token: 0x04001C9C RID: 7324
 	public UIHuaShenBuffShow CuiTiShow;
 
-	// Token: 0x04002178 RID: 8568
+	// Token: 0x04001C9D RID: 7325
 	public UIHuaShenBuffShow SuHunShow;
 
-	// Token: 0x04002179 RID: 8569
+	// Token: 0x04001C9E RID: 7326
 	public Text TaiText;
 
-	// Token: 0x0400217A RID: 8570
+	// Token: 0x04001C9F RID: 7327
 	public Animator SceneAnimator;
 
-	// Token: 0x0400217B RID: 8571
+	// Token: 0x04001CA0 RID: 7328
 	private Avatar player;
 
-	// Token: 0x0400217C RID: 8572
+	// Token: 0x04001CA1 RID: 7329
 	private bool isXianTai = true;
 
-	// Token: 0x0400217D RID: 8573
+	// Token: 0x04001CA2 RID: 7330
 	private int animChangeCount;
 }

@@ -3,12 +3,12 @@ using UnityEngine;
 
 namespace BehaviorDesigner.Runtime.Tasks.Basic.UnityTransform
 {
-	// Token: 0x020014DF RID: 5343
+	// Token: 0x02001025 RID: 4133
 	[TaskCategory("Basic/Transform")]
 	[TaskDescription("Stores the local position of the Transform. Returns Success.")]
 	public class GetLocalPosition : Action
 	{
-		// Token: 0x06007FA9 RID: 32681 RVA: 0x002CA60C File Offset: 0x002C880C
+		// Token: 0x060071AF RID: 29103 RVA: 0x002AC5C4 File Offset: 0x002AA7C4
 		public override void OnStart()
 		{
 			GameObject defaultGameObject = base.GetDefaultGameObject(this.targetGameObject.Value);
@@ -19,7 +19,7 @@ namespace BehaviorDesigner.Runtime.Tasks.Basic.UnityTransform
 			}
 		}
 
-		// Token: 0x06007FAA RID: 32682 RVA: 0x00056950 File Offset: 0x00054B50
+		// Token: 0x060071B0 RID: 29104 RVA: 0x002AC604 File Offset: 0x002AA804
 		public override TaskStatus OnUpdate()
 		{
 			if (this.targetTransform == null)
@@ -31,26 +31,26 @@ namespace BehaviorDesigner.Runtime.Tasks.Basic.UnityTransform
 			return 2;
 		}
 
-		// Token: 0x06007FAB RID: 32683 RVA: 0x00056983 File Offset: 0x00054B83
+		// Token: 0x060071B1 RID: 29105 RVA: 0x002AC637 File Offset: 0x002AA837
 		public override void OnReset()
 		{
 			this.targetGameObject = null;
 			this.storeValue = Vector3.zero;
 		}
 
-		// Token: 0x04006C8B RID: 27787
+		// Token: 0x04005D8B RID: 23947
 		[Tooltip("The GameObject that the task operates on. If null the task GameObject is used.")]
 		public SharedGameObject targetGameObject;
 
-		// Token: 0x04006C8C RID: 27788
+		// Token: 0x04005D8C RID: 23948
 		[Tooltip("The local position of the Transform")]
 		[RequiredField]
 		public SharedVector3 storeValue;
 
-		// Token: 0x04006C8D RID: 27789
+		// Token: 0x04005D8D RID: 23949
 		private Transform targetTransform;
 
-		// Token: 0x04006C8E RID: 27790
+		// Token: 0x04005D8E RID: 23950
 		private GameObject prevGameObject;
 	}
 }

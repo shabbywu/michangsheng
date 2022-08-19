@@ -1,15 +1,15 @@
 ﻿using System;
 using UnityEngine;
 
-// Token: 0x020005A0 RID: 1440
+// Token: 0x020003F1 RID: 1009
 public class TianFuCell : MonoBehaviour
 {
-	// Token: 0x06002450 RID: 9296 RVA: 0x000042DD File Offset: 0x000024DD
+	// Token: 0x0600209E RID: 8350 RVA: 0x00004095 File Offset: 0x00002295
 	private void Start()
 	{
 	}
 
-	// Token: 0x06002451 RID: 9297 RVA: 0x001280A4 File Offset: 0x001262A4
+	// Token: 0x0600209F RID: 8351 RVA: 0x000E5DBC File Offset: 0x000E3FBC
 	private void OnHover(bool isOver)
 	{
 		if (this.index > jsonData.instance.TianFuDescJsonData.Count)
@@ -47,15 +47,15 @@ public class TianFuCell : MonoBehaviour
 		}
 	}
 
-	// Token: 0x04001F3D RID: 7997
+	// Token: 0x04001A84 RID: 6788
 	public TooltipScale Tooltips;
 
-	// Token: 0x04001F3E RID: 7998
+	// Token: 0x04001A85 RID: 6789
 	public int index;
 
-	// Token: 0x04001F3F RID: 7999
+	// Token: 0x04001A86 RID: 6790
 	public bool showText;
 
-	// Token: 0x04001F40 RID: 8000
+	// Token: 0x04001A87 RID: 6791
 	public string text = "";
 }

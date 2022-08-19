@@ -2,16 +2,16 @@
 
 namespace Fungus
 {
-	// Token: 0x020011EE RID: 4590
+	// Token: 0x02000DB9 RID: 3513
 	public enum CallMode
 	{
-		// Token: 0x040062FD RID: 25341
+		// Token: 0x0400560A RID: 22026
 		Stop,
-		// Token: 0x040062FE RID: 25342
+		// Token: 0x0400560B RID: 22027
 		Continue,
-		// Token: 0x040062FF RID: 25343
+		// Token: 0x0400560C RID: 22028
 		WaitUntilFinished,
-		// Token: 0x04006300 RID: 25344
+		// Token: 0x0400560D RID: 22029
 		StopThenCall
 	}
 }

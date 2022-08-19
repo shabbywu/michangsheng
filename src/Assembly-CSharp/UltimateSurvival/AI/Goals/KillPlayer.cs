@@ -2,17 +2,17 @@
 
 namespace UltimateSurvival.AI.Goals
 {
-	// Token: 0x02000981 RID: 2433
+	// Token: 0x02000674 RID: 1652
 	public class KillPlayer : Goal
 	{
-		// Token: 0x06003E2B RID: 15915 RVA: 0x0002CC80 File Offset: 0x0002AE80
+		// Token: 0x0600347B RID: 13435 RVA: 0x0016E192 File Offset: 0x0016C392
 		public override void OnStart()
 		{
 			this.m_Priority = 10f;
 			base.GoalState.Add("Is Player Dead", true);
 		}
 
-		// Token: 0x06003E2C RID: 15916 RVA: 0x0002CC1E File Offset: 0x0002AE1E
+		// Token: 0x0600347C RID: 13436 RVA: 0x0016E130 File Offset: 0x0016C330
 		public override void RecalculatePriority(AIBrain brain)
 		{
 			if (brain.Settings.Detection.HasTarget())

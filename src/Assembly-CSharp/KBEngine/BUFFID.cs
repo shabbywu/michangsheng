@@ -2,29 +2,29 @@
 
 namespace KBEngine
 {
-	// Token: 0x02000F38 RID: 3896
+	// Token: 0x02000BB5 RID: 2997
 	public struct BUFFID
 	{
-		// Token: 0x06005DE1 RID: 24033 RVA: 0x00041EF0 File Offset: 0x000400F0
+		// Token: 0x060053A3 RID: 21411 RVA: 0x00233D8F File Offset: 0x00231F8F
 		private BUFFID(ushort value)
 		{
 			this.value = value;
 		}
 
-		// Token: 0x06005DE2 RID: 24034 RVA: 0x00041EF9 File Offset: 0x000400F9
+		// Token: 0x060053A4 RID: 21412 RVA: 0x00233D98 File Offset: 0x00231F98
 		public static implicit operator ushort(BUFFID value)
 		{
 			return value.value;
 		}
 
-		// Token: 0x06005DE3 RID: 24035 RVA: 0x00041F01 File Offset: 0x00040101
+		// Token: 0x060053A5 RID: 21413 RVA: 0x00233DA0 File Offset: 0x00231FA0
 		public static implicit operator BUFFID(ushort value)
 		{
 			return new BUFFID(value);
 		}
 
-		// Token: 0x17000888 RID: 2184
-		// (get) Token: 0x06005DE4 RID: 24036 RVA: 0x00041AA0 File Offset: 0x0003FCA0
+		// Token: 0x17000635 RID: 1589
+		// (get) Token: 0x060053A6 RID: 21414 RVA: 0x0023393B File Offset: 0x00231B3B
 		public static ushort MaxValue
 		{
 			get
@@ -33,8 +33,8 @@ namespace KBEngine
 			}
 		}
 
-		// Token: 0x17000889 RID: 2185
-		// (get) Token: 0x06005DE5 RID: 24037 RVA: 0x00004050 File Offset: 0x00002250
+		// Token: 0x17000636 RID: 1590
+		// (get) Token: 0x060053A7 RID: 21415 RVA: 0x0000280F File Offset: 0x00000A0F
 		public static ushort MinValue
 		{
 			get
@@ -43,7 +43,7 @@ namespace KBEngine
 			}
 		}
 
-		// Token: 0x04005AE2 RID: 23266
+		// Token: 0x04005041 RID: 20545
 		private ushort value;
 	}
 }

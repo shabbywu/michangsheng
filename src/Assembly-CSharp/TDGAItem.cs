@@ -1,10 +1,10 @@
 ﻿using System;
 using UnityEngine;
 
-// Token: 0x0200022F RID: 559
+// Token: 0x02000158 RID: 344
 public class TDGAItem
 {
-	// Token: 0x06001141 RID: 4417 RVA: 0x00010C59 File Offset: 0x0000EE59
+	// Token: 0x06000F15 RID: 3861 RVA: 0x0005B7A8 File Offset: 0x000599A8
 	public static void OnPurchase(string item, int itemNumber, double priceInVirtualCurrency)
 	{
 		if (Application.platform != null)
@@ -13,7 +13,7 @@ public class TDGAItem
 		}
 	}
 
-	// Token: 0x06001142 RID: 4418 RVA: 0x00010C59 File Offset: 0x0000EE59
+	// Token: 0x06000F16 RID: 3862 RVA: 0x0005B7A8 File Offset: 0x000599A8
 	public static void OnUse(string item, int itemNumber)
 	{
 		if (Application.platform != null)

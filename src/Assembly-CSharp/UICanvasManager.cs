@@ -2,16 +2,16 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-// Token: 0x020001DE RID: 478
+// Token: 0x0200011C RID: 284
 public class UICanvasManager : MonoBehaviour
 {
-	// Token: 0x06000F68 RID: 3944 RVA: 0x0000FA1B File Offset: 0x0000DC1B
+	// Token: 0x06000D8F RID: 3471 RVA: 0x000512BF File Offset: 0x0004F4BF
 	private void Awake()
 	{
 		UICanvasManager.GlobalAccess = this;
 	}
 
-	// Token: 0x06000F69 RID: 3945 RVA: 0x0000FA23 File Offset: 0x0000DC23
+	// Token: 0x06000D90 RID: 3472 RVA: 0x000512C7 File Offset: 0x0004F4C7
 	private void Start()
 	{
 		if (this.PENameText != null)
@@ -20,7 +20,7 @@ public class UICanvasManager : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000F6A RID: 3946 RVA: 0x0000FA48 File Offset: 0x0000DC48
+	// Token: 0x06000D91 RID: 3473 RVA: 0x000512EC File Offset: 0x0004F4EC
 	private void Update()
 	{
 		if (!this.MouseOverButton && Input.GetMouseButtonUp(0))
@@ -37,7 +37,7 @@ public class UICanvasManager : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000F6B RID: 3947 RVA: 0x0000FA7E File Offset: 0x0000DC7E
+	// Token: 0x06000D92 RID: 3474 RVA: 0x00051322 File Offset: 0x0004F522
 	public void UpdateToolTip(ButtonTypes toolTipType)
 	{
 		if (this.ToolTipText != null)
@@ -54,7 +54,7 @@ public class UICanvasManager : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000F6C RID: 3948 RVA: 0x0000FAB7 File Offset: 0x0000DCB7
+	// Token: 0x06000D93 RID: 3475 RVA: 0x0005135B File Offset: 0x0004F55B
 	public void ClearToolTip()
 	{
 		if (this.ToolTipText != null)
@@ -63,7 +63,7 @@ public class UICanvasManager : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000F6D RID: 3949 RVA: 0x0000FAD7 File Offset: 0x0000DCD7
+	// Token: 0x06000D94 RID: 3476 RVA: 0x0005137B File Offset: 0x0004F57B
 	private void SelectPreviousPE()
 	{
 		ParticleEffectsLibrary.GlobalAccess.PreviousParticleEffect();
@@ -73,7 +73,7 @@ public class UICanvasManager : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000F6E RID: 3950 RVA: 0x0000FB06 File Offset: 0x0000DD06
+	// Token: 0x06000D95 RID: 3477 RVA: 0x000513AA File Offset: 0x0004F5AA
 	private void SelectNextPE()
 	{
 		ParticleEffectsLibrary.GlobalAccess.NextParticleEffect();
@@ -83,7 +83,7 @@ public class UICanvasManager : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000F6F RID: 3951 RVA: 0x0000FB35 File Offset: 0x0000DD35
+	// Token: 0x06000D96 RID: 3478 RVA: 0x000513D9 File Offset: 0x0004F5D9
 	private void SpawnCurrentParticleEffect()
 	{
 		if (Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition), ref this.rayHit))
@@ -92,7 +92,7 @@ public class UICanvasManager : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000F70 RID: 3952 RVA: 0x0000FB68 File Offset: 0x0000DD68
+	// Token: 0x06000D97 RID: 3479 RVA: 0x0005140C File Offset: 0x0004F60C
 	public void UIButtonClick(ButtonTypes buttonTypeClicked)
 	{
 		if (buttonTypeClicked == ButtonTypes.Previous)
@@ -107,18 +107,18 @@ public class UICanvasManager : MonoBehaviour
 		this.SelectNextPE();
 	}
 
-	// Token: 0x04000C19 RID: 3097
+	// Token: 0x04000995 RID: 2453
 	public static UICanvasManager GlobalAccess;
 
-	// Token: 0x04000C1A RID: 3098
+	// Token: 0x04000996 RID: 2454
 	public bool MouseOverButton;
 
-	// Token: 0x04000C1B RID: 3099
+	// Token: 0x04000997 RID: 2455
 	public Text PENameText;
 
-	// Token: 0x04000C1C RID: 3100
+	// Token: 0x04000998 RID: 2456
 	public Text ToolTipText;
 
-	// Token: 0x04000C1D RID: 3101
+	// Token: 0x04000999 RID: 2457
 	private RaycastHit rayHit;
 }

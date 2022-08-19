@@ -3,12 +3,12 @@ using UnityEngine;
 
 namespace Fungus
 {
-	// Token: 0x020013FC RID: 5116
+	// Token: 0x02000F46 RID: 3910
 	[CommandInfo("YSNew/Get", "GetMaxPriceAvatarIDByPaiMaiHuiID", "获取拍卖行出价最高的武将ID", 0)]
 	[AddComponentMenu("")]
 	public class GetMaxPriceAvatarIDByPaiMaiHuiID : Command
 	{
-		// Token: 0x06007C44 RID: 31812 RVA: 0x002C4A54 File Offset: 0x002C2C54
+		// Token: 0x06006E59 RID: 28249 RVA: 0x002A4ADC File Offset: 0x002A2CDC
 		public override void OnEnter()
 		{
 			float n = jsonData.instance.AvatarRandomJsonData[this.AvatarID.Value.ToString()]["HaoGanDu"].n;
@@ -21,23 +21,23 @@ namespace Fungus
 			this.Continue();
 		}
 
-		// Token: 0x06007C45 RID: 31813 RVA: 0x000113CF File Offset: 0x0000F5CF
+		// Token: 0x06006E5A RID: 28250 RVA: 0x0005E228 File Offset: 0x0005C428
 		public override Color GetButtonColor()
 		{
 			return new Color32(184, 210, 235, byte.MaxValue);
 		}
 
-		// Token: 0x06007C46 RID: 31814 RVA: 0x000042DD File Offset: 0x000024DD
+		// Token: 0x06006E5B RID: 28251 RVA: 0x00004095 File Offset: 0x00002295
 		public override void OnReset()
 		{
 		}
 
-		// Token: 0x04006A6A RID: 27242
+		// Token: 0x04005B98 RID: 23448
 		[Tooltip("拍卖行ID")]
 		[SerializeField]
 		protected int PaiMaiHuiID;
 
-		// Token: 0x04006A6B RID: 27243
+		// Token: 0x04005B99 RID: 23449
 		[Tooltip("存放值的变量")]
 		[VariableProperty(new Type[]
 		{

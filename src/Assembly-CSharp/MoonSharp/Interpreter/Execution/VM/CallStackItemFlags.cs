@@ -2,21 +2,21 @@
 
 namespace MoonSharp.Interpreter.Execution.VM
 {
-	// Token: 0x02001163 RID: 4451
+	// Token: 0x02000D53 RID: 3411
 	[Flags]
 	internal enum CallStackItemFlags
 	{
-		// Token: 0x0400614F RID: 24911
+		// Token: 0x040054D3 RID: 21715
 		None = 0,
-		// Token: 0x04006150 RID: 24912
+		// Token: 0x040054D4 RID: 21716
 		EntryPoint = 1,
-		// Token: 0x04006151 RID: 24913
+		// Token: 0x040054D5 RID: 21717
 		ResumeEntryPoint = 3,
-		// Token: 0x04006152 RID: 24914
+		// Token: 0x040054D6 RID: 21718
 		CallEntryPoint = 5,
-		// Token: 0x04006153 RID: 24915
+		// Token: 0x040054D7 RID: 21719
 		TailCall = 16,
-		// Token: 0x04006154 RID: 24916
+		// Token: 0x040054D8 RID: 21720
 		MethodCall = 32
 	}
 }

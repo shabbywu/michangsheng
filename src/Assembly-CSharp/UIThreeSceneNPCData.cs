@@ -1,17 +1,17 @@
 ﻿using System;
 
-// Token: 0x020003AA RID: 938
+// Token: 0x02000283 RID: 643
 public class UIThreeSceneNPCData
 {
-	// Token: 0x0400156D RID: 5485
+	// Token: 0x040011FA RID: 4602
 	public string SceneName;
 
-	// Token: 0x0400156E RID: 5486
+	// Token: 0x040011FB RID: 4603
 	public int AvatarID;
 
-	// Token: 0x0400156F RID: 5487
+	// Token: 0x040011FC RID: 4604
 	public DateTime StartTime;
 
-	// Token: 0x04001570 RID: 5488
+	// Token: 0x040011FD RID: 4605
 	public DateTime EndTime;
 }

@@ -2,12 +2,12 @@
 using Fungus;
 using UnityEngine;
 
-// Token: 0x02000339 RID: 825
+// Token: 0x0200021D RID: 541
 [CommandInfo("YSDongFu", "获取表白分数", "获取表白分数，赋值到TmpValue", 0)]
 [AddComponentMenu("")]
 public class CmdBiaoBaiResult : Command
 {
-	// Token: 0x06001863 RID: 6243 RVA: 0x000D9D88 File Offset: 0x000D7F88
+	// Token: 0x060015AB RID: 5547 RVA: 0x00091264 File Offset: 0x0008F464
 	public override void OnEnter()
 	{
 		BiaoBaiManager.CalcBiaoBaiScore();
@@ -47,7 +47,7 @@ public class CmdBiaoBaiResult : Command
 		this.Continue();
 	}
 
-	// Token: 0x0400138F RID: 5007
+	// Token: 0x04001037 RID: 4151
 	[SerializeField]
 	[Tooltip("分数类型")]
 	protected BiaoBaiScoreType ScoreType;

@@ -2,14 +2,14 @@
 
 namespace WXB
 {
-	// Token: 0x020009CC RID: 2508
+	// Token: 0x020006AB RID: 1707
 	public enum EffectType
 	{
-		// Token: 0x0400390A RID: 14602
+		// Token: 0x04002F2F RID: 12079
 		Null,
-		// Token: 0x0400390B RID: 14603
+		// Token: 0x04002F30 RID: 12080
 		Shadow,
-		// Token: 0x0400390C RID: 14604
+		// Token: 0x04002F31 RID: 12081
 		Outline
 	}
 }

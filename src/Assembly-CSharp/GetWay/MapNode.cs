@@ -2,10 +2,10 @@
 
 namespace GetWay
 {
-	// Token: 0x02000AD6 RID: 2774
+	// Token: 0x0200073E RID: 1854
 	public class MapNode
 	{
-		// Token: 0x060046C5 RID: 18117 RVA: 0x000327A2 File Offset: 0x000309A2
+		// Token: 0x06003B0F RID: 15119 RVA: 0x001962C9 File Offset: 0x001944C9
 		public MapNode(int index, float x, float y)
 		{
 			this.X = x;
@@ -13,25 +13,25 @@ namespace GetWay
 			this.Index = index;
 		}
 
-		// Token: 0x04003EDB RID: 16091
+		// Token: 0x0400333F RID: 13119
 		public float X;
 
-		// Token: 0x04003EDC RID: 16092
+		// Token: 0x04003340 RID: 13120
 		public float Y;
 
-		// Token: 0x04003EDD RID: 16093
+		// Token: 0x04003341 RID: 13121
 		public float F;
 
-		// Token: 0x04003EDE RID: 16094
+		// Token: 0x04003342 RID: 13122
 		public float G;
 
-		// Token: 0x04003EDF RID: 16095
+		// Token: 0x04003343 RID: 13123
 		public float H;
 
-		// Token: 0x04003EE0 RID: 16096
+		// Token: 0x04003344 RID: 13124
 		public int Index;
 
-		// Token: 0x04003EE1 RID: 16097
+		// Token: 0x04003345 RID: 13125
 		public MapNode Parent;
 	}
 }

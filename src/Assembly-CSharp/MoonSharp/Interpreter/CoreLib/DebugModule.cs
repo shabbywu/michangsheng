@@ -6,11 +6,11 @@ using MoonSharp.Interpreter.REPL;
 
 namespace MoonSharp.Interpreter.CoreLib
 {
-	// Token: 0x0200118F RID: 4495
+	// Token: 0x02000D76 RID: 3446
 	[MoonSharpModule(Namespace = "debug")]
 	public class DebugModule
 	{
-		// Token: 0x06006DAE RID: 28078 RVA: 0x0029AC98 File Offset: 0x00298E98
+		// Token: 0x060061A8 RID: 25000 RVA: 0x002744C4 File Offset: 0x002726C4
 		[MoonSharpModuleMethod]
 		public static DynValue debug(ScriptExecutionContext executionContext, CallbackArguments args)
 		{
@@ -46,7 +46,7 @@ namespace MoonSharp.Interpreter.CoreLib
 			}
 		}
 
-		// Token: 0x06006DAF RID: 28079 RVA: 0x0029ADA4 File Offset: 0x00298FA4
+		// Token: 0x060061A9 RID: 25001 RVA: 0x002745D0 File Offset: 0x002727D0
 		[MoonSharpModuleMethod]
 		public static DynValue getuservalue(ScriptExecutionContext executionContext, CallbackArguments args)
 		{
@@ -58,7 +58,7 @@ namespace MoonSharp.Interpreter.CoreLib
 			return dynValue.UserData.UserValue ?? DynValue.Nil;
 		}
 
-		// Token: 0x06006DB0 RID: 28080 RVA: 0x0029ADDC File Offset: 0x00298FDC
+		// Token: 0x060061AA RID: 25002 RVA: 0x00274608 File Offset: 0x00272808
 		[MoonSharpModuleMethod]
 		public static DynValue setuservalue(ScriptExecutionContext executionContext, CallbackArguments args)
 		{
@@ -67,14 +67,14 @@ namespace MoonSharp.Interpreter.CoreLib
 			return dynValue.UserData.UserValue = userValue;
 		}
 
-		// Token: 0x06006DB1 RID: 28081 RVA: 0x0004ABA0 File Offset: 0x00048DA0
+		// Token: 0x060061AB RID: 25003 RVA: 0x00274640 File Offset: 0x00272840
 		[MoonSharpModuleMethod]
 		public static DynValue getregistry(ScriptExecutionContext executionContext, CallbackArguments args)
 		{
 			return DynValue.NewTable(executionContext.GetScript().Registry);
 		}
 
-		// Token: 0x06006DB2 RID: 28082 RVA: 0x0029AE14 File Offset: 0x00299014
+		// Token: 0x060061AC RID: 25004 RVA: 0x00274654 File Offset: 0x00272854
 		[MoonSharpModuleMethod]
 		public static DynValue getmetatable(ScriptExecutionContext executionContext, CallbackArguments args)
 		{
@@ -91,7 +91,7 @@ namespace MoonSharp.Interpreter.CoreLib
 			return DynValue.Nil;
 		}
 
-		// Token: 0x06006DB3 RID: 28083 RVA: 0x0029AE70 File Offset: 0x00299070
+		// Token: 0x060061AD RID: 25005 RVA: 0x002746B0 File Offset: 0x002728B0
 		[MoonSharpModuleMethod]
 		public static DynValue setmetatable(ScriptExecutionContext executionContext, CallbackArguments args)
 		{
@@ -117,7 +117,7 @@ namespace MoonSharp.Interpreter.CoreLib
 			return dynValue;
 		}
 
-		// Token: 0x06006DB4 RID: 28084 RVA: 0x0029AF00 File Offset: 0x00299100
+		// Token: 0x060061AE RID: 25006 RVA: 0x00274740 File Offset: 0x00272940
 		[MoonSharpModuleMethod]
 		public static DynValue getupvalue(ScriptExecutionContext executionContext, CallbackArguments args)
 		{
@@ -138,7 +138,7 @@ namespace MoonSharp.Interpreter.CoreLib
 			});
 		}
 
-		// Token: 0x06006DB5 RID: 28085 RVA: 0x0029AF8C File Offset: 0x0029918C
+		// Token: 0x060061AF RID: 25007 RVA: 0x002747CC File Offset: 0x002729CC
 		[MoonSharpModuleMethod]
 		public static DynValue upvalueid(ScriptExecutionContext executionContext, CallbackArguments args)
 		{
@@ -155,7 +155,7 @@ namespace MoonSharp.Interpreter.CoreLib
 			return DynValue.NewNumber((double)closureContext[num].ReferenceID);
 		}
 
-		// Token: 0x06006DB6 RID: 28086 RVA: 0x0029B004 File Offset: 0x00299204
+		// Token: 0x060061B0 RID: 25008 RVA: 0x00274844 File Offset: 0x00272A44
 		[MoonSharpModuleMethod]
 		public static DynValue setupvalue(ScriptExecutionContext executionContext, CallbackArguments args)
 		{
@@ -173,7 +173,7 @@ namespace MoonSharp.Interpreter.CoreLib
 			return DynValue.NewString(closureContext.Symbols[num]);
 		}
 
-		// Token: 0x06006DB7 RID: 28087 RVA: 0x0029B08C File Offset: 0x0029928C
+		// Token: 0x060061B1 RID: 25009 RVA: 0x002748CC File Offset: 0x00272ACC
 		[MoonSharpModuleMethod]
 		public static DynValue upvaluejoin(ScriptExecutionContext executionContext, CallbackArguments args)
 		{
@@ -195,7 +195,7 @@ namespace MoonSharp.Interpreter.CoreLib
 			return DynValue.Void;
 		}
 
-		// Token: 0x06006DB8 RID: 28088 RVA: 0x0029B148 File Offset: 0x00299348
+		// Token: 0x060061B2 RID: 25010 RVA: 0x00274988 File Offset: 0x00272B88
 		[MoonSharpModuleMethod]
 		public static DynValue traceback(ScriptExecutionContext executionContext, CallbackArguments args)
 		{

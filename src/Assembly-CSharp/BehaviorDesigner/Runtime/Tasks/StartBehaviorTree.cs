@@ -3,13 +3,13 @@ using System.Collections.Generic;
 
 namespace BehaviorDesigner.Runtime.Tasks
 {
-	// Token: 0x02001490 RID: 5264
+	// Token: 0x02000FD8 RID: 4056
 	[TaskDescription("Start a new behavior tree and return success after it has been started.")]
 	[HelpURL("http://www.opsive.com/assets/BehaviorDesigner/documentation.php?id=20")]
 	[TaskIcon("{SkinColor}StartBehaviorTreeIcon.png")]
 	public class StartBehaviorTree : Action
 	{
-		// Token: 0x06007E45 RID: 32325 RVA: 0x002C8974 File Offset: 0x002C6B74
+		// Token: 0x0600704B RID: 28747 RVA: 0x002A95D8 File Offset: 0x002A77D8
 		public override void OnStart()
 		{
 			Behavior[] components = base.GetDefaultGameObject(this.behaviorGameObject.Value).GetComponents<Behavior>();
@@ -51,7 +51,7 @@ namespace BehaviorDesigner.Runtime.Tasks
 			}
 		}
 
-		// Token: 0x06007E46 RID: 32326 RVA: 0x00055604 File Offset: 0x00053804
+		// Token: 0x0600704C RID: 28748 RVA: 0x002A96EA File Offset: 0x002A78EA
 		public override TaskStatus OnUpdate()
 		{
 			if (this.behavior == null)
@@ -65,13 +65,13 @@ namespace BehaviorDesigner.Runtime.Tasks
 			return 2;
 		}
 
-		// Token: 0x06007E47 RID: 32327 RVA: 0x0005562E File Offset: 0x0005382E
+		// Token: 0x0600704D RID: 28749 RVA: 0x002A9714 File Offset: 0x002A7914
 		private void BehaviorEnded(Behavior behavior)
 		{
 			this.behaviorComplete = true;
 		}
 
-		// Token: 0x06007E48 RID: 32328 RVA: 0x00055637 File Offset: 0x00053837
+		// Token: 0x0600704E RID: 28750 RVA: 0x002A971D File Offset: 0x002A791D
 		public override void OnEnd()
 		{
 			if (this.behavior != null && this.waitForCompletion.Value)
@@ -80,7 +80,7 @@ namespace BehaviorDesigner.Runtime.Tasks
 			}
 		}
 
-		// Token: 0x06007E49 RID: 32329 RVA: 0x0005566B File Offset: 0x0005386B
+		// Token: 0x0600704F RID: 28751 RVA: 0x002A9751 File Offset: 0x002A7951
 		public override void OnReset()
 		{
 			this.behaviorGameObject = null;
@@ -89,26 +89,26 @@ namespace BehaviorDesigner.Runtime.Tasks
 			this.synchronizeVariables = false;
 		}
 
-		// Token: 0x04006B92 RID: 27538
+		// Token: 0x04005C9A RID: 23706
 		[Tooltip("The GameObject of the behavior tree that should be started. If null use the current behavior")]
 		public SharedGameObject behaviorGameObject;
 
-		// Token: 0x04006B93 RID: 27539
+		// Token: 0x04005C9B RID: 23707
 		[Tooltip("The group of the behavior tree that should be started")]
 		public SharedInt group;
 
-		// Token: 0x04006B94 RID: 27540
+		// Token: 0x04005C9C RID: 23708
 		[Tooltip("Should this task wait for the behavior tree to complete?")]
 		public SharedBool waitForCompletion = false;
 
-		// Token: 0x04006B95 RID: 27541
+		// Token: 0x04005C9D RID: 23709
 		[Tooltip("Should the variables be synchronized?")]
 		public SharedBool synchronizeVariables;
 
-		// Token: 0x04006B96 RID: 27542
+		// Token: 0x04005C9E RID: 23710
 		private bool behaviorComplete;
 
-		// Token: 0x04006B97 RID: 27543
+		// Token: 0x04005C9F RID: 23711
 		private Behavior behavior;
 	}
 }

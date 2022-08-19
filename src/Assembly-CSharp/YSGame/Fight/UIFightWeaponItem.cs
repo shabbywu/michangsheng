@@ -7,12 +7,12 @@ using UnityEngine.UI;
 
 namespace YSGame.Fight
 {
-	// Token: 0x02000E0B RID: 3595
+	// Token: 0x02000ACC RID: 2764
 	public class UIFightWeaponItem : MonoBehaviour
 	{
-		// Token: 0x1700080D RID: 2061
-		// (get) Token: 0x060056D9 RID: 22233 RVA: 0x0003E180 File Offset: 0x0003C380
-		// (set) Token: 0x060056DA RID: 22234 RVA: 0x0003E1B2 File Offset: 0x0003C3B2
+		// Token: 0x170005E4 RID: 1508
+		// (get) Token: 0x06004D87 RID: 19847 RVA: 0x00212706 File Offset: 0x00210906
+		// (set) Token: 0x06004D88 RID: 19848 RVA: 0x00212738 File Offset: 0x00210938
 		private bool CanClick
 		{
 			get
@@ -25,7 +25,7 @@ namespace YSGame.Fight
 			}
 		}
 
-		// Token: 0x060056DB RID: 22235 RVA: 0x00242888 File Offset: 0x00240A88
+		// Token: 0x06004D89 RID: 19849 RVA: 0x00212744 File Offset: 0x00210944
 		private void Awake()
 		{
 			this.SkillBtn.mouseEnterEvent.AddListener(new UnityAction(this.OnEnter));
@@ -34,7 +34,7 @@ namespace YSGame.Fight
 			this.itemDatebase = jsonData.instance.gameObject.GetComponent<ItemDatebase>();
 		}
 
-		// Token: 0x060056DC RID: 22236 RVA: 0x0003E1BB File Offset: 0x0003C3BB
+		// Token: 0x06004D8A RID: 19850 RVA: 0x002127BA File Offset: 0x002109BA
 		private void Update()
 		{
 			if (Input.GetKeyUp(this.HotKey))
@@ -47,7 +47,7 @@ namespace YSGame.Fight
 			}
 		}
 
-		// Token: 0x060056DD RID: 22237 RVA: 0x00242900 File Offset: 0x00240B00
+		// Token: 0x06004D8B RID: 19851 RVA: 0x002127F0 File Offset: 0x002109F0
 		public void OnEnter()
 		{
 			if (this.hasSkill)
@@ -58,13 +58,13 @@ namespace YSGame.Fight
 			}
 		}
 
-		// Token: 0x060056DE RID: 22238 RVA: 0x0003E1EF File Offset: 0x0003C3EF
+		// Token: 0x06004D8C RID: 19852 RVA: 0x00212893 File Offset: 0x00210A93
 		public void OnExit()
 		{
 			UIFightPanel.Inst.FightSkillTip.gameObject.SetActive(false);
 		}
 
-		// Token: 0x060056DF RID: 22239 RVA: 0x002429A4 File Offset: 0x00240BA4
+		// Token: 0x06004D8D RID: 19853 RVA: 0x002128AC File Offset: 0x00210AAC
 		private void ClickSkill()
 		{
 			if (this.internalCD <= 0f)
@@ -99,7 +99,7 @@ namespace YSGame.Fight
 			}
 		}
 
-		// Token: 0x060056E0 RID: 22240 RVA: 0x00242AA4 File Offset: 0x00240CA4
+		// Token: 0x06004D8E RID: 19854 RVA: 0x002129AC File Offset: 0x00210BAC
 		public void SetWeapon(GUIPackage.Skill skill, ITEM_INFO weapon)
 		{
 			this.hasSkill = true;
@@ -126,7 +126,7 @@ namespace YSGame.Fight
 			this.RefreshCD();
 		}
 
-		// Token: 0x060056E1 RID: 22241 RVA: 0x00242C8C File Offset: 0x00240E8C
+		// Token: 0x06004D8F RID: 19855 RVA: 0x00212B94 File Offset: 0x00210D94
 		public void RefreshCD()
 		{
 			if (this.hasSkill)
@@ -173,7 +173,13 @@ namespace YSGame.Fight
 			}
 		}
 
-		// Token: 0x060056E2 RID: 22242 RVA: 0x00242DF0 File Offset: 0x00240FF0
+		// Token: 0x06004D90 RID: 19856 RVA: 0x00212CF5 File Offset: 0x00210EF5
+		public void SetLock(bool isLock)
+		{
+			this.Lock.SetActive(isLock);
+		}
+
+		// Token: 0x06004D91 RID: 19857 RVA: 0x00212D04 File Offset: 0x00210F04
 		public void Clear()
 		{
 			this.hasSkill = false;
@@ -185,46 +191,49 @@ namespace YSGame.Fight
 			this.CanClick = false;
 		}
 
-		// Token: 0x04005684 RID: 22148
+		// Token: 0x04004CA8 RID: 19624
 		public Image IconImage;
 
-		// Token: 0x04005685 RID: 22149
+		// Token: 0x04004CA9 RID: 19625
 		public Image QualityUpImage;
 
-		// Token: 0x04005686 RID: 22150
+		// Token: 0x04004CAA RID: 19626
 		public Image SelectedImage;
 
-		// Token: 0x04005687 RID: 22151
+		// Token: 0x04004CAB RID: 19627
 		public GameObject CD;
 
-		// Token: 0x04005688 RID: 22152
+		// Token: 0x04004CAC RID: 19628
 		public Text CDText;
 
-		// Token: 0x04005689 RID: 22153
+		// Token: 0x04004CAD RID: 19629
 		public Text CDText2;
 
-		// Token: 0x0400568A RID: 22154
+		// Token: 0x04004CAE RID: 19630
 		public KeyCode HotKey;
 
-		// Token: 0x0400568B RID: 22155
+		// Token: 0x04004CAF RID: 19631
 		public FpBtn SkillBtn;
 
-		// Token: 0x0400568C RID: 22156
+		// Token: 0x04004CB0 RID: 19632
+		public GameObject Lock;
+
+		// Token: 0x04004CB1 RID: 19633
 		private bool hasSkill;
 
-		// Token: 0x0400568D RID: 22157
+		// Token: 0x04004CB2 RID: 19634
 		private GUIPackage.Skill nowSkill;
 
-		// Token: 0x0400568E RID: 22158
+		// Token: 0x04004CB3 RID: 19635
 		private ITEM_INFO nowWeapon;
 
-		// Token: 0x0400568F RID: 22159
+		// Token: 0x04004CB4 RID: 19636
 		private bool canClick;
 
-		// Token: 0x04005690 RID: 22160
+		// Token: 0x04004CB5 RID: 19637
 		private ItemDatebase itemDatebase;
 
-		// Token: 0x04005691 RID: 22161
+		// Token: 0x04004CB6 RID: 19638
 		private float internalCD;
 	}
 }

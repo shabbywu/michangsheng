@@ -8,10 +8,10 @@ using UnityEngine.UI;
 
 namespace CaiYao
 {
-	// Token: 0x02000A80 RID: 2688
+	// Token: 0x02000729 RID: 1833
 	public class CaiYaoUIMag : MonoBehaviour
 	{
-		// Token: 0x0600450E RID: 17678 RVA: 0x001D87D0 File Offset: 0x001D69D0
+		// Token: 0x06003A6C RID: 14956 RVA: 0x00191360 File Offset: 0x0018F560
 		public void ShowAfterFight(ItemData data)
 		{
 			this.Init();
@@ -24,7 +24,7 @@ namespace CaiYao
 			this.OptionList.gameObject.SetActive(false);
 		}
 
-		// Token: 0x0600450F RID: 17679 RVA: 0x001D889C File Offset: 0x001D6A9C
+		// Token: 0x06003A6D RID: 14957 RVA: 0x0019142C File Offset: 0x0018F62C
 		public void ShowNomal()
 		{
 			this.Init();
@@ -116,7 +116,7 @@ namespace CaiYao
 			});
 		}
 
-		// Token: 0x06004510 RID: 17680 RVA: 0x001D8A50 File Offset: 0x001D6C50
+		// Token: 0x06003A6E RID: 14958 RVA: 0x001915E0 File Offset: 0x0018F7E0
 		private void Init()
 		{
 			base.transform.SetParent(NewUICanvas.Inst.gameObject.transform);
@@ -130,7 +130,7 @@ namespace CaiYao
 			CaiYaoUIMag.Inst = this;
 		}
 
-		// Token: 0x06004511 RID: 17681 RVA: 0x001D8AEC File Offset: 0x001D6CEC
+		// Token: 0x06003A6F RID: 14959 RVA: 0x0019167C File Offset: 0x0018F87C
 		private ItemData GetRandomYaoCai()
 		{
 			int id = AllMapCaiJiBiao.DataList[NpcJieSuanManager.inst.getRandomInt(0, AllMapCaiJiBiao.DataList.Count - 1)].ID;
@@ -150,13 +150,13 @@ namespace CaiYao
 			return new ItemData(item, randomInt, num, addTime, hasEnemy, firstEnemyId, maiFuMonstar);
 		}
 
-		// Token: 0x06004512 RID: 17682 RVA: 0x0003169F File Offset: 0x0002F89F
+		// Token: 0x06003A70 RID: 14960 RVA: 0x00191794 File Offset: 0x0018F994
 		private void OnDestroy()
 		{
 			CaiYaoUIMag.Inst = null;
 		}
 
-		// Token: 0x06004513 RID: 17683 RVA: 0x000316A7 File Offset: 0x0002F8A7
+		// Token: 0x06003A71 RID: 14961 RVA: 0x0019179C File Offset: 0x0018F99C
 		public void Close()
 		{
 			PanelMamager.CanOpenOrClose = true;
@@ -164,7 +164,7 @@ namespace CaiYao
 			Object.Destroy(base.gameObject);
 		}
 
-		// Token: 0x06004514 RID: 17684 RVA: 0x000316C0 File Offset: 0x0002F8C0
+		// Token: 0x06003A72 RID: 14962 RVA: 0x001917B5 File Offset: 0x0018F9B5
 		private void Update()
 		{
 			if (Input.GetKeyUp(27) && this.OkBtn.activeSelf)
@@ -173,37 +173,37 @@ namespace CaiYao
 			}
 		}
 
-		// Token: 0x06004515 RID: 17685 RVA: 0x001D8C04 File Offset: 0x001D6E04
+		// Token: 0x06003A73 RID: 14963 RVA: 0x001917D4 File Offset: 0x0018F9D4
 		private string GetCaiJiText(string desc, int itemId, int num, int addNum, int addTime)
 		{
 			return desc.Replace("{ItemName}", _ItemJsonData.DataDict[itemId].name).Replace("{ItemNum}", num.ToString()).Replace("{AddNum}", addNum.ToString()).Replace("{AddTime}", addTime.ToString());
 		}
 
-		// Token: 0x04003D2C RID: 15660
+		// Token: 0x04003291 RID: 12945
 		[SerializeField]
 		private Transform Panel;
 
-		// Token: 0x04003D2D RID: 15661
+		// Token: 0x04003292 RID: 12946
 		[SerializeField]
 		private GameObject OkBtn;
 
-		// Token: 0x04003D2E RID: 15662
+		// Token: 0x04003293 RID: 12947
 		[SerializeField]
 		private UIIconShow Item;
 
-		// Token: 0x04003D2F RID: 15663
+		// Token: 0x04003294 RID: 12948
 		[SerializeField]
 		private Text Desc;
 
-		// Token: 0x04003D30 RID: 15664
+		// Token: 0x04003295 RID: 12949
 		[SerializeField]
 		private Transform OptionList;
 
-		// Token: 0x04003D31 RID: 15665
+		// Token: 0x04003296 RID: 12950
 		[SerializeField]
 		private GameObject Option;
 
-		// Token: 0x04003D32 RID: 15666
+		// Token: 0x04003297 RID: 12951
 		public static CaiYaoUIMag Inst;
 	}
 }

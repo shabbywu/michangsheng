@@ -2,10 +2,10 @@
 
 namespace KBEngine
 {
-	// Token: 0x0200101D RID: 4125
+	// Token: 0x02000C77 RID: 3191
 	public class GameObject : if_Entity_error_use______git_submodule_update_____kbengine_plugins_______open_this_file_and_I_will_tell_you
 	{
-		// Token: 0x06006292 RID: 25234 RVA: 0x00272248 File Offset: 0x00270448
+		// Token: 0x06005812 RID: 22546 RVA: 0x00248F4C File Offset: 0x0024714C
 		public virtual void onHPChanged(int oldValue)
 		{
 			object definedProperty = this.getDefinedProperty("HP");
@@ -16,13 +16,13 @@ namespace KBEngine
 			});
 		}
 
-		// Token: 0x06006293 RID: 25235 RVA: 0x00043EC5 File Offset: 0x000420C5
+		// Token: 0x06005813 RID: 22547 RVA: 0x00246801 File Offset: 0x00244A01
 		public virtual void onMPChanged(int oldValue)
 		{
 			this.getDefinedProperty("MP");
 		}
 
-		// Token: 0x06006294 RID: 25236 RVA: 0x0027227C File Offset: 0x0027047C
+		// Token: 0x06005814 RID: 22548 RVA: 0x00248F80 File Offset: 0x00247180
 		public virtual void onHP_MaxChanged(int oldValue)
 		{
 			object definedProperty = this.getDefinedProperty("HP_Max");
@@ -33,13 +33,13 @@ namespace KBEngine
 			});
 		}
 
-		// Token: 0x06006295 RID: 25237 RVA: 0x00043ED3 File Offset: 0x000420D3
+		// Token: 0x06005815 RID: 22549 RVA: 0x00248FB1 File Offset: 0x002471B1
 		public virtual void onMP_MaxChanged(int oldValue)
 		{
 			this.getDefinedProperty("MP_Max");
 		}
 
-		// Token: 0x06006296 RID: 25238 RVA: 0x00274E48 File Offset: 0x00273048
+		// Token: 0x06005816 RID: 22550 RVA: 0x00248FC0 File Offset: 0x002471C0
 		public virtual void onLevelChanged(ushort oldValue)
 		{
 			object definedProperty = this.getDefinedProperty("level");
@@ -50,7 +50,7 @@ namespace KBEngine
 			});
 		}
 
-		// Token: 0x06006297 RID: 25239 RVA: 0x002722B0 File Offset: 0x002704B0
+		// Token: 0x06005817 RID: 22551 RVA: 0x00248FF4 File Offset: 0x002471F4
 		public virtual void onNameChanged(string oldValue)
 		{
 			object definedProperty = this.getDefinedProperty("name");
@@ -61,7 +61,7 @@ namespace KBEngine
 			});
 		}
 
-		// Token: 0x06006298 RID: 25240 RVA: 0x002722E4 File Offset: 0x002704E4
+		// Token: 0x06005818 RID: 22552 RVA: 0x00249028 File Offset: 0x00247228
 		public virtual void onStateChanged(sbyte oldValue)
 		{
 			object definedProperty = this.getDefinedProperty("state");
@@ -72,50 +72,50 @@ namespace KBEngine
 			});
 		}
 
-		// Token: 0x06006299 RID: 25241 RVA: 0x000042DD File Offset: 0x000024DD
+		// Token: 0x06005819 RID: 22553 RVA: 0x00004095 File Offset: 0x00002295
 		public virtual void onSubStateChanged(byte oldValue)
 		{
 		}
 
-		// Token: 0x0600629A RID: 25242 RVA: 0x000042DD File Offset: 0x000024DD
+		// Token: 0x0600581A RID: 22554 RVA: 0x00004095 File Offset: 0x00002295
 		public virtual void onUtypeChanged(uint oldValue)
 		{
 		}
 
-		// Token: 0x0600629B RID: 25243 RVA: 0x000042DD File Offset: 0x000024DD
+		// Token: 0x0600581B RID: 22555 RVA: 0x00004095 File Offset: 0x00002295
 		public virtual void onUidChanged(uint oldValue)
 		{
 		}
 
-		// Token: 0x0600629C RID: 25244 RVA: 0x000042DD File Offset: 0x000024DD
+		// Token: 0x0600581C RID: 22556 RVA: 0x00004095 File Offset: 0x00002295
 		public virtual void onSpaceUTypeChanged(uint oldValue)
 		{
 		}
 
-		// Token: 0x0600629D RID: 25245 RVA: 0x00043EE1 File Offset: 0x000420E1
+		// Token: 0x0600581D RID: 22557 RVA: 0x00249059 File Offset: 0x00247259
 		public virtual void onMoveSpeedChanged(byte oldValue)
 		{
 			this.getDefinedProperty("moveSpeed");
 		}
 
-		// Token: 0x0600629E RID: 25246 RVA: 0x0004439D File Offset: 0x0004259D
+		// Token: 0x0600581E RID: 22558 RVA: 0x00249067 File Offset: 0x00247267
 		public virtual void set_modelScale(object old)
 		{
 			this.getDefinedProperty("modelScale");
 		}
 
-		// Token: 0x0600629F RID: 25247 RVA: 0x000443AB File Offset: 0x000425AB
+		// Token: 0x0600581F RID: 22559 RVA: 0x00249075 File Offset: 0x00247275
 		public virtual void set_modelID(object old)
 		{
 			this.getDefinedProperty("modelID");
 		}
 
-		// Token: 0x060062A0 RID: 25248 RVA: 0x000042DD File Offset: 0x000024DD
+		// Token: 0x06005820 RID: 22560 RVA: 0x00004095 File Offset: 0x00002295
 		public virtual void set_forbids(object old)
 		{
 		}
 
-		// Token: 0x060062A1 RID: 25249 RVA: 0x0011EE44 File Offset: 0x0011D044
+		// Token: 0x06005821 RID: 22561 RVA: 0x00249084 File Offset: 0x00247284
 		public virtual void recvDamage(int attackerID, int skillID, int damageType, int damage)
 		{
 			Entity entity = KBEngineApp.app.findEntity(attackerID);

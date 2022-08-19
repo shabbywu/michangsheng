@@ -3,17 +3,17 @@ using UnityEngine;
 
 namespace Fungus
 {
-	// Token: 0x020012F7 RID: 4855
+	// Token: 0x02000E86 RID: 3718
 	[RequireComponent(typeof(SpriteRenderer))]
 	public class SpriteFader : MonoBehaviour
 	{
-		// Token: 0x06007663 RID: 30307 RVA: 0x00050942 File Offset: 0x0004EB42
+		// Token: 0x06006964 RID: 26980 RVA: 0x00290EAB File Offset: 0x0028F0AB
 		protected virtual void Start()
 		{
 			this.spriteRenderer = (base.GetComponent<Renderer>() as SpriteRenderer);
 		}
 
-		// Token: 0x06007664 RID: 30308 RVA: 0x002B3368 File Offset: 0x002B1568
+		// Token: 0x06006965 RID: 26981 RVA: 0x00290EC0 File Offset: 0x0028F0C0
 		protected virtual void Update()
 		{
 			this.fadeTimer += Time.deltaTime;
@@ -45,7 +45,7 @@ namespace Fungus
 			}
 		}
 
-		// Token: 0x06007665 RID: 30309 RVA: 0x002B3480 File Offset: 0x002B1680
+		// Token: 0x06006966 RID: 26982 RVA: 0x00290FD8 File Offset: 0x0028F1D8
 		public static void FadeSprite(SpriteRenderer spriteRenderer, Color targetColor, float duration, Vector2 slideOffset, Action onComplete = null)
 		{
 			if (spriteRenderer == null)
@@ -83,28 +83,28 @@ namespace Fungus
 			spriteFader.onFadeComplete = onComplete;
 		}
 
-		// Token: 0x04006739 RID: 26425
+		// Token: 0x04005958 RID: 22872
 		protected float fadeDuration;
 
-		// Token: 0x0400673A RID: 26426
+		// Token: 0x04005959 RID: 22873
 		protected float fadeTimer;
 
-		// Token: 0x0400673B RID: 26427
+		// Token: 0x0400595A RID: 22874
 		protected Color startColor;
 
-		// Token: 0x0400673C RID: 26428
+		// Token: 0x0400595B RID: 22875
 		protected Color endColor;
 
-		// Token: 0x0400673D RID: 26429
+		// Token: 0x0400595C RID: 22876
 		protected Vector2 slideOffset;
 
-		// Token: 0x0400673E RID: 26430
+		// Token: 0x0400595D RID: 22877
 		protected Vector3 endPosition;
 
-		// Token: 0x0400673F RID: 26431
+		// Token: 0x0400595E RID: 22878
 		protected SpriteRenderer spriteRenderer;
 
-		// Token: 0x04006740 RID: 26432
+		// Token: 0x0400595F RID: 22879
 		protected Action onFadeComplete;
 	}
 }

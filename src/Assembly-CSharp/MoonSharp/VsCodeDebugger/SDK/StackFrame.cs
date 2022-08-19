@@ -2,45 +2,45 @@
 
 namespace MoonSharp.VsCodeDebugger.SDK
 {
-	// Token: 0x020011C1 RID: 4545
+	// Token: 0x02000D95 RID: 3477
 	public class StackFrame
 	{
-		// Token: 0x17000A2C RID: 2604
-		// (get) Token: 0x06006F50 RID: 28496 RVA: 0x0004B9DD File Offset: 0x00049BDD
-		// (set) Token: 0x06006F51 RID: 28497 RVA: 0x0004B9E5 File Offset: 0x00049BE5
+		// Token: 0x170007CB RID: 1995
+		// (get) Token: 0x0600630A RID: 25354 RVA: 0x0027A517 File Offset: 0x00278717
+		// (set) Token: 0x0600630B RID: 25355 RVA: 0x0027A51F File Offset: 0x0027871F
 		public int id { get; private set; }
 
-		// Token: 0x17000A2D RID: 2605
-		// (get) Token: 0x06006F52 RID: 28498 RVA: 0x0004B9EE File Offset: 0x00049BEE
-		// (set) Token: 0x06006F53 RID: 28499 RVA: 0x0004B9F6 File Offset: 0x00049BF6
+		// Token: 0x170007CC RID: 1996
+		// (get) Token: 0x0600630C RID: 25356 RVA: 0x0027A528 File Offset: 0x00278728
+		// (set) Token: 0x0600630D RID: 25357 RVA: 0x0027A530 File Offset: 0x00278730
 		public Source source { get; private set; }
 
-		// Token: 0x17000A2E RID: 2606
-		// (get) Token: 0x06006F54 RID: 28500 RVA: 0x0004B9FF File Offset: 0x00049BFF
-		// (set) Token: 0x06006F55 RID: 28501 RVA: 0x0004BA07 File Offset: 0x00049C07
+		// Token: 0x170007CD RID: 1997
+		// (get) Token: 0x0600630E RID: 25358 RVA: 0x0027A539 File Offset: 0x00278739
+		// (set) Token: 0x0600630F RID: 25359 RVA: 0x0027A541 File Offset: 0x00278741
 		public int line { get; private set; }
 
-		// Token: 0x17000A2F RID: 2607
-		// (get) Token: 0x06006F56 RID: 28502 RVA: 0x0004BA10 File Offset: 0x00049C10
-		// (set) Token: 0x06006F57 RID: 28503 RVA: 0x0004BA18 File Offset: 0x00049C18
+		// Token: 0x170007CE RID: 1998
+		// (get) Token: 0x06006310 RID: 25360 RVA: 0x0027A54A File Offset: 0x0027874A
+		// (set) Token: 0x06006311 RID: 25361 RVA: 0x0027A552 File Offset: 0x00278752
 		public int column { get; private set; }
 
-		// Token: 0x17000A30 RID: 2608
-		// (get) Token: 0x06006F58 RID: 28504 RVA: 0x0004BA21 File Offset: 0x00049C21
-		// (set) Token: 0x06006F59 RID: 28505 RVA: 0x0004BA29 File Offset: 0x00049C29
+		// Token: 0x170007CF RID: 1999
+		// (get) Token: 0x06006312 RID: 25362 RVA: 0x0027A55B File Offset: 0x0027875B
+		// (set) Token: 0x06006313 RID: 25363 RVA: 0x0027A563 File Offset: 0x00278763
 		public string name { get; private set; }
 
-		// Token: 0x17000A31 RID: 2609
-		// (get) Token: 0x06006F5A RID: 28506 RVA: 0x0004BA32 File Offset: 0x00049C32
-		// (set) Token: 0x06006F5B RID: 28507 RVA: 0x0004BA3A File Offset: 0x00049C3A
+		// Token: 0x170007D0 RID: 2000
+		// (get) Token: 0x06006314 RID: 25364 RVA: 0x0027A56C File Offset: 0x0027876C
+		// (set) Token: 0x06006315 RID: 25365 RVA: 0x0027A574 File Offset: 0x00278774
 		public int? endLine { get; private set; }
 
-		// Token: 0x17000A32 RID: 2610
-		// (get) Token: 0x06006F5C RID: 28508 RVA: 0x0004BA43 File Offset: 0x00049C43
-		// (set) Token: 0x06006F5D RID: 28509 RVA: 0x0004BA4B File Offset: 0x00049C4B
+		// Token: 0x170007D1 RID: 2001
+		// (get) Token: 0x06006316 RID: 25366 RVA: 0x0027A57D File Offset: 0x0027877D
+		// (set) Token: 0x06006317 RID: 25367 RVA: 0x0027A585 File Offset: 0x00278785
 		public int? endColumn { get; private set; }
 
-		// Token: 0x06006F5E RID: 28510 RVA: 0x0004BA54 File Offset: 0x00049C54
+		// Token: 0x06006318 RID: 25368 RVA: 0x0027A58E File Offset: 0x0027878E
 		public StackFrame(int id, string name, Source source, int line, int column = 0, int? endLine = null, int? endColumn = null)
 		{
 			this.id = id;

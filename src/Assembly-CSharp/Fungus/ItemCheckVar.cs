@@ -3,12 +3,12 @@ using UnityEngine;
 
 namespace Fungus
 {
-	// Token: 0x020013D8 RID: 5080
+	// Token: 0x02000F23 RID: 3875
 	[CommandInfo("YS", "ItemCheckVar", "检测是否拥有某个物品", 0)]
 	[AddComponentMenu("")]
 	public class ItemCheckVar : Command
 	{
-		// Token: 0x06007BBF RID: 31679 RVA: 0x0001CA4F File Offset: 0x0001AC4F
+		// Token: 0x06006DD4 RID: 28116 RVA: 0x000E111A File Offset: 0x000DF31A
 		public void setHasVariable(string name, int num, Flowchart flowchart)
 		{
 			if (flowchart.HasVariable(name))
@@ -17,7 +17,7 @@ namespace Fungus
 			}
 		}
 
-		// Token: 0x06007BC0 RID: 31680 RVA: 0x002C41E0 File Offset: 0x002C23E0
+		// Token: 0x06006DD5 RID: 28117 RVA: 0x002A3F24 File Offset: 0x002A2124
 		public override void OnEnter()
 		{
 			int itemNum = Tools.instance.getPlayer().getItemNum(this.ItemID.Value);
@@ -44,18 +44,18 @@ namespace Fungus
 			this.Continue();
 		}
 
-		// Token: 0x06007BC1 RID: 31681 RVA: 0x000113CF File Offset: 0x0000F5CF
+		// Token: 0x06006DD6 RID: 28118 RVA: 0x0005E228 File Offset: 0x0005C428
 		public override Color GetButtonColor()
 		{
 			return new Color32(184, 210, 235, byte.MaxValue);
 		}
 
-		// Token: 0x06007BC2 RID: 31682 RVA: 0x000042DD File Offset: 0x000024DD
+		// Token: 0x06006DD7 RID: 28119 RVA: 0x00004095 File Offset: 0x00002295
 		public override void OnReset()
 		{
 		}
 
-		// Token: 0x04006A29 RID: 27177
+		// Token: 0x04005B5B RID: 23387
 		[Tooltip("需要检测物品ID")]
 		[VariableProperty(new Type[]
 		{
@@ -64,12 +64,12 @@ namespace Fungus
 		[SerializeField]
 		protected IntegerVariable ItemID;
 
-		// Token: 0x04006A2A RID: 27178
+		// Token: 0x04005B5C RID: 23388
 		[Tooltip("比较类型，大于 小于 等于")]
 		[SerializeField]
 		protected ItemCheckVar.CompareNum CompareType;
 
-		// Token: 0x04006A2B RID: 27179
+		// Token: 0x04005B5D RID: 23389
 		[Tooltip("数量")]
 		[VariableProperty(new Type[]
 		{
@@ -78,7 +78,7 @@ namespace Fungus
 		[SerializeField]
 		protected IntegerVariable ItemNum;
 
-		// Token: 0x04006A2C RID: 27180
+		// Token: 0x04005B5E RID: 23390
 		[Tooltip("将检测到的值赋给一个变量")]
 		[VariableProperty(new Type[]
 		{
@@ -87,14 +87,14 @@ namespace Fungus
 		[SerializeField]
 		protected BooleanVariable TempBool;
 
-		// Token: 0x020013D9 RID: 5081
+		// Token: 0x02001726 RID: 5926
 		public enum CompareNum
 		{
-			// Token: 0x04006A2E RID: 27182
+			// Token: 0x04007520 RID: 29984
 			GreaterThan,
-			// Token: 0x04006A2F RID: 27183
+			// Token: 0x04007521 RID: 29985
 			LessThan,
-			// Token: 0x04006A30 RID: 27184
+			// Token: 0x04007522 RID: 29986
 			equalTo
 		}
 	}

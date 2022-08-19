@@ -4,10 +4,10 @@ using GUIPackage;
 using KBEngine;
 using UnityEngine;
 
-// Token: 0x020002CC RID: 716
+// Token: 0x020001C5 RID: 453
 public static class NPCEx
 {
-	// Token: 0x06001579 RID: 5497 RVA: 0x000C2830 File Offset: 0x000C0A30
+	// Token: 0x060012C1 RID: 4801 RVA: 0x000751A8 File Offset: 0x000733A8
 	public static int NPCIDToNew(int npcid)
 	{
 		int result = npcid;
@@ -18,7 +18,20 @@ public static class NPCEx
 		return result;
 	}
 
-	// Token: 0x0600157A RID: 5498 RVA: 0x000C2864 File Offset: 0x000C0A64
+	// Token: 0x060012C2 RID: 4802 RVA: 0x000751DC File Offset: 0x000733DC
+	public static void AddNpcNextToPoLv(int npcId, int lv)
+	{
+		npcId = NPCEx.NPCIDToNew(npcId);
+		JSONObject npcData = NpcJieSuanManager.inst.GetNpcData(npcId);
+		if (npcData == null)
+		{
+			Debug.LogError("不存在npc或已死亡:" + npcId);
+			return;
+		}
+		npcData.SetField("AddToPoLv", lv);
+	}
+
+	// Token: 0x060012C3 RID: 4803 RVA: 0x00075224 File Offset: 0x00073424
 	public static int NPCIDToOld(int npcid)
 	{
 		int result = npcid;
@@ -32,7 +45,7 @@ public static class NPCEx
 		return result;
 	}
 
-	// Token: 0x0600157B RID: 5499 RVA: 0x000C28CC File Offset: 0x000C0ACC
+	// Token: 0x060012C4 RID: 4804 RVA: 0x0007528C File Offset: 0x0007348C
 	public static void SetJSON(int npcid, string valueName, int value)
 	{
 		if (jsonData.instance.AvatarJsonData[npcid.ToString()].HasField(valueName))
@@ -43,7 +56,7 @@ public static class NPCEx
 		jsonData.instance.AvatarJsonData[npcid.ToString()].AddField(valueName, value);
 	}
 
-	// Token: 0x0600157C RID: 5500 RVA: 0x000C2934 File Offset: 0x000C0B34
+	// Token: 0x060012C5 RID: 4805 RVA: 0x000752F4 File Offset: 0x000734F4
 	public static void SetJSON(int npcid, string valueName, string value)
 	{
 		if (jsonData.instance.AvatarJsonData[npcid.ToString()].HasField(valueName))
@@ -54,7 +67,7 @@ public static class NPCEx
 		jsonData.instance.AvatarJsonData[npcid.ToString()].AddField(valueName, value);
 	}
 
-	// Token: 0x0600157D RID: 5501 RVA: 0x000C299C File Offset: 0x000C0B9C
+	// Token: 0x060012C6 RID: 4806 RVA: 0x0007535C File Offset: 0x0007355C
 	public static void SetJSON(int npcid, string valueName, bool value)
 	{
 		if (jsonData.instance.AvatarJsonData[npcid.ToString()].HasField(valueName))
@@ -65,7 +78,7 @@ public static class NPCEx
 		jsonData.instance.AvatarJsonData[npcid.ToString()].AddField(valueName, value);
 	}
 
-	// Token: 0x0600157E RID: 5502 RVA: 0x000C2A04 File Offset: 0x000C0C04
+	// Token: 0x060012C7 RID: 4807 RVA: 0x000753C4 File Offset: 0x000735C4
 	public static void SetMoney(int npcid, int money)
 	{
 		int num = NPCEx.NPCIDToNew(npcid);
@@ -77,13 +90,13 @@ public static class NPCEx
 		Debug.LogError(string.Format("设置NPC灵石出错，没有此NPC背包数据，NPCID:{0}", num));
 	}
 
-	// Token: 0x0600157F RID: 5503 RVA: 0x0001370C File Offset: 0x0001190C
+	// Token: 0x060012C8 RID: 4808 RVA: 0x00075427 File Offset: 0x00073627
 	public static void SetNPCAction(int npcid, int actionID)
 	{
 		NPCEx.SetJSON(NPCEx.NPCIDToNew(npcid), "ActionId", actionID);
 	}
 
-	// Token: 0x06001580 RID: 5504 RVA: 0x000C2A68 File Offset: 0x000C0C68
+	// Token: 0x060012C9 RID: 4809 RVA: 0x0007543C File Offset: 0x0007363C
 	public static void AddEvent(int npcid, string eventTime, string eventDesc)
 	{
 		if (jsonData.instance.AvatarJsonData[npcid.ToString()]["NoteBook"].IsNull)
@@ -100,7 +113,7 @@ public static class NPCEx
 		jsonData.instance.AvatarJsonData[npcid.ToString()]["NoteBook"]["102"].Add(jsonobject);
 	}
 
-	// Token: 0x06001581 RID: 5505 RVA: 0x000C2B70 File Offset: 0x000C0D70
+	// Token: 0x060012CA RID: 4810 RVA: 0x00075544 File Offset: 0x00073744
 	public static void AddFavor(int npcid, int addCount, bool addQingFen = true, bool showTip = true)
 	{
 		int num = NPCEx.NPCIDToNew(npcid);
@@ -129,7 +142,7 @@ public static class NPCEx
 		Debug.LogError(string.Format("添加好感度异常，没有找到ID为{0}的NPC，传入的参数npcid:{1}，addCount:{2}", num, npcid, addCount));
 	}
 
-	// Token: 0x06001582 RID: 5506 RVA: 0x000C2CB0 File Offset: 0x000C0EB0
+	// Token: 0x060012CB RID: 4811 RVA: 0x00075684 File Offset: 0x00073884
 	public static void AddQingFen(int npcid, int addCount, bool showTip = false)
 	{
 		int num = NPCEx.NPCIDToNew(npcid);
@@ -141,6 +154,10 @@ public static class NPCEx
 				if (jsonData.instance.AvatarJsonData[num.ToString()].HasField("QingFen"))
 				{
 					num2 = jsonData.instance.AvatarJsonData[num.ToString()]["QingFen"].I;
+				}
+				if (2147483647 - num2 < addCount)
+				{
+					addCount = int.MaxValue - num2;
 				}
 				int num3 = num2 + addCount;
 				num3 = Mathf.Max(0, num3);
@@ -157,14 +174,14 @@ public static class NPCEx
 		}
 	}
 
-	// Token: 0x06001583 RID: 5507 RVA: 0x000C2E10 File Offset: 0x000C1010
+	// Token: 0x060012CC RID: 4812 RVA: 0x000757F8 File Offset: 0x000739F8
 	public static int GetFavor(int npcid)
 	{
 		int num = NPCEx.NPCIDToNew(npcid);
 		return jsonData.instance.AvatarRandomJsonData[num.ToString()]["HaoGanDu"].I;
 	}
 
-	// Token: 0x06001584 RID: 5508 RVA: 0x000C2E4C File Offset: 0x000C104C
+	// Token: 0x060012CD RID: 4813 RVA: 0x00075834 File Offset: 0x00073A34
 	public static bool IsZhongYaoNPC(int npcid, out int oldid)
 	{
 		foreach (KeyValuePair<int, int> keyValuePair in NpcJieSuanManager.inst.ImportantNpcBangDingDictionary)
@@ -179,13 +196,13 @@ public static class NPCEx
 		return false;
 	}
 
-	// Token: 0x06001585 RID: 5509 RVA: 0x0001371F File Offset: 0x0001191F
+	// Token: 0x060012CE RID: 4814 RVA: 0x000758A4 File Offset: 0x00073AA4
 	public static bool IsDeath(int npcid)
 	{
 		return NpcJieSuanManager.inst.IsDeath(npcid);
 	}
 
-	// Token: 0x06001586 RID: 5510 RVA: 0x000C2EBC File Offset: 0x000C10BC
+	// Token: 0x060012CF RID: 4815 RVA: 0x000758B4 File Offset: 0x00073AB4
 	public static void OpenTalk(int talkid)
 	{
 		GameObject gameObject = Resources.Load<GameObject>(string.Format("talkPrefab/TalkPrefab/Talk{0}", talkid));
@@ -197,7 +214,7 @@ public static class NPCEx
 		Debug.LogError(string.Format("[OpenTalk]找不到Talk{0}", talkid));
 	}
 
-	// Token: 0x06001587 RID: 5511 RVA: 0x000C2F08 File Offset: 0x000C1108
+	// Token: 0x060012D0 RID: 4816 RVA: 0x00075900 File Offset: 0x00073B00
 	public static int GetSeaNPCID(int staticId)
 	{
 		int num = GlobalValue.Get(staticId, "NPCEx.GetSeaNPCID 根据静态变量获取海上NPCID");
@@ -213,13 +230,13 @@ public static class NPCEx
 		return result;
 	}
 
-	// Token: 0x06001588 RID: 5512 RVA: 0x0001372C File Offset: 0x0001192C
+	// Token: 0x060012D1 RID: 4817 RVA: 0x00075947 File Offset: 0x00073B47
 	public static int GetSeaNPCIDByEventID(int eventId)
 	{
 		return NPCEx.GetSeaNPCID((int)jsonData.instance.EndlessSeaNPCData[eventId.ToString()]["stvalue"][0]);
 	}
 
-	// Token: 0x06001589 RID: 5513 RVA: 0x000C2F50 File Offset: 0x000C1150
+	// Token: 0x060012D2 RID: 4818 RVA: 0x00075980 File Offset: 0x00073B80
 	private static void InitAction101102103(int actionID)
 	{
 		NPCEx.Action101102103Dict.Clear();
@@ -255,7 +272,7 @@ public static class NPCEx
 		}
 	}
 
-	// Token: 0x0600158A RID: 5514 RVA: 0x00013763 File Offset: 0x00011963
+	// Token: 0x060012D3 RID: 4819 RVA: 0x00075A8C File Offset: 0x00073C8C
 	public static bool OpenAction101102103GuDingTalk(int oldNPCID, int actionID)
 	{
 		NPCEx.InitAction101102103(actionID);
@@ -268,7 +285,7 @@ public static class NPCEx
 		return false;
 	}
 
-	// Token: 0x0600158B RID: 5515 RVA: 0x000C305C File Offset: 0x000C125C
+	// Token: 0x060012D4 RID: 4820 RVA: 0x00075AC4 File Offset: 0x00073CC4
 	private static void InitQingFen()
 	{
 		if (!NPCEx.isQingFenInited)
@@ -282,7 +299,7 @@ public static class NPCEx
 		}
 	}
 
-	// Token: 0x0600158C RID: 5516 RVA: 0x000C3118 File Offset: 0x000C1318
+	// Token: 0x060012D5 RID: 4821 RVA: 0x00075B80 File Offset: 0x00073D80
 	public static int GetQingFenCost(JSONObject skill, bool isGongFa)
 	{
 		NPCEx.InitQingFen();
@@ -304,14 +321,14 @@ public static class NPCEx
 		return result;
 	}
 
-	// Token: 0x0600158D RID: 5517 RVA: 0x000C3190 File Offset: 0x000C1390
+	// Token: 0x060012D6 RID: 4822 RVA: 0x00075BF8 File Offset: 0x00073DF8
 	public static void WarpToMap(int id)
 	{
 		int nowMapIndex = PlayerEx.Player.NowMapIndex;
 		NPCEx.WarpToMap(id, nowMapIndex);
 	}
 
-	// Token: 0x0600158E RID: 5518 RVA: 0x000C31B0 File Offset: 0x000C13B0
+	// Token: 0x060012D7 RID: 4823 RVA: 0x00075C18 File Offset: 0x00073E18
 	public static void WarpToMap(int id, int mapIndex)
 	{
 		id = NPCEx.NPCIDToNew(id);
@@ -350,7 +367,7 @@ public static class NPCEx
 		NpcJieSuanManager.inst.isUpDateNpcList = true;
 	}
 
-	// Token: 0x0600158F RID: 5519 RVA: 0x000C3330 File Offset: 0x000C1530
+	// Token: 0x060012D8 RID: 4824 RVA: 0x00075D98 File Offset: 0x00073F98
 	public static void WarpToScene(int id, string sceneName)
 	{
 		id = NPCEx.NPCIDToNew(id);
@@ -377,7 +394,7 @@ public static class NPCEx
 		NpcJieSuanManager.inst.isUpDateNpcList = true;
 	}
 
-	// Token: 0x06001590 RID: 5520 RVA: 0x000C342C File Offset: 0x000C162C
+	// Token: 0x060012D9 RID: 4825 RVA: 0x00075E94 File Offset: 0x00074094
 	public static void WarpToPlayerNowFuBen(int id, int mapIndex)
 	{
 		id = NPCEx.NPCIDToNew(id);
@@ -421,7 +438,7 @@ public static class NPCEx
 		NpcJieSuanManager.inst.isUpDateNpcList = true;
 	}
 
-	// Token: 0x06001591 RID: 5521 RVA: 0x000C3600 File Offset: 0x000C1800
+	// Token: 0x060012DA RID: 4826 RVA: 0x00076068 File Offset: 0x00074268
 	public static void RemoveNPCFromNowFuBen(int id)
 	{
 		id = NPCEx.NPCIDToNew(id);
@@ -455,21 +472,21 @@ public static class NPCEx
 		NpcJieSuanManager.inst.isUpDateNpcList = true;
 	}
 
-	// Token: 0x06001592 RID: 5522 RVA: 0x0001379B File Offset: 0x0001199B
+	// Token: 0x060012DB RID: 4827 RVA: 0x00076200 File Offset: 0x00074400
 	public static void ItemToNPCFromPlayer(UINPCData npc, item item, int count)
 	{
 		jsonData.instance.MonstarAddItem(npc.ID, item.UUID, item.itemID, count, item.Seid, 0);
 		Tools.instance.RemoveItem(item.UUID, count);
 	}
 
-	// Token: 0x06001593 RID: 5523 RVA: 0x000137D2 File Offset: 0x000119D2
+	// Token: 0x060012DC RID: 4828 RVA: 0x00076237 File Offset: 0x00074437
 	public static void ItemToPlayerFromNPC(UINPCData npc, item item, int count)
 	{
 		jsonData.instance.MonstarRemoveItem(npc.ID, item.UUID, count, item.Seid);
 		PlayerEx.Player.addItem(item.itemID, count, item.Seid, false);
 	}
 
-	// Token: 0x06001594 RID: 5524 RVA: 0x000C3798 File Offset: 0x000C1998
+	// Token: 0x060012DD RID: 4829 RVA: 0x00076274 File Offset: 0x00074474
 	public static int CalcZengLiX(UINPCData npc)
 	{
 		Avatar player = PlayerEx.Player;
@@ -483,10 +500,20 @@ public static class NPCEx
 		return i * num;
 	}
 
-	// Token: 0x06001595 RID: 5525 RVA: 0x000C3814 File Offset: 0x000C1A14
+	// Token: 0x060012DE RID: 4830 RVA: 0x000762F0 File Offset: 0x000744F0
 	public static int CalcQingFen(UINPCData npc, item item, int count, out bool isLaJi, out bool isJiXu, out int zengliJieGuo, out bool highLevel, out bool isXiHao)
 	{
-		int num = item.GetJiaoYiPrice(npc.ID, true, false) * count;
+		int num = int.MaxValue;
+		int jiaoYiPrice = item.GetJiaoYiPrice(npc.ID, true, false);
+		if (jiaoYiPrice > 0)
+		{
+			num = int.MaxValue / jiaoYiPrice;
+		}
+		if (count > num)
+		{
+			count = num;
+		}
+		int num2 = jiaoYiPrice * count;
 		item.CalcNPCZhuangTai(npc.ID, out isJiXu, out isLaJi);
 		if (jsonData.instance.GetMonstarInterestingItem(npc.ID, item.itemID, item.Seid) > 0)
 		{
@@ -509,18 +536,18 @@ public static class NPCEx
 		highLevel = false;
 		if (zengliJieGuo != 1 && zengliJieGuo != 2)
 		{
-			int num2 = item.quality;
+			int num3 = item.quality;
 			if (item.itemtype == 3 || item.itemtype == 4)
 			{
-				num2 = num2 * 3 - 2;
+				num3 = num3 * 3 - 2;
 			}
 			else if (item.itemtype == 0 || item.itemtype == 1 || item.itemtype == 2)
 			{
-				num2++;
+				num3++;
 			}
-			if (num2 <= npc.BigLevel)
+			if (num3 <= npc.BigLevel)
 			{
-				num /= 2;
+				num2 /= 2;
 				highLevel = false;
 			}
 			else
@@ -528,10 +555,10 @@ public static class NPCEx
 				highLevel = true;
 			}
 		}
-		return num;
+		return num2;
 	}
 
-	// Token: 0x06001596 RID: 5526 RVA: 0x000C38EC File Offset: 0x000C1AEC
+	// Token: 0x060012DF RID: 4831 RVA: 0x000763E4 File Offset: 0x000745E4
 	public static void ZengLiToNPC(UINPCData npc, item item, int count)
 	{
 		Avatar player = PlayerEx.Player;
@@ -542,28 +569,32 @@ public static class NPCEx
 		bool flag3;
 		bool flag4;
 		int num2 = NPCEx.CalcQingFen(npc, item, count, out flag, out flag2, out jieGuo, out flag3, out flag4);
-		int i = player.ZengLi.TryGetField("DuoYuQingFen").TryGetField(npc.ID.ToString()).I;
-		num2 += i;
-		int num3 = num2 / num;
-		int num4 = num2 % num;
+		int num3 = player.ZengLi.TryGetField("DuoYuQingFen").TryGetField(npc.ID.ToString()).I;
+		if (2147483647 - num3 < num2)
+		{
+			num3 = int.MaxValue - num2;
+		}
+		num2 += num3;
+		int num4 = num2 / num;
+		int num5 = num2 % num;
 		ZengLiArg zengLiArg = new ZengLiArg();
 		if (!flag)
 		{
-			NPCEx.AddFavor(npc.ID, num3, false, true);
-			NPCEx.AddQingFen(npc.ID, num2 - i, false);
+			NPCEx.AddFavor(npc.ID, num4, false, true);
+			NPCEx.AddQingFen(npc.ID, num2 - num3, false);
 			if (!player.ZengLi.HasField("DuoYuQingFen"))
 			{
 				player.ZengLi.SetField("DuoYuQingFen", new JSONObject(JSONObject.Type.OBJECT));
 			}
-			player.ZengLi["DuoYuQingFen"].SetField(npc.ID.ToString(), num4);
+			player.ZengLi["DuoYuQingFen"].SetField(npc.ID.ToString(), num5);
 			NPCEx.ItemToNPCFromPlayer(npc, item, count);
-			if (num2 - i > 0)
+			if (num2 - num3 > 0)
 			{
 				UIPopTip.Inst.Pop("你和" + npc.Name + "的情分提升了", PopTipIconType.上箭头);
 			}
-			zengLiArg.AddFavor = num3;
-			zengLiArg.AddQingFen = num2 - i;
-			zengLiArg.DuoYuQingFen = num4;
+			zengLiArg.AddFavor = num4;
+			zengLiArg.AddQingFen = num2 - num3;
+			zengLiArg.DuoYuQingFen = num5;
 		}
 		else
 		{
@@ -576,7 +607,7 @@ public static class NPCEx
 		UINPCJiaoHu.Inst.IsZengLiFinished = true;
 	}
 
-	// Token: 0x06001597 RID: 5527 RVA: 0x000C3A50 File Offset: 0x000C1C50
+	// Token: 0x060012E0 RID: 4832 RVA: 0x0007655C File Offset: 0x0007475C
 	public static void SuoQuFromNPC(UINPCData npc, item item, int count)
 	{
 		NPCEx.SuoQuNpc = npc;
@@ -599,7 +630,7 @@ public static class NPCEx
 		NPCEx.FirstWeiXie();
 	}
 
-	// Token: 0x06001598 RID: 5528 RVA: 0x000C3AC0 File Offset: 0x000C1CC0
+	// Token: 0x060012E1 RID: 4833 RVA: 0x000765CC File Offset: 0x000747CC
 	public static int CalcXingGe(int XingGe)
 	{
 		int result = 0;
@@ -614,13 +645,13 @@ public static class NPCEx
 		return result;
 	}
 
-	// Token: 0x06001599 RID: 5529 RVA: 0x0001380E File Offset: 0x00011A0E
+	// Token: 0x060012E2 RID: 4834 RVA: 0x00076602 File Offset: 0x00074802
 	private static int SuoQuRoll()
 	{
 		return PlayerEx.Player.RandomSeedNext() % 100;
 	}
 
-	// Token: 0x0600159A RID: 5530 RVA: 0x000C3AF8 File Offset: 0x000C1CF8
+	// Token: 0x060012E3 RID: 4835 RVA: 0x00076614 File Offset: 0x00074814
 	private static bool SuoQuRoll1(UINPCData npc)
 	{
 		int num = 20;
@@ -636,7 +667,7 @@ public static class NPCEx
 		return num >= NPCEx.SuoQuRoll();
 	}
 
-	// Token: 0x0600159B RID: 5531 RVA: 0x000C3B2C File Offset: 0x000C1D2C
+	// Token: 0x060012E4 RID: 4836 RVA: 0x00076648 File Offset: 0x00074848
 	private static bool SuoQuRoll2(UINPCData npc)
 	{
 		int num = 40;
@@ -652,7 +683,7 @@ public static class NPCEx
 		return num >= NPCEx.SuoQuRoll();
 	}
 
-	// Token: 0x0600159C RID: 5532 RVA: 0x000C3B60 File Offset: 0x000C1D60
+	// Token: 0x060012E5 RID: 4837 RVA: 0x0007667C File Offset: 0x0007487C
 	private static void SuoQuChangeShengWang(int shengWang)
 	{
 		string arg;
@@ -674,7 +705,7 @@ public static class NPCEx
 		}
 	}
 
-	// Token: 0x0600159D RID: 5533 RVA: 0x000C3BDC File Offset: 0x000C1DDC
+	// Token: 0x060012E6 RID: 4838 RVA: 0x000766F8 File Offset: 0x000748F8
 	public static void FirstWeiXie()
 	{
 		NPCEx.IsFirstWeiXie = true;
@@ -739,7 +770,7 @@ public static class NPCEx
 		UINPCJiaoHu.Inst.IsWeiXieFinished = true;
 	}
 
-	// Token: 0x0600159E RID: 5534 RVA: 0x0001381D File Offset: 0x00011A1D
+	// Token: 0x060012E7 RID: 4839 RVA: 0x00076839 File Offset: 0x00074A39
 	public static int CalcShenShiHaoGan()
 	{
 		if (NPCEx.SuoQuNpc.FavorLevel >= 5)
@@ -749,7 +780,7 @@ public static class NPCEx
 		return 0;
 	}
 
-	// Token: 0x0600159F RID: 5535 RVA: 0x000C3D20 File Offset: 0x000C1F20
+	// Token: 0x060012E8 RID: 4840 RVA: 0x0007684C File Offset: 0x00074A4C
 	public static void ShenShiWeiXie()
 	{
 		NPCEx.IsFirstWeiXie = false;
@@ -833,7 +864,7 @@ public static class NPCEx
 		UINPCJiaoHu.Inst.IsWeiXieFinished = true;
 	}
 
-	// Token: 0x060015A0 RID: 5536 RVA: 0x000C3ED4 File Offset: 0x000C20D4
+	// Token: 0x060012E9 RID: 4841 RVA: 0x00076A00 File Offset: 0x00074C00
 	public static void GuShiWeiXie(int friendIndex)
 	{
 		NPCEx.IsFirstWeiXie = false;
@@ -913,7 +944,7 @@ public static class NPCEx
 		UINPCJiaoHu.Inst.IsWeiXieFinished = true;
 	}
 
-	// Token: 0x060015A1 RID: 5537 RVA: 0x000C4144 File Offset: 0x000C2344
+	// Token: 0x060012EA RID: 4842 RVA: 0x00076C70 File Offset: 0x00074E70
 	public static void WeiXieFindFrind()
 	{
 		Avatar player = PlayerEx.Player;
@@ -947,7 +978,7 @@ public static class NPCEx
 		NPCEx.WeiXieFriendCount = 0;
 	}
 
-	// Token: 0x060015A2 RID: 5538 RVA: 0x000C423C File Offset: 0x000C243C
+	// Token: 0x060012EB RID: 4843 RVA: 0x00076D68 File Offset: 0x00074F68
 	public static List<int> SearchLiuPaiNPC(int liuPai = 1, int jingjie = 1, bool canCreate = false)
 	{
 		JSONObject avatarJsonData = jsonData.instance.AvatarJsonData;
@@ -967,22 +998,62 @@ public static class NPCEx
 		return list;
 	}
 
-	// Token: 0x060015A3 RID: 5539 RVA: 0x0001382F File Offset: 0x00011A2F
+	// Token: 0x060012EC RID: 4844 RVA: 0x00076E50 File Offset: 0x00075050
 	public static int CreateLiuPaiNPC(int liuPai = 1, int jingjie = 1)
 	{
 		return FactoryManager.inst.npcFactory.CreateNpcByLiuPaiAndLevel(liuPai, jingjie, 0);
 	}
 
-	// Token: 0x0400119D RID: 4509
+	// Token: 0x060012ED RID: 4845 RVA: 0x00076E64 File Offset: 0x00075064
+	public static void SetNPCExQingJiaoSkill(int npcid, int skillID)
+	{
+		NPCEx.NPCIDToNew(npcid);
+		JSONObject jsonobject;
+		if (jsonData.instance.AvatarJsonData[npcid.ToString()].HasField("ExQingJiaoSkills"))
+		{
+			jsonobject = jsonData.instance.AvatarJsonData[npcid.ToString()]["ExQingJiaoSkills"];
+		}
+		else
+		{
+			jsonobject = new JSONObject(JSONObject.Type.ARRAY);
+			jsonData.instance.AvatarJsonData[npcid.ToString()].AddField("ExQingJiaoSkills", jsonobject);
+		}
+		if (!jsonobject.ToList().Contains(skillID))
+		{
+			jsonobject.Add(skillID);
+		}
+	}
+
+	// Token: 0x060012EE RID: 4846 RVA: 0x00076EFC File Offset: 0x000750FC
+	public static void SetNPCExQingJiaoStaticSkill(int npcid, int liuShuiID)
+	{
+		NPCEx.NPCIDToNew(npcid);
+		JSONObject jsonobject;
+		if (jsonData.instance.AvatarJsonData[npcid.ToString()].HasField("ExQingJiaoStaticSkills"))
+		{
+			jsonobject = jsonData.instance.AvatarJsonData[npcid.ToString()]["ExQingJiaoStaticSkills"];
+		}
+		else
+		{
+			jsonobject = new JSONObject(JSONObject.Type.ARRAY);
+			jsonData.instance.AvatarJsonData[npcid.ToString()].AddField("ExQingJiaoStaticSkills", jsonobject);
+		}
+		if (!jsonobject.ToList().Contains(liuShuiID))
+		{
+			jsonobject.Add(liuShuiID);
+		}
+	}
+
+	// Token: 0x04000E5C RID: 3676
 	private static Dictionary<int, int> Action101102103Dict = new Dictionary<int, int>();
 
-	// Token: 0x0400119E RID: 4510
+	// Token: 0x04000E5D RID: 3677
 	private static bool isQingFenInited;
 
-	// Token: 0x0400119F RID: 4511
+	// Token: 0x04000E5E RID: 3678
 	private static Dictionary<int, int> QingFenCostDict = new Dictionary<int, int>();
 
-	// Token: 0x040011A0 RID: 4512
+	// Token: 0x04000E5F RID: 3679
 	private static string[] zengLiJieGuoStr = new string[]
 	{
 		"异常",
@@ -992,7 +1063,7 @@ public static class NPCEx
 		"垃圾"
 	};
 
-	// Token: 0x040011A1 RID: 4513
+	// Token: 0x04000E60 RID: 3680
 	private static Dictionary<int, int> suoQuFaverXiShu = new Dictionary<int, int>
 	{
 		{
@@ -1013,46 +1084,46 @@ public static class NPCEx
 		}
 	};
 
-	// Token: 0x040011A2 RID: 4514
+	// Token: 0x04000E61 RID: 3681
 	public static UINPCData SuoQuNpc;
 
-	// Token: 0x040011A3 RID: 4515
+	// Token: 0x04000E62 RID: 3682
 	public static UINPCData WeiXieFriend;
 
-	// Token: 0x040011A4 RID: 4516
+	// Token: 0x04000E63 RID: 3683
 	public static List<UINPCData> WeiXieFriends = new List<UINPCData>();
 
-	// Token: 0x040011A5 RID: 4517
+	// Token: 0x04000E64 RID: 3684
 	public static item SuoQuItem;
 
-	// Token: 0x040011A6 RID: 4518
+	// Token: 0x04000E65 RID: 3685
 	public static int SuoQuCount;
 
-	// Token: 0x040011A7 RID: 4519
+	// Token: 0x04000E66 RID: 3686
 	public static int WeiXieHaoGan;
 
-	// Token: 0x040011A8 RID: 4520
+	// Token: 0x04000E67 RID: 3687
 	public static int WeiXieQingFen;
 
-	// Token: 0x040011A9 RID: 4521
+	// Token: 0x04000E68 RID: 3688
 	public static int WeiXieFriendCount;
 
-	// Token: 0x040011AA RID: 4522
+	// Token: 0x04000E69 RID: 3689
 	public static bool SuoQuHighLevel;
 
-	// Token: 0x040011AB RID: 4523
+	// Token: 0x04000E6A RID: 3690
 	public static bool SuoQuIsLaJi;
 
-	// Token: 0x040011AC RID: 4524
+	// Token: 0x04000E6B RID: 3691
 	public static bool SuoQuIsJiXu;
 
-	// Token: 0x040011AD RID: 4525
+	// Token: 0x04000E6C RID: 3692
 	public static bool SuoQuIsXiHao;
 
-	// Token: 0x040011AE RID: 4526
+	// Token: 0x04000E6D RID: 3693
 	public static bool IsFirstWeiXie;
 
-	// Token: 0x040011AF RID: 4527
+	// Token: 0x04000E6E RID: 3694
 	private static int[] WeiXieShengWang = new int[]
 	{
 		-10,

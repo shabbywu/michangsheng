@@ -4,23 +4,23 @@ using UnityEngine.UI;
 
 namespace YSGame.Fight
 {
-	// Token: 0x02000DFE RID: 3582
+	// Token: 0x02000AC0 RID: 2752
 	public class UIFightJiLu : MonoBehaviour
 	{
-		// Token: 0x06005669 RID: 22121 RVA: 0x0003DC88 File Offset: 0x0003BE88
+		// Token: 0x06004D1A RID: 19738 RVA: 0x0020FF76 File Offset: 0x0020E176
 		public void Clear()
 		{
 			this.JiLuText.text = "";
 		}
 
-		// Token: 0x0600566A RID: 22122 RVA: 0x0003DC9A File Offset: 0x0003BE9A
+		// Token: 0x06004D1B RID: 19739 RVA: 0x0020FF88 File Offset: 0x0020E188
 		public void AddText(string text)
 		{
 			Text jiLuText = this.JiLuText;
 			jiLuText.text = jiLuText.text + text + "\n";
 		}
 
-		// Token: 0x0600566B RID: 22123 RVA: 0x00240694 File Offset: 0x0023E894
+		// Token: 0x06004D1C RID: 19740 RVA: 0x0020FFA8 File Offset: 0x0020E1A8
 		public void Show()
 		{
 			this.isShow = true;
@@ -29,14 +29,14 @@ namespace YSGame.Fight
 			this.ScaleObj.SetActive(true);
 		}
 
-		// Token: 0x0600566C RID: 22124 RVA: 0x0003DCB8 File Offset: 0x0003BEB8
+		// Token: 0x06004D1D RID: 19741 RVA: 0x0021001F File Offset: 0x0020E21F
 		public void Hide()
 		{
 			this.isShow = false;
 			this.ScaleObj.SetActive(false);
 		}
 
-		// Token: 0x0600566D RID: 22125 RVA: 0x0003DCCD File Offset: 0x0003BECD
+		// Token: 0x06004D1E RID: 19742 RVA: 0x00210034 File Offset: 0x0020E234
 		public void ToggleOpen()
 		{
 			if (this.isShow)
@@ -47,16 +47,16 @@ namespace YSGame.Fight
 			this.Show();
 		}
 
-		// Token: 0x04005611 RID: 22033
+		// Token: 0x04004C37 RID: 19511
 		public Text JiLuText;
 
-		// Token: 0x04005612 RID: 22034
+		// Token: 0x04004C38 RID: 19512
 		public RectTransform ContentRT;
 
-		// Token: 0x04005613 RID: 22035
+		// Token: 0x04004C39 RID: 19513
 		public GameObject ScaleObj;
 
-		// Token: 0x04005614 RID: 22036
+		// Token: 0x04004C3A RID: 19514
 		private bool isShow;
 	}
 }

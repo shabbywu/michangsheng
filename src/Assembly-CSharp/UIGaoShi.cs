@@ -6,16 +6,16 @@ using KBEngine;
 using UnityEngine;
 using UnityEngine.UI;
 
-// Token: 0x020003FB RID: 1019
+// Token: 0x020002BE RID: 702
 public class UIGaoShi : MonoBehaviour, IESCClose
 {
-	// Token: 0x06001B9C RID: 7068 RVA: 0x0001730A File Offset: 0x0001550A
+	// Token: 0x060018A6 RID: 6310 RVA: 0x000B0E78 File Offset: 0x000AF078
 	private void Awake()
 	{
 		UIGaoShi.Inst = this;
 	}
 
-	// Token: 0x06001B9D RID: 7069 RVA: 0x000F73C4 File Offset: 0x000F55C4
+	// Token: 0x060018A7 RID: 6311 RVA: 0x000B0E80 File Offset: 0x000AF080
 	public void RefreshUI()
 	{
 		this.ContentRT.DestoryAllChild();
@@ -49,7 +49,7 @@ public class UIGaoShi : MonoBehaviour, IESCClose
 		this.Title.text = "无告示";
 	}
 
-	// Token: 0x06001B9E RID: 7070 RVA: 0x000F74CC File Offset: 0x000F56CC
+	// Token: 0x060018A8 RID: 6312 RVA: 0x000B0F88 File Offset: 0x000AF188
 	public void CreateShouGouItem(JSONObject gaoshiJson, GaoShi gaoshi, GaoShiLeiXing gaoshileixing)
 	{
 		Avatar player = PlayerEx.Player;
@@ -134,7 +134,7 @@ public class UIGaoShi : MonoBehaviour, IESCClose
 		shougou.SetButtonCanClick(false);
 	}
 
-	// Token: 0x06001B9F RID: 7071 RVA: 0x000F78A4 File Offset: 0x000F5AA4
+	// Token: 0x060018A9 RID: 6313 RVA: 0x000B1360 File Offset: 0x000AF560
 	public void CreateRenWuItem(JSONObject gaoshiJson, GaoShi gaoshi)
 	{
 		Avatar player = PlayerEx.Player;
@@ -193,12 +193,12 @@ public class UIGaoShi : MonoBehaviour, IESCClose
 		}
 	}
 
-	// Token: 0x06001BA0 RID: 7072 RVA: 0x000042DD File Offset: 0x000024DD
+	// Token: 0x060018AA RID: 6314 RVA: 0x00004095 File Offset: 0x00002295
 	public void CreateQingBaoItem(JSONObject gaoshiJson, GaoShi gaoshi)
 	{
 	}
 
-	// Token: 0x06001BA1 RID: 7073 RVA: 0x00017312 File Offset: 0x00015512
+	// Token: 0x060018AB RID: 6315 RVA: 0x000B164C File Offset: 0x000AF84C
 	public void Show()
 	{
 		this.ScaleObj.SetActive(true);
@@ -206,41 +206,41 @@ public class UIGaoShi : MonoBehaviour, IESCClose
 		ESCCloseManager.Inst.RegisterClose(this);
 	}
 
-	// Token: 0x06001BA2 RID: 7074 RVA: 0x00017331 File Offset: 0x00015531
+	// Token: 0x060018AC RID: 6316 RVA: 0x000B166B File Offset: 0x000AF86B
 	public void Close()
 	{
 		this.ScaleObj.SetActive(false);
 		ESCCloseManager.Inst.UnRegisterClose(this);
 	}
 
-	// Token: 0x06001BA3 RID: 7075 RVA: 0x0001734A File Offset: 0x0001554A
+	// Token: 0x060018AD RID: 6317 RVA: 0x000B1684 File Offset: 0x000AF884
 	public bool TryEscClose()
 	{
 		this.Close();
 		return true;
 	}
 
-	// Token: 0x04001751 RID: 5969
+	// Token: 0x040013AD RID: 5037
 	public static UIGaoShi Inst;
 
-	// Token: 0x04001752 RID: 5970
+	// Token: 0x040013AE RID: 5038
 	public GameObject ShouGouPrefab;
 
-	// Token: 0x04001753 RID: 5971
+	// Token: 0x040013AF RID: 5039
 	public GameObject RenWuPrefab;
 
-	// Token: 0x04001754 RID: 5972
+	// Token: 0x040013B0 RID: 5040
 	public GameObject QingBaoPrefab;
 
-	// Token: 0x04001755 RID: 5973
+	// Token: 0x040013B1 RID: 5041
 	public GameObject ScaleObj;
 
-	// Token: 0x04001756 RID: 5974
+	// Token: 0x040013B2 RID: 5042
 	public RectTransform ContentRT;
 
-	// Token: 0x04001757 RID: 5975
+	// Token: 0x040013B3 RID: 5043
 	public Text Title;
 
-	// Token: 0x04001758 RID: 5976
+	// Token: 0x040013B4 RID: 5044
 	public List<Sprite> HuoBiIconList;
 }

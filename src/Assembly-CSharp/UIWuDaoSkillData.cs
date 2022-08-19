@@ -1,21 +1,21 @@
 ﻿using System;
 using System.Collections.Generic;
 
-// Token: 0x02000384 RID: 900
+// Token: 0x0200026C RID: 620
 public class UIWuDaoSkillData
 {
-	// Token: 0x04001454 RID: 5204
+	// Token: 0x04001104 RID: 4356
 	public int ID;
 
-	// Token: 0x04001455 RID: 5205
+	// Token: 0x04001105 RID: 4357
 	public string Name;
 
-	// Token: 0x04001456 RID: 5206
+	// Token: 0x04001106 RID: 4358
 	public List<int> WuDaoType = new List<int>();
 
-	// Token: 0x04001457 RID: 5207
+	// Token: 0x04001107 RID: 4359
 	public int WuDaoLv;
 
-	// Token: 0x04001458 RID: 5208
+	// Token: 0x04001108 RID: 4360
 	public string Desc;
 }

@@ -2,29 +2,29 @@
 
 namespace KBEngine
 {
-	// Token: 0x02000F27 RID: 3879
+	// Token: 0x02000BA4 RID: 2980
 	public struct FLOAT
 	{
-		// Token: 0x06005D80 RID: 23936 RVA: 0x00041BB0 File Offset: 0x0003FDB0
+		// Token: 0x06005342 RID: 21314 RVA: 0x00233A4F File Offset: 0x00231C4F
 		private FLOAT(float value)
 		{
 			this.value = value;
 		}
 
-		// Token: 0x06005D81 RID: 23937 RVA: 0x00041BB9 File Offset: 0x0003FDB9
+		// Token: 0x06005343 RID: 21315 RVA: 0x00233A58 File Offset: 0x00231C58
 		public static implicit operator float(FLOAT value)
 		{
 			return value.value;
 		}
 
-		// Token: 0x06005D82 RID: 23938 RVA: 0x00041BC1 File Offset: 0x0003FDC1
+		// Token: 0x06005344 RID: 21316 RVA: 0x00233A60 File Offset: 0x00231C60
 		public static implicit operator FLOAT(float value)
 		{
 			return new FLOAT(value);
 		}
 
-		// Token: 0x17000869 RID: 2153
-		// (get) Token: 0x06005D83 RID: 23939 RVA: 0x00041BCA File Offset: 0x0003FDCA
+		// Token: 0x17000616 RID: 1558
+		// (get) Token: 0x06005345 RID: 21317 RVA: 0x00233A69 File Offset: 0x00231C69
 		public static float MaxValue
 		{
 			get
@@ -33,8 +33,8 @@ namespace KBEngine
 			}
 		}
 
-		// Token: 0x1700086A RID: 2154
-		// (get) Token: 0x06005D84 RID: 23940 RVA: 0x00041BD1 File Offset: 0x0003FDD1
+		// Token: 0x17000617 RID: 1559
+		// (get) Token: 0x06005346 RID: 21318 RVA: 0x00233A70 File Offset: 0x00231C70
 		public static float MinValue
 		{
 			get
@@ -43,7 +43,7 @@ namespace KBEngine
 			}
 		}
 
-		// Token: 0x04005AD1 RID: 23249
+		// Token: 0x04005030 RID: 20528
 		private float value;
 	}
 }

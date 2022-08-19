@@ -7,10 +7,10 @@ using UnityEngine.UI;
 
 namespace Tab
 {
-	// Token: 0x02000A2F RID: 2607
+	// Token: 0x020006EE RID: 1774
 	public class TabFangAn : UIBase
 	{
-		// Token: 0x06004380 RID: 17280 RVA: 0x001CD560 File Offset: 0x001CB760
+		// Token: 0x06003915 RID: 14613 RVA: 0x00185AC4 File Offset: 0x00183CC4
 		public TabFangAn(GameObject gameObject, int index)
 		{
 			this._go = gameObject;
@@ -19,7 +19,7 @@ namespace Tab
 			this._go.GetComponent<FpBtn>().mouseUpEvent.AddListener(new UnityAction(this.ClickEvent));
 		}
 
-		// Token: 0x06004381 RID: 17281 RVA: 0x001CD5B4 File Offset: 0x001CB7B4
+		// Token: 0x06003916 RID: 14614 RVA: 0x00185B18 File Offset: 0x00183D18
 		public void ClickEvent()
 		{
 			Avatar player = Tools.instance.getPlayer();
@@ -45,13 +45,13 @@ namespace Tab
 			SingletonMono<TabUIMag>.Instance.TabFangAnPanel.UpdateCurFanAn();
 		}
 
-		// Token: 0x04003B7F RID: 15231
+		// Token: 0x0400311A RID: 12570
 		public Text Name;
 
-		// Token: 0x04003B80 RID: 15232
+		// Token: 0x0400311B RID: 12571
 		private FpBtn _fpBtn;
 
-		// Token: 0x04003B81 RID: 15233
+		// Token: 0x0400311C RID: 12572
 		public int Index;
 	}
 }

@@ -2,14 +2,14 @@
 
 namespace Fungus
 {
-	// Token: 0x0200120E RID: 4622
+	// Token: 0x02000DD3 RID: 3539
 	public enum FullscreenMode
 	{
-		// Token: 0x04006369 RID: 25449
+		// Token: 0x04005669 RID: 22121
 		Toggle,
-		// Token: 0x0400636A RID: 25450
+		// Token: 0x0400566A RID: 22122
 		Fullscreen,
-		// Token: 0x0400636B RID: 25451
+		// Token: 0x0400566B RID: 22123
 		Windowed
 	}
 }

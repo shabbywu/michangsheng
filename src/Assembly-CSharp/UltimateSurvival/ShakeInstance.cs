@@ -3,17 +3,17 @@ using UnityEngine;
 
 namespace UltimateSurvival
 {
-	// Token: 0x02000870 RID: 2160
+	// Token: 0x020005B3 RID: 1459
 	public class ShakeInstance
 	{
-		// Token: 0x170005A5 RID: 1445
-		// (get) Token: 0x060037F2 RID: 14322 RVA: 0x00028A3A File Offset: 0x00026C3A
-		// (set) Token: 0x060037F3 RID: 14323 RVA: 0x00028A42 File Offset: 0x00026C42
+		// Token: 0x170003EA RID: 1002
+		// (get) Token: 0x06002F6E RID: 12142 RVA: 0x00157604 File Offset: 0x00155804
+		// (set) Token: 0x06002F6F RID: 12143 RVA: 0x0015760C File Offset: 0x0015580C
 		public bool IsWeapon { get; set; }
 
-		// Token: 0x170005A6 RID: 1446
-		// (get) Token: 0x060037F4 RID: 14324 RVA: 0x00028A4B File Offset: 0x00026C4B
-		// (set) Token: 0x060037F5 RID: 14325 RVA: 0x00028A53 File Offset: 0x00026C53
+		// Token: 0x170003EB RID: 1003
+		// (get) Token: 0x06002F70 RID: 12144 RVA: 0x00157615 File Offset: 0x00155815
+		// (set) Token: 0x06002F71 RID: 12145 RVA: 0x0015761D File Offset: 0x0015581D
 		public float ScaleRoughness
 		{
 			get
@@ -26,9 +26,9 @@ namespace UltimateSurvival
 			}
 		}
 
-		// Token: 0x170005A7 RID: 1447
-		// (get) Token: 0x060037F6 RID: 14326 RVA: 0x00028A5C File Offset: 0x00026C5C
-		// (set) Token: 0x060037F7 RID: 14327 RVA: 0x00028A64 File Offset: 0x00026C64
+		// Token: 0x170003EC RID: 1004
+		// (get) Token: 0x06002F72 RID: 12146 RVA: 0x00157626 File Offset: 0x00155826
+		// (set) Token: 0x06002F73 RID: 12147 RVA: 0x0015762E File Offset: 0x0015582E
 		public float ScaleMagnitude
 		{
 			get
@@ -41,8 +41,8 @@ namespace UltimateSurvival
 			}
 		}
 
-		// Token: 0x170005A8 RID: 1448
-		// (get) Token: 0x060037F8 RID: 14328 RVA: 0x00028A6D File Offset: 0x00026C6D
+		// Token: 0x170003ED RID: 1005
+		// (get) Token: 0x06002F74 RID: 12148 RVA: 0x00157637 File Offset: 0x00155837
 		public float NormalizedFadeTime
 		{
 			get
@@ -51,8 +51,8 @@ namespace UltimateSurvival
 			}
 		}
 
-		// Token: 0x170005A9 RID: 1449
-		// (get) Token: 0x060037F9 RID: 14329 RVA: 0x00028A75 File Offset: 0x00026C75
+		// Token: 0x170003EE RID: 1006
+		// (get) Token: 0x06002F75 RID: 12149 RVA: 0x0015763F File Offset: 0x0015583F
 		private bool IsShaking
 		{
 			get
@@ -61,8 +61,8 @@ namespace UltimateSurvival
 			}
 		}
 
-		// Token: 0x170005AA RID: 1450
-		// (get) Token: 0x060037FA RID: 14330 RVA: 0x00028A8C File Offset: 0x00026C8C
+		// Token: 0x170003EF RID: 1007
+		// (get) Token: 0x06002F76 RID: 12150 RVA: 0x00157656 File Offset: 0x00155856
 		private bool IsFadingOut
 		{
 			get
@@ -71,8 +71,8 @@ namespace UltimateSurvival
 			}
 		}
 
-		// Token: 0x170005AB RID: 1451
-		// (get) Token: 0x060037FB RID: 14331 RVA: 0x00028AA5 File Offset: 0x00026CA5
+		// Token: 0x170003F0 RID: 1008
+		// (get) Token: 0x06002F77 RID: 12151 RVA: 0x0015766F File Offset: 0x0015586F
 		private bool IsFadingIn
 		{
 			get
@@ -81,8 +81,8 @@ namespace UltimateSurvival
 			}
 		}
 
-		// Token: 0x170005AC RID: 1452
-		// (get) Token: 0x060037FC RID: 14332 RVA: 0x00028ACB File Offset: 0x00026CCB
+		// Token: 0x170003F1 RID: 1009
+		// (get) Token: 0x06002F78 RID: 12152 RVA: 0x00157695 File Offset: 0x00155895
 		public ShakeState CurrentState
 		{
 			get
@@ -103,7 +103,7 @@ namespace UltimateSurvival
 			}
 		}
 
-		// Token: 0x060037FD RID: 14333 RVA: 0x001A1A54 File Offset: 0x0019FC54
+		// Token: 0x06002F79 RID: 12153 RVA: 0x001576B8 File Offset: 0x001558B8
 		public ShakeInstance(float magnitude, float roughness, float fadeInTime, float fadeOutTime)
 		{
 			this.Magnitude = magnitude;
@@ -123,7 +123,7 @@ namespace UltimateSurvival
 			this.tick = (float)Random.Range(-100, 100);
 		}
 
-		// Token: 0x060037FE RID: 14334 RVA: 0x001A1AE0 File Offset: 0x0019FCE0
+		// Token: 0x06002F7A RID: 12154 RVA: 0x00157744 File Offset: 0x00155944
 		public ShakeInstance(float magnitude, float roughness)
 		{
 			this.Magnitude = magnitude;
@@ -132,7 +132,7 @@ namespace UltimateSurvival
 			this.tick = (float)Random.Range(-100, 100);
 		}
 
-		// Token: 0x060037FF RID: 14335 RVA: 0x001A1B38 File Offset: 0x0019FD38
+		// Token: 0x06002F7B RID: 12155 RVA: 0x0015779C File Offset: 0x0015599C
 		public Vector3 UpdateShake()
 		{
 			if (this.IsWeapon)
@@ -171,7 +171,7 @@ namespace UltimateSurvival
 			return this.amt * this.Magnitude * this.magnMod * this.currentFadeTime;
 		}
 
-		// Token: 0x06003800 RID: 14336 RVA: 0x00028AEC File Offset: 0x00026CEC
+		// Token: 0x06002F7C RID: 12156 RVA: 0x00157911 File Offset: 0x00155B11
 		public void StartFadeOut(float fadeOutTime)
 		{
 			if (fadeOutTime == 0f)
@@ -183,7 +183,7 @@ namespace UltimateSurvival
 			this.sustain = false;
 		}
 
-		// Token: 0x06003801 RID: 14337 RVA: 0x00028B1A File Offset: 0x00026D1A
+		// Token: 0x06002F7D RID: 12157 RVA: 0x0015793F File Offset: 0x00155B3F
 		public void StartFadeIn(float fadeInTime)
 		{
 			if (fadeInTime == 0f)
@@ -195,43 +195,43 @@ namespace UltimateSurvival
 			this.sustain = true;
 		}
 
-		// Token: 0x04003238 RID: 12856
+		// Token: 0x040029B2 RID: 10674
 		public float Magnitude;
 
-		// Token: 0x04003239 RID: 12857
+		// Token: 0x040029B3 RID: 10675
 		public float Roughness;
 
-		// Token: 0x0400323A RID: 12858
+		// Token: 0x040029B4 RID: 10676
 		public Vector3 PositionInfluence;
 
-		// Token: 0x0400323B RID: 12859
+		// Token: 0x040029B5 RID: 10677
 		public Vector3 RotationInfluence;
 
-		// Token: 0x0400323C RID: 12860
+		// Token: 0x040029B6 RID: 10678
 		public bool DeleteOnInactive = true;
 
-		// Token: 0x0400323D RID: 12861
+		// Token: 0x040029B7 RID: 10679
 		private float roughMod = 1f;
 
-		// Token: 0x0400323E RID: 12862
+		// Token: 0x040029B8 RID: 10680
 		private float magnMod = 1f;
 
-		// Token: 0x0400323F RID: 12863
+		// Token: 0x040029B9 RID: 10681
 		private float fadeOutDuration;
 
-		// Token: 0x04003240 RID: 12864
+		// Token: 0x040029BA RID: 10682
 		private float fadeInDuration;
 
-		// Token: 0x04003241 RID: 12865
+		// Token: 0x040029BB RID: 10683
 		private bool sustain;
 
-		// Token: 0x04003242 RID: 12866
+		// Token: 0x040029BC RID: 10684
 		private float currentFadeTime;
 
-		// Token: 0x04003243 RID: 12867
+		// Token: 0x040029BD RID: 10685
 		private float tick;
 
-		// Token: 0x04003244 RID: 12868
+		// Token: 0x040029BE RID: 10686
 		private Vector3 amt;
 	}
 }

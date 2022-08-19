@@ -2,16 +2,16 @@
 using GUIPackage;
 using UnityEngine;
 
-// Token: 0x02000522 RID: 1314
+// Token: 0x02000399 RID: 921
 public class ThreeSceernUIFab : MonoBehaviour
 {
-	// Token: 0x060021BC RID: 8636 RVA: 0x0001BBAF File Offset: 0x00019DAF
+	// Token: 0x06001E3B RID: 7739 RVA: 0x000D5496 File Offset: 0x000D3696
 	private void Start()
 	{
 		ThreeSceernUIFab.inst = this;
 	}
 
-	// Token: 0x060021BD RID: 8637 RVA: 0x00118E94 File Offset: 0x00117094
+	// Token: 0x06001E3C RID: 7740 RVA: 0x000D54A0 File Offset: 0x000D36A0
 	public void FixPostion()
 	{
 		if (this.uIWidget == null)
@@ -32,16 +32,16 @@ public class ThreeSceernUIFab : MonoBehaviour
 		base.Invoke("lateAction", 1f);
 	}
 
-	// Token: 0x060021BE RID: 8638 RVA: 0x0001BBB7 File Offset: 0x00019DB7
+	// Token: 0x06001E3D RID: 7741 RVA: 0x000D55A0 File Offset: 0x000D37A0
 	public void lateAction()
 	{
 		this.uIWidget.updateAnchors = UIRect.AnchorUpdate.OnEnable;
 	}
 
-	// Token: 0x04001D3A RID: 7482
+	// Token: 0x040018D1 RID: 6353
 	[SerializeField]
 	private UIWidget uIWidget;
 
-	// Token: 0x04001D3B RID: 7483
+	// Token: 0x040018D2 RID: 6354
 	public static ThreeSceernUIFab inst;
 }

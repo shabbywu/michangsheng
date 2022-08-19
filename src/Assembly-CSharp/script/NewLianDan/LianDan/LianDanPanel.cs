@@ -10,10 +10,10 @@ using UnityEngine.UI;
 
 namespace script.NewLianDan.LianDan
 {
-	// Token: 0x02000AC5 RID: 2757
+	// Token: 0x020009FB RID: 2555
 	public class LianDanPanel : BasePanel
 	{
-		// Token: 0x06004662 RID: 18018 RVA: 0x001DFF34 File Offset: 0x001DE134
+		// Token: 0x060046BC RID: 18108 RVA: 0x001DE6D8 File Offset: 0x001DC8D8
 		public LianDanPanel(GameObject go)
 		{
 			this._go = go;
@@ -65,19 +65,19 @@ namespace script.NewLianDan.LianDan
 			this.CheckCanMade();
 		}
 
-		// Token: 0x06004663 RID: 18019 RVA: 0x00032456 File Offset: 0x00030656
+		// Token: 0x060046BD RID: 18109 RVA: 0x001DE92C File Offset: 0x001DCB2C
 		public void ShowTips()
 		{
 			base.Get("药引提示", true).SetActive(true);
 		}
 
-		// Token: 0x06004664 RID: 18020 RVA: 0x0003246A File Offset: 0x0003066A
+		// Token: 0x060046BE RID: 18110 RVA: 0x001DE940 File Offset: 0x001DCB40
 		public void HideTips()
 		{
 			base.Get("药引提示", true).SetActive(false);
 		}
 
-		// Token: 0x06004665 RID: 18021 RVA: 0x001E0188 File Offset: 0x001DE388
+		// Token: 0x060046BF RID: 18111 RVA: 0x001DE954 File Offset: 0x001DCB54
 		public void PutDanLu(DanLuSlot dragSlot)
 		{
 			if (!this.DanLu.IsNull())
@@ -108,7 +108,7 @@ namespace script.NewLianDan.LianDan
 			this.CheckCanMade();
 		}
 
-		// Token: 0x06004666 RID: 18022 RVA: 0x001E02F4 File Offset: 0x001DE4F4
+		// Token: 0x060046C0 RID: 18112 RVA: 0x001DEAC0 File Offset: 0x001DCCC0
 		public void BackDanLu(DanLuSlot dragSlot)
 		{
 			LianDanUIMag.Instance.DanLuBag.AddTempItem(dragSlot.Item, 1);
@@ -120,7 +120,7 @@ namespace script.NewLianDan.LianDan
 			this._naiJiu.SetText("0/100");
 		}
 
-		// Token: 0x06004667 RID: 18023 RVA: 0x001E0374 File Offset: 0x001DE574
+		// Token: 0x060046C1 RID: 18113 RVA: 0x001DEB40 File Offset: 0x001DCD40
 		public void ZhaLuCallBack()
 		{
 			this.DanLu.SetNull();
@@ -132,7 +132,7 @@ namespace script.NewLianDan.LianDan
 			this.DanLu.UpdateNaiJiu();
 		}
 
-		// Token: 0x06004668 RID: 18024 RVA: 0x001E03EC File Offset: 0x001DE5EC
+		// Token: 0x060046C2 RID: 18114 RVA: 0x001DEBB8 File Offset: 0x001DCDB8
 		public void PutCaoYao(LianDanSlot dragSlot)
 		{
 			LianDanSlot toSlot = LianDanUIMag.Instance.CaoYaoBag.ToSlot;
@@ -197,7 +197,7 @@ namespace script.NewLianDan.LianDan
 			LianDanUIMag.Instance.Select.Init(dragSlot.Item.GetName(), dragSlot.Item.Count, unityAction, null);
 		}
 
-		// Token: 0x06004669 RID: 18025 RVA: 0x001E0534 File Offset: 0x001DE734
+		// Token: 0x060046C3 RID: 18115 RVA: 0x001DED00 File Offset: 0x001DCF00
 		public void PutCaoYao(int index, int id, int count)
 		{
 			CaoYaoBag caoYaoBag = LianDanUIMag.Instance.CaoYaoBag;
@@ -214,7 +214,7 @@ namespace script.NewLianDan.LianDan
 			caoYaoBag.UpdateItem(false);
 		}
 
-		// Token: 0x0600466A RID: 18026 RVA: 0x001E05A0 File Offset: 0x001DE7A0
+		// Token: 0x060046C4 RID: 18116 RVA: 0x001DED6C File Offset: 0x001DCF6C
 		public void BackCaoYao(LianDanSlot dragSlot)
 		{
 			if (!dragSlot.Item.CanSale)
@@ -271,7 +271,7 @@ namespace script.NewLianDan.LianDan
 			LianDanUIMag.Instance.Select.Init(dragSlot.Item.GetName(), dragSlot.Item.Count, unityAction, null);
 		}
 
-		// Token: 0x0600466B RID: 18027 RVA: 0x001E06D4 File Offset: 0x001DE8D4
+		// Token: 0x060046C5 RID: 18117 RVA: 0x001DEEA0 File Offset: 0x001DD0A0
 		public void UpdateUI()
 		{
 			foreach (LianDanSlot lianDanSlot in this.CaoYaoList)
@@ -280,7 +280,7 @@ namespace script.NewLianDan.LianDan
 			}
 		}
 
-		// Token: 0x0600466C RID: 18028 RVA: 0x001E0724 File Offset: 0x001DE924
+		// Token: 0x060046C6 RID: 18118 RVA: 0x001DEEF0 File Offset: 0x001DD0F0
 		public void DanLuUI()
 		{
 			if (this.DanLu.IsNull())
@@ -295,7 +295,7 @@ namespace script.NewLianDan.LianDan
 			this._naiJiu.SetText(string.Format("{0}/100", this.NaiJiu));
 		}
 
-		// Token: 0x0600466D RID: 18029 RVA: 0x001E0798 File Offset: 0x001DE998
+		// Token: 0x060046C7 RID: 18119 RVA: 0x001DEF64 File Offset: 0x001DD164
 		public void BackAllCaoYao()
 		{
 			LianDanUIMag.Instance.CaoYaoBag.CreateTempList();
@@ -305,7 +305,7 @@ namespace script.NewLianDan.LianDan
 			}
 		}
 
-		// Token: 0x0600466E RID: 18030 RVA: 0x001E07F8 File Offset: 0x001DE9F8
+		// Token: 0x060046C8 RID: 18120 RVA: 0x001DEFC4 File Offset: 0x001DD1C4
 		public void CheckCanMade()
 		{
 			if (this.DanLu.IsNull())
@@ -339,7 +339,7 @@ namespace script.NewLianDan.LianDan
 			this.StartLianDanBtn.SetCanClick(true);
 		}
 
-		// Token: 0x0600466F RID: 18031 RVA: 0x001E08F4 File Offset: 0x001DEAF4
+		// Token: 0x060046C9 RID: 18121 RVA: 0x001DF0C0 File Offset: 0x001DD2C0
 		public void ClickLianDan()
 		{
 			int num = 0;
@@ -367,7 +367,7 @@ namespace script.NewLianDan.LianDan
 			}, null);
 		}
 
-		// Token: 0x06004670 RID: 18032 RVA: 0x001E09B0 File Offset: 0x001DEBB0
+		// Token: 0x060046CA RID: 18122 RVA: 0x001DF17C File Offset: 0x001DD37C
 		public void StartLianDan()
 		{
 			List<LianDanResultManager.DanyaoItem> DanYaoItemList = new List<LianDanResultManager.DanyaoItem>();
@@ -586,7 +586,7 @@ namespace script.NewLianDan.LianDan
 							return;
 						}
 						this.FinishAddItem(0, maxpingzhi + 5900, lianzhicishu);
-						avatar.addItem(maxpingzhi + 5900, lianzhicishu, Tools.CreateItemSeid((int)danFangItemID["ItemID"].n), false);
+						avatar.addItem(maxpingzhi + 5900, lianzhicishu, Tools.CreateItemSeid(danFangItemID["ItemID"].I), false);
 						this.Fail(15, lianzhicishu);
 						return;
 					}
@@ -685,7 +685,7 @@ namespace script.NewLianDan.LianDan
 										jsonobject5.Add(num15);
 									}
 								}
-								jsonobject3.AddField("ID", (int)danFangItemID["ItemID"].n);
+								jsonobject3.AddField("ID", danFangItemID["ItemID"].I);
 								jsonobject3.AddField("Type", jsonobject4);
 								jsonobject3.AddField("Num", jsonobject5);
 								LianDanUIMag.Instance.DanFangPanel.AddDanFang(jsonobject3);
@@ -695,7 +695,7 @@ namespace script.NewLianDan.LianDan
 							{
 								lianzhicishu *= 2;
 							}
-							this.FinishAddItem(num16, (int)danFangItemID["ItemID"].n, lianzhicishu);
+							this.FinishAddItem(num16, danFangItemID["ItemID"].I, lianzhicishu);
 							num16++;
 							foreach (KeyValuePair<int, int> keyValuePair2 in dictionary)
 							{
@@ -735,7 +735,7 @@ namespace script.NewLianDan.LianDan
 			UIPopTip.Inst.Pop("数据异常", PopTipIconType.叹号);
 		}
 
-		// Token: 0x06004671 RID: 18033 RVA: 0x001E0B8C File Offset: 0x001DED8C
+		// Token: 0x060046CB RID: 18123 RVA: 0x001DF358 File Offset: 0x001DD558
 		public void GetYaoLeiList(List<int> indexToLeixin, List<LianDanResultManager.DanyaoItem> DanYaoItemList, Dictionary<int, int> fuyaoList, Dictionary<int, int> zhuyaoList, bool unlockYaoXing = false)
 		{
 			int num = 0;
@@ -777,7 +777,7 @@ namespace script.NewLianDan.LianDan
 			}
 		}
 
-		// Token: 0x06004672 RID: 18034 RVA: 0x001E0CF8 File Offset: 0x001DEEF8
+		// Token: 0x060046CC RID: 18124 RVA: 0x001DF4C4 File Offset: 0x001DD6C4
 		public void GetDanfangList(List<JSONObject> DanFans, List<int> indexToLeixin, List<LianDanResultManager.DanyaoItem> DanYaoItemList, Dictionary<int, int> fuyaoList, Dictionary<int, int> zhuyaoList)
 		{
 			foreach (JSONObject jsonobject in jsonData.instance.LianDanDanFangBiao.list)
@@ -825,7 +825,7 @@ namespace script.NewLianDan.LianDan
 			}
 		}
 
-		// Token: 0x06004673 RID: 18035 RVA: 0x000FDABC File Offset: 0x000FBCBC
+		// Token: 0x060046CD RID: 18125 RVA: 0x001DF724 File Offset: 0x001DD924
 		public void GetDanFang(out int maxNum, out int maxpingzhi, out JSONObject danFangItemID, List<JSONObject> DanFans, List<int> indexToLeixin, List<LianDanResultManager.DanyaoItem> DanYaoItemList, Dictionary<int, int> fuyaoList, Dictionary<int, int> zhuyaoList)
 		{
 			maxpingzhi = 0;
@@ -833,22 +833,22 @@ namespace script.NewLianDan.LianDan
 			danFangItemID = null;
 			foreach (JSONObject jsonobject in DanFans)
 			{
-				int num = (int)jsonData.instance.ItemJsonData[((int)jsonobject["ItemID"].n).ToString()]["quality"].n;
-				Debug.Log("丹方ID" + (int)jsonobject["ItemID"].n);
-				if (num > maxpingzhi)
+				int i = jsonData.instance.ItemJsonData[jsonobject["ItemID"].I.ToString()]["quality"].I;
+				Debug.Log("丹方ID" + jsonobject["ItemID"].I);
+				if (i > maxpingzhi)
 				{
 					maxNum = 0;
-					maxpingzhi = num;
+					maxpingzhi = i;
 					danFangItemID = jsonobject;
 				}
-				if (num == maxpingzhi)
+				if (i == maxpingzhi)
 				{
 					maxNum++;
 				}
 			}
 		}
 
-		// Token: 0x06004674 RID: 18036 RVA: 0x001E0F58 File Offset: 0x001DF158
+		// Token: 0x060046CE RID: 18126 RVA: 0x001DF7EC File Offset: 0x001DD9EC
 		public string GetLianDanName()
 		{
 			List<JSONObject> list = Tools.instance.getPlayer().DanFang.list;
@@ -877,7 +877,7 @@ namespace script.NewLianDan.LianDan
 			return Tools.setColorByID("???", 1);
 		}
 
-		// Token: 0x06004675 RID: 18037 RVA: 0x001E10A0 File Offset: 0x001DF2A0
+		// Token: 0x060046CF RID: 18127 RVA: 0x001DF934 File Offset: 0x001DDB34
 		public int GetCanMadeNum()
 		{
 			int num = 10000000;
@@ -910,7 +910,7 @@ namespace script.NewLianDan.LianDan
 			return num;
 		}
 
-		// Token: 0x06004676 RID: 18038 RVA: 0x001E11CC File Offset: 0x001DF3CC
+		// Token: 0x060046D0 RID: 18128 RVA: 0x001DFA60 File Offset: 0x001DDC60
 		public void CostItem(int lianzhicishu)
 		{
 			Avatar player = Tools.instance.getPlayer();
@@ -938,26 +938,26 @@ namespace script.NewLianDan.LianDan
 			}
 		}
 
-		// Token: 0x06004677 RID: 18039 RVA: 0x001E12A0 File Offset: 0x001DF4A0
+		// Token: 0x060046D1 RID: 18129 RVA: 0x001DFB34 File Offset: 0x001DDD34
 		public void FinishAddItem(int index, int id, int lianzhicishu)
 		{
 			BaseItem slotData = BaseItem.Create(id, lianzhicishu, Tools.getUUID(), Tools.CreateItemSeid(id));
 			LianDanUIMag.Instance.LianDanResult.SlotList[index].SetSlotData(slotData);
 		}
 
-		// Token: 0x06004678 RID: 18040 RVA: 0x0003247E File Offset: 0x0003067E
+		// Token: 0x060046D2 RID: 18130 RVA: 0x001DFB6F File Offset: 0x001DDD6F
 		private void Fail(int index, int num)
 		{
 			LianDanUIMag.Instance.LianDanResult.Fail(index, num);
 		}
 
-		// Token: 0x06004679 RID: 18041 RVA: 0x00032491 File Offset: 0x00030691
+		// Token: 0x060046D3 RID: 18131 RVA: 0x001DFB82 File Offset: 0x001DDD82
 		private void Success(int index, int num)
 		{
 			LianDanUIMag.Instance.LianDanResult.Success(index, num);
 		}
 
-		// Token: 0x0600467A RID: 18042 RVA: 0x001E12DC File Offset: 0x001DF4DC
+		// Token: 0x060046D4 RID: 18132 RVA: 0x001DFB98 File Offset: 0x001DDD98
 		public void AddWuDaoLianDan(int ItemId, int Num)
 		{
 			JSONObject jsonobject = jsonData.instance.ItemJsonData[ItemId.ToString()];
@@ -982,7 +982,7 @@ namespace script.NewLianDan.LianDan
 			player.wuDaoMag.addWuDaoEx(21, (int)((float)i2 / (float)list[i - 1] * (float)Num * itemPercent));
 		}
 
-		// Token: 0x0600467B RID: 18043 RVA: 0x000FDA70 File Offset: 0x000FBC70
+		// Token: 0x060046D5 RID: 18133 RVA: 0x001DFC88 File Offset: 0x001DDE88
 		public float GetItemPercent(int itemQuality)
 		{
 			int wuDaoLevelByType = Tools.instance.getPlayer().wuDaoMag.getWuDaoLevelByType(21);
@@ -1002,7 +1002,7 @@ namespace script.NewLianDan.LianDan
 			return result;
 		}
 
-		// Token: 0x0600467C RID: 18044 RVA: 0x001E13CC File Offset: 0x001DF5CC
+		// Token: 0x060046D6 RID: 18134 RVA: 0x001DFCD4 File Offset: 0x001DDED4
 		public string GetCostTime(int count)
 		{
 			List<LianDanResultManager.DanyaoItem> danYaoItemList = new List<LianDanResultManager.DanyaoItem>();
@@ -1062,40 +1062,40 @@ namespace script.NewLianDan.LianDan
 			return text;
 		}
 
-		// Token: 0x04003E81 RID: 16001
+		// Token: 0x04004817 RID: 18455
 		public int NaiJiu;
 
-		// Token: 0x04003E82 RID: 16002
+		// Token: 0x04004818 RID: 18456
 		public int MaxNum;
 
-		// Token: 0x04003E83 RID: 16003
+		// Token: 0x04004819 RID: 18457
 		public List<LianDanSlot> CaoYaoList;
 
-		// Token: 0x04003E84 RID: 16004
+		// Token: 0x0400481A RID: 18458
 		public DanLuSlot DanLu;
 
-		// Token: 0x04003E85 RID: 16005
+		// Token: 0x0400481B RID: 18459
 		private Text _naiJiu;
 
-		// Token: 0x04003E86 RID: 16006
+		// Token: 0x0400481C RID: 18460
 		public List<int> YaoZhi;
 
-		// Token: 0x04003E87 RID: 16007
+		// Token: 0x0400481D RID: 18461
 		public List<int> ReduceNaiJiu;
 
-		// Token: 0x04003E88 RID: 16008
+		// Token: 0x0400481E RID: 18462
 		public List<int> MaxCaoYao;
 
-		// Token: 0x04003E89 RID: 16009
+		// Token: 0x0400481F RID: 18463
 		public FpBtn StartLianDanBtn;
 
-		// Token: 0x04003E8A RID: 16010
+		// Token: 0x04004820 RID: 18464
 		public LianDanSelect Select;
 
-		// Token: 0x04003E8B RID: 16011
+		// Token: 0x04004821 RID: 18465
 		public FpBtn WenHao;
 
-		// Token: 0x04003E8C RID: 16012
+		// Token: 0x04004822 RID: 18466
 		public int SelectNum = 1;
 	}
 }

@@ -1,10 +1,10 @@
 ﻿using System;
 using UnityEngine;
 
-// Token: 0x02000520 RID: 1312
+// Token: 0x02000397 RID: 919
 public class CloseUIScene : MonoBehaviour
 {
-	// Token: 0x060021B8 RID: 8632 RVA: 0x00118E1C File Offset: 0x0011701C
+	// Token: 0x06001E37 RID: 7735 RVA: 0x000D53FC File Offset: 0x000D35FC
 	private void Start()
 	{
 		if (PanelMamager.inst != null)

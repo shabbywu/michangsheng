@@ -2,16 +2,16 @@
 
 namespace MoonSharp.Interpreter
 {
-	// Token: 0x02001083 RID: 4227
+	// Token: 0x02000CB4 RID: 3252
 	[AttributeUsage(AttributeTargets.Class | AttributeTargets.Struct, Inherited = true, AllowMultiple = true)]
 	public sealed class MoonSharpHideMemberAttribute : Attribute
 	{
-		// Token: 0x1700091B RID: 2331
-		// (get) Token: 0x0600663C RID: 26172 RVA: 0x000468D6 File Offset: 0x00044AD6
-		// (set) Token: 0x0600663D RID: 26173 RVA: 0x000468DE File Offset: 0x00044ADE
+		// Token: 0x170006C0 RID: 1728
+		// (get) Token: 0x06005B4A RID: 23370 RVA: 0x00259D05 File Offset: 0x00257F05
+		// (set) Token: 0x06005B4B RID: 23371 RVA: 0x00259D0D File Offset: 0x00257F0D
 		public string MemberName { get; private set; }
 
-		// Token: 0x0600663E RID: 26174 RVA: 0x000468E7 File Offset: 0x00044AE7
+		// Token: 0x06005B4C RID: 23372 RVA: 0x00259D16 File Offset: 0x00257F16
 		public MoonSharpHideMemberAttribute(string memberName)
 		{
 			this.MemberName = memberName;

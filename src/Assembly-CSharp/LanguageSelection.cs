@@ -1,12 +1,12 @@
 ﻿using System;
 using UnityEngine;
 
-// Token: 0x0200006C RID: 108
+// Token: 0x02000053 RID: 83
 [RequireComponent(typeof(UIPopupList))]
 [AddComponentMenu("NGUI/Interaction/Language Selection")]
 public class LanguageSelection : MonoBehaviour
 {
-	// Token: 0x060004D0 RID: 1232 RVA: 0x00070118 File Offset: 0x0006E318
+	// Token: 0x06000482 RID: 1154 RVA: 0x00018F4C File Offset: 0x0001714C
 	private void Start()
 	{
 		this.mList = base.GetComponent<UIPopupList>();
@@ -25,12 +25,12 @@ public class LanguageSelection : MonoBehaviour
 		EventDelegate.Add(this.mList.onChange, new EventDelegate.Callback(this.OnChange));
 	}
 
-	// Token: 0x060004D1 RID: 1233 RVA: 0x000083A9 File Offset: 0x000065A9
+	// Token: 0x06000483 RID: 1155 RVA: 0x00018FD4 File Offset: 0x000171D4
 	private void OnChange()
 	{
 		Localization.language = UIPopupList.current.value;
 	}
 
-	// Token: 0x04000328 RID: 808
+	// Token: 0x040002B5 RID: 693
 	private UIPopupList mList;
 }

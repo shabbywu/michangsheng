@@ -3,12 +3,12 @@ using UnityEngine;
 
 namespace Fungus
 {
-	// Token: 0x02001434 RID: 5172
+	// Token: 0x02000F7D RID: 3965
 	[CommandInfo("YSTools", "检查npc是否死亡", "检查是否能截杀", 0)]
 	[AddComponentMenu("")]
 	public class CheckNpcDeath : Command
 	{
-		// Token: 0x06007D1A RID: 32026 RVA: 0x00054A53 File Offset: 0x00052C53
+		// Token: 0x06006F2A RID: 28458 RVA: 0x002A6818 File Offset: 0x002A4A18
 		public override void OnEnter()
 		{
 			if (NpcJieSuanManager.inst.IsDeath(this.npcId.Value))
@@ -22,18 +22,18 @@ namespace Fungus
 			this.Continue();
 		}
 
-		// Token: 0x06007D1B RID: 32027 RVA: 0x000113CF File Offset: 0x0000F5CF
+		// Token: 0x06006F2B RID: 28459 RVA: 0x0005E228 File Offset: 0x0005C428
 		public override Color GetButtonColor()
 		{
 			return new Color32(184, 210, 235, byte.MaxValue);
 		}
 
-		// Token: 0x06007D1C RID: 32028 RVA: 0x000042DD File Offset: 0x000024DD
+		// Token: 0x06006F2C RID: 28460 RVA: 0x00004095 File Offset: 0x00002295
 		public override void OnReset()
 		{
 		}
 
-		// Token: 0x04006AC6 RID: 27334
+		// Token: 0x04005BF2 RID: 23538
 		[Tooltip("npcId")]
 		[VariableProperty(new Type[]
 		{
@@ -42,7 +42,7 @@ namespace Fungus
 		[SerializeField]
 		protected IntegerVariable npcId;
 
-		// Token: 0x04006AC7 RID: 27335
+		// Token: 0x04005BF3 RID: 23539
 		[Tooltip("是否死亡")]
 		[VariableProperty(new Type[]
 		{

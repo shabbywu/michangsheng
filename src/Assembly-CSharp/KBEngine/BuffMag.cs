@@ -5,16 +5,16 @@ using UnityEngine;
 
 namespace KBEngine
 {
-	// Token: 0x02001012 RID: 4114
+	// Token: 0x02000C71 RID: 3185
 	public class BuffMag
 	{
-		// Token: 0x06006257 RID: 25175 RVA: 0x000441F2 File Offset: 0x000423F2
+		// Token: 0x060057DF RID: 22495 RVA: 0x0024804F File Offset: 0x0024624F
 		public BuffMag(Entity avater)
 		{
 			this.entity = (Avatar)avater;
 		}
 
-		// Token: 0x06006258 RID: 25176 RVA: 0x0027418C File Offset: 0x0027238C
+		// Token: 0x060057E0 RID: 22496 RVA: 0x00248064 File Offset: 0x00246264
 		private void _PlayBuffEffect(string name)
 		{
 			Object @object = ResManager.inst.LoadBuffEffect(name);
@@ -30,7 +30,25 @@ namespace KBEngine
 			}
 		}
 
-		// Token: 0x06006259 RID: 25177 RVA: 0x00274250 File Offset: 0x00272450
+		// Token: 0x060057E1 RID: 22497 RVA: 0x00248128 File Offset: 0x00246328
+		private GameObject PlayTianJieBuffEffect(string name)
+		{
+			string text = "tianjie" + name;
+			Object @object = ResManager.inst.LoadBuffEffect(text);
+			if (((GameObject)this.entity.renderObj).transform.Find("Buff_" + text) == null && @object != null)
+			{
+				GameObject gameObject = (GameObject)Object.Instantiate(@object);
+				gameObject.transform.parent = TianJieEffectManager.Inst.PlayerTransform.transform;
+				gameObject.transform.localScale = Vector3.one;
+				gameObject.transform.localPosition = Vector3.zero;
+				gameObject.transform.localEulerAngles = new Vector3(0f, 90f, 0f);
+				gameObject.transform.name = "Buff_" + text;
+				return gameObject;
+			}
+			return null;
+		}
+
+		// Token: 0x060057E2 RID: 22498 RVA: 0x00248204 File Offset: 0x00246404
 		private void _playEffect(string BuffName, string type)
 		{
 			GameObject gameObject = (GameObject)this.entity.renderObj;
@@ -45,13 +63,29 @@ namespace KBEngine
 				if (transform.transform.GetComponentInChildren<Animator>() == null)
 				{
 					Debug.Log("粒子特效,没有animator");
-					return;
 				}
-				transform.transform.GetComponentInChildren<Animator>().Play(type);
+				else
+				{
+					transform.transform.GetComponentInChildren<Animator>().Play(type);
+				}
+			}
+			if (TianJieEffectManager.Inst != null)
+			{
+				GameObject gameObject2 = this.PlayTianJieBuffEffect(BuffName);
+				if (gameObject2 != null)
+				{
+					Animator componentInChildren = gameObject2.transform.GetComponentInChildren<Animator>();
+					if (componentInChildren == null)
+					{
+						Debug.Log("粒子特效,没有animator");
+						return;
+					}
+					componentInChildren.Play(type);
+				}
 			}
 		}
 
-		// Token: 0x0600625A RID: 25178 RVA: 0x00044206 File Offset: 0x00042406
+		// Token: 0x060057E3 RID: 22499 RVA: 0x002482C8 File Offset: 0x002464C8
 		public void PlayBuffAdd(string Buff)
 		{
 			if (RoundManager.instance != null && RoundManager.instance.IsVirtual)
@@ -61,7 +95,7 @@ namespace KBEngine
 			this._playEffect(Buff, "Start");
 		}
 
-		// Token: 0x0600625B RID: 25179 RVA: 0x0004422E File Offset: 0x0004242E
+		// Token: 0x060057E4 RID: 22500 RVA: 0x002482F0 File Offset: 0x002464F0
 		public void PlayBuffTarget(string Buff)
 		{
 			if (RoundManager.instance != null && RoundManager.instance.IsVirtual)
@@ -71,7 +105,7 @@ namespace KBEngine
 			this._playEffect(Buff, "Target");
 		}
 
-		// Token: 0x0600625C RID: 25180 RVA: 0x00044256 File Offset: 0x00042456
+		// Token: 0x060057E5 RID: 22501 RVA: 0x00248318 File Offset: 0x00246518
 		public void PlayBuffRemove(string Buff)
 		{
 			if (RoundManager.instance != null && RoundManager.instance.IsVirtual)
@@ -81,7 +115,7 @@ namespace KBEngine
 			this._playEffect(Buff, "Remove");
 		}
 
-		// Token: 0x0600625D RID: 25181 RVA: 0x002742D0 File Offset: 0x002724D0
+		// Token: 0x060057E6 RID: 22502 RVA: 0x00248340 File Offset: 0x00246540
 		public bool HasBuff(int buffID)
 		{
 			foreach (List<int> list in this.entity.bufflist)
@@ -94,7 +128,7 @@ namespace KBEngine
 			return false;
 		}
 
-		// Token: 0x0600625E RID: 25182 RVA: 0x00274334 File Offset: 0x00272534
+		// Token: 0x060057E7 RID: 22503 RVA: 0x002483A4 File Offset: 0x002465A4
 		public bool checkHasBuff(int buffID, Avatar avatar)
 		{
 			for (int i = 0; i < avatar.bufflist.Count; i++)
@@ -107,13 +141,13 @@ namespace KBEngine
 			return false;
 		}
 
-		// Token: 0x0600625F RID: 25183 RVA: 0x0004427E File Offset: 0x0004247E
+		// Token: 0x060057E8 RID: 22504 RVA: 0x002483DF File Offset: 0x002465DF
 		public bool HasBuffNumGraterY(int buffID, int num)
 		{
 			return this.GetBuffHasYTime(buffID, num) > 0;
 		}
 
-		// Token: 0x06006260 RID: 25184 RVA: 0x00274370 File Offset: 0x00272570
+		// Token: 0x060057E9 RID: 22505 RVA: 0x002483F0 File Offset: 0x002465F0
 		public int GetBuffHasYTime(int buffID, int Y)
 		{
 			if (!this.HasBuff(buffID))
@@ -128,7 +162,7 @@ namespace KBEngine
 			return 0;
 		}
 
-		// Token: 0x06006261 RID: 25185 RVA: 0x0027439C File Offset: 0x0027259C
+		// Token: 0x060057EA RID: 22506 RVA: 0x0024841C File Offset: 0x0024661C
 		public List<List<int>> getAllBuffByType(int type)
 		{
 			List<int> buffList = new List<int>();
@@ -148,7 +182,7 @@ namespace KBEngine
 			});
 		}
 
-		// Token: 0x06006262 RID: 25186 RVA: 0x002743E0 File Offset: 0x002725E0
+		// Token: 0x060057EB RID: 22507 RVA: 0x00248460 File Offset: 0x00246660
 		public List<List<int>> GetAllBuffByType(int type)
 		{
 			return this.entity.bufflist.FindAll(delegate(List<int> aa)
@@ -158,13 +192,13 @@ namespace KBEngine
 			});
 		}
 
-		// Token: 0x06006263 RID: 25187 RVA: 0x0004428E File Offset: 0x0004248E
+		// Token: 0x060057EC RID: 22508 RVA: 0x00248496 File Offset: 0x00246696
 		public int getBuffTypeNum(int type)
 		{
 			return this.getAllBuffByType(type).Count;
 		}
 
-		// Token: 0x06006264 RID: 25188 RVA: 0x00274418 File Offset: 0x00272618
+		// Token: 0x060057ED RID: 22509 RVA: 0x002484A4 File Offset: 0x002466A4
 		public int GetBuffSum(int buffID)
 		{
 			List<List<int>> buffByID = this.getBuffByID(buffID);
@@ -176,7 +210,7 @@ namespace KBEngine
 			return sumRound;
 		}
 
-		// Token: 0x06006265 RID: 25189 RVA: 0x00274450 File Offset: 0x00272650
+		// Token: 0x060057EE RID: 22510 RVA: 0x002484DC File Offset: 0x002466DC
 		public bool HasXTypeBuff(int BuffType)
 		{
 			foreach (List<int> list in this.entity.bufflist)
@@ -189,7 +223,7 @@ namespace KBEngine
 			return false;
 		}
 
-		// Token: 0x06006266 RID: 25190 RVA: 0x002744DC File Offset: 0x002726DC
+		// Token: 0x060057EF RID: 22511 RVA: 0x00248568 File Offset: 0x00246768
 		public bool HasBuffSeid(int buffSeid)
 		{
 			foreach (List<int> list in this.entity.bufflist)
@@ -206,7 +240,7 @@ namespace KBEngine
 			return false;
 		}
 
-		// Token: 0x06006267 RID: 25191 RVA: 0x002745A4 File Offset: 0x002727A4
+		// Token: 0x060057F0 RID: 22512 RVA: 0x00248630 File Offset: 0x00246830
 		public List<List<int>> getBuffByID(int BuffID)
 		{
 			List<List<int>> list = new List<List<int>>();
@@ -220,7 +254,7 @@ namespace KBEngine
 			return list;
 		}
 
-		// Token: 0x06006268 RID: 25192 RVA: 0x00274610 File Offset: 0x00272810
+		// Token: 0x060057F1 RID: 22513 RVA: 0x0024869C File Offset: 0x0024689C
 		public List<int> GetBuffById(int buffId)
 		{
 			foreach (List<int> list in this.entity.bufflist)
@@ -233,7 +267,7 @@ namespace KBEngine
 			return null;
 		}
 
-		// Token: 0x06006269 RID: 25193 RVA: 0x00274674 File Offset: 0x00272874
+		// Token: 0x060057F2 RID: 22514 RVA: 0x00248700 File Offset: 0x00246900
 		public int GetBuffRoundByID(int BuffID)
 		{
 			List<List<int>> buffByID = this.getBuffByID(BuffID);
@@ -245,7 +279,7 @@ namespace KBEngine
 			return num;
 		}
 
-		// Token: 0x0600626A RID: 25194 RVA: 0x002746D0 File Offset: 0x002728D0
+		// Token: 0x060057F3 RID: 22515 RVA: 0x0024875C File Offset: 0x0024695C
 		public List<List<int>> getBuffBySeid(int BuffSeid)
 		{
 			List<List<int>> list = new List<List<int>>();
@@ -263,7 +297,7 @@ namespace KBEngine
 			return list;
 		}
 
-		// Token: 0x0600626B RID: 25195 RVA: 0x00274784 File Offset: 0x00272984
+		// Token: 0x060057F4 RID: 22516 RVA: 0x00248810 File Offset: 0x00246A10
 		public int getBuffIndex(List<int> buffinfo)
 		{
 			int num = 0;
@@ -281,7 +315,7 @@ namespace KBEngine
 			return num;
 		}
 
-		// Token: 0x0600626C RID: 25196 RVA: 0x002747E4 File Offset: 0x002729E4
+		// Token: 0x060057F5 RID: 22517 RVA: 0x00248870 File Offset: 0x00246A70
 		public int getHuDun()
 		{
 			List<List<int>> buffByID = this.getBuffByID(5);
@@ -292,7 +326,26 @@ namespace KBEngine
 			return 0;
 		}
 
-		// Token: 0x04005CDF RID: 23775
+		// Token: 0x060057F6 RID: 22518 RVA: 0x002488A0 File Offset: 0x00246AA0
+		public int RemoveBuff(int BuffID)
+		{
+			List<List<int>> buffByID = this.getBuffByID(BuffID);
+			int num = 0;
+			foreach (List<int> list in buffByID)
+			{
+				num += list[1];
+				this.entity.spell.removeBuff(list);
+			}
+			return num;
+		}
+
+		// Token: 0x060057F7 RID: 22519 RVA: 0x0024890C File Offset: 0x00246B0C
+		public static int RemoveBuff(Avatar target, int BuffID)
+		{
+			return target.buffmag.RemoveBuff(BuffID);
+		}
+
+		// Token: 0x040051F3 RID: 20979
 		public Avatar entity;
 	}
 }

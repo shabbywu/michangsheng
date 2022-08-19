@@ -1,12 +1,12 @@
 ﻿using System;
 
-// Token: 0x02000374 RID: 884
+// Token: 0x0200025B RID: 603
 public enum SetValueType
 {
-	// Token: 0x040013FF RID: 5119
+	// Token: 0x040010AD RID: 4269
 	Int,
-	// Token: 0x04001400 RID: 5120
+	// Token: 0x040010AE RID: 4270
 	Bool,
-	// Token: 0x04001401 RID: 5121
+	// Token: 0x040010AF RID: 4271
 	String
 }

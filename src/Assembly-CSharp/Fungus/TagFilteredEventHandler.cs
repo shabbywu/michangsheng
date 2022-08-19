@@ -3,11 +3,11 @@ using UnityEngine;
 
 namespace Fungus
 {
-	// Token: 0x0200132F RID: 4911
+	// Token: 0x02000EAA RID: 3754
 	[AddComponentMenu("")]
 	public abstract class TagFilteredEventHandler : EventHandler
 	{
-		// Token: 0x0600776E RID: 30574 RVA: 0x000516E2 File Offset: 0x0004F8E2
+		// Token: 0x06006A38 RID: 27192 RVA: 0x00292C0A File Offset: 0x00290E0A
 		protected void ProcessTagFilter(string tagOnOther)
 		{
 			if (this.tagFilter.Length == 0)
@@ -21,7 +21,7 @@ namespace Fungus
 			}
 		}
 
-		// Token: 0x0400681A RID: 26650
+		// Token: 0x040059E0 RID: 23008
 		[Tooltip("Only fire the event if one of the tags match. Empty means any will fire.")]
 		[SerializeField]
 		protected string[] tagFilter;

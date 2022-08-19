@@ -4,17 +4,17 @@ using MoonSharp.Interpreter.Execution.VM;
 
 namespace MoonSharp.Interpreter.Tree.Expressions
 {
-	// Token: 0x020010C8 RID: 4296
+	// Token: 0x02000CEB RID: 3307
 	internal class UnaryOperatorExpression : Expression
 	{
-		// Token: 0x060067B0 RID: 26544 RVA: 0x0004746C File Offset: 0x0004566C
+		// Token: 0x06005C9A RID: 23706 RVA: 0x00260B98 File Offset: 0x0025ED98
 		public UnaryOperatorExpression(ScriptLoadingContext lcontext, Expression subExpression, Token unaryOpToken) : base(lcontext)
 		{
 			this.m_OpText = unaryOpToken.Text;
 			this.m_Exp = subExpression;
 		}
 
-		// Token: 0x060067B1 RID: 26545 RVA: 0x00289F60 File Offset: 0x00288160
+		// Token: 0x06005C9B RID: 23707 RVA: 0x00260BB4 File Offset: 0x0025EDB4
 		public override void Compile(ByteCode bc)
 		{
 			this.m_Exp.Compile(bc);
@@ -39,7 +39,7 @@ namespace MoonSharp.Interpreter.Tree.Expressions
 			bc.Emit_Operator(OpCode.Neg);
 		}
 
-		// Token: 0x060067B2 RID: 26546 RVA: 0x00289FE0 File Offset: 0x002881E0
+		// Token: 0x06005C9C RID: 23708 RVA: 0x00260C34 File Offset: 0x0025EE34
 		public override DynValue Eval(ScriptExecutionContext context)
 		{
 			DynValue dynValue = this.m_Exp.Eval(context).ToScalar();
@@ -67,10 +67,10 @@ namespace MoonSharp.Interpreter.Tree.Expressions
 			throw new DynamicExpressionException("Attempt to perform arithmetic on non-numbers.");
 		}
 
-		// Token: 0x04005FBD RID: 24509
+		// Token: 0x040053B9 RID: 21433
 		private Expression m_Exp;
 
-		// Token: 0x04005FBE RID: 24510
+		// Token: 0x040053BA RID: 21434
 		private string m_OpText;
 	}
 }

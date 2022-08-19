@@ -3,10 +3,10 @@ using System.Collections.Generic;
 
 namespace JSONClass
 {
-	// Token: 0x02000C3F RID: 3135
+	// Token: 0x020008B1 RID: 2225
 	public class NpcTalkShouCiJiaoTanData : IJSONClass
 	{
-		// Token: 0x06004C65 RID: 19557 RVA: 0x00204794 File Offset: 0x00202994
+		// Token: 0x060040D7 RID: 16599 RVA: 0x001BBA2C File Offset: 0x001B9C2C
 		public static void InitDataDict()
 		{
 			foreach (JSONObject jsonobject in jsonData.instance.NpcTalkShouCiJiaoTanData.list)
@@ -43,36 +43,36 @@ namespace JSONClass
 			}
 		}
 
-		// Token: 0x06004C66 RID: 19558 RVA: 0x000042DD File Offset: 0x000024DD
+		// Token: 0x060040D8 RID: 16600 RVA: 0x00004095 File Offset: 0x00002295
 		private static void OnInitFinish()
 		{
 		}
 
-		// Token: 0x04004AA3 RID: 19107
+		// Token: 0x04003F4F RID: 16207
 		public static Dictionary<int, NpcTalkShouCiJiaoTanData> DataDict = new Dictionary<int, NpcTalkShouCiJiaoTanData>();
 
-		// Token: 0x04004AA4 RID: 19108
+		// Token: 0x04003F50 RID: 16208
 		public static List<NpcTalkShouCiJiaoTanData> DataList = new List<NpcTalkShouCiJiaoTanData>();
 
-		// Token: 0x04004AA5 RID: 19109
+		// Token: 0x04003F51 RID: 16209
 		public static Action OnInitFinishAction = new Action(NpcTalkShouCiJiaoTanData.OnInitFinish);
 
-		// Token: 0x04004AA6 RID: 19110
+		// Token: 0x04003F52 RID: 16210
 		public int id;
 
-		// Token: 0x04004AA7 RID: 19111
+		// Token: 0x04003F53 RID: 16211
 		public int JingJie;
 
-		// Token: 0x04004AA8 RID: 19112
+		// Token: 0x04003F54 RID: 16212
 		public int ShengWang;
 
-		// Token: 0x04004AA9 RID: 19113
+		// Token: 0x04003F55 RID: 16213
 		public int XingGe;
 
-		// Token: 0x04004AAA RID: 19114
+		// Token: 0x04003F56 RID: 16214
 		public int HaoGanDu;
 
-		// Token: 0x04004AAB RID: 19115
+		// Token: 0x04003F57 RID: 16215
 		public string FirstTalk;
 	}
 }

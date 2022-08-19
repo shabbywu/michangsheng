@@ -3,14 +3,14 @@ using UnityEngine;
 
 namespace YSGame
 {
-	// Token: 0x02000DAE RID: 3502
+	// Token: 0x02000A7E RID: 2686
 	[Serializable]
 	public class MusicInfo
 	{
-		// Token: 0x04005434 RID: 21556
+		// Token: 0x04004A7E RID: 19070
 		public string name;
 
-		// Token: 0x04005435 RID: 21557
+		// Token: 0x04004A7F RID: 19071
 		public AudioClip audioClip;
 	}
 }

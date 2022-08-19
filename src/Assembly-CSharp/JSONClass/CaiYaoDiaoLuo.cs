@@ -3,10 +3,10 @@ using System.Collections.Generic;
 
 namespace JSONClass
 {
-	// Token: 0x02000B9A RID: 2970
+	// Token: 0x02000803 RID: 2051
 	public class CaiYaoDiaoLuo : IJSONClass
 	{
-		// Token: 0x060049D0 RID: 18896 RVA: 0x001F4808 File Offset: 0x001F2A08
+		// Token: 0x06003E1E RID: 15902 RVA: 0x001A8CF4 File Offset: 0x001A6EF4
 		public static void InitDataDict()
 		{
 			foreach (JSONObject jsonobject in jsonData.instance.CaiYaoDiaoLuo.list)
@@ -51,60 +51,60 @@ namespace JSONClass
 			}
 		}
 
-		// Token: 0x060049D1 RID: 18897 RVA: 0x000042DD File Offset: 0x000024DD
+		// Token: 0x06003E1F RID: 15903 RVA: 0x00004095 File Offset: 0x00002295
 		private static void OnInitFinish()
 		{
 		}
 
-		// Token: 0x040044A6 RID: 17574
+		// Token: 0x04003916 RID: 14614
 		public static Dictionary<int, CaiYaoDiaoLuo> DataDict = new Dictionary<int, CaiYaoDiaoLuo>();
 
-		// Token: 0x040044A7 RID: 17575
+		// Token: 0x04003917 RID: 14615
 		public static List<CaiYaoDiaoLuo> DataList = new List<CaiYaoDiaoLuo>();
 
-		// Token: 0x040044A8 RID: 17576
+		// Token: 0x04003918 RID: 14616
 		public static Action OnInitFinishAction = new Action(CaiYaoDiaoLuo.OnInitFinish);
 
-		// Token: 0x040044A9 RID: 17577
+		// Token: 0x04003919 RID: 14617
 		public int id;
 
-		// Token: 0x040044AA RID: 17578
+		// Token: 0x0400391A RID: 14618
 		public int type;
 
-		// Token: 0x040044AB RID: 17579
+		// Token: 0x0400391B RID: 14619
 		public int MapIndex;
 
-		// Token: 0x040044AC RID: 17580
+		// Token: 0x0400391C RID: 14620
 		public int ThreeSence;
 
-		// Token: 0x040044AD RID: 17581
+		// Token: 0x0400391D RID: 14621
 		public int value1;
 
-		// Token: 0x040044AE RID: 17582
+		// Token: 0x0400391E RID: 14622
 		public int value2;
 
-		// Token: 0x040044AF RID: 17583
+		// Token: 0x0400391F RID: 14623
 		public int value3;
 
-		// Token: 0x040044B0 RID: 17584
+		// Token: 0x04003920 RID: 14624
 		public int value4;
 
-		// Token: 0x040044B1 RID: 17585
+		// Token: 0x04003921 RID: 14625
 		public int value5;
 
-		// Token: 0x040044B2 RID: 17586
+		// Token: 0x04003922 RID: 14626
 		public int value6;
 
-		// Token: 0x040044B3 RID: 17587
+		// Token: 0x04003923 RID: 14627
 		public int value7;
 
-		// Token: 0x040044B4 RID: 17588
+		// Token: 0x04003924 RID: 14628
 		public int value8;
 
-		// Token: 0x040044B5 RID: 17589
+		// Token: 0x04003925 RID: 14629
 		public string name;
 
-		// Token: 0x040044B6 RID: 17590
+		// Token: 0x04003926 RID: 14630
 		public string FuBen;
 	}
 }

@@ -6,10 +6,10 @@ using UnityEngine.Events;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-// Token: 0x020004F3 RID: 1267
+// Token: 0x02000376 RID: 886
 public class SceneBtnMag : MonoBehaviour
 {
-	// Token: 0x060020F7 RID: 8439 RVA: 0x00114C80 File Offset: 0x00112E80
+	// Token: 0x06001D92 RID: 7570 RVA: 0x000D0C94 File Offset: 0x000CEE94
 	private void Awake()
 	{
 		base.transform.SetParent(NewUICanvas.Inst.gameObject.transform);
@@ -24,19 +24,19 @@ public class SceneBtnMag : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060020F8 RID: 8440 RVA: 0x0001B2E3 File Offset: 0x000194E3
+	// Token: 0x06001D93 RID: 7571 RVA: 0x000D0D5D File Offset: 0x000CEF5D
 	private void Start()
 	{
 		this.Init();
 	}
 
-	// Token: 0x060020F9 RID: 8441 RVA: 0x0001B2EB File Offset: 0x000194EB
+	// Token: 0x06001D94 RID: 7572 RVA: 0x000D0D65 File Offset: 0x000CEF65
 	private void Update()
 	{
 		this.AutoHide();
 	}
 
-	// Token: 0x060020FA RID: 8442 RVA: 0x00114D4C File Offset: 0x00112F4C
+	// Token: 0x06001D95 RID: 7573 RVA: 0x000D0D70 File Offset: 0x000CEF70
 	private void AutoHide()
 	{
 		bool flag = true;
@@ -50,7 +50,7 @@ public class SceneBtnMag : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060020FB RID: 8443 RVA: 0x00114DB8 File Offset: 0x00112FB8
+	// Token: 0x06001D96 RID: 7574 RVA: 0x000D0DDC File Offset: 0x000CEFDC
 	public void Init()
 	{
 		foreach (string text in this.btnName)
@@ -58,31 +58,34 @@ public class SceneBtnMag : MonoBehaviour
 			GameObject gameObject = GameObject.Find(text);
 			if (gameObject != null && gameObject.GetComponentInChildren<Flowchart>() != null)
 			{
-				gameObject.transform.localScale = Vector3.zero;
-				Flowchart flowchat = gameObject.GetComponentInChildren<Flowchart>();
-				FpBtn btn = this.btnDictionary[text];
-				if (flowchat != null)
+				if (!(text == "jiaoyihui") || GlobalValue.Get(1020, "unknow") == 1)
 				{
-					btn.mouseUpEvent.RemoveAllListeners();
-					btn.mouseUpEvent.AddListener(delegate()
+					gameObject.transform.localScale = Vector3.zero;
+					Flowchart flowchat = gameObject.GetComponentInChildren<Flowchart>();
+					FpBtn btn = this.btnDictionary[text];
+					if (flowchat != null)
 					{
-						if (btn.IsInBtn && Tools.instance.canClick(false, true))
+						btn.mouseUpEvent.RemoveAllListeners();
+						btn.mouseUpEvent.AddListener(delegate()
 						{
-							flowchat.ExecuteBlock("onClick");
-						}
-					});
-					btn.gameObject.SetActive(true);
-				}
-				if (text == "tupo" && PlayerEx.Player.getLevelType() == 5)
-				{
-					SpriteRef component = btn.GetComponent<SpriteRef>();
-					btn.GetComponent<Image>().sprite = component.sprites[0];
-					btn.nomalSprite = component.sprites[0];
-					btn.mouseEnterSprite = component.sprites[1];
-					btn.mouseDownSprite = component.sprites[2];
-					btn.mouseUpSprite = component.sprites[0];
-					btn.stopClickSprite = component.sprites[0];
-					btn.transform.GetChild(0).GetComponent<Image>().sprite = component.sprites[3];
+							if (btn.IsInBtn && Tools.instance.canClick(false, true))
+							{
+								flowchat.ExecuteBlock("onClick");
+							}
+						});
+						btn.gameObject.SetActive(true);
+					}
+					if (text == "tupo" && PlayerEx.Player.getLevelType() == 5)
+					{
+						SpriteRef component = btn.GetComponent<SpriteRef>();
+						btn.GetComponent<Image>().sprite = component.sprites[0];
+						btn.nomalSprite = component.sprites[0];
+						btn.mouseEnterSprite = component.sprites[1];
+						btn.mouseDownSprite = component.sprites[2];
+						btn.mouseUpSprite = component.sprites[0];
+						btn.stopClickSprite = component.sprites[0];
+						btn.transform.GetChild(0).GetComponent<Image>().sprite = component.sprites[3];
+					}
 				}
 			}
 		}
@@ -122,7 +125,7 @@ public class SceneBtnMag : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060020FC RID: 8444 RVA: 0x001151F4 File Offset: 0x001133F4
+	// Token: 0x06001D97 RID: 7575 RVA: 0x000D123C File Offset: 0x000CF43C
 	public void SetFubenCaiJi(bool show, UnityAction clickAction = null)
 	{
 		if (this.btnDictionary["fubencaiji"] != null)
@@ -137,7 +140,7 @@ public class SceneBtnMag : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060020FD RID: 8445 RVA: 0x0001B2F3 File Offset: 0x000194F3
+	// Token: 0x06001D98 RID: 7576 RVA: 0x000D12CE File Offset: 0x000CF4CE
 	public void openShop()
 	{
 		if (Tools.instance.canClick(false, true))
@@ -147,7 +150,7 @@ public class SceneBtnMag : MonoBehaviour
 		}
 	}
 
-	// Token: 0x04001C70 RID: 7280
+	// Token: 0x04001823 RID: 6179
 	private List<string> btnName = new List<string>
 	{
 		"likai",
@@ -173,22 +176,25 @@ public class SceneBtnMag : MonoBehaviour
 		"dabi",
 		"cangbaoge",
 		"qixuan",
-		"ganying"
+		"ganying",
+		"zhuangban",
+		"paifa",
+		"jiaoyihui"
 	};
 
-	// Token: 0x04001C71 RID: 7281
+	// Token: 0x04001824 RID: 6180
 	private Dictionary<string, FpBtn> btnDictionary = new Dictionary<string, FpBtn>();
 
-	// Token: 0x04001C72 RID: 7282
+	// Token: 0x04001825 RID: 6181
 	public static SceneBtnMag inst;
 
-	// Token: 0x04001C73 RID: 7283
+	// Token: 0x04001826 RID: 6182
 	[SerializeField]
 	private Transform btnList;
 
-	// Token: 0x04001C74 RID: 7284
+	// Token: 0x04001827 RID: 6183
 	public static UnityAction FubenCaiJiAction;
 
-	// Token: 0x04001C75 RID: 7285
+	// Token: 0x04001828 RID: 6184
 	public static bool hasCaiJi;
 }

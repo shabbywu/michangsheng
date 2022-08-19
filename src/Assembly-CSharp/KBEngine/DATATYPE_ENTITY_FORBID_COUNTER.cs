@@ -2,10 +2,10 @@
 
 namespace KBEngine
 {
-	// Token: 0x02000EB1 RID: 3761
+	// Token: 0x02000B3A RID: 2874
 	public class DATATYPE_ENTITY_FORBID_COUNTER : DATATYPE_BASE
 	{
-		// Token: 0x06005AE9 RID: 23273 RVA: 0x00250440 File Offset: 0x0024E640
+		// Token: 0x060050BF RID: 20671 RVA: 0x00220C00 File Offset: 0x0021EE00
 		public ENTITY_FORBID_COUNTER createFromStreamEx(MemoryStream stream)
 		{
 			uint num = stream.readUint32();
@@ -18,7 +18,7 @@ namespace KBEngine
 			return entity_FORBID_COUNTER;
 		}
 
-		// Token: 0x06005AEA RID: 23274 RVA: 0x00250474 File Offset: 0x0024E674
+		// Token: 0x060050C0 RID: 20672 RVA: 0x00220C34 File Offset: 0x0021EE34
 		public void addToStreamEx(Bundle stream, ENTITY_FORBID_COUNTER v)
 		{
 			stream.writeUint32((uint)v.Count);

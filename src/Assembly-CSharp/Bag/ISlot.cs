@@ -2,22 +2,22 @@
 
 namespace Bag
 {
-	// Token: 0x02000D41 RID: 3393
+	// Token: 0x020009B9 RID: 2489
 	public interface ISlot
 	{
-		// Token: 0x06005090 RID: 20624
+		// Token: 0x0600452D RID: 17709
 		void SetSlotData(object data);
 
-		// Token: 0x06005091 RID: 20625
+		// Token: 0x0600452E RID: 17710
 		void SetAccptType(CanSlotType slotType);
 
-		// Token: 0x06005092 RID: 20626
+		// Token: 0x0600452F RID: 17711
 		void SetNull();
 
-		// Token: 0x06005093 RID: 20627
+		// Token: 0x06004530 RID: 17712
 		void InitUI();
 
-		// Token: 0x06005094 RID: 20628
+		// Token: 0x06004531 RID: 17713
 		void UpdateUI();
 	}
 }

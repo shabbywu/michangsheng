@@ -2,31 +2,31 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-// Token: 0x02000304 RID: 772
+// Token: 0x020001F0 RID: 496
 [RequireComponent(typeof(Image))]
 public class ModImage : MonoBehaviour
 {
-	// Token: 0x0600171D RID: 5917 RVA: 0x00014694 File Offset: 0x00012894
+	// Token: 0x06001473 RID: 5235 RVA: 0x00083559 File Offset: 0x00081759
 	private void Awake()
 	{
 		this.image = base.GetComponent<Image>();
 	}
 
-	// Token: 0x0600171E RID: 5918 RVA: 0x000146A2 File Offset: 0x000128A2
+	// Token: 0x06001474 RID: 5236 RVA: 0x00083567 File Offset: 0x00081767
 	public void Refresh()
 	{
 		this.image.sprite = ModResources.LoadSprite(this.SpritePath);
 	}
 
-	// Token: 0x0600171F RID: 5919 RVA: 0x000146BA File Offset: 0x000128BA
+	// Token: 0x06001475 RID: 5237 RVA: 0x0008357F File Offset: 0x0008177F
 	private void Start()
 	{
 		this.Refresh();
 	}
 
-	// Token: 0x04001278 RID: 4728
+	// Token: 0x04000F36 RID: 3894
 	private Image image;
 
-	// Token: 0x04001279 RID: 4729
+	// Token: 0x04000F37 RID: 3895
 	public string SpritePath;
 }

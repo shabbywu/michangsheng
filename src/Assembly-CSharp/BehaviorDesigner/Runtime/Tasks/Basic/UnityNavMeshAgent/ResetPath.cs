@@ -4,12 +4,12 @@ using UnityEngine.AI;
 
 namespace BehaviorDesigner.Runtime.Tasks.Basic.UnityNavMeshAgent
 {
-	// Token: 0x020015AC RID: 5548
+	// Token: 0x020010F2 RID: 4338
 	[TaskCategory("Basic/NavMeshAgent")]
 	[TaskDescription("Clears the current path. Returns Success.")]
 	public class ResetPath : Action
 	{
-		// Token: 0x0600828D RID: 33421 RVA: 0x002CDB6C File Offset: 0x002CBD6C
+		// Token: 0x06007493 RID: 29843 RVA: 0x002B29D8 File Offset: 0x002B0BD8
 		public override void OnStart()
 		{
 			GameObject defaultGameObject = base.GetDefaultGameObject(this.targetGameObject.Value);
@@ -20,7 +20,7 @@ namespace BehaviorDesigner.Runtime.Tasks.Basic.UnityNavMeshAgent
 			}
 		}
 
-		// Token: 0x0600828E RID: 33422 RVA: 0x000597B6 File Offset: 0x000579B6
+		// Token: 0x06007494 RID: 29844 RVA: 0x002B2A18 File Offset: 0x002B0C18
 		public override TaskStatus OnUpdate()
 		{
 			if (this.navMeshAgent == null)
@@ -32,20 +32,20 @@ namespace BehaviorDesigner.Runtime.Tasks.Basic.UnityNavMeshAgent
 			return 2;
 		}
 
-		// Token: 0x0600828F RID: 33423 RVA: 0x000597DE File Offset: 0x000579DE
+		// Token: 0x06007495 RID: 29845 RVA: 0x002B2A40 File Offset: 0x002B0C40
 		public override void OnReset()
 		{
 			this.targetGameObject = null;
 		}
 
-		// Token: 0x04006F49 RID: 28489
+		// Token: 0x04006049 RID: 24649
 		[Tooltip("The GameObject that the task operates on. If null the task GameObject is used.")]
 		public SharedGameObject targetGameObject;
 
-		// Token: 0x04006F4A RID: 28490
+		// Token: 0x0400604A RID: 24650
 		private NavMeshAgent navMeshAgent;
 
-		// Token: 0x04006F4B RID: 28491
+		// Token: 0x0400604B RID: 24651
 		private GameObject prevGameObject;
 	}
 }

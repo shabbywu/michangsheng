@@ -2,16 +2,16 @@
 
 namespace UltimateSurvival.AI.Goals
 {
-	// Token: 0x0200097F RID: 2431
+	// Token: 0x02000672 RID: 1650
 	public class AvoidPlayer : Goal
 	{
-		// Token: 0x06003E23 RID: 15907 RVA: 0x0002CC06 File Offset: 0x0002AE06
+		// Token: 0x06003473 RID: 13427 RVA: 0x0016E118 File Offset: 0x0016C318
 		public override void OnStart()
 		{
 			base.GoalState.Add("Player in sight", false);
 		}
 
-		// Token: 0x06003E24 RID: 15908 RVA: 0x0002CC1E File Offset: 0x0002AE1E
+		// Token: 0x06003474 RID: 13428 RVA: 0x0016E130 File Offset: 0x0016C330
 		public override void RecalculatePriority(AIBrain brain)
 		{
 			if (brain.Settings.Detection.HasTarget())

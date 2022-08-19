@@ -4,15 +4,15 @@ using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.UI;
 
-// Token: 0x020002F8 RID: 760
+// Token: 0x020001E5 RID: 485
 public class GameEntity : MonoBehaviour
 {
-	// Token: 0x060016E1 RID: 5857 RVA: 0x000042DD File Offset: 0x000024DD
+	// Token: 0x0600143D RID: 5181 RVA: 0x00004095 File Offset: 0x00002295
 	private void Awake()
 	{
 	}
 
-	// Token: 0x060016E2 RID: 5858 RVA: 0x000143FC File Offset: 0x000125FC
+	// Token: 0x0600143E RID: 5182 RVA: 0x000829F4 File Offset: 0x00080BF4
 	private void Start()
 	{
 		this.characterController = base.gameObject.GetComponent<CharacterController>();
@@ -20,9 +20,9 @@ public class GameEntity : MonoBehaviour
 		this.controller = base.GetComponent<CharacterController>();
 	}
 
-	// Token: 0x17000272 RID: 626
-	// (get) Token: 0x060016E3 RID: 5859 RVA: 0x00014432 File Offset: 0x00012632
-	// (set) Token: 0x060016E4 RID: 5860 RVA: 0x0001443A File Offset: 0x0001263A
+	// Token: 0x1700022A RID: 554
+	// (get) Token: 0x0600143F RID: 5183 RVA: 0x00082A2A File Offset: 0x00080C2A
+	// (set) Token: 0x06001440 RID: 5184 RVA: 0x00082A32 File Offset: 0x00080C32
 	public Vector3 position
 	{
 		get
@@ -39,9 +39,9 @@ public class GameEntity : MonoBehaviour
 		}
 	}
 
-	// Token: 0x17000273 RID: 627
-	// (get) Token: 0x060016E5 RID: 5861 RVA: 0x00014467 File Offset: 0x00012667
-	// (set) Token: 0x060016E6 RID: 5862 RVA: 0x0001446F File Offset: 0x0001266F
+	// Token: 0x1700022B RID: 555
+	// (get) Token: 0x06001441 RID: 5185 RVA: 0x00082A5F File Offset: 0x00080C5F
+	// (set) Token: 0x06001442 RID: 5186 RVA: 0x00082A67 File Offset: 0x00080C67
 	public Vector3 eulerAngles
 	{
 		get
@@ -58,9 +58,9 @@ public class GameEntity : MonoBehaviour
 		}
 	}
 
-	// Token: 0x17000274 RID: 628
-	// (get) Token: 0x060016E7 RID: 5863 RVA: 0x0001449C File Offset: 0x0001269C
-	// (set) Token: 0x060016E8 RID: 5864 RVA: 0x000144A9 File Offset: 0x000126A9
+	// Token: 0x1700022C RID: 556
+	// (get) Token: 0x06001443 RID: 5187 RVA: 0x00082A94 File Offset: 0x00080C94
+	// (set) Token: 0x06001444 RID: 5188 RVA: 0x00082AA1 File Offset: 0x00080CA1
 	public Quaternion rotation
 	{
 		get
@@ -73,9 +73,9 @@ public class GameEntity : MonoBehaviour
 		}
 	}
 
-	// Token: 0x17000275 RID: 629
-	// (get) Token: 0x060016E9 RID: 5865 RVA: 0x000144B8 File Offset: 0x000126B8
-	// (set) Token: 0x060016EA RID: 5866 RVA: 0x000144C0 File Offset: 0x000126C0
+	// Token: 0x1700022D RID: 557
+	// (get) Token: 0x06001445 RID: 5189 RVA: 0x00082AB0 File Offset: 0x00080CB0
+	// (set) Token: 0x06001446 RID: 5190 RVA: 0x00082AB8 File Offset: 0x00080CB8
 	public Vector3 scale
 	{
 		get
@@ -92,9 +92,9 @@ public class GameEntity : MonoBehaviour
 		}
 	}
 
-	// Token: 0x17000276 RID: 630
-	// (get) Token: 0x060016EB RID: 5867 RVA: 0x000144ED File Offset: 0x000126ED
-	// (set) Token: 0x060016EC RID: 5868 RVA: 0x000144F5 File Offset: 0x000126F5
+	// Token: 0x1700022E RID: 558
+	// (get) Token: 0x06001447 RID: 5191 RVA: 0x00082AE5 File Offset: 0x00080CE5
+	// (set) Token: 0x06001448 RID: 5192 RVA: 0x00082AED File Offset: 0x00080CED
 	public float speed
 	{
 		get
@@ -107,19 +107,19 @@ public class GameEntity : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060016ED RID: 5869 RVA: 0x000144FE File Offset: 0x000126FE
+	// Token: 0x06001449 RID: 5193 RVA: 0x00082AF6 File Offset: 0x00080CF6
 	public void entityEnable()
 	{
 		this.entityEnabled = true;
 	}
 
-	// Token: 0x060016EE RID: 5870 RVA: 0x00014507 File Offset: 0x00012707
+	// Token: 0x0600144A RID: 5194 RVA: 0x00082AFF File Offset: 0x00080CFF
 	public void entityDisable()
 	{
 		this.entityEnabled = false;
 	}
 
-	// Token: 0x060016EF RID: 5871 RVA: 0x000CBB2C File Offset: 0x000C9D2C
+	// Token: 0x0600144B RID: 5195 RVA: 0x00082B08 File Offset: 0x00080D08
 	private void FixedUpdate()
 	{
 		if (!this.entityEnabled)
@@ -139,7 +139,7 @@ public class GameEntity : MonoBehaviour
 		});
 	}
 
-	// Token: 0x060016F0 RID: 5872 RVA: 0x000CBBE8 File Offset: 0x000C9DE8
+	// Token: 0x0600144C RID: 5196 RVA: 0x00082BC4 File Offset: 0x00080DC4
 	private void Update()
 	{
 		if (this.headName != null)
@@ -213,7 +213,7 @@ public class GameEntity : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060016F1 RID: 5873 RVA: 0x00014510 File Offset: 0x00012710
+	// Token: 0x0600144D RID: 5197 RVA: 0x00082E1D File Offset: 0x0008101D
 	public void OnJump()
 	{
 		Debug.Log("jumpState: " + this.jumpState);
@@ -224,87 +224,87 @@ public class GameEntity : MonoBehaviour
 		this.jumpState = 1;
 	}
 
-	// Token: 0x0400123E RID: 4670
+	// Token: 0x04000F00 RID: 3840
 	public bool isPlayer;
 
-	// Token: 0x0400123F RID: 4671
+	// Token: 0x04000F01 RID: 3841
 	public bool isTestOffLine;
 
-	// Token: 0x04001240 RID: 4672
+	// Token: 0x04000F02 RID: 3842
 	private Vector3 _position = Vector3.zero;
 
-	// Token: 0x04001241 RID: 4673
+	// Token: 0x04000F03 RID: 3843
 	private Vector3 _eulerAngles = Vector3.zero;
 
-	// Token: 0x04001242 RID: 4674
+	// Token: 0x04000F04 RID: 3844
 	private Vector3 _scale = Vector3.zero;
 
-	// Token: 0x04001243 RID: 4675
+	// Token: 0x04000F05 RID: 3845
 	public Vector3 destPosition = Vector3.zero;
 
-	// Token: 0x04001244 RID: 4676
+	// Token: 0x04000F06 RID: 3846
 	public Vector3 destDirection = Vector3.zero;
 
-	// Token: 0x04001245 RID: 4677
+	// Token: 0x04000F07 RID: 3847
 	private float _speed = 50f;
 
-	// Token: 0x04001246 RID: 4678
+	// Token: 0x04000F08 RID: 3848
 	private byte jumpState;
 
-	// Token: 0x04001247 RID: 4679
+	// Token: 0x04000F09 RID: 3849
 	private float currY = 1f;
 
-	// Token: 0x04001248 RID: 4680
+	// Token: 0x04000F0A RID: 3850
 	private float zhentime;
 
-	// Token: 0x04001249 RID: 4681
+	// Token: 0x04000F0B RID: 3851
 	private int fps;
 
-	// Token: 0x0400124A RID: 4682
+	// Token: 0x04000F0C RID: 3852
 	private Camera playerCamera;
 
-	// Token: 0x0400124B RID: 4683
+	// Token: 0x04000F0D RID: 3853
 	public string entity_name;
 
-	// Token: 0x0400124C RID: 4684
+	// Token: 0x04000F0E RID: 3854
 	public int hp;
 
-	// Token: 0x0400124D RID: 4685
+	// Token: 0x04000F0F RID: 3855
 	public int hpMax;
 
-	// Token: 0x0400124E RID: 4686
+	// Token: 0x04000F10 RID: 3856
 	public int sp;
 
-	// Token: 0x0400124F RID: 4687
+	// Token: 0x04000F11 RID: 3857
 	public int spMax;
 
-	// Token: 0x04001250 RID: 4688
+	// Token: 0x04000F12 RID: 3858
 	public bool canAttack;
 
-	// Token: 0x04001251 RID: 4689
+	// Token: 0x04000F13 RID: 3859
 	private float npcHeight = 3f;
 
-	// Token: 0x04001252 RID: 4690
+	// Token: 0x04000F14 RID: 3860
 	public CharacterController characterController;
 
-	// Token: 0x04001253 RID: 4691
+	// Token: 0x04000F15 RID: 3861
 	public bool isOnGround = true;
 
-	// Token: 0x04001254 RID: 4692
+	// Token: 0x04000F16 RID: 3862
 	public bool entityEnabled = true;
 
-	// Token: 0x04001255 RID: 4693
+	// Token: 0x04000F17 RID: 3863
 	public Text headName;
 
-	// Token: 0x04001256 RID: 4694
+	// Token: 0x04000F18 RID: 3864
 	private Animator animator;
 
-	// Token: 0x04001257 RID: 4695
+	// Token: 0x04000F19 RID: 3865
 	private CharacterController controller;
 
-	// Token: 0x04001258 RID: 4696
+	// Token: 0x04000F1A RID: 3866
 	private float last_angleY;
 
-	// Token: 0x04001259 RID: 4697
+	// Token: 0x04000F1B RID: 3867
 	private Vector3 last_position;
 }

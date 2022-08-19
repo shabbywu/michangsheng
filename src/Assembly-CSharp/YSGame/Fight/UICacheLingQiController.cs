@@ -4,10 +4,10 @@ using UnityEngine;
 
 namespace YSGame.Fight
 {
-	// Token: 0x02000DF5 RID: 3573
+	// Token: 0x02000AB9 RID: 2745
 	public class UICacheLingQiController : MonoBehaviour
 	{
-		// Token: 0x06005639 RID: 22073 RVA: 0x0023F1C0 File Offset: 0x0023D3C0
+		// Token: 0x06004CF0 RID: 19696 RVA: 0x0020E95C File Offset: 0x0020CB5C
 		public void ChangeCacheSlotNumber(int count)
 		{
 			if (count < 0 || count > 6)
@@ -40,7 +40,7 @@ namespace YSGame.Fight
 			}
 		}
 
-		// Token: 0x0600563A RID: 22074 RVA: 0x0023F2A4 File Offset: 0x0023D4A4
+		// Token: 0x06004CF1 RID: 19697 RVA: 0x0020EA40 File Offset: 0x0020CC40
 		public void MoveAllLingQiToPlayer()
 		{
 			for (int i = 0; i < this.nowSlotNum; i++)
@@ -53,7 +53,7 @@ namespace YSGame.Fight
 			}
 		}
 
-		// Token: 0x0600563B RID: 22075 RVA: 0x0023F344 File Offset: 0x0023D544
+		// Token: 0x06004CF2 RID: 19698 RVA: 0x0020EAE0 File Offset: 0x0020CCE0
 		public void DestoryAllLingQi()
 		{
 			for (int i = 0; i < this.nowSlotNum; i++)
@@ -62,7 +62,7 @@ namespace YSGame.Fight
 			}
 		}
 
-		// Token: 0x0600563C RID: 22076 RVA: 0x0023F374 File Offset: 0x0023D574
+		// Token: 0x06004CF3 RID: 19699 RVA: 0x0020EB10 File Offset: 0x0020CD10
 		public void SetLingQiLimit(Dictionary<int, int> same, Dictionary<int, int> tong)
 		{
 			int num = 0;
@@ -80,7 +80,7 @@ namespace YSGame.Fight
 			}
 		}
 
-		// Token: 0x0600563D RID: 22077 RVA: 0x0023F458 File Offset: 0x0023D658
+		// Token: 0x06004CF4 RID: 19700 RVA: 0x0020EBF4 File Offset: 0x0020CDF4
 		public Dictionary<LingQiType, int> GetNowCacheLingQi()
 		{
 			Dictionary<LingQiType, int> dictionary = new Dictionary<LingQiType, int>();
@@ -100,7 +100,7 @@ namespace YSGame.Fight
 			return dictionary;
 		}
 
-		// Token: 0x0600563E RID: 22078 RVA: 0x0023F4FC File Offset: 0x0023D6FC
+		// Token: 0x06004CF5 RID: 19701 RVA: 0x0020EC98 File Offset: 0x0020CE98
 		public Dictionary<LingQiType, int> GetNowCacheTongLingQi()
 		{
 			Dictionary<LingQiType, int> dictionary = new Dictionary<LingQiType, int>();
@@ -120,7 +120,7 @@ namespace YSGame.Fight
 			return dictionary;
 		}
 
-		// Token: 0x0600563F RID: 22079 RVA: 0x0023F5B4 File Offset: 0x0023D7B4
+		// Token: 0x06004CF6 RID: 19702 RVA: 0x0020ED50 File Offset: 0x0020CF50
 		public Dictionary<int, int> GetNowCacheLingQiIntDict()
 		{
 			Dictionary<int, int> dictionary = new Dictionary<int, int>();
@@ -131,7 +131,7 @@ namespace YSGame.Fight
 			return dictionary;
 		}
 
-		// Token: 0x06005640 RID: 22080 RVA: 0x0023F61C File Offset: 0x0023D81C
+		// Token: 0x06004CF7 RID: 19703 RVA: 0x0020EDB8 File Offset: 0x0020CFB8
 		public int GetCacheLingQiSum()
 		{
 			int num = 0;
@@ -142,7 +142,7 @@ namespace YSGame.Fight
 			return num;
 		}
 
-		// Token: 0x06005641 RID: 22081 RVA: 0x0023F654 File Offset: 0x0023D854
+		// Token: 0x06004CF8 RID: 19704 RVA: 0x0020EDF0 File Offset: 0x0020CFF0
 		public UIFightLingQiCacheSlot GetTargetLingQiSlot(LingQiType lingQiType)
 		{
 			if (this.NowMoveSame)
@@ -187,7 +187,7 @@ namespace YSGame.Fight
 			return null;
 		}
 
-		// Token: 0x06005642 RID: 22082 RVA: 0x0023F73C File Offset: 0x0023D93C
+		// Token: 0x06004CF9 RID: 19705 RVA: 0x0020EED8 File Offset: 0x0020D0D8
 		public UIFightLingQiCacheSlot GetTargetTongLingQiSlotWithLimit(int limit)
 		{
 			for (int i = 0; i < this.nowSlotNum; i++)
@@ -201,7 +201,7 @@ namespace YSGame.Fight
 			return null;
 		}
 
-		// Token: 0x06005643 RID: 22083 RVA: 0x0023F78C File Offset: 0x0023D98C
+		// Token: 0x06004CFA RID: 19706 RVA: 0x0020EF28 File Offset: 0x0020D128
 		public UIFightLingQiCacheSlot GetTongLingQiSlot(LingQiType lingQiType)
 		{
 			for (int i = 0; i < this.nowSlotNum; i++)
@@ -215,7 +215,7 @@ namespace YSGame.Fight
 			return null;
 		}
 
-		// Token: 0x06005644 RID: 22084 RVA: 0x0023F7D4 File Offset: 0x0023D9D4
+		// Token: 0x06004CFB RID: 19707 RVA: 0x0020EF70 File Offset: 0x0020D170
 		public void RefreshShengKe()
 		{
 			this.Sheng.SetActive(false);
@@ -238,7 +238,7 @@ namespace YSGame.Fight
 			}
 		}
 
-		// Token: 0x06005645 RID: 22085 RVA: 0x0023F868 File Offset: 0x0023DA68
+		// Token: 0x06004CFC RID: 19708 RVA: 0x0020F004 File Offset: 0x0020D204
 		private void RefreshXiangSheng()
 		{
 			Dictionary<int, int> nowCacheLingQiIntDict = this.GetNowCacheLingQiIntDict();
@@ -257,7 +257,7 @@ namespace YSGame.Fight
 			}
 		}
 
-		// Token: 0x06005646 RID: 22086 RVA: 0x0023F8F0 File Offset: 0x0023DAF0
+		// Token: 0x06004CFD RID: 19709 RVA: 0x0020F08C File Offset: 0x0020D28C
 		private void RefreshXiangKe()
 		{
 			Dictionary<int, int> nowCacheLingQiIntDict = this.GetNowCacheLingQiIntDict();
@@ -276,7 +276,7 @@ namespace YSGame.Fight
 			}
 		}
 
-		// Token: 0x06005647 RID: 22087 RVA: 0x0023F978 File Offset: 0x0023DB78
+		// Token: 0x06004CFE RID: 19710 RVA: 0x0020F114 File Offset: 0x0020D314
 		public void RefreshLingQiCountShow(bool show)
 		{
 			if (show)
@@ -308,22 +308,22 @@ namespace YSGame.Fight
 			}
 		}
 
-		// Token: 0x040055D8 RID: 21976
+		// Token: 0x04004C01 RID: 19457
 		public List<UIFightLingQiCacheSlot> SlotList;
 
-		// Token: 0x040055D9 RID: 21977
+		// Token: 0x04004C02 RID: 19458
 		public List<RectTransform> LingQiPointList;
 
-		// Token: 0x040055DA RID: 21978
+		// Token: 0x04004C03 RID: 19459
 		public GameObject Sheng;
 
-		// Token: 0x040055DB RID: 21979
+		// Token: 0x04004C04 RID: 19460
 		public GameObject Ke;
 
-		// Token: 0x040055DC RID: 21980
+		// Token: 0x04004C05 RID: 19461
 		private int nowSlotNum;
 
-		// Token: 0x040055DD RID: 21981
+		// Token: 0x04004C06 RID: 19462
 		public bool NowMoveSame;
 	}
 }

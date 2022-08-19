@@ -7,25 +7,29 @@ using UnityEngine.UI;
 
 namespace YSGame.Fight
 {
-	// Token: 0x02000DF7 RID: 3575
+	// Token: 0x02000ABB RID: 2747
 	public class UIFightAvatarStatus : MonoBehaviour
 	{
-		// Token: 0x06005649 RID: 22089 RVA: 0x0003DB20 File Offset: 0x0003BD20
+		// Token: 0x06004D00 RID: 19712 RVA: 0x0020F237 File Offset: 0x0020D437
 		private void Awake()
 		{
 			this.BuffPrefab = Resources.Load<GameObject>("FightPrefab/UIFightBuffItem");
 			Event.registerOut("UpdataBuff", this, "UpdateBuffEvent");
 		}
 
-		// Token: 0x0600564A RID: 22090 RVA: 0x0003DB43 File Offset: 0x0003BD43
+		// Token: 0x06004D01 RID: 19713 RVA: 0x0020F25A File Offset: 0x0020D45A
 		private void OnDestroy()
 		{
 			this.OnClear();
 		}
 
-		// Token: 0x0600564B RID: 22091 RVA: 0x0023FA9C File Offset: 0x0023DC9C
+		// Token: 0x06004D02 RID: 19714 RVA: 0x0020F264 File Offset: 0x0020D464
 		private void Update()
 		{
+			if (this.NoRefresh)
+			{
+				return;
+			}
 			this.UpdateStatus(null);
 			if (this.cd < 0f)
 			{
@@ -43,7 +47,7 @@ namespace YSGame.Fight
 			}
 		}
 
-		// Token: 0x0600564C RID: 22092 RVA: 0x0023FAF0 File Offset: 0x0023DCF0
+		// Token: 0x06004D03 RID: 19715 RVA: 0x0020F2C4 File Offset: 0x0020D4C4
 		public void Init(Avatar avatar)
 		{
 			this.Avatar = avatar;
@@ -56,7 +60,7 @@ namespace YSGame.Fight
 			this.HuaShenTrigger.SkillID = this.lingYuSkillID;
 		}
 
-		// Token: 0x0600564D RID: 22093 RVA: 0x0023FB80 File Offset: 0x0023DD80
+		// Token: 0x06004D04 RID: 19716 RVA: 0x0020F354 File Offset: 0x0020D554
 		private void UpdateStatus(MessageData message)
 		{
 			if (this.Avatar != null)
@@ -79,19 +83,19 @@ namespace YSGame.Fight
 			}
 		}
 
-		// Token: 0x0600564E RID: 22094 RVA: 0x0001429C File Offset: 0x0001249C
+		// Token: 0x06004D05 RID: 19717 RVA: 0x000826BE File Offset: 0x000808BE
 		public void OnClear()
 		{
 			Event.deregisterOut(this);
 		}
 
-		// Token: 0x0600564F RID: 22095 RVA: 0x0003DB4B File Offset: 0x0003BD4B
+		// Token: 0x06004D06 RID: 19718 RVA: 0x0020F46C File Offset: 0x0020D66C
 		public void UpdateBuffEvent()
 		{
 			this.needRefreshBuff = true;
 		}
 
-		// Token: 0x06005650 RID: 22096 RVA: 0x0023FC98 File Offset: 0x0023DE98
+		// Token: 0x06004D07 RID: 19719 RVA: 0x0020F478 File Offset: 0x0020D678
 		public void UpdateBuff2()
 		{
 			if (this.Avatar == null)
@@ -123,7 +127,7 @@ namespace YSGame.Fight
 			}
 		}
 
-		// Token: 0x06005651 RID: 22097 RVA: 0x0023FDAC File Offset: 0x0023DFAC
+		// Token: 0x06004D08 RID: 19720 RVA: 0x0020F58C File Offset: 0x0020D78C
 		public void UpdateBuff()
 		{
 			if (this.Avatar == null)
@@ -219,7 +223,7 @@ namespace YSGame.Fight
 			}
 		}
 
-		// Token: 0x06005652 RID: 22098 RVA: 0x00240168 File Offset: 0x0023E368
+		// Token: 0x06004D09 RID: 19721 RVA: 0x0020F948 File Offset: 0x0020DB48
 		private bool CheckBuffEquals(List<int> a, List<int> b)
 		{
 			if (a.Count != b.Count)
@@ -236,7 +240,7 @@ namespace YSGame.Fight
 			return true;
 		}
 
-		// Token: 0x06005653 RID: 22099 RVA: 0x002401AC File Offset: 0x0023E3AC
+		// Token: 0x06004D0A RID: 19722 RVA: 0x0020F98C File Offset: 0x0020DB8C
 		public void CreateBuffIcon(List<int> buff)
 		{
 			GameObject gameObject = Object.Instantiate<GameObject>(this.BuffPrefab);
@@ -297,7 +301,7 @@ namespace YSGame.Fight
 			gameObject.transform.localScale = new Vector3(1f, 1f, 1f);
 		}
 
-		// Token: 0x06005654 RID: 22100 RVA: 0x00240420 File Offset: 0x0023E620
+		// Token: 0x06004D0B RID: 19723 RVA: 0x0020FC00 File Offset: 0x0020DE00
 		private bool BuffIsHideBuff106(List<int> i)
 		{
 			JSONObject jsonobject = jsonData.instance.BuffJsonData[i[2].ToString()];
@@ -308,54 +312,57 @@ namespace YSGame.Fight
 			return true;
 		}
 
-		// Token: 0x040055E1 RID: 21985
+		// Token: 0x04004C0A RID: 19466
+		public bool NoRefresh;
+
+		// Token: 0x04004C0B RID: 19467
 		public Text NameText;
 
-		// Token: 0x040055E2 RID: 21986
+		// Token: 0x04004C0C RID: 19468
 		public Image LevelImage;
 
-		// Token: 0x040055E3 RID: 21987
+		// Token: 0x04004C0D RID: 19469
 		public Text LingQiText;
 
-		// Token: 0x040055E4 RID: 21988
+		// Token: 0x04004C0E RID: 19470
 		public Text LingQiText2;
 
-		// Token: 0x040055E5 RID: 21989
+		// Token: 0x04004C0F RID: 19471
 		public Text HPText;
 
-		// Token: 0x040055E6 RID: 21990
+		// Token: 0x04004C10 RID: 19472
 		public Image HPBar;
 
-		// Token: 0x040055E7 RID: 21991
+		// Token: 0x04004C11 RID: 19473
 		public RectTransform BuffList;
 
-		// Token: 0x040055E8 RID: 21992
+		// Token: 0x04004C12 RID: 19474
 		public UTooltipSkillTrigger HuaShenTrigger;
 
-		// Token: 0x040055E9 RID: 21993
+		// Token: 0x04004C13 RID: 19475
 		public UIFightBuffItem AvatarDaDaoBuff;
 
-		// Token: 0x040055EA RID: 21994
+		// Token: 0x04004C14 RID: 19476
 		[HideInInspector]
 		public Avatar Avatar;
 
-		// Token: 0x040055EB RID: 21995
+		// Token: 0x04004C15 RID: 19477
 		private GameObject BuffPrefab;
 
-		// Token: 0x040055EC RID: 21996
+		// Token: 0x04004C16 RID: 19478
 		public List<Sprite> JingJieSprites;
 
-		// Token: 0x040055ED RID: 21997
+		// Token: 0x04004C17 RID: 19479
 		[HideInInspector]
 		public int BuffCount;
 
-		// Token: 0x040055EE RID: 21998
+		// Token: 0x04004C18 RID: 19480
 		private int lingYuSkillID;
 
-		// Token: 0x040055EF RID: 21999
+		// Token: 0x04004C19 RID: 19481
 		private bool needRefreshBuff;
 
-		// Token: 0x040055F0 RID: 22000
+		// Token: 0x04004C1A RID: 19482
 		private float cd;
 	}
 }

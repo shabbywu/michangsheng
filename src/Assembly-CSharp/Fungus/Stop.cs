@@ -3,18 +3,18 @@ using UnityEngine;
 
 namespace Fungus
 {
-	// Token: 0x0200129E RID: 4766
+	// Token: 0x02000E4D RID: 3661
 	[CommandInfo("Flow", "Stop", "Stop executing the Block that contains this command.", 0)]
 	[AddComponentMenu("")]
 	public class Stop : Command
 	{
-		// Token: 0x06007383 RID: 29571 RVA: 0x0004ED07 File Offset: 0x0004CF07
+		// Token: 0x060066F5 RID: 26357 RVA: 0x0028863F File Offset: 0x0028683F
 		public override void OnEnter()
 		{
 			this.StopParentBlock();
 		}
 
-		// Token: 0x06007384 RID: 29572 RVA: 0x0004C5E0 File Offset: 0x0004A7E0
+		// Token: 0x060066F6 RID: 26358 RVA: 0x0027D3DB File Offset: 0x0027B5DB
 		public override Color GetButtonColor()
 		{
 			return new Color32(235, 191, 217, byte.MaxValue);

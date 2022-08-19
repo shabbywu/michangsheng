@@ -6,15 +6,15 @@ using UnityEngine.Audio;
 using UnityEngine.UI;
 using YSGame;
 
-// Token: 0x0200025F RID: 607
+// Token: 0x02000181 RID: 385
 public class AvatarInfoFile : MonoBehaviour
 {
-	// Token: 0x060012A5 RID: 4773 RVA: 0x000042DD File Offset: 0x000024DD
+	// Token: 0x06001053 RID: 4179 RVA: 0x00004095 File Offset: 0x00002295
 	private void Start()
 	{
 	}
 
-	// Token: 0x060012A6 RID: 4774 RVA: 0x00011B40 File Offset: 0x0000FD40
+	// Token: 0x06001054 RID: 4180 RVA: 0x0005FDA0 File Offset: 0x0005DFA0
 	private void Awake()
 	{
 		if (this.initFile)
@@ -24,19 +24,19 @@ public class AvatarInfoFile : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060012A7 RID: 4775 RVA: 0x00011B60 File Offset: 0x0000FD60
+	// Token: 0x06001055 RID: 4181 RVA: 0x0005FDC0 File Offset: 0x0005DFC0
 	private void InvokeShowSave()
 	{
 		base.transform.parent.Find("inventoryBtn/save").GetComponentInChildren<UIToggle>().value = true;
 	}
 
-	// Token: 0x060012A8 RID: 4776 RVA: 0x00011B82 File Offset: 0x0000FD82
+	// Token: 0x06001056 RID: 4182 RVA: 0x0005FDE2 File Offset: 0x0005DFE2
 	public void showUIPage()
 	{
 		base.gameObject.SetActive(true);
 	}
 
-	// Token: 0x060012A9 RID: 4777 RVA: 0x000AED80 File Offset: 0x000ACF80
+	// Token: 0x06001057 RID: 4183 RVA: 0x0005FDF0 File Offset: 0x0005DFF0
 	public void FirstShow()
 	{
 		if (PlayerPrefs.GetInt("NowPlayerFileAvatar") < 100)
@@ -53,13 +53,13 @@ public class AvatarInfoFile : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060012AA RID: 4778 RVA: 0x00011B90 File Offset: 0x0000FD90
+	// Token: 0x06001058 RID: 4184 RVA: 0x0005FE4D File Offset: 0x0005E04D
 	public void showConfig()
 	{
 		base.transform.parent.Find("inventoryBtn/config").GetComponentInChildren<UIToggle>().value = true;
 	}
 
-	// Token: 0x060012AB RID: 4779 RVA: 0x000AEDE0 File Offset: 0x000ACFE0
+	// Token: 0x06001059 RID: 4185 RVA: 0x0005FE70 File Offset: 0x0005E070
 	public void clearUiGrid()
 	{
 		foreach (object obj in this.UIGrid.transform)
@@ -68,7 +68,7 @@ public class AvatarInfoFile : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060012AC RID: 4780 RVA: 0x00011BB2 File Offset: 0x0000FDB2
+	// Token: 0x0600105A RID: 4186 RVA: 0x0005FED0 File Offset: 0x0005E0D0
 	public GameObject getInfoCell(int index, AvatarInfoCell.FileType type)
 	{
 		GameObject gameObject = this.UIGrid.transform.GetChild(index).gameObject;
@@ -76,7 +76,7 @@ public class AvatarInfoFile : MonoBehaviour
 		return gameObject;
 	}
 
-	// Token: 0x060012AD RID: 4781 RVA: 0x000AEE40 File Offset: 0x000AD040
+	// Token: 0x0600105B RID: 4187 RVA: 0x0005FEF4 File Offset: 0x0005E0F4
 	public void setInfoCell(GameObject infoCell, int avatarid, int i)
 	{
 		AvatarInfoCell component = infoCell.GetComponent<AvatarInfoCell>();
@@ -109,7 +109,7 @@ public class AvatarInfoFile : MonoBehaviour
 		component.index = i;
 	}
 
-	// Token: 0x060012AE RID: 4782 RVA: 0x000AEFA4 File Offset: 0x000AD1A4
+	// Token: 0x0600105C RID: 4188 RVA: 0x00060058 File Offset: 0x0005E258
 	public string getSaveFirstText(GameObject infoCell, int nowAvatarID, int i)
 	{
 		string savePath = Paths.GetSavePath();
@@ -156,7 +156,7 @@ public class AvatarInfoFile : MonoBehaviour
 		});
 	}
 
-	// Token: 0x060012AF RID: 4783 RVA: 0x000AF210 File Offset: 0x000AD410
+	// Token: 0x0600105D RID: 4189 RVA: 0x000602C4 File Offset: 0x0005E4C4
 	public void setInfoText(GameObject infoCell, int nowAvatarID, int i)
 	{
 		UILabel component = infoCell.transform.Find("saveinfo/Label").GetComponent<UILabel>();
@@ -170,7 +170,7 @@ public class AvatarInfoFile : MonoBehaviour
 		component2.text = "";
 	}
 
-	// Token: 0x060012B0 RID: 4784 RVA: 0x000AF2B4 File Offset: 0x000AD4B4
+	// Token: 0x0600105E RID: 4190 RVA: 0x00060368 File Offset: 0x0005E568
 	public void setMainMenuInfoText(GameObject infoCell, int nowAvatarID, int i)
 	{
 		Text component = infoCell.transform.Find("saveName").GetComponent<Text>();
@@ -179,7 +179,7 @@ public class AvatarInfoFile : MonoBehaviour
 		component2.text = YSSaveGame.GetString("AvatarSavetime" + Tools.instance.getSaveID(nowAvatarID, i), "");
 	}
 
-	// Token: 0x060012B1 RID: 4785 RVA: 0x000AF320 File Offset: 0x000AD520
+	// Token: 0x0600105F RID: 4191 RVA: 0x000603D4 File Offset: 0x0005E5D4
 	public void setMainMenuInfoCell(GameObject infoCell, int avatarid, int i)
 	{
 		AvatarInfoCell component = infoCell.GetComponent<AvatarInfoCell>();
@@ -193,7 +193,7 @@ public class AvatarInfoFile : MonoBehaviour
 		component.index = i;
 	}
 
-	// Token: 0x060012B2 RID: 4786 RVA: 0x000AF3A8 File Offset: 0x000AD5A8
+	// Token: 0x06001060 RID: 4192 RVA: 0x0006045C File Offset: 0x0005E65C
 	public void showSave()
 	{
 		for (int i = 0; i < 6; i++)
@@ -211,7 +211,7 @@ public class AvatarInfoFile : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060012B3 RID: 4787 RVA: 0x000AF424 File Offset: 0x000AD624
+	// Token: 0x06001061 RID: 4193 RVA: 0x000604D8 File Offset: 0x0005E6D8
 	public void showLoad()
 	{
 		for (int i = 0; i < 6; i++)
@@ -229,13 +229,13 @@ public class AvatarInfoFile : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060012B4 RID: 4788 RVA: 0x00011BD6 File Offset: 0x0000FDD6
+	// Token: 0x06001062 RID: 4194 RVA: 0x00060551 File Offset: 0x0005E751
 	public void escGame()
 	{
 		selectBox.instence.setChoice("是否确认退出游戏", new EventDelegate(new EventDelegate.Callback(Application.Quit)), null);
 	}
 
-	// Token: 0x060012B5 RID: 4789 RVA: 0x00011BF9 File Offset: 0x0000FDF9
+	// Token: 0x06001063 RID: 4195 RVA: 0x00060574 File Offset: 0x0005E774
 	public void goToHome()
 	{
 		selectBox.instence.setChoice("是否确认回到主界面", new EventDelegate(delegate()
@@ -247,7 +247,7 @@ public class AvatarInfoFile : MonoBehaviour
 		}), null);
 	}
 
-	// Token: 0x060012B6 RID: 4790 RVA: 0x000AF4A0 File Offset: 0x000AD6A0
+	// Token: 0x06001064 RID: 4196 RVA: 0x000605AC File Offset: 0x0005E7AC
 	public void showSet()
 	{
 		int num = 0;
@@ -263,7 +263,7 @@ public class AvatarInfoFile : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060012B7 RID: 4791 RVA: 0x000AF538 File Offset: 0x000AD738
+	// Token: 0x06001065 RID: 4197 RVA: 0x00060644 File Offset: 0x0005E844
 	public void yinYong()
 	{
 		int num = 0;
@@ -278,24 +278,24 @@ public class AvatarInfoFile : MonoBehaviour
 		MusicMag.instance.initAudio();
 	}
 
-	// Token: 0x04000EAE RID: 3758
+	// Token: 0x04000BD9 RID: 3033
 	public GameObject UIGrid;
 
-	// Token: 0x04000EAF RID: 3759
+	// Token: 0x04000BDA RID: 3034
 	public GameObject Temp;
 
-	// Token: 0x04000EB0 RID: 3760
+	// Token: 0x04000BDB RID: 3035
 	public List<GameObject> uilist = new List<GameObject>();
 
-	// Token: 0x04000EB1 RID: 3761
+	// Token: 0x04000BDC RID: 3036
 	public AudioMixer audioMixer;
 
-	// Token: 0x04000EB2 RID: 3762
+	// Token: 0x04000BDD RID: 3037
 	public bool initFile;
 
-	// Token: 0x04000EB3 RID: 3763
+	// Token: 0x04000BDE RID: 3038
 	public List<UIselect> uiselect = new List<UIselect>();
 
-	// Token: 0x04000EB4 RID: 3764
+	// Token: 0x04000BDF RID: 3039
 	public List<Vector2> fenbianlu = new List<Vector2>();
 }

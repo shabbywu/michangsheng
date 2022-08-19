@@ -2,12 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-// Token: 0x02000049 RID: 73
+// Token: 0x02000036 RID: 54
 [AddComponentMenu("NGUI/Examples/UI Item Storage")]
 public class UIItemStorage : MonoBehaviour
 {
-	// Token: 0x1700007E RID: 126
-	// (get) Token: 0x06000461 RID: 1121 RVA: 0x00007DF9 File Offset: 0x00005FF9
+	// Token: 0x17000072 RID: 114
+	// (get) Token: 0x06000419 RID: 1049 RVA: 0x00016DE2 File Offset: 0x00014FE2
 	public List<InvGameItem> items
 	{
 		get
@@ -20,7 +20,7 @@ public class UIItemStorage : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000462 RID: 1122 RVA: 0x00007E22 File Offset: 0x00006022
+	// Token: 0x0600041A RID: 1050 RVA: 0x00016E0B File Offset: 0x0001500B
 	public InvGameItem GetItem(int slot)
 	{
 		if (slot >= this.items.Count)
@@ -30,7 +30,7 @@ public class UIItemStorage : MonoBehaviour
 		return this.mItems[slot];
 	}
 
-	// Token: 0x06000463 RID: 1123 RVA: 0x00007E40 File Offset: 0x00006040
+	// Token: 0x0600041B RID: 1051 RVA: 0x00016E29 File Offset: 0x00015029
 	public InvGameItem Replace(int slot, InvGameItem item)
 	{
 		if (slot < this.maxItemCount)
@@ -42,7 +42,7 @@ public class UIItemStorage : MonoBehaviour
 		return item;
 	}
 
-	// Token: 0x06000464 RID: 1124 RVA: 0x0006E4A4 File Offset: 0x0006C6A4
+	// Token: 0x0600041C RID: 1052 RVA: 0x00016E50 File Offset: 0x00015050
 	private void Start()
 	{
 		if (this.template != null)
@@ -79,27 +79,27 @@ public class UIItemStorage : MonoBehaviour
 		}
 	}
 
-	// Token: 0x04000289 RID: 649
+	// Token: 0x04000243 RID: 579
 	public int maxItemCount = 8;
 
-	// Token: 0x0400028A RID: 650
+	// Token: 0x04000244 RID: 580
 	public int maxRows = 4;
 
-	// Token: 0x0400028B RID: 651
+	// Token: 0x04000245 RID: 581
 	public int maxColumns = 4;
 
-	// Token: 0x0400028C RID: 652
+	// Token: 0x04000246 RID: 582
 	public GameObject template;
 
-	// Token: 0x0400028D RID: 653
+	// Token: 0x04000247 RID: 583
 	public UIWidget background;
 
-	// Token: 0x0400028E RID: 654
+	// Token: 0x04000248 RID: 584
 	public int spacing = 128;
 
-	// Token: 0x0400028F RID: 655
+	// Token: 0x04000249 RID: 585
 	public int padding = 10;
 
-	// Token: 0x04000290 RID: 656
+	// Token: 0x0400024A RID: 586
 	private List<InvGameItem> mItems = new List<InvGameItem>();
 }

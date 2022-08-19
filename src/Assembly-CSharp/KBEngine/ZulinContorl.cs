@@ -2,16 +2,16 @@
 
 namespace KBEngine
 {
-	// Token: 0x02001054 RID: 4180
+	// Token: 0x02000C90 RID: 3216
 	public class ZulinContorl
 	{
-		// Token: 0x0600645A RID: 25690 RVA: 0x00045103 File Offset: 0x00043303
+		// Token: 0x0600599C RID: 22940 RVA: 0x00256682 File Offset: 0x00254882
 		public ZulinContorl(Entity avater)
 		{
 			this.entity = (Avatar)avater;
 		}
 
-		// Token: 0x0600645B RID: 25691 RVA: 0x002816F8 File Offset: 0x0027F8F8
+		// Token: 0x0600599D RID: 22941 RVA: 0x002566A4 File Offset: 0x002548A4
 		public JSONObject getKeZhan(string name)
 		{
 			if (!this.entity.ZuLin.HasField(name))
@@ -22,7 +22,7 @@ namespace KBEngine
 			return this.entity.ZuLin[name];
 		}
 
-		// Token: 0x0600645C RID: 25692 RVA: 0x00281760 File Offset: 0x0027F960
+		// Token: 0x0600599E RID: 22942 RVA: 0x0025670C File Offset: 0x0025490C
 		public DateTime getResidueTime(string name)
 		{
 			if (jsonData.instance.WuXianBiGuanJsonData.list.Find((JSONObject aa) => aa["SceneName"].str == name) != null)
@@ -32,20 +32,20 @@ namespace KBEngine
 			return DateTime.Parse(this.getKeZhan(name)[0].str);
 		}
 
-		// Token: 0x0600645D RID: 25693 RVA: 0x00045122 File Offset: 0x00043322
+		// Token: 0x0600599F RID: 22943 RVA: 0x0025676F File Offset: 0x0025496F
 		public static int GetTimeSum(DateTime time)
 		{
 			return (time.Year - 1) * 12 + time.Month - 1;
 		}
 
-		// Token: 0x0600645E RID: 25694 RVA: 0x002817C4 File Offset: 0x0027F9C4
+		// Token: 0x060059A0 RID: 22944 RVA: 0x00256788 File Offset: 0x00254988
 		public bool HasTime(string sName)
 		{
 			DateTime residueTime = this.getResidueTime(sName);
 			return (residueTime.Year - 1) * 365 + (residueTime.Month - 1) * 30 + (residueTime.Day - 1) > 0;
 		}
 
-		// Token: 0x0600645F RID: 25695 RVA: 0x00281804 File Offset: 0x0027FA04
+		// Token: 0x060059A1 RID: 22945 RVA: 0x002567C8 File Offset: 0x002549C8
 		public void addTime(int addday, int addMonth = 0, int Addyear = 0)
 		{
 			foreach (string name in this.entity.ZuLin.keys)
@@ -54,7 +54,7 @@ namespace KBEngine
 			}
 		}
 
-		// Token: 0x06006460 RID: 25696 RVA: 0x00281864 File Offset: 0x0027FA64
+		// Token: 0x060059A2 RID: 22946 RVA: 0x00256828 File Offset: 0x00254A28
 		public void KZReduceTime(string name, int addday, int addMonth, int Addyear)
 		{
 			JSONObject keZhan = this.getKeZhan(name);
@@ -68,23 +68,23 @@ namespace KBEngine
 			this.setJsonObject(keZhan, name, "0001-1-1");
 		}
 
-		// Token: 0x06006461 RID: 25697 RVA: 0x00281900 File Offset: 0x0027FB00
+		// Token: 0x060059A3 RID: 22947 RVA: 0x002568C4 File Offset: 0x00254AC4
 		public void KZAddTime(string name, int addday, int addMonth, int Addyear)
 		{
 			JSONObject keZhan = this.getKeZhan(name);
 			this.setJsonObject(keZhan, name, DateTime.Parse(keZhan[0].str).AddDays((double)addday).AddMonths(addMonth).AddYears(Addyear).ToString());
 		}
 
-		// Token: 0x06006462 RID: 25698 RVA: 0x0004513A File Offset: 0x0004333A
+		// Token: 0x060059A4 RID: 22948 RVA: 0x00256917 File Offset: 0x00254B17
 		private void setJsonObject(JSONObject json, string name, string time)
 		{
 			json.SetField(name, time);
 		}
 
-		// Token: 0x04005DD9 RID: 24025
+		// Token: 0x0400522C RID: 21036
 		public Avatar entity;
 
-		// Token: 0x04005DDA RID: 24026
+		// Token: 0x0400522D RID: 21037
 		public string kezhanLastScence = "";
 	}
 }

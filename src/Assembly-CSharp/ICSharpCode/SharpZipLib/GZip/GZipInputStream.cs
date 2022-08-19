@@ -6,20 +6,20 @@ using ICSharpCode.SharpZipLib.Zip.Compression.Streams;
 
 namespace ICSharpCode.SharpZipLib.GZip
 {
-	// Token: 0x02000817 RID: 2071
+	// Token: 0x0200056F RID: 1391
 	public class GZipInputStream : InflaterInputStream
 	{
-		// Token: 0x0600365A RID: 13914 RVA: 0x00027A1C File Offset: 0x00025C1C
+		// Token: 0x06002DE4 RID: 11748 RVA: 0x00150114 File Offset: 0x0014E314
 		public GZipInputStream(Stream baseInputStream) : this(baseInputStream, 4096)
 		{
 		}
 
-		// Token: 0x0600365B RID: 13915 RVA: 0x00027A2A File Offset: 0x00025C2A
+		// Token: 0x06002DE5 RID: 11749 RVA: 0x00150122 File Offset: 0x0014E322
 		public GZipInputStream(Stream baseInputStream, int size) : base(baseInputStream, new Inflater(true), size)
 		{
 		}
 
-		// Token: 0x0600365C RID: 13916 RVA: 0x0019B374 File Offset: 0x00199574
+		// Token: 0x06002DE6 RID: 11750 RVA: 0x00150134 File Offset: 0x0014E334
 		public override int Read(byte[] buffer, int offset, int count)
 		{
 			int num;
@@ -53,7 +53,7 @@ namespace ICSharpCode.SharpZipLib.GZip
 			return num;
 		}
 
-		// Token: 0x0600365D RID: 13917 RVA: 0x0019B420 File Offset: 0x00199620
+		// Token: 0x06002DE7 RID: 11751 RVA: 0x001501E0 File Offset: 0x0014E3E0
 		private bool ReadHeader()
 		{
 			this.crc = new Crc32();
@@ -183,7 +183,7 @@ namespace ICSharpCode.SharpZipLib.GZip
 			return true;
 		}
 
-		// Token: 0x0600365E RID: 13918 RVA: 0x0019B6C4 File Offset: 0x001998C4
+		// Token: 0x06002DE8 RID: 11752 RVA: 0x00150484 File Offset: 0x0014E684
 		private void ReadFooter()
 		{
 			byte[] array = new byte[8];
@@ -219,13 +219,13 @@ namespace ICSharpCode.SharpZipLib.GZip
 			this.completedLastBlock = true;
 		}
 
-		// Token: 0x040030EA RID: 12522
+		// Token: 0x040028B0 RID: 10416
 		protected Crc32 crc;
 
-		// Token: 0x040030EB RID: 12523
+		// Token: 0x040028B1 RID: 10417
 		private bool readGZIPHeader;
 
-		// Token: 0x040030EC RID: 12524
+		// Token: 0x040028B2 RID: 10418
 		private bool completedLastBlock;
 	}
 }

@@ -3,15 +3,15 @@ using UnityEngine;
 
 namespace Fungus
 {
-	// Token: 0x020012E0 RID: 4832
+	// Token: 0x02000E76 RID: 3702
 	[Serializable]
 	public class Line
 	{
-		// Token: 0x040066BF RID: 26303
+		// Token: 0x040058F7 RID: 22775
 		[SerializeField]
 		public string name;
 
-		// Token: 0x040066C0 RID: 26304
+		// Token: 0x040058F8 RID: 22776
 		[SerializeField]
 		public string text;
 	}

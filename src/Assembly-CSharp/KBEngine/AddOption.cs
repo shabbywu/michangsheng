@@ -5,22 +5,22 @@ using UnityEngine;
 
 namespace KBEngine
 {
-	// Token: 0x02000FF2 RID: 4082
+	// Token: 0x02000C67 RID: 3175
 	public class AddOption : MonoBehaviour
 	{
-		// Token: 0x060060C8 RID: 24776 RVA: 0x0004318F File Offset: 0x0004138F
+		// Token: 0x06005679 RID: 22137 RVA: 0x0023E5A2 File Offset: 0x0023C7A2
 		private void Awake()
 		{
 			this.AllMapShiJianOptionJsonData = jsonData.instance.AllMapShiJianOptionJsonData;
 			this.AllMapOptionJsonData = jsonData.instance.AllMapOptionJsonData;
 		}
 
-		// Token: 0x060060C9 RID: 24777 RVA: 0x000042DD File Offset: 0x000024DD
+		// Token: 0x0600567A RID: 22138 RVA: 0x00004095 File Offset: 0x00002295
 		private void Start()
 		{
 		}
 
-		// Token: 0x060060CA RID: 24778 RVA: 0x0026AF40 File Offset: 0x00269140
+		// Token: 0x0600567B RID: 22139 RVA: 0x0023E5C4 File Offset: 0x0023C7C4
 		public void addOption(int optionID)
 		{
 			if (Tools.getScreenName() == "AllMaps")
@@ -31,7 +31,7 @@ namespace KBEngine
 			JSONObject jsonobject = new JSONObject();
 			int key = int.Parse(Tools.getScreenName().Replace("F", ""));
 			jsonobject = jsonData.instance.FuBenJsonData[key][1][optionID.ToString()];
-			Flowchart component = (((int)jsonobject["optionID"].n != 0) ? (Object.Instantiate(Resources.Load("talkPrefab/OptionPrefab/Option" + (int)jsonobject["optionID"].n)) as GameObject) : (Object.Instantiate(Resources.Load("talkPrefab/OptionPrefab/OptionBase")) as GameObject)).transform.Find("FlowChat").GetComponent<Flowchart>();
+			Flowchart component = ((jsonobject["optionID"].I != 0) ? (Object.Instantiate(Resources.Load("talkPrefab/OptionPrefab/Option" + jsonobject["optionID"].I)) as GameObject) : (Object.Instantiate(Resources.Load("talkPrefab/OptionPrefab/OptionBase")) as GameObject)).transform.Find("FlowChat").GetComponent<Flowchart>();
 			Block block = component.FindBlock("addOption");
 			YSOpenOptions ysoption = this.getYSOption<YSOpenOptions>(block);
 			this.optionSet(ysoption, jsonobject);
@@ -48,7 +48,7 @@ namespace KBEngine
 			}
 		}
 
-		// Token: 0x060060CB RID: 24779 RVA: 0x0026B0EC File Offset: 0x002692EC
+		// Token: 0x0600567C RID: 22140 RVA: 0x0023E770 File Offset: 0x0023C970
 		public void addChoiceOtion(int choicID)
 		{
 			JSONObject jsonobject = new JSONObject();
@@ -92,7 +92,7 @@ namespace KBEngine
 			this.optionSetBtn(ysoption, "确定", 0, 1);
 		}
 
-		// Token: 0x060060CC RID: 24780 RVA: 0x0026B378 File Offset: 0x00269578
+		// Token: 0x0600567D RID: 22141 RVA: 0x0023E9FC File Offset: 0x0023CBFC
 		public void optionSet(YSOpenOptions ysOption, JSONObject json)
 		{
 			string str = json["EventName"].str;
@@ -100,14 +100,14 @@ namespace KBEngine
 			ysOption.Desc = Tools.instance.Code64ToString(json["desc"].str).Replace("\\n", "\n");
 		}
 
-		// Token: 0x060060CD RID: 24781 RVA: 0x000431B1 File Offset: 0x000413B1
+		// Token: 0x0600567E RID: 22142 RVA: 0x0023EA5A File Offset: 0x0023CC5A
 		public void optionSetBtn(YSOpenOptions ysOption, string name, int jump, int index)
 		{
 			ysOption.Optin[index] = Tools.instance.Code64ToString(name);
 			ysOption.OptinJump[index] = jump;
 		}
 
-		// Token: 0x060060CE RID: 24782 RVA: 0x0026B3D8 File Offset: 0x002695D8
+		// Token: 0x0600567F RID: 22143 RVA: 0x0023EA7C File Offset: 0x0023CC7C
 		public T getYSOption<T>(Block block) where T : Command
 		{
 			foreach (Command command in block.CommandList)
@@ -120,10 +120,10 @@ namespace KBEngine
 			return default(T);
 		}
 
-		// Token: 0x04005BE0 RID: 23520
+		// Token: 0x04005126 RID: 20774
 		public JSONObject AllMapShiJianOptionJsonData;
 
-		// Token: 0x04005BE1 RID: 23521
+		// Token: 0x04005127 RID: 20775
 		public JSONObject AllMapOptionJsonData;
 	}
 }

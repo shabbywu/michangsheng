@@ -4,17 +4,17 @@ using UnityEngine.EventSystems;
 
 namespace Fungus
 {
-	// Token: 0x020012C9 RID: 4809
+	// Token: 0x02000E6C RID: 3692
 	public class DialogInput : MonoBehaviour
 	{
-		// Token: 0x060074A2 RID: 29858 RVA: 0x0004F977 File Offset: 0x0004DB77
+		// Token: 0x060067F0 RID: 26608 RVA: 0x0028B5FE File Offset: 0x002897FE
 		protected virtual void Awake()
 		{
 			this.writer = base.GetComponent<Writer>();
 			this.CheckEventSystem();
 		}
 
-		// Token: 0x060074A3 RID: 29859 RVA: 0x002AE198 File Offset: 0x002AC398
+		// Token: 0x060067F1 RID: 26609 RVA: 0x0028B614 File Offset: 0x00289814
 		protected virtual void CheckEventSystem()
 		{
 			if (Object.FindObjectOfType<EventSystem>() == null)
@@ -27,7 +27,7 @@ namespace Fungus
 			}
 		}
 
-		// Token: 0x060074A4 RID: 29860 RVA: 0x002AE1D8 File Offset: 0x002AC3D8
+		// Token: 0x060067F2 RID: 26610 RVA: 0x0028B654 File Offset: 0x00289854
 		protected virtual void Update()
 		{
 			if (EventSystem.current == null)
@@ -78,13 +78,13 @@ namespace Fungus
 			}
 		}
 
-		// Token: 0x060074A5 RID: 29861 RVA: 0x0004F98B File Offset: 0x0004DB8B
+		// Token: 0x060067F3 RID: 26611 RVA: 0x0028B7B0 File Offset: 0x002899B0
 		public virtual void SetNextLineFlag()
 		{
 			this.nextLineInputFlag = true;
 		}
 
-		// Token: 0x060074A6 RID: 29862 RVA: 0x0004F994 File Offset: 0x0004DB94
+		// Token: 0x060067F4 RID: 26612 RVA: 0x0028B7B9 File Offset: 0x002899B9
 		public virtual void SetDialogClickedFlag()
 		{
 			if (this.ignoreClickTimer > 0f)
@@ -98,7 +98,7 @@ namespace Fungus
 			}
 		}
 
-		// Token: 0x060074A7 RID: 29863 RVA: 0x0004F9C0 File Offset: 0x0004DBC0
+		// Token: 0x060067F5 RID: 26613 RVA: 0x0028B7E5 File Offset: 0x002899E5
 		public virtual void SetButtonClickedFlag()
 		{
 			if (this.clickMode != ClickMode.Disabled)
@@ -107,39 +107,39 @@ namespace Fungus
 			}
 		}
 
-		// Token: 0x04006645 RID: 26181
+		// Token: 0x040058AD RID: 22701
 		[Tooltip("Click to advance story")]
 		[SerializeField]
 		protected ClickMode clickMode;
 
-		// Token: 0x04006646 RID: 26182
+		// Token: 0x040058AE RID: 22702
 		[Tooltip("Delay between consecutive clicks. Useful to prevent accidentally clicking through story.")]
 		[SerializeField]
 		protected float nextClickDelay;
 
-		// Token: 0x04006647 RID: 26183
+		// Token: 0x040058AF RID: 22703
 		[Tooltip("Allow holding Cancel to fast forward text")]
 		[SerializeField]
 		protected bool cancelEnabled = true;
 
-		// Token: 0x04006648 RID: 26184
+		// Token: 0x040058B0 RID: 22704
 		[Tooltip("Ignore input if a Menu dialog is currently active")]
 		[SerializeField]
 		protected bool ignoreMenuClicks = true;
 
-		// Token: 0x04006649 RID: 26185
+		// Token: 0x040058B1 RID: 22705
 		protected bool dialogClickedFlag;
 
-		// Token: 0x0400664A RID: 26186
+		// Token: 0x040058B2 RID: 22706
 		protected bool nextLineInputFlag;
 
-		// Token: 0x0400664B RID: 26187
+		// Token: 0x040058B3 RID: 22707
 		protected float ignoreClickTimer;
 
-		// Token: 0x0400664C RID: 26188
+		// Token: 0x040058B4 RID: 22708
 		protected StandaloneInputModule currentStandaloneInputModule;
 
-		// Token: 0x0400664D RID: 26189
+		// Token: 0x040058B5 RID: 22709
 		protected Writer writer;
 	}
 }

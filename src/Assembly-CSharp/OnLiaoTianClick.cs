@@ -2,12 +2,12 @@
 using Fungus;
 using UnityEngine;
 
-// Token: 0x02000378 RID: 888
+// Token: 0x0200025F RID: 607
 [EventHandlerInfo("NPCJiaoHu", "聊天按钮被点击", "聊天按钮被点击")]
 [AddComponentMenu("")]
 public class OnLiaoTianClick : Fungus.EventHandler
 {
-	// Token: 0x0600191E RID: 6430 RVA: 0x0001589D File Offset: 0x00013A9D
+	// Token: 0x0600166A RID: 5738 RVA: 0x0009744A File Offset: 0x0009564A
 	public virtual void Update()
 	{
 		if (UINPCJiaoHu.Inst != null && UINPCJiaoHu.Inst.IsLiaoTianClicked)

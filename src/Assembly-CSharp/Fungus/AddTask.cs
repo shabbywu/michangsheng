@@ -4,12 +4,12 @@ using UnityEngine;
 
 namespace Fungus
 {
-	// Token: 0x020013EB RID: 5099
+	// Token: 0x02000F35 RID: 3893
 	[CommandInfo("YSNew/Add", "AddTask", "增加任務", 0)]
 	[AddComponentMenu("")]
 	public class AddTask : Command
 	{
-		// Token: 0x06007C03 RID: 31747 RVA: 0x002C456C File Offset: 0x002C276C
+		// Token: 0x06006E18 RID: 28184 RVA: 0x002A4474 File Offset: 0x002A2674
 		public override void OnEnter()
 		{
 			Avatar player = Tools.instance.getPlayer();
@@ -23,18 +23,18 @@ namespace Fungus
 			this.Continue();
 		}
 
-		// Token: 0x06007C04 RID: 31748 RVA: 0x000113CF File Offset: 0x0000F5CF
+		// Token: 0x06006E19 RID: 28185 RVA: 0x0005E228 File Offset: 0x0005C428
 		public override Color GetButtonColor()
 		{
 			return new Color32(184, 210, 235, byte.MaxValue);
 		}
 
-		// Token: 0x04006A4E RID: 27214
+		// Token: 0x04005B7C RID: 23420
 		[Tooltip("增加的任务ID")]
 		[SerializeField]
 		protected int TaskID;
 
-		// Token: 0x04006A4F RID: 27215
+		// Token: 0x04005B7D RID: 23421
 		[Tooltip("是否条提示获得传闻弹框")]
 		[SerializeField]
 		protected bool showInfo = true;

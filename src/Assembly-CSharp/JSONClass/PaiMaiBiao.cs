@@ -3,10 +3,10 @@ using System.Collections.Generic;
 
 namespace JSONClass
 {
-	// Token: 0x02000C4C RID: 3148
+	// Token: 0x020008BE RID: 2238
 	public class PaiMaiBiao : IJSONClass
 	{
-		// Token: 0x06004C99 RID: 19609 RVA: 0x00205FB0 File Offset: 0x002041B0
+		// Token: 0x0600410B RID: 16651 RVA: 0x001BD4E4 File Offset: 0x001BB6E4
 		public static void InitDataDict()
 		{
 			foreach (JSONObject jsonobject in jsonData.instance.PaiMaiBiao.list)
@@ -55,72 +55,72 @@ namespace JSONClass
 			}
 		}
 
-		// Token: 0x06004C9A RID: 19610 RVA: 0x000042DD File Offset: 0x000024DD
+		// Token: 0x0600410C RID: 16652 RVA: 0x00004095 File Offset: 0x00002295
 		private static void OnInitFinish()
 		{
 		}
 
-		// Token: 0x04004B39 RID: 19257
+		// Token: 0x04003FE5 RID: 16357
 		public static Dictionary<int, PaiMaiBiao> DataDict = new Dictionary<int, PaiMaiBiao>();
 
-		// Token: 0x04004B3A RID: 19258
+		// Token: 0x04003FE6 RID: 16358
 		public static List<PaiMaiBiao> DataList = new List<PaiMaiBiao>();
 
-		// Token: 0x04004B3B RID: 19259
+		// Token: 0x04003FE7 RID: 16359
 		public static Action OnInitFinishAction = new Action(PaiMaiBiao.OnInitFinish);
 
-		// Token: 0x04004B3C RID: 19260
+		// Token: 0x04003FE8 RID: 16360
 		public int PaiMaiID;
 
-		// Token: 0x04004B3D RID: 19261
+		// Token: 0x04003FE9 RID: 16361
 		public int ItemNum;
 
-		// Token: 0x04004B3E RID: 19262
+		// Token: 0x04003FEA RID: 16362
 		public int Price;
 
-		// Token: 0x04004B3F RID: 19263
+		// Token: 0x04003FEB RID: 16363
 		public int RuChangFei;
 
-		// Token: 0x04004B40 RID: 19264
+		// Token: 0x04003FEC RID: 16364
 		public int circulation;
 
-		// Token: 0x04004B41 RID: 19265
+		// Token: 0x04003FED RID: 16365
 		public int paimaifenzu;
 
-		// Token: 0x04004B42 RID: 19266
+		// Token: 0x04003FEE RID: 16366
 		public int jimainum;
 
-		// Token: 0x04004B43 RID: 19267
+		// Token: 0x04003FEF RID: 16367
 		public int IsBuShuaXin;
 
-		// Token: 0x04004B44 RID: 19268
+		// Token: 0x04003FF0 RID: 16368
 		public int level;
 
-		// Token: 0x04004B45 RID: 19269
+		// Token: 0x04003FF1 RID: 16369
 		public string Name;
 
-		// Token: 0x04004B46 RID: 19270
+		// Token: 0x04003FF2 RID: 16370
 		public string ChangJing;
 
-		// Token: 0x04004B47 RID: 19271
+		// Token: 0x04003FF3 RID: 16371
 		public string StarTime;
 
-		// Token: 0x04004B48 RID: 19272
+		// Token: 0x04003FF4 RID: 16372
 		public string EndTime;
 
-		// Token: 0x04004B49 RID: 19273
+		// Token: 0x04003FF5 RID: 16373
 		public List<int> Type = new List<int>();
 
-		// Token: 0x04004B4A RID: 19274
+		// Token: 0x04003FF6 RID: 16374
 		public List<int> quality = new List<int>();
 
-		// Token: 0x04004B4B RID: 19275
+		// Token: 0x04003FF7 RID: 16375
 		public List<int> quanzhong1 = new List<int>();
 
-		// Token: 0x04004B4C RID: 19276
+		// Token: 0x04003FF8 RID: 16376
 		public List<int> guding = new List<int>();
 
-		// Token: 0x04004B4D RID: 19277
+		// Token: 0x04003FF9 RID: 16377
 		public List<int> quanzhong2 = new List<int>();
 	}
 }

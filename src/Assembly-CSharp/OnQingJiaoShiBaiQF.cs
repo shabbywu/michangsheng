@@ -2,12 +2,12 @@
 using Fungus;
 using UnityEngine;
 
-// Token: 0x0200037C RID: 892
+// Token: 0x02000263 RID: 611
 [EventHandlerInfo("NPCJiaoHu", "当请教失败(情分不够)", "当请教失败(情分不够)")]
 [AddComponentMenu("")]
 public class OnQingJiaoShiBaiQF : Fungus.EventHandler
 {
-	// Token: 0x06001926 RID: 6438 RVA: 0x0001595B File Offset: 0x00013B5B
+	// Token: 0x06001672 RID: 5746 RVA: 0x00097508 File Offset: 0x00095708
 	public virtual void Update()
 	{
 		if (UINPCJiaoHu.Inst != null && UINPCJiaoHu.Inst.IsQingJiaoShiBaiQF)

@@ -5,15 +5,15 @@ using KBEngine;
 using UnityEngine;
 using UnityEngine.UI;
 
-// Token: 0x02000625 RID: 1573
+// Token: 0x02000469 RID: 1129
 public class showCaiLiaoImage : MonoBehaviour
 {
-	// Token: 0x06002719 RID: 10009 RVA: 0x000042DD File Offset: 0x000024DD
+	// Token: 0x06002363 RID: 9059 RVA: 0x00004095 File Offset: 0x00002295
 	private void Start()
 	{
 	}
 
-	// Token: 0x0600271A RID: 10010 RVA: 0x001321A8 File Offset: 0x001303A8
+	// Token: 0x06002364 RID: 9060 RVA: 0x000F2020 File Offset: 0x000F0220
 	public List<int> getChandi(int itemID)
 	{
 		List<int> list = new List<int>();
@@ -30,7 +30,7 @@ public class showCaiLiaoImage : MonoBehaviour
 		return list;
 	}
 
-	// Token: 0x0600271B RID: 10011 RVA: 0x0013225C File Offset: 0x0013045C
+	// Token: 0x06002365 RID: 9061 RVA: 0x000F20D4 File Offset: 0x000F02D4
 	public List<string> getChanDiString(List<int> changdi)
 	{
 		List<string> list = new List<string>();
@@ -44,7 +44,7 @@ public class showCaiLiaoImage : MonoBehaviour
 		return list;
 	}
 
-	// Token: 0x0600271C RID: 10012 RVA: 0x00132304 File Offset: 0x00130504
+	// Token: 0x06002366 RID: 9062 RVA: 0x000F217C File Offset: 0x000F037C
 	public void Click()
 	{
 		Text component = this.TuJianPlan.transform.Find("name").GetComponent<Text>();
@@ -108,17 +108,17 @@ public class showCaiLiaoImage : MonoBehaviour
 		text5.text += (player.GetHasYaoYinShuXin(this.ItemID, jsonobject["quality"].I) ? liDanLeiXinStr3 : "<color=#c94011>未知</color>");
 	}
 
-	// Token: 0x0600271D RID: 10013 RVA: 0x000042DD File Offset: 0x000024DD
+	// Token: 0x06002367 RID: 9063 RVA: 0x00004095 File Offset: 0x00002295
 	private void Update()
 	{
 	}
 
-	// Token: 0x0400213E RID: 8510
+	// Token: 0x04001C69 RID: 7273
 	public int ItemID = -1;
 
-	// Token: 0x0400213F RID: 8511
+	// Token: 0x04001C6A RID: 7274
 	public Text TextName;
 
-	// Token: 0x04002140 RID: 8512
+	// Token: 0x04001C6B RID: 7275
 	public GameObject TuJianPlan;
 }

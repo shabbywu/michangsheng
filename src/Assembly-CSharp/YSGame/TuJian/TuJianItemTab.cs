@@ -5,12 +5,12 @@ using UnityEngine.UI;
 
 namespace YSGame.TuJian
 {
-	// Token: 0x02000DEB RID: 3563
+	// Token: 0x02000AAE RID: 2734
 	public class TuJianItemTab : TuJianTab
 	{
-		// Token: 0x17000803 RID: 2051
-		// (get) Token: 0x060055F3 RID: 22003 RVA: 0x0003D7E6 File Offset: 0x0003B9E6
-		// (set) Token: 0x060055F4 RID: 22004 RVA: 0x0003D7EE File Offset: 0x0003B9EE
+		// Token: 0x170005DA RID: 1498
+		// (get) Token: 0x06004CA6 RID: 19622 RVA: 0x0020C883 File Offset: 0x0020AA83
+		// (set) Token: 0x06004CA7 RID: 19623 RVA: 0x0020C88B File Offset: 0x0020AA8B
 		private int NowPanelID
 		{
 			get
@@ -29,7 +29,7 @@ namespace YSGame.TuJian
 			}
 		}
 
-		// Token: 0x060055F5 RID: 22005 RVA: 0x0023D740 File Offset: 0x0023B940
+		// Token: 0x06004CA8 RID: 19624 RVA: 0x0020C8B8 File Offset: 0x0020AAB8
 		public override void Awake()
 		{
 			TuJianItemTab.Inst = this;
@@ -128,20 +128,20 @@ namespace YSGame.TuJian
 			base.Awake();
 		}
 
-		// Token: 0x060055F6 RID: 22006 RVA: 0x0003D819 File Offset: 0x0003BA19
+		// Token: 0x06004CA9 RID: 19625 RVA: 0x0020CB7F File Offset: 0x0020AD7F
 		public override void Show()
 		{
 			base.Show();
 			this.RefreshPanel(false);
 		}
 
-		// Token: 0x060055F7 RID: 22007 RVA: 0x0003D828 File Offset: 0x0003BA28
+		// Token: 0x06004CAA RID: 19626 RVA: 0x0020CB8E File Offset: 0x0020AD8E
 		public override void Hide()
 		{
 			base.Hide();
 		}
 
-		// Token: 0x060055F8 RID: 22008 RVA: 0x0023DA08 File Offset: 0x0023BC08
+		// Token: 0x06004CAB RID: 19627 RVA: 0x0020CB98 File Offset: 0x0020AD98
 		public void SetDropdown(int pinJie, int shuXing)
 		{
 			if (this.nowPinJieDropdownType != pinJie)
@@ -178,7 +178,7 @@ namespace YSGame.TuJian
 			}
 		}
 
-		// Token: 0x060055F9 RID: 22009 RVA: 0x0023DAF8 File Offset: 0x0023BCF8
+		// Token: 0x06004CAC RID: 19628 RVA: 0x0020CC88 File Offset: 0x0020AE88
 		public override void OnHyperlink(int[] args)
 		{
 			base.OnHyperlink(args);
@@ -189,14 +189,14 @@ namespace YSGame.TuJian
 			this.FilterSSV.ResetToTopByHyperlink();
 		}
 
-		// Token: 0x060055FA RID: 22010 RVA: 0x0003D830 File Offset: 0x0003BA30
+		// Token: 0x06004CAD RID: 19629 RVA: 0x0020CCDA File Offset: 0x0020AEDA
 		public override void OnButtonClick()
 		{
 			base.OnButtonClick();
 			this.RefreshPanel(false);
 		}
 
-		// Token: 0x060055FB RID: 22011 RVA: 0x0023DB4C File Offset: 0x0023BD4C
+		// Token: 0x06004CAE RID: 19630 RVA: 0x0020CCEC File Offset: 0x0020AEEC
 		public override void RefreshPanel(bool isHyperLink = false)
 		{
 			if (this.NowPanelID != this.TypeSSV.NowSelectID)
@@ -218,66 +218,66 @@ namespace YSGame.TuJian
 			}
 		}
 
-		// Token: 0x04005597 RID: 21911
+		// Token: 0x04004BB9 RID: 19385
 		[HideInInspector]
 		public static TuJianItemTab Inst;
 
-		// Token: 0x04005598 RID: 21912
+		// Token: 0x04004BBA RID: 19386
 		private MiShuInfoPanel MiShuInfoPanel;
 
-		// Token: 0x04005599 RID: 21913
+		// Token: 0x04004BBB RID: 19387
 		private CaoYaoInfoPanel CaoYaoInfoPanel;
 
-		// Token: 0x0400559A RID: 21914
+		// Token: 0x04004BBC RID: 19388
 		private GongFaInfoPanel GongFaInfoPanel;
 
-		// Token: 0x0400559B RID: 21915
+		// Token: 0x04004BBD RID: 19389
 		private DanYaoInfoPanel DanYaoInfoPanel;
 
-		// Token: 0x0400559C RID: 21916
+		// Token: 0x04004BBE RID: 19390
 		private YaoShouInfoPanel YaoShouInfoPanel;
 
-		// Token: 0x0400559D RID: 21917
+		// Token: 0x04004BBF RID: 19391
 		private ShenTongInfoPanel ShenTongInfoPanel;
 
-		// Token: 0x0400559E RID: 21918
+		// Token: 0x04004BC0 RID: 19392
 		private KuangShiInfoPanel KuangShiInfoPanel;
 
-		// Token: 0x0400559F RID: 21919
+		// Token: 0x04004BC1 RID: 19393
 		private YaoShouCaiLiaoInfoPanel YaoShouCaiLiaoInfoPanel;
 
-		// Token: 0x040055A0 RID: 21920
+		// Token: 0x04004BC2 RID: 19394
 		private GameObject ZheZhaoDown;
 
-		// Token: 0x040055A1 RID: 21921
+		// Token: 0x04004BC3 RID: 19395
 		[HideInInspector]
 		public Dropdown PinJieDropdown;
 
-		// Token: 0x040055A2 RID: 21922
+		// Token: 0x04004BC4 RID: 19396
 		[HideInInspector]
 		public Dropdown ShuXingDropdown;
 
-		// Token: 0x040055A3 RID: 21923
+		// Token: 0x04004BC5 RID: 19397
 		private Dictionary<int, InfoPanelBase> PanelDict = new Dictionary<int, InfoPanelBase>();
 
-		// Token: 0x040055A4 RID: 21924
+		// Token: 0x04004BC6 RID: 19398
 		[HideInInspector]
 		public SuperScrollView TypeSSV;
 
-		// Token: 0x040055A5 RID: 21925
+		// Token: 0x04004BC7 RID: 19399
 		[HideInInspector]
 		public SuperScrollView FilterSSV;
 
-		// Token: 0x040055A6 RID: 21926
+		// Token: 0x04004BC8 RID: 19400
 		private int nowPanelID = -1;
 
-		// Token: 0x040055A7 RID: 21927
+		// Token: 0x04004BC9 RID: 19401
 		private int nowPinJieDropdownType = -1;
 
-		// Token: 0x040055A8 RID: 21928
+		// Token: 0x04004BCA RID: 19402
 		private int nowShuXingDropdownTyp = -1;
 
-		// Token: 0x040055A9 RID: 21929
+		// Token: 0x04004BCB RID: 19403
 		private Dictionary<int, List<string>> options = new Dictionary<int, List<string>>
 		{
 			{

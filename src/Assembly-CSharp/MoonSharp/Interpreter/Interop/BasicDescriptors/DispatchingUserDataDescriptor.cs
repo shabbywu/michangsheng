@@ -6,25 +6,25 @@ using MoonSharp.Interpreter.Interop.Converters;
 
 namespace MoonSharp.Interpreter.Interop.BasicDescriptors
 {
-	// Token: 0x02001149 RID: 4425
+	// Token: 0x02000D3F RID: 3391
 	public abstract class DispatchingUserDataDescriptor : IUserDataDescriptor, IOptimizableDescriptor
 	{
-		// Token: 0x170009C1 RID: 2497
-		// (get) Token: 0x06006B59 RID: 27481 RVA: 0x00049242 File Offset: 0x00047442
-		// (set) Token: 0x06006B5A RID: 27482 RVA: 0x0004924A File Offset: 0x0004744A
+		// Token: 0x17000764 RID: 1892
+		// (get) Token: 0x06005F7D RID: 24445 RVA: 0x0026BE64 File Offset: 0x0026A064
+		// (set) Token: 0x06005F7E RID: 24446 RVA: 0x0026BE6C File Offset: 0x0026A06C
 		public string Name { get; private set; }
 
-		// Token: 0x170009C2 RID: 2498
-		// (get) Token: 0x06006B5B RID: 27483 RVA: 0x00049253 File Offset: 0x00047453
-		// (set) Token: 0x06006B5C RID: 27484 RVA: 0x0004925B File Offset: 0x0004745B
+		// Token: 0x17000765 RID: 1893
+		// (get) Token: 0x06005F7F RID: 24447 RVA: 0x0026BE75 File Offset: 0x0026A075
+		// (set) Token: 0x06005F80 RID: 24448 RVA: 0x0026BE7D File Offset: 0x0026A07D
 		public Type Type { get; private set; }
 
-		// Token: 0x170009C3 RID: 2499
-		// (get) Token: 0x06006B5D RID: 27485 RVA: 0x00049264 File Offset: 0x00047464
-		// (set) Token: 0x06006B5E RID: 27486 RVA: 0x0004926C File Offset: 0x0004746C
+		// Token: 0x17000766 RID: 1894
+		// (get) Token: 0x06005F81 RID: 24449 RVA: 0x0026BE86 File Offset: 0x0026A086
+		// (set) Token: 0x06005F82 RID: 24450 RVA: 0x0026BE8E File Offset: 0x0026A08E
 		public string FriendlyName { get; private set; }
 
-		// Token: 0x06006B5F RID: 27487 RVA: 0x00293C84 File Offset: 0x00291E84
+		// Token: 0x06005F83 RID: 24451 RVA: 0x0026BE98 File Offset: 0x0026A098
 		protected DispatchingUserDataDescriptor(Type type, string friendlyName = null)
 		{
 			this.Type = type;
@@ -32,7 +32,7 @@ namespace MoonSharp.Interpreter.Interop.BasicDescriptors
 			this.FriendlyName = (friendlyName ?? type.Name);
 		}
 
-		// Token: 0x06006B60 RID: 27488 RVA: 0x00049275 File Offset: 0x00047475
+		// Token: 0x06005F84 RID: 24452 RVA: 0x0026BEE5 File Offset: 0x0026A0E5
 		public void AddMetaMember(string name, IMemberDescriptor desc)
 		{
 			if (desc != null)
@@ -41,14 +41,14 @@ namespace MoonSharp.Interpreter.Interop.BasicDescriptors
 			}
 		}
 
-		// Token: 0x06006B61 RID: 27489 RVA: 0x00293CD4 File Offset: 0x00291ED4
+		// Token: 0x06005F85 RID: 24453 RVA: 0x0026BEF8 File Offset: 0x0026A0F8
 		public void AddDynValue(string name, DynValue value)
 		{
 			DynValueMemberDescriptor desc = new DynValueMemberDescriptor(name, value);
 			this.AddMemberTo(this.m_Members, name, desc);
 		}
 
-		// Token: 0x06006B62 RID: 27490 RVA: 0x00049288 File Offset: 0x00047488
+		// Token: 0x06005F86 RID: 24454 RVA: 0x0026BF1B File Offset: 0x0026A11B
 		public void AddMember(string name, IMemberDescriptor desc)
 		{
 			if (desc != null)
@@ -57,8 +57,8 @@ namespace MoonSharp.Interpreter.Interop.BasicDescriptors
 			}
 		}
 
-		// Token: 0x170009C4 RID: 2500
-		// (get) Token: 0x06006B63 RID: 27491 RVA: 0x0004929B File Offset: 0x0004749B
+		// Token: 0x17000767 RID: 1895
+		// (get) Token: 0x06005F87 RID: 24455 RVA: 0x0026BF2E File Offset: 0x0026A12E
 		public IEnumerable<string> MemberNames
 		{
 			get
@@ -67,8 +67,8 @@ namespace MoonSharp.Interpreter.Interop.BasicDescriptors
 			}
 		}
 
-		// Token: 0x170009C5 RID: 2501
-		// (get) Token: 0x06006B64 RID: 27492 RVA: 0x000492A8 File Offset: 0x000474A8
+		// Token: 0x17000768 RID: 1896
+		// (get) Token: 0x06005F88 RID: 24456 RVA: 0x0026BF3B File Offset: 0x0026A13B
 		public IEnumerable<KeyValuePair<string, IMemberDescriptor>> Members
 		{
 			get
@@ -77,20 +77,20 @@ namespace MoonSharp.Interpreter.Interop.BasicDescriptors
 			}
 		}
 
-		// Token: 0x06006B65 RID: 27493 RVA: 0x000492B0 File Offset: 0x000474B0
+		// Token: 0x06005F89 RID: 24457 RVA: 0x0026BF43 File Offset: 0x0026A143
 		public IMemberDescriptor FindMember(string memberName)
 		{
 			return this.m_Members.GetOrDefault(memberName);
 		}
 
-		// Token: 0x06006B66 RID: 27494 RVA: 0x000492BE File Offset: 0x000474BE
+		// Token: 0x06005F8A RID: 24458 RVA: 0x0026BF51 File Offset: 0x0026A151
 		public void RemoveMember(string memberName)
 		{
 			this.m_Members.Remove(memberName);
 		}
 
-		// Token: 0x170009C6 RID: 2502
-		// (get) Token: 0x06006B67 RID: 27495 RVA: 0x000492CD File Offset: 0x000474CD
+		// Token: 0x17000769 RID: 1897
+		// (get) Token: 0x06005F8B RID: 24459 RVA: 0x0026BF60 File Offset: 0x0026A160
 		public IEnumerable<string> MetaMemberNames
 		{
 			get
@@ -99,8 +99,8 @@ namespace MoonSharp.Interpreter.Interop.BasicDescriptors
 			}
 		}
 
-		// Token: 0x170009C7 RID: 2503
-		// (get) Token: 0x06006B68 RID: 27496 RVA: 0x000492DA File Offset: 0x000474DA
+		// Token: 0x1700076A RID: 1898
+		// (get) Token: 0x06005F8C RID: 24460 RVA: 0x0026BF6D File Offset: 0x0026A16D
 		public IEnumerable<KeyValuePair<string, IMemberDescriptor>> MetaMembers
 		{
 			get
@@ -109,19 +109,19 @@ namespace MoonSharp.Interpreter.Interop.BasicDescriptors
 			}
 		}
 
-		// Token: 0x06006B69 RID: 27497 RVA: 0x000492E2 File Offset: 0x000474E2
+		// Token: 0x06005F8D RID: 24461 RVA: 0x0026BF75 File Offset: 0x0026A175
 		public IMemberDescriptor FindMetaMember(string memberName)
 		{
 			return this.m_MetaMembers.GetOrDefault(memberName);
 		}
 
-		// Token: 0x06006B6A RID: 27498 RVA: 0x000492F0 File Offset: 0x000474F0
+		// Token: 0x06005F8E RID: 24462 RVA: 0x0026BF83 File Offset: 0x0026A183
 		public void RemoveMetaMember(string memberName)
 		{
 			this.m_MetaMembers.Remove(memberName);
 		}
 
-		// Token: 0x06006B6B RID: 27499 RVA: 0x00293CF8 File Offset: 0x00291EF8
+		// Token: 0x06005F8F RID: 24463 RVA: 0x0026BF94 File Offset: 0x0026A194
 		private void AddMemberTo(Dictionary<string, IMemberDescriptor> members, string name, IMemberDescriptor desc)
 		{
 			IOverloadableMemberDescriptor overloadableMemberDescriptor = desc as IOverloadableMemberDescriptor;
@@ -151,7 +151,7 @@ namespace MoonSharp.Interpreter.Interop.BasicDescriptors
 			}
 		}
 
-		// Token: 0x06006B6C RID: 27500 RVA: 0x00293D90 File Offset: 0x00291F90
+		// Token: 0x06005F90 RID: 24464 RVA: 0x0026C02C File Offset: 0x0026A22C
 		public virtual DynValue Index(Script script, object obj, DynValue index, bool isDirectIndexing)
 		{
 			if (!isDirectIndexing)
@@ -200,7 +200,7 @@ namespace MoonSharp.Interpreter.Interop.BasicDescriptors
 			return dynValue;
 		}
 
-		// Token: 0x06006B6D RID: 27501 RVA: 0x00293EA8 File Offset: 0x002920A8
+		// Token: 0x06005F91 RID: 24465 RVA: 0x0026C144 File Offset: 0x0026A344
 		private DynValue TryIndexOnExtMethod(Script script, object obj, string indexName)
 		{
 			List<IOverloadableMemberDescriptor> extensionMethodsByNameAndType = UserData.GetExtensionMethodsByNameAndType(indexName, this.Type);
@@ -214,19 +214,19 @@ namespace MoonSharp.Interpreter.Interop.BasicDescriptors
 			return null;
 		}
 
-		// Token: 0x06006B6E RID: 27502 RVA: 0x000492FF File Offset: 0x000474FF
+		// Token: 0x06005F92 RID: 24466 RVA: 0x0026C1A0 File Offset: 0x0026A3A0
 		public bool HasMember(string exactName)
 		{
 			return this.m_Members.ContainsKey(exactName);
 		}
 
-		// Token: 0x06006B6F RID: 27503 RVA: 0x0004930D File Offset: 0x0004750D
+		// Token: 0x06005F93 RID: 24467 RVA: 0x0026C1AE File Offset: 0x0026A3AE
 		public bool HasMetaMember(string exactName)
 		{
 			return this.m_MetaMembers.ContainsKey(exactName);
 		}
 
-		// Token: 0x06006B70 RID: 27504 RVA: 0x00293F04 File Offset: 0x00292104
+		// Token: 0x06005F94 RID: 24468 RVA: 0x0026C1BC File Offset: 0x0026A3BC
 		protected virtual DynValue TryIndex(Script script, object obj, string indexName)
 		{
 			IMemberDescriptor memberDescriptor;
@@ -237,7 +237,7 @@ namespace MoonSharp.Interpreter.Interop.BasicDescriptors
 			return null;
 		}
 
-		// Token: 0x06006B71 RID: 27505 RVA: 0x00293F2C File Offset: 0x0029212C
+		// Token: 0x06005F95 RID: 24469 RVA: 0x0026C1E4 File Offset: 0x0026A3E4
 		public virtual bool SetIndex(Script script, object obj, DynValue index, DynValue value, bool isDirectIndexing)
 		{
 			if (!isDirectIndexing)
@@ -270,7 +270,7 @@ namespace MoonSharp.Interpreter.Interop.BasicDescriptors
 			return flag;
 		}
 
-		// Token: 0x06006B72 RID: 27506 RVA: 0x00293FDC File Offset: 0x002921DC
+		// Token: 0x06005F96 RID: 24470 RVA: 0x0026C294 File Offset: 0x0026A494
 		protected virtual bool TrySetIndex(Script script, object obj, string indexName, DynValue value)
 		{
 			IMemberDescriptor orDefault = this.m_Members.GetOrDefault(indexName);
@@ -282,7 +282,7 @@ namespace MoonSharp.Interpreter.Interop.BasicDescriptors
 			return false;
 		}
 
-		// Token: 0x06006B73 RID: 27507 RVA: 0x00294008 File Offset: 0x00292208
+		// Token: 0x06005F97 RID: 24471 RVA: 0x0026C2C0 File Offset: 0x0026A4C0
 		void IOptimizableDescriptor.Optimize()
 		{
 			foreach (IOptimizableDescriptor optimizableDescriptor in this.m_MetaMembers.Values.OfType<IOptimizableDescriptor>())
@@ -295,19 +295,19 @@ namespace MoonSharp.Interpreter.Interop.BasicDescriptors
 			}
 		}
 
-		// Token: 0x06006B74 RID: 27508 RVA: 0x0004931B File Offset: 0x0004751B
+		// Token: 0x06005F98 RID: 24472 RVA: 0x0026C358 File Offset: 0x0026A558
 		protected static string Camelify(string name)
 		{
 			return DescriptorHelpers.Camelify(name);
 		}
 
-		// Token: 0x06006B75 RID: 27509 RVA: 0x00049323 File Offset: 0x00047523
+		// Token: 0x06005F99 RID: 24473 RVA: 0x0026C360 File Offset: 0x0026A560
 		protected static string UpperFirstLetter(string name)
 		{
 			return DescriptorHelpers.UpperFirstLetter(name);
 		}
 
-		// Token: 0x06006B76 RID: 27510 RVA: 0x00047E8F File Offset: 0x0004608F
+		// Token: 0x06005F9A RID: 24474 RVA: 0x00263CC0 File Offset: 0x00261EC0
 		public virtual string AsString(object obj)
 		{
 			if (obj == null)
@@ -317,7 +317,7 @@ namespace MoonSharp.Interpreter.Interop.BasicDescriptors
 			return obj.ToString();
 		}
 
-		// Token: 0x06006B77 RID: 27511 RVA: 0x002940A0 File Offset: 0x002922A0
+		// Token: 0x06005F9B RID: 24475 RVA: 0x0026C368 File Offset: 0x0026A568
 		protected virtual DynValue ExecuteIndexer(IMemberDescriptor mdesc, Script script, object obj, DynValue index, DynValue value)
 		{
 			IList<DynValue> list;
@@ -362,7 +362,7 @@ namespace MoonSharp.Interpreter.Interop.BasicDescriptors
 			return value2.Callback.ClrCallback(arg2, arg);
 		}
 
-		// Token: 0x06006B78 RID: 27512 RVA: 0x0029415C File Offset: 0x0029235C
+		// Token: 0x06005F9C RID: 24476 RVA: 0x0026C424 File Offset: 0x0026A624
 		public virtual DynValue MetaIndex(Script script, object obj, string metaname)
 		{
 			IMemberDescriptor orDefault = this.m_MetaMembers.GetOrDefault(metaname);
@@ -477,7 +477,7 @@ namespace MoonSharp.Interpreter.Interop.BasicDescriptors
 			return null;
 		}
 
-		// Token: 0x06006B79 RID: 27513 RVA: 0x002943F0 File Offset: 0x002925F0
+		// Token: 0x06005F9D RID: 24477 RVA: 0x0026C6B8 File Offset: 0x0026A8B8
 		private int PerformComparison(object obj, object p1, object p2)
 		{
 			IComparable comparable = (IComparable)obj;
@@ -495,7 +495,7 @@ namespace MoonSharp.Interpreter.Interop.BasicDescriptors
 			throw new InternalErrorException("unexpected case");
 		}
 
-		// Token: 0x06006B7A RID: 27514 RVA: 0x0029442C File Offset: 0x0029262C
+		// Token: 0x06005F9E RID: 24478 RVA: 0x0026C6F4 File Offset: 0x0026A8F4
 		private DynValue MultiDispatchLessThanOrEqual(Script script, object obj)
 		{
 			if (obj is IComparable)
@@ -505,7 +505,7 @@ namespace MoonSharp.Interpreter.Interop.BasicDescriptors
 			return null;
 		}
 
-		// Token: 0x06006B7B RID: 27515 RVA: 0x00294470 File Offset: 0x00292670
+		// Token: 0x06005F9F RID: 24479 RVA: 0x0026C738 File Offset: 0x0026A938
 		private DynValue MultiDispatchLessThan(Script script, object obj)
 		{
 			if (obj is IComparable)
@@ -515,7 +515,7 @@ namespace MoonSharp.Interpreter.Interop.BasicDescriptors
 			return null;
 		}
 
-		// Token: 0x06006B7C RID: 27516 RVA: 0x002944B4 File Offset: 0x002926B4
+		// Token: 0x06005FA0 RID: 24480 RVA: 0x0026C77C File Offset: 0x0026A97C
 		private DynValue TryDispatchLength(Script script, object obj)
 		{
 			if (obj == null)
@@ -535,13 +535,13 @@ namespace MoonSharp.Interpreter.Interop.BasicDescriptors
 			return null;
 		}
 
-		// Token: 0x06006B7D RID: 27517 RVA: 0x0004932B File Offset: 0x0004752B
+		// Token: 0x06005FA1 RID: 24481 RVA: 0x0026C7E9 File Offset: 0x0026A9E9
 		private DynValue MultiDispatchEqual(Script script, object obj)
 		{
 			return DynValue.NewCallback((ScriptExecutionContext context, CallbackArguments args) => DynValue.NewBoolean(this.CheckEquality(obj, args[0].ToObject(), args[1].ToObject())), null);
 		}
 
-		// Token: 0x06006B7E RID: 27518 RVA: 0x00049351 File Offset: 0x00047551
+		// Token: 0x06005FA2 RID: 24482 RVA: 0x0026C80F File Offset: 0x0026AA0F
 		private bool CheckEquality(object obj, object p1, object p2)
 		{
 			if (obj != null)
@@ -562,7 +562,7 @@ namespace MoonSharp.Interpreter.Interop.BasicDescriptors
 			return p2 == null || p2.Equals(p1);
 		}
 
-		// Token: 0x06006B7F RID: 27519 RVA: 0x00294524 File Offset: 0x00292724
+		// Token: 0x06005FA3 RID: 24483 RVA: 0x0026C844 File Offset: 0x0026AA44
 		private DynValue DispatchMetaOnMethod(Script script, object obj, string methodName)
 		{
 			IMemberDescriptor orDefault = this.m_Members.GetOrDefault(methodName);
@@ -573,7 +573,7 @@ namespace MoonSharp.Interpreter.Interop.BasicDescriptors
 			return null;
 		}
 
-		// Token: 0x06006B80 RID: 27520 RVA: 0x0029454C File Offset: 0x0029274C
+		// Token: 0x06005FA4 RID: 24484 RVA: 0x0026C86C File Offset: 0x0026AA6C
 		private DynValue TryDispatchToNumber(Script script, object obj)
 		{
 			Type[] numericTypesOrdered = NumericConversions.NumericTypesOrdered;
@@ -589,7 +589,7 @@ namespace MoonSharp.Interpreter.Interop.BasicDescriptors
 			return null;
 		}
 
-		// Token: 0x06006B81 RID: 27521 RVA: 0x00294588 File Offset: 0x00292788
+		// Token: 0x06005FA5 RID: 24485 RVA: 0x0026C8A8 File Offset: 0x0026AAA8
 		private DynValue TryDispatchToBool(Script script, object obj)
 		{
 			string conversionMethodName = typeof(bool).GetConversionMethodName();
@@ -601,31 +601,31 @@ namespace MoonSharp.Interpreter.Interop.BasicDescriptors
 			return this.DispatchMetaOnMethod(script, obj, "op_True");
 		}
 
-		// Token: 0x06006B82 RID: 27522 RVA: 0x00046989 File Offset: 0x00044B89
+		// Token: 0x06005FA6 RID: 24486 RVA: 0x00259E25 File Offset: 0x00258025
 		public virtual bool IsTypeCompatible(Type type, object obj)
 		{
 			return Framework.Do.IsInstanceOfType(type, obj);
 		}
 
-		// Token: 0x04006103 RID: 24835
+		// Token: 0x04005493 RID: 21651
 		private int m_ExtMethodsVersion;
 
-		// Token: 0x04006104 RID: 24836
+		// Token: 0x04005494 RID: 21652
 		private Dictionary<string, IMemberDescriptor> m_MetaMembers = new Dictionary<string, IMemberDescriptor>();
 
-		// Token: 0x04006105 RID: 24837
+		// Token: 0x04005495 RID: 21653
 		private Dictionary<string, IMemberDescriptor> m_Members = new Dictionary<string, IMemberDescriptor>();
 
-		// Token: 0x04006106 RID: 24838
+		// Token: 0x04005496 RID: 21654
 		protected const string SPECIALNAME_INDEXER_GET = "get_Item";
 
-		// Token: 0x04006107 RID: 24839
+		// Token: 0x04005497 RID: 21655
 		protected const string SPECIALNAME_INDEXER_SET = "set_Item";
 
-		// Token: 0x04006108 RID: 24840
+		// Token: 0x04005498 RID: 21656
 		protected const string SPECIALNAME_CAST_EXPLICIT = "op_Explicit";
 
-		// Token: 0x04006109 RID: 24841
+		// Token: 0x04005499 RID: 21657
 		protected const string SPECIALNAME_CAST_IMPLICIT = "op_Implicit";
 	}
 }

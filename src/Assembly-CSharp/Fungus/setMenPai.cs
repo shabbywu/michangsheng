@@ -4,12 +4,12 @@ using UnityEngine;
 
 namespace Fungus
 {
-	// Token: 0x02001413 RID: 5139
+	// Token: 0x02000F5D RID: 3933
 	[CommandInfo("YSNew/Set", "setMenPai", "设置门派id", 0)]
 	[AddComponentMenu("")]
 	public class setMenPai : Command
 	{
-		// Token: 0x06007CA5 RID: 31909 RVA: 0x002C5340 File Offset: 0x002C3540
+		// Token: 0x06006EB5 RID: 28341 RVA: 0x002A54B8 File Offset: 0x002A36B8
 		public override void OnEnter()
 		{
 			Avatar player = Tools.instance.getPlayer();
@@ -22,18 +22,18 @@ namespace Fungus
 			this.Continue();
 		}
 
-		// Token: 0x06007CA6 RID: 31910 RVA: 0x000113CF File Offset: 0x0000F5CF
+		// Token: 0x06006EB6 RID: 28342 RVA: 0x0005E228 File Offset: 0x0005C428
 		public override Color GetButtonColor()
 		{
 			return new Color32(184, 210, 235, byte.MaxValue);
 		}
 
-		// Token: 0x06007CA7 RID: 31911 RVA: 0x000042DD File Offset: 0x000024DD
+		// Token: 0x06006EB7 RID: 28343 RVA: 0x00004095 File Offset: 0x00002295
 		public override void OnReset()
 		{
 		}
 
-		// Token: 0x04006A93 RID: 27283
+		// Token: 0x04005BC1 RID: 23489
 		[Tooltip("设置门派的ID")]
 		[SerializeField]
 		protected int MenPaiID;

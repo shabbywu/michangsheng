@@ -3,13 +3,13 @@ using UnityEngine;
 
 namespace Fungus
 {
-	// Token: 0x0200135F RID: 4959
+	// Token: 0x02000EC1 RID: 3777
 	[Serializable]
 	public class FloatVar
 	{
-		// Token: 0x17000B43 RID: 2883
-		// (get) Token: 0x0600785D RID: 30813 RVA: 0x00051C65 File Offset: 0x0004FE65
-		// (set) Token: 0x0600785E RID: 30814 RVA: 0x00051C6D File Offset: 0x0004FE6D
+		// Token: 0x170008A6 RID: 2214
+		// (get) Token: 0x06006AC2 RID: 27330 RVA: 0x00293F61 File Offset: 0x00292161
+		// (set) Token: 0x06006AC3 RID: 27331 RVA: 0x00293F69 File Offset: 0x00292169
 		public string Key
 		{
 			get
@@ -22,9 +22,9 @@ namespace Fungus
 			}
 		}
 
-		// Token: 0x17000B44 RID: 2884
-		// (get) Token: 0x0600785F RID: 30815 RVA: 0x00051C76 File Offset: 0x0004FE76
-		// (set) Token: 0x06007860 RID: 30816 RVA: 0x00051C7E File Offset: 0x0004FE7E
+		// Token: 0x170008A7 RID: 2215
+		// (get) Token: 0x06006AC4 RID: 27332 RVA: 0x00293F72 File Offset: 0x00292172
+		// (set) Token: 0x06006AC5 RID: 27333 RVA: 0x00293F7A File Offset: 0x0029217A
 		public float Value
 		{
 			get
@@ -37,11 +37,11 @@ namespace Fungus
 			}
 		}
 
-		// Token: 0x04006866 RID: 26726
+		// Token: 0x04005A07 RID: 23047
 		[SerializeField]
 		protected string key;
 
-		// Token: 0x04006867 RID: 26727
+		// Token: 0x04005A08 RID: 23048
 		[SerializeField]
 		protected float value;
 	}

@@ -5,10 +5,10 @@ using UnityEngine;
 
 namespace UltimateSurvival.Building
 {
-	// Token: 0x0200096B RID: 2411
+	// Token: 0x02000665 RID: 1637
 	public class PlayerBuilder : MonoBehaviour
 	{
-		// Token: 0x06003D9E RID: 15774 RVA: 0x001B5028 File Offset: 0x001B3228
+		// Token: 0x06003405 RID: 13317 RVA: 0x0016C2B0 File Offset: 0x0016A4B0
 		private void Start()
 		{
 			this.m_Player = GameController.LocalPlayer;
@@ -21,7 +21,7 @@ namespace UltimateSurvival.Building
 			this.m_InventoryContainer = MonoSingleton<GUIController>.Instance.GetContainer("Inventory");
 		}
 
-		// Token: 0x06003D9F RID: 15775 RVA: 0x001B5104 File Offset: 0x001B3304
+		// Token: 0x06003406 RID: 13318 RVA: 0x0016C38C File Offset: 0x0016A58C
 		private void OnChanged_EquippedItem()
 		{
 			SavableItem savableItem = this.m_Player.EquippedItem.Get();
@@ -38,7 +38,7 @@ namespace UltimateSurvival.Building
 			this.UpdatePreview();
 		}
 
-		// Token: 0x06003DA0 RID: 15776 RVA: 0x001B51A0 File Offset: 0x001B33A0
+		// Token: 0x06003407 RID: 13319 RVA: 0x0016C428 File Offset: 0x0016A628
 		private void OnChanged_SelectedBuildable()
 		{
 			if (this.m_Player.EquippedItem.Get() != null && this.m_Player.EquippedItem.Get().HasProperty("Allows Building"))
@@ -48,7 +48,7 @@ namespace UltimateSurvival.Building
 			this.UpdatePreview();
 		}
 
-		// Token: 0x06003DA1 RID: 15777 RVA: 0x001B51F8 File Offset: 0x001B33F8
+		// Token: 0x06003408 RID: 13320 RVA: 0x0016C480 File Offset: 0x0016A680
 		private void UpdatePreview()
 		{
 			if (this.m_BuildingHelpers.PreviewExists())
@@ -65,7 +65,7 @@ namespace UltimateSurvival.Building
 			this.m_BuildingHelpers.ClearPreview();
 		}
 
-		// Token: 0x06003DA2 RID: 15778 RVA: 0x0002C61E File Offset: 0x0002A81E
+		// Token: 0x06003409 RID: 13321 RVA: 0x0016C554 File Offset: 0x0016A754
 		private bool Try_RotateObject(float rotationSign)
 		{
 			if (this.m_Player.ViewLocked.Is(false) && this.m_BuildingHelpers.PreviewExists())
@@ -76,7 +76,7 @@ namespace UltimateSurvival.Building
 			return false;
 		}
 
-		// Token: 0x06003DA3 RID: 15779 RVA: 0x001B52CC File Offset: 0x001B34CC
+		// Token: 0x0600340A RID: 13322 RVA: 0x0016C594 File Offset: 0x0016A794
 		private bool Try_Place()
 		{
 			if (!this.m_BuildingHelpers.PreviewExists() || !this.m_BuildingHelpers.PlacementAllowed)
@@ -127,7 +127,7 @@ namespace UltimateSurvival.Building
 			return false;
 		}
 
-		// Token: 0x06003DA4 RID: 15780 RVA: 0x001B55A4 File Offset: 0x001B37A4
+		// Token: 0x0600340B RID: 13323 RVA: 0x0016C86C File Offset: 0x0016AA6C
 		private bool HasRequiredItems()
 		{
 			for (int i = 0; i < this.m_BuildingHelpers.CurrentPreviewPiece.RequiredItems.Length; i++)
@@ -141,7 +141,7 @@ namespace UltimateSurvival.Building
 			return true;
 		}
 
-		// Token: 0x06003DA5 RID: 15781 RVA: 0x0002C65D File Offset: 0x0002A85D
+		// Token: 0x0600340C RID: 13324 RVA: 0x0016C8C5 File Offset: 0x0016AAC5
 		private void Update()
 		{
 			this.m_BuildingHelpers.HasSocket = false;
@@ -155,40 +155,40 @@ namespace UltimateSurvival.Building
 			}
 		}
 
-		// Token: 0x06003DA6 RID: 15782 RVA: 0x0002C69B File Offset: 0x0002A89B
+		// Token: 0x0600340D RID: 13325 RVA: 0x0016C903 File Offset: 0x0016AB03
 		public bool CanPlace()
 		{
 			return this.m_BuildingHelpers.PlacementAllowed;
 		}
 
-		// Token: 0x040037D6 RID: 14294
+		// Token: 0x04002E48 RID: 11848
 		[SerializeField]
 		private BuildingHelpers m_BuildingHelpers;
 
-		// Token: 0x040037D7 RID: 14295
+		// Token: 0x04002E49 RID: 11849
 		[SerializeField]
 		[Tooltip("How fast the player can rotate buildables.")]
 		private float m_RotationSpeed = 120f;
 
-		// Token: 0x040037D8 RID: 14296
+		// Token: 0x04002E4A RID: 11850
 		[SerializeField]
 		private AudioSource m_AudioSource;
 
-		// Token: 0x040037D9 RID: 14297
+		// Token: 0x04002E4B RID: 11851
 		[SerializeField]
 		[Tooltip("A shake that will be played when the player places an object.")]
 		private GenericShake m_PlaceShake;
 
-		// Token: 0x040037DA RID: 14298
+		// Token: 0x04002E4C RID: 11852
 		private float m_NextTimeCanPlayAudio;
 
-		// Token: 0x040037DB RID: 14299
+		// Token: 0x04002E4D RID: 11853
 		private PlayerEventHandler m_Player;
 
-		// Token: 0x040037DC RID: 14300
+		// Token: 0x04002E4E RID: 11854
 		private ItemContainer m_InventoryContainer;
 
-		// Token: 0x040037DD RID: 14301
+		// Token: 0x04002E4F RID: 11855
 		private BuildingPiece m_SelectedPiece;
 	}
 }

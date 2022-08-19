@@ -4,15 +4,15 @@ using UnityEngine;
 
 namespace Fungus
 {
-	// Token: 0x0200135B RID: 4955
+	// Token: 0x02000EBE RID: 3774
 	public class EventDispatcher : MonoBehaviour
 	{
 		// Token: 0x1400006C RID: 108
-		// (add) Token: 0x06007843 RID: 30787 RVA: 0x002B6244 File Offset: 0x002B4444
-		// (remove) Token: 0x06007844 RID: 30788 RVA: 0x002B627C File Offset: 0x002B447C
+		// (add) Token: 0x06006AAC RID: 27308 RVA: 0x00293D00 File Offset: 0x00291F00
+		// (remove) Token: 0x06006AAD RID: 27309 RVA: 0x00293D38 File Offset: 0x00291F38
 		protected virtual event Action<string> onLog;
 
-		// Token: 0x06007845 RID: 30789 RVA: 0x002B62B4 File Offset: 0x002B44B4
+		// Token: 0x06006AAE RID: 27310 RVA: 0x00293D70 File Offset: 0x00291F70
 		protected virtual List<Delegate> GetDelegateListCopy<T>(T evt)
 		{
 			Type typeFromHandle = typeof(T);
@@ -23,7 +23,7 @@ namespace Fungus
 			return new List<Delegate>(this.delegates[typeFromHandle]);
 		}
 
-		// Token: 0x06007846 RID: 30790 RVA: 0x00051BCC File Offset: 0x0004FDCC
+		// Token: 0x06006AAF RID: 27311 RVA: 0x00293DA9 File Offset: 0x00291FA9
 		protected virtual void Log(string message)
 		{
 			if (this.onLog != null)
@@ -32,19 +32,19 @@ namespace Fungus
 			}
 		}
 
-		// Token: 0x06007847 RID: 30791 RVA: 0x00051BE2 File Offset: 0x0004FDE2
+		// Token: 0x06006AB0 RID: 27312 RVA: 0x00293DBF File Offset: 0x00291FBF
 		public virtual void AddLog(Action<string> log)
 		{
 			this.onLog += log;
 		}
 
-		// Token: 0x06007848 RID: 30792 RVA: 0x00051BEB File Offset: 0x0004FDEB
+		// Token: 0x06006AB1 RID: 27313 RVA: 0x00293DC8 File Offset: 0x00291FC8
 		public virtual void RemoveLog(Action<string> log)
 		{
 			this.onLog -= log;
 		}
 
-		// Token: 0x06007849 RID: 30793 RVA: 0x002B62F0 File Offset: 0x002B44F0
+		// Token: 0x06006AB2 RID: 27314 RVA: 0x00293DD4 File Offset: 0x00291FD4
 		public virtual void AddListener<T>(EventDispatcher.TypedDelegate<T> listener) where T : class
 		{
 			Type typeFromHandle = typeof(T);
@@ -59,7 +59,7 @@ namespace Fungus
 			}
 		}
 
-		// Token: 0x0600784A RID: 30794 RVA: 0x002B6344 File Offset: 0x002B4544
+		// Token: 0x06006AB3 RID: 27315 RVA: 0x00293E28 File Offset: 0x00292028
 		public virtual void RemoveListener<T>(EventDispatcher.TypedDelegate<T> listener) where T : class
 		{
 			Type typeFromHandle = typeof(T);
@@ -70,7 +70,7 @@ namespace Fungus
 			}
 		}
 
-		// Token: 0x0600784B RID: 30795 RVA: 0x002B6380 File Offset: 0x002B4580
+		// Token: 0x06006AB4 RID: 27316 RVA: 0x00293E64 File Offset: 0x00292064
 		public virtual void Raise<T>(T evt) where T : class
 		{
 			if (evt == null)
@@ -101,23 +101,23 @@ namespace Fungus
 			}
 		}
 
-		// Token: 0x0600784C RID: 30796 RVA: 0x00051BF4 File Offset: 0x0004FDF4
+		// Token: 0x06006AB5 RID: 27317 RVA: 0x00293EF0 File Offset: 0x002920F0
 		public virtual void Raise<T>() where T : class, new()
 		{
 			this.Raise<T>(Activator.CreateInstance<T>());
 		}
 
-		// Token: 0x0600784D RID: 30797 RVA: 0x00051C01 File Offset: 0x0004FE01
+		// Token: 0x06006AB6 RID: 27318 RVA: 0x00293EFD File Offset: 0x002920FD
 		public virtual void UnregisterAll()
 		{
 			this.delegates.Clear();
 		}
 
-		// Token: 0x04006860 RID: 26720
+		// Token: 0x04005A01 RID: 23041
 		protected readonly Dictionary<Type, List<Delegate>> delegates = new Dictionary<Type, List<Delegate>>();
 
-		// Token: 0x0200135C RID: 4956
-		// (Invoke) Token: 0x06007850 RID: 30800
+		// Token: 0x02001711 RID: 5905
+		// (Invoke) Token: 0x06008902 RID: 35074
 		public delegate void TypedDelegate<T>(T e) where T : class;
 	}
 }

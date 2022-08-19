@@ -6,10 +6,10 @@ using UnityEngine;
 
 namespace CaiJi
 {
-	// Token: 0x02000A95 RID: 2709
+	// Token: 0x02000733 RID: 1843
 	public class CaiJiCell : MonoBehaviour
 	{
-		// Token: 0x06004573 RID: 17779 RVA: 0x001DBC54 File Offset: 0x001D9E54
+		// Token: 0x06003AB5 RID: 15029 RVA: 0x00193FCC File Offset: 0x001921CC
 		public CaiJiCell Init(int itemId)
 		{
 			this.Item.SetItem(itemId);
@@ -36,7 +36,7 @@ namespace CaiJi
 			return this;
 		}
 
-		// Token: 0x06004574 RID: 17780 RVA: 0x001DBCAC File Offset: 0x001D9EAC
+		// Token: 0x06003AB6 RID: 15030 RVA: 0x00194024 File Offset: 0x00192224
 		private void PlayerShowEffect()
 		{
 			TweenSettingsExtensions.OnComplete<TweenerCore<Vector3, Vector3, VectorOptions>>(ShortcutExtensions.DOScale(this.Item.gameObject.transform, new Vector2(0.94f, 0.94f), 0.05f), delegate()
@@ -51,7 +51,7 @@ namespace CaiJi
 			});
 		}
 
-		// Token: 0x06004575 RID: 17781 RVA: 0x001DBCFC File Offset: 0x001D9EFC
+		// Token: 0x06003AB7 RID: 15031 RVA: 0x00194074 File Offset: 0x00192274
 		private void PlayerHideEffect()
 		{
 			TweenSettingsExtensions.OnComplete<TweenerCore<Vector3, Vector3, VectorOptions>>(ShortcutExtensions.DOScale(this.Item.gameObject.transform, new Vector2(0.95f, 0.95f), 0.05f), delegate()
@@ -63,7 +63,7 @@ namespace CaiJi
 			});
 		}
 
-		// Token: 0x06004576 RID: 17782 RVA: 0x000319DE File Offset: 0x0002FBDE
+		// Token: 0x06003AB8 RID: 15032 RVA: 0x001940C1 File Offset: 0x001922C1
 		private void PlayerSharkeEffect()
 		{
 			TweenSettingsExtensions.OnComplete<TweenerCore<Vector3, Vector3, VectorOptions>>(TweenSettingsExtensions.SetEase<TweenerCore<Vector3, Vector3, VectorOptions>>(ShortcutExtensions.DOLocalMoveX(this.Item.gameObject.transform, -10f, 0.005f, false), 2), delegate()
@@ -81,7 +81,7 @@ namespace CaiJi
 			});
 		}
 
-		// Token: 0x06004577 RID: 17783 RVA: 0x00031A18 File Offset: 0x0002FC18
+		// Token: 0x06003AB9 RID: 15033 RVA: 0x001940FB File Offset: 0x001922FB
 		public void Show()
 		{
 			base.gameObject.SetActive(true);
@@ -89,23 +89,23 @@ namespace CaiJi
 			this.IsSelected = false;
 		}
 
-		// Token: 0x04003D9F RID: 15775
+		// Token: 0x040032E6 RID: 13030
 		[SerializeField]
 		private FpBtn Btn;
 
-		// Token: 0x04003DA0 RID: 15776
+		// Token: 0x040032E7 RID: 13031
 		public UIIconShow Item;
 
-		// Token: 0x04003DA1 RID: 15777
+		// Token: 0x040032E8 RID: 13032
 		private bool CanClick = true;
 
-		// Token: 0x04003DA2 RID: 15778
+		// Token: 0x040032E9 RID: 13033
 		private Sequence StopQuence;
 
-		// Token: 0x04003DA3 RID: 15779
+		// Token: 0x040032EA RID: 13034
 		private MessageData data = new MessageData(0);
 
-		// Token: 0x04003DA4 RID: 15780
+		// Token: 0x040032EB RID: 13035
 		public bool IsSelected;
 	}
 }

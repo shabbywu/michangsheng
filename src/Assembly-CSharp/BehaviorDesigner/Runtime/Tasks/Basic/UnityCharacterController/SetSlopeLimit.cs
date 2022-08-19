@@ -3,12 +3,12 @@ using UnityEngine;
 
 namespace BehaviorDesigner.Runtime.Tasks.Basic.UnityCharacterController
 {
-	// Token: 0x02001610 RID: 5648
+	// Token: 0x02001151 RID: 4433
 	[TaskCategory("Basic/CharacterController")]
 	[TaskDescription("Sets the slope limit of the CharacterController. Returns Success.")]
 	public class SetSlopeLimit : Action
 	{
-		// Token: 0x060083D5 RID: 33749 RVA: 0x002CEFA0 File Offset: 0x002CD1A0
+		// Token: 0x060075DB RID: 30171 RVA: 0x002B5434 File Offset: 0x002B3634
 		public override void OnStart()
 		{
 			GameObject defaultGameObject = base.GetDefaultGameObject(this.targetGameObject.Value);
@@ -19,7 +19,7 @@ namespace BehaviorDesigner.Runtime.Tasks.Basic.UnityCharacterController
 			}
 		}
 
-		// Token: 0x060083D6 RID: 33750 RVA: 0x0005ADC9 File Offset: 0x00058FC9
+		// Token: 0x060075DC RID: 30172 RVA: 0x002B5474 File Offset: 0x002B3674
 		public override TaskStatus OnUpdate()
 		{
 			if (this.characterController == null)
@@ -31,25 +31,25 @@ namespace BehaviorDesigner.Runtime.Tasks.Basic.UnityCharacterController
 			return 2;
 		}
 
-		// Token: 0x060083D7 RID: 33751 RVA: 0x0005ADFC File Offset: 0x00058FFC
+		// Token: 0x060075DD RID: 30173 RVA: 0x002B54A7 File Offset: 0x002B36A7
 		public override void OnReset()
 		{
 			this.targetGameObject = null;
 			this.slopeLimit = 0f;
 		}
 
-		// Token: 0x04007084 RID: 28804
+		// Token: 0x04006161 RID: 24929
 		[Tooltip("The GameObject that the task operates on. If null the task GameObject is used.")]
 		public SharedGameObject targetGameObject;
 
-		// Token: 0x04007085 RID: 28805
+		// Token: 0x04006162 RID: 24930
 		[Tooltip("The slope limit of the CharacterController")]
 		public SharedFloat slopeLimit;
 
-		// Token: 0x04007086 RID: 28806
+		// Token: 0x04006163 RID: 24931
 		private CharacterController characterController;
 
-		// Token: 0x04007087 RID: 28807
+		// Token: 0x04006164 RID: 24932
 		private GameObject prevGameObject;
 	}
 }

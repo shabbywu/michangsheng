@@ -1,31 +1,42 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Runtime.Serialization;
 using JSONClass;
 using UnityEngine;
 
 namespace Bag
 {
-	// Token: 0x02000D22 RID: 3362
+	// Token: 0x0200099D RID: 2461
 	[Serializable]
 	public abstract class BaseItem : IItem
 	{
-		// Token: 0x06004FF4 RID: 20468 RVA: 0x000398D6 File Offset: 0x00037AD6
+		// Token: 0x06004494 RID: 17556 RVA: 0x001D33A4 File Offset: 0x001D15A4
+		public virtual bool IsEqual(BaseItem baseItem)
+		{
+			return baseItem != null && this.Id == baseItem.Id && (this.Seid == null || baseItem.Seid == null || !(this.Seid.ToString() != baseItem.Seid.ToString()));
+		}
+
+		// Token: 0x06004495 RID: 17557 RVA: 0x001D33F6 File Offset: 0x001D15F6
 		public void HandleSeid()
 		{
 			this._seid = this.Seid.ToString().ToCN();
 			Debug.Log(this._seid);
 		}
 
-		// Token: 0x06004FF5 RID: 20469 RVA: 0x000398F9 File Offset: 0x00037AF9
+		// Token: 0x06004496 RID: 17558 RVA: 0x001D3419 File Offset: 0x001D1619
 		public void LoadSeid()
 		{
 			Debug.Log(this._seid);
 			this.Seid = new JSONObject(this._seid, -2, false, false);
 		}
 
-		// Token: 0x06004FF6 RID: 20470 RVA: 0x0003991B File Offset: 0x00037B1B
+		// Token: 0x06004497 RID: 17559 RVA: 0x001D343B File Offset: 0x001D163B
 		public virtual void SetItem(int id, int count, JSONObject seid)
 		{
+			if (seid != null)
+			{
+				this._seid = seid.Print(false);
+			}
 			this.SetItem(id, count);
 			if (seid == null || seid.Count < 1)
 			{
@@ -34,7 +45,7 @@ namespace Bag
 			this.Seid = seid;
 		}
 
-		// Token: 0x06004FF7 RID: 20471 RVA: 0x00218050 File Offset: 0x00216250
+		// Token: 0x06004498 RID: 17560 RVA: 0x001D3470 File Offset: 0x001D1670
 		public virtual void SetItem(int id, int count)
 		{
 			if (!_ItemJsonData.DataDict.ContainsKey(id))
@@ -62,31 +73,31 @@ namespace Bag
 			}
 		}
 
-		// Token: 0x06004FF8 RID: 20472 RVA: 0x00039940 File Offset: 0x00037B40
+		// Token: 0x06004499 RID: 17561 RVA: 0x001D357C File Offset: 0x001D177C
 		public virtual List<int> GetCiZhui()
 		{
 			return new List<int>(_ItemJsonData.DataDict[this.Id].Affix);
 		}
 
-		// Token: 0x06004FF9 RID: 20473 RVA: 0x0021815C File Offset: 0x0021635C
+		// Token: 0x0600449A RID: 17562 RVA: 0x001D3598 File Offset: 0x001D1798
 		public virtual string GetDesc1()
 		{
 			int num = GlobalValue.Get(753, string.Format("Bag.BaseItem.GetDesc1 Id:{0}", this.Id));
-			return _ItemJsonData.DataDict[this.Id].desc.Replace("{STVar=753}", num.ToString());
+			return this.Desc1.Replace("{STVar=753}", num.ToString());
 		}
 
-		// Token: 0x06004FFA RID: 20474 RVA: 0x0003995C File Offset: 0x00037B5C
+		// Token: 0x0600449B RID: 17563 RVA: 0x001D35DC File Offset: 0x001D17DC
 		public virtual string GetDesc2()
 		{
-			return _ItemJsonData.DataDict[this.Id].desc2;
+			return this.Desc2;
 		}
 
-		// Token: 0x06004FFB RID: 20475 RVA: 0x000042DD File Offset: 0x000024DD
+		// Token: 0x0600449C RID: 17564 RVA: 0x00004095 File Offset: 0x00002295
 		public virtual void Use()
 		{
 		}
 
-		// Token: 0x06004FFC RID: 20476 RVA: 0x002181B0 File Offset: 0x002163B0
+		// Token: 0x0600449D RID: 17565 RVA: 0x001D35E4 File Offset: 0x001D17E4
 		public static ItemType GetItemType(int type)
 		{
 			ItemType result = ItemType.其他;
@@ -125,13 +136,19 @@ namespace Bag
 			return result;
 		}
 
-		// Token: 0x06004FFD RID: 20477 RVA: 0x00039973 File Offset: 0x00037B73
+		// Token: 0x0600449E RID: 17566 RVA: 0x001D3656 File Offset: 0x001D1856
 		public virtual int GetImgQuality()
 		{
 			return this.Quality;
 		}
 
-		// Token: 0x06004FFE RID: 20478 RVA: 0x00218224 File Offset: 0x00216424
+		// Token: 0x0600449F RID: 17567 RVA: 0x001D3656 File Offset: 0x001D1856
+		public int GetBaseQuality()
+		{
+			return this.Quality;
+		}
+
+		// Token: 0x060044A0 RID: 17568 RVA: 0x001D3660 File Offset: 0x001D1860
 		public virtual Sprite GetIconSprite()
 		{
 			_ItemJsonData itemJsonData = _ItemJsonData.DataDict[this.Id];
@@ -151,37 +168,37 @@ namespace Bag
 			return sprite;
 		}
 
-		// Token: 0x06004FFF RID: 20479 RVA: 0x002182A8 File Offset: 0x002164A8
+		// Token: 0x060044A1 RID: 17569 RVA: 0x001D36E4 File Offset: 0x001D18E4
 		public virtual Sprite GetQualitySprite()
 		{
 			return BagMag.Inst.QualityDict[this.GetImgQuality().ToString()];
 		}
 
-		// Token: 0x06005000 RID: 20480 RVA: 0x002182D4 File Offset: 0x002164D4
+		// Token: 0x060044A2 RID: 17570 RVA: 0x001D3710 File Offset: 0x001D1910
 		public virtual Sprite GetQualityUpSprite()
 		{
 			return BagMag.Inst.QualityUpDict[this.GetImgQuality().ToString()];
 		}
 
-		// Token: 0x06005001 RID: 20481 RVA: 0x0003997B File Offset: 0x00037B7B
+		// Token: 0x060044A3 RID: 17571 RVA: 0x001D373A File Offset: 0x001D193A
 		public virtual string GetName()
 		{
 			return this.Name;
 		}
 
-		// Token: 0x06005002 RID: 20482 RVA: 0x00039983 File Offset: 0x00037B83
+		// Token: 0x060044A4 RID: 17572 RVA: 0x001D3742 File Offset: 0x001D1942
 		public virtual int GetPlayerPrice()
 		{
 			return (int)((float)this.GetPrice() * 0.5f);
 		}
 
-		// Token: 0x06005003 RID: 20483 RVA: 0x00039993 File Offset: 0x00037B93
+		// Token: 0x060044A5 RID: 17573 RVA: 0x001D3752 File Offset: 0x001D1952
 		public virtual int GetPrice()
 		{
 			return this.BasePrice;
 		}
 
-		// Token: 0x06005004 RID: 20484 RVA: 0x0003999B File Offset: 0x00037B9B
+		// Token: 0x060044A6 RID: 17574 RVA: 0x001D375A File Offset: 0x001D195A
 		public virtual JiaoBiaoType GetJiaoBiaoType()
 		{
 			if (this.Seid != null && this.Seid.HasField("isPaiMai"))
@@ -191,15 +208,16 @@ namespace Bag
 			return JiaoBiaoType.无;
 		}
 
-		// Token: 0x06005005 RID: 20485 RVA: 0x000399BA File Offset: 0x00037BBA
+		// Token: 0x060044A7 RID: 17575 RVA: 0x001D3779 File Offset: 0x001D1979
 		public virtual string GetQualityName()
 		{
 			return this.Quality.ToCNNumber() + "品";
 		}
 
-		// Token: 0x06005006 RID: 20486 RVA: 0x00218300 File Offset: 0x00216500
+		// Token: 0x060044A8 RID: 17576 RVA: 0x001D3790 File Offset: 0x001D1990
 		public static BaseItem Create(int id, int count, string uuid, JSONObject seid)
 		{
+			BaseItem baseItem = null;
 			int num = 0;
 			try
 			{
@@ -209,8 +227,14 @@ namespace Bag
 			{
 				Debug.LogError(string.Format("不存在物品Id:{0}", id));
 				Debug.LogError(ex);
+				baseItem = new OtherItem();
+				baseItem.SetItem(10000, 1, null);
+				PlayerEx.AddErrorItemID(id);
+				BaseItem baseItem2 = baseItem;
+				baseItem2.Desc1 += string.Format("错误的物品ID:{0}", id);
+				baseItem.Uid = uuid;
+				return baseItem;
 			}
-			BaseItem baseItem = null;
 			switch (num)
 			{
 			case 0:
@@ -258,7 +282,7 @@ namespace Bag
 			return baseItem;
 		}
 
-		// Token: 0x06005007 RID: 20487 RVA: 0x00218430 File Offset: 0x00216630
+		// Token: 0x060044A9 RID: 17577 RVA: 0x001D3908 File Offset: 0x001D1B08
 		public int GetJiaoYiPrice(int npcid, bool isPlayer = false, bool zongjia = false)
 		{
 			npcid = NPCEx.NPCIDToNew(npcid);
@@ -307,7 +331,7 @@ namespace Bag
 			return num5;
 		}
 
-		// Token: 0x06005008 RID: 20488 RVA: 0x00218578 File Offset: 0x00216778
+		// Token: 0x060044AA RID: 17578 RVA: 0x001D3A50 File Offset: 0x001D1C50
 		private int GetNPCZhuangTaiJiaCheng(int npcid)
 		{
 			bool flag;
@@ -320,7 +344,7 @@ namespace Bag
 			return 0;
 		}
 
-		// Token: 0x06005009 RID: 20489 RVA: 0x00218598 File Offset: 0x00216798
+		// Token: 0x060044AB RID: 17579 RVA: 0x001D3A70 File Offset: 0x001D1C70
 		protected float getItemNaiJiuPrice()
 		{
 			_ItemJsonData itemJsonData = _ItemJsonData.DataDict[this.Id];
@@ -341,7 +365,7 @@ namespace Bag
 			return result;
 		}
 
-		// Token: 0x0600500A RID: 20490 RVA: 0x0021862C File Offset: 0x0021682C
+		// Token: 0x060044AC RID: 17580 RVA: 0x001D3B04 File Offset: 0x001D1D04
 		private int GetJiaCheng(int npcid)
 		{
 			int num = 0;
@@ -364,7 +388,7 @@ namespace Bag
 			return num;
 		}
 
-		// Token: 0x0600500B RID: 20491 RVA: 0x002186B0 File Offset: 0x002168B0
+		// Token: 0x060044AD RID: 17581 RVA: 0x001D3B88 File Offset: 0x001D1D88
 		private void CalcNPCZhuangTai(int npcid, out bool isJiXu, out bool isLaJi)
 		{
 			isJiXu = false;
@@ -418,62 +442,86 @@ namespace Bag
 			}
 		}
 
-		// Token: 0x0600500C RID: 20492 RVA: 0x000399D1 File Offset: 0x00037BD1
+		// Token: 0x060044AE RID: 17582 RVA: 0x001D3CDC File Offset: 0x001D1EDC
 		public BaseItem Clone()
 		{
+			if (this.Seid != null)
+			{
+				return BaseItem.Create(this.Id, this.Count, this.Uid, this.Seid.Copy());
+			}
 			return BaseItem.Create(this.Id, this.Count, this.Uid, this.Seid);
 		}
 
-		// Token: 0x04005149 RID: 20809
+		// Token: 0x060044AF RID: 17583 RVA: 0x001D3D31 File Offset: 0x001D1F31
+		[OnDeserialized]
+		private void AfterLoad(StreamingContext context)
+		{
+			if (!string.IsNullOrEmpty(this._seid))
+			{
+				this.Seid = JSONObject.Create(this._seid, -2, false, false);
+			}
+		}
+
+		// Token: 0x060044B0 RID: 17584 RVA: 0x001D3D55 File Offset: 0x001D1F55
+		[OnSerializing]
+		private void BeforeSave(StreamingContext context)
+		{
+			if (this.Seid != null)
+			{
+				this._seid = this.Seid.Print(false);
+			}
+		}
+
+		// Token: 0x0400464B RID: 17995
 		public int Id;
 
-		// Token: 0x0400514A RID: 20810
+		// Token: 0x0400464C RID: 17996
 		protected int PinJie;
 
-		// Token: 0x0400514B RID: 20811
+		// Token: 0x0400464D RID: 17997
 		protected int Quality;
 
-		// Token: 0x0400514C RID: 20812
+		// Token: 0x0400464E RID: 17998
 		public int Type;
 
-		// Token: 0x0400514D RID: 20813
+		// Token: 0x0400464F RID: 17999
 		public int BasePrice;
 
-		// Token: 0x0400514E RID: 20814
+		// Token: 0x04004650 RID: 18000
 		protected string Name;
 
-		// Token: 0x0400514F RID: 20815
+		// Token: 0x04004651 RID: 18001
 		public ItemType ItemType;
 
-		// Token: 0x04005150 RID: 20816
+		// Token: 0x04004652 RID: 18002
 		public CanSlotType CanPutSlotType;
 
-		// Token: 0x04005151 RID: 20817
+		// Token: 0x04004653 RID: 18003
 		public string Desc1;
 
-		// Token: 0x04005152 RID: 20818
+		// Token: 0x04004654 RID: 18004
 		public string Desc2;
 
-		// Token: 0x04005153 RID: 20819
+		// Token: 0x04004655 RID: 18005
 		public bool CanSale;
 
-		// Token: 0x04005154 RID: 20820
+		// Token: 0x04004656 RID: 18006
 		public int Count;
 
-		// Token: 0x04005155 RID: 20821
+		// Token: 0x04004657 RID: 18007
 		public int MaxNum;
 
-		// Token: 0x04005156 RID: 20822
+		// Token: 0x04004658 RID: 18008
 		public string Uid;
 
-		// Token: 0x04005157 RID: 20823
+		// Token: 0x04004659 RID: 18009
 		public Dictionary<int, int> WuDaoDict = new Dictionary<int, int>();
 
-		// Token: 0x04005158 RID: 20824
+		// Token: 0x0400465A RID: 18010
 		[NonSerialized]
-		public JSONObject Seid = new JSONObject();
+		public JSONObject Seid;
 
-		// Token: 0x04005159 RID: 20825
+		// Token: 0x0400465B RID: 18011
 		private string _seid = "";
 	}
 }

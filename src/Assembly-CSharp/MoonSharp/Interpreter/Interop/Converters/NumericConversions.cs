@@ -3,16 +3,16 @@ using System.Collections.Generic;
 
 namespace MoonSharp.Interpreter.Interop.Converters
 {
-	// Token: 0x02001143 RID: 4419
+	// Token: 0x02000D3B RID: 3387
 	internal static class NumericConversions
 	{
-		// Token: 0x06006B3D RID: 27453 RVA: 0x00292C34 File Offset: 0x00290E34
+		// Token: 0x06005F6B RID: 24427 RVA: 0x0026AD6C File Offset: 0x00268F6C
 		static NumericConversions()
 		{
 			NumericConversions.NumericTypes = new HashSet<Type>(NumericConversions.NumericTypesOrdered);
 		}
 
-		// Token: 0x06006B3E RID: 27454 RVA: 0x00292CF0 File Offset: 0x00290EF0
+		// Token: 0x06005F6C RID: 24428 RVA: 0x0026AE28 File Offset: 0x00269028
 		internal static object DoubleToType(Type type, double d)
 		{
 			type = (Nullable.GetUnderlyingType(type) ?? type);
@@ -63,7 +63,7 @@ namespace MoonSharp.Interpreter.Interop.Converters
 			return d;
 		}
 
-		// Token: 0x06006B3F RID: 27455 RVA: 0x00292E34 File Offset: 0x00291034
+		// Token: 0x06005F6D RID: 24429 RVA: 0x0026AF6C File Offset: 0x0026916C
 		internal static double TypeToDouble(Type type, object d)
 		{
 			if (type == typeof(double))
@@ -113,10 +113,10 @@ namespace MoonSharp.Interpreter.Interop.Converters
 			return (double)d;
 		}
 
-		// Token: 0x040060DD RID: 24797
+		// Token: 0x0400547B RID: 21627
 		internal static readonly HashSet<Type> NumericTypes;
 
-		// Token: 0x040060DE RID: 24798
+		// Token: 0x0400547C RID: 21628
 		internal static readonly Type[] NumericTypesOrdered = new Type[]
 		{
 			typeof(double),

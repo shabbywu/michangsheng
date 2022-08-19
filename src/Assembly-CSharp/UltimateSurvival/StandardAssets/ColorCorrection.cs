@@ -3,24 +3,24 @@ using UnityEngine;
 
 namespace UltimateSurvival.StandardAssets
 {
-	// Token: 0x02000919 RID: 2329
+	// Token: 0x0200062C RID: 1580
 	[ExecuteInEditMode]
 	[AddComponentMenu("Ultimate Survival/Add/Image Effects/Color Correction (Curves, Saturation)")]
 	public class ColorCorrection : ImageEffectBase
 	{
-		// Token: 0x06003B51 RID: 15185 RVA: 0x0002AF24 File Offset: 0x00029124
+		// Token: 0x06003217 RID: 12823 RVA: 0x00163303 File Offset: 0x00161503
 		private new void Start()
 		{
 			base.Start();
 			this.updateTexturesOnStartup = true;
 		}
 
-		// Token: 0x06003B52 RID: 15186 RVA: 0x000042DD File Offset: 0x000024DD
+		// Token: 0x06003218 RID: 12824 RVA: 0x00004095 File Offset: 0x00002295
 		private void Awake()
 		{
 		}
 
-		// Token: 0x06003B53 RID: 15187 RVA: 0x001ACBC8 File Offset: 0x001AADC8
+		// Token: 0x06003219 RID: 12825 RVA: 0x00163314 File Offset: 0x00161514
 		public override bool CheckResources()
 		{
 			base.CheckSupport(this.mode == ColorCorrection.ColorCorrectionMode.Advanced);
@@ -52,7 +52,7 @@ namespace UltimateSurvival.StandardAssets
 			return this.isSupported;
 		}
 
-		// Token: 0x06003B54 RID: 15188 RVA: 0x001ACCF0 File Offset: 0x001AAEF0
+		// Token: 0x0600321A RID: 12826 RVA: 0x0016343C File Offset: 0x0016163C
 		public void UpdateParameters()
 		{
 			this.CheckResources();
@@ -81,13 +81,13 @@ namespace UltimateSurvival.StandardAssets
 			}
 		}
 
-		// Token: 0x06003B55 RID: 15189 RVA: 0x0002AF33 File Offset: 0x00029133
+		// Token: 0x0600321B RID: 12827 RVA: 0x0016365F File Offset: 0x0016185F
 		private void UpdateTextures()
 		{
 			this.UpdateParameters();
 		}
 
-		// Token: 0x06003B56 RID: 15190 RVA: 0x001ACF14 File Offset: 0x001AB114
+		// Token: 0x0600321C RID: 12828 RVA: 0x00163668 File Offset: 0x00161868
 		private void OnRenderImage(RenderTexture source, RenderTexture destination)
 		{
 			if (!this.CheckResources())
@@ -132,112 +132,112 @@ namespace UltimateSurvival.StandardAssets
 			}
 		}
 
-		// Token: 0x040035D2 RID: 13778
+		// Token: 0x04002C93 RID: 11411
 		public AnimationCurve redChannel = new AnimationCurve(new Keyframe[]
 		{
 			new Keyframe(0f, 0f),
 			new Keyframe(1f, 1f)
 		});
 
-		// Token: 0x040035D3 RID: 13779
+		// Token: 0x04002C94 RID: 11412
 		public AnimationCurve greenChannel = new AnimationCurve(new Keyframe[]
 		{
 			new Keyframe(0f, 0f),
 			new Keyframe(1f, 1f)
 		});
 
-		// Token: 0x040035D4 RID: 13780
+		// Token: 0x04002C95 RID: 11413
 		public AnimationCurve blueChannel = new AnimationCurve(new Keyframe[]
 		{
 			new Keyframe(0f, 0f),
 			new Keyframe(1f, 1f)
 		});
 
-		// Token: 0x040035D5 RID: 13781
+		// Token: 0x04002C96 RID: 11414
 		public bool useDepthCorrection;
 
-		// Token: 0x040035D6 RID: 13782
+		// Token: 0x04002C97 RID: 11415
 		public AnimationCurve zCurve = new AnimationCurve(new Keyframe[]
 		{
 			new Keyframe(0f, 0f),
 			new Keyframe(1f, 1f)
 		});
 
-		// Token: 0x040035D7 RID: 13783
+		// Token: 0x04002C98 RID: 11416
 		public AnimationCurve depthRedChannel = new AnimationCurve(new Keyframe[]
 		{
 			new Keyframe(0f, 0f),
 			new Keyframe(1f, 1f)
 		});
 
-		// Token: 0x040035D8 RID: 13784
+		// Token: 0x04002C99 RID: 11417
 		public AnimationCurve depthGreenChannel = new AnimationCurve(new Keyframe[]
 		{
 			new Keyframe(0f, 0f),
 			new Keyframe(1f, 1f)
 		});
 
-		// Token: 0x040035D9 RID: 13785
+		// Token: 0x04002C9A RID: 11418
 		public AnimationCurve depthBlueChannel = new AnimationCurve(new Keyframe[]
 		{
 			new Keyframe(0f, 0f),
 			new Keyframe(1f, 1f)
 		});
 
-		// Token: 0x040035DA RID: 13786
+		// Token: 0x04002C9B RID: 11419
 		private Material ccMaterial;
 
-		// Token: 0x040035DB RID: 13787
+		// Token: 0x04002C9C RID: 11420
 		private Material ccDepthMaterial;
 
-		// Token: 0x040035DC RID: 13788
+		// Token: 0x04002C9D RID: 11421
 		private Material selectiveCcMaterial;
 
-		// Token: 0x040035DD RID: 13789
+		// Token: 0x04002C9E RID: 11422
 		private Texture2D rgbChannelTex;
 
-		// Token: 0x040035DE RID: 13790
+		// Token: 0x04002C9F RID: 11423
 		private Texture2D rgbDepthChannelTex;
 
-		// Token: 0x040035DF RID: 13791
+		// Token: 0x04002CA0 RID: 11424
 		private Texture2D zCurveTex;
 
-		// Token: 0x040035E0 RID: 13792
+		// Token: 0x04002CA1 RID: 11425
 		public float saturation = 1f;
 
-		// Token: 0x040035E1 RID: 13793
+		// Token: 0x04002CA2 RID: 11426
 		public bool selectiveCc;
 
-		// Token: 0x040035E2 RID: 13794
+		// Token: 0x04002CA3 RID: 11427
 		public Color selectiveFromColor = Color.white;
 
-		// Token: 0x040035E3 RID: 13795
+		// Token: 0x04002CA4 RID: 11428
 		public Color selectiveToColor = Color.white;
 
-		// Token: 0x040035E4 RID: 13796
+		// Token: 0x04002CA5 RID: 11429
 		public ColorCorrection.ColorCorrectionMode mode;
 
-		// Token: 0x040035E5 RID: 13797
+		// Token: 0x04002CA6 RID: 11430
 		public bool updateTextures = true;
 
-		// Token: 0x040035E6 RID: 13798
+		// Token: 0x04002CA7 RID: 11431
 		public Shader colorCorrectionCurvesShader;
 
-		// Token: 0x040035E7 RID: 13799
+		// Token: 0x04002CA8 RID: 11432
 		public Shader simpleColorCorrectionCurvesShader;
 
-		// Token: 0x040035E8 RID: 13800
+		// Token: 0x04002CA9 RID: 11433
 		public Shader colorCorrectionSelectiveShader;
 
-		// Token: 0x040035E9 RID: 13801
+		// Token: 0x04002CAA RID: 11434
 		private bool updateTexturesOnStartup = true;
 
-		// Token: 0x0200091A RID: 2330
+		// Token: 0x020014D7 RID: 5335
 		public enum ColorCorrectionMode
 		{
-			// Token: 0x040035EB RID: 13803
+			// Token: 0x04006D82 RID: 28034
 			Simple,
-			// Token: 0x040035EC RID: 13804
+			// Token: 0x04006D83 RID: 28035
 			Advanced
 		}
 	}

@@ -1,12 +1,12 @@
 ﻿using System;
 using UnityEngine;
 
-// Token: 0x02000123 RID: 291
+// Token: 0x020000B4 RID: 180
 [AddComponentMenu("NGUI/UI/Tooltip")]
 public class UITooltip : MonoBehaviour
 {
-	// Token: 0x170001DE RID: 478
-	// (get) Token: 0x06000B65 RID: 2917 RVA: 0x0000D743 File Offset: 0x0000B943
+	// Token: 0x170001C7 RID: 455
+	// (get) Token: 0x06000A88 RID: 2696 RVA: 0x0003FE7D File Offset: 0x0003E07D
 	public static bool isVisible
 	{
 		get
@@ -15,19 +15,19 @@ public class UITooltip : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000B66 RID: 2918 RVA: 0x0000D765 File Offset: 0x0000B965
+	// Token: 0x06000A89 RID: 2697 RVA: 0x0003FE9F File Offset: 0x0003E09F
 	private void Awake()
 	{
 		UITooltip.mInstance = this;
 	}
 
-	// Token: 0x06000B67 RID: 2919 RVA: 0x0000D76D File Offset: 0x0000B96D
+	// Token: 0x06000A8A RID: 2698 RVA: 0x0003FEA7 File Offset: 0x0003E0A7
 	private void OnDestroy()
 	{
 		UITooltip.mInstance = null;
 	}
 
-	// Token: 0x06000B68 RID: 2920 RVA: 0x00092310 File Offset: 0x00090510
+	// Token: 0x06000A8B RID: 2699 RVA: 0x0003FEB0 File Offset: 0x0003E0B0
 	protected virtual void Start()
 	{
 		this.mTrans = base.transform;
@@ -40,7 +40,7 @@ public class UITooltip : MonoBehaviour
 		this.SetAlpha(0f);
 	}
 
-	// Token: 0x06000B69 RID: 2921 RVA: 0x00092378 File Offset: 0x00090578
+	// Token: 0x06000A8C RID: 2700 RVA: 0x0003FF18 File Offset: 0x0003E118
 	protected virtual void Update()
 	{
 		if (this.mCurrent != this.mTarget)
@@ -63,7 +63,7 @@ public class UITooltip : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000B6A RID: 2922 RVA: 0x0009246C File Offset: 0x0009066C
+	// Token: 0x06000A8D RID: 2701 RVA: 0x0004000C File Offset: 0x0003E20C
 	protected virtual void SetAlpha(float val)
 	{
 		int i = 0;
@@ -78,7 +78,7 @@ public class UITooltip : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000B6B RID: 2923 RVA: 0x000924AC File Offset: 0x000906AC
+	// Token: 0x06000A8E RID: 2702 RVA: 0x0004004C File Offset: 0x0003E24C
 	protected virtual void SetText(string tooltipText)
 	{
 		if (!(this.text != null) || string.IsNullOrEmpty(tooltipText))
@@ -132,7 +132,7 @@ public class UITooltip : MonoBehaviour
 		this.mPos.y = this.mPos.y - (float)Screen.height * 0.5f;
 	}
 
-	// Token: 0x06000B6C RID: 2924 RVA: 0x0000D775 File Offset: 0x0000B975
+	// Token: 0x06000A8F RID: 2703 RVA: 0x000403CC File Offset: 0x0003E5CC
 	public static void ShowText(string tooltipText)
 	{
 		if (UITooltip.mInstance != null)
@@ -141,39 +141,39 @@ public class UITooltip : MonoBehaviour
 		}
 	}
 
-	// Token: 0x0400081E RID: 2078
+	// Token: 0x0400067A RID: 1658
 	protected static UITooltip mInstance;
 
-	// Token: 0x0400081F RID: 2079
+	// Token: 0x0400067B RID: 1659
 	public Camera uiCamera;
 
-	// Token: 0x04000820 RID: 2080
+	// Token: 0x0400067C RID: 1660
 	public UILabel text;
 
-	// Token: 0x04000821 RID: 2081
+	// Token: 0x0400067D RID: 1661
 	public UISprite background;
 
-	// Token: 0x04000822 RID: 2082
+	// Token: 0x0400067E RID: 1662
 	public float appearSpeed = 10f;
 
-	// Token: 0x04000823 RID: 2083
+	// Token: 0x0400067F RID: 1663
 	public bool scalingTransitions = true;
 
-	// Token: 0x04000824 RID: 2084
+	// Token: 0x04000680 RID: 1664
 	protected Transform mTrans;
 
-	// Token: 0x04000825 RID: 2085
+	// Token: 0x04000681 RID: 1665
 	protected float mTarget;
 
-	// Token: 0x04000826 RID: 2086
+	// Token: 0x04000682 RID: 1666
 	protected float mCurrent;
 
-	// Token: 0x04000827 RID: 2087
+	// Token: 0x04000683 RID: 1667
 	protected Vector3 mPos;
 
-	// Token: 0x04000828 RID: 2088
+	// Token: 0x04000684 RID: 1668
 	protected Vector3 mSize = Vector3.zero;
 
-	// Token: 0x04000829 RID: 2089
+	// Token: 0x04000685 RID: 1669
 	protected UIWidget[] mWidgets;
 }

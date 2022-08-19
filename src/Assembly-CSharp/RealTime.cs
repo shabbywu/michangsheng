@@ -1,11 +1,11 @@
 ﻿using System;
 using UnityEngine;
 
-// Token: 0x020000C7 RID: 199
+// Token: 0x0200008A RID: 138
 public class RealTime : MonoBehaviour
 {
-	// Token: 0x170000E6 RID: 230
-	// (get) Token: 0x060007DA RID: 2010 RVA: 0x0000A8D9 File Offset: 0x00008AD9
+	// Token: 0x170000D2 RID: 210
+	// (get) Token: 0x06000757 RID: 1879 RVA: 0x0002B6EF File Offset: 0x000298EF
 	public static float time
 	{
 		get
@@ -14,8 +14,8 @@ public class RealTime : MonoBehaviour
 		}
 	}
 
-	// Token: 0x170000E7 RID: 231
-	// (get) Token: 0x060007DB RID: 2011 RVA: 0x0000A8E0 File Offset: 0x00008AE0
+	// Token: 0x170000D3 RID: 211
+	// (get) Token: 0x06000758 RID: 1880 RVA: 0x0002B6F6 File Offset: 0x000298F6
 	public static float deltaTime
 	{
 		get

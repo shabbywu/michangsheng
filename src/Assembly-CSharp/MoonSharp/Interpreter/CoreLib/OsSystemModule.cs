@@ -2,11 +2,11 @@
 
 namespace MoonSharp.Interpreter.CoreLib
 {
-	// Token: 0x0200119A RID: 4506
+	// Token: 0x02000D7E RID: 3454
 	[MoonSharpModule(Namespace = "os")]
 	public class OsSystemModule
 	{
-		// Token: 0x06006E33 RID: 28211 RVA: 0x0029C500 File Offset: 0x0029A700
+		// Token: 0x06006210 RID: 25104 RVA: 0x00276320 File Offset: 0x00274520
 		[MoonSharpModuleMethod]
 		public static DynValue execute(ScriptExecutionContext executionContext, CallbackArguments args)
 		{
@@ -33,7 +33,7 @@ namespace MoonSharp.Interpreter.CoreLib
 			return result;
 		}
 
-		// Token: 0x06006E34 RID: 28212 RVA: 0x0029C58C File Offset: 0x0029A78C
+		// Token: 0x06006211 RID: 25105 RVA: 0x002763AC File Offset: 0x002745AC
 		[MoonSharpModuleMethod]
 		public static DynValue exit(ScriptExecutionContext executionContext, CallbackArguments args)
 		{
@@ -47,7 +47,7 @@ namespace MoonSharp.Interpreter.CoreLib
 			throw new InvalidOperationException("Unreachable code.. reached.");
 		}
 
-		// Token: 0x06006E35 RID: 28213 RVA: 0x0029C5D4 File Offset: 0x0029A7D4
+		// Token: 0x06006212 RID: 25106 RVA: 0x002763F4 File Offset: 0x002745F4
 		[MoonSharpModuleMethod]
 		public static DynValue getenv(ScriptExecutionContext executionContext, CallbackArguments args)
 		{
@@ -60,7 +60,7 @@ namespace MoonSharp.Interpreter.CoreLib
 			return DynValue.NewString(environmentVariable);
 		}
 
-		// Token: 0x06006E36 RID: 28214 RVA: 0x0029C618 File Offset: 0x0029A818
+		// Token: 0x06006213 RID: 25107 RVA: 0x00276438 File Offset: 0x00274638
 		[MoonSharpModuleMethod]
 		public static DynValue remove(ScriptExecutionContext executionContext, CallbackArguments args)
 		{
@@ -98,7 +98,7 @@ namespace MoonSharp.Interpreter.CoreLib
 			return result;
 		}
 
-		// Token: 0x06006E37 RID: 28215 RVA: 0x0029C6E8 File Offset: 0x0029A8E8
+		// Token: 0x06006214 RID: 25108 RVA: 0x00276508 File Offset: 0x00274708
 		[MoonSharpModuleMethod]
 		public static DynValue rename(ScriptExecutionContext executionContext, CallbackArguments args)
 		{
@@ -137,14 +137,14 @@ namespace MoonSharp.Interpreter.CoreLib
 			return result;
 		}
 
-		// Token: 0x06006E38 RID: 28216 RVA: 0x0004B28B File Offset: 0x0004948B
+		// Token: 0x06006215 RID: 25109 RVA: 0x002765F0 File Offset: 0x002747F0
 		[MoonSharpModuleMethod]
 		public static DynValue setlocale(ScriptExecutionContext executionContext, CallbackArguments args)
 		{
 			return DynValue.NewString("n/a");
 		}
 
-		// Token: 0x06006E39 RID: 28217 RVA: 0x0004B297 File Offset: 0x00049497
+		// Token: 0x06006216 RID: 25110 RVA: 0x002765FC File Offset: 0x002747FC
 		[MoonSharpModuleMethod]
 		public static DynValue tmpname(ScriptExecutionContext executionContext, CallbackArguments args)
 		{

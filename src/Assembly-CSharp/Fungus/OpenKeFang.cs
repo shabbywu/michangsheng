@@ -4,25 +4,25 @@ using UnityEngine;
 
 namespace Fungus
 {
-	// Token: 0x02001447 RID: 5191
+	// Token: 0x02000F94 RID: 3988
 	[CommandInfo("YSTools", "OpenKeFang", "打开客房界面", 0)]
 	[AddComponentMenu("")]
 	public class OpenKeFang : Command
 	{
-		// Token: 0x06007D69 RID: 32105 RVA: 0x00054D2C File Offset: 0x00052F2C
+		// Token: 0x06006F82 RID: 28546 RVA: 0x002A7072 File Offset: 0x002A5272
 		public override void OnEnter()
 		{
 			this.NewUI();
 			this.Continue();
 		}
 
-		// Token: 0x06007D6A RID: 32106 RVA: 0x00054D3A File Offset: 0x00052F3A
+		// Token: 0x06006F83 RID: 28547 RVA: 0x002A7080 File Offset: 0x002A5280
 		public void NewUI()
 		{
 			UIBiGuanPanel.Inst.OpenBiGuan(this.BiGuanType);
 		}
 
-		// Token: 0x06007D6B RID: 32107 RVA: 0x002C671C File Offset: 0x002C491C
+		// Token: 0x06006F84 RID: 28548 RVA: 0x002A7094 File Offset: 0x002A5294
 		public void OldUI()
 		{
 			XiuLian biguan = Singleton.biguan;
@@ -33,18 +33,18 @@ namespace Fungus
 			}
 		}
 
-		// Token: 0x06007D6C RID: 32108 RVA: 0x000113CF File Offset: 0x0000F5CF
+		// Token: 0x06006F85 RID: 28549 RVA: 0x0005E228 File Offset: 0x0005C428
 		public override Color GetButtonColor()
 		{
 			return new Color32(184, 210, 235, byte.MaxValue);
 		}
 
-		// Token: 0x06007D6D RID: 32109 RVA: 0x000042DD File Offset: 0x000024DD
+		// Token: 0x06006F86 RID: 28550 RVA: 0x00004095 File Offset: 0x00002295
 		public override void OnReset()
 		{
 		}
 
-		// Token: 0x04006AE1 RID: 27361
+		// Token: 0x04005C12 RID: 23570
 		[Tooltip("闭关界面的闭关速度")]
 		[SerializeField]
 		protected int BiGuanType = 1;

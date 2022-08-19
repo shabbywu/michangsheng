@@ -1,12 +1,12 @@
 ﻿using System;
 
-// Token: 0x020004B3 RID: 1203
+// Token: 0x02000341 RID: 833
 public enum UIMapState
 {
-	// Token: 0x04001B4A RID: 6986
+	// Token: 0x0400170E RID: 5902
 	Normal,
-	// Token: 0x04001B4B RID: 6987
+	// Token: 0x0400170F RID: 5903
 	Highlight,
-	// Token: 0x04001B4C RID: 6988
+	// Token: 0x04001710 RID: 5904
 	Warp
 }

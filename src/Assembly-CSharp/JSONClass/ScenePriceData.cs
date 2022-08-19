@@ -3,10 +3,10 @@ using System.Collections.Generic;
 
 namespace JSONClass
 {
-	// Token: 0x02000C5F RID: 3167
+	// Token: 0x020008D2 RID: 2258
 	public class ScenePriceData : IJSONClass
 	{
-		// Token: 0x06004CE5 RID: 19685 RVA: 0x00207DCC File Offset: 0x00205FCC
+		// Token: 0x0600415B RID: 16731 RVA: 0x001BF8CC File Offset: 0x001BDACC
 		public static void InitDataDict()
 		{
 			foreach (JSONObject jsonobject in jsonData.instance.ScenePriceData.list)
@@ -40,27 +40,27 @@ namespace JSONClass
 			}
 		}
 
-		// Token: 0x06004CE6 RID: 19686 RVA: 0x000042DD File Offset: 0x000024DD
+		// Token: 0x0600415C RID: 16732 RVA: 0x00004095 File Offset: 0x00002295
 		private static void OnInitFinish()
 		{
 		}
 
-		// Token: 0x04004BE5 RID: 19429
+		// Token: 0x0400409B RID: 16539
 		public static Dictionary<int, ScenePriceData> DataDict = new Dictionary<int, ScenePriceData>();
 
-		// Token: 0x04004BE6 RID: 19430
+		// Token: 0x0400409C RID: 16540
 		public static List<ScenePriceData> DataList = new List<ScenePriceData>();
 
-		// Token: 0x04004BE7 RID: 19431
+		// Token: 0x0400409D RID: 16541
 		public static Action OnInitFinishAction = new Action(ScenePriceData.OnInitFinish);
 
-		// Token: 0x04004BE8 RID: 19432
+		// Token: 0x0400409E RID: 16542
 		public int id;
 
-		// Token: 0x04004BE9 RID: 19433
+		// Token: 0x0400409F RID: 16543
 		public List<int> ItemFlag = new List<int>();
 
-		// Token: 0x04004BEA RID: 19434
+		// Token: 0x040040A0 RID: 16544
 		public List<int> percent = new List<int>();
 	}
 }

@@ -2,10 +2,10 @@
 using System.IO;
 using UnityEngine;
 
-// Token: 0x020002B9 RID: 697
+// Token: 0x020001BB RID: 443
 public static class FileEx
 {
-	// Token: 0x06001517 RID: 5399 RVA: 0x000BE28C File Offset: 0x000BC48C
+	// Token: 0x0600126C RID: 4716 RVA: 0x000708CC File Offset: 0x0006EACC
 	public static bool LoadTex2D(string path, out Texture2D tex)
 	{
 		tex = new Texture2D(2, 2, 5, false, false);
@@ -25,7 +25,7 @@ public static class FileEx
 		return false;
 	}
 
-	// Token: 0x06001518 RID: 5400 RVA: 0x000BE2DC File Offset: 0x000BC4DC
+	// Token: 0x0600126D RID: 4717 RVA: 0x0007091C File Offset: 0x0006EB1C
 	public static bool LoadSprite(string path, out Sprite sprite)
 	{
 		Texture2D texture2D;

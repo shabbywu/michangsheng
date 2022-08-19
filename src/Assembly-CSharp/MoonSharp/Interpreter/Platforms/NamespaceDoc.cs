@@ -2,7 +2,7 @@
 
 namespace MoonSharp.Interpreter.Platforms
 {
-	// Token: 0x020010D1 RID: 4305
+	// Token: 0x02000CF4 RID: 3316
 	internal static class NamespaceDoc
 	{
 	}

@@ -4,17 +4,17 @@ using UnityEngine;
 
 namespace UltimateSurvival
 {
-	// Token: 0x0200086A RID: 2154
+	// Token: 0x020005AE RID: 1454
 	public class FPCameraController : MonoSingleton<FPCameraController>
 	{
-		// Token: 0x060037CF RID: 14287 RVA: 0x0002885A File Offset: 0x00026A5A
+		// Token: 0x06002F51 RID: 12113 RVA: 0x00156B2F File Offset: 0x00154D2F
 		public ShakeInstance Shake(ShakeInstance shake)
 		{
 			this.m_ShakeInstances.Add(shake);
 			return shake;
 		}
 
-		// Token: 0x060037D0 RID: 14288 RVA: 0x001A1094 File Offset: 0x0019F294
+		// Token: 0x06002F52 RID: 12114 RVA: 0x00156B40 File Offset: 0x00154D40
 		public ShakeInstance ShakeOnce(float magnitude, float roughness, float fadeInTime, float fadeOutTime)
 		{
 			ShakeInstance shakeInstance = new ShakeInstance(magnitude, roughness, fadeInTime, fadeOutTime);
@@ -24,7 +24,7 @@ namespace UltimateSurvival
 			return shakeInstance;
 		}
 
-		// Token: 0x060037D1 RID: 14289 RVA: 0x001A10D4 File Offset: 0x0019F2D4
+		// Token: 0x06002F53 RID: 12115 RVA: 0x00156B80 File Offset: 0x00154D80
 		public ShakeInstance ShakeOnce(float magnitude, float roughness, float fadeInTime, float fadeOutTime, Vector3 posInfluence, Vector3 rotInfluence)
 		{
 			ShakeInstance shakeInstance = new ShakeInstance(magnitude, roughness, fadeInTime, fadeOutTime);
@@ -34,7 +34,7 @@ namespace UltimateSurvival
 			return shakeInstance;
 		}
 
-		// Token: 0x060037D2 RID: 14290 RVA: 0x001A110C File Offset: 0x0019F30C
+		// Token: 0x06002F54 RID: 12116 RVA: 0x00156BB8 File Offset: 0x00154DB8
 		public ShakeInstance StartShake(float magnitude, float roughness, float fadeInTime)
 		{
 			ShakeInstance shakeInstance = new ShakeInstance(magnitude, roughness);
@@ -45,7 +45,7 @@ namespace UltimateSurvival
 			return shakeInstance;
 		}
 
-		// Token: 0x060037D3 RID: 14291 RVA: 0x001A1150 File Offset: 0x0019F350
+		// Token: 0x06002F55 RID: 12117 RVA: 0x00156BFC File Offset: 0x00154DFC
 		public ShakeInstance StartShake(float magnitude, float roughness, float fadeInTime, Vector3 posInfluence, Vector3 rotInfluence)
 		{
 			ShakeInstance shakeInstance = new ShakeInstance(magnitude, roughness);
@@ -56,14 +56,14 @@ namespace UltimateSurvival
 			return shakeInstance;
 		}
 
-		// Token: 0x060037D4 RID: 14292 RVA: 0x00028869 File Offset: 0x00026A69
+		// Token: 0x06002F56 RID: 12118 RVA: 0x00156C35 File Offset: 0x00154E35
 		private void Awake()
 		{
 			this.m_Player.ChangeHealth.AddListener(new Action<HealthEventData>(this.OnSuccess_PlayerHealthChanged));
 			this.m_Player.Land.AddListener(new Action<float>(this.On_PlayerLanded));
 		}
 
-		// Token: 0x060037D5 RID: 14293 RVA: 0x000288A3 File Offset: 0x00026AA3
+		// Token: 0x06002F57 RID: 12119 RVA: 0x00156C6F File Offset: 0x00154E6F
 		private void OnSuccess_PlayerHealthChanged(HealthEventData healthEventData)
 		{
 			if (healthEventData.Delta < 0f && healthEventData.Delta < -8f)
@@ -72,7 +72,7 @@ namespace UltimateSurvival
 			}
 		}
 
-		// Token: 0x060037D6 RID: 14294 RVA: 0x000288DB File Offset: 0x00026ADB
+		// Token: 0x06002F58 RID: 12120 RVA: 0x00156CA7 File Offset: 0x00154EA7
 		private void On_PlayerLanded(float landSpeed)
 		{
 			if (landSpeed > this.m_LandThreeshold)
@@ -81,7 +81,7 @@ namespace UltimateSurvival
 			}
 		}
 
-		// Token: 0x060037D7 RID: 14295 RVA: 0x001A118C File Offset: 0x0019F38C
+		// Token: 0x06002F59 RID: 12121 RVA: 0x00156CC0 File Offset: 0x00154EC0
 		private void LateUpdate()
 		{
 			this.m_PositionAddShake = Vector3.zero;
@@ -123,55 +123,55 @@ namespace UltimateSurvival
 			base.transform.localEulerAngles = this.m_RotationAddShake;
 		}
 
-		// Token: 0x04003202 RID: 12802
+		// Token: 0x04002981 RID: 10625
 		[Tooltip("The default position influence of all shakes created on the fly.")]
 		[SerializeField]
 		private Vector3 m_DefaultPosInfluence = new Vector3(0.15f, 0.15f, 0.15f);
 
-		// Token: 0x04003203 RID: 12803
+		// Token: 0x04002982 RID: 10626
 		[Tooltip("The default rotation influence of all shakes created on the fly.")]
 		[SerializeField]
 		private Vector3 m_DefaultRotInfluence = new Vector3(1f, 1f, 1f);
 
-		// Token: 0x04003204 RID: 12804
+		// Token: 0x04002983 RID: 10627
 		[Header("Headbobs")]
 		[SerializeField]
 		private PlayerEventHandler m_Player;
 
-		// Token: 0x04003205 RID: 12805
+		// Token: 0x04002984 RID: 10628
 		[SerializeField]
 		private TrigonometricBob m_WalkHeadbob;
 
-		// Token: 0x04003206 RID: 12806
+		// Token: 0x04002985 RID: 10629
 		[SerializeField]
 		private TrigonometricBob m_RunHeadbob;
 
-		// Token: 0x04003207 RID: 12807
+		// Token: 0x04002986 RID: 10630
 		[Header("Shakes")]
 		[SerializeField]
 		private GenericShake m_DamageShake;
 
-		// Token: 0x04003208 RID: 12808
+		// Token: 0x04002987 RID: 10631
 		[SerializeField]
 		private WeaponShake m_LandShake;
 
-		// Token: 0x04003209 RID: 12809
+		// Token: 0x04002988 RID: 10632
 		[SerializeField]
 		private float m_LandThreeshold = 3f;
 
-		// Token: 0x0400320A RID: 12810
+		// Token: 0x04002989 RID: 10633
 		private Vector3 m_PositionAddShake;
 
-		// Token: 0x0400320B RID: 12811
+		// Token: 0x0400298A RID: 10634
 		private Vector3 m_RotationAddShake;
 
-		// Token: 0x0400320C RID: 12812
+		// Token: 0x0400298B RID: 10635
 		private Vector3 m_PositionAddBob;
 
-		// Token: 0x0400320D RID: 12813
+		// Token: 0x0400298C RID: 10636
 		private Vector3 m_RotationAddBob;
 
-		// Token: 0x0400320E RID: 12814
+		// Token: 0x0400298D RID: 10637
 		private List<ShakeInstance> m_ShakeInstances = new List<ShakeInstance>();
 	}
 }

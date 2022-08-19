@@ -3,12 +3,12 @@ using UnityEngine;
 
 namespace BehaviorDesigner.Runtime.Tasks.Basic.UnityParticleSystem
 {
-	// Token: 0x0200158B RID: 5515
+	// Token: 0x020010D1 RID: 4305
 	[TaskCategory("Basic/ParticleSystem")]
 	[TaskDescription("Stores if the Particle System should loop.")]
 	public class GetLoop : Action
 	{
-		// Token: 0x0600820D RID: 33293 RVA: 0x002CCFEC File Offset: 0x002CB1EC
+		// Token: 0x06007413 RID: 29715 RVA: 0x002B1848 File Offset: 0x002AFA48
 		public override void OnStart()
 		{
 			GameObject defaultGameObject = base.GetDefaultGameObject(this.targetGameObject.Value);
@@ -19,7 +19,7 @@ namespace BehaviorDesigner.Runtime.Tasks.Basic.UnityParticleSystem
 			}
 		}
 
-		// Token: 0x0600820E RID: 33294 RVA: 0x002CD02C File Offset: 0x002CB22C
+		// Token: 0x06007414 RID: 29716 RVA: 0x002B1888 File Offset: 0x002AFA88
 		public override TaskStatus OnUpdate()
 		{
 			if (this.particleSystem == null)
@@ -31,26 +31,26 @@ namespace BehaviorDesigner.Runtime.Tasks.Basic.UnityParticleSystem
 			return 2;
 		}
 
-		// Token: 0x0600820F RID: 33295 RVA: 0x000591B1 File Offset: 0x000573B1
+		// Token: 0x06007415 RID: 29717 RVA: 0x002B18CE File Offset: 0x002AFACE
 		public override void OnReset()
 		{
 			this.targetGameObject = null;
 			this.storeResult = false;
 		}
 
-		// Token: 0x04006ED4 RID: 28372
+		// Token: 0x04005FD4 RID: 24532
 		[Tooltip("The GameObject that the task operates on. If null the task GameObject is used.")]
 		public SharedGameObject targetGameObject;
 
-		// Token: 0x04006ED5 RID: 28373
+		// Token: 0x04005FD5 RID: 24533
 		[Tooltip("Should the ParticleSystem loop?")]
 		[RequiredField]
 		public SharedBool storeResult;
 
-		// Token: 0x04006ED6 RID: 28374
+		// Token: 0x04005FD6 RID: 24534
 		private ParticleSystem particleSystem;
 
-		// Token: 0x04006ED7 RID: 28375
+		// Token: 0x04005FD7 RID: 24535
 		private GameObject prevGameObject;
 	}
 }

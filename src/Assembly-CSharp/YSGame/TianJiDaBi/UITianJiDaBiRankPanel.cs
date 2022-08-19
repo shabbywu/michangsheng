@@ -7,16 +7,16 @@ using UnityEngine.UI;
 
 namespace YSGame.TianJiDaBi
 {
-	// Token: 0x02000DCB RID: 3531
+	// Token: 0x02000A97 RID: 2711
 	public class UITianJiDaBiRankPanel : MonoBehaviour, IESCClose
 	{
-		// Token: 0x0600550E RID: 21774 RVA: 0x0003CCD6 File Offset: 0x0003AED6
+		// Token: 0x06004BE5 RID: 19429 RVA: 0x002057CA File Offset: 0x002039CA
 		private void Awake()
 		{
 			UITianJiDaBiRankPanel.Inst = this;
 		}
 
-		// Token: 0x0600550F RID: 21775 RVA: 0x00236B2C File Offset: 0x00234D2C
+		// Token: 0x06004BE6 RID: 19430 RVA: 0x002057D4 File Offset: 0x002039D4
 		public static void Show(Command cmd = null)
 		{
 			UITianJiDaBiRankPanel component = Object.Instantiate<GameObject>(Resources.Load<GameObject>("NewUI/TianJiDaBi/UITianJiDaBiRankPanel"), NewUICanvas.Inst.Canvas.transform).GetComponent<UITianJiDaBiRankPanel>();
@@ -25,7 +25,7 @@ namespace YSGame.TianJiDaBi
 			component.RefreshUI();
 		}
 
-		// Token: 0x06005510 RID: 21776 RVA: 0x00236B78 File Offset: 0x00234D78
+		// Token: 0x06004BE7 RID: 19431 RVA: 0x00205820 File Offset: 0x00203A20
 		public void RefreshUI()
 		{
 			this.CloseBtn.mouseUpEvent.RemoveAllListeners();
@@ -54,7 +54,7 @@ namespace YSGame.TianJiDaBi
 			}
 		}
 
-		// Token: 0x06005511 RID: 21777 RVA: 0x0003CCDE File Offset: 0x0003AEDE
+		// Token: 0x06004BE8 RID: 19432 RVA: 0x00205936 File Offset: 0x00203B36
 		public void Close()
 		{
 			ESCCloseManager.Inst.UnRegisterClose(this);
@@ -66,29 +66,29 @@ namespace YSGame.TianJiDaBi
 			Object.Destroy(base.gameObject);
 		}
 
-		// Token: 0x06005512 RID: 21778 RVA: 0x0003CD15 File Offset: 0x0003AF15
+		// Token: 0x06004BE9 RID: 19433 RVA: 0x0020596D File Offset: 0x00203B6D
 		bool IESCClose.TryEscClose()
 		{
 			this.Close();
 			return true;
 		}
 
-		// Token: 0x040054C7 RID: 21703
+		// Token: 0x04004B02 RID: 19202
 		public static UITianJiDaBiRankPanel Inst;
 
-		// Token: 0x040054C8 RID: 21704
+		// Token: 0x04004B03 RID: 19203
 		public FpBtn CloseBtn;
 
-		// Token: 0x040054C9 RID: 21705
+		// Token: 0x04004B04 RID: 19204
 		public RectTransform RankSV;
 
-		// Token: 0x040054CA RID: 21706
+		// Token: 0x04004B05 RID: 19205
 		private List<Text> NameList;
 
-		// Token: 0x040054CB RID: 21707
+		// Token: 0x04004B06 RID: 19206
 		private List<Text> TitleList;
 
-		// Token: 0x040054CC RID: 21708
+		// Token: 0x04004B07 RID: 19207
 		private Command callCmd;
 	}
 }

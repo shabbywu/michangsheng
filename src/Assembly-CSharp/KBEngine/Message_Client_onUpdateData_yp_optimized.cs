@@ -3,15 +3,15 @@ using System.Collections.Generic;
 
 namespace KBEngine
 {
-	// Token: 0x02000F85 RID: 3973
+	// Token: 0x02000C00 RID: 3072
 	public class Message_Client_onUpdateData_yp_optimized : Message
 	{
-		// Token: 0x06005EF7 RID: 24311 RVA: 0x00042600 File Offset: 0x00040800
+		// Token: 0x060054B9 RID: 21689 RVA: 0x002357A6 File Offset: 0x002339A6
 		public Message_Client_onUpdateData_yp_optimized(ushort msgid, string msgname, short length, sbyte argstype, List<byte> msgargtypes) : base(msgid, msgname, length, argstype, msgargtypes)
 		{
 		}
 
-		// Token: 0x06005EF8 RID: 24312 RVA: 0x00042795 File Offset: 0x00040995
+		// Token: 0x060054BA RID: 21690 RVA: 0x002359B4 File Offset: 0x00233BB4
 		public override void handleMessage(MemoryStream msgstream)
 		{
 			KBEngineApp.app.Client_onUpdateData_yp_optimized(msgstream);

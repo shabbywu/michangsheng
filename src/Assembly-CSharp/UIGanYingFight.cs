@@ -2,10 +2,10 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-// Token: 0x020003E7 RID: 999
+// Token: 0x020002AF RID: 687
 public class UIGanYingFight : MonoBehaviour
 {
-	// Token: 0x06001B38 RID: 6968 RVA: 0x000F0618 File Offset: 0x000EE818
+	// Token: 0x06001846 RID: 6214 RVA: 0x000A97EC File Offset: 0x000A79EC
 	public void Refresh()
 	{
 		int num = this.Processor.miShuData.RoundLimit - RoundManager.instance.StaticRoundNum + 1;
@@ -15,7 +15,7 @@ public class UIGanYingFight : MonoBehaviour
 		this.LiShiJinDuText.text = string.Format("历史进度：{0}", this.Processor.GetSaveRecordValue());
 	}
 
-	// Token: 0x06001B39 RID: 6969 RVA: 0x0001701E File Offset: 0x0001521E
+	// Token: 0x06001847 RID: 6215 RVA: 0x000A98A0 File Offset: 0x000A7AA0
 	private void Update()
 	{
 		if (RoundManager.instance == null || this.Processor == null)
@@ -24,18 +24,18 @@ public class UIGanYingFight : MonoBehaviour
 		}
 	}
 
-	// Token: 0x040016F9 RID: 5881
+	// Token: 0x0400135C RID: 4956
 	public TianJieMiShuLingWuFightEventProcessor Processor;
 
-	// Token: 0x040016FA RID: 5882
+	// Token: 0x0400135D RID: 4957
 	public Text RoundText;
 
-	// Token: 0x040016FB RID: 5883
+	// Token: 0x0400135E RID: 4958
 	public Text DescText;
 
-	// Token: 0x040016FC RID: 5884
+	// Token: 0x0400135F RID: 4959
 	public Text DangQianJinDuText;
 
-	// Token: 0x040016FD RID: 5885
+	// Token: 0x04001360 RID: 4960
 	public Text LiShiJinDuText;
 }

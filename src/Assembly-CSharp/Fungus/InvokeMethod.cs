@@ -6,11 +6,11 @@ using UnityEngine.Events;
 
 namespace Fungus
 {
-	// Token: 0x0200121C RID: 4636
+	// Token: 0x02000DDC RID: 3548
 	[CommandInfo("Scripting", "Invoke Method", "Invokes a method of a component via reflection. Supports passing multiple parameters and storing returned values in a Fungus variable.", 0)]
 	public class InvokeMethod : Command
 	{
-		// Token: 0x0600713B RID: 28987 RVA: 0x002A49B8 File Offset: 0x002A2BB8
+		// Token: 0x060064B5 RID: 25781 RVA: 0x0027FE58 File Offset: 0x0027E058
 		protected virtual void Awake()
 		{
 			if (this.componentType == null)
@@ -31,7 +31,7 @@ namespace Fungus
 			}
 		}
 
-		// Token: 0x0600713C RID: 28988 RVA: 0x0004CEF9 File Offset: 0x0004B0F9
+		// Token: 0x060064B6 RID: 25782 RVA: 0x0027FEE8 File Offset: 0x0027E0E8
 		protected virtual IEnumerator ExecuteCoroutine()
 		{
 			yield return base.StartCoroutine((IEnumerator)this.objMethod.Invoke(this.objComponent, this.GetParameterValues()));
@@ -42,7 +42,7 @@ namespace Fungus
 			yield break;
 		}
 
-		// Token: 0x0600713D RID: 28989 RVA: 0x002A4A48 File Offset: 0x002A2C48
+		// Token: 0x060064B7 RID: 25783 RVA: 0x0027FEF8 File Offset: 0x0027E0F8
 		protected virtual Type[] GetParameterTypes()
 		{
 			Type[] array = new Type[this.methodParameters.Length];
@@ -54,7 +54,7 @@ namespace Fungus
 			return array;
 		}
 
-		// Token: 0x0600713E RID: 28990 RVA: 0x002A4A94 File Offset: 0x002A2C94
+		// Token: 0x060064B8 RID: 25784 RVA: 0x0027FF44 File Offset: 0x0027E144
 		protected virtual object[] GetParameterValues()
 		{
 			object[] array = new object[this.methodParameters.Length];
@@ -254,7 +254,7 @@ namespace Fungus
 			return array;
 		}
 
-		// Token: 0x0600713F RID: 28991 RVA: 0x002A4EA4 File Offset: 0x002A30A4
+		// Token: 0x060064B9 RID: 25785 RVA: 0x00280354 File Offset: 0x0027E554
 		protected virtual void SetVariable(string key, object value, string returnType)
 		{
 			Flowchart flowchart = this.GetFlowchart();
@@ -359,8 +359,8 @@ namespace Fungus
 			flowchart.GetVariable<ObjectVariable>(key).Value = (Object)value;
 		}
 
-		// Token: 0x17000A65 RID: 2661
-		// (get) Token: 0x06007140 RID: 28992 RVA: 0x0004CF08 File Offset: 0x0004B108
+		// Token: 0x17000800 RID: 2048
+		// (get) Token: 0x060064BA RID: 25786 RVA: 0x002805D2 File Offset: 0x0027E7D2
 		public virtual GameObject TargetObject
 		{
 			get
@@ -369,7 +369,7 @@ namespace Fungus
 			}
 		}
 
-		// Token: 0x06007141 RID: 28993 RVA: 0x002A5124 File Offset: 0x002A3324
+		// Token: 0x060064BB RID: 25787 RVA: 0x002805DC File Offset: 0x0027E7DC
 		public override void OnEnter()
 		{
 			try
@@ -406,13 +406,13 @@ namespace Fungus
 			}
 		}
 
-		// Token: 0x06007142 RID: 28994 RVA: 0x0004C5E0 File Offset: 0x0004A7E0
+		// Token: 0x060064BC RID: 25788 RVA: 0x0027D3DB File Offset: 0x0027B5DB
 		public override Color GetButtonColor()
 		{
 			return new Color32(235, 191, 217, byte.MaxValue);
 		}
 
-		// Token: 0x06007143 RID: 28995 RVA: 0x002A5208 File Offset: 0x002A3408
+		// Token: 0x060064BD RID: 25789 RVA: 0x002806C0 File Offset: 0x0027E8C0
 		public override string GetSummary()
 		{
 			if (this.targetObject == null)
@@ -433,92 +433,92 @@ namespace Fungus
 			});
 		}
 
-		// Token: 0x04006391 RID: 25489
+		// Token: 0x0400568D RID: 22157
 		[Tooltip("A description of what this command does. Appears in the command summary.")]
 		[SerializeField]
 		protected string description = "";
 
-		// Token: 0x04006392 RID: 25490
+		// Token: 0x0400568E RID: 22158
 		[Tooltip("GameObject containing the component method to be invoked")]
 		[SerializeField]
 		protected GameObject targetObject;
 
-		// Token: 0x04006393 RID: 25491
+		// Token: 0x0400568F RID: 22159
 		[HideInInspector]
 		[Tooltip("Name of assembly containing the target component")]
 		[SerializeField]
 		protected string targetComponentAssemblyName;
 
-		// Token: 0x04006394 RID: 25492
+		// Token: 0x04005690 RID: 22160
 		[HideInInspector]
 		[Tooltip("Full name of the target component")]
 		[SerializeField]
 		protected string targetComponentFullname;
 
-		// Token: 0x04006395 RID: 25493
+		// Token: 0x04005691 RID: 22161
 		[HideInInspector]
 		[Tooltip("Display name of the target component")]
 		[SerializeField]
 		protected string targetComponentText;
 
-		// Token: 0x04006396 RID: 25494
+		// Token: 0x04005692 RID: 22162
 		[HideInInspector]
 		[Tooltip("Name of target method to invoke on the target component")]
 		[SerializeField]
 		protected string targetMethod;
 
-		// Token: 0x04006397 RID: 25495
+		// Token: 0x04005693 RID: 22163
 		[HideInInspector]
 		[Tooltip("Display name of target method to invoke on the target component")]
 		[SerializeField]
 		protected string targetMethodText;
 
-		// Token: 0x04006398 RID: 25496
+		// Token: 0x04005694 RID: 22164
 		[HideInInspector]
 		[Tooltip("List of parameters to pass to the invoked method")]
 		[SerializeField]
 		protected InvokeMethodParameter[] methodParameters;
 
-		// Token: 0x04006399 RID: 25497
+		// Token: 0x04005695 RID: 22165
 		[HideInInspector]
 		[Tooltip("If true, store the return value in a flowchart variable of the same type.")]
 		[SerializeField]
 		protected bool saveReturnValue;
 
-		// Token: 0x0400639A RID: 25498
+		// Token: 0x04005696 RID: 22166
 		[HideInInspector]
 		[Tooltip("Name of Fungus variable to store the return value in")]
 		[SerializeField]
 		protected string returnValueVariableKey;
 
-		// Token: 0x0400639B RID: 25499
+		// Token: 0x04005697 RID: 22167
 		[HideInInspector]
 		[Tooltip("The type of the return value")]
 		[SerializeField]
 		protected string returnValueType;
 
-		// Token: 0x0400639C RID: 25500
+		// Token: 0x04005698 RID: 22168
 		[HideInInspector]
 		[Tooltip("If true, list all inherited methods for the component")]
 		[SerializeField]
 		protected bool showInherited;
 
-		// Token: 0x0400639D RID: 25501
+		// Token: 0x04005699 RID: 22169
 		[HideInInspector]
 		[Tooltip("The coroutine call behavior for methods that return IEnumerator")]
 		[SerializeField]
 		protected CallMode callMode;
 
-		// Token: 0x0400639E RID: 25502
+		// Token: 0x0400569A RID: 22170
 		protected Type componentType;
 
-		// Token: 0x0400639F RID: 25503
+		// Token: 0x0400569B RID: 22171
 		protected Component objComponent;
 
-		// Token: 0x040063A0 RID: 25504
+		// Token: 0x0400569C RID: 22172
 		protected Type[] parameterTypes;
 
-		// Token: 0x040063A1 RID: 25505
+		// Token: 0x0400569D RID: 22173
 		protected MethodInfo objMethod;
 	}
 }

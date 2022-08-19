@@ -3,10 +3,10 @@ using System.Collections.Generic;
 
 namespace JSONClass
 {
-	// Token: 0x02000BD1 RID: 3025
+	// Token: 0x02000840 RID: 2112
 	public class FightTypeInfoJsonData : IJSONClass
 	{
-		// Token: 0x06004AAC RID: 19116 RVA: 0x001F9660 File Offset: 0x001F7860
+		// Token: 0x06003F12 RID: 16146 RVA: 0x001AEE24 File Offset: 0x001AD024
 		public static void InitDataDict()
 		{
 			foreach (JSONObject jsonobject in jsonData.instance.FightTypeInfoJsonData.list)
@@ -48,51 +48,51 @@ namespace JSONClass
 			}
 		}
 
-		// Token: 0x06004AAD RID: 19117 RVA: 0x000042DD File Offset: 0x000024DD
+		// Token: 0x06003F13 RID: 16147 RVA: 0x00004095 File Offset: 0x00002295
 		private static void OnInitFinish()
 		{
 		}
 
-		// Token: 0x04004665 RID: 18021
+		// Token: 0x04003AF7 RID: 15095
 		public static Dictionary<int, FightTypeInfoJsonData> DataDict = new Dictionary<int, FightTypeInfoJsonData>();
 
-		// Token: 0x04004666 RID: 18022
+		// Token: 0x04003AF8 RID: 15096
 		public static List<FightTypeInfoJsonData> DataList = new List<FightTypeInfoJsonData>();
 
-		// Token: 0x04004667 RID: 18023
+		// Token: 0x04003AF9 RID: 15097
 		public static Action OnInitFinishAction = new Action(FightTypeInfoJsonData.OnInitFinish);
 
-		// Token: 0x04004668 RID: 18024
+		// Token: 0x04003AFA RID: 15098
 		public int id;
 
-		// Token: 0x04004669 RID: 18025
+		// Token: 0x04003AFB RID: 15099
 		public int Type1;
 
-		// Token: 0x0400466A RID: 18026
+		// Token: 0x04003AFC RID: 15100
 		public int Type2;
 
-		// Token: 0x0400466B RID: 18027
+		// Token: 0x04003AFD RID: 15101
 		public int Type9;
 
-		// Token: 0x0400466C RID: 18028
+		// Token: 0x04003AFE RID: 15102
 		public int Type3;
 
-		// Token: 0x0400466D RID: 18029
+		// Token: 0x04003AFF RID: 15103
 		public int Type4;
 
-		// Token: 0x0400466E RID: 18030
+		// Token: 0x04003B00 RID: 15104
 		public int Type5;
 
-		// Token: 0x0400466F RID: 18031
+		// Token: 0x04003B01 RID: 15105
 		public int Type6;
 
-		// Token: 0x04004670 RID: 18032
+		// Token: 0x04003B02 RID: 15106
 		public int Type7;
 
-		// Token: 0x04004671 RID: 18033
+		// Token: 0x04003B03 RID: 15107
 		public int Type8;
 
-		// Token: 0x04004672 RID: 18034
+		// Token: 0x04003B04 RID: 15108
 		public string Name;
 	}
 }

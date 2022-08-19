@@ -5,17 +5,17 @@ using UnityEngine.Events;
 
 namespace Tab
 {
-	// Token: 0x02000A28 RID: 2600
+	// Token: 0x020006E9 RID: 1769
 	public class BagFilter : MonoBehaviour
 	{
-		// Token: 0x06004360 RID: 17248 RVA: 0x00030251 File Offset: 0x0002E451
+		// Token: 0x060038F9 RID: 14585 RVA: 0x001851B0 File Offset: 0x001833B0
 		private void Awake()
 		{
 			this.StopAllAn();
 			this.CanSort = true;
 		}
 
-		// Token: 0x06004361 RID: 17249 RVA: 0x001CCC84 File Offset: 0x001CAE84
+		// Token: 0x060038FA RID: 14586 RVA: 0x001851C0 File Offset: 0x001833C0
 		public void ResetData()
 		{
 			this.BigTypeIndex = 0;
@@ -27,7 +27,7 @@ namespace Tab
 			this.CurSelectBigBtn = null;
 		}
 
-		// Token: 0x06004362 RID: 17250 RVA: 0x001CCCF0 File Offset: 0x001CAEF0
+		// Token: 0x060038FB RID: 14587 RVA: 0x0018522C File Offset: 0x0018342C
 		public void AddBigTypeBtn(UnityAction call, string Name)
 		{
 			if (this.BigTypeIndex >= this.BigTypeMax)
@@ -62,7 +62,7 @@ namespace Tab
 			this.BigTypeIndex++;
 		}
 
-		// Token: 0x06004363 RID: 17251 RVA: 0x001CCDC0 File Offset: 0x001CAFC0
+		// Token: 0x060038FC RID: 14588 RVA: 0x001852FC File Offset: 0x001834FC
 		public void AddSmallTypeBtn(UnityAction call, string Name)
 		{
 			if (this.SmallTypeIndex >= this.SmallTypeMax)
@@ -100,7 +100,7 @@ namespace Tab
 			this.SmallTypeIndex++;
 		}
 
-		// Token: 0x06004364 RID: 17252 RVA: 0x00030260 File Offset: 0x0002E460
+		// Token: 0x060038FD RID: 14589 RVA: 0x001853D1 File Offset: 0x001835D1
 		public void PlayShowAn()
 		{
 			this.LianZiAnimator.enabled = true;
@@ -109,7 +109,7 @@ namespace Tab
 			this.LianZiAnimator.Play("Show");
 		}
 
-		// Token: 0x06004365 RID: 17253 RVA: 0x0003029A File Offset: 0x0002E49A
+		// Token: 0x060038FE RID: 14590 RVA: 0x0018540B File Offset: 0x0018360B
 		public void PlayHideAn()
 		{
 			this.LianZiAnimator.enabled = true;
@@ -118,13 +118,13 @@ namespace Tab
 			this.LianZiAnimator.Play("Hide");
 		}
 
-		// Token: 0x06004366 RID: 17254 RVA: 0x000302D4 File Offset: 0x0002E4D4
+		// Token: 0x060038FF RID: 14591 RVA: 0x00185445 File Offset: 0x00183645
 		public void StopAllAn()
 		{
 			this.FilterAnimator.enabled = false;
 		}
 
-		// Token: 0x06004367 RID: 17255 RVA: 0x001CCE98 File Offset: 0x001CB098
+		// Token: 0x06003900 RID: 14592 RVA: 0x00185454 File Offset: 0x00183654
 		public void CloseSmallSelect()
 		{
 			foreach (UIInvFilterBtn uiinvFilterBtn in this.FilterBtnList)
@@ -135,7 +135,7 @@ namespace Tab
 			this.SmallTypeIndex = 0;
 		}
 
-		// Token: 0x06004368 RID: 17256 RVA: 0x000302E2 File Offset: 0x0002E4E2
+		// Token: 0x06003901 RID: 14593 RVA: 0x001854B8 File Offset: 0x001836B8
 		public void Sort(UnityAction action = null)
 		{
 			if (this.CanSort)
@@ -151,41 +151,41 @@ namespace Tab
 			}
 		}
 
-		// Token: 0x06004369 RID: 17257 RVA: 0x0003031C File Offset: 0x0002E51C
+		// Token: 0x06003902 RID: 14594 RVA: 0x001854F2 File Offset: 0x001836F2
 		public void SortEnd()
 		{
 			this.PlayHideAn();
 			this.CanSort = true;
 		}
 
-		// Token: 0x04003B68 RID: 15208
+		// Token: 0x04003109 RID: 12553
 		public Animator FilterAnimator;
 
-		// Token: 0x04003B69 RID: 15209
+		// Token: 0x0400310A RID: 12554
 		public Animator LianZiAnimator;
 
-		// Token: 0x04003B6A RID: 15210
+		// Token: 0x0400310B RID: 12555
 		public List<UIInvFilterBtn> BigFilterBtnList;
 
-		// Token: 0x04003B6B RID: 15211
+		// Token: 0x0400310C RID: 12556
 		public List<UIInvFilterBtn> FilterBtnList;
 
-		// Token: 0x04003B6C RID: 15212
+		// Token: 0x0400310D RID: 12557
 		public int BigTypeIndex;
 
-		// Token: 0x04003B6D RID: 15213
+		// Token: 0x0400310E RID: 12558
 		public int SmallTypeIndex;
 
-		// Token: 0x04003B6E RID: 15214
+		// Token: 0x0400310F RID: 12559
 		public int BigTypeMax = 4;
 
-		// Token: 0x04003B6F RID: 15215
+		// Token: 0x04003110 RID: 12560
 		public bool CanSort = true;
 
-		// Token: 0x04003B70 RID: 15216
+		// Token: 0x04003111 RID: 12561
 		public int SmallTypeMax = 12;
 
-		// Token: 0x04003B71 RID: 15217
+		// Token: 0x04003112 RID: 12562
 		public UIInvFilterBtn CurSelectBigBtn;
 	}
 }

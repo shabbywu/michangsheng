@@ -3,16 +3,16 @@ using System.Collections.Generic;
 
 namespace KBEngine
 {
-	// Token: 0x0200101C RID: 4124
+	// Token: 0x02000C76 RID: 3190
 	public class Dialog
 	{
-		// Token: 0x0600628C RID: 25228 RVA: 0x00044374 File Offset: 0x00042574
+		// Token: 0x0600580C RID: 22540 RVA: 0x00248CC7 File Offset: 0x00246EC7
 		public Dialog(Entity avater)
 		{
 			this.entity = avater;
 		}
 
-		// Token: 0x0600628D RID: 25229 RVA: 0x00274BEC File Offset: 0x00272DEC
+		// Token: 0x0600580D RID: 22541 RVA: 0x00248CD8 File Offset: 0x00246ED8
 		public void talkByID(int id)
 		{
 			Avatar avatar = (Avatar)this.entity;
@@ -50,19 +50,19 @@ namespace KBEngine
 			avatar.dialog_setContent(id, list2, list, Tools.instance.Code64ToString(jsonobject["title"].str), Tools.instance.Code64ToString(jsonobject["body"].str), Tools.instance.Code64ToString(jsonobject["sayname"].str));
 		}
 
-		// Token: 0x0600628E RID: 25230 RVA: 0x00044383 File Offset: 0x00042583
+		// Token: 0x0600580E RID: 22542 RVA: 0x00248EAA File Offset: 0x002470AA
 		public void dialog(int targetID, uint dialogID)
 		{
 			this.talkByID((int)dialogID);
 		}
 
-		// Token: 0x0600628F RID: 25231 RVA: 0x0004438C File Offset: 0x0004258C
+		// Token: 0x0600580F RID: 22543 RVA: 0x00248EB3 File Offset: 0x002470B3
 		public void messagelog(int targetID, uint dialogID)
 		{
 			this.messageByID((int)dialogID);
 		}
 
-		// Token: 0x06006290 RID: 25232 RVA: 0x00274DC0 File Offset: 0x00272FC0
+		// Token: 0x06005810 RID: 22544 RVA: 0x00248EBC File Offset: 0x002470BC
 		public void messageByID(int id)
 		{
 			Avatar avatar = (Avatar)this.entity;
@@ -70,7 +70,7 @@ namespace KBEngine
 			avatar.messagelog_setContent(id, Tools.instance.Code64ToString(jsonobject["title"].str), Tools.instance.Code64ToString(jsonobject["body"].str), Tools.instance.Code64ToString(jsonobject["messageInfo"].str));
 		}
 
-		// Token: 0x04005CEE RID: 23790
+		// Token: 0x040051FB RID: 20987
 		public Entity entity;
 	}
 }

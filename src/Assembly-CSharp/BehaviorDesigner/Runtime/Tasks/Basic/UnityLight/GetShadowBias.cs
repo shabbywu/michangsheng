@@ -3,12 +3,12 @@ using UnityEngine;
 
 namespace BehaviorDesigner.Runtime.Tasks.Basic.UnityLight
 {
-	// Token: 0x020015D2 RID: 5586
+	// Token: 0x02001113 RID: 4371
 	[TaskCategory("Basic/Light")]
 	[TaskDescription("Stores the shadow bias of the light.")]
 	public class GetShadowBias : Action
 	{
-		// Token: 0x060082FC RID: 33532 RVA: 0x002CE52C File Offset: 0x002CC72C
+		// Token: 0x06007502 RID: 29954 RVA: 0x002B3ACC File Offset: 0x002B1CCC
 		public override void OnStart()
 		{
 			GameObject defaultGameObject = base.GetDefaultGameObject(this.targetGameObject.Value);
@@ -19,7 +19,7 @@ namespace BehaviorDesigner.Runtime.Tasks.Basic.UnityLight
 			}
 		}
 
-		// Token: 0x060082FD RID: 33533 RVA: 0x00059EDF File Offset: 0x000580DF
+		// Token: 0x06007503 RID: 29955 RVA: 0x002B3B0C File Offset: 0x002B1D0C
 		public override TaskStatus OnUpdate()
 		{
 			if (this.light == null)
@@ -31,26 +31,26 @@ namespace BehaviorDesigner.Runtime.Tasks.Basic.UnityLight
 			return 2;
 		}
 
-		// Token: 0x060082FE RID: 33534 RVA: 0x00059F12 File Offset: 0x00058112
+		// Token: 0x06007504 RID: 29956 RVA: 0x002B3B3F File Offset: 0x002B1D3F
 		public override void OnReset()
 		{
 			this.targetGameObject = null;
 			this.storeValue = 0f;
 		}
 
-		// Token: 0x04006FCF RID: 28623
+		// Token: 0x040060AC RID: 24748
 		[Tooltip("The GameObject that the task operates on. If null the task GameObject is used.")]
 		public SharedGameObject targetGameObject;
 
-		// Token: 0x04006FD0 RID: 28624
+		// Token: 0x040060AD RID: 24749
 		[RequiredField]
 		[Tooltip("The shadow bias to store")]
 		public SharedFloat storeValue;
 
-		// Token: 0x04006FD1 RID: 28625
+		// Token: 0x040060AE RID: 24750
 		private Light light;
 
-		// Token: 0x04006FD2 RID: 28626
+		// Token: 0x040060AF RID: 24751
 		private GameObject prevGameObject;
 	}
 }

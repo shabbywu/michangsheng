@@ -1,10 +1,10 @@
 ﻿using System;
 using UnityEngine;
 
-// Token: 0x020006A1 RID: 1697
+// Token: 0x020004AE RID: 1198
 public class FinishEvent : MonoBehaviour
 {
-	// Token: 0x06002A68 RID: 10856 RVA: 0x00020F65 File Offset: 0x0001F165
+	// Token: 0x060025F0 RID: 9712 RVA: 0x00106C52 File Offset: 0x00104E52
 	private void OnTriggerEnter2D(Collider2D col)
 	{
 		if (col.tag == "Monkey")

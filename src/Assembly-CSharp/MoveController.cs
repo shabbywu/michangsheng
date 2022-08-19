@@ -1,31 +1,31 @@
 ﻿using System;
 using UnityEngine;
 
-// Token: 0x0200030C RID: 780
+// Token: 0x020001F7 RID: 503
 [Obsolete]
 public class MoveController : MonoBehaviour
 {
-	// Token: 0x040012A2 RID: 4770
+	// Token: 0x04000F5C RID: 3932
 	private Animator animator;
 
-	// Token: 0x040012A3 RID: 4771
+	// Token: 0x04000F5D RID: 3933
 	private SmoothFollow sf;
 
-	// Token: 0x040012A4 RID: 4772
+	// Token: 0x04000F5E RID: 3934
 	private Transform moveDes;
 
-	// Token: 0x040012A5 RID: 4773
+	// Token: 0x04000F5F RID: 3935
 	private bool hasDes;
 
-	// Token: 0x040012A6 RID: 4774
+	// Token: 0x04000F60 RID: 3936
 	private float minLen;
 
-	// Token: 0x040012A7 RID: 4775
+	// Token: 0x04000F61 RID: 3937
 	private int skillId = 1;
 
-	// Token: 0x040012A8 RID: 4776
+	// Token: 0x04000F62 RID: 3938
 	private GameObject UIGame;
 
-	// Token: 0x040012A9 RID: 4777
+	// Token: 0x04000F63 RID: 3939
 	private GameEntity gameEntity;
 }

@@ -2,17 +2,17 @@
 using System.Collections;
 using UnityEngine;
 
-// Token: 0x0200072F RID: 1839
+// Token: 0x020004CB RID: 1227
 public class MushroomDogadjaji : MonoBehaviour
 {
-	// Token: 0x06002EAA RID: 11946 RVA: 0x00022A86 File Offset: 0x00020C86
+	// Token: 0x060027A2 RID: 10146 RVA: 0x00128B5B File Offset: 0x00126D5B
 	private void Awake()
 	{
 		this.anim = base.GetComponent<Animator>();
 		this.playerController = GameObject.FindGameObjectWithTag("Monkey").GetComponent<MonkeyController2D>();
 	}
 
-	// Token: 0x06002EAB RID: 11947 RVA: 0x001743E0 File Offset: 0x001725E0
+	// Token: 0x060027A3 RID: 10147 RVA: 0x00128B80 File Offset: 0x00126D80
 	private void OnTriggerEnter2D(Collider2D col)
 	{
 		if (col.tag == "Monkey")
@@ -51,7 +51,7 @@ public class MushroomDogadjaji : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06002EAC RID: 11948 RVA: 0x00022AA9 File Offset: 0x00020CA9
+	// Token: 0x060027A4 RID: 10148 RVA: 0x00128CC5 File Offset: 0x00126EC5
 	private IEnumerator DelayAndBounce()
 	{
 		this.playerController.transform.position = new Vector3(base.transform.Find("Goal").position.x, base.transform.Find("Goal").position.y, this.playerController.transform.position.z);
@@ -75,30 +75,30 @@ public class MushroomDogadjaji : MonoBehaviour
 		yield break;
 	}
 
-	// Token: 0x06002EAD RID: 11949 RVA: 0x00022AB8 File Offset: 0x00020CB8
+	// Token: 0x060027A5 RID: 10149 RVA: 0x00128CD4 File Offset: 0x00126ED4
 	private void UkljuciColliderOpet()
 	{
 		base.GetComponent<Collider2D>().enabled = true;
 	}
 
-	// Token: 0x040029CA RID: 10698
+	// Token: 0x04002283 RID: 8835
 	private Animator anim;
 
-	// Token: 0x040029CB RID: 10699
+	// Token: 0x04002284 RID: 8836
 	private MonkeyController2D playerController;
 
-	// Token: 0x040029CC RID: 10700
+	// Token: 0x04002285 RID: 8837
 	public MushroomDogadjaji.Tip tip;
 
-	// Token: 0x040029CD RID: 10701
+	// Token: 0x04002286 RID: 8838
 	private int brojac;
 
-	// Token: 0x02000730 RID: 1840
+	// Token: 0x0200144E RID: 5198
 	public enum Tip
 	{
-		// Token: 0x040029CF RID: 10703
+		// Token: 0x04006B8A RID: 27530
 		Feder,
-		// Token: 0x040029D0 RID: 10704
+		// Token: 0x04006B8B RID: 27531
 		Bunika
 	}
 }

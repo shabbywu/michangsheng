@@ -4,10 +4,10 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-// Token: 0x0200017C RID: 380
+// Token: 0x020000FF RID: 255
 public class SaveGameUI : MonoBehaviour
 {
-	// Token: 0x06000CC4 RID: 3268 RVA: 0x0000E8FD File Offset: 0x0000CAFD
+	// Token: 0x06000BBF RID: 3007 RVA: 0x0004768A File Offset: 0x0004588A
 	private IEnumerator Start()
 	{
 		yield return new WaitForSeconds(0.1f);
@@ -15,7 +15,7 @@ public class SaveGameUI : MonoBehaviour
 		yield break;
 	}
 
-	// Token: 0x06000CC5 RID: 3269 RVA: 0x0000E90C File Offset: 0x0000CB0C
+	// Token: 0x06000BC0 RID: 3008 RVA: 0x00047699 File Offset: 0x00045899
 	private void Update()
 	{
 		if (Input.GetKeyDown(this.key))
@@ -24,7 +24,7 @@ public class SaveGameUI : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000CC6 RID: 3270 RVA: 0x0000E921 File Offset: 0x0000CB21
+	// Token: 0x06000BC1 RID: 3009 RVA: 0x000476AE File Offset: 0x000458AE
 	public void quickSaveSlotData(Text saveName, Text savePercentage, int slotID)
 	{
 		this.QsaveName_text = saveName;
@@ -32,14 +32,14 @@ public class SaveGameUI : MonoBehaviour
 		this.QslotId = slotID;
 	}
 
-	// Token: 0x06000CC7 RID: 3271 RVA: 0x0000E938 File Offset: 0x0000CB38
+	// Token: 0x06000BC2 RID: 3010 RVA: 0x000476C5 File Offset: 0x000458C5
 	public void openConfirmation()
 	{
 		base.GetComponent<Animator>().Play("confirmUI_open");
 		this.playClickSound();
 	}
 
-	// Token: 0x06000CC8 RID: 3272 RVA: 0x0000E950 File Offset: 0x0000CB50
+	// Token: 0x06000BC3 RID: 3011 RVA: 0x000476DD File Offset: 0x000458DD
 	public void confirmation_yes()
 	{
 		this.saveData();
@@ -47,14 +47,14 @@ public class SaveGameUI : MonoBehaviour
 		this.playClickSound();
 	}
 
-	// Token: 0x06000CC9 RID: 3273 RVA: 0x0000E96E File Offset: 0x0000CB6E
+	// Token: 0x06000BC4 RID: 3012 RVA: 0x000476FB File Offset: 0x000458FB
 	public void confirmation_no()
 	{
 		base.GetComponent<Animator>().Play("confirmUI_close");
 		this.playClickSound();
 	}
 
-	// Token: 0x06000CCA RID: 3274 RVA: 0x00098FEC File Offset: 0x000971EC
+	// Token: 0x06000BC5 RID: 3013 RVA: 0x00047714 File Offset: 0x00045914
 	public void closeSaveUI()
 	{
 		for (int i = 0; i < this.allUI.Length; i++)
@@ -67,13 +67,13 @@ public class SaveGameUI : MonoBehaviour
 		this.playClickSound();
 	}
 
-	// Token: 0x06000CCB RID: 3275 RVA: 0x0000E986 File Offset: 0x0000CB86
+	// Token: 0x06000BC6 RID: 3014 RVA: 0x00047777 File Offset: 0x00045977
 	private void disableUI()
 	{
 		base.GetComponent<UIController>().hideMenus();
 	}
 
-	// Token: 0x06000CCC RID: 3276 RVA: 0x00099050 File Offset: 0x00097250
+	// Token: 0x06000BC7 RID: 3015 RVA: 0x00047784 File Offset: 0x00045984
 	private void saveData()
 	{
 		this.saveName_text.text = this.saveName;
@@ -85,7 +85,7 @@ public class SaveGameUI : MonoBehaviour
 		PlayerPrefs.SetString("slot_sceneName_" + this.slotId, this.sceneName);
 	}
 
-	// Token: 0x06000CCD RID: 3277 RVA: 0x00099130 File Offset: 0x00097330
+	// Token: 0x06000BC8 RID: 3016 RVA: 0x00047864 File Offset: 0x00045A64
 	private void SaveData_quickSlot()
 	{
 		this.QsaveName_text.text = "Quicksave : " + SceneManager.GetActiveScene().name;
@@ -102,7 +102,7 @@ public class SaveGameUI : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000CCE RID: 3278 RVA: 0x00099210 File Offset: 0x00097410
+	// Token: 0x06000BC9 RID: 3017 RVA: 0x00047944 File Offset: 0x00045B44
 	private void SavePositions()
 	{
 		Transform transform = GameObject.FindGameObjectWithTag("Player").transform;
@@ -114,7 +114,7 @@ public class SaveGameUI : MonoBehaviour
 		PlayerPrefs.SetFloat("player.position.z", z);
 	}
 
-	// Token: 0x06000CCF RID: 3279 RVA: 0x0000E993 File Offset: 0x0000CB93
+	// Token: 0x06000BCA RID: 3018 RVA: 0x000479A4 File Offset: 0x00045BA4
 	private void loadQuickSaveData()
 	{
 		if (PlayerPrefs.GetInt("slotLoaded_") == this.QslotId && this.QslotId != 0)
@@ -123,7 +123,7 @@ public class SaveGameUI : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000CD0 RID: 3280 RVA: 0x00099270 File Offset: 0x00097470
+	// Token: 0x06000BCB RID: 3019 RVA: 0x000479C8 File Offset: 0x00045BC8
 	private void LoadnSetPosition()
 	{
 		float @float = PlayerPrefs.GetFloat("player.position.x");
@@ -134,67 +134,67 @@ public class SaveGameUI : MonoBehaviour
 		GameObject.FindGameObjectWithTag("Player").transform.position = position;
 	}
 
-	// Token: 0x06000CD1 RID: 3281 RVA: 0x0000E9B5 File Offset: 0x0000CBB5
+	// Token: 0x06000BCC RID: 3020 RVA: 0x00047A15 File Offset: 0x00045C15
 	public void playHoverClip()
 	{
 		EasyAudioUtility.instance.Play("Hover");
 	}
 
-	// Token: 0x06000CD2 RID: 3282 RVA: 0x0000E9C6 File Offset: 0x0000CBC6
+	// Token: 0x06000BCD RID: 3021 RVA: 0x00047A26 File Offset: 0x00045C26
 	public void playClickSound()
 	{
 		EasyAudioUtility.instance.Play("Click");
 	}
 
-	// Token: 0x040009F4 RID: 2548
+	// Token: 0x04000808 RID: 2056
 	[Header("Quick Save Key")]
 	public KeyCode key;
 
-	// Token: 0x040009F5 RID: 2549
+	// Token: 0x04000809 RID: 2057
 	[Header("Save Trigger Key")]
 	public KeyCode SaveKey = 307;
 
-	// Token: 0x040009F6 RID: 2550
+	// Token: 0x0400080A RID: 2058
 	[Header("Save Trigger Data")]
 	[Tooltip("No Need to Assign")]
 	public string saveName;
 
-	// Token: 0x040009F7 RID: 2551
+	// Token: 0x0400080B RID: 2059
 	[Tooltip("No Need to Assign")]
 	public float savePercentage;
 
-	// Token: 0x040009F8 RID: 2552
+	// Token: 0x0400080C RID: 2060
 	[Header("Save Slots UI")]
 	[Tooltip("No Need to Assign")]
 	public Text saveName_text;
 
-	// Token: 0x040009F9 RID: 2553
+	// Token: 0x0400080D RID: 2061
 	[Tooltip("No Need to Assign")]
 	public Text savePercentage_text;
 
-	// Token: 0x040009FA RID: 2554
+	// Token: 0x0400080E RID: 2062
 	[Header("Slot Specific Data ")]
 	[Tooltip("ID WILL BE ASSIGNED AUTOMATICALLY")]
 	public int slotId;
 
-	// Token: 0x040009FB RID: 2555
+	// Token: 0x0400080F RID: 2063
 	[Tooltip("No Need to Assign")]
 	public int saveTriggerId;
 
-	// Token: 0x040009FC RID: 2556
+	// Token: 0x04000810 RID: 2064
 	[Tooltip("No Need to Assign")]
 	public string sceneName;
 
-	// Token: 0x040009FD RID: 2557
+	// Token: 0x04000811 RID: 2065
 	[HideInInspector]
 	public Canvas[] allUI;
 
-	// Token: 0x040009FE RID: 2558
+	// Token: 0x04000812 RID: 2066
 	public Text QsaveName_text;
 
-	// Token: 0x040009FF RID: 2559
+	// Token: 0x04000813 RID: 2067
 	public Text QsavePercentage_text;
 
-	// Token: 0x04000A00 RID: 2560
+	// Token: 0x04000814 RID: 2068
 	public int QslotId;
 }

@@ -3,10 +3,10 @@ using System.Collections.Generic;
 
 namespace JSONClass
 {
-	// Token: 0x02000BC8 RID: 3016
+	// Token: 0x02000834 RID: 2100
 	public class DropTextJsonData : IJSONClass
 	{
-		// Token: 0x06004A88 RID: 19080 RVA: 0x001F8B54 File Offset: 0x001F6D54
+		// Token: 0x06003EE2 RID: 16098 RVA: 0x001ADD64 File Offset: 0x001ABF64
 		public static void InitDataDict()
 		{
 			foreach (JSONObject jsonobject in jsonData.instance.DropTextJsonData.list)
@@ -39,24 +39,24 @@ namespace JSONClass
 			}
 		}
 
-		// Token: 0x06004A89 RID: 19081 RVA: 0x000042DD File Offset: 0x000024DD
+		// Token: 0x06003EE3 RID: 16099 RVA: 0x00004095 File Offset: 0x00002295
 		private static void OnInitFinish()
 		{
 		}
 
-		// Token: 0x0400462C RID: 17964
+		// Token: 0x04003AAF RID: 15023
 		public static Dictionary<int, DropTextJsonData> DataDict = new Dictionary<int, DropTextJsonData>();
 
-		// Token: 0x0400462D RID: 17965
+		// Token: 0x04003AB0 RID: 15024
 		public static List<DropTextJsonData> DataList = new List<DropTextJsonData>();
 
-		// Token: 0x0400462E RID: 17966
+		// Token: 0x04003AB1 RID: 15025
 		public static Action OnInitFinishAction = new Action(DropTextJsonData.OnInitFinish);
 
-		// Token: 0x0400462F RID: 17967
+		// Token: 0x04003AB2 RID: 15026
 		public int id;
 
-		// Token: 0x04004630 RID: 17968
+		// Token: 0x04003AB3 RID: 15027
 		public string Text;
 	}
 }

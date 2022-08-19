@@ -3,16 +3,16 @@ using System.IO;
 
 namespace MoonSharp.Interpreter.CoreLib.IO
 {
-	// Token: 0x020011AD RID: 4525
+	// Token: 0x02000D8A RID: 3466
 	internal class StandardIOFileUserDataBase : StreamFileUserDataBase
 	{
-		// Token: 0x06006EC3 RID: 28355 RVA: 0x0004B552 File Offset: 0x00049752
+		// Token: 0x06006292 RID: 25234 RVA: 0x00279902 File Offset: 0x00277B02
 		protected override string Close()
 		{
 			return "cannot close standard file";
 		}
 
-		// Token: 0x06006EC4 RID: 28356 RVA: 0x0004B559 File Offset: 0x00049759
+		// Token: 0x06006293 RID: 25235 RVA: 0x00279909 File Offset: 0x00277B09
 		public static StandardIOFileUserDataBase CreateInputStream(Stream stream)
 		{
 			StandardIOFileUserDataBase standardIOFileUserDataBase = new StandardIOFileUserDataBase();
@@ -20,7 +20,7 @@ namespace MoonSharp.Interpreter.CoreLib.IO
 			return standardIOFileUserDataBase;
 		}
 
-		// Token: 0x06006EC5 RID: 28357 RVA: 0x0004B56E File Offset: 0x0004976E
+		// Token: 0x06006294 RID: 25236 RVA: 0x0027991E File Offset: 0x00277B1E
 		public static StandardIOFileUserDataBase CreateOutputStream(Stream stream)
 		{
 			StandardIOFileUserDataBase standardIOFileUserDataBase = new StandardIOFileUserDataBase();

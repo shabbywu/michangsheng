@@ -2,10 +2,10 @@
 using GUIPackage;
 using UnityEngine;
 
-// Token: 0x02000523 RID: 1315
+// Token: 0x0200039A RID: 922
 public class ThreeSceneMagFab : MonoBehaviour
 {
-	// Token: 0x060021C0 RID: 8640 RVA: 0x00118F94 File Offset: 0x00117194
+	// Token: 0x06001E3F RID: 7743 RVA: 0x000D55B0 File Offset: 0x000D37B0
 	private void Start()
 	{
 		ThreeSceneMagFab.inst = this;
@@ -21,6 +21,6 @@ public class ThreeSceneMagFab : MonoBehaviour
 		}
 	}
 
-	// Token: 0x04001D3C RID: 7484
+	// Token: 0x040018D3 RID: 6355
 	public static ThreeSceneMagFab inst;
 }

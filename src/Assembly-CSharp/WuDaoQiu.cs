@@ -2,10 +2,10 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-// Token: 0x02000478 RID: 1144
+// Token: 0x02000316 RID: 790
 public class WuDaoQiu : MonoBehaviour
 {
-	// Token: 0x06001EA1 RID: 7841 RVA: 0x0001960F File Offset: 0x0001780F
+	// Token: 0x06001B70 RID: 7024 RVA: 0x000C3941 File Offset: 0x000C1B41
 	public void Init(Sprite sprite, int level)
 	{
 		base.gameObject.SetActive(true);
@@ -13,11 +13,11 @@ public class WuDaoQiu : MonoBehaviour
 		this.wuDaoQiuLevel.text = level.ToString();
 	}
 
-	// Token: 0x04001A0C RID: 6668
+	// Token: 0x040015F2 RID: 5618
 	[SerializeField]
 	private Image wuDaoQiuImage;
 
-	// Token: 0x04001A0D RID: 6669
+	// Token: 0x040015F3 RID: 5619
 	[SerializeField]
 	private Text wuDaoQiuLevel;
 }

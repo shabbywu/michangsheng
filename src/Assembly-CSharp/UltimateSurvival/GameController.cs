@@ -4,11 +4,11 @@ using UnityEngine;
 
 namespace UltimateSurvival
 {
-	// Token: 0x02000856 RID: 2134
+	// Token: 0x0200059A RID: 1434
 	public class GameController : MonoBehaviour
 	{
-		// Token: 0x17000590 RID: 1424
-		// (get) Token: 0x06003798 RID: 14232 RVA: 0x000285D5 File Offset: 0x000267D5
+		// Token: 0x170003D7 RID: 983
+		// (get) Token: 0x06002F1A RID: 12058 RVA: 0x0015650A File Offset: 0x0015470A
 		public static PlayerEventHandler LocalPlayer
 		{
 			get
@@ -21,8 +21,8 @@ namespace UltimateSurvival
 			}
 		}
 
-		// Token: 0x17000591 RID: 1425
-		// (get) Token: 0x06003799 RID: 14233 RVA: 0x000285F3 File Offset: 0x000267F3
+		// Token: 0x170003D8 RID: 984
+		// (get) Token: 0x06002F1B RID: 12059 RVA: 0x00156528 File Offset: 0x00154728
 		public static MGInputManager InputManager
 		{
 			get
@@ -35,37 +35,37 @@ namespace UltimateSurvival
 			}
 		}
 
-		// Token: 0x17000592 RID: 1426
-		// (get) Token: 0x0600379A RID: 14234 RVA: 0x00028611 File Offset: 0x00026811
-		// (set) Token: 0x0600379B RID: 14235 RVA: 0x00028618 File Offset: 0x00026818
+		// Token: 0x170003D9 RID: 985
+		// (get) Token: 0x06002F1C RID: 12060 RVA: 0x00156546 File Offset: 0x00154746
+		// (set) Token: 0x06002F1D RID: 12061 RVA: 0x0015654D File Offset: 0x0015474D
 		public static float NormalizedTime { get; set; }
 
-		// Token: 0x17000593 RID: 1427
-		// (get) Token: 0x0600379C RID: 14236 RVA: 0x00028620 File Offset: 0x00026820
-		// (set) Token: 0x0600379D RID: 14237 RVA: 0x00028627 File Offset: 0x00026827
+		// Token: 0x170003DA RID: 986
+		// (get) Token: 0x06002F1E RID: 12062 RVA: 0x00156555 File Offset: 0x00154755
+		// (set) Token: 0x06002F1F RID: 12063 RVA: 0x0015655C File Offset: 0x0015475C
 		public static AudioUtils Audio { get; private set; }
 
-		// Token: 0x17000594 RID: 1428
-		// (get) Token: 0x0600379E RID: 14238 RVA: 0x0002862F File Offset: 0x0002682F
-		// (set) Token: 0x0600379F RID: 14239 RVA: 0x00028636 File Offset: 0x00026836
+		// Token: 0x170003DB RID: 987
+		// (get) Token: 0x06002F20 RID: 12064 RVA: 0x00156564 File Offset: 0x00154764
+		// (set) Token: 0x06002F21 RID: 12065 RVA: 0x0015656B File Offset: 0x0015476B
 		public static Camera WorldCamera { get; private set; }
 
-		// Token: 0x17000595 RID: 1429
-		// (get) Token: 0x060037A0 RID: 14240 RVA: 0x0002863E File Offset: 0x0002683E
-		// (set) Token: 0x060037A1 RID: 14241 RVA: 0x00028645 File Offset: 0x00026845
+		// Token: 0x170003DC RID: 988
+		// (get) Token: 0x06002F22 RID: 12066 RVA: 0x00156573 File Offset: 0x00154773
+		// (set) Token: 0x06002F23 RID: 12067 RVA: 0x0015657A File Offset: 0x0015477A
 		public static SurfaceDatabase SurfaceDatabase { get; private set; }
 
-		// Token: 0x17000596 RID: 1430
-		// (get) Token: 0x060037A2 RID: 14242 RVA: 0x0002864D File Offset: 0x0002684D
-		// (set) Token: 0x060037A3 RID: 14243 RVA: 0x00028654 File Offset: 0x00026854
+		// Token: 0x170003DD RID: 989
+		// (get) Token: 0x06002F24 RID: 12068 RVA: 0x00156582 File Offset: 0x00154782
+		// (set) Token: 0x06002F25 RID: 12069 RVA: 0x00156589 File Offset: 0x00154789
 		public static ItemDatabase ItemDatabase { get; private set; }
 
-		// Token: 0x17000597 RID: 1431
-		// (get) Token: 0x060037A4 RID: 14244 RVA: 0x0002865C File Offset: 0x0002685C
-		// (set) Token: 0x060037A5 RID: 14245 RVA: 0x00028663 File Offset: 0x00026863
+		// Token: 0x170003DE RID: 990
+		// (get) Token: 0x06002F26 RID: 12070 RVA: 0x00156591 File Offset: 0x00154791
+		// (set) Token: 0x06002F27 RID: 12071 RVA: 0x00156598 File Offset: 0x00154798
 		public static TreeManager TerrainHelpers { get; private set; }
 
-		// Token: 0x060037A6 RID: 14246 RVA: 0x001A0CF4 File Offset: 0x0019EEF4
+		// Token: 0x06002F28 RID: 12072 RVA: 0x001565A0 File Offset: 0x001547A0
 		private void Awake()
 		{
 			GameController.Audio = base.GetComponentInChildren<AudioUtils>();
@@ -75,18 +75,18 @@ namespace UltimateSurvival
 			GameController.TerrainHelpers = base.GetComponent<TreeManager>();
 		}
 
-		// Token: 0x040031EE RID: 12782
+		// Token: 0x0400296D RID: 10605
 		[SerializeField]
 		private SurfaceDatabase m_SurfaceDatabase;
 
-		// Token: 0x040031EF RID: 12783
+		// Token: 0x0400296E RID: 10606
 		[SerializeField]
 		private ItemDatabase m_ItemDatabase;
 
-		// Token: 0x040031F0 RID: 12784
+		// Token: 0x0400296F RID: 10607
 		private static MGInputManager m_InputManager;
 
-		// Token: 0x040031F1 RID: 12785
+		// Token: 0x04002970 RID: 10608
 		private static PlayerEventHandler m_Player;
 	}
 }

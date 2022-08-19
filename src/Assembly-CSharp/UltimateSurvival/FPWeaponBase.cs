@@ -3,11 +3,11 @@ using UnityEngine;
 
 namespace UltimateSurvival
 {
-	// Token: 0x020008CE RID: 2254
+	// Token: 0x020005F7 RID: 1527
 	public abstract class FPWeaponBase : FPObject
 	{
-		// Token: 0x1700061B RID: 1563
-		// (get) Token: 0x060039F5 RID: 14837 RVA: 0x0002A259 File Offset: 0x00028459
+		// Token: 0x17000437 RID: 1079
+		// (get) Token: 0x0600310B RID: 12555 RVA: 0x0015DE04 File Offset: 0x0015C004
 		public Message Attack
 		{
 			get
@@ -16,8 +16,8 @@ namespace UltimateSurvival
 			}
 		}
 
-		// Token: 0x1700061C RID: 1564
-		// (get) Token: 0x060039F6 RID: 14838 RVA: 0x0002A261 File Offset: 0x00028461
+		// Token: 0x17000438 RID: 1080
+		// (get) Token: 0x0600310C RID: 12556 RVA: 0x0015DE0C File Offset: 0x0015C00C
 		public bool UseWhileNearObjects
 		{
 			get
@@ -26,33 +26,33 @@ namespace UltimateSurvival
 			}
 		}
 
-		// Token: 0x1700061D RID: 1565
-		// (get) Token: 0x060039F7 RID: 14839 RVA: 0x0002A269 File Offset: 0x00028469
-		// (set) Token: 0x060039F8 RID: 14840 RVA: 0x0002A271 File Offset: 0x00028471
+		// Token: 0x17000439 RID: 1081
+		// (get) Token: 0x0600310D RID: 12557 RVA: 0x0015DE14 File Offset: 0x0015C014
+		// (set) Token: 0x0600310E RID: 12558 RVA: 0x0015DE1C File Offset: 0x0015C01C
 		public bool CanBeUsed { get; set; }
 
-		// Token: 0x060039F9 RID: 14841 RVA: 0x0002A27A File Offset: 0x0002847A
+		// Token: 0x0600310F RID: 12559 RVA: 0x0015DE25 File Offset: 0x0015C025
 		public override void On_Draw(SavableItem correspondingItem)
 		{
 			base.On_Draw(correspondingItem);
 		}
 
-		// Token: 0x060039FA RID: 14842 RVA: 0x00004050 File Offset: 0x00002250
+		// Token: 0x06003110 RID: 12560 RVA: 0x0000280F File Offset: 0x00000A0F
 		public virtual bool TryAttackOnce(Camera camera)
 		{
 			return false;
 		}
 
-		// Token: 0x060039FB RID: 14843 RVA: 0x00004050 File Offset: 0x00002250
+		// Token: 0x06003111 RID: 12561 RVA: 0x0000280F File Offset: 0x00000A0F
 		public virtual bool TryAttackContinuously(Camera camera)
 		{
 			return false;
 		}
 
-		// Token: 0x04003427 RID: 13351
+		// Token: 0x04002B44 RID: 11076
 		private Message m_Attack = new Message();
 
-		// Token: 0x04003428 RID: 13352
+		// Token: 0x04002B45 RID: 11077
 		[SerializeField]
 		[Tooltip("Can this weapon be used while too close to other objects? (e.g. a wall)")]
 		private bool m_UseWhileNearObjects = true;

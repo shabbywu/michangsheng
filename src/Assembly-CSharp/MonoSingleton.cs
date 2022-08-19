@@ -1,11 +1,11 @@
 ﻿using System;
 using UnityEngine;
 
-// Token: 0x020001D5 RID: 469
+// Token: 0x02000115 RID: 277
 public abstract class MonoSingleton<T> : MonoBehaviour where T : MonoSingleton<T>
 {
-	// Token: 0x17000217 RID: 535
-	// (get) Token: 0x06000F43 RID: 3907 RVA: 0x000A1808 File Offset: 0x0009FA08
+	// Token: 0x170001EE RID: 494
+	// (get) Token: 0x06000D6E RID: 3438 RVA: 0x00050A80 File Offset: 0x0004EC80
 	public static T instance
 	{
 		get
@@ -26,7 +26,7 @@ public abstract class MonoSingleton<T> : MonoBehaviour where T : MonoSingleton<T
 		}
 	}
 
-	// Token: 0x06000F44 RID: 3908 RVA: 0x0000F8C4 File Offset: 0x0000DAC4
+	// Token: 0x06000D6F RID: 3439 RVA: 0x00050B1E File Offset: 0x0004ED1E
 	private void Awake()
 	{
 		if (MonoSingleton<T>.m_Instance == null)
@@ -35,17 +35,17 @@ public abstract class MonoSingleton<T> : MonoBehaviour where T : MonoSingleton<T
 		}
 	}
 
-	// Token: 0x06000F45 RID: 3909 RVA: 0x000042DD File Offset: 0x000024DD
+	// Token: 0x06000D70 RID: 3440 RVA: 0x00004095 File Offset: 0x00002295
 	public virtual void Init()
 	{
 	}
 
-	// Token: 0x06000F46 RID: 3910 RVA: 0x0000F8E8 File Offset: 0x0000DAE8
+	// Token: 0x06000D71 RID: 3441 RVA: 0x00050B42 File Offset: 0x0004ED42
 	private void OnApplicationQuit()
 	{
 		MonoSingleton<T>.m_Instance = default(T);
 	}
 
-	// Token: 0x04000BF2 RID: 3058
+	// Token: 0x04000975 RID: 2421
 	private static T m_Instance;
 }

@@ -5,11 +5,11 @@ using UnityEngine;
 
 namespace Bag
 {
-	// Token: 0x02000D39 RID: 3385
+	// Token: 0x020009B1 RID: 2481
 	[Serializable]
 	public class ActiveSkill : BaseSkill
 	{
-		// Token: 0x0600505E RID: 20574 RVA: 0x0021984C File Offset: 0x00217A4C
+		// Token: 0x060044FB RID: 17659 RVA: 0x001D5294 File Offset: 0x001D3494
 		public override void SetSkill(int id, int level)
 		{
 			foreach (_skillJsonData skillJsonData in _skillJsonData.DataList)
@@ -29,7 +29,7 @@ namespace Bag
 			this.CanPutSlotType = CanSlotType.技能;
 		}
 
-		// Token: 0x0600505F RID: 20575 RVA: 0x00039E64 File Offset: 0x00038064
+		// Token: 0x060044FC RID: 17660 RVA: 0x001D5350 File Offset: 0x001D3550
 		public override BaseSkill Clone()
 		{
 			ActiveSkill activeSkill = new ActiveSkill();
@@ -38,7 +38,7 @@ namespace Bag
 			return activeSkill;
 		}
 
-		// Token: 0x06005060 RID: 20576 RVA: 0x00219908 File Offset: 0x00217B08
+		// Token: 0x060044FD RID: 17661 RVA: 0x001D5378 File Offset: 0x001D3578
 		public override Sprite GetIconSprite()
 		{
 			Sprite sprite = ResManager.inst.LoadSprite("Skill Icon/" + this.SkillId);
@@ -49,14 +49,14 @@ namespace Bag
 			return sprite;
 		}
 
-		// Token: 0x06005061 RID: 20577 RVA: 0x00219950 File Offset: 0x00217B50
+		// Token: 0x060044FE RID: 17662 RVA: 0x001D53C0 File Offset: 0x001D35C0
 		public override string GetDesc1()
 		{
 			_skillJsonData skillJsonData = _skillJsonData.DataDict[this.Id];
 			return skillJsonData.descr.Replace("（attack）", skillJsonData.HP.ToString()).STVarReplace();
 		}
 
-		// Token: 0x06005062 RID: 20578 RVA: 0x00219990 File Offset: 0x00217B90
+		// Token: 0x060044FF RID: 17663 RVA: 0x001D5400 File Offset: 0x001D3600
 		public override string GetTypeName()
 		{
 			string text = "";
@@ -67,7 +67,7 @@ namespace Bag
 			return text;
 		}
 
-		// Token: 0x06005063 RID: 20579 RVA: 0x00219A0C File Offset: 0x00217C0C
+		// Token: 0x06004500 RID: 17664 RVA: 0x001D547C File Offset: 0x001D367C
 		public override List<int> GetCiZhuiList()
 		{
 			List<int> list = new List<int>();
@@ -78,7 +78,7 @@ namespace Bag
 			return list;
 		}
 
-		// Token: 0x06005064 RID: 20580 RVA: 0x00219A78 File Offset: 0x00217C78
+		// Token: 0x06004501 RID: 17665 RVA: 0x001D54E8 File Offset: 0x001D36E8
 		public override string GetDesc2()
 		{
 			foreach (_ItemJsonData itemJsonData in _ItemJsonData.DataList)
@@ -91,13 +91,13 @@ namespace Bag
 			return "暂无";
 		}
 
-		// Token: 0x06005065 RID: 20581 RVA: 0x00039E89 File Offset: 0x00038089
+		// Token: 0x06004502 RID: 17666 RVA: 0x001D5574 File Offset: 0x001D3774
 		public override bool SkillTypeIsEqual(int skIllType)
 		{
 			return (skIllType == 9 && this.AttackType.Count > 0 && this.AttackType[0] >= 9) || this.AttackType.Contains(skIllType);
 		}
 
-		// Token: 0x06005066 RID: 20582 RVA: 0x00219B04 File Offset: 0x00217D04
+		// Token: 0x06004503 RID: 17667 RVA: 0x001D55AC File Offset: 0x001D37AC
 		public List<int> GetCostList()
 		{
 			List<int> list = new List<int>();
@@ -125,7 +125,7 @@ namespace Bag
 			return list;
 		}
 
-		// Token: 0x06005067 RID: 20583 RVA: 0x00219BE0 File Offset: 0x00217DE0
+		// Token: 0x06004504 RID: 17668 RVA: 0x001D5688 File Offset: 0x001D3888
 		public List<SkillCost> GetSkillCost()
 		{
 			List<SkillCost> list = new List<SkillCost>();
@@ -149,7 +149,7 @@ namespace Bag
 			return list;
 		}
 
-		// Token: 0x040051BF RID: 20927
+		// Token: 0x040046BD RID: 18109
 		public List<int> AttackType;
 	}
 }

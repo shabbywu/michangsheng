@@ -5,10 +5,10 @@ using UnityEngine;
 
 namespace Fungus
 {
-	// Token: 0x020012BB RID: 4795
+	// Token: 0x02000E64 RID: 3684
 	public class CameraManager : MonoBehaviour
 	{
-		// Token: 0x0600741A RID: 29722 RVA: 0x002AD10C File Offset: 0x002AB30C
+		// Token: 0x06006780 RID: 26496 RVA: 0x0028A588 File Offset: 0x00288788
 		protected virtual void OnGUI()
 		{
 			if (this.swipePanActive && this.swipePanIcon)
@@ -31,7 +31,7 @@ namespace Fungus
 			}
 		}
 
-		// Token: 0x0600741B RID: 29723 RVA: 0x0004F467 File Offset: 0x0004D667
+		// Token: 0x06006781 RID: 26497 RVA: 0x0028A6A4 File Offset: 0x002888A4
 		protected virtual IEnumerator FadeInternal(float targetAlpha, float fadeDuration, Action fadeAction)
 		{
 			float startAlpha = this.fadeAlpha;
@@ -59,7 +59,7 @@ namespace Fungus
 			yield break;
 		}
 
-		// Token: 0x0600741C RID: 29724 RVA: 0x0004F48B File Offset: 0x0004D68B
+		// Token: 0x06006782 RID: 26498 RVA: 0x0028A6C8 File Offset: 0x002888C8
 		protected virtual IEnumerator PanInternal(Camera camera, Vector3 targetPos, Quaternion targetRot, float targetSize, float duration, Action arriveAction)
 		{
 			if (camera == null)
@@ -101,7 +101,7 @@ namespace Fungus
 			yield break;
 		}
 
-		// Token: 0x0600741D RID: 29725 RVA: 0x0004F4C7 File Offset: 0x0004D6C7
+		// Token: 0x06006783 RID: 26499 RVA: 0x0028A704 File Offset: 0x00288904
 		protected virtual IEnumerator PanToPathInternal(Camera camera, float duration, Action arriveAction, Vector3[] path)
 		{
 			if (camera == null)
@@ -128,7 +128,7 @@ namespace Fungus
 			yield break;
 		}
 
-		// Token: 0x0600741E RID: 29726 RVA: 0x002AD228 File Offset: 0x002AB428
+		// Token: 0x06006784 RID: 26500 RVA: 0x0028A730 File Offset: 0x00288930
 		protected virtual void SetCameraZ(Camera camera)
 		{
 			if (!this.setCameraZ)
@@ -143,7 +143,7 @@ namespace Fungus
 			camera.transform.position = new Vector3(camera.transform.position.x, camera.transform.position.y, this.cameraZ);
 		}
 
-		// Token: 0x0600741F RID: 29727 RVA: 0x002AD288 File Offset: 0x002AB488
+		// Token: 0x06006785 RID: 26501 RVA: 0x0028A790 File Offset: 0x00288990
 		protected virtual void Update()
 		{
 			if (!this.swipePanActive)
@@ -179,7 +179,7 @@ namespace Fungus
 			this.swipeCamera.orthographicSize = this.CalcCameraSize(vector3, this.swipePanViewA, this.swipePanViewB);
 		}
 
-		// Token: 0x06007420 RID: 29728 RVA: 0x002AD3C4 File Offset: 0x002AB5C4
+		// Token: 0x06006786 RID: 26502 RVA: 0x0028A8CC File Offset: 0x00288ACC
 		protected virtual Vector3 CalcCameraPosition(Vector3 pos, View viewA, View viewB)
 		{
 			Vector3 vector = pos;
@@ -190,7 +190,7 @@ namespace Fungus
 			return vector;
 		}
 
-		// Token: 0x06007421 RID: 29729 RVA: 0x002AD4B0 File Offset: 0x002AB6B0
+		// Token: 0x06006787 RID: 26503 RVA: 0x0028A9B8 File Offset: 0x00288BB8
 		protected virtual float CalcCameraSize(Vector3 pos, View viewA, View viewB)
 		{
 			Vector3 vector = viewB.transform.position - viewA.transform.position;
@@ -203,7 +203,7 @@ namespace Fungus
 			return Mathf.Lerp(viewA.ViewSize, viewB.ViewSize, num);
 		}
 
-		// Token: 0x06007422 RID: 29730 RVA: 0x002AD524 File Offset: 0x002AB724
+		// Token: 0x06006788 RID: 26504 RVA: 0x0028AA2C File Offset: 0x00288C2C
 		public virtual void PanToPath(Camera camera, View[] viewList, float duration, Action arriveAction)
 		{
 			if (camera == null)
@@ -225,7 +225,7 @@ namespace Fungus
 			base.StartCoroutine(this.panCoroutine = this.PanToPathInternal(camera, duration, arriveAction, list.ToArray()));
 		}
 
-		// Token: 0x06007423 RID: 29731 RVA: 0x002AD5F0 File Offset: 0x002AB7F0
+		// Token: 0x06006789 RID: 26505 RVA: 0x0028AAF8 File Offset: 0x00288CF8
 		public static Texture2D CreateColorTexture(Color color, int width, int height)
 		{
 			Color[] array = new Color[width * height];
@@ -239,8 +239,8 @@ namespace Fungus
 			return texture2D;
 		}
 
-		// Token: 0x17000A97 RID: 2711
-		// (set) Token: 0x06007424 RID: 29732 RVA: 0x0004F4F3 File Offset: 0x0004D6F3
+		// Token: 0x1700082C RID: 2092
+		// (set) Token: 0x0600678A RID: 26506 RVA: 0x0028AB3A File Offset: 0x00288D3A
 		public Texture2D ScreenFadeTexture
 		{
 			set
@@ -249,13 +249,13 @@ namespace Fungus
 			}
 		}
 
-		// Token: 0x06007425 RID: 29733 RVA: 0x002AD634 File Offset: 0x002AB834
+		// Token: 0x0600678B RID: 26507 RVA: 0x0028AB44 File Offset: 0x00288D44
 		public virtual void Fade(float targetAlpha, float fadeDuration, Action fadeAction)
 		{
 			base.StartCoroutine(this.fadeCoroutine = this.FadeInternal(targetAlpha, fadeDuration, fadeAction));
 		}
 
-		// Token: 0x06007426 RID: 29734 RVA: 0x002AD65C File Offset: 0x002AB85C
+		// Token: 0x0600678C RID: 26508 RVA: 0x0028AB6C File Offset: 0x00288D6C
 		public virtual void FadeToView(Camera camera, View view, float fadeDuration, bool fadeOut, Action fadeAction)
 		{
 			this.swipePanActive = false;
@@ -285,7 +285,7 @@ namespace Fungus
 			});
 		}
 
-		// Token: 0x06007427 RID: 29735 RVA: 0x0004F4FC File Offset: 0x0004D6FC
+		// Token: 0x0600678D RID: 26509 RVA: 0x0028ABEE File Offset: 0x00288DEE
 		public virtual void Stop()
 		{
 			base.StopAllCoroutines();
@@ -293,7 +293,7 @@ namespace Fungus
 			this.fadeCoroutine = null;
 		}
 
-		// Token: 0x06007428 RID: 29736 RVA: 0x002AD6E0 File Offset: 0x002AB8E0
+		// Token: 0x0600678E RID: 26510 RVA: 0x0028AC04 File Offset: 0x00288E04
 		public virtual void PanToPosition(Camera camera, Vector3 targetPosition, Quaternion targetRotation, float targetSize, float duration, Action arriveAction)
 		{
 			if (camera == null)
@@ -325,7 +325,7 @@ namespace Fungus
 			}
 		}
 
-		// Token: 0x06007429 RID: 29737 RVA: 0x002AD784 File Offset: 0x002AB984
+		// Token: 0x0600678F RID: 26511 RVA: 0x0028ACA8 File Offset: 0x00288EA8
 		public virtual void StartSwipePan(Camera camera, View viewA, View viewB, float duration, float speedMultiplier, Action arriveAction)
 		{
 			if (camera == null)
@@ -350,7 +350,7 @@ namespace Fungus
 			});
 		}
 
-		// Token: 0x0600742A RID: 29738 RVA: 0x0004F512 File Offset: 0x0004D712
+		// Token: 0x06006790 RID: 26512 RVA: 0x0028AD5A File Offset: 0x00288F5A
 		public virtual void StopSwipePan()
 		{
 			this.swipePanActive = false;
@@ -359,73 +359,73 @@ namespace Fungus
 			this.swipeCamera = null;
 		}
 
-		// Token: 0x040065E2 RID: 26082
+		// Token: 0x04005876 RID: 22646
 		[Tooltip("Full screen texture used for screen fade effect.")]
 		[SerializeField]
 		protected Texture2D screenFadeTexture;
 
-		// Token: 0x040065E3 RID: 26083
+		// Token: 0x04005877 RID: 22647
 		[Tooltip("Icon to display when swipe pan mode is active.")]
 		[SerializeField]
 		protected Texture2D swipePanIcon;
 
-		// Token: 0x040065E4 RID: 26084
+		// Token: 0x04005878 RID: 22648
 		[Tooltip("Position of continue and swipe icons in normalized screen space coords. (0,0) = top left, (1,1) = bottom right")]
 		[SerializeField]
 		protected Vector2 swipeIconPosition = new Vector2(1f, 0f);
 
-		// Token: 0x040065E5 RID: 26085
+		// Token: 0x04005879 RID: 22649
 		[Tooltip("Set the camera z coordinate to a fixed value every frame.")]
 		[SerializeField]
 		protected bool setCameraZ = true;
 
-		// Token: 0x040065E6 RID: 26086
+		// Token: 0x0400587A RID: 22650
 		[Tooltip("Fixed Z coordinate of main camera.")]
 		[SerializeField]
 		protected float cameraZ = -10f;
 
-		// Token: 0x040065E7 RID: 26087
+		// Token: 0x0400587B RID: 22651
 		[Tooltip("Camera to use when in swipe mode")]
 		[SerializeField]
 		protected Camera swipeCamera;
 
-		// Token: 0x040065E8 RID: 26088
+		// Token: 0x0400587C RID: 22652
 		protected float fadeAlpha;
 
-		// Token: 0x040065E9 RID: 26089
+		// Token: 0x0400587D RID: 22653
 		protected bool swipePanActive;
 
-		// Token: 0x040065EA RID: 26090
+		// Token: 0x0400587E RID: 22654
 		protected float swipeSpeedMultiplier = 1f;
 
-		// Token: 0x040065EB RID: 26091
+		// Token: 0x0400587F RID: 22655
 		protected View swipePanViewA;
 
-		// Token: 0x040065EC RID: 26092
+		// Token: 0x04005880 RID: 22656
 		protected View swipePanViewB;
 
-		// Token: 0x040065ED RID: 26093
+		// Token: 0x04005881 RID: 22657
 		protected Vector3 previousMousePos;
 
-		// Token: 0x040065EE RID: 26094
+		// Token: 0x04005882 RID: 22658
 		protected IEnumerator panCoroutine;
 
-		// Token: 0x040065EF RID: 26095
+		// Token: 0x04005883 RID: 22659
 		protected IEnumerator fadeCoroutine;
 
-		// Token: 0x040065F0 RID: 26096
+		// Token: 0x04005884 RID: 22660
 		protected Dictionary<string, CameraManager.CameraView> storedViews = new Dictionary<string, CameraManager.CameraView>();
 
-		// Token: 0x020012BC RID: 4796
+		// Token: 0x020016CB RID: 5835
 		protected class CameraView
 		{
-			// Token: 0x040065F1 RID: 26097
+			// Token: 0x040073C7 RID: 29639
 			public Vector3 cameraPos;
 
-			// Token: 0x040065F2 RID: 26098
+			// Token: 0x040073C8 RID: 29640
 			public Quaternion cameraRot;
 
-			// Token: 0x040065F3 RID: 26099
+			// Token: 0x040073C9 RID: 29641
 			public float cameraSize;
 		}
 	}

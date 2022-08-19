@@ -2,10 +2,10 @@
 using GUIPackage;
 using UnityEngine;
 
-// Token: 0x02000444 RID: 1092
+// Token: 0x020002EA RID: 746
 public class LianDanPackCell : ItemCellEX
 {
-	// Token: 0x06001D17 RID: 7447 RVA: 0x000183F7 File Offset: 0x000165F7
+	// Token: 0x060019F5 RID: 6645 RVA: 0x000B9DAE File Offset: 0x000B7FAE
 	public override void PCOnPress()
 	{
 		if (this.isCanClick())
@@ -19,7 +19,7 @@ public class LianDanPackCell : ItemCellEX
 		}
 	}
 
-	// Token: 0x06001D18 RID: 7448 RVA: 0x001005CC File Offset: 0x000FE7CC
+	// Token: 0x060019F6 RID: 6646 RVA: 0x000B9DD4 File Offset: 0x000B7FD4
 	private void openSelectSum()
 	{
 		if (this.Item.itemNum > 0)
@@ -36,7 +36,7 @@ public class LianDanPackCell : ItemCellEX
 		}
 	}
 
-	// Token: 0x06001D19 RID: 7449 RVA: 0x00100674 File Offset: 0x000FE874
+	// Token: 0x060019F7 RID: 6647 RVA: 0x000B9E7C File Offset: 0x000B807C
 	private void putCaiLiao(int num = -1)
 	{
 		if (num > 0)
@@ -82,13 +82,13 @@ public class LianDanPackCell : ItemCellEX
 		this.selectSum = 0f;
 	}
 
-	// Token: 0x06001D1A RID: 7450 RVA: 0x0001841D File Offset: 0x0001661D
+	// Token: 0x060019F8 RID: 6648 RVA: 0x000BA023 File Offset: 0x000B8223
 	private bool isCanClick()
 	{
 		return (Input.GetMouseButtonDown(1) || Input.GetMouseButtonDown(0)) && this.Item.itemName != null;
 	}
 
-	// Token: 0x06001D1B RID: 7451 RVA: 0x0010081C File Offset: 0x000FEA1C
+	// Token: 0x060019F9 RID: 6649 RVA: 0x000BA048 File Offset: 0x000B8248
 	private new void Update()
 	{
 		base.Update();
@@ -102,12 +102,12 @@ public class LianDanPackCell : ItemCellEX
 		this.KeyObject.SetActive(false);
 	}
 
-	// Token: 0x06001D1C RID: 7452 RVA: 0x0001843F File Offset: 0x0001663F
+	// Token: 0x060019FA RID: 6650 RVA: 0x000BA0C2 File Offset: 0x000B82C2
 	public override void PCOnHover(bool isOver)
 	{
 		base.PCOnHover(isOver);
 	}
 
-	// Token: 0x04001910 RID: 6416
+	// Token: 0x0400150C RID: 5388
 	private float selectSum;
 }

@@ -3,10 +3,10 @@ using System.Collections.Generic;
 
 namespace JSONClass
 {
-	// Token: 0x02000CCC RID: 3276
+	// Token: 0x02000948 RID: 2376
 	public class SkillSeidJsonData77 : IJSONClass
 	{
-		// Token: 0x06004E98 RID: 20120 RVA: 0x00210580 File Offset: 0x0020E780
+		// Token: 0x06004332 RID: 17202 RVA: 0x001CA3B4 File Offset: 0x001C85B4
 		public static void InitDataDict()
 		{
 			foreach (JSONObject jsonobject in jsonData.instance.SkillSeidJsonData[77].list)
@@ -39,27 +39,27 @@ namespace JSONClass
 			}
 		}
 
-		// Token: 0x06004E99 RID: 20121 RVA: 0x000042DD File Offset: 0x000024DD
+		// Token: 0x06004333 RID: 17203 RVA: 0x00004095 File Offset: 0x00002295
 		private static void OnInitFinish()
 		{
 		}
 
-		// Token: 0x04004ECF RID: 20175
+		// Token: 0x040043BF RID: 17343
 		public static int SEIDID = 77;
 
-		// Token: 0x04004ED0 RID: 20176
+		// Token: 0x040043C0 RID: 17344
 		public static Dictionary<int, SkillSeidJsonData77> DataDict = new Dictionary<int, SkillSeidJsonData77>();
 
-		// Token: 0x04004ED1 RID: 20177
+		// Token: 0x040043C1 RID: 17345
 		public static List<SkillSeidJsonData77> DataList = new List<SkillSeidJsonData77>();
 
-		// Token: 0x04004ED2 RID: 20178
+		// Token: 0x040043C2 RID: 17346
 		public static Action OnInitFinishAction = new Action(SkillSeidJsonData77.OnInitFinish);
 
-		// Token: 0x04004ED3 RID: 20179
+		// Token: 0x040043C3 RID: 17347
 		public int skillid;
 
-		// Token: 0x04004ED4 RID: 20180
+		// Token: 0x040043C4 RID: 17348
 		public int value1;
 	}
 }

@@ -3,10 +3,10 @@ using System.Collections.Generic;
 
 namespace JSONClass
 {
-	// Token: 0x02000AE8 RID: 2792
+	// Token: 0x02000750 RID: 1872
 	public class AvatarJsonData : IJSONClass
 	{
-		// Token: 0x0600470A RID: 18186 RVA: 0x001E65DC File Offset: 0x001E47DC
+		// Token: 0x06003B54 RID: 15188 RVA: 0x001984BC File Offset: 0x001966BC
 		public static void InitDataDict()
 		{
 			foreach (JSONObject jsonobject in jsonData.instance.AvatarJsonData.list)
@@ -72,123 +72,123 @@ namespace JSONClass
 			}
 		}
 
-		// Token: 0x0600470B RID: 18187 RVA: 0x000042DD File Offset: 0x000024DD
+		// Token: 0x06003B55 RID: 15189 RVA: 0x00004095 File Offset: 0x00002295
 		private static void OnInitFinish()
 		{
 		}
 
-		// Token: 0x04003FA4 RID: 16292
+		// Token: 0x0400340B RID: 13323
 		public static Dictionary<int, AvatarJsonData> DataDict = new Dictionary<int, AvatarJsonData>();
 
-		// Token: 0x04003FA5 RID: 16293
+		// Token: 0x0400340C RID: 13324
 		public static List<AvatarJsonData> DataList = new List<AvatarJsonData>();
 
-		// Token: 0x04003FA6 RID: 16294
+		// Token: 0x0400340D RID: 13325
 		public static Action OnInitFinishAction = new Action(AvatarJsonData.OnInitFinish);
 
-		// Token: 0x04003FA7 RID: 16295
+		// Token: 0x0400340E RID: 13326
 		public int id;
 
-		// Token: 0x04003FA8 RID: 16296
+		// Token: 0x0400340F RID: 13327
 		public int face;
 
-		// Token: 0x04003FA9 RID: 16297
+		// Token: 0x04003410 RID: 13328
 		public int fightFace;
 
-		// Token: 0x04003FAA RID: 16298
+		// Token: 0x04003411 RID: 13329
 		public int SexType;
 
-		// Token: 0x04003FAB RID: 16299
+		// Token: 0x04003412 RID: 13330
 		public int AvatarType;
 
-		// Token: 0x04003FAC RID: 16300
+		// Token: 0x04003413 RID: 13331
 		public int Level;
 
-		// Token: 0x04003FAD RID: 16301
+		// Token: 0x04003414 RID: 13332
 		public int HP;
 
-		// Token: 0x04003FAE RID: 16302
+		// Token: 0x04003415 RID: 13333
 		public int dunSu;
 
-		// Token: 0x04003FAF RID: 16303
+		// Token: 0x04003416 RID: 13334
 		public int ziZhi;
 
-		// Token: 0x04003FB0 RID: 16304
+		// Token: 0x04003417 RID: 13335
 		public int wuXin;
 
-		// Token: 0x04003FB1 RID: 16305
+		// Token: 0x04003418 RID: 13336
 		public int shengShi;
 
-		// Token: 0x04003FB2 RID: 16306
+		// Token: 0x04003419 RID: 13337
 		public int shaQi;
 
-		// Token: 0x04003FB3 RID: 16307
+		// Token: 0x0400341A RID: 13338
 		public int shouYuan;
 
-		// Token: 0x04003FB4 RID: 16308
+		// Token: 0x0400341B RID: 13339
 		public int age;
 
-		// Token: 0x04003FB5 RID: 16309
+		// Token: 0x0400341C RID: 13340
 		public int equipWeapon;
 
-		// Token: 0x04003FB6 RID: 16310
+		// Token: 0x0400341D RID: 13341
 		public int equipClothing;
 
-		// Token: 0x04003FB7 RID: 16311
+		// Token: 0x0400341E RID: 13342
 		public int equipRing;
 
-		// Token: 0x04003FB8 RID: 16312
+		// Token: 0x0400341F RID: 13343
 		public int yuanying;
 
-		// Token: 0x04003FB9 RID: 16313
+		// Token: 0x04003420 RID: 13344
 		public int HuaShenLingYu;
 
-		// Token: 0x04003FBA RID: 16314
+		// Token: 0x04003421 RID: 13345
 		public int MoneyType;
 
-		// Token: 0x04003FBB RID: 16315
+		// Token: 0x04003422 RID: 13346
 		public int IsRefresh;
 
-		// Token: 0x04003FBC RID: 16316
+		// Token: 0x04003423 RID: 13347
 		public int dropType;
 
-		// Token: 0x04003FBD RID: 16317
+		// Token: 0x04003424 RID: 13348
 		public int canjiaPaiMai;
 
-		// Token: 0x04003FBE RID: 16318
+		// Token: 0x04003425 RID: 13349
 		public int wudaoType;
 
-		// Token: 0x04003FBF RID: 16319
+		// Token: 0x04003426 RID: 13350
 		public int XinQuType;
 
-		// Token: 0x04003FC0 RID: 16320
+		// Token: 0x04003427 RID: 13351
 		public int gudingjiage;
 
-		// Token: 0x04003FC1 RID: 16321
+		// Token: 0x04003428 RID: 13352
 		public int sellPercent;
 
-		// Token: 0x04003FC2 RID: 16322
+		// Token: 0x04003429 RID: 13353
 		public string Title;
 
-		// Token: 0x04003FC3 RID: 16323
+		// Token: 0x0400342A RID: 13354
 		public string FirstName;
 
-		// Token: 0x04003FC4 RID: 16324
+		// Token: 0x0400342B RID: 13355
 		public string Name;
 
-		// Token: 0x04003FC5 RID: 16325
+		// Token: 0x0400342C RID: 13356
 		public string menPai;
 
-		// Token: 0x04003FC6 RID: 16326
+		// Token: 0x0400342D RID: 13357
 		public List<int> LingGen = new List<int>();
 
-		// Token: 0x04003FC7 RID: 16327
+		// Token: 0x0400342E RID: 13358
 		public List<int> skills = new List<int>();
 
-		// Token: 0x04003FC8 RID: 16328
+		// Token: 0x0400342F RID: 13359
 		public List<int> staticSkills = new List<int>();
 
-		// Token: 0x04003FC9 RID: 16329
+		// Token: 0x04003430 RID: 13360
 		public List<int> paimaifenzu = new List<int>();
 	}
 }

@@ -4,10 +4,10 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-// Token: 0x02000180 RID: 384
+// Token: 0x02000102 RID: 258
 public class LoadingScreen : MonoBehaviour
 {
-	// Token: 0x06000CE4 RID: 3300 RVA: 0x0000EA7F File Offset: 0x0000CC7F
+	// Token: 0x06000BD9 RID: 3033 RVA: 0x00047BF4 File Offset: 0x00045DF4
 	private void Start()
 	{
 		if (Tools.instance.isNewAvatar)
@@ -19,12 +19,12 @@ public class LoadingScreen : MonoBehaviour
 		base.StartCoroutine(this.LoadScene());
 	}
 
-	// Token: 0x06000CE5 RID: 3301 RVA: 0x000042DD File Offset: 0x000024DD
+	// Token: 0x06000BDA RID: 3034 RVA: 0x00004095 File Offset: 0x00002295
 	public void playMusic()
 	{
 	}
 
-	// Token: 0x06000CE6 RID: 3302 RVA: 0x0000EAB3 File Offset: 0x0000CCB3
+	// Token: 0x06000BDB RID: 3035 RVA: 0x00047C28 File Offset: 0x00045E28
 	private IEnumerator NewPlayerLoadScene()
 	{
 		base.GetComponent<Canvas>().renderMode = 0;
@@ -97,7 +97,7 @@ public class LoadingScreen : MonoBehaviour
 		goto IL_23A;
 	}
 
-	// Token: 0x06000CE7 RID: 3303 RVA: 0x0000EAC2 File Offset: 0x0000CCC2
+	// Token: 0x06000BDC RID: 3036 RVA: 0x00047C37 File Offset: 0x00045E37
 	private IEnumerator LoadScene()
 	{
 		base.GetComponent<Canvas>().renderMode = 0;
@@ -187,7 +187,7 @@ public class LoadingScreen : MonoBehaviour
 		goto IL_257;
 	}
 
-	// Token: 0x06000CE8 RID: 3304 RVA: 0x0000EAD1 File Offset: 0x0000CCD1
+	// Token: 0x06000BDD RID: 3037 RVA: 0x00047C46 File Offset: 0x00045E46
 	private void RetrieveSceneToLoad()
 	{
 		this.sceneToLoad = PlayerPrefs.GetString("sceneToLoad");
@@ -198,7 +198,7 @@ public class LoadingScreen : MonoBehaviour
 		PlayerPrefs.DeleteKey("sceneToLoad");
 	}
 
-	// Token: 0x06000CE9 RID: 3305 RVA: 0x00099440 File Offset: 0x00097640
+	// Token: 0x06000BDE RID: 3038 RVA: 0x00047C80 File Offset: 0x00045E80
 	private void fillLoadingBar()
 	{
 		this.loadingBar.value += (float)Random.Range(0, 10);
@@ -217,7 +217,7 @@ public class LoadingScreen : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000CEA RID: 3306 RVA: 0x000994A8 File Offset: 0x000976A8
+	// Token: 0x06000BDF RID: 3039 RVA: 0x00047CE8 File Offset: 0x00045EE8
 	private void StartImageTransition()
 	{
 		if (this.i < this.LoadingScreenImages.Length)
@@ -263,13 +263,13 @@ public class LoadingScreen : MonoBehaviour
 		this.i++;
 	}
 
-	// Token: 0x06000CEB RID: 3307 RVA: 0x0000EB0A File Offset: 0x0000CD0A
+	// Token: 0x06000BE0 RID: 3040 RVA: 0x00047E98 File Offset: 0x00046098
 	private void TransitionFader()
 	{
 		this.transitionFader.Play("Transition");
 	}
 
-	// Token: 0x06000CEC RID: 3308 RVA: 0x0000EB1C File Offset: 0x0000CD1C
+	// Token: 0x06000BE1 RID: 3041 RVA: 0x00047EAA File Offset: 0x000460AA
 	private void enableContinueText()
 	{
 		this.tapInput = true;
@@ -277,14 +277,14 @@ public class LoadingScreen : MonoBehaviour
 		this.LoadingText.SetActive(false);
 	}
 
-	// Token: 0x06000CED RID: 3309 RVA: 0x0000EB3D File Offset: 0x0000CD3D
+	// Token: 0x06000BE2 RID: 3042 RVA: 0x00047ECB File Offset: 0x000460CB
 	private void loadScene()
 	{
 		GameObject.Find("Fader").GetComponent<Animator>().GetComponent<Animator>().Play("Fader In");
 		base.Invoke("load", 0.5f);
 	}
 
-	// Token: 0x06000CEE RID: 3310 RVA: 0x00099658 File Offset: 0x00097858
+	// Token: 0x06000BE3 RID: 3043 RVA: 0x00047EFC File Offset: 0x000460FC
 	private void load()
 	{
 		EasyAudioUtility_SceneManager easyAudioUtility_SceneManager = Object.FindObjectOfType<EasyAudioUtility_SceneManager>();
@@ -295,111 +295,111 @@ public class LoadingScreen : MonoBehaviour
 		Tools.instance.loadMapScenes(this.sceneToLoad, true);
 	}
 
-	// Token: 0x04000A0B RID: 2571
+	// Token: 0x0400081C RID: 2076
 	[Tooltip("Scene retrieved to load. If empty, it will load main menu.")]
 	public string sceneToLoad;
 
-	// Token: 0x04000A0C RID: 2572
+	// Token: 0x0400081D RID: 2077
 	[Header("Loading Bar")]
 	[Tooltip("Loading Bar")]
 	public Slider loadingBar;
 
-	// Token: 0x04000A0D RID: 2573
+	// Token: 0x0400081E RID: 2078
 	[Tooltip("Show loading bar or circular loading indicator.")]
 	public bool showLoadingBar;
 
-	// Token: 0x04000A0E RID: 2574
+	// Token: 0x0400081F RID: 2079
 	[Tooltip("Loading Bar fill delay.")]
 	public float fillDelay = 0.2f;
 
-	// Token: 0x04000A0F RID: 2575
+	// Token: 0x04000820 RID: 2080
 	[Tooltip("Loading Bar fill speed.")]
 	public float fillSpeed = 0.2f;
 
-	// Token: 0x04000A10 RID: 2576
+	// Token: 0x04000821 RID: 2081
 	[Header("Circular Indicator")]
 	[Tooltip("Circular loading delay.")]
 	public GameObject circularIndicator;
 
-	// Token: 0x04000A11 RID: 2577
+	// Token: 0x04000822 RID: 2082
 	[Tooltip("Scene Load Delay.")]
 	public float circularLoadDelay = 6f;
 
-	// Token: 0x04000A12 RID: 2578
+	// Token: 0x04000823 RID: 2083
 	[Tooltip("Circular Indicator rotation speed.")]
 	public float circularIndicatorAnimSpeed = 1f;
 
-	// Token: 0x04000A13 RID: 2579
+	// Token: 0x04000824 RID: 2084
 	[Header("Loading Screen Image Transition")]
 	[Tooltip("Loading Screen image")]
 	public Image defaultLoadingScreenImage;
 
-	// Token: 0x04000A14 RID: 2580
+	// Token: 0x04000825 RID: 2085
 	[Tooltip("If it's true, images will show one after another, else any random image will be shown from below array.")]
 	public bool showImageTransition = true;
 
-	// Token: 0x04000A15 RID: 2581
+	// Token: 0x04000826 RID: 2086
 	[Tooltip("If it's true, RANDOM images will show one after another, else any random image will be shown from below array.")]
 	public bool showRandomImageTransition = true;
 
-	// Token: 0x04000A16 RID: 2582
+	// Token: 0x04000827 RID: 2087
 	[Tooltip("Add 1280x720 res images if it's landscape menu")]
 	public Sprite[] LoadingScreenImages;
 
-	// Token: 0x04000A17 RID: 2583
+	// Token: 0x04000828 RID: 2088
 	[Tooltip("How long an image will be displayed")]
 	[Range(3f, 10f)]
 	public float transitionDuration;
 
-	// Token: 0x04000A18 RID: 2584
+	// Token: 0x04000829 RID: 2089
 	[Tooltip("Transition Fader")]
 	public Animator transitionFader;
 
-	// Token: 0x04000A19 RID: 2585
+	// Token: 0x0400082A RID: 2090
 	[Header("Continue Text Option")]
 	[Tooltip("If true, scene will load after clicking / touching the screen!")]
 	public bool showContinueText;
 
-	// Token: 0x04000A1A RID: 2586
+	// Token: 0x0400082B RID: 2091
 	[Tooltip("Continue Text")]
 	public GameObject PressAnyKeyToContinue;
 
-	// Token: 0x04000A1B RID: 2587
+	// Token: 0x0400082C RID: 2092
 	public GameObject LoadingText;
 
-	// Token: 0x04000A1C RID: 2588
+	// Token: 0x0400082D RID: 2093
 	[Header("Scene Specific Loading Screen")]
 	[Tooltip("If you want to have specific loading screens for specific scene!")]
 	public SceneSpecificLoading[] sceneSpecificLoading;
 
-	// Token: 0x04000A1D RID: 2589
+	// Token: 0x0400082E RID: 2094
 	[HideInInspector]
 	public int selectedTab1;
 
-	// Token: 0x04000A1E RID: 2590
+	// Token: 0x0400082F RID: 2095
 	[HideInInspector]
 	public int selectedTab2;
 
-	// Token: 0x04000A1F RID: 2591
+	// Token: 0x04000830 RID: 2096
 	[HideInInspector]
 	public int selectedTab3;
 
-	// Token: 0x04000A20 RID: 2592
+	// Token: 0x04000831 RID: 2097
 	[HideInInspector]
 	public string currentTab;
 
-	// Token: 0x04000A21 RID: 2593
+	// Token: 0x04000832 RID: 2098
 	private AsyncOperation AsyncLoadScence;
 
-	// Token: 0x04000A22 RID: 2594
+	// Token: 0x04000833 RID: 2099
 	private int i;
 
-	// Token: 0x04000A23 RID: 2595
+	// Token: 0x04000834 RID: 2100
 	private int lastSprite;
 
-	// Token: 0x04000A24 RID: 2596
+	// Token: 0x04000835 RID: 2101
 	private int cacheSprite;
 
-	// Token: 0x04000A25 RID: 2597
+	// Token: 0x04000836 RID: 2102
 	private bool tapInput;
 }

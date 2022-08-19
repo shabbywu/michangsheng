@@ -2,29 +2,29 @@
 
 namespace KBEngine
 {
-	// Token: 0x02000F45 RID: 3909
+	// Token: 0x02000BC2 RID: 3010
 	public struct ENMITY
 	{
-		// Token: 0x06005E2A RID: 24106 RVA: 0x000420EC File Offset: 0x000402EC
+		// Token: 0x060053EC RID: 21484 RVA: 0x00233F8B File Offset: 0x0023218B
 		private ENMITY(int value)
 		{
 			this.value = value;
 		}
 
-		// Token: 0x06005E2B RID: 24107 RVA: 0x000420F5 File Offset: 0x000402F5
+		// Token: 0x060053ED RID: 21485 RVA: 0x00233F94 File Offset: 0x00232194
 		public static implicit operator int(ENMITY value)
 		{
 			return value.value;
 		}
 
-		// Token: 0x06005E2C RID: 24108 RVA: 0x000420FD File Offset: 0x000402FD
+		// Token: 0x060053EE RID: 21486 RVA: 0x00233F9C File Offset: 0x0023219C
 		public static implicit operator ENMITY(int value)
 		{
 			return new ENMITY(value);
 		}
 
-		// Token: 0x170008A3 RID: 2211
-		// (get) Token: 0x06005E2D RID: 24109 RVA: 0x00041B41 File Offset: 0x0003FD41
+		// Token: 0x17000650 RID: 1616
+		// (get) Token: 0x060053EF RID: 21487 RVA: 0x002339E0 File Offset: 0x00231BE0
 		public static int MaxValue
 		{
 			get
@@ -33,8 +33,8 @@ namespace KBEngine
 			}
 		}
 
-		// Token: 0x170008A4 RID: 2212
-		// (get) Token: 0x06005E2E RID: 24110 RVA: 0x00041B48 File Offset: 0x0003FD48
+		// Token: 0x17000651 RID: 1617
+		// (get) Token: 0x060053F0 RID: 21488 RVA: 0x002339E7 File Offset: 0x00231BE7
 		public static int MinValue
 		{
 			get
@@ -43,7 +43,7 @@ namespace KBEngine
 			}
 		}
 
-		// Token: 0x04005AEF RID: 23279
+		// Token: 0x0400504E RID: 20558
 		private int value;
 	}
 }

@@ -1,17 +1,17 @@
 ﻿using System;
 using UnityEngine;
 
-// Token: 0x02000684 RID: 1668
+// Token: 0x020004A4 RID: 1188
 public class CollectKey : MonoBehaviour
 {
-	// Token: 0x060029B1 RID: 10673 RVA: 0x000205DC File Offset: 0x0001E7DC
+	// Token: 0x06002575 RID: 9589 RVA: 0x001034F2 File Offset: 0x001016F2
 	private void Start()
 	{
 		this.manage = GameObject.Find("_GameManager").GetComponent<ManageFull>();
 		this.anim = base.GetComponent<Animator>();
 	}
 
-	// Token: 0x060029B2 RID: 10674 RVA: 0x000205FF File Offset: 0x0001E7FF
+	// Token: 0x06002576 RID: 9590 RVA: 0x00103515 File Offset: 0x00101715
 	private void OnTriggerEnter2D(Collider2D col)
 	{
 		if (col.tag == "Monkey")
@@ -22,15 +22,15 @@ public class CollectKey : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060029B3 RID: 10675 RVA: 0x0002063F File Offset: 0x0001E83F
+	// Token: 0x06002577 RID: 9591 RVA: 0x00103555 File Offset: 0x00101755
 	private void NotifyManager()
 	{
 		GameObject.Find("_GameManager").SendMessage("KeyCollected");
 	}
 
-	// Token: 0x04002357 RID: 9047
+	// Token: 0x04001E31 RID: 7729
 	private ManageFull manage;
 
-	// Token: 0x04002358 RID: 9048
+	// Token: 0x04001E32 RID: 7730
 	private Animator anim;
 }

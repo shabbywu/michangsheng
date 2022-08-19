@@ -1,16 +1,16 @@
 ﻿using System;
 
-// Token: 0x02000791 RID: 1937
+// Token: 0x02000500 RID: 1280
 public enum CharacterType
 {
-	// Token: 0x04002D8E RID: 11662
+	// Token: 0x040025A6 RID: 9638
 	Library,
-	// Token: 0x04002D8F RID: 11663
+	// Token: 0x040025A7 RID: 9639
 	Player,
-	// Token: 0x04002D90 RID: 11664
+	// Token: 0x040025A8 RID: 9640
 	ComputerOne,
-	// Token: 0x04002D91 RID: 11665
+	// Token: 0x040025A9 RID: 9641
 	ComputerTwo,
-	// Token: 0x04002D92 RID: 11666
+	// Token: 0x040025AA RID: 9642
 	Desk
 }

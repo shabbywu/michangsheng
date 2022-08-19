@@ -3,18 +3,18 @@ using UnityEngine;
 
 namespace WXB
 {
-	// Token: 0x0200098B RID: 2443
+	// Token: 0x0200067E RID: 1662
 	[ExecuteInEditMode]
 	public class AlphaDraw : EffectDrawObjec
 	{
-		// Token: 0x06003E76 RID: 15990 RVA: 0x0002CFD1 File Offset: 0x0002B1D1
+		// Token: 0x060034C6 RID: 13510 RVA: 0x0016EFA4 File Offset: 0x0016D1A4
 		protected override void Init()
 		{
 			this.m_Effects[0] = new AlphaEffect();
 		}
 
-		// Token: 0x170006ED RID: 1773
-		// (get) Token: 0x06003E77 RID: 15991 RVA: 0x0000A093 File Offset: 0x00008293
+		// Token: 0x170004CD RID: 1229
+		// (get) Token: 0x060034C7 RID: 13511 RVA: 0x00024C5F File Offset: 0x00022E5F
 		public override DrawType type
 		{
 			get
@@ -23,7 +23,7 @@ namespace WXB
 			}
 		}
 
-		// Token: 0x06003E78 RID: 15992 RVA: 0x0002CFE0 File Offset: 0x0002B1E0
+		// Token: 0x060034C8 RID: 13512 RVA: 0x0016EFB3 File Offset: 0x0016D1B3
 		public override void Release()
 		{
 			base.Release();

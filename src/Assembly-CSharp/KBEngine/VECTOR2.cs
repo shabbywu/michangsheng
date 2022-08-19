@@ -3,30 +3,30 @@ using UnityEngine;
 
 namespace KBEngine
 {
-	// Token: 0x02000F2F RID: 3887
+	// Token: 0x02000BAC RID: 2988
 	public struct VECTOR2
 	{
-		// Token: 0x06005DA8 RID: 23976 RVA: 0x00041D1C File Offset: 0x0003FF1C
+		// Token: 0x0600536A RID: 21354 RVA: 0x00233BBB File Offset: 0x00231DBB
 		private VECTOR2(Vector2 value)
 		{
 			this.value = value;
 		}
 
-		// Token: 0x06005DA9 RID: 23977 RVA: 0x00041D25 File Offset: 0x0003FF25
+		// Token: 0x0600536B RID: 21355 RVA: 0x00233BC4 File Offset: 0x00231DC4
 		public static implicit operator Vector2(VECTOR2 value)
 		{
 			return value.value;
 		}
 
-		// Token: 0x06005DAA RID: 23978 RVA: 0x00041D2D File Offset: 0x0003FF2D
+		// Token: 0x0600536C RID: 21356 RVA: 0x00233BCC File Offset: 0x00231DCC
 		public static implicit operator VECTOR2(Vector2 value)
 		{
 			return new VECTOR2(value);
 		}
 
-		// Token: 0x17000873 RID: 2163
-		// (get) Token: 0x06005DAB RID: 23979 RVA: 0x00041D35 File Offset: 0x0003FF35
-		// (set) Token: 0x06005DAC RID: 23980 RVA: 0x00041D42 File Offset: 0x0003FF42
+		// Token: 0x17000620 RID: 1568
+		// (get) Token: 0x0600536D RID: 21357 RVA: 0x00233BD4 File Offset: 0x00231DD4
+		// (set) Token: 0x0600536E RID: 21358 RVA: 0x00233BE1 File Offset: 0x00231DE1
 		public float x
 		{
 			get
@@ -39,9 +39,9 @@ namespace KBEngine
 			}
 		}
 
-		// Token: 0x17000874 RID: 2164
-		// (get) Token: 0x06005DAD RID: 23981 RVA: 0x00041D50 File Offset: 0x0003FF50
-		// (set) Token: 0x06005DAE RID: 23982 RVA: 0x00041D5D File Offset: 0x0003FF5D
+		// Token: 0x17000621 RID: 1569
+		// (get) Token: 0x0600536F RID: 21359 RVA: 0x00233BEF File Offset: 0x00231DEF
+		// (set) Token: 0x06005370 RID: 21360 RVA: 0x00233BFC File Offset: 0x00231DFC
 		public float y
 		{
 			get
@@ -54,7 +54,7 @@ namespace KBEngine
 			}
 		}
 
-		// Token: 0x04005AD9 RID: 23257
+		// Token: 0x04005038 RID: 20536
 		private Vector2 value;
 	}
 }

@@ -9,11 +9,11 @@ using UnityEngine.UI;
 
 namespace Fungus
 {
-	// Token: 0x020012D3 RID: 4819
+	// Token: 0x02000E74 RID: 3700
 	public class MenuDialog : MonoBehaviour
 	{
-		// Token: 0x17000ADD RID: 2781
-		// (get) Token: 0x0600755E RID: 30046 RVA: 0x000500B3 File Offset: 0x0004E2B3
+		// Token: 0x1700086C RID: 2156
+		// (get) Token: 0x060068A4 RID: 26788 RVA: 0x0028DC8F File Offset: 0x0028BE8F
 		public int NowOption
 		{
 			get
@@ -22,13 +22,13 @@ namespace Fungus
 			}
 		}
 
-		// Token: 0x17000ADE RID: 2782
-		// (get) Token: 0x0600755F RID: 30047 RVA: 0x000500BD File Offset: 0x0004E2BD
-		// (set) Token: 0x06007560 RID: 30048 RVA: 0x000500C4 File Offset: 0x0004E2C4
+		// Token: 0x1700086D RID: 2157
+		// (get) Token: 0x060068A5 RID: 26789 RVA: 0x0028DC99 File Offset: 0x0028BE99
+		// (set) Token: 0x060068A6 RID: 26790 RVA: 0x0028DCA0 File Offset: 0x0028BEA0
 		public static MenuDialog ActiveMenuDialog { get; set; }
 
-		// Token: 0x17000ADF RID: 2783
-		// (get) Token: 0x06007561 RID: 30049 RVA: 0x000500CC File Offset: 0x0004E2CC
+		// Token: 0x1700086E RID: 2158
+		// (get) Token: 0x060068A7 RID: 26791 RVA: 0x0028DCA8 File Offset: 0x0028BEA8
 		public virtual Button[] CachedButtons
 		{
 			get
@@ -37,8 +37,8 @@ namespace Fungus
 			}
 		}
 
-		// Token: 0x17000AE0 RID: 2784
-		// (get) Token: 0x06007562 RID: 30050 RVA: 0x000500D4 File Offset: 0x0004E2D4
+		// Token: 0x1700086F RID: 2159
+		// (get) Token: 0x060068A8 RID: 26792 RVA: 0x0028DCB0 File Offset: 0x0028BEB0
 		public virtual Slider CachedSlider
 		{
 			get
@@ -47,13 +47,13 @@ namespace Fungus
 			}
 		}
 
-		// Token: 0x06007563 RID: 30051 RVA: 0x000500DC File Offset: 0x0004E2DC
+		// Token: 0x060068A9 RID: 26793 RVA: 0x0028DCB8 File Offset: 0x0028BEB8
 		public virtual void SetActive(bool state)
 		{
 			base.gameObject.SetActive(state);
 		}
 
-		// Token: 0x06007564 RID: 30052 RVA: 0x002B0150 File Offset: 0x002AE350
+		// Token: 0x060068AA RID: 26794 RVA: 0x0028DCC8 File Offset: 0x0028BEC8
 		public static MenuDialog GetMenuDialog()
 		{
 			if (MenuDialog.ActiveMenuDialog == null)
@@ -78,7 +78,7 @@ namespace Fungus
 			return MenuDialog.ActiveMenuDialog;
 		}
 
-		// Token: 0x06007565 RID: 30053 RVA: 0x002B01C8 File Offset: 0x002AE3C8
+		// Token: 0x060068AB RID: 26795 RVA: 0x0028DD40 File Offset: 0x0028BF40
 		protected virtual void Awake()
 		{
 			Button[] componentsInChildren = base.GetComponentsInChildren<Button>();
@@ -93,7 +93,7 @@ namespace Fungus
 			this.CheckEventSystem();
 		}
 
-		// Token: 0x06007566 RID: 30054 RVA: 0x002AE198 File Offset: 0x002AC398
+		// Token: 0x060068AC RID: 26796 RVA: 0x0028DD8C File Offset: 0x0028BF8C
 		protected virtual void CheckEventSystem()
 		{
 			if (Object.FindObjectOfType<EventSystem>() == null)
@@ -106,13 +106,13 @@ namespace Fungus
 			}
 		}
 
-		// Token: 0x06007567 RID: 30055 RVA: 0x000500EA File Offset: 0x0004E2EA
+		// Token: 0x060068AD RID: 26797 RVA: 0x0028DDCA File Offset: 0x0028BFCA
 		protected virtual void OnEnable()
 		{
 			Canvas.ForceUpdateCanvases();
 		}
 
-		// Token: 0x06007568 RID: 30056 RVA: 0x000500F1 File Offset: 0x0004E2F1
+		// Token: 0x060068AE RID: 26798 RVA: 0x0028DDD1 File Offset: 0x0028BFD1
 		protected virtual IEnumerator WaitForTimeout(float timeoutDuration, Block targetBlock)
 		{
 			float elapsedTime = 0f;
@@ -137,7 +137,7 @@ namespace Fungus
 			yield break;
 		}
 
-		// Token: 0x06007569 RID: 30057 RVA: 0x0005010E File Offset: 0x0004E30E
+		// Token: 0x060068AF RID: 26799 RVA: 0x0028DDEE File Offset: 0x0028BFEE
 		protected IEnumerator CallBlock(Block block)
 		{
 			yield return new WaitForEndOfFrame();
@@ -145,7 +145,7 @@ namespace Fungus
 			yield break;
 		}
 
-		// Token: 0x0600756A RID: 30058 RVA: 0x0005011D File Offset: 0x0004E31D
+		// Token: 0x060068B0 RID: 26800 RVA: 0x0028DDFD File Offset: 0x0028BFFD
 		protected IEnumerator CallLuaClosure(LuaEnvironment luaEnv, Closure callback)
 		{
 			yield return new WaitForEndOfFrame();
@@ -156,7 +156,7 @@ namespace Fungus
 			yield break;
 		}
 
-		// Token: 0x0600756B RID: 30059 RVA: 0x002B0214 File Offset: 0x002AE414
+		// Token: 0x060068B1 RID: 26801 RVA: 0x0028DE14 File Offset: 0x0028C014
 		public virtual void Clear()
 		{
 			base.StopAllCoroutines();
@@ -186,7 +186,7 @@ namespace Fungus
 			}
 		}
 
-		// Token: 0x0600756C RID: 30060 RVA: 0x002B02B4 File Offset: 0x002AE4B4
+		// Token: 0x060068B2 RID: 26802 RVA: 0x0028DEB4 File Offset: 0x0028C0B4
 		public virtual void HideSayDialog()
 		{
 			SayDialog sayDialog = SayDialog.GetSayDialog();
@@ -196,7 +196,7 @@ namespace Fungus
 			}
 		}
 
-		// Token: 0x0600756D RID: 30061 RVA: 0x002B02D8 File Offset: 0x002AE4D8
+		// Token: 0x060068B3 RID: 26803 RVA: 0x0028DED8 File Offset: 0x0028C0D8
 		public virtual bool AddOption(string text, bool interactable, bool hideOption, Block targetBlock)
 		{
 			UnityAction action = delegate()
@@ -215,7 +215,7 @@ namespace Fungus
 			return this.AddOption(text, interactable, hideOption, action);
 		}
 
-		// Token: 0x0600756E RID: 30062 RVA: 0x002B0310 File Offset: 0x002AE510
+		// Token: 0x060068B4 RID: 26804 RVA: 0x0028DF10 File Offset: 0x0028C110
 		public virtual bool AddOption(string text, bool interactable, LuaEnvironment luaEnv, Closure callBack)
 		{
 			if (!base.gameObject.activeSelf)
@@ -234,7 +234,7 @@ namespace Fungus
 			return this.AddOption(text, interactable, false, action);
 		}
 
-		// Token: 0x0600756F RID: 30063 RVA: 0x002B0368 File Offset: 0x002AE568
+		// Token: 0x060068B5 RID: 26805 RVA: 0x0028DF68 File Offset: 0x0028C168
 		private bool AddOption(string text, bool interactable, bool hideOption, UnityAction action)
 		{
 			if (this.nextOptionIndex >= this.CachedButtons.Length)
@@ -280,7 +280,7 @@ namespace Fungus
 			return true;
 		}
 
-		// Token: 0x06007570 RID: 30064 RVA: 0x002B0474 File Offset: 0x002AE674
+		// Token: 0x060068B6 RID: 26806 RVA: 0x0028E074 File Offset: 0x0028C274
 		public virtual void ShowTimer(float duration, Block targetBlock)
 		{
 			if (this.cachedSlider != null)
@@ -292,7 +292,7 @@ namespace Fungus
 			}
 		}
 
-		// Token: 0x06007571 RID: 30065 RVA: 0x00050133 File Offset: 0x0004E333
+		// Token: 0x060068B7 RID: 26807 RVA: 0x0028E0C1 File Offset: 0x0028C2C1
 		public virtual IEnumerator ShowTimer(float duration, LuaEnvironment luaEnv, Closure callBack)
 		{
 			if (this.CachedSlider == null || duration <= 0f)
@@ -323,14 +323,14 @@ namespace Fungus
 			yield break;
 		}
 
-		// Token: 0x06007572 RID: 30066 RVA: 0x0004FD5F File Offset: 0x0004DF5F
+		// Token: 0x060068B8 RID: 26808 RVA: 0x0028C138 File Offset: 0x0028A338
 		public virtual bool IsActive()
 		{
 			return base.gameObject.activeInHierarchy;
 		}
 
-		// Token: 0x17000AE1 RID: 2785
-		// (get) Token: 0x06007573 RID: 30067 RVA: 0x002B04C4 File Offset: 0x002AE6C4
+		// Token: 0x17000870 RID: 2160
+		// (get) Token: 0x060068B9 RID: 26809 RVA: 0x0028E0E8 File Offset: 0x0028C2E8
 		public virtual int DisplayedOptionsCount
 		{
 			get
@@ -347,7 +347,7 @@ namespace Fungus
 			}
 		}
 
-		// Token: 0x06007574 RID: 30068 RVA: 0x002B0500 File Offset: 0x002AE700
+		// Token: 0x060068BA RID: 26810 RVA: 0x0028E124 File Offset: 0x0028C324
 		public void Shuffle(Random r)
 		{
 			for (int i = 0; i < this.CachedButtons.Length; i++)
@@ -356,18 +356,18 @@ namespace Fungus
 			}
 		}
 
-		// Token: 0x04006690 RID: 26256
+		// Token: 0x040058EF RID: 22767
 		[Tooltip("Automatically select the first interactable button when the menu is shown.")]
 		[SerializeField]
 		protected bool autoSelectFirstButton;
 
-		// Token: 0x04006691 RID: 26257
+		// Token: 0x040058F0 RID: 22768
 		protected Button[] cachedButtons;
 
-		// Token: 0x04006692 RID: 26258
+		// Token: 0x040058F1 RID: 22769
 		protected Slider cachedSlider;
 
-		// Token: 0x04006693 RID: 26259
+		// Token: 0x040058F2 RID: 22770
 		private int nextOptionIndex;
 	}
 }

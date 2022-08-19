@@ -2,10 +2,10 @@
 
 namespace ICSharpCode.SharpZipLib.Zip
 {
-	// Token: 0x020007D0 RID: 2000
+	// Token: 0x02000537 RID: 1335
 	internal interface ITaggedDataFactory
 	{
-		// Token: 0x060032F7 RID: 13047
+		// Token: 0x06002AE0 RID: 10976
 		ITaggedData Create(short tag, byte[] data, int offset, int count);
 	}
 }

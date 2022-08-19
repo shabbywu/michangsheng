@@ -3,12 +3,12 @@ using UnityEngine;
 
 namespace Fungus
 {
-	// Token: 0x0200123F RID: 4671
+	// Token: 0x02000DF8 RID: 3576
 	[CommandInfo("Math", "Log", "Command to execute and store the result of a Log", 0)]
 	[AddComponentMenu("")]
 	public class Log : BaseUnaryMathCommand
 	{
-		// Token: 0x060071BA RID: 29114 RVA: 0x002A6834 File Offset: 0x002A4A34
+		// Token: 0x0600652C RID: 25900 RVA: 0x00282234 File Offset: 0x00280434
 		public override void OnEnter()
 		{
 			Log.Mode mode = this.mode;
@@ -26,23 +26,23 @@ namespace Fungus
 			this.Continue();
 		}
 
-		// Token: 0x060071BB RID: 29115 RVA: 0x0004D51A File Offset: 0x0004B71A
+		// Token: 0x0600652D RID: 25901 RVA: 0x0028228F File Offset: 0x0028048F
 		public override string GetSummary()
 		{
 			return this.mode.ToString() + " " + base.GetSummary();
 		}
 
-		// Token: 0x04006417 RID: 25623
+		// Token: 0x040056FC RID: 22268
 		[Tooltip("Which log to use, natural or base 10")]
 		[SerializeField]
 		protected Log.Mode mode = Log.Mode.Natural;
 
-		// Token: 0x02001240 RID: 4672
+		// Token: 0x020016BB RID: 5819
 		public enum Mode
 		{
-			// Token: 0x04006419 RID: 25625
+			// Token: 0x04007377 RID: 29559
 			Base10,
-			// Token: 0x0400641A RID: 25626
+			// Token: 0x04007378 RID: 29560
 			Natural
 		}
 	}

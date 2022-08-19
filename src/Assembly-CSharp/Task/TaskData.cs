@@ -4,11 +4,11 @@ using JSONClass;
 
 namespace Task
 {
-	// Token: 0x02000A27 RID: 2599
+	// Token: 0x020006E8 RID: 1768
 	[Serializable]
 	public class TaskData
 	{
-		// Token: 0x0600435E RID: 17246 RVA: 0x001CCACC File Offset: 0x001CACCC
+		// Token: 0x060038F7 RID: 14583 RVA: 0x00184FF8 File Offset: 0x001831F8
 		public TaskData(int TaskId, int taskType, int CyId, int NpcId, int failStaticId, DateTime SendTime)
 		{
 			NewTaskMagData newTaskMagData = NewTaskMagData.DataDict[TaskId];
@@ -40,7 +40,7 @@ namespace Task
 			}
 		}
 
-		// Token: 0x0600435F RID: 17247 RVA: 0x001CCB88 File Offset: 0x001CAD88
+		// Token: 0x060038F8 RID: 14584 RVA: 0x001850B4 File Offset: 0x001832B4
 		public bool IsFail(out int failType)
 		{
 			if (this.FailTypeList.Count < 1)
@@ -60,7 +60,7 @@ namespace Task
 					}
 					break;
 				case 2:
-					if (!NpcJieSuanManager.inst.IsDeath(this.SendNpcId) && NpcJieSuanManager.inst.getNpcData(this.SendNpcId)["Level"].I >= this.FailLevel)
+					if (!NpcJieSuanManager.inst.IsDeath(this.SendNpcId) && NpcJieSuanManager.inst.GetNpcData(this.SendNpcId)["Level"].I >= this.FailLevel)
 					{
 						failType = num;
 						return true;
@@ -80,28 +80,28 @@ namespace Task
 			return false;
 		}
 
-		// Token: 0x04003B60 RID: 15200
+		// Token: 0x04003101 RID: 12545
 		public int TaskId;
 
-		// Token: 0x04003B61 RID: 15201
+		// Token: 0x04003102 RID: 12546
 		public int TaskType;
 
-		// Token: 0x04003B62 RID: 15202
+		// Token: 0x04003103 RID: 12547
 		public int CyId;
 
-		// Token: 0x04003B63 RID: 15203
+		// Token: 0x04003104 RID: 12548
 		public int SendNpcId;
 
-		// Token: 0x04003B64 RID: 15204
+		// Token: 0x04003105 RID: 12549
 		public int FailStaticId;
 
-		// Token: 0x04003B65 RID: 15205
+		// Token: 0x04003106 RID: 12550
 		public List<int> FailTypeList;
 
-		// Token: 0x04003B66 RID: 15206
+		// Token: 0x04003107 RID: 12551
 		public int FailLevel;
 
-		// Token: 0x04003B67 RID: 15207
+		// Token: 0x04003108 RID: 12552
 		public DateTime EndTime;
 	}
 }

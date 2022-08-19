@@ -1,20 +1,20 @@
 ﻿using System;
 
-// Token: 0x02000336 RID: 822
+// Token: 0x0200021A RID: 538
 public class TiWenData
 {
-	// Token: 0x04001375 RID: 4981
+	// Token: 0x0400101D RID: 4125
 	public int id;
 
-	// Token: 0x04001376 RID: 4982
+	// Token: 0x0400101E RID: 4126
 	public int TiWen;
 
-	// Token: 0x04001377 RID: 4983
+	// Token: 0x0400101F RID: 4127
 	public int XingGe;
 
-	// Token: 0x04001378 RID: 4984
+	// Token: 0x04001020 RID: 4128
 	public int BiaoQian;
 
-	// Token: 0x04001379 RID: 4985
+	// Token: 0x04001021 RID: 4129
 	public int[] optionDesc = new int[3];
 }

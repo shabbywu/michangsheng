@@ -1,16 +1,16 @@
 ﻿using System;
 
-// Token: 0x020005E2 RID: 1506
+// Token: 0x0200042B RID: 1067
 public class TooltipScale : TooltipBase
 {
-	// Token: 0x060025D7 RID: 9687 RVA: 0x0001E46E File Offset: 0x0001C66E
+	// Token: 0x06002218 RID: 8728 RVA: 0x000EAF96 File Offset: 0x000E9196
 	protected override void Update()
 	{
 		base.Update();
 		this.setBGwight();
 	}
 
-	// Token: 0x060025D8 RID: 9688 RVA: 0x0012C238 File Offset: 0x0012A438
+	// Token: 0x06002219 RID: 8729 RVA: 0x000EAFA4 File Offset: 0x000E91A4
 	public void setBGwight()
 	{
 		if (this.IsSprite)
@@ -23,15 +23,15 @@ public class TooltipScale : TooltipBase
 		}
 	}
 
-	// Token: 0x04002068 RID: 8296
+	// Token: 0x04001B9C RID: 7068
 	public UILabel uILabel;
 
-	// Token: 0x04002069 RID: 8297
+	// Token: 0x04001B9D RID: 7069
 	public bool IsSprite;
 
-	// Token: 0x0400206A RID: 8298
+	// Token: 0x04001B9E RID: 7070
 	public UISprite uISprite;
 
-	// Token: 0x0400206B RID: 8299
+	// Token: 0x04001B9F RID: 7071
 	public int BaseHeight = 28;
 }

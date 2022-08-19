@@ -4,10 +4,10 @@ using GUIPackage;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-// Token: 0x020004C5 RID: 1221
+// Token: 0x0200034A RID: 842
 public class NextScene : MonoBehaviour
 {
-	// Token: 0x0600201F RID: 8223 RVA: 0x00112A48 File Offset: 0x00110C48
+	// Token: 0x06001CBE RID: 7358 RVA: 0x000CDAC8 File Offset: 0x000CBCC8
 	private void Start()
 	{
 		int loadSceneType = Tools.instance.loadSceneType;
@@ -25,7 +25,7 @@ public class NextScene : MonoBehaviour
 		base.StartCoroutine(this.LoadScene());
 	}
 
-	// Token: 0x06002020 RID: 8224 RVA: 0x0001A5BD File Offset: 0x000187BD
+	// Token: 0x06001CBF RID: 7359 RVA: 0x000CDB1F File Offset: 0x000CBD1F
 	private IEnumerator LoadScene()
 	{
 		AsyncOperation op = SceneManager.LoadSceneAsync(Tools.jumpToName);

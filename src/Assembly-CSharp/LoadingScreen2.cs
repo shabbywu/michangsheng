@@ -2,16 +2,16 @@
 using System.Collections;
 using UnityEngine;
 
-// Token: 0x020006BD RID: 1725
+// Token: 0x020004BC RID: 1212
 public class LoadingScreen2 : MonoBehaviour
 {
-	// Token: 0x06002B21 RID: 11041 RVA: 0x000214D8 File Offset: 0x0001F6D8
+	// Token: 0x06002655 RID: 9813 RVA: 0x0010A542 File Offset: 0x00108742
 	private void Start()
 	{
 		base.StartCoroutine(this.LoadNextLevel());
 	}
 
-	// Token: 0x06002B22 RID: 11042 RVA: 0x000214E7 File Offset: 0x0001F6E7
+	// Token: 0x06002656 RID: 9814 RVA: 0x0010A551 File Offset: 0x00108751
 	private IEnumerator LoadNextLevel()
 	{
 		GC.Collect();

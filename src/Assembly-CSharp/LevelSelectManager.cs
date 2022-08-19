@@ -4,27 +4,27 @@ using UnityEngine;
 using UnityEngine.UI;
 using YSGame;
 
-// Token: 0x02000187 RID: 391
+// Token: 0x02000105 RID: 261
 public class LevelSelectManager : MonoBehaviour
 {
-	// Token: 0x06000D0F RID: 3343 RVA: 0x000042DD File Offset: 0x000024DD
+	// Token: 0x06000BF4 RID: 3060 RVA: 0x00004095 File Offset: 0x00002295
 	private void Start()
 	{
 	}
 
-	// Token: 0x06000D10 RID: 3344 RVA: 0x0000EC8E File Offset: 0x0000CE8E
+	// Token: 0x06000BF5 RID: 3061 RVA: 0x00048ADC File Offset: 0x00046CDC
 	public void closeSetName()
 	{
 		this.setPlayerName.SetActive(false);
 	}
 
-	// Token: 0x06000D11 RID: 3345 RVA: 0x0000EC9C File Offset: 0x0000CE9C
+	// Token: 0x06000BF6 RID: 3062 RVA: 0x00048AEA File Offset: 0x00046CEA
 	public void closeRemoveAvatar()
 	{
 		this.removeAvatar.SetActive(false);
 	}
 
-	// Token: 0x06000D12 RID: 3346 RVA: 0x0009A7D8 File Offset: 0x000989D8
+	// Token: 0x06000BF7 RID: 3063 RVA: 0x00048AF8 File Offset: 0x00046CF8
 	public string getPlayerName()
 	{
 		InputField component = this.setPlayerName.transform.Find("GameObject/InputFieldXin").GetComponent<InputField>();
@@ -32,19 +32,19 @@ public class LevelSelectManager : MonoBehaviour
 		return component.text + component2.text;
 	}
 
-	// Token: 0x06000D13 RID: 3347 RVA: 0x0000ECAA File Offset: 0x0000CEAA
+	// Token: 0x06000BF8 RID: 3064 RVA: 0x00048B4A File Offset: 0x00046D4A
 	public string getFirstName()
 	{
 		return this.setPlayerName.transform.Find("GameObject/InputFieldXin").GetComponent<InputField>().text;
 	}
 
-	// Token: 0x06000D14 RID: 3348 RVA: 0x0000ECCB File Offset: 0x0000CECB
+	// Token: 0x06000BF9 RID: 3065 RVA: 0x00048B6B File Offset: 0x00046D6B
 	public string getLastName()
 	{
 		return this.setPlayerName.transform.Find("GameObject/InputFieldMing").GetComponent<InputField>().text;
 	}
 
-	// Token: 0x06000D15 RID: 3349 RVA: 0x0009A82C File Offset: 0x00098A2C
+	// Token: 0x06000BFA RID: 3066 RVA: 0x00048B8C File Offset: 0x00046D8C
 	public void randomPlayerName()
 	{
 		string text;
@@ -61,7 +61,7 @@ public class LevelSelectManager : MonoBehaviour
 		this.setPlayerName.transform.Find("GameObject/InputFieldMing").GetComponent<InputField>().text = text2;
 	}
 
-	// Token: 0x06000D16 RID: 3350 RVA: 0x0000ECEC File Offset: 0x0000CEEC
+	// Token: 0x06000BFB RID: 3067 RVA: 0x00048C04 File Offset: 0x00046E04
 	public virtual void openLevelSelect()
 	{
 		if (!this.isInit)
@@ -72,13 +72,13 @@ public class LevelSelectManager : MonoBehaviour
 		this.levelSelectMenu.GetComponentInChildren<Animation>().Play("tankuanglachu");
 	}
 
-	// Token: 0x06000D17 RID: 3351 RVA: 0x0000ED23 File Offset: 0x0000CF23
+	// Token: 0x06000BFC RID: 3068 RVA: 0x00048C3B File Offset: 0x00046E3B
 	public virtual void closeLevelSelect()
 	{
 		this.levelSelectMenu.gameObject.SetActive(false);
 	}
 
-	// Token: 0x06000D18 RID: 3352 RVA: 0x0009A8A4 File Offset: 0x00098AA4
+	// Token: 0x06000BFD RID: 3069 RVA: 0x00048C50 File Offset: 0x00046E50
 	public void reloadUI()
 	{
 		foreach (object obj in this.levelItemsContainer.transform)
@@ -88,13 +88,13 @@ public class LevelSelectManager : MonoBehaviour
 		this.InitializeLevelSelectMenu();
 	}
 
-	// Token: 0x06000D19 RID: 3353 RVA: 0x00004050 File Offset: 0x00002250
+	// Token: 0x06000BFE RID: 3070 RVA: 0x0000280F File Offset: 0x00000A0F
 	public virtual int StartIndex()
 	{
 		return 0;
 	}
 
-	// Token: 0x06000D1A RID: 3354 RVA: 0x0009A90C File Offset: 0x00098B0C
+	// Token: 0x06000BFF RID: 3071 RVA: 0x00048CB8 File Offset: 0x00046EB8
 	private void InitializeLevelSelectMenu()
 	{
 		this.isInit = true;
@@ -123,7 +123,7 @@ public class LevelSelectManager : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000D1B RID: 3355 RVA: 0x0000ED36 File Offset: 0x0000CF36
+	// Token: 0x06000C00 RID: 3072 RVA: 0x00048E74 File Offset: 0x00047074
 	protected LevelSelectItem createLevelItem()
 	{
 		LevelSelectItem levelSelectItem = Object.Instantiate<LevelSelectItem>(this.LevelItemPrefab);
@@ -133,47 +133,47 @@ public class LevelSelectManager : MonoBehaviour
 		return levelSelectItem;
 	}
 
-	// Token: 0x04000A42 RID: 2626
+	// Token: 0x0400084B RID: 2123
 	public bool isInit;
 
-	// Token: 0x04000A43 RID: 2627
+	// Token: 0x0400084C RID: 2124
 	[Tooltip("Do you want Level Select Menu?")]
 	public bool hasLevelSelection = true;
 
-	// Token: 0x04000A44 RID: 2628
+	// Token: 0x0400084D RID: 2125
 	[Header("Level Select Properties")]
 	[Tooltip("Root Level Select Menu")]
 	public GameObject levelSelectMenu;
 
-	// Token: 0x04000A45 RID: 2629
+	// Token: 0x0400084E RID: 2126
 	[Tooltip("Level Select Items will be here!")]
 	public Transform levelItemsContainer;
 
-	// Token: 0x04000A46 RID: 2630
+	// Token: 0x0400084F RID: 2127
 	[Tooltip("Level Item Prefab")]
 	public LevelSelectItem LevelItemPrefab;
 
-	// Token: 0x04000A47 RID: 2631
+	// Token: 0x04000850 RID: 2128
 	[Space(10f)]
 	[Tooltip("设置玩家名字")]
 	public GameObject setPlayerName;
 
-	// Token: 0x04000A48 RID: 2632
+	// Token: 0x04000851 RID: 2129
 	[Tooltip("是否确定删除存档界面")]
 	public GameObject removeAvatar;
 
-	// Token: 0x04000A49 RID: 2633
+	// Token: 0x04000852 RID: 2130
 	[Header("Level Item Configuration")]
 	[Tooltip("Define everything here!")]
 	public List<LevelItemsConfiguration> levelItemsConfiguration;
 
-	// Token: 0x04000A4A RID: 2634
+	// Token: 0x04000853 RID: 2131
 	protected GameObject firstItem;
 
-	// Token: 0x02000188 RID: 392
+	// Token: 0x02001246 RID: 4678
 	public enum MaxLevelSelect
 	{
-		// Token: 0x04000A4C RID: 2636
+		// Token: 0x04006547 RID: 25927
 		Max = 6
 	}
 }

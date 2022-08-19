@@ -2,12 +2,12 @@
 using Fungus;
 using UnityEngine;
 
-// Token: 0x0200034B RID: 843
+// Token: 0x0200022F RID: 559
 [CommandInfo("YSNPCJiaoHu", "检测是否有某个特殊关系", "检测是否有某个特殊关系", 0)]
 [AddComponentMenu("")]
 public class CmdCheckGuanXi2 : Command
 {
-	// Token: 0x060018B4 RID: 6324 RVA: 0x000DD654 File Offset: 0x000DB854
+	// Token: 0x060015FC RID: 5628 RVA: 0x00094FCC File Offset: 0x000931CC
 	public override void OnEnter()
 	{
 		int item = NPCEx.NPCIDToNew(this.NPCID.Value);
@@ -36,7 +36,7 @@ public class CmdCheckGuanXi2 : Command
 		this.Continue();
 	}
 
-	// Token: 0x040013AD RID: 5037
+	// Token: 0x04001055 RID: 4181
 	[Tooltip("NPC的ID")]
 	[SerializeField]
 	[VariableProperty(new Type[]
@@ -45,12 +45,12 @@ public class CmdCheckGuanXi2 : Command
 	})]
 	protected IntegerVariable NPCID;
 
-	// Token: 0x040013AE RID: 5038
+	// Token: 0x04001056 RID: 4182
 	[Tooltip("关系")]
 	[SerializeField]
 	protected GuanXiType GuanXi;
 
-	// Token: 0x040013AF RID: 5039
+	// Token: 0x04001057 RID: 4183
 	[Tooltip("是否有关系")]
 	[SerializeField]
 	[VariableProperty(new Type[]

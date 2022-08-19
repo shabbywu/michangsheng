@@ -3,10 +3,10 @@ using System.Collections.Generic;
 
 namespace JSONClass
 {
-	// Token: 0x02000C31 RID: 3121
+	// Token: 0x020008A3 RID: 2211
 	public class NpcImprotantPanDingData : IJSONClass
 	{
-		// Token: 0x06004C2D RID: 19501 RVA: 0x002028D8 File Offset: 0x00200AD8
+		// Token: 0x0600409F RID: 16543 RVA: 0x001B97F0 File Offset: 0x001B79F0
 		public static void InitDataDict()
 		{
 			foreach (JSONObject jsonobject in jsonData.instance.NpcImprotantPanDingData.list)
@@ -44,39 +44,39 @@ namespace JSONClass
 			}
 		}
 
-		// Token: 0x06004C2E RID: 19502 RVA: 0x000042DD File Offset: 0x000024DD
+		// Token: 0x060040A0 RID: 16544 RVA: 0x00004095 File Offset: 0x00002295
 		private static void OnInitFinish()
 		{
 		}
 
-		// Token: 0x040049C4 RID: 18884
+		// Token: 0x04003E6B RID: 15979
 		public static Dictionary<int, NpcImprotantPanDingData> DataDict = new Dictionary<int, NpcImprotantPanDingData>();
 
-		// Token: 0x040049C5 RID: 18885
+		// Token: 0x04003E6C RID: 15980
 		public static List<NpcImprotantPanDingData> DataList = new List<NpcImprotantPanDingData>();
 
-		// Token: 0x040049C6 RID: 18886
+		// Token: 0x04003E6D RID: 15981
 		public static Action OnInitFinishAction = new Action(NpcImprotantPanDingData.OnInitFinish);
 
-		// Token: 0x040049C7 RID: 18887
+		// Token: 0x04003E6E RID: 15982
 		public int id;
 
-		// Token: 0x040049C8 RID: 18888
+		// Token: 0x04003E6F RID: 15983
 		public int NPC;
 
-		// Token: 0x040049C9 RID: 18889
+		// Token: 0x04003E70 RID: 15984
 		public int XingWei;
 
-		// Token: 0x040049CA RID: 18890
+		// Token: 0x04003E71 RID: 15985
 		public string fuhao;
 
-		// Token: 0x040049CB RID: 18891
+		// Token: 0x04003E72 RID: 15986
 		public string StartTime;
 
-		// Token: 0x040049CC RID: 18892
+		// Token: 0x04003E73 RID: 15987
 		public string EndTime;
 
-		// Token: 0x040049CD RID: 18893
+		// Token: 0x04003E74 RID: 15988
 		public List<int> EventValue = new List<int>();
 	}
 }

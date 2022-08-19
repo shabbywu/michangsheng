@@ -3,13 +3,13 @@ using UnityEngine;
 
 namespace Fungus
 {
-	// Token: 0x020012D0 RID: 4816
+	// Token: 0x02000E72 RID: 3698
 	[AddComponentMenu("")]
 	public class FungusState : MonoBehaviour
 	{
-		// Token: 0x17000AD9 RID: 2777
-		// (get) Token: 0x06007542 RID: 30018 RVA: 0x0004FF88 File Offset: 0x0004E188
-		// (set) Token: 0x06007543 RID: 30019 RVA: 0x0004FF90 File Offset: 0x0004E190
+		// Token: 0x17000868 RID: 2152
+		// (get) Token: 0x06006889 RID: 26761 RVA: 0x0028D33E File Offset: 0x0028B53E
+		// (set) Token: 0x0600688A RID: 26762 RVA: 0x0028D346 File Offset: 0x0028B546
 		public virtual Flowchart SelectedFlowchart
 		{
 			get
@@ -22,7 +22,7 @@ namespace Fungus
 			}
 		}
 
-		// Token: 0x04006686 RID: 26246
+		// Token: 0x040058E8 RID: 22760
 		[SerializeField]
 		protected Flowchart selectedFlowchart;
 	}

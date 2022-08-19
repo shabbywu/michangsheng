@@ -4,10 +4,10 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
 
-// Token: 0x02000479 RID: 1145
+// Token: 0x02000317 RID: 791
 public class NpcController : MonoBehaviour
 {
-	// Token: 0x06001EA3 RID: 7843 RVA: 0x00108DEC File Offset: 0x00106FEC
+	// Token: 0x06001B72 RID: 7026 RVA: 0x000C3970 File Offset: 0x000C1B70
 	public void Init()
 	{
 		this.npcSetRandomFace.SetNPCFace(LunDaoManager.inst.npcId);
@@ -26,13 +26,13 @@ public class NpcController : MonoBehaviour
 		this.npcStateTips.GetComponentInChildren<Text>().text = jsonData.instance.LunDaoStateData[this.npcStateId.ToString()]["MiaoShu"].Str;
 	}
 
-	// Token: 0x06001EA4 RID: 7844 RVA: 0x0001963B File Offset: 0x0001783B
+	// Token: 0x06001B73 RID: 7027 RVA: 0x000C3AA3 File Offset: 0x000C1CA3
 	public void NpcSayWord(string content)
 	{
 		this.sayWord.Say(content);
 	}
 
-	// Token: 0x06001EA5 RID: 7845 RVA: 0x00108F20 File Offset: 0x00107120
+	// Token: 0x06001B74 RID: 7028 RVA: 0x000C3AB4 File Offset: 0x000C1CB4
 	public void NpcStartRound()
 	{
 		this.isSayWord = true;
@@ -47,7 +47,7 @@ public class NpcController : MonoBehaviour
 		base.Invoke("NpcAction", 0.5f);
 	}
 
-	// Token: 0x06001EA6 RID: 7846 RVA: 0x00108F88 File Offset: 0x00107188
+	// Token: 0x06001B75 RID: 7029 RVA: 0x000C3B1C File Offset: 0x000C1D1C
 	private void NpcAction()
 	{
 		LunDaoCard lunDaoCard = this.GetCanCompleteCard();
@@ -73,7 +73,7 @@ public class NpcController : MonoBehaviour
 		this.NpcEndRound();
 	}
 
-	// Token: 0x06001EA7 RID: 7847 RVA: 0x00108FF8 File Offset: 0x001071F8
+	// Token: 0x06001B76 RID: 7030 RVA: 0x000C3B8C File Offset: 0x000C1D8C
 	public void NpcUseCard(LunDaoCard card)
 	{
 		if (this.isSayWord)
@@ -90,7 +90,7 @@ public class NpcController : MonoBehaviour
 		LunDaoManager.inst.ChuPaiCallBack();
 	}
 
-	// Token: 0x06001EA8 RID: 7848 RVA: 0x001090C4 File Offset: 0x001072C4
+	// Token: 0x06001B77 RID: 7031 RVA: 0x000C3C58 File Offset: 0x000C1E58
 	public LunDaoCard GetNpcCanUseCard()
 	{
 		List<LunDaoCard> shengYuLunDian = LunDaoManager.inst.lunTiMag.GetShengYuLunDian();
@@ -110,7 +110,7 @@ public class NpcController : MonoBehaviour
 		return result;
 	}
 
-	// Token: 0x06001EA9 RID: 7849 RVA: 0x00109194 File Offset: 0x00107394
+	// Token: 0x06001B78 RID: 7032 RVA: 0x000C3D28 File Offset: 0x000C1F28
 	public LunDaoCard GetCanCompleteCard()
 	{
 		foreach (LunDaoCard lunDaoCard in this.cards)
@@ -132,7 +132,7 @@ public class NpcController : MonoBehaviour
 		return null;
 	}
 
-	// Token: 0x06001EAA RID: 7850 RVA: 0x00109210 File Offset: 0x00107410
+	// Token: 0x06001B79 RID: 7033 RVA: 0x000C3DA4 File Offset: 0x000C1FA4
 	public void VirtualUseCard(LunDaoCard card, UnityAction<int> action)
 	{
 		int nullSlot = LunDaoManager.inst.lunTiMag.GetNullSlot();
@@ -140,7 +140,7 @@ public class NpcController : MonoBehaviour
 		action.Invoke(nullSlot);
 	}
 
-	// Token: 0x06001EAB RID: 7851 RVA: 0x0010925C File Offset: 0x0010745C
+	// Token: 0x06001B7A RID: 7034 RVA: 0x000C3DF0 File Offset: 0x000C1FF0
 	public void NpcEndRound()
 	{
 		foreach (LunDaoCard item in this.cards)
@@ -156,49 +156,49 @@ public class NpcController : MonoBehaviour
 		Debug.Log("Npc回合结束");
 	}
 
-	// Token: 0x06001EAC RID: 7852 RVA: 0x00019649 File Offset: 0x00017849
+	// Token: 0x06001B7B RID: 7035 RVA: 0x000C3E88 File Offset: 0x000C2088
 	public string GetNpcName()
 	{
 		return this.npcName.text;
 	}
 
-	// Token: 0x06001EAD RID: 7853 RVA: 0x00019656 File Offset: 0x00017856
+	// Token: 0x06001B7C RID: 7036 RVA: 0x000C3E95 File Offset: 0x000C2095
 	public void ShowStateTips()
 	{
 		this.npcStateTips.gameObject.SetActive(true);
 	}
 
-	// Token: 0x06001EAE RID: 7854 RVA: 0x00019669 File Offset: 0x00017869
+	// Token: 0x06001B7D RID: 7037 RVA: 0x000C3EA8 File Offset: 0x000C20A8
 	public void HideStateTips()
 	{
 		this.npcStateTips.gameObject.SetActive(false);
 	}
 
-	// Token: 0x04001A0E RID: 6670
+	// Token: 0x040015F4 RID: 5620
 	[SerializeField]
 	private PlayerSetRandomFace npcSetRandomFace;
 
-	// Token: 0x04001A0F RID: 6671
+	// Token: 0x040015F5 RID: 5621
 	public LunDaoSayWord sayWord;
 
-	// Token: 0x04001A10 RID: 6672
+	// Token: 0x040015F6 RID: 5622
 	[SerializeField]
 	private Text npcName;
 
-	// Token: 0x04001A11 RID: 6673
+	// Token: 0x040015F7 RID: 5623
 	[SerializeField]
 	private Text npcStateName;
 
-	// Token: 0x04001A12 RID: 6674
+	// Token: 0x040015F8 RID: 5624
 	[SerializeField]
 	private GameObject npcStateTips;
 
-	// Token: 0x04001A13 RID: 6675
+	// Token: 0x040015F9 RID: 5625
 	public int npcStateId;
 
-	// Token: 0x04001A14 RID: 6676
+	// Token: 0x040015FA RID: 5626
 	public bool isSayWord = true;
 
-	// Token: 0x04001A15 RID: 6677
+	// Token: 0x040015FB RID: 5627
 	public List<LunDaoCard> cards;
 }

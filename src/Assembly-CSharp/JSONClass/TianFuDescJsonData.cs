@@ -3,10 +3,10 @@ using System.Collections.Generic;
 
 namespace JSONClass
 {
-	// Token: 0x02000CF6 RID: 3318
+	// Token: 0x02000972 RID: 2418
 	public class TianFuDescJsonData : IJSONClass
 	{
-		// Token: 0x06004F40 RID: 20288 RVA: 0x00213F44 File Offset: 0x00212144
+		// Token: 0x060043DA RID: 17370 RVA: 0x001CE5F4 File Offset: 0x001CC7F4
 		public static void InitDataDict()
 		{
 			foreach (JSONObject jsonobject in jsonData.instance.TianFuDescJsonData.list)
@@ -40,27 +40,27 @@ namespace JSONClass
 			}
 		}
 
-		// Token: 0x06004F41 RID: 20289 RVA: 0x000042DD File Offset: 0x000024DD
+		// Token: 0x060043DB RID: 17371 RVA: 0x00004095 File Offset: 0x00002295
 		private static void OnInitFinish()
 		{
 		}
 
-		// Token: 0x04005021 RID: 20513
+		// Token: 0x04004511 RID: 17681
 		public static Dictionary<int, TianFuDescJsonData> DataDict = new Dictionary<int, TianFuDescJsonData>();
 
-		// Token: 0x04005022 RID: 20514
+		// Token: 0x04004512 RID: 17682
 		public static List<TianFuDescJsonData> DataList = new List<TianFuDescJsonData>();
 
-		// Token: 0x04005023 RID: 20515
+		// Token: 0x04004513 RID: 17683
 		public static Action OnInitFinishAction = new Action(TianFuDescJsonData.OnInitFinish);
 
-		// Token: 0x04005024 RID: 20516
+		// Token: 0x04004514 RID: 17684
 		public int id;
 
-		// Token: 0x04005025 RID: 20517
+		// Token: 0x04004515 RID: 17685
 		public string Title;
 
-		// Token: 0x04005026 RID: 20518
+		// Token: 0x04004516 RID: 17686
 		public string Desc;
 	}
 }

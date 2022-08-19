@@ -1,10 +1,10 @@
 ﻿using System;
 using UnityEngine;
 
-// Token: 0x0200077E RID: 1918
+// Token: 0x020004F5 RID: 1269
 public class SoundManager : MonoBehaviour
 {
-	// Token: 0x060030F7 RID: 12535 RVA: 0x00184FB8 File Offset: 0x001831B8
+	// Token: 0x0600291C RID: 10524 RVA: 0x0013823C File Offset: 0x0013643C
 	private void Awake()
 	{
 		base.name = "SoundManager";
@@ -21,7 +21,7 @@ public class SoundManager : MonoBehaviour
 		PlayerPrefs.Save();
 	}
 
-	// Token: 0x060030F8 RID: 12536 RVA: 0x00023EF6 File Offset: 0x000220F6
+	// Token: 0x0600291D RID: 10525 RVA: 0x001382BF File Offset: 0x001364BF
 	private void OnApplicationQuit()
 	{
 		PlayerPrefs.SetInt("soundOn", SoundManager.soundOn ? 1 : 0);
@@ -29,7 +29,7 @@ public class SoundManager : MonoBehaviour
 		PlayerPrefs.Save();
 	}
 
-	// Token: 0x060030F9 RID: 12537 RVA: 0x00023F27 File Offset: 0x00022127
+	// Token: 0x0600291E RID: 10526 RVA: 0x001382F0 File Offset: 0x001364F0
 	private void OnApplicationPause(bool pauseStatus)
 	{
 		if (pauseStatus)
@@ -40,9 +40,9 @@ public class SoundManager : MonoBehaviour
 		}
 	}
 
-	// Token: 0x04002CD2 RID: 11474
+	// Token: 0x0400250C RID: 9484
 	public static bool soundOn;
 
-	// Token: 0x04002CD3 RID: 11475
+	// Token: 0x0400250D RID: 9485
 	public static bool musicOn;
 }

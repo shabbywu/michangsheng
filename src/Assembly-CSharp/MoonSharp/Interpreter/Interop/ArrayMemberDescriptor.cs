@@ -4,22 +4,22 @@ using MoonSharp.Interpreter.Interop.Converters;
 
 namespace MoonSharp.Interpreter.Interop
 {
-	// Token: 0x020010FD RID: 4349
+	// Token: 0x02000D19 RID: 3353
 	public class ArrayMemberDescriptor : ObjectCallbackMemberDescriptor, IWireableDescriptor
 	{
-		// Token: 0x060068EC RID: 26860 RVA: 0x00047E9C File Offset: 0x0004609C
+		// Token: 0x06005DBD RID: 23997 RVA: 0x00263D30 File Offset: 0x00261F30
 		public ArrayMemberDescriptor(string name, bool isSetter, ParameterDescriptor[] indexerParams) : base(name, isSetter ? new Func<object, ScriptExecutionContext, CallbackArguments, object>(ArrayMemberDescriptor.ArrayIndexerSet) : new Func<object, ScriptExecutionContext, CallbackArguments, object>(ArrayMemberDescriptor.ArrayIndexerGet), indexerParams)
 		{
 			this.m_IsSetter = isSetter;
 		}
 
-		// Token: 0x060068ED RID: 26861 RVA: 0x00047ECA File Offset: 0x000460CA
+		// Token: 0x06005DBE RID: 23998 RVA: 0x00263D5E File Offset: 0x00261F5E
 		public ArrayMemberDescriptor(string name, bool isSetter) : base(name, isSetter ? new Func<object, ScriptExecutionContext, CallbackArguments, object>(ArrayMemberDescriptor.ArrayIndexerSet) : new Func<object, ScriptExecutionContext, CallbackArguments, object>(ArrayMemberDescriptor.ArrayIndexerGet))
 		{
 			this.m_IsSetter = isSetter;
 		}
 
-		// Token: 0x060068EE RID: 26862 RVA: 0x0028C8A8 File Offset: 0x0028AAA8
+		// Token: 0x06005DBF RID: 23999 RVA: 0x00263D8C File Offset: 0x00261F8C
 		public void PrepareForWiring(Table t)
 		{
 			t.Set("class", DynValue.NewString(base.GetType().FullName));
@@ -39,7 +39,7 @@ namespace MoonSharp.Interpreter.Interop
 			}
 		}
 
-		// Token: 0x060068EF RID: 26863 RVA: 0x0028C958 File Offset: 0x0028AB58
+		// Token: 0x06005DC0 RID: 24000 RVA: 0x00263E3C File Offset: 0x0026203C
 		private static int[] BuildArrayIndices(CallbackArguments args, int count)
 		{
 			int[] array = new int[count];
@@ -50,7 +50,7 @@ namespace MoonSharp.Interpreter.Interop
 			return array;
 		}
 
-		// Token: 0x060068F0 RID: 26864 RVA: 0x0028C988 File Offset: 0x0028AB88
+		// Token: 0x06005DC1 RID: 24001 RVA: 0x00263E6C File Offset: 0x0026206C
 		private static object ArrayIndexerSet(object arrayObj, ScriptExecutionContext ctx, CallbackArguments args)
 		{
 			Array array = (Array)arrayObj;
@@ -62,7 +62,7 @@ namespace MoonSharp.Interpreter.Interop
 			return DynValue.Void;
 		}
 
-		// Token: 0x060068F1 RID: 26865 RVA: 0x0028C9DC File Offset: 0x0028ABDC
+		// Token: 0x06005DC2 RID: 24002 RVA: 0x00263EC0 File Offset: 0x002620C0
 		private static object ArrayIndexerGet(object arrayObj, ScriptExecutionContext ctx, CallbackArguments args)
 		{
 			Array array = (Array)arrayObj;
@@ -70,7 +70,7 @@ namespace MoonSharp.Interpreter.Interop
 			return array.GetValue(indices);
 		}
 
-		// Token: 0x04006021 RID: 24609
+		// Token: 0x0400540A RID: 21514
 		private bool m_IsSetter;
 	}
 }

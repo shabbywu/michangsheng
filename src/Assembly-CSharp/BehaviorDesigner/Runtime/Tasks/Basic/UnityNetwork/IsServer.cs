@@ -3,10 +3,10 @@ using UnityEngine.Networking;
 
 namespace BehaviorDesigner.Runtime.Tasks.Basic.UnityNetwork
 {
-	// Token: 0x020015A5 RID: 5541
+	// Token: 0x020010EB RID: 4331
 	public class IsServer : Conditional
 	{
-		// Token: 0x06008273 RID: 33395 RVA: 0x000595E2 File Offset: 0x000577E2
+		// Token: 0x06007479 RID: 29817 RVA: 0x002B2681 File Offset: 0x002B0881
 		public override TaskStatus OnUpdate()
 		{
 			if (!NetworkServer.active)

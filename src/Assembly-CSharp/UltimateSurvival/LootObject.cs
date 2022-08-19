@@ -5,15 +5,15 @@ using UnityEngine;
 
 namespace UltimateSurvival
 {
-	// Token: 0x020008DF RID: 2271
+	// Token: 0x02000602 RID: 1538
 	public class LootObject : InteractableObject, IInventoryTrigger
 	{
-		// Token: 0x17000632 RID: 1586
-		// (get) Token: 0x06003A55 RID: 14933 RVA: 0x0002A650 File Offset: 0x00028850
-		// (set) Token: 0x06003A56 RID: 14934 RVA: 0x0002A658 File Offset: 0x00028858
+		// Token: 0x17000445 RID: 1093
+		// (get) Token: 0x06003152 RID: 12626 RVA: 0x0015EA8E File Offset: 0x0015CC8E
+		// (set) Token: 0x06003153 RID: 12627 RVA: 0x0015EA96 File Offset: 0x0015CC96
 		public List<ItemHolder> ItemHolders { get; private set; }
 
-		// Token: 0x06003A57 RID: 14935 RVA: 0x0002A661 File Offset: 0x00028861
+		// Token: 0x06003154 RID: 12628 RVA: 0x0015EA9F File Offset: 0x0015CC9F
 		public override void OnInteract(PlayerEventHandler player)
 		{
 			if (base.enabled && MonoSingleton<InventoryController>.Instance.OpenLootContainer.Try(this))
@@ -23,7 +23,7 @@ namespace UltimateSurvival
 			}
 		}
 
-		// Token: 0x06003A58 RID: 14936 RVA: 0x001A7EF8 File Offset: 0x001A60F8
+		// Token: 0x06003155 RID: 12629 RVA: 0x0015EADC File Offset: 0x0015CCDC
 		private void Start()
 		{
 			this.ItemHolders = new List<ItemHolder>();
@@ -38,7 +38,7 @@ namespace UltimateSurvival
 			}
 		}
 
-		// Token: 0x06003A59 RID: 14937 RVA: 0x0002A69E File Offset: 0x0002889E
+		// Token: 0x06003156 RID: 12630 RVA: 0x0015EB43 File Offset: 0x0015CD43
 		private void OnChanged_InventoryController_State()
 		{
 			if (MonoSingleton<InventoryController>.Instance.IsClosed)
@@ -47,7 +47,7 @@ namespace UltimateSurvival
 			}
 		}
 
-		// Token: 0x06003A5A RID: 14938 RVA: 0x0002A6B2 File Offset: 0x000288B2
+		// Token: 0x06003157 RID: 12631 RVA: 0x0015EB57 File Offset: 0x0015CD57
 		private void On_InventoryOpened()
 		{
 			if (this.m_Cover != null)
@@ -57,7 +57,7 @@ namespace UltimateSurvival
 			}
 		}
 
-		// Token: 0x06003A5B RID: 14939 RVA: 0x0002A6D6 File Offset: 0x000288D6
+		// Token: 0x06003158 RID: 12632 RVA: 0x0015EB7B File Offset: 0x0015CD7B
 		private void On_InventoryClosed()
 		{
 			if (this.m_Cover != null)
@@ -67,7 +67,7 @@ namespace UltimateSurvival
 			}
 		}
 
-		// Token: 0x06003A5C RID: 14940 RVA: 0x0002A6FA File Offset: 0x000288FA
+		// Token: 0x06003159 RID: 12633 RVA: 0x0015EB9F File Offset: 0x0015CD9F
 		private IEnumerator C_OpenCover(bool open)
 		{
 			float targetRotation = open ? this.m_OpenRotation : this.m_ClosedRotation;
@@ -80,33 +80,33 @@ namespace UltimateSurvival
 			yield break;
 		}
 
-		// Token: 0x0400346B RID: 13419
+		// Token: 0x04002B72 RID: 11122
 		[SerializeField]
 		[Range(1f, 50f)]
 		protected int m_Capacity = 8;
 
-		// Token: 0x0400346C RID: 13420
+		// Token: 0x04002B73 RID: 11123
 		[SerializeField]
 		protected ItemToGenerate[] m_InitialItems;
 
-		// Token: 0x0400346D RID: 13421
+		// Token: 0x04002B74 RID: 11124
 		[Header("Box Opening")]
 		[SerializeField]
 		private Transform m_Cover;
 
-		// Token: 0x0400346E RID: 13422
+		// Token: 0x04002B75 RID: 11125
 		[SerializeField]
 		private float m_OpenSpeed = 6f;
 
-		// Token: 0x0400346F RID: 13423
+		// Token: 0x04002B76 RID: 11126
 		[SerializeField]
 		private float m_ClosedRotation;
 
-		// Token: 0x04003470 RID: 13424
+		// Token: 0x04002B77 RID: 11127
 		[SerializeField]
 		private float m_OpenRotation = 60f;
 
-		// Token: 0x04003471 RID: 13425
+		// Token: 0x04002B78 RID: 11128
 		private float m_CurrentRotation;
 	}
 }

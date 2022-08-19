@@ -2,11 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-// Token: 0x0200050C RID: 1292
+// Token: 0x02000388 RID: 904
 [Serializable]
 public class UIBase
 {
-	// Token: 0x0600214F RID: 8527 RVA: 0x00116208 File Offset: 0x00114408
+	// Token: 0x06001DD6 RID: 7638 RVA: 0x000D24FC File Offset: 0x000D06FC
 	protected T Get<T>(string path)
 	{
 		if (this._go == null)
@@ -34,7 +34,7 @@ public class UIBase
 		return (T)((object)this._objDict[key]);
 	}
 
-	// Token: 0x06002150 RID: 8528 RVA: 0x001162F8 File Offset: 0x001144F8
+	// Token: 0x06001DD7 RID: 7639 RVA: 0x000D25EC File Offset: 0x000D07EC
 	protected GameObject Get(string path, bool showError = true)
 	{
 		if (this._go == null)
@@ -62,21 +62,21 @@ public class UIBase
 		return (GameObject)this._objDict[key];
 	}
 
-	// Token: 0x06002151 RID: 8529 RVA: 0x0001B791 File Offset: 0x00019991
+	// Token: 0x06001DD8 RID: 7640 RVA: 0x000D2683 File Offset: 0x000D0883
 	public Transform GetTransform()
 	{
 		return this._go.transform;
 	}
 
-	// Token: 0x06002152 RID: 8530 RVA: 0x0001B79E File Offset: 0x0001999E
+	// Token: 0x06001DD9 RID: 7641 RVA: 0x000D2690 File Offset: 0x000D0890
 	public bool IsNull()
 	{
 		return this._go == null;
 	}
 
-	// Token: 0x04001CD7 RID: 7383
+	// Token: 0x04001879 RID: 6265
 	protected GameObject _go;
 
-	// Token: 0x04001CD8 RID: 7384
+	// Token: 0x0400187A RID: 6266
 	private Dictionary<string, object> _objDict = new Dictionary<string, object>();
 }

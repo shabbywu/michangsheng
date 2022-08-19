@@ -8,12 +8,12 @@ using Newtonsoft.Json.Linq;
 using Spine.Unity.Examples;
 using UnityEngine;
 
-// Token: 0x02000295 RID: 661
+// Token: 0x0200019D RID: 413
 public class SeaAvatarObjBase : MonoBehaviour
 {
-	// Token: 0x1700025D RID: 605
-	// (get) Token: 0x0600143F RID: 5183 RVA: 0x00012C86 File Offset: 0x00010E86
-	// (set) Token: 0x06001440 RID: 5184 RVA: 0x00012C8E File Offset: 0x00010E8E
+	// Token: 0x17000217 RID: 535
+	// (get) Token: 0x0600119E RID: 4510 RVA: 0x0006AD12 File Offset: 0x00068F12
+	// (set) Token: 0x0600119F RID: 4511 RVA: 0x0006AD1A File Offset: 0x00068F1A
 	public bool IsCollect
 	{
 		get
@@ -27,8 +27,8 @@ public class SeaAvatarObjBase : MonoBehaviour
 		}
 	}
 
-	// Token: 0x1700025E RID: 606
-	// (get) Token: 0x06001441 RID: 5185 RVA: 0x00012CA2 File Offset: 0x00010EA2
+	// Token: 0x17000218 RID: 536
+	// (get) Token: 0x060011A0 RID: 4512 RVA: 0x0006AD2E File Offset: 0x00068F2E
 	public int MenPai
 	{
 		get
@@ -37,8 +37,8 @@ public class SeaAvatarObjBase : MonoBehaviour
 		}
 	}
 
-	// Token: 0x1700025F RID: 607
-	// (get) Token: 0x06001442 RID: 5186 RVA: 0x00012CD2 File Offset: 0x00010ED2
+	// Token: 0x17000219 RID: 537
+	// (get) Token: 0x060011A1 RID: 4513 RVA: 0x0006AD5E File Offset: 0x00068F5E
 	public int ShenShi
 	{
 		get
@@ -47,8 +47,8 @@ public class SeaAvatarObjBase : MonoBehaviour
 		}
 	}
 
-	// Token: 0x17000260 RID: 608
-	// (get) Token: 0x06001443 RID: 5187 RVA: 0x00012CE9 File Offset: 0x00010EE9
+	// Token: 0x1700021A RID: 538
+	// (get) Token: 0x060011A2 RID: 4514 RVA: 0x0006AD75 File Offset: 0x00068F75
 	public int LV
 	{
 		get
@@ -57,8 +57,8 @@ public class SeaAvatarObjBase : MonoBehaviour
 		}
 	}
 
-	// Token: 0x17000261 RID: 609
-	// (get) Token: 0x06001444 RID: 5188 RVA: 0x00012D19 File Offset: 0x00010F19
+	// Token: 0x1700021B RID: 539
+	// (get) Token: 0x060011A3 RID: 4515 RVA: 0x0006ADA5 File Offset: 0x00068FA5
 	public JObject Json
 	{
 		get
@@ -67,8 +67,8 @@ public class SeaAvatarObjBase : MonoBehaviour
 		}
 	}
 
-	// Token: 0x17000262 RID: 610
-	// (get) Token: 0x06001445 RID: 5189 RVA: 0x00012D3F File Offset: 0x00010F3F
+	// Token: 0x1700021C RID: 540
+	// (get) Token: 0x060011A4 RID: 4516 RVA: 0x0006ADCB File Offset: 0x00068FCB
 	public SeaAvatarObjBase.EventType AIEventType
 	{
 		get
@@ -77,27 +77,27 @@ public class SeaAvatarObjBase : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001446 RID: 5190 RVA: 0x00012D6A File Offset: 0x00010F6A
+	// Token: 0x060011A5 RID: 4517 RVA: 0x0006ADF6 File Offset: 0x00068FF6
 	private void Start()
 	{
 		this.LastMoveTime = Tools.instance.getPlayer().worldTimeMag.getNowTime();
 		this.InitNearlIsLand();
 	}
 
-	// Token: 0x06001447 RID: 5191 RVA: 0x000B9068 File Offset: 0x000B7268
+	// Token: 0x060011A6 RID: 4518 RVA: 0x0006AE18 File Offset: 0x00069018
 	public void InitNearlIsLand()
 	{
 		int seaIslandIndex = Tools.instance.getPlayer().seaNodeMag.GetSeaIslandIndex(this.SeaId);
 		this.NearlIslandIndex = EndlessSeaMag.GetRealIndex(this.SeaId, seaIslandIndex);
 	}
 
-	// Token: 0x06001448 RID: 5192 RVA: 0x00012D8C File Offset: 0x00010F8C
+	// Token: 0x060011A7 RID: 4519 RVA: 0x0006AE52 File Offset: 0x00069052
 	public void PlayMove(List<int> MoveLine)
 	{
 		base.StartCoroutine(this.IEplaymove(MoveLine));
 	}
 
-	// Token: 0x06001449 RID: 5193 RVA: 0x000B90A4 File Offset: 0x000B72A4
+	// Token: 0x060011A8 RID: 4520 RVA: 0x0006AE64 File Offset: 0x00069064
 	public void Think()
 	{
 		if (!this.IsTimeToMove())
@@ -118,7 +118,7 @@ public class SeaAvatarObjBase : MonoBehaviour
 		this.behaviorTree.EnableBehavior();
 	}
 
-	// Token: 0x0600144A RID: 5194 RVA: 0x000B913C File Offset: 0x000B733C
+	// Token: 0x060011A9 RID: 4521 RVA: 0x0006AEFC File Offset: 0x000690FC
 	public void ResetAITpe(int type)
 	{
 		if (this.ThinkType == type)
@@ -133,7 +133,7 @@ public class SeaAvatarObjBase : MonoBehaviour
 		this.behaviorTree.ExternalBehavior = EndlessSeaMag.Inst.externalBehaviorTrees[type];
 	}
 
-	// Token: 0x0600144B RID: 5195 RVA: 0x000B91B4 File Offset: 0x000B73B4
+	// Token: 0x060011AA RID: 4522 RVA: 0x0006AF74 File Offset: 0x00069174
 	public void MonstarMoveToPlayer()
 	{
 		int nowIndex = PlayerEx.Player.fubenContorl[Tools.getScreenName()].NowIndex;
@@ -148,7 +148,7 @@ public class SeaAvatarObjBase : MonoBehaviour
 		}
 	}
 
-	// Token: 0x0600144C RID: 5196 RVA: 0x000B9224 File Offset: 0x000B7424
+	// Token: 0x060011AB RID: 4523 RVA: 0x0006AFE4 File Offset: 0x000691E4
 	public void moveToNearlIsland()
 	{
 		int nearlIsLand = this.GetNearlIsLand();
@@ -158,21 +158,21 @@ public class SeaAvatarObjBase : MonoBehaviour
 		}
 	}
 
-	// Token: 0x0600144D RID: 5197 RVA: 0x000B9244 File Offset: 0x000B7444
+	// Token: 0x060011AC RID: 4524 RVA: 0x0006B004 File Offset: 0x00069204
 	public void moveAwayFromPositon()
 	{
 		int awayFromPositon = this.GetAwayFromPositon(true);
 		this.MonstarMoveToPositon(awayFromPositon);
 	}
 
-	// Token: 0x0600144E RID: 5198 RVA: 0x00012D9C File Offset: 0x00010F9C
+	// Token: 0x060011AD RID: 4525 RVA: 0x0006B020 File Offset: 0x00069220
 	public void ResetBehavirTree(int type)
 	{
 		this.behaviorTree.ExternalBehavior = EndlessSeaMag.Inst.externalBehaviorTrees[type];
 		BehaviorManager.instance.RestartBehavior(this.behaviorTree);
 	}
 
-	// Token: 0x0600144F RID: 5199 RVA: 0x000B9260 File Offset: 0x000B7460
+	// Token: 0x060011AE RID: 4526 RVA: 0x0006B050 File Offset: 0x00069250
 	public void MonstarMoveToPositon(int endIndex)
 	{
 		Avatar player = PlayerEx.Player;
@@ -181,7 +181,7 @@ public class SeaAvatarObjBase : MonoBehaviour
 		this.LastMoveTime = player.worldTimeMag.getNowTime();
 	}
 
-	// Token: 0x06001450 RID: 5200 RVA: 0x000B92B4 File Offset: 0x000B74B4
+	// Token: 0x060011AF RID: 4527 RVA: 0x0006B0A4 File Offset: 0x000692A4
 	public int GetAwayFromPositon(bool ignoreIsland = false)
 	{
 		List<int> nextIndex = ((MapSeaCompent)AllMapManage.instance.mapIndex[this.NowMapIndex]).nextIndex;
@@ -209,13 +209,13 @@ public class SeaAvatarObjBase : MonoBehaviour
 		return result;
 	}
 
-	// Token: 0x06001451 RID: 5201 RVA: 0x00012DC9 File Offset: 0x00010FC9
+	// Token: 0x060011B0 RID: 4528 RVA: 0x0006B1C8 File Offset: 0x000693C8
 	public bool WhetherCanMove()
 	{
 		return this.IsInPlayerScope() && this.IsTimeToMove();
 	}
 
-	// Token: 0x06001452 RID: 5202 RVA: 0x00012DDE File Offset: 0x00010FDE
+	// Token: 0x060011B1 RID: 4529 RVA: 0x0006B1DD File Offset: 0x000693DD
 	public int GetNearlIsLand()
 	{
 		if (this.NowMapIndex == this.NearlIslandIndex)
@@ -225,7 +225,7 @@ public class SeaAvatarObjBase : MonoBehaviour
 		return this.NearlIslandIndex;
 	}
 
-	// Token: 0x06001453 RID: 5203 RVA: 0x000B93D8 File Offset: 0x000B75D8
+	// Token: 0x060011B2 RID: 4530 RVA: 0x0006B1FC File Offset: 0x000693FC
 	public void ResetNearlIsland()
 	{
 		DateTime d = DateTime.Parse(this.NearWaitTime);
@@ -241,7 +241,7 @@ public class SeaAvatarObjBase : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001454 RID: 5204 RVA: 0x000B945C File Offset: 0x000B765C
+	// Token: 0x060011B3 RID: 4531 RVA: 0x0006B280 File Offset: 0x00069480
 	public int GetAtherNearlIsLand()
 	{
 		Dictionary<int, BaseMapCompont> mapIndex = AllMapManage.instance.mapIndex;
@@ -281,19 +281,19 @@ public class SeaAvatarObjBase : MonoBehaviour
 		return -1;
 	}
 
-	// Token: 0x06001455 RID: 5205 RVA: 0x00012DFA File Offset: 0x00010FFA
+	// Token: 0x060011B4 RID: 4532 RVA: 0x0006B3B8 File Offset: 0x000695B8
 	public bool IsInPlayerScope()
 	{
 		return EndlessSeaMag.Inst.IsInSeeType(this.ShenShi, this.NowMapIndex, EndlessSeaMag.Inst.getAvatarNowMapIndex());
 	}
 
-	// Token: 0x06001456 RID: 5206 RVA: 0x000B9594 File Offset: 0x000B7794
+	// Token: 0x060011B5 RID: 4533 RVA: 0x0006B3E0 File Offset: 0x000695E0
 	public bool IsTimeToMove()
 	{
 		return (Tools.instance.getPlayer().worldTimeMag.getNowTime() - this.LastMoveTime).Days >= this.speed;
 	}
 
-	// Token: 0x06001457 RID: 5207 RVA: 0x000B95D4 File Offset: 0x000B77D4
+	// Token: 0x060011B6 RID: 4534 RVA: 0x0006B420 File Offset: 0x00069620
 	public void MonstarMove(int EndPositon, int timeDay, int speed)
 	{
 		this.LuXian = EndlessSeaMag.Inst.GetRoadXian(this.NowMapIndex, EndPositon);
@@ -308,7 +308,7 @@ public class SeaAvatarObjBase : MonoBehaviour
 		base.GetComponent<SeaAvatarObjBase>().PlayMove(list);
 	}
 
-	// Token: 0x06001458 RID: 5208 RVA: 0x000B963C File Offset: 0x000B783C
+	// Token: 0x060011B7 RID: 4535 RVA: 0x0006B488 File Offset: 0x00069688
 	public void ShowMonstarObj()
 	{
 		if (!this.IsShow)
@@ -330,7 +330,7 @@ public class SeaAvatarObjBase : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001459 RID: 5209 RVA: 0x000B96CC File Offset: 0x000B78CC
+	// Token: 0x060011B8 RID: 4536 RVA: 0x0006B518 File Offset: 0x00069718
 	public void HideMonstarObj()
 	{
 		if (this.IsShow)
@@ -352,7 +352,7 @@ public class SeaAvatarObjBase : MonoBehaviour
 		}
 	}
 
-	// Token: 0x0600145A RID: 5210 RVA: 0x000B975C File Offset: 0x000B795C
+	// Token: 0x060011B9 RID: 4537 RVA: 0x0006B5A8 File Offset: 0x000697A8
 	public void EventShiJian()
 	{
 		if (this._EventId == 0)
@@ -372,7 +372,7 @@ public class SeaAvatarObjBase : MonoBehaviour
 		Object.Instantiate<GameObject>(Resources.Load<GameObject>("talkPrefab/TalkPrefab/talk" + num)).GetComponentInChildren<Flowchart>().SetStringVariable("uuid", this.UUID);
 	}
 
-	// Token: 0x0600145B RID: 5211 RVA: 0x000B4FF4 File Offset: 0x000B31F4
+	// Token: 0x060011BA RID: 4538 RVA: 0x0006B6A8 File Offset: 0x000698A8
 	public void addOption(int talkID)
 	{
 		int key = int.Parse(Tools.getScreenName().Replace("F", ""));
@@ -383,7 +383,7 @@ public class SeaAvatarObjBase : MonoBehaviour
 		}.addOption(talkID);
 	}
 
-	// Token: 0x0600145C RID: 5212 RVA: 0x00012E21 File Offset: 0x00011021
+	// Token: 0x060011BB RID: 4539 RVA: 0x0006B712 File Offset: 0x00069912
 	public IEnumerator IEplaymove(List<int> MoveLine)
 	{
 		if (MoveLine.Count > 0)
@@ -400,11 +400,22 @@ public class SeaAvatarObjBase : MonoBehaviour
 		yield break;
 	}
 
-	// Token: 0x0600145D RID: 5213 RVA: 0x000B985C File Offset: 0x000B7A5C
+	// Token: 0x060011BC RID: 4540 RVA: 0x0006B728 File Offset: 0x00069928
 	private void Update()
 	{
 		if (Vector3.Distance(AllMapManage.instance.MapPlayerController.transform.position, base.transform.position) <= 2f)
 		{
+			if (EndlessSeaMag.Inst.NeedRefresh)
+			{
+				EndlessSeaMag.Inst.flagMonstarTarget = true;
+				this.CanEventTrager = true;
+				EndlessSeaMag.Inst.NeedRefresh = false;
+				this.NeedStop = true;
+			}
+			if (this.NeedStop)
+			{
+				return;
+			}
 			if (this.AIEventType == SeaAvatarObjBase.EventType.initiative && this.CanEventTrager && EndlessSeaMag.Inst.flagMonstarTarget)
 			{
 				EndlessSeaMag.Inst.flagMonstarTarget = false;
@@ -422,106 +433,116 @@ public class SeaAvatarObjBase : MonoBehaviour
 				return;
 			}
 		}
-		else if (this.IsCollect)
+		else
 		{
-			this.IsCollect = false;
+			if (this.NeedStop)
+			{
+				this.NeedStop = false;
+			}
+			if (this.IsCollect)
+			{
+				this.IsCollect = false;
+			}
 		}
 	}
 
-	// Token: 0x04000FB3 RID: 4019
+	// Token: 0x04000CA0 RID: 3232
 	public int speed = 20;
 
-	// Token: 0x04000FB4 RID: 4020
+	// Token: 0x04000CA1 RID: 3233
 	public int _EventId;
 
-	// Token: 0x04000FB5 RID: 4021
+	// Token: 0x04000CA2 RID: 3234
 	public int ThinkType = 1;
 
-	// Token: 0x04000FB6 RID: 4022
+	// Token: 0x04000CA3 RID: 3235
 	public DateTime LastMoveTime;
 
-	// Token: 0x04000FB7 RID: 4023
+	// Token: 0x04000CA4 RID: 3236
 	public List<int> LuXian = new List<int>();
 
-	// Token: 0x04000FB8 RID: 4024
+	// Token: 0x04000CA5 RID: 3237
 	public int NowMapIndex;
 
-	// Token: 0x04000FB9 RID: 4025
+	// Token: 0x04000CA6 RID: 3238
+	public bool NeedStop;
+
+	// Token: 0x04000CA7 RID: 3239
 	public string NearWaitTime = "0001-01-01";
 
-	// Token: 0x04000FBA RID: 4026
+	// Token: 0x04000CA8 RID: 3240
 	public int NearlIslandIndex;
 
-	// Token: 0x04000FBB RID: 4027
+	// Token: 0x04000CA9 RID: 3241
 	private bool isCollect;
 
-	// Token: 0x04000FBC RID: 4028
+	// Token: 0x04000CAA RID: 3242
 	public BehaviorTree behaviorTree;
 
-	// Token: 0x04000FBD RID: 4029
+	// Token: 0x04000CAB RID: 3243
 	public bool ISNTaskMonstar;
 
-	// Token: 0x04000FBE RID: 4030
+	// Token: 0x04000CAC RID: 3244
 	public GameObject NtaskSpine;
 
-	// Token: 0x04000FBF RID: 4031
+	// Token: 0x04000CAD RID: 3245
 	public GameObject objBase;
 
-	// Token: 0x04000FC0 RID: 4032
+	// Token: 0x04000CAE RID: 3246
 	public RuntimeAnimatorController HaiGuaiAnimCtl;
 
-	// Token: 0x04000FC1 RID: 4033
+	// Token: 0x04000CAF RID: 3247
 	public RuntimeAnimatorController ChuanAnimCtl;
 
-	// Token: 0x04000FC2 RID: 4034
+	// Token: 0x04000CB0 RID: 3248
 	public List<SkeletonAnimationHandleExample.StateNameToAnimationReference> ChuanStatesAndAnimations = new List<SkeletonAnimationHandleExample.StateNameToAnimationReference>();
 
-	// Token: 0x04000FC3 RID: 4035
+	// Token: 0x04000CB1 RID: 3249
 	private bool IsShow = true;
 
-	// Token: 0x04000FC4 RID: 4036
+	// Token: 0x04000CB2 RID: 3250
 	public int SeaId;
 
-	// Token: 0x04000FC5 RID: 4037
+	// Token: 0x04000CB3 RID: 3251
 	public string UUID;
 
-	// Token: 0x04000FC6 RID: 4038
+	// Token: 0x04000CB4 RID: 3252
 	private bool CanEventTrager = true;
 
-	// Token: 0x02000296 RID: 662
+	// Token: 0x020012B8 RID: 4792
 	public enum EventType
 	{
-		// Token: 0x04000FC8 RID: 4040
+		// Token: 0x0400666F RID: 26223
 		initiative,
-		// Token: 0x04000FC9 RID: 4041
+		// Token: 0x04006670 RID: 26224
 		passivity
 	}
 
-	// Token: 0x02000297 RID: 663
+	// Token: 0x020012B9 RID: 4793
 	public enum Directon
 	{
-		// Token: 0x04000FCB RID: 4043
+		// Token: 0x04006672 RID: 26226
 		UP,
-		// Token: 0x04000FCC RID: 4044
+		// Token: 0x04006673 RID: 26227
 		Down,
-		// Token: 0x04000FCD RID: 4045
+		// Token: 0x04006674 RID: 26228
 		Left,
-		// Token: 0x04000FCE RID: 4046
+		// Token: 0x04006675 RID: 26229
 		Right
 	}
 
-	// Token: 0x02000298 RID: 664
+	// Token: 0x020012BA RID: 4794
 	public enum AIState
 	{
-		// Token: 0x04000FD0 RID: 4048
+		// Token: 0x04006677 RID: 26231
 		WaitStop = 1,
-		// Token: 0x04000FD1 RID: 4049
+		// Token: 0x04006678 RID: 26232
 		ToPlayer,
-		// Token: 0x04000FD2 RID: 4050
+		// Token: 0x04006679 RID: 26233
 		ToPlayerNotGongJi,
-		// Token: 0x04000FD3 RID: 4051
+		// Token: 0x0400667A RID: 26234
 		GouAway,
-		// Token: 0x04000FD4 RID: 4052
+		// Token: 0x0400667B RID: 26235
 		ToNeralIsLand
 	}
 }

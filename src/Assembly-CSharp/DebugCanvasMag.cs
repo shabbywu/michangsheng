@@ -8,15 +8,15 @@ using KBEngine;
 using UnityEngine;
 using UnityEngine.UI;
 
-// Token: 0x0200024D RID: 589
+// Token: 0x02000171 RID: 369
 public class DebugCanvasMag : MonoBehaviour
 {
-	// Token: 0x060011FE RID: 4606 RVA: 0x000042DD File Offset: 0x000024DD
+	// Token: 0x06000FA0 RID: 4000 RVA: 0x00004095 File Offset: 0x00002295
 	private void Start()
 	{
 	}
 
-	// Token: 0x060011FF RID: 4607 RVA: 0x000AD368 File Offset: 0x000AB568
+	// Token: 0x06000FA1 RID: 4001 RVA: 0x0005D8C4 File Offset: 0x0005BAC4
 	public item getAvatarItem(ItemDatebase datebase, int itemID)
 	{
 		foreach (ITEM_INFO item_INFO in Tools.instance.getPlayer().itemList.values)
@@ -31,7 +31,7 @@ public class DebugCanvasMag : MonoBehaviour
 		return null;
 	}
 
-	// Token: 0x06001200 RID: 4608 RVA: 0x000AD3F0 File Offset: 0x000AB5F0
+	// Token: 0x06000FA2 RID: 4002 RVA: 0x0005D94C File Offset: 0x0005BB4C
 	public void TestLiandan(string text, string value)
 	{
 		string[] array = value.Split(new char[]
@@ -89,7 +89,7 @@ public class DebugCanvasMag : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001201 RID: 4609 RVA: 0x000AD734 File Offset: 0x000AB934
+	// Token: 0x06000FA3 RID: 4003 RVA: 0x0005DC90 File Offset: 0x0005BE90
 	public void setjinhao(string text, string value)
 	{
 		Avatar player = Tools.instance.getPlayer();
@@ -166,7 +166,7 @@ public class DebugCanvasMag : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001202 RID: 4610 RVA: 0x000AD938 File Offset: 0x000ABB38
+	// Token: 0x06000FA4 RID: 4004 RVA: 0x0005DE94 File Offset: 0x0005C094
 	public void run()
 	{
 		string[] array = this.inputField.text.Split(new char[]
@@ -287,6 +287,6 @@ public class DebugCanvasMag : MonoBehaviour
 		}
 	}
 
-	// Token: 0x04000E8D RID: 3725
+	// Token: 0x04000BBD RID: 3005
 	public InputField inputField;
 }

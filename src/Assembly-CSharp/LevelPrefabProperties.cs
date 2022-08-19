@@ -2,10 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-// Token: 0x020006B4 RID: 1716
+// Token: 0x020004B8 RID: 1208
 public class LevelPrefabProperties : MonoBehaviour
 {
-	// Token: 0x06002AF0 RID: 10992 RVA: 0x0014DE6C File Offset: 0x0014C06C
+	// Token: 0x06002642 RID: 9794 RVA: 0x00109E24 File Offset: 0x00108024
 	private void Awake()
 	{
 		this.originalPosition = base.transform.position;
@@ -48,52 +48,52 @@ public class LevelPrefabProperties : MonoBehaviour
 		this.slobodanTeren = 2;
 	}
 
-	// Token: 0x0400251E RID: 9502
+	// Token: 0x04001F7C RID: 8060
 	public int slobodanTeren = 2;
 
-	// Token: 0x0400251F RID: 9503
+	// Token: 0x04001F7D RID: 8061
 	public int enemies_Slots_Count;
 
-	// Token: 0x04002520 RID: 9504
+	// Token: 0x04001F7E RID: 8062
 	public int environment_Slots_Count;
 
-	// Token: 0x04002521 RID: 9505
+	// Token: 0x04001F7F RID: 8063
 	public int coins_Slots_Count;
 
-	// Token: 0x04002522 RID: 9506
+	// Token: 0x04001F80 RID: 8064
 	public int special_Slots_Count;
 
-	// Token: 0x04002523 RID: 9507
+	// Token: 0x04001F81 RID: 8065
 	public List<Transform> environmentsSlots;
 
-	// Token: 0x04002524 RID: 9508
+	// Token: 0x04001F82 RID: 8066
 	public List<Transform> enemiesSlots;
 
-	// Token: 0x04002525 RID: 9509
+	// Token: 0x04001F83 RID: 8067
 	public List<Transform> coinsSlots;
 
-	// Token: 0x04002526 RID: 9510
+	// Token: 0x04001F84 RID: 8068
 	public List<Transform> specialSlots;
 
-	// Token: 0x04002527 RID: 9511
+	// Token: 0x04001F85 RID: 8069
 	public int minimumLevel;
 
-	// Token: 0x04002528 RID: 9512
+	// Token: 0x04001F86 RID: 8070
 	public int maximumLevel;
 
-	// Token: 0x04002529 RID: 9513
+	// Token: 0x04001F87 RID: 8071
 	public int tipTerena;
 
-	// Token: 0x0400252A RID: 9514
+	// Token: 0x04001F88 RID: 8072
 	public int[] moguDaSeNakace;
 
-	// Token: 0x0400252B RID: 9515
+	// Token: 0x04001F89 RID: 8073
 	[HideInInspector]
 	public Vector3 originalPosition;
 
-	// Token: 0x0400252C RID: 9516
+	// Token: 0x04001F8A RID: 8074
 	private Transform tipSlota;
 
-	// Token: 0x0400252D RID: 9517
+	// Token: 0x04001F8B RID: 8075
 	public int brojUNizu;
 }

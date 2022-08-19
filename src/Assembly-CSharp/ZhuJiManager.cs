@@ -5,10 +5,10 @@ using TuPo;
 using UnityEngine;
 using UnityEngine.UI;
 
-// Token: 0x02000531 RID: 1329
+// Token: 0x020003A7 RID: 935
 public class ZhuJiManager : MonoBehaviour
 {
-	// Token: 0x060021F3 RID: 8691 RVA: 0x0001BDC4 File Offset: 0x00019FC4
+	// Token: 0x06001E70 RID: 7792 RVA: 0x000D6398 File Offset: 0x000D4598
 	private void Awake()
 	{
 		ZhuJiManager.inst = this;
@@ -17,13 +17,13 @@ public class ZhuJiManager : MonoBehaviour
 		this.ShengYuHuiHe.text = "剩余回合 九";
 	}
 
-	// Token: 0x060021F4 RID: 8692 RVA: 0x00119B64 File Offset: 0x00117D64
+	// Token: 0x06001E71 RID: 7793 RVA: 0x000D63CC File Offset: 0x000D45CC
 	public void updateJinDu()
 	{
 		this.ZhuJiJinDu.text = this.player.ZhuJiJinDu.ToString() + "/100";
 	}
 
-	// Token: 0x060021F5 RID: 8693 RVA: 0x00119B9C File Offset: 0x00117D9C
+	// Token: 0x06001E72 RID: 7794 RVA: 0x000D6404 File Offset: 0x000D4604
 	private void successZhuJi()
 	{
 		int num = (this.player.ZhuJiJinDu - 100) * 2;
@@ -42,7 +42,7 @@ public class ZhuJiManager : MonoBehaviour
 		ResManager.inst.LoadPrefab("BigTuPoResult").Inst(null).GetComponent<BigTuPoResultIMag>().ShowSuccess(1);
 	}
 
-	// Token: 0x060021F6 RID: 8694 RVA: 0x00119C48 File Offset: 0x00117E48
+	// Token: 0x06001E73 RID: 7795 RVA: 0x000D64B0 File Offset: 0x000D46B0
 	private void failZhuJi()
 	{
 		this.player.exp -= 1000UL;
@@ -50,7 +50,7 @@ public class ZhuJiManager : MonoBehaviour
 		ResManager.inst.LoadPrefab("BigTuPoResult").Inst(null).GetComponent<BigTuPoResultIMag>().ShowFail(1, 0);
 	}
 
-	// Token: 0x060021F7 RID: 8695 RVA: 0x0001BDF8 File Offset: 0x00019FF8
+	// Token: 0x06001E74 RID: 7796 RVA: 0x000D6502 File Offset: 0x000D4702
 	public void checkState()
 	{
 		if (this.player.ZhuJiJinDu >= 100)
@@ -61,33 +61,33 @@ public class ZhuJiManager : MonoBehaviour
 		this.failZhuJi();
 	}
 
-	// Token: 0x060021F8 RID: 8696 RVA: 0x0001BE16 File Offset: 0x0001A016
+	// Token: 0x06001E75 RID: 7797 RVA: 0x000D6520 File Offset: 0x000D4720
 	public void quitJieDan()
 	{
 		Tools.instance.loadMapScenes(Tools.instance.FinalScene, true);
 	}
 
-	// Token: 0x060021F9 RID: 8697 RVA: 0x0001BE2D File Offset: 0x0001A02D
+	// Token: 0x06001E76 RID: 7798 RVA: 0x000D6537 File Offset: 0x000D4737
 	private void OnDestroy()
 	{
 		ZhuJiManager.inst = null;
 	}
 
-	// Token: 0x04001D5F RID: 7519
+	// Token: 0x040018F2 RID: 6386
 	private Avatar player;
 
-	// Token: 0x04001D60 RID: 7520
+	// Token: 0x040018F3 RID: 6387
 	public static ZhuJiManager inst;
 
-	// Token: 0x04001D61 RID: 7521
+	// Token: 0x040018F4 RID: 6388
 	public Text ZhuJiJinDu;
 
-	// Token: 0x04001D62 RID: 7522
+	// Token: 0x040018F5 RID: 6389
 	public Text ShengYuHuiHe;
 
-	// Token: 0x04001D63 RID: 7523
+	// Token: 0x040018F6 RID: 6390
 	public List<int> ZhuJiSkillList;
 
-	// Token: 0x04001D64 RID: 7524
+	// Token: 0x040018F7 RID: 6391
 	public int AddHp;
 }

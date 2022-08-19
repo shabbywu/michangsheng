@@ -6,10 +6,10 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-// Token: 0x020005C0 RID: 1472
+// Token: 0x0200040E RID: 1038
 public class UI_LoginSystem : MonoBehaviour
 {
-	// Token: 0x06002531 RID: 9521 RVA: 0x0012A780 File Offset: 0x00128980
+	// Token: 0x06002179 RID: 8569 RVA: 0x000E8DF0 File Offset: 0x000E6FF0
 	private void Start()
 	{
 		Event.registerOut("onConnectStatus", this, "onConnectStatus");
@@ -25,13 +25,13 @@ public class UI_LoginSystem : MonoBehaviour
 		this.autoLogin();
 	}
 
-	// Token: 0x06002532 RID: 9522 RVA: 0x0001429C File Offset: 0x0001249C
+	// Token: 0x0600217A RID: 8570 RVA: 0x000826BE File Offset: 0x000808BE
 	private void OnDestroy()
 	{
 		Event.deregisterOut(this);
 	}
 
-	// Token: 0x06002533 RID: 9523 RVA: 0x0012A838 File Offset: 0x00128A38
+	// Token: 0x0600217B RID: 8571 RVA: 0x000E8EA8 File Offset: 0x000E70A8
 	public void autoLogin()
 	{
 		string @string = PlayerPrefs.GetString("name");
@@ -49,21 +49,21 @@ public class UI_LoginSystem : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06002534 RID: 9524 RVA: 0x0001DD50 File Offset: 0x0001BF50
+	// Token: 0x0600217C RID: 8572 RVA: 0x000E8F21 File Offset: 0x000E7121
 	public void goToHome()
 	{
 		SceneManager.UnloadScene("login");
 		SceneManager.LoadSceneAsync("homeScene", 1);
 	}
 
-	// Token: 0x06002535 RID: 9525 RVA: 0x0001DD69 File Offset: 0x0001BF69
+	// Token: 0x0600217D RID: 8573 RVA: 0x000E8F3A File Offset: 0x000E713A
 	public void goToCreatePlayer()
 	{
 		SceneManager.UnloadScene("login");
 		SceneManager.LoadSceneAsync("creatPlayer", 1);
 	}
 
-	// Token: 0x06002536 RID: 9526 RVA: 0x0001DD82 File Offset: 0x0001BF82
+	// Token: 0x0600217E RID: 8574 RVA: 0x000E8F53 File Offset: 0x000E7153
 	public void goToSpace()
 	{
 		World.instance.init();
@@ -71,7 +71,7 @@ public class UI_LoginSystem : MonoBehaviour
 		SceneManager.LoadSceneAsync("goToSpace", 1);
 	}
 
-	// Token: 0x06002537 RID: 9527 RVA: 0x0001DDA4 File Offset: 0x0001BFA4
+	// Token: 0x0600217F RID: 8575 RVA: 0x000E8F75 File Offset: 0x000E7175
 	public void onConnectStatus(bool beSuccess)
 	{
 		if (beSuccess)
@@ -83,13 +83,13 @@ public class UI_LoginSystem : MonoBehaviour
 		this.text_status.text = "连接错误";
 	}
 
-	// Token: 0x06002538 RID: 9528 RVA: 0x0001DDD4 File Offset: 0x0001BFD4
+	// Token: 0x06002180 RID: 8576 RVA: 0x000E8FA5 File Offset: 0x000E71A5
 	public void onLoginFailed(ushort errorCode)
 	{
 		this.text_status.text = "登陆失败" + KBEngineApp.app.serverErr(errorCode);
 	}
 
-	// Token: 0x06002539 RID: 9529 RVA: 0x0012A8B4 File Offset: 0x00128AB4
+	// Token: 0x06002181 RID: 8577 RVA: 0x000E8FC8 File Offset: 0x000E71C8
 	public void onLoginSuccessfully(ulong uuuid, int id, Account account)
 	{
 		if (account != null)
@@ -105,7 +105,7 @@ public class UI_LoginSystem : MonoBehaviour
 		}
 	}
 
-	// Token: 0x0600253A RID: 9530 RVA: 0x0012A910 File Offset: 0x00128B10
+	// Token: 0x06002182 RID: 8578 RVA: 0x000E9024 File Offset: 0x000E7224
 	public void onLogin()
 	{
 		MonoBehaviour.print("connect to server...(连接到服务端...)");
@@ -119,14 +119,14 @@ public class UI_LoginSystem : MonoBehaviour
 		this.saveAccountInfo(this.if_userName.text, this.if_passWord.text);
 	}
 
-	// Token: 0x0600253B RID: 9531 RVA: 0x0001DDF6 File Offset: 0x0001BFF6
+	// Token: 0x06002183 RID: 8579 RVA: 0x000E90A5 File Offset: 0x000E72A5
 	public void saveAccountInfo(string name, string password)
 	{
 		PlayerPrefs.SetString("name", name);
 		PlayerPrefs.SetString("password", password);
 	}
 
-	// Token: 0x0600253C RID: 9532 RVA: 0x0012A994 File Offset: 0x00128B94
+	// Token: 0x06002184 RID: 8580 RVA: 0x000E90C0 File Offset: 0x000E72C0
 	public void onRegister()
 	{
 		this.text_status.text = "连接到服务端...";
@@ -158,13 +158,13 @@ public class UI_LoginSystem : MonoBehaviour
 		this.text_status.text = "两次输入的密码不同";
 	}
 
-	// Token: 0x0600253D RID: 9533 RVA: 0x0001DE0E File Offset: 0x0001C00E
+	// Token: 0x06002185 RID: 8581 RVA: 0x000E91B9 File Offset: 0x000E73B9
 	public void onHellohaha()
 	{
 		Account account = (Account)KBEngineApp.app.player();
 	}
 
-	// Token: 0x0600253E RID: 9534 RVA: 0x0012AA90 File Offset: 0x00128C90
+	// Token: 0x06002186 RID: 8582 RVA: 0x000E91CC File Offset: 0x000E73CC
 	public void onHelloTest()
 	{
 		testEntity testEntity = (testEntity)KBEngineApp.app.player();
@@ -174,19 +174,19 @@ public class UI_LoginSystem : MonoBehaviour
 		}
 	}
 
-	// Token: 0x0600253F RID: 9535 RVA: 0x0001DE20 File Offset: 0x0001C020
+	// Token: 0x06002187 RID: 8583 RVA: 0x000E91F7 File Offset: 0x000E73F7
 	public void helloClient(string msg)
 	{
 		this.text_status.text = msg;
 	}
 
-	// Token: 0x06002540 RID: 9536 RVA: 0x0001DE20 File Offset: 0x0001C020
+	// Token: 0x06002188 RID: 8584 RVA: 0x000E91F7 File Offset: 0x000E73F7
 	public void helloClient2(string msg)
 	{
 		this.text_status.text = msg;
 	}
 
-	// Token: 0x06002541 RID: 9537 RVA: 0x0012AABC File Offset: 0x00128CBC
+	// Token: 0x06002189 RID: 8585 RVA: 0x000E9208 File Offset: 0x000E7408
 	public void onCreateAccountResult(ushort retcode, byte[] datas)
 	{
 		if (retcode != 0)
@@ -201,47 +201,47 @@ public class UI_LoginSystem : MonoBehaviour
 		this.text_status.text = "注册账号成功! 请点击登录进入游戏";
 	}
 
-	// Token: 0x06002542 RID: 9538 RVA: 0x000042DD File Offset: 0x000024DD
+	// Token: 0x0600218A RID: 8586 RVA: 0x00004095 File Offset: 0x00002295
 	private void Update()
 	{
 	}
 
-	// Token: 0x06002543 RID: 9539 RVA: 0x0000EF72 File Offset: 0x0000D172
+	// Token: 0x0600218B RID: 8587 RVA: 0x00049258 File Offset: 0x00047458
 	public void onClose()
 	{
 		Application.Quit();
 	}
 
-	// Token: 0x06002544 RID: 9540 RVA: 0x0001DE2E File Offset: 0x0001C02E
+	// Token: 0x0600218C RID: 8588 RVA: 0x000E9295 File Offset: 0x000E7495
 	public void closeRegisterUI()
 	{
 		this.registerUI.SetActive(false);
 	}
 
-	// Token: 0x06002545 RID: 9541 RVA: 0x0001DE3C File Offset: 0x0001C03C
+	// Token: 0x0600218D RID: 8589 RVA: 0x000E92A3 File Offset: 0x000E74A3
 	public void opengisterUI()
 	{
 		this.registerUI.SetActive(true);
 	}
 
-	// Token: 0x04001FBF RID: 8127
+	// Token: 0x04001B00 RID: 6912
 	public InputField if_userName;
 
-	// Token: 0x04001FC0 RID: 8128
+	// Token: 0x04001B01 RID: 6913
 	public InputField if_passWord;
 
-	// Token: 0x04001FC1 RID: 8129
+	// Token: 0x04001B02 RID: 6914
 	public Text text_status;
 
-	// Token: 0x04001FC2 RID: 8130
+	// Token: 0x04001B03 RID: 6915
 	public InputField registerName;
 
-	// Token: 0x04001FC3 RID: 8131
+	// Token: 0x04001B04 RID: 6916
 	public InputField registerPassWord;
 
-	// Token: 0x04001FC4 RID: 8132
+	// Token: 0x04001B05 RID: 6917
 	public InputField reregisterPassWord;
 
-	// Token: 0x04001FC5 RID: 8133
+	// Token: 0x04001B06 RID: 6918
 	public GameObject registerUI;
 }

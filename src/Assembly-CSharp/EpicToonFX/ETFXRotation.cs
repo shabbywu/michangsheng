@@ -3,15 +3,15 @@ using UnityEngine;
 
 namespace EpicToonFX
 {
-	// Token: 0x02000E99 RID: 3737
+	// Token: 0x02000B26 RID: 2854
 	public class ETFXRotation : MonoBehaviour
 	{
-		// Token: 0x060059B5 RID: 22965 RVA: 0x000042DD File Offset: 0x000024DD
+		// Token: 0x06004F96 RID: 20374 RVA: 0x00004095 File Offset: 0x00002295
 		private void Start()
 		{
 		}
 
-		// Token: 0x060059B6 RID: 22966 RVA: 0x00249C78 File Offset: 0x00247E78
+		// Token: 0x06004F97 RID: 20375 RVA: 0x00219EB0 File Offset: 0x002180B0
 		private void Update()
 		{
 			if (this.rotateSpace == ETFXRotation.spaceEnum.Local)
@@ -24,19 +24,19 @@ namespace EpicToonFX
 			}
 		}
 
-		// Token: 0x04005907 RID: 22791
+		// Token: 0x04004E93 RID: 20115
 		[Header("Rotate axises by degrees per second")]
 		public Vector3 rotateVector = Vector3.zero;
 
-		// Token: 0x04005908 RID: 22792
+		// Token: 0x04004E94 RID: 20116
 		public ETFXRotation.spaceEnum rotateSpace;
 
-		// Token: 0x02000E9A RID: 3738
+		// Token: 0x020015E9 RID: 5609
 		public enum spaceEnum
 		{
-			// Token: 0x0400590A RID: 22794
+			// Token: 0x040070CC RID: 28876
 			Local,
-			// Token: 0x0400590B RID: 22795
+			// Token: 0x040070CD RID: 28877
 			World
 		}
 	}

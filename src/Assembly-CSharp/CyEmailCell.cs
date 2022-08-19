@@ -3,10 +3,10 @@ using JSONClass;
 using UnityEngine;
 using UnityEngine.UI;
 
-// Token: 0x020003CB RID: 971
+// Token: 0x0200029B RID: 667
 public class CyEmailCell : MonoBehaviour
 {
-	// Token: 0x06001AD2 RID: 6866 RVA: 0x000ED4C8 File Offset: 0x000EB6C8
+	// Token: 0x060017F2 RID: 6130 RVA: 0x000A66F4 File Offset: 0x000A48F4
 	public void Init(EmailData emailData, bool isDeath)
 	{
 		this.IsTiJiaoEmail = false;
@@ -32,9 +32,56 @@ public class CyEmailCell : MonoBehaviour
 		if (emailData.isOld)
 		{
 			JSONObject ChuanYingData = Tools.instance.getPlayer().NewChuanYingList[emailData.oldId.ToString()];
-			this.content.text = "\u3000" + ChuanYingData["info"].Str;
+			if (emailData.oldId >= 2082912)
+			{
+				this.content.SetText("你在天机阁交易会上寄换的宝物已经成功交易，此物应当已随传音符附带的储物袋送于道友手中。");
+				this.sendName.text = jsonData.instance.AvatarJsonData[912.ToString()]["Name"].Str;
+			}
+			else
+			{
+				this.content.SetText(CyUIMag.inst.cyEmail.GetContent(ChuanYingData["info"].Str, emailData));
+				this.sendName.text = ChuanYingData["AvatarName"].Str;
+				if (ChuanYingData["CanCaoZuo"].b)
+				{
+					ChuanYingData.SetField("CanCaoZuo", false);
+					if (ChuanYingData.HasField("TaskID"))
+					{
+						int i = ChuanYingData["TaskID"].I;
+						if (!Tools.instance.getPlayer().taskMag.isHasTask(i))
+						{
+							Tools.instance.getPlayer().taskMag.addTask(i);
+							string name = TaskJsonData.DataDict[i].Name;
+							string msg = (TaskJsonData.DataDict[i].Type == 0) ? "获得一条新的传闻" : ("<color=#FF0000>" + name + "</color>任务已开启");
+							UIPopTip.Inst.Pop(msg, PopTipIconType.任务进度);
+						}
+					}
+					if (ChuanYingData.HasField("WeiTuo"))
+					{
+						int i2 = ChuanYingData["WeiTuo"].I;
+						if (!Tools.instance.getPlayer().nomelTaskMag.IsNTaskStart(i2))
+						{
+							Tools.instance.getPlayer().nomelTaskMag.StartNTask(i2, 0);
+							UIPopTip.Inst.Pop("获得一条新的委托任务", PopTipIconType.任务进度);
+						}
+					}
+					if (ChuanYingData.HasField("TaskIndex"))
+					{
+						int i3 = ChuanYingData["TaskIndex"][0].I;
+						int i4 = ChuanYingData["TaskIndex"][1].I;
+						Tools.instance.getPlayer().taskMag.setTaskIndex(i3, i4);
+						string name2 = TaskJsonData.DataDict[i3].Name;
+						UIPopTip.Inst.Pop("<color=#FF0000> " + name2 + " </color> 进度已更新", PopTipIconType.任务进度);
+					}
+					if (ChuanYingData.HasField("valueID"))
+					{
+						for (int j = 0; j < ChuanYingData["valueID"].Count; j++)
+						{
+							GlobalValue.Set(ChuanYingData["valueID"][j].I, ChuanYingData["value"][j].I, "CyEmailCell.Init");
+						}
+					}
+				}
+			}
 			this.sendTime.color = CyUIMag.inst.cyEmail.titleColors[0];
-			this.sendName.text = ChuanYingData["AvatarName"].Str;
 			this.sendName.color = CyUIMag.inst.cyEmail.titleColors[0];
 			this.bg.sprite = CyUIMag.inst.cyEmail.titleSprites[0];
 			if (ChuanYingData.HasField("ItemID") && ChuanYingData["ItemID"].I > 0)
@@ -45,58 +92,17 @@ public class CyEmailCell : MonoBehaviour
 				{
 					this.submitBtn.gameObject.SetActive(false);
 					this.item.ShowHasGet();
-				}
-				else
-				{
-					this.submitBtn.Init(CyUIMag.inst.cyEmail.btnSprites[0], "领取", delegate
-					{
-						this.submitBtn.gameObject.SetActive(false);
-						ChuanYingData.SetField("ItemHasGet", true);
-						Tools.instance.getPlayer().addItem(ChuanYingData["ItemID"].I, 1, Tools.CreateItemSeid(ChuanYingData["ItemID"].I), false);
-						this.item.ShowHasGet();
-						this.UpdateSize();
-					});
-				}
-			}
-			if (ChuanYingData["CanCaoZuo"].b)
-			{
-				ChuanYingData.SetField("CanCaoZuo", false);
-				if (ChuanYingData.HasField("TaskID"))
-				{
-					int i = ChuanYingData["TaskID"].I;
-					if (!Tools.instance.getPlayer().taskMag.isHasTask(i))
-					{
-						Tools.instance.getPlayer().taskMag.addTask(i);
-						string name = TaskJsonData.DataDict[i].Name;
-						string msg = (TaskJsonData.DataDict[i].Type == 0) ? "获得一条新的传闻" : ("<color=#FF0000>" + name + "</color>任务已开启");
-						UIPopTip.Inst.Pop(msg, PopTipIconType.任务进度);
-					}
-				}
-				if (ChuanYingData.HasField("WeiTuo"))
-				{
-					int i2 = ChuanYingData["WeiTuo"].I;
-					if (!Tools.instance.getPlayer().nomelTaskMag.IsNTaskStart(i2))
-					{
-						Tools.instance.getPlayer().nomelTaskMag.StartNTask(i2, 0);
-						UIPopTip.Inst.Pop("获得一条新的委托任务", PopTipIconType.任务进度);
-					}
-				}
-				if (ChuanYingData.HasField("TaskIndex"))
-				{
-					int i3 = ChuanYingData["TaskIndex"][0].I;
-					int i4 = ChuanYingData["TaskIndex"][1].I;
-					Tools.instance.getPlayer().taskMag.setTaskIndex(i3, i4);
-					string name2 = TaskJsonData.DataDict[i3].Name;
-					UIPopTip.Inst.Pop("<color=#FF0000> " + name2 + " </color> 进度已更新", PopTipIconType.任务进度);
-				}
-				if (ChuanYingData.HasField("valueID"))
-				{
-					for (int j = 0; j < ChuanYingData["valueID"].Count; j++)
-					{
-						GlobalValue.Set(ChuanYingData["valueID"][j].I, ChuanYingData["value"][j].I, "CyEmailCell.Init");
-					}
 					return;
 				}
+				this.submitBtn.Init(CyUIMag.inst.cyEmail.btnSprites[0], "领取", delegate
+				{
+					this.submitBtn.gameObject.SetActive(false);
+					ChuanYingData.SetField("ItemHasGet", true);
+					Tools.instance.getPlayer().addItem(ChuanYingData["ItemID"].I, 1, Tools.CreateItemSeid(ChuanYingData["ItemID"].I), false);
+					this.item.ShowHasGet();
+					this.UpdateSize();
+				});
+				return;
 			}
 		}
 		else
@@ -183,7 +189,7 @@ public class CyEmailCell : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001AD3 RID: 6867 RVA: 0x00016C1F File Offset: 0x00014E1F
+	// Token: 0x060017F3 RID: 6131 RVA: 0x000A7154 File Offset: 0x000A5354
 	public void UpdateSize()
 	{
 		LayoutRebuilder.ForceRebuildLayoutImmediate(this.rectTransform);
@@ -192,7 +198,7 @@ public class CyEmailCell : MonoBehaviour
 		CyUIMag.inst.cyEmail.UpDateSize();
 	}
 
-	// Token: 0x06001AD4 RID: 6868 RVA: 0x000EDEB8 File Offset: 0x000EC0B8
+	// Token: 0x060017F4 RID: 6132 RVA: 0x000A7188 File Offset: 0x000A5388
 	public void UpdateTiJiao()
 	{
 		CyEmailCell.<>c__DisplayClass13_0 CS$<>8__locals1 = new CyEmailCell.<>c__DisplayClass13_0();
@@ -256,36 +262,36 @@ public class CyEmailCell : MonoBehaviour
 		this.submitBtn.Init(CyUIMag.inst.cyEmail.btnSprites[1], "<color=#e4e4e4>提交</color>", null);
 	}
 
-	// Token: 0x04001653 RID: 5715
+	// Token: 0x040012CA RID: 4810
 	public Text content;
 
-	// Token: 0x04001654 RID: 5716
+	// Token: 0x040012CB RID: 4811
 	public CyUIIconShow item;
 
-	// Token: 0x04001655 RID: 5717
+	// Token: 0x040012CC RID: 4812
 	public CySubmitBtn submitBtn;
 
-	// Token: 0x04001656 RID: 5718
+	// Token: 0x040012CD RID: 4813
 	public Text sendTime;
 
-	// Token: 0x04001657 RID: 5719
+	// Token: 0x040012CE RID: 4814
 	public Text sendName;
 
-	// Token: 0x04001658 RID: 5720
+	// Token: 0x040012CF RID: 4815
 	public EmailData emailData;
 
-	// Token: 0x04001659 RID: 5721
+	// Token: 0x040012D0 RID: 4816
 	public Image bg;
 
-	// Token: 0x0400165A RID: 5722
+	// Token: 0x040012D1 RID: 4817
 	public bool isDeath;
 
-	// Token: 0x0400165B RID: 5723
+	// Token: 0x040012D2 RID: 4818
 	public ContentSizeFitter sizeFitter;
 
-	// Token: 0x0400165C RID: 5724
+	// Token: 0x040012D3 RID: 4819
 	public RectTransform rectTransform;
 
-	// Token: 0x0400165D RID: 5725
+	// Token: 0x040012D4 RID: 4820
 	public bool IsTiJiaoEmail;
 }

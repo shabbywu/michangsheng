@@ -3,12 +3,12 @@ using UnityEngine;
 
 namespace BehaviorDesigner.Runtime.Tasks.Basic.UnityAnimation
 {
-	// Token: 0x02001669 RID: 5737
+	// Token: 0x020011A7 RID: 4519
 	[TaskCategory("Basic/Animation")]
 	[TaskDescription("Fades the animation over a period of time and fades other animations out. Returns Success.")]
 	public class CrossFade : Action
 	{
-		// Token: 0x06008540 RID: 34112 RVA: 0x002D0A40 File Offset: 0x002CEC40
+		// Token: 0x06007734 RID: 30516 RVA: 0x002B86A0 File Offset: 0x002B68A0
 		public override void OnStart()
 		{
 			GameObject defaultGameObject = base.GetDefaultGameObject(this.targetGameObject.Value);
@@ -19,7 +19,7 @@ namespace BehaviorDesigner.Runtime.Tasks.Basic.UnityAnimation
 			}
 		}
 
-		// Token: 0x06008541 RID: 34113 RVA: 0x0005C6AE File Offset: 0x0005A8AE
+		// Token: 0x06007735 RID: 30517 RVA: 0x002B86E0 File Offset: 0x002B68E0
 		public override TaskStatus OnUpdate()
 		{
 			if (this.animation == null)
@@ -31,7 +31,7 @@ namespace BehaviorDesigner.Runtime.Tasks.Basic.UnityAnimation
 			return 2;
 		}
 
-		// Token: 0x06008542 RID: 34114 RVA: 0x0005C6ED File Offset: 0x0005A8ED
+		// Token: 0x06007736 RID: 30518 RVA: 0x002B871F File Offset: 0x002B691F
 		public override void OnReset()
 		{
 			this.targetGameObject = null;
@@ -40,26 +40,26 @@ namespace BehaviorDesigner.Runtime.Tasks.Basic.UnityAnimation
 			this.playMode = 0;
 		}
 
-		// Token: 0x040071FB RID: 29179
+		// Token: 0x040062CC RID: 25292
 		[Tooltip("The GameObject that the task operates on. If null the task GameObject is used.")]
 		public SharedGameObject targetGameObject;
 
-		// Token: 0x040071FC RID: 29180
+		// Token: 0x040062CD RID: 25293
 		[Tooltip("The name of the animation")]
 		public SharedString animationName;
 
-		// Token: 0x040071FD RID: 29181
+		// Token: 0x040062CE RID: 25294
 		[Tooltip("The amount of time it takes to blend")]
 		public float fadeLength = 0.3f;
 
-		// Token: 0x040071FE RID: 29182
+		// Token: 0x040062CF RID: 25295
 		[Tooltip("The play mode of the animation")]
 		public PlayMode playMode;
 
-		// Token: 0x040071FF RID: 29183
+		// Token: 0x040062D0 RID: 25296
 		private Animation animation;
 
-		// Token: 0x04007200 RID: 29184
+		// Token: 0x040062D1 RID: 25297
 		private GameObject prevGameObject;
 	}
 }

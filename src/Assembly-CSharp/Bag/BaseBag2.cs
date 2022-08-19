@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using JiaoYi;
+using JSONClass;
 using KBEngine;
 using SuperScrollView;
 using UnityEngine;
@@ -8,10 +9,10 @@ using UnityEngine.UI;
 
 namespace Bag
 {
-	// Token: 0x02000D16 RID: 3350
+	// Token: 0x02000996 RID: 2454
 	public class BaseBag2 : MonoBehaviour
 	{
-		// Token: 0x06004FC0 RID: 20416 RVA: 0x00216CD4 File Offset: 0x00214ED4
+		// Token: 0x0600446A RID: 17514 RVA: 0x001D1F94 File Offset: 0x001D0194
 		public virtual void Init(int npcId, bool isPlayer = false)
 		{
 			this._player = Tools.instance.getPlayer();
@@ -28,8 +29,8 @@ namespace Bag
 			this.UpdateLeftFilter(this.LeftList[0]);
 		}
 
-		// Token: 0x06004FC1 RID: 20417 RVA: 0x00216D64 File Offset: 0x00214F64
-		public void CreateTempList()
+		// Token: 0x0600446B RID: 17515 RVA: 0x001D2024 File Offset: 0x001D0224
+		public virtual void CreateTempList()
 		{
 			this.TempBagList = new List<ITEM_INFO>();
 			List<ITEM_INFO> list = new List<ITEM_INFO>();
@@ -44,7 +45,7 @@ namespace Bag
 						{
 							list.Add(item_INFO);
 						}
-						else
+						else if (_ItemJsonData.DataDict.ContainsKey(item_INFO.itemId))
 						{
 							ITEM_INFO item_INFO2 = new ITEM_INFO();
 							item_INFO2.itemId = item_INFO.itemId;
@@ -57,7 +58,7 @@ namespace Bag
 							this.TempBagList.Add(item_INFO2);
 						}
 					}
-					goto IL_1BB;
+					goto IL_1F0;
 				}
 			}
 			JSONObject jsonobject = jsonData.instance.AvatarBackpackJsonData[this.NpcId.ToString()]["Backpack"];
@@ -67,7 +68,7 @@ namespace Bag
 			}
 			foreach (JSONObject jsonobject2 in jsonobject.list)
 			{
-				if (jsonobject2["Num"].I > 0)
+				if (jsonobject2["Num"].I > 0 && _ItemJsonData.DataDict.ContainsKey(jsonobject2["ItemID"].I))
 				{
 					ITEM_INFO item_INFO3 = new ITEM_INFO();
 					item_INFO3.itemId = jsonobject2["ItemID"].I;
@@ -80,15 +81,15 @@ namespace Bag
 					this.TempBagList.Add(item_INFO3);
 				}
 			}
-			IL_1BB:
+			IL_1F0:
 			foreach (ITEM_INFO item in list)
 			{
 				this._player.itemList.values.Remove(item);
 			}
 		}
 
-		// Token: 0x06004FC2 RID: 20418 RVA: 0x00216F98 File Offset: 0x00215198
-		public void UpdateItem(bool flag = false)
+		// Token: 0x0600446C RID: 17516 RVA: 0x001D228C File Offset: 0x001D048C
+		public virtual void UpdateItem(bool flag = false)
 		{
 			this.ItemList = new List<ITEM_INFO>();
 			foreach (ITEM_INFO item_INFO in this.TempBagList)
@@ -104,7 +105,7 @@ namespace Bag
 			this.MLoopListView.RefreshAllShownItem();
 		}
 
-		// Token: 0x06004FC3 RID: 20419 RVA: 0x00217058 File Offset: 0x00215258
+		// Token: 0x0600446D RID: 17517 RVA: 0x001D234C File Offset: 0x001D054C
 		public void UpdateMoney()
 		{
 			if (this.IsPlayer)
@@ -115,7 +116,7 @@ namespace Bag
 			this.Money.SetText(jsonData.instance.AvatarBackpackJsonData[this.NpcId.ToString()]["money"].I);
 		}
 
-		// Token: 0x06004FC4 RID: 20420 RVA: 0x002170C8 File Offset: 0x002152C8
+		// Token: 0x0600446E RID: 17518 RVA: 0x001D23BC File Offset: 0x001D05BC
 		public int GetMoney()
 		{
 			if (this.IsPlayer)
@@ -125,7 +126,7 @@ namespace Bag
 			return jsonData.instance.AvatarBackpackJsonData[this.NpcId.ToString()]["money"].I;
 		}
 
-		// Token: 0x06004FC5 RID: 20421 RVA: 0x00217118 File Offset: 0x00215318
+		// Token: 0x0600446F RID: 17519 RVA: 0x001D240C File Offset: 0x001D060C
 		public void InitLeftFilter()
 		{
 			if (this.LeftList.Count < 1)
@@ -148,7 +149,7 @@ namespace Bag
 			}
 		}
 
-		// Token: 0x06004FC6 RID: 20422 RVA: 0x001DA980 File Offset: 0x001D8B80
+		// Token: 0x06004470 RID: 17520 RVA: 0x001D2490 File Offset: 0x001D0690
 		private void UpdateLeftFilter(BaseFilterLeft filterLeft)
 		{
 			foreach (BaseFilterLeft baseFilterLeft in this.LeftList)
@@ -168,7 +169,7 @@ namespace Bag
 			}
 		}
 
-		// Token: 0x06004FC7 RID: 20423 RVA: 0x0021719C File Offset: 0x0021539C
+		// Token: 0x06004471 RID: 17521 RVA: 0x001D2514 File Offset: 0x001D0714
 		public void CloseAllTopFilter()
 		{
 			foreach (JiaoYiFilterTop jiaoYiFilterTop in this.TopList)
@@ -178,7 +179,7 @@ namespace Bag
 			}
 		}
 
-		// Token: 0x06004FC8 RID: 20424 RVA: 0x00217204 File Offset: 0x00215404
+		// Token: 0x06004472 RID: 17522 RVA: 0x001D257C File Offset: 0x001D077C
 		public virtual void UpdateTopFilter()
 		{
 			this.OpenQuality();
@@ -201,7 +202,7 @@ namespace Bag
 			}
 		}
 
-		// Token: 0x06004FC9 RID: 20425 RVA: 0x00217258 File Offset: 0x00215458
+		// Token: 0x06004473 RID: 17523 RVA: 0x001D25D0 File Offset: 0x001D07D0
 		public void OpenQuality()
 		{
 			this.TopList[0].Clear();
@@ -209,8 +210,8 @@ namespace Bag
 			this.TopList[0].Init(this, FilterType.品阶, title);
 		}
 
-		// Token: 0x06004FCA RID: 20426 RVA: 0x0021729C File Offset: 0x0021549C
-		public void OpenType()
+		// Token: 0x06004474 RID: 17524 RVA: 0x001D2614 File Offset: 0x001D0814
+		public virtual void OpenType()
 		{
 			this.TopList[1].Clear();
 			if (this.ItemType == ItemType.材料)
@@ -238,7 +239,7 @@ namespace Bag
 			}
 		}
 
-		// Token: 0x06004FCB RID: 20427 RVA: 0x0021737C File Offset: 0x0021557C
+		// Token: 0x06004475 RID: 17525 RVA: 0x001D26F4 File Offset: 0x001D08F4
 		public void OpenShuXing()
 		{
 			string title = "";
@@ -264,7 +265,7 @@ namespace Bag
 			this.TopList[2].Init(this, FilterType.属性, title);
 		}
 
-		// Token: 0x06004FCC RID: 20428 RVA: 0x000396CD File Offset: 0x000378CD
+		// Token: 0x06004476 RID: 17526 RVA: 0x001D27AB File Offset: 0x001D09AB
 		public void CloseType()
 		{
 			this.TopList[1].Clear();
@@ -273,7 +274,7 @@ namespace Bag
 			this.LianQiCaiLiaoYinYang = LianQiCaiLiaoYinYang.全部;
 		}
 
-		// Token: 0x06004FCD RID: 20429 RVA: 0x000396F5 File Offset: 0x000378F5
+		// Token: 0x06004477 RID: 17527 RVA: 0x001D27D3 File Offset: 0x001D09D3
 		public void CloseShuXing()
 		{
 			this.TopList[2].Clear();
@@ -282,7 +283,7 @@ namespace Bag
 			this.LianQiCaiLiaoType = LianQiCaiLiaoType.全部;
 		}
 
-		// Token: 0x06004FCE RID: 20430 RVA: 0x00217434 File Offset: 0x00215634
+		// Token: 0x06004478 RID: 17528 RVA: 0x001D27FC File Offset: 0x001D09FC
 		protected int GetCount(int itemCout)
 		{
 			int num = itemCout / this.mItemCountPerRow;
@@ -293,7 +294,7 @@ namespace Bag
 			return num + 1;
 		}
 
-		// Token: 0x06004FCF RID: 20431 RVA: 0x00217460 File Offset: 0x00215660
+		// Token: 0x06004479 RID: 17529 RVA: 0x001D2828 File Offset: 0x001D0A28
 		protected LoopListViewItem2 OnGetItemByIndex(LoopListView2 listView, int rowIndex)
 		{
 			if (rowIndex < 0)
@@ -324,7 +325,7 @@ namespace Bag
 			return loopListViewItem;
 		}
 
-		// Token: 0x06004FD0 RID: 20432 RVA: 0x0021754C File Offset: 0x0021574C
+		// Token: 0x0600447A RID: 17530 RVA: 0x001D2914 File Offset: 0x001D0B14
 		protected virtual bool FiddlerItem(BaseItem baseItem)
 		{
 			if (this.ItemQuality != ItemQuality.全部 && baseItem.GetImgQuality() != (int)this.ItemQuality)
@@ -378,7 +379,7 @@ namespace Bag
 			return true;
 		}
 
-		// Token: 0x06004FD1 RID: 20433 RVA: 0x00217678 File Offset: 0x00215878
+		// Token: 0x0600447B RID: 17531 RVA: 0x001D2A40 File Offset: 0x001D0C40
 		public void RemoveTempItem(string uuid, int num)
 		{
 			ITEM_INFO item_INFO = null;
@@ -403,7 +404,7 @@ namespace Bag
 			}
 		}
 
-		// Token: 0x06004FD2 RID: 20434 RVA: 0x00217728 File Offset: 0x00215928
+		// Token: 0x0600447C RID: 17532 RVA: 0x001D2AF0 File Offset: 0x001D0CF0
 		public void AddTempItem(BaseItem baseItem, int num)
 		{
 			int num2 = 0;
@@ -432,7 +433,7 @@ namespace Bag
 			}
 		}
 
-		// Token: 0x06004FD3 RID: 20435 RVA: 0x00217808 File Offset: 0x00215A08
+		// Token: 0x0600447D RID: 17533 RVA: 0x001D2BD0 File Offset: 0x001D0DD0
 		public SlotBase GetNullBagSlot(string uuid)
 		{
 			foreach (LoopListViewItem2 loopListViewItem in this.MLoopListView.ItemList)
@@ -456,61 +457,61 @@ namespace Bag
 			return null;
 		}
 
-		// Token: 0x04005115 RID: 20757
+		// Token: 0x04004621 RID: 17953
 		public Text Money;
 
-		// Token: 0x04005116 RID: 20758
+		// Token: 0x04004622 RID: 17954
 		public int NpcId;
 
-		// Token: 0x04005117 RID: 20759
+		// Token: 0x04004623 RID: 17955
 		public bool IsPlayer;
 
-		// Token: 0x04005118 RID: 20760
+		// Token: 0x04004624 RID: 17956
 		public List<ITEM_INFO> TempBagList = new List<ITEM_INFO>();
 
-		// Token: 0x04005119 RID: 20761
+		// Token: 0x04004625 RID: 17957
 		public List<BaseFilterLeft> LeftList;
 
-		// Token: 0x0400511A RID: 20762
+		// Token: 0x04004626 RID: 17958
 		public List<JiaoYiFilterTop> TopList;
 
-		// Token: 0x0400511B RID: 20763
+		// Token: 0x04004627 RID: 17959
 		public ItemType ItemType;
 
-		// Token: 0x0400511C RID: 20764
+		// Token: 0x04004628 RID: 17960
 		public ItemQuality ItemQuality;
 
-		// Token: 0x0400511D RID: 20765
+		// Token: 0x04004629 RID: 17961
 		public JiaoYiSkillType JiaoYiSkillType;
 
-		// Token: 0x0400511E RID: 20766
+		// Token: 0x0400462A RID: 17962
 		public SkIllType SkIllType = SkIllType.全部;
 
-		// Token: 0x0400511F RID: 20767
+		// Token: 0x0400462B RID: 17963
 		public StaticSkIllType StaticSkIllType = StaticSkIllType.全部;
 
-		// Token: 0x04005120 RID: 20768
+		// Token: 0x0400462C RID: 17964
 		public LianQiCaiLiaoYinYang LianQiCaiLiaoYinYang;
 
-		// Token: 0x04005121 RID: 20769
+		// Token: 0x0400462D RID: 17965
 		public LianQiCaiLiaoType LianQiCaiLiaoType;
 
-		// Token: 0x04005122 RID: 20770
+		// Token: 0x0400462E RID: 17966
 		public EquipType EquipType;
 
-		// Token: 0x04005123 RID: 20771
+		// Token: 0x0400462F RID: 17967
 		public int MItemTotalCount;
 
-		// Token: 0x04005124 RID: 20772
+		// Token: 0x04004630 RID: 17968
 		public List<ITEM_INFO> ItemList = new List<ITEM_INFO>();
 
-		// Token: 0x04005125 RID: 20773
+		// Token: 0x04004631 RID: 17969
 		public LoopListView2 MLoopListView;
 
-		// Token: 0x04005126 RID: 20774
+		// Token: 0x04004632 RID: 17970
 		public int mItemCountPerRow = 3;
 
-		// Token: 0x04005127 RID: 20775
+		// Token: 0x04004633 RID: 17971
 		protected Avatar _player;
 	}
 }

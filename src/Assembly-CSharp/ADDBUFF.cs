@@ -5,15 +5,15 @@ using KBEngine;
 using Newtonsoft.Json.Linq;
 using UnityEngine;
 
-// Token: 0x0200024B RID: 587
+// Token: 0x0200016F RID: 367
 public class ADDBUFF : MonoBehaviour
 {
-	// Token: 0x060011F3 RID: 4595 RVA: 0x000042DD File Offset: 0x000024DD
+	// Token: 0x06000F95 RID: 3989 RVA: 0x00004095 File Offset: 0x00002295
 	private void Start()
 	{
 	}
 
-	// Token: 0x060011F4 RID: 4596 RVA: 0x000AD160 File Offset: 0x000AB360
+	// Token: 0x06000F96 RID: 3990 RVA: 0x0005D688 File Offset: 0x0005B888
 	public void Test()
 	{
 		Avatar player = Tools.instance.getPlayer();
@@ -25,7 +25,7 @@ public class ADDBUFF : MonoBehaviour
 		player.addItem(itemID, 1, jsonobject, false);
 	}
 
-	// Token: 0x060011F5 RID: 4597 RVA: 0x000AD1D8 File Offset: 0x000AB3D8
+	// Token: 0x06000F97 RID: 3991 RVA: 0x0005D700 File Offset: 0x0005B900
 	private JSONObject AddItemSeid(int seid, int value1 = -9999, int value2 = -9999)
 	{
 		JSONObject jsonobject = new JSONObject();
@@ -41,7 +41,7 @@ public class ADDBUFF : MonoBehaviour
 		return jsonobject;
 	}
 
-	// Token: 0x060011F6 RID: 4598 RVA: 0x000AD220 File Offset: 0x000AB420
+	// Token: 0x06000F98 RID: 3992 RVA: 0x0005D748 File Offset: 0x0005B948
 	public void SSS(JObject aa, string ID)
 	{
 		Stopwatch stopwatch = new Stopwatch();
@@ -59,7 +59,7 @@ public class ADDBUFF : MonoBehaviour
 		}));
 	}
 
-	// Token: 0x060011F7 RID: 4599 RVA: 0x000AD290 File Offset: 0x000AB490
+	// Token: 0x06000F99 RID: 3993 RVA: 0x0005D7B8 File Offset: 0x0005B9B8
 	public void SSSL(List<int> aa, int ID)
 	{
 		Stopwatch stopwatch = new Stopwatch();
@@ -77,7 +77,7 @@ public class ADDBUFF : MonoBehaviour
 		}));
 	}
 
-	// Token: 0x060011F8 RID: 4600 RVA: 0x000AD300 File Offset: 0x000AB500
+	// Token: 0x06000F9A RID: 3994 RVA: 0x0005D828 File Offset: 0x0005BA28
 	public void SSSA(Dictionary<string, int> aa, string ID)
 	{
 		Stopwatch stopwatch = new Stopwatch();
@@ -95,17 +95,17 @@ public class ADDBUFF : MonoBehaviour
 		}));
 	}
 
-	// Token: 0x060011F9 RID: 4601 RVA: 0x000042DD File Offset: 0x000024DD
+	// Token: 0x06000F9B RID: 3995 RVA: 0x00004095 File Offset: 0x00002295
 	private void OnGUI()
 	{
 	}
 
-	// Token: 0x04000E80 RID: 3712
+	// Token: 0x04000BB0 RID: 2992
 	public int buff;
 
-	// Token: 0x04000E81 RID: 3713
+	// Token: 0x04000BB1 RID: 2993
 	public int BuffNum = 1;
 
-	// Token: 0x04000E82 RID: 3714
+	// Token: 0x04000BB2 RID: 2994
 	public int skillID = 1;
 }

@@ -4,15 +4,15 @@ using ICSharpCode.SharpZipLib.Zip.Compression.Streams;
 
 namespace ICSharpCode.SharpZipLib.Zip.Compression
 {
-	// Token: 0x020007FB RID: 2043
+	// Token: 0x02000556 RID: 1366
 	public class Inflater
 	{
-		// Token: 0x060034AA RID: 13482 RVA: 0x00026732 File Offset: 0x00024932
+		// Token: 0x06002C44 RID: 11332 RVA: 0x0014A5AA File Offset: 0x001487AA
 		public Inflater() : this(false)
 		{
 		}
 
-		// Token: 0x060034AB RID: 13483 RVA: 0x0002673B File Offset: 0x0002493B
+		// Token: 0x06002C45 RID: 11333 RVA: 0x0014A5B3 File Offset: 0x001487B3
 		public Inflater(bool noHeader)
 		{
 			this.noHeader = noHeader;
@@ -25,7 +25,7 @@ namespace ICSharpCode.SharpZipLib.Zip.Compression
 			this.mode = (noHeader ? 2 : 0);
 		}
 
-		// Token: 0x060034AC RID: 13484 RVA: 0x001966A0 File Offset: 0x001948A0
+		// Token: 0x06002C46 RID: 11334 RVA: 0x0014A5F4 File Offset: 0x001487F4
 		public void Reset()
 		{
 			this.mode = (this.noHeader ? 2 : 0);
@@ -45,7 +45,7 @@ namespace ICSharpCode.SharpZipLib.Zip.Compression
 			adler.Reset();
 		}
 
-		// Token: 0x060034AD RID: 13485 RVA: 0x00196714 File Offset: 0x00194914
+		// Token: 0x06002C47 RID: 11335 RVA: 0x0014A668 File Offset: 0x00148868
 		private bool DecodeHeader()
 		{
 			int num = this.input.PeekBits(16);
@@ -75,7 +75,7 @@ namespace ICSharpCode.SharpZipLib.Zip.Compression
 			return true;
 		}
 
-		// Token: 0x060034AE RID: 13486 RVA: 0x0019679C File Offset: 0x0019499C
+		// Token: 0x06002C48 RID: 11336 RVA: 0x0014A6F0 File Offset: 0x001488F0
 		private bool DecodeDict()
 		{
 			while (this.neededBits > 0)
@@ -92,7 +92,7 @@ namespace ICSharpCode.SharpZipLib.Zip.Compression
 			return false;
 		}
 
-		// Token: 0x060034AF RID: 13487 RVA: 0x001967F4 File Offset: 0x001949F4
+		// Token: 0x06002C49 RID: 11337 RVA: 0x0014A748 File Offset: 0x00148948
 		private bool DecodeHuffman()
 		{
 			int i = this.outputWindow.GetFreeSpace();
@@ -190,7 +190,7 @@ namespace ICSharpCode.SharpZipLib.Zip.Compression
 			return true;
 		}
 
-		// Token: 0x060034B0 RID: 13488 RVA: 0x001969FC File Offset: 0x00194BFC
+		// Token: 0x06002C4A RID: 11338 RVA: 0x0014A950 File Offset: 0x00148B50
 		private bool DecodeChksum()
 		{
 			while (this.neededBits > 0)
@@ -220,7 +220,7 @@ namespace ICSharpCode.SharpZipLib.Zip.Compression
 			return false;
 		}
 
-		// Token: 0x060034B1 RID: 13489 RVA: 0x00196AEC File Offset: 0x00194CEC
+		// Token: 0x06002C4B RID: 11339 RVA: 0x0014AA40 File Offset: 0x00148C40
 		private bool Decode()
 		{
 			switch (this.mode)
@@ -329,13 +329,13 @@ namespace ICSharpCode.SharpZipLib.Zip.Compression
 			return this.DecodeHuffman();
 		}
 
-		// Token: 0x060034B2 RID: 13490 RVA: 0x0002677B File Offset: 0x0002497B
+		// Token: 0x06002C4C RID: 11340 RVA: 0x0014AC90 File Offset: 0x00148E90
 		public void SetDictionary(byte[] buffer)
 		{
 			this.SetDictionary(buffer, 0, buffer.Length);
 		}
 
-		// Token: 0x060034B3 RID: 13491 RVA: 0x00196D3C File Offset: 0x00194F3C
+		// Token: 0x06002C4D RID: 11341 RVA: 0x0014ACA0 File Offset: 0x00148EA0
 		public void SetDictionary(byte[] buffer, int index, int count)
 		{
 			if (buffer == null)
@@ -372,20 +372,20 @@ namespace ICSharpCode.SharpZipLib.Zip.Compression
 			this.mode = 2;
 		}
 
-		// Token: 0x060034B4 RID: 13492 RVA: 0x00026788 File Offset: 0x00024988
+		// Token: 0x06002C4E RID: 11342 RVA: 0x0014AD52 File Offset: 0x00148F52
 		public void SetInput(byte[] buffer)
 		{
 			this.SetInput(buffer, 0, buffer.Length);
 		}
 
-		// Token: 0x060034B5 RID: 13493 RVA: 0x00026795 File Offset: 0x00024995
+		// Token: 0x06002C4F RID: 11343 RVA: 0x0014AD5F File Offset: 0x00148F5F
 		public void SetInput(byte[] buffer, int index, int count)
 		{
 			this.input.SetInput(buffer, index, count);
 			this.totalIn += (long)count;
 		}
 
-		// Token: 0x060034B6 RID: 13494 RVA: 0x000267B4 File Offset: 0x000249B4
+		// Token: 0x06002C50 RID: 11344 RVA: 0x0014AD7E File Offset: 0x00148F7E
 		public int Inflate(byte[] buffer)
 		{
 			if (buffer == null)
@@ -395,7 +395,7 @@ namespace ICSharpCode.SharpZipLib.Zip.Compression
 			return this.Inflate(buffer, 0, buffer.Length);
 		}
 
-		// Token: 0x060034B7 RID: 13495 RVA: 0x00196DF0 File Offset: 0x00194FF0
+		// Token: 0x06002C51 RID: 11345 RVA: 0x0014AD9C File Offset: 0x00148F9C
 		public int Inflate(byte[] buffer, int offset, int count)
 		{
 			if (buffer == null)
@@ -453,8 +453,8 @@ namespace ICSharpCode.SharpZipLib.Zip.Compression
 			return num;
 		}
 
-		// Token: 0x170004F4 RID: 1268
-		// (get) Token: 0x060034B8 RID: 13496 RVA: 0x000267CF File Offset: 0x000249CF
+		// Token: 0x1700033F RID: 831
+		// (get) Token: 0x06002C52 RID: 11346 RVA: 0x0014AE81 File Offset: 0x00149081
 		public bool IsNeedingInput
 		{
 			get
@@ -463,8 +463,8 @@ namespace ICSharpCode.SharpZipLib.Zip.Compression
 			}
 		}
 
-		// Token: 0x170004F5 RID: 1269
-		// (get) Token: 0x060034B9 RID: 13497 RVA: 0x000267DC File Offset: 0x000249DC
+		// Token: 0x17000340 RID: 832
+		// (get) Token: 0x06002C53 RID: 11347 RVA: 0x0014AE8E File Offset: 0x0014908E
 		public bool IsNeedingDictionary
 		{
 			get
@@ -473,8 +473,8 @@ namespace ICSharpCode.SharpZipLib.Zip.Compression
 			}
 		}
 
-		// Token: 0x170004F6 RID: 1270
-		// (get) Token: 0x060034BA RID: 13498 RVA: 0x000267F2 File Offset: 0x000249F2
+		// Token: 0x17000341 RID: 833
+		// (get) Token: 0x06002C54 RID: 11348 RVA: 0x0014AEA4 File Offset: 0x001490A4
 		public bool IsFinished
 		{
 			get
@@ -483,8 +483,8 @@ namespace ICSharpCode.SharpZipLib.Zip.Compression
 			}
 		}
 
-		// Token: 0x170004F7 RID: 1271
-		// (get) Token: 0x060034BB RID: 13499 RVA: 0x0002680E File Offset: 0x00024A0E
+		// Token: 0x17000342 RID: 834
+		// (get) Token: 0x06002C55 RID: 11349 RVA: 0x0014AEC0 File Offset: 0x001490C0
 		public int Adler
 		{
 			get
@@ -501,8 +501,8 @@ namespace ICSharpCode.SharpZipLib.Zip.Compression
 			}
 		}
 
-		// Token: 0x170004F8 RID: 1272
-		// (get) Token: 0x060034BC RID: 13500 RVA: 0x00026835 File Offset: 0x00024A35
+		// Token: 0x17000343 RID: 835
+		// (get) Token: 0x06002C56 RID: 11350 RVA: 0x0014AEE7 File Offset: 0x001490E7
 		public long TotalOut
 		{
 			get
@@ -511,8 +511,8 @@ namespace ICSharpCode.SharpZipLib.Zip.Compression
 			}
 		}
 
-		// Token: 0x170004F9 RID: 1273
-		// (get) Token: 0x060034BD RID: 13501 RVA: 0x0002683D File Offset: 0x00024A3D
+		// Token: 0x17000344 RID: 836
+		// (get) Token: 0x06002C57 RID: 11351 RVA: 0x0014AEEF File Offset: 0x001490EF
 		public long TotalIn
 		{
 			get
@@ -521,8 +521,8 @@ namespace ICSharpCode.SharpZipLib.Zip.Compression
 			}
 		}
 
-		// Token: 0x170004FA RID: 1274
-		// (get) Token: 0x060034BE RID: 13502 RVA: 0x0002684D File Offset: 0x00024A4D
+		// Token: 0x17000345 RID: 837
+		// (get) Token: 0x06002C58 RID: 11352 RVA: 0x0014AEFF File Offset: 0x001490FF
 		public int RemainingInput
 		{
 			get
@@ -531,7 +531,7 @@ namespace ICSharpCode.SharpZipLib.Zip.Compression
 			}
 		}
 
-		// Token: 0x04002FE6 RID: 12262
+		// Token: 0x040027B6 RID: 10166
 		private static readonly int[] CPLENS = new int[]
 		{
 			3,
@@ -565,7 +565,7 @@ namespace ICSharpCode.SharpZipLib.Zip.Compression
 			258
 		};
 
-		// Token: 0x04002FE7 RID: 12263
+		// Token: 0x040027B7 RID: 10167
 		private static readonly int[] CPLEXT = new int[]
 		{
 			0,
@@ -599,7 +599,7 @@ namespace ICSharpCode.SharpZipLib.Zip.Compression
 			0
 		};
 
-		// Token: 0x04002FE8 RID: 12264
+		// Token: 0x040027B8 RID: 10168
 		private static readonly int[] CPDIST = new int[]
 		{
 			1,
@@ -634,7 +634,7 @@ namespace ICSharpCode.SharpZipLib.Zip.Compression
 			24577
 		};
 
-		// Token: 0x04002FE9 RID: 12265
+		// Token: 0x040027B9 RID: 10169
 		private static readonly int[] CPDEXT = new int[]
 		{
 			0,
@@ -669,91 +669,91 @@ namespace ICSharpCode.SharpZipLib.Zip.Compression
 			13
 		};
 
-		// Token: 0x04002FEA RID: 12266
+		// Token: 0x040027BA RID: 10170
 		private const int DECODE_HEADER = 0;
 
-		// Token: 0x04002FEB RID: 12267
+		// Token: 0x040027BB RID: 10171
 		private const int DECODE_DICT = 1;
 
-		// Token: 0x04002FEC RID: 12268
+		// Token: 0x040027BC RID: 10172
 		private const int DECODE_BLOCKS = 2;
 
-		// Token: 0x04002FED RID: 12269
+		// Token: 0x040027BD RID: 10173
 		private const int DECODE_STORED_LEN1 = 3;
 
-		// Token: 0x04002FEE RID: 12270
+		// Token: 0x040027BE RID: 10174
 		private const int DECODE_STORED_LEN2 = 4;
 
-		// Token: 0x04002FEF RID: 12271
+		// Token: 0x040027BF RID: 10175
 		private const int DECODE_STORED = 5;
 
-		// Token: 0x04002FF0 RID: 12272
+		// Token: 0x040027C0 RID: 10176
 		private const int DECODE_DYN_HEADER = 6;
 
-		// Token: 0x04002FF1 RID: 12273
+		// Token: 0x040027C1 RID: 10177
 		private const int DECODE_HUFFMAN = 7;
 
-		// Token: 0x04002FF2 RID: 12274
+		// Token: 0x040027C2 RID: 10178
 		private const int DECODE_HUFFMAN_LENBITS = 8;
 
-		// Token: 0x04002FF3 RID: 12275
+		// Token: 0x040027C3 RID: 10179
 		private const int DECODE_HUFFMAN_DIST = 9;
 
-		// Token: 0x04002FF4 RID: 12276
+		// Token: 0x040027C4 RID: 10180
 		private const int DECODE_HUFFMAN_DISTBITS = 10;
 
-		// Token: 0x04002FF5 RID: 12277
+		// Token: 0x040027C5 RID: 10181
 		private const int DECODE_CHKSUM = 11;
 
-		// Token: 0x04002FF6 RID: 12278
+		// Token: 0x040027C6 RID: 10182
 		private const int FINISHED = 12;
 
-		// Token: 0x04002FF7 RID: 12279
+		// Token: 0x040027C7 RID: 10183
 		private int mode;
 
-		// Token: 0x04002FF8 RID: 12280
+		// Token: 0x040027C8 RID: 10184
 		private int readAdler;
 
-		// Token: 0x04002FF9 RID: 12281
+		// Token: 0x040027C9 RID: 10185
 		private int neededBits;
 
-		// Token: 0x04002FFA RID: 12282
+		// Token: 0x040027CA RID: 10186
 		private int repLength;
 
-		// Token: 0x04002FFB RID: 12283
+		// Token: 0x040027CB RID: 10187
 		private int repDist;
 
-		// Token: 0x04002FFC RID: 12284
+		// Token: 0x040027CC RID: 10188
 		private int uncomprLen;
 
-		// Token: 0x04002FFD RID: 12285
+		// Token: 0x040027CD RID: 10189
 		private bool isLastBlock;
 
-		// Token: 0x04002FFE RID: 12286
+		// Token: 0x040027CE RID: 10190
 		private long totalOut;
 
-		// Token: 0x04002FFF RID: 12287
+		// Token: 0x040027CF RID: 10191
 		private long totalIn;
 
-		// Token: 0x04003000 RID: 12288
+		// Token: 0x040027D0 RID: 10192
 		private bool noHeader;
 
-		// Token: 0x04003001 RID: 12289
+		// Token: 0x040027D1 RID: 10193
 		private readonly StreamManipulator input;
 
-		// Token: 0x04003002 RID: 12290
+		// Token: 0x040027D2 RID: 10194
 		private OutputWindow outputWindow;
 
-		// Token: 0x04003003 RID: 12291
+		// Token: 0x040027D3 RID: 10195
 		private InflaterDynHeader dynHeader;
 
-		// Token: 0x04003004 RID: 12292
+		// Token: 0x040027D4 RID: 10196
 		private InflaterHuffmanTree litlenTree;
 
-		// Token: 0x04003005 RID: 12293
+		// Token: 0x040027D5 RID: 10197
 		private InflaterHuffmanTree distTree;
 
-		// Token: 0x04003006 RID: 12294
+		// Token: 0x040027D6 RID: 10198
 		private Adler32 adler;
 	}
 }

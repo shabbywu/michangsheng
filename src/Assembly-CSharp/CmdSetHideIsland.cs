@@ -2,12 +2,12 @@
 using Fungus;
 using UnityEngine;
 
-// Token: 0x020004F8 RID: 1272
+// Token: 0x02000379 RID: 889
 [CommandInfo("YSSea", "隐藏海域探索奖励", "隐藏海域探索奖励", 0)]
 [AddComponentMenu("")]
 public class CmdSetHideIsland : Command
 {
-	// Token: 0x06002107 RID: 8455 RVA: 0x001153BC File Offset: 0x001135BC
+	// Token: 0x06001D9E RID: 7582 RVA: 0x000D1498 File Offset: 0x000CF698
 	public override void OnEnter()
 	{
 		if (!PlayerEx.Player.HideHaiYuTanSuo.HasItem(this.seaID))
@@ -19,7 +19,7 @@ public class CmdSetHideIsland : Command
 		this.Continue();
 	}
 
-	// Token: 0x04001C7C RID: 7292
+	// Token: 0x0400182C RID: 6188
 	[Tooltip("海域ID")]
 	[SerializeField]
 	protected int seaID;

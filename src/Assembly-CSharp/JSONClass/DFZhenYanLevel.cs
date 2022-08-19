@@ -3,10 +3,10 @@ using System.Collections.Generic;
 
 namespace JSONClass
 {
-	// Token: 0x02000BC3 RID: 3011
+	// Token: 0x0200082D RID: 2093
 	public class DFZhenYanLevel : IJSONClass
 	{
-		// Token: 0x06004A74 RID: 19060 RVA: 0x001F836C File Offset: 0x001F656C
+		// Token: 0x06003EC6 RID: 16070 RVA: 0x001AD204 File Offset: 0x001AB404
 		public static void InitDataDict()
 		{
 			foreach (JSONObject jsonobject in jsonData.instance.DFZhenYanLevel.list)
@@ -45,42 +45,42 @@ namespace JSONClass
 			}
 		}
 
-		// Token: 0x06004A75 RID: 19061 RVA: 0x000042DD File Offset: 0x000024DD
+		// Token: 0x06003EC7 RID: 16071 RVA: 0x00004095 File Offset: 0x00002295
 		private static void OnInitFinish()
 		{
 		}
 
-		// Token: 0x040045FE RID: 17918
+		// Token: 0x04003A76 RID: 14966
 		public static Dictionary<int, DFZhenYanLevel> DataDict = new Dictionary<int, DFZhenYanLevel>();
 
-		// Token: 0x040045FF RID: 17919
+		// Token: 0x04003A77 RID: 14967
 		public static List<DFZhenYanLevel> DataList = new List<DFZhenYanLevel>();
 
-		// Token: 0x04004600 RID: 17920
+		// Token: 0x04003A78 RID: 14968
 		public static Action OnInitFinishAction = new Action(DFZhenYanLevel.OnInitFinish);
 
-		// Token: 0x04004601 RID: 17921
+		// Token: 0x04003A79 RID: 14969
 		public int id;
 
-		// Token: 0x04004602 RID: 17922
+		// Token: 0x04003A7A RID: 14970
 		public int zhenpanlevel;
 
-		// Token: 0x04004603 RID: 17923
+		// Token: 0x04003A7B RID: 14971
 		public int wudaolevel;
 
-		// Token: 0x04004604 RID: 17924
+		// Token: 0x04003A7C RID: 14972
 		public int buzhenxiaohao;
 
-		// Token: 0x04004605 RID: 17925
+		// Token: 0x04003A7D RID: 14973
 		public int xiuliansudu;
 
-		// Token: 0x04004606 RID: 17926
+		// Token: 0x04003A7E RID: 14974
 		public int lingtiansudu;
 
-		// Token: 0x04004607 RID: 17927
+		// Token: 0x04003A7F RID: 14975
 		public int lingtiancuishengsudu;
 
-		// Token: 0x04004608 RID: 17928
+		// Token: 0x04003A80 RID: 14976
 		public string name;
 	}
 }

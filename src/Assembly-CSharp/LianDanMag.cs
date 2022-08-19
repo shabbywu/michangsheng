@@ -4,10 +4,10 @@ using GUIPackage;
 using KBEngine;
 using UnityEngine;
 
-// Token: 0x0200061C RID: 1564
+// Token: 0x02000462 RID: 1122
 public class LianDanMag : MonoBehaviour
 {
-	// Token: 0x060026DB RID: 9947 RVA: 0x00130720 File Offset: 0x0012E920
+	// Token: 0x06002328 RID: 9000 RVA: 0x000F021C File Offset: 0x000EE41C
 	private void Awake()
 	{
 		LianDanMag.instence = this;
@@ -73,32 +73,32 @@ public class LianDanMag : MonoBehaviour
 		this.show();
 	}
 
-	// Token: 0x060026DC RID: 9948 RVA: 0x0001EE6B File Offset: 0x0001D06B
+	// Token: 0x06002329 RID: 9001 RVA: 0x000F03F4 File Offset: 0x000EE5F4
 	private void OnDestroy()
 	{
 		LianDanMag.instence = null;
 	}
 
-	// Token: 0x060026DD RID: 9949 RVA: 0x000042DD File Offset: 0x000024DD
+	// Token: 0x0600232A RID: 9002 RVA: 0x00004095 File Offset: 0x00002295
 	private void Start()
 	{
 	}
 
-	// Token: 0x060026DE RID: 9950 RVA: 0x0001EE73 File Offset: 0x0001D073
+	// Token: 0x0600232B RID: 9003 RVA: 0x000F03FC File Offset: 0x000EE5FC
 	public void OpenLianDanMag()
 	{
 		base.transform.localPosition = Vector3.zero;
 		base.gameObject.SetActive(true);
 	}
 
-	// Token: 0x060026DF RID: 9951 RVA: 0x0001EE91 File Offset: 0x0001D091
+	// Token: 0x0600232C RID: 9004 RVA: 0x000F041A File Offset: 0x000EE61A
 	public void show()
 	{
 		this.closeDanlu();
 		this.XuanZeDanLu.SetActive(false);
 	}
 
-	// Token: 0x060026E0 RID: 9952 RVA: 0x001308F8 File Offset: 0x0012EAF8
+	// Token: 0x0600232D RID: 9005 RVA: 0x000F0430 File Offset: 0x000EE630
 	public void PlayDanfangIn()
 	{
 		if (this.DanfunPlan.transform.localPosition.x < -800f)
@@ -109,7 +109,7 @@ public class LianDanMag : MonoBehaviour
 		this.DanfunPlan.GetComponent<Animation>().Play("Danfang");
 	}
 
-	// Token: 0x060026E1 RID: 9953 RVA: 0x00130950 File Offset: 0x0012EB50
+	// Token: 0x0600232E RID: 9006 RVA: 0x000F0488 File Offset: 0x000EE688
 	public void PlayYaoCai()
 	{
 		if (this.YaoCaiPlan.transform.localPosition.x > 50f)
@@ -120,7 +120,7 @@ public class LianDanMag : MonoBehaviour
 		this.YaoCaiPlan.GetComponent<Animation>().Play("yaocaiin");
 	}
 
-	// Token: 0x060026E2 RID: 9954 RVA: 0x0001EEA5 File Offset: 0x0001D0A5
+	// Token: 0x0600232F RID: 9007 RVA: 0x000F04DE File Offset: 0x000EE6DE
 	public void showChoiceDanLu()
 	{
 		this.XuanZeDanLu.SetActive(true);
@@ -128,13 +128,13 @@ public class LianDanMag : MonoBehaviour
 		this.finshPlan.gameObject.SetActive(false);
 	}
 
-	// Token: 0x060026E3 RID: 9955 RVA: 0x0001EED5 File Offset: 0x0001D0D5
+	// Token: 0x06002330 RID: 9008 RVA: 0x000F050E File Offset: 0x000EE70E
 	public void CloseChoiceDanlu()
 	{
 		this.XuanZeDanLu.SetActive(false);
 	}
 
-	// Token: 0x060026E4 RID: 9956 RVA: 0x001309A8 File Offset: 0x0012EBA8
+	// Token: 0x06002331 RID: 9009 RVA: 0x000F051C File Offset: 0x000EE71C
 	public bool DanLuIsFull()
 	{
 		bool result = true;
@@ -148,7 +148,7 @@ public class LianDanMag : MonoBehaviour
 		return result;
 	}
 
-	// Token: 0x060026E5 RID: 9957 RVA: 0x001309F8 File Offset: 0x0012EBF8
+	// Token: 0x06002332 RID: 9010 RVA: 0x000F056C File Offset: 0x000EE76C
 	public void showDanlu()
 	{
 		this.AddDanluBtn.SetActive(false);
@@ -174,14 +174,14 @@ public class LianDanMag : MonoBehaviour
 		this.DanLuPlan.SetActive(true);
 	}
 
-	// Token: 0x060026E6 RID: 9958 RVA: 0x0001EEE3 File Offset: 0x0001D0E3
+	// Token: 0x06002333 RID: 9011 RVA: 0x000F068C File Offset: 0x000EE88C
 	public void closeDanlu()
 	{
 		this.AddDanluBtn.SetActive(true);
 		this.DanLuPlan.SetActive(false);
 	}
 
-	// Token: 0x060026E7 RID: 9959 RVA: 0x00130B18 File Offset: 0x0012ED18
+	// Token: 0x06002334 RID: 9012 RVA: 0x000F06A8 File Offset: 0x000EE8A8
 	public void StartLianDan()
 	{
 		this.XuanZeDanLu.SetActive(false);
@@ -211,7 +211,7 @@ public class LianDanMag : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060026E8 RID: 9960 RVA: 0x00130C54 File Offset: 0x0012EE54
+	// Token: 0x06002335 RID: 9013 RVA: 0x000F07E4 File Offset: 0x000EE9E4
 	public void GetYaoLeiList(List<int> indexToLeixin, List<LianDanMag.DanyaoItem> DanYaoItemList, Dictionary<int, int> fuyaoList, Dictionary<int, int> zhuyaoList)
 	{
 		int num = 0;
@@ -247,7 +247,7 @@ public class LianDanMag : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060026E9 RID: 9961 RVA: 0x00130DF4 File Offset: 0x0012EFF4
+	// Token: 0x06002336 RID: 9014 RVA: 0x000F0984 File Offset: 0x000EEB84
 	public void GetDanfangList(List<JSONObject> DanFans, List<int> indexToLeixin, List<LianDanMag.DanyaoItem> DanYaoItemList, Dictionary<int, int> fuyaoList, Dictionary<int, int> zhuyaoList)
 	{
 		foreach (JSONObject jsonobject in jsonData.instance.LianDanDanFangBiao.list)
@@ -295,7 +295,7 @@ public class LianDanMag : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060026EA RID: 9962 RVA: 0x000FDABC File Offset: 0x000FBCBC
+	// Token: 0x06002337 RID: 9015 RVA: 0x000F0BE4 File Offset: 0x000EEDE4
 	public void GetDanFang(out int maxNum, out int maxpingzhi, out JSONObject danFangItemID, List<JSONObject> DanFans, List<int> indexToLeixin, List<LianDanMag.DanyaoItem> DanYaoItemList, Dictionary<int, int> fuyaoList, Dictionary<int, int> zhuyaoList)
 	{
 		maxpingzhi = 0;
@@ -303,22 +303,22 @@ public class LianDanMag : MonoBehaviour
 		danFangItemID = null;
 		foreach (JSONObject jsonobject in DanFans)
 		{
-			int num = (int)jsonData.instance.ItemJsonData[((int)jsonobject["ItemID"].n).ToString()]["quality"].n;
-			Debug.Log("丹方ID" + (int)jsonobject["ItemID"].n);
-			if (num > maxpingzhi)
+			int i = jsonData.instance.ItemJsonData[jsonobject["ItemID"].I.ToString()]["quality"].I;
+			Debug.Log("丹方ID" + jsonobject["ItemID"].I);
+			if (i > maxpingzhi)
 			{
 				maxNum = 0;
-				maxpingzhi = num;
+				maxpingzhi = i;
 				danFangItemID = jsonobject;
 			}
-			if (num == maxpingzhi)
+			if (i == maxpingzhi)
 			{
 				maxNum++;
 			}
 		}
 	}
 
-	// Token: 0x060026EB RID: 9963 RVA: 0x00131054 File Offset: 0x0012F254
+	// Token: 0x06002338 RID: 9016 RVA: 0x000F0CAC File Offset: 0x000EEEAC
 	public int getDanFang()
 	{
 		List<LianDanMag.DanyaoItem> list = new List<LianDanMag.DanyaoItem>();
@@ -520,7 +520,7 @@ public class LianDanMag : MonoBehaviour
 			else
 			{
 				this.FinishAddItem(0, this.InventoryFinish, component, num + 5900, num3);
-				player.addItem(num + 5900, num3, Tools.CreateItemSeid((int)jsonobject["ItemID"].n), false);
+				player.addItem(num + 5900, num3, Tools.CreateItemSeid(jsonobject["ItemID"].I), false);
 				this.finshPlan.fail(15, num3);
 			}
 			this.setFinsh();
@@ -588,14 +588,14 @@ public class LianDanMag : MonoBehaviour
 					list6.Add(list[l - 1].ItemID);
 					list7.Add(list[l - 1].ItemNum);
 				}
-				player.addDanFang((int)jsonobject["ItemID"].n, list6, list7);
+				player.addDanFang(jsonobject["ItemID"].I, list6, list7);
 			}
 			int num18 = 0;
 			if (player.getStaticSkillAddSum(17) != 0)
 			{
 				num3 *= 2;
 			}
-			this.FinishAddItem(num18, this.InventoryFinish, component, (int)jsonobject["ItemID"].n, num3);
+			this.FinishAddItem(num18, this.InventoryFinish, component, jsonobject["ItemID"].I, num3);
 			num18++;
 			foreach (KeyValuePair<int, int> keyValuePair4 in dictionary3)
 			{
@@ -605,7 +605,7 @@ public class LianDanMag : MonoBehaviour
 					num18++;
 				}
 			}
-			player.addItem((int)jsonobject["ItemID"].n, num3, Tools.CreateItemSeid((int)jsonobject["ItemID"].n), false);
+			player.addItem(jsonobject["ItemID"].I, num3, Tools.CreateItemSeid(jsonobject["ItemID"].I), false);
 			if (dictionary3.Count > 0)
 			{
 				this.finshPlan.succes(2 + (num - 1) * 2, num3);
@@ -616,7 +616,7 @@ public class LianDanMag : MonoBehaviour
 			}
 			try
 			{
-				LianDanMag.AddWuDaoLianDan((int)jsonobject["ItemID"].n, num3);
+				LianDanMag.AddWuDaoLianDan(jsonobject["ItemID"].I, num3);
 			}
 			catch (Exception ex)
 			{
@@ -628,7 +628,7 @@ public class LianDanMag : MonoBehaviour
 		return -1;
 	}
 
-	// Token: 0x060026EC RID: 9964 RVA: 0x00131C48 File Offset: 0x0012FE48
+	// Token: 0x06002339 RID: 9017 RVA: 0x000F1898 File Offset: 0x000EFA98
 	public static void AddWuDaoLianDan(int ItemId, int Num)
 	{
 		JSONObject jsonobject = jsonData.instance.ItemJsonData[ItemId.ToString()];
@@ -653,7 +653,7 @@ public class LianDanMag : MonoBehaviour
 		player.wuDaoMag.addWuDaoEx(21, (int)((float)i2 / (float)list[i - 1] * (float)Num * itemPercent));
 	}
 
-	// Token: 0x060026ED RID: 9965 RVA: 0x00131D34 File Offset: 0x0012FF34
+	// Token: 0x0600233A RID: 9018 RVA: 0x000F1984 File Offset: 0x000EFB84
 	public static float getItemPercent(int itemQuality)
 	{
 		int wuDaoLevelByType = Tools.instance.getPlayer().wuDaoMag.getWuDaoLevelByType(21);
@@ -673,21 +673,21 @@ public class LianDanMag : MonoBehaviour
 		return result;
 	}
 
-	// Token: 0x060026EE RID: 9966 RVA: 0x0001EEFD File Offset: 0x0001D0FD
+	// Token: 0x0600233B RID: 9019 RVA: 0x000F19CF File Offset: 0x000EFBCF
 	public void setFinsh()
 	{
 		this.inventoryCaiLiao.resteAllInventoryItem();
 		this.inventoryCaiLiao.LoadInventory();
 	}
 
-	// Token: 0x060026EF RID: 9967 RVA: 0x0001EF15 File Offset: 0x0001D115
+	// Token: 0x0600233C RID: 9020 RVA: 0x000F19E7 File Offset: 0x000EFBE7
 	public void FinishAddItem(int index, Inventory2 InventoryFinish, ItemDatebase datebase, int id, int lianzhicishu)
 	{
 		InventoryFinish.inventory[index] = datebase.items[id].Clone();
 		InventoryFinish.inventory[index].itemNum = lianzhicishu;
 	}
 
-	// Token: 0x060026F0 RID: 9968 RVA: 0x00131D80 File Offset: 0x0012FF80
+	// Token: 0x0600233D RID: 9021 RVA: 0x000F1A1C File Offset: 0x000EFC1C
 	public void addYaoCai(List<int> danyao, List<int> num)
 	{
 		if (!this.DanLuPlan.activeSelf)
@@ -712,84 +712,84 @@ public class LianDanMag : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060026F1 RID: 9969 RVA: 0x000042DD File Offset: 0x000024DD
+	// Token: 0x0600233E RID: 9022 RVA: 0x00004095 File Offset: 0x00002295
 	private void Update()
 	{
 	}
 
-	// Token: 0x0400211D RID: 8477
+	// Token: 0x04001C4D RID: 7245
 	public Inventory2 inventoryCaiLiao;
 
-	// Token: 0x0400211E RID: 8478
+	// Token: 0x04001C4E RID: 7246
 	public Inventory2 inventoryDanlu;
 
-	// Token: 0x0400211F RID: 8479
+	// Token: 0x04001C4F RID: 7247
 	public Inventory2 InventoryShowDanlu;
 
-	// Token: 0x04002120 RID: 8480
+	// Token: 0x04001C50 RID: 7248
 	public Inventory2 InventoryFinish;
 
-	// Token: 0x04002121 RID: 8481
+	// Token: 0x04001C51 RID: 7249
 	public List<ItemCellEX> itemCells;
 
-	// Token: 0x04002122 RID: 8482
+	// Token: 0x04001C52 RID: 7250
 	public static LianDanMag instence;
 
-	// Token: 0x04002123 RID: 8483
+	// Token: 0x04001C53 RID: 7251
 	public List<List<int>> duiying;
 
-	// Token: 0x04002124 RID: 8484
+	// Token: 0x04001C54 RID: 7252
 	public List<int> YaoZhi;
 
-	// Token: 0x04002125 RID: 8485
+	// Token: 0x04001C55 RID: 7253
 	public List<int> ReduceNaijiu;
 
-	// Token: 0x04002126 RID: 8486
+	// Token: 0x04001C56 RID: 7254
 	public List<int> MaxCaoYao;
 
-	// Token: 0x04002127 RID: 8487
+	// Token: 0x04001C57 RID: 7255
 	public LianDanDanFang lianDanDanFang;
 
-	// Token: 0x04002128 RID: 8488
+	// Token: 0x04001C58 RID: 7256
 	public LianDanFinsh zhaLu;
 
-	// Token: 0x04002129 RID: 8489
+	// Token: 0x04001C59 RID: 7257
 	public LianDanFinsh finshPlan;
 
-	// Token: 0x0400212A RID: 8490
+	// Token: 0x04001C5A RID: 7258
 	public GameObject DanLuPlan;
 
-	// Token: 0x0400212B RID: 8491
+	// Token: 0x04001C5B RID: 7259
 	public GameObject AddDanluBtn;
 
-	// Token: 0x0400212C RID: 8492
+	// Token: 0x04001C5C RID: 7260
 	public GameObject XuanZeDanLu;
 
-	// Token: 0x0400212D RID: 8493
+	// Token: 0x04001C5D RID: 7261
 	public GameObject CaiLiaoItem;
 
-	// Token: 0x0400212E RID: 8494
+	// Token: 0x04001C5E RID: 7262
 	public LianDanShu LianDanShu;
 
-	// Token: 0x0400212F RID: 8495
+	// Token: 0x04001C5F RID: 7263
 	public GameObject DanfunPlan;
 
-	// Token: 0x04002130 RID: 8496
+	// Token: 0x04001C60 RID: 7264
 	public GameObject YaoCaiPlan;
 
-	// Token: 0x0200061D RID: 1565
+	// Token: 0x020013A0 RID: 5024
 	public class DanyaoItem
 	{
-		// Token: 0x04002131 RID: 8497
+		// Token: 0x040068E8 RID: 26856
 		public int ItemID = -1;
 
-		// Token: 0x04002132 RID: 8498
+		// Token: 0x040068E9 RID: 26857
 		public int ItemNum;
 
-		// Token: 0x04002133 RID: 8499
+		// Token: 0x040068EA RID: 26858
 		public int YaoZhi;
 
-		// Token: 0x04002134 RID: 8500
+		// Token: 0x040068EB RID: 26859
 		public int YaoZhiType;
 	}
 }

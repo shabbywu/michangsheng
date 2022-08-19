@@ -3,26 +3,26 @@ using UnityEngine;
 
 namespace Fungus
 {
-	// Token: 0x02001390 RID: 5008
+	// Token: 0x02000EEF RID: 3823
 	[Serializable]
 	public struct TransformData
 	{
-		// Token: 0x06007931 RID: 31025 RVA: 0x00052AC8 File Offset: 0x00050CC8
+		// Token: 0x06006B92 RID: 27538 RVA: 0x00296BDE File Offset: 0x00294DDE
 		public TransformData(Transform v)
 		{
 			this.transformVal = v;
 			this.transformRef = null;
 		}
 
-		// Token: 0x06007932 RID: 31026 RVA: 0x00052AD8 File Offset: 0x00050CD8
+		// Token: 0x06006B93 RID: 27539 RVA: 0x00296BEE File Offset: 0x00294DEE
 		public static implicit operator Transform(TransformData vector3Data)
 		{
 			return vector3Data.Value;
 		}
 
-		// Token: 0x17000B63 RID: 2915
-		// (get) Token: 0x06007933 RID: 31027 RVA: 0x00052AE1 File Offset: 0x00050CE1
-		// (set) Token: 0x06007934 RID: 31028 RVA: 0x00052B03 File Offset: 0x00050D03
+		// Token: 0x170008C6 RID: 2246
+		// (get) Token: 0x06006B94 RID: 27540 RVA: 0x00296BF7 File Offset: 0x00294DF7
+		// (set) Token: 0x06006B95 RID: 27541 RVA: 0x00296C19 File Offset: 0x00294E19
 		public Transform Value
 		{
 			get
@@ -44,7 +44,7 @@ namespace Fungus
 			}
 		}
 
-		// Token: 0x06007935 RID: 31029 RVA: 0x00052B27 File Offset: 0x00050D27
+		// Token: 0x06006B96 RID: 27542 RVA: 0x00296C3D File Offset: 0x00294E3D
 		public string GetDescription()
 		{
 			if (this.transformRef == null)
@@ -54,7 +54,7 @@ namespace Fungus
 			return this.transformRef.Key;
 		}
 
-		// Token: 0x04006905 RID: 26885
+		// Token: 0x04005A9C RID: 23196
 		[SerializeField]
 		[VariableProperty("<Value>", new Type[]
 		{
@@ -62,7 +62,7 @@ namespace Fungus
 		})]
 		public TransformVariable transformRef;
 
-		// Token: 0x04006906 RID: 26886
+		// Token: 0x04005A9D RID: 23197
 		[SerializeField]
 		public Transform transformVal;
 	}

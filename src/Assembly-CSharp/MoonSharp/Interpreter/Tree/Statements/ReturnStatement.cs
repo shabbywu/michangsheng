@@ -6,10 +6,10 @@ using MoonSharp.Interpreter.Tree.Expressions;
 
 namespace MoonSharp.Interpreter.Tree.Statements
 {
-	// Token: 0x020010B6 RID: 4278
+	// Token: 0x02000CDD RID: 3293
 	internal class ReturnStatement : Statement
 	{
-		// Token: 0x0600675D RID: 26461 RVA: 0x000471DB File Offset: 0x000453DB
+		// Token: 0x06005C4C RID: 23628 RVA: 0x0025EBE8 File Offset: 0x0025CDE8
 		public ReturnStatement(ScriptLoadingContext lcontext, Expression e, SourceRef sref) : base(lcontext)
 		{
 			this.m_Expression = e;
@@ -17,7 +17,7 @@ namespace MoonSharp.Interpreter.Tree.Statements
 			lcontext.Source.Refs.Add(sref);
 		}
 
-		// Token: 0x0600675E RID: 26462 RVA: 0x0028823C File Offset: 0x0028643C
+		// Token: 0x06005C4D RID: 23629 RVA: 0x0025EC10 File Offset: 0x0025CE10
 		public ReturnStatement(ScriptLoadingContext lcontext) : base(lcontext)
 		{
 			Token token = lcontext.Lexer.Current;
@@ -36,7 +36,7 @@ namespace MoonSharp.Interpreter.Tree.Statements
 			lcontext.Source.Refs.Add(this.m_Ref);
 		}
 
-		// Token: 0x0600675F RID: 26463 RVA: 0x002882DC File Offset: 0x002864DC
+		// Token: 0x06005C4E RID: 23630 RVA: 0x0025ECB0 File Offset: 0x0025CEB0
 		public override void Compile(ByteCode bc)
 		{
 			using (bc.EnterSource(this.m_Ref))
@@ -53,10 +53,10 @@ namespace MoonSharp.Interpreter.Tree.Statements
 			}
 		}
 
-		// Token: 0x04005F73 RID: 24435
+		// Token: 0x04005389 RID: 21385
 		private Expression m_Expression;
 
-		// Token: 0x04005F74 RID: 24436
+		// Token: 0x0400538A RID: 21386
 		private SourceRef m_Ref;
 	}
 }

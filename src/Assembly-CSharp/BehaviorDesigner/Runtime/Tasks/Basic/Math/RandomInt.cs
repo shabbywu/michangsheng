@@ -3,12 +3,12 @@ using UnityEngine;
 
 namespace BehaviorDesigner.Runtime.Tasks.Basic.Math
 {
-	// Token: 0x020015CA RID: 5578
+	// Token: 0x0200110B RID: 4363
 	[TaskCategory("Basic/Math")]
 	[TaskDescription("Sets a random int value")]
 	public class RandomInt : Action
 	{
-		// Token: 0x060082E0 RID: 33504 RVA: 0x002CE3C4 File Offset: 0x002CC5C4
+		// Token: 0x060074E6 RID: 29926 RVA: 0x002B3768 File Offset: 0x002B1968
 		public override TaskStatus OnUpdate()
 		{
 			if (this.inclusive)
@@ -22,7 +22,7 @@ namespace BehaviorDesigner.Runtime.Tasks.Basic.Math
 			return 2;
 		}
 
-		// Token: 0x060082E1 RID: 33505 RVA: 0x00059CE1 File Offset: 0x00057EE1
+		// Token: 0x060074E7 RID: 29927 RVA: 0x002B37CE File Offset: 0x002B19CE
 		public override void OnReset()
 		{
 			this.min.Value = 0;
@@ -31,19 +31,19 @@ namespace BehaviorDesigner.Runtime.Tasks.Basic.Math
 			this.storeResult.Value = 0;
 		}
 
-		// Token: 0x04006FB5 RID: 28597
+		// Token: 0x04006092 RID: 24722
 		[Tooltip("The minimum amount")]
 		public SharedInt min;
 
-		// Token: 0x04006FB6 RID: 28598
+		// Token: 0x04006093 RID: 24723
 		[Tooltip("The maximum amount")]
 		public SharedInt max;
 
-		// Token: 0x04006FB7 RID: 28599
+		// Token: 0x04006094 RID: 24724
 		[Tooltip("Is the maximum value inclusive?")]
 		public bool inclusive;
 
-		// Token: 0x04006FB8 RID: 28600
+		// Token: 0x04006095 RID: 24725
 		[Tooltip("The variable to store the result")]
 		public SharedInt storeResult;
 	}

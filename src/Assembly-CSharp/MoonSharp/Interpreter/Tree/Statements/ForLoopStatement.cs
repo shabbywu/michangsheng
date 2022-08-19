@@ -6,10 +6,10 @@ using MoonSharp.Interpreter.Tree.Expressions;
 
 namespace MoonSharp.Interpreter.Tree.Statements
 {
-	// Token: 0x020010AD RID: 4269
+	// Token: 0x02000CD6 RID: 3286
 	internal class ForLoopStatement : Statement
 	{
-		// Token: 0x0600672A RID: 26410 RVA: 0x002875A0 File Offset: 0x002857A0
+		// Token: 0x06005C1E RID: 23582 RVA: 0x0025DDD0 File Offset: 0x0025BFD0
 		public ForLoopStatement(ScriptLoadingContext lcontext, Token nameToken, Token forToken) : base(lcontext)
 		{
 			NodeBase.CheckTokenType(lcontext, TokenType.Op_Assignment);
@@ -35,7 +35,7 @@ namespace MoonSharp.Interpreter.Tree.Statements
 			lcontext.Source.Refs.Add(this.m_RefEnd);
 		}
 
-		// Token: 0x0600672B RID: 26411 RVA: 0x002876B8 File Offset: 0x002858B8
+		// Token: 0x06005C1F RID: 23583 RVA: 0x0025DEE8 File Offset: 0x0025C0E8
 		public override void Compile(ByteCode bc)
 		{
 			bc.PushSourceRef(this.m_RefFor);
@@ -71,28 +71,28 @@ namespace MoonSharp.Interpreter.Tree.Statements
 			bc.PopSourceRef();
 		}
 
-		// Token: 0x04005F45 RID: 24389
+		// Token: 0x04005361 RID: 21345
 		private RuntimeScopeBlock m_StackFrame;
 
-		// Token: 0x04005F46 RID: 24390
+		// Token: 0x04005362 RID: 21346
 		private Statement m_InnerBlock;
 
-		// Token: 0x04005F47 RID: 24391
+		// Token: 0x04005363 RID: 21347
 		private SymbolRef m_VarName;
 
-		// Token: 0x04005F48 RID: 24392
+		// Token: 0x04005364 RID: 21348
 		private Expression m_Start;
 
-		// Token: 0x04005F49 RID: 24393
+		// Token: 0x04005365 RID: 21349
 		private Expression m_End;
 
-		// Token: 0x04005F4A RID: 24394
+		// Token: 0x04005366 RID: 21350
 		private Expression m_Step;
 
-		// Token: 0x04005F4B RID: 24395
+		// Token: 0x04005367 RID: 21351
 		private SourceRef m_RefFor;
 
-		// Token: 0x04005F4C RID: 24396
+		// Token: 0x04005368 RID: 21352
 		private SourceRef m_RefEnd;
 	}
 }

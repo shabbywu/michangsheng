@@ -3,12 +3,12 @@ using UnityEngine;
 
 namespace BehaviorDesigner.Runtime.Tasks.Basic.UnityTransform
 {
-	// Token: 0x020014F4 RID: 5364
+	// Token: 0x0200103A RID: 4154
 	[TaskCategory("Basic/Transform")]
 	[TaskDescription("Sets the rotation of the Transform. Returns Success.")]
 	public class SetRotation : Action
 	{
-		// Token: 0x06007FFD RID: 32765 RVA: 0x002CAC14 File Offset: 0x002C8E14
+		// Token: 0x06007203 RID: 29187 RVA: 0x002AD1E0 File Offset: 0x002AB3E0
 		public override void OnStart()
 		{
 			GameObject defaultGameObject = base.GetDefaultGameObject(this.targetGameObject.Value);
@@ -19,7 +19,7 @@ namespace BehaviorDesigner.Runtime.Tasks.Basic.UnityTransform
 			}
 		}
 
-		// Token: 0x06007FFE RID: 32766 RVA: 0x00056F5D File Offset: 0x0005515D
+		// Token: 0x06007204 RID: 29188 RVA: 0x002AD220 File Offset: 0x002AB420
 		public override TaskStatus OnUpdate()
 		{
 			if (this.targetTransform == null)
@@ -31,25 +31,25 @@ namespace BehaviorDesigner.Runtime.Tasks.Basic.UnityTransform
 			return 2;
 		}
 
-		// Token: 0x06007FFF RID: 32767 RVA: 0x00056F90 File Offset: 0x00055190
+		// Token: 0x06007205 RID: 29189 RVA: 0x002AD253 File Offset: 0x002AB453
 		public override void OnReset()
 		{
 			this.targetGameObject = null;
 			this.rotation = Quaternion.identity;
 		}
 
-		// Token: 0x04006CE4 RID: 27876
+		// Token: 0x04005DE4 RID: 24036
 		[Tooltip("The GameObject that the task operates on. If null the task GameObject is used.")]
 		public SharedGameObject targetGameObject;
 
-		// Token: 0x04006CE5 RID: 27877
+		// Token: 0x04005DE5 RID: 24037
 		[Tooltip("The rotation of the Transform")]
 		public SharedQuaternion rotation;
 
-		// Token: 0x04006CE6 RID: 27878
+		// Token: 0x04005DE6 RID: 24038
 		private Transform targetTransform;
 
-		// Token: 0x04006CE7 RID: 27879
+		// Token: 0x04005DE7 RID: 24039
 		private GameObject prevGameObject;
 	}
 }

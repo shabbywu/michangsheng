@@ -3,12 +3,12 @@ using UnityEngine;
 
 namespace Fungus
 {
-	// Token: 0x020013F8 RID: 5112
+	// Token: 0x02000F42 RID: 3906
 	[CommandInfo("YSNew/Get", "GetHasSetTalk", "根据流派和境界获取NpcId", 0)]
 	[AddComponentMenu("")]
 	public class GetHasSetTalk : Command
 	{
-		// Token: 0x06007C35 RID: 31797 RVA: 0x000546C3 File Offset: 0x000528C3
+		// Token: 0x06006E4A RID: 28234 RVA: 0x002A49AB File Offset: 0x002A2BAB
 		public override void OnEnter()
 		{
 			if (GlobalValue.Get(0, base.GetCommandSourceDesc()) > 0)
@@ -22,13 +22,13 @@ namespace Fungus
 			this.Continue();
 		}
 
-		// Token: 0x06007C36 RID: 31798 RVA: 0x000113CF File Offset: 0x0000F5CF
+		// Token: 0x06006E4B RID: 28235 RVA: 0x0005E228 File Offset: 0x0005C428
 		public override Color GetButtonColor()
 		{
 			return new Color32(184, 210, 235, byte.MaxValue);
 		}
 
-		// Token: 0x04006A65 RID: 27237
+		// Token: 0x04005B93 RID: 23443
 		[Tooltip("是否有setTalk")]
 		[VariableProperty(new Type[]
 		{

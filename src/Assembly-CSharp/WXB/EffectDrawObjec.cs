@@ -3,11 +3,11 @@ using UnityEngine;
 
 namespace WXB
 {
-	// Token: 0x0200099F RID: 2463
+	// Token: 0x0200068D RID: 1677
 	[ExecuteInEditMode]
 	public class EffectDrawObjec : DrawObject
 	{
-		// Token: 0x06003EDB RID: 16091 RVA: 0x001B83AC File Offset: 0x001B65AC
+		// Token: 0x06003520 RID: 13600 RVA: 0x00170034 File Offset: 0x0016E234
 		public override void UpdateSelf(float deltaTime)
 		{
 			for (int i = 0; i < this.m_Effects.Length; i++)
@@ -19,13 +19,13 @@ namespace WXB
 			}
 		}
 
-		// Token: 0x06003EDC RID: 16092 RVA: 0x0002D3A3 File Offset: 0x0002B5A3
+		// Token: 0x06003521 RID: 13601 RVA: 0x0017006D File Offset: 0x0016E26D
 		protected bool GetOpen(int index)
 		{
 			return this.m_Effects[index] != null;
 		}
 
-		// Token: 0x06003EDD RID: 16093 RVA: 0x0002D3B0 File Offset: 0x0002B5B0
+		// Token: 0x06003522 RID: 13602 RVA: 0x0017007A File Offset: 0x0016E27A
 		protected void SetOpen<T>(int index, bool value) where T : IEffect, new()
 		{
 			if (this.GetOpen(index) == value)
@@ -40,7 +40,7 @@ namespace WXB
 			this.m_Effects[index] = null;
 		}
 
-		// Token: 0x0400389D RID: 14493
+		// Token: 0x04002EEA RID: 12010
 		protected IEffect[] m_Effects = new IEffect[2];
 	}
 }

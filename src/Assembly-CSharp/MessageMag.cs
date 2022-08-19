@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 
-// Token: 0x02000302 RID: 770
+// Token: 0x020001EE RID: 494
 public class MessageMag
 {
-	// Token: 0x17000277 RID: 631
-	// (get) Token: 0x06001714 RID: 5908 RVA: 0x00014624 File Offset: 0x00012824
+	// Token: 0x1700022F RID: 559
+	// (get) Token: 0x0600146A RID: 5226 RVA: 0x000833F4 File Offset: 0x000815F4
 	public static MessageMag Instance
 	{
 		get
@@ -18,19 +18,19 @@ public class MessageMag
 		}
 	}
 
-	// Token: 0x06001715 RID: 5909 RVA: 0x0001463C File Offset: 0x0001283C
+	// Token: 0x0600146B RID: 5227 RVA: 0x0008340C File Offset: 0x0008160C
 	private MessageMag()
 	{
 		this.InitData();
 	}
 
-	// Token: 0x06001716 RID: 5910 RVA: 0x0001464A File Offset: 0x0001284A
+	// Token: 0x0600146C RID: 5228 RVA: 0x0008341A File Offset: 0x0008161A
 	private void InitData()
 	{
 		this.dictionaryMessage = new Dictionary<string, Action<MessageData>>();
 	}
 
-	// Token: 0x06001717 RID: 5911 RVA: 0x000CC360 File Offset: 0x000CA560
+	// Token: 0x0600146D RID: 5229 RVA: 0x00083428 File Offset: 0x00081628
 	public void Register(string key, Action<MessageData> action)
 	{
 		if (!this.dictionaryMessage.ContainsKey(key))
@@ -41,7 +41,7 @@ public class MessageMag
 		dictionary[key] = (Action<MessageData>)Delegate.Combine(dictionary[key], action);
 	}
 
-	// Token: 0x06001718 RID: 5912 RVA: 0x000CC3AC File Offset: 0x000CA5AC
+	// Token: 0x0600146E RID: 5230 RVA: 0x00083474 File Offset: 0x00081674
 	public void Remove(string key, Action<MessageData> action)
 	{
 		if (this.dictionaryMessage.ContainsKey(key) && this.dictionaryMessage[key] != null)
@@ -51,7 +51,7 @@ public class MessageMag
 		}
 	}
 
-	// Token: 0x06001719 RID: 5913 RVA: 0x00014657 File Offset: 0x00012857
+	// Token: 0x0600146F RID: 5231 RVA: 0x000834BF File Offset: 0x000816BF
 	public void Send(string key, MessageData data = null)
 	{
 		if (this.dictionaryMessage.ContainsKey(key) && this.dictionaryMessage[key] != null)
@@ -60,15 +60,15 @@ public class MessageMag
 		}
 	}
 
-	// Token: 0x0600171A RID: 5914 RVA: 0x00014687 File Offset: 0x00012887
+	// Token: 0x06001470 RID: 5232 RVA: 0x000834EF File Offset: 0x000816EF
 	public void Clear()
 	{
 		this.dictionaryMessage.Clear();
 	}
 
-	// Token: 0x0400126B RID: 4715
+	// Token: 0x04000F28 RID: 3880
 	private static MessageMag instance;
 
-	// Token: 0x0400126C RID: 4716
+	// Token: 0x04000F29 RID: 3881
 	private Dictionary<string, Action<MessageData>> dictionaryMessage;
 }

@@ -7,10 +7,10 @@ using UnityEngine;
 using UnityEngine.UI;
 using WXB;
 
-// Token: 0x02000559 RID: 1369
+// Token: 0x020003C6 RID: 966
 public class ToolTipsMag : MonoBehaviour
 {
-	// Token: 0x060022ED RID: 8941 RVA: 0x0012020C File Offset: 0x0011E40C
+	// Token: 0x06001F7A RID: 8058 RVA: 0x000DD628 File Offset: 0x000DB828
 	public void UpdateBottom()
 	{
 		foreach (RectTransform rectTransform in this.BottomRectList)
@@ -20,7 +20,7 @@ public class ToolTipsMag : MonoBehaviour
 		LayoutRebuilder.ForceRebuildLayoutImmediate(this._rectList[0]);
 	}
 
-	// Token: 0x060022EE RID: 8942 RVA: 0x00120270 File Offset: 0x0011E470
+	// Token: 0x06001F7B RID: 8059 RVA: 0x000DD68C File Offset: 0x000DB88C
 	public void UpdateLeftPanel()
 	{
 		for (int i = 0; i < this.LeftPanel.gameObject.transform.childCount; i++)
@@ -30,7 +30,7 @@ public class ToolTipsMag : MonoBehaviour
 		LayoutRebuilder.ForceRebuildLayoutImmediate(this.LeftPanel);
 	}
 
-	// Token: 0x060022EF RID: 8943 RVA: 0x001202C0 File Offset: 0x0011E4C0
+	// Token: 0x06001F7C RID: 8060 RVA: 0x000DD6DC File Offset: 0x000DB8DC
 	public void UpdateRightPanel()
 	{
 		for (int i = 0; i < this.RightPanel.gameObject.transform.childCount; i++)
@@ -40,7 +40,7 @@ public class ToolTipsMag : MonoBehaviour
 		LayoutRebuilder.ForceRebuildLayoutImmediate(this.RightPanel);
 	}
 
-	// Token: 0x060022F0 RID: 8944 RVA: 0x00120310 File Offset: 0x0011E510
+	// Token: 0x06001F7D RID: 8061 RVA: 0x000DD72C File Offset: 0x000DB92C
 	public void InitCiTiaoPanel()
 	{
 		if (this._direction == ToolTipsMag.Direction.右)
@@ -53,7 +53,7 @@ public class ToolTipsMag : MonoBehaviour
 		this.LeftPanel.gameObject.SetActive(true);
 	}
 
-	// Token: 0x060022F1 RID: 8945 RVA: 0x0001C7B9 File Offset: 0x0001A9B9
+	// Token: 0x06001F7E RID: 8062 RVA: 0x000DD787 File Offset: 0x000DB987
 	public void UpdateSize()
 	{
 		this.UpdateRightPanel();
@@ -61,7 +61,7 @@ public class ToolTipsMag : MonoBehaviour
 		this.UpdateBottom();
 	}
 
-	// Token: 0x060022F2 RID: 8946 RVA: 0x0001C7CD File Offset: 0x0001A9CD
+	// Token: 0x06001F7F RID: 8063 RVA: 0x000DD79B File Offset: 0x000DB99B
 	private void Update()
 	{
 		if (UToolTip.IsShouldCloseInput())
@@ -70,7 +70,7 @@ public class ToolTipsMag : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060022F3 RID: 8947 RVA: 0x0012036C File Offset: 0x0011E56C
+	// Token: 0x06001F80 RID: 8064 RVA: 0x000DD7AC File Offset: 0x000DB9AC
 	private void Awake()
 	{
 		this._nameColordit = new Dictionary<int, string>();
@@ -104,7 +104,7 @@ public class ToolTipsMag : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060022F4 RID: 8948 RVA: 0x0012053C File Offset: 0x0011E73C
+	// Token: 0x06001F81 RID: 8065 RVA: 0x000DD97C File Offset: 0x000DBB7C
 	public void ResetUI()
 	{
 		this.BaseSkill = null;
@@ -124,13 +124,13 @@ public class ToolTipsMag : MonoBehaviour
 		global::Tools.ClearChild(this.LeftPanel);
 	}
 
-	// Token: 0x060022F5 RID: 8949 RVA: 0x0001C7DC File Offset: 0x0001A9DC
+	// Token: 0x06001F82 RID: 8066 RVA: 0x000DDA37 File Offset: 0x000DBC37
 	private void Show(GameObject obj)
 	{
 		obj.SetActive(true);
 	}
 
-	// Token: 0x060022F6 RID: 8950 RVA: 0x001205F8 File Offset: 0x0011E7F8
+	// Token: 0x06001F83 RID: 8067 RVA: 0x000DDA40 File Offset: 0x000DBC40
 	public void Show(BaseItem baseItem)
 	{
 		this.ResetUI();
@@ -202,7 +202,7 @@ public class ToolTipsMag : MonoBehaviour
 		this.UpdateSize();
 	}
 
-	// Token: 0x060022F7 RID: 8951 RVA: 0x0012090C File Offset: 0x0011EB0C
+	// Token: 0x06001F84 RID: 8068 RVA: 0x000DDD54 File Offset: 0x000DBF54
 	public void Show(BaseItem baseItem, Vector2 vector2)
 	{
 		this.ResetUI();
@@ -281,7 +281,7 @@ public class ToolTipsMag : MonoBehaviour
 		this.UpdateSize();
 	}
 
-	// Token: 0x060022F8 RID: 8952 RVA: 0x00120C9C File Offset: 0x0011EE9C
+	// Token: 0x06001F85 RID: 8069 RVA: 0x000DE0E4 File Offset: 0x000DC2E4
 	public void Show(BaseItem baseItem, bool isPlayer)
 	{
 		this.Show(baseItem);
@@ -293,7 +293,7 @@ public class ToolTipsMag : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060022F9 RID: 8953 RVA: 0x00120CF8 File Offset: 0x0011EEF8
+	// Token: 0x06001F86 RID: 8070 RVA: 0x000DE140 File Offset: 0x000DC340
 	public void Show(BaseItem baseItem, int price, bool isPlayer)
 	{
 		this.Show(baseItem);
@@ -328,7 +328,7 @@ public class ToolTipsMag : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060022FA RID: 8954 RVA: 0x00120DAC File Offset: 0x0011EFAC
+	// Token: 0x06001F87 RID: 8071 RVA: 0x000DE1F4 File Offset: 0x000DC3F4
 	public void Show(BaseItem baseItem, int price, string color = "无")
 	{
 		this.Show(baseItem);
@@ -343,7 +343,7 @@ public class ToolTipsMag : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060022FB RID: 8955 RVA: 0x00120DFC File Offset: 0x0011EFFC
+	// Token: 0x06001F88 RID: 8072 RVA: 0x000DE244 File Offset: 0x000DC444
 	public void Show(BaseSkill baseSkill)
 	{
 		this.ResetUI();
@@ -377,7 +377,7 @@ public class ToolTipsMag : MonoBehaviour
 		this.UpdateSize();
 	}
 
-	// Token: 0x060022FC RID: 8956 RVA: 0x00120F70 File Offset: 0x0011F170
+	// Token: 0x06001F89 RID: 8073 RVA: 0x000DE3B8 File Offset: 0x000DC5B8
 	private void CreateSkillCostImg(ActiveSkill activeSkill)
 	{
 		List<SkillCost> skillCost = activeSkill.GetSkillCost();
@@ -397,7 +397,7 @@ public class ToolTipsMag : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060022FD RID: 8957 RVA: 0x00121044 File Offset: 0x0011F244
+	// Token: 0x06001F8A RID: 8074 RVA: 0x000DE48C File Offset: 0x000DC68C
 	private void CreateSkillCostImg(MiJiItem miJiItem)
 	{
 		if (miJiItem.MiJiType != MiJiType.技能)
@@ -421,7 +421,7 @@ public class ToolTipsMag : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060022FE RID: 8958 RVA: 0x00121124 File Offset: 0x0011F324
+	// Token: 0x06001F8B RID: 8075 RVA: 0x000DE56C File Offset: 0x000DC76C
 	private void CreateShuXing(BaseSkill baseSkill)
 	{
 		if (baseSkill is PassiveSkill)
@@ -437,7 +437,7 @@ public class ToolTipsMag : MonoBehaviour
 		this.ShuXingPanel.SetActive(false);
 	}
 
-	// Token: 0x060022FF RID: 8959 RVA: 0x001211D0 File Offset: 0x0011F3D0
+	// Token: 0x06001F8C RID: 8076 RVA: 0x000DE618 File Offset: 0x000DC818
 	private void CreateShuXing(BaseItem baseItem)
 	{
 		if (baseItem is EquipItem)
@@ -495,7 +495,7 @@ public class ToolTipsMag : MonoBehaviour
 		this.Show(this.ShuXingPanel);
 	}
 
-	// Token: 0x06002300 RID: 8960 RVA: 0x0001C7E5 File Offset: 0x0001A9E5
+	// Token: 0x06001F8D RID: 8077 RVA: 0x000DE8AA File Offset: 0x000DCAAA
 	private string AddCiTiaoColor(string desc1)
 	{
 		desc1 = desc1.ToCN();
@@ -504,7 +504,7 @@ public class ToolTipsMag : MonoBehaviour
 		return desc1;
 	}
 
-	// Token: 0x06002301 RID: 8961 RVA: 0x00121464 File Offset: 0x0011F664
+	// Token: 0x06001F8E RID: 8078 RVA: 0x000DE8DC File Offset: 0x000DCADC
 	private string AddDesc(BaseItem baseItem, string desc1)
 	{
 		if (baseItem is EquipItem)
@@ -525,7 +525,7 @@ public class ToolTipsMag : MonoBehaviour
 		return desc1;
 	}
 
-	// Token: 0x06002302 RID: 8962 RVA: 0x001214CC File Offset: 0x0011F6CC
+	// Token: 0x06001F8F RID: 8079 RVA: 0x000DE944 File Offset: 0x000DCB44
 	private void SetPosition()
 	{
 		this.PCSetPosition();
@@ -538,7 +538,7 @@ public class ToolTipsMag : MonoBehaviour
 		LayoutRebuilder.ForceRebuildLayoutImmediate(this._rectList[0]);
 	}
 
-	// Token: 0x06002303 RID: 8963 RVA: 0x0012154C File Offset: 0x0011F74C
+	// Token: 0x06001F90 RID: 8080 RVA: 0x000DE9C4 File Offset: 0x000DCBC4
 	private void PCSetPosition()
 	{
 		if (this._rectTransform == null)
@@ -561,7 +561,7 @@ public class ToolTipsMag : MonoBehaviour
 		this.Panel.transform.position = NewUICanvas.Inst.Camera.ScreenToWorldPoint(new Vector2(num, num2));
 	}
 
-	// Token: 0x06002304 RID: 8964 RVA: 0x00121618 File Offset: 0x0011F818
+	// Token: 0x06001F91 RID: 8081 RVA: 0x000DEA90 File Offset: 0x000DCC90
 	public float GetMouseY()
 	{
 		if (this._rectTransform == null)
@@ -584,7 +584,7 @@ public class ToolTipsMag : MonoBehaviour
 		return NewUICanvas.Inst.Camera.ScreenToWorldPoint(new Vector2(num, num2)).y;
 	}
 
-	// Token: 0x06002305 RID: 8965 RVA: 0x001216D8 File Offset: 0x0011F8D8
+	// Token: 0x06001F92 RID: 8082 RVA: 0x000DEB50 File Offset: 0x000DCD50
 	private void AddCiTiaoMessage(int id)
 	{
 		TuJianChunWenBen tuJianChunWenBen = TuJianChunWenBen.DataDict[id];
@@ -594,7 +594,7 @@ public class ToolTipsMag : MonoBehaviour
 		gameObject.GetComponentInChildren<SymbolText>().text = "#c42e395【" + tuJianChunWenBen.name2 + "】#n" + tuJianChunWenBen.descr;
 	}
 
-	// Token: 0x06002306 RID: 8966 RVA: 0x0012174C File Offset: 0x0011F94C
+	// Token: 0x06001F93 RID: 8083 RVA: 0x000DEBC4 File Offset: 0x000DCDC4
 	private void AddShuXingMessage()
 	{
 		Avatar player = global::Tools.instance.getPlayer();
@@ -611,7 +611,7 @@ public class ToolTipsMag : MonoBehaviour
 		this.ShuXingCiTiao.transform.SetParent(this.BottomPanel.transform);
 	}
 
-	// Token: 0x06002307 RID: 8967 RVA: 0x00121894 File Offset: 0x0011FA94
+	// Token: 0x06001F94 RID: 8084 RVA: 0x000DED0C File Offset: 0x000DCF0C
 	private void AddLingWuMessage(int bookItemID)
 	{
 		int day = global::Tools.CalcLingWuTime(bookItemID);
@@ -650,7 +650,7 @@ public class ToolTipsMag : MonoBehaviour
 		this.LingWuTiaoJian.transform.SetParent(this.BottomPanel.transform);
 	}
 
-	// Token: 0x06002308 RID: 8968 RVA: 0x00121AC4 File Offset: 0x0011FCC4
+	// Token: 0x06001F95 RID: 8085 RVA: 0x000DEF3C File Offset: 0x000DD13C
 	private void AddZhuYaoMessage()
 	{
 		CaoYaoItem caoYaoItem = (CaoYaoItem)this.BaseItem;
@@ -665,7 +665,7 @@ public class ToolTipsMag : MonoBehaviour
 		gameObject.GetComponentInChildren<SymbolText>().text = "#c42e395【" + lianDanItemLeiXin.name + "】#n" + lianDanItemLeiXin.desc;
 	}
 
-	// Token: 0x06002309 RID: 8969 RVA: 0x00121B54 File Offset: 0x0011FD54
+	// Token: 0x06001F96 RID: 8086 RVA: 0x000DEFCC File Offset: 0x000DD1CC
 	private void AddFuYaoMessage()
 	{
 		CaoYaoItem caoYaoItem = (CaoYaoItem)this.BaseItem;
@@ -680,148 +680,148 @@ public class ToolTipsMag : MonoBehaviour
 		gameObject.GetComponentInChildren<SymbolText>().text = "#c42e395【" + lianDanItemLeiXin.name + "】#n" + lianDanItemLeiXin.desc;
 	}
 
-	// Token: 0x0600230A RID: 8970 RVA: 0x00017C2D File Offset: 0x00015E2D
+	// Token: 0x06001F97 RID: 8087 RVA: 0x000B5E62 File Offset: 0x000B4062
 	public void Close()
 	{
 		base.gameObject.SetActive(false);
 	}
 
-	// Token: 0x04001DF5 RID: 7669
+	// Token: 0x0400197A RID: 6522
 	public static ToolTipsMag Inst;
 
-	// Token: 0x04001DF6 RID: 7670
+	// Token: 0x0400197B RID: 6523
 	private Dictionary<int, string> _nameColordit;
 
-	// Token: 0x04001DF7 RID: 7671
+	// Token: 0x0400197C RID: 6524
 	private Dictionary<int, string> _qualityNameColordit;
 
-	// Token: 0x04001DF8 RID: 7672
+	// Token: 0x0400197D RID: 6525
 	private Dictionary<string, Sprite> _costIconDict;
 
-	// Token: 0x04001DF9 RID: 7673
+	// Token: 0x0400197E RID: 6526
 	private List<RectTransform> _rectList;
 
-	// Token: 0x04001DFA RID: 7674
+	// Token: 0x0400197F RID: 6527
 	private RectTransform _rectTransform;
 
-	// Token: 0x04001DFB RID: 7675
+	// Token: 0x04001980 RID: 6528
 	private ToolTipsMag.Direction _direction;
 
-	// Token: 0x04001DFC RID: 7676
+	// Token: 0x04001981 RID: 6529
 	private int _row;
 
-	// Token: 0x04001DFD RID: 7677
+	// Token: 0x04001982 RID: 6530
 	[SerializeField]
 	private VerticalLayoutGroup _group;
 
-	// Token: 0x04001DFE RID: 7678
+	// Token: 0x04001983 RID: 6531
 	public BaseItem BaseItem;
 
-	// Token: 0x04001DFF RID: 7679
+	// Token: 0x04001984 RID: 6532
 	public BaseSkill BaseSkill;
 
-	// Token: 0x04001E00 RID: 7680
+	// Token: 0x04001985 RID: 6533
 	public Image Icon;
 
-	// Token: 0x04001E01 RID: 7681
+	// Token: 0x04001986 RID: 6534
 	public Image QualityImage;
 
-	// Token: 0x04001E02 RID: 7682
+	// Token: 0x04001987 RID: 6535
 	public Image QualityUpImage;
 
-	// Token: 0x04001E03 RID: 7683
+	// Token: 0x04001988 RID: 6536
 	public GameObject SkillCostImg;
 
-	// Token: 0x04001E04 RID: 7684
+	// Token: 0x04001989 RID: 6537
 	public Text QualityName;
 
-	// Token: 0x04001E05 RID: 7685
+	// Token: 0x0400198A RID: 6538
 	public Text TypeName;
 
-	// Token: 0x04001E06 RID: 7686
+	// Token: 0x0400198B RID: 6539
 	public Text Name;
 
-	// Token: 0x04001E07 RID: 7687
+	// Token: 0x0400198C RID: 6540
 	public GameObject Panel;
 
-	// Token: 0x04001E08 RID: 7688
+	// Token: 0x0400198D RID: 6541
 	public GameObject SkillCost;
 
-	// Token: 0x04001E09 RID: 7689
+	// Token: 0x0400198E RID: 6542
 	public GameObject Desc1Panel;
 
-	// Token: 0x04001E0A RID: 7690
+	// Token: 0x0400198F RID: 6543
 	public Text Desc1;
 
-	// Token: 0x04001E0B RID: 7691
+	// Token: 0x04001990 RID: 6544
 	public GameObject ShuXingPanel;
 
-	// Token: 0x04001E0C RID: 7692
+	// Token: 0x04001991 RID: 6545
 	public Text ShuXingText;
 
-	// Token: 0x04001E0D RID: 7693
+	// Token: 0x04001992 RID: 6546
 	public GameObject Desc1Pane2;
 
-	// Token: 0x04001E0E RID: 7694
+	// Token: 0x04001993 RID: 6547
 	public Text Desc2;
 
-	// Token: 0x04001E0F RID: 7695
+	// Token: 0x04001994 RID: 6548
 	public GameObject PricePanl;
 
-	// Token: 0x04001E10 RID: 7696
+	// Token: 0x04001995 RID: 6549
 	public Text PriceText;
 
-	// Token: 0x04001E11 RID: 7697
+	// Token: 0x04001996 RID: 6550
 	public GameObject ShuXingCiTiao;
 
-	// Token: 0x04001E12 RID: 7698
+	// Token: 0x04001997 RID: 6551
 	public GameObject LingWuTiaoJian;
 
-	// Token: 0x04001E13 RID: 7699
+	// Token: 0x04001998 RID: 6552
 	public GameObject CiTiao;
 
-	// Token: 0x04001E14 RID: 7700
+	// Token: 0x04001999 RID: 6553
 	public Transform CiTiaoParent;
 
-	// Token: 0x04001E15 RID: 7701
+	// Token: 0x0400199A RID: 6554
 	public float JianGe = 10f;
 
-	// Token: 0x04001E16 RID: 7702
+	// Token: 0x0400199B RID: 6555
 	public Text ShengMingValue;
 
-	// Token: 0x04001E17 RID: 7703
+	// Token: 0x0400199C RID: 6556
 	public Text XiuWeiValue;
 
-	// Token: 0x04001E18 RID: 7704
+	// Token: 0x0400199D RID: 6557
 	public Text DanDuValue;
 
-	// Token: 0x04001E19 RID: 7705
+	// Token: 0x0400199E RID: 6558
 	public Text XingJingValue;
 
-	// Token: 0x04001E1A RID: 7706
+	// Token: 0x0400199F RID: 6559
 	public Text LingWuTimeText;
 
-	// Token: 0x04001E1B RID: 7707
+	// Token: 0x040019A0 RID: 6560
 	public Text LingWuTiaoJianText;
 
-	// Token: 0x04001E1C RID: 7708
+	// Token: 0x040019A1 RID: 6561
 	public GameObject BottomPanel;
 
-	// Token: 0x04001E1D RID: 7709
+	// Token: 0x040019A2 RID: 6562
 	public List<RectTransform> BottomRectList;
 
-	// Token: 0x04001E1E RID: 7710
+	// Token: 0x040019A3 RID: 6563
 	public RectTransform LeftPanel;
 
-	// Token: 0x04001E1F RID: 7711
+	// Token: 0x040019A4 RID: 6564
 	public RectTransform RightPanel;
 
-	// Token: 0x0200055A RID: 1370
+	// Token: 0x02001376 RID: 4982
 	public enum Direction
 	{
-		// Token: 0x04001E21 RID: 7713
+		// Token: 0x0400688E RID: 26766
 		左 = 1,
-		// Token: 0x04001E22 RID: 7714
+		// Token: 0x0400688F RID: 26767
 		右
 	}
 }

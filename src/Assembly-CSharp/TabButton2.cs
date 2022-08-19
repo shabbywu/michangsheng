@@ -5,10 +5,10 @@ using UnityEngine.EventSystems;
 using UnityEngine.UI;
 using YSGame;
 
-// Token: 0x020004D7 RID: 1239
+// Token: 0x0200035A RID: 858
 public class TabButton2 : TabButton, IPointerEnterHandler, IEventSystemHandler
 {
-	// Token: 0x06002060 RID: 8288 RVA: 0x001131C0 File Offset: 0x001113C0
+	// Token: 0x06001CF6 RID: 7414 RVA: 0x000CE46C File Offset: 0x000CC66C
 	public override void Awake()
 	{
 		this.toggleState.highlightedSprite = this.SelectedSprite;
@@ -21,7 +21,7 @@ public class TabButton2 : TabButton, IPointerEnterHandler, IEventSystemHandler
 		this.Group.AddTab(this);
 	}
 
-	// Token: 0x06002061 RID: 8289 RVA: 0x0001A97A File Offset: 0x00018B7A
+	// Token: 0x06001CF7 RID: 7415 RVA: 0x000CE4FE File Offset: 0x000CC6FE
 	public override void OnToggle()
 	{
 		base.OnToggle();
@@ -33,7 +33,7 @@ public class TabButton2 : TabButton, IPointerEnterHandler, IEventSystemHandler
 		}
 	}
 
-	// Token: 0x06002062 RID: 8290 RVA: 0x0001A9B7 File Offset: 0x00018BB7
+	// Token: 0x06001CF8 RID: 7416 RVA: 0x000CE53B File Offset: 0x000CC73B
 	public override void OnLose()
 	{
 		base.OnLose();
@@ -45,13 +45,13 @@ public class TabButton2 : TabButton, IPointerEnterHandler, IEventSystemHandler
 		}
 	}
 
-	// Token: 0x06002063 RID: 8291 RVA: 0x0001A9F4 File Offset: 0x00018BF4
+	// Token: 0x06001CF9 RID: 7417 RVA: 0x000CE578 File Offset: 0x000CC778
 	public override void OnButtonClick()
 	{
 		base.OnButtonClick();
 	}
 
-	// Token: 0x06002064 RID: 8292 RVA: 0x0001A9FC File Offset: 0x00018BFC
+	// Token: 0x06001CFA RID: 7418 RVA: 0x000CE580 File Offset: 0x000CC780
 	public void PlayClickSound()
 	{
 		if (this.ClickSound != null)
@@ -62,7 +62,7 @@ public class TabButton2 : TabButton, IPointerEnterHandler, IEventSystemHandler
 		MusicMag.instance.PlayEffectMusic(1, 1f);
 	}
 
-	// Token: 0x06002065 RID: 8293 RVA: 0x0001AA32 File Offset: 0x00018C32
+	// Token: 0x06001CFB RID: 7419 RVA: 0x000CE5B6 File Offset: 0x000CC7B6
 	public void PlayHoverSound()
 	{
 		if (this.MouseHoverSound != null)
@@ -71,45 +71,45 @@ public class TabButton2 : TabButton, IPointerEnterHandler, IEventSystemHandler
 		}
 	}
 
-	// Token: 0x06002066 RID: 8294 RVA: 0x0001AA57 File Offset: 0x00018C57
+	// Token: 0x06001CFC RID: 7420 RVA: 0x000CE5DB File Offset: 0x000CC7DB
 	public void OnPointerEnter(PointerEventData eventData)
 	{
 		this.PlayHoverSound();
 	}
 
-	// Token: 0x04001BD4 RID: 7124
+	// Token: 0x0400177C RID: 6012
 	private Button Button;
 
-	// Token: 0x04001BD5 RID: 7125
+	// Token: 0x0400177D RID: 6013
 	public Sprite NormalSprite;
 
-	// Token: 0x04001BD6 RID: 7126
+	// Token: 0x0400177E RID: 6014
 	public Sprite HighlightSprite;
 
-	// Token: 0x04001BD7 RID: 7127
+	// Token: 0x0400177F RID: 6015
 	public Sprite PressSprite;
 
-	// Token: 0x04001BD8 RID: 7128
+	// Token: 0x04001780 RID: 6016
 	public Sprite SelectedSprite;
 
-	// Token: 0x04001BD9 RID: 7129
+	// Token: 0x04001781 RID: 6017
 	public AudioClip ClickSound;
 
-	// Token: 0x04001BDA RID: 7130
+	// Token: 0x04001782 RID: 6018
 	public AudioClip MouseHoverSound;
 
-	// Token: 0x04001BDB RID: 7131
+	// Token: 0x04001783 RID: 6019
 	private SpriteState loseState;
 
-	// Token: 0x04001BDC RID: 7132
+	// Token: 0x04001784 RID: 6020
 	private SpriteState toggleState;
 
-	// Token: 0x04001BDD RID: 7133
+	// Token: 0x04001785 RID: 6021
 	private Image Image;
 
-	// Token: 0x04001BDE RID: 7134
+	// Token: 0x04001786 RID: 6022
 	public UnityEvent OnToggleEvent;
 
-	// Token: 0x04001BDF RID: 7135
+	// Token: 0x04001787 RID: 6023
 	public UnityEvent OnLoseEvent;
 }

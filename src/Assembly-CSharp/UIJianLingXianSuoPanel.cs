@@ -5,10 +5,10 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
 
-// Token: 0x02000429 RID: 1065
+// Token: 0x020002D9 RID: 729
 public class UIJianLingXianSuoPanel : MonoBehaviour, IESCClose
 {
-	// Token: 0x06001C69 RID: 7273 RVA: 0x00017B80 File Offset: 0x00015D80
+	// Token: 0x06001958 RID: 6488 RVA: 0x000B580A File Offset: 0x000B3A0A
 	private void Start()
 	{
 		UIJianLingXianSuoPanel.Inst = this;
@@ -17,7 +17,7 @@ public class UIJianLingXianSuoPanel : MonoBehaviour, IESCClose
 		this.Refresh();
 	}
 
-	// Token: 0x06001C6A RID: 7274 RVA: 0x000FB8FC File Offset: 0x000F9AFC
+	// Token: 0x06001959 RID: 6489 RVA: 0x000B5840 File Offset: 0x000B3A40
 	public void Refresh()
 	{
 		this.UnlockDefaultXianSuo();
@@ -49,7 +49,7 @@ public class UIJianLingXianSuoPanel : MonoBehaviour, IESCClose
 		this.SelectXianSuo(1, false);
 	}
 
-	// Token: 0x06001C6B RID: 7275 RVA: 0x000FBA2C File Offset: 0x000F9C2C
+	// Token: 0x0600195A RID: 6490 RVA: 0x000B5970 File Offset: 0x000B3B70
 	public void SelectXianSuo(int type, bool laoYeYeTalk = false)
 	{
 		this.nowSelectedType = type;
@@ -123,7 +123,7 @@ public class UIJianLingXianSuoPanel : MonoBehaviour, IESCClose
 		}
 	}
 
-	// Token: 0x06001C6C RID: 7276 RVA: 0x000FBCB0 File Offset: 0x000F9EB0
+	// Token: 0x0600195B RID: 6491 RVA: 0x000B5BF4 File Offset: 0x000B3DF4
 	public void ShowZhenXiang()
 	{
 		JianLingZhenXiang jianLingZhenXiang = JianLingZhenXiang.DataList[this.nowSelectedType - 1];
@@ -132,7 +132,7 @@ public class UIJianLingXianSuoPanel : MonoBehaviour, IESCClose
 		this.ZhenXiangBtnLock.gameObject.SetActive(false);
 	}
 
-	// Token: 0x06001C6D RID: 7277 RVA: 0x000FBD04 File Offset: 0x000F9F04
+	// Token: 0x0600195C RID: 6492 RVA: 0x000B5C48 File Offset: 0x000B3E48
 	public void UnlockDefaultXianSuo()
 	{
 		JianLingManager jianLingManager = PlayerEx.Player.jianLingManager;
@@ -146,7 +146,7 @@ public class UIJianLingXianSuoPanel : MonoBehaviour, IESCClose
 		}
 	}
 
-	// Token: 0x06001C6E RID: 7278 RVA: 0x000FBD4C File Offset: 0x000F9F4C
+	// Token: 0x0600195D RID: 6493 RVA: 0x000B5C90 File Offset: 0x000B3E90
 	public void LaoYeYeSay(string msg)
 	{
 		string text = msg.ReplaceTalkWord();
@@ -154,14 +154,14 @@ public class UIJianLingXianSuoPanel : MonoBehaviour, IESCClose
 		this.LaoYeYeTalkObj.SetActive(true);
 	}
 
-	// Token: 0x06001C6F RID: 7279 RVA: 0x00017BB5 File Offset: 0x00015DB5
+	// Token: 0x0600195E RID: 6494 RVA: 0x000B5CBC File Offset: 0x000B3EBC
 	bool IESCClose.TryEscClose()
 	{
 		this.Close();
 		return true;
 	}
 
-	// Token: 0x06001C70 RID: 7280 RVA: 0x00017B50 File Offset: 0x00015D50
+	// Token: 0x0600195F RID: 6495 RVA: 0x000B57ED File Offset: 0x000B39ED
 	public void Close()
 	{
 		ESCCloseManager.Inst.UnRegisterClose(this);
@@ -169,40 +169,40 @@ public class UIJianLingXianSuoPanel : MonoBehaviour, IESCClose
 		UIJianLingPanel.OpenPanel();
 	}
 
-	// Token: 0x0400185E RID: 6238
+	// Token: 0x04001483 RID: 5251
 	public static UIJianLingXianSuoPanel Inst;
 
-	// Token: 0x0400185F RID: 6239
+	// Token: 0x04001484 RID: 5252
 	public List<FpBtn> XianSuoBtns;
 
-	// Token: 0x04001860 RID: 6240
+	// Token: 0x04001485 RID: 5253
 	public List<GameObject> XianSuoBtnLocks;
 
-	// Token: 0x04001861 RID: 6241
+	// Token: 0x04001486 RID: 5254
 	public FpBtn ZhenXiangBtn;
 
-	// Token: 0x04001862 RID: 6242
+	// Token: 0x04001487 RID: 5255
 	public GameObject ZhenXiangBtnLock;
 
-	// Token: 0x04001863 RID: 6243
+	// Token: 0x04001488 RID: 5256
 	public FpBtn BackBtn;
 
-	// Token: 0x04001864 RID: 6244
+	// Token: 0x04001489 RID: 5257
 	public Text RightTitleText;
 
-	// Token: 0x04001865 RID: 6245
+	// Token: 0x0400148A RID: 5258
 	public Text RightText;
 
-	// Token: 0x04001866 RID: 6246
+	// Token: 0x0400148B RID: 5259
 	private int nowSelectedType;
 
-	// Token: 0x04001867 RID: 6247
+	// Token: 0x0400148C RID: 5260
 	public GameObject LaoYeYeTalkObj;
 
-	// Token: 0x04001868 RID: 6248
+	// Token: 0x0400148D RID: 5261
 	public Text LaoYeYeTalkText;
 
-	// Token: 0x04001869 RID: 6249
+	// Token: 0x0400148E RID: 5262
 	private static Dictionary<int, string> XianSuoTypeNameDict = new Dictionary<int, string>
 	{
 		{

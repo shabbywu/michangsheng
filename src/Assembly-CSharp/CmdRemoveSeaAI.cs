@@ -2,12 +2,12 @@
 using Fungus;
 using UnityEngine;
 
-// Token: 0x02000636 RID: 1590
+// Token: 0x02000478 RID: 1144
 [CommandInfo("YSSea", "移除SeaAI", "移除SeaAI", 0)]
 [AddComponentMenu("")]
 public class CmdRemoveSeaAI : Command
 {
-	// Token: 0x0600277C RID: 10108 RVA: 0x001349B8 File Offset: 0x00132BB8
+	// Token: 0x060023BF RID: 9151 RVA: 0x000F4A9C File Offset: 0x000F2C9C
 	public override void OnEnter()
 	{
 		string text = "";
@@ -28,7 +28,7 @@ public class CmdRemoveSeaAI : Command
 		this.Continue();
 	}
 
-	// Token: 0x04002170 RID: 8560
+	// Token: 0x04001C95 RID: 7317
 	[Tooltip("海域移除SeaAI的编号UUID")]
 	[VariableProperty(new Type[]
 	{

@@ -1,13 +1,13 @@
 ﻿using System;
 using UnityEngine;
 
-// Token: 0x020000EA RID: 234
+// Token: 0x02000099 RID: 153
 [RequireComponent(typeof(UIWidget))]
 [AddComponentMenu("NGUI/Tween/Tween Height")]
 public class TweenHeight : UITweener
 {
-	// Token: 0x17000132 RID: 306
-	// (get) Token: 0x0600090A RID: 2314 RVA: 0x0000B60D File Offset: 0x0000980D
+	// Token: 0x1700011E RID: 286
+	// (get) Token: 0x06000852 RID: 2130 RVA: 0x00032256 File Offset: 0x00030456
 	public UIWidget cachedWidget
 	{
 		get
@@ -20,9 +20,9 @@ public class TweenHeight : UITweener
 		}
 	}
 
-	// Token: 0x17000133 RID: 307
-	// (get) Token: 0x0600090B RID: 2315 RVA: 0x0000B62F File Offset: 0x0000982F
-	// (set) Token: 0x0600090C RID: 2316 RVA: 0x0000B637 File Offset: 0x00009837
+	// Token: 0x1700011F RID: 287
+	// (get) Token: 0x06000853 RID: 2131 RVA: 0x00032278 File Offset: 0x00030478
+	// (set) Token: 0x06000854 RID: 2132 RVA: 0x00032280 File Offset: 0x00030480
 	[Obsolete("Use 'value' instead")]
 	public int height
 	{
@@ -36,9 +36,9 @@ public class TweenHeight : UITweener
 		}
 	}
 
-	// Token: 0x17000134 RID: 308
-	// (get) Token: 0x0600090D RID: 2317 RVA: 0x0000B640 File Offset: 0x00009840
-	// (set) Token: 0x0600090E RID: 2318 RVA: 0x0000B64D File Offset: 0x0000984D
+	// Token: 0x17000120 RID: 288
+	// (get) Token: 0x06000855 RID: 2133 RVA: 0x00032289 File Offset: 0x00030489
+	// (set) Token: 0x06000856 RID: 2134 RVA: 0x00032296 File Offset: 0x00030496
 	public int value
 	{
 		get
@@ -51,7 +51,7 @@ public class TweenHeight : UITweener
 		}
 	}
 
-	// Token: 0x0600090F RID: 2319 RVA: 0x00086664 File Offset: 0x00084864
+	// Token: 0x06000857 RID: 2135 RVA: 0x000322A4 File Offset: 0x000304A4
 	protected override void OnUpdate(float factor, bool isFinished)
 	{
 		this.value = Mathf.RoundToInt((float)this.from * (1f - factor) + (float)this.to * factor);
@@ -70,7 +70,7 @@ public class TweenHeight : UITweener
 		}
 	}
 
-	// Token: 0x06000910 RID: 2320 RVA: 0x000866E0 File Offset: 0x000848E0
+	// Token: 0x06000858 RID: 2136 RVA: 0x00032320 File Offset: 0x00030520
 	public static TweenHeight Begin(UIWidget widget, float duration, int height)
 	{
 		TweenHeight tweenHeight = UITweener.Begin<TweenHeight>(widget.gameObject, duration);
@@ -84,46 +84,46 @@ public class TweenHeight : UITweener
 		return tweenHeight;
 	}
 
-	// Token: 0x06000911 RID: 2321 RVA: 0x0000B65B File Offset: 0x0000985B
+	// Token: 0x06000859 RID: 2137 RVA: 0x00032369 File Offset: 0x00030569
 	[ContextMenu("Set 'From' to current value")]
 	public override void SetStartToCurrentValue()
 	{
 		this.from = this.value;
 	}
 
-	// Token: 0x06000912 RID: 2322 RVA: 0x0000B669 File Offset: 0x00009869
+	// Token: 0x0600085A RID: 2138 RVA: 0x00032377 File Offset: 0x00030577
 	[ContextMenu("Set 'To' to current value")]
 	public override void SetEndToCurrentValue()
 	{
 		this.to = this.value;
 	}
 
-	// Token: 0x06000913 RID: 2323 RVA: 0x0000B677 File Offset: 0x00009877
+	// Token: 0x0600085B RID: 2139 RVA: 0x00032385 File Offset: 0x00030585
 	[ContextMenu("Assume value of 'From'")]
 	private void SetCurrentValueToStart()
 	{
 		this.value = this.from;
 	}
 
-	// Token: 0x06000914 RID: 2324 RVA: 0x0000B685 File Offset: 0x00009885
+	// Token: 0x0600085C RID: 2140 RVA: 0x00032393 File Offset: 0x00030593
 	[ContextMenu("Assume value of 'To'")]
 	private void SetCurrentValueToEnd()
 	{
 		this.value = this.to;
 	}
 
-	// Token: 0x04000647 RID: 1607
+	// Token: 0x04000524 RID: 1316
 	public int from = 100;
 
-	// Token: 0x04000648 RID: 1608
+	// Token: 0x04000525 RID: 1317
 	public int to = 100;
 
-	// Token: 0x04000649 RID: 1609
+	// Token: 0x04000526 RID: 1318
 	public bool updateTable;
 
-	// Token: 0x0400064A RID: 1610
+	// Token: 0x04000527 RID: 1319
 	private UIWidget mWidget;
 
-	// Token: 0x0400064B RID: 1611
+	// Token: 0x04000528 RID: 1320
 	private UITable mTable;
 }

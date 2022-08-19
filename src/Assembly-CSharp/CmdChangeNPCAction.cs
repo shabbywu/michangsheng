@@ -2,12 +2,12 @@
 using Fungus;
 using UnityEngine;
 
-// Token: 0x02000349 RID: 841
+// Token: 0x0200022D RID: 557
 [CommandInfo("YSPlayer", "改变NPC行为", "改变NPC行为", 0)]
 [AddComponentMenu("")]
 public class CmdChangeNPCAction : Command
 {
-	// Token: 0x060018B0 RID: 6320 RVA: 0x000DD4DC File Offset: 0x000DB6DC
+	// Token: 0x060015F8 RID: 5624 RVA: 0x00094E54 File Offset: 0x00093054
 	public override void OnEnter()
 	{
 		int num = NPCEx.NPCIDToNew(this.NPCID.Value);
@@ -28,7 +28,7 @@ public class CmdChangeNPCAction : Command
 		this.Continue();
 	}
 
-	// Token: 0x040013AA RID: 5034
+	// Token: 0x04001052 RID: 4178
 	[SerializeField]
 	[Tooltip("NPCID(老ID或者新ID皆可)")]
 	[VariableProperty(new Type[]
@@ -37,7 +37,7 @@ public class CmdChangeNPCAction : Command
 	})]
 	protected IntegerVariable NPCID;
 
-	// Token: 0x040013AB RID: 5035
+	// Token: 0x04001053 RID: 4179
 	[SerializeField]
 	[Tooltip("ActionID")]
 	[VariableProperty(new Type[]

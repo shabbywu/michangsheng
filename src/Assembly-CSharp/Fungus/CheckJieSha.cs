@@ -5,12 +5,12 @@ using UnityEngine;
 
 namespace Fungus
 {
-	// Token: 0x02001433 RID: 5171
+	// Token: 0x02000F7C RID: 3964
 	[CommandInfo("YSTools", "CheckJieSha", "检查是否能截杀", 0)]
 	[AddComponentMenu("")]
 	public class CheckJieSha : Command
 	{
-		// Token: 0x06007D16 RID: 32022 RVA: 0x002C6178 File Offset: 0x002C4378
+		// Token: 0x06006F26 RID: 28454 RVA: 0x002A6620 File Offset: 0x002A4820
 		public override void OnEnter()
 		{
 			int nowMapIndex = Tools.instance.getPlayer().NowMapIndex;
@@ -57,18 +57,18 @@ namespace Fungus
 			this.Continue();
 		}
 
-		// Token: 0x06007D17 RID: 32023 RVA: 0x000113CF File Offset: 0x0000F5CF
+		// Token: 0x06006F27 RID: 28455 RVA: 0x0005E228 File Offset: 0x0005C428
 		public override Color GetButtonColor()
 		{
 			return new Color32(184, 210, 235, byte.MaxValue);
 		}
 
-		// Token: 0x06007D18 RID: 32024 RVA: 0x000042DD File Offset: 0x000024DD
+		// Token: 0x06006F28 RID: 28456 RVA: 0x00004095 File Offset: 0x00002295
 		public override void OnReset()
 		{
 		}
 
-		// Token: 0x04006AC3 RID: 27331
+		// Token: 0x04005BEF RID: 23535
 		[Tooltip("npcId")]
 		[VariableProperty(new Type[]
 		{
@@ -77,7 +77,7 @@ namespace Fungus
 		[SerializeField]
 		protected IntegerVariable npcId;
 
-		// Token: 0x04006AC4 RID: 27332
+		// Token: 0x04005BF0 RID: 23536
 		[Tooltip("是否截杀")]
 		[VariableProperty(new Type[]
 		{
@@ -86,7 +86,7 @@ namespace Fungus
 		[SerializeField]
 		protected BooleanVariable JieSha;
 
-		// Token: 0x04006AC5 RID: 27333
+		// Token: 0x04005BF1 RID: 23537
 		[Tooltip("威胁物品")]
 		[VariableProperty(new Type[]
 		{

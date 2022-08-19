@@ -2,19 +2,19 @@
 using System.Collections;
 using UnityEngine;
 
-// Token: 0x02000146 RID: 326
+// Token: 0x020000D5 RID: 213
 [RequireComponent(typeof(CharacterController))]
 [AddComponentMenu("Character/Character Motor")]
 public class CharacterMotor : MonoBehaviour
 {
-	// Token: 0x06000BF4 RID: 3060 RVA: 0x0000E03F File Offset: 0x0000C23F
+	// Token: 0x06000B11 RID: 2833 RVA: 0x000433A7 File Offset: 0x000415A7
 	private void Awake()
 	{
 		this.controller = base.gameObject.GetComponent<CharacterController>();
 		this.tr = base.transform;
 	}
 
-	// Token: 0x06000BF5 RID: 3061 RVA: 0x000950E0 File Offset: 0x000932E0
+	// Token: 0x06000B12 RID: 2834 RVA: 0x000433C8 File Offset: 0x000415C8
 	private void UpdateFunction()
 	{
 		Vector3 vector = this.movement.velocity;
@@ -104,7 +104,7 @@ public class CharacterMotor : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000BF6 RID: 3062 RVA: 0x000955F0 File Offset: 0x000937F0
+	// Token: 0x06000B13 RID: 2835 RVA: 0x000438D8 File Offset: 0x00041AD8
 	private void FixedUpdate()
 	{
 		if (this.movingPlatform.enabled)
@@ -129,7 +129,7 @@ public class CharacterMotor : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000BF7 RID: 3063 RVA: 0x0000E05E File Offset: 0x0000C25E
+	// Token: 0x06000B14 RID: 2836 RVA: 0x000439B7 File Offset: 0x00041BB7
 	private void Update()
 	{
 		if (!this.useFixedUpdate)
@@ -138,7 +138,7 @@ public class CharacterMotor : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000BF8 RID: 3064 RVA: 0x000956D0 File Offset: 0x000938D0
+	// Token: 0x06000B15 RID: 2837 RVA: 0x000439C8 File Offset: 0x00041BC8
 	private Vector3 ApplyInputVelocityChange(Vector3 velocity)
 	{
 		if (!this.canControl)
@@ -187,7 +187,7 @@ public class CharacterMotor : MonoBehaviour
 		return velocity;
 	}
 
-	// Token: 0x06000BF9 RID: 3065 RVA: 0x0009585C File Offset: 0x00093A5C
+	// Token: 0x06000B16 RID: 2838 RVA: 0x00043B54 File Offset: 0x00041D54
 	private Vector3 ApplyGravityAndJumping(Vector3 velocity)
 	{
 		if (!this.inputJump || !this.canControl)
@@ -246,7 +246,7 @@ public class CharacterMotor : MonoBehaviour
 		return velocity;
 	}
 
-	// Token: 0x06000BFA RID: 3066 RVA: 0x00095B40 File Offset: 0x00093D40
+	// Token: 0x06000B17 RID: 2839 RVA: 0x00043E38 File Offset: 0x00042038
 	private void OnControllerColliderHit(ControllerColliderHit hit)
 	{
 		if (hit.normal.y > 0f && hit.normal.y > this.groundNormal.y && hit.moveDirection.y < 0f)
@@ -265,7 +265,7 @@ public class CharacterMotor : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000BFB RID: 3067 RVA: 0x0000E06E File Offset: 0x0000C26E
+	// Token: 0x06000B18 RID: 2840 RVA: 0x00043F17 File Offset: 0x00042117
 	private IEnumerable SubtractNewPlatformVelocity()
 	{
 		if (this.movingPlatform.enabled && (this.movingPlatform.movementTransfer == CharacterMotor.MovementTransferOnJump.InitTransfer || this.movingPlatform.movementTransfer == CharacterMotor.MovementTransferOnJump.PermaTransfer))
@@ -286,13 +286,13 @@ public class CharacterMotor : MonoBehaviour
 		yield break;
 	}
 
-	// Token: 0x06000BFC RID: 3068 RVA: 0x0000E07E File Offset: 0x0000C27E
+	// Token: 0x06000B19 RID: 2841 RVA: 0x00043F27 File Offset: 0x00042127
 	private bool MoveWithPlatform()
 	{
 		return this.movingPlatform.enabled && (this.grounded || this.movingPlatform.movementTransfer == CharacterMotor.MovementTransferOnJump.PermaLocked) && this.movingPlatform.activePlatform != null;
 	}
 
-	// Token: 0x06000BFD RID: 3069 RVA: 0x00095C20 File Offset: 0x00093E20
+	// Token: 0x06000B1A RID: 2842 RVA: 0x00043F60 File Offset: 0x00042160
 	private Vector3 GetDesiredHorizontalVelocity()
 	{
 		Vector3 vector = this.tr.InverseTransformDirection(this.inputMoveDirection);
@@ -305,19 +305,19 @@ public class CharacterMotor : MonoBehaviour
 		return this.tr.TransformDirection(vector * num);
 	}
 
-	// Token: 0x06000BFE RID: 3070 RVA: 0x00095C98 File Offset: 0x00093E98
+	// Token: 0x06000B1B RID: 2843 RVA: 0x00043FD8 File Offset: 0x000421D8
 	private Vector3 AdjustGroundVelocityToNormal(Vector3 hVelocity, Vector3 groundNormal)
 	{
 		return Vector3.Cross(Vector3.Cross(Vector3.up, hVelocity), groundNormal).normalized * hVelocity.magnitude;
 	}
 
-	// Token: 0x06000BFF RID: 3071 RVA: 0x0000E0B6 File Offset: 0x0000C2B6
+	// Token: 0x06000B1C RID: 2844 RVA: 0x0004400A File Offset: 0x0004220A
 	private bool IsGroundedTest()
 	{
 		return (double)this.groundNormal.y > 0.01;
 	}
 
-	// Token: 0x06000C00 RID: 3072 RVA: 0x0000E0CF File Offset: 0x0000C2CF
+	// Token: 0x06000B1D RID: 2845 RVA: 0x00044023 File Offset: 0x00042223
 	private float GetMaxAcceleration(bool grounded)
 	{
 		if (!grounded)
@@ -327,55 +327,55 @@ public class CharacterMotor : MonoBehaviour
 		return this.movement.maxGroundAcceleration;
 	}
 
-	// Token: 0x06000C01 RID: 3073 RVA: 0x0000E0EB File Offset: 0x0000C2EB
+	// Token: 0x06000B1E RID: 2846 RVA: 0x0004403F File Offset: 0x0004223F
 	private float CalculateJumpVerticalSpeed(float targetJumpHeight)
 	{
 		return Mathf.Sqrt(2f * targetJumpHeight * this.movement.gravity);
 	}
 
-	// Token: 0x06000C02 RID: 3074 RVA: 0x0000E105 File Offset: 0x0000C305
+	// Token: 0x06000B1F RID: 2847 RVA: 0x00044059 File Offset: 0x00042259
 	private bool IsJumping()
 	{
 		return this.jumping.jumping;
 	}
 
-	// Token: 0x06000C03 RID: 3075 RVA: 0x0000E112 File Offset: 0x0000C312
+	// Token: 0x06000B20 RID: 2848 RVA: 0x00044066 File Offset: 0x00042266
 	private bool IsSliding()
 	{
 		return this.grounded && this.sliding.enabled && this.TooSteep();
 	}
 
-	// Token: 0x06000C04 RID: 3076 RVA: 0x0000E131 File Offset: 0x0000C331
+	// Token: 0x06000B21 RID: 2849 RVA: 0x00044085 File Offset: 0x00042285
 	private bool IsTouchingCeiling()
 	{
 		return (this.movement.collisionFlags & 2) > 0;
 	}
 
-	// Token: 0x06000C05 RID: 3077 RVA: 0x0000E143 File Offset: 0x0000C343
+	// Token: 0x06000B22 RID: 2850 RVA: 0x00044097 File Offset: 0x00042297
 	private bool IsGrounded()
 	{
 		return this.grounded;
 	}
 
-	// Token: 0x06000C06 RID: 3078 RVA: 0x0000E14B File Offset: 0x0000C34B
+	// Token: 0x06000B23 RID: 2851 RVA: 0x0004409F File Offset: 0x0004229F
 	private bool TooSteep()
 	{
 		return this.groundNormal.y <= Mathf.Cos(this.controller.slopeLimit * 0.017453292f);
 	}
 
-	// Token: 0x06000C07 RID: 3079 RVA: 0x0000E173 File Offset: 0x0000C373
+	// Token: 0x06000B24 RID: 2852 RVA: 0x000440C7 File Offset: 0x000422C7
 	private Vector3 GetDirection()
 	{
 		return this.inputMoveDirection;
 	}
 
-	// Token: 0x06000C08 RID: 3080 RVA: 0x0000E17B File Offset: 0x0000C37B
+	// Token: 0x06000B25 RID: 2853 RVA: 0x000440CF File Offset: 0x000422CF
 	private void SetControllable(bool controllable)
 	{
 		this.canControl = controllable;
 	}
 
-	// Token: 0x06000C09 RID: 3081 RVA: 0x00095CCC File Offset: 0x00093ECC
+	// Token: 0x06000B26 RID: 2854 RVA: 0x000440D8 File Offset: 0x000422D8
 	private float MaxSpeedInDirection(Vector3 desiredMovementDirection)
 	{
 		if (desiredMovementDirection == Vector3.zero)
@@ -387,7 +387,7 @@ public class CharacterMotor : MonoBehaviour
 		return new Vector3(normalized.x, 0f, normalized.z * num).magnitude * this.movement.maxSidewaysSpeed;
 	}
 
-	// Token: 0x06000C0A RID: 3082 RVA: 0x0000E184 File Offset: 0x0000C384
+	// Token: 0x06000B27 RID: 2855 RVA: 0x00044177 File Offset: 0x00042377
 	private void SetVelocity(Vector3 velocity)
 	{
 		this.grounded = false;
@@ -396,62 +396,62 @@ public class CharacterMotor : MonoBehaviour
 		base.SendMessage("OnExternalVelocity");
 	}
 
-	// Token: 0x040008E4 RID: 2276
+	// Token: 0x04000739 RID: 1849
 	private bool canControl = true;
 
-	// Token: 0x040008E5 RID: 2277
+	// Token: 0x0400073A RID: 1850
 	private bool useFixedUpdate = true;
 
-	// Token: 0x040008E6 RID: 2278
+	// Token: 0x0400073B RID: 1851
 	[NonSerialized]
 	public Vector3 inputMoveDirection = Vector3.zero;
 
-	// Token: 0x040008E7 RID: 2279
+	// Token: 0x0400073C RID: 1852
 	[NonSerialized]
 	public bool inputJump;
 
-	// Token: 0x040008E8 RID: 2280
+	// Token: 0x0400073D RID: 1853
 	private CharacterMotor.CharacterMotorMovement movement = new CharacterMotor.CharacterMotorMovement();
 
-	// Token: 0x040008E9 RID: 2281
+	// Token: 0x0400073E RID: 1854
 	private CharacterMotor.CharacterMotorJumping jumping = new CharacterMotor.CharacterMotorJumping();
 
-	// Token: 0x040008EA RID: 2282
+	// Token: 0x0400073F RID: 1855
 	private CharacterMotor.CharacterMotorMovingPlatform movingPlatform = new CharacterMotor.CharacterMotorMovingPlatform();
 
-	// Token: 0x040008EB RID: 2283
+	// Token: 0x04000740 RID: 1856
 	private CharacterMotor.CharacterMotorSliding sliding = new CharacterMotor.CharacterMotorSliding();
 
-	// Token: 0x040008EC RID: 2284
+	// Token: 0x04000741 RID: 1857
 	[NonSerialized]
 	public bool grounded = true;
 
-	// Token: 0x040008ED RID: 2285
+	// Token: 0x04000742 RID: 1858
 	[NonSerialized]
 	public Vector3 groundNormal = Vector3.zero;
 
-	// Token: 0x040008EE RID: 2286
+	// Token: 0x04000743 RID: 1859
 	private Vector3 lastGroundNormal = Vector3.zero;
 
-	// Token: 0x040008EF RID: 2287
+	// Token: 0x04000744 RID: 1860
 	private Transform tr;
 
-	// Token: 0x040008F0 RID: 2288
+	// Token: 0x04000745 RID: 1861
 	private CharacterController controller;
 
-	// Token: 0x02000147 RID: 327
+	// Token: 0x02001235 RID: 4661
 	private class CharacterMotorMovement
 	{
-		// Token: 0x040008F1 RID: 2289
+		// Token: 0x040064FA RID: 25850
 		public float maxForwardSpeed = 10f;
 
-		// Token: 0x040008F2 RID: 2290
+		// Token: 0x040064FB RID: 25851
 		public float maxSidewaysSpeed = 10f;
 
-		// Token: 0x040008F3 RID: 2291
+		// Token: 0x040064FC RID: 25852
 		public float maxBackwardsSpeed = 10f;
 
-		// Token: 0x040008F4 RID: 2292
+		// Token: 0x040064FD RID: 25853
 		public AnimationCurve slopeSpeedMultiplier = new AnimationCurve(new Keyframe[]
 		{
 			new Keyframe(-90f, 1f),
@@ -459,150 +459,150 @@ public class CharacterMotor : MonoBehaviour
 			new Keyframe(90f, 0f)
 		});
 
-		// Token: 0x040008F5 RID: 2293
+		// Token: 0x040064FE RID: 25854
 		public float maxGroundAcceleration = 30f;
 
-		// Token: 0x040008F6 RID: 2294
+		// Token: 0x040064FF RID: 25855
 		public float maxAirAcceleration = 20f;
 
-		// Token: 0x040008F7 RID: 2295
+		// Token: 0x04006500 RID: 25856
 		public float gravity = 10f;
 
-		// Token: 0x040008F8 RID: 2296
+		// Token: 0x04006501 RID: 25857
 		public float maxFallSpeed = 20f;
 
-		// Token: 0x040008F9 RID: 2297
+		// Token: 0x04006502 RID: 25858
 		[NonSerialized]
 		public CollisionFlags collisionFlags;
 
-		// Token: 0x040008FA RID: 2298
+		// Token: 0x04006503 RID: 25859
 		[NonSerialized]
 		public Vector3 velocity;
 
-		// Token: 0x040008FB RID: 2299
+		// Token: 0x04006504 RID: 25860
 		[NonSerialized]
 		public Vector3 frameVelocity = Vector3.zero;
 
-		// Token: 0x040008FC RID: 2300
+		// Token: 0x04006505 RID: 25861
 		[NonSerialized]
 		public Vector3 hitPoint = Vector3.zero;
 
-		// Token: 0x040008FD RID: 2301
+		// Token: 0x04006506 RID: 25862
 		[NonSerialized]
 		public Vector3 lastHitPoint = new Vector3(float.PositiveInfinity, 0f, 0f);
 	}
 
-	// Token: 0x02000148 RID: 328
+	// Token: 0x02001236 RID: 4662
 	private enum MovementTransferOnJump
 	{
-		// Token: 0x040008FF RID: 2303
+		// Token: 0x04006508 RID: 25864
 		None,
-		// Token: 0x04000900 RID: 2304
+		// Token: 0x04006509 RID: 25865
 		InitTransfer,
-		// Token: 0x04000901 RID: 2305
+		// Token: 0x0400650A RID: 25866
 		PermaTransfer,
-		// Token: 0x04000902 RID: 2306
+		// Token: 0x0400650B RID: 25867
 		PermaLocked
 	}
 
-	// Token: 0x02000149 RID: 329
+	// Token: 0x02001237 RID: 4663
 	private class CharacterMotorJumping
 	{
-		// Token: 0x04000903 RID: 2307
+		// Token: 0x0400650C RID: 25868
 		public bool enabled = true;
 
-		// Token: 0x04000904 RID: 2308
+		// Token: 0x0400650D RID: 25869
 		public float baseHeight = 1.6f;
 
-		// Token: 0x04000905 RID: 2309
+		// Token: 0x0400650E RID: 25870
 		public float extraHeight = 1.6f;
 
-		// Token: 0x04000906 RID: 2310
+		// Token: 0x0400650F RID: 25871
 		public float perpAmount = 2f;
 
-		// Token: 0x04000907 RID: 2311
+		// Token: 0x04006510 RID: 25872
 		public float steepPerpAmount = 1.5f;
 
-		// Token: 0x04000908 RID: 2312
+		// Token: 0x04006511 RID: 25873
 		[NonSerialized]
 		public bool jumping;
 
-		// Token: 0x04000909 RID: 2313
+		// Token: 0x04006512 RID: 25874
 		[NonSerialized]
 		public bool holdingJumpButton;
 
-		// Token: 0x0400090A RID: 2314
+		// Token: 0x04006513 RID: 25875
 		[NonSerialized]
 		public float lastStartTime;
 
-		// Token: 0x0400090B RID: 2315
+		// Token: 0x04006514 RID: 25876
 		[NonSerialized]
 		public float lastButtonDownTime = -100f;
 
-		// Token: 0x0400090C RID: 2316
+		// Token: 0x04006515 RID: 25877
 		[NonSerialized]
 		public Vector3 jumpDir = Vector3.up;
 	}
 
-	// Token: 0x0200014A RID: 330
+	// Token: 0x02001238 RID: 4664
 	private class CharacterMotorMovingPlatform
 	{
-		// Token: 0x0400090D RID: 2317
+		// Token: 0x04006516 RID: 25878
 		public bool enabled = true;
 
-		// Token: 0x0400090E RID: 2318
+		// Token: 0x04006517 RID: 25879
 		public CharacterMotor.MovementTransferOnJump movementTransfer = CharacterMotor.MovementTransferOnJump.PermaTransfer;
 
-		// Token: 0x0400090F RID: 2319
+		// Token: 0x04006518 RID: 25880
 		[NonSerialized]
 		public Transform hitPlatform;
 
-		// Token: 0x04000910 RID: 2320
+		// Token: 0x04006519 RID: 25881
 		[NonSerialized]
 		public Transform activePlatform;
 
-		// Token: 0x04000911 RID: 2321
+		// Token: 0x0400651A RID: 25882
 		[NonSerialized]
 		public Vector3 activeLocalPoint;
 
-		// Token: 0x04000912 RID: 2322
+		// Token: 0x0400651B RID: 25883
 		[NonSerialized]
 		public Vector3 activeGlobalPoint;
 
-		// Token: 0x04000913 RID: 2323
+		// Token: 0x0400651C RID: 25884
 		[NonSerialized]
 		public Quaternion activeLocalRotation;
 
-		// Token: 0x04000914 RID: 2324
+		// Token: 0x0400651D RID: 25885
 		[NonSerialized]
 		public Quaternion activeGlobalRotation;
 
-		// Token: 0x04000915 RID: 2325
+		// Token: 0x0400651E RID: 25886
 		[NonSerialized]
 		public Matrix4x4 lastMatrix;
 
-		// Token: 0x04000916 RID: 2326
+		// Token: 0x0400651F RID: 25887
 		[NonSerialized]
 		public Vector3 platformVelocity;
 
-		// Token: 0x04000917 RID: 2327
+		// Token: 0x04006520 RID: 25888
 		[NonSerialized]
 		public bool newPlatform;
 	}
 
-	// Token: 0x0200014B RID: 331
+	// Token: 0x02001239 RID: 4665
 	private class CharacterMotorSliding
 	{
-		// Token: 0x04000918 RID: 2328
+		// Token: 0x04006521 RID: 25889
 		public bool enabled = true;
 
-		// Token: 0x04000919 RID: 2329
+		// Token: 0x04006522 RID: 25890
 		public float slidingSpeed = 15f;
 
-		// Token: 0x0400091A RID: 2330
+		// Token: 0x04006523 RID: 25891
 		public float sidewaysControl = 1f;
 
-		// Token: 0x0400091B RID: 2331
+		// Token: 0x04006524 RID: 25892
 		public float speedControl = 0.4f;
 	}
 }

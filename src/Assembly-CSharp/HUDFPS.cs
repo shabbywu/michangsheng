@@ -1,17 +1,17 @@
 ﻿using System;
 using UnityEngine;
 
-// Token: 0x020006A5 RID: 1701
+// Token: 0x020004B1 RID: 1201
 public class HUDFPS : MonoBehaviour
 {
-	// Token: 0x06002A8E RID: 10894 RVA: 0x0002102E File Offset: 0x0001F22E
+	// Token: 0x06002610 RID: 9744 RVA: 0x00107A0B File Offset: 0x00105C0B
 	private void Start()
 	{
 		this.timeleft = this.updateInterval;
 		base.transform.GetComponent<GUIText>().fontSize = Screen.height / 20;
 	}
 
-	// Token: 0x06002A8F RID: 10895 RVA: 0x00147DFC File Offset: 0x00145FFC
+	// Token: 0x06002611 RID: 9745 RVA: 0x00107A34 File Offset: 0x00105C34
 	private void Update()
 	{
 		this.timeleft -= Time.deltaTime;
@@ -40,15 +40,15 @@ public class HUDFPS : MonoBehaviour
 		}
 	}
 
-	// Token: 0x04002437 RID: 9271
+	// Token: 0x04001EC4 RID: 7876
 	public float updateInterval = 0.5f;
 
-	// Token: 0x04002438 RID: 9272
+	// Token: 0x04001EC5 RID: 7877
 	private float accum;
 
-	// Token: 0x04002439 RID: 9273
+	// Token: 0x04001EC6 RID: 7878
 	private int frames;
 
-	// Token: 0x0400243A RID: 9274
+	// Token: 0x04001EC7 RID: 7879
 	private float timeleft;
 }

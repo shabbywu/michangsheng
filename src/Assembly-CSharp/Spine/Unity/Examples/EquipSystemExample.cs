@@ -5,11 +5,11 @@ using UnityEngine;
 
 namespace Spine.Unity.Examples
 {
-	// Token: 0x02000E42 RID: 3650
+	// Token: 0x02000AF0 RID: 2800
 	public class EquipSystemExample : MonoBehaviour, IHasSkeletonDataAsset
 	{
-		// Token: 0x17000822 RID: 2082
-		// (get) Token: 0x060057B6 RID: 22454 RVA: 0x0003EBA5 File Offset: 0x0003CDA5
+		// Token: 0x170005EB RID: 1515
+		// (get) Token: 0x06004E30 RID: 20016 RVA: 0x002159D8 File Offset: 0x00213BD8
 		SkeletonDataAsset IHasSkeletonDataAsset.SkeletonDataAsset
 		{
 			get
@@ -18,7 +18,7 @@ namespace Spine.Unity.Examples
 			}
 		}
 
-		// Token: 0x060057B7 RID: 22455 RVA: 0x00245980 File Offset: 0x00243B80
+		// Token: 0x06004E31 RID: 20017 RVA: 0x002159E0 File Offset: 0x00213BE0
 		public void Equip(EquipAssetExample asset)
 		{
 			EquipSystemExample.EquipType equipType = asset.equipType;
@@ -28,7 +28,7 @@ namespace Spine.Unity.Examples
 			this.target.Equip(slotIndex, equipHook.templateAttachment, attachment);
 		}
 
-		// Token: 0x060057B8 RID: 22456 RVA: 0x002459F8 File Offset: 0x00243BF8
+		// Token: 0x06004E32 RID: 20018 RVA: 0x00215A58 File Offset: 0x00213C58
 		private Attachment GenerateAttachmentFromEquipAsset(EquipAssetExample asset, int slotIndex, string templateSkinName, string templateAttachmentName)
 		{
 			Attachment remappedClone;
@@ -41,56 +41,56 @@ namespace Spine.Unity.Examples
 			return remappedClone;
 		}
 
-		// Token: 0x060057B9 RID: 22457 RVA: 0x0003EBAD File Offset: 0x0003CDAD
+		// Token: 0x06004E33 RID: 20019 RVA: 0x00215AB9 File Offset: 0x00213CB9
 		public void Done()
 		{
 			this.target.OptimizeSkin();
 		}
 
-		// Token: 0x040057AB RID: 22443
+		// Token: 0x04004D94 RID: 19860
 		public SkeletonDataAsset skeletonDataAsset;
 
-		// Token: 0x040057AC RID: 22444
+		// Token: 0x04004D95 RID: 19861
 		public Material sourceMaterial;
 
-		// Token: 0x040057AD RID: 22445
+		// Token: 0x04004D96 RID: 19862
 		public bool applyPMA = true;
 
-		// Token: 0x040057AE RID: 22446
+		// Token: 0x04004D97 RID: 19863
 		public List<EquipSystemExample.EquipHook> equippables = new List<EquipSystemExample.EquipHook>();
 
-		// Token: 0x040057AF RID: 22447
+		// Token: 0x04004D98 RID: 19864
 		public EquipsVisualsComponentExample target;
 
-		// Token: 0x040057B0 RID: 22448
+		// Token: 0x04004D99 RID: 19865
 		public Dictionary<EquipAssetExample, Attachment> cachedAttachments = new Dictionary<EquipAssetExample, Attachment>();
 
-		// Token: 0x02000E43 RID: 3651
+		// Token: 0x020015C8 RID: 5576
 		[Serializable]
 		public class EquipHook
 		{
-			// Token: 0x040057B1 RID: 22449
+			// Token: 0x0400706E RID: 28782
 			public EquipSystemExample.EquipType type;
 
-			// Token: 0x040057B2 RID: 22450
+			// Token: 0x0400706F RID: 28783
 			[SpineSlot("", "", false, true, false)]
 			public string slot;
 
-			// Token: 0x040057B3 RID: 22451
+			// Token: 0x04007070 RID: 28784
 			[SpineSkin("", "", true, false, false)]
 			public string templateSkin;
 
-			// Token: 0x040057B4 RID: 22452
+			// Token: 0x04007071 RID: 28785
 			[SpineAttachment(true, false, false, "", "", "templateSkin", true, false)]
 			public string templateAttachment;
 		}
 
-		// Token: 0x02000E44 RID: 3652
+		// Token: 0x020015C9 RID: 5577
 		public enum EquipType
 		{
-			// Token: 0x040057B6 RID: 22454
+			// Token: 0x04007073 RID: 28787
 			Gun,
-			// Token: 0x040057B7 RID: 22455
+			// Token: 0x04007074 RID: 28788
 			Goggles
 		}
 	}

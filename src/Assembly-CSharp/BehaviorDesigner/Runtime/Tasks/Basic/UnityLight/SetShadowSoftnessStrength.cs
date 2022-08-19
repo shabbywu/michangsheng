@@ -3,12 +3,12 @@ using UnityEngine;
 
 namespace BehaviorDesigner.Runtime.Tasks.Basic.UnityLight
 {
-	// Token: 0x020015DD RID: 5597
+	// Token: 0x0200111E RID: 4382
 	[TaskCategory("Basic/Light")]
 	[TaskDescription("Sets the shadow strength of the light.")]
 	public class SetShadowSoftnessStrength : Action
 	{
-		// Token: 0x06008328 RID: 33576 RVA: 0x002CE7EC File Offset: 0x002CC9EC
+		// Token: 0x0600752E RID: 29998 RVA: 0x002B40AC File Offset: 0x002B22AC
 		public override void OnStart()
 		{
 			GameObject defaultGameObject = base.GetDefaultGameObject(this.targetGameObject.Value);
@@ -19,7 +19,7 @@ namespace BehaviorDesigner.Runtime.Tasks.Basic.UnityLight
 			}
 		}
 
-		// Token: 0x06008329 RID: 33577 RVA: 0x0005A1FC File Offset: 0x000583FC
+		// Token: 0x0600752F RID: 29999 RVA: 0x002B40EC File Offset: 0x002B22EC
 		public override TaskStatus OnUpdate()
 		{
 			if (this.light == null)
@@ -31,25 +31,25 @@ namespace BehaviorDesigner.Runtime.Tasks.Basic.UnityLight
 			return 2;
 		}
 
-		// Token: 0x0600832A RID: 33578 RVA: 0x0005A22F File Offset: 0x0005842F
+		// Token: 0x06007530 RID: 30000 RVA: 0x002B411F File Offset: 0x002B231F
 		public override void OnReset()
 		{
 			this.targetGameObject = null;
 			this.shadowStrength = 0f;
 		}
 
-		// Token: 0x04006FFB RID: 28667
+		// Token: 0x040060D8 RID: 24792
 		[Tooltip("The GameObject that the task operates on. If null the task GameObject is used.")]
 		public SharedGameObject targetGameObject;
 
-		// Token: 0x04006FFC RID: 28668
+		// Token: 0x040060D9 RID: 24793
 		[Tooltip("The shadow strength to set")]
 		public SharedFloat shadowStrength;
 
-		// Token: 0x04006FFD RID: 28669
+		// Token: 0x040060DA RID: 24794
 		private Light light;
 
-		// Token: 0x04006FFE RID: 28670
+		// Token: 0x040060DB RID: 24795
 		private GameObject prevGameObject;
 	}
 }

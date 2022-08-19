@@ -3,36 +3,36 @@ using UnityEngine;
 
 namespace Fungus
 {
-	// Token: 0x02001257 RID: 4695
+	// Token: 0x02000E0A RID: 3594
 	[CommandInfo("Scripting", "Open URL", "Opens the specified URL in the browser.", 0)]
 	public class OpenURL : Command
 	{
-		// Token: 0x0600720C RID: 29196 RVA: 0x0004D965 File Offset: 0x0004BB65
+		// Token: 0x0600657E RID: 25982 RVA: 0x0028355B File Offset: 0x0028175B
 		public override void OnEnter()
 		{
 			Application.OpenURL(this.url.Value);
 			this.Continue();
 		}
 
-		// Token: 0x0600720D RID: 29197 RVA: 0x0004D97D File Offset: 0x0004BB7D
+		// Token: 0x0600657F RID: 25983 RVA: 0x00283573 File Offset: 0x00281773
 		public override string GetSummary()
 		{
 			return this.url.Value;
 		}
 
-		// Token: 0x0600720E RID: 29198 RVA: 0x0004C5E0 File Offset: 0x0004A7E0
+		// Token: 0x06006580 RID: 25984 RVA: 0x0027D3DB File Offset: 0x0027B5DB
 		public override Color GetButtonColor()
 		{
 			return new Color32(235, 191, 217, byte.MaxValue);
 		}
 
-		// Token: 0x0600720F RID: 29199 RVA: 0x0004D98A File Offset: 0x0004BB8A
+		// Token: 0x06006581 RID: 25985 RVA: 0x00283580 File Offset: 0x00281780
 		public override bool HasReference(Variable variable)
 		{
 			return this.url.stringRef == variable || base.HasReference(variable);
 		}
 
-		// Token: 0x04006465 RID: 25701
+		// Token: 0x04005730 RID: 22320
 		[Tooltip("URL to open in the browser")]
 		[SerializeField]
 		protected StringData url;

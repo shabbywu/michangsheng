@@ -4,10 +4,10 @@ using UnityEngine.EventSystems;
 
 namespace SuperScrollView
 {
-	// Token: 0x020009E6 RID: 2534
+	// Token: 0x020006BB RID: 1723
 	public class ClickEventListener : MonoBehaviour, IPointerClickHandler, IEventSystemHandler, IPointerDownHandler, IPointerUpHandler
 	{
-		// Token: 0x060040B8 RID: 16568 RVA: 0x001BE7C8 File Offset: 0x001BC9C8
+		// Token: 0x0600369B RID: 13979 RVA: 0x00175DC4 File Offset: 0x00173FC4
 		public static ClickEventListener Get(GameObject obj)
 		{
 			ClickEventListener clickEventListener = obj.GetComponent<ClickEventListener>();
@@ -18,8 +18,8 @@ namespace SuperScrollView
 			return clickEventListener;
 		}
 
-		// Token: 0x17000736 RID: 1846
-		// (get) Token: 0x060040B9 RID: 16569 RVA: 0x0002E833 File Offset: 0x0002CA33
+		// Token: 0x1700050B RID: 1291
+		// (get) Token: 0x0600369C RID: 13980 RVA: 0x00175DE9 File Offset: 0x00173FE9
 		public bool IsPressd
 		{
 			get
@@ -28,7 +28,7 @@ namespace SuperScrollView
 			}
 		}
 
-		// Token: 0x060040BA RID: 16570 RVA: 0x0002E83B File Offset: 0x0002CA3B
+		// Token: 0x0600369D RID: 13981 RVA: 0x00175DF1 File Offset: 0x00173FF1
 		public void OnPointerClick(PointerEventData eventData)
 		{
 			if (eventData.clickCount == 2)
@@ -45,31 +45,31 @@ namespace SuperScrollView
 			}
 		}
 
-		// Token: 0x060040BB RID: 16571 RVA: 0x0002E879 File Offset: 0x0002CA79
+		// Token: 0x0600369E RID: 13982 RVA: 0x00175E2F File Offset: 0x0017402F
 		public void SetClickEventHandler(Action<GameObject> handler)
 		{
 			this.mClickedHandler = handler;
 		}
 
-		// Token: 0x060040BC RID: 16572 RVA: 0x0002E882 File Offset: 0x0002CA82
+		// Token: 0x0600369F RID: 13983 RVA: 0x00175E38 File Offset: 0x00174038
 		public void SetDoubleClickEventHandler(Action<GameObject> handler)
 		{
 			this.mDoubleClickedHandler = handler;
 		}
 
-		// Token: 0x060040BD RID: 16573 RVA: 0x0002E88B File Offset: 0x0002CA8B
+		// Token: 0x060036A0 RID: 13984 RVA: 0x00175E41 File Offset: 0x00174041
 		public void SetPointerDownHandler(Action<GameObject> handler)
 		{
 			this.mOnPointerDownHandler = handler;
 		}
 
-		// Token: 0x060040BE RID: 16574 RVA: 0x0002E894 File Offset: 0x0002CA94
+		// Token: 0x060036A1 RID: 13985 RVA: 0x00175E4A File Offset: 0x0017404A
 		public void SetPointerUpHandler(Action<GameObject> handler)
 		{
 			this.mOnPointerUpHandler = handler;
 		}
 
-		// Token: 0x060040BF RID: 16575 RVA: 0x0002E89D File Offset: 0x0002CA9D
+		// Token: 0x060036A2 RID: 13986 RVA: 0x00175E53 File Offset: 0x00174053
 		public void OnPointerDown(PointerEventData eventData)
 		{
 			this.mIsPressed = true;
@@ -79,7 +79,7 @@ namespace SuperScrollView
 			}
 		}
 
-		// Token: 0x060040C0 RID: 16576 RVA: 0x0002E8BF File Offset: 0x0002CABF
+		// Token: 0x060036A3 RID: 13987 RVA: 0x00175E75 File Offset: 0x00174075
 		public void OnPointerUp(PointerEventData eventData)
 		{
 			this.mIsPressed = false;
@@ -89,19 +89,19 @@ namespace SuperScrollView
 			}
 		}
 
-		// Token: 0x04003997 RID: 14743
+		// Token: 0x04002F92 RID: 12178
 		private Action<GameObject> mClickedHandler;
 
-		// Token: 0x04003998 RID: 14744
+		// Token: 0x04002F93 RID: 12179
 		private Action<GameObject> mDoubleClickedHandler;
 
-		// Token: 0x04003999 RID: 14745
+		// Token: 0x04002F94 RID: 12180
 		private Action<GameObject> mOnPointerDownHandler;
 
-		// Token: 0x0400399A RID: 14746
+		// Token: 0x04002F95 RID: 12181
 		private Action<GameObject> mOnPointerUpHandler;
 
-		// Token: 0x0400399B RID: 14747
+		// Token: 0x04002F96 RID: 12182
 		private bool mIsPressed;
 	}
 }

@@ -3,13 +3,13 @@ using UnityEngine;
 
 namespace Fungus
 {
-	// Token: 0x0200128E RID: 4750
+	// Token: 0x02000E3D RID: 3645
 	[CommandInfo("Variable", "Set Save Profile", "Sets the active profile that the Save Variable and Load Variable commands will use. This is useful to crete multiple player save games. Once set, the profile applies across all Flowcharts and will also persist across scene loads.", 0)]
 	[AddComponentMenu("")]
 	public class SetSaveProfile : Command
 	{
-		// Token: 0x17000A84 RID: 2692
-		// (get) Token: 0x06007326 RID: 29478 RVA: 0x0004E852 File Offset: 0x0004CA52
+		// Token: 0x1700081D RID: 2077
+		// (get) Token: 0x06006698 RID: 26264 RVA: 0x00286B77 File Offset: 0x00284D77
 		public static string SaveProfile
 		{
 			get
@@ -18,31 +18,31 @@ namespace Fungus
 			}
 		}
 
-		// Token: 0x06007327 RID: 29479 RVA: 0x0004E859 File Offset: 0x0004CA59
+		// Token: 0x06006699 RID: 26265 RVA: 0x00286B7E File Offset: 0x00284D7E
 		public override void OnEnter()
 		{
 			SetSaveProfile.saveProfile = this.saveProfileName;
 			this.Continue();
 		}
 
-		// Token: 0x06007328 RID: 29480 RVA: 0x0004E86C File Offset: 0x0004CA6C
+		// Token: 0x0600669A RID: 26266 RVA: 0x00286B91 File Offset: 0x00284D91
 		public override string GetSummary()
 		{
 			return this.saveProfileName;
 		}
 
-		// Token: 0x06007329 RID: 29481 RVA: 0x0004C5E0 File Offset: 0x0004A7E0
+		// Token: 0x0600669B RID: 26267 RVA: 0x0027D3DB File Offset: 0x0027B5DB
 		public override Color GetButtonColor()
 		{
 			return new Color32(235, 191, 217, byte.MaxValue);
 		}
 
-		// Token: 0x04006524 RID: 25892
+		// Token: 0x040057E0 RID: 22496
 		[Tooltip("Name of save profile to make active.")]
 		[SerializeField]
 		protected string saveProfileName = "";
 
-		// Token: 0x04006525 RID: 25893
+		// Token: 0x040057E1 RID: 22497
 		private static string saveProfile = "";
 	}
 }

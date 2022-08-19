@@ -2,20 +2,20 @@
 
 namespace MoonSharp.Interpreter
 {
-	// Token: 0x02001066 RID: 4198
+	// Token: 0x02000C9A RID: 3226
 	public enum CoroutineState
 	{
-		// Token: 0x04005E26 RID: 24102
+		// Token: 0x0400525D RID: 21085
 		Main,
-		// Token: 0x04005E27 RID: 24103
+		// Token: 0x0400525E RID: 21086
 		NotStarted,
-		// Token: 0x04005E28 RID: 24104
+		// Token: 0x0400525F RID: 21087
 		Suspended,
-		// Token: 0x04005E29 RID: 24105
+		// Token: 0x04005260 RID: 21088
 		ForceSuspended,
-		// Token: 0x04005E2A RID: 24106
+		// Token: 0x04005261 RID: 21089
 		Running,
-		// Token: 0x04005E2B RID: 24107
+		// Token: 0x04005262 RID: 21090
 		Dead
 	}
 }

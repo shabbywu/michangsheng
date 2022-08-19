@@ -3,10 +3,10 @@ using UnityEngine;
 
 namespace GUIPackage
 {
-	// Token: 0x02000D4F RID: 3407
+	// Token: 0x02000A4B RID: 2635
 	public class ItemCellEX : ItemCell
 	{
-		// Token: 0x0600510F RID: 20751 RVA: 0x0021C094 File Offset: 0x0021A294
+		// Token: 0x06004852 RID: 18514 RVA: 0x001E8448 File Offset: 0x001E6648
 		private void Start()
 		{
 			this.Icon = base.transform.Find("Icon").gameObject;
@@ -32,7 +32,7 @@ namespace GUIPackage
 			}
 		}
 
-		// Token: 0x06005110 RID: 20752 RVA: 0x0021C1F8 File Offset: 0x0021A3F8
+		// Token: 0x06004853 RID: 18515 RVA: 0x001E85AC File Offset: 0x001E67AC
 		private void OnDrop(GameObject obj)
 		{
 			if (Input.GetMouseButtonUp(0) && !this.JustShow)
@@ -46,13 +46,13 @@ namespace GUIPackage
 			}
 		}
 
-		// Token: 0x06005111 RID: 20753 RVA: 0x0003A670 File Offset: 0x00038870
+		// Token: 0x06004854 RID: 18516 RVA: 0x001E861F File Offset: 0x001E681F
 		public override int getItemPrice()
 		{
 			return this.getItemMoney(this.inventory.inventory[int.Parse(base.name)]);
 		}
 
-		// Token: 0x06005112 RID: 20754 RVA: 0x0003A693 File Offset: 0x00038893
+		// Token: 0x06004855 RID: 18517 RVA: 0x001E8642 File Offset: 0x001E6842
 		public override void MobilePress()
 		{
 			if (this.Item.itemID == -1)
@@ -69,7 +69,7 @@ namespace GUIPackage
 			};
 		}
 
-		// Token: 0x06005113 RID: 20755 RVA: 0x0021C26C File Offset: 0x0021A46C
+		// Token: 0x06004856 RID: 18518 RVA: 0x001E8670 File Offset: 0x001E6870
 		public override void PCOnPress()
 		{
 			if (JiaoYiManager.inst != null && !JiaoYiManager.inst.canClick)
@@ -110,7 +110,7 @@ namespace GUIPackage
 			}
 		}
 
-		// Token: 0x06005114 RID: 20756 RVA: 0x0021C348 File Offset: 0x0021A548
+		// Token: 0x06004857 RID: 18519 RVA: 0x001E874C File Offset: 0x001E694C
 		public void ClickChengItem()
 		{
 			jsonData.InventoryNUM inventoryNUM = (jsonData.InventoryNUM)int.Parse(base.name);
@@ -135,7 +135,7 @@ namespace GUIPackage
 			this.inventory.showTooltip = false;
 		}
 
-		// Token: 0x06005115 RID: 20757 RVA: 0x0021C3BC File Offset: 0x0021A5BC
+		// Token: 0x06004858 RID: 18520 RVA: 0x001E87C0 File Offset: 0x001E69C0
 		public ItemCellEX getNullItemCell(int type)
 		{
 			int num;
@@ -163,7 +163,7 @@ namespace GUIPackage
 			return null;
 		}
 
-		// Token: 0x06005116 RID: 20758 RVA: 0x0021C464 File Offset: 0x0021A664
+		// Token: 0x06004859 RID: 18521 RVA: 0x001E8868 File Offset: 0x001E6A68
 		public void chengItemIcon()
 		{
 			if (this.Item.itemName == null)
@@ -186,14 +186,14 @@ namespace GUIPackage
 			this.inventory.draggingItem = true;
 		}
 
-		// Token: 0x06005117 RID: 20759 RVA: 0x0021C520 File Offset: 0x0021A720
+		// Token: 0x0600485A RID: 18522 RVA: 0x001E8924 File Offset: 0x001E6B24
 		public void setUI_chifen()
 		{
 			selectNum.instence.gameObject.GetComponent<UI_chaifen>().Item = this.inventory.dragedItem.Clone();
 			selectNum.instence.gameObject.GetComponent<UI_chaifen>().inputNum.value = string.Concat(1);
 		}
 
-		// Token: 0x06005118 RID: 20760 RVA: 0x0021C578 File Offset: 0x0021A778
+		// Token: 0x0600485B RID: 18523 RVA: 0x001E897C File Offset: 0x001E6B7C
 		public void moveItem()
 		{
 			if (this.inventory.isPaiMai && jsonData.instance.PaiMaiBiao[PaiMaiHang.inst.PaiMaiHangID.ToString()]["jimainum"].I < 1)
@@ -440,13 +440,13 @@ namespace GUIPackage
 			}
 		}
 
-		// Token: 0x06005119 RID: 20761 RVA: 0x0021CBE0 File Offset: 0x0021ADE0
+		// Token: 0x0600485C RID: 18524 RVA: 0x001E8FE4 File Offset: 0x001E71E4
 		public bool CanChaifen(item item, int num)
 		{
 			return true;
 		}
 
-		// Token: 0x0600511A RID: 20762 RVA: 0x0021CBF0 File Offset: 0x0021ADF0
+		// Token: 0x0600485D RID: 18525 RVA: 0x001E8FF4 File Offset: 0x001E71F4
 		public void hasDrawChanegItem()
 		{
 			int otherAllMoney = this.getOtherAllMoney();
@@ -455,7 +455,7 @@ namespace GUIPackage
 			this.WatherExCheng(otherAllMoney, usedMoney, itemMoney);
 		}
 
-		// Token: 0x0600511B RID: 20763 RVA: 0x0003A6C0 File Offset: 0x000388C0
+		// Token: 0x0600485E RID: 18526 RVA: 0x001E902A File Offset: 0x001E722A
 		public void WatherExCheng(int allMoney, int useMoney, int itemMoney)
 		{
 			if (this.inventory.isNewJiaoYi)
@@ -472,7 +472,7 @@ namespace GUIPackage
 			this.exchengeItem();
 		}
 
-		// Token: 0x0600511C RID: 20764 RVA: 0x0003A6F6 File Offset: 0x000388F6
+		// Token: 0x0600485F RID: 18527 RVA: 0x001E9060 File Offset: 0x001E7260
 		public ExchangePlan getecplan()
 		{
 			if (this.parentPlane.GetComponent<PaiMaiHang>() != null)
@@ -482,7 +482,7 @@ namespace GUIPackage
 			return this.parentPlane.GetComponent<ExchangePlan>();
 		}
 
-		// Token: 0x0600511D RID: 20765 RVA: 0x0021CC28 File Offset: 0x0021AE28
+		// Token: 0x06004860 RID: 18528 RVA: 0x001E908C File Offset: 0x001E728C
 		public string getMoneyText()
 		{
 			ExchangePlan exchangePlan = this.getecplan();
@@ -502,7 +502,7 @@ namespace GUIPackage
 			return str;
 		}
 
-		// Token: 0x0600511E RID: 20766 RVA: 0x0021CCA4 File Offset: 0x0021AEA4
+		// Token: 0x06004861 RID: 18529 RVA: 0x001E9108 File Offset: 0x001E7308
 		public int getOtherAllMoney()
 		{
 			ExchangePlan exchangePlan = this.getecplan();
@@ -522,7 +522,7 @@ namespace GUIPackage
 			return result;
 		}
 
-		// Token: 0x0600511F RID: 20767 RVA: 0x0021CD28 File Offset: 0x0021AF28
+		// Token: 0x06004862 RID: 18530 RVA: 0x001E918C File Offset: 0x001E738C
 		public int getUsedMoney()
 		{
 			ExchangePlan exchangePlan = this.getecplan();
@@ -542,7 +542,7 @@ namespace GUIPackage
 			return buyMoney;
 		}
 
-		// Token: 0x06005120 RID: 20768 RVA: 0x0021CD84 File Offset: 0x0021AF84
+		// Token: 0x06004863 RID: 18531 RVA: 0x001E91E8 File Offset: 0x001E73E8
 		public static float getItemNaiJiuPrice(item _item)
 		{
 			JSONObject jsonobject = jsonData.instance.ItemJsonData[_item.itemID.ToString()];
@@ -563,7 +563,7 @@ namespace GUIPackage
 			return result;
 		}
 
-		// Token: 0x06005121 RID: 20769 RVA: 0x0021CE50 File Offset: 0x0021B050
+		// Token: 0x06004864 RID: 18532 RVA: 0x001E92B4 File Offset: 0x001E74B4
 		public int getItemMoney(item _item)
 		{
 			ExchangePlan exchangePlan = this.getecplan();
@@ -575,7 +575,7 @@ namespace GUIPackage
 			return _item.GetJiaoYiPrice(npcid, this.isPlayer, false);
 		}
 
-		// Token: 0x06005122 RID: 20770 RVA: 0x0021CE84 File Offset: 0x0021B084
+		// Token: 0x06004865 RID: 18533 RVA: 0x001E92E8 File Offset: 0x001E74E8
 		public override int MoneyPercent(item _item)
 		{
 			ExchangePlan exchangePlan = this.getecplan();
@@ -586,7 +586,7 @@ namespace GUIPackage
 			return _item.GetJiaCheng(exchangePlan.MonstarID);
 		}
 
-		// Token: 0x06005123 RID: 20771 RVA: 0x0021CEB0 File Offset: 0x0021B0B0
+		// Token: 0x06004866 RID: 18534 RVA: 0x001E9314 File Offset: 0x001E7514
 		public void exchengeItem()
 		{
 			this.inventory.ChangeItem(ref this.Item, ref this.inventory.dragedItem);
@@ -596,7 +596,7 @@ namespace GUIPackage
 			this.inventory.draggingItem = false;
 		}
 
-		// Token: 0x06005124 RID: 20772 RVA: 0x0021CF54 File Offset: 0x0021B154
+		// Token: 0x06004867 RID: 18535 RVA: 0x001E93B8 File Offset: 0x001E75B8
 		public void Update()
 		{
 			try
@@ -622,22 +622,22 @@ namespace GUIPackage
 			base.ShowName();
 		}
 
-		// Token: 0x04005228 RID: 21032
+		// Token: 0x040048F1 RID: 18673
 		public bool isFight;
 
-		// Token: 0x04005229 RID: 21033
+		// Token: 0x040048F2 RID: 18674
 		private Key key;
 
-		// Token: 0x0400522A RID: 21034
+		// Token: 0x040048F3 RID: 18675
 		private Transform parentPlane;
 
-		// Token: 0x0400522B RID: 21035
+		// Token: 0x040048F4 RID: 18676
 		public bool NotCheckMoney;
 
-		// Token: 0x0400522C RID: 21036
+		// Token: 0x040048F5 RID: 18677
 		public int chaifenType;
 
-		// Token: 0x0400522D RID: 21037
+		// Token: 0x040048F6 RID: 18678
 		private static int moveItemCount = 1;
 	}
 }

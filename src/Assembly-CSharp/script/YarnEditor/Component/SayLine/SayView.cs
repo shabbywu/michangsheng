@@ -6,10 +6,10 @@ using Yarn.Unity;
 
 namespace script.YarnEditor.Component.SayLine
 {
-	// Token: 0x02000AB1 RID: 2737
+	// Token: 0x020009CA RID: 2506
 	public class SayView : DialogueViewBase
 	{
-		// Token: 0x0600461A RID: 17946 RVA: 0x001DEB38 File Offset: 0x001DCD38
+		// Token: 0x060045BE RID: 17854 RVA: 0x001D8D4C File Offset: 0x001D6F4C
 		public override void RunLine(LocalizedLine dialogueLine, Action onDialogueLineFinished)
 		{
 			if (this.sayDialog == null)
@@ -38,7 +38,7 @@ namespace script.YarnEditor.Component.SayLine
 			this.sayDialog.Say(text, true, true, true, true, false, null, new Action(this.Continue));
 		}
 
-		// Token: 0x0600461B RID: 17947 RVA: 0x0003225B File Offset: 0x0003045B
+		// Token: 0x060045BF RID: 17855 RVA: 0x001D8FC3 File Offset: 0x001D71C3
 		public void Continue()
 		{
 			if (this.currentLine == null)
@@ -48,10 +48,10 @@ namespace script.YarnEditor.Component.SayLine
 			base.ReadyForNextLine();
 		}
 
-		// Token: 0x04003E4C RID: 15948
+		// Token: 0x0400473B RID: 18235
 		private SayDialog sayDialog;
 
-		// Token: 0x04003E4D RID: 15949
+		// Token: 0x0400473C RID: 18236
 		private LocalizedLine currentLine;
 	}
 }

@@ -3,10 +3,10 @@ using UnityEngine;
 
 namespace Spine.Unity.Examples
 {
-	// Token: 0x02000E5C RID: 3676
+	// Token: 0x02000B00 RID: 2816
 	public class SpineboyFacialExpression : MonoBehaviour
 	{
-		// Token: 0x06005820 RID: 22560 RVA: 0x00246B94 File Offset: 0x00244D94
+		// Token: 0x06004E70 RID: 20080 RVA: 0x00216BBC File Offset: 0x00214DBC
 		private void Start()
 		{
 			Skeleton skeleton = base.GetComponent<SkeletonAnimation>().Skeleton;
@@ -20,7 +20,7 @@ namespace Spine.Unity.Examples
 			this.normalMouth = skeleton.GetAttachment(num2, this.normalMouthName);
 		}
 
-		// Token: 0x06005821 RID: 22561 RVA: 0x00246C38 File Offset: 0x00244E38
+		// Token: 0x06004E71 RID: 20081 RVA: 0x00216C60 File Offset: 0x00214E60
 		private void Update()
 		{
 			if (Mathf.Abs(this.footPlanter.Balance) > this.balanceThreshold)
@@ -41,58 +41,58 @@ namespace Spine.Unity.Examples
 			this.mouthSlot.Attachment = this.normalMouth;
 		}
 
-		// Token: 0x04005824 RID: 22564
+		// Token: 0x04004DEE RID: 19950
 		public SpineboyFootplanter footPlanter;
 
-		// Token: 0x04005825 RID: 22565
+		// Token: 0x04004DEF RID: 19951
 		[SpineSlot("", "", false, true, false)]
 		public string eyeSlotName;
 
-		// Token: 0x04005826 RID: 22566
+		// Token: 0x04004DF0 RID: 19952
 		[SpineSlot("", "", false, true, false)]
 		public string mouthSlotName;
 
-		// Token: 0x04005827 RID: 22567
+		// Token: 0x04004DF1 RID: 19953
 		[SpineAttachment(true, false, false, "eyeSlotName", "", "", true, false)]
 		public string shockEyeName;
 
-		// Token: 0x04005828 RID: 22568
+		// Token: 0x04004DF2 RID: 19954
 		[SpineAttachment(true, false, false, "eyeSlotName", "", "", true, false)]
 		public string normalEyeName;
 
-		// Token: 0x04005829 RID: 22569
+		// Token: 0x04004DF3 RID: 19955
 		[SpineAttachment(true, false, false, "mouthSlotName", "", "", true, false)]
 		public string shockMouthName;
 
-		// Token: 0x0400582A RID: 22570
+		// Token: 0x04004DF4 RID: 19956
 		[SpineAttachment(true, false, false, "mouthSlotName", "", "", true, false)]
 		public string normalMouthName;
 
-		// Token: 0x0400582B RID: 22571
+		// Token: 0x04004DF5 RID: 19957
 		public Slot eyeSlot;
 
-		// Token: 0x0400582C RID: 22572
+		// Token: 0x04004DF6 RID: 19958
 		public Slot mouthSlot;
 
-		// Token: 0x0400582D RID: 22573
+		// Token: 0x04004DF7 RID: 19959
 		public Attachment shockEye;
 
-		// Token: 0x0400582E RID: 22574
+		// Token: 0x04004DF8 RID: 19960
 		public Attachment normalEye;
 
-		// Token: 0x0400582F RID: 22575
+		// Token: 0x04004DF9 RID: 19961
 		public Attachment shockMouth;
 
-		// Token: 0x04005830 RID: 22576
+		// Token: 0x04004DFA RID: 19962
 		public Attachment normalMouth;
 
-		// Token: 0x04005831 RID: 22577
+		// Token: 0x04004DFB RID: 19963
 		public float balanceThreshold = 2.5f;
 
-		// Token: 0x04005832 RID: 22578
+		// Token: 0x04004DFC RID: 19964
 		public float shockDuration = 1f;
 
-		// Token: 0x04005833 RID: 22579
+		// Token: 0x04004DFD RID: 19965
 		[Header("Debug")]
 		public float shockTimer;
 	}

@@ -2,12 +2,12 @@
 using Fungus;
 using UnityEngine;
 
-// Token: 0x02000356 RID: 854
+// Token: 0x0200023A RID: 570
 [CommandInfo("YSNPCJiaoHu", "获取NPC名字", "获取NPC名字，文本会赋值到TmpStrValue", 0)]
 [AddComponentMenu("")]
 public class CmdGetNPCName : Command
 {
-	// Token: 0x060018D2 RID: 6354 RVA: 0x000DE0DC File Offset: 0x000DC2DC
+	// Token: 0x0600161A RID: 5658 RVA: 0x00095AC4 File Offset: 0x00093CC4
 	public override void OnEnter()
 	{
 		Flowchart flowchart = this.GetFlowchart();
@@ -36,11 +36,11 @@ public class CmdGetNPCName : Command
 		this.Continue();
 	}
 
-	// Token: 0x040013C6 RID: 5062
+	// Token: 0x0400106E RID: 4206
 	[SerializeField]
 	protected string npcid;
 
-	// Token: 0x040013C7 RID: 5063
+	// Token: 0x0400106F RID: 4207
 	[SerializeField]
 	[VariableProperty(new Type[]
 	{

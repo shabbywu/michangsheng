@@ -3,16 +3,16 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
 
-// Token: 0x02000236 RID: 566
+// Token: 0x0200015E RID: 350
 public class MessageBox : ModalBox
 {
-	// Token: 0x0600116B RID: 4459 RVA: 0x00010E31 File Offset: 0x0000F031
+	// Token: 0x06000F3C RID: 3900 RVA: 0x0005BD13 File Offset: 0x00059F13
 	public static MessageBox Show(string message, Action<DialogResult> onFinished, MessageBoxButtons buttons = MessageBoxButtons.OK)
 	{
 		return MessageBox.Show(message, null, onFinished, buttons);
 	}
 
-	// Token: 0x0600116C RID: 4460 RVA: 0x00010E3C File Offset: 0x0000F03C
+	// Token: 0x06000F3D RID: 3901 RVA: 0x0005BD1E File Offset: 0x00059F1E
 	public static MessageBox Show(string message, string title = null, Action<DialogResult> onFinished = null, MessageBoxButtons buttons = MessageBoxButtons.OK)
 	{
 		MessageBox component = Object.Instantiate<GameObject>(Resources.Load<GameObject>(MessageBox.PrefabResourceName)).GetComponent<MessageBox>();
@@ -22,7 +22,7 @@ public class MessageBox : ModalBox
 		return component;
 	}
 
-	// Token: 0x0600116D RID: 4461 RVA: 0x000ABC00 File Offset: 0x000A9E00
+	// Token: 0x06000F3E RID: 3902 RVA: 0x0005BD4C File Offset: 0x00059F4C
 	private void SetUpButtons(MessageBoxButtons buttons)
 	{
 		GameObject gameObject = this.Button.gameObject;
@@ -116,7 +116,7 @@ public class MessageBox : ModalBox
 		}
 	}
 
-	// Token: 0x0600116E RID: 4462 RVA: 0x00010CC8 File Offset: 0x0000EEC8
+	// Token: 0x06000F3F RID: 3903 RVA: 0x0005BA8E File Offset: 0x00059C8E
 	private GameObject CreateButton(GameObject buttonToClone, string label, UnityAction target)
 	{
 		GameObject gameObject = Object.Instantiate<GameObject>(buttonToClone);
@@ -126,7 +126,7 @@ public class MessageBox : ModalBox
 		return gameObject;
 	}
 
-	// Token: 0x0600116F RID: 4463 RVA: 0x00010E68 File Offset: 0x0000F068
+	// Token: 0x06000F40 RID: 3904 RVA: 0x0005BFC2 File Offset: 0x0005A1C2
 	public override void Close()
 	{
 		if (this.onFinish != null)
@@ -136,21 +136,21 @@ public class MessageBox : ModalBox
 		base.Close();
 	}
 
-	// Token: 0x04000E11 RID: 3601
+	// Token: 0x04000B6B RID: 2923
 	[Tooltip("Set this to the name of the prefab that should be loaded when a menu box is shown.")]
 	public static string PrefabResourceName = "Message Box";
 
-	// Token: 0x04000E12 RID: 3602
+	// Token: 0x04000B6C RID: 2924
 	[Tooltip("Set this to a custom function that will be used to localize the button texts.")]
 	public static Func<string, string> Localize = (string sourceString) => sourceString;
 
-	// Token: 0x04000E13 RID: 3603
+	// Token: 0x04000B6D RID: 2925
 	[Tooltip("Set to true to send the title and message of message boxes and menus thru the Localize function.")]
 	public static bool LocalizeTitleAndMessage = false;
 
-	// Token: 0x04000E14 RID: 3604
+	// Token: 0x04000B6E RID: 2926
 	private DialogResult result;
 
-	// Token: 0x04000E15 RID: 3605
+	// Token: 0x04000B6F RID: 2927
 	private Action<DialogResult> onFinish;
 }

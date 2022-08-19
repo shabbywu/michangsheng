@@ -2,16 +2,16 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-// Token: 0x020003B4 RID: 948
+// Token: 0x02000289 RID: 649
 public class UIBiGuanPanel : MonoBehaviour, IESCClose
 {
-	// Token: 0x06001A4B RID: 6731 RVA: 0x000166F1 File Offset: 0x000148F1
+	// Token: 0x06001773 RID: 6003 RVA: 0x000A0EC0 File Offset: 0x0009F0C0
 	private void Awake()
 	{
 		UIBiGuanPanel.Inst = this;
 	}
 
-	// Token: 0x06001A4C RID: 6732 RVA: 0x000166F9 File Offset: 0x000148F9
+	// Token: 0x06001774 RID: 6004 RVA: 0x000A0EC8 File Offset: 0x0009F0C8
 	public void OpenBiGuan(int type)
 	{
 		if (Tools.instance.getPlayer().getStaticID() != 0)
@@ -23,14 +23,14 @@ public class UIBiGuanPanel : MonoBehaviour, IESCClose
 		UIPopTip.Inst.Pop("必须装备主修功法才能修炼！", PopTipIconType.叹号);
 	}
 
-	// Token: 0x06001A4D RID: 6733 RVA: 0x0001672A File Offset: 0x0001492A
+	// Token: 0x06001775 RID: 6005 RVA: 0x000A0EF9 File Offset: 0x0009F0F9
 	public void ShowPanel()
 	{
 		this.PanelObj.SetActive(true);
 		ESCCloseManager.Inst.RegisterClose(this);
 	}
 
-	// Token: 0x06001A4E RID: 6734 RVA: 0x000E8444 File Offset: 0x000E6644
+	// Token: 0x06001776 RID: 6006 RVA: 0x000A0F14 File Offset: 0x0009F114
 	public void HidePanel()
 	{
 		this.XiuLian.OnPanelHide();
@@ -41,7 +41,7 @@ public class UIBiGuanPanel : MonoBehaviour, IESCClose
 		ESCCloseManager.Inst.UnRegisterClose(this);
 	}
 
-	// Token: 0x06001A4F RID: 6735 RVA: 0x000E8494 File Offset: 0x000E6694
+	// Token: 0x06001777 RID: 6007 RVA: 0x000A0F64 File Offset: 0x0009F164
 	public void RefreshKeFangTime()
 	{
 		string screenName = Tools.getScreenName();
@@ -63,35 +63,35 @@ public class UIBiGuanPanel : MonoBehaviour, IESCClose
 		});
 	}
 
-	// Token: 0x06001A50 RID: 6736 RVA: 0x00016743 File Offset: 0x00014943
+	// Token: 0x06001778 RID: 6008 RVA: 0x000A101F File Offset: 0x0009F21F
 	public bool TryEscClose()
 	{
 		this.HidePanel();
 		return true;
 	}
 
-	// Token: 0x040015AA RID: 5546
+	// Token: 0x0400122D RID: 4653
 	public static UIBiGuanPanel Inst;
 
-	// Token: 0x040015AB RID: 5547
+	// Token: 0x0400122E RID: 4654
 	public GameObject PanelObj;
 
-	// Token: 0x040015AC RID: 5548
+	// Token: 0x0400122F RID: 4655
 	public UIBiGuanXiuLianPanel XiuLian;
 
-	// Token: 0x040015AD RID: 5549
+	// Token: 0x04001230 RID: 4656
 	public UIBiGuanLingWuPanel LingWu;
 
-	// Token: 0x040015AE RID: 5550
+	// Token: 0x04001231 RID: 4657
 	public UIBiGuanTuPoPanel TuPo;
 
-	// Token: 0x040015AF RID: 5551
+	// Token: 0x04001232 RID: 4658
 	public UIBiGuanGanWuPanel GanWu;
 
-	// Token: 0x040015B0 RID: 5552
+	// Token: 0x04001233 RID: 4659
 	public Text KeFangTimeText;
 
-	// Token: 0x040015B1 RID: 5553
+	// Token: 0x04001234 RID: 4660
 	[HideInInspector]
 	public int BiGuanType = 1;
 }

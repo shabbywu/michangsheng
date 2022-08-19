@@ -5,10 +5,10 @@ using UnityEngine.UI;
 
 namespace YSGame.Fight
 {
-	// Token: 0x02000E02 RID: 3586
+	// Token: 0x02000AC4 RID: 2756
 	public class UIFightMoveLingQi : MonoBehaviour
 	{
-		// Token: 0x060056A0 RID: 22176 RVA: 0x00241200 File Offset: 0x0023F400
+		// Token: 0x06004D51 RID: 19793 RVA: 0x00210D7C File Offset: 0x0020EF7C
 		private void Update()
 		{
 			if (this.IsStart)
@@ -37,7 +37,7 @@ namespace YSGame.Fight
 			}
 		}
 
-		// Token: 0x060056A1 RID: 22177 RVA: 0x002412F8 File Offset: 0x0023F4F8
+		// Token: 0x06004D52 RID: 19794 RVA: 0x00210E74 File Offset: 0x0020F074
 		public void SetData(LingQiType lingQiType, Vector3 start, Vector3 end, Action callback = null, int count = 1, bool showAnim = false, float particleSpeed = 5f)
 		{
 			if (lingQiType == LingQiType.Count)
@@ -79,7 +79,7 @@ namespace YSGame.Fight
 			this.IsStart = true;
 		}
 
-		// Token: 0x060056A2 RID: 22178 RVA: 0x002414AC File Offset: 0x0023F6AC
+		// Token: 0x06004D53 RID: 19795 RVA: 0x00211028 File Offset: 0x0020F228
 		private void OnEnd()
 		{
 			this.IsStart = false;
@@ -92,7 +92,7 @@ namespace YSGame.Fight
 			}
 		}
 
-		// Token: 0x04005621 RID: 22049
+		// Token: 0x04004C47 RID: 19527
 		private static List<Color> pColors = new List<Color>
 		{
 			new Color(1f, 0.8862745f, 0.02745098f),
@@ -103,44 +103,44 @@ namespace YSGame.Fight
 			new Color(0.2784314f, 0f, 0.33333334f)
 		};
 
-		// Token: 0x04005622 RID: 22050
+		// Token: 0x04004C48 RID: 19528
 		public particleAttractorLinear PAL;
 
-		// Token: 0x04005623 RID: 22051
+		// Token: 0x04004C49 RID: 19529
 		public ParticleSystem Particle1;
 
-		// Token: 0x04005624 RID: 22052
+		// Token: 0x04004C4A RID: 19530
 		public ParticleSystem Particle2;
 
-		// Token: 0x04005625 RID: 22053
+		// Token: 0x04004C4B RID: 19531
 		public Image LingQiImage;
 
-		// Token: 0x04005626 RID: 22054
+		// Token: 0x04004C4C RID: 19532
 		public Transform ParticleEnd;
 
-		// Token: 0x04005627 RID: 22055
+		// Token: 0x04004C4D RID: 19533
 		private Action OnMoveEnd;
 
-		// Token: 0x04005628 RID: 22056
+		// Token: 0x04004C4E RID: 19534
 		private float cd;
 
-		// Token: 0x04005629 RID: 22057
+		// Token: 0x04004C4F RID: 19535
 		[HideInInspector]
 		public bool IsStart;
 
-		// Token: 0x0400562A RID: 22058
+		// Token: 0x04004C50 RID: 19536
 		private bool isShowAnim;
 
-		// Token: 0x0400562B RID: 22059
+		// Token: 0x04004C51 RID: 19537
 		public LingQiType LastLingQiType;
 
-		// Token: 0x0400562C RID: 22060
+		// Token: 0x04004C52 RID: 19538
 		public int LastLingQiCount;
 
-		// Token: 0x0400562D RID: 22061
+		// Token: 0x04004C53 RID: 19539
 		private float deadTime;
 
-		// Token: 0x0400562E RID: 22062
+		// Token: 0x04004C54 RID: 19540
 		private float particleAnimTime = 0.66f;
 	}
 }

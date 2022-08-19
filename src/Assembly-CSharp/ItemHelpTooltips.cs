@@ -2,22 +2,22 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-// Token: 0x020005D1 RID: 1489
+// Token: 0x0200041D RID: 1053
 public class ItemHelpTooltips : MonoBehaviour
 {
-	// Token: 0x0600258B RID: 9611 RVA: 0x000042DD File Offset: 0x000024DD
+	// Token: 0x060021D1 RID: 8657 RVA: 0x00004095 File Offset: 0x00002295
 	private void Start()
 	{
 	}
 
-	// Token: 0x0600258C RID: 9612 RVA: 0x000042DD File Offset: 0x000024DD
+	// Token: 0x060021D2 RID: 8658 RVA: 0x00004095 File Offset: 0x00002295
 	private void Update()
 	{
 	}
 
-	// Token: 0x04002013 RID: 8211
+	// Token: 0x04001B4D RID: 6989
 	public Text titlename;
 
-	// Token: 0x04002014 RID: 8212
+	// Token: 0x04001B4E RID: 6990
 	public Text desc;
 }

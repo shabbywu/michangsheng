@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using KBEngine;
 using UnityEngine;
 
-// Token: 0x02000527 RID: 1319
+// Token: 0x0200039E RID: 926
 public class SiXuManager : MonoBehaviour, IESCClose
 {
-	// Token: 0x060021CA RID: 8650 RVA: 0x0001BC3D File Offset: 0x00019E3D
+	// Token: 0x06001E49 RID: 7753 RVA: 0x000D5735 File Offset: 0x000D3935
 	public void open()
 	{
 		ESCCloseManager.Inst.RegisterClose(this);
@@ -14,14 +14,14 @@ public class SiXuManager : MonoBehaviour, IESCClose
 		this.init();
 	}
 
-	// Token: 0x060021CB RID: 8651 RVA: 0x0001694F File Offset: 0x00014B4F
+	// Token: 0x06001E4A RID: 7754 RVA: 0x000A3540 File Offset: 0x000A1740
 	public void close()
 	{
 		base.gameObject.SetActive(false);
 		ESCCloseManager.Inst.UnRegisterClose(this);
 	}
 
-	// Token: 0x060021CC RID: 8652 RVA: 0x001190A4 File Offset: 0x001172A4
+	// Token: 0x06001E4B RID: 7755 RVA: 0x000D5754 File Offset: 0x000D3954
 	private void init()
 	{
 		this.clear();
@@ -29,7 +29,7 @@ public class SiXuManager : MonoBehaviour, IESCClose
 		this.initLingGuan(player);
 	}
 
-	// Token: 0x060021CD RID: 8653 RVA: 0x001190CC File Offset: 0x001172CC
+	// Token: 0x06001E4C RID: 7756 RVA: 0x000D577C File Offset: 0x000D397C
 	private void clear()
 	{
 		foreach (object obj in this.SiXuCell.transform.parent)
@@ -42,7 +42,7 @@ public class SiXuManager : MonoBehaviour, IESCClose
 		}
 	}
 
-	// Token: 0x060021CE RID: 8654 RVA: 0x00119140 File Offset: 0x00117340
+	// Token: 0x06001E4D RID: 7757 RVA: 0x000D57F0 File Offset: 0x000D39F0
 	private void initLingGuan(Avatar player)
 	{
 		List<JSONObject> list = player.LingGuang.list;
@@ -65,14 +65,14 @@ public class SiXuManager : MonoBehaviour, IESCClose
 		}
 	}
 
-	// Token: 0x060021CF RID: 8655 RVA: 0x0001BC5C File Offset: 0x00019E5C
+	// Token: 0x06001E4E RID: 7758 RVA: 0x000D596C File Offset: 0x000D3B6C
 	public bool TryEscClose()
 	{
 		this.close();
 		return true;
 	}
 
-	// Token: 0x04001D42 RID: 7490
+	// Token: 0x040018D9 RID: 6361
 	[SerializeField]
 	private GameObject SiXuCell;
 }

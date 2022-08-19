@@ -2,15 +2,15 @@
 using KBEngine;
 using UnityEngine;
 
-// Token: 0x020005ED RID: 1517
+// Token: 0x02000436 RID: 1078
 public class BiGuanYinfo : MonoBehaviour
 {
-	// Token: 0x06002612 RID: 9746 RVA: 0x000042DD File Offset: 0x000024DD
+	// Token: 0x06002253 RID: 8787 RVA: 0x00004095 File Offset: 0x00002295
 	private void Start()
 	{
 	}
 
-	// Token: 0x06002613 RID: 9747 RVA: 0x0012D424 File Offset: 0x0012B624
+	// Token: 0x06002254 RID: 8788 RVA: 0x000EC3AC File Offset: 0x000EA5AC
 	public void setEventShiJian()
 	{
 		foreach (object obj in this.grid.transform)
@@ -20,7 +20,7 @@ public class BiGuanYinfo : MonoBehaviour
 		Avatar player = Tools.instance.getPlayer();
 		foreach (JSONObject jsonobject in player.taskMag._TaskData["Task"].list)
 		{
-			JSONObject jsonobject2 = jsonData.instance.TaskJsonData[((int)jsonobject["id"].n).ToString()];
+			JSONObject jsonobject2 = jsonData.instance.TaskJsonData[jsonobject["id"].I.ToString()];
 			if ((int)jsonobject2["Type"].n == 0)
 			{
 				DateTime starTime = DateTime.Parse(jsonobject2["StarTime"].str);
@@ -42,7 +42,7 @@ public class BiGuanYinfo : MonoBehaviour
 		this.grid.repositionNow = true;
 	}
 
-	// Token: 0x06002614 RID: 9748 RVA: 0x0012D630 File Offset: 0x0012B830
+	// Token: 0x06002255 RID: 8789 RVA: 0x000EC5B8 File Offset: 0x000EA7B8
 	public static string getTaskNextTime(int circulation, DateTime now, DateTime StarTime, DateTime EndTime)
 	{
 		string result = "";
@@ -100,7 +100,7 @@ public class BiGuanYinfo : MonoBehaviour
 		return result;
 	}
 
-	// Token: 0x06002615 RID: 9749 RVA: 0x0012D84C File Offset: 0x0012BA4C
+	// Token: 0x06002256 RID: 8790 RVA: 0x000EC7D4 File Offset: 0x000EA9D4
 	private void Update()
 	{
 		Avatar player = Tools.instance.getPlayer();
@@ -136,24 +136,24 @@ public class BiGuanYinfo : MonoBehaviour
 		this.label4.text = "[E58E5D]资质：[-][000000]资质增加的修炼速度为" + player.AddZiZhiSpeed(jsonobject["Skill_Speed"].n) + "/月";
 	}
 
-	// Token: 0x04002092 RID: 8338
+	// Token: 0x04001BC6 RID: 7110
 	public UILabel label1;
 
-	// Token: 0x04002093 RID: 8339
+	// Token: 0x04001BC7 RID: 7111
 	public UILabel label2;
 
-	// Token: 0x04002094 RID: 8340
+	// Token: 0x04001BC8 RID: 7112
 	public UILabel label3;
 
-	// Token: 0x04002095 RID: 8341
+	// Token: 0x04001BC9 RID: 7113
 	public UILabel label4;
 
-	// Token: 0x04002096 RID: 8342
+	// Token: 0x04001BCA RID: 7114
 	public UIBiGuan biguan;
 
-	// Token: 0x04002097 RID: 8343
+	// Token: 0x04001BCB RID: 7115
 	public UILabel Temp;
 
-	// Token: 0x04002098 RID: 8344
+	// Token: 0x04001BCC RID: 7116
 	public UIGrid grid;
 }

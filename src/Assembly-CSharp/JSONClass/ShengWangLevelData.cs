@@ -3,10 +3,10 @@ using System.Collections.Generic;
 
 namespace JSONClass
 {
-	// Token: 0x02000C67 RID: 3175
+	// Token: 0x020008DA RID: 2266
 	public class ShengWangLevelData : IJSONClass
 	{
-		// Token: 0x06004D05 RID: 19717 RVA: 0x002088C4 File Offset: 0x00206AC4
+		// Token: 0x0600417B RID: 16763 RVA: 0x001C0560 File Offset: 0x001BE760
 		public static void InitDataDict()
 		{
 			foreach (JSONObject jsonobject in jsonData.instance.ShengWangLevelData.list)
@@ -40,27 +40,27 @@ namespace JSONClass
 			}
 		}
 
-		// Token: 0x06004D06 RID: 19718 RVA: 0x000042DD File Offset: 0x000024DD
+		// Token: 0x0600417C RID: 16764 RVA: 0x00004095 File Offset: 0x00002295
 		private static void OnInitFinish()
 		{
 		}
 
-		// Token: 0x04004C20 RID: 19488
+		// Token: 0x040040D6 RID: 16598
 		public static Dictionary<int, ShengWangLevelData> DataDict = new Dictionary<int, ShengWangLevelData>();
 
-		// Token: 0x04004C21 RID: 19489
+		// Token: 0x040040D7 RID: 16599
 		public static List<ShengWangLevelData> DataList = new List<ShengWangLevelData>();
 
-		// Token: 0x04004C22 RID: 19490
+		// Token: 0x040040D8 RID: 16600
 		public static Action OnInitFinishAction = new Action(ShengWangLevelData.OnInitFinish);
 
-		// Token: 0x04004C23 RID: 19491
+		// Token: 0x040040D9 RID: 16601
 		public int id;
 
-		// Token: 0x04004C24 RID: 19492
+		// Token: 0x040040DA RID: 16602
 		public string ShengWang;
 
-		// Token: 0x04004C25 RID: 19493
+		// Token: 0x040040DB RID: 16603
 		public List<int> ShengWangQuJian = new List<int>();
 	}
 }

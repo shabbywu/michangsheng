@@ -2,10 +2,10 @@
 
 namespace ICSharpCode.SharpZipLib.Core
 {
-	// Token: 0x0200082D RID: 2093
+	// Token: 0x02000584 RID: 1412
 	public interface IScanFilter
 	{
-		// Token: 0x060036D4 RID: 14036
+		// Token: 0x06002E5E RID: 11870
 		bool IsMatch(string name);
 	}
 }

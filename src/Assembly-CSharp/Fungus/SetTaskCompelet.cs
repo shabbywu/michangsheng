@@ -4,19 +4,19 @@ using UnityEngine;
 
 namespace Fungus
 {
-	// Token: 0x0200141E RID: 5150
+	// Token: 0x02000F67 RID: 3943
 	[CommandInfo("YSNew/Set", "SetTaskCompelet", "指定任务完成", 0)]
 	[AddComponentMenu("")]
 	public class SetTaskCompelet : Command
 	{
-		// Token: 0x06007CC5 RID: 31941 RVA: 0x000548A0 File Offset: 0x00052AA0
+		// Token: 0x06006ED5 RID: 28373 RVA: 0x002A5838 File Offset: 0x002A3A38
 		public override void OnEnter()
 		{
 			SetTaskCompelet.Do(this.TaskID);
 			this.Continue();
 		}
 
-		// Token: 0x06007CC6 RID: 31942 RVA: 0x002C55E8 File Offset: 0x002C37E8
+		// Token: 0x06006ED6 RID: 28374 RVA: 0x002A584C File Offset: 0x002A3A4C
 		public static void Do(int TaskID)
 		{
 			Avatar player = Tools.instance.getPlayer();
@@ -28,18 +28,18 @@ namespace Fungus
 			}
 		}
 
-		// Token: 0x06007CC7 RID: 31943 RVA: 0x000113CF File Offset: 0x0000F5CF
+		// Token: 0x06006ED7 RID: 28375 RVA: 0x0005E228 File Offset: 0x0005C428
 		public override Color GetButtonColor()
 		{
 			return new Color32(184, 210, 235, byte.MaxValue);
 		}
 
-		// Token: 0x06007CC8 RID: 31944 RVA: 0x000042DD File Offset: 0x000024DD
+		// Token: 0x06006ED8 RID: 28376 RVA: 0x00004095 File Offset: 0x00002295
 		public override void OnReset()
 		{
 		}
 
-		// Token: 0x04006AA6 RID: 27302
+		// Token: 0x04005BD1 RID: 23505
 		[Tooltip("任务的ID")]
 		[SerializeField]
 		protected int TaskID;

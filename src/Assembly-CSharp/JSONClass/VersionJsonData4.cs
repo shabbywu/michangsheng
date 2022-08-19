@@ -3,10 +3,10 @@ using System.Collections.Generic;
 
 namespace JSONClass
 {
-	// Token: 0x02000CFC RID: 3324
+	// Token: 0x0200097C RID: 2428
 	public class VersionJsonData4 : IJSONClass
 	{
-		// Token: 0x06004F5A RID: 20314 RVA: 0x00214B34 File Offset: 0x00212D34
+		// Token: 0x06004404 RID: 17412 RVA: 0x001CF928 File Offset: 0x001CDB28
 		public static void InitDataDict()
 		{
 			foreach (JSONObject jsonobject in jsonData.instance.VersionJsonData[4].list)
@@ -41,33 +41,33 @@ namespace JSONClass
 			}
 		}
 
-		// Token: 0x06004F5B RID: 20315 RVA: 0x000042DD File Offset: 0x000024DD
+		// Token: 0x06004405 RID: 17413 RVA: 0x00004095 File Offset: 0x00002295
 		private static void OnInitFinish()
 		{
 		}
 
-		// Token: 0x0400505F RID: 20575
+		// Token: 0x0400456B RID: 17771
 		public static int SEIDID = 4;
 
-		// Token: 0x04005060 RID: 20576
+		// Token: 0x0400456C RID: 17772
 		public static Dictionary<int, VersionJsonData4> DataDict = new Dictionary<int, VersionJsonData4>();
 
-		// Token: 0x04005061 RID: 20577
+		// Token: 0x0400456D RID: 17773
 		public static List<VersionJsonData4> DataList = new List<VersionJsonData4>();
 
-		// Token: 0x04005062 RID: 20578
+		// Token: 0x0400456E RID: 17774
 		public static Action OnInitFinishAction = new Action(VersionJsonData4.OnInitFinish);
 
-		// Token: 0x04005063 RID: 20579
+		// Token: 0x0400456F RID: 17775
 		public int id;
 
-		// Token: 0x04005064 RID: 20580
+		// Token: 0x04004570 RID: 17776
 		public int XueLiang;
 
-		// Token: 0x04005065 RID: 20581
+		// Token: 0x04004571 RID: 17777
 		public int ShenShi;
 
-		// Token: 0x04005066 RID: 20582
+		// Token: 0x04004572 RID: 17778
 		public int DunSu;
 	}
 }

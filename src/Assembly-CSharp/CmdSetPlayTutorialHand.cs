@@ -2,12 +2,12 @@
 using Fungus;
 using UnityEngine;
 
-// Token: 0x020002B2 RID: 690
+// Token: 0x020001B4 RID: 436
 [CommandInfo("YSTutorial", "设置焦点", "设置焦点", 0)]
 [AddComponentMenu("")]
 public class CmdSetPlayTutorialHand : Command
 {
-	// Token: 0x060014FB RID: 5371 RVA: 0x000133BB File Offset: 0x000115BB
+	// Token: 0x06001250 RID: 4688 RVA: 0x0006F379 File Offset: 0x0006D579
 	public override void OnEnter()
 	{
 		if (PlayTutorialCircle.Inst != null)
@@ -17,7 +17,7 @@ public class CmdSetPlayTutorialHand : Command
 		this.Continue();
 	}
 
-	// Token: 0x0400101F RID: 4127
+	// Token: 0x04000CF7 RID: 3319
 	[SerializeField]
 	[Tooltip("是否显示")]
 	protected bool Show;

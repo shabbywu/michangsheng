@@ -5,11 +5,11 @@ using UnityEngine.UI;
 
 namespace YSGame.TuJian
 {
-	// Token: 0x02000DDE RID: 3550
+	// Token: 0x02000AA1 RID: 2721
 	public class TuJianSearcher : MonoBehaviour
 	{
-		// Token: 0x17000802 RID: 2050
-		// (get) Token: 0x0600559D RID: 21917 RVA: 0x0003D3CE File Offset: 0x0003B5CE
+		// Token: 0x170005D9 RID: 1497
+		// (get) Token: 0x06004C50 RID: 19536 RVA: 0x00208B02 File Offset: 0x00206D02
 		public int SearchCount
 		{
 			get
@@ -22,13 +22,13 @@ namespace YSGame.TuJian
 			}
 		}
 
-		// Token: 0x0600559E RID: 21918 RVA: 0x0003D3E2 File Offset: 0x0003B5E2
+		// Token: 0x06004C51 RID: 19537 RVA: 0x00208B16 File Offset: 0x00206D16
 		private void Awake()
 		{
 			TuJianSearcher.Inst = this;
 		}
 
-		// Token: 0x0600559F RID: 21919 RVA: 0x0003D3EA File Offset: 0x0003B5EA
+		// Token: 0x06004C52 RID: 19538 RVA: 0x00208B1E File Offset: 0x00206D1E
 		private void Start()
 		{
 			this.input.text = "";
@@ -36,7 +36,7 @@ namespace YSGame.TuJian
 			this.input.onValueChanged.AddListener(new UnityAction<string>(this.Search));
 		}
 
-		// Token: 0x060055A0 RID: 21920 RVA: 0x0003D428 File Offset: 0x0003B628
+		// Token: 0x06004C53 RID: 19539 RVA: 0x00208B5C File Offset: 0x00206D5C
 		public void Search(string str)
 		{
 			this.searchStrs = str.Split(new char[]
@@ -47,13 +47,13 @@ namespace YSGame.TuJian
 			TuJianManager.TabDict[TuJianManager.Inst.NowTuJianTab].RefreshPanel(false);
 		}
 
-		// Token: 0x060055A1 RID: 21921 RVA: 0x0003D466 File Offset: 0x0003B666
+		// Token: 0x06004C54 RID: 19540 RVA: 0x00208B9A File Offset: 0x00206D9A
 		public void ClearSearchStrAndNoSearch()
 		{
 			this.searchStrs = null;
 		}
 
-		// Token: 0x060055A2 RID: 21922 RVA: 0x00239DD4 File Offset: 0x00237FD4
+		// Token: 0x06004C55 RID: 19541 RVA: 0x00208BA4 File Offset: 0x00206DA4
 		public bool IsContansSearch(string str)
 		{
 			if (this.searchStrs == null || this.searchStrs.Length == 0)
@@ -70,13 +70,13 @@ namespace YSGame.TuJian
 			return false;
 		}
 
-		// Token: 0x0400555B RID: 21851
+		// Token: 0x04004B7D RID: 19325
 		public static TuJianSearcher Inst;
 
-		// Token: 0x0400555C RID: 21852
+		// Token: 0x04004B7E RID: 19326
 		public InputField input;
 
-		// Token: 0x0400555D RID: 21853
+		// Token: 0x04004B7F RID: 19327
 		private string[] searchStrs;
 	}
 }

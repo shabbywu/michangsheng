@@ -3,10 +3,10 @@ using System.Collections.Generic;
 
 namespace JSONClass
 {
-	// Token: 0x02000C17 RID: 3095
+	// Token: 0x02000889 RID: 2185
 	public class LunDaoStateData : IJSONClass
 	{
-		// Token: 0x06004BC5 RID: 19397 RVA: 0x001FFB68 File Offset: 0x001FDD68
+		// Token: 0x06004037 RID: 16439 RVA: 0x001B6534 File Offset: 0x001B4734
 		public static void InitDataDict()
 		{
 			foreach (JSONObject jsonobject in jsonData.instance.LunDaoStateData.list)
@@ -45,42 +45,42 @@ namespace JSONClass
 			}
 		}
 
-		// Token: 0x06004BC6 RID: 19398 RVA: 0x000042DD File Offset: 0x000024DD
+		// Token: 0x06004038 RID: 16440 RVA: 0x00004095 File Offset: 0x00002295
 		private static void OnInitFinish()
 		{
 		}
 
-		// Token: 0x040048AC RID: 18604
+		// Token: 0x04003D53 RID: 15699
 		public static Dictionary<int, LunDaoStateData> DataDict = new Dictionary<int, LunDaoStateData>();
 
-		// Token: 0x040048AD RID: 18605
+		// Token: 0x04003D54 RID: 15700
 		public static List<LunDaoStateData> DataList = new List<LunDaoStateData>();
 
-		// Token: 0x040048AE RID: 18606
+		// Token: 0x04003D55 RID: 15701
 		public static Action OnInitFinishAction = new Action(LunDaoStateData.OnInitFinish);
 
-		// Token: 0x040048AF RID: 18607
+		// Token: 0x04003D56 RID: 15702
 		public int id;
 
-		// Token: 0x040048B0 RID: 18608
+		// Token: 0x04003D57 RID: 15703
 		public int Time;
 
-		// Token: 0x040048B1 RID: 18609
+		// Token: 0x04003D58 RID: 15704
 		public int WuDaoExp;
 
-		// Token: 0x040048B2 RID: 18610
+		// Token: 0x04003D59 RID: 15705
 		public int WuDaoZhi;
 
-		// Token: 0x040048B3 RID: 18611
+		// Token: 0x04003D5A RID: 15706
 		public int LingGanXiaoHao;
 
-		// Token: 0x040048B4 RID: 18612
+		// Token: 0x04003D5B RID: 15707
 		public string ZhuangTaiInfo;
 
-		// Token: 0x040048B5 RID: 18613
+		// Token: 0x04003D5C RID: 15708
 		public string MiaoShu;
 
-		// Token: 0x040048B6 RID: 18614
+		// Token: 0x04003D5D RID: 15709
 		public string MiaoShu1;
 	}
 }

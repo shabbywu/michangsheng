@@ -3,12 +3,12 @@ using UnityEngine;
 
 namespace Fungus
 {
-	// Token: 0x02001288 RID: 4744
+	// Token: 0x02000E37 RID: 3639
 	[CommandInfo("Sprite", "Set Draggable 2D", "Sets a Draggable2D component to be draggable / non-draggable.", 0)]
 	[AddComponentMenu("")]
 	public class SetDraggable2D : Command
 	{
-		// Token: 0x06007305 RID: 29445 RVA: 0x0004E5F8 File Offset: 0x0004C7F8
+		// Token: 0x06006677 RID: 26231 RVA: 0x002866EE File Offset: 0x002848EE
 		public override void OnEnter()
 		{
 			if (this.targetDraggable2D != null)
@@ -18,7 +18,7 @@ namespace Fungus
 			this.Continue();
 		}
 
-		// Token: 0x06007306 RID: 29446 RVA: 0x0004E624 File Offset: 0x0004C824
+		// Token: 0x06006678 RID: 26232 RVA: 0x0028671A File Offset: 0x0028491A
 		public override string GetSummary()
 		{
 			if (this.targetDraggable2D == null)
@@ -28,24 +28,24 @@ namespace Fungus
 			return this.targetDraggable2D.gameObject.name;
 		}
 
-		// Token: 0x06007307 RID: 29447 RVA: 0x0004C5E0 File Offset: 0x0004A7E0
+		// Token: 0x06006679 RID: 26233 RVA: 0x0027D3DB File Offset: 0x0027B5DB
 		public override Color GetButtonColor()
 		{
 			return new Color32(235, 191, 217, byte.MaxValue);
 		}
 
-		// Token: 0x06007308 RID: 29448 RVA: 0x0004E64A File Offset: 0x0004C84A
+		// Token: 0x0600667A RID: 26234 RVA: 0x00286740 File Offset: 0x00284940
 		public override bool HasReference(Variable variable)
 		{
 			return this.activeState.booleanRef == variable || base.HasReference(variable);
 		}
 
-		// Token: 0x04006516 RID: 25878
+		// Token: 0x040057D2 RID: 22482
 		[Tooltip("Reference to Draggable2D component on a gameobject")]
 		[SerializeField]
 		protected Draggable2D targetDraggable2D;
 
-		// Token: 0x04006517 RID: 25879
+		// Token: 0x040057D3 RID: 22483
 		[Tooltip("Set to true to enable the component")]
 		[SerializeField]
 		protected BooleanData activeState;

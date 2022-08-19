@@ -2,20 +2,20 @@
 
 namespace MoonSharp.VsCodeDebugger.SDK
 {
-	// Token: 0x020011C4 RID: 4548
+	// Token: 0x02000D98 RID: 3480
 	public class Thread
 	{
-		// Token: 0x17000A39 RID: 2617
-		// (get) Token: 0x06006F6D RID: 28525 RVA: 0x0004BB31 File Offset: 0x00049D31
-		// (set) Token: 0x06006F6E RID: 28526 RVA: 0x0004BB39 File Offset: 0x00049D39
+		// Token: 0x170007D8 RID: 2008
+		// (get) Token: 0x06006327 RID: 25383 RVA: 0x0027A66B File Offset: 0x0027886B
+		// (set) Token: 0x06006328 RID: 25384 RVA: 0x0027A673 File Offset: 0x00278873
 		public int id { get; private set; }
 
-		// Token: 0x17000A3A RID: 2618
-		// (get) Token: 0x06006F6F RID: 28527 RVA: 0x0004BB42 File Offset: 0x00049D42
-		// (set) Token: 0x06006F70 RID: 28528 RVA: 0x0004BB4A File Offset: 0x00049D4A
+		// Token: 0x170007D9 RID: 2009
+		// (get) Token: 0x06006329 RID: 25385 RVA: 0x0027A67C File Offset: 0x0027887C
+		// (set) Token: 0x0600632A RID: 25386 RVA: 0x0027A684 File Offset: 0x00278884
 		public string name { get; private set; }
 
-		// Token: 0x06006F71 RID: 28529 RVA: 0x0004BB53 File Offset: 0x00049D53
+		// Token: 0x0600632B RID: 25387 RVA: 0x0027A68D File Offset: 0x0027888D
 		public Thread(int id, string name)
 		{
 			this.id = id;

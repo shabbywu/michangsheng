@@ -1,12 +1,12 @@
 ﻿using System;
 
-// Token: 0x02000341 RID: 833
+// Token: 0x02000225 RID: 549
 public class NPCStatus
 {
-	// Token: 0x0600187B RID: 6267 RVA: 0x000DA2F8 File Offset: 0x000D84F8
+	// Token: 0x060015C3 RID: 5571 RVA: 0x000918F0 File Offset: 0x0008FAF0
 	public void SetNpcStatus(int npcId, int status)
 	{
-		JSONObject npcData = NpcJieSuanManager.inst.getNpcData(npcId);
+		JSONObject npcData = NpcJieSuanManager.inst.GetNpcData(npcId);
 		int i = jsonData.instance.NpcStatusDate[status.ToString()]["Time"].I;
 		JSONObject jsonobject = new JSONObject();
 		jsonobject.SetField("StatusId", status);
@@ -16,16 +16,16 @@ public class NPCStatus
 		npcData.SetField("Status", jsonobject);
 	}
 
-	// Token: 0x0600187C RID: 6268 RVA: 0x0001542A File Offset: 0x0001362A
+	// Token: 0x060015C4 RID: 5572 RVA: 0x0009197D File Offset: 0x0008FB7D
 	public bool IsInTargetStatus(int npcId, int targetStatusId)
 	{
 		return jsonData.instance.AvatarJsonData[npcId.ToString()]["Status"]["StatusId"].I == targetStatusId;
 	}
 
-	// Token: 0x0600187D RID: 6269 RVA: 0x000DA388 File Offset: 0x000D8588
+	// Token: 0x060015C5 RID: 5573 RVA: 0x000919B4 File Offset: 0x0008FBB4
 	public void ReduceStatusTime(int npcId, int times)
 	{
-		JSONObject npcData = NpcJieSuanManager.inst.getNpcData(npcId);
+		JSONObject npcData = NpcJieSuanManager.inst.GetNpcData(npcId);
 		int num = npcData["Status"]["StatusTime"].I - times;
 		if (num <= 0)
 		{
@@ -35,7 +35,7 @@ public class NPCStatus
 		npcData["Status"].SetField("StatusTime", num);
 	}
 
-	// Token: 0x0600187E RID: 6270 RVA: 0x000DA3E4 File Offset: 0x000D85E4
+	// Token: 0x060015C6 RID: 5574 RVA: 0x00091A10 File Offset: 0x0008FC10
 	public void NpcUpDateShuXing(int lastStatus, int curStatus, JSONObject npcData)
 	{
 		int i = npcData["id"].I;

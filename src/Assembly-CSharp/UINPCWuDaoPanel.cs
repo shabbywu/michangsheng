@@ -1,10 +1,10 @@
 ﻿using System;
 using UnityEngine;
 
-// Token: 0x020003A4 RID: 932
+// Token: 0x0200027D RID: 637
 public class UINPCWuDaoPanel : TabPanelBase
 {
-	// Token: 0x060019FC RID: 6652 RVA: 0x000E5BC8 File Offset: 0x000E3DC8
+	// Token: 0x0600172C RID: 5932 RVA: 0x0009E368 File Offset: 0x0009C568
 	public override void OnPanelShow()
 	{
 		base.OnPanelShow();
@@ -16,12 +16,12 @@ public class UINPCWuDaoPanel : TabPanelBase
 		}
 	}
 
-	// Token: 0x0400154C RID: 5452
+	// Token: 0x040011D9 RID: 4569
 	private UINPCData npc;
 
-	// Token: 0x0400154D RID: 5453
+	// Token: 0x040011DA RID: 4570
 	public RectTransform ContentRT;
 
-	// Token: 0x0400154E RID: 5454
+	// Token: 0x040011DB RID: 4571
 	public GameObject SVItemPrefab;
 }

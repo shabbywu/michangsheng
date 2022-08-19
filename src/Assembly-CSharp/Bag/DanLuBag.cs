@@ -7,10 +7,10 @@ using UnityEngine.Events;
 
 namespace Bag
 {
-	// Token: 0x02000D47 RID: 3399
+	// Token: 0x020009BE RID: 2494
 	public class DanLuBag : BaseBag2, IESCClose
 	{
-		// Token: 0x060050CA RID: 20682 RVA: 0x0003A28B File Offset: 0x0003848B
+		// Token: 0x06004565 RID: 17765 RVA: 0x001D700E File Offset: 0x001D520E
 		public void Open()
 		{
 			if (!this._init)
@@ -21,13 +21,13 @@ namespace Bag
 			base.gameObject.SetActive(true);
 		}
 
-		// Token: 0x060050CB RID: 20683 RVA: 0x0021AFFC File Offset: 0x002191FC
+		// Token: 0x06004566 RID: 17766 RVA: 0x001D7038 File Offset: 0x001D5238
 		public override void Init(int npcId, bool isPlayer = false)
 		{
 			this._player = Tools.instance.getPlayer();
 			this.NpcId = npcId;
 			this.IsPlayer = isPlayer;
-			base.CreateTempList();
+			this.CreateTempList();
 			this.MLoopListView.InitListView(base.GetCount(this.MItemTotalCount), new Func<LoopListView2, int, LoopListViewItem2>(base.OnGetItemByIndex), null);
 			this.ItemType = ItemType.法宝;
 			this.EquipType = EquipType.丹炉;
@@ -36,7 +36,7 @@ namespace Bag
 			this._init = true;
 		}
 
-		// Token: 0x060050CC RID: 20684 RVA: 0x0021B080 File Offset: 0x00219280
+		// Token: 0x06004567 RID: 17767 RVA: 0x001D70BC File Offset: 0x001D52BC
 		private void CreateQualityFilter()
 		{
 			Dictionary<int, string> qualityData = this.GetQualityData();
@@ -51,7 +51,7 @@ namespace Bag
 			}
 		}
 
-		// Token: 0x060050CD RID: 20685 RVA: 0x0021B158 File Offset: 0x00219358
+		// Token: 0x06004568 RID: 17768 RVA: 0x001D7194 File Offset: 0x001D5394
 		public void SelectQualityCall(LianDanFilter filter)
 		{
 			foreach (LianDanFilter lianDanFilter in this.FilterList)
@@ -60,10 +60,10 @@ namespace Bag
 			}
 			filter.SetState(true);
 			this.ItemQuality = (ItemQuality)filter.Value;
-			base.UpdateItem(false);
+			this.UpdateItem(false);
 		}
 
-		// Token: 0x060050CE RID: 20686 RVA: 0x0021B1C4 File Offset: 0x002193C4
+		// Token: 0x06004569 RID: 17769 RVA: 0x001D7200 File Offset: 0x001D5400
 		private Dictionary<int, string> GetQualityData()
 		{
 			return new Dictionary<int, string>
@@ -99,28 +99,28 @@ namespace Bag
 			};
 		}
 
-		// Token: 0x060050CF RID: 20687 RVA: 0x0001BCA3 File Offset: 0x00019EA3
+		// Token: 0x0600456A RID: 17770 RVA: 0x000D5AD3 File Offset: 0x000D3CD3
 		public void Close()
 		{
 			ESCCloseManager.Inst.UnRegisterClose(this);
 			base.gameObject.SetActive(false);
 		}
 
-		// Token: 0x060050D0 RID: 20688 RVA: 0x0003A2B4 File Offset: 0x000384B4
+		// Token: 0x0600456B RID: 17771 RVA: 0x001D7266 File Offset: 0x001D5466
 		public bool TryEscClose()
 		{
 			this.Close();
 			return true;
 		}
 
-		// Token: 0x040051FD RID: 20989
+		// Token: 0x040046F9 RID: 18169
 		private bool _init;
 
-		// Token: 0x040051FE RID: 20990
+		// Token: 0x040046FA RID: 18170
 		[SerializeField]
 		private GameObject TempFilter;
 
-		// Token: 0x040051FF RID: 20991
+		// Token: 0x040046FB RID: 18171
 		public List<LianDanFilter> FilterList = new List<LianDanFilter>();
 	}
 }

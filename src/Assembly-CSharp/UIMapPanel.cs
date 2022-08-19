@@ -5,23 +5,23 @@ using UnityEngine.Events;
 using UnityEngine.UI;
 using YSGame;
 
-// Token: 0x020004B2 RID: 1202
+// Token: 0x02000340 RID: 832
 public class UIMapPanel : MonoBehaviour, IESCClose
 {
-	// Token: 0x06001FD3 RID: 8147 RVA: 0x0001A333 File Offset: 0x00018533
+	// Token: 0x06001C86 RID: 7302 RVA: 0x000CC185 File Offset: 0x000CA385
 	private void Awake()
 	{
 		UIMapPanel.Inst = this;
 	}
 
-	// Token: 0x06001FD4 RID: 8148 RVA: 0x0001A33B File Offset: 0x0001853B
+	// Token: 0x06001C87 RID: 7303 RVA: 0x000CC18D File Offset: 0x000CA38D
 	private void Start()
 	{
 		this.Init();
 		this.HidePanel();
 	}
 
-	// Token: 0x06001FD5 RID: 8149 RVA: 0x00110BDC File Offset: 0x0010EDDC
+	// Token: 0x06001C88 RID: 7304 RVA: 0x000CC19C File Offset: 0x000CA39C
 	private void Update()
 	{
 		if (Input.GetKeyDown(109))
@@ -51,7 +51,7 @@ public class UIMapPanel : MonoBehaviour, IESCClose
 		}
 	}
 
-	// Token: 0x06001FD6 RID: 8150 RVA: 0x00110C3C File Offset: 0x0010EE3C
+	// Token: 0x06001C89 RID: 7305 RVA: 0x000CC1FC File Offset: 0x000CA3FC
 	private void Init()
 	{
 		this.NingZhouTab.mouseUpEvent.AddListener(new UnityAction(this.OnNingZhouTabClick));
@@ -61,7 +61,7 @@ public class UIMapPanel : MonoBehaviour, IESCClose
 		this.Sea.Init();
 	}
 
-	// Token: 0x06001FD7 RID: 8151 RVA: 0x00110CB4 File Offset: 0x0010EEB4
+	// Token: 0x06001C8A RID: 7306 RVA: 0x000CC274 File Offset: 0x000CA474
 	public void OpenDefaultMap()
 	{
 		MapArea nowMapArea = SceneEx.GetNowMapArea();
@@ -78,7 +78,7 @@ public class UIMapPanel : MonoBehaviour, IESCClose
 		this.ShowPanel();
 	}
 
-	// Token: 0x06001FD8 RID: 8152 RVA: 0x0001A349 File Offset: 0x00018549
+	// Token: 0x06001C8B RID: 7307 RVA: 0x000CC2BE File Offset: 0x000CA4BE
 	public void OpenMap(MapArea area, UIMapState state)
 	{
 		this.NowArea = area;
@@ -87,7 +87,7 @@ public class UIMapPanel : MonoBehaviour, IESCClose
 		this.ShowPanel();
 	}
 
-	// Token: 0x06001FD9 RID: 8153 RVA: 0x00110D00 File Offset: 0x0010EF00
+	// Token: 0x06001C8C RID: 7308 RVA: 0x000CC2DC File Offset: 0x000CA4DC
 	public void OpenHighlight(int id)
 	{
 		MapArea area;
@@ -105,7 +105,7 @@ public class UIMapPanel : MonoBehaviour, IESCClose
 		UIMapPanel.Inst.OpenMap(area, UIMapState.Highlight);
 	}
 
-	// Token: 0x06001FDA RID: 8154 RVA: 0x00110D40 File Offset: 0x0010EF40
+	// Token: 0x06001C8D RID: 7309 RVA: 0x000CC31C File Offset: 0x000CA51C
 	private void SetTabShow(bool show)
 	{
 		this.TabRoot.SetActive(show);
@@ -122,7 +122,7 @@ public class UIMapPanel : MonoBehaviour, IESCClose
 		}
 	}
 
-	// Token: 0x06001FDB RID: 8155 RVA: 0x00110D98 File Offset: 0x0010EF98
+	// Token: 0x06001C8E RID: 7310 RVA: 0x000CC374 File Offset: 0x000CA574
 	private void ShowPanel()
 	{
 		this.IsShow = true;
@@ -152,7 +152,7 @@ public class UIMapPanel : MonoBehaviour, IESCClose
 		base.transform.SetAsLastSibling();
 	}
 
-	// Token: 0x06001FDC RID: 8156 RVA: 0x00110E58 File Offset: 0x0010F058
+	// Token: 0x06001C8F RID: 7311 RVA: 0x000CC434 File Offset: 0x000CA634
 	public void HidePanel()
 	{
 		this.IsShow = false;
@@ -167,14 +167,14 @@ public class UIMapPanel : MonoBehaviour, IESCClose
 		}
 	}
 
-	// Token: 0x06001FDD RID: 8157 RVA: 0x0001A366 File Offset: 0x00018566
+	// Token: 0x06001C90 RID: 7312 RVA: 0x000CC48F File Offset: 0x000CA68F
 	public bool TryEscClose()
 	{
 		this.HidePanel();
 		return true;
 	}
 
-	// Token: 0x06001FDE RID: 8158 RVA: 0x00110EB4 File Offset: 0x0010F0B4
+	// Token: 0x06001C91 RID: 7313 RVA: 0x000CC498 File Offset: 0x000CA698
 	public void OnMouseEnterHighlightBlock(UIMapHighlight highLight)
 	{
 		MapArea nowArea = this.NowArea;
@@ -190,7 +190,7 @@ public class UIMapPanel : MonoBehaviour, IESCClose
 		this.Sea.OnMouseEnterHighlightBlock(highLight);
 	}
 
-	// Token: 0x06001FDF RID: 8159 RVA: 0x00110EEC File Offset: 0x0010F0EC
+	// Token: 0x06001C92 RID: 7314 RVA: 0x000CC4D0 File Offset: 0x000CA6D0
 	public void OnMouseExitHighlightBlock(UIMapHighlight highLight)
 	{
 		MapArea nowArea = this.NowArea;
@@ -206,7 +206,7 @@ public class UIMapPanel : MonoBehaviour, IESCClose
 		this.Sea.OnMouseExitHighlightBlock(highLight);
 	}
 
-	// Token: 0x06001FE0 RID: 8160 RVA: 0x0001A36F File Offset: 0x0001856F
+	// Token: 0x06001C93 RID: 7315 RVA: 0x000CC505 File Offset: 0x000CA705
 	private void OnNingZhouTabClick()
 	{
 		this.NowArea = MapArea.NingZhou;
@@ -215,7 +215,7 @@ public class UIMapPanel : MonoBehaviour, IESCClose
 		this.ShowPanel();
 	}
 
-	// Token: 0x06001FE1 RID: 8161 RVA: 0x0001A38C File Offset: 0x0001858C
+	// Token: 0x06001C94 RID: 7316 RVA: 0x000CC522 File Offset: 0x000CA722
 	private void OnSeaTabClick()
 	{
 		this.NowArea = MapArea.Sea;
@@ -231,60 +231,60 @@ public class UIMapPanel : MonoBehaviour, IESCClose
 		this.ShowPanel();
 	}
 
-	// Token: 0x06001FE2 RID: 8162 RVA: 0x0001A3C3 File Offset: 0x000185C3
+	// Token: 0x06001C95 RID: 7317 RVA: 0x000CC559 File Offset: 0x000CA759
 	private void OnCloseBtnClick()
 	{
 		this.HidePanel();
 	}
 
-	// Token: 0x04001B38 RID: 6968
+	// Token: 0x040016FC RID: 5884
 	public static UIMapPanel Inst;
 
-	// Token: 0x04001B39 RID: 6969
+	// Token: 0x040016FD RID: 5885
 	public MapArea NowArea;
 
-	// Token: 0x04001B3A RID: 6970
+	// Token: 0x040016FE RID: 5886
 	public UIMapState NowState;
 
-	// Token: 0x04001B3B RID: 6971
+	// Token: 0x040016FF RID: 5887
 	public bool IsShow;
 
-	// Token: 0x04001B3C RID: 6972
+	// Token: 0x04001700 RID: 5888
 	public GameObject PanelObj;
 
-	// Token: 0x04001B3D RID: 6973
+	// Token: 0x04001701 RID: 5889
 	public Image MapBG;
 
-	// Token: 0x04001B3E RID: 6974
+	// Token: 0x04001702 RID: 5890
 	public UIMapNingZhou NingZhou;
 
-	// Token: 0x04001B3F RID: 6975
+	// Token: 0x04001703 RID: 5891
 	public UIMapSea Sea;
 
-	// Token: 0x04001B40 RID: 6976
+	// Token: 0x04001704 RID: 5892
 	public GameObject TabRoot;
 
-	// Token: 0x04001B41 RID: 6977
+	// Token: 0x04001705 RID: 5893
 	public FpBtn NingZhouTab;
 
-	// Token: 0x04001B42 RID: 6978
+	// Token: 0x04001706 RID: 5894
 	public GameObject NingZhouTabHighlight;
 
-	// Token: 0x04001B43 RID: 6979
+	// Token: 0x04001707 RID: 5895
 	public FpBtn SeaTab;
 
-	// Token: 0x04001B44 RID: 6980
+	// Token: 0x04001708 RID: 5896
 	public GameObject SeaTabHighlight;
 
-	// Token: 0x04001B45 RID: 6981
+	// Token: 0x04001709 RID: 5897
 	public Button CloseBtn;
 
-	// Token: 0x04001B46 RID: 6982
+	// Token: 0x0400170A RID: 5898
 	public UnityAction CloseAction;
 
-	// Token: 0x04001B47 RID: 6983
+	// Token: 0x0400170B RID: 5899
 	private bool isRegisteredESC;
 
-	// Token: 0x04001B48 RID: 6984
+	// Token: 0x0400170C RID: 5900
 	public int NeedHighlightBlock;
 }

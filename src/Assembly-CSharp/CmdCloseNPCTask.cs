@@ -2,12 +2,12 @@
 using Fungus;
 using UnityEngine;
 
-// Token: 0x0200034C RID: 844
+// Token: 0x02000230 RID: 560
 [CommandInfo("YSNPCJiaoHu", "关闭NPC任务", "关闭NPC任务", 0)]
 [AddComponentMenu("")]
 public class CmdCloseNPCTask : Command
 {
-	// Token: 0x060018B6 RID: 6326 RVA: 0x000DD71C File Offset: 0x000DB91C
+	// Token: 0x060015FE RID: 5630 RVA: 0x00095094 File Offset: 0x00093294
 	public override void OnEnter()
 	{
 		int integerVariable = this.GetFlowchart().GetIntegerVariable(this.TargetNPCIDVar);
@@ -16,7 +16,7 @@ public class CmdCloseNPCTask : Command
 		this.Continue();
 	}
 
-	// Token: 0x040013B0 RID: 5040
+	// Token: 0x04001058 RID: 4184
 	[SerializeField]
 	[Tooltip("目标NPCID的变量名")]
 	protected string TargetNPCIDVar;

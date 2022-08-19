@@ -1,10 +1,10 @@
 ﻿using System;
 using UnityEngine;
 
-// Token: 0x02000525 RID: 1317
+// Token: 0x0200039C RID: 924
 public class UISceneTotal : MonoBehaviour
 {
-	// Token: 0x060021C4 RID: 8644 RVA: 0x0001BBEE File Offset: 0x00019DEE
+	// Token: 0x06001E43 RID: 7747 RVA: 0x000D5668 File Offset: 0x000D3868
 	private void Start()
 	{
 		Object.DontDestroyOnLoad(base.gameObject);

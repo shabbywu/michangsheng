@@ -2,44 +2,44 @@
 
 namespace MarkerMetro.Unity.WinLegacy.Reflection
 {
-	// Token: 0x02001057 RID: 4183
+	// Token: 0x02000C92 RID: 3218
 	public enum TypeCode
 	{
-		// Token: 0x04005DE7 RID: 24039
+		// Token: 0x04005239 RID: 21049
 		Byte,
-		// Token: 0x04005DE8 RID: 24040
+		// Token: 0x0400523A RID: 21050
 		Int16,
-		// Token: 0x04005DE9 RID: 24041
+		// Token: 0x0400523B RID: 21051
 		Int32,
-		// Token: 0x04005DEA RID: 24042
+		// Token: 0x0400523C RID: 21052
 		Int64,
-		// Token: 0x04005DEB RID: 24043
+		// Token: 0x0400523D RID: 21053
 		SByte,
-		// Token: 0x04005DEC RID: 24044
+		// Token: 0x0400523E RID: 21054
 		UInt16,
-		// Token: 0x04005DED RID: 24045
+		// Token: 0x0400523F RID: 21055
 		UInt32,
-		// Token: 0x04005DEE RID: 24046
+		// Token: 0x04005240 RID: 21056
 		UInt64,
-		// Token: 0x04005DEF RID: 24047
+		// Token: 0x04005241 RID: 21057
 		Single,
-		// Token: 0x04005DF0 RID: 24048
+		// Token: 0x04005242 RID: 21058
 		Double,
-		// Token: 0x04005DF1 RID: 24049
+		// Token: 0x04005243 RID: 21059
 		Char,
-		// Token: 0x04005DF2 RID: 24050
+		// Token: 0x04005244 RID: 21060
 		Boolean,
-		// Token: 0x04005DF3 RID: 24051
+		// Token: 0x04005245 RID: 21061
 		String,
-		// Token: 0x04005DF4 RID: 24052
+		// Token: 0x04005246 RID: 21062
 		DateTime,
-		// Token: 0x04005DF5 RID: 24053
+		// Token: 0x04005247 RID: 21063
 		Decimal,
-		// Token: 0x04005DF6 RID: 24054
+		// Token: 0x04005248 RID: 21064
 		Empty,
-		// Token: 0x04005DF7 RID: 24055
+		// Token: 0x04005249 RID: 21065
 		DBNull,
-		// Token: 0x04005DF8 RID: 24056
+		// Token: 0x0400524A RID: 21066
 		Object
 	}
 }

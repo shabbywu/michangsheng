@@ -2,16 +2,16 @@
 
 namespace SuperScrollView
 {
-	// Token: 0x020009E7 RID: 2535
+	// Token: 0x020006BC RID: 1724
 	public enum SnapStatus
 	{
-		// Token: 0x0400399D RID: 14749
+		// Token: 0x04002F98 RID: 12184
 		NoTargetSet,
-		// Token: 0x0400399E RID: 14750
+		// Token: 0x04002F99 RID: 12185
 		TargetHasSet,
-		// Token: 0x0400399F RID: 14751
+		// Token: 0x04002F9A RID: 12186
 		SnapMoving,
-		// Token: 0x040039A0 RID: 14752
+		// Token: 0x04002F9B RID: 12187
 		SnapMoveFinish
 	}
 }

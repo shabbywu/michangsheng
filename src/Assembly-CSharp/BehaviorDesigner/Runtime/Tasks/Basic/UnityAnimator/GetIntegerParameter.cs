@@ -3,12 +3,12 @@ using UnityEngine;
 
 namespace BehaviorDesigner.Runtime.Tasks.Basic.UnityAnimator
 {
-	// Token: 0x0200164E RID: 5710
+	// Token: 0x0200118F RID: 4495
 	[TaskCategory("Basic/Animator")]
 	[TaskDescription("Stores the integer parameter on an animator. Returns Success.")]
 	public class GetIntegerParameter : Action
 	{
-		// Token: 0x060084CA RID: 33994 RVA: 0x002D0000 File Offset: 0x002CE200
+		// Token: 0x060076D0 RID: 30416 RVA: 0x002B7660 File Offset: 0x002B5860
 		public override void OnStart()
 		{
 			GameObject defaultGameObject = base.GetDefaultGameObject(this.targetGameObject.Value);
@@ -19,7 +19,7 @@ namespace BehaviorDesigner.Runtime.Tasks.Basic.UnityAnimator
 			}
 		}
 
-		// Token: 0x060084CB RID: 33995 RVA: 0x0005BF6E File Offset: 0x0005A16E
+		// Token: 0x060076D1 RID: 30417 RVA: 0x002B76A0 File Offset: 0x002B58A0
 		public override TaskStatus OnUpdate()
 		{
 			if (this.animator == null)
@@ -31,7 +31,7 @@ namespace BehaviorDesigner.Runtime.Tasks.Basic.UnityAnimator
 			return 2;
 		}
 
-		// Token: 0x060084CC RID: 33996 RVA: 0x0005BFAC File Offset: 0x0005A1AC
+		// Token: 0x060076D2 RID: 30418 RVA: 0x002B76DE File Offset: 0x002B58DE
 		public override void OnReset()
 		{
 			this.targetGameObject = null;
@@ -39,23 +39,23 @@ namespace BehaviorDesigner.Runtime.Tasks.Basic.UnityAnimator
 			this.storeValue = 0;
 		}
 
-		// Token: 0x04007177 RID: 29047
+		// Token: 0x04006254 RID: 25172
 		[Tooltip("The GameObject that the task operates on. If null the task GameObject is used.")]
 		public SharedGameObject targetGameObject;
 
-		// Token: 0x04007178 RID: 29048
+		// Token: 0x04006255 RID: 25173
 		[Tooltip("The name of the parameter")]
 		public SharedString paramaterName;
 
-		// Token: 0x04007179 RID: 29049
+		// Token: 0x04006256 RID: 25174
 		[Tooltip("The value of the integer parameter")]
 		[RequiredField]
 		public SharedInt storeValue;
 
-		// Token: 0x0400717A RID: 29050
+		// Token: 0x04006257 RID: 25175
 		private Animator animator;
 
-		// Token: 0x0400717B RID: 29051
+		// Token: 0x04006258 RID: 25176
 		private GameObject prevGameObject;
 	}
 }

@@ -2,12 +2,12 @@
 using Fungus;
 using UnityEngine;
 
-// Token: 0x02000371 RID: 881
+// Token: 0x02000258 RID: 600
 [CommandInfo("YSNPCJiaoHu", "跳转到三级场景NPCTalk(TODO)", "跳转到三级场景NPCTalk，并将NPCID赋值到全局变量400", 0)]
 [AddComponentMenu("")]
 public class CmdWarpToThreeSceneTalk : Command
 {
-	// Token: 0x06001911 RID: 6417 RVA: 0x000DF198 File Offset: 0x000DD398
+	// Token: 0x0600165D RID: 5725 RVA: 0x00096E70 File Offset: 0x00095070
 	public override void OnEnter()
 	{
 		UINPCData nowJiaoHuNPC = UINPCJiaoHu.Inst.NowJiaoHuNPC;
@@ -15,7 +15,7 @@ public class CmdWarpToThreeSceneTalk : Command
 		this.Continue();
 	}
 
-	// Token: 0x06001912 RID: 6418 RVA: 0x000DF1CC File Offset: 0x000DD3CC
+	// Token: 0x0600165E RID: 5726 RVA: 0x00096EA4 File Offset: 0x000950A4
 	private static void Init()
 	{
 		if (!CmdWarpToThreeSceneTalk.inited)
@@ -27,6 +27,6 @@ public class CmdWarpToThreeSceneTalk : Command
 		}
 	}
 
-	// Token: 0x040013FB RID: 5115
+	// Token: 0x040010A9 RID: 4265
 	private static bool inited;
 }

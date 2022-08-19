@@ -4,10 +4,10 @@ using UnityEngine;
 
 namespace Spine.Unity.Examples
 {
-	// Token: 0x02000E29 RID: 3625
+	// Token: 0x02000ADE RID: 2782
 	public class SpineBlinkPlayer : MonoBehaviour
 	{
-		// Token: 0x06005752 RID: 22354 RVA: 0x0003E671 File Offset: 0x0003C871
+		// Token: 0x06004DE2 RID: 19938 RVA: 0x0021491C File Offset: 0x00212B1C
 		private IEnumerator Start()
 		{
 			SkeletonAnimation skeletonAnimation = base.GetComponent<SkeletonAnimation>();
@@ -23,16 +23,16 @@ namespace Spine.Unity.Examples
 			yield break;
 		}
 
-		// Token: 0x04005734 RID: 22324
+		// Token: 0x04004D34 RID: 19764
 		private const int BlinkTrack = 1;
 
-		// Token: 0x04005735 RID: 22325
+		// Token: 0x04004D35 RID: 19765
 		public AnimationReferenceAsset blinkAnimation;
 
-		// Token: 0x04005736 RID: 22326
+		// Token: 0x04004D36 RID: 19766
 		public float minimumDelay = 0.15f;
 
-		// Token: 0x04005737 RID: 22327
+		// Token: 0x04004D37 RID: 19767
 		public float maximumDelay = 3f;
 	}
 }

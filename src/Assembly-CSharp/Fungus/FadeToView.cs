@@ -3,18 +3,18 @@ using UnityEngine;
 
 namespace Fungus
 {
-	// Token: 0x02001209 RID: 4617
+	// Token: 0x02000DCF RID: 3535
 	[CommandInfo("Camera", "Fade To View", "Fades the camera out and in again at a position specified by a View object.", 0)]
 	[AddComponentMenu("")]
 	public class FadeToView : Command
 	{
-		// Token: 0x060070FD RID: 28925 RVA: 0x0004CBAE File Offset: 0x0004ADAE
+		// Token: 0x0600647E RID: 25726 RVA: 0x0027EE18 File Offset: 0x0027D018
 		protected virtual void Start()
 		{
 			this.AcquireCamera();
 		}
 
-		// Token: 0x060070FE RID: 28926 RVA: 0x0004CBB6 File Offset: 0x0004ADB6
+		// Token: 0x0600647F RID: 25727 RVA: 0x0027EE20 File Offset: 0x0027D020
 		protected virtual void AcquireCamera()
 		{
 			if (this.targetCamera != null)
@@ -28,8 +28,8 @@ namespace Fungus
 			}
 		}
 
-		// Token: 0x17000A64 RID: 2660
-		// (get) Token: 0x060070FF RID: 28927 RVA: 0x0004CBEB File Offset: 0x0004ADEB
+		// Token: 0x170007FF RID: 2047
+		// (get) Token: 0x06006480 RID: 25728 RVA: 0x0027EE55 File Offset: 0x0027D055
 		public virtual View TargetView
 		{
 			get
@@ -38,7 +38,7 @@ namespace Fungus
 			}
 		}
 
-		// Token: 0x06007100 RID: 28928 RVA: 0x002A3C5C File Offset: 0x002A1E5C
+		// Token: 0x06006481 RID: 25729 RVA: 0x0027EE60 File Offset: 0x0027D060
 		public override void OnEnter()
 		{
 			this.AcquireCamera();
@@ -69,13 +69,13 @@ namespace Fungus
 			}
 		}
 
-		// Token: 0x06007101 RID: 28929 RVA: 0x0004CBF3 File Offset: 0x0004ADF3
+		// Token: 0x06006482 RID: 25730 RVA: 0x0027EF09 File Offset: 0x0027D109
 		public override void OnStopExecuting()
 		{
 			FungusManager.Instance.CameraManager.Stop();
 		}
 
-		// Token: 0x06007102 RID: 28930 RVA: 0x0004CC04 File Offset: 0x0004AE04
+		// Token: 0x06006483 RID: 25731 RVA: 0x0027EF1A File Offset: 0x0027D11A
 		public override string GetSummary()
 		{
 			if (this.targetView == null)
@@ -85,43 +85,43 @@ namespace Fungus
 			return this.targetView.name;
 		}
 
-		// Token: 0x06007103 RID: 28931 RVA: 0x0004CAB8 File Offset: 0x0004ACB8
+		// Token: 0x06006484 RID: 25732 RVA: 0x0027EC04 File Offset: 0x0027CE04
 		public override Color GetButtonColor()
 		{
 			return new Color32(216, 228, 170, byte.MaxValue);
 		}
 
-		// Token: 0x04006358 RID: 25432
+		// Token: 0x04005659 RID: 22105
 		[Tooltip("Time for fade effect to complete")]
 		[SerializeField]
 		protected float duration = 1f;
 
-		// Token: 0x04006359 RID: 25433
+		// Token: 0x0400565A RID: 22106
 		[Tooltip("Fade from fully visible to opaque at start of fade")]
 		[SerializeField]
 		protected bool fadeOut = true;
 
-		// Token: 0x0400635A RID: 25434
+		// Token: 0x0400565B RID: 22107
 		[Tooltip("View to transition to when Fade is complete")]
 		[SerializeField]
 		protected View targetView;
 
-		// Token: 0x0400635B RID: 25435
+		// Token: 0x0400565C RID: 22108
 		[Tooltip("Wait until the fade has finished before executing next command")]
 		[SerializeField]
 		protected bool waitUntilFinished = true;
 
-		// Token: 0x0400635C RID: 25436
+		// Token: 0x0400565D RID: 22109
 		[Tooltip("Color to render fullscreen fade texture with when screen is obscured.")]
 		[SerializeField]
 		protected Color fadeColor = Color.black;
 
-		// Token: 0x0400635D RID: 25437
+		// Token: 0x0400565E RID: 22110
 		[Tooltip("Optional texture to use when rendering the fullscreen fade effect.")]
 		[SerializeField]
 		protected Texture2D fadeTexture;
 
-		// Token: 0x0400635E RID: 25438
+		// Token: 0x0400565F RID: 22111
 		[Tooltip("Camera to use for the fade. Will use main camera if set to none.")]
 		[SerializeField]
 		protected Camera targetCamera;

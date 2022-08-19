@@ -2,21 +2,21 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-// Token: 0x020004B8 RID: 1208
+// Token: 0x02000344 RID: 836
 public class SeaQuickMoveData
 {
-	// Token: 0x04001B5F RID: 7007
+	// Token: 0x0400171E RID: 5918
 	public int MoveType;
 
-	// Token: 0x04001B60 RID: 7008
+	// Token: 0x0400171F RID: 5919
 	public int PathLen;
 
-	// Token: 0x04001B61 RID: 7009
+	// Token: 0x04001720 RID: 5920
 	public List<Vector2Int> Path;
 
-	// Token: 0x04001B62 RID: 7010
+	// Token: 0x04001721 RID: 5921
 	public int CostDaySum;
 
-	// Token: 0x04001B63 RID: 7011
+	// Token: 0x04001722 RID: 5922
 	public int XiuLiCostSum;
 }

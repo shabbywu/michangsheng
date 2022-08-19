@@ -7,11 +7,11 @@ using MoonSharp.Interpreter.Interop.Converters;
 
 namespace MoonSharp.Interpreter
 {
-	// Token: 0x02001069 RID: 4201
+	// Token: 0x02000C9D RID: 3229
 	public sealed class DynValue
 	{
-		// Token: 0x170008E0 RID: 2272
-		// (get) Token: 0x060064FF RID: 25855 RVA: 0x000456DD File Offset: 0x000438DD
+		// Token: 0x17000685 RID: 1669
+		// (get) Token: 0x06005A1C RID: 23068 RVA: 0x002574FC File Offset: 0x002556FC
 		public int ReferenceID
 		{
 			get
@@ -20,8 +20,8 @@ namespace MoonSharp.Interpreter
 			}
 		}
 
-		// Token: 0x170008E1 RID: 2273
-		// (get) Token: 0x06006500 RID: 25856 RVA: 0x000456E5 File Offset: 0x000438E5
+		// Token: 0x17000686 RID: 1670
+		// (get) Token: 0x06005A1D RID: 23069 RVA: 0x00257504 File Offset: 0x00255704
 		public DataType Type
 		{
 			get
@@ -30,8 +30,8 @@ namespace MoonSharp.Interpreter
 			}
 		}
 
-		// Token: 0x170008E2 RID: 2274
-		// (get) Token: 0x06006501 RID: 25857 RVA: 0x000456ED File Offset: 0x000438ED
+		// Token: 0x17000687 RID: 1671
+		// (get) Token: 0x06005A1E RID: 23070 RVA: 0x0025750C File Offset: 0x0025570C
 		public Closure Function
 		{
 			get
@@ -40,8 +40,8 @@ namespace MoonSharp.Interpreter
 			}
 		}
 
-		// Token: 0x170008E3 RID: 2275
-		// (get) Token: 0x06006502 RID: 25858 RVA: 0x000456FA File Offset: 0x000438FA
+		// Token: 0x17000688 RID: 1672
+		// (get) Token: 0x06005A1F RID: 23071 RVA: 0x00257519 File Offset: 0x00255719
 		public double Number
 		{
 			get
@@ -50,8 +50,8 @@ namespace MoonSharp.Interpreter
 			}
 		}
 
-		// Token: 0x170008E4 RID: 2276
-		// (get) Token: 0x06006503 RID: 25859 RVA: 0x00045702 File Offset: 0x00043902
+		// Token: 0x17000689 RID: 1673
+		// (get) Token: 0x06005A20 RID: 23072 RVA: 0x00257521 File Offset: 0x00255721
 		public DynValue[] Tuple
 		{
 			get
@@ -60,8 +60,8 @@ namespace MoonSharp.Interpreter
 			}
 		}
 
-		// Token: 0x170008E5 RID: 2277
-		// (get) Token: 0x06006504 RID: 25860 RVA: 0x0004570F File Offset: 0x0004390F
+		// Token: 0x1700068A RID: 1674
+		// (get) Token: 0x06005A21 RID: 23073 RVA: 0x0025752E File Offset: 0x0025572E
 		public Coroutine Coroutine
 		{
 			get
@@ -70,8 +70,8 @@ namespace MoonSharp.Interpreter
 			}
 		}
 
-		// Token: 0x170008E6 RID: 2278
-		// (get) Token: 0x06006505 RID: 25861 RVA: 0x0004571C File Offset: 0x0004391C
+		// Token: 0x1700068B RID: 1675
+		// (get) Token: 0x06005A22 RID: 23074 RVA: 0x0025753B File Offset: 0x0025573B
 		public Table Table
 		{
 			get
@@ -80,8 +80,8 @@ namespace MoonSharp.Interpreter
 			}
 		}
 
-		// Token: 0x170008E7 RID: 2279
-		// (get) Token: 0x06006506 RID: 25862 RVA: 0x00045729 File Offset: 0x00043929
+		// Token: 0x1700068C RID: 1676
+		// (get) Token: 0x06005A23 RID: 23075 RVA: 0x00257548 File Offset: 0x00255748
 		public bool Boolean
 		{
 			get
@@ -90,8 +90,8 @@ namespace MoonSharp.Interpreter
 			}
 		}
 
-		// Token: 0x170008E8 RID: 2280
-		// (get) Token: 0x06006507 RID: 25863 RVA: 0x0004573F File Offset: 0x0004393F
+		// Token: 0x1700068D RID: 1677
+		// (get) Token: 0x06005A24 RID: 23076 RVA: 0x0025755E File Offset: 0x0025575E
 		public string String
 		{
 			get
@@ -100,8 +100,8 @@ namespace MoonSharp.Interpreter
 			}
 		}
 
-		// Token: 0x170008E9 RID: 2281
-		// (get) Token: 0x06006508 RID: 25864 RVA: 0x0004574C File Offset: 0x0004394C
+		// Token: 0x1700068E RID: 1678
+		// (get) Token: 0x06005A25 RID: 23077 RVA: 0x0025756B File Offset: 0x0025576B
 		public CallbackFunction Callback
 		{
 			get
@@ -110,8 +110,8 @@ namespace MoonSharp.Interpreter
 			}
 		}
 
-		// Token: 0x170008EA RID: 2282
-		// (get) Token: 0x06006509 RID: 25865 RVA: 0x00045759 File Offset: 0x00043959
+		// Token: 0x1700068F RID: 1679
+		// (get) Token: 0x06005A26 RID: 23078 RVA: 0x00257578 File Offset: 0x00255778
 		public TailCallData TailCallData
 		{
 			get
@@ -120,8 +120,8 @@ namespace MoonSharp.Interpreter
 			}
 		}
 
-		// Token: 0x170008EB RID: 2283
-		// (get) Token: 0x0600650A RID: 25866 RVA: 0x00045766 File Offset: 0x00043966
+		// Token: 0x17000690 RID: 1680
+		// (get) Token: 0x06005A27 RID: 23079 RVA: 0x00257585 File Offset: 0x00255785
 		public YieldRequest YieldRequest
 		{
 			get
@@ -130,8 +130,8 @@ namespace MoonSharp.Interpreter
 			}
 		}
 
-		// Token: 0x170008EC RID: 2284
-		// (get) Token: 0x0600650B RID: 25867 RVA: 0x00045773 File Offset: 0x00043973
+		// Token: 0x17000691 RID: 1681
+		// (get) Token: 0x06005A28 RID: 23080 RVA: 0x00257592 File Offset: 0x00255792
 		public UserData UserData
 		{
 			get
@@ -140,8 +140,8 @@ namespace MoonSharp.Interpreter
 			}
 		}
 
-		// Token: 0x170008ED RID: 2285
-		// (get) Token: 0x0600650C RID: 25868 RVA: 0x00045780 File Offset: 0x00043980
+		// Token: 0x17000692 RID: 1682
+		// (get) Token: 0x06005A29 RID: 23081 RVA: 0x0025759F File Offset: 0x0025579F
 		public bool ReadOnly
 		{
 			get
@@ -150,13 +150,13 @@ namespace MoonSharp.Interpreter
 			}
 		}
 
-		// Token: 0x0600650D RID: 25869 RVA: 0x00045788 File Offset: 0x00043988
+		// Token: 0x06005A2A RID: 23082 RVA: 0x002575A7 File Offset: 0x002557A7
 		public static DynValue NewNil()
 		{
 			return new DynValue();
 		}
 
-		// Token: 0x0600650E RID: 25870 RVA: 0x0004578F File Offset: 0x0004398F
+		// Token: 0x06005A2B RID: 23083 RVA: 0x002575AE File Offset: 0x002557AE
 		public static DynValue NewBoolean(bool v)
 		{
 			return new DynValue
@@ -166,7 +166,7 @@ namespace MoonSharp.Interpreter
 			};
 		}
 
-		// Token: 0x0600650F RID: 25871 RVA: 0x000457AB File Offset: 0x000439AB
+		// Token: 0x06005A2C RID: 23084 RVA: 0x002575CA File Offset: 0x002557CA
 		public static DynValue NewNumber(double num)
 		{
 			return new DynValue
@@ -177,7 +177,7 @@ namespace MoonSharp.Interpreter
 			};
 		}
 
-		// Token: 0x06006510 RID: 25872 RVA: 0x000457C7 File Offset: 0x000439C7
+		// Token: 0x06005A2D RID: 23085 RVA: 0x002575E6 File Offset: 0x002557E6
 		public static DynValue NewString(string str)
 		{
 			return new DynValue
@@ -187,7 +187,7 @@ namespace MoonSharp.Interpreter
 			};
 		}
 
-		// Token: 0x06006511 RID: 25873 RVA: 0x000457DC File Offset: 0x000439DC
+		// Token: 0x06005A2E RID: 23086 RVA: 0x002575FB File Offset: 0x002557FB
 		public static DynValue NewString(StringBuilder sb)
 		{
 			return new DynValue
@@ -197,7 +197,7 @@ namespace MoonSharp.Interpreter
 			};
 		}
 
-		// Token: 0x06006512 RID: 25874 RVA: 0x000457F6 File Offset: 0x000439F6
+		// Token: 0x06005A2F RID: 23087 RVA: 0x00257615 File Offset: 0x00255815
 		public static DynValue NewString(string format, params object[] args)
 		{
 			return new DynValue
@@ -207,7 +207,7 @@ namespace MoonSharp.Interpreter
 			};
 		}
 
-		// Token: 0x06006513 RID: 25875 RVA: 0x00045811 File Offset: 0x00043A11
+		// Token: 0x06005A30 RID: 23088 RVA: 0x00257630 File Offset: 0x00255830
 		public static DynValue NewCoroutine(Coroutine coroutine)
 		{
 			return new DynValue
@@ -217,7 +217,7 @@ namespace MoonSharp.Interpreter
 			};
 		}
 
-		// Token: 0x06006514 RID: 25876 RVA: 0x00045827 File Offset: 0x00043A27
+		// Token: 0x06005A31 RID: 23089 RVA: 0x00257646 File Offset: 0x00255846
 		public static DynValue NewClosure(Closure function)
 		{
 			return new DynValue
@@ -227,7 +227,7 @@ namespace MoonSharp.Interpreter
 			};
 		}
 
-		// Token: 0x06006515 RID: 25877 RVA: 0x0004583C File Offset: 0x00043A3C
+		// Token: 0x06005A32 RID: 23090 RVA: 0x0025765B File Offset: 0x0025585B
 		public static DynValue NewCallback(Func<ScriptExecutionContext, CallbackArguments, DynValue> callBack, string name = null)
 		{
 			return new DynValue
@@ -237,7 +237,7 @@ namespace MoonSharp.Interpreter
 			};
 		}
 
-		// Token: 0x06006516 RID: 25878 RVA: 0x00045858 File Offset: 0x00043A58
+		// Token: 0x06005A33 RID: 23091 RVA: 0x00257677 File Offset: 0x00255877
 		public static DynValue NewCallback(CallbackFunction function)
 		{
 			return new DynValue
@@ -247,7 +247,7 @@ namespace MoonSharp.Interpreter
 			};
 		}
 
-		// Token: 0x06006517 RID: 25879 RVA: 0x0004586E File Offset: 0x00043A6E
+		// Token: 0x06005A34 RID: 23092 RVA: 0x0025768D File Offset: 0x0025588D
 		public static DynValue NewTable(Table table)
 		{
 			return new DynValue
@@ -257,25 +257,25 @@ namespace MoonSharp.Interpreter
 			};
 		}
 
-		// Token: 0x06006518 RID: 25880 RVA: 0x00045883 File Offset: 0x00043A83
+		// Token: 0x06005A35 RID: 23093 RVA: 0x002576A2 File Offset: 0x002558A2
 		public static DynValue NewPrimeTable()
 		{
 			return DynValue.NewTable(new Table(null));
 		}
 
-		// Token: 0x06006519 RID: 25881 RVA: 0x00045890 File Offset: 0x00043A90
+		// Token: 0x06005A36 RID: 23094 RVA: 0x002576AF File Offset: 0x002558AF
 		public static DynValue NewTable(Script script)
 		{
 			return DynValue.NewTable(new Table(script));
 		}
 
-		// Token: 0x0600651A RID: 25882 RVA: 0x0004589D File Offset: 0x00043A9D
+		// Token: 0x06005A37 RID: 23095 RVA: 0x002576BC File Offset: 0x002558BC
 		public static DynValue NewTable(Script script, params DynValue[] arrayValues)
 		{
 			return DynValue.NewTable(new Table(script, arrayValues));
 		}
 
-		// Token: 0x0600651B RID: 25883 RVA: 0x000458AB File Offset: 0x00043AAB
+		// Token: 0x06005A38 RID: 23096 RVA: 0x002576CA File Offset: 0x002558CA
 		public static DynValue NewTailCallReq(DynValue tailFn, params DynValue[] args)
 		{
 			return new DynValue
@@ -289,7 +289,7 @@ namespace MoonSharp.Interpreter
 			};
 		}
 
-		// Token: 0x0600651C RID: 25884 RVA: 0x000458D3 File Offset: 0x00043AD3
+		// Token: 0x06005A39 RID: 23097 RVA: 0x002576F2 File Offset: 0x002558F2
 		public static DynValue NewTailCallReq(TailCallData tailCallData)
 		{
 			return new DynValue
@@ -299,7 +299,7 @@ namespace MoonSharp.Interpreter
 			};
 		}
 
-		// Token: 0x0600651D RID: 25885 RVA: 0x000458E9 File Offset: 0x00043AE9
+		// Token: 0x06005A3A RID: 23098 RVA: 0x00257708 File Offset: 0x00255908
 		public static DynValue NewYieldReq(DynValue[] args)
 		{
 			return new DynValue
@@ -312,7 +312,7 @@ namespace MoonSharp.Interpreter
 			};
 		}
 
-		// Token: 0x0600651E RID: 25886 RVA: 0x0004590A File Offset: 0x00043B0A
+		// Token: 0x06005A3B RID: 23099 RVA: 0x00257729 File Offset: 0x00255929
 		internal static DynValue NewForcedYieldReq()
 		{
 			return new DynValue
@@ -325,7 +325,7 @@ namespace MoonSharp.Interpreter
 			};
 		}
 
-		// Token: 0x0600651F RID: 25887 RVA: 0x0004592B File Offset: 0x00043B2B
+		// Token: 0x06005A3C RID: 23100 RVA: 0x0025774A File Offset: 0x0025594A
 		public static DynValue NewTuple(params DynValue[] values)
 		{
 			if (values.Length == 0)
@@ -343,7 +343,7 @@ namespace MoonSharp.Interpreter
 			};
 		}
 
-		// Token: 0x06006520 RID: 25888 RVA: 0x002824A4 File Offset: 0x002806A4
+		// Token: 0x06005A3D RID: 23101 RVA: 0x00257774 File Offset: 0x00255974
 		public static DynValue NewTupleNested(params DynValue[] values)
 		{
 			if (!values.Any((DynValue v) => v.Type == DataType.Tuple))
@@ -373,7 +373,7 @@ namespace MoonSharp.Interpreter
 			};
 		}
 
-		// Token: 0x06006521 RID: 25889 RVA: 0x00045954 File Offset: 0x00043B54
+		// Token: 0x06005A3E RID: 23102 RVA: 0x00257809 File Offset: 0x00255A09
 		public static DynValue NewUserData(UserData userData)
 		{
 			return new DynValue
@@ -383,7 +383,7 @@ namespace MoonSharp.Interpreter
 			};
 		}
 
-		// Token: 0x06006522 RID: 25890 RVA: 0x00045969 File Offset: 0x00043B69
+		// Token: 0x06005A3F RID: 23103 RVA: 0x0025781E File Offset: 0x00255A1E
 		public DynValue AsReadOnly()
 		{
 			if (this.ReadOnly)
@@ -393,13 +393,13 @@ namespace MoonSharp.Interpreter
 			return this.Clone(true);
 		}
 
-		// Token: 0x06006523 RID: 25891 RVA: 0x0004597C File Offset: 0x00043B7C
+		// Token: 0x06005A40 RID: 23104 RVA: 0x00257831 File Offset: 0x00255A31
 		public DynValue Clone()
 		{
 			return this.Clone(this.ReadOnly);
 		}
 
-		// Token: 0x06006524 RID: 25892 RVA: 0x0004598A File Offset: 0x00043B8A
+		// Token: 0x06005A41 RID: 23105 RVA: 0x0025783F File Offset: 0x00255A3F
 		public DynValue Clone(bool readOnly)
 		{
 			return new DynValue
@@ -412,36 +412,36 @@ namespace MoonSharp.Interpreter
 			};
 		}
 
-		// Token: 0x06006525 RID: 25893 RVA: 0x000459C8 File Offset: 0x00043BC8
+		// Token: 0x06005A42 RID: 23106 RVA: 0x0025787D File Offset: 0x00255A7D
 		public DynValue CloneAsWritable()
 		{
 			return this.Clone(false);
 		}
 
-		// Token: 0x170008EE RID: 2286
-		// (get) Token: 0x06006526 RID: 25894 RVA: 0x000459D1 File Offset: 0x00043BD1
-		// (set) Token: 0x06006527 RID: 25895 RVA: 0x000459D8 File Offset: 0x00043BD8
+		// Token: 0x17000693 RID: 1683
+		// (get) Token: 0x06005A43 RID: 23107 RVA: 0x00257886 File Offset: 0x00255A86
+		// (set) Token: 0x06005A44 RID: 23108 RVA: 0x0025788D File Offset: 0x00255A8D
 		public static DynValue Void { get; private set; }
 
-		// Token: 0x170008EF RID: 2287
-		// (get) Token: 0x06006528 RID: 25896 RVA: 0x000459E0 File Offset: 0x00043BE0
-		// (set) Token: 0x06006529 RID: 25897 RVA: 0x000459E7 File Offset: 0x00043BE7
+		// Token: 0x17000694 RID: 1684
+		// (get) Token: 0x06005A45 RID: 23109 RVA: 0x00257895 File Offset: 0x00255A95
+		// (set) Token: 0x06005A46 RID: 23110 RVA: 0x0025789C File Offset: 0x00255A9C
 		public static DynValue Nil { get; private set; } = new DynValue
 		{
 			m_Type = DataType.Nil
 		}.AsReadOnly();
 
-		// Token: 0x170008F0 RID: 2288
-		// (get) Token: 0x0600652A RID: 25898 RVA: 0x000459EF File Offset: 0x00043BEF
-		// (set) Token: 0x0600652B RID: 25899 RVA: 0x000459F6 File Offset: 0x00043BF6
+		// Token: 0x17000695 RID: 1685
+		// (get) Token: 0x06005A47 RID: 23111 RVA: 0x002578A4 File Offset: 0x00255AA4
+		// (set) Token: 0x06005A48 RID: 23112 RVA: 0x002578AB File Offset: 0x00255AAB
 		public static DynValue True { get; private set; }
 
-		// Token: 0x170008F1 RID: 2289
-		// (get) Token: 0x0600652C RID: 25900 RVA: 0x000459FE File Offset: 0x00043BFE
-		// (set) Token: 0x0600652D RID: 25901 RVA: 0x00045A05 File Offset: 0x00043C05
+		// Token: 0x17000696 RID: 1686
+		// (get) Token: 0x06005A49 RID: 23113 RVA: 0x002578B3 File Offset: 0x00255AB3
+		// (set) Token: 0x06005A4A RID: 23114 RVA: 0x002578BA File Offset: 0x00255ABA
 		public static DynValue False { get; private set; }
 
-		// Token: 0x0600652E RID: 25902 RVA: 0x0028253C File Offset: 0x0028073C
+		// Token: 0x06005A4B RID: 23115 RVA: 0x002578C4 File Offset: 0x00255AC4
 		static DynValue()
 		{
 			DynValue.Void = new DynValue
@@ -452,7 +452,7 @@ namespace MoonSharp.Interpreter
 			DynValue.False = DynValue.NewBoolean(false).AsReadOnly();
 		}
 
-		// Token: 0x0600652F RID: 25903 RVA: 0x00282598 File Offset: 0x00280798
+		// Token: 0x06005A4C RID: 23116 RVA: 0x00257920 File Offset: 0x00255B20
 		public string ToPrintString()
 		{
 			if (this.m_Object != null && this.m_Object is RefIdObject)
@@ -497,7 +497,7 @@ namespace MoonSharp.Interpreter
 			return this.ToString();
 		}
 
-		// Token: 0x06006530 RID: 25904 RVA: 0x00282684 File Offset: 0x00280884
+		// Token: 0x06005A4D RID: 23117 RVA: 0x00257A0C File Offset: 0x00255C0C
 		public string ToDebugPrintString()
 		{
 			if (this.m_Object != null && this.m_Object is RefIdObject)
@@ -532,7 +532,7 @@ namespace MoonSharp.Interpreter
 			return "(YieldRequest)";
 		}
 
-		// Token: 0x06006531 RID: 25905 RVA: 0x00282760 File Offset: 0x00280960
+		// Token: 0x06005A4E RID: 23118 RVA: 0x00257AE8 File Offset: 0x00255CE8
 		public override string ToString()
 		{
 			switch (this.Type)
@@ -568,7 +568,7 @@ namespace MoonSharp.Interpreter
 			}
 		}
 
-		// Token: 0x06006532 RID: 25906 RVA: 0x002828D4 File Offset: 0x00280AD4
+		// Token: 0x06005A4F RID: 23119 RVA: 0x00257C5C File Offset: 0x00255E5C
 		public override int GetHashCode()
 		{
 			if (this.m_HashCode != -1)
@@ -610,7 +610,7 @@ namespace MoonSharp.Interpreter
 			return this.m_HashCode;
 		}
 
-		// Token: 0x06006533 RID: 25907 RVA: 0x002829F4 File Offset: 0x00280BF4
+		// Token: 0x06005A50 RID: 23120 RVA: 0x00257D7C File Offset: 0x00255F7C
 		public override bool Equals(object obj)
 		{
 			DynValue dynValue = obj as DynValue;
@@ -659,7 +659,7 @@ namespace MoonSharp.Interpreter
 			}
 		}
 
-		// Token: 0x06006534 RID: 25908 RVA: 0x00282B60 File Offset: 0x00280D60
+		// Token: 0x06005A51 RID: 23121 RVA: 0x00257EE8 File Offset: 0x002560E8
 		public string CastToString()
 		{
 			DynValue dynValue = this.ToScalar();
@@ -674,7 +674,7 @@ namespace MoonSharp.Interpreter
 			return null;
 		}
 
-		// Token: 0x06006535 RID: 25909 RVA: 0x00282BA0 File Offset: 0x00280DA0
+		// Token: 0x06005A52 RID: 23122 RVA: 0x00257F28 File Offset: 0x00256128
 		public double? CastToNumber()
 		{
 			DynValue dynValue = this.ToScalar();
@@ -690,7 +690,7 @@ namespace MoonSharp.Interpreter
 			return null;
 		}
 
-		// Token: 0x06006536 RID: 25910 RVA: 0x00282BFC File Offset: 0x00280DFC
+		// Token: 0x06005A53 RID: 23123 RVA: 0x00257F84 File Offset: 0x00256184
 		public bool CastToBool()
 		{
 			DynValue dynValue = this.ToScalar();
@@ -701,13 +701,13 @@ namespace MoonSharp.Interpreter
 			return dynValue.Type != DataType.Nil && dynValue.Type != DataType.Void;
 		}
 
-		// Token: 0x06006537 RID: 25911 RVA: 0x00045A0D File Offset: 0x00043C0D
+		// Token: 0x06005A54 RID: 23124 RVA: 0x00257FBE File Offset: 0x002561BE
 		public IScriptPrivateResource GetAsPrivateResource()
 		{
 			return this.m_Object as IScriptPrivateResource;
 		}
 
-		// Token: 0x06006538 RID: 25912 RVA: 0x00045A1A File Offset: 0x00043C1A
+		// Token: 0x06005A55 RID: 23125 RVA: 0x00257FCB File Offset: 0x002561CB
 		public DynValue ToScalar()
 		{
 			if (this.Type != DataType.Tuple)
@@ -721,7 +721,7 @@ namespace MoonSharp.Interpreter
 			return this.Tuple[0].ToScalar();
 		}
 
-		// Token: 0x06006539 RID: 25913 RVA: 0x00045A43 File Offset: 0x00043C43
+		// Token: 0x06005A56 RID: 23126 RVA: 0x00257FF4 File Offset: 0x002561F4
 		public void Assign(DynValue value)
 		{
 			if (this.ReadOnly)
@@ -734,7 +734,7 @@ namespace MoonSharp.Interpreter
 			this.m_HashCode = -1;
 		}
 
-		// Token: 0x0600653A RID: 25914 RVA: 0x00282C38 File Offset: 0x00280E38
+		// Token: 0x06005A57 RID: 23127 RVA: 0x00258034 File Offset: 0x00256234
 		public DynValue GetLength()
 		{
 			if (this.Type == DataType.Table)
@@ -751,37 +751,37 @@ namespace MoonSharp.Interpreter
 			});
 		}
 
-		// Token: 0x0600653B RID: 25915 RVA: 0x00045A83 File Offset: 0x00043C83
+		// Token: 0x06005A58 RID: 23128 RVA: 0x00258095 File Offset: 0x00256295
 		public bool IsNil()
 		{
 			return this.Type == DataType.Nil || this.Type == DataType.Void;
 		}
 
-		// Token: 0x0600653C RID: 25916 RVA: 0x00045A98 File Offset: 0x00043C98
+		// Token: 0x06005A59 RID: 23129 RVA: 0x002580AA File Offset: 0x002562AA
 		public bool IsNotNil()
 		{
 			return this.Type != DataType.Nil && this.Type != DataType.Void;
 		}
 
-		// Token: 0x0600653D RID: 25917 RVA: 0x00045AB0 File Offset: 0x00043CB0
+		// Token: 0x06005A5A RID: 23130 RVA: 0x002580C2 File Offset: 0x002562C2
 		public bool IsVoid()
 		{
 			return this.Type == DataType.Void;
 		}
 
-		// Token: 0x0600653E RID: 25918 RVA: 0x00045ABB File Offset: 0x00043CBB
+		// Token: 0x06005A5B RID: 23131 RVA: 0x002580CD File Offset: 0x002562CD
 		public bool IsNotVoid()
 		{
 			return this.Type != DataType.Void;
 		}
 
-		// Token: 0x0600653F RID: 25919 RVA: 0x00045AC9 File Offset: 0x00043CC9
+		// Token: 0x06005A5C RID: 23132 RVA: 0x002580DB File Offset: 0x002562DB
 		public bool IsNilOrNan()
 		{
 			return this.Type == DataType.Nil || this.Type == DataType.Void || (this.Type == DataType.Number && double.IsNaN(this.Number));
 		}
 
-		// Token: 0x06006540 RID: 25920 RVA: 0x00282C9C File Offset: 0x00280E9C
+		// Token: 0x06005A5D RID: 23133 RVA: 0x00258108 File Offset: 0x00256308
 		internal void AssignNumber(double num)
 		{
 			if (this.ReadOnly)
@@ -801,31 +801,31 @@ namespace MoonSharp.Interpreter
 			this.m_Number = num;
 		}
 
-		// Token: 0x06006541 RID: 25921 RVA: 0x00045AF4 File Offset: 0x00043CF4
+		// Token: 0x06005A5E RID: 23134 RVA: 0x00258161 File Offset: 0x00256361
 		public static DynValue FromObject(Script script, object obj)
 		{
 			return ClrToScriptConversions.ObjectToDynValue(script, obj);
 		}
 
-		// Token: 0x06006542 RID: 25922 RVA: 0x00045AFD File Offset: 0x00043CFD
+		// Token: 0x06005A5F RID: 23135 RVA: 0x0025816A File Offset: 0x0025636A
 		public object ToObject()
 		{
 			return ScriptToClrConversions.DynValueToObject(this);
 		}
 
-		// Token: 0x06006543 RID: 25923 RVA: 0x00045B05 File Offset: 0x00043D05
+		// Token: 0x06005A60 RID: 23136 RVA: 0x00258172 File Offset: 0x00256372
 		public object ToObject(Type desiredType)
 		{
 			return ScriptToClrConversions.DynValueToObjectOfType(this, desiredType, null, false);
 		}
 
-		// Token: 0x06006544 RID: 25924 RVA: 0x00045B10 File Offset: 0x00043D10
+		// Token: 0x06005A61 RID: 23137 RVA: 0x0025817D File Offset: 0x0025637D
 		public T ToObject<T>()
 		{
 			return (T)((object)this.ToObject(typeof(T)));
 		}
 
-		// Token: 0x06006545 RID: 25925 RVA: 0x00282CF8 File Offset: 0x00280EF8
+		// Token: 0x06005A62 RID: 23138 RVA: 0x00258194 File Offset: 0x00256394
 		public DynValue CheckType(string funcName, DataType desiredType, int argNum = -1, TypeValidationFlags flags = TypeValidationFlags.AutoConvert)
 		{
 			if (this.Type == desiredType)
@@ -867,7 +867,7 @@ namespace MoonSharp.Interpreter
 			throw ScriptRuntimeException.BadArgument(argNum, funcName, desiredType, this.Type, flag);
 		}
 
-		// Token: 0x06006546 RID: 25926 RVA: 0x00282D94 File Offset: 0x00280F94
+		// Token: 0x06005A63 RID: 23139 RVA: 0x00258230 File Offset: 0x00256430
 		public T CheckUserDataType<T>(string funcName, int argNum = -1, TypeValidationFlags flags = TypeValidationFlags.AutoConvert)
 		{
 			DynValue dynValue = this.CheckType(funcName, DataType.UserData, argNum, flags);
@@ -884,25 +884,25 @@ namespace MoonSharp.Interpreter
 			throw ScriptRuntimeException.BadArgumentUserData(argNum, funcName, typeof(T), @object, allowNil);
 		}
 
-		// Token: 0x04005E3C RID: 24124
+		// Token: 0x04005273 RID: 21107
 		private static int s_RefIDCounter;
 
-		// Token: 0x04005E3D RID: 24125
+		// Token: 0x04005274 RID: 21108
 		private int m_RefID = ++DynValue.s_RefIDCounter;
 
-		// Token: 0x04005E3E RID: 24126
+		// Token: 0x04005275 RID: 21109
 		private int m_HashCode = -1;
 
-		// Token: 0x04005E3F RID: 24127
+		// Token: 0x04005276 RID: 21110
 		private bool m_ReadOnly;
 
-		// Token: 0x04005E40 RID: 24128
+		// Token: 0x04005277 RID: 21111
 		private double m_Number;
 
-		// Token: 0x04005E41 RID: 24129
+		// Token: 0x04005278 RID: 21112
 		private object m_Object;
 
-		// Token: 0x04005E42 RID: 24130
+		// Token: 0x04005279 RID: 21113
 		private DataType m_Type;
 	}
 }

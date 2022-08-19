@@ -3,12 +3,12 @@ using UnityEngine;
 
 namespace BehaviorDesigner.Runtime.Tasks.Basic.UnityParticleSystem
 {
-	// Token: 0x0200158F RID: 5519
+	// Token: 0x020010D5 RID: 4309
 	[TaskCategory("Basic/ParticleSystem")]
 	[TaskDescription("Stores the time of the Particle System.")]
 	public class GetTime : Action
 	{
-		// Token: 0x0600821D RID: 33309 RVA: 0x002CD1C4 File Offset: 0x002CB3C4
+		// Token: 0x06007423 RID: 29731 RVA: 0x002B1AB4 File Offset: 0x002AFCB4
 		public override void OnStart()
 		{
 			GameObject defaultGameObject = base.GetDefaultGameObject(this.targetGameObject.Value);
@@ -19,7 +19,7 @@ namespace BehaviorDesigner.Runtime.Tasks.Basic.UnityParticleSystem
 			}
 		}
 
-		// Token: 0x0600821E RID: 33310 RVA: 0x00059245 File Offset: 0x00057445
+		// Token: 0x06007424 RID: 29732 RVA: 0x002B1AF4 File Offset: 0x002AFCF4
 		public override TaskStatus OnUpdate()
 		{
 			if (this.particleSystem == null)
@@ -31,26 +31,26 @@ namespace BehaviorDesigner.Runtime.Tasks.Basic.UnityParticleSystem
 			return 2;
 		}
 
-		// Token: 0x0600821F RID: 33311 RVA: 0x00059278 File Offset: 0x00057478
+		// Token: 0x06007425 RID: 29733 RVA: 0x002B1B27 File Offset: 0x002AFD27
 		public override void OnReset()
 		{
 			this.targetGameObject = null;
 			this.storeResult = 0f;
 		}
 
-		// Token: 0x04006EE4 RID: 28388
+		// Token: 0x04005FE4 RID: 24548
 		[Tooltip("The GameObject that the task operates on. If null the task GameObject is used.")]
 		public SharedGameObject targetGameObject;
 
-		// Token: 0x04006EE5 RID: 28389
+		// Token: 0x04005FE5 RID: 24549
 		[Tooltip("The time of the ParticleSystem")]
 		[RequiredField]
 		public SharedFloat storeResult;
 
-		// Token: 0x04006EE6 RID: 28390
+		// Token: 0x04005FE6 RID: 24550
 		private ParticleSystem particleSystem;
 
-		// Token: 0x04006EE7 RID: 28391
+		// Token: 0x04005FE7 RID: 24551
 		private GameObject prevGameObject;
 	}
 }

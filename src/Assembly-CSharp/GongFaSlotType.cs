@@ -1,20 +1,20 @@
 ﻿using System;
 
-// Token: 0x02000537 RID: 1335
+// Token: 0x020003AC RID: 940
 public enum GongFaSlotType
 {
-	// Token: 0x04001D81 RID: 7553
+	// Token: 0x0400190D RID: 6413
 	遁术 = 5,
-	// Token: 0x04001D82 RID: 7554
+	// Token: 0x0400190E RID: 6414
 	辅修1 = 1,
-	// Token: 0x04001D83 RID: 7555
+	// Token: 0x0400190F RID: 6415
 	辅修2,
-	// Token: 0x04001D84 RID: 7556
+	// Token: 0x04001910 RID: 6416
 	主修 = 0,
-	// Token: 0x04001D85 RID: 7557
+	// Token: 0x04001911 RID: 6417
 	元婴 = 6,
-	// Token: 0x04001D86 RID: 7558
+	// Token: 0x04001912 RID: 6418
 	辅修3 = 3,
-	// Token: 0x04001D87 RID: 7559
+	// Token: 0x04001913 RID: 6419
 	辅修4
 }

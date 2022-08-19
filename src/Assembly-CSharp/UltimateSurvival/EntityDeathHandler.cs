@@ -3,10 +3,10 @@ using UnityEngine;
 
 namespace UltimateSurvival
 {
-	// Token: 0x020008F1 RID: 2289
+	// Token: 0x0200060E RID: 1550
 	public class EntityDeathHandler : EntityBehaviour
 	{
-		// Token: 0x06003AB8 RID: 15032 RVA: 0x0002AA1D File Offset: 0x00028C1D
+		// Token: 0x0600319B RID: 12699 RVA: 0x0016076F File Offset: 0x0015E96F
 		private void Awake()
 		{
 			if (this.m_EnableRagdoll && !this.m_Ragdoll)
@@ -16,7 +16,7 @@ namespace UltimateSurvival
 			base.Entity.Health.AddChangeListener(new Action(this.OnChanged_Health));
 		}
 
-		// Token: 0x06003AB9 RID: 15033 RVA: 0x0002AA5B File Offset: 0x00028C5B
+		// Token: 0x0600319C RID: 12700 RVA: 0x001607AD File Offset: 0x0015E9AD
 		private void OnChanged_Health()
 		{
 			if (base.Entity.Health.Is(0f))
@@ -25,7 +25,7 @@ namespace UltimateSurvival
 			}
 		}
 
-		// Token: 0x06003ABA RID: 15034 RVA: 0x001A9D74 File Offset: 0x001A7F74
+		// Token: 0x0600319D RID: 12701 RVA: 0x001607CC File Offset: 0x0015E9CC
 		private void On_Death()
 		{
 			this.m_DeathAudio.Play(ItemSelectionMethod.Randomly, this.m_AudioSource, 1f);
@@ -63,60 +63,60 @@ namespace UltimateSurvival
 			base.Entity.Death.Send();
 		}
 
-		// Token: 0x040034F3 RID: 13555
+		// Token: 0x04002BDF RID: 11231
 		[Header("Audio")]
 		[SerializeField]
 		private AudioSource m_AudioSource;
 
-		// Token: 0x040034F4 RID: 13556
+		// Token: 0x04002BE0 RID: 11232
 		[SerializeField]
 		private SoundPlayer m_DeathAudio;
 
-		// Token: 0x040034F5 RID: 13557
+		// Token: 0x04002BE1 RID: 11233
 		[Header("Stuff To Disable On Death")]
 		[SerializeField]
 		private GameObject[] m_ObjectsToDisable;
 
-		// Token: 0x040034F6 RID: 13558
+		// Token: 0x04002BE2 RID: 11234
 		[SerializeField]
 		private Behaviour[] m_BehavioursToDisable;
 
-		// Token: 0x040034F7 RID: 13559
+		// Token: 0x04002BE3 RID: 11235
 		[SerializeField]
 		private Collider[] m_CollidersToDisable;
 
-		// Token: 0x040034F8 RID: 13560
+		// Token: 0x04002BE4 RID: 11236
 		[Header("Ragdoll")]
 		[SerializeField]
 		[Tooltip("On death, you can either have a ragdoll, or an animation to play.")]
 		private bool m_EnableRagdoll;
 
-		// Token: 0x040034F9 RID: 13561
+		// Token: 0x04002BE5 RID: 11237
 		[SerializeField]
 		[Tooltip("A Ragdoll component, usually attached to the armature of the character.")]
 		private Ragdoll m_Ragdoll;
 
-		// Token: 0x040034FA RID: 13562
+		// Token: 0x04002BE6 RID: 11238
 		[Header("Death Animation")]
 		[SerializeField]
 		[Tooltip("On death, you can either have a ragdoll, or an animation to play.")]
 		private bool m_EnableDeathAnim;
 
-		// Token: 0x040034FB RID: 13563
+		// Token: 0x04002BE7 RID: 11239
 		[SerializeField]
 		private Animator m_Animator;
 
-		// Token: 0x040034FC RID: 13564
+		// Token: 0x04002BE8 RID: 11240
 		[Header("Destroy Timer")]
 		[SerializeField]
 		[Clamp(0f, 1000f)]
 		[Tooltip("")]
 		private float m_DestroyTimer;
 
-		// Token: 0x040034FD RID: 13565
+		// Token: 0x04002BE9 RID: 11241
 		private Vector3 m_CamStartPos;
 
-		// Token: 0x040034FE RID: 13566
+		// Token: 0x04002BEA RID: 11242
 		private Quaternion m_CamStartRot;
 	}
 }

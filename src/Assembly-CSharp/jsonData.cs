@@ -8,16 +8,16 @@ using UltimateSurvival;
 using UnityEngine;
 using YSGame;
 
-// Token: 0x020002BF RID: 703
+// Token: 0x020001C0 RID: 448
 public class jsonData : MonoBehaviour
 {
-	// Token: 0x0600152E RID: 5422 RVA: 0x00013577 File Offset: 0x00011777
+	// Token: 0x0600127F RID: 4735 RVA: 0x00070D1E File Offset: 0x0006EF1E
 	private void Awake()
 	{
 		jsonData.instance = this;
 	}
 
-	// Token: 0x0600152F RID: 5423 RVA: 0x000BE6B0 File Offset: 0x000BC8B0
+	// Token: 0x06001280 RID: 4736 RVA: 0x00070D28 File Offset: 0x0006EF28
 	public void Preload(int taskID)
 	{
 		try
@@ -27,6 +27,7 @@ public class jsonData : MonoBehaviour
 		catch
 		{
 			PreloadManager.IsException = true;
+			PreloadManager.Inst.TaskDone(taskID);
 		}
 		Loom.RunAsync(delegate
 		{
@@ -34,7 +35,7 @@ public class jsonData : MonoBehaviour
 		});
 	}
 
-	// Token: 0x06001530 RID: 5424 RVA: 0x000BE704 File Offset: 0x000BC904
+	// Token: 0x06001281 RID: 4737 RVA: 0x00070D8C File Offset: 0x0006EF8C
 	private void LoadSync()
 	{
 		YSSaveGame.CheckAndDelOldSave();
@@ -53,7 +54,7 @@ public class jsonData : MonoBehaviour
 		this.ornament = (RandomFace)Resources.Load("Effect/AvatarFace/ornament/ornament");
 	}
 
-	// Token: 0x06001531 RID: 5425 RVA: 0x000BE828 File Offset: 0x000BCA28
+	// Token: 0x06001282 RID: 4738 RVA: 0x00070EB0 File Offset: 0x0006F0B0
 	private void LoadAsync(int taskID)
 	{
 		try
@@ -65,12 +66,18 @@ public class jsonData : MonoBehaviour
 		{
 			PreloadManager.IsException = true;
 			PreloadManager.ExceptionData += string.Format("{0}\n", arg);
+			PreloadManager.Inst.TaskDone(taskID);
 		}
 	}
 
-	// Token: 0x06001532 RID: 5426 RVA: 0x000BE87C File Offset: 0x000BCA7C
+	// Token: 0x06001283 RID: 4739 RVA: 0x00070F10 File Offset: 0x0006F110
 	private void InitLogic()
 	{
+		this.init("Effect/json/d_JiaoYiHui.py.gudingyiwu.json", out this.GuDingExchangeData);
+		this.init("Effect/json/d_JiaoYiHui.py.suijiyiwu", out this.RandomExchangeData);
+		this.init("Effect/json/d_JiaoYiHui.py.pingbiwupin", out this.DisableExchangeData);
+		this.init("Effect/json/d_JiaoYiHui.py.tishi", out this.TipsExchangeData);
+		this.init("Effect/json/d_JiaoYiHui.py.wupinleixing", out this.ItemTypeExchangeData);
 		this.init("Effect/json/d_AvatarAI.py.NPCwudaochi", out this.NpcWuDaoChiData);
 		this.init("Effect/json/d_Map.py.SceneName", out this.SceneNameJsonData);
 		this.init("Effect/json/d_avatar_inittab.py.heroFace", out this.heroFaceJsonData);
@@ -136,6 +143,7 @@ public class jsonData : MonoBehaviour
 		this.init("Effect/json/d_ThreeScene.py.wuxianbiguan", out this.WuXianBiGuanJsonData);
 		this.init("Effect/json/d_Map.py.fubeninfo", out this.FuBenInfoJsonData);
 		this.init("Effect/json/d_Map.py.LiShiChuanWenBaio", out this.LiShiChuanWen);
+		this.init("Effect/json/d_Map.py.DongTaiChuanWenBaio", out this.DongTaiChuanWenBaio);
 		this.init("Effect/json/d_createAvatar.py.tianfucitiao", out this.CreateAvatarJsonData);
 		this.init("Effect/json/d_createAvatar.py.linggenzizhi", out this.LinGenZiZhiJsonData);
 		this.init("Effect/json/d_avatar.py.chengHaoBiao", out this.ChengHaoJsonData);
@@ -188,6 +196,7 @@ public class jsonData : MonoBehaviour
 		this.init("Effect/json/d_LianQi.py.lianqijiesuo", out this.LianQiJieSuoBiao);
 		this.init("Effect/json/d_str.py.nanzujian", out this.NanZuJianBiao);
 		this.init("Effect/json/d_str.py.nvzujian", out this.NvZuJianBiao);
+		this.init("Effect/json/d_str.py.touxiangpianyi", out this.TouXiangPianYi);
 		this.init("Effect/json/d_LunDao.py.LunDaoZhuangTai", out this.LunDaoStateData);
 		this.init("Effect/json/d_LunDao.py.LunDaoDuiHua", out this.LunDaoSayData);
 		this.init("Effect/json/d_LunDao.py.LunDaoShouYi", out this.LunDaoShouYiData);
@@ -268,6 +277,8 @@ public class jsonData : MonoBehaviour
 		this.init("Effect/json/d_task.py.renwudaleiyouxianji", out this.RenWuDaLeiYouXianJi);
 		this.init("Effect/json/d_staticSkill.py.HuaShenData", out this.HuaShenData);
 		this.init("Effect/json/d_dujie.py.mishu", out this.TianJieMiShuData);
+		this.init("Effect/json/d_dujie.py.leijieleixing", out this.TianJieLeiJieType);
+		this.init("Effect/json/d_dujie.py.leijieshanghai", out this.TianJieLeiJieShangHai);
 		this.init("Effect/json/d_LianDan.py.linghecaiji", out this.LingHeCaiJi);
 		this.init("Effect/json/d_LianDan.py.lingmaipinjie", out this.LingMaiPinJie);
 		this.init("Effect/json/d_ChuanYin.py.suijiNPCrenwuchuanyin", out this.CyRandomTaskData);
@@ -276,11 +287,16 @@ public class jsonData : MonoBehaviour
 		this.init("Effect/json/d_AvatarAI.py.tianjidabi", out this.TianJiDaBi);
 		this.init("Effect/json/d_AvatarAI.py.gongfangkezhi", out this.TianJiDaBiGongFangKeZhi);
 		this.init("Effect/json/d_AvatarAI.py.tianjidabijiangli", out this.TianJiDaBiReward);
+		this.init("Effect/json/d_AvatarAI.py.chuanwenleixing", out this.ChuanWenTypeData);
 		this.init("Effect/json/d_ShengPing.py.shengping", out this.ShengPing);
 		this.init("Effect/json/d_avatar.py.FengLu", out this.MenPaiFengLuBiao);
+		this.init("Effect/json/d_items.py.wupingbiaoqian", out this.ItemFlagData);
 		this.init("Effect/json/d_JianLing.py.XianSuo", out this.JianLingXianSuo);
 		this.init("Effect/json/d_JianLing.py.ZhenXiang", out this.JianLingZhenXiang);
 		this.init("Effect/json/d_JianLing.py.QingJiao", out this.JianLingQingJiao);
+		this.init("Effect/json/d_ZhangLaoRenWu.py.wupintype", out this.ElderTaskItemType);
+		this.init("Effect/json/d_ZhangLaoRenWu.py.weijinwupin", out this.ElderTaskDisableItem);
+		this.init("Effect/json/d_ZhangLaoRenWu.py.timecost", out this.ElderTaskItemCost);
 		this.InitJObject("Effect/json/d_task.py.gudingshijianrenwu", out this.StaticNTaks);
 		this.InitJObject("Effect/json/d_task.py.gudingshuaxinshijian", out this.StaticNTaksTime);
 		this.InitJObject("Effect/json/d_badword.py.BadWord", out this.BadWord);
@@ -371,12 +387,12 @@ public class jsonData : MonoBehaviour
 		YSJSONHelper.InitJSONClassData();
 	}
 
-	// Token: 0x06001533 RID: 5427 RVA: 0x000BFB10 File Offset: 0x000BDD10
+	// Token: 0x06001284 RID: 4740 RVA: 0x00072290 File Offset: 0x00070490
 	public JSONObject getTaskInfo(int taskID, int index)
 	{
 		foreach (JSONObject jsonobject in jsonData.instance.TaskInfoJsonData.list)
 		{
-			if ((int)jsonobject["TaskID"].n == taskID && (int)jsonobject["TaskIndex"].n == index)
+			if (jsonobject["TaskID"].I == taskID && jsonobject["TaskIndex"].I == index)
 			{
 				return jsonobject;
 			}
@@ -384,13 +400,13 @@ public class jsonData : MonoBehaviour
 		return null;
 	}
 
-	// Token: 0x06001534 RID: 5428 RVA: 0x0001357F File Offset: 0x0001177F
+	// Token: 0x06001285 RID: 4741 RVA: 0x00072314 File Offset: 0x00070514
 	public void loadAvatarBackpack(int id, int index)
 	{
 		this.AvatarBackpackJsonData = YSSaveGame.GetJsonObject("AvatarBackpackJsonData" + Tools.instance.getSaveID(id, index), null);
 	}
 
-	// Token: 0x06001535 RID: 5429 RVA: 0x000BFB94 File Offset: 0x000BDD94
+	// Token: 0x06001286 RID: 4742 RVA: 0x00072338 File Offset: 0x00070538
 	public void MonstarAddItem(int monstarID, string uuid, int ItemID, int ItemNum, JSONObject Seid, int paiMaiPlayer = 0)
 	{
 		foreach (JSONObject jsonobject in this.AvatarBackpackJsonData[string.Concat(monstarID)]["Backpack"].list)
@@ -411,7 +427,7 @@ public class jsonData : MonoBehaviour
 		this.AvatarBackpackJsonData[string.Concat(monstarID)]["Backpack"].Add(obj);
 	}
 
-	// Token: 0x06001536 RID: 5430 RVA: 0x000BFCC4 File Offset: 0x000BDEC4
+	// Token: 0x06001287 RID: 4743 RVA: 0x00072468 File Offset: 0x00070668
 	public void MonstarCreatInterstingType(int MonstarID)
 	{
 		int i = this.AvatarJsonData[MonstarID.ToString()]["XinQuType"].I;
@@ -439,7 +455,7 @@ public class jsonData : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001537 RID: 5431 RVA: 0x000BFE80 File Offset: 0x000BE080
+	// Token: 0x06001288 RID: 4744 RVA: 0x00072624 File Offset: 0x00070824
 	public int GetMonstarInterestingItem(int MonstarID, int itemID, JSONObject Seid = null)
 	{
 		if (!this.AvatarBackpackJsonData[string.Concat(MonstarID)].HasField("XinQuType"))
@@ -474,7 +490,7 @@ public class jsonData : MonoBehaviour
 		return num;
 	}
 
-	// Token: 0x06001538 RID: 5432 RVA: 0x000C001C File Offset: 0x000BE21C
+	// Token: 0x06001289 RID: 4745 RVA: 0x000727C0 File Offset: 0x000709C0
 	public List<int> GetItemXiangXiLeiXin(int itemID)
 	{
 		List<int> list = new List<int>();
@@ -485,7 +501,7 @@ public class jsonData : MonoBehaviour
 		return list;
 	}
 
-	// Token: 0x06001539 RID: 5433 RVA: 0x000C0074 File Offset: 0x000BE274
+	// Token: 0x0600128A RID: 4746 RVA: 0x00072818 File Offset: 0x00070A18
 	public List<JSONObject> GetMonsatrBackpack(int monstarID)
 	{
 		List<JSONObject> list = new List<JSONObject>();
@@ -499,7 +515,7 @@ public class jsonData : MonoBehaviour
 		return list;
 	}
 
-	// Token: 0x0600153A RID: 5434 RVA: 0x000C0108 File Offset: 0x000BE308
+	// Token: 0x0600128B RID: 4747 RVA: 0x000728AC File Offset: 0x00070AAC
 	public void MonstarRemoveItem(int monstarID, string UUID, int ItemNum, bool isPaiMai = false)
 	{
 		foreach (JSONObject jsonobject in this.AvatarBackpackJsonData[string.Concat(monstarID)]["Backpack"].list)
@@ -514,22 +530,22 @@ public class jsonData : MonoBehaviour
 				{
 					int itemNum = ItemNum - (int)jsonobject["Num"].n;
 					jsonobject.SetField("Num", 0);
-					this.MonstarRemoveItem(monstarID, (int)jsonobject["ItemID"].n, itemNum, false);
+					this.MonstarRemoveItem(monstarID, jsonobject["ItemID"].I, itemNum, false);
 				}
 			}
 		}
 	}
 
-	// Token: 0x0600153B RID: 5435 RVA: 0x000C0204 File Offset: 0x000BE404
+	// Token: 0x0600128C RID: 4748 RVA: 0x000729A4 File Offset: 0x00070BA4
 	public void MonstarRemoveItem(int monstarID, int ItemID, int ItemNum, bool isPaiMai = false)
 	{
 		foreach (JSONObject jsonobject in this.AvatarBackpackJsonData[string.Concat(monstarID)]["Backpack"].list)
 		{
-			if ((!isPaiMai || (jsonobject.HasField("paiMaiPlayer") && (int)jsonobject["paiMaiPlayer"].n >= 1)) && ItemID == (int)jsonobject["ItemID"].n && (int)jsonobject["Num"].n > 0)
+			if ((!isPaiMai || (jsonobject.HasField("paiMaiPlayer") && jsonobject["paiMaiPlayer"].I >= 1)) && ItemID == jsonobject["ItemID"].I && jsonobject["Num"].I > 0)
 			{
-				if ((int)jsonobject["Num"].n - ItemNum >= 0)
+				if (jsonobject["Num"].I - ItemNum >= 0)
 				{
-					jsonobject.SetField("Num", (int)jsonobject["Num"].n - ItemNum);
+					jsonobject.SetField("Num", jsonobject["Num"].I - ItemNum);
 					break;
 				}
 				int itemNum = ItemNum - (int)jsonobject["Num"].n;
@@ -540,7 +556,7 @@ public class jsonData : MonoBehaviour
 		}
 	}
 
-	// Token: 0x0600153C RID: 5436 RVA: 0x000C032C File Offset: 0x000BE52C
+	// Token: 0x0600128D RID: 4749 RVA: 0x00072AC8 File Offset: 0x00070CC8
 	public bool MonstarIsDeath(int monstarID)
 	{
 		bool result = false;
@@ -551,7 +567,7 @@ public class jsonData : MonoBehaviour
 		return result;
 	}
 
-	// Token: 0x0600153D RID: 5437 RVA: 0x000C03A4 File Offset: 0x000BE5A4
+	// Token: 0x0600128E RID: 4750 RVA: 0x00072B40 File Offset: 0x00070D40
 	public List<int> getHaoGanDUGuanLian(int monstarID)
 	{
 		List<int> list = new List<int>();
@@ -577,7 +593,7 @@ public class jsonData : MonoBehaviour
 		return list;
 	}
 
-	// Token: 0x0600153E RID: 5438 RVA: 0x000C04B8 File Offset: 0x000BE6B8
+	// Token: 0x0600128F RID: 4751 RVA: 0x00072C54 File Offset: 0x00070E54
 	public void MonstarSetHaoGanDu(int monstarID, int haogandu)
 	{
 		float n = this.AvatarRandomJsonData[monstarID.ToString()]["HaoGanDu"].n;
@@ -588,7 +604,7 @@ public class jsonData : MonoBehaviour
 		}
 	}
 
-	// Token: 0x0600153F RID: 5439 RVA: 0x000C0574 File Offset: 0x000BE774
+	// Token: 0x06001290 RID: 4752 RVA: 0x00072D10 File Offset: 0x00070F10
 	public void setMonstarDeath(int monstarID, bool isNeed = true)
 	{
 		if (monstarID >= 20000 || NpcJieSuanManager.inst.ImportantNpcBangDingDictionary.ContainsKey(monstarID))
@@ -619,7 +635,7 @@ public class jsonData : MonoBehaviour
 				while (enumerator.MoveNext())
 				{
 					JSONObject jsonobject = enumerator.Current;
-					if ((int)jsonobject["AvatrID"].n == monstarID)
+					if (jsonobject["AvatrID"].I == monstarID)
 					{
 						this.AvatarAddBackpackByInfo(ref this.AvatarBackpackJsonData, jsonobject);
 					}
@@ -630,14 +646,14 @@ public class jsonData : MonoBehaviour
 		this.AvatarBackpackJsonData[string.Concat(monstarID)].SetField("death", 1);
 	}
 
-	// Token: 0x06001540 RID: 5440 RVA: 0x000C06DC File Offset: 0x000BE8DC
+	// Token: 0x06001291 RID: 4753 RVA: 0x00072E78 File Offset: 0x00071078
 	public void refreshMonstar(int monstarID)
 	{
-		JSONObject value = this.randomAvatarFace(this.AvatarJsonData[string.Concat(monstarID)], null);
-		this.AvatarRandomJsonData[string.Concat(monstarID)] = value;
+		JSONObject jsonobject = this.randomAvatarFace(this.AvatarJsonData[string.Concat(monstarID)], null);
+		this.AvatarRandomJsonData[string.Concat(monstarID)] = jsonobject.Copy();
 	}
 
-	// Token: 0x06001541 RID: 5441 RVA: 0x000C0720 File Offset: 0x000BE920
+	// Token: 0x06001292 RID: 4754 RVA: 0x00072EC0 File Offset: 0x000710C0
 	public JSONObject setAvatarBackpack(string uuid, int itemid, int num, int canSell, int sellPercent, int canDrop, JSONObject Seid, int paiMaiPlayer = 0)
 	{
 		JSONObject jsonobject = new JSONObject();
@@ -652,7 +668,7 @@ public class jsonData : MonoBehaviour
 		return jsonobject;
 	}
 
-	// Token: 0x06001542 RID: 5442 RVA: 0x000C0798 File Offset: 0x000BE998
+	// Token: 0x06001293 RID: 4755 RVA: 0x00072F38 File Offset: 0x00071138
 	public void InitAvatarBackpack(ref JSONObject jsondata, int avatarID)
 	{
 		jsondata.SetField(string.Concat(avatarID), new JSONObject());
@@ -676,7 +692,7 @@ public class jsonData : MonoBehaviour
 		jsondata[string.Concat(avatarID)].SetField("death", 0);
 	}
 
-	// Token: 0x06001543 RID: 5443 RVA: 0x000C0910 File Offset: 0x000BEB10
+	// Token: 0x06001294 RID: 4756 RVA: 0x000730B0 File Offset: 0x000712B0
 	public void AvatarAddBackpackByInfo(ref JSONObject jsondata, JSONObject info)
 	{
 		if (info["ItemID"].list.Count != 0)
@@ -695,7 +711,7 @@ public class jsonData : MonoBehaviour
 					catch (Exception ex)
 					{
 						Debug.LogError(ex);
-						Debug.LogError((int)info["AvatrID"].n + "背包配置出错物品id" + (int)jsonobject.n);
+						Debug.LogError(info["AvatrID"].I + "背包配置出错物品id" + jsonobject.I);
 					}
 					num++;
 				}
@@ -706,13 +722,13 @@ public class jsonData : MonoBehaviour
 		foreach (JSONObject jsonobject2 in info["randomNum"].list)
 		{
 			int randomItem = this.getRandomItem((int)info["Type"].n, (int)info["quality"].n);
-			JSONObject obj2 = this.setAvatarBackpack(Tools.getUUID(), randomItem, (int)info["randomNum"][num2].n, (int)info["CanSell"].n, (int)info["SellPercent"].n, (int)info["CanDrop"].n, Tools.CreateItemSeid(randomItem), 0);
-			jsondata[string.Concat((int)info["AvatrID"].n)]["Backpack"].Add(obj2);
+			JSONObject obj2 = this.setAvatarBackpack(Tools.getUUID(), randomItem, info["randomNum"][num2].I, (int)info["CanSell"].n, (int)info["SellPercent"].n, (int)info["CanDrop"].n, Tools.CreateItemSeid(randomItem), 0);
+			jsondata[string.Concat(info["AvatrID"].I)]["Backpack"].Add(obj2);
 			num2++;
 		}
 	}
 
-	// Token: 0x06001544 RID: 5444 RVA: 0x000C0B80 File Offset: 0x000BED80
+	// Token: 0x06001295 RID: 4757 RVA: 0x0007331C File Offset: 0x0007151C
 	public void randomAvatarBackpack(int id, int index)
 	{
 		JSONObject jsonobject = new JSONObject();
@@ -720,7 +736,7 @@ public class jsonData : MonoBehaviour
 		List<JToken> list = Tools.FindAllJTokens(this.ResetAvatarBackpackBanBen, (JToken aa) => (int)aa["BanBenID"] > avatar.BanBenHao);
 		foreach (JSONObject jsonobject2 in this.BackpackJsonData.list)
 		{
-			int avatarID = (int)jsonobject2["AvatrID"].n;
+			int avatarID = jsonobject2["AvatrID"].I;
 			if (list.Find((JToken aa) => (int)aa["avatar"] == avatarID) == null && this.AvatarBackpackJsonData != null && this.AvatarBackpackJsonData.HasField(string.Concat(avatarID)))
 			{
 				jsonobject.SetField(string.Concat(avatarID), this.AvatarBackpackJsonData[string.Concat(avatarID)]);
@@ -738,13 +754,13 @@ public class jsonData : MonoBehaviour
 		this.AvatarBackpackJsonData = jsonobject;
 	}
 
-	// Token: 0x06001545 RID: 5445 RVA: 0x000C0CF8 File Offset: 0x000BEEF8
+	// Token: 0x06001296 RID: 4758 RVA: 0x00073494 File Offset: 0x00071694
 	public int getSellPercent(int monstarID, int itemID)
 	{
 		int result = 100;
 		foreach (JSONObject jsonobject in this.AvatarBackpackJsonData[string.Concat(monstarID)]["Backpack"].list)
 		{
-			if ((int)jsonobject["ItemID"].n == itemID && (int)jsonobject["Num"].n > 0)
+			if (jsonobject["ItemID"].I == itemID && jsonobject["Num"].I > 0)
 			{
 				return (int)jsonobject["SellPercent"].n;
 			}
@@ -752,7 +768,7 @@ public class jsonData : MonoBehaviour
 		return result;
 	}
 
-	// Token: 0x06001546 RID: 5446 RVA: 0x000C0DA8 File Offset: 0x000BEFA8
+	// Token: 0x06001297 RID: 4759 RVA: 0x00073540 File Offset: 0x00071740
 	public int getRandomItem(int type, int quality)
 	{
 		int num = 0;
@@ -786,7 +802,7 @@ public class jsonData : MonoBehaviour
 			{
 				if (num3 == num2)
 				{
-					return (int)jsonobject2["id"].n;
+					return jsonobject2["id"].I;
 				}
 				num3++;
 			}
@@ -794,7 +810,7 @@ public class jsonData : MonoBehaviour
 		return 0;
 	}
 
-	// Token: 0x06001547 RID: 5447 RVA: 0x000C0F10 File Offset: 0x000BF110
+	// Token: 0x06001298 RID: 4760 RVA: 0x000736A4 File Offset: 0x000718A4
 	public string randomName(JSONObject info)
 	{
 		int num = this.QuikeGetRandom() % this.firstNameJsonData.Count + 1;
@@ -826,28 +842,28 @@ public class jsonData : MonoBehaviour
 		return this.randomName(info);
 	}
 
-	// Token: 0x06001548 RID: 5448 RVA: 0x000C1058 File Offset: 0x000BF258
+	// Token: 0x06001299 RID: 4761 RVA: 0x000737EC File Offset: 0x000719EC
 	public string RandomFirstName()
 	{
 		int num = this.getRandom() % this.firstNameJsonData.Count + 1;
 		return this.firstNameJsonData[string.Concat(num)]["Name"].Str;
 	}
 
-	// Token: 0x06001549 RID: 5449 RVA: 0x000C10A0 File Offset: 0x000BF2A0
+	// Token: 0x0600129A RID: 4762 RVA: 0x00073834 File Offset: 0x00071A34
 	public string RandomManLastName()
 	{
 		int num = this.getRandom() % this.LastNameJsonData.Count + 1;
 		return this.LastNameJsonData[string.Concat(num)]["Name"].Str;
 	}
 
-	// Token: 0x0600154A RID: 5450 RVA: 0x000C10E8 File Offset: 0x000BF2E8
+	// Token: 0x0600129B RID: 4763 RVA: 0x0007387C File Offset: 0x00071A7C
 	public string RandomWomenLastName()
 	{
 		int num = this.getRandom() % this.LastWomenNameJsonData.Count + 1;
 		return this.LastWomenNameJsonData[string.Concat(num)]["Name"].Str;
 	}
 
-	// Token: 0x0600154B RID: 5451 RVA: 0x000C1130 File Offset: 0x000BF330
+	// Token: 0x0600129C RID: 4764 RVA: 0x000738C4 File Offset: 0x00071AC4
 	public JSONObject randomAvatarFace(JSONObject info, JSONObject AvatarOldJson = null)
 	{
 		JSONObject jsonobject = new JSONObject();
@@ -866,8 +882,8 @@ public class jsonData : MonoBehaviour
 		jsonobject.AddField("Sex", (int)info["SexType"].n);
 		foreach (JSONObject jsonobject2 in jsonData.instance.SuiJiTouXiangGeShuJsonData.list)
 		{
-			List<int> suijiList = this.getSuijiList(jsonobject2["StrID"].str, "SuiJiSex" + (int)info["SexType"].n);
-			List<int> suijiList2 = this.getSuijiList(jsonobject2["StrID"].str, "Sex" + (int)info["SexType"].n);
+			List<int> suijiList = this.getSuijiList(jsonobject2["StrID"].str, "SuiJiSex" + info["SexType"].I);
+			List<int> suijiList2 = this.getSuijiList(jsonobject2["StrID"].str, "Sex" + info["SexType"].I);
 			int val = 0;
 			if (suijiList.Count > 0)
 			{
@@ -885,7 +901,7 @@ public class jsonData : MonoBehaviour
 			SetAvatarFaceRandomInfo.InfoName type;
 			if (Enum.TryParse<SetAvatarFaceRandomInfo.InfoName>(jsonobject2["StrID"].str, true, out type))
 			{
-				num2 = SetAvatarFaceRandomInfo.inst.getFace((int)info["id"].n, type);
+				num2 = SetAvatarFaceRandomInfo.inst.getFace(info["id"].I, type);
 			}
 			if (num2 != -100)
 			{
@@ -913,7 +929,27 @@ public class jsonData : MonoBehaviour
 		return jsonobject;
 	}
 
-	// Token: 0x0600154C RID: 5452 RVA: 0x000C13B8 File Offset: 0x000BF5B8
+	// Token: 0x0600129D RID: 4765 RVA: 0x00073B4C File Offset: 0x00071D4C
+	public void UpdateGuDingNpcFace(int id, JSONObject temp)
+	{
+		foreach (JSONObject jsonobject in jsonData.instance.SuiJiTouXiangGeShuJsonData.list)
+		{
+			int val = 0;
+			int num = -100;
+			SetAvatarFaceRandomInfo.InfoName type;
+			if (Enum.TryParse<SetAvatarFaceRandomInfo.InfoName>(jsonobject["StrID"].str, true, out type))
+			{
+				num = SetAvatarFaceRandomInfo.inst.getFace(id, type);
+			}
+			if (num != -100)
+			{
+				val = num;
+			}
+			temp.SetField(jsonobject["StrID"].str, val);
+		}
+	}
+
+	// Token: 0x0600129E RID: 4766 RVA: 0x00073BEC File Offset: 0x00071DEC
 	public List<int> getSuijiList(string name, string sex)
 	{
 		if (this.faceTypeList.ContainsKey(name + sex))
@@ -933,7 +969,7 @@ public class jsonData : MonoBehaviour
 		return list2;
 	}
 
-	// Token: 0x0600154D RID: 5453 RVA: 0x000C1464 File Offset: 0x000BF664
+	// Token: 0x0600129F RID: 4767 RVA: 0x00073C98 File Offset: 0x00071E98
 	public void initAvatarFace(int id, int index, int startIndex = 1)
 	{
 		this.AvatarRandomJsonData = YSSaveGame.GetJsonObject("AvatarRandomJsonData" + Tools.instance.getSaveID(id, index), null);
@@ -941,14 +977,14 @@ public class jsonData : MonoBehaviour
 		{
 			foreach (JSONObject jsonobject in this.AvatarJsonData.list)
 			{
-				if ((int)jsonobject["id"].n != 1 && (int)jsonobject["id"].n >= startIndex)
+				if (jsonobject["id"].I != 1 && jsonobject["id"].I >= startIndex)
 				{
 					if (jsonobject["id"].I >= 20000)
 					{
 						break;
 					}
-					JSONObject jsonobject2 = this.randomAvatarFace(jsonobject, this.AvatarRandomJsonData.HasField(string.Concat((int)jsonobject["id"].n)) ? this.AvatarRandomJsonData[((int)jsonobject["id"].n).ToString()] : null);
-					this.AvatarRandomJsonData.SetField(string.Concat((int)jsonobject["id"].n), jsonobject2.Clone());
+					JSONObject jsonobject2 = this.randomAvatarFace(jsonobject, this.AvatarRandomJsonData.HasField(string.Concat(jsonobject["id"].I)) ? this.AvatarRandomJsonData[jsonobject["id"].I.ToString()] : null);
+					this.AvatarRandomJsonData.SetField(string.Concat(jsonobject["id"].I), jsonobject2.Copy());
 				}
 			}
 			if (this.AvatarRandomJsonData.HasField("1"))
@@ -961,7 +997,7 @@ public class jsonData : MonoBehaviour
 		}
 	}
 
-	// Token: 0x0600154E RID: 5454 RVA: 0x000C1658 File Offset: 0x000BF858
+	// Token: 0x060012A0 RID: 4768 RVA: 0x00073E88 File Offset: 0x00072088
 	public void initDouFaFace(int id, int index)
 	{
 		foreach (JSONObject jsonobject in this.AvatarJsonData.list)
@@ -973,8 +1009,8 @@ public class jsonData : MonoBehaviour
 				{
 					break;
 				}
-				JSONObject jsonobject2 = this.randomAvatarFace(jsonobject, this.AvatarRandomJsonData.HasField(string.Concat((int)jsonobject["id"].n)) ? this.AvatarRandomJsonData[((int)jsonobject["id"].n).ToString()] : null);
-				this.AvatarRandomJsonData.SetField(string.Concat((int)jsonobject["id"].n), jsonobject2.Clone());
+				JSONObject jsonobject2 = this.randomAvatarFace(jsonobject, this.AvatarRandomJsonData.HasField(string.Concat(jsonobject["id"].I)) ? this.AvatarRandomJsonData[jsonobject["id"].I.ToString()] : null);
+				this.AvatarRandomJsonData.SetField(string.Concat(jsonobject["id"].I), jsonobject2.Clone());
 			}
 		}
 		if (this.AvatarRandomJsonData.HasField("1"))
@@ -986,13 +1022,7 @@ public class jsonData : MonoBehaviour
 		jsonData.instance.randomAvatarBackpack(id, index);
 	}
 
-	// Token: 0x0600154F RID: 5455 RVA: 0x000135A3 File Offset: 0x000117A3
-	public void saveAvatarFace(int id, int index)
-	{
-		YSSaveGame.save("AvatarRandomJsonData" + Tools.instance.getSaveID(id, index), this.AvatarRandomJsonData, "-1");
-	}
-
-	// Token: 0x06001550 RID: 5456 RVA: 0x000C17E0 File Offset: 0x000BF9E0
+	// Token: 0x060012A1 RID: 4769 RVA: 0x0007400C File Offset: 0x0007220C
 	public void loadAvatarFace(int id, int index)
 	{
 		this.AvatarRandomJsonData = YSSaveGame.GetJsonObject("AvatarRandomJsonData" + Tools.instance.getSaveID(id, index), null);
@@ -1014,7 +1044,7 @@ public class jsonData : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001551 RID: 5457 RVA: 0x000C1900 File Offset: 0x000BFB00
+	// Token: 0x060012A2 RID: 4770 RVA: 0x0007412C File Offset: 0x0007232C
 	public void initSkillSeid()
 	{
 		for (int i = 1; i < 500; i++)
@@ -1029,7 +1059,7 @@ public class jsonData : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001552 RID: 5458 RVA: 0x000C1958 File Offset: 0x000BFB58
+	// Token: 0x060012A3 RID: 4771 RVA: 0x00074184 File Offset: 0x00072384
 	public void initBuffSeid()
 	{
 		for (int i = 1; i < 500; i++)
@@ -1044,7 +1074,7 @@ public class jsonData : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001553 RID: 5459 RVA: 0x000C19B0 File Offset: 0x000BFBB0
+	// Token: 0x060012A4 RID: 4772 RVA: 0x000741DC File Offset: 0x000723DC
 	public void initVersionSeid()
 	{
 		for (int i = 4; i < 500; i++)
@@ -1059,7 +1089,7 @@ public class jsonData : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001554 RID: 5460 RVA: 0x000C1A08 File Offset: 0x000BFC08
+	// Token: 0x060012A5 RID: 4773 RVA: 0x00074234 File Offset: 0x00072434
 	public void initStaticSkillSeid()
 	{
 		for (int i = 1; i < 500; i++)
@@ -1074,7 +1104,7 @@ public class jsonData : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001555 RID: 5461 RVA: 0x000C1A60 File Offset: 0x000BFC60
+	// Token: 0x060012A6 RID: 4774 RVA: 0x0007428C File Offset: 0x0007248C
 	public void initWuDaoSeid()
 	{
 		for (int i = 1; i < 500; i++)
@@ -1089,7 +1119,7 @@ public class jsonData : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001556 RID: 5462 RVA: 0x000C1AB8 File Offset: 0x000BFCB8
+	// Token: 0x060012A7 RID: 4775 RVA: 0x000742E4 File Offset: 0x000724E4
 	public void initItemsSeid()
 	{
 		for (int i = 1; i < 500; i++)
@@ -1104,7 +1134,7 @@ public class jsonData : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001557 RID: 5463 RVA: 0x000C1B10 File Offset: 0x000BFD10
+	// Token: 0x060012A8 RID: 4776 RVA: 0x0007433C File Offset: 0x0007253C
 	public void initEquipSeid()
 	{
 		for (int i = 1; i < 500; i++)
@@ -1119,7 +1149,7 @@ public class jsonData : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001558 RID: 5464 RVA: 0x000C1B68 File Offset: 0x000BFD68
+	// Token: 0x060012A9 RID: 4777 RVA: 0x00074394 File Offset: 0x00072594
 	public void initCreateAvatarSeid()
 	{
 		for (int i = 1; i < 500; i++)
@@ -1134,7 +1164,7 @@ public class jsonData : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001559 RID: 5465 RVA: 0x000C1BC0 File Offset: 0x000BFDC0
+	// Token: 0x060012AA RID: 4778 RVA: 0x000743EC File Offset: 0x000725EC
 	public void initJieDanSeid()
 	{
 		for (int i = 1; i < 500; i++)
@@ -1149,16 +1179,16 @@ public class jsonData : MonoBehaviour
 		}
 	}
 
-	// Token: 0x0600155A RID: 5466 RVA: 0x000C1C18 File Offset: 0x000BFE18
+	// Token: 0x060012AB RID: 4779 RVA: 0x00074444 File Offset: 0x00072644
 	public void InitBuff()
 	{
 		foreach (JSONObject jsonobject in this._BuffJsonData.list)
 		{
-			this.Buff.Add((int)jsonobject["buffid"].n, new Buff((int)jsonobject["buffid"].n));
+			this.Buff.Add(jsonobject["buffid"].I, new Buff(jsonobject["buffid"].I));
 		}
 	}
 
-	// Token: 0x0600155B RID: 5467 RVA: 0x000C1C9C File Offset: 0x000BFE9C
+	// Token: 0x060012AC RID: 4780 RVA: 0x000744C8 File Offset: 0x000726C8
 	public void intHeroFace()
 	{
 		this.heroFaceByIDJsonData = new JSONObject(JSONObject.Type.OBJECT);
@@ -1178,7 +1208,7 @@ public class jsonData : MonoBehaviour
 		}
 	}
 
-	// Token: 0x0600155C RID: 5468 RVA: 0x000C1D70 File Offset: 0x000BFF70
+	// Token: 0x060012AD RID: 4781 RVA: 0x0007459C File Offset: 0x0007279C
 	public void InitJObject(string path, out JObject jsondata)
 	{
 		string text = ModResources.LoadText(path);
@@ -1190,7 +1220,7 @@ public class jsonData : MonoBehaviour
 		jsondata = JObject.Parse(text);
 	}
 
-	// Token: 0x0600155D RID: 5469 RVA: 0x000C1D9C File Offset: 0x000BFF9C
+	// Token: 0x060012AE RID: 4782 RVA: 0x000745C8 File Offset: 0x000727C8
 	public void init(string path, out JSONObject jsondata)
 	{
 		string text = ModResources.LoadText(path);
@@ -1202,13 +1232,13 @@ public class jsonData : MonoBehaviour
 		jsondata = new JSONObject(text, -2, false, false);
 	}
 
-	// Token: 0x0600155E RID: 5470 RVA: 0x000135CB File Offset: 0x000117CB
+	// Token: 0x060012AF RID: 4783 RVA: 0x000745F9 File Offset: 0x000727F9
 	public string getAvaterType(Entity entity)
 	{
 		return this.heroJsonData[string.Concat(entity.getDefinedProperty("roleTypeCell"))]["heroType"].str;
 	}
 
-	// Token: 0x0600155F RID: 5471 RVA: 0x000AF784 File Offset: 0x000AD984
+	// Token: 0x060012B0 RID: 4784 RVA: 0x00074628 File Offset: 0x00072828
 	public int getRandom()
 	{
 		byte[] array = new byte[8];
@@ -1216,7 +1246,7 @@ public class jsonData : MonoBehaviour
 		return Math.Abs(BitConverter.ToInt32(array, 0));
 	}
 
-	// Token: 0x06001560 RID: 5472 RVA: 0x000AF784 File Offset: 0x000AD984
+	// Token: 0x060012B1 RID: 4785 RVA: 0x00074654 File Offset: 0x00072854
 	public static int GetRandom()
 	{
 		byte[] array = new byte[8];
@@ -1224,7 +1254,7 @@ public class jsonData : MonoBehaviour
 		return Math.Abs(BitConverter.ToInt32(array, 0));
 	}
 
-	// Token: 0x06001561 RID: 5473 RVA: 0x000135F7 File Offset: 0x000117F7
+	// Token: 0x060012B2 RID: 4786 RVA: 0x0007467F File Offset: 0x0007287F
 	public int QuikeGetRandom()
 	{
 		this.randomListIndex++;
@@ -1235,7 +1265,7 @@ public class jsonData : MonoBehaviour
 		return this.RandomList[this.randomListIndex];
 	}
 
-	// Token: 0x06001562 RID: 5474 RVA: 0x000C1DD0 File Offset: 0x000BFFD0
+	// Token: 0x060012B3 RID: 4787 RVA: 0x000746BC File Offset: 0x000728BC
 	public void setYSDictionor(JSONObject json, jsonData.YSDictionary<string, JSONObject> dict)
 	{
 		foreach (string text in json.keys)
@@ -1244,13 +1274,16 @@ public class jsonData : MonoBehaviour
 		}
 	}
 
-	// Token: 0x04001034 RID: 4148
+	// Token: 0x04000D0C RID: 3340
 	public static jsonData instance;
 
-	// Token: 0x04001035 RID: 4149
+	// Token: 0x04000D0D RID: 3341
+	public static int QingJiaoItemIDSegment = 1000000000;
+
+	// Token: 0x04000D0E RID: 3342
 	public int saveState = -1;
 
-	// Token: 0x04001036 RID: 4150
+	// Token: 0x04000D0F RID: 3343
 	public List<int> hightLightSkillID = new List<int>
 	{
 		10,
@@ -1258,10 +1291,11 @@ public class jsonData : MonoBehaviour
 		53,
 		56,
 		58,
-		78
+		78,
+		124
 	};
 
-	// Token: 0x04001037 RID: 4151
+	// Token: 0x04000D10 RID: 3344
 	public List<string> NameColor = new List<string>
 	{
 		"d8d8ca",
@@ -1272,7 +1306,7 @@ public class jsonData : MonoBehaviour
 		"ffb28b"
 	};
 
-	// Token: 0x04001038 RID: 4152
+	// Token: 0x04000D11 RID: 3345
 	public List<string> WepenColor = new List<string>
 	{
 		"cce281",
@@ -1280,7 +1314,7 @@ public class jsonData : MonoBehaviour
 		"ffb28b"
 	};
 
-	// Token: 0x04001039 RID: 4153
+	// Token: 0x04000D12 RID: 3346
 	public List<string> TootipItemNameColor = new List<string>
 	{
 		"[d8d8ca]",
@@ -1291,7 +1325,7 @@ public class jsonData : MonoBehaviour
 		"[ff744d]"
 	};
 
-	// Token: 0x0400103A RID: 4154
+	// Token: 0x04000D13 RID: 3347
 	public List<string> TootipItemQualityColor = new List<string>
 	{
 		"[d8d8ca]",
@@ -1302,962 +1336,1004 @@ public class jsonData : MonoBehaviour
 		"[ffb28b]"
 	};
 
-	// Token: 0x0400103B RID: 4155
+	// Token: 0x04000D14 RID: 3348
 	public bool SaveLock;
 
-	// Token: 0x0400103C RID: 4156
+	// Token: 0x04000D15 RID: 3349
 	public int ZombieBossID = 50;
 
-	// Token: 0x0400103D RID: 4157
+	// Token: 0x04000D16 RID: 3350
 	public Dictionary<int, Buff> Buff = new Dictionary<int, Buff>();
 
-	// Token: 0x0400103E RID: 4158
+	// Token: 0x04000D17 RID: 3351
 	public Dictionary<string, List<int>> faceTypeList = new Dictionary<string, List<int>>();
 
-	// Token: 0x0400103F RID: 4159
+	// Token: 0x04000D18 RID: 3352
 	public jsonData.YSDictionary<string, JSONObject> skillJsonData = new jsonData.YSDictionary<string, JSONObject>();
 
-	// Token: 0x04001040 RID: 4160
+	// Token: 0x04000D19 RID: 3353
 	public jsonData.YSDictionary<string, JSONObject> ItemJsonData = new jsonData.YSDictionary<string, JSONObject>();
 
-	// Token: 0x04001041 RID: 4161
+	// Token: 0x04000D1A RID: 3354
 	public jsonData.YSDictionary<string, JSONObject> BuffJsonData = new jsonData.YSDictionary<string, JSONObject>();
 
-	// Token: 0x04001042 RID: 4162
+	// Token: 0x04000D1B RID: 3355
 	public jsonData.YSDictionary<string, JSONObject> firstNameJsonData = new jsonData.YSDictionary<string, JSONObject>();
 
-	// Token: 0x04001043 RID: 4163
+	// Token: 0x04000D1C RID: 3356
 	public jsonData.YSDictionary<string, JSONObject> LastNameJsonData = new jsonData.YSDictionary<string, JSONObject>();
 
-	// Token: 0x04001044 RID: 4164
+	// Token: 0x04000D1D RID: 3357
 	public jsonData.YSDictionary<string, JSONObject> LastWomenNameJsonData = new jsonData.YSDictionary<string, JSONObject>();
 
-	// Token: 0x04001045 RID: 4165
+	// Token: 0x04000D1E RID: 3358
 	public JSONObject _skillJsonData;
 
-	// Token: 0x04001046 RID: 4166
+	// Token: 0x04000D1F RID: 3359
 	public JSONObject _ItemJsonData;
 
-	// Token: 0x04001047 RID: 4167
+	// Token: 0x04000D20 RID: 3360
 	public JSONObject _BuffJsonData;
 
-	// Token: 0x04001048 RID: 4168
+	// Token: 0x04000D21 RID: 3361
 	public List<jsonData.YSDictionary<string, JSONObject>> _AIJsonDate = new List<jsonData.YSDictionary<string, JSONObject>>();
 
-	// Token: 0x04001049 RID: 4169
+	// Token: 0x04000D22 RID: 3362
 	public Dictionary<int, JSONObject> AIJsonDate = new Dictionary<int, JSONObject>();
 
-	// Token: 0x0400104A RID: 4170
+	// Token: 0x04000D23 RID: 3363
 	public JSONObject NanZuJianBiao;
 
-	// Token: 0x0400104B RID: 4171
+	// Token: 0x04000D24 RID: 3364
 	public JSONObject NvZuJianBiao;
 
-	// Token: 0x0400104C RID: 4172
+	// Token: 0x04000D25 RID: 3365
+	public JSONObject TouXiangPianYi;
+
+	// Token: 0x04000D26 RID: 3366
 	public JSONObject StaticSkillJsonData;
 
-	// Token: 0x0400104D RID: 4173
+	// Token: 0x04000D27 RID: 3367
 	public JSONObject drawCardJsonData;
 
-	// Token: 0x0400104E RID: 4174
+	// Token: 0x04000D28 RID: 3368
 	public JSONObject MapRandomJsonData;
 
-	// Token: 0x0400104F RID: 4175
+	// Token: 0x04000D29 RID: 3369
 	public JSONObject DaDiTuYinCangJsonData;
 
-	// Token: 0x04001050 RID: 4176
+	// Token: 0x04000D2A RID: 3370
 	public JSONObject TaskJsonData;
 
-	// Token: 0x04001051 RID: 4177
+	// Token: 0x04000D2B RID: 3371
 	public JSONObject TaskInfoJsonData;
 
-	// Token: 0x04001052 RID: 4178
+	// Token: 0x04000D2C RID: 3372
 	public JSONObject ThreeSenceJsonData;
 
-	// Token: 0x04001053 RID: 4179
+	// Token: 0x04000D2D RID: 3373
 	public JSONObject AvatarJsonData;
 
-	// Token: 0x04001054 RID: 4180
+	// Token: 0x04000D2E RID: 3374
 	public JSONObject StrTextJsonData;
 
-	// Token: 0x04001055 RID: 4181
+	// Token: 0x04000D2F RID: 3375
 	public JSONObject TuJianChunWenBen;
 
-	// Token: 0x04001056 RID: 4182
+	// Token: 0x04000D30 RID: 3376
 	public JSONObject _firstNameJsonData;
 
-	// Token: 0x04001057 RID: 4183
+	// Token: 0x04000D31 RID: 3377
 	public JSONObject _LastNameJsonData;
 
-	// Token: 0x04001058 RID: 4184
+	// Token: 0x04000D32 RID: 3378
 	public JSONObject _LastWomenNameJsonData;
 
-	// Token: 0x04001059 RID: 4185
+	// Token: 0x04000D33 RID: 3379
 	public JSONObject _FaBaoFirstNameJsonData;
 
-	// Token: 0x0400105A RID: 4186
+	// Token: 0x04000D34 RID: 3380
 	public JSONObject _FaBaoLastNameJsonData;
 
-	// Token: 0x0400105B RID: 4187
+	// Token: 0x04000D35 RID: 3381
+	public JSONObject GuDingExchangeData;
+
+	// Token: 0x04000D36 RID: 3382
+	public JSONObject RandomExchangeData;
+
+	// Token: 0x04000D37 RID: 3383
+	public JSONObject DisableExchangeData;
+
+	// Token: 0x04000D38 RID: 3384
+	public JSONObject TipsExchangeData;
+
+	// Token: 0x04000D39 RID: 3385
+	public JSONObject ItemTypeExchangeData;
+
+	// Token: 0x04000D3A RID: 3386
 	public JSONObject LevelUpDataJsonData;
 
-	// Token: 0x0400105C RID: 4188
+	// Token: 0x04000D3B RID: 3387
 	public JSONObject BigMapLoadTalk;
 
-	// Token: 0x0400105D RID: 4189
+	// Token: 0x04000D3C RID: 3388
 	public JSONObject AvatarRandomJsonData;
 
-	// Token: 0x0400105E RID: 4190
+	// Token: 0x04000D3D RID: 3389
 	public JSONObject BackpackJsonData;
 
-	// Token: 0x0400105F RID: 4191
+	// Token: 0x04000D3E RID: 3390
 	public JSONObject AvatarBackpackJsonData;
 
-	// Token: 0x04001060 RID: 4192
+	// Token: 0x04000D3F RID: 3391
 	public JSONObject AvatarMoneyJsonData;
 
-	// Token: 0x04001061 RID: 4193
+	// Token: 0x04000D40 RID: 3392
 	public JSONObject DropTextJsonData;
 
-	// Token: 0x04001062 RID: 4194
+	// Token: 0x04000D41 RID: 3393
 	public JSONObject RunawayJsonData;
 
-	// Token: 0x04001063 RID: 4195
+	// Token: 0x04000D42 RID: 3394
 	public JSONObject BiguanJsonData;
 
-	// Token: 0x04001064 RID: 4196
+	// Token: 0x04000D43 RID: 3395
 	public JSONObject XinJinJsonData;
 
-	// Token: 0x04001065 RID: 4197
+	// Token: 0x04000D44 RID: 3396
 	public JSONObject XinJinGuanLianJsonData;
 
-	// Token: 0x04001066 RID: 4198
+	// Token: 0x04000D45 RID: 3397
 	public JSONObject DropInfoJsonData;
 
-	// Token: 0x04001067 RID: 4199
+	// Token: 0x04000D46 RID: 3398
 	public JSONObject SkillTextInfoJsonData;
 
-	// Token: 0x04001068 RID: 4200
+	// Token: 0x04000D47 RID: 3399
 	public JSONObject FightTypeInfoJsonData;
 
-	// Token: 0x04001069 RID: 4201
+	// Token: 0x04000D48 RID: 3400
 	public JSONObject StaticSkillTypeJsonData;
 
-	// Token: 0x0400106A RID: 4202
+	// Token: 0x04000D49 RID: 3401
 	public JSONObject FavorabilityInfoJsonData;
 
-	// Token: 0x0400106B RID: 4203
+	// Token: 0x04000D4A RID: 3402
 	public JSONObject FavorabilityAvatarInfoJsonData;
 
-	// Token: 0x0400106C RID: 4204
+	// Token: 0x04000D4B RID: 3403
 	public JSONObject QieCuoJsonData;
 
-	// Token: 0x0400106D RID: 4205
+	// Token: 0x04000D4C RID: 3404
 	public JSONObject DrawCardToLevelJsonData;
 
-	// Token: 0x0400106E RID: 4206
+	// Token: 0x04000D4D RID: 3405
 	public JSONObject StaticLVToLevelJsonData;
 
-	// Token: 0x0400106F RID: 4207
+	// Token: 0x04000D4E RID: 3406
 	public JSONObject AllMapCastTimeJsonData;
 
-	// Token: 0x04001070 RID: 4208
+	// Token: 0x04000D4F RID: 3407
 	public JSONObject SeaCastTimeJsonData;
 
-	// Token: 0x04001071 RID: 4209
+	// Token: 0x04000D50 RID: 3408
 	public JSONObject AllMapShiJianOptionJsonData;
 
-	// Token: 0x04001072 RID: 4210
+	// Token: 0x04000D51 RID: 3409
 	public JSONObject AllMapOptionJsonData;
 
-	// Token: 0x04001073 RID: 4211
+	// Token: 0x04000D52 RID: 3410
 	public JSONObject SuiJiTouXiangGeShuJsonData;
 
-	// Token: 0x04001074 RID: 4212
+	// Token: 0x04000D53 RID: 3411
 	public JSONObject SceneNameJsonData;
 
-	// Token: 0x04001075 RID: 4213
+	// Token: 0x04000D54 RID: 3412
 	public JSONObject helpJsonData;
 
-	// Token: 0x04001076 RID: 4214
+	// Token: 0x04000D55 RID: 3413
 	public JSONObject helpTextJsonData;
 
-	// Token: 0x04001077 RID: 4215
+	// Token: 0x04000D56 RID: 3414
 	public JSONObject NomelShopJsonData;
 
-	// Token: 0x04001078 RID: 4216
+	// Token: 0x04000D57 RID: 3415
 	public JSONObject HairRandomColorJsonData;
 
-	// Token: 0x04001079 RID: 4217
+	// Token: 0x04000D58 RID: 3416
 	public JSONObject MouthRandomColorJsonData;
 
-	// Token: 0x0400107A RID: 4218
+	// Token: 0x04000D59 RID: 3417
 	public JSONObject SaiHonRandomColorJsonData;
 
-	// Token: 0x0400107B RID: 4219
+	// Token: 0x04000D5A RID: 3418
 	public JSONObject WenShenRandomColorJsonData;
 
-	// Token: 0x0400107C RID: 4220
+	// Token: 0x04000D5B RID: 3419
 	public JSONObject YanZhuYanSeRandomColorJsonData;
 
-	// Token: 0x0400107D RID: 4221
+	// Token: 0x04000D5C RID: 3420
 	public JSONObject MianWenYanSeRandomColorJsonData;
 
-	// Token: 0x0400107E RID: 4222
+	// Token: 0x04000D5D RID: 3421
 	public JSONObject MeiMaoYanSeRandomColorJsonData;
 
-	// Token: 0x0400107F RID: 4223
+	// Token: 0x04000D5E RID: 3422
 	public JSONObject WuXianBiGuanJsonData;
 
-	// Token: 0x04001080 RID: 4224
+	// Token: 0x04000D5F RID: 3423
 	public JSONObject FuBenInfoJsonData;
 
-	// Token: 0x04001081 RID: 4225
+	// Token: 0x04000D60 RID: 3424
 	public JSONObject CreateAvatarJsonData;
 
-	// Token: 0x04001082 RID: 4226
+	// Token: 0x04000D61 RID: 3425
 	public JSONObject LinGenZiZhiJsonData;
 
-	// Token: 0x04001083 RID: 4227
+	// Token: 0x04000D62 RID: 3426
 	public JSONObject ChengHaoJsonData;
 
-	// Token: 0x04001084 RID: 4228
+	// Token: 0x04000D63 RID: 3427
 	public JSONObject TianFuDescJsonData;
 
-	// Token: 0x04001085 RID: 4229
+	// Token: 0x04000D64 RID: 3428
 	public JSONObject PaiMaiCanYuAvatar;
 
-	// Token: 0x04001086 RID: 4230
+	// Token: 0x04000D65 RID: 3429
 	public JSONObject PaiMaiAIJiaWei;
 
-	// Token: 0x04001087 RID: 4231
+	// Token: 0x04000D66 RID: 3430
 	public JSONObject PaiMaiCeLueSuiJiBiao;
 
-	// Token: 0x04001088 RID: 4232
+	// Token: 0x04000D67 RID: 3431
 	public JSONObject PaiMaiDuiHuaBiao;
 
-	// Token: 0x04001089 RID: 4233
+	// Token: 0x04000D68 RID: 3432
 	public JSONObject PaiMaiZhuChiBiao;
 
-	// Token: 0x0400108A RID: 4234
+	// Token: 0x04000D69 RID: 3433
 	public JSONObject PaiMaiMiaoShuBiao;
 
-	// Token: 0x0400108B RID: 4235
+	// Token: 0x04000D6A RID: 3434
 	public JSONObject PaiMaiBiao;
 
-	// Token: 0x0400108C RID: 4236
+	// Token: 0x04000D6B RID: 3435
 	public JSONObject JieDanBiao;
 
-	// Token: 0x0400108D RID: 4237
+	// Token: 0x04000D6C RID: 3436
 	public JSONObject YuanYingBiao;
 
-	// Token: 0x0400108E RID: 4238
+	// Token: 0x04000D6D RID: 3437
 	public JSONObject jiaoHuanShopGoods;
 
-	// Token: 0x0400108F RID: 4239
+	// Token: 0x04000D6E RID: 3438
 	public JSONObject LianDanDanFangBiao;
 
-	// Token: 0x04001090 RID: 4240
+	// Token: 0x04000D6F RID: 3439
 	public JSONObject LianDanItemLeiXin;
 
-	// Token: 0x04001091 RID: 4241
+	// Token: 0x04000D70 RID: 3440
 	public JSONObject LianDanSuccessItemLeiXin;
 
-	// Token: 0x04001092 RID: 4242
+	// Token: 0x04000D71 RID: 3441
 	public JSONObject DanduMiaoShu;
 
-	// Token: 0x04001093 RID: 4243
+	// Token: 0x04000D72 RID: 3442
 	public JSONObject CaiYaoShoYi;
 
-	// Token: 0x04001094 RID: 4244
+	// Token: 0x04000D73 RID: 3443
 	public JSONObject CaiYaoDiaoLuo;
 
-	// Token: 0x04001095 RID: 4245
+	// Token: 0x04000D74 RID: 3444
 	public JSONObject LiShiChuanWen;
 
-	// Token: 0x04001096 RID: 4246
+	// Token: 0x04000D75 RID: 3445
+	public JSONObject DongTaiChuanWenBaio;
+
+	// Token: 0x04000D76 RID: 3446
 	public JSONObject AllMapLuDainType;
 
-	// Token: 0x04001097 RID: 4247
+	// Token: 0x04000D77 RID: 3447
 	public JSONObject AllMapReset;
 
-	// Token: 0x04001098 RID: 4248
+	// Token: 0x04000D78 RID: 3448
 	public JSONObject StaticValueSay;
 
-	// Token: 0x04001099 RID: 4249
+	// Token: 0x04000D79 RID: 3449
 	public JSONObject ShiLiHaoGanDuName;
 
-	// Token: 0x0400109A RID: 4250
+	// Token: 0x04000D7A RID: 3450
 	public JSONObject AllMapCaiJiBiao;
 
-	// Token: 0x0400109B RID: 4251
+	// Token: 0x04000D7B RID: 3451
 	public JSONObject AllMapCaiJiMiaoShuBiao;
 
-	// Token: 0x0400109C RID: 4252
+	// Token: 0x04000D7C RID: 3452
 	public JSONObject AllMapCaiJiAddItemBiao;
 
-	// Token: 0x0400109D RID: 4253
+	// Token: 0x04000D7D RID: 3453
 	public JSONObject CreateAvatarMiaoShu;
 
-	// Token: 0x0400109E RID: 4254
+	// Token: 0x04000D7E RID: 3454
 	public JSONObject WuJiangBangDing;
 
-	// Token: 0x0400109F RID: 4255
+	// Token: 0x04000D7F RID: 3455
 	public JSONObject NTaskAllType;
 
-	// Token: 0x040010A0 RID: 4256
+	// Token: 0x04000D80 RID: 3456
 	public JSONObject NTaskXiangXi;
 
-	// Token: 0x040010A1 RID: 4257
+	// Token: 0x04000D81 RID: 3457
 	public JSONObject NTaskSuiJI;
 
-	// Token: 0x040010A2 RID: 4258
+	// Token: 0x04000D82 RID: 3458
 	public JSONObject WuDaoJinJieJson;
 
-	// Token: 0x040010A3 RID: 4259
+	// Token: 0x04000D83 RID: 3459
 	public JSONObject WuDaoJson;
 
-	// Token: 0x040010A4 RID: 4260
+	// Token: 0x04000D84 RID: 3460
 	public JSONObject WuDaoAllTypeJson;
 
-	// Token: 0x040010A5 RID: 4261
+	// Token: 0x04000D85 RID: 3461
 	public JSONObject WuDaoExBeiLuJson;
 
-	// Token: 0x040010A6 RID: 4262
+	// Token: 0x04000D86 RID: 3462
 	public JSONObject NPCWuDaoJson;
 
-	// Token: 0x040010A7 RID: 4263
+	// Token: 0x04000D87 RID: 3463
 	public JSONObject LingGuangJson;
 
-	// Token: 0x040010A8 RID: 4264
+	// Token: 0x04000D88 RID: 3464
 	public JSONObject KillAvatarLingGuangJson;
 
-	// Token: 0x040010A9 RID: 4265
+	// Token: 0x04000D89 RID: 3465
 	public JSONObject wupingfenlan;
 
-	// Token: 0x040010AA RID: 4266
+	// Token: 0x04000D8A RID: 3466
 	public JSONObject LianQiWuWeiBiao;
 
-	// Token: 0x040010AB RID: 4267
+	// Token: 0x04000D8B RID: 3467
 	public JSONObject CaiLiaoNengLiangBiao;
 
-	// Token: 0x040010AC RID: 4268
+	// Token: 0x04000D8C RID: 3468
 	public JSONObject LianQiHeCheng;
 
-	// Token: 0x040010AD RID: 4269
+	// Token: 0x04000D8D RID: 3469
 	public JSONObject LianQiEquipIconBiao;
 
-	// Token: 0x040010AE RID: 4270
+	// Token: 0x04000D8E RID: 3470
 	public JSONObject LianQiDuoDuanShangHaiBiao;
 
-	// Token: 0x040010AF RID: 4271
+	// Token: 0x04000D8F RID: 3471
 	public JSONObject LianQiJieSuoBiao;
 
-	// Token: 0x040010B0 RID: 4272
+	// Token: 0x04000D90 RID: 3472
 	public JSONObject ChuanYingFuBiao;
 
-	// Token: 0x040010B1 RID: 4273
+	// Token: 0x04000D91 RID: 3473
 	public JSONObject MenPaiFengLuBiao;
 
-	// Token: 0x040010B2 RID: 4274
+	// Token: 0x04000D92 RID: 3474
+	public JSONObject ElderTaskItemType;
+
+	// Token: 0x04000D93 RID: 3475
+	public JSONObject ElderTaskDisableItem;
+
+	// Token: 0x04000D94 RID: 3476
+	public JSONObject ElderTaskItemCost;
+
+	// Token: 0x04000D95 RID: 3477
 	public JObject CaiLiaoShuXingBIAO;
 
-	// Token: 0x040010B3 RID: 4275
+	// Token: 0x04000D96 RID: 3478
 	public JObject StaticNTaks;
 
-	// Token: 0x040010B4 RID: 4276
+	// Token: 0x04000D97 RID: 3479
 	public JObject StaticNTaksTime;
 
-	// Token: 0x040010B5 RID: 4277
+	// Token: 0x04000D98 RID: 3480
 	public JObject BadWord;
 
-	// Token: 0x040010B6 RID: 4278
+	// Token: 0x04000D99 RID: 3481
 	public JObject BiGuanWuDao;
 
-	// Token: 0x040010B7 RID: 4279
+	// Token: 0x04000D9A RID: 3482
 	public JObject ChengJiuJson;
 
-	// Token: 0x040010B8 RID: 4280
+	// Token: 0x04000D9B RID: 3483
 	public JObject RandomMapType;
 
-	// Token: 0x040010B9 RID: 4281
+	// Token: 0x04000D9C RID: 3484
 	public JObject RandomMapList;
 
-	// Token: 0x040010BA RID: 4282
+	// Token: 0x04000D9D RID: 3485
 	public JObject RandomMapEventList;
 
-	// Token: 0x040010BB RID: 4283
+	// Token: 0x04000D9E RID: 3486
 	public JObject RandomMapFirstName;
 
-	// Token: 0x040010BC RID: 4284
+	// Token: 0x04000D9F RID: 3487
 	public JObject ResetAvatarBackpackBanBen;
 
-	// Token: 0x040010BD RID: 4285
+	// Token: 0x04000DA0 RID: 3488
 	public JObject EndlessSeaRandomData;
 
-	// Token: 0x040010BE RID: 4286
+	// Token: 0x04000DA1 RID: 3489
 	public JObject EndlessSeaType;
 
-	// Token: 0x040010BF RID: 4287
+	// Token: 0x04000DA2 RID: 3490
 	public JObject EndlessSeaData;
 
-	// Token: 0x040010C0 RID: 4288
+	// Token: 0x04000DA3 RID: 3491
 	public JObject EndlessSeaNPCData;
 
-	// Token: 0x040010C1 RID: 4289
+	// Token: 0x04000DA4 RID: 3492
 	public JObject EndlessSeaNPCGouChengData;
 
-	// Token: 0x040010C2 RID: 4290
+	// Token: 0x04000DA5 RID: 3493
 	public JObject EndlessSeaSafeLvData;
 
-	// Token: 0x040010C3 RID: 4291
+	// Token: 0x04000DA6 RID: 3494
 	public JObject EndlessSeaLinQiSafeLvData;
 
-	// Token: 0x040010C4 RID: 4292
+	// Token: 0x04000DA7 RID: 3495
 	public JObject EndlessSeaLuanLIuXinZhuang;
 
-	// Token: 0x040010C5 RID: 4293
+	// Token: 0x04000DA8 RID: 3496
 	public JObject EndlessSeaHaiYuData;
 
-	// Token: 0x040010C6 RID: 4294
+	// Token: 0x04000DA9 RID: 3497
 	public JObject EndlessSeaAIChuFa;
 
-	// Token: 0x040010C7 RID: 4295
+	// Token: 0x04000DAA RID: 3498
 	public JObject EndlessSeaLuanLiuRandom;
 
-	// Token: 0x040010C8 RID: 4296
+	// Token: 0x04000DAB RID: 3499
 	public JObject EndlessSeaLuanLiuRandomMap;
 
-	// Token: 0x040010C9 RID: 4297
+	// Token: 0x04000DAC RID: 3500
 	public JObject EndlessSeaShiYe;
 
-	// Token: 0x040010CA RID: 4298
+	// Token: 0x04000DAD RID: 3501
 	public JObject LingZhouPinJie;
 
-	// Token: 0x040010CB RID: 4299
+	// Token: 0x04000DAE RID: 3502
 	public JObject NPCInterestingItem;
 
-	// Token: 0x040010CC RID: 4300
+	// Token: 0x04000DAF RID: 3503
 	public JObject AllItemLeiXin;
 
-	// Token: 0x040010CD RID: 4301
+	// Token: 0x04000DB0 RID: 3504
 	public JObject SeaStaticIsland;
 
-	// Token: 0x040010CE RID: 4302
+	// Token: 0x04000DB1 RID: 3505
 	public JObject LianQiEquipType;
 
-	// Token: 0x040010CF RID: 4303
+	// Token: 0x04000DB2 RID: 3506
 	public JObject LianQiWuQiQuality;
 
-	// Token: 0x040010D0 RID: 4304
+	// Token: 0x04000DB3 RID: 3507
 	public JSONObject LianQiJieSuanBiao;
 
-	// Token: 0x040010D1 RID: 4305
+	// Token: 0x04000DB4 RID: 3508
 	public JSONObject LianQiShuXinLeiBie;
 
-	// Token: 0x040010D2 RID: 4306
+	// Token: 0x04000DB5 RID: 3509
 	public JSONObject LianQiLingWenBiao;
 
-	// Token: 0x040010D3 RID: 4307
+	// Token: 0x04000DB6 RID: 3510
 	[Obsolete]
 	public JSONObject heroFaceJsonData;
 
-	// Token: 0x040010D4 RID: 4308
+	// Token: 0x04000DB7 RID: 3511
 	[Obsolete]
 	public JSONObject heroFaceByIDJsonData;
 
-	// Token: 0x040010D5 RID: 4309
+	// Token: 0x04000DB8 RID: 3512
 	[Obsolete]
 	public JSONObject heroJsonData;
 
-	// Token: 0x040010D6 RID: 4310
+	// Token: 0x04000DB9 RID: 3513
 	[Obsolete]
 	public JSONObject PlayerGoodsSJsonData;
 
-	// Token: 0x040010D7 RID: 4311
+	// Token: 0x04000DBA RID: 3514
 	[Obsolete]
 	public JSONObject CheckInJsonData;
 
-	// Token: 0x040010D8 RID: 4312
+	// Token: 0x04000DBB RID: 3515
 	[Obsolete]
 	public JSONObject ItemGoodSeid1JsonData;
 
-	// Token: 0x040010D9 RID: 4313
+	// Token: 0x04000DBC RID: 3516
 	[Obsolete]
 	public JSONObject TalkingJsonData;
 
-	// Token: 0x040010DA RID: 4314
+	// Token: 0x04000DBD RID: 3517
 	[Obsolete]
 	public JSONObject MessageJsonData;
 
-	// Token: 0x040010DB RID: 4315
+	// Token: 0x04000DBE RID: 3518
 	public JSONObject NPCChuShiHuaDate;
 
-	// Token: 0x040010DC RID: 4316
+	// Token: 0x04000DBF RID: 3519
 	public JSONObject NPCLeiXingDate;
 
-	// Token: 0x040010DD RID: 4317
+	// Token: 0x04000DC0 RID: 3520
 	public JSONObject NPCChengHaoData;
 
-	// Token: 0x040010DE RID: 4318
+	// Token: 0x04000DC1 RID: 3521
 	public JSONObject NPCChuShiShuZiDate;
 
-	// Token: 0x040010DF RID: 4319
+	// Token: 0x04000DC2 RID: 3522
 	public JSONObject NPCImportantDate;
 
-	// Token: 0x040010E0 RID: 4320
+	// Token: 0x04000DC3 RID: 3523
 	public JSONObject NPCActionDate;
 
-	// Token: 0x040010E1 RID: 4321
+	// Token: 0x04000DC4 RID: 3524
 	public JSONObject NPCActionPanDingDate;
 
-	// Token: 0x040010E2 RID: 4322
+	// Token: 0x04000DC5 RID: 3525
 	public JSONObject NPCTagDate;
 
-	// Token: 0x040010E3 RID: 4323
+	// Token: 0x04000DC6 RID: 3526
 	public JSONObject NPCTuPuoDate;
 
-	// Token: 0x040010E4 RID: 4324
+	// Token: 0x04000DC7 RID: 3527
 	public JSONObject NpcFuBenMapBingDate;
 
-	// Token: 0x040010E5 RID: 4325
+	// Token: 0x04000DC8 RID: 3528
 	public JSONObject NpcThreeMapBingDate;
 
-	// Token: 0x040010E6 RID: 4326
+	// Token: 0x04000DC9 RID: 3529
 	public JSONObject NpcBigMapBingDate;
 
-	// Token: 0x040010E7 RID: 4327
+	// Token: 0x04000DCA RID: 3530
 	public JSONObject NpcYaoShouDrop;
 
-	// Token: 0x040010E8 RID: 4328
+	// Token: 0x04000DCB RID: 3531
 	public JSONObject NpcLevelShouYiDate;
 
-	// Token: 0x040010E9 RID: 4329
+	// Token: 0x04000DCC RID: 3532
 	public JSONObject NpcXingGeDate;
 
-	// Token: 0x040010EA RID: 4330
+	// Token: 0x04000DCD RID: 3533
 	public JSONObject NpcYiWaiDeathDate;
 
-	// Token: 0x040010EB RID: 4331
+	// Token: 0x04000DCE RID: 3534
 	public JSONObject NpcQiYuDate;
 
-	// Token: 0x040010EC RID: 4332
+	// Token: 0x04000DCF RID: 3535
 	public JSONObject NpcBeiBaoTypeData;
 
-	// Token: 0x040010ED RID: 4333
+	// Token: 0x04000DD0 RID: 3536
 	public JSONObject NpcShiJianData;
 
-	// Token: 0x040010EE RID: 4334
+	// Token: 0x04000DD1 RID: 3537
 	public JSONObject NpcStatusDate;
 
-	// Token: 0x040010EF RID: 4335
+	// Token: 0x04000DD2 RID: 3538
 	public JSONObject NpcPaiMaiData;
 
-	// Token: 0x040010F0 RID: 4336
+	// Token: 0x04000DD3 RID: 3539
 	public JSONObject NpcImprotantPanDingData;
 
-	// Token: 0x040010F1 RID: 4337
+	// Token: 0x04000DD4 RID: 3540
 	public JSONObject NpcHaoGanDuData;
 
-	// Token: 0x040010F2 RID: 4338
+	// Token: 0x04000DD5 RID: 3541
 	public JSONObject NpcCreateData;
 
-	// Token: 0x040010F3 RID: 4339
+	// Token: 0x04000DD6 RID: 3542
 	public JSONObject NpcJinHuoData;
 
-	// Token: 0x040010F4 RID: 4340
+	// Token: 0x04000DD7 RID: 3543
 	public JSONObject NpcImprotantEventData;
 
-	// Token: 0x040010F5 RID: 4341
+	// Token: 0x04000DD8 RID: 3544
 	public JSONObject NpcHaiShangCreateData;
 
-	// Token: 0x040010F6 RID: 4342
+	// Token: 0x04000DD9 RID: 3545
 	public JSONObject NpcTalkShouCiJiaoTanData;
 
-	// Token: 0x040010F7 RID: 4343
+	// Token: 0x04000DDA RID: 3546
 	public JSONObject NpcTalkHouXuJiaoTanData;
 
-	// Token: 0x040010F8 RID: 4344
+	// Token: 0x04000DDB RID: 3547
 	public JSONObject NpcTalkQiTaJiaoHuData;
 
-	// Token: 0x040010F9 RID: 4345
+	// Token: 0x04000DDC RID: 3548
 	public JSONObject NpcBiaoBaiTiKuData;
 
-	// Token: 0x040010FA RID: 4346
+	// Token: 0x04000DDD RID: 3549
 	public JSONObject NpcBiaoBaiTiWenData;
 
-	// Token: 0x040010FB RID: 4347
+	// Token: 0x04000DDE RID: 3550
 	public JSONObject NpcTalkGuanYuTuPoData;
 
-	// Token: 0x040010FC RID: 4348
+	// Token: 0x04000DDF RID: 3551
 	public JSONObject NpcQingJiaoXiaoHaoData;
 
-	// Token: 0x040010FD RID: 4349
+	// Token: 0x04000DE0 RID: 3552
 	public JSONObject NpcQingJiaoItemData;
 
-	// Token: 0x040010FE RID: 4350
+	// Token: 0x04000DE1 RID: 3553
 	public JSONObject NpcWuDaoChiData;
 
-	// Token: 0x040010FF RID: 4351
+	// Token: 0x04000DE2 RID: 3554
 	public JSONObject CyRandomTaskData;
 
-	// Token: 0x04001100 RID: 4352
+	// Token: 0x04000DE3 RID: 3555
 	public JSONObject CyRandomTaskFailData;
 
-	// Token: 0x04001101 RID: 4353
+	// Token: 0x04000DE4 RID: 3556
 	public JSONObject NewTaskMagData;
 
-	// Token: 0x04001102 RID: 4354
+	// Token: 0x04000DE5 RID: 3557
 	public JSONObject FightAIData;
 
-	// Token: 0x04001103 RID: 4355
+	// Token: 0x04000DE6 RID: 3558
 	public JSONObject LunDaoStateData;
 
-	// Token: 0x04001104 RID: 4356
+	// Token: 0x04000DE7 RID: 3559
 	public JSONObject LunDaoSayData;
 
-	// Token: 0x04001105 RID: 4357
+	// Token: 0x04000DE8 RID: 3560
 	public JSONObject LunDaoShouYiData;
 
-	// Token: 0x04001106 RID: 4358
+	// Token: 0x04000DE9 RID: 3561
 	public JSONObject WuDaoZhiData;
 
-	// Token: 0x04001107 RID: 4359
+	// Token: 0x04000DEA RID: 3562
 	public JSONObject LunDaoSiXuData;
 
-	// Token: 0x04001108 RID: 4360
+	// Token: 0x04000DEB RID: 3563
 	public JSONObject LingGanMaxData;
 
-	// Token: 0x04001109 RID: 4361
+	// Token: 0x04000DEC RID: 3564
 	public JSONObject LingGanLevelData;
 
-	// Token: 0x0400110A RID: 4362
+	// Token: 0x04000DED RID: 3565
 	public JSONObject WuDaoZhiJiaCheng;
 
-	// Token: 0x0400110B RID: 4363
+	// Token: 0x04000DEE RID: 3566
 	public JSONObject ShengWangLevelData;
 
-	// Token: 0x0400110C RID: 4364
+	// Token: 0x04000DEF RID: 3567
 	public JSONObject DiYuShengWangData;
 
-	// Token: 0x0400110D RID: 4365
+	// Token: 0x04000DF0 RID: 3568
 	public JSONObject ShangJinPingFenData;
 
-	// Token: 0x0400110E RID: 4366
+	// Token: 0x04000DF1 RID: 3569
 	public JSONObject ShengWangShangJinData;
 
-	// Token: 0x0400110F RID: 4367
+	// Token: 0x04000DF2 RID: 3570
 	public JSONObject XuanShangMiaoShuData;
 
-	// Token: 0x04001110 RID: 4368
+	// Token: 0x04000DF3 RID: 3571
 	public JSONObject ShiLiShenFenData;
 
-	// Token: 0x04001111 RID: 4369
+	// Token: 0x04000DF4 RID: 3572
 	public JSONObject CyShiLiNameData;
 
-	// Token: 0x04001112 RID: 4370
+	// Token: 0x04000DF5 RID: 3573
 	public JSONObject CyTeShuNpc;
 
-	// Token: 0x04001113 RID: 4371
+	// Token: 0x04000DF6 RID: 3574
 	public JSONObject ScenePriceData;
 
-	// Token: 0x04001114 RID: 4372
+	// Token: 0x04000DF7 RID: 3575
 	public JSONObject CyZiDuanData;
 
-	// Token: 0x04001115 RID: 4373
+	// Token: 0x04000DF8 RID: 3576
 	public JSONObject CyPlayeQuestionData;
 
-	// Token: 0x04001116 RID: 4374
+	// Token: 0x04000DF9 RID: 3577
 	public JSONObject CyNpcAnswerData;
 
-	// Token: 0x04001117 RID: 4375
+	// Token: 0x04000DFA RID: 3578
 	public JSONObject CyNpcDuiBaiData;
 
-	// Token: 0x04001118 RID: 4376
+	// Token: 0x04000DFB RID: 3579
 	public JSONObject CyNpcSendData;
 
-	// Token: 0x04001119 RID: 4377
+	// Token: 0x04000DFC RID: 3580
 	public JSONObject RenWuDaLeiYouXianJi;
 
-	// Token: 0x0400111A RID: 4378
+	// Token: 0x04000DFD RID: 3581
 	public JSONObject LunDaoReduceData;
 
-	// Token: 0x0400111B RID: 4379
+	// Token: 0x04000DFE RID: 3582
 	public JSONObject LingGanTimeMaxData;
 
-	// Token: 0x0400111C RID: 4380
+	// Token: 0x04000DFF RID: 3583
 	public JSONObject ShuangXiuMiShu;
 
-	// Token: 0x0400111D RID: 4381
+	// Token: 0x04000E00 RID: 3584
 	public JSONObject ShuangXiuJingYuanJiaZhi;
 
-	// Token: 0x0400111E RID: 4382
+	// Token: 0x04000E01 RID: 3585
 	public JSONObject ShuangXiuLianHuaSuDu;
 
-	// Token: 0x0400111F RID: 4383
+	// Token: 0x04000E02 RID: 3586
 	public JSONObject ShuangXiuJingJieBeiLv;
 
-	// Token: 0x04001120 RID: 4384
+	// Token: 0x04000E03 RID: 3587
 	public JSONObject DFLingYanLevel;
 
-	// Token: 0x04001121 RID: 4385
+	// Token: 0x04000E04 RID: 3588
 	public JSONObject DFZhenYanLevel;
 
-	// Token: 0x04001122 RID: 4386
+	// Token: 0x04000E05 RID: 3589
 	public JSONObject DFBuKeZhongZhi;
 
-	// Token: 0x04001123 RID: 4387
+	// Token: 0x04000E06 RID: 3590
 	public JSONObject SeaHaiYuJiZhiShuaXin;
 
-	// Token: 0x04001124 RID: 4388
+	// Token: 0x04000E07 RID: 3591
 	public JSONObject SeaJiZhiID;
 
-	// Token: 0x04001125 RID: 4389
+	// Token: 0x04000E08 RID: 3592
 	public JSONObject SeaJiZhiXingXiang;
 
-	// Token: 0x04001126 RID: 4390
+	// Token: 0x04000E09 RID: 3593
 	public JSONObject SeaHaiYuTanSuo;
 
-	// Token: 0x04001127 RID: 4391
+	// Token: 0x04000E0A RID: 3594
 	public JSONObject MapIndexData;
 
-	// Token: 0x04001128 RID: 4392
+	// Token: 0x04000E0B RID: 3595
 	public JSONObject GaoShiLeiXing;
 
-	// Token: 0x04001129 RID: 4393
+	// Token: 0x04000E0C RID: 3596
 	public JSONObject GaoShi;
 
-	// Token: 0x0400112A RID: 4394
+	// Token: 0x04000E0D RID: 3597
 	public JSONObject ZhuChengRenWu;
 
-	// Token: 0x0400112B RID: 4395
+	// Token: 0x04000E0E RID: 3598
 	public JSONObject PaiMaiPanDing;
 
-	// Token: 0x0400112C RID: 4396
+	// Token: 0x04000E0F RID: 3599
 	public JSONObject PaiMaiChuJia;
 
-	// Token: 0x0400112D RID: 4397
+	// Token: 0x04000E10 RID: 3600
 	public JSONObject PaiMaiCommandTips;
 
-	// Token: 0x0400112E RID: 4398
+	// Token: 0x04000E11 RID: 3601
 	public JSONObject PaiMaiDuiHuaAI;
 
-	// Token: 0x0400112F RID: 4399
+	// Token: 0x04000E12 RID: 3602
 	public JSONObject PaiMaiChuJiaAI;
 
-	// Token: 0x04001130 RID: 4400
+	// Token: 0x04000E13 RID: 3603
 	public JSONObject PaiMaiOldAvatar;
 
-	// Token: 0x04001131 RID: 4401
+	// Token: 0x04000E14 RID: 3604
 	public JSONObject PaiMaiNpcAddPriceSay;
 
-	// Token: 0x04001132 RID: 4402
+	// Token: 0x04000E15 RID: 3605
+	public JSONObject ChuanWenTypeData;
+
+	// Token: 0x04000E16 RID: 3606
 	public JSONObject LingHeCaiJi;
 
-	// Token: 0x04001133 RID: 4403
+	// Token: 0x04000E17 RID: 3607
 	public JSONObject LingMaiPinJie;
 
-	// Token: 0x04001134 RID: 4404
+	// Token: 0x04000E18 RID: 3608
 	public JSONObject HuaShenData;
 
-	// Token: 0x04001135 RID: 4405
+	// Token: 0x04000E19 RID: 3609
 	public JSONObject TianJieMiShuData;
 
-	// Token: 0x04001136 RID: 4406
+	// Token: 0x04000E1A RID: 3610
+	public JSONObject TianJieLeiJieType;
+
+	// Token: 0x04000E1B RID: 3611
+	public JSONObject TianJieLeiJieShangHai;
+
+	// Token: 0x04000E1C RID: 3612
 	public JSONObject TianJiDaBi;
 
-	// Token: 0x04001137 RID: 4407
+	// Token: 0x04000E1D RID: 3613
 	public JSONObject TianJiDaBiGongFangKeZhi;
 
-	// Token: 0x04001138 RID: 4408
+	// Token: 0x04000E1E RID: 3614
 	public JSONObject TianJiDaBiReward;
 
-	// Token: 0x04001139 RID: 4409
+	// Token: 0x04000E1F RID: 3615
 	public JSONObject ShengPing;
 
-	// Token: 0x0400113A RID: 4410
+	// Token: 0x04000E20 RID: 3616
 	public JSONObject JianLingXianSuo;
 
-	// Token: 0x0400113B RID: 4411
+	// Token: 0x04000E21 RID: 3617
 	public JSONObject JianLingZhenXiang;
 
-	// Token: 0x0400113C RID: 4412
+	// Token: 0x04000E22 RID: 3618
 	public JSONObject JianLingQingJiao;
 
-	// Token: 0x0400113D RID: 4413
+	// Token: 0x04000E23 RID: 3619
 	public bool IsResetAvatarFace;
 
-	// Token: 0x0400113E RID: 4414
+	// Token: 0x04000E24 RID: 3620
 	public ItemDatabase playerDatabase;
 
-	// Token: 0x0400113F RID: 4415
+	// Token: 0x04000E25 RID: 3621
 	public JSONObject[] SkillSeidJsonData = new JSONObject[500];
 
-	// Token: 0x04001140 RID: 4416
+	// Token: 0x04000E26 RID: 3622
 	public JSONObject[] BuffSeidJsonData = new JSONObject[500];
 
-	// Token: 0x04001141 RID: 4417
+	// Token: 0x04000E27 RID: 3623
 	public JSONObject[] VersionJsonData = new JSONObject[500];
 
-	// Token: 0x04001142 RID: 4418
+	// Token: 0x04000E28 RID: 3624
 	public JSONObject[] StaticSkillSeidJsonData = new JSONObject[500];
 
-	// Token: 0x04001143 RID: 4419
+	// Token: 0x04000E29 RID: 3625
 	public JSONObject[] WuDaoSeidJsonData = new JSONObject[500];
 
-	// Token: 0x04001144 RID: 4420
+	// Token: 0x04000E2A RID: 3626
 	public JSONObject[] ItemsSeidJsonData = new JSONObject[500];
 
-	// Token: 0x04001145 RID: 4421
+	// Token: 0x04000E2B RID: 3627
 	public JSONObject[] EquipSeidJsonData = new JSONObject[500];
 
-	// Token: 0x04001146 RID: 4422
+	// Token: 0x04000E2C RID: 3628
 	public JSONObject[] CrateAvatarSeidJsonData = new JSONObject[500];
 
-	// Token: 0x04001147 RID: 4423
+	// Token: 0x04000E2D RID: 3629
 	public JSONObject[] JieDanSeidJsonData = new JSONObject[500];
 
-	// Token: 0x04001148 RID: 4424
+	// Token: 0x04000E2E RID: 3630
 	public Dictionary<int, List<JSONObject>> FuBenJsonData = new Dictionary<int, List<JSONObject>>();
 
-	// Token: 0x04001149 RID: 4425
+	// Token: 0x04000E2F RID: 3631
 	public List<int> RandomList = new List<int>();
 
-	// Token: 0x0400114A RID: 4426
+	// Token: 0x04000E30 RID: 3632
 	public int randomListIndex;
 
-	// Token: 0x0400114B RID: 4427
+	// Token: 0x04000E31 RID: 3633
 	public RandomFace body;
 
-	// Token: 0x0400114C RID: 4428
+	// Token: 0x04000E32 RID: 3634
 	public RandomFace eye;
 
-	// Token: 0x0400114D RID: 4429
+	// Token: 0x04000E33 RID: 3635
 	public RandomFace eyebrow;
 
-	// Token: 0x0400114E RID: 4430
+	// Token: 0x04000E34 RID: 3636
 	public RandomFace face;
 
-	// Token: 0x0400114F RID: 4431
+	// Token: 0x04000E35 RID: 3637
 	public RandomFace Facefold;
 
-	// Token: 0x04001150 RID: 4432
+	// Token: 0x04000E36 RID: 3638
 	public RandomFace hair;
 
-	// Token: 0x04001151 RID: 4433
+	// Token: 0x04000E37 RID: 3639
 	public RandomFace hair2;
 
-	// Token: 0x04001152 RID: 4434
+	// Token: 0x04000E38 RID: 3640
 	public RandomFace mouth;
 
-	// Token: 0x04001153 RID: 4435
+	// Token: 0x04000E39 RID: 3641
 	public RandomFace mustache;
 
-	// Token: 0x04001154 RID: 4436
+	// Token: 0x04000E3A RID: 3642
 	public RandomFace nose;
 
-	// Token: 0x04001155 RID: 4437
+	// Token: 0x04000E3B RID: 3643
 	public RandomFace ornament;
 
-	// Token: 0x04001156 RID: 4438
+	// Token: 0x04000E3C RID: 3644
 	public GameObject TextError;
 
-	// Token: 0x04001157 RID: 4439
+	// Token: 0x04000E3D RID: 3645
 	public GameObject SkillHint;
 
-	// Token: 0x04001158 RID: 4440
+	// Token: 0x04000E3E RID: 3646
 	public bool reloadRandomAvatarFace;
 
-	// Token: 0x04001159 RID: 4441
+	// Token: 0x04000E3F RID: 3647
 	public static bool showGongGao = true;
 
-	// Token: 0x0400115A RID: 4442
+	// Token: 0x04000E40 RID: 3648
+	public JSONObject ItemFlagData;
+
+	// Token: 0x04000E41 RID: 3649
 	private static int rDieZiNameCount = 0;
 
-	// Token: 0x020002C0 RID: 704
+	// Token: 0x020012BF RID: 4799
 	public class YSDictionary<TKey, TValue> : Dictionary<TKey, TValue>
 	{
-		// Token: 0x06001565 RID: 5477 RVA: 0x00013640 File Offset: 0x00011840
+		// Token: 0x06007A6D RID: 31341 RVA: 0x002BCE3C File Offset: 0x002BB03C
 		public bool HasField(TKey key)
 		{
 			return base.ContainsKey(key);
 		}
 	}
 
-	// Token: 0x020002C1 RID: 705
+	// Token: 0x020012C0 RID: 4800
 	public enum SeidCount
 	{
-		// Token: 0x0400115C RID: 4444
+		// Token: 0x04006689 RID: 26249
 		buffCount = 500,
-		// Token: 0x0400115D RID: 4445
+		// Token: 0x0400668A RID: 26250
 		skillCount = 500,
-		// Token: 0x0400115E RID: 4446
+		// Token: 0x0400668B RID: 26251
 		StaticSkillCount = 500
 	}
 
-	// Token: 0x020002C2 RID: 706
+	// Token: 0x020012C1 RID: 4801
 	public enum RandomFaceType
 	{
-		// Token: 0x04001160 RID: 4448
+		// Token: 0x0400668D RID: 26253
 		body,
-		// Token: 0x04001161 RID: 4449
+		// Token: 0x0400668E RID: 26254
 		eye,
-		// Token: 0x04001162 RID: 4450
+		// Token: 0x0400668F RID: 26255
 		eyebrow,
-		// Token: 0x04001163 RID: 4451
+		// Token: 0x04006690 RID: 26256
 		face,
-		// Token: 0x04001164 RID: 4452
+		// Token: 0x04006691 RID: 26257
 		Facefold,
-		// Token: 0x04001165 RID: 4453
+		// Token: 0x04006692 RID: 26258
 		hair,
-		// Token: 0x04001166 RID: 4454
+		// Token: 0x04006693 RID: 26259
 		mouth,
-		// Token: 0x04001167 RID: 4455
+		// Token: 0x04006694 RID: 26260
 		mustache,
-		// Token: 0x04001168 RID: 4456
+		// Token: 0x04006695 RID: 26261
 		nose,
-		// Token: 0x04001169 RID: 4457
+		// Token: 0x04006696 RID: 26262
 		ornament
 	}
 
-	// Token: 0x020002C3 RID: 707
+	// Token: 0x020012C2 RID: 4802
 	public enum InventoryNUM
 	{
-		// Token: 0x0400116B RID: 4459
+		// Token: 0x04006698 RID: 26264
 		Shop = 9,
-		// Token: 0x0400116C RID: 4460
+		// Token: 0x04006699 RID: 26265
 		Max = 24,
-		// Token: 0x0400116D RID: 4461
+		// Token: 0x0400669A RID: 26266
 		EXIventoryNum = 34,
-		// Token: 0x0400116E RID: 4462
+		// Token: 0x0400669B RID: 26267
 		LinQiEXIventoryNum,
-		// Token: 0x0400116F RID: 4463
+		// Token: 0x0400669C RID: 26268
 		SkillMax = 30,
-		// Token: 0x04001170 RID: 4464
+		// Token: 0x0400669D RID: 26269
 		FightEat = 32,
-		// Token: 0x04001171 RID: 4465
+		// Token: 0x0400669E RID: 26270
 		PaiMai = 12,
-		// Token: 0x04001172 RID: 4466
+		// Token: 0x0400669F RID: 26271
 		PaiMaiPlayer = 25,
-		// Token: 0x04001173 RID: 4467
+		// Token: 0x040066A0 RID: 26272
 		PaiMaiXianShi = 1,
-		// Token: 0x04001174 RID: 4468
+		// Token: 0x040066A1 RID: 26273
 		ShopEX = 10,
-		// Token: 0x04001175 RID: 4469
+		// Token: 0x040066A2 RID: 26274
 		LianDan = 29,
-		// Token: 0x04001176 RID: 4470
+		// Token: 0x040066A3 RID: 26275
 		LianDanDanLu = 18,
-		// Token: 0x04001177 RID: 4471
+		// Token: 0x040066A4 RID: 26276
 		LianDanFinish = 6,
-		// Token: 0x04001178 RID: 4472
+		// Token: 0x040066A5 RID: 26277
 		CaijiTeChan = 8,
-		// Token: 0x04001179 RID: 4473
+		// Token: 0x040066A6 RID: 26278
 		CaijiDiaoLuo = 2,
-		// Token: 0x0400117A RID: 4474
+		// Token: 0x040066A7 RID: 26279
 		FaceRandomTime = 500,
-		// Token: 0x0400117B RID: 4475
+		// Token: 0x040066A8 RID: 26280
 		NewLianDan = 37,
-		// Token: 0x0400117C RID: 4476
+		// Token: 0x040066A9 RID: 26281
 		NewJiaoYiNum = 15
 	}
 }

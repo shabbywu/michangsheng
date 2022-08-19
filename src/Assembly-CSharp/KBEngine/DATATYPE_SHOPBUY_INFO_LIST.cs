@@ -3,10 +3,10 @@ using System.Collections.Generic;
 
 namespace KBEngine
 {
-	// Token: 0x02000EB7 RID: 3767
+	// Token: 0x02000B40 RID: 2880
 	public class DATATYPE_SHOPBUY_INFO_LIST : DATATYPE_BASE
 	{
-		// Token: 0x06005AFB RID: 23291 RVA: 0x000402CC File Offset: 0x0003E4CC
+		// Token: 0x060050D1 RID: 20689 RVA: 0x00220DF3 File Offset: 0x0021EFF3
 		public SHOPBUY_INFO_LIST createFromStreamEx(MemoryStream stream)
 		{
 			return new SHOPBUY_INFO_LIST
@@ -15,19 +15,19 @@ namespace KBEngine
 			};
 		}
 
-		// Token: 0x06005AFC RID: 23292 RVA: 0x000402E5 File Offset: 0x0003E4E5
+		// Token: 0x060050D2 RID: 20690 RVA: 0x00220E0C File Offset: 0x0021F00C
 		public void addToStreamEx(Bundle stream, SHOPBUY_INFO_LIST v)
 		{
 			this.values_DataType.addToStreamEx(stream, v.values);
 		}
 
-		// Token: 0x04005A00 RID: 23040
+		// Token: 0x04004F7B RID: 20347
 		private DATATYPE_SHOPBUY_INFO_LIST.DATATYPE__SHOPBUY_INFO_LIST_values_ArrayType_ChildArray values_DataType = new DATATYPE_SHOPBUY_INFO_LIST.DATATYPE__SHOPBUY_INFO_LIST_values_ArrayType_ChildArray();
 
-		// Token: 0x02000EB8 RID: 3768
+		// Token: 0x020015ED RID: 5613
 		public class DATATYPE__SHOPBUY_INFO_LIST_values_ArrayType_ChildArray : DATATYPE_BASE
 		{
-			// Token: 0x06005AFE RID: 23294 RVA: 0x00250518 File Offset: 0x0024E718
+			// Token: 0x06008590 RID: 34192 RVA: 0x002E47F0 File Offset: 0x002E29F0
 			public List<ShopBuyInfo> createFromStreamEx(MemoryStream stream)
 			{
 				uint num = stream.readUint32();
@@ -40,7 +40,7 @@ namespace KBEngine
 				return list;
 			}
 
-			// Token: 0x06005AFF RID: 23295 RVA: 0x00250550 File Offset: 0x0024E750
+			// Token: 0x06008591 RID: 34193 RVA: 0x002E4828 File Offset: 0x002E2A28
 			public void addToStreamEx(Bundle stream, List<ShopBuyInfo> v)
 			{
 				stream.writeUint32((uint)v.Count);
@@ -50,7 +50,7 @@ namespace KBEngine
 				}
 			}
 
-			// Token: 0x04005A01 RID: 23041
+			// Token: 0x040070DC RID: 28892
 			private DATATYPE_ShopBuyInfo itemType = new DATATYPE_ShopBuyInfo();
 		}
 	}

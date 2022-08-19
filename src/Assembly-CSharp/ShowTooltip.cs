@@ -2,10 +2,10 @@
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-// Token: 0x0200021C RID: 540
+// Token: 0x02000147 RID: 327
 public class ShowTooltip : MonoBehaviour, IPointerDownHandler, IEventSystemHandler
 {
-	// Token: 0x060010D8 RID: 4312 RVA: 0x000A9F4C File Offset: 0x000A814C
+	// Token: 0x06000EB8 RID: 3768 RVA: 0x00059BF0 File Offset: 0x00057DF0
 	private void Start()
 	{
 		GameObject gameObject = GameObject.FindGameObjectWithTag("Canvas");
@@ -18,7 +18,7 @@ public class ShowTooltip : MonoBehaviour, IPointerDownHandler, IEventSystemHandl
 		this.canvasRectTransform = GameObject.FindGameObjectWithTag("Canvas").GetComponent<RectTransform>();
 	}
 
-	// Token: 0x060010D9 RID: 4313 RVA: 0x000A9FD8 File Offset: 0x000A81D8
+	// Token: 0x06000EB9 RID: 3769 RVA: 0x00059C7C File Offset: 0x00057E7C
 	public void OnPointerDown(PointerEventData data)
 	{
 		if (this.tooltip != null)
@@ -67,18 +67,18 @@ public class ShowTooltip : MonoBehaviour, IPointerDownHandler, IEventSystemHandl
 		}
 	}
 
-	// Token: 0x04000D83 RID: 3459
+	// Token: 0x04000AE8 RID: 2792
 	public Tooltip tooltip;
 
-	// Token: 0x04000D84 RID: 3460
+	// Token: 0x04000AE9 RID: 2793
 	public GameObject tooltipGameObject;
 
-	// Token: 0x04000D85 RID: 3461
+	// Token: 0x04000AEA RID: 2794
 	public RectTransform canvasRectTransform;
 
-	// Token: 0x04000D86 RID: 3462
+	// Token: 0x04000AEB RID: 2795
 	public RectTransform tooltipRectTransform;
 
-	// Token: 0x04000D87 RID: 3463
+	// Token: 0x04000AEC RID: 2796
 	private Item item;
 }

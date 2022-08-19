@@ -2,15 +2,15 @@
 using UnityEngine;
 using UnityEngine.Events;
 
-// Token: 0x0200079C RID: 1948
+// Token: 0x0200050B RID: 1291
 public class TooltipsBackgroundi : MonoBehaviour
 {
-	// Token: 0x06003189 RID: 12681 RVA: 0x000042DD File Offset: 0x000024DD
+	// Token: 0x06002984 RID: 10628 RVA: 0x00004095 File Offset: 0x00002295
 	private void Start()
 	{
 	}
 
-	// Token: 0x0600318A RID: 12682 RVA: 0x0002440B File Offset: 0x0002260B
+	// Token: 0x06002985 RID: 10629 RVA: 0x0013D5F2 File Offset: 0x0013B7F2
 	public void openTooltips()
 	{
 		this.CloseAction = null;
@@ -21,7 +21,7 @@ public class TooltipsBackgroundi : MonoBehaviour
 		}
 	}
 
-	// Token: 0x0600318B RID: 12683 RVA: 0x0002443A File Offset: 0x0002263A
+	// Token: 0x06002986 RID: 10630 RVA: 0x0013D621 File Offset: 0x0013B821
 	public void closeTooltips()
 	{
 		if (this.CloseAction != null)
@@ -30,7 +30,7 @@ public class TooltipsBackgroundi : MonoBehaviour
 		}
 	}
 
-	// Token: 0x0600318C RID: 12684 RVA: 0x0002444F File Offset: 0x0002264F
+	// Token: 0x06002987 RID: 10631 RVA: 0x0013D636 File Offset: 0x0013B836
 	public void UseItem()
 	{
 		if (this.UseAction != null)
@@ -40,25 +40,25 @@ public class TooltipsBackgroundi : MonoBehaviour
 		this.closeTooltips();
 	}
 
-	// Token: 0x0600318D RID: 12685 RVA: 0x0002446A File Offset: 0x0002266A
+	// Token: 0x06002988 RID: 10632 RVA: 0x0013D651 File Offset: 0x0013B851
 	public void SetBtnText(string text)
 	{
 		this.use.GetComponentInChildren<UILabel>().text = text;
 		this.tooltipItem.SetBtnSprite(text, "");
 	}
 
-	// Token: 0x04002DC9 RID: 11721
+	// Token: 0x040025E1 RID: 9697
 	public UIButton close;
 
-	// Token: 0x04002DCA RID: 11722
+	// Token: 0x040025E2 RID: 9698
 	public UIButton use;
 
-	// Token: 0x04002DCB RID: 11723
+	// Token: 0x040025E3 RID: 9699
 	public UnityAction CloseAction;
 
-	// Token: 0x04002DCC RID: 11724
+	// Token: 0x040025E4 RID: 9700
 	public UnityAction UseAction;
 
-	// Token: 0x04002DCD RID: 11725
+	// Token: 0x040025E5 RID: 9701
 	public TooltipItem tooltipItem;
 }

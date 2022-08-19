@@ -5,25 +5,25 @@ using MoonSharp.Interpreter.Interop.BasicDescriptors;
 
 namespace MoonSharp.Interpreter.Interop
 {
-	// Token: 0x02001123 RID: 4387
+	// Token: 0x02000D24 RID: 3364
 	public class StandardEnumUserDataDescriptor : DispatchingUserDataDescriptor
 	{
-		// Token: 0x170009AA RID: 2474
-		// (get) Token: 0x06006A04 RID: 27140 RVA: 0x000485D1 File Offset: 0x000467D1
-		// (set) Token: 0x06006A05 RID: 27141 RVA: 0x000485D9 File Offset: 0x000467D9
+		// Token: 0x1700074D RID: 1869
+		// (get) Token: 0x06005E68 RID: 24168 RVA: 0x00266B21 File Offset: 0x00264D21
+		// (set) Token: 0x06005E69 RID: 24169 RVA: 0x00266B29 File Offset: 0x00264D29
 		public Type UnderlyingType { get; private set; }
 
-		// Token: 0x170009AB RID: 2475
-		// (get) Token: 0x06006A06 RID: 27142 RVA: 0x000485E2 File Offset: 0x000467E2
-		// (set) Token: 0x06006A07 RID: 27143 RVA: 0x000485EA File Offset: 0x000467EA
+		// Token: 0x1700074E RID: 1870
+		// (get) Token: 0x06005E6A RID: 24170 RVA: 0x00266B32 File Offset: 0x00264D32
+		// (set) Token: 0x06005E6B RID: 24171 RVA: 0x00266B3A File Offset: 0x00264D3A
 		public bool IsUnsigned { get; private set; }
 
-		// Token: 0x170009AC RID: 2476
-		// (get) Token: 0x06006A08 RID: 27144 RVA: 0x000485F3 File Offset: 0x000467F3
-		// (set) Token: 0x06006A09 RID: 27145 RVA: 0x000485FB File Offset: 0x000467FB
+		// Token: 0x1700074F RID: 1871
+		// (get) Token: 0x06005E6C RID: 24172 RVA: 0x00266B43 File Offset: 0x00264D43
+		// (set) Token: 0x06005E6D RID: 24173 RVA: 0x00266B4B File Offset: 0x00264D4B
 		public bool IsFlags { get; private set; }
 
-		// Token: 0x06006A0A RID: 27146 RVA: 0x0028F3D4 File Offset: 0x0028D5D4
+		// Token: 0x06005E6E RID: 24174 RVA: 0x00266B54 File Offset: 0x00264D54
 		public StandardEnumUserDataDescriptor(Type enumType, string friendlyName = null, string[] names = null, object[] values = null, Type underlyingType = null) : base(enumType, friendlyName)
 		{
 			if (!Framework.Do.IsEnum(enumType))
@@ -37,7 +37,7 @@ namespace MoonSharp.Interpreter.Interop
 			this.FillMemberList(names, values);
 		}
 
-		// Token: 0x06006A0B RID: 27147 RVA: 0x0028F4B0 File Offset: 0x0028D6B0
+		// Token: 0x06005E6F RID: 24175 RVA: 0x00266C30 File Offset: 0x00264E30
 		private void FillMemberList(string[] names, object[] values)
 		{
 			for (int i = 0; i < names.Length; i++)
@@ -59,7 +59,7 @@ namespace MoonSharp.Interpreter.Interop
 			}
 		}
 
-		// Token: 0x06006A0C RID: 27148 RVA: 0x00048604 File Offset: 0x00046804
+		// Token: 0x06005E70 RID: 24176 RVA: 0x00266D43 File Offset: 0x00264F43
 		private void AddEnumMethod(string name, DynValue dynValue)
 		{
 			if (!base.HasMember(name))
@@ -72,7 +72,7 @@ namespace MoonSharp.Interpreter.Interop
 			}
 		}
 
-		// Token: 0x06006A0D RID: 27149 RVA: 0x0028F5C4 File Offset: 0x0028D7C4
+		// Token: 0x06005E71 RID: 24177 RVA: 0x00266D7C File Offset: 0x00264F7C
 		private long GetValueSigned(DynValue dv)
 		{
 			this.CreateSignedConversionFunctions();
@@ -87,7 +87,7 @@ namespace MoonSharp.Interpreter.Interop
 			return this.m_EnumToLong(dv.UserData.Object);
 		}
 
-		// Token: 0x06006A0E RID: 27150 RVA: 0x0028F630 File Offset: 0x0028D830
+		// Token: 0x06005E72 RID: 24178 RVA: 0x00266DE8 File Offset: 0x00264FE8
 		private ulong GetValueUnsigned(DynValue dv)
 		{
 			this.CreateUnsignedConversionFunctions();
@@ -102,21 +102,21 @@ namespace MoonSharp.Interpreter.Interop
 			return this.m_EnumToULong(dv.UserData.Object);
 		}
 
-		// Token: 0x06006A0F RID: 27151 RVA: 0x0004863C File Offset: 0x0004683C
+		// Token: 0x06005E73 RID: 24179 RVA: 0x00266E51 File Offset: 0x00265051
 		private DynValue CreateValueSigned(long value)
 		{
 			this.CreateSignedConversionFunctions();
 			return UserData.Create(this.m_LongToEnum(value), this);
 		}
 
-		// Token: 0x06006A10 RID: 27152 RVA: 0x00048656 File Offset: 0x00046856
+		// Token: 0x06005E74 RID: 24180 RVA: 0x00266E6B File Offset: 0x0026506B
 		private DynValue CreateValueUnsigned(ulong value)
 		{
 			this.CreateUnsignedConversionFunctions();
 			return UserData.Create(this.m_ULongToEnum(value), this);
 		}
 
-		// Token: 0x06006A11 RID: 27153 RVA: 0x0028F69C File Offset: 0x0028D89C
+		// Token: 0x06005E75 RID: 24181 RVA: 0x00266E88 File Offset: 0x00265088
 		private void CreateSignedConversionFunctions()
 		{
 			if (this.m_EnumToLong != null && this.m_LongToEnum != null)
@@ -153,7 +153,7 @@ namespace MoonSharp.Interpreter.Interop
 			});
 		}
 
-		// Token: 0x06006A12 RID: 27154 RVA: 0x0028F864 File Offset: 0x0028DA64
+		// Token: 0x06005E76 RID: 24182 RVA: 0x00267050 File Offset: 0x00265250
 		private void CreateUnsignedConversionFunctions()
 		{
 			if (this.m_EnumToULong != null && this.m_ULongToEnum != null)
@@ -190,7 +190,7 @@ namespace MoonSharp.Interpreter.Interop
 			});
 		}
 
-		// Token: 0x06006A13 RID: 27155 RVA: 0x0028FA2C File Offset: 0x0028DC2C
+		// Token: 0x06005E77 RID: 24183 RVA: 0x00267218 File Offset: 0x00265418
 		private DynValue PerformBinaryOperationS(string funcName, ScriptExecutionContext ctx, CallbackArguments args, Func<long, long, DynValue> operation)
 		{
 			if (args.Count != 2)
@@ -205,7 +205,7 @@ namespace MoonSharp.Interpreter.Interop
 			return operation(valueSigned, valueSigned2);
 		}
 
-		// Token: 0x06006A14 RID: 27156 RVA: 0x0028FA7C File Offset: 0x0028DC7C
+		// Token: 0x06005E78 RID: 24184 RVA: 0x00267268 File Offset: 0x00265468
 		private DynValue PerformBinaryOperationU(string funcName, ScriptExecutionContext ctx, CallbackArguments args, Func<ulong, ulong, DynValue> operation)
 		{
 			if (args.Count != 2)
@@ -220,19 +220,19 @@ namespace MoonSharp.Interpreter.Interop
 			return operation(valueUnsigned, valueUnsigned2);
 		}
 
-		// Token: 0x06006A15 RID: 27157 RVA: 0x0028FACC File Offset: 0x0028DCCC
+		// Token: 0x06005E79 RID: 24185 RVA: 0x002672B8 File Offset: 0x002654B8
 		private DynValue PerformBinaryOperationS(string funcName, ScriptExecutionContext ctx, CallbackArguments args, Func<long, long, long> operation)
 		{
 			return this.PerformBinaryOperationS(funcName, ctx, args, (long v1, long v2) => this.CreateValueSigned(operation(v1, v2)));
 		}
 
-		// Token: 0x06006A16 RID: 27158 RVA: 0x0028FB04 File Offset: 0x0028DD04
+		// Token: 0x06005E7A RID: 24186 RVA: 0x002672F0 File Offset: 0x002654F0
 		private DynValue PerformBinaryOperationU(string funcName, ScriptExecutionContext ctx, CallbackArguments args, Func<ulong, ulong, ulong> operation)
 		{
 			return this.PerformBinaryOperationU(funcName, ctx, args, (ulong v1, ulong v2) => this.CreateValueUnsigned(operation(v1, v2)));
 		}
 
-		// Token: 0x06006A17 RID: 27159 RVA: 0x0028FB3C File Offset: 0x0028DD3C
+		// Token: 0x06005E7B RID: 24187 RVA: 0x00267328 File Offset: 0x00265528
 		private DynValue PerformUnaryOperationS(string funcName, ScriptExecutionContext ctx, CallbackArguments args, Func<long, long> operation)
 		{
 			if (args.Count != 1)
@@ -247,7 +247,7 @@ namespace MoonSharp.Interpreter.Interop
 			return this.CreateValueSigned(value);
 		}
 
-		// Token: 0x06006A18 RID: 27160 RVA: 0x0028FB88 File Offset: 0x0028DD88
+		// Token: 0x06005E7C RID: 24188 RVA: 0x00267374 File Offset: 0x00265574
 		private DynValue PerformUnaryOperationU(string funcName, ScriptExecutionContext ctx, CallbackArguments args, Func<ulong, ulong> operation)
 		{
 			if (args.Count != 1)
@@ -262,7 +262,7 @@ namespace MoonSharp.Interpreter.Interop
 			return this.CreateValueUnsigned(value);
 		}
 
-		// Token: 0x06006A19 RID: 27161 RVA: 0x0028FBD4 File Offset: 0x0028DDD4
+		// Token: 0x06005E7D RID: 24189 RVA: 0x002673C0 File Offset: 0x002655C0
 		internal DynValue Callback_Or(ScriptExecutionContext ctx, CallbackArguments args)
 		{
 			if (this.IsUnsigned)
@@ -272,7 +272,7 @@ namespace MoonSharp.Interpreter.Interop
 			return this.PerformBinaryOperationS("or", ctx, args, (long v1, long v2) => v1 | v2);
 		}
 
-		// Token: 0x06006A1A RID: 27162 RVA: 0x0028FC44 File Offset: 0x0028DE44
+		// Token: 0x06005E7E RID: 24190 RVA: 0x00267430 File Offset: 0x00265630
 		internal DynValue Callback_And(ScriptExecutionContext ctx, CallbackArguments args)
 		{
 			if (this.IsUnsigned)
@@ -282,7 +282,7 @@ namespace MoonSharp.Interpreter.Interop
 			return this.PerformBinaryOperationS("and", ctx, args, (long v1, long v2) => v1 & v2);
 		}
 
-		// Token: 0x06006A1B RID: 27163 RVA: 0x0028FCB4 File Offset: 0x0028DEB4
+		// Token: 0x06005E7F RID: 24191 RVA: 0x002674A0 File Offset: 0x002656A0
 		internal DynValue Callback_Xor(ScriptExecutionContext ctx, CallbackArguments args)
 		{
 			if (this.IsUnsigned)
@@ -292,7 +292,7 @@ namespace MoonSharp.Interpreter.Interop
 			return this.PerformBinaryOperationS("xor", ctx, args, (long v1, long v2) => v1 ^ v2);
 		}
 
-		// Token: 0x06006A1C RID: 27164 RVA: 0x0028FD24 File Offset: 0x0028DF24
+		// Token: 0x06005E80 RID: 24192 RVA: 0x00267510 File Offset: 0x00265710
 		internal DynValue Callback_BwNot(ScriptExecutionContext ctx, CallbackArguments args)
 		{
 			if (this.IsUnsigned)
@@ -302,7 +302,7 @@ namespace MoonSharp.Interpreter.Interop
 			return this.PerformUnaryOperationS("not", ctx, args, (long v1) => ~v1);
 		}
 
-		// Token: 0x06006A1D RID: 27165 RVA: 0x0028FD94 File Offset: 0x0028DF94
+		// Token: 0x06005E81 RID: 24193 RVA: 0x00267580 File Offset: 0x00265780
 		internal DynValue Callback_HasAll(ScriptExecutionContext ctx, CallbackArguments args)
 		{
 			if (this.IsUnsigned)
@@ -312,7 +312,7 @@ namespace MoonSharp.Interpreter.Interop
 			return this.PerformBinaryOperationS("hasAll", ctx, args, (long v1, long v2) => DynValue.NewBoolean((v1 & v2) == v2));
 		}
 
-		// Token: 0x06006A1E RID: 27166 RVA: 0x0028FE04 File Offset: 0x0028E004
+		// Token: 0x06005E82 RID: 24194 RVA: 0x002675F0 File Offset: 0x002657F0
 		internal DynValue Callback_HasAny(ScriptExecutionContext ctx, CallbackArguments args)
 		{
 			if (this.IsUnsigned)
@@ -322,7 +322,7 @@ namespace MoonSharp.Interpreter.Interop
 			return this.PerformBinaryOperationS("hasAny", ctx, args, (long v1, long v2) => DynValue.NewBoolean((v1 & v2) != 0L));
 		}
 
-		// Token: 0x06006A1F RID: 27167 RVA: 0x00048670 File Offset: 0x00046870
+		// Token: 0x06005E83 RID: 24195 RVA: 0x0026765E File Offset: 0x0026585E
 		public override bool IsTypeCompatible(Type type, object obj)
 		{
 			if (obj != null)
@@ -332,7 +332,7 @@ namespace MoonSharp.Interpreter.Interop
 			return base.IsTypeCompatible(type, obj);
 		}
 
-		// Token: 0x06006A20 RID: 27168 RVA: 0x0004868A File Offset: 0x0004688A
+		// Token: 0x06005E84 RID: 24196 RVA: 0x00267678 File Offset: 0x00265878
 		public override DynValue MetaIndex(Script script, object obj, string metaname)
 		{
 			if (metaname == "__concat" && this.IsFlags)
@@ -342,16 +342,16 @@ namespace MoonSharp.Interpreter.Interop
 			return null;
 		}
 
-		// Token: 0x04006078 RID: 24696
+		// Token: 0x04005448 RID: 21576
 		private Func<object, ulong> m_EnumToULong;
 
-		// Token: 0x04006079 RID: 24697
+		// Token: 0x04005449 RID: 21577
 		private Func<ulong, object> m_ULongToEnum;
 
-		// Token: 0x0400607A RID: 24698
+		// Token: 0x0400544A RID: 21578
 		private Func<object, long> m_EnumToLong;
 
-		// Token: 0x0400607B RID: 24699
+		// Token: 0x0400544B RID: 21579
 		private Func<long, object> m_LongToEnum;
 	}
 }

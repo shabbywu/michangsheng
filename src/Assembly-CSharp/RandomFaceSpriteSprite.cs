@@ -1,15 +1,15 @@
 ﻿using System;
 using UnityEngine;
 
-// Token: 0x02000242 RID: 578
+// Token: 0x02000166 RID: 358
 public class RandomFaceSpriteSprite : MonoBehaviour
 {
-	// Token: 0x060011CF RID: 4559 RVA: 0x000042DD File Offset: 0x000024DD
+	// Token: 0x06000F71 RID: 3953 RVA: 0x00004095 File Offset: 0x00002295
 	private void Start()
 	{
 	}
 
-	// Token: 0x060011D0 RID: 4560 RVA: 0x000ACB80 File Offset: 0x000AAD80
+	// Token: 0x06000F72 RID: 3954 RVA: 0x0005CF70 File Offset: 0x0005B170
 	public void setFace(int avatarID)
 	{
 		JSONObject jsonobject = jsonData.instance.AvatarRandomJsonData[string.Concat(avatarID)];
@@ -31,7 +31,7 @@ public class RandomFaceSpriteSprite : MonoBehaviour
 		this.PartIsNull(this.hair2);
 	}
 
-	// Token: 0x060011D1 RID: 4561 RVA: 0x0001126F File Offset: 0x0000F46F
+	// Token: 0x06000F73 RID: 3955 RVA: 0x0005D178 File Offset: 0x0005B378
 	public void PartIsNull(UITexture Part)
 	{
 		if (Part.mainTexture == null)
@@ -40,41 +40,41 @@ public class RandomFaceSpriteSprite : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060011D2 RID: 4562 RVA: 0x000042DD File Offset: 0x000024DD
+	// Token: 0x06000F74 RID: 3956 RVA: 0x00004095 File Offset: 0x00002295
 	private void Update()
 	{
 	}
 
-	// Token: 0x04000E63 RID: 3683
+	// Token: 0x04000B93 RID: 2963
 	public UITexture body;
 
-	// Token: 0x04000E64 RID: 3684
+	// Token: 0x04000B94 RID: 2964
 	public UITexture eye;
 
-	// Token: 0x04000E65 RID: 3685
+	// Token: 0x04000B95 RID: 2965
 	public UITexture eyebrow;
 
-	// Token: 0x04000E66 RID: 3686
+	// Token: 0x04000B96 RID: 2966
 	public UITexture face;
 
-	// Token: 0x04000E67 RID: 3687
+	// Token: 0x04000B97 RID: 2967
 	public UITexture Facefold;
 
-	// Token: 0x04000E68 RID: 3688
+	// Token: 0x04000B98 RID: 2968
 	public UITexture hair;
 
-	// Token: 0x04000E69 RID: 3689
+	// Token: 0x04000B99 RID: 2969
 	public UITexture hair2;
 
-	// Token: 0x04000E6A RID: 3690
+	// Token: 0x04000B9A RID: 2970
 	public UITexture mouth;
 
-	// Token: 0x04000E6B RID: 3691
+	// Token: 0x04000B9B RID: 2971
 	public UITexture mustache;
 
-	// Token: 0x04000E6C RID: 3692
+	// Token: 0x04000B9C RID: 2972
 	public UITexture nose;
 
-	// Token: 0x04000E6D RID: 3693
+	// Token: 0x04000B9D RID: 2973
 	public UITexture ornament;
 }

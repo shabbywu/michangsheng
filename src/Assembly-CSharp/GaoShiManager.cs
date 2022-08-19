@@ -8,10 +8,10 @@ using KBEngine;
 using UnityEngine;
 using UnityEngine.UI;
 
-// Token: 0x020003F9 RID: 1017
+// Token: 0x020002BD RID: 701
 public static class GaoShiManager
 {
-	// Token: 0x06001B93 RID: 7059 RVA: 0x000F6EB0 File Offset: 0x000F50B0
+	// Token: 0x0600189F RID: 6303 RVA: 0x000B0908 File Offset: 0x000AEB08
 	public static void OnAddTime()
 	{
 		Avatar player = PlayerEx.Player;
@@ -32,7 +32,7 @@ public static class GaoShiManager
 		}
 	}
 
-	// Token: 0x06001B94 RID: 7060 RVA: 0x000F6F74 File Offset: 0x000F5174
+	// Token: 0x060018A0 RID: 6304 RVA: 0x000B09CC File Offset: 0x000AEBCC
 	public static void RefreshGaoShi(string id)
 	{
 		Avatar player = PlayerEx.Player;
@@ -112,7 +112,7 @@ public static class GaoShiManager
 		player.GaoShi.SetField(id, jsonobject);
 	}
 
-	// Token: 0x06001B95 RID: 7061 RVA: 0x000F71FC File Offset: 0x000F53FC
+	// Token: 0x060018A1 RID: 6305 RVA: 0x000B0C54 File Offset: 0x000AEE54
 	public static JSONObject CreateShouGouData(GaoShi gaoshi)
 	{
 		JSONObject jsonobject = new JSONObject(JSONObject.Type.OBJECT);
@@ -124,7 +124,7 @@ public static class GaoShiManager
 		return jsonobject;
 	}
 
-	// Token: 0x06001B96 RID: 7062 RVA: 0x0001729E File Offset: 0x0001549E
+	// Token: 0x060018A2 RID: 6306 RVA: 0x000B0CB1 File Offset: 0x000AEEB1
 	public static JSONObject CreateRenWuData(GaoShi gaoshi)
 	{
 		JSONObject jsonobject = new JSONObject(JSONObject.Type.OBJECT);
@@ -134,7 +134,7 @@ public static class GaoShiManager
 		return jsonobject;
 	}
 
-	// Token: 0x06001B97 RID: 7063 RVA: 0x000172D3 File Offset: 0x000154D3
+	// Token: 0x060018A3 RID: 6307 RVA: 0x000B0CE6 File Offset: 0x000AEEE6
 	public static JSONObject CreateQingBaoData(GaoShi gaoshi)
 	{
 		JSONObject jsonobject = new JSONObject(JSONObject.Type.OBJECT);
@@ -143,7 +143,7 @@ public static class GaoShiManager
 		return jsonobject;
 	}
 
-	// Token: 0x06001B98 RID: 7064 RVA: 0x000F725C File Offset: 0x000F545C
+	// Token: 0x060018A4 RID: 6308 RVA: 0x000B0D10 File Offset: 0x000AEF10
 	public static JSONObject CreateRandomPositionAndRotate()
 	{
 		float val = (float)Random.Range(-50, 50);
@@ -156,7 +156,7 @@ public static class GaoShiManager
 		return jsonobject;
 	}
 
-	// Token: 0x06001B99 RID: 7065 RVA: 0x000F72B4 File Offset: 0x000F54B4
+	// Token: 0x060018A5 RID: 6309 RVA: 0x000B0D68 File Offset: 0x000AEF68
 	public static void SetYinZhangShow(RectMask2D YinZhangMask, RectTransform YinZhang, JSONObject pos, bool anim = false)
 	{
 		Vector2 vector = new Vector3(pos["x"].n, pos["y"].n);

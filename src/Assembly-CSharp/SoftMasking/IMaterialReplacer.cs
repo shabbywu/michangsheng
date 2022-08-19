@@ -3,14 +3,14 @@ using UnityEngine;
 
 namespace SoftMasking
 {
-	// Token: 0x02000A0B RID: 2571
+	// Token: 0x020006DC RID: 1756
 	public interface IMaterialReplacer
 	{
-		// Token: 0x170007AE RID: 1966
-		// (get) Token: 0x06004294 RID: 17044
+		// Token: 0x17000581 RID: 1409
+		// (get) Token: 0x0600386B RID: 14443
 		int order { get; }
 
-		// Token: 0x06004295 RID: 17045
+		// Token: 0x0600386C RID: 14444
 		Material Replace(Material material);
 	}
 }

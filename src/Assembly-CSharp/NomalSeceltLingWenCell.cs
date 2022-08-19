@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-// Token: 0x02000459 RID: 1113
+// Token: 0x020002FC RID: 764
 public class NomalSeceltLingWenCell : MonoBehaviour
 {
-	// Token: 0x06001DCD RID: 7629 RVA: 0x00018CE5 File Offset: 0x00016EE5
+	// Token: 0x06001AA7 RID: 6823 RVA: 0x000BDC10 File Offset: 0x000BBE10
 	public void showSelect()
 	{
 		base.gameObject.SetActive(true);
@@ -14,7 +14,7 @@ public class NomalSeceltLingWenCell : MonoBehaviour
 		this.updateSelect();
 	}
 
-	// Token: 0x06001DCE RID: 7630 RVA: 0x00103AEC File Offset: 0x00101CEC
+	// Token: 0x06001AA8 RID: 6824 RVA: 0x000BDC2C File Offset: 0x000BBE2C
 	public void updateSelect()
 	{
 		this.lingWenType = LianQiTotalManager.inst.putMaterialPageManager.lingWenManager.getSelectLinWenType();
@@ -43,20 +43,20 @@ public class NomalSeceltLingWenCell : MonoBehaviour
 		lingWenCell.hideFenGeXian();
 	}
 
-	// Token: 0x06001DCF RID: 7631 RVA: 0x00018D00 File Offset: 0x00016F00
+	// Token: 0x06001AA9 RID: 6825 RVA: 0x000BDD67 File Offset: 0x000BBF67
 	public void setCurSelectContent(string str)
 	{
 		this.showDesc.text = str;
 	}
 
-	// Token: 0x04001977 RID: 6519
+	// Token: 0x0400156A RID: 5482
 	[SerializeField]
 	private Text showDesc;
 
-	// Token: 0x04001978 RID: 6520
+	// Token: 0x0400156B RID: 5483
 	private int lingWenType;
 
-	// Token: 0x04001979 RID: 6521
+	// Token: 0x0400156C RID: 5484
 	[SerializeField]
 	private GameObject LingWenCell;
 }

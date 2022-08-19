@@ -2,15 +2,15 @@
 using System.Collections;
 using UnityEngine;
 
-// Token: 0x02000173 RID: 371
+// Token: 0x020000F8 RID: 248
 public class EasyAudioUtility_SceneManager : MonoBehaviour
 {
-	// Token: 0x06000C93 RID: 3219 RVA: 0x000042DD File Offset: 0x000024DD
+	// Token: 0x06000B9A RID: 2970 RVA: 0x00004095 File Offset: 0x00002295
 	private void Start()
 	{
 	}
 
-	// Token: 0x06000C94 RID: 3220 RVA: 0x000987A4 File Offset: 0x000969A4
+	// Token: 0x06000B9B RID: 2971 RVA: 0x00046D54 File Offset: 0x00044F54
 	public void FadeVolume(float to)
 	{
 		for (int i = 0; i < base.GetComponent<EasyAudioUtility>().helper.Length; i++)
@@ -22,7 +22,7 @@ public class EasyAudioUtility_SceneManager : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000C95 RID: 3221 RVA: 0x00098808 File Offset: 0x00096A08
+	// Token: 0x06000B9C RID: 2972 RVA: 0x00046DB8 File Offset: 0x00044FB8
 	public void onSceneChange(string sName)
 	{
 		Debug.Log(sName + " is opend");
@@ -46,7 +46,7 @@ public class EasyAudioUtility_SceneManager : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000C96 RID: 3222 RVA: 0x0000E6F3 File Offset: 0x0000C8F3
+	// Token: 0x06000B9D RID: 2973 RVA: 0x00046EBC File Offset: 0x000450BC
 	private IEnumerator LerpAudioVolume(float to, float time, AudioSource source)
 	{
 		float elapsedTime = 0f;
@@ -59,6 +59,6 @@ public class EasyAudioUtility_SceneManager : MonoBehaviour
 		yield break;
 	}
 
-	// Token: 0x040009C7 RID: 2503
+	// Token: 0x040007E4 RID: 2020
 	public EasyAudioUtility_SMHelper[] manager;
 }

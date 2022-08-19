@@ -3,10 +3,10 @@ using System.Collections.Generic;
 
 namespace JSONClass
 {
-	// Token: 0x02000AEC RID: 2796
+	// Token: 0x02000754 RID: 1876
 	public class BigMapLoadTalk : IJSONClass
 	{
-		// Token: 0x0600471A RID: 18202 RVA: 0x001E7180 File Offset: 0x001E5380
+		// Token: 0x06003B64 RID: 15204 RVA: 0x00199154 File Offset: 0x00197354
 		public static void InitDataDict()
 		{
 			foreach (JSONObject jsonobject in jsonData.instance.BigMapLoadTalk.list)
@@ -39,24 +39,24 @@ namespace JSONClass
 			}
 		}
 
-		// Token: 0x0600471B RID: 18203 RVA: 0x000042DD File Offset: 0x000024DD
+		// Token: 0x06003B65 RID: 15205 RVA: 0x00004095 File Offset: 0x00002295
 		private static void OnInitFinish()
 		{
 		}
 
-		// Token: 0x04004007 RID: 16391
+		// Token: 0x0400346E RID: 13422
 		public static Dictionary<int, BigMapLoadTalk> DataDict = new Dictionary<int, BigMapLoadTalk>();
 
-		// Token: 0x04004008 RID: 16392
+		// Token: 0x0400346F RID: 13423
 		public static List<BigMapLoadTalk> DataList = new List<BigMapLoadTalk>();
 
-		// Token: 0x04004009 RID: 16393
+		// Token: 0x04003470 RID: 13424
 		public static Action OnInitFinishAction = new Action(BigMapLoadTalk.OnInitFinish);
 
-		// Token: 0x0400400A RID: 16394
+		// Token: 0x04003471 RID: 13425
 		public int id;
 
-		// Token: 0x0400400B RID: 16395
+		// Token: 0x04003472 RID: 13426
 		public int Talk;
 	}
 }

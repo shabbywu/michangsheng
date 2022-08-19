@@ -3,12 +3,12 @@ using UnityEngine;
 
 namespace BehaviorDesigner.Runtime.Tasks.Basic.UnityRigidbody2D
 {
-	// Token: 0x02001535 RID: 5429
+	// Token: 0x0200107B RID: 4219
 	[TaskCategory("Basic/Rigidbody2D")]
 	[TaskDescription("Stores the mass of the Rigidbody2D. Returns Success.")]
 	public class GetMass : Action
 	{
-		// Token: 0x060080D2 RID: 32978 RVA: 0x002CB824 File Offset: 0x002C9A24
+		// Token: 0x060072D8 RID: 29400 RVA: 0x002AEAE4 File Offset: 0x002ACCE4
 		public override void OnStart()
 		{
 			GameObject defaultGameObject = base.GetDefaultGameObject(this.targetGameObject.Value);
@@ -19,7 +19,7 @@ namespace BehaviorDesigner.Runtime.Tasks.Basic.UnityRigidbody2D
 			}
 		}
 
-		// Token: 0x060080D3 RID: 32979 RVA: 0x00057C46 File Offset: 0x00055E46
+		// Token: 0x060072D9 RID: 29401 RVA: 0x002AEB24 File Offset: 0x002ACD24
 		public override TaskStatus OnUpdate()
 		{
 			if (this.rigidbody2D == null)
@@ -31,26 +31,26 @@ namespace BehaviorDesigner.Runtime.Tasks.Basic.UnityRigidbody2D
 			return 2;
 		}
 
-		// Token: 0x060080D4 RID: 32980 RVA: 0x00057C79 File Offset: 0x00055E79
+		// Token: 0x060072DA RID: 29402 RVA: 0x002AEB57 File Offset: 0x002ACD57
 		public override void OnReset()
 		{
 			this.targetGameObject = null;
 			this.storeValue = 0f;
 		}
 
-		// Token: 0x04006D88 RID: 28040
+		// Token: 0x04005E88 RID: 24200
 		[Tooltip("The GameObject that the task operates on. If null the task GameObject is used.")]
 		public SharedGameObject targetGameObject;
 
-		// Token: 0x04006D89 RID: 28041
+		// Token: 0x04005E89 RID: 24201
 		[Tooltip("The mass of the Rigidbody2D")]
 		[RequiredField]
 		public SharedFloat storeValue;
 
-		// Token: 0x04006D8A RID: 28042
+		// Token: 0x04005E8A RID: 24202
 		private Rigidbody2D rigidbody2D;
 
-		// Token: 0x04006D8B RID: 28043
+		// Token: 0x04005E8B RID: 24203
 		private GameObject prevGameObject;
 	}
 }

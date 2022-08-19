@@ -5,13 +5,13 @@ using UnityEngine;
 using UnityEngine.UI;
 using YSGame.TuJian;
 
-// Token: 0x0200050A RID: 1290
+// Token: 0x02000386 RID: 902
 [RequireComponent(typeof(Button))]
 public class SSVItem : MonoBehaviour
 {
-	// Token: 0x170002AC RID: 684
-	// (get) Token: 0x06002144 RID: 8516 RVA: 0x0001B69C File Offset: 0x0001989C
-	// (set) Token: 0x06002145 RID: 8517 RVA: 0x0001B6A4 File Offset: 0x000198A4
+	// Token: 0x1700025A RID: 602
+	// (get) Token: 0x06001DCB RID: 7627 RVA: 0x000D23CE File Offset: 0x000D05CE
+	// (set) Token: 0x06001DCC RID: 7628 RVA: 0x000D23D6 File Offset: 0x000D05D6
 	public int DataIndex
 	{
 		get
@@ -25,9 +25,9 @@ public class SSVItem : MonoBehaviour
 		}
 	}
 
-	// Token: 0x170002AD RID: 685
-	// (get) Token: 0x06002146 RID: 8518 RVA: 0x0001B6CE File Offset: 0x000198CE
-	// (set) Token: 0x06002147 RID: 8519 RVA: 0x0001B6EF File Offset: 0x000198EF
+	// Token: 0x1700025B RID: 603
+	// (get) Token: 0x06001DCD RID: 7629 RVA: 0x000D2400 File Offset: 0x000D0600
+	// (set) Token: 0x06001DCE RID: 7630 RVA: 0x000D2421 File Offset: 0x000D0621
 	public string ShowText
 	{
 		get
@@ -50,19 +50,19 @@ public class SSVItem : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06002148 RID: 8520 RVA: 0x0001B71A File Offset: 0x0001991A
+	// Token: 0x06001DCF RID: 7631 RVA: 0x000D244C File Offset: 0x000D064C
 	public virtual void Awake()
 	{
 		this._button = base.GetComponent<Button>();
 		this._text = base.GetComponentInChildren<Text>();
 	}
 
-	// Token: 0x06002149 RID: 8521 RVA: 0x000042DD File Offset: 0x000024DD
+	// Token: 0x06001DD0 RID: 7632 RVA: 0x00004095 File Offset: 0x00002295
 	public virtual void Start()
 	{
 	}
 
-	// Token: 0x0600214A RID: 8522 RVA: 0x0001B734 File Offset: 0x00019934
+	// Token: 0x06001DD1 RID: 7633 RVA: 0x000D2466 File Offset: 0x000D0666
 	public virtual void Update()
 	{
 		if (this._needUpdateText && this._text != null)
@@ -72,26 +72,26 @@ public class SSVItem : MonoBehaviour
 		}
 	}
 
-	// Token: 0x04001CCF RID: 7375
+	// Token: 0x04001871 RID: 6257
 	[HideInInspector]
 	public SuperScrollView SSV;
 
-	// Token: 0x04001CD0 RID: 7376
+	// Token: 0x04001872 RID: 6258
 	[HideInInspector]
 	public List<Dictionary<int, string>> DataList;
 
-	// Token: 0x04001CD1 RID: 7377
+	// Token: 0x04001873 RID: 6259
 	protected int _DataIndex;
 
-	// Token: 0x04001CD2 RID: 7378
+	// Token: 0x04001874 RID: 6260
 	protected Button _button;
 
-	// Token: 0x04001CD3 RID: 7379
+	// Token: 0x04001875 RID: 6261
 	protected Text _text;
 
-	// Token: 0x04001CD4 RID: 7380
+	// Token: 0x04001876 RID: 6262
 	protected bool _needUpdateText;
 
-	// Token: 0x04001CD5 RID: 7381
+	// Token: 0x04001877 RID: 6263
 	protected string _updateTextCache;
 }

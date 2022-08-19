@@ -4,10 +4,10 @@ using UnityEngine.UI;
 
 namespace YSGame.TuJian
 {
-	// Token: 0x02000DF0 RID: 3568
+	// Token: 0x02000AB3 RID: 2739
 	public class TuJianTab : MonoBehaviour, ITuJianHyperlink
 	{
-		// Token: 0x06005616 RID: 22038 RVA: 0x0023E0D4 File Offset: 0x0023C2D4
+		// Token: 0x06004CC9 RID: 19657 RVA: 0x0020D40C File Offset: 0x0020B60C
 		public virtual void Awake()
 		{
 			this._TabButtonImage = this.TabButton.GetComponent<Image>();
@@ -16,7 +16,7 @@ namespace YSGame.TuJian
 			TuJianManager.TabDict.Add(this.TabType, this);
 		}
 
-		// Token: 0x06005617 RID: 22039 RVA: 0x0003D9D7 File Offset: 0x0003BBD7
+		// Token: 0x06004CCA RID: 19658 RVA: 0x0020D462 File Offset: 0x0020B662
 		public virtual void Start()
 		{
 			this.TabButton.onClick.AddListener(delegate()
@@ -25,7 +25,7 @@ namespace YSGame.TuJian
 			});
 		}
 
-		// Token: 0x06005618 RID: 22040 RVA: 0x0003D9F5 File Offset: 0x0003BBF5
+		// Token: 0x06004CCB RID: 19659 RVA: 0x0020D480 File Offset: 0x0020B680
 		public virtual void Show()
 		{
 			this._TabButtonImage.sprite = TuJianDB.TuJianUISprite["MCS_TJ_title_light.png"];
@@ -33,7 +33,7 @@ namespace YSGame.TuJian
 			this._ChildRoot.gameObject.SetActive(true);
 		}
 
-		// Token: 0x06005619 RID: 22041 RVA: 0x0003DA32 File Offset: 0x0003BC32
+		// Token: 0x06004CCC RID: 19660 RVA: 0x0020D4BD File Offset: 0x0020B6BD
 		public virtual void Hide()
 		{
 			this._TabButtonImage.sprite = TuJianDB.TuJianUISprite["MCS_TJ_title_gn.png"];
@@ -41,41 +41,41 @@ namespace YSGame.TuJian
 			this._ChildRoot.gameObject.SetActive(false);
 		}
 
-		// Token: 0x0600561A RID: 22042 RVA: 0x000042DD File Offset: 0x000024DD
+		// Token: 0x06004CCD RID: 19661 RVA: 0x00004095 File Offset: 0x00002295
 		public virtual void OnHyperlink(int[] args)
 		{
 		}
 
-		// Token: 0x0600561B RID: 22043 RVA: 0x000042DD File Offset: 0x000024DD
+		// Token: 0x06004CCE RID: 19662 RVA: 0x00004095 File Offset: 0x00002295
 		public virtual void OnButtonClick()
 		{
 		}
 
-		// Token: 0x0600561C RID: 22044 RVA: 0x000042DD File Offset: 0x000024DD
+		// Token: 0x06004CCF RID: 19663 RVA: 0x00004095 File Offset: 0x00002295
 		public virtual void RefreshPanel(bool isHyperLink = false)
 		{
 		}
 
-		// Token: 0x040055B8 RID: 21944
+		// Token: 0x04004BDA RID: 19418
 		[HideInInspector]
 		public TuJianTabType TabType;
 
-		// Token: 0x040055B9 RID: 21945
+		// Token: 0x04004BDB RID: 19419
 		public Button TabButton;
 
-		// Token: 0x040055BA RID: 21946
+		// Token: 0x04004BDC RID: 19420
 		private Image _TabButtonImage;
 
-		// Token: 0x040055BB RID: 21947
+		// Token: 0x04004BDD RID: 19421
 		private Text _TabButtonText;
 
-		// Token: 0x040055BC RID: 21948
+		// Token: 0x04004BDE RID: 19422
 		private Transform _ChildRoot;
 
-		// Token: 0x040055BD RID: 21949
+		// Token: 0x04004BDF RID: 19423
 		private static Color _TabButtonTextShowColor = new Color(0.99215686f, 0.88235295f, 0.54901963f);
 
-		// Token: 0x040055BE RID: 21950
+		// Token: 0x04004BE0 RID: 19424
 		private static Color _TabButtonTextHideColor = new Color(0.28235295f, 0.68235296f, 0.7019608f);
 	}
 }

@@ -3,12 +3,12 @@ using UnityEngine;
 
 namespace Fungus
 {
-	// Token: 0x0200144D RID: 5197
+	// Token: 0x02000F9D RID: 3997
 	[CommandInfo("YSTools", "OpenZuLi", "打开租赁界面", 0)]
 	[AddComponentMenu("")]
 	public class OpenZuLi : Command
 	{
-		// Token: 0x06007D7F RID: 32127 RVA: 0x002C6850 File Offset: 0x002C4A50
+		// Token: 0x06006F9F RID: 28575 RVA: 0x002A724C File Offset: 0x002A544C
 		public override void OnEnter()
 		{
 			if ((int)Tools.instance.getPlayer().money < this.Price)
@@ -25,18 +25,18 @@ namespace Fungus
 			this.Continue();
 		}
 
-		// Token: 0x06007D80 RID: 32128 RVA: 0x000113CF File Offset: 0x0000F5CF
+		// Token: 0x06006FA0 RID: 28576 RVA: 0x0005E228 File Offset: 0x0005C428
 		public override Color GetButtonColor()
 		{
 			return new Color32(184, 210, 235, byte.MaxValue);
 		}
 
-		// Token: 0x04006AEB RID: 27371
+		// Token: 0x04005C1C RID: 23580
 		[Tooltip("租赁每个月的时间所消耗的灵石")]
 		[SerializeField]
 		protected int Price = 1;
 
-		// Token: 0x04006AEC RID: 27372
+		// Token: 0x04005C1D RID: 23581
 		[Tooltip("关联的房间名称")]
 		[SerializeField]
 		protected string ScreenName = "";

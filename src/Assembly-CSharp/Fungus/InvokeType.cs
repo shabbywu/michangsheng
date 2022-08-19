@@ -2,18 +2,18 @@
 
 namespace Fungus
 {
-	// Token: 0x02001216 RID: 4630
+	// Token: 0x02000DDA RID: 3546
 	public enum InvokeType
 	{
-		// Token: 0x04006380 RID: 25472
+		// Token: 0x0400567C RID: 22140
 		Static,
-		// Token: 0x04006381 RID: 25473
+		// Token: 0x0400567D RID: 22141
 		DynamicBoolean,
-		// Token: 0x04006382 RID: 25474
+		// Token: 0x0400567E RID: 22142
 		DynamicInteger,
-		// Token: 0x04006383 RID: 25475
+		// Token: 0x0400567F RID: 22143
 		DynamicFloat,
-		// Token: 0x04006384 RID: 25476
+		// Token: 0x04005680 RID: 22144
 		DynamicString
 	}
 }

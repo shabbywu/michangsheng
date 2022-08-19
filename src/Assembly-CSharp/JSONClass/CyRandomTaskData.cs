@@ -3,10 +3,10 @@ using System.Collections.Generic;
 
 namespace JSONClass
 {
-	// Token: 0x02000BBA RID: 3002
+	// Token: 0x02000824 RID: 2084
 	public class CyRandomTaskData : IJSONClass
 	{
-		// Token: 0x06004A50 RID: 19024 RVA: 0x001F74A8 File Offset: 0x001F56A8
+		// Token: 0x06003EA2 RID: 16034 RVA: 0x001AC1C8 File Offset: 0x001AA3C8
 		public static void InitDataDict()
 		{
 			foreach (JSONObject jsonobject in jsonData.instance.CyRandomTaskData.list)
@@ -69,114 +69,114 @@ namespace JSONClass
 			}
 		}
 
-		// Token: 0x06004A51 RID: 19025 RVA: 0x000042DD File Offset: 0x000024DD
+		// Token: 0x06003EA3 RID: 16035 RVA: 0x00004095 File Offset: 0x00002295
 		private static void OnInitFinish()
 		{
 		}
 
-		// Token: 0x040045A9 RID: 17833
+		// Token: 0x04003A21 RID: 14881
 		public static Dictionary<int, CyRandomTaskData> DataDict = new Dictionary<int, CyRandomTaskData>();
 
-		// Token: 0x040045AA RID: 17834
+		// Token: 0x04003A22 RID: 14882
 		public static List<CyRandomTaskData> DataList = new List<CyRandomTaskData>();
 
-		// Token: 0x040045AB RID: 17835
+		// Token: 0x04003A23 RID: 14883
 		public static Action OnInitFinishAction = new Action(CyRandomTaskData.OnInitFinish);
 
-		// Token: 0x040045AC RID: 17836
+		// Token: 0x04003A24 RID: 14884
 		public int id;
 
-		// Token: 0x040045AD RID: 17837
+		// Token: 0x04003A25 RID: 14885
 		public int info;
 
-		// Token: 0x040045AE RID: 17838
+		// Token: 0x04003A26 RID: 14886
 		public int Type;
 
-		// Token: 0x040045AF RID: 17839
+		// Token: 0x04003A27 RID: 14887
 		public int NPCxingdong;
 
-		// Token: 0x040045B0 RID: 17840
+		// Token: 0x04003A28 RID: 14888
 		public int TaskID;
 
-		// Token: 0x040045B1 RID: 17841
+		// Token: 0x04003A29 RID: 14889
 		public int TaskType;
 
-		// Token: 0x040045B2 RID: 17842
+		// Token: 0x04003A2A RID: 14890
 		public int Taskvalue;
 
-		// Token: 0x040045B3 RID: 17843
+		// Token: 0x04003A2B RID: 14891
 		public int XingWeiType;
 
-		// Token: 0x040045B4 RID: 17844
+		// Token: 0x04003A2C RID: 14892
 		public int ItemID;
 
-		// Token: 0x040045B5 RID: 17845
+		// Token: 0x04003A2D RID: 14893
 		public int ItemNum;
 
-		// Token: 0x040045B6 RID: 17846
+		// Token: 0x04003A2E RID: 14894
 		public int IsZhongYaoNPC;
 
-		// Token: 0x040045B7 RID: 17847
+		// Token: 0x04003A2F RID: 14895
 		public int IsOnly;
 
-		// Token: 0x040045B8 RID: 17848
+		// Token: 0x04003A30 RID: 14896
 		public string StarTime;
 
-		// Token: 0x040045B9 RID: 17849
+		// Token: 0x04003A31 RID: 14897
 		public string EndTime;
 
-		// Token: 0x040045BA RID: 17850
+		// Token: 0x04003A32 RID: 14898
 		public List<int> DelayTime = new List<int>();
 
-		// Token: 0x040045BB RID: 17851
+		// Token: 0x04003A33 RID: 14899
 		public List<int> valueID = new List<int>();
 
-		// Token: 0x040045BC RID: 17852
+		// Token: 0x04003A34 RID: 14900
 		public List<int> value = new List<int>();
 
-		// Token: 0x040045BD RID: 17853
+		// Token: 0x04003A35 RID: 14901
 		public List<int> Level = new List<int>();
 
-		// Token: 0x040045BE RID: 17854
+		// Token: 0x04003A36 RID: 14902
 		public List<int> NPCLevel = new List<int>();
 
-		// Token: 0x040045BF RID: 17855
+		// Token: 0x04003A37 RID: 14903
 		public List<int> NPCXingGe = new List<int>();
 
-		// Token: 0x040045C0 RID: 17856
+		// Token: 0x04003A38 RID: 14904
 		public List<int> NPCType = new List<int>();
 
-		// Token: 0x040045C1 RID: 17857
+		// Token: 0x04003A39 RID: 14905
 		public List<int> NPCLiuPai = new List<int>();
 
-		// Token: 0x040045C2 RID: 17858
+		// Token: 0x04003A3A RID: 14906
 		public List<int> NPCTag = new List<int>();
 
-		// Token: 0x040045C3 RID: 17859
+		// Token: 0x04003A3B RID: 14907
 		public List<int> NPCXingWei = new List<int>();
 
-		// Token: 0x040045C4 RID: 17860
+		// Token: 0x04003A3C RID: 14908
 		public List<int> NPCGuanXi = new List<int>();
 
-		// Token: 0x040045C5 RID: 17861
+		// Token: 0x04003A3D RID: 14909
 		public List<int> NPCGuanXiNot = new List<int>();
 
-		// Token: 0x040045C6 RID: 17862
+		// Token: 0x04003A3E RID: 14910
 		public List<int> HaoGanDu = new List<int>();
 
-		// Token: 0x040045C7 RID: 17863
+		// Token: 0x04003A3F RID: 14911
 		public List<int> WuDaoType = new List<int>();
 
-		// Token: 0x040045C8 RID: 17864
+		// Token: 0x04003A40 RID: 14912
 		public List<int> WuDaoLevel = new List<int>();
 
-		// Token: 0x040045C9 RID: 17865
+		// Token: 0x04003A41 RID: 14913
 		public List<int> EventValue = new List<int>();
 
-		// Token: 0x040045CA RID: 17866
+		// Token: 0x04003A42 RID: 14914
 		public List<int> fuhao = new List<int>();
 
-		// Token: 0x040045CB RID: 17867
+		// Token: 0x04003A43 RID: 14915
 		public List<int> EventValueNum = new List<int>();
 	}
 }

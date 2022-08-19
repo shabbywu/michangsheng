@@ -3,16 +3,16 @@ using System.Collections.Generic;
 
 namespace MoonSharp.Interpreter.DataStructs
 {
-	// Token: 0x02001185 RID: 4485
+	// Token: 0x02000D6F RID: 3439
 	internal class LinkedListIndex<TKey, TValue>
 	{
-		// Token: 0x06006D50 RID: 27984 RVA: 0x0004A7DF File Offset: 0x000489DF
+		// Token: 0x0600615C RID: 24924 RVA: 0x00273481 File Offset: 0x00271681
 		public LinkedListIndex(LinkedList<TValue> linkedList)
 		{
 			this.m_LinkedList = linkedList;
 		}
 
-		// Token: 0x06006D51 RID: 27985 RVA: 0x00299EC8 File Offset: 0x002980C8
+		// Token: 0x0600615D RID: 24925 RVA: 0x00273490 File Offset: 0x00271690
 		public LinkedListNode<TValue> Find(TKey key)
 		{
 			if (this.m_Map == null)
@@ -27,7 +27,7 @@ namespace MoonSharp.Interpreter.DataStructs
 			return null;
 		}
 
-		// Token: 0x06006D52 RID: 27986 RVA: 0x00299EF4 File Offset: 0x002980F4
+		// Token: 0x0600615E RID: 24926 RVA: 0x002734BC File Offset: 0x002716BC
 		public TValue Set(TKey key, TValue value)
 		{
 			LinkedListNode<TValue> linkedListNode = this.Find(key);
@@ -41,7 +41,7 @@ namespace MoonSharp.Interpreter.DataStructs
 			return value2;
 		}
 
-		// Token: 0x06006D53 RID: 27987 RVA: 0x00299F30 File Offset: 0x00298130
+		// Token: 0x0600615F RID: 24927 RVA: 0x002734F8 File Offset: 0x002716F8
 		public void Add(TKey key, TValue value)
 		{
 			LinkedListNode<TValue> value2 = this.m_LinkedList.AddLast(value);
@@ -52,7 +52,7 @@ namespace MoonSharp.Interpreter.DataStructs
 			this.m_Map.Add(key, value2);
 		}
 
-		// Token: 0x06006D54 RID: 27988 RVA: 0x00299F6C File Offset: 0x0029816C
+		// Token: 0x06006160 RID: 24928 RVA: 0x00273534 File Offset: 0x00271734
 		public bool Remove(TKey key)
 		{
 			LinkedListNode<TValue> linkedListNode = this.Find(key);
@@ -64,13 +64,13 @@ namespace MoonSharp.Interpreter.DataStructs
 			return false;
 		}
 
-		// Token: 0x06006D55 RID: 27989 RVA: 0x0004A7EE File Offset: 0x000489EE
+		// Token: 0x06006161 RID: 24929 RVA: 0x00273566 File Offset: 0x00271766
 		public bool ContainsKey(TKey key)
 		{
 			return this.m_Map != null && this.m_Map.ContainsKey(key);
 		}
 
-		// Token: 0x06006D56 RID: 27990 RVA: 0x0004A806 File Offset: 0x00048A06
+		// Token: 0x06006162 RID: 24930 RVA: 0x0027357E File Offset: 0x0027177E
 		public void Clear()
 		{
 			if (this.m_Map != null)
@@ -79,10 +79,10 @@ namespace MoonSharp.Interpreter.DataStructs
 			}
 		}
 
-		// Token: 0x04006220 RID: 25120
+		// Token: 0x04005585 RID: 21893
 		private LinkedList<TValue> m_LinkedList;
 
-		// Token: 0x04006221 RID: 25121
+		// Token: 0x04005586 RID: 21894
 		private Dictionary<TKey, LinkedListNode<TValue>> m_Map;
 	}
 }

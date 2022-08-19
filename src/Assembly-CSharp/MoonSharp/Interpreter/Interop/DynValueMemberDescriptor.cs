@@ -3,10 +3,10 @@ using MoonSharp.Interpreter.Interop.BasicDescriptors;
 
 namespace MoonSharp.Interpreter.Interop
 {
-	// Token: 0x020010FE RID: 4350
+	// Token: 0x02000D1A RID: 3354
 	public class DynValueMemberDescriptor : IMemberDescriptor, IWireableDescriptor
 	{
-		// Token: 0x060068F2 RID: 26866 RVA: 0x0028CA04 File Offset: 0x0028AC04
+		// Token: 0x06005DC3 RID: 24003 RVA: 0x00263EE8 File Offset: 0x002620E8
 		protected DynValueMemberDescriptor(string name, string serializedTableValue)
 		{
 			DynValue dynValue = new Script().CreateDynamicExpression(serializedTableValue).Evaluate(null);
@@ -15,7 +15,7 @@ namespace MoonSharp.Interpreter.Interop
 			this.MemberAccess = MemberDescriptorAccess.CanRead;
 		}
 
-		// Token: 0x060068F3 RID: 26867 RVA: 0x00047EF7 File Offset: 0x000460F7
+		// Token: 0x06005DC4 RID: 24004 RVA: 0x00263F2D File Offset: 0x0026212D
 		protected DynValueMemberDescriptor(string name)
 		{
 			this.MemberAccess = MemberDescriptorAccess.CanRead;
@@ -23,7 +23,7 @@ namespace MoonSharp.Interpreter.Interop
 			this.Name = name;
 		}
 
-		// Token: 0x060068F4 RID: 26868 RVA: 0x00047F14 File Offset: 0x00046114
+		// Token: 0x06005DC5 RID: 24005 RVA: 0x00263F4A File Offset: 0x0026214A
 		public DynValueMemberDescriptor(string name, DynValue value)
 		{
 			this.m_Value = value;
@@ -36,8 +36,8 @@ namespace MoonSharp.Interpreter.Interop
 			this.MemberAccess = MemberDescriptorAccess.CanRead;
 		}
 
-		// Token: 0x17000977 RID: 2423
-		// (get) Token: 0x060068F5 RID: 26869 RVA: 0x0000A093 File Offset: 0x00008293
+		// Token: 0x1700071A RID: 1818
+		// (get) Token: 0x06005DC6 RID: 24006 RVA: 0x00024C5F File Offset: 0x00022E5F
 		public bool IsStatic
 		{
 			get
@@ -46,18 +46,18 @@ namespace MoonSharp.Interpreter.Interop
 			}
 		}
 
-		// Token: 0x17000978 RID: 2424
-		// (get) Token: 0x060068F6 RID: 26870 RVA: 0x00047F43 File Offset: 0x00046143
-		// (set) Token: 0x060068F7 RID: 26871 RVA: 0x00047F4B File Offset: 0x0004614B
+		// Token: 0x1700071B RID: 1819
+		// (get) Token: 0x06005DC7 RID: 24007 RVA: 0x00263F79 File Offset: 0x00262179
+		// (set) Token: 0x06005DC8 RID: 24008 RVA: 0x00263F81 File Offset: 0x00262181
 		public string Name { get; private set; }
 
-		// Token: 0x17000979 RID: 2425
-		// (get) Token: 0x060068F8 RID: 26872 RVA: 0x00047F54 File Offset: 0x00046154
-		// (set) Token: 0x060068F9 RID: 26873 RVA: 0x00047F5C File Offset: 0x0004615C
+		// Token: 0x1700071C RID: 1820
+		// (get) Token: 0x06005DC9 RID: 24009 RVA: 0x00263F8A File Offset: 0x0026218A
+		// (set) Token: 0x06005DCA RID: 24010 RVA: 0x00263F92 File Offset: 0x00262192
 		public MemberDescriptorAccess MemberAccess { get; private set; }
 
-		// Token: 0x1700097A RID: 2426
-		// (get) Token: 0x060068FA RID: 26874 RVA: 0x00047F65 File Offset: 0x00046165
+		// Token: 0x1700071D RID: 1821
+		// (get) Token: 0x06005DCB RID: 24011 RVA: 0x00263F9B File Offset: 0x0026219B
 		public virtual DynValue Value
 		{
 			get
@@ -66,13 +66,13 @@ namespace MoonSharp.Interpreter.Interop
 			}
 		}
 
-		// Token: 0x060068FB RID: 26875 RVA: 0x00047F6D File Offset: 0x0004616D
+		// Token: 0x06005DCC RID: 24012 RVA: 0x00263FA3 File Offset: 0x002621A3
 		public DynValue GetValue(Script script, object obj)
 		{
 			return this.Value;
 		}
 
-		// Token: 0x060068FC RID: 26876 RVA: 0x00047F75 File Offset: 0x00046175
+		// Token: 0x06005DCD RID: 24013 RVA: 0x00263FAB File Offset: 0x002621AB
 		public void SetValue(Script script, object obj, DynValue value)
 		{
 			throw new ScriptRuntimeException("userdata '{0}' cannot be written to.", new object[]
@@ -81,7 +81,7 @@ namespace MoonSharp.Interpreter.Interop
 			});
 		}
 
-		// Token: 0x060068FD RID: 26877 RVA: 0x0028CA4C File Offset: 0x0028AC4C
+		// Token: 0x06005DCE RID: 24014 RVA: 0x00263FC8 File Offset: 0x002621C8
 		public void PrepareForWiring(Table t)
 		{
 			t.Set("class", DynValue.NewString(base.GetType().FullName));
@@ -118,7 +118,7 @@ namespace MoonSharp.Interpreter.Interop
 			t.Set("error", DynValue.NewString(string.Format("Wiring of '{0}' value members not supported.", this.Value.Type.ToErrorTypeString())));
 		}
 
-		// Token: 0x04006022 RID: 24610
+		// Token: 0x0400540B RID: 21515
 		private DynValue m_Value;
 	}
 }

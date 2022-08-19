@@ -10,10 +10,10 @@ using UnityEngine;
 
 namespace script.NewLianDan
 {
-	// Token: 0x02000AC2 RID: 2754
+	// Token: 0x020009F8 RID: 2552
 	public class LianDanUIMag : MonoBehaviour
 	{
-		// Token: 0x06004652 RID: 18002 RVA: 0x001DFB00 File Offset: 0x001DDD00
+		// Token: 0x060046AC RID: 18092 RVA: 0x001DE02C File Offset: 0x001DC22C
 		private void Awake()
 		{
 			LianDanUIMag.Instance = this;
@@ -32,7 +32,7 @@ namespace script.NewLianDan
 			}
 		}
 
-		// Token: 0x06004653 RID: 18003 RVA: 0x001DFBAC File Offset: 0x001DDDAC
+		// Token: 0x060046AD RID: 18093 RVA: 0x001DE0D8 File Offset: 0x001DC2D8
 		private void Init()
 		{
 			this.LianDanResult = new LianDanResult(base.transform.Find("炼丹结果").gameObject);
@@ -44,14 +44,14 @@ namespace script.NewLianDan
 			this.CaoYaoBag.Init(0, true);
 		}
 
-		// Token: 0x06004654 RID: 18004 RVA: 0x000323CF File Offset: 0x000305CF
+		// Token: 0x060046AE RID: 18094 RVA: 0x001DE18B File Offset: 0x001DC38B
 		public void Close()
 		{
 			PanelMamager.inst.closePanel(PanelMamager.PanelType.炼丹, 0);
 			Object.Destroy(base.gameObject);
 		}
 
-		// Token: 0x06004655 RID: 18005 RVA: 0x001DFC60 File Offset: 0x001DDE60
+		// Token: 0x060046AF RID: 18095 RVA: 0x001DE1A4 File Offset: 0x001DC3A4
 		public void LianDanCallBack()
 		{
 			foreach (BigDanFang bigDanFang in this.DanFangPanel.DanFangList)
@@ -64,7 +64,7 @@ namespace script.NewLianDan
 			this.LianDanPanel.DanLuUI();
 		}
 
-		// Token: 0x06004656 RID: 18006 RVA: 0x000FCCF4 File Offset: 0x000FAEF4
+		// Token: 0x060046B0 RID: 18096 RVA: 0x001DE228 File Offset: 0x001DC428
 		public bool CheckCanLianZhi(JSONObject child)
 		{
 			if (child == null)
@@ -108,7 +108,7 @@ namespace script.NewLianDan
 			return true;
 		}
 
-		// Token: 0x06004657 RID: 18007 RVA: 0x001DFCE4 File Offset: 0x001DDEE4
+		// Token: 0x060046B1 RID: 18097 RVA: 0x001DE38C File Offset: 0x001DC58C
 		private void OnDestroy()
 		{
 			LianDanUIMag.Instance = null;
@@ -123,31 +123,31 @@ namespace script.NewLianDan
 			}
 		}
 
-		// Token: 0x04003E76 RID: 15990
+		// Token: 0x0400480C RID: 18444
 		public static LianDanUIMag Instance;
 
-		// Token: 0x04003E77 RID: 15991
+		// Token: 0x0400480D RID: 18445
 		public DanFangPanel DanFangPanel;
 
-		// Token: 0x04003E78 RID: 15992
+		// Token: 0x0400480E RID: 18446
 		public PutDanLuPanel PutDanLuPanel;
 
-		// Token: 0x04003E79 RID: 15993
+		// Token: 0x0400480F RID: 18447
 		public LianDanPanel LianDanPanel;
 
-		// Token: 0x04003E7A RID: 15994
+		// Token: 0x04004810 RID: 18448
 		public LianDanResult LianDanResult;
 
-		// Token: 0x04003E7B RID: 15995
+		// Token: 0x04004811 RID: 18449
 		public DanLuBag DanLuBag;
 
-		// Token: 0x04003E7C RID: 15996
+		// Token: 0x04004812 RID: 18450
 		public BagItemSelect Select;
 
-		// Token: 0x04003E7D RID: 15997
+		// Token: 0x04004813 RID: 18451
 		public CaoYaoBag CaoYaoBag;
 
-		// Token: 0x04003E7E RID: 15998
+		// Token: 0x04004814 RID: 18452
 		public Transform Vector2;
 	}
 }

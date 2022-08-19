@@ -3,11 +3,11 @@ using UnityEngine;
 
 namespace Fungus
 {
-	// Token: 0x020012C6 RID: 4806
+	// Token: 0x02000E69 RID: 3689
 	[AddComponentMenu("")]
 	public class CommandCopyBuffer : Block
 	{
-		// Token: 0x06007494 RID: 29844 RVA: 0x0004F8F3 File Offset: 0x0004DAF3
+		// Token: 0x060067E2 RID: 26594 RVA: 0x0028B4E2 File Offset: 0x002896E2
 		protected virtual void Start()
 		{
 			if (Application.isPlaying)
@@ -16,7 +16,7 @@ namespace Fungus
 			}
 		}
 
-		// Token: 0x06007495 RID: 29845 RVA: 0x002AE100 File Offset: 0x002AC300
+		// Token: 0x060067E3 RID: 26595 RVA: 0x0028B4F8 File Offset: 0x002896F8
 		public static CommandCopyBuffer GetInstance()
 		{
 			if (CommandCopyBuffer.instance == null)
@@ -36,19 +36,19 @@ namespace Fungus
 			return CommandCopyBuffer.instance;
 		}
 
-		// Token: 0x06007496 RID: 29846 RVA: 0x0004F907 File Offset: 0x0004DB07
+		// Token: 0x060067E4 RID: 26596 RVA: 0x0028B561 File Offset: 0x00289761
 		public virtual bool HasCommands()
 		{
 			return this.GetCommands().Length != 0;
 		}
 
-		// Token: 0x06007497 RID: 29847 RVA: 0x0004F913 File Offset: 0x0004DB13
+		// Token: 0x060067E5 RID: 26597 RVA: 0x0028B56D File Offset: 0x0028976D
 		public virtual Command[] GetCommands()
 		{
 			return base.GetComponents<Command>();
 		}
 
-		// Token: 0x06007498 RID: 29848 RVA: 0x002AE16C File Offset: 0x002AC36C
+		// Token: 0x060067E6 RID: 26598 RVA: 0x0028B578 File Offset: 0x00289778
 		public virtual void Clear()
 		{
 			Command[] commands = this.GetCommands();
@@ -58,7 +58,7 @@ namespace Fungus
 			}
 		}
 
-		// Token: 0x0400663A RID: 26170
+		// Token: 0x040058A2 RID: 22690
 		protected static CommandCopyBuffer instance;
 	}
 }

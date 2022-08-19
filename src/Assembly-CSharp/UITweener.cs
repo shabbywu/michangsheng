@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using AnimationOrTween;
 using UnityEngine;
 
-// Token: 0x020000F2 RID: 242
+// Token: 0x020000A1 RID: 161
 public abstract class UITweener : MonoBehaviour
 {
-	// Token: 0x17000147 RID: 327
-	// (get) Token: 0x0600095F RID: 2399 RVA: 0x00086D30 File Offset: 0x00084F30
+	// Token: 0x17000133 RID: 307
+	// (get) Token: 0x060008A7 RID: 2215 RVA: 0x00032DE0 File Offset: 0x00030FE0
 	public float amountPerDelta
 	{
 		get
@@ -21,9 +21,9 @@ public abstract class UITweener : MonoBehaviour
 		}
 	}
 
-	// Token: 0x17000148 RID: 328
-	// (get) Token: 0x06000960 RID: 2400 RVA: 0x0000BAC0 File Offset: 0x00009CC0
-	// (set) Token: 0x06000961 RID: 2401 RVA: 0x0000BAC8 File Offset: 0x00009CC8
+	// Token: 0x17000134 RID: 308
+	// (get) Token: 0x060008A8 RID: 2216 RVA: 0x00032E44 File Offset: 0x00031044
+	// (set) Token: 0x060008A9 RID: 2217 RVA: 0x00032E4C File Offset: 0x0003104C
 	public float tweenFactor
 	{
 		get
@@ -36,8 +36,8 @@ public abstract class UITweener : MonoBehaviour
 		}
 	}
 
-	// Token: 0x17000149 RID: 329
-	// (get) Token: 0x06000962 RID: 2402 RVA: 0x0000BAD6 File Offset: 0x00009CD6
+	// Token: 0x17000135 RID: 309
+	// (get) Token: 0x060008AA RID: 2218 RVA: 0x00032E5A File Offset: 0x0003105A
 	public Direction direction
 	{
 		get
@@ -50,7 +50,7 @@ public abstract class UITweener : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000963 RID: 2403 RVA: 0x0000BAE8 File Offset: 0x00009CE8
+	// Token: 0x060008AB RID: 2219 RVA: 0x00032E6C File Offset: 0x0003106C
 	private void Reset()
 	{
 		if (!this.mStarted)
@@ -60,13 +60,13 @@ public abstract class UITweener : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000964 RID: 2404 RVA: 0x0000BAFE File Offset: 0x00009CFE
+	// Token: 0x060008AC RID: 2220 RVA: 0x00032E82 File Offset: 0x00031082
 	protected virtual void Start()
 	{
 		this.Update();
 	}
 
-	// Token: 0x06000965 RID: 2405 RVA: 0x00086D94 File Offset: 0x00084F94
+	// Token: 0x060008AD RID: 2221 RVA: 0x00032E8C File Offset: 0x0003108C
 	private void Update()
 	{
 		float num = this.ignoreTimeScale ? RealTime.deltaTime : Time.deltaTime;
@@ -142,31 +142,31 @@ public abstract class UITweener : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000966 RID: 2406 RVA: 0x0000BB06 File Offset: 0x00009D06
+	// Token: 0x060008AE RID: 2222 RVA: 0x00033113 File Offset: 0x00031313
 	public void SetOnFinished(EventDelegate.Callback del)
 	{
 		EventDelegate.Set(this.onFinished, del);
 	}
 
-	// Token: 0x06000967 RID: 2407 RVA: 0x0000BB15 File Offset: 0x00009D15
+	// Token: 0x060008AF RID: 2223 RVA: 0x00033122 File Offset: 0x00031322
 	public void SetOnFinished(EventDelegate del)
 	{
 		EventDelegate.Set(this.onFinished, del);
 	}
 
-	// Token: 0x06000968 RID: 2408 RVA: 0x0000BB23 File Offset: 0x00009D23
+	// Token: 0x060008B0 RID: 2224 RVA: 0x00033130 File Offset: 0x00031330
 	public void AddOnFinished(EventDelegate.Callback del)
 	{
 		EventDelegate.Add(this.onFinished, del);
 	}
 
-	// Token: 0x06000969 RID: 2409 RVA: 0x0000BB32 File Offset: 0x00009D32
+	// Token: 0x060008B1 RID: 2225 RVA: 0x0003313F File Offset: 0x0003133F
 	public void AddOnFinished(EventDelegate del)
 	{
 		EventDelegate.Add(this.onFinished, del);
 	}
 
-	// Token: 0x0600096A RID: 2410 RVA: 0x0000BB40 File Offset: 0x00009D40
+	// Token: 0x060008B2 RID: 2226 RVA: 0x0003314D File Offset: 0x0003134D
 	public void RemoveOnFinished(EventDelegate del)
 	{
 		if (this.onFinished != null)
@@ -179,13 +179,13 @@ public abstract class UITweener : MonoBehaviour
 		}
 	}
 
-	// Token: 0x0600096B RID: 2411 RVA: 0x0000BB6C File Offset: 0x00009D6C
+	// Token: 0x060008B3 RID: 2227 RVA: 0x00033179 File Offset: 0x00031379
 	private void OnDisable()
 	{
 		this.mStarted = false;
 	}
 
-	// Token: 0x0600096C RID: 2412 RVA: 0x0008701C File Offset: 0x0008521C
+	// Token: 0x060008B4 RID: 2228 RVA: 0x00033184 File Offset: 0x00031384
 	public void Sample(float factor, bool isFinished)
 	{
 		float num = Mathf.Clamp01(factor);
@@ -229,7 +229,7 @@ public abstract class UITweener : MonoBehaviour
 		this.OnUpdate((this.animationCurve != null) ? this.animationCurve.Evaluate(num) : num, isFinished);
 	}
 
-	// Token: 0x0600096D RID: 2413 RVA: 0x00087150 File Offset: 0x00085350
+	// Token: 0x060008B5 RID: 2229 RVA: 0x000332B8 File Offset: 0x000314B8
 	private float BounceLogic(float val)
 	{
 		if (val < 0.363636f)
@@ -251,26 +251,26 @@ public abstract class UITweener : MonoBehaviour
 		return val;
 	}
 
-	// Token: 0x0600096E RID: 2414 RVA: 0x0000BB75 File Offset: 0x00009D75
+	// Token: 0x060008B6 RID: 2230 RVA: 0x0003333D File Offset: 0x0003153D
 	[Obsolete("Use PlayForward() instead")]
 	public void Play()
 	{
 		this.Play(true);
 	}
 
-	// Token: 0x0600096F RID: 2415 RVA: 0x0000BB75 File Offset: 0x00009D75
+	// Token: 0x060008B7 RID: 2231 RVA: 0x0003333D File Offset: 0x0003153D
 	public void PlayForward()
 	{
 		this.Play(true);
 	}
 
-	// Token: 0x06000970 RID: 2416 RVA: 0x0000BB7E File Offset: 0x00009D7E
+	// Token: 0x060008B8 RID: 2232 RVA: 0x00033346 File Offset: 0x00031546
 	public void PlayReverse()
 	{
 		this.Play(false);
 	}
 
-	// Token: 0x06000971 RID: 2417 RVA: 0x0000BB87 File Offset: 0x00009D87
+	// Token: 0x060008B9 RID: 2233 RVA: 0x0003334F File Offset: 0x0003154F
 	public void Play(bool forward)
 	{
 		this.mAmountPerDelta = Mathf.Abs(this.amountPerDelta);
@@ -282,7 +282,7 @@ public abstract class UITweener : MonoBehaviour
 		this.Update();
 	}
 
-	// Token: 0x06000972 RID: 2418 RVA: 0x0000BBB7 File Offset: 0x00009DB7
+	// Token: 0x060008BA RID: 2234 RVA: 0x0003337F File Offset: 0x0003157F
 	public void ResetToBeginning()
 	{
 		this.mStarted = false;
@@ -290,7 +290,7 @@ public abstract class UITweener : MonoBehaviour
 		this.Sample(this.mFactor, false);
 	}
 
-	// Token: 0x06000973 RID: 2419 RVA: 0x0000BBEC File Offset: 0x00009DEC
+	// Token: 0x060008BB RID: 2235 RVA: 0x000333B4 File Offset: 0x000315B4
 	public void Toggle()
 	{
 		if (this.mFactor > 0f)
@@ -304,10 +304,10 @@ public abstract class UITweener : MonoBehaviour
 		base.enabled = true;
 	}
 
-	// Token: 0x06000974 RID: 2420
+	// Token: 0x060008BC RID: 2236
 	protected abstract void OnUpdate(float factor, bool isFinished);
 
-	// Token: 0x06000975 RID: 2421 RVA: 0x000871D8 File Offset: 0x000853D8
+	// Token: 0x060008BD RID: 2237 RVA: 0x000333EC File Offset: 0x000315EC
 	public static T Begin<T>(GameObject go, float duration) where T : UITweener
 	{
 		T t = go.GetComponent<T>();
@@ -353,28 +353,28 @@ public abstract class UITweener : MonoBehaviour
 		return t;
 	}
 
-	// Token: 0x06000976 RID: 2422 RVA: 0x000042DD File Offset: 0x000024DD
+	// Token: 0x060008BE RID: 2238 RVA: 0x00004095 File Offset: 0x00002295
 	public virtual void SetStartToCurrentValue()
 	{
 	}
 
-	// Token: 0x06000977 RID: 2423 RVA: 0x000042DD File Offset: 0x000024DD
+	// Token: 0x060008BF RID: 2239 RVA: 0x00004095 File Offset: 0x00002295
 	public virtual void SetEndToCurrentValue()
 	{
 	}
 
-	// Token: 0x0400066B RID: 1643
+	// Token: 0x04000548 RID: 1352
 	public static UITweener current;
 
-	// Token: 0x0400066C RID: 1644
+	// Token: 0x04000549 RID: 1353
 	[HideInInspector]
 	public UITweener.Method method;
 
-	// Token: 0x0400066D RID: 1645
+	// Token: 0x0400054A RID: 1354
 	[HideInInspector]
 	public UITweener.Style style;
 
-	// Token: 0x0400066E RID: 1646
+	// Token: 0x0400054B RID: 1355
 	[HideInInspector]
 	public AnimationCurve animationCurve = new AnimationCurve(new Keyframe[]
 	{
@@ -382,81 +382,81 @@ public abstract class UITweener : MonoBehaviour
 		new Keyframe(1f, 1f, 1f, 0f)
 	});
 
-	// Token: 0x0400066F RID: 1647
+	// Token: 0x0400054C RID: 1356
 	[HideInInspector]
 	public bool ignoreTimeScale = true;
 
-	// Token: 0x04000670 RID: 1648
+	// Token: 0x0400054D RID: 1357
 	[HideInInspector]
 	public float delay;
 
-	// Token: 0x04000671 RID: 1649
+	// Token: 0x0400054E RID: 1358
 	[HideInInspector]
 	public float duration = 1f;
 
-	// Token: 0x04000672 RID: 1650
+	// Token: 0x0400054F RID: 1359
 	[HideInInspector]
 	public bool steeperCurves;
 
-	// Token: 0x04000673 RID: 1651
+	// Token: 0x04000550 RID: 1360
 	[HideInInspector]
 	public int tweenGroup;
 
-	// Token: 0x04000674 RID: 1652
+	// Token: 0x04000551 RID: 1361
 	[HideInInspector]
 	public List<EventDelegate> onFinished = new List<EventDelegate>();
 
-	// Token: 0x04000675 RID: 1653
+	// Token: 0x04000552 RID: 1362
 	[HideInInspector]
 	public GameObject eventReceiver;
 
-	// Token: 0x04000676 RID: 1654
+	// Token: 0x04000553 RID: 1363
 	[HideInInspector]
 	public string callWhenFinished;
 
-	// Token: 0x04000677 RID: 1655
+	// Token: 0x04000554 RID: 1364
 	private bool mStarted;
 
-	// Token: 0x04000678 RID: 1656
+	// Token: 0x04000555 RID: 1365
 	private float mStartTime;
 
-	// Token: 0x04000679 RID: 1657
+	// Token: 0x04000556 RID: 1366
 	private float mDuration;
 
-	// Token: 0x0400067A RID: 1658
+	// Token: 0x04000557 RID: 1367
 	private float mAmountPerDelta = 1000f;
 
-	// Token: 0x0400067B RID: 1659
+	// Token: 0x04000558 RID: 1368
 	private float mFactor;
 
-	// Token: 0x0400067C RID: 1660
+	// Token: 0x04000559 RID: 1369
 	private List<EventDelegate> mTemp;
 
-	// Token: 0x020000F3 RID: 243
+	// Token: 0x02001215 RID: 4629
 	public enum Method
 	{
-		// Token: 0x0400067E RID: 1662
+		// Token: 0x04006473 RID: 25715
 		Linear,
-		// Token: 0x0400067F RID: 1663
+		// Token: 0x04006474 RID: 25716
 		EaseIn,
-		// Token: 0x04000680 RID: 1664
+		// Token: 0x04006475 RID: 25717
 		EaseOut,
-		// Token: 0x04000681 RID: 1665
+		// Token: 0x04006476 RID: 25718
 		EaseInOut,
-		// Token: 0x04000682 RID: 1666
+		// Token: 0x04006477 RID: 25719
 		BounceIn,
-		// Token: 0x04000683 RID: 1667
+		// Token: 0x04006478 RID: 25720
 		BounceOut
 	}
 
-	// Token: 0x020000F4 RID: 244
+	// Token: 0x02001216 RID: 4630
 	public enum Style
 	{
-		// Token: 0x04000685 RID: 1669
+		// Token: 0x0400647A RID: 25722
 		Once,
-		// Token: 0x04000686 RID: 1670
+		// Token: 0x0400647B RID: 25723
 		Loop,
-		// Token: 0x04000687 RID: 1671
+		// Token: 0x0400647C RID: 25724
 		PingPong
 	}
 }

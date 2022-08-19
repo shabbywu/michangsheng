@@ -4,10 +4,10 @@ using Yarn.Unity;
 
 namespace script.YarnEditor.Component.Menu
 {
-	// Token: 0x02000AB2 RID: 2738
+	// Token: 0x020009CB RID: 2507
 	public class MenuView : DialogueViewBase
 	{
-		// Token: 0x0600461D RID: 17949 RVA: 0x001DEDB0 File Offset: 0x001DCFB0
+		// Token: 0x060045C1 RID: 17857 RVA: 0x001D8FDC File Offset: 0x001D71DC
 		public override void RunOptions(DialogueOption[] dialogueOptions, Action<int> onOptionSelected)
 		{
 			MenuDialog menuDialog = MenuDialog.GetMenuDialog();
@@ -30,16 +30,16 @@ namespace script.YarnEditor.Component.Menu
 			this.OnOptionSelected = onOptionSelected;
 		}
 
-		// Token: 0x0600461E RID: 17950 RVA: 0x00032274 File Offset: 0x00030474
+		// Token: 0x060045C2 RID: 17858 RVA: 0x001D90E8 File Offset: 0x001D72E8
 		private void OptionViewWasSelected(DialogueOption option)
 		{
 			this.OnOptionSelected(option.DialogueOptionID);
 		}
 
-		// Token: 0x04003E4E RID: 15950
+		// Token: 0x0400473D RID: 18237
 		public Action<int> OnOptionSelected;
 
-		// Token: 0x04003E4F RID: 15951
+		// Token: 0x0400473E RID: 18238
 		private bool showUnavailableOptions;
 	}
 }

@@ -2,12 +2,12 @@
 
 namespace UltimateSurvival.Building
 {
-	// Token: 0x02000967 RID: 2407
+	// Token: 0x02000662 RID: 1634
 	public enum PieceState
 	{
-		// Token: 0x040037A6 RID: 14246
+		// Token: 0x04002E1D RID: 11805
 		Preview,
-		// Token: 0x040037A7 RID: 14247
+		// Token: 0x04002E1E RID: 11806
 		Placed
 	}
 }

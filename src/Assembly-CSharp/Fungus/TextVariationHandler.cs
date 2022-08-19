@@ -5,16 +5,16 @@ using UnityEngine;
 
 namespace Fungus
 {
-	// Token: 0x02001370 RID: 4976
+	// Token: 0x02000ED1 RID: 3793
 	public static class TextVariationHandler
 	{
-		// Token: 0x060078AA RID: 30890 RVA: 0x00051ED3 File Offset: 0x000500D3
+		// Token: 0x06006B0D RID: 27405 RVA: 0x00295674 File Offset: 0x00293874
 		public static void ClearHistory()
 		{
 			TextVariationHandler.hashedSections.Clear();
 		}
 
-		// Token: 0x060078AB RID: 30891 RVA: 0x002B7920 File Offset: 0x002B5B20
+		// Token: 0x06006B0E RID: 27406 RVA: 0x00295680 File Offset: 0x00293880
 		public static bool TokenizeVarySections(string input, List<TextVariationHandler.Section> varyingSections)
 		{
 			varyingSections.Clear();
@@ -89,7 +89,7 @@ namespace Fungus
 			return varyingSections.Count > 0;
 		}
 
-		// Token: 0x060078AC RID: 30892 RVA: 0x002B7A58 File Offset: 0x002B5C58
+		// Token: 0x06006B0F RID: 27407 RVA: 0x002957B8 File Offset: 0x002939B8
 		public static string SelectVariations(string input, int parentHash = 0)
 		{
 			List<TextVariationHandler.Section> list = new List<TextVariationHandler.Section>();
@@ -124,13 +124,13 @@ namespace Fungus
 			return stringBuilder.ToString();
 		}
 
-		// Token: 0x040068C3 RID: 26819
+		// Token: 0x04005A62 RID: 23138
 		private static Dictionary<int, int> hashedSections = new Dictionary<int, int>();
 
-		// Token: 0x02001371 RID: 4977
+		// Token: 0x02001713 RID: 5907
 		public class Section
 		{
-			// Token: 0x060078AE RID: 30894 RVA: 0x002B7B34 File Offset: 0x002B5D34
+			// Token: 0x06008907 RID: 35079 RVA: 0x002E9F4C File Offset: 0x002E814C
 			public string Select(ref int index)
 			{
 				switch (this.type)
@@ -155,25 +155,25 @@ namespace Fungus
 				return string.Empty;
 			}
 
-			// Token: 0x040068C4 RID: 26820
+			// Token: 0x040074BC RID: 29884
 			public TextVariationHandler.Section.VaryType type;
 
-			// Token: 0x040068C5 RID: 26821
+			// Token: 0x040074BD RID: 29885
 			public string entire = string.Empty;
 
-			// Token: 0x040068C6 RID: 26822
+			// Token: 0x040074BE RID: 29886
 			public List<string> elements = new List<string>();
 
-			// Token: 0x02001372 RID: 4978
+			// Token: 0x02001760 RID: 5984
 			public enum VaryType
 			{
-				// Token: 0x040068C8 RID: 26824
+				// Token: 0x040075AF RID: 30127
 				Sequence,
-				// Token: 0x040068C9 RID: 26825
+				// Token: 0x040075B0 RID: 30128
 				Cycle,
-				// Token: 0x040068CA RID: 26826
+				// Token: 0x040075B1 RID: 30129
 				Once,
-				// Token: 0x040068CB RID: 26827
+				// Token: 0x040075B2 RID: 30130
 				Random
 			}
 		}

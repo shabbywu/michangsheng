@@ -5,11 +5,11 @@ using UnityEngine;
 
 namespace JiaoYi
 {
-	// Token: 0x02000A8E RID: 2702
+	// Token: 0x0200072E RID: 1838
 	[Serializable]
 	public class JiaoYiMiJi : MiJiItem
 	{
-		// Token: 0x06004551 RID: 17745 RVA: 0x00031897 File Offset: 0x0002FA97
+		// Token: 0x06003A97 RID: 14999 RVA: 0x00192CAF File Offset: 0x00190EAF
 		public JiaoYiSkillType GetJiaoYiType()
 		{
 			if (this.MiJiType == MiJiType.技能)
@@ -23,7 +23,7 @@ namespace JiaoYi
 			return JiaoYiSkillType.其他;
 		}
 
-		// Token: 0x06004552 RID: 17746 RVA: 0x001DA800 File Offset: 0x001D8A00
+		// Token: 0x06003A98 RID: 15000 RVA: 0x00192CC8 File Offset: 0x00190EC8
 		public bool SkillTypeIsEqual(int skIllType)
 		{
 			int id = int.Parse(_ItemJsonData.DataDict[this.Id].desc.Replace(".0", ""));

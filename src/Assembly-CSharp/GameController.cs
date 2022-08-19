@@ -5,10 +5,10 @@ using System.Text;
 using System.Xml.Serialization;
 using UnityEngine;
 
-// Token: 0x020006A3 RID: 1699
+// Token: 0x020004B0 RID: 1200
 public class GameController : MonoBehaviour
 {
-	// Token: 0x06002A6D RID: 10861 RVA: 0x00020FAC File Offset: 0x0001F1AC
+	// Token: 0x060025F5 RID: 9717 RVA: 0x00106CE9 File Offset: 0x00104EE9
 	private void Start()
 	{
 		this.multiples = 1;
@@ -16,9 +16,9 @@ public class GameController : MonoBehaviour
 		this.InitMenu();
 	}
 
-	// Token: 0x1700031A RID: 794
-	// (get) Token: 0x06002A6F RID: 10863 RVA: 0x00020FD3 File Offset: 0x0001F1D3
-	// (set) Token: 0x06002A6E RID: 10862 RVA: 0x00020FC3 File Offset: 0x0001F1C3
+	// Token: 0x170002AB RID: 683
+	// (get) Token: 0x060025F7 RID: 9719 RVA: 0x00106D10 File Offset: 0x00104F10
+	// (set) Token: 0x060025F6 RID: 9718 RVA: 0x00106D00 File Offset: 0x00104F00
 	public int Multiples
 	{
 		get
@@ -31,7 +31,7 @@ public class GameController : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06002A70 RID: 10864 RVA: 0x001470C8 File Offset: 0x001452C8
+	// Token: 0x060025F8 RID: 9720 RVA: 0x00106D18 File Offset: 0x00104F18
 	public void InitMenu()
 	{
 		GameObject gameObject = NGUITools.AddChild(UICamera.mainCamera.gameObject, (GameObject)Resources.Load("StartPanel"));
@@ -39,7 +39,7 @@ public class GameController : MonoBehaviour
 		gameObject.transform.Find("NoticeLabel").gameObject.SetActive(false);
 	}
 
-	// Token: 0x06002A71 RID: 10865 RVA: 0x00147114 File Offset: 0x00145314
+	// Token: 0x060025F9 RID: 9721 RVA: 0x00106D64 File Offset: 0x00104F64
 	public void InitInteraction()
 	{
 		GameObject gameObject = NGUITools.AddChild(UICamera.mainCamera.gameObject, (GameObject)Resources.Load("InteractionPanel"));
@@ -47,7 +47,7 @@ public class GameController : MonoBehaviour
 		gameObject.AddComponent<Interaction>();
 	}
 
-	// Token: 0x06002A72 RID: 10866 RVA: 0x00147160 File Offset: 0x00145360
+	// Token: 0x060025FA RID: 9722 RVA: 0x00106DB0 File Offset: 0x00104FB0
 	public void InitScene()
 	{
 		string text;
@@ -97,7 +97,7 @@ public class GameController : MonoBehaviour
 		GameController.UpdateIntegration(CharacterType.ComputerTwo);
 	}
 
-	// Token: 0x06002A73 RID: 10867 RVA: 0x00147358 File Offset: 0x00145558
+	// Token: 0x060025FB RID: 9723 RVA: 0x00106FA8 File Offset: 0x001051A8
 	public void DealCards()
 	{
 		Deck.Instance.Shuffle();
@@ -121,7 +121,7 @@ public class GameController : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06002A74 RID: 10868 RVA: 0x001473B8 File Offset: 0x001455B8
+	// Token: 0x060025FC RID: 9724 RVA: 0x00107008 File Offset: 0x00105208
 	public void GameOver()
 	{
 		Identity accessIdentity = GameObject.Find(OrderController.Instance.Type.ToString()).GetComponent<HandCards>().AccessIdentity;
@@ -165,7 +165,7 @@ public class GameController : MonoBehaviour
 		this.SaveDataWithUTF8(data2);
 	}
 
-	// Token: 0x06002A75 RID: 10869 RVA: 0x00147554 File Offset: 0x00145754
+	// Token: 0x060025FD RID: 9725 RVA: 0x001071A4 File Offset: 0x001053A4
 	private void StatisticalIntegral(CharacterType type, Identity winner)
 	{
 		HandCards component = GameObject.Find(type.ToString()).GetComponent<HandCards>();
@@ -178,7 +178,7 @@ public class GameController : MonoBehaviour
 		GameController.UpdateIntegration(type);
 	}
 
-	// Token: 0x06002A76 RID: 10870 RVA: 0x00020FDB File Offset: 0x0001F1DB
+	// Token: 0x060025FE RID: 9726 RVA: 0x00107207 File Offset: 0x00105407
 	private IEnumerator ChangeComputer(CharacterType type)
 	{
 		GameController.DisplayDeskNotice(true);
@@ -188,7 +188,7 @@ public class GameController : MonoBehaviour
 		yield break;
 	}
 
-	// Token: 0x06002A77 RID: 10871 RVA: 0x001475B8 File Offset: 0x001457B8
+	// Token: 0x060025FF RID: 9727 RVA: 0x00107220 File Offset: 0x00105420
 	private void MatchNewComputer(CharacterType type)
 	{
 		this.BackToDeck();
@@ -210,7 +210,7 @@ public class GameController : MonoBehaviour
 		gameObject.transform.Find("HeadPortrait").gameObject.GetComponent<UISprite>().spriteName = "role";
 	}
 
-	// Token: 0x06002A78 RID: 10872 RVA: 0x001476C0 File Offset: 0x001458C0
+	// Token: 0x06002600 RID: 9728 RVA: 0x00107328 File Offset: 0x00105528
 	private void SaveDataWithUTF8(GameData data)
 	{
 		string str;
@@ -229,7 +229,7 @@ public class GameController : MonoBehaviour
 		fileStream.Close();
 	}
 
-	// Token: 0x06002A79 RID: 10873 RVA: 0x00147728 File Offset: 0x00145928
+	// Token: 0x06002601 RID: 9729 RVA: 0x00107390 File Offset: 0x00105590
 	private GameData GetDataWithoutBOM(string fileName)
 	{
 		object obj = new GameData();
@@ -241,7 +241,7 @@ public class GameController : MonoBehaviour
 		return result;
 	}
 
-	// Token: 0x06002A7A RID: 10874 RVA: 0x00147778 File Offset: 0x00145978
+	// Token: 0x06002602 RID: 9730 RVA: 0x001073E0 File Offset: 0x001055E0
 	public void BackToDeck()
 	{
 		HandCards[] array = new HandCards[]
@@ -261,7 +261,7 @@ public class GameController : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06002A7B RID: 10875 RVA: 0x00147804 File Offset: 0x00145A04
+	// Token: 0x06002603 RID: 9731 RVA: 0x0010746C File Offset: 0x0010566C
 	public void DestroyAllSprites()
 	{
 		CardSprite[][] array = new CardSprite[][]
@@ -279,7 +279,7 @@ public class GameController : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06002A7C RID: 10876 RVA: 0x0014787C File Offset: 0x00145A7C
+	// Token: 0x06002604 RID: 9732 RVA: 0x001074E4 File Offset: 0x001056E4
 	public void CardsOnTable(CharacterType type)
 	{
 		HandCards component = GameObject.Find(type.ToString()).GetComponent<HandCards>();
@@ -298,7 +298,7 @@ public class GameController : MonoBehaviour
 		GameController.UpdateIndentity(type, Identity.Landlord);
 	}
 
-	// Token: 0x06002A7D RID: 10877 RVA: 0x00147900 File Offset: 0x00145B00
+	// Token: 0x06002605 RID: 9733 RVA: 0x00107568 File Offset: 0x00105768
 	private void DealTo(CharacterType person)
 	{
 		if (person == CharacterType.Desk)
@@ -312,7 +312,7 @@ public class GameController : MonoBehaviour
 		component.AddCard(card2);
 	}
 
-	// Token: 0x06002A7E RID: 10878 RVA: 0x00147950 File Offset: 0x00145B50
+	// Token: 0x06002606 RID: 9734 RVA: 0x001075B8 File Offset: 0x001057B8
 	private void MakeSprite(CharacterType type, Card card, bool selected)
 	{
 		if (!card.isSprite)
@@ -324,7 +324,7 @@ public class GameController : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06002A7F RID: 10879 RVA: 0x001479A4 File Offset: 0x00145BA4
+	// Token: 0x06002607 RID: 9735 RVA: 0x0010760C File Offset: 0x0010580C
 	private void MakeHandCardsSprite(CharacterType type, bool isSelected)
 	{
 		if (type == CharacterType.Desk)
@@ -351,7 +351,7 @@ public class GameController : MonoBehaviour
 		GameController.AdjustCardSpritsPosition(type);
 	}
 
-	// Token: 0x06002A80 RID: 10880 RVA: 0x00147A40 File Offset: 0x00145C40
+	// Token: 0x06002608 RID: 9736 RVA: 0x001076A8 File Offset: 0x001058A8
 	public static void AdjustCardSpritsPosition(CharacterType type)
 	{
 		if (type == CharacterType.Desk)
@@ -384,7 +384,7 @@ public class GameController : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06002A81 RID: 10881 RVA: 0x00147B4C File Offset: 0x00145D4C
+	// Token: 0x06002609 RID: 9737 RVA: 0x001077B4 File Offset: 0x001059B4
 	public static int GetWeight(Card[] cards, CardsType rule)
 	{
 		int num = 0;
@@ -410,13 +410,13 @@ public class GameController : MonoBehaviour
 		return num;
 	}
 
-	// Token: 0x06002A82 RID: 10882 RVA: 0x00147BD0 File Offset: 0x00145DD0
+	// Token: 0x0600260A RID: 9738 RVA: 0x00107838 File Offset: 0x00105A38
 	public static void UpdateLeftCardsCount(CharacterType type, int cardsCount)
 	{
 		GameObject.Find(type.ToString()).transform.Find("LeftPoker").gameObject.GetComponent<UILabel>().text = "剩余扑克:" + cardsCount;
 	}
 
-	// Token: 0x06002A83 RID: 10883 RVA: 0x00147C20 File Offset: 0x00145E20
+	// Token: 0x0600260B RID: 9739 RVA: 0x00107888 File Offset: 0x00105A88
 	public static void UpdateIndentity(CharacterType type, Identity identity)
 	{
 		GameObject gameObject = GameObject.Find(type.ToString()).transform.Find("Identity").gameObject;
@@ -424,20 +424,20 @@ public class GameController : MonoBehaviour
 		gameObject.GetComponent<UISprite>().spriteName = "Identity_" + identity.ToString();
 	}
 
-	// Token: 0x06002A84 RID: 10884 RVA: 0x00147C94 File Offset: 0x00145E94
+	// Token: 0x0600260C RID: 9740 RVA: 0x001078FC File Offset: 0x00105AFC
 	public static void UpdateIntegration(CharacterType type)
 	{
 		int integration = GameObject.Find(type.ToString()).GetComponent<HandCards>().Integration;
 		GameObject.Find(type.ToString()).transform.Find("IntegrationLabel").gameObject.GetComponent<UILabel>().text = "积分:" + integration;
 	}
 
-	// Token: 0x06002A85 RID: 10885 RVA: 0x00020FF1 File Offset: 0x0001F1F1
+	// Token: 0x0600260D RID: 9741 RVA: 0x00107966 File Offset: 0x00105B66
 	public static void DisplayDeskNotice(bool show)
 	{
 		GameObject.Find("Desk").transform.Find("NoticeLabel").gameObject.SetActive(show);
 	}
 
-	// Token: 0x06002A86 RID: 10886 RVA: 0x00147D00 File Offset: 0x00145F00
+	// Token: 0x0600260E RID: 9742 RVA: 0x0010798C File Offset: 0x00105B8C
 	public static void DisplayOverInfo(bool enough, GameObject gameovePanel, Identity winner)
 	{
 		if (enough)
@@ -455,9 +455,9 @@ public class GameController : MonoBehaviour
 		gameovePanel.GetComponentInChildren<UILabel>().text = "地主获得胜利";
 	}
 
-	// Token: 0x04002431 RID: 9265
+	// Token: 0x04001EC2 RID: 7874
 	public int basePointPerMatch;
 
-	// Token: 0x04002432 RID: 9266
+	// Token: 0x04001EC3 RID: 7875
 	private int multiples;
 }

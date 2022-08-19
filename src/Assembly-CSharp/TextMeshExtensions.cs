@@ -2,10 +2,10 @@
 using System.Text.RegularExpressions;
 using UnityEngine;
 
-// Token: 0x02000786 RID: 1926
+// Token: 0x020004F9 RID: 1273
 internal static class TextMeshExtensions
 {
-	// Token: 0x06003130 RID: 12592 RVA: 0x001877C8 File Offset: 0x001859C8
+	// Token: 0x0600293D RID: 10557 RVA: 0x0013A4B8 File Offset: 0x001386B8
 	public static void AdjustFontSize(this TextMesh toAdjust, bool rowSplit, bool hasWhiteSpaces, bool increaseFont)
 	{
 		if (toAdjust.GetComponent<Collider>() != null)
@@ -114,14 +114,14 @@ internal static class TextMeshExtensions
 		}
 	}
 
-	// Token: 0x06003131 RID: 12593 RVA: 0x00187DD4 File Offset: 0x00185FD4
+	// Token: 0x0600293E RID: 10558 RVA: 0x0013AAC4 File Offset: 0x00138CC4
 	public static string ReplaceLastOccurrence(string Source, string Find, string Replace)
 	{
 		int startIndex = Source.LastIndexOf(Find);
 		return Source.Remove(startIndex, Find.Length).Insert(startIndex, Replace);
 	}
 
-	// Token: 0x06003132 RID: 12594 RVA: 0x00187E00 File Offset: 0x00186000
+	// Token: 0x0600293F RID: 10559 RVA: 0x0013AAF0 File Offset: 0x00138CF0
 	public static int IndexOfOccurence(this string s, string match, int occurence)
 	{
 		int num = 1;
@@ -137,7 +137,7 @@ internal static class TextMeshExtensions
 		return -1;
 	}
 
-	// Token: 0x06003133 RID: 12595 RVA: 0x00187E34 File Offset: 0x00186034
+	// Token: 0x06002940 RID: 10560 RVA: 0x0013AB24 File Offset: 0x00138D24
 	public static string ReplaceNextOccurence(string Source, string Find, string Replace, int n)
 	{
 		int num = Source.IndexOfOccurence(Find, n);
@@ -149,7 +149,7 @@ internal static class TextMeshExtensions
 		return result;
 	}
 
-	// Token: 0x06003134 RID: 12596 RVA: 0x00187E68 File Offset: 0x00186068
+	// Token: 0x06002941 RID: 10561 RVA: 0x0013AB58 File Offset: 0x00138D58
 	public static void SetEffectsTexts(this TextMesh toAdjust, bool otherChildren)
 	{
 		if (TextMeshExtensions.outLine)
@@ -190,7 +190,7 @@ internal static class TextMeshExtensions
 		}
 	}
 
-	// Token: 0x06003135 RID: 12597 RVA: 0x00188138 File Offset: 0x00186338
+	// Token: 0x06002942 RID: 10562 RVA: 0x0013AE28 File Offset: 0x00139028
 	public static void AddSingleOutline(this TextMesh toAdjust, Color shadowColor, float offset)
 	{
 		if (toAdjust.transform.childCount == 0)
@@ -243,7 +243,7 @@ internal static class TextMeshExtensions
 		}
 	}
 
-	// Token: 0x06003136 RID: 12598 RVA: 0x00188404 File Offset: 0x00186604
+	// Token: 0x06002943 RID: 10563 RVA: 0x0013B0F4 File Offset: 0x001392F4
 	public static void AddShadow(this TextMesh toAdjust, Color shadowColor, Vector2 offset)
 	{
 		if (toAdjust.transform.childCount == 0)
@@ -263,7 +263,7 @@ internal static class TextMeshExtensions
 		}
 	}
 
-	// Token: 0x06003137 RID: 12599 RVA: 0x001884D0 File Offset: 0x001866D0
+	// Token: 0x06002944 RID: 10564 RVA: 0x0013B1C0 File Offset: 0x001393C0
 	public static void AddOutline(this TextMesh toAdjust, Color outlineColor, float offset)
 	{
 		if (toAdjust.transform.childCount != 8)
@@ -385,7 +385,7 @@ internal static class TextMeshExtensions
 		}
 	}
 
-	// Token: 0x06003138 RID: 12600 RVA: 0x00188AC0 File Offset: 0x00186CC0
+	// Token: 0x06002945 RID: 10565 RVA: 0x0013B7B0 File Offset: 0x001399B0
 	public static void AdjustFontSplitRows(this TextMesh toAdjust, bool hasWhiteSpaces)
 	{
 		string text = toAdjust.text;
@@ -421,12 +421,12 @@ internal static class TextMeshExtensions
 		}
 	}
 
-	// Token: 0x04002D49 RID: 11593
+	// Token: 0x0400256E RID: 9582
 	public static bool outLine;
 
-	// Token: 0x04002D4A RID: 11594
+	// Token: 0x0400256F RID: 9583
 	public static bool shadow;
 
-	// Token: 0x04002D4B RID: 11595
+	// Token: 0x04002570 RID: 9584
 	public static bool singleOutline;
 }

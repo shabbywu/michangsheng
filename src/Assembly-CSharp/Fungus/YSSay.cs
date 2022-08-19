@@ -1,78 +1,40 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
-using KBEngine;
+using JSONClass;
+using script.EventMsg;
 using UnityEngine;
 
 namespace Fungus
 {
-	// Token: 0x0200145C RID: 5212
+	// Token: 0x02000FA8 RID: 4008
 	[CommandInfo("YSTools", "YSSay", "最近发生的事情", 0)]
 	[AddComponentMenu("")]
 	public class YSSay : Command
 	{
-		// Token: 0x06007DAD RID: 32173 RVA: 0x002C72D0 File Offset: 0x002C54D0
-		public bool ManZuValue(int staticValueID, int num, string type)
-		{
-			int num2 = GlobalValue.Get(staticValueID, base.GetCommandSourceDesc());
-			if (type == "=")
-			{
-				return num2 == num;
-			}
-			if (type == "<")
-			{
-				return num2 < num;
-			}
-			return !(type == ">") || num2 > num;
-		}
-
-		// Token: 0x06007DAE RID: 32174 RVA: 0x00054F79 File Offset: 0x00053179
+		// Token: 0x06006FC9 RID: 28617 RVA: 0x002A7C6B File Offset: 0x002A5E6B
 		public override void OnEnter()
 		{
-			this.setload();
+			this.Say();
 			this.Continue();
 		}
 
-		// Token: 0x06007DAF RID: 32175 RVA: 0x002C7324 File Offset: 0x002C5524
-		public void setload()
+		// Token: 0x06006FCA RID: 28618 RVA: 0x002A7C7C File Offset: 0x002A5E7C
+		public void Say()
 		{
-			Avatar avatar = Tools.instance.getPlayer();
-			DateTime nowtime = avatar.worldTimeMag.getNowTime();
-			List<JSONObject> list = jsonData.instance.LiShiChuanWen.list.FindAll(delegate(JSONObject aa)
-			{
-				if ((int)aa["TypeID"].n == this.ID)
-				{
-					if (aa["NTaskID"].I != 0 && avatar.nomelTaskMag.HasNTask(aa["NTaskID"].I))
-					{
-						return true;
-					}
-					int num2 = (int)aa["StartTime"].n;
-					int num3 = (int)aa["cunZaiShiJian"].n;
-					if (nowtime.Year > num2 && nowtime.Year - num2 <= num3)
-					{
-						if (aa["EventLv"].list.Count <= 0)
-						{
-							return true;
-						}
-						if (this.ManZuValue((int)aa["EventLv"][0].n, (int)aa["EventLv"][1].n, aa["fuhao"].str))
-						{
-							return true;
-						}
-					}
-				}
-				return false;
-			});
+			DateTime nowTime = Tools.instance.getPlayer().worldTimeMag.getNowTime();
 			Flowchart component = Object.Instantiate<GameObject>(Resources.Load<GameObject>("talkPrefab/BasePrefab/NPCTalk")).transform.Find("Flowchart").GetComponent<Flowchart>();
 			Block block = component.FindBlock("Splash");
 			Say say = (Say)block.CommandList[0];
 			say.pubAvatarIntID = this.AvatarID;
+			List<EventData> list = EventMag.Inst.GetList(this.ID);
 			if (list.Count == 0)
 			{
 				say.SetStandardText("最近没有发生什么特别值得注意的事情。");
 				return;
 			}
 			int num = 0;
-			foreach (JSONObject jsonobject in list)
+			foreach (EventData eventData in list)
 			{
 				Say say2 = say;
 				if (num != 0)
@@ -83,27 +45,21 @@ namespace Fungus
 					this.addSayinfo(say2, component, block);
 					say3.SetStandardText("让我想想...");
 				}
-				string standardText = Tools.Code64(jsonobject["text"].str).Replace("{Xyear}", string.Concat(nowtime.Year - (int)jsonobject["StartTime"].n));
-				if (jsonobject["NTaskID"].I != 0)
+				string standardText;
+				if (eventData.Type == 0)
 				{
-					standardText = NTaskText.GetNTaskDesc(jsonobject["NTaskID"].I);
+					standardText = LiShiChuanWen.DataDict[eventData.Id].text.Replace("{Xyear}", string.Concat(nowTime.Year - eventData.StartYear));
+				}
+				else
+				{
+					standardText = DongTaiChuanWenBaio.DataDict[eventData.Id].text.Replace("{Xyear}", string.Concat(nowTime.Year - eventData.StartYear)).Replace("{npc}", eventData.npcName);
 				}
 				say2.SetStandardText(standardText);
-				if ((int)jsonobject["getChuanWen"].n > 0)
-				{
-					int taskId = (int)jsonobject["getChuanWen"].n;
-					avatar.taskMag.addTask(taskId);
-					string str = Tools.instance.Code64ToString(jsonData.instance.TaskJsonData[taskId.ToString()]["Name"].str);
-					if (jsonData.instance.TaskJsonData[taskId.ToString()]["Type"].n != 0f)
-					{
-						"<color=#FF0000>" + str + "</color>任务已开启";
-					}
-				}
 				num++;
 			}
 		}
 
-		// Token: 0x06007DB0 RID: 32176 RVA: 0x002C75B0 File Offset: 0x002C57B0
+		// Token: 0x06006FCB RID: 28619 RVA: 0x002A7E50 File Offset: 0x002A6050
 		public void addSayinfo(Say say, Flowchart flowChat, Block statr)
 		{
 			say.pubAvatarIntID = this.AvatarID;
@@ -115,13 +71,7 @@ namespace Fungus
 			statr.CommandList.Add(say);
 		}
 
-		// Token: 0x06007DB1 RID: 32177 RVA: 0x00054F87 File Offset: 0x00053187
-		public void creatTalk(string text)
-		{
-			base.StartCoroutine(this.creataaaa(text));
-		}
-
-		// Token: 0x06007DB2 RID: 32178 RVA: 0x00054F97 File Offset: 0x00053197
+		// Token: 0x06006FCC RID: 28620 RVA: 0x002A7EA7 File Offset: 0x002A60A7
 		public IEnumerator creataaaa(string text)
 		{
 			yield return new WaitForSeconds(0.1f);
@@ -131,18 +81,18 @@ namespace Fungus
 			yield break;
 		}
 
-		// Token: 0x06007DB3 RID: 32179 RVA: 0x000113CF File Offset: 0x0000F5CF
+		// Token: 0x06006FCD RID: 28621 RVA: 0x0005E228 File Offset: 0x0005C428
 		public override Color GetButtonColor()
 		{
 			return new Color32(184, 210, 235, byte.MaxValue);
 		}
 
-		// Token: 0x04006B2A RID: 27434
+		// Token: 0x04005C3D RID: 23613
 		[Tooltip("说话的武将ID")]
 		[SerializeField]
 		protected int AvatarID = 1;
 
-		// Token: 0x04006B2B RID: 27435
+		// Token: 0x04005C3E RID: 23614
 		[Tooltip("表中的类型编号")]
 		[SerializeField]
 		protected int ID = 1;

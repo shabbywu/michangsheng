@@ -2,34 +2,34 @@
 
 namespace KBEngine
 {
-	// Token: 0x02000EE9 RID: 3817
+	// Token: 0x02000B6C RID: 2924
 	public class EntityCall
 	{
-		// Token: 0x06005BFA RID: 23546 RVA: 0x00040A5B File Offset: 0x0003EC5B
+		// Token: 0x060051BE RID: 20926 RVA: 0x00223557 File Offset: 0x00221757
 		public EntityCall(int eid, string ename)
 		{
 			this.id = eid;
 			this.className = ename;
 		}
 
-		// Token: 0x06005BFB RID: 23547 RVA: 0x000042DD File Offset: 0x000024DD
+		// Token: 0x060051BF RID: 20927 RVA: 0x00004095 File Offset: 0x00002295
 		public virtual void __init__()
 		{
 		}
 
-		// Token: 0x06005BFC RID: 23548 RVA: 0x00040A7C File Offset: 0x0003EC7C
+		// Token: 0x060051C0 RID: 20928 RVA: 0x00223578 File Offset: 0x00221778
 		public virtual bool isBase()
 		{
 			return this.type == EntityCall.ENTITYCALL_TYPE.ENTITYCALL_TYPE_BASE;
 		}
 
-		// Token: 0x06005BFD RID: 23549 RVA: 0x00040A87 File Offset: 0x0003EC87
+		// Token: 0x060051C1 RID: 20929 RVA: 0x00223583 File Offset: 0x00221783
 		public virtual bool isCell()
 		{
 			return this.type == EntityCall.ENTITYCALL_TYPE.ENTITYCALL_TYPE_CELL;
 		}
 
-		// Token: 0x06005BFE RID: 23550 RVA: 0x00252620 File Offset: 0x00250820
+		// Token: 0x060051C2 RID: 20930 RVA: 0x00223590 File Offset: 0x00221790
 		public Bundle newCall()
 		{
 			if (this.bundle == null)
@@ -48,7 +48,7 @@ namespace KBEngine
 			return this.bundle;
 		}
 
-		// Token: 0x06005BFF RID: 23551 RVA: 0x00040A92 File Offset: 0x0003EC92
+		// Token: 0x060051C3 RID: 20931 RVA: 0x00223605 File Offset: 0x00221805
 		public void sendCall(Bundle inbundle)
 		{
 			if (inbundle == null)
@@ -62,7 +62,7 @@ namespace KBEngine
 			}
 		}
 
-		// Token: 0x06005C00 RID: 23552 RVA: 0x00252698 File Offset: 0x00250898
+		// Token: 0x060051C4 RID: 20932 RVA: 0x00223634 File Offset: 0x00221834
 		public Bundle newCall(string methodName, ushort entitycomponentPropertyID = 0)
 		{
 			if (KBEngineApp.app.currserver == "loginapp")
@@ -99,24 +99,24 @@ namespace KBEngine
 			return this.bundle;
 		}
 
-		// Token: 0x04005A34 RID: 23092
+		// Token: 0x04004FA9 RID: 20393
 		public int id;
 
-		// Token: 0x04005A35 RID: 23093
+		// Token: 0x04004FAA RID: 20394
 		public string className = "";
 
-		// Token: 0x04005A36 RID: 23094
+		// Token: 0x04004FAB RID: 20395
 		public EntityCall.ENTITYCALL_TYPE type;
 
-		// Token: 0x04005A37 RID: 23095
+		// Token: 0x04004FAC RID: 20396
 		public Bundle bundle;
 
-		// Token: 0x02000EEA RID: 3818
+		// Token: 0x020015F3 RID: 5619
 		public enum ENTITYCALL_TYPE
 		{
-			// Token: 0x04005A39 RID: 23097
+			// Token: 0x040070E3 RID: 28899
 			ENTITYCALL_TYPE_CELL,
-			// Token: 0x04005A3A RID: 23098
+			// Token: 0x040070E4 RID: 28900
 			ENTITYCALL_TYPE_BASE
 		}
 	}

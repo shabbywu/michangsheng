@@ -3,10 +3,10 @@ using System.Collections.Generic;
 
 namespace JSONClass
 {
-	// Token: 0x02000C5E RID: 3166
+	// Token: 0x020008D1 RID: 2257
 	public class SceneNameJsonData : IJSONClass
 	{
-		// Token: 0x06004CE1 RID: 19681 RVA: 0x00207C38 File Offset: 0x00205E38
+		// Token: 0x06004157 RID: 16727 RVA: 0x001BF710 File Offset: 0x001BD910
 		public static void InitDataDict()
 		{
 			foreach (JSONObject jsonobject in jsonData.instance.SceneNameJsonData.list)
@@ -43,36 +43,36 @@ namespace JSONClass
 			}
 		}
 
-		// Token: 0x06004CE2 RID: 19682 RVA: 0x000042DD File Offset: 0x000024DD
+		// Token: 0x06004158 RID: 16728 RVA: 0x00004095 File Offset: 0x00002295
 		private static void OnInitFinish()
 		{
 		}
 
-		// Token: 0x04004BDC RID: 19420
+		// Token: 0x04004092 RID: 16530
 		public static Dictionary<string, SceneNameJsonData> DataDict = new Dictionary<string, SceneNameJsonData>();
 
-		// Token: 0x04004BDD RID: 19421
+		// Token: 0x04004093 RID: 16531
 		public static List<SceneNameJsonData> DataList = new List<SceneNameJsonData>();
 
-		// Token: 0x04004BDE RID: 19422
+		// Token: 0x04004094 RID: 16532
 		public static Action OnInitFinishAction = new Action(SceneNameJsonData.OnInitFinish);
 
-		// Token: 0x04004BDF RID: 19423
+		// Token: 0x04004095 RID: 16533
 		public int MapType;
 
-		// Token: 0x04004BE0 RID: 19424
+		// Token: 0x04004096 RID: 16534
 		public int MoneyType;
 
-		// Token: 0x04004BE1 RID: 19425
+		// Token: 0x04004097 RID: 16535
 		public int HighlightID;
 
-		// Token: 0x04004BE2 RID: 19426
+		// Token: 0x04004098 RID: 16536
 		public string id;
 
-		// Token: 0x04004BE3 RID: 19427
+		// Token: 0x04004099 RID: 16537
 		public string EventName;
 
-		// Token: 0x04004BE4 RID: 19428
+		// Token: 0x0400409A RID: 16538
 		public string MapName;
 	}
 }

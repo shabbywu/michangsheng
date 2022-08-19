@@ -1,36 +1,36 @@
 ﻿using System;
 
-// Token: 0x02000793 RID: 1939
+// Token: 0x02000502 RID: 1282
 public enum Weight
 {
-	// Token: 0x04002D9A RID: 11674
+	// Token: 0x040025B2 RID: 9650
 	Three,
-	// Token: 0x04002D9B RID: 11675
+	// Token: 0x040025B3 RID: 9651
 	Four,
-	// Token: 0x04002D9C RID: 11676
+	// Token: 0x040025B4 RID: 9652
 	Five,
-	// Token: 0x04002D9D RID: 11677
+	// Token: 0x040025B5 RID: 9653
 	Six,
-	// Token: 0x04002D9E RID: 11678
+	// Token: 0x040025B6 RID: 9654
 	Seven,
-	// Token: 0x04002D9F RID: 11679
+	// Token: 0x040025B7 RID: 9655
 	Eight,
-	// Token: 0x04002DA0 RID: 11680
+	// Token: 0x040025B8 RID: 9656
 	Nine,
-	// Token: 0x04002DA1 RID: 11681
+	// Token: 0x040025B9 RID: 9657
 	Ten,
-	// Token: 0x04002DA2 RID: 11682
+	// Token: 0x040025BA RID: 9658
 	Jack,
-	// Token: 0x04002DA3 RID: 11683
+	// Token: 0x040025BB RID: 9659
 	Queen,
-	// Token: 0x04002DA4 RID: 11684
+	// Token: 0x040025BC RID: 9660
 	King,
-	// Token: 0x04002DA5 RID: 11685
+	// Token: 0x040025BD RID: 9661
 	One,
-	// Token: 0x04002DA6 RID: 11686
+	// Token: 0x040025BE RID: 9662
 	Two,
-	// Token: 0x04002DA7 RID: 11687
+	// Token: 0x040025BF RID: 9663
 	SJoker,
-	// Token: 0x04002DA8 RID: 11688
+	// Token: 0x040025C0 RID: 9664
 	LJoker
 }

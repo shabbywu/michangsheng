@@ -4,12 +4,12 @@ using UnityEngine;
 
 namespace Fungus
 {
-	// Token: 0x0200140B RID: 5131
+	// Token: 0x02000F55 RID: 3925
 	[CommandInfo("YSNew/Get", "GetWuDaoLv", "获取悟道等级保存到TempValue中", 0)]
 	[AddComponentMenu("")]
 	public class GetWuDaoLv : Command
 	{
-		// Token: 0x06007C86 RID: 31878 RVA: 0x0001CA4F File Offset: 0x0001AC4F
+		// Token: 0x06006E98 RID: 28312 RVA: 0x000E111A File Offset: 0x000DF31A
 		public void setHasVariable(string name, int num, Flowchart flowchart)
 		{
 			if (flowchart.HasVariable(name))
@@ -18,7 +18,7 @@ namespace Fungus
 			}
 		}
 
-		// Token: 0x06007C87 RID: 31879 RVA: 0x002C515C File Offset: 0x002C335C
+		// Token: 0x06006E99 RID: 28313 RVA: 0x002A525C File Offset: 0x002A345C
 		public override void OnEnter()
 		{
 			Avatar player = Tools.instance.getPlayer();
@@ -33,18 +33,18 @@ namespace Fungus
 			this.Continue();
 		}
 
-		// Token: 0x06007C88 RID: 31880 RVA: 0x000113CF File Offset: 0x0000F5CF
+		// Token: 0x06006E9A RID: 28314 RVA: 0x0005E228 File Offset: 0x0005C428
 		public override Color GetButtonColor()
 		{
 			return new Color32(184, 210, 235, byte.MaxValue);
 		}
 
-		// Token: 0x06007C89 RID: 31881 RVA: 0x000042DD File Offset: 0x000024DD
+		// Token: 0x06006E9B RID: 28315 RVA: 0x00004095 File Offset: 0x00002295
 		public override void OnReset()
 		{
 		}
 
-		// Token: 0x04006A87 RID: 27271
+		// Token: 0x04005BB6 RID: 23478
 		[Tooltip("需要获取悟道属性的类型")]
 		[VariableProperty(new Type[]
 		{
@@ -53,7 +53,7 @@ namespace Fungus
 		[SerializeField]
 		protected IntegerVariable WuDaoType;
 
-		// Token: 0x04006A88 RID: 27272
+		// Token: 0x04005BB7 RID: 23479
 		[Tooltip("保存到TempValue中")]
 		[VariableProperty(new Type[]
 		{

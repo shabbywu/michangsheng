@@ -2,15 +2,15 @@
 
 namespace MoonSharp.Interpreter.Debugging
 {
-	// Token: 0x0200117B RID: 4475
+	// Token: 0x02000D65 RID: 3429
 	[Flags]
 	public enum DebuggerCaps
 	{
-		// Token: 0x040061FA RID: 25082
+		// Token: 0x0400555F RID: 21855
 		CanDebugSourceCode = 1,
-		// Token: 0x040061FB RID: 25083
+		// Token: 0x04005560 RID: 21856
 		CanDebugByteCode = 2,
-		// Token: 0x040061FC RID: 25084
+		// Token: 0x04005561 RID: 21857
 		HasLineBasedBreakpoints = 4
 	}
 }

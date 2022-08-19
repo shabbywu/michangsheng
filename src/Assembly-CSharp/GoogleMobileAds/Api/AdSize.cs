@@ -2,10 +2,10 @@
 
 namespace GoogleMobileAds.Api
 {
-	// Token: 0x02000E7F RID: 3711
+	// Token: 0x02000B12 RID: 2834
 	public class AdSize
 	{
-		// Token: 0x060058E4 RID: 22756 RVA: 0x0003F467 File Offset: 0x0003D667
+		// Token: 0x06004EE2 RID: 20194 RVA: 0x00217A83 File Offset: 0x00215C83
 		public AdSize(int width, int height)
 		{
 			this.isSmartBanner = false;
@@ -13,7 +13,7 @@ namespace GoogleMobileAds.Api
 			this.height = height;
 		}
 
-		// Token: 0x060058E5 RID: 22757 RVA: 0x0003F484 File Offset: 0x0003D684
+		// Token: 0x06004EE3 RID: 20195 RVA: 0x00217AA0 File Offset: 0x00215CA0
 		private AdSize(bool isSmartBanner)
 		{
 			this.isSmartBanner = isSmartBanner;
@@ -21,8 +21,8 @@ namespace GoogleMobileAds.Api
 			this.height = 0;
 		}
 
-		// Token: 0x17000845 RID: 2117
-		// (get) Token: 0x060058E6 RID: 22758 RVA: 0x0003F4A1 File Offset: 0x0003D6A1
+		// Token: 0x170005F6 RID: 1526
+		// (get) Token: 0x06004EE4 RID: 20196 RVA: 0x00217ABD File Offset: 0x00215CBD
 		public int Width
 		{
 			get
@@ -31,8 +31,8 @@ namespace GoogleMobileAds.Api
 			}
 		}
 
-		// Token: 0x17000846 RID: 2118
-		// (get) Token: 0x060058E7 RID: 22759 RVA: 0x0003F4A9 File Offset: 0x0003D6A9
+		// Token: 0x170005F7 RID: 1527
+		// (get) Token: 0x06004EE5 RID: 20197 RVA: 0x00217AC5 File Offset: 0x00215CC5
 		public int Height
 		{
 			get
@@ -41,8 +41,8 @@ namespace GoogleMobileAds.Api
 			}
 		}
 
-		// Token: 0x17000847 RID: 2119
-		// (get) Token: 0x060058E8 RID: 22760 RVA: 0x0003F4B1 File Offset: 0x0003D6B1
+		// Token: 0x170005F8 RID: 1528
+		// (get) Token: 0x06004EE6 RID: 20198 RVA: 0x00217ACD File Offset: 0x00215CCD
 		public bool IsSmartBanner
 		{
 			get
@@ -51,28 +51,28 @@ namespace GoogleMobileAds.Api
 			}
 		}
 
-		// Token: 0x04005892 RID: 22674
+		// Token: 0x04004E43 RID: 20035
 		private bool isSmartBanner;
 
-		// Token: 0x04005893 RID: 22675
+		// Token: 0x04004E44 RID: 20036
 		private int width;
 
-		// Token: 0x04005894 RID: 22676
+		// Token: 0x04004E45 RID: 20037
 		private int height;
 
-		// Token: 0x04005895 RID: 22677
+		// Token: 0x04004E46 RID: 20038
 		public static readonly AdSize Banner = new AdSize(320, 50);
 
-		// Token: 0x04005896 RID: 22678
+		// Token: 0x04004E47 RID: 20039
 		public static readonly AdSize MediumRectangle = new AdSize(300, 250);
 
-		// Token: 0x04005897 RID: 22679
+		// Token: 0x04004E48 RID: 20040
 		public static readonly AdSize IABBanner = new AdSize(468, 60);
 
-		// Token: 0x04005898 RID: 22680
+		// Token: 0x04004E49 RID: 20041
 		public static readonly AdSize Leaderboard = new AdSize(728, 90);
 
-		// Token: 0x04005899 RID: 22681
+		// Token: 0x04004E4A RID: 20042
 		public static readonly AdSize SmartBanner = new AdSize(true);
 	}
 }

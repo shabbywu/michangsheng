@@ -4,11 +4,11 @@ using UnityEngine;
 
 namespace UltimateSurvival
 {
-	// Token: 0x020008EE RID: 2286
+	// Token: 0x0200060D RID: 1549
 	[RequireComponent(typeof(CharacterController))]
 	public class CCDrivenController : PlayerBehaviour
 	{
-		// Token: 0x06003A9F RID: 15007 RVA: 0x001A8ED0 File Offset: 0x001A70D0
+		// Token: 0x06003188 RID: 12680 RVA: 0x0015F930 File Offset: 0x0015DB30
 		private void Start()
 		{
 			this.m_Controller = base.GetComponent<CharacterController>();
@@ -23,7 +23,7 @@ namespace UltimateSurvival
 			});
 		}
 
-		// Token: 0x06003AA0 RID: 15008 RVA: 0x001A8F88 File Offset: 0x001A7188
+		// Token: 0x06003189 RID: 12681 RVA: 0x0015F9E8 File Offset: 0x0015DBE8
 		private void Update()
 		{
 			this.m_LastCollisionFlags = this.m_Controller.Move(this.m_CurrentVelocity * Time.deltaTime);
@@ -76,7 +76,7 @@ namespace UltimateSurvival
 			this.m_PreviouslyGrounded = this.m_Controller.isGrounded;
 		}
 
-		// Token: 0x06003AA1 RID: 15009 RVA: 0x001A917C File Offset: 0x001A737C
+		// Token: 0x0600318A RID: 12682 RVA: 0x0015FBDC File Offset: 0x0015DDDC
 		private void UpdateLadderMovement()
 		{
 			Vector2 vector = Vector2.ClampMagnitude(base.Player.MovementInput.Get(), 1f);
@@ -117,7 +117,7 @@ namespace UltimateSurvival
 			this.m_CurrentVelocity = Vector3.Lerp(this.m_CurrentVelocity, this.m_DesiredVelocity, num * Time.deltaTime);
 		}
 
-		// Token: 0x06003AA2 RID: 15010 RVA: 0x001A9358 File Offset: 0x001A7558
+		// Token: 0x0600318B RID: 12683 RVA: 0x0015FDB8 File Offset: 0x0015DFB8
 		private void UpdateMovement()
 		{
 			this.CalculateDesiredVelocity();
@@ -164,7 +164,7 @@ namespace UltimateSurvival
 			}
 		}
 
-		// Token: 0x06003AA3 RID: 15011 RVA: 0x001A9594 File Offset: 0x001A7794
+		// Token: 0x0600318C RID: 12684 RVA: 0x0015FFF4 File Offset: 0x0015E1F4
 		private void UpdateFalling()
 		{
 			if (this.m_PreviouslyGrounded && !base.Player.Jump.Active)
@@ -175,7 +175,7 @@ namespace UltimateSurvival
 			this.m_CurrentVelocity.y = this.m_CurrentVelocity.y - this.m_Gravity * Time.deltaTime;
 		}
 
-		// Token: 0x06003AA4 RID: 15012 RVA: 0x001A9620 File Offset: 0x001A7820
+		// Token: 0x0600318D RID: 12685 RVA: 0x00160080 File Offset: 0x0015E280
 		private void CalculateDesiredVelocity()
 		{
 			Vector2 vector = Vector2.ClampMagnitude(base.Player.MovementInput.Get(), 1f);
@@ -205,7 +205,7 @@ namespace UltimateSurvival
 			this.m_DesiredVelocity = vector2 * this.m_DesiredSpeed;
 		}
 
-		// Token: 0x06003AA5 RID: 15013 RVA: 0x001A976C File Offset: 0x001A796C
+		// Token: 0x0600318E RID: 12686 RVA: 0x001601CC File Offset: 0x0015E3CC
 		private bool TryStart_Run()
 		{
 			if (!this.m_EnableRunning)
@@ -218,7 +218,7 @@ namespace UltimateSurvival
 			return base.Player.IsGrounded.Get() && flag2 && flag && isClosed && !base.Player.Crouch.Active && !base.Player.Aim.Active;
 		}
 
-		// Token: 0x06003AA6 RID: 15014 RVA: 0x001A9804 File Offset: 0x001A7A04
+		// Token: 0x0600318F RID: 12687 RVA: 0x00160264 File Offset: 0x0015E464
 		private bool TryStart_Jump()
 		{
 			if (this.m_EnableJumping && base.Player.Stamina.Get() > 5f && (base.Player.IsGrounded.Get() || base.Player.NearLadders.Count > 0) && (!base.Player.Crouch.Active || base.Player.Crouch.TryStop()))
@@ -244,13 +244,13 @@ namespace UltimateSurvival
 			return false;
 		}
 
-		// Token: 0x06003AA7 RID: 15015 RVA: 0x0002A989 File Offset: 0x00028B89
+		// Token: 0x06003190 RID: 12688 RVA: 0x0016038C File Offset: 0x0015E58C
 		private float CalculateJumpSpeed(float heightToReach)
 		{
 			return Mathf.Sqrt(2f * this.m_Gravity * heightToReach);
 		}
 
-		// Token: 0x06003AA8 RID: 15016 RVA: 0x001A992C File Offset: 0x001A7B2C
+		// Token: 0x06003191 RID: 12689 RVA: 0x001603A4 File Offset: 0x0015E5A4
 		private bool TryStart_Crouch()
 		{
 			bool flag = this.m_EnableCrouching && base.Player.NearLadders.Count == 0 && Time.time > this.m_LastTimeToggledCrouching + this.m_CrouchDuration && base.Player.IsGrounded.Get() && !base.Player.Run.Active;
@@ -262,7 +262,7 @@ namespace UltimateSurvival
 			return flag;
 		}
 
-		// Token: 0x06003AA9 RID: 15017 RVA: 0x001A99B0 File Offset: 0x001A7BB0
+		// Token: 0x06003192 RID: 12690 RVA: 0x00160428 File Offset: 0x0015E628
 		private bool TryStop_Crouch()
 		{
 			bool flag = Time.time > this.m_LastTimeToggledCrouching + this.m_CrouchDuration;
@@ -276,7 +276,7 @@ namespace UltimateSurvival
 			return flag3;
 		}
 
-		// Token: 0x06003AAA RID: 15018 RVA: 0x0002A99E File Offset: 0x00028B9E
+		// Token: 0x06003193 RID: 12691 RVA: 0x0016048D File Offset: 0x0015E68D
 		private IEnumerator C_SetHeight(float targetHeight)
 		{
 			float speed = Mathf.Abs(targetHeight - this.m_Controller.height) / this.m_CrouchDuration;
@@ -289,7 +289,7 @@ namespace UltimateSurvival
 			yield break;
 		}
 
-		// Token: 0x06003AAB RID: 15019 RVA: 0x001A9A18 File Offset: 0x001A7C18
+		// Token: 0x06003194 RID: 12692 RVA: 0x001604A4 File Offset: 0x0015E6A4
 		private void OnControllerColliderHit(ControllerColliderHit hit)
 		{
 			this.m_LastSurfaceNormal = hit.normal;
@@ -301,7 +301,7 @@ namespace UltimateSurvival
 			}
 		}
 
-		// Token: 0x06003AAC RID: 15020 RVA: 0x0002A9B4 File Offset: 0x00028BB4
+		// Token: 0x06003195 RID: 12693 RVA: 0x00160518 File Offset: 0x0015E718
 		private void OnTriggerEnter(Collider other)
 		{
 			if (other.CompareTag("Ladder"))
@@ -310,7 +310,7 @@ namespace UltimateSurvival
 			}
 		}
 
-		// Token: 0x06003AAD RID: 15021 RVA: 0x0002A9D9 File Offset: 0x00028BD9
+		// Token: 0x06003196 RID: 12694 RVA: 0x0016053D File Offset: 0x0015E73D
 		private void OnTriggerExit(Collider other)
 		{
 			if (other.CompareTag("Ladder"))
@@ -319,7 +319,7 @@ namespace UltimateSurvival
 			}
 		}
 
-		// Token: 0x06003AAE RID: 15022 RVA: 0x001A9A8C File Offset: 0x001A7C8C
+		// Token: 0x06003197 RID: 12695 RVA: 0x00160560 File Offset: 0x0015E760
 		private bool CheckForObstacles(bool checkAbove, float maxDistance, out RaycastHit hitInfo)
 		{
 			Vector3 vector = base.transform.position + (checkAbove ? (Vector3.up * this.m_Controller.height) : Vector3.zero);
@@ -327,7 +327,7 @@ namespace UltimateSurvival
 			return Physics.SphereCast(new Ray(vector, vector2), this.m_Controller.radius, ref hitInfo, maxDistance, -1, 1);
 		}
 
-		// Token: 0x06003AAF RID: 15023 RVA: 0x001A9AF4 File Offset: 0x001A7CF4
+		// Token: 0x06003198 RID: 12696 RVA: 0x001605C8 File Offset: 0x0015E7C8
 		private bool CheckForObstacles(bool checkAbove, float maxDistance)
 		{
 			Vector3 vector = base.transform.position + (checkAbove ? (Vector3.up * this.m_Controller.height) : Vector3.zero);
@@ -335,36 +335,36 @@ namespace UltimateSurvival
 			return Physics.SphereCast(new Ray(vector, vector2), this.m_Controller.radius, maxDistance, -1, 1);
 		}
 
-		// Token: 0x040034C9 RID: 13513
+		// Token: 0x04002BBD RID: 11197
 		[Header("General")]
 		[SerializeField]
 		[Tooltip("How fast the player will change direction / accelerate.")]
 		private float m_Acceleration = 5f;
 
-		// Token: 0x040034CA RID: 13514
+		// Token: 0x04002BBE RID: 11198
 		[SerializeField]
 		[Tooltip("How fast the player will stop if no input is given (applies only when grounded).")]
 		private float m_Damping = 8f;
 
-		// Token: 0x040034CB RID: 13515
+		// Token: 0x04002BBF RID: 11199
 		[SerializeField]
 		[Range(0f, 1f)]
 		[Tooltip("How well the player can control direction while in air.")]
 		private float m_AirControl = 0.15f;
 
-		// Token: 0x040034CC RID: 13516
+		// Token: 0x04002BC0 RID: 11200
 		[SerializeField]
 		private float m_ForwardSpeed = 4f;
 
-		// Token: 0x040034CD RID: 13517
+		// Token: 0x04002BC1 RID: 11201
 		[SerializeField]
 		private float m_SidewaysSpeed = 3.5f;
 
-		// Token: 0x040034CE RID: 13518
+		// Token: 0x04002BC2 RID: 11202
 		[SerializeField]
 		private float m_BackwardSpeed = 3f;
 
-		// Token: 0x040034CF RID: 13519
+		// Token: 0x04002BC3 RID: 11203
 		[SerializeField]
 		[Tooltip("Curve for multiplying speed based on slope.")]
 		private AnimationCurve m_SlopeMultiplier = new AnimationCurve(new Keyframe[]
@@ -373,128 +373,128 @@ namespace UltimateSurvival
 			new Keyframe(1f, 1f)
 		});
 
-		// Token: 0x040034D0 RID: 13520
+		// Token: 0x04002BC4 RID: 11204
 		[SerializeField]
 		[Tooltip("A small number will make the player bump when descending slopes, a larger one will make it stick to the surface.")]
 		private float m_AntiBumpFactor = 1f;
 
-		// Token: 0x040034D1 RID: 13521
+		// Token: 0x04002BC5 RID: 11205
 		[Header("Running")]
 		[SerializeField]
 		[Tooltip("Can the player run?")]
 		private bool m_EnableRunning = true;
 
-		// Token: 0x040034D2 RID: 13522
+		// Token: 0x04002BC6 RID: 11206
 		[SerializeField]
 		[Tooltip("The current movement speed will be multiplied by this value, when sprinting.")]
 		private float m_RunSpeedMultiplier = 1.8f;
 
-		// Token: 0x040034D3 RID: 13523
+		// Token: 0x04002BC7 RID: 11207
 		[Header("Jumping")]
 		[SerializeField]
 		[Tooltip("Can the player jump?")]
 		private bool m_EnableJumping = true;
 
-		// Token: 0x040034D4 RID: 13524
+		// Token: 0x04002BC8 RID: 11208
 		[SerializeField]
 		[Tooltip("How high do we jump when pressing jump and letting go immediately.")]
 		private float m_JumpHeight = 1f;
 
-		// Token: 0x040034D5 RID: 13525
+		// Token: 0x04002BC9 RID: 11209
 		[SerializeField]
 		private float m_JumpSpeedFromLadder = 5f;
 
-		// Token: 0x040034D6 RID: 13526
+		// Token: 0x04002BCA RID: 11210
 		[Header("Crouching")]
 		[SerializeField]
 		[Tooltip("Can the player crouch?")]
 		private bool m_EnableCrouching = true;
 
-		// Token: 0x040034D7 RID: 13527
+		// Token: 0x04002BCB RID: 11211
 		[SerializeField]
 		[Tooltip("The current movement speed will be multiplied by this value, when moving crouched.")]
 		private float m_CrouchSpeedMultiplier = 0.7f;
 
-		// Token: 0x040034D8 RID: 13528
+		// Token: 0x04002BCC RID: 11212
 		[SerializeField]
 		[Tooltip("The CharacterController's height when fully-crouched.")]
 		private float m_CrouchHeight = 1f;
 
-		// Token: 0x040034D9 RID: 13529
+		// Token: 0x04002BCD RID: 11213
 		[SerializeField]
 		[Tooltip("How much time it takes to go in and out of crouch-mode.")]
 		private float m_CrouchDuration = 0.3f;
 
-		// Token: 0x040034DA RID: 13530
+		// Token: 0x04002BCE RID: 11214
 		[Header("Ladder Climbing")]
 		[SerializeField]
 		[Tooltip("How fast the character moves on ladder.")]
 		private float m_SpeedOnLadder = 1f;
 
-		// Token: 0x040034DB RID: 13531
+		// Token: 0x04002BCF RID: 11215
 		[Header("Sliding")]
 		[SerializeField]
 		[Tooltip("Will the player slide on steep surfaces?")]
 		private bool m_EnableSliding = true;
 
-		// Token: 0x040034DC RID: 13532
+		// Token: 0x04002BD0 RID: 11216
 		[SerializeField]
 		private float m_SlideLimit = 32f;
 
-		// Token: 0x040034DD RID: 13533
+		// Token: 0x04002BD1 RID: 11217
 		[Tooltip("How fast does the character slide on steep surfaces?")]
 		[SerializeField]
 		private float m_SlidingSpeed = 15f;
 
-		// Token: 0x040034DE RID: 13534
+		// Token: 0x04002BD2 RID: 11218
 		[Header("Physics")]
 		[SerializeField]
 		private float m_PushForce = 60f;
 
-		// Token: 0x040034DF RID: 13535
+		// Token: 0x04002BD3 RID: 11219
 		[SerializeField]
 		[Tooltip("How fast we accelerate into falling.")]
 		private float m_Gravity = 20f;
 
-		// Token: 0x040034E0 RID: 13536
+		// Token: 0x04002BD4 RID: 11220
 		private CharacterController m_Controller;
 
-		// Token: 0x040034E1 RID: 13537
+		// Token: 0x04002BD5 RID: 11221
 		private float m_DesiredSpeed;
 
-		// Token: 0x040034E2 RID: 13538
+		// Token: 0x04002BD6 RID: 11222
 		private Vector3 m_CurrentVelocity;
 
-		// Token: 0x040034E3 RID: 13539
+		// Token: 0x04002BD7 RID: 11223
 		private Vector3 m_SlideVelocity;
 
-		// Token: 0x040034E4 RID: 13540
+		// Token: 0x04002BD8 RID: 11224
 		private Vector3 m_DesiredVelocity;
 
-		// Token: 0x040034E5 RID: 13541
+		// Token: 0x04002BD9 RID: 11225
 		private Vector3 m_LastSurfaceNormal;
 
-		// Token: 0x040034E6 RID: 13542
+		// Token: 0x04002BDA RID: 11226
 		private CollisionFlags m_LastCollisionFlags;
 
-		// Token: 0x040034E7 RID: 13543
+		// Token: 0x04002BDB RID: 11227
 		private float m_UncrouchedHeight;
 
-		// Token: 0x040034E8 RID: 13544
+		// Token: 0x04002BDC RID: 11228
 		private bool m_PreviouslyGrounded;
 
-		// Token: 0x040034E9 RID: 13545
+		// Token: 0x04002BDD RID: 11229
 		private float m_LastTimeToggledCrouching;
 
-		// Token: 0x040034EA RID: 13546
+		// Token: 0x04002BDE RID: 11230
 		private CCDrivenController.JumpedFrom m_JumpedFrom;
 
-		// Token: 0x020008EF RID: 2287
+		// Token: 0x020014CB RID: 5323
 		public enum JumpedFrom
 		{
-			// Token: 0x040034EC RID: 13548
+			// Token: 0x04006D4F RID: 27983
 			Ground,
-			// Token: 0x040034ED RID: 13549
+			// Token: 0x04006D50 RID: 27984
 			Ladder
 		}
 	}

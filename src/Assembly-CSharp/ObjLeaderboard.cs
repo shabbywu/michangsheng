@@ -1,16 +1,16 @@
 ﻿using System;
 using UnityEngine;
 
-// Token: 0x02000759 RID: 1881
+// Token: 0x020004E3 RID: 1251
 public class ObjLeaderboard : MonoBehaviour
 {
-	// Token: 0x06002FDA RID: 12250 RVA: 0x000238B6 File Offset: 0x00021AB6
+	// Token: 0x06002871 RID: 10353 RVA: 0x00132390 File Offset: 0x00130590
 	private void Awake()
 	{
 		ObjLeaderboard.Leaderboard = false;
 	}
 
-	// Token: 0x06002FDB RID: 12251 RVA: 0x0017E904 File Offset: 0x0017CB04
+	// Token: 0x06002872 RID: 10354 RVA: 0x00132398 File Offset: 0x00130598
 	private void Start()
 	{
 		this.xDist = this.maxXPos - this.minXPos;
@@ -31,7 +31,7 @@ public class ObjLeaderboard : MonoBehaviour
 		this.rememberYPos = this.obj[0].position.y;
 	}
 
-	// Token: 0x06002FDC RID: 12252 RVA: 0x0017EA20 File Offset: 0x0017CC20
+	// Token: 0x06002873 RID: 10355 RVA: 0x001324B4 File Offset: 0x001306B4
 	private void Update()
 	{
 		if (ObjLeaderboard.Leaderboard)
@@ -43,30 +43,30 @@ public class ObjLeaderboard : MonoBehaviour
 		}
 	}
 
-	// Token: 0x04002B38 RID: 11064
+	// Token: 0x040023AA RID: 9130
 	public static bool Leaderboard;
 
-	// Token: 0x04002B39 RID: 11065
+	// Token: 0x040023AB RID: 9131
 	public static SwipeControlLeaderboard swipeCtrl;
 
-	// Token: 0x04002B3A RID: 11066
+	// Token: 0x040023AC RID: 9132
 	public Transform[] obj = new Transform[0];
 
-	// Token: 0x04002B3B RID: 11067
+	// Token: 0x040023AD RID: 9133
 	public float minXPos;
 
-	// Token: 0x04002B3C RID: 11068
+	// Token: 0x040023AE RID: 9134
 	public float maxXPos = 55f;
 
-	// Token: 0x04002B3D RID: 11069
+	// Token: 0x040023AF RID: 9135
 	private float xDist;
 
-	// Token: 0x04002B3E RID: 11070
+	// Token: 0x040023B0 RID: 9136
 	private float xDistFactor;
 
-	// Token: 0x04002B3F RID: 11071
+	// Token: 0x040023B1 RID: 9137
 	private float swipeSmoothFactor = 1f;
 
-	// Token: 0x04002B40 RID: 11072
+	// Token: 0x040023B2 RID: 9138
 	private float rememberYPos;
 }

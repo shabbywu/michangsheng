@@ -3,12 +3,12 @@ using UnityEngine;
 
 namespace BehaviorDesigner.Runtime.Tasks.Basic.Math
 {
-	// Token: 0x020015BC RID: 5564
+	// Token: 0x02001100 RID: 4352
 	[TaskCategory("Basic/Math")]
 	[TaskDescription("Performs a math operation on two floats: Add, Subtract, Multiply, Divide, Min, or Max.")]
 	public class FloatOperator : Action
 	{
-		// Token: 0x060082BF RID: 33471 RVA: 0x002CDF4C File Offset: 0x002CC14C
+		// Token: 0x060074C5 RID: 29893 RVA: 0x002B30F4 File Offset: 0x002B12F4
 		public override TaskStatus OnUpdate()
 		{
 			switch (this.operation)
@@ -38,7 +38,7 @@ namespace BehaviorDesigner.Runtime.Tasks.Basic.Math
 			return 2;
 		}
 
-		// Token: 0x060082C0 RID: 33472 RVA: 0x00059AE7 File Offset: 0x00057CE7
+		// Token: 0x060074C6 RID: 29894 RVA: 0x002B323B File Offset: 0x002B143B
 		public override void OnReset()
 		{
 			this.operation = FloatOperator.Operation.Add;
@@ -47,38 +47,38 @@ namespace BehaviorDesigner.Runtime.Tasks.Basic.Math
 			this.storeResult.Value = 0f;
 		}
 
-		// Token: 0x04006F80 RID: 28544
+		// Token: 0x04006074 RID: 24692
 		[Tooltip("The operation to perform")]
 		public FloatOperator.Operation operation;
 
-		// Token: 0x04006F81 RID: 28545
+		// Token: 0x04006075 RID: 24693
 		[Tooltip("The first float")]
 		public SharedFloat float1;
 
-		// Token: 0x04006F82 RID: 28546
+		// Token: 0x04006076 RID: 24694
 		[Tooltip("The second float")]
 		public SharedFloat float2;
 
-		// Token: 0x04006F83 RID: 28547
+		// Token: 0x04006077 RID: 24695
 		[Tooltip("The variable to store the result")]
 		public SharedFloat storeResult;
 
-		// Token: 0x020015BD RID: 5565
+		// Token: 0x02001735 RID: 5941
 		public enum Operation
 		{
-			// Token: 0x04006F85 RID: 28549
+			// Token: 0x04007564 RID: 30052
 			Add,
-			// Token: 0x04006F86 RID: 28550
+			// Token: 0x04007565 RID: 30053
 			Subtract,
-			// Token: 0x04006F87 RID: 28551
+			// Token: 0x04007566 RID: 30054
 			Multiply,
-			// Token: 0x04006F88 RID: 28552
+			// Token: 0x04007567 RID: 30055
 			Divide,
-			// Token: 0x04006F89 RID: 28553
+			// Token: 0x04007568 RID: 30056
 			Min,
-			// Token: 0x04006F8A RID: 28554
+			// Token: 0x04007569 RID: 30057
 			Max,
-			// Token: 0x04006F8B RID: 28555
+			// Token: 0x0400756A RID: 30058
 			Modulo
 		}
 	}

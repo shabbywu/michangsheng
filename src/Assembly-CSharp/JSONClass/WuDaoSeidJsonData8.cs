@@ -3,10 +3,10 @@ using System.Collections.Generic;
 
 namespace JSONClass
 {
-	// Token: 0x02000D09 RID: 3337
+	// Token: 0x02000989 RID: 2441
 	public class WuDaoSeidJsonData8 : IJSONClass
 	{
-		// Token: 0x06004F8E RID: 20366 RVA: 0x00215D10 File Offset: 0x00213F10
+		// Token: 0x06004438 RID: 17464 RVA: 0x001D0D88 File Offset: 0x001CEF88
 		public static void InitDataDict()
 		{
 			foreach (JSONObject jsonobject in jsonData.instance.WuDaoSeidJsonData[8].list)
@@ -39,27 +39,27 @@ namespace JSONClass
 			}
 		}
 
-		// Token: 0x06004F8F RID: 20367 RVA: 0x000042DD File Offset: 0x000024DD
+		// Token: 0x06004439 RID: 17465 RVA: 0x00004095 File Offset: 0x00002295
 		private static void OnInitFinish()
 		{
 		}
 
-		// Token: 0x040050C5 RID: 20677
+		// Token: 0x040045D1 RID: 17873
 		public static int SEIDID = 8;
 
-		// Token: 0x040050C6 RID: 20678
+		// Token: 0x040045D2 RID: 17874
 		public static Dictionary<int, WuDaoSeidJsonData8> DataDict = new Dictionary<int, WuDaoSeidJsonData8>();
 
-		// Token: 0x040050C7 RID: 20679
+		// Token: 0x040045D3 RID: 17875
 		public static List<WuDaoSeidJsonData8> DataList = new List<WuDaoSeidJsonData8>();
 
-		// Token: 0x040050C8 RID: 20680
+		// Token: 0x040045D4 RID: 17876
 		public static Action OnInitFinishAction = new Action(WuDaoSeidJsonData8.OnInitFinish);
 
-		// Token: 0x040050C9 RID: 20681
+		// Token: 0x040045D5 RID: 17877
 		public int skillid;
 
-		// Token: 0x040050CA RID: 20682
+		// Token: 0x040045D6 RID: 17878
 		public int value1;
 	}
 }

@@ -2,10 +2,10 @@
 
 namespace KBEngine
 {
-	// Token: 0x02000F61 RID: 3937
+	// Token: 0x02000BDD RID: 3037
 	public class MessageReaderTCP : MessageReaderBase
 	{
-		// Token: 0x06005EB2 RID: 24242 RVA: 0x00262980 File Offset: 0x00260B80
+		// Token: 0x06005474 RID: 21620 RVA: 0x002353BC File Offset: 0x002335BC
 		public override void process(byte[] datas, uint offset, uint length)
 		{
 			uint num = offset;
@@ -106,31 +106,31 @@ namespace KBEngine
 			}
 		}
 
-		// Token: 0x04005B26 RID: 23334
+		// Token: 0x04005082 RID: 20610
 		private ushort msgid;
 
-		// Token: 0x04005B27 RID: 23335
+		// Token: 0x04005083 RID: 20611
 		private ushort msglen;
 
-		// Token: 0x04005B28 RID: 23336
+		// Token: 0x04005084 RID: 20612
 		private uint expectSize = 2U;
 
-		// Token: 0x04005B29 RID: 23337
+		// Token: 0x04005085 RID: 20613
 		private MessageReaderTCP.READ_STATE state;
 
-		// Token: 0x04005B2A RID: 23338
+		// Token: 0x04005086 RID: 20614
 		private MemoryStream stream = new MemoryStream();
 
-		// Token: 0x02000F62 RID: 3938
+		// Token: 0x020015FA RID: 5626
 		private enum READ_STATE
 		{
-			// Token: 0x04005B2C RID: 23340
+			// Token: 0x040070FC RID: 28924
 			READ_STATE_MSGID,
-			// Token: 0x04005B2D RID: 23341
+			// Token: 0x040070FD RID: 28925
 			READ_STATE_MSGLEN,
-			// Token: 0x04005B2E RID: 23342
+			// Token: 0x040070FE RID: 28926
 			READ_STATE_MSGLEN_EX,
-			// Token: 0x04005B2F RID: 23343
+			// Token: 0x040070FF RID: 28927
 			READ_STATE_BODY
 		}
 	}

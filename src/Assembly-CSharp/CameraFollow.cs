@@ -2,17 +2,17 @@
 using System.Collections;
 using UnityEngine;
 
-// Token: 0x02000671 RID: 1649
+// Token: 0x02000497 RID: 1175
 public class CameraFollow : MonoBehaviour
 {
-	// Token: 0x06002932 RID: 10546 RVA: 0x00020078 File Offset: 0x0001E278
+	// Token: 0x06002516 RID: 9494 RVA: 0x00101BF2 File Offset: 0x000FFDF2
 	private void Start()
 	{
 		this.thisTransform = base.transform;
 		this.monkeyControll = GameObject.Find("Player").GetComponent<MonkeyController2D>();
 	}
 
-	// Token: 0x06002933 RID: 10547 RVA: 0x00141810 File Offset: 0x0013FA10
+	// Token: 0x06002517 RID: 9495 RVA: 0x00101C18 File Offset: 0x000FFE18
 	private void Update()
 	{
 		if (this.cameraFollowX)
@@ -36,7 +36,7 @@ public class CameraFollow : MonoBehaviour
 		bool flag = this.changeHeight;
 	}
 
-	// Token: 0x06002934 RID: 10548 RVA: 0x0002009B File Offset: 0x0001E29B
+	// Token: 0x06002518 RID: 9496 RVA: 0x00101D7D File Offset: 0x000FFF7D
 	private IEnumerator catchCameraY()
 	{
 		for (float i = 0f; i < 1f; i += 0.001f)
@@ -53,36 +53,36 @@ public class CameraFollow : MonoBehaviour
 		yield break;
 	}
 
-	// Token: 0x040022F4 RID: 8948
+	// Token: 0x04001DE2 RID: 7650
 	public GameObject cameraTarget;
 
-	// Token: 0x040022F5 RID: 8949
+	// Token: 0x04001DE3 RID: 7651
 	public GameObject player;
 
-	// Token: 0x040022F6 RID: 8950
+	// Token: 0x04001DE4 RID: 7652
 	public float smoothTime = 0.1f;
 
-	// Token: 0x040022F7 RID: 8951
+	// Token: 0x04001DE5 RID: 7653
 	public bool cameraFollowX = true;
 
-	// Token: 0x040022F8 RID: 8952
+	// Token: 0x04001DE6 RID: 7654
 	public bool cameraFollowY = true;
 
-	// Token: 0x040022F9 RID: 8953
+	// Token: 0x04001DE7 RID: 7655
 	public bool cameraFollowHeight;
 
-	// Token: 0x040022FA RID: 8954
+	// Token: 0x04001DE8 RID: 7656
 	public float cameraHeight = 2.5f;
 
-	// Token: 0x040022FB RID: 8955
+	// Token: 0x04001DE9 RID: 7657
 	public Vector2 velocity;
 
-	// Token: 0x040022FC RID: 8956
+	// Token: 0x04001DEA RID: 7658
 	private Transform thisTransform;
 
-	// Token: 0x040022FD RID: 8957
+	// Token: 0x04001DEB RID: 7659
 	public bool changeHeight;
 
-	// Token: 0x040022FE RID: 8958
+	// Token: 0x04001DEC RID: 7660
 	private MonkeyController2D monkeyControll;
 }

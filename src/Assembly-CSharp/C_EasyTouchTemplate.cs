@@ -1,10 +1,10 @@
 ﻿using System;
 using UnityEngine;
 
-// Token: 0x02000192 RID: 402
+// Token: 0x0200010E RID: 270
 public class C_EasyTouchTemplate : MonoBehaviour
 {
-	// Token: 0x06000D70 RID: 3440 RVA: 0x0009B7EC File Offset: 0x000999EC
+	// Token: 0x06000C4F RID: 3151 RVA: 0x0004A05C File Offset: 0x0004825C
 	private void OnEnable()
 	{
 		EasyTouch.On_Cancel += this.On_Cancel;
@@ -43,7 +43,7 @@ public class C_EasyTouchTemplate : MonoBehaviour
 		EasyTouch.On_SwipeEnd2Fingers += this.On_SwipeEnd2Fingers;
 	}
 
-	// Token: 0x06000D71 RID: 3441 RVA: 0x0009BA3C File Offset: 0x00099C3C
+	// Token: 0x06000C50 RID: 3152 RVA: 0x0004A2AC File Offset: 0x000484AC
 	private void OnDisable()
 	{
 		EasyTouch.On_Cancel -= this.On_Cancel;
@@ -82,7 +82,7 @@ public class C_EasyTouchTemplate : MonoBehaviour
 		EasyTouch.On_SwipeEnd2Fingers -= this.On_SwipeEnd2Fingers;
 	}
 
-	// Token: 0x06000D72 RID: 3442 RVA: 0x0009BA3C File Offset: 0x00099C3C
+	// Token: 0x06000C51 RID: 3153 RVA: 0x0004A4FC File Offset: 0x000486FC
 	private void OnDestroy()
 	{
 		EasyTouch.On_Cancel -= this.On_Cancel;
@@ -121,172 +121,172 @@ public class C_EasyTouchTemplate : MonoBehaviour
 		EasyTouch.On_SwipeEnd2Fingers -= this.On_SwipeEnd2Fingers;
 	}
 
-	// Token: 0x06000D73 RID: 3443 RVA: 0x000042DD File Offset: 0x000024DD
+	// Token: 0x06000C52 RID: 3154 RVA: 0x00004095 File Offset: 0x00002295
 	private void On_Cancel(Gesture gesture)
 	{
 	}
 
-	// Token: 0x06000D74 RID: 3444 RVA: 0x000042DD File Offset: 0x000024DD
+	// Token: 0x06000C53 RID: 3155 RVA: 0x00004095 File Offset: 0x00002295
 	private void On_TouchStart(Gesture gesture)
 	{
 	}
 
-	// Token: 0x06000D75 RID: 3445 RVA: 0x000042DD File Offset: 0x000024DD
+	// Token: 0x06000C54 RID: 3156 RVA: 0x00004095 File Offset: 0x00002295
 	private void On_TouchDown(Gesture gesture)
 	{
 	}
 
-	// Token: 0x06000D76 RID: 3446 RVA: 0x000042DD File Offset: 0x000024DD
+	// Token: 0x06000C55 RID: 3157 RVA: 0x00004095 File Offset: 0x00002295
 	private void On_TouchUp(Gesture gesture)
 	{
 	}
 
-	// Token: 0x06000D77 RID: 3447 RVA: 0x000042DD File Offset: 0x000024DD
+	// Token: 0x06000C56 RID: 3158 RVA: 0x00004095 File Offset: 0x00002295
 	private void On_SimpleTap(Gesture gesture)
 	{
 	}
 
-	// Token: 0x06000D78 RID: 3448 RVA: 0x000042DD File Offset: 0x000024DD
+	// Token: 0x06000C57 RID: 3159 RVA: 0x00004095 File Offset: 0x00002295
 	private void On_DoubleTap(Gesture gesture)
 	{
 	}
 
-	// Token: 0x06000D79 RID: 3449 RVA: 0x000042DD File Offset: 0x000024DD
+	// Token: 0x06000C58 RID: 3160 RVA: 0x00004095 File Offset: 0x00002295
 	private void On_LongTapStart(Gesture gesture)
 	{
 	}
 
-	// Token: 0x06000D7A RID: 3450 RVA: 0x000042DD File Offset: 0x000024DD
+	// Token: 0x06000C59 RID: 3161 RVA: 0x00004095 File Offset: 0x00002295
 	private void On_LongTap(Gesture gesture)
 	{
 	}
 
-	// Token: 0x06000D7B RID: 3451 RVA: 0x000042DD File Offset: 0x000024DD
+	// Token: 0x06000C5A RID: 3162 RVA: 0x00004095 File Offset: 0x00002295
 	private void On_LongTapEnd(Gesture gesture)
 	{
 	}
 
-	// Token: 0x06000D7C RID: 3452 RVA: 0x000042DD File Offset: 0x000024DD
+	// Token: 0x06000C5B RID: 3163 RVA: 0x00004095 File Offset: 0x00002295
 	private void On_DragStart(Gesture gesture)
 	{
 	}
 
-	// Token: 0x06000D7D RID: 3453 RVA: 0x000042DD File Offset: 0x000024DD
+	// Token: 0x06000C5C RID: 3164 RVA: 0x00004095 File Offset: 0x00002295
 	private void On_Drag(Gesture gesture)
 	{
 	}
 
-	// Token: 0x06000D7E RID: 3454 RVA: 0x000042DD File Offset: 0x000024DD
+	// Token: 0x06000C5D RID: 3165 RVA: 0x00004095 File Offset: 0x00002295
 	private void On_DragEnd(Gesture gesture)
 	{
 	}
 
-	// Token: 0x06000D7F RID: 3455 RVA: 0x000042DD File Offset: 0x000024DD
+	// Token: 0x06000C5E RID: 3166 RVA: 0x00004095 File Offset: 0x00002295
 	private void On_SwipeStart(Gesture gesture)
 	{
 	}
 
-	// Token: 0x06000D80 RID: 3456 RVA: 0x000042DD File Offset: 0x000024DD
+	// Token: 0x06000C5F RID: 3167 RVA: 0x00004095 File Offset: 0x00002295
 	private void On_Swipe(Gesture gesture)
 	{
 	}
 
-	// Token: 0x06000D81 RID: 3457 RVA: 0x000042DD File Offset: 0x000024DD
+	// Token: 0x06000C60 RID: 3168 RVA: 0x00004095 File Offset: 0x00002295
 	private void On_SwipeEnd(Gesture gesture)
 	{
 	}
 
-	// Token: 0x06000D82 RID: 3458 RVA: 0x000042DD File Offset: 0x000024DD
+	// Token: 0x06000C61 RID: 3169 RVA: 0x00004095 File Offset: 0x00002295
 	private void On_TouchStart2Fingers(Gesture gesture)
 	{
 	}
 
-	// Token: 0x06000D83 RID: 3459 RVA: 0x000042DD File Offset: 0x000024DD
+	// Token: 0x06000C62 RID: 3170 RVA: 0x00004095 File Offset: 0x00002295
 	private void On_TouchDown2Fingers(Gesture gesture)
 	{
 	}
 
-	// Token: 0x06000D84 RID: 3460 RVA: 0x000042DD File Offset: 0x000024DD
+	// Token: 0x06000C63 RID: 3171 RVA: 0x00004095 File Offset: 0x00002295
 	private void On_TouchUp2Fingers(Gesture gesture)
 	{
 	}
 
-	// Token: 0x06000D85 RID: 3461 RVA: 0x000042DD File Offset: 0x000024DD
+	// Token: 0x06000C64 RID: 3172 RVA: 0x00004095 File Offset: 0x00002295
 	private void On_SimpleTap2Fingers(Gesture gesture)
 	{
 	}
 
-	// Token: 0x06000D86 RID: 3462 RVA: 0x000042DD File Offset: 0x000024DD
+	// Token: 0x06000C65 RID: 3173 RVA: 0x00004095 File Offset: 0x00002295
 	private void On_DoubleTap2Fingers(Gesture gesture)
 	{
 	}
 
-	// Token: 0x06000D87 RID: 3463 RVA: 0x000042DD File Offset: 0x000024DD
+	// Token: 0x06000C66 RID: 3174 RVA: 0x00004095 File Offset: 0x00002295
 	private void On_LongTapStart2Fingers(Gesture gesture)
 	{
 	}
 
-	// Token: 0x06000D88 RID: 3464 RVA: 0x000042DD File Offset: 0x000024DD
+	// Token: 0x06000C67 RID: 3175 RVA: 0x00004095 File Offset: 0x00002295
 	private void On_LongTap2Fingers(Gesture gesture)
 	{
 	}
 
-	// Token: 0x06000D89 RID: 3465 RVA: 0x000042DD File Offset: 0x000024DD
+	// Token: 0x06000C68 RID: 3176 RVA: 0x00004095 File Offset: 0x00002295
 	private void On_LongTapEnd2Fingers(Gesture gesture)
 	{
 	}
 
-	// Token: 0x06000D8A RID: 3466 RVA: 0x000042DD File Offset: 0x000024DD
+	// Token: 0x06000C69 RID: 3177 RVA: 0x00004095 File Offset: 0x00002295
 	private void On_Twist(Gesture gesture)
 	{
 	}
 
-	// Token: 0x06000D8B RID: 3467 RVA: 0x000042DD File Offset: 0x000024DD
+	// Token: 0x06000C6A RID: 3178 RVA: 0x00004095 File Offset: 0x00002295
 	private void On_TwistEnd(Gesture gesture)
 	{
 	}
 
-	// Token: 0x06000D8C RID: 3468 RVA: 0x000042DD File Offset: 0x000024DD
+	// Token: 0x06000C6B RID: 3179 RVA: 0x00004095 File Offset: 0x00002295
 	private void On_PinchIn(Gesture gesture)
 	{
 	}
 
-	// Token: 0x06000D8D RID: 3469 RVA: 0x000042DD File Offset: 0x000024DD
+	// Token: 0x06000C6C RID: 3180 RVA: 0x00004095 File Offset: 0x00002295
 	private void On_PinchOut(Gesture gesture)
 	{
 	}
 
-	// Token: 0x06000D8E RID: 3470 RVA: 0x000042DD File Offset: 0x000024DD
+	// Token: 0x06000C6D RID: 3181 RVA: 0x00004095 File Offset: 0x00002295
 	private void On_PinchEnd(Gesture gesture)
 	{
 	}
 
-	// Token: 0x06000D8F RID: 3471 RVA: 0x000042DD File Offset: 0x000024DD
+	// Token: 0x06000C6E RID: 3182 RVA: 0x00004095 File Offset: 0x00002295
 	private void On_DragStart2Fingers(Gesture gesture)
 	{
 	}
 
-	// Token: 0x06000D90 RID: 3472 RVA: 0x000042DD File Offset: 0x000024DD
+	// Token: 0x06000C6F RID: 3183 RVA: 0x00004095 File Offset: 0x00002295
 	private void On_Drag2Fingers(Gesture gesture)
 	{
 	}
 
-	// Token: 0x06000D91 RID: 3473 RVA: 0x000042DD File Offset: 0x000024DD
+	// Token: 0x06000C70 RID: 3184 RVA: 0x00004095 File Offset: 0x00002295
 	private void On_DragEnd2Fingers(Gesture gesture)
 	{
 	}
 
-	// Token: 0x06000D92 RID: 3474 RVA: 0x000042DD File Offset: 0x000024DD
+	// Token: 0x06000C71 RID: 3185 RVA: 0x00004095 File Offset: 0x00002295
 	private void On_SwipeStart2Fingers(Gesture gesture)
 	{
 	}
 
-	// Token: 0x06000D93 RID: 3475 RVA: 0x000042DD File Offset: 0x000024DD
+	// Token: 0x06000C72 RID: 3186 RVA: 0x00004095 File Offset: 0x00002295
 	private void On_Swipe2Fingers(Gesture gesture)
 	{
 	}
 
-	// Token: 0x06000D94 RID: 3476 RVA: 0x000042DD File Offset: 0x000024DD
+	// Token: 0x06000C73 RID: 3187 RVA: 0x00004095 File Offset: 0x00002295
 	private void On_SwipeEnd2Fingers(Gesture gesture)
 	{
 	}

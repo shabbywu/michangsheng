@@ -2,13 +2,13 @@
 
 namespace MoonSharp.Interpreter
 {
-	// Token: 0x02001094 RID: 4244
+	// Token: 0x02000CBF RID: 3263
 	[AttributeUsage(AttributeTargets.Field, Inherited = false, AllowMultiple = false)]
 	public sealed class MoonSharpModuleConstantAttribute : Attribute
 	{
-		// Token: 0x17000922 RID: 2338
-		// (get) Token: 0x06006672 RID: 26226 RVA: 0x00046AC4 File Offset: 0x00044CC4
-		// (set) Token: 0x06006673 RID: 26227 RVA: 0x00046ACC File Offset: 0x00044CCC
+		// Token: 0x170006C7 RID: 1735
+		// (get) Token: 0x06005B6E RID: 23406 RVA: 0x0025A64E File Offset: 0x0025884E
+		// (set) Token: 0x06005B6F RID: 23407 RVA: 0x0025A656 File Offset: 0x00258856
 		public string Name { get; set; }
 	}
 }

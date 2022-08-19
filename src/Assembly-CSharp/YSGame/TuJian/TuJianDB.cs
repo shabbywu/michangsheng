@@ -5,10 +5,10 @@ using UnityEngine;
 
 namespace YSGame.TuJian
 {
-	// Token: 0x02000DD5 RID: 3541
+	// Token: 0x02000A9B RID: 2715
 	public static class TuJianDB
 	{
-		// Token: 0x06005545 RID: 21829 RVA: 0x00237AF4 File Offset: 0x00235CF4
+		// Token: 0x06004C05 RID: 19461 RVA: 0x00206530 File Offset: 0x00204730
 		public static void InitDB()
 		{
 			if (TuJianDB._IsInited)
@@ -42,35 +42,35 @@ namespace YSGame.TuJian
 			TuJianDB._IsInited = true;
 		}
 
-		// Token: 0x06005546 RID: 21830 RVA: 0x00237C14 File Offset: 0x00235E14
+		// Token: 0x06004C06 RID: 19462 RVA: 0x00206650 File Offset: 0x00204850
 		public static Sprite GetRichTextSprite(string name)
 		{
 			if (TuJianDB.TuJianRichTextSprite.ContainsKey(name))
 			{
 				return TuJianDB.TuJianRichTextSprite[name];
 			}
-			Sprite sprite = ResManager.inst.LoadSprite("NewUI/TuJian/Image/" + name);
+			Sprite sprite = ModResources.LoadSprite("NewUI/TuJian/Image/" + name);
 			if (sprite != null)
 			{
-				TuJianDB.TuJianRichTextSprite.TryAdd(sprite.name, sprite, "");
+				TuJianDB.TuJianRichTextSprite.TryAdd(name, sprite, "");
 				return sprite;
 			}
 			return null;
 		}
 
-		// Token: 0x06005547 RID: 21831 RVA: 0x0003CF88 File Offset: 0x0003B188
+		// Token: 0x06004C07 RID: 19463 RVA: 0x002066A5 File Offset: 0x002048A5
 		public static string GetLQWuWeiTypeName(int wuWeiType)
 		{
 			return TuJianDB._LQWuWeiTypeName[wuWeiType];
 		}
 
-		// Token: 0x06005548 RID: 21832 RVA: 0x0003CF95 File Offset: 0x0003B195
+		// Token: 0x06004C08 RID: 19464 RVA: 0x002066B2 File Offset: 0x002048B2
 		public static string GetLQShuXingTypeName(int shuXingType)
 		{
 			return TuJianDB._LQShuXingTypeName[shuXingType];
 		}
 
-		// Token: 0x06005549 RID: 21833 RVA: 0x00237C74 File Offset: 0x00235E74
+		// Token: 0x06004C09 RID: 19465 RVA: 0x002066C0 File Offset: 0x002048C0
 		private static void InitItemTuJianData()
 		{
 			foreach (JSONObject jsonobject in jsonData.instance._ItemJsonData.list)
@@ -92,7 +92,7 @@ namespace YSGame.TuJian
 			}
 		}
 
-		// Token: 0x0600554A RID: 21834 RVA: 0x00237D2C File Offset: 0x00235F2C
+		// Token: 0x06004C0A RID: 19466 RVA: 0x00206778 File Offset: 0x00204978
 		private static void InitRuleTuJianData()
 		{
 			foreach (JSONObject jsonobject in TuJianDB._zhonglei.list)
@@ -215,7 +215,7 @@ namespace YSGame.TuJian
 			}
 		}
 
-		// Token: 0x0600554B RID: 21835 RVA: 0x0023821C File Offset: 0x0023641C
+		// Token: 0x06004C0B RID: 19467 RVA: 0x00206C68 File Offset: 0x00204E68
 		private static void InitStrText()
 		{
 			foreach (JSONObject jsonobject in jsonData.instance.StrTextJsonData.list)
@@ -224,7 +224,7 @@ namespace YSGame.TuJian
 			}
 		}
 
-		// Token: 0x0600554C RID: 21836 RVA: 0x002382A4 File Offset: 0x002364A4
+		// Token: 0x06004C0C RID: 19468 RVA: 0x00206CF0 File Offset: 0x00204EF0
 		private static void InitLQWuWeiType()
 		{
 			foreach (JSONObject jsonobject in jsonData.instance.LianQiWuWeiBiao.list)
@@ -233,7 +233,7 @@ namespace YSGame.TuJian
 			}
 		}
 
-		// Token: 0x0600554D RID: 21837 RVA: 0x0023832C File Offset: 0x0023652C
+		// Token: 0x06004C0D RID: 19469 RVA: 0x00206D78 File Offset: 0x00204F78
 		private static void InitLQShuXingType()
 		{
 			foreach (JSONObject jsonobject in jsonData.instance.LianQiShuXinLeiBie.list)
@@ -242,7 +242,7 @@ namespace YSGame.TuJian
 			}
 		}
 
-		// Token: 0x0600554E RID: 21838 RVA: 0x0003CFA2 File Offset: 0x0003B1A2
+		// Token: 0x06004C0E RID: 19470 RVA: 0x00206E00 File Offset: 0x00205000
 		public static Sprite GetItemQualitySprite(int id)
 		{
 			if (!TuJianDB._ItemQualitySpriteIndexDict.ContainsKey(id))
@@ -252,7 +252,7 @@ namespace YSGame.TuJian
 			return TuJianDB._ItemQualitySpriteList[TuJianDB._ItemQualitySpriteIndexDict[id]];
 		}
 
-		// Token: 0x0600554F RID: 21839 RVA: 0x0003CFCC File Offset: 0x0003B1CC
+		// Token: 0x06004C0F RID: 19471 RVA: 0x00206E2A File Offset: 0x0020502A
 		public static Sprite GetItemQualityUpSprite(int id)
 		{
 			if (!TuJianDB._ItemQualityUpSpriteIndexDict.ContainsKey(id))
@@ -262,7 +262,7 @@ namespace YSGame.TuJian
 			return TuJianDB._ItemQualityUpSpriteList[TuJianDB._ItemQualityUpSpriteIndexDict[id]];
 		}
 
-		// Token: 0x06005550 RID: 21840 RVA: 0x0003CFF6 File Offset: 0x0003B1F6
+		// Token: 0x06004C10 RID: 19472 RVA: 0x00206E54 File Offset: 0x00205054
 		public static Sprite GetItemIconSprite(int id)
 		{
 			if (!TuJianDB._ItemIconSpriteIndexDict.ContainsKey(id))
@@ -272,7 +272,7 @@ namespace YSGame.TuJian
 			return TuJianDB._ItemIconSpriteList[TuJianDB._ItemIconSpriteIndexDict[id]];
 		}
 
-		// Token: 0x06005551 RID: 21841 RVA: 0x002383B4 File Offset: 0x002365B4
+		// Token: 0x06004C11 RID: 19473 RVA: 0x00206E80 File Offset: 0x00205080
 		private static void LoadItemSprite(int id)
 		{
 			item temp = new item(id);
@@ -310,7 +310,7 @@ namespace YSGame.TuJian
 			TuJianDB._ItemQualityUpSpriteIndexDict.TryAdd(id, value3, "");
 		}
 
-		// Token: 0x06005552 RID: 21842 RVA: 0x002385F0 File Offset: 0x002367F0
+		// Token: 0x06004C12 RID: 19474 RVA: 0x002070BC File Offset: 0x002052BC
 		private static void InitMapName()
 		{
 			foreach (JSONObject jsonobject in jsonData.instance.SceneNameJsonData.list)
@@ -320,7 +320,7 @@ namespace YSGame.TuJian
 			}
 		}
 
-		// Token: 0x06005553 RID: 21843 RVA: 0x0003D020 File Offset: 0x0003B220
+		// Token: 0x06004C13 RID: 19475 RVA: 0x00207174 File Offset: 0x00205374
 		public static string GetMapNameByID(string mapID)
 		{
 			if (TuJianManager.IsDebugMode)
@@ -330,13 +330,13 @@ namespace YSGame.TuJian
 			return TuJianDB._MapIDNameDict[mapID];
 		}
 
-		// Token: 0x06005554 RID: 21844 RVA: 0x0003D04B File Offset: 0x0003B24B
+		// Token: 0x06004C14 RID: 19476 RVA: 0x0020719F File Offset: 0x0020539F
 		public static int GetMapHighlightIDByMapID(string mapID)
 		{
 			return TuJianDB._MapIDHighlightDict[mapID];
 		}
 
-		// Token: 0x06005555 RID: 21845 RVA: 0x002386A8 File Offset: 0x002368A8
+		// Token: 0x06004C15 RID: 19477 RVA: 0x002071AC File Offset: 0x002053AC
 		public static Sprite GetYaoShouFace(int id)
 		{
 			Sprite sprite = null;
@@ -344,7 +344,7 @@ namespace YSGame.TuJian
 			{
 				if (TuJianDB.YaoShouFacePathData.ContainsKey(id))
 				{
-					sprite = ResManager.inst.LoadSprite(TuJianDB.YaoShouFacePathData[id]);
+					sprite = ModResources.LoadSprite(TuJianDB.YaoShouFacePathData[id]);
 					TuJianDB.YaoShouFaceSpriteData.TryAdd(id, sprite, "");
 				}
 				else
@@ -359,7 +359,7 @@ namespace YSGame.TuJian
 			return sprite;
 		}
 
-		// Token: 0x06005556 RID: 21846 RVA: 0x00238714 File Offset: 0x00236914
+		// Token: 0x06004C16 RID: 19478 RVA: 0x00207214 File Offset: 0x00205414
 		private static void InitYaoShouData()
 		{
 			JSONObject avatarJsonData = jsonData.instance.AvatarJsonData;
@@ -406,12 +406,12 @@ namespace YSGame.TuJian
 			}
 		}
 
-		// Token: 0x06005557 RID: 21847 RVA: 0x0023894C File Offset: 0x00236B4C
+		// Token: 0x06004C17 RID: 19479 RVA: 0x0020744C File Offset: 0x0020564C
 		private static void InitShenTongMiShu()
 		{
 			foreach (JSONObject jsonobject in jsonData.instance._ItemJsonData.list)
 			{
-				if (jsonobject["id"].I < 100000 && jsonobject["type"].I == 3)
+				if (jsonobject["id"].I < jsonData.QingJiaoItemIDSegment && jsonobject["type"].I == 3)
 				{
 					int key = (int)float.Parse(jsonobject["desc"].str);
 					string str = jsonobject["desc2"].Str;
@@ -518,12 +518,12 @@ namespace YSGame.TuJian
 			}
 		}
 
-		// Token: 0x06005558 RID: 21848 RVA: 0x00238EA4 File Offset: 0x002370A4
+		// Token: 0x06004C18 RID: 19480 RVA: 0x002079A4 File Offset: 0x00205BA4
 		private static void InitGongFa()
 		{
 			foreach (JSONObject jsonobject in jsonData.instance._ItemJsonData.list)
 			{
-				if (jsonobject["id"].I < 100000 && jsonobject["type"].I == 4)
+				if (jsonobject["id"].I < jsonData.QingJiaoItemIDSegment && jsonobject["type"].I == 4)
 				{
 					int key = (int)float.Parse(jsonobject["desc"].str);
 					string str = jsonobject["desc2"].Str;
@@ -573,7 +573,7 @@ namespace YSGame.TuJian
 			}
 		}
 
-		// Token: 0x06005559 RID: 21849 RVA: 0x00239188 File Offset: 0x00237388
+		// Token: 0x06004C19 RID: 19481 RVA: 0x00207C88 File Offset: 0x00205E88
 		public static Sprite GetShenTongMiShuSprite(int id)
 		{
 			if (!TuJianDB._ShenTongMiShuSpriteData.ContainsKey(1))
@@ -595,7 +595,7 @@ namespace YSGame.TuJian
 			return TuJianDB._ShenTongMiShuSpriteData[id];
 		}
 
-		// Token: 0x0600555A RID: 21850 RVA: 0x00239230 File Offset: 0x00237430
+		// Token: 0x06004C1A RID: 19482 RVA: 0x00207D30 File Offset: 0x00205F30
 		public static Sprite GetGongFaSprite(int id)
 		{
 			if (!TuJianDB._GongFaSpriteData.ContainsKey(1))
@@ -617,7 +617,7 @@ namespace YSGame.TuJian
 			return TuJianDB._GongFaSpriteData[id];
 		}
 
-		// Token: 0x0600555B RID: 21851 RVA: 0x002392D8 File Offset: 0x002374D8
+		// Token: 0x06004C1B RID: 19483 RVA: 0x00207DD8 File Offset: 0x00205FD8
 		public static Sprite GetSkillQualitySprite(int quality)
 		{
 			if (!TuJianDB._SkillQualitySpriteData.ContainsKey(quality))
@@ -627,7 +627,7 @@ namespace YSGame.TuJian
 			return TuJianDB._SkillQualitySpriteData[quality];
 		}
 
-		// Token: 0x0600555C RID: 21852 RVA: 0x00239328 File Offset: 0x00237528
+		// Token: 0x06004C1C RID: 19484 RVA: 0x00207E28 File Offset: 0x00206028
 		private static void InitDanYao()
 		{
 			foreach (JSONObject jsonobject in jsonData.instance.LianDanDanFangBiao.list)
@@ -654,106 +654,106 @@ namespace YSGame.TuJian
 			}
 		}
 
-		// Token: 0x040054F9 RID: 21753
+		// Token: 0x04004B21 RID: 19233
 		public static bool _IsInited;
 
-		// Token: 0x040054FA RID: 21754
+		// Token: 0x04004B22 RID: 19234
 		public static Dictionary<string, Sprite> TuJianUISprite = new Dictionary<string, Sprite>();
 
-		// Token: 0x040054FB RID: 21755
+		// Token: 0x04004B23 RID: 19235
 		public static Dictionary<string, Sprite> TuJianRichTextSprite = new Dictionary<string, Sprite>();
 
-		// Token: 0x040054FC RID: 21756
+		// Token: 0x04004B24 RID: 19236
 		public static Dictionary<int, List<Dictionary<int, string>>> ItemTuJianFilterData = new Dictionary<int, List<Dictionary<int, string>>>();
 
-		// Token: 0x040054FD RID: 21757
+		// Token: 0x04004B25 RID: 19237
 		public static List<Dictionary<int, string>> RuleTuJianTypeNameData = new List<Dictionary<int, string>>();
 
-		// Token: 0x040054FE RID: 21758
+		// Token: 0x04004B26 RID: 19238
 		public static Dictionary<int, string> RuleTuJianTypeDescData = new Dictionary<int, string>();
 
-		// Token: 0x040054FF RID: 21759
+		// Token: 0x04004B27 RID: 19239
 		public static Dictionary<int, Dictionary<int, string>> RuleTuJianTypeChildDescData = new Dictionary<int, Dictionary<int, string>>();
 
-		// Token: 0x04005500 RID: 21760
+		// Token: 0x04004B28 RID: 19240
 		public static Dictionary<int, bool> RuleTuJianTypeDoubleSVData = new Dictionary<int, bool>();
 
-		// Token: 0x04005501 RID: 21761
+		// Token: 0x04004B29 RID: 19241
 		public static Dictionary<int, bool> RuleTuJianTypeHasChildData = new Dictionary<int, bool>();
 
-		// Token: 0x04005502 RID: 21762
+		// Token: 0x04004B2A RID: 19242
 		public static Dictionary<int, List<Dictionary<int, string>>> RuleTuJianFilterData = new Dictionary<int, List<Dictionary<int, string>>>();
 
-		// Token: 0x04005503 RID: 21763
+		// Token: 0x04004B2B RID: 19243
 		private static Dictionary<int, string> _LQWuWeiTypeName = new Dictionary<int, string>();
 
-		// Token: 0x04005504 RID: 21764
+		// Token: 0x04004B2C RID: 19244
 		private static Dictionary<int, string> _LQShuXingTypeName = new Dictionary<int, string>();
 
-		// Token: 0x04005505 RID: 21765
+		// Token: 0x04004B2D RID: 19245
 		private static Dictionary<string, string> _MapIDNameDict = new Dictionary<string, string>();
 
-		// Token: 0x04005506 RID: 21766
+		// Token: 0x04004B2E RID: 19246
 		private static Dictionary<string, int> _MapIDHighlightDict = new Dictionary<string, int>();
 
-		// Token: 0x04005507 RID: 21767
+		// Token: 0x04004B2F RID: 19247
 		public static Dictionary<int, DoubleItem> RuleDoubleData = new Dictionary<int, DoubleItem>();
 
-		// Token: 0x04005508 RID: 21768
+		// Token: 0x04004B30 RID: 19248
 		public static Dictionary<int, List<int>> RuleCiZhuiIndexData = new Dictionary<int, List<int>>();
 
-		// Token: 0x04005509 RID: 21769
+		// Token: 0x04004B31 RID: 19249
 		public static Dictionary<int, List<int>> RuleDoubleIndexData = new Dictionary<int, List<int>>();
 
-		// Token: 0x0400550A RID: 21770
+		// Token: 0x04004B32 RID: 19250
 		private static Dictionary<string, string> strTextData = new Dictionary<string, string>();
 
-		// Token: 0x0400550B RID: 21771
+		// Token: 0x04004B33 RID: 19251
 		private static JSONObject _zhonglei;
 
-		// Token: 0x0400550C RID: 21772
+		// Token: 0x04004B34 RID: 19252
 		private static JSONObject _chunwenben;
 
-		// Token: 0x0400550D RID: 21773
+		// Token: 0x04004B35 RID: 19253
 		private static JSONObject _tupianwenzi;
 
-		// Token: 0x0400550E RID: 21774
+		// Token: 0x04004B36 RID: 19254
 		private static JSONObject _zixiangtupianwenzi;
 
-		// Token: 0x0400550F RID: 21775
+		// Token: 0x04004B37 RID: 19255
 		private static JSONObject _yaoshou;
 
-		// Token: 0x04005510 RID: 21776
+		// Token: 0x04004B38 RID: 19256
 		private static List<Sprite> _ItemIconSpriteList = new List<Sprite>();
 
-		// Token: 0x04005511 RID: 21777
+		// Token: 0x04004B39 RID: 19257
 		private static List<Texture2D> _ItemIconTexList = new List<Texture2D>();
 
-		// Token: 0x04005512 RID: 21778
+		// Token: 0x04004B3A RID: 19258
 		private static List<Sprite> _ItemQualitySpriteList = new List<Sprite>();
 
-		// Token: 0x04005513 RID: 21779
+		// Token: 0x04004B3B RID: 19259
 		private static List<Texture2D> _ItemQualityTexList = new List<Texture2D>();
 
-		// Token: 0x04005514 RID: 21780
+		// Token: 0x04004B3C RID: 19260
 		private static List<Sprite> _ItemQualityUpSpriteList = new List<Sprite>();
 
-		// Token: 0x04005515 RID: 21781
+		// Token: 0x04004B3D RID: 19261
 		private static Dictionary<int, int> _ItemIconSpriteIndexDict = new Dictionary<int, int>();
 
-		// Token: 0x04005516 RID: 21782
+		// Token: 0x04004B3E RID: 19262
 		private static Dictionary<int, int> _ItemQualitySpriteIndexDict = new Dictionary<int, int>();
 
-		// Token: 0x04005517 RID: 21783
+		// Token: 0x04004B3F RID: 19263
 		private static Dictionary<int, int> _ItemQualityUpSpriteIndexDict = new Dictionary<int, int>();
 
-		// Token: 0x04005518 RID: 21784
+		// Token: 0x04004B40 RID: 19264
 		public static Dictionary<int, List<int>> YaoShouCaiLiaoChanChuData = new Dictionary<int, List<int>>();
 
-		// Token: 0x04005519 RID: 21785
+		// Token: 0x04004B41 RID: 19265
 		public static Dictionary<int, List<int>> YaoShouChanChuData = new Dictionary<int, List<int>>();
 
-		// Token: 0x0400551A RID: 21786
+		// Token: 0x04004B42 RID: 19266
 		public static string[] LevelNames = new string[]
 		{
 			"炼气期",
@@ -763,82 +763,82 @@ namespace YSGame.TuJian
 			"化神期"
 		};
 
-		// Token: 0x0400551B RID: 21787
+		// Token: 0x04004B43 RID: 19267
 		public static Dictionary<int, string> YaoShouLevelNameData = new Dictionary<int, string>();
 
-		// Token: 0x0400551C RID: 21788
+		// Token: 0x04004B44 RID: 19268
 		public static Dictionary<int, string> YaoShouQiXiMapData = new Dictionary<int, string>();
 
-		// Token: 0x0400551D RID: 21789
+		// Token: 0x04004B45 RID: 19269
 		public static Dictionary<int, string> YaoShouDescData = new Dictionary<int, string>();
 
-		// Token: 0x0400551E RID: 21790
+		// Token: 0x04004B46 RID: 19270
 		public static Dictionary<int, string> YaoShouNameData = new Dictionary<int, string>();
 
-		// Token: 0x0400551F RID: 21791
+		// Token: 0x04004B47 RID: 19271
 		private static Dictionary<int, string> YaoShouFacePathData = new Dictionary<int, string>();
 
-		// Token: 0x04005520 RID: 21792
+		// Token: 0x04004B48 RID: 19272
 		private static Dictionary<int, Sprite> YaoShouFaceSpriteData = new Dictionary<int, Sprite>();
 
-		// Token: 0x04005521 RID: 21793
+		// Token: 0x04004B49 RID: 19273
 		public static Dictionary<int, string> ShenTongMiShuNameData = new Dictionary<int, string>();
 
-		// Token: 0x04005522 RID: 21794
+		// Token: 0x04004B4A RID: 19274
 		public static Dictionary<int, string> ShenTongMiShuShuXingData = new Dictionary<int, string>();
 
-		// Token: 0x04005523 RID: 21795
+		// Token: 0x04004B4B RID: 19275
 		public static Dictionary<int, string> ShenTongMiShuDesc1Data = new Dictionary<int, string>();
 
-		// Token: 0x04005524 RID: 21796
+		// Token: 0x04004B4C RID: 19276
 		public static Dictionary<int, int> ShenTongMiShuQualityData = new Dictionary<int, int>();
 
-		// Token: 0x04005525 RID: 21797
+		// Token: 0x04004B4D RID: 19277
 		public static Dictionary<int, List<string>> ShenTongDesc2Data = new Dictionary<int, List<string>>();
 
-		// Token: 0x04005526 RID: 21798
+		// Token: 0x04004B4E RID: 19278
 		public static Dictionary<int, string> MiShuDesc2Data = new Dictionary<int, string>();
 
-		// Token: 0x04005527 RID: 21799
+		// Token: 0x04004B4F RID: 19279
 		public static Dictionary<int, List<int>> ShenTongMiShuCastData = new Dictionary<int, List<int>>();
 
-		// Token: 0x04005528 RID: 21800
+		// Token: 0x04004B50 RID: 19280
 		public static Dictionary<int, string> ShenTongMiShuPinJiData = new Dictionary<int, string>();
 
-		// Token: 0x04005529 RID: 21801
+		// Token: 0x04004B51 RID: 19281
 		public static Dictionary<int, string> GongFaNameData = new Dictionary<int, string>();
 
-		// Token: 0x0400552A RID: 21802
+		// Token: 0x04004B52 RID: 19282
 		public static Dictionary<int, string> GongFaPinJiData = new Dictionary<int, string>();
 
-		// Token: 0x0400552B RID: 21803
+		// Token: 0x04004B53 RID: 19283
 		public static Dictionary<int, string> GongFaShuXingData = new Dictionary<int, string>();
 
-		// Token: 0x0400552C RID: 21804
+		// Token: 0x04004B54 RID: 19284
 		public static Dictionary<int, int> GongFaSpeedData = new Dictionary<int, int>();
 
-		// Token: 0x0400552D RID: 21805
+		// Token: 0x04004B55 RID: 19285
 		public static Dictionary<int, string> GongFaDesc1Data = new Dictionary<int, string>();
 
-		// Token: 0x0400552E RID: 21806
+		// Token: 0x04004B56 RID: 19286
 		public static Dictionary<int, List<string>> GongFaDesc2Data = new Dictionary<int, List<string>>();
 
-		// Token: 0x0400552F RID: 21807
+		// Token: 0x04004B57 RID: 19287
 		public static Dictionary<int, int> GongFaQualityData = new Dictionary<int, int>();
 
-		// Token: 0x04005530 RID: 21808
+		// Token: 0x04004B58 RID: 19288
 		private static Dictionary<int, Sprite> _ShenTongMiShuSpriteData = new Dictionary<int, Sprite>();
 
-		// Token: 0x04005531 RID: 21809
+		// Token: 0x04004B59 RID: 19289
 		private static Dictionary<int, Sprite> _GongFaSpriteData = new Dictionary<int, Sprite>();
 
-		// Token: 0x04005532 RID: 21810
+		// Token: 0x04004B5A RID: 19290
 		private static Dictionary<int, Sprite> _SkillQualitySpriteData = new Dictionary<int, Sprite>();
 
-		// Token: 0x04005533 RID: 21811
+		// Token: 0x04004B5B RID: 19291
 		public static Dictionary<int, DanFangData> DanFangDataDict = new Dictionary<int, DanFangData>();
 
-		// Token: 0x04005534 RID: 21812
+		// Token: 0x04004B5C RID: 19292
 		public static Dictionary<int, string> YaoCaoTypeData = new Dictionary<int, string>();
 	}
 }

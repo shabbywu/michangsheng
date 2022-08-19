@@ -5,10 +5,10 @@ using MoonSharp.Interpreter.Execution.VM;
 
 namespace MoonSharp.Interpreter.Tree.Statements
 {
-	// Token: 0x020010A9 RID: 4265
+	// Token: 0x02000CD3 RID: 3283
 	internal class CompositeStatement : Statement
 	{
-		// Token: 0x06006721 RID: 26401 RVA: 0x002871C8 File Offset: 0x002853C8
+		// Token: 0x06005C18 RID: 23576 RVA: 0x0025D9EC File Offset: 0x0025BBEC
 		public CompositeStatement(ScriptLoadingContext lcontext) : base(lcontext)
 		{
 			while (!lcontext.Lexer.Current.IsEndOfBlock())
@@ -27,7 +27,7 @@ namespace MoonSharp.Interpreter.Tree.Statements
 			}
 		}
 
-		// Token: 0x06006722 RID: 26402 RVA: 0x00287234 File Offset: 0x00285434
+		// Token: 0x06005C19 RID: 23577 RVA: 0x0025DA58 File Offset: 0x0025BC58
 		public override void Compile(ByteCode bc)
 		{
 			if (this.m_Statements != null)
@@ -39,7 +39,7 @@ namespace MoonSharp.Interpreter.Tree.Statements
 			}
 		}
 
-		// Token: 0x04005F3C RID: 24380
+		// Token: 0x04005359 RID: 21337
 		private List<Statement> m_Statements = new List<Statement>();
 	}
 }

@@ -4,12 +4,12 @@ using UnityEngine;
 
 namespace Fungus
 {
-	// Token: 0x02001296 RID: 4758
+	// Token: 0x02000E45 RID: 3653
 	[CommandInfo("Variable", "Set Variable", "Sets a Boolean, Integer, Float or String variable to a new value using a simple arithmetic operation. The value can be a constant or reference another variable of the same type.", 0)]
 	[AddComponentMenu("")]
 	public class SetVariable : Command
 	{
-		// Token: 0x06007357 RID: 29527 RVA: 0x002AA0EC File Offset: 0x002A82EC
+		// Token: 0x060066C9 RID: 26313 RVA: 0x00287138 File Offset: 0x00285338
 		protected virtual void DoSetOperation()
 		{
 			if (this.variable == null)
@@ -100,8 +100,8 @@ namespace Fungus
 			}
 		}
 
-		// Token: 0x17000A85 RID: 2693
-		// (get) Token: 0x06007358 RID: 29528 RVA: 0x0004EB58 File Offset: 0x0004CD58
+		// Token: 0x1700081E RID: 2078
+		// (get) Token: 0x060066CA RID: 26314 RVA: 0x002874AC File Offset: 0x002856AC
 		public virtual SetOperator _SetOperator
 		{
 			get
@@ -110,14 +110,14 @@ namespace Fungus
 			}
 		}
 
-		// Token: 0x06007359 RID: 29529 RVA: 0x0004EB60 File Offset: 0x0004CD60
+		// Token: 0x060066CB RID: 26315 RVA: 0x002874B4 File Offset: 0x002856B4
 		public override void OnEnter()
 		{
 			this.DoSetOperation();
 			this.Continue();
 		}
 
-		// Token: 0x0600735A RID: 29530 RVA: 0x002AA460 File Offset: 0x002A8660
+		// Token: 0x060066CC RID: 26316 RVA: 0x002874C4 File Offset: 0x002856C4
 		public override string GetSummary()
 		{
 			if (this.variable == null)
@@ -217,7 +217,7 @@ namespace Fungus
 			return text;
 		}
 
-		// Token: 0x0600735B RID: 29531 RVA: 0x002AA7A8 File Offset: 0x002A89A8
+		// Token: 0x060066CD RID: 26317 RVA: 0x0028780C File Offset: 0x00285A0C
 		public override bool HasReference(Variable variable)
 		{
 			bool flag = variable == this.variable || base.HasReference(variable);
@@ -289,13 +289,13 @@ namespace Fungus
 			return flag;
 		}
 
-		// Token: 0x0600735C RID: 29532 RVA: 0x0004C5A3 File Offset: 0x0004A7A3
+		// Token: 0x060066CE RID: 26318 RVA: 0x0027D1B6 File Offset: 0x0027B3B6
 		public override Color GetButtonColor()
 		{
 			return new Color32(253, 253, 150, byte.MaxValue);
 		}
 
-		// Token: 0x04006535 RID: 25909
+		// Token: 0x040057F1 RID: 22513
 		[Tooltip("The variable whos value will be set")]
 		[VariableProperty(new Type[]
 		{
@@ -319,92 +319,92 @@ namespace Fungus
 		[SerializeField]
 		protected Variable variable;
 
-		// Token: 0x04006536 RID: 25910
+		// Token: 0x040057F2 RID: 22514
 		[Tooltip("The type of math operation to be performed")]
 		[SerializeField]
 		protected SetOperator setOperator;
 
-		// Token: 0x04006537 RID: 25911
+		// Token: 0x040057F3 RID: 22515
 		[Tooltip("Boolean value to set with")]
 		[SerializeField]
 		protected BooleanData booleanData;
 
-		// Token: 0x04006538 RID: 25912
+		// Token: 0x040057F4 RID: 22516
 		[Tooltip("Integer value to set with")]
 		[SerializeField]
 		protected IntegerData integerData;
 
-		// Token: 0x04006539 RID: 25913
+		// Token: 0x040057F5 RID: 22517
 		[Tooltip("Float value to set with")]
 		[SerializeField]
 		protected FloatData floatData;
 
-		// Token: 0x0400653A RID: 25914
+		// Token: 0x040057F6 RID: 22518
 		[Tooltip("String value to set with")]
 		[SerializeField]
 		protected StringDataMulti stringData;
 
-		// Token: 0x0400653B RID: 25915
+		// Token: 0x040057F7 RID: 22519
 		[Tooltip("Animator value to set with")]
 		[SerializeField]
 		protected AnimatorData animatorData;
 
-		// Token: 0x0400653C RID: 25916
+		// Token: 0x040057F8 RID: 22520
 		[Tooltip("AudioSource value to set with")]
 		[SerializeField]
 		protected AudioSourceData audioSourceData;
 
-		// Token: 0x0400653D RID: 25917
+		// Token: 0x040057F9 RID: 22521
 		[Tooltip("Color value to set with")]
 		[SerializeField]
 		protected ColorData colorData;
 
-		// Token: 0x0400653E RID: 25918
+		// Token: 0x040057FA RID: 22522
 		[Tooltip("GameObject value to set with")]
 		[SerializeField]
 		protected GameObjectData gameObjectData;
 
-		// Token: 0x0400653F RID: 25919
+		// Token: 0x040057FB RID: 22523
 		[Tooltip("Material value to set with")]
 		[SerializeField]
 		protected MaterialData materialData;
 
-		// Token: 0x04006540 RID: 25920
+		// Token: 0x040057FC RID: 22524
 		[Tooltip("Object value to set with")]
 		[SerializeField]
 		protected ObjectData objectData;
 
-		// Token: 0x04006541 RID: 25921
+		// Token: 0x040057FD RID: 22525
 		[Tooltip("Rigidbody2D value to set with")]
 		[SerializeField]
 		protected Rigidbody2DData rigidbody2DData;
 
-		// Token: 0x04006542 RID: 25922
+		// Token: 0x040057FE RID: 22526
 		[Tooltip("Sprite value to set with")]
 		[SerializeField]
 		protected SpriteData spriteData;
 
-		// Token: 0x04006543 RID: 25923
+		// Token: 0x040057FF RID: 22527
 		[Tooltip("Texture value to set with")]
 		[SerializeField]
 		protected TextureData textureData;
 
-		// Token: 0x04006544 RID: 25924
+		// Token: 0x04005800 RID: 22528
 		[Tooltip("Transform value to set with")]
 		[SerializeField]
 		protected TransformData transformData;
 
-		// Token: 0x04006545 RID: 25925
+		// Token: 0x04005801 RID: 22529
 		[Tooltip("Vector2 value to set with")]
 		[SerializeField]
 		protected Vector2Data vector2Data;
 
-		// Token: 0x04006546 RID: 25926
+		// Token: 0x04005802 RID: 22530
 		[Tooltip("Vector3 value to set with")]
 		[SerializeField]
 		protected Vector3Data vector3Data;
 
-		// Token: 0x04006547 RID: 25927
+		// Token: 0x04005803 RID: 22531
 		public static readonly Dictionary<Type, SetOperator[]> operatorsByVariableType = new Dictionary<Type, SetOperator[]>
 		{
 			{

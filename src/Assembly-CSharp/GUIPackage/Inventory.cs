@@ -4,10 +4,10 @@ using UnityEngine;
 
 namespace GUIPackage
 {
-	// Token: 0x02000D7A RID: 3450
+	// Token: 0x02000A5A RID: 2650
 	public class Inventory : MonoBehaviour
 	{
-		// Token: 0x060052F2 RID: 21234 RVA: 0x00228B88 File Offset: 0x00226D88
+		// Token: 0x06004A07 RID: 18951 RVA: 0x001F6270 File Offset: 0x001F4470
 		private void Start()
 		{
 			for (int i = 0; i < this.slotsX * this.slotsY; i++)
@@ -21,7 +21,7 @@ namespace GUIPackage
 			this.AddItem(1);
 		}
 
-		// Token: 0x060052F3 RID: 21235 RVA: 0x0003B60D File Offset: 0x0003980D
+		// Token: 0x06004A08 RID: 18952 RVA: 0x001F62DF File Offset: 0x001F44DF
 		private void Update()
 		{
 			if (Input.GetKeyDown(105))
@@ -30,7 +30,7 @@ namespace GUIPackage
 			}
 		}
 
-		// Token: 0x060052F4 RID: 21236 RVA: 0x00228BF8 File Offset: 0x00226DF8
+		// Token: 0x06004A09 RID: 18953 RVA: 0x001F62FC File Offset: 0x001F44FC
 		private void OnGUI()
 		{
 			this.tooltip = "";
@@ -49,7 +49,7 @@ namespace GUIPackage
 			}
 		}
 
-		// Token: 0x060052F5 RID: 21237 RVA: 0x00228CCC File Offset: 0x00226ECC
+		// Token: 0x06004A0A RID: 18954 RVA: 0x001F63D0 File Offset: 0x001F45D0
 		private void DrawInventory()
 		{
 			Event current = Event.current;
@@ -109,7 +109,7 @@ namespace GUIPackage
 			}
 		}
 
-		// Token: 0x060052F6 RID: 21238 RVA: 0x00228F00 File Offset: 0x00227100
+		// Token: 0x06004A0B RID: 18955 RVA: 0x001F6604 File Offset: 0x001F4804
 		private string CreateTooltip(item Item)
 		{
 			this.tooltip = string.Concat(new string[]
@@ -123,7 +123,7 @@ namespace GUIPackage
 			return this.tooltip;
 		}
 
-		// Token: 0x060052F7 RID: 21239 RVA: 0x00228F50 File Offset: 0x00227150
+		// Token: 0x06004A0C RID: 18956 RVA: 0x001F6654 File Offset: 0x001F4854
 		private void AddItem(int id)
 		{
 			for (int i = 0; i < this.inventory.Count; i++)
@@ -146,7 +146,7 @@ namespace GUIPackage
 			}
 		}
 
-		// Token: 0x060052F8 RID: 21240 RVA: 0x00228FF4 File Offset: 0x002271F4
+		// Token: 0x06004A0D RID: 18957 RVA: 0x001F66F8 File Offset: 0x001F48F8
 		private void RemoveItem(int id)
 		{
 			for (int i = 0; i < this.inventory.Count; i++)
@@ -159,7 +159,7 @@ namespace GUIPackage
 			}
 		}
 
-		// Token: 0x060052F9 RID: 21241 RVA: 0x00229040 File Offset: 0x00227240
+		// Token: 0x06004A0E RID: 18958 RVA: 0x001F6744 File Offset: 0x001F4944
 		private bool InventoryContains(int id)
 		{
 			bool flag = false;
@@ -174,7 +174,7 @@ namespace GUIPackage
 			return flag;
 		}
 
-		// Token: 0x060052FA RID: 21242 RVA: 0x00229080 File Offset: 0x00227280
+		// Token: 0x06004A0F RID: 18959 RVA: 0x001F6784 File Offset: 0x001F4984
 		private void SaveInventory()
 		{
 			for (int i = 0; i < this.inventory.Count; i++)
@@ -183,7 +183,7 @@ namespace GUIPackage
 			}
 		}
 
-		// Token: 0x060052FB RID: 21243 RVA: 0x002290CC File Offset: 0x002272CC
+		// Token: 0x06004A10 RID: 18960 RVA: 0x001F67D0 File Offset: 0x001F49D0
 		private void LoadInventory()
 		{
 			for (int i = 0; i < this.inventory.Count; i++)
@@ -192,40 +192,40 @@ namespace GUIPackage
 			}
 		}
 
-		// Token: 0x040052EE RID: 21230
+		// Token: 0x04004969 RID: 18793
 		public int slotsX;
 
-		// Token: 0x040052EF RID: 21231
+		// Token: 0x0400496A RID: 18794
 		public int slotsY;
 
-		// Token: 0x040052F0 RID: 21232
+		// Token: 0x0400496B RID: 18795
 		public GUISkin skin;
 
-		// Token: 0x040052F1 RID: 21233
+		// Token: 0x0400496C RID: 18796
 		public List<item> inventory = new List<item>();
 
-		// Token: 0x040052F2 RID: 21234
+		// Token: 0x0400496D RID: 18797
 		public List<item> slots = new List<item>();
 
-		// Token: 0x040052F3 RID: 21235
+		// Token: 0x0400496E RID: 18798
 		private ItemDatebase datebase;
 
-		// Token: 0x040052F4 RID: 21236
+		// Token: 0x0400496F RID: 18799
 		private bool showInventory;
 
-		// Token: 0x040052F5 RID: 21237
+		// Token: 0x04004970 RID: 18800
 		private bool showTooltip;
 
-		// Token: 0x040052F6 RID: 21238
+		// Token: 0x04004971 RID: 18801
 		private string tooltip;
 
-		// Token: 0x040052F7 RID: 21239
+		// Token: 0x04004972 RID: 18802
 		private bool draggingItem;
 
-		// Token: 0x040052F8 RID: 21240
+		// Token: 0x04004973 RID: 18803
 		private item dragedItem;
 
-		// Token: 0x040052F9 RID: 21241
+		// Token: 0x04004974 RID: 18804
 		private int prevIndex;
 	}
 }

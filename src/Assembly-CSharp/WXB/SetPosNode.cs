@@ -3,22 +3,22 @@ using System.Collections.Generic;
 
 namespace WXB
 {
-	// Token: 0x020009CF RID: 2511
+	// Token: 0x020006AD RID: 1709
 	public class SetPosNode : NodeBase
 	{
-		// Token: 0x06003FEF RID: 16367 RVA: 0x0002DA5B File Offset: 0x0002BC5B
+		// Token: 0x060035F2 RID: 13810 RVA: 0x00171E2D File Offset: 0x0017002D
 		public override float getHeight()
 		{
 			return 0f;
 		}
 
-		// Token: 0x06003FF0 RID: 16368 RVA: 0x0002DA5B File Offset: 0x0002BC5B
+		// Token: 0x060035F3 RID: 13811 RVA: 0x00171E2D File Offset: 0x0017002D
 		public override float getWidth()
 		{
 			return 0f;
 		}
 
-		// Token: 0x06003FF1 RID: 16369 RVA: 0x001BB11C File Offset: 0x001B931C
+		// Token: 0x060035F4 RID: 13812 RVA: 0x001728A8 File Offset: 0x00170AA8
 		protected override void AlterX(ref float x, float maxWidth)
 		{
 			TypePosition typePosition = this.type;
@@ -34,23 +34,23 @@ namespace WXB
 			x = maxWidth * this.d_value;
 		}
 
-		// Token: 0x06003FF2 RID: 16370 RVA: 0x0002DE32 File Offset: 0x0002C032
+		// Token: 0x060035F5 RID: 13813 RVA: 0x001728D7 File Offset: 0x00170AD7
 		public override void render(float maxWidth, RenderCache cache, ref float x, ref uint yline, List<Line> lines, float offsetX, float offsetY)
 		{
 			this.AlterX(ref x, maxWidth);
 		}
 
-		// Token: 0x06003FF3 RID: 16371 RVA: 0x0002DE3C File Offset: 0x0002C03C
+		// Token: 0x060035F6 RID: 13814 RVA: 0x001728E1 File Offset: 0x00170AE1
 		public override void Release()
 		{
 			base.Release();
 			this.d_value = 0f;
 		}
 
-		// Token: 0x04003919 RID: 14617
+		// Token: 0x04002F3C RID: 12092
 		public TypePosition type = TypePosition.Relative;
 
-		// Token: 0x0400391A RID: 14618
+		// Token: 0x04002F3D RID: 12093
 		public float d_value;
 	}
 }

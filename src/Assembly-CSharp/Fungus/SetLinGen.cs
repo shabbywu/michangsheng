@@ -4,12 +4,12 @@ using UnityEngine;
 
 namespace Fungus
 {
-	// Token: 0x02001412 RID: 5138
+	// Token: 0x02000F5C RID: 3932
 	[CommandInfo("YSNew/Set", "SetLinGen", "设置后续对话", 0)]
 	[AddComponentMenu("")]
 	public class SetLinGen : Command
 	{
-		// Token: 0x06007CA1 RID: 31905 RVA: 0x002C52EC File Offset: 0x002C34EC
+		// Token: 0x06006EB1 RID: 28337 RVA: 0x002A5464 File Offset: 0x002A3664
 		public override void OnEnter()
 		{
 			Avatar player = Tools.instance.getPlayer();
@@ -18,23 +18,23 @@ namespace Fungus
 			this.Continue();
 		}
 
-		// Token: 0x06007CA2 RID: 31906 RVA: 0x000113CF File Offset: 0x0000F5CF
+		// Token: 0x06006EB2 RID: 28338 RVA: 0x0005E228 File Offset: 0x0005C428
 		public override Color GetButtonColor()
 		{
 			return new Color32(184, 210, 235, byte.MaxValue);
 		}
 
-		// Token: 0x06007CA3 RID: 31907 RVA: 0x000042DD File Offset: 0x000024DD
+		// Token: 0x06006EB3 RID: 28339 RVA: 0x00004095 File Offset: 0x00002295
 		public override void OnReset()
 		{
 		}
 
-		// Token: 0x04006A91 RID: 27281
+		// Token: 0x04005BBF RID: 23487
 		[Tooltip("灵根类型")]
 		[SerializeField]
 		protected int TaskID;
 
-		// Token: 0x04006A92 RID: 27282
+		// Token: 0x04005BC0 RID: 23488
 		[Tooltip("灵根值")]
 		[VariableProperty(new Type[]
 		{

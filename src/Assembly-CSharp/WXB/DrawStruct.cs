@@ -2,7 +2,7 @@
 
 namespace WXB
 {
-	// Token: 0x0200099A RID: 2458
+	// Token: 0x02000689 RID: 1673
 	public class DrawStruct
 	{
 	}

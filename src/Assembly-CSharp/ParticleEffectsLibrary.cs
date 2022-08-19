@@ -2,10 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-// Token: 0x020001DA RID: 474
+// Token: 0x02000118 RID: 280
 public class ParticleEffectsLibrary : MonoBehaviour
 {
-	// Token: 0x06000F59 RID: 3929 RVA: 0x000A1ADC File Offset: 0x0009FCDC
+	// Token: 0x06000D80 RID: 3456 RVA: 0x00050E34 File Offset: 0x0004F034
 	private void Awake()
 	{
 		ParticleEffectsLibrary.GlobalAccess = this;
@@ -31,12 +31,12 @@ public class ParticleEffectsLibrary : MonoBehaviour
 		});
 	}
 
-	// Token: 0x06000F5A RID: 3930 RVA: 0x000042DD File Offset: 0x000024DD
+	// Token: 0x06000D81 RID: 3457 RVA: 0x00004095 File Offset: 0x00002295
 	private void Start()
 	{
 	}
 
-	// Token: 0x06000F5B RID: 3931 RVA: 0x000A1BA0 File Offset: 0x0009FDA0
+	// Token: 0x06000D82 RID: 3458 RVA: 0x00050EF8 File Offset: 0x0004F0F8
 	public string GetCurrentPENameString()
 	{
 		return string.Concat(new string[]
@@ -50,7 +50,7 @@ public class ParticleEffectsLibrary : MonoBehaviour
 		});
 	}
 
-	// Token: 0x06000F5C RID: 3932 RVA: 0x000A1C04 File Offset: 0x0009FE04
+	// Token: 0x06000D83 RID: 3459 RVA: 0x00050F5C File Offset: 0x0004F15C
 	public void PreviousParticleEffect()
 	{
 		if (this.ParticleEffectLifetimes[this.CurrentParticleEffectIndex] == 0f && this.currentActivePEList.Count > 0)
@@ -84,7 +84,7 @@ public class ParticleEffectsLibrary : MonoBehaviour
 		});
 	}
 
-	// Token: 0x06000F5D RID: 3933 RVA: 0x000A1D10 File Offset: 0x0009FF10
+	// Token: 0x06000D84 RID: 3460 RVA: 0x00051068 File Offset: 0x0004F268
 	public void NextParticleEffect()
 	{
 		if (this.ParticleEffectLifetimes[this.CurrentParticleEffectIndex] == 0f && this.currentActivePEList.Count > 0)
@@ -118,7 +118,7 @@ public class ParticleEffectsLibrary : MonoBehaviour
 		});
 	}
 
-	// Token: 0x06000F5E RID: 3934 RVA: 0x000A1E1C File Offset: 0x000A001C
+	// Token: 0x06000D85 RID: 3461 RVA: 0x00051174 File Offset: 0x0004F374
 	public void SpawnParticleEffect(Vector3 positionInWorldToSpawn)
 	{
 		this.spawnPosition = positionInWorldToSpawn + this.ParticleEffectSpawnOffsets[this.CurrentParticleEffectIndex];
@@ -135,33 +135,33 @@ public class ParticleEffectsLibrary : MonoBehaviour
 		}
 	}
 
-	// Token: 0x04000C09 RID: 3081
+	// Token: 0x04000985 RID: 2437
 	public static ParticleEffectsLibrary GlobalAccess;
 
-	// Token: 0x04000C0A RID: 3082
+	// Token: 0x04000986 RID: 2438
 	public int TotalEffects;
 
-	// Token: 0x04000C0B RID: 3083
+	// Token: 0x04000987 RID: 2439
 	public int CurrentParticleEffectIndex;
 
-	// Token: 0x04000C0C RID: 3084
+	// Token: 0x04000988 RID: 2440
 	public int CurrentParticleEffectNum;
 
-	// Token: 0x04000C0D RID: 3085
+	// Token: 0x04000989 RID: 2441
 	public Vector3[] ParticleEffectSpawnOffsets;
 
-	// Token: 0x04000C0E RID: 3086
+	// Token: 0x0400098A RID: 2442
 	public float[] ParticleEffectLifetimes;
 
-	// Token: 0x04000C0F RID: 3087
+	// Token: 0x0400098B RID: 2443
 	public GameObject[] ParticleEffectPrefabs;
 
-	// Token: 0x04000C10 RID: 3088
+	// Token: 0x0400098C RID: 2444
 	private string effectNameString = "";
 
-	// Token: 0x04000C11 RID: 3089
+	// Token: 0x0400098D RID: 2445
 	private List<Transform> currentActivePEList;
 
-	// Token: 0x04000C12 RID: 3090
+	// Token: 0x0400098E RID: 2446
 	private Vector3 spawnPosition = Vector3.zero;
 }

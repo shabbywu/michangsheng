@@ -3,13 +3,13 @@ using UnityEngine;
 
 namespace Fungus
 {
-	// Token: 0x02001391 RID: 5009
+	// Token: 0x02000EF0 RID: 3824
 	[VariableInfo("Other", "Vector2", 0)]
 	[AddComponentMenu("")]
 	[Serializable]
 	public class Vector2Variable : VariableBase<Vector2>
 	{
-		// Token: 0x06007936 RID: 31030 RVA: 0x002B8358 File Offset: 0x002B6558
+		// Token: 0x06006B97 RID: 27543 RVA: 0x00296C64 File Offset: 0x00294E64
 		public virtual bool Evaluate(CompareOperator compareOperator, Vector2 value)
 		{
 			bool result = false;
@@ -31,7 +31,7 @@ namespace Fungus
 			return result;
 		}
 
-		// Token: 0x06007937 RID: 31031 RVA: 0x002B83B0 File Offset: 0x002B65B0
+		// Token: 0x06006B98 RID: 27544 RVA: 0x00296CBC File Offset: 0x00294EBC
 		public override void Apply(SetOperator setOperator, Vector2 value)
 		{
 			switch (setOperator)
@@ -49,14 +49,14 @@ namespace Fungus
 			Debug.LogError("The " + setOperator.ToString() + " set operator is not valid.");
 		}
 
-		// Token: 0x04006907 RID: 26887
+		// Token: 0x04005A9E RID: 23198
 		public static readonly CompareOperator[] compareOperators = new CompareOperator[]
 		{
 			CompareOperator.Equals,
 			CompareOperator.NotEquals
 		};
 
-		// Token: 0x04006908 RID: 26888
+		// Token: 0x04005A9F RID: 23199
 		public static readonly SetOperator[] setOperators = new SetOperator[]
 		{
 			SetOperator.Assign,

@@ -3,16 +3,16 @@ using UnityEngine;
 
 namespace UltimateSurvival
 {
-	// Token: 0x02000840 RID: 2112
+	// Token: 0x02000596 RID: 1430
 	public class ObjectDestructor : MonoBehaviour
 	{
-		// Token: 0x06003783 RID: 14211 RVA: 0x000284DA File Offset: 0x000266DA
+		// Token: 0x06002F0D RID: 12045 RVA: 0x00156144 File Offset: 0x00154344
 		private void Awake()
 		{
 			base.Invoke("DestroyNow", this.m_TimeOut);
 		}
 
-		// Token: 0x06003784 RID: 14212 RVA: 0x000284ED File Offset: 0x000266ED
+		// Token: 0x06002F0E RID: 12046 RVA: 0x00156157 File Offset: 0x00154357
 		private void DestroyNow()
 		{
 			if (this.m_DetachChildren)
@@ -22,11 +22,11 @@ namespace UltimateSurvival
 			Object.DestroyObject(base.gameObject);
 		}
 
-		// Token: 0x0400319A RID: 12698
+		// Token: 0x04002958 RID: 10584
 		[SerializeField]
 		private float m_TimeOut = 1f;
 
-		// Token: 0x0400319B RID: 12699
+		// Token: 0x04002959 RID: 10585
 		[SerializeField]
 		private bool m_DetachChildren;
 	}

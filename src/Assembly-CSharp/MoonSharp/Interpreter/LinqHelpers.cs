@@ -4,10 +4,10 @@ using System.Linq;
 
 namespace MoonSharp.Interpreter
 {
-	// Token: 0x02001089 RID: 4233
+	// Token: 0x02000CBA RID: 3258
 	public static class LinqHelpers
 	{
-		// Token: 0x06006651 RID: 26193 RVA: 0x00283B9C File Offset: 0x00281D9C
+		// Token: 0x06005B5F RID: 23391 RVA: 0x00259E34 File Offset: 0x00258034
 		public static IEnumerable<T> Convert<T>(this IEnumerable<DynValue> enumerable, DataType type)
 		{
 			return from v in enumerable
@@ -15,7 +15,7 @@ namespace MoonSharp.Interpreter
 			select v.ToObject<T>();
 		}
 
-		// Token: 0x06006652 RID: 26194 RVA: 0x00283BEC File Offset: 0x00281DEC
+		// Token: 0x06005B60 RID: 23392 RVA: 0x00259E84 File Offset: 0x00258084
 		public static IEnumerable<DynValue> OfDataType(this IEnumerable<DynValue> enumerable, DataType type)
 		{
 			return from v in enumerable
@@ -23,14 +23,14 @@ namespace MoonSharp.Interpreter
 			select v;
 		}
 
-		// Token: 0x06006653 RID: 26195 RVA: 0x00046997 File Offset: 0x00044B97
+		// Token: 0x06005B61 RID: 23393 RVA: 0x00259EB0 File Offset: 0x002580B0
 		public static IEnumerable<object> AsObjects(this IEnumerable<DynValue> enumerable)
 		{
 			return from v in enumerable
 			select v.ToObject();
 		}
 
-		// Token: 0x06006654 RID: 26196 RVA: 0x000469BE File Offset: 0x00044BBE
+		// Token: 0x06005B62 RID: 23394 RVA: 0x00259ED7 File Offset: 0x002580D7
 		public static IEnumerable<T> AsObjects<T>(this IEnumerable<DynValue> enumerable)
 		{
 			return from v in enumerable

@@ -3,10 +3,10 @@ using UnityEngine.Events;
 
 namespace script.NewLianDan.LianDan
 {
-	// Token: 0x02000ACA RID: 2762
+	// Token: 0x020009FC RID: 2556
 	public class LianDanSelect : BagItemSelect
 	{
-		// Token: 0x06004685 RID: 18053 RVA: 0x001E258C File Offset: 0x001E078C
+		// Token: 0x060046D8 RID: 18136 RVA: 0x001DFE78 File Offset: 0x001DE078
 		public override void Init(string itemName, int maxNum, UnityAction Ok = null, UnityAction Cancel = null)
 		{
 			base.Clear();
@@ -37,7 +37,7 @@ namespace script.NewLianDan.LianDan
 			});
 		}
 
-		// Token: 0x06004686 RID: 18054 RVA: 0x001E2658 File Offset: 0x001E0858
+		// Token: 0x060046D9 RID: 18137 RVA: 0x001DFF44 File Offset: 0x001DE144
 		public override void UpdateUI(float call)
 		{
 			this.CurNum = (int)this.Slider.value;

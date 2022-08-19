@@ -2,15 +2,15 @@
 using System.Collections;
 using UnityEngine;
 
-// Token: 0x020006C4 RID: 1732
+// Token: 0x020004BF RID: 1215
 public class MainMenuManager : MonoBehaviour
 {
-	// Token: 0x06002B49 RID: 11081 RVA: 0x000042DD File Offset: 0x000024DD
+	// Token: 0x06002665 RID: 9829 RVA: 0x00004095 File Offset: 0x00002295
 	private void Start()
 	{
 	}
 
-	// Token: 0x06002B4A RID: 11082 RVA: 0x001509EC File Offset: 0x0014EBEC
+	// Token: 0x06002666 RID: 9830 RVA: 0x0010C5E8 File Offset: 0x0010A7E8
 	private void Update()
 	{
 		if (Input.GetMouseButtonDown(0))
@@ -67,7 +67,7 @@ public class MainMenuManager : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06002B4B RID: 11083 RVA: 0x0002156A File Offset: 0x0001F76A
+	// Token: 0x06002667 RID: 9831 RVA: 0x0010C7C9 File Offset: 0x0010A9C9
 	private IEnumerator WaitForAnimation(Animation animation, bool loadAnotherScene, int indexOfSceneToLoad)
 	{
 		do
@@ -82,7 +82,7 @@ public class MainMenuManager : MonoBehaviour
 		yield break;
 	}
 
-	// Token: 0x06002B4C RID: 11084 RVA: 0x00150BD0 File Offset: 0x0014EDD0
+	// Token: 0x06002668 RID: 9832 RVA: 0x0010C7E8 File Offset: 0x0010A9E8
 	private GameObject GetClickedObject()
 	{
 		GameObject result = null;
@@ -95,24 +95,24 @@ public class MainMenuManager : MonoBehaviour
 		return result;
 	}
 
-	// Token: 0x04002586 RID: 9606
+	// Token: 0x04001FC8 RID: 8136
 	private const int CAMPAIGN_MODE = 1;
 
-	// Token: 0x04002587 RID: 9607
+	// Token: 0x04001FC9 RID: 8137
 	private const int TIME_MODE = 2;
 
-	// Token: 0x04002588 RID: 9608
+	// Token: 0x04001FCA RID: 8138
 	private const int MORE_APPS = 3;
 
-	// Token: 0x04002589 RID: 9609
+	// Token: 0x04001FCB RID: 8139
 	private GameObject clickedOnObj;
 
-	// Token: 0x0400258A RID: 9610
+	// Token: 0x04001FCC RID: 8140
 	public Mesh[] arrayOfButtonMeshes;
 
-	// Token: 0x0400258B RID: 9611
+	// Token: 0x04001FCD RID: 8141
 	private bool soundOn = true;
 
-	// Token: 0x0400258C RID: 9612
+	// Token: 0x04001FCE RID: 8142
 	private bool musicOn = true;
 }

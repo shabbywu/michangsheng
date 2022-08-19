@@ -4,12 +4,12 @@ using UnityEngine;
 
 namespace Fungus
 {
-	// Token: 0x02001401 RID: 5121
+	// Token: 0x02000F4B RID: 3915
 	[CommandInfo("YSNew/Get", "GetNowTime", "获取当前时间并存储到year month day三个变量中", 0)]
 	[AddComponentMenu("")]
 	public class GetNowTime : Command
 	{
-		// Token: 0x06007C5C RID: 31836 RVA: 0x0001CA4F File Offset: 0x0001AC4F
+		// Token: 0x06006E71 RID: 28273 RVA: 0x000E111A File Offset: 0x000DF31A
 		public void setHasVariable(string name, int num, Flowchart flowchart)
 		{
 			if (flowchart.HasVariable(name))
@@ -18,7 +18,7 @@ namespace Fungus
 			}
 		}
 
-		// Token: 0x06007C5D RID: 31837 RVA: 0x002C4C10 File Offset: 0x002C2E10
+		// Token: 0x06006E72 RID: 28274 RVA: 0x002A4C9C File Offset: 0x002A2E9C
 		public override void OnEnter()
 		{
 			Avatar player = Tools.instance.getPlayer();
@@ -30,18 +30,18 @@ namespace Fungus
 			this.Continue();
 		}
 
-		// Token: 0x06007C5E RID: 31838 RVA: 0x000113CF File Offset: 0x0000F5CF
+		// Token: 0x06006E73 RID: 28275 RVA: 0x0005E228 File Offset: 0x0005C428
 		public override Color GetButtonColor()
 		{
 			return new Color32(184, 210, 235, byte.MaxValue);
 		}
 
-		// Token: 0x06007C5F RID: 31839 RVA: 0x000042DD File Offset: 0x000024DD
+		// Token: 0x06006E74 RID: 28276 RVA: 0x00004095 File Offset: 0x00002295
 		public override void OnReset()
 		{
 		}
 
-		// Token: 0x04006A70 RID: 27248
+		// Token: 0x04005B9E RID: 23454
 		[Tooltip("解释")]
 		[SerializeField]
 		protected string StaticValueID = "获取当前时间并存储到year month day三个变量中，需要创建对应变量，可单独创建一个";

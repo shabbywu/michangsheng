@@ -3,13 +3,13 @@ using System.Collections.Generic;
 using System.Text;
 using UnityEngine;
 
-// Token: 0x02000067 RID: 103
+// Token: 0x0200004F RID: 79
 [RequireComponent(typeof(UILabel))]
 [AddComponentMenu("NGUI/Interaction/Typewriter Effect")]
 public class TypewriterEffect : MonoBehaviour
 {
-	// Token: 0x17000089 RID: 137
-	// (get) Token: 0x060004C0 RID: 1216 RVA: 0x0000827B File Offset: 0x0000647B
+	// Token: 0x1700007B RID: 123
+	// (get) Token: 0x06000472 RID: 1138 RVA: 0x0001873B File Offset: 0x0001693B
 	public bool isActive
 	{
 		get
@@ -18,13 +18,13 @@ public class TypewriterEffect : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060004C1 RID: 1217 RVA: 0x00008283 File Offset: 0x00006483
+	// Token: 0x06000473 RID: 1139 RVA: 0x00018743 File Offset: 0x00016943
 	public void ResetToBeginning()
 	{
 		this.mReset = true;
 	}
 
-	// Token: 0x060004C2 RID: 1218 RVA: 0x0006FA34 File Offset: 0x0006DC34
+	// Token: 0x06000474 RID: 1140 RVA: 0x0001874C File Offset: 0x0001694C
 	public void Finish()
 	{
 		if (this.mActive)
@@ -46,14 +46,14 @@ public class TypewriterEffect : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060004C3 RID: 1219 RVA: 0x0000828C File Offset: 0x0000648C
+	// Token: 0x06000475 RID: 1141 RVA: 0x000187D5 File Offset: 0x000169D5
 	private void OnEnable()
 	{
 		this.mReset = true;
 		this.mActive = true;
 	}
 
-	// Token: 0x060004C4 RID: 1220 RVA: 0x0006FAC0 File Offset: 0x0006DCC0
+	// Token: 0x06000476 RID: 1142 RVA: 0x000187E8 File Offset: 0x000169E8
 	private void Update()
 	{
 		if (!this.mActive)
@@ -187,61 +187,61 @@ public class TypewriterEffect : MonoBehaviour
 		this.mLabel.text = this.mFullText.Substring(0, this.mCurrentOffset);
 	}
 
-	// Token: 0x0400030A RID: 778
+	// Token: 0x0400029A RID: 666
 	public static TypewriterEffect current;
 
-	// Token: 0x0400030B RID: 779
+	// Token: 0x0400029B RID: 667
 	public int charsPerSecond = 20;
 
-	// Token: 0x0400030C RID: 780
+	// Token: 0x0400029C RID: 668
 	public float fadeInTime;
 
-	// Token: 0x0400030D RID: 781
+	// Token: 0x0400029D RID: 669
 	public float delayOnPeriod;
 
-	// Token: 0x0400030E RID: 782
+	// Token: 0x0400029E RID: 670
 	public float delayOnNewLine;
 
-	// Token: 0x0400030F RID: 783
+	// Token: 0x0400029F RID: 671
 	public UIScrollView scrollView;
 
-	// Token: 0x04000310 RID: 784
+	// Token: 0x040002A0 RID: 672
 	public bool keepFullDimensions;
 
-	// Token: 0x04000311 RID: 785
+	// Token: 0x040002A1 RID: 673
 	public List<EventDelegate> onFinished = new List<EventDelegate>();
 
-	// Token: 0x04000312 RID: 786
+	// Token: 0x040002A2 RID: 674
 	private UILabel mLabel;
 
-	// Token: 0x04000313 RID: 787
+	// Token: 0x040002A3 RID: 675
 	private string mFullText = "";
 
-	// Token: 0x04000314 RID: 788
+	// Token: 0x040002A4 RID: 676
 	private int mCurrentOffset;
 
-	// Token: 0x04000315 RID: 789
+	// Token: 0x040002A5 RID: 677
 	private float mNextChar;
 
-	// Token: 0x04000316 RID: 790
+	// Token: 0x040002A6 RID: 678
 	private bool mReset = true;
 
-	// Token: 0x04000317 RID: 791
+	// Token: 0x040002A7 RID: 679
 	private bool mActive;
 
-	// Token: 0x04000318 RID: 792
+	// Token: 0x040002A8 RID: 680
 	private BetterList<TypewriterEffect.FadeEntry> mFade = new BetterList<TypewriterEffect.FadeEntry>();
 
-	// Token: 0x02000068 RID: 104
+	// Token: 0x020011DC RID: 4572
 	private struct FadeEntry
 	{
-		// Token: 0x04000319 RID: 793
+		// Token: 0x040063BF RID: 25535
 		public int index;
 
-		// Token: 0x0400031A RID: 794
+		// Token: 0x040063C0 RID: 25536
 		public string text;
 
-		// Token: 0x0400031B RID: 795
+		// Token: 0x040063C1 RID: 25537
 		public float alpha;
 	}
 }

@@ -3,12 +3,12 @@ using UnityEngine;
 
 namespace BehaviorDesigner.Runtime.Tasks.Basic.UnityParticleSystem
 {
-	// Token: 0x020015A0 RID: 5536
+	// Token: 0x020010E6 RID: 4326
 	[TaskCategory("Basic/ParticleSystem")]
 	[TaskDescription("Sets the start speed of the Particle System.")]
 	public class SetStartSpeed : Action
 	{
-		// Token: 0x06008261 RID: 33377 RVA: 0x002CD8A0 File Offset: 0x002CBAA0
+		// Token: 0x06007467 RID: 29799 RVA: 0x002B2448 File Offset: 0x002B0648
 		public override void OnStart()
 		{
 			GameObject defaultGameObject = base.GetDefaultGameObject(this.targetGameObject.Value);
@@ -19,7 +19,7 @@ namespace BehaviorDesigner.Runtime.Tasks.Basic.UnityParticleSystem
 			}
 		}
 
-		// Token: 0x06008262 RID: 33378 RVA: 0x002CD8E0 File Offset: 0x002CBAE0
+		// Token: 0x06007468 RID: 29800 RVA: 0x002B2488 File Offset: 0x002B0688
 		public override TaskStatus OnUpdate()
 		{
 			if (this.particleSystem == null)
@@ -31,25 +31,25 @@ namespace BehaviorDesigner.Runtime.Tasks.Basic.UnityParticleSystem
 			return 2;
 		}
 
-		// Token: 0x06008263 RID: 33379 RVA: 0x000594F4 File Offset: 0x000576F4
+		// Token: 0x06007469 RID: 29801 RVA: 0x002B24D3 File Offset: 0x002B06D3
 		public override void OnReset()
 		{
 			this.targetGameObject = null;
 			this.startSpeed = 0f;
 		}
 
-		// Token: 0x04006F22 RID: 28450
+		// Token: 0x04006022 RID: 24610
 		[Tooltip("The GameObject that the task operates on. If null the task GameObject is used.")]
 		public SharedGameObject targetGameObject;
 
-		// Token: 0x04006F23 RID: 28451
+		// Token: 0x04006023 RID: 24611
 		[Tooltip("The start speed of the ParticleSystem")]
 		public SharedFloat startSpeed;
 
-		// Token: 0x04006F24 RID: 28452
+		// Token: 0x04006024 RID: 24612
 		private ParticleSystem particleSystem;
 
-		// Token: 0x04006F25 RID: 28453
+		// Token: 0x04006025 RID: 24613
 		private GameObject prevGameObject;
 	}
 }

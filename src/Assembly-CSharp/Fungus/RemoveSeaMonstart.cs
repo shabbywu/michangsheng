@@ -4,12 +4,12 @@ using UnityEngine;
 
 namespace Fungus
 {
-	// Token: 0x020013C7 RID: 5063
+	// Token: 0x02000F14 RID: 3860
 	[CommandInfo("YSFuBen", "RemoveSeaMonstart", "移除无尽之海NPC", 0)]
 	[AddComponentMenu("")]
 	public class RemoveSeaMonstart : Command
 	{
-		// Token: 0x06007B6C RID: 31596 RVA: 0x002C3AB4 File Offset: 0x002C1CB4
+		// Token: 0x06006D83 RID: 28035 RVA: 0x002A3608 File Offset: 0x002A1808
 		public override void OnEnter()
 		{
 			Avatar player = Tools.instance.getPlayer();
@@ -26,7 +26,7 @@ namespace Fungus
 			this.Continue();
 		}
 
-		// Token: 0x06007B6D RID: 31597 RVA: 0x002C37E4 File Offset: 0x002C19E4
+		// Token: 0x06006D84 RID: 28036 RVA: 0x002A36B8 File Offset: 0x002A18B8
 		public void removeWait()
 		{
 			CamaraFollow component = GameObject.Find("Main Camera").GetComponent<CamaraFollow>();
@@ -36,7 +36,7 @@ namespace Fungus
 			}
 		}
 
-		// Token: 0x06007B6E RID: 31598 RVA: 0x002C3814 File Offset: 0x002C1A14
+		// Token: 0x06006D85 RID: 28037 RVA: 0x002A36E8 File Offset: 0x002A18E8
 		public void wait()
 		{
 			CamaraFollow component = GameObject.Find("Main Camera").GetComponent<CamaraFollow>();
@@ -46,18 +46,18 @@ namespace Fungus
 			}
 		}
 
-		// Token: 0x06007B6F RID: 31599 RVA: 0x000113CF File Offset: 0x0000F5CF
+		// Token: 0x06006D86 RID: 28038 RVA: 0x0005E228 File Offset: 0x0005C428
 		public override Color GetButtonColor()
 		{
 			return new Color32(184, 210, 235, byte.MaxValue);
 		}
 
-		// Token: 0x06007B70 RID: 31600 RVA: 0x000042DD File Offset: 0x000024DD
+		// Token: 0x06006D87 RID: 28039 RVA: 0x00004095 File Offset: 0x00002295
 		public override void OnReset()
 		{
 		}
 
-		// Token: 0x040069F8 RID: 27128
+		// Token: 0x04005B31 RID: 23345
 		[Tooltip("说明")]
 		[VariableProperty(new Type[]
 		{

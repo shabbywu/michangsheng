@@ -1,13 +1,13 @@
 ﻿using System;
 using UnityEngine;
 
-// Token: 0x02000062 RID: 98
+// Token: 0x0200004A RID: 74
 [ExecuteInEditMode]
 [RequireComponent(typeof(UIWidget))]
 [AddComponentMenu("NGUI/Examples/Set Color on Selection")]
 public class SetColorOnSelection : MonoBehaviour
 {
-	// Token: 0x060004B2 RID: 1202 RVA: 0x0006F738 File Offset: 0x0006D938
+	// Token: 0x06000464 RID: 1124 RVA: 0x0001838C File Offset: 0x0001658C
 	public void SetSpriteBySelection()
 	{
 		if (UIPopupList.current == null)
@@ -106,6 +106,6 @@ public class SetColorOnSelection : MonoBehaviour
 		}
 	}
 
-	// Token: 0x04000301 RID: 769
+	// Token: 0x04000291 RID: 657
 	private UIWidget mWidget;
 }

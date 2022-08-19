@@ -2,17 +2,17 @@
 
 namespace ICSharpCode.SharpZipLib.Zip
 {
-	// Token: 0x020007CB RID: 1995
+	// Token: 0x02000533 RID: 1331
 	public interface ITaggedData
 	{
-		// Token: 0x17000494 RID: 1172
-		// (get) Token: 0x060032D5 RID: 13013
+		// Token: 0x170002F5 RID: 757
+		// (get) Token: 0x06002ABE RID: 10942
 		short TagID { get; }
 
-		// Token: 0x060032D6 RID: 13014
+		// Token: 0x06002ABF RID: 10943
 		void SetData(byte[] data, int offset, int count);
 
-		// Token: 0x060032D7 RID: 13015
+		// Token: 0x06002AC0 RID: 10944
 		byte[] GetData();
 	}
 }

@@ -5,10 +5,10 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
 
-// Token: 0x02000441 RID: 1089
+// Token: 0x020002E7 RID: 743
 public class DanFangChildCell : MonoBehaviour
 {
-	// Token: 0x06001CFA RID: 7418 RVA: 0x000FF7C4 File Offset: 0x000FD9C4
+	// Token: 0x060019D8 RID: 6616 RVA: 0x000B8EB0 File Offset: 0x000B70B0
 	public void init()
 	{
 		if (this.danFang != null)
@@ -90,7 +90,7 @@ public class DanFangChildCell : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001CFB RID: 7419 RVA: 0x000182FD File Offset: 0x000164FD
+	// Token: 0x060019D9 RID: 6617 RVA: 0x000B915A File Offset: 0x000B735A
 	public void updateState()
 	{
 		if (LianDanSystemManager.inst.DanFangPageManager.checkCanLianZhi(this.danFang))
@@ -101,19 +101,19 @@ public class DanFangChildCell : MonoBehaviour
 		this.CanLianZhiImage.SetActive(false);
 	}
 
-	// Token: 0x06001CFC RID: 7420 RVA: 0x0001832F File Offset: 0x0001652F
+	// Token: 0x060019DA RID: 6618 RVA: 0x000B918C File Offset: 0x000B738C
 	public void hideLine()
 	{
 		this.Line.SetActive(false);
 	}
 
-	// Token: 0x06001CFD RID: 7421 RVA: 0x0001833D File Offset: 0x0001653D
+	// Token: 0x060019DB RID: 6619 RVA: 0x000B919A File Offset: 0x000B739A
 	public void showLine()
 	{
 		this.Line.SetActive(true);
 	}
 
-	// Token: 0x06001CFE RID: 7422 RVA: 0x000FFA70 File Offset: 0x000FDC70
+	// Token: 0x060019DC RID: 6620 RVA: 0x000B91A8 File Offset: 0x000B73A8
 	private void clickDanFang()
 	{
 		if (LianDanSystemManager.inst.inventory.inventory[30].itemID == -1)
@@ -152,36 +152,36 @@ public class DanFangChildCell : MonoBehaviour
 		UIPopTip.Inst.Pop("材料不足", PopTipIconType.叹号);
 	}
 
-	// Token: 0x040018F7 RID: 6391
+	// Token: 0x040014F3 RID: 5363
 	public JSONObject danFang;
 
-	// Token: 0x040018F8 RID: 6392
+	// Token: 0x040014F4 RID: 5364
 	private JSONObject yaoCaiIDList;
 
-	// Token: 0x040018F9 RID: 6393
+	// Token: 0x040014F5 RID: 5365
 	private JSONObject yaoCaiSumList;
 
-	// Token: 0x040018FA RID: 6394
+	// Token: 0x040014F6 RID: 5366
 	[SerializeField]
 	private Text ZhuYao;
 
-	// Token: 0x040018FB RID: 6395
+	// Token: 0x040014F7 RID: 5367
 	[SerializeField]
 	private Text FuYao;
 
-	// Token: 0x040018FC RID: 6396
+	// Token: 0x040014F8 RID: 5368
 	[SerializeField]
 	private Text YaoYing;
 
-	// Token: 0x040018FD RID: 6397
+	// Token: 0x040014F9 RID: 5369
 	[SerializeField]
 	private GameObject CanLianZhiImage;
 
-	// Token: 0x040018FE RID: 6398
+	// Token: 0x040014FA RID: 5370
 	[SerializeField]
 	private GameObject Line;
 
-	// Token: 0x040018FF RID: 6399
+	// Token: 0x040014FB RID: 5371
 	[SerializeField]
 	private GameObject HightImage;
 }

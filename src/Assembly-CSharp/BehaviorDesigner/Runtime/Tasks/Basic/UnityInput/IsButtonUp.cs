@@ -3,12 +3,12 @@ using UnityEngine;
 
 namespace BehaviorDesigner.Runtime.Tasks.Basic.UnityInput
 {
-	// Token: 0x020015EA RID: 5610
+	// Token: 0x0200112B RID: 4395
 	[TaskCategory("Basic/Input")]
 	[TaskDescription("Returns success when the specified button is released.")]
 	public class IsButtonUp : Conditional
 	{
-		// Token: 0x06008352 RID: 33618 RVA: 0x0005A4BC File Offset: 0x000586BC
+		// Token: 0x06007558 RID: 30040 RVA: 0x002B44F1 File Offset: 0x002B26F1
 		public override TaskStatus OnUpdate()
 		{
 			if (!Input.GetButtonUp(this.buttonName.Value))
@@ -18,13 +18,13 @@ namespace BehaviorDesigner.Runtime.Tasks.Basic.UnityInput
 			return 2;
 		}
 
-		// Token: 0x06008353 RID: 33619 RVA: 0x0005A4D3 File Offset: 0x000586D3
+		// Token: 0x06007559 RID: 30041 RVA: 0x002B4508 File Offset: 0x002B2708
 		public override void OnReset()
 		{
 			this.buttonName = "Fire1";
 		}
 
-		// Token: 0x0400701A RID: 28698
+		// Token: 0x040060F7 RID: 24823
 		[Tooltip("The name of the button")]
 		public SharedString buttonName;
 	}

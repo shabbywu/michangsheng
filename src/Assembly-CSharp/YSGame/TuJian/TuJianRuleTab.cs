@@ -3,10 +3,10 @@ using UnityEngine;
 
 namespace YSGame.TuJian
 {
-	// Token: 0x02000DEE RID: 3566
+	// Token: 0x02000AB1 RID: 2737
 	public class TuJianRuleTab : TuJianTab
 	{
-		// Token: 0x06005607 RID: 22023 RVA: 0x0023DEFC File Offset: 0x0023C0FC
+		// Token: 0x06004CBA RID: 19642 RVA: 0x0020D118 File Offset: 0x0020B318
 		public override void Awake()
 		{
 			TuJianRuleTab.Inst = this;
@@ -18,20 +18,20 @@ namespace YSGame.TuJian
 			base.Awake();
 		}
 
-		// Token: 0x06005608 RID: 22024 RVA: 0x0003D819 File Offset: 0x0003BA19
+		// Token: 0x06004CBB RID: 19643 RVA: 0x0020CB7F File Offset: 0x0020AD7F
 		public override void Show()
 		{
 			base.Show();
 			this.RefreshPanel(false);
 		}
 
-		// Token: 0x06005609 RID: 22025 RVA: 0x0003D828 File Offset: 0x0003BA28
+		// Token: 0x06004CBC RID: 19644 RVA: 0x0020CB8E File Offset: 0x0020AD8E
 		public override void Hide()
 		{
 			base.Hide();
 		}
 
-		// Token: 0x0600560A RID: 22026 RVA: 0x0003D8BC File Offset: 0x0003BABC
+		// Token: 0x06004CBD RID: 19645 RVA: 0x0020D190 File Offset: 0x0020B390
 		public override void OnHyperlink(int[] args)
 		{
 			base.OnHyperlink(args);
@@ -41,14 +41,14 @@ namespace YSGame.TuJian
 			this.FilterSSV.NowSelectID = args[2];
 		}
 
-		// Token: 0x0600560B RID: 22027 RVA: 0x0003D830 File Offset: 0x0003BA30
+		// Token: 0x06004CBE RID: 19646 RVA: 0x0020CCDA File Offset: 0x0020AEDA
 		public override void OnButtonClick()
 		{
 			base.OnButtonClick();
 			this.RefreshPanel(false);
 		}
 
-		// Token: 0x0600560C RID: 22028 RVA: 0x0023DF74 File Offset: 0x0023C174
+		// Token: 0x06004CBF RID: 19647 RVA: 0x0020D1C8 File Offset: 0x0020B3C8
 		public override void RefreshPanel(bool isHyperLink = false)
 		{
 			if (TuJianManager.Inst.Searcher.SearchCount > 0)
@@ -72,20 +72,20 @@ namespace YSGame.TuJian
 			this.RuleInfoPanel.NeedRefresh = true;
 		}
 
-		// Token: 0x040055AD RID: 21933
+		// Token: 0x04004BCF RID: 19407
 		[HideInInspector]
 		public static TuJianRuleTab Inst;
 
-		// Token: 0x040055AE RID: 21934
+		// Token: 0x04004BD0 RID: 19408
 		private RuleInfoPanel RuleInfoPanel;
 
-		// Token: 0x040055AF RID: 21935
+		// Token: 0x04004BD1 RID: 19409
 		public SuperScrollView TypeSSV;
 
-		// Token: 0x040055B0 RID: 21936
+		// Token: 0x04004BD2 RID: 19410
 		public SuperScrollView FilterSSV;
 
-		// Token: 0x040055B1 RID: 21937
+		// Token: 0x04004BD3 RID: 19411
 		private int NowType = -1;
 	}
 }

@@ -2,18 +2,18 @@
 
 namespace Fungus
 {
-	// Token: 0x02001301 RID: 4865
+	// Token: 0x02000E90 RID: 3728
 	public enum WriterState
 	{
-		// Token: 0x0400676D RID: 26477
+		// Token: 0x0400598C RID: 22924
 		Invalid,
-		// Token: 0x0400676E RID: 26478
+		// Token: 0x0400598D RID: 22925
 		Start,
-		// Token: 0x0400676F RID: 26479
+		// Token: 0x0400598E RID: 22926
 		Pause,
-		// Token: 0x04006770 RID: 26480
+		// Token: 0x0400598F RID: 22927
 		Resume,
-		// Token: 0x04006771 RID: 26481
+		// Token: 0x04005990 RID: 22928
 		End
 	}
 }

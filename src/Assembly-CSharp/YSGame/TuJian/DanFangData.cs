@@ -2,10 +2,10 @@
 
 namespace YSGame.TuJian
 {
-	// Token: 0x02000DD8 RID: 3544
+	// Token: 0x02000A9D RID: 2717
 	public class DanFangData
 	{
-		// Token: 0x06005563 RID: 21859 RVA: 0x00239790 File Offset: 0x00237990
+		// Token: 0x06004C1F RID: 19487 RVA: 0x002082A4 File Offset: 0x002064A4
 		public void CalcYaoCaiTypeCount()
 		{
 			if (this.YaoYinCount > 0)
@@ -30,43 +30,43 @@ namespace YSGame.TuJian
 			}
 		}
 
-		// Token: 0x04005538 RID: 21816
+		// Token: 0x04004B5F RID: 19295
 		public int ItemID;
 
-		// Token: 0x04005539 RID: 21817
+		// Token: 0x04004B60 RID: 19296
 		public int YaoYinID;
 
-		// Token: 0x0400553A RID: 21818
+		// Token: 0x04004B61 RID: 19297
 		public int ZhuYao1ID;
 
-		// Token: 0x0400553B RID: 21819
+		// Token: 0x04004B62 RID: 19298
 		public int ZhuYao2ID;
 
-		// Token: 0x0400553C RID: 21820
+		// Token: 0x04004B63 RID: 19299
 		public int FuYao1ID;
 
-		// Token: 0x0400553D RID: 21821
+		// Token: 0x04004B64 RID: 19300
 		public int FuYao2ID;
 
-		// Token: 0x0400553E RID: 21822
+		// Token: 0x04004B65 RID: 19301
 		public int YaoYinCount;
 
-		// Token: 0x0400553F RID: 21823
+		// Token: 0x04004B66 RID: 19302
 		public int ZhuYao1Count;
 
-		// Token: 0x04005540 RID: 21824
+		// Token: 0x04004B67 RID: 19303
 		public int ZhuYao2Count;
 
-		// Token: 0x04005541 RID: 21825
+		// Token: 0x04004B68 RID: 19304
 		public int FuYao1Count;
 
-		// Token: 0x04005542 RID: 21826
+		// Token: 0x04004B69 RID: 19305
 		public int FuYao2Count;
 
-		// Token: 0x04005543 RID: 21827
+		// Token: 0x04004B6A RID: 19306
 		public int CastTime;
 
-		// Token: 0x04005544 RID: 21828
+		// Token: 0x04004B6B RID: 19307
 		public int YaoCaiTypeCount;
 	}
 }

@@ -3,10 +3,10 @@ using KBEngine;
 using UnityEngine;
 using UnityEngine.UI;
 
-// Token: 0x020001FE RID: 510
+// Token: 0x0200012D RID: 301
 public class PlayerInventory : MonoBehaviour
 {
-	// Token: 0x0600102D RID: 4141 RVA: 0x000A3EE8 File Offset: 0x000A20E8
+	// Token: 0x06000E1F RID: 3615 RVA: 0x000537CC File Offset: 0x000519CC
 	public void OnEnable()
 	{
 		Inventory.ItemEquip += this.OnBackpack;
@@ -18,7 +18,7 @@ public class PlayerInventory : MonoBehaviour
 		Inventory.UnEquipItem += this.UnEquipWeapon;
 	}
 
-	// Token: 0x0600102E RID: 4142 RVA: 0x000A3F6C File Offset: 0x000A216C
+	// Token: 0x06000E20 RID: 3616 RVA: 0x00053850 File Offset: 0x00051A50
 	public void OnDisable()
 	{
 		Inventory.ItemEquip -= this.OnBackpack;
@@ -30,19 +30,19 @@ public class PlayerInventory : MonoBehaviour
 		Inventory.ItemEquip -= this.EquipWeapon;
 	}
 
-	// Token: 0x0600102F RID: 4143 RVA: 0x0001036E File Offset: 0x0000E56E
+	// Token: 0x06000E21 RID: 3617 RVA: 0x000538D4 File Offset: 0x00051AD4
 	private void EquipWeapon(Item item)
 	{
 		ItemType itemType = item.itemType;
 	}
 
-	// Token: 0x06001030 RID: 4144 RVA: 0x0001036E File Offset: 0x0000E56E
+	// Token: 0x06000E22 RID: 3618 RVA: 0x000538D4 File Offset: 0x00051AD4
 	private void UnEquipWeapon(Item item)
 	{
 		ItemType itemType = item.itemType;
 	}
 
-	// Token: 0x06001031 RID: 4145 RVA: 0x000A3FF0 File Offset: 0x000A21F0
+	// Token: 0x06000E23 RID: 3619 RVA: 0x000538E0 File Offset: 0x00051AE0
 	private void OnBackpack(Item item)
 	{
 		if (item.itemType == ItemType.Backpack)
@@ -62,7 +62,7 @@ public class PlayerInventory : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001032 RID: 4146 RVA: 0x00010379 File Offset: 0x0000E579
+	// Token: 0x06000E24 RID: 3620 RVA: 0x0005396B File Offset: 0x00051B6B
 	private void UnEquipBackpack(Item item)
 	{
 		if (item.itemType == ItemType.Backpack)
@@ -71,7 +71,7 @@ public class PlayerInventory : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001033 RID: 4147 RVA: 0x000A407C File Offset: 0x000A227C
+	// Token: 0x06000E25 RID: 3621 RVA: 0x00053984 File Offset: 0x00051B84
 	private void changeInventorySize(int size)
 	{
 		this.dropTheRestItems(size);
@@ -119,7 +119,7 @@ public class PlayerInventory : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001034 RID: 4148 RVA: 0x000A41B0 File Offset: 0x000A23B0
+	// Token: 0x06000E26 RID: 3622 RVA: 0x00053AB8 File Offset: 0x00051CB8
 	private void dropTheRestItems(int size)
 	{
 		if (size < this.mainInventory.ItemsInInventory.Count)
@@ -134,7 +134,7 @@ public class PlayerInventory : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001035 RID: 4149 RVA: 0x000A4254 File Offset: 0x000A2454
+	// Token: 0x06000E27 RID: 3623 RVA: 0x00053B5C File Offset: 0x00051D5C
 	private void Start()
 	{
 		if (this.inputManagerDatabase == null)
@@ -172,7 +172,7 @@ public class PlayerInventory : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001036 RID: 4150 RVA: 0x000A4398 File Offset: 0x000A2598
+	// Token: 0x06000E28 RID: 3624 RVA: 0x00053CA0 File Offset: 0x00051EA0
 	public void OnConsumeItem(Item item)
 	{
 		for (int i = 0; i < item.itemAttributes.Count; i++)
@@ -224,7 +224,7 @@ public class PlayerInventory : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001037 RID: 4151 RVA: 0x000A4570 File Offset: 0x000A2770
+	// Token: 0x06000E29 RID: 3625 RVA: 0x00053E78 File Offset: 0x00052078
 	public void OnGearItem(Item item)
 	{
 		for (int i = 0; i < item.itemAttributes.Count; i++)
@@ -248,7 +248,7 @@ public class PlayerInventory : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001038 RID: 4152 RVA: 0x000A468C File Offset: 0x000A288C
+	// Token: 0x06000E2A RID: 3626 RVA: 0x00053F94 File Offset: 0x00052194
 	public void OnUnEquipItem(Item item)
 	{
 		for (int i = 0; i < item.itemAttributes.Count; i++)
@@ -272,7 +272,7 @@ public class PlayerInventory : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001039 RID: 4153 RVA: 0x000A47A8 File Offset: 0x000A29A8
+	// Token: 0x06000E2B RID: 3627 RVA: 0x000540B0 File Offset: 0x000522B0
 	private void Update()
 	{
 		if (Input.GetKeyDown(this.inputManagerDatabase.CharacterSystemKeyCode))
@@ -324,72 +324,72 @@ public class PlayerInventory : MonoBehaviour
 		}
 	}
 
-	// Token: 0x04000CAE RID: 3246
+	// Token: 0x04000A16 RID: 2582
 	public GameObject inventory;
 
-	// Token: 0x04000CAF RID: 3247
+	// Token: 0x04000A17 RID: 2583
 	public GameObject characterSystem;
 
-	// Token: 0x04000CB0 RID: 3248
+	// Token: 0x04000A18 RID: 2584
 	public GameObject craftSystem;
 
-	// Token: 0x04000CB1 RID: 3249
+	// Token: 0x04000A19 RID: 2585
 	private Inventory craftSystemInventory;
 
-	// Token: 0x04000CB2 RID: 3250
+	// Token: 0x04000A1A RID: 2586
 	private CraftSystem cS;
 
-	// Token: 0x04000CB3 RID: 3251
+	// Token: 0x04000A1B RID: 2587
 	private Inventory mainInventory;
 
-	// Token: 0x04000CB4 RID: 3252
+	// Token: 0x04000A1C RID: 2588
 	private Inventory characterSystemInventory;
 
-	// Token: 0x04000CB5 RID: 3253
+	// Token: 0x04000A1D RID: 2589
 	private Tooltip toolTip;
 
-	// Token: 0x04000CB6 RID: 3254
+	// Token: 0x04000A1E RID: 2590
 	private InputManager inputManagerDatabase;
 
-	// Token: 0x04000CB7 RID: 3255
+	// Token: 0x04000A1F RID: 2591
 	public GameObject HPMANACanvas;
 
-	// Token: 0x04000CB8 RID: 3256
+	// Token: 0x04000A20 RID: 2592
 	private Text hpText;
 
-	// Token: 0x04000CB9 RID: 3257
+	// Token: 0x04000A21 RID: 2593
 	private Text manaText;
 
-	// Token: 0x04000CBA RID: 3258
+	// Token: 0x04000A22 RID: 2594
 	private Image hpImage;
 
-	// Token: 0x04000CBB RID: 3259
+	// Token: 0x04000A23 RID: 2595
 	private Image manaImage;
 
-	// Token: 0x04000CBC RID: 3260
+	// Token: 0x04000A24 RID: 2596
 	private float maxHealth = 100f;
 
-	// Token: 0x04000CBD RID: 3261
+	// Token: 0x04000A25 RID: 2597
 	private float maxMana = 100f;
 
-	// Token: 0x04000CBE RID: 3262
+	// Token: 0x04000A26 RID: 2598
 	private float maxDamage;
 
-	// Token: 0x04000CBF RID: 3263
+	// Token: 0x04000A27 RID: 2599
 	private float maxArmor;
 
-	// Token: 0x04000CC0 RID: 3264
+	// Token: 0x04000A28 RID: 2600
 	public float currentHealth = 60f;
 
-	// Token: 0x04000CC1 RID: 3265
+	// Token: 0x04000A29 RID: 2601
 	private float currentMana = 100f;
 
-	// Token: 0x04000CC2 RID: 3266
+	// Token: 0x04000A2A RID: 2602
 	private float currentDamage;
 
-	// Token: 0x04000CC3 RID: 3267
+	// Token: 0x04000A2B RID: 2603
 	private float currentArmor;
 
-	// Token: 0x04000CC4 RID: 3268
+	// Token: 0x04000A2C RID: 2604
 	private int normalSize = 3;
 }

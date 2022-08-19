@@ -3,12 +3,12 @@ using UnityEngine;
 
 namespace BehaviorDesigner.Runtime.Tasks.Basic.UnityBehaviour
 {
-	// Token: 0x02001622 RID: 5666
+	// Token: 0x02001163 RID: 4451
 	[TaskCategory("Basic/Behaviour")]
 	[TaskDescription("Returns Success if the object is enabled, otherwise Failure.")]
 	public class IsEnabled : Conditional
 	{
-		// Token: 0x0600841C RID: 33820 RVA: 0x002CF434 File Offset: 0x002CD634
+		// Token: 0x06007622 RID: 30242 RVA: 0x002B5DF4 File Offset: 0x002B3FF4
 		public override TaskStatus OnUpdate()
 		{
 			if (this.specifiedObject == null && !(this.specifiedObject.Value is Behaviour))
@@ -23,7 +23,7 @@ namespace BehaviorDesigner.Runtime.Tasks.Basic.UnityBehaviour
 			return 2;
 		}
 
-		// Token: 0x0600841D RID: 33821 RVA: 0x0005B2F0 File Offset: 0x000594F0
+		// Token: 0x06007623 RID: 30243 RVA: 0x002B5E41 File Offset: 0x002B4041
 		public override void OnReset()
 		{
 			if (this.specifiedObject != null)
@@ -32,7 +32,7 @@ namespace BehaviorDesigner.Runtime.Tasks.Basic.UnityBehaviour
 			}
 		}
 
-		// Token: 0x040070CA RID: 28874
+		// Token: 0x040061A7 RID: 24999
 		[Tooltip("The Object to use")]
 		public SharedObject specifiedObject;
 	}

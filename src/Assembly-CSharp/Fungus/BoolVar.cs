@@ -3,13 +3,13 @@ using UnityEngine;
 
 namespace Fungus
 {
-	// Token: 0x02001360 RID: 4960
+	// Token: 0x02000EC2 RID: 3778
 	[Serializable]
 	public class BoolVar
 	{
-		// Token: 0x17000B45 RID: 2885
-		// (get) Token: 0x06007862 RID: 30818 RVA: 0x00051C87 File Offset: 0x0004FE87
-		// (set) Token: 0x06007863 RID: 30819 RVA: 0x00051C8F File Offset: 0x0004FE8F
+		// Token: 0x170008A8 RID: 2216
+		// (get) Token: 0x06006AC7 RID: 27335 RVA: 0x00293F83 File Offset: 0x00292183
+		// (set) Token: 0x06006AC8 RID: 27336 RVA: 0x00293F8B File Offset: 0x0029218B
 		public string Key
 		{
 			get
@@ -22,9 +22,9 @@ namespace Fungus
 			}
 		}
 
-		// Token: 0x17000B46 RID: 2886
-		// (get) Token: 0x06007864 RID: 30820 RVA: 0x00051C98 File Offset: 0x0004FE98
-		// (set) Token: 0x06007865 RID: 30821 RVA: 0x00051CA0 File Offset: 0x0004FEA0
+		// Token: 0x170008A9 RID: 2217
+		// (get) Token: 0x06006AC9 RID: 27337 RVA: 0x00293F94 File Offset: 0x00292194
+		// (set) Token: 0x06006ACA RID: 27338 RVA: 0x00293F9C File Offset: 0x0029219C
 		public bool Value
 		{
 			get
@@ -37,11 +37,11 @@ namespace Fungus
 			}
 		}
 
-		// Token: 0x04006868 RID: 26728
+		// Token: 0x04005A09 RID: 23049
 		[SerializeField]
 		protected string key;
 
-		// Token: 0x04006869 RID: 26729
+		// Token: 0x04005A0A RID: 23050
 		[SerializeField]
 		protected bool value;
 	}

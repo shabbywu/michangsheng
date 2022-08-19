@@ -3,28 +3,28 @@ using UnityEngine;
 
 namespace Fungus
 {
-	// Token: 0x020012FD RID: 4861
+	// Token: 0x02000E8C RID: 3724
 	public class VariablePropertyAttribute : PropertyAttribute
 	{
-		// Token: 0x06007684 RID: 30340 RVA: 0x00050A9E File Offset: 0x0004EC9E
+		// Token: 0x06006985 RID: 27013 RVA: 0x0029129B File Offset: 0x0028F49B
 		public VariablePropertyAttribute(params Type[] variableTypes)
 		{
 			this.VariableTypes = variableTypes;
 		}
 
-		// Token: 0x06007685 RID: 30341 RVA: 0x00050AB8 File Offset: 0x0004ECB8
+		// Token: 0x06006986 RID: 27014 RVA: 0x002912B5 File Offset: 0x0028F4B5
 		public VariablePropertyAttribute(string defaultText, params Type[] variableTypes)
 		{
 			this.defaultText = defaultText;
 			this.VariableTypes = variableTypes;
 		}
 
-		// Token: 0x17000B0D RID: 2829
-		// (get) Token: 0x06007686 RID: 30342 RVA: 0x00050AD9 File Offset: 0x0004ECD9
-		// (set) Token: 0x06007687 RID: 30343 RVA: 0x00050AE1 File Offset: 0x0004ECE1
+		// Token: 0x1700088E RID: 2190
+		// (get) Token: 0x06006987 RID: 27015 RVA: 0x002912D6 File Offset: 0x0028F4D6
+		// (set) Token: 0x06006988 RID: 27016 RVA: 0x002912DE File Offset: 0x0028F4DE
 		public Type[] VariableTypes { get; set; }
 
-		// Token: 0x04006762 RID: 26466
+		// Token: 0x04005981 RID: 22913
 		public string defaultText = "<None>";
 	}
 }

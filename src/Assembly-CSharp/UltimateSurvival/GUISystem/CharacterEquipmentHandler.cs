@@ -4,10 +4,10 @@ using UnityEngine;
 
 namespace UltimateSurvival.GUISystem
 {
-	// Token: 0x0200093B RID: 2363
+	// Token: 0x02000641 RID: 1601
 	public class CharacterEquipmentHandler : MonoBehaviour
 	{
-		// Token: 0x06003C7A RID: 15482 RVA: 0x001B0D94 File Offset: 0x001AEF94
+		// Token: 0x0600331E RID: 13086 RVA: 0x00167D4C File Offset: 0x00165F4C
 		private void Start()
 		{
 			Slot[] componentsInChildren = base.GetComponentsInChildren<Slot>();
@@ -17,7 +17,7 @@ namespace UltimateSurvival.GUISystem
 			}
 		}
 
-		// Token: 0x06003C7B RID: 15483 RVA: 0x001B0DD4 File Offset: 0x001AEFD4
+		// Token: 0x0600331F RID: 13087 RVA: 0x00167D8C File Offset: 0x00165F8C
 		private void On_ItemHolder_Updated(ItemHolder holder)
 		{
 			MonoSingleton<InventoryController>.Instance.EquipmentChanged.Send(holder);
@@ -58,11 +58,11 @@ namespace UltimateSurvival.GUISystem
 			}
 		}
 
-		// Token: 0x040036BE RID: 14014
+		// Token: 0x04002D55 RID: 11605
 		[SerializeField]
 		private AudioSource m_AudioSource;
 
-		// Token: 0x040036BF RID: 14015
+		// Token: 0x04002D56 RID: 11606
 		[SerializeField]
 		private SoundPlayer m_EquipAudio;
 	}

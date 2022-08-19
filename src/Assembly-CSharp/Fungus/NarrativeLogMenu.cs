@@ -4,10 +4,10 @@ using UnityEngine.UI;
 
 namespace Fungus
 {
-	// Token: 0x020012E4 RID: 4836
+	// Token: 0x02000E79 RID: 3705
 	public class NarrativeLogMenu : MonoBehaviour
 	{
-		// Token: 0x060075BD RID: 30141 RVA: 0x002B0D40 File Offset: 0x002AEF40
+		// Token: 0x060068D6 RID: 26838 RVA: 0x0028E67C File Offset: 0x0028C87C
 		protected virtual void Awake()
 		{
 			if (this.showLog)
@@ -29,7 +29,7 @@ namespace Fungus
 			this.narLogViewtextAdapter.InitFromGameObject(this.narrativeLogView.gameObject, true);
 		}
 
-		// Token: 0x060075BE RID: 30142 RVA: 0x0005036F File Offset: 0x0004E56F
+		// Token: 0x060068D7 RID: 26839 RVA: 0x0028E6F2 File Offset: 0x0028C8F2
 		protected virtual void Start()
 		{
 			if (!NarrativeLogMenu.narrativeLogActive)
@@ -39,7 +39,7 @@ namespace Fungus
 			this.UpdateNarrativeLogText();
 		}
 
-		// Token: 0x060075BF RID: 30143 RVA: 0x002B0DB8 File Offset: 0x002AEFB8
+		// Token: 0x060068D8 RID: 26840 RVA: 0x0028E714 File Offset: 0x0028C914
 		protected virtual void OnEnable()
 		{
 			WriterSignals.OnWriterState += this.OnWriterState;
@@ -49,7 +49,7 @@ namespace Fungus
 			NarrativeLog.OnNarrativeAdded += this.OnNarrativeAdded;
 		}
 
-		// Token: 0x060075C0 RID: 30144 RVA: 0x002B0E20 File Offset: 0x002AF020
+		// Token: 0x060068D9 RID: 26841 RVA: 0x0028E77C File Offset: 0x0028C97C
 		protected virtual void OnDisable()
 		{
 			WriterSignals.OnWriterState -= this.OnWriterState;
@@ -59,13 +59,13 @@ namespace Fungus
 			NarrativeLog.OnNarrativeAdded -= this.OnNarrativeAdded;
 		}
 
-		// Token: 0x060075C1 RID: 30145 RVA: 0x0005038E File Offset: 0x0004E58E
+		// Token: 0x060068DA RID: 26842 RVA: 0x0028E7E3 File Offset: 0x0028C9E3
 		protected virtual void OnNarrativeAdded()
 		{
 			this.UpdateNarrativeLogText();
 		}
 
-		// Token: 0x060075C2 RID: 30146 RVA: 0x00050396 File Offset: 0x0004E596
+		// Token: 0x060068DB RID: 26843 RVA: 0x0028E7EB File Offset: 0x0028C9EB
 		protected virtual void OnWriterState(Writer writer, WriterState writerState)
 		{
 			if (writerState == WriterState.Start)
@@ -74,20 +74,20 @@ namespace Fungus
 			}
 		}
 
-		// Token: 0x060075C3 RID: 30147 RVA: 0x0005038E File Offset: 0x0004E58E
+		// Token: 0x060068DC RID: 26844 RVA: 0x0028E7E3 File Offset: 0x0028C9E3
 		protected virtual void OnSavePointLoaded(string savePointKey)
 		{
 			this.UpdateNarrativeLogText();
 		}
 
-		// Token: 0x060075C4 RID: 30148 RVA: 0x000503A2 File Offset: 0x0004E5A2
+		// Token: 0x060068DD RID: 26845 RVA: 0x0028E7F7 File Offset: 0x0028C9F7
 		protected virtual void OnSaveReset()
 		{
 			FungusManager.Instance.NarrativeLog.Clear();
 			this.UpdateNarrativeLogText();
 		}
 
-		// Token: 0x060075C5 RID: 30149 RVA: 0x002B0E88 File Offset: 0x002AF088
+		// Token: 0x060068DE RID: 26846 RVA: 0x0028E810 File Offset: 0x0028CA10
 		protected virtual void OnBlockEnd(Block block)
 		{
 			bool flag = this.previousLines;
@@ -96,7 +96,7 @@ namespace Fungus
 			this.previousLines = flag;
 		}
 
-		// Token: 0x060075C6 RID: 30150 RVA: 0x002B0EB0 File Offset: 0x002AF0B0
+		// Token: 0x060068DF RID: 26847 RVA: 0x0028E838 File Offset: 0x0028CA38
 		protected void UpdateNarrativeLogText()
 		{
 			if (this.narrativeLogView.enabled)
@@ -108,7 +108,7 @@ namespace Fungus
 			}
 		}
 
-		// Token: 0x060075C7 RID: 30151 RVA: 0x000503B9 File Offset: 0x0004E5B9
+		// Token: 0x060068E0 RID: 26848 RVA: 0x0028E887 File Offset: 0x0028CA87
 		protected void PlayClickSound()
 		{
 			if (this.clickAudioSource != null)
@@ -117,7 +117,7 @@ namespace Fungus
 			}
 		}
 
-		// Token: 0x060075C8 RID: 30152 RVA: 0x002B0F00 File Offset: 0x002AF100
+		// Token: 0x060068E1 RID: 26849 RVA: 0x0028E8A4 File Offset: 0x0028CAA4
 		public virtual void ToggleNarrativeLogView()
 		{
 			if (this.fadeTween != null)
@@ -148,39 +148,39 @@ namespace Fungus
 			NarrativeLogMenu.narrativeLogActive = !NarrativeLogMenu.narrativeLogActive;
 		}
 
-		// Token: 0x040066C4 RID: 26308
+		// Token: 0x040058FC RID: 22780
 		[Tooltip("Show the Narrative Log Menu")]
 		[SerializeField]
 		protected bool showLog = true;
 
-		// Token: 0x040066C5 RID: 26309
+		// Token: 0x040058FD RID: 22781
 		[Tooltip("Show previous lines instead of previous and current")]
 		[SerializeField]
 		protected bool previousLines = true;
 
-		// Token: 0x040066C6 RID: 26310
+		// Token: 0x040058FE RID: 22782
 		[Tooltip("A scrollable text field used for displaying conversation history.")]
 		[SerializeField]
 		protected ScrollRect narrativeLogView;
 
-		// Token: 0x040066C7 RID: 26311
+		// Token: 0x040058FF RID: 22783
 		protected TextAdapter narLogViewtextAdapter = new TextAdapter();
 
-		// Token: 0x040066C8 RID: 26312
+		// Token: 0x04005900 RID: 22784
 		[Tooltip("The CanvasGroup containing the save menu buttons")]
 		[SerializeField]
 		protected CanvasGroup narrativeLogMenuGroup;
 
-		// Token: 0x040066C9 RID: 26313
+		// Token: 0x04005901 RID: 22785
 		protected static bool narrativeLogActive;
 
-		// Token: 0x040066CA RID: 26314
+		// Token: 0x04005902 RID: 22786
 		protected AudioSource clickAudioSource;
 
-		// Token: 0x040066CB RID: 26315
+		// Token: 0x04005903 RID: 22787
 		protected LTDescr fadeTween;
 
-		// Token: 0x040066CC RID: 26316
+		// Token: 0x04005904 RID: 22788
 		protected static NarrativeLogMenu instance;
 	}
 }

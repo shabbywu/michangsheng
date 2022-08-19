@@ -3,12 +3,12 @@ using UnityEngine;
 
 namespace Fungus
 {
-	// Token: 0x0200122E RID: 4654
+	// Token: 0x02000DEA RID: 3562
 	[CommandInfo("Variable", "Load Variable", "Loads a saved value and stores it in a Boolean, Integer, Float or String variable. If the key is not found then the variable is not modified.", 0)]
 	[AddComponentMenu("")]
 	public class LoadVariable : Command
 	{
-		// Token: 0x06007180 RID: 29056 RVA: 0x002A5C5C File Offset: 0x002A3E5C
+		// Token: 0x060064F4 RID: 25844 RVA: 0x00281470 File Offset: 0x0027F670
 		public override void OnEnter()
 		{
 			if (this.key == "" || this.variable == null)
@@ -54,7 +54,7 @@ namespace Fungus
 			this.Continue();
 		}
 
-		// Token: 0x06007181 RID: 29057 RVA: 0x002A5DAC File Offset: 0x002A3FAC
+		// Token: 0x060064F5 RID: 25845 RVA: 0x002815C0 File Offset: 0x0027F7C0
 		public override string GetSummary()
 		{
 			if (this.key.Length == 0)
@@ -68,24 +68,24 @@ namespace Fungus
 			return "'" + this.key + "' into " + this.variable.Key;
 		}
 
-		// Token: 0x06007182 RID: 29058 RVA: 0x0004C5E0 File Offset: 0x0004A7E0
+		// Token: 0x060064F6 RID: 25846 RVA: 0x0027D3DB File Offset: 0x0027B5DB
 		public override Color GetButtonColor()
 		{
 			return new Color32(235, 191, 217, byte.MaxValue);
 		}
 
-		// Token: 0x06007183 RID: 29059 RVA: 0x0004D2F6 File Offset: 0x0004B4F6
+		// Token: 0x060064F7 RID: 25847 RVA: 0x00281614 File Offset: 0x0027F814
 		public override bool HasReference(Variable in_variable)
 		{
 			return this.variable == in_variable || base.HasReference(in_variable);
 		}
 
-		// Token: 0x040063EA RID: 25578
+		// Token: 0x040056D9 RID: 22233
 		[Tooltip("Name of the saved value. Supports variable substition e.g. \"player_{$PlayerNumber}\"")]
 		[SerializeField]
 		protected string key = "";
 
-		// Token: 0x040063EB RID: 25579
+		// Token: 0x040056DA RID: 22234
 		[Tooltip("Variable to store the value in.")]
 		[VariableProperty(new Type[]
 		{

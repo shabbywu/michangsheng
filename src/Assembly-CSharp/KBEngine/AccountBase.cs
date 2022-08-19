@@ -4,173 +4,173 @@ using UnityEngine;
 
 namespace KBEngine
 {
-	// Token: 0x02000EAA RID: 3754
+	// Token: 0x02000B33 RID: 2867
 	public abstract class AccountBase : Entity
 	{
-		// Token: 0x06005A12 RID: 23058 RVA: 0x000042DD File Offset: 0x000024DD
+		// Token: 0x06004FE8 RID: 20456 RVA: 0x00004095 File Offset: 0x00002295
 		public virtual void onCheckInListChanged(CHECKIN_INFO_LIST oldValue)
 		{
 		}
 
-		// Token: 0x06005A13 RID: 23059 RVA: 0x000042DD File Offset: 0x000024DD
+		// Token: 0x06004FE9 RID: 20457 RVA: 0x00004095 File Offset: 0x00002295
 		public virtual void onFriendListChanged(FRIEND_INFO_LIST oldValue)
 		{
 		}
 
-		// Token: 0x06005A14 RID: 23060 RVA: 0x000042DD File Offset: 0x000024DD
+		// Token: 0x06004FEA RID: 20458 RVA: 0x00004095 File Offset: 0x00002295
 		public virtual void onShopBuyTimeChanged(SHOPBUY_INFO_LIST oldValue)
 		{
 		}
 
-		// Token: 0x06005A15 RID: 23061 RVA: 0x000042DD File Offset: 0x000024DD
+		// Token: 0x06004FEB RID: 20459 RVA: 0x00004095 File Offset: 0x00002295
 		public virtual void onEquipItemListChanged(ITEM_INFO_LIST oldValue)
 		{
 		}
 
-		// Token: 0x06005A16 RID: 23062 RVA: 0x000042DD File Offset: 0x000024DD
+		// Token: 0x06004FEC RID: 20460 RVA: 0x00004095 File Offset: 0x00002295
 		public virtual void onItemListChanged(ITEM_INFO_LIST oldValue)
 		{
 		}
 
-		// Token: 0x06005A17 RID: 23063 RVA: 0x000042DD File Offset: 0x000024DD
+		// Token: 0x06004FED RID: 20461 RVA: 0x00004095 File Offset: 0x00002295
 		public virtual void onPlayerInfoChanged(PLAYER_INFO oldValue)
 		{
 		}
 
-		// Token: 0x06005A18 RID: 23064
+		// Token: 0x06004FEE RID: 20462
 		public abstract void CheckInSuccess(uint arg1);
 
-		// Token: 0x06005A19 RID: 23065
+		// Token: 0x06004FEF RID: 20463
 		public abstract void HomeErrorMessage(string arg1);
 
-		// Token: 0x06005A1A RID: 23066
+		// Token: 0x06004FF0 RID: 20464
 		public abstract void MatchSuccess();
 
-		// Token: 0x06005A1B RID: 23067
+		// Token: 0x06004FF1 RID: 20465
 		public abstract void addFriendSuccess(FRIEND_INFO arg1);
 
-		// Token: 0x06005A1C RID: 23068
+		// Token: 0x06004FF2 RID: 20466
 		public abstract void addItem(ulong arg1, uint arg2);
 
-		// Token: 0x06005A1D RID: 23069
+		// Token: 0x06004FF3 RID: 20467
 		public abstract void boxAddItem(ulong arg1, uint arg2);
 
-		// Token: 0x06005A1E RID: 23070
+		// Token: 0x06004FF4 RID: 20468
 		public abstract void buySuccess(ITEM_INFO_LIST arg1);
 
-		// Token: 0x06005A1F RID: 23071
+		// Token: 0x06004FF5 RID: 20469
 		public abstract void createItem(ITEM_INFO arg1);
 
-		// Token: 0x06005A20 RID: 23072
+		// Token: 0x06004FF6 RID: 20470
 		public abstract void createOder(string arg1);
 
-		// Token: 0x06005A21 RID: 23073
+		// Token: 0x06004FF7 RID: 20471
 		public abstract void getTalkingMsg(FRIEND_INFO arg1, string arg2);
 
-		// Token: 0x06005A22 RID: 23074
+		// Token: 0x06004FF8 RID: 20472
 		public abstract void goToCreatePlayer();
 
-		// Token: 0x06005A23 RID: 23075
+		// Token: 0x06004FF9 RID: 20473
 		public abstract void goToHome(PLAYER_INFO arg1);
 
-		// Token: 0x06005A24 RID: 23076
+		// Token: 0x06004FFA RID: 20474
 		public abstract void goToSpace();
 
-		// Token: 0x06005A25 RID: 23077
+		// Token: 0x06004FFB RID: 20475
 		public abstract void leaveTeam();
 
-		// Token: 0x06005A26 RID: 23078
+		// Token: 0x06004FFC RID: 20476
 		public abstract void onCreateAvatarResult(byte arg1, AVATAR_INFO arg2);
 
-		// Token: 0x06005A27 RID: 23079
+		// Token: 0x06004FFD RID: 20477
 		public abstract void onHelloTestBacke();
 
-		// Token: 0x06005A28 RID: 23080
+		// Token: 0x06004FFE RID: 20478
 		public abstract void onRemoveAvatar(ulong arg1);
 
-		// Token: 0x06005A29 RID: 23081
+		// Token: 0x06004FFF RID: 20479
 		public abstract void onReqAvatarList(ITEM_INFO_LIST arg1);
 
-		// Token: 0x06005A2A RID: 23082
+		// Token: 0x06005000 RID: 20480
 		public abstract void onReqShopList(ITEM_INFO_LIST arg1, string arg2);
 
-		// Token: 0x06005A2B RID: 23083
+		// Token: 0x06005001 RID: 20481
 		public abstract void onStartGame();
 
-		// Token: 0x06005A2C RID: 23084
+		// Token: 0x06005002 RID: 20482
 		public abstract void receiveaddTeam(string arg1, ulong arg2, ulong arg3);
 
-		// Token: 0x06005A2D RID: 23085
+		// Token: 0x06005003 RID: 20483
 		public abstract void receiveaddfriend(string arg1, ulong arg2);
 
-		// Token: 0x06005A2E RID: 23086
+		// Token: 0x06005004 RID: 20484
 		public abstract void removeItem(ulong arg1, uint arg2);
 
-		// Token: 0x06005A2F RID: 23087
+		// Token: 0x06005005 RID: 20485
 		public abstract void requestOnlineFriend(FRIEND_INFO_LIST arg1);
 
-		// Token: 0x06005A30 RID: 23088
+		// Token: 0x06005006 RID: 20486
 		public abstract void setAllTeamMember(string arg1, ulong arg2);
 
-		// Token: 0x06005A31 RID: 23089
+		// Token: 0x06005007 RID: 20487
 		public abstract void setTeamMember(string arg1, uint arg2);
 
-		// Token: 0x06005A32 RID: 23090 RVA: 0x0024BDCC File Offset: 0x00249FCC
+		// Token: 0x06005008 RID: 20488 RVA: 0x0021C19C File Offset: 0x0021A39C
 		public AccountBase()
 		{
 		}
 
-		// Token: 0x06005A33 RID: 23091 RVA: 0x000042DD File Offset: 0x000024DD
+		// Token: 0x06005009 RID: 20489 RVA: 0x00004095 File Offset: 0x00002295
 		public override void onComponentsEnterworld()
 		{
 		}
 
-		// Token: 0x06005A34 RID: 23092 RVA: 0x000042DD File Offset: 0x000024DD
+		// Token: 0x0600500A RID: 20490 RVA: 0x00004095 File Offset: 0x00002295
 		public override void onComponentsLeaveworld()
 		{
 		}
 
-		// Token: 0x06005A35 RID: 23093 RVA: 0x0003FDC0 File Offset: 0x0003DFC0
+		// Token: 0x0600500B RID: 20491 RVA: 0x0021C1F1 File Offset: 0x0021A3F1
 		public override void onGetBase()
 		{
 			this.baseEntityCall = new EntityBaseEntityCall_AccountBase(this.id, this.className);
 		}
 
-		// Token: 0x06005A36 RID: 23094 RVA: 0x0003FDD9 File Offset: 0x0003DFD9
+		// Token: 0x0600500C RID: 20492 RVA: 0x0021C20A File Offset: 0x0021A40A
 		public override void onGetCell()
 		{
 			this.cellEntityCall = new EntityCellEntityCall_AccountBase(this.id, this.className);
 		}
 
-		// Token: 0x06005A37 RID: 23095 RVA: 0x0003FDF2 File Offset: 0x0003DFF2
+		// Token: 0x0600500D RID: 20493 RVA: 0x0021C223 File Offset: 0x0021A423
 		public override void onLoseCell()
 		{
 			this.cellEntityCall = null;
 		}
 
-		// Token: 0x06005A38 RID: 23096 RVA: 0x0003FDFB File Offset: 0x0003DFFB
+		// Token: 0x0600500E RID: 20494 RVA: 0x0021C22C File Offset: 0x0021A42C
 		public override EntityCall getBaseEntityCall()
 		{
 			return this.baseEntityCall;
 		}
 
-		// Token: 0x06005A39 RID: 23097 RVA: 0x0003FE03 File Offset: 0x0003E003
+		// Token: 0x0600500F RID: 20495 RVA: 0x0021C234 File Offset: 0x0021A434
 		public override EntityCall getCellEntityCall()
 		{
 			return this.cellEntityCall;
 		}
 
-		// Token: 0x06005A3A RID: 23098 RVA: 0x000042DD File Offset: 0x000024DD
+		// Token: 0x06005010 RID: 20496 RVA: 0x00004095 File Offset: 0x00002295
 		public override void attachComponents()
 		{
 		}
 
-		// Token: 0x06005A3B RID: 23099 RVA: 0x000042DD File Offset: 0x000024DD
+		// Token: 0x06005011 RID: 20497 RVA: 0x00004095 File Offset: 0x00002295
 		public override void detachComponents()
 		{
 		}
 
-		// Token: 0x06005A3C RID: 23100 RVA: 0x0024BE24 File Offset: 0x0024A024
+		// Token: 0x06005012 RID: 20498 RVA: 0x0021C23C File Offset: 0x0021A43C
 		public override void onRemoteMethodCall(MemoryStream stream)
 		{
 			ScriptModule scriptModule = EntityDef.moduledefs["Account"];
@@ -354,7 +354,7 @@ namespace KBEngine
 			}
 		}
 
-		// Token: 0x06005A3D RID: 23101 RVA: 0x0024C19C File Offset: 0x0024A39C
+		// Token: 0x06005013 RID: 20499 RVA: 0x0021C5B4 File Offset: 0x0021A7B4
 		public override void onUpdatePropertys(MemoryStream stream)
 		{
 			ScriptModule scriptModule = EntityDef.moduledefs["Account"];
@@ -535,7 +535,7 @@ namespace KBEngine
 			}
 		}
 
-		// Token: 0x06005A3E RID: 23102 RVA: 0x0024C530 File Offset: 0x0024A730
+		// Token: 0x06005014 RID: 20500 RVA: 0x0021C948 File Offset: 0x0021AB48
 		public override void callPropertysSetMethods()
 		{
 			Dictionary<ushort, Property> idpropertys = EntityDef.moduledefs["Account"].idpropertys;
@@ -646,28 +646,28 @@ namespace KBEngine
 			}
 		}
 
-		// Token: 0x040059A4 RID: 22948
+		// Token: 0x04004F1F RID: 20255
 		public EntityBaseEntityCall_AccountBase baseEntityCall;
 
-		// Token: 0x040059A5 RID: 22949
+		// Token: 0x04004F20 RID: 20256
 		public EntityCellEntityCall_AccountBase cellEntityCall;
 
-		// Token: 0x040059A6 RID: 22950
+		// Token: 0x04004F21 RID: 20257
 		public CHECKIN_INFO_LIST CheckInList = new CHECKIN_INFO_LIST();
 
-		// Token: 0x040059A7 RID: 22951
+		// Token: 0x04004F22 RID: 20258
 		public FRIEND_INFO_LIST FriendList = new FRIEND_INFO_LIST();
 
-		// Token: 0x040059A8 RID: 22952
+		// Token: 0x04004F23 RID: 20259
 		public SHOPBUY_INFO_LIST ShopBuyTime = new SHOPBUY_INFO_LIST();
 
-		// Token: 0x040059A9 RID: 22953
+		// Token: 0x04004F24 RID: 20260
 		public ITEM_INFO_LIST equipItemList = new ITEM_INFO_LIST();
 
-		// Token: 0x040059AA RID: 22954
+		// Token: 0x04004F25 RID: 20261
 		public ITEM_INFO_LIST itemList = new ITEM_INFO_LIST();
 
-		// Token: 0x040059AB RID: 22955
+		// Token: 0x04004F26 RID: 20262
 		public PLAYER_INFO playerInfo = new PLAYER_INFO();
 	}
 }

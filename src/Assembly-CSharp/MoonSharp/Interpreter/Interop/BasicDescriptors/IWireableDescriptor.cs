@@ -2,10 +2,10 @@
 
 namespace MoonSharp.Interpreter.Interop.BasicDescriptors
 {
-	// Token: 0x02001154 RID: 4436
+	// Token: 0x02000D46 RID: 3398
 	public interface IWireableDescriptor
 	{
-		// Token: 0x06006BB4 RID: 27572
+		// Token: 0x06005FD0 RID: 24528
 		void PrepareForWiring(Table t);
 	}
 }

@@ -1,13 +1,13 @@
 ﻿using System;
 using UnityEngine;
 
-// Token: 0x02000183 RID: 387
+// Token: 0x02000103 RID: 259
 [Serializable]
 public class SceneSpecificLoading
 {
-	// Token: 0x04000A2C RID: 2604
+	// Token: 0x04000837 RID: 2103
 	public string sceneName;
 
-	// Token: 0x04000A2D RID: 2605
+	// Token: 0x04000838 RID: 2104
 	public Sprite loadingImage;
 }

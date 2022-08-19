@@ -3,10 +3,10 @@ using System.Collections.Generic;
 
 namespace JSONClass
 {
-	// Token: 0x02000CF0 RID: 3312
+	// Token: 0x0200096C RID: 2412
 	public class StrTextJsonData : IJSONClass
 	{
-		// Token: 0x06004F28 RID: 20264 RVA: 0x0021329C File Offset: 0x0021149C
+		// Token: 0x060043C2 RID: 17346 RVA: 0x001CD7F8 File Offset: 0x001CB9F8
 		public static void InitDataDict()
 		{
 			foreach (JSONObject jsonobject in jsonData.instance.StrTextJsonData.list)
@@ -39,24 +39,24 @@ namespace JSONClass
 			}
 		}
 
-		// Token: 0x06004F29 RID: 20265 RVA: 0x000042DD File Offset: 0x000024DD
+		// Token: 0x060043C3 RID: 17347 RVA: 0x00004095 File Offset: 0x00002295
 		private static void OnInitFinish()
 		{
 		}
 
-		// Token: 0x04004FC9 RID: 20425
+		// Token: 0x040044B9 RID: 17593
 		public static Dictionary<string, StrTextJsonData> DataDict = new Dictionary<string, StrTextJsonData>();
 
-		// Token: 0x04004FCA RID: 20426
+		// Token: 0x040044BA RID: 17594
 		public static List<StrTextJsonData> DataList = new List<StrTextJsonData>();
 
-		// Token: 0x04004FCB RID: 20427
+		// Token: 0x040044BB RID: 17595
 		public static Action OnInitFinishAction = new Action(StrTextJsonData.OnInitFinish);
 
-		// Token: 0x04004FCC RID: 20428
+		// Token: 0x040044BC RID: 17596
 		public string StrID;
 
-		// Token: 0x04004FCD RID: 20429
+		// Token: 0x040044BD RID: 17597
 		public string ChinaText;
 	}
 }

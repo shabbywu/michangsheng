@@ -2,28 +2,28 @@
 
 namespace KBEngine
 {
-	// Token: 0x02000F3C RID: 3900
+	// Token: 0x02000BB9 RID: 3001
 	public struct UID1
 	{
-		// Token: 0x06005DF5 RID: 24053 RVA: 0x00041F54 File Offset: 0x00040154
+		// Token: 0x060053B7 RID: 21431 RVA: 0x00233DF3 File Offset: 0x00231FF3
 		private UID1(byte[] value)
 		{
 			this.value = value;
 		}
 
-		// Token: 0x06005DF6 RID: 24054 RVA: 0x00041F5D File Offset: 0x0004015D
+		// Token: 0x060053B8 RID: 21432 RVA: 0x00233DFC File Offset: 0x00231FFC
 		public static implicit operator byte[](UID1 value)
 		{
 			return value.value;
 		}
 
-		// Token: 0x06005DF7 RID: 24055 RVA: 0x00041F65 File Offset: 0x00040165
+		// Token: 0x060053B9 RID: 21433 RVA: 0x00233E04 File Offset: 0x00232004
 		public static implicit operator UID1(byte[] value)
 		{
 			return new UID1(value);
 		}
 
-		// Token: 0x17000890 RID: 2192
+		// Token: 0x1700063D RID: 1597
 		public byte this[int ID]
 		{
 			get
@@ -36,7 +36,7 @@ namespace KBEngine
 			}
 		}
 
-		// Token: 0x04005AE6 RID: 23270
+		// Token: 0x04005045 RID: 20549
 		private byte[] value;
 	}
 }

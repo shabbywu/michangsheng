@@ -4,18 +4,18 @@ using YSGame;
 
 namespace Fungus
 {
-	// Token: 0x0200125C RID: 4700
+	// Token: 0x02000E0F RID: 3599
 	[CommandInfo("Audio", "Play Sound", "Plays a once-off sound effect. Multiple sound effects can be played at the same time.", 0)]
 	[AddComponentMenu("")]
 	public class PlaySound : Command
 	{
-		// Token: 0x06007224 RID: 29220 RVA: 0x00011424 File Offset: 0x0000F624
+		// Token: 0x06006596 RID: 26006 RVA: 0x0005E3AF File Offset: 0x0005C5AF
 		protected virtual void DoWait()
 		{
 			this.Continue();
 		}
 
-		// Token: 0x06007225 RID: 29221 RVA: 0x002A796C File Offset: 0x002A5B6C
+		// Token: 0x06006597 RID: 26007 RVA: 0x00283900 File Offset: 0x00281B00
 		public override void OnEnter()
 		{
 			if (this.soundClip == null)
@@ -36,7 +36,7 @@ namespace Fungus
 			this.Continue();
 		}
 
-		// Token: 0x06007226 RID: 29222 RVA: 0x0004DAAC File Offset: 0x0004BCAC
+		// Token: 0x06006598 RID: 26008 RVA: 0x00283979 File Offset: 0x00281B79
 		public override string GetSummary()
 		{
 			if (this.soundClip == null)
@@ -46,24 +46,24 @@ namespace Fungus
 			return this.soundClip.name;
 		}
 
-		// Token: 0x06007227 RID: 29223 RVA: 0x0004C749 File Offset: 0x0004A949
+		// Token: 0x06006599 RID: 26009 RVA: 0x0027DDC5 File Offset: 0x0027BFC5
 		public override Color GetButtonColor()
 		{
 			return new Color32(242, 209, 176, byte.MaxValue);
 		}
 
-		// Token: 0x04006474 RID: 25716
+		// Token: 0x0400573F RID: 22335
 		[Tooltip("Sound effect clip to play")]
 		[SerializeField]
 		protected AudioClip soundClip;
 
-		// Token: 0x04006475 RID: 25717
+		// Token: 0x04005740 RID: 22336
 		[Range(0f, 1f)]
 		[Tooltip("Volume level of the sound effect")]
 		[SerializeField]
 		protected float volume = 1f;
 
-		// Token: 0x04006476 RID: 25718
+		// Token: 0x04005741 RID: 22337
 		[Tooltip("Wait until the sound has finished playing before continuing execution.")]
 		[SerializeField]
 		protected bool waitUntilFinished;

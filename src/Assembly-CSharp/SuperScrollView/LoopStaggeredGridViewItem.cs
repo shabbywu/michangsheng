@@ -3,12 +3,12 @@ using UnityEngine;
 
 namespace SuperScrollView
 {
-	// Token: 0x02000A03 RID: 2563
+	// Token: 0x020006D5 RID: 1749
 	public class LoopStaggeredGridViewItem : MonoBehaviour
 	{
-		// Token: 0x1700078D RID: 1933
-		// (get) Token: 0x0600422A RID: 16938 RVA: 0x0002F3FC File Offset: 0x0002D5FC
-		// (set) Token: 0x0600422B RID: 16939 RVA: 0x0002F404 File Offset: 0x0002D604
+		// Token: 0x17000562 RID: 1378
+		// (get) Token: 0x06003808 RID: 14344 RVA: 0x00180184 File Offset: 0x0017E384
+		// (set) Token: 0x06003809 RID: 14345 RVA: 0x0018018C File Offset: 0x0017E38C
 		public object UserObjectData
 		{
 			get
@@ -21,9 +21,9 @@ namespace SuperScrollView
 			}
 		}
 
-		// Token: 0x1700078E RID: 1934
-		// (get) Token: 0x0600422C RID: 16940 RVA: 0x0002F40D File Offset: 0x0002D60D
-		// (set) Token: 0x0600422D RID: 16941 RVA: 0x0002F415 File Offset: 0x0002D615
+		// Token: 0x17000563 RID: 1379
+		// (get) Token: 0x0600380A RID: 14346 RVA: 0x00180195 File Offset: 0x0017E395
+		// (set) Token: 0x0600380B RID: 14347 RVA: 0x0018019D File Offset: 0x0017E39D
 		public int UserIntData1
 		{
 			get
@@ -36,9 +36,9 @@ namespace SuperScrollView
 			}
 		}
 
-		// Token: 0x1700078F RID: 1935
-		// (get) Token: 0x0600422E RID: 16942 RVA: 0x0002F41E File Offset: 0x0002D61E
-		// (set) Token: 0x0600422F RID: 16943 RVA: 0x0002F426 File Offset: 0x0002D626
+		// Token: 0x17000564 RID: 1380
+		// (get) Token: 0x0600380C RID: 14348 RVA: 0x001801A6 File Offset: 0x0017E3A6
+		// (set) Token: 0x0600380D RID: 14349 RVA: 0x001801AE File Offset: 0x0017E3AE
 		public int UserIntData2
 		{
 			get
@@ -51,9 +51,9 @@ namespace SuperScrollView
 			}
 		}
 
-		// Token: 0x17000790 RID: 1936
-		// (get) Token: 0x06004230 RID: 16944 RVA: 0x0002F42F File Offset: 0x0002D62F
-		// (set) Token: 0x06004231 RID: 16945 RVA: 0x0002F437 File Offset: 0x0002D637
+		// Token: 0x17000565 RID: 1381
+		// (get) Token: 0x0600380E RID: 14350 RVA: 0x001801B7 File Offset: 0x0017E3B7
+		// (set) Token: 0x0600380F RID: 14351 RVA: 0x001801BF File Offset: 0x0017E3BF
 		public string UserStringData1
 		{
 			get
@@ -66,9 +66,9 @@ namespace SuperScrollView
 			}
 		}
 
-		// Token: 0x17000791 RID: 1937
-		// (get) Token: 0x06004232 RID: 16946 RVA: 0x0002F440 File Offset: 0x0002D640
-		// (set) Token: 0x06004233 RID: 16947 RVA: 0x0002F448 File Offset: 0x0002D648
+		// Token: 0x17000566 RID: 1382
+		// (get) Token: 0x06003810 RID: 14352 RVA: 0x001801C8 File Offset: 0x0017E3C8
+		// (set) Token: 0x06003811 RID: 14353 RVA: 0x001801D0 File Offset: 0x0017E3D0
 		public string UserStringData2
 		{
 			get
@@ -81,9 +81,9 @@ namespace SuperScrollView
 			}
 		}
 
-		// Token: 0x17000792 RID: 1938
-		// (get) Token: 0x06004234 RID: 16948 RVA: 0x0002F451 File Offset: 0x0002D651
-		// (set) Token: 0x06004235 RID: 16949 RVA: 0x0002F459 File Offset: 0x0002D659
+		// Token: 0x17000567 RID: 1383
+		// (get) Token: 0x06003812 RID: 14354 RVA: 0x001801D9 File Offset: 0x0017E3D9
+		// (set) Token: 0x06003813 RID: 14355 RVA: 0x001801E1 File Offset: 0x0017E3E1
 		public float DistanceWithViewPortSnapCenter
 		{
 			get
@@ -96,9 +96,9 @@ namespace SuperScrollView
 			}
 		}
 
-		// Token: 0x17000793 RID: 1939
-		// (get) Token: 0x06004236 RID: 16950 RVA: 0x0002F462 File Offset: 0x0002D662
-		// (set) Token: 0x06004237 RID: 16951 RVA: 0x0002F46A File Offset: 0x0002D66A
+		// Token: 0x17000568 RID: 1384
+		// (get) Token: 0x06003814 RID: 14356 RVA: 0x001801EA File Offset: 0x0017E3EA
+		// (set) Token: 0x06003815 RID: 14357 RVA: 0x001801F2 File Offset: 0x0017E3F2
 		public float StartPosOffset
 		{
 			get
@@ -111,9 +111,9 @@ namespace SuperScrollView
 			}
 		}
 
-		// Token: 0x17000794 RID: 1940
-		// (get) Token: 0x06004238 RID: 16952 RVA: 0x0002F473 File Offset: 0x0002D673
-		// (set) Token: 0x06004239 RID: 16953 RVA: 0x0002F47B File Offset: 0x0002D67B
+		// Token: 0x17000569 RID: 1385
+		// (get) Token: 0x06003816 RID: 14358 RVA: 0x001801FB File Offset: 0x0017E3FB
+		// (set) Token: 0x06003817 RID: 14359 RVA: 0x00180203 File Offset: 0x0017E403
 		public int ItemCreatedCheckFrameCount
 		{
 			get
@@ -126,9 +126,9 @@ namespace SuperScrollView
 			}
 		}
 
-		// Token: 0x17000795 RID: 1941
-		// (get) Token: 0x0600423A RID: 16954 RVA: 0x0002F484 File Offset: 0x0002D684
-		// (set) Token: 0x0600423B RID: 16955 RVA: 0x0002F48C File Offset: 0x0002D68C
+		// Token: 0x1700056A RID: 1386
+		// (get) Token: 0x06003818 RID: 14360 RVA: 0x0018020C File Offset: 0x0017E40C
+		// (set) Token: 0x06003819 RID: 14361 RVA: 0x00180214 File Offset: 0x0017E414
 		public float Padding
 		{
 			get
@@ -141,9 +141,9 @@ namespace SuperScrollView
 			}
 		}
 
-		// Token: 0x17000796 RID: 1942
-		// (get) Token: 0x0600423C RID: 16956 RVA: 0x0002F495 File Offset: 0x0002D695
-		// (set) Token: 0x0600423D RID: 16957 RVA: 0x0002F49D File Offset: 0x0002D69D
+		// Token: 0x1700056B RID: 1387
+		// (get) Token: 0x0600381A RID: 14362 RVA: 0x0018021D File Offset: 0x0017E41D
+		// (set) Token: 0x0600381B RID: 14363 RVA: 0x00180225 File Offset: 0x0017E425
 		public float ExtraPadding
 		{
 			get
@@ -156,8 +156,8 @@ namespace SuperScrollView
 			}
 		}
 
-		// Token: 0x17000797 RID: 1943
-		// (get) Token: 0x0600423E RID: 16958 RVA: 0x0002F4A6 File Offset: 0x0002D6A6
+		// Token: 0x1700056C RID: 1388
+		// (get) Token: 0x0600381C RID: 14364 RVA: 0x0018022E File Offset: 0x0017E42E
 		public RectTransform CachedRectTransform
 		{
 			get
@@ -170,9 +170,9 @@ namespace SuperScrollView
 			}
 		}
 
-		// Token: 0x17000798 RID: 1944
-		// (get) Token: 0x0600423F RID: 16959 RVA: 0x0002F4CD File Offset: 0x0002D6CD
-		// (set) Token: 0x06004240 RID: 16960 RVA: 0x0002F4D5 File Offset: 0x0002D6D5
+		// Token: 0x1700056D RID: 1389
+		// (get) Token: 0x0600381D RID: 14365 RVA: 0x00180255 File Offset: 0x0017E455
+		// (set) Token: 0x0600381E RID: 14366 RVA: 0x0018025D File Offset: 0x0017E45D
 		public string ItemPrefabName
 		{
 			get
@@ -185,9 +185,9 @@ namespace SuperScrollView
 			}
 		}
 
-		// Token: 0x17000799 RID: 1945
-		// (get) Token: 0x06004241 RID: 16961 RVA: 0x0002F4DE File Offset: 0x0002D6DE
-		// (set) Token: 0x06004242 RID: 16962 RVA: 0x0002F4E6 File Offset: 0x0002D6E6
+		// Token: 0x1700056E RID: 1390
+		// (get) Token: 0x0600381F RID: 14367 RVA: 0x00180266 File Offset: 0x0017E466
+		// (set) Token: 0x06003820 RID: 14368 RVA: 0x0018026E File Offset: 0x0017E46E
 		public int ItemIndexInGroup
 		{
 			get
@@ -200,9 +200,9 @@ namespace SuperScrollView
 			}
 		}
 
-		// Token: 0x1700079A RID: 1946
-		// (get) Token: 0x06004243 RID: 16963 RVA: 0x0002F4EF File Offset: 0x0002D6EF
-		// (set) Token: 0x06004244 RID: 16964 RVA: 0x0002F4F7 File Offset: 0x0002D6F7
+		// Token: 0x1700056F RID: 1391
+		// (get) Token: 0x06003821 RID: 14369 RVA: 0x00180277 File Offset: 0x0017E477
+		// (set) Token: 0x06003822 RID: 14370 RVA: 0x0018027F File Offset: 0x0017E47F
 		public int ItemIndex
 		{
 			get
@@ -215,9 +215,9 @@ namespace SuperScrollView
 			}
 		}
 
-		// Token: 0x1700079B RID: 1947
-		// (get) Token: 0x06004245 RID: 16965 RVA: 0x0002F500 File Offset: 0x0002D700
-		// (set) Token: 0x06004246 RID: 16966 RVA: 0x0002F508 File Offset: 0x0002D708
+		// Token: 0x17000570 RID: 1392
+		// (get) Token: 0x06003823 RID: 14371 RVA: 0x00180288 File Offset: 0x0017E488
+		// (set) Token: 0x06003824 RID: 14372 RVA: 0x00180290 File Offset: 0x0017E490
 		public int ItemId
 		{
 			get
@@ -230,9 +230,9 @@ namespace SuperScrollView
 			}
 		}
 
-		// Token: 0x1700079C RID: 1948
-		// (get) Token: 0x06004247 RID: 16967 RVA: 0x0002F511 File Offset: 0x0002D711
-		// (set) Token: 0x06004248 RID: 16968 RVA: 0x0002F519 File Offset: 0x0002D719
+		// Token: 0x17000571 RID: 1393
+		// (get) Token: 0x06003825 RID: 14373 RVA: 0x00180299 File Offset: 0x0017E499
+		// (set) Token: 0x06003826 RID: 14374 RVA: 0x001802A1 File Offset: 0x0017E4A1
 		public bool IsInitHandlerCalled
 		{
 			get
@@ -245,9 +245,9 @@ namespace SuperScrollView
 			}
 		}
 
-		// Token: 0x1700079D RID: 1949
-		// (get) Token: 0x06004249 RID: 16969 RVA: 0x0002F522 File Offset: 0x0002D722
-		// (set) Token: 0x0600424A RID: 16970 RVA: 0x0002F52A File Offset: 0x0002D72A
+		// Token: 0x17000572 RID: 1394
+		// (get) Token: 0x06003827 RID: 14375 RVA: 0x001802AA File Offset: 0x0017E4AA
+		// (set) Token: 0x06003828 RID: 14376 RVA: 0x001802B2 File Offset: 0x0017E4B2
 		public LoopStaggeredGridView ParentListView
 		{
 			get
@@ -260,8 +260,8 @@ namespace SuperScrollView
 			}
 		}
 
-		// Token: 0x1700079E RID: 1950
-		// (get) Token: 0x0600424B RID: 16971 RVA: 0x001C7DC0 File Offset: 0x001C5FC0
+		// Token: 0x17000573 RID: 1395
+		// (get) Token: 0x06003829 RID: 14377 RVA: 0x001802BC File Offset: 0x0017E4BC
 		public float TopY
 		{
 			get
@@ -279,8 +279,8 @@ namespace SuperScrollView
 			}
 		}
 
-		// Token: 0x1700079F RID: 1951
-		// (get) Token: 0x0600424C RID: 16972 RVA: 0x001C7E1C File Offset: 0x001C601C
+		// Token: 0x17000574 RID: 1396
+		// (get) Token: 0x0600382A RID: 14378 RVA: 0x00180318 File Offset: 0x0017E518
 		public float BottomY
 		{
 			get
@@ -298,8 +298,8 @@ namespace SuperScrollView
 			}
 		}
 
-		// Token: 0x170007A0 RID: 1952
-		// (get) Token: 0x0600424D RID: 16973 RVA: 0x001C7E78 File Offset: 0x001C6078
+		// Token: 0x17000575 RID: 1397
+		// (get) Token: 0x0600382B RID: 14379 RVA: 0x00180374 File Offset: 0x0017E574
 		public float LeftX
 		{
 			get
@@ -317,8 +317,8 @@ namespace SuperScrollView
 			}
 		}
 
-		// Token: 0x170007A1 RID: 1953
-		// (get) Token: 0x0600424E RID: 16974 RVA: 0x001C7ED4 File Offset: 0x001C60D4
+		// Token: 0x17000576 RID: 1398
+		// (get) Token: 0x0600382C RID: 14380 RVA: 0x001803D0 File Offset: 0x0017E5D0
 		public float RightX
 		{
 			get
@@ -336,8 +336,8 @@ namespace SuperScrollView
 			}
 		}
 
-		// Token: 0x170007A2 RID: 1954
-		// (get) Token: 0x0600424F RID: 16975 RVA: 0x001C7F30 File Offset: 0x001C6130
+		// Token: 0x17000577 RID: 1399
+		// (get) Token: 0x0600382D RID: 14381 RVA: 0x0018042C File Offset: 0x0017E62C
 		public float ItemSize
 		{
 			get
@@ -350,8 +350,8 @@ namespace SuperScrollView
 			}
 		}
 
-		// Token: 0x170007A3 RID: 1955
-		// (get) Token: 0x06004250 RID: 16976 RVA: 0x0002F533 File Offset: 0x0002D733
+		// Token: 0x17000578 RID: 1400
+		// (get) Token: 0x0600382E RID: 14382 RVA: 0x0018046D File Offset: 0x0017E66D
 		public float ItemSizeWithPadding
 		{
 			get
@@ -360,55 +360,55 @@ namespace SuperScrollView
 			}
 		}
 
-		// Token: 0x04003AB1 RID: 15025
+		// Token: 0x04003099 RID: 12441
 		private int mItemIndex = -1;
 
-		// Token: 0x04003AB2 RID: 15026
+		// Token: 0x0400309A RID: 12442
 		private int mItemIndexInGroup = -1;
 
-		// Token: 0x04003AB3 RID: 15027
+		// Token: 0x0400309B RID: 12443
 		private int mItemId = -1;
 
-		// Token: 0x04003AB4 RID: 15028
+		// Token: 0x0400309C RID: 12444
 		private float mPadding;
 
-		// Token: 0x04003AB5 RID: 15029
+		// Token: 0x0400309D RID: 12445
 		private float mExtraPadding;
 
-		// Token: 0x04003AB6 RID: 15030
+		// Token: 0x0400309E RID: 12446
 		private bool mIsInitHandlerCalled;
 
-		// Token: 0x04003AB7 RID: 15031
+		// Token: 0x0400309F RID: 12447
 		private string mItemPrefabName;
 
-		// Token: 0x04003AB8 RID: 15032
+		// Token: 0x040030A0 RID: 12448
 		private RectTransform mCachedRectTransform;
 
-		// Token: 0x04003AB9 RID: 15033
+		// Token: 0x040030A1 RID: 12449
 		private LoopStaggeredGridView mParentListView;
 
-		// Token: 0x04003ABA RID: 15034
+		// Token: 0x040030A2 RID: 12450
 		private float mDistanceWithViewPortSnapCenter;
 
-		// Token: 0x04003ABB RID: 15035
+		// Token: 0x040030A3 RID: 12451
 		private int mItemCreatedCheckFrameCount;
 
-		// Token: 0x04003ABC RID: 15036
+		// Token: 0x040030A4 RID: 12452
 		private float mStartPosOffset;
 
-		// Token: 0x04003ABD RID: 15037
+		// Token: 0x040030A5 RID: 12453
 		private object mUserObjectData;
 
-		// Token: 0x04003ABE RID: 15038
+		// Token: 0x040030A6 RID: 12454
 		private int mUserIntData1;
 
-		// Token: 0x04003ABF RID: 15039
+		// Token: 0x040030A7 RID: 12455
 		private int mUserIntData2;
 
-		// Token: 0x04003AC0 RID: 15040
+		// Token: 0x040030A8 RID: 12456
 		private string mUserStringData1;
 
-		// Token: 0x04003AC1 RID: 15041
+		// Token: 0x040030A9 RID: 12457
 		private string mUserStringData2;
 	}
 }

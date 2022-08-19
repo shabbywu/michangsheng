@@ -3,22 +3,22 @@ using UnityEngine;
 
 namespace KBEngine
 {
-	// Token: 0x0200104B RID: 4171
+	// Token: 0x02000C88 RID: 3208
 	public class SCEntityObject : SCObject
 	{
-		// Token: 0x06006437 RID: 25655 RVA: 0x00044EEF File Offset: 0x000430EF
+		// Token: 0x0600597A RID: 22906 RVA: 0x00255F9B File Offset: 0x0025419B
 		public SCEntityObject(int id)
 		{
 			this.targetID = id;
 		}
 
-		// Token: 0x06006438 RID: 25656 RVA: 0x0000A093 File Offset: 0x00008293
+		// Token: 0x0600597B RID: 22907 RVA: 0x00024C5F File Offset: 0x00022E5F
 		public override bool valid(Entity caster)
 		{
 			return true;
 		}
 
-		// Token: 0x06006439 RID: 25657 RVA: 0x00281248 File Offset: 0x0027F448
+		// Token: 0x0600597C RID: 22908 RVA: 0x00255FAC File Offset: 0x002541AC
 		public override Vector3 getPosition()
 		{
 			Entity entity = KBEngineApp.app.findEntity(this.targetID);
@@ -29,7 +29,7 @@ namespace KBEngine
 			return entity.position;
 		}
 
-		// Token: 0x04005DD1 RID: 24017
+		// Token: 0x04005225 RID: 21029
 		public int targetID;
 	}
 }

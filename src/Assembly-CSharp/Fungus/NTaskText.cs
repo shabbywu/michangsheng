@@ -6,19 +6,19 @@ using UnityEngine;
 
 namespace Fungus
 {
-	// Token: 0x0200142D RID: 5165
+	// Token: 0x02000F75 RID: 3957
 	[CommandInfo("YSTask", "NTaskText", "", 0)]
 	[AddComponentMenu("")]
 	public class NTaskText : Command
 	{
-		// Token: 0x06007CFD RID: 31997 RVA: 0x0005496F File Offset: 0x00052B6F
+		// Token: 0x06006F0B RID: 28427 RVA: 0x002A6192 File Offset: 0x002A4392
 		public override void OnEnter()
 		{
 			this.Desc.Value = NTaskText.GetNTaskDesc(this.NTaskID.Value);
 			this.Continue();
 		}
 
-		// Token: 0x06007CFE RID: 31998 RVA: 0x002C5E8C File Offset: 0x002C408C
+		// Token: 0x06006F0C RID: 28428 RVA: 0x002A61B8 File Offset: 0x002A43B8
 		public static string GetNTaskDesc(int NTaskID)
 		{
 			Avatar player = Tools.instance.getPlayer();
@@ -63,13 +63,13 @@ namespace Fungus
 			return text;
 		}
 
-		// Token: 0x06007CFF RID: 31999 RVA: 0x000113CF File Offset: 0x0000F5CF
+		// Token: 0x06006F0D RID: 28429 RVA: 0x0005E228 File Offset: 0x0005C428
 		public override Color GetButtonColor()
 		{
 			return new Color32(184, 210, 235, byte.MaxValue);
 		}
 
-		// Token: 0x04006ABB RID: 27323
+		// Token: 0x04005BE5 RID: 23525
 		[Tooltip("需要获取描述的任务ID")]
 		[VariableProperty(new Type[]
 		{
@@ -78,7 +78,7 @@ namespace Fungus
 		[SerializeField]
 		protected IntegerVariable NTaskID;
 
-		// Token: 0x04006ABC RID: 27324
+		// Token: 0x04005BE6 RID: 23526
 		[Tooltip("需要到的值存放位置")]
 		[VariableProperty(new Type[]
 		{

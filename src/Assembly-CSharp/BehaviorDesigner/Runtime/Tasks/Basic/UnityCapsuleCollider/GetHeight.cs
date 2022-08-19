@@ -3,12 +3,12 @@ using UnityEngine;
 
 namespace BehaviorDesigner.Runtime.Tasks.Basic.UnityCapsuleCollider
 {
-	// Token: 0x02001615 RID: 5653
+	// Token: 0x02001156 RID: 4438
 	[TaskCategory("Basic/CapsuleCollider")]
 	[TaskDescription("Gets the height of the CapsuleCollider. Returns Success.")]
 	public class GetHeight : Action
 	{
-		// Token: 0x060083E9 RID: 33769 RVA: 0x002CF0E0 File Offset: 0x002CD2E0
+		// Token: 0x060075EF RID: 30191 RVA: 0x002B56F0 File Offset: 0x002B38F0
 		public override void OnStart()
 		{
 			GameObject defaultGameObject = base.GetDefaultGameObject(this.targetGameObject.Value);
@@ -19,7 +19,7 @@ namespace BehaviorDesigner.Runtime.Tasks.Basic.UnityCapsuleCollider
 			}
 		}
 
-		// Token: 0x060083EA RID: 33770 RVA: 0x0005AF42 File Offset: 0x00059142
+		// Token: 0x060075F0 RID: 30192 RVA: 0x002B5730 File Offset: 0x002B3930
 		public override TaskStatus OnUpdate()
 		{
 			if (this.capsuleCollider == null)
@@ -31,26 +31,26 @@ namespace BehaviorDesigner.Runtime.Tasks.Basic.UnityCapsuleCollider
 			return 2;
 		}
 
-		// Token: 0x060083EB RID: 33771 RVA: 0x0005AF75 File Offset: 0x00059175
+		// Token: 0x060075F1 RID: 30193 RVA: 0x002B5763 File Offset: 0x002B3963
 		public override void OnReset()
 		{
 			this.targetGameObject = null;
 			this.storeValue = 0f;
 		}
 
-		// Token: 0x04007098 RID: 28824
+		// Token: 0x04006175 RID: 24949
 		[Tooltip("The GameObject that the task operates on. If null the task GameObject is used.")]
 		public SharedGameObject targetGameObject;
 
-		// Token: 0x04007099 RID: 28825
+		// Token: 0x04006176 RID: 24950
 		[Tooltip("The height of the CapsuleCollider")]
 		[RequiredField]
 		public SharedFloat storeValue;
 
-		// Token: 0x0400709A RID: 28826
+		// Token: 0x04006177 RID: 24951
 		private CapsuleCollider capsuleCollider;
 
-		// Token: 0x0400709B RID: 28827
+		// Token: 0x04006178 RID: 24952
 		private GameObject prevGameObject;
 	}
 }

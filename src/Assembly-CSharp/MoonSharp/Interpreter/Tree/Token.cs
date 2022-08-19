@@ -3,15 +3,15 @@ using MoonSharp.Interpreter.Debugging;
 
 namespace MoonSharp.Interpreter.Tree
 {
-	// Token: 0x020010A0 RID: 4256
+	// Token: 0x02000CCA RID: 3274
 	internal class Token
 	{
-		// Token: 0x1700093B RID: 2363
-		// (get) Token: 0x060066F7 RID: 26359 RVA: 0x00046E48 File Offset: 0x00045048
-		// (set) Token: 0x060066F8 RID: 26360 RVA: 0x00046E50 File Offset: 0x00045050
+		// Token: 0x170006E0 RID: 1760
+		// (get) Token: 0x06005BEE RID: 23534 RVA: 0x0025CAB9 File Offset: 0x0025ACB9
+		// (set) Token: 0x06005BEF RID: 23535 RVA: 0x0025CAC1 File Offset: 0x0025ACC1
 		public string Text { get; set; }
 
-		// Token: 0x060066F9 RID: 26361 RVA: 0x00286454 File Offset: 0x00284654
+		// Token: 0x06005BF0 RID: 23536 RVA: 0x0025CACC File Offset: 0x0025ACCC
 		public Token(TokenType type, int sourceId, int fromLine, int fromCol, int toLine, int toCol, int prevLine, int prevCol)
 		{
 			this.Type = type;
@@ -24,7 +24,7 @@ namespace MoonSharp.Interpreter.Tree
 			this.PrevLine = prevLine;
 		}
 
-		// Token: 0x060066FA RID: 26362 RVA: 0x002864A4 File Offset: 0x002846A4
+		// Token: 0x06005BF1 RID: 23537 RVA: 0x0025CB1C File Offset: 0x0025AD1C
 		public override string ToString()
 		{
 			string arg = (this.Type.ToString() + "                                                      ").Substring(0, 16);
@@ -39,7 +39,7 @@ namespace MoonSharp.Interpreter.Tree
 			return string.Format("{0}  - {1} - '{2}'", arg, text, this.Text ?? "");
 		}
 
-		// Token: 0x060066FB RID: 26363 RVA: 0x00286550 File Offset: 0x00284750
+		// Token: 0x06005BF2 RID: 23538 RVA: 0x0025CBC8 File Offset: 0x0025ADC8
 		public static TokenType? GetReservedTokenType(string reservedWord)
 		{
 			uint num = <PrivateImplementationDetails>.ComputeStringHash(reservedWord);
@@ -221,7 +221,7 @@ namespace MoonSharp.Interpreter.Tree
 			return null;
 		}
 
-		// Token: 0x060066FC RID: 26364 RVA: 0x00046E59 File Offset: 0x00045059
+		// Token: 0x06005BF3 RID: 23539 RVA: 0x0025CFAC File Offset: 0x0025B1AC
 		public double GetNumberValue()
 		{
 			if (this.Type == TokenType.Number)
@@ -239,20 +239,20 @@ namespace MoonSharp.Interpreter.Tree
 			throw new NotSupportedException("GetNumberValue is supported only on numeric tokens");
 		}
 
-		// Token: 0x060066FD RID: 26365 RVA: 0x00286934 File Offset: 0x00284B34
+		// Token: 0x06005BF4 RID: 23540 RVA: 0x0025CFEC File Offset: 0x0025B1EC
 		public bool IsEndOfBlock()
 		{
 			TokenType type = this.Type;
 			return type == TokenType.Eof || type - TokenType.Else <= 2 || type == TokenType.Until;
 		}
 
-		// Token: 0x060066FE RID: 26366 RVA: 0x00046E98 File Offset: 0x00045098
+		// Token: 0x06005BF5 RID: 23541 RVA: 0x0025D011 File Offset: 0x0025B211
 		public bool IsUnaryOperator()
 		{
 			return this.Type == TokenType.Op_MinusOrSub || this.Type == TokenType.Not || this.Type == TokenType.Op_Len;
 		}
 
-		// Token: 0x060066FF RID: 26367 RVA: 0x0028695C File Offset: 0x00284B5C
+		// Token: 0x06005BF6 RID: 23542 RVA: 0x0025D034 File Offset: 0x0025B234
 		public bool IsBinaryOperator()
 		{
 			TokenType type = this.Type;
@@ -289,46 +289,46 @@ namespace MoonSharp.Interpreter.Tree
 			return true;
 		}
 
-		// Token: 0x06006700 RID: 26368 RVA: 0x00046EBA File Offset: 0x000450BA
+		// Token: 0x06005BF7 RID: 23543 RVA: 0x0025D09B File Offset: 0x0025B29B
 		internal SourceRef GetSourceRef(bool isStepStop = true)
 		{
 			return new SourceRef(this.SourceId, this.FromCol, this.ToCol, this.FromLine, this.ToLine, isStepStop);
 		}
 
-		// Token: 0x06006701 RID: 26369 RVA: 0x00046EE0 File Offset: 0x000450E0
+		// Token: 0x06005BF8 RID: 23544 RVA: 0x0025D0C1 File Offset: 0x0025B2C1
 		internal SourceRef GetSourceRef(Token to, bool isStepStop = true)
 		{
 			return new SourceRef(this.SourceId, this.FromCol, to.ToCol, this.FromLine, to.ToLine, isStepStop);
 		}
 
-		// Token: 0x06006702 RID: 26370 RVA: 0x00046F06 File Offset: 0x00045106
+		// Token: 0x06005BF9 RID: 23545 RVA: 0x0025D0E7 File Offset: 0x0025B2E7
 		internal SourceRef GetSourceRefUpTo(Token to, bool isStepStop = true)
 		{
 			return new SourceRef(this.SourceId, this.FromCol, to.PrevCol, this.FromLine, to.PrevLine, isStepStop);
 		}
 
-		// Token: 0x04005EE8 RID: 24296
+		// Token: 0x04005305 RID: 21253
 		public readonly int SourceId;
 
-		// Token: 0x04005EE9 RID: 24297
+		// Token: 0x04005306 RID: 21254
 		public readonly int FromCol;
 
-		// Token: 0x04005EEA RID: 24298
+		// Token: 0x04005307 RID: 21255
 		public readonly int ToCol;
 
-		// Token: 0x04005EEB RID: 24299
+		// Token: 0x04005308 RID: 21256
 		public readonly int FromLine;
 
-		// Token: 0x04005EEC RID: 24300
+		// Token: 0x04005309 RID: 21257
 		public readonly int ToLine;
 
-		// Token: 0x04005EED RID: 24301
+		// Token: 0x0400530A RID: 21258
 		public readonly int PrevCol;
 
-		// Token: 0x04005EEE RID: 24302
+		// Token: 0x0400530B RID: 21259
 		public readonly int PrevLine;
 
-		// Token: 0x04005EEF RID: 24303
+		// Token: 0x0400530C RID: 21260
 		public readonly TokenType Type;
 	}
 }

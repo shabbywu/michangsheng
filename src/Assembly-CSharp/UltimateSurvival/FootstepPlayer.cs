@@ -3,10 +3,10 @@ using UnityEngine;
 
 namespace UltimateSurvival
 {
-	// Token: 0x020008F3 RID: 2291
+	// Token: 0x02000610 RID: 1552
 	public class FootstepPlayer : PlayerBehaviour
 	{
-		// Token: 0x06003ABC RID: 15036 RVA: 0x001A9E78 File Offset: 0x001A8078
+		// Token: 0x0600319F RID: 12703 RVA: 0x001608D0 File Offset: 0x0015EAD0
 		private void Start()
 		{
 			base.Player.Jump.AddStartListener(new Action(this.OnStart_PlayerJump));
@@ -15,7 +15,7 @@ namespace UltimateSurvival
 			this.m_RightFootSource = GameController.Audio.CreateAudioSource("Right Foot Footstep", base.transform, new Vector3(0.2f, 0f, 0f), false, 1f, 3f);
 		}
 
-		// Token: 0x06003ABD RID: 15037 RVA: 0x001A9F34 File Offset: 0x001A8134
+		// Token: 0x060031A0 RID: 12704 RVA: 0x0016098C File Offset: 0x0015EB8C
 		private void FixedUpdate()
 		{
 			if (!base.Player.IsGrounded.Get())
@@ -31,7 +31,7 @@ namespace UltimateSurvival
 			}
 		}
 
-		// Token: 0x06003ABE RID: 15038 RVA: 0x001A9FA0 File Offset: 0x001A81A0
+		// Token: 0x060031A1 RID: 12705 RVA: 0x001609F8 File Offset: 0x0015EBF8
 		private void PlayFootstep()
 		{
 			SurfaceData dataFromBelow = this.GetDataFromBelow();
@@ -45,7 +45,7 @@ namespace UltimateSurvival
 			dataFromBelow.PlaySound(this.m_FootstepSelectionMethod, SoundType.Footstep, volumeFactor, audioSource);
 		}
 
-		// Token: 0x06003ABF RID: 15039 RVA: 0x001A9FFC File Offset: 0x001A81FC
+		// Token: 0x060031A2 RID: 12706 RVA: 0x00160A54 File Offset: 0x0015EC54
 		private float GetStepLength()
 		{
 			float result = this.m_WalkStepLength;
@@ -56,7 +56,7 @@ namespace UltimateSurvival
 			return result;
 		}
 
-		// Token: 0x06003AC0 RID: 15040 RVA: 0x001AA02C File Offset: 0x001A822C
+		// Token: 0x060031A3 RID: 12707 RVA: 0x00160A84 File Offset: 0x0015EC84
 		private float GetVolumeFactor()
 		{
 			float result = this.m_WalkVolumeFactor;
@@ -67,7 +67,7 @@ namespace UltimateSurvival
 			return result;
 		}
 
-		// Token: 0x06003AC1 RID: 15041 RVA: 0x001AA05C File Offset: 0x001A825C
+		// Token: 0x060031A4 RID: 12708 RVA: 0x00160AB4 File Offset: 0x0015ECB4
 		private void OnStart_PlayerJump()
 		{
 			SurfaceData dataFromBelow = this.GetDataFromBelow();
@@ -78,7 +78,7 @@ namespace UltimateSurvival
 			dataFromBelow.PlaySound(ItemSelectionMethod.RandomlyButExcludeLast, SoundType.Jump, 1f, this.m_AudioSource);
 		}
 
-		// Token: 0x06003AC2 RID: 15042 RVA: 0x001AA088 File Offset: 0x001A8288
+		// Token: 0x060031A5 RID: 12709 RVA: 0x00160AE0 File Offset: 0x0015ECE0
 		private void On_PlayerLanded(float landSpeed)
 		{
 			SurfaceData dataFromBelow = this.GetDataFromBelow();
@@ -93,7 +93,7 @@ namespace UltimateSurvival
 			}
 		}
 
-		// Token: 0x06003AC3 RID: 15043 RVA: 0x001AA0CC File Offset: 0x001A82CC
+		// Token: 0x060031A6 RID: 12710 RVA: 0x00160B24 File Offset: 0x0015ED24
 		private SurfaceData GetDataFromBelow()
 		{
 			if (!GameController.SurfaceDatabase)
@@ -106,51 +106,51 @@ namespace UltimateSurvival
 			return GameController.SurfaceDatabase.GetSurfaceData(ray, 1f, this.m_Mask);
 		}
 
-		// Token: 0x04003502 RID: 13570
+		// Token: 0x04002BEE RID: 11246
 		[Header("General")]
 		[SerializeField]
 		private ItemSelectionMethod m_FootstepSelectionMethod;
 
-		// Token: 0x04003503 RID: 13571
+		// Token: 0x04002BEF RID: 11247
 		[SerializeField]
 		private float m_LandSpeedThreeshold = 3f;
 
-		// Token: 0x04003504 RID: 13572
+		// Token: 0x04002BF0 RID: 11248
 		[SerializeField]
 		private LayerMask m_Mask;
 
-		// Token: 0x04003505 RID: 13573
+		// Token: 0x04002BF1 RID: 11249
 		[SerializeField]
 		private AudioSource m_AudioSource;
 
-		// Token: 0x04003506 RID: 13574
+		// Token: 0x04002BF2 RID: 11250
 		[Header("Distance Between Steps")]
 		[SerializeField]
 		private float m_WalkStepLength = 1.7f;
 
-		// Token: 0x04003507 RID: 13575
+		// Token: 0x04002BF3 RID: 11251
 		[SerializeField]
 		private float m_RunStepLength = 2f;
 
-		// Token: 0x04003508 RID: 13576
+		// Token: 0x04002BF4 RID: 11252
 		[Header("Volume Factors")]
 		[SerializeField]
 		private float m_WalkVolumeFactor = 0.5f;
 
-		// Token: 0x04003509 RID: 13577
+		// Token: 0x04002BF5 RID: 11253
 		[SerializeField]
 		private float m_RunVolumeFactor = 1f;
 
-		// Token: 0x0400350A RID: 13578
+		// Token: 0x04002BF6 RID: 11254
 		private AudioSource m_LeftFootSource;
 
-		// Token: 0x0400350B RID: 13579
+		// Token: 0x04002BF7 RID: 11255
 		private AudioSource m_RightFootSource;
 
-		// Token: 0x0400350C RID: 13580
+		// Token: 0x04002BF8 RID: 11256
 		private FootType m_LastFroundedFoot;
 
-		// Token: 0x0400350D RID: 13581
+		// Token: 0x04002BF9 RID: 11257
 		private float m_AccumulatedDistance;
 	}
 }

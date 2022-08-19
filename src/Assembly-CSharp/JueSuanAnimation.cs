@@ -6,10 +6,10 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
 
-// Token: 0x02000431 RID: 1073
+// Token: 0x020002DF RID: 735
 public class JueSuanAnimation : MonoBehaviour
 {
-	// Token: 0x06001C99 RID: 7321 RVA: 0x000FC54C File Offset: 0x000FA74C
+	// Token: 0x06001983 RID: 6531 RVA: 0x000B66A0 File Offset: 0x000B48A0
 	public void Play(string content, UnityAction action)
 	{
 		this.isNeedJieSuan = false;
@@ -45,7 +45,7 @@ public class JueSuanAnimation : MonoBehaviour
 		}));
 	}
 
-	// Token: 0x06001C9A RID: 7322 RVA: 0x000FC5DC File Offset: 0x000FA7DC
+	// Token: 0x06001984 RID: 6532 RVA: 0x000B6730 File Offset: 0x000B4930
 	private void CallBack()
 	{
 		if (this.obj != null)
@@ -63,7 +63,7 @@ public class JueSuanAnimation : MonoBehaviour
 		}));
 	}
 
-	// Token: 0x06001C9B RID: 7323 RVA: 0x00017E1C File Offset: 0x0001601C
+	// Token: 0x06001985 RID: 6533 RVA: 0x000B678F File Offset: 0x000B498F
 	private void Update()
 	{
 		if (this.isNeedJieSuan && NpcJieSuanManager.inst.JieSuanAnimation)
@@ -73,21 +73,21 @@ public class JueSuanAnimation : MonoBehaviour
 		}
 	}
 
-	// Token: 0x04001897 RID: 6295
+	// Token: 0x040014B7 RID: 5303
 	public Text content;
 
-	// Token: 0x04001898 RID: 6296
+	// Token: 0x040014B8 RID: 5304
 	public Image slider;
 
-	// Token: 0x04001899 RID: 6297
+	// Token: 0x040014B9 RID: 5305
 	public Animator animator;
 
-	// Token: 0x0400189A RID: 6298
+	// Token: 0x040014BA RID: 5306
 	private TweenerCore<float, float, FloatOptions> obj;
 
-	// Token: 0x0400189B RID: 6299
+	// Token: 0x040014BB RID: 5307
 	private bool isNeedJieSuan;
 
-	// Token: 0x0400189C RID: 6300
+	// Token: 0x040014BC RID: 5308
 	private UnityAction call;
 }

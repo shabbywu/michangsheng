@@ -3,22 +3,22 @@ using System.Collections.Generic;
 
 namespace KBEngine
 {
-	// Token: 0x02001046 RID: 4166
+	// Token: 0x02000C83 RID: 3203
 	public class BuffLoopData
 	{
-		// Token: 0x06006427 RID: 25639 RVA: 0x0000403D File Offset: 0x0000223D
+		// Token: 0x0600596A RID: 22890 RVA: 0x000027FC File Offset: 0x000009FC
 		public BuffLoopData()
 		{
 		}
 
-		// Token: 0x06006428 RID: 25640 RVA: 0x00044E75 File Offset: 0x00043075
+		// Token: 0x0600596B RID: 22891 RVA: 0x00255AB2 File Offset: 0x00253CB2
 		public BuffLoopData(int TargetLoopTime, List<int> seid)
 		{
 			this.TargetLoopTime = TargetLoopTime;
 			this.SetSeid(seid);
 		}
 
-		// Token: 0x06006429 RID: 25641 RVA: 0x00280DDC File Offset: 0x0027EFDC
+		// Token: 0x0600596C RID: 22892 RVA: 0x00255AC8 File Offset: 0x00253CC8
 		public void SetSeid(List<int> seid)
 		{
 			this.seid = new List<int>();
@@ -28,7 +28,7 @@ namespace KBEngine
 			}
 		}
 
-		// Token: 0x0600642A RID: 25642 RVA: 0x00280E18 File Offset: 0x0027F018
+		// Token: 0x0600596D RID: 22893 RVA: 0x00255B04 File Offset: 0x00253D04
 		public override string ToString()
 		{
 			string text = string.Format("TargetLoopTime:{0},seid:", this.TargetLoopTime);
@@ -39,10 +39,10 @@ namespace KBEngine
 			return text;
 		}
 
-		// Token: 0x04005DBE RID: 23998
+		// Token: 0x04005212 RID: 21010
 		public List<int> seid;
 
-		// Token: 0x04005DBF RID: 23999
+		// Token: 0x04005213 RID: 21011
 		public int TargetLoopTime;
 	}
 }

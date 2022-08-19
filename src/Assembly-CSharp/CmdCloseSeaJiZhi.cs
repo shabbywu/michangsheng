@@ -3,12 +3,12 @@ using Fungus;
 using KBEngine;
 using UnityEngine;
 
-// Token: 0x02000635 RID: 1589
+// Token: 0x02000477 RID: 1143
 [CommandInfo("YSSea", "关闭当前海域机制", "关闭当前海域机制", 0)]
 [AddComponentMenu("")]
 public class CmdCloseSeaJiZhi : Command
 {
-	// Token: 0x0600277A RID: 10106 RVA: 0x00134934 File Offset: 0x00132B34
+	// Token: 0x060023BD RID: 9149 RVA: 0x000F4A18 File Offset: 0x000F2C18
 	public override void OnEnter()
 	{
 		Avatar player = Tools.instance.getPlayer();

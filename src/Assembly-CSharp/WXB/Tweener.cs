@@ -3,11 +3,11 @@ using UnityEngine;
 
 namespace WXB
 {
-	// Token: 0x020009B9 RID: 2489
+	// Token: 0x020006A4 RID: 1700
 	public class Tweener
 	{
-		// Token: 0x17000714 RID: 1812
-		// (get) Token: 0x06003F6E RID: 16238 RVA: 0x001B9718 File Offset: 0x001B7918
+		// Token: 0x170004F4 RID: 1268
+		// (get) Token: 0x060035AD RID: 13741 RVA: 0x001719B8 File Offset: 0x0016FBB8
 		public float amountPerDelta
 		{
 			get
@@ -25,9 +25,9 @@ namespace WXB
 			}
 		}
 
-		// Token: 0x17000715 RID: 1813
-		// (get) Token: 0x06003F6F RID: 16239 RVA: 0x0002D921 File Offset: 0x0002BB21
-		// (set) Token: 0x06003F70 RID: 16240 RVA: 0x0002D929 File Offset: 0x0002BB29
+		// Token: 0x170004F5 RID: 1269
+		// (get) Token: 0x060035AE RID: 13742 RVA: 0x00171A1B File Offset: 0x0016FC1B
+		// (set) Token: 0x060035AF RID: 13743 RVA: 0x00171A23 File Offset: 0x0016FC23
 		public float tweenFactor
 		{
 			get
@@ -40,7 +40,7 @@ namespace WXB
 			}
 		}
 
-		// Token: 0x06003F71 RID: 16241 RVA: 0x001B977C File Offset: 0x001B797C
+		// Token: 0x060035B0 RID: 13744 RVA: 0x00171A34 File Offset: 0x0016FC34
 		public void Update(float delta)
 		{
 			this.mFactor += ((this.duration == 0f) ? 1f : (this.amountPerDelta * delta));
@@ -74,7 +74,7 @@ namespace WXB
 			this.Sample(this.mFactor, false);
 		}
 
-		// Token: 0x06003F72 RID: 16242 RVA: 0x001B98C8 File Offset: 0x001B7AC8
+		// Token: 0x060035B1 RID: 13745 RVA: 0x00171B80 File Offset: 0x0016FD80
 		public void Sample(float factor, bool isFinished)
 		{
 			float num = Mathf.Clamp01(factor);
@@ -104,7 +104,7 @@ namespace WXB
 			}
 		}
 
-		// Token: 0x06003F73 RID: 16243 RVA: 0x00087150 File Offset: 0x00085350
+		// Token: 0x060035B2 RID: 13746 RVA: 0x00171C38 File Offset: 0x0016FE38
 		private float BounceLogic(float val)
 		{
 			if (val < 0.363636f)
@@ -126,7 +126,7 @@ namespace WXB
 			return val;
 		}
 
-		// Token: 0x06003F74 RID: 16244 RVA: 0x0002D937 File Offset: 0x0002BB37
+		// Token: 0x060035B3 RID: 13747 RVA: 0x00171CBD File Offset: 0x0016FEBD
 		public void Play(bool forward)
 		{
 			this.mAmountPerDelta = Mathf.Abs(this.amountPerDelta);
@@ -136,14 +136,14 @@ namespace WXB
 			}
 		}
 
-		// Token: 0x06003F75 RID: 16245 RVA: 0x0002D95A File Offset: 0x0002BB5A
+		// Token: 0x060035B4 RID: 13748 RVA: 0x00171CE0 File Offset: 0x0016FEE0
 		public void ResetToBeginning()
 		{
 			this.mFactor = ((this.amountPerDelta < 0f) ? 1f : 0f);
 			this.Sample(this.mFactor, false);
 		}
 
-		// Token: 0x06003F76 RID: 16246 RVA: 0x0002D988 File Offset: 0x0002BB88
+		// Token: 0x060035B5 RID: 13749 RVA: 0x00171D0E File Offset: 0x0016FF0E
 		public void Toggle()
 		{
 			if (this.mFactor > 0f)
@@ -154,52 +154,52 @@ namespace WXB
 			this.mAmountPerDelta = Mathf.Abs(this.amountPerDelta);
 		}
 
-		// Token: 0x040038D0 RID: 14544
+		// Token: 0x04002F15 RID: 12053
 		public Tweener.Method method;
 
-		// Token: 0x040038D1 RID: 14545
+		// Token: 0x04002F16 RID: 12054
 		public Tweener.Style style;
 
-		// Token: 0x040038D2 RID: 14546
+		// Token: 0x04002F17 RID: 12055
 		public float duration = 1f;
 
-		// Token: 0x040038D3 RID: 14547
+		// Token: 0x04002F18 RID: 12056
 		private float mDuration;
 
-		// Token: 0x040038D4 RID: 14548
+		// Token: 0x04002F19 RID: 12057
 		private float mAmountPerDelta = 1000f;
 
-		// Token: 0x040038D5 RID: 14549
+		// Token: 0x04002F1A RID: 12058
 		private float mFactor;
 
-		// Token: 0x040038D6 RID: 14550
+		// Token: 0x04002F1B RID: 12059
 		public Action<float, bool> OnUpdate;
 
-		// Token: 0x020009BA RID: 2490
+		// Token: 0x020014FF RID: 5375
 		public enum Method
 		{
-			// Token: 0x040038D8 RID: 14552
+			// Token: 0x04006DFE RID: 28158
 			Linear,
-			// Token: 0x040038D9 RID: 14553
+			// Token: 0x04006DFF RID: 28159
 			EaseIn,
-			// Token: 0x040038DA RID: 14554
+			// Token: 0x04006E00 RID: 28160
 			EaseOut,
-			// Token: 0x040038DB RID: 14555
+			// Token: 0x04006E01 RID: 28161
 			EaseInOut,
-			// Token: 0x040038DC RID: 14556
+			// Token: 0x04006E02 RID: 28162
 			BounceIn,
-			// Token: 0x040038DD RID: 14557
+			// Token: 0x04006E03 RID: 28163
 			BounceOut
 		}
 
-		// Token: 0x020009BB RID: 2491
+		// Token: 0x02001500 RID: 5376
 		public enum Style
 		{
-			// Token: 0x040038DF RID: 14559
+			// Token: 0x04006E05 RID: 28165
 			Once,
-			// Token: 0x040038E0 RID: 14560
+			// Token: 0x04006E06 RID: 28166
 			Loop,
-			// Token: 0x040038E1 RID: 14561
+			// Token: 0x04006E07 RID: 28167
 			PingPong
 		}
 	}

@@ -7,12 +7,12 @@ using UnityEngine;
 
 namespace UltimateSurvival.AI
 {
-	// Token: 0x02000973 RID: 2419
+	// Token: 0x02000669 RID: 1641
 	[RequireComponent(typeof(AISettings))]
 	public class AIBrain : AIBehaviour
 	{
-		// Token: 0x170006CD RID: 1741
-		// (get) Token: 0x06003DD2 RID: 15826 RVA: 0x0002C889 File Offset: 0x0002AA89
+		// Token: 0x170004AD RID: 1197
+		// (get) Token: 0x06003429 RID: 13353 RVA: 0x0016D0D0 File Offset: 0x0016B2D0
 		public List<UltimateSurvival.AI.Actions.Action> AvailableActions
 		{
 			get
@@ -21,8 +21,8 @@ namespace UltimateSurvival.AI
 			}
 		}
 
-		// Token: 0x170006CE RID: 1742
-		// (get) Token: 0x06003DD3 RID: 15827 RVA: 0x0002C891 File Offset: 0x0002AA91
+		// Token: 0x170004AE RID: 1198
+		// (get) Token: 0x0600342A RID: 13354 RVA: 0x0016D0D8 File Offset: 0x0016B2D8
 		public UltimateSurvival.AI.Actions.Action Fallback
 		{
 			get
@@ -31,8 +31,8 @@ namespace UltimateSurvival.AI
 			}
 		}
 
-		// Token: 0x170006CF RID: 1743
-		// (get) Token: 0x06003DD4 RID: 15828 RVA: 0x0002C899 File Offset: 0x0002AA99
+		// Token: 0x170004AF RID: 1199
+		// (get) Token: 0x0600342B RID: 13355 RVA: 0x0016D0E0 File Offset: 0x0016B2E0
 		public Queue<UltimateSurvival.AI.Actions.Action> ActionQueue
 		{
 			get
@@ -41,8 +41,8 @@ namespace UltimateSurvival.AI
 			}
 		}
 
-		// Token: 0x170006D0 RID: 1744
-		// (get) Token: 0x06003DD5 RID: 15829 RVA: 0x0002C8A1 File Offset: 0x0002AAA1
+		// Token: 0x170004B0 RID: 1200
+		// (get) Token: 0x0600342C RID: 13356 RVA: 0x0016D0E8 File Offset: 0x0016B2E8
 		public Goal CurrentGoal
 		{
 			get
@@ -51,8 +51,8 @@ namespace UltimateSurvival.AI
 			}
 		}
 
-		// Token: 0x170006D1 RID: 1745
-		// (get) Token: 0x06003DD6 RID: 15830 RVA: 0x0002C8A9 File Offset: 0x0002AAA9
+		// Token: 0x170004B1 RID: 1201
+		// (get) Token: 0x0600342D RID: 13357 RVA: 0x0016D0F0 File Offset: 0x0016B2F0
 		public StateData WorldState
 		{
 			get
@@ -61,8 +61,8 @@ namespace UltimateSurvival.AI
 			}
 		}
 
-		// Token: 0x170006D2 RID: 1746
-		// (get) Token: 0x06003DD7 RID: 15831 RVA: 0x0002C8B1 File Offset: 0x0002AAB1
+		// Token: 0x170004B2 RID: 1202
+		// (get) Token: 0x0600342E RID: 13358 RVA: 0x0016D0F8 File Offset: 0x0016B2F8
 		public AISettings Settings
 		{
 			get
@@ -71,7 +71,7 @@ namespace UltimateSurvival.AI
 			}
 		}
 
-		// Token: 0x06003DD8 RID: 15832 RVA: 0x001B5C8C File Offset: 0x001B3E8C
+		// Token: 0x0600342F RID: 13359 RVA: 0x0016D100 File Offset: 0x0016B300
 		private void Start()
 		{
 			this.m_Fallback = Object.Instantiate<UltimateSurvival.AI.Actions.Action>(this.m_Fallback);
@@ -89,7 +89,7 @@ namespace UltimateSurvival.AI
 			this.InitializeData();
 		}
 
-		// Token: 0x06003DD9 RID: 15833 RVA: 0x001B5D34 File Offset: 0x001B3F34
+		// Token: 0x06003430 RID: 13360 RVA: 0x0016D1A8 File Offset: 0x0016B3A8
 		private void Update()
 		{
 			bool flag = this.IsReplanNeededBecauseOfGoals();
@@ -144,7 +144,7 @@ namespace UltimateSurvival.AI
 			}
 		}
 
-		// Token: 0x06003DDA RID: 15834 RVA: 0x001B5E74 File Offset: 0x001B4074
+		// Token: 0x06003431 RID: 13361 RVA: 0x0016D2E8 File Offset: 0x0016B4E8
 		private bool IsReplanNeededBecauseOfGoals()
 		{
 			if (this.m_AvailableGoals == null || this.m_AvailableGoals.Count == 0)
@@ -175,7 +175,7 @@ namespace UltimateSurvival.AI
 			return result;
 		}
 
-		// Token: 0x06003DDB RID: 15835 RVA: 0x001B5F60 File Offset: 0x001B4160
+		// Token: 0x06003432 RID: 13362 RVA: 0x0016D3D4 File Offset: 0x0016B5D4
 		private void Replan()
 		{
 			for (int i = 0; i < this.m_AvailableActions.Count; i++)
@@ -192,7 +192,7 @@ namespace UltimateSurvival.AI
 			this.m_LastPlanTime = Time.time;
 		}
 
-		// Token: 0x06003DDC RID: 15836 RVA: 0x001B5FE8 File Offset: 0x001B41E8
+		// Token: 0x06003433 RID: 13363 RVA: 0x0016D45C File Offset: 0x0016B65C
 		private void FallBack()
 		{
 			if (this.m_ActionQueue == null || this.m_ActionQueue.Peek() != this.m_Fallback)
@@ -204,7 +204,7 @@ namespace UltimateSurvival.AI
 			}
 		}
 
-		// Token: 0x06003DDD RID: 15837 RVA: 0x001B604C File Offset: 0x001B424C
+		// Token: 0x06003434 RID: 13364 RVA: 0x0016D4C0 File Offset: 0x0016B6C0
 		private void CreateNewWorldState()
 		{
 			this.m_WorldState = new StateData();
@@ -215,7 +215,7 @@ namespace UltimateSurvival.AI
 			this.m_WorldState.Add("Is Hungry", false);
 		}
 
-		// Token: 0x06003DDE RID: 15838 RVA: 0x001B60D4 File Offset: 0x001B42D4
+		// Token: 0x06003435 RID: 13365 RVA: 0x0016D548 File Offset: 0x0016B748
 		private void InitializeData()
 		{
 			if (this.m_AvailableActions.Count == 0)
@@ -241,45 +241,45 @@ namespace UltimateSurvival.AI
 			this.m_Fallback.IsActive = false;
 		}
 
-		// Token: 0x040037FE RID: 14334
+		// Token: 0x04002E65 RID: 11877
 		[SerializeField]
 		private List<UltimateSurvival.AI.Actions.Action> m_AvailableActions;
 
-		// Token: 0x040037FF RID: 14335
+		// Token: 0x04002E66 RID: 11878
 		[SerializeField]
 		private List<Goal> m_AvailableGoals;
 
-		// Token: 0x04003800 RID: 14336
+		// Token: 0x04002E67 RID: 11879
 		[SerializeField]
 		private UltimateSurvival.AI.Actions.Action m_Fallback;
 
-		// Token: 0x04003801 RID: 14337
+		// Token: 0x04002E68 RID: 11880
 		[SerializeField]
 		private float m_MinPlanInterval;
 
-		// Token: 0x04003802 RID: 14338
+		// Token: 0x04002E69 RID: 11881
 		[SerializeField]
 		private float m_MinGoalPriorityCheckInterval;
 
-		// Token: 0x04003803 RID: 14339
+		// Token: 0x04002E6A RID: 11882
 		private Queue<UltimateSurvival.AI.Actions.Action> m_ActionQueue;
 
-		// Token: 0x04003804 RID: 14340
+		// Token: 0x04002E6B RID: 11883
 		private Planner m_Planner;
 
-		// Token: 0x04003805 RID: 14341
+		// Token: 0x04002E6C RID: 11884
 		private Goal m_CurrentGoal;
 
-		// Token: 0x04003806 RID: 14342
+		// Token: 0x04002E6D RID: 11885
 		private StateData m_WorldState;
 
-		// Token: 0x04003807 RID: 14343
+		// Token: 0x04002E6E RID: 11886
 		private AISettings m_Settings;
 
-		// Token: 0x04003808 RID: 14344
+		// Token: 0x04002E6F RID: 11887
 		private float m_LastPlanTime;
 
-		// Token: 0x04003809 RID: 14345
+		// Token: 0x04002E70 RID: 11888
 		private float m_LastGoalPriorityCheckTime;
 	}
 }

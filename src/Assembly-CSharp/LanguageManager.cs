@@ -5,10 +5,10 @@ using System.Linq;
 using System.Xml.Linq;
 using UnityEngine;
 
-// Token: 0x020006A9 RID: 1705
+// Token: 0x020004B5 RID: 1205
 public class LanguageManager : MonoBehaviour
 {
-	// Token: 0x06002A9E RID: 10910 RVA: 0x001481A8 File Offset: 0x001463A8
+	// Token: 0x06002620 RID: 9760 RVA: 0x00107F00 File Offset: 0x00106100
 	private void Awake()
 	{
 		base.transform.name = "LanguageManager";
@@ -21,7 +21,7 @@ public class LanguageManager : MonoBehaviour
 		Debug.Log("Chosen Languafe iz Language Mangaer: " + LanguageManager.chosenLanguage);
 	}
 
-	// Token: 0x06002A9F RID: 10911 RVA: 0x00148204 File Offset: 0x00146404
+	// Token: 0x06002621 RID: 9761 RVA: 0x00107F5C File Offset: 0x0010615C
 	public static void RefreshTexts()
 	{
 		IEnumerable<XElement> source = XElement.Parse(((TextAsset)Resources.Load("xmls/inGameText/Language" + LanguageManager.chosenLanguage)).ToString()).Elements();
@@ -111,7 +111,7 @@ public class LanguageManager : MonoBehaviour
 		LanguageManager.FrozenIsland = source.ElementAt(83).Value;
 	}
 
-	// Token: 0x06002AA0 RID: 10912 RVA: 0x00148814 File Offset: 0x00146A14
+	// Token: 0x06002622 RID: 9762 RVA: 0x0010856C File Offset: 0x0010676C
 	public string SplitTextIntoRows(string originalText, int rowLimit)
 	{
 		string text2;
@@ -169,13 +169,13 @@ public class LanguageManager : MonoBehaviour
 		return text;
 	}
 
-	// Token: 0x06002AA1 RID: 10913 RVA: 0x00010DC9 File Offset: 0x0000EFC9
+	// Token: 0x06002623 RID: 9763 RVA: 0x001086F1 File Offset: 0x001068F1
 	private string SplitInHalf(string toSplit)
 	{
 		return toSplit;
 	}
 
-	// Token: 0x06002AA2 RID: 10914 RVA: 0x00021170 File Offset: 0x0001F370
+	// Token: 0x06002624 RID: 9764 RVA: 0x001086F4 File Offset: 0x001068F4
 	public IEnumerator helpfunk(TextMesh toAdjust)
 	{
 		string text = toAdjust.text;
@@ -259,7 +259,7 @@ public class LanguageManager : MonoBehaviour
 		yield break;
 	}
 
-	// Token: 0x06002AA3 RID: 10915 RVA: 0x0014899C File Offset: 0x00146B9C
+	// Token: 0x06002625 RID: 9765 RVA: 0x00108704 File Offset: 0x00106904
 	public void AdjustFontSize(TextMesh toAdjust, bool rowSplit)
 	{
 		string text = toAdjust.text;
@@ -348,255 +348,255 @@ public class LanguageManager : MonoBehaviour
 		}
 	}
 
-	// Token: 0x04002449 RID: 9289
+	// Token: 0x04001ED6 RID: 7894
 	public static string chosenLanguage = "_en";
 
-	// Token: 0x0400244A RID: 9290
+	// Token: 0x04001ED7 RID: 7895
 	public static string Collect = "Collect";
 
-	// Token: 0x0400244B RID: 9291
+	// Token: 0x04001ED8 RID: 7896
 	public static string LogIn = "Log In";
 
-	// Token: 0x0400244C RID: 9292
+	// Token: 0x04001ED9 RID: 7897
 	public static string Free = "Free";
 
-	// Token: 0x0400244D RID: 9293
+	// Token: 0x04001EDA RID: 7898
 	public static string Coins = "Coins";
 
-	// Token: 0x0400244E RID: 9294
+	// Token: 0x04001EDB RID: 7899
 	public static string Music = "Music";
 
-	// Token: 0x0400244F RID: 9295
+	// Token: 0x04001EDC RID: 7900
 	public static string Sound = "Sound";
 
-	// Token: 0x04002450 RID: 9296
+	// Token: 0x04001EDD RID: 7901
 	public static string Language = "Language";
 
-	// Token: 0x04002451 RID: 9297
+	// Token: 0x04001EDE RID: 7902
 	public static string Settings = "Settings";
 
-	// Token: 0x04002452 RID: 9298
+	// Token: 0x04001EDF RID: 7903
 	public static string ResetProgress = "Reset Progress";
 
-	// Token: 0x04002453 RID: 9299
+	// Token: 0x04001EE0 RID: 7904
 	public static string ResetTutorials = "Reset Tutorials";
 
-	// Token: 0x04002454 RID: 9300
+	// Token: 0x04001EE1 RID: 7905
 	public static string LogOut = "Log Out";
 
-	// Token: 0x04002455 RID: 9301
+	// Token: 0x04001EE2 RID: 7906
 	public static string Leaderboard = "Leaderboard";
 
-	// Token: 0x04002456 RID: 9302
+	// Token: 0x04001EE3 RID: 7907
 	public static string InviteAndEarn = "Invite and earn";
 
-	// Token: 0x04002457 RID: 9303
+	// Token: 0x04001EE4 RID: 7908
 	public static string InviteFriendsAndEarn = "Invite friends and earn";
 
-	// Token: 0x04002458 RID: 9304
+	// Token: 0x04001EE5 RID: 7909
 	public static string FreeCoins = "Free Coins";
 
-	// Token: 0x04002459 RID: 9305
+	// Token: 0x04001EE6 RID: 7910
 	public static string Shop = "Shop";
 
-	// Token: 0x0400245A RID: 9306
+	// Token: 0x04001EE7 RID: 7911
 	public static string Customize = "Customize";
 
-	// Token: 0x0400245B RID: 9307
+	// Token: 0x04001EE8 RID: 7912
 	public static string PowerUps = "Power-Ups";
 
-	// Token: 0x0400245C RID: 9308
+	// Token: 0x04001EE9 RID: 7913
 	public static string WatchVideo = "Watch Video";
 
-	// Token: 0x0400245D RID: 9309
+	// Token: 0x04001EEA RID: 7914
 	public static string Banana = "Banana";
 
-	// Token: 0x0400245E RID: 9310
+	// Token: 0x04001EEB RID: 7915
 	public static string DoubleCoins = "Double Coins";
 
-	// Token: 0x0400245F RID: 9311
+	// Token: 0x04001EEC RID: 7916
 	public static string CoinsMagnet = "Coins Magnet";
 
-	// Token: 0x04002460 RID: 9312
+	// Token: 0x04001EED RID: 7917
 	public static string Shield = "Shield";
 
-	// Token: 0x04002461 RID: 9313
+	// Token: 0x04001EEE RID: 7918
 	public static string New = "New";
 
-	// Token: 0x04002462 RID: 9314
+	// Token: 0x04001EEF RID: 7919
 	public static string Preview = "Preview";
 
-	// Token: 0x04002463 RID: 9315
+	// Token: 0x04001EF0 RID: 7920
 	public static string Buy = "Buy";
 
-	// Token: 0x04002464 RID: 9316
+	// Token: 0x04001EF1 RID: 7921
 	public static string Equip = "Equip";
 
-	// Token: 0x04002465 RID: 9317
+	// Token: 0x04001EF2 RID: 7922
 	public static string Unequip = "Unequip";
 
-	// Token: 0x04002466 RID: 9318
+	// Token: 0x04001EF3 RID: 7923
 	public static string ShareAndEarn = "Share and earn";
 
-	// Token: 0x04002467 RID: 9319
+	// Token: 0x04001EF4 RID: 7924
 	public static string PostAndEarn = "Post and earn";
 
-	// Token: 0x04002468 RID: 9320
+	// Token: 0x04001EF5 RID: 7925
 	public static string TweetAndEarn = "Tweet and earn";
 
-	// Token: 0x04002469 RID: 9321
+	// Token: 0x04001EF6 RID: 7926
 	public static string LogInAndEarn = "Log In and earn";
 
-	// Token: 0x0400246A RID: 9322
+	// Token: 0x04001EF7 RID: 7927
 	public static string Level = "Level";
 
-	// Token: 0x0400246B RID: 9323
+	// Token: 0x04001EF8 RID: 7928
 	public static string Mission = "Mission";
 
-	// Token: 0x0400246C RID: 9324
+	// Token: 0x04001EF9 RID: 7929
 	public static string Invite = "Invite";
 
-	// Token: 0x0400246D RID: 9325
+	// Token: 0x04001EFA RID: 7930
 	public static string BonusLevel = "Bonus Level";
 
-	// Token: 0x0400246E RID: 9326
+	// Token: 0x04001EFB RID: 7931
 	public static string Unlock = "Unlock";
 
-	// Token: 0x0400246F RID: 9327
+	// Token: 0x04001EFC RID: 7932
 	public static string No = "No";
 
-	// Token: 0x04002470 RID: 9328
+	// Token: 0x04001EFD RID: 7933
 	public static string Yes = "Yes";
 
-	// Token: 0x04002471 RID: 9329
+	// Token: 0x04001EFE RID: 7934
 	public static string NoVideo = "No videos available, please try again later";
 
-	// Token: 0x04002472 RID: 9330
+	// Token: 0x04001EFF RID: 7935
 	public static string NotEnoughBananas = "Not enough bananas";
 
-	// Token: 0x04002473 RID: 9331
+	// Token: 0x04001F00 RID: 7936
 	public static string Loading = "Loading";
 
-	// Token: 0x04002474 RID: 9332
+	// Token: 0x04001F01 RID: 7937
 	public static string Tip = "Tip";
 
-	// Token: 0x04002475 RID: 9333
+	// Token: 0x04001F02 RID: 7938
 	public static string Tips = "Tips";
 
-	// Token: 0x04002476 RID: 9334
+	// Token: 0x04001F03 RID: 7939
 	public static string ComingSoon = "Coming Soon";
 
-	// Token: 0x04002477 RID: 9335
+	// Token: 0x04001F04 RID: 7940
 	public static string TapScreenToStart = "Tap Screen To Start!";
 
-	// Token: 0x04002478 RID: 9336
+	// Token: 0x04001F05 RID: 7941
 	public static string Pause = "Pause";
 
-	// Token: 0x04002479 RID: 9337
+	// Token: 0x04001F06 RID: 7942
 	public static string KeepPlaying = "Keep Playing";
 
-	// Token: 0x0400247A RID: 9338
+	// Token: 0x04001F07 RID: 7943
 	public static string LevelFailed = "Level Failed";
 
-	// Token: 0x0400247B RID: 9339
+	// Token: 0x04001F08 RID: 7944
 	public static string LevelCompleted = "Level Completed";
 
-	// Token: 0x0400247C RID: 9340
+	// Token: 0x04001F09 RID: 7945
 	public static string RateThisGame = "Rate this game";
 
-	// Token: 0x0400247D RID: 9341
+	// Token: 0x04001F0A RID: 7946
 	public static string DoYouLikeOurGame = "Do you like our game?";
 
-	// Token: 0x0400247E RID: 9342
+	// Token: 0x04001F0B RID: 7947
 	public static string Cancel = "Cancel";
 
-	// Token: 0x0400247F RID: 9343
+	// Token: 0x04001F0C RID: 7948
 	public static string Rate = "Rate";
 
-	// Token: 0x04002480 RID: 9344
+	// Token: 0x04001F0D RID: 7949
 	public static string Congratulations = "Congratulations!";
 
-	// Token: 0x04002481 RID: 9345
+	// Token: 0x04001F0E RID: 7950
 	public static string NewLevelsComingSoon = "New levels coming soon!";
 
-	// Token: 0x04002482 RID: 9346
+	// Token: 0x04001F0F RID: 7951
 	public static string TutorialTapJump = "1-TAP anywhere to JUMP\n2-TAP and HOLD to JUMP HIGHER";
 
-	// Token: 0x04002483 RID: 9347
+	// Token: 0x04001F10 RID: 7952
 	public static string TutorialGlide = "When in the AIR you can TAP and HOLD to GLIDE slowly to the ground";
 
-	// Token: 0x04002484 RID: 9348
+	// Token: 0x04001F11 RID: 7953
 	public static string TutorialSwipe = "SWIPE DOWN at great heights to perform a deadly super drop!";
 
-	// Token: 0x04002485 RID: 9349
+	// Token: 0x04001F12 RID: 7954
 	public static string NoInternet = "No internet";
 
-	// Token: 0x04002486 RID: 9350
+	// Token: 0x04001F13 RID: 7955
 	public static string CheckInternet = "Check your internet connection";
 
-	// Token: 0x04002487 RID: 9351
+	// Token: 0x04001F14 RID: 7956
 	public static string HowWouldYouRate = "How would you rate our game?";
 
-	// Token: 0x04002488 RID: 9352
+	// Token: 0x04001F15 RID: 7957
 	public static string Downloading = "Downloading...";
 
-	// Token: 0x04002489 RID: 9353
+	// Token: 0x04001F16 RID: 7958
 	public static string Maintenance = "Maintenance";
 
-	// Token: 0x0400248A RID: 9354
+	// Token: 0x04001F17 RID: 7959
 	public static string BeBackSoon = "We'll be back soon";
 
-	// Token: 0x0400248B RID: 9355
+	// Token: 0x04001F18 RID: 7960
 	public static string Ok = "OK";
 
-	// Token: 0x0400248C RID: 9356
+	// Token: 0x04001F19 RID: 7961
 	public static string Reward = "Reward";
 
-	// Token: 0x0400248D RID: 9357
+	// Token: 0x04001F1A RID: 7962
 	public static string DailyReward = "Daily Reward";
 
-	// Token: 0x0400248E RID: 9358
+	// Token: 0x04001F1B RID: 7963
 	public static string Day = "Day";
 
-	// Token: 0x0400248F RID: 9359
+	// Token: 0x04001F1C RID: 7964
 	public static string Play = "Play";
 
-	// Token: 0x04002490 RID: 9360
+	// Token: 0x04001F1D RID: 7965
 	public static string BananaIsland = "Banana Island";
 
-	// Token: 0x04002491 RID: 9361
+	// Token: 0x04001F1E RID: 7966
 	public static string SavannaIsland = "Savanna Island";
 
-	// Token: 0x04002492 RID: 9362
+	// Token: 0x04001F1F RID: 7967
 	public static string JungleIsland = "Jungle Island";
 
-	// Token: 0x04002493 RID: 9363
+	// Token: 0x04001F20 RID: 7968
 	public static string TempleIsland = "Temple Island";
 
-	// Token: 0x04002494 RID: 9364
+	// Token: 0x04001F21 RID: 7969
 	public static string VolcanoIsland = "Volcano Island";
 
-	// Token: 0x04002495 RID: 9365
+	// Token: 0x04001F22 RID: 7970
 	public static string Completed = "Completed";
 
-	// Token: 0x04002496 RID: 9366
+	// Token: 0x04001F23 RID: 7971
 	public static string Share = "Share";
 
-	// Token: 0x04002497 RID: 9367
+	// Token: 0x04001F24 RID: 7972
 	public static string FollowUsOnFacebook = "Follow us on Facebook";
 
-	// Token: 0x04002498 RID: 9368
+	// Token: 0x04001F25 RID: 7973
 	public static string LoadingTip1 = "Don't miss Tips and Tricks in the Loading Screen, they can be useful.";
 
-	// Token: 0x04002499 RID: 9369
+	// Token: 0x04001F26 RID: 7974
 	public static string LoadingTip2 = "Want to keep playing? Spend one of your bananas to continue running.";
 
-	// Token: 0x0400249A RID: 9370
+	// Token: 0x04001F27 RID: 7975
 	public static string LoadingTip3 = "Jump on enemies' heads to knock'em out.";
 
-	// Token: 0x0400249B RID: 9371
+	// Token: 0x04001F28 RID: 7976
 	public static string FrozenIsland = "Frozen Island";
 
-	// Token: 0x0400249C RID: 9372
+	// Token: 0x04001F29 RID: 7977
 	public static bool hasWhiteSpaces = true;
 }

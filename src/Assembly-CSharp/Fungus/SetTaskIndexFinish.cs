@@ -6,19 +6,19 @@ using UnityEngine;
 
 namespace Fungus
 {
-	// Token: 0x02001421 RID: 5153
+	// Token: 0x02000F6A RID: 3946
 	[CommandInfo("YSNew/Set", "SetTaskIndexFinish", "完成指定任务的某条进度", 0)]
 	[AddComponentMenu("")]
 	public class SetTaskIndexFinish : Command
 	{
-		// Token: 0x06007CD1 RID: 31953 RVA: 0x000548B3 File Offset: 0x00052AB3
+		// Token: 0x06006EE1 RID: 28385 RVA: 0x002A5A45 File Offset: 0x002A3C45
 		public override void OnEnter()
 		{
 			SetTaskIndexFinish.Do(this.TaskID, this.TaskIndex);
 			this.Continue();
 		}
 
-		// Token: 0x06007CD2 RID: 31954 RVA: 0x002C57E4 File Offset: 0x002C39E4
+		// Token: 0x06006EE2 RID: 28386 RVA: 0x002A5A60 File Offset: 0x002A3C60
 		public static void Do(int TaskID, int TaskIndex)
 		{
 			Avatar player = Tools.instance.getPlayer();
@@ -47,7 +47,7 @@ namespace Fungus
 			player.taskMag._TaskData["Task"][TaskID.ToString()]["finishIndex"].Add(TaskIndex);
 			string name = TaskJsonData.DataDict[TaskID].Name;
 			UIPopTip.Inst.Pop("<color=#FF0000> " + name + " </color> 进度已更新", PopTipIconType.任务进度);
-			List<JSONObject> list = jsonData.instance.TaskInfoJsonData.list.FindAll((JSONObject aa) => (int)aa["TaskID"].n == TaskID);
+			List<JSONObject> list = jsonData.instance.TaskInfoJsonData.list.FindAll((JSONObject aa) => aa["TaskID"].I == TaskID);
 			if (player.taskMag._TaskData["Task"][TaskID.ToString()]["finishIndex"].Count >= list.Count)
 			{
 				player.taskMag._TaskData["Task"][TaskID.ToString()].SetField("disableTask", true);
@@ -60,18 +60,18 @@ namespace Fungus
 			}
 		}
 
-		// Token: 0x06007CD3 RID: 31955 RVA: 0x000113CF File Offset: 0x0000F5CF
+		// Token: 0x06006EE3 RID: 28387 RVA: 0x0005E228 File Offset: 0x0005C428
 		public override Color GetButtonColor()
 		{
 			return new Color32(184, 210, 235, byte.MaxValue);
 		}
 
-		// Token: 0x04006AA9 RID: 27305
+		// Token: 0x04005BD4 RID: 23508
 		[Tooltip("任务的ID")]
 		[SerializeField]
 		protected int TaskID;
 
-		// Token: 0x04006AAA RID: 27306
+		// Token: 0x04005BD5 RID: 23509
 		[Tooltip("任务的变量值")]
 		[SerializeField]
 		protected int TaskIndex;

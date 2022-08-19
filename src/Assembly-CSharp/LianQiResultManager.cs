@@ -9,17 +9,17 @@ using UnityEngine;
 using UnityEngine.UI;
 using YSGame.Fight;
 
-// Token: 0x02000463 RID: 1123
+// Token: 0x02000306 RID: 774
 public class LianQiResultManager : MonoBehaviour
 {
-	// Token: 0x06001E10 RID: 7696 RVA: 0x00018FB0 File Offset: 0x000171B0
+	// Token: 0x06001AEA RID: 6890 RVA: 0x000BFA6D File Offset: 0x000BDC6D
 	public void init()
 	{
 		base.gameObject.SetActive(false);
 		this.lianQiResultPanelIsOpen = false;
 	}
 
-	// Token: 0x06001E11 RID: 7697 RVA: 0x001055A0 File Offset: 0x001037A0
+	// Token: 0x06001AEB RID: 6891 RVA: 0x000BFA84 File Offset: 0x000BDC84
 	public void openLianQiResultPanel()
 	{
 		int selectZhongLei = LianQiTotalManager.inst.selectTypePageManager.getSelectZhongLei();
@@ -29,7 +29,7 @@ public class LianQiResultManager : MonoBehaviour
 		this.lianQiResultPanelIsOpen = true;
 	}
 
-	// Token: 0x06001E12 RID: 7698 RVA: 0x00018FC5 File Offset: 0x000171C5
+	// Token: 0x06001AEC RID: 6892 RVA: 0x000BFAF4 File Offset: 0x000BDCF4
 	public void closeLianQiResultPanel()
 	{
 		this.inputFieldEquipName.text = "";
@@ -37,7 +37,7 @@ public class LianQiResultManager : MonoBehaviour
 		this.lianQiResultPanelIsOpen = false;
 	}
 
-	// Token: 0x06001E13 RID: 7699 RVA: 0x00105610 File Offset: 0x00103810
+	// Token: 0x06001AED RID: 6893 RVA: 0x000BFB1C File Offset: 0x000BDD1C
 	public void LianQiCallBack()
 	{
 		this.closeLianQiResultPanel();
@@ -73,7 +73,7 @@ public class LianQiResultManager : MonoBehaviour
 		LianQiTotalManager.inst.putMaterialPageManager.lianQiPageManager.putCaiLiaoCell.caiLiaoCellParent.SetActive(true);
 	}
 
-	// Token: 0x06001E14 RID: 7700 RVA: 0x001057AC File Offset: 0x001039AC
+	// Token: 0x06001AEE RID: 6894 RVA: 0x000BFCB8 File Offset: 0x000BDEB8
 	public Dictionary<int, int> GetRemoveDict(Dictionary<int, int> needDict)
 	{
 		Avatar player = Tools.instance.getPlayer();
@@ -90,7 +90,7 @@ public class LianQiResultManager : MonoBehaviour
 		return dictionary;
 	}
 
-	// Token: 0x06001E15 RID: 7701 RVA: 0x00105830 File Offset: 0x00103A30
+	// Token: 0x06001AEF RID: 6895 RVA: 0x000BFD3C File Offset: 0x000BDF3C
 	public void setEquipNameClick()
 	{
 		Regex regex = new Regex("^[一-龥a-zA-Z0-9]+$");
@@ -107,7 +107,7 @@ public class LianQiResultManager : MonoBehaviour
 		UIPopTip.Inst.Pop("不允许有特殊字符", PopTipIconType.叹号);
 	}
 
-	// Token: 0x06001E16 RID: 7702 RVA: 0x0010589C File Offset: 0x00103A9C
+	// Token: 0x06001AF0 RID: 6896 RVA: 0x000BFDA8 File Offset: 0x000BDFA8
 	private int getItemCD()
 	{
 		if (LianQiTotalManager.inst.putMaterialPageManager.lingWenManager.getSelectLinWenType() != 1)
@@ -122,7 +122,7 @@ public class LianQiResultManager : MonoBehaviour
 		return 1;
 	}
 
-	// Token: 0x06001E17 RID: 7703 RVA: 0x000AD1D8 File Offset: 0x000AB3D8
+	// Token: 0x06001AF1 RID: 6897 RVA: 0x000BFE10 File Offset: 0x000BE010
 	private JSONObject AddItemSeid(int seid, int value1 = -9999, int value2 = -9999)
 	{
 		JSONObject jsonobject = new JSONObject();
@@ -138,7 +138,7 @@ public class LianQiResultManager : MonoBehaviour
 		return jsonobject;
 	}
 
-	// Token: 0x06001E18 RID: 7704 RVA: 0x00105904 File Offset: 0x00103B04
+	// Token: 0x06001AF2 RID: 6898 RVA: 0x000BFE58 File Offset: 0x000BE058
 	private void GetEquipSkillSeid(JSONObject skillSeids, JSONObject itemSeid, ref int Damage, ref string seidDesc, JSONObject shuXingIdList)
 	{
 		skillSeids.Add(this.AddItemSeid(29, this.getItemCD(), -9999));
@@ -263,7 +263,7 @@ public class LianQiResultManager : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001E19 RID: 7705 RVA: 0x00106010 File Offset: 0x00104210
+	// Token: 0x06001AF3 RID: 6899 RVA: 0x000C0564 File Offset: 0x000BE764
 	public void createEquip()
 	{
 		try
@@ -323,7 +323,7 @@ public class LianQiResultManager : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001E1A RID: 7706 RVA: 0x0010626C File Offset: 0x0010446C
+	// Token: 0x06001AF4 RID: 6900 RVA: 0x000C07C0 File Offset: 0x000BE9C0
 	public string GetImagePath()
 	{
 		int equipQuality = (int)LianQiTotalManager.inst.getcurEquipQualityDate()["quality"];
@@ -331,7 +331,7 @@ public class LianQiResultManager : MonoBehaviour
 		return FightFaBaoShow.GetEquipFightShowPath(LianQiTotalManager.inst.selectTypePageManager.getSelectZhongLei(), i, equipQuality).Replace("FightFaBao", "LianQiImage");
 	}
 
-	// Token: 0x06001E1B RID: 7707 RVA: 0x001062CC File Offset: 0x001044CC
+	// Token: 0x06001AF5 RID: 6901 RVA: 0x000C0820 File Offset: 0x000BEA20
 	public string GetIconPath()
 	{
 		int equipQuality = (int)LianQiTotalManager.inst.getcurEquipQualityDate()["quality"];
@@ -339,7 +339,7 @@ public class LianQiResultManager : MonoBehaviour
 		return FightFaBaoShow.GetEquipFightShowPath(LianQiTotalManager.inst.selectTypePageManager.getSelectZhongLei(), i, equipQuality).Replace("FightFaBao", "LianQiIcon");
 	}
 
-	// Token: 0x06001E1C RID: 7708 RVA: 0x00018FEA File Offset: 0x000171EA
+	// Token: 0x06001AF6 RID: 6902 RVA: 0x000C087E File Offset: 0x000BEA7E
 	public void UpdateEquipImage()
 	{
 		this.equipImage.sprite = ResManager.inst.LoadSprite(this.GetImagePath());
@@ -347,7 +347,7 @@ public class LianQiResultManager : MonoBehaviour
 		this.equipImage.gameObject.SetActive(true);
 	}
 
-	// Token: 0x06001E1D RID: 7709 RVA: 0x0010632C File Offset: 0x0010452C
+	// Token: 0x06001AF7 RID: 6903 RVA: 0x000C08B8 File Offset: 0x000BEAB8
 	public void SetLingWenSeid(JSONObject skillSeids, JSONObject itemSeid)
 	{
 		int selectLingWenID = LianQiTotalManager.inst.putMaterialPageManager.lingWenManager.getSelectLingWenID();
@@ -400,7 +400,7 @@ public class LianQiResultManager : MonoBehaviour
 		itemSeid.Add(jsonobject2);
 	}
 
-	// Token: 0x06001E1E RID: 7710 RVA: 0x00106508 File Offset: 0x00104708
+	// Token: 0x06001AF8 RID: 6904 RVA: 0x000C0A94 File Offset: 0x000BEC94
 	private JSONObject GetEquipAttackType()
 	{
 		JSONObject jsonobject = new JSONObject(JSONObject.Type.ARRAY);
@@ -428,7 +428,7 @@ public class LianQiResultManager : MonoBehaviour
 		return jsonobject;
 	}
 
-	// Token: 0x06001E1F RID: 7711 RVA: 0x001065DC File Offset: 0x001047DC
+	// Token: 0x06001AF9 RID: 6905 RVA: 0x000C0B68 File Offset: 0x000BED68
 	private JSONObject GetEquipItemFlag()
 	{
 		JSONObject jsonobject = new JSONObject(JSONObject.Type.ARRAY);
@@ -451,7 +451,7 @@ public class LianQiResultManager : MonoBehaviour
 		return jsonobject;
 	}
 
-	// Token: 0x06001E20 RID: 7712 RVA: 0x0010668C File Offset: 0x0010488C
+	// Token: 0x06001AFA RID: 6906 RVA: 0x000C0C18 File Offset: 0x000BEE18
 	private int getEquipMoney()
 	{
 		JToken jtoken = LianQiTotalManager.inst.getcurEquipQualityDate();
@@ -462,7 +462,7 @@ public class LianQiResultManager : MonoBehaviour
 		return -1;
 	}
 
-	// Token: 0x06001E21 RID: 7713 RVA: 0x001066BC File Offset: 0x001048BC
+	// Token: 0x06001AFB RID: 6907 RVA: 0x000C0C48 File Offset: 0x000BEE48
 	private string GetEquipDesc(int quality, int _typepingji)
 	{
 		Avatar player = Tools.instance.getPlayer();
@@ -509,7 +509,7 @@ public class LianQiResultManager : MonoBehaviour
 		});
 	}
 
-	// Token: 0x06001E22 RID: 7714 RVA: 0x001068A4 File Offset: 0x00104AA4
+	// Token: 0x06001AFC RID: 6908 RVA: 0x000C0E30 File Offset: 0x000BF030
 	private void removeCaiLiao()
 	{
 		Avatar player = Tools.instance.getPlayer();
@@ -523,7 +523,7 @@ public class LianQiResultManager : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001E23 RID: 7715 RVA: 0x00106914 File Offset: 0x00104B14
+	// Token: 0x06001AFD RID: 6909 RVA: 0x000C0EA0 File Offset: 0x000BF0A0
 	public void lianQiFailResult()
 	{
 		LianQiTotalManager.inst.CloseBlack();
@@ -539,7 +539,7 @@ public class LianQiResultManager : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001E24 RID: 7716 RVA: 0x00019023 File Offset: 0x00017223
+	// Token: 0x06001AFE RID: 6910 RVA: 0x000C0EE4 File Offset: 0x000BF0E4
 	public void lianQiSuccessResult()
 	{
 		LianQiTotalManager.inst.CloseBlack();
@@ -547,7 +547,7 @@ public class LianQiResultManager : MonoBehaviour
 		this.openLianQiResultPanel();
 	}
 
-	// Token: 0x06001E25 RID: 7717 RVA: 0x00106958 File Offset: 0x00104B58
+	// Token: 0x06001AFF RID: 6911 RVA: 0x000C0F18 File Offset: 0x000BF118
 	private void reduceHp()
 	{
 		Avatar player = Tools.instance.getPlayer();
@@ -567,7 +567,7 @@ public class LianQiResultManager : MonoBehaviour
 		player.HP = num2;
 	}
 
-	// Token: 0x06001E26 RID: 7718 RVA: 0x001069DC File Offset: 0x00104BDC
+	// Token: 0x06001B00 RID: 6912 RVA: 0x000C0F9C File Offset: 0x000BF19C
 	private void addLianQiWuDaoExp()
 	{
 		Avatar player = Tools.instance.getPlayer();
@@ -598,13 +598,13 @@ public class LianQiResultManager : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001E27 RID: 7719 RVA: 0x00019054 File Offset: 0x00017254
+	// Token: 0x06001B01 RID: 6913 RVA: 0x000C10A0 File Offset: 0x000BF2A0
 	public void addLianQiTime()
 	{
 		Tools.instance.getPlayer().AddTime(0, this.getCostTime(), 0);
 	}
 
-	// Token: 0x06001E28 RID: 7720 RVA: 0x00106AE0 File Offset: 0x00104CE0
+	// Token: 0x06001B02 RID: 6914 RVA: 0x000C10BC File Offset: 0x000BF2BC
 	public int getCostTime()
 	{
 		Avatar player = Tools.instance.getPlayer();
@@ -622,14 +622,14 @@ public class LianQiResultManager : MonoBehaviour
 		return num2;
 	}
 
-	// Token: 0x040019A7 RID: 6567
+	// Token: 0x0400159A RID: 5530
 	[SerializeField]
 	private InputField inputFieldEquipName;
 
-	// Token: 0x040019A8 RID: 6568
+	// Token: 0x0400159B RID: 5531
 	[SerializeField]
 	private Image equipImage;
 
-	// Token: 0x040019A9 RID: 6569
+	// Token: 0x0400159C RID: 5532
 	public bool lianQiResultPanelIsOpen;
 }

@@ -3,10 +3,10 @@ using System.Text;
 
 namespace ICSharpCode.SharpZipLib.Tar
 {
-	// Token: 0x0200080C RID: 2060
+	// Token: 0x02000566 RID: 1382
 	public class TarHeader
 	{
-		// Token: 0x060035BA RID: 13754 RVA: 0x001997AC File Offset: 0x001979AC
+		// Token: 0x06002D4C RID: 11596 RVA: 0x0014DF94 File Offset: 0x0014C194
 		public TarHeader()
 		{
 			this.Magic = "ustar";
@@ -20,9 +20,9 @@ namespace ICSharpCode.SharpZipLib.Tar
 			this.Size = 0L;
 		}
 
-		// Token: 0x17000533 RID: 1331
-		// (get) Token: 0x060035BB RID: 13755 RVA: 0x0002743B File Offset: 0x0002563B
-		// (set) Token: 0x060035BC RID: 13756 RVA: 0x00027443 File Offset: 0x00025643
+		// Token: 0x1700037C RID: 892
+		// (get) Token: 0x06002D4D RID: 11597 RVA: 0x0014E007 File Offset: 0x0014C207
+		// (set) Token: 0x06002D4E RID: 11598 RVA: 0x0014E00F File Offset: 0x0014C20F
 		public string Name
 		{
 			get
@@ -39,16 +39,16 @@ namespace ICSharpCode.SharpZipLib.Tar
 			}
 		}
 
-		// Token: 0x060035BD RID: 13757 RVA: 0x0002743B File Offset: 0x0002563B
+		// Token: 0x06002D4F RID: 11599 RVA: 0x0014E007 File Offset: 0x0014C207
 		[Obsolete("Use the Name property instead", true)]
 		public string GetName()
 		{
 			return this.name;
 		}
 
-		// Token: 0x17000534 RID: 1332
-		// (get) Token: 0x060035BE RID: 13758 RVA: 0x0002745A File Offset: 0x0002565A
-		// (set) Token: 0x060035BF RID: 13759 RVA: 0x00027462 File Offset: 0x00025662
+		// Token: 0x1700037D RID: 893
+		// (get) Token: 0x06002D50 RID: 11600 RVA: 0x0014E026 File Offset: 0x0014C226
+		// (set) Token: 0x06002D51 RID: 11601 RVA: 0x0014E02E File Offset: 0x0014C22E
 		public int Mode
 		{
 			get
@@ -61,9 +61,9 @@ namespace ICSharpCode.SharpZipLib.Tar
 			}
 		}
 
-		// Token: 0x17000535 RID: 1333
-		// (get) Token: 0x060035C0 RID: 13760 RVA: 0x0002746B File Offset: 0x0002566B
-		// (set) Token: 0x060035C1 RID: 13761 RVA: 0x00027473 File Offset: 0x00025673
+		// Token: 0x1700037E RID: 894
+		// (get) Token: 0x06002D52 RID: 11602 RVA: 0x0014E037 File Offset: 0x0014C237
+		// (set) Token: 0x06002D53 RID: 11603 RVA: 0x0014E03F File Offset: 0x0014C23F
 		public int UserId
 		{
 			get
@@ -76,9 +76,9 @@ namespace ICSharpCode.SharpZipLib.Tar
 			}
 		}
 
-		// Token: 0x17000536 RID: 1334
-		// (get) Token: 0x060035C2 RID: 13762 RVA: 0x0002747C File Offset: 0x0002567C
-		// (set) Token: 0x060035C3 RID: 13763 RVA: 0x00027484 File Offset: 0x00025684
+		// Token: 0x1700037F RID: 895
+		// (get) Token: 0x06002D54 RID: 11604 RVA: 0x0014E048 File Offset: 0x0014C248
+		// (set) Token: 0x06002D55 RID: 11605 RVA: 0x0014E050 File Offset: 0x0014C250
 		public int GroupId
 		{
 			get
@@ -91,9 +91,9 @@ namespace ICSharpCode.SharpZipLib.Tar
 			}
 		}
 
-		// Token: 0x17000537 RID: 1335
-		// (get) Token: 0x060035C4 RID: 13764 RVA: 0x0002748D File Offset: 0x0002568D
-		// (set) Token: 0x060035C5 RID: 13765 RVA: 0x00027495 File Offset: 0x00025695
+		// Token: 0x17000380 RID: 896
+		// (get) Token: 0x06002D56 RID: 11606 RVA: 0x0014E059 File Offset: 0x0014C259
+		// (set) Token: 0x06002D57 RID: 11607 RVA: 0x0014E061 File Offset: 0x0014C261
 		public long Size
 		{
 			get
@@ -110,9 +110,9 @@ namespace ICSharpCode.SharpZipLib.Tar
 			}
 		}
 
-		// Token: 0x17000538 RID: 1336
-		// (get) Token: 0x060035C6 RID: 13766 RVA: 0x000274B3 File Offset: 0x000256B3
-		// (set) Token: 0x060035C7 RID: 13767 RVA: 0x00199820 File Offset: 0x00197A20
+		// Token: 0x17000381 RID: 897
+		// (get) Token: 0x06002D58 RID: 11608 RVA: 0x0014E07F File Offset: 0x0014C27F
+		// (set) Token: 0x06002D59 RID: 11609 RVA: 0x0014E088 File Offset: 0x0014C288
 		public DateTime ModTime
 		{
 			get
@@ -129,8 +129,8 @@ namespace ICSharpCode.SharpZipLib.Tar
 			}
 		}
 
-		// Token: 0x17000539 RID: 1337
-		// (get) Token: 0x060035C8 RID: 13768 RVA: 0x000274BB File Offset: 0x000256BB
+		// Token: 0x17000382 RID: 898
+		// (get) Token: 0x06002D5A RID: 11610 RVA: 0x0014E0E7 File Offset: 0x0014C2E7
 		public int Checksum
 		{
 			get
@@ -139,8 +139,8 @@ namespace ICSharpCode.SharpZipLib.Tar
 			}
 		}
 
-		// Token: 0x1700053A RID: 1338
-		// (get) Token: 0x060035C9 RID: 13769 RVA: 0x000274C3 File Offset: 0x000256C3
+		// Token: 0x17000383 RID: 899
+		// (get) Token: 0x06002D5B RID: 11611 RVA: 0x0014E0EF File Offset: 0x0014C2EF
 		public bool IsChecksumValid
 		{
 			get
@@ -149,9 +149,9 @@ namespace ICSharpCode.SharpZipLib.Tar
 			}
 		}
 
-		// Token: 0x1700053B RID: 1339
-		// (get) Token: 0x060035CA RID: 13770 RVA: 0x000274CB File Offset: 0x000256CB
-		// (set) Token: 0x060035CB RID: 13771 RVA: 0x000274D3 File Offset: 0x000256D3
+		// Token: 0x17000384 RID: 900
+		// (get) Token: 0x06002D5C RID: 11612 RVA: 0x0014E0F7 File Offset: 0x0014C2F7
+		// (set) Token: 0x06002D5D RID: 11613 RVA: 0x0014E0FF File Offset: 0x0014C2FF
 		public byte TypeFlag
 		{
 			get
@@ -164,9 +164,9 @@ namespace ICSharpCode.SharpZipLib.Tar
 			}
 		}
 
-		// Token: 0x1700053C RID: 1340
-		// (get) Token: 0x060035CC RID: 13772 RVA: 0x000274DC File Offset: 0x000256DC
-		// (set) Token: 0x060035CD RID: 13773 RVA: 0x000274E4 File Offset: 0x000256E4
+		// Token: 0x17000385 RID: 901
+		// (get) Token: 0x06002D5E RID: 11614 RVA: 0x0014E108 File Offset: 0x0014C308
+		// (set) Token: 0x06002D5F RID: 11615 RVA: 0x0014E110 File Offset: 0x0014C310
 		public string LinkName
 		{
 			get
@@ -183,9 +183,9 @@ namespace ICSharpCode.SharpZipLib.Tar
 			}
 		}
 
-		// Token: 0x1700053D RID: 1341
-		// (get) Token: 0x060035CE RID: 13774 RVA: 0x000274FB File Offset: 0x000256FB
-		// (set) Token: 0x060035CF RID: 13775 RVA: 0x00027503 File Offset: 0x00025703
+		// Token: 0x17000386 RID: 902
+		// (get) Token: 0x06002D60 RID: 11616 RVA: 0x0014E127 File Offset: 0x0014C327
+		// (set) Token: 0x06002D61 RID: 11617 RVA: 0x0014E12F File Offset: 0x0014C32F
 		public string Magic
 		{
 			get
@@ -202,9 +202,9 @@ namespace ICSharpCode.SharpZipLib.Tar
 			}
 		}
 
-		// Token: 0x1700053E RID: 1342
-		// (get) Token: 0x060035D0 RID: 13776 RVA: 0x0002751A File Offset: 0x0002571A
-		// (set) Token: 0x060035D1 RID: 13777 RVA: 0x00027522 File Offset: 0x00025722
+		// Token: 0x17000387 RID: 903
+		// (get) Token: 0x06002D62 RID: 11618 RVA: 0x0014E146 File Offset: 0x0014C346
+		// (set) Token: 0x06002D63 RID: 11619 RVA: 0x0014E14E File Offset: 0x0014C34E
 		public string Version
 		{
 			get
@@ -221,9 +221,9 @@ namespace ICSharpCode.SharpZipLib.Tar
 			}
 		}
 
-		// Token: 0x1700053F RID: 1343
-		// (get) Token: 0x060035D2 RID: 13778 RVA: 0x00027539 File Offset: 0x00025739
-		// (set) Token: 0x060035D3 RID: 13779 RVA: 0x00199880 File Offset: 0x00197A80
+		// Token: 0x17000388 RID: 904
+		// (get) Token: 0x06002D64 RID: 11620 RVA: 0x0014E165 File Offset: 0x0014C365
+		// (set) Token: 0x06002D65 RID: 11621 RVA: 0x0014E170 File Offset: 0x0014C370
 		public string UserName
 		{
 			get
@@ -246,9 +246,9 @@ namespace ICSharpCode.SharpZipLib.Tar
 			}
 		}
 
-		// Token: 0x17000540 RID: 1344
-		// (get) Token: 0x060035D4 RID: 13780 RVA: 0x00027541 File Offset: 0x00025741
-		// (set) Token: 0x060035D5 RID: 13781 RVA: 0x00027549 File Offset: 0x00025749
+		// Token: 0x17000389 RID: 905
+		// (get) Token: 0x06002D66 RID: 11622 RVA: 0x0014E1BC File Offset: 0x0014C3BC
+		// (set) Token: 0x06002D67 RID: 11623 RVA: 0x0014E1C4 File Offset: 0x0014C3C4
 		public string GroupName
 		{
 			get
@@ -266,9 +266,9 @@ namespace ICSharpCode.SharpZipLib.Tar
 			}
 		}
 
-		// Token: 0x17000541 RID: 1345
-		// (get) Token: 0x060035D6 RID: 13782 RVA: 0x00027561 File Offset: 0x00025761
-		// (set) Token: 0x060035D7 RID: 13783 RVA: 0x00027569 File Offset: 0x00025769
+		// Token: 0x1700038A RID: 906
+		// (get) Token: 0x06002D68 RID: 11624 RVA: 0x0014E1DC File Offset: 0x0014C3DC
+		// (set) Token: 0x06002D69 RID: 11625 RVA: 0x0014E1E4 File Offset: 0x0014C3E4
 		public int DevMajor
 		{
 			get
@@ -281,9 +281,9 @@ namespace ICSharpCode.SharpZipLib.Tar
 			}
 		}
 
-		// Token: 0x17000542 RID: 1346
-		// (get) Token: 0x060035D8 RID: 13784 RVA: 0x00027572 File Offset: 0x00025772
-		// (set) Token: 0x060035D9 RID: 13785 RVA: 0x0002757A File Offset: 0x0002577A
+		// Token: 0x1700038B RID: 907
+		// (get) Token: 0x06002D6A RID: 11626 RVA: 0x0014E1ED File Offset: 0x0014C3ED
+		// (set) Token: 0x06002D6B RID: 11627 RVA: 0x0014E1F5 File Offset: 0x0014C3F5
 		public int DevMinor
 		{
 			get
@@ -296,13 +296,13 @@ namespace ICSharpCode.SharpZipLib.Tar
 			}
 		}
 
-		// Token: 0x060035DA RID: 13786 RVA: 0x00027583 File Offset: 0x00025783
+		// Token: 0x06002D6C RID: 11628 RVA: 0x0014E1FE File Offset: 0x0014C3FE
 		public object Clone()
 		{
 			return base.MemberwiseClone();
 		}
 
-		// Token: 0x060035DB RID: 13787 RVA: 0x001998CC File Offset: 0x00197ACC
+		// Token: 0x06002D6D RID: 11629 RVA: 0x0014E208 File Offset: 0x0014C408
 		public void ParseBuffer(byte[] header, Encoding nameEncoding)
 		{
 			if (header == null)
@@ -350,21 +350,21 @@ namespace ICSharpCode.SharpZipLib.Tar
 			this.isChecksumValid = (this.Checksum == TarHeader.MakeCheckSum(header));
 		}
 
-		// Token: 0x060035DC RID: 13788 RVA: 0x0002758B File Offset: 0x0002578B
+		// Token: 0x06002D6E RID: 11630 RVA: 0x0014E3C4 File Offset: 0x0014C5C4
 		[Obsolete("No Encoding for Name field is specified, any non-ASCII bytes will be discarded")]
 		public void ParseBuffer(byte[] header)
 		{
 			this.ParseBuffer(header, null);
 		}
 
-		// Token: 0x060035DD RID: 13789 RVA: 0x00027595 File Offset: 0x00025795
+		// Token: 0x06002D6F RID: 11631 RVA: 0x0014E3CE File Offset: 0x0014C5CE
 		[Obsolete("No Encoding for Name field is specified, any non-ASCII bytes will be discarded")]
 		public void WriteHeader(byte[] outBuffer)
 		{
 			this.WriteHeader(outBuffer, null);
 		}
 
-		// Token: 0x060035DE RID: 13790 RVA: 0x00199A88 File Offset: 0x00197C88
+		// Token: 0x06002D70 RID: 11632 RVA: 0x0014E3D8 File Offset: 0x0014C5D8
 		public void WriteHeader(byte[] outBuffer, Encoding nameEncoding)
 		{
 			if (outBuffer == null)
@@ -403,20 +403,20 @@ namespace ICSharpCode.SharpZipLib.Tar
 			this.isChecksumValid = true;
 		}
 
-		// Token: 0x060035DF RID: 13791 RVA: 0x0002759F File Offset: 0x0002579F
+		// Token: 0x06002D71 RID: 11633 RVA: 0x0014E53A File Offset: 0x0014C73A
 		public override int GetHashCode()
 		{
 			return this.Name.GetHashCode();
 		}
 
-		// Token: 0x060035E0 RID: 13792 RVA: 0x00199BEC File Offset: 0x00197DEC
+		// Token: 0x06002D72 RID: 11634 RVA: 0x0014E548 File Offset: 0x0014C748
 		public override bool Equals(object obj)
 		{
 			TarHeader tarHeader = obj as TarHeader;
 			return tarHeader != null && (this.name == tarHeader.name && this.mode == tarHeader.mode && this.UserId == tarHeader.UserId && this.GroupId == tarHeader.GroupId && this.Size == tarHeader.Size && this.ModTime == tarHeader.ModTime && this.Checksum == tarHeader.Checksum && this.TypeFlag == tarHeader.TypeFlag && this.LinkName == tarHeader.LinkName && this.Magic == tarHeader.Magic && this.Version == tarHeader.Version && this.UserName == tarHeader.UserName && this.GroupName == tarHeader.GroupName && this.DevMajor == tarHeader.DevMajor) && this.DevMinor == tarHeader.DevMinor;
 		}
 
-		// Token: 0x060035E1 RID: 13793 RVA: 0x000275AC File Offset: 0x000257AC
+		// Token: 0x06002D73 RID: 11635 RVA: 0x0014E675 File Offset: 0x0014C875
 		internal static void SetValueDefaults(int userId, string userName, int groupId, string groupName)
 		{
 			TarHeader.userIdAsSet = userId;
@@ -429,7 +429,7 @@ namespace ICSharpCode.SharpZipLib.Tar
 			TarHeader.defaultGroupName = groupName;
 		}
 
-		// Token: 0x060035E2 RID: 13794 RVA: 0x000275DE File Offset: 0x000257DE
+		// Token: 0x06002D74 RID: 11636 RVA: 0x0014E6A7 File Offset: 0x0014C8A7
 		internal static void RestoreSetValues()
 		{
 			TarHeader.defaultUserId = TarHeader.userIdAsSet;
@@ -438,7 +438,7 @@ namespace ICSharpCode.SharpZipLib.Tar
 			TarHeader.defaultGroupName = TarHeader.groupNameAsSet;
 		}
 
-		// Token: 0x060035E3 RID: 13795 RVA: 0x00199D1C File Offset: 0x00197F1C
+		// Token: 0x06002D75 RID: 11637 RVA: 0x0014E6D4 File Offset: 0x0014C8D4
 		private static long ParseBinaryOrOctal(byte[] header, int offset, int length)
 		{
 			if (header[offset] >= 128)
@@ -453,7 +453,7 @@ namespace ICSharpCode.SharpZipLib.Tar
 			return TarHeader.ParseOctal(header, offset, length);
 		}
 
-		// Token: 0x060035E4 RID: 13796 RVA: 0x00199D5C File Offset: 0x00197F5C
+		// Token: 0x06002D76 RID: 11638 RVA: 0x0014E714 File Offset: 0x0014C914
 		public static long ParseOctal(byte[] header, int offset, int length)
 		{
 			if (header == null)
@@ -489,14 +489,14 @@ namespace ICSharpCode.SharpZipLib.Tar
 			return num;
 		}
 
-		// Token: 0x060035E5 RID: 13797 RVA: 0x00027608 File Offset: 0x00025808
+		// Token: 0x06002D77 RID: 11639 RVA: 0x0014E770 File Offset: 0x0014C970
 		[Obsolete("No Encoding for Name field is specified, any non-ASCII bytes will be discarded")]
 		public static StringBuilder ParseName(byte[] header, int offset, int length)
 		{
 			return TarHeader.ParseName(header, offset, length, null);
 		}
 
-		// Token: 0x060035E6 RID: 13798 RVA: 0x00199DB8 File Offset: 0x00197FB8
+		// Token: 0x06002D78 RID: 11640 RVA: 0x0014E77C File Offset: 0x0014C97C
 		public static StringBuilder ParseName(byte[] header, int offset, int length, Encoding encoding)
 		{
 			if (header == null)
@@ -541,19 +541,19 @@ namespace ICSharpCode.SharpZipLib.Tar
 			return stringBuilder;
 		}
 
-		// Token: 0x060035E7 RID: 13799 RVA: 0x00027613 File Offset: 0x00025813
+		// Token: 0x06002D79 RID: 11641 RVA: 0x0014E82A File Offset: 0x0014CA2A
 		public static int GetNameBytes(StringBuilder name, int nameOffset, byte[] buffer, int bufferOffset, int length)
 		{
 			return TarHeader.GetNameBytes(name.ToString(), nameOffset, buffer, bufferOffset, length, null);
 		}
 
-		// Token: 0x060035E8 RID: 13800 RVA: 0x00027626 File Offset: 0x00025826
+		// Token: 0x06002D7A RID: 11642 RVA: 0x0014E83D File Offset: 0x0014CA3D
 		public static int GetNameBytes(string name, int nameOffset, byte[] buffer, int bufferOffset, int length)
 		{
 			return TarHeader.GetNameBytes(name, nameOffset, buffer, bufferOffset, length, null);
 		}
 
-		// Token: 0x060035E9 RID: 13801 RVA: 0x00199E68 File Offset: 0x00198068
+		// Token: 0x06002D7B RID: 11643 RVA: 0x0014E84C File Offset: 0x0014CA4C
 		public static int GetNameBytes(string name, int nameOffset, byte[] buffer, int bufferOffset, int length, Encoding encoding)
 		{
 			if (name == null)
@@ -591,14 +591,14 @@ namespace ICSharpCode.SharpZipLib.Tar
 			return bufferOffset + length;
 		}
 
-		// Token: 0x060035EA RID: 13802 RVA: 0x00027634 File Offset: 0x00025834
+		// Token: 0x06002D7C RID: 11644 RVA: 0x0014E8EE File Offset: 0x0014CAEE
 		[Obsolete("No Encoding for Name field is specified, any non-ASCII bytes will be discarded")]
 		public static int GetNameBytes(StringBuilder name, byte[] buffer, int offset, int length)
 		{
 			return TarHeader.GetNameBytes(name, buffer, offset, length, null);
 		}
 
-		// Token: 0x060035EB RID: 13803 RVA: 0x00027640 File Offset: 0x00025840
+		// Token: 0x06002D7D RID: 11645 RVA: 0x0014E8FA File Offset: 0x0014CAFA
 		public static int GetNameBytes(StringBuilder name, byte[] buffer, int offset, int length, Encoding encoding)
 		{
 			if (name == null)
@@ -612,14 +612,14 @@ namespace ICSharpCode.SharpZipLib.Tar
 			return TarHeader.GetNameBytes(name.ToString(), 0, buffer, offset, length, encoding);
 		}
 
-		// Token: 0x060035EC RID: 13804 RVA: 0x0002766F File Offset: 0x0002586F
+		// Token: 0x06002D7E RID: 11646 RVA: 0x0014E929 File Offset: 0x0014CB29
 		[Obsolete("No Encoding for Name field is specified, any non-ASCII bytes will be discarded")]
 		public static int GetNameBytes(string name, byte[] buffer, int offset, int length)
 		{
 			return TarHeader.GetNameBytes(name, buffer, offset, length, null);
 		}
 
-		// Token: 0x060035ED RID: 13805 RVA: 0x0002767B File Offset: 0x0002587B
+		// Token: 0x06002D7F RID: 11647 RVA: 0x0014E935 File Offset: 0x0014CB35
 		public static int GetNameBytes(string name, byte[] buffer, int offset, int length, Encoding encoding)
 		{
 			if (name == null)
@@ -633,14 +633,14 @@ namespace ICSharpCode.SharpZipLib.Tar
 			return TarHeader.GetNameBytes(name, 0, buffer, offset, length, encoding);
 		}
 
-		// Token: 0x060035EE RID: 13806 RVA: 0x000276A5 File Offset: 0x000258A5
+		// Token: 0x06002D80 RID: 11648 RVA: 0x0014E95F File Offset: 0x0014CB5F
 		[Obsolete("No Encoding for Name field is specified, any non-ASCII bytes will be discarded")]
 		public static int GetAsciiBytes(string toAdd, int nameOffset, byte[] buffer, int bufferOffset, int length)
 		{
 			return TarHeader.GetAsciiBytes(toAdd, nameOffset, buffer, bufferOffset, length, null);
 		}
 
-		// Token: 0x060035EF RID: 13807 RVA: 0x00199F0C File Offset: 0x0019810C
+		// Token: 0x06002D81 RID: 11649 RVA: 0x0014E970 File Offset: 0x0014CB70
 		public static int GetAsciiBytes(string toAdd, int nameOffset, byte[] buffer, int bufferOffset, int length, Encoding encoding)
 		{
 			if (toAdd == null)
@@ -678,7 +678,7 @@ namespace ICSharpCode.SharpZipLib.Tar
 			return bufferOffset + length;
 		}
 
-		// Token: 0x060035F0 RID: 13808 RVA: 0x00199FAC File Offset: 0x001981AC
+		// Token: 0x06002D82 RID: 11650 RVA: 0x0014EA10 File Offset: 0x0014CC10
 		public static int GetOctalBytes(long value, byte[] buffer, int offset, int length)
 		{
 			if (buffer == null)
@@ -710,7 +710,7 @@ namespace ICSharpCode.SharpZipLib.Tar
 			return offset + length;
 		}
 
-		// Token: 0x060035F1 RID: 13809 RVA: 0x0019A014 File Offset: 0x00198214
+		// Token: 0x06002D83 RID: 11651 RVA: 0x0014EA78 File Offset: 0x0014CC78
 		private static int GetBinaryOrOctalBytes(long value, byte[] buffer, int offset, int length)
 		{
 			if (value > 8589934591L)
@@ -726,13 +726,13 @@ namespace ICSharpCode.SharpZipLib.Tar
 			return TarHeader.GetOctalBytes(value, buffer, offset, length);
 		}
 
-		// Token: 0x060035F2 RID: 13810 RVA: 0x000276B3 File Offset: 0x000258B3
+		// Token: 0x06002D84 RID: 11652 RVA: 0x0014EAC0 File Offset: 0x0014CCC0
 		private static void GetCheckSumOctalBytes(long value, byte[] buffer, int offset, int length)
 		{
 			TarHeader.GetOctalBytes(value, buffer, offset, length - 1);
 		}
 
-		// Token: 0x060035F3 RID: 13811 RVA: 0x0019A05C File Offset: 0x0019825C
+		// Token: 0x06002D85 RID: 11653 RVA: 0x0014EAD0 File Offset: 0x0014CCD0
 		private static int ComputeCheckSum(byte[] buffer)
 		{
 			int num = 0;
@@ -743,7 +743,7 @@ namespace ICSharpCode.SharpZipLib.Tar
 			return num;
 		}
 
-		// Token: 0x060035F4 RID: 13812 RVA: 0x0019A080 File Offset: 0x00198280
+		// Token: 0x06002D86 RID: 11654 RVA: 0x0014EAF4 File Offset: 0x0014CCF4
 		private static int MakeCheckSum(byte[] buffer)
 		{
 			int num = 0;
@@ -762,13 +762,13 @@ namespace ICSharpCode.SharpZipLib.Tar
 			return num;
 		}
 
-		// Token: 0x060035F5 RID: 13813 RVA: 0x0019A0D0 File Offset: 0x001982D0
+		// Token: 0x06002D87 RID: 11655 RVA: 0x0014EB44 File Offset: 0x0014CD44
 		private static int GetCTime(DateTime dateTime)
 		{
 			return (int)((dateTime.Ticks - TarHeader.dateTime1970.Ticks) / 10000000L);
 		}
 
-		// Token: 0x060035F6 RID: 13814 RVA: 0x0019A0FC File Offset: 0x001982FC
+		// Token: 0x06002D88 RID: 11656 RVA: 0x0014EB70 File Offset: 0x0014CD70
 		private static DateTime GetDateTimeFromCTime(long ticks)
 		{
 			DateTime result;
@@ -783,193 +783,193 @@ namespace ICSharpCode.SharpZipLib.Tar
 			return result;
 		}
 
-		// Token: 0x0400306F RID: 12399
+		// Token: 0x04002836 RID: 10294
 		public const int NAMELEN = 100;
 
-		// Token: 0x04003070 RID: 12400
+		// Token: 0x04002837 RID: 10295
 		public const int MODELEN = 8;
 
-		// Token: 0x04003071 RID: 12401
+		// Token: 0x04002838 RID: 10296
 		public const int UIDLEN = 8;
 
-		// Token: 0x04003072 RID: 12402
+		// Token: 0x04002839 RID: 10297
 		public const int GIDLEN = 8;
 
-		// Token: 0x04003073 RID: 12403
+		// Token: 0x0400283A RID: 10298
 		public const int CHKSUMLEN = 8;
 
-		// Token: 0x04003074 RID: 12404
+		// Token: 0x0400283B RID: 10299
 		public const int CHKSUMOFS = 148;
 
-		// Token: 0x04003075 RID: 12405
+		// Token: 0x0400283C RID: 10300
 		public const int SIZELEN = 12;
 
-		// Token: 0x04003076 RID: 12406
+		// Token: 0x0400283D RID: 10301
 		public const int MAGICLEN = 6;
 
-		// Token: 0x04003077 RID: 12407
+		// Token: 0x0400283E RID: 10302
 		public const int VERSIONLEN = 2;
 
-		// Token: 0x04003078 RID: 12408
+		// Token: 0x0400283F RID: 10303
 		public const int MODTIMELEN = 12;
 
-		// Token: 0x04003079 RID: 12409
+		// Token: 0x04002840 RID: 10304
 		public const int UNAMELEN = 32;
 
-		// Token: 0x0400307A RID: 12410
+		// Token: 0x04002841 RID: 10305
 		public const int GNAMELEN = 32;
 
-		// Token: 0x0400307B RID: 12411
+		// Token: 0x04002842 RID: 10306
 		public const int DEVLEN = 8;
 
-		// Token: 0x0400307C RID: 12412
+		// Token: 0x04002843 RID: 10307
 		public const int PREFIXLEN = 155;
 
-		// Token: 0x0400307D RID: 12413
+		// Token: 0x04002844 RID: 10308
 		public const byte LF_OLDNORM = 0;
 
-		// Token: 0x0400307E RID: 12414
+		// Token: 0x04002845 RID: 10309
 		public const byte LF_NORMAL = 48;
 
-		// Token: 0x0400307F RID: 12415
+		// Token: 0x04002846 RID: 10310
 		public const byte LF_LINK = 49;
 
-		// Token: 0x04003080 RID: 12416
+		// Token: 0x04002847 RID: 10311
 		public const byte LF_SYMLINK = 50;
 
-		// Token: 0x04003081 RID: 12417
+		// Token: 0x04002848 RID: 10312
 		public const byte LF_CHR = 51;
 
-		// Token: 0x04003082 RID: 12418
+		// Token: 0x04002849 RID: 10313
 		public const byte LF_BLK = 52;
 
-		// Token: 0x04003083 RID: 12419
+		// Token: 0x0400284A RID: 10314
 		public const byte LF_DIR = 53;
 
-		// Token: 0x04003084 RID: 12420
+		// Token: 0x0400284B RID: 10315
 		public const byte LF_FIFO = 54;
 
-		// Token: 0x04003085 RID: 12421
+		// Token: 0x0400284C RID: 10316
 		public const byte LF_CONTIG = 55;
 
-		// Token: 0x04003086 RID: 12422
+		// Token: 0x0400284D RID: 10317
 		public const byte LF_GHDR = 103;
 
-		// Token: 0x04003087 RID: 12423
+		// Token: 0x0400284E RID: 10318
 		public const byte LF_XHDR = 120;
 
-		// Token: 0x04003088 RID: 12424
+		// Token: 0x0400284F RID: 10319
 		public const byte LF_ACL = 65;
 
-		// Token: 0x04003089 RID: 12425
+		// Token: 0x04002850 RID: 10320
 		public const byte LF_GNU_DUMPDIR = 68;
 
-		// Token: 0x0400308A RID: 12426
+		// Token: 0x04002851 RID: 10321
 		public const byte LF_EXTATTR = 69;
 
-		// Token: 0x0400308B RID: 12427
+		// Token: 0x04002852 RID: 10322
 		public const byte LF_META = 73;
 
-		// Token: 0x0400308C RID: 12428
+		// Token: 0x04002853 RID: 10323
 		public const byte LF_GNU_LONGLINK = 75;
 
-		// Token: 0x0400308D RID: 12429
+		// Token: 0x04002854 RID: 10324
 		public const byte LF_GNU_LONGNAME = 76;
 
-		// Token: 0x0400308E RID: 12430
+		// Token: 0x04002855 RID: 10325
 		public const byte LF_GNU_MULTIVOL = 77;
 
-		// Token: 0x0400308F RID: 12431
+		// Token: 0x04002856 RID: 10326
 		public const byte LF_GNU_NAMES = 78;
 
-		// Token: 0x04003090 RID: 12432
+		// Token: 0x04002857 RID: 10327
 		public const byte LF_GNU_SPARSE = 83;
 
-		// Token: 0x04003091 RID: 12433
+		// Token: 0x04002858 RID: 10328
 		public const byte LF_GNU_VOLHDR = 86;
 
-		// Token: 0x04003092 RID: 12434
+		// Token: 0x04002859 RID: 10329
 		public const string TMAGIC = "ustar";
 
-		// Token: 0x04003093 RID: 12435
+		// Token: 0x0400285A RID: 10330
 		public const string GNU_TMAGIC = "ustar  ";
 
-		// Token: 0x04003094 RID: 12436
+		// Token: 0x0400285B RID: 10331
 		private const long timeConversionFactor = 10000000L;
 
-		// Token: 0x04003095 RID: 12437
+		// Token: 0x0400285C RID: 10332
 		private static readonly DateTime dateTime1970 = new DateTime(1970, 1, 1, 0, 0, 0, 0);
 
-		// Token: 0x04003096 RID: 12438
+		// Token: 0x0400285D RID: 10333
 		private string name;
 
-		// Token: 0x04003097 RID: 12439
+		// Token: 0x0400285E RID: 10334
 		private int mode;
 
-		// Token: 0x04003098 RID: 12440
+		// Token: 0x0400285F RID: 10335
 		private int userId;
 
-		// Token: 0x04003099 RID: 12441
+		// Token: 0x04002860 RID: 10336
 		private int groupId;
 
-		// Token: 0x0400309A RID: 12442
+		// Token: 0x04002861 RID: 10337
 		private long size;
 
-		// Token: 0x0400309B RID: 12443
+		// Token: 0x04002862 RID: 10338
 		private DateTime modTime;
 
-		// Token: 0x0400309C RID: 12444
+		// Token: 0x04002863 RID: 10339
 		private int checksum;
 
-		// Token: 0x0400309D RID: 12445
+		// Token: 0x04002864 RID: 10340
 		private bool isChecksumValid;
 
-		// Token: 0x0400309E RID: 12446
+		// Token: 0x04002865 RID: 10341
 		private byte typeFlag;
 
-		// Token: 0x0400309F RID: 12447
+		// Token: 0x04002866 RID: 10342
 		private string linkName;
 
-		// Token: 0x040030A0 RID: 12448
+		// Token: 0x04002867 RID: 10343
 		private string magic;
 
-		// Token: 0x040030A1 RID: 12449
+		// Token: 0x04002868 RID: 10344
 		private string version;
 
-		// Token: 0x040030A2 RID: 12450
+		// Token: 0x04002869 RID: 10345
 		private string userName;
 
-		// Token: 0x040030A3 RID: 12451
+		// Token: 0x0400286A RID: 10346
 		private string groupName;
 
-		// Token: 0x040030A4 RID: 12452
+		// Token: 0x0400286B RID: 10347
 		private int devMajor;
 
-		// Token: 0x040030A5 RID: 12453
+		// Token: 0x0400286C RID: 10348
 		private int devMinor;
 
-		// Token: 0x040030A6 RID: 12454
+		// Token: 0x0400286D RID: 10349
 		internal static int userIdAsSet;
 
-		// Token: 0x040030A7 RID: 12455
+		// Token: 0x0400286E RID: 10350
 		internal static int groupIdAsSet;
 
-		// Token: 0x040030A8 RID: 12456
+		// Token: 0x0400286F RID: 10351
 		internal static string userNameAsSet;
 
-		// Token: 0x040030A9 RID: 12457
+		// Token: 0x04002870 RID: 10352
 		internal static string groupNameAsSet = "None";
 
-		// Token: 0x040030AA RID: 12458
+		// Token: 0x04002871 RID: 10353
 		internal static int defaultUserId;
 
-		// Token: 0x040030AB RID: 12459
+		// Token: 0x04002872 RID: 10354
 		internal static int defaultGroupId;
 
-		// Token: 0x040030AC RID: 12460
+		// Token: 0x04002873 RID: 10355
 		internal static string defaultGroupName = "None";
 
-		// Token: 0x040030AD RID: 12461
+		// Token: 0x04002874 RID: 10356
 		internal static string defaultUser;
 	}
 }

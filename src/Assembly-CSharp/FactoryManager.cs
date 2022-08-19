@@ -1,16 +1,16 @@
 ﻿using System;
 using UnityEngine;
 
-// Token: 0x020003EF RID: 1007
+// Token: 0x020002B3 RID: 691
 public class FactoryManager : MonoBehaviour
 {
-	// Token: 0x06001B57 RID: 6999 RVA: 0x000170C5 File Offset: 0x000152C5
+	// Token: 0x06001862 RID: 6242 RVA: 0x000AB4FE File Offset: 0x000A96FE
 	private void Awake()
 	{
 		FactoryManager.inst = this;
 	}
 
-	// Token: 0x06001B58 RID: 7000 RVA: 0x000170CD File Offset: 0x000152CD
+	// Token: 0x06001863 RID: 6243 RVA: 0x000AB506 File Offset: 0x000A9706
 	private void Start()
 	{
 		this.npcFactory = new NPCFactory();
@@ -19,18 +19,18 @@ public class FactoryManager : MonoBehaviour
 		this.SaveLoadFactory = new SaveLoadFactory();
 	}
 
-	// Token: 0x04001710 RID: 5904
+	// Token: 0x04001369 RID: 4969
 	public static FactoryManager inst;
 
-	// Token: 0x04001711 RID: 5905
+	// Token: 0x0400136A RID: 4970
 	public NPCFactory npcFactory;
 
-	// Token: 0x04001712 RID: 5906
+	// Token: 0x0400136B RID: 4971
 	public CreateNewPlayerFactory createNewPlayerFactory;
 
-	// Token: 0x04001713 RID: 5907
+	// Token: 0x0400136C RID: 4972
 	public LoadPlayerDateFactory loadPlayerDateFactory;
 
-	// Token: 0x04001714 RID: 5908
+	// Token: 0x0400136D RID: 4973
 	public SaveLoadFactory SaveLoadFactory;
 }

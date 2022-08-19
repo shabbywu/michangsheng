@@ -2,15 +2,15 @@
 using KBEngine;
 using UnityEngine;
 
-// Token: 0x020005EA RID: 1514
+// Token: 0x02000433 RID: 1075
 public class UI_KaiFang : MonoBehaviour
 {
-	// Token: 0x06002600 RID: 9728 RVA: 0x000042DD File Offset: 0x000024DD
+	// Token: 0x06002241 RID: 8769 RVA: 0x00004095 File Offset: 0x00002295
 	private void Start()
 	{
 	}
 
-	// Token: 0x06002601 RID: 9729 RVA: 0x0012D0F8 File Offset: 0x0012B2F8
+	// Token: 0x06002242 RID: 8770 RVA: 0x000EBFD8 File Offset: 0x000EA1D8
 	public void ClickConfim()
 	{
 		Avatar player = Tools.instance.getPlayer();
@@ -27,13 +27,13 @@ public class UI_KaiFang : MonoBehaviour
 		this.biguan.close();
 	}
 
-	// Token: 0x06002602 RID: 9730 RVA: 0x0001E5EF File Offset: 0x0001C7EF
+	// Token: 0x06002243 RID: 8771 RVA: 0x000EC071 File Offset: 0x000EA271
 	private void Update()
 	{
 		this.updateCastMoney();
 	}
 
-	// Token: 0x06002603 RID: 9731 RVA: 0x0012D194 File Offset: 0x0012B394
+	// Token: 0x06002244 RID: 8772 RVA: 0x000EC07C File Offset: 0x000EA27C
 	public int GetUseMoney()
 	{
 		int num = int.Parse(this.biguan.getInputYear.value);
@@ -41,7 +41,7 @@ public class UI_KaiFang : MonoBehaviour
 		return this.castMoney * (12 * num + num2);
 	}
 
-	// Token: 0x06002604 RID: 9732 RVA: 0x0012D1DC File Offset: 0x0012B3DC
+	// Token: 0x06002245 RID: 8773 RVA: 0x000EC0C4 File Offset: 0x000EA2C4
 	public void updateCastMoney()
 	{
 		if (Tools.instance.getPlayer() == null)
@@ -53,18 +53,18 @@ public class UI_KaiFang : MonoBehaviour
 		this.castMonsy.text = (((long)useMoney > (long)Tools.instance.getPlayer().money) ? ("[FF0000]" + str) : ("[62C4CB]" + str));
 	}
 
-	// Token: 0x04002085 RID: 8325
+	// Token: 0x04001BB9 RID: 7097
 	public int castMoney = 10;
 
-	// Token: 0x04002086 RID: 8326
+	// Token: 0x04001BBA RID: 7098
 	public UIBiGuan biguan;
 
-	// Token: 0x04002087 RID: 8327
+	// Token: 0x04001BBB RID: 7099
 	public string ScenName = "";
 
-	// Token: 0x04002088 RID: 8328
+	// Token: 0x04001BBC RID: 7100
 	public UILabel castMonsy;
 
-	// Token: 0x04002089 RID: 8329
+	// Token: 0x04001BBD RID: 7101
 	public UILabel hasMoney;
 }

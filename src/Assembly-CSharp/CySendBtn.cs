@@ -5,10 +5,10 @@ using KBEngine;
 using UnityEngine;
 using UnityEngine.UI;
 
-// Token: 0x020003D1 RID: 977
+// Token: 0x0200029D RID: 669
 public class CySendBtn : MonoBehaviour
 {
-	// Token: 0x06001AE1 RID: 6881 RVA: 0x00016C8E File Offset: 0x00014E8E
+	// Token: 0x060017F9 RID: 6137 RVA: 0x000A7432 File Offset: 0x000A5632
 	public void Hide()
 	{
 		this.selectParent.gameObject.SetActive(false);
@@ -17,7 +17,7 @@ public class CySendBtn : MonoBehaviour
 		this.isShow = false;
 	}
 
-	// Token: 0x06001AE2 RID: 6882 RVA: 0x000EE56C File Offset: 0x000EC76C
+	// Token: 0x060017FA RID: 6138 RVA: 0x000A7470 File Offset: 0x000A5670
 	public void Click()
 	{
 		this.isShow = !this.isShow;
@@ -32,7 +32,7 @@ public class CySendBtn : MonoBehaviour
 		this.selectParent.gameObject.SetActive(false);
 	}
 
-	// Token: 0x06001AE3 RID: 6883 RVA: 0x000EE5E8 File Offset: 0x000EC7E8
+	// Token: 0x060017FB RID: 6139 RVA: 0x000A74EC File Offset: 0x000A56EC
 	private void InitSelect()
 	{
 		Tools.ClearObj(this.FisrtselectCell.transform);
@@ -97,31 +97,31 @@ public class CySendBtn : MonoBehaviour
 		}
 	}
 
-	// Token: 0x0400166C RID: 5740
+	// Token: 0x040012DB RID: 4827
 	public bool isShow;
 
-	// Token: 0x0400166D RID: 5741
+	// Token: 0x040012DC RID: 4828
 	public BtnCell btnCell;
 
-	// Token: 0x0400166E RID: 5742
+	// Token: 0x040012DD RID: 4829
 	public List<Sprite> btnSprites;
 
-	// Token: 0x0400166F RID: 5743
+	// Token: 0x040012DE RID: 4830
 	public Image image;
 
-	// Token: 0x04001670 RID: 5744
+	// Token: 0x040012DF RID: 4831
 	[SerializeField]
 	private Transform selectParent;
 
-	// Token: 0x04001671 RID: 5745
+	// Token: 0x040012E0 RID: 4832
 	[SerializeField]
 	private GameObject FisrtselectCell;
 
-	// Token: 0x04001672 RID: 5746
+	// Token: 0x040012E1 RID: 4833
 	[SerializeField]
 	private GameObject AfterselectCell;
 
-	// Token: 0x04001673 RID: 5747
+	// Token: 0x040012E2 RID: 4834
 	private List<int> _paiMaiNpcList = new List<int>
 	{
 		700,

@@ -7,10 +7,10 @@ using UnityEngine.UI;
 
 namespace script.NewLianDan.DanFang.Filter
 {
-	// Token: 0x02000AD1 RID: 2769
+	// Token: 0x02000A02 RID: 2562
 	public class DanFangFilter : BasePanel
 	{
-		// Token: 0x060046AE RID: 18094 RVA: 0x001E4098 File Offset: 0x001E2298
+		// Token: 0x060046FE RID: 18174 RVA: 0x001E1C48 File Offset: 0x001DFE48
 		public DanFangFilter(GameObject go)
 		{
 			this._go = go;
@@ -19,7 +19,7 @@ namespace script.NewLianDan.DanFang.Filter
 			this._init = false;
 		}
 
-		// Token: 0x060046AF RID: 18095 RVA: 0x000326D1 File Offset: 0x000308D1
+		// Token: 0x060046FF RID: 18175 RVA: 0x001E1C9D File Offset: 0x001DFE9D
 		public override void Show()
 		{
 			if (!this._init)
@@ -29,7 +29,7 @@ namespace script.NewLianDan.DanFang.Filter
 			base.Show();
 		}
 
-		// Token: 0x060046B0 RID: 18096 RVA: 0x001E40F0 File Offset: 0x001E22F0
+		// Token: 0x06004700 RID: 18176 RVA: 0x001E1CB4 File Offset: 0x001DFEB4
 		private void Init()
 		{
 			this.QualityFilterList = new List<QualityFilter>();
@@ -46,13 +46,13 @@ namespace script.NewLianDan.DanFang.Filter
 			this._init = true;
 		}
 
-		// Token: 0x04003EC9 RID: 16073
+		// Token: 0x0400484A RID: 18506
 		public List<QualityFilter> QualityFilterList;
 
-		// Token: 0x04003ECA RID: 16074
+		// Token: 0x0400484B RID: 18507
 		public GameObject TempFilter;
 
-		// Token: 0x04003ECB RID: 16075
+		// Token: 0x0400484C RID: 18508
 		private bool _init;
 	}
 }

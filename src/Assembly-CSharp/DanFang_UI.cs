@@ -2,15 +2,15 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-// Token: 0x02000613 RID: 1555
+// Token: 0x0200045A RID: 1114
 public class DanFang_UI : MonoBehaviour
 {
-	// Token: 0x060026AC RID: 9900 RVA: 0x000042DD File Offset: 0x000024DD
+	// Token: 0x060022FB RID: 8955 RVA: 0x00004095 File Offset: 0x00002295
 	private void Start()
 	{
 	}
 
-	// Token: 0x060026AD RID: 9901 RVA: 0x0012F35C File Offset: 0x0012D55C
+	// Token: 0x060022FC RID: 8956 RVA: 0x000EEDC0 File Offset: 0x000ECFC0
 	public void showContent()
 	{
 		this.content.SetActive(true);
@@ -38,14 +38,14 @@ public class DanFang_UI : MonoBehaviour
 		base.GetComponent<RectTransform>().sizeDelta = new Vector2(190f, 10f + (float)this.content.transform.childCount * this.ASize);
 	}
 
-	// Token: 0x060026AE RID: 9902 RVA: 0x0001ED30 File Offset: 0x0001CF30
+	// Token: 0x060022FD RID: 8957 RVA: 0x000EEEE8 File Offset: 0x000ED0E8
 	public void closeContent()
 	{
 		this.content.SetActive(false);
 		base.GetComponent<RectTransform>().sizeDelta = new Vector2(190f, 76.5f);
 	}
 
-	// Token: 0x060026AF RID: 9903 RVA: 0x0001ED58 File Offset: 0x0001CF58
+	// Token: 0x060022FE RID: 8958 RVA: 0x000EEF10 File Offset: 0x000ED110
 	private void Update()
 	{
 		if (this.toggle.isOn)
@@ -56,33 +56,33 @@ public class DanFang_UI : MonoBehaviour
 		this.closeContent();
 	}
 
-	// Token: 0x040020F9 RID: 8441
+	// Token: 0x04001C2B RID: 7211
 	public int ItemID = -1;
 
-	// Token: 0x040020FA RID: 8442
+	// Token: 0x04001C2C RID: 7212
 	public GameObject content;
 
-	// Token: 0x040020FB RID: 8443
+	// Token: 0x04001C2D RID: 7213
 	public Toggle toggle;
 
-	// Token: 0x040020FC RID: 8444
+	// Token: 0x04001C2E RID: 7214
 	public LianDanDanFang lianDanDanFang;
 
-	// Token: 0x040020FD RID: 8445
+	// Token: 0x04001C2F RID: 7215
 	public Text text;
 
-	// Token: 0x040020FE RID: 8446
+	// Token: 0x04001C30 RID: 7216
 	public float ASize = 60f;
 
-	// Token: 0x040020FF RID: 8447
+	// Token: 0x04001C31 RID: 7217
 	private bool isShow;
 
-	// Token: 0x04002100 RID: 8448
+	// Token: 0x04001C32 RID: 7218
 	private float IsShowPastTime;
 
-	// Token: 0x04002101 RID: 8449
+	// Token: 0x04001C33 RID: 7219
 	private float ShowHait;
 
-	// Token: 0x04002102 RID: 8450
+	// Token: 0x04001C34 RID: 7220
 	public bool ChildWeigh;
 }

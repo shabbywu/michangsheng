@@ -3,10 +3,10 @@ using System.Collections.Generic;
 
 namespace JSONClass
 {
-	// Token: 0x02000C3E RID: 3134
+	// Token: 0x020008B0 RID: 2224
 	public class NpcTalkQiTaJiaoHuData : IJSONClass
 	{
-		// Token: 0x06004C61 RID: 19553 RVA: 0x002040C0 File Offset: 0x002022C0
+		// Token: 0x060040D3 RID: 16595 RVA: 0x001BB2D8 File Offset: 0x001B94D8
 		public static void InitDataDict()
 		{
 			foreach (JSONObject jsonobject in jsonData.instance.NpcTalkQiTaJiaoHuData.list)
@@ -81,6 +81,10 @@ namespace JSONClass
 					npcTalkQiTaJiaoHuData.TalkDaBiHouDaoLvB = jsonobject["TalkDaBiHouDaoLvB"].Str;
 					npcTalkQiTaJiaoHuData.TalkChengHu = jsonobject["TalkChengHu"].Str;
 					npcTalkQiTaJiaoHuData.TalkYJMMPBZQ = jsonobject["TalkYJMMPBZQ"].Str;
+					npcTalkQiTaJiaoHuData.TalkNZGJBZQ = jsonobject["TalkNZGJBZQ"].Str;
+					npcTalkQiTaJiaoHuData.TalkNZFSGL = jsonobject["TalkNZFSGL"].Str;
+					npcTalkQiTaJiaoHuData.TalkLJQDY = jsonobject["TalkLJQDY"].Str;
+					npcTalkQiTaJiaoHuData.TalkLJQDL = jsonobject["TalkLJQDL"].Str;
 					if (NpcTalkQiTaJiaoHuData.DataDict.ContainsKey(npcTalkQiTaJiaoHuData.id))
 					{
 						PreloadManager.LogException(string.Format("!!!错误!!!向字典NpcTalkQiTaJiaoHuData.DataDict添加数据时出现重复的键，Key:{0}，已跳过，请检查配表", npcTalkQiTaJiaoHuData.id));
@@ -104,219 +108,231 @@ namespace JSONClass
 			}
 		}
 
-		// Token: 0x06004C62 RID: 19554 RVA: 0x000042DD File Offset: 0x000024DD
+		// Token: 0x060040D4 RID: 16596 RVA: 0x00004095 File Offset: 0x00002295
 		private static void OnInitFinish()
 		{
 		}
 
-		// Token: 0x04004A5D RID: 19037
+		// Token: 0x04003F05 RID: 16133
 		public static Dictionary<int, NpcTalkQiTaJiaoHuData> DataDict = new Dictionary<int, NpcTalkQiTaJiaoHuData>();
 
-		// Token: 0x04004A5E RID: 19038
+		// Token: 0x04003F06 RID: 16134
 		public static List<NpcTalkQiTaJiaoHuData> DataList = new List<NpcTalkQiTaJiaoHuData>();
 
-		// Token: 0x04004A5F RID: 19039
+		// Token: 0x04003F07 RID: 16135
 		public static Action OnInitFinishAction = new Action(NpcTalkQiTaJiaoHuData.OnInitFinish);
 
-		// Token: 0x04004A60 RID: 19040
+		// Token: 0x04003F08 RID: 16136
 		public int id;
 
-		// Token: 0x04004A61 RID: 19041
+		// Token: 0x04003F09 RID: 16137
 		public int JingJie;
 
-		// Token: 0x04004A62 RID: 19042
+		// Token: 0x04003F0A RID: 16138
 		public int XingGe;
 
-		// Token: 0x04004A63 RID: 19043
+		// Token: 0x04003F0B RID: 16139
 		public string TalkTanChaShiBai;
 
-		// Token: 0x04004A64 RID: 19044
+		// Token: 0x04003F0C RID: 16140
 		public string TalkTanChaZhanDou;
 
-		// Token: 0x04004A65 RID: 19045
+		// Token: 0x04003F0D RID: 16141
 		public string TalkJieSha;
 
-		// Token: 0x04004A66 RID: 19046
+		// Token: 0x04003F0E RID: 16142
 		public string TalkJieShouQieCuo;
 
-		// Token: 0x04004A67 RID: 19047
+		// Token: 0x04003F0F RID: 16143
 		public string TalkQieCuoShengLi;
 
-		// Token: 0x04004A68 RID: 19048
+		// Token: 0x04003F10 RID: 16144
 		public string TalkQieCuoShiBai;
 
-		// Token: 0x04004A69 RID: 19049
+		// Token: 0x04003F11 RID: 16145
 		public string TalkZengLiJiXu;
 
-		// Token: 0x04004A6A RID: 19050
+		// Token: 0x04003F12 RID: 16146
 		public string TalkZengLiChengGong;
 
-		// Token: 0x04004A6B RID: 19051
+		// Token: 0x04003F13 RID: 16147
 		public string TalkZengLiShiBaigao;
 
-		// Token: 0x04004A6C RID: 19052
+		// Token: 0x04003F14 RID: 16148
 		public string TalkZengLiShiBaidi;
 
-		// Token: 0x04004A6D RID: 19053
+		// Token: 0x04003F15 RID: 16149
 		public string TalkZengLiLaJi;
 
-		// Token: 0x04004A6E RID: 19054
+		// Token: 0x04003F16 RID: 16150
 		public string TalkNPCWeiXie;
 
-		// Token: 0x04004A6F RID: 19055
+		// Token: 0x04003F17 RID: 16151
 		public string TalkWeiXieChengGong1;
 
-		// Token: 0x04004A70 RID: 19056
+		// Token: 0x04003F18 RID: 16152
 		public string TalkWeiXieChengGong2;
 
-		// Token: 0x04004A71 RID: 19057
+		// Token: 0x04003F19 RID: 16153
 		public string TalkWeiXieChengGong3;
 
-		// Token: 0x04004A72 RID: 19058
+		// Token: 0x04003F1A RID: 16154
 		public string TalkWeiXieChengGong4;
 
-		// Token: 0x04004A73 RID: 19059
+		// Token: 0x04003F1B RID: 16155
 		public string TalkWeiXieShiBai1;
 
-		// Token: 0x04004A74 RID: 19060
+		// Token: 0x04003F1C RID: 16156
 		public string TalkWeiXieShiBai2;
 
-		// Token: 0x04004A75 RID: 19061
+		// Token: 0x04003F1D RID: 16157
 		public string TalkWeiXieShiBai3;
 
-		// Token: 0x04004A76 RID: 19062
+		// Token: 0x04003F1E RID: 16158
 		public string TalkWeiXieShiBai4;
 
-		// Token: 0x04004A77 RID: 19063
+		// Token: 0x04003F1F RID: 16159
 		public string TalkWeiXieShiBai5;
 
-		// Token: 0x04004A78 RID: 19064
+		// Token: 0x04003F20 RID: 16160
 		public string TalkWeiXieShiBai6;
 
-		// Token: 0x04004A79 RID: 19065
+		// Token: 0x04003F21 RID: 16161
 		public string TalkMenaceProbSuc;
 
-		// Token: 0x04004A7A RID: 19066
+		// Token: 0x04003F22 RID: 16162
 		public string TalkMenaceProbFailed1;
 
-		// Token: 0x04004A7B RID: 19067
+		// Token: 0x04003F23 RID: 16163
 		public string TalkMenaceProbFailed2;
 
-		// Token: 0x04004A7C RID: 19068
+		// Token: 0x04003F24 RID: 16164
 		public string TalkQingJiaoChengGong;
 
-		// Token: 0x04004A7D RID: 19069
+		// Token: 0x04003F25 RID: 16165
 		public string TalkQingJiaoShiBaiQF;
 
-		// Token: 0x04004A7E RID: 19070
+		// Token: 0x04003F26 RID: 16166
 		public string TalkQingJiaoShiBaiSW;
 
-		// Token: 0x04004A7F RID: 19071
+		// Token: 0x04003F27 RID: 16167
 		public string TalkYaoQingLunDao;
 
-		// Token: 0x04004A80 RID: 19072
+		// Token: 0x04003F28 RID: 16168
 		public string TalkJieShouLunDao;
 
-		// Token: 0x04004A81 RID: 19073
+		// Token: 0x04003F29 RID: 16169
 		public string TalkLunDaoCGPuTong;
 
-		// Token: 0x04004A82 RID: 19074
+		// Token: 0x04003F2A RID: 16170
 		public string TalkLunDaoChengGong;
 
-		// Token: 0x04004A83 RID: 19075
+		// Token: 0x04003F2B RID: 16171
 		public string TalkLunDaoSBPuTong;
 
-		// Token: 0x04004A84 RID: 19076
+		// Token: 0x04003F2C RID: 16172
 		public string TalkLunDaoShiBai;
 
-		// Token: 0x04004A85 RID: 19077
+		// Token: 0x04003F2D RID: 16173
 		public string TalkJuJueLunDao;
 
-		// Token: 0x04004A86 RID: 19078
+		// Token: 0x04003F2E RID: 16174
 		public string TalkJieYaoQingQieCuo;
 
-		// Token: 0x04004A87 RID: 19079
+		// Token: 0x04003F2F RID: 16175
 		public string TalkJuJueDaTing;
 
-		// Token: 0x04004A88 RID: 19080
+		// Token: 0x04003F30 RID: 16176
 		public string TalkJieShouHaoYou;
 
-		// Token: 0x04004A89 RID: 19081
+		// Token: 0x04003F31 RID: 16177
 		public string TalkTiWen;
 
-		// Token: 0x04004A8A RID: 19082
+		// Token: 0x04003F32 RID: 16178
 		public string TalkBiaoBaiCG;
 
-		// Token: 0x04004A8B RID: 19083
+		// Token: 0x04003F33 RID: 16179
 		public string TalkBiaoBaiCG2;
 
-		// Token: 0x04004A8C RID: 19084
+		// Token: 0x04003F34 RID: 16180
 		public string TalkBBShiBai1;
 
-		// Token: 0x04004A8D RID: 19085
+		// Token: 0x04003F35 RID: 16181
 		public string TalkBBShiBai2;
 
-		// Token: 0x04004A8E RID: 19086
+		// Token: 0x04003F36 RID: 16182
 		public string TalkQueRen;
 
-		// Token: 0x04004A8F RID: 19087
+		// Token: 0x04003F37 RID: 16183
 		public string TalkWanXiao;
 
-		// Token: 0x04004A90 RID: 19088
+		// Token: 0x04003F38 RID: 16184
 		public string TalkShouYao;
 
-		// Token: 0x04004A91 RID: 19089
+		// Token: 0x04003F39 RID: 16185
 		public string TalkDaoLv;
 
-		// Token: 0x04004A92 RID: 19090
+		// Token: 0x04003F3A RID: 16186
 		public string TalkJuJueJiaoYi;
 
-		// Token: 0x04004A93 RID: 19091
+		// Token: 0x04003F3B RID: 16187
 		public string TalkLingMaiF;
 
-		// Token: 0x04004A94 RID: 19092
+		// Token: 0x04003F3C RID: 16188
 		public string TalkLingMaiZDF;
 
-		// Token: 0x04004A95 RID: 19093
+		// Token: 0x04003F3D RID: 16189
 		public string TalkLingMaiZDNF;
 
-		// Token: 0x04004A96 RID: 19094
+		// Token: 0x04003F3E RID: 16190
 		public string TalkDaBiQianD;
 
-		// Token: 0x04004A97 RID: 19095
+		// Token: 0x04003F3F RID: 16191
 		public string TalkDaBiQianZ;
 
-		// Token: 0x04004A98 RID: 19096
+		// Token: 0x04003F40 RID: 16192
 		public string TalkDaBiQianG;
 
-		// Token: 0x04004A99 RID: 19097
+		// Token: 0x04003F41 RID: 16193
 		public string TalkDaBiSheng;
 
-		// Token: 0x04004A9A RID: 19098
+		// Token: 0x04003F42 RID: 16194
 		public string TalkDaBiBai;
 
-		// Token: 0x04004A9B RID: 19099
+		// Token: 0x04003F43 RID: 16195
 		public string TalkDaBiQianShiFu;
 
-		// Token: 0x04004A9C RID: 19100
+		// Token: 0x04003F44 RID: 16196
 		public string TalkDaBiHouShiFuS;
 
-		// Token: 0x04004A9D RID: 19101
+		// Token: 0x04003F45 RID: 16197
 		public string TalkDaBiHouShiFuB;
 
-		// Token: 0x04004A9E RID: 19102
+		// Token: 0x04003F46 RID: 16198
 		public string TalkDaBiQianDaoLv;
 
-		// Token: 0x04004A9F RID: 19103
+		// Token: 0x04003F47 RID: 16199
 		public string TalkDaBiHouDaoLvS;
 
-		// Token: 0x04004AA0 RID: 19104
+		// Token: 0x04003F48 RID: 16200
 		public string TalkDaBiHouDaoLvB;
 
-		// Token: 0x04004AA1 RID: 19105
+		// Token: 0x04003F49 RID: 16201
 		public string TalkChengHu;
 
-		// Token: 0x04004AA2 RID: 19106
+		// Token: 0x04003F4A RID: 16202
 		public string TalkYJMMPBZQ;
+
+		// Token: 0x04003F4B RID: 16203
+		public string TalkNZGJBZQ;
+
+		// Token: 0x04003F4C RID: 16204
+		public string TalkNZFSGL;
+
+		// Token: 0x04003F4D RID: 16205
+		public string TalkLJQDY;
+
+		// Token: 0x04003F4E RID: 16206
+		public string TalkLJQDL;
 	}
 }

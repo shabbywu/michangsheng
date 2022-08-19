@@ -3,10 +3,10 @@ using System.Collections.Generic;
 
 namespace JSONClass
 {
-	// Token: 0x02000BFB RID: 3067
+	// Token: 0x0200086D RID: 2157
 	public class jiaoHuanShopGoods : IJSONClass, IComparable
 	{
-		// Token: 0x06004B54 RID: 19284 RVA: 0x001FCEE0 File Offset: 0x001FB0E0
+		// Token: 0x06003FC6 RID: 16326 RVA: 0x001B33BC File Offset: 0x001B15BC
 		public static void InitDataDict()
 		{
 			foreach (JSONObject jsonobject in jsonData.instance.jiaoHuanShopGoods.list)
@@ -43,12 +43,12 @@ namespace JSONClass
 			}
 		}
 
-		// Token: 0x06004B55 RID: 19285 RVA: 0x000042DD File Offset: 0x000024DD
+		// Token: 0x06003FC7 RID: 16327 RVA: 0x00004095 File Offset: 0x00002295
 		private static void OnInitFinish()
 		{
 		}
 
-		// Token: 0x06004B56 RID: 19286 RVA: 0x001FD074 File Offset: 0x001FB274
+		// Token: 0x06003FC8 RID: 16328 RVA: 0x001B3550 File Offset: 0x001B1750
 		public int CompareTo(object obj)
 		{
 			_ItemJsonData itemJsonData = _ItemJsonData.DataDict[this.GoodsID];
@@ -62,31 +62,31 @@ namespace JSONClass
 			return -num;
 		}
 
-		// Token: 0x040047A9 RID: 18345
+		// Token: 0x04003C50 RID: 15440
 		public static Dictionary<int, jiaoHuanShopGoods> DataDict = new Dictionary<int, jiaoHuanShopGoods>();
 
-		// Token: 0x040047AA RID: 18346
+		// Token: 0x04003C51 RID: 15441
 		public static List<jiaoHuanShopGoods> DataList = new List<jiaoHuanShopGoods>();
 
-		// Token: 0x040047AB RID: 18347
+		// Token: 0x04003C52 RID: 15442
 		public static Action OnInitFinishAction = new Action(jiaoHuanShopGoods.OnInitFinish);
 
-		// Token: 0x040047AC RID: 18348
+		// Token: 0x04003C53 RID: 15443
 		public int id;
 
-		// Token: 0x040047AD RID: 18349
+		// Token: 0x04003C54 RID: 15444
 		public int ShopID;
 
-		// Token: 0x040047AE RID: 18350
+		// Token: 0x04003C55 RID: 15445
 		public int EXGoodsID;
 
-		// Token: 0x040047AF RID: 18351
+		// Token: 0x04003C56 RID: 15446
 		public int Money;
 
-		// Token: 0x040047B0 RID: 18352
+		// Token: 0x04003C57 RID: 15447
 		public int GoodsID;
 
-		// Token: 0x040047B1 RID: 18353
+		// Token: 0x04003C58 RID: 15448
 		public int percent;
 	}
 }

@@ -4,11 +4,11 @@ using UnityEngine;
 
 namespace Bag
 {
-	// Token: 0x02000D23 RID: 3363
+	// Token: 0x0200099E RID: 2462
 	[Serializable]
 	public class CaiLiaoItem : BaseItem
 	{
-		// Token: 0x0600500E RID: 20494 RVA: 0x00039A19 File Offset: 0x00037C19
+		// Token: 0x060044B2 RID: 17586 RVA: 0x001D3D8F File Offset: 0x001D1F8F
 		public override void SetItem(int id, int count)
 		{
 			base.SetItem(id, count);
@@ -16,19 +16,19 @@ namespace Bag
 			this.ShuXingType = _ItemJsonData.DataDict[id].ShuXingType;
 		}
 
-		// Token: 0x0600500F RID: 20495 RVA: 0x00039A4F File Offset: 0x00037C4F
+		// Token: 0x060044B3 RID: 17587 RVA: 0x001D3DC5 File Offset: 0x001D1FC5
 		public string GetZhongLei()
 		{
 			return LianQiWuWeiBiao.DataDict[this.WuWeiType].desc;
 		}
 
-		// Token: 0x06005010 RID: 20496 RVA: 0x00039A66 File Offset: 0x00037C66
+		// Token: 0x060044B4 RID: 17588 RVA: 0x001D3DDC File Offset: 0x001D1FDC
 		public string GetShuXing()
 		{
 			return LianQiShuXinLeiBie.DataDict[this.ShuXingType].desc;
 		}
 
-		// Token: 0x06005011 RID: 20497 RVA: 0x00039A7D File Offset: 0x00037C7D
+		// Token: 0x060044B5 RID: 17589 RVA: 0x001D3DF3 File Offset: 0x001D1FF3
 		public LianQiCaiLiaoYinYang GetYinYang()
 		{
 			if (this.ShuXingType % 10 == 1)
@@ -38,7 +38,7 @@ namespace Bag
 			return LianQiCaiLiaoYinYang.阴;
 		}
 
-		// Token: 0x06005012 RID: 20498 RVA: 0x00218804 File Offset: 0x00216A04
+		// Token: 0x060044B6 RID: 17590 RVA: 0x001D3E04 File Offset: 0x001D2004
 		public LianQiCaiLiaoType GetLianQiCaiLiaoType()
 		{
 			switch (this.ShuXingType / 10)
@@ -65,10 +65,10 @@ namespace Bag
 			}
 		}
 
-		// Token: 0x0400515A RID: 20826
+		// Token: 0x0400465C RID: 18012
 		public int WuWeiType;
 
-		// Token: 0x0400515B RID: 20827
+		// Token: 0x0400465D RID: 18013
 		public int ShuXingType;
 	}
 }

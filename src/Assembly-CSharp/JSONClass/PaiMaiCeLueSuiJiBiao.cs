@@ -3,10 +3,10 @@ using System.Collections.Generic;
 
 namespace JSONClass
 {
-	// Token: 0x02000C4E RID: 3150
+	// Token: 0x020008C0 RID: 2240
 	public class PaiMaiCeLueSuiJiBiao : IJSONClass
 	{
-		// Token: 0x06004CA1 RID: 19617 RVA: 0x00206438 File Offset: 0x00204638
+		// Token: 0x06004113 RID: 16659 RVA: 0x001BDA24 File Offset: 0x001BBC24
 		public static void InitDataDict()
 		{
 			foreach (JSONObject jsonobject in jsonData.instance.PaiMaiCeLueSuiJiBiao.list)
@@ -55,72 +55,72 @@ namespace JSONClass
 			}
 		}
 
-		// Token: 0x06004CA2 RID: 19618 RVA: 0x000042DD File Offset: 0x000024DD
+		// Token: 0x06004114 RID: 16660 RVA: 0x00004095 File Offset: 0x00002295
 		private static void OnInitFinish()
 		{
 		}
 
-		// Token: 0x04004B5B RID: 19291
+		// Token: 0x04004007 RID: 16391
 		public static Dictionary<int, PaiMaiCeLueSuiJiBiao> DataDict = new Dictionary<int, PaiMaiCeLueSuiJiBiao>();
 
-		// Token: 0x04004B5C RID: 19292
+		// Token: 0x04004008 RID: 16392
 		public static List<PaiMaiCeLueSuiJiBiao> DataList = new List<PaiMaiCeLueSuiJiBiao>();
 
-		// Token: 0x04004B5D RID: 19293
+		// Token: 0x04004009 RID: 16393
 		public static Action OnInitFinishAction = new Action(PaiMaiCeLueSuiJiBiao.OnInitFinish);
 
-		// Token: 0x04004B5E RID: 19294
+		// Token: 0x0400400A RID: 16394
 		public int id;
 
-		// Token: 0x04004B5F RID: 19295
+		// Token: 0x0400400B RID: 16395
 		public int itemType;
 
-		// Token: 0x04004B60 RID: 19296
+		// Token: 0x0400400C RID: 16396
 		public int itemQuality;
 
-		// Token: 0x04004B61 RID: 19297
+		// Token: 0x0400400D RID: 16397
 		public List<int> Lv1 = new List<int>();
 
-		// Token: 0x04004B62 RID: 19298
+		// Token: 0x0400400E RID: 16398
 		public List<int> Lv2 = new List<int>();
 
-		// Token: 0x04004B63 RID: 19299
+		// Token: 0x0400400F RID: 16399
 		public List<int> Lv3 = new List<int>();
 
-		// Token: 0x04004B64 RID: 19300
+		// Token: 0x04004010 RID: 16400
 		public List<int> Lv4 = new List<int>();
 
-		// Token: 0x04004B65 RID: 19301
+		// Token: 0x04004011 RID: 16401
 		public List<int> Lv5 = new List<int>();
 
-		// Token: 0x04004B66 RID: 19302
+		// Token: 0x04004012 RID: 16402
 		public List<int> Lv6 = new List<int>();
 
-		// Token: 0x04004B67 RID: 19303
+		// Token: 0x04004013 RID: 16403
 		public List<int> Lv7 = new List<int>();
 
-		// Token: 0x04004B68 RID: 19304
+		// Token: 0x04004014 RID: 16404
 		public List<int> Lv8 = new List<int>();
 
-		// Token: 0x04004B69 RID: 19305
+		// Token: 0x04004015 RID: 16405
 		public List<int> Lv9 = new List<int>();
 
-		// Token: 0x04004B6A RID: 19306
+		// Token: 0x04004016 RID: 16406
 		public List<int> Lv10 = new List<int>();
 
-		// Token: 0x04004B6B RID: 19307
+		// Token: 0x04004017 RID: 16407
 		public List<int> Lv11 = new List<int>();
 
-		// Token: 0x04004B6C RID: 19308
+		// Token: 0x04004018 RID: 16408
 		public List<int> Lv12 = new List<int>();
 
-		// Token: 0x04004B6D RID: 19309
+		// Token: 0x04004019 RID: 16409
 		public List<int> Lv13 = new List<int>();
 
-		// Token: 0x04004B6E RID: 19310
+		// Token: 0x0400401A RID: 16410
 		public List<int> Lv14 = new List<int>();
 
-		// Token: 0x04004B6F RID: 19311
+		// Token: 0x0400401B RID: 16411
 		public List<int> Lv15 = new List<int>();
 	}
 }

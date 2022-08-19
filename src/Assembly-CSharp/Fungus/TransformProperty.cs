@@ -3,12 +3,12 @@ using UnityEngine;
 
 namespace Fungus
 {
-	// Token: 0x020012A7 RID: 4775
+	// Token: 0x02000E56 RID: 3670
 	[CommandInfo("Transform", "Property", "Get or Set a property of a transform component", 0)]
 	[AddComponentMenu("")]
 	public class TransformProperty : Command
 	{
-		// Token: 0x060073A3 RID: 29603 RVA: 0x002AB56C File Offset: 0x002A976C
+		// Token: 0x06006715 RID: 26389 RVA: 0x00288900 File Offset: 0x00286B00
 		public override void OnEnter()
 		{
 			BooleanVariable booleanVariable = this.inOutVar as BooleanVariable;
@@ -125,7 +125,7 @@ namespace Fungus
 			this.Continue();
 		}
 
-		// Token: 0x060073A4 RID: 29604 RVA: 0x002AB868 File Offset: 0x002A9A68
+		// Token: 0x06006716 RID: 26390 RVA: 0x00288BFC File Offset: 0x00286DFC
 		public override string GetSummary()
 		{
 			if (this.transformData.Value == null)
@@ -143,30 +143,30 @@ namespace Fungus
 			return this.getOrSet.ToString() + " " + this.property.ToString();
 		}
 
-		// Token: 0x060073A5 RID: 29605 RVA: 0x0004C5E0 File Offset: 0x0004A7E0
+		// Token: 0x06006717 RID: 26391 RVA: 0x0027D3DB File Offset: 0x0027B5DB
 		public override Color GetButtonColor()
 		{
 			return new Color32(235, 191, 217, byte.MaxValue);
 		}
 
-		// Token: 0x060073A6 RID: 29606 RVA: 0x0004EE9A File Offset: 0x0004D09A
+		// Token: 0x06006718 RID: 26392 RVA: 0x00288CA6 File Offset: 0x00286EA6
 		public override bool HasReference(Variable variable)
 		{
 			return this.transformData.transformRef == variable || this.inOutVar == variable;
 		}
 
-		// Token: 0x0400656F RID: 25967
+		// Token: 0x0400582B RID: 22571
 		public TransformProperty.GetSet getOrSet;
 
-		// Token: 0x04006570 RID: 25968
+		// Token: 0x0400582C RID: 22572
 		[SerializeField]
 		protected TransformProperty.Property property = TransformProperty.Property.Position;
 
-		// Token: 0x04006571 RID: 25969
+		// Token: 0x0400582D RID: 22573
 		[SerializeField]
 		protected TransformData transformData;
 
-		// Token: 0x04006572 RID: 25970
+		// Token: 0x0400582E RID: 22574
 		[SerializeField]
 		[VariableProperty(new Type[]
 		{
@@ -177,47 +177,47 @@ namespace Fungus
 		})]
 		protected Variable inOutVar;
 
-		// Token: 0x020012A8 RID: 4776
+		// Token: 0x020016C5 RID: 5829
 		public enum GetSet
 		{
-			// Token: 0x04006574 RID: 25972
+			// Token: 0x040073A0 RID: 29600
 			Get,
-			// Token: 0x04006575 RID: 25973
+			// Token: 0x040073A1 RID: 29601
 			Set
 		}
 
-		// Token: 0x020012A9 RID: 4777
+		// Token: 0x020016C6 RID: 5830
 		public enum Property
 		{
-			// Token: 0x04006577 RID: 25975
+			// Token: 0x040073A3 RID: 29603
 			ChildCount,
-			// Token: 0x04006578 RID: 25976
+			// Token: 0x040073A4 RID: 29604
 			EulerAngles,
-			// Token: 0x04006579 RID: 25977
+			// Token: 0x040073A5 RID: 29605
 			Forward,
-			// Token: 0x0400657A RID: 25978
+			// Token: 0x040073A6 RID: 29606
 			HasChanged,
-			// Token: 0x0400657B RID: 25979
+			// Token: 0x040073A7 RID: 29607
 			HierarchyCapacity,
-			// Token: 0x0400657C RID: 25980
+			// Token: 0x040073A8 RID: 29608
 			HierarchyCount,
-			// Token: 0x0400657D RID: 25981
+			// Token: 0x040073A9 RID: 29609
 			LocalEulerAngles,
-			// Token: 0x0400657E RID: 25982
+			// Token: 0x040073AA RID: 29610
 			LocalPosition,
-			// Token: 0x0400657F RID: 25983
+			// Token: 0x040073AB RID: 29611
 			LocalScale,
-			// Token: 0x04006580 RID: 25984
+			// Token: 0x040073AC RID: 29612
 			LossyScale,
-			// Token: 0x04006581 RID: 25985
+			// Token: 0x040073AD RID: 29613
 			Parent,
-			// Token: 0x04006582 RID: 25986
+			// Token: 0x040073AE RID: 29614
 			Position,
-			// Token: 0x04006583 RID: 25987
+			// Token: 0x040073AF RID: 29615
 			Right,
-			// Token: 0x04006584 RID: 25988
+			// Token: 0x040073B0 RID: 29616
 			Root,
-			// Token: 0x04006585 RID: 25989
+			// Token: 0x040073B1 RID: 29617
 			Up
 		}
 	}

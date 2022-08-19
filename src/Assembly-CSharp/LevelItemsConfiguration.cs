@@ -1,28 +1,28 @@
 ﻿using System;
 using UnityEngine;
 
-// Token: 0x02000189 RID: 393
+// Token: 0x02000106 RID: 262
 [Serializable]
 public class LevelItemsConfiguration
 {
-	// Token: 0x04000A4D RID: 2637
+	// Token: 0x04000854 RID: 2132
 	public string levelName;
 
-	// Token: 0x04000A4E RID: 2638
+	// Token: 0x04000855 RID: 2133
 	public bool hasSubLevel;
 
-	// Token: 0x04000A4F RID: 2639
+	// Token: 0x04000856 RID: 2134
 	public string subLevelName;
 
-	// Token: 0x04000A50 RID: 2640
+	// Token: 0x04000857 RID: 2135
 	public bool isLocked;
 
-	// Token: 0x04000A51 RID: 2641
+	// Token: 0x04000858 RID: 2136
 	public string levelToLoad;
 
-	// Token: 0x04000A52 RID: 2642
+	// Token: 0x04000859 RID: 2137
 	public Sprite levelImage;
 
-	// Token: 0x04000A53 RID: 2643
+	// Token: 0x0400085A RID: 2138
 	public int PlayerID;
 }

@@ -2,29 +2,29 @@
 
 namespace KBEngine
 {
-	// Token: 0x02000F3F RID: 3903
+	// Token: 0x02000BBC RID: 3004
 	public struct SPACE_ID
 	{
-		// Token: 0x06005E04 RID: 24068 RVA: 0x00041FB4 File Offset: 0x000401B4
+		// Token: 0x060053C6 RID: 21446 RVA: 0x00233E53 File Offset: 0x00232053
 		private SPACE_ID(uint value)
 		{
 			this.value = value;
 		}
 
-		// Token: 0x06005E05 RID: 24069 RVA: 0x00041FBD File Offset: 0x000401BD
+		// Token: 0x060053C7 RID: 21447 RVA: 0x00233E5C File Offset: 0x0023205C
 		public static implicit operator uint(SPACE_ID value)
 		{
 			return value.value;
 		}
 
-		// Token: 0x06005E06 RID: 24070 RVA: 0x00041FC5 File Offset: 0x000401C5
+		// Token: 0x060053C8 RID: 21448 RVA: 0x00233E64 File Offset: 0x00232064
 		public static implicit operator SPACE_ID(uint value)
 		{
 			return new SPACE_ID(value);
 		}
 
-		// Token: 0x17000895 RID: 2197
-		// (get) Token: 0x06005E07 RID: 24071 RVA: 0x00041ADD File Offset: 0x0003FCDD
+		// Token: 0x17000642 RID: 1602
+		// (get) Token: 0x060053C9 RID: 21449 RVA: 0x0023397C File Offset: 0x00231B7C
 		public static uint MaxValue
 		{
 			get
@@ -33,8 +33,8 @@ namespace KBEngine
 			}
 		}
 
-		// Token: 0x17000896 RID: 2198
-		// (get) Token: 0x06005E08 RID: 24072 RVA: 0x00004050 File Offset: 0x00002250
+		// Token: 0x17000643 RID: 1603
+		// (get) Token: 0x060053CA RID: 21450 RVA: 0x0000280F File Offset: 0x00000A0F
 		public static uint MinValue
 		{
 			get
@@ -43,7 +43,7 @@ namespace KBEngine
 			}
 		}
 
-		// Token: 0x04005AE9 RID: 23273
+		// Token: 0x04005048 RID: 20552
 		private uint value;
 	}
 }

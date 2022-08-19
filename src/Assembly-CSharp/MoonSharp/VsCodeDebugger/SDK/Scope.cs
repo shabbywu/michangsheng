@@ -2,25 +2,25 @@
 
 namespace MoonSharp.VsCodeDebugger.SDK
 {
-	// Token: 0x020011C2 RID: 4546
+	// Token: 0x02000D96 RID: 3478
 	public class Scope
 	{
-		// Token: 0x17000A33 RID: 2611
-		// (get) Token: 0x06006F5F RID: 28511 RVA: 0x0004BA91 File Offset: 0x00049C91
-		// (set) Token: 0x06006F60 RID: 28512 RVA: 0x0004BA99 File Offset: 0x00049C99
+		// Token: 0x170007D2 RID: 2002
+		// (get) Token: 0x06006319 RID: 25369 RVA: 0x0027A5CB File Offset: 0x002787CB
+		// (set) Token: 0x0600631A RID: 25370 RVA: 0x0027A5D3 File Offset: 0x002787D3
 		public string name { get; private set; }
 
-		// Token: 0x17000A34 RID: 2612
-		// (get) Token: 0x06006F61 RID: 28513 RVA: 0x0004BAA2 File Offset: 0x00049CA2
-		// (set) Token: 0x06006F62 RID: 28514 RVA: 0x0004BAAA File Offset: 0x00049CAA
+		// Token: 0x170007D3 RID: 2003
+		// (get) Token: 0x0600631B RID: 25371 RVA: 0x0027A5DC File Offset: 0x002787DC
+		// (set) Token: 0x0600631C RID: 25372 RVA: 0x0027A5E4 File Offset: 0x002787E4
 		public int variablesReference { get; private set; }
 
-		// Token: 0x17000A35 RID: 2613
-		// (get) Token: 0x06006F63 RID: 28515 RVA: 0x0004BAB3 File Offset: 0x00049CB3
-		// (set) Token: 0x06006F64 RID: 28516 RVA: 0x0004BABB File Offset: 0x00049CBB
+		// Token: 0x170007D4 RID: 2004
+		// (get) Token: 0x0600631D RID: 25373 RVA: 0x0027A5ED File Offset: 0x002787ED
+		// (set) Token: 0x0600631E RID: 25374 RVA: 0x0027A5F5 File Offset: 0x002787F5
 		public bool expensive { get; private set; }
 
-		// Token: 0x06006F65 RID: 28517 RVA: 0x0004BAC4 File Offset: 0x00049CC4
+		// Token: 0x0600631F RID: 25375 RVA: 0x0027A5FE File Offset: 0x002787FE
 		public Scope(string name, int variablesReference, bool expensive = false)
 		{
 			this.name = name;

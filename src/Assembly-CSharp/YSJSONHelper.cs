@@ -4,10 +4,10 @@ using System.IO;
 using System.Reflection;
 using UnityEngine;
 
-// Token: 0x020002CA RID: 714
+// Token: 0x020001C2 RID: 450
 public static class YSJSONHelper
 {
-	// Token: 0x06001571 RID: 5489 RVA: 0x000C20B0 File Offset: 0x000C02B0
+	// Token: 0x060012B6 RID: 4790 RVA: 0x000749BC File Offset: 0x00072BBC
 	public static string JSONObjectToClass(string name, JSONObject json, bool outToDebugPath = false)
 	{
 		string text = YSJSONHelper.Template ?? "";
@@ -90,7 +90,7 @@ public static class YSJSONHelper
 		return text;
 	}
 
-	// Token: 0x06001572 RID: 5490 RVA: 0x000C239C File Offset: 0x000C059C
+	// Token: 0x060012B7 RID: 4791 RVA: 0x00074CA8 File Offset: 0x00072EA8
 	public static void SeidJSONObjectToClass(string name, JSONObject[] jsons, bool outToDebugPath = false)
 	{
 		if (jsons == null)
@@ -185,7 +185,7 @@ public static class YSJSONHelper
 		}
 	}
 
-	// Token: 0x06001573 RID: 5491 RVA: 0x000C26FC File Offset: 0x000C08FC
+	// Token: 0x060012B8 RID: 4792 RVA: 0x00075008 File Offset: 0x00073208
 	public static void InitJSONClassData()
 	{
 		Type[] types = Assembly.GetAssembly(typeof(IJSONClass)).GetTypes();
@@ -214,34 +214,34 @@ public static class YSJSONHelper
 		}
 	}
 
-	// Token: 0x06001574 RID: 5492 RVA: 0x000136CA File Offset: 0x000118CA
+	// Token: 0x060012B9 RID: 4793 RVA: 0x000750DC File Offset: 0x000732DC
 	public static void LoadTemplate()
 	{
 		YSJSONHelper.Template = Resources.Load<TextAsset>("JSONClassTemplate").text;
 		YSJSONHelper.SeidTemplate = Resources.Load<TextAsset>("JSONClassSeidTemplate").text;
 	}
 
-	// Token: 0x04001195 RID: 4501
+	// Token: 0x04000E54 RID: 3668
 	private static string Template = "";
 
-	// Token: 0x04001196 RID: 4502
+	// Token: 0x04000E55 RID: 3669
 	private static string SeidTemplate = "";
 
-	// Token: 0x04001197 RID: 4503
+	// Token: 0x04000E56 RID: 3670
 	private static string INTTemplate = "        public int _FIELD_;\n";
 
-	// Token: 0x04001198 RID: 4504
+	// Token: 0x04000E57 RID: 3671
 	private static string STRINGTemplate = "        public string _FIELD_;\n";
 
-	// Token: 0x04001199 RID: 4505
+	// Token: 0x04000E58 RID: 3672
 	private static string LISTINTTemplate = "        public List<int> _FIELD_ = new List<int>();\n";
 
-	// Token: 0x0400119A RID: 4506
+	// Token: 0x04000E59 RID: 3673
 	private static string INITINTTemplate = "                    obj._FIELD_ = d[\"_FIELD_\"].I;\n";
 
-	// Token: 0x0400119B RID: 4507
+	// Token: 0x04000E5A RID: 3674
 	private static string INITSTRINGTemplate = "                    obj._FIELD_ = d[\"_FIELD_\"].Str;\n";
 
-	// Token: 0x0400119C RID: 4508
+	// Token: 0x04000E5B RID: 3675
 	private static string INITLISTINTTemplate = "                    obj._FIELD_ = d[\"_FIELD_\"].ToList();\n";
 }

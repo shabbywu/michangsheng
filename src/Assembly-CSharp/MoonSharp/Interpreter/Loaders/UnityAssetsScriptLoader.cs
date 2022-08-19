@@ -6,23 +6,23 @@ using MoonSharp.Interpreter.Compatibility;
 
 namespace MoonSharp.Interpreter.Loaders
 {
-	// Token: 0x020010DF RID: 4319
+	// Token: 0x02000D00 RID: 3328
 	public class UnityAssetsScriptLoader : ScriptLoaderBase
 	{
-		// Token: 0x06006847 RID: 26695 RVA: 0x000478D8 File Offset: 0x00045AD8
+		// Token: 0x06005D29 RID: 23849 RVA: 0x00262251 File Offset: 0x00260451
 		public UnityAssetsScriptLoader(string assetsPath = null)
 		{
 			assetsPath = (assetsPath ?? "MoonSharp/Scripts");
 			this.LoadResourcesWithReflection(assetsPath);
 		}
 
-		// Token: 0x06006848 RID: 26696 RVA: 0x000478FE File Offset: 0x00045AFE
+		// Token: 0x06005D2A RID: 23850 RVA: 0x00262277 File Offset: 0x00260477
 		public UnityAssetsScriptLoader(Dictionary<string, string> scriptToCodeMap)
 		{
 			this.m_Resources = scriptToCodeMap;
 		}
 
-		// Token: 0x06006849 RID: 26697 RVA: 0x0028B1EC File Offset: 0x002893EC
+		// Token: 0x06005D2B RID: 23851 RVA: 0x00262294 File Offset: 0x00260494
 		private void LoadResourcesWithReflection(string assetsPath)
 		{
 			try
@@ -54,7 +54,7 @@ namespace MoonSharp.Interpreter.Loaders
 			}
 		}
 
-		// Token: 0x0600684A RID: 26698 RVA: 0x0028B304 File Offset: 0x00289504
+		// Token: 0x06005D2C RID: 23852 RVA: 0x002623AC File Offset: 0x002605AC
 		private string GetFileName(string filename)
 		{
 			int num = Math.Max(filename.LastIndexOf('\\'), filename.LastIndexOf('/'));
@@ -65,7 +65,7 @@ namespace MoonSharp.Interpreter.Loaders
 			return filename;
 		}
 
-		// Token: 0x0600684B RID: 26699 RVA: 0x00047918 File Offset: 0x00045B18
+		// Token: 0x06005D2D RID: 23853 RVA: 0x002623DF File Offset: 0x002605DF
 		public override object LoadFile(string file, Table globalContext)
 		{
 			file = this.GetFileName(file);
@@ -76,23 +76,23 @@ namespace MoonSharp.Interpreter.Loaders
 			throw new Exception(string.Format("Cannot load script '{0}'. By default, scripts should be .txt files placed under a Assets/Resources/{1} directory.\r\nIf you want scripts to be put in another directory or another way, use a custom instance of UnityAssetsScriptLoader or implement\r\nyour own IScriptLoader (possibly extending ScriptLoaderBase).", file, "MoonSharp/Scripts"));
 		}
 
-		// Token: 0x0600684C RID: 26700 RVA: 0x00047953 File Offset: 0x00045B53
+		// Token: 0x06005D2E RID: 23854 RVA: 0x0026241A File Offset: 0x0026061A
 		public override bool ScriptFileExists(string file)
 		{
 			file = this.GetFileName(file);
 			return this.m_Resources.ContainsKey(file);
 		}
 
-		// Token: 0x0600684D RID: 26701 RVA: 0x0004796A File Offset: 0x00045B6A
+		// Token: 0x06005D2F RID: 23855 RVA: 0x00262431 File Offset: 0x00260631
 		public string[] GetLoadedScripts()
 		{
 			return this.m_Resources.Keys.ToArray<string>();
 		}
 
-		// Token: 0x04005FDF RID: 24543
+		// Token: 0x040053D5 RID: 21461
 		private Dictionary<string, string> m_Resources = new Dictionary<string, string>();
 
-		// Token: 0x04005FE0 RID: 24544
+		// Token: 0x040053D6 RID: 21462
 		public const string DEFAULT_PATH = "MoonSharp/Scripts";
 	}
 }

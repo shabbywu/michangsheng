@@ -3,15 +3,15 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.EventSystems;
 
-// Token: 0x020004CC RID: 1228
+// Token: 0x02000350 RID: 848
 public class DragAera : MonoBehaviour, IBeginDragHandler, IEventSystemHandler, IDragHandler, IEndDragHandler
 {
-	// Token: 0x06002037 RID: 8247 RVA: 0x000042DD File Offset: 0x000024DD
+	// Token: 0x06001CD0 RID: 7376 RVA: 0x00004095 File Offset: 0x00002295
 	private void Start()
 	{
 	}
 
-	// Token: 0x06002038 RID: 8248 RVA: 0x0001A6D8 File Offset: 0x000188D8
+	// Token: 0x06001CD1 RID: 7377 RVA: 0x000CDF8C File Offset: 0x000CC18C
 	public void OnBeginDrag(PointerEventData eventData)
 	{
 		if (this.OnBeginDragAction != null)
@@ -20,7 +20,7 @@ public class DragAera : MonoBehaviour, IBeginDragHandler, IEventSystemHandler, I
 		}
 	}
 
-	// Token: 0x06002039 RID: 8249 RVA: 0x0001A6EE File Offset: 0x000188EE
+	// Token: 0x06001CD2 RID: 7378 RVA: 0x000CDFA2 File Offset: 0x000CC1A2
 	public void OnDrag(PointerEventData eventData)
 	{
 		if (this.OnDragAction != null)
@@ -29,7 +29,7 @@ public class DragAera : MonoBehaviour, IBeginDragHandler, IEventSystemHandler, I
 		}
 	}
 
-	// Token: 0x0600203A RID: 8250 RVA: 0x0001A704 File Offset: 0x00018904
+	// Token: 0x06001CD3 RID: 7379 RVA: 0x000CDFB8 File Offset: 0x000CC1B8
 	public void OnEndDrag(PointerEventData eventData)
 	{
 		if (this.OnEndDragAction != null)
@@ -38,15 +38,15 @@ public class DragAera : MonoBehaviour, IBeginDragHandler, IEventSystemHandler, I
 		}
 	}
 
-	// Token: 0x04001BB9 RID: 7097
+	// Token: 0x04001763 RID: 5987
 	public UnityAction<PointerEventData> OnBeginDragAction;
 
-	// Token: 0x04001BBA RID: 7098
+	// Token: 0x04001764 RID: 5988
 	public UnityAction<PointerEventData> OnDragAction;
 
-	// Token: 0x04001BBB RID: 7099
+	// Token: 0x04001765 RID: 5989
 	public UnityAction<PointerEventData> OnEndDragAction;
 
-	// Token: 0x04001BBC RID: 7100
+	// Token: 0x04001766 RID: 5990
 	public RectTransform RT;
 }

@@ -2,25 +2,25 @@
 
 namespace BehaviorDesigner.Runtime.Tasks
 {
-	// Token: 0x020014AD RID: 5293
+	// Token: 0x02000FF5 RID: 4085
 	[TaskDescription("The return failure task will always return failure except when the child task is running.")]
 	[HelpURL("http://www.opsive.com/assets/BehaviorDesigner/documentation.php?id=38")]
 	[TaskIcon("{SkinColor}ReturnFailureIcon.png")]
 	public class ReturnFailure : Decorator
 	{
-		// Token: 0x06007F09 RID: 32521 RVA: 0x0005616A File Offset: 0x0005436A
+		// Token: 0x0600710F RID: 28943 RVA: 0x002AB1D2 File Offset: 0x002A93D2
 		public override bool CanExecute()
 		{
 			return this.executionStatus == null || this.executionStatus == 3;
 		}
 
-		// Token: 0x06007F0A RID: 32522 RVA: 0x0005617F File Offset: 0x0005437F
+		// Token: 0x06007110 RID: 28944 RVA: 0x002AB1E7 File Offset: 0x002A93E7
 		public override void OnChildExecuted(TaskStatus childStatus)
 		{
 			this.executionStatus = childStatus;
 		}
 
-		// Token: 0x06007F0B RID: 32523 RVA: 0x00056188 File Offset: 0x00054388
+		// Token: 0x06007111 RID: 28945 RVA: 0x002AB1F0 File Offset: 0x002A93F0
 		public override TaskStatus Decorate(TaskStatus status)
 		{
 			if (status == 2)
@@ -30,13 +30,13 @@ namespace BehaviorDesigner.Runtime.Tasks
 			return status;
 		}
 
-		// Token: 0x06007F0C RID: 32524 RVA: 0x00056191 File Offset: 0x00054391
+		// Token: 0x06007112 RID: 28946 RVA: 0x002AB1F9 File Offset: 0x002A93F9
 		public override void OnEnd()
 		{
 			this.executionStatus = 0;
 		}
 
-		// Token: 0x04006BFA RID: 27642
+		// Token: 0x04005D02 RID: 23810
 		private TaskStatus executionStatus;
 	}
 }

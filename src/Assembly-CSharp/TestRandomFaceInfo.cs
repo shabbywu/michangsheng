@@ -4,16 +4,16 @@ using Spine.Unity;
 using UnityEngine;
 using YSGame;
 
-// Token: 0x02000569 RID: 1385
+// Token: 0x020003D2 RID: 978
 [ExecuteInEditMode]
 public class TestRandomFaceInfo : MonoBehaviour
 {
-	// Token: 0x06002342 RID: 9026 RVA: 0x000042DD File Offset: 0x000024DD
+	// Token: 0x06001FC9 RID: 8137 RVA: 0x00004095 File Offset: 0x00002295
 	private void Start()
 	{
 	}
 
-	// Token: 0x06002343 RID: 9027 RVA: 0x001229A8 File Offset: 0x00120BA8
+	// Token: 0x06001FCA RID: 8138 RVA: 0x000DFEC4 File Offset: 0x000DE0C4
 	private void Update()
 	{
 		if (this.updateFace)
@@ -56,24 +56,24 @@ public class TestRandomFaceInfo : MonoBehaviour
 		}
 	}
 
-	// Token: 0x04001E63 RID: 7779
+	// Token: 0x040019D9 RID: 6617
 	public SetAvatarFaceRandomInfo setAvatarFaceRandom;
 
-	// Token: 0x04001E64 RID: 7780
+	// Token: 0x040019DA RID: 6618
 	public PlayerSetRandomFace playerSetRandomFace;
 
-	// Token: 0x04001E65 RID: 7781
+	// Token: 0x040019DB RID: 6619
 	public SetAvatarFaceRandomInfo.InfoName SkinType;
 
-	// Token: 0x04001E66 RID: 7782
+	// Token: 0x040019DC RID: 6620
 	public int SkinID;
 
-	// Token: 0x04001E67 RID: 7783
+	// Token: 0x040019DD RID: 6621
 	public bool updateFace;
 
-	// Token: 0x04001E68 RID: 7784
+	// Token: 0x040019DE RID: 6622
 	public int AvatarID;
 
-	// Token: 0x04001E69 RID: 7785
+	// Token: 0x040019DF RID: 6623
 	public bool showAvatar;
 }

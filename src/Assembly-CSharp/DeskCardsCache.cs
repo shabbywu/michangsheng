@@ -2,16 +2,16 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-// Token: 0x02000687 RID: 1671
+// Token: 0x020004A7 RID: 1191
 public class DeskCardsCache
 {
-	// Token: 0x060029C3 RID: 10691 RVA: 0x000042DD File Offset: 0x000024DD
+	// Token: 0x06002587 RID: 9607 RVA: 0x00004095 File Offset: 0x00002295
 	public void Init()
 	{
 	}
 
-	// Token: 0x1700030C RID: 780
-	// (get) Token: 0x060029C4 RID: 10692 RVA: 0x000206ED File Offset: 0x0001E8ED
+	// Token: 0x170002A5 RID: 677
+	// (get) Token: 0x06002588 RID: 9608 RVA: 0x001041FA File Offset: 0x001023FA
 	public static DeskCardsCache Instance
 	{
 		get
@@ -24,9 +24,9 @@ public class DeskCardsCache
 		}
 	}
 
-	// Token: 0x1700030D RID: 781
-	// (get) Token: 0x060029C6 RID: 10694 RVA: 0x0002070E File Offset: 0x0001E90E
-	// (set) Token: 0x060029C5 RID: 10693 RVA: 0x00020705 File Offset: 0x0001E905
+	// Token: 0x170002A6 RID: 678
+	// (get) Token: 0x0600258A RID: 9610 RVA: 0x0010421B File Offset: 0x0010241B
+	// (set) Token: 0x06002589 RID: 9609 RVA: 0x00104212 File Offset: 0x00102412
 	public CardsType Rule
 	{
 		get
@@ -39,7 +39,7 @@ public class DeskCardsCache
 		}
 	}
 
-	// Token: 0x1700030E RID: 782
+	// Token: 0x170002A7 RID: 679
 	public Card this[int index]
 	{
 		get
@@ -48,8 +48,8 @@ public class DeskCardsCache
 		}
 	}
 
-	// Token: 0x1700030F RID: 783
-	// (get) Token: 0x060029C8 RID: 10696 RVA: 0x00020724 File Offset: 0x0001E924
+	// Token: 0x170002A8 RID: 680
+	// (get) Token: 0x0600258C RID: 9612 RVA: 0x00104231 File Offset: 0x00102431
 	public int CardsCount
 	{
 		get
@@ -58,8 +58,8 @@ public class DeskCardsCache
 		}
 	}
 
-	// Token: 0x17000310 RID: 784
-	// (get) Token: 0x060029C9 RID: 10697 RVA: 0x00020731 File Offset: 0x0001E931
+	// Token: 0x170002A9 RID: 681
+	// (get) Token: 0x0600258D RID: 9613 RVA: 0x0010423E File Offset: 0x0010243E
 	public int MinWeight
 	{
 		get
@@ -68,8 +68,8 @@ public class DeskCardsCache
 		}
 	}
 
-	// Token: 0x17000311 RID: 785
-	// (get) Token: 0x060029CA RID: 10698 RVA: 0x00020744 File Offset: 0x0001E944
+	// Token: 0x170002AA RID: 682
+	// (get) Token: 0x0600258E RID: 9614 RVA: 0x00104251 File Offset: 0x00102451
 	public int TotalWeight
 	{
 		get
@@ -78,7 +78,7 @@ public class DeskCardsCache
 		}
 	}
 
-	// Token: 0x060029CB RID: 10699 RVA: 0x0002075C File Offset: 0x0001E95C
+	// Token: 0x0600258F RID: 9615 RVA: 0x00104269 File Offset: 0x00102469
 	private DeskCardsCache()
 	{
 		this.library = new List<Card>();
@@ -86,7 +86,7 @@ public class DeskCardsCache
 		this.rule = CardsType.None;
 	}
 
-	// Token: 0x060029CC RID: 10700 RVA: 0x00143E8C File Offset: 0x0014208C
+	// Token: 0x06002590 RID: 9616 RVA: 0x0010428C File Offset: 0x0010248C
 	public Card Deal()
 	{
 		Card card = this.library[this.library.Count - 1];
@@ -94,14 +94,14 @@ public class DeskCardsCache
 		return card;
 	}
 
-	// Token: 0x060029CD RID: 10701 RVA: 0x0002077D File Offset: 0x0001E97D
+	// Token: 0x06002591 RID: 9617 RVA: 0x001042C0 File Offset: 0x001024C0
 	public void AddCard(Card card)
 	{
 		card.Attribution = this.ctype;
 		this.library.Add(card);
 	}
 
-	// Token: 0x060029CE RID: 10702 RVA: 0x00143EC0 File Offset: 0x001420C0
+	// Token: 0x06002592 RID: 9618 RVA: 0x001042DC File Offset: 0x001024DC
 	public void Clear()
 	{
 		if (this.library.Count != 0)
@@ -122,21 +122,21 @@ public class DeskCardsCache
 		}
 	}
 
-	// Token: 0x060029CF RID: 10703 RVA: 0x00020797 File Offset: 0x0001E997
+	// Token: 0x06002593 RID: 9619 RVA: 0x00104371 File Offset: 0x00102571
 	public void Sort()
 	{
 		CardRules.SortCards(this.library, true);
 	}
 
-	// Token: 0x0400236C RID: 9068
+	// Token: 0x04001E46 RID: 7750
 	private static DeskCardsCache instance;
 
-	// Token: 0x0400236D RID: 9069
+	// Token: 0x04001E47 RID: 7751
 	private List<Card> library;
 
-	// Token: 0x0400236E RID: 9070
+	// Token: 0x04001E48 RID: 7752
 	private CharacterType ctype;
 
-	// Token: 0x0400236F RID: 9071
+	// Token: 0x04001E49 RID: 7753
 	private CardsType rule;
 }

@@ -3,30 +3,30 @@ using UnityEngine;
 
 namespace Fungus
 {
-	// Token: 0x02001405 RID: 5125
+	// Token: 0x02000F4F RID: 3919
 	[CommandInfo("YSNew/Get", "获取当前移除的BuffId", "获取当前移除的Buff", 0)]
 	[AddComponentMenu("")]
 	public class GetRemoveBuffId : Command
 	{
-		// Token: 0x06007C6A RID: 31850 RVA: 0x00054724 File Offset: 0x00052924
+		// Token: 0x06006E7F RID: 28287 RVA: 0x002A5018 File Offset: 0x002A3218
 		public override void OnEnter()
 		{
 			this.id.Value = RoundManager.instance.curRemoveBuffId;
 			this.Continue();
 		}
 
-		// Token: 0x06007C6B RID: 31851 RVA: 0x000113CF File Offset: 0x0000F5CF
+		// Token: 0x06006E80 RID: 28288 RVA: 0x0005E228 File Offset: 0x0005C428
 		public override Color GetButtonColor()
 		{
 			return new Color32(184, 210, 235, byte.MaxValue);
 		}
 
-		// Token: 0x06007C6C RID: 31852 RVA: 0x000042DD File Offset: 0x000024DD
+		// Token: 0x06006E81 RID: 28289 RVA: 0x00004095 File Offset: 0x00002295
 		public override void OnReset()
 		{
 		}
 
-		// Token: 0x04006A7C RID: 27260
+		// Token: 0x04005BAB RID: 23467
 		[Tooltip("buffId")]
 		[VariableProperty(new Type[]
 		{

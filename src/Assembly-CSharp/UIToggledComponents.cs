@@ -2,13 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-// Token: 0x020000AB RID: 171
+// Token: 0x02000078 RID: 120
 [ExecuteInEditMode]
 [RequireComponent(typeof(UIToggle))]
 [AddComponentMenu("NGUI/Interaction/Toggled Components")]
 public class UIToggledComponents : MonoBehaviour
 {
-	// Token: 0x0600066E RID: 1646 RVA: 0x00077A7C File Offset: 0x00075C7C
+	// Token: 0x06000602 RID: 1538 RVA: 0x00021FC8 File Offset: 0x000201C8
 	private void Awake()
 	{
 		if (this.target != null)
@@ -32,7 +32,7 @@ public class UIToggledComponents : MonoBehaviour
 		EventDelegate.Add(base.GetComponent<UIToggle>().onChange, new EventDelegate.Callback(this.Toggle));
 	}
 
-	// Token: 0x0600066F RID: 1647 RVA: 0x00077B04 File Offset: 0x00075D04
+	// Token: 0x06000603 RID: 1539 RVA: 0x00022050 File Offset: 0x00020250
 	public void Toggle()
 	{
 		if (base.enabled)
@@ -48,18 +48,18 @@ public class UIToggledComponents : MonoBehaviour
 		}
 	}
 
-	// Token: 0x040004DB RID: 1243
+	// Token: 0x0400040B RID: 1035
 	public List<MonoBehaviour> activate;
 
-	// Token: 0x040004DC RID: 1244
+	// Token: 0x0400040C RID: 1036
 	public List<MonoBehaviour> deactivate;
 
-	// Token: 0x040004DD RID: 1245
+	// Token: 0x0400040D RID: 1037
 	[HideInInspector]
 	[SerializeField]
 	private MonoBehaviour target;
 
-	// Token: 0x040004DE RID: 1246
+	// Token: 0x0400040E RID: 1038
 	[HideInInspector]
 	[SerializeField]
 	private bool inverse;

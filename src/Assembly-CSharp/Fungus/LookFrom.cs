@@ -5,13 +5,13 @@ using UnityEngine.Serialization;
 
 namespace Fungus
 {
-	// Token: 0x0200122F RID: 4655
+	// Token: 0x02000DEB RID: 3563
 	[CommandInfo("iTween", "Look From", "Instantly rotates a GameObject to look at the supplied Vector3 then returns it to it's starting rotation over time.", 0)]
 	[AddComponentMenu("")]
 	[ExecuteInEditMode]
 	public class LookFrom : iTweenCommand
 	{
-		// Token: 0x06007185 RID: 29061 RVA: 0x002A5E00 File Offset: 0x002A4000
+		// Token: 0x060064F9 RID: 25849 RVA: 0x00281640 File Offset: 0x0027F840
 		public override void DoTween()
 		{
 			Hashtable hashtable = new Hashtable();
@@ -45,13 +45,13 @@ namespace Fungus
 			iTween.LookFrom(this._targetObject.Value, hashtable);
 		}
 
-		// Token: 0x06007186 RID: 29062 RVA: 0x0004D322 File Offset: 0x0004B522
+		// Token: 0x060064FA RID: 25850 RVA: 0x00281785 File Offset: 0x0027F985
 		public override bool HasReference(Variable variable)
 		{
 			return this._fromTransform.transformRef == variable || this._fromPosition.vector3Ref == variable || base.HasReference(variable);
 		}
 
-		// Token: 0x06007187 RID: 29063 RVA: 0x002A5F48 File Offset: 0x002A4148
+		// Token: 0x060064FB RID: 25851 RVA: 0x002817B8 File Offset: 0x0027F9B8
 		protected override void OnEnable()
 		{
 			base.OnEnable();
@@ -67,27 +67,27 @@ namespace Fungus
 			}
 		}
 
-		// Token: 0x040063EC RID: 25580
+		// Token: 0x040056DB RID: 22235
 		[Tooltip("Target transform that the GameObject will look at")]
 		[SerializeField]
 		protected TransformData _fromTransform;
 
-		// Token: 0x040063ED RID: 25581
+		// Token: 0x040056DC RID: 22236
 		[Tooltip("Target world position that the GameObject will look at, if no From Transform is set")]
 		[SerializeField]
 		protected Vector3Data _fromPosition;
 
-		// Token: 0x040063EE RID: 25582
+		// Token: 0x040056DD RID: 22237
 		[Tooltip("Restricts rotation to the supplied axis only")]
 		[SerializeField]
 		protected iTweenAxis axis;
 
-		// Token: 0x040063EF RID: 25583
+		// Token: 0x040056DE RID: 22238
 		[HideInInspector]
 		[FormerlySerializedAs("fromTransform")]
 		public Transform fromTransformOLD;
 
-		// Token: 0x040063F0 RID: 25584
+		// Token: 0x040056DF RID: 22239
 		[HideInInspector]
 		[FormerlySerializedAs("fromPosition")]
 		public Vector3 fromPositionOLD;

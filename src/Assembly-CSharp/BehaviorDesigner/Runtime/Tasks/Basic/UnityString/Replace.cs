@@ -2,19 +2,19 @@
 
 namespace BehaviorDesigner.Runtime.Tasks.Basic.UnityString
 {
-	// Token: 0x02001503 RID: 5379
+	// Token: 0x02001049 RID: 4169
 	[TaskCategory("Basic/String")]
 	[TaskDescription("Replaces a string with the new string")]
 	public class Replace : Action
 	{
-		// Token: 0x0600802E RID: 32814 RVA: 0x000572A9 File Offset: 0x000554A9
+		// Token: 0x06007234 RID: 29236 RVA: 0x002AD728 File Offset: 0x002AB928
 		public override TaskStatus OnUpdate()
 		{
 			this.storeResult.Value = this.targetString.Value.Replace(this.oldString.Value, this.newString.Value);
 			return 2;
 		}
 
-		// Token: 0x0600802F RID: 32815 RVA: 0x002CAE10 File Offset: 0x002C9010
+		// Token: 0x06007235 RID: 29237 RVA: 0x002AD75C File Offset: 0x002AB95C
 		public override void OnReset()
 		{
 			this.targetString = "";
@@ -23,19 +23,19 @@ namespace BehaviorDesigner.Runtime.Tasks.Basic.UnityString
 			this.storeResult = "";
 		}
 
-		// Token: 0x04006D08 RID: 27912
+		// Token: 0x04005E08 RID: 24072
 		[Tooltip("The target string")]
 		public SharedString targetString;
 
-		// Token: 0x04006D09 RID: 27913
+		// Token: 0x04005E09 RID: 24073
 		[Tooltip("The old replace")]
 		public SharedString oldString;
 
-		// Token: 0x04006D0A RID: 27914
+		// Token: 0x04005E0A RID: 24074
 		[Tooltip("The new string")]
 		public SharedString newString;
 
-		// Token: 0x04006D0B RID: 27915
+		// Token: 0x04005E0B RID: 24075
 		[Tooltip("The stored result")]
 		[RequiredField]
 		public SharedString storeResult;

@@ -4,18 +4,18 @@ using UnityEngine.UI;
 
 namespace UltimateSurvival.StandardAssets
 {
-	// Token: 0x02000920 RID: 2336
+	// Token: 0x0200062E RID: 1582
 	[RequireComponent(typeof(Text))]
 	public class FPSDisplayer : MonoBehaviour
 	{
-		// Token: 0x06003B69 RID: 15209 RVA: 0x0002AF75 File Offset: 0x00029175
+		// Token: 0x0600322F RID: 12847 RVA: 0x00164A0F File Offset: 0x00162C0F
 		private void Start()
 		{
 			this.m_FpsNextPeriod = Time.realtimeSinceStartup + 0.5f;
 			this.m_Text = base.GetComponent<Text>();
 		}
 
-		// Token: 0x06003B6A RID: 15210 RVA: 0x001AE284 File Offset: 0x001AC484
+		// Token: 0x06003230 RID: 12848 RVA: 0x00164A30 File Offset: 0x00162C30
 		private void Update()
 		{
 			this.m_FpsAccumulator++;
@@ -28,22 +28,22 @@ namespace UltimateSurvival.StandardAssets
 			}
 		}
 
-		// Token: 0x04003627 RID: 13863
+		// Token: 0x04002CD6 RID: 11478
 		private const float fpsMeasurePeriod = 0.5f;
 
-		// Token: 0x04003628 RID: 13864
+		// Token: 0x04002CD7 RID: 11479
 		private int m_FpsAccumulator;
 
-		// Token: 0x04003629 RID: 13865
+		// Token: 0x04002CD8 RID: 11480
 		private float m_FpsNextPeriod;
 
-		// Token: 0x0400362A RID: 13866
+		// Token: 0x04002CD9 RID: 11481
 		private int m_CurrentFps;
 
-		// Token: 0x0400362B RID: 13867
+		// Token: 0x04002CDA RID: 11482
 		private const string display = "{0} FPS";
 
-		// Token: 0x0400362C RID: 13868
+		// Token: 0x04002CDB RID: 11483
 		private Text m_Text;
 	}
 }

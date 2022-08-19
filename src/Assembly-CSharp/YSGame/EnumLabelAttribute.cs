@@ -3,10 +3,10 @@ using UnityEngine;
 
 namespace YSGame
 {
-	// Token: 0x02000DA7 RID: 3495
+	// Token: 0x02000A78 RID: 2680
 	public class EnumLabelAttribute : HeaderAttribute
 	{
-		// Token: 0x0600546B RID: 21611 RVA: 0x0003C711 File Offset: 0x0003A911
+		// Token: 0x06004B57 RID: 19287 RVA: 0x00200018 File Offset: 0x001FE218
 		public EnumLabelAttribute(string header) : base(header)
 		{
 		}

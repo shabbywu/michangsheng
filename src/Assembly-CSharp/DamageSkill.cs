@@ -1,10 +1,10 @@
 ﻿using System;
 using UnityEngine;
 
-// Token: 0x0200016A RID: 362
+// Token: 0x020000F2 RID: 242
 public class DamageSkill : MonoBehaviour
 {
-	// Token: 0x06000C79 RID: 3193 RVA: 0x00098138 File Offset: 0x00096338
+	// Token: 0x06000B8A RID: 2954 RVA: 0x000466E4 File Offset: 0x000448E4
 	private void Start()
 	{
 		foreach (Collider collider in Physics.OverlapSphere(base.transform.position, this.Radius))
@@ -23,15 +23,15 @@ public class DamageSkill : MonoBehaviour
 		}
 	}
 
-	// Token: 0x0400099D RID: 2461
+	// Token: 0x040007BF RID: 1983
 	public int Force;
 
-	// Token: 0x0400099E RID: 2462
+	// Token: 0x040007C0 RID: 1984
 	public string TagDamage;
 
-	// Token: 0x0400099F RID: 2463
+	// Token: 0x040007C1 RID: 1985
 	public int Damage;
 
-	// Token: 0x040009A0 RID: 2464
+	// Token: 0x040007C2 RID: 1986
 	public float Radius;
 }

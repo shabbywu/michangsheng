@@ -3,10 +3,10 @@ using UnityEngine;
 
 namespace UltimateSurvival.AI.Actions
 {
-	// Token: 0x02000988 RID: 2440
+	// Token: 0x0200067B RID: 1659
 	public class Flee : Action
 	{
-		// Token: 0x06003E5D RID: 15965 RVA: 0x001B6EB0 File Offset: 0x001B50B0
+		// Token: 0x060034AD RID: 13485 RVA: 0x0016E928 File Offset: 0x0016CB28
 		public override void OnStart(AIBrain brain)
 		{
 			this.m_Priority = 12;
@@ -16,7 +16,7 @@ namespace UltimateSurvival.AI.Actions
 			base.Effects.Add("Player in sight", false);
 		}
 
-		// Token: 0x06003E5E RID: 15966 RVA: 0x001B6F00 File Offset: 0x001B5100
+		// Token: 0x060034AE RID: 13486 RVA: 0x0016E978 File Offset: 0x0016CB78
 		public override bool CanActivate(AIBrain brain)
 		{
 			if (brain.Settings.Detection.HasTarget())
@@ -28,12 +28,12 @@ namespace UltimateSurvival.AI.Actions
 			return false;
 		}
 
-		// Token: 0x06003E5F RID: 15967 RVA: 0x000042DD File Offset: 0x000024DD
+		// Token: 0x060034AF RID: 13487 RVA: 0x00004095 File Offset: 0x00002295
 		public override void Activate(AIBrain brain)
 		{
 		}
 
-		// Token: 0x06003E60 RID: 15968 RVA: 0x001B6F60 File Offset: 0x001B5160
+		// Token: 0x060034B0 RID: 13488 RVA: 0x0016E9D8 File Offset: 0x0016CBD8
 		public override void OnUpdate(AIBrain brain)
 		{
 			Vector3 position = brain.transform.position;
@@ -48,42 +48,42 @@ namespace UltimateSurvival.AI.Actions
 			}
 		}
 
-		// Token: 0x06003E61 RID: 15969 RVA: 0x0002CE76 File Offset: 0x0002B076
+		// Token: 0x060034B1 RID: 13489 RVA: 0x0016EA88 File Offset: 0x0016CC88
 		public override void OnDeactivation(AIBrain brain)
 		{
 			brain.Settings.Animation.ToggleBool("Run", false);
 		}
 
-		// Token: 0x06003E62 RID: 15970 RVA: 0x0002CD65 File Offset: 0x0002AF65
+		// Token: 0x060034B2 RID: 13490 RVA: 0x0016E2C7 File Offset: 0x0016C4C7
 		public override bool StillValid(AIBrain brain)
 		{
 			return brain.Settings.Detection.HasTarget();
 		}
 
-		// Token: 0x06003E63 RID: 15971 RVA: 0x0002CE8E File Offset: 0x0002B08E
+		// Token: 0x060034B3 RID: 13491 RVA: 0x0016EAA0 File Offset: 0x0016CCA0
 		public override bool IsDone(AIBrain brain)
 		{
 			return !brain.Settings.Detection.HasTarget();
 		}
 
-		// Token: 0x0400384E RID: 14414
+		// Token: 0x04002EA8 RID: 11944
 		[SerializeField]
 		[Clamp(0f, 100f)]
 		private float m_MinFleeDistance = 3f;
 
-		// Token: 0x0400384F RID: 14415
+		// Token: 0x04002EA9 RID: 11945
 		[SerializeField]
 		private SoundPlayer m_ScreamAudio;
 
-		// Token: 0x04003850 RID: 14416
+		// Token: 0x04002EAA RID: 11946
 		[SerializeField]
 		[Clamp(0f, 15f)]
 		private float m_ScreamInterval = 3f;
 
-		// Token: 0x04003851 RID: 14417
+		// Token: 0x04002EAB RID: 11947
 		private Vector3 m_FleePosition;
 
-		// Token: 0x04003852 RID: 14418
+		// Token: 0x04002EAC RID: 11948
 		private float m_LastTimeScreamed;
 	}
 }

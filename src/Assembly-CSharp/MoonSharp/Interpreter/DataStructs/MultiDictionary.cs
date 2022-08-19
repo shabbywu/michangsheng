@@ -3,22 +3,22 @@ using System.Collections.Generic;
 
 namespace MoonSharp.Interpreter.DataStructs
 {
-	// Token: 0x02001186 RID: 4486
+	// Token: 0x02000D70 RID: 3440
 	internal class MultiDictionary<K, V>
 	{
-		// Token: 0x06006D57 RID: 27991 RVA: 0x0004A81B File Offset: 0x00048A1B
+		// Token: 0x06006163 RID: 24931 RVA: 0x00273593 File Offset: 0x00271793
 		public MultiDictionary()
 		{
 			this.m_Map = new Dictionary<K, List<V>>();
 		}
 
-		// Token: 0x06006D58 RID: 27992 RVA: 0x0004A83A File Offset: 0x00048A3A
+		// Token: 0x06006164 RID: 24932 RVA: 0x002735B2 File Offset: 0x002717B2
 		public MultiDictionary(IEqualityComparer<K> eqComparer)
 		{
 			this.m_Map = new Dictionary<K, List<V>>(eqComparer);
 		}
 
-		// Token: 0x06006D59 RID: 27993 RVA: 0x00299FA0 File Offset: 0x002981A0
+		// Token: 0x06006165 RID: 24933 RVA: 0x002735D4 File Offset: 0x002717D4
 		public bool Add(K key, V value)
 		{
 			List<V> list;
@@ -33,7 +33,7 @@ namespace MoonSharp.Interpreter.DataStructs
 			return true;
 		}
 
-		// Token: 0x06006D5A RID: 27994 RVA: 0x00299FE4 File Offset: 0x002981E4
+		// Token: 0x06006166 RID: 24934 RVA: 0x00273618 File Offset: 0x00271818
 		public IEnumerable<V> Find(K key)
 		{
 			List<V> result;
@@ -44,14 +44,14 @@ namespace MoonSharp.Interpreter.DataStructs
 			return this.m_DefaultRet;
 		}
 
-		// Token: 0x06006D5B RID: 27995 RVA: 0x0004A85A File Offset: 0x00048A5A
+		// Token: 0x06006167 RID: 24935 RVA: 0x0027363D File Offset: 0x0027183D
 		public bool ContainsKey(K key)
 		{
 			return this.m_Map.ContainsKey(key);
 		}
 
-		// Token: 0x17000A17 RID: 2583
-		// (get) Token: 0x06006D5C RID: 27996 RVA: 0x0004A868 File Offset: 0x00048A68
+		// Token: 0x170007BA RID: 1978
+		// (get) Token: 0x06006168 RID: 24936 RVA: 0x0027364B File Offset: 0x0027184B
 		public IEnumerable<K> Keys
 		{
 			get
@@ -60,19 +60,19 @@ namespace MoonSharp.Interpreter.DataStructs
 			}
 		}
 
-		// Token: 0x06006D5D RID: 27997 RVA: 0x0004A875 File Offset: 0x00048A75
+		// Token: 0x06006169 RID: 24937 RVA: 0x00273658 File Offset: 0x00271858
 		public void Clear()
 		{
 			this.m_Map.Clear();
 		}
 
-		// Token: 0x06006D5E RID: 27998 RVA: 0x0004A882 File Offset: 0x00048A82
+		// Token: 0x0600616A RID: 24938 RVA: 0x00273665 File Offset: 0x00271865
 		public void Remove(K key)
 		{
 			this.m_Map.Remove(key);
 		}
 
-		// Token: 0x06006D5F RID: 27999 RVA: 0x0029A00C File Offset: 0x0029820C
+		// Token: 0x0600616B RID: 24939 RVA: 0x00273674 File Offset: 0x00271874
 		public bool RemoveValue(K key, V value)
 		{
 			List<V> list;
@@ -88,10 +88,10 @@ namespace MoonSharp.Interpreter.DataStructs
 			return false;
 		}
 
-		// Token: 0x04006222 RID: 25122
+		// Token: 0x04005587 RID: 21895
 		private Dictionary<K, List<V>> m_Map;
 
-		// Token: 0x04006223 RID: 25123
+		// Token: 0x04005588 RID: 21896
 		private V[] m_DefaultRet = new V[0];
 	}
 }

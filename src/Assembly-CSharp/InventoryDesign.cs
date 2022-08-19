@@ -2,10 +2,10 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-// Token: 0x0200020C RID: 524
+// Token: 0x02000139 RID: 313
 public class InventoryDesign : MonoBehaviour
 {
-	// Token: 0x0600109D RID: 4253 RVA: 0x000A7144 File Offset: 0x000A5344
+	// Token: 0x06000E87 RID: 3719 RVA: 0x00056DCC File Offset: 0x00054FCC
 	public void setVariables()
 	{
 		this.inventoryTitlePosX = (int)base.transform.GetChild(0).GetComponent<RectTransform>().localPosition.x;
@@ -29,14 +29,14 @@ public class InventoryDesign : MonoBehaviour
 		this.slotDesignTemp.fillCenter = this.slotDesign.fillCenter;
 	}
 
-	// Token: 0x0600109E RID: 4254 RVA: 0x000A72D8 File Offset: 0x000A54D8
+	// Token: 0x06000E88 RID: 3720 RVA: 0x00056F60 File Offset: 0x00055160
 	public void updateEverything()
 	{
 		base.transform.GetChild(0).GetComponent<RectTransform>().localPosition = new Vector3((float)this.inventoryTitlePosX, (float)this.inventoryTitlePosY, 0f);
 		base.transform.GetChild(0).GetComponent<Text>().text = this.inventoryTitle;
 	}
 
-	// Token: 0x0600109F RID: 4255 RVA: 0x000A7330 File Offset: 0x000A5530
+	// Token: 0x06000E89 RID: 3721 RVA: 0x00056FB8 File Offset: 0x000551B8
 	public void changeCrossSettings()
 	{
 		GameObject gameObject = base.transform.GetChild(2).gameObject;
@@ -49,7 +49,7 @@ public class InventoryDesign : MonoBehaviour
 		gameObject.SetActive(this.showInventoryCross);
 	}
 
-	// Token: 0x060010A0 RID: 4256 RVA: 0x000A7394 File Offset: 0x000A5594
+	// Token: 0x06000E8A RID: 3722 RVA: 0x0005701C File Offset: 0x0005521C
 	public void updateAllSlots()
 	{
 		for (int i = 0; i < base.transform.GetChild(1).childCount; i++)
@@ -63,59 +63,59 @@ public class InventoryDesign : MonoBehaviour
 		}
 	}
 
-	// Token: 0x04000D15 RID: 3349
+	// Token: 0x04000A7D RID: 2685
 	[SerializeField]
 	public Image slotDesignTemp;
 
-	// Token: 0x04000D16 RID: 3350
+	// Token: 0x04000A7E RID: 2686
 	[SerializeField]
 	public Image slotDesign;
 
-	// Token: 0x04000D17 RID: 3351
+	// Token: 0x04000A7F RID: 2687
 	[SerializeField]
 	public Image inventoryDesign;
 
-	// Token: 0x04000D18 RID: 3352
+	// Token: 0x04000A80 RID: 2688
 	[SerializeField]
 	public bool showInventoryCross;
 
-	// Token: 0x04000D19 RID: 3353
+	// Token: 0x04000A81 RID: 2689
 	[SerializeField]
 	public Image inventoryCrossImage;
 
-	// Token: 0x04000D1A RID: 3354
+	// Token: 0x04000A82 RID: 2690
 	[SerializeField]
 	public RectTransform inventoryCrossRectTransform;
 
-	// Token: 0x04000D1B RID: 3355
+	// Token: 0x04000A83 RID: 2691
 	[SerializeField]
 	public int inventoryCrossPosX;
 
-	// Token: 0x04000D1C RID: 3356
+	// Token: 0x04000A84 RID: 2692
 	[SerializeField]
 	public int inventoryCrossPosY;
 
-	// Token: 0x04000D1D RID: 3357
+	// Token: 0x04000A85 RID: 2693
 	[SerializeField]
 	public string inventoryTitle;
 
-	// Token: 0x04000D1E RID: 3358
+	// Token: 0x04000A86 RID: 2694
 	[SerializeField]
 	public Text inventoryTitleText;
 
-	// Token: 0x04000D1F RID: 3359
+	// Token: 0x04000A87 RID: 2695
 	[SerializeField]
 	public int inventoryTitlePosX;
 
-	// Token: 0x04000D20 RID: 3360
+	// Token: 0x04000A88 RID: 2696
 	[SerializeField]
 	public int inventoryTitlePosY;
 
-	// Token: 0x04000D21 RID: 3361
+	// Token: 0x04000A89 RID: 2697
 	[SerializeField]
 	public int panelSizeX;
 
-	// Token: 0x04000D22 RID: 3362
+	// Token: 0x04000A8A RID: 2698
 	[SerializeField]
 	public int panelSizeY;
 }

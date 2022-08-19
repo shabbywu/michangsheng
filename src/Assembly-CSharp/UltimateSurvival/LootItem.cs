@@ -3,12 +3,12 @@ using UnityEngine;
 
 namespace UltimateSurvival
 {
-	// Token: 0x020008E1 RID: 2273
+	// Token: 0x02000603 RID: 1539
 	[Serializable]
 	public class LootItem
 	{
-		// Token: 0x17000635 RID: 1589
-		// (get) Token: 0x06003A64 RID: 14948 RVA: 0x0002A74C File Offset: 0x0002894C
+		// Token: 0x17000446 RID: 1094
+		// (get) Token: 0x0600315B RID: 12635 RVA: 0x0015EBDA File Offset: 0x0015CDDA
 		public string ItemName
 		{
 			get
@@ -17,8 +17,8 @@ namespace UltimateSurvival
 			}
 		}
 
-		// Token: 0x17000636 RID: 1590
-		// (get) Token: 0x06003A65 RID: 14949 RVA: 0x0002A754 File Offset: 0x00028954
+		// Token: 0x17000447 RID: 1095
+		// (get) Token: 0x0600315C RID: 12636 RVA: 0x0015EBE2 File Offset: 0x0015CDE2
 		public float SpawnChance
 		{
 			get
@@ -27,7 +27,7 @@ namespace UltimateSurvival
 			}
 		}
 
-		// Token: 0x06003A66 RID: 14950 RVA: 0x001A8024 File Offset: 0x001A6224
+		// Token: 0x0600315D RID: 12637 RVA: 0x0015EBEC File Offset: 0x0015CDEC
 		public void AddToInventory(out int added, float amountFactor)
 		{
 			added = 0;
@@ -38,7 +38,7 @@ namespace UltimateSurvival
 			}
 		}
 
-		// Token: 0x06003A67 RID: 14951 RVA: 0x001A806C File Offset: 0x001A626C
+		// Token: 0x0600315E RID: 12638 RVA: 0x0015EC34 File Offset: 0x0015CE34
 		public GameObject CreatePickup(Vector3 position, Quaternion rotation)
 		{
 			ItemData itemData;
@@ -55,20 +55,20 @@ namespace UltimateSurvival
 			return null;
 		}
 
-		// Token: 0x04003477 RID: 13431
+		// Token: 0x04002B79 RID: 11129
 		[SerializeField]
 		private string m_ItemName;
 
-		// Token: 0x04003478 RID: 13432
+		// Token: 0x04002B7A RID: 11130
 		[SerializeField]
 		[Range(0f, 100f)]
 		private float m_SpawnChance;
 
-		// Token: 0x04003479 RID: 13433
+		// Token: 0x04002B7B RID: 11131
 		[SerializeField]
 		private int m_MinAmount;
 
-		// Token: 0x0400347A RID: 13434
+		// Token: 0x04002B7C RID: 11132
 		[SerializeField]
 		private int m_MaxAmount;
 	}

@@ -3,12 +3,12 @@ using UnityEngine;
 
 namespace BehaviorDesigner.Runtime.Tasks.Basic.UnityAnimator
 {
-	// Token: 0x02001664 RID: 5732
+	// Token: 0x020011A2 RID: 4514
 	[TaskCategory("Basic/Animator")]
 	[TaskDescription("Sets the animator in playback mode.")]
 	public class StartPlayback : Action
 	{
-		// Token: 0x0600852C RID: 34092 RVA: 0x002D0900 File Offset: 0x002CEB00
+		// Token: 0x06007720 RID: 30496 RVA: 0x002B83F8 File Offset: 0x002B65F8
 		public override void OnStart()
 		{
 			GameObject defaultGameObject = base.GetDefaultGameObject(this.targetGameObject.Value);
@@ -19,7 +19,7 @@ namespace BehaviorDesigner.Runtime.Tasks.Basic.UnityAnimator
 			}
 		}
 
-		// Token: 0x0600852D RID: 34093 RVA: 0x0005C551 File Offset: 0x0005A751
+		// Token: 0x06007721 RID: 30497 RVA: 0x002B8438 File Offset: 0x002B6638
 		public override TaskStatus OnUpdate()
 		{
 			if (this.animator == null)
@@ -31,20 +31,20 @@ namespace BehaviorDesigner.Runtime.Tasks.Basic.UnityAnimator
 			return 2;
 		}
 
-		// Token: 0x0600852E RID: 34094 RVA: 0x0005C579 File Offset: 0x0005A779
+		// Token: 0x06007722 RID: 30498 RVA: 0x002B8460 File Offset: 0x002B6660
 		public override void OnReset()
 		{
 			this.targetGameObject = null;
 		}
 
-		// Token: 0x040071E8 RID: 29160
+		// Token: 0x040062B9 RID: 25273
 		[Tooltip("The GameObject that the task operates on. If null the task GameObject is used.")]
 		public SharedGameObject targetGameObject;
 
-		// Token: 0x040071E9 RID: 29161
+		// Token: 0x040062BA RID: 25274
 		private Animator animator;
 
-		// Token: 0x040071EA RID: 29162
+		// Token: 0x040062BB RID: 25275
 		private GameObject prevGameObject;
 	}
 }

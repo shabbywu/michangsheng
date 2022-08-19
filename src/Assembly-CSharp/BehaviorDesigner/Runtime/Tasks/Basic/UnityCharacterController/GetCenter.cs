@@ -3,12 +3,12 @@ using UnityEngine;
 
 namespace BehaviorDesigner.Runtime.Tasks.Basic.UnityCharacterController
 {
-	// Token: 0x02001604 RID: 5636
+	// Token: 0x02001145 RID: 4421
 	[TaskCategory("Basic/CharacterController")]
 	[TaskDescription("Stores the center of the CharacterController. Returns Success.")]
 	public class GetCenter : Action
 	{
-		// Token: 0x060083A4 RID: 33700 RVA: 0x002CEC8C File Offset: 0x002CCE8C
+		// Token: 0x060075AA RID: 30122 RVA: 0x002B4D9C File Offset: 0x002B2F9C
 		public override void OnStart()
 		{
 			GameObject defaultGameObject = base.GetDefaultGameObject(this.targetGameObject.Value);
@@ -19,7 +19,7 @@ namespace BehaviorDesigner.Runtime.Tasks.Basic.UnityCharacterController
 			}
 		}
 
-		// Token: 0x060083A5 RID: 33701 RVA: 0x0005AA4D File Offset: 0x00058C4D
+		// Token: 0x060075AB RID: 30123 RVA: 0x002B4DDC File Offset: 0x002B2FDC
 		public override TaskStatus OnUpdate()
 		{
 			if (this.characterController == null)
@@ -31,26 +31,26 @@ namespace BehaviorDesigner.Runtime.Tasks.Basic.UnityCharacterController
 			return 2;
 		}
 
-		// Token: 0x060083A6 RID: 33702 RVA: 0x0005AA80 File Offset: 0x00058C80
+		// Token: 0x060075AC RID: 30124 RVA: 0x002B4E0F File Offset: 0x002B300F
 		public override void OnReset()
 		{
 			this.targetGameObject = null;
 			this.storeValue = Vector3.zero;
 		}
 
-		// Token: 0x04007055 RID: 28757
+		// Token: 0x04006132 RID: 24882
 		[Tooltip("The GameObject that the task operates on. If null the task GameObject is used.")]
 		public SharedGameObject targetGameObject;
 
-		// Token: 0x04007056 RID: 28758
+		// Token: 0x04006133 RID: 24883
 		[Tooltip("The center of the CharacterController")]
 		[RequiredField]
 		public SharedVector3 storeValue;
 
-		// Token: 0x04007057 RID: 28759
+		// Token: 0x04006134 RID: 24884
 		private CharacterController characterController;
 
-		// Token: 0x04007058 RID: 28760
+		// Token: 0x04006135 RID: 24885
 		private GameObject prevGameObject;
 	}
 }

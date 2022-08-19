@@ -1,10 +1,10 @@
 ﻿using System;
 
-// Token: 0x02000318 RID: 792
+// Token: 0x02000203 RID: 515
 public enum DFInteractiveMode
 {
-	// Token: 0x040012C3 RID: 4803
+	// Token: 0x04000F7D RID: 3965
 	Function,
-	// Token: 0x040012C4 RID: 4804
+	// Token: 0x04000F7E RID: 3966
 	Decorate
 }

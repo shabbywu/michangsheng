@@ -4,10 +4,10 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
 
-// Token: 0x0200047C RID: 1148
+// Token: 0x02000319 RID: 793
 public class PlayerController : MonoBehaviour
 {
-	// Token: 0x06001EB6 RID: 7862 RVA: 0x001092F4 File Offset: 0x001074F4
+	// Token: 0x06001B83 RID: 7043 RVA: 0x000C3F70 File Offset: 0x000C2170
 	public void Init()
 	{
 		this.playerSetRandomFace.SetNPCFace(1);
@@ -20,19 +20,19 @@ public class PlayerController : MonoBehaviour
 		this.BtnChuPai.mouseUp.AddListener(new UnityAction(this.PlayerUseCard));
 	}
 
-	// Token: 0x06001EB7 RID: 7863 RVA: 0x00019763 File Offset: 0x00017963
+	// Token: 0x06001B84 RID: 7044 RVA: 0x000C4054 File Offset: 0x000C2254
 	public void ShowChuPaiBtn()
 	{
 		this.BtnChuPai.gameObject.SetActive(true);
 	}
 
-	// Token: 0x06001EB8 RID: 7864 RVA: 0x00019776 File Offset: 0x00017976
+	// Token: 0x06001B85 RID: 7045 RVA: 0x000C4067 File Offset: 0x000C2267
 	public void HideChuPaiBtn()
 	{
 		this.BtnChuPai.gameObject.SetActive(false);
 	}
 
-	// Token: 0x06001EB9 RID: 7865 RVA: 0x001093D8 File Offset: 0x001075D8
+	// Token: 0x06001B86 RID: 7046 RVA: 0x000C407C File Offset: 0x000C227C
 	public void PlayerUseCard()
 	{
 		int nullSlot = LunDaoManager.inst.lunTiMag.GetNullSlot();
@@ -55,13 +55,13 @@ public class PlayerController : MonoBehaviour
 		LunDaoManager.inst.ChuPaiCallBack();
 	}
 
-	// Token: 0x06001EBA RID: 7866 RVA: 0x00019789 File Offset: 0x00017989
+	// Token: 0x06001B87 RID: 7047 RVA: 0x000C4192 File Offset: 0x000C2392
 	public void PlayerSayWord(string content)
 	{
 		this.sayWord.Say(content);
 	}
 
-	// Token: 0x06001EBB RID: 7867 RVA: 0x00019797 File Offset: 0x00017997
+	// Token: 0x06001B88 RID: 7048 RVA: 0x000C41A0 File Offset: 0x000C23A0
 	public void PlayerStartRound()
 	{
 		this.isSayWord = true;
@@ -70,7 +70,7 @@ public class PlayerController : MonoBehaviour
 		LunDaoManager.inst.lunDaoCardMag.PlayerDrawCard(this.cards);
 	}
 
-	// Token: 0x06001EBC RID: 7868 RVA: 0x001094F0 File Offset: 0x001076F0
+	// Token: 0x06001B89 RID: 7049 RVA: 0x000C41E0 File Offset: 0x000C23E0
 	public void PlayerEndRound()
 	{
 		this.BtnEnd.gameObject.SetActive(false);
@@ -93,60 +93,60 @@ public class PlayerController : MonoBehaviour
 		LunDaoManager.inst.EndRoundCallBack();
 	}
 
-	// Token: 0x06001EBD RID: 7869 RVA: 0x000197D5 File Offset: 0x000179D5
+	// Token: 0x06001B8A RID: 7050 RVA: 0x000C42F0 File Offset: 0x000C24F0
 	public void ShowStateTips()
 	{
 		this.playerStateTips.gameObject.SetActive(true);
 	}
 
-	// Token: 0x06001EBE RID: 7870 RVA: 0x000197E8 File Offset: 0x000179E8
+	// Token: 0x06001B8B RID: 7051 RVA: 0x000C4303 File Offset: 0x000C2503
 	public void HideStateTips()
 	{
 		this.playerStateTips.gameObject.SetActive(false);
 	}
 
-	// Token: 0x04001A1C RID: 6684
+	// Token: 0x04001601 RID: 5633
 	[SerializeField]
 	private PlayerSetRandomFace playerSetRandomFace;
 
-	// Token: 0x04001A1D RID: 6685
+	// Token: 0x04001602 RID: 5634
 	[SerializeField]
 	private BtnCell BtnChuPai;
 
-	// Token: 0x04001A1E RID: 6686
+	// Token: 0x04001603 RID: 5635
 	[SerializeField]
 	private BtnCell BtnEnd;
 
-	// Token: 0x04001A1F RID: 6687
+	// Token: 0x04001604 RID: 5636
 	[SerializeField]
 	private Text playerName;
 
-	// Token: 0x04001A20 RID: 6688
+	// Token: 0x04001605 RID: 5637
 	public LunDaoSayWord sayWord;
 
-	// Token: 0x04001A21 RID: 6689
+	// Token: 0x04001606 RID: 5638
 	[SerializeField]
 	private Text playerStateName;
 
-	// Token: 0x04001A22 RID: 6690
+	// Token: 0x04001607 RID: 5639
 	public int playerStateId;
 
-	// Token: 0x04001A23 RID: 6691
+	// Token: 0x04001608 RID: 5640
 	public List<LunDaoPlayerCard> cards;
 
-	// Token: 0x04001A24 RID: 6692
+	// Token: 0x04001609 RID: 5641
 	public LunDaoHuiHe lunDaoHuiHe;
 
-	// Token: 0x04001A25 RID: 6693
+	// Token: 0x0400160A RID: 5642
 	public LunDaoPlayerCard selectCard;
 
-	// Token: 0x04001A26 RID: 6694
+	// Token: 0x0400160B RID: 5643
 	public GameObject tips;
 
-	// Token: 0x04001A27 RID: 6695
+	// Token: 0x0400160C RID: 5644
 	[SerializeField]
 	private GameObject playerStateTips;
 
-	// Token: 0x04001A28 RID: 6696
+	// Token: 0x0400160D RID: 5645
 	private bool isSayWord;
 }

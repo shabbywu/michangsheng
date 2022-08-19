@@ -6,29 +6,29 @@ using System.Text.RegularExpressions;
 
 namespace KBEngine
 {
-	// Token: 0x02000FD5 RID: 4053
+	// Token: 0x02000C50 RID: 3152
 	public abstract class NetworkInterfaceBase
 	{
-		// Token: 0x06005FBC RID: 24508 RVA: 0x00042A5B File Offset: 0x00040C5B
+		// Token: 0x0600557E RID: 21886 RVA: 0x00238D92 File Offset: 0x00236F92
 		public NetworkInterfaceBase()
 		{
 			this.reset();
 		}
 
-		// Token: 0x06005FBD RID: 24509 RVA: 0x00265EC8 File Offset: 0x002640C8
+		// Token: 0x0600557F RID: 21887 RVA: 0x00238DA0 File Offset: 0x00236FA0
 		~NetworkInterfaceBase()
 		{
 			Dbg.DEBUG_MSG("NetworkInterfaceBase::~NetworkInterfaceBase(), destructed!!!");
 			this.reset();
 		}
 
-		// Token: 0x06005FBE RID: 24510 RVA: 0x00042A69 File Offset: 0x00040C69
+		// Token: 0x06005580 RID: 21888 RVA: 0x00238DD8 File Offset: 0x00236FD8
 		public virtual Socket sock()
 		{
 			return this._socket;
 		}
 
-		// Token: 0x06005FBF RID: 24511 RVA: 0x00265F00 File Offset: 0x00264100
+		// Token: 0x06005581 RID: 21889 RVA: 0x00238DE0 File Offset: 0x00236FE0
 		public virtual void reset()
 		{
 			this._packetReceiver = null;
@@ -52,7 +52,7 @@ namespace KBEngine
 			}
 		}
 
-		// Token: 0x06005FC0 RID: 24512 RVA: 0x00042A71 File Offset: 0x00040C71
+		// Token: 0x06005582 RID: 21890 RVA: 0x00238E68 File Offset: 0x00237068
 		public virtual void close()
 		{
 			if (this._socket != null)
@@ -65,37 +65,37 @@ namespace KBEngine
 			this.connected = false;
 		}
 
-		// Token: 0x06005FC1 RID: 24513
+		// Token: 0x06005583 RID: 21891
 		protected abstract PacketReceiverBase createPacketReceiver();
 
-		// Token: 0x06005FC2 RID: 24514
+		// Token: 0x06005584 RID: 21892
 		protected abstract PacketSenderBase createPacketSender();
 
-		// Token: 0x06005FC3 RID: 24515
+		// Token: 0x06005585 RID: 21893
 		protected abstract Socket createSocket();
 
-		// Token: 0x06005FC4 RID: 24516
+		// Token: 0x06005586 RID: 21894
 		protected abstract void onAsyncConnect(NetworkInterfaceBase.ConnectState state);
 
-		// Token: 0x06005FC5 RID: 24517 RVA: 0x00042AAB File Offset: 0x00040CAB
+		// Token: 0x06005587 RID: 21895 RVA: 0x00238EA2 File Offset: 0x002370A2
 		public virtual PacketReceiverBase packetReceiver()
 		{
 			return this._packetReceiver;
 		}
 
-		// Token: 0x06005FC6 RID: 24518 RVA: 0x00042AB3 File Offset: 0x00040CB3
+		// Token: 0x06005588 RID: 21896 RVA: 0x00238EAA File Offset: 0x002370AA
 		public virtual PacketSenderBase PacketSender()
 		{
 			return this._packetSender;
 		}
 
-		// Token: 0x06005FC7 RID: 24519 RVA: 0x00042ABB File Offset: 0x00040CBB
+		// Token: 0x06005589 RID: 21897 RVA: 0x00238EB2 File Offset: 0x002370B2
 		public virtual bool valid()
 		{
 			return this._socket != null && this._socket.Connected;
 		}
 
-		// Token: 0x06005FC8 RID: 24520 RVA: 0x00265F88 File Offset: 0x00264188
+		// Token: 0x0600558A RID: 21898 RVA: 0x00238ECC File Offset: 0x002370CC
 		public void _onConnectionState(NetworkInterfaceBase.ConnectState state)
 		{
 			Event.deregisterIn(this);
@@ -122,7 +122,7 @@ namespace KBEngine
 			}
 		}
 
-		// Token: 0x06005FC9 RID: 24521 RVA: 0x00266068 File Offset: 0x00264268
+		// Token: 0x0600558B RID: 21899 RVA: 0x00238FAC File Offset: 0x002371AC
 		private static void connectCB(IAsyncResult ar)
 		{
 			NetworkInterfaceBase.ConnectState connectState = null;
@@ -145,19 +145,19 @@ namespace KBEngine
 			}
 		}
 
-		// Token: 0x06005FCA RID: 24522 RVA: 0x00042AD2 File Offset: 0x00040CD2
+		// Token: 0x0600558C RID: 21900 RVA: 0x0023901C File Offset: 0x0023721C
 		private void _asyncConnect(NetworkInterfaceBase.ConnectState state)
 		{
 			Dbg.DEBUG_MSG(string.Format("NetworkInterfaceBase::_asyncConnect(), will connect to '{0}:{1}' ...", state.connectIP, state.connectPort));
 			this.onAsyncConnect(state);
 		}
 
-		// Token: 0x06005FCB RID: 24523 RVA: 0x000042DD File Offset: 0x000024DD
+		// Token: 0x0600558D RID: 21901 RVA: 0x00004095 File Offset: 0x00002295
 		protected virtual void onAsyncConnectCB(NetworkInterfaceBase.ConnectState state)
 		{
 		}
 
-		// Token: 0x06005FCC RID: 24524 RVA: 0x002660D8 File Offset: 0x002642D8
+		// Token: 0x0600558E RID: 21902 RVA: 0x00239048 File Offset: 0x00237248
 		private void _asyncConnectCB(IAsyncResult ar)
 		{
 			NetworkInterfaceBase.ConnectState connectState = (NetworkInterfaceBase.ConnectState)ar.AsyncState;
@@ -171,7 +171,7 @@ namespace KBEngine
 			});
 		}
 
-		// Token: 0x06005FCD RID: 24525 RVA: 0x00266148 File Offset: 0x00264348
+		// Token: 0x0600558F RID: 21903 RVA: 0x002390B8 File Offset: 0x002372B8
 		public void connectTo(string ip, int port, NetworkInterfaceBase.ConnectCallback callback, object userData)
 		{
 			if (this.valid())
@@ -203,7 +203,7 @@ namespace KBEngine
 			new NetworkInterfaceBase.AsyncConnectMethod(this._asyncConnect).BeginInvoke(connectState, new AsyncCallback(this._asyncConnectCB), connectState);
 		}
 
-		// Token: 0x06005FCE RID: 24526 RVA: 0x00266240 File Offset: 0x00264440
+		// Token: 0x06005590 RID: 21904 RVA: 0x002391B0 File Offset: 0x002373B0
 		public virtual bool send(MemoryStream stream)
 		{
 			if (!this.valid())
@@ -221,7 +221,7 @@ namespace KBEngine
 			return this._packetSender.send(stream);
 		}
 
-		// Token: 0x06005FCF RID: 24527 RVA: 0x00042AFB File Offset: 0x00040CFB
+		// Token: 0x06005591 RID: 21905 RVA: 0x0023920B File Offset: 0x0023740B
 		public virtual void process()
 		{
 			if (!this.valid())
@@ -234,75 +234,75 @@ namespace KBEngine
 			}
 		}
 
-		// Token: 0x06005FD0 RID: 24528 RVA: 0x00042B19 File Offset: 0x00040D19
+		// Token: 0x06005592 RID: 21906 RVA: 0x00239229 File Offset: 0x00237429
 		public EncryptionFilter fileter()
 		{
 			return this._filter;
 		}
 
-		// Token: 0x06005FD1 RID: 24529 RVA: 0x00042B21 File Offset: 0x00040D21
+		// Token: 0x06005593 RID: 21907 RVA: 0x00239231 File Offset: 0x00237431
 		public void setFilter(EncryptionFilter filter)
 		{
 			this._filter = filter;
 		}
 
-		// Token: 0x04005B56 RID: 23382
+		// Token: 0x040050AD RID: 20653
 		public const int TCP_PACKET_MAX = 1460;
 
-		// Token: 0x04005B57 RID: 23383
+		// Token: 0x040050AE RID: 20654
 		public const int UDP_PACKET_MAX = 1472;
 
-		// Token: 0x04005B58 RID: 23384
+		// Token: 0x040050AF RID: 20655
 		public const string UDP_HELLO = "62a559f3fa7748bc22f8e0766019d498";
 
-		// Token: 0x04005B59 RID: 23385
+		// Token: 0x040050B0 RID: 20656
 		public const string UDP_HELLO_ACK = "1432ad7c829170a76dd31982c3501eca";
 
-		// Token: 0x04005B5A RID: 23386
+		// Token: 0x040050B1 RID: 20657
 		protected Socket _socket;
 
-		// Token: 0x04005B5B RID: 23387
+		// Token: 0x040050B2 RID: 20658
 		protected PacketReceiverBase _packetReceiver;
 
-		// Token: 0x04005B5C RID: 23388
+		// Token: 0x040050B3 RID: 20659
 		protected PacketSenderBase _packetSender;
 
-		// Token: 0x04005B5D RID: 23389
+		// Token: 0x040050B4 RID: 20660
 		protected EncryptionFilter _filter;
 
-		// Token: 0x04005B5E RID: 23390
+		// Token: 0x040050B5 RID: 20661
 		public bool connected;
 
-		// Token: 0x02000FD6 RID: 4054
-		// (Invoke) Token: 0x06005FD3 RID: 24531
+		// Token: 0x020015FB RID: 5627
+		// (Invoke) Token: 0x060085A5 RID: 34213
 		public delegate void AsyncConnectMethod(NetworkInterfaceBase.ConnectState state);
 
-		// Token: 0x02000FD7 RID: 4055
-		// (Invoke) Token: 0x06005FD7 RID: 24535
+		// Token: 0x020015FC RID: 5628
+		// (Invoke) Token: 0x060085A9 RID: 34217
 		public delegate void ConnectCallback(string ip, int port, bool success, object userData);
 
-		// Token: 0x02000FD8 RID: 4056
+		// Token: 0x020015FD RID: 5629
 		public class ConnectState
 		{
-			// Token: 0x04005B5F RID: 23391
+			// Token: 0x04007100 RID: 28928
 			public string connectIP = "";
 
-			// Token: 0x04005B60 RID: 23392
+			// Token: 0x04007101 RID: 28929
 			public int connectPort;
 
-			// Token: 0x04005B61 RID: 23393
+			// Token: 0x04007102 RID: 28930
 			public NetworkInterfaceBase.ConnectCallback connectCB;
 
-			// Token: 0x04005B62 RID: 23394
+			// Token: 0x04007103 RID: 28931
 			public object userData;
 
-			// Token: 0x04005B63 RID: 23395
+			// Token: 0x04007104 RID: 28932
 			public Socket socket;
 
-			// Token: 0x04005B64 RID: 23396
+			// Token: 0x04007105 RID: 28933
 			public NetworkInterfaceBase networkInterface;
 
-			// Token: 0x04005B65 RID: 23397
+			// Token: 0x04007106 RID: 28934
 			public string error = "";
 		}
 	}

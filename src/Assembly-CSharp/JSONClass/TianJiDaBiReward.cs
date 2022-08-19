@@ -4,10 +4,10 @@ using UnityEngine;
 
 namespace JSONClass
 {
-	// Token: 0x02000CF9 RID: 3321
+	// Token: 0x02000975 RID: 2421
 	public class TianJiDaBiReward : IJSONClass
 	{
-		// Token: 0x06004F4C RID: 20300 RVA: 0x00214350 File Offset: 0x00212550
+		// Token: 0x060043E6 RID: 17382 RVA: 0x001CEA78 File Offset: 0x001CCC78
 		public static void InitDataDict()
 		{
 			foreach (JSONObject jsonobject in jsonData.instance.TianJiDaBiReward.list)
@@ -49,12 +49,12 @@ namespace JSONClass
 			}
 		}
 
-		// Token: 0x06004F4D RID: 20301 RVA: 0x000042DD File Offset: 0x000024DD
+		// Token: 0x060043E7 RID: 17383 RVA: 0x00004095 File Offset: 0x00002295
 		private static void OnInitFinish()
 		{
 		}
 
-		// Token: 0x06004F4E RID: 20302 RVA: 0x00214554 File Offset: 0x00212754
+		// Token: 0x060043E8 RID: 17384 RVA: 0x001CEC7C File Offset: 0x001CCE7C
 		private static void InitReward()
 		{
 			if (!TianJiDaBiReward.rewardInited)
@@ -77,18 +77,23 @@ namespace JSONClass
 			}
 		}
 
-		// Token: 0x06004F4F RID: 20303 RVA: 0x00214678 File Offset: 0x00212878
+		// Token: 0x060043E9 RID: 17385 RVA: 0x001CEDA0 File Offset: 0x001CCFA0
 		public static List<int> GetReward(int liuPai, int rank)
 		{
 			TianJiDaBiReward.InitReward();
-			TianJiDaBiReward tianJiDaBiReward;
+			TianJiDaBiReward tianJiDaBiReward = null;
 			if (TianJiDaBiReward.DataDict.ContainsKey(liuPai))
 			{
 				tianJiDaBiReward = TianJiDaBiReward.DataDict[liuPai];
 			}
-			else
+			else if (TianJiDaBiReward.DataDict.ContainsKey(999))
 			{
 				tianJiDaBiReward = TianJiDaBiReward.DataDict[999];
+			}
+			else
+			{
+				Debug.LogError("天机大比奖励无法获取到保底流派999");
+				new List<int>();
 			}
 			if (tianJiDaBiReward.RewardDict.ContainsKey(rank))
 			{
@@ -98,52 +103,52 @@ namespace JSONClass
 			return new List<int>();
 		}
 
-		// Token: 0x04005036 RID: 20534
+		// Token: 0x04004526 RID: 17702
 		public static Dictionary<int, TianJiDaBiReward> DataDict = new Dictionary<int, TianJiDaBiReward>();
 
-		// Token: 0x04005037 RID: 20535
+		// Token: 0x04004527 RID: 17703
 		public static List<TianJiDaBiReward> DataList = new List<TianJiDaBiReward>();
 
-		// Token: 0x04005038 RID: 20536
+		// Token: 0x04004528 RID: 17704
 		public static Action OnInitFinishAction = new Action(TianJiDaBiReward.OnInitFinish);
 
-		// Token: 0x04005039 RID: 20537
+		// Token: 0x04004529 RID: 17705
 		public int id;
 
-		// Token: 0x0400503A RID: 20538
+		// Token: 0x0400452A RID: 17706
 		public List<int> Reward1 = new List<int>();
 
-		// Token: 0x0400503B RID: 20539
+		// Token: 0x0400452B RID: 17707
 		public List<int> Reward2 = new List<int>();
 
-		// Token: 0x0400503C RID: 20540
+		// Token: 0x0400452C RID: 17708
 		public List<int> Reward3 = new List<int>();
 
-		// Token: 0x0400503D RID: 20541
+		// Token: 0x0400452D RID: 17709
 		public List<int> Reward4 = new List<int>();
 
-		// Token: 0x0400503E RID: 20542
+		// Token: 0x0400452E RID: 17710
 		public List<int> Reward5 = new List<int>();
 
-		// Token: 0x0400503F RID: 20543
+		// Token: 0x0400452F RID: 17711
 		public List<int> Reward6 = new List<int>();
 
-		// Token: 0x04005040 RID: 20544
+		// Token: 0x04004530 RID: 17712
 		public List<int> Reward7 = new List<int>();
 
-		// Token: 0x04005041 RID: 20545
+		// Token: 0x04004531 RID: 17713
 		public List<int> Reward8 = new List<int>();
 
-		// Token: 0x04005042 RID: 20546
+		// Token: 0x04004532 RID: 17714
 		public List<int> Reward9 = new List<int>();
 
-		// Token: 0x04005043 RID: 20547
+		// Token: 0x04004533 RID: 17715
 		public List<int> Reward10 = new List<int>();
 
-		// Token: 0x04005044 RID: 20548
+		// Token: 0x04004534 RID: 17716
 		public Dictionary<int, List<int>> RewardDict;
 
-		// Token: 0x04005045 RID: 20549
+		// Token: 0x04004535 RID: 17717
 		private static bool rewardInited;
 	}
 }

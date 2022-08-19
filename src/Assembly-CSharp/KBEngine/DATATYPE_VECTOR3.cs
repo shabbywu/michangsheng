@@ -3,16 +3,16 @@ using UnityEngine;
 
 namespace KBEngine
 {
-	// Token: 0x02000EDB RID: 3803
+	// Token: 0x02000B5E RID: 2910
 	public class DATATYPE_VECTOR3 : DATATYPE_BASE
 	{
-		// Token: 0x06005B82 RID: 23426 RVA: 0x0004072D File Offset: 0x0003E92D
+		// Token: 0x06005146 RID: 20806 RVA: 0x00221A4C File Offset: 0x0021FC4C
 		public override object createFromStream(MemoryStream stream)
 		{
 			return new Vector3(stream.readFloat(), stream.readFloat(), stream.readFloat());
 		}
 
-		// Token: 0x06005B83 RID: 23427 RVA: 0x0004074B File Offset: 0x0003E94B
+		// Token: 0x06005147 RID: 20807 RVA: 0x00221A6A File Offset: 0x0021FC6A
 		public override void addToStream(Bundle stream, object v)
 		{
 			stream.writeFloat(((Vector3)v).x);
@@ -20,13 +20,13 @@ namespace KBEngine
 			stream.writeFloat(((Vector3)v).z);
 		}
 
-		// Token: 0x06005B84 RID: 23428 RVA: 0x00040780 File Offset: 0x0003E980
+		// Token: 0x06005148 RID: 20808 RVA: 0x00221A9F File Offset: 0x0021FC9F
 		public override object parseDefaultValStr(string v)
 		{
 			return new Vector3(0f, 0f, 0f);
 		}
 
-		// Token: 0x06005B85 RID: 23429 RVA: 0x0004079B File Offset: 0x0003E99B
+		// Token: 0x06005149 RID: 20809 RVA: 0x00221ABA File Offset: 0x0021FCBA
 		public override bool isSameType(object v)
 		{
 			return v != null && v.GetType() == typeof(Vector3);

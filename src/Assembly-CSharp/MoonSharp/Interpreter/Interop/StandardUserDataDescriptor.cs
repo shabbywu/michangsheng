@@ -7,15 +7,15 @@ using MoonSharp.Interpreter.Interop.BasicDescriptors;
 
 namespace MoonSharp.Interpreter.Interop
 {
-	// Token: 0x02001128 RID: 4392
+	// Token: 0x02000D26 RID: 3366
 	public class StandardUserDataDescriptor : DispatchingUserDataDescriptor, IWireableDescriptor
 	{
-		// Token: 0x170009B0 RID: 2480
-		// (get) Token: 0x06006A50 RID: 27216 RVA: 0x00048845 File Offset: 0x00046A45
-		// (set) Token: 0x06006A51 RID: 27217 RVA: 0x0004884D File Offset: 0x00046A4D
+		// Token: 0x17000753 RID: 1875
+		// (get) Token: 0x06005E92 RID: 24210 RVA: 0x00267741 File Offset: 0x00265941
+		// (set) Token: 0x06005E93 RID: 24211 RVA: 0x00267749 File Offset: 0x00265949
 		public InteropAccessMode AccessMode { get; private set; }
 
-		// Token: 0x06006A52 RID: 27218 RVA: 0x0028FE74 File Offset: 0x0028E074
+		// Token: 0x06005E94 RID: 24212 RVA: 0x00267754 File Offset: 0x00265954
 		public StandardUserDataDescriptor(Type type, InteropAccessMode accessMode, string friendlyName = null) : base(type, friendlyName)
 		{
 			if (accessMode == InteropAccessMode.NoReflectionAllowed)
@@ -34,7 +34,7 @@ namespace MoonSharp.Interpreter.Interop
 			this.FillMemberList();
 		}
 
-		// Token: 0x06006A53 RID: 27219 RVA: 0x0028FEC4 File Offset: 0x0028E0C4
+		// Token: 0x06005E95 RID: 24213 RVA: 0x002677A4 File Offset: 0x002659A4
 		private void FillMemberList()
 		{
 			HashSet<string> hashSet = new HashSet<string>(from a in Framework.Do.GetCustomAttributes(base.Type, typeof(MoonSharpHideMemberAttribute), true).OfType<MoonSharpHideMemberAttribute>()
@@ -130,7 +130,7 @@ namespace MoonSharp.Interpreter.Interop
 			}
 		}
 
-		// Token: 0x06006A54 RID: 27220 RVA: 0x0029034C File Offset: 0x0028E54C
+		// Token: 0x06005E96 RID: 24214 RVA: 0x00267C2C File Offset: 0x00265E2C
 		public void PrepareForWiring(Table t)
 		{
 			if (this.AccessMode == InteropAccessMode.HideMembers || Framework.Do.GetAssembly(base.Type) == Framework.Do.GetAssembly(base.GetType()))
@@ -148,7 +148,7 @@ namespace MoonSharp.Interpreter.Interop
 			this.Serialize(dynValue2.Table, base.MetaMembers);
 		}
 
-		// Token: 0x06006A55 RID: 27221 RVA: 0x0029041C File Offset: 0x0028E61C
+		// Token: 0x06005E97 RID: 24215 RVA: 0x00267CFC File Offset: 0x00265EFC
 		private void Serialize(Table t, IEnumerable<KeyValuePair<string, IMemberDescriptor>> members)
 		{
 			foreach (KeyValuePair<string, IMemberDescriptor> keyValuePair in members)

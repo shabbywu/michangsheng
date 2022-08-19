@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-// Token: 0x02000493 RID: 1171
+// Token: 0x0200032B RID: 811
 public class MainUISetColor : MonoBehaviour
 {
-	// Token: 0x06001F3D RID: 7997 RVA: 0x0010D884 File Offset: 0x0010BA84
-	public void HasColorSelect(string color_s, faceInfoDataBaseList face)
+	// Token: 0x06001BF5 RID: 7157 RVA: 0x000C82E8 File Offset: 0x000C64E8
+	public virtual void HasColorSelect(string color_s, faceInfoDataBaseList face)
 	{
 		JSONObject colorJson = this.GetColorJson(color_s);
 		List<int> suijiList = jsonData.instance.getSuijiList(color_s, "Sex" + MainUIPlayerInfo.inst.sex);
@@ -43,19 +43,19 @@ public class MainUISetColor : MonoBehaviour
 		this.colorListPanel.SetActive(false);
 	}
 
-	// Token: 0x06001F3E RID: 7998 RVA: 0x00017C2D File Offset: 0x00015E2D
+	// Token: 0x06001BF6 RID: 7158 RVA: 0x000B5E62 File Offset: 0x000B4062
 	public void HideColorSelect()
 	{
 		base.gameObject.SetActive(false);
 	}
 
-	// Token: 0x06001F3F RID: 7999 RVA: 0x00019CEC File Offset: 0x00017EEC
+	// Token: 0x06001BF7 RID: 7159 RVA: 0x000C8492 File Offset: 0x000C6692
 	public void ShowSelectColorList()
 	{
 		this.colorListPanel.SetActive(true);
 	}
 
-	// Token: 0x06001F40 RID: 8000 RVA: 0x0010DA30 File Offset: 0x0010BC30
+	// Token: 0x06001BF8 RID: 7160 RVA: 0x000C84A0 File Offset: 0x000C66A0
 	public JSONObject GetColorJson(string color_s)
 	{
 		JSONObject result = null;
@@ -128,15 +128,15 @@ public class MainUISetColor : MonoBehaviour
 		return result;
 	}
 
-	// Token: 0x04001ABE RID: 6846
+	// Token: 0x04001694 RID: 5780
 	public Image curSelectColor;
 
-	// Token: 0x04001ABF RID: 6847
+	// Token: 0x04001695 RID: 5781
 	public GameObject colorListPanel;
 
-	// Token: 0x04001AC0 RID: 6848
+	// Token: 0x04001696 RID: 5782
 	public Transform colorList;
 
-	// Token: 0x04001AC1 RID: 6849
+	// Token: 0x04001697 RID: 5783
 	public GameObject colorImage;
 }

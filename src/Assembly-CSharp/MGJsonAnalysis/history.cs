@@ -2,10 +2,10 @@
 
 namespace MGJsonAnalysis
 {
-	// Token: 0x02000A23 RID: 2595
+	// Token: 0x020006E4 RID: 1764
 	public class history
 	{
-		// Token: 0x04003B5A RID: 15194
+		// Token: 0x040030FB RID: 12539
 		public GameEntity GameEntity;
 	}
 }

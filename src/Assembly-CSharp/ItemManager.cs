@@ -1,10 +1,10 @@
 ﻿using System;
 using UnityEngine;
 
-// Token: 0x02000160 RID: 352
+// Token: 0x020000E9 RID: 233
 public class ItemManager : MonoBehaviour
 {
-	// Token: 0x06000C60 RID: 3168 RVA: 0x000972E4 File Offset: 0x000954E4
+	// Token: 0x06000B71 RID: 2929 RVA: 0x000457C8 File Offset: 0x000439C8
 	private void Awake()
 	{
 		this.Items = new ItemCollector[5];
@@ -40,15 +40,15 @@ public class ItemManager : MonoBehaviour
 		this.Items[4].ItemType = ItemType.Edible;
 	}
 
-	// Token: 0x04000980 RID: 2432
+	// Token: 0x040007A5 RID: 1957
 	public ItemCollector[] Items;
 
-	// Token: 0x04000981 RID: 2433
+	// Token: 0x040007A6 RID: 1958
 	public GameObject[] PrefabList;
 
-	// Token: 0x04000982 RID: 2434
+	// Token: 0x040007A7 RID: 1959
 	public GameObject[] PrefabListDrop;
 
-	// Token: 0x04000983 RID: 2435
+	// Token: 0x040007A8 RID: 1960
 	public Texture2D[] IconTextures;
 }

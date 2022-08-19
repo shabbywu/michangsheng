@@ -4,16 +4,16 @@ using UnityEngine;
 
 namespace Fungus
 {
-	// Token: 0x0200145F RID: 5215
+	// Token: 0x02000FA9 RID: 4009
 	[Serializable]
 	public class FungusData
 	{
-		// Token: 0x17000BA3 RID: 2979
-		// (get) Token: 0x06007DBD RID: 32189 RVA: 0x00054FDA File Offset: 0x000531DA
-		// (set) Token: 0x06007DBE RID: 32190 RVA: 0x00054FE2 File Offset: 0x000531E2
+		// Token: 0x170008F4 RID: 2292
+		// (get) Token: 0x06006FCF RID: 28623 RVA: 0x002A7ED3 File Offset: 0x002A60D3
+		// (set) Token: 0x06006FD0 RID: 28624 RVA: 0x002A7EDB File Offset: 0x002A60DB
 		public int TalkType { get; private set; }
 
-		// Token: 0x06007DBF RID: 32191 RVA: 0x002C77B8 File Offset: 0x002C59B8
+		// Token: 0x06006FD1 RID: 28625 RVA: 0x002A7EE4 File Offset: 0x002A60E4
 		public void Save()
 		{
 			if (this.TalkIsEnd || this.TalkName == "NPCJiaoHuTalk" || this.CommandName == "YSSaveGame")
@@ -53,7 +53,7 @@ namespace Fungus
 			this.IsNeedLoad = true;
 		}
 
-		// Token: 0x06007DC0 RID: 32192 RVA: 0x002C7950 File Offset: 0x002C5B50
+		// Token: 0x06006FD2 RID: 28626 RVA: 0x002A807C File Offset: 0x002A627C
 		public void FindTalkType()
 		{
 			if (!(ResManager.inst.LoadTalk("TalkPrefab/" + this.TalkName) == null))
@@ -70,57 +70,57 @@ namespace Fungus
 			this.TalkType = 2;
 		}
 
-		// Token: 0x06007DC1 RID: 32193 RVA: 0x00054FEB File Offset: 0x000531EB
+		// Token: 0x06006FD3 RID: 28627 RVA: 0x002A80E6 File Offset: 0x002A62E6
 		public bool IsNewBlock()
 		{
 			return this.LastBlockName != this.BlockName;
 		}
 
-		// Token: 0x04006B33 RID: 27443
+		// Token: 0x04005C3F RID: 23615
 		[NonSerialized]
 		public Flowchart Flowchart;
 
-		// Token: 0x04006B34 RID: 27444
+		// Token: 0x04005C40 RID: 23616
 		[NonSerialized]
 		public Block Block;
 
-		// Token: 0x04006B35 RID: 27445
+		// Token: 0x04005C41 RID: 23617
 		public Dictionary<string, float> Floats;
 
-		// Token: 0x04006B36 RID: 27446
+		// Token: 0x04005C42 RID: 23618
 		public Dictionary<string, int> Ints;
 
-		// Token: 0x04006B37 RID: 27447
+		// Token: 0x04005C43 RID: 23619
 		public Dictionary<string, string> Strings;
 
-		// Token: 0x04006B38 RID: 27448
+		// Token: 0x04005C44 RID: 23620
 		public Dictionary<string, bool> Bools;
 
-		// Token: 0x04006B39 RID: 27449
+		// Token: 0x04005C45 RID: 23621
 		public string RealCommandName;
 
-		// Token: 0x04006B3A RID: 27450
+		// Token: 0x04005C46 RID: 23622
 		public string TalkName;
 
-		// Token: 0x04006B3B RID: 27451
+		// Token: 0x04005C47 RID: 23623
 		public string BlockName;
 
-		// Token: 0x04006B3C RID: 27452
+		// Token: 0x04005C48 RID: 23624
 		public string LastBlockName;
 
-		// Token: 0x04006B3D RID: 27453
+		// Token: 0x04005C49 RID: 23625
 		public string CommandName;
 
-		// Token: 0x04006B3E RID: 27454
+		// Token: 0x04005C4A RID: 23626
 		public int FirstMenu = -1;
 
-		// Token: 0x04006B3F RID: 27455
+		// Token: 0x04005C4B RID: 23627
 		public int CommandIndex;
 
-		// Token: 0x04006B40 RID: 27456
+		// Token: 0x04005C4C RID: 23628
 		public bool TalkIsEnd = true;
 
-		// Token: 0x04006B41 RID: 27457
+		// Token: 0x04005C4D RID: 23629
 		public bool IsNeedLoad;
 	}
 }

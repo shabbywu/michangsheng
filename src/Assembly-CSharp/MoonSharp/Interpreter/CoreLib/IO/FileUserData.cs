@@ -4,10 +4,10 @@ using System.Text;
 
 namespace MoonSharp.Interpreter.CoreLib.IO
 {
-	// Token: 0x020011AA RID: 4522
+	// Token: 0x02000D88 RID: 3464
 	internal class FileUserData : StreamFileUserDataBase
 	{
-		// Token: 0x06006EAC RID: 28332 RVA: 0x0029F444 File Offset: 0x0029D644
+		// Token: 0x0600627E RID: 25214 RVA: 0x00279478 File Offset: 0x00277678
 		public FileUserData(Script script, string filename, Encoding encoding, string mode)
 		{
 			Stream stream = Script.GlobalOptions.Platform.IO_OpenFile(script, filename, encoding, mode);

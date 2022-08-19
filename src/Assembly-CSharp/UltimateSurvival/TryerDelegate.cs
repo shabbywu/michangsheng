@@ -2,7 +2,7 @@
 
 namespace UltimateSurvival
 {
-	// Token: 0x0200088F RID: 2191
-	// (Invoke) Token: 0x06003873 RID: 14451
+	// Token: 0x020005CD RID: 1485
+	// (Invoke) Token: 0x06002FE3 RID: 12259
 	public delegate bool TryerDelegate();
 }

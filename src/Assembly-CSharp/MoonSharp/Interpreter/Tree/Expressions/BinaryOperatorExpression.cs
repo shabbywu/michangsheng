@@ -4,16 +4,16 @@ using MoonSharp.Interpreter.Execution.VM;
 
 namespace MoonSharp.Interpreter.Tree.Expressions
 {
-	// Token: 0x020010BB RID: 4283
+	// Token: 0x02000CE2 RID: 3298
 	internal class BinaryOperatorExpression : Expression
 	{
-		// Token: 0x0600676B RID: 26475 RVA: 0x0004726D File Offset: 0x0004546D
+		// Token: 0x06005C5A RID: 23642 RVA: 0x0025F298 File Offset: 0x0025D498
 		public static object BeginOperatorChain()
 		{
 			return new BinaryOperatorExpression.LinkedList();
 		}
 
-		// Token: 0x0600676C RID: 26476 RVA: 0x00288858 File Offset: 0x00286A58
+		// Token: 0x06005C5B RID: 23643 RVA: 0x0025F2A0 File Offset: 0x0025D4A0
 		public static void AddExpressionToChain(object chain, Expression exp)
 		{
 			BinaryOperatorExpression.LinkedList list = (BinaryOperatorExpression.LinkedList)chain;
@@ -24,7 +24,7 @@ namespace MoonSharp.Interpreter.Tree.Expressions
 			BinaryOperatorExpression.AddNode(list, node);
 		}
 
-		// Token: 0x0600676D RID: 26477 RVA: 0x00288880 File Offset: 0x00286A80
+		// Token: 0x06005C5C RID: 23644 RVA: 0x0025F2C8 File Offset: 0x0025D4C8
 		public static void AddOperatorToChain(object chain, Token op)
 		{
 			BinaryOperatorExpression.LinkedList list = (BinaryOperatorExpression.LinkedList)chain;
@@ -35,19 +35,19 @@ namespace MoonSharp.Interpreter.Tree.Expressions
 			BinaryOperatorExpression.AddNode(list, node);
 		}
 
-		// Token: 0x0600676E RID: 26478 RVA: 0x00047274 File Offset: 0x00045474
+		// Token: 0x06005C5D RID: 23645 RVA: 0x0025F2F3 File Offset: 0x0025D4F3
 		public static Expression CommitOperatorChain(object chain, ScriptLoadingContext lcontext)
 		{
 			return BinaryOperatorExpression.CreateSubTree((BinaryOperatorExpression.LinkedList)chain, lcontext);
 		}
 
-		// Token: 0x0600676F RID: 26479 RVA: 0x00047282 File Offset: 0x00045482
+		// Token: 0x06005C5E RID: 23646 RVA: 0x0025F301 File Offset: 0x0025D501
 		public static Expression CreatePowerExpression(Expression op1, Expression op2, ScriptLoadingContext lcontext)
 		{
 			return new BinaryOperatorExpression(op1, op2, BinaryOperatorExpression.Operator.Power, lcontext);
 		}
 
-		// Token: 0x06006770 RID: 26480 RVA: 0x002888AC File Offset: 0x00286AAC
+		// Token: 0x06005C5F RID: 23647 RVA: 0x0025F310 File Offset: 0x0025D510
 		private static void AddNode(BinaryOperatorExpression.LinkedList list, BinaryOperatorExpression.Node node)
 		{
 			list.OperatorMask |= node.Op;
@@ -62,7 +62,7 @@ namespace MoonSharp.Interpreter.Tree.Expressions
 			list.Last = node;
 		}
 
-		// Token: 0x06006771 RID: 26481 RVA: 0x00288904 File Offset: 0x00286B04
+		// Token: 0x06005C60 RID: 23648 RVA: 0x0025F368 File Offset: 0x0025D568
 		private static Expression CreateSubTree(BinaryOperatorExpression.LinkedList list, ScriptLoadingContext lcontext)
 		{
 			BinaryOperatorExpression.Operator operatorMask = list.OperatorMask;
@@ -106,7 +106,7 @@ namespace MoonSharp.Interpreter.Tree.Expressions
 			return node.Expr;
 		}
 
-		// Token: 0x06006772 RID: 26482 RVA: 0x002889DC File Offset: 0x00286BDC
+		// Token: 0x06005C61 RID: 23649 RVA: 0x0025F440 File Offset: 0x0025D640
 		private static BinaryOperatorExpression.Node PrioritizeLeftAssociative(BinaryOperatorExpression.Node nodes, ScriptLoadingContext lcontext, BinaryOperatorExpression.Operator operatorsToFind)
 		{
 			for (BinaryOperatorExpression.Node node = nodes; node != null; node = node.Next)
@@ -135,7 +135,7 @@ namespace MoonSharp.Interpreter.Tree.Expressions
 			return nodes;
 		}
 
-		// Token: 0x06006773 RID: 26483 RVA: 0x00288A84 File Offset: 0x00286C84
+		// Token: 0x06005C62 RID: 23650 RVA: 0x0025F4E8 File Offset: 0x0025D6E8
 		private static BinaryOperatorExpression.Node PrioritizeRightAssociative(BinaryOperatorExpression.Node nodes, ScriptLoadingContext lcontext, BinaryOperatorExpression.Operator operatorsToFind)
 		{
 			BinaryOperatorExpression.Node node = nodes;
@@ -169,7 +169,7 @@ namespace MoonSharp.Interpreter.Tree.Expressions
 			return nodes;
 		}
 
-		// Token: 0x06006774 RID: 26484 RVA: 0x00288B40 File Offset: 0x00286D40
+		// Token: 0x06005C63 RID: 23651 RVA: 0x0025F5A4 File Offset: 0x0025D7A4
 		private static BinaryOperatorExpression.Operator ParseBinaryOperator(Token token)
 		{
 			TokenType type = token.Type;
@@ -227,7 +227,7 @@ namespace MoonSharp.Interpreter.Tree.Expressions
 			return BinaryOperatorExpression.Operator.And;
 		}
 
-		// Token: 0x06006775 RID: 26485 RVA: 0x00047291 File Offset: 0x00045491
+		// Token: 0x06005C64 RID: 23652 RVA: 0x0025F67E File Offset: 0x0025D87E
 		private BinaryOperatorExpression(Expression exp1, Expression exp2, BinaryOperatorExpression.Operator op, ScriptLoadingContext lcontext) : base(lcontext)
 		{
 			this.m_Exp1 = exp1;
@@ -235,13 +235,13 @@ namespace MoonSharp.Interpreter.Tree.Expressions
 			this.m_Operator = op;
 		}
 
-		// Token: 0x06006776 RID: 26486 RVA: 0x000472B0 File Offset: 0x000454B0
+		// Token: 0x06005C65 RID: 23653 RVA: 0x0025F69D File Offset: 0x0025D89D
 		private static bool ShouldInvertBoolean(BinaryOperatorExpression.Operator op)
 		{
 			return op == BinaryOperatorExpression.Operator.NotEqual || op == BinaryOperatorExpression.Operator.GreaterOrEqual || op == BinaryOperatorExpression.Operator.Greater;
 		}
 
-		// Token: 0x06006777 RID: 26487 RVA: 0x00288C1C File Offset: 0x00286E1C
+		// Token: 0x06005C66 RID: 23654 RVA: 0x0025F6B0 File Offset: 0x0025D8B0
 		private static OpCode OperatorToOpCode(BinaryOperatorExpression.Operator op)
 		{
 			if (op <= BinaryOperatorExpression.Operator.Equal)
@@ -311,7 +311,7 @@ namespace MoonSharp.Interpreter.Tree.Expressions
 			});
 		}
 
-		// Token: 0x06006778 RID: 26488 RVA: 0x00288CE4 File Offset: 0x00286EE4
+		// Token: 0x06005C67 RID: 23655 RVA: 0x0025F778 File Offset: 0x0025D978
 		public override void Compile(ByteCode bc)
 		{
 			this.m_Exp1.Compile(bc);
@@ -340,7 +340,7 @@ namespace MoonSharp.Interpreter.Tree.Expressions
 			}
 		}
 
-		// Token: 0x06006779 RID: 26489 RVA: 0x00288D90 File Offset: 0x00286F90
+		// Token: 0x06005C68 RID: 23656 RVA: 0x0025F824 File Offset: 0x0025DA24
 		public override DynValue Eval(ScriptExecutionContext context)
 		{
 			DynValue dynValue = this.m_Exp1.Eval(context).ToScalar();
@@ -381,7 +381,7 @@ namespace MoonSharp.Interpreter.Tree.Expressions
 			}
 		}
 
-		// Token: 0x0600677A RID: 26490 RVA: 0x00288E74 File Offset: 0x00287074
+		// Token: 0x06005C69 RID: 23657 RVA: 0x0025F908 File Offset: 0x0025DB08
 		private double EvalArithmetic(DynValue v1, DynValue v2)
 		{
 			double? num = v1.CastToNumber();
@@ -430,7 +430,7 @@ namespace MoonSharp.Interpreter.Tree.Expressions
 			});
 		}
 
-		// Token: 0x0600677B RID: 26491 RVA: 0x00288F4C File Offset: 0x0028714C
+		// Token: 0x06005C6A RID: 23658 RVA: 0x0025F9E0 File Offset: 0x0025DBE0
 		private bool EvalComparison(DynValue l, DynValue r, BinaryOperatorExpression.Operator op)
 		{
 			if (op <= BinaryOperatorExpression.Operator.LessOrEqual)
@@ -496,100 +496,100 @@ namespace MoonSharp.Interpreter.Tree.Expressions
 			});
 		}
 
-		// Token: 0x04005F7F RID: 24447
+		// Token: 0x04005395 RID: 21397
 		private const BinaryOperatorExpression.Operator POWER = BinaryOperatorExpression.Operator.Power;
 
-		// Token: 0x04005F80 RID: 24448
+		// Token: 0x04005396 RID: 21398
 		private const BinaryOperatorExpression.Operator MUL_DIV_MOD = BinaryOperatorExpression.Operator.Mul | BinaryOperatorExpression.Operator.Div | BinaryOperatorExpression.Operator.Mod;
 
-		// Token: 0x04005F81 RID: 24449
+		// Token: 0x04005397 RID: 21399
 		private const BinaryOperatorExpression.Operator ADD_SUB = BinaryOperatorExpression.Operator.Add | BinaryOperatorExpression.Operator.Sub;
 
-		// Token: 0x04005F82 RID: 24450
+		// Token: 0x04005398 RID: 21400
 		private const BinaryOperatorExpression.Operator STRCAT = BinaryOperatorExpression.Operator.StrConcat;
 
-		// Token: 0x04005F83 RID: 24451
+		// Token: 0x04005399 RID: 21401
 		private const BinaryOperatorExpression.Operator COMPARES = BinaryOperatorExpression.Operator.Less | BinaryOperatorExpression.Operator.Greater | BinaryOperatorExpression.Operator.LessOrEqual | BinaryOperatorExpression.Operator.GreaterOrEqual | BinaryOperatorExpression.Operator.NotEqual | BinaryOperatorExpression.Operator.Equal;
 
-		// Token: 0x04005F84 RID: 24452
+		// Token: 0x0400539A RID: 21402
 		private const BinaryOperatorExpression.Operator LOGIC_AND = BinaryOperatorExpression.Operator.And;
 
-		// Token: 0x04005F85 RID: 24453
+		// Token: 0x0400539B RID: 21403
 		private const BinaryOperatorExpression.Operator LOGIC_OR = BinaryOperatorExpression.Operator.Or;
 
-		// Token: 0x04005F86 RID: 24454
+		// Token: 0x0400539C RID: 21404
 		private Expression m_Exp1;
 
-		// Token: 0x04005F87 RID: 24455
+		// Token: 0x0400539D RID: 21405
 		private Expression m_Exp2;
 
-		// Token: 0x04005F88 RID: 24456
+		// Token: 0x0400539E RID: 21406
 		private BinaryOperatorExpression.Operator m_Operator;
 
-		// Token: 0x020010BC RID: 4284
+		// Token: 0x0200164E RID: 5710
 		[Flags]
 		private enum Operator
 		{
-			// Token: 0x04005F8A RID: 24458
+			// Token: 0x04007248 RID: 29256
 			NotAnOperator = 0,
-			// Token: 0x04005F8B RID: 24459
+			// Token: 0x04007249 RID: 29257
 			Or = 1,
-			// Token: 0x04005F8C RID: 24460
+			// Token: 0x0400724A RID: 29258
 			And = 2,
-			// Token: 0x04005F8D RID: 24461
+			// Token: 0x0400724B RID: 29259
 			Less = 4,
-			// Token: 0x04005F8E RID: 24462
+			// Token: 0x0400724C RID: 29260
 			Greater = 8,
-			// Token: 0x04005F8F RID: 24463
+			// Token: 0x0400724D RID: 29261
 			LessOrEqual = 16,
-			// Token: 0x04005F90 RID: 24464
+			// Token: 0x0400724E RID: 29262
 			GreaterOrEqual = 32,
-			// Token: 0x04005F91 RID: 24465
+			// Token: 0x0400724F RID: 29263
 			NotEqual = 64,
-			// Token: 0x04005F92 RID: 24466
+			// Token: 0x04007250 RID: 29264
 			Equal = 128,
-			// Token: 0x04005F93 RID: 24467
+			// Token: 0x04007251 RID: 29265
 			StrConcat = 256,
-			// Token: 0x04005F94 RID: 24468
+			// Token: 0x04007252 RID: 29266
 			Add = 512,
-			// Token: 0x04005F95 RID: 24469
+			// Token: 0x04007253 RID: 29267
 			Sub = 1024,
-			// Token: 0x04005F96 RID: 24470
+			// Token: 0x04007254 RID: 29268
 			Mul = 4096,
-			// Token: 0x04005F97 RID: 24471
+			// Token: 0x04007255 RID: 29269
 			Div = 8192,
-			// Token: 0x04005F98 RID: 24472
+			// Token: 0x04007256 RID: 29270
 			Mod = 16384,
-			// Token: 0x04005F99 RID: 24473
+			// Token: 0x04007257 RID: 29271
 			Power = 32768
 		}
 
-		// Token: 0x020010BD RID: 4285
+		// Token: 0x0200164F RID: 5711
 		private class Node
 		{
-			// Token: 0x04005F9A RID: 24474
+			// Token: 0x04007258 RID: 29272
 			public Expression Expr;
 
-			// Token: 0x04005F9B RID: 24475
+			// Token: 0x04007259 RID: 29273
 			public BinaryOperatorExpression.Operator Op;
 
-			// Token: 0x04005F9C RID: 24476
+			// Token: 0x0400725A RID: 29274
 			public BinaryOperatorExpression.Node Prev;
 
-			// Token: 0x04005F9D RID: 24477
+			// Token: 0x0400725B RID: 29275
 			public BinaryOperatorExpression.Node Next;
 		}
 
-		// Token: 0x020010BE RID: 4286
+		// Token: 0x02001650 RID: 5712
 		private class LinkedList
 		{
-			// Token: 0x04005F9E RID: 24478
+			// Token: 0x0400725C RID: 29276
 			public BinaryOperatorExpression.Node Nodes;
 
-			// Token: 0x04005F9F RID: 24479
+			// Token: 0x0400725D RID: 29277
 			public BinaryOperatorExpression.Node Last;
 
-			// Token: 0x04005FA0 RID: 24480
+			// Token: 0x0400725E RID: 29278
 			public BinaryOperatorExpression.Operator OperatorMask;
 		}
 	}

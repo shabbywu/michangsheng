@@ -3,30 +3,30 @@ using UnityEngine;
 
 namespace Fungus
 {
-	// Token: 0x020013DD RID: 5085
+	// Token: 0x02000F27 RID: 3879
 	[CommandInfo("YSNew/Add", "AddCyFuByNpcId", "发送传音符", 0)]
 	[AddComponentMenu("")]
 	public class AddCyFuByNpcId : Command
 	{
-		// Token: 0x06007BD0 RID: 31696 RVA: 0x0005442B File Offset: 0x0005262B
+		// Token: 0x06006DE5 RID: 28133 RVA: 0x002A400A File Offset: 0x002A220A
 		public override void OnEnter()
 		{
 			NpcJieSuanManager.inst.SendFungusCyByNpcId(this.cyType.Value, this.npcId.Value);
 			this.Continue();
 		}
 
-		// Token: 0x06007BD1 RID: 31697 RVA: 0x000113CF File Offset: 0x0000F5CF
+		// Token: 0x06006DE6 RID: 28134 RVA: 0x0005E228 File Offset: 0x0005C428
 		public override Color GetButtonColor()
 		{
 			return new Color32(184, 210, 235, byte.MaxValue);
 		}
 
-		// Token: 0x06007BD2 RID: 31698 RVA: 0x000042DD File Offset: 0x000024DD
+		// Token: 0x06006DE7 RID: 28135 RVA: 0x00004095 File Offset: 0x00002295
 		public override void OnReset()
 		{
 		}
 
-		// Token: 0x04006A34 RID: 27188
+		// Token: 0x04005B62 RID: 23394
 		[Tooltip("发送的npcId")]
 		[VariableProperty(new Type[]
 		{
@@ -35,7 +35,7 @@ namespace Fungus
 		[SerializeField]
 		protected IntegerVariable npcId;
 
-		// Token: 0x04006A35 RID: 27189
+		// Token: 0x04005B63 RID: 23395
 		[Tooltip("发送的c传音符类型")]
 		[VariableProperty(new Type[]
 		{

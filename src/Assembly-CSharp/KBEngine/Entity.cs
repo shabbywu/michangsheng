@@ -3,106 +3,106 @@ using UnityEngine;
 
 namespace KBEngine
 {
-	// Token: 0x02000EE8 RID: 3816
+	// Token: 0x02000B6B RID: 2923
 	public class Entity
 	{
-		// Token: 0x06005BD9 RID: 23513 RVA: 0x000042DD File Offset: 0x000024DD
+		// Token: 0x0600519D RID: 20893 RVA: 0x00004095 File Offset: 0x00002295
 		public static void clear()
 		{
 		}
 
-		// Token: 0x06005BDB RID: 23515 RVA: 0x0000B171 File Offset: 0x00009371
+		// Token: 0x0600519F RID: 20895 RVA: 0x000306E7 File Offset: 0x0002E8E7
 		public virtual object getDefinedProperty(string name)
 		{
 			return null;
 		}
 
-		// Token: 0x06005BDC RID: 23516 RVA: 0x00040A03 File Offset: 0x0003EC03
+		// Token: 0x060051A0 RID: 20896 RVA: 0x00222DFD File Offset: 0x00220FFD
 		public void destroy()
 		{
 			this.detachComponents();
 			this.onDestroy();
 		}
 
-		// Token: 0x06005BDD RID: 23517 RVA: 0x000042DD File Offset: 0x000024DD
+		// Token: 0x060051A1 RID: 20897 RVA: 0x00004095 File Offset: 0x00002295
 		public virtual void onDestroy()
 		{
 		}
 
-		// Token: 0x06005BDE RID: 23518 RVA: 0x00040A11 File Offset: 0x0003EC11
+		// Token: 0x060051A2 RID: 20898 RVA: 0x00222E0B File Offset: 0x0022100B
 		public bool isPlayer()
 		{
 			return this.id == KBEngineApp.app.entity_id;
 		}
 
-		// Token: 0x06005BDF RID: 23519 RVA: 0x000042DD File Offset: 0x000024DD
+		// Token: 0x060051A3 RID: 20899 RVA: 0x00004095 File Offset: 0x00002295
 		public virtual void onRemoteMethodCall(MemoryStream stream)
 		{
 		}
 
-		// Token: 0x06005BE0 RID: 23520 RVA: 0x000042DD File Offset: 0x000024DD
+		// Token: 0x060051A4 RID: 20900 RVA: 0x00004095 File Offset: 0x00002295
 		public virtual void onUpdatePropertys(MemoryStream stream)
 		{
 		}
 
-		// Token: 0x06005BE1 RID: 23521 RVA: 0x000042DD File Offset: 0x000024DD
+		// Token: 0x060051A5 RID: 20901 RVA: 0x00004095 File Offset: 0x00002295
 		public virtual void onGetBase()
 		{
 		}
 
-		// Token: 0x06005BE2 RID: 23522 RVA: 0x000042DD File Offset: 0x000024DD
+		// Token: 0x060051A6 RID: 20902 RVA: 0x00004095 File Offset: 0x00002295
 		public virtual void onGetCell()
 		{
 		}
 
-		// Token: 0x06005BE3 RID: 23523 RVA: 0x000042DD File Offset: 0x000024DD
+		// Token: 0x060051A7 RID: 20903 RVA: 0x00004095 File Offset: 0x00002295
 		public virtual void onLoseCell()
 		{
 		}
 
-		// Token: 0x06005BE4 RID: 23524 RVA: 0x000042DD File Offset: 0x000024DD
+		// Token: 0x060051A8 RID: 20904 RVA: 0x00004095 File Offset: 0x00002295
 		public virtual void onComponentsEnterworld()
 		{
 		}
 
-		// Token: 0x06005BE5 RID: 23525 RVA: 0x000042DD File Offset: 0x000024DD
+		// Token: 0x060051A9 RID: 20905 RVA: 0x00004095 File Offset: 0x00002295
 		public virtual void onComponentsLeaveworld()
 		{
 		}
 
-		// Token: 0x06005BE6 RID: 23526 RVA: 0x0000B171 File Offset: 0x00009371
+		// Token: 0x060051AA RID: 20906 RVA: 0x000306E7 File Offset: 0x0002E8E7
 		public virtual EntityCall getBaseEntityCall()
 		{
 			return null;
 		}
 
-		// Token: 0x06005BE7 RID: 23527 RVA: 0x0000B171 File Offset: 0x00009371
+		// Token: 0x060051AB RID: 20907 RVA: 0x000306E7 File Offset: 0x0002E8E7
 		public virtual EntityCall getCellEntityCall()
 		{
 			return null;
 		}
 
-		// Token: 0x06005BE8 RID: 23528 RVA: 0x000042DD File Offset: 0x000024DD
+		// Token: 0x060051AC RID: 20908 RVA: 0x00004095 File Offset: 0x00002295
 		public virtual void __init__()
 		{
 		}
 
-		// Token: 0x06005BE9 RID: 23529 RVA: 0x000042DD File Offset: 0x000024DD
+		// Token: 0x060051AD RID: 20909 RVA: 0x00004095 File Offset: 0x00002295
 		public virtual void callPropertysSetMethods()
 		{
 		}
 
-		// Token: 0x06005BEA RID: 23530 RVA: 0x000042DD File Offset: 0x000024DD
+		// Token: 0x060051AE RID: 20910 RVA: 0x00004095 File Offset: 0x00002295
 		public virtual void attachComponents()
 		{
 		}
 
-		// Token: 0x06005BEB RID: 23531 RVA: 0x000042DD File Offset: 0x000024DD
+		// Token: 0x060051AF RID: 20911 RVA: 0x00004095 File Offset: 0x00002295
 		public virtual void detachComponents()
 		{
 		}
 
-		// Token: 0x06005BEC RID: 23532 RVA: 0x00251F20 File Offset: 0x00250120
+		// Token: 0x060051B0 RID: 20912 RVA: 0x00222E20 File Offset: 0x00221020
 		public void baseCall(string methodname, params object[] arguments)
 		{
 			if (KBEngineApp.app.currserver == "loginapp")
@@ -183,7 +183,7 @@ namespace KBEngine
 			baseEntityCall.sendCall(null);
 		}
 
-		// Token: 0x06005BED RID: 23533 RVA: 0x0025216C File Offset: 0x0025036C
+		// Token: 0x060051B1 RID: 20913 RVA: 0x0022306C File Offset: 0x0022126C
 		public void cellCall(string methodname, params object[] arguments)
 		{
 			if (KBEngineApp.app.currserver == "loginapp")
@@ -269,7 +269,7 @@ namespace KBEngine
 			cellEntityCall.sendCall(null);
 		}
 
-		// Token: 0x06005BEE RID: 23534 RVA: 0x002523D8 File Offset: 0x002505D8
+		// Token: 0x060051B2 RID: 20914 RVA: 0x002232D8 File Offset: 0x002214D8
 		public void enterWorld()
 		{
 			this.inWorld = true;
@@ -288,12 +288,12 @@ namespace KBEngine
 			});
 		}
 
-		// Token: 0x06005BEF RID: 23535 RVA: 0x000042DD File Offset: 0x000024DD
+		// Token: 0x060051B3 RID: 20915 RVA: 0x00004095 File Offset: 0x00002295
 		public virtual void onEnterWorld()
 		{
 		}
 
-		// Token: 0x06005BF0 RID: 23536 RVA: 0x0025243C File Offset: 0x0025063C
+		// Token: 0x060051B4 RID: 20916 RVA: 0x0022333C File Offset: 0x0022153C
 		public void leaveWorld()
 		{
 			this.inWorld = false;
@@ -312,12 +312,12 @@ namespace KBEngine
 			});
 		}
 
-		// Token: 0x06005BF1 RID: 23537 RVA: 0x000042DD File Offset: 0x000024DD
+		// Token: 0x060051B5 RID: 20917 RVA: 0x00004095 File Offset: 0x00002295
 		public virtual void onLeaveWorld()
 		{
 		}
 
-		// Token: 0x06005BF2 RID: 23538 RVA: 0x002524A0 File Offset: 0x002506A0
+		// Token: 0x060051B6 RID: 20918 RVA: 0x002233A0 File Offset: 0x002215A0
 		public virtual void enterSpace()
 		{
 			this.inWorld = true;
@@ -343,12 +343,12 @@ namespace KBEngine
 			});
 		}
 
-		// Token: 0x06005BF3 RID: 23539 RVA: 0x000042DD File Offset: 0x000024DD
+		// Token: 0x060051B7 RID: 20919 RVA: 0x00004095 File Offset: 0x00002295
 		public virtual void onEnterSpace()
 		{
 		}
 
-		// Token: 0x06005BF4 RID: 23540 RVA: 0x00252528 File Offset: 0x00250728
+		// Token: 0x060051B8 RID: 20920 RVA: 0x00223428 File Offset: 0x00221628
 		public virtual void leaveSpace()
 		{
 			this.inWorld = false;
@@ -366,12 +366,12 @@ namespace KBEngine
 			});
 		}
 
-		// Token: 0x06005BF5 RID: 23541 RVA: 0x000042DD File Offset: 0x000024DD
+		// Token: 0x060051B9 RID: 20921 RVA: 0x00004095 File Offset: 0x00002295
 		public virtual void onLeaveSpace()
 		{
 		}
 
-		// Token: 0x06005BF6 RID: 23542 RVA: 0x00040A25 File Offset: 0x0003EC25
+		// Token: 0x060051BA RID: 20922 RVA: 0x00223488 File Offset: 0x00221688
 		public virtual void onPositionChanged(Vector3 oldValue)
 		{
 			if (this.isPlayer())
@@ -387,12 +387,12 @@ namespace KBEngine
 			}
 		}
 
-		// Token: 0x06005BF7 RID: 23543 RVA: 0x000042DD File Offset: 0x000024DD
+		// Token: 0x060051BB RID: 20923 RVA: 0x00004095 File Offset: 0x00002295
 		public virtual void onUpdateVolatileData()
 		{
 		}
 
-		// Token: 0x06005BF8 RID: 23544 RVA: 0x00252588 File Offset: 0x00250788
+		// Token: 0x060051BC RID: 20924 RVA: 0x002234C0 File Offset: 0x002216C0
 		public virtual void onDirectionChanged(Vector3 oldValue)
 		{
 			if (this.inWorld)
@@ -409,45 +409,45 @@ namespace KBEngine
 			this.direction = oldValue;
 		}
 
-		// Token: 0x06005BF9 RID: 23545 RVA: 0x000042DD File Offset: 0x000024DD
+		// Token: 0x060051BD RID: 20925 RVA: 0x00004095 File Offset: 0x00002295
 		public virtual void onControlled(bool isControlled_)
 		{
 		}
 
-		// Token: 0x04005A28 RID: 23080
+		// Token: 0x04004F9D RID: 20381
 		public Vector3 _entityLastLocalPos = new Vector3(0f, 0f, 0f);
 
-		// Token: 0x04005A29 RID: 23081
+		// Token: 0x04004F9E RID: 20382
 		public Vector3 _entityLastLocalDir = new Vector3(0f, 0f, 0f);
 
-		// Token: 0x04005A2A RID: 23082
+		// Token: 0x04004F9F RID: 20383
 		public int id;
 
-		// Token: 0x04005A2B RID: 23083
+		// Token: 0x04004FA0 RID: 20384
 		public string className = "";
 
-		// Token: 0x04005A2C RID: 23084
+		// Token: 0x04004FA1 RID: 20385
 		public Vector3 position = new Vector3(0f, 0f, 0f);
 
-		// Token: 0x04005A2D RID: 23085
+		// Token: 0x04004FA2 RID: 20386
 		public Vector3 direction = new Vector3(0f, 0f, 0f);
 
-		// Token: 0x04005A2E RID: 23086
+		// Token: 0x04004FA3 RID: 20387
 		public float velocity;
 
-		// Token: 0x04005A2F RID: 23087
+		// Token: 0x04004FA4 RID: 20388
 		public bool isOnGround = true;
 
-		// Token: 0x04005A30 RID: 23088
+		// Token: 0x04004FA5 RID: 20389
 		public object renderObj;
 
-		// Token: 0x04005A31 RID: 23089
+		// Token: 0x04004FA6 RID: 20390
 		public bool inWorld;
 
-		// Token: 0x04005A32 RID: 23090
+		// Token: 0x04004FA7 RID: 20391
 		public bool isControlled;
 
-		// Token: 0x04005A33 RID: 23091
+		// Token: 0x04004FA8 RID: 20392
 		public bool inited;
 	}
 }

@@ -2,10 +2,10 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-// Token: 0x02000471 RID: 1137
+// Token: 0x02000310 RID: 784
 public class LunDaoPlayerCard : MonoBehaviour
 {
-	// Token: 0x06001E79 RID: 7801 RVA: 0x00107DE8 File Offset: 0x00105FE8
+	// Token: 0x06001B48 RID: 6984 RVA: 0x000C27B8 File Offset: 0x000C09B8
 	public void SelectCard()
 	{
 		if (LunDaoManager.inst.gameState != LunDaoManager.GameState.玩家回合)
@@ -34,18 +34,18 @@ public class LunDaoPlayerCard : MonoBehaviour
 		LunDaoManager.inst.playerController.HideChuPaiBtn();
 	}
 
-	// Token: 0x040019D3 RID: 6611
+	// Token: 0x040015BD RID: 5565
 	public LunDaoCard lunDaoCard;
 
-	// Token: 0x040019D4 RID: 6612
+	// Token: 0x040015BE RID: 5566
 	public Image cardImage;
 
-	// Token: 0x040019D5 RID: 6613
+	// Token: 0x040015BF RID: 5567
 	public Text cardLevel;
 
-	// Token: 0x040019D6 RID: 6614
+	// Token: 0x040015C0 RID: 5568
 	public BtnCell btn;
 
-	// Token: 0x040019D7 RID: 6615
+	// Token: 0x040015C1 RID: 5569
 	public bool isSelected;
 }

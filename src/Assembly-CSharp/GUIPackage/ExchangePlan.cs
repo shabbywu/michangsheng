@@ -7,17 +7,17 @@ using YSGame;
 
 namespace GUIPackage
 {
-	// Token: 0x02000D4E RID: 3406
+	// Token: 0x02000A4A RID: 2634
 	public class ExchangePlan : MonoBehaviour
 	{
-		// Token: 0x060050F6 RID: 20726 RVA: 0x0003A4A3 File Offset: 0x000386A3
+		// Token: 0x06004839 RID: 18489 RVA: 0x001E7AF4 File Offset: 0x001E5CF4
 		private void Awake()
 		{
 			Singleton.ints.exchengePlan = this;
 			this.init();
 		}
 
-		// Token: 0x060050F7 RID: 20727 RVA: 0x0021B910 File Offset: 0x00219B10
+		// Token: 0x0600483A RID: 18490 RVA: 0x001E7B08 File Offset: 0x001E5D08
 		public void init()
 		{
 			this.avatar = Tools.instance.getPlayer();
@@ -34,7 +34,7 @@ namespace GUIPackage
 			}
 		}
 
-		// Token: 0x060050F8 RID: 20728 RVA: 0x0021B9CC File Offset: 0x00219BCC
+		// Token: 0x0600483B RID: 18491 RVA: 0x001E7BC4 File Offset: 0x001E5DC4
 		public void showPlan()
 		{
 			base.transform.parent = UI_Manager.inst.gameObject.transform;
@@ -43,7 +43,7 @@ namespace GUIPackage
 			base.gameObject.SetActive(true);
 		}
 
-		// Token: 0x060050F9 RID: 20729 RVA: 0x0021BA30 File Offset: 0x00219C30
+		// Token: 0x0600483C RID: 18492 RVA: 0x001E7C28 File Offset: 0x001E5E28
 		public void PlayerSay(string text)
 		{
 			this.playerSayText.SetActive(true);
@@ -56,7 +56,7 @@ namespace GUIPackage
 			base.Invoke("UnActivePlayerText", 1.5f);
 		}
 
-		// Token: 0x060050FA RID: 20730 RVA: 0x0003A4B6 File Offset: 0x000386B6
+		// Token: 0x0600483D RID: 18493 RVA: 0x001E7C8D File Offset: 0x001E5E8D
 		public void UnActivePlayerText()
 		{
 			this.playerSayText.SetActive(false);
@@ -67,7 +67,7 @@ namespace GUIPackage
 			}
 		}
 
-		// Token: 0x060050FB RID: 20731 RVA: 0x0021BA98 File Offset: 0x00219C98
+		// Token: 0x0600483E RID: 18494 RVA: 0x001E7CC8 File Offset: 0x001E5EC8
 		public void MonstarterSay(string text)
 		{
 			this.monstarSayText.SetActive(true);
@@ -80,7 +80,7 @@ namespace GUIPackage
 			base.Invoke("UnActiveMonstarterText", 1.5f);
 		}
 
-		// Token: 0x060050FC RID: 20732 RVA: 0x0003A4EF File Offset: 0x000386EF
+		// Token: 0x0600483F RID: 18495 RVA: 0x001E7D2D File Offset: 0x001E5F2D
 		public void UnActiveMonstarterText()
 		{
 			this.monstarSayText.SetActive(false);
@@ -91,13 +91,13 @@ namespace GUIPackage
 			}
 		}
 
-		// Token: 0x060050FD RID: 20733 RVA: 0x0003A528 File Offset: 0x00038728
+		// Token: 0x06004840 RID: 18496 RVA: 0x001E7D66 File Offset: 0x001E5F66
 		private void Start()
 		{
 			this.initPlan();
 		}
 
-		// Token: 0x060050FE RID: 20734 RVA: 0x0021BB00 File Offset: 0x00219D00
+		// Token: 0x06004841 RID: 18497 RVA: 0x001E7D70 File Offset: 0x001E5F70
 		public void updateMoney()
 		{
 			int buyMoney = this.GetBuyMoney(this.inventoryMonstar, false);
@@ -108,7 +108,7 @@ namespace GUIPackage
 			this.MonstarMoneyPay.Set_money(buyMoney2, false);
 		}
 
-		// Token: 0x060050FF RID: 20735 RVA: 0x0021BB9C File Offset: 0x00219D9C
+		// Token: 0x06004842 RID: 18498 RVA: 0x001E7E0C File Offset: 0x001E600C
 		public int GetBuyMoney(Inventory2 tempInventory, bool isPlayer)
 		{
 			int num = 0;
@@ -129,7 +129,7 @@ namespace GUIPackage
 			return num;
 		}
 
-		// Token: 0x06005100 RID: 20736 RVA: 0x0021BC20 File Offset: 0x00219E20
+		// Token: 0x06004843 RID: 18499 RVA: 0x001E7E90 File Offset: 0x001E6090
 		public virtual void initPlan()
 		{
 			this.inventoryPlayer.resteAllInventoryItem();
@@ -150,7 +150,7 @@ namespace GUIPackage
 			UINPCJiaoHu.AllShouldHide = true;
 		}
 
-		// Token: 0x06005101 RID: 20737 RVA: 0x0021BCBC File Offset: 0x00219EBC
+		// Token: 0x06004844 RID: 18500 RVA: 0x001E7F2C File Offset: 0x001E612C
 		public void SetXiHaoItem()
 		{
 			if (!jsonData.instance.AvatarBackpackJsonData[string.Concat(this.MonstarID)].HasField("XinQuType"))
@@ -174,7 +174,7 @@ namespace GUIPackage
 			this.daoHelp.text = text;
 		}
 
-		// Token: 0x06005102 RID: 20738 RVA: 0x0003A530 File Offset: 0x00038730
+		// Token: 0x06004845 RID: 18501 RVA: 0x001E8070 File Offset: 0x001E6270
 		public virtual void close()
 		{
 			this.inventoryPlayer.showTooltip = false;
@@ -183,13 +183,13 @@ namespace GUIPackage
 			UINPCJiaoHu.AllShouldHide = false;
 		}
 
-		// Token: 0x06005103 RID: 20739 RVA: 0x0000EA5D File Offset: 0x0000CC5D
+		// Token: 0x06004846 RID: 18502 RVA: 0x00047BD2 File Offset: 0x00045DD2
 		private void OnDestroy()
 		{
 			Tools.canClickFlag = true;
 		}
 
-		// Token: 0x06005104 RID: 20740 RVA: 0x0021BE00 File Offset: 0x0021A000
+		// Token: 0x06004847 RID: 18503 RVA: 0x001E809C File Offset: 0x001E629C
 		public void confirm()
 		{
 			int buyMoney = this.GetBuyMoney(this.inventoryMonstar, false);
@@ -240,31 +240,31 @@ namespace GUIPackage
 			this.initPlan();
 		}
 
-		// Token: 0x06005105 RID: 20741 RVA: 0x0003A55B File Offset: 0x0003875B
+		// Token: 0x06004848 RID: 18504 RVA: 0x001E8330 File Offset: 0x001E6530
 		public void setExItemLeiXin1()
 		{
 			this.setItemLeiXin(new List<int>());
 		}
 
-		// Token: 0x06005106 RID: 20742 RVA: 0x0003A568 File Offset: 0x00038768
+		// Token: 0x06004849 RID: 18505 RVA: 0x001E833D File Offset: 0x001E653D
 		public void setExItemLeiXin2()
 		{
 			this.setItemLeiXin(Tools.JsonListToList(jsonData.instance.wupingfenlan["2"]["ItemFlag"]));
 		}
 
-		// Token: 0x06005107 RID: 20743 RVA: 0x0003A593 File Offset: 0x00038793
+		// Token: 0x0600484A RID: 18506 RVA: 0x001E8368 File Offset: 0x001E6568
 		public void setExItemLeiXin3()
 		{
 			this.setItemLeiXin(Tools.JsonListToList(jsonData.instance.wupingfenlan["3"]["ItemFlag"]));
 		}
 
-		// Token: 0x06005108 RID: 20744 RVA: 0x0003A5BE File Offset: 0x000387BE
+		// Token: 0x0600484B RID: 18507 RVA: 0x001E8393 File Offset: 0x001E6593
 		public void setExItemLeiXin4()
 		{
 			this.setItemLeiXin(Tools.JsonListToList(jsonData.instance.wupingfenlan["4"]["ItemFlag"]));
 		}
 
-		// Token: 0x06005109 RID: 20745 RVA: 0x0003A5E9 File Offset: 0x000387E9
+		// Token: 0x0600484C RID: 18508 RVA: 0x001E83BE File Offset: 0x001E65BE
 		public void setExItemLeiXin5()
 		{
 			this.setItemLeiXin(new List<int>
@@ -273,7 +273,7 @@ namespace GUIPackage
 			});
 		}
 
-		// Token: 0x0600510A RID: 20746 RVA: 0x0003A5FD File Offset: 0x000387FD
+		// Token: 0x0600484D RID: 18509 RVA: 0x001E83D2 File Offset: 0x001E65D2
 		public void setExItemLeiXin6()
 		{
 			this.setItemLeiXin(new List<int>
@@ -282,20 +282,20 @@ namespace GUIPackage
 			});
 		}
 
-		// Token: 0x0600510B RID: 20747 RVA: 0x0003A611 File Offset: 0x00038811
+		// Token: 0x0600484E RID: 18510 RVA: 0x001E83E6 File Offset: 0x001E65E6
 		public void setExItemLeiXin7()
 		{
 			this.setItemLeiXin(Tools.JsonListToList(jsonData.instance.wupingfenlan["6"]["ItemFlag"]));
 		}
 
-		// Token: 0x0600510C RID: 20748 RVA: 0x0003A63C File Offset: 0x0003883C
+		// Token: 0x0600484F RID: 18511 RVA: 0x001E8411 File Offset: 0x001E6611
 		public void setItemLeiXin(List<int> leixin)
 		{
 			this.inventoryMonstar.inventItemLeiXing = leixin;
 			this.inventoryMonstar.MonstarLoadInventory(this.MonstarID);
 		}
 
-		// Token: 0x0600510D RID: 20749 RVA: 0x0003A65B File Offset: 0x0003885B
+		// Token: 0x06004850 RID: 18512 RVA: 0x001E8430 File Offset: 0x001E6630
 		private void Update()
 		{
 			if (JiaoYiManager.inst == null)
@@ -304,64 +304,64 @@ namespace GUIPackage
 			}
 		}
 
-		// Token: 0x04005214 RID: 21012
+		// Token: 0x040048DD RID: 18653
 		public GameObject playerInventory;
 
-		// Token: 0x04005215 RID: 21013
+		// Token: 0x040048DE RID: 18654
 		public GameObject MonstarInventory;
 
-		// Token: 0x04005216 RID: 21014
+		// Token: 0x040048DF RID: 18655
 		public Inventory2 inventoryPlayer;
 
-		// Token: 0x04005217 RID: 21015
+		// Token: 0x040048E0 RID: 18656
 		public Inventory2 inventoryMonstar;
 
-		// Token: 0x04005218 RID: 21016
+		// Token: 0x040048E1 RID: 18657
 		public Money PlayerMoney;
 
-		// Token: 0x04005219 RID: 21017
+		// Token: 0x040048E2 RID: 18658
 		public Money MonstarMoney;
 
-		// Token: 0x0400521A RID: 21018
+		// Token: 0x040048E3 RID: 18659
 		public Money PlayerMoneyPay;
 
-		// Token: 0x0400521B RID: 21019
+		// Token: 0x040048E4 RID: 18660
 		public Money MonstarMoneyPay;
 
-		// Token: 0x0400521C RID: 21020
+		// Token: 0x040048E5 RID: 18661
 		public Text playerText;
 
-		// Token: 0x0400521D RID: 21021
+		// Token: 0x040048E6 RID: 18662
 		public Text MonstarText;
 
-		// Token: 0x0400521E RID: 21022
+		// Token: 0x040048E7 RID: 18663
 		public PlayerSetRandomFace MonstarFace;
 
-		// Token: 0x0400521F RID: 21023
+		// Token: 0x040048E8 RID: 18664
 		public selectPage selectPagePlayer;
 
-		// Token: 0x04005220 RID: 21024
+		// Token: 0x040048E9 RID: 18665
 		public selectPage selectPageMonstar;
 
-		// Token: 0x04005221 RID: 21025
+		// Token: 0x040048EA RID: 18666
 		public GameObject monstarSayText;
 
-		// Token: 0x04005222 RID: 21026
+		// Token: 0x040048EB RID: 18667
 		public GameObject playerSayText;
 
-		// Token: 0x04005223 RID: 21027
+		// Token: 0x040048EC RID: 18668
 		public WuDaoHelp daoHelp;
 
-		// Token: 0x04005224 RID: 21028
+		// Token: 0x040048ED RID: 18669
 		private Avatar avatar;
 
-		// Token: 0x04005225 RID: 21029
+		// Token: 0x040048EE RID: 18670
 		public int MonstarID;
 
-		// Token: 0x04005226 RID: 21030
+		// Token: 0x040048EF RID: 18671
 		public int type;
 
-		// Token: 0x04005227 RID: 21031
+		// Token: 0x040048F0 RID: 18672
 		public Transform UGUITransform;
 	}
 }

@@ -3,12 +3,12 @@ using UnityEngine;
 
 namespace BehaviorDesigner.Runtime.Tasks.Basic.UnityDebug
 {
-	// Token: 0x02001600 RID: 5632
+	// Token: 0x02001141 RID: 4417
 	[TaskDescription("LogFormat is analgous to Debug.LogFormat().\nIt takes format string, substitutes arguments supplied a '{0-4}' and returns success.\nAny fields or arguments not supplied are ignored.It can be used for debugging.")]
 	[TaskIcon("{SkinColor}LogIcon.png")]
 	public class LogFormat : Action
 	{
-		// Token: 0x06008394 RID: 33684 RVA: 0x002CEAC8 File Offset: 0x002CCCC8
+		// Token: 0x0600759A RID: 30106 RVA: 0x002B4AD0 File Offset: 0x002B2CD0
 		public override TaskStatus OnUpdate()
 		{
 			object[] array = this.buildParamsArray();
@@ -23,7 +23,7 @@ namespace BehaviorDesigner.Runtime.Tasks.Basic.UnityDebug
 			return 2;
 		}
 
-		// Token: 0x06008395 RID: 33685 RVA: 0x002CEB10 File Offset: 0x002CCD10
+		// Token: 0x0600759B RID: 30107 RVA: 0x002B4B18 File Offset: 0x002B2D18
 		private object[] buildParamsArray()
 		{
 			object[] array;
@@ -74,13 +74,13 @@ namespace BehaviorDesigner.Runtime.Tasks.Basic.UnityDebug
 			return array;
 		}
 
-		// Token: 0x06008396 RID: 33686 RVA: 0x0005A945 File Offset: 0x00058B45
+		// Token: 0x0600759C RID: 30108 RVA: 0x002B4C13 File Offset: 0x002B2E13
 		private bool isValid(SharedVariable sv)
 		{
 			return sv != null && !sv.IsNone;
 		}
 
-		// Token: 0x06008397 RID: 33687 RVA: 0x0005A955 File Offset: 0x00058B55
+		// Token: 0x0600759D RID: 30109 RVA: 0x002B4C23 File Offset: 0x002B2E23
 		public override void OnReset()
 		{
 			this.textFormat = string.Empty;
@@ -91,24 +91,24 @@ namespace BehaviorDesigner.Runtime.Tasks.Basic.UnityDebug
 			this.arg3 = null;
 		}
 
-		// Token: 0x04007046 RID: 28742
+		// Token: 0x04006123 RID: 24867
 		[Tooltip("Text format with {0}, {1}, etc")]
 		public SharedString textFormat;
 
-		// Token: 0x04007047 RID: 28743
+		// Token: 0x04006124 RID: 24868
 		[Tooltip("Is this text an error?")]
 		public SharedBool logError;
 
-		// Token: 0x04007048 RID: 28744
+		// Token: 0x04006125 RID: 24869
 		public SharedVariable arg0;
 
-		// Token: 0x04007049 RID: 28745
+		// Token: 0x04006126 RID: 24870
 		public SharedVariable arg1;
 
-		// Token: 0x0400704A RID: 28746
+		// Token: 0x04006127 RID: 24871
 		public SharedVariable arg2;
 
-		// Token: 0x0400704B RID: 28747
+		// Token: 0x04006128 RID: 24872
 		public SharedVariable arg3;
 	}
 }

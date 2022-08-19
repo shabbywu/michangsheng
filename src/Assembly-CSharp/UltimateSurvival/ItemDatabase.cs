@@ -6,11 +6,11 @@ using UnityEngine;
 
 namespace UltimateSurvival
 {
-	// Token: 0x0200089C RID: 2204
+	// Token: 0x020005D7 RID: 1495
 	public class ItemDatabase : ScriptableObject
 	{
-		// Token: 0x170005D7 RID: 1495
-		// (get) Token: 0x060038C7 RID: 14535 RVA: 0x000294DE File Offset: 0x000276DE
+		// Token: 0x1700041A RID: 1050
+		// (get) Token: 0x0600302B RID: 12331 RVA: 0x00159D05 File Offset: 0x00157F05
 		public ItemCategory[] Categories
 		{
 			get
@@ -19,12 +19,12 @@ namespace UltimateSurvival
 			}
 		}
 
-		// Token: 0x060038C8 RID: 14536 RVA: 0x000042DD File Offset: 0x000024DD
+		// Token: 0x0600302C RID: 12332 RVA: 0x00004095 File Offset: 0x00002295
 		public static void onEnter()
 		{
 		}
 
-		// Token: 0x060038C9 RID: 14537 RVA: 0x001A3760 File Offset: 0x001A1960
+		// Token: 0x0600302D RID: 12333 RVA: 0x00159D10 File Offset: 0x00157F10
 		public bool FindItemById(int id, out ItemData itemData)
 		{
 			for (int i = 0; i < this.m_Categories.Length; i++)
@@ -43,7 +43,7 @@ namespace UltimateSurvival
 			return false;
 		}
 
-		// Token: 0x060038CA RID: 14538 RVA: 0x001A37BC File Offset: 0x001A19BC
+		// Token: 0x0600302E RID: 12334 RVA: 0x00159D6C File Offset: 0x00157F6C
 		public bool FindItemByName(string name, out ItemData itemData)
 		{
 			for (int i = 0; i < this.m_Categories.Length; i++)
@@ -62,7 +62,7 @@ namespace UltimateSurvival
 			return false;
 		}
 
-		// Token: 0x060038CB RID: 14539 RVA: 0x001A3820 File Offset: 0x001A1A20
+		// Token: 0x0600302F RID: 12335 RVA: 0x00159DD0 File Offset: 0x00157FD0
 		public bool FindRecipeById(int id, out Recipe recipe)
 		{
 			for (int i = 0; i < this.m_Categories.Length; i++)
@@ -81,7 +81,7 @@ namespace UltimateSurvival
 			return false;
 		}
 
-		// Token: 0x060038CC RID: 14540 RVA: 0x001A3884 File Offset: 0x001A1A84
+		// Token: 0x06003030 RID: 12336 RVA: 0x00159E34 File Offset: 0x00158034
 		public bool FindRecipeByName(string name, out Recipe recipe)
 		{
 			for (int i = 0; i < this.m_Categories.Length; i++)
@@ -100,7 +100,7 @@ namespace UltimateSurvival
 			return false;
 		}
 
-		// Token: 0x060038CD RID: 14541 RVA: 0x001A38FC File Offset: 0x001A1AFC
+		// Token: 0x06003031 RID: 12337 RVA: 0x00159EAC File Offset: 0x001580AC
 		public List<string> GetAllItemNames()
 		{
 			List<string> list = new List<string>();
@@ -115,7 +115,7 @@ namespace UltimateSurvival
 			return list;
 		}
 
-		// Token: 0x060038CE RID: 14542 RVA: 0x001A3954 File Offset: 0x001A1B54
+		// Token: 0x06003032 RID: 12338 RVA: 0x00159F04 File Offset: 0x00158104
 		public int GetItemCount()
 		{
 			int num = 0;
@@ -126,7 +126,7 @@ namespace UltimateSurvival
 			return num;
 		}
 
-		// Token: 0x060038CF RID: 14543 RVA: 0x001A398C File Offset: 0x001A1B8C
+		// Token: 0x06003033 RID: 12339 RVA: 0x00159F3C File Offset: 0x0015813C
 		public void cratfToJson()
 		{
 			JSONObject jsonobject = new JSONObject(JSONObject.Type.OBJECT);
@@ -160,7 +160,7 @@ namespace UltimateSurvival
 			streamWriter.Close();
 		}
 
-		// Token: 0x060038D0 RID: 14544 RVA: 0x001A3B14 File Offset: 0x001A1D14
+		// Token: 0x06003034 RID: 12340 RVA: 0x0015A0C4 File Offset: 0x001582C4
 		private void OnValidate()
 		{
 			int num = 0;
@@ -174,11 +174,11 @@ namespace UltimateSurvival
 			}
 		}
 
-		// Token: 0x04003312 RID: 13074
+		// Token: 0x04002A7C RID: 10876
 		[SerializeField]
 		private ItemCategory[] m_Categories;
 
-		// Token: 0x04003313 RID: 13075
+		// Token: 0x04002A7D RID: 10877
 		[SerializeField]
 		private ItemProperty.Definition[] m_ItemProperties;
 	}

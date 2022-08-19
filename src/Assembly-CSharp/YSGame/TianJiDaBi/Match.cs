@@ -6,11 +6,11 @@ using UnityEngine;
 
 namespace YSGame.TianJiDaBi
 {
-	// Token: 0x02000DC1 RID: 3521
+	// Token: 0x02000A8F RID: 2703
 	[Serializable]
 	public class Match
 	{
-		// Token: 0x060054D5 RID: 21717 RVA: 0x00234F34 File Offset: 0x00233134
+		// Token: 0x06004BB9 RID: 19385 RVA: 0x00203A40 File Offset: 0x00201C40
 		public void Init()
 		{
 			int year = PlayerEx.Player.worldTimeMag.getNowTime().Year;
@@ -30,7 +30,7 @@ namespace YSGame.TianJiDaBi
 			}
 		}
 
-		// Token: 0x060054D6 RID: 21718 RVA: 0x00234FF8 File Offset: 0x002331F8
+		// Token: 0x06004BBA RID: 19386 RVA: 0x00203B04 File Offset: 0x00201D04
 		public void CreateNPCDaBiPlayers(List<int> npcids)
 		{
 			foreach (int id in npcids)
@@ -42,6 +42,7 @@ namespace YSGame.TianJiDaBi
 				daBiPlayer.Name = uinpcdata.Name;
 				daBiPlayer.Title = uinpcdata.Title;
 				daBiPlayer.DunSu = uinpcdata.DunSu;
+				daBiPlayer.HP = uinpcdata.HP;
 				daBiPlayer.LiuPai = uinpcdata.LiuPai;
 				daBiPlayer.Level = uinpcdata.Level;
 				NPCLeiXingDate npcleiXingDate = Match.NPCLeiXingDict[daBiPlayer.Level][daBiPlayer.LiuPai];
@@ -53,7 +54,7 @@ namespace YSGame.TianJiDaBi
 			}
 		}
 
-		// Token: 0x060054D7 RID: 21719 RVA: 0x00235108 File Offset: 0x00233308
+		// Token: 0x06004BBB RID: 19387 RVA: 0x00203C20 File Offset: 0x00201E20
 		public void NewRound()
 		{
 			this.RoundIndex++;
@@ -82,7 +83,7 @@ namespace YSGame.TianJiDaBi
 			}
 		}
 
-		// Token: 0x060054D8 RID: 21720 RVA: 0x002351F0 File Offset: 0x002333F0
+		// Token: 0x06004BBC RID: 19388 RVA: 0x00203D08 File Offset: 0x00201F08
 		public void AfterRound()
 		{
 			this.CalcResult();
@@ -99,7 +100,7 @@ namespace YSGame.TianJiDaBi
 			}
 		}
 
-		// Token: 0x060054D9 RID: 21721 RVA: 0x00235274 File Offset: 0x00233474
+		// Token: 0x06004BBD RID: 19389 RVA: 0x00203D8C File Offset: 0x00201F8C
 		public DaBiPlayer GetPlayer(int id)
 		{
 			foreach (DaBiPlayer daBiPlayer in this.PlayerList)
@@ -112,7 +113,7 @@ namespace YSGame.TianJiDaBi
 			return null;
 		}
 
-		// Token: 0x060054DA RID: 21722 RVA: 0x002352D0 File Offset: 0x002334D0
+		// Token: 0x06004BBE RID: 19390 RVA: 0x00203DE8 File Offset: 0x00201FE8
 		private void Fight(int RoundIndex, DaBiPlayer a, DaBiPlayer b)
 		{
 			a.Atk = TianJiDaBiManager.Random.Next() % (a.MaxAtk - a.MinAtk) + a.MinAtk;
@@ -124,11 +125,15 @@ namespace YSGame.TianJiDaBi
 			int num2 = (int)typeFromHandle.GetField(string.Format("AttackType{0}", a.AtkType)).GetValue(obj);
 			int num3 = ((float)a.DunSu >= (float)b.DunSu * 1.1f) ? 10 : 0;
 			int num4 = ((float)b.DunSu >= (float)a.DunSu * 1.1f) ? 10 : 0;
-			float num5 = (float)a.Atk * (1f + (float)(num + num3) / 100f);
-			float num6 = (float)b.Atk * (1f + (float)(num2 + num4) / 100f);
+			int num5 = 5;
+			int num6 = 1;
+			int num7 = Mathf.Max(0, a.HP - NPCChuShiShuZiDate.DataDict[a.Level].HP[0]) / num5 * num6;
+			int num8 = Mathf.Max(0, b.HP - NPCChuShiShuZiDate.DataDict[b.Level].HP[0]) / num5 * num6;
+			float num9 = (float)a.Atk * (1f + (float)(num + num3) / 100f) + (float)num7;
+			float num10 = (float)b.Atk * (1f + (float)(num2 + num4) / 100f) + (float)num8;
 			DaBiPlayer win;
 			DaBiPlayer fail;
-			if (num5 == num6)
+			if (num9 == num10)
 			{
 				if (TianJiDaBiManager.Random.Next() % 100 > 50)
 				{
@@ -141,7 +146,7 @@ namespace YSGame.TianJiDaBi
 					fail = a;
 				}
 			}
-			else if (num5 > num6)
+			else if (num9 > num10)
 			{
 				win = a;
 				fail = b;
@@ -154,7 +159,7 @@ namespace YSGame.TianJiDaBi
 			this.RecordFight(RoundIndex, win, fail);
 		}
 
-		// Token: 0x060054DB RID: 21723 RVA: 0x00235450 File Offset: 0x00233650
+		// Token: 0x06004BBF RID: 19391 RVA: 0x00203FD8 File Offset: 0x002021D8
 		public void RecordFight(int RoundIndex, DaBiPlayer win, DaBiPlayer fail)
 		{
 			win.BigScore++;
@@ -174,7 +179,7 @@ namespace YSGame.TianJiDaBi
 			fail.FightRecords.Add(item2);
 		}
 
-		// Token: 0x060054DC RID: 21724 RVA: 0x0023550C File Offset: 0x0023370C
+		// Token: 0x06004BC0 RID: 19392 RVA: 0x00204094 File Offset: 0x00202294
 		private int MatchRankSort(DaBiPlayer a, DaBiPlayer b)
 		{
 			if (a.BigScore != b.BigScore)
@@ -192,7 +197,7 @@ namespace YSGame.TianJiDaBi
 			return -a.Atk.CompareTo(b.Atk);
 		}
 
-		// Token: 0x060054DD RID: 21725 RVA: 0x00235590 File Offset: 0x00233790
+		// Token: 0x06004BC1 RID: 19393 RVA: 0x00204118 File Offset: 0x00202318
 		public void CalcResult()
 		{
 			foreach (DaBiPlayer daBiPlayer in this.PlayerList)
@@ -206,7 +211,7 @@ namespace YSGame.TianJiDaBi
 			this.PlayerList.Sort(new Comparison<DaBiPlayer>(this.MatchRankSort));
 		}
 
-		// Token: 0x060054DE RID: 21726 RVA: 0x00235638 File Offset: 0x00233838
+		// Token: 0x06004BC2 RID: 19394 RVA: 0x002041C0 File Offset: 0x002023C0
 		public void LogPlayerRecord()
 		{
 			for (int i = 0; i < this.PlayerCount; i++)
@@ -226,28 +231,28 @@ namespace YSGame.TianJiDaBi
 			}
 		}
 
-		// Token: 0x0400547F RID: 21631
+		// Token: 0x04004AC1 RID: 19137
 		public int MatchIndex;
 
-		// Token: 0x04005480 RID: 21632
+		// Token: 0x04004AC2 RID: 19138
 		public int MatchYear;
 
-		// Token: 0x04005481 RID: 21633
+		// Token: 0x04004AC3 RID: 19139
 		public bool PlayerJoin;
 
-		// Token: 0x04005482 RID: 21634
+		// Token: 0x04004AC4 RID: 19140
 		public bool PlayerAbandon;
 
-		// Token: 0x04005483 RID: 21635
+		// Token: 0x04004AC5 RID: 19141
 		public int PlayerCount;
 
-		// Token: 0x04005484 RID: 21636
+		// Token: 0x04004AC6 RID: 19142
 		public int RoundIndex;
 
-		// Token: 0x04005485 RID: 21637
+		// Token: 0x04004AC7 RID: 19143
 		public List<DaBiPlayer> PlayerList;
 
-		// Token: 0x04005486 RID: 21638
+		// Token: 0x04004AC8 RID: 19144
 		private static Dictionary<int, Dictionary<int, NPCLeiXingDate>> NPCLeiXingDict;
 	}
 }

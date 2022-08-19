@@ -3,15 +3,15 @@ using System.Collections.Generic;
 
 namespace KBEngine
 {
-	// Token: 0x02000FBB RID: 4027
+	// Token: 0x02000C36 RID: 3126
 	public class Message_Loginapp_reqCreateAccount : Message
 	{
-		// Token: 0x06005F63 RID: 24419 RVA: 0x00042600 File Offset: 0x00040800
+		// Token: 0x06005525 RID: 21797 RVA: 0x002357A6 File Offset: 0x002339A6
 		public Message_Loginapp_reqCreateAccount(ushort msgid, string msgname, short length, sbyte argstype, List<byte> msgargtypes) : base(msgid, msgname, length, argstype, msgargtypes)
 		{
 		}
 
-		// Token: 0x06005F64 RID: 24420 RVA: 0x000042DD File Offset: 0x000024DD
+		// Token: 0x06005526 RID: 21798 RVA: 0x00004095 File Offset: 0x00002295
 		public override void handleMessage(MemoryStream msgstream)
 		{
 		}

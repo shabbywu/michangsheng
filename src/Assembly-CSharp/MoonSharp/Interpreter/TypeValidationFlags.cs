@@ -2,17 +2,17 @@
 
 namespace MoonSharp.Interpreter
 {
-	// Token: 0x02001076 RID: 4214
+	// Token: 0x02000CA8 RID: 3240
 	[Flags]
 	public enum TypeValidationFlags
 	{
-		// Token: 0x04005E6F RID: 24175
+		// Token: 0x0400529C RID: 21148
 		None = 0,
-		// Token: 0x04005E70 RID: 24176
+		// Token: 0x0400529D RID: 21149
 		AllowNil = 1,
-		// Token: 0x04005E71 RID: 24177
+		// Token: 0x0400529E RID: 21150
 		AutoConvert = 2,
-		// Token: 0x04005E72 RID: 24178
+		// Token: 0x0400529F RID: 21151
 		Default = 2
 	}
 }

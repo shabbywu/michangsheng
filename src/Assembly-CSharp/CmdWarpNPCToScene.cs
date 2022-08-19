@@ -2,19 +2,19 @@
 using Fungus;
 using UnityEngine;
 
-// Token: 0x02000370 RID: 880
+// Token: 0x02000256 RID: 598
 [CommandInfo("YSPlayer", "传送固定NPC到三级场景", "传送固定NPC到三级场景(传送后会自动刷新NPC列表)", 0)]
 [AddComponentMenu("")]
 public class CmdWarpNPCToScene : Command
 {
-	// Token: 0x0600190F RID: 6415 RVA: 0x000157E6 File Offset: 0x000139E6
+	// Token: 0x06001659 RID: 5721 RVA: 0x00096E34 File Offset: 0x00095034
 	public override void OnEnter()
 	{
 		NPCEx.WarpToScene(NPCEx.NPCIDToNew(this.NPCID.Value), this.SceneName.Value);
 		this.Continue();
 	}
 
-	// Token: 0x040013F9 RID: 5113
+	// Token: 0x040010A7 RID: 4263
 	[SerializeField]
 	[Tooltip("NPCID(老ID)")]
 	[VariableProperty(new Type[]
@@ -23,7 +23,7 @@ public class CmdWarpNPCToScene : Command
 	})]
 	protected IntegerVariable NPCID;
 
-	// Token: 0x040013FA RID: 5114
+	// Token: 0x040010A8 RID: 4264
 	[SerializeField]
 	[Tooltip("场景名称")]
 	[VariableProperty(new Type[]

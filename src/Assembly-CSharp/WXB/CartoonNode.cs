@@ -3,16 +3,16 @@ using UnityEngine;
 
 namespace WXB
 {
-	// Token: 0x020009BC RID: 2492
+	// Token: 0x020006A5 RID: 1701
 	public class CartoonNode : RectNode
 	{
-		// Token: 0x06003F78 RID: 16248 RVA: 0x0002D9D4 File Offset: 0x0002BBD4
+		// Token: 0x060035B7 RID: 13751 RVA: 0x00171D5A File Offset: 0x0016FF5A
 		public override float getWidth()
 		{
 			return (float)((int)(this.width + this.cartoon.space));
 		}
 
-		// Token: 0x06003F79 RID: 16249 RVA: 0x001B9980 File Offset: 0x001B7B80
+		// Token: 0x060035B8 RID: 13752 RVA: 0x00171D70 File Offset: 0x0016FF70
 		protected override void OnRectRender(RenderCache cache, Line line, Rect rect)
 		{
 			float space = this.cartoon.space;
@@ -21,7 +21,7 @@ namespace WXB
 			cache.cacheCartoon(line, this, this.cartoon, rect);
 		}
 
-		// Token: 0x040038E2 RID: 14562
+		// Token: 0x04002F1C RID: 12060
 		public Cartoon cartoon;
 	}
 }

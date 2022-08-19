@@ -1,16 +1,16 @@
 ﻿using System;
 
-// Token: 0x02000571 RID: 1393
+// Token: 0x020003D6 RID: 982
 public enum MoveDir
 {
-	// Token: 0x04001E84 RID: 7812
+	// Token: 0x040019F2 RID: 6642
 	None,
-	// Token: 0x04001E85 RID: 7813
+	// Token: 0x040019F3 RID: 6643
 	Up,
-	// Token: 0x04001E86 RID: 7814
+	// Token: 0x040019F4 RID: 6644
 	Down,
-	// Token: 0x04001E87 RID: 7815
+	// Token: 0x040019F5 RID: 6645
 	Left,
-	// Token: 0x04001E88 RID: 7816
+	// Token: 0x040019F6 RID: 6646
 	Right
 }

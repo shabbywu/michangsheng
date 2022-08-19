@@ -1,10 +1,10 @@
 ﻿using System;
 using UnityEngine;
 
-// Token: 0x02000799 RID: 1945
+// Token: 0x02000508 RID: 1288
 public class Interaction : MonoBehaviour
 {
-	// Token: 0x06003177 RID: 12663 RVA: 0x0018A4B0 File Offset: 0x001886B0
+	// Token: 0x06002972 RID: 10610 RVA: 0x0013D050 File Offset: 0x0013B250
 	private void Start()
 	{
 		this.deal = base.gameObject.transform.Find("DealBtn").gameObject;
@@ -25,7 +25,7 @@ public class Interaction : MonoBehaviour
 		this.disgrab.SetActive(false);
 	}
 
-	// Token: 0x06003178 RID: 12664 RVA: 0x000242CA File Offset: 0x000224CA
+	// Token: 0x06002973 RID: 10611 RVA: 0x0013D216 File Offset: 0x0013B416
 	private void ActiveCardButton(bool canReject)
 	{
 		this.play.SetActive(true);
@@ -33,7 +33,7 @@ public class Interaction : MonoBehaviour
 		this.disard.GetComponent<UIButton>().isEnabled = canReject;
 	}
 
-	// Token: 0x06003179 RID: 12665 RVA: 0x000242F5 File Offset: 0x000224F5
+	// Token: 0x06002974 RID: 10612 RVA: 0x0013D241 File Offset: 0x0013B441
 	public void DealCallBack()
 	{
 		this.controller.DealCards();
@@ -42,7 +42,7 @@ public class Interaction : MonoBehaviour
 		this.deal.SetActive(false);
 	}
 
-	// Token: 0x0600317A RID: 12666 RVA: 0x00024326 File Offset: 0x00022526
+	// Token: 0x06002975 RID: 10613 RVA: 0x0013D272 File Offset: 0x0013B472
 	private void PlayCallBack()
 	{
 		if (GameObject.Find("Player").GetComponent<PlayCard>().CheckSelectCards())
@@ -52,7 +52,7 @@ public class Interaction : MonoBehaviour
 		}
 	}
 
-	// Token: 0x0600317B RID: 12667 RVA: 0x00024356 File Offset: 0x00022556
+	// Token: 0x06002976 RID: 10614 RVA: 0x0013D2A2 File Offset: 0x0013B4A2
 	private void DiscardCallBack()
 	{
 		OrderController.Instance.Turn();
@@ -60,7 +60,7 @@ public class Interaction : MonoBehaviour
 		this.disard.SetActive(false);
 	}
 
-	// Token: 0x0600317C RID: 12668 RVA: 0x0002437A File Offset: 0x0002257A
+	// Token: 0x06002977 RID: 10615 RVA: 0x0013D2C6 File Offset: 0x0013B4C6
 	private void GrabLordCallBack()
 	{
 		this.controller.CardsOnTable(CharacterType.Player);
@@ -69,7 +69,7 @@ public class Interaction : MonoBehaviour
 		this.disgrab.SetActive(false);
 	}
 
-	// Token: 0x0600317D RID: 12669 RVA: 0x0018A678 File Offset: 0x00188878
+	// Token: 0x06002978 RID: 10616 RVA: 0x0013D2F8 File Offset: 0x0013B4F8
 	private void DisgrabLordCallBack()
 	{
 		int type = Random.Range(2, 4);
@@ -79,21 +79,21 @@ public class Interaction : MonoBehaviour
 		this.disgrab.SetActive(false);
 	}
 
-	// Token: 0x04002DC1 RID: 11713
+	// Token: 0x040025D9 RID: 9689
 	private GameObject deal;
 
-	// Token: 0x04002DC2 RID: 11714
+	// Token: 0x040025DA RID: 9690
 	private GameObject play;
 
-	// Token: 0x04002DC3 RID: 11715
+	// Token: 0x040025DB RID: 9691
 	private GameObject disard;
 
-	// Token: 0x04002DC4 RID: 11716
+	// Token: 0x040025DC RID: 9692
 	private GameObject grab;
 
-	// Token: 0x04002DC5 RID: 11717
+	// Token: 0x040025DD RID: 9693
 	private GameObject disgrab;
 
-	// Token: 0x04002DC6 RID: 11718
+	// Token: 0x040025DE RID: 9694
 	private GameController controller;
 }

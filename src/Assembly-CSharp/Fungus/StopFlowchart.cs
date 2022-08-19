@@ -4,12 +4,12 @@ using UnityEngine;
 
 namespace Fungus
 {
-	// Token: 0x020012A1 RID: 4769
+	// Token: 0x02000E50 RID: 3664
 	[CommandInfo("Flow", "Stop Flowchart", "Stops execution of all Blocks in a Flowchart", 0)]
 	[AddComponentMenu("")]
 	public class StopFlowchart : Command
 	{
-		// Token: 0x0600738E RID: 29582 RVA: 0x002AB4C0 File Offset: 0x002A96C0
+		// Token: 0x06006700 RID: 26368 RVA: 0x00288724 File Offset: 0x00286924
 		public override void OnEnter()
 		{
 			Flowchart flowchart = this.GetFlowchart();
@@ -24,24 +24,24 @@ namespace Fungus
 			this.Continue();
 		}
 
-		// Token: 0x0600738F RID: 29583 RVA: 0x0004ED69 File Offset: 0x0004CF69
+		// Token: 0x06006701 RID: 26369 RVA: 0x00288773 File Offset: 0x00286973
 		public override bool IsReorderableArray(string propertyName)
 		{
 			return propertyName == "targetFlowcharts";
 		}
 
-		// Token: 0x06007390 RID: 29584 RVA: 0x0004C5E0 File Offset: 0x0004A7E0
+		// Token: 0x06006702 RID: 26370 RVA: 0x0027D3DB File Offset: 0x0027B5DB
 		public override Color GetButtonColor()
 		{
 			return new Color32(235, 191, 217, byte.MaxValue);
 		}
 
-		// Token: 0x04006569 RID: 25961
+		// Token: 0x04005825 RID: 22565
 		[Tooltip("Stop all executing Blocks in the Flowchart that contains this command")]
 		[SerializeField]
 		protected bool stopParentFlowchart;
 
-		// Token: 0x0400656A RID: 25962
+		// Token: 0x04005826 RID: 22566
 		[Tooltip("Stop all executing Blocks in a list of target Flowcharts")]
 		[SerializeField]
 		protected List<Flowchart> targetFlowcharts = new List<Flowchart>();

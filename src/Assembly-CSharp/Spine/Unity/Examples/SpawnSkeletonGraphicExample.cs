@@ -4,10 +4,10 @@ using UnityEngine;
 
 namespace Spine.Unity.Examples
 {
-	// Token: 0x02000E57 RID: 3671
+	// Token: 0x02000AFD RID: 2813
 	public class SpawnSkeletonGraphicExample : MonoBehaviour
 	{
-		// Token: 0x0600580E RID: 22542 RVA: 0x0003EF9C File Offset: 0x0003D19C
+		// Token: 0x06004E67 RID: 20071 RVA: 0x0021693F File Offset: 0x00214B3F
 		private IEnumerator Start()
 		{
 			if (this.skeletonDataAsset == null)
@@ -25,18 +25,18 @@ namespace Spine.Unity.Examples
 			yield break;
 		}
 
-		// Token: 0x0400580F RID: 22543
+		// Token: 0x04004DDE RID: 19934
 		public SkeletonDataAsset skeletonDataAsset;
 
-		// Token: 0x04005810 RID: 22544
+		// Token: 0x04004DDF RID: 19935
 		[SpineAnimation("", "skeletonDataAsset", true, false)]
 		public string startingAnimation;
 
-		// Token: 0x04005811 RID: 22545
+		// Token: 0x04004DE0 RID: 19936
 		[SpineSkin("", "skeletonDataAsset", true, false, false)]
 		public string startingSkin = "base";
 
-		// Token: 0x04005812 RID: 22546
+		// Token: 0x04004DE1 RID: 19937
 		public Material skeletonGraphicMaterial;
 	}
 }

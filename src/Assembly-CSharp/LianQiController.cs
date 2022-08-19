@@ -6,11 +6,11 @@ using KBEngine;
 using Newtonsoft.Json.Linq;
 using UnityEngine;
 
-// Token: 0x0200044C RID: 1100
+// Token: 0x020002F1 RID: 753
 public class LianQiController : MonoBehaviour
 {
-	// Token: 0x17000295 RID: 661
-	// (get) Token: 0x06001D4D RID: 7501 RVA: 0x000186A4 File Offset: 0x000168A4
+	// Token: 0x1700024B RID: 587
+	// (get) Token: 0x06001A29 RID: 6697 RVA: 0x000BAC90 File Offset: 0x000B8E90
 	public int QingHe
 	{
 		get
@@ -19,8 +19,8 @@ public class LianQiController : MonoBehaviour
 		}
 	}
 
-	// Token: 0x17000296 RID: 662
-	// (get) Token: 0x06001D4E RID: 7502 RVA: 0x000186AC File Offset: 0x000168AC
+	// Token: 0x1700024C RID: 588
+	// (get) Token: 0x06001A2A RID: 6698 RVA: 0x000BAC98 File Offset: 0x000B8E98
 	public int CaoKong
 	{
 		get
@@ -29,8 +29,8 @@ public class LianQiController : MonoBehaviour
 		}
 	}
 
-	// Token: 0x17000297 RID: 663
-	// (get) Token: 0x06001D4F RID: 7503 RVA: 0x000186B4 File Offset: 0x000168B4
+	// Token: 0x1700024D RID: 589
+	// (get) Token: 0x06001A2B RID: 6699 RVA: 0x000BACA0 File Offset: 0x000B8EA0
 	public int LingXing
 	{
 		get
@@ -39,8 +39,8 @@ public class LianQiController : MonoBehaviour
 		}
 	}
 
-	// Token: 0x17000298 RID: 664
-	// (get) Token: 0x06001D50 RID: 7504 RVA: 0x000186BC File Offset: 0x000168BC
+	// Token: 0x1700024E RID: 590
+	// (get) Token: 0x06001A2C RID: 6700 RVA: 0x000BACA8 File Offset: 0x000B8EA8
 	public int JianGu
 	{
 		get
@@ -49,8 +49,8 @@ public class LianQiController : MonoBehaviour
 		}
 	}
 
-	// Token: 0x17000299 RID: 665
-	// (get) Token: 0x06001D51 RID: 7505 RVA: 0x000186C4 File Offset: 0x000168C4
+	// Token: 0x1700024F RID: 591
+	// (get) Token: 0x06001A2D RID: 6701 RVA: 0x000BACB0 File Offset: 0x000B8EB0
 	public int RenXing
 	{
 		get
@@ -59,8 +59,8 @@ public class LianQiController : MonoBehaviour
 		}
 	}
 
-	// Token: 0x1700029A RID: 666
-	// (get) Token: 0x06001D52 RID: 7506 RVA: 0x000186CC File Offset: 0x000168CC
+	// Token: 0x17000250 RID: 592
+	// (get) Token: 0x06001A2E RID: 6702 RVA: 0x000BACB8 File Offset: 0x000B8EB8
 	public int NengLiang
 	{
 		get
@@ -69,8 +69,8 @@ public class LianQiController : MonoBehaviour
 		}
 	}
 
-	// Token: 0x1700029B RID: 667
-	// (get) Token: 0x06001D53 RID: 7507 RVA: 0x000186D4 File Offset: 0x000168D4
+	// Token: 0x17000251 RID: 593
+	// (get) Token: 0x06001A2F RID: 6703 RVA: 0x000BACC0 File Offset: 0x000B8EC0
 	public List<int> ShuXing
 	{
 		get
@@ -79,7 +79,7 @@ public class LianQiController : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001D54 RID: 7508 RVA: 0x00101214 File Offset: 0x000FF414
+	// Token: 0x06001A30 RID: 6704 RVA: 0x000BACC8 File Offset: 0x000B8EC8
 	public JToken getNowQualityItemJson()
 	{
 		int nengLiang = this.NengLiang;
@@ -95,31 +95,31 @@ public class LianQiController : MonoBehaviour
 		return result;
 	}
 
-	// Token: 0x06001D55 RID: 7509 RVA: 0x000186DC File Offset: 0x000168DC
+	// Token: 0x06001A31 RID: 6705 RVA: 0x000BAD40 File Offset: 0x000B8F40
 	public void setCurSelectEquipMuBanID(int itemID)
 	{
 		this.curSelectEquipMuBanID = itemID;
 	}
 
-	// Token: 0x06001D56 RID: 7510 RVA: 0x000186E5 File Offset: 0x000168E5
+	// Token: 0x06001A32 RID: 6706 RVA: 0x000BAD49 File Offset: 0x000B8F49
 	public int getCurSelectEquipMuBanID()
 	{
 		return this.curSelectEquipMuBanID;
 	}
 
-	// Token: 0x06001D57 RID: 7511 RVA: 0x000186ED File Offset: 0x000168ED
+	// Token: 0x06001A33 RID: 6707 RVA: 0x000BAD51 File Offset: 0x000B8F51
 	public void setCurJinDu(int jindu)
 	{
 		this.curJinDu = jindu;
 	}
 
-	// Token: 0x06001D58 RID: 7512 RVA: 0x000186F6 File Offset: 0x000168F6
+	// Token: 0x06001A34 RID: 6708 RVA: 0x000BAD5A File Offset: 0x000B8F5A
 	public int getCurJinDu()
 	{
 		return this.curJinDu;
 	}
 
-	// Token: 0x06001D59 RID: 7513 RVA: 0x0010128C File Offset: 0x000FF48C
+	// Token: 0x06001A35 RID: 6709 RVA: 0x000BAD64 File Offset: 0x000B8F64
 	private int getQingHe()
 	{
 		int num = 0;
@@ -134,7 +134,7 @@ public class LianQiController : MonoBehaviour
 		return num;
 	}
 
-	// Token: 0x06001D5A RID: 7514 RVA: 0x00101334 File Offset: 0x000FF534
+	// Token: 0x06001A36 RID: 6710 RVA: 0x000BAE0C File Offset: 0x000B900C
 	private int getCaoKong()
 	{
 		int num = 0;
@@ -149,7 +149,7 @@ public class LianQiController : MonoBehaviour
 		return num;
 	}
 
-	// Token: 0x06001D5B RID: 7515 RVA: 0x001013DC File Offset: 0x000FF5DC
+	// Token: 0x06001A37 RID: 6711 RVA: 0x000BAEB4 File Offset: 0x000B90B4
 	private int getLingXing()
 	{
 		int num = 0;
@@ -164,7 +164,7 @@ public class LianQiController : MonoBehaviour
 		return num;
 	}
 
-	// Token: 0x06001D5C RID: 7516 RVA: 0x00101484 File Offset: 0x000FF684
+	// Token: 0x06001A38 RID: 6712 RVA: 0x000BAF5C File Offset: 0x000B915C
 	private int getJianGu()
 	{
 		int num = 0;
@@ -179,7 +179,7 @@ public class LianQiController : MonoBehaviour
 		return num;
 	}
 
-	// Token: 0x06001D5D RID: 7517 RVA: 0x0010152C File Offset: 0x000FF72C
+	// Token: 0x06001A39 RID: 6713 RVA: 0x000BB004 File Offset: 0x000B9204
 	private int getRenXing()
 	{
 		int num = 0;
@@ -194,7 +194,7 @@ public class LianQiController : MonoBehaviour
 		return num;
 	}
 
-	// Token: 0x06001D5E RID: 7518 RVA: 0x001015D4 File Offset: 0x000FF7D4
+	// Token: 0x06001A3A RID: 6714 RVA: 0x000BB0AC File Offset: 0x000B92AC
 	private int getNengLiang()
 	{
 		int num = 0;
@@ -208,20 +208,20 @@ public class LianQiController : MonoBehaviour
 		return num;
 	}
 
-	// Token: 0x06001D5F RID: 7519 RVA: 0x00101634 File Offset: 0x000FF834
+	// Token: 0x06001A3B RID: 6715 RVA: 0x000BB10C File Offset: 0x000B930C
 	private int GetItemNengLiang(int ItemID)
 	{
 		int i = jsonData.instance.ItemJsonData[ItemID.ToString()]["quality"].I;
 		return jsonData.instance.CaiLiaoNengLiangBiao[i.ToString()]["value1"].I;
 	}
 
-	// Token: 0x06001D60 RID: 7520 RVA: 0x000186FE File Offset: 0x000168FE
+	// Token: 0x06001A3C RID: 6716 RVA: 0x000BB164 File Offset: 0x000B9364
 	public bool WhetherSuccess()
 	{
 		return this.QingHe != 0 && this.CaoKong != 0 && this.LingXing != 0 && this.JianGu != 0 && this.RenXing != 0;
 	}
 
-	// Token: 0x06001D61 RID: 7521 RVA: 0x0010168C File Offset: 0x000FF88C
+	// Token: 0x06001A3D RID: 6717 RVA: 0x000BB194 File Offset: 0x000B9394
 	private List<int> getShuXing()
 	{
 		List<int> list = new List<int>();
@@ -236,13 +236,13 @@ public class LianQiController : MonoBehaviour
 		return list;
 	}
 
-	// Token: 0x06001D62 RID: 7522 RVA: 0x0001872B File Offset: 0x0001692B
+	// Token: 0x06001A3E RID: 6718 RVA: 0x000BB218 File Offset: 0x000B9418
 	public void LiQiSuccess()
 	{
 		this.CreateEpuieItem();
 	}
 
-	// Token: 0x06001D63 RID: 7523 RVA: 0x00101710 File Offset: 0x000FF910
+	// Token: 0x06001A3F RID: 6719 RVA: 0x000BB220 File Offset: 0x000B9420
 	private string GetItemDesc(int quality, int _typepingji)
 	{
 		string text = "";
@@ -276,13 +276,13 @@ public class LianQiController : MonoBehaviour
 		return text + "铭刻XXX符文";
 	}
 
-	// Token: 0x06001D64 RID: 7524 RVA: 0x00018733 File Offset: 0x00016933
+	// Token: 0x06001A40 RID: 6720 RVA: 0x000BB3A4 File Offset: 0x000B95A4
 	private string GetItemName()
 	{
 		return this.ItemName;
 	}
 
-	// Token: 0x06001D65 RID: 7525 RVA: 0x00101894 File Offset: 0x000FFA94
+	// Token: 0x06001A41 RID: 6721 RVA: 0x000BB3AC File Offset: 0x000B95AC
 	private int GetItemQuality(ref int quality, ref int shangzhongxia)
 	{
 		JToken nowQualityItemJson = this.getNowQualityItemJson();
@@ -295,7 +295,7 @@ public class LianQiController : MonoBehaviour
 		return -1;
 	}
 
-	// Token: 0x06001D66 RID: 7526 RVA: 0x001018E4 File Offset: 0x000FFAE4
+	// Token: 0x06001A42 RID: 6722 RVA: 0x000BB3FC File Offset: 0x000B95FC
 	private int GetItemMoney()
 	{
 		JToken nowQualityItemJson = this.getNowQualityItemJson();
@@ -306,13 +306,13 @@ public class LianQiController : MonoBehaviour
 		return -1;
 	}
 
-	// Token: 0x06001D67 RID: 7527 RVA: 0x0000A093 File Offset: 0x00008293
+	// Token: 0x06001A43 RID: 6723 RVA: 0x00024C5F File Offset: 0x00022E5F
 	public int GetItemCD()
 	{
 		return 1;
 	}
 
-	// Token: 0x06001D68 RID: 7528 RVA: 0x00101910 File Offset: 0x000FFB10
+	// Token: 0x06001A44 RID: 6724 RVA: 0x000BB428 File Offset: 0x000B9628
 	private JSONObject GetItemSkillSeid(JSONObject temp, JSONObject ItemSeidTemp, ref int Damage, ref string seidDesc)
 	{
 		Dictionary<string, Dictionary<string, int>> dictionary = new Dictionary<string, Dictionary<string, int>>();
@@ -450,7 +450,7 @@ public class LianQiController : MonoBehaviour
 		return temp;
 	}
 
-	// Token: 0x06001D69 RID: 7529 RVA: 0x001021DC File Offset: 0x001003DC
+	// Token: 0x06001A45 RID: 6725 RVA: 0x000BBCF4 File Offset: 0x000B9EF4
 	private JSONObject AddItemSeid(int seid, JSONObject value1 = null, JSONObject value2 = null)
 	{
 		JSONObject jsonobject = new JSONObject();
@@ -466,7 +466,7 @@ public class LianQiController : MonoBehaviour
 		return jsonobject;
 	}
 
-	// Token: 0x06001D6A RID: 7530 RVA: 0x000AD1D8 File Offset: 0x000AB3D8
+	// Token: 0x06001A46 RID: 6726 RVA: 0x000BBD34 File Offset: 0x000B9F34
 	private JSONObject AddItemSeid(int seid, int value1 = -9999, int value2 = -9999)
 	{
 		JSONObject jsonobject = new JSONObject();
@@ -482,7 +482,7 @@ public class LianQiController : MonoBehaviour
 		return jsonobject;
 	}
 
-	// Token: 0x06001D6B RID: 7531 RVA: 0x0010221C File Offset: 0x0010041C
+	// Token: 0x06001A47 RID: 6727 RVA: 0x000BBD7C File Offset: 0x000B9F7C
 	private JSONObject GetJsonObjectArray(List<int> value1)
 	{
 		JSONObject jsonobject = new JSONObject(JSONObject.Type.ARRAY);
@@ -493,13 +493,13 @@ public class LianQiController : MonoBehaviour
 		return jsonobject;
 	}
 
-	// Token: 0x06001D6C RID: 7532 RVA: 0x0001873B File Offset: 0x0001693B
+	// Token: 0x06001A48 RID: 6728 RVA: 0x000BBDD4 File Offset: 0x000B9FD4
 	private JSONObject GetItemAttackType()
 	{
 		return new JSONObject(JSONObject.Type.ARRAY);
 	}
 
-	// Token: 0x06001D6D RID: 7533 RVA: 0x00102274 File Offset: 0x00100474
+	// Token: 0x06001A49 RID: 6729 RVA: 0x000BBDDC File Offset: 0x000B9FDC
 	public void CreateEpuieItem()
 	{
 		Avatar player = Tools.instance.getPlayer();
@@ -532,47 +532,47 @@ public class LianQiController : MonoBehaviour
 		player.addItem(itemID, 1, jsonobject3, false);
 	}
 
-	// Token: 0x06001D6E RID: 7534 RVA: 0x00018743 File Offset: 0x00016943
+	// Token: 0x06001A4A RID: 6730 RVA: 0x000BBF14 File Offset: 0x000BA114
 	public void setSelectZhuangBeiType(int type)
 	{
 		this.selectZhuangBeiType = (LianQiController.ZhuangBeiType)type;
 	}
 
-	// Token: 0x06001D6F RID: 7535 RVA: 0x0001874C File Offset: 0x0001694C
+	// Token: 0x06001A4B RID: 6731 RVA: 0x000BBF1D File Offset: 0x000BA11D
 	public int getCurSelectZhuangBeiType()
 	{
 		return (int)this.selectZhuangBeiType;
 	}
 
-	// Token: 0x04001930 RID: 6448
+	// Token: 0x0400152A RID: 5418
 	[SerializeField]
 	private List<ItemCellEX> CaiLiao = new List<ItemCellEX>();
 
-	// Token: 0x04001931 RID: 6449
+	// Token: 0x0400152B RID: 5419
 	private LianQiController.ZhuangBeiType selectZhuangBeiType;
 
-	// Token: 0x04001932 RID: 6450
+	// Token: 0x0400152C RID: 5420
 	private int curSelectEquipMuBanID = -1;
 
-	// Token: 0x04001933 RID: 6451
+	// Token: 0x0400152D RID: 5421
 	private int curJinDu;
 
-	// Token: 0x04001934 RID: 6452
+	// Token: 0x0400152E RID: 5422
 	public int ZhuangBeiIndexID = -1;
 
-	// Token: 0x04001935 RID: 6453
+	// Token: 0x0400152F RID: 5423
 	public string ItemName = "";
 
-	// Token: 0x0200044D RID: 1101
+	// Token: 0x02001331 RID: 4913
 	public enum ZhuangBeiType
 	{
-		// Token: 0x04001937 RID: 6455
+		// Token: 0x040067C9 RID: 26569
 		空,
-		// Token: 0x04001938 RID: 6456
+		// Token: 0x040067CA RID: 26570
 		武器,
-		// Token: 0x04001939 RID: 6457
+		// Token: 0x040067CB RID: 26571
 		防具,
-		// Token: 0x0400193A RID: 6458
+		// Token: 0x040067CC RID: 26572
 		饰品
 	}
 }

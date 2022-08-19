@@ -6,12 +6,12 @@ using UnityEngine.UI;
 
 namespace WXB
 {
-	// Token: 0x02000990 RID: 2448
+	// Token: 0x02000683 RID: 1667
 	[ExecuteInEditMode]
 	public class CartoonDraw : EffectDrawObjec, ICanvasElement
 	{
-		// Token: 0x170006EF RID: 1775
-		// (get) Token: 0x06003E86 RID: 16006 RVA: 0x0002D0EC File Offset: 0x0002B2EC
+		// Token: 0x170004CF RID: 1231
+		// (get) Token: 0x060034D6 RID: 13526 RVA: 0x0016F21F File Offset: 0x0016D41F
 		public override DrawType type
 		{
 			get
@@ -20,12 +20,12 @@ namespace WXB
 			}
 		}
 
-		// Token: 0x170006F0 RID: 1776
-		// (get) Token: 0x06003E87 RID: 16007 RVA: 0x0002D0EF File Offset: 0x0002B2EF
-		// (set) Token: 0x06003E88 RID: 16008 RVA: 0x0002D0F7 File Offset: 0x0002B2F7
+		// Token: 0x170004D0 RID: 1232
+		// (get) Token: 0x060034D7 RID: 13527 RVA: 0x0016F222 File Offset: 0x0016D422
+		// (set) Token: 0x060034D8 RID: 13528 RVA: 0x0016F22A File Offset: 0x0016D42A
 		public Cartoon cartoon { get; set; }
 
-		// Token: 0x06003E89 RID: 16009 RVA: 0x001B7534 File Offset: 0x001B5734
+		// Token: 0x060034D9 RID: 13529 RVA: 0x0016F234 File Offset: 0x0016D434
 		private void UpdateAnim(float deltaTime)
 		{
 			this.mDelta += Mathf.Min(1f, deltaTime);
@@ -42,9 +42,9 @@ namespace WXB
 			}
 		}
 
-		// Token: 0x170006F1 RID: 1777
-		// (get) Token: 0x06003E8A RID: 16010 RVA: 0x0002D100 File Offset: 0x0002B300
-		// (set) Token: 0x06003E8B RID: 16011 RVA: 0x0002D109 File Offset: 0x0002B309
+		// Token: 0x170004D1 RID: 1233
+		// (get) Token: 0x060034DA RID: 13530 RVA: 0x0016F2BA File Offset: 0x0016D4BA
+		// (set) Token: 0x060034DB RID: 13531 RVA: 0x0016F2C3 File Offset: 0x0016D4C3
 		public bool isOpenAlpha
 		{
 			get
@@ -57,9 +57,9 @@ namespace WXB
 			}
 		}
 
-		// Token: 0x170006F2 RID: 1778
-		// (get) Token: 0x06003E8C RID: 16012 RVA: 0x0002D113 File Offset: 0x0002B313
-		// (set) Token: 0x06003E8D RID: 16013 RVA: 0x0002D11C File Offset: 0x0002B31C
+		// Token: 0x170004D2 RID: 1234
+		// (get) Token: 0x060034DC RID: 13532 RVA: 0x0016F2CD File Offset: 0x0016D4CD
+		// (set) Token: 0x060034DD RID: 13533 RVA: 0x0016F2D6 File Offset: 0x0016D4D6
 		public bool isOpenOffset
 		{
 			get
@@ -72,7 +72,7 @@ namespace WXB
 			}
 		}
 
-		// Token: 0x06003E8E RID: 16014 RVA: 0x0002D126 File Offset: 0x0002B326
+		// Token: 0x060034DE RID: 13534 RVA: 0x0016F2E0 File Offset: 0x0016D4E0
 		public void Add(Vector2 leftPos, float width, float height, Color color)
 		{
 			this.mData.Add(new CartoonDraw.Data
@@ -84,7 +84,7 @@ namespace WXB
 			});
 		}
 
-		// Token: 0x06003E8F RID: 16015 RVA: 0x0002D155 File Offset: 0x0002B355
+		// Token: 0x060034DF RID: 13535 RVA: 0x0016F30F File Offset: 0x0016D50F
 		public override void UpdateSelf(float deltaTime)
 		{
 			base.UpdateSelf(deltaTime);
@@ -96,7 +96,7 @@ namespace WXB
 			}
 		}
 
-		// Token: 0x06003E90 RID: 16016 RVA: 0x001B75BC File Offset: 0x001B57BC
+		// Token: 0x060034E0 RID: 13536 RVA: 0x0016F334 File Offset: 0x0016D534
 		public void Rebuild(CanvasUpdate executing)
 		{
 			if (executing != 3)
@@ -121,7 +121,7 @@ namespace WXB
 			base.canvasRenderer.SetTexture(sprite.texture);
 		}
 
-		// Token: 0x06003E91 RID: 16017 RVA: 0x0002D179 File Offset: 0x0002B379
+		// Token: 0x060034E1 RID: 13537 RVA: 0x0016F3DE File Offset: 0x0016D5DE
 		public override void Release()
 		{
 			base.Release();
@@ -129,41 +129,41 @@ namespace WXB
 			this.frameIndex = 0;
 		}
 
-		// Token: 0x06003E92 RID: 16018 RVA: 0x000042DD File Offset: 0x000024DD
+		// Token: 0x060034E2 RID: 13538 RVA: 0x00004095 File Offset: 0x00002295
 		public void GraphicUpdateComplete()
 		{
 		}
 
-		// Token: 0x06003E93 RID: 16019 RVA: 0x0002D193 File Offset: 0x0002B393
+		// Token: 0x060034E3 RID: 13539 RVA: 0x0016F3F8 File Offset: 0x0016D5F8
 		public bool IsDestroyed()
 		{
 			return this == null;
 		}
 
-		// Token: 0x06003E94 RID: 16020 RVA: 0x000042DD File Offset: 0x000024DD
+		// Token: 0x060034E4 RID: 13540 RVA: 0x00004095 File Offset: 0x00002295
 		public void LayoutComplete()
 		{
 		}
 
-		// Token: 0x06003E96 RID: 16022 RVA: 0x0002D1AF File Offset: 0x0002B3AF
+		// Token: 0x060034E6 RID: 13542 RVA: 0x0016F414 File Offset: 0x0016D614
 		Transform ICanvasElement.get_transform()
 		{
 			return base.transform;
 		}
 
-		// Token: 0x0400386F RID: 14447
+		// Token: 0x04002EC9 RID: 11977
 		private int frameIndex;
 
-		// Token: 0x04003870 RID: 14448
+		// Token: 0x04002ECA RID: 11978
 		private float mDelta;
 
-		// Token: 0x04003871 RID: 14449
+		// Token: 0x04002ECB RID: 11979
 		private List<CartoonDraw.Data> mData = new List<CartoonDraw.Data>();
 
-		// Token: 0x02000991 RID: 2449
+		// Token: 0x020014F7 RID: 5367
 		private class Data
 		{
-			// Token: 0x06003E97 RID: 16023 RVA: 0x001B7668 File Offset: 0x001B5868
+			// Token: 0x0600828C RID: 33420 RVA: 0x002DB3F0 File Offset: 0x002D95F0
 			public void Gen(VertexHelper vh, Vector4 uv)
 			{
 				int currentVertCount = vh.currentVertCount;
@@ -175,16 +175,16 @@ namespace WXB
 				vh.AddTriangle(currentVertCount + 2, currentVertCount + 3, currentVertCount);
 			}
 
-			// Token: 0x04003872 RID: 14450
+			// Token: 0x04006DE8 RID: 28136
 			public Vector2 leftPos;
 
-			// Token: 0x04003873 RID: 14451
+			// Token: 0x04006DE9 RID: 28137
 			public Color color;
 
-			// Token: 0x04003874 RID: 14452
+			// Token: 0x04006DEA RID: 28138
 			public float width;
 
-			// Token: 0x04003875 RID: 14453
+			// Token: 0x04006DEB RID: 28139
 			public float height;
 		}
 	}

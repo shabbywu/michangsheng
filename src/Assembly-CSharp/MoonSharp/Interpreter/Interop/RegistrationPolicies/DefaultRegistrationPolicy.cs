@@ -2,10 +2,10 @@
 
 namespace MoonSharp.Interpreter.Interop.RegistrationPolicies
 {
-	// Token: 0x02001139 RID: 4409
+	// Token: 0x02000D31 RID: 3377
 	public class DefaultRegistrationPolicy : IRegistrationPolicy
 	{
-		// Token: 0x06006AA1 RID: 27297 RVA: 0x00048B49 File Offset: 0x00046D49
+		// Token: 0x06005ECF RID: 24271 RVA: 0x00268B32 File Offset: 0x00266D32
 		public IUserDataDescriptor HandleRegistration(IUserDataDescriptor newDescriptor, IUserDataDescriptor oldDescriptor)
 		{
 			if (newDescriptor == null)
@@ -15,7 +15,7 @@ namespace MoonSharp.Interpreter.Interop.RegistrationPolicies
 			return oldDescriptor ?? newDescriptor;
 		}
 
-		// Token: 0x06006AA2 RID: 27298 RVA: 0x00004050 File Offset: 0x00002250
+		// Token: 0x06005ED0 RID: 24272 RVA: 0x0000280F File Offset: 0x00000A0F
 		public virtual bool AllowTypeAutoRegistration(Type type)
 		{
 			return false;

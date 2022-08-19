@@ -5,11 +5,11 @@ using UnityEngine;
 
 namespace Bag
 {
-	// Token: 0x02000D3D RID: 3389
+	// Token: 0x020009B5 RID: 2485
 	[Serializable]
 	public class PassiveSkill : BaseSkill
 	{
-		// Token: 0x0600507C RID: 20604 RVA: 0x00219DE8 File Offset: 0x00217FE8
+		// Token: 0x06004519 RID: 17689 RVA: 0x001D58B8 File Offset: 0x001D3AB8
 		public override void SetSkill(int id, int level)
 		{
 			foreach (StaticSkillJsonData staticSkillJsonData in StaticSkillJsonData.DataList)
@@ -34,7 +34,7 @@ namespace Bag
 			this.CanPutSlotType = CanSlotType.功法;
 		}
 
-		// Token: 0x0600507D RID: 20605 RVA: 0x00039EE6 File Offset: 0x000380E6
+		// Token: 0x0600451A RID: 17690 RVA: 0x001D5980 File Offset: 0x001D3B80
 		public override BaseSkill Clone()
 		{
 			PassiveSkill passiveSkill = new PassiveSkill();
@@ -43,7 +43,7 @@ namespace Bag
 			return passiveSkill;
 		}
 
-		// Token: 0x0600507E RID: 20606 RVA: 0x00219EB0 File Offset: 0x002180B0
+		// Token: 0x0600451B RID: 17691 RVA: 0x001D59A8 File Offset: 0x001D3BA8
 		public override Sprite GetIconSprite()
 		{
 			Sprite sprite = ResManager.inst.LoadSprite("StaticSkill Icon/" + this.SkillId);
@@ -54,7 +54,7 @@ namespace Bag
 			return sprite;
 		}
 
-		// Token: 0x0600507F RID: 20607 RVA: 0x00219EF8 File Offset: 0x002180F8
+		// Token: 0x0600451C RID: 17692 RVA: 0x001D59F0 File Offset: 0x001D3BF0
 		public override string GetDesc2()
 		{
 			foreach (_ItemJsonData itemJsonData in _ItemJsonData.DataList)
@@ -67,25 +67,25 @@ namespace Bag
 			return "暂无";
 		}
 
-		// Token: 0x06005080 RID: 20608 RVA: 0x00039F0B File Offset: 0x0003810B
+		// Token: 0x0600451D RID: 17693 RVA: 0x001D5A7C File Offset: 0x001D3C7C
 		public override string GetDesc1()
 		{
 			return StaticSkillJsonData.DataDict[this.Id].descr;
 		}
 
-		// Token: 0x06005081 RID: 20609 RVA: 0x00039F22 File Offset: 0x00038122
+		// Token: 0x0600451E RID: 17694 RVA: 0x001D5A93 File Offset: 0x001D3C93
 		public int GetSpeed()
 		{
 			return StaticSkillJsonData.DataDict[this.Id].Skill_Speed;
 		}
 
-		// Token: 0x06005082 RID: 20610 RVA: 0x00039F39 File Offset: 0x00038139
+		// Token: 0x0600451F RID: 17695 RVA: 0x001D5AAA File Offset: 0x001D3CAA
 		public override string GetTypeName()
 		{
 			return StrTextJsonData.DataDict["gongfaleibie" + this.AttackType].ChinaText;
 		}
 
-		// Token: 0x06005083 RID: 20611 RVA: 0x00219F84 File Offset: 0x00218184
+		// Token: 0x06004520 RID: 17696 RVA: 0x001D5AD0 File Offset: 0x001D3CD0
 		public override List<int> GetCiZhuiList()
 		{
 			List<int> list = new List<int>();
@@ -96,13 +96,13 @@ namespace Bag
 			return list;
 		}
 
-		// Token: 0x06005084 RID: 20612 RVA: 0x00039F5F File Offset: 0x0003815F
+		// Token: 0x06004521 RID: 17697 RVA: 0x001D5B3C File Offset: 0x001D3D3C
 		public override bool SkillTypeIsEqual(int skIllType)
 		{
 			return this.AttackType == skIllType;
 		}
 
-		// Token: 0x040051C9 RID: 20937
+		// Token: 0x040046C7 RID: 18119
 		public int AttackType;
 	}
 }

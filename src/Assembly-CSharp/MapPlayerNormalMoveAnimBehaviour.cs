@@ -6,10 +6,10 @@ using Spine;
 using Spine.Unity;
 using UnityEngine;
 
-// Token: 0x02000284 RID: 644
+// Token: 0x02000194 RID: 404
 public class MapPlayerNormalMoveAnimBehaviour : StateMachineBehaviour
 {
-	// Token: 0x060013BA RID: 5050 RVA: 0x000B5DE0 File Offset: 0x000B3FE0
+	// Token: 0x06001137 RID: 4407 RVA: 0x00067830 File Offset: 0x00065A30
 	public override void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
 	{
 		if (MapPlayerController.Inst.NormalShow.NowDunShuSpineSeid == null)
@@ -43,7 +43,7 @@ public class MapPlayerNormalMoveAnimBehaviour : StateMachineBehaviour
 		}
 	}
 
-	// Token: 0x060013BB RID: 5051 RVA: 0x00012723 File Offset: 0x00010923
+	// Token: 0x06001138 RID: 4408 RVA: 0x00067980 File Offset: 0x00065B80
 	public override void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
 	{
 		if (MapPlayerController.Inst.NormalShow.NowDunShuSpineSeid == null)
@@ -56,7 +56,7 @@ public class MapPlayerNormalMoveAnimBehaviour : StateMachineBehaviour
 		}
 	}
 
-	// Token: 0x060013BC RID: 5052 RVA: 0x000B5F30 File Offset: 0x000B4130
+	// Token: 0x06001139 RID: 4409 RVA: 0x000679B8 File Offset: 0x00065BB8
 	public override void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
 	{
 		if (MapPlayerController.Inst.NormalShow.NowDunShuSpineSeid == null)
@@ -87,7 +87,7 @@ public class MapPlayerNormalMoveAnimBehaviour : StateMachineBehaviour
 		}
 	}
 
-	// Token: 0x060013BD RID: 5053 RVA: 0x000B6004 File Offset: 0x000B4204
+	// Token: 0x0600113A RID: 4410 RVA: 0x00067A8C File Offset: 0x00065C8C
 	private static SkeletonAnimation GetSkeAnim(Animator animator)
 	{
 		SkeletonAnimation skeletonAnimation = animator.GetComponent<SkeletonAnimation>();
@@ -98,7 +98,7 @@ public class MapPlayerNormalMoveAnimBehaviour : StateMachineBehaviour
 		return skeletonAnimation;
 	}
 
-	// Token: 0x060013BE RID: 5054 RVA: 0x00012758 File Offset: 0x00010958
+	// Token: 0x0600113B RID: 4411 RVA: 0x00067AB1 File Offset: 0x00065CB1
 	private IEnumerator DelaySetObjTransform(GameObject obj, Transform target)
 	{
 		obj.transform.position = new Vector3(999999f, 999999f, 0f);
@@ -109,7 +109,7 @@ public class MapPlayerNormalMoveAnimBehaviour : StateMachineBehaviour
 		yield break;
 	}
 
-	// Token: 0x060013BF RID: 5055 RVA: 0x000B602C File Offset: 0x000B422C
+	// Token: 0x0600113C RID: 4412 RVA: 0x00067AC8 File Offset: 0x00065CC8
 	public void CreateObj(string path)
 	{
 		GameObject gameObject = Resources.Load<GameObject>(path);
@@ -122,36 +122,36 @@ public class MapPlayerNormalMoveAnimBehaviour : StateMachineBehaviour
 		MapPlayerController.Inst.StartCoroutine(this.DelaySetObjTransform(obj, MapPlayerController.Inst.NormalShow.Anim.transform));
 	}
 
-	// Token: 0x04000F58 RID: 3928
+	// Token: 0x04000C58 RID: 3160
 	private SkeletonAnimation skeAnim;
 
-	// Token: 0x04000F59 RID: 3929
+	// Token: 0x04000C59 RID: 3161
 	private ExposedList<Animation> spineAnims;
 
-	// Token: 0x04000F5A RID: 3930
+	// Token: 0x04000C5A RID: 3162
 	private Animation nowSpineAnim;
 
-	// Token: 0x04000F5B RID: 3931
+	// Token: 0x04000C5B RID: 3163
 	private float stateTimer;
 
-	// Token: 0x04000F5C RID: 3932
+	// Token: 0x04000C5C RID: 3164
 	private float lastTime;
 
-	// Token: 0x04000F5D RID: 3933
+	// Token: 0x04000C5D RID: 3165
 	private bool animLoopStart;
 
-	// Token: 0x04000F5E RID: 3934
+	// Token: 0x04000C5E RID: 3166
 	private Script luaScript;
 
-	// Token: 0x04000F5F RID: 3935
+	// Token: 0x04000C5F RID: 3167
 	private string onMoveEnterScript = "";
 
-	// Token: 0x04000F60 RID: 3936
+	// Token: 0x04000C60 RID: 3168
 	private string onMoveExitScript = "";
 
-	// Token: 0x04000F61 RID: 3937
+	// Token: 0x04000C61 RID: 3169
 	private string onLoopMoveEnterScript = "";
 
-	// Token: 0x04000F62 RID: 3938
+	// Token: 0x04000C62 RID: 3170
 	private string onLoopMoveExitScript = "";
 }

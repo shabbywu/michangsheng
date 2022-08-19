@@ -2,22 +2,22 @@
 
 namespace KBEngine
 {
-	// Token: 0x02000ED6 RID: 3798
+	// Token: 0x02000B59 RID: 2905
 	public class DATATYPE_UINT64 : DATATYPE_BASE
 	{
-		// Token: 0x06005B69 RID: 23401 RVA: 0x0004063B File Offset: 0x0003E83B
+		// Token: 0x0600512D RID: 20781 RVA: 0x002217D9 File Offset: 0x0021F9D9
 		public override object createFromStream(MemoryStream stream)
 		{
 			return stream.readUint64();
 		}
 
-		// Token: 0x06005B6A RID: 23402 RVA: 0x00040648 File Offset: 0x0003E848
+		// Token: 0x0600512E RID: 20782 RVA: 0x002217E6 File Offset: 0x0021F9E6
 		public override void addToStream(Bundle stream, object v)
 		{
 			stream.writeUint64(Convert.ToUInt64(v));
 		}
 
-		// Token: 0x06005B6B RID: 23403 RVA: 0x00250CF0 File Offset: 0x0024EEF0
+		// Token: 0x0600512F RID: 20783 RVA: 0x002217F4 File Offset: 0x0021F9F4
 		public override object parseDefaultValStr(string v)
 		{
 			ulong num = 0UL;
@@ -25,7 +25,7 @@ namespace KBEngine
 			return num;
 		}
 
-		// Token: 0x06005B6C RID: 23404 RVA: 0x00250D10 File Offset: 0x0024EF10
+		// Token: 0x06005130 RID: 20784 RVA: 0x00221814 File Offset: 0x0021FA14
 		public override bool isSameType(object v)
 		{
 			if (!KBEMath.isNumeric(v))

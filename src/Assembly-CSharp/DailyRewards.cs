@@ -2,10 +2,10 @@
 using System.Globalization;
 using UnityEngine;
 
-// Token: 0x02000685 RID: 1669
+// Token: 0x020004A5 RID: 1189
 public class DailyRewards : MonoBehaviour
 {
-	// Token: 0x060029B5 RID: 10677 RVA: 0x00143294 File Offset: 0x00141494
+	// Token: 0x06002579 RID: 9593 RVA: 0x0010356C File Offset: 0x0010176C
 	private void Start()
 	{
 		DateTime now = DateTime.Now;
@@ -233,7 +233,7 @@ public class DailyRewards : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060029B6 RID: 10678 RVA: 0x00143BB4 File Offset: 0x00141DB4
+	// Token: 0x0600257A RID: 9594 RVA: 0x00103E8C File Offset: 0x0010208C
 	private void OnApplicationPause(bool pauseStatus)
 	{
 		if (pauseStatus)
@@ -246,7 +246,7 @@ public class DailyRewards : MonoBehaviour
 		Debug.Log("Usao nazad u aplikaciju iz Pause");
 	}
 
-	// Token: 0x060029B7 RID: 10679 RVA: 0x00143BF8 File Offset: 0x00141DF8
+	// Token: 0x0600257B RID: 9595 RVA: 0x00103ED0 File Offset: 0x001020D0
 	private void PrikaziDailyReward(int TrenutniDan)
 	{
 		Debug.Log("Trenutni dan nagrade je: " + TrenutniDan);
@@ -264,7 +264,7 @@ public class DailyRewards : MonoBehaviour
 		gameObject.transform.GetChild(0).Find("DailyRewardParticlesIdle").GetComponent<ParticleSystem>().Play();
 	}
 
-	// Token: 0x060029B8 RID: 10680 RVA: 0x00143CA4 File Offset: 0x00141EA4
+	// Token: 0x0600257C RID: 9596 RVA: 0x00103F7C File Offset: 0x0010217C
 	private void OnApplicationQuit()
 	{
 		this.VremeQuitString = DateTime.Now.ToString();
@@ -272,7 +272,7 @@ public class DailyRewards : MonoBehaviour
 		PlayerPrefs.Save();
 	}
 
-	// Token: 0x04002359 RID: 9049
+	// Token: 0x04001E33 RID: 7731
 	public static int[] DailyRewardAmount = new int[]
 	{
 		100,
@@ -283,48 +283,48 @@ public class DailyRewards : MonoBehaviour
 		600
 	};
 
-	// Token: 0x0400235A RID: 9050
+	// Token: 0x04001E34 RID: 7732
 	private int OneDayTime = 86400;
 
-	// Token: 0x0400235B RID: 9051
+	// Token: 0x04001E35 RID: 7733
 	public static int LevelReward;
 
-	// Token: 0x0400235C RID: 9052
+	// Token: 0x04001E36 RID: 7734
 	private DateTimeFormatInfo format;
 
-	// Token: 0x0400235D RID: 9053
+	// Token: 0x04001E37 RID: 7735
 	private DateTime VremePokretanjaDateTime;
 
-	// Token: 0x0400235E RID: 9054
+	// Token: 0x04001E38 RID: 7736
 	private DateTime VremeIzlaska;
 
-	// Token: 0x0400235F RID: 9055
+	// Token: 0x04001E39 RID: 7737
 	private string VremePokretanja;
 
-	// Token: 0x04002360 RID: 9056
+	// Token: 0x04001E3A RID: 7738
 	private string lastPlayDate;
 
-	// Token: 0x04002361 RID: 9057
+	// Token: 0x04001E3B RID: 7739
 	private string VremeQuitString;
 
-	// Token: 0x04002362 RID: 9058
+	// Token: 0x04001E3C RID: 7740
 	private string Vreme;
 
-	// Token: 0x04002363 RID: 9059
+	// Token: 0x04001E3D RID: 7741
 	private string danUlaska;
 
-	// Token: 0x04002364 RID: 9060
+	// Token: 0x04001E3E RID: 7742
 	private string mesecUlaska;
 
-	// Token: 0x04002365 RID: 9061
+	// Token: 0x04001E3F RID: 7743
 	private string godinaUlaska;
 
-	// Token: 0x04002366 RID: 9062
+	// Token: 0x04001E40 RID: 7744
 	private string danIzlaska;
 
-	// Token: 0x04002367 RID: 9063
+	// Token: 0x04001E41 RID: 7745
 	private string mesecIzlaska;
 
-	// Token: 0x04002368 RID: 9064
+	// Token: 0x04001E42 RID: 7746
 	private string godinaIzlaska;
 }

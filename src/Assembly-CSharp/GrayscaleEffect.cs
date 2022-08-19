@@ -1,12 +1,12 @@
 ﻿using System;
 using UnityEngine;
 
-// Token: 0x02000133 RID: 307
+// Token: 0x020000C3 RID: 195
 [ExecuteInEditMode]
 [AddComponentMenu("Image Effects/Grayscale")]
 public class GrayscaleEffect : ImageEffectBase
 {
-	// Token: 0x06000BAD RID: 2989 RVA: 0x0000DC68 File Offset: 0x0000BE68
+	// Token: 0x06000ACA RID: 2762 RVA: 0x00041363 File Offset: 0x0003F563
 	private void OnRenderImage(RenderTexture source, RenderTexture destination)
 	{
 		base.material.SetTexture("_RampTex", this.textureRamp);
@@ -14,9 +14,9 @@ public class GrayscaleEffect : ImageEffectBase
 		Graphics.Blit(source, destination, base.material);
 	}
 
-	// Token: 0x04000876 RID: 2166
+	// Token: 0x040006CF RID: 1743
 	public Texture textureRamp;
 
-	// Token: 0x04000877 RID: 2167
+	// Token: 0x040006D0 RID: 1744
 	public float rampOffset;
 }

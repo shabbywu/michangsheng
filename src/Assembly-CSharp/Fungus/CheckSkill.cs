@@ -3,30 +3,30 @@ using UnityEngine;
 
 namespace Fungus
 {
-	// Token: 0x020013D2 RID: 5074
+	// Token: 0x02000F1E RID: 3870
 	[CommandInfo("YS", "CheckSkill", "检测是否拥有该技能", 0)]
 	[AddComponentMenu("")]
 	public class CheckSkill : Command
 	{
-		// Token: 0x06007BA8 RID: 31656 RVA: 0x00054338 File Offset: 0x00052538
+		// Token: 0x06006DBD RID: 28093 RVA: 0x002A3CFF File Offset: 0x002A1EFF
 		public override void OnEnter()
 		{
 			this.TempValue.Value = PlayerEx.HasSkill(this.SkillID);
 			this.Continue();
 		}
 
-		// Token: 0x06007BA9 RID: 31657 RVA: 0x000113CF File Offset: 0x0000F5CF
+		// Token: 0x06006DBE RID: 28094 RVA: 0x0005E228 File Offset: 0x0005C428
 		public override Color GetButtonColor()
 		{
 			return new Color32(184, 210, 235, byte.MaxValue);
 		}
 
-		// Token: 0x04006A18 RID: 27160
+		// Token: 0x04005B4E RID: 23374
 		[Tooltip("需要进行检测的技能ID")]
 		[SerializeField]
 		protected int SkillID;
 
-		// Token: 0x04006A19 RID: 27161
+		// Token: 0x04005B4F RID: 23375
 		[Tooltip("获取到的值存放位置")]
 		[VariableProperty(new Type[]
 		{

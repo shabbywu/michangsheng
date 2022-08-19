@@ -1,12 +1,12 @@
 ﻿using System;
 using UnityEngine;
 
-// Token: 0x0200004A RID: 74
+// Token: 0x02000037 RID: 55
 [AddComponentMenu("NGUI/Examples/UI Storage Slot")]
 public class UIStorageSlot : UIItemSlot
 {
-	// Token: 0x1700007F RID: 127
-	// (get) Token: 0x06000466 RID: 1126 RVA: 0x00007EA1 File Offset: 0x000060A1
+	// Token: 0x17000073 RID: 115
+	// (get) Token: 0x0600041E RID: 1054 RVA: 0x00016FF5 File Offset: 0x000151F5
 	protected override InvGameItem observedItem
 	{
 		get
@@ -19,7 +19,7 @@ public class UIStorageSlot : UIItemSlot
 		}
 	}
 
-	// Token: 0x06000467 RID: 1127 RVA: 0x00007EC4 File Offset: 0x000060C4
+	// Token: 0x0600041F RID: 1055 RVA: 0x00017018 File Offset: 0x00015218
 	protected override InvGameItem Replace(InvGameItem item)
 	{
 		if (!(this.storage != null))
@@ -29,9 +29,9 @@ public class UIStorageSlot : UIItemSlot
 		return this.storage.Replace(this.slot, item);
 	}
 
-	// Token: 0x04000291 RID: 657
+	// Token: 0x0400024B RID: 587
 	public UIItemStorage storage;
 
-	// Token: 0x04000292 RID: 658
+	// Token: 0x0400024C RID: 588
 	public int slot;
 }

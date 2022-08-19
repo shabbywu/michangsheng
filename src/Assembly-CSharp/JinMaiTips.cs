@@ -2,10 +2,10 @@
 using GUIPackage;
 using UnityEngine;
 
-// Token: 0x02000034 RID: 52
+// Token: 0x02000029 RID: 41
 public class JinMaiTips : MonoBehaviour
 {
-	// Token: 0x06000382 RID: 898 RVA: 0x0006A6A8 File Offset: 0x000688A8
+	// Token: 0x06000364 RID: 868 RVA: 0x000130D0 File Offset: 0x000112D0
 	private void OnHover(bool isOver)
 	{
 		if (isOver)

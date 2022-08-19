@@ -3,12 +3,12 @@ using UnityEngine;
 
 namespace BehaviorDesigner.Runtime.Tasks.Basic.UnityAnimation
 {
-	// Token: 0x02001672 RID: 5746
+	// Token: 0x020011B0 RID: 4528
 	[TaskCategory("Basic/Animation")]
 	[TaskDescription("Sets the wrap mode to the specified value. Returns Success.")]
 	public class SetWrapMode : Action
 	{
-		// Token: 0x06008564 RID: 34148 RVA: 0x002D0E04 File Offset: 0x002CF004
+		// Token: 0x06007758 RID: 30552 RVA: 0x002B8CA4 File Offset: 0x002B6EA4
 		public override void OnStart()
 		{
 			GameObject defaultGameObject = base.GetDefaultGameObject(this.targetGameObject.Value);
@@ -19,7 +19,7 @@ namespace BehaviorDesigner.Runtime.Tasks.Basic.UnityAnimation
 			}
 		}
 
-		// Token: 0x06008565 RID: 34149 RVA: 0x0005C8EA File Offset: 0x0005AAEA
+		// Token: 0x06007759 RID: 30553 RVA: 0x002B8CE4 File Offset: 0x002B6EE4
 		public override TaskStatus OnUpdate()
 		{
 			if (this.animation == null)
@@ -31,25 +31,25 @@ namespace BehaviorDesigner.Runtime.Tasks.Basic.UnityAnimation
 			return 2;
 		}
 
-		// Token: 0x06008566 RID: 34150 RVA: 0x0005C918 File Offset: 0x0005AB18
+		// Token: 0x0600775A RID: 30554 RVA: 0x002B8D12 File Offset: 0x002B6F12
 		public override void OnReset()
 		{
 			this.targetGameObject = null;
 			this.wrapMode = 0;
 		}
 
-		// Token: 0x04007226 RID: 29222
+		// Token: 0x040062F7 RID: 25335
 		[Tooltip("The GameObject that the task operates on. If null the task GameObject is used.")]
 		public SharedGameObject targetGameObject;
 
-		// Token: 0x04007227 RID: 29223
+		// Token: 0x040062F8 RID: 25336
 		[Tooltip("How should time beyond the playback range of the clip be treated?")]
 		public WrapMode wrapMode;
 
-		// Token: 0x04007228 RID: 29224
+		// Token: 0x040062F9 RID: 25337
 		private Animation animation;
 
-		// Token: 0x04007229 RID: 29225
+		// Token: 0x040062FA RID: 25338
 		private GameObject prevGameObject;
 	}
 }

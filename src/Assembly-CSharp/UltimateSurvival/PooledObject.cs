@@ -4,10 +4,10 @@ using UnityEngine;
 
 namespace UltimateSurvival
 {
-	// Token: 0x020008B2 RID: 2226
+	// Token: 0x020005E4 RID: 1508
 	public class PooledObject : MonoBehaviour
 	{
-		// Token: 0x06003954 RID: 14676 RVA: 0x001A5274 File Offset: 0x001A3474
+		// Token: 0x06003088 RID: 12424 RVA: 0x0015B8AC File Offset: 0x00159AAC
 		public virtual void OnUse(Vector3 position = default(Vector3), Quaternion rotation = default(Quaternion), Transform parent = null)
 		{
 			try
@@ -34,14 +34,14 @@ namespace UltimateSurvival
 			}
 		}
 
-		// Token: 0x06003955 RID: 14677 RVA: 0x00029949 File Offset: 0x00027B49
+		// Token: 0x06003089 RID: 12425 RVA: 0x0015B94C File Offset: 0x00159B4C
 		public virtual void OnRelease()
 		{
 			base.gameObject.SetActive(false);
 			this.Released.Send(this);
 		}
 
-		// Token: 0x06003956 RID: 14678 RVA: 0x00029963 File Offset: 0x00027B63
+		// Token: 0x0600308A RID: 12426 RVA: 0x0015B966 File Offset: 0x00159B66
 		private void Awake()
 		{
 			if (this.m_ReleaseOnTimer)
@@ -50,7 +50,7 @@ namespace UltimateSurvival
 			}
 		}
 
-		// Token: 0x06003957 RID: 14679 RVA: 0x0002997E File Offset: 0x00027B7E
+		// Token: 0x0600308B RID: 12427 RVA: 0x0015B981 File Offset: 0x00159B81
 		private IEnumerator ReleaseWithDelay()
 		{
 			yield return this.m_WaitInterval;
@@ -58,22 +58,22 @@ namespace UltimateSurvival
 			yield break;
 		}
 
-		// Token: 0x0400336A RID: 13162
+		// Token: 0x04002AAC RID: 10924
 		public Message<PooledObject> Released = new Message<PooledObject>();
 
-		// Token: 0x0400336B RID: 13163
+		// Token: 0x04002AAD RID: 10925
 		[SerializeField]
 		private bool m_ReleaseOnTimer = true;
 
-		// Token: 0x0400336C RID: 13164
+		// Token: 0x04002AAE RID: 10926
 		[SerializeField]
 		private float m_ReleaseTimer = 20f;
 
-		// Token: 0x0400336D RID: 13165
+		// Token: 0x04002AAF RID: 10927
 		[SerializeField]
 		private ParticleSystem[] m_ToResetParticles;
 
-		// Token: 0x0400336E RID: 13166
+		// Token: 0x04002AB0 RID: 10928
 		private WaitForSeconds m_WaitInterval;
 	}
 }

@@ -2,22 +2,22 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-// Token: 0x0200049C RID: 1180
+// Token: 0x0200032E RID: 814
 public class MainUISetName : MonoBehaviour
 {
-	// Token: 0x06001F5C RID: 8028 RVA: 0x00019E4E File Offset: 0x0001804E
+	// Token: 0x06001C0A RID: 7178 RVA: 0x000C8EFB File Offset: 0x000C70FB
 	private void Awake()
 	{
 		this.RandomName();
 	}
 
-	// Token: 0x06001F5D RID: 8029 RVA: 0x00011B82 File Offset: 0x0000FD82
+	// Token: 0x06001C0B RID: 7179 RVA: 0x0005FDE2 File Offset: 0x0005DFE2
 	public void Init()
 	{
 		base.gameObject.SetActive(true);
 	}
 
-	// Token: 0x06001F5E RID: 8030 RVA: 0x0010E41C File Offset: 0x0010C61C
+	// Token: 0x06001C0C RID: 7180 RVA: 0x000C8F04 File Offset: 0x000C7104
 	public void RandomName()
 	{
 		bool flag = NpcJieSuanManager.inst.getRandomInt(1, 100) > 50;
@@ -42,7 +42,7 @@ public class MainUISetName : MonoBehaviour
 		this.minInputField.text = text2;
 	}
 
-	// Token: 0x06001F5F RID: 8031 RVA: 0x0010E490 File Offset: 0x0010C690
+	// Token: 0x06001C0D RID: 7181 RVA: 0x000C8F78 File Offset: 0x000C7178
 	public void NextMethod()
 	{
 		string text = this.xinInputField.text + this.minInputField.text;
@@ -73,7 +73,7 @@ public class MainUISetName : MonoBehaviour
 		MainUIMag.inst.createAvatarPanel.facePanel.SetActive(true);
 	}
 
-	// Token: 0x06001F60 RID: 8032 RVA: 0x00019E56 File Offset: 0x00018056
+	// Token: 0x06001C0E RID: 7182 RVA: 0x000C9092 File Offset: 0x000C7292
 	public void ReturnMethod()
 	{
 		base.gameObject.SetActive(false);
@@ -81,9 +81,9 @@ public class MainUISetName : MonoBehaviour
 		MainUIMag.inst.createAvatarPanel.Close();
 	}
 
-	// Token: 0x04001ADC RID: 6876
+	// Token: 0x040016A6 RID: 5798
 	public InputField xinInputField;
 
-	// Token: 0x04001ADD RID: 6877
+	// Token: 0x040016A7 RID: 5799
 	public InputField minInputField;
 }

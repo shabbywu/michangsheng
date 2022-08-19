@@ -4,23 +4,23 @@ using System.Threading;
 
 namespace KBEngine
 {
-	// Token: 0x02000FE1 RID: 4065
+	// Token: 0x02000C58 RID: 3160
 	public class PacketReceiverTCP : PacketReceiverBase
 	{
-		// Token: 0x06006026 RID: 24614 RVA: 0x00042DBC File Offset: 0x00040FBC
+		// Token: 0x060055DB RID: 21979 RVA: 0x0023A5A4 File Offset: 0x002387A4
 		public PacketReceiverTCP(NetworkInterfaceBase networkInterface) : base(networkInterface)
 		{
 			this._buffer = new byte[KBEngineApp.app.getInitArgs().TCP_RECV_BUFFER_MAX];
 			this._messageReader = new MessageReaderTCP();
 		}
 
-		// Token: 0x06006027 RID: 24615 RVA: 0x00267364 File Offset: 0x00265564
+		// Token: 0x060055DC RID: 21980 RVA: 0x0023A5D4 File Offset: 0x002387D4
 		~PacketReceiverTCP()
 		{
 			Dbg.DEBUG_MSG("PacketReceiverTCP::~PacketReceiverTCP(), destroyed!");
 		}
 
-		// Token: 0x06006028 RID: 24616 RVA: 0x00267394 File Offset: 0x00265594
+		// Token: 0x060055DD RID: 21981 RVA: 0x0023A604 File Offset: 0x00238804
 		public override void process()
 		{
 			int num = Interlocked.Add(ref this._wpos, 0);
@@ -53,7 +53,7 @@ namespace KBEngine
 			}
 		}
 
-		// Token: 0x06006029 RID: 24617 RVA: 0x002674D0 File Offset: 0x002656D0
+		// Token: 0x060055DE RID: 21982 RVA: 0x0023A740 File Offset: 0x00238940
 		private int _free()
 		{
 			int num = Interlocked.Add(ref this._rpos, 0);
@@ -72,7 +72,7 @@ namespace KBEngine
 			return num - this._wpos - 1;
 		}
 
-		// Token: 0x0600602A RID: 24618 RVA: 0x00267530 File Offset: 0x00265730
+		// Token: 0x060055DF RID: 21983 RVA: 0x0023A7A0 File Offset: 0x002389A0
 		protected override void _asyncReceive()
 		{
 			if (this._networkInterface == null || !this._networkInterface.valid())
@@ -133,13 +133,13 @@ namespace KBEngine
 			});
 		}
 
-		// Token: 0x04005B7C RID: 23420
+		// Token: 0x040050CC RID: 20684
 		private byte[] _buffer;
 
-		// Token: 0x04005B7D RID: 23421
+		// Token: 0x040050CD RID: 20685
 		private int _wpos;
 
-		// Token: 0x04005B7E RID: 23422
+		// Token: 0x040050CE RID: 20686
 		private int _rpos;
 	}
 }

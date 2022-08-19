@@ -7,17 +7,17 @@ using UltimateSurvival;
 using UnityEngine;
 using UnityEngine.Events;
 
-// Token: 0x02000289 RID: 649
+// Token: 0x02000197 RID: 407
 public class MapRandomCompent : MapInstComport
 {
-	// Token: 0x060013D9 RID: 5081 RVA: 0x0001286F File Offset: 0x00010A6F
+	// Token: 0x0600114E RID: 4430 RVA: 0x00068253 File Offset: 0x00066453
 	protected override void Awake()
 	{
 		this.AllMapCastTimeJsonData = jsonData.instance.AllMapCastTimeJsonData;
 		this.MapRandomJsonData = jsonData.instance.MapRandomJsonData;
 	}
 
-	// Token: 0x060013DA RID: 5082 RVA: 0x000B67A8 File Offset: 0x000B49A8
+	// Token: 0x0600114F RID: 4431 RVA: 0x00068278 File Offset: 0x00066478
 	protected override void Start()
 	{
 		this.NodeIndex = int.Parse(base.name);
@@ -31,18 +31,18 @@ public class MapRandomCompent : MapInstComport
 		}
 	}
 
-	// Token: 0x060013DB RID: 5083 RVA: 0x00012891 File Offset: 0x00010A91
+	// Token: 0x06001150 RID: 4432 RVA: 0x000682E4 File Offset: 0x000664E4
 	protected override int GetGrideNum()
 	{
 		return base.transform.parent.GetComponent<RandomFuBen>().Wide;
 	}
 
-	// Token: 0x060013DC RID: 5084 RVA: 0x000042DD File Offset: 0x000024DD
+	// Token: 0x06001151 RID: 4433 RVA: 0x00004095 File Offset: 0x00002295
 	public override void BaseAddTime()
 	{
 	}
 
-	// Token: 0x060013DD RID: 5085 RVA: 0x000B6814 File Offset: 0x000B4A14
+	// Token: 0x06001152 RID: 4434 RVA: 0x000682FC File Offset: 0x000664FC
 	public override void EventRandom()
 	{
 		Avatar player = Tools.instance.getPlayer();
@@ -110,19 +110,19 @@ public class MapRandomCompent : MapInstComport
 		this.ResetIndex();
 	}
 
-	// Token: 0x060013DE RID: 5086 RVA: 0x000128A8 File Offset: 0x00010AA8
+	// Token: 0x06001153 RID: 4435 RVA: 0x00068520 File Offset: 0x00066720
 	public static void ShowOutRandomFubenTalk()
 	{
 		MapRandomCompent.NowRandomOutCompent.OutRandomFuBen();
 	}
 
-	// Token: 0x060013DF RID: 5087 RVA: 0x000128B4 File Offset: 0x00010AB4
+	// Token: 0x06001154 RID: 4436 RVA: 0x0006852C File Offset: 0x0006672C
 	public void OutRandomFuBen()
 	{
 		Tools.instance.getPlayer().randomFuBenMag.OutRandomFuBen();
 	}
 
-	// Token: 0x060013E0 RID: 5088 RVA: 0x000B6A38 File Offset: 0x000B4C38
+	// Token: 0x06001155 RID: 4437 RVA: 0x00068544 File Offset: 0x00066744
 	public void ResetIndex()
 	{
 		Avatar player = Tools.instance.getPlayer();
@@ -156,7 +156,7 @@ public class MapRandomCompent : MapInstComport
 		}
 	}
 
-	// Token: 0x060013E1 RID: 5089 RVA: 0x000B6BF8 File Offset: 0x000B4DF8
+	// Token: 0x06001156 RID: 4438 RVA: 0x00068704 File Offset: 0x00066904
 	public bool ISOutNode()
 	{
 		RandomFuBen component = base.transform.parent.GetComponent<RandomFuBen>();
@@ -166,7 +166,7 @@ public class MapRandomCompent : MapInstComport
 		return component.mapMag.mapIndex[list[0], list2[0]] == this.NodeIndex;
 	}
 
-	// Token: 0x060013E2 RID: 5090 RVA: 0x000B6C58 File Offset: 0x000B4E58
+	// Token: 0x06001157 RID: 4439 RVA: 0x00068764 File Offset: 0x00066964
 	public int GetTaskTalkID()
 	{
 		Avatar player = Tools.instance.getPlayer();
@@ -179,7 +179,7 @@ public class MapRandomCompent : MapInstComport
 		return -1;
 	}
 
-	// Token: 0x060013E3 RID: 5091 RVA: 0x000B6CC4 File Offset: 0x000B4EC4
+	// Token: 0x06001158 RID: 4440 RVA: 0x000687D0 File Offset: 0x000669D0
 	public int getSuiIndex()
 	{
 		Avatar player = Tools.instance.getPlayer();
@@ -205,6 +205,6 @@ public class MapRandomCompent : MapInstComport
 		return result;
 	}
 
-	// Token: 0x04000F80 RID: 3968
+	// Token: 0x04000C7B RID: 3195
 	public static MapRandomCompent NowRandomOutCompent;
 }

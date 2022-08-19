@@ -2,20 +2,20 @@
 
 namespace MoonSharp.VsCodeDebugger.SDK
 {
-	// Token: 0x020011C6 RID: 4550
+	// Token: 0x02000D9A RID: 3482
 	public class Breakpoint
 	{
-		// Token: 0x17000A3E RID: 2622
-		// (get) Token: 0x06006F7A RID: 28538 RVA: 0x0004BBFD File Offset: 0x00049DFD
-		// (set) Token: 0x06006F7B RID: 28539 RVA: 0x0004BC05 File Offset: 0x00049E05
+		// Token: 0x170007DD RID: 2013
+		// (get) Token: 0x06006334 RID: 25396 RVA: 0x0027A737 File Offset: 0x00278937
+		// (set) Token: 0x06006335 RID: 25397 RVA: 0x0027A73F File Offset: 0x0027893F
 		public bool verified { get; private set; }
 
-		// Token: 0x17000A3F RID: 2623
-		// (get) Token: 0x06006F7C RID: 28540 RVA: 0x0004BC0E File Offset: 0x00049E0E
-		// (set) Token: 0x06006F7D RID: 28541 RVA: 0x0004BC16 File Offset: 0x00049E16
+		// Token: 0x170007DE RID: 2014
+		// (get) Token: 0x06006336 RID: 25398 RVA: 0x0027A748 File Offset: 0x00278948
+		// (set) Token: 0x06006337 RID: 25399 RVA: 0x0027A750 File Offset: 0x00278950
 		public int line { get; private set; }
 
-		// Token: 0x06006F7E RID: 28542 RVA: 0x0004BC1F File Offset: 0x00049E1F
+		// Token: 0x06006338 RID: 25400 RVA: 0x0027A759 File Offset: 0x00278959
 		public Breakpoint(bool verified, int line)
 		{
 			this.verified = verified;

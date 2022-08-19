@@ -8,11 +8,11 @@ using Tab;
 using UnityEngine;
 using UnityEngine.UI;
 
-// Token: 0x020002AB RID: 683
+// Token: 0x020001AE RID: 430
 public class DragMag
 {
-	// Token: 0x17000268 RID: 616
-	// (get) Token: 0x060014CA RID: 5322 RVA: 0x00013143 File Offset: 0x00011343
+	// Token: 0x17000220 RID: 544
+	// (get) Token: 0x06001224 RID: 4644 RVA: 0x0006E10D File Offset: 0x0006C30D
 	public static DragMag Inst
 	{
 		get
@@ -25,8 +25,8 @@ public class DragMag
 		}
 	}
 
-	// Token: 0x17000269 RID: 617
-	// (get) Token: 0x060014CB RID: 5323 RVA: 0x0001315B File Offset: 0x0001135B
+	// Token: 0x17000221 RID: 545
+	// (get) Token: 0x06001225 RID: 4645 RVA: 0x0006E125 File Offset: 0x0006C325
 	private DragMag.TempSlot tempSlot
 	{
 		get
@@ -39,7 +39,7 @@ public class DragMag
 		}
 	}
 
-	// Token: 0x060014CC RID: 5324 RVA: 0x00013180 File Offset: 0x00011380
+	// Token: 0x06001226 RID: 4646 RVA: 0x0006E14A File Offset: 0x0006C34A
 	public void Clear()
 	{
 		this.DragSlot = null;
@@ -48,7 +48,7 @@ public class DragMag
 		this.tempSlot.Hide();
 	}
 
-	// Token: 0x060014CD RID: 5325 RVA: 0x000131A2 File Offset: 0x000113A2
+	// Token: 0x06001227 RID: 4647 RVA: 0x0006E16C File Offset: 0x0006C36C
 	public void StartDrag(SlotBase slot)
 	{
 		this.DragSlot = slot;
@@ -56,7 +56,7 @@ public class DragMag
 		this.tempSlot.Show(slot.GetIcon());
 	}
 
-	// Token: 0x060014CE RID: 5326 RVA: 0x000BBDD8 File Offset: 0x000B9FD8
+	// Token: 0x06001228 RID: 4648 RVA: 0x0006E190 File Offset: 0x0006C390
 	public bool EndDrag()
 	{
 		bool result = false;
@@ -176,31 +176,31 @@ public class DragMag
 		return result;
 	}
 
-	// Token: 0x060014CF RID: 5327 RVA: 0x000131C3 File Offset: 0x000113C3
+	// Token: 0x06001229 RID: 4649 RVA: 0x0006E695 File Offset: 0x0006C895
 	public void UpdatePostion(Vector3 vector3)
 	{
 		this.tempSlot.UpdatePostion(NewUICanvas.Inst.Camera.ScreenToWorldPoint(vector3));
 	}
 
-	// Token: 0x04000FFE RID: 4094
+	// Token: 0x04000CD7 RID: 3287
 	private static DragMag _inst;
 
-	// Token: 0x04000FFF RID: 4095
+	// Token: 0x04000CD8 RID: 3288
 	public SlotBase DragSlot;
 
-	// Token: 0x04001000 RID: 4096
+	// Token: 0x04000CD9 RID: 3289
 	public SlotBase ToSlot;
 
-	// Token: 0x04001001 RID: 4097
+	// Token: 0x04000CDA RID: 3290
 	public bool IsDraging;
 
-	// Token: 0x04001002 RID: 4098
+	// Token: 0x04000CDB RID: 3291
 	private DragMag.TempSlot _tempSlot;
 
-	// Token: 0x020002AC RID: 684
+	// Token: 0x020012BD RID: 4797
 	private class TempSlot
 	{
-		// Token: 0x060014D1 RID: 5329 RVA: 0x000BC2E0 File Offset: 0x000BA4E0
+		// Token: 0x06007A64 RID: 31332 RVA: 0x002BCCF0 File Offset: 0x002BAEF0
 		public static DragMag.TempSlot Create(Transform parent)
 		{
 			DragMag.TempSlot tempSlot = new DragMag.TempSlot();
@@ -214,7 +214,7 @@ public class DragMag
 			return tempSlot;
 		}
 
-		// Token: 0x060014D2 RID: 5330 RVA: 0x000BC374 File Offset: 0x000BA574
+		// Token: 0x06007A65 RID: 31333 RVA: 0x002BCD84 File Offset: 0x002BAF84
 		public void Show(Sprite sprite)
 		{
 			this.gameObject.SetActive(true);
@@ -224,29 +224,29 @@ public class DragMag
 			RectExtensions.SetWidth(this.rect.rect, 128f);
 		}
 
-		// Token: 0x060014D3 RID: 5331 RVA: 0x000BC3D0 File Offset: 0x000BA5D0
+		// Token: 0x06007A66 RID: 31334 RVA: 0x002BCDE0 File Offset: 0x002BAFE0
 		public void UpdatePostion(Vector3 vector3)
 		{
 			this.transform.position = vector3;
 			this.transform.localPosition = new Vector3(this.transform.localPosition.x, this.transform.localPosition.y, 0f);
 		}
 
-		// Token: 0x060014D4 RID: 5332 RVA: 0x000131E0 File Offset: 0x000113E0
+		// Token: 0x06007A67 RID: 31335 RVA: 0x002BCE2E File Offset: 0x002BB02E
 		public void Hide()
 		{
 			this.gameObject.SetActive(false);
 		}
 
-		// Token: 0x04001003 RID: 4099
+		// Token: 0x04006684 RID: 26244
 		private Image Image;
 
-		// Token: 0x04001004 RID: 4100
+		// Token: 0x04006685 RID: 26245
 		private Transform transform;
 
-		// Token: 0x04001005 RID: 4101
+		// Token: 0x04006686 RID: 26246
 		private RectTransform rect;
 
-		// Token: 0x04001006 RID: 4102
+		// Token: 0x04006687 RID: 26247
 		private GameObject gameObject;
 	}
 }

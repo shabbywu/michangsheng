@@ -6,16 +6,16 @@ using MoonSharp.Interpreter.Debugging;
 
 namespace MoonSharp.Interpreter.Execution.VM
 {
-	// Token: 0x02001165 RID: 4453
+	// Token: 0x02000D55 RID: 3413
 	internal class Instruction
 	{
-		// Token: 0x06006C1C RID: 27676 RVA: 0x00049D29 File Offset: 0x00047F29
+		// Token: 0x06006033 RID: 24627 RVA: 0x0026DB17 File Offset: 0x0026BD17
 		internal Instruction(SourceRef sourceref)
 		{
 			this.SourceCodeRef = sourceref;
 		}
 
-		// Token: 0x06006C1D RID: 27677 RVA: 0x00294F40 File Offset: 0x00293140
+		// Token: 0x06006034 RID: 24628 RVA: 0x0026DB28 File Offset: 0x0026BD28
 		public override string ToString()
 		{
 			string text = this.OpCode.ToString().ToUpperInvariant();
@@ -56,7 +56,7 @@ namespace MoonSharp.Interpreter.Execution.VM
 			return text;
 		}
 
-		// Token: 0x06006C1E RID: 27678 RVA: 0x00049D38 File Offset: 0x00047F38
+		// Token: 0x06006035 RID: 24629 RVA: 0x0026DC76 File Offset: 0x0026BE76
 		private string PurifyFromNewLines(DynValue Value)
 		{
 			if (Value == null)
@@ -66,13 +66,13 @@ namespace MoonSharp.Interpreter.Execution.VM
 			return Value.ToString().Replace('\n', ' ').Replace('\r', ' ');
 		}
 
-		// Token: 0x06006C1F RID: 27679 RVA: 0x00049D5B File Offset: 0x00047F5B
+		// Token: 0x06006036 RID: 24630 RVA: 0x0026DC99 File Offset: 0x0026BE99
 		private string GenSpaces()
 		{
 			return new string(' ', 10 - this.OpCode.ToString().Length);
 		}
 
-		// Token: 0x06006C20 RID: 27680 RVA: 0x00295090 File Offset: 0x00293290
+		// Token: 0x06006037 RID: 24631 RVA: 0x0026DCBC File Offset: 0x0026BEBC
 		internal void WriteBinary(BinaryWriter wr, int baseAddress, Dictionary<SymbolRef, int> symbolMap)
 		{
 			wr.Write((byte)this.OpCode);
@@ -111,14 +111,14 @@ namespace MoonSharp.Interpreter.Execution.VM
 			}
 		}
 
-		// Token: 0x06006C21 RID: 27681 RVA: 0x0029516C File Offset: 0x0029336C
+		// Token: 0x06006038 RID: 24632 RVA: 0x0026DD98 File Offset: 0x0026BF98
 		private static void WriteSymbol(BinaryWriter wr, SymbolRef symbolRef, Dictionary<SymbolRef, int> symbolMap)
 		{
 			int value = (symbolRef == null) ? -1 : symbolMap[symbolRef];
 			wr.Write(value);
 		}
 
-		// Token: 0x06006C22 RID: 27682 RVA: 0x00295190 File Offset: 0x00293390
+		// Token: 0x06006039 RID: 24633 RVA: 0x0026DDBC File Offset: 0x0026BFBC
 		private static SymbolRef ReadSymbol(BinaryReader rd, SymbolRef[] deserializedSymbols)
 		{
 			int num = rd.ReadInt32();
@@ -129,7 +129,7 @@ namespace MoonSharp.Interpreter.Execution.VM
 			return deserializedSymbols[num];
 		}
 
-		// Token: 0x06006C23 RID: 27683 RVA: 0x002951B0 File Offset: 0x002933B0
+		// Token: 0x0600603A RID: 24634 RVA: 0x0026DDDC File Offset: 0x0026BFDC
 		internal static Instruction ReadBinary(SourceRef chunkRef, BinaryReader rd, int baseAddress, Table envTable, SymbolRef[] deserializedSymbols)
 		{
 			Instruction instruction = new Instruction(chunkRef);
@@ -171,7 +171,7 @@ namespace MoonSharp.Interpreter.Execution.VM
 			return instruction;
 		}
 
-		// Token: 0x06006C24 RID: 27684 RVA: 0x00295290 File Offset: 0x00293490
+		// Token: 0x0600603B RID: 24635 RVA: 0x0026DEBC File Offset: 0x0026C0BC
 		private static DynValue ReadValue(BinaryReader rd, Table envTable)
 		{
 			if (!rd.ReadBoolean())
@@ -197,7 +197,7 @@ namespace MoonSharp.Interpreter.Execution.VM
 			throw new NotSupportedException(string.Format("Unsupported type in chunk dump : {0}", dataType));
 		}
 
-		// Token: 0x06006C25 RID: 27685 RVA: 0x00295324 File Offset: 0x00293524
+		// Token: 0x0600603C RID: 24636 RVA: 0x0026DF50 File Offset: 0x0026C150
 		private void DumpValue(BinaryWriter wr, DynValue value)
 		{
 			if (value == null)
@@ -226,7 +226,7 @@ namespace MoonSharp.Interpreter.Execution.VM
 			throw new NotSupportedException(string.Format("Unsupported type in chunk dump : {0}", value.Type));
 		}
 
-		// Token: 0x06006C26 RID: 27686 RVA: 0x00049D7D File Offset: 0x00047F7D
+		// Token: 0x0600603D RID: 24637 RVA: 0x0026DFE9 File Offset: 0x0026C1E9
 		internal void GetSymbolReferences(out SymbolRef[] symbolList, out SymbolRef symbol)
 		{
 			InstructionFieldUsage fieldUsage = this.OpCode.GetFieldUsage();
@@ -242,28 +242,28 @@ namespace MoonSharp.Interpreter.Execution.VM
 			}
 		}
 
-		// Token: 0x04006159 RID: 24921
+		// Token: 0x040054DD RID: 21725
 		internal OpCode OpCode;
 
-		// Token: 0x0400615A RID: 24922
+		// Token: 0x040054DE RID: 21726
 		internal SymbolRef Symbol;
 
-		// Token: 0x0400615B RID: 24923
+		// Token: 0x040054DF RID: 21727
 		internal SymbolRef[] SymbolList;
 
-		// Token: 0x0400615C RID: 24924
+		// Token: 0x040054E0 RID: 21728
 		internal string Name;
 
-		// Token: 0x0400615D RID: 24925
+		// Token: 0x040054E1 RID: 21729
 		internal DynValue Value;
 
-		// Token: 0x0400615E RID: 24926
+		// Token: 0x040054E2 RID: 21730
 		internal int NumVal;
 
-		// Token: 0x0400615F RID: 24927
+		// Token: 0x040054E3 RID: 21731
 		internal int NumVal2;
 
-		// Token: 0x04006160 RID: 24928
+		// Token: 0x040054E4 RID: 21732
 		internal SourceRef SourceCodeRef;
 	}
 }

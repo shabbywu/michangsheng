@@ -2,15 +2,15 @@
 
 namespace MoonSharp.Interpreter
 {
-	// Token: 0x0200107A RID: 4218
+	// Token: 0x02000CAB RID: 3243
 	public class YieldRequest
 	{
-		// Token: 0x1700090E RID: 2318
-		// (get) Token: 0x060065DA RID: 26074 RVA: 0x00046278 File Offset: 0x00044478
-		// (set) Token: 0x060065DB RID: 26075 RVA: 0x00046280 File Offset: 0x00044480
+		// Token: 0x170006B3 RID: 1715
+		// (get) Token: 0x06005AE8 RID: 23272 RVA: 0x00259221 File Offset: 0x00257421
+		// (set) Token: 0x06005AE9 RID: 23273 RVA: 0x00259229 File Offset: 0x00257429
 		public bool Forced { get; internal set; }
 
-		// Token: 0x04005E7A RID: 24186
+		// Token: 0x040052A5 RID: 21157
 		public DynValue[] ReturnValues;
 	}
 }

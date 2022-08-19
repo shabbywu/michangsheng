@@ -1,10 +1,10 @@
 ﻿using System;
 using UnityEngine;
 
-// Token: 0x02000386 RID: 902
+// Token: 0x0200026E RID: 622
 public class UINPCEventPanel : TabPanelBase
 {
-	// Token: 0x06001946 RID: 6470 RVA: 0x000E204C File Offset: 0x000E024C
+	// Token: 0x06001694 RID: 5780 RVA: 0x0009A12C File Offset: 0x0009832C
 	public override void OnPanelShow()
 	{
 		base.OnPanelShow();
@@ -16,12 +16,12 @@ public class UINPCEventPanel : TabPanelBase
 		}
 	}
 
-	// Token: 0x0400145C RID: 5212
+	// Token: 0x0400110C RID: 4364
 	private UINPCData npc;
 
-	// Token: 0x0400145D RID: 5213
+	// Token: 0x0400110D RID: 4365
 	public RectTransform ContentRT;
 
-	// Token: 0x0400145E RID: 5214
+	// Token: 0x0400110E RID: 4366
 	public GameObject SVItemPrefab;
 }

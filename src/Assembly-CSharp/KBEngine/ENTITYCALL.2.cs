@@ -2,28 +2,28 @@
 
 namespace KBEngine
 {
-	// Token: 0x02000F2D RID: 3885
+	// Token: 0x02000BAA RID: 2986
 	public struct ENTITYCALL
 	{
-		// Token: 0x06005D9E RID: 23966 RVA: 0x00041CC0 File Offset: 0x0003FEC0
+		// Token: 0x06005360 RID: 21344 RVA: 0x00233B5F File Offset: 0x00231D5F
 		private ENTITYCALL(byte[] value)
 		{
 			this.value = value;
 		}
 
-		// Token: 0x06005D9F RID: 23967 RVA: 0x00041CC9 File Offset: 0x0003FEC9
+		// Token: 0x06005361 RID: 21345 RVA: 0x00233B68 File Offset: 0x00231D68
 		public static implicit operator byte[](ENTITYCALL value)
 		{
 			return value.value;
 		}
 
-		// Token: 0x06005DA0 RID: 23968 RVA: 0x00041CD1 File Offset: 0x0003FED1
+		// Token: 0x06005362 RID: 21346 RVA: 0x00233B70 File Offset: 0x00231D70
 		public static implicit operator ENTITYCALL(byte[] value)
 		{
 			return new ENTITYCALL(value);
 		}
 
-		// Token: 0x17000871 RID: 2161
+		// Token: 0x1700061E RID: 1566
 		public byte this[int ID]
 		{
 			get
@@ -36,7 +36,7 @@ namespace KBEngine
 			}
 		}
 
-		// Token: 0x04005AD7 RID: 23255
+		// Token: 0x04005036 RID: 20534
 		private byte[] value;
 	}
 }

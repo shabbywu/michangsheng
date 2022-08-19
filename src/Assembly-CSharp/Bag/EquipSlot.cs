@@ -4,11 +4,11 @@ using UnityEngine.EventSystems;
 
 namespace Bag
 {
-	// Token: 0x02000D40 RID: 3392
+	// Token: 0x020009B8 RID: 2488
 	[Serializable]
 	public class EquipSlot : SlotBase
 	{
-		// Token: 0x0600508D RID: 20621 RVA: 0x00039FF4 File Offset: 0x000381F4
+		// Token: 0x0600452A RID: 17706 RVA: 0x001D5C56 File Offset: 0x001D3E56
 		public override void OnEndDrag(PointerEventData eventData)
 		{
 			if (!this.CanDrag())
@@ -22,7 +22,7 @@ namespace Bag
 			DragMag.Inst.Clear();
 		}
 
-		// Token: 0x0600508E RID: 20622 RVA: 0x00219FF0 File Offset: 0x002181F0
+		// Token: 0x0600452B RID: 17707 RVA: 0x001D5C94 File Offset: 0x001D3E94
 		public override void OnPointerUp(PointerEventData eventData)
 		{
 			if (eventData.dragging)
@@ -37,7 +37,7 @@ namespace Bag
 			}
 		}
 
-		// Token: 0x040051CB RID: 20939
+		// Token: 0x040046C9 RID: 18121
 		public EquipSlotType EquipSlotType;
 	}
 }

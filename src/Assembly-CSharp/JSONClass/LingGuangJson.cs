@@ -3,10 +3,10 @@ using System.Collections.Generic;
 
 namespace JSONClass
 {
-	// Token: 0x02000C0F RID: 3087
+	// Token: 0x02000881 RID: 2177
 	public class LingGuangJson : IJSONClass
 	{
-		// Token: 0x06004BA5 RID: 19365 RVA: 0x001FEF8C File Offset: 0x001FD18C
+		// Token: 0x06004017 RID: 16407 RVA: 0x001B5804 File Offset: 0x001B3A04
 		public static void InitDataDict()
 		{
 			foreach (JSONObject jsonobject in jsonData.instance.LingGuangJson.list)
@@ -44,39 +44,39 @@ namespace JSONClass
 			}
 		}
 
-		// Token: 0x06004BA6 RID: 19366 RVA: 0x000042DD File Offset: 0x000024DD
+		// Token: 0x06004018 RID: 16408 RVA: 0x00004095 File Offset: 0x00002295
 		private static void OnInitFinish()
 		{
 		}
 
-		// Token: 0x04004869 RID: 18537
+		// Token: 0x04003D10 RID: 15632
 		public static Dictionary<int, LingGuangJson> DataDict = new Dictionary<int, LingGuangJson>();
 
-		// Token: 0x0400486A RID: 18538
+		// Token: 0x04003D11 RID: 15633
 		public static List<LingGuangJson> DataList = new List<LingGuangJson>();
 
-		// Token: 0x0400486B RID: 18539
+		// Token: 0x04003D12 RID: 15634
 		public static Action OnInitFinishAction = new Action(LingGuangJson.OnInitFinish);
 
-		// Token: 0x0400486C RID: 18540
+		// Token: 0x04003D13 RID: 15635
 		public int id;
 
-		// Token: 0x0400486D RID: 18541
+		// Token: 0x04003D14 RID: 15636
 		public int type;
 
-		// Token: 0x0400486E RID: 18542
+		// Token: 0x04003D15 RID: 15637
 		public int studyTime;
 
-		// Token: 0x0400486F RID: 18543
+		// Token: 0x04003D16 RID: 15638
 		public int guoqiTime;
 
-		// Token: 0x04004870 RID: 18544
+		// Token: 0x04003D17 RID: 15639
 		public int quality;
 
-		// Token: 0x04004871 RID: 18545
+		// Token: 0x04003D18 RID: 15640
 		public string name;
 
-		// Token: 0x04004872 RID: 18546
+		// Token: 0x04003D19 RID: 15641
 		public string desc;
 	}
 }

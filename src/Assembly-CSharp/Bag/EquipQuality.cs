@@ -2,16 +2,16 @@
 
 namespace Bag
 {
-	// Token: 0x02000D28 RID: 3368
+	// Token: 0x020009A2 RID: 2466
 	public enum EquipQuality
 	{
-		// Token: 0x04005166 RID: 20838
+		// Token: 0x04004666 RID: 18022
 		全部,
-		// Token: 0x04005167 RID: 20839
+		// Token: 0x04004667 RID: 18023
 		下品,
-		// Token: 0x04005168 RID: 20840
+		// Token: 0x04004668 RID: 18024
 		中品,
-		// Token: 0x04005169 RID: 20841
+		// Token: 0x04004669 RID: 18025
 		上品
 	}
 }

@@ -3,10 +3,10 @@ using UnityEngine;
 
 namespace Spine.Unity.Examples
 {
-	// Token: 0x02000E59 RID: 3673
+	// Token: 0x02000AFE RID: 2814
 	public class Spineboy : MonoBehaviour
 	{
-		// Token: 0x06005816 RID: 22550 RVA: 0x002469B4 File Offset: 0x00244BB4
+		// Token: 0x06004E69 RID: 20073 RVA: 0x00216964 File Offset: 0x00214B64
 		public void Start()
 		{
 			this.skeletonAnimation = base.GetComponent<SkeletonAnimation>();
@@ -20,7 +20,7 @@ namespace Spine.Unity.Examples
 			animationState.AddAnimation(0, "run", true, 0f);
 		}
 
-		// Token: 0x06005817 RID: 22551 RVA: 0x00246A34 File Offset: 0x00244C34
+		// Token: 0x06004E6A RID: 20074 RVA: 0x002169E4 File Offset: 0x00214BE4
 		private void HandleEvent(TrackEntry trackEntry, Event e)
 		{
 			Debug.Log(string.Concat(new object[]
@@ -35,14 +35,14 @@ namespace Spine.Unity.Examples
 			}));
 		}
 
-		// Token: 0x06005818 RID: 22552 RVA: 0x0003EFD5 File Offset: 0x0003D1D5
+		// Token: 0x06004E6B RID: 20075 RVA: 0x00216A47 File Offset: 0x00214C47
 		public void OnMouseDown()
 		{
 			this.skeletonAnimation.AnimationState.SetAnimation(0, "jump", false);
 			this.skeletonAnimation.AnimationState.AddAnimation(0, "run", true, 0f);
 		}
 
-		// Token: 0x04005816 RID: 22550
+		// Token: 0x04004DE2 RID: 19938
 		private SkeletonAnimation skeletonAnimation;
 	}
 }

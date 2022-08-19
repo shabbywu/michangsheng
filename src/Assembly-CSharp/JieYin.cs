@@ -4,16 +4,16 @@ using KBEngine;
 using TuPo;
 using UnityEngine;
 
-// Token: 0x02000548 RID: 1352
+// Token: 0x020003BA RID: 954
 public class JieYin
 {
-	// Token: 0x06002282 RID: 8834 RVA: 0x0001C3FD File Offset: 0x0001A5FD
+	// Token: 0x06001F04 RID: 7940 RVA: 0x000D93B9 File Offset: 0x000D75B9
 	public JieYin(Entity avater)
 	{
 		this.entity = avater;
 	}
 
-	// Token: 0x06002283 RID: 8835 RVA: 0x0011C390 File Offset: 0x0011A590
+	// Token: 0x06001F05 RID: 7941 RVA: 0x000D93C8 File Offset: 0x000D75C8
 	private int getYiZhi_Max()
 	{
 		Avatar avatar = (Avatar)this.entity;
@@ -43,7 +43,7 @@ public class JieYin
 		return num2 + list2[wuDaoLevelByType] + avatar._JieYingYiZHi;
 	}
 
-	// Token: 0x06002284 RID: 8836 RVA: 0x0011C448 File Offset: 0x0011A648
+	// Token: 0x06001F06 RID: 7942 RVA: 0x000D9480 File Offset: 0x000D7680
 	private int getJinMai_Max()
 	{
 		Avatar avatar = (Avatar)this.entity;
@@ -63,7 +63,7 @@ public class JieYin
 		return num2 + list[wuDaoLevelByType2] + avatar._JieYingJinMai;
 	}
 
-	// Token: 0x06002285 RID: 8837 RVA: 0x0001C40C File Offset: 0x0001A60C
+	// Token: 0x06001F07 RID: 7943 RVA: 0x000D9500 File Offset: 0x000D7700
 	private void ResetMax()
 	{
 		this.IsFail = false;
@@ -74,7 +74,7 @@ public class JieYin
 		this.JinMai_Max = this.getJinMai_Max();
 	}
 
-	// Token: 0x06002286 RID: 8838 RVA: 0x0001C444 File Offset: 0x0001A644
+	// Token: 0x06001F08 RID: 7944 RVA: 0x000D9538 File Offset: 0x000D7738
 	private void RestNowValue()
 	{
 		this.JinDanHP = this.JinDanHP_Max;
@@ -83,7 +83,7 @@ public class JieYin
 		this.JinMai = this.JinMai_Max;
 	}
 
-	// Token: 0x06002287 RID: 8839 RVA: 0x0001C471 File Offset: 0x0001A671
+	// Token: 0x06001F09 RID: 7945 RVA: 0x000D9565 File Offset: 0x000D7765
 	private void BuffSeid204SetNum(ref int num, int type)
 	{
 		if (num > 0)
@@ -93,7 +93,7 @@ public class JieYin
 		this.SetNumBySeid(204, ref num, type, "value1", "value2");
 	}
 
-	// Token: 0x06002288 RID: 8840 RVA: 0x0011C4C8 File Offset: 0x0011A6C8
+	// Token: 0x06001F0A RID: 7946 RVA: 0x000D9584 File Offset: 0x000D7784
 	public int GetNowValue(int type)
 	{
 		int result = 0;
@@ -111,7 +111,7 @@ public class JieYin
 		return result;
 	}
 
-	// Token: 0x06002289 RID: 8841 RVA: 0x0001C490 File Offset: 0x0001A690
+	// Token: 0x06001F0B RID: 7947 RVA: 0x000D95AE File Offset: 0x000D77AE
 	private void BuffSeid205SetNum(ref int num)
 	{
 		if (num < 0)
@@ -121,7 +121,7 @@ public class JieYin
 		this.SetNumBySeid(205, ref num, 0, "", "value1");
 	}
 
-	// Token: 0x0600228A RID: 8842 RVA: 0x0011C4F4 File Offset: 0x0011A6F4
+	// Token: 0x06001F0C RID: 7948 RVA: 0x000D95D0 File Offset: 0x000D77D0
 	private void BuffSeid209SetNum(ref int num)
 	{
 		Avatar avatar = (Avatar)this.entity;
@@ -135,7 +135,7 @@ public class JieYin
 		}
 	}
 
-	// Token: 0x0600228B RID: 8843 RVA: 0x0001C4AF File Offset: 0x0001A6AF
+	// Token: 0x06001F0D RID: 7949 RVA: 0x000D9678 File Offset: 0x000D7878
 	private void BuffSeid210SetNum(ref int num)
 	{
 		if (num > 0)
@@ -145,7 +145,7 @@ public class JieYin
 		this.SetNumBySeid(210, ref num, 0, "", "value1");
 	}
 
-	// Token: 0x0600228C RID: 8844 RVA: 0x0001C4CE File Offset: 0x0001A6CE
+	// Token: 0x06001F0E RID: 7950 RVA: 0x000D9697 File Offset: 0x000D7897
 	private void BuffSeid211SetNum(ref int num)
 	{
 		if (num > 0)
@@ -155,7 +155,7 @@ public class JieYin
 		this.SetNumBySeid(211, ref num, 0, "", "value1");
 	}
 
-	// Token: 0x0600228D RID: 8845 RVA: 0x0011C59C File Offset: 0x0011A79C
+	// Token: 0x06001F0F RID: 7951 RVA: 0x000D96B8 File Offset: 0x000D78B8
 	private void SetNumBySeid(int Seid, ref int num, int type, string value1, string value2)
 	{
 		foreach (List<int> list in ((Avatar)this.entity).buffmag.getBuffBySeid(Seid))
@@ -169,7 +169,7 @@ public class JieYin
 		}
 	}
 
-	// Token: 0x0600228E RID: 8846 RVA: 0x0011C650 File Offset: 0x0011A850
+	// Token: 0x06001F10 RID: 7952 RVA: 0x000D976C File Offset: 0x000D796C
 	public void AddJinMai(int num)
 	{
 		if (this.IsStop)
@@ -189,7 +189,7 @@ public class JieYin
 		RoundManager.instance.gameObject.GetComponent<JieYingManager>().showDamage(num, 2);
 	}
 
-	// Token: 0x0600228F RID: 8847 RVA: 0x0011C6D8 File Offset: 0x0011A8D8
+	// Token: 0x06001F11 RID: 7953 RVA: 0x000D97F4 File Offset: 0x000D79F4
 	public void AddYiZhi(int num)
 	{
 		if (this.IsStop)
@@ -212,7 +212,7 @@ public class JieYin
 		RoundManager.instance.gameObject.GetComponent<JieYingManager>().showDamage(num, 1);
 	}
 
-	// Token: 0x06002290 RID: 8848 RVA: 0x0001C4ED File Offset: 0x0001A6ED
+	// Token: 0x06001F12 RID: 7954 RVA: 0x000D9876 File Offset: 0x000D7A76
 	public void AddHuaYing(int num)
 	{
 		this.BuffSeid205SetNum(ref num);
@@ -223,7 +223,7 @@ public class JieYin
 		}
 	}
 
-	// Token: 0x06002291 RID: 8849 RVA: 0x0011C75C File Offset: 0x0011A95C
+	// Token: 0x06001F13 RID: 7955 RVA: 0x000D98B0 File Offset: 0x000D7AB0
 	public void JieYinSuccess()
 	{
 		if (this.IsFail)
@@ -246,7 +246,7 @@ public class JieYin
 		ResManager.inst.LoadPrefab("BigTuPoResult").Inst(null).GetComponent<BigTuPoResultIMag>().ShowSuccess(3);
 	}
 
-	// Token: 0x06002292 RID: 8850 RVA: 0x0011C7EC File Offset: 0x0011A9EC
+	// Token: 0x06001F14 RID: 7956 RVA: 0x000D9940 File Offset: 0x000D7B40
 	public void JieYinFail()
 	{
 		this.IsFail = true;
@@ -269,7 +269,7 @@ public class JieYin
 		ResManager.inst.LoadPrefab("BigTuPoResult").Inst(null).GetComponent<BigTuPoResultIMag>().ShowFail(3, 1);
 	}
 
-	// Token: 0x06002293 RID: 8851 RVA: 0x0011C884 File Offset: 0x0011AA84
+	// Token: 0x06001F15 RID: 7957 RVA: 0x000D99D8 File Offset: 0x000D7BD8
 	public void JieYingYiZhiFail()
 	{
 		this.IsFail = true;
@@ -292,7 +292,7 @@ public class JieYin
 		ResManager.inst.LoadPrefab("BigTuPoResult").Inst(null).GetComponent<BigTuPoResultIMag>().ShowFail(3, 2);
 	}
 
-	// Token: 0x06002294 RID: 8852 RVA: 0x0001C525 File Offset: 0x0001A725
+	// Token: 0x06001F16 RID: 7958 RVA: 0x000D9A6D File Offset: 0x000D7C6D
 	public void JieYingDie()
 	{
 		if (this.IsStop)
@@ -302,7 +302,7 @@ public class JieYin
 		UIDeath.Inst.Show(DeathType.心魔入体);
 	}
 
-	// Token: 0x06002295 RID: 8853 RVA: 0x0011C91C File Offset: 0x0011AB1C
+	// Token: 0x06001F17 RID: 7959 RVA: 0x000D9A84 File Offset: 0x000D7C84
 	public void AddJinDanHP(int num)
 	{
 		this.BuffSeid209SetNum(ref num);
@@ -320,7 +320,7 @@ public class JieYin
 		RoundManager.instance.gameObject.GetComponent<JieYingManager>().showDamage(num, 0);
 	}
 
-	// Token: 0x06002296 RID: 8854 RVA: 0x0011C998 File Offset: 0x0011AB98
+	// Token: 0x06001F18 RID: 7960 RVA: 0x000D9B00 File Offset: 0x000D7D00
 	private void StartHuaYing()
 	{
 		if (this.IsDnaSui)
@@ -368,7 +368,7 @@ public class JieYin
 		player.spell.addDBuff(921, 5);
 	}
 
-	// Token: 0x06002297 RID: 8855 RVA: 0x0001C53B File Offset: 0x0001A73B
+	// Token: 0x06001F19 RID: 7961 RVA: 0x000D9CEC File Offset: 0x000D7EEC
 	public void Init()
 	{
 		this.ResetMax();
@@ -376,39 +376,39 @@ public class JieYin
 		this.IsStop = false;
 	}
 
-	// Token: 0x04001DCA RID: 7626
+	// Token: 0x04001951 RID: 6481
 	public int JinDanHP;
 
-	// Token: 0x04001DCB RID: 7627
+	// Token: 0x04001952 RID: 6482
 	public int JinDanHP_Max;
 
-	// Token: 0x04001DCC RID: 7628
+	// Token: 0x04001953 RID: 6483
 	public int YiZhi;
 
-	// Token: 0x04001DCD RID: 7629
+	// Token: 0x04001954 RID: 6484
 	public int YiZhi_Max;
 
-	// Token: 0x04001DCE RID: 7630
+	// Token: 0x04001955 RID: 6485
 	public int JinMai;
 
-	// Token: 0x04001DCF RID: 7631
+	// Token: 0x04001956 RID: 6486
 	public int JinMai_Max;
 
-	// Token: 0x04001DD0 RID: 7632
+	// Token: 0x04001957 RID: 6487
 	public int HuaYing;
 
-	// Token: 0x04001DD1 RID: 7633
+	// Token: 0x04001958 RID: 6488
 	public int HuaYing_Max;
 
-	// Token: 0x04001DD2 RID: 7634
+	// Token: 0x04001959 RID: 6489
 	public bool IsFail;
 
-	// Token: 0x04001DD3 RID: 7635
+	// Token: 0x0400195A RID: 6490
 	public bool IsDnaSui;
 
-	// Token: 0x04001DD4 RID: 7636
+	// Token: 0x0400195B RID: 6491
 	public Entity entity;
 
-	// Token: 0x04001DD5 RID: 7637
+	// Token: 0x0400195C RID: 6492
 	public bool IsStop;
 }

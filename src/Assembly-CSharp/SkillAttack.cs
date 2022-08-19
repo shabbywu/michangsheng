@@ -1,6 +1,6 @@
 ﻿using System;
 
-// Token: 0x02000552 RID: 1362
+// Token: 0x020003BF RID: 959
 public class SkillAttack : SkillInitiative
 {
 }

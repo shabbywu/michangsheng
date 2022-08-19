@@ -1,15 +1,15 @@
 ﻿using System;
 using UnityEngine.Events;
 
-// Token: 0x02000600 RID: 1536
+// Token: 0x02000449 RID: 1097
 public interface ISelectNum
 {
-	// Token: 0x0600266D RID: 9837
+	// Token: 0x060022B0 RID: 8880
 	void Init(string itemName, int maxNum, UnityAction Ok = null, UnityAction Cancel = null);
 
-	// Token: 0x0600266E RID: 9838
+	// Token: 0x060022B1 RID: 8881
 	void AddNum();
 
-	// Token: 0x0600266F RID: 9839
+	// Token: 0x060022B2 RID: 8882
 	void ReduceNum();
 }

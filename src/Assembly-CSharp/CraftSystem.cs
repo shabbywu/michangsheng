@@ -4,22 +4,22 @@ using KBEngine;
 using UnityEngine;
 using UnityEngine.UI;
 
-// Token: 0x020001F9 RID: 505
+// Token: 0x02000128 RID: 296
 public class CraftSystem : MonoBehaviour
 {
-	// Token: 0x06001019 RID: 4121 RVA: 0x00010291 File Offset: 0x0000E491
+	// Token: 0x06000E0B RID: 3595 RVA: 0x00052DEE File Offset: 0x00050FEE
 	private void Start()
 	{
 		this.blueprintDatabase = (BlueprintDatabase)Resources.Load("BlueprintDatabase");
 	}
 
-	// Token: 0x0600101A RID: 4122 RVA: 0x000102A8 File Offset: 0x0000E4A8
+	// Token: 0x06000E0C RID: 3596 RVA: 0x00052E05 File Offset: 0x00051005
 	private void Update()
 	{
 		this.ListWithItem();
 	}
 
-	// Token: 0x0600101B RID: 4123 RVA: 0x000A35EC File Offset: 0x000A17EC
+	// Token: 0x06000E0D RID: 3597 RVA: 0x00052E10 File Offset: 0x00051010
 	public void setImages()
 	{
 		this.finalSlotImage = base.transform.GetChild(3).GetComponent<Image>();
@@ -32,7 +32,7 @@ public class CraftSystem : MonoBehaviour
 		component.fillCenter = this.arrowImage.fillCenter;
 	}
 
-	// Token: 0x0600101C RID: 4124 RVA: 0x000A368C File Offset: 0x000A188C
+	// Token: 0x06000E0E RID: 3598 RVA: 0x00052EB0 File Offset: 0x000510B0
 	public void setArrowSettings()
 	{
 		RectTransform component = base.transform.GetChild(4).GetComponent<RectTransform>();
@@ -43,25 +43,25 @@ public class CraftSystem : MonoBehaviour
 		component2.eulerAngles = new Vector3(0f, 0f, (float)this.rightArrowRotation);
 	}
 
-	// Token: 0x0600101D RID: 4125 RVA: 0x000102B0 File Offset: 0x0000E4B0
+	// Token: 0x06000E0F RID: 3599 RVA: 0x00052F53 File Offset: 0x00051153
 	public void setPositionFinalSlot()
 	{
 		base.transform.GetChild(3).GetComponent<RectTransform>().localPosition = new Vector3((float)this.finalSlotPositionX, (float)this.finalSlotPositionY, 0f);
 	}
 
-	// Token: 0x0600101E RID: 4126 RVA: 0x000102E0 File Offset: 0x0000E4E0
+	// Token: 0x06000E10 RID: 3600 RVA: 0x00052F83 File Offset: 0x00051183
 	public int getSizeX()
 	{
 		return (int)base.GetComponent<RectTransform>().sizeDelta.x;
 	}
 
-	// Token: 0x0600101F RID: 4127 RVA: 0x000102F3 File Offset: 0x0000E4F3
+	// Token: 0x06000E11 RID: 3601 RVA: 0x00052F96 File Offset: 0x00051196
 	public int getSizeY()
 	{
 		return (int)base.GetComponent<RectTransform>().sizeDelta.y;
 	}
 
-	// Token: 0x06001020 RID: 4128 RVA: 0x000A3730 File Offset: 0x000A1930
+	// Token: 0x06000E12 RID: 3602 RVA: 0x00052FAC File Offset: 0x000511AC
 	public void backToInventory()
 	{
 		int count = this.itemInCraftSystem.Count;
@@ -74,7 +74,7 @@ public class CraftSystem : MonoBehaviour
 		this.itemInCraftSystemGameObject.Clear();
 	}
 
-	// Token: 0x06001021 RID: 4129 RVA: 0x000A37C8 File Offset: 0x000A19C8
+	// Token: 0x06000E13 RID: 3603 RVA: 0x00053044 File Offset: 0x00051244
 	public void ListWithItem()
 	{
 		this.itemInCraftSystem.Clear();
@@ -113,7 +113,7 @@ public class CraftSystem : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001022 RID: 4130 RVA: 0x000A39C0 File Offset: 0x000A1BC0
+	// Token: 0x06000E14 RID: 3604 RVA: 0x0005323C File Offset: 0x0005143C
 	public void deleteItems(Item item)
 	{
 		for (int i = 0; i < this.blueprintDatabase.blueprints.Count; i++)
@@ -147,56 +147,56 @@ public class CraftSystem : MonoBehaviour
 		}
 	}
 
-	// Token: 0x04000C8A RID: 3210
+	// Token: 0x040009F2 RID: 2546
 	[SerializeField]
 	public int finalSlotPositionX;
 
-	// Token: 0x04000C8B RID: 3211
+	// Token: 0x040009F3 RID: 2547
 	[SerializeField]
 	public int finalSlotPositionY;
 
-	// Token: 0x04000C8C RID: 3212
+	// Token: 0x040009F4 RID: 2548
 	[SerializeField]
 	public int leftArrowPositionX;
 
-	// Token: 0x04000C8D RID: 3213
+	// Token: 0x040009F5 RID: 2549
 	[SerializeField]
 	public int leftArrowPositionY;
 
-	// Token: 0x04000C8E RID: 3214
+	// Token: 0x040009F6 RID: 2550
 	[SerializeField]
 	public int rightArrowPositionX;
 
-	// Token: 0x04000C8F RID: 3215
+	// Token: 0x040009F7 RID: 2551
 	[SerializeField]
 	public int rightArrowPositionY;
 
-	// Token: 0x04000C90 RID: 3216
+	// Token: 0x040009F8 RID: 2552
 	[SerializeField]
 	public int leftArrowRotation;
 
-	// Token: 0x04000C91 RID: 3217
+	// Token: 0x040009F9 RID: 2553
 	[SerializeField]
 	public int rightArrowRotation;
 
-	// Token: 0x04000C92 RID: 3218
+	// Token: 0x040009FA RID: 2554
 	public Image finalSlotImage;
 
-	// Token: 0x04000C93 RID: 3219
+	// Token: 0x040009FB RID: 2555
 	public Image arrowImage;
 
-	// Token: 0x04000C94 RID: 3220
+	// Token: 0x040009FC RID: 2556
 	public List<Item> itemInCraftSystem = new List<Item>();
 
-	// Token: 0x04000C95 RID: 3221
+	// Token: 0x040009FD RID: 2557
 	public List<GameObject> itemInCraftSystemGameObject = new List<GameObject>();
 
-	// Token: 0x04000C96 RID: 3222
+	// Token: 0x040009FE RID: 2558
 	private BlueprintDatabase blueprintDatabase;
 
-	// Token: 0x04000C97 RID: 3223
+	// Token: 0x040009FF RID: 2559
 	public List<Item> possibleItems = new List<Item>();
 
-	// Token: 0x04000C98 RID: 3224
+	// Token: 0x04000A00 RID: 2560
 	public List<bool> possibletoCreate = new List<bool>();
 }

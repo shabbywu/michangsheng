@@ -1,14 +1,14 @@
 ﻿using System;
 using UnityEngine;
 
-// Token: 0x02000080 RID: 128
+// Token: 0x02000063 RID: 99
 [ExecuteInEditMode]
 [AddComponentMenu("NGUI/Interaction/Drag Object")]
 public class UIDragObject : MonoBehaviour
 {
-	// Token: 0x17000092 RID: 146
-	// (get) Token: 0x06000544 RID: 1348 RVA: 0x00008B25 File Offset: 0x00006D25
-	// (set) Token: 0x06000545 RID: 1349 RVA: 0x00008B2D File Offset: 0x00006D2D
+	// Token: 0x17000084 RID: 132
+	// (get) Token: 0x060004F2 RID: 1266 RVA: 0x0001B286 File Offset: 0x00019486
+	// (set) Token: 0x060004F3 RID: 1267 RVA: 0x0001B28E File Offset: 0x0001948E
 	public Vector3 dragMovement
 	{
 		get
@@ -21,7 +21,7 @@ public class UIDragObject : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000546 RID: 1350 RVA: 0x00071CD0 File Offset: 0x0006FED0
+	// Token: 0x060004F4 RID: 1268 RVA: 0x0001B298 File Offset: 0x00019498
 	private void OnEnable()
 	{
 		if (this.scrollWheelFactor != 0f)
@@ -39,13 +39,13 @@ public class UIDragObject : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000547 RID: 1351 RVA: 0x00008B36 File Offset: 0x00006D36
+	// Token: 0x060004F5 RID: 1269 RVA: 0x0001B313 File Offset: 0x00019513
 	private void OnDisable()
 	{
 		this.mStarted = false;
 	}
 
-	// Token: 0x06000548 RID: 1352 RVA: 0x00071D4C File Offset: 0x0006FF4C
+	// Token: 0x060004F6 RID: 1270 RVA: 0x0001B31C File Offset: 0x0001951C
 	private void FindPanel()
 	{
 		this.mPanel = ((this.target != null) ? UIPanel.Find(this.target.transform.parent) : null);
@@ -55,7 +55,7 @@ public class UIDragObject : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000549 RID: 1353 RVA: 0x00071D9C File Offset: 0x0006FF9C
+	// Token: 0x060004F7 RID: 1271 RVA: 0x0001B36C File Offset: 0x0001956C
 	private void UpdateBounds()
 	{
 		if (this.contentRect)
@@ -76,7 +76,7 @@ public class UIDragObject : MonoBehaviour
 		this.mBounds = NGUIMath.CalculateRelativeWidgetBounds(this.mPanel.cachedTransform, this.target);
 	}
 
-	// Token: 0x0600054A RID: 1354 RVA: 0x00071E48 File Offset: 0x00070048
+	// Token: 0x060004F8 RID: 1272 RVA: 0x0001B418 File Offset: 0x00019618
 	private void OnPress(bool pressed)
 	{
 		if (base.enabled && NGUITools.GetActive(base.gameObject) && this.target != null)
@@ -114,7 +114,7 @@ public class UIDragObject : MonoBehaviour
 		}
 	}
 
-	// Token: 0x0600054B RID: 1355 RVA: 0x00071F7C File Offset: 0x0007017C
+	// Token: 0x060004F9 RID: 1273 RVA: 0x0001B54C File Offset: 0x0001974C
 	private void OnDrag(Vector2 delta)
 	{
 		if (this.mPressed && this.mTouchID == UICamera.currentTouchID && base.enabled && NGUITools.GetActive(base.gameObject) && this.target != null)
@@ -156,7 +156,7 @@ public class UIDragObject : MonoBehaviour
 		}
 	}
 
-	// Token: 0x0600054C RID: 1356 RVA: 0x00072130 File Offset: 0x00070330
+	// Token: 0x060004FA RID: 1274 RVA: 0x0001B700 File Offset: 0x00019900
 	private void Move(Vector3 worldDelta)
 	{
 		if (this.mPanel != null)
@@ -180,7 +180,7 @@ public class UIDragObject : MonoBehaviour
 		}
 	}
 
-	// Token: 0x0600054D RID: 1357 RVA: 0x000721E0 File Offset: 0x000703E0
+	// Token: 0x060004FB RID: 1275 RVA: 0x0001B7B0 File Offset: 0x000199B0
 	private void LateUpdate()
 	{
 		if (this.target == null)
@@ -221,7 +221,7 @@ public class UIDragObject : MonoBehaviour
 		NGUIMath.SpringDampen(ref this.mMomentum, 9f, deltaTime);
 	}
 
-	// Token: 0x0600054E RID: 1358 RVA: 0x00008B3F File Offset: 0x00006D3F
+	// Token: 0x060004FC RID: 1276 RVA: 0x0001B8D4 File Offset: 0x00019AD4
 	public void CancelMovement()
 	{
 		this.mTargetPos = ((this.target != null) ? this.target.position : Vector3.zero);
@@ -229,7 +229,7 @@ public class UIDragObject : MonoBehaviour
 		this.mScroll = Vector3.zero;
 	}
 
-	// Token: 0x0600054F RID: 1359 RVA: 0x00072304 File Offset: 0x00070504
+	// Token: 0x060004FD RID: 1277 RVA: 0x0001B914 File Offset: 0x00019B14
 	public void CancelSpring()
 	{
 		SpringPosition component = this.target.GetComponent<SpringPosition>();
@@ -239,7 +239,7 @@ public class UIDragObject : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000550 RID: 1360 RVA: 0x00008B7D File Offset: 0x00006D7D
+	// Token: 0x060004FE RID: 1278 RVA: 0x0001B93D File Offset: 0x00019B3D
 	private void OnScroll(float delta)
 	{
 		if (base.enabled && NGUITools.GetActive(base.gameObject))
@@ -248,71 +248,71 @@ public class UIDragObject : MonoBehaviour
 		}
 	}
 
-	// Token: 0x04000394 RID: 916
+	// Token: 0x04000310 RID: 784
 	public Transform target;
 
-	// Token: 0x04000395 RID: 917
+	// Token: 0x04000311 RID: 785
 	public Vector3 scrollMomentum = Vector3.zero;
 
-	// Token: 0x04000396 RID: 918
+	// Token: 0x04000312 RID: 786
 	public bool restrictWithinPanel;
 
-	// Token: 0x04000397 RID: 919
+	// Token: 0x04000313 RID: 787
 	public UIRect contentRect;
 
-	// Token: 0x04000398 RID: 920
+	// Token: 0x04000314 RID: 788
 	public UIDragObject.DragEffect dragEffect = UIDragObject.DragEffect.MomentumAndSpring;
 
-	// Token: 0x04000399 RID: 921
+	// Token: 0x04000315 RID: 789
 	public float momentumAmount = 35f;
 
-	// Token: 0x0400039A RID: 922
+	// Token: 0x04000316 RID: 790
 	[SerializeField]
 	protected Vector3 scale = new Vector3(1f, 1f, 0f);
 
-	// Token: 0x0400039B RID: 923
+	// Token: 0x04000317 RID: 791
 	[SerializeField]
 	[HideInInspector]
 	private float scrollWheelFactor;
 
-	// Token: 0x0400039C RID: 924
+	// Token: 0x04000318 RID: 792
 	private Plane mPlane;
 
-	// Token: 0x0400039D RID: 925
+	// Token: 0x04000319 RID: 793
 	private Vector3 mTargetPos;
 
-	// Token: 0x0400039E RID: 926
+	// Token: 0x0400031A RID: 794
 	private Vector3 mLastPos;
 
-	// Token: 0x0400039F RID: 927
+	// Token: 0x0400031B RID: 795
 	private UIPanel mPanel;
 
-	// Token: 0x040003A0 RID: 928
+	// Token: 0x0400031C RID: 796
 	private Vector3 mMomentum = Vector3.zero;
 
-	// Token: 0x040003A1 RID: 929
+	// Token: 0x0400031D RID: 797
 	private Vector3 mScroll = Vector3.zero;
 
-	// Token: 0x040003A2 RID: 930
+	// Token: 0x0400031E RID: 798
 	private Bounds mBounds;
 
-	// Token: 0x040003A3 RID: 931
+	// Token: 0x0400031F RID: 799
 	private int mTouchID;
 
-	// Token: 0x040003A4 RID: 932
+	// Token: 0x04000320 RID: 800
 	private bool mStarted;
 
-	// Token: 0x040003A5 RID: 933
+	// Token: 0x04000321 RID: 801
 	private bool mPressed;
 
-	// Token: 0x02000081 RID: 129
+	// Token: 0x020011E1 RID: 4577
 	public enum DragEffect
 	{
-		// Token: 0x040003A7 RID: 935
+		// Token: 0x040063D4 RID: 25556
 		None,
-		// Token: 0x040003A8 RID: 936
+		// Token: 0x040063D5 RID: 25557
 		Momentum,
-		// Token: 0x040003A9 RID: 937
+		// Token: 0x040063D6 RID: 25558
 		MomentumAndSpring
 	}
 }

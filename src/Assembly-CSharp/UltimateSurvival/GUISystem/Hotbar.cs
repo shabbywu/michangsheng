@@ -8,12 +8,12 @@ using UnityEngine.UI;
 
 namespace UltimateSurvival.GUISystem
 {
-	// Token: 0x02000954 RID: 2388
+	// Token: 0x02000654 RID: 1620
 	[RequireComponent(typeof(ItemContainer))]
 	public class Hotbar : GUIBehaviour
 	{
-		// Token: 0x1700069F RID: 1695
-		// (get) Token: 0x06003D00 RID: 15616 RVA: 0x0002BF46 File Offset: 0x0002A146
+		// Token: 0x1700048F RID: 1167
+		// (get) Token: 0x06003384 RID: 13188 RVA: 0x00169B77 File Offset: 0x00167D77
 		public Slot SelectedSlot
 		{
 			get
@@ -22,7 +22,7 @@ namespace UltimateSurvival.GUISystem
 			}
 		}
 
-		// Token: 0x06003D01 RID: 15617 RVA: 0x001B2C18 File Offset: 0x001B0E18
+		// Token: 0x06003385 RID: 13189 RVA: 0x00169B80 File Offset: 0x00167D80
 		private void Awake()
 		{
 			this.m_HotbarContainer = base.GetComponent<ItemContainer>();
@@ -30,7 +30,7 @@ namespace UltimateSurvival.GUISystem
 			this.m_HotbarContainer.Slot_PointerUp += this.On_Slot_PointerUp;
 		}
 
-		// Token: 0x06003D02 RID: 15618 RVA: 0x0002BF4E File Offset: 0x0002A14E
+		// Token: 0x06003386 RID: 13190 RVA: 0x00169BCC File Offset: 0x00167DCC
 		private IEnumerator Start()
 		{
 			base.Player.DestroyEquippedItem.SetTryer(new TryerDelegate(this.Try_DestroyEquippedItem));
@@ -48,7 +48,7 @@ namespace UltimateSurvival.GUISystem
 			yield break;
 		}
 
-		// Token: 0x06003D03 RID: 15619 RVA: 0x001B2C64 File Offset: 0x001B0E64
+		// Token: 0x06003387 RID: 13191 RVA: 0x00169BDC File Offset: 0x00167DDC
 		private bool Try_DestroyEquippedItem()
 		{
 			SavableItem item = base.Player.EquippedItem.Get();
@@ -59,7 +59,7 @@ namespace UltimateSurvival.GUISystem
 			return this.m_HotbarContainer.TryRemoveItem(item);
 		}
 
-		// Token: 0x06003D04 RID: 15620 RVA: 0x001B2CB8 File Offset: 0x001B0EB8
+		// Token: 0x06003388 RID: 13192 RVA: 0x00169C30 File Offset: 0x00167E30
 		private void On_Slot_PointerUp(PointerEventData data, Slot displayer)
 		{
 			if (displayer != this.m_SelectedSlot && data.pointerCurrentRaycast.gameObject == displayer.gameObject)
@@ -68,7 +68,7 @@ namespace UltimateSurvival.GUISystem
 			}
 		}
 
-		// Token: 0x06003D05 RID: 15621 RVA: 0x0002BF5D File Offset: 0x0002A15D
+		// Token: 0x06003389 RID: 13193 RVA: 0x00169C7B File Offset: 0x00167E7B
 		private void On_Slot_Refreshed(Slot slot)
 		{
 			if (slot == this.m_SelectedSlot)
@@ -77,7 +77,7 @@ namespace UltimateSurvival.GUISystem
 			}
 		}
 
-		// Token: 0x06003D06 RID: 15622 RVA: 0x001B2D04 File Offset: 0x001B0F04
+		// Token: 0x0600338A RID: 13194 RVA: 0x00169CA4 File Offset: 0x00167EA4
 		private void Update()
 		{
 			int num;
@@ -98,19 +98,19 @@ namespace UltimateSurvival.GUISystem
 			}
 		}
 
-		// Token: 0x06003D07 RID: 15623 RVA: 0x0002BF84 File Offset: 0x0002A184
+		// Token: 0x0600338B RID: 13195 RVA: 0x00169DAC File Offset: 0x00167FAC
 		public bool IsWeapon(ItemData item)
 		{
 			return item.Category == "Gun" || item.Category == "Melee Weapon" || item.Category == "Throwable";
 		}
 
-		// Token: 0x06003D08 RID: 15624 RVA: 0x0002BFBC File Offset: 0x0002A1BC
+		// Token: 0x0600338C RID: 13196 RVA: 0x00169DE4 File Offset: 0x00167FE4
 		public bool IsConsume(ItemData item)
 		{
 			return item.Category == "Consumable";
 		}
 
-		// Token: 0x06003D09 RID: 15625 RVA: 0x001B2E0C File Offset: 0x001B100C
+		// Token: 0x0600338D RID: 13197 RVA: 0x00169DF8 File Offset: 0x00167FF8
 		private void TrySelectSlot(int index)
 		{
 			index = Mathf.Clamp(index, 0, this.m_HotbarSlots.Count - 1);
@@ -154,55 +154,55 @@ namespace UltimateSurvival.GUISystem
 			component.localScale = Vector3.one;
 		}
 
-		// Token: 0x04003741 RID: 14145
+		// Token: 0x04002DC6 RID: 11718
 		[SerializeField]
 		[Range(0f, 100f)]
 		private int m_FirstSelected;
 
-		// Token: 0x04003742 RID: 14146
+		// Token: 0x04002DC7 RID: 11719
 		[Header("Navigation")]
 		[SerializeField]
 		private bool m_EnableScrolling = true;
 
-		// Token: 0x04003743 RID: 14147
+		// Token: 0x04002DC8 RID: 11720
 		[SerializeField]
 		[HideSwitch("m_EnableScrolling", true, 20f)]
 		[Clamp(0f, 10f)]
 		private float m_ScrollThreeshold = 0.3f;
 
-		// Token: 0x04003744 RID: 14148
+		// Token: 0x04002DC9 RID: 11721
 		[SerializeField]
 		private bool m_SelectByDigits = true;
 
-		// Token: 0x04003745 RID: 14149
+		// Token: 0x04002DCA RID: 11722
 		[Header("Selection Graphics")]
 		[SerializeField]
 		private float m_SelectedSlotScale = 1f;
 
-		// Token: 0x04003746 RID: 14150
+		// Token: 0x04002DCB RID: 11723
 		[SerializeField]
 		private Color m_FrameColor = Color.cyan;
 
-		// Token: 0x04003747 RID: 14151
+		// Token: 0x04002DCC RID: 11724
 		[SerializeField]
 		private Sprite m_FrameSprite;
 
-		// Token: 0x04003748 RID: 14152
+		// Token: 0x04002DCD RID: 11725
 		private ItemContainer m_HotbarContainer;
 
-		// Token: 0x04003749 RID: 14153
+		// Token: 0x04002DCE RID: 11726
 		private List<Slot> m_HotbarSlots;
 
-		// Token: 0x0400374A RID: 14154
+		// Token: 0x04002DCF RID: 11727
 		private Slot m_SelectedSlot;
 
-		// Token: 0x0400374B RID: 14155
+		// Token: 0x04002DD0 RID: 11728
 		private int m_LastIndex;
 
-		// Token: 0x0400374C RID: 14156
+		// Token: 0x04002DD1 RID: 11729
 		private float m_CurScrollValue;
 
-		// Token: 0x0400374D RID: 14157
+		// Token: 0x04002DD2 RID: 11730
 		private Image m_Frame;
 	}
 }

@@ -4,11 +4,11 @@ using JSONClass;
 
 namespace Bag
 {
-	// Token: 0x02000D24 RID: 3364
+	// Token: 0x0200099F RID: 2463
 	[Serializable]
 	public class CaoYaoItem : BaseItem
 	{
-		// Token: 0x06005014 RID: 20500 RVA: 0x0021887C File Offset: 0x00216A7C
+		// Token: 0x060044B8 RID: 17592 RVA: 0x001D3E84 File Offset: 0x001D2084
 		public override void SetItem(int id, int count)
 		{
 			base.SetItem(id, count);
@@ -17,7 +17,7 @@ namespace Bag
 			this.FuYao = _ItemJsonData.DataDict[id].yaoZhi3;
 		}
 
-		// Token: 0x06005015 RID: 20501 RVA: 0x00039A96 File Offset: 0x00037C96
+		// Token: 0x060044B9 RID: 17593 RVA: 0x001D3EDB File Offset: 0x001D20DB
 		public string GetZhuYao()
 		{
 			if (Tools.instance.getPlayer().GetHasZhuYaoShuXin(this.Id, this.Quality))
@@ -27,7 +27,7 @@ namespace Bag
 			return "未知";
 		}
 
-		// Token: 0x06005016 RID: 20502 RVA: 0x00039AC6 File Offset: 0x00037CC6
+		// Token: 0x060044BA RID: 17594 RVA: 0x001D3F0B File Offset: 0x001D210B
 		public string GetFuYao()
 		{
 			if (Tools.instance.getPlayer().GetHasFuYaoShuXin(this.Id, this.Quality))
@@ -37,7 +37,7 @@ namespace Bag
 			return "未知";
 		}
 
-		// Token: 0x06005017 RID: 20503 RVA: 0x00039AF6 File Offset: 0x00037CF6
+		// Token: 0x060044BB RID: 17595 RVA: 0x001D3F3B File Offset: 0x001D213B
 		public string GetYaoYin()
 		{
 			if (Tools.instance.getPlayer().GetHasYaoYinShuXin(this.Id, this.Quality))
@@ -47,7 +47,7 @@ namespace Bag
 			return "未知";
 		}
 
-		// Token: 0x06005018 RID: 20504 RVA: 0x00039B26 File Offset: 0x00037D26
+		// Token: 0x060044BC RID: 17596 RVA: 0x001D3F6B File Offset: 0x001D216B
 		public int GetZhuYaoId()
 		{
 			if (Tools.instance.getPlayer().GetHasZhuYaoShuXin(this.Id, this.Quality))
@@ -57,7 +57,7 @@ namespace Bag
 			return -1;
 		}
 
-		// Token: 0x06005019 RID: 20505 RVA: 0x00039B4D File Offset: 0x00037D4D
+		// Token: 0x060044BD RID: 17597 RVA: 0x001D3F92 File Offset: 0x001D2192
 		public int GetFuYaoId()
 		{
 			if (Tools.instance.getPlayer().GetHasFuYaoShuXin(this.Id, this.Quality))
@@ -67,7 +67,7 @@ namespace Bag
 			return -1;
 		}
 
-		// Token: 0x0600501A RID: 20506 RVA: 0x00039B74 File Offset: 0x00037D74
+		// Token: 0x060044BE RID: 17598 RVA: 0x001D3FB9 File Offset: 0x001D21B9
 		public int GetYaoYinId()
 		{
 			if (Tools.instance.getPlayer().GetHasYaoYinShuXin(this.Id, this.Quality))
@@ -77,7 +77,7 @@ namespace Bag
 			return -1;
 		}
 
-		// Token: 0x0600501B RID: 20507 RVA: 0x00039B9B File Offset: 0x00037D9B
+		// Token: 0x060044BF RID: 17599 RVA: 0x001D3FE0 File Offset: 0x001D21E0
 		public override void Use()
 		{
 			if (_ItemJsonData.DataDict[this.Id].vagueType == 1)
@@ -90,13 +90,13 @@ namespace Bag
 			}
 		}
 
-		// Token: 0x0400515C RID: 20828
+		// Token: 0x0400465E RID: 18014
 		public int YaoYin;
 
-		// Token: 0x0400515D RID: 20829
+		// Token: 0x0400465F RID: 18015
 		public int ZhuYao;
 
-		// Token: 0x0400515E RID: 20830
+		// Token: 0x04004660 RID: 18016
 		public int FuYao;
 	}
 }

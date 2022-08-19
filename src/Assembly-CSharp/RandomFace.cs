@@ -2,12 +2,12 @@
 using System.Security.Cryptography;
 using UnityEngine;
 
-// Token: 0x020007B0 RID: 1968
+// Token: 0x0200051C RID: 1308
 [CreateAssetMenu(menuName = "RandomFaceAsset/Create RandomFaceAsset Instance")]
 public class RandomFace : ScriptableObject
 {
-	// Token: 0x1700045D RID: 1117
-	// (get) Token: 0x06003203 RID: 12803 RVA: 0x00024801 File Offset: 0x00022A01
+	// Token: 0x170002BE RID: 702
+	// (get) Token: 0x060029F0 RID: 10736 RVA: 0x0013FFA2 File Offset: 0x0013E1A2
 	public RandomFaceInfo[] RandomFaces
 	{
 		get
@@ -16,13 +16,13 @@ public class RandomFace : ScriptableObject
 		}
 	}
 
-	// Token: 0x06003204 RID: 12804 RVA: 0x00024809 File Offset: 0x00022A09
+	// Token: 0x060029F1 RID: 10737 RVA: 0x0013FFAA File Offset: 0x0013E1AA
 	public Sprite getPartByID(int PartID)
 	{
 		return this.m_RandomFace[PartID].m_Icon;
 	}
 
-	// Token: 0x06003205 RID: 12805 RVA: 0x000AF784 File Offset: 0x000AD984
+	// Token: 0x060029F2 RID: 10738 RVA: 0x0013FFBC File Offset: 0x0013E1BC
 	public int getRandom()
 	{
 		byte[] array = new byte[8];
@@ -30,17 +30,17 @@ public class RandomFace : ScriptableObject
 		return Math.Abs(BitConverter.ToInt32(array, 0));
 	}
 
-	// Token: 0x06003206 RID: 12806 RVA: 0x000042DD File Offset: 0x000024DD
+	// Token: 0x060029F3 RID: 10739 RVA: 0x00004095 File Offset: 0x00002295
 	public static void onEnter()
 	{
 	}
 
-	// Token: 0x06003207 RID: 12807 RVA: 0x000042DD File Offset: 0x000024DD
+	// Token: 0x060029F4 RID: 10740 RVA: 0x00004095 File Offset: 0x00002295
 	public void cratfToJson()
 	{
 	}
 
-	// Token: 0x06003208 RID: 12808 RVA: 0x0018D1F4 File Offset: 0x0018B3F4
+	// Token: 0x060029F5 RID: 10741 RVA: 0x0013FFE8 File Offset: 0x0013E1E8
 	private void OnValidate()
 	{
 		int num = 0;
@@ -77,11 +77,11 @@ public class RandomFace : ScriptableObject
 		}
 	}
 
-	// Token: 0x04002E2F RID: 11823
+	// Token: 0x0400263F RID: 9791
 	[SerializeField]
 	private RandomFaceInfo[] m_RandomFace;
 
-	// Token: 0x04002E30 RID: 11824
+	// Token: 0x04002640 RID: 9792
 	[SerializeField]
 	private string path = "";
 }

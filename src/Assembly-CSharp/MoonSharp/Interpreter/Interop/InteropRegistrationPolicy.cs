@@ -3,11 +3,11 @@ using MoonSharp.Interpreter.Interop.RegistrationPolicies;
 
 namespace MoonSharp.Interpreter.Interop
 {
-	// Token: 0x020010ED RID: 4333
+	// Token: 0x02000D09 RID: 3337
 	public static class InteropRegistrationPolicy
 	{
-		// Token: 0x17000964 RID: 2404
-		// (get) Token: 0x060068A1 RID: 26785 RVA: 0x00047C53 File Offset: 0x00045E53
+		// Token: 0x17000707 RID: 1799
+		// (get) Token: 0x06005D72 RID: 23922 RVA: 0x00262EC7 File Offset: 0x002610C7
 		public static IRegistrationPolicy Default
 		{
 			get
@@ -16,8 +16,8 @@ namespace MoonSharp.Interpreter.Interop
 			}
 		}
 
-		// Token: 0x17000965 RID: 2405
-		// (get) Token: 0x060068A2 RID: 26786 RVA: 0x00047C53 File Offset: 0x00045E53
+		// Token: 0x17000708 RID: 1800
+		// (get) Token: 0x06005D73 RID: 23923 RVA: 0x00262EC7 File Offset: 0x002610C7
 		[Obsolete("Please use InteropRegistrationPolicy.Default instead.")]
 		public static IRegistrationPolicy Explicit
 		{
@@ -27,8 +27,8 @@ namespace MoonSharp.Interpreter.Interop
 			}
 		}
 
-		// Token: 0x17000966 RID: 2406
-		// (get) Token: 0x060068A3 RID: 26787 RVA: 0x00047C5A File Offset: 0x00045E5A
+		// Token: 0x17000709 RID: 1801
+		// (get) Token: 0x06005D74 RID: 23924 RVA: 0x00262ECE File Offset: 0x002610CE
 		public static IRegistrationPolicy Automatic
 		{
 			get

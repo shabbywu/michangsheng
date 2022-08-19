@@ -5,11 +5,11 @@ using UnityEngine.UI;
 
 namespace Fungus
 {
-	// Token: 0x020012F8 RID: 4856
+	// Token: 0x02000E87 RID: 3719
 	[ExecuteInEditMode]
 	public class Stage : PortraitController
 	{
-		// Token: 0x06007667 RID: 30311 RVA: 0x00050955 File Offset: 0x0004EB55
+		// Token: 0x06006968 RID: 26984 RVA: 0x002910A4 File Offset: 0x0028F2A4
 		protected virtual void OnEnable()
 		{
 			if (!Stage.activeStages.Contains(this))
@@ -18,13 +18,13 @@ namespace Fungus
 			}
 		}
 
-		// Token: 0x06007668 RID: 30312 RVA: 0x0005096F File Offset: 0x0004EB6F
+		// Token: 0x06006969 RID: 26985 RVA: 0x002910BE File Offset: 0x0028F2BE
 		protected virtual void OnDisable()
 		{
 			Stage.activeStages.Remove(this);
 		}
 
-		// Token: 0x06007669 RID: 30313 RVA: 0x0005097D File Offset: 0x0004EB7D
+		// Token: 0x0600696A RID: 26986 RVA: 0x002910CC File Offset: 0x0028F2CC
 		protected virtual void Start()
 		{
 			if (Application.isPlaying && this.portraitCanvas != null)
@@ -33,8 +33,8 @@ namespace Fungus
 			}
 		}
 
-		// Token: 0x17000AFF RID: 2815
-		// (get) Token: 0x0600766A RID: 30314 RVA: 0x000509A5 File Offset: 0x0004EBA5
+		// Token: 0x17000880 RID: 2176
+		// (get) Token: 0x0600696B RID: 26987 RVA: 0x002910F4 File Offset: 0x0028F2F4
 		public static List<Stage> ActiveStages
 		{
 			get
@@ -43,7 +43,7 @@ namespace Fungus
 			}
 		}
 
-		// Token: 0x0600766B RID: 30315 RVA: 0x000509AC File Offset: 0x0004EBAC
+		// Token: 0x0600696C RID: 26988 RVA: 0x002910FB File Offset: 0x0028F2FB
 		public static Stage GetActiveStage()
 		{
 			if (Stage.activeStages == null || Stage.activeStages.Count == 0)
@@ -53,8 +53,8 @@ namespace Fungus
 			return Stage.activeStages[0];
 		}
 
-		// Token: 0x17000B00 RID: 2816
-		// (get) Token: 0x0600766C RID: 30316 RVA: 0x000509CE File Offset: 0x0004EBCE
+		// Token: 0x17000881 RID: 2177
+		// (get) Token: 0x0600696D RID: 26989 RVA: 0x0029111D File Offset: 0x0028F31D
 		public virtual Canvas PortraitCanvas
 		{
 			get
@@ -63,9 +63,9 @@ namespace Fungus
 			}
 		}
 
-		// Token: 0x17000B01 RID: 2817
-		// (get) Token: 0x0600766D RID: 30317 RVA: 0x000509D6 File Offset: 0x0004EBD6
-		// (set) Token: 0x0600766E RID: 30318 RVA: 0x000509DE File Offset: 0x0004EBDE
+		// Token: 0x17000882 RID: 2178
+		// (get) Token: 0x0600696E RID: 26990 RVA: 0x00291125 File Offset: 0x0028F325
+		// (set) Token: 0x0600696F RID: 26991 RVA: 0x0029112D File Offset: 0x0028F32D
 		public virtual bool DimPortraits
 		{
 			get
@@ -78,9 +78,9 @@ namespace Fungus
 			}
 		}
 
-		// Token: 0x17000B02 RID: 2818
-		// (get) Token: 0x0600766F RID: 30319 RVA: 0x000509E7 File Offset: 0x0004EBE7
-		// (set) Token: 0x06007670 RID: 30320 RVA: 0x000509EF File Offset: 0x0004EBEF
+		// Token: 0x17000883 RID: 2179
+		// (get) Token: 0x06006970 RID: 26992 RVA: 0x00291136 File Offset: 0x0028F336
+		// (set) Token: 0x06006971 RID: 26993 RVA: 0x0029113E File Offset: 0x0028F33E
 		public virtual Color DimColor
 		{
 			get
@@ -93,9 +93,9 @@ namespace Fungus
 			}
 		}
 
-		// Token: 0x17000B03 RID: 2819
-		// (get) Token: 0x06007671 RID: 30321 RVA: 0x000509F8 File Offset: 0x0004EBF8
-		// (set) Token: 0x06007672 RID: 30322 RVA: 0x00050A00 File Offset: 0x0004EC00
+		// Token: 0x17000884 RID: 2180
+		// (get) Token: 0x06006972 RID: 26994 RVA: 0x00291147 File Offset: 0x0028F347
+		// (set) Token: 0x06006973 RID: 26995 RVA: 0x0029114F File Offset: 0x0028F34F
 		public virtual float FadeDuration
 		{
 			get
@@ -108,9 +108,9 @@ namespace Fungus
 			}
 		}
 
-		// Token: 0x17000B04 RID: 2820
-		// (get) Token: 0x06007673 RID: 30323 RVA: 0x00050A09 File Offset: 0x0004EC09
-		// (set) Token: 0x06007674 RID: 30324 RVA: 0x00050A11 File Offset: 0x0004EC11
+		// Token: 0x17000885 RID: 2181
+		// (get) Token: 0x06006974 RID: 26996 RVA: 0x00291158 File Offset: 0x0028F358
+		// (set) Token: 0x06006975 RID: 26997 RVA: 0x00291160 File Offset: 0x0028F360
 		public virtual float MoveDuration
 		{
 			get
@@ -123,8 +123,8 @@ namespace Fungus
 			}
 		}
 
-		// Token: 0x17000B05 RID: 2821
-		// (get) Token: 0x06007675 RID: 30325 RVA: 0x00050A1A File Offset: 0x0004EC1A
+		// Token: 0x17000886 RID: 2182
+		// (get) Token: 0x06006976 RID: 26998 RVA: 0x00291169 File Offset: 0x0028F369
 		public virtual LeanTweenType FadeEaseType
 		{
 			get
@@ -133,8 +133,8 @@ namespace Fungus
 			}
 		}
 
-		// Token: 0x17000B06 RID: 2822
-		// (get) Token: 0x06007676 RID: 30326 RVA: 0x00050A22 File Offset: 0x0004EC22
+		// Token: 0x17000887 RID: 2183
+		// (get) Token: 0x06006977 RID: 26999 RVA: 0x00291171 File Offset: 0x0028F371
 		public virtual Vector2 ShiftOffset
 		{
 			get
@@ -143,8 +143,8 @@ namespace Fungus
 			}
 		}
 
-		// Token: 0x17000B07 RID: 2823
-		// (get) Token: 0x06007677 RID: 30327 RVA: 0x00050A2A File Offset: 0x0004EC2A
+		// Token: 0x17000888 RID: 2184
+		// (get) Token: 0x06006978 RID: 27000 RVA: 0x00291179 File Offset: 0x0028F379
 		public virtual Image DefaultPosition
 		{
 			get
@@ -153,8 +153,8 @@ namespace Fungus
 			}
 		}
 
-		// Token: 0x17000B08 RID: 2824
-		// (get) Token: 0x06007678 RID: 30328 RVA: 0x00050A32 File Offset: 0x0004EC32
+		// Token: 0x17000889 RID: 2185
+		// (get) Token: 0x06006979 RID: 27001 RVA: 0x00291181 File Offset: 0x0028F381
 		public virtual List<RectTransform> Positions
 		{
 			get
@@ -163,8 +163,8 @@ namespace Fungus
 			}
 		}
 
-		// Token: 0x17000B09 RID: 2825
-		// (get) Token: 0x06007679 RID: 30329 RVA: 0x00050A3A File Offset: 0x0004EC3A
+		// Token: 0x1700088A RID: 2186
+		// (get) Token: 0x0600697A RID: 27002 RVA: 0x00291189 File Offset: 0x0028F389
 		public virtual List<Character> CharactersOnStage
 		{
 			get
@@ -173,7 +173,7 @@ namespace Fungus
 			}
 		}
 
-		// Token: 0x0600767A RID: 30330 RVA: 0x002B354C File Offset: 0x002B174C
+		// Token: 0x0600697B RID: 27003 RVA: 0x00291194 File Offset: 0x0028F394
 		public RectTransform GetPosition(string positionString)
 		{
 			if (string.IsNullOrEmpty(positionString))
@@ -190,55 +190,55 @@ namespace Fungus
 			return null;
 		}
 
-		// Token: 0x04006741 RID: 26433
+		// Token: 0x04005960 RID: 22880
 		[Tooltip("Canvas object containing the stage positions.")]
 		[SerializeField]
 		protected Canvas portraitCanvas;
 
-		// Token: 0x04006742 RID: 26434
+		// Token: 0x04005961 RID: 22881
 		[Tooltip("Dim portraits when a character is not speaking.")]
 		[SerializeField]
 		protected bool dimPortraits;
 
-		// Token: 0x04006743 RID: 26435
+		// Token: 0x04005962 RID: 22882
 		[Tooltip("Choose a dimColor")]
 		[SerializeField]
 		protected Color dimColor = new Color(0.5f, 0.5f, 0.5f, 1f);
 
-		// Token: 0x04006744 RID: 26436
+		// Token: 0x04005963 RID: 22883
 		[Tooltip("Duration for fading character portraits in / out.")]
 		[SerializeField]
 		protected float fadeDuration = 0.5f;
 
-		// Token: 0x04006745 RID: 26437
+		// Token: 0x04005964 RID: 22884
 		[Tooltip("Duration for moving characters to a new position")]
 		[SerializeField]
 		protected float moveDuration = 1f;
 
-		// Token: 0x04006746 RID: 26438
+		// Token: 0x04005965 RID: 22885
 		[Tooltip("Ease type for the fade tween.")]
 		[SerializeField]
 		protected LeanTweenType fadeEaseType;
 
-		// Token: 0x04006747 RID: 26439
+		// Token: 0x04005966 RID: 22886
 		[Tooltip("Constant offset to apply to portrait position.")]
 		[SerializeField]
 		protected Vector2 shiftOffset;
 
-		// Token: 0x04006748 RID: 26440
+		// Token: 0x04005967 RID: 22887
 		[Tooltip("The position object where characters appear by default.")]
 		[SerializeField]
 		protected Image defaultPosition;
 
-		// Token: 0x04006749 RID: 26441
+		// Token: 0x04005968 RID: 22888
 		[Tooltip("List of stage position rect transforms in the stage.")]
 		[SerializeField]
 		protected List<RectTransform> positions;
 
-		// Token: 0x0400674A RID: 26442
+		// Token: 0x04005969 RID: 22889
 		protected List<Character> charactersOnStage = new List<Character>();
 
-		// Token: 0x0400674B RID: 26443
+		// Token: 0x0400596A RID: 22890
 		protected static List<Stage> activeStages = new List<Stage>();
 	}
 }

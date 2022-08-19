@@ -6,11 +6,11 @@ using UnityEngine;
 
 namespace Tab
 {
-	// Token: 0x02000A42 RID: 2626
+	// Token: 0x020006FA RID: 1786
 	[Serializable]
 	public class TabShenTongPanel : ITabPanelBase
 	{
-		// Token: 0x060043DA RID: 17370 RVA: 0x001CFD2C File Offset: 0x001CDF2C
+		// Token: 0x06003961 RID: 14689 RVA: 0x001884A0 File Offset: 0x001866A0
 		public TabShenTongPanel(GameObject gameObject)
 		{
 			this._go = gameObject;
@@ -18,7 +18,7 @@ namespace Tab
 			this.player = Tools.instance.getPlayer();
 		}
 
-		// Token: 0x060043DB RID: 17371 RVA: 0x001CFD84 File Offset: 0x001CDF84
+		// Token: 0x06003962 RID: 14690 RVA: 0x001884F8 File Offset: 0x001866F8
 		private void Init()
 		{
 			Transform transform = base.Get("SkillList", true).transform;
@@ -29,7 +29,7 @@ namespace Tab
 			}
 		}
 
-		// Token: 0x060043DC RID: 17372 RVA: 0x0003085D File Offset: 0x0002EA5D
+		// Token: 0x06003963 RID: 14691 RVA: 0x00188544 File Offset: 0x00186744
 		public override void Show()
 		{
 			if (!this._isInit)
@@ -42,7 +42,7 @@ namespace Tab
 			this._go.SetActive(true);
 		}
 
-		// Token: 0x060043DD RID: 17373 RVA: 0x001CFDD0 File Offset: 0x001CDFD0
+		// Token: 0x06003964 RID: 14692 RVA: 0x00188580 File Offset: 0x00186780
 		public void LoadSkillData()
 		{
 			this.RemoveAll();
@@ -54,7 +54,7 @@ namespace Tab
 			}
 		}
 
-		// Token: 0x060043DE RID: 17374 RVA: 0x001CFE60 File Offset: 0x001CE060
+		// Token: 0x06003965 RID: 14693 RVA: 0x00188610 File Offset: 0x00186810
 		public void AddSkill(int index, BaseSkill baseSkill)
 		{
 			if (this.AciveSkillDict.ContainsKey(index))
@@ -66,7 +66,7 @@ namespace Tab
 			Debug.LogError(string.Format("不存在当前Key{0}", index));
 		}
 
-		// Token: 0x060043DF RID: 17375 RVA: 0x001CFEB8 File Offset: 0x001CE0B8
+		// Token: 0x06003966 RID: 14694 RVA: 0x00188668 File Offset: 0x00186868
 		public void ExSkill(int index1, int index2)
 		{
 			if (this.AciveSkillDict[index2].IsNull())
@@ -87,7 +87,7 @@ namespace Tab
 			this.player.equipSkill(this.AciveSkillDict[index2].Skill.SkillId, index2);
 		}
 
-		// Token: 0x060043E0 RID: 17376 RVA: 0x001CFFB0 File Offset: 0x001CE1B0
+		// Token: 0x06003967 RID: 14695 RVA: 0x00188760 File Offset: 0x00186960
 		public bool CanAddSkill(BaseSkill baseSkill)
 		{
 			foreach (SkillItem skillItem in this.player.equipSkillList)
@@ -100,14 +100,14 @@ namespace Tab
 			return true;
 		}
 
-		// Token: 0x060043E1 RID: 17377 RVA: 0x00030896 File Offset: 0x0002EA96
+		// Token: 0x06003968 RID: 14696 RVA: 0x001887C8 File Offset: 0x001869C8
 		public void RemoveSkill(int index)
 		{
 			this.player.UnEquipSkill(this.AciveSkillDict[index].Skill.SkillId);
 			this.AciveSkillDict[index].SetNull();
 		}
 
-		// Token: 0x060043E2 RID: 17378 RVA: 0x001D0018 File Offset: 0x001CE218
+		// Token: 0x06003969 RID: 14697 RVA: 0x001887FC File Offset: 0x001869FC
 		public void RemoveAll()
 		{
 			foreach (int key in this.AciveSkillDict.Keys)
@@ -116,7 +116,7 @@ namespace Tab
 			}
 		}
 
-		// Token: 0x060043E3 RID: 17379 RVA: 0x001D007C File Offset: 0x001CE27C
+		// Token: 0x0600396A RID: 14698 RVA: 0x00188860 File Offset: 0x00186A60
 		public SlotBase GetNullSlot()
 		{
 			foreach (int key in this.AciveSkillDict.Keys)
@@ -129,16 +129,16 @@ namespace Tab
 			return null;
 		}
 
-		// Token: 0x04003BD8 RID: 15320
+		// Token: 0x04003165 RID: 12645
 		private bool _isInit;
 
-		// Token: 0x04003BD9 RID: 15321
+		// Token: 0x04003166 RID: 12646
 		public Dictionary<int, ActiveSkillSlot> AciveSkillDict = new Dictionary<int, ActiveSkillSlot>();
 
-		// Token: 0x04003BDA RID: 15322
+		// Token: 0x04003167 RID: 12647
 		private Avatar player;
 
-		// Token: 0x04003BDB RID: 15323
+		// Token: 0x04003168 RID: 12648
 		private FangAnData FangAnData = Tools.instance.getPlayer().StreamData.FangAnData;
 	}
 }

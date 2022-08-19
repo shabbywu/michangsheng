@@ -11,10 +11,10 @@ using MoonSharp.Interpreter.Interop.RegistrationPolicies;
 
 namespace MoonSharp.Interpreter.Interop.UserDataRegistries
 {
-	// Token: 0x02001130 RID: 4400
+	// Token: 0x02000D2A RID: 3370
 	internal static class TypeDescriptorRegistry
 	{
-		// Token: 0x06006A68 RID: 27240 RVA: 0x0029082C File Offset: 0x0028EA2C
+		// Token: 0x06005EA1 RID: 24225 RVA: 0x0026813C File Offset: 0x0026633C
 		internal static void RegisterAssembly(Assembly asm = null, bool includeExtensionTypes = false)
 		{
 			if (asm == null)
@@ -48,7 +48,7 @@ namespace MoonSharp.Interpreter.Interop.UserDataRegistries
 			}
 		}
 
-		// Token: 0x06006A69 RID: 27241 RVA: 0x002909C4 File Offset: 0x0028EBC4
+		// Token: 0x06005EA2 RID: 24226 RVA: 0x002682D4 File Offset: 0x002664D4
 		internal static bool IsTypeRegistered(Type type)
 		{
 			object obj = TypeDescriptorRegistry.s_Lock;
@@ -60,7 +60,7 @@ namespace MoonSharp.Interpreter.Interop.UserDataRegistries
 			return result;
 		}
 
-		// Token: 0x06006A6A RID: 27242 RVA: 0x00290A0C File Offset: 0x0028EC0C
+		// Token: 0x06005EA3 RID: 24227 RVA: 0x0026831C File Offset: 0x0026651C
 		internal static void UnregisterType(Type t)
 		{
 			object obj = TypeDescriptorRegistry.s_Lock;
@@ -73,9 +73,9 @@ namespace MoonSharp.Interpreter.Interop.UserDataRegistries
 			}
 		}
 
-		// Token: 0x170009B1 RID: 2481
-		// (get) Token: 0x06006A6B RID: 27243 RVA: 0x000488EC File Offset: 0x00046AEC
-		// (set) Token: 0x06006A6C RID: 27244 RVA: 0x000488F3 File Offset: 0x00046AF3
+		// Token: 0x17000754 RID: 1876
+		// (get) Token: 0x06005EA4 RID: 24228 RVA: 0x00268378 File Offset: 0x00266578
+		// (set) Token: 0x06005EA5 RID: 24229 RVA: 0x0026837F File Offset: 0x0026657F
 		internal static InteropAccessMode DefaultAccessMode
 		{
 			get
@@ -92,14 +92,14 @@ namespace MoonSharp.Interpreter.Interop.UserDataRegistries
 			}
 		}
 
-		// Token: 0x06006A6D RID: 27245 RVA: 0x00290A68 File Offset: 0x0028EC68
+		// Token: 0x06005EA6 RID: 24230 RVA: 0x00268398 File Offset: 0x00266598
 		internal static IUserDataDescriptor RegisterProxyType_Impl(IProxyFactory proxyFactory, InteropAccessMode accessMode, string friendlyName)
 		{
 			IUserDataDescriptor proxyDescriptor = TypeDescriptorRegistry.RegisterType_Impl(proxyFactory.ProxyType, accessMode, friendlyName, null);
 			return TypeDescriptorRegistry.RegisterType_Impl(proxyFactory.TargetType, accessMode, friendlyName, new ProxyUserDataDescriptor(proxyFactory, proxyDescriptor, friendlyName));
 		}
 
-		// Token: 0x06006A6E RID: 27246 RVA: 0x00290A9C File Offset: 0x0028EC9C
+		// Token: 0x06005EA7 RID: 24231 RVA: 0x002683CC File Offset: 0x002665CC
 		internal static IUserDataDescriptor RegisterType_Impl(Type type, InteropAccessMode accessMode, string friendlyName, IUserDataDescriptor descriptor)
 		{
 			accessMode = TypeDescriptorRegistry.ResolveDefaultAccessModeForType(accessMode, type);
@@ -152,7 +152,7 @@ namespace MoonSharp.Interpreter.Interop.UserDataRegistries
 			return result;
 		}
 
-		// Token: 0x06006A6F RID: 27247 RVA: 0x00290BEC File Offset: 0x0028EDEC
+		// Token: 0x06005EA8 RID: 24232 RVA: 0x0026851C File Offset: 0x0026671C
 		private static IUserDataDescriptor PerformRegistration(Type type, IUserDataDescriptor newDescriptor, IUserDataDescriptor oldDescriptor)
 		{
 			IUserDataDescriptor userDataDescriptor = TypeDescriptorRegistry.RegistrationPolicy.HandleRegistration(newDescriptor, oldDescriptor);
@@ -171,7 +171,7 @@ namespace MoonSharp.Interpreter.Interop.UserDataRegistries
 			return userDataDescriptor;
 		}
 
-		// Token: 0x06006A70 RID: 27248 RVA: 0x00290C34 File Offset: 0x0028EE34
+		// Token: 0x06005EA9 RID: 24233 RVA: 0x00268564 File Offset: 0x00266764
 		internal static InteropAccessMode ResolveDefaultAccessModeForType(InteropAccessMode accessMode, Type type)
 		{
 			if (accessMode == InteropAccessMode.Default)
@@ -189,7 +189,7 @@ namespace MoonSharp.Interpreter.Interop.UserDataRegistries
 			return accessMode;
 		}
 
-		// Token: 0x06006A71 RID: 27249 RVA: 0x00290C74 File Offset: 0x0028EE74
+		// Token: 0x06005EAA RID: 24234 RVA: 0x002685A4 File Offset: 0x002667A4
 		internal static IUserDataDescriptor GetDescriptorForType(Type type, bool searchInterfaces)
 		{
 			object obj = TypeDescriptorRegistry.s_Lock;
@@ -285,20 +285,20 @@ namespace MoonSharp.Interpreter.Interop.UserDataRegistries
 			return result;
 		}
 
-		// Token: 0x06006A72 RID: 27250 RVA: 0x0001C722 File Offset: 0x0001A922
+		// Token: 0x06005EAB RID: 24235 RVA: 0x000DBFA9 File Offset: 0x000DA1A9
 		private static bool FrameworkIsAssignableFrom(Type type)
 		{
 			throw new NotImplementedException();
 		}
 
-		// Token: 0x06006A73 RID: 27251 RVA: 0x0004890A File Offset: 0x00046B0A
+		// Token: 0x06005EAC RID: 24236 RVA: 0x002687B0 File Offset: 0x002669B0
 		public static bool IsTypeBlacklisted(Type t)
 		{
 			return Framework.Do.IsValueType(t) && Framework.Do.GetInterfaces(t).Contains(typeof(IEnumerator));
 		}
 
-		// Token: 0x170009B2 RID: 2482
-		// (get) Token: 0x06006A74 RID: 27252 RVA: 0x00290E80 File Offset: 0x0028F080
+		// Token: 0x17000755 RID: 1877
+		// (get) Token: 0x06005EAD RID: 24237 RVA: 0x002687E0 File Offset: 0x002669E0
 		public static IEnumerable<KeyValuePair<Type, IUserDataDescriptor>> RegisteredTypes
 		{
 			get
@@ -313,8 +313,8 @@ namespace MoonSharp.Interpreter.Interop.UserDataRegistries
 			}
 		}
 
-		// Token: 0x170009B3 RID: 2483
-		// (get) Token: 0x06006A75 RID: 27253 RVA: 0x00290EC8 File Offset: 0x0028F0C8
+		// Token: 0x17000756 RID: 1878
+		// (get) Token: 0x06005EAE RID: 24238 RVA: 0x00268828 File Offset: 0x00266A28
 		public static IEnumerable<KeyValuePair<Type, IUserDataDescriptor>> RegisteredTypesHistory
 		{
 			get
@@ -329,21 +329,21 @@ namespace MoonSharp.Interpreter.Interop.UserDataRegistries
 			}
 		}
 
-		// Token: 0x170009B4 RID: 2484
-		// (get) Token: 0x06006A76 RID: 27254 RVA: 0x00048938 File Offset: 0x00046B38
-		// (set) Token: 0x06006A77 RID: 27255 RVA: 0x0004893F File Offset: 0x00046B3F
+		// Token: 0x17000757 RID: 1879
+		// (get) Token: 0x06005EAF RID: 24239 RVA: 0x00268870 File Offset: 0x00266A70
+		// (set) Token: 0x06005EB0 RID: 24240 RVA: 0x00268877 File Offset: 0x00266A77
 		internal static IRegistrationPolicy RegistrationPolicy { get; set; }
 
-		// Token: 0x040060B3 RID: 24755
+		// Token: 0x0400545A RID: 21594
 		private static object s_Lock = new object();
 
-		// Token: 0x040060B4 RID: 24756
+		// Token: 0x0400545B RID: 21595
 		private static Dictionary<Type, IUserDataDescriptor> s_TypeRegistry = new Dictionary<Type, IUserDataDescriptor>();
 
-		// Token: 0x040060B5 RID: 24757
+		// Token: 0x0400545C RID: 21596
 		private static Dictionary<Type, IUserDataDescriptor> s_TypeRegistryHistory = new Dictionary<Type, IUserDataDescriptor>();
 
-		// Token: 0x040060B6 RID: 24758
+		// Token: 0x0400545D RID: 21597
 		private static InteropAccessMode s_DefaultAccessMode;
 	}
 }

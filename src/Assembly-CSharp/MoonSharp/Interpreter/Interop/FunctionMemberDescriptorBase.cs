@@ -8,45 +8,45 @@ using MoonSharp.Interpreter.Interop.Converters;
 
 namespace MoonSharp.Interpreter.Interop
 {
-	// Token: 0x020010FF RID: 4351
+	// Token: 0x02000D1B RID: 3355
 	public abstract class FunctionMemberDescriptorBase : IOverloadableMemberDescriptor, IMemberDescriptor
 	{
-		// Token: 0x1700097B RID: 2427
-		// (get) Token: 0x060068FE RID: 26878 RVA: 0x00047F90 File Offset: 0x00046190
-		// (set) Token: 0x060068FF RID: 26879 RVA: 0x00047F98 File Offset: 0x00046198
+		// Token: 0x1700071E RID: 1822
+		// (get) Token: 0x06005DCF RID: 24015 RVA: 0x00264149 File Offset: 0x00262349
+		// (set) Token: 0x06005DD0 RID: 24016 RVA: 0x00264151 File Offset: 0x00262351
 		public bool IsStatic { get; private set; }
 
-		// Token: 0x1700097C RID: 2428
-		// (get) Token: 0x06006900 RID: 26880 RVA: 0x00047FA1 File Offset: 0x000461A1
-		// (set) Token: 0x06006901 RID: 26881 RVA: 0x00047FA9 File Offset: 0x000461A9
+		// Token: 0x1700071F RID: 1823
+		// (get) Token: 0x06005DD1 RID: 24017 RVA: 0x0026415A File Offset: 0x0026235A
+		// (set) Token: 0x06005DD2 RID: 24018 RVA: 0x00264162 File Offset: 0x00262362
 		public string Name { get; private set; }
 
-		// Token: 0x1700097D RID: 2429
-		// (get) Token: 0x06006902 RID: 26882 RVA: 0x00047FB2 File Offset: 0x000461B2
-		// (set) Token: 0x06006903 RID: 26883 RVA: 0x00047FBA File Offset: 0x000461BA
+		// Token: 0x17000720 RID: 1824
+		// (get) Token: 0x06005DD3 RID: 24019 RVA: 0x0026416B File Offset: 0x0026236B
+		// (set) Token: 0x06005DD4 RID: 24020 RVA: 0x00264173 File Offset: 0x00262373
 		public string SortDiscriminant { get; private set; }
 
-		// Token: 0x1700097E RID: 2430
-		// (get) Token: 0x06006904 RID: 26884 RVA: 0x00047FC3 File Offset: 0x000461C3
-		// (set) Token: 0x06006905 RID: 26885 RVA: 0x00047FCB File Offset: 0x000461CB
+		// Token: 0x17000721 RID: 1825
+		// (get) Token: 0x06005DD5 RID: 24021 RVA: 0x0026417C File Offset: 0x0026237C
+		// (set) Token: 0x06005DD6 RID: 24022 RVA: 0x00264184 File Offset: 0x00262384
 		public ParameterDescriptor[] Parameters { get; private set; }
 
-		// Token: 0x1700097F RID: 2431
-		// (get) Token: 0x06006906 RID: 26886 RVA: 0x00047FD4 File Offset: 0x000461D4
-		// (set) Token: 0x06006907 RID: 26887 RVA: 0x00047FDC File Offset: 0x000461DC
+		// Token: 0x17000722 RID: 1826
+		// (get) Token: 0x06005DD7 RID: 24023 RVA: 0x0026418D File Offset: 0x0026238D
+		// (set) Token: 0x06005DD8 RID: 24024 RVA: 0x00264195 File Offset: 0x00262395
 		public Type ExtensionMethodType { get; private set; }
 
-		// Token: 0x17000980 RID: 2432
-		// (get) Token: 0x06006908 RID: 26888 RVA: 0x00047FE5 File Offset: 0x000461E5
-		// (set) Token: 0x06006909 RID: 26889 RVA: 0x00047FED File Offset: 0x000461ED
+		// Token: 0x17000723 RID: 1827
+		// (get) Token: 0x06005DD9 RID: 24025 RVA: 0x0026419E File Offset: 0x0026239E
+		// (set) Token: 0x06005DDA RID: 24026 RVA: 0x002641A6 File Offset: 0x002623A6
 		public Type VarArgsArrayType { get; private set; }
 
-		// Token: 0x17000981 RID: 2433
-		// (get) Token: 0x0600690A RID: 26890 RVA: 0x00047FF6 File Offset: 0x000461F6
-		// (set) Token: 0x0600690B RID: 26891 RVA: 0x00047FFE File Offset: 0x000461FE
+		// Token: 0x17000724 RID: 1828
+		// (get) Token: 0x06005DDB RID: 24027 RVA: 0x002641AF File Offset: 0x002623AF
+		// (set) Token: 0x06005DDC RID: 24028 RVA: 0x002641B7 File Offset: 0x002623B7
 		public Type VarArgsElementType { get; private set; }
 
-		// Token: 0x0600690C RID: 26892 RVA: 0x0028CBD0 File Offset: 0x0028ADD0
+		// Token: 0x06005DDD RID: 24029 RVA: 0x002641C0 File Offset: 0x002623C0
 		protected void Initialize(string funcName, bool isStatic, ParameterDescriptor[] parameters, bool isExtensionMethod)
 		{
 			this.Name = funcName;
@@ -65,31 +65,31 @@ namespace MoonSharp.Interpreter.Interop
 			select pi.Type.FullName).ToArray<string>());
 		}
 
-		// Token: 0x0600690D RID: 26893 RVA: 0x00048007 File Offset: 0x00046207
+		// Token: 0x06005DDE RID: 24030 RVA: 0x00264296 File Offset: 0x00262496
 		public Func<ScriptExecutionContext, CallbackArguments, DynValue> GetCallback(Script script, object obj = null)
 		{
 			return (ScriptExecutionContext c, CallbackArguments a) => this.Execute(script, obj, c, a);
 		}
 
-		// Token: 0x0600690E RID: 26894 RVA: 0x0004802E File Offset: 0x0004622E
+		// Token: 0x06005DDF RID: 24031 RVA: 0x002642BD File Offset: 0x002624BD
 		public CallbackFunction GetCallbackFunction(Script script, object obj = null)
 		{
 			return new CallbackFunction(this.GetCallback(script, obj), this.Name);
 		}
 
-		// Token: 0x0600690F RID: 26895 RVA: 0x00048043 File Offset: 0x00046243
+		// Token: 0x06005DE0 RID: 24032 RVA: 0x002642D2 File Offset: 0x002624D2
 		public DynValue GetCallbackAsDynValue(Script script, object obj = null)
 		{
 			return DynValue.NewCallback(this.GetCallbackFunction(script, obj));
 		}
 
-		// Token: 0x06006910 RID: 26896 RVA: 0x00048052 File Offset: 0x00046252
+		// Token: 0x06005DE1 RID: 24033 RVA: 0x002642E1 File Offset: 0x002624E1
 		public static DynValue CreateCallbackDynValue(Script script, MethodInfo mi, object obj = null)
 		{
 			return new MethodMemberDescriptor(mi, InteropAccessMode.Default).GetCallbackAsDynValue(script, obj);
 		}
 
-		// Token: 0x06006911 RID: 26897 RVA: 0x0028CCA8 File Offset: 0x0028AEA8
+		// Token: 0x06005DE2 RID: 24034 RVA: 0x002642F4 File Offset: 0x002624F4
 		protected virtual object[] BuildArgumentList(Script script, object obj, ScriptExecutionContext context, CallbackArguments args, out List<int> outParams)
 		{
 			ParameterDescriptor[] parameters = this.Parameters;
@@ -166,7 +166,7 @@ namespace MoonSharp.Interpreter.Interop
 			return array;
 		}
 
-		// Token: 0x06006912 RID: 26898 RVA: 0x0028CEDC File Offset: 0x0028B0DC
+		// Token: 0x06005DE3 RID: 24035 RVA: 0x00264528 File Offset: 0x00262728
 		protected static DynValue BuildReturnValue(Script script, List<int> outParams, object[] pars, object retv)
 		{
 			if (outParams == null)
@@ -189,11 +189,11 @@ namespace MoonSharp.Interpreter.Interop
 			return DynValue.NewTuple(array);
 		}
 
-		// Token: 0x06006913 RID: 26899
+		// Token: 0x06005DE4 RID: 24036
 		public abstract DynValue Execute(Script script, object obj, ScriptExecutionContext context, CallbackArguments args);
 
-		// Token: 0x17000982 RID: 2434
-		// (get) Token: 0x06006914 RID: 26900 RVA: 0x0002D0EC File Offset: 0x0002B2EC
+		// Token: 0x17000725 RID: 1829
+		// (get) Token: 0x06005DE5 RID: 24037 RVA: 0x0016F21F File Offset: 0x0016D41F
 		public MemberDescriptorAccess MemberAccess
 		{
 			get
@@ -202,14 +202,14 @@ namespace MoonSharp.Interpreter.Interop
 			}
 		}
 
-		// Token: 0x06006915 RID: 26901 RVA: 0x00048062 File Offset: 0x00046262
+		// Token: 0x06005DE6 RID: 24038 RVA: 0x002645A2 File Offset: 0x002627A2
 		public virtual DynValue GetValue(Script script, object obj)
 		{
 			this.CheckAccess(MemberDescriptorAccess.CanRead, obj);
 			return this.GetCallbackAsDynValue(script, obj);
 		}
 
-		// Token: 0x06006916 RID: 26902 RVA: 0x00048074 File Offset: 0x00046274
+		// Token: 0x06005DE7 RID: 24039 RVA: 0x002645B4 File Offset: 0x002627B4
 		public virtual void SetValue(Script script, object obj, DynValue v)
 		{
 			this.CheckAccess(MemberDescriptorAccess.CanWrite, obj);

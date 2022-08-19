@@ -2,28 +2,28 @@
 
 namespace SuperScrollView
 {
-	// Token: 0x020009FF RID: 2559
+	// Token: 0x020006D1 RID: 1745
 	public class StaggeredGridViewInitParam
 	{
-		// Token: 0x060041EF RID: 16879 RVA: 0x0002F25F File Offset: 0x0002D45F
+		// Token: 0x060037CD RID: 14285 RVA: 0x0017EC82 File Offset: 0x0017CE82
 		public static StaggeredGridViewInitParam CopyDefaultInitParam()
 		{
 			return new StaggeredGridViewInitParam();
 		}
 
-		// Token: 0x04003A87 RID: 14983
+		// Token: 0x0400306F RID: 12399
 		public float mDistanceForRecycle0 = 300f;
 
-		// Token: 0x04003A88 RID: 14984
+		// Token: 0x04003070 RID: 12400
 		public float mDistanceForNew0 = 200f;
 
-		// Token: 0x04003A89 RID: 14985
+		// Token: 0x04003071 RID: 12401
 		public float mDistanceForRecycle1 = 300f;
 
-		// Token: 0x04003A8A RID: 14986
+		// Token: 0x04003072 RID: 12402
 		public float mDistanceForNew1 = 200f;
 
-		// Token: 0x04003A8B RID: 14987
+		// Token: 0x04003073 RID: 12403
 		public float mItemDefaultWithPaddingSize = 20f;
 	}
 }

@@ -3,10 +3,10 @@ using System.Collections.Generic;
 
 namespace JSONClass
 {
-	// Token: 0x02000C23 RID: 3107
+	// Token: 0x02000895 RID: 2197
 	public class NPCActionPanDingDate : IJSONClass
 	{
-		// Token: 0x06004BF5 RID: 19445 RVA: 0x00200FAC File Offset: 0x001FF1AC
+		// Token: 0x06004067 RID: 16487 RVA: 0x001B7BC8 File Offset: 0x001B5DC8
 		public static void InitDataDict()
 		{
 			foreach (JSONObject jsonobject in jsonData.instance.NPCActionPanDingDate.list)
@@ -47,48 +47,48 @@ namespace JSONClass
 			}
 		}
 
-		// Token: 0x06004BF6 RID: 19446 RVA: 0x000042DD File Offset: 0x000024DD
+		// Token: 0x06004068 RID: 16488 RVA: 0x00004095 File Offset: 0x00002295
 		private static void OnInitFinish()
 		{
 		}
 
-		// Token: 0x04004929 RID: 18729
+		// Token: 0x04003DD0 RID: 15824
 		public static Dictionary<int, NPCActionPanDingDate> DataDict = new Dictionary<int, NPCActionPanDingDate>();
 
-		// Token: 0x0400492A RID: 18730
+		// Token: 0x04003DD1 RID: 15825
 		public static List<NPCActionPanDingDate> DataList = new List<NPCActionPanDingDate>();
 
-		// Token: 0x0400492B RID: 18731
+		// Token: 0x04003DD2 RID: 15826
 		public static Action OnInitFinishAction = new Action(NPCActionPanDingDate.OnInitFinish);
 
-		// Token: 0x0400492C RID: 18732
+		// Token: 0x04003DD3 RID: 15827
 		public int id;
 
-		// Token: 0x0400492D RID: 18733
+		// Token: 0x04003DD4 RID: 15828
 		public int ChangeTo;
 
-		// Token: 0x0400492E RID: 18734
+		// Token: 0x04003DD5 RID: 15829
 		public int PingJing;
 
-		// Token: 0x0400492F RID: 18735
+		// Token: 0x04003DD6 RID: 15830
 		public int LingShi;
 
-		// Token: 0x04004930 RID: 18736
+		// Token: 0x04003DD7 RID: 15831
 		public int BeiBao;
 
-		// Token: 0x04004931 RID: 18737
+		// Token: 0x04003DD8 RID: 15832
 		public int PaiMaiTime;
 
-		// Token: 0x04004932 RID: 18738
+		// Token: 0x04003DD9 RID: 15833
 		public int PaiMaiType;
 
-		// Token: 0x04004933 RID: 18739
+		// Token: 0x04003DDA RID: 15834
 		public List<int> JingJie = new List<int>();
 
-		// Token: 0x04004934 RID: 18740
+		// Token: 0x04003DDB RID: 15835
 		public List<int> YueFen = new List<int>();
 
-		// Token: 0x04004935 RID: 18741
+		// Token: 0x04003DDC RID: 15836
 		public List<int> LingHeDianWei = new List<int>();
 	}
 }

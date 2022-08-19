@@ -2,17 +2,17 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-// Token: 0x02000281 RID: 641
+// Token: 0x02000191 RID: 401
 public class MapNodeManager : MonoBehaviour
 {
-	// Token: 0x060013B0 RID: 5040 RVA: 0x000126B0 File Offset: 0x000108B0
+	// Token: 0x0600112D RID: 4397 RVA: 0x0006758F File Offset: 0x0006578F
 	private void Awake()
 	{
 		this.MapComponentList = new List<MapComponent>();
 		MapNodeManager.inst = this;
 	}
 
-	// Token: 0x060013B1 RID: 5041 RVA: 0x000B5BB4 File Offset: 0x000B3DB4
+	// Token: 0x0600112E RID: 4398 RVA: 0x000675A4 File Offset: 0x000657A4
 	public void UpdateAllNode()
 	{
 		int childCount = this.MapNodeParent.transform.childCount;
@@ -32,18 +32,18 @@ public class MapNodeManager : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060013B2 RID: 5042 RVA: 0x000126C3 File Offset: 0x000108C3
+	// Token: 0x0600112F RID: 4399 RVA: 0x0006762D File Offset: 0x0006582D
 	private void OnDestroy()
 	{
 		MapNodeManager.inst = null;
 	}
 
-	// Token: 0x04000F49 RID: 3913
+	// Token: 0x04000C49 RID: 3145
 	public List<MapComponent> MapComponentList = new List<MapComponent>();
 
-	// Token: 0x04000F4A RID: 3914
+	// Token: 0x04000C4A RID: 3146
 	public static MapNodeManager inst;
 
-	// Token: 0x04000F4B RID: 3915
+	// Token: 0x04000C4B RID: 3147
 	public GameObject MapNodeParent;
 }
