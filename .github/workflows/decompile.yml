@@ -7,33 +7,25 @@ on:
   workflow_dispatch:
 jobs:
   decompile:
-    runs-on: windows-latest 
+    runs-on: linux-latest 
     steps:
     - name: Checkout
       uses: actions/checkout@v3
       with:
         fetch-depth: 0
-    # Install the .NET Core workload
-    - name: Install .NET Core
-      uses: actions/setup-dotnet@v2
-      with:
-        dotnet-version: 5.0.x
-    # Download dnSpy project
-    - uses: suisei-cn/actions-download-file@v1
-      name: Download dnSpy
-      with:
-        url: "https://github.com/dnSpy/dnSpy/releases/download/v6.1.8/dnSpy-netframework.zip"
-        target: dnSpy/
-    # Decompile Assembly-CSharp with duSpy
     - name: Decompile
-      shell: powershell
-      run: |
-        unzip dnspy.zip
-        try {rm -r src} catch {}
-        .\dnspy\dnSpy.Console.exe -o .\src .\Assembly-CSharp.dll
-    - name: Add & Commit
-      uses: EndBug/add-and-commit@v9.0.0
+      uses: shabbywu/gh-action-ILSpyCmd@v1
       with:
-        message: 更新觅长生源码
-        pull: --ff-only
-        
+        files: |
+          Assembly-CSharp.dll
+        output-dir: src
+    - name: Create Pull Request to 
+      uses: peter-evans/create-pull-request@v3
+      with:
+        token: ${{ github.token }}
+        commit-message: '更新觅长生源码'
+        title: '更新觅长生源码'
+        body: '更新觅长生源码'
+        branch: 'gh-action'
+        base: 'main'
+        path: 'main'
