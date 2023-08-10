@@ -29,4 +29,5 @@ jobs:
         body: '更新觅长生源码'
         branch: 'gh-action'
         base: 'main'
-        path: 'main'
+        add-paths: |
+          src/*
