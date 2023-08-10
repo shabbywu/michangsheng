@@ -18,7 +18,7 @@ jobs:
       with:
         files: |
           Assembly-CSharp.dll
-        output-dir: src
+        output-dir: src/Assembly-CSharp
         project: true
     - name: Create Pull Request to 
       uses: peter-evans/create-pull-request@v3
