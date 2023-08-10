@@ -1,0 +1,68 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <AssemblyName>Assembly-CSharp</AssemblyName>
+    <GenerateAssemblyInfo>False</GenerateAssemblyInfo>
+    <TargetFramework>net40</TargetFramework>
+  </PropertyGroup>
+  <PropertyGroup>
+    <LangVersion>11.0</LangVersion>
+    <AllowUnsafeBlocks>True</AllowUnsafeBlocks>
+  </PropertyGroup>
+  <PropertyGroup />
+  <ItemGroup />
+  <ItemGroup>
+    <Reference Include="UnityEngine.CoreModule" />
+    <Reference Include="UnityEngine.AnimationModule" />
+    <Reference Include="UnityEngine.ParticleSystemModule" />
+    <Reference Include="UnityEngine.AudioModule" />
+    <Reference Include="UnityEngine.UIModule" />
+    <Reference Include="UnityEngine.IMGUIModule" />
+    <Reference Include="UnityEngine.UI" />
+    <Reference Include="System.Core">
+      <HintPath>../../../../opt/bitnami/dotnet-sdk/bin/shared/Microsoft.NETCore.App/6.0.21/System.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.UnityWebRequestWWWModule" />
+    <Reference Include="UnityEngine.PhysicsModule" />
+    <Reference Include="UnityEngine.Physics2DModule" />
+    <Reference Include="UnityEngine.TextRenderingModule" />
+    <Reference Include="IFacebook" />
+    <Reference Include="UnityEngine.UnityWebRequestModule" />
+    <Reference Include="UnityEngine.TerrainModule" />
+    <Reference Include="Newtonsoft.Json" />
+    <Reference Include="spine-unity" />
+    <Reference Include="Assembly-CSharp-firstpass" />
+    <Reference Include="UnityEngine.AssetBundleModule" />
+    <Reference Include="UnityEngine.VideoModule" />
+    <Reference Include="DOTween" />
+    <Reference Include="Unity.TextMeshPro" />
+    <Reference Include="XCharts.Runtime" />
+    <Reference Include="Parse.Unity" />
+    <Reference Include="System.Xml.Linq">
+      <HintPath>../../../../opt/bitnami/dotnet-sdk/bin/shared/Microsoft.NETCore.App/6.0.21/System.Xml.Linq.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.Advertisements" />
+    <Reference Include="UnityEngine.AIModule" />
+    <Reference Include="Febucci.TextAnimator.Runtime" />
+    <Reference Include="UIEffect" />
+    <Reference Include="YarnSpinner.Unity" />
+    <Reference Include="YarnSpinner.Compiler" />
+    <Reference Include="Google.Protobuf" />
+    <Reference Include="UnityEngine.UnityWebRequestTextureModule" />
+    <Reference Include="BehaviorDesignerRuntime" />
+    <Reference Include="ArabicSupport" />
+    <Reference Include="UniRx" />
+    <Reference Include="UnityEngine.ImageConversionModule" />
+    <Reference Include="System.Data">
+      <HintPath>../../../../opt/bitnami/dotnet-sdk/bin/shared/Microsoft.NETCore.App/6.0.21/System.Data.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xml">
+      <HintPath>../../../../opt/bitnami/dotnet-sdk/bin/shared/Microsoft.NETCore.App/6.0.21/System.Xml.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.TerrainPhysicsModule" />
+    <Reference Include="YarnSpinner" />
+    <Reference Include="Boo.Lang" />
+    <Reference Include="UnityEngine.JSONSerializeModule" />
+    <Reference Include="UnityEngine.Networking" />
+    <Reference Include="Sirenix.Utilities" />
+  </ItemGroup>
+</Project>
