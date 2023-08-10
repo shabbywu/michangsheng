@@ -20,6 +20,9 @@ jobs:
           Assembly-CSharp.dll
         output-dir: src/Assembly-CSharp
         project: true
+    - name: Fix permission
+      run: |
+        sudo chown -R $USER:$USER src
     - name: Create Pull Request to 
       uses: peter-evans/create-pull-request@v5
       with:
